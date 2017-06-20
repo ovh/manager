@@ -27,13 +27,6 @@ module.exports = function (grunt) {
             dist : {
                 files : [{
                     "<%= distdir %>/ovh-tail-logs.js" : "<%= builddir %>/ovh-tail-logs.js"
-                }, {
-                    expand : true,
-                    cwd : "<%= srcdir %>",
-                    dest: "<%= distdir %>",
-                    src : [
-                        "**/translations/*.json"
-                    ]
                 }]
             }
         },
@@ -232,19 +225,6 @@ module.exports = function (grunt) {
             }
         },
 
-        // translation
-        ovhTranslation: {
-            dev: {
-                files: [{
-                    expand: true,
-                    src: ["<%= srcdir %>/**/translations/*.xml"],
-                    // dest: "<%= srcdir %>",
-                    filter: "isFile",
-                    extendFrom: ["en_GB", "fr_FR"]
-                }]
-            }
-        },
-
         wiredep: {
             test: {
                 src: "./karma.conf.js",
@@ -255,7 +235,6 @@ module.exports = function (grunt) {
 
     grunt.registerTask("buildProd", [
         "clean",
-        "ovhTranslation",
         "ngtemplates",
         "jshint",
         "complexity",

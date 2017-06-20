@@ -28,7 +28,6 @@
         "grunt-karma": "~0.12.0",
         "grunt-ng-annotate": "~0.10.0",
         "grunt-ngdocs": "^0.2.5",
-        "grunt-ovh-translation": "git+ssh://git@stash.ovh.net:7999/uxtools/grunt-ovh-translation.git#master",
         "grunt-postcss": "^0.8.0",
         "grunt-wiredep": "^3.0.1",
         "jasmine-core": "^2.4.1",
