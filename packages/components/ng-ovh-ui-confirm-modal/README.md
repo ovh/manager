@@ -5,6 +5,10 @@ Simple confirmation modal
 
 ![deprecated](https://img.shields.io/badge/status-deprecated-red.svg) [![Build Status](https://travis-ci.org/ovh/angular-a-disabled.svg)](https://travis-ci.org/ovh/angular-a-disabled)
 
+```
+Include the module `ovh-angular-ui-confirm-modal` in your project and follow the example  below.
+```
+
 ## Example
 
 ```html
@@ -49,6 +53,15 @@ Simple confirmation modal
 You've developed a new cool feature ? Fixed an annoying bug ? We'd be happy
 to hear from you !
 
-```
 
-Include the module `ovh-angular-ui-confirm-modal` in your project and follow the example  below.
+Have a look in [CONTRIBUTING.md](https://github.com/ovh-ux/ovh-angular-ui-confirm-modal/blob/master/CONTRIBUTING.md)
+
+# Related links
+ 
+ * Contribute: https://github.com/ovh-ux/ovh-angular-ui-confirm-modal
+ * Report bugs: https://github.com/ovh-ux/ovh-angular-ui-confirm-modal/issues
+ * Get latest version: https://github.com/ovh-ux/ovh-angular-ui-confirm-modal
+ 
+# License
+ 
+See https://github.com/ovh-ux/ovh-angular-ui-confirm-modal/blob/master/LICENSE
