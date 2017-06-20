@@ -1,13 +1,13 @@
 /**
  * @ngdoc directive
- * @name angular-ui-confirm-modal.directive:ngReallyClick
+ * @name ovh-angular-ui-confirm-modal.directive:ngReallyClick
  * @scope
  * @restrict EA
  * @description
  *
  * Implement confirmation modal
  *
- * To use angular-ui-confirm-modal, you had to inject angular-ui-confirm-modal as dependency and use it like this example
+ * To use ovh-angular-ui-confirm-modal, you had to inject ovh-angular-ui-confirm-modal as dependency and use it like this example
  * <pre>
  *  angular.module('myApp', ['angular-ui-confirm-modal]);
  * </pre>
