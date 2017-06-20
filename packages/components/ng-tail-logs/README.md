@@ -75,10 +75,10 @@ grunt ngdocs
  
 # Related links
  
- * Contribute: https://github.com/ovh/ovh-tail-logs
- * Report bugs: https://github.com/ovh/ovh-tail-logs/issues
+ * Contribute: https://github.com/ovh-ux/ovh-tail-logs
+ * Report bugs: https://github.com/ovh-ux/ovh-tail-logs/issues
  * Get latest version: https://github.com/ovh-ux/ovh-tail-logs
  
 # License
  
-See https://github.com/ovh/ovh-tail-logs/blob/master/LICENSE
+See https://github.com/ovh-ux/ovh-tail-logs/blob/master/LICENSE
