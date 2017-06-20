@@ -1,9 +1,8 @@
 {
     "name": "ovh-tail-logs",
     "version": "1.1.0",
-    "private": true,
     "main": "./dist/ovh-tail-logs.js",
-    "repository": "git@github.com:ovh-ux/ovh-tail-logs.git",
+    "repository": "ovh-ux/ovh-tail-logs.git",
     "description": "Poll a log API for displaying messages",
     "ignore": [
         "components",
