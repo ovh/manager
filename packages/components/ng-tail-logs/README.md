@@ -1,3 +1,5 @@
+![OVH component](githubBanner.png)
+
 # ovh-angular-tail-logs
 
 [Poll a log API for displaying messages](https://github.com/ovh-ux/ovh-tail-logs)
