@@ -9,7 +9,7 @@
  *
  * To use ovh-angular-ui-confirm-modal, you had to inject ovh-angular-ui-confirm-modal as dependency and use it like this example
  * <pre>
- *  angular.module('myApp', ['angular-ui-confirm-modal]);
+ *  angular.module('myApp', ['ovh-angular-ui-confirm-modal']);
  * </pre>
  *
  *
