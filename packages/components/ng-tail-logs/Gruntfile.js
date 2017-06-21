@@ -9,7 +9,7 @@ module.exports = function (grunt) {
         distdir  : "dist",
         srcdir   : "src",
         builddir : ".work/.tmp",
-        name     : grunt.file.readJSON("package.json").name || "ovh-tail-logs",   // module name
+        name     : grunt.file.readJSON("package.json").name || "ovh-angular-tail-logs",   // module name
 
         // Clean
         clean      : {
@@ -26,7 +26,7 @@ module.exports = function (grunt) {
             // Copy concatened JS file from builddir to dist/
             dist : {
                 files : [{
-                    "<%= distdir %>/ovh-tail-logs.js" : "<%= builddir %>/ovh-tail-logs.js"
+                    "<%= distdir %>/ovh-angular-tail-logs.js" : "<%= builddir %>/ovh-angular-tail-logs.js"
                 }]
             }
         },
@@ -35,8 +35,8 @@ module.exports = function (grunt) {
         concat     : {
             dist : {
                 files : {
-                    "<%= builddir %>/ovh-tail-logs.js" : [
-                        "<%= srcdir %>/ovh-tail-logs.js",
+                    "<%= builddir %>/ovh-angular-tail-logs.js" : [
+                        "<%= srcdir %>/ovh-angular-tail-logs.js",
                         "<%= srcdir %>/**/*.js",
                         "<%=builddir%>/templates.js",
                         "!<%= srcdir %>/**/*.spec.js",
@@ -50,7 +50,7 @@ module.exports = function (grunt) {
         ngAnnotate: {
             dist: {
                 files: {
-                    "<%= builddir %>/ovh-tail-logs.js" : ["<%= builddir %>/ovh-tail-logs.js"]
+                    "<%= builddir %>/ovh-angular-tail-logs.js" : ["<%= builddir %>/ovh-angular-tail-logs.js"]
                 }
             }
         },
@@ -59,10 +59,10 @@ module.exports = function (grunt) {
         uglify   : {
             js : {
                 options : {
-                    banner : "/*! ovh-tail-logs - <%= pkg.version %> - <%= grunt.template.today('yyyy-mm-dd') %> */\n"
+                    banner : "/*! ovh-angular-tail-logs - <%= pkg.version %> - <%= grunt.template.today('yyyy-mm-dd') %> */\n"
                 },
                 files   : {
-                    "<%= distdir %>/ovh-tail-logs.min.js" : ["<%= builddir %>/ovh-tail-logs.js"]
+                    "<%= distdir %>/ovh-angular-tail-logs.min.js" : ["<%= builddir %>/ovh-angular-tail-logs.js"]
                 }
             }
         },

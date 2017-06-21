@@ -1,12 +1,12 @@
 {
-    "name": "ovh-tail-logs",
+    "name": "ovh-angular-tail-logs",
     "version": "1.1.0",
     "description": "Poll a log API for displaying messages",
     "keywords": [
         "angular"
     ],
-    "main": "./dist/ovh-tail-logs.min.js",
-    "repository": "ovh-ux/ovh-tail-logs.git",
+    "main": "./dist/ovh-angular-tail-logs.min.js",
+    "repository": "ovh-ux/ovh-angular-tail-logs.git",
     "dependencies": {},
     "devDependencies": {
         "autoprefixer-core": "^5.2.1",

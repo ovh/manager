@@ -3,7 +3,7 @@ angular.module("ovh-tail-logs", [
 ]);
 
 angular.module("ovh-tail-logs").component("ovhTailLogs", {
-    templateUrl : "ovh-tail-logs.html",
+    templateUrl : "ovh-angular-tail-logs.html",
     transclude : true
 });
 
@@ -71,7 +71,7 @@ angular.module("ovh-tail-logs").component("ovhTailLogs", {
 angular.module('ovh-tail-logs').run(['$templateCache', function($templateCache) {
   'use strict';
 
-  $templateCache.put('ovh-tail-logs.html',
+  $templateCache.put('ovh-angular-tail-logs.html',
     "<div class=ovh-tail-logs data-scroll-glue><div data-ng-transclude></div><i class=ovh-tail-logs__cursor></div>"
   );
 
