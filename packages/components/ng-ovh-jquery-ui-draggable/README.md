@@ -5,6 +5,7 @@
 
 ![deprecated](https://img.shields.io/badge/status-deprecated-red.svg) [![Build Status](https://travis-ci.org/ovh-ux/ovh-jquery-ui-draggable-ng.svg)](https://travis-ci.org/ovh-ux/ovh-jquery-ui-draggable-ng)
 
+[![NPM](https://nodei.co/npm/ovh-jquery-ui-draggable-ng.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/ovh-jquery-ui-draggable-ng/)
 
 ## Installation
 
