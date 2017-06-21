@@ -16,7 +16,7 @@ module.exports = function (config) {
             'bower_components/angular/angular.js',
             'bower_components/angular-sanitize/angular-sanitize.js',
             'bower_components/angular-mocks/angular-mocks.js',
-            'src/ovh-checkbox-table.js',
+            'src/ovh-angular-checkbox-table.js',
             'src/**/*.js'
         ],
 
