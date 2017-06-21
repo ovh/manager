@@ -1,4 +1,4 @@
-.ovh-tail-logs {
+.ovh-angular-tail-logs {
   background-color: #122844;
   color: white;
   font-family: monospace;
@@ -7,7 +7,7 @@
   overflow-y: auto;
   overflow-x: hidden;
 }
-.ovh-tail-logs__cursor {
+.ovh-angular-tail-logs__cursor {
   content: "";
   display: inline-block;
   background-color: white;

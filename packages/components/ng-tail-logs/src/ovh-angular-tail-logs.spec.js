@@ -1,6 +1,6 @@
 /* jshint jasmine:true */
 
-describe("directive: ovh-tail-logs", function () {
+describe("directive: ovh-angular-tail-logs", function () {
     "use strict";
 
 

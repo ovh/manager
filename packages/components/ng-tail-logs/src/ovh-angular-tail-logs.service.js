@@ -1,7 +1,7 @@
 (function () {
     "use strict";
 
-    angular.module("ovh-tail-logs").factory("OvhTailLogs", function ($q, $timeout, $http) {
+    angular.module("ovh-angular-tail-logs").factory("OvhTailLogs", function ($q, $timeout, $http) {
 
         var OvhTailLogs = function (opts) {
             var funcSource = opts.source || angular.noop;

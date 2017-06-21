@@ -1,8 +1,8 @@
-angular.module("ovh-tail-logs", [
+angular.module("ovh-angular-tail-logs", [
     "luegg.directives"
 ]);
 
-angular.module("ovh-tail-logs").component("ovhTailLogs", {
+angular.module("ovh-angular-tail-logs").component("ovhTailLogs", {
     templateUrl : "ovh-angular-tail-logs.html",
     transclude : true
 });
@@ -10,7 +10,7 @@ angular.module("ovh-tail-logs").component("ovhTailLogs", {
 (function () {
     "use strict";
 
-    angular.module("ovh-tail-logs").factory("OvhTailLogs", ["$q", "$timeout", "$http", function ($q, $timeout, $http) {
+    angular.module("ovh-angular-tail-logs").factory("OvhTailLogs", ["$q", "$timeout", "$http", function ($q, $timeout, $http) {
 
         var OvhTailLogs = function (opts) {
             var funcSource = opts.source || angular.noop;
@@ -68,11 +68,11 @@ angular.module("ovh-tail-logs").component("ovhTailLogs", {
     }]);
 })();
 
-angular.module('ovh-tail-logs').run(['$templateCache', function($templateCache) {
+angular.module('ovh-angular-tail-logs').run(['$templateCache', function($templateCache) {
   'use strict';
 
   $templateCache.put('ovh-angular-tail-logs.html',
-    "<div class=ovh-tail-logs data-scroll-glue><div data-ng-transclude></div><i class=ovh-tail-logs__cursor></div>"
+    "<div class=ovh-angular-tail-logs data-scroll-glue><div data-ng-transclude></div><i class=ovh-angular-tail-logs__cursor></div>"
   );
 
 }]);

@@ -207,7 +207,7 @@ module.exports = function (grunt) {
         ngtemplates: {
             options: {
                 // This should be the name of your apps angular module
-                module: "ovh-tail-logs",
+                module: "ovh-angular-tail-logs",
                 htmlmin: {
                     collapseBooleanAttributes: true,
                     collapseWhitespace: true,

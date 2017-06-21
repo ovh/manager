@@ -1,3 +1,3 @@
-angular.module("ovh-tail-logs", [
+angular.module("ovh-angular-tail-logs", [
     "luegg.directives"
 ]);
