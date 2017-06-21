@@ -1,6 +1,10 @@
+# ovh-angular-tail-logs
+
 ![OVH component](githubBanner.png)
 
-# ovh-angular-tail-logs
+[![NPM](https://nodei.co/npm/ovh-angular-tail-logs.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/ovh-angular-tail-logs/)
+
+[![Maintenance](https://img.shields.io/maintenance/yes/2017.svg)]() [![Chat on gitter](https://img.shields.io/gitter/room/ovh/ux.svg)](https://gitter.im/ovh/ux)
 
 [Poll a log API for displaying messages](https://github.com/ovh-ux/ovh-tail-logs)
  
