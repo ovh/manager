@@ -1,1 +1,1 @@
-angular.module('ovh-checkbox-table', []);
+angular.module('ovh-angular-checkbox-table', []);

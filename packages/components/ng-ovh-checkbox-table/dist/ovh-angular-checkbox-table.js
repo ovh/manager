@@ -1,4 +1,4 @@
-angular.module('ovh-checkbox-table', []);
+angular.module('ovh-angular-checkbox-table', []);
 
 /**
  * @decription
@@ -34,7 +34,7 @@ angular.module('ovh-checkbox-table', []);
  * If the user click on the checkbox, it call a function with the new state in param.
  * With this, you can update your array/view!
  */
-angular.module('ovh-checkbox-table').directive('ovhCheckboxTable', ['$timeout', function ($timeout) {
+angular.module('ovh-angular-checkbox-table').directive('ovhCheckboxTable', ["$timeout", function ($timeout) {
     'use strict';
     return {
         restrict : 'A',

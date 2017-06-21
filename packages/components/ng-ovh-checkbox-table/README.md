@@ -9,7 +9,7 @@
 ## Example
 
 ```javascript
-angular.module("app", ["ovh-checkbox-table"]);
+angular.module("app", ["ovh-angular-checkbox-table"]);
 ```
 
 ```html
@@ -18,11 +18,11 @@ angular.module("app", ["ovh-checkbox-table"]);
         <tr>
             <th class="text-center" style="width: 35px;">
                 <input type="checkbox"
-                    ovh-checkbox-table
-                    ovh-checkbox-table-ids-all="table.myAllIds_canBeFiltered"
-                    ovh-checkbox-table-ids-page="table.myIdsOnCurrentPage"
-                    ovh-checkbox-table-ids-selected="table.myIdsSelectedByCheckbox"
-                    ovh-checkbox-table-id="id" />
+                    data-ovh-checkbox-table
+                    data-ovh-checkbox-table-ids-all="table.myAllIds_canBeFiltered"
+                    data-ovh-checkbox-table-ids-page="table.myIdsOnCurrentPage"
+                    data-ovh-checkbox-table-ids-selected="table.myIdsSelectedByCheckbox"
+                    data-ovh-checkbox-table-id="id" />
             </th>
             <th>
                 name

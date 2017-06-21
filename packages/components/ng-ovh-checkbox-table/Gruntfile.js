@@ -15,7 +15,7 @@ module.exports = function (grunt) {
         distdir  : 'dist',
         srcdir   : 'src',
         builddir : '.work/.tmp',
-        name     : grunt.file.readJSON('package.json').name || 'ovh-checkbox-table',   // module name
+        name     : grunt.file.readJSON('package.json').name || 'ovh-angular-checkbox-table',   // module name
 
         // Clean
         clean      : {
@@ -193,8 +193,8 @@ module.exports = function (grunt) {
         grunt.task.run([
             "clean",
             "jshint",
-            "complexity"/*,
-            "karma"*/
+            "complexity",
+            "karma"
         ]);
     });
 
@@ -203,11 +203,6 @@ module.exports = function (grunt) {
         "concat:dist",
         "ngAnnotate",
         "uglify",
-        // "concat:css",
-        // "less",
-        // "autoprefixer",
-        // "cssmin",
-        // "copy:less",
         "copy:dist"
     ]);
 

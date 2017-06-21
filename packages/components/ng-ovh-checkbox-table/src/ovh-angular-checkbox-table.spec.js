@@ -1,10 +1,10 @@
 'use strict';
 
-describe('ovh-checkbox-table', function () {
+describe('ovh-angular-checkbox-table', function () {
 
     var $compile, $rootScope, $scope, $httpBackend, elem;
 
-    beforeEach(angular.mock.module('ovh-checkbox-table'));
+    beforeEach(angular.mock.module('ovh-angular-checkbox-table'));
 
     beforeEach(angular.mock.inject(function (_$rootScope_, _$compile_, _$httpBackend_) {
         $scope = _$rootScope_.$new();
