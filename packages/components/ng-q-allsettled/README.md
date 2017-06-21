@@ -4,6 +4,8 @@
 
 [![Maintenance](https://img.shields.io/maintenance/yes/2017.svg)]() [![Chat on gitter](https://img.shields.io/gitter/room/ovh/ux.svg)](https://gitter.im/ovh/ux)
 
+[![NPM](https://nodei.co/npm/ovh-angular-q-allsettled.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/ovh-angular-q-allsettled/)
+
 [Copy of kriskowal/q => allSettled](https://github.com/kriskowal/q/wiki/API-Reference "Documentation")
 
 Returns a promise that is fulfilled with an array of promise state snapshots, but only after all the original promises have settled, i.e. become either fulfilled or rejected.
