@@ -1,11 +1,12 @@
-# ovh-angular-q-allSettled [Copy of kriskowal/q => allSettled](https://github.com/kriskowal/q/wiki/API-Reference "Documentation") [![Chat on gitter](https://img.shields.io/gitter/room/ovh/ux.svg)](https://gitter.im/ovh/ux)
+# ovh-angular-q-allSettled
 
 ![OVH components](githubBanner.png)
 
+[![Maintenance](https://img.shields.io/maintenance/yes/2017.svg)]() [![Chat on gitter](https://img.shields.io/gitter/room/ovh/ux.svg)](https://gitter.im/ovh/ux)
+
+[Copy of kriskowal/q => allSettled](https://github.com/kriskowal/q/wiki/API-Reference "Documentation")
+
 Returns a promise that is fulfilled with an array of promise state snapshots, but only after all the original promises have settled, i.e. become either fulfilled or rejected.
-
-[![Maintenance](https://img.shields.io/maintenance/yes/2017.svg)]()
-
 
 This method is often used in its static form on arrays of promises, in order to execute a number of operations concurrently and be notified when they all finish, regardless of success or failure. For example:
 
