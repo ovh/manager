@@ -1,7 +1,7 @@
 
 # ovh-jquery-ui-draggable-ng
 
-[![Make elements draggable](githubBannerDeprecated.png)]()
+![Make elements draggable](githubBannerDeprecated.png)
 
 ![deprecated](https://img.shields.io/badge/status-deprecated-red.svg) [![Build Status](https://travis-ci.org/ovh-ux/ovh-jquery-ui-draggable-ng.svg)](https://travis-ci.org/ovh-ux/ovh-jquery-ui-draggable-ng)
 
