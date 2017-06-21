@@ -1,3 +1,5 @@
+![OVH component](githubBanner.png)
+
 # Angular Timeline
 
 This is a fork of the original component from version 1.5.0
