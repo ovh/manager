@@ -1,6 +1,10 @@
+# Angular Timeline
+
 ![OVH component](githubBanner.png)
 
-# Angular Timeline
+[![Maintenance](https://img.shields.io/maintenance/yes/2017.svg)]() [![Chat on gitter](https://img.shields.io/gitter/room/ovh/ux.svg)](https://gitter.im/ovh/ux)
+
+[![NPM](https://nodei.co/npm/ovh-angular-timeline.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/ovh-angular-timeline/)
 
 This is a fork of the original component from version 1.5.0
 
