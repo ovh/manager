@@ -4,6 +4,8 @@
 
 [![Maintenance](https://img.shields.io/maintenance/yes/2017.svg)]() [![Chat on gitter](https://img.shields.io/gitter/room/ovh/ux.svg)](https://gitter.im/ovh/ux)
 
+[![NPM](https://nodei.co/npm/ovh-angular-checkbox-table.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/ovh-angular-checkbox-table/)
+
 ## Example
 
 ```javascript
