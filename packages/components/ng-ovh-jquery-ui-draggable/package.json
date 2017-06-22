@@ -24,10 +24,12 @@
         "grunt-karma": "~0.10.1",
         "grunt-ng-annotate": "~0.10.0",
         "jshint-stylish": "~1.0.0",
-        "karma": "~0.12.9",
+        "karma": "~0.13.3",
         "karma-jasmine": "~0.3.0",
-        "karma-phantomjs-launcher": "~0.1.4",
-        "matchdep": "^0.3.0"
+        "jasmine-core": "^2.3.4",
+        "karma-phantomjs-launcher": "~1.0.0",
+        "matchdep": "^0.3.0",
+        "phantomjs-prebuilt": "2.1.7"
     },
     "license": "BSD-3-Clause",
     "author": "OVH SAS"

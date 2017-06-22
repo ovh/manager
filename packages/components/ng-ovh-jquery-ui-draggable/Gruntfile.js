@@ -193,7 +193,8 @@ module.exports = function (grunt) {
         grunt.task.run([
             "clean",
             "jshint",
-            "complexity"
+            "complexity",
+            "karma"
         ]);
     });
 
