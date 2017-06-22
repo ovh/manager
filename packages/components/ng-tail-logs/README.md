@@ -6,13 +6,13 @@
 
 [![Maintenance](https://img.shields.io/maintenance/yes/2017.svg)]() [![Chat on gitter](https://img.shields.io/gitter/room/ovh/ux.svg)](https://gitter.im/ovh/ux)
 
-[Poll a log API for displaying messages](https://github.com/ovh-ux/ovh-tail-logs)
+[Poll a log API for displaying messages](https://github.com/ovh-ux/ovh-angular-tail-logs)
 
 
-[![Build Status](https://travis-ci.org/ovh/ovh-tail-logs.svg)](https://travis-ci.org/ovh/ovh-tail-logs)
+[![Build Status](https://travis-ci.org/ovh/ovh-angular-tail-logs.svg)](https://travis-ci.org/ovh/ovh-angular-tail-logs)
 
 ```javascript
-    angular.module("myapp", ["ovh-tail-logs"]).controller("myCtrl", function ($q, OvhTailLogs) {
+    angular.module("myapp", ["ovh-angular-tail-logs"]).controller("myCtrl", function ($q, OvhTailLogs) {
         this.logger = new OvhTailLogs({
             source: function () {
                 return $q.when("http://my-log-url");
@@ -37,32 +37,32 @@
 
 ## Bower
 
-    bower install ssh://git@github.com:ovh-ux/ovh-tail-logs.git --save
+    bower install ovh-angular-tail-logs --save
 
 ## NPM
 
-    npm install ssh://git@github.com:ovh-ux/ovh-tail-logs.git --save
+    npm install ovh-angular-tail-logs --save
 
 
 # Configuration
 
-1. Include `ovh-tail-logs.css` in your app:
+1. Include `ovh-angular-tail-logs.css` in your app:
 
-  `<link rel="stylesheet" href="bower_components/ovh-tail-logs/dist/ovh-tail-logs.css"/>`
+  `<link rel="stylesheet" href="bower_components/ovh-angular-tail-logs/dist/ovh-angular-tail-logs.css"/>`
 
-2. Include `ovh-tail-logs.js` in your app:
+2. Include `ovh-angular-tail-logs.js` in your app:
 
-  `<script src="bower_components/ovh-tail-logs/dist/ovh-tail-logs.js"></script>`
+  `<script src="bower_components/ovh-angular-tail-logs/dist/ovh-angular-tail-logs.js"></script>`
 
-3. Add `ovh-tail-logs` as a new module dependency in your angular app.
+3. Add `ovh-angular-tail-logs` as a new module dependency in your angular app.
 
-  `var myapp = angular.module('myapp', ['ovh-tail-logs']);`
+  `var myapp = angular.module('myapp', ['ovh-angular-tail-logs']);`
 
 ## Get the sources
 
 ```bash
-    git clone https://github.com/ovh/ovh-tail-logs.git
-    cd ovh-tail-logs
+    git clone https://github.com/ovh/ovh-angular-tail-logs.git
+    cd ovh-angular-tail-logs
     npm install
     bower install
 ```
@@ -70,7 +70,7 @@
 You've developed a new cool feature ? Fixed an annoying bug ? We'd be happy
 to hear from you !
 
-Have a look in [CONTRIBUTING.md](https://github.com/ovh-ux/ovh-tail-logs/blob/master/CONTRIBUTING.md)
+Have a look in [CONTRIBUTING.md](https://github.com/ovh-ux/ovh-angular-tail-logs/blob/master/CONTRIBUTING.md)
 
 ## Build the documentation
 ```
@@ -79,10 +79,10 @@ grunt ngdocs
 
 # Related links
 
- * Contribute: https://github.com/ovh-ux/ovh-tail-logs
- * Report bugs: https://github.com/ovh-ux/ovh-tail-logs/issues
- * Get latest version: https://github.com/ovh-ux/ovh-tail-logs
+ * Contribute: https://github.com/ovh-ux/ovh-angular-tail-logs
+ * Report bugs: https://github.com/ovh-ux/ovh-angular-tail-logs/issues
+ * Get latest version: https://github.com/ovh-ux/ovh-angular-tail-logs
 
 # License
 
-See https://github.com/ovh-ux/ovh-tail-logs/blob/master/LICENSE
+See https://github.com/ovh-ux/ovh-angular-tail-logs/blob/master/LICENSE
