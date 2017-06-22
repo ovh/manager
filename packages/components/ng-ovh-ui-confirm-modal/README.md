@@ -1,6 +1,6 @@
 # Angular UI Confirm Modal
 
-![OVH component deprecated](githubBannerDeprecated.png)
+![OVH component deprecated](https://user-images.githubusercontent.com/3379410/27423263-520b94d8-5731-11e7-996a-f8579e70c33b.png)
 
 ![deprecated](https://img.shields.io/badge/status-deprecated-red.svg) [![Build Status](https://travis-ci.org/ovh/angular-a-disabled.svg)](https://travis-ci.org/ovh/angular-a-disabled)
 
@@ -60,11 +60,11 @@ to hear from you !
 Have a look in [CONTRIBUTING.md](https://github.com/ovh-ux/ovh-angular-ui-confirm-modal/blob/master/CONTRIBUTING.md)
 
 # Related links
- 
+
  * Contribute: https://github.com/ovh-ux/ovh-angular-ui-confirm-modal
  * Report bugs: https://github.com/ovh-ux/ovh-angular-ui-confirm-modal/issues
  * Get latest version: https://github.com/ovh-ux/ovh-angular-ui-confirm-modal
- 
+
 # License
- 
+
 See https://github.com/ovh-ux/ovh-angular-ui-confirm-modal/blob/master/LICENSE
