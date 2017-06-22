@@ -4,7 +4,7 @@
 
 [![Maintenance](https://img.shields.io/maintenance/yes/2017.svg)]() [![Chat on gitter](https://img.shields.io/gitter/room/ovh/ux.svg)](https://gitter.im/ovh/ux) [![Build Status](https://travis-ci.org/ovh-ux/ovh-angular-simple-country-list.svg)](https://travis-ci.org/ovh-ux/ovh-angular-simple-country-list)
 
-[![NPM](https://nodei.co/npm/ovh-angular-simple-country-list?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/ovh-angular-manager-navbar/)
+[![NPM](https://nodei.co/npm/ovh-angular-simple-country-list.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/ovh-angular-simple-country-list/)
 
 OVH simple country list provide a "full" (ISO-3166-1) list of countries with translation possibility.
 (translations are not available yet)
