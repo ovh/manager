@@ -1,9 +1,12 @@
+# Angular UI Confirm Modal
+
 ![OVH component deprecated](githubBannerDeprecated.png)
 
-# Angular UI Confirm Modal
-Simple confirmation modal
-
 ![deprecated](https://img.shields.io/badge/status-deprecated-red.svg) [![Build Status](https://travis-ci.org/ovh/angular-a-disabled.svg)](https://travis-ci.org/ovh/angular-a-disabled)
+
+[![NPM](https://nodei.co/npm/ovh-angular-ui-confirm-modal.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/ovh-angular-ui-confirm-modal/)
+
+Simple confirmation modal
 
 ```
 Include the module `ovh-angular-ui-confirm-modal` in your project and follow the example  below.
