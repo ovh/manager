@@ -8,6 +8,8 @@
     "test": "grunt test"
   },
   "devDependencies": {
+    "eslint": "^4.0.0",
+    "eslint-config-ovh": "^0.1.1",
     "grunt": "0.4.x",
     "grunt-autoprefixer": "~2.2.0",
     "grunt-bump": "~0.3.0",
@@ -21,13 +23,18 @@
     "grunt-contrib-less": "~1.0.0",
     "grunt-contrib-uglify": "~0.8.0",
     "grunt-contrib-watch": "~0.6.1",
+    "grunt-eslint": "^20.0.0",
     "grunt-karma": "~0.10.1",
     "grunt-ng-annotate": "~0.10.0",
+    "grunt-ngdocs": "^0.2.5",
+    "jasmine-core": "^2.6.4",
     "jshint-stylish": "~1.0.0",
     "karma": "~0.12.9",
     "karma-jasmine": "~0.3.0",
-    "karma-phantomjs-launcher": "~0.1.4",
-    "grunt-ngdocs": "^0.2.5",
-    "matchdep": "^0.3.0"
-  }
+    "karma-phantomjs-launcher": "~1.0.0",
+    "matchdep": "^0.3.0",
+    "phantomjs-prebuilt": "^2.1.7"
+  },
+  "license": "BSD-3-Clause",
+  "author": "OVH SAS"
 }

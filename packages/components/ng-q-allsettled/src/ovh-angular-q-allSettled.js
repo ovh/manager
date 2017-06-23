@@ -1,1 +1,1 @@
-angular.module('ovh-angular-q-allSettled', []);
+angular.module("ovh-angular-q-allSettled", []);

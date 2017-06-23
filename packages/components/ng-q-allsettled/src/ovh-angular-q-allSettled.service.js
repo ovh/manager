@@ -1,7 +1,8 @@
-'use strict';
-angular.module('ovh-angular-q-allSettled').config(['$provide', function ($provide) {
-    $provide.decorator('$q', ['$delegate', function ($delegate) {
+angular.module("ovh-angular-q-allSettled").config(["$provide", function ($provide) {
+    "use strict";
+    $provide.decorator("$q", ["$delegate", function ($delegate) {
         var $q = $delegate;
+
         // Extention for q
         $q.allSettled = $q.allSettled || function (promises) {
             var deferred = $q.defer();
@@ -20,19 +21,19 @@ angular.module('ovh-angular-q-allSettled').config(['$provide', function ($provid
                 });
 
                 // Helper to check if all states are finished
-                var checkStates = function (states, results, deferred, failed) {
+                var checkStates = function (stateList, result, toDefer, failed) {
                     var allFinished = true;
-                    angular.forEach(states, function (state) {
+                    angular.forEach(stateList, function (state) {
                         if (!state) {
                             allFinished = false;
-                            return;
+
                         }
                     });
                     if (allFinished) {
                         if (failed) {
-                            deferred.reject(results);
+                            toDefer.reject(result);
                         } else {
-                            deferred.resolve(results);
+                            toDefer.resolve(result);
                         }
                     }
                 };
@@ -52,7 +53,7 @@ angular.module('ovh-angular-q-allSettled').config(['$provide', function ($provid
                     });
                 });
             } else {
-                throw 'allSettled can only handle an array of promises (for now)';
+                throw "allSettled can only handle an array of promises (for now)"; // eslint-disable-line no-throw-literal
             }
 
             return deferred.promise;
