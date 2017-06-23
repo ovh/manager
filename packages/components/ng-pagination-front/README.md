@@ -4,6 +4,8 @@
 
 [![Maintenance](https://img.shields.io/maintenance/yes/2017.svg)]() [![Chat on gitter](https://img.shields.io/gitter/room/ovh/ux.svg)](https://gitter.im/ovh/ux) [![Build Status](https://travis-ci.org/ovh-ux/ovh-angular-pagination-front.svg)](https://travis-ci.org/ovh-ux/ovh-angular-pagination-front)
 
+[![NPM](https://nodei.co/npm/ovh-angular-pagination-front.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/ovh-angular-pagination-front/)
+
 > Angular directive to paginate in front end
 
 * data-ovh-angular-pagination-front
