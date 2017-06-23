@@ -1,0 +1,29 @@
+{
+  "name": "ovh-angular-pagination-front",
+  "version": "5.0.0",
+  "main": "./dist/ovh-angular-pagination-front.min.js",
+  "license": "BSD-3-Clause",
+  "author": "OVH SAS",
+  "repository": "ovh-ux/ovh-angular-pagination-front.git",
+  "ignore": [
+      "components",
+      "bower_components",
+      "node_modules",
+      "Gruntfile.js",
+      "src",
+      "karma.conf.js",
+      ".jshintrc",
+      ".jscsrc",
+      ".editorconfig",
+      "less/ovh-angular-pagination-front.dist.less"
+  ],
+  "dependencies": {
+    "angular"            : "~1.5.x",
+    "angular-sanitize"   : "~1.5.x",
+    "angular-bootstrap"  : "~2.4.0",
+    "bootstrap"          : "~3.3.6"
+  },
+  "devDependencies": {
+    "angular-mocks": "~1.5.x"
+  }
+}

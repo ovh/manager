@@ -1,0 +1,39 @@
+.pagination li {
+  border-color: #BBBDBF;
+}
+.pagination li a {
+  font-size: 12px;
+  color: #113F6D;
+}
+.pagination li a:hover,
+.pagination li a:focus {
+  border-color: #00A2BF;
+  background-color: #f2fdff;
+}
+.pagination li.active a {
+  color: #FFF;
+  font-weight: bold;
+  background-color: #00A2BF;
+  border-color: #00A2BF;
+}
+.pagination li.active a:hover,
+.pagination li.active a:focus,
+.pagination li.active a:active {
+  background-color: #007f96;
+  border-color: #007f96;
+}
+.pagination li.disabled a,
+.pagination li.disabled a:hover,
+.pagination li.disabled a:focus {
+  color: #B3B3B3;
+  background-color: #F3F3F3;
+  border-color: #E8E8E8;
+}
+.pagination li:first-child a {
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+}
+.pagination li:last-child a {
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
