@@ -1,4 +1,4 @@
-angular.module('ovh-angular-checkbox-table', []);
+angular.module("ovh-angular-checkbox-table", []);
 
 /**
  * @decription
@@ -34,27 +34,27 @@ angular.module('ovh-angular-checkbox-table', []);
  * If the user click on the checkbox, it call a function with the new state in param.
  * With this, you can update your array/view!
  */
-angular.module('ovh-angular-checkbox-table').directive('ovhCheckboxTable', ["$timeout", function ($timeout) {
-    'use strict';
+angular.module("ovh-angular-checkbox-table").directive("ovhCheckboxTable", ["$timeout", function ($timeout) {
+    "use strict";
     return {
-        restrict : 'A',
-        scope    : {
-            idsAll      : '=ovhCheckboxTableIdsAll',
-            idsPage     : '=ovhCheckboxTableIdsPage',
-            idsSelected : '=ovhCheckboxTableIdsSelected',
-            id          : '@ovhCheckboxTableId'
+        restrict: "A",
+        scope: {
+            idsAll: "=ovhCheckboxTableIdsAll",
+            idsPage: "=ovhCheckboxTableIdsPage",
+            idsSelected: "=ovhCheckboxTableIdsSelected",
+            id: "@ovhCheckboxTableId"
         },
-        link     : function ($scope, el) {
-            $scope.$watch('idsAll', function() {
-                if ( !angular.isUndefined($scope.idsAll) && angular.isArray($scope.idsAll)) {
+        link: function ($scope, el) {
+            $scope.$watch("idsAll", function () {
+                if (!angular.isUndefined($scope.idsAll) && angular.isArray($scope.idsAll)) {
                     $scope.idsSelected = {};
                     autoUpdateState();
                 }
             });
 
-            $scope.$watch('idsSelected', function() {
-                //remove all ids with checked=false
-                $scope.idsSelected  = _.omit($scope.idsSelected, function (isChecked){
+            $scope.$watch("idsSelected", function () {
+                // remove all ids with checked=false
+                $scope.idsSelected = _.omit($scope.idsSelected, function (isChecked) {
                     return !isChecked;
                 });
                 autoUpdateState();
@@ -62,9 +62,9 @@ angular.module('ovh-angular-checkbox-table').directive('ovhCheckboxTable', ["$ti
 
             $scope.state = 0;
 
-            function autoUpdateState() {
+            function autoUpdateState () {
                 if ($scope.idsAll && $scope.idsAll.length && $scope.idsAll.length === Object.keys($scope.idsSelected).length) {
-                    setStateTo(2); //All selected
+                    setStateTo(2); // All selected
                 } else if ($scope.idsAll && $scope.idsAll.length && Object.keys($scope.idsSelected).length > 0) {
                     setStateTo(1);
                 } else {
@@ -72,18 +72,18 @@ angular.module('ovh-angular-checkbox-table').directive('ovhCheckboxTable', ["$ti
                 }
             }
 
-            function setStateTo(nbr) {
+            function setStateTo (nbr) {
                 $scope.state = nbr;
-                $timeout(function() {
+                $timeout(function () {
                     el.prop({
-                        'checked'       : (nbr === 2 ? true : false),
-                        'indeterminate' : (nbr === 1 ? true : false)
+                        checked: nbr === 2,
+                        indeterminate: nbr === 1
                     });
                 });
             }
 
             // @todo test touch
-            el.bind('click touchend', function(e) {
+            el.bind("click touchend", function (e) {
                 e.preventDefault();
                 if ($scope.state === 2) {
                     setStateTo(0);
@@ -91,13 +91,13 @@ angular.module('ovh-angular-checkbox-table').directive('ovhCheckboxTable', ["$ti
                 } else {
                     var pageAlreadyAdd = true;
 
-                    //test if this page is already checked
-                    angular.forEach($scope.idsPage, function (value){
+                    // test if this page is already checked
+                    angular.forEach($scope.idsPage, function (value) {
                         pageAlreadyAdd = pageAlreadyAdd && (angular.isDefined($scope.id) ? $scope.idsSelected[value[$scope.id]] : $scope.idsSelected[value]) === true;
                     });
                     if (pageAlreadyAdd) {
                         getIdsSelectedOf($scope.idsAll);
-                    }else{
+                    } else {
                         getIdsSelectedOf($scope.idsPage);
                     }
                     autoUpdateState();
@@ -105,8 +105,8 @@ angular.module('ovh-angular-checkbox-table').directive('ovhCheckboxTable', ["$ti
             });
 
             function getIdsSelectedOf (ids) {
-                angular.forEach(ids, function (value){
-                    $scope.idsSelected[(angular.isDefined($scope.id) ? value[$scope.id] : value)] = true;
+                angular.forEach(ids, function (value) {
+                    $scope.idsSelected[angular.isDefined($scope.id) ? value[$scope.id] : value] = true;
                 });
             }
 

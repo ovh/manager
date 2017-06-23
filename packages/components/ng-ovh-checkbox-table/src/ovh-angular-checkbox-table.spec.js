@@ -1,10 +1,14 @@
-'use strict';
+"use strict";
 
-describe('ovh-angular-checkbox-table', function () {
+describe("ovh-angular-checkbox-table", function () {
 
-    var $compile, $rootScope, $scope, $httpBackend, elem;
+    var $compile,
+        $rootScope,
+        $scope,
+        $httpBackend,
+        elem;
 
-    beforeEach(angular.mock.module('ovh-angular-checkbox-table'));
+    beforeEach(angular.mock.module("ovh-angular-checkbox-table"));
 
     beforeEach(angular.mock.inject(function (_$rootScope_, _$compile_, _$httpBackend_) {
         $scope = _$rootScope_.$new();
@@ -12,7 +16,7 @@ describe('ovh-angular-checkbox-table', function () {
         $rootScope = _$rootScope_;
         $httpBackend = _$httpBackend_;
 
-        elem = $('<div>').prependTo('body');
+        elem = $("<div>").prependTo("body");
         $scope.$digest();
     }));
 
@@ -24,15 +28,15 @@ describe('ovh-angular-checkbox-table', function () {
     });
 
     var templates = {
-        'default': {
-            element : '<div data-ovh-checkbox-table ovh-checkbox-table-ids-all="test1" ovh-checkbox-table-ids-page="test2" ovh-checkbox-table-ids-selected="test3"></div>',
-            scope   : {}
+        "default": {
+            element: '<div data-ovh-checkbox-table ovh-checkbox-table-ids-all="test1" ovh-checkbox-table-ids-page="test2" ovh-checkbox-table-ids-selected="test3"></div>',
+            scope: {}
         }
     };
 
     function compileDirective (template, locals) {
         template = templates[template];
-        angular.extend($scope, angular.copy(template.scope) || angular.copy(templates['default'].scope), locals);
+        angular.extend($scope, angular.copy(template.scope) || angular.copy(templates.default.scope), locals);
         var element = $(template.element).appendTo(elem);
         element = $compile(element)($scope);
         $scope.$digest();
@@ -43,11 +47,11 @@ describe('ovh-angular-checkbox-table', function () {
     // ---
 
 
-    describe('Initialization', function () {
+    describe("Initialization", function () {
 
-        it('should load the default directive', angular.mock.inject(function () {
+        it("should load the default directive", angular.mock.inject(function () {
 
-            compileDirective('default');
+            compileDirective("default");
 
             expect(true).toBeTruthy();
 

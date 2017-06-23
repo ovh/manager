@@ -1,0 +1,6 @@
+{
+    "extends": "./node_modules/eslint-config-ovh/configs/es5-browser.js",
+    "rules": {
+        "no-magic-numbers": "off"
+    }
+}
