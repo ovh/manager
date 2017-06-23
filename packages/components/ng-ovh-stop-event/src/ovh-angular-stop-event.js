@@ -1,1 +1,1 @@
-angular.module('ovh-angular-stop-event', []);
+angular.module("ovh-angular-stop-event", []);
