@@ -1,32 +1,33 @@
 {
-    "name": "ovh-angular-tail-logs",
-    "version": "1.1.0",
-    "main": [
-        "./dist/ovh-angular-tail-logs.js",
-        "./less/ovh-angular-tail-logs.less"
-    ],
-    "repository": "ovh-ux/ovh-angular-tail-logs.git",
-    "description": "Poll a log API for displaying messages",
-    "ignore": [
-        "components",
-        "bower_components",
-        "node_modules",
-        "Gruntfile.js",
-        "src",
-        "karma.conf.js",
-        ".jshintrc",
-        ".jscsrc",
-        ".editorconfig",
-        "less/ovh-tail-logs.dist.less"
-    ],
-    "dependencies": {
-        "angular": "~1.5.x",
-        "angular-sanitize": "~1.5.x",
-        "angular-scroll-glue": "^2.2.0"
-    },
-    "devDependencies": {
-        "angular-mocks": "~1.5.x"
-    },
-    "license": "BSD-3-Clause",
-    "author": "OVH SAS"
+  "name": "ovh-angular-tail-logs",
+  "version": "1.1.0",
+  "main": [
+    "./dist/ovh-angular-tail-logs.js",
+    "./less/ovh-angular-tail-logs.less"
+  ],
+  "repository": "ovh-ux/ovh-angular-tail-logs.git",
+  "description": "Poll a log API for displaying messages",
+  "ignore": [
+    "components",
+    "bower_components",
+    "node_modules",
+    "Gruntfile.js",
+    "src",
+    "karma.conf.js",
+    ".jshintrc",
+    ".jscsrc",
+    ".editorconfig",
+    "less/ovh-tail-logs.dist.less"
+  ],
+  "dependencies": {
+    "angular": "~1.5.x",
+    "angular-sanitize": "~1.5.x",
+    "angular-scroll-glue": "^2.2.0"
+  },
+  "devDependencies": {
+    "angular-mocks": "~1.5.x",
+    "jquery": "^3.2.1"
+  },
+  "license": "BSD-3-Clause",
+  "author": "OVH SAS"
 }

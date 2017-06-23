@@ -28,20 +28,20 @@
                 tmpArray.push(response.data.messages);
 
                 self.logs = _.uniq(_.flatten(tmpArray), function (log) {
-                    return log.message._id;
+                    return log.message._id; // eslint-disable-line no-underscore-dangle
                 });
 
                 return self.logs;
-            })["catch"](function (err) {
+            }).catch(function (err) { // eslint-disable-line consistent-return
                 if (err.status === 410) {
-                    self.source = self.__getFuncSource();
+                    self.source = self.__getFuncSource(); // eslint-disable-line no-underscore-dangle
                     return self.source.then(function () {
                         return self.log();
                     });
                 }
-            })["finally"](function () {
+            }).finally(function () {
                 self.timer = $timeout(function () {
-                    self.log.call(self);
+                    self.log.call(self); // eslint-disable-line no-useless-call
                 }, self.delay);
                 return self.logs;
             });
