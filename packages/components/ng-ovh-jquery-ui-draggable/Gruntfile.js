@@ -10,17 +10,17 @@ module.exports = function (grunt) {
      */
 
     grunt.initConfig({
-        pkg      : grunt.file.readJSON("package.json"),
-        bower    : grunt.file.readJSON("bower.json"),
-        distdir  : "dist",
-        srcdir   : "src",
-        builddir : ".work/.tmp",
-        name     : grunt.file.readJSON("package.json").name || "ovh-jquery-ui-draggable-ng",   // module name
+        pkg: grunt.file.readJSON("package.json"),
+        bower: grunt.file.readJSON("bower.json"),
+        distdir: "dist",
+        srcdir: "src",
+        builddir: ".work/.tmp",
+        name: grunt.file.readJSON("package.json").name || "ovh-jquery-ui-draggable-ng", // module name
 
         // Clean
-        clean      : {
-            dist : {
-                src : [
+        clean: {
+            dist: {
+                src: [
                     "<%= builddir %>",
                     "<%= distdir %>"
                 ]
@@ -28,42 +28,44 @@ module.exports = function (grunt) {
         },
 
         // Copy files
-        copy : {
+        copy: {
             // Copy concatened JS file from builddir to dist/
-            dist : {
-                files : {
-                    "<%= distdir %>/<%= name %>.js" : "<%= builddir %>/<%= name %>.js"
+            dist: {
+                files: {
+                    "<%= distdir %>/<%= name %>.js": "<%= builddir %>/<%= name %>.js"
                 }
             },
+
             // Copy LESS files to dist/
-            less : {
-                files : [
+            less: {
+                files: [
                     {
-                        expand : true,
-                        cwd    : "<%= srcdir %>",
-                        src    : "less/**/*",
-                        dest   : "<%= distdir %>/"
+                        expand: true,
+                        cwd: "<%= srcdir %>",
+                        src: "less/**/*",
+                        dest: "<%= distdir %>/"
                     }
                 ]
             }
         },
 
         // Concatenation
-        concat     : {
-            dist : {
-                files : {
-                    "<%= builddir %>/<%= name %>.js" : [
+        concat: {
+            dist: {
+                files: {
+                    "<%= builddir %>/<%= name %>.js": [
                         "<%= srcdir %>/<%= name %>.js",
                         "<%= srcdir %>/**/*.js",
                         "!<%= srcdir %>/**/*.spec.js"
                     ]
                 }
             },
+
             // use this only if you don"t use LESS!
-            css : {
-                files : {
-                    "<%= builddir %>/<%= name %>.css" : [
-                        "<%= srcdir %>/**/*.css",
+            css: {
+                files: {
+                    "<%= builddir %>/<%= name %>.css": [
+                        "<%= srcdir %>/**/*.css"
                     ]
                 }
             }
@@ -73,34 +75,35 @@ module.exports = function (grunt) {
         ngAnnotate: {
             dist: {
                 files: {
-                    "<%= builddir %>/<%= name %>.js" : ["<%= builddir %>/<%= name %>.js"]
+                    "<%= builddir %>/<%= name %>.js": ["<%= builddir %>/<%= name %>.js"]
                 }
             }
         },
 
         // Obfuscate
-        uglify   : {
-            js : {
-                options : {
-                    banner : "/*! <%= name %> - <%= pkg.version %> - <%= grunt.template.today(\"yyyy-mm-dd\") %> */\n"
+        uglify: {
+            js: {
+                options: {
+                    banner: "/*! <%= name %> - <%= pkg.version %> - <%= grunt.template.today(\"yyyy-mm-dd\") %> */\n"
                 },
-                files   : {
-                    "<%= distdir %>/<%= name %>.min.js" : ["<%= builddir %>/<%= name %>.js"]
+                files: {
+                    "<%= distdir %>/<%= name %>.min.js": ["<%= builddir %>/<%= name %>.js"]
                 }
             }
         },
 
         // Create CSS from LESS
-        less : {
-            dist : {
+        less: {
+            dist: {
                 options: {
-                    compress : false
+                    compress: false
                 },
-                files : {
-                    "<%= builddir %>/<%= name %>.css" : ["<%= srcdir %>/**/*.less"]
+                files: {
+                    "<%= builddir %>/<%= name %>.css": ["<%= srcdir %>/**/*.less"]
                 }
             }
         },
+
         // ... and its prefixed vendor styles
         autoprefixer: {
             options: {
@@ -108,27 +111,28 @@ module.exports = function (grunt) {
             },
             dist: {
                 files: {
-                    "<%= distdir %>/<%= name %>.css" : ["<%= builddir %>/<%= name %>.css"]
+                    "<%= distdir %>/<%= name %>.css": ["<%= builddir %>/<%= name %>.css"]
                 }
             }
         },
+
         // ... and now minify it
-        cssmin : {
+        cssmin: {
             options: {},
-            dist : {
+            dist: {
                 files: {
-                    "<%= distdir %>/<%= name %>.min.css" : ["<%= distdir %>/<%= name %>.css"]
+                    "<%= distdir %>/<%= name %>.min.css": ["<%= distdir %>/<%= name %>.css"]
                 }
             }
         },
 
         // JS Check
-        jshint     : {
-            options : {
-                jshintrc : ".jshintrc",
+        jshint: {
+            options: {
+                jshintrc: ".jshintrc",
                 reporter: require("jshint-stylish")
             },
-            js      : [
+            js: [
                 "<%= srcdir %>/*.js",
                 "<%= srcdir %>/*/*.js",
                 "!<%= srcdir %>/**/*.spec.js"
@@ -136,43 +140,43 @@ module.exports = function (grunt) {
         },
 
         // Check complexity
-        complexity : {
-            generic : {
-                src     : [
+        complexity: {
+            generic: {
+                src: [
                     "<%= srcdir %>/**/*.js",
                     "!<%= srcdir %>/**/*.spec.js"
                 ],
-                options : {
-                    errorsOnly      : false,
-                    cyclomatic      : 12,
-                    halstead        : 45,
-                    maintainability : 82
+                options: {
+                    errorsOnly: false,
+                    cyclomatic: 12,
+                    halstead: 45,
+                    maintainability: 82
                 }
             }
         },
 
         // Watch
-        delta : {
+        delta: {
             dist: {
-                files : ["<%= srcdir %>/**/*", "!<%= srcdir %>/**/*.spec.js"],
+                files: ["<%= srcdir %>/**/*", "!<%= srcdir %>/**/*.spec.js"],
                 tasks: ["buildProd"]
             },
             test: {
-                files : ["<%= srcdir %>/**/*.spec.js"],
+                files: ["<%= srcdir %>/**/*.spec.js"],
                 tasks: ["test"]
             }
         },
 
         // To release
-        bump       : {
-            options : {
-                pushTo        : "origin",
-                files         : [
+        bump: {
+            options: {
+                pushTo: "origin",
+                files: [
                     "package.json",
                     "bower.json"
                 ],
-                updateConfigs : ["pkg", "bower"],
-                commitFiles   : ["-a"]
+                updateConfigs: ["pkg", "bower"],
+                commitFiles: ["-a"]
             }
         },
 
@@ -182,6 +186,13 @@ module.exports = function (grunt) {
                 configFile: "karma.conf.js",
                 singleRun: true
             }
+        },
+
+        eslint: {
+            options: {
+                configFile: "./.eslintrc.json"
+            },
+            target: ["src/**/!(*.spec|*.integration).js", "Gruntfile.js"]
         }
     });
 
@@ -193,6 +204,7 @@ module.exports = function (grunt) {
         grunt.task.run([
             "clean",
             "jshint",
+            "eslint",
             "complexity",
             "karma"
         ]);

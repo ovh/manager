@@ -4,30 +4,30 @@ angular.module("ovh-jquery-ui-draggable-ng").directive("draggable", function () 
     "use strict";
 
     return {
-        restrict    : "A",
-        scope : false,
-        link : function (scope, el, attrs) {
+        restrict: "A",
+        scope: false,
+        link: function (scope, el, attrs) {
 
             var privateAttr = {
-                draggableSrcClonedClass : null
+                draggableSrcClonedClass: null
             };
 
             var obj = {
-                draggableId   : null,
-                draggableInfo : null
+                draggableId: null,
+                draggableInfo: null
             };
 
-            var opts = (angular.isDefined(attrs.draggableOptions)) ? scope.$eval(attrs.draggableOptions) : {},
-                evts = {},
-                options = null;
+            var opts = angular.isDefined(attrs.draggableOptions) ? scope.$eval(attrs.draggableOptions) : {};
+            var evts = {};
+            var options = null;
 
 
             function emitEvent (name, ui) {
 
                 scope.$apply(function () {
                     scope.$emit(name, {
-                        dragged : ui,
-                        draggable : obj
+                        dragged: ui,
+                        draggable: obj
                     });
                 });
             }
@@ -47,7 +47,7 @@ angular.module("ovh-jquery-ui-draggable-ng").directive("draggable", function () 
             });
 
             attrs.$observe("draggableDisabled", function (disabled) {
-                if ($(el).draggable){
+                if ($(el).draggable) {
                     $(el).draggable({
                         disabled: disabled === "true"
                     });
@@ -55,10 +55,10 @@ angular.module("ovh-jquery-ui-draggable-ng").directive("draggable", function () 
             });
 
             evts = {
-                drag   : function (event, ui) {
+                drag: function (event, ui) {
                     emitEvent("draggable.drag", ui);
                 },
-                start  : function (event, ui) {
+                start: function (event, ui) {
                     if (privateAttr.draggableSrcClonedClass) {
                         scope.$apply(function () {
                             $(el).addClass(privateAttr.draggableSrcClonedClass);
@@ -66,7 +66,7 @@ angular.module("ovh-jquery-ui-draggable-ng").directive("draggable", function () 
                     }
                     emitEvent("draggable.start", ui);
                 },
-                stop   : function (event, ui) {
+                stop: function (event, ui) {
                     if (privateAttr.draggableSrcClonedClass) {
                         scope.$apply(function () {
                             $(el).removeClass(privateAttr.draggableSrcClonedClass);
