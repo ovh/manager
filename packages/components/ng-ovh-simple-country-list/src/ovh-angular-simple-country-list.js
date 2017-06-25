@@ -1,2 +1,2 @@
-angular.module('ovh-angular-simple-country-list', []);
+angular.module("ovh-angular-simple-country-list", []);
 

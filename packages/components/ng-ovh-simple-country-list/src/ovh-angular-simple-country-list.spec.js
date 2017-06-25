@@ -1,55 +1,35 @@
-'use strict';
+/* global describe:true, beforeEach:true, afterEach:true, it:true, expect: true */
+/* eslint no-underscore-dangle: 0 */
+"use strict";
 
-describe('ovh-angular-simple-country-list', function () {
+describe("ovh-angular-simple-country-list", function () {
 
-    var $compile, $rootScope, $scope, $httpBackend, elem;
+    var countryCount;
 
-    beforeEach(angular.mock.module('ovh-angular-simple-country-list'));
+    beforeEach(angular.mock.module("ovh-angular-simple-country-list"));
 
-    beforeEach(angular.mock.inject(function (_$rootScope_, _$compile_, _$httpBackend_) {
-        $scope = _$rootScope_.$new();
-        $compile = _$compile_;
-        $rootScope = _$rootScope_;
-        $httpBackend = _$httpBackend_;
-
-        elem = $('<div>').prependTo('body');
-        $scope.$digest();
+    beforeEach(angular.mock.inject(function (OVH_SIMPLE_COUNTRY_LIST) {
+        countryCount = Object.keys(OVH_SIMPLE_COUNTRY_LIST).length;
     }));
-
-    afterEach(function () {
-        $httpBackend.verifyNoOutstandingExpectation();
-        $httpBackend.verifyNoOutstandingRequest();
-        $scope.$destroy();
-        elem.remove();
-    });
-
-    var templates = {
-        'default': {
-            element : '<div data-ovh-angular-simple-country-list></div>',
-            scope   : {}
-        }
-    };
-
-    function compileDirective (template, locals) {
-        template = templates[template];
-        angular.extend($scope, angular.copy(template.scope) || angular.copy(templates['default'].scope), locals);
-        var element = $(template.element).appendTo(elem);
-        element = $compile(element)($scope);
-        $scope.$digest();
-        return jQuery(element[0]);
-    }
-
 
     // ---
 
+    describe("Initialization", function () {
 
-    describe('Initialization', function () {
+        it("should init the country array at the first call of setLanguage", angular.mock.inject(function (OvhSimpleCountryList) {
 
-        it('should load the default directive', angular.mock.inject(function () {
+            OvhSimpleCountryList.setLanguage("en_GB");
 
-            compileDirective('default');
+            expect(_.isArray(OvhSimpleCountryList.asArray)).toBeTruthy();
+            expect(OvhSimpleCountryList.asArray.length).toEqual(countryCount);
+            expect(OvhSimpleCountryList._data.asArray.length).toEqual(countryCount);
 
-            expect(true).toBeTruthy();
+        }));
+
+        it("should get the length", angular.mock.inject(function (OvhSimpleCountryList) {
+
+            expect(OvhSimpleCountryList.length).toEqual(countryCount);
+
 
         }));
 
