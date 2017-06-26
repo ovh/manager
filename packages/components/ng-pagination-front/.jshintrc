@@ -25,7 +25,6 @@
     "jquery"    : true,
     "onevar"    : false,
     "smarttabs" : false,
-    "es3"       : true,
     "predef"    : [
         "_",
         "require",

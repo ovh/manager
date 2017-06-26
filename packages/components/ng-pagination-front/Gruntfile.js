@@ -4,17 +4,17 @@ module.exports = function (grunt) {
     require("matchdep").filterAll("grunt-*").forEach(grunt.loadNpmTasks);
 
     grunt.initConfig({
-        pkg      : grunt.file.readJSON("package.json"),
-        bower    : grunt.file.readJSON("bower.json"),
-        distdir  : "dist",
-        srcdir   : "src",
-        builddir : ".work/.tmp",
-        name     : grunt.file.readJSON("package.json").name || "ovh-angular-pagination-front",   // module name
+        pkg: grunt.file.readJSON("package.json"),
+        bower: grunt.file.readJSON("bower.json"),
+        distdir: "dist",
+        srcdir: "src",
+        builddir: ".work/.tmp",
+        name: grunt.file.readJSON("package.json").name || "ovh-angular-pagination-front", // module name
 
         // Clean
-        clean      : {
-            dist : {
-                src : [
+        clean: {
+            dist: {
+                src: [
                     "<%= builddir %>",
                     "<%= distdir %>"
                 ]
@@ -22,20 +22,20 @@ module.exports = function (grunt) {
         },
 
         // Copy files
-        copy : {
+        copy: {
             // Copy concatened JS file from builddir to dist/
-            dist : {
-                files : [{
-                    "<%= distdir %>/ovh-angular-pagination-front.js" : "<%= builddir %>/ovh-angular-pagination-front.js"
+            dist: {
+                files: [{
+                    "<%= distdir %>/ovh-angular-pagination-front.js": "<%= builddir %>/ovh-angular-pagination-front.js"
                 }]
             }
         },
 
         // Concatenation
-        concat     : {
-            dist : {
-                files : {
-                    "<%= builddir %>/ovh-angular-pagination-front.js" : [
+        concat: {
+            dist: {
+                files: {
+                    "<%= builddir %>/ovh-angular-pagination-front.js": [
                         "<%= srcdir %>/ovh-angular-pagination-front.js",
                         "<%= srcdir %>/**/*.js",
                         "<%=builddir%>/templates.js",
@@ -50,31 +50,31 @@ module.exports = function (grunt) {
         ngAnnotate: {
             dist: {
                 files: {
-                    "<%= builddir %>/ovh-angular-pagination-front.js" : ["<%= builddir %>/ovh-angular-pagination-front.js"]
+                    "<%= builddir %>/ovh-angular-pagination-front.js": ["<%= builddir %>/ovh-angular-pagination-front.js"]
                 }
             }
         },
 
         // Obfuscate
-        uglify   : {
-            js : {
-                options : {
-                    banner : "/*! ovh-angular-pagination-front - <%= pkg.version %> - <%= grunt.template.today('yyyy-mm-dd') %> */\n"
+        uglify: {
+            js: {
+                options: {
+                    banner: "/*! ovh-angular-pagination-front - <%= pkg.version %> - <%= grunt.template.today('yyyy-mm-dd') %> */\n"
                 },
-                files   : {
-                    "<%= distdir %>/ovh-angular-pagination-front.min.js" : ["<%= builddir %>/ovh-angular-pagination-front.js"]
+                files: {
+                    "<%= distdir %>/ovh-angular-pagination-front.min.js": ["<%= builddir %>/ovh-angular-pagination-front.js"]
                 }
             }
         },
 
         // Create CSS from LESS
-        less : {
-            dist : {
+        less: {
+            dist: {
                 options: {
-                    compress : false
+                    compress: false
                 },
-                files : {
-                    "<%= builddir %>/<%= name %>.css" : ["less/<%= name %>.less"]
+                files: {
+                    "<%= builddir %>/<%= name %>.css": ["less/<%= name %>.less"]
                 }
             }
         },
@@ -83,33 +83,33 @@ module.exports = function (grunt) {
         postcss: {
             options: {
                 processors: [
-                    require('autoprefixer-core')({browsers: ['last 3 versions', 'ie >= 9', '> 5%']})
+                    require("autoprefixer-core")({ browsers: ["last 3 versions", "ie >= 9", "> 5%"] })
                 ]
             },
             dist: {
                 files: {
-                    '<%= distdir %>/<%= name %>.css' : ['<%= builddir %>/<%= name %>.css']
+                    "<%= distdir %>/<%= name %>.css": ["<%= builddir %>/<%= name %>.css"]
                 }
             }
         },
 
         // ... and now minify it
-        cssmin : {
+        cssmin: {
             options: {},
-            dist : {
+            dist: {
                 files: {
-                    '<%= distdir %>/<%= name %>.min.css' : ['<%= distdir %>/<%= name %>.css']
+                    "<%= distdir %>/<%= name %>.min.css": ["<%= distdir %>/<%= name %>.css"]
                 }
             }
         },
 
         // JS Check
-        jshint     : {
-            options : {
-                jshintrc : ".jshintrc",
+        jshint: {
+            options: {
+                jshintrc: ".jshintrc",
                 reporter: require("jshint-stylish")
             },
-            js      : [
+            js: [
                 "<%= srcdir %>/*.js",
                 "<%= srcdir %>/*/*.js",
                 "!<%= srcdir %>/**/*.spec.js"
@@ -117,43 +117,43 @@ module.exports = function (grunt) {
         },
 
         // Check complexity
-        complexity : {
-            generic : {
-                src     : [
+        complexity: {
+            generic: {
+                src: [
                     "<%= srcdir %>/**/*.js",
                     "!<%= srcdir %>/**/*.spec.js"
                 ],
-                options : {
-                    errorsOnly      : false,
-                    cyclomatic      : 12,
-                    halstead        : 45,
-                    maintainability : 82
+                options: {
+                    errorsOnly: false,
+                    cyclomatic: 12,
+                    halstead: 45,
+                    maintainability: 82
                 }
             }
         },
 
         // Watch
-        delta : {
+        delta: {
             dist: {
-                files : ["<%= srcdir %>/**/*", "!<%= srcdir %>/**/*.spec.js"],
+                files: ["<%= srcdir %>/**/*", "!<%= srcdir %>/**/*.spec.js"],
                 tasks: ["buildProd"]
             },
             test: {
-                files : ["<%= srcdir %>/**/*.spec.js"],
+                files: ["<%= srcdir %>/**/*.spec.js"],
                 tasks: ["test"]
             }
         },
 
         // To release
-        bump       : {
-            options : {
-                pushTo        : "origin",
-                files         : [
+        bump: {
+            options: {
+                pushTo: "origin",
+                files: [
                     "package.json",
                     "bower.json"
                 ],
-                updateConfigs : ["pkg", "bower"],
-                commitFiles   : ["-a"]
+                updateConfigs: ["pkg", "bower"],
+                commitFiles: ["-a"]
             }
         },
 
@@ -193,14 +193,14 @@ module.exports = function (grunt) {
         },
 
         // DOCS connect
-        connect : {
-           docs : {
-               options : {
-                   port : 9090,
-                   base : "docs/",
-                   keepalive : true
-               }
-           }
+        connect: {
+            docs: {
+                options: {
+                    port: 9090,
+                    base: "docs/",
+                    keepalive: true
+                }
+            }
         },
 
         // Package all the html partials into a single javascript payload
@@ -230,7 +230,15 @@ module.exports = function (grunt) {
                 src: "./karma.conf.js",
                 devDependencies: true
             }
+        },
+
+        eslint: {
+            options: {
+                configFile: "./.eslintrc.json"
+            },
+            target: ["src/**/!(*.spec|*.integration).js", "Gruntfile.js", "karma.conf.js"]
         }
+
     });
 
     grunt.registerTask("buildProd", [
@@ -253,7 +261,7 @@ module.exports = function (grunt) {
     grunt.task.renameTask("watch", "delta");
     grunt.registerTask("watch", ["buildProd", "delta"]);
 
-    grunt.registerTask("test", ["wiredep", "jshint", "jscs", "karma"]);
+    grunt.registerTask("test", ["wiredep", "jshint", "jscs", "karma", "eslint"]);
 
     // Increase version number. Type = minor|major|patch
     grunt.registerTask("release", "Release", function () {
