@@ -1,6 +1,6 @@
 {
   "name": "ovh-angular-jquery-ui-droppable",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Angular directove to wrap jqueri ui droppable module",
   "main": "./dist/ovh-angular-jquery-ui-droppable.min.js",
   "scripts": {
