@@ -1,5 +1,3 @@
-angular.module("ovh-angular-ui-confirm-modal", []);
-
 /**
  * @ngdoc directive
  * @name ovh-angular-ui-confirm-modal.directive:ngReallyClick
@@ -18,7 +16,7 @@ angular.module("ovh-angular-ui-confirm-modal", []);
  */
 angular.module("ovh-angular-ui-confirm-modal", ["ui.bootstrap"])
     .directive("ngReallyClick",
-               ["$uibModal", function ($uibModal) {
+               function ($uibModal) {
                    "use strict";
 
                    return {
@@ -57,5 +55,5 @@ angular.module("ovh-angular-ui-confirm-modal", ["ui.bootstrap"])
                            });
                        }
                    };
-               }]
+               }
     );
