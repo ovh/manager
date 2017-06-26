@@ -2,10 +2,7 @@
   "name": "ovh-angular-toaster",
   "version": "0.8.0",
   "description": "Show a hot toast for user",
-  "main": [
-    "./dist/ovh-angular-toaster.min.js",
-    "./dist/ovh-angular-toaster.min.css"
-  ],
+  "main": "./dist/ovh-angular-toaster.min.js",
   "scripts": {
       "test": "grunt test"
   },
