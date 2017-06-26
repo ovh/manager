@@ -49,6 +49,5 @@
     "phantomjs-prebuilt": "^2.1.7"
   },
   "license": "BSD-3-Clause",
-  "author": "OVH SAS",
-  "grunt-eslint": "^20.0.0"
+  "author": "OVH SAS"
 }
