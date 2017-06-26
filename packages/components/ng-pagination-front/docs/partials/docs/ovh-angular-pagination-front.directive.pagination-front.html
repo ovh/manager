@@ -1,0 +1,68 @@
+<a href="https://github.com/ovh-ux/ovh-angular-pagination-front/blob/master/src/ovh-angular-pagination-front-directive.js#L41" class="view-source"><i class="icon-eye-open"> </i>View source</a><h1><code ng:non-bindable="">pagination-front</code>
+<div><span class="hint">directive in module <code ng:non-bindable="">ovh-angular-pagination-front</code>
+</span>
+</div>
+</h1>
+<div><h2 id="description">Description</h2>
+<div class="description"><div class="ovh-angular-pagination-front-directive-page ovh-angular-pagination-front-directive-pagination-front-page"><p>Pagination module for managers. parameters are saved in local storage</p></div></div>
+<h2 id="usage">Usage</h2>
+<div class="usage">as attribute<pre class="prettyprint linenums">&lt;ANY pagination-front
+     items="{Array}"
+     paginated-items="{Array}"
+     [current-page="{Number}"]
+     [nb-pages="{Number}"]
+     [items-per-page="{Number}"]
+     [refresh="{Any}"]
+     [page-placeholder="{String}"]
+     [item-per-page-placeholder="{String}"]
+     [on-page-change="{Function}"]
+     [transform-item="{Function}"]
+     [on-transform-item-get-promise="{Function}"]
+     [on-transform-item-done="{Function}"]
+     [on-transform-item-notify="{Function}"]
+     [go-to-page="{Number}"]&gt;
+   ...
+&lt;/ANY&gt;</pre>
+<h4 id="usage_parameters">Parameters</h4><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>items</td><td><a href="" class="label type-hint type-hint-array">Array</a></td><td><div class="ovh-angular-pagination-front-directive-page ovh-angular-pagination-front-directive-pagination-front-page"><p>List of items to paginate</p>
+</div></td></tr><tr><td>paginatedItems</td><td><a href="" class="label type-hint type-hint-array">Array</a></td><td><div class="ovh-angular-pagination-front-directive-page ovh-angular-pagination-front-directive-pagination-front-page"><p>List of items on the currentpage (those to be displayed)</p>
+</div></td></tr><tr><td>currentPage <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-number">Number</a></td><td><div class="ovh-angular-pagination-front-directive-page ovh-angular-pagination-front-directive-pagination-front-page"><p>Current page number</p>
+</div> <p><em>(default: 1)</em></p></td></tr><tr><td>nbPages <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-number">Number</a></td><td><div class="ovh-angular-pagination-front-directive-page ovh-angular-pagination-front-directive-pagination-front-page"><p>Number of pages</p>
+</div></td></tr><tr><td>itemsPerPage <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-number">Number</a></td><td><div class="ovh-angular-pagination-front-directive-page ovh-angular-pagination-front-directive-pagination-front-page"><p>Number of items per page</p>
+</div> <p><em>(default: 10)</em></p></td></tr><tr><td>refresh <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-any">Any</a></td><td><div class="ovh-angular-pagination-front-directive-page ovh-angular-pagination-front-directive-pagination-front-page"><p>The component is refreshed when this variable change</p>
+</div></td></tr><tr><td>pagePlaceholder <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">String</a></td><td><div class="ovh-angular-pagination-front-directive-page ovh-angular-pagination-front-directive-pagination-front-page"><p>Text to display in the page input</p>
+</div></td></tr><tr><td>itemPerPagePlaceholder <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">String</a></td><td><div class="ovh-angular-pagination-front-directive-page ovh-angular-pagination-front-directive-pagination-front-page"><p>Text to display in the item per page input</p>
+</div></td></tr><tr><td>onPageChange <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-function">Function</a></td><td><div class="ovh-angular-pagination-front-directive-page ovh-angular-pagination-front-directive-pagination-front-page"><p>Function to execute on change</p>
+</div></td></tr><tr><td>transformItem <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-function">Function</a></td><td><div class="ovh-angular-pagination-front-directive-page ovh-angular-pagination-front-directive-pagination-front-page"><p>Function executed on each item on pagination</p>
+</div></td></tr><tr><td>onTransformItemGetPromise <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-function">Function</a></td><td><div class="ovh-angular-pagination-front-directive-page ovh-angular-pagination-front-directive-pagination-front-page"><p>Function that get the transformItem promise (ie. on-transform-item-get-promise=&quot;foo(promise)&quot;)</p>
+</div></td></tr><tr><td>onTransformItemDone <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-function">Function</a></td><td><div class="ovh-angular-pagination-front-directive-page ovh-angular-pagination-front-directive-pagination-front-page"><p>Function invoked when transformItem is done on all items</p>
+</div></td></tr><tr><td>onTransformItemNotify <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-function">Function</a></td><td><div class="ovh-angular-pagination-front-directive-page ovh-angular-pagination-front-directive-pagination-front-page"><p>Function invoked when transformItem is done on each item</p>
+</div></td></tr><tr><td>goToPage <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-number">Number</a></td><td><div class="ovh-angular-pagination-front-directive-page ovh-angular-pagination-front-directive-pagination-front-page"><p>Page to reach</p>
+</div></td></tr></tbody></table></div>
+<h2 id="example">Example</h2>
+<div class="example"><div class="ovh-angular-pagination-front-directive-page ovh-angular-pagination-front-directive-pagination-front-page"><h4 id="example_source">Source</h4>
+<div source-edit="MyModule" source-edit-deps="angular.js script.js" source-edit-html="index.html" source-edit-css="" source-edit-js="script.js" source-edit-json="" source-edit-unit="" source-edit-scenario=""></div>
+<div class="tabbable"><div class="tab-pane" title="index.html">
+<pre class="prettyprint linenums" ng-set-text="index.html" ng-html-wrap-loaded="MyModule angular.js script.js"></pre>
+<script type="text/ng-template" id="index.html">
+     <div ng-controller="mainCtrl">
+         <ul>
+             <li data-ng-repeat="item in toDisplay track by $index" data-ng-bind="item"></li>
+         </ul>
+         <div pagination-front data-items="items" paginated-items="toDisplay">
+         </div>
+     </div>
+</script>
+</div>
+<div class="tab-pane" title="script.js">
+<pre class="prettyprint linenums" ng-set-text="script.js"></pre>
+<script type="text/ng-template" id="script.js">
+     angular.module("MyModule", ["ovh-angular-pagination-front"]);
+     angular.module("MyModule").controller("mainCtrl", function($scope) {
+         $scope.item = [ "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q" ];
+     });
+</script>
+</div>
+</div><h4 id="example_demo">Demo</h4>
+<div class="well doc-example-live animate-container" ng-embed-app="MyModule" ng-set-html="index.html" ng-eval-javascript="script.js"></div>
+</div></div>
+</div>

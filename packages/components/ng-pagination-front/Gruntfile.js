@@ -183,7 +183,8 @@ module.exports = function (grunt) {
                 dest: "docs",
                 html5Mode: false,
                 title: "Pagination Front",
-                startPage: "docs/paginationFront"
+                startPage: "docs/ovh-angular-pagination-front.directive:pagination-front",
+                sourceLink: "https://github.com/ovh-ux/ovh-angular-pagination-front/blob/master/{{file}}#L{{codeline}}"
             },
             docs: {
                 src: ["src/**/*.js"],
