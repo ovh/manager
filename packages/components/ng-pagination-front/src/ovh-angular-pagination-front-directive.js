@@ -50,7 +50,7 @@ angular.module("ovh-angular-pagination-front").directive("paginationFront", func
             items: "=",
             fakeCurrentPage: "=?currentPage",
             numPages: "=?nbPages",
-            itemsPerPage: "=",
+            itemsPerPage: "=?",
             refresh: "=?",
             paginatedItems: "=",
             pagePlaceholder: "@",

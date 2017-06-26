@@ -1,33 +1,70 @@
 angular.module("ovh-angular-pagination-front", ["ui.bootstrap"]);
 
-angular.module("ovh-angular-pagination-front").directive("paginationFront",
-["$q",
-
-function ($q) {
+/**
+ * @ngdoc directive
+ * @name ovh-angular-pagination-front.directive:pagination-front
+ * @restrict A
+ *
+ * @description
+ * <p>Pagination module for managers. parameters are saved in local storage</p>
+ * @example
+   <example module="MyModule">
+   <file name="index.html">
+        <div ng-controller="mainCtrl">
+            <ul>
+                <li data-ng-repeat="item in toDisplay track by $index" data-ng-bind="item"></li>
+            </ul>
+            <div pagination-front data-items="items" paginated-items="toDisplay">
+            </div>
+        </div>
+   </file>
+   <file name="script.js">
+        angular.module("MyModule", ["ovh-angular-pagination-front"]);
+        angular.module("MyModule").controller("mainCtrl", function($scope) {
+            $scope.item = [ "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q" ];
+        });
+   </file>
+   </example>
+ * @param     {Array} items                     List of items to paginate
+ * @param     {Array} paginatedItems            List of items on the currentpage (those to be displayed)
+ * @param   {Number=} [currentPage=1]           Current page number
+ * @param   {Number=} nbPages                   Number of pages
+ * @param   {Number=} [itemsPerPage=10]         Number of items per page
+ * @param      {Any=} refresh                   The component is refreshed when this variable change
+ * @param   {String=} pagePlaceholder           Text to display in the page input
+ * @param   {String=} itemPerPagePlaceholder    Text to display in the item per page input
+ * @param {Function=} onPageChange              Function to execute on change
+ * @param {Function=} transformItem             Function executed on each item on pagination
+ * @param {Function=} onTransformItemGetPromise Function that get the transformItem promise (ie. on-transform-item-get-promise="foo(promise)")
+ * @param {Function=} onTransformItemDone       Function invoked when transformItem is done on all items
+ * @param {Function=} onTransformItemNotify     Function invoked when transformItem is done on each item
+ * @param {Number=} goToPage                    Page to reach
+ */
+angular.module("ovh-angular-pagination-front").directive("paginationFront", ["$q", function ($q) {
     "use strict";
 
     return {
-        restrict : "A",
-        templateUrl : "ovh-angular-pagination-front.html",
-        replace   : false,
+        restrict: "A",
+        templateUrl: "ovh-angular-pagination-front.html",
+        replace: false,
         transclude: true,
-        scope : {
-            items                     : "=",
-            fakeCurrentPage           : "=?currentPage",
-            numPages                  : "=?nbPages",
-            itemsPerPage              : "=",
-            refresh                   : "=?",
-            paginatedItems            : "=",
-            pagePlaceholder           : "@",
-            itemPerPagePlaceholder    : "@",
-            onPageChange              : "&",
-            transformItem             : "&?",
-            onTransformItemGetPromise : "&",
-            onTransformItemDone       : "&",
-            onTransformItemNotify     : "&",
-            goToPage                  : "@"
+        scope: {
+            items: "=",
+            fakeCurrentPage: "=?currentPage",
+            numPages: "=?nbPages",
+            itemsPerPage: "=?",
+            refresh: "=?",
+            paginatedItems: "=",
+            pagePlaceholder: "@",
+            itemPerPagePlaceholder: "@",
+            onPageChange: "&",
+            transformItem: "&?",
+            onTransformItemGetPromise: "&",
+            onTransformItemDone: "&",
+            onTransformItemNotify: "&",
+            goToPage: "@"
         },
-        link : function ($scope) {
+        link: function ($scope) {
 
             if ($scope.fakeCurrentPage) {
                 $scope.currentPage = $scope.fakeCurrentPage;
@@ -43,10 +80,8 @@ function ($q) {
 
             if (localStorage && localStorage.getItem("pagination_front_items_per_page")) {
                 $scope.itemsPerPage = localStorage.getItem("pagination_front_items_per_page");
-            } else {
-                if (!$scope.itemsPerPage) {
-                    $scope.itemsPerPage = 10;
-                }
+            } else if (!$scope.itemsPerPage) {
+                $scope.itemsPerPage = 10;
             }
 
             $scope.maxSize = 5;
@@ -57,19 +92,19 @@ function ($q) {
                     return $q.when($scope.transformItem({
                         item: item
                     })).then(function (transformed) {
-                        $scope.onTransformItemNotify({ item : transformed });
+                        $scope.onTransformItemNotify({ item: transformed });
                         return transformed;
-                    })["catch"](function () {
+                    }).catch(function () {
                         return rejectedItem;
                     });
-                })).then(function (items) {
-                    items = items.filter(function (item) {
+                })).then(function (itemList) {
+                    var filtredItems = itemList.filter(function (item) {
                         return item !== rejectedItem;
                     });
-                    $scope.onTransformItemDone({ items : items });
-                    return items;
+                    $scope.onTransformItemDone({ items: filtredItems });
+                    return filtredItems;
                 });
-                $scope.onTransformItemGetPromise({ "promise" : promise });
+                $scope.onTransformItemGetPromise({ promise: promise });
                 return promise;
             };
 
@@ -102,14 +137,14 @@ function ($q) {
                         $scope.paginatedItems = itemsToLoad;
                     }
 
-                    $scope.onPageChange({ items : $scope.paginatedItems });
+                    $scope.onPageChange({ items: $scope.paginatedItems });
                 }
             };
 
             var isInt = function (value) {
                 return !isNaN(value) &&
-                parseInt(Number(value), 10) === value &&
-                !isNaN(parseInt(value, 10));
+                    parseInt(Number(value), 10) === value &&
+                    !isNaN(parseInt(value, 10));
             };
 
             $scope.$watch("items", function (nv) {
@@ -125,7 +160,7 @@ function ($q) {
                 }
             }, true);
 
-            //Watch change page
+            // Watch change page
             $scope.$watch("currentPage", function (page) {
                 if (isInt(page)) {
                     paginates();
@@ -138,10 +173,10 @@ function ($q) {
                     if ($scope.goPage) {
                         if ($scope.goPage > $scope.numPages) {
                             $scope.currentPage = $scope.numPages;
-                        }else {
+                        } else {
                             $scope.currentPage = $scope.goPage;
                         }
-                    }else {
+                    } else {
                         $scope.currentPage = 1;
                     }
                 }
@@ -153,7 +188,7 @@ function ($q) {
                 }
             };
 
-            //Watch number of items per page
+            // Watch number of items per page
             $scope.$watch("itemsPerPage", function (itemsPerPage) {
                 if (itemsPerPage !== undefined) {
                     if (localStorage) {

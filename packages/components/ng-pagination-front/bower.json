@@ -1,10 +1,16 @@
 {
   "name": "ovh-angular-pagination-front",
   "version": "5.0.0",
-  "main": "./dist/ovh-angular-pagination-front.min.js",
+  "main": [
+    "./dist/ovh-angular-pagination-front.min.js",
+    "./less/ovh-angular-pagination-front.less"
+  ],
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
-  "repository": "ovh-ux/ovh-angular-pagination-front.git",
+  "repository": {
+    "type": "git",
+    "url": "https://www.github.com/ovh-ux/ovh-angular-pagination-front.git"
+  },
   "ignore": [
       "components",
       "bower_components",
@@ -13,6 +19,7 @@
       "src",
       "karma.conf.js",
       ".jshintrc",
+      ".eslintrc.json",
       ".jscsrc",
       ".editorconfig",
       "less/ovh-angular-pagination-front.dist.less"

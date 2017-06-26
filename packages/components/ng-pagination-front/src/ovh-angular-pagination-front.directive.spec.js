@@ -1,32 +1,50 @@
+/* global describe:true, beforeEach:true, afterEach:true, it:true, expect: true */
 describe("directive: paginationFront", function () {
     "use strict";
 
-    var $compile;
-    var $rootScope;
     var $scope;
-    var $httpBackend;
-    var $q;
     var elem;
-    var elems = {};
+    var $compile;
 
-    //beforeEach(angular.mock.module("sidebarMenuMock"));
+    beforeEach(angular.mock.module("ovh-angular-pagination-front"));
+    beforeEach(angular.mock.module("templates"));
 
-    beforeEach(angular.mock.inject(function (_$rootScope_, _$compile_, _$httpBackend_, _$q_) {
+    beforeEach(angular.mock.inject(function (_$rootScope_, _$compile_) {
         $scope = _$rootScope_.$new();
-        $httpBackend = _$httpBackend_;
         $compile = _$compile_;
-        $rootScope = _$rootScope_;
-        $q = _$q_;
 
         elem = $("<div>").prependTo("body");
         $scope.$digest();
     }));
 
+    afterEach(function () {
+        $scope.$destroy();
+        elem.remove();
+    });
+
+    var templates = {
+        "default": {
+            element: "<div pagination-front></div>",
+            scope: {}
+        }
+    };
+
+    function compileDirective (templateName, locals) {
+        var template = templates[templateName];
+        angular.extend($scope, angular.copy(template.scope) || angular.copy(templates.default.scope), locals);
+        var element = $(template.element).appendTo(elem);
+        element = $compile(element)($scope);
+        $scope.$digest();
+        return jQuery(element);
+    }
+
     describe("Test", function () {
+        it("should load the directive", function () {
+            var elt = compileDirective("default");
+            var child = elt.children();
+            expect(child.length).toEqual(1);
+            expect(child.hasClass("pagination-container")).toBeTruthy();
+        });
 
-       it("should prove that test running...", function () {
-           expect(true).not.toBeFalsy();
-       });
-
-   });
+    });
 });
