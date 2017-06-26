@@ -1,0 +1,136 @@
+<a href="https://github.com/ovh-ux/ovh-angular-toaster/blob/master/src/js/ovh-angular-toaster.provider.js#L132" class="view-source"><i class="icon-eye-open"> </i>View source</a><h1><code ng:non-bindable="">Toast</code>
+<div><span class="hint">service in module <code ng:non-bindable="">toaster</code>
+</span>
+</div>
+</h1>
+<div><h2 id="description">Description</h2>
+<div class="description"><div class="toaster-toast-page"><p>Toaster is a component to show an in-app notification, like a toast for android applications</p>
+<p>To add a notification, you had to inject Toast as dependency and use it like this example inside a controller
+<pre class="prettyprint linenums">
+ angular.module('myApp').controller('iLikeLicorn',[ 'Toast', function (Toast) {
+      'use strict';
+
+      Toast.success('Licorns eat toast?');
+
+  }]);
+</pre>
+<p>Toast can by targetted with an ID. So, you can update a toast on-the-fly, like this:
+<pre class="prettyprint linenums">
+  Toast.info('Loading...', {
+       id: 42,
+       hideAfter: false
+  });
+
+  $timeout(function () {
+      Toast.success('Done!', {
+          id: 42
+      });
+  }, 2000);
+</pre>
+<p>Also, a main Toast fct returns the instance of the Toast created. Then you can play with it!
+<pre class="prettyprint linenums">
+       var msg = Toast.info('Hello!', {
+      hideAfter: false
+  });
+
+       $timeout(function () {
+      Toast.hide(msg);
+      $timeout(function () {
+          Toast.show(msg);
+      }, 2000);
+  }, 2000);
+</pre>
+<p>The full list of <b>opts</b> in functions :</p>
+<ul>
+    <li><b>message</b>: The text of the message</li>
+    <li><b>type</b>: info, error or success are understood by the provided themes. You can also pass your own string, and that class will be added</li>
+    <li><b>theme</b>: What theme class should be applied to the message? Defaults to the theme set for Messenger in general</li>
+    <li><b>id</b>: A unique id. If supplied, only one message with that ID will be shown at a time</li>
+    <li><b>singleton</b>: Hide the newer message if there is an id collision, as opposed to the older message</li>
+    <li><b>actions</b>: Action links to put in the message, see the &#39;Actions&#39; section on this page</li>
+    <li><b>hideAfter</b>: Hide the message after the provided number of seconds</li>
+    <li><b>showCloseButton</b>: Should a close button be added to the message?</li>
+    <li><b>closeButtonText</b>: Specify the text the close button should use (default ×)</li>
+</ul></div></div>
+<div class="member method"><h2 id="methods">Methods</h2>
+<ul class="methods"><li><a href="https://github.com/ovh-ux/ovh-angular-toaster/blob/master/src/js/ovh-angular-toaster.provider.js#L186" class="view-source icon-eye-open"> </a><h3 id="methods_error">error(msg, opts)</h3>
+<div class="error"><div class="error-page"><p>Display a error message</p>
+</div><h5 id="methods_error_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>msg</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="error-page"><p>Message to show</p>
+</div></td></tr><tr><td>opts <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="error-page"><p>Object to configure lib use to show notification.
+Please report to <a href="https://github.com/HubSpot/messenger">Messenger repo</a>
+documentation. Inside parameters, you can add all parameters from Messenger library:
+<a href="https://github.com/HubSpot/messenger/blob/master/docs/intro.md">Messenger documentation</a></p>
+</div></td></tr></tbody></table><h5 id="methods_error_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="error-page"><p>Notification instance</p>
+</div></td></tr></table></div>
+</li>
+<li><a href="https://github.com/ovh-ux/ovh-angular-toaster/blob/master/src/js/ovh-angular-toaster.provider.js#L279" class="view-source icon-eye-open"> </a><h3 id="methods_hide">hide(notification)</h3>
+<div class=""><div class="hide-page"><p>Hide a specific notification</p>
+</div><h5 id="methods_hide_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>notification</td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="hide-page"><p>instance</p>
+</div></td></tr></tbody></table><h5 id="methods_hide_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="hide-page"><p>Notification instance</p>
+</div></td></tr></table></div>
+</li>
+<li><a href="https://github.com/ovh-ux/ovh-angular-toaster/blob/master/src/js/ovh-angular-toaster.provider.js#L291" class="view-source icon-eye-open"> </a><h3 id="methods_hideall">hideAll()</h3>
+<div class="hideall"><div class="hideall-page"><p>Display all notifications</p>
+</div></div>
+</li>
+<li><a href="https://github.com/ovh-ux/ovh-angular-toaster/blob/master/src/js/ovh-angular-toaster.provider.js#L167" class="view-source icon-eye-open"> </a><h3 id="methods_info">info(msg, opts)</h3>
+<div class="info"><div class="info-page"><p>Display an information message</p>
+</div><h5 id="methods_info_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>msg</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="info-page"><p>Message to show</p>
+</div></td></tr><tr><td>opts <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="info-page"><p>Object to configure lib use to show notification.
+Please report to <a href="https://github.com/HubSpot/messenger">Messenger repo</a>
+documentation. Inside parameters, you can add all parameters from Messenger library:
+<a href="https://github.com/HubSpot/messenger/blob/master/docs/intro.md">Messenger documentation</a></p>
+</div></td></tr></tbody></table><h5 id="methods_info_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="info-page"><p>Notification instance</p>
+</div></td></tr></table></div>
+</li>
+<li><a href="https://github.com/ovh-ux/ovh-angular-toaster/blob/master/src/js/ovh-angular-toaster.provider.js#L225" class="view-source icon-eye-open"> </a><h3 id="methods_infowithinprogress">infoWithInProgress(progressMsg, msg, opts)</h3>
+<div class="infowithinprogress"><div class="infowithinprogress-page"><p>Display an information message with progress</p>
+</div><h5 id="methods_infowithinprogress_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>progressMsg</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="infowithinprogress-page"><p>Progress message</p>
+</div></td></tr><tr><td>msg</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="infowithinprogress-page"><p>Message to show</p>
+</div></td></tr><tr><td>opts <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="infowithinprogress-page"><p>Object to configure lib use to show notification.
+Please report to <a href="https://github.com/HubSpot/messenger">Messenger repo</a>
+documentation. Inside parameters, you can add all parameters from Messenger library:
+<a href="https://github.com/HubSpot/messenger/blob/master/docs/intro.md">Messenger documentation</a></p>
+</div></td></tr></tbody></table><h5 id="methods_infowithinprogress_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="infowithinprogress-page"><p>Notification instance</p>
+</div></td></tr></table></div>
+</li>
+<li><a href="https://github.com/ovh-ux/ovh-angular-toaster/blob/master/src/js/ovh-angular-toaster.provider.js#L205" class="view-source icon-eye-open"> </a><h3 id="methods_light">light(msg, opts)</h3>
+<div class="light"><div class="light-page"><p>Display a light message</p>
+</div><h5 id="methods_light_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>msg</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="light-page"><p>Message to show</p>
+</div></td></tr><tr><td>opts <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="light-page"><p>Object to configure lib use to show notification.
+Please report to <a href="https://github.com/HubSpot/messenger">Messenger repo</a>
+documentation. Inside parameters, you can add all parameters from Messenger library:
+<a href="https://github.com/HubSpot/messenger/blob/master/docs/intro.md">Messenger documentation</a></p>
+</div></td></tr></tbody></table><h5 id="methods_light_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="light-page"><p>Notification instance</p>
+</div></td></tr></table></div>
+</li>
+<li><a href="https://github.com/ovh-ux/ovh-angular-toaster/blob/master/src/js/ovh-angular-toaster.provider.js#L264" class="view-source icon-eye-open"> </a><h3 id="methods_show">show(notification)</h3>
+<div class="show"><div class="show-page"><p>Display a specific notification</p>
+</div><h5 id="methods_show_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>notification</td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="show-page"><p>instance</p>
+</div></td></tr></tbody></table><h5 id="methods_show_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="show-page"><p>Notification instance</p>
+</div></td></tr></table></div>
+</li>
+<li><a href="https://github.com/ovh-ux/ovh-angular-toaster/blob/master/src/js/ovh-angular-toaster.provider.js#L148" class="view-source icon-eye-open"> </a><h3 id="methods_success">success(msg, opts)</h3>
+<div class="success"><div class="success-page"><p>Display a success message</p>
+</div><h5 id="methods_success_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>msg</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="success-page"><p>Message to show</p>
+</div></td></tr><tr><td>opts <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="success-page"><p>Object to configure lib use to show notification.
+Please report to <a href="https://github.com/HubSpot/messenger">Messenger repo</a>
+documentation. Inside parameters, you can add all parameters from Messenger library:
+<a href="https://github.com/HubSpot/messenger/blob/master/docs/intro.md">Messenger documentation</a></p>
+</div></td></tr></tbody></table><h5 id="methods_success_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="success-page"><p>Notification instance</p>
+</div></td></tr></table></div>
+</li>
+<li><a href="https://github.com/ovh-ux/ovh-angular-toaster/blob/master/src/js/ovh-angular-toaster.provider.js#L249" class="view-source icon-eye-open"> </a><h3 id="methods_update">update(notification, msg, opts)</h3>
+<div class="update"><div class="update-page"><p>Update a specific notification</p>
+</div><h5 id="methods_update_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>notification</td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="update-page"><p>instance</p>
+</div></td></tr><tr><td>msg</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="update-page"><p>Message to show</p>
+</div></td></tr><tr><td>opts <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="update-page"><p>Object to configure lib use to show notification.
+Please report to <a href="https://github.com/HubSpot/messenger">Messenger repo</a>
+documentation. Inside parameters, you can add all parameters from Messenger library:
+<a href="https://github.com/HubSpot/messenger/blob/master/docs/intro.md">Messenger documentation</a></p>
+</div></td></tr></tbody></table><h5 id="methods_update_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="update-page"><p>Notification instance</p>
+</div></td></tr></table></div>
+</li>
+</ul>
+</div>
+</div>

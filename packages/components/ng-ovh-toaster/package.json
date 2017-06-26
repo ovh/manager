@@ -1,0 +1,42 @@
+{
+  "name": "ovh-angular-toaster",
+  "version": "0.8.0",
+  "description": "Show a hot toast for user",
+  "main": [
+    "./dist/ovh-angular-toaster.min.js",
+    "./dist/ovh-angular-toaster.min.css"
+  ],
+  "scripts": {
+      "test": "grunt test"
+  },
+  "license": "BSD-3-Clause",
+  "author": "OVH SAS",
+  "repository": "ovh-ux/ovh-angular-toaster",
+  "devDependencies": {
+    "eslint": "^4.0.0",
+    "eslint-config-ovh": "^0.1.1",
+    "grunt": "0.4.x",
+    "grunt-autoprefixer": "~2.2.0",
+    "grunt-bump": "~0.3.0",
+    "grunt-complexity": "~0.1.0",
+    "grunt-contrib-clean": "~0.6.0",
+    "grunt-contrib-concat": "~0.5.0",
+    "grunt-contrib-copy": "~0.7.0",
+    "grunt-contrib-csslint": "~0.4.0",
+    "grunt-contrib-cssmin": "~0.12.2",
+    "grunt-contrib-jshint": "~0.11.0",
+    "grunt-contrib-less": "~1.0.0",
+    "grunt-contrib-uglify": "~0.8.0",
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt-eslint": "^20.0.0",
+    "grunt-ngdocs": "^0.2.5",
+    "grunt-karma": "~0.10.1",
+    "grunt-ng-annotate": "~0.10.0",
+    "jshint-stylish": "~1.0.0",
+    "karma": "~0.13.3",
+    "karma-jasmine": "~0.3.0",
+    "karma-phantomjs-launcher": "~1.0.0",
+    "phantomjs-prebuilt": "2.1.7",
+    "matchdep": "^0.3.0"
+  }
+}
