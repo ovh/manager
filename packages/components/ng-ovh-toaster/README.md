@@ -4,6 +4,8 @@
 
 [![Maintenance](https://img.shields.io/maintenance/yes/2017.svg)]() [![Chat on gitter](https://img.shields.io/gitter/room/ovh/ux.svg)](https://gitter.im/ovh/ux) [![Build Status](https://travis-ci.org/ovh-ux/ovh-angular-toaster.svg)](https://travis-ci.org/ovh-ux/ovh-angular-toaster)
 
+[![NPM](https://nodei.co/npm/ovh-angular-toaster.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/ovh-angular-toaster/)
+
 > A factory to create toast
 
 Toaster is a component to show an in-app notification, like a [toast](http://developer.android.com/guide/topics/ui/notifiers/toasts.html) for android applications.
