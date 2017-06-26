@@ -36,11 +36,11 @@ angular.module("app", ["ovh-angular-simple-country-list"]).controller("YourContr
 
 ### Bower
 
-    bower install ovh-angular-manager-navbar --save
+    bower install ovh-angular-simple-country-list --save
 
 ### NPM
 
-    npm install ovh-angular-manager-navbar --save
+    npm install ovh-angular-simple-country-list --save
 
 ### Get the sources
 
