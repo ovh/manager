@@ -1,6 +1,6 @@
 {
   "name": "ovh-angular-tail-logs",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Poll a log API for displaying messages",
   "license": "BSD-3-Clause",
   "author": "OVH SAS",

@@ -1,6 +1,6 @@
 {
   "name": "ovh-angular-tail-logs",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "main": [
     "./dist/ovh-angular-tail-logs.min.js",
     "./less/ovh-angular-tail-logs.less"
