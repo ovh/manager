@@ -2,6 +2,8 @@
   "name": "ovh-angular-tail-logs",
   "version": "1.1.0",
   "description": "Poll a log API for displaying messages",
+  "license": "BSD-3-Clause",
+  "author": "OVH SAS",
   "keywords": [
     "angular"
   ],
@@ -9,7 +11,7 @@
     "test": "grunt test"
   },
   "main": "./dist/ovh-angular-tail-logs.min.js",
-  "repository": "ovh-ux/ovh-angular-tail-logs.git",
+  "repository": "ovh-ux/ovh-angular-tail-logs",
   "dependencies": {},
   "devDependencies": {
     "autoprefixer-core": "^5.2.1",
@@ -47,7 +49,5 @@
     "lodash": "~3.0.1",
     "matchdep": "^0.3.0",
     "phantomjs-prebuilt": "^2.1.7"
-  },
-  "license": "BSD-3-Clause",
-  "author": "OVH SAS"
+  }
 }
