@@ -1,7 +1,7 @@
 angular.module("ovh-angular-slider", []);
 
-"use strict";
 angular.module("ovh-angular-slider").directive("ovhSlider", ["$timeout", function ($timeout) {
+    "use strict";
     var angularize = function (element) {
         return angular.element(element);
     };
@@ -98,10 +98,10 @@ angular.module("ovh-angular-slider").directive("ovhSlider", ["$timeout", functio
         '<div class="bubble value high">{{ values.length ? values[local.ngModelHigh] : local.ngModelHigh }}</div>' +
         '<div class="markers" ng-show="{{ markersCount > 0 }}"></div>',
         compile: function (element, attributes) {
-            var high,
-                low,
-                range,
-                watchables;
+            var high;
+            var low;
+            var range;
+            var watchables;
             range = !attributes.ngModel && attributes.ngModelLow && attributes.ngModelHigh;
             low = range ? "ngModelLow" : "ngModel";
             high = "ngModelHigh";
@@ -111,41 +111,41 @@ angular.module("ovh-angular-slider").directive("ovhSlider", ["$timeout", functio
             }
             return {
                 post: function (scope, element, attributes) {
-                    var bar,
-                        barWidth,
-                        bound,
-                        ceilBub,
-                        dimensions,
-                        e,
-                        flrBub,
-                        handleHalfWidth,
-                        highBub,
-                        lowBub,
-                        markers,
-                        maxOffset,
-                        maxPtr,
-                        maxValue,
-                        minOffset,
-                        minPtr,
-                        minValue,
-                        ngDocument,
-                        offsetRange,
-                        selection,
-                        updateDOM,
-                        upper,
-                        valueRange,
-                        w,
-                        _i,
-                        _j,
-                        _len,
-                        _len1,
-                        _ref,
-                        _ref1;
+                    var bar;
+                    var barWidth;
+                    var bound;
+                    var ceilBub;
+                    var dimensions;
+                    var e;
+                    var flrBub;
+                    var handleHalfWidth;
+                    var highBub;
+                    var lowBub;
+                    var markers;
+                    var maxOffset;
+                    var maxPtr;
+                    var maxValue;
+                    var minOffset;
+                    var minPtr;
+                    var minValue;
+                    var ngDocument;
+                    var offsetRange;
+                    var selection;
+                    var updateDOM;
+                    var upper;
+                    var valueRange;
+                    var w;
+                    var _i;
+                    var _j;
+                    var _len;
+                    var _len1;
+                    var _ref;
+                    var _ref1;
                     _ref = (function () {
-                        var _i,
-                            _len,
-                            _ref,
-                            _results;
+                        var _i;
+                        var _len;
+                        var _ref;
+                        var _results;
                         _ref = element.children();
                         _results = [];
                         for (_i = 0, _len = _ref.length; _i < _len; _i++) {
@@ -192,10 +192,18 @@ angular.module("ovh-angular-slider").directive("ovhSlider", ["$timeout", functio
                             element.css("margin-bottom", (parseInt(element.css("margin-bottom"), 10) + 10) + "px");
                         }
                         if (attributes.markersLabelLow) {
-                            angular.element("<div></div>").addClass("markerLabel").css("left", "0%").html(attributes.markersLabelLow).appendTo(markers);
+                            angular.element("<div></div>")
+                                .addClass("markerLabel")
+                                .css("left", "0%")
+                                .html(attributes.markersLabelLow)
+                                .appendTo(markers);
                         }
                         if (attributes.markersLabelHigh) {
-                            angular.element("<div></div>").addClass("markerLabel").css("left", "100%").html(attributes.markersLabelHigh).appendTo(markers);
+                            angular.element("<div></div>")
+                                .addClass("markerLabel")
+                                .css("left", "100%")
+                                .html(attributes.markersLabelHigh)
+                                .appendTo(markers);
                         }
 
                         // add some bottom spaces if there are marker labels to display
@@ -234,10 +242,10 @@ angular.module("ovh-angular-slider").directive("ovhSlider", ["$timeout", functio
                     ngDocument = angularize(document);
                     handleHalfWidth = barWidth = minOffset = maxOffset = minValue = maxValue = valueRange = offsetRange = void 0;
                     dimensions = function () {
-                        var value,
-                            _j,
-                            _len1,
-                            _ref2;
+                        var value;
+                        var _j;
+                        var _len1;
+                        var _ref2;
                         if (!scope.step) {
                             scope.step = 1;
                         }
@@ -280,12 +288,12 @@ angular.module("ovh-angular-slider").directive("ovhSlider", ["$timeout", functio
                         return offsetRange;
                     };
                     updateDOM = function () {
-                        var bind,
-                            percentOffset,
-                            percentValue,
-                            pixelsToOffset,
-                            setBindings,
-                            setPointers;
+                        var bind;
+                        var percentOffset;
+                        var percentValue;
+                        var pixelsToOffset;
+                        var setBindings;
+                        var setPointers;
                         dimensions();
                         percentOffset = function (offset) {
                             return contain(((offset - minOffset) / offsetRange) * 100);
@@ -297,8 +305,8 @@ angular.module("ovh-angular-slider").directive("ovhSlider", ["$timeout", functio
                             return pixelize(percent * offsetRange / 100);
                         };
                         setPointers = function () {
-                            var newHighValue,
-                                newLowValue;
+                            var newHighValue;
+                            var newLowValue;
                             offset(ceilBub, pixelize(barWidth - width(ceilBub)));
                             newLowValue = percentValue(scope.local[low]);
                             offset(minPtr, pixelsToOffset(newLowValue));
@@ -321,13 +329,16 @@ angular.module("ovh-angular-slider").directive("ovhSlider", ["$timeout", functio
                                     width: pixelsToOffset(newLowValue)
                                 });
                                 return offset(selection, 0);
+                            default:
+
+                                // Do nothing
                             }
                         };
                         bind = function (handle, bubble, ref, events) {
-                            var currentRef,
-                                onEnd,
-                                onMove,
-                                onStart;
+                            var currentRef;
+                            var onEnd;
+                            var onMove;
+                            var onStart;
                             currentRef = ref;
                             onEnd = function () {
                                 bubble.removeClass("active");
@@ -345,14 +356,14 @@ angular.module("ovh-angular-slider").directive("ovhSlider", ["$timeout", functio
                                 if (scope.disabled) {
                                     return;
                                 }
-                                var eventX,
-                                    newOffset,
-                                    newPercent,
-                                    newValue,
-                                    _ref2,
-                                    _ref3,
-                                    _ref4,
-                                    _ref5;
+                                var eventX;
+                                var newOffset;
+                                var newPercent;
+                                var newValue;
+                                var _ref2;
+                                var _ref3;
+                                var _ref4;
+                                var _ref5;
                                 eventX = event.clientX || ((_ref2 = event.touches) ? (_ref3 = _ref2[0]) ? _ref3.clientX : void 0 : void 0) || ((_ref4 = event.originalEvent) ? (_ref5 = _ref4.changedTouches) ? _ref5[0].clientX : void 0 : void 0) || 0;
                                 newOffset = eventX - element[0].getBoundingClientRect().left - handleHalfWidth;
                                 newOffset = Math.max(Math.min(newOffset, maxOffset), minOffset);
@@ -383,6 +394,10 @@ angular.module("ovh-angular-slider").directive("ovhSlider", ["$timeout", functio
                                         } else if (scope.buffer > 0) {
                                             newValue = Math.max(newValue, parseInt(scope.local[low], 10) + parseInt(scope.buffer, 10));
                                         }
+                                        break;
+                                    default:
+
+                                        // Do nothing
                                     }
                                 }
                                 newValue = roundStep(newValue, parseInt(scope.precision, 10), parseFloat(scope.step), parseFloat(scope.floor));
@@ -406,10 +421,10 @@ angular.module("ovh-angular-slider").directive("ovhSlider", ["$timeout", functio
                             return handle.bind(events.start, onStart);
                         };
                         setBindings = function () {
-                            var method,
-                                _j,
-                                _len1,
-                                _ref2;
+                            var method;
+                            var _j;
+                            var _len1;
+                            var _ref2;
                             _ref2 = ["touch", "mouse"];
                             for (_j = 0, _len1 = _ref2.length; _j < _len1; _j++) {
                                 method = _ref2[_j];
@@ -428,9 +443,10 @@ angular.module("ovh-angular-slider").directive("ovhSlider", ["$timeout", functio
                         $timeout(updateDOM);
                     };
 
-                    // When the slider is placed within an animated element that slowly comes into view, the width of the container may vary within the first hundreds
-                    // of milliseconds.  Therefore, we have to call updateDOM on an interval to make sure that the bar is correctly stretched across the with of the
-                    // container.
+                    // When the slider is placed within an animated element that slowly comes into view,
+                    // the width of the container may vary within the first hundreds of milliseconds.
+                    // Therefore, we have to call updateDOM on an interval to make sure that the bar is
+                    // correctly stretched across the with of the container.
                     var previousBarWidth;
                     var intervalId = setInterval(function () {
                         if (barWidth !== previousBarWidth) {
