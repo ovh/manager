@@ -1,0 +1,11 @@
+{
+    "extends": "./node_modules/eslint-config-ovh/configs/es5-browser.js",
+    "globals": {
+        "jsPlumb": true
+    },
+    "rules": {
+        "no-magic-numbers": "off",
+        "no-param-reassign": "warn",
+        "no-use-before-define": "warn"
+    }
+ }

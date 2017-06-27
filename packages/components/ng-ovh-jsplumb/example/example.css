@@ -1,0 +1,91 @@
+body {
+    margin: 0;
+}
+
+.action-container {
+    margin: 15px;
+}
+
+.endpoints-container li {
+    list-style-type: none;
+    margin: 10px;
+    display: block;
+    padding: 5px 15px;
+    position: relative;
+}
+
+.endpoints-container li .endpoint-container {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+}
+
+.endpoints-container li .endpoint-container .endpoint {
+    width: 16px;
+    height: 16px;
+    border-radius: 10px;
+    background: #ecf0f1;
+    border: 1px solid #7f8c8d;
+    position: absolute;
+    top: 50%;
+    margin-top: -8px;
+    left: 50%;
+    margin-left: -8px;
+    z-index: 10;
+}
+
+.left-endpoints-container {
+    float: left;
+    padding: 25px;
+    width: 35%;
+    background: #34495e;
+    margin: 15px 3%;
+}
+
+.left-endpoints-container li {
+    background: #ecf0f1;
+    height: 75px;
+}
+
+.left-endpoints-container li .endpoint-container {
+    right: 0;
+    top: 50%;
+    margin: -25px -25px 0 0;
+}
+
+.right-endpoints-container {
+    float: right;
+    padding: 25px;
+    width: 40%;
+    background: #95a5a6;
+    margin: 15px 3%;
+}
+
+.right-endpoints-container li {
+    background: #2ecc71;
+}
+
+.right-endpoints-container li .endpoint-container {
+    left: 0;
+    top: 50%;
+    margin: -25px 0 0 -25px;
+}
+
+.bottom-events {
+    padding: 10px;
+    width: 100%;
+    height: 200px;
+    border-top: 1px solid;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    overflow: auto;
+}
+
+._jsPlumb_connector {
+    z-index: 5;
+}
+
+._jsPlumb_endpoint {
+    z-index: 10;
+}
