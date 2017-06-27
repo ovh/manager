@@ -142,7 +142,8 @@ module.exports = function (grunt) {
         grunt.task.run([
             "clean",
             "eslint",
-            "complexity"
+            "complexity",
+            "karma"
         ]);
     });
 

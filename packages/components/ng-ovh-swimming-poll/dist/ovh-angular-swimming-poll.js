@@ -194,6 +194,7 @@ angular.module("ovh-angular-swimming-poll").service("Poller", ["$q", "$timeout",
                 } else if (error.status !== 0) {       // status === 0 : killed
                     return rejectTask(task, error);
                 }
+                return error;
             });
         }
     }]);

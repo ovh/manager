@@ -1,7 +1,7 @@
 {
     "extends": "./node_modules/eslint-config-ovh/configs/es5-browser.js",
     "rules": {
-        "consistent-return": "off"
+        "no-magic-numbers": "off"
     },
     "globals": {
         "Buffer": true,

@@ -29,10 +29,12 @@
     "grunt-eslint": "^19.0.0",
     "grunt-karma": "~0.10.1",
     "grunt-ng-annotate": "~0.10.0",
+    "jasmine-core": "^2.6.4",
     "jshint-stylish": "~1.0.0",
-    "karma": "~0.12.9",
+    "karma": "~0.13.0",
     "karma-jasmine": "~0.3.0",
-    "karma-phantomjs-launcher": "~0.1.4",
-    "matchdep": "^0.3.0"
+    "karma-phantomjs-launcher": "~1.0.0",
+    "matchdep": "^0.3.0",
+    "phantomjs-prebuilt": "^2.1.14"
   }
 }
