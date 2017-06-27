@@ -1,6 +1,6 @@
 {
   "name": "ovh-angular-q-allsettled",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Copy of kriskowal/q for ovh control panels",
   "main": "./dist/ovh-angular-q-allsettled.min.js",
   "repository": "ovh-ux/ovh-angular-q-allSettled",
