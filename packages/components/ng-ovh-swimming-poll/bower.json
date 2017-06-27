@@ -1,7 +1,10 @@
 {
   "name": "ovh-angular-swimming-poll",
   "description": "A poller to swim easily to success status!",
-  "repository": "ovh-ux/ovh-angular-swimming-poll.git",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ovh-ux/ovh-angular-swimming-poll.git"
+  },
   "author": "OVH SAS",
   "license": "BSD-3-Clause",
   "version": "3.0.0",
