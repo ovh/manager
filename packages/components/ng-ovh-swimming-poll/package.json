@@ -1,0 +1,38 @@
+{
+  "name": "ovh-angular-swimming-poll",
+  "author": "OVH SAS",
+  "license": "BSD-3-Clause",
+  "version": "3.0.0",
+  "description": "A poller to swim easily to success status!",
+  "main": "./dist/ovh-angular-swimming-poll.min.js",
+  "scripts": {
+    "fix": "eslint --quiet --fix --ext .js .",
+    "test": "grunt test"
+  },
+  "repository": "ovh-ux/ovh-angular-swimming-poll",
+  "devDependencies": {
+    "eslint": "^3.19.0",
+    "eslint-config-ovh": "^0.1.1",
+    "grunt": "0.4.x",
+    "grunt-autoprefixer": "~2.2.0",
+    "grunt-bump": "~0.3.0",
+    "grunt-complexity": "~0.1.0",
+    "grunt-contrib-clean": "~0.6.0",
+    "grunt-contrib-concat": "~0.5.0",
+    "grunt-contrib-copy": "~0.7.0",
+    "grunt-contrib-csslint": "~0.4.0",
+    "grunt-contrib-cssmin": "~0.12.2",
+    "grunt-contrib-jshint": "~0.11.0",
+    "grunt-contrib-less": "~1.0.0",
+    "grunt-contrib-uglify": "~0.8.0",
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt-eslint": "^19.0.0",
+    "grunt-karma": "~0.10.1",
+    "grunt-ng-annotate": "~0.10.0",
+    "jshint-stylish": "~1.0.0",
+    "karma": "~0.12.9",
+    "karma-jasmine": "~0.3.0",
+    "karma-phantomjs-launcher": "~0.1.4",
+    "matchdep": "^0.3.0"
+  }
+}
