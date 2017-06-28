@@ -1,0 +1,47 @@
+<li class="tab tab-more dropdown"
+    data-uib-dropdown
+    data-is-open="isOpen">
+    <a href
+       class="dropdown-toggle"
+       data-uib-dropdown-toggle
+       data-ng-transclude>
+   </a>
+    <ul class="dropdown-menu"
+        role="menu">
+        <li class="tab-more-tab"
+            data-ng-repeat="tab in tabs"
+            data-ng-class="{active: tab.active, disabled: tab.disabled}"
+            data-ng-if="tab.hidden">
+            <a href
+               data-ng-click="select(tab)"
+               data-ng-if="tab.dropdownTitle && tab.state"
+               data-ng-bind="tab.dropdownTitle">
+            </a>
+            <a href
+               data-ng-click="select(tab)"
+               data-ng-if="tab.dropdownTitleTemplate && tab.state"
+               data-ng-include="tab.dropdownTitleTemplate">
+            </a>
+            <a href
+               data-ng-click="select(tab)"
+               data-ng-if="tab.title && tab.state"
+               data-ng-bind-html="tab.title">
+            </a>
+            <a data-ng-href="{{tab.url}}"
+               target="tab.target"
+               data-ng-if="tab.dropdownTitle && tab.url"
+               data-ng-bind="tab.dropdownTitle">
+            </a>
+            <a data-ng-href="{{tab.url}}"
+               target="tab.target"
+               data-ng-if="tab.dropdownTitleTemplate && tab.url"
+               data-ng-include="tab.dropdownTitleTemplate">
+            </a>
+            <a data-ng-href="{{tab.url}}"
+               target="tab.target"
+               data-ng-if="tab.title && tab.url"
+               data-ng-bind-html="tab.title">
+            </a>
+        </li>
+    </ul>
+</li>

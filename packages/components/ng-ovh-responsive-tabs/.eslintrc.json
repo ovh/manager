@@ -1,0 +1,8 @@
+{
+    "extends": "./node_modules/eslint-config-ovh/configs/es5-browser.js",
+    "rules": {
+        "one-var": "warn",
+        "consistent-this": "warn",
+        "no-use-before-define": "warn"
+    }
+ }

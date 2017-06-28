@@ -1,0 +1,42 @@
+{
+  "name": "ovh-angular-responsive-tabs",
+  "version": "3.1.2",
+  "description": "Wrapper for Angular UI Bootstrap directive 'Tabs'",
+  "main": "./dist/ovh-angular-responsive-tabs.min.js",
+  "repository": "ovh-ux/ovh-angular-responsive-tabs",
+  "scripts": {
+      "test": "grunt test"
+  },
+  "license": "BSD-3-Clause",
+  "author": "OVH SAS",
+  "devDependencies": {
+    "eslint": "^4.1.1",
+    "eslint-config-ovh": "^0.1.1",
+    "grunt-eslint": "^20.0.0",
+    "grunt": "0.4.x",
+    "grunt-angular-templates": "^0.5.7",
+    "grunt-autoprefixer": "~2.2.0",
+    "grunt-bump": "~0.3.0",
+    "grunt-complexity": "~0.1.0",
+    "grunt-contrib-clean": "~0.6.0",
+    "grunt-contrib-concat": "~0.5.0",
+    "grunt-contrib-copy": "~0.7.0",
+    "grunt-contrib-csslint": "~0.4.0",
+    "grunt-contrib-cssmin": "~0.12.2",
+    "grunt-contrib-jshint": "~0.11.0",
+    "grunt-contrib-less": "~1.0.0",
+    "grunt-contrib-uglify": "~0.8.0",
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt-karma": "~0.12.1",
+    "grunt-ng-annotate": "~0.10.0",
+    "grunt-ngdocs": "^0.2.5",
+    "jasmine-core": "^2.6.4",
+    "jshint-stylish": "~1.0.0",
+    "karma": "~0.13.22",
+    "karma-jasmine": "~0.3.0",
+    "karma-phantomjs-launcher": "~1.0.4",
+    "karma-ng-html2js-preprocessor": "~0.1.0",
+    "phantomjs-prebuilt": "^2.1.14",
+    "matchdep": "^1.0.0"
+  }
+}
