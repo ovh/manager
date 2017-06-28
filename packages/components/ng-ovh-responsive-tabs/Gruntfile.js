@@ -62,7 +62,7 @@ module.exports = function (grunt) {
 
         ngtemplates: {
             options: {
-                module: 'responsiveTabs',
+                module: '<%= name %>',
                 htmlmin: {
                     collapseBooleanAttributes: true,
                     collapseWhitespace: true,

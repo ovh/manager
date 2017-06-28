@@ -5,7 +5,7 @@
   "main": "./dist/ovh-angular-responsive-tabs.min.js",
   "repository": "ovh-ux/ovh-angular-responsive-tabs",
   "scripts": {
-      "test": "grunt test"
+    "test": "grunt test"
   },
   "license": "BSD-3-Clause",
   "author": "OVH SAS",

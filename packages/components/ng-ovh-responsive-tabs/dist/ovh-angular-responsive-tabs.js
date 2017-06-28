@@ -304,7 +304,7 @@ angular.module("ovh-angular-responsive-tabs").directive("responsiveTabs", ["$win
 }]
 );
 
-angular.module('responsiveTabs').run(['$templateCache', function($templateCache) {
+angular.module('ovh-angular-responsive-tabs').run(['$templateCache', function($templateCache) {
   'use strict';
 
   $templateCache.put('ovh-angular-responsive-tab-more/ovh-angular-responsive-tab-more.html',
