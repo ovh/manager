@@ -15,20 +15,6 @@
  *
  *  **Note:** when ui-bootstrap will be updated to version >= 2.0, it should be possible to remove `responsivePopover` directive and use uibPopover directive with custom class responsive-popover-class. So `responsivePopoverClass` directive will be the only directive of this component.
  *
- *  @usage
- *  Install module with bower:
- *  <pre>
- *  # bower install --save ssh://git@stash.ovh.net:7999/uxcomponents/responsive-popover.git
- *  </pre>
- *
- *  Then inject responsivePopover module in your module declaration:
- *  <pre>
- *  angular.module("myModule", [
- *      ...
- *      "responsivePopover",
- *      ...
- *  ]);
- *  </pre>
  */
 (function () {
     "use strict";
@@ -211,7 +197,7 @@ angular.module("ovh-angular-responsive-popover").provider("responsivePopover", f
 
 });
 
-angular.module('responsivePopover').run(['$templateCache', function($templateCache) {
+angular.module('ovh-angular-responsive-popover').run(['$templateCache', function($templateCache) {
   'use strict';
 
   $templateCache.put('ovh-angular-responsive-popover-popup/ovh-angular-responsive-popover-popup.html',

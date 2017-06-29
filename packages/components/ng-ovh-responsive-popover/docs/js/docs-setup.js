@@ -10,7 +10,7 @@ NG_DOCS={
       "type": "overview",
       "moduleName": "responsivePopover",
       "shortDescription": "responsive-popover module is used to display a popover and adapt it to the screen dimension.",
-      "keywords": "adapt angular bootstrap bower class component custom declaration dimension directive directives display docs dom element git github inject install instanciate io major module mymodule net overview ovh popover popup remove responsive-popover responsive-popover-class responsivepopover responsivepopoverclass screen ssh ui-bootstrap uibpopover updated version"
+      "keywords": "adapt bootstrap class component custom dimension directive directives display docs dom element github instanciate io major module overview popover popup remove responsive-popover responsive-popover-class responsivepopover responsivepopoverclass screen ui-bootstrap uibpopover updated version"
     },
     {
       "section": "docs",
