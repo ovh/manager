@@ -1,0 +1,39 @@
+<div data-ng-controller="contentController as cCtrl" style="height: 100%;">
+
+    <div data-responsive-switch
+         data-responsive-switch-pages-width="450"
+         data-responsive-switch-active-page-index="{{ cCtrl.activePage }}">
+
+        <div class="responsive-switch-page-left"
+             data-responsive-switch-page>
+
+            <button data-ng-click="cCtrl.activePage = 1">Go to second page</button>
+
+        </div>
+
+        <div class="responsive-switch-page-right"
+             data-responsive-switch-page>
+
+            <button data-ng-click="cCtrl.activePage = 0" data-ng-if="cCtrl.switchPage.getDisplayMode() !== 'sidebyside'">Go to first page</button>
+            <!-- <button data-ng-click="cCtrl.activePage = 2">Go to third page</button> -->
+
+        </div>
+
+        <!-- <div class="secondRightPage"
+             data-responsive-switch-page>
+
+            <button data-ng-click="cCtrl.activePage = 1">Go to second page</button>
+            <button data-ng-click="cCtrl.activePage = 3">Go to fourth page</button>
+
+        </div>
+
+        <div class="thirdRightPage"
+             data-responsive-switch-page>
+
+            <button data-ng-click="cCtrl.activePage = 2">Go to third page</button>
+
+        </div> -->
+
+    </div>
+
+</div>
