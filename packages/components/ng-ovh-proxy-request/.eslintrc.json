@@ -1,0 +1,7 @@
+{
+    "extends": "./node_modules/eslint-config-ovh/configs/es5-browser.js",
+    "globals":{
+        "module": true,
+        "require": true
+    }
+}
