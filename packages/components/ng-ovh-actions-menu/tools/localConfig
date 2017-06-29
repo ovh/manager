@@ -1,0 +1,4 @@
+# Replace "/" by something to build a flat folders hierarchie
+SEPARATOR=":"
+SOURCE_DIR=../src
+TRANSLATION_FILENAME="/translations/Messages_"

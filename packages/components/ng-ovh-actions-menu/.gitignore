@@ -1,0 +1,8 @@
+.DS_Store
+node_modules
+.tmp
+.idea
+npm-debug.log
+bower_components
+.work
+src/ovh-angular-actions-menu/translations/Messages_*_*.json
