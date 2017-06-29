@@ -3,7 +3,7 @@
   "description": "Display a popopver and adapt it to the device",
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/ovh-ux/ovh-angular-responsive-popover.git"
