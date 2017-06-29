@@ -1,6 +1,6 @@
 {
   "name": "ovh-angular-actions-menu",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "An actions menu gives the opportunity to group a set of actions available for a specific context under a single menu",
   "author": "OVH SAS",
   "license": "BSD-3-Clause",
@@ -27,7 +27,7 @@
   "dependencies": {
     "jquery": "~2.1.4",
     "angular": "~1.5.x",
-    "responsive-popover": "ssh://git@stash.ovh.net:7999/uxcomponents/responsive-popover.git#^4.0.0",
+    "ovh-angular-responsive-popover": "^4.0.0",
     "angular-translate": "^2.11.0",
     "angular-translate-loader-partial": "^2.11.0"
   },

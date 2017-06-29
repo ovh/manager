@@ -4,27 +4,12 @@
  * @name actionsMenu
  *
  *  @requires [pascalprecht.translate](https://github.com/angular-translate/angular-translate)
- *  @requires [responsivePopover](https://stash.ovh.net/projects/UXCOMPONENTS/repos/responsive-popover/browse)
+ *  @requires [ovh-angular-responsive-popover](https://github.com/ovh-ux/ovh-angular-responsive-popover)
  *
  * @description
  * _An actions menu gives the opportunity to group a set of actions available for a specific context under a single menu._
  *
  * `actionMenu` module follows the UX specification of the [ovh actions menu guidelines](https://interne.ovh.net/confluence/display/UXGuidelines/Actions+menu).
- *
- *  @usage
- *  Install module with bower:
- *  <pre>
- *  # bower install --save ssh://git@stash.ovh.net:7999/uxcomponents/ovh-angular-actions-menu.git
- *  </pre>
- *
- *  Then inject actionsMenu module in your module declaration:
- *  <pre>
- *  angular.module("myModule", [
- *      ...
- *      "actionsMenu",
- *      ...
- *  ]);
- *  </pre>
  *
  *  ## TODO
  *
@@ -36,7 +21,7 @@
 (function () {
     "use strict";
 
-    angular.module("ovh-angular-actions-menu", ["pascalprecht.translate", "responsivePopover"]);
+    angular.module("ovh-angular-actions-menu", ["pascalprecht.translate", "ovh-angular-responsive-popover"]);
 })();
 
 /**
@@ -554,7 +539,7 @@ angular.module("ovh-angular-actions-menu").provider("actionsMenu", function () {
 
 });
 
-angular.module('actionsMenu').run(['$templateCache', function($templateCache) {
+angular.module('ovh-angular-actions-menu').run(['$templateCache', function($templateCache) {
   'use strict';
 
   $templateCache.put('ovh-angular-actions-menu-inner.html',
