@@ -6,7 +6,9 @@
 
 [![NPM](https://nodei.co/npm/ovh-angular-responsive-page-switcher?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/ovh-angular-responsive-page-switcher/)
 
-> `ovh-angular-responsive-page-switcher` module is a set of 2 directives (`responsive-switch` and `responsive-switch-page`) that enable to display content like pages. It detects available width for displaying page in 2 distinct modes :
+> `ovh-angular-responsive-page-switcher` module is a set of 2 directives (`responsive-switch` and `responsive-switch-page`) that enable to display content like pages.
+
+It detects available width for displaying page in 2 distinct modes :
 
 * `switch` mode : one page is displayed at a time ;
 * `sidebyside` mode : pages are displayed side by side.
