@@ -19,11 +19,11 @@
  
 # Configuration
 
-2. Include `ovh-angular-proxy-request.min.js` in your app:
+1. Include `ovh-angular-proxy-request.min.js` in your app:
 
   `<script src="bower_components/ovh-angular-proxy-request/dist/ovh-angular-proxy-request.min.js"></script>`
 
-3. Add `ovh-angular-proxy-request` as a new module dependency in your angular app.
+2. Add `ovh-angular-proxy-request` as a new module dependency in your angular app.
 
   `var myapp = angular.module("myapp", ["ovh-angular-proxy-request"]);`
 
