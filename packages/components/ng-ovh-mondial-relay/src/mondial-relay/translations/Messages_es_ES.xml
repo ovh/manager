@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="components_mondial_relay_head" qtlid="361230">Livraison dans le point relais colis de votre choix. Vous serez prévenu de l'arrivée de votre colis par SMS.</translation>
+   <translation id="components_mondial_relay_city_label" qtlid="33310">Localidad</translation>
+   <translation id="components_mondial_relay_zipcode_label" qtlid="30346">Código postal</translation>
+   <translation id="components_mondial_relay_search_results" qtlid="361243">Relais disponibles près de {{loc}}</translation>
+   <translation id="components_mondial_relay_distance" qtlid="361256">Distance: {{kilometers}} km</translation>
+   <translation id="components_mondial_relay_not_found" qtlid="345481">Aucun résultat trouvé.</translation>
+   <translation id="components_mondial_relay_not_available" qtlid="361269">Service indisponible. Veuillez réessayer ultérieurement.</translation>
+
+   <translation id="components_mondial_relay_monday" qtlid="361282">Lun</translation>
+   <translation id="components_mondial_relay_tuesday" qtlid="361295">Mar</translation>
+   <translation id="components_mondial_relay_wednesday" qtlid="361308">Mer</translation>
+   <translation id="components_mondial_relay_thursday" qtlid="361321">Jeu</translation>
+   <translation id="components_mondial_relay_friday" qtlid="361334">Ven</translation>
+   <translation id="components_mondial_relay_saturday" qtlid="361347">Sam</translation>
+   <translation id="components_mondial_relay_sunday" qtlid="361360">Dim</translation>
+</translations>

@@ -1,0 +1,3 @@
+[submodule "tools/script"]
+	path = tools/script
+	url = ssh://git@stash.ovh.net:7999/uxtools/univers-translation-scripts.git

@@ -1,0 +1,152 @@
+@import "bower_components/bootstrap/less/variables.less";
+
+@modialColor: #c90547;
+@mondialHover: #eaeaea;
+
+div.mondial-relay {
+
+    .marker-hover {
+        background: @mondialHover;
+    }
+
+    button.btn {
+        cursor:pointer;
+    }
+
+    span.mondial-logo {
+        min-width: 130px;
+        display: inline-block;
+        vertical-align: top;
+        min-height: 130px;
+        background: url('assets/logo.png') no-repeat;
+        background-size: 130px;
+        @media (max-width: @screen-xs-min) {
+            margin-top: 20px;
+            min-width: 60px;
+            min-height: 60px;
+            background-size: 60px;
+        }
+    }
+
+    div.head {
+        white-space: normal;
+        span.info {
+            display:block;
+            padding:15px 0 15px 0;
+        }
+        input.city {
+            max-width:150px;
+        }
+        input.zip {
+            max-width: 80px;
+        }
+        span.mondial-form {
+            display:block;
+            padding-bottom: 10px;
+        }
+        span.mondial-loc {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+    }
+
+    div.mondial-map {
+        .angular-leaflet-map {
+            height: 450px;
+        }
+        @media (max-width: 1500px) {
+            .angular-leaflet-map {
+                height: 300px;
+            }
+        }
+        @media (max-width: 490px) {
+            .angular-leaflet-map {
+                height: 200px;
+            }
+        }
+    }
+    
+    .mondial-results {
+        > ul {
+            display: table;
+            list-style-type: none;
+            width: 100%;
+
+            > li {
+                display: table-row;
+                cursor: pointer;
+                &.selected {
+                    border-left: solid 2px @modialColor;
+                    span.mondial-relay-address {
+                        display:block;
+                    }
+                }
+
+                .relay-cell {
+                    display: table-cell;
+                    vertical-align: middle;
+                    padding: 5px 0;
+
+                    &.relay-marker {
+                        text-align: center;
+                        padding-right: 5px;
+                    }
+                }
+
+                .mondial-relay-name {
+                    display: block;
+                    font-size: 1em;
+                }
+                span.mondial-relay-city {
+                    font-size: 0.8em;
+                    display: block;
+                }
+                span.mondial-relay-address {
+                    font-size: 0.8em;
+                    display: none;
+                }
+                span.mondial-marker {
+                    background: @modialColor;
+                    color: white;
+                    border-radius: 2px;
+                    width: 18px;
+                    display: inline-block;
+                    text-align: center;
+                    font-weight: bold;
+                }
+                img.mondial-relay-pic {
+                    width:75px;
+                    vertical-align: top;
+                }
+                ul.mondial-opening {
+                    list-style-type: none;
+                }
+
+                &:hover {
+                    background: @mondialHover;
+                    span.mondial-relay-address {
+                        display:block;
+                    }
+                }
+            }
+        }
+    }
+    .mondial-tip {
+        text-align: left;
+    }
+    div.mondial-opening {
+        vertical-align: middle;
+    }
+    .mondial-time {
+        font-size: 0.8em;
+        padding: 0px 4px 0px 4px;
+        vertical-align: middle;
+    }
+    .mondial-day{
+        font-size: 1em;
+        display: inline-block;
+        width:30px;
+        overflow: hidden;
+        vertical-align: middle;
+    }
+}
