@@ -42,7 +42,7 @@ angular.module("ovh-angular-responsive-tabs")
             replace: true,
             transclude: true,
             templateUrl: function (elm, attrs) {
-                if (angular.isDefined(attrs.dropdownTitle)) {
+                if (angular.isDefined(attrs.dropdown)) {
                     return "ovh-angular-responsive-tab/ovh-angular-responsive-tab-dropdown.html";
                 } else if (angular.isDefined(attrs.url)) {
                     return "ovh-angular-responsive-tab/ovh-angular-responsive-tab-url.html";
