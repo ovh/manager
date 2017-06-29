@@ -1,0 +1,37 @@
+{
+  "name": "ovh-angular-responsive-popover",
+  "description": "Display a popopver and adapt it to the device",
+  "license": "BSD-3-Clause",
+  "author": "OVH SAS",
+  "version": "4.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ovh-ux/ovh-angular-responsive-popover.git"
+  },
+  "keywords": [
+    "angular"
+  ],
+  "main": [
+      "./dist/ovh-angular-responsive-popover.min.js",
+      "./less/ovh-angular-responsive-popover.dist.less"
+  ],
+  "ignore": [
+    "components",
+    "bower_components",
+    "node_modules",
+    "Gruntfile.js",
+    "src",
+    "karma.conf.js",
+    ".jshintrc",
+    ".editorconfig"
+  ],
+  "dependencies": {
+    "angular": "~1.5.x",
+    "angular-bootstrap": ">=1.0.0 <2.0.0",
+    "matchmedia-ng": "^1.0.8"
+  },
+  "devDependencies": {
+    "jquery": "~2.1.4",
+    "angular-mocks": "~1.5.x"
+  }
+}

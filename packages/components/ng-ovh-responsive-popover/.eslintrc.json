@@ -1,0 +1,15 @@
+{
+    "extends": "./node_modules/eslint-config-ovh/configs/es5-browser.js",
+    "rules": {
+        "no-mixed-operators": "warn",
+        "max-len": "warn",
+        "consistent-return": "off"
+    },
+    "globals": {
+        "require": true,
+        "module": true
+    },
+    "env": {
+        "jasmine": true
+    }
+}
