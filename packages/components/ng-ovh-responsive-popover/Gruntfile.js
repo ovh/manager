@@ -225,7 +225,7 @@ module.exports = function (grunt) {
         ngtemplates: {
             options: {
                 // This should be the name of your apps angular module
-                module: "responsivePopover",
+                module: "ovh-angular-responsive-popover",
                 htmlmin: {
                     collapseBooleanAttributes: true,
                     collapseWhitespace: true,
