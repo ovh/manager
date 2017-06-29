@@ -1,0 +1,48 @@
+<div class="actions-menu-inner">
+
+    <!-- CLOSE BUTTON FOR MOBILE -->
+    <button class="close-button visible-xs-block visible-sm-block no-style"
+            type="button"
+            data-ng-click="$ctrl.popoverSettings.isOpen = false">
+        <i class="ovh-font ovh-font-wrong bold"></i>
+    </button> <!-- CLOSE BUTTON FOR MOBILE -->
+
+    <div class="actions-menu-pages"
+         data-ng-class="{ move: $ctrl.status.move }">
+
+        <div class="actions-menu-page main-page">
+
+            <ul class="actions-list list-unstyled no-space">
+                <li class="actions-list-item"
+                    data-ng-repeat="menuAction in $ctrl.actionsMenu.actions track by $index"
+                    data-actions-menu-item="menuAction"
+                    data-actions-menu-item-on-click="$ctrl.onItemClick">
+                </li>
+            </ul>
+
+        </div>
+        <div class="actions-menu-page secondary-page">
+
+            <ul class="sub-actions-list list-unstyled no-space">
+                <li class="actions-list-item">
+                    <button class="back-btn no-style"
+                            type="button"
+                            data-ng-click="$ctrl.onBackButtonClick()">
+                        <i class="ovh-font ovh-font-arrow-left right-space-m8"></i>
+                        <span class="bold"
+                              data-translate="actions_menu_back_btn">
+                        </span>
+                    </button>
+                </li>
+                <li class="actions-list-item"
+                    data-ng-repeat="menuAction in $ctrl.activeActionItem.subActions track by $index"
+                    data-actions-menu-item="menuAction"
+                    data-actions-menu-item-on-click="$ctrl.onItemClick">
+                </li>
+            </ul>
+
+        </div>
+
+    </div>
+
+</div>

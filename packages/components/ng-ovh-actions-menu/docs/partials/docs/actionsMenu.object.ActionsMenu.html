@@ -1,0 +1,41 @@
+<h1><code ng:non-bindable="">ActionsMenu</code>
+<div><span class="hint">object in module <code ng:non-bindable="">actionsMenu</code>
+</span>
+</div>
+</h1>
+<div><h2 id="description">Description</h2>
+<div class="description"><div class="actionsmenu-object-page actionsmenu-object-actionsmenu-page"><p>Factory that describe an actions menu.</p>
+<p>A new instance of ActionsMenu is created and used by the actionsMenu directive.</p>
+</div></div>
+<h2 id="dependencies">Dependencies</h2>
+<ul class="dependencies"><li><code ng:non-bindable=""><a href="#/docs/ActionsMenuItem">ActionsMenuItem</a></code>
+</li>
+</ul>
+<h2 id="usage">Usage</h2>
+<div class="usage"><pre class="prettyprint linenums">ActionsMenu(options);</pre>
+<h4 id="usage_parameters">Parameters</h4><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>options</td><td><a href="" class="label type-hint type-hint-object">Object</a></td><td><div class="actionsmenu-object-page actionsmenu-object-actionsmenu-page"><p>Options for creating a new ActionsMenu instance.</p>
+</div><table><thead><tr><th>Property</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>actionsMenuItems</td><td><a href="" class="label type-hint type-hint-array">Array&lt;Object&gt;</a></td><td><div class="actionsmenu-object-page actionsmenu-object-actionsmenu-page"><p>The options of the items that will be added to the ActionsMenu instance.</p>
+</div> <p><em>(default: Empty Array)</em></p></td></tr></tbody></table></td></tr></tbody></table></div>
+<div class="member method"><h2 id="methods">Methods</h2>
+<ul class="methods"><li><h3 id="methods_addactionitem">addActionItem(actionMenuItemOptions)</h3>
+<div class="addactionitem"><div class="actionsmenu-object-page actionsmenu-object-actionsmenu-addactionitem-page"><p>Add an actions menu item into actions list.</p>
+</div><h5 id="methods_addactionitem_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>actionMenuItemOptions</td><td><a href="" class="label type-hint type-hint-object">Object</a></td><td><div class="actionsmenu-object-page actionsmenu-object-actionsmenu-addactionitem-page"><p>The options for creating a new action menu item. See ActionsMenuItem factory for available options.</p>
+</div></td></tr></tbody></table><h5 id="methods_addactionitem_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-actionsmenuitem">ActionsMenuItem</a></td><td><div class="actionsmenu-object-page actionsmenu-object-actionsmenu-addactionitem-page"><p>The added actions menu item.</p>
+</div></td></tr></table></div>
+</li>
+</ul>
+</div>
+<h2 id="example">Example</h2>
+<div class="example"><div class="actionsmenu-object-page actionsmenu-object-actionsmenu-page"><pre class="prettyprint linenums">
+angular.module("myManagerApp").controller("MyTestCtrl", function (ActionsMenu) {
+    var actionMenu = new ActionsMenu({
+        actionsMenuItems: [{
+            title: "My Beautiful title",
+            icon: "filled-check",
+            href: "http://www.google.be"
+        }]
+    });
+});
+</pre>
+</div></div>
+</div>

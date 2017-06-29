@@ -1,0 +1,49 @@
+<h1><code ng:non-bindable="">actionsMenu</code>
+<div><span class="hint">directive in module <code ng:non-bindable="">actionsMenu</code>
+</span>
+</div>
+</h1>
+<div><h2 id="description">Description</h2>
+<div class="description"><div class="actionsmenu-directive-page actionsmenu-directive-actionsmenu-page"><p>This is the main directive of the module. It&#39;s creating a popover with desired actions inside.</p>
+</div></div>
+<h2 id="usage">Usage</h2>
+<div class="usage">as attribute<pre class="prettyprint linenums">&lt;ANY actions-menu
+     actions-menu-options="{Object[]}"
+     actions-menu-popover-settings="{Object}"&gt;
+   ...
+&lt;/ANY&gt;</pre>
+<h4 id="usage_parameters">Parameters</h4><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>actions-menu-options</td><td><a href="" class="label type-hint type-hint-object">Object[]</a></td><td><div class="actionsmenu-directive-page actionsmenu-directive-actionsmenu-page"><p>A list of actions options that will be displayed into actionsMenu. See ActionsMenu factory and ActionsMenuItem factory for available options.</p>
+</div></td></tr><tr><td>actions-menu-popover-settings</td><td><a href="" class="label type-hint type-hint-object">Object</a></td><td><div class="actionsmenu-directive-page actionsmenu-directive-actionsmenu-page"><p>A list of options of the popover. For now only : class, placement, trigger and isOpen options are supported. Feel free to add others!!!
+See <a href="https://angular-ui.github.io/bootstrap/#/popover">ui.bootstrap.popover</a> for more informations.</p>
+</div></td></tr></tbody></table></div>
+<h2 id="example">Example</h2>
+<div class="example"><div class="actionsmenu-directive-page actionsmenu-directive-actionsmenu-page"><p>The following example will open an actions popover with 2 actions inside it:</p>
+<p>In your controller:</p>
+<pre class="prettyprint linenums">
+angular.module("myManagerModule").controller("myTestController", function ($scope) {
+    $scope.popoverSettings = {
+        "popover-class": "my-custom-class",
+        "popover-placement": "bottom-right"
+    };
+
+    $scope.actionsOptions = [{
+        title: "My Beautiful title",
+        icon: "filled-check",
+        href: "http://www.google.be"
+    }, {
+        title: "My Other title",
+        icon: "filled-error",
+        state: "my-manager.state1"
+    }];
+});
+</pre>
+<p>And in your html view:</p>
+<pre class="prettyprint linenums">
+&lt;actions-menu data-actions-menu-options="actionsOptions"
+              data-actions-menu-popover-settings="popoverSettings"&gt;
+    &lt;i class="my-font my-font-actions"&gt;&lt;/i&gt;
+    Button actions
+&lt;/actions-menu&gt;
+</pre>
+</div></div>
+</div>
