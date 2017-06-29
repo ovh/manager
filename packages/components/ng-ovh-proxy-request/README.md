@@ -56,4 +56,4 @@ npm test
  
 # License
  
-See https://github.com/ovh/ovh-angular-proxy-request/blob/master/LICENSE
+See https://github.com/ovh-ux/ovh-angular-proxy-request/blob/master/LICENSE
