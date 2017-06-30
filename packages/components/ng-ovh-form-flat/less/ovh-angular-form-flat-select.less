@@ -1,0 +1,70 @@
+@FormFlatSelectDefault: #8d919c;
+@FormFlatSelectFocus : #2574A9;
+@FormFlatSelectFocusBackground: #b9e4f7;
+
+
+div.flat-select {
+    float: left;
+    position: relative;
+    width: 100%;
+
+    &.flat-focus {
+        background: @FormFlatSelectFocusBackground;
+        &:after {
+            color: @FormFlatSelectFocus;
+        }
+        select {
+            background-color: transparent !important;
+        }
+    }
+
+    &:after {
+        color: @FormFlatSelectDefault;
+        display: block;
+        font-family: 'FontAwesome';
+        font-size: 1em;
+        height: 100%;
+        line-height: 2.8em;
+        padding: 0 1.1em;
+        position: absolute;
+        top: 0;
+        right: 0;
+        text-align: center;
+        width: 1em;
+        content:"\f0d7";
+        z-index: 1;
+    }
+
+    select {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background-color: transparent;
+        position: relative;
+        z-index: 2;
+        &::-ms-expand {
+            display: none;
+        }
+    }
+}
+
+div.input-group {
+    div.flat-select {
+        width: 100%;
+    }
+}
+
+/* IE Hack */
+
+div.flat-select:after {
+    display: none\9; /* Hide on IE 6/7/8/9 */
+}
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    div.flat-select:after {
+        display: block;
+    }
+}

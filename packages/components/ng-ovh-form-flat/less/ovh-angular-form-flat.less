@@ -1,0 +1,399 @@
+// White version
+
+// Main
+
+@FormFlatBorderColor     : transparent;
+@FormFlatValidColor      : #54af76;
+@FormFlatInvalidColor    : #ee667a;
+@FormFlatFocusColor      : #009fe3;
+@FormFlatFocusBackground : #b9e4f7;
+@FormFlatInputBackground : #fff;
+@FormFlatLabelColor      : #737782;
+
+@FormFlatBorderSize      : 1px;
+@FormFlatBorderRadius    : 3px;
+
+// Tips
+
+@FormFlatTipsBackground  : #fff;
+@FormFlatTipsTextColor   : #3b4151;
+
+
+// Progress Bar
+
+@FormFlatProgressBarBackground : #fff;
+@FormFlatProgressBorderColor   : #8d919c;
+@FormFlatProgressWeakColor     : @FormFlatInvalidColor;
+@FormFlatProgressMediumColor   : #e4ef34;
+@FormFlatProgressHardColor     : @FormFlatValidColor;
+
+// Shadow
+
+@FormFlatShadowRightHOffset      : 0px;
+@FormFlatShadowRightVOffset      : 1px;
+@FormFlatShadowRightBlur         : 3px;
+@FormFlatShadowRightSpread       : 0;
+@FormFlatShadowRightDefaultColor : rgba(0, 0, 0, 0.12);
+
+@FormFlatShadowBottomHOffset      : 0px;
+@FormFlatShadowBottomVOffset      : 1px;
+@FormFlatShadowBottomBlur         : 2px;
+@FormFlatShadowBottomSpread       : 0;
+@FormFlatShadowBottomDefaultColor : rgba(0, 0, 0, 0.24);
+
+// Buttons
+
+@FormFlatPrimaryButtonColor    : #009fe3;
+@FormFlatSecondaryButtonColor  : #8d919c;
+
+// Background-color
+
+@FormFlatBackgroundColor        : #ececec;
+@FormFlatBackgroundColorFocus   : @FormFlatFocusBackground;
+@FormFlatBackgroundColorValid   : #dff0d8;
+@FormFlatBackgroundColorInvalid : #f2dede;
+
+// Import
+
+@import './ovh-angular-form-flat-checkbox.less';
+@import './ovh-angular-form-flat-radio.less';
+@import './ovh-angular-form-flat-select.less';
+@import './ovh-angular-form-flat-switch.less';
+
+.flat-transition {
+    transition: border-color ease-in-out .25s, box-shadow ease-in-out .25s, background-color ease-in-out .25s;
+}
+
+.flat-shadow {
+    box-shadow: @FormFlatShadowRightHOffset @FormFlatShadowRightVOffset @FormFlatShadowBottomBlur @FormFlatShadowBottomSpread @FormFlatShadowRightDefaultColor, @FormFlatShadowBottomHOffset @FormFlatShadowBottomVOffset @FormFlatShadowBottomBlur @FormFlatShadowBottomSpread @FormFlatShadowBottomDefaultColor;
+}
+
+.flat-no-shadow {
+    box-shadow: none;
+}
+
+.ovh-form-flat {
+    .form-group {
+        margin-bottom: 5px;
+    }
+    div.input-select {
+        div {
+            &.no-margin {
+                padding: 0;
+            }
+            &.input-group {
+                float: left;
+                clear: both;
+                span {
+                    &.input-group-addon {
+                        background-color: @FormFlatInputBackground !important;
+                        border: 0;
+                        border-radius: 0;
+                    }
+                }
+            }
+            &.input-select-container {
+                .flat-shadow;
+
+                float: left;
+                border: @FormFlatBorderSize solid @FormFlatBorderColor;
+                border-radius: @FormFlatBorderRadius;
+                width: 100%;
+                input, select, span {
+                    border: 0;
+                    box-shadow: none;
+                }
+            }
+            &.flat-focus {
+                div.input-select-container {
+                    border-color: @FormFlatFocusColor;
+                    box-shadow: none;
+                }
+            }
+            &.flat-dirty.flat-valid {
+                &:not(:empty) {
+                    div.input-select-container {
+                        border-color: @FormFlatValidColor;
+                    }
+                }
+            }
+            &.flat-dirty.flat-invalid {
+                &:not(:empty), &:empty:required {
+                    div.input-select-container {
+                        border-color: @FormFlatInvalidColor;
+                    }
+                }
+            }
+        }
+        input {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            margin-right: 0;
+            border-right: 0;
+        }
+        select {
+            border-left: 0;
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            width: 100%;
+        }
+    }
+    input {
+        &.btn-primary {
+            .flat-shadow;
+            .flat-transition;
+
+            border: 0;
+            border-color: @FormFlatPrimaryButtonColor;
+            background-color: @FormFlatPrimaryButtonColor;
+            &:hover, &:focus, &:active {
+                background-color: @FormFlatPrimaryButtonColor;
+                border-color: @FormFlatPrimaryButtonColor;
+            }
+        }
+    }
+    .input-group-addon, .input-group-btn {
+        .flat-shadow;
+        .flat-transition;
+
+        position: relative;
+        z-index: 10;
+        border: @FormFlatBorderSize solid @FormFlatInputBackground;
+        background-color: @FormFlatInputBackground;
+
+        a, button {
+            background-color: transparent;
+            border: 0;
+        }
+    }
+    div[flat-input-container], div[data-flat-input-container] {
+        position: relative;
+
+        input, select, textarea {
+            .flat-shadow;
+            .flat-transition;
+            border-color: @FormFlatBorderColor;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+
+            &:focus {
+                border-color: @FormFlatFocusColor;
+                box-shadow: none;
+            }
+
+            ~ .input-group-btn {
+                border-left: 0;
+            }
+        }
+        .input-group-btn ~ input {
+            border-left: 0;
+        }
+        select:focus {
+            background-color: @FormFlatFocusBackground;
+
+            option {
+                background-color: #ffffff;
+            }
+        }
+        &.flat-focus, &.flat-focus.flat-dirty {
+            .input-group-addon, .input-group-btn {
+                .flat-no-shadow;
+
+                border-color: @FormFlatFocusColor;
+                background-color: @FormFlatBackgroundColorFocus;
+            }
+
+            label {
+                color: @FormFlatFocusColor;
+            }
+        }
+        &.flat-valid.flat-dirty:not(.flat-empty) {
+            input, select, textarea {
+                &, &:focus {
+                    border-color: @FormFlatValidColor;
+                }
+            }
+
+            .input-group-addon, .input-group-btn {
+                border-color: @FormFlatValidColor;
+                background-color: @FormFlatBackgroundColorValid;
+            }
+
+            label, p {
+                color: @FormFlatValidColor;
+            }
+        }
+        &.flat-invalid.flat-dirty {
+            input, select, textarea {
+                &, &:focus {
+                    border-color: @FormFlatInvalidColor;
+                }
+            }
+
+            .input-group-addon, .input-group-btn {
+                border-color: @FormFlatInvalidColor;
+                background-color: @FormFlatBackgroundColorInvalid;
+            }
+
+            label, p  {
+                color: @FormFlatInvalidColor;
+            }
+        }
+    }
+    label {
+        color: @FormFlatLabelColor;
+        font-weight: normal;
+        margin-bottom: 2px;
+        margin-left: 8px;
+        &.flat-show {
+            opacity: 1;
+            transition-duration: 0.2s;
+        }
+        &.flat-hide {
+            opacity: 0;
+            transition-duration: 0.2s;
+        }
+    }
+    div.popover {
+        .flat-shadow;
+
+        border: 0;
+        border-radius: @FormFlatBorderRadius;
+        color: @FormFlatTipsTextColor;
+        &.right {
+            margin-left: 20px;
+        }
+        div {
+            &.arrow {
+                .flat-shadow;
+
+                border-right: 0;
+                background-color: #fff;
+                width: 20px;
+                height: 20px;
+                transform: rotate(45deg);
+                left: -8px;
+            }
+            &.popover-content {
+                padding: 0;
+            }
+        }
+    }
+    div.tips {
+        float: left;
+        clear: none;
+        font-size: 1em;
+        padding: 10px;
+        z-index: 10;
+        position: relative;
+        background-color: @FormFlatTipsBackground;
+        span.intitule {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+            text-transform: uppercase;
+        }
+        ul, .check-pwd {
+            font-size: 0.8em;
+        }
+        ul {
+            float: left;
+            padding-left: 0;
+            li {
+                float: left;
+                clear: both;
+                margin-top: 5px;
+                list-style-type: none;
+                color: @FormFlatInvalidColor;
+                width: 230px;
+                &.valid {
+                    color: @FormFlatValidColor;
+                    span:nth-last-child(1) {
+                        color: @FormFlatTipsTextColor;
+                    }
+                }
+                span {
+                    float: left;
+                    margin-right: 5px;
+                    &:nth-last-child(1) {
+                        width: 200px;
+                    }
+                }
+            }
+        }
+
+        .check-pwd {
+            margin-top: 10px;
+            >p, >div, >span {
+                float: left;
+                margin-bottom: 0;
+                color: @FormFlatTipsTextColor;
+            }
+            >div, >span {
+                margin-left: 10px;
+            }
+
+            .ovh-password-strength-bar {
+                display: inline;
+                margin-top: -2px;
+
+                .progress {
+                    border: @FormFlatBorderSize solid @FormFlatProgressBorderColor;
+                    margin-bottom: 0;
+                    width: 60px;
+                    background-color: @FormFlatProgressBarBackground;
+                }
+
+                .progress-bar {
+                    box-shadow: none;
+                }
+
+                &.ovh-password-strength-bar-weak {
+                    .progress {
+                        border-color: @FormFlatProgressWeakColor;
+                    }
+                    .progress-bar {
+                        background-color: @FormFlatProgressWeakColor;
+                    }
+                }
+                &.ovh-password-strength-bar-medium {
+                    .progress {
+                        border-color: @FormFlatProgressMediumColor;
+                    }
+                    .progress-bar {
+                        background-color: @FormFlatProgressMediumColor;
+                    }
+                }
+                &.ovh-password-strength-bar-hard {
+                    .progress {
+                        border-color: @FormFlatProgressHardColor;
+                    }
+                    .progress-bar {
+                        background-color: @FormFlatProgressHardColor;
+                    }
+                }
+            }
+        }
+    }
+
+    div.input-icons {
+        span {
+            &.glyphicon-ok {
+                color: @FormFlatValidColor;
+            }
+            &.glyphicon-remove {
+                color: @FormFlatInvalidColor;
+            }
+        }
+    }
+
+    div.margin-checkbox {
+        margin: 20px 0 0px 8px;
+    }
+}
+
+.btn-secondary {
+    background-color: @FormFlatSecondaryButtonColor;
+    border: 0;
+}
