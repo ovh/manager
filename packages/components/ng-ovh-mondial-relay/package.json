@@ -2,8 +2,13 @@
   "name": "ovh-angular-mondial-relay",
   "version": "1.2.0",
   "description": "Display a map to select mondial relay",
-  "main": "./dist/mondial-relay.min.js",
-  "repository": "ovh-ux/ovh-angular-mondial-relay.git",
+  "license": "BSD-3-Clause",
+  "author": "OVH SAS",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "main": "./dist/ovh-angular-mondial-relay.min.js",
+  "repository": "ovh-ux/ovh-angular-mondial-relay",
   "devDependencies": {
     "eslint": "^4.0.0",
     "eslint-config-ovh": "^0.1.1",
@@ -38,10 +43,5 @@
     "karma-spec-reporter": "0.0.26",
     "matchdep": "^0.3.0",
     "phantomjs-prebuilt": "^2.1.7"
-  },
-  "license": "BSD-3-Clause",
-  "author": "OVH SAS",
-  "scripts": {
-    "test": "grunt test"
   }
 }

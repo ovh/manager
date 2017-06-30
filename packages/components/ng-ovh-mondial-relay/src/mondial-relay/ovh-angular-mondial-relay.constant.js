@@ -1,4 +1,4 @@
-angular.module("angular-ovh-mondial-relay").constant("MONDIAL_RELAY", {
+angular.module("ovh-angular-mondial-relay").constant("MONDIAL_RELAY", {
     weekDays: [
         "monday",
         "tuesday",

@@ -25,7 +25,7 @@
    </example>
  * @param {string} ng-model Variable that will recieve the selected relay.
  */
-angular.module("angular-ovh-mondial-relay")
+angular.module("ovh-angular-mondial-relay")
     .directive("mondialRelay", function (MONDIAL_RELAY_PICS, MONDIAL_RELAY) {
         "use strict";
 

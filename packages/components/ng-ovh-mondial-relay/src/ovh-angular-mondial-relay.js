@@ -1,1 +1,1 @@
-angular.module("angular-ovh-mondial-relay", ["angular-ovh-mondial-relay-images", "pascalprecht.translate", "leaflet-directive"]);
+angular.module("ovh-angular-mondial-relay", ["ovh-angular-mondial-relay-images", "pascalprecht.translate", "leaflet-directive"]);

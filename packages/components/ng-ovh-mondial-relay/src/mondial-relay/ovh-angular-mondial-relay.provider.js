@@ -4,12 +4,12 @@
  * @description
  * <p>Manage translation path</p>
  */
-angular.module("angular-ovh-mondial-relay").provider("mondialRelay", function () {
+angular.module("ovh-angular-mondial-relay").provider("mondialRelay", function () {
 
     "use strict";
 
     var self = this;
-    var translationPath = "../bower_components/angular-ovh-mondial-relay/dist";
+    var translationPath = "../bower_components/ovh-angular-mondial-relay/dist";
 
     /*= ====================================
     =            CONFIGURATION            =

@@ -171,7 +171,7 @@ module.exports = function (grunt) {
 
         ngconstant: {
             options: {
-                name: "<%! name %>-images",
+                name: "ovh-angular-mondial-relay-images",
                 dest: "<%= builddir %>/config.js",
                 constants: function () {
                     var prefix = "data:image/png;base64,";
@@ -202,7 +202,7 @@ module.exports = function (grunt) {
         },
 
         ngtemplates: {
-            "mondial-relay": {
+            "ovh-angular-mondial-relay": {
                 cwd: "<%= srcdir %>",
                 src: "**/*.html",
                 dest: "<%= builddir %>/template.js"
