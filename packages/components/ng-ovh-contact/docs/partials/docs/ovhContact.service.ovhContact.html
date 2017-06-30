@@ -1,0 +1,56 @@
+<h1><code ng:non-bindable="">ovhContact</code>
+<div><span class="hint">service in module <code ng:non-bindable="">ovhContact</code>
+</span>
+</div>
+</h1>
+<div><h2 id="description">Description</h2>
+<div class="description"><div class="ovhcontact-service-page ovhcontact-service-ovhcontact-page"><p>The <code>ovhContact</code> service is the actual core of ovhContact module. This service manage the contacts of the connected user.</p>
+</div></div>
+<h2 id="dependencies">Dependencies</h2>
+<ul class="dependencies"><li><code ng:non-bindable=""><a href="#/docs/ng.$q">$q</a></code>
+</li>
+<li><code ng:non-bindable=""><a href="#/docs/ng.$translate">$translate</a></code>
+</li>
+<li><code ng:non-bindable=""><a href="#/docs/ng.$translatePartialLoader">$translatePartialLoader</a></code>
+</li>
+<li><code ng:non-bindable=""><a href="#/docs/OvhContact">OvhContact</a></code>
+</li>
+<li><code ng:non-bindable=""><a href="#/docs/User">User</a></code>
+</li>
+</ul>
+<div class="member method"><h2 id="methods">Methods</h2>
+<ul class="methods"><li><h3 id="methods_addcontact">addContact(contactOptions)</h3>
+<div class="addcontact"><div class="ovhcontact-service-page ovhcontact-service-ovhcontact-addcontact-page"><p>Add a contact into contacts list.</p>
+</div><h5 id="methods_addcontact_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>contactOptions</td><td><a href="" class="label type-hint type-hint-object">Object</a><a href="" class="label type-hint type-hint-ovhcontact">OvhContact</a></td><td><div class="ovhcontact-service-page ovhcontact-service-ovhcontact-addcontact-page"><p>An object with options or an instance of OvhContact.</p>
+</div></td></tr></tbody></table><h5 id="methods_addcontact_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-ovhcontact">OvhContact</a></td><td><div class="ovhcontact-service-page ovhcontact-service-ovhcontact-addcontact-page"><p>The added contact.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_convertconnectedusertocontact">convertConnectedUserToContact()</h3>
+<div class="convertconnectedusertocontact"><div class="ovhcontact-service-page ovhcontact-service-ovhcontact-convertconnectedusertocontact-page"><p>Convert the connected user nic to an ovh contact.</p>
+</div><h5 id="methods_convertconnectedusertocontact_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-promise">Promise</a></td><td><div class="ovhcontact-service-page ovhcontact-service-ovhcontact-convertconnectedusertocontact-page"><p>That returns an OvhContact instance.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_getconnecteduser">getConnectedUser()</h3>
+<div class="getconnecteduser"><div class="ovhcontact-service-page ovhcontact-service-ovhcontact-getconnecteduser-page"><p>Get the connected user informations. Call GET /me API.</p>
+</div><h5 id="methods_getconnecteduser_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">Object</a></td><td><div class="ovhcontact-service-page ovhcontact-service-ovhcontact-getconnecteduser-page"><p>Representing the connected user.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_getcontactlist">getContactList(refresh)</h3>
+<div class="getcontactlist"><div class="ovhcontact-service-page ovhcontact-service-ovhcontact-getcontactlist-page"><p>Get the entire list of contacts. This use api v7 to get all contacts details.</p>
+</div><h5 id="methods_getcontactlist_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>refresh</td><td><a href="" class="label type-hint type-hint-boolean">Boolean</a></td><td><div class="ovhcontact-service-page ovhcontact-service-ovhcontact-getcontactlist-page"><p>Flag telling to fully recreate the contact list.</p>
+</div></td></tr></tbody></table><h5 id="methods_getcontactlist_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-promise">Promise</a></td><td><div class="ovhcontact-service-page ovhcontact-service-ovhcontact-getcontactlist-page"><p>That return an Array of OvhContact.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_getcreationrules">getCreationRules()</h3>
+<div class="getcreationrules"><div class="ovhcontact-service-page ovhcontact-service-ovhcontact-getcreationrules-page"><p>Get the rules for creating a new ovh contact.</p>
+</div><h5 id="methods_getcreationrules_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">Object</a></td><td><div class="ovhcontact-service-page ovhcontact-service-ovhcontact-getcreationrules-page"><p>Representing the rules for creating an new contact.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_loadtranslations">loadTranslations()</h3>
+<div class="loadtranslations"><div class="ovhcontact-service-page ovhcontact-service-ovhcontact-loadtranslations-page"><p>Load the translations of ovh contact components.</p>
+</div><h5 id="methods_loadtranslations_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-promise">Promise</a></td><td><div class="ovhcontact-service-page ovhcontact-service-ovhcontact-loadtranslations-page"><p>void</p>
+</div></td></tr></table></div>
+</li>
+</ul>
+</div>
+</div>

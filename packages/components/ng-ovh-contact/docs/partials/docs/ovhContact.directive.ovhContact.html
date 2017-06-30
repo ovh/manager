@@ -1,0 +1,60 @@
+<h1><code ng:non-bindable="">ovhContact</code>
+<div><span class="hint">directive in module <code ng:non-bindable="">ovhContact</code>
+</span>
+</div>
+</h1>
+<div><h2 id="description">Description</h2>
+<div class="description"><div class="ovhcontact-directive-page ovhcontact-directive-ovhcontact-page"><p>This is the base directive to load into your code. This will manage for you contact selection and/or contact creation.</p>
+<p><b>Note: </b>ovh-contact directive allows transclusion to display a custom loader (bouncing-box-loader for Telecom, spinner for cloud, ...).</p></div></div>
+<h2 id="usage">Usage</h2>
+<div class="usage">as element:<pre class="prettyprint linenums">&lt;ovh-contact
+       ng-model="{OvhContact}"
+       [ovh-contact-only-create="{Boolean}"]
+       [ovh-contact-choice-options="{Object}"]
+       [ovh-contact-init-deferred="{Deferred}"]&gt;
+&lt;/ovh-contact&gt;</pre>
+<h3 id="usage_directive-info">Directive info</h3>
+<div class="directive-info"><ul><li>This directive creates new scope.</li>
+</ul>
+</div>
+<h4 id="usage_directive-info_parameters">Parameters</h4><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>ngModel</td><td><a href="" class="label type-hint type-hint-ovhcontact">OvhContact</a></td><td><div class="ovhcontact-directive-page ovhcontact-directive-ovhcontact-page"><p>The contact selected or created.</p>
+</div></td></tr><tr><td>ovhContactOnlyCreate <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">Boolean</a></td><td><div class="ovhcontact-directive-page ovhcontact-directive-ovhcontact-page"><p>Force to only create a contact.</p>
+</div> <p><em>(default: false)</em></p></td></tr><tr><td>ovhContactChoiceOptions <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-object">Object</a></td><td><div class="ovhcontact-directive-page ovhcontact-directive-ovhcontact-page"><p>Options for ovhContactChoice directive (a child directive). See <a href="#/docs/ovhContact.directive:ovhContactChoice">ovhContactChoice</a> for more details.</p>
+</div></td></tr><tr><td>ovhContactInitDeferred <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-deferred">Deferred</a></td><td><div class="ovhcontact-directive-page ovhcontact-directive-ovhcontact-page"><p>A deferred object to allow you waiting that all directives are initialized.</p>
+</div></td></tr></tbody></table></div>
+<h2 id="example">Example</h2>
+<div class="example"><div class="ovhcontact-directive-page ovhcontact-directive-ovhcontact-page"><p>In your controller:
+<pre class="prettyprint linenums">
+    angular.module("myModule").controller("myController", function ($q) {
+        this.model = {
+            contact: null
+        };
+
+        this.choiceOptions = {
+            filter: function (contacts) {
+                return _.filter(contacts, { id: 123 });
+            },
+            options: {
+                allowCreation: false
+            }
+        };
+
+        this.initDeferred = $q.defer();
+
+        this.initDeferred.promise.then(function () {
+            console.log("Contact is automatically selected", this.model.contact);
+        });
+    });
+</pre>
+<p>In your HTML:
+<pre class="prettyprint linenums">
+    &lt;div data-ng-controller="myController as $ctrl"&gt;
+        &lt;ovh-contact data-ng-model="$ctrl.model.contact"
+                     data-ovh-contact-choice-options="$ctrl.choiceOptions"
+                     data-ovh-contact-init-deferred="$ctrl.initDeferred"&gt;
+            &lt;div data-my-custom-loader&gt;&lt;/div&gt; &lt;!-- Will be transcluded during ovh-contact directive loading phases --&gt;
+        &lt;/ovh-contact&gt;
+    &lt;/div&gt;
+</pre>
+</div></div>
+</div>

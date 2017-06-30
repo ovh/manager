@@ -1,0 +1,21 @@
+<div class="ovh-contact">
+
+    <!-- TRANSCLUDE CUSTOM LOADER WHEN INIT -->
+    <div data-ng-show="$ctrl.loading.load || $ctrl.loading.init"
+         data-ng-transclude>
+    </div> <!-- TRANSCLUDE CUSTOM LOADER WHEN INIT -->
+
+    <div data-ng-show="!$ctrl.loading.load && !$ctrl.loading.init">
+
+        <ovh-contact-choice data-ng-if="!$ctrl.onlyCreate && !$ctrl.contact.inEdition"
+                            data-ovh-contact-choice-filter="$ctrl.choiceOptions.filter"
+                            data-ovh-contact-choice-custom-list="$ctrl.choiceOptions.customList"
+                            data-ovh-contact-choice-options="$ctrl.choiceOptions.options">
+        </ovh-contact-choice>
+
+        <ovh-contact-edit data-ng-if="$ctrl.onlyCreate || $ctrl.contact.inEdition">
+        </ovh-contact-edit>
+
+    </div>
+
+</div>

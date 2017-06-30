@@ -1,0 +1,29 @@
+<h1><code ng:non-bindable="">ovhContactProvider</code>
+<div><span class="hint">service in module <code ng:non-bindable="">ovhContact</code>
+</span>
+</div>
+</h1>
+<div><h2 id="description">Description</h2>
+<div class="description"><div class="ovhcontact-ovhcontactprovider-page"><p>ovhContactProvider allows developper to configure :</p>
+<ul>
+<li>custom translations for contact management.</li>
+</ul>
+</div></div>
+<div class="member method"><h2 id="methods">Methods</h2>
+<ul class="methods"><li><h3 id="methods_settranslationpath">setTranslationPath(path)</h3>
+<div class="settranslationpath"><div class="ovhcontact-ovhcontactprovider-settranslationpath-page"><p>Allows you to set an alternative translation path for contact management.</p>
+</div><h5 id="methods_settranslationpath_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>path</td><td><a href="" class="label type-hint type-hint-string">String</a></td><td><div class="ovhcontact-ovhcontactprovider-settranslationpath-page"><p>The translations file path.</p>
+</div></td></tr></tbody></table><h5 id="methods_settranslationpath_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-string">String</a></td><td><div class="ovhcontact-ovhcontactprovider-settranslationpath-page"><p>The new translation path.</p>
+</div></td></tr></table></div>
+</li>
+</ul>
+</div>
+<h2 id="example">Example</h2>
+<div class="example"><div class="ovhcontact-ovhcontactprovider-page"><pre class="prettyprint linenums">
+angular.module("myManagerApp").config(function (ovhContactProvider) {
+    // set translation path
+    ovhContactProvider.setTranslationPath("../components/contact");
+});
+</pre>
+</div></div>
+</div>

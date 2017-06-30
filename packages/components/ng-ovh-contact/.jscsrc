@@ -1,0 +1,75 @@
+{
+  "esnext": true,
+  "disallowEmptyBlocks": true,
+  "disallowKeywords": ["with"],
+  "disallowKeywordsOnNewLine": ["else"],
+  "disallowMixedSpacesAndTabs": true,
+  "disallowMultipleLineBreaks": true,
+  "disallowMultipleLineStrings": true,
+  "disallowMultipleVarDecl": false,
+  "disallowNewlineBeforeBlockStatements": true,
+  "disallowSpaceAfterObjectKeys": false,
+  "disallowSpaceAfterPrefixUnaryOperators": true,
+  "disallowSpaceBeforeComma": true,
+  "disallowSpaceBeforePostfixUnaryOperators": true,
+  "disallowSpaceBeforeSemicolon": true,
+  "disallowSpacesInCallExpression": true,
+  "disallowSpacesInsideArrayBrackets": "all",
+  "disallowSpacesInsideParentheses": true,
+  "disallowTrailingWhitespace": true,
+  "disallowYodaConditions": true,
+  "requireCamelCaseOrUpperCaseIdentifiers": true,
+  "requireCapitalizedConstructors": true,
+  "requireCommaBeforeLineBreak": true,
+  "requireCurlyBraces": [
+    "if",
+    "else",
+    "for",
+    "while",
+    "do",
+    "try",
+    "catch"
+  ],
+  "requireDotNotation": true,
+  "requireOperatorBeforeLineBreak": true,
+  "requireParenthesesAroundIIFE": true,
+  "requireSemicolons": true,
+  "requireSpaceAfterBinaryOperators": true,
+  "requireSpaceAfterComma": true,
+  "requireSpaceAfterKeywords": [
+    "if",
+    "else",
+    "for",
+    "while",
+    "do",
+    "switch",
+    "return",
+    "try",
+    "catch"
+  ],
+  "requireSpaceBeforeBinaryOperators": [
+    "=", "+=", "-=", "*=", "/=", "%=", "<<=", ">>=", ">>>=",
+    "&=", "|=", "^=", "+=",
+
+    "+", "-", "*", "/", "%", "<<", ">>", ">>>", "&",
+    "|", "^", "&&", "||", "===", "==", ">=",
+    "<=", "<", ">", "!=", "!=="
+  ],
+  "requireSpaceBeforeBlockStatements": true,
+  "requireSpaceBeforeObjectValues": true,
+  "requireSpaceBetweenArguments": true,
+  "requireSpacesInConditionalExpression": true,
+  "requireSpacesInForStatement": true,
+  "requireSpacesInFunctionDeclaration": {
+    "beforeOpeningCurlyBrace": true,
+    "beforeOpeningRoundBrace": true
+  },
+  "requireSpacesInFunctionExpression": {
+    "beforeOpeningCurlyBrace": true,
+    "beforeOpeningRoundBrace": true
+  },
+  "requireSpacesInsideObjectBrackets": "all",
+  "validateIndentation": 4,
+  "validateParameterSeparator": ", ",
+  "validateQuoteMarks": "\""
+}

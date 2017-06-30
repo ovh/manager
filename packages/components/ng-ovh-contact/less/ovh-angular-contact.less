@@ -1,0 +1,121 @@
+.ovh-contact {
+    .ovh-contact-choice {
+        .ovh-contact-select {
+            cursor: default;
+            position: relative;
+
+            &.open:not(.direction-up) {
+                .ui-select-match {
+                    border-bottom: 0;
+                }
+
+                .ui-select-dropdown-container {
+                    border-top: 0;
+                }
+            }
+
+            &.direction-up {
+                .ui-select-match {
+                    border-top: 0;
+                    margin-top: -3px;
+                }
+
+                .ui-select-dropdown-container {
+                    border-bottom: 0;
+                }
+            }
+
+            .ui-select-match {
+                height: auto;
+                box-shadow: none;
+
+                .ui-select-match-text {
+                    .dtable {
+                        table-layout: fixed;
+
+                        .dtd:first-child {
+                            width: 70px;
+                        }
+
+                        .dtd:last-child {
+                            width: 100px;
+                        }
+
+                        .dtd:nth-child(2) {
+                            overflow: hidden;
+                        }
+                    }
+
+                }
+            }
+
+            .ui-select-dropdown-container {
+                position: absolute;
+                width: 100%;
+                border: 1px solid #CCC;
+                border-radius: @border-radius-base;
+                margin-top: -1px;
+                padding: @padding-base-vertical @padding-base-horizontal;
+                background: #FFFFFF;
+                z-index: 1000;
+
+                .ui-select-dropdown {
+                    max-height: 200px;
+                    overflow-x: hidden;
+                    overflow-y: auto;
+
+                    border: 0;
+                    position: static;
+                    width: 100%;
+                    box-shadow: none;
+                }
+            }
+        }
+    }
+
+    .ovh-contact-edit {
+        .intl-tel-input {
+            width: 100%;
+
+            input.ng-invalid.ng-dirty {
+                border-color: @brand-danger;
+                &:focus {
+                    box-shadow: none;
+                }
+            }
+        }
+
+        .footer-actions {
+            margin-top: 16px;
+        }
+
+        [data-ng-messages][role=alert] {
+            margin-top: 4px;
+        }
+
+        @media (min-width: @screen-sm-min) {
+            .footer-actions {
+                > div button[type="submit"] {
+                    float: right;
+                }
+                > div button[type="button"] {
+                    float: left;
+                    margin: 0;
+                }
+            }
+        }
+
+        @media (max-width: (@screen-sm-min - 1)) {
+            .footer-actions {
+                > div button[type="submit"] {
+                    width: 100%;
+                    margin-bottom: 10px;
+                }
+                > div button[type="button"] {
+                    width: 100%;
+                    margin: 0;
+                }
+            }
+        }
+    }
+}

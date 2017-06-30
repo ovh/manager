@@ -1,0 +1,31 @@
+<h1><code ng:non-bindable="">ovhContactChoice</code>
+<div><span class="hint">directive in module <code ng:non-bindable="">ovhContact</code>
+</span>
+</div>
+</h1>
+<div><h2 id="description">Description</h2>
+<div class="description"><div class="ovhcontact-directive-page ovhcontact-directive-ovhcontactchoice-page"><p>This directive allows you selecting a contact from /me/contact list or from a custom list.</p>
+<p>It provides possibility to add/edit a contact.</p>
+<p><b>Note : </b>This directive is automatically loaded by its parent (<a href="#/docs/ovhContact.directive:ovhContact">ovhContact</a>).</p></div></div>
+<h2 id="dependencies">Dependencies</h2>
+<ul class="dependencies"><li><code ng:non-bindable=""><a href="#/docs/ovhContact.directive:ovhContact">ovhContact</a></code>
+</li>
+</ul>
+<h2 id="usage">Usage</h2>
+<div class="usage">as element:<pre class="prettyprint linenums">&lt;ovh-contact-choice
+       [ovh-contact-choice-filter="{Function}"]
+       [ovh-contact-choice-custom-list="{Array&lt;OvhContact&gt;}"]
+       [ovh-contact-choice-options="{Object}"]&gt;
+&lt;/ovh-contact-choice&gt;</pre>
+<h3 id="usage_directive-info">Directive info</h3>
+<div class="directive-info"><ul><li>This directive creates new scope.</li>
+</ul>
+</div>
+<h4 id="usage_directive-info_parameters">Parameters</h4><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>ovhContactChoiceFilter <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-function">Function</a></td><td><div class="ovhcontact-directive-page ovhcontact-directive-ovhcontactchoice-page"><p>A filter function that will be called to filter contacts list (for filtering identical contacts for example).</p>
+</div></td></tr><tr><td>ovhContactChoiceCustomList <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-array">Array&lt;OvhContact&gt;</a></td><td><div class="ovhcontact-directive-page ovhcontact-directive-ovhcontactchoice-page"><p>A custom list of contact. Using this won&#39;t load the contact list and creation/edition won&#39;t be possible.</p>
+</div></td></tr><tr><td>ovhContactChoiceOptions <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-object">Object</a></td><td><div class="ovhcontact-directive-page ovhcontact-directive-ovhcontactchoice-page"><p>Others options available for selecting a contact.</p>
+</div><table><thead><tr><th>Property</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>allowCreation <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">Boolean</a></td><td><div class="ovhcontact-directive-page ovhcontact-directive-ovhcontactchoice-page"><p>Allow or not contact creation.</p>
+</div> <p><em>(default: true)</em></p></td></tr><tr><td>allowEdition <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">Boolean</a></td><td><div class="ovhcontact-directive-page ovhcontact-directive-ovhcontactchoice-page"><p>Allow or not contact creation.</p>
+</div> <p><em>(default: true)</em></p></td></tr><tr><td>autoCreateContact <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">Boolean</a></td><td><div class="ovhcontact-directive-page ovhcontact-directive-ovhcontactchoice-page"><p>Auto create a contact from connected nic informations if contact list is empty.</p>
+</div> <p><em>(default: true)</em></p></td></tr></tbody></table></td></tr></tbody></table></div>
+</div>
