@@ -1,0 +1,10 @@
+<li class="item-container"
+    data-ng-class="{
+        'open' : item.isOpen,
+        'active' : item.isActive,
+        'category-{{item.category}}' : item.category !== 'none',
+        'status-{{item.status}}' : item.status !== 'none'
+    }"
+    data-ng-repeat="item in ListCtrl.items track by $index"
+    data-sidebar-menu-list-item="item">
+</li>

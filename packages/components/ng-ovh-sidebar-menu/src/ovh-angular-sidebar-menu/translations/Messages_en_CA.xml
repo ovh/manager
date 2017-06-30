@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="sidebar_menu" qtlid="304576">Menu</translation>
+   <translation id="sidebar_menu_order_actions" qtlid="43558">Order</translation>
+   <translation id="sidebar_menu_search" qtlid="37659">Search</translation>
+   <translation id="sidebar_menu_search_no_results" qtlid="345481">No result found. </translation>
+   <translation id="sidebar_menu_search_loading" qtlid="345494">Searching...</translation>
+</translations>

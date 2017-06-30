@@ -1,0 +1,146 @@
+<h1><code ng:non-bindable="">SidebarMenuListItem</code>
+<div><span class="hint">object in module <code ng:non-bindable="">sidebarMenu</code>
+</span>
+</div>
+</h1>
+<div><h2 id="description">Description</h2>
+<div class="description"><div class="sidebarmenu-object-page sidebarmenu-object-sidebarmenulistitem-page"><p>Factory that describe an item into manager sidebar menu.</p>
+</div></div>
+<h2 id="dependencies">Dependencies</h2>
+<ul class="dependencies"><li><code ng:non-bindable=""><a href="#/docs/ng.$q">$q</a></code>
+</li>
+</ul>
+<h2 id="usage">Usage</h2>
+<div class="usage"><pre class="prettyprint linenums">SidebarMenuListItem(options);</pre>
+<h4 id="usage_parameters">Parameters</h4><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>options</td><td><a href="" class="label type-hint type-hint-object">Object</a></td><td><div class="sidebarmenu-object-page sidebarmenu-object-sidebarmenulistitem-page"><p>Options for creating a new SidebarMenuListItem.</p>
+</div><table><thead><tr><th>Property</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>allowSearch <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">Boolean</a></td><td><div class="sidebarmenu-object-page sidebarmenu-object-sidebarmenulistitem-page"><p>Flag telling if item allow search. Only available for item of level 1.</p>
+</div> <p><em>(default: false)</em></p></td></tr><tr><td>allowSubItems <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">Boolean</a></td><td><div class="sidebarmenu-object-page sidebarmenu-object-sidebarmenulistitem-page"><p>Flag telling if item allow to have sub items. If true will display an arrow icon before title.</p>
+</div> <p><em>(default: false)</em></p></td></tr><tr><td>category <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">String</a></td><td><div class="sidebarmenu-object-page sidebarmenu-object-sidebarmenulistitem-page"><p>Add a category to the item. This will be added as a new class to the menu item element.</p>
+</div> <p><em>(default: none)</em></p></td></tr><tr><td>icon <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">String</a></td><td><div class="sidebarmenu-object-page sidebarmenu-object-sidebarmenulistitem-page"><p>Icon added before prefix and title. This MUST be a ovh-font icon!</p>
+</div></td></tr><tr><td>iconClass <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">String</a></td><td><div class="sidebarmenu-object-page sidebarmenu-object-sidebarmenulistitem-page"><p>Additional class that will be added with the icon.</p>
+</div> <p><em>(default: none)</em></p></td></tr><tr><td>id <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-number">Number</a><a href="" class="label type-hint type-hint-string">String</a></td><td><div class="sidebarmenu-object-page sidebarmenu-object-sidebarmenulistitem-page"><p>Unique id of the SidebarMenuListItem.</p>
+</div> <p><em>(default: A random Number)</em></p></td></tr><tr><td>level <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-number">Number</a></td><td><div class="sidebarmenu-object-page sidebarmenu-object-sidebarmenulistitem-page"><p>Menu item level.</p>
+</div></td></tr><tr><td>viewAllItem</td><td><a href="" class="label type-hint type-hint-object">Object</a></td><td><div class="sidebarmenu-object-page sidebarmenu-object-sidebarmenulistitem-page"><p>Links to a page that manages all subitems.</p>
+</div></td></tr><tr><td>viewMore <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-object">Object</a></td><td><div class="sidebarmenu-object-page sidebarmenu-object-sidebarmenulistitem-page"><p>Custom object to implement your own pagination method.</p>
+</div></td></tr><tr><td>viewMore.title</td><td><a href="" class="label type-hint type-hint-string">String</a></td><td><div class="sidebarmenu-object-page sidebarmenu-object-sidebarmenulistitem-page"><p>The displayed title of the viewMore button.</p>
+</div></td></tr><tr><td>viewMore.enabled</td><td><a href="" class="label type-hint type-hint-boolean">Boolean</a></td><td><div class="sidebarmenu-object-page sidebarmenu-object-sidebarmenulistitem-page"><p>Should the viewMore button be displayed?</p>
+</div></td></tr><tr><td>viewMore.loading</td><td><a href="" class="label type-hint type-hint-boolean">Boolean</a></td><td><div class="sidebarmenu-object-page sidebarmenu-object-sidebarmenulistitem-page"><p>Should a loading spinner be displayed near the viewMore button?</p>
+</div></td></tr><tr><td>viewMore.action</td><td><a href="" class="label type-hint type-hint-function">Function</a></td><td><div class="sidebarmenu-object-page sidebarmenu-object-sidebarmenulistitem-page"><p>Custom pagination callback to be called when viewMore button is pressed. If this callback returns a promise, the scrollbar will scroll automatically to the bottom after the promise is resolved (when your paginated items have been added).</p>
+</div></td></tr><tr><td>loadOnState <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">String</a></td><td><div class="sidebarmenu-object-page sidebarmenu-object-sidebarmenulistitem-page"><p>State that will automatically load the menu item. For this to work, states MUST be declared as parent/child (example of state name : parent.child.subchild).</p>
+</div></td></tr><tr><td>loadOnStateParams <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-object">Object</a></td><td><div class="sidebarmenu-object-page sidebarmenu-object-sidebarmenulistitem-page"><p>StateParams that will that defines the state that will automatically load the menu item. Ignored if no loadOnState option.</p>
+</div> <p><em>(default: {})</em></p></td></tr><tr><td>onLoad <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-function">Function</a></td><td><div class="sidebarmenu-object-page sidebarmenu-object-sidebarmenulistitem-page"><p>Function called to load sub items. This function MUST return a promise.</p>
+</div></td></tr><tr><td>parentId <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-number">Number</a><a href="" class="label type-hint type-hint-string">String</a></td><td><div class="sidebarmenu-object-page sidebarmenu-object-sidebarmenulistitem-page"><p>Unique id of the parent SidebarMenuListItem.</p>
+</div> <p><em>(default: null)</em></p></td></tr><tr><td>prefix <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">String</a></td><td><div class="sidebarmenu-object-page sidebarmenu-object-sidebarmenulistitem-page"><p>Prefix added befor item title.</p>
+</div></td></tr><tr><td>state <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">String</a></td><td><div class="sidebarmenu-object-page sidebarmenu-object-sidebarmenulistitem-page"><p>State name where to redirect when clicking on item. Will be ignored if both options (state and url) are setted.</p>
+</div></td></tr><tr><td>stateParams <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-object">Object</a></td><td><div class="sidebarmenu-object-page sidebarmenu-object-sidebarmenulistitem-page"><p>State params to add when switching state. Ignored if no state option.</p>
+</div> <p><em>(default: {})</em></p></td></tr><tr><td>status <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">String</a></td><td><div class="sidebarmenu-object-page sidebarmenu-object-sidebarmenulistitem-page"><p>Add a status to the item. This will be added as a new class to the menu item element.</p>
+</div></td></tr><tr><td>target <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">String</a></td><td><div class="sidebarmenu-object-page sidebarmenu-object-sidebarmenulistitem-page"><p>Target attribute value that will be added to item link. Ignored if no url option.</p>
+</div> <p><em>(default: _blank)</em></p></td></tr><tr><td>title</td><td><a href="" class="label type-hint type-hint-string">String</a></td><td><div class="sidebarmenu-object-page sidebarmenu-object-sidebarmenulistitem-page"><p>Title of the the menu item. This is what will be displayed (cropped if too long and the entire title will be in the title attribute).</p>
+</div></td></tr><tr><td>error</td><td><a href="" class="label type-hint type-hint-string">String</a></td><td><div class="sidebarmenu-object-page sidebarmenu-object-sidebarmenulistitem-page"><p>Error message that will be displayed if loding promise is rejected.</p>
+</div> <p><em>(default: none)</em></p></td></tr><tr><td>url <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">String</a></td><td><div class="sidebarmenu-object-page sidebarmenu-object-sidebarmenulistitem-page"><p>Url to redirect when item link is clicked. Will be ignored if both options (url and state) are setted.</p>
+</div></td></tr><tr><td>infiniteScroll</td><td><a href="" class="label type-hint type-hint-boolean">Boolean</a></td><td><div class="sidebarmenu-object-page sidebarmenu-object-sidebarmenulistitem-page"><p>Should infinite scroll be used for scrolling subItems?</p>
+</div></td></tr><tr><td>searchable</td><td><a href="" class="label type-hint type-hint-boolean">Boolean</a></td><td><div class="sidebarmenu-object-page sidebarmenu-object-sidebarmenulistitem-page"><p>Flag telling if item is searchable, true by default, must be set to false to hide it from search.</p>
+</div> <p><em>(default: true)</em></p></td></tr></tbody></table></td></tr></tbody></table></div>
+<div class="member method"><h2 id="methods">Methods</h2>
+<ul class="methods"><li><h3 id="methods_addsearchkey">addSearchKey()</h3>
+<div class="addsearchkey"><div class="sidebarmenu-object-page sidebarmenu-object-sidebarmenulistitem-addsearchkey-page"><p>Add a key for when searching / filtering items.</p>
+</div><h5 id="methods_addsearchkey_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-sidebarmenulistitem">SidebarMenuListItem</a></td><td><div class="sidebarmenu-object-page sidebarmenu-object-sidebarmenulistitem-addsearchkey-page"><p>Current instance of menu item.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_addsubitem">addSubItem(subItemOptions)</h3>
+<div class="addsubitem"><div class="sidebarmenu-object-page sidebarmenu-object-sidebarmenulistitem-addsubitem-page"><p>Add a sub menu item to sub items list.</p>
+</div><h5 id="methods_addsubitem_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>subItemOptions</td><td><a href="" class="label type-hint type-hint-object">Object</a></td><td><div class="sidebarmenu-object-page sidebarmenu-object-sidebarmenulistitem-addsubitem-page"><p>Options of sub item that will be added. See constructor for more options informations.</p>
+</div></td></tr></tbody></table><h5 id="methods_addsubitem_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-sidebarmenulistitem">SidebarMenuListItem</a></td><td><div class="sidebarmenu-object-page sidebarmenu-object-sidebarmenulistitem-addsubitem-page"><p>The added sub item.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_addsubitems">addSubItems(subItemsOptions)</h3>
+<div class="addsubitems"><div class="sidebarmenu-object-page sidebarmenu-object-sidebarmenulistitem-addsubitems-page"><p>Add multiple sub items to sub items list.</p>
+</div><h5 id="methods_addsubitems_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>subItemsOptions</td><td><a href="" class="label type-hint type-hint-array">Array&lt;Object&gt;</a></td><td><div class="sidebarmenu-object-page sidebarmenu-object-sidebarmenulistitem-addsubitems-page"><p>Array of sub items options to add to item. See constructor for more options informations.</p>
+</div></td></tr></tbody></table><h5 id="methods_addsubitems_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-sidebarmenulistitem">SidebarMenuListItem</a></td><td><div class="sidebarmenu-object-page sidebarmenu-object-sidebarmenulistitem-addsubitems-page"><p>Current instance of menu item.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_appendpendinglistitems">appendPendingListItems()</h3>
+<div class="appendpendinglistitems"><div class="sidebarmenu-object-page sidebarmenu-object-sidebarmenulistitem-appendpendinglistitems-page"><p>Append the pending list of items to the sub items list.
+If the list of pending items is large it can be better to call
+SidebarMenuListItem#appendPendingListItemsAsync in order to
+not freeze the brower by flooding the DOM with subItems directives.</p>
+</div><h5 id="methods_appendpendinglistitems_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-sidebarmenulistitem">SidebarMenuListItem</a></td><td><div class="sidebarmenu-object-page sidebarmenu-object-sidebarmenulistitem-appendpendinglistitems-page"><p>Current instance of menu item.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_appendpendinglistitemsasync">appendPendingListItemsAsync()</h3>
+<div class="appendpendinglistitemsasync"><div class="sidebarmenu-object-page sidebarmenu-object-sidebarmenulistitem-appendpendinglistitemsasync-page"><p>Append asynchronously the pending list of items to the sub items list.
+It allows to not freeze the browser when the list of pending items is large.
+Pending items are added in chunks of 5 sequentially by calling timeouts
+multiple times.</p>
+</div><h5 id="methods_appendpendinglistitemsasync_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-sidebarmenulistitem">SidebarMenuListItem</a></td><td><div class="sidebarmenu-object-page sidebarmenu-object-sidebarmenulistitem-appendpendinglistitemsasync-page"><p>Current instance of menu item.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_clearsubitems">clearSubItems()</h3>
+<div class="clearsubitems"><div class="sidebarmenu-object-page sidebarmenu-object-sidebarmenulistitem-clearsubitems-page"><p>Empty list of sub items.</p>
+</div><h5 id="methods_clearsubitems_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-sidebarmenulistitem">SidebarMenuListItem</a></td><td><div class="sidebarmenu-object-page sidebarmenu-object-sidebarmenulistitem-clearsubitems-page"><p>Current instance of menu item.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_displaysearchresults">displaySearchResults()</h3>
+<div class="displaysearchresults"><div class="sidebarmenu-object-page sidebarmenu-object-sidebarmenulistitem-displaysearchresults-page"><p>Update items to display given search results.</p>
+</div><h5 id="methods_displaysearchresults_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-sidebarmenulistitem">SidebarMenuListItem</a></td><td><div class="sidebarmenu-object-page sidebarmenu-object-sidebarmenulistitem-displaysearchresults-page"><p>Current instance of menu item.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_filtersubitems">filterSubItems()</h3>
+<div class="filtersubitems"><div class="sidebarmenu-object-page sidebarmenu-object-sidebarmenulistitem-filtersubitems-page"><p>Search for string &quot;search&quot; in item&#39;s searchKey and perform the
+search recursively in all subItems.
+Items not matching the &quot;search&quot; will be removed from the dom.</p>
+</div><h5 id="methods_filtersubitems_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-sidebarmenulistitem">SidebarMenuListItem</a></td><td><div class="sidebarmenu-object-page sidebarmenu-object-sidebarmenulistitem-filtersubitems-page"><p>Current instance of menu item.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_getfullsref">getFullSref()</h3>
+<div class="getfullsref"><div class="sidebarmenu-object-page sidebarmenu-object-sidebarmenulistitem-getfullsref-page"><p>Build the full sref with state name and state params.</p>
+</div><h5 id="methods_getfullsref_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-string">String</a></td><td><div class="sidebarmenu-object-page sidebarmenu-object-sidebarmenulistitem-getfullsref-page"><p>The full sref value setted into data-ui-sref item link attribute.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_getsubitems">getSubItems()</h3>
+<div class="getsubitems"><div class="sidebarmenu-object-page sidebarmenu-object-sidebarmenulistitem-getsubitems-page"><p>Returns the list of sub items.</p>
+</div><h5 id="methods_getsubitems_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-array">Array</a></td><td><div class="sidebarmenu-object-page sidebarmenu-object-sidebarmenulistitem-getsubitems-page"><p>the list of sub items.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_gettitle">getTitle()</h3>
+<div class="gettitle"><div class="sidebarmenu-object-page sidebarmenu-object-sidebarmenulistitem-gettitle-page"><p>Get the full item title. With prefix if setted.</p>
+</div><h5 id="methods_gettitle_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-string">String</a></td><td><div class="sidebarmenu-object-page sidebarmenu-object-sidebarmenulistitem-gettitle-page"><p>The full item title.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_hassubitems">hasSubItems()</h3>
+<div class="hassubitems"><div class="sidebarmenu-object-page sidebarmenu-object-sidebarmenulistitem-hassubitems-page"><p>Check if an item has sub items.</p>
+</div><h5 id="methods_hassubitems_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-boolean">Boolean</a></td><td><div class="sidebarmenu-object-page sidebarmenu-object-sidebarmenulistitem-hassubitems-page"><p>true if item has sub items. false otherwise.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_loadsubitems">loadSubItems()</h3>
+<div class="loadsubitems"><div class="sidebarmenu-object-page sidebarmenu-object-sidebarmenulistitem-loadsubitems-page"><p>Load the sub items of the current item.</p>
+</div><h5 id="methods_loadsubitems_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-promise">Promise</a></td><td><div class="sidebarmenu-object-page sidebarmenu-object-sidebarmenulistitem-loadsubitems-page"><p>That should return the list of sub SidebarMenuListItem instances loaded. Empty Array if no onLoad function or item does not allow sub items.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_toggleopen">toggleOpen()</h3>
+<div class="toggleopen"><div class="sidebarmenu-object-page sidebarmenu-object-sidebarmenulistitem-toggleopen-page"><p>Toggle the open state of the item.</p>
+</div><h5 id="methods_toggleopen_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-sidebarmenulistitem">SidebarMenuListItem</a></td><td><div class="sidebarmenu-object-page sidebarmenu-object-sidebarmenulistitem-toggleopen-page"><p>Current instance of menu item.</p>
+</div></td></tr></table></div>
+</li>
+</ul>
+</div>
+<h2 id="example">Example</h2>
+<div class="example"><div class="sidebarmenu-object-page sidebarmenu-object-sidebarmenulistitem-page"><pre class="prettyprint linenums">
+angular.module("myManagerApp").controller("MyTestCtrl", function ($q, SidebarMenuListItem) {
+    var myMenuItem = new SidebarMenuListItem({
+        title : "My beautiful title",
+        state : "manager.my.state"
+        stateParams : {
+            foo : "test",
+            test : "foo"
+        },
+        icon : "dots",
+        allowSubItems : true,
+        onLoad : function () {
+            return $q.when([]);
+        }
+    });
+});
+</pre>
+</div></div>
+</div>

@@ -1,0 +1,44 @@
+<h1><code ng:non-bindable="">SidebarMenuProvider</code>
+<div><span class="hint">service in module <code ng:non-bindable="">sidebarMenu</code>
+</span>
+</div>
+</h1>
+<div><h2 id="description">Description</h2>
+<div class="description"><div class="sidebarmenu-sidebarmenuprovider-page"><p>sidebarMenuProvider allows developper to configure :</p>
+<ul>
+<li>extra translations that need to be loaded ;</li>
+<li>the template path of the inner content of sidebar menu itemms.</li>
+</ul>
+</div></div>
+<div class="member method"><h2 id="methods">Methods</h2>
+<ul class="methods"><li><h3 id="methods_addtranslationpath">addTranslationPath(translationPath)</h3>
+<div class="addtranslationpath"><div class="sidebarmenu-sidebarmenuprovider-addtranslationpath-page"><p>Allows you to add an extra translations path when manager sidebar is loading.</p>
+</div><h5 id="methods_addtranslationpath_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>translationPath</td><td><a href="" class="label type-hint type-hint-string">String</a></td><td><div class="sidebarmenu-sidebarmenuprovider-addtranslationpath-page"><p>The translations file path to add.</p>
+</div></td></tr></tbody></table><h5 id="methods_addtranslationpath_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-array">Array</a></td><td><div class="sidebarmenu-sidebarmenuprovider-addtranslationpath-page"><p>The list of translations to load.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_setinnermenuitemtemplatepath">setInnerMenuItemTemplatePath(templatePath)</h3>
+<div class="setinnermenuitemtemplatepath"><div class="sidebarmenu-sidebarmenuprovider-setinnermenuitemtemplatepath-page"><p>Configure the inner menu item template path. This will load your specific inner content instead of the default one. Use it at your own risk.</p>
+</div><h5 id="methods_setinnermenuitemtemplatepath_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>templatePath</td><td><a href="" class="label type-hint type-hint-string">String</a></td><td><div class="sidebarmenu-sidebarmenuprovider-setinnermenuitemtemplatepath-page"><p>The path of the inner content html file</p>
+</div></td></tr></tbody></table><h5 id="methods_setinnermenuitemtemplatepath_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-string">String</a></td><td><div class="sidebarmenu-sidebarmenuprovider-setinnermenuitemtemplatepath-page"><p>The newest html file path</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_setminitemsforenablingsearch">setMinItemsForEnablingSearch(minItems)</h3>
+<div class="setminitemsforenablingsearch"><div class="sidebarmenu-sidebarmenuprovider-setminitemsforenablingsearch-page"><p>Configure the minimum items length for enabling search. By default the min items is set to 10.</p>
+</div><h5 id="methods_setminitemsforenablingsearch_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>minItems</td><td><a href="" class="label type-hint type-hint-number">Number</a></td><td><div class="sidebarmenu-sidebarmenuprovider-setminitemsforenablingsearch-page"><p>The new value for enabling search.</p>
+</div></td></tr></tbody></table><h5 id="methods_setminitemsforenablingsearch_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-number">Number</a></td><td><div class="sidebarmenu-sidebarmenuprovider-setminitemsforenablingsearch-page"><p>The new value setted.</p>
+</div></td></tr></table></div>
+</li>
+</ul>
+</div>
+<h2 id="example">Example</h2>
+<div class="example"><div class="sidebarmenu-sidebarmenuprovider-page"><pre class="prettyprint linenums">
+angular.module("myManagerApp").config(function (SidebarMenuProvider) {
+     // add translation path
+     SidebarMenuProvider.addTranslationPath("../components/sidebar");
+     // configure the inner item content html file
+     SidebarMenuProvider.setInnerMenuItemTemplatePath("../components/my-dangerous-and-risky-configuration.html");
+ });
+</pre>
+</div></div>
+</div>

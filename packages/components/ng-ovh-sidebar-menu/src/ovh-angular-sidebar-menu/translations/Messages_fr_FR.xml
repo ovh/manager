@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+    <translation id="sidebar_menu">Menu</translation>
+    <translation id="sidebar_menu_order_actions">Commander</translation>
+    <translation id="sidebar_menu_search">Rechercher</translation>
+    <translation id="sidebar_menu_search_no_results">Aucun résultat trouvé.</translation>
+    <translation id="sidebar_menu_search_loading">Recherche en cours...</translation>
+    <translation id="sidebar_menu_error_retry">Réessayer</translation>
+</translations>
