@@ -2,13 +2,6 @@ module.exports = function (grunt) {
     "use strict";
     require("matchdep").filterAll("grunt-*").forEach(grunt.loadNpmTasks);
 
-    /**
-     * NOTE for CSS/LESS:
-     * - (src/CSS -> dist/CSS) : use [concat:css, autoprefixer, cssmin]
-     * - (src/LESS -> dist/CSS) : use [less, autoprefixer, cssmin]
-     * - (src/LESS -> dist/LESS) : use [copy:less]
-     */
-
     grunt.initConfig({
         pkg: grunt.file.readJSON("package.json"),
         bower: grunt.file.readJSON("bower.json"),
@@ -67,18 +60,6 @@ module.exports = function (grunt) {
                 },
                 files: {
                     "<%= distdir %>/<%= name %>.min.js": ["<%= builddir %>/<%= name %>.js"]
-                }
-            }
-        },
-
-        // ... and its prefixed vendor styles
-        autoprefixer: {
-            options: {
-                browsers: ["last 3 versions", "ie >= 9", "> 5%"]
-            },
-            dist: {
-                files: {
-                    "<%= distdir %>/<%= name %>.css": ["<%= builddir %>/<%= name %>.css"]
                 }
             }
         },
