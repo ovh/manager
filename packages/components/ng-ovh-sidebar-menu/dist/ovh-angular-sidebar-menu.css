@@ -67,6 +67,8 @@
 #sidebar-menu .sidebar-menu-list li .menu-item,
 #sidebar-menu .sub-menu li .menu-item {
   color: #ffffff;
+  background-color: transparent;
+  border: 0;
   text-decoration: none;
   display: block;
   white-space: nowrap;
