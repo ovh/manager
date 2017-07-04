@@ -1,0 +1,8 @@
+.idea/
+.work/
+node_modules
+*.log
+
+tools/keys/*
+
+src/**/translations/*.json

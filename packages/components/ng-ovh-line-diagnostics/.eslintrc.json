@@ -1,0 +1,14 @@
+{
+    "extends": "ovh",
+    "env": {
+      "browser": true
+    },
+    "globals": {
+      "angular": true,
+      "_": true,
+      "require": true,
+      "moment": true,
+      "URI": true,
+      "module": true
+    }
+}
