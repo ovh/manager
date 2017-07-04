@@ -4,11 +4,7 @@
     "version": "3.2.2",
     "main": [
         "./dist/ovh-angular-form-flat.min.js",
-        "./less/ovh-angular-form-flat-select.less",
-        "./less/ovh-angular-form-flat-checkbox.less",
-        "./less/ovh-angular-form-flat.less",
-        "./less/ovh-angular-form-flat-radio.less",
-        "./less/ovh-angular-form-flat-switch.less"
+        "./less/ovh-angular-form-flat.less"
     ],
     "dependencies": {
         "angular": "~1.5.0",
