@@ -214,7 +214,7 @@ module.exports = function (grunt) {
         ngtemplates: {
             options: {
                 // This should be the name of your apps angular module
-                module: "sidebarMenu",
+                module: "ovh-angular-sidebar-menu",
                 htmlmin: {
                     collapseBooleanAttributes: true,
                     collapseWhitespace: true,

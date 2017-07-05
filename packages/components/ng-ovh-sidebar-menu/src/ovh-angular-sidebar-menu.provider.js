@@ -23,8 +23,8 @@ angular.module("ovh-angular-sidebar-menu").provider("SidebarMenu", function () {
 
     var self = this;
 
-    var translationPaths = ["../bower_components/sidebar-menu/dist/sidebar-menu"];
-    var innerMenuItemTemplatePath = "sidebar-menu-list/sidebar-menu-list-item/sidebar-menu-list-item-inner.html";
+    var translationPaths = ["../bower_components/ovh-angular-sidebar-menu/dist/ovh-angular-sidebar-menu"];
+    var innerMenuItemTemplatePath = "ovh-angular-sidebar-menu-list/ovh-angular-sidebar-menu-list-item/ovh-angular-sidebar-menu-list-item-inner.html";
     var minItemsForEnablingSearch = 10;
 
     /*= ====================================
