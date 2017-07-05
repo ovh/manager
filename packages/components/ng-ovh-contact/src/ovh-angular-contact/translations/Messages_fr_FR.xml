@@ -10,7 +10,7 @@
 
     <!-- EDITION -->
     <!-- FIELDSETS -->
-    <translation id="ovh_contact_edit_fieldset_general_informations">Informations générales</translation>
+    <translation id="ovh_contact_edit_fieldset_generalInformations">Informations générales</translation>
     <translation id="ovh_contact_edit_fieldset_profile">Profil</translation>
     <translation id="ovh_contact_edit_fieldset_contacts">Contacts</translation>
     <translation id="ovh_contact_edit_fieldset_legal">Données juridiques</translation>
