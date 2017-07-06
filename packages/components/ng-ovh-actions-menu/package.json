@@ -5,14 +5,14 @@
   "license": "BSD-3-Clause",
   "description": "An actions menu gives the opportunity to group a set of actions available for a specific context under a single menu",
   "scripts": {
-    "test" : "grunt test"
+    "test": "grunt test"
   },
   "keywords": [
     "angular"
   ],
   "main": "./dist/ovh-angular-actions-menu.min.js",
   "repository": "ovh-ux/ovh-angular-actions-menu",
-  "dependencies": { },
+  "dependencies": {},
   "devDependencies": {
     "eslint": "^4.1.1",
     "eslint-config-ovh": "^0.1.1",
