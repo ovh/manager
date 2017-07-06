@@ -137,7 +137,7 @@ angular.module("ovh-angular-mondial-relay")
             scope: {
                 ngModel: "=?"
             },
-            templateUrl: "mondial-relay/ovh-angular-mondial-relay.view.html",
+            templateUrl: "ovh-angular-mondial-relay/ovh-angular-mondial-relay.view.html",
             controllerAs: "$ctrl",
             controller: ["$scope", "$q", "$translate", "$timeout", "$http", "mondialRelay", "SupplyMondialRelay", "leafletBoundsHelpers", "leafletEvents", "leafletData", "User", function ($scope, $q, $translate, $timeout, $http, mondialRelay, SupplyMondialRelay, leafletBoundsHelpers, leafletEvents, leafletData, User) {
 
@@ -379,7 +379,7 @@ angular.module("ovh-angular-mondial-relay").provider("mondialRelay", function ()
     "use strict";
 
     var self = this;
-    var translationPath = "../bower_components/ovh-angular-mondial-relay/dist";
+    var translationPath = "../bower_components/ovh-angular-mondial-relay/dist/ovh-angular-mondial-relay";
 
     /*= ====================================
     =            CONFIGURATION            =
@@ -430,7 +430,7 @@ angular.module("ovh-angular-mondial-relay").provider("mondialRelay", function ()
 angular.module('ovh-angular-mondial-relay').run(['$templateCache', function($templateCache) {
   'use strict';
 
-  $templateCache.put('mondial-relay/ovh-angular-mondial-relay.view.html',
+  $templateCache.put('ovh-angular-mondial-relay/ovh-angular-mondial-relay.view.html',
     "<div class=\"mondial-relay\">\n" +
     "    <div data-ng-if=\"!$ctrl.loading.init\">\n" +
     "\n" +

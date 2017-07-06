@@ -9,7 +9,7 @@ angular.module("ovh-angular-mondial-relay").provider("mondialRelay", function ()
     "use strict";
 
     var self = this;
-    var translationPath = "../bower_components/ovh-angular-mondial-relay/dist";
+    var translationPath = "../bower_components/ovh-angular-mondial-relay/dist/ovh-angular-mondial-relay";
 
     /*= ====================================
     =            CONFIGURATION            =

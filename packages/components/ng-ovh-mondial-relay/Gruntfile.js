@@ -35,7 +35,7 @@ module.exports = function (grunt) {
                     "<%= distdir %>/<%= name %>.js": "<%= builddir %>/<%= name %>.js"
                 }, {
                     expand: true,
-                    cwd: "<%= srcdir %>/<%= name %>",
+                    cwd: "<%= srcdir %>",
                     dest: "<%= distdir %>",
                     src: [
                         "**/translations/*.json"

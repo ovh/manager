@@ -106,7 +106,7 @@ angular.module("ovh-angular-mondial-relay")
             scope: {
                 ngModel: "=?"
             },
-            templateUrl: "mondial-relay/ovh-angular-mondial-relay.view.html",
+            templateUrl: "ovh-angular-mondial-relay/ovh-angular-mondial-relay.view.html",
             controllerAs: "$ctrl",
             controller: function ($scope, $q, $translate, $timeout, $http, mondialRelay, SupplyMondialRelay, leafletBoundsHelpers, leafletEvents, leafletData, User) {
 
