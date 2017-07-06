@@ -41,7 +41,7 @@ to hear from you!
 Have a look in [CONTRIBUTING.md](https://github.com/ovh-ux/ovh-angular-actions-menu/blob/master/CONTRIBUTING.md)
 
  Then inject actionsMenu module in your module declaration:
- ```
+ ```javascript
  angular.module("myModule", [
      ...
      "ovh-angular-actions-menu",
@@ -84,7 +84,7 @@ This is the main directive of the module. It's creating a popover with desired a
 
  In your controller:
 
- ```
+ ```javascript
  angular.module("myManagerModule").controller("myTestController", function ($scope) {
      $scope.popoverSettings = {
          "popover-class": "my-custom-class",
@@ -105,7 +105,7 @@ This is the main directive of the module. It's creating a popover with desired a
 
  And in your html view:
 
- ```
+ ```html
  <actions-menu data-ovh-angular-actions-menu-options="actionsOptions"
                data-ovh-angular-actions-menu-popover-settings="popoverSettings">
      <i class="my-font my-font-actions"></i>
@@ -172,7 +172,7 @@ Add an actions menu item into actions list.
 
 #### Example
 
-  ```
+  ```javascript
      angular.module("myManagerApp").controller("MyTestCtrl", function (ActionsMenu) {
          var actionMenu = new ActionsMenu({
              actionsMenuItems: [{
@@ -238,7 +238,7 @@ Check if the instance of actions menu item has sub actions defined.
 
 #### Example
 
-  ```
+  ```javascript
      angular.module("myManagerApp").controller("MyTestCtrl", function (ActionsMenuItem) {
          var actionMenuItem = new ActionsMenuItem({
              title: "My Beautiful title",
@@ -272,7 +272,7 @@ Allows you to change the default location of the translation file of the module.
 
 #### Example
 
-  ```
+  ```javascript
     angular.module("myManagerApp").config(function (actionsMenuProvider) {
          // set a new path for translations of the module
          actionsMenuProvider.setTranslationPath("/the/new/translation/path");
