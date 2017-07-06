@@ -1,7 +1,7 @@
 {
     "name": "ovh-angular-mondial-relay",
     "description": "Display a map to select mondial relay",
-    "version": "1.2.1",
+    "version": "1.2.2",
     "main": [
         "./dist/ovh-angular-mondial-relay.min.js",
         "./dist/ovh-angular-mondial-relay.min.css"
