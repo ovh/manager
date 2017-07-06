@@ -51,7 +51,7 @@ Have a look in [CONTRIBUTING.md](https://github.com/ovh-ux/ovh-angular-responsiv
 
 
  Then inject responsivePopover module in your module declaration:
- ```
+ ```javascript
  angular.module("myModule", [
      ...
      "ovh-angular-responsive-popover",
@@ -80,7 +80,7 @@ This is the main directive of the `responsivePopover` module. In fact it's an ex
 #### Example
 
   The following example will open a popover with the content of path/of/popover/content.html file inside. This popover will be closed when focus is lost inside of it.
- ```
+ ```html
  <button type="button"
          data-responsive-popover="'path/of/popover/content.html'"
          data-popover-placement="bottom-left"
@@ -119,7 +119,7 @@ Allows you to determine what app will consider as a mobile for responsive popove
 
 #### Example
 
-  ```
+  ```javascript
     angular.module("myManagerApp").config(function (responsivePopoverProvider) {
          // tell to the module that we consider a mobile device with at least 800px width
          responsivePopoverProvider.setMobileMediaQuery("(max-width: 800px)");
