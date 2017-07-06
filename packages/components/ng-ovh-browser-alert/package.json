@@ -1,6 +1,6 @@
 {
   "name": "ovh-angular-browser-alert",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Angular component to display an alert when your browser isn't supported",
   "main": "dist/ovh-angular-browser-alert.min.js",
   "repository": "ovh-ux/ovh-angular-browser-alert",
