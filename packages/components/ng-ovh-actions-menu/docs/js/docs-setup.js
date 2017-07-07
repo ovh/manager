@@ -55,7 +55,7 @@ NG_DOCS={
       "type": "object",
       "moduleName": "actionsMenu",
       "shortDescription": "Factory that describe an item into an actions menu.",
-      "keywords": "action actionmenuitem actions actionsmenu actionsmenuitem add addsubaction anchor angular applied attribute beautiful check class clicked controller created creating current defined describe details directive docs example external factory false filled-check full function getfullsref google hassubactions href html http icon instance item items level levels link manage manager menu method module mymanagerapp mytestctrl object offside option options param2 params pass redirected representation sref stateparams string subactionoptions subactions subitems tag target title true var"
+      "keywords": "$sce action actionmenuitem actions actionsmenu actionsmenuitem add addsubaction anchor angular applied attribute beautiful check class clicked code controller created creating current defined describe details directive docs escaped example external factory false filled-check full function getfullsref google hassubactions href html http icon instance item items level levels link manage manager menu method module mymanagerapp mytestctrl object offside option options param2 params pass redirected representation sref stateparams string subactionoptions subactions subitems svg tag target title true trustashtml var"
     },
     {
       "section": "docs",

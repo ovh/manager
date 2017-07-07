@@ -21,6 +21,7 @@
  *  @param {String} [options.external=false] Is the link is an external link. In other words, will we be redirected offside of the manager ?
  *  @param {String} [options.href] The href to be redirected if item is clicked. Has no effect if state option is defined or subItems option is defined.
  *  @param {String} [options.icon] The icon class of the actions menu item icon.
+ *  @param {String} [options.svg] SVG code escaped by using $sce.trustAsHtml method.
  *  @param {String} [options.state] The state to be redirected when item is clicked. Has no effect if href option is defined or subItems option is defined.
  *  @param {Object} [options.stateParams={}] The params to pass to the state.
  *  @param {Array<Object>} [options.subActions] Sub actions options to be added to the actions menu item. The options are the same of a first level item options.
@@ -40,7 +41,12 @@ angular.module("ovh-angular-actions-menu").factory("ActionsMenuItem", function (
         var self = this;
 
         this.title = options.title;
-        this.icon = options.icon;
+
+        if (options.svg) {
+            this.svg = options.svg;
+        } else if (options.icon) {
+            this.icon = options.icon;
+        }
 
         if (options.href && !options.state && !options.subItems) {
             this.href = options.href;

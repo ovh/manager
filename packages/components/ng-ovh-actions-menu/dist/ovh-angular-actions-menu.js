@@ -77,6 +77,7 @@ angular.module("ovh-angular-actions-menu").directive("actionsMenuItem", function
  *  @param {String} [options.external=false] Is the link is an external link. In other words, will we be redirected offside of the manager ?
  *  @param {String} [options.href] The href to be redirected if item is clicked. Has no effect if state option is defined or subItems option is defined.
  *  @param {String} [options.icon] The icon class of the actions menu item icon.
+ *  @param {String} [options.svg] SVG code escaped by using $sce.trustAsHtml method.
  *  @param {String} [options.state] The state to be redirected when item is clicked. Has no effect if href option is defined or subItems option is defined.
  *  @param {Object} [options.stateParams={}] The params to pass to the state.
  *  @param {Array<Object>} [options.subActions] Sub actions options to be added to the actions menu item. The options are the same of a first level item options.
@@ -96,7 +97,12 @@ angular.module("ovh-angular-actions-menu").factory("ActionsMenuItem", function (
         var self = this;
 
         this.title = options.title;
-        this.icon = options.icon;
+
+        if (options.svg) {
+            this.svg = options.svg;
+        } else if (options.icon) {
+            this.icon = options.icon;
+        }
 
         if (options.href && !options.state && !options.subItems) {
             this.href = options.href;
@@ -548,7 +554,7 @@ angular.module('ovh-angular-actions-menu').run(['$templateCache', function($temp
 
 
   $templateCache.put('ovh-angular-actions-menu-item/ovh-angular-actions-menu-item.html',
-    "<a class=\"actions-menu-item-link block full-width\" data-ng-href=\"{{ $ctrl.actionsMenuItem.href }}\" target=\"{{ $ctrl.actionsMenuItem.target }}\" data-ng-if=$ctrl.actionsMenuItem.href data-ng-click=$ctrl.onClick()($ctrl.actionsMenuItem)><span class=\"inline-block item-icon\" data-ng-if=$ctrl.actionsMenuItem.icon><i class=ovh-font data-ng-class=\"'ovh-font-{{ $ctrl.actionsMenuItem.icon }}'\" aria-hidden></i> </span><span class=\"block item-title\"><span class=item-title-text data-ng-bind=$ctrl.actionsMenuItem.title></span> <span class=external-link data-ng-if=$ctrl.actionsMenuItem.external><i class=\"ovh-font ovh-font-newtab\"></i> </span></span></a><a class=\"actions-menu-item-link block full-width\" data-ui-sref=\"{{ $ctrl.actionsMenuItem.getFullSref() }}\" data-ng-if=$ctrl.actionsMenuItem.state data-ng-click=$ctrl.onClick()($ctrl.actionsMenuItem)><span class=\"inline-block item-icon\" data-ng-if=$ctrl.actionsMenuItem.icon aria-hidden><i class=ovh-font data-ng-class=\"'ovh-font-{{ $ctrl.actionsMenuItem.icon }}'\" aria-hidden></i> </span><span class=\"block item-title\" data-ng-bind=$ctrl.actionsMenuItem.title></span> </a><button class=\"actions-menu-item-link no-style block full-width\" type=button data-ng-if=$ctrl.actionsMenuItem.hasSubActions() data-ng-click=$ctrl.onClick()($ctrl.actionsMenuItem)><span class=\"inline-block item-icon\" data-ng-if=$ctrl.actionsMenuItem.icon aria-hidden><i class=ovh-font data-ng-class=\"'ovh-font-{{ $ctrl.actionsMenuItem.icon }}'\" aria-hidden></i> </span><span class=\"block item-title\" data-ng-bind=$ctrl.actionsMenuItem.title></span></button>"
+    "<a class=\"actions-menu-item-link block full-width\" data-ng-href=\"{{ $ctrl.actionsMenuItem.href }}\" target=\"{{ $ctrl.actionsMenuItem.target }}\" data-ng-if=$ctrl.actionsMenuItem.href data-ng-click=$ctrl.onClick()($ctrl.actionsMenuItem)><span class=\"inline-block item-icon\" data-ng-if=$ctrl.actionsMenuItem.icon><i class=ovh-font data-ng-class=\"'ovh-font-{{ $ctrl.actionsMenuItem.icon }}'\" aria-hidden></i> </span><span class=\"inline-block item-icon\" data-ng-if=$ctrl.actionsMenuItem.svg data-ng-bind-html=$ctrl.actionsMenuItem.svg></span> <span class=\"block item-title\"><span class=item-title-text data-ng-bind=$ctrl.actionsMenuItem.title></span> <span class=external-link data-ng-if=$ctrl.actionsMenuItem.external><i class=\"ovh-font ovh-font-newtab\"></i> </span></span></a><a class=\"actions-menu-item-link block full-width\" data-ui-sref=\"{{ $ctrl.actionsMenuItem.getFullSref() }}\" data-ng-if=$ctrl.actionsMenuItem.state data-ng-click=$ctrl.onClick()($ctrl.actionsMenuItem)><span class=\"inline-block item-icon\" data-ng-if=$ctrl.actionsMenuItem.icon aria-hidden><i class=ovh-font data-ng-class=\"'ovh-font-{{ $ctrl.actionsMenuItem.icon }}'\" aria-hidden></i> </span><span class=\"block item-title\" data-ng-bind=$ctrl.actionsMenuItem.title></span> </a><button class=\"actions-menu-item-link no-style block full-width\" type=button data-ng-if=$ctrl.actionsMenuItem.hasSubActions() data-ng-click=$ctrl.onClick()($ctrl.actionsMenuItem)><span class=\"inline-block item-icon\" data-ng-if=$ctrl.actionsMenuItem.icon aria-hidden><i class=ovh-font data-ng-class=\"'ovh-font-{{ $ctrl.actionsMenuItem.icon }}'\" aria-hidden></i> </span><span class=\"inline-block item-icon\" data-ng-if=$ctrl.actionsMenuItem.svg data-ng-bind-html=$ctrl.actionsMenuItem.svg></span> <span class=\"block item-title\" data-ng-bind=$ctrl.actionsMenuItem.title></span></button>"
   );
 
 

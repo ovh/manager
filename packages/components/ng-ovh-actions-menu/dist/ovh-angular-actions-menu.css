@@ -122,10 +122,18 @@
 }
 .ovh-angular-actions-menu .popover-content .actions-menu-inner .actions-menu-pages .actions-menu-page.main-page ul.actions-list > li.actions-list-item .actions-menu-item-link:active .item-icon i,
 .ovh-angular-actions-menu .popover-content .actions-menu-inner .actions-menu-pages .actions-menu-page.main-page ul.actions-list > li.actions-list-item .actions-menu-item-link:hover .item-icon i,
-.ovh-angular-actions-menu .popover-content .actions-menu-inner .actions-menu-pages .actions-menu-page.main-page ul.actions-list > li.actions-list-item .actions-menu-item-link:focus .item-icon i {
+.ovh-angular-actions-menu .popover-content .actions-menu-inner .actions-menu-pages .actions-menu-page.main-page ul.actions-list > li.actions-list-item .actions-menu-item-link:focus .item-icon i,
+.ovh-angular-actions-menu .popover-content .actions-menu-inner .actions-menu-pages .actions-menu-page.main-page ul.actions-list > li.actions-list-item .actions-menu-item-link:active .item-icon svg,
+.ovh-angular-actions-menu .popover-content .actions-menu-inner .actions-menu-pages .actions-menu-page.main-page ul.actions-list > li.actions-list-item .actions-menu-item-link:hover .item-icon svg,
+.ovh-angular-actions-menu .popover-content .actions-menu-inner .actions-menu-pages .actions-menu-page.main-page ul.actions-list > li.actions-list-item .actions-menu-item-link:focus .item-icon svg {
   -webkit-transform: scale(0.8);
       -ms-transform: scale(0.8);
           transform: scale(0.8);
+}
+.ovh-angular-actions-menu .popover-content .actions-menu-inner .actions-menu-pages .actions-menu-page.main-page ul.actions-list > li.actions-list-item .actions-menu-item-link:active .item-icon svg g,
+.ovh-angular-actions-menu .popover-content .actions-menu-inner .actions-menu-pages .actions-menu-page.main-page ul.actions-list > li.actions-list-item .actions-menu-item-link:hover .item-icon svg g,
+.ovh-angular-actions-menu .popover-content .actions-menu-inner .actions-menu-pages .actions-menu-page.main-page ul.actions-list > li.actions-list-item .actions-menu-item-link:focus .item-icon svg g {
+  fill: #FFFFFF;
 }
 .ovh-angular-actions-menu .popover-content .actions-menu-inner .actions-menu-pages .actions-menu-page.main-page ul.actions-list > li.actions-list-item .actions-menu-item-link:active .item-title .external-link,
 .ovh-angular-actions-menu .popover-content .actions-menu-inner .actions-menu-pages .actions-menu-page.main-page ul.actions-list > li.actions-list-item .actions-menu-item-link:hover .item-title .external-link,
@@ -139,7 +147,8 @@
   padding: 10px;
   border-radius: 30px;
 }
-.ovh-angular-actions-menu .popover-content .actions-menu-inner .actions-menu-pages .actions-menu-page.main-page ul.actions-list > li.actions-list-item .actions-menu-item-link .item-icon i {
+.ovh-angular-actions-menu .popover-content .actions-menu-inner .actions-menu-pages .actions-menu-page.main-page ul.actions-list > li.actions-list-item .actions-menu-item-link .item-icon i,
+.ovh-angular-actions-menu .popover-content .actions-menu-inner .actions-menu-pages .actions-menu-page.main-page ul.actions-list > li.actions-list-item .actions-menu-item-link .item-icon svg {
   font-size: 36px;
   transition: -webkit-transform 0.3s ease-in-out;
   transition: transform 0.3s ease-in-out;

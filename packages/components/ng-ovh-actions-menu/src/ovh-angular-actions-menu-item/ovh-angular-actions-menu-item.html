@@ -12,6 +12,11 @@
         </i>
     </span>
 
+    <span class="inline-block item-icon"
+          data-ng-if="$ctrl.actionsMenuItem.svg"
+          data-ng-bind-html="$ctrl.actionsMenuItem.svg">
+    </span>
+
     <span class="block item-title">
 
         <span class="item-title-text"
@@ -58,6 +63,11 @@
            data-ng-class="'ovh-font-{{ $ctrl.actionsMenuItem.icon }}'"
            aria-hidden>
         </i>
+    </span>
+
+    <span class="inline-block item-icon"
+          data-ng-if="$ctrl.actionsMenuItem.svg"
+          data-ng-bind-html="$ctrl.actionsMenuItem.svg">
     </span>
 
     <span class="block item-title"

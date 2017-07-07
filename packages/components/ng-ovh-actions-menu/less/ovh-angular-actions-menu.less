@@ -136,8 +136,12 @@
                                             background-color: @actions-menu-item-link-icon-hover-bg-color;
                                             color: @actions-menu-item-link-icon-hover-color;
 
-                                            i {
+                                            i, svg {
                                                 transform: scale(0.8);
+                                            }
+
+                                            svg g {
+                                                fill: @actions-menu-item-link-icon-hover-color;
                                             }
                                         }
 
@@ -153,7 +157,7 @@
                                         padding: 10px;
                                         border-radius: 30px;
 
-                                        i {
+                                        i, svg {
                                             font-size: 36px;
                                             transition: transform .3s ease-in-out;
                                         }
