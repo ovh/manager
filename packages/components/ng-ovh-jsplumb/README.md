@@ -115,7 +115,7 @@ See https://github.com/ovh-ux/ovh-angular-jsplumb/blob/master/LICENSE
 
 Then include ovh-angular-jsplumb.js in your HTML with it's dependencies (**Note** : As mentionned above, you can only load jquery ui dependency files) :
 
-```
+```html
 <script src="jquery.js">
 <script src="jquery-ui.js">
 <script src="jsplumb.js">
@@ -125,6 +125,6 @@ Then include ovh-angular-jsplumb.js in your HTML with it's dependencies (**Note*
 
 And then load the module in your application by adding it as a dependent module:
 
-```
+```javascript
 angular.module('app', ['ovh-angular-jsplumb']);
 ```
