@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="otrs_detail_title" qtlid="245181">Zpět k seznamu ticketů</translation>
+   <translation id="otrs_detail_title2" qtlid="228774">- ticket {0}</translation>
+   <translation id="otrs_detail_title3_open" qtlid="228787">- (Zpracovává se)</translation>
+   <translation id="otrs_detail_title3_closed" qtlid="228800">- (Uzavřený)</translation>
+
+   <translation id="otrs_detail_error" qtlid="228813">Při získávání detailů o ticketu {0} došlo k chybě.</translation>
+   <translation id="otrs_detail_message_error" qtlid="228826">Při získávání zpráv v ticketu {0} došlo k chybě.</translation>
+
+   <translation id="otrs_detail_subject" qtlid="75594">Předmět ticketu:</translation>
+   <translation id="otrs_detail_serviceName" qtlid="228423">Zahrnuté služby:</translation>
+   <translation id="otrs_detail_creationDate" qtlid="228839">Otevřen:</translation>
+   <translation id="otrs_detail_updateDate" qtlid="228852">Aktualizovaný:</translation>
+   <translation id="otrs_detail_from_customer" qtlid="228865">Od: Vás</translation>
+   <translation id="otrs_detail_from_support" qtlid="228878">Od: Podpora OVH</translation>
+   <translation id="otrs_detail_raw_version" qtlid="244664">Zobrazit surovou verzi zprávy</translation>
+   <translation id="otrs_detail_cook_version" qtlid="244677">Zobrazit interpretovanou verzi zprávy</translation>
+   <translation id="otrs_detail_reply" qtlid="69233">Odpovědět</translation>
+   <translation id="otrs_detail_close" qtlid="62774">Uzavřít ticket</translation>
+   <translation id="otrs_detail_reopen" qtlid="227624">Opět otevřít ticket</translation>
+   <translation id="otrs_detail_reply_error" qtlid="228891">Při posílání odpovědi došlo k chybě.</translation>
+   <translation id="otrs_detail_reopen_error" qtlid="228904">Při opětovném otevření tohoto ticketu došlo k chybě.</translation>
+   <translation id="otrs_detail_close_error" qtlid="228917">Při uzavírání tohoto ticketu došlo k chybě.</translation>
+
+   <translation id="otrs_detail_info" qtlid="228930">Pro odpověď na tento ticket vyplňte políčko nad tímto okem a klikněte na "Odpovědět".</translation>
+   <translation id="otrs_detail_info2" qtlid="228943">Pro opětovné otevření ticketu vyplňte políčko nad tímto okem a klikněte na "Opětovně otevřít ticket".</translation>
+
+   <translation id="otrs_detail_tiket_title" qtlid="384207">Assistance - Détail du ticket {{id}}</translation>
+
+   <translation id="otrs_menu_ticket_list_title" qtlid="260840">Podpora - seznam ticketů</translation>
+   <translation id="otrs_menu_ticket_list" qtlid="228631">Seznam ticketů</translation>
+   <translation id="otrs_menu_ticket_create" qtlid="29515">Vytvořit ticket</translation>
+   <translation id="otrs_ticket_number" qtlid="245168">Ticket číslo</translation>
+   <translation id="otrs_ticket_service" qtlid="31042">Služba</translation>
+   <translation id="otrs_ticket_category" qtlid="28459">Kategorie</translation>
+   <translation id="otrs_ticket_type" qtlid="2642">Typ</translation>
+   <translation id="otrs_ticket_suject" qtlid="22639">Předmět</translation>
+   <translation id="otrs_ticket_last_message_from" qtlid="228709">Poslední zasahující osoba </translation>
+   <translation id="otrs_ticket_date_creation" qtlid="26419">Datum vytvoření</translation>
+   <translation id="otrs_ticket_date_update" qtlid="228748">Datum aktualizace</translation>
+   <translation id="otrs_ticket_state" qtlid="33790">Stav</translation>
+   <translation id="otrs_ticket_empty" qtlid="228644">Nejsou zde žádné dostupné tickety.</translation>
+   <translation id="otrs_filters_button" qtlid="2606">Filtry</translation>
+   <translation id="otrs_ticket_state_open" qtlid="75654">Otevřený</translation>
+   <translation id="otrs_ticket_state_closed" qtlid="66236">Uzavřený</translation>
+   <translation id="otrs_ticket_date_creation_include" qtlid="228592">Datum vytvoření:</translation>
+   <translation id="otrs_ticket_date_creation_exclude" qtlid="228605">Datum vytvoření:</translation>
+   <translation id="otrs_ticket_lastMessageFrom_customer" qtlid="228722">Vy</translation>
+   <translation id="otrs_ticket_lastMessageFrom_support" qtlid="228735">Podpora OVH</translation>
+
+
+   <translation id="otrs_service_category_DEDICATED" qtlid="31738">Dedicated</translation>
+   <translation id="otrs_service_category_EXCHANGE" qtlid="80430">Exchange</translation>
+   <translation id="otrs_service_category_EMAIL_PRO" qtlid="374893">E-mail Pro</translation>
+   <translation id="otrs_service_category_HOSTING" qtlid="167457">Hosting</translation>
+   <translation id="otrs_service_category_HUBIC" qtlid="111546">Hubic</translation>
+   <translation id="otrs_service_category_OTHER" qtlid="19963">Jiné</translation>
+   <translation id="otrs_service_category_PRIVATE_CLOUD" qtlid="20131">Private Cloud</translation>
+   <translation id="otrs_service_category_PUBLIC_CLOUD" qtlid="251655">Public Cloud</translation>
+   <translation id="otrs_service_category_SITE_BUILDER" qtlid="98852">Site Builder</translation>
+   <translation id="otrs_service_category_TELEPHONY" qtlid="29299">Telefonie</translation>
+   <translation id="otrs_service_category_SMS" qtlid="28243">SMS</translation>
+   <translation id="otrs_service_category_VPS" qtlid="23083">VPS</translation>
+   <translation id="otrs_service_category_XDSL" qtlid="104614">xDSL</translation>
+   <translation id="otrs_service_category_NAS" qtlid="76782">NAS</translation>
+   <translation id="otrs_service_category_NASHA" qtlid="211502">NAS HA</translation>
+   <translation id="otrs_service_category_VRACK" qtlid="211515">vRack</translation>
+   <translation id="otrs_service_category_DOMAIN" qtlid="8458">Doména</translation>
+   <translation id="otrs_service_category_CDN_WEBSTORAGE" qtlid="211528">Cdn WebStorage</translation>
+   <translation id="otrs_service_category_CDN_WEBSITE" qtlid="211541">Cdn WebSite</translation>
+   <translation id="otrs_service_category_CDN_DEDICATED" qtlid="211554">Cdn dedicated</translation>
+   <translation id="otrs_service_category_PRIVATE_DATABASE" qtlid="215429">Private databáze</translation>
+   <translation id="otrs_service_category_ZONE" qtlid="26335">Zóna</translation>
+   <translation id="otrs_service_category_LOAD_BALANCING" qtlid="233544">IP Load Balancing</translation>
+   <translation id="otrs_service_category_FAILOVER" qtlid="160502">IP Failover</translation>
+   <translation id="otrs_service_other_services" qtlid="228540">Jiná služba</translation>
+   <translation id="otrs_service_category_EMAIL_DOMAIN" qtlid="260078">E-mail</translation>
+   <translation id="otrs_service_category_MIS" qtlid="285408">Spravovaná infrastruktura (Managed Infrastructure)</translation>
+   <translation id="otrs_service_category_OFFICE_365" qtlid="288665">Office 365</translation>
+   <translation id="otrs_service_category_OVER_THE_BOX" qtlid="281977">OverTheBox</translation>
+   <translation id="otrs_service_category_CSP2" qtlid="325640">Reseller Office</translation>
+   <translation id="otrs_service_category_SHAREPOINT" qtlid="297072">SharePoint</translation>
+   <translation id="otrs_service_category_ALL_DOM" qtlid="270293">Balíček AllDom</translation>
+   <translation id="otrs_service_category_CLUSTER_HADOOP" qtlid="219901">Cluster Hadoop</translation>
+   <translation id="otrs_service_category_SERVER" qtlid="66032">Dedikovaný server</translation>
+   <translation id="otrs_service_category_HOUSING" qtlid="371476">Server-Housing </translation>
+   <translation id="otrs_service_category_DEDICATED_SERVER" qtlid="66032">Dedikovaný server</translation>
+   <translation id="otrs_service_category_DEDICATED_HOUSING" qtlid="371476">Server-Housing </translation>
+   <translation id="otrs_service_category_DEDICATED_CLOUD" qtlid="20131">Private Cloud</translation>
+   <translation id="otrs_service_category_HOSTING_WEB" qtlid="219979">Webhostingová služba</translation>
+   <translation id="otrs_service_category_IP_LOADBALANCING" qtlid="219992">IP Load Balancer</translation>
+   <translation id="otrs_service_category_LICENCE_CLOUD_LINUX" qtlid="220005">Licence CloudLinux</translation>
+   <translation id="otrs_service_category_LICENCE_CPANEL" qtlid="220018">Licence cPanel</translation>
+   <translation id="otrs_service_category_LICENCE_DIRECT_ADMIN" qtlid="220031">Licence DirectAdmin</translation>
+   <translation id="otrs_service_category_LICENCE_PLESK" qtlid="220044">Licence Plesk</translation>
+   <translation id="otrs_service_category_LICENCE_SQL_SERVER" qtlid="398943">Licence SQL Server</translation>
+   <translation id="otrs_service_category_LICENCE_OFFICE" qtlid="398956">Licence Office 365</translation>
+   <translation id="otrs_service_category_LICENSE_OFFICE" qtlid="398956">Licence Office 365</translation>
+   <translation id="otrs_service_category_LICENCE_VIRTUOZZO" qtlid="220070">Licence Virtuozzo</translation>
+   <translation id="otrs_service_category_LICENCE_WINDOWS" qtlid="62666">Licence Windows</translation>
+   <translation id="otrs_service_category_LICENCE_WORKLIGHT" qtlid="220083">Licence Worklight</translation>
+   <translation id="otrs_service_category_PACK_XDSL" qtlid="229632">xDSL balíček</translation>
+   <translation id="otrs_service_category_ROUTER" qtlid="220096">Router</translation>
+   <translation id="otrs_service_category_HOSTING_DOMAIN" qtlid="285049">Webhosting + doména</translation>
+   <translation id="otrs_service_category_HOSTING_RESELLER" qtlid="325289">Multi-site hosting</translation>
+   <translation id="otrs_service_category_DEDICATED_NAS" qtlid="219914">Dedikovaný Nas</translation>
+   <translation id="otrs_service_category_DEDICATED_NASHA" qtlid="219927">Dedikovaný NasHa</translation>
+   <translation id="otrs_service_category_EXCHANGE_HOSTED" qtlid="80430">Exchange</translation>
+   <translation id="otrs_service_category_EXCHANGE_PROVIDER" qtlid="401106">Revendeur Exchange</translation>
+   <translation id="otrs_service_category_PROJECT" qtlid="251655">Public Cloud</translation>
+   <translation id="otrs_service_category_FAX" qtlid="32926">Fax</translation>
+   <translation id="otrs_service_category_LINE" qtlid="401119">Téléphonie (Ligne)</translation>
+   <translation id="otrs_service_category_NUMBER" qtlid="401132">Téléphonie (Numéro)</translation>
+   <translation id="otrs_service_category_TIMESERIES" qtlid="383525">Metrics</translation>
+   <translation id="otrs_service_category_other" qtlid="316047">Jiný požadavek</translation>
+
+   <translation id="otrs_category_null"/>
+   <translation id="otrs_category_neworder" qtlid="251681">Nová objednávka</translation>
+   <translation id="otrs_category_billing" qtlid="32950">Fakturace</translation>
+   <translation id="otrs_category_choice" qtlid="251746">Možnosti podpory:</translation>
+   <translation id="otrs_category_billing" qtlid="251759">Otázky týkající se objednávky</translation>
+   <translation id="otrs_category_assistance" qtlid="251772">Technická a obchodní podpora</translation>
+   <translation id="otrs_category_incident" qtlid="68252">Nahlásit problém</translation>
+
+
+   <translation id="otrs_err_get_infos" qtlid="243832">Při získávání detailů došlo k chybě:</translation>
+   <translation id="otrs_no_filter" qtlid="85281">Žádný filtr</translation>
+   <translation id="otrs_types_criticalIntervention" qtlid="233073">Kritický zásah</translation>
+   <translation id="otrs_types_genericRequest" qtlid="233086">Obecný dotaz</translation>
+   <translation id="otrs_menu_message_title" qtlid="261010">Podpora - diskusní vlákno</translation>
+   <translation id="otrs_back_to_list" qtlid="245181">Zpět k seznamu ticketů</translation>
+   <translation id="otrs_popup_service" qtlid="228423">Zahrnuté služby:</translation>
+   <translation id="otrs_popup_category" qtlid="233099">Kategorie produktu:</translation>
+   <translation id="otrs_popup_body" qtlid="75606">Zpráva:</translation>
+   <translation id="otrs_popup_subject" qtlid="55289">Předmět:</translation>
+   <translation id="otrs_popup_add_ticket" qtlid="228436">Vytvořit ticket</translation>
+   <translation id="otrs_popup_title" qtlid="228449">Vytvořit ticket</translation>
+   <translation id="otrs_popup_icon_minimize" qtlid="382037">Zmenšit okno</translation>
+   <translation id="otrs_popup_icon_maximize" qtlid="382050">Zvětšit okno</translation>
+   <translation id="otrs_popup_icon_close" qtlid="382063">Zavřít okno</translation>
+   <translation id="otrs_popup_type" qtlid="245194">Typ ticketu:</translation>
+   <translation id="otrs_popup_move" qtlid="228462">Toto pop-up okno můžete přemístit posunutím jeho hlavičky.</translation>
+   <translation id="otrs_popup_sent_error" qtlid="228475">Při vytváření ticketu došlo k chybě.</translation>
+   <translation id="otrs_popup_sent_success" qtlid="261023">Váš ticket č. {{ticketNumber}} byl přijat. Jeho vlákno zobrazíte zde: <a href="#/support">Podpora - seznam ticketů</a>.</translation>
+   <translation id="otrs_popup_get_services_error" qtlid="228501">Při načítáni Vašich služeb došlo k chybě.</translation>
+   <translation id="otrs_popup_get_types_error" qtlid="233047">Při získávání dat došlo k chybě.</translation>
+   <translation id="otrs_popup_services_refresh" qtlid="228514">Aktualizace seznamu</translation>
+   <translation id="otrs_popup_require" qtlid="137634">Povinná pole</translation>
+   <translation id="otrs_vip_phone" qtlid="251811">Můžete nás kontaktovat na telefonu +420 246 030 899</translation>
+
+   <translation id="otrs_subCategory_choice" qtlid="291175">Výběr kategorie:</translation>
+   <translation id="otrs_subCategory_assistance_usage" qtlid="291188">Použití mých služeb</translation>
+   <translation id="otrs_subCategory_assistance_start" qtlid="291201">První kroky</translation>
+   <translation id="otrs_subCategory_assistance_new" qtlid="291214">Informace a předplatné doplňkových služeb</translation>
+   <translation id="otrs_subCategory_assistance_other" qtlid="19963">Jiné</translation>
+
+   <translation id="otrs_subCategory_billing_inProgress" qtlid="291227">Moje objednávka není dokončena</translation>
+   <translation id="otrs_subCategory_billing_new" qtlid="291240">Chci udělat objednávku</translation>
+   <translation id="otrs_subCategory_billing_bill" qtlid="291253">Můj požadavek se týká fakturace</translation>
+   <translation id="otrs_subCategory_billing_other" qtlid="19963">Jiné</translation>
+
+   <translation id="otrs_subCategory_incident_perfs" qtlid="291266">Moje služba nepracuje správně</translation>
+   <translation id="otrs_subCategory_incident_alerts" qtlid="291279">Moje služba má výpadky</translation>
+   <translation id="otrs_subCategory_incident_down" qtlid="291292">Moje služba přestala reagovat</translation>
+   <translation id="otrs_subCategory_incident_other" qtlid="19963">Jiné</translation>
+
+   <translation id="otrs_subCategory_intervention_replacement-disk" qtlid="361438">Výměna pevného disku</translation>
+   <translation id="otrs_subCategory_intervention_other" qtlid="19963">Jiné</translation>
+
+</translations>

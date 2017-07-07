@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="otrs_detail_title" qtlid="245181">Zurück zur Liste Ihrer Tickets</translation>
+   <translation id="otrs_detail_title2" qtlid="228774">- Ticket {0}</translation>
+   <translation id="otrs_detail_title3_open" qtlid="228787">- (Offen)</translation>
+   <translation id="otrs_detail_title3_closed" qtlid="228800">- (Geschlossen)</translation>
+
+   <translation id="otrs_detail_error" qtlid="228813">Beim Abruf der Informationen des Tickets {0} ist ein Fehler aufgetreten.</translation>
+   <translation id="otrs_detail_message_error" qtlid="228826">Beim Abruf des Thread-Verlaufs des Tickets {0} ist ein Fehler aufgetreten.</translation>
+
+   <translation id="otrs_detail_subject" qtlid="75594">Betreff des Tickets:</translation>
+   <translation id="otrs_detail_serviceName" qtlid="228423">Betroffene Dienstleistung:</translation>
+   <translation id="otrs_detail_creationDate" qtlid="228839">Offen seit:</translation>
+   <translation id="otrs_detail_updateDate" qtlid="228852">Update am:</translation>
+   <translation id="otrs_detail_from_customer" qtlid="228865">Von: Ihnen</translation>
+   <translation id="otrs_detail_from_support" qtlid="228878">Von: OVH Support</translation>
+   <translation id="otrs_detail_raw_version" qtlid="244664">Die Rohfassung der Nachricht anzeigen</translation>
+   <translation id="otrs_detail_cook_version" qtlid="244677">Die interpretierte Fassung der Nachricht anzeigen</translation>
+   <translation id="otrs_detail_reply" qtlid="69233">Antworten</translation>
+   <translation id="otrs_detail_close" qtlid="62774">Ticket schliessen</translation>
+   <translation id="otrs_detail_reopen" qtlid="227624">Ticket wieder öffnen</translation>
+   <translation id="otrs_detail_reply_error" qtlid="228891">Beim Versand Ihrer Antwort ist ein Fehler aufgetreten.</translation>
+   <translation id="otrs_detail_reopen_error" qtlid="228904">Bei der Wiedereröffnung des Tickets ist ein Fehler aufgetreten.</translation>
+   <translation id="otrs_detail_close_error" qtlid="228917">Bei der Schließung des Tickets ist ein Fehler aufgetreten.</translation>
+
+   <translation id="otrs_detail_info" qtlid="228930">Verwenden Sie das Textfeld unten für Ihre Antwort und klicken Sie auf "Antworten", um diese abzusenden.</translation>
+   <translation id="otrs_detail_info2" qtlid="228943">Um das Ticket erneut zu öffnen tragen Sie Ihre Anfrage in das Textfeld unten ein und klicken dann auf "Ticket wieder öffnen".</translation>
+
+   <translation id="otrs_detail_tiket_title" qtlid="384207">Assistance - Détail du ticket {{id}}</translation>
+    
+   <translation id="otrs_menu_ticket_list_title" qtlid="260840">Support - Liste Ihrer Tickets</translation>
+   <translation id="otrs_menu_ticket_list" qtlid="228631">Liste der Tickets</translation>
+   <translation id="otrs_menu_ticket_create" qtlid="29515">Ein Ticket erstellen</translation>
+   <translation id="otrs_ticket_number" qtlid="245168">Ticketnummer</translation>
+   <translation id="otrs_ticket_service" qtlid="31042">Dienstleistung</translation>
+   <translation id="otrs_ticket_category" qtlid="28459">Kategorie</translation>
+   <translation id="otrs_ticket_type" qtlid="2642">Typ</translation>
+   <translation id="otrs_ticket_suject" qtlid="22639">Betreff</translation>
+   <translation id="otrs_ticket_last_message_from" qtlid="228709">Letzte Antwort von:</translation>
+   <translation id="otrs_ticket_date_creation" qtlid="26419">Erstellungsdatum</translation>
+   <translation id="otrs_ticket_date_update" qtlid="228748">Datum des Updates</translation>
+   <translation id="otrs_ticket_state" qtlid="33790">Zustand</translation>
+   <translation id="otrs_ticket_empty" qtlid="228644">Keine Tickets verfügbar.</translation>
+   <translation id="otrs_filters_button" qtlid="2606">Filter</translation>
+   <translation id="otrs_ticket_state_open" qtlid="75654">Offen</translation>
+   <translation id="otrs_ticket_state_closed" qtlid="66236">Geschlossen</translation>
+   <translation id="otrs_ticket_date_creation_include" qtlid="228592">Erstellungsdatum vom (einschließlich):</translation>
+   <translation id="otrs_ticket_date_creation_exclude" qtlid="228605">Erstellungsdatum bis zum (nicht einschließlich):</translation>
+   <translation id="otrs_ticket_lastMessageFrom_customer" qtlid="228722">Ihnen</translation>
+   <translation id="otrs_ticket_lastMessageFrom_support" qtlid="228735">OVH Support</translation>
+
+
+   <translation id="otrs_service_category_DEDICATED" qtlid="31738">Dediziert</translation>
+   <translation id="otrs_service_category_EXCHANGE" qtlid="80430">Exchange</translation>
+   <translation id="otrs_service_category_EMAIL_PRO" qtlid="374893">E-Mail Pro</translation>
+   <translation id="otrs_service_category_HOSTING" qtlid="167457">Webhosting</translation>
+   <translation id="otrs_service_category_HUBIC" qtlid="111546">Hubic</translation>
+   <translation id="otrs_service_category_OTHER" qtlid="19963">Andere</translation>
+   <translation id="otrs_service_category_PRIVATE_CLOUD" qtlid="20131">Private Cloud</translation>
+   <translation id="otrs_service_category_PUBLIC_CLOUD" qtlid="251655">Public Cloud</translation>
+   <translation id="otrs_service_category_SITE_BUILDER" qtlid="98852">Site Builder</translation>
+   <translation id="otrs_service_category_TELEPHONY" qtlid="29299">Telefonie</translation>
+   <translation id="otrs_service_category_SMS" qtlid="28243">SMS</translation>
+   <translation id="otrs_service_category_VPS" qtlid="23083">VPS</translation>
+   <translation id="otrs_service_category_XDSL" qtlid="104614">xDSL</translation>
+   <translation id="otrs_service_category_NAS" qtlid="76782">NAS</translation>
+   <translation id="otrs_service_category_NASHA" qtlid="211502">HA-NAS</translation>
+   <translation id="otrs_service_category_VRACK" qtlid="211515">vRack</translation>
+   <translation id="otrs_service_category_DOMAIN" qtlid="8458">Domain</translation>
+   <translation id="otrs_service_category_CDN_WEBSTORAGE" qtlid="211528">CDN WebStorage</translation>
+   <translation id="otrs_service_category_CDN_WEBSITE" qtlid="211541">CDN WebSite</translation>
+   <translation id="otrs_service_category_CDN_DEDICATED" qtlid="211554">CDN Dedicated</translation>
+   <translation id="otrs_service_category_PRIVATE_DATABASE" qtlid="215429">Private Datenbank</translation>
+   <translation id="otrs_service_category_ZONE" qtlid="26335">Zone</translation>
+   <translation id="otrs_service_category_LOAD_BALANCING" qtlid="233544">Loadbalancing-IP</translation>
+   <translation id="otrs_service_category_FAILOVER" qtlid="160502">Failover-IP</translation>
+   <translation id="otrs_service_other_services" qtlid="228540">Andere Dienstleistung</translation>
+   <translation id="otrs_service_category_EMAIL_DOMAIN" qtlid="260078">E-Mail Domain</translation>
+   <translation id="otrs_service_category_MIS" qtlid="285408">Gemanagte Infrastruktur</translation>
+   <translation id="otrs_service_category_OFFICE_365" qtlid="288665">Office 365</translation>
+   <translation id="otrs_service_category_OVER_THE_BOX" qtlid="281977">OverTheBox</translation>
+   <translation id="otrs_service_category_CSP2" qtlid="325640">Office Reseller</translation>
+   <translation id="otrs_service_category_SHAREPOINT" qtlid="297072">SharePoint</translation>
+   <translation id="otrs_service_category_ALL_DOM" qtlid="270293">AllDom Paket</translation>
+   <translation id="otrs_service_category_CLUSTER_HADOOP" qtlid="219901">Hadoop Cluster</translation>
+   <translation id="otrs_service_category_SERVER" qtlid="66032">Root-Server</translation>
+   <translation id="otrs_service_category_HOUSING" qtlid="371476">Server-Housing </translation>
+   <translation id="otrs_service_category_DEDICATED_SERVER" qtlid="66032">Root-Server</translation>
+   <translation id="otrs_service_category_DEDICATED_HOUSING" qtlid="371476">Server-Housing </translation>
+   <translation id="otrs_service_category_DEDICATED_CLOUD" qtlid="20131">Private Cloud</translation>
+   <translation id="otrs_service_category_HOSTING_WEB" qtlid="219979">Webhosting</translation>
+   <translation id="otrs_service_category_IP_LOADBALANCING" qtlid="219992">IP-Loadbalancer</translation>
+   <translation id="otrs_service_category_LICENCE_CLOUD_LINUX" qtlid="220005">CloudLinux Lizenz</translation>
+   <translation id="otrs_service_category_LICENCE_CPANEL" qtlid="220018">cPanel Lizenz</translation>
+   <translation id="otrs_service_category_LICENCE_DIRECT_ADMIN" qtlid="220031">DirectAdmin Lizenz</translation>
+   <translation id="otrs_service_category_LICENCE_PLESK" qtlid="220044">Plesk Lizenz</translation>
+   <translation id="otrs_service_category_LICENCE_SQL_SERVER" qtlid="398943">SQL Server Lizenz</translation>
+   <translation id="otrs_service_category_LICENCE_OFFICE" qtlid="398956">Office 365 Lizenz</translation>
+   <translation id="otrs_service_category_LICENSE_OFFICE" qtlid="398956">Office 365 Lizenz</translation>
+   <translation id="otrs_service_category_LICENCE_VIRTUOZZO" qtlid="220070">Virtuozzo Lizenz</translation>
+   <translation id="otrs_service_category_LICENCE_WINDOWS" qtlid="62666">Windows Lizenz</translation>
+   <translation id="otrs_service_category_LICENCE_WORKLIGHT" qtlid="220083">Worklight Lizenz</translation>
+   <translation id="otrs_service_category_PACK_XDSL" qtlid="229632">xDSL Paket</translation>
+   <translation id="otrs_service_category_ROUTER" qtlid="220096">Router</translation>
+   <translation id="otrs_service_category_HOSTING_DOMAIN" qtlid="285049">Webhosting + Domain</translation>
+   <translation id="otrs_service_category_HOSTING_RESELLER" qtlid="325289">Multisite Hosting</translation>
+   <translation id="otrs_service_category_DEDICATED_NAS" qtlid="219914">Dedicated NAS</translation>
+   <translation id="otrs_service_category_DEDICATED_NASHA" qtlid="219927">Dedicated HA-NAS</translation>
+   <translation id="otrs_service_category_EXCHANGE_HOSTED" qtlid="80430">Exchange</translation>
+   <translation id="otrs_service_category_EXCHANGE_PROVIDER" qtlid="401106">Revendeur Exchange</translation>
+   <translation id="otrs_service_category_PROJECT" qtlid="251655">Public Cloud</translation>
+   <translation id="otrs_service_category_FAX" qtlid="32926">Fax</translation>
+   <translation id="otrs_service_category_LINE" qtlid="401119">Téléphonie (Ligne)</translation>
+   <translation id="otrs_service_category_NUMBER" qtlid="401132">Téléphonie (Numéro)</translation>
+   <translation id="otrs_service_category_TIMESERIES" qtlid="383525">Metrics</translation>
+   <translation id="otrs_service_category_other" qtlid="316047">Andere Anfrage</translation>
+
+   <translation id="otrs_category_null"/>
+   <translation id="otrs_category_neworder" qtlid="251681">Neue Bestellung</translation>
+   <translation id="otrs_category_billing" qtlid="32950">Abrechnung</translation>
+   <translation id="otrs_category_choice" qtlid="251746">Wahl des Supports:</translation>
+   <translation id="otrs_category_billing" qtlid="251759">Fragen zur Bestellung</translation>
+   <translation id="otrs_category_assistance" qtlid="251772">Beratung bei kaufmännischen und technischen Fragen</translation>
+   <translation id="otrs_category_incident" qtlid="68252">Störung melden (Hardware, Netzwerk, SLA)</translation>
+
+
+   <translation id="otrs_err_get_infos" qtlid="243832">Beim Abruf der Informationen ist ein Fehler aufgetreten:</translation>
+   <translation id="otrs_no_filter" qtlid="85281">Kein Filter</translation>
+   <translation id="otrs_types_criticalIntervention" qtlid="233073">Kritischer Eingriff</translation>
+   <translation id="otrs_types_genericRequest" qtlid="233086">Allgemeine Anfrage</translation>
+   <translation id="otrs_menu_message_title" qtlid="261010">Support - Thread-Verlauf</translation>
+   <translation id="otrs_back_to_list" qtlid="245181">Zurück zur Liste Ihrer Tickets</translation>
+   <translation id="otrs_popup_service" qtlid="228423">Betroffene Dienstleistung:</translation>
+   <translation id="otrs_popup_category" qtlid="233099">Produktkategorie:</translation>
+   <translation id="otrs_popup_body" qtlid="75606">Nachricht:</translation>
+   <translation id="otrs_popup_subject" qtlid="55289">Betreff:</translation>
+   <translation id="otrs_popup_add_ticket" qtlid="228436">Das Ticket erstellen</translation>
+   <translation id="otrs_popup_title" qtlid="228449">Erstellung eines Support-Tickets</translation>
+   <translation id="otrs_popup_icon_minimize" qtlid="382037">Support-Anfrage minimieren </translation>
+   <translation id="otrs_popup_icon_maximize" qtlid="382050">Support-Anfrage maximieren </translation>
+   <translation id="otrs_popup_icon_close" qtlid="382063">Support-Anfrage schließen </translation>
+   <translation id="otrs_popup_type" qtlid="245194">Ticket-Typ:</translation>
+   <translation id="otrs_popup_move" qtlid="228462">Sie können dieses Popup verschieben, indem Sie auf dessen Rahmen klicken und ziehen.</translation>
+   <translation id="otrs_popup_sent_error" qtlid="228475">Bei der Erstellung dieses Tickets ist ein Fehler aufgetreten.</translation>
+   <translation id="otrs_popup_sent_success" qtlid="261023">Ihr Ticket Nummer {{ticketNumber}} wurde erfolgreich erstellt. Sie können den Verlauf dieses Tickets über das Menü <a href="#/support">Support - Liste meiner Support-Anfragen</a> in Ihrem Kundencenter einsehen. </translation>
+   <translation id="otrs_popup_get_services_error" qtlid="228501">Beim Abruf Ihrer Dienstleistungen ist ein Fehler aufgetreten.</translation>
+   <translation id="otrs_popup_get_types_error" qtlid="233047">Beim Abruf der Informationen ist ein Fehler aufgetreten.</translation>
+   <translation id="otrs_popup_services_refresh" qtlid="228514">Die Liste aktualisieren</translation>
+   <translation id="otrs_popup_require" qtlid="137634">Pflichtangaben</translation>
+   <translation id="otrs_vip_phone" qtlid="251811">Sie erreichen uns unter der Nummer +49 (0) 681 906730.</translation>
+
+   <translation id="otrs_subCategory_choice" qtlid="291175">Auswahl der Kategorie: </translation>
+   <translation id="otrs_subCategory_assistance_usage" qtlid="291188">Nutzung meiner Services </translation>
+   <translation id="otrs_subCategory_assistance_start" qtlid="291201">Inbetriebnahme </translation>
+   <translation id="otrs_subCategory_assistance_new" qtlid="291214">Information / Kauf eines zusätzlichen Service </translation>
+   <translation id="otrs_subCategory_assistance_other" qtlid="19963">Andere</translation>
+
+   <translation id="otrs_subCategory_billing_inProgress" qtlid="291227">Meine Bestellung ist noch nicht abgeschlossen </translation>
+   <translation id="otrs_subCategory_billing_new" qtlid="291240">Ich möchte eine Bestellung tätigen </translation>
+   <translation id="otrs_subCategory_billing_bill" qtlid="291253">Meine Anfrage betrifft eine Rechnung </translation>
+   <translation id="otrs_subCategory_billing_other" qtlid="19963">Andere</translation>
+
+   <translation id="otrs_subCategory_incident_perfs" qtlid="291266">Mein Service hat sich verschlechtert </translation>
+   <translation id="otrs_subCategory_incident_alerts" qtlid="291279">Es kommt zu Service-Ausfällen </translation>
+   <translation id="otrs_subCategory_incident_down" qtlid="291292">Mein Service antwortet nicht mehr </translation>
+   <translation id="otrs_subCategory_incident_other" qtlid="19963">Andere</translation>
+
+   <translation id="otrs_subCategory_intervention_replacement-disk" qtlid="361438">Ersatz einer Festplatte </translation>
+   <translation id="otrs_subCategory_intervention_other" qtlid="19963">Andere</translation>
+
+</translations>

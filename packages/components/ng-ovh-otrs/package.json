@@ -1,0 +1,36 @@
+{
+  "name": "ovh-angular-otrs",
+  "version": "1.1.0",
+  "description": "Manage OTRS tickets",
+  "main": "./dist/ovh-angular-otrs.min.js",
+  "repository": "ovh-ux/ovh-angular-otrs",
+  "author": "OVH SAS",
+  "license": "BSD-3-Clause",
+  "devDependencies": {
+    "eslint": "^4.0.0",
+    "eslint-config-ovh": "^0.1.1",
+    "grunt": "0.4.x",
+    "grunt-angular-templates": "^1.1.0",
+    "grunt-autoprefixer": "~2.2.0",
+    "grunt-bump": "~0.3.0",
+    "grunt-complexity": "~0.1.0",
+    "grunt-contrib-clean": "~0.6.0",
+    "grunt-contrib-concat": "~0.5.0",
+    "grunt-contrib-connect": "^0.10.1",
+    "grunt-contrib-copy": "~0.7.0",
+    "grunt-contrib-jshint": "~0.11.0",
+    "grunt-contrib-less": "~1.0.0",
+    "grunt-contrib-uglify": "~0.8.0",
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt-eslint": "^20.0.0",
+    "grunt-injector": "^0.6.0",
+    "grunt-ng-annotate": "~0.10.0",
+    "grunt-ovh-translation": "^2.1.1",
+    "jasmine-core": "^2.6.4",
+    "matchdep": "^0.3.0"
+  },
+  "scripts": {
+    "test": "npm run lint",
+    "lint": "eslint . --quiet --ext .js"
+  }
+}

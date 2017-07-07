@@ -1,0 +1,121 @@
+<section class="otrs-details">
+
+    <header>
+        <a class="section-back-link"
+           data-ui-sref="otrs-list"
+           title="{{ ::'otrs_back_to_list' | translate}}">
+            <i class="ovh-font ovh-font-arrow-left"></i>
+            <span data-translate="otrs_detail_title"></span>
+        </a>
+        <h1 data-translate="otrs_detail_tiket_title" data-translate-values="{id: OtrsDetailsCtrl.ticket.ticketNumber}"></h1>
+    </header>
+
+    <div class="otrs-details">
+
+        <div class="row top-space-m20 text-center" data-ng-show="OtrsDetailsCtrl.loaders.ticket || OtrsDetailsCtrl.loaders.messages">
+            <spinner></spinner>
+        </div>
+
+        <div class="row top-space-m20" data-ng-hide="OtrsDetailsCtrl.loaders.ticket">
+
+            <div class="col-md-9">
+                <div data-ng-hide="OtrsDetailsCtrl.loaders.ticket === true" class="row">
+                    <div class="col-md-6">
+                        <p class="wordbreak">
+                            <strong data-translate="otrs_detail_subject"></strong>
+                            <span data-ng-bind="OtrsDetailsCtrl.ticket.subject"></span>
+                        </p>
+                        <p class="wordbreak">
+                            <strong data-translate="otrs_detail_serviceName"></strong>
+                            <span data-ng-bind="OtrsDetailsCtrl.ticket.serviceDescription || OtrsDetailsCtrl.ticket.serviceName || i18n.otrs_service_other_services | translate"></span>
+                        </p>
+                        <p data-ng-if="ticket.product">
+                            <strong data-translate="otrs_popup_category"></strong>
+                            <span data-ng-bind="( 'otrs_category_' + OtrsDetailsCtrl.ticket.product | translate)  || OtrsDetailsCtrl.ticket.product"></span>
+                        </p>
+                        <p>
+                            <strong data-translate="otrs_popup_type"></strong>
+                            <span data-ng-bind="( 'otrs_types_' + OtrsDetailsCtrl.ticket.type | translate) || OtrsDetailsCtrl.ticket.type"></span>
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <p>
+                            <strong class="bold" data-translate="otrs_detail_creationDate"></strong>
+                            <span data-ng-bind="OtrsDetailsCtrl.ticket.creationDate | date : 'short'"></span>
+                        </p>
+                        <p>
+                            <strong data-translate="otrs_detail_updateDate"></strong>
+                            <span data-ng-bind="OtrsDetailsCtrl.ticket.updateDate | date : 'short'"></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-3 col-xs-12"  data-ng-hide="OtrsDetailsCtrl.loaders.messages === true">
+                <button type="button" class="btn btn-primary  col-xs-12" data-ng-click="OtrsDetailsCtrl.closeTicket()"
+                        data-ng-disabled="OtrsDetailsCtrl.loaders.close || OtrsDetailsCtrl.loaders.reply"
+                        data-ng-if="OtrsDetailsCtrl.ticket.state !== 'closed'">
+                    <i class="glyphicon glyphicon-lock" aria-hidden="true"></i>
+                    <span data-translate="otrs_detail_close"></span>
+                </button>
+            </div>
+        </div>
+
+        <div class="row" data-ng-hide="OtrsDetailsCtrl.loaders.messages">
+            <div class="col-md-9 col-xs-12">
+                <div data-ng-repeat="message in OtrsDetailsCtrl.messages | orderBy:'creationDate' track by $index">
+                    <div class="col-md-10 col-xs-12"
+                         data-ng-class="{'ovh-message': message.from !== 'customer', 'customer-message col-md-offset-2': message.from === 'customer'}">
+                        <div class="bold">
+                            <span data-ng-bind="('otrs_detail_from_' + message.from | translate)"></span>
+                            <button type="button"
+                                    class="btn pull-right"
+                                    data-ng-if="message.bodyCook"
+                                    data-ng-click="message.displayBodyCook = !message.displayBodyCook">
+                                <span data-ng-show="message.displayBodyCook">
+                                    <small data-translate="otrs_detail_raw_version" class="hidden-xs"></small>
+                                    <i class="glyphicon glyphicon-eye-close" aria-hidden="true"></i>
+                                </span>
+                                <span data-ng-hide="message.displayBodyCook">
+                                    <small data-translate="otrs_detail_cook_version" class="hidden-xs"></small>
+                                    <i class="glyphicon glyphicon-eye-open" aria-hidden="true"></i>
+                                </span>
+                            </button>
+                        </div>
+                        <pre data-ng-show="message.displayBodyCook" data-ng-bind-html="message.bodyCook"></pre>
+                        <pre data-ng-hide="message.displayBodyCook" data-ng-bind="message.body"></pre>
+                        <div class="pull-right" data-ng-bind="message.creationDate | date:'short'"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" data-ng-hide="OtrsDetailsCtrl.loaders.messages">
+            <div class="col-md-9 col-xs-12">
+                <textarea data-ng-model="OtrsDetailsCtrl.answer.body" style="width: 100%" rows="4" data-ng-disabled="OtrsDetailsCtrl.loaders.reply"></textarea>
+                <p class="italic" data-ng-if="OtrsDetailsCtrl.ticket.state !== 'closed'" data-translate="otrs_detail_info"></p>
+                <p class="italic" data-ng-if="OtrsDetailsCtrl.ticket.state === 'closed'" data-translate="otrs_detail_info2"></p>
+            </div>
+            <div class="col-md-3 col-xs-12">
+                <button class="btn btn-primary  col-xs-12"
+                        data-ng-click="OtrsDetailsCtrl.reply()"
+                        type="button"
+                        data-ng-disabled="OtrsDetailsCtrl.loaders.reply || !OtrsDetailsCtrl.answer.body || OtrsDetailsCtrl.loaders.close"
+                        data-ng-if="OtrsDetailsCtrl.ticket.state !== 'closed'">
+                    <spinner data-ng-show="OtrsDetailsCtrl.loaders.reply" class="pull-left"></spinner>
+                    <i class="glyphicon glyphicon-share-alt" aria-hidden="true"></i>
+                    <span data-translate="otrs_detail_reply"></span>
+                </button>
+                <button type="button" class="btn btn-primary  col-xs-12" data-ng-click="OtrsDetailsCtrl.reopenTicket()"
+                        data-ng-disabled="OtrsDetailsCtrl.loaders.reply || !OtrsDetailsCtrl.answer.body || OtrsDetailsCtrl.loaders.close"
+                        data-ng-if="OtrsDetailsCtrl.ticket.state === 'closed'">
+                    <spinner data-ng-show="OtrsDetailsCtrl.loaders.reply" class="pull-left"></spinner>
+                    <i class="glyphicon glyphicon-repeat" aria-hidden="true"></i>
+                    <span data-translate="otrs_detail_reopen"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+</section>

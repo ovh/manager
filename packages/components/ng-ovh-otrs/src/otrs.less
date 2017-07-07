@@ -1,0 +1,26 @@
+.module-otrs {
+
+    .module-otrs-title,
+    .module-otrs-content {
+        padding: 0 32px;
+    }
+
+    .table {
+        position: relative;
+
+        > thead > tr > th:last-child {
+            width: 35px;
+        }
+
+        > tbody > tr.row-clickable a {
+            width: 100%;
+            display: inline-block;
+            color: inherit;
+
+            &:hover {
+                text-decoration: none;
+            }
+        }
+    }
+
+}

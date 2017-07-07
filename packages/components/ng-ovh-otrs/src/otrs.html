@@ -1,0 +1,285 @@
+<div class="module-otrs">
+
+    <header class="module-otrs-title">
+        <h1 data-translate="otrs_menu_ticket_list_title"></h1>
+    </header>
+
+    <div class="module-otrs-content">
+        <div class="row">
+            <div class="col-xs-12">
+
+                <div class="clearfix">
+                    <!-- SEARCH  -->
+                    <button type="button"
+                            class="btn btn-search pull-right"
+                            data-ng-class="{ 'visibility-hide' : OtrsCtrl.loaders.table }"
+                            data-ng-click="OtrsCtrl.search.open = !OtrsCtrl.search.open">
+
+                        <i data-ng-hide="OtrsCtrl.search.open" class="fa fa-search right-space-m8" aria-hidden="true"></i>
+                        <i data-ng-show="OtrsCtrl.search.open" class="fa fa-times right-space-m8" aria-hidden="true"></i>
+                        {{'otrs_filters_button' | translate}}
+                    </button>
+                    <!-- NEW TICKET -->
+                    <button type="button"
+                            class="btn btn-primary pull-right right-space-m8"
+                            data-ng-class="{ 'visibility-hide' : OtrsCtrl.loaders.table}"
+                            data-ng-click="OtrsCtrl.openDialog()">
+                        <i class="glyphicon glyphicon-plus right-space-m8" aria-hidden="true"></i>
+                        {{'otrs_menu_ticket_create' | translate}}
+                    </button>
+                </div>
+
+                <!-- SEARCH FORM -->
+                <form name="searchTicketsForm"
+                      novalidate
+                      data-ng-slide-down="OtrsCtrl.search.open" duration="0.3"
+                      data-ng-show="OtrsCtrl.search.open"
+                      class="ovh-form-flat animate-opacity2-leave">
+
+                    <div class="top-space-p4 clearfix row">
+
+                        <div class="col-md-3 col-xs-12 col-md-offset-3 col-xs-offset-0">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <label class="control-label" for="select-services" data-translate="otrs_ticket_service"></label>
+                                </div>
+                            </div>
+                            <div class="flat-input-container row">
+                                <div class="col-xs-12">
+                                <select flat-select id="select-services"
+                                        name="select-services" class="form-control"
+                                        data-ng-model="OtrsCtrl.filters.serviceName">
+                                    <option value="" data-translate="otrs_no_filter"></option>
+                                    <optgroup data-ng-repeat="category in OtrsCtrl.services | orderBy: 'translatedName' track by $index" label="{{ category.translatedName }}">
+                                        <option data-ng-repeat="service in category.services track by $index" value="{{ service.serviceName }}" data-ng-bind="service.displayName"></option>
+                                    </optgroup>
+                                </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 col-xs-12">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <label class="control-label" for="select-state" data-translate="otrs_ticket_state"></label>
+                                </div>
+                            </div>
+                            <div class="flat-input-container row">
+                                <div class="col-xs-12">
+                                    <select flat-select id="select-state" name="select-state" class="form-control"
+                                            data-ng-model="OtrsCtrl.filters.status"
+                                            data-ng-options="status as ('otrs_ticket_state_' + status | translate) for status in OtrsCtrl.status">
+                                        <option value="" data-translate="otrs_no_filter"></option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 col-xs-12">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <label class="control-label" for="select-categories" data-translate="otrs_ticket_category"></label>
+                                </div>
+                            </div>
+                            <div class="row" flat-input-container>
+                                <div class="col-xs-12">
+                                    <select flat-select id="select-categories" name="select-categories" class="form-control"
+                                            data-ng-model="OtrsCtrl.filters.category"
+                                            data-ng-options="category as ('otrs_category_'+category | translate) for category in OtrsCtrl.categories">
+                                        <option value="" data-translate="otrs_no_filter"></option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="top-space-p4 clearfix row">
+                        <div  class="col-md-3 col-xs-12 col-md-offset-6 col-xs-offset-0">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <label class="control-label" for="date-creation-start" data-translate="otrs_ticket_date_creation_include"></label>
+                                </div>
+                            </div>
+
+                            <div class="row" flat-input-container>
+                                <div class="col-xs-12">
+
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></div>
+
+                                        <input type="text"
+                                               class="form-control datepicker-ui-pretty"
+                                               id="date-creation-start"
+                                               name="date-creation-start"
+                                               data-uib-datepicker-popup="shortDate"
+                                               data-is-open="openedCreationStart"
+                                               data-ng-click="openedCreationStart = true"
+                                               data-ui-validate-watch="'OtrsCtrl.search.creationEnd'"
+                                               data-ui-validate="{ 'startBeforeEndDate' : '!$value
+                                                                 || !OtrsCtrl.filters.maxCreationDate
+                                                                 || OtrsCtrl.filters.maxCreationDate > $value' }"
+                                               data-ng-model="OtrsCtrl.filters.minCreationDate"
+                                               data-ng-disabled="OtrsCtrl.loaders.table">
+
+                                        <div class="input-group-btn" data-ng-show="OtrsCtrl.filters.minCreationDate">
+                                            <button type="button"
+                                                    class="no-style btn"
+                                                    data-ng-click="OtrsCtrl.filters.minCreationDate = null"
+                                                    data-ng-disabled="OtrsCtrl.loaders.table">
+                                                <i class="fa fa-times" aria-hidden="true"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div  class="col-md-3 col-xs-12">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <label class="control-label" for="date-creation-end" data-translate="otrs_ticket_date_creation_exclude"></label>
+                                </div>
+                            </div>
+
+                            <div class="row" flat-input-container>
+                                <div class="col-xs-12">
+
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></div>
+
+                                        <input type="text"
+                                               class="form-control datepicker-ui-pretty"
+                                               id="date-creation-end"
+                                               name="searchCreationEnd"
+                                               data-uib-datepicker-popup="shortDate"
+                                               data-is-open="openedCreationEnd"
+                                               data-ng-click="openedCreationEnd = true"
+                                               data-ng-model="OtrsCtrl.filters.maxCreationDate"
+                                               data-ui-validate-watch="'OtrsCtrl.filters.minCreationDate'"
+                                               data-ui-validate="{'startBeforeEndDate' : '!$value
+                                                                 || !OtrsCtrl.filters.minCreationDate
+                                                                 || OtrsCtrl.filters.minCreationDate < $value' }"
+                                               data-ng-disabled="OtrsCtrl.loaders.table">
+
+                                        <div class="input-group-btn" data-ng-show="OtrsCtrl.filters.maxCreationDate">
+                                            <button type="button"
+                                                    class="no-style btn"
+                                                    data-ng-click="OtrsCtrl.filters.maxCreationDate = null"
+                                                    data-ng-disabled="OtrsCtrl.loaders.table">
+                                                <i class="fa fa-times" aria-hidden="true"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- TICKETS TABLE -->
+                <div class="table-responsive-vertical shadow-z-1 top-space-m12">
+                    <table class="table table-pretty table-hover table-striped">
+                        <thead>
+                        <tr>
+                            <th data-translate="otrs_ticket_number"></th>
+                            <th data-translate="otrs_ticket_service"></th>
+                            <th data-translate="otrs_ticket_category"></th>
+                            <th data-translate="otrs_ticket_type"></th>
+                            <th data-translate="otrs_ticket_suject"></th>
+                            <th data-translate="otrs_ticket_last_message_from"></th>
+                            <th data-translate="otrs_ticket_date_creation"></th>
+                            <th data-translate="otrs_ticket_date_update"></th>
+                            <th data-translate="otrs_ticket_state"></th>
+                            <th class="text-center">
+                                <button type="button"
+                                        class="no-style"
+                                        data-ng-click="OtrsCtrl.getTickets(true)">
+                                    <i class="glyphicon glyphicon-refresh" aria-hidden="true"></i>
+                                </button>
+                            </th>
+                        </tr>
+                        </thead>
+
+                        <tbody data-ng-show="OtrsCtrl.loaders.table">
+                        <tr>
+                            <td colspan="10" class="text-center">
+                                <spinner></spinner>
+                            </td>
+                        </tr>
+                        </tbody>
+
+                        <tbody data-ng-if="!OtrsCtrl.loaders.table && OtrsCtrl.tickets.ids.length === 0">
+                        <tr>
+                            <td colspan="10" class="text-center">
+                                <span data-translate="otrs_ticket_empty"></span>
+                            </td>
+                        </tr>
+                        </tbody>
+                        <tbody data-ng-hide="OtrsCtrl.loaders.table">
+                        <tr data-ng-repeat="ticket in OtrsCtrl.tickets.detail track by $index"
+                            class="row-clickable">
+
+                            <td data-title="{{::'otrs_ticket_number' | translate}}" class="word-break">
+                                <a ui-sref="otrs-details({id: ticket.ticketId})" data-ng-bind="ticket.ticketNumber"></a>
+                            </td>
+
+                            <td data-title="{{::'otrs_ticket_service' | translate}}" class="word-break">
+                                <a ui-sref="otrs-details({id: ticket.ticketId})" data-ng-bind="ticket.serviceDescription || ticket.serviceName || 'otrs_service_category_other' | translate"></a>
+                            </td>
+
+                            <td data-title="{{::'otrs_ticket_category' | translate}}" class="word-break">
+                                <a ui-sref="otrs-details({id: ticket.ticketId})" data-ng-bind="'otrs_category_' + ticket.category | translate"></a>
+                            </td>
+
+                            <td data-title="{{::'otrs_ticket_type' | translate}}" class="word-break">
+                                <a ui-sref="otrs-details({id: ticket.ticketId})" data-ng-bind="'otrs_types_' + ticket.type | translate"></a>
+                            </td>
+
+                            <td data-title="{{::'otrs_ticket_suject' | translate}}" class="word-break">
+                                <a ui-sref="otrs-details({id: ticket.ticketId})" data-ng-bind="ticket.subject"></a>
+                            </td>
+
+                            <td data-title="{{::'otrs_ticket_last_message_from' | translate}}" class="word-break">
+                                <a ui-sref="otrs-details({id: ticket.ticketId})" data-ng-bind="'otrs_ticket_lastMessageFrom_' + ticket.lastMessageFrom | translate"></a>
+                            </td>
+
+                            <td data-title="{{::'otrs_ticket_date_creation' | translate}}" class="word-break">
+                                <a ui-sref="otrs-details({id: ticket.ticketId})" data-ng-bind="ticket.creationDate | date:'short'"></a>
+                            </td>
+
+                            <td data-title="{{::'otrs_ticket_date_update' | translate}}" class="word-break">
+                                <a ui-sref="otrs-details({id: ticket.ticketId})" data-ng-bind="ticket.updateDate | date:'short'"></a>
+                            </td>
+
+                            <td data-title="{{::'otrs_ticket_state' | translate}}" class="word-break">
+                                <a ui-sref="otrs-details({id: ticket.ticketId})" data-ng-bind="'otrs_ticket_state_' + ticket.state | translate"></a>
+                            </td>
+
+                            <td class="text-center">
+                                <a ui-sref="otrs-details({id: ticket.ticketId})">
+                                    <i class="glyphicon glyphicon-search" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="table-pretty-pagination"
+                     data-pagination-front
+                     data-items="OtrsCtrl.tickets.ids"
+                     data-paginated-items="OtrsCtrl.tickets.detail"
+                     data-current-page="currentPage"
+                     data-items-per-page="OtrsCtrl.itemsPerPage"
+                     data-nb-pages="nbPages"
+                     data-transform-item="OtrsCtrl.transformItem(item)"
+                     data-on-transform-item-done="OtrsCtrl.onTransformItemDone(items)"
+                     data-page-placeholder="{{ 'common_pagination_page' | translate:{currentPage: currentPage, nbPages : nbPages} }}"
+                     data-item-per-page-placeholder="{{ 'common_pagination_display' | translate }}">
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

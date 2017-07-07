@@ -1,0 +1,10 @@
+.tmp
+.idea
+npm-debug.log
+bower_components
+.work
+.eslintignore
+.editorconfig
+.eslintrc.json
+.*.swp
+example

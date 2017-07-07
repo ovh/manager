@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="otrs_detail_title" qtlid="245220">Support - Conversation thread - ticket {{id}}</translation>
+   <translation id="otrs_detail_title2" qtlid="228774">- ticket {0}</translation>
+   <translation id="otrs_detail_title3_open" qtlid="228787">- (In progress)</translation>
+   <translation id="otrs_detail_title3_closed" qtlid="228800">- (Closed)</translation>
+
+   <translation id="otrs_detail_error" qtlid="228813">An error has occurred while retrieving the details of ticket {0}.</translation>
+   <translation id="otrs_detail_message_error" qtlid="228826">An error has occurred while retrieving the messages in ticket {0}.</translation>
+
+   <translation id="otrs_detail_subject" qtlid="75594">Ticket subject:</translation>
+   <translation id="otrs_detail_serviceName" qtlid="228423">Service concerned:</translation>
+   <translation id="otrs_detail_creationDate" qtlid="228839">Open since: </translation>
+   <translation id="otrs_detail_updateDate" qtlid="228852">Updated on the:</translation>
+   <translation id="otrs_detail_from_customer" qtlid="228865">From: You</translation>
+   <translation id="otrs_detail_from_support" qtlid="228878">From: OVH Support</translation>
+   <translation id="otrs_detail_raw_version" qtlid="244664">See the draft version of the message</translation>
+   <translation id="otrs_detail_cook_version" qtlid="244677">See the interpreted version of the message</translation>
+   <translation id="otrs_detail_reply" qtlid="69233">Reply</translation>
+   <translation id="otrs_detail_close" qtlid="62774">Close the ticket</translation>
+   <translation id="otrs_detail_reopen" qtlid="227624">Reopen the ticket</translation>
+   <translation id="otrs_detail_reply_error" qtlid="228891">An error has occurred while sending your reply.</translation>
+   <translation id="otrs_detail_reopen_error" qtlid="228904">An error has occurred while reopening this ticket.</translation>
+   <translation id="otrs_detail_close_error" qtlid="228917">An error has occurred while closing this ticket.</translation>
+
+   <translation id="otrs_detail_info" qtlid="228930">To reply to the ticket, fill in the above text box and click on "reply".</translation>
+   <translation id="otrs_detail_info2" qtlid="228943">To reopen the ticket, fill in the above text box and click on "reopen the ticket".</translation>
+
+   <translation id="otrs_menu_ticket_list_title" qtlid="260840">Your support tickets</translation>
+   <translation id="otrs_menu_ticket_list" qtlid="228631">List of tickets</translation>
+   <translation id="otrs_menu_ticket_create" qtlid="29515">Create a ticket</translation>
+   <translation id="otrs_ticket_number" qtlid="245168">Ticket n°</translation>
+   <translation id="otrs_ticket_service" qtlid="31042">Service</translation>
+   <translation id="otrs_ticket_category" qtlid="28459">Category</translation>
+   <translation id="otrs_ticket_type" qtlid="2642">Type</translation>
+   <translation id="otrs_ticket_suject" qtlid="22639">Subject</translation>
+   <translation id="otrs_ticket_last_message_from" qtlid="228709">Last person to intervene</translation>
+   <translation id="otrs_ticket_date_creation" qtlid="26419">Creation date</translation>
+   <translation id="otrs_ticket_date_update" qtlid="228748">Date of update</translation>
+   <translation id="otrs_ticket_state" qtlid="33790">Status</translation>
+   <translation id="otrs_ticket_empty" qtlid="228644">There are no tickets available.</translation>
+   <translation id="otrs_filters_button" qtlid="2606">Filters</translation>
+   <translation id="otrs_ticket_state_open" qtlid="75654">Open</translation>
+   <translation id="otrs_ticket_state_closed" qtlid="66236">Closed</translation>
+   <translation id="otrs_ticket_date_creation_include" qtlid="228592">Creation date from and including:</translation>
+   <translation id="otrs_ticket_date_creation_exclude" qtlid="228605">Creation date up to and excluding:</translation>
+   <translation id="otrs_ticket_lastMessageFrom_customer" qtlid="228722">You</translation>
+   <translation id="otrs_ticket_lastMessageFrom_support" qtlid="228735">OVH Support</translation>
+   <translation id="otrs_category_hosting" qtlid="31990">Hosting</translation>
+   <translation id="otrs_category_mail" qtlid="33598">Email</translation>
+   <translation id="otrs_category_exchange" qtlid="80430">Exchange</translation>
+   <translation id="otrs_category_domain" qtlid="8458">Domain</translation>
+   <translation id="otrs_category_ssl" qtlid="84921">SSL</translation>
+   <translation id="otrs_category_CDN" qtlid="99812">CDN</translation>
+   <translation id="otrs_category_cdn" qtlid="99812">CDN</translation>
+   <translation id="otrs_category_web-other" qtlid="233112">Other web hosting request</translation>
+   <translation id="otrs_category_web-billing" qtlid="233125">Web billing</translation>
+   <translation id="otrs_category_dedicated-other" qtlid="233557">Other dedicated request</translation>
+   <translation id="otrs_category_dedicated-billing" qtlid="233570">Dedicated billing</translation>
+   <translation id="otrs_category_dedicated" qtlid="101913">Dedicated server</translation>
+   <translation id="otrs_category_housing" qtlid="233583">Hosting</translation>
+   <translation id="otrs_category_publiccloud" qtlid="233596">Public Cloud</translation>
+   <translation id="otrs_category_dedicatedcloud" qtlid="167470">Dedicated Cloud</translation>
+   <translation id="otrs_category_vps" qtlid="23083">VPS</translation>
+   <translation id="otrs_category_adsl" qtlid="233138">ADSL</translation>
+   <translation id="otrs_category_voip" qtlid="251798">VOIP/SMS</translation>
+   <translation id="otrs_category_sms" qtlid="28243">SMS</translation>
+   <translation id="otrs_category_fax" qtlid="32926">Fax</translation>
+   <translation id="otrs_category_telecom-other" qtlid="233151"></translation>
+   <translation id="otrs_category_telecom-billing" qtlid="233164"></translation>
+   <translation id="otrs_category_VOIP" qtlid="251642"></translation>
+   <translation id="otrs_category_PCI" qtlid="251655">Public Cloud</translation>
+   <translation id="otrs_category_SD" qtlid="101913">Dedicated server</translation>
+   <translation id="otrs_category_DC" qtlid="251668">Dedicated Cloud</translation>
+   <translation id="otrs_category_neworder" qtlid="251681">New order</translation>
+   <translation id="otrs_category_billing" qtlid="32950">Billing</translation>
+   <translation id="otrs_category_ms" qtlid="251694">Exchange/Office/hubiC</translation>
+   <translation id="otrs_category_incident-web" qtlid="251707">Web Incident</translation>
+   <translation id="otrs_category_incident-telecom" qtlid="251720"></translation>
+   <translation id="otrs_category_incident-cloud" qtlid="251733">Cloud incident</translation>
+   <translation id="otrs_category_vip-web" qtlid="135840">Web</translation>
+   <translation id="otrs_category_vip-telecom" qtlid="135827">Telecom</translation>
+   <translation id="otrs_category_vip-dedicatedcloud" qtlid="15677">Cloud</translation>
+   <translation id="otrs_category_vip-dedicated" qtlid="31738">Dedicated</translation>
+   <translation id="otrs_category_choice" qtlid="251746">Support options:</translation>
+   <translation id="otrs_category_billing" qtlid="251759">Question regarding an order</translation>
+   <translation id="otrs_category_assistance" qtlid="251772">Technical and commercial support</translation>
+   <translation id="otrs_category_incident" qtlid="68252">Report an incident</translation>
+   <translation id="otrs_category_otb" qtlid="281977">OverTheBox</translation>
+<translation id="otrs_category_null"/>
+   <translation id="otrs_popup_services_other" qtlid="316047">Other request </translation>
+
+   <translation id="otrs_err_get_infos" qtlid="243832">An error occurred when retrieving the details:</translation>
+   <translation id="otrs_no_filter" qtlid="85281">No filter</translation>
+   <translation id="otrs_types_criticalIntervention" qtlid="233073">Critical intervention</translation>
+   <translation id="otrs_types_genericRequest" qtlid="233086">Generic request</translation>
+   <translation id="otrs_menu_message_title" qtlid="261010">Support - Conversation thread</translation>
+   <translation id="otrs_back_to_list" qtlid="245181">Go back to your list of tickets</translation>
+   <translation id="otrs_popup_service" qtlid="228423">Service concerned:</translation>
+   <translation id="otrs_popup_category" qtlid="233099">Product category:</translation>
+   <translation id="otrs_popup_body" qtlid="75606">Message:</translation>
+   <translation id="otrs_popup_subject" qtlid="55289">Subject:</translation>
+   <translation id="otrs_popup_add_ticket" qtlid="228436">Create a ticket</translation>
+   <translation id="otrs_popup_title" qtlid="228449">Create a support ticket</translation>
+   <translation id="otrs_popup_icon_minimize" qtlid="382037">Minimise help request window</translation>
+   <translation id="otrs_popup_icon_maximize" qtlid="382050">Maximise help request window</translation>
+   <translation id="otrs_popup_icon_close" qtlid="382063">Close help request window</translation>
+   <translation id="otrs_popup_type" qtlid="245194">Ticket type:</translation>
+   <translation id="otrs_popup_move" qtlid="228462">You can move this pop-up by moving its header.</translation>
+   <translation id="otrs_popup_sent_error" qtlid="228475">An error has occurred while creating this ticket.</translation>
+   <translation id="otrs_popup_sent_success" qtlid="261023">Your ticket number {{ticketNumber}} has been noted. You can find the conversation thread for this ticket from the menu. <a href="#/support">Support - list of tickets</a>.</translation>
+   <translation id="otrs_popup_get_services_error" qtlid="228501">An error has occurred while retrieving your services.</translation>
+   <translation id="otrs_popup_get_types_error" qtlid="233047">Error when retrieving the data.</translation>
+   <translation id="otrs_popup_services_refresh" qtlid="228514">Update the list</translation>
+   <translation id="otrs_popup_require" qtlid="137634">Compulsory fields</translation>
+   <translation id="otrs_vip_phone" qtlid="251811">You can contact us on ‎020 7357 6616.</translation>
+</translations>
