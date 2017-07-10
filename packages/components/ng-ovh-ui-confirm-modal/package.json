@@ -1,6 +1,6 @@
 {
   "name": "ovh-angular-ui-confirm-modal",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Simple confirmation modal",
   "main": "./dist/ovh-angular-ui-confirm-modal.min.js",
   "repository": "ovh-ux/ovh-angular-ui-confirm-modal.git",

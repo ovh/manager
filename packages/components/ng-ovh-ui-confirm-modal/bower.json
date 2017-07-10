@@ -1,7 +1,7 @@
 {
   "name": "ovh-angular-ui-confirm-modal",
   "description": "Simple confirmation modal",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": "./dist/ovh-angular-ui-confirm-modal.min.js",
   "ignore": [
     "bower_components",
