@@ -7,7 +7,7 @@
 
 [![NPM](https://nodei.co/npm/ovh-angular-jsplumb.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/ovh-angular-jsplumb/)
 
-Allow to draw links between elements using [jsplumb toolkit](http://www.jsplumb.org/).
+Allow to draw links between elements using [jsplumb](https://jsplumbtoolkit.com).
 
 ## Table of contents
 * [Dependencies](#dependencies)
