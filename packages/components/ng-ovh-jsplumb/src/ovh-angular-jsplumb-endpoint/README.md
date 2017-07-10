@@ -10,19 +10,20 @@ Create a jsplumb endpoint on element (source and/or target). See [elements as so
 
 ## How it works ?
 
-`jsplumbEndpoint` requires [`jsplumbInstance`](../jsplumb-instance) directive to work. `ovh-angular-jsplumb` only use makeSource and makeTarget (see [elements as sources & targets](http://www.jsplumb.org/doc/connections.html#sourcesandtargets) for more informations) to create endpoints. So if you don't provide `source` or `target` options, `jsplumbEndpoint` won't do anything.
+`jsplumbEndpoint` requires [`jsplumbInstance`](https://jsplumbtoolkit.com/community/apidocs/classes/jsPlumbInstance.html) directive to work. `ovh-angular-jsplumb` only use makeSource and makeTarget (see [elements as sources & targets](https://jsplumbtoolkit.com/community/doc/connections.html#sourcesandtargets) for more informations) to create endpoints. So if you don't provide `source` or `target` options, `jsplumbEndpoint` won't do anything.
 
 By default `jsplumbInstance` will create connections provided on endpoint creation. The if you want to add or remove new connections, simply update `jsplumb-endpoint-connection-ids` list and connections will be added or removed by directive.
 
 ## Usage
 
-First, create `jsplumbInstance` and then create `jsplumbEndpoint`. `jsplumbEndpoint` is restricted to attribute (A) :
- ```html
- <div data-jsplumb-instance="options">
+First, create `jsplumbInstance` and then create `jsplumbEndpoint`. `jsplumbEndpoint` is restricted to attribute (A):
+
+```html
+<div data-jsplumb-instance="options">
     <div data-jsplumb-endpoint id="ep1">
         ...
     </div>
- </div>
+</div>
  ```
 
 ## Options
@@ -37,7 +38,7 @@ First, create `jsplumbInstance` and then create `jsplumbEndpoint`. `jsplumbEndpo
 
 ## Events
 #### jsplumb.endpoint.created
-Is broadcasted by <code>$rootScope</code> when jsplumb endpoint creation is done. Parent `jsplumbInstance` directive will create automatically connections between endpoints. Broadcast function callback signature :
+Is broadcasted by <code>$rootScope</code> when jsplumb endpoint creation is done. Parent `jsplumbInstance` directive will create automatically connections between endpoints. Broadcast function callback signature:
 
 | Name | Type | Details |
 | :--: | :--: | :--: |

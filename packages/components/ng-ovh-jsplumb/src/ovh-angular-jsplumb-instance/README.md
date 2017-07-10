@@ -10,29 +10,30 @@ Create a jsplumb instance and make possible to create connections between endpoi
 
 ## Usage
 
-jsplumbInstance is restricted to attribute (A) :
- ```html
- <div data-jsplumb-instance="options">
-     ...
- </div>
- ```
+jsplumbInstance is restricted to attribute (A):
+
+```html
+<div data-jsplumb-instance="options">
+    ...
+</div>
+```
 
 ## Options
 
 | Name | Type | Details |
 | :--: | :--: | :--: |
-| jsplumb-instance | Object | Options of the jsplumb instance (see [jsplumb.getInstance](http://www.jsplumb.org/apidocs/classes/jsPlumb.html#method_getInstance) and [jsplumb.Defaults](http://www.jsplumb.org/doc/defaults.html) for more informations. |
+| jsplumb-instance | Object | Options of the jsplumb instance (see [jsplumb.getInstance](https://jsplumbtoolkit.com/community/apidocs/classes/jsPlumbInstance.html#method_getInstance) and [jsplumb.Defaults](https://jsplumbtoolkit.com/community/doc/defaults.html) for more informations. |
 
 ## Events
 ### jsplumb.instance.created
-Is broadcasted by <code>$rootScope</code> when jsplumb instance creation is finished. Broadcast function callback signature :
+Is broadcasted by <code>$rootScope</code> when jsplumb instance creation is finished. Broadcast function callback signature:
 
 | Name | Type | Details |
 | :--: | :--: | :--: |
 | instance | Object | jsplumb instance created |
 
 ### jsplumb.instance.connection
-Is broadcasted by <code>$rootScope</code> when a connection is done between two enpoints in jsplumb instance (see [jsplumb.connection event](http://www.jsplumb.org/doc/events.html#evt-connection) for more informations). Broadcast function callback signature :
+Is broadcasted by <code>$rootScope</code> when a connection is done between two enpoints in jsplumb instance (see [jsplumb.connection event](https://jsplumbtoolkit.com/community/doc/events.html#connectionEvents) for more informations). Broadcast function callback signature:
 
 | Name | Type | Details |
 | :--: | :--: | :--: |
@@ -43,7 +44,7 @@ Is broadcasted by <code>$rootScope</code> when a connection is done between two 
 | originalEvent | Object | Is defined when connection is done by dragging from endpoint to another. Is `undefined` if connection is made programmatically |
 
 ### jsplumb.instance.connection.detached
-Is broadcasted by <code>$rootScope</code> when a connection has been removed (see [jsplumb.connectionDetached event](http://www.jsplumb.org/doc/events.html#evt-connection-detached) for more informations). Broadcast function callback signature :
+Is broadcasted by <code>$rootScope</code> when a connection has been removed (see [jsplumb.connectionDetached event](https://jsplumbtoolkit.com/community/doc/events.html#evt-connection-detached) for more informations). Broadcast function callback signature:
 
 | Name | Type | Details |
 | :--: | :--: | :--: |
@@ -54,7 +55,7 @@ Is broadcasted by <code>$rootScope</code> when a connection has been removed (se
 | originalEvent | Object | Is defined when detach is done a jsplumb event (for example when moving single connection to an invalid drop area). Is `undefined` if detach is made programmatically |
 
 ### jsplumb.instance.connection.click
-Is broadcasted by <code>$rootScope</code> when a connection has been clicked in jsplumb instance (see [jsplumb.click event](http://www.jsplumb.org/doc/events.html#evt-click) for more informations). Broadcast function callback signature :
+Is broadcasted by <code>$rootScope</code> when a connection has been clicked in jsplumb instance (see [jsplumb.click event](https://jsplumbtoolkit.com/community/doc/events.html#evt-click) for more informations). Broadcast function callback signature:
 
 | Name | Type | Details |
 | :--: | :--: | :--: |
@@ -72,7 +73,7 @@ Clears the offset and size cache of each endpoints end then repaints all connect
 
 ### getConnectionBySourceIdAndTargetId
 
-Return a jsplumb connection object by providing a source endpoint id and target endpoint id. This method checks in both direction : from source to target or from target to source. If no connection is found, returns `undefined`.
+Return a jsplumb connection object by providing a source endpoint id and target endpoint id. This method checks in both direction: from source to target or from target to source. If no connection is found, returns `undefined`.
 
 | Name | Type | Details |
 | :--: | :--: | :--: |
