@@ -80,7 +80,7 @@ angular.module("ovh-angular-pagination-front").directive("paginationFront", func
             }
 
             if (localStorage && localStorage.getItem(saveName)) {
-                $scope.itemsPerPage = parseInt(localStorage.getItem(saveName)) || 10;
+                $scope.itemsPerPage = parseInt(localStorage.getItem(saveName), 10) || 10;
             } else if (!$scope.itemsPerPage) {
                 $scope.itemsPerPage = 10;
             }
