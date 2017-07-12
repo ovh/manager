@@ -37,6 +37,7 @@
  * @param {Function=} onTransformItemDone       Function invoked when transformItem is done on all items
  * @param {Function=} onTransformItemNotify     Function invoked when transformItem is done on each item
  * @param {Number=} goToPage                    Page to reach
+ * @param {String=} saveName                    Name of number value items per page will be saved into localstorage  (Optional)
  */
 angular.module("ovh-angular-pagination-front").directive("paginationFront", function ($q) {
     "use strict";
@@ -60,9 +61,11 @@ angular.module("ovh-angular-pagination-front").directive("paginationFront", func
             onTransformItemGetPromise: "&",
             onTransformItemDone: "&",
             onTransformItemNotify: "&",
-            goToPage: "@"
+            goToPage: "@",
+            saveName: "@?"
         },
         link: function ($scope) {
+            var saveName = typeof $scope.saveName === "string" && $scope.saveName.length ? "pagination_front_items_per_page_" + $scope.saveName : "pagination_front_items_per_page";
 
             if ($scope.fakeCurrentPage) {
                 $scope.currentPage = $scope.fakeCurrentPage;
@@ -76,8 +79,8 @@ angular.module("ovh-angular-pagination-front").directive("paginationFront", func
                 $scope.currentPage = 1;
             }
 
-            if (localStorage && localStorage.getItem("pagination_front_items_per_page")) {
-                $scope.itemsPerPage = localStorage.getItem("pagination_front_items_per_page");
+            if (localStorage && localStorage.getItem(saveName)) {
+                $scope.itemsPerPage = parseInt(localStorage.getItem(saveName)) || 10;
             } else if (!$scope.itemsPerPage) {
                 $scope.itemsPerPage = 10;
             }
@@ -190,7 +193,7 @@ angular.module("ovh-angular-pagination-front").directive("paginationFront", func
             $scope.$watch("itemsPerPage", function (itemsPerPage) {
                 if (itemsPerPage !== undefined) {
                     if (localStorage) {
-                        localStorage.setItem("pagination_front_items_per_page", itemsPerPage);
+                        localStorage.setItem(saveName, itemsPerPage);
                     }
                     paginates();
                 }

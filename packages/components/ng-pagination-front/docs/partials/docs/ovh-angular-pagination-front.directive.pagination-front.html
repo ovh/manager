@@ -1,4 +1,4 @@
-<a href="https://github.com/ovh-ux/ovh-angular-pagination-front/blob/master/src/ovh-angular-pagination-front-directive.js#L41" class="view-source"><i class="icon-eye-open"> </i>View source</a><h1><code ng:non-bindable="">pagination-front</code>
+<a href="https://github.com/ovh-ux/ovh-angular-pagination-front/blob/master/src/ovh-angular-pagination-front-directive.js#L42" class="view-source"><i class="icon-eye-open"> </i>View source</a><h1><code ng:non-bindable="">pagination-front</code>
 <div><span class="hint">directive in module <code ng:non-bindable="">ovh-angular-pagination-front</code>
 </span>
 </div>
@@ -20,7 +20,8 @@
      [on-transform-item-get-promise="{Function}"]
      [on-transform-item-done="{Function}"]
      [on-transform-item-notify="{Function}"]
-     [go-to-page="{Number}"]&gt;
+     [go-to-page="{Number}"]
+     [save-name="{String}"]&gt;
    ...
 &lt;/ANY&gt;</pre>
 <h4 id="usage_parameters">Parameters</h4><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>items</td><td><a href="" class="label type-hint type-hint-array">Array</a></td><td><div class="ovh-angular-pagination-front-directive-page ovh-angular-pagination-front-directive-pagination-front-page"><p>List of items to paginate</p>
@@ -37,6 +38,7 @@
 </div></td></tr><tr><td>onTransformItemDone <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-function">Function</a></td><td><div class="ovh-angular-pagination-front-directive-page ovh-angular-pagination-front-directive-pagination-front-page"><p>Function invoked when transformItem is done on all items</p>
 </div></td></tr><tr><td>onTransformItemNotify <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-function">Function</a></td><td><div class="ovh-angular-pagination-front-directive-page ovh-angular-pagination-front-directive-pagination-front-page"><p>Function invoked when transformItem is done on each item</p>
 </div></td></tr><tr><td>goToPage <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-number">Number</a></td><td><div class="ovh-angular-pagination-front-directive-page ovh-angular-pagination-front-directive-pagination-front-page"><p>Page to reach</p>
+</div></td></tr><tr><td>saveName <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">String</a></td><td><div class="ovh-angular-pagination-front-directive-page ovh-angular-pagination-front-directive-pagination-front-page"><p>Name of number value items per page will be saved into localstorage  (Optional)</p>
 </div></td></tr></tbody></table></div>
 <h2 id="example">Example</h2>
 <div class="example"><div class="ovh-angular-pagination-front-directive-page ovh-angular-pagination-front-directive-pagination-front-page"><h4 id="example_source">Source</h4>
