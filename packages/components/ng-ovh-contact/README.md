@@ -1,34 +1,80 @@
-# ovh-contact
+# ovh-angular-contact
 
-_''ovh-contact'' helps you dealing with ovh contacts from /me/contact API._
+![githubbanner](https://user-images.githubusercontent.com/3379410/27423240-3f944bc4-5731-11e7-87bb-3ff603aff8a7.png)
+
+[![Maintenance](https://img.shields.io/maintenance/yes/2017.svg)]() [![Chat on gitter](https://img.shields.io/gitter/room/ovh/ux.svg)](https://gitter.im/ovh/ux) [![Build Status](https://travis-ci.org/ovh-ux/ovh-angular-contact.svg)](https://travis-ci.org/ovh-ux/ovh-angular-contact)
+
+[![NPM](https://nodei.co/npm/ovh-angular-contact.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/ovh-angular-contact/)
+
+> ovh-angular-contact helps you dealing with ovh contacts from [/me/contact](https://api.ovh.com/console/#/me/contact#GET) API.
 
 ## Features
 
-- selecting a contact and editing it ;
+- selecting a contact and editing it;
 - creating a new ovh contact.
 
 ## Todo
 
-- add some callbacks (onEdit, onAdd, ...) ;
-- maybe add a directive that list contacts ?
+- add some callbacks (onEdit, onAdd, ...);
+- maybe add a directive that list contacts?
 
-## Getting Started
+## Installation
 
-### Installation
+**IMPORTANT NOTE:** as "ovh-angular-contact" component use "ovh-api-services" you **NEED** to have [ovh-api-services](https://github.com/ovh-ux/ovh-api-services) to be loaded and injected into your app!
 
-With bower:
+## Bower
+
+```sh
+$ bower install ovh-angular-contact --save
 ```
-# bower install git@stash.ovh.net:7999/uxcomponents/ovh-contact.git --save
+
+## NPM
+
+```sh
+$ npm install ovh-angular-contact --save
 ```
 
-**IMPORTANT NOTE :** as ''ovh-contact'' component use ''ovh-api-services'' you **NEED** to have ovh-api-services to be loaded and injected into your app !!!
+Then inject actionsMenu module in your module declaration:
+
+```js
+angular.module("myModule", [
+    ...
+    "ovh-angular-contact",
+    ...
+]);
+```
+
+## Get the sources
+
+```sh
+git clone https://github.com/ovh-ux/ovh-angular-contact.git
+cd ovh-angular-contact
+npm install
+bower install
+```
+
+You've developed a new cool feature? Fixed an annoying bug? We'd be happy
+to hear from you!
+
+Have a look in [CONTRIBUTING.md](https://github.com/ovh-ux/ovh-angular-contact/blob/master/CONTRIBUTING.md)
+
 
 ## Documentation
 
 For a full documentation of the module, launch:
 
-```
-# grunt ngdocs && grunt connect
+```sh
+$ grunt ngdocs && grunt connect
 ```
 
 Then go on `http://localhost:9090`.
+
+# Related links
+
+ * Contribute: https://github.com/ovh-ux/ovh-angular-contact/blob/master/CONTRIBUTING.md
+ * Report bugs: https://github.com/ovh-ux/ovh-angular-contact/issues
+ * Get latest version: https://github.com/ovh-ux/ovh-angular-contact
+
+# License
+
+See https://github.com/ovh-ux/ovh-angular-contact/blob/master/LICENSE
