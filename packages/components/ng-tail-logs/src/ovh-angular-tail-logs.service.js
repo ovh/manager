@@ -7,7 +7,7 @@
             var funcSource = opts.source || angular.noop;
 
             this.logs = [];
-            this.delay = opts.delay || 1000;
+            this.delay = opts.delay || 5000;
 
             this.__getFuncSource = function () {
                 return $q.when(funcSource());
@@ -22,7 +22,7 @@
             var self = this;
 
             return self.source.then(function (source) {
-                return $http.get(source + "&sort=asc&limit=1000");
+                return $http.get(source + "&sort=asc&limit=500");
             }).then(function (response) {
                 var tmpArray = self.logs;
                 tmpArray.push(response.data.messages);
