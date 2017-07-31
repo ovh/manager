@@ -11,7 +11,7 @@
     "test": "grunt test"
   },
   "main": "./dist/ovh-angular-doc-url.min.js",
-  "repository": "ovh-ux//ovh-angular-doc-url.min",
+  "repository": "ovh-ux/ovh-angular-doc-url",
   "dependencies": {
     "jasmine-core": "^2.5.2",
     "phantomjs": "^2.1.7"
