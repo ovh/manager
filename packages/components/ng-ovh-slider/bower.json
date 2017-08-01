@@ -1,7 +1,7 @@
 {
   "name": "ovh-angular-slider",
   "description": "Angular slider",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "main": [
     "./dist/ovh-angular-slider.min.js",
     "./less/ovh-angular-slider.less"
