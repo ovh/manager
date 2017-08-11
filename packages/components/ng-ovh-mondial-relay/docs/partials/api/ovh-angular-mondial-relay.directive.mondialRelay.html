@@ -1,4 +1,4 @@
-<a href="https://github.com/ovh-ux/ovh-angular-mondial-relay/blob/master/src/ovh-angular-mondial-relay/ovh-angular-mondial-relay.directive.js#L28" class="view-source"><i class="icon-eye-open"> </i>View source</a><h1><code ng:non-bindable="">mondialRelay</code>
+<a href="https://github.com/ovh-ux/ovh-angular-mondial-relay/blob/master/src/ovh-angular-mondial-relay/ovh-angular-mondial-relay.directive.js#L29" class="view-source"><i class="icon-eye-open"> </i>View source</a><h1><code ng:non-bindable="">mondialRelay</code>
 <div><span class="hint">directive in module <code ng:non-bindable="">ovh-angular-mondial-relay</code>
 </span>
 </div>
@@ -7,10 +7,12 @@
 <div class="description"><div class="ovh-angular-mondial-relay-directive-page ovh-angular-mondial-relay-directive-mondialrelay-page"><p>Display Modial relay map for relay selection</p></div></div>
 <h2 id="usage">Usage</h2>
 <div class="usage">as element:<pre class="prettyprint linenums">&lt;mondial-relay
-       ng-model="{string}"&gt;
+       ng-model="{string}"
+       user-service="{string}"&gt;
 &lt;/mondial-relay&gt;</pre>
 as attribute<pre class="prettyprint linenums">&lt;ANY mondial-relay
-     ng-model="{string}"&gt;
+     ng-model="{string}"
+     user-service="{string}"&gt;
    ...
 &lt;/ANY&gt;</pre>
 <h3 id="usage_directive-info">Directive info</h3>
@@ -18,7 +20,8 @@ as attribute<pre class="prettyprint linenums">&lt;ANY mondial-relay
 </ul>
 </div>
 <h4 id="usage_directive-info_parameters">Parameters</h4><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>ng-model</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="ovh-angular-mondial-relay-directive-page ovh-angular-mondial-relay-directive-mondialrelay-page"><p>Variable that will recieve the selected relay.</p>
-</div></td></tr></tbody></table></div>
+</div></td></tr><tr><td>user-service</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="ovh-angular-mondial-relay-directive-page ovh-angular-mondial-relay-directive-mondialrelay-page"><p>The name of your user service, in case your service name is different from the default.</p>
+</div> <p><em>(default: 'User')</em></p></td></tr></tbody></table></div>
 <h2 id="example">Example</h2>
 <div class="example"><div class="ovh-angular-mondial-relay-directive-page ovh-angular-mondial-relay-directive-mondialrelay-page"><h4 id="example_source">Source</h4>
 <div source-edit="Module" source-edit-deps="angular.js script.js" source-edit-html="index.html" source-edit-css="" source-edit-js="script.js" source-edit-json="" source-edit-unit="" source-edit-scenario=""></div>

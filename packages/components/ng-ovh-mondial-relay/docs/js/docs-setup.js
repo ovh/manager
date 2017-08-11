@@ -10,7 +10,7 @@ NG_DOCS={
       "type": "directive",
       "moduleName": "ovh-angular-mondial-relay",
       "shortDescription": "Display Modial relay map for relay selection",
-      "keywords": "$scope angular api controller data-ng-bind data-ng-model directive display ea function html js json mainctrl map modial module ng-controller ng-model obj ovh-angular-mondial-relay recieve relay return script selected selectedrelay selection stringify variable"
+      "keywords": "$scope angular api case controller data-ng-bind data-ng-model default directive display ea function html js json mainctrl map modial module ng-controller ng-model obj ovh-angular-mondial-relay recieve relay return script selected selectedrelay selection service stringify user variable"
     },
     {
       "section": "api",
