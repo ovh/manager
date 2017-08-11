@@ -1,6 +1,9 @@
 div.mondial-relay .marker-hover {
   background: #eaeaea;
 }
+div.mondial-relay form {
+  padding: 15px 0;
+}
 div.mondial-relay button.btn {
   cursor: pointer;
 }
@@ -41,6 +44,9 @@ div.mondial-relay div.head span.mondial-loc {
   font-size: 1.2em;
   font-weight: bold;
 }
+div.mondial-relay div.mondial-map {
+  padding: 5px 0 20px;
+}
 div.mondial-relay div.mondial-map .angular-leaflet-map {
   height: 450px;
 }
@@ -54,10 +60,14 @@ div.mondial-relay div.mondial-map .angular-leaflet-map {
     height: 200px;
   }
 }
+div.mondial-relay .mondial-results {
+  padding: 0;
+}
 div.mondial-relay .mondial-results > ul {
   display: table;
   list-style-type: none;
   width: 100%;
+  padding-left: 0;
 }
 div.mondial-relay .mondial-results > ul > li {
   display: table-row;
@@ -65,6 +75,12 @@ div.mondial-relay .mondial-results > ul > li {
 }
 div.mondial-relay .mondial-results > ul > li.selected {
   border-left: solid 2px #c90547;
+}
+div.mondial-relay .mondial-results > ul > li.selected .relay-cell {
+  vertical-align: top;
+}
+div.mondial-relay .mondial-results > ul > li.selected .relay-cell span.mondial-marker {
+  margin-top: 9px;
 }
 div.mondial-relay .mondial-results > ul > li.selected span.mondial-relay-address {
   display: block;
@@ -77,6 +93,7 @@ div.mondial-relay .mondial-results > ul > li .relay-cell {
 div.mondial-relay .mondial-results > ul > li .relay-cell.relay-marker {
   text-align: center;
   padding-right: 5px;
+  width: 60px;
 }
 div.mondial-relay .mondial-results > ul > li .mondial-relay-name {
   display: block;

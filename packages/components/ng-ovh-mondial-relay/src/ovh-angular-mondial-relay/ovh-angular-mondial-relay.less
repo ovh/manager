@@ -9,6 +9,10 @@ div.mondial-relay {
         background: @mondialHover;
     }
 
+    form {
+        padding: 15px 0;
+    }
+
     button.btn {
         cursor:pointer;
     }
@@ -51,6 +55,8 @@ div.mondial-relay {
     }
 
     div.mondial-map {
+        padding: 5px 0 20px;
+
         .angular-leaflet-map {
             height: 450px;
         }
@@ -67,16 +73,28 @@ div.mondial-relay {
     }
     
     .mondial-results {
+        padding: 0;
+
         > ul {
             display: table;
             list-style-type: none;
             width: 100%;
+            padding-left: 0;
 
             > li {
                 display: table-row;
                 cursor: pointer;
                 &.selected {
                     border-left: solid 2px @modialColor;
+
+                    .relay-cell {
+                        vertical-align: top;
+
+                        & span.mondial-marker {
+                            margin-top: 9px;
+                        }
+                    }
+
                     span.mondial-relay-address {
                         display:block;
                     }
@@ -90,6 +108,7 @@ div.mondial-relay {
                     &.relay-marker {
                         text-align: center;
                         padding-right: 5px;
+                        width: 60px;
                     }
                 }
 

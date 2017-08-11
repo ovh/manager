@@ -474,7 +474,7 @@ angular.module('ovh-angular-mondial-relay').run(['$templateCache', function($tem
     "                         data-bounds=\"$ctrl.map.bounds\">\n" +
     "                </leaflet>\n" +
     "            </div>\n" +
-    "            <div class=\"mondial-results col-md-6 col-xs-12\">\n" +
+    "            <div class=\"mondial-results col-md-12\">\n" +
     "                <ul class=\"\">\n" +
     "                    <li data-ng-repeat=\"relay in $ctrl.foundRelays track by relay.id\"\n" +
     "                        data-ng-mouseover=\"$ctrl.markerHover($index)\"\n" +
