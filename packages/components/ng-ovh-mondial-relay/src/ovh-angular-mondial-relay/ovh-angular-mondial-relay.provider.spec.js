@@ -29,7 +29,7 @@ describe("ovh-angular-mondial-relay", function () {
 
     describe("Provider", function () {
         it("should get the current translation path", angular.mock.inject(function () {
-            expect(mondialRelayProvider.setTranslationPath()).toEqual("../bower_components/ovh-angular-mondial-relay/dist");
+            expect(mondialRelayProvider.setTranslationPath()).toEqual("../bower_components/ovh-angular-mondial-relay/dist/ovh-angular-mondial-relay");
         }));
 
         it("should set the current translation path", angular.mock.inject(function () {
