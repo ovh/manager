@@ -6,7 +6,13 @@
     "angular"
   ],
   "main": "./dist/ovh-angular-user-pref.min.js",
-  "dependencies": {},
+  "dependencies": {
+    "angular": "~1.5.0",
+    "angular-sanitize": "~1.5.0",
+    "jquery": "~2.1.4",
+    "lodash": "~3.10.0",
+    "ovh-angular-proxy-request": "^0.1.0"
+  },
   "devDependencies": {
     "autoprefixer-core": "~5.2.0",
     "eslint": "^4.0.0",
