@@ -31,8 +31,7 @@
  *  @param {Boolean=} [options.allowSearch=false] Flag telling if item allow search. Only available for item of level 1.
  *  @param {Boolean=} [options.allowSubItems=false] Flag telling if item allow to have sub items. If true will display an arrow icon before title.
  *  @param {String=} [options.category=none] Add a category to the item. This will be added as a new class to the menu item element.
- *  @param {String=} options.icon Icon added before prefix and title. This MUST be a ovh-font icon!
- *  @param {String=} [options.iconClass=none] Additional class that will be added with the icon.
+ *  @param {String=} options.icon Icon added before prefix and title. Example : ovh-font icon!
  *  @param {Number|String=} [options.id=A random Number] Unique id of the SidebarMenuListItem.
  *  @param {Number=} options.level Menu item level.
  *  @param {Object} options.viewAllItem Links to a page that manages all subitems.
@@ -77,7 +76,6 @@ angular.module("ovh-angular-sidebar-menu").factory("SidebarMenuListItem", functi
         this.error = options.error;
         this.prefix = options.prefix;
         this.icon = options.icon;
-        this.iconClass = options.iconClass;
         this.category = options.category || "none";
         this.status = options.status || "none";
 

@@ -28,7 +28,7 @@
     "angular-ui-router": "^0.3.0",
     "angular-translate": "^2.11.0",
     "angular-translate-loader-partial": "^2.11.0",
-    "ovh-angular-actions-menu": "^1.0.2",
+    "ovh-angular-actions-menu": "^2.0.0",
     "ovh-manager-webfont": "^1.0.0"
   },
   "devDependencies": {

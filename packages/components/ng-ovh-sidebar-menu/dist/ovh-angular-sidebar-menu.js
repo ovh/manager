@@ -204,8 +204,7 @@ angular.module("ovh-angular-sidebar-menu").directive("sidebarMenuListItem", ["$c
  *  @param {Boolean=} [options.allowSearch=false] Flag telling if item allow search. Only available for item of level 1.
  *  @param {Boolean=} [options.allowSubItems=false] Flag telling if item allow to have sub items. If true will display an arrow icon before title.
  *  @param {String=} [options.category=none] Add a category to the item. This will be added as a new class to the menu item element.
- *  @param {String=} options.icon Icon added before prefix and title. This MUST be a ovh-font icon!
- *  @param {String=} [options.iconClass=none] Additional class that will be added with the icon.
+ *  @param {String=} options.icon Icon added before prefix and title. Example : ovh-font icon!
  *  @param {Number|String=} [options.id=A random Number] Unique id of the SidebarMenuListItem.
  *  @param {Number=} options.level Menu item level.
  *  @param {Object} options.viewAllItem Links to a page that manages all subitems.
@@ -250,7 +249,6 @@ angular.module("ovh-angular-sidebar-menu").factory("SidebarMenuListItem", ["$q",
         this.error = options.error;
         this.prefix = options.prefix;
         this.icon = options.icon;
-        this.iconClass = options.iconClass;
         this.category = options.category || "none";
         this.status = options.status || "none";
 
@@ -1384,7 +1382,7 @@ angular.module('ovh-angular-sidebar-menu').run(['$templateCache', function($temp
   'use strict';
 
   $templateCache.put('ovh-angular-sidebar-menu-list/ovh-angular-sidebar-menu-list-item/ovh-angular-sidebar-menu-list-item-inner.html',
-    "<!-- ARROW --> <span class=item-arrow data-ng-class=\"{ 'no-sub' : !ItemMenuCtrl.item.allowSubItems }\" data-ng-if=!ItemMenuCtrl.item.loading><i class=\"ovh-font fs8 bottom-space-m4\" data-ng-class=\"{ 'ovh-font-small-arrow-right' : !ItemMenuCtrl.item.isOpen, 'ovh-font-small-arrow-down' : ItemMenuCtrl.item.isOpen }\" data-ng-if=ItemMenuCtrl.item.allowSubItems></i> </span><!-- LOADING --> <span class=item-loading data-ng-if=ItemMenuCtrl.item.loading><spinner data-name=bubbles-fff-222-16></spinner></span><!-- ITEM ICON --> <span class=item-icon data-ng-if=ItemMenuCtrl.item.icon><i class=\"ovh-font ovh-font-{{ ItemMenuCtrl.item.icon }}\" data-ng-class=ItemMenuCtrl.item.iconClass></i> </span><!-- ITEM PREFIX --> <span class=\"item-prefix fs10\" data-ng-bind=ItemMenuCtrl.item.prefix></span><!-- ITEM TITLE --> <span class=item-title data-ng-bind=ItemMenuCtrl.item.title></span>"
+    "<!-- ARROW --> <span class=item-arrow data-ng-class=\"{ 'no-sub' : !ItemMenuCtrl.item.allowSubItems }\" data-ng-if=!ItemMenuCtrl.item.loading><i class=\"ovh-font fs8 bottom-space-m4\" data-ng-class=\"{ 'ovh-font-small-arrow-right' : !ItemMenuCtrl.item.isOpen, 'ovh-font-small-arrow-down' : ItemMenuCtrl.item.isOpen }\" data-ng-if=ItemMenuCtrl.item.allowSubItems></i> </span><!-- LOADING --> <span class=item-loading data-ng-if=ItemMenuCtrl.item.loading><spinner data-name=bubbles-fff-222-16></spinner></span><!-- ITEM ICON --> <span class=item-icon data-ng-if=ItemMenuCtrl.item.icon><i data-ng-class=ItemMenuCtrl.item.icon></i> </span><!-- ITEM PREFIX --> <span class=\"item-prefix fs10\" data-ng-bind=ItemMenuCtrl.item.prefix></span><!-- ITEM TITLE --> <span class=item-title data-ng-bind=ItemMenuCtrl.item.title></span>"
   );
 
 
