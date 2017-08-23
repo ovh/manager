@@ -1,6 +1,6 @@
 {
   "name": "ovh-angular-sidebar-menu",
-  "version": "3.3.9",
+  "version": "4.0.0",
   "description": "Manage and display a left menu tree",
   "main": "./dist/ovh-angular-sidebar-menu.min.js",
   "repository": {
