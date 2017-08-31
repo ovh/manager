@@ -1,4 +1,4 @@
-angular.module("ovh-angular-otrs").controller("OtrsCtrl", function ($scope, $timeout, $q, Support, ProductsAapi, $translate, Toast, OtrsPopupService, UNIVERSE) {
+angular.module("ovh-angular-otrs").controller("OtrsCtrl", function ($scope, $timeout, $q, OvhApiSupport, OvhApiProductsAapi, $translate, Toast, OtrsPopupService, UNIVERSE) {
     "use strict";
 
     var self = this;
@@ -32,7 +32,7 @@ angular.module("ovh-angular-otrs").controller("OtrsCtrl", function ($scope, $tim
     self.itemsPerPage = 10;
 
     self.init = function () {
-        ProductsAapi.get({
+        OvhApiProductsAapi.get({
             includeInactives: true,
             universe: UNIVERSE.toLowerCase()
         }).$promise.then(function (services) {
@@ -52,7 +52,7 @@ angular.module("ovh-angular-otrs").controller("OtrsCtrl", function ($scope, $tim
             });
         }).catch(function (err) { Toast.error([($translate.instant("otrs_err_get_infos"), err.data && err.data.message) || ""].join(" ")); });
 
-        Support.Lexi().schema().$promise.then(
+        OvhApiSupport.Lexi().schema().$promise.then(
             function (schema) {
                 self.types = schema.models["support.TicketTypeEnum"].enum;
 
@@ -84,10 +84,10 @@ angular.module("ovh-angular-otrs").controller("OtrsCtrl", function ($scope, $tim
         }
 
         if (clearCache) {
-            Support.Lexi().resetQueryCache();
+            OvhApiSupport.Lexi().resetQueryCache();
         }
 
-        Support.Lexi().query(filters).$promise.then(
+        OvhApiSupport.Lexi().query(filters).$promise.then(
             function (ticketIds) {
 
                 if (_.isEqual(self.tickets.ids, ticketIds)) {
@@ -109,7 +109,7 @@ angular.module("ovh-angular-otrs").controller("OtrsCtrl", function ($scope, $tim
 
     self.transformItem = function (ticketId) {
         self.loaders.table = true;
-        return Support.Lexi().get({ id: ticketId }).$promise.then(function (ticket) {
+        return OvhApiSupport.Lexi().get({ id: ticketId }).$promise.then(function (ticket) {
             ticket.serviceDescription = self.getServiceDescription(ticket);
             return ticket;
         });

@@ -1,4 +1,4 @@
-angular.module("ovh-angular-otrs").controller("OtrsPopupCtrl", function ($rootScope, $stateParams, $translate, $q, UserVipStatus, User, Support, ProductsAapi, Toast, OtrsPopupService, UNIVERSE,
+angular.module("ovh-angular-otrs").controller("OtrsPopupCtrl", function ($rootScope, $stateParams, $translate, $q, OvhApiMeVipStatus, OvhApiMe, OvhApiSupport, OvhApiProductsAapi, Toast, OtrsPopupService, UNIVERSE,
                                                                          TICKET_CATEGORIES, OTRS_POPUP_ASSISTANCE_ENUM, OTRS_POPUP_BILLING_ENUM, OTRS_POPUP_INCIDENT_ENUM, OTRS_POPUP_INTERVENTION_ENUM) {
     "use strict";
 
@@ -29,7 +29,7 @@ angular.module("ovh-angular-otrs").controller("OtrsPopupCtrl", function ($rootSc
                 self.ticket.category = TICKET_CATEGORIES.DEFAULT;
             }
 
-            Support.Lexi().create(self.ticket).$promise.then(
+            OvhApiSupport.Lexi().create(self.ticket).$promise.then(
                 function (data) {
                     initFields();
                     self.otrsPopupForm.$setUntouched();
@@ -61,7 +61,7 @@ angular.module("ovh-angular-otrs").controller("OtrsPopupCtrl", function ($rootSc
 
         self.isVIP = false;
 
-        ProductsAapi.get({
+        OvhApiProductsAapi.get({
             includeInactives: true,
             universe: UNIVERSE.toLowerCase()
         }).$promise.then(function (services) {
@@ -90,7 +90,7 @@ angular.module("ovh-angular-otrs").controller("OtrsPopupCtrl", function ($rootSc
             .catch(function (err) { Toast.error([($translate.instant("otrs_err_get_infos"), err.data && err.data.message) || ""].join(" ")); })
             .finally(function () { self.loaders.services = false; });
 
-        $q.all([User.Lexi().get().$promise, Support.Lexi().schema().$promise]).then(function (data) {
+        $q.all([OvhApiMe.Lexi().get().$promise, OvhApiSupport.Lexi().schema().$promise]).then(function (data) {
             self.types = data[1].models["support.TicketTypeEnum"].enum;
             self.categories = data[1].models["support.TicketProductEnum"].enum;
             self.requests = data[1].models["support.TicketCategoryEnum"].enum;
@@ -131,7 +131,7 @@ angular.module("ovh-angular-otrs").controller("OtrsPopupCtrl", function ($rootSc
             .catch(function (err) { Toast.error([($translate.instant("otrs_err_get_infos"), err.data && err.data.message) || ""].join(" ")); })
             .finally(function () { self.loaders.models = false; });
 
-        UserVipStatus.Lexi().get().$promise.then(function (vipStatus) {
+        OvhApiMeVipStatus.Lexi().get().$promise.then(function (vipStatus) {
             self.isVIP = _.values(vipStatus.toJSON()).indexOf(true) !== -1;
         });
     };

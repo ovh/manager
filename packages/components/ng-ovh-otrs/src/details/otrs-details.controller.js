@@ -1,4 +1,4 @@
-angular.module("ovh-angular-otrs").controller("OtrsDetailsCtrl", function ($stateParams, $translate, Support, CloudProject, Toast) {
+angular.module("ovh-angular-otrs").controller("OtrsDetailsCtrl", function ($stateParams, $translate, OvhApiSupport, OvhApiCloudProject, Toast) {
     "use strict";
 
     var self = this;
@@ -35,11 +35,11 @@ angular.module("ovh-angular-otrs").controller("OtrsDetailsCtrl", function ($stat
     }
 
     function getTicket () {
-        Support.Lexi().resetCache();
-        Support.Lexi().get({ id: self.ticket.ticketId }).$promise.then(
+        OvhApiSupport.Lexi().resetCache();
+        OvhApiSupport.Lexi().get({ id: self.ticket.ticketId }).$promise.then(
             function (ticket) {
                 if (!!ticket.serviceName && ticket.product === "publiccloud") {
-                    CloudProject.Lexi().get({ serviceName: ticket.serviceName }).$promise.then(function (project) {
+                    OvhApiCloudProject.Lexi().get({ serviceName: ticket.serviceName }).$promise.then(function (project) {
                         if (!!project && !!project.description) {
                             ticket.serviceDescription = project.description;
                         }
@@ -60,7 +60,7 @@ angular.module("ovh-angular-otrs").controller("OtrsDetailsCtrl", function ($stat
 
     function loadMessage () {
         self.loaders.messages = true;
-        Support.Lexi().getMessages({ id: self.ticket.ticketId }).$promise.then(
+        OvhApiSupport.Lexi().getMessages({ id: self.ticket.ticketId }).$promise.then(
             function (messages) {
                 self.messages = messages;
                 for (var i = 0, imax = messages.length; i < imax; i++) {
@@ -82,7 +82,7 @@ angular.module("ovh-angular-otrs").controller("OtrsDetailsCtrl", function ($stat
         if (!self.loaders.reply && self.answer.body) {
             self.loaders.reply = true;
 
-            Support.Lexi().reply({ id: self.ticket.ticketId }, { body: self.answer.body }).$promise.then(
+            OvhApiSupport.Lexi().reply({ id: self.ticket.ticketId }, { body: self.answer.body }).$promise.then(
                 function () {
                     self.answer.body = null;
                     getTicket();
@@ -101,7 +101,7 @@ angular.module("ovh-angular-otrs").controller("OtrsDetailsCtrl", function ($stat
         if (!self.loaders.close) {
             self.loaders.close = true;
 
-            Support.Lexi().close({ id: self.ticket.ticketId }, {}).$promise.then(
+            OvhApiSupport.Lexi().close({ id: self.ticket.ticketId }, {}).$promise.then(
                 function () {
                     self.$onInit();
                 },
@@ -119,7 +119,7 @@ angular.module("ovh-angular-otrs").controller("OtrsDetailsCtrl", function ($stat
             self.loaders.close = true;
             self.loaders.reply = true;
 
-            Support.Lexi().reopen({ id: self.ticket.ticketId }, { body: self.answer.body }).$promise.then(
+            OvhApiSupport.Lexi().reopen({ id: self.ticket.ticketId }, { body: self.answer.body }).$promise.then(
                 function () {
                     self.answer.body = null;
                     self.$onInit();
