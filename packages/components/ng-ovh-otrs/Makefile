@@ -44,13 +44,13 @@ dev: $(GRUNT_DEP)
 	$(GRUNT) watch
 
 prod: $(GRUNT_DEP)
-	$(GRUNT) buildProd
+	$(GRUNT) build
 
 test: $(GRUNT_DEP)
 	$(GRUNT) test
 
 build: $(GRUNT_DEP)
-	$(GRUNT) buildProd
+	$(GRUNT) build
 
 version:
 	$(ECHO) $(VERSION)

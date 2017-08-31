@@ -12,7 +12,7 @@
     "grunt": "0.4.x",
     "grunt-angular-templates": "^1.1.0",
     "grunt-autoprefixer": "~2.2.0",
-    "grunt-bump": "~0.3.0",
+    "grunt-bump": "~0.5.0",
     "grunt-complexity": "~0.1.0",
     "grunt-contrib-clean": "~0.6.0",
     "grunt-contrib-concat": "~0.5.0",

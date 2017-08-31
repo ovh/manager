@@ -166,6 +166,8 @@ module.exports = function (grunt) {
     grunt.task.renameTask("watch", "delta");
     grunt.registerTask("watch", ["build", "delta"]);
 
+    grunt.registerTask("test", ["eslint"]);
+
     grunt.registerTask("build", [
         "clean",
         "eslint",
