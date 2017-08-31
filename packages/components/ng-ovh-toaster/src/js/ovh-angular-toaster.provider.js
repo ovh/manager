@@ -1,8 +1,6 @@
-/* global angular, Messenger*/
-
 /**
  * @ngdoc service
- * @name toaster.ToastProvider
+ * @name ovh-angular-toaster.ToastProvider
  * @description
  *
  * Toaster is a component to show an in-app notification, like a toast for android applications
@@ -32,7 +30,7 @@ angular.module("ovh-angular-toaster").provider("Toast", function () {
         /**
          * @ngdoc function
          * @name setExtraClasses
-         * @methodOf toaster.ToastProvider
+         * @methodOf ovh-angular-toaster.ToastProvider
          * @description
          * Append extra classes to the object
          *
@@ -46,7 +44,7 @@ angular.module("ovh-angular-toaster").provider("Toast", function () {
         /**
          * @ngdoc function
          * @name setTheme
-         * @methodOf toaster.ToastProvider
+         * @methodOf ovh-angular-toaster.ToastProvider
          * @description
          * Change the them of the notifications
          *
@@ -60,7 +58,7 @@ angular.module("ovh-angular-toaster").provider("Toast", function () {
         /**
          * @ngdoc function
          * @name setHideAfter
-         * @methodOf toaster.ToastProvider
+         * @methodOf ovh-angular-toaster.ToastProvider
          * @description
          * Change the number of seconds before hiding the notification
          *
@@ -72,7 +70,7 @@ angular.module("ovh-angular-toaster").provider("Toast", function () {
         $get: function ($sanitize) {
             /**
              * @ngdoc object
-             * @name toaster.Toast
+             * @name ovh-angular-toaster.Toast
              *
              *
              * @description
@@ -133,7 +131,7 @@ angular.module("ovh-angular-toaster").provider("Toast", function () {
                 /**
                  * @ngdoc function
                  * @name success
-                 * @methodOf toaster.Toast
+                 * @methodOf ovh-angular-toaster.Toast
                  *
                  * @description
                  * Display a success message
@@ -152,7 +150,7 @@ angular.module("ovh-angular-toaster").provider("Toast", function () {
                 /**
                  * @ngdoc function
                  * @name info
-                 * @methodOf toaster.Toast
+                 * @methodOf ovh-angular-toaster.Toast
                  *
                  * @description
                  * Display an information message
@@ -171,7 +169,7 @@ angular.module("ovh-angular-toaster").provider("Toast", function () {
                 /**
                  * @ngdoc function
                  * @name error
-                 * @methodOf toaster.Toast
+                 * @methodOf ovh-angular-toaster.Toast
                  *
                  * @description
                  * Display a error message
@@ -190,7 +188,7 @@ angular.module("ovh-angular-toaster").provider("Toast", function () {
                 /**
                  * @ngdoc function
                  * @name light
-                 * @methodOf toaster.Toast
+                 * @methodOf ovh-angular-toaster.Toast
                  *
                  * @description
                  * Display a light message
@@ -209,7 +207,7 @@ angular.module("ovh-angular-toaster").provider("Toast", function () {
                 /**
                  * @ngdoc function
                  * @name infoWithInProgress
-                 * @methodOf toaster.Toast
+                 * @methodOf ovh-angular-toaster.Toast
                  *
                  * @description
                  * Display an information message with progress
@@ -233,7 +231,7 @@ angular.module("ovh-angular-toaster").provider("Toast", function () {
                 /**
                  * @ngdoc function
                  * @name update
-                 * @methodOf toaster.Toast
+                 * @methodOf ovh-angular-toaster.Toast
                  *
                  * @description
                  * Update a specific notification
@@ -253,7 +251,7 @@ angular.module("ovh-angular-toaster").provider("Toast", function () {
                 /**
                  * @ngdoc function
                  * @name show
-                 * @methodOf toaster.Toast
+                 * @methodOf ovh-angular-toaster.Toast
                  *
                  * @description
                  * Display a specific notification
@@ -268,7 +266,7 @@ angular.module("ovh-angular-toaster").provider("Toast", function () {
                 /**
                  * @ngdoc function
                  * @name hide
-                 * @methodOf toaster.Toast
+                 * @methodOf ovh-angular-toaster.Toast
                  *
                  * @description
                  * Hide a specific notification
@@ -283,7 +281,7 @@ angular.module("ovh-angular-toaster").provider("Toast", function () {
                 /**
                  * @ngdoc function
                  * @name hideAll
-                 * @methodOf toaster.Toast
+                 * @methodOf ovh-angular-toaster.Toast
                  *
                  * @description
                  * Display all notifications

@@ -1,15 +1,14 @@
-'use strict';
+"use strict";
 
-describe('toaster', function () {
+describe("toaster", function () {
 
-    var $rootScope,
-        $scope,
-        $toast,
-        myToastProvider;
+    var $scope;
+    var $toast;
+    var myToastProvider;
 
-    beforeEach(function() {
+    beforeEach(function () {
 
-        angular.mock.module('ovh-angular-toaster', function (ToastProvider) {
+        angular.mock.module("ovh-angular-toaster", function (ToastProvider) {
             myToastProvider = ToastProvider;
         });
 
@@ -17,7 +16,6 @@ describe('toaster', function () {
 
     beforeEach(angular.mock.inject(function (_$rootScope_, _Toast_) {
         $scope = _$rootScope_.$new();
-        $rootScope = _$rootScope_;
         $toast = _Toast_;
 
         $scope.$digest();
@@ -29,50 +27,50 @@ describe('toaster', function () {
         new Messenger().hideAll();
     });
 
-    describe('service', function () {
+    describe("service", function () {
 
-        var message = "test",
-            params;
+        var message = "test";
+        var params;
 
-        function getParams(type, msg, opts, id) {
+        function getParams (type, msg, opts, id) {
             var ret = {
-                type            : type,
-                id              : id,
-                message         : msg,
-                hideAfter       : 7,
-                showCloseButton : true
+                type: type,
+                id: id,
+                message: msg,
+                hideAfter: 7,
+                showCloseButton: true
             };
             return angular.extend(opts, ret);
         }
 
-        beforeEach(function() {
-            spyOn(Messenger(), 'post');
+        beforeEach(function () {
+            spyOn(Messenger(), "post");
             params = { param: "test" };
         });
 
-        it('should show success message', function () {
+        it("should show success message", function () {
             params.id = 1;
             $toast.success(message, params);
             $scope.$digest();
-            expect(Messenger().post).toHaveBeenCalledWith(getParams('success',message, params,1));
+            expect(Messenger().post).toHaveBeenCalledWith(getParams("success", message, params, 1));
         });
 
-        it('should show error message', function () {
+        it("should show error message", function () {
             params.id = 2;
             $toast.error(message, params);
             $scope.$digest();
-            expect(Messenger().post).toHaveBeenCalledWith(getParams('error',message, params, 2));
+            expect(Messenger().post).toHaveBeenCalledWith(getParams("error", message, params, 2));
         });
 
-        it('should show info message', function () {
+        it("should show info message", function () {
             params.id = 3;
             $toast.info(message, params);
             $scope.$digest();
-            expect(Messenger().post).toHaveBeenCalledWith(getParams('info',message, params, 3));
+            expect(Messenger().post).toHaveBeenCalledWith(getParams("info", message, params, 3));
         });
 
-        it('should call update, show or hide on current instance', function () {
-            var mock = jasmine.createSpyObj('Mock', ['update', 'hide', 'show']);
+        it("should call update, show or hide on current instance", function () {
+            var mock = jasmine.createSpyObj("Mock", ["update", "hide", "show"]);
 
             $toast.update(mock, message, params);
             expect(mock.update).toHaveBeenCalledWith(message, params);
@@ -85,19 +83,19 @@ describe('toaster', function () {
         });
 
         it('should send "hideAll" action to Messenger', function () {
-            spyOn(Messenger(), 'hideAll');
+            spyOn(Messenger(), "hideAll");
 
             $toast.hideAll(message, params);
 
             expect(Messenger().hideAll).toHaveBeenCalled();
         });
 
-        describe ('test configuration of provider', function() {
+        describe("test configuration of provider", function () {
 
-            var oldValue = 'toto',
-                newValue = 'tata';
+            var oldValue = "toto";
+            var newValue = "tata";
 
-            it('should change theme when setTheme is called', function() {
+            it("should change theme when setTheme is called", function () {
                 Messenger.options.theme = oldValue;
                 myToastProvider.setTheme(newValue);
 
@@ -105,10 +103,10 @@ describe('toaster', function () {
                 expect(Messenger.options.theme).not.toEqual(oldValue);
             });
 
-            it('should change hideAfter duration when setHideAfter is called', function() {
+            it("should change hideAfter duration when setHideAfter is called", function () {
                 Messenger.options.theme = oldValue;
-                var newHideAfter = 42,
-                    paramsMessenger = getParams('success', message, params);
+                var newHideAfter = 42;
+                var paramsMessenger = getParams("success", message, params);
 
                 params.hideAfter = newHideAfter;
                 myToastProvider.setHideAfter(newHideAfter);
@@ -119,7 +117,7 @@ describe('toaster', function () {
             });
 
 
-            it('should change css classes when setExtraClasses is called', function() {
+            it("should change css classes when setExtraClasses is called", function () {
                 Messenger.options.extraClasses = oldValue;
                 myToastProvider.setExtraClasses(newValue);
 
@@ -127,7 +125,6 @@ describe('toaster', function () {
                 expect(Messenger.options.extraClasses).not.toEqual(oldValue);
             });
         });
-
 
 
     });

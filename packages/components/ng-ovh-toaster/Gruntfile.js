@@ -1,6 +1,6 @@
 module.exports = function (grunt) {
-    'use strict';
-    require('matchdep').filterAll('grunt-*').forEach(grunt.loadNpmTasks);
+    "use strict";
+    require("matchdep").filterAll("grunt-*").forEach(grunt.loadNpmTasks);
 
     /**
      * NOTE for CSS/LESS:
@@ -10,19 +10,19 @@ module.exports = function (grunt) {
      */
 
     grunt.initConfig({
-        pkg      : grunt.file.readJSON('package.json'),
-        bower    : grunt.file.readJSON('bower.json'),
-        distdir  : 'dist',
-        srcdir   : 'src',
-        builddir : '.work/.tmp',
-        name     : grunt.file.readJSON('package.json').name || 'ovh-angular-toaster',   // module name
+        pkg: grunt.file.readJSON("package.json"),
+        bower: grunt.file.readJSON("bower.json"),
+        distdir: "dist",
+        srcdir: "src",
+        builddir: ".work/.tmp",
+        name: grunt.file.readJSON("package.json").name || "ovh-angular-toaster", // module name
 
         // Clean
         clean: {
             dist: {
                 src: [
-                    '<%= builddir %>',
-                    '<%= distdir %>'
+                    "<%= builddir %>",
+                    "<%= distdir %>"
                 ]
             }
         },
@@ -32,18 +32,19 @@ module.exports = function (grunt) {
             // Copy concatened JS file from builddir to dist/
             dist: {
                 files: {
-                    '<%= distdir %>/<%= name %>.js': '<%= builddir %>/<%= name %>.js',
-                    '<%= distdir %>/<%= name %>.min.js': '<%= builddir %>/<%= name %>.min.js',
+                    "<%= distdir %>/<%= name %>.js": "<%= builddir %>/<%= name %>.js",
+                    "<%= distdir %>/<%= name %>.min.js": "<%= builddir %>/<%= name %>.min.js"
                 }
             },
+
             // Copy LESS files to dist/
             less: {
                 files: [
                     {
                         expand: true,
-                        cwd: '<%= srcdir %>',
-                        src: 'less/**/*',
-                        dest: '<%= distdir %>/'
+                        cwd: "<%= srcdir %>",
+                        src: "less/**/*",
+                        dest: "<%= distdir %>/"
                     }
                 ]
             }
@@ -51,15 +52,15 @@ module.exports = function (grunt) {
 
         ngdocs: {
             options: {
-                dest: 'docs',
+                dest: "docs",
                 html5Mode: false,
-                title: '<%= name %>',
-                startPage: '/api/toaster.Toast',
-                sourceLink: 'https://github.com/ovh-ux/<%= name %>/blob/master/{{file}}#L{{codeline}}'
+                title: "<%= name %>",
+                startPage: "/api/toaster.Toast",
+                sourceLink: "https://github.com/ovh-ux/<%= name %>/blob/master/{{file}}#L{{codeline}}"
             },
             api: {
-                src: ['src/js/**/*.js'],
-                title: 'API'
+                src: ["src/js/**/*.js"],
+                title: "API"
             }
         },
 
@@ -67,18 +68,19 @@ module.exports = function (grunt) {
         concat: {
             dist: {
                 files: {
-                    '<%= builddir %>/<%= name %>.js': [
-                        '<%= srcdir %>/<%= name %>.js',
-                        '<%= srcdir %>/**/*.js',
-                        '!<%= srcdir %>/**/*.spec.js'
+                    "<%= builddir %>/<%= name %>.js": [
+                        "<%= srcdir %>/<%= name %>.js",
+                        "<%= srcdir %>/**/*.js",
+                        "!<%= srcdir %>/**/*.spec.js"
                     ]
                 }
             },
+
             // use this only if you don't use LESS!
             css: {
                 files: {
-                    '<%= builddir %>/<%= name %>.css': [
-                        '<%= srcdir %>/**/*.css',
+                    "<%= builddir %>/<%= name %>.css": [
+                        "<%= srcdir %>/**/*.css"
                     ]
                 }
             }
@@ -88,7 +90,7 @@ module.exports = function (grunt) {
         ngAnnotate: {
             dist: {
                 files: {
-                    '<%= builddir %>/<%= name %>.js': ['<%= builddir %>/<%= name %>.js']
+                    "<%= builddir %>/<%= name %>.js": ["<%= builddir %>/<%= name %>.js"]
                 }
             }
         },
@@ -100,7 +102,7 @@ module.exports = function (grunt) {
                     banner: '/*! <%= name %> - <%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %> */\n'
                 },
                 files: {
-                    '<%= builddir %>/<%= name %>.min.js': ['<%= builddir %>/<%= name %>.js']
+                    "<%= builddir %>/<%= name %>.min.js": ["<%= builddir %>/<%= name %>.js"]
                 }
             }
         },
@@ -112,27 +114,29 @@ module.exports = function (grunt) {
                     compress: false
                 },
                 files: {
-                    '<%= builddir %>/<%= name %>.css': ['<%= srcdir %>/**/*.less']
+                    "<%= builddir %>/<%= name %>.css": ["<%= srcdir %>/**/*.less"]
                 }
             }
         },
+
         // ... and its prefixed vendor styles
         autoprefixer: {
             options: {
-                browsers: ['last 3 versions', 'ie >= 9', '> 5%']
+                browsers: ["last 3 versions", "ie >= 9", "> 5%"]
             },
             dist: {
                 files: {
-                    '<%= distdir %>/<%= name %>.css': ['<%= builddir %>/<%= name %>.css']
+                    "<%= distdir %>/<%= name %>.css": ["<%= builddir %>/<%= name %>.css"]
                 }
             }
         },
+
         // ... and now minify it
         cssmin: {
             options: {},
             dist: {
                 files: {
-                    '<%= distdir %>/<%= name %>.min.css': ['<%= distdir %>/<%= name %>.css']
+                    "<%= distdir %>/<%= name %>.min.css": ["<%= distdir %>/<%= name %>.css"]
                 }
             }
         },
@@ -140,13 +144,13 @@ module.exports = function (grunt) {
         // JS Check
         jshint: {
             options: {
-                jshintrc: '.jshintrc',
-                reporter: require('jshint-stylish')
+                jshintrc: ".jshintrc",
+                reporter: require("jshint-stylish")
             },
             js: [
-                '<%= srcdir %>/*.js',
-                '<%= srcdir %>/*/*.js',
-                '!<%= srcdir %>/**/*.spec.js'
+                "<%= srcdir %>/*.js",
+                "<%= srcdir %>/*/*.js",
+                "!<%= srcdir %>/**/*.spec.js"
             ]
         },
 
@@ -154,8 +158,8 @@ module.exports = function (grunt) {
         complexity: {
             generic: {
                 src: [
-                    '<%= srcdir %>/**/*.js',
-                    '!<%= srcdir %>/**/*.spec.js'
+                    "<%= srcdir %>/**/*.js",
+                    "!<%= srcdir %>/**/*.spec.js"
                 ],
                 options: {
                     errorsOnly: false,
@@ -169,32 +173,32 @@ module.exports = function (grunt) {
         // Watch
         delta: {
             dist: {
-                files: ['<%= srcdir %>/**/*', '!<%= srcdir %>/**/*.spec.js'],
-                tasks: ['buildProd']
+                files: ["<%= srcdir %>/**/*", "!<%= srcdir %>/**/*.spec.js"],
+                tasks: ["buildProd"]
             },
             test: {
-                files: ['<%= srcdir %>/**/*.spec.js'],
-                tasks: ['test']
+                files: ["<%= srcdir %>/**/*.spec.js"],
+                tasks: ["test"]
             }
         },
 
         // To release
         bump: {
             options: {
-                pushTo: 'origin',
+                pushTo: "origin",
                 files: [
-                    'package.json',
-                    'bower.json'
+                    "package.json",
+                    "bower.json"
                 ],
-                updateConfigs: ['pkg', 'bower'],
-                commitFiles: ['-a']
+                updateConfigs: ["pkg", "bower"],
+                commitFiles: ["-a"]
             }
         },
 
         // Testing
         karma: {
             unit: {
-                configFile: 'karma.conf.js',
+                configFile: "karma.conf.js",
                 singleRun: true
             }
         },
@@ -216,7 +220,8 @@ module.exports = function (grunt) {
             "clean",
             "jshint",
             "eslint",
-            "complexity"
+            "complexity",
+            "karma"
         ]);
     });
 

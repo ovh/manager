@@ -2,5 +2,12 @@
     "extends": "./node_modules/eslint-config-ovh/configs/es5-browser.js",
     "rules": {
         "no-magic-numbers": "off"
+    },
+    "env": {
+        "jasmine": true
+    },
+    "globals": {
+        "angular": true,
+        "Messenger": true
     }
  }
