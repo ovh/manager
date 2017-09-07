@@ -1,11 +1,17 @@
 angular.module("ovh-angular-otrs")
     .config(function ($stateProvider) {
         "use strict";
-        $stateProvider.state("otrs-list", {
+
+        var dedicatedManagerRedirect = function ($window, MANAGER_URLS) {
+            $window.open(MANAGER_URLS.dedicated + "ticket", "_self");
+        };
+        $stateProvider.state("otrs-list1", {
             url: "/support",
-            templateUrl: "app/module-otrs/otrs.html",
-            controller: "OtrsCtrl",
-            controllerAs: "OtrsCtrl",
-            translations: ["common", "module-otrs"]
+            controller: dedicatedManagerRedirect
+        });
+
+        $stateProvider.state("otrs-list2", {
+            url: "/ticket",
+            controller: dedicatedManagerRedirect
         });
     });

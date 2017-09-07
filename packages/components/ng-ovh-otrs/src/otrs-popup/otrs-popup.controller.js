@@ -1,5 +1,5 @@
 angular.module("ovh-angular-otrs").controller("OtrsPopupCtrl", function ($rootScope, $stateParams, $translate, $q, OvhApiMeVipStatus, OvhApiMe, OvhApiSupport, OvhApiProductsAapi, Toast, OtrsPopupService, UNIVERSE,
-                                                                         TICKET_CATEGORIES, OTRS_POPUP_ASSISTANCE_ENUM, OTRS_POPUP_BILLING_ENUM, OTRS_POPUP_INCIDENT_ENUM, OTRS_POPUP_INTERVENTION_ENUM) {
+                                                                         TICKET_CATEGORIES, OTRS_POPUP_ASSISTANCE_ENUM, OTRS_POPUP_BILLING_ENUM, OTRS_POPUP_INCIDENT_ENUM, OTRS_POPUP_INTERVENTION_ENUM, OTRS_POPUP_UNIVERSES) {
     "use strict";
 
     var self = this;
@@ -12,6 +12,13 @@ angular.module("ovh-angular-otrs").controller("OtrsPopupCtrl", function ($rootSc
             subject: null,
             type: null
         };
+
+
+        self.universes = OTRS_POPUP_UNIVERSES.EU;
+
+        var standardizedUniverse = UNIVERSE === "GAMMA" ? "SUNRISE" : UNIVERSE;
+
+        self.selectedUniverse = _.includes(["CLOUD", "DEDICATED"], standardizedUniverse) || !standardizedUniverse ? "CLOUD_DEDICATED" : standardizedUniverse;
     }
 
     $rootScope.$on("$stateChangeSuccess", function (event, toState, toParams) {
@@ -47,23 +54,16 @@ angular.module("ovh-angular-otrs").controller("OtrsPopupCtrl", function ($rootSc
         }
     };
 
-    this.$onInit = function () {
 
-        initFields();
+    self.getServices = function () {
 
-        self.loaders = {
-            send: false,
-            services: true,
-            models: true
-        };
-
+        self.loaders.services = true;
         self.services = [];
 
-        self.isVIP = false;
 
         OvhApiProductsAapi.get({
             includeInactives: true,
-            universe: UNIVERSE.toLowerCase()
+            universe: self.selectedUniverse === "CLOUD_DEDICATED" ? "DEDICATED" : self.selectedUniverse
         }).$promise.then(function (services) {
             var translationPromises = services.results.map(function (s) {
                 return $translate("otrs_service_category_" + s.name, null, null, s.name).then(function (value) {
@@ -89,6 +89,20 @@ angular.module("ovh-angular-otrs").controller("OtrsPopupCtrl", function ($rootSc
         })
             .catch(function (err) { Toast.error([($translate.instant("otrs_err_get_infos"), err.data && err.data.message) || ""].join(" ")); })
             .finally(function () { self.loaders.services = false; });
+    };
+
+    this.$onInit = function () {
+
+        initFields();
+
+        self.loaders = {
+            send: false,
+            models: true
+        };
+
+        self.isVIP = false;
+
+        self.getServices();
 
         $q.all([OvhApiMe.Lexi().get().$promise, OvhApiSupport.Lexi().schema().$promise]).then(function (data) {
             self.types = data[1].models["support.TicketTypeEnum"].enum;

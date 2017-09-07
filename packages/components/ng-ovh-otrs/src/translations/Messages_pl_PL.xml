@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <translations>
-   <translation id="otrs_detail_title" qtlid="245181">Powrót do listy zgłoszeń</translation>
-   <translation id="otrs_detail_title2" qtlid="228774">- zgłoszenie {0}</translation>
-   <translation id="otrs_detail_title3_open" qtlid="228787">- (W trakcie)</translation>
-   <translation id="otrs_detail_title3_closed" qtlid="228800">- (Zamknięty)</translation>
+    <translation id="otrs_detail_title" qtlid="245181">Powrót do listy zgłoszeń</translation>
+    <translation id="otrs_detail_title2" qtlid="228774">- zgłoszenie {0}</translation>
+    <translation id="otrs_detail_title3_open" qtlid="228787">- (W trakcie)</translation>
+    <translation id="otrs_detail_title3_closed" qtlid="228800">- (Zamknięty)</translation>
 
-   <translation id="otrs_detail_error" qtlid="228813">Wystąpił błąd podczas pobierania informacji o zgłoszeniu {0}.</translation>
-   <translation id="otrs_detail_message_error" qtlid="228826">Wystąpił błąd podczas pobierania wiadomości związanych z tym zgłoszeniem {0}.</translation>
+    <translation id="otrs_detail_error" qtlid="228813">Wystąpił błąd podczas pobierania informacji o zgłoszeniu {0}.</translation>
+    <translation id="otrs_detail_message_error" qtlid="228826">Wystąpił błąd podczas pobierania wiadomości związanych z tym zgłoszeniem {0}.</translation>
 
-   <translation id="otrs_detail_subject" qtlid="75594">Temat zgłoszenia:</translation>
-   <translation id="otrs_detail_serviceName" qtlid="228423">Usługa:</translation>
-   <translation id="otrs_detail_creationDate" qtlid="228839">Otwarty od:</translation>
-   <translation id="otrs_detail_updateDate" qtlid="228852">Zaktualizowany:</translation>
-   <translation id="otrs_detail_from_customer" qtlid="228865">Od: Ty</translation>
-   <translation id="otrs_detail_from_support" qtlid="228878">Od: Support OVH</translation>
-   <translation id="otrs_detail_raw_version" qtlid="244664">Zobacz podstawową wersję wiadomości</translation>
-   <translation id="otrs_detail_cook_version" qtlid="244677">Zobacz zinterpretowaną wersję wiadomości</translation>
-   <translation id="otrs_detail_reply" qtlid="69233">Odpowiedź</translation>
-   <translation id="otrs_detail_close" qtlid="62774">Zamknij zgłoszenie</translation>
-   <translation id="otrs_detail_reopen" qtlid="227624">Otwórz ponownie zgłoszenie</translation>
-   <translation id="otrs_detail_reply_error" qtlid="228891">Wystąpił błąd podczas wysyłania odpowiedzi.</translation>
-   <translation id="otrs_detail_reopen_error" qtlid="228904">Wystąpił błąd podczas ponownego otwierania tego zgłoszenia.</translation>
-   <translation id="otrs_detail_close_error" qtlid="228917">Wystąpił błąd podczas zamykania tego zgłoszenia.</translation>
+    <translation id="otrs_detail_subject" qtlid="75594">Temat zgłoszenia:</translation>
+    <translation id="otrs_detail_serviceName" qtlid="228423">Usługa:</translation>
+    <translation id="otrs_detail_creationDate" qtlid="228839">Otwarty od:</translation>
+    <translation id="otrs_detail_updateDate" qtlid="228852">Zaktualizowany:</translation>
+    <translation id="otrs_detail_from_customer" qtlid="228865">Od: Ty</translation>
+    <translation id="otrs_detail_from_support" qtlid="228878">Od: Support OVH</translation>
+    <translation id="otrs_detail_raw_version" qtlid="244664">Zobacz podstawową wersję wiadomości</translation>
+    <translation id="otrs_detail_cook_version" qtlid="244677">Zobacz zinterpretowaną wersję wiadomości</translation>
+    <translation id="otrs_detail_reply" qtlid="69233">Odpowiedź</translation>
+    <translation id="otrs_detail_close" qtlid="62774">Zamknij zgłoszenie</translation>
+    <translation id="otrs_detail_reopen" qtlid="227624">Otwórz ponownie zgłoszenie</translation>
+    <translation id="otrs_detail_reply_error" qtlid="228891">Wystąpił błąd podczas wysyłania odpowiedzi.</translation>
+    <translation id="otrs_detail_reopen_error" qtlid="228904">Wystąpił błąd podczas ponownego otwierania tego zgłoszenia.</translation>
+    <translation id="otrs_detail_close_error" qtlid="228917">Wystąpił błąd podczas zamykania tego zgłoszenia.</translation>
 
-   <translation id="otrs_detail_info" qtlid="228930">Aby odpowiedzieć, skorzystaj z powyższego pola tekstowego i kliknij na przycisk "odpowiedz".</translation>
-   <translation id="otrs_detail_info2" qtlid="228943">Aby ponownie otworzyć zgłoszenie, skorzystaj z powyższego pola tekstowego, uzupełnij je i kliknij na przycisk "ponownie otwórz zgłoszenie".</translation>
+    <translation id="otrs_detail_info" qtlid="228930">Aby odpowiedzieć, skorzystaj z powyższego pola tekstowego i kliknij na przycisk "odpowiedz".</translation>
+    <translation id="otrs_detail_info2" qtlid="228943">Aby ponownie otworzyć zgłoszenie, skorzystaj z powyższego pola tekstowego, uzupełnij je i kliknij na przycisk "ponownie otwórz zgłoszenie".</translation>
 
-   <translation id="otrs_detail_tiket_title" qtlid="384207">Assistance - Détail du ticket {{id}}</translation>
-   
+    <translation id="otrs_detail_tiket_title" qtlid="384207">Pomoc - Szczegóły zgłoszenia {{id}}</translation>
+
    <translation id="otrs_menu_ticket_list_title" qtlid="260840">Pomoc - Lista zgłoszeń</translation>
    <translation id="otrs_menu_ticket_list" qtlid="228631">Lista zgłoszeń</translation>
    <translation id="otrs_menu_ticket_create" qtlid="29515">Otwórz zgłoszenie</translation>
@@ -114,6 +114,12 @@
    <translation id="otrs_service_category_NUMBER" qtlid="401132">Téléphonie (Numéro)</translation>
    <translation id="otrs_service_category_TIMESERIES" qtlid="383525">Metrics</translation>
    <translation id="otrs_service_category_other" qtlid="316047">Inne zapytanie</translation>
+
+    <translation id="otrs_universe_choice" qtlid="406455">Usługi:</translation>
+    <translation id="otrs_universe_WEB" qtlid="135840">WWW</translation>
+    <translation id="otrs_universe_SUNRISE" qtlid="232401">Sunrise</translation>
+    <translation id="otrs_universe_TELECOM" qtlid="135827">Telefoniczne</translation>
+    <translation id="otrs_universe_CLOUD_DEDICATED" qtlid="406468">Cloud i Dedykowane</translation>
 
    <translation id="otrs_category_null"/>
    <translation id="otrs_category_neworder" qtlid="251681">Nowe zamówienie</translation>

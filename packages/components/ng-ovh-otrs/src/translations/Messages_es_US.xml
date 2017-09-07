@@ -1,5 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <translations>
+
+    <translation id="otrs_detail_title" qtlid="245181">Volver a la lista de tickets</translation>
+    <translation id="otrs_detail_title2" qtlid="228774">- Ticket {0}</translation>
+    <translation id="otrs_detail_title3_open" qtlid="228787">(abierto)</translation>
+    <translation id="otrs_detail_title3_closed" qtlid="228800">(cerrado)</translation>
+
+    <translation id="otrs_detail_error" qtlid="228813">Se ha producido un error al cargar los datos del ticket {0}.</translation>
+    <translation id="otrs_detail_message_error" qtlid="228826">Se ha producido un error al recuperar los mensajes del ticket {0}.</translation>
+
+    <translation id="otrs_detail_subject" qtlid="75594">Sujet du ticket :</translation>
+    <translation id="otrs_detail_serviceName" qtlid="228423">Servicio:</translation>
+    <translation id="otrs_detail_creationDate" qtlid="228839">Abierto desde el:</translation>
+    <translation id="otrs_detail_updateDate" qtlid="228852">Actualizado el:</translation>
+    <translation id="otrs_detail_from_customer" qtlid="228865">De: Usted</translation>
+    <translation id="otrs_detail_from_support" qtlid="228878">De: Soporte OVH</translation>
+    <translation id="otrs_detail_raw_version" qtlid="244664">Ver la versión en bruto del mensaje</translation>
+    <translation id="otrs_detail_cook_version" qtlid="244677">Ver la versión interpretada del mensaje</translation>
+    <translation id="otrs_detail_reply" qtlid="69233">Répondre</translation>
+    <translation id="otrs_detail_close" qtlid="62774">Clore le ticket</translation>
+    <translation id="otrs_detail_reopen" qtlid="227624">Reabrir el ticket</translation>
+    <translation id="otrs_detail_reply_error" qtlid="228891">Se ha producido un error al enviar la respuesta.</translation>
+    <translation id="otrs_detail_reopen_error" qtlid="228904">Se ha producido un error al reabrir el ticket.</translation>
+    <translation id="otrs_detail_close_error" qtlid="228917">Se ha producido un error al cerrar el ticket.</translation>
+
+    <translation id="otrs_detail_info" qtlid="228930">Para responder, utilice el área de texto anterior para completar el hilo y haga clic en el botón «Responder».</translation>
+    <translation id="otrs_detail_info2" qtlid="228943">Para reabrir el ticket, utilice el área anterior para completar el hilo y haga clic en el botón «Reabrir el tíquet».</translation>
+
+    <translation id="otrs_detail_tiket_title" qtlid="384207">Soporte > Detalle del ticket {{id}}</translation>
    <translation id="otrs_menu_ticket_list_title" qtlid="260840">Soporte - Lista de tickets</translation>
    <translation id="otrs_menu_ticket_list" qtlid="228631">Lista de tickets</translation>
    <translation id="otrs_menu_ticket_create" qtlid="29515">Créer un ticket</translation>
@@ -86,6 +114,12 @@
    <translation id="otrs_service_category_NUMBER" qtlid="401132">Téléphonie (Numéro)</translation>
    <translation id="otrs_service_category_TIMESERIES" qtlid="383525">Metrics</translation>
    <translation id="otrs_service_category_other" qtlid="316047">Otro pedido</translation>
+
+    <translation id="otrs_universe_choice" qtlid="406455">Universo:</translation>
+    <translation id="otrs_universe_WEB" qtlid="135840">Web</translation>
+    <translation id="otrs_universe_SUNRISE" qtlid="232401">Sunrise</translation>
+    <translation id="otrs_universe_TELECOM" qtlid="135827">VoIP</translation>
+    <translation id="otrs_universe_CLOUD_DEDICATED" qtlid="406468">Cloud y Dedicado</translation>
 
    <translation id="otrs_category_null"/>
    <translation id="otrs_category_neworder" qtlid="251681">Nuevo pedido</translation>

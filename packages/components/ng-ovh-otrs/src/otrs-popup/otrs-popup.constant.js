@@ -41,4 +41,9 @@ angular.module("ovh-angular-otrs")
         CDN: "CDN_WEBSTORAGE",
         DEDICATED: "DEDICATED",
         CDN_DEDICATED: "CDN_DEDICATED"
+    })
+    .constant("OTRS_POPUP_UNIVERSES", {
+        EU: ["CLOUD_DEDICATED", "SUNRISE", "TELECOM", "WEB"],
+        CA: ["CLOUD_DEDICATED", "SUNRISE"],
+        US: ["CLOUD_DEDICATED"]
     });

@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <translations>
-   <translation id="otrs_detail_title" qtlid="245181">Go back to your list of tickets</translation>
-   <translation id="otrs_detail_title2" qtlid="228774">- ticket {0}</translation>
-   <translation id="otrs_detail_title3_open" qtlid="228787">- (In progress)</translation>
-   <translation id="otrs_detail_title3_closed" qtlid="228800">- (Closed)</translation>
+    <translation id="otrs_detail_title" qtlid="245181">Go back to your list of tickets</translation>
+    <translation id="otrs_detail_title2" qtlid="228774">- ticket {0}</translation>
+    <translation id="otrs_detail_title3_open" qtlid="228787">- (In progress)</translation>
+    <translation id="otrs_detail_title3_closed" qtlid="228800">- (Closed)</translation>
 
-   <translation id="otrs_detail_error" qtlid="228813">An error has occurred while retrieving the details of ticket {0}.</translation>
-   <translation id="otrs_detail_message_error" qtlid="228826">An error has occurred while retrieving the messages in ticket {0}.</translation>
+    <translation id="otrs_detail_error" qtlid="228813">An error has occurred while retrieving the details of ticket {0}.</translation>
+    <translation id="otrs_detail_message_error" qtlid="228826">An error has occurred while retrieving the messages in ticket {0}.</translation>
 
-   <translation id="otrs_detail_subject" qtlid="75594">Ticket subject:</translation>
-   <translation id="otrs_detail_serviceName" qtlid="228423">Service concerned:</translation>
-   <translation id="otrs_detail_creationDate" qtlid="228839">Open since: </translation>
-   <translation id="otrs_detail_updateDate" qtlid="228852">Updated on the:</translation>
-   <translation id="otrs_detail_from_customer" qtlid="228865">From: You</translation>
-   <translation id="otrs_detail_from_support" qtlid="228878">From: OVH Support</translation>
-   <translation id="otrs_detail_raw_version" qtlid="244664">See the draft version of the message</translation>
-   <translation id="otrs_detail_cook_version" qtlid="244677">See the interpreted version of the message</translation>
-   <translation id="otrs_detail_reply" qtlid="69233">Reply</translation>
-   <translation id="otrs_detail_close" qtlid="62774">Close the ticket</translation>
-   <translation id="otrs_detail_reopen" qtlid="227624">Reopen the ticket</translation>
-   <translation id="otrs_detail_reply_error" qtlid="228891">An error has occurred while sending your reply.</translation>
-   <translation id="otrs_detail_reopen_error" qtlid="228904">An error has occurred while reopening this ticket.</translation>
-   <translation id="otrs_detail_close_error" qtlid="228917">An error has occurred while closing this ticket.</translation>
+    <translation id="otrs_detail_subject" qtlid="75594">Ticket subject:</translation>
+    <translation id="otrs_detail_serviceName" qtlid="228423">Service concerned:</translation>
+    <translation id="otrs_detail_creationDate" qtlid="228839">Open since: </translation>
+    <translation id="otrs_detail_updateDate" qtlid="228852">Updated on the:</translation>
+    <translation id="otrs_detail_from_customer" qtlid="228865">From: You</translation>
+    <translation id="otrs_detail_from_support" qtlid="228878">From: OVH Support</translation>
+    <translation id="otrs_detail_raw_version" qtlid="244664">See the draft version of the message</translation>
+    <translation id="otrs_detail_cook_version" qtlid="244677">See the interpreted version of the message</translation>
+    <translation id="otrs_detail_reply" qtlid="69233">Reply</translation>
+    <translation id="otrs_detail_close" qtlid="62774">Close the ticket</translation>
+    <translation id="otrs_detail_reopen" qtlid="227624">Reopen the ticket</translation>
+    <translation id="otrs_detail_reply_error" qtlid="228891">An error has occurred while sending your reply.</translation>
+    <translation id="otrs_detail_reopen_error" qtlid="228904">An error has occurred while reopening this ticket.</translation>
+    <translation id="otrs_detail_close_error" qtlid="228917">An error has occurred while closing this ticket.</translation>
 
-   <translation id="otrs_detail_info" qtlid="228930">To reply to the ticket, fill in the above text box and click on "reply".</translation>
-   <translation id="otrs_detail_info2" qtlid="228943">To reopen the ticket, fill in the above text box and click on "reopen the ticket".</translation>
+    <translation id="otrs_detail_info" qtlid="228930">To reply to the ticket, fill in the above text box and click on "reply".</translation>
+    <translation id="otrs_detail_info2" qtlid="228943">To reopen the ticket, fill in the above text box and click on "reopen the ticket".</translation>
 
-   <translation id="otrs_detail_tiket_title" qtlid="384207">Assistance - ticket detail {{id}}</translation>
+    <translation id="otrs_detail_tiket_title" qtlid="384207">Support - See details of ticket {{id}}</translation>
 
    <translation id="otrs_menu_ticket_list_title" qtlid="260840">Your support tickets</translation>
    <translation id="otrs_menu_ticket_list" qtlid="228631">List of tickets</translation>
@@ -114,6 +114,12 @@
    <translation id="otrs_service_category_NUMBER" qtlid="401132">Telephony (Number)</translation>
    <translation id="otrs_service_category_TIMESERIES" qtlid="383525">Metrics</translation>
    <translation id="otrs_service_category_other" qtlid="316047">Other request </translation>
+
+    <translation id="otrs_universe_choice" qtlid="406455">Universe:</translation>
+    <translation id="otrs_universe_WEB" qtlid="135840">Web</translation>
+    <translation id="otrs_universe_SUNRISE" qtlid="232401">Sunrise</translation>
+    <translation id="otrs_universe_TELECOM" qtlid="135827">Telecom</translation>
+    <translation id="otrs_universe_CLOUD_DEDICATED" qtlid="406468">Cloud and Dedicated</translation>
 
    <translation id="otrs_category_null"/>
    <translation id="otrs_category_neworder" qtlid="251681">New order</translation>

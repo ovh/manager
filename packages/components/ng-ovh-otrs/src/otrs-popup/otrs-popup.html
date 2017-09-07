@@ -36,6 +36,24 @@
             <div class="col-xs-12">
                 <div class="row">
                     <div class="col-xs-12">
+                        <label class="control-label" for="select-universe" data-translate="otrs_universe_choice"></label>
+                    </div>
+                </div>
+                <div class="flat-input-container row">
+                    <div class="col-xs-12">
+                        <select flat-select id="select-universe" name="select-universe" class="form-control"
+                                required
+                                data-ng-model="OtrsPopupCtrl.selectedUniverse"
+                                data-ng-options="universe as ( 'otrs_universe_'+ universe | translate ) for universe in OtrsPopupCtrl.universes"
+                                data-ng-change="OtrsPopupCtrl.getServices()">
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12">
+                <div class="row">
+                    <div class="col-xs-12">
                         <label class="control-label" for="select-services" data-translate="otrs_popup_service"></label>
                         <spinner data-ng-show="OtrsPopupCtrl.loaders.services" class="pull-right"></spinner>
                     </div>
