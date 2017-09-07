@@ -1,0 +1,20 @@
+<div class="wizard-container" tabindex="-1">
+
+    <div class="wizard-title-container modal-header">
+		<button class="oui-icon oui-icon-close_thin oui-modal__close-button" type="button" aria-label="{{wizard_close}}"
+				data-ng-click="onCancel()"
+				data-ng-show="wizardCloseButton"></button>
+	</div>
+
+	<div class="d-flex mb-3" style="padding: 2rem 2rem 0 2rem;">
+		<h1 class="wizard-title d-inline-block" data-ng-bind="wizardTitle"></h1>
+		<div class="wizard-breadcrumb-container d-inline-block ml-auto my-auto text-muted text-nowrap pl-3 font-italic" data-ng-show="stepCount > 1">
+            <span data-i18n
+                  data-key="wizard_breadcrumb"
+                  data-vars="{{currentStep}}|{{stepCount}}"
+                  data-ng-show="wizardBreadCrumb"></span>
+		</div>
+	</div>
+
+	<div data-ng-transclude></div>
+</div>

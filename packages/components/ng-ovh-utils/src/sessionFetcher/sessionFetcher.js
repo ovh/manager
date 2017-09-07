@@ -1,0 +1,1 @@
+angular.module('ua.sessionFetcher', []);

@@ -1,0 +1,92 @@
+<div>
+    <div data-ng-show="fullText == false">
+        <ul class="list-unstyled">
+            <li class="clearfix mb-3" data-ng-repeat="contract in contracts track by $index">
+                <a class="d-block font-weight-bold blue" target="_blank" data-ng-href="{{contract.url}}">
+                    <span data-ng-bind="contract.name"></span>
+                    <span class="fa fa-file-pdf-o pull-right" aria-hidden="true"></span>
+                </a>
+            </li>
+        </ul>
+        <div class="checkbox mt-4">
+            <label>
+                <input type="checkbox" id="validateContracts" name="validateContract" value="false"
+                       data-ng-model="agree">
+                <span data-ng-bind="contracts.length > 1 && tr('contracts_agree') || tr('contract_agree')"></span>
+            </label>
+        </div>
+    </div>
+    <div data-ng-show="fullText == true">
+        <p class="font-weight-bold text-center black"
+           data-ng-bind="contracts.length > 1 && tr('contracts_list_title', [contracts.length]) || tr('contract_list_title')">
+        </p>
+
+        <div class="accordion contracts-list">
+            <div data-ng-repeat="contract in contracts track by $index" id="contract-{{$index}}">
+                <div class="accordion-group">
+                    <div class="accordion-heading">
+                        <a class="accordion-toggle contracts-toggle font-weight-bold blue"
+                           data-ng-bind="contract.name">
+                        </a>
+                    </div>
+                    <div id="{{$index}}" class="accordion-body in collapse">
+                        <div class="accordion-inner">
+                            <pre class="contracts-content">{{contract.content}}</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-footer">
+            <div class="contracts-breadcrumb-container" role="navigation">
+                <div class="contracts-breadcrumb">
+                    <a class="pull-left contracts-breadcrumb-navigate contracts-breadcrumb-navigate-previous">
+                        <span class="fa fa-chevron-left" aria-hidden="true"></span>
+                        <span data-i18n-static="contract_previous"></span>
+                    </a>
+                    <ul id="contracts-menu">
+                        <li class="contracts-breadcrumb-navigate"
+                            data-ng-repeat="contract in contracts track by $index">
+                            <a title="{{contract.name}}"
+                               data-fake-href="#contract-{{$index}}"
+                               data-ng-class="{
+                                    'active' : currentContract.name == contract.name
+                               }"></a>
+                        </li>
+                    </ul>
+                    <a class="pull-right contracts-breadcrumb-navigate contracts-breadcrumb-navigate-next">
+                        <span data-i18n-static="contract_next"></span>
+                        <span class="fa fa-chevron-right" aria-hidden="true"></span>
+                    </a>
+                </div>
+            </div>
+
+            <br/>
+
+            <a class="accordion-toggle contracts-toggle-icon center" title="{{contract.name}}" target="_blank"
+               data-ng-href="{{currentContract.url}}">
+                <span data-ng-bind="tr('download_contract', [currentContract.name])"></span>
+                <br/>
+                <span class="fa fa-file-pdf-o" aria-hidden="true"></span>
+            </a>
+
+            <br/>
+
+            <div class="checkbox">
+                <label class="pull-right" for="validateContract"
+                       data-ng-show="disabled == false">
+                    <input type="checkbox" id="validateContract"
+                           name="validateContract"
+                           data-ng-model="agree" value="false">
+                    <span data-ng-bind="contracts.length > 1 && tr('contracts_agree', [currentContract]) || tr('contracts_agree')"></span>
+                </label>
+
+                <span class="font-weight-bold pull-right red"
+                      data-i18n-static="ontract_help"
+                      data-ng-show="disabled == true">
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

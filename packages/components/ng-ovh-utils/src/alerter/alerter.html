@@ -1,0 +1,13 @@
+<div class="alert mb-0" data-ng-class="ovhAlertType" data-ng-if="ovhAlertMessage">
+    <span class="fa fa-times close" data-ng-if="!ovhAlertHideRemoveButton" data-ng-click="resetMessages()"></span>
+    <span data-ng-bind-html="ovhAlertMessage"></span>
+    <div data-ng-if="ovhAlertMessageDetails">
+        <a class="text-underline"
+           data-tooltip-box
+           data-tb-unique="true"
+           data-tb-content-template="components/ovh-utils-angular/alerter/tooltipErrorMessages.html"
+           data-tb-hide-on-blur="true"
+           data-tb-placement="bottom"
+           data-i18n-static="common_alerts_message_see_more"></a>
+    </div>
+</div>

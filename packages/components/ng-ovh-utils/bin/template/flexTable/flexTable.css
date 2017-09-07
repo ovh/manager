@@ -1,0 +1,72 @@
+.flex-table {
+    margin-bottom: 10px;
+}
+
+.flex-table .row-fluid > *[class*="span"] {
+    margin-left : 5px;
+}
+
+.flex-table .header-cell,
+.flex-table .body-cell {
+    padding-top: 5px;
+}
+
+.flex-table .header-cell.selection,
+.flex-table .body-cell.selection {
+    text-align: center;
+    margin-right : 5px;
+}
+
+.flex-table .header-cell.selection input[type="radio"],
+.flex-table .body-cell.selection input[type="radio"],
+.flex-table .header-cell.selection input[type="checkbox"],
+.flex-table .body-cell.selection input[type="checkbox"] {
+    margin: 0;
+}
+
+.flex-table > .header-container > .row-fluid > .sortable {
+    cursor: pointer;
+}
+
+.flex-table > .header-container > .row-fluid > .sortable > i {
+    margin-left: 10px;
+}
+
+.flex-table > .body-container.scrollable {
+    clear: both;
+    height: 180px;
+    overflow: auto;
+}
+
+.flex-table > .body-container > .row-fluid:nth-child(2n+1) {
+    background-color: #F2F2F2;
+}
+
+.flex-table > .body-container > .row-fluid:hover {
+    background-color: #EEEEEE;
+}
+
+.flex-table > .body-container > .no-data-frame,
+.flex-table > .body-container > .loader-frame {
+    height: inherit;
+    min-height: 30px;
+    max-height: 180px;
+    width: 100%;
+}
+
+.flex-table > .body-container > .loader-frame {
+    background: transparent url('loading.gif') no-repeat 50% 50%;
+}
+
+.flex-table > .body-container > .no-data-frame td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.flex-table > .body-container.selectable .body-cell.selection.custom {
+    font-size: 80%;
+}
+
+.flex-table > .body-container.selectable > .selected {
+    background-color : #DFF0D8;
+}

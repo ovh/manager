@@ -1,0 +1,22 @@
+/* @todo Update code to have all cases + responsive. */
+
+.tooltipBox-tip.rightTop {
+    margin-left: 7px;
+}
+
+.tooltipBox-tip.rightTop .arrow {
+    top: 25%;
+    left: -7px;
+    margin-top: -7px;
+    border-width: 7px;
+    border-left-width: 0;
+    border-right-color: rgba(0, 0, 0, 0.25);
+}
+
+.tooltipBox-tip.rightTop .arrow:after {
+    bottom: -6px;
+    left: 1px;
+    border-width: 6px;
+    border-left-width: 0;
+    border-right-color: rgb(255, 255, 255);
+}

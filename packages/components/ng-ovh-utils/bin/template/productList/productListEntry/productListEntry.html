@@ -1,0 +1,23 @@
+<div class="navigation">
+    <!-- toggle bar -->
+    <div class="navigation-left-title">
+        <span data-extended-accordion-toggle="#navigation-left-{{$id}}"
+              data-ng-bind="productListTitle"></span>
+    </div>
+    <!-- products list -->
+    <div id="navigation-left-{{$id}}" class="navigation-left-list-container extended-accordion-inner extended-accordion-in">
+        <div class="accordion-inner">
+            <div data-ng-repeat="product in productListEntry | filter:searchProduct | orderBy:'formattedName'"
+            data-ng-class="{
+                'active' : product.name == selected.name
+            }"
+            data-ng-click="selectProduct(product)"
+            data-ng-class-odd="'odd'"
+            data-ng-class-even="'even'"
+            title="{{product.displayName}}">
+                <i data-ng-class="'icon-' + product.type"></i>
+                <span data-ng-bind-html="product.displayName | highlighter:searchProduct.$"></span>
+            </div>
+        </div>
+    </div>
+</div>

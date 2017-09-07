@@ -1,0 +1,9 @@
+temp/
+node_modules
+.idea/
+bin/*.tmp
+target/
+components/
+reports/
+*~
+.tmp
