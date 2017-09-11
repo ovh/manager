@@ -141,7 +141,7 @@ angular.module("ovh-angular-mondial-relay")
             },
             templateUrl: "ovh-angular-mondial-relay/ovh-angular-mondial-relay.view.html",
             controllerAs: "$ctrl",
-            controller: ["$scope", "$q", "$translate", "$timeout", "$http", "mondialRelay", "SupplyMondialRelay", "leafletBoundsHelpers", "leafletEvents", "leafletData", "$injector", function ($scope, $q, $translate, $timeout, $http, mondialRelay, SupplyMondialRelay, leafletBoundsHelpers, leafletEvents, leafletData, $injector) {
+            controller: ["$scope", "$q", "$translate", "$timeout", "$http", "mondialRelay", "OvhApiSupplyMondialRelay", "leafletBoundsHelpers", "leafletEvents", "leafletData", "$injector", function ($scope, $q, $translate, $timeout, $http, mondialRelay, OvhApiSupplyMondialRelay, leafletBoundsHelpers, leafletEvents, leafletData, $injector) {
 
                 var self = this;
 
@@ -243,7 +243,7 @@ angular.module("ovh-angular-mondial-relay")
                     this.ngModel = null;
                     this.foundRelays = [];
 
-                    return SupplyMondialRelay.Lexi().search(
+                    return OvhApiSupplyMondialRelay.Lexi().search(
                         filter || this.filter,
                         $scope
                     )
@@ -329,7 +329,7 @@ angular.module("ovh-angular-mondial-relay")
 
                 this.$onInit = function init () {
                     this.logoPic64 = MONDIAL_RELAY_PICS.logo;
-                    this.userService = this.userService || "User";
+                    this.userService = this.userService || "OvhApiMe";
 
                     this.map = {
                         focus: MONDIAL_RELAY.initialLocation,
