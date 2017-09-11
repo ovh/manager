@@ -51,7 +51,7 @@ angular.module("ovh-angular-contact").provider("ovhContact", function () {
     =            OVHCONTACT SERVICE            =
     ==========================================*/
 
-    self.$get = function ($q, $translate, $translatePartialLoader, OvhContact, User, CONTACT_EMAIL_REGEX) {
+    self.$get = function ($q, $translate, $translatePartialLoader, OvhContact, OvhApiMe, CONTACT_EMAIL_REGEX) {
 
         /**
          *  @ngdoc service
@@ -61,7 +61,7 @@ angular.module("ovh-angular-contact").provider("ovhContact", function () {
          *  @requires $translate
          *  @requires $translatePartialLoader
          *  @requires OvhContact
-         *  @requires User
+         *  @requires OvhApiMe
          *
          *  @description
          *  The `ovhContact` service is the actual core of ovhContact module. This service manage the contacts of the connected user.
@@ -79,7 +79,7 @@ angular.module("ovh-angular-contact").provider("ovhContact", function () {
          */
         function getApiSchemas () {
             if (!schemas) {
-                return User.Lexi().schema().$promise.then(function (apiSchemas) {
+                return OvhApiMe.Lexi().schema().$promise.then(function (apiSchemas) {
                     schemas = apiSchemas;
                     return schemas;
                 });
@@ -204,7 +204,7 @@ angular.module("ovh-angular-contact").provider("ovhContact", function () {
                 contacts = [];
             }
 
-            return User.Contact().Erika().query().expand().execute().$promise.then(function (contactsList) {
+            return OvhApiMe.Contact().Erika().query().expand().execute().$promise.then(function (contactsList) {
                 // filter contact that are not already added
                 // this avoid loosing contact object reference
                 // then add contact to contact list (at given index)
@@ -287,7 +287,7 @@ angular.module("ovh-angular-contact").provider("ovhContact", function () {
          *  @return {Object} Representing the connected user.
          */
         ovhContactService.getConnectedUser = function () {
-            return User.Lexi().get().$promise;
+            return OvhApiMe.Lexi().get().$promise;
         };
 
         /**

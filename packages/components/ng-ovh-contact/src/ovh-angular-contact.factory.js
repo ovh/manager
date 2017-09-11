@@ -2,7 +2,7 @@
  *  @ngdoc object
  *  @name ovhContact.object:OvhContact
  *
- *  @requires User
+ *  @requires OvhApiMe
  *
  *  @description
  *  Factory that describe the representation of an ovh contact.
@@ -52,7 +52,7 @@
  *  @param {String=} options.vat The VAT number of the contact.
  */
 
-angular.module("ovh-angular-contact").factory("OvhContact", function (User, CONTACT_PROTOTYPE_PATH) {
+angular.module("ovh-angular-contact").factory("OvhContact", function (OvhApiMe, CONTACT_PROTOTYPE_PATH) {
     "use strict";
 
     var getDatas = function (instance) {
@@ -144,7 +144,7 @@ angular.module("ovh-angular-contact").factory("OvhContact", function (User, CONT
     OvhContact.prototype.save = function () {
         var self = this;
 
-        return User.Contact().Lexi().save({
+        return OvhApiMe.Contact().Lexi().save({
             contactId: self.id
         }, getDatas(self)).$promise.then(function () {
             return self;
@@ -164,7 +164,7 @@ angular.module("ovh-angular-contact").factory("OvhContact", function (User, CONT
     OvhContact.prototype.create = function () {
         var self = this;
 
-        return User.Contact().Lexi().create({}, getDatas(self)).$promise.then(function (contact) {
+        return OvhApiMe.Contact().Lexi().create({}, getDatas(self)).$promise.then(function (contact) {
             self.id = contact.id;
             return self;
         });

@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("ovh-api-services", ["ngResource", "ovh-angular-apiv7"]).service("User", function ($resource, Apiv7Endpoint) {
+angular.module("ovh-api-services", ["ngResource", "ovh-angular-apiv7"]).service("OvhApiMe", function ($resource, Apiv7Endpoint) {
     return {
         Lexi: function () {
             return $resource("/me", {}, {

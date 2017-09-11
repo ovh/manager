@@ -557,7 +557,7 @@ angular.module("ovh-angular-contact").controller("OvhContactCtrl", ["$timeout", 
  *  @ngdoc object
  *  @name ovhContact.object:OvhContact
  *
- *  @requires User
+ *  @requires OvhApiMe
  *
  *  @description
  *  Factory that describe the representation of an ovh contact.
@@ -607,7 +607,7 @@ angular.module("ovh-angular-contact").controller("OvhContactCtrl", ["$timeout", 
  *  @param {String=} options.vat The VAT number of the contact.
  */
 
-angular.module("ovh-angular-contact").factory("OvhContact", ["User", "CONTACT_PROTOTYPE_PATH", function (User, CONTACT_PROTOTYPE_PATH) {
+angular.module("ovh-angular-contact").factory("OvhContact", ["OvhApiMe", "CONTACT_PROTOTYPE_PATH", function (OvhApiMe, CONTACT_PROTOTYPE_PATH) {
     "use strict";
 
     var getDatas = function (instance) {
@@ -699,7 +699,7 @@ angular.module("ovh-angular-contact").factory("OvhContact", ["User", "CONTACT_PR
     OvhContact.prototype.save = function () {
         var self = this;
 
-        return User.Contact().Lexi().save({
+        return OvhApiMe.Contact().Lexi().save({
             contactId: self.id
         }, getDatas(self)).$promise.then(function () {
             return self;
@@ -719,7 +719,7 @@ angular.module("ovh-angular-contact").factory("OvhContact", ["User", "CONTACT_PR
     OvhContact.prototype.create = function () {
         var self = this;
 
-        return User.Contact().Lexi().create({}, getDatas(self)).$promise.then(function (contact) {
+        return OvhApiMe.Contact().Lexi().create({}, getDatas(self)).$promise.then(function (contact) {
             self.id = contact.id;
             return self;
         });
@@ -866,7 +866,7 @@ angular.module("ovh-angular-contact").provider("ovhContact", function () {
     =            OVHCONTACT SERVICE            =
     ==========================================*/
 
-    self.$get = ["$q", "$translate", "$translatePartialLoader", "OvhContact", "User", "CONTACT_EMAIL_REGEX", function ($q, $translate, $translatePartialLoader, OvhContact, User, CONTACT_EMAIL_REGEX) {
+    self.$get = ["$q", "$translate", "$translatePartialLoader", "OvhContact", "OvhApiMe", "CONTACT_EMAIL_REGEX", function ($q, $translate, $translatePartialLoader, OvhContact, OvhApiMe, CONTACT_EMAIL_REGEX) {
 
         /**
          *  @ngdoc service
@@ -876,7 +876,7 @@ angular.module("ovh-angular-contact").provider("ovhContact", function () {
          *  @requires $translate
          *  @requires $translatePartialLoader
          *  @requires OvhContact
-         *  @requires User
+         *  @requires OvhApiMe
          *
          *  @description
          *  The `ovhContact` service is the actual core of ovhContact module. This service manage the contacts of the connected user.
@@ -894,7 +894,7 @@ angular.module("ovh-angular-contact").provider("ovhContact", function () {
          */
         function getApiSchemas () {
             if (!schemas) {
-                return User.Lexi().schema().$promise.then(function (apiSchemas) {
+                return OvhApiMe.Lexi().schema().$promise.then(function (apiSchemas) {
                     schemas = apiSchemas;
                     return schemas;
                 });
@@ -1019,7 +1019,7 @@ angular.module("ovh-angular-contact").provider("ovhContact", function () {
                 contacts = [];
             }
 
-            return User.Contact().Erika().query().expand().execute().$promise.then(function (contactsList) {
+            return OvhApiMe.Contact().Erika().query().expand().execute().$promise.then(function (contactsList) {
                 // filter contact that are not already added
                 // this avoid loosing contact object reference
                 // then add contact to contact list (at given index)
@@ -1102,7 +1102,7 @@ angular.module("ovh-angular-contact").provider("ovhContact", function () {
          *  @return {Object} Representing the connected user.
          */
         ovhContactService.getConnectedUser = function () {
-            return User.Lexi().get().$promise;
+            return OvhApiMe.Lexi().get().$promise;
         };
 
         /**

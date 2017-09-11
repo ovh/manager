@@ -46,7 +46,7 @@ NG_DOCS={
       "type": "object",
       "moduleName": "ovhContact",
       "shortDescription": "Factory that describe the representation of an ovh contact.",
-      "keywords": "additional address allow angular api attributes birth birthcity birthcountry birthday birthzip born call called cancel cellphone changed check city code company companynationalidentificationnumber contact controller copy country create created creating current describe details docs edition email factory false fax firstname flag form function gender haschange identification informations instance language lastname legal legalform line1 line2 line3 lives main method modified module my-contact my-contact-firstname my-contact-lastname mycontact mymanagerapp mytestctrl national nationalidentificationnumber nationality number object options organisation organisationname organisationtype otherdetails ovh ovhcontact path paths phone post provided province representation reset returns revert save saved spare spareemail spoken start startedition stopedition string telling true type unique user valid var vat zip"
+      "keywords": "additional address allow angular api attributes birth birthcity birthcountry birthday birthzip born call called cancel cellphone changed check city code company companynationalidentificationnumber contact controller copy country create created creating current describe details docs edition email factory false fax firstname flag form function gender haschange identification informations instance language lastname legal legalform line1 line2 line3 lives main method modified module my-contact my-contact-firstname my-contact-lastname mycontact mymanagerapp mytestctrl national nationalidentificationnumber nationality number object options organisation organisationname organisationtype otherdetails ovh ovhapime ovhcontact path paths phone post provided province representation reset returns revert save saved spare spareemail spoken start startedition stopedition string telling true type unique valid var vat zip"
     },
     {
       "section": "docs",
@@ -64,7 +64,7 @@ NG_DOCS={
       "type": "service",
       "moduleName": "ovhContact",
       "shortDescription": "The ovhContact service is the actual core of ovhContact module. This service manage the contacts of the connected user.",
-      "keywords": "$q $translate $translatepartialloader actual add addcontact api array call components connected contact contactoptions contacts convert convertconnectedusertocontact core creating details docs entire flag fully getconnecteduser getcontactlist getcreationrules informations instance list load loadtranslations manage method module nic object options ovh ovhcontact recreate refresh representing return returns rules service telling translations user v7 void"
+      "keywords": "$q $translate $translatepartialloader actual add addcontact api array call components connected contact contactoptions contacts convert convertconnectedusertocontact core creating details docs entire flag fully getconnecteduser getcontactlist getcreationrules informations instance list load loadtranslations manage method module nic object options ovh ovhapime ovhcontact recreate refresh representing return returns rules service telling translations user v7 void"
     }
   ],
   "apis": {
