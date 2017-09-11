@@ -35,6 +35,21 @@ angular.module("ovh-angular-sidebar-menu").provider("SidebarMenu", function () {
 
     /**
      *  @ngdoc function
+     *  @name sidebarMenu.SidebarMenuProvider#clearTranslationPath
+     *  @methodOf sidebarMenu.SidebarMenuProvider
+     *
+     *  @description
+     *  Clear translations path
+     *
+     *  @return {Array} The list of translations to load.
+     */
+    self.clearTranslationPath = function () {
+        translationPaths = [];
+        return translationPaths;
+    };
+
+    /**
+     *  @ngdoc function
      *  @name sidebarMenu.SidebarMenuProvider#addTranslationPath
      *  @methodOf sidebarMenu.SidebarMenuProvider
      *

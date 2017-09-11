@@ -64,7 +64,7 @@ NG_DOCS={
       "type": "object",
       "moduleName": "sidebarMenu",
       "shortDescription": "sidebarMenuProvider allows developper to configure :",
-      "keywords": "add addtranslationpath allows angular config configure content default developper docs enabling extra file function html inner item itemms items length list load loaded loading manager menu min minimum minitems module mymanagerapp newest object path risk search set setinnermenuitemtemplatepath setminitemsforenablingsearch setted sidebar sidebarmenu sidebarmenuprovider specific template templatepath translation translationpath translations"
+      "keywords": "add addtranslationpath allows angular clear cleartranslationpath config configure content default developper docs enabling extra file function html inner item itemms items length list load loaded loading manager menu min minimum minitems module mymanagerapp newest object path risk search set setinnermenuitemtemplatepath setminitemsforenablingsearch setted sidebar sidebarmenu sidebarmenuprovider specific template templatepath translation translationpath translations"
     }
   ],
   "apis": {
