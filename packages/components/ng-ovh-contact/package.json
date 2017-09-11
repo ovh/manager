@@ -1,6 +1,6 @@
 {
   "name": "ovh-angular-contact",
-  "version": "0.1.1",
+  "version": "1.0.0",
   "description": "Helps you dealing with ovh contacts from /me/contact API.",
   "keywords": [
     "angular"
