@@ -17,7 +17,7 @@ describe("ovh-angular-mondial-relay", function () {
         // these are the dependencies to the API
         angular.module("test.api", []);
 
-        angular.module("test.api").service("SupplyMondialRelay", function () {
+        angular.module("test.api").service("OvhApiSupplyMondialRelay", function () {
             return {
                 lexi: function () {
                     return {
