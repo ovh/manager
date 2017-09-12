@@ -112,8 +112,14 @@ function (translator) {
             });
             // /events
 
-            if(localStorage && localStorage.getItem('pagination_front_items_per_page')) {
-                $scope.pageSize = localStorage.getItem('pagination_front_items_per_page');
+            if (localStorage != null) {
+                var itemsPerPage = localStorage.getItem('pagination_front_items_per_page');
+
+                if (!_.isNumber(itemsPerPage)) {
+                    itemsPerPage = parseInt(itemsPerPage, 10);
+                }
+
+                $scope.pageSize = itemsPerPage;
             } else {
                 if (!$scope.pageSize) {
                     $scope.pageSize = 10;
