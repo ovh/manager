@@ -8,84 +8,79 @@
  * @param {Object} jsplumbEndpointSourceOptions Options of the endpoint as source
  * @param {Object} jsplumbEndpointTargetOptions Options of the endpoint as target
  * @description
- *
- * Create a graph endpoint
- *
- * Example
- *
- * <pre>
- *     // script.js
- *     angular.module("myApp", ["ovh-angular-jsplumb"]);
- *     angular.module("myApp").controller("foo", function() {
- *          var self = this;
- *
- *          this.instanceOptions = {
- *               PaintStyle : {
- *                   lineWidth : 2,
- *                   strokeStyle : "#354291"
- *               },
- *               HoverPaintStyle : {
- *                   lineWidth : 4,
- *                   strokeStyle : "#354291"
- *               },
- *               MaxConnections : -1
- *          };
- *
- *          this.anchors = {
- *               bottom : {
- *                  source : {
- *                      anchor : [0.5, 0.5, 0, 1],
- *                      connector: connector
- *                  },
- *                  target : {
- *                      anchor : [0.5, 0.5, 0, 1],
- *                      connector: connector
- *                  }
- *              },
- *              top : {
- *                  source : {
- *                      anchor : [0.5, 0.5, 0, -1],
- *                      connector: connector
- *                  },
- *                  target : {
- *                      anchor : [0.5, 0.5, 0, -1],
- *                      connector: connector
- *                  }
- *              }
- *          };
- *
- *          $scope.$on("jsplumb.instance.created", function (evt, instance) {
- *              self.jsPlumb = instance;
- *              instance.Defaults.Container=$("body");
- *          });
- *
- *         function init() {
- *            self.jsplumbReady = false;
- *            jsPlumbService.jsplumbInit().finally(function () {
- *                self.jsplumbReady = true;
- *            });
- *
- *         }
- *
- *         init();
- *     });
- * </pre>
- *
- * <pre>
- *     <div data-ng-if="Foo.jsplumbReady" data-jsplumb-instance="Foo.instanceOptions">
- *         <div id="one"
- *               data-jsplumb-endpoint-source-options="Foo.endpointOptions.top.source"
-                 data-jsplumb-endpoint-target-options="Foo.endpointOptions.bottom.target"
-                 data-jsplumb-endpoint-connection-ids="[]">hello world</div>
+ * <p>Create a graph endpoint</p>
+ * @example
+ <example module="myApp">
+    <file name="script.js">
+        angular.module('myApp', [])
+        angular.module("myApp").controller("foo", function() {
+            var self = this;
+    
+            this.instanceOptions = {
+                    PaintStyle : {
+                        lineWidth : 2,
+                        strokeStyle : "#354291"
+                    },
+                    HoverPaintStyle : {
+                        lineWidth : 4,
+                        strokeStyle : "#354291"
+                    },
+                    MaxConnections : -1
+            };
+    
+            this.anchors = {
+                    bottom : {
+                    source : {
+                        anchor : [0.5, 0.5, 0, 1],
+                        connector: connector
+                    },
+                    target : {
+                        anchor : [0.5, 0.5, 0, 1],
+                        connector: connector
+                    }
+                },
+                top : {
+                    source : {
+                        anchor : [0.5, 0.5, 0, -1],
+                        connector: connector
+                    },
+                    target : {
+                        anchor : [0.5, 0.5, 0, -1],
+                        connector: connector
+                    }
+                }
+            };
+    
+            $scope.$on("jsplumb.instance.created", function (evt, instance) {
+                self.jsPlumb = instance;
+                instance.Defaults.Container=$("body");
+            });
+    
+            function init() {
+                self.jsplumbReady = false;
+                jsPlumbService.jsplumbInit().finally(function () {
+                    self.jsplumbReady = true;
+                });
+    
+            }
+    
+            init();
+        });
+    </file>
+    <file name="index.html">
+        <div data-ng-if="Foo.jsplumbReady" data-jsplumb-instance="Foo.instanceOptions">
+            <div id="one"
+                    data-jsplumb-endpoint-source-options="Foo.endpointOptions.top.source"
+                    data-jsplumb-endpoint-target-options="Foo.endpointOptions.bottom.target"
+                    data-jsplumb-endpoint-connection-ids="[]">hello world</div>
 
- *         <div id="two"
- *               data-jsplumb-endpoint-source-options="Foo.endpointOptions.top.source"
- *               data-jsplumb-endpoint-target-options="Foo.endpointOptions.bottom.target"
- *               data-jsplumb-endpoint-connection-ids="['one']">hello world</div>
- *     </div>
- * </pre>
- *
- *
+            <div id="two"
+                    data-jsplumb-endpoint-source-options="Foo.endpointOptions.top.source"
+                    data-jsplumb-endpoint-target-options="Foo.endpointOptions.bottom.target"
+                    data-jsplumb-endpoint-connection-ids="['one']">hello world</div>
+        </div>
+    </file>
+ </example>
  */
 angular.module("ovh-angular-jsplumb").directive("jsplumbEndpoint", function ($rootScope, $parse) {
 

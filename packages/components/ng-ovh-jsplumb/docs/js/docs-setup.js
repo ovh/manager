@@ -10,7 +10,7 @@ NG_DOCS={
       "type": "directive",
       "moduleName": "ovh-angular-jsplumb",
       "shortDescription": "Create a graph endpoint",
-      "keywords": "$on $scope anchor anchors angular api body bottom connector container controller create created data-jsplumb-endpoint-connection-ids data-jsplumb-endpoint-source-options data-jsplumb-endpoint-target-options data-jsplumb-instance data-ng-if defaults directive endpoint endpointoptions example false finally foo function graph hoverpaintstyle identifier identifiers init instance instanceoptions js jsplumb jsplumbendpointconnectionids jsplumbendpointsourceoptions jsplumbendpointtargetoptions jsplumbinit jsplumbready jsplumbservice linewidth link maxconnections module myapp options ovh-angular-jsplumb paintstyle script source strokestyle target top true var world"
+      "keywords": "$on $scope anchor anchors angular api body bottom connector container controller created data-jsplumb-endpoint-connection-ids data-jsplumb-endpoint-source-options data-jsplumb-endpoint-target-options data-jsplumb-instance data-ng-if defaults directive endpoint endpointoptions false finally foo function graph hoverpaintstyle html identifier identifiers init instance instanceoptions js jsplumb jsplumbendpointconnectionids jsplumbendpointsourceoptions jsplumbendpointtargetoptions jsplumbinit jsplumbready jsplumbservice linewidth link maxconnections module myapp options ovh-angular-jsplumb paintstyle script source strokestyle target top true var world"
     },
     {
       "section": "api",
@@ -19,7 +19,7 @@ NG_DOCS={
       "type": "directive",
       "moduleName": "ovh-angular-jsplumb",
       "shortDescription": "Create the jsPlumb environment",
-      "keywords": "$on $scope angular api body container controller create created data-jsplumb-instance data-ng-if defaults directive environment example false finally foo function hoverpaintstyle init instance instanceoptions js jsplumb jsplumbinit jsplumbready jsplumbservice linewidth maxconnections module myapp ovh-angular-jsplumb paintstyle script strokestyle true var"
+      "keywords": "$on $scope angular api body container controller create created data-jsplumb-instance data-ng-if defaults directive environment false finally foo function hoverpaintstyle html init instance instanceoptions js jsplumb jsplumbinit jsplumbready jsplumbservice linewidth maxconnections module myapp ovh-angular-jsplumb paintstyle script strokestyle true var"
     },
     {
       "section": "api",

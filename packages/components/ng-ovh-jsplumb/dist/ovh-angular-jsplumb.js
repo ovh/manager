@@ -10,84 +10,79 @@ angular.module("ovh-angular-jsplumb", []);
  * @param {Object} jsplumbEndpointSourceOptions Options of the endpoint as source
  * @param {Object} jsplumbEndpointTargetOptions Options of the endpoint as target
  * @description
- *
- * Create a graph endpoint
- *
- * Example
- *
- * <pre>
- *     // script.js
- *     angular.module("myApp", ["ovh-angular-jsplumb"]);
- *     angular.module("myApp").controller("foo", function() {
- *          var self = this;
- *
- *          this.instanceOptions = {
- *               PaintStyle : {
- *                   lineWidth : 2,
- *                   strokeStyle : "#354291"
- *               },
- *               HoverPaintStyle : {
- *                   lineWidth : 4,
- *                   strokeStyle : "#354291"
- *               },
- *               MaxConnections : -1
- *          };
- *
- *          this.anchors = {
- *               bottom : {
- *                  source : {
- *                      anchor : [0.5, 0.5, 0, 1],
- *                      connector: connector
- *                  },
- *                  target : {
- *                      anchor : [0.5, 0.5, 0, 1],
- *                      connector: connector
- *                  }
- *              },
- *              top : {
- *                  source : {
- *                      anchor : [0.5, 0.5, 0, -1],
- *                      connector: connector
- *                  },
- *                  target : {
- *                      anchor : [0.5, 0.5, 0, -1],
- *                      connector: connector
- *                  }
- *              }
- *          };
- *
- *          $scope.$on("jsplumb.instance.created", function (evt, instance) {
- *              self.jsPlumb = instance;
- *              instance.Defaults.Container=$("body");
- *          });
- *
- *         function init() {
- *            self.jsplumbReady = false;
- *            jsPlumbService.jsplumbInit().finally(function () {
- *                self.jsplumbReady = true;
- *            });
- *
- *         }
- *
- *         init();
- *     });
- * </pre>
- *
- * <pre>
- *     <div data-ng-if="Foo.jsplumbReady" data-jsplumb-instance="Foo.instanceOptions">
- *         <div id="one"
- *               data-jsplumb-endpoint-source-options="Foo.endpointOptions.top.source"
-                 data-jsplumb-endpoint-target-options="Foo.endpointOptions.bottom.target"
-                 data-jsplumb-endpoint-connection-ids="[]">hello world</div>
+ * <p>Create a graph endpoint</p>
+ * @example
+ <example module="myApp">
+    <file name="script.js">
+        angular.module('myApp', [])
+        angular.module("myApp").controller("foo", function() {
+            var self = this;
+    
+            this.instanceOptions = {
+                    PaintStyle : {
+                        lineWidth : 2,
+                        strokeStyle : "#354291"
+                    },
+                    HoverPaintStyle : {
+                        lineWidth : 4,
+                        strokeStyle : "#354291"
+                    },
+                    MaxConnections : -1
+            };
+    
+            this.anchors = {
+                    bottom : {
+                    source : {
+                        anchor : [0.5, 0.5, 0, 1],
+                        connector: connector
+                    },
+                    target : {
+                        anchor : [0.5, 0.5, 0, 1],
+                        connector: connector
+                    }
+                },
+                top : {
+                    source : {
+                        anchor : [0.5, 0.5, 0, -1],
+                        connector: connector
+                    },
+                    target : {
+                        anchor : [0.5, 0.5, 0, -1],
+                        connector: connector
+                    }
+                }
+            };
+    
+            $scope.$on("jsplumb.instance.created", function (evt, instance) {
+                self.jsPlumb = instance;
+                instance.Defaults.Container=$("body");
+            });
+    
+            function init() {
+                self.jsplumbReady = false;
+                jsPlumbService.jsplumbInit().finally(function () {
+                    self.jsplumbReady = true;
+                });
+    
+            }
+    
+            init();
+        });
+    </file>
+    <file name="index.html">
+        <div data-ng-if="Foo.jsplumbReady" data-jsplumb-instance="Foo.instanceOptions">
+            <div id="one"
+                    data-jsplumb-endpoint-source-options="Foo.endpointOptions.top.source"
+                    data-jsplumb-endpoint-target-options="Foo.endpointOptions.bottom.target"
+                    data-jsplumb-endpoint-connection-ids="[]">hello world</div>
 
- *         <div id="two"
- *               data-jsplumb-endpoint-source-options="Foo.endpointOptions.top.source"
- *               data-jsplumb-endpoint-target-options="Foo.endpointOptions.bottom.target"
- *               data-jsplumb-endpoint-connection-ids="['one']">hello world</div>
- *     </div>
- * </pre>
- *
- *
+            <div id="two"
+                    data-jsplumb-endpoint-source-options="Foo.endpointOptions.top.source"
+                    data-jsplumb-endpoint-target-options="Foo.endpointOptions.bottom.target"
+                    data-jsplumb-endpoint-connection-ids="['one']">hello world</div>
+        </div>
+    </file>
+ </example>
  */
 angular.module("ovh-angular-jsplumb").directive("jsplumbEndpoint", ["$rootScope", "$parse", function ($rootScope, $parse) {
 
@@ -353,14 +348,6 @@ angular.module("ovh-angular-jsplumb").controller("jsplumbInstanceCtrl", ["$scope
         self.connectEndpointsMultiple(endpointId, endpointConnectionIds);
     });
 
-    $scope.$on("$destroy", function () {
-        if ($scope.instance) {
-            $(window).off("resize", onResizePage);
-            $scope.instance.reset();
-        }
-        $scope.instance = null;
-    });
-
     var onResizePage = _.debounce(function onResizePage () {
         $timeout(function () {
             if ($scope.instance) {
@@ -368,6 +355,14 @@ angular.module("ovh-angular-jsplumb").controller("jsplumbInstanceCtrl", ["$scope
             }
         });
     }, 33);
+
+    $scope.$on("$destroy", function () {
+        if ($scope.instance) {
+            $(window).off("resize", onResizePage);
+            $scope.instance.reset();
+        }
+        $scope.instance = null;
+    });
 
     $(window).on("resize", onResizePage);
 
@@ -397,51 +392,49 @@ angular.module("ovh-angular-jsplumb").controller("jsplumbInstanceCtrl", ["$scope
  *
  * Create the jsPlumb environment
  *
- * Example
- *
- * <pre>
- *     // script.js
- *     angular.module("myApp", ["ovh-angular-jsplumb"]);
- *     angular.module("myApp").controller("foo", function() {
- *          var self = this;
- *
- *          this.instanceOptions = {
- *               PaintStyle : {
- *                   lineWidth : 2,
- *                   strokeStyle : "#354291"
- *               },
- *               HoverPaintStyle : {
- *                   lineWidth : 4,
- *                   strokeStyle : "#354291"
- *               },
- *               MaxConnections : -1
- *          };
- *
- *
- *          $scope.$on("jsplumb.instance.created", function (evt, instance) {
- *              self.jsPlumb = instance;
- *              instance.Defaults.Container=$("body");
- *          });
- *
- *         function init() {
- *            self.jsplumbReady = false;
- *            jsPlumbService.jsplumbInit().finally(function () {
- *                self.jsplumbReady = true;
- *            });
- *
- *         }
- *
- *         init();
- *     });
- * </pre>
- *
- * <pre>
- *     <div data-ng-if="Foo.jsplumbReady" data-jsplumb-instance="Foo.instanceOptions">
+ * @example
+ <example module="myApp">
+    <file name="script.js">
+        angular.module("myApp", []);
+        angular.module("myApp").controller("foo", function() {
+            var self = this;
+    
+            this.instanceOptions = {
+                    PaintStyle : {
+                        lineWidth : 2,
+                        strokeStyle : "#354291"
+                    },
+                    HoverPaintStyle : {
+                        lineWidth : 4,
+                        strokeStyle : "#354291"
+                    },
+                    MaxConnections : -1
+            };
+    
+    
+            $scope.$on("jsplumb.instance.created", function (evt, instance) {
+                self.jsPlumb = instance;
+                instance.Defaults.Container=$("body");
+            });
+    
+            function init() {
+                self.jsplumbReady = false;
+                jsPlumbService.jsplumbInit().finally(function () {
+                    self.jsplumbReady = true;
+                });
+    
+            }
+    
+            init();
+        });
+    </file>
+ 
+    <file name="index.html">
+        <div data-ng-if="Foo.jsplumbReady" data-jsplumb-instance="Foo.instanceOptions">
 
- *     </div>
- * </pre>
- *
- *
+        </div>
+    </file>
+ </example>
  */
 angular.module("ovh-angular-jsplumb").directive("jsplumbInstance", ["$rootScope", "$parse", function ($rootScope, $parse) {
 
@@ -556,14 +549,13 @@ angular.module("ovh-angular-jsplumb").directive("jsplumbInstance", ["$rootScope"
  *
  * Main service
  */
-angular.module("ovh-angular-jsplumb").service("jsPlumbService",
-                                              ["$q", function ($q) {
+angular.module("ovh-angular-jsplumb").service("jsPlumbService", ["$q", function ($q) {
 
-                                                  "use strict";
+    "use strict";
 
-                                                  var initDeferred = $q.defer();
+    var initDeferred = $q.defer();
 
-                                                  /**
+    /**
          * @ngdoc function
          * @name jsplumbInit
          * @methodOf ovh-angular-jsplumb.jsPlumbService
@@ -572,15 +564,15 @@ angular.module("ovh-angular-jsplumb").service("jsPlumbService",
          * Initialize jsPlumb
          *
          */
-                                                  this.jsplumbInit = function () {
-                                                      jsPlumb.ready(function () {
-                                                          initDeferred.resolve();
-                                                      });
+    this.jsplumbInit = function () {
+        jsPlumb.ready(function () {
+            initDeferred.resolve();
+        });
 
-                                                      return initDeferred.promise;
-                                                  };
+        return initDeferred.promise;
+    };
 
-                                                  /**
+    /**
          * @ngdoc function
          * @name importDefaults
          * @methodOf ovh-angular-jsplumb.jsPlumbService
@@ -589,8 +581,8 @@ angular.module("ovh-angular-jsplumb").service("jsPlumbService",
          * Configure jsPlumb
          *
          */
-                                                  this.importDefaults = function (defaults) {
-                                                      jsPlumb.importDefaults(defaults);
-                                                  };
-                                              }]
+    this.importDefaults = function (defaults) {
+        jsPlumb.importDefaults(defaults);
+    };
+}]
 );

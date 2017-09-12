@@ -180,14 +180,6 @@ angular.module("ovh-angular-jsplumb").controller("jsplumbInstanceCtrl", function
         self.connectEndpointsMultiple(endpointId, endpointConnectionIds);
     });
 
-    $scope.$on("$destroy", function () {
-        if ($scope.instance) {
-            $(window).off("resize", onResizePage);
-            $scope.instance.reset();
-        }
-        $scope.instance = null;
-    });
-
     var onResizePage = _.debounce(function onResizePage () {
         $timeout(function () {
             if ($scope.instance) {
@@ -195,6 +187,14 @@ angular.module("ovh-angular-jsplumb").controller("jsplumbInstanceCtrl", function
             }
         });
     }, 33);
+
+    $scope.$on("$destroy", function () {
+        if ($scope.instance) {
+            $(window).off("resize", onResizePage);
+            $scope.instance.reset();
+        }
+        $scope.instance = null;
+    });
 
     $(window).on("resize", onResizePage);
 

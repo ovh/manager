@@ -7,51 +7,49 @@
  *
  * Create the jsPlumb environment
  *
- * Example
- *
- * <pre>
- *     // script.js
- *     angular.module("myApp", ["ovh-angular-jsplumb"]);
- *     angular.module("myApp").controller("foo", function() {
- *          var self = this;
- *
- *          this.instanceOptions = {
- *               PaintStyle : {
- *                   lineWidth : 2,
- *                   strokeStyle : "#354291"
- *               },
- *               HoverPaintStyle : {
- *                   lineWidth : 4,
- *                   strokeStyle : "#354291"
- *               },
- *               MaxConnections : -1
- *          };
- *
- *
- *          $scope.$on("jsplumb.instance.created", function (evt, instance) {
- *              self.jsPlumb = instance;
- *              instance.Defaults.Container=$("body");
- *          });
- *
- *         function init() {
- *            self.jsplumbReady = false;
- *            jsPlumbService.jsplumbInit().finally(function () {
- *                self.jsplumbReady = true;
- *            });
- *
- *         }
- *
- *         init();
- *     });
- * </pre>
- *
- * <pre>
- *     <div data-ng-if="Foo.jsplumbReady" data-jsplumb-instance="Foo.instanceOptions">
+ * @example
+ <example module="myApp">
+    <file name="script.js">
+        angular.module("myApp", []);
+        angular.module("myApp").controller("foo", function() {
+            var self = this;
+    
+            this.instanceOptions = {
+                    PaintStyle : {
+                        lineWidth : 2,
+                        strokeStyle : "#354291"
+                    },
+                    HoverPaintStyle : {
+                        lineWidth : 4,
+                        strokeStyle : "#354291"
+                    },
+                    MaxConnections : -1
+            };
+    
+    
+            $scope.$on("jsplumb.instance.created", function (evt, instance) {
+                self.jsPlumb = instance;
+                instance.Defaults.Container=$("body");
+            });
+    
+            function init() {
+                self.jsplumbReady = false;
+                jsPlumbService.jsplumbInit().finally(function () {
+                    self.jsplumbReady = true;
+                });
+    
+            }
+    
+            init();
+        });
+    </file>
+ 
+    <file name="index.html">
+        <div data-ng-if="Foo.jsplumbReady" data-jsplumb-instance="Foo.instanceOptions">
 
- *     </div>
- * </pre>
- *
- *
+        </div>
+    </file>
+ </example>
  */
 angular.module("ovh-angular-jsplumb").directive("jsplumbInstance", function ($rootScope, $parse) {
 
