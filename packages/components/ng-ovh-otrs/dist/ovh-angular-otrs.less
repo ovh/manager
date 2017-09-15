@@ -78,7 +78,7 @@ div.otrs-details {
 @module-otrs-header-color: #3b4151;
 
 .otrs-container {
-    padding-top:30px;
+    padding-top: 30px;
 }
 
 .otrs-popup {
@@ -90,177 +90,179 @@ div.otrs-details {
     bottom: 0;
     right: 0;
     width: 30% !important;
-    height: 55% !important;
+    height: auto !important;
+    padding-bottom: 1%;
     background-color: rgba(255, 255, 255, 0.70);
     border: 1px solid rgb(225, 225, 239);
     box-shadow: rgba(0, 0, 0, 0.258824) 0px 2px 5px 0px;
     z-index: 10000 !important;
     display: block;
 
-
     #headerPopup {
-      position: absolute;
-      top: -30px;
+        position: absolute;
+        top: -30px;
     }
 
     &.maximize #headerPopup,
     &.minimize #headerPopup {
-      position: static;
+        position: static;
     }
 
     #contentPopup {
-      height: 100%;
-      overflow-y: auto;
-      padding: 0 20px;
+        height: 100%;
+        overflow-y: auto;
+        padding: 0 20px;
     }
 
-    #contentPopup form{
-      cursor: move;
+    #contentPopup form {
+        cursor: move;
     }
 
     &.minimize {
-      height: 30px !important;
-      bottom: 0px !important;
-      right: 0px !important;
-      left: auto !important;
-      top: auto !important;
+        height: 30px !important;
+        bottom: 0px !important;
+        right: 0px !important;
+        left: auto !important;
+        top: auto !important;
     }
 
     &.maximize {
-      height: 100% !important;
-      width: 100% !important;
-      top: 0 !important;
-      left: 0 !important;
+        height: 100% !important;
+        width: 100% !important;
+        top: 0 !important;
+        left: 0 !important;
     }
 
     .draggable-body {
-      -webkit-transition: height 500ms linear;
-      -moz-transition: height 500ms linear;
-      -o-transition: height 500ms linear;
-      transition: height 500ms linear;
-      height: 100%;
-      width: 100%;
-      overflow: auto;
+        -webkit-transition: height 500ms linear;
+        -moz-transition: height 500ms linear;
+        -o-transition: height 500ms linear;
+        transition: height 500ms linear;
+        height: 100%;
+        width: 100%;
+        overflow: auto;
     }
 
     &.minimize .draggable-body {
-      height: 0px;
-      overflow: hidden;
+        height: 0px;
+        overflow: hidden;
     }
 
     &.maximize .draggable-body {
-      height: 100%;
-      width: 100%;
-      overflow: auto;
+        height: 100%;
+        width: 100%;
+        overflow: auto;
     }
 
     &.close {
-      display: none;
+        display: none;
     }
 
     &:hover,
     &:focus,
     &:active {
-      background-color: rgba(255, 255, 255, 1);
+        background-color: rgba(255, 255, 255, 1);
     }
 
     &.ui-draggable-dragging {
-      background-color: rgba(255, 255, 255, 0.60);
+        background-color: rgba(255, 255, 255, 0.60);
     }
 
     .draggable-header,
     .draggable-body,
     .draggable-footer {
-      width: 100%;
+        width: 100%;
     }
 
     .draggable-header {
-      cursor: move;
-      margin-left: 0px !important;
-      height: 30px;
-      text-align: left;
-      line-height: 30px;
-      color: #EFEFEF;
-      background: @module-otrs-header-color;
-      background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #1A1A1A), color-stop(1, #333));
-      background: -ms-linear-gradient(bottom, #1A1A1A, #333);
-      background: -moz-linear-gradient(center bottom, #1A1A1A 0%, #333 100%);
-      background: -o-linear-gradient(#333, #1A1A1A);
-      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#333333', endColorstr='#1a1a1a', GradientType=0);
+        cursor: move;
+        margin-left: 0px !important;
+        height: 30px;
+        text-align: left;
+        line-height: 30px;
+        color: #EFEFEF;
+        background: @module-otrs-header-color;
+        background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #1A1A1A), color-stop(1, #333));
+        background: -ms-linear-gradient(bottom, #1A1A1A, #333);
+        background: -moz-linear-gradient(center bottom, #1A1A1A 0%, #333 100%);
+        background: -o-linear-gradient(#333, #1A1A1A);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#333333', endColorstr='#1a1a1a', GradientType=0);
     }
 
     .draggable-header span {
-      margin-left: 5px;
+        margin-left: 5px;
     }
 
     .draggable-header a.pull-right {
-      margin: 0px 5px;
-      color:white;
-      display: inline-block;
-      cursor: pointer;
+        margin: 0px 5px;
+        color: white;
+        display: inline-block;
+        cursor: pointer;
     }
 
     .otrs_popup_tools {
-      a,
-      button {
-        float: left;
-        padding: 0 5px;
-        border: 0 none;
-        background: none;
-        color: #fff;
-
-        &:hover {
-          opacity: .8;
+        a,
+        button {
+            float: left;
+            padding: 0 5px;
+            border: 0 none;
+            background: none;
+            color: #fff;
+            &:hover {
+                opacity: .8;
+            }
         }
-      }
 
-      .fa-close {
-        font-size: 16px;
-        position: relative;
-        top: 1px;
-      }
+        .fa-close {
+            font-size: 16px;
+            position: relative;
+            top: 1px;
+        }
     }
 
     .ovh-form-flat div[flat-input-container] {
-      position: static;
+        position: static;
     }
 }
 
 @media (max-width: @screen-md) {
-  .otrs-popup {
-    width: 98% !important;
-    height: 90% !important;
-  }
+    .otrs-popup {
+        width: 98% !important;
+        height: 90% !important;
+    }
 }
+
 @media (min-width: @screen-md) {
-  .otrs-popup {
-    width: 30% !important;
-  }
+    .otrs-popup {
+        width: 30% !important;
+    }
 }
 
-@media screen and (max-width : @screen-xs-max) {
-  .otrs-popup {
-    background-color: rgb(255, 255, 255);
-      select, input, textarea {
-          font-size: 16px;
-      }
-
-  }
+@media screen and (max-width: @screen-xs-max) {
+    .otrs-popup {
+        background-color: rgb(255, 255, 255);
+        select,
+        input,
+        textarea {
+            font-size: 16px;
+        }
+    }
 }
 
-@media screen and (max-width : @screen-xs-max) and (orientation: portrait) {
-  .otrs-popup {
-    width: 75% !important;
-    height: 75% !important;
-  }
+@media screen and (max-width: @screen-xs-max) and (orientation: portrait) {
+    .otrs-popup {
+        width: 75% !important;
+        height: 75% !important;
+    }
 }
 
-@media screen and (max-width : @screen-xs-max) and (orientation: landscape) {
-  .otrs-popup {
-    width: 55% !important;
-    height: 70% !important;
-  }
+@media screen and (max-width: @screen-xs-max) and (orientation: landscape) {
+    .otrs-popup {
+        width: 55% !important;
+        height: 70% !important;
+    }
 }
+
 .module-otrs {
 
     .module-otrs-title,
