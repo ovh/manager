@@ -71,7 +71,10 @@ module.exports = function (grunt) {
         less: {
             dist: {
                 options: {
-                    compress: false
+                    compress: false,
+                    paths: [
+                        "bower_components"
+                    ]
                 },
                 files: {
                     "<%= builddir %>/<%= name %>.css": ["less/<%= name %>.less"]
@@ -101,19 +104,6 @@ module.exports = function (grunt) {
                     "<%= distdir %>/<%= name %>.min.css": ["<%= distdir %>/<%= name %>.css"]
                 }
             }
-        },
-
-        // JS Check
-        jshint: {
-            options: {
-                jshintrc: ".jshintrc",
-                reporter: require("jshint-stylish")
-            },
-            js: [
-                "<%= srcdir %>/*.js",
-                "<%= srcdir %>/*/*.js",
-                "!<%= srcdir %>/**/*.spec.js"
-            ]
         },
 
         // Check complexity
@@ -162,18 +152,6 @@ module.exports = function (grunt) {
             unit: {
                 configFile: "karma.conf.js",
                 singleRun: true
-            }
-        },
-
-        jscs: {
-            src: [
-                "<%= srcdir %>/*.js",
-                "<%= srcdir %>/*/*.js",
-                "!<%= srcdir %>/**/*.spec.js"
-            ],
-            options: {
-                config: ".jscsrc",
-                verbose: true
             }
         },
 
@@ -245,7 +223,6 @@ module.exports = function (grunt) {
     grunt.registerTask("buildProd", [
         "clean",
         "ngtemplates",
-        "jshint",
         "complexity",
         "concat:dist",
         "ngAnnotate",
@@ -262,7 +239,7 @@ module.exports = function (grunt) {
     grunt.task.renameTask("watch", "delta");
     grunt.registerTask("watch", ["buildProd", "delta"]);
 
-    grunt.registerTask("test", ["wiredep", "jshint", "jscs", "karma", "eslint"]);
+    grunt.registerTask("test", ["wiredep", "karma", "eslint"]);
 
     // Increase version number. Type = minor|major|patch
     grunt.registerTask("release", "Release", function () {

@@ -65,7 +65,7 @@ angular.module("ovh-angular-pagination-front").directive("paginationFront", func
             saveName: "@?"
         },
         link: function ($scope) {
-            var saveName = typeof $scope.saveName === "string" && $scope.saveName.length ? "pagination_front_items_per_page_" + $scope.saveName : "pagination_front_items_per_page";
+            var saveName = typeof $scope.saveName === "string" && $scope.saveName.length ? "pagination_front_items_per_page_" + $scope.saveName : "pagination_front_items_per_page";
 
             if ($scope.fakeCurrentPage) {
                 $scope.currentPage = $scope.fakeCurrentPage;
@@ -80,7 +80,7 @@ angular.module("ovh-angular-pagination-front").directive("paginationFront", func
             }
 
             if (localStorage && localStorage.getItem(saveName)) {
-                $scope.itemsPerPage = parseInt(localStorage.getItem(saveName), 10) || 10;
+                $scope.itemsPerPage = parseInt(localStorage.getItem(saveName), 10) || 10;
             } else if (!$scope.itemsPerPage) {
                 $scope.itemsPerPage = 10;
             }

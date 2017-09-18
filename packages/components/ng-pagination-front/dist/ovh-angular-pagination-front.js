@@ -67,7 +67,7 @@ angular.module("ovh-angular-pagination-front").directive("paginationFront", ["$q
             saveName: "@?"
         },
         link: function ($scope) {
-            var saveName = typeof $scope.saveName === "string" && $scope.saveName.length ? "pagination_front_items_per_page_" + $scope.saveName : "pagination_front_items_per_page";
+            var saveName = typeof $scope.saveName === "string" && $scope.saveName.length ? "pagination_front_items_per_page_" + $scope.saveName : "pagination_front_items_per_page";
 
             if ($scope.fakeCurrentPage) {
                 $scope.currentPage = $scope.fakeCurrentPage;
@@ -82,7 +82,7 @@ angular.module("ovh-angular-pagination-front").directive("paginationFront", ["$q
             }
 
             if (localStorage && localStorage.getItem(saveName)) {
-                $scope.itemsPerPage = parseInt(localStorage.getItem(saveName), 10) || 10;
+                $scope.itemsPerPage = parseInt(localStorage.getItem(saveName), 10) || 10;
             } else if (!$scope.itemsPerPage) {
                 $scope.itemsPerPage = 10;
             }
@@ -215,7 +215,7 @@ angular.module('ovh-angular-pagination-front').run(['$templateCache', function($
   'use strict';
 
   $templateCache.put('ovh-angular-pagination-front.html',
-    "<div class=pagination-container><ul uib-pagination class=pagination-sm data-total-items=totalItems data-max-size=maxSize data-boundary-links=true data-rotate=false data-num-pages=numPages data-items-per-page=itemsPerPage data-ng-model=currentPage data-previous-text=&lsaquo; data-next-text=&rsaquo; data-first-text=&laquo; data-last-text=&raquo;></ul><input class=\"pagination-page-input pull-right\" data-ng-show=\"goToPage !== 'false'\" name=currentPageInput type=number min=1 data-ng-model=goPage data-ng-model-options=\"{ debounce: {'default': 500} }\" data-ng-change=changePage() data-ng-blur=\"goPage = null\" data-ng-keypress=changePageKeyPress($event); placeholder={{pagePlaceholder}}><select class=\"pagination-page-size pull-right\" data-ng-show=\"goToPage !== 'false'\" name=itemsPerPageSelect data-ng-model=itemsPerPage data-ng-options=\"size for size in [5, 10, 20, 40, 80, 100]\"><option value=\"\" disabled data-ng-bind=itemPerPagePlaceholder selected></option></select></div>"
+    "<div class=pagination-container><ul data-uib-pagination data-total-items=totalItems data-max-size=maxSize data-boundary-links=true data-rotate=false data-num-pages=numPages data-items-per-page=itemsPerPage data-ng-model=currentPage data-previous-text=&lsaquo; data-next-text=&rsaquo; data-first-text=&laquo; data-last-text=&raquo;></ul><div class=\"form-inline pull-right\"><select class=form-control name=itemsPerPageSelect data-ng-show=\"goToPage !== 'false'\" data-ng-model=itemsPerPage data-ng-options=\"size for size in [5, 10, 20, 40, 80, 100]\"><option value=\"\" selected disabled data-ng-bind=itemPerPagePlaceholder selected></option></select><input class=form-control name=currentPageInput type=number min=1 placeholder={{pagePlaceholder}} data-ng-show=\"goToPage !== 'false'\" data-ng-model=goPage data-ng-model-options=\"{ debounce: {'default': 500} }\" data-ng-change=changePage() data-ng-blur=\"goPage = null\" data-ng-keypress=changePageKeyPress($event);></div></div>"
   );
 
 }]);
