@@ -15,17 +15,22 @@
   overflow: hidden;
 }
 .ovh-angular-actions-menu .popover-content .actions-menu-inner button.close-button {
-  position: absolute;
   padding: 10px;
+  position: absolute;
   top: 0;
   right: 0;
   color: #A0A0A0;
   z-index: 10;
+  background-color: transparent;
+  border: none;
 }
 .ovh-angular-actions-menu .popover-content .actions-menu-inner button.close-button:hover,
 .ovh-angular-actions-menu .popover-content .actions-menu-inner button.close-button:active,
 .ovh-angular-actions-menu .popover-content .actions-menu-inner button.close-button:focus {
   text-decoration: none;
+}
+.ovh-angular-actions-menu .popover-content .actions-menu-inner button.close-button i {
+  font-weight: 600;
 }
 .ovh-angular-actions-menu .popover-content .actions-menu-inner .actions-menu-pages {
   height: 100%;
@@ -49,6 +54,10 @@
                     =            ONLY FOR SECONDARY PAGE            =
                     ===============================================*/
   /*-----  End of ONLY FOR SECONDARY PAGE  ------*/
+}
+.ovh-angular-actions-menu .popover-content .actions-menu-inner .actions-menu-pages .actions-menu-page ul.actions-list,
+.ovh-angular-actions-menu .popover-content .actions-menu-inner .actions-menu-pages .actions-menu-page ul.sub-actions-list {
+  margin-bottom: 0;
 }
 .ovh-angular-actions-menu .popover-content .actions-menu-inner .actions-menu-pages .actions-menu-page ul.actions-list > li.actions-list-item .actions-menu-item-link,
 .ovh-angular-actions-menu .popover-content .actions-menu-inner .actions-menu-pages .actions-menu-page ul.sub-actions-list > li.actions-list-item .actions-menu-item-link {
@@ -89,12 +98,12 @@
   width: 33.33333333%;
   box-shadow: 0 1px #D7D7D7;
 }
-.ovh-angular-actions-menu .popover-content .actions-menu-inner .actions-menu-pages .actions-menu-page.main-page ul.actions-list > li.actions-list-item:nth-child(3n+2) .actions-menu-item-link:focus:before,
-.ovh-angular-actions-menu .popover-content .actions-menu-inner .actions-menu-pages .actions-menu-page.main-page ul.actions-list > li.actions-list-item:nth-child(3n+2) .actions-menu-item-link:focus:after {
+.ovh-angular-actions-menu .popover-content .actions-menu-inner .actions-menu-pages .actions-menu-page.main-page ul.actions-list > li.actions-list-item:nth-child(3n+2) .actions-menu-item-link:focus::before,
+.ovh-angular-actions-menu .popover-content .actions-menu-inner .actions-menu-pages .actions-menu-page.main-page ul.actions-list > li.actions-list-item:nth-child(3n+2) .actions-menu-item-link:focus::after {
   display: none;
 }
-.ovh-angular-actions-menu .popover-content .actions-menu-inner .actions-menu-pages .actions-menu-page.main-page ul.actions-list > li.actions-list-item:nth-child(3n+2) .actions-menu-item-link:before,
-.ovh-angular-actions-menu .popover-content .actions-menu-inner .actions-menu-pages .actions-menu-page.main-page ul.actions-list > li.actions-list-item:nth-child(3n+2) .actions-menu-item-link:after {
+.ovh-angular-actions-menu .popover-content .actions-menu-inner .actions-menu-pages .actions-menu-page.main-page ul.actions-list > li.actions-list-item:nth-child(3n+2) .actions-menu-item-link::before,
+.ovh-angular-actions-menu .popover-content .actions-menu-inner .actions-menu-pages .actions-menu-page.main-page ul.actions-list > li.actions-list-item:nth-child(3n+2) .actions-menu-item-link::after {
   content: " ";
   background-color: #D7D7D7;
   width: 1px;
@@ -103,16 +112,20 @@
   position: absolute;
   top: 25px;
 }
-.ovh-angular-actions-menu .popover-content .actions-menu-inner .actions-menu-pages .actions-menu-page.main-page ul.actions-list > li.actions-list-item:nth-child(3n+2) .actions-menu-item-link:before {
+.ovh-angular-actions-menu .popover-content .actions-menu-inner .actions-menu-pages .actions-menu-page.main-page ul.actions-list > li.actions-list-item:nth-child(3n+2) .actions-menu-item-link::before {
   left: 0;
 }
-.ovh-angular-actions-menu .popover-content .actions-menu-inner .actions-menu-pages .actions-menu-page.main-page ul.actions-list > li.actions-list-item:nth-child(3n+2) .actions-menu-item-link:after {
+.ovh-angular-actions-menu .popover-content .actions-menu-inner .actions-menu-pages .actions-menu-page.main-page ul.actions-list > li.actions-list-item:nth-child(3n+2) .actions-menu-item-link::after {
   right: 0;
 }
 .ovh-angular-actions-menu .popover-content .actions-menu-inner .actions-menu-pages .actions-menu-page.main-page ul.actions-list > li.actions-list-item .actions-menu-item-link {
-  position: relative;
-  text-align: center;
+  display: block;
+  width: 100%;
   padding: 15px 0 10px;
+  position: relative;
+  background-color: transparent;
+  border: none;
+  text-align: center;
 }
 .ovh-angular-actions-menu .popover-content .actions-menu-inner .actions-menu-pages .actions-menu-page.main-page ul.actions-list > li.actions-list-item .actions-menu-item-link:active .item-icon,
 .ovh-angular-actions-menu .popover-content .actions-menu-inner .actions-menu-pages .actions-menu-page.main-page ul.actions-list > li.actions-list-item .actions-menu-item-link:hover .item-icon,
@@ -143,6 +156,7 @@
   right: 10px;
 }
 .ovh-angular-actions-menu .popover-content .actions-menu-inner .actions-menu-pages .actions-menu-page.main-page ul.actions-list > li.actions-list-item .actions-menu-item-link .item-icon {
+  display: inline-block;
   color: #A0A0A0;
   padding: 10px;
   border-radius: 30px;
@@ -154,6 +168,7 @@
   transition: transform 0.3s ease-in-out;
 }
 .ovh-angular-actions-menu .popover-content .actions-menu-inner .actions-menu-pages .actions-menu-page.main-page ul.actions-list > li.actions-list-item .actions-menu-item-link .item-title {
+  display: block;
   line-height: 26px;
 }
 .ovh-angular-actions-menu .popover-content .actions-menu-inner .actions-menu-pages .actions-menu-page.secondary-page ul.sub-actions-list > li.actions-list-item button.back-btn {
@@ -164,18 +179,25 @@
   text-align: left;
   font-weight: 700;
   line-height: 32px;
+  background-color: transparent;
+  border: none;
+  text-decoration: none;
 }
 .ovh-angular-actions-menu .popover-content .actions-menu-inner .actions-menu-pages .actions-menu-page.secondary-page ul.sub-actions-list > li.actions-list-item button.back-btn:active,
 .ovh-angular-actions-menu .popover-content .actions-menu-inner .actions-menu-pages .actions-menu-page.secondary-page ul.sub-actions-list > li.actions-list-item button.back-btn:hover,
 .ovh-angular-actions-menu .popover-content .actions-menu-inner .actions-menu-pages .actions-menu-page.secondary-page ul.sub-actions-list > li.actions-list-item button.back-btn:focus {
   background-color: #F3F3F3;
 }
-.ovh-angular-actions-menu .popover-content .actions-menu-inner .actions-menu-pages .actions-menu-page.secondary-page ul.sub-actions-list > li.actions-list-item button.back-btn:active span,
-.ovh-angular-actions-menu .popover-content .actions-menu-inner .actions-menu-pages .actions-menu-page.secondary-page ul.sub-actions-list > li.actions-list-item button.back-btn:hover span,
-.ovh-angular-actions-menu .popover-content .actions-menu-inner .actions-menu-pages .actions-menu-page.secondary-page ul.sub-actions-list > li.actions-list-item button.back-btn:focus span {
+.ovh-angular-actions-menu .popover-content .actions-menu-inner .actions-menu-pages .actions-menu-page.secondary-page ul.sub-actions-list > li.actions-list-item button.back-btn:active strong,
+.ovh-angular-actions-menu .popover-content .actions-menu-inner .actions-menu-pages .actions-menu-page.secondary-page ul.sub-actions-list > li.actions-list-item button.back-btn:hover strong,
+.ovh-angular-actions-menu .popover-content .actions-menu-inner .actions-menu-pages .actions-menu-page.secondary-page ul.sub-actions-list > li.actions-list-item button.back-btn:focus strong {
   text-decoration: underline;
 }
+.ovh-angular-actions-menu .popover-content .actions-menu-inner .actions-menu-pages .actions-menu-page.secondary-page ul.sub-actions-list > li.actions-list-item button.back-btn > i {
+  margin-right: 8px;
+}
 .ovh-angular-actions-menu .popover-content .actions-menu-inner .actions-menu-pages .actions-menu-page.secondary-page ul.sub-actions-list > li.actions-list-item .actions-menu-item-link {
+  display: block;
   padding: 4px 12px;
   font-weight: 700;
   line-height: 32px;
