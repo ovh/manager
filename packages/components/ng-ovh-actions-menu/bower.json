@@ -1,6 +1,6 @@
 {
   "name": "ovh-angular-actions-menu",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "An actions menu gives the opportunity to group a set of actions available for a specific context under a single menu",
   "author": "OVH SAS",
   "license": "BSD-3-Clause",
