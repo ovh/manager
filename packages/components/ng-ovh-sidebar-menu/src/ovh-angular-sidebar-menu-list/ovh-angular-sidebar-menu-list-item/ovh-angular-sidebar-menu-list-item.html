@@ -10,7 +10,7 @@
     </a>
 
     <!-- TOGGLE BUTTON -->
-    <button class="menu-item full-width text-left no-style"
+    <button class="menu-item text-left"
             title="{{ ItemMenuCtrl.item.getTitle() }}"
             type="button"
             data-ng-if="!ItemMenuCtrl.item.state && !ItemMenuCtrl.item.url && ItemMenuCtrl.item.allowSubItems"
@@ -60,8 +60,7 @@
                                data-ng-model-options="{ debounce: 300 }" />
                     </div>
                 </form>
-                <em class="block text-center"
-                    data-translate="sidebar_menu_search_no_results"
+                <em data-translate="sidebar_menu_search_no_results"
                     data-ng-if="ItemMenuCtrl.item.noSearchResults">
                 </em>
             </div>
@@ -72,13 +71,18 @@
             </div>
             <div class="menu-view-all" data-ng-if="ItemMenuCtrl.item.viewMore.enabled">
                 <div class="menu-view-all-inner">
-                    <button class="menu-item full-width text-left no-style no-outline"
+                    <button class="menu-item text-left"
                         title="{{ ItemMenuCtrl.item.viewMore.title }}"
                         type="button"
                         data-ng-click="ItemMenuCtrl.viewMore()"
                         data-ng-disabled="ItemMenuCtrl.item.viewMore.loading">
+                        <div class="oui-loader oui-loader_s oui-loader_inline"
+                             data-ng-if="ItemMenuCtrl.item.viewMore.loading">
+                            <div class="oui-loader__container">
+                                <div class="oui-loader__image"></div>
+                            </div>
+                        </div>
                         <span>{{ ItemMenuCtrl.item.viewMore.title }}</span>
-                        <spinner data-ng-if="ItemMenuCtrl.item.viewMore.loading" data-name="bubbles-fff-222-16"></spinner>
                     </button>
                 </div>
             </div>

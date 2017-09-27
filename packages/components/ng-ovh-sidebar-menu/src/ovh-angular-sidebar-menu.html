@@ -1,10 +1,10 @@
 <div id="sidebar-menu">
 
     <!-- LOADER -->
-    <div class="row row-height"
+    <div class="oui-loader oui-loader_m"
          data-ng-if="sideBarCtrl.loading.init">
-        <div class="col-xs-12 col-height col-middle text-center">
-            <spinner data-name="bubbles-fff-222-16"></spinner>
+        <div class="oui-loader__container mx-auto">
+            <div class="oui-loader__image"></div>
         </div>
     </div>
 
@@ -12,7 +12,8 @@
 
         <!-- MENU TITLE -->
         <div class="sidebar-menu-title">
-            <button type="button" class="navbar-button sideNavBtnClose pull-right">
+            <button type="button"
+                    class="navbar-button sideNavBtnClose pull-right">
                 <span class="ovh-font ovh-font-arrow-left"></span>
             </button>
             <span class="navbar-brand navbar-toggle-title"
@@ -24,15 +25,15 @@
         <div class="order-actions-menu">
             <actions-menu data-actions-menu-options="sideBarCtrl.actionsOptions"
                           data-actions-menu-popover-settings="sideBarCtrl.popoverSettings">
-                <span class="cart-icon right-space-p8">
+                <span class="cart-icon">
                     <i class="ovh-font ovh-font-cart"></i>
                 </span>
 
-                <span class="button-text right-space-p8"
+                <span class="button-text"
                       data-translate="sidebar_menu_order_actions">
                 </span>
 
-                <span class="arrow-icon pull-right fs8">
+                <span class="arrow-icon">
                     <i class="ovh-font ovh-font-small-arrow-down"></i>
                 </span>
             </actions-menu>

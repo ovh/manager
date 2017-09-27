@@ -84,8 +84,18 @@
                 }
             }
 
-            .arrow-icon i {
-                padding-top: 6px;
+            > .cart-icon,
+            > .button-text {
+                padding-right: 8px;
+            }
+
+            > .arrow-icon {
+                float: right;
+                font-size: 8px;
+
+                > i {
+                    padding-top: 6px;
+                }
             }
         }
     }
@@ -115,6 +125,15 @@
                     width       : 20px;
                     text-align  : center;
                     display     : inline-block;
+                    font-size   : 8px;
+                }
+
+                .item-loading > .oui-loader {
+                    vertical-align: middle;
+                }
+
+                .item-arrow > i {
+                    margin-bottom: 4px;
                 }
 
                 .item-icon {
@@ -123,6 +142,7 @@
 
                 .item-prefix {
                     margin-right: 4px;
+                    font-size: 10px;
                 }
 
                 &:hover, &:active, &:focus {
@@ -145,11 +165,16 @@
             .menu-view-all {
                 .menu-view-all-inner {
                     border-top: 1px solid @SIDEBAR_MENU_VIEW_ALL_ITEM_BORDER;
+
                     a {
                         font-weight: bold;
                         letter-spacing: 0.02em;
                     }
                     span {
+                        margin-right: 4px;
+                    }
+
+                    > .menu-item > .oui-loader {
                         margin-right: 4px;
                     }
                 }
@@ -231,8 +256,10 @@
                     }
 
                     em {
+                        display: block;
                         padding-bottom: 16px;
                         color: @SIDEBAR_MENU_LVL2_ACTIVE_BORDER_COLOR;
+                        text-align: center;
                     }
                 }
 
@@ -247,6 +274,7 @@
                         font-size       : @SIDEBAR_MENU_LVL1_FONT_SIZE;
                         letter-spacing  : 0.01em;
                         padding         : 0 6px;
+                        width           : 100%;
 
                         span {
                             word-break  : break-all;
@@ -332,6 +360,7 @@
 
                         > .item-content > .menu-item {
                             padding: 0 10px 0 26px;
+                            width: 100%;
                         }
 
                         .menu-level-3 {
