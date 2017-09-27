@@ -10,7 +10,7 @@ NG_DOCS={
       "type": "overview",
       "moduleName": "actionsMenu",
       "shortDescription": "An actions menu gives the opportunity to group a set of actions available for a specific context under a single menu.",
-      "keywords": "_an actionmenu actions actionsmenu animation confirmation context customizing docs group guidelines menu module net open opportunity overview ovh set single specific specification todo translate ux width"
+      "keywords": "_an actions actionsmenu animation confirmation context customizing docs group menu open opportunity overview set single specific todo translate width"
     },
     {
       "section": "docs",
