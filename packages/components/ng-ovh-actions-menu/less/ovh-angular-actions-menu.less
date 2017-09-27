@@ -32,15 +32,23 @@
             overflow:hidden;
 
             button.close-button {
-                position: absolute;
                 padding: 10px;
+                position: absolute;
                 top: 0;
                 right: 0;
                 color: @actions-menu-item-link-icon-color;
                 z-index: 10;
+                background-color: transparent;
+                border: none;
 
-                &:hover, &:active, &:focus {
+                &:hover,
+                &:active,
+                &:focus {
                     text-decoration: none;
+                }
+
+                i {
+                    font-weight: 600;
                 }
             }
 
@@ -60,6 +68,8 @@
 
                     ul.actions-list,
                     ul.sub-actions-list {
+                        margin-bottom: 0;
+
                         > li.actions-list-item {
                             .actions-menu-item-link {
                                 text-decoration: none;
@@ -101,12 +111,14 @@
                                 &:nth-child(3n+2) {
                                     .actions-menu-item-link {
                                         &:focus {
-                                            &:before, &:after {
+                                            &::before,
+                                            &::after {
                                                 display: none;
                                             }
                                         }
 
-                                        &:before, &:after {
+                                        &::before,
+                                        &::after {
                                             content: " ";
                                             background-color: @actions-menu-item-border-color;
                                             width: 1px;
@@ -116,22 +128,28 @@
                                             top: 25px;
                                         }
 
-                                        &:before {
+                                        &::before {
                                             left: 0;
                                         }
 
-                                        &:after {
+                                        &::after {
                                             right: 0;
                                         }
                                     }
                                 }
 
                                 .actions-menu-item-link {
-                                    position: relative;
-                                    text-align: center;
+                                    display: block;
+                                    width: 100%;
                                     padding: 15px 0 10px;
+                                    position: relative;
+                                    background-color: transparent;
+                                    border: none;
+                                    text-align: center;
 
-                                    &:active, &:hover, &:focus {
+                                    &:active,
+                                    &:hover,
+                                    &:focus {
                                         .item-icon {
                                             background-color: @actions-menu-item-link-icon-hover-bg-color;
                                             color: @actions-menu-item-link-icon-hover-color;
@@ -153,6 +171,7 @@
                                     }
 
                                     .item-icon {
+                                        display: inline-block;
                                         color: @actions-menu-item-link-icon-color;
                                         padding: 10px;
                                         border-radius: 30px;
@@ -164,6 +183,7 @@
                                     }
 
                                     .item-title {
+                                        display: block;
                                         line-height: 26px;
                                     }
                                 }
@@ -188,22 +208,34 @@
                                     text-align: left;
                                     font-weight: 700;
                                     line-height: 32px;
+                                    background-color: transparent;
+                                    border: none;
+                                    text-decoration: none;
 
-                                    &:active, &:hover, &:focus {
+                                    &:active,
+                                    &:hover,
+                                    &:focus {
                                         background-color: @actions-menu-item-link-hover-bg-color;
 
-                                        span {
+                                        strong {
                                             text-decoration: underline;
                                         }
+                                    }
+
+                                    > i {
+                                        margin-right: 8px;
                                     }
                                 }
 
                                 .actions-menu-item-link {
+                                    display: block;
                                     padding: 4px 12px;
                                     font-weight: 700;
                                     line-height: 32px;
 
-                                    &:active, &:hover, &:focus {
+                                    &:active,
+                                    &:hover,
+                                    &:focus {
                                         .item-title .item-title-text {
                                             text-decoration: underline;
                                         }
