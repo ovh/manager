@@ -1,5 +1,9 @@
-<div class="alert mb-0" data-ng-class="ovhAlertType" data-ng-if="ovhAlertMessage">
-    <span class="fa fa-times close" data-ng-if="!ovhAlertHideRemoveButton" data-ng-click="resetMessages()"></span>
+<div class="alert" role="alert"
+     data-ng-class="ovhAlertType"
+     data-ng-if="ovhAlertMessage">
+    <button class="close" type="button"
+            data-ng-click="resetMessages()"
+            data-ng-if="!ovhAlertHideRemoveButton"></button>
     <span data-ng-bind-html="ovhAlertMessage"></span>
     <div data-ng-if="ovhAlertMessageDetails">
         <a class="text-underline"
