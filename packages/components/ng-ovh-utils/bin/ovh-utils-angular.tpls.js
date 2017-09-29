@@ -3903,10 +3903,10 @@ function (translator) {
                 }
 
                 $scope.pageSize = itemsPerPage;
-            } else {
-                if (!$scope.pageSize) {
-                    $scope.pageSize = 10;
-                }
+            }
+
+            if (!_($scope.pageSize).isFinite()) {
+                $scope.pageSize = 10;
             }
 
             $scope.$watch('pageSize', function (newValue, oldValue) {
@@ -3968,14 +3968,25 @@ function (translator) {
                     if (currentPageIsLastPage && nextPageIsAfterCurrentPage) {
                         return;
                     }
-                    
-                    if (!$scope.paginationServerSideTableLoading &&
-                            (forceReload || $scope.currentPage !== pageToLoad) && pageToLoad >= 1 && (!$scope.paginationServerSidePaginatedStuff || ((pageToLoad - 1) * $scope.pageSize) <= $scope.paginationServerSidePaginatedStuff.count)) {
+
+                    var pageIsLoading = $scope.paginationServerSideTableLoading;
+
+                    var pageToLoadIsCurrentPage = $scope.currentPage === pageToLoad;
+                    var tableShouldLoad = forceReload || !pageToLoadIsCurrentPage;
+
+                    var askedPageParameterIsCorrect = pageToLoad >= 1;
+
+                    var thereArePaginatedElements = $scope.paginationServerSidePaginatedStuff != null;
+                    var thereIsEnoughElementsToDisplay = thereArePaginatedElements && (pageToLoad - 1) * $scope.pageSize <= $scope.paginationServerSidePaginatedStuff.count;
+
+                    if (!pageIsLoading && tableShouldLoad && askedPageParameterIsCorrect && (!thereArePaginatedElements || thereIsEnoughElementsToDisplay)) {
                         $scope.currentPage = pageToLoad;
                         $scope.paginationServerSideFunction($scope.pageSize, (pageToLoad - 1) * $scope.pageSize);
                     }
+
                     return false;
                 }
+
                 return false;
             };
 
