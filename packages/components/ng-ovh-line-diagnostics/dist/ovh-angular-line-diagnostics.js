@@ -1,12 +1,12 @@
 "use strict";
 
-angular.module("line-diagnostics", []);
+angular.module("ovh-angular-line-diagnostics", []);
 
-angular.module("line-diagnostics").provider("LineDiagnostics", function () {
+angular.module("ovh-angular-line-diagnostics").provider("LineDiagnostics", function () {
     "use strict";
 
     var requestProxy = "$http";
-    var translationPath = "../bower_components/line-diagnostics/dist";
+    var translationPath = "../bower_components/ovh-angular-line-diagnostics/dist";
     var pollingApiOptions = null;
     var pathPrefix = "";
 
@@ -125,12 +125,12 @@ angular.module("line-diagnostics").provider("LineDiagnostics", function () {
     }];
 });
 
-angular.module("line-diagnostics").directive("lineDiagnostics", function () {
+angular.module("ovh-angular-line-diagnostics").directive("lineDiagnostics", function () {
     "use strict";
 
     return {
         restrict: "EA",
-        templateUrl: "/line-diagnostics/src/line-diagnostics/line-diagnostics.html",
+        templateUrl: "/ovh-angular-line-diagnostics/src/ovh-angular-line-diagnostics/ovh-angular-line-diagnostics.html",
         controllerAs: "LinediagnosticsCtrl",
         bindToController: true,
         scope: {
