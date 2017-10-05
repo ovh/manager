@@ -1,8 +1,8 @@
-angular.module("line-diagnostics").provider("LineDiagnostics", function () {
+angular.module("ovh-angular-line-diagnostics").provider("LineDiagnostics", function () {
     "use strict";
 
     let requestProxy = "$http";
-    let translationPath = "../bower_components/line-diagnostics/dist";
+    let translationPath = "../bower_components/ovh-angular-line-diagnostics/dist";
     let pollingApiOptions = null;
     let pathPrefix = "";
 

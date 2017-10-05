@@ -1,9 +1,9 @@
-angular.module("line-diagnostics").directive("lineDiagnostics", () => {
+angular.module("ovh-angular-line-diagnostics").directive("lineDiagnostics", () => {
     "use strict";
 
     return {
         restrict: "EA",
-        templateUrl: "/line-diagnostics/src/line-diagnostics/line-diagnostics.html",
+        templateUrl: "/ovh-angular-line-diagnostics/src/ovh-angular-line-diagnostics/ovh-angular-line-diagnostics.html",
         controllerAs: "LinediagnosticsCtrl",
         bindToController: true,
         scope: {
