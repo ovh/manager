@@ -2,7 +2,6 @@
 .work/
 node_modules
 *.log
+tools/
 
-tools/keys/*
-
-src/**/translations/*.json
+src/*/translations/Messages_*_*.json

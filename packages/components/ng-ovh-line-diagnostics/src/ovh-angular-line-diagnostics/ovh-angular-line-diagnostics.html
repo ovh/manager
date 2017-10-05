@@ -247,10 +247,27 @@
                         <!--Yes / No-->
                         <div class="form-group"
                             data-ng-if="toAnswer.type==='boolean'">
-                            <p>{{::'tools_lineDiagnostics_toanswer_' + toAnswer.name | translate}}
+
+                            <div data-ng-if="toAnswer.name==='conditionsAccepted'" class="inline" style="margin-right:5px">
+                                <label class="block pointer">
+
+                                    <flat-checkbox>
+                                        <input type="checkbox"
+                                            data-ng-model="LinediagnosticsCtrl.formToAnswer.values[toAnswer.name]" 
+                                            name="checkbox{{ toAnswer.name}}"
+                                            id="checkbox{{ toAnswer.name }}"
+                                             ng-required="toAnswer.required"/>
+                                    </flat-checkbox>
+                                    <span class="left-space-m8">
+                                          {{::'tools_lineDiagnostics_toanswer_' + toAnswer.name | translate}}
+                                          <span class="red" data-ng-if="toAnswer.required">*</span>
+                                    </span>
+                            </div>
+
+                            <p data-ng-if="toAnswer.name!=='conditionsAccepted'">{{::'tools_lineDiagnostics_toanswer_' + toAnswer.name | translate}}
                             <span class="red" data-ng-if="toAnswer.required">*</span></p>
 
-                            <div class="row">
+                            <div data-ng-if="toAnswer.name!=='conditionsAccepted'" class="row">
                                 <div class="col-xs-6">
                                     <label>
                                         <flat-radio class="pointer">
@@ -269,6 +286,7 @@
                                     </label>
                                 </div>
                             </div>
+
                         </div>
 
                         <!-- STRING -->
@@ -303,11 +321,34 @@
                             </label>
                             <div>
                                 <input type="text"
-                                    pattern="[0-9]{2,8}"
+                                    pattern="[0-9]{1,8}"
                                     id="formToAnswer_{{::toAnswer.name}}"
                                     name="formToAnswer_{{::toAnswer.name}}"
                                     data-ng-required ="toAnswer.required"
                                     data-ng-model="LinediagnosticsCtrl.formToAnswer.values[toAnswer.name]"></input>
+                            </div>
+                        </div>
+
+                        <!-- ENUM -->
+                        <div class="form-group"
+                            data-ng-if="toAnswer.type==='enum'"
+                            data-ng-init="LinediagnosticsCtrl.formToAnswer.values[toAnswer.name] = toAnswer.defaultValue || '' ">
+                            <label for="formToAnswer_{{toAnswer.name}}"
+                                class="control-label">
+                                {{::'tools_lineDiagnostics_toanswer_' + toAnswer.name | translate}}
+                                <span class="red" data-ng-if="toAnswer.required">*</span>
+                            </label>
+                            <div>
+
+                                <select
+                                    id="formToAnswer_{{::toAnswer.name}}"
+                                    name="formToAnswer_{{::toAnswer.name}}"
+                                    class="form-control no-space"
+                                    data-ng-options  =" ('tools_lineDiagnostics_toanswer_' + toAnswer.name + '_enum_' + value | translate ) for value in toAnswer.enumValues"
+                                    data-ng-required ="toAnswer.required"
+                                    data-ng-model    ="LinediagnosticsCtrl.formToAnswer.values[toAnswer.name]">
+                                    <option data-ng-if="!toAnswer.required" value=""></option>
+                                </select>
                             </div>
                         </div>
 
@@ -409,7 +450,7 @@
 
                         </div>
 
-                        <!-- SELECT -->
+                        <!-- SELECT FOR FT RDV -->
                         <div class="form-group"
                             data-ng-if="toAnswer.possibleValues.length">
                             <label for="formToAnswer_{{toAnswer.name}}"
@@ -486,6 +527,8 @@
 
                     'alert-success' : LinediagnosticsCtrl.datas.lineStep.status === 'resolvedAfterTests'
                                 || LinediagnosticsCtrl.datas.lineStep.status === 'interventionRequested'
+                                || LinediagnosticsCtrl.datas.lineStep.status === 'noBandwidthFault'
+                                || LinediagnosticsCtrl.datas.lineStep.status === 'noProblemAnymore'
                 }"
                 role="alert">
                 <p>
@@ -546,7 +589,8 @@
                     || LinediagnosticsCtrl.datas.lineStep.status === 'interventionRequested'
                     || LinediagnosticsCtrl.datas.lineStep.status === 'haveToConnectModemOnTheRightPlug'
                     || LinediagnosticsCtrl.datas.lineStep.status === 'noSyncFaultDiagnosticRequired'
-                    || LinediagnosticsCtrl.datas.lineStep.status === 'connectionProblem'"
+                    || LinediagnosticsCtrl.datas.lineStep.status === 'connectionProblem'
+                    || LinediagnosticsCtrl.datas.lineStep.data.isInternal"
                 data-ng-click="LinediagnosticsCtrl.deleteDiag()">
                 <span data-translate="tools_lineDiagnostics_delete_button"></span>
             </button>

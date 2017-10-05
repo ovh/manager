@@ -1,115 +1,183 @@
 <?xml version="1.0" encoding="utf-8"?>
 <translations>
-   <translation id="tools_lineDiagnostics_title">Assistant au dépannage</translation>
-   <translation id="tools_lineDiagnostics_warning">Avant de lancer le diagnostic : Le modem doit être débranché du réseau cuivre avant le lancement du diagnostic!</translation>
-   <translation id="tools_lineDiagnostics_refresh">Récupérer le diagnostic de la ligne</translation>
-   <translation id="tools_lineDiagnostics_error">Oups, nous n'arrivons pas a récupérer l'état du diagnostic de la ligne {{lineNumber}}.</translation>
-   <translation id="tools_lineDiagnostics_error_context_internalDiagAlreadyLaunched">Diagnostique déjà en cours chez OVH.</translation>
-   <translation id="tools_lineDiagnostics_error_context_externalDiagWaitingValidation">Diagnostique déjà en cours chez le client. Veuillez vérifier si une demande d'intervention à été réalisée pour cette ligne.</translation>
-   <translation id="tools_lineDiagnostics_error_context_externalDiagAlreadyLaunched">Diagnostique déjà en cours.</translation>
-   <translation id="tools_lineDiagnostics_error_context_OVHDiagAlreadyLaunched">Diagnostique déjà en cours chez OVH.</translation>
-   <translation id="tools_lineDiagnostics_error_context_changeProfileNotDone">Vous n'avez pas réalisé le changement de profil.</translation>
+   <translation id="tools_lineDiagnostics_title" qtlid="325937">Korjausavustaja</translation>
+   <translation id="tools_lineDiagnostics_warning" qtlid="325950">Ennen diagnostiikan käynnistämistä: Modeemin tulee olla kytketty irti kupariverkosta ennen diagnostiikan käynnistämistä</translation>
+   <translation id="tools_lineDiagnostics_refresh" qtlid="325963">Hae rivin diagnostiikka</translation>
+   <translation id="tools_lineDiagnostics_error" qtlid="325976">Hups, rivin {{lineNumber}} diagnostiikan tilaa ei onnistuttu hakemaan.</translation>
+   <translation id="tools_lineDiagnostics_error_context_internalDiagAlreadyLaunched" qtlid="330409">Diagnostiikka on jo käynnissä OVH:lla</translation>
+   <translation id="tools_lineDiagnostics_error_context_externalDiagWaitingValidation" qtlid="330422">Diagnostiikka on jo käynnissä asiakkaalla. Tarkista, että keskeytyspyyntö on tehty tälle linjalle. </translation>
+   <translation id="tools_lineDiagnostics_error_context_externalDiagAlreadyLaunched" qtlid="325989">Diagnostiikka on jo käynnissä.</translation>
+   <translation id="tools_lineDiagnostics_error_context_OVHDiagAlreadyLaunched" qtlid="330409">Diagnostiikka on jo käynnissä OVH:lla</translation>
+   <translation id="tools_lineDiagnostics_error_context_changeProfileNotDone" qtlid="330435">Et ole tehnyt profiilin muutosta.</translation>
+   <translation id="tools_lineDiagnostics_error_context_otherDiagTypeLaunched" qtlid="407052">Un autre type de diagnostic est déjà en cours sur cette ligne.</translation>
+   <translation id="tools_lineDiagnostics_error_context_otrsTicketInvalid" qtlid="407065">Ticket OTRS invalide ou inexistant.</translation>
+   <translation id="tools_lineDiagnostics_error_context_monitoringTodoAlreadyExists" qtlid="407078">Surveillance de la ligne déjà en cours.</translation>
 
-   <translation id="tools_lineDiagnostics_detail_accessType">Type d'accès</translation>
-   <translation id="tools_lineDiagnostics_detail_accessName">Nom de l'accès</translation>
-   <translation id="tools_lineDiagnostics_detail_address">Adresse de l'accès</translation>
-   <translation id="tools_lineDiagnostics_detail_lastSync">Dernière Synchronisation</translation>
-   <translation id="tools_lineDiagnostics_detail_contactPhone">Numéro de contact</translation>
-   <translation id="tools_lineDiagnostics_detail_operator">Opérateur</translation>
-   <translation id="tools_lineDiagnostics_detail_NRAName">Nom du NRA</translation>
-   <translation id="tools_lineDiagnostics_detail_NRADistance">Distance du NRA</translation>
-   <translation id="tools_lineDiagnostics_detail_yes">Oui</translation>
-   <translation id="tools_lineDiagnostics_detail_no">Non</translation>
+   <translation id="tools_lineDiagnostics_detail_accessType" qtlid="42766">Yhteystyyppi</translation>
+   <translation id="tools_lineDiagnostics_detail_accessName" qtlid="326015">Yhteyden nimi</translation>
+   <translation id="tools_lineDiagnostics_detail_address" qtlid="330448">Yhteyden osoite</translation>
+   <translation id="tools_lineDiagnostics_detail_lastSync" qtlid="326028">Edellinen synkronointi</translation>
+   <translation id="tools_lineDiagnostics_detail_contactPhone" qtlid="326041">Yhteyshenkilön numero</translation>
+   <translation id="tools_lineDiagnostics_detail_operator" qtlid="63052">Operaattori</translation>
+   <translation id="tools_lineDiagnostics_detail_NRAName" qtlid="309477">NRA-nimi</translation>
+   <translation id="tools_lineDiagnostics_detail_NRADistance" qtlid="63040">Etäisyys puhelinkeskukseen</translation>
+   <translation id="tools_lineDiagnostics_detail_yes" qtlid="34776">Kyllä</translation>
+   <translation id="tools_lineDiagnostics_detail_no" qtlid="34788">Ei</translation>
 
-   <translation id="tools_lineDiagnostics_todo_title">Avez-vous effectué les actions suivantes ?</translation>
-   <translation id="tools_lineDiagnostics_post_error">Oups, nous n'arrivons pas à mettre a jour le diagnostic de la ligne {{lineNumber}}.</translation>
-   <translation id="tools_lineDiagnostics_next_button">Suivant</translation>
-   <translation id="tools_lineDiagnostics_delete_button">Réinitialiser</translation>
+   <translation id="tools_lineDiagnostics_todo_title" qtlid="407091">Afin de déterminer l’origine du défaut, nous vous invitons à réaliser les actions suivantes :</translation>
+   <translation id="tools_lineDiagnostics_post_error" qtlid="326067">Hups, diganostiikan päivitys linjalle {{lineNumber}} ei onnistu.</translation>
+   <translation id="tools_lineDiagnostics_next_button" qtlid="17743">Seuraava</translation>
+   <translation id="tools_lineDiagnostics_delete_button" qtlid="169654">Nollaa</translation>
 
-   <translation id="tools_lineDiagnostics_testselt_title">Test de continuité de ligne</translation>
-   <translation id="tools_lineDiagnostics_testselt_error">La localisation du problème sur la ligne n'a pas pu être déterminée (vous pouvez tout de même continuer le diagnostic).</translation>
-   <translation id="tools_lineDiagnostics_testselt_status">Test réussi</translation>
-   <translation id="tools_lineDiagnostics_testselt_state">Etat de la ligne</translation>
-   <translation id="tools_lineDiagnostics_testselt_state_open">Ligne ouverte</translation>
-   <translation id="tools_lineDiagnostics_testselt_state_short">Court circuit</translation>
-   <translation id="tools_lineDiagnostics_testselt_state_unknow">Inconnu</translation>
-   <translation id="tools_lineDiagnostics_testselt_state_unknown">Inconnu</translation>
-   <translation id="tools_lineDiagnostics_testselt_preloc_RE">sur la zone NRA</translation>
-   <translation id="tools_lineDiagnostics_testselt_preloc_LINE">sur la ligne</translation>
-   <translation id="tools_lineDiagnostics_testselt_preloc_CUST">sur zone client</translation>
-   <translation id="tools_lineDiagnostics_testselt_preloc_DSLAM">sur l'équipement DSLAM présent dans le NRA</translation>
-   <translation id="tools_lineDiagnostics_testselt_preloc_">-</translation>
-   <translation id="tools_lineDiagnostics_testselt_distance">Distance depuis le NRA</translation>
-   <translation id="tools_lineDiagnostics_testselt_date">Date du test</translation>
+   <translation id="tools_lineDiagnostics_testselt_title" qtlid="326080">Jatkuvuustesti linjalle</translation>
+   <translation id="tools_lineDiagnostics_testselt_error" qtlid="330461">Ongelman sijaintia linjalla ei voitu määrittää (voit kuitenkin jatkaa diagnostiikkaa)</translation>
+   <translation id="tools_lineDiagnostics_testselt_status" qtlid="326106">Testi onnistui</translation>
+   <translation id="tools_lineDiagnostics_testselt_state" qtlid="326119">Linjan tila</translation>
+   <translation id="tools_lineDiagnostics_testselt_state_open" qtlid="326132">Avoin linja</translation>
+   <translation id="tools_lineDiagnostics_testselt_state_short" qtlid="326145">Oikosulku</translation>
+   <translation id="tools_lineDiagnostics_testselt_state_synced" qtlid="407104">Un modem est synchronisé sur le DSLAM.</translation>
+   <translation id="tools_lineDiagnostics_testselt_state_unknow" qtlid="77142">Tuntematon</translation>
+   <translation id="tools_lineDiagnostics_testselt_state_unknown" qtlid="77142">Tuntematon</translation>
+   <translation id="tools_lineDiagnostics_testselt_preloc_RE" qtlid="326158">NRA-alueella</translation>
+   <translation id="tools_lineDiagnostics_testselt_preloc_LINE" qtlid="326171">linjalla</translation>
+   <translation id="tools_lineDiagnostics_testselt_preloc_CUST" qtlid="326184">asiakasalueella</translation>
+   <translation id="tools_lineDiagnostics_testselt_preloc_DSLAM" qtlid="326197">NRA:ssa olevassa DSLAM-laitteistossa </translation>
+   <translation id="tools_lineDiagnostics_testselt_preloc_" qtlid="42370">-</translation>
+   <translation id="tools_lineDiagnostics_testselt_distance" qtlid="326210">Etäisyys NRA:han</translation>
+   <translation id="tools_lineDiagnostics_testselt_date" qtlid="326223">Testin päivämäärä</translation>
 
-   <translation id="tools_lineDiagnostics_actionDone_title">Actions effectuées</translation>
+   <translation id="tools_lineDiagnostics_actionDone_title" qtlid="326236">Suoritetut toiminnot</translation>
 
-   <translation id="tools_lineDiagnostics_action_checkConnectionCable">J'ai vérifié les branchements de mon modem.</translation>
-   <translation id="tools_lineDiagnostics_action_checkFilter">J'ai vérifié le filtre DSL.</translation>
-   <translation id="tools_lineDiagnostics_action_rebootModem">J'ai redémarré mon modem en le débranchant puis en le rebranchant.</translation>
-   <translation id="tools_lineDiagnostics_action_resetModem">J'ai réinitialisé mon modem en appuyant sur le bouton de reset situé à l'arrière de celui-ci (à l'aide d'un trombone déplié par exemple).</translation>
-   <translation id="tools_lineDiagnostics_action_neutralTest">J'ai branché mon modem sur la prise principale, et débranché tous les autres éléments raccordés sur la ligne.</translation>
-   <translation id="tools_lineDiagnostics_action_changeProfile">J'ai effectué un changement de profil (il est conseillé de choisir un des profils les plus bas).</translation>
-   <translation id="tools_lineDiagnostics_action_unplugModem">J'ai débranché mon modem du réseau cuivre.</translation>
+   <translation id="tools_lineDiagnostics_action_checkConnectionCable" qtlid="326249">Olen tarkistanut modeemini kytkennät</translation>
+   <translation id="tools_lineDiagnostics_action_checkFilter" qtlid="326262">Olen tarkistanut DSL-suodattimen.</translation>
+   <translation id="tools_lineDiagnostics_action_rebootModem" qtlid="326275">J'ai redémarré mon modem en le débranchant puis en le rebranchant.</translation>
+   <translation id="tools_lineDiagnostics_action_resetModem" qtlid="407117">J'ai réinitialisé le modem en appuyant sur le bouton « reset » situé à l’arrière (à l’aide d’un trombone).</translation>
+   <translation id="tools_lineDiagnostics_action_neutralTest" qtlid="326301">J'ai branché mon modem sur la prise principale, et débranché tous les autres éléments raccordés sur la ligne.</translation>
+   <translation id="tools_lineDiagnostics_action_changeProfile" qtlid="326314">J'ai effectué un changement de profil (il est conseillé de choisir un des profils les plus bas).</translation>
+   <translation id="tools_lineDiagnostics_action_unplugModem" qtlid="407130">J'ai débranché le modem du réseau téléphonique (en débranchant le filtre ou la prise RJ11)</translation>
+   <translation id="tools_lineDiagnostics_action_checkConnectionLoginAndParameters" qtlid="407143">Merci de vérifier les identifiants et les paramètres de connexion DSL renseignés si l'interface du modem.</translation>
+   <translation id="tools_lineDiagnostics_action_connectModemToOtherPlugs" qtlid="407156">Il se peut que votre modem soit branché sur la mauvaise prise DSL. Veuillez brancher le modem sur toutes les autres prises DSL présentes sur le lieu de raccordement. Veillez à laisser le modem branché plusieurs minutes à chaque fois, afin que ce dernier ait le temps de s'initialiser. Si une synchronisation a lieu, vérifiez le bon fonctionnement d'internet.</translation>
+   <translation id="tools_lineDiagnostics_action_unplugEveryModems" qtlid="407169">Veuillez débrancher tous les modems présents sur le lieu de l'instant, et ce peu importe l'opérateur.</translation>
+   <translation id="tools_lineDiagnostics_action_bePreparedToCheckModemSynchronization" qtlid="407182">En passant à l'étape suivante, une action va être effectuée sur votre ligne (reset de port). Vous allez devoir vérifier l'état de la synchronisation du modem tout au long de cette étape. Veuille rester à proximité du modem afin de ne pas louper un changement d'état.</translation>
+   <translation id="tools_lineDiagnostics_action_changeDslFilterAndPlugInDti" qtlid="407195">Afin d’éliminer toute source potentielle de perturbation, j'ai branché, si possible, le câble DSL directement sur la prise DTI</translation>
+   <translation id="tools_lineDiagnostics_action_changeExtensionCable" qtlid="407208">Si mon modem est branché sur une rallonge électrique ou un onduleur, je l'ai isolé, en le branchant directement sur la prise électrique.</translation>
 
-   <translation id="tools_lineDiagnostics_answers_title">Informations saisies</translation>
-   <translation id="tools_lineDiagnostics_answers_resolvedAfterTests">Le problème est-il résolu suite aux tests ?</translation>
-   <translation id="tools_lineDiagnostics_answers_secureSite">Restriction d'accès au site</translation>
-   <translation id="tools_lineDiagnostics_answers_siteDigicode">Digicode</translation>
-   <translation id="tools_lineDiagnostics_answers_morningSiteOpening">Horaires d'ouverture du site le matin</translation>
-   <translation id="tools_lineDiagnostics_answers_afternoonSiteOpening">Horaires d'ouverture du site l'après-midi</translation>
-   <translation id="tools_lineDiagnostics_answers_startMorningHours">Heure d'ouverture du site le matin</translation>
-   <translation id="tools_lineDiagnostics_answers_endMorningHours">Heure de fermeture du site le matin</translation>
-   <translation id="tools_lineDiagnostics_answers_startAfternoonHours">Heure d'ouverture du site l'après-midi</translation>
-   <translation id="tools_lineDiagnostics_answers_endAfternoonHours">Heure de fermeture du site l'après-midi</translation>
-   <translation id="tools_lineDiagnostics_answers_siteClosedDays">Jours de fermeture du site</translation>
-   <translation id="tools_lineDiagnostics_answers_siteOpening">Horaires d'ouverture du site</translation>
-   <translation id="tools_lineDiagnostics_answers_modemType">Référence du modem</translation>
-   <translation id="tools_lineDiagnostics_answers_idAppointment">Choix d'un rendez-vous</translation>
-   <translation id="tools_lineDiagnostics_answers_contactPhone">Numéro de contact</translation>
-   <translation id="tools_lineDiagnostics_answers_comment">Commentaire</translation>
-   <translation id="tools_lineDiagnostics_answers_individualSite">Site particulier (non professionnel)</translation>
-   <translation id="tools_lineDiagnostics_answers_conditionsAccepted">Facturation des mauvaises utilisations</translation>
 
-   <translation id="tools_lineDiagnostics_toanswer_title">Merci de nous préciser certaines informations</translation>
-   <translation id="tools_lineDiagnostics_toanswer_resolvedAfterTests">Les tests effectués ont-ils permis de résoudre le problème ?</translation>
-   <translation id="tools_lineDiagnostics_toanswer_secureSite">L'accès au site final est-il sécurisé par un quelconque moyen ?</translation>
-   <translation id="tools_lineDiagnostics_toanswer_siteDigicode">Merci de renseigner le digicode d'accès au site si nécessaire.</translation>
-   <translation id="tools_lineDiagnostics_toanswer_morningSiteOpening">Merci d'indiquer les horaires d'accès au site le matin.</translation>
-   <translation id="tools_lineDiagnostics_toanswer_afternoonSiteOpening">Merci d'indiquer les horaires d'accès au site l'après-midi.</translation>
-   <translation id="tools_lineDiagnostics_toanswer_startMorningHours">Merci d'indiquer l'heure d'ouverture du site le matin</translation>
-   <translation id="tools_lineDiagnostics_toanswer_endMorningHours">Merci d'indiquer l'heure de fermeture du site le matin</translation>
-   <translation id="tools_lineDiagnostics_toanswer_startAfternoonHours">Merci d'indiquer l'heure d'ouverture du site l'après-midi</translation>
-   <translation id="tools_lineDiagnostics_toanswer_endAfternoonHours">Merci d'indiquer l'heure de fermeture du site l'après-midi</translation>
-   <translation id="tools_lineDiagnostics_toanswer_individualSite">Est-ce un site particulier ? (non professionnel)</translation>
+   <translation id="tools_lineDiagnostics_answers_title" qtlid="326340">Informations saisies</translation>
+   <translation id="tools_lineDiagnostics_answers_resolvedAfterTests" qtlid="326353">Le problème est-il résolu suite aux tests ?</translation>
+   <translation id="tools_lineDiagnostics_answers_secureSite" qtlid="326366">Restriction d'accès au site</translation>
+   <translation id="tools_lineDiagnostics_answers_siteDigicode" qtlid="326379">Digicode</translation>
+   <translation id="tools_lineDiagnostics_answers_morningSiteOpening" qtlid="326392">Horaires d'ouverture du site le matin</translation>
+   <translation id="tools_lineDiagnostics_answers_afternoonSiteOpening" qtlid="326405">Horaires d'ouverture du site l'après-midi</translation>
+   <translation id="tools_lineDiagnostics_answers_startMorningHours" qtlid="326418">Heure d'ouverture du site le matin</translation>
+   <translation id="tools_lineDiagnostics_answers_endMorningHours" qtlid="326431">Heure de fermeture du site le matin</translation>
+   <translation id="tools_lineDiagnostics_answers_startAfternoonHours" qtlid="326444">Heure d'ouverture du site l'après-midi</translation>
+   <translation id="tools_lineDiagnostics_answers_endAfternoonHours" qtlid="326457">Heure de fermeture du site l'après-midi</translation>
+   <translation id="tools_lineDiagnostics_answers_siteClosedDays" qtlid="326470">Jours de fermeture du site</translation>
+   <translation id="tools_lineDiagnostics_answers_siteOpening" qtlid="326483">Horaires d'ouverture du site</translation>
+   <translation id="tools_lineDiagnostics_answers_modemType" qtlid="326496">Référence du modem</translation>
+   <translation id="tools_lineDiagnostics_answers_idAppointment" qtlid="326509">Choix d'un rendez-vous</translation>
+   <translation id="tools_lineDiagnostics_answers_contactPhone" qtlid="326041">Yhteyshenkilön numero</translation>
+   <translation id="tools_lineDiagnostics_answers_comment" qtlid="25975">Kommentti</translation>
+   <translation id="tools_lineDiagnostics_answers_individualSite" qtlid="326522">Site particulier (non professionnel)</translation>
+   <translation id="tools_lineDiagnostics_answers_conditionsAccepted" qtlid="326535">Facturation des mauvaises utilisations</translation>
+   <translation id="tools_lineDiagnostics_answers_followBySms" qtlid="407221">Suivi par sms</translation>
+   <translation id="tools_lineDiagnostics_answers_modemMac" qtlid="407234">Adresse MAC de votre modem</translation>
+   <translation id="tools_lineDiagnostics_answers_modemIsSynchronized" qtlid="407247">Le modem est-il synchronisé ?</translation>
+   <translation id="tools_lineDiagnostics_answers_severalInternetConnections" qtlid="407260">Plusieurs connxions internet sur le lieu ?</translation>
+   <translation id="tools_lineDiagnostics_answers_modemStillSynchronized" qtlid="407273">Modem encore synchronisé ?</translation>
+   <translation id="tools_lineDiagnostics_answers_hasModemKeptSynchronization" qtlid="407286">Le modem est-il resté synchronisé ?</translation>
+   <translation id="tools_lineDiagnostics_answers_datetimeOfAppearance" qtlid="407299">Date et heure d'apparition du problème</translation>
+   <translation id="tools_lineDiagnostics_answers_otrsTicket" qtlid="407312">Ticket OTRS</translation>
+   <translation id="tools_lineDiagnostics_answers_problemType" qtlid="407325">Type de problème constaté</translation>
+   <translation id="tools_lineDiagnostics_answers_uploadBandwidthTest" qtlid="407338">Vitesse d'upload</translation>
+   <translation id="tools_lineDiagnostics_answers_downloadBandwidthTest" qtlid="407351">Vitesse de download</translation>
+   <translation id="tools_lineDiagnostics_answers_bandwidthTestUnit" qtlid="407364">Unité mesurée</translation>
 
-   <translation id="tools_lineDiagnostics_toanswer_siteClosedDays">Merci d'indiquer les jours de fermeture du site.</translation>
-   <translation id="tools_lineDiagnostics_toanswer_siteOpening">Merci d'indiquer les horaires d'accès au site.</translation>
-   <translation id="tools_lineDiagnostics_toanswer_modemType">Merci d'indiquer la marque et la référence de votre modem.</translation>
-   <translation id="tools_lineDiagnostics_toanswer_idAppointment">Merci de choisir l'un des créneaux horaires suivants pour votre rendez-vous avec un technicien.</translation>
-   <translation id="tools_lineDiagnostics_toanswer_contactPhone">Merci d'indiquer un numéro sur lequel vous pourrez être joint, si celui-ci a changé.</translation>
-   <translation id="tools_lineDiagnostics_toanswer_otrsTicket">Si vous avez déjà un ticket en cours pour ce problème, merci d'indiquer son numéro.</translation>
-   <translation id="tools_lineDiagnostics_toanswer_comment">Merci de préciser toutes les informations nécessaires au diagnostic et à la réparation de votre accès internet. Votre commentaire ne doit pas dépasser 300 caractères.</translation>
-   <translation id="tools_lineDiagnostics_toanswer_conditionsAccepted">J'ai pris connaissance du fait qu'une facturation de 150 € HT sera appliquée dans le cas où le défaut serait de ma responsabilité.</translation>
 
-   <translation id="tools_lineDiagnostics_robot_waitingRobot">Le diagnostic est en cours. Merci de patienter quelques instants.</translation>
-   <translation id="tools_lineDiagnostics_robot_sleeping">Le diagnostic est en attente. Merci de patienter quelques minutes.</translation>
-   <translation id="tools_lineDiagnostics_robot_problem">Le diagnostic à échoué.</translation>
-   <translation id="tools_lineDiagnostics_robot_problem_ticket">Le ticket OTRS <strong>n°{{otrsTicket}}</strong> à été mis à jour.</translation>
-   <translation id="tools_lineDiagnostics_robot_waitingValidation">Le diagnostic est terminé. La demande d'intervention doit être validée par le support OVH. Un ticket sera créé une fois la validation acceptée.</translation>
-   <translation id="tools_lineDiagnostics_robot_validationRefused">La demande d'intervention à été refusée par le support OVH.</translation>
-   <translation id="tools_lineDiagnostics_robot_cancelled">Le diagnostic a été annulé.</translation>
-   <translation id="tools_lineDiagnostics_robot_resolvedAfterTests">Les tests effectués ont permis de résoudre le problème. Le diagnostic est terminé.</translation>
-   <translation id="tools_lineDiagnostics_robot_interventionRequested">Une intervention a été demandée. Un email contenant les détails de cette intervention a été envoyé.</translation>
-   <translation id="tools_lineDiagnostics_robot_interventionRequested_otrsticket">Numéro du ticket OTRS: {{otrsTicket}}</translation>
-   <translation id="tools_lineDiagnostics_robot_interventionRequested_operatorticketid">Numéro du ticket d'intervention FT: {{operatorTicketId}}</translation>
-   <translation id="tools_lineDiagnostics_robot_interventionRequested_ovhinterventionid">Numéro du ticket d'intervention OVH: {{ovhInterventionId}}</translation>
 
-   <translation id="tools_lineDiagnostics_robotAction_seltTest">Test de continuité de ligne</translation>
-   <translation id="tools_lineDiagnostics_robotAction_lockUnlock">Reset de port sur le DSLAM</translation>
-   <translation id="tools_lineDiagnostics_robotAction_customerPrelocChecks">Recherche d'informations nécessaires à la demande d'intervention.</translation>
-   <translation id="tools_lineDiagnostics_robotAction_requestOperatorIntervention">Création d'une demande d'intervention</translation>
-   <translation id="tools_lineDiagnostics_robotAction_requestOvhIntervention">Création d'une demande d'intervention</translation>
-   <translation id="tools_lineDiagnostics_robotAction_checkIfResolvedAfterTests">Vous pouvez réutiliser votre ligne</translation>
-   <translation id="tools_lineDiagnostics_robotAction_needToRequestOvhIntervention">Création d'une demande d'intervention une fois les informations nécessaires récupérées.</translation>
+   <translation id="tools_lineDiagnostics_toanswer_title" qtlid="326548">Merci de nous préciser certaines informations</translation>
+   <translation id="tools_lineDiagnostics_toanswer_resolvedAfterTests" qtlid="326561">Les tests effectués ont-ils permis de résoudre le problème ?</translation>
+   <translation id="tools_lineDiagnostics_toanswer_secureSite" qtlid="326574">L'accès au site final est-il sécurisé par un quelconque moyen ?</translation>
+   <translation id="tools_lineDiagnostics_toanswer_siteDigicode" qtlid="326587">Merci de renseigner le digicode d'accès au site si nécessaire.</translation>
+   <translation id="tools_lineDiagnostics_toanswer_morningSiteOpening" qtlid="326600">Merci d'indiquer les horaires d'accès au site le matin.</translation>
+   <translation id="tools_lineDiagnostics_toanswer_afternoonSiteOpening" qtlid="326613">Merci d'indiquer les horaires d'accès au site l'après-midi.</translation>
+   <translation id="tools_lineDiagnostics_toanswer_startMorningHours" qtlid="326626">Merci d'indiquer l'heure d'ouverture du site le matin</translation>
+   <translation id="tools_lineDiagnostics_toanswer_endMorningHours" qtlid="326639">Merci d'indiquer l'heure de fermeture du site le matin</translation>
+   <translation id="tools_lineDiagnostics_toanswer_startAfternoonHours" qtlid="326652">Merci d'indiquer l'heure d'ouverture du site l'après-midi</translation>
+   <translation id="tools_lineDiagnostics_toanswer_endAfternoonHours" qtlid="326665">Merci d'indiquer l'heure de fermeture du site l'après-midi</translation>
+   <translation id="tools_lineDiagnostics_toanswer_individualSite" qtlid="326678">Est-ce un site particulier ? (non professionnel)</translation>
+
+   <translation id="tools_lineDiagnostics_toanswer_siteClosedDays" qtlid="326691">Merci d'indiquer les jours de fermeture du site.</translation>
+   <translation id="tools_lineDiagnostics_toanswer_siteOpening" qtlid="326704">Merci d'indiquer les horaires d'accès au site.</translation>
+   <translation id="tools_lineDiagnostics_toanswer_modemType" qtlid="326717">Merci d'indiquer la marque et la référence de votre modem.</translation>
+   <translation id="tools_lineDiagnostics_toanswer_idAppointment" qtlid="326730">Merci de choisir l'un des créneaux horaires suivants pour votre rendez-vous avec un technicien.</translation>
+   <translation id="tools_lineDiagnostics_toanswer_contactPhone" qtlid="326743">Merci d'indiquer un numéro sur lequel vous pourrez être joint, si celui-ci a changé.</translation>
+   <translation id="tools_lineDiagnostics_toanswer_otrsTicket" qtlid="326756">Si vous avez déjà un ticket en cours pour ce problème, merci d'indiquer son numéro.</translation>
+   <translation id="tools_lineDiagnostics_toanswer_comment" qtlid="407377">Merci de préciser toutes les informations nécessaires au diagnostic et à la réparation de votre accès internet, ainsi que vos disponiblités. Votre commentaire ne doit pas dépasser 200 caractères.</translation>
+   <translation id="tools_lineDiagnostics_toanswer_conditionsAccepted" qtlid="326782">J'ai pris connaissance du fait qu'une facturation de 150 € HT sera appliquée dans le cas où le défaut serait de ma responsabilité.</translation>
+   <translation id="tools_lineDiagnostics_toanswer_followBySms" qtlid="407390">Indiquez si vous souhaitez suivre le déroulement des opérations par SMS</translation>
+   <translation id="tools_lineDiagnostics_toanswer_modemMac" qtlid="407403">Merci d'indiquer l'adresse MAC de votre modem.</translation>
+   <translation id="tools_lineDiagnostics_toanswer_modemIsSynchronized" qtlid="407416">Le modem est-il synchronisé ? Un voyant sur le modem (broadband ou adsl) devrait vous indiquer le statut de la synchronisation. Si ce n'est pas le cas, vous devriez retrouver ce statut de synchronisation sur l'interface du modem.</translation>
+   <translation id="tools_lineDiagnostics_toanswer_severalInternetConnections" qtlid="407429">Y a t-il plusieurs connexions à internet (peu importe l'opérateur) sur le lieu de l'installation ?</translation>
+   <translation id="tools_lineDiagnostics_toanswer_modemStillSynchronized" qtlid="407442">Nous venons de réaliser une action sur la ligne (lock du port). Suite à cette action le modem est-il toujours synchronisé ?</translation>
+   <translation id="tools_lineDiagnostics_toanswer_hasModemKeptSynchronization" qtlid="407455">Au cours de l'action effectuée sur votre ligne, le modem est-il resté synchronisé ?</translation>
+   <translation id="tools_lineDiagnostics_toanswer_datetimeOfAppearance" qtlid="407468">Merci d'indiquer la date et l'heure approximative d'apparition du problème.</translation>
+   <translation id="tools_lineDiagnostics_toanswer_problemType" qtlid="407481">Quel est le problème constaté ?</translation>
+   <translation id="tools_lineDiagnostics_toanswer_problemType_enum_syncLoss" qtlid="407494">Pertes de synchronisation régulières</translation>
+   <translation id="tools_lineDiagnostics_toanswer_problemType_enum_lowBandwidth" qtlid="407507">Faible bande passante</translation>
+   <translation id="tools_lineDiagnostics_toanswer_uploadBandwidthTest" qtlid="407520">Quel est votre vitesse d'upload sur le test proof.ovh.net ?</translation>
+   <translation id="tools_lineDiagnostics_toanswer_downloadBandwidthTest" qtlid="407533">Quel est votre vitesse de download sur le test proof.ovh.net ?</translation>
+   <translation id="tools_lineDiagnostics_toanswer_bandwidthTestUnit" qtlid="407546">Unité mesurée sur le test proof.ovh.net ?</translation>
+   <translation id="tools_lineDiagnostics_toanswer_bandwidthTestUnit_enum_Mbps" qtlid="407559">Mb/s</translation>
+   <translation id="tools_lineDiagnostics_toanswer_bandwidthTestUnit_enum_Kbps" qtlid="407572">Kb/s</translation>
+
+
+
+   <translation id="tools_lineDiagnostics_robot_waitingRobot" qtlid="326795">Le diagnostic est en cours. Merci de patienter quelques instants.</translation>
+   <translation id="tools_lineDiagnostics_robot_sleeping" qtlid="326808">Le diagnostic est en attente. Merci de patienter quelques minutes.</translation>
+   <translation id="tools_lineDiagnostics_robot_problem" qtlid="326821">Le diagnostic à échoué.</translation>
+   <translation id="tools_lineDiagnostics_robot_problem_ticket" qtlid="326834">Le ticket OTRS <strong>n°{{otrsTicket}}</strong> à été mis à jour.</translation>
+   <translation id="tools_lineDiagnostics_robot_waitingValidation" qtlid="330474">Le diagnostic est terminé. La demande d'intervention doit être validée par le support OVH. Un ticket sera créé une fois la validation acceptée.</translation>
+   <translation id="tools_lineDiagnostics_robot_validationRefused" qtlid="326860">La demande d'intervention à été refusée par le support OVH.</translation>
+   <translation id="tools_lineDiagnostics_robot_cancelled" qtlid="326873">Le diagnostic a été annulé.</translation>
+   <translation id="tools_lineDiagnostics_robot_resolvedAfterTests" qtlid="326886">Les tests effectués ont permis de résoudre le problème. Le diagnostic est terminé.</translation>
+   <translation id="tools_lineDiagnostics_robot_interventionRequested" qtlid="326899">Une intervention a été demandée. Un email contenant les détails de cette intervention a été envoyé.</translation>
+   <translation id="tools_lineDiagnostics_robot_interventionRequested_otrsticket" qtlid="326912">Numéro du ticket OTRS: {{otrsTicket}}</translation>
+   <translation id="tools_lineDiagnostics_robot_interventionRequested_operatorticketid" qtlid="326925">Numéro du ticket d'intervention FT: {{operatorTicketId}}</translation>
+   <translation id="tools_lineDiagnostics_robot_interventionRequested_ovhinterventionid" qtlid="326938">Numéro du ticket d'intervention OVH: {{ovhInterventionId}}</translation>
+   <translation id="tools_lineDiagnostics_robot_noSyncFaultDiagnosticRequired" qtlid="407585">Il ne s'agit pas d'un problème d'alignement. Il est nécessaire de lancer un diagnostic correspondant au problème d'absence de synchronisation (noSync fault).</translation>
+   <translation id="tools_lineDiagnostics_robot_connectionProblem" qtlid="407598">Il ne s'agit pas d'un problème d'alignement mais d'un défaut de connexion. Il peut s'agir d'un problème d'ordre général. Si le problème n'est pas résolu au bout 24h, vous pouvez contacter le support OVH.</translation>
+   <translation id="tools_lineDiagnostics_robot_haveToConnectModemOnTheRightPlug" qtlid="407611">Le modem n'était pas branché sur la bonne prise téléphonique. L'un des modems de votre installation est ou était connecté à sa place. Le problème devrait être résolu en effectuant les branchements correctement.</translation>
+   <translation id="tools_lineDiagnostics_robot_noBandwidthFault" qtlid="407624">Nous ne détectons pas de problème de débit sur votre accès.</translation>
+   <translation id="tools_lineDiagnostics_robot_noProblemAnymore" qtlid="407637">Le problème n'est plus présent sur votre accès.</translation>
+
+   <translation id="tools_lineDiagnostics_robotAction_seltTest" qtlid="326080">Jatkuvuustesti linjalle</translation>
+   <translation id="tools_lineDiagnostics_robotAction_lockUnlock" qtlid="326951">Reset de port sur le DSLAM</translation>
+   <translation id="tools_lineDiagnostics_robotAction_customerPrelocChecks" qtlid="326964">Recherche d'informations nécessaires à la demande d'intervention.</translation>
+   <translation id="tools_lineDiagnostics_robotAction_requestOperatorIntervention" qtlid="326977">Création d'une demande d'intervention</translation>
+   <translation id="tools_lineDiagnostics_robotAction_requestOvhIntervention" qtlid="326977">Création d'une demande d'intervention</translation>
+   <translation id="tools_lineDiagnostics_robotAction_checkIfResolvedAfterTests" qtlid="326990">Vous pouvez réutiliser votre ligne</translation>
+   <translation id="tools_lineDiagnostics_robotAction_needToRequestOvhIntervention" qtlid="330487">Création d'une demande d'intervention une fois les informations nécessaires récupérées.</translation>
+   <translation id="tools_lineDiagnostics_robotAction_alignmentLockTest" qtlid="407650">Lock puis unlock du DSLAM afin de vérifier si la synchronisation du modem correspond bien à la même connexion.</translation>
+   <translation id="tools_lineDiagnostics_robotAction_alignmentResetTest" qtlid="407663">Reset du DSLAM afin de vérifier si la synchronisation du modem correspond bien à la même connexion.</translation>
+   <translation id="tools_lineDiagnostics_robotAction_checkProblem" qtlid="407676">Vérification de la synchronisation du DSLAM afin d'identifier la nature du problème</translation>
+   <translation id="tools_lineDiagnostics_robotAction_checkSynchronizationWithoutOtherModems" qtlid="407689">Vérification de la synchronisation du DSLAM afin de savoir si l'un des modems débranchés était câblé sur la ligne DSL</translation>
+   <translation id="tools_lineDiagnostics_robotAction_checkIfResolvedAfterConnectionTests" qtlid="407702">Testez votre connexion pour voir si le problème à été résolu.</translation>
+   <translation id="tools_lineDiagnostics_robotAction_checkIfResolvedAfterInstallationCheck" qtlid="407715">Testez votre installation pour voir si le problème à été résolu.</translation>
+   <translation id="tools_lineDiagnostics_robotAction_checkIfSeveralConnections" qtlid="407728">Vérification du nombre de lignes internet présentes chez le client.</translation>
+   <translation id="tools_lineDiagnostics_robotAction_checkInstallation" qtlid="407741">Nous procédons à des tests de vérification de l'installation client.</translation>
+   <translation id="tools_lineDiagnostics_robotAction_alignmentTestResult" qtlid="407754">Nous effectuons des tests afin de vérifier qu'il s'agit bien d'un problème d'alignement.</translation>
+   <translation id="tools_lineDiagnostics_robotAction_checkProblem" qtlid="407767">Récupération des informations de diagnostique et vérifications en cours.</translation>
+   <translation id="tools_lineDiagnostics_robotAction_installationCheck" qtlid="407780">Nous effectuons des tests afin de localiser le problème.</translation>
+   <translation id="tools_lineDiagnostics_robotAction_needToRequestMonitoring" qtlid="407793">Nous regardons si un technicien OVH doit intervenir avant l'opérateur (selon votre collecte).</translation>
+   <translation id="tools_lineDiagnostics_robotAction_requestMonitoring" qtlid="407806">Votre accès a besoin d'une étude plus poussée. Nous activons la surveillance de la ligne.</translation>
+   <translation id="tools_lineDiagnostics_robotAction_checkCustomerTicket" qtlid="407819">Nous vérifions la validité du ticket client.</translation>
+   <translation id="tools_lineDiagnostics_date_now" qtlid="197258">Nykyinen</translation>
+   <translation id="tools_lineDiagnostics_date_yesterday" qtlid="37479">Eilen</translation>
+   <translation id="tools_lineDiagnostics_date_3d" qtlid="70205">3 päivää</translation>
+   <translation id="tools_lineDiagnostics_date_1w" qtlid="70217">1 viikko</translation>
+   <translation id="tools_lineDiagnostics_date_1m" qtlid="70241">1 kuukausi</translation>
+
+
 </translations>

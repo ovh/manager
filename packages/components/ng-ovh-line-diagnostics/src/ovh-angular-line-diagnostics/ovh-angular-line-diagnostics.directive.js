@@ -1,8 +1,9 @@
-angular.module("ovh-angular-line-diagnostics").directive("lineDiagnostics", () => {
+angular.module("line-diagnostics").directive("lineDiagnostics", () => {
     "use strict";
+
     return {
         restrict: "EA",
-        templateUrl: "/ovh-angular-line-diagnostics/src/ovh-angular-line-diagnostics/ovh-angular-line-diagnostics.html",
+        templateUrl: "/line-diagnostics/src/line-diagnostics/line-diagnostics.html",
         controllerAs: "LinediagnosticsCtrl",
         bindToController: true,
         scope: {
@@ -10,14 +11,9 @@ angular.module("ovh-angular-line-diagnostics").directive("lineDiagnostics", () =
             lineDiagnosticsType: "@",
             serviceName: "@lineDiagnosticsServiceName"
         },
-        controller: [
-            "$q",
-            "LineDiagnostics",
-            "Toast",
-            "$translate",
-            "$state",
-            "$scope",
+        controller: ["$q", "LineDiagnostics", "Toast", "$translate", "$state", "$scope",
             function ($q, LineDiagnostics, Toast, $translate, $state, $scope) {
+
                 const self = this;
 
                 self.translateReady = false;
@@ -62,91 +58,76 @@ angular.module("ovh-angular-line-diagnostics").directive("lineDiagnostics", () =
                 // --------INIT---------
 
                 function init () {
-                    // translations loadings
-                    LineDiagnostics.loadTranslations().then(
-                        () => {
-                            self.translateReady = true;
-                            getSetLineStep();
-                        },
-                        () => {
-                            self.translateReady = null;
-                        }
-                    );
+                // translations loadings
+                    LineDiagnostics.loadTranslations().then(() => {
+                        self.translateReady = true;
+                        getSetLineStep();
+                    }, () => {
+                        self.translateReady = null;
+                    });
                 }
 
-                function getSetLineStep (rawDatas) {
-                    let datas = rawDatas;
+                function getSetLineStep (paramDatas) {
+                    let datas = paramDatas;
                     self.loaders.getLineStep = true;
                     if (self.datas.type) {
-                        datas = rawDatas ? angular.extend(rawDatas, { faultType: self.datas.type }) : { faultType: self.datas.type };
+                        datas = datas ? angular.extend(datas, { faultType: self.datas.type }) : { faultType: self.datas.type };
                     }
-                    return LineDiagnostics.getSetDiagnostic(getUriParams(), datas)
-                        .then(
-                            (lineStep) => {
-                                if (lineStep.data.errors) {
-                                    // if error, interne api return 200 status with lineStep.errors = [] ... winner code check
-                                    const errors = lineStep.data.errors;
-                                    self.datas.lineStep = null;
-                                    let errorMessage = "";
-                                    if (errors.length) {
-                                        if (errors[0].context && errors[0].context.errorCode) {
-                                            self.datas.error = errors[0].context.errorCode;
-                                            errorMessage = $translate.instant(`tools_lineDiagnostics_error_context_${errors[0].context.errorCode}`);
-                                        } else {
-                                            errorMessage = `${errors[0].kind} : ${errors[0].message}`;
-                                        }
-                                    }
-                                    Toast.error(
-                                        `${$translate.instant("tools_lineDiagnostics_error", {
-                                            lineNumber: self.datas.lineNumber
-                                        })} ${errorMessage}`
-                                    );
-                                    return $q.reject(errors);
+                    return LineDiagnostics.getSetDiagnostic(getUriParams(), datas).then((lineStep) => {
+                        if (lineStep.data.errors) { // if error, interne api return 200 status with lineStep.errors = [] ... winner code check
+                            const errors = lineStep.data.errors;
+                            self.datas.lineStep = null;
+                            let errorMessage = "";
+                            if (errors.length) {
+                                if (errors[0].context && errors[0].context.errorCode) {
+                                    self.datas.error = errors[0].context.errorCode;
+                                    errorMessage = $translate.instant(`tools_lineDiagnostics_error_context_${errors[0].context.errorCode}`);
+                                } else {
+                                    errorMessage = `${errors[0].kind} : ${errors[0].message}`;
                                 }
-
-                                // case for no error, but user hasn t really make actions asked
-                                if (lineStep.data && lineStep.data.data && lineStep.data.data.error === "changeProfileNotDone") {
-                                    Toast.error($translate.instant(`tools_lineDiagnostics_error_context_${lineStep.data.data.error}`));
-                                }
-                                self.datas.lineStep = lineStep.data;
-                                runPolling(lineStep.data);
-                                self.formActionTodo.comment = self.datas.lineStep.data.answers.comment;
-                                return lineStep;
-                            },
-                            (error) => {
-                                self.datas.lineStep = null;
-                                if (!datas) {
-                                    // JEAN MICHEL style for no error code on apiv6
-                                    let errorMessage = "";
-                                    let errorCode = null;
-                                    const errorMessageCode = (error.data && error.data.message) || ""; // errors from apiv6 without mesage code
-                                    if (errorMessageCode === "line diagnostic already launched by OVH") {
-                                        errorCode = "internalDiagAlreadyLaunched";
-                                        errorMessage = ` ${$translate.instant(`tools_lineDiagnostics_error_context_${errorCode}`)}`;
-                                    }
-
-                                    // END JEAN MICHEL style for no error code on apiv6
-                                    Toast.error(
-                                        $translate.instant("tools_lineDiagnostics_error", {
-                                            lineNumber: self.datas.lineNumber
-                                        }) + errorMessage
-                                    );
-                                    self.datas.error = errorCode;
-                                }
-                                return $q.reject(error);
                             }
-                        )
-                        .finally(() => {
-                            self.loaders.getLineStep = false;
-                        });
+                            Toast.error(`${$translate.instant("tools_lineDiagnostics_error", { lineNumber: self.datas.lineNumber })} ${errorMessage}`);
+                            return $q.reject(errors);
+                        }
+                        const errorAllow = ["changeProfileNotDone", "otrsTicketInvalid", "monitoringTodoAlreadyExists"];
+
+                        // case for no error, but user hasn t really make actions asked
+                        if (lineStep.data && lineStep.data.data && lineStep.data.data.error && errorAllow.indexOf(lineStep.data.data.error) !== -1) {
+                            Toast.error($translate.instant(`tools_lineDiagnostics_error_context_${lineStep.data.data.error}`));
+                        }
+                        self.datas.lineStep = lineStep.data;
+                        runPolling(lineStep.data);
+                        self.formActionTodo.comment = self.datas.lineStep.data.answers.comment;
+                        return lineStep;
+                    }, (error) => {
+                        self.datas.lineStep = null;
+                        if (!datas) {
+                            // JEAN MICHEL style for no error code on apiv6
+                            let errorMessage = "";
+                            let errorCode = null;
+                            const errorMessageCode = (error.data && error.data.message) || ""; // errors from apiv6 without mesage cogde
+                            if (errorMessageCode === "line diagnostic already launched by OVH") {
+                                errorCode = "internalDiagAlreadyLaunched";
+                                errorMessage = ` ${$translate.instant(`tools_lineDiagnostics_error_context_${errorCode}`)}`;
+                            }
+
+                            // END JEAN MICHEL style for no error code on apiv6
+                            Toast.error($translate.instant("tools_lineDiagnostics_error", { lineNumber: self.datas.lineNumber }) + errorMessage);
+                            self.datas.error = errorCode;
+                        }
+                        return $q.reject(error);
+                    }).finally(() => {
+                        self.loaders.getLineStep = false;
+                    });
                 }
 
                 function runPolling (lineStep) {
                     if (lineStep.status === "waitingRobot") {
-                        LineDiagnostics.runPollGetDiagnostic(getUriParams(), self.datas.type ? { faultType: self.datas.type } : undefined).then((uLineStep) => {
-                            self.datas.lineStep = uLineStep;
+                        LineDiagnostics.runPollGetDiagnostic(getUriParams(), self.datas.type ? { faultType: self.datas.type } : undefined).then((lineStepParam) => {
+                            self.datas.lineStep = lineStepParam;
                         });
                     }
+
                 }
 
                 // --------TOOLS---------
@@ -159,33 +140,26 @@ angular.module("ovh-angular-line-diagnostics").directive("lineDiagnostics", () =
                     return !!_.find(answers, (answer, key) => answers[key] !== null);
                 };
 
-                $scope.$watch(
-                    () => self.formActionTodo,
-                    () => {
-                        self.formActionTodo.list = Object.keys(_.omit(self.formActionTodo.values, (isChecked) => !isChecked));
-                    },
-                    true
-                );
+                $scope.$watch(() => self.formActionTodo, () => {
+                    self.formActionTodo.list = Object.keys(
+                        _.omit(self.formActionTodo.values, (isChecked) => !isChecked)
+                    );
+                }, true);
 
                 function responseHandling (response) {
                     if (!response || !response.data || !!response.data.error) {
-                        Toast.error(
-                            `${$translate.instant("tools_lineDiagnostics_post_error", {
-                                lineNumber: self.datas.lineNumber
-                            })} : ${(response && response.data && response.data.error) || ""}`
-                        );
+                        Toast.error(`${$translate.instant("tools_lineDiagnostics_post_error", { lineNumber: self.datas.lineNumber })} : ${(response && response.data && response.data.error) || ""}`);
                     }
                 }
 
                 // --------ACTIONS---------
 
-                self.hasComment = () =>
-                    !!_.find(self.datas.lineStep.data.toAnswer, {
-                        name: "comment"
-                    });
+                self.hasComment = function () {
+                    return !!_.find(self.datas.lineStep.data.toAnswer, { name: "comment" });
+                };
 
                 self.dateChanged = function (object, name) {
-                    // check if date and time are set
+                // check if date and time are set
                     if (!object[`${name}date`] && !object[`${name}time`]) {
                         object[name] = undefined;
                         return;
@@ -197,8 +171,7 @@ angular.module("ovh-angular-line-diagnostics").directive("lineDiagnostics", () =
                     object[name] = `${moment(inputDate, "YYYY-MM-DD").format("YYYY-MM-DD")}T${inputTime}${moment().format("Z")}`;
                 };
 
-                self.setSearchDate = function (object, name, nbDays) {
-                    // preselected date changed
+                self.setSearchDate = function (object, name, nbDays) { // preselected date changed
                     let date = null;
                     if (nbDays === -30) {
                         date = moment().add(-1, "months");
@@ -213,40 +186,33 @@ angular.module("ovh-angular-line-diagnostics").directive("lineDiagnostics", () =
                     self.dateChanged(object, name);
                 };
 
-                self.refreshLineStep = () => !self.loaders.getLineStep ? getSetLineStep() : null;
+                self.refreshLineStep = function () {
+                    if (!self.loaders.getLineStep) {
+                        getSetLineStep();
+                    }
+                };
 
                 self.submitActionTodo = function () {
                     self.loaders.actionTodo = true;
 
-                    const comment = self.formActionTodo.comment ?
-                        {
-                            answers: {
-                                comment: self.formActionTodo.comment
-                            }
-                        } :
-                        {};
+                    const comment = self.formActionTodo.comment ? {
+                        answers: {
+                            comment: self.formActionTodo.comment
+                        }
+                    } : {};
 
-                    getSetLineStep(
-                        angular.extend(
-                            {
-                                actionsDone: self.formActionTodo.list
-                            },
-                            comment
-                        )
-                    )
-                        .then(responseHandling, () => {
-                            Toast.error(
-                                $translate.instant("tools_lineDiagnostics_post_error", {
-                                    lineNumber: self.datas.lineNumber
-                                })
-                            );
-                        })
-                        .finally(() => {
-                            self.loaders.actionTodo = false;
-                        });
+                    getSetLineStep(angular.extend({
+                        actionsDone: self.formActionTodo.list
+                    }, comment)).then(responseHandling, () => {
+                        Toast.error($translate.instant("tools_lineDiagnostics_post_error", { lineNumber: self.datas.lineNumber }));
+                    }).finally(() => {
+                        self.loaders.actionTodo = false;
+                    });
                 };
 
-                self.conditionRefused = () => self.formToAnswer.values.conditionsAccepted !== undefined && self.formToAnswer.values.conditionsAccepted === "false";
+                self.conditionRefused = function () {
+                    return self.formToAnswer.values.conditionsAccepted !== undefined && self.formToAnswer.values.conditionsAccepted === "false";
+                };
 
                 self.submitToAnswer = function () {
                     self.loaders.toAnswer = true;
@@ -266,17 +232,11 @@ angular.module("ovh-angular-line-diagnostics").directive("lineDiagnostics", () =
 
                     getSetLineStep({
                         answers: self.formToAnswer.values
-                    })
-                        .then(responseHandling, () => {
-                            Toast.error(
-                                $translate.instant("tools_lineDiagnostics_post_error", {
-                                    lineNumber: self.datas.lineNumber
-                                })
-                            );
-                        })
-                        .finally(() => {
-                            self.loaders.toAnswer = false;
-                        });
+                    }).then(responseHandling, () => {
+                        Toast.error($translate.instant("tools_lineDiagnostics_post_error", { lineNumber: self.datas.lineNumber }));
+                    }).finally(() => {
+                        self.loaders.toAnswer = false;
+                    });
                 };
 
                 self.deleteDiag = function () {
@@ -296,8 +256,10 @@ angular.module("ovh-angular-line-diagnostics").directive("lineDiagnostics", () =
                 });
             };*/
 
+
                 init();
-            }
-        ]
+
+            }]
+
     };
 });

@@ -71,7 +71,7 @@ module.exports = function (grunt) {
                files: [{
                    expand: true,
                    src: ["<%= srcdir %>/**/translations/*.xml"],
-                   dest: "<%= srcdir %>",
+                   // dest: "<%= srcdir %>",
                    filter: "isFile",
                    extendFrom: ["en_GB", "fr_FR"]
                }]

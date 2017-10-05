@@ -1,4 +1,0 @@
-SEPARATOR=":"
-SOURCE_DIR="../src"
-TRANSLATION_FILENAME="/translations/Messages_"
-DEFAULT_PREFIX_DIR=""

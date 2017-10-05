@@ -1,1 +1,1 @@
-angular.module("ovh-angular-line-diagnostics", []);
+angular.module("line-diagnostics", []);
