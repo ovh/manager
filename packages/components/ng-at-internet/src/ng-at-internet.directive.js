@@ -1,6 +1,7 @@
 "use strict";
 
 /**
+ * @deprecated replaced by trackOn
  * @ngdoc directive
  * @require atInternetProvider
  * @name atInternetClick

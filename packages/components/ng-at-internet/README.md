@@ -75,15 +75,25 @@ Example of tracking a click action.
 ```javascript
 atInternet.trackClick({
     name: "my-click", // name of action
-    type: "action"    // Possible values : action/navigation/download/exit
+    type: "action"    // event type (optional) Possible values : action/navigation/download/exit
     level2: "1"       // (optional) if not configured in defaults you must specify your project id
 });
 ```
 Tracking using the directive :
 
+Attributes
+  - `track-on` : event to track (click, onFinish, onchange, etc)
+  - `track-name` : Name of action (optional) Id will be used if absent
+  - `track-type` : event type (optional) Possible values : action/navigation/download/exit
+
+
 ```html
-<button at-internet-click="{ name: 'foo' }" ng-click="clickMe()">ClickMe</button>
-<a target="#" at-internet-click="{ name: 'foo' }">ClickMe</a>
+<button id="btnAction" data-track-on="click"></button>
+Tracking result: {name: "btnAction-click", type: "action"...}
+
+<button data-track-on="mouseover" data-track-name="MyAction" data-track-type="navigation"></button>
+Tracking result: {name: "MyAction", type: "navigation"...}
+
 ```
 
 ## Order tracking

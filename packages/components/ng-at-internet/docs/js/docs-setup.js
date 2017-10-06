@@ -19,7 +19,7 @@ NG_DOCS={
       "type": "directive",
       "moduleName": "atInternetClick",
       "shortDescription": "Simple attribute directive to track clicks on DOM elements.",
-      "keywords": "at-internet-click atinternet atinternetclick atinternetprovider attribute clickme clicks directive docs dom elements example foo html ng-click object simple track trackclick"
+      "keywords": "at-internet-click atinternet atinternetclick atinternetprovider attribute clickme clicks directive docs dom elements example foo html ng-click object replaced simple track trackclick trackon"
     },
     {
       "section": "docs",
@@ -29,6 +29,15 @@ NG_DOCS={
       "moduleName": "atInternetProvider",
       "shortDescription": "Provider allowing configuration for atInternet service.",
       "keywords": "allowing atinternet atinternetprovider configuration configure console data def default disable docs enable false function javascript js library logging logs provider service setdebug setdefaults setenabled smarttag tracking true values"
+    },
+    {
+      "section": "docs",
+      "id": "trackOn",
+      "shortName": "trackOn",
+      "type": "directive",
+      "moduleName": "trackOn",
+      "shortDescription": "Simple attribute directive to track events on DOM elements.",
+      "keywords": "atinternetprovider attribute click data-track-name data-track-on data-track-type directive docs dom elements events example html myaction navigation simple track trackon"
     }
   ],
   "apis": {
