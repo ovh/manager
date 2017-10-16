@@ -22,7 +22,7 @@
     "babel-plugin-transform-html-import-to-string": "0.0.1",
     "babel-preset-es2015": "^6.24.1",
     "babelify": "^7.3.0",
-    "bowser": "^1.7.0",
+    "bowser": "^1.8.0",
     "eslint-config-ovh": "^0.1.1",
     "eslint-config-standard": "^10.2.1",
     "eslint-plugin-import": "^2.2.0",
