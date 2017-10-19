@@ -1,6 +1,6 @@
 {
   "name": "ovh-angular-line-diagnostics",
-  "version": "0.5.0",
+  "version": "1.0.0",
   "description": "Module to diagnose telecoms lines.",
   "keywords": [
     "angular"
