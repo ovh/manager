@@ -89,7 +89,7 @@ angular.module("ovh-angular-line-diagnostics").directive("lineDiagnostics", () =
                             Toast.error(`${$translate.instant("tools_lineDiagnostics_error", { lineNumber: self.datas.lineNumber })} ${errorMessage}`);
                             return $q.reject(errors);
                         }
-                        const errorAllow = ["changeProfileNotDone", "otrsTicketInvalid", "monitoringTodoAlreadyExists"];
+                        const errorAllow = ["changeProfileNotDone", "ovhTicketInvalid", "monitoringTodoAlreadyExists"];
 
                         // case for no error, but user hasn t really make actions asked
                         if (lineStep.data && lineStep.data.data && lineStep.data.data.error && errorAllow.indexOf(lineStep.data.data.error) !== -1) {
@@ -220,8 +220,8 @@ angular.module("ovh-angular-line-diagnostics").directive("lineDiagnostics", () =
                     if (!self.hasComment()) {
                         self.formToAnswer.values.comment = angular.copy(self.formActionTodo.comment);
                     }
-                    if (self.formToAnswer.values.otrsTicket) {
-                        self.formToAnswer.values.otrsTicket = parseInt(self.formToAnswer.values.otrsTicket, 10);
+                    if (self.formToAnswer.values.ovhTicket) {
+                        self.formToAnswer.values.ovhTicket = parseInt(self.formToAnswer.values.ovhTicket, 10);
                     }
                     if (self.formToAnswer.values.datetimeOfAppearancedate) {
                         delete self.formToAnswer.values.datetimeOfAppearancedate;

@@ -553,15 +553,15 @@
                     <span data-translate="tools_lineDiagnostics_robot_{{LinediagnosticsCtrl.datas.lineStep.status}}"></span>
 
                     <span data-ng-if="LinediagnosticsCtrl.datas.lineStep.status === 'problem' &&
-                        LinediagnosticsCtrl.datas.lineStep.data.error && LinediagnosticsCtrl.datas.lineStep.data.otrsTicket"
+                        LinediagnosticsCtrl.datas.lineStep.data.error && LinediagnosticsCtrl.datas.lineStep.data.ovhTicket"
                           data-translate="tools_lineDiagnostics_robot_problem_ticket"
-                          data-translate-values="{otrsTicket : LinediagnosticsCtrl.datas.lineStep.data.otrsTicket}"></span>
+                          data-translate-values="{ovhTicket : LinediagnosticsCtrl.datas.lineStep.data.ovhTicket}"></span>
 
                     <div data-ng-if="LinediagnosticsCtrl.datas.lineStep.status==='interventionRequested' &&
-                        LinediagnosticsCtrl.datas.lineStep.data.otrsTicket">
+                        LinediagnosticsCtrl.datas.lineStep.data.ovhTicket">
                         <span  class="bold"
                             data-translate="tools_lineDiagnostics_robot_interventionRequested_otrsticket"
-                            data-translate-values="{otrsTicket : LinediagnosticsCtrl.datas.lineStep.data.otrsTicket}"></span>
+                            data-translate-values="{ovhTicket : LinediagnosticsCtrl.datas.lineStep.data.ovhTicket}"></span>
                     </div>
                     <div data-ng-if="LinediagnosticsCtrl.datas.lineStep.status==='interventionRequested' &&
                         LinediagnosticsCtrl.datas.lineStep.data.operatorTicketId">

@@ -10,7 +10,7 @@
    <translation id="tools_lineDiagnostics_error_context_OVHDiagAlreadyLaunched" qtlid="330409">Diagnostique déjà en cours chez OVH.</translation>
    <translation id="tools_lineDiagnostics_error_context_changeProfileNotDone" qtlid="330435">Vous n'avez pas réalisé le changement de profil.</translation>
    <translation id="tools_lineDiagnostics_error_context_otherDiagTypeLaunched" qtlid="407052">Un autre type de diagnostic est déjà en cours sur cette ligne.</translation>
-   <translation id="tools_lineDiagnostics_error_context_otrsTicketInvalid" qtlid="407065">Ticket OTRS invalide ou inexistant.</translation>
+   <translation id="tools_lineDiagnostics_error_context_ovhTicketInvalid">Ticket invalide ou inexistant.</translation>
    <translation id="tools_lineDiagnostics_error_context_monitoringTodoAlreadyExists" qtlid="407078">Surveillance de la ligne déjà en cours.</translation>
 
    <translation id="tools_lineDiagnostics_detail_accessType" qtlid="42766">Prieigos tipas</translation>
@@ -88,7 +88,7 @@
    <translation id="tools_lineDiagnostics_answers_modemStillSynchronized" qtlid="407273">Modem encore synchronisé ?</translation>
    <translation id="tools_lineDiagnostics_answers_hasModemKeptSynchronization" qtlid="407286">Le modem est-il resté synchronisé ?</translation>
    <translation id="tools_lineDiagnostics_answers_datetimeOfAppearance" qtlid="407299">Date et heure d'apparition du problème</translation>
-   <translation id="tools_lineDiagnostics_answers_otrsTicket" qtlid="407312">Ticket OTRS</translation>
+   <translation id="tools_lineDiagnostics_answers_ovhTicket">Ticket</translation>
    <translation id="tools_lineDiagnostics_answers_problemType" qtlid="407325">Type de problème constaté</translation>
    <translation id="tools_lineDiagnostics_answers_uploadBandwidthTest" qtlid="407338">Vitesse d'upload</translation>
    <translation id="tools_lineDiagnostics_answers_downloadBandwidthTest" qtlid="407351">Vitesse de download</translation>
@@ -113,7 +113,7 @@
    <translation id="tools_lineDiagnostics_toanswer_modemType" qtlid="326717">Merci d'indiquer la marque et la référence de votre modem.</translation>
    <translation id="tools_lineDiagnostics_toanswer_idAppointment" qtlid="326730">Merci de choisir l'un des créneaux horaires suivants pour votre rendez-vous avec un technicien.</translation>
    <translation id="tools_lineDiagnostics_toanswer_contactPhone" qtlid="326743">Merci d'indiquer un numéro sur lequel vous pourrez être joint, si celui-ci a changé.</translation>
-   <translation id="tools_lineDiagnostics_toanswer_otrsTicket" qtlid="326756">Si vous avez déjà un ticket en cours pour ce problème, merci d'indiquer son numéro.</translation>
+   <translation id="tools_lineDiagnostics_toanswer_ovhTicket">Si vous avez déjà un ticket en cours pour ce problème, merci d'indiquer son numéro.</translation>
    <translation id="tools_lineDiagnostics_toanswer_comment" qtlid="407377">Merci de préciser toutes les informations nécessaires au diagnostic et à la réparation de votre accès internet, ainsi que vos disponiblités. Votre commentaire ne doit pas dépasser 200 caractères.</translation>
    <translation id="tools_lineDiagnostics_toanswer_conditionsAccepted" qtlid="326782">J'ai pris connaissance du fait qu'une facturation de 150 € HT sera appliquée dans le cas où le défaut serait de ma responsabilité.</translation>
    <translation id="tools_lineDiagnostics_toanswer_followBySms" qtlid="407390">Indiquez si vous souhaitez suivre le déroulement des opérations par SMS</translation>
@@ -137,13 +137,13 @@
    <translation id="tools_lineDiagnostics_robot_waitingRobot" qtlid="326795">Le diagnostic est en cours. Merci de patienter quelques instants.</translation>
    <translation id="tools_lineDiagnostics_robot_sleeping" qtlid="326808">Le diagnostic est en attente. Merci de patienter quelques minutes.</translation>
    <translation id="tools_lineDiagnostics_robot_problem" qtlid="326821">Le diagnostic à échoué.</translation>
-   <translation id="tools_lineDiagnostics_robot_problem_ticket" qtlid="326834">Le ticket OTRS <strong>n°{{otrsTicket}}</strong> à été mis à jour.</translation>
+   <translation id="tools_lineDiagnostics_robot_problem_ticket">Le ticket <strong>n°{{ovhTicket}}</strong> à été mis à jour.</translation>
    <translation id="tools_lineDiagnostics_robot_waitingValidation" qtlid="330474">Le diagnostic est terminé. La demande d'intervention doit être validée par le support OVH. Un ticket sera créé une fois la validation acceptée.</translation>
    <translation id="tools_lineDiagnostics_robot_validationRefused" qtlid="326860">La demande d'intervention à été refusée par le support OVH.</translation>
    <translation id="tools_lineDiagnostics_robot_cancelled" qtlid="326873">Le diagnostic a été annulé.</translation>
    <translation id="tools_lineDiagnostics_robot_resolvedAfterTests" qtlid="326886">Les tests effectués ont permis de résoudre le problème. Le diagnostic est terminé.</translation>
    <translation id="tools_lineDiagnostics_robot_interventionRequested" qtlid="326899">Une intervention a été demandée. Un email contenant les détails de cette intervention a été envoyé.</translation>
-   <translation id="tools_lineDiagnostics_robot_interventionRequested_otrsticket" qtlid="326912">Numéro du ticket OTRS: {{otrsTicket}}</translation>
+   <translation id="tools_lineDiagnostics_robot_interventionRequested_otrsticket">Numéro du ticket: {{ovhTicket}}</translation>
    <translation id="tools_lineDiagnostics_robot_interventionRequested_operatorticketid" qtlid="326925">Numéro du ticket d'intervention FT: {{operatorTicketId}}</translation>
    <translation id="tools_lineDiagnostics_robot_interventionRequested_ovhinterventionid" qtlid="326938">Numéro du ticket d'intervention OVH: {{ovhInterventionId}}</translation>
    <translation id="tools_lineDiagnostics_robot_noSyncFaultDiagnosticRequired" qtlid="407585">Il ne s'agit pas d'un problème d'alignement. Il est nécessaire de lancer un diagnostic correspondant au problème d'absence de synchronisation (noSync fault).</translation>
