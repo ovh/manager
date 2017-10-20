@@ -657,19 +657,28 @@ angular.module("ovh-angular-sidebar-menu").factory("SidebarMenuListItem", ["$q",
      *  @returns {SidebarMenuListItem} Current instance of menu item.
      */
     SidebarMenuListItem.prototype.filterSubItems = (function () {
-
-        // Recursively checks if item or subItems are matching // the given search query
-        function isMatchingSearch (item, search) {
-            var hasMatchingSubItem = false;
-            if (item.searchable && item.searchKey.indexOf(search) >= 0) {
-                return true;
+        // Recursively checks if item or subItems are matching the given search query
+        // If an item of level 2 matches the search, return it with all subItems
+        // If an item of level 3 matches the search, filter and attach it to its parent
+        // If no match, return null
+        function getMatchingItem (item, search) {
+            var matchingItem;
+            function isMatchingSearch (item, search) {
+                return item.searchable && item.searchKey.indexOf(search) >= 0;
             }
+
+            if (isMatchingSearch(item, search)) {
+                return item;
+            }
+
+            matchingItem = new SidebarMenuListItem(angular.copy(item));
             angular.forEach(item.getSubItems(), function (subItem) {
-                if (!hasMatchingSubItem) {
-                    hasMatchingSubItem = hasMatchingSubItem || isMatchingSearch(subItem, search);
+                if (isMatchingSearch(subItem, search)) {
+                    matchingItem.addSubItem(angular.copy(subItem));
                 }
             });
-            return hasMatchingSubItem;
+
+            return matchingItem.hasSubItems() ? matchingItem : null;
         }
 
         return function (search) {
@@ -681,9 +690,12 @@ angular.module("ovh-angular-sidebar-menu").factory("SidebarMenuListItem", ["$q",
             } else {
                 search = search.toLowerCase(); // ignore case
                 var filteredItems = [];
+                var tmpMatchingItem;
                 angular.forEach(self.subItemsAdded, function (item) {
-                    if (isMatchingSearch(item, search)) {
-                        filteredItems.push(item);
+                    tmpMatchingItem = getMatchingItem(item, search);
+
+                    if (tmpMatchingItem) {
+                        filteredItems.push(tmpMatchingItem);
                     }
                 });
                 self.displaySearchResults(filteredItems);
