@@ -11,6 +11,9 @@
   padding: 0;
   color: #ffffff;
 }
+#sidebar-menu > .oui-loader > .oui-loader__container {
+  margin: auto;
+}
 #sidebar-menu .sidebar-menu-title {
   display: none;
   position: absolute;
@@ -222,6 +225,7 @@
 #sidebar-menu .sidebar-menu-list.menu-level-1 > li.item-container > .item-content > .menu-item .item-icon i {
   font-size: 20px;
   opacity: 0.6;
+  margin-bottom: 6px;
 }
 #sidebar-menu .sidebar-menu-list.menu-level-1 > li.item-container > .item-content > .group-content-wrapper > div > div > .group-toggle-content > .group-scroll-content {
   max-height: 400px;
@@ -289,6 +293,7 @@
 }
 #sidebar-menu .sidebar-menu-list.menu-level-1 > li.item-container .menu-level-2 > li.item-container .menu-level-3 > li.item-container > .item-content > .menu-item .item-icon i {
   font-size: 14px;
+  margin-bottom: 5px;
 }
 #sidebar-menu .sidebar-menu-list.menu-level-1 > li.item-container .menu-level-2 > li.item-container .menu-level-3 > li.item-container > .item-content > .menu-item .item-arrow.no-sub {
   width: 10px;
