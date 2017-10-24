@@ -7910,7 +7910,7 @@ angular.module('ovh-utils-angular').run(['$templateCache', function($templateCac
 
 
   $templateCache.put('js/ovh-utils-angular/alerter/alerter.html',
-    "<div class=alert role=alert data-ng-class=ovhAlertType data-ng-if=ovhAlertMessage><button class=close type=button data-ng-click=resetMessages() data-ng-if=!ovhAlertHideRemoveButton></button> <span data-ng-bind-html=ovhAlertMessage></span><div data-ng-if=ovhAlertMessageDetails><a class=text-underline data-tooltip-box data-tb-unique=true data-tb-content-template=components/ovh-utils-angular/alerter/tooltipErrorMessages.html data-tb-hide-on-blur=true data-tb-placement=bottom data-i18n-static=common_alerts_message_see_more></a></div></div>"
+    "<div class=\"alert alert-dismissible\" role=alert data-ng-class=ovhAlertType data-ng-if=ovhAlertMessage><button class=close type=button data-ng-click=resetMessages() data-ng-if=!ovhAlertHideRemoveButton></button> <span data-ng-bind-html=ovhAlertMessage></span><div data-ng-if=ovhAlertMessageDetails><a class=text-underline data-tooltip-box data-tb-unique=true data-tb-content-template=components/ovh-utils-angular/alerter/tooltipErrorMessages.html data-tb-hide-on-blur=true data-tb-placement=bottom data-i18n-static=common_alerts_message_see_more></a></div></div>"
   );
 
 
