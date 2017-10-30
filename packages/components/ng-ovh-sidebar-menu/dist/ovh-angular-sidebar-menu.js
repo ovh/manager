@@ -89,6 +89,30 @@ angular.module("ovh-angular-sidebar-menu").directive("sidebarMenuListItem", ["$c
                 return SidebarMenu.getMinItemsForEnablingSearch();
             };
 
+            self.isSearchEnabled = function () {
+                if (self.item.allowSearch) {
+                    if (self.item.subItemsAdded.length > self.getMinItemsForEnablingSearch()) {
+                        return true;
+                    }
+
+                    // if there is less than 10 (by default) items of level 2, there is maybe more than 10 items of level 3
+                    var searchableItemCount = 0;
+
+                    // use of every to be abble to break loop
+                    self.item.subItemsAdded.every(function (subItem) {
+                        searchableItemCount += _.filter(subItem.subItemsAdded, {
+                            searchable: true
+                        }).length;
+
+                        return searchableItemCount <= self.getMinItemsForEnablingSearch();
+                    });
+
+                    return searchableItemCount > self.getMinItemsForEnablingSearch();
+                }
+
+                return false;
+            };
+
             /**
              * Returns scrollBar state :
              * {
@@ -1414,7 +1438,7 @@ angular.module('ovh-angular-sidebar-menu').run(['$templateCache', function($temp
 
 
   $templateCache.put('ovh-angular-sidebar-menu-list/ovh-angular-sidebar-menu-list-item/ovh-angular-sidebar-menu-list-item.html',
-    "<div class=item-content><!-- item has sref and allow sub items --> <a class=menu-item title=\"{{ ItemMenuCtrl.item.getTitle() }}\" data-ng-if=ItemMenuCtrl.item.state data-ng-click=ItemMenuCtrl.toggleItemOpenState() data-ui-sref=\"{{ :: ItemMenuCtrl.item.getFullSref() }}\" data-ng-include=ItemMenuCtrl.getInnerTemplateUrl()></a><!-- TOGGLE BUTTON --> <button class=\"menu-item text-left\" title=\"{{ ItemMenuCtrl.item.getTitle() }}\" type=button data-ng-if=\"!ItemMenuCtrl.item.state && !ItemMenuCtrl.item.url && ItemMenuCtrl.item.allowSubItems\" data-ng-click=ItemMenuCtrl.toggleItemOpenState() data-ng-include=ItemMenuCtrl.getInnerTemplateUrl()></button><!-- ERROR MESSAGE --><div class=group-error-wrapper data-ng-if=\"ItemMenuCtrl.item.error && ItemMenuCtrl.errorVisible\"><div><i class=\"ovh-font ovh-font-filled-warning\"></i></div><div><p data-ng-bind=ItemMenuCtrl.item.error></p><button class=\"btn btn-default\" type=button data-ng-click=ItemMenuCtrl.toggleItemOpenState() data-translate=sidebar_menu_error_retry></button></div></div><!-- EXTERNAL LINK --> <a class=menu-item title=\"{{ ItemMenuCtrl.item.getTitle() }}\" data-ng-if=\"ItemMenuCtrl.item.url && !ItemMenuCtrl.item.allowSubItems\" data-ng-href=\"{{ ItemMenuCtrl.item.url }}\" target=\"{{ ItemMenuCtrl.item.target }}\" data-ng-include=ItemMenuCtrl.getInnerTemplateUrl()></a><!-- SLIDING CONTENT --><div class=group-content-wrapper data-ng-slide-down=ItemMenuCtrl.item.isOpen data-duration=0.3><div class=group-toggle-content><!-- GROUP SEARCH --><div data-ng-if=\"ItemMenuCtrl.item.allowSearch && (ItemMenuCtrl.item.subItemsAdded.length > ItemMenuCtrl.getMinItemsForEnablingSearch())\" class=group-search><form class=group-search-form data-ng-submit=ItemMenuCtrl.launchSearch()><div class=group-search-wrapper><i class=\"ovh-font ovh-font-search\"></i> <input placeholder=\"{{ 'sidebar_menu_search' | translate }}\" data-ng-change=ItemMenuCtrl.launchSearch() data-ng-model=ItemMenuCtrl.model.search data-ng-model-options=\"{ debounce: 300 }\"></div></form><em data-translate=sidebar_menu_search_no_results data-ng-if=ItemMenuCtrl.item.noSearchResults></em></div><div class=group-scroll-content><!-- GROUP ITEMS --><nav class=menu-sub-items></nav></div><div class=menu-view-all data-ng-if=ItemMenuCtrl.item.viewMore.enabled><div class=menu-view-all-inner><button class=\"menu-item text-left\" title=\"{{ ItemMenuCtrl.item.viewMore.title }}\" type=button data-ng-click=ItemMenuCtrl.viewMore() data-ng-disabled=ItemMenuCtrl.item.viewMore.loading><div class=\"oui-loader oui-loader_s oui-loader_inline\" data-ng-if=ItemMenuCtrl.item.viewMore.loading><div class=oui-loader__container><div class=oui-loader__image></div></div></div><span>{{ ItemMenuCtrl.item.viewMore.title }}</span></button></div></div><div class=menu-view-all data-ng-if=ItemMenuCtrl.item.viewAllItem><div class=menu-view-all-inner><a class=menu-item data-ng-href=\"{{ ItemMenuCtrl.item.viewAllItem.url }}\" target=\"{{ ItemMenuCtrl.item.viewAllItem.target }}\"><span data-ng-bind=ItemMenuCtrl.item.viewAllItem.title></span></a></div></div></div></div></div>"
+    "<div class=item-content><!-- item has sref and allow sub items --> <a class=menu-item title=\"{{ ItemMenuCtrl.item.getTitle() }}\" data-ng-if=ItemMenuCtrl.item.state data-ng-click=ItemMenuCtrl.toggleItemOpenState() data-ui-sref=\"{{ :: ItemMenuCtrl.item.getFullSref() }}\" data-ng-include=ItemMenuCtrl.getInnerTemplateUrl()></a><!-- TOGGLE BUTTON --> <button class=\"menu-item text-left\" title=\"{{ ItemMenuCtrl.item.getTitle() }}\" type=button data-ng-if=\"!ItemMenuCtrl.item.state && !ItemMenuCtrl.item.url && ItemMenuCtrl.item.allowSubItems\" data-ng-click=ItemMenuCtrl.toggleItemOpenState() data-ng-include=ItemMenuCtrl.getInnerTemplateUrl()></button><!-- ERROR MESSAGE --><div class=group-error-wrapper data-ng-if=\"ItemMenuCtrl.item.error && ItemMenuCtrl.errorVisible\"><div><i class=\"ovh-font ovh-font-filled-warning\"></i></div><div><p data-ng-bind=ItemMenuCtrl.item.error></p><button class=\"btn btn-default\" type=button data-ng-click=ItemMenuCtrl.toggleItemOpenState() data-translate=sidebar_menu_error_retry></button></div></div><!-- EXTERNAL LINK --> <a class=menu-item title=\"{{ ItemMenuCtrl.item.getTitle() }}\" data-ng-if=\"ItemMenuCtrl.item.url && !ItemMenuCtrl.item.allowSubItems\" data-ng-href=\"{{ ItemMenuCtrl.item.url }}\" target=\"{{ ItemMenuCtrl.item.target }}\" data-ng-include=ItemMenuCtrl.getInnerTemplateUrl()></a><!-- SLIDING CONTENT --><div class=group-content-wrapper data-ng-slide-down=ItemMenuCtrl.item.isOpen data-duration=0.3><div class=group-toggle-content><!-- GROUP SEARCH --><div data-ng-if=ItemMenuCtrl.isSearchEnabled() class=group-search><form class=group-search-form data-ng-submit=ItemMenuCtrl.launchSearch()><div class=group-search-wrapper><i class=\"ovh-font ovh-font-search\"></i> <input placeholder=\"{{ 'sidebar_menu_search' | translate }}\" data-ng-change=ItemMenuCtrl.launchSearch() data-ng-model=ItemMenuCtrl.model.search data-ng-model-options=\"{ debounce: 300 }\"></div></form><em data-translate=sidebar_menu_search_no_results data-ng-if=ItemMenuCtrl.item.noSearchResults></em></div><div class=group-scroll-content><!-- GROUP ITEMS --><nav class=menu-sub-items></nav></div><div class=menu-view-all data-ng-if=ItemMenuCtrl.item.viewMore.enabled><div class=menu-view-all-inner><button class=\"menu-item text-left\" title=\"{{ ItemMenuCtrl.item.viewMore.title }}\" type=button data-ng-click=ItemMenuCtrl.viewMore() data-ng-disabled=ItemMenuCtrl.item.viewMore.loading><div class=\"oui-loader oui-loader_s oui-loader_inline\" data-ng-if=ItemMenuCtrl.item.viewMore.loading><div class=oui-loader__container><div class=oui-loader__image></div></div></div><span>{{ ItemMenuCtrl.item.viewMore.title }}</span></button></div></div><div class=menu-view-all data-ng-if=ItemMenuCtrl.item.viewAllItem><div class=menu-view-all-inner><a class=menu-item data-ng-href=\"{{ ItemMenuCtrl.item.viewAllItem.url }}\" target=\"{{ ItemMenuCtrl.item.viewAllItem.target }}\"><span data-ng-bind=ItemMenuCtrl.item.viewAllItem.title></span></a></div></div></div></div></div>"
   );
 
 

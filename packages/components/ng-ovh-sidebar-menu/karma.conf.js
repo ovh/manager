@@ -23,7 +23,7 @@ module.exports = function (config) {
             "bower_components/angular-bootstrap/ui-bootstrap-tpls.js",
             "bower_components/matchmedia/matchMedia.js",
             "bower_components/matchmedia-ng/matchmedia-ng.js",
-            "bower_components/responsive-popover/dist/responsive-popover.min.js",
+            "bower_components/ovh-angular-responsive-popover/dist/ovh-angular-responsive-popover.min.js",
             "bower_components/ovh-angular-actions-menu/dist/ovh-angular-actions-menu.min.js",
             "bower_components/angular-mocks/angular-mocks.js",
             // endbower

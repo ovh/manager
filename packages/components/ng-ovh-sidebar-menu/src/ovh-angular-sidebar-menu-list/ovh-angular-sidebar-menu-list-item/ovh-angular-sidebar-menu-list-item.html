@@ -47,7 +47,7 @@
 
         <div class="group-toggle-content">
             <!-- GROUP SEARCH -->
-            <div data-ng-if="ItemMenuCtrl.item.allowSearch && (ItemMenuCtrl.item.subItemsAdded.length > ItemMenuCtrl.getMinItemsForEnablingSearch())"
+            <div data-ng-if="ItemMenuCtrl.isSearchEnabled()"
                  class="group-search">
                 <form class="group-search-form"
                       data-ng-submit="ItemMenuCtrl.launchSearch()">

@@ -74,6 +74,30 @@ angular.module("ovh-angular-sidebar-menu").directive("sidebarMenuListItem", func
                 return SidebarMenu.getMinItemsForEnablingSearch();
             };
 
+            self.isSearchEnabled = function () {
+                if (self.item.allowSearch) {
+                    if (self.item.subItemsAdded.length > self.getMinItemsForEnablingSearch()) {
+                        return true;
+                    }
+
+                    // if there is less than 10 (by default) items of level 2, there is maybe more than 10 items of level 3
+                    var searchableItemCount = 0;
+
+                    // use of every to be abble to break loop
+                    self.item.subItemsAdded.every(function (subItem) {
+                        searchableItemCount += _.filter(subItem.subItemsAdded, {
+                            searchable: true
+                        }).length;
+
+                        return searchableItemCount <= self.getMinItemsForEnablingSearch();
+                    });
+
+                    return searchableItemCount > self.getMinItemsForEnablingSearch();
+                }
+
+                return false;
+            };
+
             /**
              * Returns scrollBar state :
              * {
