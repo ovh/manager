@@ -1,20 +1,24 @@
-<form class="ovh-contact-edit form-horizontal ovh-form-flat"
+<form class="ovh-contact-edit"
       data-ng-submit="$ctrl.saveContact()"
       name="ovhContactEdit">
 
     <div data-ng-if="$ctrl.saveError"
          class="alert alert-danger"
          role="alert">
-        <i class="fa fa-lg fa-warning"></i>
+        <i class="fa fa-lg fa-warning" aria-hidden="true"></i>
         <span data-translate="ovh_contact_edit_save_error"
               data-translate-values="{ message: $ctrl.saveError.data.message }">
         </span>
     </div>
 
-    <p data-translate="ovh_contact_edit_mandatory_fields"></p>
+    <p class="text-danger"
+       data-translate="ovh_contact_edit_mandatory_fields">
+    </p>
 
     <fieldset data-ng-repeat="(fieldset, fields) in $ctrl.sortedFieldsByCountry track by $index">
-        <legend data-translate="{{ 'ovh_contact_edit_fieldset_' + fieldset }}"></legend>
+        <legend class="h2"
+                data-translate="{{ 'ovh_contact_edit_fieldset_' + fieldset }}">
+        </legend>
 
         <div data-ng-repeat="field in fields track by $index">
 
@@ -24,174 +28,161 @@
                 <div class="form-group"
                      data-ng-switch-when="address.country">
                     <label for="country"
-                           class="col-xs-12">
+                           class="control-label">
                         {{ ('ovh_contact_edit_label_country' | translate) + ($ctrl.creationRules["address.country"].canBeNull ? '' : ' *') }}
                     </label>
-                    <div class="col-xs-12 col-md-6">
-                        <select class="form-control"
-                                name="country"
-                                id="country"
-                                data-ng-options="country.value as country.label for country in $ctrl.creationRules['address.country'].values | orderBy:'label'"
-                                data-ng-model="$ctrl.ovhContactCtrl.contact.address.country"
-                                data-ng-required="!$ctrl.creationRules.address.country.canBeNull">
-                        </select>
-                    </div>
+                    <select class="form-control"
+                            name="country"
+                            id="country"
+                            data-ng-options="country.value as country.label for country in $ctrl.creationRules['address.country'].values | orderBy:'label'"
+                            data-ng-model="$ctrl.ovhContactCtrl.contact.address.country"
+                            data-ng-required="!$ctrl.creationRules.address.country.canBeNull">
+                    </select>
                 </div>
 
                 <!-- legalform -->
                 <div class="form-group"
                      data-ng-switch-when="legalForm">
                     <label for="legalform"
-                           class="col-xs-12">
+                           class="control-label">
                         {{ ('ovh_contact_edit_label_legal_form' | translate) + ($ctrl.creationRules.legalform.canBeNull ? '' : ' *') }}
                     </label>
-                    <div class="col-xs-12 col-md-6">
-                        <select class="form-control"
-                                name="legalform"
-                                id="legalform"
-                                data-ng-options="item.value as item.label | translate for item in $ctrl.creationRules['legalForm'].values"
-                                data-ng-model="$ctrl.ovhContactCtrl.contact['legalForm']"
-                                data-ng-required="!$ctrl.creationRules.legalForm.canBeNull">
-                        </select>
-                    </div>
+                    <select class="form-control"
+                            name="legalform"
+                            id="legalform"
+                            data-ng-options="item.value as item.label | translate for item in $ctrl.creationRules['legalForm'].values"
+                            data-ng-model="$ctrl.ovhContactCtrl.contact['legalForm']"
+                            data-ng-required="!$ctrl.creationRules.legalForm.canBeNull">
+                    </select>
                 </div>
 
                 <!-- birthDay -->
                 <div class="form-group"
                      data-ng-switch-when="birthDay">
-                    <div flat-input-container>
-                        <label class="col-xs-12"
-                               for="birthDay">
-                            {{ ('ovh_contact_edit_label_birth_day' | translate) + ($ctrl.creationRules.birthDay.canBeNull ? '' : ' *') }}
-                        </label>
-                        <div class="col-xs-12 col-md-6">
-                            <input class="form-control"
-                                   type="text"
-                                   id="birthDay"
-                                   name="birthDay"
-                                   readonly
-                                   placeholder="{{ ('ovh_contact_edit_label_birth_day' | translate) + ($ctrl.creationRules.birthDay.canBeNull ? '' : ' *') }}"
-                                   data-ng-model="$ctrl.ovhContactCtrl.contact.birthDay"
-                                   data-ng-pattern="$ctrl.creationRules.birthDay.regularExpression"
-                                   data-ng-required="!$ctrl.creationRules.birthDay.canBeNull"
-                                   data-ng-focus="$ctrl.datepicker.open = true"
-                                   data-uib-datepicker-popup="{{ $ctrl.datepicker.format }}"
-                                   data-datepicker-mode="$ctrl.datepicker.mode"
-                                   data-datepicker-options="$ctrl.datepicker.options"
-                                   data-show-button-bar="false"
-                                   data-is-open="$ctrl.datepicker.open">
-                        </div>
-                    </div>
+                    <label for="birthDay"
+                           class="control-label">
+                        {{ ('ovh_contact_edit_label_birth_day' | translate) + ($ctrl.creationRules.birthDay.canBeNull ? '' : ' *') }}
+                    </label>
+                    <input class="form-control"
+                           type="text"
+                           id="birthDay"
+                           name="birthDay"
+                           readonly
+                           placeholder="{{ ('ovh_contact_edit_label_birth_day' | translate) + ($ctrl.creationRules.birthDay.canBeNull ? '' : ' *') }}"
+                           data-ng-model="$ctrl.ovhContactCtrl.contact.birthDay"
+                           data-ng-pattern="$ctrl.creationRules.birthDay.regularExpression"
+                           data-ng-required="!$ctrl.creationRules.birthDay.canBeNull"
+                           data-ng-focus="$ctrl.datepicker.open = true"
+                           data-uib-datepicker-popup="{{ $ctrl.datepicker.format }}"
+                           data-datepicker-mode="$ctrl.datepicker.mode"
+                           data-datepicker-options="$ctrl.datepicker.options"
+                           data-show-button-bar="false"
+                           data-is-open="$ctrl.datepicker.open">
                 </div>
 
                 <!-- emailConfirmation -->
                 <div class="form-group"
-                     data-ng-switch-when="emailConfirmation">
-                    <div flat-input-container>
-                        <label class="col-xs-12"
-                               for="email_confirmation">
-                            {{ ('ovh_contact_edit_label_email_confirmation' | translate) + ($ctrl.creationRules.email.canBeNull ? '' : ' *') }}
-                        </label>
-                        <div class="col-xs-12 col-md-6">
-                            <input type="email"
-                                   class="form-control"
-                                   id="email_confirmation"
-                                   name="email_confirmation"
-                                   placeholder="{{ ('ovh_contact_edit_label_email_confirmation' | translate) + ($ctrl.creationRules.email.canBeNull ? '' : ' *') }}"
-                                   data-ng-model="$ctrl.ovhContactCtrl.contact.emailConfirmation"
-                                   autocomplete="false"
-                                   data-ng-required="!$ctrl.creationRules.email.canBeNull"
-                                   data-ng-pattern="$ctrl.creationRules.email.regularExpression"
-                                   data-match="$ctrl.ovhContactCtrl.contact.email">
-                        </div>
-                        <div data-ng-messages="ovhContactEdit[field].$error"
-                             data-ng-show="ovhContactEdit[field].$dirty && ovhContactEdit[field].$touched"
-                             role="alert"
-                             class="col-xs-12">
-                            <label for="{{ field }}"
-                                   data-ng-message="required"
-                                   data-translate="ovh_contact_edit_mandatory_field">
-                            </label>
-                            <label for="{{ field }}"
-                                   data-ng-message="pattern"
-                                   data-translate="ovh_contact_edit_invalid_email">
-                            </label>
-                        </div>
-                    </div>
+                     data-ng-switch-when="emailConfirmation"
+                     data-ng-class="{
+                         'has-error': ovhContactEdit[field].$touched && ovhContactEdit[field].$invalid
+                     }">
+                    <label for="email_confirmation"
+                           class="control-label">
+                        {{ ('ovh_contact_edit_label_email_confirmation' | translate) + ($ctrl.creationRules.email.canBeNull ? '' : ' *') }}
+                    </label>
+                    <input type="email"
+                           class="form-control"
+                           id="email_confirmation"
+                           name="email_confirmation"
+                           placeholder="{{ ('ovh_contact_edit_label_email_confirmation' | translate) + ($ctrl.creationRules.email.canBeNull ? '' : ' *') }}"
+                           data-ng-model="$ctrl.ovhContactCtrl.contact.emailConfirmation"
+                           autocomplete="false"
+                           data-ng-required="!$ctrl.creationRules.email.canBeNull"
+                           data-ng-pattern="$ctrl.creationRules.email.regularExpression"
+                           data-match="$ctrl.ovhContactCtrl.contact.email">
+                    <span class="help-block"
+                          role="alert"
+                          data-ng-show="ovhContactEdit[field].$dirty && ovhContactEdit[field].$touched"
+                          data-ng-messages="ovhContactEdit[field].$error">
+                        <span data-ng-message="required"
+                              data-translate="ovh_contact_edit_mandatory_field">
+                        </span>
+                        <span data-ng-message="pattern"
+                              data-translate="ovh_contact_edit_invalid_email">
+                        </span>
+                    </span>
                 </div>
 
                 <!-- PHONE -->
                 <div class="form-group"
-                     data-ng-switch-when="phone">
+                     data-ng-switch-when="phone"
+                     data-ng-class="{
+                         'has-error': ovhContactEdit.phone.$touched && ovhContactEdit.phone.$invalid
+                     }">
                     <label for="phone"
-                           class="col-xs-12">
+                           class="control-label">
                         {{ ('ovh_contact_edit_label_phone' | translate) + ($ctrl.creationRules.phone.canBeNull ? '' : ' *') }}
                     </label>
-                    <div class="col-xs-12 col-md-6">
-                        <input international-phone-number
-                               data-number-type="FIXED_LINE"
-                               data-national-mode="false"
-                               data-default-country="{{ $ctrl.ovhContactCtrl.contact.address.country }}"
-                               data-preferred-countries=""
-                               data-ng-model="$ctrl.formatedPhone"
-                               data-ng-model-options="{ getterSetter: true }"
-                               data-ng-blur="$ctrl.forcePhoneFormat($event, field)"
-                               type="text"
-                               name="phone"
-                               id="phone"
-                               class="form-control"
-                               data-ng-required="!$ctrl.creationRules.phone.canBeNull" />
-                    </div>
-                    <div data-ng-messages="ovhContactEdit.phone.$error"
-                         data-ng-show="ovhContactEdit.phone.$dirty && ovhContactEdit.phone.$touched"
-                         role="alert"
-                         class="col-xs-12">
-                        <label for="{{ field }}"
-                               data-ng-message="required"
-                               data-translate="ovh_contact_edit_mandatory_field">
-                        </label>
-                        <label for="{{ field }}"
-                               data-ng-message="internationalPhoneNumber"
-                               data-translate="ovh_contact_edit_invalid_phone">
-                        </label>
-                    </div>
+                    <input international-phone-number
+                           data-number-type="FIXED_LINE"
+                           data-national-mode="false"
+                           data-default-country="{{ $ctrl.ovhContactCtrl.contact.address.country }}"
+                           data-preferred-countries=""
+                           data-ng-model="$ctrl.formatedPhone"
+                           data-ng-model-options="{ getterSetter: true }"
+                           data-ng-blur="$ctrl.forcePhoneFormat($event, field)"
+                           type="text"
+                           name="phone"
+                           id="phone"
+                           class="form-control"
+                           data-ng-required="!$ctrl.creationRules.phone.canBeNull" />
+                    <span class="help-block"
+                          role="alert"
+                          data-ng-show="ovhContactEdit.phone.$dirty && ovhContactEdit.phone.$touched"
+                          data-ng-messages="ovhContactEdit.phone.$error">
+                        <span data-ng-message="required"
+                              data-translate="ovh_contact_edit_mandatory_field">
+                        </span>
+                        <span data-ng-message="internationalPhoneNumber"
+                              data-translate="ovh_contact_edit_invalid_phone">
+                        </span>
+                    </span>
                 </div>
 
                 <!-- CELL PHONE -->
                 <div class="form-group"
-                     data-ng-switch-when="cellPhone">
+                     data-ng-switch-when="cellPhone"
+                     data-ng-class="{
+                         'has-error': ovhContactEdit.cellphone.$touched && ovhContactEdit.cellphone.$invalid
+                     }">
                     <label for="cellphone"
-                           class="col-xs-12">
+                           class="control-label">
                         {{ ('ovh_contact_edit_label_cell_phone' | translate) + ($ctrl.creationRules.cellPhone.canBeNull ? '' : ' *') }}
                     </label>
-                    <div class="col-xs-12 col-md-6">
-                        <input international-phone-number
-                               data-national-mode="false"
-                               data-allow-dropdown="false"
-                               data-default-country="{{ $ctrl.ovhContactCtrl.contact.address.country }}"
-                               data-preferred-countries=""
-                               data-ng-model="$ctrl.formatedCellPhone"
-                               data-ng-model-options="{ getterSetter: true }"
-                               data-ng-blur="$ctrl.forcePhoneFormat($event, field)"
-                               type="text"
-                               name="cellphone"
-                               id="cellphone"
-                               class="form-control"
-                               data-ng-required="!$ctrl.creationRules.cellPhone.canBeNull" />
-                    </div>
-                    <div data-ng-messages="ovhContactEdit.cellphone.$error"
-                         data-ng-show="ovhContactEdit.cellphone.$dirty && ovhContactEdit.cellphone.$touched"
-                         role="alert"
-                         class="col-xs-12">
-                        <label for="cellphone"
-                               data-ng-message="required"
-                               data-translate="ovh_contact_edit_mandatory_field">
-                        </label>
-                        <label for="cellphone"
-                               data-ng-message="internationalPhoneNumber"
-                               data-translate="ovh_contact_edit_invalid_phone">
-                        </label>
-                    </div>
+                    <input international-phone-number
+                           data-national-mode="false"
+                           data-allow-dropdown="false"
+                           data-default-country="{{ $ctrl.ovhContactCtrl.contact.address.country }}"
+                           data-preferred-countries=""
+                           data-ng-model="$ctrl.formatedCellPhone"
+                           data-ng-model-options="{ getterSetter: true }"
+                           data-ng-blur="$ctrl.forcePhoneFormat($event, field)"
+                           type="text"
+                           name="cellphone"
+                           id="cellphone"
+                           class="form-control"
+                           data-ng-required="!$ctrl.creationRules.cellPhone.canBeNull" />
+                    <span class="help-block"
+                          role="alert"
+                          data-ng-show="ovhContactEdit.cellphone.$dirty && ovhContactEdit.cellphone.$touched"
+                          data-ng-messages="ovhContactEdit.cellphone.$error">
+                        <span data-ng-message="required"
+                              data-translate="ovh_contact_edit_mandatory_field">
+                        </span>
+                        <span data-ng-message="internationalPhoneNumber"
+                              data-translate="ovh_contact_edit_invalid_phone">
+                        </span>
+                    </span>
                 </div>
 
                 <!-- others -->
@@ -201,107 +192,97 @@
                          data-ng-switch="field.indexOf('address') > -1">
 
                         <!-- SPECIAL FOR ADDRESS FIELD BECAUSE NGMODEL CAN'T ACCESS TO contact['address.city'] -->
-                        <div data-ng-switch-when="true"
-                             flat-input-container
-                             class="form-group">
+                        <div class="form-group"
+                             data-ng-switch-when="true"
+                             data-ng-class="{
+                                 'has-error': ovhContactEdit[field].$touched && ovhContactEdit[field].$invalid
+                             }">
                             <label for="{{field}}"
-                                   class="col-xs-12">
+                                   class="control-label">
                                 {{ ($ctrl.getFieldTranslationKey(field) | translate) + ($ctrl.creationRules[field].canBeNull ? '' : ' *') }}
                             </label>
-                            <div class="col-xs-12 col-md-6">
-                                <input type="{{$ctrl.getFieldType(field)}}"
-                                       class="form-control"
-                                       id="{{field}}"
-                                       name="{{field}}"
-                                       placeholder="{{ ($ctrl.getFieldTranslationKey(field) | translate) + ($ctrl.creationRules[field].canBeNull ? '' : ' *') }}"
-                                       data-ng-model="$ctrl.ovhContactCtrl.contact.address[field.split('.')[1]]"
-                                       data-ng-required="!$ctrl.creationRules[field].canBeNull"
-                                       data-ng-pattern="$ctrl.creationRules[field].regularExpression">
-                            </div>
-                            <div data-ng-messages="ovhContactEdit[field].$error"
-                                 data-ng-show="ovhContactEdit[field].$dirty && ovhContactEdit[field].$touched"
-                                 role="alert"
-                                 class="col-xs-12">
-                                <label for="{{ field }}"
-                                       data-ng-message="required"
-                                       data-translate="ovh_contact_edit_mandatory_field">
-                                </label>
-                                <label for="{{ field }}"
-                                       data-ng-message="pattern"
-                                       data-translate="{{ 'ovh_contact_edit_invalid_' + field }}">
-                                </label>
-                            </div>
+                            <input type="{{$ctrl.getFieldType(field)}}"
+                                   class="form-control"
+                                   id="{{field}}"
+                                   name="{{field}}"
+                                   placeholder="{{ ($ctrl.getFieldTranslationKey(field) | translate) + ($ctrl.creationRules[field].canBeNull ? '' : ' *') }}"
+                                   data-ng-model="$ctrl.ovhContactCtrl.contact.address[field.split('.')[1]]"
+                                   data-ng-required="!$ctrl.creationRules[field].canBeNull"
+                                   data-ng-pattern="$ctrl.creationRules[field].regularExpression">
+                            <span class="help-block"
+                                  role="alert"
+                                  data-ng-show="ovhContactEdit[field].$dirty && ovhContactEdit[field].$touched"
+                                  data-ng-messages="ovhContactEdit[field].$error">
+                                <span data-ng-message="required"
+                                      data-translate="ovh_contact_edit_mandatory_field">
+                                </span>
+                                <span data-ng-message="pattern"
+                                      data-translate="{{ 'ovh_contact_edit_invalid_' + field }}">
+                                </span>
+                            </span>
                         </div> <!-- SPECIAL FOR ADDRESS FIELD -->
 
-                        <div data-ng-switch-default
-                             flat-input-container
-                             class="form-group">
+                        <div class="form-group"
+                             data-ng-switch-default
+                             data-ng-class="{
+                                 'has-error': ovhContactEdit[field].$touched && ovhContactEdit[field].$invalid
+                             }">
                             <label for="{{field}}"
-                                   class="col-xs-12">
+                                   class="control-label">
                                 {{ ($ctrl.getFieldTranslationKey(field) | translate) + ($ctrl.creationRules[field].canBeNull ? '' : ' *') }}
                             </label>
-                            <div class="col-xs-12 col-md-6">
-                                <input type="{{$ctrl.getFieldType(field)}}"
-                                       class="form-control"
-                                       id="{{field}}"
-                                       name="{{field}}"
-                                       placeholder="{{ ($ctrl.getFieldTranslationKey(field) | translate) + ($ctrl.creationRules[field].canBeNull ? '' : ' *') }}"
-                                       data-ng-model="$ctrl.ovhContactCtrl.contact[field]"
-                                       data-ng-required="!$ctrl.creationRules[field].canBeNull"
-                                       data-ng-pattern="$ctrl.creationRules[field].regularExpression">
-                            </div>
-                            <div data-ng-messages="ovhContactEdit[field].$error"
-                                 data-ng-show="ovhContactEdit[field].$dirty && ovhContactEdit[field].$touched"
-                                 role="alert"
-                                 class="col-xs-12">
-                                <label for="{{ field }}"
-                                       data-ng-message="required"
-                                       data-translate="ovh_contact_edit_mandatory_field">
-                                </label>
-                                <label for="{{ field }}"
-                                       data-ng-message="pattern"
-                                       data-translate="{{ 'ovh_contact_edit_invalid_' + field }}">
-                                </label>
-                            </div>
+                            <input type="{{$ctrl.getFieldType(field)}}"
+                                   class="form-control"
+                                   id="{{field}}"
+                                   name="{{field}}"
+                                   placeholder="{{ ($ctrl.getFieldTranslationKey(field) | translate) + ($ctrl.creationRules[field].canBeNull ? '' : ' *') }}"
+                                   data-ng-model="$ctrl.ovhContactCtrl.contact[field]"
+                                   data-ng-required="!$ctrl.creationRules[field].canBeNull"
+                                   data-ng-pattern="$ctrl.creationRules[field].regularExpression">
+                            <span class="help-block"
+                                  role="alert"
+                                  data-ng-show="ovhContactEdit[field].$dirty && ovhContactEdit[field].$touched"
+                                  data-ng-messages="ovhContactEdit[field].$error">
+                                <span data-ng-message="required"
+                                      data-translate="ovh_contact_edit_mandatory_field">
+                                </span>
+                                <span data-ng-message="pattern"
+                                      data-translate="{{ 'ovh_contact_edit_invalid_' + field }}">
+                                </span>
+                            </span>
                         </div>
                     </div>
 
                     <div class="form-group"
                          data-ng-switch-default="">
                         <label for="{{field}}"
-                               class="col-xs-12">
+                               class="control-label">
                             {{ ($ctrl.getFieldTranslationKey(field) | translate) + ($ctrl.creationRules[field].canBeNull ? '' : ' *') }}
                         </label>
-                        <div class="col-xs-12 col-md-6">
-                            <select class="form-control"
-                                    name="{{field}}"
-                                    id="{{field}}"
-                                    data-ng-options="item.value as item.label for item in $ctrl.creationRules[field].values | orderBy:'label'"
-                                    data-ng-model="$ctrl.ovhContactCtrl.contact[field]"
-                                    data-ng-required="!$ctrl.creationRules.country.canBeNull">
-                            </select>
-                        </div>
+                        <select class="form-control"
+                                name="{{field}}"
+                                id="{{field}}"
+                                data-ng-options="item.value as item.label for item in $ctrl.creationRules[field].values | orderBy:'label'"
+                                data-ng-model="$ctrl.ovhContactCtrl.contact[field]"
+                                data-ng-required="!$ctrl.creationRules.country.canBeNull">
+                        </select>
                     </div>
                 </div>
             </div>
         </div>
     </fieldset>
 
-    <div class="footer-actions row">
-        <div class="col-xs-12 col-md-6">
-            <button type="submit"
-                    class="btn btn-primary"
-                    data-translate="{{ $ctrl.ovhContactCtrl.contact.id ? 'ovh_contact_edit_action_edit' : 'ovh_contact_edit_action_create' }}"
-                    data-ng-disabled="ovhContactEdit.$invalid || !$ctrl.ovhContactCtrl.contact.hasChange()">
-            </button>
-
-            <button type="button"
-                    class="btn btn-default"
-                    data-translate="ovh_contact_edit_action_cancel"
-                    data-ng-click="$ctrl.cancelEdition()">
-            </button>
-        </div>
+    <div class="form-group">
+        <button type="submit"
+                class="btn btn-primary"
+                data-translate="{{ $ctrl.ovhContactCtrl.contact.id ? 'ovh_contact_edit_action_edit' : 'ovh_contact_edit_action_create' }}"
+                data-ng-disabled="ovhContactEdit.$invalid || !$ctrl.ovhContactCtrl.contact.hasChange()">
+        </button>
+        <button type="button"
+                class="btn btn-default"
+                data-translate="ovh_contact_edit_action_cancel"
+                data-ng-click="$ctrl.cancelEdition()">
+        </button>
     </div>
-
 
 </form>

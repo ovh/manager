@@ -204,22 +204,23 @@ angular.module("ovh-angular-contact").provider("ovhContact", function () {
                 contacts = [];
             }
 
-            return OvhApiMe.Contact().Erika().query().expand().execute().$promise.then(function (contactsList) {
+            return OvhApiMe.Contact().Erika().query().expand()
+                .execute().$promise.then(function (contactsList) {
                 // filter contact that are not already added
                 // this avoid loosing contact object reference
                 // then add contact to contact list (at given index)
-                var contactsToAdd = _.chain(contactsList).map("value").reject(function (contact) {
-                    return _.some(contacts, {
-                        id: contact.id
+                    var contactsToAdd = _.chain(contactsList).map("value").reject(function (contact) {
+                        return _.some(contacts, {
+                            id: contact.id
+                        });
+                    }).value();
+
+                    _.forEach(contactsToAdd, function (contact) {
+                        self.addContact(contact);
                     });
-                }).value();
 
-                _.forEach(contactsToAdd, function (contact) {
-                    self.addContact(contact);
+                    return contacts;
                 });
-
-                return contacts;
-            });
         };
 
         /* ----------  CREATION RULES  ----------*/

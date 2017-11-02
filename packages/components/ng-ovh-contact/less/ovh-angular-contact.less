@@ -28,31 +28,13 @@
             .ui-select-match {
                 height: auto;
                 box-shadow: none;
-
-                .ui-select-match-text {
-                    .dtable {
-                        table-layout: fixed;
-
-                        .dtd:first-child {
-                            width: 70px;
-                        }
-
-                        .dtd:last-child {
-                            width: 100px;
-                        }
-
-                        .dtd:nth-child(2) {
-                            overflow: hidden;
-                        }
-                    }
-
-                }
             }
 
             .ui-select-dropdown-container {
                 position: absolute;
-                width: 100%;
-                border: 1px solid #CCC;
+                left: -22px;
+                right: -22px;
+                border: 2px solid #e1e4df;
                 border-radius: @border-radius-base;
                 margin-top: -1px;
                 padding: @padding-base-vertical @padding-base-horizontal;
@@ -68,6 +50,10 @@
                     position: static;
                     width: 100%;
                     box-shadow: none;
+
+                    .ui-select-choices-group {
+                        display: block;
+                    }
                 }
             }
         }
@@ -79,43 +65,15 @@
 
             input.ng-invalid.ng-dirty {
                 border-color: @brand-danger;
+
                 &:focus {
                     box-shadow: none;
                 }
             }
         }
 
-        .footer-actions {
-            margin-top: 16px;
-        }
-
         [data-ng-messages][role=alert] {
             margin-top: 4px;
-        }
-
-        @media (min-width: @screen-sm-min) {
-            .footer-actions {
-                > div button[type="submit"] {
-                    float: right;
-                }
-                > div button[type="button"] {
-                    float: left;
-                    margin: 0;
-                }
-            }
-        }
-
-        @media (max-width: (@screen-sm-min - 1)) {
-            .footer-actions {
-                > div button[type="submit"] {
-                    width: 100%;
-                    margin-bottom: 10px;
-                }
-                > div button[type="button"] {
-                    width: 100%;
-                    margin: 0;
-                }
-            }
         }
     }
 }
