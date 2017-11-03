@@ -9,14 +9,6 @@ div.mondial-relay {
         background: @mondialHover;
     }
 
-    form {
-        padding: 15px 0;
-    }
-
-    button.btn {
-        cursor:pointer;
-    }
-
     span.mondial-logo {
         min-width: 130px;
         display: inline-block;
@@ -32,46 +24,22 @@ div.mondial-relay {
         }
     }
 
-    div.head {
-        white-space: normal;
-        span.info {
-            display:block;
-            padding:15px 0 15px 0;
-        }
-        input.city {
-            max-width:150px;
-        }
-        input.zip {
-            max-width: 80px;
-        }
-        span.mondial-form {
-            display:block;
-            padding-bottom: 10px;
-        }
-        span.mondial-loc {
-            font-size: 1.2em;
-            font-weight: bold;
-        }
+    .angular-leaflet-map {
+        height: 450px;
     }
 
-    div.mondial-map {
-        padding: 5px 0 20px;
-
+    @media (max-width: 1500px) {
         .angular-leaflet-map {
-            height: 450px;
-        }
-        @media (max-width: 1500px) {
-            .angular-leaflet-map {
-                height: 300px;
-            }
-        }
-        @media (max-width: 490px) {
-            .angular-leaflet-map {
-                height: 200px;
-            }
+            height: 300px;
         }
     }
-    
+
+    @media (max-width: 490px) {
+        .angular-leaflet-map {
+            height: 200px;
+        }
+    }
+
     .mondial-results {
         padding: 0;
 

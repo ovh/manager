@@ -436,96 +436,118 @@ angular.module('ovh-angular-mondial-relay').run(['$templateCache', function($tem
   'use strict';
 
   $templateCache.put('ovh-angular-mondial-relay/ovh-angular-mondial-relay.view.html',
-    "<div class=\"mondial-relay\">\n" +
-    "    <div data-ng-if=\"!$ctrl.loading.init\">\n" +
+    "<div class=\"mondial-relay\"\n" +
+    "    data-ng-if=\"!$ctrl.loading.init\">\n" +
     "\n" +
-    "        <div class=\"row\">\n" +
-    "            <div class=\"col-xs-3\">\n" +
-    "                <span class=\"mondial-logo\"></span>\n" +
+    "    <div class=\"row\">\n" +
+    "        <div class=\"col-xs-3\">\n" +
+    "            <span class=\"mondial-logo\"></span>\n" +
+    "        </div>\n" +
+    "        <div class=\"col-xs-9\">\n" +
+    "            <p data-translate=\"components_mondial_relay_head\"></p>\n" +
+    "            <div class=\"clearfix mb-5\">\n" +
+    "                <form class=\"form-inline float-right\"\n" +
+    "                      data-ng-submit=\"$ctrl.search()\">\n" +
+    "                    <div class=\"form-group\">\n" +
+    "                        <input class=\"form-control\"\n" +
+    "                               type=\"text\"\n" +
+    "                               data-ng-model=\"$ctrl.filter.city\"\n" +
+    "                               data-translate-attr=\"{ 'placeholder': 'components_mondial_relay_city_label' }\">\n" +
+    "                    </div>\n" +
+    "                    <div class=\"form-group\">\n" +
+    "                        <input class=\"form-control\"\n" +
+    "                           type=\"text\"\n" +
+    "                           size=\"10\"\n" +
+    "                           data-ng-model=\"$ctrl.filter.zipcode\"\n" +
+    "                           data-translate-attr=\"{ 'placeholder': 'components_mondial_relay_zipcode_label' }\">\n" +
+    "                   </div>\n" +
+    "                    <button type=\"submit\"\n" +
+    "                            class=\"btn btn-primary\"\n" +
+    "                            data-ng-disabled=\"(!$ctrl.filter.zipcode) && (!$ctrl.filter.city)\"\n" +
+    "                            data-translate-attr=\"{ 'title': 'search' }\">\n" +
+    "                        <i class=\"fa fa-search\" aria-hidden=\"true\"></i>\n" +
+    "                    </button>\n" +
+    "                </form>\n" +
     "            </div>\n" +
-    "            <div class=\"col-xs-9\">\n" +
-    "                <div class=\"row top-space-m32\">\n" +
-    "                    <div class=\"col-md-12\" data-translate=\"components_mondial_relay_head\"></div>\n" +
+    "            <div class=\"text-right\">\n" +
+    "                <span class=\"mondial-loc\"\n" +
+    "                      data-ng-if=\"$ctrl.referenceAddress && !$ctrl.message\"\n" +
+    "                      data-translate=\"components_mondial_relay_search_results\"\n" +
+    "                      data-translate-values=\"{ 'loc': $ctrl.referenceAddress }\">\n" +
+    "                </span>\n" +
+    "                <span class=\"mondial-loc\"\n" +
+    "                      data-ng-if=\"$ctrl.message\"\n" +
+    "                      data-ng-bind=\"message\">\n" +
+    "                </span>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "    <!-- /.row -->\n" +
+    "\n" +
+    "    <leaflet id=\"{{$ctrl.mapId}}\"\n" +
+    "             data-markers=\"$ctrl.map.markers\"\n" +
+    "             data-center=\"$ctrl.map.center\"\n" +
+    "             data-event-broadcast=\"$ctrl.map.events\"\n" +
+    "             data-bounds=\"$ctrl.map.bounds\">\n" +
+    "    </leaflet>\n" +
+    "\n" +
+    "    <div class=\"mondial-results mt-5\">\n" +
+    "        <ul>\n" +
+    "            <li data-ng-repeat=\"relay in $ctrl.foundRelays track by relay.id\"\n" +
+    "                data-ng-mouseover=\"$ctrl.markerHover($index)\"\n" +
+    "                data-ng-click=\"$ctrl.select(relay)\"\n" +
+    "                data-ng-class=\"{\n" +
+    "                    'selected': relay.selected,\n" +
+    "                    'marker-hover': relay.markerHover\n" +
+    "                }\">\n" +
+    "                <div class=\"relay-cell relay-marker\">\n" +
+    "                    <span class=\"mondial-marker\"\n" +
+    "                          data-ng-bind=\"relay.marker\">\n" +
+    "                    </span>\n" +
     "                </div>\n" +
-    "                <div class=\"row top-space-m8\">\n" +
-    "                    <form class=\"col-md-12\" data-ng-submit=\"$ctrl.search()\">\n" +
-    "                        <span class=\"pull-right\">\n" +
-    "                            <input class=\"city\" type=\"text\" data-ng-model=\"$ctrl.filter.city\" data-translate-attr=\"{placeholder: 'components_mondial_relay_city_label'}\">\n" +
-    "                            <input class=\"zip\" type=\"text\" data-ng-model=\"$ctrl.filter.zipcode\" data-translate-attr=\"{placeholder: 'components_mondial_relay_zipcode_label'}\" size=\"10\">\n" +
-    "                            <button type=\"submit\"\n" +
-    "                                    class=\"btn btn-xs btn-primary\"\n" +
-    "                                    title=\"{{ 'search' | translate }}\"\n" +
-    "                                    data-ng-disabled=\"(!$ctrl.filter.zipcode) && (!$ctrl.filter.city)\"\n" +
-    "                                    >\n" +
-    "                                <i class=\"fa fa-search\"></i>\n" +
-    "                            </button>\n" +
-    "                        </span>\n" +
-    "                    </form>\n" +
-    "                </div>\n" +
-    "                <div class=\"row\">\n" +
-    "                    <div class=\"col-md-12\">\n" +
-    "                        <span data-ng-if=\"$ctrl.referenceAddress && !$ctrl.message\" class=\"mondial-loc pull-right\" data-translate=\"components_mondial_relay_search_results\" data-translate-values=\"{loc:$ctrl.referenceAddress}\"></span>\n" +
-    "                        <span data-ng-if=\"$ctrl.message\" class=\"mondial-loc pull-right\" data-ng-bind=\"message\"></span>\n" +
+    "                <div class=\"relay-cell\">\n" +
+    "                    <strong class=\"mondial-relay-name\"\n" +
+    "                            data-ng-bind=\"relay.name\">\n" +
+    "                    </strong>\n" +
+    "                    <div class=\"row\"\n" +
+    "                         data-ng-show=\"relay.selected\" >\n" +
+    "                        <div class=\"col-xs-3\">\n" +
+    "                            <span class=\"mondial-relay-address\"\n" +
+    "                                  data-ng-bind=\"relay.address\">\n" +
+    "                            </span>\n" +
+    "                            <span class=\"mondial-relay-city\">\n" +
+    "                                <span data-ng-bind=\"relay.zipcode\"></span>\n" +
+    "                                <span data-ng-bind=\"relay.city\"></span>\n" +
+    "                            </span>\n" +
+    "                            <img class=\"mondial-relay-pic\"\n" +
+    "                                 data-ng-if=\"relay.pictureUrl\"\n" +
+    "                                 data-ng-src=\"{{ relay.pictureUrl }}\">\n" +
+    "                        </div>\n" +
+    "                        <div class=\"col-xs-9\">\n" +
+    "                            <ul class=\"mondial-opening\">\n" +
+    "                                <li class=\"row\"\n" +
+    "                                    data-ng-repeat=\"day in relay.opening track by day.day\">\n" +
+    "                                    <div class=\"col-lg-2 col-md-4 col-xs-3\"\n" +
+    "                                         data-ng-bind=\"('components_mondial_relay_' + day.day) | translate\">\n" +
+    "                                    </div>\n" +
+    "                                    <div class=\"col-md-4 col-xs-4\"\n" +
+    "                                         data-ng-repeat=\"hour in day.opening\"\n" +
+    "                                         data-ng-bind=\"hour\">\n" +
+    "                                    </div>\n" +
+    "                                </li>\n" +
+    "                            </ul>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                    <div class=\"mondial-relay-city\"\n" +
+    "                         data-ng-hide=\"relay.selected\">\n" +
+    "                        <span data-ng-bind=\"relay.zipcode\"></span>\n" +
+    "                        <span data-ng-bind=\"relay.city\"></span>\n" +
     "                    </div>\n" +
     "                </div>\n" +
-    "            </div>\n" +
-    "        </div>\n" +
-    "        <div class=\"row\">\n" +
-    "            <div class=\"mondial-map col-md-12\">\n" +
-    "                <leaflet id=\"{{$ctrl.mapId}}\"\n" +
-    "                         data-markers=\"$ctrl.map.markers\"\n" +
-    "                         data-center=\"$ctrl.map.center\"\n" +
-    "                         data-event-broadcast=\"$ctrl.map.events\"\n" +
-    "                         data-bounds=\"$ctrl.map.bounds\">\n" +
-    "                </leaflet>\n" +
-    "            </div>\n" +
-    "            <div class=\"mondial-results col-md-12\">\n" +
-    "                <ul class=\"\">\n" +
-    "                    <li data-ng-repeat=\"relay in $ctrl.foundRelays track by relay.id\"\n" +
-    "                        data-ng-mouseover=\"$ctrl.markerHover($index)\"\n" +
-    "                        data-ng-click=\"$ctrl.select(relay)\"\n" +
-    "                        data-ng-class=\"{selected:relay.selected, 'marker-hover': relay.markerHover}\">\n" +
-    "\n" +
-    "                        <div class=\"relay-cell relay-marker\">\n" +
-    "                            <span class=\"mondial-marker\"\n" +
-    "                                  data-ng-bind=\"relay.marker\">\n" +
-    "                            </span>\n" +
-    "                        </div>\n" +
-    "\n" +
-    "                        <div class=\"relay-cell\">\n" +
-    "                            <strong class=\"mondial-relay-name\" data-ng-bind=\"relay.name\"></strong>\n" +
-    "                            <div data-ng-show=\"relay.selected\" class=\"row\">\n" +
-    "                                <div class=\"col-md-3 col-xs-3\">\n" +
-    "                                    <span class=\"mondial-relay-address\" data-ng-bind=\"relay.address\"></span>\n" +
-    "                                    <span class=\"mondial-relay-city\">\n" +
-    "                                        <span data-ng-bind=\"relay.zipcode\"></span>\n" +
-    "                                        <span data-ng-bind=\"relay.city\"></span>\n" +
-    "                                    </span>\n" +
-    "                                    <img data-ng-src=\"{{relay.pictureUrl}}\" class=\"mondial-relay-pic\" data-ng-if=\"relay.pictureUrl\">\n" +
-    "                                </div>\n" +
-    "                                <div class=\"col-md-9 col-xs-8\">\n" +
-    "                                    <ul class=\"mondial-opening\">\n" +
-    "                                        <li class=\"row\" data-ng-repeat=\"day in relay.opening track by day.day\">\n" +
-    "                                            <div class=\"col-lg-2 col-md-4 col-xs-3\" data-ng-bind=\"('components_mondial_relay_' + day.day) | translate\"></div>\n" +
-    "                                            <div class=\"col-md-4 col-xs-4\" data-ng-repeat=\"hour in day.opening\" data-ng-bind=\"hour\"></div>\n" +
-    "                                        </li>\n" +
-    "                                    </ul>\n" +
-    "                                </div>\n" +
-    "                            </div>\n" +
-    "                            <div data-ng-hide=\"relay.selected\" class=\"row\">\n" +
-    "                                <div class=\"col-md-12 mondial-relay-city\">\n" +
-    "                                    <span data-ng-bind=\"relay.zipcode\"></span>\n" +
-    "                                    <span data-ng-bind=\"relay.city\"></span>\n" +
-    "                                </div>\n" +
-    "                            </div>\n" +
-    "                        </div>\n" +
-    "\n" +
-    "                    </li>\n" +
-    "                </ul>\n" +
-    "            </div>\n" +
-    "        </div>\n" +
-    "\n" +
+    "            </li>\n" +
+    "        </ul>\n" +
     "    </div>\n" +
+    "    <!-- /.mondial-results -->\n" +
     "</div>\n"
   );
 
