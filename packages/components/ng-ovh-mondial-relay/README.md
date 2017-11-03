@@ -49,6 +49,8 @@ The more convinent is to convert these files in json and provide partial transla
 You need 2 services to request API:
 * `SupplyMondialRelay` ([https://api.ovh.com/1.0/supply/mondialRelay](https://api.ovh.com/console/#/supply/mondialRelay#POST))
 * `User` ([https://api.ovh.com/1.0/me](https://api.ovh.com/console/#/me#GET))
+If not provided, these 2 services will be injected from OvhApiServices so be sure to either provide the services or include OvhApiServices
+as a dependency of your project (see: [https://github.com/ovh-ux/ovh-api-services](https://github.com/ovh-ux/ovh-api-services)).
 
 ### SupplyMondialRelay
 

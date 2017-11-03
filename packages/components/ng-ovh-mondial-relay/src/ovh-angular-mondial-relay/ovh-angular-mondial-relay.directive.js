@@ -106,11 +106,12 @@ angular.module("ovh-angular-mondial-relay")
             bindToController: true,
             scope: {
                 ngModel: "=?",
-                userService: "@"
+                userService: "=?",
+                mondialRelayService: "=?"
             },
             templateUrl: "ovh-angular-mondial-relay/ovh-angular-mondial-relay.view.html",
             controllerAs: "$ctrl",
-            controller: function ($scope, $q, $translate, $timeout, $http, mondialRelay, OvhApiSupplyMondialRelay, leafletBoundsHelpers, leafletEvents, leafletData, $injector) {
+            controller: function ($scope, $q, $translate, $timeout, $http, mondialRelay, leafletBoundsHelpers, leafletEvents, leafletData, $injector) {
 
                 var self = this;
 
@@ -212,7 +213,7 @@ angular.module("ovh-angular-mondial-relay")
                     this.ngModel = null;
                     this.foundRelays = [];
 
-                    return OvhApiSupplyMondialRelay.Lexi().search(
+                    return this.mondialRelayService.Lexi().search(
                         filter || this.filter,
                         $scope
                     )
@@ -252,8 +253,7 @@ angular.module("ovh-angular-mondial-relay")
                  * @return {Promise}
                  */
                 this.gotoUserLoc = function () {
-                    var User = $injector.get(this.userService);
-                    User.Lexi().get().$promise.then(function (me) {
+                    this.userService.Lexi().get().$promise.then(function (me) {
                         if (!self.userSearch) {
                             var filter = {
                                 country: me.country.toLowerCase() || MONDIAL_RELAY.defaultCountry
@@ -298,7 +298,8 @@ angular.module("ovh-angular-mondial-relay")
 
                 this.$onInit = function init () {
                     this.logoPic64 = MONDIAL_RELAY_PICS.logo;
-                    this.userService = this.userService || "OvhApiMe";
+                    this.userService = this.userService || $injector.get("OvhApiMe");
+                    this.mondialRelayService = this.mondialRelayService || $injector.get("OvhApiSupplyMondialRelay");
 
                     this.map = {
                         focus: MONDIAL_RELAY.initialLocation,
