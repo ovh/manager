@@ -295,8 +295,8 @@ angular.module("ovh-angular-mondial-relay")
                 =            INITIALIZATION            =
                 ======================================*/
 
+                this.init = function () {
 
-                this.$onInit = function init () {
                     this.logoPic64 = MONDIAL_RELAY_PICS.logo;
                     this.userService = this.userService || $injector.get("OvhApiMe");
                     this.mondialRelayService = this.mondialRelayService || $injector.get("OvhApiSupplyMondialRelay");
@@ -329,7 +329,6 @@ angular.module("ovh-angular-mondial-relay")
                         });
                     });
 
-
                     return mondialRelay.loadTranslations().finally(function () {
                         self.loading.init = false;
                         return self.gotoUserLoc();
@@ -338,6 +337,9 @@ angular.module("ovh-angular-mondial-relay")
                 };
 
                 /* -----  End of INITIALIZATION  ------*/
+
+                this.init();
+
             }
         };
     });

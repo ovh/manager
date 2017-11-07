@@ -326,8 +326,8 @@ angular.module("ovh-angular-mondial-relay")
                 =            INITIALIZATION            =
                 ======================================*/
 
+                this.init = function () {
 
-                this.$onInit = function init () {
                     this.logoPic64 = MONDIAL_RELAY_PICS.logo;
                     this.userService = this.userService || $injector.get("OvhApiMe");
                     this.mondialRelayService = this.mondialRelayService || $injector.get("OvhApiSupplyMondialRelay");
@@ -360,7 +360,6 @@ angular.module("ovh-angular-mondial-relay")
                         });
                     });
 
-
                     return mondialRelay.loadTranslations().finally(function () {
                         self.loading.init = false;
                         return self.gotoUserLoc();
@@ -369,9 +368,31 @@ angular.module("ovh-angular-mondial-relay")
                 };
 
                 /* -----  End of INITIALIZATION  ------*/
+
+                this.init();
+
             }]
         };
     }]);
+
+"use strict";
+
+angular.module("mondialRelayMock", ["ovh-angular-mondial-relay", "templates"]);
+
+angular.module("mondialRelayMock").config(["$translateProvider", function ($translateProvider) {
+    $translateProvider.preferredLanguage("fr_FR");
+    $translateProvider.fallbackLanguage("fr_FR");
+    $translateProvider.useLoader("$translatePartialLoader", {
+        urlTemplate: "src/translations/Messages_{lang}.json"
+    });
+    $translateProvider.useLoaderCache(true);
+}]);
+
+angular.module("mondialRelayMock").run(["$httpBackend", function ($httpBackend) {
+
+    $httpBackend.whenGET("src/translations/Messages_fr_FR.json").respond(200, {});
+
+}]);
 
 /**
  * @ngdoc service
