@@ -19,6 +19,10 @@ describe("AtInternet provider unit testing", function () {
 
     tagMock.prototype.dispatch = jasmine.createSpy();
 
+    tagMock.prototype.identifiedVisitor = {
+        set: jasmine.createSpy()
+    };
+
     tagMock.prototype.page = {
         set: function (data) {
             tagMockPageData = data;
@@ -152,6 +156,17 @@ describe("AtInternet provider unit testing", function () {
                 });
             });
 
+            it("track page with visitorId", function () {
+                atInternet.trackPage({
+                    name: "foo",
+                    level2: 1,
+                    visitorId: "1234"
+                });
+                expect(tagMock.prototype.identifiedVisitor.set).toHaveBeenCalledWith({
+                    id: "1234"
+                });
+            });
+
             it("should track page missing level2 but force 0", function () {
                 atInternet.trackPage({
                     name: "foo"
@@ -179,6 +194,18 @@ describe("AtInternet provider unit testing", function () {
                     type: "action",
                     level2: 1,
                     countryCode: "defaultCountry"
+                });
+            });
+
+            it("track click with visitorId", function () {
+                atInternet.trackClick({
+                    name: "bar",
+                    type: "action",
+                    level2: 1,
+                    visitorId: "1234"
+                });
+                expect(tagMock.prototype.identifiedVisitor.set).toHaveBeenCalledWith({
+                    id: "1234"
                 });
             });
 
@@ -260,6 +287,19 @@ describe("AtInternet provider unit testing", function () {
                         quantity: order.quantity,
                         unitPriceTaxFree: order.priceTaxFree
                     }
+                });
+            });
+
+            it("track order with visitorId", function () {
+                atInternet.trackOrder({
+                    name: "productName",
+                    page: "pageName",
+                    level2: 1,
+                    visitorId: "1234"
+                });
+
+                expect(tagMock.prototype.identifiedVisitor.set).toHaveBeenCalledWith({
+                    id: "1234"
                 });
             });
 

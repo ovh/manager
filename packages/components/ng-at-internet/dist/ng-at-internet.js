@@ -4,6 +4,37 @@ angular.module("ng-at-internet", []);
 
 "use strict";
 
+angular.module("ng-at-internet")
+    .config(["$provide", "atInternetProvider", function ($provide, atInternetProvider) {
+        $provide.decorator("atInternet", ["$delegate", function ($delegate) {
+            var delegateTrackPage = $delegate.trackPage;
+            var trackPageRequestQueue = [];
+            var settings = {
+                queueLimit: 30
+            };
+
+            // Decorate trackPage to stack requests until At-internet default configuration is set
+            $delegate.trackPage = function () {
+                if (atInternetProvider.isDefaultSet()) {
+                    trackPageRequestQueue.forEach(function (trackPageArguments) {
+                        delegateTrackPage.apply($delegate, trackPageArguments);
+                    });
+                    trackPageRequestQueue = [];
+                    delegateTrackPage.apply($delegate, arguments);
+                } else {
+                    // Limit number of delegate track in queue.
+                    if (trackPageRequestQueue.length > settings.queueLimit) {
+                        throw new Error("atinternet too much requests are waiting in track page request queue");
+                    }
+                    trackPageRequestQueue.push(arguments);
+                }
+            };
+            return $delegate;
+        }]);
+    }]);
+
+"use strict";
+
 /**
  * This his custom OVH At-Internet configuration of order's customVars attribute.
  */
@@ -116,6 +147,17 @@ angular.module("ng-at-internet")
 
     /**
      * @ngdoc function
+     * @name atInternet.isDefaultSet
+     * @methodOf atInternetProvider
+     * @description
+     * Check if default data has been set.
+     */
+        this.isDefaultSet = function () {
+            return !_.isEmpty(config.defaults);
+        };
+
+    /**
+     * @ngdoc function
      * @name atInternet.setDefaults
      * @methodOf atInternetProvider
      * @param {Object} def Default values to be sent.
@@ -124,6 +166,17 @@ angular.module("ng-at-internet")
      */
         this.setDefaults = function (def) {
             config.defaults = def;
+        };
+
+    /**
+     * @ngdoc function
+     * @name atInternet.getDefaults
+     * @methodOf atInternetProvider
+     * @description
+     * Retrieve default data to be sent with each tracking data.
+     */
+        this.getDefaults = function () {
+            return angular.copy(config.defaults);
         };
 
     /**
@@ -211,6 +264,11 @@ angular.module("ng-at-internet")
             function updateData (data) {
 
                 angular.extend(data || {}, config.defaults);
+
+            // Allow user to set visitor id
+                if (!_.isEmpty(data.visitorId)) {
+                    atinternetTag.identifiedVisitor.set({ id: data.visitorId });
+                }
 
             // no level2 ? use default and warn
                 if (angular.isUndefined(data.level2)) {
@@ -372,6 +430,7 @@ angular.module("ng-at-internet")
                 trackClick: function (clickData) {
                     if (isAtInternetTagAvailable()) {
                         updateData(clickData);
+
                         if (_.indexOf(["action", "navigation", "download", "exit"], clickData.type) >= 0) {
                             atinternetTag.click.send(clickData);
                             logDebugInfos("atinternet.trackclick: ", clickData);

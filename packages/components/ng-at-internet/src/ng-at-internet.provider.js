@@ -30,6 +30,17 @@ angular.module("ng-at-internet")
 
     /**
      * @ngdoc function
+     * @name atInternet.isDefaultSet
+     * @methodOf atInternetProvider
+     * @description
+     * Check if default data has been set.
+     */
+        this.isDefaultSet = function () {
+            return !_.isEmpty(config.defaults);
+        };
+
+    /**
+     * @ngdoc function
      * @name atInternet.setDefaults
      * @methodOf atInternetProvider
      * @param {Object} def Default values to be sent.
@@ -38,6 +49,17 @@ angular.module("ng-at-internet")
      */
         this.setDefaults = function (def) {
             config.defaults = def;
+        };
+
+    /**
+     * @ngdoc function
+     * @name atInternet.getDefaults
+     * @methodOf atInternetProvider
+     * @description
+     * Retrieve default data to be sent with each tracking data.
+     */
+        this.getDefaults = function () {
+            return angular.copy(config.defaults);
         };
 
     /**
@@ -125,6 +147,11 @@ angular.module("ng-at-internet")
             function updateData (data) {
 
                 angular.extend(data || {}, config.defaults);
+
+            // Allow user to set identifiedVisitor id
+                if (!_.isEmpty(data.visitorId)) {
+                    atinternetTag.identifiedVisitor.set({ id: data.visitorId });
+                }
 
             // no level2 ? use default and warn
                 if (angular.isUndefined(data.level2)) {
@@ -228,6 +255,7 @@ angular.module("ng-at-internet")
              *   chapter1: "..."      // section id (optional)
              *   chapter2: "..."      // sub-section id (optional)
              *   chapter3: "..."      // sub-sub-section id (optional)
+             *   visitorId: "1234"    // identified visitor id (optional)
              *   customObject: {}     // custom javascript data (optional)
              * }
              * ```
@@ -269,10 +297,11 @@ angular.module("ng-at-internet")
              * Click data is the following data-structure :
              *
              * ```
-             * pageData {
+             * clickData {
              *   name: "your-action"  // the action identifier (required)
              *   level2: "1"          // the project id (required)
              *   type: "action"       // type of click : action || navigation || download || exit (required)
+             *   visitorId: "1234"    // identified visitor id (optional)
              *   chapter1: "..."      // section id (optional)
              *   chapter2: "..."      // sub-section id (optional)
              *   chapter3: "..."      // sub-sub-section id (optional)
@@ -286,6 +315,7 @@ angular.module("ng-at-internet")
                 trackClick: function (clickData) {
                     if (isAtInternetTagAvailable()) {
                         updateData(clickData);
+
                         if (_.indexOf(["action", "navigation", "download", "exit"], clickData.type) >= 0) {
                             atinternetTag.click.send(clickData);
                             logDebugInfos("atinternet.trackclick: ", clickData);
@@ -317,6 +347,7 @@ angular.module("ng-at-internet")
              *   orderId: 1            // unique order ID, you can provide it or it will be automatically generated
              *   quantity: 1           // amount of product (default is 1)
              *
+             *   visitorId: "1234"    // identified visitor id (optional)
              *   countryCode: "EU"     // country code identifier of the customer (optional)
              *   currencyCode: "EU"    // currency of order (optional)
              * }

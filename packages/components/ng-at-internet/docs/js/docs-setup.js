@@ -28,7 +28,7 @@ NG_DOCS={
       "type": "service",
       "moduleName": "atInternetProvider",
       "shortDescription": "Provider allowing configuration for atInternet service.",
-      "keywords": "allowing atinternet atinternetprovider configuration configure console data def default disable docs enable false function javascript js library logging logs provider service setdebug setdefaults setenabled smarttag tracking true values"
+      "keywords": "allowing atinternet atinternetprovider check configuration configure console data def default disable docs enable false function getdefaults isdefaultset javascript js library logging logs provider retrieve service set setdebug setdefaults setenabled smarttag tracking true values"
     },
     {
       "section": "docs",
