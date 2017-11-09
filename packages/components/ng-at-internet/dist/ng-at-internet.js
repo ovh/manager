@@ -13,7 +13,7 @@ angular.module("ng-at-internet")
                 queueLimit: 30
             };
 
-            // Decorate trackPage to stack requests until At-internet default configuration is set
+            // Decorate trackPage to queue requests until At-internet default configuration is set
             $delegate.trackPage = function () {
                 if (atInternetProvider.isDefaultSet()) {
                     trackPageRequestQueue.forEach(function (trackPageArguments) {
@@ -265,7 +265,7 @@ angular.module("ng-at-internet")
 
                 angular.extend(data || {}, config.defaults);
 
-            // Allow user to set visitor id
+            // Allow user to set identifiedVisitor id
                 if (!_.isEmpty(data.visitorId)) {
                     atinternetTag.identifiedVisitor.set({ id: data.visitorId });
                 }
@@ -372,6 +372,7 @@ angular.module("ng-at-internet")
              *   chapter1: "..."      // section id (optional)
              *   chapter2: "..."      // sub-section id (optional)
              *   chapter3: "..."      // sub-sub-section id (optional)
+             *   visitorId: "1234"    // identified visitor id (optional)
              *   customObject: {}     // custom javascript data (optional)
              * }
              * ```
@@ -413,10 +414,11 @@ angular.module("ng-at-internet")
              * Click data is the following data-structure :
              *
              * ```
-             * pageData {
+             * clickData {
              *   name: "your-action"  // the action identifier (required)
              *   level2: "1"          // the project id (required)
              *   type: "action"       // type of click : action || navigation || download || exit (required)
+             *   visitorId: "1234"    // identified visitor id (optional)
              *   chapter1: "..."      // section id (optional)
              *   chapter2: "..."      // sub-section id (optional)
              *   chapter3: "..."      // sub-sub-section id (optional)
@@ -462,6 +464,7 @@ angular.module("ng-at-internet")
              *   orderId: 1            // unique order ID, you can provide it or it will be automatically generated
              *   quantity: 1           // amount of product (default is 1)
              *
+             *   visitorId: "1234"    // identified visitor id (optional)
              *   countryCode: "EU"     // country code identifier of the customer (optional)
              *   currencyCode: "EU"    // currency of order (optional)
              * }

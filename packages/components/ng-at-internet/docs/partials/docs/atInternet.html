@@ -24,10 +24,11 @@
 <li><h3 id="methods_trackclick">trackClick(clickData)</h3>
 <div class="trackclick"><div class="trackclick-page"><p>Send a click hit to ATInternet tracking service.
 Click data is the following data-structure :</p>
-<pre><code>pageData {
+<pre><code>clickData {
   name: &quot;your-action&quot;  // the action identifier (required)
   level2: &quot;1&quot;          // the project id (required)
   type: &quot;action&quot;       // type of click : action || navigation || download || exit (required)
+  visitorId: &quot;1234&quot;    // identified visitor id (optional)
   chapter1: &quot;...&quot;      // section id (optional)
   chapter2: &quot;...&quot;      // sub-section id (optional)
   chapter3: &quot;...&quot;      // sub-sub-section id (optional)
@@ -57,6 +58,7 @@ Product data is the following data-structure :</p>
   orderId: 1            // unique order ID, you can provide it or it will be automatically generated
   quantity: 1           // amount of product (default is 1)
 
+  visitorId: &quot;1234&quot;    // identified visitor id (optional)
   countryCode: &quot;EU&quot;     // country code identifier of the customer (optional)
   currencyCode: &quot;EU&quot;    // currency of order (optional)
 }
@@ -74,6 +76,7 @@ Page data is the following data-structure :</p>
   chapter1: &quot;...&quot;      // section id (optional)
   chapter2: &quot;...&quot;      // sub-section id (optional)
   chapter3: &quot;...&quot;      // sub-sub-section id (optional)
+  visitorId: &quot;1234&quot;    // identified visitor id (optional)
   customObject: {}     // custom javascript data (optional)
 }
 </code></pre><p>More informations here :
