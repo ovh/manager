@@ -1283,12 +1283,12 @@ angular.module("ovh-angular-sidebar-menu").provider("SidebarMenu", function () {
                 included: false,
                 current: false
             };
-            if (item.state) {
-                infos.included = $state.includes(item.state, item.stateParams);
-                infos.current = $state.is(item.state, item.stateParams);
-            } else if (item.loadOnState) {
+            if (item.loadOnState) {
                 infos.included = $state.includes(item.loadOnState, item.loadOnStateParams);
                 infos.current = $state.is(item.loadOnState, item.loadOnStateParams);
+            } else if (item.state) {
+                infos.included = $state.includes(item.state, item.stateParams);
+                infos.current = $state.is(item.state, item.stateParams);
             }
             return infos;
         }
