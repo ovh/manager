@@ -93,7 +93,7 @@ module.exports = function (grunt) {
         delta: {
             dist: {
                 files: ["<%= srcdir %>/**/*", "!<%= srcdir %>/**/*.spec.js"],
-                tasks: ["buildProd"]
+                tasks: ["build"]
             },
             test: {
                 files: ["<%= srcdir %>/**/*.spec.js"],

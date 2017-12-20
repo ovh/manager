@@ -10,7 +10,7 @@ NG_DOCS={
       "type": "service",
       "moduleName": "atInternet",
       "shortDescription": "Angular service wrapping the AtInternet tracking Javascript library.",
-      "keywords": "action amount angular associated atinternet atinternet-solutions automatically chapter1 chapter2 chapter3 click clickdata code configuration configure configured country countrycode currency currencycode current custom customer customobject data data-structure def default disable docs download enable eu event eventdata events exit false free function generated getconfig hit http identified identifier included informations javascript js level2 library main manager navigation objective order orderid pagedata price pricetaxfree product productdata project provide provider quantity returns send service setdefaults setenabled simplified smarttag sub-section sub-sub-section supplied tax trackclick trackevent tracking trackorder trackpage true type unique values visitor visitorid warning wrapping your-action your-page your-product"
+      "keywords": "action amount angular associated atinternet atinternet-solutions automatically chapter1 chapter2 chapter3 click clickdata code configuration configure configured country countrycode currency currencycode current custom customer customobject data data-structure def default defaults disable docs download enable eu event eventdata events exit false free function generated getconfig hit hits http identified identifier included informations javascript js level2 library main manager navigation objective order orderid pagedata price pricetaxfree product productdata project promise provide provider quantity resolved returns send sending service setdefaults setdefaultspromise setenabled setted simplified smarttag sub-section sub-sub-section supplied tax trackclick trackevent tracking trackorder trackpage true type unique values visitor visitorid warning wrapping your-action your-page your-product"
     },
     {
       "section": "docs",
@@ -28,7 +28,7 @@ NG_DOCS={
       "type": "service",
       "moduleName": "atInternetProvider",
       "shortDescription": "Provider allowing configuration for atInternet service.",
-      "keywords": "allowing atinternet atinternetprovider check configuration configure console data def default disable docs enable false function getdefaults isdefaultset javascript js library logging logs provider retrieve service set setdebug setdefaults setenabled smarttag tracking true values"
+      "keywords": "allowing atinternet atinternetprovider check configuration configure console data def default disable docs enable false function getdefaults getdefaultspromise isdefaultset javascript js library logging logs method promise provider retrieve service set setdebug setdefaults setdefaultspromise setenabled setted smarttag tracking true values"
     },
     {
       "section": "docs",

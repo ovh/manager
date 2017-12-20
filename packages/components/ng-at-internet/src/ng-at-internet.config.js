@@ -11,18 +11,25 @@ angular.module("ng-at-internet")
 
             // Decorate trackPage to queue requests until At-internet default configuration is set
             $delegate.trackPage = function () {
-                if (atInternetProvider.isDefaultSet()) {
+                var defaultsPromise = atInternetProvider.getDefaultsPromise();
+                var trackInfos = arguments;
+
+                if (defaultsPromise && angular.isFunction(defaultsPromise.then)) {
+                    defaultsPromise.then(function () {
+                        delegateTrackPage.apply($delegate, trackInfos);
+                    });
+                } else if (atInternetProvider.isDefaultSet()) {
                     trackPageRequestQueue.forEach(function (trackPageArguments) {
                         delegateTrackPage.apply($delegate, trackPageArguments);
                     });
                     trackPageRequestQueue = [];
-                    delegateTrackPage.apply($delegate, arguments);
+                    delegateTrackPage.apply($delegate, trackInfos);
                 } else {
                     // Limit number of delegate track in queue.
                     if (trackPageRequestQueue.length > settings.queueLimit) {
                         throw new Error("atinternet too much requests are waiting in track page request queue");
                     }
-                    trackPageRequestQueue.push(arguments);
+                    trackPageRequestQueue.push(trackInfos);
                 }
             };
             return $delegate;

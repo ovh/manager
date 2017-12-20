@@ -15,18 +15,25 @@ angular.module("ng-at-internet")
 
             // Decorate trackPage to queue requests until At-internet default configuration is set
             $delegate.trackPage = function () {
-                if (atInternetProvider.isDefaultSet()) {
+                var defaultsPromise = atInternetProvider.getDefaultsPromise();
+                var trackInfos = arguments;
+
+                if (defaultsPromise && angular.isFunction(defaultsPromise.then)) {
+                    defaultsPromise.then(function () {
+                        delegateTrackPage.apply($delegate, trackInfos);
+                    });
+                } else if (atInternetProvider.isDefaultSet()) {
                     trackPageRequestQueue.forEach(function (trackPageArguments) {
                         delegateTrackPage.apply($delegate, trackPageArguments);
                     });
                     trackPageRequestQueue = [];
-                    delegateTrackPage.apply($delegate, arguments);
+                    delegateTrackPage.apply($delegate, trackInfos);
                 } else {
                     // Limit number of delegate track in queue.
                     if (trackPageRequestQueue.length > settings.queueLimit) {
                         throw new Error("atinternet too much requests are waiting in track page request queue");
                     }
-                    trackPageRequestQueue.push(arguments);
+                    trackPageRequestQueue.push(trackInfos);
                 }
             };
             return $delegate;
@@ -142,6 +149,8 @@ angular.module("ng-at-internet")
             defaults: {}       // default data to be sent with each hit
         };
 
+        var defaultsPromise;    // to be sure that defaults are setted after a promise resoltion
+
     // reference to ATInternet Tag object from their JS library
         var atinternetTag = null;
 
@@ -177,6 +186,17 @@ angular.module("ng-at-internet")
      */
         this.getDefaults = function () {
             return angular.copy(config.defaults);
+        };
+
+    /**
+     * @ngdoc function
+     * @name atInternet.getDefaultsPromise
+     * @methodOf atInternetProvider
+     * @description
+     * Retrieve the default promise setted by atInternet.setDefaultsPromise method.
+     */
+        this.getDefaultsPromise = function () {
+            return defaultsPromise;
         };
 
     /**
@@ -325,6 +345,22 @@ angular.module("ng-at-internet")
              */
                 setDefaults: function (def) {
                     config.defaults = def;
+                },
+
+            /**
+             * @ngdoc function
+             * @name atInternet.setDefaultsPromise
+             * @methodOf atInternet
+             * @param {Promise} promise A promise that needs to be resolved before sending hits.
+             * @description
+             * Configure the defaults promise that needs to be resolved before sending hits (to be sure that defaults are setted).
+             */
+                setDefaultsPromise: function (promise) {
+                    var self = this;
+
+                    defaultsPromise = promise.then(function (defaults) {
+                        self.setDefaults(defaults);
+                    });
                 },
 
             /**
