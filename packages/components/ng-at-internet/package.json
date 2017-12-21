@@ -1,6 +1,6 @@
 {
   "name": "ng-at-internet",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "ATInternet tracking library wrapper for AngularJS",
   "repository": "ovh-ux/ng-at-internet",
   "author": "OVH SAS",
