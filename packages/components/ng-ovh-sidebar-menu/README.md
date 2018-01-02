@@ -4,7 +4,7 @@
 
 [![NPM](https://nodei.co/npm/ovh-angular-sidebar-menu.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/ovh-angular-sidebar-menu/)
 
-[![Maintenance](https://img.shields.io/maintenance/yes/2017.svg)]() [![Chat on gitter](https://img.shields.io/gitter/room/ovh/ux.svg)](https://gitter.im/ovh/ux) [![Build Status](https://travis-ci.org/ovh/ovh-angular-sidebar-menu.svg)](https://travis-ci.org/ovh/ovh-angular-sidebar-menu)
+[![Maintenance](https://img.shields.io/maintenance/yes/2018.svg)]() [![Chat on gitter](https://img.shields.io/gitter/room/ovh/ux.svg)](https://gitter.im/ovh/ux) [![Build Status](https://travis-ci.org/ovh/ovh-angular-sidebar-menu.svg)](https://travis-ci.org/ovh/ovh-angular-sidebar-menu)
 
 Manage and display a left menu tree. This is the main module which holds everything together!
 
