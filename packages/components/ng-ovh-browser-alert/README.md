@@ -2,7 +2,7 @@
 
 [![NPM](https://nodei.co/npm/ovh-angular-browser-alert.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/ovh-angular-browser-alert/)
 
-[![Maintenance](https://img.shields.io/maintenance/yes/2017.svg)]() [![Chat on gitter](https://img.shields.io/gitter/room/ovh/ux.svg)](https://gitter.im/ovh/ux)
+[![Maintenance](https://img.shields.io/maintenance/yes/2018.svg)]() [![Chat on gitter](https://img.shields.io/gitter/room/ovh/ux.svg)](https://gitter.im/ovh/ux)
 
 # ovh-angular-browser-alert
 
