@@ -2,8 +2,8 @@
  * the wizard steps
  */
 angular.module('ua.wizard').directive('wizardStep',
-['$compile', '$timeout' ,
-function ($compile, $timeout) {
+['$compile', '$timeout', '$q',
+function ($compile, $timeout, $q) {
     'use strict';
     return {
         restrict: 'A',
@@ -147,9 +147,19 @@ function ($compile, $timeout) {
                     };
 
                     $scope.nextStep = function () {
-                        $scope.resetHelper();
-                        $scope.onNext();
-                        $wizardCtrl.nextStep();
+                        if ($attr.wizardStepOnNextStepValidPromise && angular.isFunction($scope[$attr.wizardStepOnNextStepValidPromise])) {
+                            $q.when($scope[$attr.wizardStepOnNextStepValidPromise]()).then(function () {
+                                $scope.resetHelper();
+                                $scope.onNext();
+                                $wizardCtrl.nextStep();
+                            }, function () {
+                                // Nothing to do
+                            });
+                        } else {
+                            $scope.resetHelper();
+                            $scope.onNext();
+                            $wizardCtrl.nextStep();
+                        }
                     };
 
                     if ($scope.stepNumber === 1) {
