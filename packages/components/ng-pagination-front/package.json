@@ -1,6 +1,6 @@
 {
   "name": "ovh-angular-pagination-front",
-  "version": "6.0.0",
+  "version": "7.0.0",
   "description": "Angular directive to paginate in front end",
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
