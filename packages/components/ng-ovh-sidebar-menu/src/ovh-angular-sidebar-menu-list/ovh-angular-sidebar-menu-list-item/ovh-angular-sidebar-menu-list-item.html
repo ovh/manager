@@ -76,10 +76,10 @@
                         type="button"
                         data-ng-click="ItemMenuCtrl.viewMore()"
                         data-ng-disabled="ItemMenuCtrl.item.viewMore.loading">
-                        <div class="oui-loader oui-loader_s oui-loader_inline"
+                        <div class="oui-spinner oui-spinner_s"
                              data-ng-if="ItemMenuCtrl.item.viewMore.loading">
-                            <div class="oui-loader__container">
-                                <div class="oui-loader__image"></div>
+                            <div class="oui-spinner__container">
+                                <div class="oui-spinner__image"></div>
                             </div>
                         </div>
                         <span>{{ ItemMenuCtrl.item.viewMore.title }}</span>
