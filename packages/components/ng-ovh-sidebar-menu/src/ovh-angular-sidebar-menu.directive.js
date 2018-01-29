@@ -16,6 +16,9 @@ angular.module("ovh-angular-sidebar-menu").directive("sidebarMenu", function () 
         restrict: "A",
         replace: true,
         controllerAs: "sideBarCtrl",
-        controller: "SidebarMenuCtrl"
+        controller: "SidebarMenuCtrl",
+        scope: {
+            sidebarNamespace: "="
+        }
     };
 });

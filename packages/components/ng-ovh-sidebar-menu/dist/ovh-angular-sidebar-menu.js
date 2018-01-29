@@ -251,6 +251,7 @@ angular.module("ovh-angular-sidebar-menu").directive("sidebarMenuListItem", ["$c
  *  @param {String=} options.url Url to redirect when item link is clicked. Will be ignored if both options (url and state) are setted.
  *  @param {Boolean} options.infiniteScroll Should infinite scroll be used for scrolling subItems?
  *  @param {Boolean} [options.searchable=true] Flag telling if item is searchable, true by default, must be set to false to hide it from search.
+ *  @param {String} [options.namespace] Namespace equals to Sidebar namespace.
  */
 
 angular.module("ovh-angular-sidebar-menu").factory("SidebarMenuListItem", ["$q", "$timeout", function ($q, $timeout) {
@@ -275,6 +276,8 @@ angular.module("ovh-angular-sidebar-menu").factory("SidebarMenuListItem", ["$q",
         this.icon = options.icon;
         this.category = options.category || "none";
         this.status = options.status || "none";
+
+        this.namespace = options.namespace;
 
         // level informations
         this.level = options.level;
@@ -754,14 +757,13 @@ angular.module("ovh-angular-sidebar-menu").directive("sidebarMenuList", function
         templateUrl: "ovh-angular-sidebar-menu-list/ovh-angular-sidebar-menu-list.html",
         restrict: "A",
         scope: {
-            items: "=sidebarMenuListItems"
+            items: "=sidebarMenuListItems",
+            namespace: "=sidebarMenuListNamespace"
         },
         require: ["^sidebarMenu", "^?sidebarMenuListItem"],
         bindToController: true,
         controllerAs: "ListCtrl",
-        controller: function () {
-            // EMPTY
-        }
+        controller: angular.noop
     };
 });
 
@@ -832,7 +834,10 @@ angular.module("ovh-angular-sidebar-menu").directive("sidebarMenu", function () 
         restrict: "A",
         replace: true,
         controllerAs: "sideBarCtrl",
-        controller: "SidebarMenuCtrl"
+        controller: "SidebarMenuCtrl",
+        scope: {
+            sidebarNamespace: "="
+        }
     };
 });
 
@@ -1447,13 +1452,13 @@ angular.module('ovh-angular-sidebar-menu').run(['$templateCache', function($temp
     "        'open' : item.isOpen,\n" +
     "        'active' : item.isActive,\n" +
     "        'category-{{item.category}}' : item.category !== 'none',\n" +
-    "        'status-{{item.status}}' : item.status !== 'none'\n" +
-    "    }\" data-ng-repeat=\"item in ListCtrl.items track by $index\" data-sidebar-menu-list-item=item></li>"
+    "        'status-{{item.status}}' : item.status !== 'none',\n" +
+    "    }\" data-ng-if=\"(ListCtrl.namespace && item.namespace ===  ListCtrl.namespace) || (!ListCtrl.namespace && !item.namespace)\" data-sidebar-menu-list-item=item data-ng-repeat=\"item in ListCtrl.items track by $index\"></li>"
   );
 
 
   $templateCache.put('ovh-angular-sidebar-menu.html',
-    "<div id=sidebar-menu><!-- LOADER --><div class=\"oui-loader oui-loader_m\" data-ng-if=sideBarCtrl.loading.init><div class=oui-loader__container><div class=oui-loader__image></div></div></div><div data-ng-if=!sideBarCtrl.loading.init><!-- MENU TITLE --><div class=sidebar-menu-title><button type=button class=\"navbar-button sideNavBtnClose pull-right\"><span class=\"ovh-font ovh-font-arrow-left\"></span></button> <span class=\"navbar-brand navbar-toggle-title\" data-translate=sidebar_menu></span></div><!-- ORDER ACTIONS MENU --><div class=order-actions-menu><actions-menu data-actions-menu-options=sideBarCtrl.actionsOptions data-actions-menu-popover-settings=sideBarCtrl.popoverSettings><span class=cart-icon><i class=\"ovh-font ovh-font-cart\"></i> </span><span class=button-text data-translate=sidebar_menu_order_actions></span> <span class=arrow-icon><i class=\"ovh-font ovh-font-small-arrow-down\"></i></span></actions-menu></div><!-- MENU ITEMS --><ul class=\"sidebar-menu-list menu-level-1\" data-sidebar-menu-list data-sidebar-menu-list-items=sideBarCtrl.items></ul></div></div>"
+    "<div id=sidebar-menu><!-- LOADER --><div class=\"oui-loader oui-loader_m\" data-ng-if=sideBarCtrl.loading.init><div class=oui-loader__container><div class=oui-loader__image></div></div></div><div data-ng-if=!sideBarCtrl.loading.init><!-- MENU TITLE --><div class=sidebar-menu-title><button type=button class=\"navbar-button sideNavBtnClose pull-right\"><span class=\"ovh-font ovh-font-arrow-left\"></span></button> <span class=\"navbar-brand navbar-toggle-title\" data-translate=sidebar_menu></span></div><!-- ORDER ACTIONS MENU --><div class=order-actions-menu><actions-menu data-actions-menu-options=sideBarCtrl.actionsOptions data-actions-menu-popover-settings=sideBarCtrl.popoverSettings><span class=cart-icon><i class=\"ovh-font ovh-font-cart\"></i> </span><span class=button-text data-translate=sidebar_menu_order_actions></span> <span class=arrow-icon><i class=\"ovh-font ovh-font-small-arrow-down\"></i></span></actions-menu></div><!-- MENU ITEMS --><ul class=\"sidebar-menu-list menu-level-1\" data-sidebar-menu-list data-sidebar-menu-list-items=sideBarCtrl.items data-sidebar-menu-list-namespace=sidebarNamespace></ul></div></div>"
   );
 
 }]);

@@ -54,6 +54,7 @@
  *  @param {String=} options.url Url to redirect when item link is clicked. Will be ignored if both options (url and state) are setted.
  *  @param {Boolean} options.infiniteScroll Should infinite scroll be used for scrolling subItems?
  *  @param {Boolean} [options.searchable=true] Flag telling if item is searchable, true by default, must be set to false to hide it from search.
+ *  @param {String} [options.namespace] Namespace equals to Sidebar namespace.
  */
 
 angular.module("ovh-angular-sidebar-menu").factory("SidebarMenuListItem", function ($q, $timeout) {
@@ -78,6 +79,8 @@ angular.module("ovh-angular-sidebar-menu").factory("SidebarMenuListItem", functi
         this.icon = options.icon;
         this.category = options.category || "none";
         this.status = options.status || "none";
+
+        this.namespace = options.namespace;
 
         // level informations
         this.level = options.level;

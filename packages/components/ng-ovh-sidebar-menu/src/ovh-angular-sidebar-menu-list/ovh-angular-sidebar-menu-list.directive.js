@@ -17,13 +17,12 @@ angular.module("ovh-angular-sidebar-menu").directive("sidebarMenuList", function
         templateUrl: "ovh-angular-sidebar-menu-list/ovh-angular-sidebar-menu-list.html",
         restrict: "A",
         scope: {
-            items: "=sidebarMenuListItems"
+            items: "=sidebarMenuListItems",
+            namespace: "=sidebarMenuListNamespace"
         },
         require: ["^sidebarMenu", "^?sidebarMenuListItem"],
         bindToController: true,
         controllerAs: "ListCtrl",
-        controller: function () {
-            // EMPTY
-        }
+        controller: angular.noop
     };
 });
