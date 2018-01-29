@@ -11,7 +11,7 @@
   padding: 0;
   color: #ffffff;
 }
-#sidebar-menu > .oui-loader > .oui-loader__container {
+#sidebar-menu > .oui-spinner > .oui-spinner__container {
   margin: auto;
 }
 #sidebar-menu .sidebar-menu-title {
@@ -99,8 +99,8 @@
   display: inline-block;
   font-size: 8px;
 }
-#sidebar-menu .sidebar-menu-list li .menu-item .item-loading > .oui-loader,
-#sidebar-menu .sub-menu li .menu-item .item-loading > .oui-loader {
+#sidebar-menu .sidebar-menu-list li .menu-item .item-loading > .oui-spinner,
+#sidebar-menu .sub-menu li .menu-item .item-loading > .oui-spinner {
   vertical-align: middle;
 }
 #sidebar-menu .sidebar-menu-list li .menu-item .item-arrow > i,
@@ -144,8 +144,8 @@
 #sidebar-menu .sub-menu li .menu-view-all .menu-view-all-inner span {
   margin-right: 4px;
 }
-#sidebar-menu .sidebar-menu-list li .menu-view-all .menu-view-all-inner > .menu-item > .oui-loader,
-#sidebar-menu .sub-menu li .menu-view-all .menu-view-all-inner > .menu-item > .oui-loader {
+#sidebar-menu .sidebar-menu-list li .menu-view-all .menu-view-all-inner > .menu-item > .oui-spinner,
+#sidebar-menu .sub-menu li .menu-view-all .menu-view-all-inner > .menu-item > .oui-spinner {
   margin-right: 4px;
 }
 #sidebar-menu .sidebar-menu-list .item-content > .group-error-wrapper > div {
