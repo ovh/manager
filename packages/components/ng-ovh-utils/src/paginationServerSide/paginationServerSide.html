@@ -44,7 +44,9 @@
                 </select>
             </div>
             <div class="form-group">
-                <input class="form-control pagination-page-input" placeholder="{{tr('pagination_page', [currentPage, getLastPageNumber()])}}"
+                <input type="text"
+                       class="form-control pagination-page-input"
+                       placeholder="{{tr('pagination_page', [currentPage, getLastPageNumber()])}}"
                        data-ng-class="getGoToPageClasses()"
                        data-ng-disabled="paginationServerSideTableLoading"
                        data-ng-model="goToPage">
