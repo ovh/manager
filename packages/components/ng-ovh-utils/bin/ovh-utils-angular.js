@@ -6950,7 +6950,7 @@ function ($timeout) {
         transclude  : true,
         replace     : true,
         template    : '<div><form>' +
-                '<input data-ng-model="term" data-ng-change="query()" type="text" autocomplete="off" /></form>' +
+                '<input data-ng-class="inputClass" data-ng-model="term" data-ng-change="query()" type="text" autocomplete="off" /></form>' +
                 '<div data-ng-transclude></div>' +
         '</div>',
         scope       : {
@@ -6959,7 +6959,8 @@ function ($timeout) {
             items           : '=typeOffItems',
             term            : '=typeOffTerm',
             termpath        : '=typeOffTermPath',
-            showWhenEmpty   : '=typeOffShowWhenEmpty'
+            showWhenEmpty   : '=typeOffShowWhenEmpty',
+            inputClass      : '=typeOffInputClass'
         },
         controller : 'typeOffCtrl',
         link: function (scope, element, attrs, controller) {
