@@ -1,5 +1,5 @@
 {
-  "name": "ovh-utils-angular",
+  "name": "@ovh-ux/ovh-utils-angular",
   "version": "12.0.3",
   "description": "[DEPRECATED] Utils Angular.",
   "license": "BSD-3-Clause",
