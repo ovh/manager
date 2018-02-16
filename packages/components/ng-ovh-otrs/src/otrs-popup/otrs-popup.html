@@ -1,190 +1,175 @@
-<div data-draggable class="draggable otrs-popup"
-     options="{containment: 'body', handle: '#headerPopup, #contentPopup form' }"
+<div class="draggable otrs-popup"
+     data-draggable
+     data-options="{
+         containment: 'body',
+         handle: '#headerPopup,
+         #contentPopup form'
+     }"
      data-ng-class="{
-        'minimize' : status.minimize,
-        'maximize' : status.maximize,
-        'close'    : status.close
+        'minimize': status.minimize,
+        'maximize': status.maximize,
+        'close': status.close
     }">
-
     <div class="draggable-header" id="headerPopup">
         <span data-translate="otrs_popup_title"></span>
-        <div class="otrs_popup_tools pull-right">
-            <button type="button" aria-label="{{'otrs_popup_icon_minimize' | translate}}" data-ng-click="minimize()">
-                <i class="fa fa-window-minimize" aria-hidden="true"></i>
+        <div class="otrs_popup_tools float-right">
+            <button type="button"
+                    aria-label="{{:: 'otrs_popup_icon_minimize' | translate }}"
+                    data-ng-click="minimize()">
+                <span class="fa fa-window-minimize" aria-hidden="true"></span>
             </button>
-            <button type="button" aria-label="{{'otrs_popup_icon_maximize' | translate}}" data-ng-click="toggle()">
-                <i class="fa fa-window-maximize" aria-hidden="true"></i>
+            <button type="button"
+                    aria-label="{{:: 'otrs_popup_icon_maximize' | translate }}"
+                    data-ng-click="toggle()">
+                <span class="fa fa-window-maximize" aria-hidden="true"></span>
             </button>
-            <button type="button" aria-label="{{'otrs_popup_icon_close' | translate}}" data-ng-click="close()">
-                <i class="fa fa-close" aria-hidden="true"></i>
+            <button type="button"
+                    aria-label="{{:: 'otrs_popup_icon_close' | translate }}"
+                    data-ng-click="close()">
+                <span class="fa fa-close" aria-hidden="true"></span>
             </button>
         </div>
     </div>
-
-    <div id="contentPopup" data-ng-controller="OtrsPopupCtrl as OtrsPopupCtrl">
-        <p class="italic fs10 center bottom-space" data-translate="otrs_popup_move"></p>
-
-        <p class="text-center bottom-space" data-ng-if="OtrsPopupCtrl.isVIP">
-            <em data-translate="otrs_vip_phone"></em>
+    <div id="contentPopup"
+         data-ng-controller="OtrsPopupCtrl as OtrsPopupCtrl">
+        <p class="text-center font-italic"
+           data-translate="otrs_popup_move">
         </p>
-
-        <form name="OtrsPopupCtrl.otrsPopupForm" id="otrsPopupForm"
+        <p class="text-center font-italic"
+           data-ng-if="OtrsPopupCtrl.isVIP"
+           data-translate="otrs_vip_phone">
+        </p>
+        <form id="otrsPopupForm"
+              name="OtrsPopupCtrl.otrsPopupForm"
               novalidate
-              data-ng-submit="OtrsPopupCtrl.sendTicket()"
-              class="ovh-form-flat animate-opacity2-leave">
-
-            <div class="col-xs-12">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <label class="control-label" for="select-universe" data-translate="otrs_universe_choice"></label>
-                    </div>
-                </div>
-                <div class="flat-input-container row">
-                    <div class="col-xs-12">
-                        <select flat-select id="select-universe" name="select-universe" class="form-control"
-                                required
-                                data-ng-model="OtrsPopupCtrl.selectedUniverse"
-                                data-ng-options="universe as ( 'otrs_universe_'+ universe | translate ) for universe in OtrsPopupCtrl.universes"
-                                data-ng-change="OtrsPopupCtrl.getServices()">
-                        </select>
-                    </div>
-                </div>
+              data-ng-submit="OtrsPopupCtrl.sendTicket()">
+            <div class="form-group"
+                 data-ng-if="OtrsPopupCtrl.universes.length > 1">
+                <label for="select-universe"
+                       class="control-label"
+                       data-translate="otrs_universe_choice">
+                </label>
+                <select class="form-control"
+                        id="select-universe"
+                        name="select-universe"
+                        required
+                        data-ng-model="OtrsPopupCtrl.selectedUniverse"
+                        data-ng-options="universe as ( 'otrs_universe_'+ universe | translate ) for universe in OtrsPopupCtrl.universes"
+                        data-ng-change="OtrsPopupCtrl.getServices()">
+                </select>
             </div>
-
-            <div class="col-xs-12">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <label class="control-label" for="select-services" data-translate="otrs_popup_service"></label>
-                        <spinner data-ng-show="OtrsPopupCtrl.loaders.services" class="pull-right"></spinner>
-                    </div>
-                </div>
-                <div class="flat-input-container row">
-                    <div class="col-xs-12">
-                        <select flat-select id="select-services" name="select-services" class="form-control"
-                                required
-                                data-ng-model="OtrsPopupCtrl.ticket.serviceName"
-                                data-ng-disabled="OtrsPopupCtrl.loaders.services">
-                            <optgroup data-ng-repeat="category in OtrsPopupCtrl.services track by $index" label="{{ category.translatedName }}">
-                                <option data-ng-repeat="service in category.services track by $index" value="{{ service.serviceName }}" data-ng-bind="service.displayName"></option>
-                            </optgroup>
-                        </select>
-                    </div>
-                </div>
+            <div class="form-group">
+                <label for="select-services"
+                       class="control-label">
+                    <span data-translate="otrs_popup_service"></span>
+                    <oui-spinner data-ng-show="OtrsPopupCtrl.loaders.services"
+                                 data-size="s">
+                    </oui-spinner>
+                </label>
+                <select class="form-control"
+                        id="select-services"
+                        name="select-services"
+                        required
+                        data-ng-model="OtrsPopupCtrl.ticket.serviceName"
+                        data-ng-disabled="OtrsPopupCtrl.loaders.services">
+                    <optgroup label="{{ category.translatedName }}"
+                              data-ng-repeat="category in OtrsPopupCtrl.services track by $index">
+                        <option value="{{ service.serviceName }}"
+                                data-ng-repeat="service in category.services track by $index"
+                                data-ng-bind="service.displayName">
+                        </option>
+                    </optgroup>
+                </select>
             </div>
-
-            <div class="col-xs-12" data-ng-if="OtrsPopupCtrl.isVIP">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <label class="control-label" for="select-types" translate="otrs_popup_type"></label>
-                        <spinner data-ng-show="OtrsPopupCtrl.loaders.models" class="pull-right"></spinner>
-                    </div>
-                </div>
-                <div class="flat-input-container row">
-                    <div class="col-xs-12">
-                        <select flat-select id="select-types" name="select-types" class="form-control"
-                                data-ng-model="OtrsPopupCtrl.ticket.type"
-                                data-ng-options="type as ( 'otrs_types_'+type | translate ) for type in OtrsPopupCtrl.types"
-                                data-ng-disabled="OtrsPopupCtrl.loaders.models">
-                        </select>
-                    </div>
-                </div>
+            <div class="form-group"
+                 data-ng-if="OtrsPopupCtrl.isVIP">
+                <label for="select-types"
+                       class="control-label">
+                    <span data-translate="otrs_popup_type"></span>
+                    <oui-spinner data-ng-show="OtrsPopupCtrl.loaders.models"
+                                 data-size="s">
+                    </oui-spinner>
+                </label>
+                <select class="form-control"
+                        id="select-types"
+                        name="select-types"
+                        data-ng-model="OtrsPopupCtrl.ticket.type"
+                        data-ng-options="type as ( 'otrs_types_'+type | translate ) for type in OtrsPopupCtrl.types"
+                        data-ng-disabled="OtrsPopupCtrl.loaders.models">
+                </select>
             </div>
-            <div class="col-xs-12">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <label class="control-label" for="select-requests" translate="otrs_category_choice"></label>
-                        <spinner data-ng-show="OtrsPopupCtrl.loaders.models" class="pull-right"></spinner>
-                    </div>
-                </div>
-                <div class="flat-input-container row">
-                    <div class="col-xs-12">
-                        <select flat-select id="select-requests" name="select-requests" class="form-control"
-                                required
-                                data-ng-model="OtrsPopupCtrl.ticket.category"
-                                data-ng-options="request as ( 'otrs_category_'+request | translate ) for request in OtrsPopupCtrl.requests"
-                                data-ng-disabled="OtrsPopupCtrl.loaders.models">
-                        </select>
-                    </div>
-                </div>
+            <div class="form-group">
+                <label for="select-requests"
+                       class="control-label">
+                    <span data-translate="otrs_category_choice"></span>
+                    <oui-spinner data-ng-show="OtrsPopupCtrl.loaders.models"
+                                 data-size="s">
+                    </oui-spinner>
+                </label>
+                <select class="form-control"
+                        id="select-requests"
+                        name="select-requests"
+                        required
+                        data-ng-model="OtrsPopupCtrl.ticket.category"
+                        data-ng-options="request as ( 'otrs_category_'+request | translate ) for request in OtrsPopupCtrl.requests"
+                        data-ng-disabled="OtrsPopupCtrl.loaders.models">
+                </select>
             </div>
-
-
-            <div class="col-xs-12" data-ng-show="OtrsPopupCtrl.ticket.category">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <label class="control-label" for="select-subCategories" translate="otrs_subCategory_choice"></label>
-                        <spinner data-ng-show="OtrsPopupCtrl.loaders.models" class="pull-right"></spinner>
-                    </div>
-                </div>
-                <div class="flat-input-container row">
-                    <div class="col-xs-12">
-                        <select flat-select id="select-subCategories" name="select-requests" class="form-control"
-                                required
-                                data-ng-model="OtrsPopupCtrl.ticket.subcategory"
-                                data-ng-options="subCategory as ('otrs_subCategory_' + OtrsPopupCtrl.ticket.category + '_' + subCategory | translate) for subCategory in OtrsPopupCtrl.subCategories[OtrsPopupCtrl.ticket.category]"
-                                data-ng-disabled="OtrsPopupCtrl.loaders.models">
-                        </select>
-                    </div>
-                </div>
+            <div class="form-group"
+                 data-ng-show="OtrsPopupCtrl.ticket.category">
+                <label for="select-subCategories"
+                       class="control-label">
+                    <span data-translate="otrs_subCategory_choice"></span>
+                    <oui-spinner data-ng-show="OtrsPopupCtrl.loaders.models"
+                                 data-size="s">
+                    </oui-spinner>
+                </label>
+                <select class="form-control"
+                        id="select-subCategories"
+                        name="select-requests"
+                        required
+                        data-ng-model="OtrsPopupCtrl.ticket.subcategory"
+                        data-ng-options="subCategory as ('otrs_subCategory_' + OtrsPopupCtrl.ticket.category + '_' + subCategory | translate) for subCategory in OtrsPopupCtrl.subCategories[OtrsPopupCtrl.ticket.category]"
+                        data-ng-disabled="OtrsPopupCtrl.loaders.models">
+                </select>
             </div>
-
-            <div class="col-xs-12">
-                <div flat-input-container>
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <label class="control-label" for="txt-subject">
-                                {{'otrs_popup_subject' | translate}}
-                            </label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <input id="txt-subject"
-                                   name="txt-subject"
-                                   class="form-control"
-                                   data-ng-model="OtrsPopupCtrl.ticket.subject"
-                                   required
-                                   placeholder="{{'otrs_popup_subject' | translate}}">
-                        </div>
-                    </div>
-                </div>
+            <div class="form-group">
+                <label for="txt-subject"
+                       class="control-label"
+                       data-translate="otrs_popup_subject">
+                </label>
+                <input id="txt-subject"
+                       name="txt-subject"
+                       class="form-control"
+                       required
+                       placeholder="{{:: 'otrs_popup_subject' | translate }}"
+                       data-ng-model="OtrsPopupCtrl.ticket.subject" />
             </div>
-
-            <div class="col-xs-12">
-
-                <div flat-input-container>
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <label class="control-label" for="txt-message">
-                                {{'otrs_popup_body' | translate}}
-                            </label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <textarea id="txt-message"
-                                      name="txt-message"
-                                      class="form-control"
-                                      rows="8"
-                                      required
-                                      data-ng-model="OtrsPopupCtrl.ticket.body"
-                                      placeholder="{{'otrs_popup_body' | translate}}">
-                            </textarea>
-                        </div>
-                    </div>
-                </div>
-
+            <div class="form-group">
+                <label for="txt-message"
+                       class="control-label"
+                       data-translate="otrs_popup_body">
+                </label>
+                <textarea id="txt-message"
+                          name="txt-message"
+                          class="form-control"
+                          rows="8"
+                          required
+                          placeholder="{{:: 'otrs_popup_body' | translate }}"
+                          data-ng-model="OtrsPopupCtrl.ticket.body">
+                </textarea>
             </div>
-
-            <div class="col-xs-12 top-space-m12">
-                <button type="submit" class="btn btn-primary col-xs-12"
+            <div class="form-group">
+                <button type="submit"
+                        class="btn btn-block btn-primary"
                         data-ng-disabled="!OtrsPopupCtrl.otrsPopupForm.$valid || OtrsPopupCtrl.loaders.services || OtrsPopupCtrl.loaders.send">
-                    <i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>
-                    <span translate="otrs_popup_add_ticket"></span>
-                    <spinner data-ng-show="OtrsPopupCtrl.loaders.send" class="left-space-m20"></spinner>
+                    <span class="fa fa-envelope" aria-hidden="true"></span>
+                    <span data-translate="otrs_popup_add_ticket"></span>
+                    <oui-spinner data-ng-show="OtrsPopupCtrl.loaders.send"
+                                 data-size="s">
+                    </oui-spinner>
                 </button>
             </div>
         </form>
-
     </div>
 </div>

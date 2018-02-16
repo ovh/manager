@@ -13,8 +13,7 @@ angular.module("ovh-angular-otrs").controller("OtrsPopupCtrl", function ($rootSc
             type: null
         };
 
-
-        self.universes = OTRS_POPUP_UNIVERSES.EU;
+        self.universes = _.get(OTRS_POPUP_UNIVERSES, $rootScope.target, OTRS_POPUP_UNIVERSES.EU);
 
         var standardizedUniverse = UNIVERSE === "GAMMA" ? "SUNRISE" : UNIVERSE;
 
