@@ -4,7 +4,7 @@
 
 ![deprecated](https://img.shields.io/badge/status-deprecated-red.svg) [![Build Status](https://travis-ci.org/ovh-ux/ovh-utils-angular.svg)](https://travis-ci.org/ovh-ux/ovh-utils-angular)
 
-[![NPM](https://nodei.co/npm/ovh-utils-angular.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/ovh-utils-angular/)
+[![NPM](https://nodei.co/npm/@ovh-ux/ovh-utils-angular.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/@ovh-ux/ovh-utils-angular/)
 
 > Utils Angular.
 
@@ -19,7 +19,7 @@ $ bower install ovh-utils-angular --save
 ### NPM
 
 ```sh
-$ npm install ovh-utils-angular --save
+$ npm install @ovh-ux/ovh-utils-angular --save
 ```
 
 ## Get the sources
