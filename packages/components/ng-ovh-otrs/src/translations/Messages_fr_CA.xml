@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <translations>
-    <translation id="otrs_detail_title" qtlid="245181">Retour à la liste de vos billets</translation>
-    <translation id="otrs_detail_title2" qtlid="228774">- billet {0}</translation>
-    <translation id="otrs_detail_title3_open" qtlid="228787">- (En cours)</translation>
-    <translation id="otrs_detail_title3_closed" qtlid="228800">- (Fermé)</translation>
+   <translation id="otrs_detail_title" qtlid="245181">Retour à la liste de vos billets</translation>
+   <translation id="otrs_detail_title2" qtlid="228774">- billet {0}</translation>
+   <translation id="otrs_detail_title3_open" qtlid="228787">- (En cours)</translation>
+   <translation id="otrs_detail_title3_closed" qtlid="228800">- (Fermé)</translation>
 
-    <translation id="otrs_detail_error" qtlid="228813">Une erreur est survenue lors de la récupération des informations du billet {0}.</translation>
-    <translation id="otrs_detail_message_error" qtlid="228826">Une erreur est survenue lors de la récupération des messages du billet {0}.</translation>
+   <translation id="otrs_detail_error" qtlid="228813">Une erreur est survenue lors de la récupération des informations du billet {0}.</translation>
+   <translation id="otrs_detail_message_error" qtlid="228826">Une erreur est survenue lors de la récupération des messages du billet {0}.</translation>
 
-    <translation id="otrs_detail_subject" qtlid="75594">Sujet du billet:</translation>
-    <translation id="otrs_detail_serviceName" qtlid="228423">Service concerné:</translation>
-    <translation id="otrs_detail_creationDate" qtlid="228839">Ouvert depuis le:</translation>
-    <translation id="otrs_detail_updateDate" qtlid="228852">Mise à jour le:</translation>
-    <translation id="otrs_detail_from_customer" qtlid="228865">De: Vous</translation>
-    <translation id="otrs_detail_from_support" qtlid="228878">De : Soutien OVH</translation>
-    <translation id="otrs_detail_raw_version" qtlid="244664">Voir la version brute du message</translation>
-    <translation id="otrs_detail_cook_version" qtlid="244677">Voir la version interprétée du message</translation>
-    <translation id="otrs_detail_reply" qtlid="69233">Répondre</translation>
-    <translation id="otrs_detail_close" qtlid="62774">Fermer le billet</translation>
-    <translation id="otrs_detail_reopen" qtlid="227624">Réouvrir le billet</translation>
-    <translation id="otrs_detail_reply_error" qtlid="228891">Une erreur est survenue lors de l'envoi de votre réponse.</translation>
-    <translation id="otrs_detail_reopen_error" qtlid="228904">Une erreur est survenue lors de la réouverture de ce billet.</translation>
-    <translation id="otrs_detail_close_error" qtlid="228917">Une erreur est survenue lors de la fermeture de ce billet.</translation>
+   <translation id="otrs_detail_subject" qtlid="75594">Sujet du billet:</translation>
+   <translation id="otrs_detail_serviceName" qtlid="228423">Service concerné:</translation>
+   <translation id="otrs_detail_creationDate" qtlid="228839">Ouvert depuis le:</translation>
+   <translation id="otrs_detail_updateDate" qtlid="228852">Mise à jour le:</translation>
+   <translation id="otrs_detail_from_customer" qtlid="228865">De: Vous</translation>
+   <translation id="otrs_detail_from_support" qtlid="228878">De : Soutien OVH</translation>
+   <translation id="otrs_detail_raw_version" qtlid="244664">Voir la version brute du message</translation>
+   <translation id="otrs_detail_cook_version" qtlid="244677">Voir la version interprétée du message</translation>
+   <translation id="otrs_detail_reply" qtlid="69233">Répondre</translation>
+   <translation id="otrs_detail_close" qtlid="62774">Fermer le billet</translation>
+   <translation id="otrs_detail_reopen" qtlid="227624">Réouvrir le billet</translation>
+   <translation id="otrs_detail_reply_error" qtlid="228891">Une erreur est survenue lors de l'envoi de votre réponse.</translation>
+   <translation id="otrs_detail_reopen_error" qtlid="228904">Une erreur est survenue lors de la réouverture de ce billet.</translation>
+   <translation id="otrs_detail_close_error" qtlid="228917">Une erreur est survenue lors de la fermeture de ce billet.</translation>
 
-    <translation id="otrs_detail_info" qtlid="228930">Pour répondre, utilisez la zone de texte ci-dessus pour compléter le fil puis cliquez sur le bouton "répondre".</translation>
-    <translation id="otrs_detail_info2" qtlid="228943">Pour rouvrir le billet, utilisez la zone de texte ci-dessus pour compléter le fil puis cliquez sur le bouton "réouvrir le billet".</translation>
+   <translation id="otrs_detail_info" qtlid="228930">Pour répondre, utilisez la zone de texte ci-dessus pour compléter le fil puis cliquez sur le bouton "répondre".</translation>
+   <translation id="otrs_detail_info2" qtlid="228943">Pour rouvrir le billet, utilisez la zone de texte ci-dessus pour compléter le fil puis cliquez sur le bouton "réouvrir le billet".</translation>
 
-    <translation id="otrs_detail_tiket_title" qtlid="384207">Assistance - Détail du ticket {{id}}</translation>
+   <translation id="otrs_detail_tiket_title" qtlid="384207">Assistance - Détail du ticket {{id}}</translation>
 
    <translation id="otrs_menu_ticket_list_title" qtlid="260840">Assistance - Liste de vos billets</translation>
    <translation id="otrs_menu_ticket_list" qtlid="228631">Liste des billets</translation>
@@ -84,9 +84,9 @@
    <translation id="otrs_service_category_ALL_DOM" qtlid="270293">Pack AllDom</translation>
    <translation id="otrs_service_category_CLUSTER_HADOOP" qtlid="219901">Grappe de serveurs Hadoop</translation>
    <translation id="otrs_service_category_SERVER" qtlid="66032">Serveur Dédié</translation>
-   <translation id="otrs_service_category_HOUSING" qtlid="371476">Serveur Housing</translation>
+   <translation id="otrs_service_category_HOUSING" qtlid="371476">Hébergement de serveurs</translation>
    <translation id="otrs_service_category_DEDICATED_SERVER" qtlid="66032">Serveur Dédié</translation>
-   <translation id="otrs_service_category_DEDICATED_HOUSING" qtlid="371476">Serveur Housing</translation>
+   <translation id="otrs_service_category_DEDICATED_HOUSING" qtlid="371476">Hébergement de serveurs</translation>
    <translation id="otrs_service_category_DEDICATED_CLOUD" qtlid="20131">Cloud Privé</translation>
    <translation id="otrs_service_category_HOSTING_WEB" qtlid="219979">Hébergement web</translation>
    <translation id="otrs_service_category_IP_LOADBALANCING" qtlid="219992">Équilibreur de charge IP</translation>
@@ -100,7 +100,7 @@
    <translation id="otrs_service_category_LICENCE_VIRTUOZZO" qtlid="220070">Licence Virtuozzo</translation>
    <translation id="otrs_service_category_LICENCE_WINDOWS" qtlid="62666">Licence Windows</translation>
    <translation id="otrs_service_category_LICENCE_WORKLIGHT" qtlid="220083">Licence Worklight</translation>
-   <translation id="otrs_service_category_PACK_XDSL" qtlid="229632">Pack xDSL</translation>
+   <translation id="otrs_service_category_PACK_XDSL" qtlid="229632">Forfait xDSL</translation>
    <translation id="otrs_service_category_ROUTER" qtlid="220096">Routeur</translation>
    <translation id="otrs_service_category_HOSTING_DOMAIN" qtlid="285049">Hébergement web + domaine</translation>
    <translation id="otrs_service_category_HOSTING_RESELLER" qtlid="325289">Hébergement multisite</translation>
@@ -112,16 +112,17 @@
    <translation id="otrs_service_category_FAX" qtlid="32926">Télécopieur</translation>
    <translation id="otrs_service_category_LINE" qtlid="401119">Téléphonie (Ligne)</translation>
    <translation id="otrs_service_category_NUMBER" qtlid="401132">Téléphonie (Numéro)</translation>
-   <translation id="otrs_service_category_TIMESERIES" qtlid="383525">Metrics</translation>
+   <translation id="otrs_service_category_TIMESERIES" qtlid="383525">Métriques</translation>
+   <translation id="otrs_service_category_CEPH" qtlid="406442">CDA</translation>
    <translation id="otrs_service_category_other" qtlid="316047">Autre demande</translation>
 
-    <translation id="otrs_universe_choice" qtlid="406455">Univers :</translation>
-    <translation id="otrs_universe_WEB" qtlid="135840">Web</translation>
-    <translation id="otrs_universe_SUNRISE" qtlid="232401">Sunrise</translation>
-    <translation id="otrs_universe_TELECOM" qtlid="135827">Telecom</translation>
-    <translation id="otrs_universe_CLOUD_DEDICATED" qtlid="406468">Cloud et Dédié</translation>
+   <translation id="otrs_universe_choice" qtlid="406455">Univers :</translation>
+   <translation id="otrs_universe_WEB" qtlid="135840">Web</translation>
+   <translation id="otrs_universe_SUNRISE" qtlid="232401">Sunrise</translation>
+   <translation id="otrs_universe_TELECOM" qtlid="135827">Telecom</translation>
+   <translation id="otrs_universe_CLOUD_DEDICATED" qtlid="406468">Cloud et Dédié</translation>
 
-   <translation id="otrs_category_null"/>
+<translation id="otrs_category_null"/>
    <translation id="otrs_category_neworder" qtlid="251681">Nouvelle commande</translation>
    <translation id="otrs_category_billing" qtlid="32950">Facturation</translation>
    <translation id="otrs_category_choice" qtlid="251746">Choix du soutien :</translation>
@@ -148,7 +149,7 @@
    <translation id="otrs_popup_type" qtlid="245194">Type de billet :</translation>
    <translation id="otrs_popup_move" qtlid="228462">Vous pouvez déplacer cette fenêtre contextuelle en déplacant son bandeau.</translation>
    <translation id="otrs_popup_sent_error" qtlid="228475">Une erreur est survenue lors de la création de ce billet.</translation>
-   <translation id="otrs_popup_sent_success" qtlid="261023">Votre billet numéro {{ticketNumber}} a bien été pris en charge. Vous pouvez retrouver le fil de discussion de ce billet à partir du menu <a href="#/support">Assistance - liste des billets</a>.</translation>
+   <translation id="otrs_popup_sent_success" qtlid="454891">Votre ticket numéro {{ticketNumber}} a bien été pris en compte. Vous pouvez retrouver le fil de discussion de ce ticket depuis le menu <a href="#/ticket">Assistance - liste des tickets</a>.</translation>
    <translation id="otrs_popup_get_services_error" qtlid="228501">Une erreur est survenue lors de la récupération de vos services.</translation>
    <translation id="otrs_popup_get_types_error" qtlid="233047">Une erreur est survenue lors de la récupération des informations.</translation>
    <translation id="otrs_popup_services_refresh" qtlid="228514">Actualiser la liste</translation>

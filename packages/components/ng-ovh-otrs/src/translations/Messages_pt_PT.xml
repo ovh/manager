@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <translations>
-    <translation id="otrs_detail_title" qtlid="245181">Voltar à lista dos tickets</translation>
-    <translation id="otrs_detail_title2" qtlid="228774">- ticket {0}</translation>
-    <translation id="otrs_detail_title3_open" qtlid="228787">- (Em curso)</translation>
-    <translation id="otrs_detail_title3_closed" qtlid="228800">- (Fechado)</translation>
+   <translation id="otrs_detail_title" qtlid="245181">Voltar à lista dos tickets</translation>
+   <translation id="otrs_detail_title2" qtlid="228774">- ticket {0}</translation>
+   <translation id="otrs_detail_title3_open" qtlid="228787">- (Em curso)</translation>
+   <translation id="otrs_detail_title3_closed" qtlid="228800">- (Fechado)</translation>
 
-    <translation id="otrs_detail_error" qtlid="228813">Ocorreu um erro aquando da recuperação das informações do ticket {0}.</translation>
-    <translation id="otrs_detail_message_error" qtlid="228826">Ocorreu um erro aquando da recuperação das mensagens do ticket {0}.</translation>
+   <translation id="otrs_detail_error" qtlid="228813">Ocorreu um erro aquando da recuperação das informações do ticket {0}.</translation>
+   <translation id="otrs_detail_message_error" qtlid="228826">Ocorreu um erro aquando da recuperação das mensagens do ticket {0}.</translation>
 
-    <translation id="otrs_detail_subject" qtlid="75594">Assunto do ticket:</translation>
-    <translation id="otrs_detail_serviceName" qtlid="228423">Serviço em questão:</translation>
-    <translation id="otrs_detail_creationDate" qtlid="228839">Aberto depois de:</translation>
-    <translation id="otrs_detail_updateDate" qtlid="228852">Atualizado em:</translation>
-    <translation id="otrs_detail_from_customer" qtlid="228865">De: Você</translation>
-    <translation id="otrs_detail_from_support" qtlid="228878">De: Suporte OVH</translation>
-    <translation id="otrs_detail_raw_version" qtlid="244664">Consultar a versão bruta da mensagem</translation>
-    <translation id="otrs_detail_cook_version" qtlid="244677">Consultar a versão interpretada da mensagem</translation>
-    <translation id="otrs_detail_reply" qtlid="69233">Responder</translation>
-    <translation id="otrs_detail_close" qtlid="62774">Encerrar o ticket</translation>
-    <translation id="otrs_detail_reopen" qtlid="227624">Reativar o intercâmbio</translation>
-    <translation id="otrs_detail_reply_error" qtlid="228891">Ocorreu um erro aquando do envio da sua resposta.</translation>
-    <translation id="otrs_detail_reopen_error" qtlid="228904">Ocorreu um erro aquando da reabertura deste ticket.</translation>
-    <translation id="otrs_detail_close_error" qtlid="228917">Ocorreu um erro aquando do encerramento deste ticket.</translation>
+   <translation id="otrs_detail_subject" qtlid="75594">Assunto do ticket:</translation>
+   <translation id="otrs_detail_serviceName" qtlid="228423">Serviço em questão:</translation>
+   <translation id="otrs_detail_creationDate" qtlid="228839">Aberto depois de:</translation>
+   <translation id="otrs_detail_updateDate" qtlid="228852">Atualizado em:</translation>
+   <translation id="otrs_detail_from_customer" qtlid="228865">De: Você</translation>
+   <translation id="otrs_detail_from_support" qtlid="228878">De: Suporte OVH</translation>
+   <translation id="otrs_detail_raw_version" qtlid="244664">Consultar a versão bruta da mensagem</translation>
+   <translation id="otrs_detail_cook_version" qtlid="244677">Consultar a versão interpretada da mensagem</translation>
+   <translation id="otrs_detail_reply" qtlid="69233">Responder</translation>
+   <translation id="otrs_detail_close" qtlid="62774">Encerrar o ticket</translation>
+   <translation id="otrs_detail_reopen" qtlid="227624">Reativar o intercâmbio</translation>
+   <translation id="otrs_detail_reply_error" qtlid="228891">Ocorreu um erro aquando do envio da sua resposta.</translation>
+   <translation id="otrs_detail_reopen_error" qtlid="228904">Ocorreu um erro aquando da reabertura deste ticket.</translation>
+   <translation id="otrs_detail_close_error" qtlid="228917">Ocorreu um erro aquando do encerramento deste ticket.</translation>
 
-    <translation id="otrs_detail_info" qtlid="228930">Para responder utilize a zona de texto em baixo para completar a thread e depois clique no botão "responder".</translation>
-    <translation id="otrs_detail_info2" qtlid="228943">Para reabrir o ticket utilize a zona de texto em baixo para completar a thread e depois clique no botão "reabrir o ticket".</translation>
+   <translation id="otrs_detail_info" qtlid="228930">Para responder utilize a zona de texto em baixo para completar a thread e depois clique no botão "responder".</translation>
+   <translation id="otrs_detail_info2" qtlid="228943">Para reabrir o ticket utilize a zona de texto em baixo para completar a thread e depois clique no botão "reabrir o ticket".</translation>
 
-    <translation id="otrs_detail_tiket_title" qtlid="384207">Assistência - Detalhe do ticket {{id}}</translation>
+   <translation id="otrs_detail_tiket_title" qtlid="384207">Assistência - Detalhe do ticket {{id}}</translation>
 
    <translation id="otrs_menu_ticket_list_title" qtlid="260840">Assistência - Lista dos seus tickets</translation>
    <translation id="otrs_menu_ticket_list" qtlid="228631">Lista dos tickets</translation>
@@ -102,26 +102,27 @@
    <translation id="otrs_service_category_LICENCE_WORKLIGHT" qtlid="220083">Licença Worklight</translation>
    <translation id="otrs_service_category_PACK_XDSL" qtlid="229632">Pack xDSL</translation>
    <translation id="otrs_service_category_ROUTER" qtlid="220096">Router</translation>
-   <translation id="otrs_service_category_HOSTING_DOMAIN" qtlid="285049">Alojamento Web partilhado + nome de domínio</translation>
+   <translation id="otrs_service_category_HOSTING_DOMAIN" qtlid="285049">Alojamento Web partilhado + domínio</translation>
    <translation id="otrs_service_category_HOSTING_RESELLER" qtlid="325289">Alojamento multi-site</translation>
    <translation id="otrs_service_category_DEDICATED_NAS" qtlid="219914">Nas dedicada</translation>
    <translation id="otrs_service_category_DEDICATED_NASHA" qtlid="219927">NasHa dedicada</translation>
    <translation id="otrs_service_category_EXCHANGE_HOSTED" qtlid="80430">Exchange</translation>
-   <translation id="otrs_service_category_EXCHANGE_PROVIDER" qtlid="401106">Revendeur Exchange</translation>
+   <translation id="otrs_service_category_EXCHANGE_PROVIDER" qtlid="401106">Revendedor Exchange</translation>
    <translation id="otrs_service_category_PROJECT" qtlid="251655">Public Cloud</translation>
    <translation id="otrs_service_category_FAX" qtlid="32926">Fax</translation>
-   <translation id="otrs_service_category_LINE" qtlid="401119">Téléphonie (Ligne)</translation>
-   <translation id="otrs_service_category_NUMBER" qtlid="401132">Téléphonie (Numéro)</translation>
-   <translation id="otrs_service_category_TIMESERIES" qtlid="383525">Metrics</translation>
+   <translation id="otrs_service_category_LINE" qtlid="401119">Telefone (Linha)</translation>
+   <translation id="otrs_service_category_NUMBER" qtlid="401132">Telefone (Número)</translation>
+   <translation id="otrs_service_category_TIMESERIES" qtlid="383525">Métricas</translation>
+   <translation id="otrs_service_category_CEPH" qtlid="406442">CDA</translation>
    <translation id="otrs_service_category_other" qtlid="316047">Outro pedido</translation>
 
-    <translation id="otrs_universe_choice" qtlid="406455">Universo:</translation>
-    <translation id="otrs_universe_WEB" qtlid="135840">Web</translation>
-    <translation id="otrs_universe_SUNRISE" qtlid="232401">Sunrise</translation>
-    <translation id="otrs_universe_TELECOM" qtlid="135827">Telecom</translation>
-    <translation id="otrs_universe_CLOUD_DEDICATED" qtlid="406468">Cloud e Dedicado</translation>
+   <translation id="otrs_universe_choice" qtlid="406455">Universo:</translation>
+   <translation id="otrs_universe_WEB" qtlid="135840">Web</translation>
+   <translation id="otrs_universe_SUNRISE" qtlid="232401">Sunrise</translation>
+   <translation id="otrs_universe_TELECOM" qtlid="135827">Telecom</translation>
+   <translation id="otrs_universe_CLOUD_DEDICATED" qtlid="406468">Cloud e Dedicado</translation>
 
-   <translation id="otrs_category_null"/>
+<translation id="otrs_category_null"/>
    <translation id="otrs_category_neworder" qtlid="251681">Nova encomenda</translation>
    <translation id="otrs_category_billing" qtlid="32950">Faturação</translation>
    <translation id="otrs_category_choice" qtlid="251746">Escolha do suporte</translation>
@@ -148,9 +149,9 @@
    <translation id="otrs_popup_type" qtlid="245194">Tipo de ticket :</translation>
    <translation id="otrs_popup_move" qtlid="228462">Pode mover este pop-up arrastando a janela.</translation>
    <translation id="otrs_popup_sent_error" qtlid="228475">Ocorreu um erro aquando da criação deste ticket</translation>
-   <translation id="otrs_popup_sent_success" qtlid="261023">O seu ticket {{ticketNumber}} foi corretamente tomado em conta. Poderá encontrar a thread relativa a este ticket a partir do menu <a href="#/support">Assistência - lista dos tickets</a>.</translation>
+   <translation id="otrs_popup_sent_success" qtlid="454891">Votre ticket numéro {{ticketNumber}} a bien été pris en compte. Vous pouvez retrouver le fil de discussion de ce ticket depuis le menu <a href="#/ticket">Assistance - liste des tickets</a>.</translation>
    <translation id="otrs_popup_get_services_error" qtlid="228501">Ocorreu um erro aquando da recuperação dos seus serviços.</translation>
-   <translation id="otrs_popup_get_types_error" qtlid="233047">Ocorreu um erro aquando da obtenção das informações.</translation>
+   <translation id="otrs_popup_get_types_error" qtlid="233047">Ocorreu um erro no acesso às informações.</translation>
    <translation id="otrs_popup_services_refresh" qtlid="228514">Atualizar a lista</translation>
    <translation id="otrs_popup_require" qtlid="137634">Campos obrigatórios</translation>
    <translation id="otrs_vip_phone" qtlid="251811">Pode contactar-nos através do número 213 155 642.</translation>

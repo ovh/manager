@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <translations>
-    <translation id="otrs_detail_title" qtlid="245181">Terug naar de lijst met uw tickets</translation>
-    <translation id="otrs_detail_title2" qtlid="228774">- ticket {0}</translation>
-    <translation id="otrs_detail_title3_open" qtlid="228787">- (Wordt uitgevoerd)</translation>
-    <translation id="otrs_detail_title3_closed" qtlid="228800">- (Gesloten)</translation>
+   <translation id="otrs_detail_title" qtlid="245181">Terug naar de lijst met uw tickets</translation>
+   <translation id="otrs_detail_title2" qtlid="228774">- ticket {0}</translation>
+   <translation id="otrs_detail_title3_open" qtlid="228787">- (Wordt uitgevoerd)</translation>
+   <translation id="otrs_detail_title3_closed" qtlid="228800">- (Gesloten)</translation>
 
-    <translation id="otrs_detail_error" qtlid="228813">Er is een fout opgetreden tijdens het ophalen van ticket gegevens {0}.</translation>
-    <translation id="otrs_detail_message_error" qtlid="228826">Er is een fout opgetreden tijdens het ophalen van de berichten van het ticket {0}.</translation>
+   <translation id="otrs_detail_error" qtlid="228813">Er is een fout opgetreden tijdens het ophalen van ticket gegevens {0}.</translation>
+   <translation id="otrs_detail_message_error" qtlid="228826">Er is een fout opgetreden tijdens het ophalen van de berichten van het ticket {0}.</translation>
 
-    <translation id="otrs_detail_subject" qtlid="75594">Onderwerp van het ticket:</translation>
-    <translation id="otrs_detail_serviceName" qtlid="228423">Betreft de dienst:</translation>
-    <translation id="otrs_detail_creationDate" qtlid="228839">Open sinds:</translation>
-    <translation id="otrs_detail_updateDate" qtlid="228852">Update op:</translation>
-    <translation id="otrs_detail_from_customer" qtlid="228865">Van: u</translation>
-    <translation id="otrs_detail_from_support" qtlid="228878">Van: OVH Support </translation>
-    <translation id="otrs_detail_raw_version" qtlid="244664">Bekijk de ruwe versie van het bericht</translation>
-    <translation id="otrs_detail_cook_version" qtlid="244677">Bekijk de geïnterpreteerde versie van het bericht</translation>
-    <translation id="otrs_detail_reply" qtlid="69233">Antwoorden</translation>
-    <translation id="otrs_detail_close" qtlid="62774">Sluit het ticket</translation>
-    <translation id="otrs_detail_reopen" qtlid="227624">Heropen het ticket</translation>
-    <translation id="otrs_detail_reply_error" qtlid="228891">Er is een fout opgetreden bij het verzenden van uw antwoord.</translation>
-    <translation id="otrs_detail_reopen_error" qtlid="228904">Er is een fout opgetreden bij het heropenen van dit ticket.</translation>
-    <translation id="otrs_detail_close_error" qtlid="228917">Er is een fout opgetreden bij het sluiten van dit ticket.</translation>
+   <translation id="otrs_detail_subject" qtlid="75594">Onderwerp van het ticket:</translation>
+   <translation id="otrs_detail_serviceName" qtlid="228423">Betreft de dienst:</translation>
+   <translation id="otrs_detail_creationDate" qtlid="228839">Open sinds:</translation>
+   <translation id="otrs_detail_updateDate" qtlid="228852">Update op:</translation>
+   <translation id="otrs_detail_from_customer" qtlid="228865">Van: u</translation>
+   <translation id="otrs_detail_from_support" qtlid="228878">Van: OVH Support </translation>
+   <translation id="otrs_detail_raw_version" qtlid="244664">Bekijk de ruwe versie van het bericht</translation>
+   <translation id="otrs_detail_cook_version" qtlid="244677">Bekijk de geïnterpreteerde versie van het bericht</translation>
+   <translation id="otrs_detail_reply" qtlid="69233">Antwoorden</translation>
+   <translation id="otrs_detail_close" qtlid="62774">Sluit het ticket</translation>
+   <translation id="otrs_detail_reopen" qtlid="227624">Heropen het ticket</translation>
+   <translation id="otrs_detail_reply_error" qtlid="228891">Er is een fout opgetreden bij het verzenden van uw antwoord.</translation>
+   <translation id="otrs_detail_reopen_error" qtlid="228904">Er is een fout opgetreden bij het heropenen van dit ticket.</translation>
+   <translation id="otrs_detail_close_error" qtlid="228917">Er is een fout opgetreden bij het sluiten van dit ticket.</translation>
 
-    <translation id="otrs_detail_info" qtlid="228930">Indien u wilt antwoorden op het ticket, vul dan svp het tekstvak bovenaan in, en klik op "reply".</translation>
-    <translation id="otrs_detail_info2" qtlid="228943">Om het ticket te heropenen, vul dan het bovenstaande tekstvak in, en klik op "heropen het ticket".</translation>
+   <translation id="otrs_detail_info" qtlid="228930">Indien u wilt antwoorden op het ticket, vul dan svp het tekstvak bovenaan in, en klik op "reply".</translation>
+   <translation id="otrs_detail_info2" qtlid="228943">Om het ticket te heropenen, vul dan het bovenstaande tekstvak in, en klik op "heropen het ticket".</translation>
 
-    <translation id="otrs_detail_tiket_title" qtlid="384207">Support - Bekijk ticket details {{id}}</translation>
+   <translation id="otrs_detail_tiket_title" qtlid="384207">Support - Bekijk ticket details {{id}}</translation>
 
    <translation id="otrs_menu_ticket_list_title" qtlid="260840">Assistentie - Overzicht van uw tickets</translation>
    <translation id="otrs_menu_ticket_list" qtlid="228631">Lijst met tickets</translation>
@@ -107,25 +107,26 @@
    <translation id="otrs_service_category_DEDICATED_NAS" qtlid="219914">Dedicated Nas</translation>
    <translation id="otrs_service_category_DEDICATED_NASHA" qtlid="219927">Dedicated NasHa</translation>
    <translation id="otrs_service_category_EXCHANGE_HOSTED" qtlid="80430">Exchange</translation>
-   <translation id="otrs_service_category_EXCHANGE_PROVIDER" qtlid="401106">Revendeur Exchange</translation>
+   <translation id="otrs_service_category_EXCHANGE_PROVIDER" qtlid="401106">Exchange Reseller </translation>
    <translation id="otrs_service_category_PROJECT" qtlid="251655">Public Cloud</translation>
    <translation id="otrs_service_category_FAX" qtlid="32926">Fax</translation>
-   <translation id="otrs_service_category_LINE" qtlid="401119">Téléphonie (Ligne)</translation>
-   <translation id="otrs_service_category_NUMBER" qtlid="401132">Téléphonie (Numéro)</translation>
+   <translation id="otrs_service_category_LINE" qtlid="401119">Telefoon (lijn)</translation>
+   <translation id="otrs_service_category_NUMBER" qtlid="401132">Telefoon (nummer)</translation>
    <translation id="otrs_service_category_TIMESERIES" qtlid="383525">Metrics</translation>
+   <translation id="otrs_service_category_CEPH" qtlid="406442">CDA</translation>
    <translation id="otrs_service_category_other" qtlid="316047">Ander verzoek</translation>
 
-    <translation id="otrs_universe_choice" qtlid="406455">Dienst: </translation>
-    <translation id="otrs_universe_WEB" qtlid="135840">Web</translation>
-    <translation id="otrs_universe_SUNRISE" qtlid="232401">Sunrise</translation>
-    <translation id="otrs_universe_TELECOM" qtlid="135827">Telecom</translation>
-    <translation id="otrs_universe_CLOUD_DEDICATED" qtlid="406468">Cloud en Dedicated</translation>
+   <translation id="otrs_universe_choice" qtlid="406455">Dienst: </translation>
+   <translation id="otrs_universe_WEB" qtlid="135840">Web</translation>
+   <translation id="otrs_universe_SUNRISE" qtlid="232401">Sunrise</translation>
+   <translation id="otrs_universe_TELECOM" qtlid="135827">Telecom</translation>
+   <translation id="otrs_universe_CLOUD_DEDICATED" qtlid="406468">Cloud en Dedicated</translation>
 
-   <translation id="otrs_category_null"/>
+<translation id="otrs_category_null"/>
    <translation id="otrs_category_neworder" qtlid="251681">Nieuwe bestelling</translation>
    <translation id="otrs_category_billing" qtlid="32950">Facturatie</translation>
    <translation id="otrs_category_choice" qtlid="251746">Support opties:</translation>
-   <translation id="otrs_category_billing" qtlid="251759">Vraag betreffende een bestelling</translation>
+   <translation id="otrs_category_billing" qtlid="251759">Vraag over een bestelling</translation>
    <translation id="otrs_category_assistance" qtlid="251772">Technische en commerciële support</translation>
    <translation id="otrs_category_incident" qtlid="68252">Een storing melden</translation>
 
@@ -148,7 +149,7 @@
    <translation id="otrs_popup_type" qtlid="245194">Ticket type:</translation>
    <translation id="otrs_popup_move" qtlid="228462">U kunt deze popup verplaatsen door zijn header te verplaatsen.</translation>
    <translation id="otrs_popup_sent_error" qtlid="228475">Er is een fout opgetreden tijdens het aanmaken van dit ticket.</translation>
-   <translation id="otrs_popup_sent_success" qtlid="261023">Uw ticketnummer {{ticketNumber}} is in behandeling genomen. U kunt de gespreksgeschiedenis van dit ticket terugvinden in het menu <a href="#/support">Assistentie - Overzicht van uw tickets</a>.</translation>
+   <translation id="otrs_popup_sent_success" qtlid="454891">Votre ticket numéro {{ticketNumber}} a bien été pris en compte. Vous pouvez retrouver le fil de discussion de ce ticket depuis le menu <a href="#/ticket">Assistance - liste des tickets</a>.</translation>
    <translation id="otrs_popup_get_services_error" qtlid="228501">Er is een fout opgetreden bij het ophalen van uw diensten.</translation>
    <translation id="otrs_popup_get_types_error" qtlid="233047">Er is een fout opgetreden tijdens het ophalen van de gegevens.</translation>
    <translation id="otrs_popup_services_refresh" qtlid="228514">De lijst updaten</translation>

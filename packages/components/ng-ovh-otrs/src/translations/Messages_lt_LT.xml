@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <translations>
-    <translation id="otrs_detail_title" qtlid="245181">Grįžti į jūsų kvitų sąrašą</translation>
-    <translation id="otrs_detail_title2" qtlid="228774">- kvitas {0}</translation>
-    <translation id="otrs_detail_title3_open" qtlid="228787">- (vykdoma)</translation>
-    <translation id="otrs_detail_title3_closed" qtlid="228800">- (uždaryta)</translation>
+   <translation id="otrs_detail_title" qtlid="245181">Grįžti į jūsų kvitų sąrašą</translation>
+   <translation id="otrs_detail_title2" qtlid="228774">- kvitas {0}</translation>
+   <translation id="otrs_detail_title3_open" qtlid="228787">- (vykdoma)</translation>
+   <translation id="otrs_detail_title3_closed" qtlid="228800">- (uždaryta)</translation>
 
-    <translation id="otrs_detail_error" qtlid="228813">Klaida gaunant kvito nr. {0} informaciją.</translation>
-    <translation id="otrs_detail_message_error" qtlid="228826">Klaida gaunant kvito nr. {0} pranešimus.</translation>
+   <translation id="otrs_detail_error" qtlid="228813">Klaida gaunant kvito nr. {0} informaciją.</translation>
+   <translation id="otrs_detail_message_error" qtlid="228826">Klaida gaunant kvito nr. {0} pranešimus.</translation>
 
-    <translation id="otrs_detail_subject" qtlid="75594">Kvito tema:</translation>
-    <translation id="otrs_detail_serviceName" qtlid="228423">Susijusi paslauga:</translation>
-    <translation id="otrs_detail_creationDate" qtlid="228839">Atidarytas nuo:</translation>
-    <translation id="otrs_detail_updateDate" qtlid="228852">Atnaujinta:</translation>
-    <translation id="otrs_detail_from_customer" qtlid="228865">Nuo: Jūsų</translation>
-    <translation id="otrs_detail_from_support" qtlid="228878">Nuo: OVH pagalbos</translation>
-    <translation id="otrs_detail_raw_version" qtlid="244664">Pažiūrėti pranešimo raw versiją</translation>
-    <translation id="otrs_detail_cook_version" qtlid="244677">Peržiūrėti interpretuotą pranešimą</translation>
-    <translation id="otrs_detail_reply" qtlid="69233">Atsakyti</translation>
-    <translation id="otrs_detail_close" qtlid="62774">Uždaryti kvitą</translation>
-    <translation id="otrs_detail_reopen" qtlid="227624">Atidaryti kvitą iš naujo</translation>
-    <translation id="otrs_detail_reply_error" qtlid="228891">Klaida siunčiant jūsų atsakymą.</translation>
-    <translation id="otrs_detail_reopen_error" qtlid="228904">Klaida bandant iš naujo atidaryti šį kvitą.</translation>
-    <translation id="otrs_detail_close_error" qtlid="228917">Klaida uždarant šį kvitą.</translation>
+   <translation id="otrs_detail_subject" qtlid="75594">Kvito tema:</translation>
+   <translation id="otrs_detail_serviceName" qtlid="228423">Susijusi paslauga:</translation>
+   <translation id="otrs_detail_creationDate" qtlid="228839">Atidarytas nuo:</translation>
+   <translation id="otrs_detail_updateDate" qtlid="228852">Atnaujinta:</translation>
+   <translation id="otrs_detail_from_customer" qtlid="228865">Nuo: Jūsų</translation>
+   <translation id="otrs_detail_from_support" qtlid="228878">Nuo: OVH pagalbos</translation>
+   <translation id="otrs_detail_raw_version" qtlid="244664">Pažiūrėti pranešimo raw versiją</translation>
+   <translation id="otrs_detail_cook_version" qtlid="244677">Peržiūrėti interpretuotą pranešimą</translation>
+   <translation id="otrs_detail_reply" qtlid="69233">Atsakyti</translation>
+   <translation id="otrs_detail_close" qtlid="62774">Uždaryti kvitą</translation>
+   <translation id="otrs_detail_reopen" qtlid="227624">Atidaryti kvitą iš naujo</translation>
+   <translation id="otrs_detail_reply_error" qtlid="228891">Klaida siunčiant jūsų atsakymą.</translation>
+   <translation id="otrs_detail_reopen_error" qtlid="228904">Klaida bandant iš naujo atidaryti šį kvitą.</translation>
+   <translation id="otrs_detail_close_error" qtlid="228917">Klaida uždarant šį kvitą.</translation>
 
-    <translation id="otrs_detail_info" qtlid="228930">Atsakymui naudokite teksto laukelį, esantį žemiau, įvedę tekstą spragtelėkite mygtuką "Atsakyti".</translation>
-    <translation id="otrs_detail_info2" qtlid="228943">Pakartotiniam kvito atidarymui naudokite teksto laukelį, esantį žemiau, įvedę tekstą spragtelėkite mygtuką "Atidaryti kvitą".</translation>
+   <translation id="otrs_detail_info" qtlid="228930">Atsakymui naudokite teksto laukelį, esantį žemiau, įvedę tekstą spragtelėkite mygtuką "Atsakyti".</translation>
+   <translation id="otrs_detail_info2" qtlid="228943">Pakartotiniam kvito atidarymui naudokite teksto laukelį, esantį žemiau, įvedę tekstą spragtelėkite mygtuką "Atidaryti kvitą".</translation>
 
-    <translation id="otrs_detail_tiket_title" qtlid="384207">Pagalba - Kvito {{id}} išklotinė</translation>
+   <translation id="otrs_detail_tiket_title" qtlid="384207">Pagalba - Kvito {{id}} išklotinė</translation>
 
    <translation id="otrs_menu_ticket_list_title" qtlid="260840">Pagalba - Kvitų sąrašas</translation>
    <translation id="otrs_menu_ticket_list" qtlid="228631">Kvitų sąrašas</translation>
@@ -107,25 +107,26 @@
    <translation id="otrs_service_category_DEDICATED_NAS" qtlid="219914">Dedicated NAS</translation>
    <translation id="otrs_service_category_DEDICATED_NASHA" qtlid="219927">Dedicated NasHa</translation>
    <translation id="otrs_service_category_EXCHANGE_HOSTED" qtlid="80430">Exchange</translation>
-   <translation id="otrs_service_category_EXCHANGE_PROVIDER" qtlid="401106">Revendeur Exchange</translation>
+   <translation id="otrs_service_category_EXCHANGE_PROVIDER" qtlid="401106">Exchange Reseller</translation>
    <translation id="otrs_service_category_PROJECT" qtlid="251655">Public Cloud</translation>
    <translation id="otrs_service_category_FAX" qtlid="32926">Faksas</translation>
-   <translation id="otrs_service_category_LINE" qtlid="401119">Téléphonie (Ligne)</translation>
-   <translation id="otrs_service_category_NUMBER" qtlid="401132">Téléphonie (Numéro)</translation>
+   <translation id="otrs_service_category_LINE" qtlid="401119">Telefonija (linija)</translation>
+   <translation id="otrs_service_category_NUMBER" qtlid="401132">Telefonija (numeris)</translation>
    <translation id="otrs_service_category_TIMESERIES" qtlid="383525">Metrics</translation>
+   <translation id="otrs_service_category_CEPH" qtlid="406442">CDA</translation>
    <translation id="otrs_service_category_other" qtlid="316047">Kita užklausa</translation>
 
-    <translation id="otrs_universe_choice" qtlid="406455">Aplinka:</translation>
-    <translation id="otrs_universe_WEB" qtlid="135840">Web</translation>
-    <translation id="otrs_universe_SUNRISE" qtlid="232401">Sunrise</translation>
-    <translation id="otrs_universe_TELECOM" qtlid="135827">Telecom</translation>
-    <translation id="otrs_universe_CLOUD_DEDICATED" qtlid="406468">Cloud ir Dedicated</translation>
+   <translation id="otrs_universe_choice" qtlid="406455">Aplinka:</translation>
+   <translation id="otrs_universe_WEB" qtlid="135840">Web</translation>
+   <translation id="otrs_universe_SUNRISE" qtlid="232401">Sunrise</translation>
+   <translation id="otrs_universe_TELECOM" qtlid="135827">Telecom</translation>
+   <translation id="otrs_universe_CLOUD_DEDICATED" qtlid="406468">Cloud ir Dedicated</translation>
 
-   <translation id="otrs_category_null"/>
+<translation id="otrs_category_null"/>
    <translation id="otrs_category_neworder" qtlid="251681">Naujas užsakymas</translation>
    <translation id="otrs_category_billing" qtlid="32950">Sąskaita</translation>
    <translation id="otrs_category_choice" qtlid="251746">Pagalbos pasirinkimas:</translation>
-   <translation id="otrs_category_billing" qtlid="251759">Klausimas apie užsakymus</translation>
+   <translation id="otrs_category_billing" qtlid="251759">Mano užsakymų stebėjimas</translation>
    <translation id="otrs_category_assistance" qtlid="251772">Techninė ir komercinė pagalba</translation>
    <translation id="otrs_category_incident" qtlid="68252">Pranešti apie gedimą</translation>
 
@@ -148,7 +149,7 @@
    <translation id="otrs_popup_type" qtlid="245194">Kvito tipas:</translation>
    <translation id="otrs_popup_move" qtlid="228462">Galite perkelti šį langą spragtelėję jo antraštę</translation>
    <translation id="otrs_popup_sent_error" qtlid="228475">Klaida kuriant šį kvitą.</translation>
-   <translation id="otrs_popup_sent_success" qtlid="261023">Jūsų kvitas Nr. {{ticketNumber}} sėkmingai priimtas. Jūs galite stebėti visą susirašinėjimą su pagalba šiame meniu <a href="#/support">Pagalba - kvitų sąrašas</a>.</translation>
+   <translation id="otrs_popup_sent_success" qtlid="454891">Votre ticket numéro {{ticketNumber}} a bien été pris en compte. Vous pouvez retrouver le fil de discussion de ce ticket depuis le menu <a href="#/ticket">Assistance - liste des tickets</a>.</translation>
    <translation id="otrs_popup_get_services_error" qtlid="228501">Klaida nuskaitant jūsų paslaugas.</translation>
    <translation id="otrs_popup_get_types_error" qtlid="233047">Klaida nuskaitant informaciją.</translation>
    <translation id="otrs_popup_services_refresh" qtlid="228514">Atnaujinti sąrašą</translation>
