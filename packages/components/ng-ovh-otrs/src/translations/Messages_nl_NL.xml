@@ -149,7 +149,7 @@
    <translation id="otrs_popup_type" qtlid="245194">Ticket type:</translation>
    <translation id="otrs_popup_move" qtlid="228462">U kunt deze popup verplaatsen door zijn header te verplaatsen.</translation>
    <translation id="otrs_popup_sent_error" qtlid="228475">Er is een fout opgetreden tijdens het aanmaken van dit ticket.</translation>
-   <translation id="otrs_popup_sent_success" qtlid="454891">Votre ticket numéro {{ticketNumber}} a bien été pris en compte. Vous pouvez retrouver le fil de discussion de ce ticket depuis le menu <a href="#/ticket">Assistance - liste des tickets</a>.</translation>
+   <translation id="otrs_popup_sent_success" qtlid="454891">Uw ticketnummer {{ticketNumber}} is in behandeling genomen. U kunt de gespreksgeschiedenis van dit ticket terugvinden in het menu <a href="#/ticket">Assistentie - Overzicht van uw tickets</a>.</translation>
    <translation id="otrs_popup_get_services_error" qtlid="228501">Er is een fout opgetreden bij het ophalen van uw diensten.</translation>
    <translation id="otrs_popup_get_types_error" qtlid="233047">Er is een fout opgetreden tijdens het ophalen van de gegevens.</translation>
    <translation id="otrs_popup_services_refresh" qtlid="228514">De lijst updaten</translation>

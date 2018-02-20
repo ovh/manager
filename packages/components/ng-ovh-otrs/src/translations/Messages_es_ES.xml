@@ -149,7 +149,7 @@
    <translation id="otrs_popup_type" qtlid="245194">Tipo de tíquet:</translation>
    <translation id="otrs_popup_move" qtlid="228462">Para mover esta ventana, haga clic en la barra superior y arrástrela. </translation>
    <translation id="otrs_popup_sent_error" qtlid="228475">Se ha producido un error al crear el tíquet.</translation>
-   <translation id="otrs_popup_sent_success" qtlid="454891">Votre ticket numéro {{ticketNumber}} a bien été pris en compte. Vous pouvez retrouver le fil de discussion de ce ticket depuis le menu <a href="#/ticket">Assistance - liste des tickets</a>.</translation>
+   <translation id="otrs_popup_sent_success" qtlid="454891">Su tíquet número {{ticketNumber}} se ha enviado. Puede consultar la conversación del tíquet desde el menú <a href="#/ticket">Soporte > Lista de tíquets</a>.</translation>
    <translation id="otrs_popup_get_services_error" qtlid="228501">Se ha producido un error al cargar los servicios.</translation>
    <translation id="otrs_popup_get_types_error" qtlid="233047">Se ha producido un error al cargar la información.</translation>
    <translation id="otrs_popup_services_refresh" qtlid="228514">Actualizar la lista</translation>

@@ -149,7 +149,7 @@
    <translation id="otrs_popup_type" qtlid="245194">Kvito tipas:</translation>
    <translation id="otrs_popup_move" qtlid="228462">Galite perkelti šį langą spragtelėję jo antraštę</translation>
    <translation id="otrs_popup_sent_error" qtlid="228475">Klaida kuriant šį kvitą.</translation>
-   <translation id="otrs_popup_sent_success" qtlid="454891">Votre ticket numéro {{ticketNumber}} a bien été pris en compte. Vous pouvez retrouver le fil de discussion de ce ticket depuis le menu <a href="#/ticket">Assistance - liste des tickets</a>.</translation>
+   <translation id="otrs_popup_sent_success" qtlid="454891">Jūsų kvitas Nr. {{ticketNumber}} sėkmingai priimtas. Jūs galite stebėti visą susirašinėjimą su pagalba šiame meniu <a href="#/ticket">Pagalba - kvitų sąrašas</a>.</translation>
    <translation id="otrs_popup_get_services_error" qtlid="228501">Klaida nuskaitant jūsų paslaugas.</translation>
    <translation id="otrs_popup_get_types_error" qtlid="233047">Klaida nuskaitant informaciją.</translation>
    <translation id="otrs_popup_services_refresh" qtlid="228514">Atnaujinti sąrašą</translation>

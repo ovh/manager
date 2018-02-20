@@ -149,7 +149,7 @@
    <translation id="otrs_popup_type" qtlid="245194">Tiketin tyyppi</translation>
    <translation id="otrs_popup_move" qtlid="228462">Voit siirtää tätä pop–up-ikkunaa siirtämällä sen otsikkoa.</translation>
    <translation id="otrs_popup_sent_error" qtlid="228475">Tapahtui virhe tiketin luomisen aikana.</translation>
-   <translation id="otrs_popup_sent_success" qtlid="454891">Votre ticket numéro {{ticketNumber}} a bien été pris en compte. Vous pouvez retrouver le fil de discussion de ce ticket depuis le menu <a href="#/ticket">Assistance - liste des tickets</a>.</translation>
+   <translation id="otrs_popup_sent_success" qtlid="454891">Tikettisi {{ticketNumber}} on luotu onnistuneesti. Näet tiketin koko viestiketjun osiosta <a href="#/ticket">Tuki – tikettilistaus</a>.</translation>
    <translation id="otrs_popup_get_services_error" qtlid="228501">Tapahtui virhe ladattaessa palveluita.</translation>
    <translation id="otrs_popup_get_types_error" qtlid="233047">Tapahtui virhe ladattaessa tietoja.</translation>
    <translation id="otrs_popup_services_refresh" qtlid="228514">Päivitä lista</translation>

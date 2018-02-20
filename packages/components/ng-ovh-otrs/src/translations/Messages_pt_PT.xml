@@ -149,7 +149,7 @@
    <translation id="otrs_popup_type" qtlid="245194">Tipo de ticket :</translation>
    <translation id="otrs_popup_move" qtlid="228462">Pode mover este pop-up arrastando a janela.</translation>
    <translation id="otrs_popup_sent_error" qtlid="228475">Ocorreu um erro aquando da criação deste ticket</translation>
-   <translation id="otrs_popup_sent_success" qtlid="454891">Votre ticket numéro {{ticketNumber}} a bien été pris en compte. Vous pouvez retrouver le fil de discussion de ce ticket depuis le menu <a href="#/ticket">Assistance - liste des tickets</a>.</translation>
+   <translation id="otrs_popup_sent_success" qtlid="454891">O seu ticket {{ticketNumber}} foi corretamente tomado em conta. Poderá encontrar a thread relativa a este ticket a partir do menu <a href="#/ticket">Assistência - lista dos tickets</a>.</translation>
    <translation id="otrs_popup_get_services_error" qtlid="228501">Ocorreu um erro aquando da recuperação dos seus serviços.</translation>
    <translation id="otrs_popup_get_types_error" qtlid="233047">Ocorreu um erro no acesso às informações.</translation>
    <translation id="otrs_popup_services_refresh" qtlid="228514">Atualizar a lista</translation>

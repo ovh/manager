@@ -149,7 +149,7 @@
    <translation id="otrs_popup_type" qtlid="245194">Typ zgłoszenia:</translation>
    <translation id="otrs_popup_move" qtlid="228462">Możesz przenieść to okienko popup przesuwając pasek.</translation>
    <translation id="otrs_popup_sent_error" qtlid="228475">Wystąpił błąd podczas dodawania tego zgłoszenia.</translation>
-   <translation id="otrs_popup_sent_success" qtlid="454891">Votre ticket numéro {{ticketNumber}} a bien été pris en compte. Vous pouvez retrouver le fil de discussion de ce ticket depuis le menu <a href="#/ticket">Assistance - liste des tickets</a>.</translation>
+   <translation id="otrs_popup_sent_success" qtlid="454891">Zgłoszenie numer {{ticketNumber}} zostało zarejestrowane. Jest ono dostępne w zakładce <a href="#/support">Pomoc - lista zgłoszeń</a>.</translation>
    <translation id="otrs_popup_get_services_error" qtlid="228501">Wystąpił błąd podczas pobierania informacji o usługach.</translation>
    <translation id="otrs_popup_get_types_error" qtlid="233047">Wystąpił błąd podczas pobierania informacji.</translation>
    <translation id="otrs_popup_services_refresh" qtlid="228514">Zaktualizuj listę</translation>
