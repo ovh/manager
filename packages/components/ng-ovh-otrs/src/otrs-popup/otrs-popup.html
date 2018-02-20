@@ -39,6 +39,20 @@
            data-ng-if="OtrsPopupCtrl.isVIP"
            data-translate="otrs_vip_phone">
         </p>
+
+        <div class="alert alert-dismissible"
+             role="alert"
+             data-ng-class="'alert-' + OtrsPopupCtrl.alert.type"
+             data-ng-if="OtrsPopupCtrl.alert.visible">
+            <button type="button"
+                    class="close"
+                    data-dismiss="alert"
+                    aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <p data-ng-bind-html="OtrsPopupCtrl.alert.message"></p>
+        </div>
+
         <form id="otrsPopupForm"
               name="OtrsPopupCtrl.otrsPopupForm"
               novalidate

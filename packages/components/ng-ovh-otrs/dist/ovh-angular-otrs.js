@@ -50,7 +50,7 @@ angular.module("ovh-angular-otrs")
         US: ["CLOUD_DEDICATED"]
     });
 
-angular.module("ovh-angular-otrs").controller("OtrsPopupCtrl", ["$rootScope", "$stateParams", "$translate", "$q", "OvhApiMeVipStatus", "OvhApiMe", "OvhApiSupport", "OvhApiProductsAapi", "Toast", "OtrsPopupService", "UNIVERSE", "TICKET_CATEGORIES", "OTRS_POPUP_ASSISTANCE_ENUM", "OTRS_POPUP_BILLING_ENUM", "OTRS_POPUP_INCIDENT_ENUM", "OTRS_POPUP_INTERVENTION_ENUM", "OTRS_POPUP_UNIVERSES", function ($rootScope, $stateParams, $translate, $q, OvhApiMeVipStatus, OvhApiMe, OvhApiSupport, OvhApiProductsAapi, Toast, OtrsPopupService, UNIVERSE,
+angular.module("ovh-angular-otrs").controller("OtrsPopupCtrl", ["$rootScope", "$stateParams", "$translate", "$q", "OvhApiMeVipStatus", "OvhApiMe", "OvhApiSupport", "OvhApiProductsAapi", "OtrsPopupService", "UNIVERSE", "TICKET_CATEGORIES", "OTRS_POPUP_ASSISTANCE_ENUM", "OTRS_POPUP_BILLING_ENUM", "OTRS_POPUP_INCIDENT_ENUM", "OTRS_POPUP_INTERVENTION_ENUM", "OTRS_POPUP_UNIVERSES", function ($rootScope, $stateParams, $translate, $q, OvhApiMeVipStatus, OvhApiMe, OvhApiSupport, OvhApiProductsAapi, OtrsPopupService, UNIVERSE,
                                                                          TICKET_CATEGORIES, OTRS_POPUP_ASSISTANCE_ENUM, OTRS_POPUP_BILLING_ENUM, OTRS_POPUP_INCIDENT_ENUM, OTRS_POPUP_INTERVENTION_ENUM, OTRS_POPUP_UNIVERSES) {
     "use strict";
 
@@ -72,6 +72,17 @@ angular.module("ovh-angular-otrs").controller("OtrsPopupCtrl", ["$rootScope", "$
         self.selectedUniverse = _.includes(["CLOUD", "DEDICATED"], standardizedUniverse) || !standardizedUniverse ? "CLOUD_DEDICATED" : standardizedUniverse;
     }
 
+    function manageAlert (message, type) {
+        if (!message) {
+            self.alert.visible = false;
+            return;
+        }
+
+        self.alert.visible = true;
+        self.alert.message = message;
+        self.alert.type = type;
+    }
+
     $rootScope.$on("$stateChangeSuccess", function (event, toState, toParams) {
         if (toParams.projectId && self.services && self.services.indexOf(toParams.projectId) !== -1) {
             self.ticket.serviceName = toParams.projectId;
@@ -79,6 +90,9 @@ angular.module("ovh-angular-otrs").controller("OtrsPopupCtrl", ["$rootScope", "$
     });
 
     self.sendTicket = function () {
+        // hide alert
+        manageAlert();
+
         if (!self.loaders.send && self.ticket.body) {
             self.loaders.send = true;
 
@@ -93,11 +107,10 @@ angular.module("ovh-angular-otrs").controller("OtrsPopupCtrl", ["$rootScope", "$
                     self.otrsPopupForm.$setUntouched();
                     self.otrsPopupForm.$setPristine();
                     $rootScope.$broadcast("ticket.otrs.reload");
-                    OtrsPopupService.close();
-                    Toast.success($translate.instant("otrs_popup_sent_success", { ticketNumber: data.ticketNumber, ticketId: data.ticketId }));
+                    manageAlert($translate.instant("otrs_popup_sent_success", { ticketNumber: data.ticketNumber, ticketId: data.ticketId }), "success");
                 },
                 function (err) {
-                    Toast.error([($translate.instant("otrs_popup_sent_error"), err.data && err.data.message) || ""].join(" "));
+                    manageAlert([($translate.instant("otrs_popup_sent_error"), err.data && err.data.message) || ""].join(" "), "danger");
                 }
             ).finally(function () {
                 self.loaders.send = false;
@@ -111,6 +124,8 @@ angular.module("ovh-angular-otrs").controller("OtrsPopupCtrl", ["$rootScope", "$
         self.loaders.services = true;
         self.services = [];
 
+        // hide alert
+        manageAlert();
 
         OvhApiProductsAapi.get({
             includeInactives: true,
@@ -138,7 +153,7 @@ angular.module("ovh-angular-otrs").controller("OtrsPopupCtrl", ["$rootScope", "$
                 self.services = services;
             });
         })
-            .catch(function (err) { Toast.error([($translate.instant("otrs_err_get_infos"), err.data && err.data.message) || ""].join(" ")); })
+            .catch(function (err) { manageAlert([($translate.instant("otrs_err_get_infos"), err.data && err.data.message) || ""].join(" "), "danger"); })
             .finally(function () { self.loaders.services = false; });
     };
 
@@ -151,9 +166,18 @@ angular.module("ovh-angular-otrs").controller("OtrsPopupCtrl", ["$rootScope", "$
             models: true
         };
 
+        self.alert = {
+            visible: false,
+            type: null,
+            message: null
+        };
+
         self.isVIP = false;
 
         self.getServices();
+
+        // hide alert
+        manageAlert();
 
         $q.all([OvhApiMe.Lexi().get().$promise, OvhApiSupport.Lexi().schema().$promise]).then(function (data) {
             self.types = data[1].models["support.TicketTypeEnum"].enum;
@@ -193,7 +217,7 @@ angular.module("ovh-angular-otrs").controller("OtrsPopupCtrl", ["$rootScope", "$
             }
         }
         )
-            .catch(function (err) { Toast.error([($translate.instant("otrs_err_get_infos"), err.data && err.data.message) || ""].join(" ")); })
+            .catch(function (err) { manageAlert([($translate.instant("otrs_err_get_infos"), err.data && err.data.message) || ""].join(" "), "danger"); })
             .finally(function () { self.loaders.models = false; });
 
         OvhApiMeVipStatus.Lexi().get().$promise.then(function (vipStatus) {
@@ -343,7 +367,7 @@ angular.module('ovh-angular-otrs').run(['$templateCache', function($templateCach
     "        'minimize': status.minimize,\n" +
     "        'maximize': status.maximize,\n" +
     "        'close': status.close\n" +
-    "    }\"><div class=draggable-header id=headerPopup><span data-translate=otrs_popup_title></span><div class=\"otrs_popup_tools float-right\"><button type=button aria-label=\"{{:: 'otrs_popup_icon_minimize' | translate }}\" data-ng-click=minimize()><span class=\"fa fa-window-minimize\" aria-hidden=true></span></button> <button type=button aria-label=\"{{:: 'otrs_popup_icon_maximize' | translate }}\" data-ng-click=toggle()><span class=\"fa fa-window-maximize\" aria-hidden=true></span></button> <button type=button aria-label=\"{{:: 'otrs_popup_icon_close' | translate }}\" data-ng-click=close()><span class=\"fa fa-close\" aria-hidden=true></span></button></div></div><div id=contentPopup data-ng-controller=\"OtrsPopupCtrl as OtrsPopupCtrl\"><p class=\"text-center font-italic\" data-translate=otrs_popup_move></p><p class=\"text-center font-italic\" data-ng-if=OtrsPopupCtrl.isVIP data-translate=otrs_vip_phone></p><form id=otrsPopupForm name=OtrsPopupCtrl.otrsPopupForm novalidate data-ng-submit=OtrsPopupCtrl.sendTicket()><div class=form-group data-ng-if=\"OtrsPopupCtrl.universes.length > 1\"><label for=select-universe class=control-label data-translate=otrs_universe_choice></label><select class=form-control id=select-universe name=select-universe required data-ng-model=OtrsPopupCtrl.selectedUniverse data-ng-options=\"universe as ( 'otrs_universe_'+ universe | translate ) for universe in OtrsPopupCtrl.universes\" data-ng-change=OtrsPopupCtrl.getServices()></select></div><div class=form-group><label for=select-services class=control-label><span data-translate=otrs_popup_service></span><oui-spinner data-ng-show=OtrsPopupCtrl.loaders.services data-size=s></oui-spinner></label><select class=form-control id=select-services name=select-services required data-ng-model=OtrsPopupCtrl.ticket.serviceName data-ng-disabled=OtrsPopupCtrl.loaders.services><optgroup label=\"{{ category.translatedName }}\" data-ng-repeat=\"category in OtrsPopupCtrl.services track by $index\"><option value=\"{{ service.serviceName }}\" data-ng-repeat=\"service in category.services track by $index\" data-ng-bind=service.displayName></option></optgroup></select></div><div class=form-group data-ng-if=OtrsPopupCtrl.isVIP><label for=select-types class=control-label><span data-translate=otrs_popup_type></span><oui-spinner data-ng-show=OtrsPopupCtrl.loaders.models data-size=s></oui-spinner></label><select class=form-control id=select-types name=select-types data-ng-model=OtrsPopupCtrl.ticket.type data-ng-options=\"type as ( 'otrs_types_'+type | translate ) for type in OtrsPopupCtrl.types\" data-ng-disabled=OtrsPopupCtrl.loaders.models></select></div><div class=form-group><label for=select-requests class=control-label><span data-translate=otrs_category_choice></span><oui-spinner data-ng-show=OtrsPopupCtrl.loaders.models data-size=s></oui-spinner></label><select class=form-control id=select-requests name=select-requests required data-ng-model=OtrsPopupCtrl.ticket.category data-ng-options=\"request as ( 'otrs_category_'+request | translate ) for request in OtrsPopupCtrl.requests\" data-ng-disabled=OtrsPopupCtrl.loaders.models></select></div><div class=form-group data-ng-show=OtrsPopupCtrl.ticket.category><label for=select-subCategories class=control-label><span data-translate=otrs_subCategory_choice></span><oui-spinner data-ng-show=OtrsPopupCtrl.loaders.models data-size=s></oui-spinner></label><select class=form-control id=select-subCategories name=select-requests required data-ng-model=OtrsPopupCtrl.ticket.subcategory data-ng-options=\"subCategory as ('otrs_subCategory_' + OtrsPopupCtrl.ticket.category + '_' + subCategory | translate) for subCategory in OtrsPopupCtrl.subCategories[OtrsPopupCtrl.ticket.category]\" data-ng-disabled=OtrsPopupCtrl.loaders.models></select></div><div class=form-group><label for=txt-subject class=control-label data-translate=otrs_popup_subject></label><input id=txt-subject name=txt-subject class=form-control required placeholder=\"{{:: 'otrs_popup_subject' | translate }}\" data-ng-model=OtrsPopupCtrl.ticket.subject></div><div class=form-group><label for=txt-message class=control-label data-translate=otrs_popup_body></label><textarea id=txt-message name=txt-message class=form-control rows=8 required placeholder=\"{{:: 'otrs_popup_body' | translate }}\" data-ng-model=OtrsPopupCtrl.ticket.body>\n" +
+    "    }\"><div class=draggable-header id=headerPopup><span data-translate=otrs_popup_title></span><div class=\"otrs_popup_tools float-right\"><button type=button aria-label=\"{{:: 'otrs_popup_icon_minimize' | translate }}\" data-ng-click=minimize()><span class=\"fa fa-window-minimize\" aria-hidden=true></span></button> <button type=button aria-label=\"{{:: 'otrs_popup_icon_maximize' | translate }}\" data-ng-click=toggle()><span class=\"fa fa-window-maximize\" aria-hidden=true></span></button> <button type=button aria-label=\"{{:: 'otrs_popup_icon_close' | translate }}\" data-ng-click=close()><span class=\"fa fa-close\" aria-hidden=true></span></button></div></div><div id=contentPopup data-ng-controller=\"OtrsPopupCtrl as OtrsPopupCtrl\"><p class=\"text-center font-italic\" data-translate=otrs_popup_move></p><p class=\"text-center font-italic\" data-ng-if=OtrsPopupCtrl.isVIP data-translate=otrs_vip_phone></p><div class=\"alert alert-dismissible\" role=alert data-ng-class=\"'alert-' + OtrsPopupCtrl.alert.type\" data-ng-if=OtrsPopupCtrl.alert.visible><button type=button class=close data-dismiss=alert aria-label=Close><span aria-hidden=true>&times;</span></button><p data-ng-bind-html=OtrsPopupCtrl.alert.message></p></div><form id=otrsPopupForm name=OtrsPopupCtrl.otrsPopupForm novalidate data-ng-submit=OtrsPopupCtrl.sendTicket()><div class=form-group data-ng-if=\"OtrsPopupCtrl.universes.length > 1\"><label for=select-universe class=control-label data-translate=otrs_universe_choice></label><select class=form-control id=select-universe name=select-universe required data-ng-model=OtrsPopupCtrl.selectedUniverse data-ng-options=\"universe as ( 'otrs_universe_'+ universe | translate ) for universe in OtrsPopupCtrl.universes\" data-ng-change=OtrsPopupCtrl.getServices()></select></div><div class=form-group><label for=select-services class=control-label><span data-translate=otrs_popup_service></span><oui-spinner data-ng-show=OtrsPopupCtrl.loaders.services data-size=s></oui-spinner></label><select class=form-control id=select-services name=select-services required data-ng-model=OtrsPopupCtrl.ticket.serviceName data-ng-disabled=OtrsPopupCtrl.loaders.services><optgroup label=\"{{ category.translatedName }}\" data-ng-repeat=\"category in OtrsPopupCtrl.services track by $index\"><option value=\"{{ service.serviceName }}\" data-ng-repeat=\"service in category.services track by $index\" data-ng-bind=service.displayName></option></optgroup></select></div><div class=form-group data-ng-if=OtrsPopupCtrl.isVIP><label for=select-types class=control-label><span data-translate=otrs_popup_type></span><oui-spinner data-ng-show=OtrsPopupCtrl.loaders.models data-size=s></oui-spinner></label><select class=form-control id=select-types name=select-types data-ng-model=OtrsPopupCtrl.ticket.type data-ng-options=\"type as ( 'otrs_types_'+type | translate ) for type in OtrsPopupCtrl.types\" data-ng-disabled=OtrsPopupCtrl.loaders.models></select></div><div class=form-group><label for=select-requests class=control-label><span data-translate=otrs_category_choice></span><oui-spinner data-ng-show=OtrsPopupCtrl.loaders.models data-size=s></oui-spinner></label><select class=form-control id=select-requests name=select-requests required data-ng-model=OtrsPopupCtrl.ticket.category data-ng-options=\"request as ( 'otrs_category_'+request | translate ) for request in OtrsPopupCtrl.requests\" data-ng-disabled=OtrsPopupCtrl.loaders.models></select></div><div class=form-group data-ng-show=OtrsPopupCtrl.ticket.category><label for=select-subCategories class=control-label><span data-translate=otrs_subCategory_choice></span><oui-spinner data-ng-show=OtrsPopupCtrl.loaders.models data-size=s></oui-spinner></label><select class=form-control id=select-subCategories name=select-requests required data-ng-model=OtrsPopupCtrl.ticket.subcategory data-ng-options=\"subCategory as ('otrs_subCategory_' + OtrsPopupCtrl.ticket.category + '_' + subCategory | translate) for subCategory in OtrsPopupCtrl.subCategories[OtrsPopupCtrl.ticket.category]\" data-ng-disabled=OtrsPopupCtrl.loaders.models></select></div><div class=form-group><label for=txt-subject class=control-label data-translate=otrs_popup_subject></label><input id=txt-subject name=txt-subject class=form-control required placeholder=\"{{:: 'otrs_popup_subject' | translate }}\" data-ng-model=OtrsPopupCtrl.ticket.subject></div><div class=form-group><label for=txt-message class=control-label data-translate=otrs_popup_body></label><textarea id=txt-message name=txt-message class=form-control rows=8 required placeholder=\"{{:: 'otrs_popup_body' | translate }}\" data-ng-model=OtrsPopupCtrl.ticket.body>\n" +
     "                </textarea></div><div class=form-group><button type=submit class=\"btn btn-block btn-primary\" data-ng-disabled=\"!OtrsPopupCtrl.otrsPopupForm.$valid || OtrsPopupCtrl.loaders.services || OtrsPopupCtrl.loaders.send\"><span class=\"fa fa-envelope\" aria-hidden=true></span> <span data-translate=otrs_popup_add_ticket></span><oui-spinner data-ng-show=OtrsPopupCtrl.loaders.send data-size=s></oui-spinner></button></div></form></div></div>"
   );
 
