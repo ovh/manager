@@ -5,7 +5,7 @@
   top: 44px;
   bottom: 0;
   left: 0;
-  z-index: 1040;
+  z-index: 1020;
   display: block;
   height: 100%;
   padding: 0;
@@ -20,7 +20,7 @@
   top: 0;
   right: 0;
   left: 0;
-  z-index: 1041;
+  z-index: 1021;
   height: 55px;
 }
 #sidebar-menu .order-actions-menu {
@@ -303,7 +303,7 @@
   color: #17273B;
   font-weight: bold;
 }
-@media (max-width: 993px) {
+@media (max-width: 1023px) {
   #sidebar-menu {
     height: 100%;
     padding-top: 55px;
