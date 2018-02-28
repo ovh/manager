@@ -4,10 +4,10 @@ module.exports = function (grunt) {
 
     require('matchdep').filterAll('grunt-*').forEach(grunt.loadNpmTasks);
 
-
     grunt.initConfig({
 
         pkg         : grunt.file.readJSON('package.json'),
+        pkgName     : grunt.file.readJSON('package.json').name.split("/")[1],
         bower       : grunt.file.readJSON('bower.json'),
 
         bowerdir    : 'components',
@@ -32,11 +32,11 @@ module.exports = function (grunt) {
         concat  : {
             dist : {
                 src : config.src.js,
-                dest    : '<%= distdir %>/<%=pkg.name%>.js'
+                dest    : '<%= distdir %>/<%=pkgName%>.js'
             },
             distTpls : {
-                src : ['<%= distdir %>/<%=pkg.name%>.js', '<%= builddir %>/tpls.js'],
-                dest    : '<%= distdir %>/<%=pkg.name%>.tpls.js'
+                src : ['<%= distdir %>/<%=pkgName%>.js', '<%= builddir %>/tpls.js'],
+                dest    : '<%= distdir %>/<%=pkgName%>.tpls.js'
             }
         },
 
@@ -56,13 +56,13 @@ module.exports = function (grunt) {
                 src     : [
                     '<%= concat.dist.dest %>'
                 ],
-                dest    : '<%= distdir %>/<%=pkg.name%>.min.js'
+                dest    : '<%= distdir %>/<%=pkgName%>.min.js'
             },
             distTpls : {
                 src     : [
                     '<%= concat.distTpls.dest %>'
                 ],
-                dest    : '<%= distdir %>/<%=pkg.name%>.tpls.min.js'
+                dest    : '<%= distdir %>/<%=pkgName%>.tpls.min.js'
             }
         },
 

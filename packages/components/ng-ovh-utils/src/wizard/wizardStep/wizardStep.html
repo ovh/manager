@@ -5,34 +5,40 @@
            data-i18n-static="wizard_help"></a>
     </div>
 
-	<div class="wizard-step-content-container modal-body" data-ng-transclude></div>
+    <div class="wizard-step-content-container modal-body pt-0"
+         data-ng-transclude>
+    </div>
 
-	<div class="wizard-btn-container modal-footer"
+    <div class="wizard-btn-container modal-footer"
          data-ng-hide="getCurrentStep() === 1 && stepCount === 1 && !cancelButton && !confirmButton">
-		<button class="btn btn-default" type="button"
+        <button type="button"
+                class="btn btn-default"
                 data-ng-bind="wizardCancelButtonText"
-				data-ng-click="onCancel()"
+                data-ng-click="onCancel()"
                 data-ng-show="cancelButton">
-		</button>
+        </button>
 
-		<button class="btn" type="button"
+        <button type="button"
+                class="btn"
                 data-ng-bind="wizardPreviousButtonText"
                 data-ng-click="previousStep()"
                 data-ng-show="getCurrentStep() > 1 && wizardPreviousButton">
-		</button>
+        </button>
 
-		<button class="btn btn-primary" type="button"
+        <button type="button"
+                class="btn btn-primary"
                 data-ng-bind="wizardNextButtonText"
                 data-ng-click="nextStep()"
                 data-ng-disabled="!stepValid"
                 data-ng-show="getCurrentStep() < stepCount">
-		</button>
+        </button>
 
-		<button class="btn btn-primary" type="button"
+        <button type="button"
+                class="btn btn-primary"
                 data-ng-bind="wizardConfirmButtonText"
                 data-ng-click="nextStep()"
                 data-ng-disabled="!stepValid"
                 data-ng-show="getCurrentStep() == stepCount && confirmButton">
-		</button>
-	</div>
+        </button>
+    </div>
 </div>
