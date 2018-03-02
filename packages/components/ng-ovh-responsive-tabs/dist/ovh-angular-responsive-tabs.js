@@ -175,7 +175,7 @@ angular.module("ovh-angular-responsive-tabs").controller("responsiveTabsCtrl", [
  *
  *
  */
-angular.module("ovh-angular-responsive-tabs").directive("responsiveTabs", ["$window", "$state", function ($window, $state) {
+angular.module("ovh-angular-responsive-tabs").directive("responsiveTabs", ["$window", "$state", "$transitions", function ($window, $state, $transitions) {
     "use strict";
     return {
         restrict: "AE",
@@ -279,8 +279,7 @@ angular.module("ovh-angular-responsive-tabs").directive("responsiveTabs", ["$win
 
             $scope.$on("responsive-tabs-refresh", refreshMenu);
 
-            $scope.$on("$stateChangeSuccess", function () {
-
+            $transitions.onSuccess({}, function () {
                 // At init, select the tab associated with the state.
                 // ...or, if user manually modify the url, we need to select it.
                 angular.forEach(tabsetCtrl.tabs, function (tab) {
