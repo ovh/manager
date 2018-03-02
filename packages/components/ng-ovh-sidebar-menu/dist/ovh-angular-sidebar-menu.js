@@ -767,7 +767,7 @@ angular.module("ovh-angular-sidebar-menu").directive("sidebarMenuList", function
     };
 });
 
-angular.module("ovh-angular-sidebar-menu").controller("SidebarMenuCtrl", ["$scope", "$compile", "$state", "SidebarMenu", function ($scope, $compile, $state, SidebarMenu) {
+angular.module("ovh-angular-sidebar-menu").controller("SidebarMenuCtrl", ["$transitions", "$compile", "$state", "SidebarMenu", function ($transitions, $compile, $state, SidebarMenu) {
     "use strict";
 
     var self = this;
@@ -786,7 +786,7 @@ angular.module("ovh-angular-sidebar-menu").controller("SidebarMenuCtrl", ["$scop
     /* ----------  STATE CHANGE  ----------*/
 
     function initStateChangeSuccess () {
-        $scope.$on("$stateChangeSuccess", function () {
+        $transitions.onSuccess({}, function () {
             SidebarMenu.manageStateChange();
         });
     }

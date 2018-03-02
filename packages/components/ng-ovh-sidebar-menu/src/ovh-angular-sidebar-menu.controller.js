@@ -1,4 +1,4 @@
-angular.module("ovh-angular-sidebar-menu").controller("SidebarMenuCtrl", function ($scope, $compile, $state, SidebarMenu) {
+angular.module("ovh-angular-sidebar-menu").controller("SidebarMenuCtrl", function ($transitions, $compile, $state, SidebarMenu) {
     "use strict";
 
     var self = this;
@@ -17,7 +17,7 @@ angular.module("ovh-angular-sidebar-menu").controller("SidebarMenuCtrl", functio
     /* ----------  STATE CHANGE  ----------*/
 
     function initStateChangeSuccess () {
-        $scope.$on("$stateChangeSuccess", function () {
+        $transitions.onSuccess({}, function () {
             SidebarMenu.manageStateChange();
         });
     }
