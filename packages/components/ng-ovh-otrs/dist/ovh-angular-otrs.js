@@ -50,7 +50,7 @@ angular.module("ovh-angular-otrs")
         US: ["CLOUD_DEDICATED"]
     });
 
-angular.module("ovh-angular-otrs").controller("OtrsPopupCtrl", ["$rootScope", "$stateParams", "$translate", "$q", "OvhApiMeVipStatus", "OvhApiMe", "OvhApiSupport", "OvhApiProductsAapi", "OtrsPopupService", "UNIVERSE", "TICKET_CATEGORIES", "OTRS_POPUP_ASSISTANCE_ENUM", "OTRS_POPUP_BILLING_ENUM", "OTRS_POPUP_INCIDENT_ENUM", "OTRS_POPUP_INTERVENTION_ENUM", "OTRS_POPUP_UNIVERSES", function ($rootScope, $stateParams, $translate, $q, OvhApiMeVipStatus, OvhApiMe, OvhApiSupport, OvhApiProductsAapi, OtrsPopupService, UNIVERSE,
+angular.module("ovh-angular-otrs").controller("OtrsPopupCtrl", ["$rootScope", "$stateParams", "$translate", "$q", "$transitions", "OvhApiMeVipStatus", "OvhApiMe", "OvhApiSupport", "OvhApiProductsAapi", "OtrsPopupService", "UNIVERSE", "TICKET_CATEGORIES", "OTRS_POPUP_ASSISTANCE_ENUM", "OTRS_POPUP_BILLING_ENUM", "OTRS_POPUP_INCIDENT_ENUM", "OTRS_POPUP_INTERVENTION_ENUM", "OTRS_POPUP_UNIVERSES", function ($rootScope, $stateParams, $translate, $q, $transitions, OvhApiMeVipStatus, OvhApiMe, OvhApiSupport, OvhApiProductsAapi, OtrsPopupService, UNIVERSE,
                                                                          TICKET_CATEGORIES, OTRS_POPUP_ASSISTANCE_ENUM, OTRS_POPUP_BILLING_ENUM, OTRS_POPUP_INCIDENT_ENUM, OTRS_POPUP_INTERVENTION_ENUM, OTRS_POPUP_UNIVERSES) {
     "use strict";
 
@@ -83,7 +83,8 @@ angular.module("ovh-angular-otrs").controller("OtrsPopupCtrl", ["$rootScope", "$
         self.alert.type = type;
     }
 
-    $rootScope.$on("$stateChangeSuccess", function (event, toState, toParams) {
+    $transitions.onSuccess({}, function (transition) {
+        var toParams = transition.params();
         if (toParams.projectId && self.services && self.services.indexOf(toParams.projectId) !== -1) {
             self.ticket.serviceName = toParams.projectId;
         }

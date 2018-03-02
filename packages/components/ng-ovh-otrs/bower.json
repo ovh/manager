@@ -27,7 +27,8 @@
     "lodash": "~3.10.1",
     "ovh-api-services": "^2.0.0",
     "ovh-angular-toaster": "^0.8.0",
-    "ovh-jquery-ui-draggable-ng": "^0.0.5"
+    "ovh-jquery-ui-draggable-ng": "^0.0.5",
+    "angular-ui-router": "^1.0.0"
   },
   "resolutions": {
     "lodash": "~3.10.1",
