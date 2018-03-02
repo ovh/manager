@@ -1,6 +1,6 @@
 {
   "name": "at-internet-ui-router-plugin",
-  "version": "0.1.2",
+  "version": "1.0.0",
   "description": "Plugin for at-internet when using ui-router",
   "repository": "ovh-ux/at-internet-ui-router-plugin",
   "author": "OVH SAS",
