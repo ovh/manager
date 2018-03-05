@@ -1,0 +1,28 @@
+{
+  "name": "angular-uirouter-title",
+  "author": "OVH SAS",
+  "license": "BSD-3-Clause",
+  "version": "0.1.0",
+  "description": "",
+  "keywords": [
+    "angular"
+  ],
+  "private": true,
+  "main": "./dist/angular-uirouter-title.js",
+  "ignore": [
+    "components",
+    "bower_components",
+    "node_modules",
+    "Gruntfile.js",
+    "src",
+    "karma.conf.js",
+    ".jshintrc",
+    ".editorconfig"
+  ],
+  "devDependencies": {
+    "angular-mocks": "~1.3.0",
+    "angular-ui-router": "~1.0.0",
+    "jquery": "~2.1.4",
+    "lodash": "~3.10.x"
+  }
+}
