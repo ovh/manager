@@ -109,7 +109,7 @@ module.exports = function (grunt) {
         // To release
         bump       : {
             options : {
-                pushTo        : 'origin master',
+                pushTo        : 'origin',
                 files         : [
                     'package.json',
                     'bower.json'
