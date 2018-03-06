@@ -1,6 +1,6 @@
 {
   "name": "angular-uirouter-title",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "AngularJS module for updating browser title/history based on the current ui-router state.",
   "license": "BSD-3-Clause",
   "repository": "ovh-ux/angular-uirouter-title",
