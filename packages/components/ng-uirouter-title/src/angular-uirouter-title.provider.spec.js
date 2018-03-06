@@ -9,7 +9,6 @@ angular.module("unit.testing", ["ui.router"])
             }
         }
     });
-    $stateProvider.state("untitled", {});
 });
 
 describe("angular-uirouter-title unit testing", function () {
@@ -32,14 +31,5 @@ describe("angular-uirouter-title unit testing", function () {
         $state.go("foobar");
         $rootScope.$apply();
         expect(document.title).toBe("foobar-title");
-    });
-
-    it("should reset document title", function () {
-        document.title = "original title";
-        $state.go("foobar");
-        $rootScope.$apply();
-        $state.go("untitled");
-        $rootScope.$apply();
-        expect(document.title).toBe("original title");
     });
 });
