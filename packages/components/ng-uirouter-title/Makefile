@@ -13,7 +13,7 @@ MV=mv
 RSYNC=rsync -av --delete --exclude=".git"
 
 #### FOLDERS ####
-BOWER_DIR=client/bower_components
+BOWER_DIR=bower_components
 NODE_DIR=node_modules
 GRUNT_DEP=$(NODE_DIR)/grunt
 

@@ -8,7 +8,9 @@
     "angular"
   ],
   "main": "./dist/angular-uirouter-title.js",
-  "dependencies": {},
+  "dependencies": {
+    "@uirouter/angularjs": "^1.0.0"
+  },
   "devDependencies": {
     "autoprefixer-core": "^5.2.1",
     "eslint": "^4.0.0",

@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("angular.uirouter.title", [])
+angular.module("angular.uirouter.title", ["ui.router"])
 .run(["$transitions", function ($transitions) {
     $transitions.onSuccess({}, function (transition) {
         transition.promise.finally(function () {
