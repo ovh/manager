@@ -7,7 +7,6 @@
   "keywords": [
     "angular"
   ],
-  "private": true,
   "main": "./dist/angular-uirouter-title.js",
   "ignore": [
     "components",
