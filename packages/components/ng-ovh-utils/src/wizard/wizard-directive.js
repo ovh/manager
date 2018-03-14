@@ -102,17 +102,9 @@ function ($timeout) {
                 }
             });
 
-            if ($attr.wizardOnCancel) {
-                $scope.onCancel = function () {
-                    $scope[$attr.wizardOnCancel]();
-                };
-            }
+            $scope.onCancel = $attr.wizardOnCancel && angular.isFunction($scope.$eval($attr.wizardOnCancel)) ? $scope.$eval($attr.wizardOnCancel) : angular.noop;
 
-            if ($attr.wizardOnFinish) {
-                $scope.onFinish = function () {
-                    $scope[$attr.wizardOnFinish]();
-                };
-            }
+            $scope.onFinish = $attr.wizardOnFinish && angular.isFunction($scope.$eval($attr.wizardOnFinish)) ? $scope.$eval($attr.wizardOnFinish) : angular.noop;
 
             if ($attr.wizardTitle) {
                 $scope.$watch($attr.wizardTitle, function (newTitle) {

@@ -15,23 +15,11 @@ function ($compile, $timeout, $q) {
             return {
                 pre : function ($scope, $elem, $attr) {
 
-                    $scope.onLoad = function () {
-                        if ($attr.wizardStepOnLoad && angular.isFunction($scope[$attr.wizardStepOnLoad])) {
-                            $scope[$attr.wizardStepOnLoad]();
-                        }
-                    };
+                    $scope.onLoad = $attr.wizardStepOnLoad && angular.isFunction($scope.$eval($attr.wizardStepOnLoad)) ? $scope.$eval($attr.wizardStepOnLoad) : angular.noop;
 
-                    $scope.onPrevious = function () {
-                        if ($attr.wizardStepOnPrevious && angular.isFunction($scope[$attr.wizardStepOnPrevious])) {
-                            $scope[$attr.wizardStepOnPrevious]();
-                        }
-                    };
+                    $scope.onPrevious = $attr.wizardStepOnPrevious && angular.isFunction($scope.$eval($attr.wizardStepOnPrevious)) ? $scope.$eval($attr.wizardStepOnPrevious) : angular.noop;
 
-                    $scope.onNext = function () {
-                        if ($attr.wizardStepOnNext && angular.isFunction($scope[$attr.wizardStepOnNext])) {
-                            $scope[$attr.wizardStepOnNext]();
-                        }
-                    };
+                    $scope.onNext = $attr.wizardStepOnNext && angular.isFunction($scope.$eval($attr.wizardStepOnNext)) ? $scope.$eval($attr.wizardStepOnNext) : angular.noop;
 
                     if ($attr.wizardStepValid) {
                         $scope.stepValid = !!$scope.$eval($attr.wizardStepValid);
