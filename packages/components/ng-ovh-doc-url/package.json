@@ -12,10 +12,6 @@
   },
   "main": "./dist/ovh-angular-doc-url.min.js",
   "repository": "ovh-ux/ovh-angular-doc-url",
-  "dependencies": {
-    "jasmine-core": "^2.5.2",
-    "phantomjs": "^2.1.7"
-  },
   "devDependencies": {
     "autoprefixer-core": "~5.2.0",
     "grunt": "0.4.x",
@@ -35,6 +31,8 @@
     "grunt-ngdocs": "^0.2.5",
     "grunt-postcss": "~0.6.0",
     "jshint-stylish": "~2.0.0",
+    "jasmine-core": "^2.5.2",
+    "phantomjs": "^2.1.7",
     "karma": "~0.13.0",
     "karma-jasmine": "~0.3.0",
     "karma-phantomjs-launcher": "~0.2.0",
