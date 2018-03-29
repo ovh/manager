@@ -37,7 +37,7 @@
     "moment": "^2.15.2",
     "lodash": ">3.10.0 <4.0.0",
     "ovh-manager-webfont": "^1.0.0",
-    "ovh-api-services": "^2.0.1"
+    "ovh-api-services": "^3.0.0"
   },
   "devDependencies": {
     "angular-resource": "~1.5.x",

@@ -699,7 +699,7 @@ angular.module("ovh-angular-contact").factory("OvhContact", ["OvhApiMe", "CONTAC
     OvhContact.prototype.save = function () {
         var self = this;
 
-        return OvhApiMe.Contact().Lexi().save({
+        return OvhApiMe.Contact().v6().save({
             contactId: self.id
         }, getDatas(self)).$promise.then(function () {
             return self;
@@ -719,7 +719,7 @@ angular.module("ovh-angular-contact").factory("OvhContact", ["OvhApiMe", "CONTAC
     OvhContact.prototype.create = function () {
         var self = this;
 
-        return OvhApiMe.Contact().Lexi().create({}, getDatas(self)).$promise.then(function (contact) {
+        return OvhApiMe.Contact().v6().create({}, getDatas(self)).$promise.then(function (contact) {
             self.id = contact.id;
             return self;
         });
@@ -894,7 +894,7 @@ angular.module("ovh-angular-contact").provider("ovhContact", function () {
          */
         function getApiSchemas () {
             if (!schemas) {
-                return OvhApiMe.Lexi().schema().$promise.then(function (apiSchemas) {
+                return OvhApiMe.v6().schema().$promise.then(function (apiSchemas) {
                     schemas = apiSchemas;
                     return schemas;
                 });
@@ -1019,7 +1019,7 @@ angular.module("ovh-angular-contact").provider("ovhContact", function () {
                 contacts = [];
             }
 
-            return OvhApiMe.Contact().Erika().query().expand()
+            return OvhApiMe.Contact().v7().query().expand()
                 .execute().$promise.then(function (contactsList) {
                 // filter contact that are not already added
                 // this avoid loosing contact object reference
@@ -1103,7 +1103,7 @@ angular.module("ovh-angular-contact").provider("ovhContact", function () {
          *  @return {Object} Representing the connected user.
          */
         ovhContactService.getConnectedUser = function () {
-            return OvhApiMe.Lexi().get().$promise;
+            return OvhApiMe.v6().get().$promise;
         };
 
         /**

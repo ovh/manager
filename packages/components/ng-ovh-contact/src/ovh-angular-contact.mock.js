@@ -2,7 +2,7 @@
 
 angular.module("ovh-api-services", ["ngResource", "ovh-angular-apiv7"]).service("OvhApiMe", function ($resource, Apiv7Endpoint) {
     return {
-        Lexi: function () {
+        v6: function () {
             return $resource("/me", {}, {
                 schema: {
                     method: "GET",
@@ -12,7 +12,7 @@ angular.module("ovh-api-services", ["ngResource", "ovh-angular-apiv7"]).service(
         },
         Contact: function () {
             return {
-                Lexi: function () {
+                v6: function () {
                     return $resource("/me/contact/:contactId", {
                         contactId: "@contactId"
                     }, {
@@ -21,7 +21,7 @@ angular.module("ovh-api-services", ["ngResource", "ovh-angular-apiv7"]).service(
                         }
                     });
                 },
-                Erika: function () {
+                v7: function () {
                     return new Apiv7Endpoint("/me/contact/:contactId", {
                         contactId: "@contactId"
                     }, {

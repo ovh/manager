@@ -144,7 +144,7 @@ angular.module("ovh-angular-contact").factory("OvhContact", function (OvhApiMe, 
     OvhContact.prototype.save = function () {
         var self = this;
 
-        return OvhApiMe.Contact().Lexi().save({
+        return OvhApiMe.Contact().v6().save({
             contactId: self.id
         }, getDatas(self)).$promise.then(function () {
             return self;
@@ -164,7 +164,7 @@ angular.module("ovh-angular-contact").factory("OvhContact", function (OvhApiMe, 
     OvhContact.prototype.create = function () {
         var self = this;
 
-        return OvhApiMe.Contact().Lexi().create({}, getDatas(self)).$promise.then(function (contact) {
+        return OvhApiMe.Contact().v6().create({}, getDatas(self)).$promise.then(function (contact) {
             self.id = contact.id;
             return self;
         });
