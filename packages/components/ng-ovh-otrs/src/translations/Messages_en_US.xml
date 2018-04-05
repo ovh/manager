@@ -49,6 +49,14 @@
    <translation id="otrs_ticket_lastMessageFrom_customer" qtlid="228722">You</translation>
    <translation id="otrs_ticket_lastMessageFrom_support" qtlid="228735">OVH Support</translation>
 
+   <translation id="otrs_popup_see_faq" qtlid="472003">Vous pouvez <a href="{{ url }}" target="_blank">consulter notre FAQ</a> pour trouver la réponse à votre question. Si vous ne trouvez pas la réponse, continuez avec la création de votre ticket.</translation>
+   <translation id="otrs_popup_response_in_faq" qtlid="288691">You may find the answer to your question in our FAQ:</translation>
+   <translation id="otrs_popup_response_not_found_in_faq" qtlid="288704">Otherwise, continue creating your ticket:</translation>
+   <translation id="otrs_popup_service_faq_web" qtlid="288717">Web FAQ </translation>
+   <translation id="otrs_popup_service_faq_office365" qtlid="288730">Office 365 FAQ </translation>
+   <translation id="otrs_popup_service_faq_exchange" qtlid="288743">Exchange FAQ </translation>
+   <translation id="otrs_popup_service_faq_sd" qtlid="319843">Dedicated Server FAQ</translation>
+   <translation id="otrs_popup_service_faq_vps" qtlid="319856">VPS FAQ</translation>
 
    <translation id="otrs_service_category_DEDICATED" qtlid="31738">Dedicated</translation>
    <translation id="otrs_service_category_EXCHANGE" qtlid="80430">Exchange</translation>
@@ -56,7 +64,7 @@
    <translation id="otrs_service_category_HOSTING" qtlid="167457">Hosting</translation>
    <translation id="otrs_service_category_HUBIC" qtlid="111546">HubiC</translation>
    <translation id="otrs_service_category_OTHER" qtlid="19963">Other</translation>
-   <translation id="otrs_service_category_PRIVATE_CLOUD" qtlid="20131">Private Cloud</translation>
+   <translation id="otrs_service_category_PRIVATE_CLOUD" qtlid="20131">Hosted Private Cloud</translation>
    <translation id="otrs_service_category_PUBLIC_CLOUD" qtlid="251655">Public Cloud</translation>
    <translation id="otrs_service_category_SITE_BUILDER" qtlid="98852">Site Builder</translation>
    <translation id="otrs_service_category_TELEPHONY" qtlid="29299">Telephony </translation>
@@ -87,7 +95,7 @@
    <translation id="otrs_service_category_HOUSING" qtlid="371476">Housing server </translation>
    <translation id="otrs_service_category_DEDICATED_SERVER" qtlid="66032">Dedicated Server</translation>
    <translation id="otrs_service_category_DEDICATED_HOUSING" qtlid="371476">Housing server </translation>
-   <translation id="otrs_service_category_DEDICATED_CLOUD" qtlid="20131">Private Cloud</translation>
+   <translation id="otrs_service_category_DEDICATED_CLOUD" qtlid="20131">Hosted Private Cloud</translation>
    <translation id="otrs_service_category_HOSTING_WEB" qtlid="219979">Web hosting service</translation>
    <translation id="otrs_service_category_IP_LOADBALANCING" qtlid="219992">Load balancer IP</translation>
    <translation id="otrs_service_category_LICENCE_CLOUD_LINUX" qtlid="220005">CloudLinux license</translation>
@@ -126,9 +134,10 @@
    <translation id="otrs_category_neworder" qtlid="251681">New order</translation>
    <translation id="otrs_category_billing" qtlid="32950">Billing</translation>
    <translation id="otrs_category_choice" qtlid="251746">Support options:</translation>
-   <translation id="otrs_category_billing" qtlid="251759">Question regarding an order</translation>
+   <translation id="otrs_category_billing" qtlid="472016">Question concernant les commandes</translation>
    <translation id="otrs_category_assistance" qtlid="251772">Technical and commercial support</translation>
    <translation id="otrs_category_incident" qtlid="68252">Report an incident</translation>
+   <translation id="otrs_category_intervention" qtlid="472029">Demande d’intervention en datacentre</translation>
 
 
    <translation id="otrs_err_get_infos" qtlid="243832">An error occurred while retrieving the details:</translation>
@@ -142,14 +151,19 @@
    <translation id="otrs_popup_body" qtlid="75606">Message:</translation>
    <translation id="otrs_popup_subject" qtlid="55289">Subject:</translation>
    <translation id="otrs_popup_add_ticket" qtlid="228436">Create a ticket</translation>
+   <translation id="otrs_popup_continue" qtlid="4070">Continue</translation>
+   <translation id="otrs_popup_back" qtlid="4118">Back</translation>
    <translation id="otrs_popup_title" qtlid="228449">Create a support ticket</translation>
+   <translation id="otrs_popup_intervention" qtlid="361373">Create an intervention request. </translation>
    <translation id="otrs_popup_icon_minimize" qtlid="382037">Minimize help request window</translation>
    <translation id="otrs_popup_icon_maximize" qtlid="382050">Maximize help request window</translation>
    <translation id="otrs_popup_icon_close" qtlid="382063">Close help request window</translation>
    <translation id="otrs_popup_type" qtlid="245194">Ticket type:</translation>
    <translation id="otrs_popup_move" qtlid="228462">You can move this pop-up by moving its header.</translation>
    <translation id="otrs_popup_sent_error" qtlid="228475">An error has occurred while creating this ticket.</translation>
-   <translation id="otrs_popup_sent_success" qtlid="454891">Your ticket number {{ticketNumber}} has been received. You can find the discussion thread for that ticket in the menu <a href="#/ticket">Assistance - ticket list</a>.</translation>
+   <translation id="otrs_popup_sent_error_not_available" qtlid="361386">This operation is not available in this datacentre. </translation>
+   <translation id="otrs_popup_sent_error_already_exists" qtlid="472042">Un ticket a déjà été envoyé sur ce sujet. <a href="#/ticket/{{ticketId}}">Cliquez ici pour accéder au ticket.</a></translation>
+   <translation id="otrs_popup_sent_success" qtlid="472055">Votre ticket numéro {{ticketNumber}} a bien été pris en compte. Vous pouvez retrouver le fil de discussion de ce ticket depuis le menu <a href="#/ticket/{{ticketId}}">Assistance - liste des tickets</a>.</translation>
    <translation id="otrs_popup_get_services_error" qtlid="228501">An error has occurred while retrieving your services.</translation>
    <translation id="otrs_popup_get_types_error" qtlid="233047">An error has occurred while retrieving the data.</translation>
    <translation id="otrs_popup_services_refresh" qtlid="228514">Update the list</translation>
@@ -175,4 +189,20 @@
    <translation id="otrs_subCategory_intervention_replacement-disk" qtlid="361438">Replacing a hard drive </translation>
    <translation id="otrs_subCategory_intervention_other" qtlid="19963">Other</translation>
 
+   <translation id="otrs_intervention_disk_error" qtlid="382346">An error has occurred while retrieving server details.</translation>
+   <translation id="otrs_intervention_disk_warning" qtlid="361451">Please note: before replacing any hard drive, make sure you back up your data.</translation>
+   <translation id="otrs_intervention_disk_warning2" qtlid="382359">Service will be interrupted during disk replacement and <strong>all data on this disk will be lost</strong>; please make sure that your backups are up-to-date.</translation>
+   <translation id="otrs_intervention_disk_warning_hotswap" qtlid="382372"><strong>All data on this disk will be lost</strong>; please make sure that your backups are up-to-date.</translation>
+   <translation id="otrs_intervention_disk_canHotSwap" qtlid="382385">Your HG server allows you to replace your disks without any service interruption.</translation>
+   <translation id="otrs_intervention_disk_guide" qtlid="382398">To do this, <a href="{0}" target="_blank">please read our guide <i class="fa fa-external-link" aria-hidden="true"></i></a>.</translation>
+   <translation id="otrs_intervention_disk_serial_guide" qtlid="472068"><a href="{{ url }}" target="_blank">(Voir le guide <i class="fa fa-external-link" aria-hidden="true"></i>)</a></translation>
+   <translation id="otrs_intervention_disk_id_label" qtlid="382424">Serial number of the hard disk(s) to be replaced</translation>
+   <translation id="otrs_intervention_disk_id_label_not" qtlid="382437">Serial number of the hard disk(s) NOT TO BE replaced</translation>
+   <translation id="otrs_intervention_disk_id_not_retrievable" qtlid="382450">I cannot retrieve the serial number of the disk to be replaced</translation>
+   <translation id="otrs_intervention_disk_slotID" qtlid="382463">SlotID</translation>
+   <translation id="otrs_intervention_disk_serial_placeholder" qtlid="382476">e.g. 12345</translation>
+   <translation id="otrs_intervention_disk_comment" qtlid="382489">Specific instructions for the replacement of your hardware</translation>
+   <translation id="otrs_intervention_disk_comment_example" qtlid="361529">(For example: the specific time for the intervention including the time zone)</translation>
+   <translation id="otrs_intervention_disk_comment_english_please" qtlid="361542">English as a preference</translation>
+   <translation id="otrs_intervention_disk_confirm" qtlid="382502">I backed up the data stored on the disk I wish to replace. You can now replace the disk.</translation>
 </translations>

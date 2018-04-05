@@ -49,6 +49,14 @@
    <translation id="otrs_ticket_lastMessageFrom_customer" qtlid="228722">Ty</translation>
    <translation id="otrs_ticket_lastMessageFrom_support" qtlid="228735">Support OVH</translation>
 
+   <translation id="otrs_popup_see_faq" qtlid="472003">Vous pouvez <a href="{{ url }}" target="_blank">consulter notre FAQ</a> pour trouver la réponse à votre question. Si vous ne trouvez pas la réponse, continuez avec la création de votre ticket.</translation>
+   <translation id="otrs_popup_response_in_faq" qtlid="288691">Być może odnajdziesz odpowiedź na swoje pytanie w sekcji FAQ:</translation>
+   <translation id="otrs_popup_response_not_found_in_faq" qtlid="288704">W przeciwnym razie kontynuuj dodawanie zgłoszenia:</translation>
+   <translation id="otrs_popup_service_faq_web" qtlid="288717">FAQ WWW</translation>
+   <translation id="otrs_popup_service_faq_office365" qtlid="288730">FAQ Office 365</translation>
+   <translation id="otrs_popup_service_faq_exchange" qtlid="288743">FAQ Exchange</translation>
+   <translation id="otrs_popup_service_faq_sd" qtlid="319843">FAQ Serwery dedykowane</translation>
+   <translation id="otrs_popup_service_faq_vps" qtlid="319856">FAQ VPS</translation>
 
    <translation id="otrs_service_category_DEDICATED" qtlid="31738">Dedykowane</translation>
    <translation id="otrs_service_category_EXCHANGE" qtlid="80430">Exchange</translation>
@@ -126,9 +134,10 @@
    <translation id="otrs_category_neworder" qtlid="251681">Nowe zamówienie</translation>
    <translation id="otrs_category_billing" qtlid="32950">Płatności</translation>
    <translation id="otrs_category_choice" qtlid="251746">Wybór pomocy:</translation>
-   <translation id="otrs_category_billing" qtlid="251759">Informacje o zamówieniach</translation>
+   <translation id="otrs_category_billing" qtlid="472016">Question concernant les commandes</translation>
    <translation id="otrs_category_assistance" qtlid="251772">Pytanie techniczne i handlowe</translation>
    <translation id="otrs_category_incident" qtlid="68252">Zgłoszenie niedostępności usługi</translation>
+   <translation id="otrs_category_intervention" qtlid="472029">Demande d’intervention en datacentre</translation>
 
 
    <translation id="otrs_err_get_infos" qtlid="243832">Wystąpił błąd podczas pobierania informacji:</translation>
@@ -142,14 +151,19 @@
    <translation id="otrs_popup_body" qtlid="75606">Wiadomość:</translation>
    <translation id="otrs_popup_subject" qtlid="55289">Temat:</translation>
    <translation id="otrs_popup_add_ticket" qtlid="228436">Otwórz zgłoszenie</translation>
+   <translation id="otrs_popup_continue" qtlid="4070">Kontynuuj</translation>
+   <translation id="otrs_popup_back" qtlid="4118">Powrót</translation>
    <translation id="otrs_popup_title" qtlid="228449">Tworzenie zgłoszenia</translation>
+   <translation id="otrs_popup_intervention" qtlid="361373">Dodaj zlecenie interwencji</translation>
    <translation id="otrs_popup_icon_minimize" qtlid="382037">Zmniejsz okno zgłoszenia</translation>
    <translation id="otrs_popup_icon_maximize" qtlid="382050">Zwiększ okno zgłoszenia</translation>
    <translation id="otrs_popup_icon_close" qtlid="382063">Zamknij okno zgłoszenia </translation>
    <translation id="otrs_popup_type" qtlid="245194">Typ zgłoszenia:</translation>
    <translation id="otrs_popup_move" qtlid="228462">Możesz przenieść to okienko popup przesuwając pasek.</translation>
    <translation id="otrs_popup_sent_error" qtlid="228475">Wystąpił błąd podczas dodawania tego zgłoszenia.</translation>
-   <translation id="otrs_popup_sent_success" qtlid="454891">Zgłoszenie numer {{ticketNumber}} zostało zarejestrowane. Jest ono dostępne w zakładce <a href="#/support">Pomoc - lista zgłoszeń</a>.</translation>
+   <translation id="otrs_popup_sent_error_not_available" qtlid="361386">Ta operacja nie jest dostępna w tym centrum danych.</translation>
+   <translation id="otrs_popup_sent_error_already_exists" qtlid="472042">Un ticket a déjà été envoyé sur ce sujet. <a href="#/ticket/{{ticketId}}">Cliquez ici pour accéder au ticket.</a></translation>
+   <translation id="otrs_popup_sent_success" qtlid="472055">Votre ticket numéro {{ticketNumber}} a bien été pris en compte. Vous pouvez retrouver le fil de discussion de ce ticket depuis le menu <a href="#/ticket/{{ticketId}}">Assistance - liste des tickets</a>.</translation>
    <translation id="otrs_popup_get_services_error" qtlid="228501">Wystąpił błąd podczas pobierania informacji o usługach.</translation>
    <translation id="otrs_popup_get_types_error" qtlid="233047">Wystąpił błąd podczas pobierania informacji.</translation>
    <translation id="otrs_popup_services_refresh" qtlid="228514">Zaktualizuj listę</translation>
@@ -175,4 +189,20 @@
    <translation id="otrs_subCategory_intervention_replacement-disk" qtlid="361438">Wymiana dysku twardego</translation>
    <translation id="otrs_subCategory_intervention_other" qtlid="19963">Inne</translation>
 
+   <translation id="otrs_intervention_disk_error" qtlid="382346">Wystąpił błąd podczas pobierania informacji na temat serwera.</translation>
+   <translation id="otrs_intervention_disk_warning" qtlid="361451">Uwaga: Przed wymianą dysku twardego wykonaj kopię zapasową danych.</translation>
+   <translation id="otrs_intervention_disk_warning2" qtlid="382359">Podczas wymiany dysku usługa będzie niedostępna. <strong>Wszystkie dane z tego dysku zostaną utracone. </strong>Upewnij się, że posiadasz aktualną kopię zapasową.</translation>
+   <translation id="otrs_intervention_disk_warning_hotswap" qtlid="382372"><strong>Wszystkie dane z tego dysku zostaną utracone. </strong>Upewnij się, że posiadasz aktualną kopię zapasową.</translation>
+   <translation id="otrs_intervention_disk_canHotSwap" qtlid="382385">Serwer HG pozwala na wymianę dysków bez przerwy w działaniu usługi.</translation>
+   <translation id="otrs_intervention_disk_guide" qtlid="382398">Aby to zrobić, <a href="{0}" target="_blank">zapoznaj się z tym przewodnikiem <i class="fa fa-external-link" aria-hidden="true"></i></a>.</translation>
+   <translation id="otrs_intervention_disk_serial_guide" qtlid="472068"><a href="{{ url }}" target="_blank">(Voir le guide <i class="fa fa-external-link" aria-hidden="true"></i>)</a></translation>
+   <translation id="otrs_intervention_disk_id_label" qtlid="382424">Numer seryjny dysku twardego lub dysków twardych do wymiany</translation>
+   <translation id="otrs_intervention_disk_id_label_not" qtlid="382437">Numery seryjny dysku twardego lub dysków twardych, które NIE SĄ do wymiany</translation>
+   <translation id="otrs_intervention_disk_id_not_retrievable" qtlid="382450">Nie mogę pobrać numeru seryjnego dysku do wymiany.</translation>
+   <translation id="otrs_intervention_disk_slotID" qtlid="382463">SlotID</translation>
+   <translation id="otrs_intervention_disk_serial_placeholder" qtlid="382476">na przykład 12345</translation>
+   <translation id="otrs_intervention_disk_comment" qtlid="382489">Wskazówki dotyczące wymiany sprzętu</translation>
+   <translation id="otrs_intervention_disk_comment_example" qtlid="361529">(Na przykład: godzina interwencji zawierająca strefę czasową)</translation>
+   <translation id="otrs_intervention_disk_comment_english_please" qtlid="361542">Preferowany język kontaktu to angielski.</translation>
+   <translation id="otrs_intervention_disk_confirm" qtlid="382502">Wykonałem kopię zapasową danych znajdujących się na dysku i chcę wymienić dysk. Możecie przystąpić do jego wymiany. </translation>
 </translations>

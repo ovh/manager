@@ -49,6 +49,14 @@
    <translation id="otrs_ticket_lastMessageFrom_customer" qtlid="228722">U</translation>
    <translation id="otrs_ticket_lastMessageFrom_support" qtlid="228735">OVH Support </translation>
 
+   <translation id="otrs_popup_see_faq" qtlid="472003">Vous pouvez <a href="{{ url }}" target="_blank">consulter notre FAQ</a> pour trouver la réponse à votre question. Si vous ne trouvez pas la réponse, continuez avec la création de votre ticket.</translation>
+   <translation id="otrs_popup_response_in_faq" qtlid="288691">Uw vraag wordt mogelijk al beantwoord in onze FAQ: </translation>
+   <translation id="otrs_popup_response_not_found_in_faq" qtlid="288704">Anders kunt u doorgaan met het creëren van uw ticket: </translation>
+   <translation id="otrs_popup_service_faq_web" qtlid="288717">FAQ Web</translation>
+   <translation id="otrs_popup_service_faq_office365" qtlid="288730">FAQ Office 365</translation>
+   <translation id="otrs_popup_service_faq_exchange" qtlid="288743">FAQ Exchange</translation>
+   <translation id="otrs_popup_service_faq_sd" qtlid="319843">Dedicated Server FAQ</translation>
+   <translation id="otrs_popup_service_faq_vps" qtlid="319856">VPS FAQ</translation>
 
    <translation id="otrs_service_category_DEDICATED" qtlid="31738">Dedicated</translation>
    <translation id="otrs_service_category_EXCHANGE" qtlid="80430">Exchange</translation>
@@ -126,9 +134,10 @@
    <translation id="otrs_category_neworder" qtlid="251681">Nieuwe bestelling</translation>
    <translation id="otrs_category_billing" qtlid="32950">Facturatie</translation>
    <translation id="otrs_category_choice" qtlid="251746">Support opties:</translation>
-   <translation id="otrs_category_billing" qtlid="251759">Vraag over een bestelling</translation>
+   <translation id="otrs_category_billing" qtlid="472016">Question concernant les commandes</translation>
    <translation id="otrs_category_assistance" qtlid="251772">Technische en commerciële support</translation>
    <translation id="otrs_category_incident" qtlid="68252">Een storing melden</translation>
+   <translation id="otrs_category_intervention" qtlid="472029">Demande d’intervention en datacentre</translation>
 
 
    <translation id="otrs_err_get_infos" qtlid="243832">Er is een fout opgetreden tijdens het ophalen van de gegevens:</translation>
@@ -142,14 +151,19 @@
    <translation id="otrs_popup_body" qtlid="75606">Bericht: </translation>
    <translation id="otrs_popup_subject" qtlid="55289">Onderwerp:</translation>
    <translation id="otrs_popup_add_ticket" qtlid="228436">Het ticket aanmaken</translation>
+   <translation id="otrs_popup_continue" qtlid="4070">Doorgaan</translation>
+   <translation id="otrs_popup_back" qtlid="4118">Terug</translation>
    <translation id="otrs_popup_title" qtlid="228449">Het aanmaken van een support ticket</translation>
+   <translation id="otrs_popup_intervention" qtlid="361373">Creëer een interventieverzoek</translation>
    <translation id="otrs_popup_icon_minimize" qtlid="382037">Support verzoek scherm verkleinen</translation>
    <translation id="otrs_popup_icon_maximize" qtlid="382050">Support verzoek scherm vergroten</translation>
    <translation id="otrs_popup_icon_close" qtlid="382063">Support verzoek scherm sluiten</translation>
    <translation id="otrs_popup_type" qtlid="245194">Ticket type:</translation>
    <translation id="otrs_popup_move" qtlid="228462">U kunt deze popup verplaatsen door zijn header te verplaatsen.</translation>
    <translation id="otrs_popup_sent_error" qtlid="228475">Er is een fout opgetreden tijdens het aanmaken van dit ticket.</translation>
-   <translation id="otrs_popup_sent_success" qtlid="454891">Uw ticketnummer {{ticketNumber}} is in behandeling genomen. U kunt de gespreksgeschiedenis van dit ticket terugvinden in het menu <a href="#/ticket">Assistentie - Overzicht van uw tickets</a>.</translation>
+   <translation id="otrs_popup_sent_error_not_available" qtlid="361386">Deze procedure is in dit datacenter niet beschikbaar. </translation>
+   <translation id="otrs_popup_sent_error_already_exists" qtlid="472042">Un ticket a déjà été envoyé sur ce sujet. <a href="#/ticket/{{ticketId}}">Cliquez ici pour accéder au ticket.</a></translation>
+   <translation id="otrs_popup_sent_success" qtlid="472055">Votre ticket numéro {{ticketNumber}} a bien été pris en compte. Vous pouvez retrouver le fil de discussion de ce ticket depuis le menu <a href="#/ticket/{{ticketId}}">Assistance - liste des tickets</a>.</translation>
    <translation id="otrs_popup_get_services_error" qtlid="228501">Er is een fout opgetreden bij het ophalen van uw diensten.</translation>
    <translation id="otrs_popup_get_types_error" qtlid="233047">Er is een fout opgetreden tijdens het ophalen van de gegevens.</translation>
    <translation id="otrs_popup_services_refresh" qtlid="228514">De lijst updaten</translation>
@@ -175,4 +189,20 @@
    <translation id="otrs_subCategory_intervention_replacement-disk" qtlid="361438">Vervangen van een harddrive</translation>
    <translation id="otrs_subCategory_intervention_other" qtlid="19963">Anders</translation>
 
+   <translation id="otrs_intervention_disk_error" qtlid="382346">Er is een fout opgetreden tijdens het ophalen van informatie van de server. </translation>
+   <translation id="otrs_intervention_disk_warning" qtlid="361451">Let op: voordat u een disk drive vervangt moet u eerst een backup maken van uw data. </translation>
+   <translation id="otrs_intervention_disk_warning2" qtlid="382359">Tijdens vervanging van de drive zal de service onderbroken worden en <strong>alle data op deze drive zal verloren gaan</strong>; zorg ervoor dat uw backups up to date zijn. </translation>
+   <translation id="otrs_intervention_disk_warning_hotswap" qtlid="382372"><strong>Alle data op deze drive zal verloren gaan</strong>; zorg ervoor dat uw backups up to date zijn. </translation>
+   <translation id="otrs_intervention_disk_canHotSwap" qtlid="382385">Uw premium op maat te maken HG server stelt u in staat uw drives te vervangen zonder serviceonderbreking. </translation>
+   <translation id="otrs_intervention_disk_guide" qtlid="382398">Lees hiervoor onze <a href="{0}" target="_blank">handleiding <i class="fa fa-external-link" aria-hidden="true"></i></a>.</translation>
+   <translation id="otrs_intervention_disk_serial_guide" qtlid="472068"><a href="{{ url }}" target="_blank">(Voir le guide <i class="fa fa-external-link" aria-hidden="true"></i>)</a></translation>
+   <translation id="otrs_intervention_disk_id_label" qtlid="382424">Serienummer van de te vervangen harddrive(s)</translation>
+   <translation id="otrs_intervention_disk_id_label_not" qtlid="382437">Serienummer van de harddrive(s) die NIET moeten worden vervangen</translation>
+   <translation id="otrs_intervention_disk_id_not_retrievable" qtlid="382450">Ik kan het serienummer van de te vervangen harddrive niet vinden. </translation>
+   <translation id="otrs_intervention_disk_slotID" qtlid="382463">SlotID</translation>
+   <translation id="otrs_intervention_disk_serial_placeholder" qtlid="382476">bijv. 12345</translation>
+   <translation id="otrs_intervention_disk_comment" qtlid="382489">Specifieke instructies voor vervanging van uw hardware</translation>
+   <translation id="otrs_intervention_disk_comment_example" qtlid="361529">(Bijvoorbeeld: de specifieke tijd voor de iterventie, inclusief de tijdzone)</translation>
+   <translation id="otrs_intervention_disk_comment_english_please" qtlid="361542">Engels als voorkeur</translation>
+   <translation id="otrs_intervention_disk_confirm" qtlid="382502">Ik heb een backup gemaakt van de data die opgeslagen is op de te vervangen disk. De disk kan nu vervangen worden. </translation>
 </translations>

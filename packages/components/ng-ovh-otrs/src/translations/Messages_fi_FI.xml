@@ -49,6 +49,14 @@
    <translation id="otrs_ticket_lastMessageFrom_customer" qtlid="228722">Sinä</translation>
    <translation id="otrs_ticket_lastMessageFrom_support" qtlid="228735">OVH tuki</translation>
 
+   <translation id="otrs_popup_see_faq" qtlid="472003">Vous pouvez <a href="{{ url }}" target="_blank">consulter notre FAQ</a> pour trouver la réponse à votre question. Si vous ne trouvez pas la réponse, continuez avec la création de votre ticket.</translation>
+   <translation id="otrs_popup_response_in_faq" qtlid="288691">Vastaus kysymykseesi löytyy ehkä usein kysytyistä kysymyksistä, katso UKK:</translation>
+   <translation id="otrs_popup_response_not_found_in_faq" qtlid="288704">Päinvastaisessa tapauksessa jatka tiketin luomista:</translation>
+   <translation id="otrs_popup_service_faq_web" qtlid="288717">UKK Web</translation>
+   <translation id="otrs_popup_service_faq_office365" qtlid="288730">UKK Office 365</translation>
+   <translation id="otrs_popup_service_faq_exchange" qtlid="288743">UKK Exchange</translation>
+   <translation id="otrs_popup_service_faq_sd" qtlid="319843">UKK Dedikoitu palvelin</translation>
+   <translation id="otrs_popup_service_faq_vps" qtlid="319856">UKK VPS</translation>
 
    <translation id="otrs_service_category_DEDICATED" qtlid="31738">Dedikoidut tuotteet</translation>
    <translation id="otrs_service_category_EXCHANGE" qtlid="80430">Exchange</translation>
@@ -126,9 +134,10 @@
    <translation id="otrs_category_neworder" qtlid="251681">Uusi tilaus</translation>
    <translation id="otrs_category_billing" qtlid="32950">Laskutus</translation>
    <translation id="otrs_category_choice" qtlid="251746">Valitse aihe:</translation>
-   <translation id="otrs_category_billing" qtlid="251759">Tilaukset</translation>
+   <translation id="otrs_category_billing" qtlid="472016">Question concernant les commandes</translation>
    <translation id="otrs_category_assistance" qtlid="251772">Tekninen tai kaupallinen kysymys</translation>
    <translation id="otrs_category_incident" qtlid="68252">Avaa häiriötiketti</translation>
+   <translation id="otrs_category_intervention" qtlid="472029">Demande d’intervention en datacentre</translation>
 
 
    <translation id="otrs_err_get_infos" qtlid="243832">Tapahtui virhe tietoja haettaessa:</translation>
@@ -142,14 +151,19 @@
    <translation id="otrs_popup_body" qtlid="75606">Viesti:</translation>
    <translation id="otrs_popup_subject" qtlid="55289">Aihe:</translation>
    <translation id="otrs_popup_add_ticket" qtlid="228436">Luo tiketti</translation>
+   <translation id="otrs_popup_continue" qtlid="4070">Jatka</translation>
+   <translation id="otrs_popup_back" qtlid="4118">Takaisin</translation>
    <translation id="otrs_popup_title" qtlid="228449">Tukitiketin luonti</translation>
+   <translation id="otrs_popup_intervention" qtlid="361373">Luo interventiopyyntö </translation>
    <translation id="otrs_popup_icon_minimize" qtlid="382037">Pienennä tukipyyntöikkuna</translation>
    <translation id="otrs_popup_icon_maximize" qtlid="382050">Laajenna tukipyyntöikkuna</translation>
    <translation id="otrs_popup_icon_close" qtlid="382063">Sulje tukipyyntöikkuna</translation>
    <translation id="otrs_popup_type" qtlid="245194">Tiketin tyyppi</translation>
    <translation id="otrs_popup_move" qtlid="228462">Voit siirtää tätä pop–up-ikkunaa siirtämällä sen otsikkoa.</translation>
    <translation id="otrs_popup_sent_error" qtlid="228475">Tapahtui virhe tiketin luomisen aikana.</translation>
-   <translation id="otrs_popup_sent_success" qtlid="454891">Tikettisi {{ticketNumber}} on luotu onnistuneesti. Näet tiketin koko viestiketjun osiosta <a href="#/ticket">Tuki – tikettilistaus</a>.</translation>
+   <translation id="otrs_popup_sent_error_not_available" qtlid="361386">Toiminto ei ole mahdollinen tässä konesalissa.</translation>
+   <translation id="otrs_popup_sent_error_already_exists" qtlid="472042">Un ticket a déjà été envoyé sur ce sujet. <a href="#/ticket/{{ticketId}}">Cliquez ici pour accéder au ticket.</a></translation>
+   <translation id="otrs_popup_sent_success" qtlid="472055">Votre ticket numéro {{ticketNumber}} a bien été pris en compte. Vous pouvez retrouver le fil de discussion de ce ticket depuis le menu <a href="#/ticket/{{ticketId}}">Assistance - liste des tickets</a>.</translation>
    <translation id="otrs_popup_get_services_error" qtlid="228501">Tapahtui virhe ladattaessa palveluita.</translation>
    <translation id="otrs_popup_get_types_error" qtlid="233047">Tapahtui virhe ladattaessa tietoja.</translation>
    <translation id="otrs_popup_services_refresh" qtlid="228514">Päivitä lista</translation>
@@ -175,4 +189,20 @@
    <translation id="otrs_subCategory_intervention_replacement-disk" qtlid="361438">Kovalevyn vaihto</translation>
    <translation id="otrs_subCategory_intervention_other" qtlid="19963">Muu</translation>
 
+   <translation id="otrs_intervention_disk_error" qtlid="382346">Tapahtui virhe palvelimen tietoja haettaessa.</translation>
+   <translation id="otrs_intervention_disk_warning" qtlid="361451">Huomio: varmista, että tietosi on varmuuskopioitu ennen kovalevyn vaihtoa. </translation>
+   <translation id="otrs_intervention_disk_warning2" qtlid="382359">Palvelussa on katkos levyn vaihtamisen ajan ja <strong>kaikki kyseisen levyn tiedot tullaan menettämään</strong>, varmista, että varmuuskopiosi ovat ajan tasalla.</translation>
+   <translation id="otrs_intervention_disk_warning_hotswap" qtlid="382372"><strong>Kaikki levyn tiedot menetetään</strong>, varmista, että varmuuskopiosi ovat ajan tasalla.</translation>
+   <translation id="otrs_intervention_disk_canHotSwap" qtlid="382385">HG-palvelimellasi on mahdollista vaihtaa levyjä ilman palvelukatoksia.</translation>
+   <translation id="otrs_intervention_disk_guide" qtlid="382398">Katso kuinka se tapahtuu, <a href="{0}" target="_blank">tästä ohjeesta<i class="fa fa-external-link" aria-hidden="true"></i></a>.</translation>
+   <translation id="otrs_intervention_disk_serial_guide" qtlid="472068"><a href="{{ url }}" target="_blank">(Voir le guide <i class="fa fa-external-link" aria-hidden="true"></i>)</a></translation>
+   <translation id="otrs_intervention_disk_id_label" qtlid="382424">Korvattavien kovalevyjen sarjanumerot</translation>
+   <translation id="otrs_intervention_disk_id_label_not" qtlid="382437">SÄILYTETTÄVIEN kovalevyjen sarjanumero</translation>
+   <translation id="otrs_intervention_disk_id_not_retrievable" qtlid="382450">En pysty hakemaan vaihdettavan kovalevyn sarjanumeroa.</translation>
+   <translation id="otrs_intervention_disk_slotID" qtlid="382463">SlotID</translation>
+   <translation id="otrs_intervention_disk_serial_placeholder" qtlid="382476">esim. 12345</translation>
+   <translation id="otrs_intervention_disk_comment" qtlid="382489">Erityisohjeita laitteistosi vaihtamiseen liittyen</translation>
+   <translation id="otrs_intervention_disk_comment_example" qtlid="361529">(Esimerkiksi: toimenpiteen toivottu kellonaika aikaero huomioituna)</translation>
+   <translation id="otrs_intervention_disk_comment_english_please" qtlid="361542">Käytä mieluiten englantia</translation>
+   <translation id="otrs_intervention_disk_confirm" qtlid="382502">Olen tehnyt varmuuskopiot vaihdettavan levyn sisällöstä. Levy voidaan nyt vaihtaa.</translation>
 </translations>

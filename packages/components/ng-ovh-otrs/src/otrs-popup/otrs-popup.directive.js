@@ -11,7 +11,7 @@ angular.module("ovh-angular-otrs")
                 $scope.status = {
                     minimize: false,
                     maximize: false,
-                    close: false
+                    close: true
                 };
 
                 $scope.minimize = function () {
@@ -40,6 +40,11 @@ angular.module("ovh-angular-otrs")
                     }
                 };
 
+                $scope.open = function () {
+                    $scope.restore();
+                    $scope.status.close = false;
+                };
+
                 $scope.close = function () {
                     $scope.restore();
                     $scope.status.close = true;
@@ -49,8 +54,8 @@ angular.module("ovh-angular-otrs")
                 $scope.$on("otrs.popup.minimize", $scope.minimize);
                 $scope.$on("otrs.popup.restore", $scope.restore);
                 $scope.$on("otrs.popup.toggle", $scope.toggle);
+                $scope.$on("otrs.popup.open", $scope.open);
                 $scope.$on("otrs.popup.close", $scope.close);
             }
         };
     });
-
