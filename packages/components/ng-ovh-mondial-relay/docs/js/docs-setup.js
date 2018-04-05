@@ -10,7 +10,8 @@ NG_DOCS={
       "type": "directive",
       "moduleName": "ovh-angular-mondial-relay",
       "shortDescription": "Display Modial relay map for relay selection",
-      "keywords": "$scope angular api case controller data-ng-bind data-ng-model default directive display ea function html js json mainctrl map modial module ng-controller ng-model obj ovh-angular-mondial-relay recieve relay return script selected selectedrelay selection service stringify user variable"
+      "keywords": "$scope angular api case controller data-ng-bind data-ng-model default directive display ea function html js json mainctrl map modial module ng-controller ng-model obj ovh-angular-mondial-relay recieve relay return script selected selectedrelay selection service stringify user variable",
+      "isDeprecated": false
     },
     {
       "section": "api",
@@ -19,7 +20,8 @@ NG_DOCS={
       "type": "service",
       "moduleName": "ovh-angular-mondial-relay",
       "shortDescription": "Provide translation loader",
-      "keywords": "add addpart api function loader loading ngtranslate ovh-angular-mondial-relay path service translation translationpath translations"
+      "keywords": "add addpart api function loader loading ngtranslate ovh-angular-mondial-relay path service translation translationpath translations",
+      "isDeprecated": false
     },
     {
       "section": "api",
@@ -28,7 +30,8 @@ NG_DOCS={
       "type": "service",
       "moduleName": "ovh-angular-mondial-relay",
       "shortDescription": "Manage translation path",
-      "keywords": "api current files function ovh-angular-mondial-relay path read service set settranslationpath translation translations undefined"
+      "keywords": "api current files function ovh-angular-mondial-relay path read service set settranslationpath translation translations undefined",
+      "isDeprecated": false
     }
   ],
   "apis": {
