@@ -244,7 +244,7 @@ angular.module("ovh-angular-mondial-relay")
                     this.ngModel = null;
                     this.foundRelays = [];
 
-                    return this.mondialRelayService.Lexi().search(
+                    return this.mondialRelayService.v6().search(
                         filter || this.filter,
                         $scope
                     )
@@ -284,7 +284,7 @@ angular.module("ovh-angular-mondial-relay")
                  * @return {Promise}
                  */
                 this.gotoUserLoc = function () {
-                    this.userService.Lexi().get().$promise.then(function (me) {
+                    this.userService.v6().get().$promise.then(function (me) {
                         if (!self.userSearch) {
                             var filter = {
                                 country: me.country.toLowerCase() || MONDIAL_RELAY.defaultCountry

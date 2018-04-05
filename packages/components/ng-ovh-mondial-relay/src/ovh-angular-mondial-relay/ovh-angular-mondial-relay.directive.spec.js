@@ -22,7 +22,7 @@ describe("ovh-angular-mondial-relay", function () {
 
         angular.module("test.api").service("OvhApiSupplyMondialRelay", function () {
             return {
-                lexi: function () {
+                v6: function () {
                     return {
                         search: function () {
                             // Do nothing
@@ -34,7 +34,7 @@ describe("ovh-angular-mondial-relay", function () {
 
         angular.module("test.api").service("OvhApiMe", function () {
             return {
-                lexi: function () {
+                v6: function () {
                     return {
                         get: function () {
                             // Do nothing
