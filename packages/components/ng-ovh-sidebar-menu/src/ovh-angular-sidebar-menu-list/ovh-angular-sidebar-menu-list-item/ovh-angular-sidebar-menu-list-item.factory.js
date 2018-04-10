@@ -34,6 +34,7 @@
  *  @param {String=} options.icon Icon added before prefix and title. Example : ovh-font icon!
  *  @param {Number|String=} [options.id=A random Number] Unique id of the SidebarMenuListItem.
  *  @param {Number=} options.level Menu item level.
+ *  @param {Function=} [options.onClick=null] Function to be called on click event. Has to return true
  *  @param {Object} options.viewAllItem Links to a page that manages all subitems.
  *  @param {Object=} options.viewMore Custom object to implement your own pagination method.
  *  @param {String} options.viewMore.title The displayed title of the viewMore button.
@@ -79,6 +80,9 @@ angular.module("ovh-angular-sidebar-menu").factory("SidebarMenuListItem", functi
         this.icon = options.icon;
         this.category = options.category || "none";
         this.status = options.status || "none";
+
+        // action item
+        this.onClick = _.isFunction(options.onClick) ? options.onClick : null;
 
         this.namespace = options.namespace;
 

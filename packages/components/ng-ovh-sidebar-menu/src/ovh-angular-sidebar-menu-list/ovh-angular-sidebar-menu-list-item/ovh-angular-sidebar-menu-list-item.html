@@ -37,7 +37,8 @@
        data-ng-if="ItemMenuCtrl.item.url && !ItemMenuCtrl.item.allowSubItems"
        data-ng-href="{{ ItemMenuCtrl.item.url }}"
        target="{{ ItemMenuCtrl.item.target }}"
-       data-ng-include="ItemMenuCtrl.getInnerTemplateUrl()">
+       data-ng-include="ItemMenuCtrl.getInnerTemplateUrl()"
+       data-ng-click="ItemMenuCtrl.onExternalLinkClick()">
     </a>
 
     <!-- SLIDING CONTENT -->

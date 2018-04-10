@@ -128,6 +128,14 @@ angular.module("ovh-angular-sidebar-menu").directive("sidebarMenuListItem", func
             =            ACTIONS            =
             ===============================*/
 
+            self.onExternalLinkClick = function () {
+                if (self.item.onClick) {
+                    return self.item.onClick();
+                }
+
+                return true;
+            };
+
             self.toggleItemOpenState = function () {
                 self.errorVisible = false;
 
