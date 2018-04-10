@@ -26,6 +26,9 @@ angular.module("ovh-angular-actions-menu").controller("ActionsMenuCtrl", functio
             self.onPageSwitch();
         } else {
             self.popoverSettings.isOpen = false;
+            if (actionItem.onClick) {
+                return actionItem.onClick();
+            }
         }
 
         return true;
