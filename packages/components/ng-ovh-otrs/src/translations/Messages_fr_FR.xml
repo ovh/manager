@@ -162,8 +162,8 @@
    <translation id="otrs_popup_move" qtlid="228462">Vous pouvez déplacer cette popup en déplacant son bandeau.</translation>
    <translation id="otrs_popup_sent_error" qtlid="228475">Une erreur est survenue lors de la création de ce ticket.</translation>
    <translation id="otrs_popup_sent_error_not_available" qtlid="361386">Cette opération n'est pas disponible dans ce datacentre.</translation>
-   <translation id="otrs_popup_sent_error_already_exists" qtlid="472042">Un ticket a déjà été envoyé sur ce sujet. <a href="#/ticket/{{ticketId}}">Cliquez ici pour accéder au ticket.</a></translation>
-   <translation id="otrs_popup_sent_success" qtlid="472055">Votre ticket numéro {{ticketNumber}} a bien été pris en compte. Vous pouvez retrouver le fil de discussion de ce ticket depuis le menu <a href="#/ticket/{{ticketId}}">Assistance - liste des tickets</a>.</translation>
+   <translation id="otrs_popup_sent_error_already_exists">Un ticket a déjà été envoyé sur ce sujet. <a href="{{ticketUrl}}">Cliquez ici pour accéder au ticket.</a></translation>
+   <translation id="otrs_popup_sent_success">Votre ticket numéro {{ticketNumber}} a bien été pris en compte. Vous pouvez retrouver le fil de discussion de ce ticket depuis le menu <a href="{{ticketUrl}}">Assistance - liste des tickets</a>.</translation>
    <translation id="otrs_popup_get_services_error" qtlid="228501">Une erreur est survenue lors de la récupération de vos services.</translation>
    <translation id="otrs_popup_get_types_error" qtlid="233047">Une erreur est survenue lors de la récupération des informations.</translation>
    <translation id="otrs_popup_services_refresh" qtlid="228514">Actualiser la liste</translation>

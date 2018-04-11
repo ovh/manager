@@ -1,5 +1,8 @@
 # Changelog
 
+## [4.0.1] - 2018-04-11
+- Add provider to set a base URL tickets.
+
 ## [4.0.0] - 2018-03-30
 - Add missing intervention feature
 ### Breaking change

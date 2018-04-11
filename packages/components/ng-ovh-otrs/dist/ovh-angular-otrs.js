@@ -116,9 +116,9 @@ angular.module("ovh-angular-otrs")
         US: ["CLOUD_DEDICATED"]
     });
 
-angular.module("ovh-angular-otrs").controller("OtrsPopupCtrl", ["$q", "$rootScope", "$scope", "$stateParams", "$transitions", "$translate", "OvhApiMe", "OvhApiMeVipStatus", "OvhApiProductsAapi", "OvhApiSupport", "OtrsPopupService", "OtrsPopupInterventionService", "OTRS_POPUP_ASSISTANCE_ENUM", "OTRS_POPUP_BILLING_ENUM", "OTRS_POPUP_CATEGORIES", "OTRS_POPUP_INCIDENT_ENUM", "OTRS_POPUP_INTERVENTION_ENUM", "OTRS_POPUP_SERVICES", "OTRS_POPUP_UNIVERSES", "TICKET_CATEGORIES", "UNIVERSE", function ($q, $rootScope, $scope, $stateParams, $transitions, $translate,
+angular.module("ovh-angular-otrs").controller("OtrsPopupCtrl", ["$q", "$rootScope", "$scope", "$stateParams", "$transitions", "$translate", "OvhApiMe", "OvhApiMeVipStatus", "OvhApiProductsAapi", "OvhApiSupport", "OtrsPopup", "OtrsPopupService", "OtrsPopupInterventionService", "OTRS_POPUP_ASSISTANCE_ENUM", "OTRS_POPUP_BILLING_ENUM", "OTRS_POPUP_CATEGORIES", "OTRS_POPUP_INCIDENT_ENUM", "OTRS_POPUP_INTERVENTION_ENUM", "OTRS_POPUP_SERVICES", "OTRS_POPUP_UNIVERSES", "TICKET_CATEGORIES", "UNIVERSE", function ($q, $rootScope, $scope, $stateParams, $transitions, $translate,
                                                                          OvhApiMe, OvhApiMeVipStatus, OvhApiProductsAapi, OvhApiSupport,
-                                                                         OtrsPopupService, OtrsPopupInterventionService,
+                                                                         OtrsPopup, OtrsPopupService, OtrsPopupInterventionService,
                                                                          OTRS_POPUP_ASSISTANCE_ENUM, OTRS_POPUP_BILLING_ENUM, OTRS_POPUP_CATEGORIES, OTRS_POPUP_INCIDENT_ENUM, OTRS_POPUP_INTERVENTION_ENUM, OTRS_POPUP_SERVICES, OTRS_POPUP_UNIVERSES,
                                                                          TICKET_CATEGORIES, UNIVERSE) {
     "use strict";
@@ -134,6 +134,7 @@ angular.module("ovh-angular-otrs").controller("OtrsPopupCtrl", ["$q", "$rootScop
     };
     self.currentUser = null;
     self.isVIP = false;
+    self.baseUrlTickets = null;
     self.services = [];
 
     $transitions.onSuccess({}, function (transition) {
@@ -252,7 +253,7 @@ angular.module("ovh-angular-otrs").controller("OtrsPopupCtrl", ["$q", "$rootScop
                     $rootScope.$broadcast("ticket.otrs.reload");
                     manageAlert($translate.instant("otrs_popup_sent_success", {
                         ticketNumber: data.ticketNumber,
-                        ticketId: data.ticketId
+                        ticketUrl: [self.baseUrlTickets, data.ticketId].join("/")
                     }), "success");
                 })
                 .catch(function (err) {
@@ -281,7 +282,7 @@ angular.module("ovh-angular-otrs").controller("OtrsPopupCtrl", ["$q", "$rootScop
                     $rootScope.$broadcast("ticket.otrs.reload");
                     manageAlert($translate.instant("otrs_popup_sent_success", {
                         ticketNumber: data.ticketNumber,
-                        ticketId: data.ticketId
+                        ticketUrl: [self.baseUrlTickets, data.ticketId].join("/")
                     }), "success");
                 }).catch(function (err) {
                     if (_.includes(err.message, "This feature is currently not supported in your datacenter")) {
@@ -289,7 +290,7 @@ angular.module("ovh-angular-otrs").controller("OtrsPopupCtrl", ["$q", "$rootScop
                     } else if (_.includes(err.message, "Action pending : ticketId ")) {
                         var ticketId = /\d+$/.exec(err.message);
                         manageAlert($translate.instant("otrs_popup_sent_error_already_exists", {
-                            ticketId: ticketId
+                            ticketUrl: [self.baseUrlTickets, ticketId].join("/")
                         }), "danger");
                     } else {
                         manageAlert([$translate.instant("otrs_popup_sent_error"), _.get(err, "message", "")].join(" "), "danger");
@@ -394,6 +395,12 @@ angular.module("ovh-angular-otrs").controller("OtrsPopupCtrl", ["$q", "$rootScop
         self.servicesValues = OTRS_POPUP_SERVICES;
         self.formDetails = "start";
         self.interventionEnum = OTRS_POPUP_INTERVENTION_ENUM;
+
+        self.baseUrlTickets = OtrsPopup.getBaseUrlTickets();
+
+        if (_.isEmpty(self.baseUrlTickets)) {
+            throw new Error("A baseUrlTickets must be specified.");
+        }
 
         // hide alert
         manageAlert();
@@ -526,6 +533,30 @@ angular.module("ovh-angular-otrs")
     });
 
 angular.module("ovh-angular-otrs")
+    .provider("OtrsPopup", function () {
+        "use strict";
+
+        var self = this;
+        var baseUrlTickets = null;
+
+        self.setBaseUrlTickets = function (url) {
+            if (angular.isDefined(url) && angular.isString(url)) {
+                baseUrlTickets = url;
+            } else {
+                throw new Error("An URL must be specified.");
+            }
+        };
+
+        self.$get = function () {
+            return {
+                getBaseUrlTickets: function () {
+                    return baseUrlTickets;
+                }
+            };
+        };
+    });
+
+angular.module("ovh-angular-otrs")
     .service("OtrsPopupService", ["$rootScope", function ($rootScope) {
         "use strict";
 
@@ -592,7 +623,6 @@ angular.module("ovh-angular-otrs").constant("TICKET_CATEGORIES", {
     },
     DEFAULT: "billing"
 });
-
 
 angular.module('ovh-angular-otrs').run(['$templateCache', function($templateCache) {
   'use strict';

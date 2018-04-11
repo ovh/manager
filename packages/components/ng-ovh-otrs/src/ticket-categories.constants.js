@@ -32,4 +32,3 @@ angular.module("ovh-angular-otrs").constant("TICKET_CATEGORIES", {
     },
     DEFAULT: "billing"
 });
-
