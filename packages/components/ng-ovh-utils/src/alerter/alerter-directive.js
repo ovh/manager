@@ -1,4 +1,4 @@
-angular.module('ua.alerter').directive('ovhAlert', ['$rootScope', function ($rootScope) {
+angular.module('ua.alerter').directive('ovhAlert', function () {
     'use strict';
     return {
         restrict: 'A',
@@ -8,8 +8,6 @@ angular.module('ua.alerter').directive('ovhAlert', ['$rootScope', function ($roo
         transclude: true,
         templateUrl: 'components/ovh-utils-angular/alerter/alerter.html',
         link: function ($scope, $elm, $attr) {
-
-            $scope.i18n = $rootScope.i18n;
 
             function checkForGlobalOrId (id) {
                 return (!$scope.ovhAlert && !id) || ($scope.ovhAlert && id === $scope.ovhAlert);
@@ -39,4 +37,4 @@ angular.module('ua.alerter').directive('ovhAlert', ['$rootScope', function ($roo
             }
         }
     };
-}]);
+});

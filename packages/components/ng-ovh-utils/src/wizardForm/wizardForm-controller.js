@@ -1,4 +1,4 @@
-angular.module('ua.wizardForm').controller('wizardFormCtrl', ['$scope', function ($scope) {
+angular.module('ua.wizardForm').controller('wizardFormCtrl', ['$scope, $translate', function ($scope, $translate) {
     'use strict';
 
     var initialized = false,
@@ -9,8 +9,8 @@ angular.module('ua.wizardForm').controller('wizardFormCtrl', ['$scope', function
 
     $scope.confirmButton = true;
     $scope.cancelButton = true;
-    $scope.wizardConfirmButtonText = $scope.tr('wizard_confirm');
-    $scope.wizardCancelButtonText = $scope.tr('wizard_cancel');
+    $scope.wizardConfirmButtonText = $translate.instant('wizard_confirm');
+    $scope.wizardCancelButtonText = $translate.instant('wizard_cancel');
 
     $scope.onFinish = angular.noop;
     $scope.onCancel = angular.noop;

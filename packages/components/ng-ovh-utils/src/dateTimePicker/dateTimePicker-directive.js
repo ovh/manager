@@ -44,7 +44,7 @@
  *
  * </code>
  */
-angular.module('ua.dateTimePicker').directive('dateTimePicker', ['translator', 'ovhDirectives.constant.dateTimePicker.CONFIG_OPTIONS', 'ovhDirectives.constant.dateTimePicker.VIEW_MODE', '$parse', '$window', function(translator, config, viewMode, $parse, $window) {
+angular.module('ua.dateTimePicker').directive('dateTimePicker', ['$translate', 'ovhDirectives.constant.dateTimePicker.CONFIG_OPTIONS', 'ovhDirectives.constant.dateTimePicker.VIEW_MODE', '$parse', '$window', function($translate, config, viewMode, $parse, $window) {
     'use strict';
 
     /**
@@ -59,7 +59,7 @@ angular.module('ua.dateTimePicker').directive('dateTimePicker', ['translator', '
     function getLanguage() {
         var language;
         try  {
-            language = translator.getLanguage().split('_')[0];
+            language = $translate.resolveClientLocale().split('_')[0];
         } catch (e) {
             language = 'en';
         }

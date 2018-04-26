@@ -12,13 +12,21 @@
             <label>
                 <input type="checkbox" id="validateContracts" name="validateContract" value="false"
                        data-ng-model="agree">
-                <span data-ng-bind="contracts.length > 1 && tr('contracts_agree') || tr('contract_agree')"></span>
+                <span data-translate="contracts_agree"></span>
             </label>
         </div>
     </div>
     <div data-ng-show="fullText == true">
-        <p class="font-weight-bold text-center black"
-           data-ng-bind="contracts.length > 1 && tr('contracts_list_title', [contracts.length]) || tr('contract_list_title')">
+        <p class="font-weight-bold text-center">
+           <span data-ng-if="contracts.length > 1"
+                 data-translate="contracts_list_title"
+                 data-translate-values="{
+                     count: contracts.length
+                 }">
+           </span>
+           <span data-ng-if="contracts.length <= 1"
+                 data-translate="contract_list_title">
+           </span>
         </p>
 
         <div class="accordion contracts-list">
@@ -43,7 +51,7 @@
                 <div class="contracts-breadcrumb">
                     <a class="pull-left contracts-breadcrumb-navigate contracts-breadcrumb-navigate-previous">
                         <span class="fa fa-chevron-left" aria-hidden="true"></span>
-                        <span data-i18n-static="contract_previous"></span>
+                        <span data-translate="contract_previous"></span>
                     </a>
                     <ul id="contracts-menu">
                         <li class="contracts-breadcrumb-navigate"
@@ -56,7 +64,7 @@
                         </li>
                     </ul>
                     <a class="pull-right contracts-breadcrumb-navigate contracts-breadcrumb-navigate-next">
-                        <span data-i18n-static="contract_next"></span>
+                        <span data-translate="contract_next"></span>
                         <span class="fa fa-chevron-right" aria-hidden="true"></span>
                     </a>
                 </div>
@@ -66,7 +74,11 @@
 
             <a class="accordion-toggle contracts-toggle-icon center" title="{{contract.name}}" target="_blank"
                data-ng-href="{{currentContract.url}}">
-                <span data-ng-bind="tr('download_contract', [currentContract.name])"></span>
+                <span data-translate="download_contract"
+                      data-translate-values="{
+                          name: currentContract.name
+                      }">
+                </span>
                 <br/>
                 <span class="fa fa-file-pdf-o" aria-hidden="true"></span>
             </a>
@@ -79,11 +91,11 @@
                     <input type="checkbox" id="validateContract"
                            name="validateContract"
                            data-ng-model="agree" value="false">
-                    <span data-ng-bind="contracts.length > 1 && tr('contracts_agree', [currentContract]) || tr('contracts_agree')"></span>
+                    <span data-translate="contracts_agree"></span>
                 </label>
 
                 <span class="font-weight-bold pull-right red"
-                      data-i18n-static="ontract_help"
+                      data-translate="contract_help"
                       data-ng-show="disabled == true">
                 </span>
             </div>

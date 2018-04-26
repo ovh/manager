@@ -15,10 +15,11 @@
         </h3>
         <div class="wizard-breadcrumb-container d-inline-block ml-auto my-auto text-muted text-nowrap pl-3 font-italic"
              data-ng-show="stepCount > 1">
-            <span data-i18n
-                  data-key="wizard_breadcrumb"
-                  data-vars="{{ currentStep }}|{{ stepCount }}"
-                  data-ng-show="wizardBreadCrumb">
+            <span data-translate="wizard_breadcrumb"
+                  data-translate-values="{
+                      'currentStep': currentStep,
+                      'stepCount': stepCount
+                  }">
             </span>
         </div>
     </div>

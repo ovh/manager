@@ -29,7 +29,7 @@
  *</code>
  * Javascript view controller :
  *<code:js>
- *var MyController = function(scope, translator, step) {
+ *var MyController = function(scope, translate, step) {
  *   step.inject(scope);
  *   step.onChange(function(event) {
  *      switch(event.current) {
@@ -46,7 +46,7 @@
  *      }
  *   });
  *};
- *MyController.$inject = ['$scope', 'translator', 'step'];
+ *MyController.$inject = ['$scope', '$translate', 'step'];
  *</code>
  */
 angular.module('ua.step').factory('step', function () {

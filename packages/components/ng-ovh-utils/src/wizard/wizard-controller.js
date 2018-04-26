@@ -2,8 +2,8 @@
 * controller for wizard directives
 */
 angular.module('ua.wizard').controller('wizardCtrl',
-['$scope',
-function ($scope) {
+['$scope', '$translate',
+function ($scope, $translate) {
     'use strict';
 
     $scope.currentStep = this.currentStep = 0;
@@ -16,10 +16,10 @@ function ($scope) {
     $scope.cancelButton = true;
     $scope.keydownDisabled = false;
     $scope.wizardBreadCrumb = false;
-    $scope.wizardConfirmButtonText = $scope.tr('wizard_confirm');
-    $scope.wizardCancelButtonText = $scope.tr('wizard_cancel');
-    $scope.wizardPreviousButtonText = $scope.tr('wizard_previous');
-    $scope.wizardNextButtonText = $scope.tr('wizard_next');
+    $scope.wizardConfirmButtonText = $translate.instant('wizard_confirm');
+    $scope.wizardCancelButtonText = $translate.instant('wizard_cancel');
+    $scope.wizardPreviousButtonText = $translate.instant('wizard_previous');
+    $scope.wizardNextButtonText = $translate.instant('wizard_next');
     $scope.wizardCloseButton = true;
     $scope.wizardPreviousButton = true;
 

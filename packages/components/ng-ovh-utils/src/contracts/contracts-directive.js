@@ -1,6 +1,4 @@
-angular.module('ua.contracts').directive('contracts',
-['translator', '$rootScope',
-function (translator, $rootScope) {
+angular.module('ua.contracts').directive('contracts', function () {
     "use strict";
     return {
         restrict : 'EA',
@@ -21,8 +19,6 @@ function (translator, $rootScope) {
                 'offsetTop'  : '16'
             };
 
-            $scope.i18n = $rootScope.i18n;
-            $scope.tr = translator.tr;
             $scope.disabled = true;
 
 
@@ -122,4 +118,4 @@ function (translator, $rootScope) {
 
         }
     };
-}]);
+});

@@ -1,6 +1,6 @@
 angular.module('ua.price').filter('price',
-['translator',
-function (translator) {
+['$translate',
+function ($translate) {
     "use strict";
 
     var frenchTouch = {
@@ -55,14 +55,14 @@ function (translator) {
                     return "<b class=\"red\">" + price.withoutTax.text + "</b>";
                 }
                 if (frequency === 'yearly') {
-                    return "<b class=\"red\">" + translator.tr('price_ht_label', [price.withoutTax.text]) + "<small>" + translator.tr('price_label_yearly') +
-                           "</small></b><i class=\"small\"> (" + translator.tr('price_ttc_label', [price.withTax.text]) + "<small>" + translator.tr('price_label_yearly') + "</small>)</i>";
+                    return "<b class=\"red\">" + $translate.instant('price_ht_label', { price: price.withoutTax.text }) + "<small>" + $translate.instant('price_label_yearly') +
+                           "</small></b><i class=\"small\"> (" + $translate.instant('price_ttc_label', { price: price.withTax.text }) + "<small>" + $translate.instant('price_label_yearly') + "</small>)</i>";
                 }
-                return "<b class=\"red\">" + translator.tr('price_ht_label', [price.withoutTax.text]) +
-                       "</b><i class=\"small\"> (" + translator.tr('price_ttc_label', [price.withTax.text]) + ")</i>";
+                return "<b class=\"red\">" + $translate.instant('price_ht_label', { price: price.withoutTax.text }) +
+                       "</b><i class=\"small\"> (" + $translate.instant('price_ttc_label', { price: price.withTax.text }) + ")</i>";
             }
         }
-        return '<b class=\"red\">' +  translator.tr('price_free') + '</b>';
+        return '<b class=\"red\">' +  $translate.instant('price_free') + '</b>';
     }
 
     return function (price, ovhSubsidiary, frequency) {

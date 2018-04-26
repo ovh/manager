@@ -1,4 +1,4 @@
-angular.module('ua.wizardForm').directive('wizardFormStep', function () {
+angular.module('ua.wizardForm').directive('wizardFormStep', ['$translate', function ($translate) {
     'use strict';
     return {
         restrict    : 'A',
@@ -72,7 +72,7 @@ angular.module('ua.wizardForm').directive('wizardFormStep', function () {
                             $scope.stepHiddenText = newText;
                         });
                     } else {
-                        $scope.stepHiddenText = $scope.tr('wizard_hidden_text');
+                        $scope.stepHiddenText = $translate.instant('wizard_hidden_text');
                     }
 
                 },
@@ -90,4 +90,4 @@ angular.module('ua.wizardForm').directive('wizardFormStep', function () {
             };
         }
     };
-});
+}]);

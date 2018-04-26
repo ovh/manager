@@ -254,8 +254,6 @@ angular.module('ua.dateTimePicker', []).constant('ovhDirectives.constant.dateTim
     'collapse'
 ]);
 
-angular.module('ua.duration', []);
-
 angular.module('ua.elasticArea', []);
 
 angular.module('ua.event', []);
@@ -280,17 +278,11 @@ angular.module('ua.inputNumber', []);
 
 angular.module('ua.logger', []);
 
-angular.module('ua.loginForm', []);
-
-angular.module('ua.loginWithTokenForm', []);
-
 angular.module('ua.moment', []);
 
 angular.module('ua.navigator', []);
 
 angular.module('ua.paginationServerSide', []);
-
-angular.module('ua.piwik', []);
 
 angular.module('ua.poll', []);
 
@@ -299,8 +291,6 @@ angular.module('ua.popover', []);
 angular.module('ua.preserveScroll', []);
 
 angular.module('ua.price', []);
-
-angular.module('ua.productList', []);
 
 angular.module('ua.sessionFetcher', []);
 
@@ -523,7 +513,7 @@ angular.module('ua.agreements').directive('agreements', ['$http', function (http
     };
 }]);
 
-angular.module('ua.alerter').directive('ovhAlert', ['$rootScope', function ($rootScope) {
+angular.module('ua.alerter').directive('ovhAlert', function () {
     'use strict';
     return {
         restrict: 'A',
@@ -533,8 +523,6 @@ angular.module('ua.alerter').directive('ovhAlert', ['$rootScope', function ($roo
         transclude: true,
         templateUrl: 'components/ovh-utils-angular/alerter/alerter.html',
         link: function ($scope, $elm, $attr) {
-
-            $scope.i18n = $rootScope.i18n;
 
             function checkForGlobalOrId (id) {
                 return (!$scope.ovhAlert && !id) || ($scope.ovhAlert && id === $scope.ovhAlert);
@@ -564,7 +552,7 @@ angular.module('ua.alerter').directive('ovhAlert', ['$rootScope', function ($roo
             }
         }
     };
-}]);
+});
 
 angular.module('ua.alerter').service('Alerter', ['$rootScope', function ($rootScope) {
     "use strict";
@@ -712,9 +700,7 @@ angular.module('ua.clickRoute').directive('clickRoute', function () {
     };
 });
 
-angular.module('ua.contracts').directive('contracts',
-['translator', '$rootScope',
-function (translator, $rootScope) {
+angular.module('ua.contracts').directive('contracts', function () {
     "use strict";
     return {
         restrict : 'EA',
@@ -735,8 +721,6 @@ function (translator, $rootScope) {
                 'offsetTop'  : '16'
             };
 
-            $scope.i18n = $rootScope.i18n;
-            $scope.tr = translator.tr;
             $scope.disabled = true;
 
 
@@ -836,7 +820,7 @@ function (translator, $rootScope) {
 
         }
     };
-}]);
+});
 
 /**
  * @ngdoc directive
@@ -884,7 +868,7 @@ function (translator, $rootScope) {
  *
  * </code>
  */
-angular.module('ua.dateTimePicker').directive('dateTimePicker', ['translator', 'ovhDirectives.constant.dateTimePicker.CONFIG_OPTIONS', 'ovhDirectives.constant.dateTimePicker.VIEW_MODE', '$parse', '$window', function(translator, config, viewMode, $parse, $window) {
+angular.module('ua.dateTimePicker').directive('dateTimePicker', ['$translate', 'ovhDirectives.constant.dateTimePicker.CONFIG_OPTIONS', 'ovhDirectives.constant.dateTimePicker.VIEW_MODE', '$parse', '$window', function($translate, config, viewMode, $parse, $window) {
     'use strict';
 
     /**
@@ -899,7 +883,7 @@ angular.module('ua.dateTimePicker').directive('dateTimePicker', ['translator', '
     function getLanguage() {
         var language;
         try  {
-            language = translator.getLanguage().split('_')[0];
+            language = $translate.resolveClientLocale().split('_')[0];
         } catch (e) {
             language = 'en';
         }
@@ -1346,48 +1330,6 @@ angular.module('ua.dateTimePicker').directive('dateTimePicker', ['translator', '
                 initController();
             }
 
-        }
-    };
-}]);
-
-angular.module('ua.duration').filter('duration',
-['translator', '$filter',
-function (translator, $filter) {
-    "use strict";
-
-    var unitHash = {
-            "m" : "month",
-            "d" : "day",
-            "j" : "day",
-            "y" : "year",
-            "a" : "year"
-        },
-        simpleDurationReg = /(^[0-9]+)([mdjya]?)$/,
-        upto = /^upto/,
-        uptoDuration = /(^upto-)([0-9]{4}-[0-9]{2}-[0-9]{2}?$)/,
-        engage = /(^engage)([0-9]+)([mdjya]?)$/;
-
-    return function parseDuration (duration, dateFormat) {
-        var d,
-            unit;
-
-        if (simpleDurationReg.test(duration)) {
-            d = +duration.match(simpleDurationReg)[1];
-            unit = unitHash[duration.match(simpleDurationReg)[2] || 'm'];
-            return translator.trpl(unit, d);
-        } else if (upto.test(duration)) {
-            if (uptoDuration.test(duration)) {
-                d = duration.match(uptoDuration)[2];
-                return translator.tr('upto', (dateFormat ? $filter('date')(d, dateFormat) : d));
-            } else {
-                return translator.tr('uptofirstdaynextmonth');
-            }
-        } else if (engage.test(duration)) {
-            d = +duration.match(engage)[2];
-            unit = unitHash[duration.match(engage)[3] || 'm'];
-            return translator.tr('engage', translator.trpl(unit, d));
-        } else {
-            return duration;
         }
     };
 }]);
@@ -2425,8 +2367,8 @@ function ($q) {
 ]);
 
 angular.module("ua.humanReadableSize").filter("humanReadableSize", [
-    "translator",
-    function (translator) {
+    "$translate",
+    function ($translate) {
         "use strict";
 
         return function (size, options) {
@@ -2437,15 +2379,15 @@ angular.module("ua.humanReadableSize").filter("humanReadableSize", [
 
             var opts = options || {};
             opts.suffixes = {
-                B: translator.tr("unit_size_B"),
-                KB: translator.tr("unit_size_KB"),
-                MB: translator.tr("unit_size_MB"),
-                GB: translator.tr("unit_size_GB"),
-                TB: translator.tr("unit_size_TB"),
-                PB: translator.tr("unit_size_PB"),
-                EB: translator.tr("unit_size_EB"),
-                ZB: translator.tr("unit_size_ZB"),
-                YB: translator.tr("unit_size_YB")
+                B: $translate.instant("unit_size_B"),
+                KB: $translate.instant("unit_size_KB"),
+                MB: $translate.instant("unit_size_MB"),
+                GB: $translate.instant("unit_size_GB"),
+                TB: $translate.instant("unit_size_TB"),
+                PB: $translate.instant("unit_size_PB"),
+                EB: $translate.instant("unit_size_EB"),
+                ZB: $translate.instant("unit_size_ZB"),
+                YB: $translate.instant("unit_size_YB")
             };
 
             return filesize(size, opts);
@@ -3337,262 +3279,6 @@ angular.module('ua.logger').service('Logger', ['$rootScope', function (rootScope
     };
 }]);
 
-angular.module('ua.loginForm').controller('LoginFormCtrl',
-['$scope', '$http', '$location', 'translator',
-function ($scope, $http, $location, Translator) {
-    'use strict';
-
-    var sessionId = $location.path().search("sessionid"),
-        startIndex,
-        endIndex,
-        sessionV6;
-
-    $scope.loginInProgress = !sessionId;
-    $scope.errors = [];
-
-    function errorOnLoginRedirect() {
-        $('body').css('display', '');
-        $scope.loginInProgress = false;
-        $scope.errors = [{
-            'message' : 'error_request',
-            'sevices' : []
-        }];
-    }
-
-    //Login from V6 session
-    if ($location.path().search("sessionid") !== -1 || $location.path().search("sessionv6") !== -1) {
-
-        startIndex = $location.path().indexOf('=') + 1;
-        endIndex = $location.path().length;
-        sessionV6 = $location.path().substring(startIndex, endIndex);
-
-        $('body').css('display', 'none');
-
-        $http.post('api/auth/loginSessionid', {
-            sessionid: sessionV6,
-            redirectTo: '#/'
-        }).success(function (result) {
-            if (!!result && !!result.url) {
-                window.location.href = result.url;
-            } else {
-                errorOnLoginRedirect();
-            }
-        }).error(errorOnLoginRedirect);
-
-    }
-
-    //Login from V6 session
-    if (!!$location.search().sessionid || !!$location.search().sessionv6) {
-
-        $('body').css('display', 'none');
-
-        $http.post('api/auth/loginSessionid', {
-            sessionid: $location.search().sessionid || $location.search().sessionv6,
-            redirectTo: '#' + ($location.path() || '/')
-        }).success(function (result) {
-            if (!!result && !!result.url) {
-                window.location.href = result.url;
-            } else {
-                errorOnLoginRedirect();
-            }
-        }).error(errorOnLoginRedirect);
-    }
-
-
-    // languages choice
-    $scope.availableLanguages = Translator.getAvailableLanguages();
-
-    $scope.$watch('selectedLanguage', function (newLanguage) {
-        $scope.updateSelectedLanguage(newLanguage);
-    });
-}]);
-
-/**
- * @type directive
- * @name ovhDirectives:loginForm
- * @version 0.0.1
- * @description
- * Provide the login form
- * @param {string} action the uri to the login page
- * @param {string} method must be POST
- * @param {html element} input#nichandle[type='text'] the login input
- * @param {html element} input#password[type='password'] the password input
- * @param {html element} input#login[type='submit']
- * @example
- * <code:html>
- *   <form name="loginform" class="form-inline" data-login-form action="api/auth/login" method="POST">
- *
- *         <label for="nichandle" class="form-label" data-ng-bind="i18n.login_name"></label>
- *         <!-- input with id MUST exist -->
- *         <input id="nichandle" type="text" name="login" data-ng-disabled="loginInProgress" autocomplete="on">
- *         <span class="add-on">-ovh</span>
- *     </div>
- *
- *     <div class="span6">
- *          <label for="password" class="form-label" data-ng-bind="i18n.login_password"></span>
- *          <input id="password" name="password" type="password" data-ng-disabled="loginInProgress" autocomplete="on" >
- *     </div>
- *
- *     <div id="error" class="alert alert-block alert-error" style="display: none;">
- *          <span data-ng-bind="i18n.login_login_or_password_invalid"></span>
- *     </div>
- *
- *      <input type="submit" id="login" class="btn btn-primary" value="{{i18n.login_login}}">
- *      <a href="{{i18n.login_forgot_your_password_url}}" data-ng-bind="i18n.login_forgot_your_password" class="pull-right btn btn-link"></a>
- *   </form>
- * </code>
- */
-angular.module('ua.loginForm').directive('loginForm', function () {
-    "use strict";
-    return {
-        restrict   : 'A',
-        replace    : false,
-        controller : 'LoginFormCtrl',
-        link       : function ($scope, $elm) {
-            var form = $elm,
-                loginInput = form.find('#nichandle'),
-                passwordInput = form.find('#password'),
-                loginButton = form.find('#login'),
-                timeoutId;
-
-            function checkOnTimeout () {
-                timeoutId = window.clearTimeout(timeoutId);
-                if (loginInput.val() !== '' && passwordInput.val() !== '') {
-                    loginButton.removeAttr('disabled');
-                } else {
-                    loginButton.attr('disabled', 'disabled');
-                }
-                timeoutId = window.setTimeout(checkOnTimeout, 250);
-            }
-
-
-            $scope.errors = [];
-            if ($.cookie('X-OVH-V6-LOGGED') === "false") {
-                $('#error').css('display', 'block');
-            }
-            (function () {
-
-                loginButton.click(function () {
-                    timeoutId = window.clearTimeout(timeoutId);
-                });
-
-                loginInput.bind('keypress change', function () {
-                    loginInput.attr('required', 'required');
-                    $('#error').css('display', 'none');
-                    $.removeCookie('X-OVH-V6-LOGGED', {path:'/'});
-                    if (timeoutId === undefined) {
-                        checkOnTimeout();
-                    }
-                });
-                loginInput.focus(function () {
-                    loginInput.removeAttr('required');
-                    $.removeCookie('X-OVH-V6-LOGGED', {path:'/'});
-                });
-
-                passwordInput.bind('keypress change', function () {
-                    passwordInput.attr('required', 'required');
-                    $('#error').css('display', 'none');
-                    $.removeCookie('X-OVH-V6-LOGGED', {path:'/'});
-                    if (timeoutId === undefined) {
-                        checkOnTimeout();
-                    }
-                });
-                passwordInput.focus(function () {
-                    passwordInput.removeAttr('required');
-                    $.removeCookie('X-OVH-V6-LOGGED', {path:'/'});
-                });
-            })();
-
-            checkOnTimeout();
-
-            form.append($('<input type="hidden" id="redirectTo" name="redirectTo" value="' + (window.location.hash || '#/') + '">'));
-        }// end Link
-    };//end return
-});
-
-angular.module('ua.loginWithTokenForm').controller('LoginWithTokenFormCtrl',
-['$scope', '$http', '$location', 'translator',
-function ($scope, $http, $location, Translator) {
-    'use strict';
-
-    var hasConsumerKey = $location.path().search("consumerKey"),
-        startIndex,
-        endIndex,
-        consumerKey;
-
-    $scope.loginInProgress = !hasConsumerKey;
-    $scope.errors = [];
-
-    //Login from consumer key
-    if ($location.path().search("consumerKey") !== -1) {
-        startIndex = $location.path().indexOf('=') + 1;
-        endIndex = $location.path().length;
-        consumerKey = $location.path().substring(startIndex, endIndex);
-    }
-
-    // languages choice
-    $scope.availableLanguages = Translator.getAvailableLanguages();
-
-    $scope.$watch('selectedLanguage', function (newLanguage) {
-        $scope.updateSelectedLanguage(newLanguage);
-    });
-}]);
-
-/**
- * @type directive
- * @name ovhDirectives:loginWithTokenForm
- * @version 0.0.1
- * @description
- * Provide the login with token form
- * @example
- * <code:html>
- *   <button data-login-with-token-form></button>
- * </code>
- */
-angular.module('ua.loginWithTokenForm').directive('loginWithTokenForm', ['$http', function ($http) {
-    "use strict";
-    return {
-        restrict   : 'A',
-        replace    : false,
-        controller : 'LoginWithTokenFormCtrl',
-        link       : function ($scope, $elm) {
-            var loginButton = $elm;
-
-            function errorOnLoginRedirect() {
-                $('body').css('display', '');
-                $scope.loginInProgress = false;
-                $scope.errors = [{
-                    'message' : 'error_request',
-                    'sevices' : []
-                }];
-            }
-
-            $scope.errors = [];
-            if ($.cookie('X-OVH-V6-LOGGED') === "false") {
-                $('#error').css('display', 'block');
-            }
-            (function () {
-
-                loginButton.bind('click', function () {
-                    $('body').css('display', 'none');
-
-                    $http.post('api/auth/loginWithToken', {
-                        redirectTo: (window.location.hash || '#/')
-                    }).then(function (result) {
-                        if (!!result && !!result.url) {
-                            window.location.href = result.url;
-                        } else {
-                            errorOnLoginRedirect();
-                        }
-                    })["catch"](errorOnLoginRedirect);
-                });
-
-            })();
-
-        }// end Link
-    };//end return
-}]);
-
 /**
  * @ngdoc filter
  * @name ovhFilters.filter:moment
@@ -3827,8 +3513,8 @@ angular.module('ua.navigator').service('Navigator', ['$rootScope', '$location', 
  *      $scope.$broadcast('paginationServerSide.loadPage', iWantToLoadThisPage, anId);
  */
 angular.module('ua.paginationServerSide').directive('paginationServerSide',
-['translator',
-function (translator) {
+['$translate',
+function ($translate) {
     'use strict';
     return {
         restrict: 'A',
@@ -3843,7 +3529,6 @@ function (translator) {
         templateUrl: 'components/ovh-utils-angular/paginationServerSide/paginationServerSide.html',
         link: function ($scope, $elem, $attr) {
 
-            $scope.tr = translator.tr;
             function checkForGlobalOrId (id) {
                 return !id || ($attr.paginationServerSide && id === $attr.paginationServerSide);
             }
@@ -3878,7 +3563,7 @@ function (translator) {
             }
 
             $scope.getSizeLabel = function (size) {
-                return size === 'all' ? translator.tr('pagination_display_all') : size;
+                return size === 'all' ? $translate.instant('pagination_display_all') : size;
             };
 
             // events
@@ -3994,206 +3679,6 @@ function (translator) {
         }
     };
 }]);
-
-angular.module('ua.piwik').directive('piwik', ['Piwik', function (Piwik) {
-    'use strict';
-    return {
-        restrict    : 'A',
-        link  : function ($scope, elm, attrs) {
-
-            var oldVisibility,
-                currentVisibility = $(elm).is(':visible'),
-                interval;
-
-            if (attrs.piwikOnShow) {
-
-                interval = window.setInterval(function () {
-                     // update currentVisibility
-                    currentVisibility = $(elm).is(':visible') && $(elm).children(':visible').length > 0;
-
-                    // check if change and if is visible
-                    if (currentVisibility && currentVisibility !== oldVisibility) {
-                        Piwik.track(attrs.piwik);
-                    }
-
-                    // update old visibility
-                    oldVisibility = currentVisibility;
-
-                }, 500);
-
-                $scope.$on('$destroy', function () {
-                    window.clearInterval(interval);
-                });
-
-            } else {
-                Piwik.track(attrs.piwik);
-            }
-        }
-    };
-}]);
-
-/**
- *  Service to track
- */
-angular.module('ua.piwik').provider('Piwik', function () {
-    'use strict';
-
-    var defaultPage = '',
-        siteId,
-        piwikPath,
-        piwikTitle = 'piwikTitle',
-        scriptCreated = false;
-
-    /**
-     * Helper function to build path
-     */
-    function buildPath(p) {
-        return (("https:" === document.location.protocol) ? "https" : "http") + "://" + p;
-    }
-
-    /**
-     * Helper function to create script tag
-     */
-    function createScriptTag () {
-        var d = document,
-            g = d.createElement('script'),
-            s= d.getElementsByTagName('script')[0];
-
-        g.type = 'text/javascript';
-        g.defer = true;
-        g.async=true;
-        g.src = piwikPath + '/piwik.js';
-
-        s.parentNode.insertBefore(g,s);
-
-        scriptCreated = true;
-    }
-
-    // Define extra global _pag for piwik
-    window._paq = window._paq || [];
-
-    /**
-     * To set a special piwik path
-     */
-    this.setPiwikPath = function (path) {
-        if (angular.isString(path)) {
-            piwikPath = buildPath(path);
-            createScriptTag();
-        }
-    };
-
-    /**
-     * To set tracking site
-     */
-    this.setSiteId = function (id) {
-        if (id) {
-            siteId = id;
-        }
-    };
-
-    /**
-     * To change the default tracking page
-     */
-    this.setDefaultPage = function (defPage) {
-        if (angular.isString(defPage)) {
-            defaultPage = defPage;
-        }
-    };
-
-    /**
-     *
-     */
-    this.setPiwikTitlePath = function (p) {
-        if (angular.isDefined(p)) {
-            piwikTitle = p;
-        } else {
-            piwikTitle = 'piwikTitle';
-        }
-    };
-
-    /**
-     * Return the service
-     */
-    this.$get = ['$rootScope', function ($rootScope) {
-
-        var trackOnRouteChange = false,
-            unregister;
-
-        function track (page, variableName, value) {
-            try {
-
-                if (variableName !== undefined && value !== undefined) {
-                    window._paq.push(["setCustomVariable", 1, variableName , value, "visit"]);
-                }
-
-                window._paq.push(["setDocumentTitle", page || defaultPage]);
-                window._paq.push(["trackPageView", page || defaultPage]);
-
-            } catch (e) {
-                throw "No Piwik founded";
-            }
-        }
-
-        function registerEvent() {
-            return $rootScope.$on('$routeChangeSuccess', function (scope, route) {
-
-                var title,
-                    p = piwikTitle;
-
-                if (trackOnRouteChange === true) {
-
-                    if (angular.isDefined(p) && angular.isDefined(route[p])) {
-
-                        title = route[p];
-
-                        if (title !== null && title !== undefined) {
-                            track(title);
-                        }
-                    }
-
-                } else {
-
-                    if (angular.isFunction(unregister)) {
-                        unregister();
-                    }
-                }
-            });
-        }
-
-        function init() {
-            if (scriptCreated === false) {
-                createScriptTag();
-            }
-
-            window._paq.push(['setSiteId', siteId]);
-            window._paq.push(['setTrackerUrl', piwikPath + '/piwik.php']);
-
-            if (piwikPath === '') {
-                piwikPath = buildPath(document.location.host) + '/piwik';
-            }
-        }
-
-        init();
-
-        return {
-            trackOnRouteChange : function (trackOnRoute) {
-
-                trackOnRouteChange = trackOnRoute;
-
-                if (angular.isFunction(unregister)) {
-                    unregister();
-                }
-
-                if (trackOnRoute === true) {
-                    unregister = registerEvent();
-                }
-            },
-            track : function (page, variableName, value) {
-                track(page, variableName, value);
-            }
-        };
-    }];
-});
 
 angular.module('ua.poll').service('Poll',
     ['$q', '$timeout', '$http',
@@ -4821,8 +4306,8 @@ angular.module('ua.preserveScroll').factory('PreserveScrollCache', function ($ca
 });
 
 angular.module('ua.price').filter('price',
-['translator',
-function (translator) {
+['$translate',
+function ($translate) {
     "use strict";
 
     var frenchTouch = {
@@ -4877,14 +4362,14 @@ function (translator) {
                     return "<b class=\"red\">" + price.withoutTax.text + "</b>";
                 }
                 if (frequency === 'yearly') {
-                    return "<b class=\"red\">" + translator.tr('price_ht_label', [price.withoutTax.text]) + "<small>" + translator.tr('price_label_yearly') +
-                           "</small></b><i class=\"small\"> (" + translator.tr('price_ttc_label', [price.withTax.text]) + "<small>" + translator.tr('price_label_yearly') + "</small>)</i>";
+                    return "<b class=\"red\">" + $translate.instant('price_ht_label', { price: price.withoutTax.text }) + "<small>" + $translate.instant('price_label_yearly') +
+                           "</small></b><i class=\"small\"> (" + $translate.instant('price_ttc_label', { price: price.withTax.text }) + "<small>" + $translate.instant('price_label_yearly') + "</small>)</i>";
                 }
-                return "<b class=\"red\">" + translator.tr('price_ht_label', [price.withoutTax.text]) +
-                       "</b><i class=\"small\"> (" + translator.tr('price_ttc_label', [price.withTax.text]) + ")</i>";
+                return "<b class=\"red\">" + $translate.instant('price_ht_label', { price: price.withoutTax.text }) +
+                       "</b><i class=\"small\"> (" + $translate.instant('price_ttc_label', { price: price.withTax.text }) + ")</i>";
             }
         }
-        return '<b class=\"red\">' +  translator.tr('price_free') + '</b>';
+        return '<b class=\"red\">' +  $translate.instant('price_free') + '</b>';
     }
 
     return function (price, ovhSubsidiary, frequency) {
@@ -4893,141 +4378,6 @@ function (translator) {
         }
 
         return "<span/>";
-    };
-}]);
-
-angular.module('ua.productList').directive('productList', function () {
-    'use strict';
-    return {
-        restrict    : 'A',
-        scope       : true,
-        templateUrl : 'components/ovh-utils-angular/productList/productList.html',
-        transclude  : true
-    };
-});
-
-angular.module('ua.productList').service('ProductList', ['$rootScope', '$q', function ($rootScope, $q) {
-    "use strict";
-
-    var products,
-        selected = null,
-        productsMap = {},
-        deferredSelected = $q.defer();
-
-    this.setList = function (product) {
-        products = product;
-        $rootScope.$broadcast('ProductList.set', products);
-    };
-
-    function  findProduct(product) {
-        var type,
-            p, i;
-
-        if (angular.isString(product) && productsMap[product] !== undefined) {
-            return productsMap[product];
-        } else if (angular.isString(product)) {
-            for(type in products) {
-                if (products.hasOwnProperty(type)) {
-
-                    p = products[type];
-                    i = p.length;
-
-                    for(i;i--;) {
-                        if (p[i].name === product) {
-                            productsMap[p[i].name] = p[i];
-                            return p[i];
-                        }
-                    }
-                }
-            }
-        }
-        return product;
-    }
-
-    this.select = function (product, preventDefault) {
-        var newSelected = findProduct(product),
-            unregister;
-
-        function resolver(s) {
-            selected = s;
-            deferredSelected.resolve(selected);
-            if (!preventDefault) {
-                $rootScope.$broadcast('ProductList.select', selected);
-            }
-        }
-
-        deferredSelected = $q.defer();
-
-        if (newSelected !== null) {
-            resolver(findProduct(product));
-        } else {
-            unregister = $rootScope.$on('ProductList.set', function () {
-                selected = findProduct(product);
-                if (selected !== null) {
-                    resolver(selected);
-                    unregister();
-                }
-            });
-        }
-    };
-
-    this.getSelected = function () {
-        return deferredSelected.promise;
-    };
-
-    this.unSelect = function () {
-        deferredSelected = $q.defer();
-        selected = null;
-        $rootScope.$broadcast('ProductList.unSelect');
-    };
-
-    this.clean = function () {
-        deferredSelected = $q.defer();
-        selected = null;
-        products = null;
-        $rootScope.$broadcast('ProductList.clean');
-    };
-}]);
-
-angular.module('ua.productList').directive('productListEntry',
-['ProductList',
-function (ProductList) {
-    'use strict';
-    return {
-        restrict    : 'A',
-        tranclude   : false,
-        scope       : {
-            'productListTitle' : '@',
-            'productListEntry' : '='
-        },
-        templateUrl : 'components/ovh-utils-angular/productList/productListEntry/productListEntry.html',
-        link        : function ($scope) {
-            $scope.selected = null;
-
-            $scope.$watch('productListEntry', function (nv) {
-                if (nv !== undefined) {
-                    ProductList.getSelected().then(function (selected) {
-                        $scope.selected = selected;
-                    });
-                }
-            });
-
-            $scope.$on('ProductList.select', function (evt, product) {
-                $scope.selected = product;
-            });
-
-            $scope.$on('ProductList.unSelect', function () {
-                delete $scope.selected;
-            });
-
-            $scope.$on('ProductList.clean', function () {
-                delete $scope.selected;
-            });
-
-            $scope.selectProduct = function (product) {
-                ProductList.select(product);
-            };
-        }
     };
 }]);
 
@@ -5291,7 +4641,7 @@ angular.module('ua.stargate').directive('stargate', function () {
  *</code>
  * Javascript view controller :
  *<code:js>
- *var MyController = function(scope, translator, step) {
+ *var MyController = function(scope, translate, step) {
  *   step.inject(scope);
  *   step.onChange(function(event) {
  *      switch(event.current) {
@@ -5308,7 +4658,7 @@ angular.module('ua.stargate').directive('stargate', function () {
  *      }
  *   });
  *};
- *MyController.$inject = ['$scope', 'translator', 'step'];
+ *MyController.$inject = ['$scope', '$translate', 'step'];
  *</code>
  */
 angular.module('ua.step').factory('step', function () {
@@ -7105,8 +6455,8 @@ angular.module('ua.typeOff').directive('typeOffItem', function () {
 * controller for wizard directives
 */
 angular.module('ua.wizard').controller('wizardCtrl',
-['$scope',
-function ($scope) {
+['$scope', '$translate',
+function ($scope, $translate) {
     'use strict';
 
     $scope.currentStep = this.currentStep = 0;
@@ -7119,10 +6469,10 @@ function ($scope) {
     $scope.cancelButton = true;
     $scope.keydownDisabled = false;
     $scope.wizardBreadCrumb = false;
-    $scope.wizardConfirmButtonText = $scope.tr('wizard_confirm');
-    $scope.wizardCancelButtonText = $scope.tr('wizard_cancel');
-    $scope.wizardPreviousButtonText = $scope.tr('wizard_previous');
-    $scope.wizardNextButtonText = $scope.tr('wizard_next');
+    $scope.wizardConfirmButtonText = $translate.instant('wizard_confirm');
+    $scope.wizardCancelButtonText = $translate.instant('wizard_cancel');
+    $scope.wizardPreviousButtonText = $translate.instant('wizard_previous');
+    $scope.wizardNextButtonText = $translate.instant('wizard_next');
     $scope.wizardCloseButton = true;
     $scope.wizardPreviousButton = true;
 
@@ -7607,7 +6957,7 @@ function ($compile, $timeout, $q) {
     };
 }]);
 
-angular.module('ua.wizardForm').controller('wizardFormCtrl', ['$scope', function ($scope) {
+angular.module('ua.wizardForm').controller('wizardFormCtrl', ['$scope, $translate', function ($scope, $translate) {
     'use strict';
 
     var initialized = false,
@@ -7618,8 +6968,8 @@ angular.module('ua.wizardForm').controller('wizardFormCtrl', ['$scope', function
 
     $scope.confirmButton = true;
     $scope.cancelButton = true;
-    $scope.wizardConfirmButtonText = $scope.tr('wizard_confirm');
-    $scope.wizardCancelButtonText = $scope.tr('wizard_cancel');
+    $scope.wizardConfirmButtonText = $translate.instant('wizard_confirm');
+    $scope.wizardCancelButtonText = $translate.instant('wizard_cancel');
 
     $scope.onFinish = angular.noop;
     $scope.onCancel = angular.noop;
@@ -7736,7 +7086,7 @@ angular.module('ua.wizardForm').directive('wizardForm', function () {
     };
 });
 
-angular.module('ua.wizardForm').directive('wizardFormStep', function () {
+angular.module('ua.wizardForm').directive('wizardFormStep', ['$translate', function ($translate) {
     'use strict';
     return {
         restrict    : 'A',
@@ -7810,7 +7160,7 @@ angular.module('ua.wizardForm').directive('wizardFormStep', function () {
                             $scope.stepHiddenText = newText;
                         });
                     } else {
-                        $scope.stepHiddenText = $scope.tr('wizard_hidden_text');
+                        $scope.stepHiddenText = $translate.instant('wizard_hidden_text');
                     }
 
                 },
@@ -7828,7 +7178,7 @@ angular.module('ua.wizardForm').directive('wizardFormStep', function () {
             };
         }
     };
-});
+}]);
 
 /**
  * @type module
@@ -7857,15 +7207,11 @@ angular.module('ovh-utils-angular', [
     'ua.stargate',
     'ua.sessionTimeout',
     'ua.sessionFetcher',
-    'ua.productList',
     'ua.preserveScroll',
     'ua.popover',
-    'ua.piwik',
     'ua.paginationServerSide',
     'ua.navigator',
     'ua.moment',
-    'ua.loginWithTokenForm',
-    'ua.loginForm',
     'ua.logger',
     'ua.inputNumber',
     'ua.i18n',
@@ -7882,7 +7228,6 @@ angular.module('ovh-utils-angular', [
     'ua.alerter',
     'ua.agreements',
     'ua.price',
-    'ua.duration',
     'ua.poll',
     'ua.ignoreSpaces',
     'ua.humanReadableSize',

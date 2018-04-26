@@ -1,6 +1,6 @@
 angular.module("ua.humanReadableSize").filter("humanReadableSize", [
-    "translator",
-    function (translator) {
+    "$translate",
+    function ($translate) {
         "use strict";
 
         return function (size, options) {
@@ -11,15 +11,15 @@ angular.module("ua.humanReadableSize").filter("humanReadableSize", [
 
             var opts = options || {};
             opts.suffixes = {
-                B: translator.tr("unit_size_B"),
-                KB: translator.tr("unit_size_KB"),
-                MB: translator.tr("unit_size_MB"),
-                GB: translator.tr("unit_size_GB"),
-                TB: translator.tr("unit_size_TB"),
-                PB: translator.tr("unit_size_PB"),
-                EB: translator.tr("unit_size_EB"),
-                ZB: translator.tr("unit_size_ZB"),
-                YB: translator.tr("unit_size_YB")
+                B: $translate.instant("unit_size_B"),
+                KB: $translate.instant("unit_size_KB"),
+                MB: $translate.instant("unit_size_MB"),
+                GB: $translate.instant("unit_size_GB"),
+                TB: $translate.instant("unit_size_TB"),
+                PB: $translate.instant("unit_size_PB"),
+                EB: $translate.instant("unit_size_EB"),
+                ZB: $translate.instant("unit_size_ZB"),
+                YB: $translate.instant("unit_size_YB")
             };
 
             return filesize(size, opts);

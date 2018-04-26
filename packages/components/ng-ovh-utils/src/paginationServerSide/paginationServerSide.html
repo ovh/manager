@@ -40,19 +40,22 @@
                         data-ng-model="pageSize"
                         data-ng-options="getSizeLabel(size) for size in pageSizeAvailable">
                     <option value="" disabled selected
-                            data-ng-bind="tr('pagination_display')"></option>
+                            data-translate="pagination_display"></option>
                 </select>
             </div>
             <div class="form-group">
                 <input type="text"
                        class="form-control pagination-page-input"
-                       placeholder="{{tr('pagination_page', [currentPage, getLastPageNumber()])}}"
+                       placeholder="{{ 'pagination_page' | translate:{
+                           current: currentPage,
+                           last: getLastPageNumber()
+                       } }}"
                        data-ng-class="getGoToPageClasses()"
                        data-ng-disabled="paginationServerSideTableLoading"
                        data-ng-model="goToPage">
             </div>
             <button class="btn btn-primary" type="button"
-                    data-ng-bind="tr('pagination_go')"
+                    data-translate="pagination_go"
                     data-ng-class="getGoToPageClasses()"
                     data-ng-click="loadPage(goToPage)"
                     data-ng-disabled="paginationServerSideTableLoading">

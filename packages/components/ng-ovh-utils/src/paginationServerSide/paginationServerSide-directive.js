@@ -44,8 +44,8 @@
  *      $scope.$broadcast('paginationServerSide.loadPage', iWantToLoadThisPage, anId);
  */
 angular.module('ua.paginationServerSide').directive('paginationServerSide',
-['translator',
-function (translator) {
+['$translate',
+function ($translate) {
     'use strict';
     return {
         restrict: 'A',
@@ -60,7 +60,6 @@ function (translator) {
         templateUrl: 'components/ovh-utils-angular/paginationServerSide/paginationServerSide.html',
         link: function ($scope, $elem, $attr) {
 
-            $scope.tr = translator.tr;
             function checkForGlobalOrId (id) {
                 return !id || ($attr.paginationServerSide && id === $attr.paginationServerSide);
             }
@@ -95,7 +94,7 @@ function (translator) {
             }
 
             $scope.getSizeLabel = function (size) {
-                return size === 'all' ? translator.tr('pagination_display_all') : size;
+                return size === 'all' ? $translate.instant('pagination_display_all') : size;
             };
 
             // events
