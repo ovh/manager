@@ -19,7 +19,10 @@
  *    clearCacheVerb: table of [PUT POST DELETE]. remove automatically cache of url if method is in table(provider conf)
  * }
  */
-angular.module("ovh-angular-http").provider("OvhHttp", function () {
+import URI from 'urijs';
+require('urijs/src/URITemplate');
+
+ export default function () {
     "use strict";
 
     var self = this;
@@ -53,7 +56,7 @@ angular.module("ovh-angular-http").provider("OvhHttp", function () {
             }
 
             // ------------ URL CRAFTING ------------
-            var requestUrl = URI.expand(opt.url, opt.urlParams || {}).search(opt.params || {}).toString();
+            var requestUrl = URI.expand(opt.url, (opt.urlParams || {})).search(opt.params || {}).toString();
             var requestBody = opt.data ? angular.toJson(opt.data) : {};
 
             // ------------ CHECKING OPTION INTEGRITY ------------
@@ -137,7 +140,7 @@ angular.module("ovh-angular-http").provider("OvhHttp", function () {
 
             // ------------ CACHE BY VERB HANDLING ------------
 
-            if (opt.cache && _.indexOf(angular.isDefined(opt.clearCacheVerb) && opt.clearCacheVerb !== null ? opt.clearCacheVerb : self.clearCacheVerb, angular.uppercase(opt.method)) !== -1) {
+            if (opt.cache && _.indexOf(angular.isDefined(opt.clearCacheVerb) && opt.clearCacheVerb !== null ? opt.clearCacheVerb : self.clearCacheVerb, opt.method.toUpperCase()) !== -1) {
                 api.cache[opt.cache].remove(requestUrl);
                 delete api.cacheTTL[opt.clearCache][requestUrl];
             }
@@ -221,7 +224,7 @@ angular.module("ovh-angular-http").provider("OvhHttp", function () {
                 if (!angular.isObject(options)) {
                     options = {};
                 }
-                options.method = angular.uppercase(operationType);
+                options.method = operationType.toUpperCase();
                 options.url = (angular.isDefined(options.rootPath) && options.rootPath !== null ? options.rootPath : self.rootPath) + url;
 
                 if (angular.isDefined(options.returnSuccessKey)) {
@@ -246,4 +249,4 @@ angular.module("ovh-angular-http").provider("OvhHttp", function () {
 
         return api;
     }];
-});
+};
