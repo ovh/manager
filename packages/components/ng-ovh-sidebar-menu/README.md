@@ -76,7 +76,7 @@ angular.module("myManagerModule").run(function ($translate, sidebarMenu, myResou
     self.mainSectionItem = null;
 
     function myFunctionThatReturnAPromise () {
-        return myResourceService.Lexi().query().$promise.then(function (datas) {
+        return myResourceService.v6().query().$promise.then(function (datas) {
             angular.forEach(datas, function (data) {
                 SidebarMenu.addMenuItem({
                     title: data.description || data.serviceName,
