@@ -49,7 +49,7 @@
    <translation id="otrs_ticket_lastMessageFrom_customer" qtlid="228722">You</translation>
    <translation id="otrs_ticket_lastMessageFrom_support" qtlid="228735">OVH Support</translation>
 
-   <translation id="otrs_popup_see_faq" qtlid="472003">Vous pouvez <a href="{{ url }}" target="_blank">consulter notre FAQ</a> pour trouver la réponse à votre question. Si vous ne trouvez pas la réponse, continuez avec la création de votre ticket.</translation>
+   <translation id="otrs_popup_see_faq" qtlid="472003">You can <a href="{{ url }}" target="_blank">read our FAQ</a> to find answers to your questions. If you cannot find an answer to your question on this page, please continue creating your ticket.</translation>
    <translation id="otrs_popup_response_in_faq" qtlid="288691">You may find the answer to your question in our FAQ:</translation>
    <translation id="otrs_popup_response_not_found_in_faq" qtlid="288704">Otherwise, continue creating your ticket:</translation>
    <translation id="otrs_popup_service_faq_web" qtlid="288717">Web FAQ </translation>
@@ -60,7 +60,7 @@
 
    <translation id="otrs_service_category_DEDICATED" qtlid="31738">Dedicated</translation>
    <translation id="otrs_service_category_EXCHANGE" qtlid="80430">Exchange</translation>
-   <translation id="otrs_service_category_EMAIL_PRO" qtlid="374893">E-mail Pro</translation>
+   <translation id="otrs_service_category_EMAIL_PRO" qtlid="374893">Business Email</translation>
    <translation id="otrs_service_category_HOSTING" qtlid="167457">Hosting</translation>
    <translation id="otrs_service_category_HUBIC" qtlid="111546">HubiC</translation>
    <translation id="otrs_service_category_OTHER" qtlid="19963">Other</translation>
@@ -134,10 +134,11 @@
    <translation id="otrs_category_neworder" qtlid="251681">New order</translation>
    <translation id="otrs_category_billing" qtlid="32950">Billing</translation>
    <translation id="otrs_category_choice" qtlid="251746">Support options:</translation>
-   <translation id="otrs_category_billing" qtlid="472016">Question concernant les commandes</translation>
-   <translation id="otrs_category_assistance" qtlid="251772">Technical and commercial support</translation>
+   <translation id="otrs_category_billing">Suivi de commande et facturation</translation>
+   <translation id="otrs_category_assistance">Conseil technique</translation>
    <translation id="otrs_category_incident" qtlid="68252">Report an incident</translation>
-   <translation id="otrs_category_intervention" qtlid="472029">Demande d’intervention en datacentre</translation>
+   <translation id="otrs_category_intervention" qtlid="472029">Request for a datacentre intervention</translation>
+   <translation id="otrs_category_sales">Conseil commercial et ventes</translation>
 
 
    <translation id="otrs_err_get_infos" qtlid="243832">An error has occurred retrieving information:</translation>
@@ -162,8 +163,8 @@
    <translation id="otrs_popup_move" qtlid="228462">You can move this pop-up by moving its header.</translation>
    <translation id="otrs_popup_sent_error" qtlid="228475">An error has occurred while creating this ticket.</translation>
    <translation id="otrs_popup_sent_error_not_available" qtlid="361386">This operation is not available in this datacentre. </translation>
-   <translation id="otrs_popup_sent_error_already_exists" qtlid="472042">Un ticket a déjà été envoyé sur ce sujet. <a href="#/ticket/{{ticketId}}">Cliquez ici pour accéder au ticket.</a></translation>
-   <translation id="otrs_popup_sent_success" qtlid="472055">Votre ticket numéro {{ticketNumber}} a bien été pris en compte. Vous pouvez retrouver le fil de discussion de ce ticket depuis le menu <a href="#/ticket/{{ticketId}}">Assistance - liste des tickets</a>.</translation>
+   <translation id="otrs_popup_sent_error_already_exists">Un ticket a déjà été envoyé sur ce sujet. <a href="{{ticketUrl}}">Cliquez ici pour accéder au ticket.</a></translation>
+   <translation id="otrs_popup_sent_success">Votre ticket numéro {{ticketNumber}} a bien été pris en compte. Vous pouvez retrouver le fil de discussion de ce ticket depuis le menu <a href="{{ticketUrl}}">Assistance - liste des tickets</a>.</translation>
    <translation id="otrs_popup_get_services_error" qtlid="228501">An error has occurred while retrieving your services.</translation>
    <translation id="otrs_popup_get_types_error" qtlid="233047">An error has occurred retrieving the data.</translation>
    <translation id="otrs_popup_services_refresh" qtlid="228514">Update the list</translation>
@@ -176,9 +177,9 @@
    <translation id="otrs_subCategory_assistance_new" qtlid="291214">Information/subscription to an additional service </translation>
    <translation id="otrs_subCategory_assistance_other" qtlid="19963">Other</translation>
 
-   <translation id="otrs_subCategory_billing_inProgress" qtlid="291227">My order is not complete </translation>
+   <translation id="otrs_subCategory_billing_inProgress">Suivi d’une commande en cours</translation>
    <translation id="otrs_subCategory_billing_new" qtlid="291240">I want to place an order </translation>
-   <translation id="otrs_subCategory_billing_bill" qtlid="291253">My request concerns billing </translation>
+   <translation id="otrs_subCategory_billing_bill">Information sur une facture</translation>
    <translation id="otrs_subCategory_billing_other" qtlid="19963">Other</translation>
 
    <translation id="otrs_subCategory_incident_perfs" qtlid="291266">My service has deteriorated </translation>
@@ -189,13 +190,15 @@
    <translation id="otrs_subCategory_intervention_replacement-disk" qtlid="361438">Replacing a hard drive </translation>
    <translation id="otrs_subCategory_intervention_other" qtlid="19963">Other</translation>
 
+   <translation id="otrs_subCategory_sales_contact">Contactez le 1007 (choix 1)</translation>
+
    <translation id="otrs_intervention_disk_error" qtlid="382346">Error retrieving information from server.</translation>
    <translation id="otrs_intervention_disk_warning" qtlid="361451">Please note: before replacing any disk drive, make sure you back up your data.</translation>
    <translation id="otrs_intervention_disk_warning2" qtlid="382359">Service will be interrupted during drive replacement and <strong>all data on this drive will be lost</strong>; please make sure that your backups are up to date. </translation>
    <translation id="otrs_intervention_disk_warning_hotswap" qtlid="382372"><strong>All data on this drive will be lost</strong>; please make sure that your backups are up to date. </translation>
    <translation id="otrs_intervention_disk_canHotSwap" qtlid="382385">Your premium customisable HG server allows you to replace your drives without any service interruption.</translation>
    <translation id="otrs_intervention_disk_guide" qtlid="382398">To do this, <a href="{0}" target="_blank">please read our guide <i class="fa fa-external-link" aria-hidden="true"></i></a>.</translation>
-   <translation id="otrs_intervention_disk_serial_guide" qtlid="472068"><a href="{{ url }}" target="_blank">(Voir le guide <i class="fa fa-external-link" aria-hidden="true"></i>)</a></translation>
+   <translation id="otrs_intervention_disk_serial_guide" qtlid="472068"><a href="{{ url }}" target="_blank">(View guide <i class="fa fa-external-link" aria-hidden="true"></i>)</a></translation>
    <translation id="otrs_intervention_disk_id_label" qtlid="382424">Serial number of the hard drive(s) to be replaced</translation>
    <translation id="otrs_intervention_disk_id_label_not" qtlid="382437">Serial number of the hard drive(s) NOT TO BE replaced</translation>
    <translation id="otrs_intervention_disk_id_not_retrievable" qtlid="382450">I cannot retrieve the serial number of the disk to be replaced</translation>
@@ -205,4 +208,10 @@
    <translation id="otrs_intervention_disk_comment_example" qtlid="361529">(For example: the specific time for the intervention including the time zone)</translation>
    <translation id="otrs_intervention_disk_comment_english_please" qtlid="361542">English as a preference</translation>
    <translation id="otrs_intervention_disk_confirm" qtlid="382502">I backed up the data stored on the disk I wish to replace. You can now replace the disk.</translation>
+
+<translation id="otrs_support_agreements">Les données communiquées via ce formulaire sont collectées avec votre consentement et sont destinées à OVH S.A.S. en sa qualité de responsable du traitement.
+Elles pourront être transmises à ses sous-traitants agissant sur strictes instructions d’OVH S.A.S. ainsi qu’aux entités du Groupe OVH. Dans cette seconde hypothèse, et sous réserve que l’entité du Groupe OVH ait signé des règles d’entreprise contraignantes, les données pourront faire l’objet d’un transfert en dehors de l’Union Européenne.
+Les données de ce formulaire sont collectées à des fins de gestion de la relation client, de sollicitations commerciales et de respect de la règlementation applicable à OVH. Les données de votre compte client sont conservées jusqu’à la suppression de votre compte client, puis durant trente-six (36) mois.
+Certaines données traitées à des fins de gestion (exemple : facture) peuvent être conservées plus longtemps conformément à la règlementation applicable. Vous disposez de la faculté d’introduire une réclamation auprès de l’autorité de contrôle compétente ainsi qu’un droit d'accès, de rectification, d’effacement, de limitation, de portabilité et d’opposition pour motif légitime aux données personnelles vous concernant.
+Pour exercer ce droit, merci d’effectuer votre demande au sein du notre formulaire dédié.</translation>
 </translations>

@@ -49,7 +49,7 @@
    <translation id="otrs_ticket_lastMessageFrom_customer" qtlid="228722">Vy</translation>
    <translation id="otrs_ticket_lastMessageFrom_support" qtlid="228735">Podpora OVH</translation>
 
-   <translation id="otrs_popup_see_faq" qtlid="472003">Vous pouvez <a href="{{ url }}" target="_blank">consulter notre FAQ</a> pour trouver la réponse à votre question. Si vous ne trouvez pas la réponse, continuez avec la création de votre ticket.</translation>
+   <translation id="otrs_popup_see_faq" qtlid="472003">Odpověď na svou otázku můžete zkusit vyhledat mezi <a href="{{ url }}" target="_blank">Často kladenými dotazy (FAQ)</a>. Pokud zde odpověď nenaleznete, pokračujte prosím ve vytváření ticketu.</translation>
    <translation id="otrs_popup_response_in_faq" qtlid="288691">Odpověď na Vaši otázku se pravděpodobně skrývá v našich FAQ, mrkněte na ně:</translation>
    <translation id="otrs_popup_response_not_found_in_faq" qtlid="288704">V opačném případě pokračujte ve vytváření ticketu:</translation>
    <translation id="otrs_popup_service_faq_web" qtlid="288717">FAQ Web</translation>
@@ -134,10 +134,11 @@
    <translation id="otrs_category_neworder" qtlid="251681">Nová objednávka</translation>
    <translation id="otrs_category_billing" qtlid="32950">Fakturace</translation>
    <translation id="otrs_category_choice" qtlid="251746">Možnosti podpory:</translation>
-   <translation id="otrs_category_billing" qtlid="472016">Question concernant les commandes</translation>
-   <translation id="otrs_category_assistance" qtlid="251772">Technická a obchodní podpora</translation>
+   <translation id="otrs_category_billing">Suivi de commande et facturation</translation>
+   <translation id="otrs_category_assistance">Conseil technique</translation>
    <translation id="otrs_category_incident" qtlid="68252">Nahlásit problém</translation>
-   <translation id="otrs_category_intervention" qtlid="472029">Demande d’intervention en datacentre</translation>
+   <translation id="otrs_category_intervention" qtlid="472029">Požadavek na intervenci v datacentru</translation>
+   <translation id="otrs_category_sales">Conseil commercial et ventes</translation>
 
 
    <translation id="otrs_err_get_infos" qtlid="243832">Při získávání detailů došlo k chybě:</translation>
@@ -162,8 +163,8 @@
    <translation id="otrs_popup_move" qtlid="228462">Toto pop-up okno můžete přemístit posunutím jeho hlavičky.</translation>
    <translation id="otrs_popup_sent_error" qtlid="228475">Při vytváření ticketu došlo k chybě.</translation>
    <translation id="otrs_popup_sent_error_not_available" qtlid="361386">V rámci zvoleného datacentra není tato akce dostupná.</translation>
-   <translation id="otrs_popup_sent_error_already_exists" qtlid="472042">Un ticket a déjà été envoyé sur ce sujet. <a href="#/ticket/{{ticketId}}">Cliquez ici pour accéder au ticket.</a></translation>
-   <translation id="otrs_popup_sent_success" qtlid="472055">Votre ticket numéro {{ticketNumber}} a bien été pris en compte. Vous pouvez retrouver le fil de discussion de ce ticket depuis le menu <a href="#/ticket/{{ticketId}}">Assistance - liste des tickets</a>.</translation>
+   <translation id="otrs_popup_sent_error_already_exists">Un ticket a déjà été envoyé sur ce sujet. <a href="{{ticketUrl}}">Cliquez ici pour accéder au ticket.</a></translation>
+   <translation id="otrs_popup_sent_success">Votre ticket numéro {{ticketNumber}} a bien été pris en compte. Vous pouvez retrouver le fil de discussion de ce ticket depuis le menu <a href="{{ticketUrl}}">Assistance - liste des tickets</a>.</translation>
    <translation id="otrs_popup_get_services_error" qtlid="228501">Při načítáni Vašich služeb došlo k chybě.</translation>
    <translation id="otrs_popup_get_types_error" qtlid="233047">Při získávání dat došlo k chybě.</translation>
    <translation id="otrs_popup_services_refresh" qtlid="228514">Aktualizace seznamu</translation>
@@ -176,9 +177,9 @@
    <translation id="otrs_subCategory_assistance_new" qtlid="291214">Informace a předplatné doplňkových služeb</translation>
    <translation id="otrs_subCategory_assistance_other" qtlid="19963">Jiné</translation>
 
-   <translation id="otrs_subCategory_billing_inProgress" qtlid="291227">Moje objednávka není dokončena</translation>
+   <translation id="otrs_subCategory_billing_inProgress">Suivi d’une commande en cours</translation>
    <translation id="otrs_subCategory_billing_new" qtlid="291240">Chci udělat objednávku</translation>
-   <translation id="otrs_subCategory_billing_bill" qtlid="291253">Můj požadavek se týká fakturace</translation>
+   <translation id="otrs_subCategory_billing_bill">Information sur une facture</translation>
    <translation id="otrs_subCategory_billing_other" qtlid="19963">Jiné</translation>
 
    <translation id="otrs_subCategory_incident_perfs" qtlid="291266">Moje služba nepracuje správně</translation>
@@ -189,13 +190,15 @@
    <translation id="otrs_subCategory_intervention_replacement-disk" qtlid="361438">Výměna pevného disku</translation>
    <translation id="otrs_subCategory_intervention_other" qtlid="19963">Jiné</translation>
 
+   <translation id="otrs_subCategory_sales_contact">Contactez le 1007 (choix 1)</translation>
+
    <translation id="otrs_intervention_disk_error" qtlid="382346">Při získávání informací ze serveru došlo k neočekávané chybě.</translation>
    <translation id="otrs_intervention_disk_warning" qtlid="361451">Upozornění: před výměnou pevného disku nezapomeňte provést zálohu svých dat.</translation>
    <translation id="otrs_intervention_disk_warning2" qtlid="382359">Služba bude v průběhu výměny disku přerušena. <strong>Veškerá data na tomto disku budou ztracena</strong>. Ujistěte se prosím, že jsou Vaše zálohy aktuální.</translation>
    <translation id="otrs_intervention_disk_warning_hotswap" qtlid="382372"><strong>Veškerá data na disku budou ztracena</strong>. Ujistěte se prosím, že jsou Vaše zálohy aktuální.</translation>
    <translation id="otrs_intervention_disk_canHotSwap" qtlid="382385">Prémiové servery HG umožňují výměnu disků bez přerušení služby.</translation>
    <translation id="otrs_intervention_disk_guide" qtlid="382398">Pro další instrukce se prosím podívejte do <a href="{0}" target="_blank">tohoto návodu<i class="fa fa-external-link" aria-hidden="true"></i></a>.</translation>
-   <translation id="otrs_intervention_disk_serial_guide" qtlid="472068"><a href="{{ url }}" target="_blank">(Voir le guide <i class="fa fa-external-link" aria-hidden="true"></i>)</a></translation>
+   <translation id="otrs_intervention_disk_serial_guide" qtlid="472068"><a href="{{ url }}" target="_blank">(Zobrazit příručku <i class="fa fa-external-link" aria-hidden="true"></i>)</a></translation>
    <translation id="otrs_intervention_disk_id_label" qtlid="382424">Sériové číslo disků, které mají být vyměněny</translation>
    <translation id="otrs_intervention_disk_id_label_not" qtlid="382437">Sériové číslo disků, které NEMAJÍ být vyměněny</translation>
    <translation id="otrs_intervention_disk_id_not_retrievable" qtlid="382450">Nemohu získat sériové číslo disku, který má být vyměněn.</translation>
@@ -205,4 +208,10 @@
    <translation id="otrs_intervention_disk_comment_example" qtlid="361529">(Například: specifický čas intervence s ohledem na časové zóny apod.)</translation>
    <translation id="otrs_intervention_disk_comment_english_please" qtlid="361542">Preferovaný jazyk pro komunikaci: angličtina.</translation>
    <translation id="otrs_intervention_disk_confirm" qtlid="382502">Provedl jsem zálohu dat na disku, který si přeji vyměnit. Nyní můžete provést výměnu disku.</translation>
+
+<translation id="otrs_support_agreements">Les données communiquées via ce formulaire sont collectées avec votre consentement et sont destinées à OVH S.A.S. en sa qualité de responsable du traitement.
+Elles pourront être transmises à ses sous-traitants agissant sur strictes instructions d’OVH S.A.S. ainsi qu’aux entités du Groupe OVH. Dans cette seconde hypothèse, et sous réserve que l’entité du Groupe OVH ait signé des règles d’entreprise contraignantes, les données pourront faire l’objet d’un transfert en dehors de l’Union Européenne.
+Les données de ce formulaire sont collectées à des fins de gestion de la relation client, de sollicitations commerciales et de respect de la règlementation applicable à OVH. Les données de votre compte client sont conservées jusqu’à la suppression de votre compte client, puis durant trente-six (36) mois.
+Certaines données traitées à des fins de gestion (exemple : facture) peuvent être conservées plus longtemps conformément à la règlementation applicable. Vous disposez de la faculté d’introduire une réclamation auprès de l’autorité de contrôle compétente ainsi qu’un droit d'accès, de rectification, d’effacement, de limitation, de portabilité et d’opposition pour motif légitime aux données personnelles vous concernant.
+Pour exercer ce droit, merci d’effectuer votre demande au sein du notre formulaire dédié.</translation>
 </translations>

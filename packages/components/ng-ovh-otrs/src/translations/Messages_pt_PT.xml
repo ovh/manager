@@ -50,7 +50,7 @@
    <translation id="otrs_ticket_lastMessageFrom_customer" qtlid="228722">Cliente</translation>
    <translation id="otrs_ticket_lastMessageFrom_support" qtlid="228735">Assistência OVH</translation>
 
-   <translation id="otrs_popup_see_faq" qtlid="472003">Vous pouvez <a href="{{ url }}" target="_blank">consulter notre FAQ</a> pour trouver la réponse à votre question. Si vous ne trouvez pas la réponse, continuez avec la création de votre ticket.</translation>
+   <translation id="otrs_popup_see_faq" qtlid="472003"><a href="{{ url }}" target="_blank">Consulte a secção FAQ</a> para encontrar a resposta certa. Se não encontrar a resposta pretendida, crie um ticket.</translation>
    <translation id="otrs_popup_response_in_faq" qtlid="288691">É possível que secção FAQ tenha a resposta para sua questão. Quer dar uma vista de olhos?</translation>
    <translation id="otrs_popup_response_not_found_in_faq" qtlid="288704">Caso contrário, continue com a criação do ticket:</translation>
    <translation id="otrs_popup_service_faq_web" qtlid="288717">FAQ Web</translation>
@@ -59,7 +59,7 @@
    <translation id="otrs_popup_service_faq_sd" qtlid="319843">FAQ Servidor dedicado</translation>
    <translation id="otrs_popup_service_faq_vps" qtlid="319856">FAQ VPS</translation>
 
-   <translation id="otrs_service_category_DEDICATED" qtlid="31738">Servidores Dedicados</translation>
+   <translation id="otrs_service_category_DEDICATED" qtlid="31738">Serviços Dedicados</translation>
    <translation id="otrs_service_category_EXCHANGE" qtlid="80430">Exchange</translation>
    <translation id="otrs_service_category_EMAIL_PRO" qtlid="374893">E-mail Pro</translation>
    <translation id="otrs_service_category_HOSTING" qtlid="167457">Alojamento Web</translation>
@@ -75,7 +75,7 @@
    <translation id="otrs_service_category_NAS" qtlid="76782">NAS</translation>
    <translation id="otrs_service_category_NASHA" qtlid="211502">NasHa</translation>
    <translation id="otrs_service_category_VRACK" qtlid="211515">vRack</translation>
-   <translation id="otrs_service_category_DOMAIN" qtlid="8458">Domínio</translation>
+   <translation id="otrs_service_category_DOMAIN" qtlid="8458">Domínios</translation>
    <translation id="otrs_service_category_CDN_WEBSTORAGE" qtlid="211528">CDN WebStorage</translation>
    <translation id="otrs_service_category_CDN_WEBSITE" qtlid="211541">CDN WebSite</translation>
    <translation id="otrs_service_category_CDN_DEDICATED" qtlid="211554">CDN dedicado</translation>
@@ -135,13 +135,14 @@
    <translation id="otrs_category_neworder" qtlid="251681">Nova encomenda</translation>
    <translation id="otrs_category_billing" qtlid="32950">Faturação</translation>
    <translation id="otrs_category_choice" qtlid="251746">Tipo de assistência OVH</translation>
-   <translation id="otrs_category_billing" qtlid="472016">Question concernant les commandes</translation>
-   <translation id="otrs_category_assistance" qtlid="251772">Apoio técnico e comercial</translation>
+   <translation id="otrs_category_billing">Suivi de commande et facturation</translation>
+   <translation id="otrs_category_assistance">Conseil technique</translation>
    <translation id="otrs_category_incident" qtlid="68252">Comunicar incidente (falha)</translation>
-   <translation id="otrs_category_intervention" qtlid="472029">Demande d’intervention en datacentre</translation>
+   <translation id="otrs_category_intervention" qtlid="472029">Pedido de intervenção num datacenter</translation>
+   <translation id="otrs_category_sales">Conseil commercial et ventes</translation>
 
 
-   <translation id="otrs_err_get_infos" qtlid="243832">Erro ao carregar informação:</translation>
+   <translation id="otrs_err_get_infos" qtlid="243832"></translation>
    <translation id="otrs_no_filter" qtlid="85281">Nenhum filtro</translation>
    <translation id="otrs_types_criticalIntervention" qtlid="233073">Intervenção crítica</translation>
    <translation id="otrs_types_genericRequest" qtlid="233086">Questão genérica</translation>
@@ -163,8 +164,8 @@
    <translation id="otrs_popup_move" qtlid="228462">Arraste a janela para mover este pop-up.</translation>
    <translation id="otrs_popup_sent_error" qtlid="228475">Erro ao processar criação do ticket</translation>
    <translation id="otrs_popup_sent_error_not_available" qtlid="361386">Esta operação não está disponível neste datacenter.</translation>
-   <translation id="otrs_popup_sent_error_already_exists" qtlid="472042">Un ticket a déjà été envoyé sur ce sujet. <a href="#/ticket/{{ticketId}}">Cliquez ici pour accéder au ticket.</a></translation>
-   <translation id="otrs_popup_sent_success" qtlid="472055">Votre ticket numéro {{ticketNumber}} a bien été pris en compte. Vous pouvez retrouver le fil de discussion de ce ticket depuis le menu <a href="#/ticket/{{ticketId}}">Assistance - liste des tickets</a>.</translation>
+   <translation id="otrs_popup_sent_error_already_exists">Un ticket a déjà été envoyé sur ce sujet. <a href="{{ticketUrl}}">Cliquez ici pour accéder au ticket.</a></translation>
+   <translation id="otrs_popup_sent_success">Votre ticket numéro {{ticketNumber}} a bien été pris en compte. Vous pouvez retrouver le fil de discussion de ce ticket depuis le menu <a href="{{ticketUrl}}">Assistance - liste des tickets</a>.</translation>
    <translation id="otrs_popup_get_services_error" qtlid="228501">Erro ao carregar informação sobre os serviços.</translation>
    <translation id="otrs_popup_get_types_error" qtlid="233047">Erro ao aceder às informações.</translation>
    <translation id="otrs_popup_services_refresh" qtlid="228514">Atualizar lista</translation>
@@ -177,9 +178,9 @@
    <translation id="otrs_subCategory_assistance_new" qtlid="291214">Informação/subscrição de um serviço suplementar</translation>
    <translation id="otrs_subCategory_assistance_other" qtlid="19963">Outro</translation>
 
-   <translation id="otrs_subCategory_billing_inProgress" qtlid="291227">A minha encomenda não está finalizada</translation>
+   <translation id="otrs_subCategory_billing_inProgress">Suivi d’une commande en cours</translation>
    <translation id="otrs_subCategory_billing_new" qtlid="291240">Pretendo efetuar uma encomenda</translation>
-   <translation id="otrs_subCategory_billing_bill" qtlid="291253">Questão associada a uma fatura</translation>
+   <translation id="otrs_subCategory_billing_bill">Information sur une facture</translation>
    <translation id="otrs_subCategory_billing_other" qtlid="19963">Outro</translation>
 
    <translation id="otrs_subCategory_incident_perfs" qtlid="291266">Serviço avariado / danificado</translation>
@@ -190,13 +191,15 @@
    <translation id="otrs_subCategory_intervention_replacement-disk" qtlid="361438">Substituição do disco rígido</translation>
    <translation id="otrs_subCategory_intervention_other" qtlid="19963">Outro</translation>
 
+   <translation id="otrs_subCategory_sales_contact">Contactez le 1007 (choix 1)</translation>
+
    <translation id="otrs_intervention_disk_error" qtlid="382346">Ocorreu um erro aquando da recuperação das informações do servidor</translation>
    <translation id="otrs_intervention_disk_warning" qtlid="361451">Atenção: antes da substituição do disco rígido queira efetuar o backup dos seus dados.</translation>
    <translation id="otrs_intervention_disk_warning2" qtlid="382359">O serviço será interrompido durante a substituição do disco e <strong>todos os dados desse disco serão perdidos</strong>. Como tal, assegure-se que possui um backup atualizado antes de iniciar a operação.</translation>
    <translation id="otrs_intervention_disk_warning_hotswap" qtlid="382372"><strong>Todos os dados desse disco serão perdidos</strong>. Como tal, assegure-se que possui um backup atualizado antes de iniciar a operação.</translation>
    <translation id="otrs_intervention_disk_canHotSwap" qtlid="382385">O seu servidor HG permite-lhe substituir os seus discos sem interrupção do serviço.</translation>
    <translation id="otrs_intervention_disk_guide" qtlid="382398">Para o efetuar, <a href="{0}" target="_blank">consulte este guia <i class="fa fa-external-link" aria-hidden="true"></i></a>.</translation>
-   <translation id="otrs_intervention_disk_serial_guide" qtlid="472068"><a href="{{ url }}" target="_blank">(Voir le guide <i class="fa fa-external-link" aria-hidden="true"></i>)</a></translation>
+   <translation id="otrs_intervention_disk_serial_guide" qtlid="472068"><a href="{{ url }}" target="_blank">(Consultar manual<i class="fa fa-external-link" aria-hidden="true"></i>)</a></translation>
    <translation id="otrs_intervention_disk_id_label" qtlid="382424">Número de série do(s) disco(s) rígido(s) a substituir</translation>
    <translation id="otrs_intervention_disk_id_label_not" qtlid="382437">Número de série do(s) disco(s) rígido(s) a NÃO substituir</translation>
    <translation id="otrs_intervention_disk_id_not_retrievable" qtlid="382450">Eu não consigo obter o número de série do disco a substituir</translation>
@@ -206,4 +209,10 @@
    <translation id="otrs_intervention_disk_comment_example" qtlid="361529">(Por exemplo: hora desejada da intervenção, e deve incluir o fuso horário)</translation>
    <translation id="otrs_intervention_disk_comment_english_please" qtlid="361542">Se possível, envie o seu pedido em Inglês</translation>
    <translation id="otrs_intervention_disk_confirm" qtlid="382502">Eu fiz o backup dos dados contidos no disco e pretende substitui-lo. Podem proceder com a sua substituição.</translation>
+
+<translation id="otrs_support_agreements">Les données communiquées via ce formulaire sont collectées avec votre consentement et sont destinées à OVH S.A.S. en sa qualité de responsable du traitement.
+Elles pourront être transmises à ses sous-traitants agissant sur strictes instructions d’OVH S.A.S. ainsi qu’aux entités du Groupe OVH. Dans cette seconde hypothèse, et sous réserve que l’entité du Groupe OVH ait signé des règles d’entreprise contraignantes, les données pourront faire l’objet d’un transfert en dehors de l’Union Européenne.
+Les données de ce formulaire sont collectées à des fins de gestion de la relation client, de sollicitations commerciales et de respect de la règlementation applicable à OVH. Les données de votre compte client sont conservées jusqu’à la suppression de votre compte client, puis durant trente-six (36) mois.
+Certaines données traitées à des fins de gestion (exemple : facture) peuvent être conservées plus longtemps conformément à la règlementation applicable. Vous disposez de la faculté d’introduire une réclamation auprès de l’autorité de contrôle compétente ainsi qu’un droit d'accès, de rectification, d’effacement, de limitation, de portabilité et d’opposition pour motif légitime aux données personnelles vous concernant.
+Pour exercer ce droit, merci d’effectuer votre demande au sein du notre formulaire dédié.</translation>
 </translations>
