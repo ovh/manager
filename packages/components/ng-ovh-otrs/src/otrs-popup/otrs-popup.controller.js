@@ -1,6 +1,6 @@
 angular.module("ovh-angular-otrs").controller("OtrsPopupCtrl", function ($q, $rootScope, $scope, $stateParams, $transitions, $translate,
                                                                          OvhApiMe, OvhApiMeVipStatus, OvhApiProductsAapi, OvhApiSupport,
-                                                                         OtrsPopup, OtrsPopupService, OtrsPopupInterventionService,
+                                                                         OtrsPopup, OtrsPopupInterventionService, OtrsPopupService,
                                                                          OTRS_POPUP_ASSISTANCE_ENUM, OTRS_POPUP_BILLING_ENUM, OTRS_POPUP_CATEGORIES, OTRS_POPUP_INCIDENT_ENUM, OTRS_POPUP_INTERVENTION_ENUM, OTRS_POPUP_SERVICES, OTRS_POPUP_UNIVERSES,
                                                                          TICKET_CATEGORIES, UNIVERSE) {
     "use strict";
@@ -251,6 +251,10 @@ angular.module("ovh-angular-otrs").controller("OtrsPopupCtrl", function ($q, $ro
         self.formDetails = formDetails;
     };
 
+    self.isSalesCategory = function () {
+        return self.ticket.category === OTRS_POPUP_CATEGORIES.SALES;
+    };
+
     self.continueForm = function () {
         if (self.ticket && self.ticket.category === OTRS_POPUP_CATEGORIES.INTERVENTION && self.ticket.subcategory === OTRS_POPUP_INTERVENTION_ENUM.REPLACEMENTDISK) {
             self.intervention.serviceName = self.ticket.serviceName;
@@ -300,6 +304,10 @@ angular.module("ovh-angular-otrs").controller("OtrsPopupCtrl", function ($q, $ro
             self.types = results.supportSchema.models["support.TicketTypeEnum"].enum;
             self.categories = results.supportSchema.models["support.TicketProductEnum"].enum;
             self.requests = results.supportSchema.models["support.TicketCategoryEnum"].enum;
+
+            if (_.get(results.me, "ovhSubsidiary", "").toLowerCase() === "fr") {
+                self.requests.push(OTRS_POPUP_CATEGORIES.SALES);
+            }
 
             self.subCategories = {
                 assistance: [

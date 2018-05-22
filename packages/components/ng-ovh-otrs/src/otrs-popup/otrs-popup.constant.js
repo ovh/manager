@@ -24,7 +24,8 @@ angular.module("ovh-angular-otrs")
         ASSISTANCE: "assistance",
         BILLING: "billing",
         INCIDENT: "incident",
-        INTERVENTION: "intervention"
+        INTERVENTION: "intervention",
+        SALES: "sales"
     })
     .constant("OTRS_POPUP_SERVICES", {
         DOMAIN: "DOMAIN",

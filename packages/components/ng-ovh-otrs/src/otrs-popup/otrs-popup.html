@@ -152,7 +152,7 @@
 
                 <!-- SUBCATEGORY -->
                 <div class="form-group"
-                     data-ng-show="OtrsPopupCtrl.ticket.category">
+                     data-ng-if="OtrsPopupCtrl.ticket.category && !OtrsPopupCtrl.isSalesCategory()">
                     <label for="select-subCategories"
                            class="control-label">
                         <span data-translate="otrs_subCategory_choice"></span>
@@ -170,7 +170,8 @@
                     </select>
                 </div> <!-- END OF SUBCATEGORY -->
 
-                <div data-ng-switch="OtrsPopupCtrl.formDetails">
+                <div data-ng-switch="OtrsPopupCtrl.formDetails"
+                     data-ng-if="!OtrsPopupCtrl.isSalesCategory()">
 
                     <div data-ng-switch-when="start">
                         <button type="button"
@@ -213,6 +214,13 @@
                             </textarea>
                         </div> <!-- END OF BODY -->
 
+                        <div class="oui-textarea oui-textarea_readonly">
+                            <textarea class="oui-textarea__textarea"
+                                      rows="5"
+                                      data-translate="otrs_support_agreements"
+                                      readonly></textarea>
+                        </div>
+
                         <div class="form-group">
                             <button type="submit"
                                     class="btn btn-block btn-primary"
@@ -230,6 +238,11 @@
 
                 </div>
 
+                <div class="alert alert-info"
+                     role="alert"
+                     data-ng-if="OtrsPopupCtrl.isSalesCategory()"
+                     data-translate="otrs_subCategory_sales_contact">
+                </div>
             </form>
 
             <form id="diskReplacement"
