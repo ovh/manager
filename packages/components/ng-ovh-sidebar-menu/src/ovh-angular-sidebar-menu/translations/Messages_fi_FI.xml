@@ -5,4 +5,5 @@
    <translation id="sidebar_menu_search" qtlid="37659">Haku</translation>
    <translation id="sidebar_menu_search_no_results" qtlid="345481">Yhtään tulosta ei löytynyt.</translation>
    <translation id="sidebar_menu_search_loading" qtlid="345494">Haetaan..</translation>
+   <translation id="sidebar_menu_error_retry" qtlid="238193">Yritä uudelleen</translation>
 </translations>

@@ -4,5 +4,6 @@
    <translation id="sidebar_menu_order_actions" qtlid="43558">Bestellen</translation>
    <translation id="sidebar_menu_search" qtlid="37659">Suchen</translation>
    <translation id="sidebar_menu_search_no_results" qtlid="345481">Aucun résultat trouvé.</translation>
-   <translation id="sidebar_menu_search_loading" qtlid="345494">Recherche en cours...</translation>
+   <translation id="sidebar_menu_search_loading" qtlid="345494">Suchen...</translation>
+   <translation id="sidebar_menu_error_retry" qtlid="238193">Wiederholen</translation>
 </translations>

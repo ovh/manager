@@ -5,4 +5,5 @@
    <translation id="sidebar_menu_search" qtlid="37659">Procurar</translation>
    <translation id="sidebar_menu_search_no_results" qtlid="345481">Nenhum resultado encontrado.</translation>
    <translation id="sidebar_menu_search_loading" qtlid="345494">Procura em curso...</translation>
+   <translation id="sidebar_menu_error_retry" qtlid="238193">Tente novamente</translation>
 </translations>

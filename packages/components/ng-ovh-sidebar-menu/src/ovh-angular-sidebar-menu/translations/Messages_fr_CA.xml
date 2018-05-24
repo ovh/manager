@@ -5,4 +5,5 @@
    <translation id="sidebar_menu_search" qtlid="37659">Rechercher</translation>
    <translation id="sidebar_menu_search_no_results" qtlid="345481">Aucun résultat trouvé.</translation>
    <translation id="sidebar_menu_search_loading" qtlid="345494">Recherche en cours...</translation>
+   <translation id="sidebar_menu_error_retry" qtlid="238193">Réessayer</translation>
 </translations>
