@@ -134,11 +134,12 @@
    <translation id="otrs_category_neworder" qtlid="251681">Nová objednávka</translation>
    <translation id="otrs_category_billing" qtlid="32950">Fakturace</translation>
    <translation id="otrs_category_choice" qtlid="251746">Možnosti podpory:</translation>
-   <translation id="otrs_category_billing">Suivi de commande et facturation</translation>
-   <translation id="otrs_category_assistance">Conseil technique</translation>
+   <translation id="otrs_category_billing" qtlid="487925">Sledování objednávky a fakturace</translation>
+   <translation id="otrs_category_assistance" qtlid="373181">Technická podpora</translation>
    <translation id="otrs_category_incident" qtlid="68252">Nahlásit problém</translation>
    <translation id="otrs_category_intervention" qtlid="472029">Požadavek na intervenci v datacentru</translation>
-   <translation id="otrs_category_sales">Conseil commercial et ventes</translation>
+   <translation id="otrs_category_sales" qtlid="487938">Obchodní podpora a prodej&#13;
+</translation>
 
 
    <translation id="otrs_err_get_infos" qtlid="243832">Při získávání detailů došlo k chybě:</translation>
@@ -163,8 +164,8 @@
    <translation id="otrs_popup_move" qtlid="228462">Toto pop-up okno můžete přemístit posunutím jeho hlavičky.</translation>
    <translation id="otrs_popup_sent_error" qtlid="228475">Při vytváření ticketu došlo k chybě.</translation>
    <translation id="otrs_popup_sent_error_not_available" qtlid="361386">V rámci zvoleného datacentra není tato akce dostupná.</translation>
-   <translation id="otrs_popup_sent_error_already_exists">Un ticket a déjà été envoyé sur ce sujet. <a href="{{ticketUrl}}">Cliquez ici pour accéder au ticket.</a></translation>
-   <translation id="otrs_popup_sent_success">Votre ticket numéro {{ticketNumber}} a bien été pris en compte. Vous pouvez retrouver le fil de discussion de ce ticket depuis le menu <a href="{{ticketUrl}}">Assistance - liste des tickets</a>.</translation>
+   <translation id="otrs_popup_sent_error_already_exists" qtlid="487951">Ticket na toto téma byl již vytvořen. <a href="{{ticketUrl}}">Pro zobrazení ticketu klikněte zde.</a></translation>
+   <translation id="otrs_popup_sent_success" qtlid="487964">Váš ticket s číslem {{ticketNumber}} byl úspěšně vytvořen. Diskusní vlákno daného ticketu můžete zobrazit prostřednictvím nabídky <a href="{{ticketUrl}}">Podpora - Seznam mých ticketů</a>.</translation>
    <translation id="otrs_popup_get_services_error" qtlid="228501">Při načítáni Vašich služeb došlo k chybě.</translation>
    <translation id="otrs_popup_get_types_error" qtlid="233047">Při získávání dat došlo k chybě.</translation>
    <translation id="otrs_popup_services_refresh" qtlid="228514">Aktualizace seznamu</translation>
@@ -177,9 +178,9 @@
    <translation id="otrs_subCategory_assistance_new" qtlid="291214">Informace a předplatné doplňkových služeb</translation>
    <translation id="otrs_subCategory_assistance_other" qtlid="19963">Jiné</translation>
 
-   <translation id="otrs_subCategory_billing_inProgress">Suivi d’une commande en cours</translation>
+   <translation id="otrs_subCategory_billing_inProgress" qtlid="487977">Sledování probíhající objednávky</translation>
    <translation id="otrs_subCategory_billing_new" qtlid="291240">Chci udělat objednávku</translation>
-   <translation id="otrs_subCategory_billing_bill">Information sur une facture</translation>
+   <translation id="otrs_subCategory_billing_bill" qtlid="487990">Informace na faktuře</translation>
    <translation id="otrs_subCategory_billing_other" qtlid="19963">Jiné</translation>
 
    <translation id="otrs_subCategory_incident_perfs" qtlid="291266">Moje služba nepracuje správně</translation>
@@ -190,7 +191,7 @@
    <translation id="otrs_subCategory_intervention_replacement-disk" qtlid="361438">Výměna pevného disku</translation>
    <translation id="otrs_subCategory_intervention_other" qtlid="19963">Jiné</translation>
 
-   <translation id="otrs_subCategory_sales_contact">Contactez le 1007 (choix 1)</translation>
+   <translation id="otrs_subCategory_sales_contact" qtlid="488003">Kontaktujte nás na telefonním čísle +420 246 030 899</translation>
 
    <translation id="otrs_intervention_disk_error" qtlid="382346">Při získávání informací ze serveru došlo k neočekávané chybě.</translation>
    <translation id="otrs_intervention_disk_warning" qtlid="361451">Upozornění: před výměnou pevného disku nezapomeňte provést zálohu svých dat.</translation>
@@ -209,9 +210,5 @@
    <translation id="otrs_intervention_disk_comment_english_please" qtlid="361542">Preferovaný jazyk pro komunikaci: angličtina.</translation>
    <translation id="otrs_intervention_disk_confirm" qtlid="382502">Provedl jsem zálohu dat na disku, který si přeji vyměnit. Nyní můžete provést výměnu disku.</translation>
 
-<translation id="otrs_support_agreements">Les données communiquées via ce formulaire sont collectées avec votre consentement et sont destinées à OVH S.A.S. en sa qualité de responsable du traitement.
-Elles pourront être transmises à ses sous-traitants agissant sur strictes instructions d’OVH S.A.S. ainsi qu’aux entités du Groupe OVH. Dans cette seconde hypothèse, et sous réserve que l’entité du Groupe OVH ait signé des règles d’entreprise contraignantes, les données pourront faire l’objet d’un transfert en dehors de l’Union Européenne.
-Les données de ce formulaire sont collectées à des fins de gestion de la relation client, de sollicitations commerciales et de respect de la règlementation applicable à OVH. Les données de votre compte client sont conservées jusqu’à la suppression de votre compte client, puis durant trente-six (36) mois.
-Certaines données traitées à des fins de gestion (exemple : facture) peuvent être conservées plus longtemps conformément à la règlementation applicable. Vous disposez de la faculté d’introduire une réclamation auprès de l’autorité de contrôle compétente ainsi qu’un droit d'accès, de rectification, d’effacement, de limitation, de portabilité et d’opposition pour motif légitime aux données personnelles vous concernant.
-Pour exercer ce droit, merci d’effectuer votre demande au sein du notre formulaire dédié.</translation>
+<translation id="otrs_support_agreements" qtlid="488016">Údaje odeslané prostřednictvím tohoto formuláře jsou shromažďovány se souhlasem odesílatele a jsou určeny pro společnost OVH S.A.S., jakožto správce osobních údajů ve smyslu platného nařízení o ochraně osobních údajů. Tyto údaje mohou být přenášeny ke zpracovatelům, kteří se řídí striktními instrukcemi společnosti OVH S.A.S. Dále mohou být údaje přeneseny ke zpracovateli v rámci skupiny OVH. V případě druhého výše uvedeného, může za předpokladu, že se dotčený zpracovatel skupiny OVH řídí závaznými korporátními směrnicemi, dojít k přenosu údajů za hranice Evropské unie. Údaje získané prostřednictvím tohoto formuláře jsou shromažďovány pouze za účelem řízení vztahů se zákazníky, zpracování obchodních požadavků a dodržování platných předpisů OVH. Osobní údaje asociované s Vaším zákaznickým účtem jsou uchovávány pouze po dobu využívání účtu a následujících 36 měsíců po jeho vymazání. Některé údaje zpracovávané za účelem správy (například vyúčtování) mohou však být v souladu s nařízením uchovávány o něco déle. Jakožto subjekt údajů máte právo podat stížnost u příslušného kontrolního orgánu, stejně tak jako právo na přístup, úpravu resp. doplnění, výmaz (tj. právo být zapomenut), omezení zpracování, přenositelnost či právo vznést námitku vůči způsobu zpracování Vašich osobních údajů. Pro uplatnění příslušného práva prosím využijte náš online formulář.</translation>
 </translations>

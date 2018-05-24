@@ -134,11 +134,11 @@
    <translation id="otrs_category_neworder" qtlid="251681">Nieuwe bestelling</translation>
    <translation id="otrs_category_billing" qtlid="32950">Facturatie</translation>
    <translation id="otrs_category_choice" qtlid="251746">Support opties:</translation>
-   <translation id="otrs_category_billing">Suivi de commande et facturation</translation>
-   <translation id="otrs_category_assistance">Conseil technique</translation>
+   <translation id="otrs_category_billing" qtlid="487925">Suivi de commande et facturation</translation>
+   <translation id="otrs_category_assistance" qtlid="373181">Technisch advies</translation>
    <translation id="otrs_category_incident" qtlid="68252">Een storing melden</translation>
    <translation id="otrs_category_intervention" qtlid="472029">Verzoek om interventie in het datacenter</translation>
-   <translation id="otrs_category_sales">Conseil commercial et ventes</translation>
+   <translation id="otrs_category_sales" qtlid="487938">Conseil commercial et ventes</translation>
 
 
    <translation id="otrs_err_get_infos" qtlid="243832">Er is een fout opgetreden tijdens het ophalen van de gegevens:</translation>
@@ -163,8 +163,8 @@
    <translation id="otrs_popup_move" qtlid="228462">U kunt deze popup verplaatsen door zijn header te verplaatsen.</translation>
    <translation id="otrs_popup_sent_error" qtlid="228475">Er is een fout opgetreden tijdens het aanmaken van dit ticket.</translation>
    <translation id="otrs_popup_sent_error_not_available" qtlid="361386">Deze procedure is in dit datacenter niet beschikbaar. </translation>
-   <translation id="otrs_popup_sent_error_already_exists">Un ticket a déjà été envoyé sur ce sujet. <a href="{{ticketUrl}}">Cliquez ici pour accéder au ticket.</a></translation>
-   <translation id="otrs_popup_sent_success">Votre ticket numéro {{ticketNumber}} a bien été pris en compte. Vous pouvez retrouver le fil de discussion de ce ticket depuis le menu <a href="{{ticketUrl}}">Assistance - liste des tickets</a>.</translation>
+   <translation id="otrs_popup_sent_error_already_exists" qtlid="487951">Un ticket a déjà été envoyé sur ce sujet. <a href="{{ticketUrl}}">Cliquez ici pour accéder au ticket.</a></translation>
+   <translation id="otrs_popup_sent_success" qtlid="487964">Votre ticket numéro {{ticketNumber}} a bien été pris en compte. Vous pouvez retrouver le fil de discussion de ce ticket depuis le menu <a href="{{ticketUrl}}">Assistance - liste des tickets</a>.</translation>
    <translation id="otrs_popup_get_services_error" qtlid="228501">Er is een fout opgetreden bij het ophalen van uw diensten.</translation>
    <translation id="otrs_popup_get_types_error" qtlid="233047">Er is een fout opgetreden tijdens het ophalen van de gegevens.</translation>
    <translation id="otrs_popup_services_refresh" qtlid="228514">De lijst updaten</translation>
@@ -177,9 +177,9 @@
    <translation id="otrs_subCategory_assistance_new" qtlid="291214">Informatie over/abonnement op een aanvullende service</translation>
    <translation id="otrs_subCategory_assistance_other" qtlid="19963">Anders</translation>
 
-   <translation id="otrs_subCategory_billing_inProgress">Suivi d’une commande en cours</translation>
+   <translation id="otrs_subCategory_billing_inProgress" qtlid="487977">Suivi d’une commande en cours</translation>
    <translation id="otrs_subCategory_billing_new" qtlid="291240">Ik wil een bestelling plaatsen</translation>
-   <translation id="otrs_subCategory_billing_bill">Information sur une facture</translation>
+   <translation id="otrs_subCategory_billing_bill" qtlid="487990">Information sur une facture</translation>
    <translation id="otrs_subCategory_billing_other" qtlid="19963">Anders</translation>
 
    <translation id="otrs_subCategory_incident_perfs" qtlid="291266">Mijn service is achteruitgegaan. </translation>
@@ -190,7 +190,7 @@
    <translation id="otrs_subCategory_intervention_replacement-disk" qtlid="361438">Vervangen van een harddrive</translation>
    <translation id="otrs_subCategory_intervention_other" qtlid="19963">Anders</translation>
 
-   <translation id="otrs_subCategory_sales_contact">Contactez le 1007 (choix 1)</translation>
+   <translation id="otrs_subCategory_sales_contact" qtlid="488003">Contactez le 1007 (choix 1)</translation>
 
    <translation id="otrs_intervention_disk_error" qtlid="382346">Er is een fout opgetreden tijdens het ophalen van informatie van de server. </translation>
    <translation id="otrs_intervention_disk_warning" qtlid="361451">Let op: voordat u een disk drive vervangt moet u eerst een backup maken van uw data. </translation>
@@ -209,9 +209,5 @@
    <translation id="otrs_intervention_disk_comment_english_please" qtlid="361542">Engels als voorkeur</translation>
    <translation id="otrs_intervention_disk_confirm" qtlid="382502">Ik heb een backup gemaakt van de data die opgeslagen is op de te vervangen disk. De disk kan nu vervangen worden. </translation>
 
-<translation id="otrs_support_agreements">Les données communiquées via ce formulaire sont collectées avec votre consentement et sont destinées à OVH S.A.S. en sa qualité de responsable du traitement.
-Elles pourront être transmises à ses sous-traitants agissant sur strictes instructions d’OVH S.A.S. ainsi qu’aux entités du Groupe OVH. Dans cette seconde hypothèse, et sous réserve que l’entité du Groupe OVH ait signé des règles d’entreprise contraignantes, les données pourront faire l’objet d’un transfert en dehors de l’Union Européenne.
-Les données de ce formulaire sont collectées à des fins de gestion de la relation client, de sollicitations commerciales et de respect de la règlementation applicable à OVH. Les données de votre compte client sont conservées jusqu’à la suppression de votre compte client, puis durant trente-six (36) mois.
-Certaines données traitées à des fins de gestion (exemple : facture) peuvent être conservées plus longtemps conformément à la règlementation applicable. Vous disposez de la faculté d’introduire une réclamation auprès de l’autorité de contrôle compétente ainsi qu’un droit d'accès, de rectification, d’effacement, de limitation, de portabilité et d’opposition pour motif légitime aux données personnelles vous concernant.
-Pour exercer ce droit, merci d’effectuer votre demande au sein du notre formulaire dédié.</translation>
+<translation id="otrs_support_agreements" qtlid="488016">De informatie in dit formulier worden met uw toestemming verzameld en is bedoeld voor OVH S.A.S. als een registrar. Gegevens kunnen worden overgedragen aan verwerkers die werken in strikte overeenstemming met OVH S.A.S. en met OVH-eenheden. Overdracht binnen de OVH Group buiten de Europese Unie zal alleen plaatsvinden in overeenstemming met bindende interne gegevensbeschermingsregels. De informatie in dit formulier wordt verzameld voor klantrelatiebeheer, commerciële correspondentie en naleving van de OVH-voorschriften. Uw klantaccountgegevens worden opgeslagen totdat deze worden verwijderd en vervolgens gedurende nog eens zesendertig (36) maanden. Bepaalde informatie die wordt gebruikt voor audits (zoals facturen) kan voor langere tijd worden opgeslagen. U hebt de mogelijkheid om een ​​klacht in te dienen bij de bevoegde toezichthoudende autoriteit, evenals het recht op toegang tot gegevens, de gegevens te corrigeren, gegevens te verwijderen, bezwaar te maken tegen de verwerking van gegevens en het recht om informatie over te dragen van het ene systeem naar het andere op basis van uw persoonlijke gegevens. U kunt uw recht uitoefenen door een verzoek in te dienen via ons formulier. </translation>
 </translations>

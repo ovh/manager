@@ -134,11 +134,11 @@
    <translation id="otrs_category_neworder" qtlid="251681">Uusi tilaus</translation>
    <translation id="otrs_category_billing" qtlid="32950">Laskutus</translation>
    <translation id="otrs_category_choice" qtlid="251746">Valitse aihe:</translation>
-   <translation id="otrs_category_billing">Suivi de commande et facturation</translation>
-   <translation id="otrs_category_assistance">Conseil technique</translation>
+   <translation id="otrs_category_billing" qtlid="487925">Tilausten ja laskutuksen seuranta</translation>
+   <translation id="otrs_category_assistance" qtlid="373181">Tekninen neuvonta</translation>
    <translation id="otrs_category_incident" qtlid="68252">Avaa häiriötiketti</translation>
    <translation id="otrs_category_intervention" qtlid="472029">Pyyntö interventioon konesalissa</translation>
-   <translation id="otrs_category_sales">Conseil commercial et ventes</translation>
+   <translation id="otrs_category_sales" qtlid="487938">Kaupallinen ja myyntiin liittyvä neuvonta</translation>
 
 
    <translation id="otrs_err_get_infos" qtlid="243832">Tapahtui virhe tietoja haettaessa:</translation>
@@ -163,8 +163,8 @@
    <translation id="otrs_popup_move" qtlid="228462">Voit siirtää tätä pop–up-ikkunaa siirtämällä sen otsikkoa.</translation>
    <translation id="otrs_popup_sent_error" qtlid="228475">Tapahtui virhe tiketin luomisen aikana.</translation>
    <translation id="otrs_popup_sent_error_not_available" qtlid="361386">Toiminto ei ole mahdollinen tässä konesalissa.</translation>
-   <translation id="otrs_popup_sent_error_already_exists">Un ticket a déjà été envoyé sur ce sujet. <a href="{{ticketUrl}}">Cliquez ici pour accéder au ticket.</a></translation>
-   <translation id="otrs_popup_sent_success">Votre ticket numéro {{ticketNumber}} a bien été pris en compte. Vous pouvez retrouver le fil de discussion de ce ticket depuis le menu <a href="{{ticketUrl}}">Assistance - liste des tickets</a>.</translation>
+   <translation id="otrs_popup_sent_error_already_exists" qtlid="487951">Tästä aiheesta on jo lähetetty tiketti. <a href="{{ticketUrl}}">Klikkaa tästä mennäksesi tikettiin.</a></translation>
+   <translation id="otrs_popup_sent_success" qtlid="487964">Tikettisi {{ticketNumber}} on rekisteröity. Voit löytää tiketin keskusteluketjun valikosta <a href="{{ticketUrl}}">Tuki - tikettilistaus</a>.</translation>
    <translation id="otrs_popup_get_services_error" qtlid="228501">Tapahtui virhe ladattaessa palveluita.</translation>
    <translation id="otrs_popup_get_types_error" qtlid="233047">Tapahtui virhe ladattaessa tietoja.</translation>
    <translation id="otrs_popup_services_refresh" qtlid="228514">Päivitä lista</translation>
@@ -177,9 +177,9 @@
    <translation id="otrs_subCategory_assistance_new" qtlid="291214">Lisäpalvelun tiedot/tilaus</translation>
    <translation id="otrs_subCategory_assistance_other" qtlid="19963">Muu</translation>
 
-   <translation id="otrs_subCategory_billing_inProgress">Suivi d’une commande en cours</translation>
+   <translation id="otrs_subCategory_billing_inProgress" qtlid="487977">Meneillään olevan tilauksen seuranta</translation>
    <translation id="otrs_subCategory_billing_new" qtlid="291240">Haluan tehdä tilauksen</translation>
-   <translation id="otrs_subCategory_billing_bill">Information sur une facture</translation>
+   <translation id="otrs_subCategory_billing_bill" qtlid="487990">Laskun tiedot</translation>
    <translation id="otrs_subCategory_billing_other" qtlid="19963">Muu</translation>
 
    <translation id="otrs_subCategory_incident_perfs" qtlid="291266">Palveluni ei tällä hetkellä toimi kunnolla</translation>
@@ -190,7 +190,7 @@
    <translation id="otrs_subCategory_intervention_replacement-disk" qtlid="361438">Kovalevyn vaihto</translation>
    <translation id="otrs_subCategory_intervention_other" qtlid="19963">Muu</translation>
 
-   <translation id="otrs_subCategory_sales_contact">Contactez le 1007 (choix 1)</translation>
+   <translation id="otrs_subCategory_sales_contact" qtlid="488003">Ota yhteyttä puhelimitse soittamalla numeroon (09) 477 8910</translation>
 
    <translation id="otrs_intervention_disk_error" qtlid="382346">Tapahtui virhe palvelimen tietoja haettaessa.</translation>
    <translation id="otrs_intervention_disk_warning" qtlid="361451">Huomio: varmista, että tietosi on varmuuskopioitu ennen kovalevyn vaihtoa. </translation>
@@ -209,9 +209,5 @@
    <translation id="otrs_intervention_disk_comment_english_please" qtlid="361542">Käytä mieluiten englantia</translation>
    <translation id="otrs_intervention_disk_confirm" qtlid="382502">Olen tehnyt varmuuskopiot vaihdettavan levyn sisällöstä. Levy voidaan nyt vaihtaa.</translation>
 
-<translation id="otrs_support_agreements">Les données communiquées via ce formulaire sont collectées avec votre consentement et sont destinées à OVH S.A.S. en sa qualité de responsable du traitement.
-Elles pourront être transmises à ses sous-traitants agissant sur strictes instructions d’OVH S.A.S. ainsi qu’aux entités du Groupe OVH. Dans cette seconde hypothèse, et sous réserve que l’entité du Groupe OVH ait signé des règles d’entreprise contraignantes, les données pourront faire l’objet d’un transfert en dehors de l’Union Européenne.
-Les données de ce formulaire sont collectées à des fins de gestion de la relation client, de sollicitations commerciales et de respect de la règlementation applicable à OVH. Les données de votre compte client sont conservées jusqu’à la suppression de votre compte client, puis durant trente-six (36) mois.
-Certaines données traitées à des fins de gestion (exemple : facture) peuvent être conservées plus longtemps conformément à la règlementation applicable. Vous disposez de la faculté d’introduire une réclamation auprès de l’autorité de contrôle compétente ainsi qu’un droit d'accès, de rectification, d’effacement, de limitation, de portabilité et d’opposition pour motif légitime aux données personnelles vous concernant.
-Pour exercer ce droit, merci d’effectuer votre demande au sein du notre formulaire dédié.</translation>
+<translation id="otrs_support_agreements" qtlid="488016">Tämän kaavakkeen kautta annetut tiedot kerätään suostumuksellasi ja ne on tarkoitettu OVH S.A.S. -yhtiölle rekisterinpitäjän ominaisuudessa. Tietoja voidaan siirtää alihankkijoille, jotka toimivat OVH S.A.S.:n tiukkojen ohjeiden mukaisesti sekä OVH-yhtiön yksiköille. Jälkimmäisessä tapauksessa ja edellyttäen, että kyseinen yksikkö on allekirjoittanut konsernin sisäiset sitovat säännöt, tietoja saatetaan siirtää Euroopan Unionin ulkopuolelle. Tämän kaavakkeen tiedot kerätään asiakassuhteen hallintaa, kaupallisia yhteydenottoja sekä OVH:ta koskevien säännösten noudattamista varten. Asiakastilisi tietoja säilytetään sen poistamiseen saakka sekä tämän jälkeen 36 kuukauden ajan. Tiettyjä hallintarkoituksiin käytettyjä tietoja voidaan säilyttää pidemmän aikaa vallitsevan lainsäädännön mukaisesti. Sinulla on mahdollisuus tehdä valitus toimivaltaiselle valvontaviranomaiselle sekä oikeus päästä tietoihin, tietojen oikaisuun, tietojen poistamiseen, vastustaa tietojen käsittelyä sekä oikeus tietojen siirtoon järjestelmästä toiseen oikeutetusta perusteesta omia henkilötietojasi koskien. Tätä oikeutta voit käyttää tekemällä pyynnön kaavakkeen kautta.</translation>
 </translations>

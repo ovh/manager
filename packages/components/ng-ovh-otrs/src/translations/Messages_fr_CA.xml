@@ -134,11 +134,11 @@
    <translation id="otrs_category_neworder" qtlid="251681">Nouvelle commande</translation>
    <translation id="otrs_category_billing" qtlid="32950">Facturation</translation>
    <translation id="otrs_category_choice" qtlid="251746">Choix du soutien :</translation>
-   <translation id="otrs_category_billing">Suivi de commande et facturation</translation>
-   <translation id="otrs_category_assistance">Conseil technique</translation>
+   <translation id="otrs_category_billing" qtlid="487925">Suivi de commande et facturation</translation>
+   <translation id="otrs_category_assistance" qtlid="373181">Conseil technique</translation>
    <translation id="otrs_category_incident" qtlid="68252">Déclarer un incident</translation>
    <translation id="otrs_category_intervention" qtlid="472029">Demande d’intervention dans un centre de données</translation>
-   <translation id="otrs_category_sales">Conseil commercial et ventes</translation>
+   <translation id="otrs_category_sales" qtlid="487938">Conseil commercial et ventes</translation>
 
 
    <translation id="otrs_err_get_infos" qtlid="243832">Une erreur est survenue lors de la récupération des informations :</translation>
@@ -163,8 +163,8 @@
    <translation id="otrs_popup_move" qtlid="228462">Vous pouvez déplacer cette fenêtre contextuelle en déplacant son bandeau.</translation>
    <translation id="otrs_popup_sent_error" qtlid="228475">Une erreur est survenue lors de la création de ce billet.</translation>
    <translation id="otrs_popup_sent_error_not_available" qtlid="361386">Cette opération n'est pas disponible dans ce centre de données.</translation>
-   <translation id="otrs_popup_sent_error_already_exists">Un ticket a déjà été envoyé sur ce sujet. <a href="{{ticketUrl}}">Cliquez ici pour accéder au ticket.</a></translation>
-   <translation id="otrs_popup_sent_success">Votre ticket numéro {{ticketNumber}} a bien été pris en compte. Vous pouvez retrouver le fil de discussion de ce ticket depuis le menu <a href="{{ticketUrl}}">Assistance - liste des tickets</a>.</translation>
+   <translation id="otrs_popup_sent_error_already_exists" qtlid="487951">Un ticket a déjà été envoyé sur ce sujet. <a href="{{ticketUrl}}">Cliquez ici pour accéder au ticket.</a></translation>
+   <translation id="otrs_popup_sent_success" qtlid="487964">Votre ticket numéro {{ticketNumber}} a bien été pris en compte. Vous pouvez retrouver le fil de discussion de ce ticket depuis le menu <a href="{{ticketUrl}}">Assistance - liste des tickets</a>.</translation>
    <translation id="otrs_popup_get_services_error" qtlid="228501">Une erreur est survenue lors de la récupération de vos services.</translation>
    <translation id="otrs_popup_get_types_error" qtlid="233047">Une erreur est survenue lors de la récupération des informations.</translation>
    <translation id="otrs_popup_services_refresh" qtlid="228514">Actualiser la liste</translation>
@@ -177,9 +177,9 @@
    <translation id="otrs_subCategory_assistance_new" qtlid="291214">Information / souscription d'un service supplémentaire</translation>
    <translation id="otrs_subCategory_assistance_other" qtlid="19963">Autre</translation>
 
-   <translation id="otrs_subCategory_billing_inProgress">Suivi d’une commande en cours</translation>
+   <translation id="otrs_subCategory_billing_inProgress" qtlid="487977">Suivi d’une commande en cours</translation>
    <translation id="otrs_subCategory_billing_new" qtlid="291240">Je souhaite passer une commande</translation>
-   <translation id="otrs_subCategory_billing_bill">Information sur une facture</translation>
+   <translation id="otrs_subCategory_billing_bill" qtlid="487990">Information sur une facture</translation>
    <translation id="otrs_subCategory_billing_other" qtlid="19963">Autre</translation>
 
    <translation id="otrs_subCategory_incident_perfs" qtlid="291266">Mon service est actuellement dégradé</translation>
@@ -190,7 +190,7 @@
    <translation id="otrs_subCategory_intervention_replacement-disk" qtlid="361438">Remplacement d'un disque dur</translation>
    <translation id="otrs_subCategory_intervention_other" qtlid="19963">Autre</translation>
 
-   <translation id="otrs_subCategory_sales_contact">Contactez le 1007 (choix 1)</translation>
+   <translation id="otrs_subCategory_sales_contact" qtlid="488003">Contactez le 1007 (choix 1)</translation>
 
    <translation id="otrs_intervention_disk_error" qtlid="382346">Une erreur est survenue lors de la récupération des informations du serveur.</translation>
    <translation id="otrs_intervention_disk_warning" qtlid="361451">Attention: avant tout remplacement de disque dur, veillez à sauvegarder vos données.</translation>
@@ -209,9 +209,5 @@
    <translation id="otrs_intervention_disk_comment_english_please" qtlid="361542">Privilégiez l'anglais</translation>
    <translation id="otrs_intervention_disk_confirm" qtlid="382502">J'ai fait le backup des données contenues sur le disque que je souhaite remplacer. Vous pouvez procéder à son remplacement.</translation>
 
-<translation id="otrs_support_agreements">Les données communiquées via ce formulaire sont collectées avec votre consentement et sont destinées à OVH S.A.S. en sa qualité de responsable du traitement.
-Elles pourront être transmises à ses sous-traitants agissant sur strictes instructions d’OVH S.A.S. ainsi qu’aux entités du Groupe OVH. Dans cette seconde hypothèse, et sous réserve que l’entité du Groupe OVH ait signé des règles d’entreprise contraignantes, les données pourront faire l’objet d’un transfert en dehors de l’Union Européenne.
-Les données de ce formulaire sont collectées à des fins de gestion de la relation client, de sollicitations commerciales et de respect de la règlementation applicable à OVH. Les données de votre compte client sont conservées jusqu’à la suppression de votre compte client, puis durant trente-six (36) mois.
-Certaines données traitées à des fins de gestion (exemple : facture) peuvent être conservées plus longtemps conformément à la règlementation applicable. Vous disposez de la faculté d’introduire une réclamation auprès de l’autorité de contrôle compétente ainsi qu’un droit d'accès, de rectification, d’effacement, de limitation, de portabilité et d’opposition pour motif légitime aux données personnelles vous concernant.
-Pour exercer ce droit, merci d’effectuer votre demande au sein du notre formulaire dédié.</translation>
+<translation id="otrs_support_agreements" qtlid="488016">Les données communiquées via ce formulaire sont collectées avec votre consentement et sont destinées à OVH S.A.S. en sa qualité de responsable du traitement. Elles pourront être transmises à ses sous-traitants agissant sur strictes instructions d’OVH S.A.S. ainsi qu’aux entités du Groupe OVH. Dans cette seconde hypothèse, et sous réserve que l’entité du Groupe OVH ait signé des règles d’entreprise contraignantes, les données pourront faire l’objet d’un transfert en dehors de l’Union Européenne. Les données de ce formulaire sont collectées à des fins de gestion de la relation client, de sollicitations commerciales et de respect de la règlementation applicable à OVH. Les données de votre compte client sont conservées jusqu’à la suppression de votre compte client, puis durant trente-six (36) mois. Certaines données traitées à des fins de gestion (exemple : facture) peuvent être conservées plus longtemps conformément à la règlementation applicable. Vous disposez de la faculté d’introduire une réclamation auprès de l’autorité de contrôle compétente ainsi qu’un droit d'accès, de rectification, d’effacement, de limitation, de portabilité et d’opposition pour motif légitime aux données personnelles vous concernant. Pour exercer ce droit, merci d’effectuer votre demande au sein du notre formulaire dédié.</translation>
 </translations>
