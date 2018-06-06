@@ -375,6 +375,7 @@ angular.module("ng-at-internet")
              *   priceTaxFree: 42      // price of product tax free (required only if price is not supplied)
              *   orderId: 1            // unique order ID, you can provide it or it will be automatically generated
              *   quantity: 1           // amount of product (default is 1)
+             *   status: 3             // status of the order (default is 3 : validated)
              *
              *   visitorId: "1234"    // identified visitor id (optional)
              *   countryCode: "EU"     // country code identifier of the customer (optional)
@@ -426,6 +427,8 @@ angular.module("ng-at-internet")
                         var amount = {};
                         var turnover = 0;
 
+                        var status = productData.status || 3;
+
                         if (_.isNumber(productData.price)) {
                             product.unitPriceTaxIncluded = productData.price;
                             amount.amountTaxIncluded = productData.price * product.quantity;
@@ -444,7 +447,7 @@ angular.module("ng-at-internet")
                     // create a valid order
                         atinternetTag.order.set({
                             orderId: orderId, // must be unique
-                            status: 3, // 3 indicated the order is validated
+                            status: status,
                             amount: amount,
                             turnover: turnover
                         });

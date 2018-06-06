@@ -290,6 +290,20 @@ describe("AtInternet provider unit testing", function () {
                 });
             });
 
+            it("track order with custom status", function () {
+                var order = {
+                    name: "foo",
+                    page: "bar",
+                    level2: 1,
+                    priceTaxFree: 25,
+                    status: 1
+                };
+
+                atInternet.trackOrder(order);
+
+                expect(tagMockOrderData.status).toEqual(1);
+            });
+
             it("track order with visitorId", function () {
                 atInternet.trackOrder({
                     name: "productName",
