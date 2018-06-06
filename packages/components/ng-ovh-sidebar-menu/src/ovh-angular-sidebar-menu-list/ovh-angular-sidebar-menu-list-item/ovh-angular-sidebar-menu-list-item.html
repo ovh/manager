@@ -2,7 +2,6 @@
 
     <!-- item has sref and allow sub items -->
     <a class="menu-item"
-       title="{{ ItemMenuCtrl.item.getTitle() }}"
        data-ng-if="ItemMenuCtrl.item.state"
        data-ng-click="ItemMenuCtrl.toggleItemOpenState()"
        data-ui-sref="{{ :: ItemMenuCtrl.item.getFullSref() }}"
@@ -11,7 +10,6 @@
 
     <!-- TOGGLE BUTTON -->
     <button class="menu-item text-left"
-            title="{{ ItemMenuCtrl.item.getTitle() }}"
             type="button"
             data-ng-if="!ItemMenuCtrl.item.state && !ItemMenuCtrl.item.url && ItemMenuCtrl.item.allowSubItems"
             data-ng-click="ItemMenuCtrl.toggleItemOpenState()"
@@ -33,7 +31,6 @@
 
     <!-- EXTERNAL LINK -->
     <a class="menu-item"
-       title="{{ ItemMenuCtrl.item.getTitle() }}"
        data-ng-if="ItemMenuCtrl.item.url && !ItemMenuCtrl.item.allowSubItems"
        data-ng-href="{{ ItemMenuCtrl.item.url }}"
        target="{{ ItemMenuCtrl.item.target }}"
@@ -73,7 +70,6 @@
             <div class="menu-view-all" data-ng-if="ItemMenuCtrl.item.viewMore.enabled">
                 <div class="menu-view-all-inner">
                     <button class="menu-item text-left"
-                        title="{{ ItemMenuCtrl.item.viewMore.title }}"
                         type="button"
                         data-ng-click="ItemMenuCtrl.viewMore()"
                         data-ng-disabled="ItemMenuCtrl.item.viewMore.loading">

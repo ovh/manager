@@ -9,17 +9,6 @@ describe("factory: SidebarMenuListItem", function () {
         SidebarMenuListItem = _SidebarMenuListItem_;
     }));
 
-    describe("Title", function () {
-
-        it("should add prefix to title", function () {
-            var factory = new SidebarMenuListItem({
-                prefix: "foo",
-                title: "bar"
-            });
-            expect(factory.getTitle().indexOf("foo")).toEqual(0);
-        });
-    });
-
     describe("Toggling", function () {
 
         it("should not be opened by default", function () {

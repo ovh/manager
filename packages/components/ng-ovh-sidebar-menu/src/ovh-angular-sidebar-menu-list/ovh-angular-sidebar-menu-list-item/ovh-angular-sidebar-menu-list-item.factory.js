@@ -188,22 +188,6 @@ angular.module("ovh-angular-sidebar-menu").factory("SidebarMenuListItem", functi
 
     /**
      *  @ngdoc method
-     *  @name sidebarMenu.object:SidebarMenuListItem#getTitle
-     *  @methodOf sidebarMenu.object:SidebarMenuListItem
-     *
-     *  @description
-     *  Get the full item title. With prefix if setted.
-     *
-     *  @returns {String} The full item title.
-     */
-    SidebarMenuListItem.prototype.getTitle = function () {
-        var self = this;
-
-        return self.prefix ? self.prefix + " " + self.title : self.title;
-    };
-
-    /**
-     *  @ngdoc method
      *  @name sidebarMenu.object:SidebarMenuListItem#getFullSref
      *  @methodOf sidebarMenu.object:SidebarMenuListItem
      *
