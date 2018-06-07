@@ -105,19 +105,27 @@ angular.module("myManagerModule").run(function ($translate, sidebarMenu, myResou
 
         // confugure order menu items
         SidebarMenu.addActionsMenuOptions([{
+            id: "order1",
             title: $translate.instant("order_translation_key1"),
             icon: "myOvhFontIconName1",
             href: "https://www.ovh.com/",
             target: "_blank"
         }, {
+            id: "order2",
             title: $translate.instant("order_translation_key2"),
             icon: "myOvhFontIconName2",
             href: "#/my-order/dest"
         }, {
+            id: "order3",
             title: $translate.instant("order_translation_key3"),
             icon: "myOvhFontIconName3",
             href: "#/my-order/dest2"
         }]);
+
+        // Add Action menu iten click handler
+        SidebarMenu.addActionsMenuItemClickHandler(function (id) {
+            console.log("Actions menu item " + id + " has been selected!");
+        });
     });
 });
 ```

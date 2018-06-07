@@ -796,6 +796,7 @@ angular.module("ovh-angular-sidebar-menu").controller("SidebarMenuCtrl", ["$tran
             initStateChangeSuccess();
             self.items = SidebarMenu.items;
             self.actionsOptions = SidebarMenu.actionsMenuOptions;
+            self.onActionsMenuSelectionOption = SidebarMenu.dispatchActionsMenuItemClick.bind(SidebarMenu);
             self.popoverSettings = {
                 placement: "bottom-left",
                 "class": "order-actions-menu-popover",
@@ -969,6 +970,7 @@ angular.module("ovh-angular-sidebar-menu").provider("SidebarMenu", function () {
         var sidebarMenuService = {
             items: [],
             actionsMenuOptions: [],
+            actionsMenuItemClickHandlers: [],
             loadDeferred: $q.defer(),
             initPromise: $q.when(true)
         };
@@ -1277,6 +1279,60 @@ angular.module("ovh-angular-sidebar-menu").provider("SidebarMenu", function () {
             return actionMenuOptionsList;
         };
 
+        /**
+         * @ngdoc method
+         * @name sidebarMenu.service:SidebarMenu#addActionsMenuItemClickHandler
+         * @methodOf sidebarMenu.service:SidebarMenu
+         *
+         * @description
+         * Add a callback to handle click on actions menu items. The callback
+         * takes the id of the actions menu item as single parameter.
+         *
+         * @param {Function} handler The handler to add.
+         */
+        sidebarMenuService.addActionsMenuItemClickHandler = function (handler) {
+            if (typeof handler !== "function") {
+                throw new TypeError(handler + " is not a function");
+            }
+
+            if (this.actionsMenuItemClickHandlers.indexOf(handler) < 0) {
+                this.actionsMenuItemClickHandlers.push(handler);
+            }
+        };
+
+        /**
+         * @ngdoc method
+         * @name sidebarMenu.service:SidebarMenu#removeActionsMenuItemClickHandler
+         * @methodOf sidebarMenu.service:SidebarMenu
+         *
+         * @description
+         * Remove a callback use to handle click on actions menu items.
+         *
+         * @param {Function} handler The handler to remove.
+         */
+        sidebarMenuService.removeActionsMenuItemClickHandler = function (handler) {
+            var handlerIndex = this.actionsMenuItemClickHandlers.indexOf(handler);
+            if (handlerIndex > -1) {
+                this.actionsMenuItemClickHandlers.splice(handlerIndex, 1);
+            }
+        };
+
+        /**
+         * @ngdoc method
+         * @name sidebarMenu.service:SidebarMenu#dispatchActionsMenuItemClick
+         * @methodOf sidebarMenu.service:SidebarMenu
+         *
+         * @description
+         * Trigger all actions menu click handlers with a specified item id.
+         *
+         * @param {Number} id An actions menu item id.
+         */
+        sidebarMenuService.dispatchActionsMenuItemClick = function (id) {
+            this.actionsMenuItemClickHandlers.forEach(function (handler) {
+                handler(id);
+            });
+        };
+
         /* ----------  HELPERS  ----------*/
 
         function getItemStateInfos (item) {
@@ -1454,7 +1510,7 @@ angular.module('ovh-angular-sidebar-menu').run(['$templateCache', function($temp
 
 
   $templateCache.put('ovh-angular-sidebar-menu.html',
-    "<div id=sidebar-menu><!-- LOADER --><div class=text-center data-ng-if=sideBarCtrl.loading.init><div class=\"oui-spinner oui-spinner_m\"><div class=oui-spinner__container><div class=oui-spinner__image></div></div></div></div><div data-ng-if=!sideBarCtrl.loading.init><!-- MENU TITLE --><div class=sidebar-menu-title><button type=button class=\"navbar-button sideNavBtnClose pull-right\"><span class=\"ovh-font ovh-font-arrow-left\"></span></button> <span class=\"navbar-brand navbar-toggle-title\" data-translate=sidebar_menu></span></div><!-- ORDER ACTIONS MENU --><div class=order-actions-menu><actions-menu data-actions-menu-options=sideBarCtrl.actionsOptions data-actions-menu-popover-settings=sideBarCtrl.popoverSettings><span class=cart-icon><i class=\"ovh-font ovh-font-cart\"></i> </span><span class=button-text data-translate=sidebar_menu_order_actions></span> <span class=arrow-icon><i class=\"ovh-font ovh-font-small-arrow-down\"></i></span></actions-menu></div><!-- MENU ITEMS --><ul class=\"sidebar-menu-list menu-level-1\" data-sidebar-menu-list data-sidebar-menu-list-items=sideBarCtrl.items data-sidebar-menu-list-namespace=sidebarNamespace></ul></div></div>"
+    "<div id=sidebar-menu><!-- LOADER --><div class=text-center data-ng-if=sideBarCtrl.loading.init><div class=\"oui-spinner oui-spinner_m\"><div class=oui-spinner__container><div class=oui-spinner__image></div></div></div></div><div data-ng-if=!sideBarCtrl.loading.init><!-- MENU TITLE --><div class=sidebar-menu-title><button type=button class=\"navbar-button sideNavBtnClose pull-right\"><span class=\"ovh-font ovh-font-arrow-left\"></span></button> <span class=\"navbar-brand navbar-toggle-title\" data-translate=sidebar_menu></span></div><!-- ORDER ACTIONS MENU --><div class=order-actions-menu><actions-menu data-actions-menu-options=sideBarCtrl.actionsOptions data-actions-menu-popover-settings=sideBarCtrl.popoverSettings data-actions-menu-on-select-option=sideBarCtrl.onActionsMenuSelectionOption(id)><span class=cart-icon><i class=\"ovh-font ovh-font-cart\"></i> </span><span class=button-text data-translate=sidebar_menu_order_actions></span> <span class=arrow-icon><i class=\"ovh-font ovh-font-small-arrow-down\"></i></span></actions-menu></div><!-- MENU ITEMS --><ul class=\"sidebar-menu-list menu-level-1\" data-sidebar-menu-list data-sidebar-menu-list-items=sideBarCtrl.items data-sidebar-menu-list-namespace=sidebarNamespace></ul></div></div>"
   );
 
 }]);

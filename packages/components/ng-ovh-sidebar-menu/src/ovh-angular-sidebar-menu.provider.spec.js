@@ -55,6 +55,58 @@ describe("provider: SidebarMenu", function () {
         });
     });
 
+    describe("Actions menu", function () {
+        var sidebarMenu;
+
+        beforeEach(inject(function (_SidebarMenu_) {
+            sidebarMenu = _SidebarMenu_;
+        }));
+
+        describe("Items", function () {
+            var handler1 = jasmine.createSpy("handler1");
+            var handler2 = jasmine.createSpy("handler2");
+            var notHandler = {};
+            var itemId = "itemId";
+
+            it("should register a click handler", function () {
+                sidebarMenu.addActionsMenuItemClickHandler(handler1);
+
+                expect(sidebarMenu.actionsMenuItemClickHandlers.length).toEqual(1);
+                expect(sidebarMenu.actionsMenuItemClickHandlers[0]).toEqual(handler1);
+            });
+
+            it("should not add a registered click handler", function () {
+                sidebarMenu.addActionsMenuItemClickHandler(handler1);
+                sidebarMenu.addActionsMenuItemClickHandler(handler1);
+
+                expect(sidebarMenu.actionsMenuItemClickHandlers.length).toEqual(1);
+            });
+
+            it("should fail if the handler is not a function", function () {
+                expect(function () {
+                    sidebarMenu.addActionsMenuItemClickHandler(notHandler);
+                }).toThrow();
+            });
+
+            it("should remove an existing click handler", function () {
+                sidebarMenu.addActionsMenuItemClickHandler(handler1);
+                expect(sidebarMenu.actionsMenuItemClickHandlers.length).toEqual(1);
+
+                sidebarMenu.removeActionsMenuItemClickHandler(handler1);
+                expect(sidebarMenu.actionsMenuItemClickHandlers.length).toEqual(0);
+            });
+
+            it("should trigger all handlers", function () {
+                sidebarMenu.addActionsMenuItemClickHandler(handler1);
+                sidebarMenu.addActionsMenuItemClickHandler(handler2);
+
+                sidebarMenu.dispatchActionsMenuItemClick(itemId);
+                expect(handler1).toHaveBeenCalledWith(itemId);
+                expect(handler2).toHaveBeenCalledWith(itemId);
+            });
+        });
+    });
+
     describe("Menu items handling", function () {
 
         var sidebarMenu;

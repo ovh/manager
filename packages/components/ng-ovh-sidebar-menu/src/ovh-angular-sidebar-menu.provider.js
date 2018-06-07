@@ -130,6 +130,7 @@ angular.module("ovh-angular-sidebar-menu").provider("SidebarMenu", function () {
         var sidebarMenuService = {
             items: [],
             actionsMenuOptions: [],
+            actionsMenuItemClickHandlers: [],
             loadDeferred: $q.defer(),
             initPromise: $q.when(true)
         };
@@ -436,6 +437,60 @@ angular.module("ovh-angular-sidebar-menu").provider("SidebarMenu", function () {
             });
 
             return actionMenuOptionsList;
+        };
+
+        /**
+         * @ngdoc method
+         * @name sidebarMenu.service:SidebarMenu#addActionsMenuItemClickHandler
+         * @methodOf sidebarMenu.service:SidebarMenu
+         *
+         * @description
+         * Add a callback to handle click on actions menu items. The callback
+         * takes the id of the actions menu item as single parameter.
+         *
+         * @param {Function} handler The handler to add.
+         */
+        sidebarMenuService.addActionsMenuItemClickHandler = function (handler) {
+            if (typeof handler !== "function") {
+                throw new TypeError(handler + " is not a function");
+            }
+
+            if (this.actionsMenuItemClickHandlers.indexOf(handler) < 0) {
+                this.actionsMenuItemClickHandlers.push(handler);
+            }
+        };
+
+        /**
+         * @ngdoc method
+         * @name sidebarMenu.service:SidebarMenu#removeActionsMenuItemClickHandler
+         * @methodOf sidebarMenu.service:SidebarMenu
+         *
+         * @description
+         * Remove a callback use to handle click on actions menu items.
+         *
+         * @param {Function} handler The handler to remove.
+         */
+        sidebarMenuService.removeActionsMenuItemClickHandler = function (handler) {
+            var handlerIndex = this.actionsMenuItemClickHandlers.indexOf(handler);
+            if (handlerIndex > -1) {
+                this.actionsMenuItemClickHandlers.splice(handlerIndex, 1);
+            }
+        };
+
+        /**
+         * @ngdoc method
+         * @name sidebarMenu.service:SidebarMenu#dispatchActionsMenuItemClick
+         * @methodOf sidebarMenu.service:SidebarMenu
+         *
+         * @description
+         * Trigger all actions menu click handlers with a specified item id.
+         *
+         * @param {Number} id An actions menu item id.
+         */
+        sidebarMenuService.dispatchActionsMenuItemClick = function (id) {
+            this.actionsMenuItemClickHandlers.forEach(function (handler) {
+                handler(id);
+            });
         };
 
         /* ----------  HELPERS  ----------*/

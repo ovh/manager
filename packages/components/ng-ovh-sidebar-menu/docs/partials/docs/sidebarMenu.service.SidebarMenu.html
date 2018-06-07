@@ -21,7 +21,13 @@
 </li>
 </ul>
 <div class="member method"><h2 id="methods">Methods</h2>
-<ul class="methods"><li><h3 id="methods_addactionsmenuoption">addActionsMenuOption(actionMenuOptions)</h3>
+<ul class="methods"><li><h3 id="methods_addactionsmenuitemclickhandler">addActionsMenuItemClickHandler(handler)</h3>
+<div class="addactionsmenuitemclickhandler"><div class="sidebarmenu-service-page sidebarmenu-service-sidebarmenu-addactionsmenuitemclickhandler-page"><p>Add a callback to handle click on actions menu items. The callback
+takes the id of the actions menu item as single parameter.</p>
+</div><h5 id="methods_addactionsmenuitemclickhandler_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>handler</td><td><a href="" class="label type-hint type-hint-function">Function</a></td><td><div class="sidebarmenu-service-page sidebarmenu-service-sidebarmenu-addactionsmenuitemclickhandler-page"><p>The handler to add.</p>
+</div></td></tr></tbody></table></div>
+</li>
+<li><h3 id="methods_addactionsmenuoption">addActionsMenuOption(actionMenuOptions)</h3>
 <div class="addactionsmenuoption"><div class="sidebarmenu-service-page sidebarmenu-service-sidebarmenu-addactionsmenuoption-page"><p>Add an item to order actions menu inside sidebar menu. See availabe options into actions-menu component.</p>
 </div><h5 id="methods_addactionsmenuoption_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>actionMenuOptions</td><td><a href="" class="label type-hint type-hint-object">Object</a></td><td><div class="sidebarmenu-service-page sidebarmenu-service-sidebarmenu-addactionsmenuoption-page"><p>Options of the action menu to add (see availabe options into actions-menu component).</p>
 </div></td></tr></tbody></table><h5 id="methods_addactionsmenuoption_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">Object</a></td><td><div class="sidebarmenu-service-page sidebarmenu-service-sidebarmenu-addactionsmenuoption-page"><p>The added options.</p>
@@ -46,6 +52,11 @@
 </div></td></tr><tr><td>parentItem</td><td><a href="" class="label type-hint type-hint-sidebarmenulistitem">SidebarMenuListItem</a></td><td><div class="sidebarmenu-service-page sidebarmenu-service-sidebarmenu-addmenuitems-page"><p>The parent where to add the new sidebar menu items. If not specified, &quot;root&quot; items will be added.</p>
 </div></td></tr></tbody></table><h5 id="methods_addmenuitems_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-sidebarmenu">SidebarMenu</a></td><td><div class="sidebarmenu-service-page sidebarmenu-service-sidebarmenu-addmenuitems-page"><p>Current SidebarMenu service</p>
 </div></td></tr></table></div>
+</li>
+<li><h3 id="methods_dispatchactionsmenuitemclick">dispatchActionsMenuItemClick(id)</h3>
+<div class="dispatchactionsmenuitemclick"><div class="sidebarmenu-service-page sidebarmenu-service-sidebarmenu-dispatchactionsmenuitemclick-page"><p>Trigger all actions menu click handlers with a specified item id.</p>
+</div><h5 id="methods_dispatchactionsmenuitemclick_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>id</td><td><a href="" class="label type-hint type-hint-number">Number</a></td><td><div class="sidebarmenu-service-page sidebarmenu-service-sidebarmenu-dispatchactionsmenuitemclick-page"><p>An actions menu item id.</p>
+</div></td></tr></tbody></table></div>
 </li>
 <li><h3 id="methods_getallmenuitems">getAllMenuItems()</h3>
 <div class="getallmenuitems"><div class="sidebarmenu-service-page sidebarmenu-service-sidebarmenu-getallmenuitems-page"><p>Return a flatten list of all menu items</p>
@@ -102,6 +113,11 @@ cached, so subsequent search would be O(1) complexity.</p>
 <div class="managestatechange"><div class="sidebarmenu-service-page sidebarmenu-service-sidebarmenu-managestatechange-page"><p>Manage the active and open state of items when state is successfuly loaded. Called on $stateChangeSuccess.</p>
 </div><h5 id="methods_managestatechange_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-promise">Promise</a></td><td><div class="sidebarmenu-service-page sidebarmenu-service-sidebarmenu-managestatechange-page"><p>That resolve when every active subMenu item is loaded</p>
 </div></td></tr></table></div>
+</li>
+<li><h3 id="methods_removeactionsmenuitemclickhandler">removeActionsMenuItemClickHandler(handler)</h3>
+<div class="removeactionsmenuitemclickhandler"><div class="sidebarmenu-service-page sidebarmenu-service-sidebarmenu-removeactionsmenuitemclickhandler-page"><p>Remove a callback use to handle click on actions menu items.</p>
+</div><h5 id="methods_removeactionsmenuitemclickhandler_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>handler</td><td><a href="" class="label type-hint type-hint-function">Function</a></td><td><div class="sidebarmenu-service-page sidebarmenu-service-sidebarmenu-removeactionsmenuitemclickhandler-page"><p>The handler to remove.</p>
+</div></td></tr></tbody></table></div>
 </li>
 <li><h3 id="methods_setinitializationpromise">setInitializationPromise(initPromise)</h3>
 <div class="setinitializationpromise"><div class="sidebarmenu-service-page sidebarmenu-service-sidebarmenu-setinitializationpromise-page"><p>Let you configuring an initialization promise before displaying content of sidebar-menu. This can be done in angular run phase.

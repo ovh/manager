@@ -53,14 +53,6 @@ describe("directive: sidebarMenu", function () {
 
     // ---
 
-    describe("Test", function () {
-
-        it("should prove that test running...", function () {
-            expect(true).not.toBe(false);
-        });
-
-    });
-
     describe("Initialization", function () {
 
         it("should load the directive as attribute", function () {
@@ -216,6 +208,49 @@ describe("directive: sidebarMenu", function () {
             expect(lvl1ThirdItem.find(".menu-sub-items ul li").length).toEqual(0);
         });
 
+    });
+
+    describe("Action menu", function () {
+        var clickSpy;
+        var compiledElem;
+        var itemId = "itemId";
+
+        beforeEach(function () {
+            clickSpy = jasmine.createSpy("clickSpy");
+
+            SidebarMenu.addActionsMenuOptions([{
+                id: itemId,
+                title: "Item title",
+                icon: "Item icon",
+                href: "https://foo.bar/"
+            }]);
+
+            SidebarMenu.addActionsMenuItemClickHandler(clickSpy);
+
+            compiledElem = compileDirective("default");
+
+            $scope.$digest();
+            $httpBackend.flush();
+        });
+
+        it("should display actions menu", function () {
+            var actionsMenuItems = compiledElem.find("actions-menu button");
+
+            expect(actionsMenuItems.length).toEqual(1);
+        });
+
+        it("should call click handler", function () {
+            var actionsMenu = compiledElem.find("actions-menu button.actions-menu-button");
+            actionsMenu.click();
+            $scope.$digest();
+
+            var leftPage = actionsMenu.next(".responsive-popover").find(".actions-menu-page.main-page");
+
+            leftPage.find(".actions-list-item").eq(0).find(".actions-menu-item-link").click();
+            $scope.$digest();
+
+            expect(clickSpy).toHaveBeenCalledWith(itemId);
+        });
     });
 
     describe("Allowing search items", function () {
