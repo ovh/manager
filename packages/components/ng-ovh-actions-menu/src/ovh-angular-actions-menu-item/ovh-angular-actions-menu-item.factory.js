@@ -41,6 +41,7 @@ angular.module("ovh-angular-actions-menu").factory("ActionsMenuItem", function (
     function ActionsMenuItem (options) {
         var self = this;
 
+        this.id = options.id;
         this.title = options.title;
 
         if (options.svg) {

@@ -95,6 +95,7 @@ angular.module("ovh-angular-actions-menu").factory("ActionsMenuItem", function (
     function ActionsMenuItem (options) {
         var self = this;
 
+        this.id = options.id;
         this.title = options.title;
 
         if (options.svg) {
@@ -221,6 +222,10 @@ angular.module("ovh-angular-actions-menu").controller("ActionsMenuCtrl", ["actio
             }
         }
 
+        if (actionItem.id) {
+            self.onSelectOption({ id: actionItem.id });
+        }
+
         return true;
     };
 
@@ -280,14 +285,20 @@ angular.module("ovh-angular-actions-menu").controller("ActionsMenuCtrl", ["actio
  *      };
  *
  *      $scope.actionsOptions = [{
+ *          id: "firstButton",
  *          title: "My Beautiful title",
  *          icon: "filled-check",
  *          href: "http://www.google.be"
  *      }, {
+ *          id: "secondButton",
  *          title: "My Other title",
  *          icon: "filled-error",
  *          state: "my-manager.state1"
  *      }];
+ *
+ *      $scope.onSelectOption = function (id) {
+ *          console.log("Option has been selected!", id);
+ *      };
  *  });
  *  </pre>
  *
@@ -295,7 +306,8 @@ angular.module("ovh-angular-actions-menu").controller("ActionsMenuCtrl", ["actio
  *
  *  <pre>
  *  <actions-menu data-actions-menu-options="actionsOptions"
- *                data-actions-menu-popover-settings="popoverSettings">
+ *                data-actions-menu-popover-settings="popoverSettings"
+ *                data-actions-menu-on-select-option="onSelectOption(id)">
  *      <i class="my-font my-font-actions"></i>
  *      Button actions
  *  </actions-menu>
@@ -310,7 +322,8 @@ angular.module("ovh-angular-actions-menu").directive("actionsMenu", function () 
         templateUrl: "ovh-angular-actions-menu.html",
         scope: {
             actionsOptions: "=actionsMenuOptions",
-            popoverSettings: "=actionsMenuPopoverSettings"
+            popoverSettings: "=actionsMenuPopoverSettings",
+            onSelectOption: "&actionsMenuOnSelectOption"
         },
         controller: "ActionsMenuCtrl",
         controllerAs: "$ctrl",
