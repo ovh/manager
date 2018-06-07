@@ -23,14 +23,20 @@
  *      };
  *
  *      $scope.actionsOptions = [{
+ *          id: "googleButton",
  *          title: "My Beautiful title",
  *          icon: "filled-check",
  *          href: "http://www.google.be"
  *      }, {
+ *          id: "otherButton",
  *          title: "My Other title",
  *          icon: "filled-error",
  *          state: "my-manager.state1"
  *      }];
+ *
+ *      $scope.onSelectOption = function (id) {
+ *          console.log("Option has been selected!", id);
+ *      };
  *  });
  *  </pre>
  *
@@ -38,7 +44,8 @@
  *
  *  <pre>
  *  <actions-menu data-actions-menu-options="actionsOptions"
- *                data-actions-menu-popover-settings="popoverSettings">
+ *                data-actions-menu-popover-settings="popoverSettings"
+ *                data-actions-menu-on-select-option="onSelectOption(id)">
  *      <i class="my-font my-font-actions"></i>
  *      Button actions
  *  </actions-menu>
@@ -53,7 +60,8 @@ angular.module("ovh-angular-actions-menu").directive("actionsMenu", function () 
         templateUrl: "ovh-angular-actions-menu.html",
         scope: {
             actionsOptions: "=actionsMenuOptions",
-            popoverSettings: "=actionsMenuPopoverSettings"
+            popoverSettings: "=actionsMenuPopoverSettings",
+            onSelectOption: "&actionsMenuOnSelectOption"
         },
         controller: "ActionsMenuCtrl",
         controllerAs: "$ctrl",

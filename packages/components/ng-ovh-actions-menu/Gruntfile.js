@@ -3,6 +3,8 @@ module.exports = function (grunt) {
     "use strict";
     require("matchdep").filterAll("grunt-*").forEach(grunt.loadNpmTasks);
 
+    const watch = grunt.option("watch");
+
     grunt.initConfig({
         pkg      : grunt.file.readJSON("package.json"),
         bower    : grunt.file.readJSON("bower.json"),
@@ -168,7 +170,8 @@ module.exports = function (grunt) {
         karma: {
             unit: {
                 configFile: "karma.conf.js",
-                singleRun: true
+                singleRun: !watch,
+                autoWatch: watch
             }
         },
 

@@ -27,20 +27,27 @@ angular.module("myManagerModule").controller("myTestController", function ($scop
     };
 
     $scope.actionsOptions = [{
+        id: "firstButton",
         title: "My Beautiful title",
         icon: "filled-check",
         href: "http://www.google.be"
     }, {
+        id: "secondButton",
         title: "My Other title",
         icon: "filled-error",
         state: "my-manager.state1"
     }];
+
+    $scope.onSelectOption = function (id) {
+        console.log("Option has been selected!", id);
+    };
 });
 </pre>
 <p>And in your html view:</p>
 <pre class="prettyprint linenums">
 &lt;actions-menu data-actions-menu-options="actionsOptions"
-              data-actions-menu-popover-settings="popoverSettings"&gt;
+              data-actions-menu-popover-settings="popoverSettings"
+              data-actions-menu-on-select-option="onSelectOption(id)"&gt;
     &lt;i class="my-font my-font-actions"&gt;&lt;/i&gt;
     Button actions
 &lt;/actions-menu&gt;

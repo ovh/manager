@@ -35,7 +35,8 @@ describe("Directive: actionsMenu", function () {
         },
         defaultWithAttr: {
             element: "<actions-menu data-actions-menu-options=\"options\"" +
-                                    " data-actions-menu-popover-settings=\"popoverSettings\">" +
+                                  " data-actions-menu-popover-settings=\"popoverSettings\"" +
+                                  " data-actions-menu-on-select-option=\"onSelectOption(id)\">" +
                      "</actions-menu>",
             scope: {
                 popoverSettings: {
@@ -43,6 +44,7 @@ describe("Directive: actionsMenu", function () {
                     "class": "my-custom-class"
                 },
                 options: [{
+                    id: "item1",
                     title: "Item 1",
                     subActions: [{
                         title: "Item 1.1"
@@ -52,12 +54,15 @@ describe("Directive: actionsMenu", function () {
                         title: "Item 1.3"
                     }]
                 }, {
+                    id: "item2",
                     title: "Item 2",
                     state: "my-state-2"
                 }, {
+                    id: "item3",
                     title: "Item 3",
                     state: "my-state-3"
-                }]
+                }],
+                onSelectOption: jasmine.createSpy("onSelectOption")
             }
         }
     };
@@ -98,6 +103,10 @@ describe("Directive: actionsMenu", function () {
             $scope.$digest();
         });
 
+        afterEach(function () {
+            templates.defaultWithAttr.scope.onSelectOption.calls.reset();
+        });
+
         it("should add custom class to popover element", function () {
             expect(compiledElem.next(".responsive-popover").hasClass("my-custom-class")).toBeTruthy();
         });
@@ -115,5 +124,11 @@ describe("Directive: actionsMenu", function () {
             expect(rightPage.find(".actions-list-item").length).toEqual(4);     // 4 because back link is considered as a link
         });
 
+        it("should trigger event when option is clicked", function () {
+            var leftPage = compiledElem.next(".responsive-popover").find(".actions-menu-page.main-page");
+            leftPage.find(".actions-list-item").eq(1).find(".actions-menu-item-link").click();
+
+            expect(templates.defaultWithAttr.scope.onSelectOption).toHaveBeenCalledWith("item2");
+        });
     });
 });

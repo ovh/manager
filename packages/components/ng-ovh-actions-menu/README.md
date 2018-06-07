@@ -75,8 +75,9 @@ This is the main directive of the module. It's creating a popover with desired a
 
 | Param | Type | Details |
 | ---- | ---- | ---- |
-| ovh-angular-actions-menu-options | Object[] | A list of actions options that will be displayed into actionsMenu. See ActionsMenu factory and ActionsMenuItem factory for available options. |
-| ovh-angular-actions-menu-popover-settings | Object | A list of options of the popover. For now only : class, placement, trigger and isOpen options are supported. Feel free to add others!!! See [ui.bootstrap.popover](https://angular-ui.github.io/bootstrap/#/popover) for more informations. |
+| actions-menu-options | Object[] | A list of actions options that will be displayed into actionsMenu. See ActionsMenu factory and ActionsMenuItem factory for available options. |
+| actions-menu-popover-settings | Object | A list of options of the popover. For now only : class, placement, trigger and isOpen options are supported. Feel free to add others!!! See [ui.bootstrap.popover](https://angular-ui.github.io/bootstrap/#/popover) for more informations. |
+| actions-menu-on-select-option | Function | A callback taking item id as single parameter. |
 
 #### Example
 
@@ -100,14 +101,19 @@ This is the main directive of the module. It's creating a popover with desired a
          icon: "filled-error",
          state: "my-manager.state1"
      }];
+
+     $scope.onSelectOption = function (id) {
+        console.log("Option has been selected!", id);
+     };
  });
  ```
 
  And in your html view:
 
  ```html
- <actions-menu data-ovh-angular-actions-menu-options="actionsOptions"
-               data-ovh-angular-actions-menu-popover-settings="popoverSettings">
+ <actions-menu data-actions-menu-options="actionsOptions"
+               data-actions-menu-popover-settings="popoverSettings"
+               data-actions-menu-on-select-option="onSelectOption(id)">
      <i class="my-font my-font-actions"></i>
      Button actions
  </actions-menu>
@@ -123,8 +129,8 @@ This directive represent an item into an actions menu.
 
 | Param | Type | Details |
 | ---- | ---- | ---- |
-| ovh-angular-actions-menu-item | ActionMenuItem | An instance of ActionMenuItem. |
-| ovh-angular-actions-menu-item-on-click | Function | A callback function called when the action menu item has been clicked. |
+| actions-menu-item | ActionMenuItem | An instance of ActionMenuItem. |
+| actions-menu-item-on-click | Function | A callback function called when the action menu item has been clicked. |
 
 ### <a name="actionsMenu_object_ActionsMenu"></a>`ActionsMenu` - object
 
@@ -201,6 +207,7 @@ Factory that describe an item into an actions menu.
 | options.subActions | Array<Object> | Sub actions options to be added to the actions menu item. The options are the same of a first level item options. The actionsMenu directive only manage two levels of actions (only level one items with potentially sub actions). |
 | options.target | String | The target of the href anchor tag. This will be the target html attribute. |
 | options.title | String | The title of the actions menu item. |
+| options.id | String | The id of the actions menu item passed to onSelectOption handler. |
 
 #### Methods
 ##### getFullSref

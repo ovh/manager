@@ -31,6 +31,10 @@ angular.module("ovh-angular-actions-menu").controller("ActionsMenuCtrl", functio
             }
         }
 
+        if (actionItem.id) {
+            self.onSelectOption({ id: actionItem.id });
+        }
+
         return true;
     };
 
