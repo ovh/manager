@@ -285,12 +285,12 @@ angular.module("ovh-angular-actions-menu").controller("ActionsMenuCtrl", ["actio
  *      };
  *
  *      $scope.actionsOptions = [{
- *          id: "firstButton",
+ *          id: "googleButton",
  *          title: "My Beautiful title",
  *          icon: "filled-check",
  *          href: "http://www.google.be"
  *      }, {
- *          id: "secondButton",
+ *          id: "otherButton",
  *          title: "My Other title",
  *          icon: "filled-error",
  *          state: "my-manager.state1"

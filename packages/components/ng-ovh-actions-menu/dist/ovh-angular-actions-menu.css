@@ -34,7 +34,6 @@
 }
 .ovh-angular-actions-menu .popover-content .actions-menu-inner .actions-menu-pages {
   height: 100%;
-  transition: -webkit-transform 0.5s;
   transition: transform 0.5s;
   margin-left: 0;
 }
@@ -88,7 +87,6 @@
   display: none;
 }
 .ovh-angular-actions-menu .popover-content .actions-menu-inner .actions-menu-pages .actions-menu-page.main-page ul.actions-list {
-  display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-flow: row wrap;
@@ -139,9 +137,8 @@
 .ovh-angular-actions-menu .popover-content .actions-menu-inner .actions-menu-pages .actions-menu-page.main-page ul.actions-list > li.actions-list-item .actions-menu-item-link:active .item-icon svg,
 .ovh-angular-actions-menu .popover-content .actions-menu-inner .actions-menu-pages .actions-menu-page.main-page ul.actions-list > li.actions-list-item .actions-menu-item-link:hover .item-icon svg,
 .ovh-angular-actions-menu .popover-content .actions-menu-inner .actions-menu-pages .actions-menu-page.main-page ul.actions-list > li.actions-list-item .actions-menu-item-link:focus .item-icon svg {
-  -webkit-transform: scale(0.8);
-      -ms-transform: scale(0.8);
-          transform: scale(0.8);
+  -ms-transform: scale(0.8);
+      transform: scale(0.8);
 }
 .ovh-angular-actions-menu .popover-content .actions-menu-inner .actions-menu-pages .actions-menu-page.main-page ul.actions-list > li.actions-list-item .actions-menu-item-link:active .item-icon svg g,
 .ovh-angular-actions-menu .popover-content .actions-menu-inner .actions-menu-pages .actions-menu-page.main-page ul.actions-list > li.actions-list-item .actions-menu-item-link:hover .item-icon svg g,
@@ -164,7 +161,6 @@
 .ovh-angular-actions-menu .popover-content .actions-menu-inner .actions-menu-pages .actions-menu-page.main-page ul.actions-list > li.actions-list-item .actions-menu-item-link .item-icon i,
 .ovh-angular-actions-menu .popover-content .actions-menu-inner .actions-menu-pages .actions-menu-page.main-page ul.actions-list > li.actions-list-item .actions-menu-item-link .item-icon svg {
   font-size: 36px;
-  transition: -webkit-transform 0.3s ease-in-out;
   transition: transform 0.3s ease-in-out;
 }
 .ovh-angular-actions-menu .popover-content .actions-menu-inner .actions-menu-pages .actions-menu-page.main-page ul.actions-list > li.actions-list-item .actions-menu-item-link .item-title {
@@ -214,9 +210,8 @@
   width: 700px;
 }
 .ovh-angular-actions-menu:not(.popover-full-screen) .actions-menu-inner .actions-menu-pages.move {
-  -webkit-transform: translateX(-350px);
-      -ms-transform: translateX(-350px);
-          transform: translateX(-350px);
+  -ms-transform: translateX(-350px);
+      transform: translateX(-350px);
 }
 .ovh-angular-actions-menu:not(.popover-full-screen) .actions-menu-inner .actions-menu-pages .actions-menu-page {
   width: 350px;
@@ -229,9 +224,8 @@
   width: 200%;
 }
 .ovh-angular-actions-menu.popover-full-screen .actions-menu-inner .actions-menu-pages.move {
-  -webkit-transform: translateX(-50%);
-      -ms-transform: translateX(-50%);
-          transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+      transform: translateX(-50%);
 }
 .ovh-angular-actions-menu.popover-full-screen .actions-menu-inner .actions-menu-pages .actions-menu-page {
   width: 50%;
