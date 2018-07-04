@@ -134,11 +134,11 @@
    <translation id="otrs_category_neworder" qtlid="251681">Naujas užsakymas</translation>
    <translation id="otrs_category_billing" qtlid="32950">Sąskaita</translation>
    <translation id="otrs_category_choice" qtlid="251746">Pagalbos pasirinkimas:</translation>
-   <translation id="otrs_category_billing" qtlid="487925">Suivi de commande et facturation</translation>
+   <translation id="otrs_category_billing" qtlid="487925">Užsakymo ir sąskaitų stebėjimas</translation>
    <translation id="otrs_category_assistance" qtlid="373181">Techninis patarimas</translation>
    <translation id="otrs_category_incident" qtlid="68252">Pranešti apie gedimą</translation>
    <translation id="otrs_category_intervention" qtlid="472029">Prašymas atlikti intervenciją</translation>
-   <translation id="otrs_category_sales" qtlid="487938">Conseil commercial et ventes</translation>
+   <translation id="otrs_category_sales" qtlid="487938">Komercinis patarimas ir pardavimai</translation>
 
 
    <translation id="otrs_err_get_infos" qtlid="243832">Įvyko klaida atkuriant duomenis:</translation>
@@ -163,8 +163,8 @@
    <translation id="otrs_popup_move" qtlid="228462">Galite perkelti šį langą spragtelėję jo antraštę</translation>
    <translation id="otrs_popup_sent_error" qtlid="228475">Klaida kuriant šį kvitą.</translation>
    <translation id="otrs_popup_sent_error_not_available" qtlid="361386">Tokia operacija nėra galima šiame duomenų centre.</translation>
-   <translation id="otrs_popup_sent_error_already_exists" qtlid="487951">Un ticket a déjà été envoyé sur ce sujet. <a href="{{ticketUrl}}">Cliquez ici pour accéder au ticket.</a></translation>
-   <translation id="otrs_popup_sent_success" qtlid="487964">Votre ticket numéro {{ticketNumber}} a bien été pris en compte. Vous pouvez retrouver le fil de discussion de ce ticket depuis le menu <a href="{{ticketUrl}}">Assistance - liste des tickets</a>.</translation>
+   <translation id="otrs_popup_sent_error_already_exists" qtlid="487951">Kvitas jau buvo išsiųstas šia tema. <a href="{{ticketUrl}}">Spauskite čia norėdami gauti prieigą prie kvito.</a></translation>
+   <translation id="otrs_popup_sent_success" qtlid="487964">Jūsų kvitas Nr. {{ticketNumber}} priimtas. Jūs galite peržiūrėti susirašinėjimą skiltyje <a href="{{ticketUrl}}">Pagalba - kvitų sąrašas</a>.</translation>
    <translation id="otrs_popup_get_services_error" qtlid="228501">Klaida nuskaitant jūsų paslaugas.</translation>
    <translation id="otrs_popup_get_types_error" qtlid="233047">Klaida nuskaitant informaciją.</translation>
    <translation id="otrs_popup_services_refresh" qtlid="228514">Atnaujinti sąrašą</translation>
@@ -177,9 +177,9 @@
    <translation id="otrs_subCategory_assistance_new" qtlid="291214">Papildomos paslaugos informacija / užsakymas</translation>
    <translation id="otrs_subCategory_assistance_other" qtlid="19963">Kita</translation>
 
-   <translation id="otrs_subCategory_billing_inProgress" qtlid="487977">Suivi d’une commande en cours</translation>
+   <translation id="otrs_subCategory_billing_inProgress" qtlid="487977">Vykdomo užsakymo stebėjimas</translation>
    <translation id="otrs_subCategory_billing_new" qtlid="291240">Norėčiau pateikti užsakymą</translation>
-   <translation id="otrs_subCategory_billing_bill" qtlid="487990">Information sur une facture</translation>
+   <translation id="otrs_subCategory_billing_bill" qtlid="487990">Informacija apie sąskaita</translation>
    <translation id="otrs_subCategory_billing_other" qtlid="19963">Kita</translation>
 
    <translation id="otrs_subCategory_incident_perfs" qtlid="291266">Mano paslauga jau pasenusi</translation>
@@ -190,7 +190,7 @@
    <translation id="otrs_subCategory_intervention_replacement-disk" qtlid="361438">Standžiojo disko keitimas</translation>
    <translation id="otrs_subCategory_intervention_other" qtlid="19963">Kita</translation>
 
-   <translation id="otrs_subCategory_sales_contact" qtlid="488003">Contactez le 1007 (choix 1)</translation>
+   <translation id="otrs_subCategory_sales_contact" qtlid="488003">Susisiekite su pagalba telefonu</translation>
 
    <translation id="otrs_intervention_disk_error" qtlid="382346">Įvyko klaida atkuriant serverio duomenis.</translation>
    <translation id="otrs_intervention_disk_warning" qtlid="361451">Dėmesio: prieš disko keitimą išsaugokite savo duomenų atsarginę kopiją.</translation>
@@ -209,5 +209,5 @@
    <translation id="otrs_intervention_disk_comment_english_please" qtlid="361542">Teikite pirmenybę anglų kalbai</translation>
    <translation id="otrs_intervention_disk_confirm" qtlid="382502">Atlikau disko, kurį noriu pakeisti, duomenų atsarginį kopijavimą, ir sutinku, kad jūs galite inicijuoti disko keitimą.</translation>
 
-<translation id="otrs_support_agreements" qtlid="488016">Les données communiquées via ce formulaire sont collectées avec votre consentement et sont destinées à OVH S.A.S. en sa qualité de responsable du traitement. Elles pourront être transmises à ses sous-traitants agissant sur strictes instructions d’OVH S.A.S. ainsi qu’aux entités du Groupe OVH. Dans cette seconde hypothèse, et sous réserve que l’entité du Groupe OVH ait signé des règles d’entreprise contraignantes, les données pourront faire l’objet d’un transfert en dehors de l’Union Européenne. Les données de ce formulaire sont collectées à des fins de gestion de la relation client, de sollicitations commerciales et de respect de la règlementation applicable à OVH. Les données de votre compte client sont conservées jusqu’à la suppression de votre compte client, puis durant trente-six (36) mois. Certaines données traitées à des fins de gestion (exemple : facture) peuvent être conservées plus longtemps conformément à la règlementation applicable. Vous disposez de la faculté d’introduire une réclamation auprès de l’autorité de contrôle compétente ainsi qu’un droit d'accès, de rectification, d’effacement, de limitation, de portabilité et d’opposition pour motif légitime aux données personnelles vous concernant. Pour exercer ce droit, merci d’effectuer votre demande au sein du notre formulaire dédié.</translation>
+<translation id="otrs_support_agreements" qtlid="488016">Duomenys, pateikti naudojant šią formą, renkami su jūsų sutikimu ir skirti bendrovei OVH SAS kaip duomenų valdytojui. Šie duomenys gali būti perduoti duomenų tvarkytojams, veikiantiems pagal OVH SAS instrukcijas, ir OVH grupės įmonėms. Duomenys perduodami OVH grupės įmonėms su sąlyga, jei įmonė, kuriai perduodami duomenys, laikosi raštu patvirtintų įsipareigojimų, taikomų OVH grupės įmonėms. Tik šiuo atveju, duomenys gali būti perduodami už Europos Sąjungos ribų. Šios formos duomenys tvarkomi santykių su klientais bei komercinių užklausų valdymo tikslais, taip pat laikantis teisės aktų reikalavimų, taikomų UAB OVH. Jūsų kliento paskyroje esantys duomenys saugomi iki kliento paskyros ištrynimo ir dar trisdešimt šešis (36) mėnesius po paskyros ištrynimo. Kai kurie valdymo tikslais tvarkomi duomenys (pvz., sąskaitos) gali būti saugomi ilgiau atsižvelgiant į taikomus teisės aktus. Jūs turite teisę teikti skundą kompetentingai priežiūros įstaigai, gauti ar riboti prieigą prie savo asmens duomenų, tikslinti, šalinti, perkelti savo asmens duomenis ir nesutikti su asmens duomenų tvarkymu dėl teisėtų priežasčių. Norėdami pasinaudoti šia teise, prašome pateikti užklausą naudojant mūsų specialią formą.</translation>
 </translations>

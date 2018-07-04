@@ -134,11 +134,11 @@
    <translation id="otrs_category_neworder" qtlid="251681">Nieuwe bestelling</translation>
    <translation id="otrs_category_billing" qtlid="32950">Facturatie</translation>
    <translation id="otrs_category_choice" qtlid="251746">Support opties:</translation>
-   <translation id="otrs_category_billing" qtlid="487925">Suivi de commande et facturation</translation>
+   <translation id="otrs_category_billing" qtlid="487925">Volg bestelling en facturering</translation>
    <translation id="otrs_category_assistance" qtlid="373181">Technisch advies</translation>
    <translation id="otrs_category_incident" qtlid="68252">Een storing melden</translation>
    <translation id="otrs_category_intervention" qtlid="472029">Verzoek om interventie in het datacenter</translation>
-   <translation id="otrs_category_sales" qtlid="487938">Conseil commercial et ventes</translation>
+   <translation id="otrs_category_sales" qtlid="487938">Verkoopadvies</translation>
 
 
    <translation id="otrs_err_get_infos" qtlid="243832">Er is een fout opgetreden tijdens het ophalen van de gegevens:</translation>
@@ -163,8 +163,8 @@
    <translation id="otrs_popup_move" qtlid="228462">U kunt deze popup verplaatsen door zijn header te verplaatsen.</translation>
    <translation id="otrs_popup_sent_error" qtlid="228475">Er is een fout opgetreden tijdens het aanmaken van dit ticket.</translation>
    <translation id="otrs_popup_sent_error_not_available" qtlid="361386">Deze procedure is in dit datacenter niet beschikbaar. </translation>
-   <translation id="otrs_popup_sent_error_already_exists" qtlid="487951">Un ticket a déjà été envoyé sur ce sujet. <a href="{{ticketUrl}}">Cliquez ici pour accéder au ticket.</a></translation>
-   <translation id="otrs_popup_sent_success" qtlid="487964">Votre ticket numéro {{ticketNumber}} a bien été pris en compte. Vous pouvez retrouver le fil de discussion de ce ticket depuis le menu <a href="{{ticketUrl}}">Assistance - liste des tickets</a>.</translation>
+   <translation id="otrs_popup_sent_error_already_exists" qtlid="487951">U hebt al een ticket verzonden voor dit probleem<a href="{{ticketUrl}}">Klik hier om het te openen.</a></translation>
+   <translation id="otrs_popup_sent_success" qtlid="487964">Uw ticket nummer {{ticketNumber}} is verwerkt. U kunt de berichtenreeks voor dit ticket bekijken in het <a href="{{ticketUrl}}">Support - ticketoverzicht</a> menu.</translation>
    <translation id="otrs_popup_get_services_error" qtlid="228501">Er is een fout opgetreden bij het ophalen van uw diensten.</translation>
    <translation id="otrs_popup_get_types_error" qtlid="233047">Er is een fout opgetreden tijdens het ophalen van de gegevens.</translation>
    <translation id="otrs_popup_services_refresh" qtlid="228514">De lijst updaten</translation>
@@ -177,9 +177,9 @@
    <translation id="otrs_subCategory_assistance_new" qtlid="291214">Informatie over/abonnement op een aanvullende service</translation>
    <translation id="otrs_subCategory_assistance_other" qtlid="19963">Anders</translation>
 
-   <translation id="otrs_subCategory_billing_inProgress" qtlid="487977">Suivi d’une commande en cours</translation>
+   <translation id="otrs_subCategory_billing_inProgress" qtlid="487977">Volg een lopende bestelling</translation>
    <translation id="otrs_subCategory_billing_new" qtlid="291240">Ik wil een bestelling plaatsen</translation>
-   <translation id="otrs_subCategory_billing_bill" qtlid="487990">Information sur une facture</translation>
+   <translation id="otrs_subCategory_billing_bill" qtlid="487990">Factuurinformatie</translation>
    <translation id="otrs_subCategory_billing_other" qtlid="19963">Anders</translation>
 
    <translation id="otrs_subCategory_incident_perfs" qtlid="291266">Mijn service is achteruitgegaan. </translation>
@@ -190,7 +190,7 @@
    <translation id="otrs_subCategory_intervention_replacement-disk" qtlid="361438">Vervangen van een harddrive</translation>
    <translation id="otrs_subCategory_intervention_other" qtlid="19963">Anders</translation>
 
-   <translation id="otrs_subCategory_sales_contact" qtlid="488003">Contactez le 1007 (choix 1)</translation>
+   <translation id="otrs_subCategory_sales_contact" qtlid="488003">+31 78 808 0120 (keuze 1)</translation>
 
    <translation id="otrs_intervention_disk_error" qtlid="382346">Er is een fout opgetreden tijdens het ophalen van informatie van de server. </translation>
    <translation id="otrs_intervention_disk_warning" qtlid="361451">Let op: voordat u een disk drive vervangt moet u eerst een backup maken van uw data. </translation>

@@ -134,11 +134,11 @@
    <translation id="otrs_category_neworder" qtlid="251681">New order</translation>
    <translation id="otrs_category_billing" qtlid="32950">Billing</translation>
    <translation id="otrs_category_choice" qtlid="251746">Support options:</translation>
-   <translation id="otrs_category_billing" qtlid="487925">Suivi de commande et facturation</translation>
+   <translation id="otrs_category_billing" qtlid="487925">Track order and billing</translation>
    <translation id="otrs_category_assistance" qtlid="373181">Technical advice </translation>
    <translation id="otrs_category_incident" qtlid="68252">Report an incident</translation>
    <translation id="otrs_category_intervention" qtlid="472029">Request for a datacentre intervention</translation>
-   <translation id="otrs_category_sales" qtlid="487938">Conseil commercial et ventes</translation>
+   <translation id="otrs_category_sales" qtlid="487938">Sales advice</translation>
 
 
    <translation id="otrs_err_get_infos" qtlid="243832">An error has occurred retrieving information:</translation>
@@ -163,8 +163,8 @@
    <translation id="otrs_popup_move" qtlid="228462">You can move this pop-up by moving its header.</translation>
    <translation id="otrs_popup_sent_error" qtlid="228475">An error has occurred while creating this ticket.</translation>
    <translation id="otrs_popup_sent_error_not_available" qtlid="361386">This operation is not available in this datacentre. </translation>
-   <translation id="otrs_popup_sent_error_already_exists" qtlid="487951">Un ticket a déjà été envoyé sur ce sujet. <a href="{{ticketUrl}}">Cliquez ici pour accéder au ticket.</a></translation>
-   <translation id="otrs_popup_sent_success" qtlid="487964">Votre ticket numéro {{ticketNumber}} a bien été pris en compte. Vous pouvez retrouver le fil de discussion de ce ticket depuis le menu <a href="{{ticketUrl}}">Assistance - liste des tickets</a>.</translation>
+   <translation id="otrs_popup_sent_error_already_exists" qtlid="487951">You have already sent a ticket for this issue. <a href="{{ticketUrl}}">Click here to access the ticket.</a></translation>
+   <translation id="otrs_popup_sent_success" qtlid="487964">Your ticket number {{ticketNumber}} has been processed. You can view the message thread for this ticket in the <a href="{{ticketUrl}}">Support - ticket list</a> menu.</translation>
    <translation id="otrs_popup_get_services_error" qtlid="228501">An error has occurred while retrieving your services.</translation>
    <translation id="otrs_popup_get_types_error" qtlid="233047">An error has occurred retrieving the data.</translation>
    <translation id="otrs_popup_services_refresh" qtlid="228514">Update the list</translation>
@@ -177,9 +177,9 @@
    <translation id="otrs_subCategory_assistance_new" qtlid="291214">Information/subscription to an additional service </translation>
    <translation id="otrs_subCategory_assistance_other" qtlid="19963">Other</translation>
 
-   <translation id="otrs_subCategory_billing_inProgress" qtlid="487977">Suivi d’une commande en cours</translation>
+   <translation id="otrs_subCategory_billing_inProgress" qtlid="487977">Track a current order</translation>
    <translation id="otrs_subCategory_billing_new" qtlid="291240">I want to place an order </translation>
-   <translation id="otrs_subCategory_billing_bill" qtlid="487990">Information sur une facture</translation>
+   <translation id="otrs_subCategory_billing_bill" qtlid="487990">Information on an invoice</translation>
    <translation id="otrs_subCategory_billing_other" qtlid="19963">Other</translation>
 
    <translation id="otrs_subCategory_incident_perfs" qtlid="291266">My service has deteriorated </translation>
@@ -190,7 +190,7 @@
    <translation id="otrs_subCategory_intervention_replacement-disk" qtlid="361438">Replacing a hard drive </translation>
    <translation id="otrs_subCategory_intervention_other" qtlid="19963">Other</translation>
 
-   <translation id="otrs_subCategory_sales_contact" qtlid="488003">Contactez le 1007 (choix 1)</translation>
+   <translation id="otrs_subCategory_sales_contact" qtlid="488003">Contact 0333 370 0425 (choice 1)</translation>
 
    <translation id="otrs_intervention_disk_error" qtlid="382346">Error retrieving information from server.</translation>
    <translation id="otrs_intervention_disk_warning" qtlid="361451">Please note: before replacing any disk drive, make sure you back up your data.</translation>
@@ -209,5 +209,5 @@
    <translation id="otrs_intervention_disk_comment_english_please" qtlid="361542">English as a preference</translation>
    <translation id="otrs_intervention_disk_confirm" qtlid="382502">I backed up the data stored on the disk I wish to replace. You can now replace the disk.</translation>
 
-<translation id="otrs_support_agreements" qtlid="488016">The data submitted via this form is gathered with your consent and is intended for OVH S.A.S. in its capacity as a data controller. It may be transmitted to its subcontractors acting under strict instructions from OVH S.A.S., and to bodies in the OVH Group. In the latter scenario, and provided that the body in the OVH Group has signed binding corporate rules, data may be transferred outside the European Union. The data in this form is gathered for the purposes of customer relations management, commercial prospecting and compliance with the regulations applicable to OVH. The data in your customer account will be conserved until your customer account is deleted and for a period of thirty-six (36) months thereafter. Some data processed for administration purposes (e.g. invoicing) may be conserved for longer in accordance with applicable regulations. You have the right to lodge a complaint with the competent supervisory authority, and you have the right to access, rectify, delete, limit, render portable and oppose your personal data, on valid grounds. To exercise this right, please use our dedicated form to submit your request. </translation>
+<translation id="otrs_support_agreements" qtlid="488016">The data submitted via this form is gathered with your consent and is intended for OVH S.A.S. in its capacity as a data controller. It may be transmitted to its processors acting under strict instructions from OVH S.A.S., and to bodies in the OVH Group. In the latter scenario, and provided that the body in the OVH Group has signed binding corporate rules, data may be transferred outside the European Union. The data in this form is gathered for the purposes of customer relations management, commercial correspondence and compliance with the regulations applicable to OVH. The data in your customer account will be stored for a period of thirty-six (36) months after your customer account is deleted. Some data processed for administration purposes (e.g. invoicing) may be stored for longer in accordance with applicable regulations. You have the right to lodge a complaint with the competent supervisory authority, and you have the right to access, rectify, delete, limit, render portable and oppose your personal data, on valid grounds. To exercise this right, please use our dedicated form to submit your request.</translation>
 </translations>

@@ -134,11 +134,11 @@
    <translation id="otrs_category_neworder" qtlid="251681">Neue Bestellung</translation>
    <translation id="otrs_category_billing" qtlid="32950">Abrechnung</translation>
    <translation id="otrs_category_choice" qtlid="251746">Wahl des Supports:</translation>
-   <translation id="otrs_category_billing" qtlid="487925">Suivi de commande et facturation</translation>
+   <translation id="otrs_category_billing" qtlid="487925">Fragen zu Ihren Bestellungen und Abrechnungen</translation>
    <translation id="otrs_category_assistance" qtlid="373181">Technische Beratung </translation>
    <translation id="otrs_category_incident" qtlid="68252">Störung melden (Hardware, Netzwerk, SLA)</translation>
    <translation id="otrs_category_intervention" qtlid="472029">Anfrage für einen Eingriff im Rechenzentrum</translation>
-   <translation id="otrs_category_sales" qtlid="487938">Conseil commercial et ventes</translation>
+   <translation id="otrs_category_sales" qtlid="487938">Kommerzieller Support</translation>
 
 
    <translation id="otrs_err_get_infos" qtlid="243832">Beim Abruf der Informationen ist ein Fehler aufgetreten:</translation>
@@ -163,8 +163,8 @@
    <translation id="otrs_popup_move" qtlid="228462">Sie können dieses Popup verschieben, indem Sie auf dessen Rahmen klicken und ziehen.</translation>
    <translation id="otrs_popup_sent_error" qtlid="228475">Bei der Erstellung dieses Tickets ist ein Fehler aufgetreten.</translation>
    <translation id="otrs_popup_sent_error_not_available" qtlid="361386">Diese Operation ist in diesem Rechenzentrum nicht verfügbar. </translation>
-   <translation id="otrs_popup_sent_error_already_exists" qtlid="487951">Un ticket a déjà été envoyé sur ce sujet. <a href="{{ticketUrl}}">Cliquez ici pour accéder au ticket.</a></translation>
-   <translation id="otrs_popup_sent_success" qtlid="487964">Votre ticket numéro {{ticketNumber}} a bien été pris en compte. Vous pouvez retrouver le fil de discussion de ce ticket depuis le menu <a href="{{ticketUrl}}">Assistance - liste des tickets</a>.</translation>
+   <translation id="otrs_popup_sent_error_already_exists" qtlid="487951">Zu diesem Thema wurde bereits eine Support-Anfrage erstellt. <a href="{{ticketUrl}}">Klicken Sie hier, um zum Ticket zu gelangen.</a></translation>
+   <translation id="otrs_popup_sent_success" qtlid="487964">Ihr Ticket mit der Nummer {{ticketNumber}} wurde erfolgreich erstellt. Sie können den Verlauf dieser Anfrage über das Menü <a href="{{ticketUrl}}">Support - Liste meiner Support-Anfragen</a> einsehen.</translation>
    <translation id="otrs_popup_get_services_error" qtlid="228501">Beim Abruf Ihrer Dienstleistungen ist ein Fehler aufgetreten.</translation>
    <translation id="otrs_popup_get_types_error" qtlid="233047">Beim Abruf der Informationen ist ein Fehler aufgetreten.</translation>
    <translation id="otrs_popup_services_refresh" qtlid="228514">Die Liste aktualisieren</translation>
@@ -177,9 +177,9 @@
    <translation id="otrs_subCategory_assistance_new" qtlid="291214">Information / Kauf eines zusätzlichen Service </translation>
    <translation id="otrs_subCategory_assistance_other" qtlid="19963">Andere</translation>
 
-   <translation id="otrs_subCategory_billing_inProgress" qtlid="487977">Suivi d’une commande en cours</translation>
+   <translation id="otrs_subCategory_billing_inProgress" qtlid="487977">Frage zu einer laufenden Bestellung</translation>
    <translation id="otrs_subCategory_billing_new" qtlid="291240">Ich möchte eine Bestellung tätigen </translation>
-   <translation id="otrs_subCategory_billing_bill" qtlid="487990">Information sur une facture</translation>
+   <translation id="otrs_subCategory_billing_bill" qtlid="487990">Abrechnungsinformationen</translation>
    <translation id="otrs_subCategory_billing_other" qtlid="19963">Andere</translation>
 
    <translation id="otrs_subCategory_incident_perfs" qtlid="291266">Mein Service hat sich verschlechtert </translation>
@@ -190,7 +190,7 @@
    <translation id="otrs_subCategory_intervention_replacement-disk" qtlid="361438">Ersatz einer Festplatte </translation>
    <translation id="otrs_subCategory_intervention_other" qtlid="19963">Andere</translation>
 
-   <translation id="otrs_subCategory_sales_contact" qtlid="488003">Contactez le 1007 (choix 1)</translation>
+   <translation id="otrs_subCategory_sales_contact" qtlid="488003">Kontaktieren Sie uns unter +49 681 906730</translation>
 
    <translation id="otrs_intervention_disk_error" qtlid="382346">Beim Abruf der Informationen vom Server ist ein Fehler aufgetreten.</translation>
    <translation id="otrs_intervention_disk_warning" qtlid="361451">Achtung: Denken Sie an das Backup Ihrer Daten, bevor Sie eine Festplatte austauschen lassen. </translation>
