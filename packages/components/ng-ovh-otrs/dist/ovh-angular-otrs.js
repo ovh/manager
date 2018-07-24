@@ -487,8 +487,7 @@ angular.module("ovh-angular-otrs")
             scope: {},
             replace: false,
             templateUrl: "app/module-otrs/otrs-popup/otrs-popup.html",
-            link: function ($scope) {
-
+            link: function ($scope, $element) {
                 $scope.status = {
                     minimize: false,
                     maximize: false,
@@ -537,6 +536,10 @@ angular.module("ovh-angular-otrs")
                 $scope.$on("otrs.popup.toggle", $scope.toggle);
                 $scope.$on("otrs.popup.open", $scope.open);
                 $scope.$on("otrs.popup.close", $scope.close);
+
+                $element.children(".otrs-popup.draggable").one("drag", function (event, ui) {
+                    ui.helper.removeClass("otrs-popup-initial");
+                });
             }
         };
     });
@@ -637,7 +640,7 @@ angular.module('ovh-angular-otrs').run(['$templateCache', function($templateCach
   'use strict';
 
   $templateCache.put('app/module-otrs/otrs-popup/otrs-popup.html',
-    "<div class=\"draggable otrs-popup\" data-draggable data-options=\"{\n" +
+    "<div class=\"draggable otrs-popup otrs-popup-initial\" data-draggable data-options=\"{\n" +
     "         containment: 'body',\n" +
     "         handle: '#headerPopup,\n" +
     "         #contentPopup form'\n" +
