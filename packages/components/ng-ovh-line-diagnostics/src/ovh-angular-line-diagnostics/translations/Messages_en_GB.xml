@@ -78,7 +78,7 @@
    <translation id="tools_lineDiagnostics_answers_modemType" qtlid="326496">Référence du modem</translation>
    <translation id="tools_lineDiagnostics_answers_idAppointment" qtlid="326509">Choix d'un rendez-vous</translation>
    <translation id="tools_lineDiagnostics_answers_contactPhone" qtlid="326041">Numéro de contact</translation>
-   <translation id="tools_lineDiagnostics_answers_comment" qtlid="25975">Commentary</translation>
+   <translation id="tools_lineDiagnostics_answers_comment" qtlid="25975">Comment</translation>
    <translation id="tools_lineDiagnostics_answers_individualSite" qtlid="326522">Site particulier (non professionnel)</translation>
    <translation id="tools_lineDiagnostics_answers_conditionsAccepted" qtlid="326535">Facturation des mauvaises utilisations</translation>
    <translation id="tools_lineDiagnostics_answers_followBySms" qtlid="407221">Suivi par sms</translation>
@@ -93,6 +93,7 @@
    <translation id="tools_lineDiagnostics_answers_uploadBandwidthTest" qtlid="407338">Vitesse d'upload</translation>
    <translation id="tools_lineDiagnostics_answers_downloadBandwidthTest" qtlid="407351">Vitesse de download</translation>
    <translation id="tools_lineDiagnostics_answers_bandwidthTestUnit" qtlid="407364">Unité mesurée</translation>
+   <translation id="tools_lineDiagnostics_answers_monitoringDuration">Durée du monitoring</translation>
 
 
 
@@ -125,12 +126,18 @@
    <translation id="tools_lineDiagnostics_toanswer_datetimeOfAppearance" qtlid="407468">Merci d'indiquer la date et l'heure approximative d'apparition du problème.</translation>
    <translation id="tools_lineDiagnostics_toanswer_problemType" qtlid="407481">Quel est le problème constaté ?</translation>
    <translation id="tools_lineDiagnostics_toanswer_problemType_enum_syncLoss" qtlid="407494">Pertes de synchronisation régulières</translation>
-   <translation id="tools_lineDiagnostics_toanswer_problemType_enum_lowBandwidth" qtlid="407507">Faible bande passante</translation>
+   <translation id="tools_lineDiagnostics_toanswer_problemType_enum_lowBandwidth" qtlid="407507">Low bandwidth</translation>
    <translation id="tools_lineDiagnostics_toanswer_uploadBandwidthTest" qtlid="407520">Quel est votre vitesse d'upload sur le test proof.ovh.net ?</translation>
    <translation id="tools_lineDiagnostics_toanswer_downloadBandwidthTest" qtlid="407533">Quel est votre vitesse de download sur le test proof.ovh.net ?</translation>
    <translation id="tools_lineDiagnostics_toanswer_bandwidthTestUnit" qtlid="407546">Unité mesurée sur le test proof.ovh.net ?</translation>
    <translation id="tools_lineDiagnostics_toanswer_bandwidthTestUnit_enum_Mbps" qtlid="407559">Mb/s</translation>
    <translation id="tools_lineDiagnostics_toanswer_bandwidthTestUnit_enum_Kbps" qtlid="407572">Kb/s</translation>
+
+   <translation id="tools_lineDiagnostics_toanswer_monitoringDuration">Durée du monitoring</translation>
+   <translation id="tools_lineDiagnostics_toanswer_monitoringDuration_enum_12h">12 heures</translation>
+   <translation id="tools_lineDiagnostics_toanswer_monitoringDuration_enum_24h">24 heures</translation>
+   <translation id="tools_lineDiagnostics_toanswer_monitoringDuration_enum_48h">48 heures</translation>
+   <translation id="tools_lineDiagnostics_toanswer_monitoringDuration_enum_off">Pas de monitoring</translation>
 
 
 
@@ -144,7 +151,7 @@
    <translation id="tools_lineDiagnostics_robot_resolvedAfterTests" qtlid="326886">Les tests effectués ont permis de résoudre le problème. Le diagnostic est terminé.</translation>
    <translation id="tools_lineDiagnostics_robot_interventionRequested" qtlid="326899">Une intervention a été demandée. Un email contenant les détails de cette intervention a été envoyé.</translation>
    <translation id="tools_lineDiagnostics_robot_interventionRequested_otrsticket">Numéro du ticket: {{ovhTicket}}</translation>
-   <translation id="tools_lineDiagnostics_robot_interventionRequested_operatorticketid" qtlid="326925">Numéro du ticket d'intervention FT: {{operatorTicketId}}</translation>
+   <translation id="tools_lineDiagnostics_robot_interventionRequested_operatorticketid">Numéro du ticket d'intervention opérateur: {{operatorTicketId}}</translation>
    <translation id="tools_lineDiagnostics_robot_interventionRequested_ovhinterventionid" qtlid="326938">Numéro du ticket d'intervention OVH: {{ovhInterventionId}}</translation>
    <translation id="tools_lineDiagnostics_robot_noSyncFaultDiagnosticRequired" qtlid="407585">Il ne s'agit pas d'un problème d'alignement. Il est nécessaire de lancer un diagnostic correspondant au problème d'absence de synchronisation (noSync fault).</translation>
    <translation id="tools_lineDiagnostics_robot_connectionProblem" qtlid="407598">Il ne s'agit pas d'un problème d'alignement mais d'un défaut de connexion. Il peut s'agir d'un problème d'ordre général. Si le problème n'est pas résolu au bout 24h, vous pouvez contacter le support OVH.</translation>

@@ -93,6 +93,7 @@
    <translation id="tools_lineDiagnostics_answers_uploadBandwidthTest" qtlid="407338">Vitesse d'upload</translation>
    <translation id="tools_lineDiagnostics_answers_downloadBandwidthTest" qtlid="407351">Vitesse de download</translation>
    <translation id="tools_lineDiagnostics_answers_bandwidthTestUnit" qtlid="407364">Unité mesurée</translation>
+   <translation id="tools_lineDiagnostics_answers_monitoringDuration">Durée du monitoring</translation>
 
 
 
@@ -132,6 +133,12 @@
    <translation id="tools_lineDiagnostics_toanswer_bandwidthTestUnit_enum_Mbps" qtlid="407559">Mb/s</translation>
    <translation id="tools_lineDiagnostics_toanswer_bandwidthTestUnit_enum_Kbps" qtlid="407572">Kb/s</translation>
 
+   <translation id="tools_lineDiagnostics_toanswer_monitoringDuration">Durée du monitoring</translation>
+   <translation id="tools_lineDiagnostics_toanswer_monitoringDuration_enum_12h">12 heures</translation>
+   <translation id="tools_lineDiagnostics_toanswer_monitoringDuration_enum_24h">24 heures</translation>
+   <translation id="tools_lineDiagnostics_toanswer_monitoringDuration_enum_48h">48 heures</translation>
+   <translation id="tools_lineDiagnostics_toanswer_monitoringDuration_enum_off">Pas de monitoring</translation>
+
 
 
    <translation id="tools_lineDiagnostics_robot_waitingRobot" qtlid="326795">Le diagnostic est en cours. Merci de patienter quelques instants.</translation>
@@ -144,7 +151,7 @@
    <translation id="tools_lineDiagnostics_robot_resolvedAfterTests" qtlid="326886">Les tests effectués ont permis de résoudre le problème. Le diagnostic est terminé.</translation>
    <translation id="tools_lineDiagnostics_robot_interventionRequested" qtlid="326899">Une intervention a été demandée. Un email contenant les détails de cette intervention a été envoyé.</translation>
    <translation id="tools_lineDiagnostics_robot_interventionRequested_otrsticket">Numéro du ticket: {{ovhTicket}}</translation>
-   <translation id="tools_lineDiagnostics_robot_interventionRequested_operatorticketid" qtlid="326925">Numéro du ticket d'intervention FT: {{operatorTicketId}}</translation>
+   <translation id="tools_lineDiagnostics_robot_interventionRequested_operatorticketid">Numéro du ticket d'intervention opérateur: {{operatorTicketId}}</translation>
    <translation id="tools_lineDiagnostics_robot_interventionRequested_ovhinterventionid" qtlid="326938">Numéro du ticket d'intervention OVH: {{ovhInterventionId}}</translation>
    <translation id="tools_lineDiagnostics_robot_noSyncFaultDiagnosticRequired" qtlid="407585">Il ne s'agit pas d'un problème d'alignement. Il est nécessaire de lancer un diagnostic correspondant au problème d'absence de synchronisation (noSync fault).</translation>
    <translation id="tools_lineDiagnostics_robot_connectionProblem" qtlid="407598">Il ne s'agit pas d'un problème d'alignement mais d'un défaut de connexion. Il peut s'agir d'un problème d'ordre général. Si le problème n'est pas résolu au bout 24h, vous pouvez contacter le support OVH.</translation>

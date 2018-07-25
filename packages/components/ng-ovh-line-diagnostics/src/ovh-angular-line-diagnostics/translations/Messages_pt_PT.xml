@@ -19,15 +19,15 @@
    <translation id="tools_lineDiagnostics_detail_lastSync" qtlid="326028">Dernière Synchronisation</translation>
    <translation id="tools_lineDiagnostics_detail_contactPhone" qtlid="326041">Numéro de contact</translation>
    <translation id="tools_lineDiagnostics_detail_operator" qtlid="63052">Operador</translation>
-   <translation id="tools_lineDiagnostics_detail_NRAName" qtlid="309477">Nom du NRA</translation>
-   <translation id="tools_lineDiagnostics_detail_NRADistance" qtlid="63040">Distancia do NRA</translation>
+   <translation id="tools_lineDiagnostics_detail_NRAName" qtlid="309477">Nome da Central (Repartidor Principal)</translation>
+   <translation id="tools_lineDiagnostics_detail_NRADistance" qtlid="63040">Distância da Central (Repartidor Principal)</translation>
    <translation id="tools_lineDiagnostics_detail_yes" qtlid="34776">Sim</translation>
    <translation id="tools_lineDiagnostics_detail_no" qtlid="34788">Não</translation>
 
    <translation id="tools_lineDiagnostics_todo_title" qtlid="407091">Afin de déterminer l’origine du défaut, nous vous invitons à réaliser les actions suivantes :</translation>
    <translation id="tools_lineDiagnostics_post_error" qtlid="326067">Oups, nous n'arrivons pas à mettre a jour le diagnostic de la ligne {{lineNumber}}.</translation>
    <translation id="tools_lineDiagnostics_next_button" qtlid="17743">Seguinte</translation>
-   <translation id="tools_lineDiagnostics_delete_button" qtlid="169654">Reinicializar</translation>
+   <translation id="tools_lineDiagnostics_delete_button" qtlid="169654">Reiniciar</translation>
 
    <translation id="tools_lineDiagnostics_testselt_title" qtlid="326080">Test de continuité de ligne</translation>
    <translation id="tools_lineDiagnostics_testselt_error" qtlid="330461">La localisation du problème sur la ligne n'a pas pu être déterminée (vous pouvez tout de même continuer le diagnostic).</translation>
@@ -93,6 +93,7 @@
    <translation id="tools_lineDiagnostics_answers_uploadBandwidthTest" qtlid="407338">Vitesse d'upload</translation>
    <translation id="tools_lineDiagnostics_answers_downloadBandwidthTest" qtlid="407351">Vitesse de download</translation>
    <translation id="tools_lineDiagnostics_answers_bandwidthTestUnit" qtlid="407364">Unité mesurée</translation>
+   <translation id="tools_lineDiagnostics_answers_monitoringDuration">Durée du monitoring</translation>
 
 
 
@@ -132,6 +133,12 @@
    <translation id="tools_lineDiagnostics_toanswer_bandwidthTestUnit_enum_Mbps" qtlid="407559">Mb/s</translation>
    <translation id="tools_lineDiagnostics_toanswer_bandwidthTestUnit_enum_Kbps" qtlid="407572">Kb/s</translation>
 
+   <translation id="tools_lineDiagnostics_toanswer_monitoringDuration">Durée du monitoring</translation>
+   <translation id="tools_lineDiagnostics_toanswer_monitoringDuration_enum_12h">12 heures</translation>
+   <translation id="tools_lineDiagnostics_toanswer_monitoringDuration_enum_24h">24 heures</translation>
+   <translation id="tools_lineDiagnostics_toanswer_monitoringDuration_enum_48h">48 heures</translation>
+   <translation id="tools_lineDiagnostics_toanswer_monitoringDuration_enum_off">Pas de monitoring</translation>
+
 
 
    <translation id="tools_lineDiagnostics_robot_waitingRobot" qtlid="326795">Le diagnostic est en cours. Merci de patienter quelques instants.</translation>
@@ -144,7 +151,7 @@
    <translation id="tools_lineDiagnostics_robot_resolvedAfterTests" qtlid="326886">Les tests effectués ont permis de résoudre le problème. Le diagnostic est terminé.</translation>
    <translation id="tools_lineDiagnostics_robot_interventionRequested" qtlid="326899">Une intervention a été demandée. Un email contenant les détails de cette intervention a été envoyé.</translation>
    <translation id="tools_lineDiagnostics_robot_interventionRequested_otrsticket">Numéro du ticket: {{ovhTicket}}</translation>
-   <translation id="tools_lineDiagnostics_robot_interventionRequested_operatorticketid" qtlid="326925">Numéro du ticket d'intervention FT: {{operatorTicketId}}</translation>
+   <translation id="tools_lineDiagnostics_robot_interventionRequested_operatorticketid">Numéro du ticket d'intervention opérateur: {{operatorTicketId}}</translation>
    <translation id="tools_lineDiagnostics_robot_interventionRequested_ovhinterventionid" qtlid="326938">Numéro du ticket d'intervention OVH: {{ovhInterventionId}}</translation>
    <translation id="tools_lineDiagnostics_robot_noSyncFaultDiagnosticRequired" qtlid="407585">Il ne s'agit pas d'un problème d'alignement. Il est nécessaire de lancer un diagnostic correspondant au problème d'absence de synchronisation (noSync fault).</translation>
    <translation id="tools_lineDiagnostics_robot_connectionProblem" qtlid="407598">Il ne s'agit pas d'un problème d'alignement mais d'un défaut de connexion. Il peut s'agir d'un problème d'ordre général. Si le problème n'est pas résolu au bout 24h, vous pouvez contacter le support OVH.</translation>

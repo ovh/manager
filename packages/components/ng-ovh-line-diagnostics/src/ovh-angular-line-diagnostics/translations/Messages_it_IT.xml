@@ -9,9 +9,9 @@
    <translation id="tools_lineDiagnostics_error_context_externalDiagAlreadyLaunched" qtlid="325989">Diagnostica già in corso...</translation>
    <translation id="tools_lineDiagnostics_error_context_OVHDiagAlreadyLaunched" qtlid="330409">Diagnostica già in corso in OVH.</translation>
    <translation id="tools_lineDiagnostics_error_context_changeProfileNotDone" qtlid="330435">Non hai apportato nessuna modifica al tuo profilo.</translation>
-   <translation id="tools_lineDiagnostics_error_context_otherDiagTypeLaunched" qtlid="407052">Un autre type de diagnostic est déjà en cours sur cette ligne.</translation>
-   <translation id="tools_lineDiagnostics_error_context_ovhTicketInvalid">Ticket non valido o inesistente.</translation>
-   <translation id="tools_lineDiagnostics_error_context_monitoringTodoAlreadyExists" qtlid="407078">Surveillance de la ligne déjà en cours.</translation>
+   <translation id="tools_lineDiagnostics_error_context_otherDiagTypeLaunched" qtlid="407052">Su questa linea è in già in corso un altro tipo di diagnostica.</translation>
+   <translation id="tools_lineDiagnostics_error_context_ovhTicketInvalid">Ticket invalide ou inexistant.</translation>
+   <translation id="tools_lineDiagnostics_error_context_monitoringTodoAlreadyExists" qtlid="407078">Monitoraggio della linea già in corso.</translation>
 
    <translation id="tools_lineDiagnostics_detail_accessType" qtlid="42766">Tipo di accesso</translation>
    <translation id="tools_lineDiagnostics_detail_accessName" qtlid="326015">Nome dell'accesso</translation>
@@ -89,10 +89,11 @@
    <translation id="tools_lineDiagnostics_answers_hasModemKeptSynchronization" qtlid="407286">Le modem est-il resté synchronisé ?</translation>
    <translation id="tools_lineDiagnostics_answers_datetimeOfAppearance" qtlid="407299">Date et heure d'apparition du problème</translation>
    <translation id="tools_lineDiagnostics_answers_ovhTicket">Ticket</translation>
-   <translation id="tools_lineDiagnostics_answers_problemType" qtlid="407325">Type de problème constaté</translation>
+   <translation id="tools_lineDiagnostics_answers_problemType" qtlid="407325">Tipo di problema rilevato</translation>
    <translation id="tools_lineDiagnostics_answers_uploadBandwidthTest" qtlid="407338">Velocità di upload</translation>
    <translation id="tools_lineDiagnostics_answers_downloadBandwidthTest" qtlid="407351">Velocità di download</translation>
    <translation id="tools_lineDiagnostics_answers_bandwidthTestUnit" qtlid="407364">Unità misurata</translation>
+   <translation id="tools_lineDiagnostics_answers_monitoringDuration">Durée du monitoring</translation>
 
 
 
@@ -113,7 +114,7 @@
    <translation id="tools_lineDiagnostics_toanswer_modemType" qtlid="326717">Indica la marca e il codice di riferimento del tuo modem.</translation>
    <translation id="tools_lineDiagnostics_toanswer_idAppointment" qtlid="326730">Scegli una delle seguenti fasce orarie per fissare il tuo appuntamento con un tecnico.</translation>
    <translation id="tools_lineDiagnostics_toanswer_contactPhone" qtlid="326743">Se diverso da quello indicato precedentemente, inserisci il numero a cui vuoi essere contattato.</translation>
-   <translation id="tools_lineDiagnostics_toanswer_ovhTicket">Se per questo problema esiste già un ticket aperto, indicane il numero.</translation>
+   <translation id="tools_lineDiagnostics_toanswer_ovhTicket">Si vous avez déjà un ticket en cours pour ce problème, merci d'indiquer son numéro.</translation>
    <translation id="tools_lineDiagnostics_toanswer_comment" qtlid="407377">Merci de préciser toutes les informations nécessaires au diagnostic et à la réparation de votre accès internet, ainsi que vos disponiblités. Votre commentaire ne doit pas dépasser 200 caractères.</translation>
    <translation id="tools_lineDiagnostics_toanswer_conditionsAccepted" qtlid="326782">Sono a conoscenza che verrà applicata una fatturazione di 150€ +IVA nel caso in cui la causa del malfunzionamento sia riconducibile alla mia responsabilità.</translation>
    <translation id="tools_lineDiagnostics_toanswer_followBySms" qtlid="407390">Indiquez si vous souhaitez suivre le déroulement des opérations par SMS</translation>
@@ -125,26 +126,32 @@
    <translation id="tools_lineDiagnostics_toanswer_datetimeOfAppearance" qtlid="407468">Merci d'indiquer la date et l'heure approximative d'apparition du problème.</translation>
    <translation id="tools_lineDiagnostics_toanswer_problemType" qtlid="407481">Quel est le problème constaté ?</translation>
    <translation id="tools_lineDiagnostics_toanswer_problemType_enum_syncLoss" qtlid="407494">Pertes de synchronisation régulières</translation>
-   <translation id="tools_lineDiagnostics_toanswer_problemType_enum_lowBandwidth" qtlid="407507">Faible bande passante</translation>
+   <translation id="tools_lineDiagnostics_toanswer_problemType_enum_lowBandwidth" qtlid="407507">Banda passante limitata</translation>
    <translation id="tools_lineDiagnostics_toanswer_uploadBandwidthTest" qtlid="407520">Qual è la velocità di upload sul test proof.ovh.net?</translation>
    <translation id="tools_lineDiagnostics_toanswer_downloadBandwidthTest" qtlid="407533">Qual è la velocità di download sul test proof.ovh.net?</translation>
    <translation id="tools_lineDiagnostics_toanswer_bandwidthTestUnit" qtlid="407546">Unité mesurée sur le test proof.ovh.net ?</translation>
    <translation id="tools_lineDiagnostics_toanswer_bandwidthTestUnit_enum_Mbps" qtlid="407559">Mb/s</translation>
    <translation id="tools_lineDiagnostics_toanswer_bandwidthTestUnit_enum_Kbps" qtlid="407572">Kb/s</translation>
 
+   <translation id="tools_lineDiagnostics_toanswer_monitoringDuration">Durée du monitoring</translation>
+   <translation id="tools_lineDiagnostics_toanswer_monitoringDuration_enum_12h">12 heures</translation>
+   <translation id="tools_lineDiagnostics_toanswer_monitoringDuration_enum_24h">24 heures</translation>
+   <translation id="tools_lineDiagnostics_toanswer_monitoringDuration_enum_48h">48 heures</translation>
+   <translation id="tools_lineDiagnostics_toanswer_monitoringDuration_enum_off">Pas de monitoring</translation>
+
 
 
    <translation id="tools_lineDiagnostics_robot_waitingRobot" qtlid="326795">Diagnostica in corso, ti preghiamo di attendere...</translation>
    <translation id="tools_lineDiagnostics_robot_sleeping" qtlid="326808">Diagnostica in attesa, ti preghiamo di attendere...</translation>
    <translation id="tools_lineDiagnostics_robot_problem" qtlid="326821">La diagnostica non è andata a buon fine</translation>
-   <translation id="tools_lineDiagnostics_robot_problem_ticket">Il ticket <strong>n°{{ovhTicket}}</strong> è stato aggiornato.</translation>
+   <translation id="tools_lineDiagnostics_robot_problem_ticket">Le ticket <strong>n°{{ovhTicket}}</strong> à été mis à jour.</translation>
    <translation id="tools_lineDiagnostics_robot_waitingValidation" qtlid="330474">La diagnostica è stata completata. La richiesta di intervento deve essere convalidata dal supporto OVH. Una volta accettata la convalida, verrà creato un ticket.</translation>
    <translation id="tools_lineDiagnostics_robot_validationRefused" qtlid="326860">La richiesta di intervento è stata rifiutata dal supporto OVH.</translation>
    <translation id="tools_lineDiagnostics_robot_cancelled" qtlid="326873">La diagnostica è stata annullata.</translation>
    <translation id="tools_lineDiagnostics_robot_resolvedAfterTests" qtlid="326886">I test eseguiti hanno permesso di risolvere il problema. La diagnostica è terminata.</translation>
    <translation id="tools_lineDiagnostics_robot_interventionRequested" qtlid="326899">È stato richiesto un intervento. Ti abbiamo inviato un'email con i dettagli dell'operazione.</translation>
-   <translation id="tools_lineDiagnostics_robot_interventionRequested_otrsticket">Numero del ticket: {{ovhTicket}}</translation>
-   <translation id="tools_lineDiagnostics_robot_interventionRequested_operatorticketid" qtlid="326925">Numero del ticket di intervento FT: {{operatorTicketId}}</translation>
+   <translation id="tools_lineDiagnostics_robot_interventionRequested_otrsticket">Numéro du ticket: {{ovhTicket}}</translation>
+   <translation id="tools_lineDiagnostics_robot_interventionRequested_operatorticketid">Numéro du ticket d'intervention opérateur: {{operatorTicketId}}</translation>
    <translation id="tools_lineDiagnostics_robot_interventionRequested_ovhinterventionid" qtlid="326938">Numero del ticket di intervento OVH: {{ovhInterventionId}}</translation>
    <translation id="tools_lineDiagnostics_robot_noSyncFaultDiagnosticRequired" qtlid="407585">Il ne s'agit pas d'un problème d'alignement. Il est nécessaire de lancer un diagnostic correspondant au problème d'absence de synchronisation (noSync fault).</translation>
    <translation id="tools_lineDiagnostics_robot_connectionProblem" qtlid="407598">Il ne s'agit pas d'un problème d'alignement mais d'un défaut de connexion. Il peut s'agir d'un problème d'ordre général. Si le problème n'est pas résolu au bout 24h, vous pouvez contacter le support OVH.</translation>
@@ -168,7 +175,7 @@
    <translation id="tools_lineDiagnostics_robotAction_checkIfSeveralConnections" qtlid="407728">Vérification du nombre de lignes internet présentes chez le client.</translation>
    <translation id="tools_lineDiagnostics_robotAction_checkInstallation" qtlid="407741">Nous procédons à des tests de vérification de l'installation client.</translation>
    <translation id="tools_lineDiagnostics_robotAction_alignmentTestResult" qtlid="407754">Nous effectuons des tests afin de vérifier qu'il s'agit bien d'un problème d'alignement.</translation>
-   <translation id="tools_lineDiagnostics_robotAction_checkProblem" qtlid="407767">Récupération des informations de diagnostique et vérifications en cours.</translation>
+   <translation id="tools_lineDiagnostics_robotAction_checkProblem" qtlid="407767">Recupero delle informazioni di diagnostica e verifica in corso...</translation>
    <translation id="tools_lineDiagnostics_robotAction_installationCheck" qtlid="407780">Nous effectuons des tests afin de localiser le problème.</translation>
    <translation id="tools_lineDiagnostics_robotAction_needToRequestMonitoring" qtlid="407793">Nous regardons si un technicien OVH doit intervenir avant l'opérateur (selon votre collecte).</translation>
    <translation id="tools_lineDiagnostics_robotAction_requestMonitoring" qtlid="407806">Votre accès a besoin d'une étude plus poussée. Nous activons la surveillance de la ligne.</translation>
