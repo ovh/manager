@@ -75,14 +75,14 @@ Because ovh-angular-line-diagnostic uses the expand method of URI.js that is not
 You've developed a new cool feature ? Fixed an annoying bug ? We'd be happy
 to hear from you !
 
-see [CONTRIBUTING](https://github.com/ovh-ux/ovh-angular-line-diagnostics/blob/master/CONTRIBUTING.md)
+see [CONTRIBUTING](https://github.com/ovh-ux/ovh-angular-line-diagnostic/blob/master/CONTRIBUTING.md)
 
 # Related links
 
- * Contribute: [https://github.com/ovh-ux/ovh-angular-line-diagnostics/blob/master/CONTRIBUTING.md](https://github.com/ovh-ux/ovh-angular-line-diagnostics/blob/master/CONTRIBUTING.md)
- * Report bugs: [https://github.com/ovh-ux/ovh-angular-line-diagnostics/issues](https://github.com/ovh-ux/ovh-angular-line-diagnostics/issues)
- * Get latest version: [https://github.com/ovh-ux/ovh-angular-line-diagnostics](https://github.com/ovh-ux/ovh-angular-line-diagnostics)
+ * Contribute: [https://github.com/ovh-ux/ovh-angular-line-diagnostic/blob/master/CONTRIBUTING.md](https://github.com/ovh-ux/ovh-angular-line-diagnostic/blob/master/CONTRIBUTING.md)
+ * Report bugs: [https://github.com/ovh-ux/ovh-angular-line-diagnostic/issues](https://github.com/ovh-ux/ovh-angular-line-diagnostic/issues)
+ * Get latest version: [https://github.com/ovh-ux/ovh-angular-line-diagnostic](https://github.com/ovh-ux/ovh-angular-line-diagnostic)
 
 # License
 
-See [https://github.com/ovh-ux/ovh-angular-line-diagnostics/blob/master/LICENSE](https://github.com/ovh-ux/ovh-angular-line-diagnostics/blob/master/LICENSE)
+See [https://github.com/ovh-ux/ovh-angular-line-diagnostic/blob/master/LICENSE](https://github.com/ovh-ux/ovh-angular-line-diagnostic/blob/master/LICENSE)
