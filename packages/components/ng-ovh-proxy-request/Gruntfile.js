@@ -42,18 +42,6 @@ module.exports = function (grunt) {
             }
         },
 
-
-        // JS Check
-        jshint: {
-            options: {
-                jshintrc: ".jshintrc"
-            },
-            js: [
-                "<%=srcdir%>/*.js",
-                "<%=srcdir%>/*/*.js"
-            ]
-        },
-
         // Concatenation
         concat: {
             dist: {
@@ -118,7 +106,6 @@ module.exports = function (grunt) {
     grunt.registerTask("test", function () {
         grunt.task.run([
             "clean",
-            "jshint",
             "eslint",
             "complexity",
             "karma"

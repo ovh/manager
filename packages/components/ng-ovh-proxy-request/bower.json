@@ -17,7 +17,6 @@
         "node_modules",
         "Gruntfile.js",
         "src",
-        ".jshintrc",
         ".eslintrc.json",
         "karma.conf.js"
     ],
