@@ -1,5 +1,3 @@
-/* jshint jasmine:true */
-
 describe("directive: sidebarMenu", function () {
     "use strict";
 
