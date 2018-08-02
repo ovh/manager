@@ -1,5 +1,7 @@
 angular.module("ovh-angular-q-allSettled", []);
 
+angular.module("ovh-angular-q-allSettled", []);
+
 angular.module("ovh-angular-q-allSettled").config(["$provide", function ($provide) {
     "use strict";
     $provide.decorator("$q", ["$delegate", function ($delegate) {
