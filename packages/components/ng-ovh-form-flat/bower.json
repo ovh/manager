@@ -18,8 +18,7 @@
         "src",
         "karma.conf.js",
         "test",
-        ".eslintrc.json",
-        ".jshintrc"
+        ".eslintrc.json"
     ],
     "devDependencies": {
         "angular-mocks": "~1.5.0",

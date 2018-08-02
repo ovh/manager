@@ -10,7 +10,8 @@ NG_DOCS={
       "type": "directive",
       "moduleName": "ovh-angular-form-flat",
       "shortDescription": "Checkbox for manager V6",
-      "keywords": "angular api checkbox checkmodel controller data-ng-model directive ea foo function html js mainctrl manager module myapp ng-controller ovh-angular-form-flat script type v6"
+      "keywords": "angular api checkbox checkmodel controller data-ng-model directive ea foo function html js mainctrl manager module myapp ng-controller ovh-angular-form-flat script type v6",
+      "isDeprecated": false
     },
     {
       "section": "api",
@@ -19,7 +20,8 @@ NG_DOCS={
       "type": "directive",
       "moduleName": "ovh-angular-form-flat",
       "shortDescription": "Container for manager V6",
-      "keywords": "angular api class col-xs-12 control-label controller directive ea example flat-input-container form-control function html input js label mainctrl manager module myapp myinputid myinputname ng-controller ovh-angular-form-flat placeholder row script v6"
+      "keywords": "angular api class col-xs-12 control-label controller directive ea example flat-input-container form-control function html input js label mainctrl manager module myapp myinputid myinputname ng-controller ovh-angular-form-flat placeholder row script v6",
+      "isDeprecated": false
     },
     {
       "section": "api",
@@ -28,7 +30,8 @@ NG_DOCS={
       "type": "directive",
       "moduleName": "ovh-angular-form-flat",
       "shortDescription": "Item for manager V6",
-      "keywords": "angular api controller directive ea function html js mainctrl manager module myapp ng-controller ovh-angular-form-flat script v6"
+      "keywords": "angular api controller directive ea function html js mainctrl manager module myapp ng-controller ovh-angular-form-flat script v6",
+      "isDeprecated": false
     },
     {
       "section": "api",
@@ -37,7 +40,8 @@ NG_DOCS={
       "type": "directive",
       "moduleName": "ovh-angular-form-flat",
       "shortDescription": "Radio for manager V6",
-      "keywords": "angular api controller directive ea function html js mainctrl manager module myapp ng-controller ovh-angular-form-flat script v6"
+      "keywords": "angular api controller directive ea function html js mainctrl manager module myapp ng-controller ovh-angular-form-flat script v6",
+      "isDeprecated": false
     },
     {
       "section": "api",
@@ -46,7 +50,8 @@ NG_DOCS={
       "type": "directive",
       "moduleName": "ovh-angular-form-flat",
       "shortDescription": "Select for manager V6",
-      "keywords": "angular api controller directive ea function html js mainctrl manager module myapp ng-controller ovh-angular-form-flat script v6"
+      "keywords": "angular api controller directive ea function html js mainctrl manager module myapp ng-controller ovh-angular-form-flat script v6",
+      "isDeprecated": false
     },
     {
       "section": "api",
@@ -55,7 +60,8 @@ NG_DOCS={
       "type": "directive",
       "moduleName": "ovh-angular-form-flat",
       "shortDescription": "Switch for manager V6",
-      "keywords": "angular api controller directive ea function html js mainctrl manager module myapp ng-controller ovh-angular-form-flat script v6"
+      "keywords": "angular api controller directive ea function html js mainctrl manager module myapp ng-controller ovh-angular-form-flat script v6",
+      "isDeprecated": false
     }
   ],
   "apis": {
