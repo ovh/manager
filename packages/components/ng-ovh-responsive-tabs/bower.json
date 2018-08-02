@@ -16,7 +16,6 @@
     "Gruntfile.js",
     "src",
     "karma.conf.js",
-    ".jshintrc",
     ".editorconfig"
   ],
   "dependencies": {

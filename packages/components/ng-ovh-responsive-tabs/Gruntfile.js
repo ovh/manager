@@ -93,19 +93,6 @@ module.exports = function (grunt) {
             }
         },
 
-        // JS Check
-        jshint     : {
-            options : {
-                jshintrc : '.jshintrc',
-                reporter: require('jshint-stylish')
-            },
-            js      : [
-                '<%= srcdir %>/*.js',
-                '<%= srcdir %>/*/*.js',
-                '!<%= srcdir %>/**/*.spec.js'
-            ]
-        },
-
         // Check complexity
         complexity : {
             generic : {
@@ -185,7 +172,6 @@ module.exports = function (grunt) {
     grunt.registerTask("test", function () {
         grunt.task.run([
             "clean",
-            "jshint",
             "eslint",
             "complexity"/*,
             "karma"*/
