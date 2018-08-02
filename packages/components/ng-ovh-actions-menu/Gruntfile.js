@@ -112,19 +112,6 @@ module.exports = function (grunt) {
             }
         },
 
-        // JS Check
-        jshint     : {
-            options : {
-                jshintrc : ".jshintrc",
-                reporter: require("jshint-stylish")
-            },
-            js      : [
-                "<%= srcdir %>/*.js",
-                "<%= srcdir %>/*/*.js",
-                "!<%= srcdir %>/**/*.spec.js"
-            ]
-        },
-
         // Check complexity
         complexity : {
             generic : {
@@ -172,17 +159,6 @@ module.exports = function (grunt) {
                 configFile: "karma.conf.js",
                 singleRun: !watch,
                 autoWatch: watch
-            }
-        },
-
-        jscs: {
-            src: [
-                "<%= srcdir %>/*.js",
-                "<%= srcdir %>/**/*.js"
-            ],
-            options: {
-                config: ".jscsrc",
-                verbose: true
             }
         },
 
@@ -268,7 +244,6 @@ module.exports = function (grunt) {
         "clean",
         "ovhTranslation",
         "ngtemplates",
-        "jshint",
         "complexity",
         "concat:dist",
         "ngAnnotate",
@@ -285,7 +260,7 @@ module.exports = function (grunt) {
     grunt.task.renameTask("watch", "delta");
     grunt.registerTask("watch", ["buildProd", "delta"]);
 
-    grunt.registerTask("test", ["wiredep", "jshint", "eslint", "jscs", "karma"]);
+    grunt.registerTask("test", ["wiredep", "eslint", "karma"]);
 
     // Increase version number. Type = minor|major|patch
     grunt.registerTask("release", "Release", function () {
