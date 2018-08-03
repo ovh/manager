@@ -35,7 +35,6 @@
     "grunt-ng-annotate": "~0.10.0",
     "grunt-ngdocs": "^0.2.5",
     "grunt-postcss": "~0.6.0",
-    "jshint-stylish": "~2.0.0",
     "karma": "~0.13.0",
     "karma-jasmine": "~0.3.0",
     "karma-phantomjs-launcher": "~0.2.0",
