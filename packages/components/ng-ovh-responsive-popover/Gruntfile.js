@@ -110,19 +110,6 @@ module.exports = function (grunt) {
             }
         },
 
-        // JS Check
-        jshint     : {
-            options : {
-                jshintrc : ".jshintrc",
-                reporter: require("jshint-stylish")
-            },
-            js      : [
-                "<%= srcdir %>/*.js",
-                "<%= srcdir %>/*/*.js",
-                "!<%= srcdir %>/**/*.spec.js"
-            ]
-        },
-
         // Check complexity
         complexity : {
             generic : {
@@ -180,18 +167,6 @@ module.exports = function (grunt) {
                 options: {
                     exclude: ["src/ovh-angular-responsive-popover.directive.desktop.spec.js"]
                 }
-            }
-        },
-
-        jscs: {
-            src: [
-                "<%= srcdir %>/*.js",
-                "<%= srcdir %>/*/*.js",
-                "!<%= srcdir %>/**/*.spec.js"
-            ],
-            options: {
-                config: ".jscsrc",
-                verbose: true
             }
         },
 
@@ -261,7 +236,6 @@ module.exports = function (grunt) {
     grunt.registerTask("buildProd", [
         "clean",
         "ngtemplates",
-        "jshint",
         "eslint",
         "complexity",
         "concat:dist",
@@ -279,7 +253,7 @@ module.exports = function (grunt) {
     grunt.task.renameTask("watch", "delta");
     grunt.registerTask("watch", ["buildProd", "delta"]);
 
-    grunt.registerTask("test", ["wiredep", "jshint", "eslint", "jscs", "karma"]);
+    grunt.registerTask("test", ["wiredep", "eslint", "karma"]);
 
     // Increase version number. Type = minor|major|patch
     grunt.registerTask("release", "Release", function () {
