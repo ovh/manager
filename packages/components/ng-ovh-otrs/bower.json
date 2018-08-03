@@ -18,7 +18,6 @@
     "node_modules",
     "Gruntfile.js",
     "src",
-    ".jshintrc",
     ".editorconfig",
     "example"
   ],
