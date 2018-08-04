@@ -14,19 +14,7 @@
   vertical-align: top;
   width: 8px;
   height: 17px;
-  -webkit-animation: ovh-tail-logs-blink 1s step-end infinite;
-          animation: ovh-tail-logs-blink 1s step-end infinite;
-}
-@-webkit-keyframes ovh-tail-logs-blink {
-  0% {
-    opacity: 1.0;
-  }
-  50% {
-    opacity: 0.0;
-  }
-  100% {
-    opacity: 1.0;
-  }
+  animation: ovh-tail-logs-blink 1s step-end infinite;
 }
 @keyframes ovh-tail-logs-blink {
   0% {
