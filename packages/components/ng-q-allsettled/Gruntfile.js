@@ -8,7 +8,7 @@ module.exports = function (grunt) {
         distdir: "dist",
         srcdir: "src",
         builddir: ".work/.tmp",
-        name: grunt.file.readJSON("package.json").name || "ovh-angular-q-allSettled", // module name
+        name: "ovh-angular-q-allSettled", // module name
 
         // Clean
         clean: {
