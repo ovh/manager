@@ -1,0 +1,64 @@
+<!-- PROGRESS BAR -->
+<div class="col-md-8"
+     data-ng-if="$ctrl.incidentTestProgression < 100">
+    <span data-translate="tools_lineDiagnostics_incident_detection_test"></span>
+    <oui-progress>
+        <oui-progress-bar data-type="info"
+                          data-value="$ctrl.incidentTestProgression"></oui-progress-bar>
+    </oui-progress>
+</div>
+
+<div class="col-md-4 row"
+     data-ng-if="$ctrl.currentLineDiagnostic.status === 'waitingRobot'">
+    <div class="d-inline-block col-xs-1">
+        <oui-spinner size="s"></oui-spinner>
+    </div>
+    <p class="d-inline-block"
+       data-translate="tools_lineDiagnostics_waitingRobot"></p>
+</div>
+
+<div class="col-md-8"
+     data-ng-if="$ctrl.incidentTestProgression === 100 &&
+                 $ctrl.currentLineDiagnostic">
+    <div data-ng-if="$ctrl.currentLineDiagnostic.hasQuestionToAnswer('modemIsSynchronized')">
+        <oui-field data-label="{{:: 'tools_lineDiagnostics_incident_detection_modem_question' | translate }}"
+                   data-label-popover="{{:: 'tools_lineDiagnostics_incident_detection_modem_question_help' | translate }}">
+            <div class="oui-button-group">
+                <oui-button data-text="{{:: 'tools_lineDiagnostics_detail_yes' | translate }}"
+                            data-variant="secondary"
+                            data-ng-click="$ctrl.setModemStatus(true)"></oui-button>
+                <oui-button data-text="{{:: 'tools_lineDiagnostics_detail_no' | translate }}"
+                            data-variant="secondary"
+                            data-ng-click="$ctrl.setModemStatus(false)"></oui-button>
+            </div>
+            <span data-ng-if="$ctrl.loadingAction">
+                <oui-spinner size="s"></oui-spinner>
+            </span>
+        </oui-field>
+    </div>
+
+    <div data-ng-if="$ctrl.currentLineDiagnostic.hasActionToDo('unplugModem')">
+        <oui-message data-type="warning">
+            <span data-translate="tools_lineDiagnostics_incident_detection_warning"></span>
+        </oui-message>
+        <oui-field data-ng-if="$ctrl.currentLineDiagnostic.faultType === 'noSync'"
+                   data-label="{{:: 'tools_lineDiagnostics_incident_detection_modem_unplug_request' | translate }}">
+            <oui-button data-text="{{:: 'tools_lineDiagnostics_incident_detection_modem_unplug_confirm' | translate }}"
+                        data-variant="secondary"
+                        data-variant-nav="next"
+                        data-ng-click="$ctrl.setModemUnplug('unplugModem')">
+            </oui-button>
+            <span data-ng-if="$ctrl.loadingAction">
+                <oui-spinner size="s"></oui-spinner>
+            </span>
+        </oui-field>
+
+        <oui-field data-ng-if="$ctrl.currentLineDiagnostic.faultType === 'alignment' ||
+                               $ctrl.currentLineDiagnostic.faultType === 'syncLossOrLowBandwidth'">
+            <oui-button data-text="{{:: 'tools_lineDiagnostics_incident_detection_continue' | translate }}"
+                        data-variant="secondary"
+                        data-variant-nav="next"
+                        data-ng-click="$ctrl.goOnInvestigationStep()"></oui-button>
+        </oui-field>
+    </div>
+</div>

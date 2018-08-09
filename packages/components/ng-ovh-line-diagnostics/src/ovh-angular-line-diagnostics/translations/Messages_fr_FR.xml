@@ -186,5 +186,24 @@
    <translation id="tools_lineDiagnostics_date_1w" qtlid="70217">1 semaine</translation>
    <translation id="tools_lineDiagnostics_date_1m" qtlid="70241">1 mois</translation>
 
+   <!-- DIAGNOSTIC V2-->
+   <translation id="tools_lineDiagnostics_step_incident_detection">Détection du type d'incident</translation>
+   <translation id="tools_lineDiagnostics_step_line_diagnostic">Diagnostic de votre accès internet</translation>
+   <translation id="tools_lineDiagnostics_step_solution_proposal">Proposition de solutions</translation>
+
+   <translation id="tools_lineDiagnostics_waitingRobot">Test technique en cours. <br/> Veuillez patienter</translation>
+   <!-- INCIDENT DETECTON STEP -->
+   ￼￼<translation id="tools_lineDiagnostics_incident_detection_test">Un instant de patience, nous testons actuellement votre synchronisation au réseau</translation>
+   <translation id="tools_lineDiagnostics_diagnostic_critical_problem"><strong>Un problème est survenu lors du diagnostic</strong><br />Veuillez réessayer dans quelques minutes</translation>
+   <translation id="tools_lineDiagnostics_diagnostic_run_error">Une erreur est survenue lors du diagnostic</translation>
+   <translation id="tools_lineDiagnostics_diagnostic_cancel_error">Une erreur est survenue lors de l'annulation du diagnostic</translation>
+   <translation id="tools_lineDiagnostics_incident_detection_modem_question">Votre modem est-il synchronisé ?</translation>
+   <translation id="tools_lineDiagnostics_incident_detection_modem_question_help">Un voyant sur le modem (broadband ou adsl) devrait vous indiquer le statut de la synchronisation. Si ce n'est pas le cas, vous devriez retrouver ce statut de synchronisation sur l'interface du modem.</translation>
+   <translation id="tools_lineDiagnostics_incident_detection_warning"><strong>Nous avons détecté un incident sur votre ligne.</strong><br/>Nous allons maintenant lancer un diagnostic de votre ligne pour rétablir votre accès internet rapidement.
+   </translation>
+   <translation id="tools_lineDiagnostics_incident_detection_warning_test_details">Voir les détails du test</translation>
+   <translation id="tools_lineDiagnostics_incident_detection_modem_unplug_request">Avant toute chose, vous devez débrancher votre modem de votre prise téléphonique</translation>
+   <translation id="tools_lineDiagnostics_incident_detection_modem_unplug_confirm">Oui, j'ai débranché mon modem</translation>
+   <translation id="tools_lineDiagnostics_incident_detection_continue">Continuer le diagnostic</translation>
 
 </translations>

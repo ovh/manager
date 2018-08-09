@@ -1,9 +1,309 @@
 "use strict";
 
-angular.module("ovh-angular-line-diagnostics", []);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+angular.module("ovh-angular-line-diagnostics", ["ovh-api-services"]);
+
+angular.module("ovh-angular-line-diagnostics").component("lineDiagnostics", {
+    bindings: {
+        lineNumber: "@",
+        serviceName: "@"
+    },
+    templateUrl: "/ovh-angular-line-diagnostics/src/ovh-angular-line-diagnostics/ovh-angular-line-diagnostics.html",
+    controllerAs: "$ctrl",
+    controller: function () {
+        function controller($interval, $q, $translate, LineDiagnostics, LineDiagnosticFactory, Toast, DIAGNOSTICS_CONSTANTS) {
+            _classCallCheck(this, controller);
+
+            this.$q = $q;
+            this.$interval = $interval;
+            this.$translate = $translate;
+            this.LineDiagnosticsService = LineDiagnostics;
+            this.LineDiagnosticFactory = LineDiagnosticFactory;
+            this.Toast = Toast;
+            this.constants = DIAGNOSTICS_CONSTANTS;
+        }
+
+        _createClass(controller, [{
+            key: "animateProgressBar",
+            value: function animateProgressBar() {
+                var _this = this;
+
+                var intervalProgressBar = 1000;
+                var progressStep = 20;
+                var limitProgress = 90;
+                this.incidentTestProgression = 0;
+                this.progressBarCycle = this.$interval(function () {
+                    if (_this.incidentTestProgression + progressStep < limitProgress) {
+                        _this.incidentTestProgression = _.random(_this.incidentTestProgression, _this.incidentTestProgression + progressStep);
+                    }
+                }, intervalProgressBar);
+            }
+        }, {
+            key: "runLineDiagnostic",
+            value: function runLineDiagnostic(requestParam) {
+                var _this2 = this;
+
+                this.loadingAction = true;
+
+                return this.LineDiagnosticsService.getRunDiagnostic({
+                    number: this.lineNumber,
+                    serviceName: this.serviceName
+                }, requestParam).then(function (lineDiagnostic) {
+                    _this2.buildLineDiagnostic(lineDiagnostic);
+                    _this2.checkDiagnosticStatus();
+                    _this2.setCurrentStep();
+                    return lineDiagnostic;
+                }, function (error) {
+                    if (!_.isEmpty(error)) {
+                        _this2.Toast.error([_this2.$translate.instant("tools_lineDiagnostics_diagnostic_run_error"), _.get(error, "data.message", "")].join(" "));
+                        _this2.stopPoller();
+                    }
+                    return _this2.$q.reject(error);
+                }).finally(function () {
+                    _this2.loadingAction = false;
+                    _this2.incidentTestProgression = 100;
+                    if (_this2.progressBarCycle) {
+                        _this2.$interval.cancel(_this2.progressBarCycle);
+                        _this2.progressBarCycle = null;
+                    }
+                });
+            }
+        }, {
+            key: "cancelLineDiagnostic",
+            value: function cancelLineDiagnostic() {
+                var _this3 = this;
+
+                this.LineDiagnosticService.getCancelDiagnostic({ number: this.lineNumber, serviceName: this.serviceName }).$promise.catch(function (error) {
+                    _this3.Toast.error([_this3.$translate.instant("tools_lineDiagnostics_diagnostic_cancel_error"), _.get(error, "data.message", "")].join(" "));
+                    return _this3.$q.reject(error);
+                });
+            }
+        }, {
+            key: "goOnInvestigationStep",
+            value: function goOnInvestigationStep() {
+                this.currentStep = this.constants.STEPS.INVESTIGATION.LABEL;
+            }
+        }, {
+            key: "setCurrentStep",
+            value: function setCurrentStep() {
+                var steps = this.constants.STEPS;
+                var actions = this.currentLineDiagnostic.getActionsToDo();
+                var questions = this.currentLineDiagnostic.getQuestionsToAnswer();
+
+                switch (this.currentLineDiagnostic.faultType) {
+                    case this.constants.FAULT_TYPES.UNKNOWN:
+                        this.currentStep = steps.INCIDENT_DETECTION.LABEL;
+                        break;
+                    case this.constants.FAULT_TYPES.NO_SYNCHRONIZATION:
+                        if (_.isEqual(this.constants.STEPS.INCIDENT_DETECTION.QUESTIONS, questions) || _.isEqual(this.constants.STEPS.INCIDENT_DETECTION.ACTIONS, actions)) {
+                            this.currentStep = steps.INCIDENT_DETECTION.LABEL;
+                        } else {
+                            // TODO: remove
+                            this.currentStep = steps.INVESTIGATION.LABEL;
+                        }
+                        break;
+                    case this.constants.FAULT_TYPES.ALIGNMENT:
+                    case this.constants.FAULT_TYPES.SYNC_LOSS_OR_LOW_BANDWIDTH:
+                        this.currentStep = steps.INCIDENT_DETECTION.LABEL;
+                        break;
+                    default:
+                        this.currentStep = steps.INCIDENT_DETECTION.LABEL;
+                }
+            }
+        }, {
+            key: "checkDiagnosticStatus",
+            value: function checkDiagnosticStatus() {
+                if (this.currentLineDiagnostic.status === this.constants.STATUS.WAITING_ROBOT) {
+                    this.startPoller(this.currentLineDiagnostic);
+                } else if (_.includes(_.union(this.constants.STATUS.END, this.constants.STATUS.PAUSE), this.currentLineDiagnostic.status)) {
+                    this.stopPoller();
+                } else if (this.currentLineDiagnostic.status === this.constants.STATUS.PROBLEM) {
+                    this.stopPoller();
+                    this.cancelLineDiagnostic();
+                }
+            }
+        }, {
+            key: "setModemStatus",
+            value: function setModemStatus(status) {
+                this.currentLineDiagnostic.data.answers.modemIsSynchronized = status;
+                this.startPoller();
+            }
+        }, {
+            key: "startPoller",
+            value: function startPoller() {
+                this.runLineDiagnostic(this.currentLineDiagnostic.convertToRequestParams());
+            }
+        }, {
+            key: "stopPoller",
+            value: function stopPoller() {
+                this.LineDiagnosticsService.deletePollDiagnostic();
+            }
+        }, {
+            key: "buildLineDiagnostic",
+            value: function buildLineDiagnostic(lineDiagnostic) {
+                this.currentLineDiagnostic = new this.LineDiagnosticFactory(lineDiagnostic);
+            }
+        }, {
+            key: "setModemUnplug",
+            value: function setModemUnplug(unplugAction) {
+                this.currentLineDiagnostic.addActionDone(unplugAction);
+                this.runLineDiagnostic(this.currentLineDiagnostic.convertToRequestParams());
+            }
+        }, {
+            key: "$onInit",
+            value: function $onInit() {
+                var _this4 = this;
+
+                this.currentLineDiagnostic = null;
+                this.currentStep = this.constants.STEPS.INCIDENT_DETECTION.LABEL;
+                this.loadingAction = false;
+                this.loadingQuestion = false;
+                this.progressBarCycle = null;
+                this.waitingRobotAction = false;
+
+                this.LineDiagnosticsService.loadTranslations().then(function () {
+                    var requestParam = {};
+                    _this4.translateReady = true;
+                    _this4.animateProgressBar();
+
+                    // DEBUG
+                    if (_this4.serviceName === "xdsl-ls148374-2") {
+                        requestParam = {
+                            faultType: "alignment",
+                            answers: {
+                                modemType: "forceAlignment"
+                            }
+                        };
+                    }
+
+                    _this4.runLineDiagnostic(requestParam);
+                }, function () {
+                    _this4.translateReady = null;
+                });
+            }
+        }, {
+            key: "$onDestroy",
+            value: function $onDestroy() {
+                this.stopPoller();
+            }
+        }]);
+
+        return controller;
+    }()
+});
+
+angular.module("ovh-angular-line-diagnostics").constant("DIAGNOSTICS_CONSTANTS", {
+    STEPS: {
+        INCIDENT_DETECTION: {
+            LABEL: "incidentDetectionStep",
+            ACTIONS: ["unplugModem"],
+            QUESTIONS: ["modemIsSynchronized"]
+        },
+        INVESTIGATION: {
+            LABEL: "investigationStep",
+            ACTIONS: []
+        },
+        SOLUTION_PROPOSAL: {
+            LABEL: "solutionProposalStep",
+            ACTIONS: []
+        }
+    },
+    FAULT_TYPES: {
+        UNKNOWN: "unknown",
+        NO_SYNCHRONIZATION: "noSync",
+        ALIGNMENT: "alignment",
+        SYNC_LOSS_OR_LOW_BANDWIDTH: "syncLossOrLowBandwidth"
+    },
+    STATUS: {
+        END: ["cancelled", "connectionProblem", "haveToConnectModemOnTheRightPlug", "interventionRequested", "resolvedAfterTests", "validationRefused"],
+        PAUSE: ["init", "sleeping", "waitingHuman"],
+        PROBLEM: "problem",
+        SPECIAL: [],
+        WAITING_ROBOT: "waitingRobot"
+    }
+});
+
+angular.module("ovh-angular-line-diagnostics").factory("LineDiagnosticFactory", function () {
+    var mandatoryOptions = ["data", "faultType", "id", "status"];
+
+    var LineDiagnostic = function () {
+        function LineDiagnostic(lineDiagnostic) {
+            _classCallCheck(this, LineDiagnostic);
+
+            _.forEach(mandatoryOptions, function (option) {
+                if (!_.has(lineDiagnostic, option)) {
+                    throw new Error(option + " option must be specified when creating a new LineDiagnostic");
+                }
+            });
+
+            this.id = lineDiagnostic.id;
+            this.faultType = lineDiagnostic.faultType;
+            this.status = lineDiagnostic.status;
+            this.data = lineDiagnostic.data;
+        }
+
+        _createClass(LineDiagnostic, [{
+            key: "getActionsToDo",
+            value: function getActionsToDo() {
+                var actionsToDo = _.get(this, "data.actionsToDo", []);
+                return _.chain(actionsToDo).map("name").flatten().value();
+            }
+        }, {
+            key: "hasActionToDo",
+            value: function hasActionToDo(actionName) {
+                return _.includes(this.getActionsToDo(), actionName);
+            }
+        }, {
+            key: "getActionsDone",
+            value: function getActionsDone() {
+                var actionsDone = _.get(this, "data.actionsDone", []);
+                return _.chain(actionsDone).map("name").flatten().value();
+            }
+        }, {
+            key: "addActionDone",
+            value: function addActionDone(actionsToAdd) {
+                if (_.isArray(actionsToAdd)) {
+                    this.data.actionsDone = _.union(this.data.actionsDone, actionsToAdd);
+                } else {
+                    this.data.actionsDone.push(actionsToAdd);
+                }
+            }
+        }, {
+            key: "getQuestionsToAnswer",
+            value: function getQuestionsToAnswer() {
+                var questions = _.get(this, "data.toAnswer", []);
+                return _.chain(questions).map("name").flatten().value();
+            }
+        }, {
+            key: "hasQuestionToAnswer",
+            value: function hasQuestionToAnswer(questionName) {
+                return _.includes(this.getQuestionsToAnswer(), questionName);
+            }
+        }, {
+            key: "convertToRequestParams",
+            value: function convertToRequestParams() {
+                var defaultFaultType = "unknown";
+                return {
+                    actionsDone: this.data.actionsDone,
+                    answers: this.data.answers,
+                    faultType: this.faultType || defaultFaultType
+                };
+            }
+        }]);
+
+        return LineDiagnostic;
+    }();
+
+    return LineDiagnostic;
+});
 
 angular.module("ovh-angular-line-diagnostics").provider("LineDiagnostics", function () {
     "use strict";
+
+    // let translationPath = "./node_modules/@bower_components/ovh-angular-line-diagnostics/dist";
 
     var requestProxy = "$http";
     var translationPath = "../bower_components/ovh-angular-line-diagnostics/dist";
@@ -38,7 +338,7 @@ angular.module("ovh-angular-line-diagnostics").provider("LineDiagnostics", funct
         return translationPath;
     };
 
-    this.$get = ["$injector", "Poller", "$translatePartialLoader", "$translate", function ($injector, Poller, $translatePartialLoader, $translate) {
+    this.$get = ["$injector", "Poller", "$translatePartialLoader", "$translate", "OvhApiXdslDiagnosticLines", function ($injector, Poller, $translatePartialLoader, $translate, OvhApiXdslDiagnosticLines) {
         var lineDiagnosticsService = {};
         var api = $injector.get(requestProxy);
 
@@ -50,8 +350,8 @@ angular.module("ovh-angular-line-diagnostics").provider("LineDiagnostics", funct
             return $translate.refresh();
         };
 
-        lineDiagnosticsService.getSetDiagnostic = function (uriParams, datas) {
-            var syncParam = { faultType: "noSync" };
+        lineDiagnosticsService.getRunDiagnostic = function (uriParams, datas) {
+            var syncParam = { faultType: "unknown" };
             var postParams = datas && datas.faultType ? datas : angular.extend(syncParam, datas || {});
 
             if (postParams && postParams.answers) {
@@ -61,11 +361,16 @@ angular.module("ovh-angular-line-diagnostics").provider("LineDiagnostics", funct
                     }
                 });
             }
-            return api.post(URI.expand([pathPrefix, "lines", "{number}", "diagnostic/run"].join("/"), uriParams).toString(), postParams);
+
+            return OvhApiXdslDiagnosticLines.v6().runDiagnostic(_.merge(uriParams, postParams));
         };
 
-        lineDiagnosticsService.getDeleteDiagnostic = function (uriParams) {
-            return api.post(URI.expand([pathPrefix, "lines", "{number}", "diagnostic/cancel"].join("/"), uriParams).toString());
+        lineDiagnosticsService.getCancelDiagnostic = function (uriParams) {
+            return OvhApiXdslDiagnosticLines.v6().cancelDiagnostic(uriParams);
+        };
+
+        lineDiagnosticsService.deletePollDiagnostic = function () {
+            return OvhApiXdslDiagnosticLines.v6().killPollerDiagnostic();
         };
 
         // lineDiagnosticsService.getDiagnosticPassRobot = function (serviceName, num) {
@@ -125,277 +430,11 @@ angular.module("ovh-angular-line-diagnostics").provider("LineDiagnostics", funct
     }];
 });
 
-angular.module("ovh-angular-line-diagnostics").directive("lineDiagnostics", function () {
-    "use strict";
-
-    return {
-        restrict: "EA",
-        templateUrl: "/ovh-angular-line-diagnostics/src/ovh-angular-line-diagnostics/ovh-angular-line-diagnostics.html",
-        controllerAs: "LinediagnosticsCtrl",
-        bindToController: true,
-        scope: {
-            lineDiagnostics: "@",
-            lineDiagnosticsType: "@",
-            serviceName: "@lineDiagnosticsServiceName"
-        },
-        controller: ["$q", "LineDiagnostics", "Toast", "$translate", "$state", "$scope", function ($q, LineDiagnostics, Toast, $translate, $state, $scope) {
-
-            var self = this;
-
-            self.translateReady = false;
-
-            self.loaders = {
-                getLineStep: false,
-                actionTodo: false,
-                toAnswer: false
-            };
-
-            self.datas = {
-                lineStep: {},
-                lineNumber: self.lineDiagnostics,
-                type: self.lineDiagnosticsType,
-                serviceName: self.serviceName
-            };
-
-            self.formActionTodo = {
-                values: {}, // Load by actionTodo in self.datas.lineStep.data
-                list: [],
-                comment: ""
-            };
-
-            self.formToAnswer = {
-                values: {} // Load by toAnswer in self.datas.lineStep.data.toAnswer
-            };
-
-            // --------URI PARAMS---------
-
-            function getUriParams() {
-                var uriParams = {
-                    number: self.datas.lineNumber
-                };
-
-                if (!_.isUndefined(self.datas.serviceName)) {
-                    uriParams.serviceName = self.datas.serviceName;
-                }
-
-                return uriParams;
-            }
-
-            // --------INIT---------
-
-            function init() {
-                // translations loadings
-                LineDiagnostics.loadTranslations().then(function () {
-                    self.translateReady = true;
-                    getSetLineStep();
-                }, function () {
-                    self.translateReady = null;
-                });
-            }
-
-            function getSetLineStep(paramDatas) {
-                var datas = paramDatas;
-                self.loaders.getLineStep = true;
-                if (self.datas.type) {
-                    datas = datas ? angular.extend(datas, { faultType: self.datas.type }) : { faultType: self.datas.type };
-                }
-                return LineDiagnostics.getSetDiagnostic(getUriParams(), datas).then(function (lineStep) {
-                    if (lineStep.data.errors) {
-                        // if error, interne api return 200 status with lineStep.errors = [] ... winner code check
-                        var errors = lineStep.data.errors;
-                        self.datas.lineStep = null;
-                        var errorMessage = "";
-                        if (errors.length) {
-                            if (errors[0].context && errors[0].context.errorCode) {
-                                self.datas.error = errors[0].context.errorCode;
-                                errorMessage = $translate.instant("tools_lineDiagnostics_error_context_" + errors[0].context.errorCode);
-                            } else {
-                                errorMessage = errors[0].kind + " : " + errors[0].message;
-                            }
-                        }
-                        Toast.error($translate.instant("tools_lineDiagnostics_error", { lineNumber: self.datas.lineNumber }) + " " + errorMessage);
-                        return $q.reject(errors);
-                    }
-                    var errorAllow = ["changeProfileNotDone", "ovhTicketInvalid", "monitoringTodoAlreadyExists"];
-
-                    // case for no error, but user hasn t really make actions asked
-                    if (lineStep.data && lineStep.data.data && lineStep.data.data.error && errorAllow.indexOf(lineStep.data.data.error) !== -1) {
-                        Toast.error($translate.instant("tools_lineDiagnostics_error_context_" + lineStep.data.data.error));
-                    }
-                    self.datas.lineStep = lineStep.data;
-                    runPolling(lineStep.data);
-                    self.formActionTodo.comment = self.datas.lineStep.data.answers.comment;
-                    return lineStep;
-                }, function (error) {
-                    self.datas.lineStep = null;
-                    if (!datas) {
-                        // JEAN MICHEL style for no error code on apiv6
-                        var errorMessage = "";
-                        var errorCode = null;
-                        var errorMessageCode = error.data && error.data.message || ""; // errors from apiv6 without mesage cogde
-                        if (errorMessageCode === "line diagnostic already launched by OVH") {
-                            errorCode = "internalDiagAlreadyLaunched";
-                            errorMessage = " " + $translate.instant("tools_lineDiagnostics_error_context_" + errorCode);
-                        }
-
-                        // END JEAN MICHEL style for no error code on apiv6
-                        Toast.error($translate.instant("tools_lineDiagnostics_error", { lineNumber: self.datas.lineNumber }) + errorMessage);
-                        self.datas.error = errorCode;
-                    }
-                    return $q.reject(error);
-                }).finally(function () {
-                    self.loaders.getLineStep = false;
-                });
-            }
-
-            function runPolling(lineStep) {
-                if (lineStep.status === "waitingRobot") {
-                    LineDiagnostics.runPollGetDiagnostic(getUriParams(), self.datas.type ? { faultType: self.datas.type } : undefined).then(function (lineStepParam) {
-                        self.datas.lineStep = lineStepParam;
-                    });
-                }
-            }
-
-            // --------TOOLS---------
-
-            self.isNotEmptyObj = function (obj) {
-                return obj && Object.keys(obj).length > 0;
-            };
-
-            self.displayDoneTitle = function (answers) {
-                return !!_.find(answers, function (answer, key) {
-                    return answers[key] !== null;
-                });
-            };
-
-            $scope.$watch(function () {
-                return self.formActionTodo;
-            }, function () {
-                self.formActionTodo.list = Object.keys(_.omit(self.formActionTodo.values, function (isChecked) {
-                    return !isChecked;
-                }));
-            }, true);
-
-            function responseHandling(response) {
-                if (!response || !response.data || !!response.data.error) {
-                    Toast.error($translate.instant("tools_lineDiagnostics_post_error", { lineNumber: self.datas.lineNumber }) + " : " + (response && response.data && response.data.error || ""));
-                }
-            }
-
-            // --------ACTIONS---------
-
-            self.hasComment = function () {
-                return !!_.find(self.datas.lineStep.data.toAnswer, { name: "comment" });
-            };
-
-            self.dateChanged = function (object, name) {
-                // check if date and time are set
-                if (!object[name + "date"] && !object[name + "time"]) {
-                    object[name] = undefined;
-                    return;
-                }
-
-                // set objectName data with two part date
-                var inputDate = object[name + "date"] || moment().format("YYYY-MM-DD");
-                var inputTime = (object[name + "time"] || "00:00") + ":00";
-                object[name] = moment(inputDate, "YYYY-MM-DD").format("YYYY-MM-DD") + "T" + inputTime + moment().format("Z");
-            };
-
-            self.setSearchDate = function (object, name, nbDays) {
-                // preselected date changed
-                var date = null;
-                if (nbDays === -30) {
-                    date = moment().add(-1, "months");
-                    object[name + "date"] = date.format("YYYY-MM-DD");
-                } else {
-                    date = moment().add(nbDays, "days");
-                    object[name + "date"] = date.format("YYYY-MM-DD");
-                }
-                if (!object[name + "time"]) {
-                    object[name + "time"] = date.format("HH:mm");
-                }
-                self.dateChanged(object, name);
-            };
-
-            self.refreshLineStep = function () {
-                if (!self.loaders.getLineStep) {
-                    getSetLineStep();
-                }
-            };
-
-            self.submitActionTodo = function () {
-                self.loaders.actionTodo = true;
-
-                var comment = self.formActionTodo.comment ? {
-                    answers: {
-                        comment: self.formActionTodo.comment
-                    }
-                } : {};
-
-                getSetLineStep(angular.extend({
-                    actionsDone: self.formActionTodo.list
-                }, comment)).then(responseHandling, function () {
-                    Toast.error($translate.instant("tools_lineDiagnostics_post_error", { lineNumber: self.datas.lineNumber }));
-                }).finally(function () {
-                    self.loaders.actionTodo = false;
-                });
-            };
-
-            self.conditionRefused = function () {
-                return self.formToAnswer.values.conditionsAccepted !== undefined && self.formToAnswer.values.conditionsAccepted === "false";
-            };
-
-            self.submitToAnswer = function () {
-                self.loaders.toAnswer = true;
-
-                if (!self.hasComment()) {
-                    self.formToAnswer.values.comment = angular.copy(self.formActionTodo.comment);
-                }
-                if (self.formToAnswer.values.ovhTicket) {
-                    self.formToAnswer.values.ovhTicket = parseInt(self.formToAnswer.values.ovhTicket, 10);
-                }
-                if (self.formToAnswer.values.datetimeOfAppearancedate) {
-                    delete self.formToAnswer.values.datetimeOfAppearancedate;
-                }
-                if (self.formToAnswer.values.datetimeOfAppearancetime) {
-                    delete self.formToAnswer.values.datetimeOfAppearancetime;
-                }
-
-                getSetLineStep({
-                    answers: self.formToAnswer.values
-                }).then(responseHandling, function () {
-                    Toast.error($translate.instant("tools_lineDiagnostics_post_error", { lineNumber: self.datas.lineNumber }));
-                }).finally(function () {
-                    self.loaders.toAnswer = false;
-                });
-            };
-
-            self.deleteDiag = function () {
-                LineDiagnostics.getDeleteDiagnostic(getUriParams()).then(function () {
-                    $state.reload();
-                });
-            };
-
-            // --------DEBUG---------
-
-            /* self.bypassRobot = function (num) {
-            LineDiagnostics.getDiagnosticPassRobot(self.datas.lineNumber, num);
-            };
-            self.deleteDiag = function () {
-            LineDiagnostics.getDeleteDiagnostic(self.datas.lineNumber).then(function () {
-                $state.reload();
-            });
-            };*/
-
-            init();
-        }]
-
-    };
-});
-
 angular.module('ovh-angular-line-diagnostics').run(['$templateCache', function ($templateCache) {
     'use strict';
 
-    $templateCache.put('/ovh-angular-line-diagnostics/src/ovh-angular-line-diagnostics/ovh-angular-line-diagnostics.html', "<div id=line-diagnostics data-ng-if=\"LinediagnosticsCtrl.translateReady === false || LinediagnosticsCtrl.loaders.getLineStep === true\"><div class=text-center><spinner></spinner></div></div><div id=line-diagnostics data-ng-if=\"LinediagnosticsCtrl.translateReady === null\"><div class=text-center>LOADING ERROR</div></div><div id=line-diagnostics data-ng-if=\"LinediagnosticsCtrl.translateReady === true && LinediagnosticsCtrl.loaders.getLineStep === false\"><h1>{{'tools_lineDiagnostics_title' | translate}}</h1><div class=\"alert alert-danger top-space-m20 text-center\" role=alert data-ng-if=\"LinediagnosticsCtrl.datas.lineStep === null\"><p><i class=\"ovh-font ovh-font-failure right-space-m8\"></i> <span data-translate=tools_lineDiagnostics_error data-translate-values=\"{lineNumber : LinediagnosticsCtrl.datas.lineNumber}\"></span><div data-ng-if=LinediagnosticsCtrl.datas.error><span data-translate=\"{{('tools_lineDiagnostics_error_context_' + LinediagnosticsCtrl.datas.error | translate) || '' }}\"></span></div></p><button data-ng-click=LinediagnosticsCtrl.refreshLineStep(); data-ng-disabled=LinediagnosticsCtrl.loaders.getLineStep type=button class=\"btn btn-default top-space-m12\" title=\"{{::'support_ticket_refresh' | translate}}\"><i data-ng-hide=LinediagnosticsCtrl.loaders.getLineStep class=\"fa fa-refresh\"></i><spinner data-ng-show=LinediagnosticsCtrl.loaders.getLineStep></spinner><span data-translate=tools_lineDiagnostics_refresh></span></button></div><div data-ng-if=\"LinediagnosticsCtrl.datas.lineStep !== null\"><div class=line-diagnostics-detail data-ng-if=\"LinediagnosticsCtrl.datas.lineStep.data.seltTest.status && (!LinediagnosticsCtrl.datas.type || LinediagnosticsCtrl.datas.type==='noSync')\"><h2 data-translate=tools_lineDiagnostics_testselt_title></h2><div class=bottom-space-m16 data-ng-if=\"LinediagnosticsCtrl.datas.lineStep.data.seltTest.status === 'failed'\"><i class=\"ovh-font ovh-font-failure fs16 text-danger\"></i> <span data-translate=tools_lineDiagnostics_testselt_error></span></div><div class=bottom-space-m16 data-ng-if=\"LinediagnosticsCtrl.datas.lineStep.data.seltTest.status !== 'failed'\"><i class=\"ovh-font ovh-font-success fs16 text-success\"></i> <span data-translate=tools_lineDiagnostics_testselt_status></span></div><div class=row data-ng-if=\"LinediagnosticsCtrl.datas.lineStep.data.seltTest.status !== 'failed'\"><p class=\"col-xs-12 col-md-3 bodyText2\" data-translate=tools_lineDiagnostics_testselt_date></p><p class=\"col-xs-12 col-md-9\" data-ng-bind=\"LinediagnosticsCtrl.datas.lineStep.data.seltTest.date || '-'\"></p></div><div class=row><p class=\"col-xs-12 col-md-3 bodyText2\" data-translate=tools_lineDiagnostics_detail_lastSync></p><p class=\"col-xs-12 col-md-9\" data-ng-bind=\"LinediagnosticsCtrl.datas.lineStep.data.lineDetails.lastSync || '-'\"></p></div><div class=row><div class=\"col-xs-12 LineScheme\"><div class=infosNRA><dl><i class=\"ovh-font ovh-font-nra\"></i><dt class=bodyText2 data-translate=tools_lineDiagnostics_detail_NRAName></dt><dd data-ng-bind=\"LinediagnosticsCtrl.datas.lineStep.data.lineDetails.nra || '-'\"></dd><dt class=bodyText2 data-translate=tools_lineDiagnostics_detail_operator></dt><dd data-ng-bind=\"LinediagnosticsCtrl.datas.lineStep.data.lineDetails.operator || '-'\"></dd></dl></div><div class=infosClientSide><dl><dt class=sr-only data-translate=tools_lineDiagnostics_detail_accessType></dt><dd data-ng-if=\"LinediagnosticsCtrl.datas.lineStep.data.lineDetails.lineType==='sdsl'\"><i title={{::LinediagnosticsCtrl.datas.lineStep.data.lineDetails.lineType}} class=\"ovh-font ovh-font-telecom-sdsl\"></i></dd><dd data-ng-if=\"LinediagnosticsCtrl.datas.lineStep.data.lineDetails.lineType==='adsl'\"><i title={{::LinediagnosticsCtrl.datas.lineStep.data.lineDetails.lineType}} class=\"ovh-font ovh-font-xdsl-adsl\"></i></dd><dd data-ng-if=\"LinediagnosticsCtrl.datas.lineStep.data.lineDetails.lineType==='vdsl'\"><i title={{::LinediagnosticsCtrl.datas.lineStep.data.lineDetails.lineType}} class=\"ovh-font ovh-font-xdsl-vdsl\"></i></dd><dt class=bodyText2 data-translate=tools_lineDiagnostics_detail_accessName></dt><dd data-ng-bind=\"LinediagnosticsCtrl.datas.lineStep.data.lineDetails.accessName || '-'\"></dd><dt class=bodyText2 data-translate=tools_lineDiagnostics_detail_address></dt><dd data-ng-bind=\"LinediagnosticsCtrl.datas.lineStep.data.lineDetails.address || '-'\"></dd></dl></div><div class=linePart><div class=lineDistances><div class=lineLength><div class=arrowPart></div><dl><dt class=sr-only data-translate=tools_lineDiagnostics_detail_NRADistance></dt><dd data-ng-bind=\"LinediagnosticsCtrl.datas.lineStep.data.lineDetails.length ? LinediagnosticsCtrl.datas.lineStep.data.lineDetails.length + 'm' : '-'\"></dd></dl><div class=arrowPart></div></div><div class=distanceIndicators></div></div><div class=locPb data-ng-if=\"LinediagnosticsCtrl.datas.lineStep.data.seltTest.status !== 'failed'\"><div class=locPbContainer><div class=pbIcon><i class=\"ovh-font ovh-font-failure fs20 text-danger\"></i></div><div class=\"problemDescription left-space-p12\"><h3>{{'tools_lineDiagnostics_testselt_state_' + LinediagnosticsCtrl.datas.lineStep.data.seltTest.state | translate}} {{' tools_lineDiagnostics_testselt_preloc_' + LinediagnosticsCtrl.datas.lineStep.data.seltTest.preloc | translate}}</h3><p><span class=bodyText2 data-translate=tools_lineDiagnostics_testselt_distance></span> : <span data-ng-bind=\"LinediagnosticsCtrl.datas.lineStep.data.seltTest.distance ? LinediagnosticsCtrl.datas.lineStep.data.seltTest.distance + 'm' : '-'\"></span></p></div></div></div></div></div></div></div><div data-ng-if=LinediagnosticsCtrl.datas.lineStep.data.actionsDone.length><h2 data-translate=tools_lineDiagnostics_actionDone_title></h2><div class=line-diagnostics-detail><ul class=list-unstyled><li class=bottom-space-m12 data-ng-repeat=\"actionsDone in LinediagnosticsCtrl.datas.lineStep.data.actionsDone\"><i class=\"ovh-font ovh-font-success fs16 text-success\"></i> <span class=left-space-p8>{{::'tools_lineDiagnostics_action_' + actionsDone | translate}}</span></li></ul></div></div><div data-ng-if=\"LinediagnosticsCtrl.isNotEmptyObj(LinediagnosticsCtrl.datas.lineStep.data.answers) && LinediagnosticsCtrl.displayDoneTitle(LinediagnosticsCtrl.datas.lineStep.data.answers)\"><h2 data-translate=tools_lineDiagnostics_answers_title></h2><div class=line-diagnostics-detail><div class=\"form-horizontal full-height\"><div class=form-group data-ng-repeat=\"(key, answers) in LinediagnosticsCtrl.datas.lineStep.data.answers\" data-ng-if=\"answers!==null\"><label class=\"col-xs-12 col-md-6 bodyText2 top-space-p0\">{{::'tools_lineDiagnostics_answers_' + key | translate}}</label><div class=\"col-xs-12 col-md-6\"><span data-ng-if=\"key!=='comment'\" data-ng-bind=\"(answers ? 'tools_lineDiagnostics_detail_yes' : 'tools_lineDiagnostics_detail_no') | translate\"></span> <span data-ng-if=\"key==='comment'\" data-ng-bind=\"answers ? answers : ('tools_lineDiagnostics_detail_no' | translate)\"></span></div></div></div></div></div><div class=rightPanel data-ng-if=LinediagnosticsCtrl.datas.lineStep.data.actionsToDo.length><h2 data-translate=tools_lineDiagnostics_todo_title></h2><div class=line-diagnostics-detail><form class=\"full-height clearfix\" name=formActionTodo novalidate><div class=checkbox data-ng-repeat=\"actionTodo in LinediagnosticsCtrl.datas.lineStep.data.actionsToDo\"><label><input type=checkbox data-ng-required=true data-ng-model=LinediagnosticsCtrl.formActionTodo.values[actionTodo.name]> {{::'tools_lineDiagnostics_action_' + actionTodo.name | translate}}</label></div><div class=\"form-group comment\"><label for=formActionTodo_comment class=control-label>{{::'tools_lineDiagnostics_toanswer_comment' | translate}}</label><div><textarea id=formActionTodo_comment name=formActionTodo_comment class=\"form-control vertical-resize\" ng-maxlength=200 rows=\"{{ !!toAnswer.defaultValue ? 1 : 5}}\" data-ng-model=LinediagnosticsCtrl.formActionTodo.comment></textarea></div></div><button type=button class=\"btn btn-default\" data-ng-click=LinediagnosticsCtrl.deleteDiag()><span data-translate=tools_lineDiagnostics_delete_button></span></button> <button type=button class=\"btn btn-primary pull-right\" data-ng-disabled=formActionTodo.$invalid data-ng-click=LinediagnosticsCtrl.submitActionTodo()><spinner data-ng-show=LinediagnosticsCtrl.loaders.actionTodo></spinner><span data-translate=tools_lineDiagnostics_next_button></span></button></form></div></div><div class=rightPanel data-ng-if=\"LinediagnosticsCtrl.datas.lineStep.data.toAnswer.length && LinediagnosticsCtrl.datas.lineStep.status === 'waitingHuman'\"><h2 data-translate=tools_lineDiagnostics_toanswer_title></h2><div class=line-diagnostics-detail><form class=\"full-height clearfix\" name=formToAnswer novalidate><div data-ng-repeat=\"toAnswer in LinediagnosticsCtrl.datas.lineStep.data.toAnswer\"><div class=form-group data-ng-if=\"toAnswer.type==='boolean'\"><div data-ng-if=\"toAnswer.name==='conditionsAccepted'\" class=inline style=margin-right:5px><label class=\"block pointer\"><flat-checkbox><input type=checkbox data-ng-model=LinediagnosticsCtrl.formToAnswer.values[toAnswer.name] name=\"checkbox{{ toAnswer.name}}\" id=\"checkbox{{ toAnswer.name }}\" ng-required=\"toAnswer.required\"></flat-checkbox><span class=left-space-m8>{{::'tools_lineDiagnostics_toanswer_' + toAnswer.name | translate}} <span class=red data-ng-if=toAnswer.required>*</span></span></label></div><p data-ng-if=\"toAnswer.name!=='conditionsAccepted'\">{{::'tools_lineDiagnostics_toanswer_' + toAnswer.name | translate}} <span class=red data-ng-if=toAnswer.required>*</span></p><div data-ng-if=\"toAnswer.name!=='conditionsAccepted'\" class=row><div class=col-xs-6><label><flat-radio class=pointer><input value=true type=radio ng-model=LinediagnosticsCtrl.formToAnswer.values[toAnswer.name] ng-required=toAnswer.required></flat-radio><span class=left-space-m12 data-translate=tools_lineDiagnostics_detail_yes></span></label></div><div class=col-xs-6><label><flat-radio class=pointer><input value=false type=radio ng-model=LinediagnosticsCtrl.formToAnswer.values[toAnswer.name] ng-required=toAnswer.required></flat-radio><span class=left-space-m12 data-translate=tools_lineDiagnostics_detail_no></span></label></div></div></div><div class=form-group data-ng-if=\"toAnswer.type==='string'\" data-ng-init=\"LinediagnosticsCtrl.formToAnswer.values[toAnswer.name] = toAnswer.defaultValue || '' \"><label for=formToAnswer_{{toAnswer.name}} class=control-label>{{::'tools_lineDiagnostics_toanswer_' + toAnswer.name | translate}} <span class=red data-ng-if=toAnswer.required>*</span></label><div><textarea id=formToAnswer_{{::toAnswer.name}} name=formToAnswer_{{::toAnswer.name}} class=\"form-control vertical-resize\" rows=\"{{ !!toAnswer.defaultValue ? 1 : 5}}\" data-ng-required=toAnswer.required data-ng-pattern=toAnswer.pattern data-ng-model=LinediagnosticsCtrl.formToAnswer.values[toAnswer.name]></textarea></div></div><div class=form-group data-ng-if=\"toAnswer.type==='long'\" data-ng-init=\"LinediagnosticsCtrl.formToAnswer.values[toAnswer.name] = toAnswer.defaultValue || '' \"><label for=formToAnswer_{{toAnswer.name}} class=control-label>{{::'tools_lineDiagnostics_toanswer_' + toAnswer.name | translate}} <span class=red data-ng-if=toAnswer.required>*</span></label><div><input pattern=[0-9]{1,8} id=formToAnswer_{{::toAnswer.name}} name=formToAnswer_{{::toAnswer.name}} data-ng-required=toAnswer.required data-ng-model=LinediagnosticsCtrl.formToAnswer.values[toAnswer.name]></div></div><div class=form-group data-ng-if=\"toAnswer.type==='enum'\" data-ng-init=\"LinediagnosticsCtrl.formToAnswer.values[toAnswer.name] = toAnswer.defaultValue || '' \"><label for=formToAnswer_{{toAnswer.name}} class=control-label>{{::'tools_lineDiagnostics_toanswer_' + toAnswer.name | translate}} <span class=red data-ng-if=toAnswer.required>*</span></label><div><select id=formToAnswer_{{::toAnswer.name}} name=formToAnswer_{{::toAnswer.name}} class=\"form-control no-space\" data-ng-options=\" ('tools_lineDiagnostics_toanswer_' + toAnswer.name + '_enum_' + value | translate ) for value in toAnswer.enumValues\" data-ng-required=toAnswer.required data-ng-model=LinediagnosticsCtrl.formToAnswer.values[toAnswer.name]><option data-ng-if=!toAnswer.required value=\"\"></option></select></div></div><div class=form-group data-ng-if=\"toAnswer.type==='datetime'\" data-ng-init=\"LinediagnosticsCtrl.formToAnswer.values[toAnswer.name] = toAnswer.defaultValue || '' \"><div class=row><div class=col-sm-12><label for=formToAnswer_{{toAnswer.name}}_date class=control-label>{{::'tools_lineDiagnostics_toanswer_' + toAnswer.name | translate}} <span class=red data-ng-if=toAnswer.required>*</span></label></div><div class=col-sm-7><div class=input-group><div class=input-group-btn><div class=btn-group data-uib-dropdown is-open=datepick.isopen><button id=datepick_choices type=button class=\"btn btn-default btn-sm\" data-uib-dropdown-toggle><i class=\"fa fa-calendar-o\"></i></button><ul data-uib-dropdown-menu><li role=menuitem><button class=\"full-width no-style text-left\" type=button data-ng-click=\"LinediagnosticsCtrl.setSearchDate(LinediagnosticsCtrl.formToAnswer.values, toAnswer.name, 0); datepick.isopen=false;\" data-translate=tools_lineDiagnostics_date_now></button></li><li role=menuitem><button class=\"full-width no-style text-left\" type=button data-ng-click=\"LinediagnosticsCtrl.setSearchDate(LinediagnosticsCtrl.formToAnswer.values, toAnswer.name, -1); datepick.isopen=false;\" data-translate=tools_lineDiagnostics_date_yesterday></button></li><li role=menuitem><button class=\"full-width no-style text-left\" type=button data-ng-click=\"LinediagnosticsCtrl.setSearchDate(LinediagnosticsCtrl.formToAnswer.values, toAnswer.name, -3); datepick.isopen=false;\" data-translate=tools_lineDiagnostics_date_3d></button></li><li role=menuitem><button class=\"full-width no-style text-left\" type=button data-ng-click=\"LinediagnosticsCtrl.setSearchDate(LinediagnosticsCtrl.formToAnswer.values, toAnswer.name, -7); datepick.isopen=false;\" data-translate=tools_lineDiagnostics_date_1w></button></li><li role=menuitem><button class=\"full-width no-style text-left\" type=button data-ng-click=\"LinediagnosticsCtrl.setSearchDate(LinediagnosticsCtrl.formToAnswer.values, toAnswer.name, -30); datepick.isopen=false;\" data-translate=tools_lineDiagnostics_date_1m></button></li></ul></div></div><input class=form-control id=formToAnswer_{{toAnswer.name}}_date placeholder=YYYY-MM-DD pattern=[0-9]{4}-[0-9]{2}-[0-9]{2} data-ng-change=\"LinediagnosticsCtrl.dateChanged(LinediagnosticsCtrl.formToAnswer.values, toAnswer.name)\" data-ng-model=\"LinediagnosticsCtrl.formToAnswer.values[toAnswer.name+'date']\" data-ng-required=toAnswer.required> <span class=input-group-btn data-ng-show=\"!!LinediagnosticsCtrl.formToAnswer.values[toAnswer.name+'date']\"><button class=\"btn btn-default btn-sm\" type=button data-ng-click=\"LinediagnosticsCtrl.formToAnswer.values[toAnswer.name+'date']=null;\"><i class=\"fa fa-times\"></i></button></span></div></div><div class=col-sm-5><div class=input-group><input class=form-control placeholder=HH:mm pattern=[0-9]{2}:[0-9]{2} id=formToAnswer_{{::toAnswer.name}} name=formToAnswer_{{::toAnswer.name}} data-ng-required=toAnswer.required data-ng-change=\"LinediagnosticsCtrl.dateChanged(LinediagnosticsCtrl.formToAnswer.values, toAnswer.name)\" data-ng-model=\"LinediagnosticsCtrl.formToAnswer.values[toAnswer.name+'time']\"><span class=input-group-btn data-ng-show=\"!!LinediagnosticsCtrl.formToAnswer.values[toAnswer.name+'time']\"><button class=\"btn btn-default btn-sm\" type=button data-ng-click=\"LinediagnosticsCtrl.formToAnswer.values[toAnswer.name+'time']=null;\"><i class=\"fa fa-times\"></i></button></span></div></div></div></div><div class=form-group data-ng-if=toAnswer.possibleValues.length><label for=formToAnswer_{{toAnswer.name}} class=control-label>{{::'tools_lineDiagnostics_toanswer_' + toAnswer.name | translate}} <span class=red data-ng-if=toAnswer.required>*</span></label><div><select id=formToAnswer_{{::toAnswer.name}} name=formToAnswer_{{::toAnswer.name}} class=\"form-control no-space\" data-ng-options=\"value.id as value.label for value in toAnswer.possibleValues\" data-ng-required=toAnswer.required data-ng-model=LinediagnosticsCtrl.formToAnswer.values[toAnswer.name]><option data-ng-if=!toAnswer.required value=\"\"></option></select></div></div></div><div data-ng-if=!LinediagnosticsCtrl.hasComment()><div class=form-group><label for=formActionTodo_comment class=control-label>{{::'tools_lineDiagnostics_toanswer_comment' | translate}}</label><div><textarea id=formActionTodo_comment name=formActionTodo_comment class=\"form-control vertical-resize\" rows=\"{{ !!toAnswer.defaultValue ? 1 : 5}}\" data-ng-model=LinediagnosticsCtrl.formActionTodo.comment></textarea></div></div></div><button type=button class=\"btn btn-default\" data-ng-click=LinediagnosticsCtrl.deleteDiag() data-ng-if=\"LinediagnosticsCtrl.datas.lineStep.status !== 'problem'\"><span data-translate=tools_lineDiagnostics_delete_button></span></button> <button type=button class=\"btn btn-primary pull-right\" data-ng-if=\"LinediagnosticsCtrl.datas.lineStep.status !== 'problem'\" data-ng-disabled=\"formToAnswer.$invalid || LinediagnosticsCtrl.conditionRefused()\" data-ng-click=LinediagnosticsCtrl.submitToAnswer()><spinner data-ng-show=LinediagnosticsCtrl.loaders.toAnswer></spinner><span data-translate=tools_lineDiagnostics_next_button></span></button></form></div></div><div class=line-diagnostics-detail data-ng-if=\"LinediagnosticsCtrl.datas.lineStep.status !== 'waitingHuman'\"><div class=\"alert text-center\" data-ng-class=\"{\n" + "                    'alert-info' : LinediagnosticsCtrl.datas.lineStep.status === 'waitingRobot'\n" + "                                || LinediagnosticsCtrl.datas.lineStep.status === 'sleeping'\n" + "                                || LinediagnosticsCtrl.datas.lineStep.status === 'waitingValidation'\n" + "                                || LinediagnosticsCtrl.datas.lineStep.status === 'cancelled'\n" + "                                || LinediagnosticsCtrl.datas.lineStep.status === 'haveToConnectModemOnTheRightPlug'\n" + "                                || LinediagnosticsCtrl.datas.lineStep.status === 'noSyncFaultDiagnosticRequired'\n" + "                                || LinediagnosticsCtrl.datas.lineStep.status === 'connectionProblem',\n" + "\n" + "                    'alert-danger' : LinediagnosticsCtrl.datas.lineStep.status === 'problem'\n" + "                                || LinediagnosticsCtrl.datas.lineStep.status === 'validationRefused',\n" + "\n" + "                    'alert-success' : LinediagnosticsCtrl.datas.lineStep.status === 'resolvedAfterTests'\n" + "                                || LinediagnosticsCtrl.datas.lineStep.status === 'interventionRequested'\n" + "                                || LinediagnosticsCtrl.datas.lineStep.status === 'noBandwidthFault'\n" + "                                || LinediagnosticsCtrl.datas.lineStep.status === 'noProblemAnymore'\n" + "                }\" role=alert><p><i data-ng-if=\"LinediagnosticsCtrl.datas.lineStep.status === 'waitingRobot'\n" + "                        || LinediagnosticsCtrl.datas.lineStep.status === 'sleeping'\n" + "                        || LinediagnosticsCtrl.datas.lineStep.status === 'waitingValidation'\" class=\"ovh-font ovh-font-inprogress right-space-m8\"></i> <i data-ng-if=\"LinediagnosticsCtrl.datas.lineStep.status === 'validationRefused'\" class=\"ovh-font ovh-font-failure\"></i> <i data-ng-if=\"LinediagnosticsCtrl.datas.lineStep.status === 'cancelled'\" class=\"ovh-font ovh-font-failure\"></i> <i data-ng-if=\"LinediagnosticsCtrl.datas.lineStep.status === 'problem'\" class=\"ovh-font ovh-font-warning\"></i> <i data-ng-if=\"LinediagnosticsCtrl.datas.lineStep.status === 'resolvedAfterTests'\n" + "                        || LinediagnosticsCtrl.datas.lineStep.status === 'interventionRequested'\" class=\"ovh-font ovh-font-success\"></i> <span data-translate=tools_lineDiagnostics_robot_{{LinediagnosticsCtrl.datas.lineStep.status}}></span> <span data-ng-if=\"LinediagnosticsCtrl.datas.lineStep.status === 'problem' &&\n" + "                        LinediagnosticsCtrl.datas.lineStep.data.error && LinediagnosticsCtrl.datas.lineStep.data.ovhTicket\" data-translate=tools_lineDiagnostics_robot_problem_ticket data-translate-values=\"{ovhTicket : LinediagnosticsCtrl.datas.lineStep.data.ovhTicket}\"></span><div data-ng-if=\"LinediagnosticsCtrl.datas.lineStep.status==='interventionRequested' &&\n" + "                        LinediagnosticsCtrl.datas.lineStep.data.ovhTicket\"><span class=bold data-translate=tools_lineDiagnostics_robot_interventionRequested_otrsticket data-translate-values=\"{ovhTicket : LinediagnosticsCtrl.datas.lineStep.data.ovhTicket}\"></span></div><div data-ng-if=\"LinediagnosticsCtrl.datas.lineStep.status==='interventionRequested' &&\n" + "                        LinediagnosticsCtrl.datas.lineStep.data.operatorTicketId\"><span class=bold data-translate=tools_lineDiagnostics_robot_interventionRequested_operatorticketid data-translate-values=\"{operatorTicketId : LinediagnosticsCtrl.datas.lineStep.data.operatorTicketId}\"></span></div><div data-ng-if=\"LinediagnosticsCtrl.datas.lineStep.status==='interventionRequested' &&\n" + "                        LinediagnosticsCtrl.datas.lineStep.data.ovhInterventionId\"><span class=bold data-translate=tools_lineDiagnostics_robot_interventionRequested_ovhinterventionid data-translate-values=\"{ovhInterventionId : LinediagnosticsCtrl.datas.lineStep.data.ovhInterventionId}\"></span></div><span data-ng-if=!!LinediagnosticsCtrl.datas.lineStep.data.robotAction>({{'tools_lineDiagnostics_robotAction_' + LinediagnosticsCtrl.datas.lineStep.data.robotAction | translate}})</span></p></div><button type=button class=\"btn btn-default\" data-ng-if=\"LinediagnosticsCtrl.datas.lineStep.status === 'problem'\n" + "                    || LinediagnosticsCtrl.datas.lineStep.status === 'validationRefused'\n" + "                    || LinediagnosticsCtrl.datas.lineStep.status === 'resolvedAfterTests'\n" + "                    || LinediagnosticsCtrl.datas.lineStep.status === 'interventionRequested'\n" + "                    || LinediagnosticsCtrl.datas.lineStep.status === 'haveToConnectModemOnTheRightPlug'\n" + "                    || LinediagnosticsCtrl.datas.lineStep.status === 'noSyncFaultDiagnosticRequired'\n" + "                    || LinediagnosticsCtrl.datas.lineStep.status === 'connectionProblem'\n" + "                    || LinediagnosticsCtrl.datas.lineStep.data.isInternal\" data-ng-click=LinediagnosticsCtrl.deleteDiag()><span data-translate=tools_lineDiagnostics_delete_button></span></button></div></div></div>");
+    $templateCache.put('/ovh-angular-line-diagnostics/src/ovh-angular-line-diagnostics/ovh-angular-line-diagnostics.html', "<div class=row><div class=col-md-6><div class=oui-progress-tracker><ol class=oui-progress-tracker__steps><li class=oui-progress-tracker__step data-ng-class=\"{\n" + "                        'oui-progress-tracker__step_active': $ctrl.currentStep === 'incidentDetectionStep',\n" + "                        'oui-progress-tracker__step_complete': $ctrl.currentStep !== 'incidentDetectionStep'\n" + "                    }\"><span class=oui-progress-tracker__status><span class=oui-progress-tracker__label data-translate=tools_lineDiagnostics_step_incident_detection></span></span></li><li class=oui-progress-tracker__step data-ng-class=\"{\n" + "                        'oui-progress-tracker__step_active': $ctrl.currentStep === 'investigationStep',\n" + "                        'oui-progress-tracker__step_complete': $ctrl.currentStep === 'solutionProposalStep',\n" + "                        'oui-progress-tracker__step_disabled': $ctrl.currentStep === 'incidentDetectionStep'\n" + "                    }\"><span class=oui-progress-tracker__status><span class=oui-progress-tracker__label data-translate=tools_lineDiagnostics_step_line_diagnostic></span></span></li><li class=oui-progress-tracker__step data-ng-class=\"{\n" + "                        'oui-progress-tracker__step_active': $ctrl.currentStep === 'solutionProposalStep',\n" + "                        'oui-progress-tracker__step_disabled': $ctrl.currentStep !== 'solutionProposalStep'\n" + "                    }\"><span class=oui-progress-tracker__status><span class=oui-progress-tracker__label data-translate=tools_lineDiagnostics_step_solution_proposal></span></span></li></ol></div></div></div><div class=row><toast-message></toast-message></div><div class=row data-ng-if=\"$ctrl.currentLineDiagnostic.status !== 'problem'\"><div data-ng-if=\"$ctrl.currentStep === 'incidentDetectionStep'\" data-ng-include=\"'/ovh-angular-line-diagnostics/src/ovh-angular-line-diagnostics/steps/ovh-angular-line-diagnostics-incident-step.html'\"></div><div data-ng-if=\"$ctrl.currentStep === 'investigationStep'\"></div></div><div class=form-group data-ng-if=\"$ctrl.currentLineDiagnostic.status === 'problem'\"><oui-message data-type=warning><span data-translate=tools_lineDiagnostics_diagnostic_critical_problem></span></oui-message></div>");
+
+    $templateCache.put('/ovh-angular-line-diagnostics/src/ovh-angular-line-diagnostics/steps/ovh-angular-line-diagnostics-incident-step.html', "<div class=col-md-8 data-ng-if=\"$ctrl.incidentTestProgression < 100\"><span data-translate=tools_lineDiagnostics_incident_detection_test></span><oui-progress><oui-progress-bar data-type=info data-value=$ctrl.incidentTestProgression></oui-progress-bar></oui-progress></div><div class=\"col-md-4 row\" data-ng-if=\"$ctrl.currentLineDiagnostic.status === 'waitingRobot'\"><div class=\"d-inline-block col-xs-1\"><oui-spinner size=s></oui-spinner></div><p class=d-inline-block data-translate=tools_lineDiagnostics_waitingRobot></p></div><div class=col-md-8 data-ng-if=\"$ctrl.incidentTestProgression === 100 &&\n" + "                 $ctrl.currentLineDiagnostic\"><div data-ng-if=\"$ctrl.currentLineDiagnostic.hasQuestionToAnswer('modemIsSynchronized')\"><oui-field data-label=\"{{:: 'tools_lineDiagnostics_incident_detection_modem_question' | translate }}\" data-label-popover=\"{{:: 'tools_lineDiagnostics_incident_detection_modem_question_help' | translate }}\"><div class=oui-button-group><oui-button data-text=\"{{:: 'tools_lineDiagnostics_detail_yes' | translate }}\" data-variant=secondary data-ng-click=$ctrl.setModemStatus(true)></oui-button><oui-button data-text=\"{{:: 'tools_lineDiagnostics_detail_no' | translate }}\" data-variant=secondary data-ng-click=$ctrl.setModemStatus(false)></oui-button></div><span data-ng-if=$ctrl.loadingAction><oui-spinner size=s></oui-spinner></span></oui-field></div><div data-ng-if=\"$ctrl.currentLineDiagnostic.hasActionToDo('unplugModem')\"><oui-message data-type=warning><span data-translate=tools_lineDiagnostics_incident_detection_warning></span></oui-message><oui-field data-ng-if=\"$ctrl.currentLineDiagnostic.faultType === 'noSync'\" data-label=\"{{:: 'tools_lineDiagnostics_incident_detection_modem_unplug_request' | translate }}\"><oui-button data-text=\"{{:: 'tools_lineDiagnostics_incident_detection_modem_unplug_confirm' | translate }}\" data-variant=secondary data-variant-nav=next data-ng-click=\"$ctrl.setModemUnplug('unplugModem')\"></oui-button><span data-ng-if=$ctrl.loadingAction><oui-spinner size=s></oui-spinner></span></oui-field><oui-field data-ng-if=\"$ctrl.currentLineDiagnostic.faultType === 'alignment' ||\n" + "                               $ctrl.currentLineDiagnostic.faultType === 'syncLossOrLowBandwidth'\"><oui-button data-text=\"{{:: 'tools_lineDiagnostics_incident_detection_continue' | translate }}\" data-variant=secondary data-variant-nav=next data-ng-click=$ctrl.goOnInvestigationStep()></oui-button></oui-field></div></div>");
 }]);
 //# sourceMappingURL=ovh-angular-line-diagnostics.js.map

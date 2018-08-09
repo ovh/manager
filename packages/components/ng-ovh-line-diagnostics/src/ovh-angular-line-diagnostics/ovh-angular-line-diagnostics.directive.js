@@ -1,4 +1,4 @@
-angular.module("ovh-angular-line-diagnostics").directive("lineDiagnostics", () => {
+angular.module("ovh-angular-line-diagnostics").directive("lineDiagnosticsOld", () => {
     "use strict";
 
     return {

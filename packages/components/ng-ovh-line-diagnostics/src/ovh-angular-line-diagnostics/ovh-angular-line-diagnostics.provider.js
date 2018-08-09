@@ -1,6 +1,7 @@
 angular.module("ovh-angular-line-diagnostics").provider("LineDiagnostics", function () {
     "use strict";
 
+    // let translationPath = "./node_modules/@bower_components/ovh-angular-line-diagnostics/dist";
     let requestProxy = "$http";
     let translationPath = "../bower_components/ovh-angular-line-diagnostics/dist";
     let pollingApiOptions = null;
@@ -34,7 +35,7 @@ angular.module("ovh-angular-line-diagnostics").provider("LineDiagnostics", funct
         return translationPath;
     };
 
-    this.$get = ["$injector", "Poller", "$translatePartialLoader", "$translate", function ($injector, Poller, $translatePartialLoader, $translate) {
+    this.$get = ["$injector", "Poller", "$translatePartialLoader", "$translate", "OvhApiXdslDiagnosticLines", function ($injector, Poller, $translatePartialLoader, $translate, OvhApiXdslDiagnosticLines) {
         const lineDiagnosticsService = {};
         const api = $injector.get(requestProxy);
 
@@ -46,8 +47,8 @@ angular.module("ovh-angular-line-diagnostics").provider("LineDiagnostics", funct
             return $translate.refresh();
         };
 
-        lineDiagnosticsService.getSetDiagnostic = function (uriParams, datas) {
-            const syncParam = { faultType: "noSync" };
+        lineDiagnosticsService.getRunDiagnostic = function (uriParams, datas) {
+            const syncParam = { faultType: "unknown" };
             const postParams = datas && datas.faultType ? datas : angular.extend(syncParam, datas || {});
 
             if (postParams && postParams.answers) {
@@ -57,11 +58,16 @@ angular.module("ovh-angular-line-diagnostics").provider("LineDiagnostics", funct
                     }
                 });
             }
-            return api.post(URI.expand([pathPrefix, "lines", "{number}", "diagnostic/run"].join("/"), uriParams).toString(), postParams);
+
+            return OvhApiXdslDiagnosticLines.v6().runDiagnostic(_.merge(uriParams, postParams));
         };
 
-        lineDiagnosticsService.getDeleteDiagnostic = function (uriParams) {
-            return api.post(URI.expand([pathPrefix, "lines", "{number}", "diagnostic/cancel"].join("/"), uriParams).toString());
+        lineDiagnosticsService.getCancelDiagnostic = function (uriParams) {
+            return OvhApiXdslDiagnosticLines.v6().cancelDiagnostic(uriParams);
+        };
+
+        lineDiagnosticsService.deletePollDiagnostic = function () {
+            return OvhApiXdslDiagnosticLines.v6().killPollerDiagnostic();
         };
 
         // lineDiagnosticsService.getDiagnosticPassRobot = function (serviceName, num) {

@@ -86,4 +86,3 @@ update-release: $(GRUNT_DEP)
 
 commit-release: $(GRUNT_DEP)
 	$(GRUNT) bump-commit
-
