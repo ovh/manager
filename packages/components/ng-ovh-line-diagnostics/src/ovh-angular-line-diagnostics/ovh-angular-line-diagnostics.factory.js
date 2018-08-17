@@ -1,69 +1,88 @@
-angular.module("ovh-angular-line-diagnostics").factory("LineDiagnosticFactory", () => {
-    const mandatoryOptions = ["data", "faultType", "id", "status"];
+angular.module("ovh-angular-line-diagnostics").factory("LineDiagnosticFactory", [
+    "DIAGNOSTICS_CONSTANTS",
+    (DIAGNOSTICS_CONSTANTS) => {
+        const mandatoryOptions = ["data", "faultType", "id", "status"];
 
-    class LineDiagnostic {
-        constructor (lineDiagnostic) {
-            _.forEach(mandatoryOptions, (option) => {
-                if (!_.has(lineDiagnostic, option)) {
-                    throw new Error(`${option} option must be specified when creating a new LineDiagnostic`);
+        class LineDiagnostic {
+            constructor (lineDiagnostic) {
+                _.forEach(mandatoryOptions, (option) => {
+                    if (!_.has(lineDiagnostic, option)) {
+                        throw new Error(`${option} option must be specified when creating a new LineDiagnostic`);
+                    }
+                });
+
+                this.id = lineDiagnostic.id;
+                this.faultType = lineDiagnostic.faultType;
+                this.status = lineDiagnostic.status;
+                this.data = lineDiagnostic.data;
+
+                this.clearPreviousActionsDone();
+            }
+
+            hasFinishAllTests () {
+                return !_.isNull(_.get(this, "data.answers.resolvedAfterTests", null));
+            }
+
+            clearPreviousActionsDone () {
+                if (this.data) {
+                    _.remove(this.data.actionsDone, (action) => !_.includes(this.getActionsToDo(), action));
                 }
-            });
+            }
 
-            this.id = lineDiagnostic.id;
-            this.faultType = lineDiagnostic.faultType;
-            this.status = lineDiagnostic.status;
-            this.data = lineDiagnostic.data;
-        }
+            isOnSeltTest () {
+                return _.isEqual(DIAGNOSTICS_CONSTANTS.ROBOT_ACTION.SELT_TEST, _.get(this, "data.robotAction", ""));
+            }
 
-        getActionsToDo () {
-            const actionsToDo = _.get(this, "data.actionsToDo", []);
-            return _.chain(actionsToDo)
-                .map("name")
-                .flatten()
-                .value();
-        }
+            hasSeltTestDone () {
+                return !_.isNull(_.get(this, "data.seltTest.status"));
+            }
 
-        hasActionToDo (actionName) {
-            return _.includes(this.getActionsToDo(), actionName);
-        }
+            getActionsToDo () {
+                const actionsToDo = _.get(this, "data.actionsToDo", []);
+                return _.chain(actionsToDo)
+                    .map("name")
+                    .flatten()
+                    .value();
+            }
 
-        getActionsDone () {
-            const actionsDone = _.get(this, "data.actionsDone", []);
-            return _.chain(actionsDone)
-                .map("name")
-                .flatten()
-                .value();
-        }
+            hasActionToDo (actionName) {
+                return _.includes(this.getActionsToDo(), actionName);
+            }
 
-        addActionDone (actionsToAdd) {
-            if (_.isArray(actionsToAdd)) {
-                this.data.actionsDone = _.union(this.data.actionsDone, actionsToAdd);
-            } else {
-                this.data.actionsDone.push(actionsToAdd);
+            getActionsDone () {
+                return _.get(this, "data.actionsDone", []);
+            }
+
+            addActionDone (actionToAdd) {
+                this.data.actionsDone.push(actionToAdd);
+            }
+
+            removeActionToDo (actionToRemove) {
+                _.remove(this.data.actionsToDo, "name", actionToRemove);
+            }
+
+            getQuestionsToAnswerByName () {
+                const questions = _.get(this, "data.toAnswer", []);
+                return _.chain(questions)
+                    .map("name")
+                    .flatten()
+                    .value();
+            }
+
+            hasQuestionToAnswer (questionName) {
+                return _.includes(this.getQuestionsToAnswerByName(), questionName);
+            }
+
+            convertToRequestParams () {
+                const defaultFaultType = DIAGNOSTICS_CONSTANTS.FAULT_TYPES.UNKNOWN;
+                return {
+                    actionsDone: this.data.actionsDone,
+                    answers: this.data.answers,
+                    faultType: this.faultType || defaultFaultType
+                };
             }
         }
 
-        getQuestionsToAnswer () {
-            const questions = _.get(this, "data.toAnswer", []);
-            return _.chain(questions)
-                .map("name")
-                .flatten()
-                .value();
-        }
-
-        hasQuestionToAnswer (questionName) {
-            return _.includes(this.getQuestionsToAnswer(), questionName);
-        }
-
-        convertToRequestParams () {
-            const defaultFaultType = "unknown";
-            return {
-                actionsDone: this.data.actionsDone,
-                answers: this.data.answers,
-                faultType: this.faultType || defaultFaultType
-            };
-        }
+        return LineDiagnostic;
     }
-
-    return LineDiagnostic;
-});
+]);

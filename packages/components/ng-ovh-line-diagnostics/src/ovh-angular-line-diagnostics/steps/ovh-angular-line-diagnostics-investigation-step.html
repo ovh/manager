@@ -1,0 +1,97 @@
+<div class="col-md-6"
+     data-ng-if="!$ctrl.currentLineDiagnostic.isOnSeltTest()">
+    <div class="form-group">
+        <p>
+            <span data-translate="tools_lineDiagnostics_header_investigation_step_title"></span>
+            <oui-spinner data-ng-if="$ctrl.loading" data-size="s"></oui-spinner>
+        </p>
+
+        <div class="mb-5"
+             data-ng-if="$ctrl.currentLineDiagnostic.data.actionsDone && $ctrl.currentLineDiagnostic.data.actionsDone.length > 0">
+            <p data-ng-repeat="actionDone in $ctrl.currentLineDiagnostic.getActionsDone()">
+                <span class="oui-icon oui-icon-success"
+                      aria-hidden="true"></span>
+                <span data-translate="{{:: 'tools_lineDiagnostics_investigation_step_action_' + actionDone + '_done_text' }}"></span>
+            </p>
+        </div>
+
+        <!-- ACTIONS TO DO -->
+        <div data-ng-if="$ctrl.currentLineDiagnostic.data.actionsToDo &&
+                         $ctrl.currentLineDiagnostic.data.actionsToDo.length > 0 &&
+                         $ctrl.getNextAction()">
+            <label for="{{ $ctrl.getNextAction() }}"
+                   class="oui-label">
+                <span data-translate="{{ 'tools_lineDiagnostics_investigation_step_action_' + $ctrl.getNextAction() + '_title' }}"></span>
+                <oui-popover data-ng-if="$ctrl.getNextAction() === 'checkFilter'">
+                    <button type="button"
+                            class="oui-popover-button"
+                            oui-popover-trigger></button>
+                    <oui-popover-content>
+                        <p class="text-center"
+                           data-translate="tools_lineDiagnostics_investigation_step_action_checkFilter_example">
+                        </p>
+                        <img src="assets/images/diagnostic/filtre-adsl.png" />
+                    </oui-popover-content>
+                </oui-popover>
+            </label>
+            <oui-button data-variant="secondary"
+                        data-on-click="$ctrl.addActionDone($ctrl.getNextAction())">
+                <span data-translate="{{ 'tools_lineDiagnostics_investigation_step_action_' + $ctrl.getNextAction() + '_text' }}">
+            </oui-button>
+            <!-- ACTION AS A QUESTION -->
+            <oui-button data-variant="secondary"
+                        data-on-click="$ctrl.showWarning()"
+                        data-ng-if="$ctrl.isActionAQuestion($ctrl.getNextAction())">
+                <span data-translate="tools_lineDiagnostics_detail_no">
+            </oui-button>
+        </div>
+
+        <!-- QUESTION TO ANSWER -->
+        <div data-ng-if="$ctrl.currentLineDiagnostic.data.toAnswer &&
+                         $ctrl.getInvestigationStepQuestions().length > 0"
+             data-ng-repeat="question in $ctrl.getInvestigationStepQuestions()">
+            <oui-field data-label="{{:: 'tools_lineDiagnostics_investigation_step_question_' + question.name + '_title' | translate }}">
+                <oui-radio-toggle-group class="d-inline-block"
+                                        data-model="$ctrl.currentLineDiagnostic.data.answers[question.name]"
+                                        data-ng-if="question.type === 'boolean'"
+                                        data-on-change="$ctrl.startPoller()">
+                    <oui-radio data-value="true">
+                        <span data-translate="tools_lineDiagnostics_detail_yes"></span>
+                    </oui-radio>
+                    <oui-radio data-value="false">
+                        <span data-translate="tools_lineDiagnostics_detail_no"></span>
+                    </oui-radio>
+                </oui-radio-toggle-group>
+            </oui-label>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-8">
+    <oui-message data-type="warning"
+                 data-ng-if="$ctrl.actionRequired">
+        <span data-translate="tools_lineDiagnostics_action_required_action"></span>
+    </oui-message>
+</div>
+
+<div class="col-md-5 oui-message oui-message_info"
+     data-ng-if="$ctrl.currentLineDiagnostic.hasQuestionToAnswer('resolvedAfterTests')">
+    <p data-translate="tools_lineDiagnostics_investigation_step_action_is_problem_solved"></p>
+    <oui-radio-toggle-group class="d-inline-block"
+                            data-model="$ctrl.currentLineDiagnostic.data.answers.resolvedAfterTests"
+                            data-on-change="$ctrl.startPoller()">
+        <oui-radio data-value="true">
+            <span data-translate="tools_lineDiagnostics_detail_yes"></span>
+        </oui-radio>
+        <oui-radio data-value="false">
+            <span data-translate="tools_lineDiagnostics_detail_no"></span>
+        </oui-radio>
+    </oui-radio-toggle-group>
+</div>
+
+<!-- SELT TEST LOADER -->
+<div class="col-md-6"
+     data-ng-if="$ctrl.currentLineDiagnostic.isOnSeltTest()">
+    <oui-spinner size="m"></oui-spinner>
+    <p data-translate="tools_lineDiagnostics_header_investigation_step_selt_test"></p>
+</div>

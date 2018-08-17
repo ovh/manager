@@ -1,0 +1,95 @@
+<div class="col-md-12"
+     data-ng-if="$ctrl.currentLineDiagnostic.data.answers.resolvedAfterTests">
+    <div class="row">
+        <img class="col-md-1" src="assets/images/diagnostic/human-good.svg" width="120" height="120" />
+        <span class="col-md-8">
+            <p class="oui-header_2"
+               data-translate="tools_lineDiagnostics_solution_proposal_step_problem_solved_title"></p>
+            <p data-translate="tools_lineDiagnostics_solution_proposal_step_problem_solved_subtitle"></p>
+            <oui-button data-variant="secondary"
+                        data-text="{{:: 'tools_lineDiagnostics_solution_proposal_step_exit_diagnostic' | translate }}"></oui-button>
+        </span>
+    </div>
+</div>
+
+<div data-ng-if="!$ctrl.showRequestForm && !$ctrl.currentLineDiagnostic.data.answers.resolvedAfterTests">
+    <div class="row">
+        <img class="col-md-1" src="assets/images/diagnostic/human-think.svg" width="120" height="120" />
+        <span class="col-md-8">
+            <p class="oui-header_2"
+               data-translate="tools_lineDiagnostics_solution_proposal_step_problem_to_resolve_title"></p>
+            <p data-translate="tools_lineDiagnostics_solution_proposal_step_problem_to_resolve_subtitle"></p>
+            <oui-button data-variant="secondary"
+                        data-text="{{:: 'tools_lineDiagnostics_solution_proposal_step_fill_request_form' | translate }}"
+                        data-on-click="$ctrl.showRequestForm = true"></oui-button>
+        </span>
+    </div>
+</div>
+
+<div class="col-md-12"
+     data-ng-if="$ctrl.showRequestForm">
+
+     <!-- QUESTIONS TO ANSWER -->
+    <form name="requestInterventionForm"
+          novalidate
+          data-ng-if="$ctrl.currentLineDiagnostic.data.toAnswer && $ctrl.currentLineDiagnostic.data.toAnswer.length > 0">
+        <div data-ng-repeat="question in $ctrl.currentLineDiagnostic.data.toAnswer">
+            <oui-field data-label="{{:: 'tools_lineDiagnostics_solution_proposal_step_request_form_question_' + question.name + '_title' | translate }}">
+                <!-- QUESTION TYPE STRING -->
+                <input class="oui-input"
+                       type="text"
+                       name="{{:: question.name }}"
+                       value="{{ question.defaultValue }}"
+                       data-ng-model="$ctrl.currentLineDiagnostic.answers[question.name]"
+                       data-ng-required="{{:: question.required }}"
+                       data-ng-if="question.type === 'string'">
+
+                <!-- QUESTION TYPE LONG -->
+                <input class="oui-input"
+                       type="text"
+                       name="{{:: question.name }}"
+                       value="{{ question.defaultValue }}"
+                       data-ng-model="$ctrl.currentLineDiagnostic.answers[question.name]"
+                       data-ng-required="{{:: question.required }}"
+                       data-ng-if="question.type === 'long'">
+
+                <!-- QUESTION TYPE BOOLEAN -->
+                <oui-radio-toggle-group class="d-inline-block"
+                                        data-model="$ctrl.currentLineDiagnostic.answers[question.name]"
+                                        data-ng-if="question.type === 'boolean'">
+                    <oui-radio data-value="true">
+                        <span data-translate="tools_lineDiagnostics_detail_yes"></span>
+                    </oui-radio>
+                    <oui-radio data-value="false">
+                        <span data-translate="tools_lineDiagnostics_detail_no"></span>
+                    </oui-radio>
+                </oui-radio-toggle-group>
+
+                <!-- QUESTION TYPE DATETIME -->
+                <oui-calendar data-ng-if="question.type === 'datetime'"
+                              data-name="{{:: question.name }}"
+                              data-model="$ctrl.currentLineDiagnostic.data.answers[question.name]">
+
+                </oui-calendar>
+                <!--<input class="oui-input"
+                        type="text"
+                        name="{{:: question.name }}"
+                        value="{{ question.defaultValue }}"
+                        data-ng-model="$ctrl.currentLineDiagnostic.answers[question.name]"
+                        data-ng-required="{{:: question.required }}"
+                        data-ng-if="question.type === 'datetime'"> -->
+
+                <!-- QUESTION TYPE SELECT -->
+                <oui-select data-ng-if="question.type === 'enum'"
+                            name="{{:: question.name }}"
+                            data-model="$ctrl.currentLineDiagnostic.data.answers[question.name]"
+                            data-items="$ctrl.enumQuestions[question.name]"
+                            data-align="start"
+                            data-ng-required="question.required">
+                    <span ng-bind="$item"></span>
+                </oui-select>
+            </oui-field>
+        </div>
+    </form>
+
+</div>

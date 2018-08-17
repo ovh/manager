@@ -70,6 +70,10 @@ angular.module("ovh-angular-line-diagnostics").provider("LineDiagnostics", funct
             return OvhApiXdslDiagnosticLines.v6().killPollerDiagnostic();
         };
 
+        lineDiagnosticsService.fakeSeltTest = function (uriParams, fakeResult) {
+            return OvhApiXdslDiagnosticLines.v6().fakeSeltDev(uriParams, fakeResult);
+        };
+
         // lineDiagnosticsService.getDiagnosticPassRobot = function (serviceName, num) {
         //    return api.post([pathPrefix, 'line', serviceName, 'diagnostic/noSync/passRobot', num].join('/'));
         // };

@@ -1,7 +1,7 @@
 angular.module("ovh-angular-line-diagnostics").constant("DIAGNOSTICS_CONSTANTS", {
     STEPS: {
-        INCIDENT_DETECTION: {
-            LABEL: "incidentDetectionStep",
+        DETECTION: {
+            LABEL: "detectionStep",
             ACTIONS: [
                 "unplugModem"
             ],
@@ -11,12 +11,26 @@ angular.module("ovh-angular-line-diagnostics").constant("DIAGNOSTICS_CONSTANTS",
         },
         INVESTIGATION: {
             LABEL: "investigationStep",
-            ACTIONS: []
+            ACTIONS: [
+                "modemIsSynchronized",
+                "modemStillSynchronized"
+            ],
+            ACTIONS_AS_QUESTIONS: [
+                "checkFilter",
+                "checkConnectionCable"
+            ],
+            QUESTIONS: [
+                "modemIsSynchronized",
+                "modemStillSynchronized",
+                "severalInternetConnections"
+            ]
         },
         SOLUTION_PROPOSAL: {
-            LABEL: "solutionProposalStep",
-            ACTIONS: []
+            LABEL: "solutionProposalStep"
         }
+    },
+    ROBOT_ACTION: {
+        SELT_TEST: "seltTest"
     },
     FAULT_TYPES: {
         UNKNOWN: "unknown",
@@ -41,5 +55,15 @@ angular.module("ovh-angular-line-diagnostics").constant("DIAGNOSTICS_CONSTANTS",
         PROBLEM: "problem",
         SPECIAL: [],
         WAITING_ROBOT: "waitingRobot"
+    },
+    QUESTIONS_ENUM: {
+        BANDWIDTH_TEST_UNIT: [
+            "Kbps",
+            "Mbps"
+        ],
+        PROBLEM_TYPE: [
+            "lowBandwidth",
+            "syncLoss"
+        ]
     }
 });
