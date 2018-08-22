@@ -94,4 +94,4 @@ npm test
 
 # License
 
-See https://github.com/ovh-ux/ovh-angular-q-allSettled/blob/master/LICENSE
+See https://github.com/ovh-ux/ovh-angular-checkbox-table/blob/master/LICENSE
