@@ -56,10 +56,8 @@ Because ovh-angular-line-diagnostic uses the expand method of URI.js that is not
 3. Add in you're HTML.
 
 ```html
-  <div data-line-diagnostics="{{ lineNumber }}"
-         data-line-diagnostics-type="{{ diagnosticType }}"
-         data-line-diagnostics-service-name="{{ serviceName }}">
-  </div>
+    <line-diagnostics data-line-number="{{ lineNumber }}"
+                      data-service-name="{{ serviceName }}"></line-diagnostics>
 ```
 
 

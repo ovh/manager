@@ -65,6 +65,19 @@ module.exports = function (grunt) {
             }
         },
 
+        ngAnnotate: {
+            dist: {
+                files: [
+                    {
+                        expand: true,
+                        cwd: "<%= builddir %>",
+                        src: "ovh-angular-line-diagnostics.js",
+                        dest: "<%= builddir %>"
+                    }
+                ]
+            }
+        },
+
         // translation
         ovhTranslation: {
           dev: {
@@ -101,6 +114,7 @@ module.exports = function (grunt) {
                         "<%=srcdir%>/ovh-angular-line-diagnostics/ovh-angular-line-diagnostics.js",
                         "<%=srcdir%>/ovh-angular-line-diagnostics/ovh-angular-line-diagnostics.component.js",
                         "<%=srcdir%>/ovh-angular-line-diagnostics/ovh-angular-line-diagnostics.constant.js",
+                        "<%=srcdir%>/ovh-angular-line-diagnostics/ovh-angular-line-diagnostics.controller.js",
                         "<%=srcdir%>/ovh-angular-line-diagnostics/ovh-angular-line-diagnostics.factory.js",
                         "<%=srcdir%>/ovh-angular-line-diagnostics/ovh-angular-line-diagnostics.provider.js",
                         "<%=builddir%>/templates.js"
@@ -170,7 +184,7 @@ module.exports = function (grunt) {
         grunt.task.run(["clean", "eslint"]);
     });
 
-    grunt.registerTask("build", ["eslint", "clean", "ovhTranslation", "ngtemplates", "concat", "babel", "complexity", "uglify", "copy:dist", "less:dist"]);
+    grunt.registerTask("build", ["eslint", "clean", "ovhTranslation", "ngtemplates", "concat", "babel", "complexity", "ngAnnotate", "uglify", "copy:dist", "less:dist"]);
 
     // Increase version number. Type = minor|major|patch
     grunt.registerTask("release", "Release", () => {

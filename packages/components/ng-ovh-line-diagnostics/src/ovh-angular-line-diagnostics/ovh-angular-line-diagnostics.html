@@ -26,7 +26,8 @@
                 </li>
                 <li class="oui-progress-tracker__step"
                     data-ng-class="{
-                        'oui-progress-tracker__step_active': $ctrl.currentStep === 'solutionProposalStep',
+                        'oui-progress-tracker__step_active': $ctrl.currentStep === 'solutionProposalStep' && !$ctrl.isDiagnosticComplete(),
+                        'oui-progress-tracker__step_complete': $ctrl.isDiagnosticComplete(),
                         'oui-progress-tracker__step_disabled': $ctrl.currentStep !== 'solutionProposalStep'
                     }">
                     <span class="oui-progress-tracker__status">
@@ -37,21 +38,6 @@
             </ol>
         </div>
     </div>
-    <div class="col-md-6"
-         data-ng-if="$ctrl.currentLineDiagnostic.isOnSeltTest()">
-        <div data-ng-if="!$ctrl.loadingFakeTest">
-            <span>Simulation du test SELT (Mode debug)</span>
-            <p>
-              <oui-button variant="secondary" data-on-click="$ctrl.fakeSeltTest('linePreloc')">linePreloc</oui-button>
-              <oui-button variant="secondary" data-on-click="$ctrl.fakeSeltTest('custoPreloc')">custPreloc</oui-button>
-              <oui-button variant="secondary" data-on-click="$ctrl.fakeSeltTest('nraPreloc')">nraPreloc</oui-button>
-              <oui-button variant="secondary" data-on-click="$ctrl.fakeSeltTest('failed')">failed</oui-button>
-            </p>
-        </div>
-        <div data-ng-if="$ctrl.loadingFakeTest">
-            <oui-spinner size="m"></oui-spinner>
-        </div>
-    </div>
 </div>
 
 <div class="row">
@@ -59,7 +45,7 @@
 </div>
 
 <div class="row"
-     data-ng-if="$ctrl.currentLineDiagnostic.status !== 'problem'">
+     data-ng-if="$ctrl.currentLineDiagnostic.status !== 'problem' || $ctrl.isMonitoringAlreadyExists()">
     <!-- INCIDENT DETECTION STEP -->
     <div data-ng-if="$ctrl.currentStep === 'detectionStep'"
          data-ng-include="'/ovh-angular-line-diagnostics/src/ovh-angular-line-diagnostics/steps/ovh-angular-line-diagnostics-detection-step.html'">
@@ -70,15 +56,16 @@
          data-ng-include="'/ovh-angular-line-diagnostics/src/ovh-angular-line-diagnostics/steps/ovh-angular-line-diagnostics-investigation-step.html'">
     </div>
 
+    <!-- SOLUTION PROPOSAL STEP -->
     <div data-ng-if="$ctrl.currentStep === 'solutionProposalStep'"
          data-ng-include="'/ovh-angular-line-diagnostics/src/ovh-angular-line-diagnostics/steps/ovh-angular-line-diagnostics-solution-proposal-step.html'">
     </div>
 </div>
 
 <!-- CRITICAL PROBLEM IN DIAGNOSTIC -->
-<div class="row"
-     data-ng-if="$ctrl.currentLineDiagnostic.status === 'problem'">
+<div data-ng-if="$ctrl.currentLineDiagnostic.status === 'problem' && !$ctrl.isMonitoringAlreadyExists()">
     <oui-message data-type="error">
-        <span data-translate="tools_lineDiagnostics_diagnostic_critical_problem"></span>
+        <p data-translate="tools_lineDiagnostics_diagnostic_critical_problem_title"></p>
+        <p data-translate="tools_lineDiagnostics_diagnostic_critical_problem"></p>
     </oui-message>
 </div>

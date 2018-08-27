@@ -1,95 +1,441 @@
-<div class="col-md-12"
-     data-ng-if="$ctrl.currentLineDiagnostic.data.answers.resolvedAfterTests">
-    <div class="row">
-        <img class="col-md-1" src="assets/images/diagnostic/human-good.svg" width="120" height="120" />
-        <span class="col-md-8">
-            <p class="oui-header_2"
-               data-translate="tools_lineDiagnostics_solution_proposal_step_problem_solved_title"></p>
-            <p data-translate="tools_lineDiagnostics_solution_proposal_step_problem_solved_subtitle"></p>
-            <oui-button data-variant="secondary"
-                        data-text="{{:: 'tools_lineDiagnostics_solution_proposal_step_exit_diagnostic' | translate }}"></oui-button>
-        </span>
-    </div>
+<!-- PROBLEM SOLVED -->
+<div data-ng-if="$ctrl.currentLineDiagnostic.data.answers.resolvedAfterTests">
+    <img class="col-md-2"
+         src="assets/images/diagnostic/human-good.svg"
+         width="180"
+         height="180"
+         data-ng-attr-alt="{{:: $ctrl.currentLineDiagnostic.status }}"/>
+    <span class="col-md-8">
+        <p class="oui-header_4"
+           data-translate="tools_lineDiagnostics_solution_proposal_step_problem_solved_title"></p>
+        <p data-translate="tools_lineDiagnostics_solution_proposal_step_problem_solved_subtitle"></p>
+        <oui-button data-variant="primary"
+                    data-text="{{:: 'tools_lineDiagnostics_solution_proposal_step_exit_diagnostic' | translate }}"
+                    data-on-click="$ctrl.$state.go('^')"></oui-button>
+    </span>
 </div>
 
-<div data-ng-if="!$ctrl.showRequestForm && !$ctrl.currentLineDiagnostic.data.answers.resolvedAfterTests">
-    <div class="row">
-        <img class="col-md-1" src="assets/images/diagnostic/human-think.svg" width="120" height="120" />
-        <span class="col-md-8">
-            <p class="oui-header_2"
-               data-translate="tools_lineDiagnostics_solution_proposal_step_problem_to_resolve_title"></p>
-            <p data-translate="tools_lineDiagnostics_solution_proposal_step_problem_to_resolve_subtitle"></p>
-            <oui-button data-variant="secondary"
-                        data-text="{{:: 'tools_lineDiagnostics_solution_proposal_step_fill_request_form' | translate }}"
-                        data-on-click="$ctrl.showRequestForm = true"></oui-button>
-        </span>
-    </div>
+<!-- SPECIFIC ERRORS -->
+<div data-ng-if="$ctrl.isMonitoringAlreadyExists()">
+    <img class="col-md-2"
+         src="assets/images/diagnostic/human-think.svg"
+         width="180"
+         height="180"
+         data-ng-attr-alt="{{:: $ctrl.currentLineDiagnostic.status }}"/>
+    <span class="col-md-8">
+        <p class="oui-header_4"
+           data-translate="{{:: 'tools_lineDiagnostics_error_context_monitoringTodoAlreadyExists_title' }}"></p>
+        <p data-translate="{{:: 'tools_lineDiagnostics_error_context_monitoringTodoAlreadyExists_subtitle' }}"></p>
+        <oui-button data-variant="primary"
+                    data-text="{{:: 'tools_lineDiagnostics_solution_proposal_step_exit_diagnostic' | translate }}"
+                    data-on-click="$ctrl.$state.go('^')"></oui-button>
+    </span>
 </div>
 
-<div class="col-md-12"
-     data-ng-if="$ctrl.showRequestForm">
+<!-- PROBLEM UNSOLVED -->
+<div data-ng-if="!$ctrl.currentLineDiagnostic.data.answers.resolvedAfterTests">
 
-     <!-- QUESTIONS TO ANSWER -->
-    <form name="requestInterventionForm"
-          novalidate
-          data-ng-if="$ctrl.currentLineDiagnostic.data.toAnswer && $ctrl.currentLineDiagnostic.data.toAnswer.length > 0">
-        <div data-ng-repeat="question in $ctrl.currentLineDiagnostic.data.toAnswer">
-            <oui-field data-label="{{:: 'tools_lineDiagnostics_solution_proposal_step_request_form_question_' + question.name + '_title' | translate }}">
-                <!-- QUESTION TYPE STRING -->
-                <input class="oui-input"
-                       type="text"
-                       name="{{:: question.name }}"
-                       value="{{ question.defaultValue }}"
-                       data-ng-model="$ctrl.currentLineDiagnostic.answers[question.name]"
-                       data-ng-required="{{:: question.required }}"
-                       data-ng-if="question.type === 'string'">
-
-                <!-- QUESTION TYPE LONG -->
-                <input class="oui-input"
-                       type="text"
-                       name="{{:: question.name }}"
-                       value="{{ question.defaultValue }}"
-                       data-ng-model="$ctrl.currentLineDiagnostic.answers[question.name]"
-                       data-ng-required="{{:: question.required }}"
-                       data-ng-if="question.type === 'long'">
-
-                <!-- QUESTION TYPE BOOLEAN -->
-                <oui-radio-toggle-group class="d-inline-block"
-                                        data-model="$ctrl.currentLineDiagnostic.answers[question.name]"
-                                        data-ng-if="question.type === 'boolean'">
-                    <oui-radio data-value="true">
-                        <span data-translate="tools_lineDiagnostics_detail_yes"></span>
-                    </oui-radio>
-                    <oui-radio data-value="false">
-                        <span data-translate="tools_lineDiagnostics_detail_no"></span>
-                    </oui-radio>
-                </oui-radio-toggle-group>
-
-                <!-- QUESTION TYPE DATETIME -->
-                <oui-calendar data-ng-if="question.type === 'datetime'"
-                              data-name="{{:: question.name }}"
-                              data-model="$ctrl.currentLineDiagnostic.data.answers[question.name]">
-
-                </oui-calendar>
-                <!--<input class="oui-input"
-                        type="text"
-                        name="{{:: question.name }}"
-                        value="{{ question.defaultValue }}"
-                        data-ng-model="$ctrl.currentLineDiagnostic.answers[question.name]"
-                        data-ng-required="{{:: question.required }}"
-                        data-ng-if="question.type === 'datetime'"> -->
-
-                <!-- QUESTION TYPE SELECT -->
-                <oui-select data-ng-if="question.type === 'enum'"
-                            name="{{:: question.name }}"
-                            data-model="$ctrl.currentLineDiagnostic.data.answers[question.name]"
-                            data-items="$ctrl.enumQuestions[question.name]"
-                            data-align="start"
-                            data-ng-required="question.required">
-                    <span ng-bind="$item"></span>
-                </oui-select>
-            </oui-field>
+    <!-- STATUS MESSAGES -->
+    <div data-ng-if="!$ctrl.showRequestForm">
+        <div data-ng-if="$ctrl.currentLineDiagnostic.status === 'waitingValidation'">
+            <img class="col-md-2"
+                 src="assets/images/diagnostic/human-speedAndGraphic.svg"
+                 width="180"
+                 height="180"
+                 data-ng-attr-alt="{{:: $ctrl.currentLineDiagnostic.status }}"/>
+            <span class="col-md-8">
+                <p class="oui-header_4"
+                   data-translate="tools_lineDiagnostics_solution_proposal_step_waitingValidation_title"></p>
+                <p data-translate="tools_lineDiagnostics_solution_proposal_step_waitingValidation_subtitle"></p>
+                <oui-button data-variant="primary"
+                            data-text="{{:: 'tools_lineDiagnostics_solution_proposal_step_exit_diagnostic' | translate }}"
+                            data-on-click="$ctrl.$state.go('^')"></oui-button>
+            </span>
         </div>
-    </form>
 
+        <div data-ng-if="$ctrl.currentLineDiagnostic.status === 'waitingHuman'">
+            <div class="col-md-12 form-group"
+                 data-ng-if="$ctrl.currentLineDiagnostic.data.answers.problemType === 'lowBandwidth'">
+                <p data-translate="tools_lineDiagnostics_solution_proposal_step_bandwidthCapabilities"
+                   data-translate-values="{
+                        'up': $ctrl.bandwidthDetails.theoricalBandwidth.up,
+                        'down': $ctrl.bandwidthDetails.theoricalBandwidth.down
+                   }"></p>
+                <p data-translate="tools_lineDiagnostics_solution_proposal_step_bandwidthCurrent"
+                   data-translate-values="{
+                        'up': $ctrl.bandwidthDetails.currentBandwidth.up,
+                        'down': $ctrl.bandwidthDetails.currentBandwidth.down
+                   }"></p>
+            </div>
+            <img class="col-md-2"
+                 src="assets/images/diagnostic/human-think.svg"
+                 width="180"
+                 height="180"
+                 data-ng-attr-alt="{{:: $ctrl.currentLineDiagnostic.status }}"/>
+            <span class="col-md-8">
+                <p class="oui-header_4"
+                   data-translate="tools_lineDiagnostics_solution_proposal_step_problem_to_resolve_title"></p>
+                <p data-translate="tools_lineDiagnostics_solution_proposal_step_problem_to_resolve_subtitle"></p>
+                <oui-button data-variant="primary"
+                            data-text="{{:: 'tools_lineDiagnostics_solution_proposal_step_fill_request_form' | translate }}"
+                            data-on-click="$ctrl.showRequestForm = true"></oui-button>
+            </span>
+        </div>
+
+        <div data-ng-if="$ctrl.currentLineDiagnostic.status === 'syncLossOrLowBandwidth'">
+            <img class="col-md-2"
+                 src="assets/images/diagnostic/human-think.svg"
+                 width="180"
+                 height="180"
+                 data-ng-attr-alt="{{:: $ctrl.currentLineDiagnostic.status }}"/>
+            <span class="col-md-8">
+                <p class="oui-header_4"
+                   data-translate="tools_lineDiagnostics_solution_proposal_step_problem_to_monitor_title_title"></p>
+                <p data-translate="tools_lineDiagnostics_solution_proposal_step_problem_to_monitor_title_subtitle"></p>
+                <oui-button data-variant="primary"
+                            data-text="{{:: 'tools_lineDiagnostics_solution_proposal_step_fill_request_form' | translate }}"
+                            data-on-click="$ctrl.showRequestForm = true"></oui-button>
+            </span>
+        </div>
+
+        <div data-ng-if="$ctrl.currentLineDiagnostic.status === 'haveToConnectModemOnTheRightPlug'">
+            <img class="col-md-2"
+                 src="assets/images/diagnostic/human-think.svg"
+                 width="180"
+                 height="180"
+                 data-ng-attr-alt="{{:: $ctrl.currentLineDiagnostic.status }}"/>
+            <span class="col-md-8">
+                <p class="oui-header_4"
+                   data-translate="tools_lineDiagnostics_solution_proposal_step_haveToConnectModemOnTheRightPlug_title"></p>
+                <p data-translate="tools_lineDiagnostics_solution_proposal_step_haveToConnectModemOnTheRightPlug_subtitle"></p>
+                <oui-button data-variant="primary"
+                            data-text="{{:: 'tools_lineDiagnostics_solution_proposal_step_exit_diagnostic' | translate }}"
+                            data-on-click="$ctrl.$state.go('^')"></oui-button>
+            </span>
+        </div>
+
+        <div data-ng-if="$ctrl.currentLineDiagnostic.status === 'connectionProblem'">
+            <img class="col-md-2"
+                 src="assets/images/diagnostic/human-think.svg"
+                 width="180"
+                 height="180"
+                 data-ng-attr-alt="{{:: $ctrl.currentLineDiagnostic.status }}"/>
+            <span class="col-md-8">
+                <p class="oui-header_4"
+                   data-translate="tools_lineDiagnostics_solution_proposal_step_connectionProblem_title"></p>
+                <p data-translate="tools_lineDiagnostics_solution_proposal_step_connectionProblem_subtitle"></p>
+                <oui-button data-variant="primary"
+                            data-text="{{:: 'tools_lineDiagnostics_solution_proposal_step_exit_diagnostic' | translate }}"
+                            data-on-click="$ctrl.$state.go('^')"></oui-button>
+            </span>
+        </div>
+
+        <div data-ng-if="$ctrl.currentLineDiagnostic.status === 'cancelled'">
+            <img class="col-md-2"
+                 src="assets/images/diagnostic/human-think.svg"
+                 width="180"
+                 height="180"
+                 data-ng-attr-alt="{{:: $ctrl.currentLineDiagnostic.status }}"/>
+            <span class="col-md-8">
+                <p class="oui-header_4"
+                   data-translate="tools_lineDiagnostics_solution_proposal_step_cancelled_title"></p>
+                <p data-translate="tools_lineDiagnostics_solution_proposal_step_cancelled_subtitle"></p>
+                <oui-button data-variant="primary"
+                            data-text="{{:: 'tools_lineDiagnostics_solution_proposal_step_exit_diagnostic' | translate }}"
+                            data-on-click="$ctrl.$state.go('^')"></oui-button>
+            </span>
+        </div>
+
+        <div data-ng-if="$ctrl.currentLineDiagnostic.status === 'validationRefused'">
+            <img class="col-md-2"
+                 src="assets/images/diagnostic/human-think.svg"
+                 width="180"
+                 height="180"
+                 data-ng-attr-alt="{{:: $ctrl.currentLineDiagnostic.status }}"/>
+            <span class="col-md-8">
+                <p class="oui-header_4"
+                   data-translate="tools_lineDiagnostics_solution_proposal_step_validationRefused_title"></p>
+                <oui-button data-variant="primary"
+                            data-text="{{:: 'tools_lineDiagnostics_solution_proposal_step_exit_diagnostic' | translate }}"
+                            data-on-click="$ctrl.$state.go('^')"></oui-button>
+            </span>
+        </div>
+
+        <div data-ng-if="$ctrl.currentLineDiagnostic.status === 'interventionRequested'">
+            <img class="col-md-2"
+                 src="assets/images/diagnostic/human-think.svg"
+                 width="180"
+                 height="180"
+                 data-ng-attr-alt="{{:: $ctrl.currentLineDiagnostic.status }}"/>
+            <span class="col-md-8">
+                <p class="oui-header_4"
+                   data-translate="tools_lineDiagnostics_solution_proposal_step_interventionRequested_title"></p>
+                <p data-translate="tools_lineDiagnostics_solution_proposal_step_interventionRequested_subtitle"></p>
+                <oui-button data-variant="primary"
+                            data-text="{{:: 'tools_lineDiagnostics_solution_proposal_step_exit_diagnostic' | translate }}"
+                            data-on-click="$ctrl.$state.go('^')"></oui-button>
+            </span>
+        </div>
+
+        <div data-ng-if="$ctrl.currentLineDiagnostic.status === 'noBandwidthFault'">
+            <img class="col-md-2"
+                 src="assets/images/diagnostic/human-think.svg"
+                 width="180"
+                 height="180"
+                 data-ng-attr-alt="{{:: $ctrl.currentLineDiagnostic.status }}"/>
+            <span class="col-md-8">
+                <p class="oui-header_4"
+                   data-translate="tools_lineDiagnostics_solution_proposal_step_noBandwidthFault_title"></p>
+                <p data-translate="tools_lineDiagnostics_solution_proposal_step_noDefaultAnymore_subtitle"></p>
+                <oui-button data-variant="primary"
+                            data-text="{{:: 'tools_lineDiagnostics_solution_proposal_step_exit_diagnostic' | translate }}"
+                            data-on-click="$ctrl.$state.go('^')"></oui-button>
+            </span>
+        </div>
+
+        <div data-ng-if="$ctrl.currentLineDiagnostic.status === 'noProblemAnymore'">
+            <img class="col-md-2"
+                 src="assets/images/diagnostic/human-think.svg"
+                 width="180"
+                 height="180"
+                 data-ng-attr-alt="{{:: $ctrl.currentLineDiagnostic.status }}"/>
+            <span class="col-md-8">
+                <p class="oui-header_4"
+                   data-translate="tools_lineDiagnostics_solution_proposal_step_noProblemAnymore_title"></p>
+                <p data-translate="tools_lineDiagnostics_solution_proposal_step_noDefaultAnymore_subtitle"></p>
+                <oui-button data-variant="primary"
+                            data-text="{{:: 'tools_lineDiagnostics_solution_proposal_step_exit_diagnostic' | translate }}"
+                            data-on-click="$ctrl.$state.go('^')"></oui-button>
+            </span>
+        </div>
+
+        <div data-ng-if="$ctrl.currentLineDiagnostic.data.error === 'monitoringTodoAlreadyExists'">
+            <img class="col-md-2"
+                 src="assets/images/diagnostic/human-think.svg"
+                 width="180"
+                 height="180"
+                 data-ng-attr-alt="{{:: $ctrl.currentLineDiagnostic.status }}"/>
+            <span class="col-md-8">
+                <p class="oui-header_4"
+                   data-translate="tools_lineDiagnostics_error_context_monitoringTodoAlreadyExists_title"></p>
+                <p data-translate="tools_lineDiagnostics_error_context_monitoringTodoAlreadyExists_subtitle"></p>
+                <oui-button data-variant="primary"
+                            data-text="{{:: 'tools_lineDiagnostics_solution_proposal_step_exit_diagnostic' | translate }}"
+                            data-on-click="$ctrl.$state.go('^')"></oui-button>
+            </span>
+        </div>
+    </div>
+    <!-- END STATUS MESSAGES -->
+
+    <!-- INTERVENTION REQUEST FORM -->
+    <div class="col-md-8"
+         data-ng-if="$ctrl.showRequestForm">
+
+        <form class="form-group"
+              name="requestInterventionForm"
+              novalidate
+              data-ng-if="$ctrl.currentLineDiagnostic.data.toAnswer && $ctrl.currentLineDiagnostic.data.toAnswer.length > 0 && !$ctrl.loading">
+
+            <!-- Appointment details -->
+            <div data-ng-if="$ctrl.currentLineDiagnostic.needAppointmentDetails()">
+                <oui-field data-label="{{:: 'tools_lineDiagnostics_solution_proposal_step_request_form_question_idAppointment_title' | translate }}"
+                           data-ng-if="$ctrl.currentLineDiagnostic.hasQuestionToAnswer('idAppointment')">
+                    <oui-select name="idAppointment"
+                                placeholder="{{:: 'tools_lineDiagnostics_solution_proposal_step_request_form_question_idAppointment_text' | translate }}"
+                                data-match="label"
+                                data-model="$ctrl.appointmentSlot"
+                                data-items="$ctrl.currentLineDiagnostic.getQuestionOptions('idAppointment')"
+                                data-align="start"
+                                data-on-change="$ctrl.currentLineDiagnostic.data.answers.idAppointment = $ctrl.appointmentSlot.id"
+                                required>
+                        <span ng-bind="$item.label"></span>
+                    </oui-select>
+                </oui-field>
+
+                <oui-field data-label="{{:: 'tools_lineDiagnostics_solution_proposal_step_request_form_question_individualSite_title' | translate }}"
+                           data-ng-if="$ctrl.currentLineDiagnostic.hasQuestionToAnswer('individualSite')">
+                    <oui-radio-toggle-group class="d-inline-block"
+                                            data-model="$ctrl.currentLineDiagnostic.data.answers.individualSite">
+                        <oui-radio data-value="true"
+                                   required>
+                            <span data-translate="tools_lineDiagnostics_detail_yes"></span>
+                        </oui-radio>
+                        <oui-radio data-value="false"
+                                   required>
+                            <span data-translate="tools_lineDiagnostics_detail_no"></span>
+                        </oui-radio>
+                    </oui-radio-toggle-group>
+                </oui-field>
+
+                <oui-field data-label="{{:: 'tools_lineDiagnostics_solution_proposal_step_request_form_question_siteClosedDays_title' | translate }}"
+                           data-ng-if="$ctrl.currentLineDiagnostic.hasQuestionToAnswer('siteClosedDays')">
+                    <input class="oui-input"
+                           type="text"
+                           name="siteClosedDays"
+                           data-ng-model="$ctrl.currentLineDiagnostic.data.answers.siteClosedDays"
+                           required>
+                </oui-field>
+
+                <oui-field data-label="{{:: 'tools_lineDiagnostics_solution_proposal_step_request_form_question_siteOpening_title' | translate }}"
+                           data-ng-if="$ctrl.currentLineDiagnostic.hasQuestionToAnswer('siteOpening')">
+                    <input class="oui-input"
+                           type="text"
+                           name="siteOpening"
+                           data-ng-model="$ctrl.currentLineDiagnostic.data.answers.siteOpening"
+                           data-maxlength="20"
+                           required>
+                </oui-field>
+
+                <!-- Time period questions --->
+                <div data-ng-if="$ctrl.currentLineDiagnostic.hasTimePeriodQuestions()">
+                    <label class="oui-label"
+                           data-translate="tools_lineDiagnostics_solution_proposal_step_request_form_question_hours_title"></label>
+
+                    <div class="row">
+                        <oui-field class="col-md-3 col-xs-8"
+                                   data-label="{{:: 'tools_lineDiagnostics_solution_proposal_step_request_form_question_startMorningHours_title' | translate }}">
+                            <input class="oui-input"
+                                   type="text"
+                                   name="startMorningHours"
+                                   data-ng-pattern="/^[0-9:hH]{0,5}$/"
+                                   data-ng-model="$ctrl.currentLineDiagnostic.data.answers.startMorningHours"
+                                   required>
+                        </oui-field>
+
+                        <oui-field class="col-md-3 col-xs-8"
+                                   data-label="{{:: 'tools_lineDiagnostics_solution_proposal_step_request_form_question_endMorningHours_title' | translate }}">
+                            <input class="oui-input"
+                                   type="text"
+                                   name="endMorningHours"
+                                   data-ng-pattern="/^[0-9:hH]{0,5}$/"
+                                   data-ng-model="$ctrl.currentLineDiagnostic.data.answers.endMorningHours"
+                                   required>
+                        </oui-field>
+                    </div>
+                    <div class="row">
+                        <oui-field class="col-md-3 col-xs-8"
+                                   data-label="{{:: 'tools_lineDiagnostics_solution_proposal_step_request_form_question_startAfternoonHours_title' | translate }}">
+                            <input class="oui-input"
+                                   type="text"
+                                   name="startAfternoonHours"
+                                   data-ng-pattern="/^[0-9:hH]{0,5}$/"
+                                   data-ng-model="$ctrl.currentLineDiagnostic.data.answers.startAfternoonHours"
+                                   required>
+                        </oui-field>
+
+                        <oui-field class="col-md-3 col-xs-8"
+                                   data-label="{{:: 'tools_lineDiagnostics_solution_proposal_step_request_form_question_endAfternoonHours_title' | translate }}">
+                            <input class="oui-input"
+                                   type="text"
+                                   name="endAfternoonHours"
+                                   data-ng-pattern="/^[0-9:hH]{0,5}$/"
+                                   data-ng-model="$ctrl.currentLineDiagnostic.data.answers.endAfternoonHours"
+                                   required>
+                        </oui-field>
+                    </div>
+                </div>
+
+                <oui-field data-label="{{:: 'tools_lineDiagnostics_solution_proposal_step_request_form_question_secureSite_title' | translate }}"
+                           data-ng-if="$ctrl.currentLineDiagnostic.hasQuestionToAnswer('secureSite')">
+                    <oui-radio-toggle-group class="d-inline-block"
+                                            data-model="$ctrl.currentLineDiagnostic.data.answers.secureSite">
+                        <oui-radio data-value="true"
+                                   required>
+                            <span data-translate="tools_lineDiagnostics_detail_yes"></span>
+                        </oui-radio>
+                        <oui-radio data-value="false"
+                                   required>
+                            <span data-translate="tools_lineDiagnostics_detail_no"></span>
+                        </oui-radio>
+                    </oui-radio-toggle-group>
+                </oui-field>
+
+                <oui-field data-label="{{:: 'tools_lineDiagnostics_solution_proposal_step_request_form_question_siteDigicode_title' | translate }}"
+                           data-ng-if="$ctrl.currentLineDiagnostic.hasQuestionToAnswer('siteDigicode')">
+                    <input class="oui-input"
+                           type="text"
+                           name="siteDigicode"
+                           data-ng-model="$ctrl.currentLineDiagnostic.data.answers.siteDigicode">
+                </oui-field>
+
+                <oui-button data-disabled="!requestInterventionForm.$valid"
+                            data-on-click="$ctrl.startPoller()"
+                            data-text="{{:: 'tools_lineDiagnostics_solution_proposal_step_intervention_request_continue' | translate }}"
+                            data-variant="primary">
+                </oui-button>
+            </div>
+
+            <!-- Intervention validation -->
+            <div class="form-group"
+                 data-ng-if="!$ctrl.currentLineDiagnostic.needAppointmentDetails()">
+                <oui-field data-label="{{:: 'tools_lineDiagnostics_solution_proposal_step_request_form_question_ovhTicket_title' | translate }}"
+                           data-ng-if="$ctrl.currentLineDiagnostic.hasQuestionToAnswer('ovhTicket')">
+                    <input class="oui-input"
+                           type="text"
+                           name="ovhTicket"
+                           data-ng-model="$ctrl.currentLineDiagnostic.data.answers.ovhTicket">
+                </oui-field>
+
+                <div class="row">
+                    <oui-field class="col-md-6 col-xs-12"
+                               data-label="{{:: 'tools_lineDiagnostics_solution_proposal_step_request_form_question_modemType_title' | translate }}"
+                               data-ng-if="$ctrl.currentLineDiagnostic.hasQuestionToAnswer('modemType')">
+                        <input class="oui-input"
+                               type="text"
+                               name="modemType"
+                               value="$ctrl.currentLineDiagnostic.getQuestionDefaultValue('modemType')"
+                               data-ng-model="$ctrl.currentLineDiagnostic.data.answers.modemType"
+                               required>
+                    </oui-field>
+
+                    <oui-field class="col-md-6 col-xs-12"
+                               data-label="{{:: 'tools_lineDiagnostics_solution_proposal_step_request_form_question_contactPhone_title' | translate }}">
+                        <input class="oui-input"
+                               type="text"
+                               name="contactPhone"
+                               data-ng-model="$ctrl.currentLineDiagnostic.data.answers.contactPhone"
+                               required>
+                    </oui-field>
+                </div>
+
+                <oui-field data-label="{{:: 'tools_lineDiagnostics_solution_proposal_step_request_form_question_comment_title' | translate }}">
+                    <oui-textarea data-model="$ctrl.currentLineDiagnostic.data.answers.comment"
+                                  data-rows="7"
+                                  data-minlength="5"
+                                  data-maxlength="200"
+                                  required></oui-textarea>
+                </oui-field>
+
+                <oui-field data-label="{{:: 'tools_lineDiagnostics_solution_proposal_step_request_form_question_followBySms_title' | translate }}">
+                    <oui-radio-toggle-group class="d-inline-block"
+                                            data-model="$ctrl.currentLineDiagnostic.data.answers.followBySms">
+                        <oui-radio data-value="true"
+                                   required>
+                            <span data-translate="tools_lineDiagnostics_detail_yes"></span>
+                        </oui-radio>
+                        <oui-radio data-value="false"
+                                   required>
+                            <span data-translate="tools_lineDiagnostics_detail_no"></span>
+                        </oui-radio>
+                    </oui-radio-toggle-group>
+                </oui-field>
+
+                <oui-checkbox data-ng-init="$ctrl.currentLineDiagnostic.data.answers.conditionsAccepted = false"
+                              data-model="$ctrl.currentLineDiagnostic.data.answers.conditionsAccepted">
+                    <span data-translate="tools_lineDiagnostics_solution_proposal_step_request_form_question_conditionsAccepted_title"></span>
+                </oui-checkbox>
+
+                <oui-button data-disabled="!requestInterventionForm.$valid || !$ctrl.currentLineDiagnostic.data.answers.conditionsAccepted"
+                            data-on-click="$ctrl.startPoller()"
+                            data-text="{{:: 'tools_lineDiagnostics_solution_proposal_step_intervention_request_validation' | translate }}"
+                            data-variant="primary"></oui-button>
+            </div>
+        </form>
+
+        <p data-ng-if="$ctrl.loading">
+            <oui-spinner data-size="s"></oui-spinner>
+            <span class="ml-2" data-translate="tools_lineDiagnostics_please_wait"></span>
+        </p>
+    </div>
+    <!-- END INTERVENTION REQUEST FORM -->
 </div>
