@@ -15,44 +15,49 @@
     </span>
 </div>
 
-<!-- SPECIFIC ERRORS -->
-<div data-ng-if="$ctrl.isMonitoringAlreadyExists()">
-    <img class="col-md-2"
-         src="assets/images/diagnostic/human-think.svg"
-         width="180"
-         height="180"
-         data-ng-attr-alt="{{:: $ctrl.currentLineDiagnostic.status }}"/>
-    <span class="col-md-8">
-        <p class="oui-header_4"
-           data-translate="{{:: 'tools_lineDiagnostics_error_context_monitoringTodoAlreadyExists_title' }}"></p>
-        <p data-translate="{{:: 'tools_lineDiagnostics_error_context_monitoringTodoAlreadyExists_subtitle' }}"></p>
-        <oui-button data-variant="primary"
-                    data-text="{{:: 'tools_lineDiagnostics_solution_proposal_step_exit_diagnostic' | translate }}"
-                    data-on-click="$ctrl.$state.go('^')"></oui-button>
-    </span>
-</div>
-
 <!-- PROBLEM UNSOLVED -->
 <div data-ng-if="!$ctrl.currentLineDiagnostic.data.answers.resolvedAfterTests">
+    <div class="col-md-4"
+         data-ng-if="$ctrl.currentLineDiagnostic.status === 'waitingRobot'">
+        <oui-spinner data-size="s"></oui-spinner>
+        <span data-translate="tools_lineDiagnostics_please_wait"></span>
+    </div>
+
+    <div data-ng-if="$ctrl.currentLineDiagnostic.status === 'waitingValidation'">
+        <img class="col-md-2"
+             src="assets/images/diagnostic/human-speedAndGraphic.svg"
+             width="180"
+             height="180"
+             data-ng-attr-alt="{{:: $ctrl.currentLineDiagnostic.status }}"/>
+        <span class="col-md-8">
+            <p class="oui-header_4"
+               data-translate="tools_lineDiagnostics_solution_proposal_step_waitingValidation_title"></p>
+            <p data-translate="tools_lineDiagnostics_solution_proposal_step_waitingValidation_subtitle"></p>
+            <oui-button data-variant="primary"
+                        data-text="{{:: 'tools_lineDiagnostics_solution_proposal_step_exit_diagnostic' | translate }}"
+                        data-on-click="$ctrl.$state.go('^')"></oui-button>
+        </span>
+    </div>
+
+    <!-- SPECIFIC ERRORS -->
+    <div data-ng-if="$ctrl.isMonitoringAlreadyExists()">
+        <img class="col-md-2"
+             src="assets/images/diagnostic/human-think.svg"
+             width="180"
+             height="180"
+             data-ng-attr-alt="{{:: $ctrl.currentLineDiagnostic.status }}"/>
+        <span class="col-md-8">
+            <p class="oui-header_4"
+               data-translate="{{:: 'tools_lineDiagnostics_error_context_monitoringTodoAlreadyExists_title' }}"></p>
+            <p data-translate="{{:: 'tools_lineDiagnostics_error_context_monitoringTodoAlreadyExists_subtitle' }}"></p>
+            <oui-button data-variant="primary"
+                        data-text="{{:: 'tools_lineDiagnostics_solution_proposal_step_exit_diagnostic' | translate }}"
+                        data-on-click="$ctrl.$state.go('^')"></oui-button>
+        </span>
+    </div>
 
     <!-- STATUS MESSAGES -->
     <div data-ng-if="!$ctrl.showRequestForm">
-        <div data-ng-if="$ctrl.currentLineDiagnostic.status === 'waitingValidation'">
-            <img class="col-md-2"
-                 src="assets/images/diagnostic/human-speedAndGraphic.svg"
-                 width="180"
-                 height="180"
-                 data-ng-attr-alt="{{:: $ctrl.currentLineDiagnostic.status }}"/>
-            <span class="col-md-8">
-                <p class="oui-header_4"
-                   data-translate="tools_lineDiagnostics_solution_proposal_step_waitingValidation_title"></p>
-                <p data-translate="tools_lineDiagnostics_solution_proposal_step_waitingValidation_subtitle"></p>
-                <oui-button data-variant="primary"
-                            data-text="{{:: 'tools_lineDiagnostics_solution_proposal_step_exit_diagnostic' | translate }}"
-                            data-on-click="$ctrl.$state.go('^')"></oui-button>
-            </span>
-        </div>
-
         <div data-ng-if="$ctrl.currentLineDiagnostic.status === 'waitingHuman'">
             <div class="col-md-12 form-group"
                  data-ng-if="$ctrl.currentLineDiagnostic.data.answers.problemType === 'lowBandwidth'">
@@ -203,22 +208,6 @@
                 <p class="oui-header_4"
                    data-translate="tools_lineDiagnostics_solution_proposal_step_noProblemAnymore_title"></p>
                 <p data-translate="tools_lineDiagnostics_solution_proposal_step_noDefaultAnymore_subtitle"></p>
-                <oui-button data-variant="primary"
-                            data-text="{{:: 'tools_lineDiagnostics_solution_proposal_step_exit_diagnostic' | translate }}"
-                            data-on-click="$ctrl.$state.go('^')"></oui-button>
-            </span>
-        </div>
-
-        <div data-ng-if="$ctrl.currentLineDiagnostic.data.error === 'monitoringTodoAlreadyExists'">
-            <img class="col-md-2"
-                 src="assets/images/diagnostic/human-think.svg"
-                 width="180"
-                 height="180"
-                 data-ng-attr-alt="{{:: $ctrl.currentLineDiagnostic.status }}"/>
-            <span class="col-md-8">
-                <p class="oui-header_4"
-                   data-translate="tools_lineDiagnostics_error_context_monitoringTodoAlreadyExists_title"></p>
-                <p data-translate="tools_lineDiagnostics_error_context_monitoringTodoAlreadyExists_subtitle"></p>
                 <oui-button data-variant="primary"
                             data-text="{{:: 'tools_lineDiagnostics_solution_proposal_step_exit_diagnostic' | translate }}"
                             data-on-click="$ctrl.$state.go('^')"></oui-button>
@@ -394,6 +383,7 @@
                                type="text"
                                name="contactPhone"
                                data-ng-model="$ctrl.currentLineDiagnostic.data.answers.contactPhone"
+                               data-ng-pattern="/^(0033|0)\d{9}$/"
                                required>
                     </oui-field>
                 </div>
