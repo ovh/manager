@@ -19,7 +19,7 @@
    <translation id="tools_lineDiagnostics_diagnostic_critical_problem_title">Un incident est survenu, nous vous prions de nous en excuser. Nous mettons tout en œuvre pour le résoudre au plus vite.</translation>
    <translation id="tools_lineDiagnostics_diagnostic_critical_problem">N'hésitez pas à réitérer cette manipulation ultérieurement</translation>
 
-   <translation id="tools_lineDiagnostics_diagnostic_run_error">Une erreur est survenue lors du diagnostic</translation>
+   <translation id="tools_lineDiagnostics_diagnostic_run_error">Une erreur est survenue lors du diagnostic. Veuillez réessayer plus tard.</translation>
    <translation id="tools_lineDiagnostics_diagnostic_cancel_error">Une erreur est survenue lors de l'annulation du diagnostic</translation>
    <translation id="tools_lineDiagnostics_detection_step_modem_question">Votre modem est-il synchronisé ?</translation>
    <translation id="tools_lineDiagnostics_detection_step_modem_question_help">Un voyant sur le modem (broadband ou ADSL) devrait vous indiquer le statut de la synchronisation. Si ce n'est pas le cas, vous devriez retrouver ce statut de synchronisation sur l'interface du modem.</translation>
