@@ -26,7 +26,7 @@
                 <oui-radio-toggle-group class="d-inline-block"
                                         data-model="$ctrl.currentLineDiagnostic.data.answers.modemIsSynchronized"
                                         data-on-change="$ctrl.startPoller()"
-                                        data-ng-if="!$ctrl.loading">
+                                        data-ng-hide="$ctrl.loading">
                     <oui-radio data-value="true">
                         <span data-translate="tools_lineDiagnostics_detail_yes"></span>
                     </oui-radio>
