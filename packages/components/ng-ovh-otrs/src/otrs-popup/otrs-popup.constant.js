@@ -9,6 +9,7 @@ angular.module("ovh-angular-otrs")
         INPROGRESS: "inProgress",
         NEW: "new",
         BILL: "bill",
+        AUTORENEW: "autorenew",
         OTHER: "other"
     })
     .constant("OTRS_POPUP_INCIDENT_ENUM", {

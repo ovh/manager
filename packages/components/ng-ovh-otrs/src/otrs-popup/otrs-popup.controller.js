@@ -316,7 +316,8 @@ angular.module("ovh-angular-otrs").controller("OtrsPopupCtrl", function ($q, $ro
                 ],
                 billing: [
                     OTRS_POPUP_BILLING_ENUM.INPROGRESS,
-                    OTRS_POPUP_BILLING_ENUM.BILL
+                    OTRS_POPUP_BILLING_ENUM.BILL,
+                    OTRS_POPUP_BILLING_ENUM.AUTORENEW
                 ],
                 incident: [
                     OTRS_POPUP_INCIDENT_ENUM.PERFS,
