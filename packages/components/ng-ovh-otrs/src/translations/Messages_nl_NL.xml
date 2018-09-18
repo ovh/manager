@@ -180,7 +180,7 @@
    <translation id="otrs_subCategory_billing_inProgress" qtlid="487977">Volg een lopende bestelling</translation>
    <translation id="otrs_subCategory_billing_new" qtlid="291240">Ik wil een bestelling plaatsen</translation>
    <translation id="otrs_subCategory_billing_bill" qtlid="487990">Factuurinformatie</translation>
-   <translation id="otrs_subCategory_billing_autorenew">Information sur le renouvellement automatique</translation>
+   <translation id="otrs_subCategory_billing_autorenew" qtlid="503202">Information sur le renouvellement automatique</translation>
    <translation id="otrs_subCategory_billing_other" qtlid="19963">Anders</translation>
 
    <translation id="otrs_subCategory_incident_perfs" qtlid="291266">Mijn service is achteruitgegaan. </translation>

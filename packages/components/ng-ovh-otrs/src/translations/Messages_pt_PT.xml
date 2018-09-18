@@ -181,7 +181,7 @@
    <translation id="otrs_subCategory_billing_inProgress" qtlid="487977">Acompanhar um pedido atual</translation>
    <translation id="otrs_subCategory_billing_new" qtlid="291240">Pretendo efetuar uma encomenda</translation>
    <translation id="otrs_subCategory_billing_bill" qtlid="487990">Informação sobre uma factura</translation>
-   <translation id="otrs_subCategory_billing_autorenew">Information sur le renouvellement automatique</translation>
+   <translation id="otrs_subCategory_billing_autorenew" qtlid="503202">Information sur le renouvellement automatique</translation>
    <translation id="otrs_subCategory_billing_other" qtlid="19963">Outro</translation>
 
    <translation id="otrs_subCategory_incident_perfs" qtlid="291266">Serviço avariado / danificado</translation>

@@ -180,7 +180,7 @@
    <translation id="otrs_subCategory_billing_inProgress" qtlid="487977">Vykdomo užsakymo stebėjimas</translation>
    <translation id="otrs_subCategory_billing_new" qtlid="291240">Norėčiau pateikti užsakymą</translation>
    <translation id="otrs_subCategory_billing_bill" qtlid="487990">Informacija apie sąskaita</translation>
-   <translation id="otrs_subCategory_billing_autorenew">Information sur le renouvellement automatique</translation>
+   <translation id="otrs_subCategory_billing_autorenew" qtlid="503202">Information sur le renouvellement automatique</translation>
    <translation id="otrs_subCategory_billing_other" qtlid="19963">Kita</translation>
 
    <translation id="otrs_subCategory_incident_perfs" qtlid="291266">Mano paslauga jau pasenusi</translation>
