@@ -37,7 +37,7 @@
    <translation id="otrs_ticket_type" qtlid="2642">Tipo</translation>
    <translation id="otrs_ticket_suject" qtlid="22639">Sujet</translation>
    <translation id="otrs_ticket_last_message_from" qtlid="228709">Último mensaje</translation>
-   <translation id="otrs_ticket_date_creation" qtlid="26419">Date de création</translation>
+   <translation id="otrs_ticket_date_creation" qtlid="26419">Fecha de creación</translation>
    <translation id="otrs_ticket_date_update" qtlid="228748">Fecha de actualización</translation>
    <translation id="otrs_ticket_state" qtlid="33790">État</translation>
    <translation id="otrs_ticket_empty" qtlid="228644">No hay tickets disponibles.</translation>
@@ -74,7 +74,7 @@
    <translation id="otrs_service_category_NAS" qtlid="76782">NAS</translation>
    <translation id="otrs_service_category_NASHA" qtlid="211502">NAS-HA</translation>
    <translation id="otrs_service_category_VRACK" qtlid="211515">vRack</translation>
-   <translation id="otrs_service_category_DOMAIN" qtlid="8458">Domaine</translation>
+   <translation id="otrs_service_category_DOMAIN" qtlid="8458">Dominio</translation>
    <translation id="otrs_service_category_CDN_WEBSTORAGE" qtlid="211528">Cdn WebStorage</translation>
    <translation id="otrs_service_category_CDN_WEBSITE" qtlid="211541">Cdn WebSite</translation>
    <translation id="otrs_service_category_CDN_DEDICATED" qtlid="211554">CDN Dedicada</translation>
@@ -132,7 +132,7 @@
 
 <translation id="otrs_category_null"/>
    <translation id="otrs_category_neworder" qtlid="251681">Nuevo pedido</translation>
-   <translation id="otrs_category_billing" qtlid="32950">Facturation</translation>
+   <translation id="otrs_category_billing" qtlid="32950">Facturación</translation>
    <translation id="otrs_category_choice" qtlid="251746">Selección del soporte:</translation>
    <translation id="otrs_category_billing" qtlid="487925">Seguimiento del pedido y facturación</translation>
    <translation id="otrs_category_assistance" qtlid="373181">Asesoramiento técnico</translation>
@@ -180,6 +180,7 @@
    <translation id="otrs_subCategory_billing_inProgress" qtlid="487977">Seguimiento del pedido en progreso...</translation>
    <translation id="otrs_subCategory_billing_new" qtlid="291240">Deseo hacer un pedido.</translation>
    <translation id="otrs_subCategory_billing_bill" qtlid="487990">Información sobre una factura</translation>
+   <translation id="otrs_subCategory_billing_autorenew">Information sur le renouvellement automatique</translation>
    <translation id="otrs_subCategory_billing_other" qtlid="19963">Autre</translation>
 
    <translation id="otrs_subCategory_incident_perfs" qtlid="291266">El servicio está degradado.</translation>

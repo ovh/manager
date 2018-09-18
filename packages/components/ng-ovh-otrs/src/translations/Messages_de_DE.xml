@@ -39,7 +39,7 @@
    <translation id="otrs_ticket_last_message_from" qtlid="228709">Letzte Antwort von:</translation>
    <translation id="otrs_ticket_date_creation" qtlid="26419">Erstellungsdatum</translation>
    <translation id="otrs_ticket_date_update" qtlid="228748">Datum des Updates</translation>
-   <translation id="otrs_ticket_state" qtlid="33790">Zustand</translation>
+   <translation id="otrs_ticket_state" qtlid="33790">Status</translation>
    <translation id="otrs_ticket_empty" qtlid="228644">Keine Tickets verfügbar.</translation>
    <translation id="otrs_filters_button" qtlid="2606">Filter</translation>
    <translation id="otrs_ticket_state_open" qtlid="75654">Offen</translation>
@@ -180,6 +180,7 @@
    <translation id="otrs_subCategory_billing_inProgress" qtlid="487977">Frage zu einer laufenden Bestellung</translation>
    <translation id="otrs_subCategory_billing_new" qtlid="291240">Ich möchte eine Bestellung tätigen </translation>
    <translation id="otrs_subCategory_billing_bill" qtlid="487990">Abrechnungsinformationen</translation>
+   <translation id="otrs_subCategory_billing_autorenew">Information sur le renouvellement automatique</translation>
    <translation id="otrs_subCategory_billing_other" qtlid="19963">Andere</translation>
 
    <translation id="otrs_subCategory_incident_perfs" qtlid="291266">Mein Service hat sich verschlechtert </translation>

@@ -180,6 +180,7 @@
    <translation id="otrs_subCategory_billing_inProgress" qtlid="487977">Śledzenie bieżącego zamówienia</translation>
    <translation id="otrs_subCategory_billing_new" qtlid="291240">Chcę złożyć zamówienie.</translation>
    <translation id="otrs_subCategory_billing_bill" qtlid="487990">Informacje o fakturze</translation>
+   <translation id="otrs_subCategory_billing_autorenew">Information sur le renouvellement automatique</translation>
    <translation id="otrs_subCategory_billing_other" qtlid="19963">Inne</translation>
 
    <translation id="otrs_subCategory_incident_perfs" qtlid="291266">Moja usługa nie działa prawidłowo.</translation>

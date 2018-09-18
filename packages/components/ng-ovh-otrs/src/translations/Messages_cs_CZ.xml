@@ -181,6 +181,7 @@
    <translation id="otrs_subCategory_billing_inProgress" qtlid="487977">Sledování probíhající objednávky</translation>
    <translation id="otrs_subCategory_billing_new" qtlid="291240">Chci udělat objednávku</translation>
    <translation id="otrs_subCategory_billing_bill" qtlid="487990">Informace na faktuře</translation>
+   <translation id="otrs_subCategory_billing_autorenew">Information sur le renouvellement automatique</translation>
    <translation id="otrs_subCategory_billing_other" qtlid="19963">Jiné</translation>
 
    <translation id="otrs_subCategory_incident_perfs" qtlid="291266">Moje služba nepracuje správně</translation>
