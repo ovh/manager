@@ -71,13 +71,11 @@ angular.module("ovh-angular-line-diagnostics").constant("DIAGNOSTICS_CONSTANTS",
 });
 
 angular.module("ovh-angular-line-diagnostics").controller("LineDiagnosticsCtrl", function () {
-    LineDiagnosticsCtrl.$inject = ["$interval", "$q", "$state", "$timeout", "$translate", "atInternet", "LineDiagnostics", "LineDiagnosticFactory", "Toast", "DIAGNOSTICS_CONSTANTS"];
-    function LineDiagnosticsCtrl($interval, $q, $state, $timeout, $translate, atInternet, LineDiagnostics, LineDiagnosticFactory, Toast, DIAGNOSTICS_CONSTANTS) {
+    LineDiagnosticsCtrl.$inject = ["$interval", "$timeout", "$translate", "atInternet", "LineDiagnostics", "LineDiagnosticFactory", "Toast", "DIAGNOSTICS_CONSTANTS"];
+    function LineDiagnosticsCtrl($interval, $timeout, $translate, atInternet, LineDiagnostics, LineDiagnosticFactory, Toast, DIAGNOSTICS_CONSTANTS) {
         _classCallCheck(this, LineDiagnosticsCtrl);
 
         this.$interval = $interval;
-        this.$q = $q;
-        this.$state = $state;
         this.$timeout = $timeout;
         this.$translate = $translate;
         this.atInternet = atInternet;
