@@ -83,7 +83,7 @@
                 <p data-translate="tools_lineDiagnostics_solution_proposal_step_problem_to_resolve_subtitle"></p>
                 <oui-button data-variant="primary"
                             data-text="{{:: 'tools_lineDiagnostics_solution_proposal_step_fill_request_form' | translate }}"
-                            data-on-click="$ctrl.showRequestForm = true"></oui-button>
+                            data-on-click="$ctrl.goToRequestForm()"></oui-button>
             </span>
         </div>
 
@@ -99,7 +99,7 @@
                 <p data-translate="tools_lineDiagnostics_solution_proposal_step_problem_to_monitor_title_subtitle"></p>
                 <oui-button data-variant="primary"
                             data-text="{{:: 'tools_lineDiagnostics_solution_proposal_step_fill_request_form' | translate }}"
-                            data-on-click="$ctrl.showRequestForm = true"></oui-button>
+                            data-on-click="$ctrl.goToRequestForm()"></oui-button>
             </span>
         </div>
 
@@ -275,7 +275,7 @@
                            required>
                 </oui-field>
 
-                <!-- Time period questions --->
+                <!-- Time period questions -->
                 <div data-ng-if="$ctrl.currentLineDiagnostic.hasTimePeriodQuestions()">
                     <label class="oui-label"
                            data-translate="tools_lineDiagnostics_solution_proposal_step_request_form_question_hours_title"></label>
@@ -348,7 +348,7 @@
                 </oui-field>
 
                 <oui-button data-disabled="!requestInterventionForm.$valid"
-                            data-on-click="$ctrl.startPoller()"
+                            data-on-click="$ctrl.sendInterventionForm()"
                             data-text="{{:: 'tools_lineDiagnostics_solution_proposal_step_intervention_request_continue' | translate }}"
                             data-variant="primary">
                 </oui-button>
@@ -416,7 +416,7 @@
                 </oui-checkbox>
 
                 <oui-button data-disabled="!requestInterventionForm.$valid || !$ctrl.currentLineDiagnostic.data.answers.conditionsAccepted"
-                            data-on-click="$ctrl.startPoller()"
+                            data-on-click="$ctrl.answerQuestion('conditionsAccepted', true)"
                             data-text="{{:: 'tools_lineDiagnostics_solution_proposal_step_intervention_request_validation' | translate }}"
                             data-variant="primary"></oui-button>
             </div>

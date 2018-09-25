@@ -25,7 +25,7 @@
                        data-label-popover="{{:: 'tools_lineDiagnostics_detection_step_modem_question_help' | translate }}">
                 <oui-radio-toggle-group class="d-inline-block"
                                         data-model="$ctrl.currentLineDiagnostic.data.answers.modemIsSynchronized"
-                                        data-on-change="$ctrl.startPoller()"
+                                        data-on-change="$ctrl.answerQuestion('modemIsSynchronized', modelValue)"
                                         data-ng-hide="$ctrl.loading">
                     <oui-radio data-value="true">
                         <span data-translate="tools_lineDiagnostics_detail_yes"></span>

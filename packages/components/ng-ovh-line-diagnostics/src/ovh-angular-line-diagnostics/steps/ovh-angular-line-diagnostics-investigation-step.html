@@ -70,7 +70,7 @@
                 <oui-radio-toggle-group class="d-inline-block"
                                         data-model="$ctrl.currentLineDiagnostic.data.answers[question.name]"
                                         data-ng-if="question.type === 'boolean' && !$ctrl.loading"
-                                        data-on-change="$ctrl.startPoller()">
+                                        data-on-change="$ctrl.answerQuestion(question.name, modelValue)">
                     <oui-radio data-value="true">
                         <span data-translate="tools_lineDiagnostics_detail_yes"></span>
                     </oui-radio>
@@ -154,7 +154,7 @@
                 </div>
                 <oui-button data-variant="primary"
                             data-disabled="!syncLossOrLowBandwidth.$valid"
-                            data-on-click="$ctrl.startPoller()"
+                            data-on-click="$ctrl.answerSpecificQuestion()"
                             data-ng-if="!$ctrl.loading">
                     <span data-translate="tools_lineDiagnostics_validate"></span>
                 </oui-button>
@@ -189,7 +189,7 @@
        data-translate="tools_lineDiagnostics_investigation_step_action_is_problem_solved"></p>
     <oui-radio-toggle-group class="d-inline-block"
                             data-model="$ctrl.currentLineDiagnostic.data.answers.resolvedAfterTests"
-                            data-on-change="$ctrl.startPoller()">
+                            data-on-change="$ctrl.answerQuestion('resolvedAfterTests', modelValue)">
         <oui-radio data-value="true">
             <span data-translate="tools_lineDiagnostics_detail_yes"></span>
         </oui-radio>
