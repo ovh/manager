@@ -6,7 +6,7 @@
     "angular"
   ],
   "main": "./dist/ovh-angular-line-diagnostics.min.js",
-  "repository": "ovh-ux/ovh-angular-line-diagnostics",
+  "repository": "ovh-ux/ovh-angular-line-diagnostic",
   "scripts": {
     "lint": "eslint src/. --ext .js --quiet",
     "precommit": "npm run lint",
