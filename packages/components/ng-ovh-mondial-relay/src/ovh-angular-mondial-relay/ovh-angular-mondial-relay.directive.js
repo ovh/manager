@@ -27,7 +27,7 @@
  * @param {string} [user-service='User'] The name of your user service, in case your service name is different from the default.
  */
 angular.module("ovh-angular-mondial-relay")
-    .directive("mondialRelay", function (MONDIAL_RELAY_PICS, MONDIAL_RELAY) {
+    .directive("mondialRelay", function ($translate, MONDIAL_RELAY, MONDIAL_RELAY_PICS) {
         "use strict";
 
         /**
@@ -72,7 +72,7 @@ angular.module("ovh-angular-mondial-relay")
         /**
          * Reformat the opening hours of the relays
          * @param {Object} opening Structure describing opening times {monday: [{start: "0800", end:"1900"}]}
-         * @returns {Array} List of open days [{day: "monday", opening: ["08:00-19:00"]}]
+         * @returns {Array} List of open days [{days: ["monday", "tuesday"], hours: ["08:00-19:00"]}]
          */
         var reformatOpening = function reformatOpening (opening) {
             var reformatTime = function (openingTime) {
@@ -83,21 +83,42 @@ angular.module("ovh-angular-mondial-relay")
                     return [
                         reformatTime(openingTime.start),
                         reformatTime(openingTime.end)
-                    ].join("-");
+                    ].join("—");
                 });
             };
 
-            var result = _.chain(MONDIAL_RELAY.weekDays)
-                .filter(function (weekDay) {
-                    return !!opening[weekDay];
-                })
-                .map(function (weekDay) {
-                    return {
-                        day: weekDay,
-                        opening: getAllOpenings(opening[weekDay])
-                    };
-                })
-                .value();
+            var result = MONDIAL_RELAY.weekDays.map(function (weekDay) {
+                return {
+                    days: [weekDay],
+                    hours: getAllOpenings(opening[weekDay])
+                };
+            });
+            result.map(function (relayDay, i) {
+                var index = 1;
+
+                // relayDay without hours parameter === closed (yet kept in array)
+                if (!relayDay.hours) {
+                    return relayDay;
+                }
+
+                // In order to group following opening days with equal time windows
+                // We loop until time windows are different (or at the end of the array)
+                while (i + index < result.length && _.isEqual(relayDay.hours, result[i + index].hours)) {
+                    relayDay.days = _.union(relayDay.days, result[i + index].days);
+                    // Also we remove duplicate line
+                    delete result[i + index];
+                    index++;
+                }
+
+                // Then we build regarding the nature of each relayDay (single time windows, grouped ones or closed)
+                if (relayDay.days.length > 1) {
+                    relayDay.days = $translate.instant("components_mondial_relay_" + relayDay.days[0]) + ". " + $translate.instant("components_mondial_relay_hours_to") + " " + $translate.instant("components_mondial_relay_" + relayDay.days[relayDay.days.length - 1]).toLowerCase() + ".";
+                } else if (relayDay.days.length) {
+                    relayDay.days = $translate.instant("components_mondial_relay_" + relayDay.days[0] + "_long");
+                }
+                return result[i];
+            });
+
             return result;
         };
 
@@ -111,7 +132,7 @@ angular.module("ovh-angular-mondial-relay")
             },
             templateUrl: "ovh-angular-mondial-relay/ovh-angular-mondial-relay.view.html",
             controllerAs: "$ctrl",
-            controller: function ($scope, $q, $translate, $timeout, $http, mondialRelay, leafletBoundsHelpers, leafletEvents, leafletData, $injector) {
+            controller: function ($http, $injector, $q, $scope, $timeout, leafletBoundsHelpers, leafletData, leafletEvents, mondialRelay) {
 
                 var self = this;
 
@@ -175,8 +196,7 @@ angular.module("ovh-angular-mondial-relay")
                                     self.select(self.foundRelays[args.model.index]);
                                     break;
                                 default:
-
-                                    // Do nothing
+                                    break;
                                 }
                             }
                         );
@@ -212,9 +232,27 @@ angular.module("ovh-angular-mondial-relay")
                     this.loading.search = true;
                     this.ngModel = null;
                     this.foundRelays = [];
+                    var parsedFilter = filter;
+
+                    if (!parsedFilter) {
+                        parsedFilter = this.filter;
+                        var searchQuery = _.get(parsedFilter, "searchQuery", "");
+                        if (searchQuery) {
+                            var zipcode = _.compact(searchQuery.match(/\d{5}/g));
+                            if (zipcode.length) {
+                                parsedFilter.zipcode = _.first(zipcode).trim();
+                            } else {
+                                var city = _.compact(searchQuery.match(/^[A-z\u00C0-\u024F][A-z\u00C0-\u024F'\s\-]*[A-z\u00C0-\u024F]$/g));
+                                if (city.length) {
+                                    parsedFilter.city = _.first(city).trim();
+                                }
+                            }
+                            delete parsedFilter.searchQuery;
+                        }
+                    }
 
                     return this.mondialRelayService.v6().search(
-                        filter || this.filter,
+                        filter,
                         $scope
                     )
                         .then(function (resp) {
