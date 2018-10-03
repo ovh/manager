@@ -136,18 +136,18 @@ This code will add an item into manager sidebar menu and when current state will
 
 Some vars can be configured in manager app less part under #sidebar-menu namespace. They have all default values.
 
-```@SIDEBAR_MENU_OFFSET_TOP``` : top position of the sidebar
-```@SIDEBAR_MENU_Z_INDEX``` : z-index of the sidebar
-```@SIDEBAR_MENU_OPACITY``` : opacity of elements that need opacity in the sidebar
-```@SIDEBAR_MENU_ACTIVE_COLOR``` : active color of items (should be set to @UNIVERS)
-```@SIDEBAR_MENU_COLOR``` : items text color
-```@SIDEBAR_MENU_BG_COLOR``` : background color of the sidebar element
-```@SIDEBAR_MENU_ACTIVE_ITEM_BG_COLOR```       : background color of the active item
-```@SIDEBAR_MENU_LVL1_ACTIVE_BORDER_COLOR```   : border color of the sub items of the active item of level 1
-```@SIDEBAR_MENU_LVL2_ACTIVE_BORDER_COLOR```   : border color of the sub items of the active item of level 2
-```@SIDEBAR_MENU_MOBILE_TOP_NAV_HEIGHT```      : height of the manager top nav element. Needed to adjust position of sidebar menu on mobile
-```@SIDEBAR_MENU_LVL1_FONT_SIZE```             : font side of items of level 1
-```@SIDEBAR_MENU_LVL2_FONT_SIZE```             : font side of items of level 2 (and sub levels)
+* ```@SIDEBAR_MENU_OFFSET_TOP``` : top position of the sidebar
+* ```@SIDEBAR_MENU_Z_INDEX``` : z-index of the sidebar
+* ```@SIDEBAR_MENU_OPACITY``` : opacity of elements that need opacity in the sidebar
+* ```@SIDEBAR_MENU_ACTIVE_COLOR``` : active color of items (should be set to @UNIVERS)
+* ```@SIDEBAR_MENU_COLOR``` : items text color
+* ```@SIDEBAR_MENU_BG_COLOR``` : background color of the sidebar element
+* ```@SIDEBAR_MENU_ACTIVE_ITEM_BG_COLOR```       : background color of the active item
+* ```@SIDEBAR_MENU_LVL1_ACTIVE_BORDER_COLOR```   : border color of the sub items of the active item of level 1
+* ```@SIDEBAR_MENU_LVL2_ACTIVE_BORDER_COLOR```   : border color of the sub items of the active item of level 2
+* ```@SIDEBAR_MENU_MOBILE_TOP_NAV_HEIGHT```      : height of the manager top nav element. Needed to adjust position of sidebar menu on mobile
+* ```@SIDEBAR_MENU_LVL1_FONT_SIZE```             : font side of items of level 1
+* ```@SIDEBAR_MENU_LVL2_FONT_SIZE```             : font side of items of level 2 (and sub levels)
 
 ## Development
 
