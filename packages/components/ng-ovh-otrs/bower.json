@@ -1,7 +1,7 @@
 {
   "name": "ovh-angular-otrs",
   "description": "Manage OTRS tickets",
-  "version": "6.1.3",
+  "version": "6.2.0",
   "main": [
     "./dist/ovh-angular-otrs.min.js",
     "./dist/ovh-angular-otrs.less"
