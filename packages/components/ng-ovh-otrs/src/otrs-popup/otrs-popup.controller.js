@@ -74,6 +74,10 @@ angular.module("ovh-angular-otrs").controller("OtrsPopupCtrl", function ($q, $ro
 
         // hide alert
         manageAlert();
+        if (!OtrsPopupService.isOpen()) {
+            return $q.when([]);
+        }
+
         return OvhApiProductsAapi
             .get({
                 includeInactives: true,
@@ -354,6 +358,11 @@ angular.module("ovh-angular-otrs").controller("OtrsPopupCtrl", function ($q, $ro
 
             $scope.$watch("OtrsPopupCtrl.ticket.subcategory", function () {
                 self.refreshFormDetails();
+            });
+
+            $scope.$on("otrs.popup.opened", self.getServices);
+            $scope.$on("otrs.popup.closed", function () {
+                self.services = [];
             });
         })
             .catch(function (err) { manageAlert([($translate.instant("otrs_err_get_infos"), err.data && err.data.message) || ""].join(" "), "danger"); })

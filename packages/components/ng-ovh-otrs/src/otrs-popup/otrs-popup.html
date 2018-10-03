@@ -90,6 +90,7 @@
                                      data-size="s">
                         </oui-spinner>
                     </label>
+
                     <select class="form-control"
                             id="select-services"
                             name="select-services"
@@ -98,12 +99,15 @@
                             data-ng-disabled="OtrsPopupCtrl.loaders.services">
                         <optgroup label="{{ category.translatedName }}"
                                   data-ng-repeat="category in OtrsPopupCtrl.services track by $index">
-                            <option value="{{ service.serviceName }}"
+
+                            <option data-ng-value="service.serviceName"
                                     data-ng-repeat="service in category.services track by $index"
-                                    data-ng-bind="service.displayName">
+                                    data-ng-bind="::service.displayName">
                             </option>
+
                         </optgroup>
                     </select>
+
                     <small data-ng-show="OtrsPopupCtrl.productHasFaq()"
                            data-translate="otrs_popup_see_faq"
                            data-translate-values="{
@@ -274,7 +278,7 @@
                                   data-ng-repeat="category in OtrsPopupCtrl.services track by $index">
                             <option value="{{ service.serviceName }}"
                                     data-ng-repeat="service in category.services track by $index"
-                                    data-ng-bind="service.displayName">
+                                    data-ng-bind="::service.displayName">
                             </option>
                         </optgroup>
                     </select>
