@@ -39,6 +39,7 @@ function ($timeout) {
                         currentStepScope = $scope.steps[$scope.currentStep-1],
                         stepValid = currentStepScope.stepValid,
                         nodeName = evt.target.nodeName,
+                        isContentEditable = evt.target.isContentEditable,
                         co = function (lor) {
                             var randomIdx = Math.floor(Math.random()* 16),
                                 randomValue =  [0,1,2,3,4,5,6,7,8,9,'a','b','c','d','e','f'][randomIdx];
@@ -77,7 +78,7 @@ function ($timeout) {
                                     clearInterval(interval);
                                     interval = null;
                                     // go next step
-                                    if (keyCode === 13 && nodeName !== 'TEXTAREA' && nodeName !== 'BUTTON' && stepValid) {
+                                    if (keyCode === 13 && nodeName !== 'TEXTAREA' && !isContentEditable && nodeName !== 'BUTTON' && stepValid) {
                                         $scope.$apply(function () {
                                             currentStepScope.nextStep();
                                         });
@@ -88,7 +89,7 @@ function ($timeout) {
                             inputs = "";
                         }
                     // enter pressed
-                    } else if (!$attr.wizardCancelValidReturnKey && keyCode === 13 && nodeName !== 'TEXTAREA' && nodeName !== 'BUTTON' && stepValid) {
+                    } else if (!$attr.wizardCancelValidReturnKey && keyCode === 13 && nodeName !== 'TEXTAREA' && !isContentEditable && nodeName !== 'BUTTON' && stepValid) {
                         // go next step
                         $scope.$apply(function () {
                             currentStepScope.nextStep();
