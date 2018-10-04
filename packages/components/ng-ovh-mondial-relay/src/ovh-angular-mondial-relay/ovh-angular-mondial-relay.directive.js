@@ -105,6 +105,7 @@ angular.module("ovh-angular-mondial-relay")
                 // We loop until time windows are different (or at the end of the array)
                 while (i + index < result.length && _.isEqual(relayDay.hours, result[i + index].hours)) {
                     relayDay.days = _.union(relayDay.days, result[i + index].days);
+
                     // Also we remove duplicate line
                     delete result[i + index];
                     index++;
@@ -112,7 +113,9 @@ angular.module("ovh-angular-mondial-relay")
 
                 // Then we build regarding the nature of each relayDay (single time windows, grouped ones or closed)
                 if (relayDay.days.length > 1) {
-                    relayDay.days = $translate.instant("components_mondial_relay_" + relayDay.days[0]) + ". " + $translate.instant("components_mondial_relay_hours_to") + " " + $translate.instant("components_mondial_relay_" + relayDay.days[relayDay.days.length - 1]).toLowerCase() + ".";
+                    relayDay.days = $translate.instant("components_mondial_relay_" + relayDay.days[0]) + ". " +
+                        $translate.instant("components_mondial_relay_hours_to") + " " +
+                        $translate.instant("components_mondial_relay_" + relayDay.days[relayDay.days.length - 1]).toLowerCase() + ".";
                 } else if (relayDay.days.length) {
                     relayDay.days = $translate.instant("components_mondial_relay_" + relayDay.days[0] + "_long");
                 }
