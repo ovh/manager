@@ -252,7 +252,7 @@ angular.module("ovh-angular-mondial-relay")
                     }
 
                     return this.mondialRelayService.v6().search(
-                        filter,
+                        parsedFilter,
                         $scope
                     )
                         .then(function (resp) {

@@ -283,7 +283,7 @@ angular.module("ovh-angular-mondial-relay")
                     }
 
                     return this.mondialRelayService.v6().search(
-                        filter,
+                        parsedFilter,
                         $scope
                     )
                         .then(function (resp) {
@@ -499,7 +499,7 @@ angular.module('ovh-angular-mondial-relay').run(['$templateCache', function($tem
     "     data-ng-if=\"!$ctrl.loading.init\">\n" +
     "\n" +
     "    <p data-translate=\"components_mondial_relay_head\"></p>\n" +
-    "    <div class=\"row mb-5\"\n" +
+    "    <div class=\"row mb-3\"\n" +
     "         data-ng-class=\"{ 'has-error': $ctrl.message }\">\n" +
     "        <div class=\"col-md-6\">\n" +
     "            <form class=\"form-group\"\n" +
@@ -546,7 +546,7 @@ angular.module('ovh-angular-mondial-relay').run(['$templateCache', function($tem
     "            </leaflet>\n" +
     "        </div>\n" +
     "        <div class=\"col-sm-6\">\n" +
-    "            <fieldset class=\"mondial-results mt-5\">\n" +
+    "            <fieldset class=\"mondial-results\">\n" +
     "                <legend class=\"ng-hide\"\n" +
     "                        aria-hidden=\"true\"\n" +
     "                        data-translate=\"components_mondial_relay_choose\"></legend>\n" +

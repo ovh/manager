@@ -1,7 +1,8 @@
 @import "bower_components/bootstrap/less/variables.less";
 
-@modialColor: #c90547;
+@mondialActiveBorderColor: #c90547;
 @mondialHover: #eaeaea;
+@mondialBgColor: #337ab7;
 
 .mondial-relay {
 
@@ -41,10 +42,12 @@
             padding-bottom: .1em;
 
             &.active {
-                border-left: solid 2px @modialColor;
+                border-left: solid 2px @mondialActiveBorderColor;
                 color: white;
+                background-color: @mondialBgColor;
+                border-color: @mondialBgColor;
 
-                & .mondial-relay-name,  & .mondial-relay-caret {
+                & .mondial-relay-name,  & .mondial-relay-caret, & .radio-description {
                     color: white;
                 }
             }
@@ -73,7 +76,7 @@
             }
 
             span.mondial-marker {
-                background: @modialColor;
+                background: @mondialActiveBorderColor;
                 color: white;
                 border-radius: 2px;
                 width: 1.1em;

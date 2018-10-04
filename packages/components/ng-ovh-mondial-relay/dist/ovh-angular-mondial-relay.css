@@ -31,9 +31,12 @@
 .mondial-relay .mondial-results .list-group-item.active {
   border-left: solid 2px #c90547;
   color: white;
+  background-color: #337ab7;
+  border-color: #337ab7;
 }
 .mondial-relay .mondial-results .list-group-item.active .mondial-relay-name,
-.mondial-relay .mondial-results .list-group-item.active .mondial-relay-caret {
+.mondial-relay .mondial-results .list-group-item.active .mondial-relay-caret,
+.mondial-relay .mondial-results .list-group-item.active .radio-description {
   color: white;
 }
 .mondial-relay .mondial-results .list-group-item .relay-cell {
