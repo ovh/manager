@@ -1,9 +1,17 @@
 {
   "name": "@ovh-ux/translate-async-loader",
   "version": "0.0.0",
-  "main": "./dist/translate-async-loader.js",
+  "description": "Angular translate asynchronous loader",
   "author": "OVH SAS",
   "license": "BSD-3-Clause",
+  "repository": "ovh-ux/translate-async-loader",
+  "keywords": [
+    "translate",
+    "asynchronous",
+    "loader",
+    "ovh"
+  ],
+  "main": "./dist/translate-async-loader.js",
   "scripts": {
     "build": "rollup -c",
     "prepublish": "rollup -c",
