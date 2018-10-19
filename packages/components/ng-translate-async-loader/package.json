@@ -1,0 +1,39 @@
+{
+  "name": "@ovh-ux/translate-async-loader",
+  "version": "0.0.0",
+  "main": "./dist/translate-async-loader.js",
+  "author": "OVH SAS",
+  "license": "BSD-3-Clause",
+  "scripts": {
+    "build": "rollup -c",
+    "prepublish": "rollup -c",
+    "test": "eslint --quiet .",
+    "lint": "eslint --quiet --fix .",
+    "version": "npx conventional-changelog-cli -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
+    "postversion": "git push && git push --tags"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "dependencies": {
+    "@ovh-ux/component-rollup-config": "^1.0.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^7.1.2",
+    "@commitlint/config-angular": "^7.1.2",
+    "eslint": "^5.5.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "husky": "^1.0.0",
+    "lint-staged": "^7.3.0"
+  }
+}
