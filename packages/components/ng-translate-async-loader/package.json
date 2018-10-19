@@ -43,5 +43,8 @@
     "eslint-plugin-import": "^2.14.0",
     "husky": "^1.0.0",
     "lint-staged": "^7.3.0"
+  },
+  "peerDependency": {
+    "angular": "^1.5"
   }
 }

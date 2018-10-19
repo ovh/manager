@@ -1,5 +1,9 @@
+import angular from 'angular';
+
+const moduleName = 'translate-async-loader';
+
 // Inspired by angular-translate-partial-loader (see sources)
-export default /* @ngInject */ function ($q) {
+angular.module(moduleName, []).factory('asyncLoader', /* @ngInject */ ($q) => {
   /**
    * The tricky part of this loader is that we need to check
    * if an import (addTranslations) has been called during all
@@ -43,4 +47,6 @@ export default /* @ngInject */ function ($q) {
   };
 
   return loader;
-}
+});
+
+export default moduleName;
