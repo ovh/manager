@@ -1,3 +1,13 @@
+<a name="1.0.1"></a>
+## [1.0.1](https://github.com/ovh-ux/translate-async-loader/compare/v1.0.0...v1.0.1) (2018-10-19)
+
+
+### Bug Fixes
+
+* **package.json:** typo on peerDependencies ([150980f](https://github.com/ovh-ux/translate-async-loader/commit/150980f))
+
+
+
 <a name="1.0.0"></a>
 # 1.0.0 (2018-10-19)
 
