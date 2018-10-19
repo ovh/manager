@@ -14,12 +14,15 @@
   "main": "./dist/translate-async-loader.js",
   "scripts": {
     "build": "rollup -c",
-    "prepublish": "rollup -c",
+    "prepublishOnly": "rollup -c",
     "test": "eslint --quiet .",
     "lint": "eslint --quiet --fix .",
     "version": "npx conventional-changelog-cli -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
     "postversion": "git push && git push --tags"
   },
+  "files": [
+    "dist"
+  ],
   "lint-staged": {
     "*.js": [
       "eslint --fix",
