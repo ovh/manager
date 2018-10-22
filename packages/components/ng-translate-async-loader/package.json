@@ -14,7 +14,7 @@
   "main": "./dist/translate-async-loader.js",
   "scripts": {
     "build": "rollup -c",
-    "prepublishOnly": "rollup -c",
+    "prepare": "rollup -c",
     "test": "eslint --quiet .",
     "lint": "eslint --quiet --fix .",
     "version": "npx conventional-changelog-cli -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
