@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/translate-async-loader",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Angular translate asynchronous loader",
   "author": "OVH SAS",
   "license": "BSD-3-Clause",
