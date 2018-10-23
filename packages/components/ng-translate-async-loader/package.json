@@ -23,18 +23,6 @@
   "files": [
     "dist"
   ],
-  "lint-staged": {
-    "*.js": [
-      "eslint --fix",
-      "git add"
-    ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
-  },
   "devDependencies": {
     "@commitlint/cli": "^7.1.2",
     "@commitlint/config-angular": "^7.1.2",
