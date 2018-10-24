@@ -565,6 +565,7 @@ angular.module('ovh-angular-mondial-relay').run(['$templateCache', function($tem
     "                                       name=\"oui-radio\"\n" +
     "                                       value=\"oui-radio-{{$index}}\"\n" +
     "                                       id=\"oui-radio-{{$index}}\"\n" +
+    "                                       data-ng-checked=\"relay.selected\"\n" +
     "                                       type=\"radio\">\n" +
     "                                <label class=\"oui-radio__label-container\"\n" +
     "                                       for=\"oui-radio-{{$index}}\">\n" +
