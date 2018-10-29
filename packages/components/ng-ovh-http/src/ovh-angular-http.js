@@ -1,6 +1,10 @@
-import OvhHttpProvider from './ovh-angular-http.provider'
+import angular from 'angular';
+import OvhHttpProvider from './ovh-angular-http.provider';
 
-export default angular
-    .module('ovh-angular-http', [])
-    .provider('OvhHttp', OvhHttpProvider)
-    .name;
+const moduleName = 'ovh-angular-http';
+
+angular
+  .module(moduleName, [])
+  .provider('OvhHttp', OvhHttpProvider);
+
+export default moduleName;

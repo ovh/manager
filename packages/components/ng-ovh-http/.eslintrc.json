@@ -1,15 +1,13 @@
 {
-    "extends": "./node_modules/eslint-config-ovh/configs/es5-browser.js",
-    "rules": {
-        "no-magic-numbers": "off",
-        "no-throw-literal": "off"
-    },
-    "globals": {
-        "module": true,
-        "require": true,
-        "URI": true
-    },
-    "env": {
-        "jasmine": true
-    }
+  "root": true,
+  "extends": "airbnb-base",
+  "parser": "babel-eslint",
+  "plugins": ["angular"],
+  "env": {
+    "browser": true,
+    "jquery": true
+  },
+  "rules": {
+    "import/no-unresolved": 0
+  }
 }
