@@ -1,6 +1,6 @@
 {
   "name": "ovh-angular-http",
-  "version": "3.0.1",
+  "version": "4.0.0-alpha.0",
   "description": "Simple http provider for OVH API.",
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
