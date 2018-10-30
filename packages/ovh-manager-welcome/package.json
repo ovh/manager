@@ -1,0 +1,13 @@
+{
+  "name": "@ovh-ux/ovh-manager-welcome",
+  "version": "0.0.0",
+  "license": "BSD-3-Clause",
+  "main": "./ovh-manager-welcome.js",
+  "dependencies": {
+    "oclazyload": "^1.1.0"
+  },
+  "peerDependencies": {
+    "@uirouter/angularjs": "^1.0.15",
+    "angular": "~1.6.10"
+  }
+}

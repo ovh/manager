@@ -1,0 +1,22 @@
+<!-- <div class="position-absolute w-100" style="z-index:1021"
+     data-ng-class="{
+        'hidden-xs': !$ctrl.isOpen,
+        'hidden-sm': !$ctrl.isOpen
+     }"
+     data-sidebar-menu></div> -->
+
+<div class="position-absolute w-100" style="z-index:1031"
+     data-ng-class="{
+        'hidden-xs': !$ctrl.isOpen,
+        'hidden-sm': !$ctrl.isOpen
+     }"
+     data-sidebar-menu></div>
+
+<div class="oui-navbar-backdrop"
+     aria-hidden="true"
+     tabindex="-1"
+     ng-class="{ 'oui-navbar-backdrop_active': !!$ctrl.isOpen }"
+     ng-click="$ctrl.toggle()"
+     role="button"> </div>
+
+

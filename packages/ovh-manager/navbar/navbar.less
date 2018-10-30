@@ -1,0 +1,49 @@
+/* stylelint-disable at-rule-no-unknown */
+.oui-navbar {
+  // Languages menu
+  &-menu {
+    &_language &__item_active {
+      &,
+      &:hover,
+      &:active {
+        background-color: @oui-navbar-menu-background-color_hover;
+      }
+
+      .oui-navbar-link::after {
+        content: @oui-icon-index-check_line;
+        display: inline-block;
+        margin-left: rem-calc(20);
+        margin-top: -0.3rem;
+        vertical-align: middle;
+        font-family: "Oui Icons", sans-serif;
+        font-size: @oui-navbar-external-size;
+        color: inherit;
+      }
+    }
+  }
+
+  // Icons
+
+  .navbar-icon(@icon-selector) {
+    .navbar-@{icon-selector} {
+      background: url("../assets/@{icon-selector}.svg") no-repeat center center;
+      background-size: contain;
+    }
+
+    .oui-navbar-link {
+      &:hover,
+      &:focus,
+      &_active,
+      &[aria-expanded="true"] {
+        .navbar-@{icon-selector} {
+          background: url("../assets/@{icon-selector}_on.svg") no-repeat center center;
+        }
+      }
+    }
+  }
+
+  .navbar-icon(icon-assistance);
+  .navbar-icon(icon-notifications);
+  .navbar-icon(icon-user);
+}
+/* stylelint-enable at-rule-no-unknown */

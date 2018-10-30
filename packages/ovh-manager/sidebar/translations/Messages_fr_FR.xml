@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="sidebar_section_domains" qtlid="32590">Domaines</translation>
+   <translation id="sidebar_section_hosting" qtlid="50470">Hébergements</translation>
+   <translation id="sidebar_section_database" qtlid="7702">Bases de données</translation>
+   <translation id="sidebar_section_emailPro" qtlid="374893">E-mail Pro</translation>
+   <translation id="sidebar_section_email" qtlid="218029">Emails</translation>
+   <translation id="sidebar_section_microsoft" qtlid="284280">Microsoft</translation>
+   <translation id="sidebar_section_exchange" qtlid="80430">Exchange</translation>
+   <translation id="sidebar_section_office" qtlid="100544">Office</translation>
+   <translation id="sidebar_section_sharepoint" qtlid="298352">Sharepoint</translation>
+   <translation id="sidebar_section_dedicatedServers" qtlid="101901">Serveurs Dédiés</translation>
+   <translation id="sidebar_section_dedicatedClouds" qtlid="20131">Private Cloud</translation>
+   <translation id="sidebar_section_nas_and_cdn" qtlid="344058">NAS et CDN</translation>
+   <translation id="sidebar_section_licences" qtlid="113658">Licences</translation>
+   <translation id="sidebar_section_ip" qtlid="25615">IP</translation>
+   <translation id="sidebar_section_iaas" qtlid="19459">Serveurs</translation>
+   <translation id="sidebar_section_paas" qtlid="323447">Plateformes et services</translation>
+   <translation id="sidebar_section_metrics" qtlid="383525">Metrics</translation>
+   <translation id="sidebar_section_logs" qtlid="366385">Logs Data Platform</translation>
+   <translation id="sidebar_section_load_balancer" qtlid="439819">Load Balancer</translation>
+   <translation id="sidebar_section_vrack" qtlid="246962">vRack</translation>
+   <translation id="sidebar_section_cloud_desktop" qtlid="303952">Cloud Desktop</translation>
+   <translation id="sidebar_section_pack" qtlid="305603">Accès Internet</translation>
+   <translation id="sidebar_section_telephony" qtlid="29299">Téléphonie</translation>
+   <translation id="sidebar_section_sms" qtlid="28243">SMS</translation>
+   <translation id="sidebar_section_fax" qtlid="32926">Fax</translation>
+   <translation id="sidebar_section_otb" qtlid="281977">OverTheBox</translation>
+
+   <translation id="sidebar_load_error">Oups, nous n'arrivons pas à charger vos services.</translation>
+
+</translations>
