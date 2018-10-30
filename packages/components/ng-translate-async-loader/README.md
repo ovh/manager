@@ -2,6 +2,8 @@
 
 > Angular translate asynchronous loader
 
+[![Downloads](https://badgen.net/npm/dt/@ovh-ux/translate-async-loader)](https://npmjs.com/package/@ovh-ux/translate-async-loader) [![Dependencies](https://badgen.net/david/dep/ovh-ux/translate-async-loader)](https://npmjs.com/package/@ovh-ux/translate-async-loader?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/translate-async-loader)](https://npmjs.com/package/@ovh-ux/translate-async-loader?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+
 ## Install
 
 ```sh
