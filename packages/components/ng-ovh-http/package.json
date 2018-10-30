@@ -2,27 +2,27 @@
   "name": "ovh-angular-http",
   "version": "4.0.0-alpha.0",
   "description": "Simple http provider for OVH API.",
-  "license": "BSD-3-Clause",
-  "author": "OVH SAS",
-  "repository": "ovh-ux/ovh-angular-http",
-  "main": "./dist/ovh-angular-http.js",
-  "scripts": {
-    "test": "yarn run lint",
-    "lint": "run-p lint:js",
-    "lint:js": "eslint --quiet --fix ./src",
-    "version": "npx conventional-changelog-cli -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
-    "postversion": "git push && git push --tags",
-    "build": "rollup -c",
-    "prepare": "rollup -c"
-  },
-  "files": [
-    "dist"
-  ],
   "keywords": [
     "angular",
     "http",
     "provider"
   ],
+  "repository": "ovh-ux/ovh-angular-http",
+  "license": "BSD-3-Clause",
+  "author": "OVH SAS",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/ovh-angular-http.js",
+  "scripts": {
+    "build": "rollup -c",
+    "lint": "run-p lint:js",
+    "lint:js": "eslint --quiet --fix ./src",
+    "prepare": "rollup -c",
+    "test": "yarn run lint",
+    "version": "npx conventional-changelog-cli -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
+    "postversion": "git push && git push --tags"
+  },
   "dependencies": {
     "lodash": "~4.17.11",
     "urijs": "^1.19.1"
