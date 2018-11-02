@@ -14,8 +14,10 @@ import {
   MANAGER_URLS, LANGUAGES, REDIRECT_URLS, URLS,
 } from './ovh-manager-core.constants';
 
-export default angular
-  .module('ovhManagerCore', [
+const moduleName = 'ovhManagerCore';
+
+angular
+  .module(moduleName, [
     'ovh-api-services',
     translate,
     translateLoaderPluggable.name,
@@ -44,5 +46,6 @@ export default angular
     $translateProvider.use(defaultLanguage);
     $translateProvider.fallbackLanguage(LANGUAGES.fallback);
   })
-  .service('SessionService', sessionService)
-  .name;
+  .service('SessionService', sessionService);
+
+export default moduleName;
