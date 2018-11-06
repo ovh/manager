@@ -1,3 +1,12 @@
+## [1.0.5](https://github.com/ovh-ux/translate-async-loader/compare/v1.0.4...v1.0.5) (2018-11-06)
+
+
+### Bug Fixes
+
+* **dependencies:** move component-rollup-config to dev deps ([0ed6306](https://github.com/ovh-ux/translate-async-loader/commit/0ed6306))
+
+
+
 <a name="1.0.4"></a>
 ## [1.0.4](https://github.com/ovh-ux/translate-async-loader/compare/v1.0.3...v1.0.4) (2018-10-22)
 
