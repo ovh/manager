@@ -228,7 +228,10 @@
                         <div class="form-group">
                             <button type="submit"
                                     class="btn btn-block btn-primary"
-                                    data-ng-disabled="!OtrsPopupCtrl.otrsPopupForm.$valid || OtrsPopupCtrl.loaders.services || OtrsPopupCtrl.loaders.send">
+                                    data-ng-disabled="!OtrsPopupCtrl.otrsPopupForm.$valid || OtrsPopupCtrl.loaders.services || OtrsPopupCtrl.loaders.send"
+                                    data-track-on="click"
+                                    data-track-type="action"
+                                    data-track-name="assistance_requests::validation_create_assistance_request">
                                 <span data-translate="otrs_popup_add_ticket"></span>
                                 <oui-spinner data-ng-show="OtrsPopupCtrl.loaders.send"
                                              data-size="s">
@@ -386,7 +389,10 @@
                                            OtrsPopupCtrl.loaders.services ||
                                            OtrsPopupCtrl.loaders.send ||
                                            !OtrsPopupCtrl.intervention.confirm ||
-                                           OtrsPopupCtrl.loaders.intervention">
+                                           OtrsPopupCtrl.loaders.intervention"
+                        data-track-on="click"
+                        data-track-type="action"
+                        data-track-name="assistance_requests::validation_create_assistance_request">
                     <span data-translate="otrs_popup_add_ticket"></span>
                     <oui-spinner data-ng-if="OtrsPopupCtrl.loaders.send"
                                  data-size="s">
