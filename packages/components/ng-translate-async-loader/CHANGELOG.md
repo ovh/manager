@@ -1,3 +1,12 @@
+## [1.0.6](https://github.com/ovh-ux/translate-async-loader/compare/v1.0.5...v1.0.6) (2018-11-09)
+
+
+### Bug Fixes
+
+* **devdependencies:** bump eslint and husky ([cd89366](https://github.com/ovh-ux/translate-async-loader/commit/cd89366))
+
+
+
 ## [1.0.5](https://github.com/ovh-ux/translate-async-loader/compare/v1.0.4...v1.0.5) (2018-11-06)
 
 
