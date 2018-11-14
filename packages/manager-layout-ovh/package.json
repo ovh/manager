@@ -1,9 +1,9 @@
 {
-  "name": "@ovh-ux/ovh-manager",
+  "name": "@ovh-ux/manager-layout-ovh",
   "version": "0.0.0",
-  "license": "BSD-3-Clause",
   "private": true,
-  "main": "./ovh-manager.js",
+  "license": "BSD-3-Clause",
+  "main": "./src/index.js",
   "dependencies": {
     "@ovh-ux/ovh-utils-angular": "^14.0.0-alpha.1",
     "@uirouter/angularjs": "^1.0.20",

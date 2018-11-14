@@ -12,7 +12,7 @@ import sessionService from './session/session.service';
 
 import {
   MANAGER_URLS, LANGUAGES, REDIRECT_URLS, URLS,
-} from './ovh-manager-core.constants';
+} from './manager-core.constants';
 
 const moduleName = 'ovhManagerCore';
 
