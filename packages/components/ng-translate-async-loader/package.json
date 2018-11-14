@@ -2,27 +2,27 @@
   "name": "@ovh-ux/translate-async-loader",
   "version": "1.0.7",
   "description": "Angular translate asynchronous loader",
-  "author": "OVH SAS",
-  "license": "BSD-3-Clause",
-  "repository": "ovh-ux/translate-async-loader",
   "keywords": [
-    "translate",
     "asynchronous",
     "loader",
-    "ovh"
+    "ovh",
+    "translate"
+  ],
+  "repository": "ovh-ux/translate-async-loader",
+  "license": "BSD-3-Clause",
+  "author": "OVH SAS",
+  "files": [
+    "dist"
   ],
   "main": "./dist/index.js",
   "scripts": {
     "build": "rollup -c",
+    "lint": "eslint --quiet --fix src",
     "prepare": "rollup -c",
     "test": "eslint --quiet src",
-    "lint": "eslint --quiet --fix src",
     "version": "npx conventional-changelog-cli -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
     "postversion": "git push && git push --tags"
   },
-  "files": [
-    "dist"
-  ],
   "devDependencies": {
     "@commitlint/cli": "^7.1.2",
     "@commitlint/config-angular": "^7.1.2",
