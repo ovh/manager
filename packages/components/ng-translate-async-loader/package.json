@@ -11,7 +11,7 @@
     "loader",
     "ovh"
   ],
-  "main": "./dist/translate-async-loader.js",
+  "main": "./dist/index.js",
   "scripts": {
     "build": "rollup -c",
     "prepare": "rollup -c",
@@ -26,7 +26,7 @@
   "devDependencies": {
     "@commitlint/cli": "^7.1.2",
     "@commitlint/config-angular": "^7.1.2",
-    "@ovh-ux/component-rollup-config": "^1.0.0",
+    "@ovh-ux/component-rollup-config": "^3.0.1",
     "eslint": "^5.9.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",
