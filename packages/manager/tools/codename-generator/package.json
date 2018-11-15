@@ -1,0 +1,42 @@
+{
+  "name": "@ovh-ux/codename-generator",
+  "version": "0.0.0",
+  "description": "Generate a random codename",
+  "keywords": [
+    "codename",
+    "manager",
+    "ovh"
+  ],
+  "repository": "ovh-ux/codename-generator",
+  "license": "BSD-3-Clause",
+  "author": "OVH SAS",
+  "main": "src/index.js",
+  "bin": {
+    "codename-generator": "bin/cli.js"
+  },
+  "scripts": {
+    "lint": "eslint --quiet --fix .",
+    "test": "eslint --quiet .",
+    "version": "npx conventional-changelog-cli -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
+    "postversion": "git push && git push --tags"
+  },
+  "dependencies": {
+    "commander": "^2.19.0",
+    "moment": "^2.22.2",
+    "shuffle-seed": "^1.1.6",
+    "titleize": "^1.0.1"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^7.1.2",
+    "@commitlint/config-angular": "^7.1.2",
+    "eslint": "^5.5.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "husky": "^1.0.0",
+    "lint-staged": "^7.3.0"
+  },
+  "engines": {
+    "node": ">=8",
+    "yarn": ">=1.0.0"
+  }
+}
