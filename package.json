@@ -9,6 +9,7 @@
   ],
   "scripts": {
     "build": "webpack --config ./packages/manager-layout-ovh/webpack.config.js --env=production",
+    "clean": "lerna clean -y && npx rimraf dist node_modules",
     "links": "ls -l node_modules/ | grep ^l || echo 'no linked packages'",
     "lint": "run-p lint:css lint:html lint:js lint:md",
     "lint:css": "stylelint 'packages/**/*.less' --fix",
