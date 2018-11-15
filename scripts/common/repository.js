@@ -6,6 +6,12 @@ const path = require('path');
 const semver = require('semver');
 
 class MonoRepository {
+
+  static getName() {
+    return execa.shell('git rev-parse --show-toplevel')
+      .then(({ stdout }) => path.basename(stdout));
+  }
+
   static hasUntrackedChanges() {
     return execa.shell('git status -s')
       .then(({ stdout }) => stdout.length > 0);
@@ -25,27 +31,28 @@ class MonoRepository {
 
   static releaseGithub(accessToken, version, repos, options = {}) {
     const client = github.client(accessToken);
-    const repoName = require(path.resolve(__dirname, '..', '..', 'package.json')).name;
     const reposChangelog = repos.map(r => r._changelog).join('');
-    return new Promise((resolve, reject) => {
-      client.get('/user', {}, (err, status, body) => {
-        if (err) {
-          reject(err);
-        }
-        const login = body.login;
-        const repository = client.repo(`${login}/${repoName}`);
-        repository.release(Object.assign({
-          tag_name: version,
-          target_commitish: 'master',
-          name: version,
-          body: `# Release ${version}\n${reposChangelog}`,
-          draft: false,
-          prerelease: false,
-        }, options), (err) => {
+    return this.getName().then(repoName => {
+      return new Promise((resolve, reject) => {
+        client.get('/user', {}, (err, status, body) => {
           if (err) {
-            return reject(err);
+            reject(err);
           }
-          resolve();
+          const login = body.login;
+          const repository = client.repo(`${login}/${repoName}`);
+          repository.release(Object.assign({
+            tag_name: version,
+            target_commitish: 'master',
+            name: version,
+            body: `# Release ${version}\n${reposChangelog}`,
+            draft: false,
+            prerelease: false,
+          }, options), (err) => {
+            if (err) {
+              return reject(err);
+            }
+            resolve();
+          });
         });
       });
     });
