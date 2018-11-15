@@ -1,8 +1,8 @@
 {
-  "name": "@ovh-ux/ovh-manager-welcome",
+  "name": "@ovh-ux/manager-welcome",
   "version": "0.0.0",
   "license": "BSD-3-Clause",
-  "main": "./ovh-manager-welcome.js",
+  "main": "./src/index.js",
   "dependencies": {
     "oclazyload": "^1.1.0"
   },

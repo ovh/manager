@@ -5,7 +5,7 @@ const RemcalcPlugin = require('less-plugin-remcalc');
 // const WebpackBar = require('webpackbar');
 
 module.exports = {
-  entry: './packages/ovh-manager/ovh-manager.js',
+  entry: './packages/manager-layout-ovh/src/index.js',
   output: {
     path: path.join(__dirname, 'dist'),
     filename: '[name].bundle.js',
@@ -19,7 +19,7 @@ module.exports = {
       'window.jQuery': 'jquery',
     }),
     new HtmlWebpackPlugin({
-      template: './packages/ovh-manager/ovh-manager.html',
+      template: './packages/manager-layout-ovh/src/manager-layout-ovh.html',
     }),
     // new WebpackBar(),
   ],
