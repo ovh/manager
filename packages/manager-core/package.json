@@ -1,8 +1,8 @@
 {
-  "name": "@ovh-ux/ovh-manager-core",
+  "name": "@ovh-ux/manager-core",
   "version": "0.0.0",
   "license": "BSD-3-Clause",
-  "main": "./ovh-manager-core.js",
+  "main": "./src/index.js",
   "dependencies": {
     "@ovh-ux/translate-async-loader": "^1.0.4",
     "angular-translate-loader-pluggable": "^1.3.1",
