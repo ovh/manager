@@ -5,6 +5,8 @@
   "license": "BSD-3-Clause",
   "main": "./src/index.js",
   "dependencies": {
+    "@ovh-ux/manager-core": "^0.0.0",
+    "@ovh-ux/manager-welcome": "^0.0.0",
     "@ovh-ux/ovh-utils-angular": "^14.0.0-alpha.1",
     "@uirouter/angularjs": "^1.0.20",
     "angular": "1.7.5",
@@ -24,6 +26,7 @@
     "matchmedia-ng": "^1.0.8",
     "moment": "^2.22.2",
     "ovh-angular-actions-menu": "^4.0.0",
+    "ovh-angular-apiv7": "^1.2.8",
     "ovh-angular-http": "^4.0.0-alpha.0",
     "ovh-angular-otrs": "ovh-ux/ovh-angular-otrs#chore/webpack",
     "ovh-angular-responsive-popover": "5.0.0-alpha.1",

@@ -7,14 +7,15 @@ import set from 'lodash/set';
 import ssoAuth from 'ovh-angular-sso-auth';
 import OvhHttp from 'ovh-angular-http';
 
-import core from '@ovh-ux/manager-core'; // eslint-disable-line import/no-extraneous-dependencies
-import welcome from '@ovh-ux/manager-welcome'; // eslint-disable-line import/no-extraneous-dependencies
+import core from '@ovh-ux/manager-core';
+import welcome from '@ovh-ux/manager-welcome';
 
 import routing from './manager-layout-ovh.routes';
 import sidebar from './sidebar';
 import navbar from './navbar';
 
 import 'ovh-angular-otrs';
+import 'ovh-angular-apiv7';
 import 'ovh-ui-angular';
 import 'bootstrap';
 

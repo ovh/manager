@@ -3,7 +3,7 @@ import resource from 'angular-resource';
 import translate from 'angular-translate';
 import set from 'lodash/set';
 
-import core from '@ovh-ux/manager-core'; // eslint-disable-line import/no-extraneous-dependencies
+import core from '@ovh-ux/manager-core';
 
 import template from './navbar.html';
 import controller from './navbar.controller';
