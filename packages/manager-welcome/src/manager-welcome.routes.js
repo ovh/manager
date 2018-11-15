@@ -5,7 +5,7 @@ export default /* @ngInject */ function ($stateProvider) {
     lazyLoad: ($transition$) => {
       const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-      return import('./ovh-manager-welcome.component')
+      return import('./manager-welcome.component')
         .then(mod => $ocLazyLoad.load(mod.default));
     },
   });
