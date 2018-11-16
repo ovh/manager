@@ -1,3 +1,4 @@
+/* eslint no-console: 0 */
 const program = require('commander');
 const {
   checkChanges, getChangedRepositories, bumpRepositories,
@@ -18,7 +19,9 @@ program
     if (!program.token) {
       console.warn('Missing <token> option, no github release will be done!');
     }
-    return Promise.resolve().then(() => (program.check ? checkChanges() : false)).then(getChangedRepositories)
+    return Promise.resolve()
+      .then(() => (program.check ? checkChanges() : false))
+      .then(getChangedRepositories)
       .then(bumpRepositories)
       .then(updateChangelogs)
       .then(repos => getDependenciesToUpdate(repos)
@@ -35,8 +38,10 @@ program
               };
               return releaseGithub(program.token, program.version, repos, options);
             }
+            return undefined;
           });
         }
+        return undefined;
       })
       .catch((err) => {
         console.error(`\n${err}`);
