@@ -1,8 +1,12 @@
 import angular from 'angular';
 import ngAria from 'angular-aria';
 import ngSanitize from 'angular-sanitize';
+import 'angular-resource';
 import translate from 'angular-translate';
-import set from 'lodash/set';
+import _ from 'lodash';
+
+import 'script-loader!jquery'; // eslint-disable-line
+import 'script-loader!lodash'; // eslint-disable-line
 
 import ssoAuth from 'ovh-angular-sso-auth';
 import OvhHttp from 'ovh-angular-http';
@@ -89,9 +93,9 @@ angular
   })
   .config((OvhHttpProvider) => {
     // OvhHttpProvider.rootPath = constants.swsProxyPath;
-    set(OvhHttpProvider, 'clearCacheVerb', ['POST', 'PUT', 'DELETE']);
-    set(OvhHttpProvider, 'returnSuccessKey', 'data'); // By default, request return response.data
-    set(OvhHttpProvider, 'returnErrorKey', 'data'); // By default, request return error.data
+    _.set(OvhHttpProvider, 'clearCacheVerb', ['POST', 'PUT', 'DELETE']);
+    _.set(OvhHttpProvider, 'returnSuccessKey', 'data'); // By default, request return response.data
+    _.set(OvhHttpProvider, 'returnErrorKey', 'data'); // By default, request return error.data
   })
   .config((OtrsPopupProvider /* , constants */) => {
     OtrsPopupProvider.setBaseUrlTickets('');

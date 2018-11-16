@@ -26,7 +26,7 @@
 
   .navbar-icon(@icon-selector) {
     .navbar-@{icon-selector} {
-      background: url("../assets/@{icon-selector}.svg") no-repeat center center;
+      background: url("./assets/@{icon-selector}.svg") no-repeat center center;
       background-size: contain;
     }
 
@@ -36,7 +36,7 @@
       &_active,
       &[aria-expanded="true"] {
         .navbar-@{icon-selector} {
-          background: url("../assets/@{icon-selector}_on.svg") no-repeat center center;
+          background: url("./assets/@{icon-selector}_on.svg") no-repeat center center;
         }
       }
     }
