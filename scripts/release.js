@@ -1,4 +1,4 @@
-/* eslint no-console: 0 */
+/* eslint-disable no-console */
 const program = require('commander');
 const {
   checkChanges, getChangedRepositories, bumpRepositories,

@@ -1,4 +1,4 @@
-/* eslint no-console: 0 */
+/* eslint-disable no-console */
 const ora = require('ora');
 const { MonoRepository } = require('../common/repository');
 
