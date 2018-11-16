@@ -25,6 +25,7 @@ const { Codename, Sample } = require('@ovh-ux/codename-generator');
 
 const codename = new Codename(Sample, 'B4cKT0T43FUtUR3');
 codename.encode('1985-10-26');
+// => Lutetium Leopard
 ```
 
 or
@@ -35,6 +36,7 @@ const { Codename } = require('@ovh-ux/codename-generator');
 const mySample = [['A', 'B', 'C'], ['X', 'Y', 'Z']];
 const codename = new Codename(mySample, 'B4cKT0T43FUtUR3');
 codename.encode('1985-10-26');
+// => B Z
 ```
 
 #### new Codename(source, seed)
