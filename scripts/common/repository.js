@@ -1,4 +1,4 @@
-/* eslint global-require: 0 */
+/* eslint-disable global-require, import/no-dynamic-require, no-use-before-define */
 /* eslint import/no-dynamic-require: 0 */
 /* eslint no-use-before-define: 0 */
 const bump = require('conventional-recommended-bump');
