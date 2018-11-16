@@ -30,7 +30,7 @@ codename.encode('1985-10-26');
 or
 
 ```js
-const { Codename, Sample } = require('@ovh-ux/manager-codename');
+const { Codename } = require('@ovh-ux/codename-generator');
 
 const mySample = [['A', 'B', 'C'], ['X', 'Y', 'Z']];
 const codename = new Codename(mySample, 'B4cKT0T43FUtUR3');
