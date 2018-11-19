@@ -1,3 +1,4 @@
+/* eslint-disable global-require, import/no-dynamic-require, no-use-before-define */
 const bump = require('conventional-recommended-bump');
 const execa = require('execa');
 const fs = require('fs');
@@ -6,7 +7,6 @@ const path = require('path');
 const semver = require('semver');
 
 class MonoRepository {
-
   static getName() {
     return execa.shell('git rev-parse --show-toplevel')
       .then(({ stdout }) => path.basename(stdout));
@@ -31,31 +31,29 @@ class MonoRepository {
 
   static releaseGithub(accessToken, version, repos, options = {}) {
     const client = github.client(accessToken);
-    const reposChangelog = repos.map(r => r._changelog).join('');
-    return this.getName().then(repoName => {
-      return new Promise((resolve, reject) => {
-        client.get('/user', {}, (err, status, body) => {
-          if (err) {
-            reject(err);
+    const reposChangelog = repos.map(r => r.changelog).join('');
+    return this.getName().then(repoName => new Promise((resolve, reject) => {
+      client.get('/user', {}, (err, status, body) => {
+        if (err) {
+          reject(err);
+        }
+        const { login } = body;
+        const repository = client.repo(`${login}/${repoName}`);
+        repository.release(Object.assign({
+          tag_name: version,
+          target_commitish: 'master',
+          name: version,
+          body: `# Release ${version}\n${reposChangelog}`,
+          draft: false,
+          prerelease: false,
+        }, options), (releaseErr) => {
+          if (releaseErr) {
+            return reject(releaseErr);
           }
-          const login = body.login;
-          const repository = client.repo(`${login}/${repoName}`);
-          repository.release(Object.assign({
-            tag_name: version,
-            target_commitish: 'master',
-            name: version,
-            body: `# Release ${version}\n${reposChangelog}`,
-            draft: false,
-            prerelease: false,
-          }, options), (err) => {
-            if (err) {
-              return reject(err);
-            }
-            resolve();
-          });
+          return resolve();
         });
       });
-    });
+    }));
   }
 }
 
@@ -80,14 +78,15 @@ class Repository {
 
   updatePackageJson(changes) {
     const packageJson = this.getPackageJson();
-    for (const [key, value] of Object.entries(changes)) {
+
+    Object.entries(changes).forEach(([key, value]) => {
       packageJson[key] = value;
-    }
+    });
     return new Promise((resolve, reject) => {
       const updatedJson = JSON.stringify(packageJson, null, 2);
       fs.writeFile(this.getPackageJsonPath(), updatedJson, (err) => {
         if (err) {
-          return reject(`update package.json of ${this.repository.name}: ${err}`);
+          return reject(new Error(`update package.json of ${this.repository.name}: ${err}`));
         }
         return resolve(this);
       });
@@ -106,7 +105,7 @@ class Repository {
       .then(createSmokeTag)
       .then(() => getChangelog()
         .then(({ stdout }) => {
-          this._changelog = stdout.replace(/#/, `## ${this.name}`);
+          this.changelog = stdout.replace(/#/, `## ${this.name}`);
         }))
       .then(updateChangelog)
       .then(deleteSmokeTag)
@@ -148,12 +147,16 @@ class Repository {
       const result = [];
       const addDependencies = ({ isPeerDependency }) => {
         const depEntries = isPeerDependency ? peerDependencies : dependencies;
-        for (const [name, semanticVersion] of Object.entries(depEntries)) {
+        Object.entries(depEntries).forEach(([name, semanticVersion]) => {
           const repo = localRepos.find(r => r.name === name);
           if (repo) {
-            result.push(new Dependency(this, new Repository(repo), { semanticVersion, isPeerDependency }));
+            result.push(new Dependency(
+              this,
+              new Repository(repo),
+              { semanticVersion, isPeerDependency },
+            ));
           }
-        }
+        });
       };
       if (dependencies) {
         addDependencies({ isPeerDependency: false });
@@ -188,7 +191,7 @@ class Dependency {
 
   update() {
     const packageJson = this.repository.getPackageJson();
-    const name = this.dependency.name;
+    const { name } = this.dependency;
     if (this.isPeerDependency) {
       if (packageJson.peerDependencies) {
         packageJson.peerDependencies[name] = `^${this.dependency.version}`;
