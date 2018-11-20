@@ -1,10 +1,9 @@
-const bump = require('conventional-recommended-bump');
+/* eslint-disable no-console */
 const ora = require('ora');
-const semver = require('semver');
 const { MonoRepository } = require('../common/repository');
 const { Codename, Sample } = require('@ovh-ux/codename-generator');
 
-Promise.prototype.logging = function (opts) {
+Promise.prototype.logging = function logging(opts) { // eslint-disable-line no-extend-native
   ora.promise(this, opts);
   return this;
 };
@@ -24,8 +23,8 @@ const getChangedRepositories = () => MonoRepository
     return Promise.all(changes)
       .then(hasChanges => repos.filter((r, id) => hasChanges[id]))
       .logging('listing changes')
-      .then((repos) => {
-        repos.forEach(r => console.log(`    ${r.toString()} has changes`));
+      .then((changedRepos) => {
+        changedRepos.forEach(r => console.log(`    ${r.toString()} has changes`));
         return repos;
       });
   });
@@ -39,13 +38,13 @@ const bumpRepositories = repos => Promise.all(repos.map(repo => repo.bump()))
 
 const updateChangelogs = repos => Promise.all(repos.map(repo => repo.updateChangelog()))
   .logging('updating changelogs')
-  .then((repos) => {
-    repos.forEach(r => console.log(`    updated changelog of ${r.toString()}`));
+  .then((updatedRepos) => {
+    updatedRepos.forEach(r => console.log(`    updated changelog of ${r.toString()}`));
     return repos;
   });
 
 const getDependenciesToUpdate = repos => Promise.all(repos.map(r => r.getDependencies()))
-  .then(deps => [].concat.apply([], deps)) // flatten all deps
+  .then(deps => [].concat(...deps)) // flatten all deps
   .then(deps => deps.filter(dep => dep.needsUpdate()))
   .logging('listing dependencies to update')
   .then((deps) => {
@@ -89,7 +88,8 @@ const release = (version, repos) => MonoRepository.release(version, repos)
   .then(() => console.log(`    released ${version}`))
   .then(() => version);
 
-const releaseGithub = (accessToken, version, repos, options = {}) => MonoRepository.releaseGithub(accessToken, version, repos, options)
+const releaseGithub = (accessToken, version, repos, options = {}) => MonoRepository
+  .releaseGithub(accessToken, version, repos, options)
   .logging(`releasing on github ${version}`)
   .then(() => console.log(`    released ${version} on github`))
   .then(() => version);
