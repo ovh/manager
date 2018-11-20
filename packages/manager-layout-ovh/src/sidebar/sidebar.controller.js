@@ -1,11 +1,4 @@
-import clone from 'lodash/clone';
-import each from 'lodash/each';
-import get from 'lodash/get';
-import has from 'lodash/has';
-import isEmpty from 'lodash/isEmpty';
-import map from 'lodash/map';
-import mapValues from 'lodash/mapValues';
-import sortBy from 'lodash/sortBy';
+import _ from 'lodash';
 
 export default class SidebarController {
   constructor(
@@ -44,15 +37,15 @@ export default class SidebarController {
   }
 
   getMenuItemConfig(serviceName) {
-    const config = clone(get(this.SIDEBAR_CONFIG, serviceName, this.SIDEBAR_CONFIG.default));
+    const config = _.clone(_.get(this.SIDEBAR_CONFIG, serviceName, this.SIDEBAR_CONFIG.default));
 
     config.id = serviceName;
-    if (!has(config, 'title')) {
+    if (!_.has(config, 'title')) {
       config.title = serviceName;
     }
     config.title = this.$translate.instant(config.title);
 
-    if (has(config, 'error')) {
+    if (_.has(config, 'error')) {
       config.error = this.$translate.instant(config.error);
     }
     config.allowSearch = false;
@@ -61,7 +54,7 @@ export default class SidebarController {
   }
 
   getServiceMenuItemConfig(service) {
-    const serviceConfig = get(
+    const serviceConfig = _.get(
       this.SIDEBAR_STATE_MAPPING_SERVICE,
       service.route.path,
       this.SIDEBAR_STATE_MAPPING_SERVICE.default,
@@ -70,15 +63,15 @@ export default class SidebarController {
       id: service.resource.name,
       title: service.resource.displayName || service.resource.name,
       state: serviceConfig.state,
-      stateParams: mapValues(serviceConfig.stateParams, param => get(service, param, '')),
+      stateParams: _.mapValues(serviceConfig.stateParams, param => _.get(service, param, '')),
     };
   }
 
   buildMenuTreeConfig(services) {
-    return sortBy(
-      map(services, (service) => {
+    return _.sortBy(
+      _.map(services, (service) => {
         const menuItem = this.getMenuItemConfig(service.name);
-        if (has(service, 'subServices') && !isEmpty(service.subServices)) {
+        if (_.has(service, 'subServices') && !_.isEmpty(service.subServices)) {
           menuItem.subServices = this.buildMenuTreeConfig(service.subServices);
         }
         return menuItem;
@@ -88,9 +81,9 @@ export default class SidebarController {
   }
 
   buildMenuItems(menuTree, parent) {
-    each(menuTree, (menuItemConfig) => {
+    _.each(menuTree, (menuItemConfig) => {
       let children = [];
-      if (has(menuItemConfig, 'subServices')) {
+      if (_.has(menuItemConfig, 'subServices')) {
         children = menuItemConfig.subServices;
       }
       let menuItem;
@@ -101,7 +94,7 @@ export default class SidebarController {
         menuItem = this.SidebarMenu.addMenuItem(menuItemConfig);
       }
 
-      if (!isEmpty(children)) {
+      if (!_.isEmpty(children)) {
         this.buildMenuItems(children, menuItem);
       } else {
         menuItem.onLoad = () => this.loadServices(menuItemConfig.id);
@@ -118,7 +111,7 @@ export default class SidebarController {
       .then((services) => {
         const parent = this.SidebarMenu.getItemById(serviceName);
 
-        each(services, (service) => {
+        _.each(services, (service) => {
           this.SidebarMenu.addMenuItem(this.getServiceMenuItemConfig(service), parent);
         });
       });

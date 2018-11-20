@@ -6,9 +6,10 @@ import { SIDEBAR_CONFIG, STATE_MAPPING_SERVICE } from './sidebar.constants';
 import template from './sidebar.html';
 import controller from './sidebar.controller';
 
+const moduleName = 'ovh-manager-sidebar';
 
-export default angular
-  .module('ovh-manager-sidebar', [sidebarMenu])
+angular
+  .module(moduleName, [sidebarMenu])
   .component('ovhManagerSidebar', {
     template,
     controller,
@@ -22,5 +23,6 @@ export default angular
         .then(x => x.default),
     );
     $translate.refresh();
-  })
-  .name;
+  });
+
+export default moduleName;

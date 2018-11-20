@@ -1,7 +1,7 @@
 import angular from 'angular';
 import uiRouter from '@uirouter/angularjs';
 import ocLazyLoad from 'oclazyload';
-import core from '@ovh-ux/manager-core'; // eslint-disable-line import/no-extraneous-dependencies
+import core from '@ovh-ux/manager-core';
 
 import routing from './manager-welcome.routes';
 

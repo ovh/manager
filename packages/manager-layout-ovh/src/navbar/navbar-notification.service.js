@@ -1,8 +1,4 @@
-import includes from 'lodash/includes';
-import isArray from 'lodash/isArray';
-import isEmpty from 'lodash/isEmpty';
-import map from 'lodash/map';
-import set from 'lodash/set';
+import _ from 'lodash';
 import moment from 'moment';
 
 export default class NavbarNotificationService {
@@ -38,8 +34,8 @@ export default class NavbarNotificationService {
   getSubLinks() {
     return this.getMessages()
       .then((messages) => {
-        if (isArray(messages) && !isEmpty(messages)) {
-          return map(messages, message => this.convertSubLink(message));
+        if (_.isArray(messages) && !_.isEmpty(messages)) {
+          return _.map(messages, message => this.convertSubLink(message));
         }
         return [];
       });
@@ -51,37 +47,37 @@ export default class NavbarNotificationService {
 
   toggleSublinkAction(toUpdate, linkClicked) {
     if (toUpdate.isActive && !toUpdate.updating) {
-      set(toUpdate, 'updating', true);
+      _.set(toUpdate, 'updating', true);
       this.OvhApiNotificationAapi.post({ completed: [toUpdate.id] }).$promise
         .then(() => {
-          set(toUpdate, 'isActive', false);
-          set(toUpdate, 'acknowledged', true);
+          _.set(toUpdate, 'isActive', false);
+          _.set(toUpdate, 'acknowledged', true);
         })
-        .finally(() => { set(toUpdate, 'updating', false); });
+        .finally(() => { _.set(toUpdate, 'updating', false); });
     } else if (!toUpdate.isActive && !toUpdate.updating && !linkClicked) {
-      set(toUpdate, 'updating', true);
+      _.set(toUpdate, 'updating', true);
       this.OvhApiNotificationAapi.post({ acknowledged: [toUpdate.id] }).$promise
         .then(() => {
-          set(toUpdate, 'isActive', true);
-          set(toUpdate, 'acknowledged', true);
+          _.set(toUpdate, 'isActive', true);
+          _.set(toUpdate, 'acknowledged', true);
         })
-        .finally(() => { set(toUpdate, 'updating', false); });
+        .finally(() => { _.set(toUpdate, 'updating', false); });
     }
   }
 
   convertSubLink(notification) {
-    set(notification, 'time', NavbarNotificationService.formatTime(notification.date));
-    set(notification, 'url', notification.urlDetails.href);
-    set(notification, 'isActive', includes(['acknowledged', 'delivered'], notification.status));
-    set(notification, 'acknowledged', includes(['acknowledged', 'completed', 'unknown'], notification.status));
-    set(notification, 'actionClicked', toUpdate => this.toggleSublinkAction(toUpdate));
-    set(notification, 'linkClicked', toUpdate => this.toggleSublinkAction(toUpdate, true));
+    _.set(notification, 'time', NavbarNotificationService.formatTime(notification.date));
+    _.set(notification, 'url', notification.urlDetails.href);
+    _.set(notification, 'isActive', _.includes(['acknowledged', 'delivered'], notification.status));
+    _.set(notification, 'acknowledged', _.includes(['acknowledged', 'completed', 'unknown'], notification.status));
+    _.set(notification, 'actionClicked', toUpdate => this.toggleSublinkAction(toUpdate));
+    _.set(notification, 'linkClicked', toUpdate => this.toggleSublinkAction(toUpdate, true));
 
     return notification;
   }
 
   acknowledgeAll() {
-    if (this.navbarContent && isArray(this.navbarContent.subLinks)) {
+    if (this.navbarContent && _.isArray(this.navbarContent.subLinks)) {
       const toAcknowledge = this.navbarContent.subLinks
         .filter(subLink => !subLink.acknowledged && subLink.isActive);
 
@@ -90,7 +86,7 @@ export default class NavbarNotificationService {
           .$promise
           .then(() => {
             toAcknowledge.forEach((sublink) => {
-              set(sublink, 'acknowledged', true);
+              _.set(sublink, 'acknowledged', true);
             });
           });
       }
@@ -104,7 +100,7 @@ export default class NavbarNotificationService {
     }
     this.formatTimeTask = this.$interval(() => {
       sublinks.forEach((notification) => {
-        set(notification, 'time', NavbarNotificationService.formatTime(notification.date));
+        _.set(notification, 'time', NavbarNotificationService.formatTime(notification.date));
       });
     }, this.NOTIFICATION_REFRESH_TIME);
   }

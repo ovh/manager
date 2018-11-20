@@ -1,20 +1,25 @@
 import angular from 'angular';
 import ngAria from 'angular-aria';
 import ngSanitize from 'angular-sanitize';
+import 'angular-resource';
 import translate from 'angular-translate';
-import set from 'lodash/set';
+import _ from 'lodash';
+
+import 'script-loader!jquery'; // eslint-disable-line
+import 'script-loader!lodash'; // eslint-disable-line
 
 import ssoAuth from 'ovh-angular-sso-auth';
 import OvhHttp from 'ovh-angular-http';
 
-import core from '@ovh-ux/manager-core'; // eslint-disable-line import/no-extraneous-dependencies
-import welcome from '@ovh-ux/manager-welcome'; // eslint-disable-line import/no-extraneous-dependencies
+import core from '@ovh-ux/manager-core';
+import welcome from '@ovh-ux/manager-welcome';
 
 import routing from './manager-layout-ovh.routes';
 import sidebar from './sidebar';
 import navbar from './navbar';
 
 import 'ovh-angular-otrs';
+import 'ovh-angular-apiv7';
 import 'ovh-ui-angular';
 import 'bootstrap';
 
@@ -88,9 +93,9 @@ angular
   })
   .config((OvhHttpProvider) => {
     // OvhHttpProvider.rootPath = constants.swsProxyPath;
-    set(OvhHttpProvider, 'clearCacheVerb', ['POST', 'PUT', 'DELETE']);
-    set(OvhHttpProvider, 'returnSuccessKey', 'data'); // By default, request return response.data
-    set(OvhHttpProvider, 'returnErrorKey', 'data'); // By default, request return error.data
+    _.set(OvhHttpProvider, 'clearCacheVerb', ['POST', 'PUT', 'DELETE']);
+    _.set(OvhHttpProvider, 'returnSuccessKey', 'data'); // By default, request return response.data
+    _.set(OvhHttpProvider, 'returnErrorKey', 'data'); // By default, request return error.data
   })
   .config((OtrsPopupProvider /* , constants */) => {
     OtrsPopupProvider.setBaseUrlTickets('');

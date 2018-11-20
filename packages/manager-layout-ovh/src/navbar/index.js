@@ -1,9 +1,9 @@
 import angular from 'angular';
 import resource from 'angular-resource';
 import translate from 'angular-translate';
-import set from 'lodash/set';
+import _ from 'lodash';
 
-import core from '@ovh-ux/manager-core'; // eslint-disable-line import/no-extraneous-dependencies
+import core from '@ovh-ux/manager-core';
 
 import template from './navbar.html';
 import controller from './navbar.controller';
@@ -37,7 +37,7 @@ export default angular
         .then(x => x.default),
     );
     $translate.refresh();
-    set(ouiNavbarConfiguration, 'translations', {
+    _.set(ouiNavbarConfiguration, 'translations', {
       notification: {
         errorInNotification: $translate.instant('navbar_notification_error_in_notification'),
         errorInNotificationDescription: $translate.instant('navbar_notification_error_in_notification_description'),
