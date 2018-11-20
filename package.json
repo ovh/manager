@@ -9,14 +9,15 @@
   ],
   "scripts": {
     "build": "webpack --config ./packages/manager-layout-ovh/webpack.config.js --env=production",
-    "clean": "npx lerna clean -y && npx rimraf dist node_modules",
+    "clean": "npx rimraf **/dist **/node_modules",
+    "clean:dist": "npx rimraf **/dist",
     "links": "ls -l node_modules/ | grep ^l || echo 'no linked packages'",
     "lint": "run-p lint:css lint:html lint:js lint:md",
     "lint:css": "stylelint 'packages/**/*.less' --fix",
     "lint:html": "htmlhint 'packages/**/*.html'",
     "lint:js": "eslint --fix .",
     "lint:md": "remark -qf .",
-    "start": "webpack-dev-server --config ./packages/manager-layout-ovh/webpack.config.js",
+    "start": "lerna run dev --stream --parallel",
     "test": "yarn lint",
     "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
     "release": "node ./scripts/release"
