@@ -36,6 +36,10 @@ export default class SidebarController {
     this.$rootScope.$broadcast('sidebar:loaded');
   }
 
+  hasMenuItemConfig(serviceName) {
+    return _.has(this.SIDEBAR_CONFIG, serviceName);
+  }
+
   getMenuItemConfig(serviceName) {
     const config = _.clone(_.get(this.SIDEBAR_CONFIG, serviceName, this.SIDEBAR_CONFIG.default));
 
@@ -68,8 +72,9 @@ export default class SidebarController {
   }
 
   buildMenuTreeConfig(services) {
+    const filteredServices = _.filter(services, service => this.hasMenuItemConfig(service.name));
     return _.sortBy(
-      _.map(services, (service) => {
+      _.map(filteredServices, (service) => {
         const menuItem = this.getMenuItemConfig(service.name);
         if (_.has(service, 'subServices') && !_.isEmpty(service.subServices)) {
           menuItem.subServices = this.buildMenuTreeConfig(service.subServices);
