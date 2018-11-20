@@ -1,13 +1,16 @@
 import angular from 'angular';
-import uiRouter from '@uirouter/angularjs';
+import '@uirouter/angularjs';
 import ocLazyLoad from 'oclazyload';
-import core from '@ovh-ux/manager-core';
+import '@ovh-ux/manager-core';
 
 import routing from './manager-welcome.routes';
 
 const moduleName = 'ovhManagerWelcome';
 
-angular.module(moduleName, [ocLazyLoad, uiRouter, core])
-  .config(routing);
+angular.module(moduleName, [
+  ocLazyLoad,
+  'ui.router',
+  'ovhManagerCore',
+]).config(routing);
 
 export default moduleName;

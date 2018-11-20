@@ -2,7 +2,7 @@
   "name": "@ovh-ux/manager-welcome",
   "version": "0.0.0",
   "license": "BSD-3-Clause",
-  "main": "./dist/index.js",
+  "main": "./dist/cjs/index.js",
   "dependencies": {
     "oclazyload": "^1.1.0"
   },
@@ -15,6 +15,6 @@
     "dev": "rollup -c --watch"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^3.0.1"
+    "@ovh-ux/component-rollup-config": "5.0.0-beta.0"
   }
 }
