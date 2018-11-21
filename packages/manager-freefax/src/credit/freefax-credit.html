@@ -20,7 +20,7 @@
                     </select>
                     <span class="help-block">
                         <span data-ng-if="Credit.cost">
-                            {{ 'freefax_credit_unit' | translate:{ quantity: Credit.quantity, fax:Credit.quantity/2 } }} / {{ Credit.cost.withTax.text }} {{:: 'ttc' | translate }}
+                            {{ 'freefax_credit_unit' | translate:{ quantity: Credit.quantity, fax:Credit.quantity/2 } }} / {{ Credit.cost.withTax.text }} {{:: 'freefax_credit_ttc' | translate }}
                         </span>
                         <oui-spinner data-ng-if="Credit.cost === null"
                                      data-size="s">

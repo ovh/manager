@@ -24,6 +24,7 @@
    <translation id="freefax_credit_billing" qtlid="306656">Régler votre commande</translation>
    <translation id="freefax_credit_unit" qtlid="306669">{{fax}} Fax ({{quantity}} unités)</translation>
    <translation id="freefax_credit_generate_order" qtlid="186219">Générer le bon de commande</translation>
+   <translation id="freefax_credit_ttc" qtlid="101385">TTC</translation>
 
 <!-- notifications -->
    <translation id="freefax_notification_noNotification" qtlid="306682">Il n'y a aucune notification enregistrée.</translation>
