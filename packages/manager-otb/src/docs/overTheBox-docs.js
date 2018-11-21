@@ -4,7 +4,7 @@ import template from './overTheBox-docs.html';
 
 const moduleName = 'ovhManagerOtbDocs';
 
-angular.module('moduleName', [])
+angular.module(moduleName, [])
   .config(($stateProvider) => {
     $stateProvider.state('telecom.overTheBox.docs', {
       url: '/docs',

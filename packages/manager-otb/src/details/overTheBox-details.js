@@ -8,7 +8,7 @@ import template from './overTheBox-details.html';
 const moduleName = 'ovhManagerOtbDetails';
 
 angular.module(moduleName, [])
-  .constants('OVERTHEBOX_DETAILS', constant)
+  .constant('OVERTHEBOX_DETAILS', constant)
   .run(($templateCache) => {
     // import templates required by ng-include
     $templateCache.put('app/telecom/overTheBox/warning/overTheBox-warning-notActivated.html', overTheBoxWarningNotActivated);

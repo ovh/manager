@@ -6,7 +6,7 @@ import template from './overTheBox-remote.html';
 const moduleName = 'ovhManagerOtbRemote';
 
 angular.module(moduleName, [])
-  .constants('OVERTHEBOX_REMOTE_STATUS', constant)
+  .constant('OVERTHEBOX_REMOTE_STATUS', constant)
   .config(($stateProvider) => {
     $stateProvider.state('telecom.overTheBox.remote', {
       url: '/remote',

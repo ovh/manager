@@ -1,23 +1,29 @@
 import angular from 'angular';
 
-import constants from './overTheBox.constant';
+import constant from './overTheBox.constant';
 import controller from './overTheBox.controller';
 import template from './overTheBox.html';
 
-import overTheBoxConfigure from './configure/overTheBox-configure';
+import ovhManagerOtbConfigure from './configure/overTheBox-configure';
+import ovhManagerOtbDetails from './details/overTheBox-details';
+import ovhManagerOtbDocs from './docs/overTheBox-docs';
+import ovhManagerOtbLogs from './logs/overTheBox-logs';
+import ovhManagerOtbOrder from './order/order-overTheBox';
+import ovhManagerOtbRemote from './remote/overTheBox-remote';
+import ovhManagerOtbTasks from './tasks/overTheBox-tasks';
 
 const moduleName = 'ovhManagerOtb';
 angular.module(moduleName, [
-  'ovhManagerOtbConfigure',
-  'ovhManagerOtbDetails',
-  'ovhManagerOtbDocs',
-  'ovhManagerOtbLogs',
-  'ovhManagerOtbOrder',
-  'ovhManagerOtbRemote',
-  'ovhManagerOtbTasks',
-  'ovhManagerOtbWarning',
+  'ui.router',
+  ovhManagerOtbConfigure,
+  ovhManagerOtbDetails,
+  ovhManagerOtbDocs,
+  ovhManagerOtbLogs,
+  ovhManagerOtbOrder,
+  ovhManagerOtbRemote,
+  ovhManagerOtbTasks,
 ])
-  .constants(constants)
+  .constant(constant)
   .config(($stateProvider) => {
     $stateProvider.state('telecom.overTheBox', {
       url: '/overTheBox/:serviceName',
@@ -43,7 +49,6 @@ angular.module(moduleName, [
         },
       },
     });
-  })
-  .config(overTheBoxConfigure);
+  });
 
 export default moduleName;
