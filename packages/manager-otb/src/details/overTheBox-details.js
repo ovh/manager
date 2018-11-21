@@ -26,6 +26,6 @@ angular.module(moduleName, [])
       translations: ['.', '../warning', '../remote'],
     });
   })
-  .service(overTheBoxGraphService);
+  .service('OverTheBoxGraphService', overTheBoxGraphService);
 
 export default moduleName;

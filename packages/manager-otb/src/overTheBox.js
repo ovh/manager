@@ -1,4 +1,8 @@
+import 'ovh-angular-tail-logs';
+import 'angularjs-scroll-glue';
+
 import angular from 'angular';
+import telecomUniverseComponents from '@ovh-ux/telecom-universe-components';
 
 import constant from './overTheBox.constant';
 import controller from './overTheBox.controller';
@@ -15,6 +19,7 @@ import ovhManagerOtbTasks from './tasks/overTheBox-tasks';
 const moduleName = 'ovhManagerOtb';
 angular.module(moduleName, [
   'ui.router',
+  telecomUniverseComponents,
   ovhManagerOtbConfigure,
   ovhManagerOtbDetails,
   ovhManagerOtbDocs,
@@ -23,7 +28,8 @@ angular.module(moduleName, [
   ovhManagerOtbRemote,
   ovhManagerOtbTasks,
 ])
-  .constant(constant)
+  .constant('OVER_THE_BOX', constant)
+  .constant('PAGINATION_PER_PAGE', 5)
   .config(($stateProvider) => {
     $stateProvider.state('overTheBox', {
       url: '/overTheBox/:serviceName',

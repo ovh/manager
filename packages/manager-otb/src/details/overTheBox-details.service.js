@@ -1,5 +1,4 @@
 /* global btoa */
-// angular.module('managerApp').service('OverTheBoxGraphService', function ($http) {
 export default /* @ngInject */ function ($http) {
   this.getGraphData = function getGraphData(opts) {
     const req = {

@@ -1,29 +1,27 @@
 /* stylelint-disable at-rule-no-unknown */
 @rem-base: rem-base(10px);
+@bs-path: "~bootstrap";
+@oui-path: "~ovh-ui-kit";
 
 @import "~ovh-ui-kit/packages/oui/stylekit";
-
-/* OVH-UI-KIT Bootstrap theme.
-/* @import "ovh-ui-kit-bs/src/ovh-ui-kit-bs"; */
+@import "~ovh-ui-kit-bs/src/ovh-ui-kit-bs";
 
 @import "~ovh-manager-webfont/dist/less/ovh-font.less";
+@import "~font-awesome/less/font-awesome.less";
+@import "~ovh-manager-webfont/dist/less/ovh-font";
 
-/* Paths of the dependencies.
-@bs-path: "bootstrap";
-@oui-path: "ovh-ui-kit";
 @icon-font-path: "../../bootstrap/fonts/";
-
 @oui-icon-dist-folder: "../../dist/icons";
 @ovh-font-path: "../fonts";
-
-@import "ovh-angular-sidebar-menu/src/less/ovh-angular-sidebar-menu";
-@import "ovh-angular-sidebar-menu/src/less/ovh-angular-sidebar-menu.dependencies.less"; */
+@fa-font-path: "../fonts";
+@ovh-font-path:"../fonts/";
+@oui-font-source-sans-pro-folder: "../../packages/oui-typography/fonts/source-sans-pro";
 
 @sidebar_menu_offset_top: 0;
-
 @sidebar_menu_active_color: #59d2ef;
 
 @import 'navbar/navbar';
+@import "~ovh-angular-tail-logs/less/ovh-angular-tail-logs.less";
 
 .overflow-hidden {
   overflow: hidden;

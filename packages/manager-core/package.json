@@ -18,6 +18,6 @@
     "dev": "rollup -c --watch"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "5.0.0-beta.0"
+    "@ovh-ux/component-rollup-config": "5.0.0-beta.1"
   }
 }

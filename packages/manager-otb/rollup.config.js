@@ -10,6 +10,7 @@ export default [
     output: {
       globals: {
         angular: 'angular',
+        telecomUniverseComponents: '@ovh-ux/telecom-universe-components',
       },
     },
   }),

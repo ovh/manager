@@ -7,14 +7,16 @@
     "lodash": "3.10.1"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-core": "^0.0.0",
-    "@uirouter/angularjs": "^1.0.15",
-    "angular": "~1.6.10"
+    "angular": "1.7.5",
+    "angularjs-scroll-glue": "^2.2.0",
+    "ovh-angular-responsive-tabs": "^4.0.0",
+    "ovh-angular-tail-logs": "^1.1.1",
+    "@ovh-ux/telecom-universe-components": "^1.0.4"
   },
   "scripts": {
     "dev": "rollup -c --watch"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "5.0.0-beta.0"
+    "@ovh-ux/component-rollup-config": "5.0.0-beta.1"
   }
 }

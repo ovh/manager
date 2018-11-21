@@ -182,6 +182,12 @@ export const STATE_MAPPING_SERVICE = {
       serviceName: 'resource.name',
     },
   },
+  '/overTheBox/{serviceName}': {
+    state: 'overTheBox.details',
+    stateParams: {
+      serviceName: 'resource.name',
+    },
+  },
   default: {
     state: 'welcome',
     stateParams: {},

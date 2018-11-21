@@ -2,7 +2,7 @@ import angular from 'angular';
 import _ from 'lodash';
 
 export default /* @ngInject */ function
-($scope, $rootScope, $filter, $translate, $q, $stateParams, XDSL, OVER_THE_BOX, OVERTHEBOX_DETAILS,
+($scope, $rootScope, $filter, $translate, $q, $stateParams, OVER_THE_BOX, OVERTHEBOX_DETAILS,
   OvhApiOverTheBox, OverTheBoxGraphService, TucToast, TucChartjsFactory) {
   const self = this;
 
