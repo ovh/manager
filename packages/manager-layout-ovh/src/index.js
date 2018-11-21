@@ -5,7 +5,6 @@ import 'angular-resource';
 import translate from 'angular-translate';
 import _ from 'lodash';
 
-import 'script-loader!jquery'; // eslint-disable-line
 import 'script-loader!lodash'; // eslint-disable-line
 
 import ssoAuth from 'ovh-angular-sso-auth';

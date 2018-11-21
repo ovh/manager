@@ -1,6 +1,7 @@
 const merge = require('webpack-merge');
 const path = require('path');
 const webpackConfig = require('@ovh-ux/manager-webpack-config');
+const webpack = require('webpack');
 
 module.exports = (env = {}) => {
   const { config } = webpackConfig({
@@ -22,5 +23,13 @@ module.exports = (env = {}) => {
         path.resolve(__dirname, '../../node_modules'),
       ],
     },
+    plugins: [
+      new webpack.ProvidePlugin({
+        $: 'jquery',
+        jquery: 'jquery',
+        jQuery: 'jquery',
+        'window.jQuery': 'jquery',
+      }),
+    ],
   });
 };
