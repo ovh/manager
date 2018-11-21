@@ -17,4 +17,8 @@
    <translation id="freefax_voicemail_redirection_type" qtlid="307293">type</translation>
    <translation id="freefax_voicemail_success" qtlid="307306">Configuration mise à jour</translation>
    <translation id="freefax_voicemail_bad_password" qtlid="307319">Mot de passe incorrect</translation>
+
+   <translation id="freefax_voicemail_cancel" qtlid="37863">Annuler</translation>
+   <translation id="freefax_voicemail_submit" qtlid="26047">Valider</translation>
+   <translation id="freefax_voicemail_edit" qtlid="6766">Éditer</translation>
 </translations>
