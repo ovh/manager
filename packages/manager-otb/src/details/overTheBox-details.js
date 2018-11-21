@@ -14,10 +14,10 @@ angular.module(moduleName, [])
     $templateCache.put('app/telecom/overTheBox/warning/overTheBox-warning-notActivated.html', overTheBoxWarningNotActivated);
   })
   .config(($stateProvider) => {
-    $stateProvider.state('telecom.overTheBox.details', {
+    $stateProvider.state('overTheBox.details', {
       url: '/details',
       views: {
-        'otbView@telecom.overTheBox': {
+        otbView: {
           template,
           controller,
           controllerAs: 'OverTheBoxDetails',

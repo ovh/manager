@@ -8,10 +8,10 @@ const moduleName = 'ovhManagerOtbRemote';
 angular.module(moduleName, [])
   .constant('OVERTHEBOX_REMOTE_STATUS', constant)
   .config(($stateProvider) => {
-    $stateProvider.state('telecom.overTheBox.remote', {
+    $stateProvider.state('overTheBox.remote', {
       url: '/remote',
       views: {
-        'otbView@telecom.overTheBox': {
+        otbView: {
           template,
           controller,
           controllerAs: 'OverTheBoxRemote',

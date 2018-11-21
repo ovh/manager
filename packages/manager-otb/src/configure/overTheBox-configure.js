@@ -6,15 +6,11 @@ const moduleName = 'ovhManagerOtbConfigure';
 
 angular.module(moduleName, [])
   .config(($stateProvider, $urlRouterProvider) => {
-    $stateProvider.state('telecom.overTheBox-configure', {
+    $stateProvider.state('overTheBox-configure', {
       url: '/overTheBox/configure',
-      views: {
-        'telecomView@telecom': {
-          template,
-          controller,
-          controllerAs: 'OverTheBoxConfigure',
-        },
-      },
+      template,
+      controller,
+      controllerAs: 'OverTheBoxConfigure',
       translations: ['.'],
     });
 

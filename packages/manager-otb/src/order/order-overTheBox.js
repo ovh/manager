@@ -18,15 +18,11 @@ angular.module(moduleName, [])
     $templateCache.put('app/telecom/overTheBox/warning/overTheBox-warning-deviceToLink.html', overTheBoxWarningDeviceToLink);
   })
   .config(($stateProvider) => {
-    $stateProvider.state('telecom.overTheBox-order', {
+    $stateProvider.state('overTheBox-order', {
       url: '/overTheBox/order',
-      views: {
-        'telecomView@telecom': {
-          template,
-          controller,
-          controllerAs: 'OrderOverTheBox',
-        },
-      },
+      template,
+      controller,
+      controllerAs: 'OrderOverTheBox',
       translations: [
         '.',
         '..',

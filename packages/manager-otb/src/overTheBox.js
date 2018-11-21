@@ -25,22 +25,19 @@ angular.module(moduleName, [
 ])
   .constant(constant)
   .config(($stateProvider) => {
-    $stateProvider.state('telecom.overTheBox', {
+    $stateProvider.state('overTheBox', {
       url: '/overTheBox/:serviceName',
       abstract: true,
-      views: {
-        'telecomView@telecom': {
-          template,
-          controller,
-          controllerAs: 'OverTheBox',
-        },
-      },
+      template,
+      controller,
+      controllerAs: 'OverTheBox',
       translations: [
         '.',
         './details',
         './warning',
         './remote',
       ],
+      /*
       resolve: {
         $title(translations, $translate, $stateParams, OvhApiOverTheBox) {
           return OvhApiOverTheBox.v6().get({
@@ -48,6 +45,7 @@ angular.module(moduleName, [
           }).$promise.then(data => $translate.instant('overTheBox_page_title', { name: data.customerDescription || $stateParams.serviceName }, null, null, 'escape')).catch(() => $translate('overTheBox_page_title', { name: $stateParams.serviceName }));
         },
       },
+      */
     });
   });
 
