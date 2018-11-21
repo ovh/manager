@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="order_overTheBox_subscription_request" qtlid="289380">I want to sign up for the service</translation>
+   <translation id="order_overTheBox_buy_hardware" qtlid="289393">Order your OverTheBox </translation>
+   <translation id="order_overTheBox_offer_options" qtlid="289406">Options </translation>
+   <translation id="order_overTheBox_offer_informations" qtlid="289419">Information </translation>
+   <translation id="order_overTheBox_offer_contracts" qtlid="213336">Contracts</translation>
+   <translation id="order_overTheBox_offer_type" qtlid="289432">Type of service:</translation>
+   <translation id="order_overTheBox_offer_duration" qtlid="306175">Service duration (months):</translation>
+   <translation id="order_overTheBox_deviceId_informations" qtlid="289458">If you have the device ID, you can attach it to the service. Otherwise you can attach your device at a later date. </translation>
+   <translation id="order_overTheBox_deviceId" qtlid="289471">Device ID:</translation>
+   <translation id="order_overTheBox_deviceId_placeholder" qtlid="306188">Enter or select </translation>
+   <translation id="order_overTheBox_order_description" qtlid="9238">Description</translation>
+   <translation id="order_overTheBox_order_quantity" qtlid="37107">Quantity</translation>
+   <translation id="order_overTheBox_order_price_ht" qtlid="289497">Total cost </translation>
+   <translation id="order_overTheBox_order_price" qtlid="289497">Total cost </translation>
+   <translation id="order_overTheBox_command" qtlid="289510">Order OverTheBox </translation>
+   <translation id="order_overTheBox_voucher" qtlid="306201">Promo code:</translation>
+   <translation id="order_overTheBox_voucher_placeholder" qtlid="268017">Promo code. </translation>
+   <translation id="order_overTheBox_voucher_informations" qtlid="306214">If you have a promo code, please enter it above. </translation>
+   <translation id="order_overTheBox_price_ht" qtlid="289536">excl. VAT. </translation>
+   <translation id="order_overTheBox_price_ttc" qtlid="289549">incl. VAT. </translation>
+   <translation id="order_overTheBox_orderDone" qtlid="306227">Your order has been processed. <a href="{{bcUrl}}" target="_blank">Click here to access and confirm the purchase order</a>.</translation>
+   <translation id="order_overTheBox_offers_error" qtlid="306240">Unable to change list of services. Please try again later. </translation>
+   <translation id="order_overTheBox_sure_want_to_order" qtlid="306253">We detected that one of your OverTheBox is not associated with any service and that at least one of your services does not support OverTheBox.</translation>
+</translations>

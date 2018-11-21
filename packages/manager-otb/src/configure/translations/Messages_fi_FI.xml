@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="overthebox_configure_reset" qtlid="305785">Olet uudelleenkäynnistänyt overTheBox-palvelusi</translation>
+   <translation id="overthebox_configure_order" qtlid="305798">Olet saanut uuden overTheBox-palvelusi</translation>
+   <translation id="overthebox_configure_reset_explaination" qtlid="305811">Laitteesi on muuttanut tunnisteensa. Sinun täytyy yhdistää se olemassa olevaan palveluun osiossa "Palvelu> Palvelun ID" :</translation>
+   <translation id="overthebox_configure_order_explaination" qtlid="305824">Olet saanut juuri uuden laitteen. Sinun täytyy <a href="{{hash}}">tilata uusi palvelu</a>.</translation>
+</translations>

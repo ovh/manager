@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="overTheBox_docs_title" qtlid="300370">Gidai</translation>
+
+   <translation id="overTheBox_docs_label_installation" qtlid="108721">Diegimas</translation>
+   <translation id="overTheBox_docs_label_config" qtlid="305837">Pažangi konfigūracija</translation>
+   <translation id="overTheBox_docs_label_intermediate" qtlid="305850">Vidutinis lygmuo</translation>
+   <translation id="overTheBox_docs_label_advanced" qtlid="305863">Pažangus lygmuo</translation>
+
+   <translation id="overTheBox_docs_how_it_works" qtlid="305876">Kaip veikia OverTheBox?</translation>
+
+   <translation id="overTheBox_docs_quick_start" qtlid="305889">Mano pirmos 10 minučių su OverTheBox</translation>
+   <translation id="overTheBox_docs_modem_dhcp_disable" qtlid="305902">Išjungti DHCP serverį</translation>
+   <translation id="overTheBox_docs_faq" qtlid="305915">OverTheBox FAQ</translation>
+
+   <translation id="overTheBox_docs_lan_configure" qtlid="305928">Konfigūruoti LAN</translation>
+   <translation id="overTheBox_docs_port_redirection" qtlid="305941">Prievadų nukreipimas</translation>
+   <translation id="overTheBox_docs_permanent_dhcp_lease" qtlid="305954">Sukurti nuolatinį DHCP suteikimo laiką</translation>
+   <translation id="overTheBox_docs_factory_reset" qtlid="305967">Atkurti gamyklinius parametrus</translation>
+   <translation id="overTheBox_docs_aggregate_policy" qtlid="305980">Atkūrimo politika</translation>
+   <translation id="overTheBox_docs_router_coupling" qtlid="305993">DMZ: OverTheBox sujungimas su kitu maršrutizatorium</translation>
+   <translation id="overTheBox_docs_qos_activate" qtlid="306006">Įjungti QoS</translation>
+   <translation id="overTheBox_docs_qos_principle" qtlid="319869">QoS veikimas ir nustatymai</translation>
+   <translation id="overTheBox_docs_virtualbox_test" qtlid="345468">Patikrinti OverTheBox su VirtualBox</translation>
+   <translation id="overTheBox_docs_three_g_four_g" qtlid="319882">3G-4G rakto integravimas</translation>
+
+   <translation id="overTheBox_docs_image_installation" qtlid="306019">Diegti OverTheBox atvaizdą į jūsų įrangą</translation>
+   <translation id="overTheBox_docs_otb_dhcp_disable" qtlid="306032">Išjungti OverTheBox DHCP</translation>
+   <translation id="overTheBox_docs_conf_import_export" qtlid="306045">Eksportuoti ir importuoti konfigūraciją</translation>
+   <translation id="overTheBox_docs_modem_dhcp_monitoring_disable" qtlid="306058">Išjungti modemų DHCP monitoringą</translation>
+   <translation id="overTheBox_docs_dns_configure" qtlid="306071">Konfigūruokite savus DNS</translation>
+   <translation id="overTheBox_docs_active_directory_add" qtlid="306084">Įtraukti Active Directory serverį į DHCP parinktis</translation>
+   <translation id="overTheBox_docs_iphone_android_tethering" qtlid="306097">iPhone ir Android susiejimas</translation>
+   <translation id="overTheBox_docs_vlan_configuration" qtlid="306110">VLAN konfigūravimas</translation>
+   <translation id="overTheBox_docs_rate_test_protocol" qtlid="306123">Perdavimo tikrinimo protokolas</translation>
+   <translation id="overTheBox_docs_modem_interface" qtlid="306136">Rankinis modemo sąsajos kūrimas</translation>
+   <translation id="overTheBox_docs_multiwan_route" qtlid="306149">Sukurti specifinį multiwan maršrutą</translation>
+   <translation id="overTheBox_docs_firewall_rules" qtlid="306162">Firewall taisyklės</translation>
+   <translation id="overTheBox_docs_remote_access" qtlid="305629">Nuotolinė prieiga</translation>
+
+   <translation id="overTheBox_docs_open_new_tab" qtlid="222176">Naujas langas</translation>
+</translations>
