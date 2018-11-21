@@ -11,7 +11,10 @@ import 'script-loader!lodash'; // eslint-disable-line
 import ssoAuth from 'ovh-angular-sso-auth';
 import OvhHttp from 'ovh-angular-http';
 
+import telecomUniverseComponents from '@ovh-ux/telecom-universe-components';
+
 import core from '@ovh-ux/manager-core';
+import freefax from '@ovh-ux/manager-freefax';
 import welcome from '@ovh-ux/manager-welcome';
 
 import routing from './manager-layout-ovh.routes';
@@ -29,6 +32,7 @@ import './manager-layout-ovh.scss';
 angular
   .module('ovhManager', [
     core,
+    freefax,
     welcome,
     ngAria,
     ngSanitize,
@@ -39,6 +43,7 @@ angular
     OvhHttp,
     translate,
     navbar,
+    telecomUniverseComponents,
   ])
   .run((ssoAuthentication/* , User */) => {
     ssoAuthentication.login(); // .then(() => User.getUser());
