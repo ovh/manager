@@ -3,6 +3,7 @@ import angular from 'angular';
 import '@ovh-ux/manager-core';
 import '@uirouter/angularjs';
 import 'ovh-angular-contracts';
+import 'ovh-angular-ui-confirm-modal';
 import 'ovh-api-services';
 
 import freeFaxInformations from './information/freeFax-information.html';
@@ -24,6 +25,7 @@ angular
     'telecomUniverseComponents',
     'ui.router',
     'ovh-angular-contracts',
+    'ovh-angular-ui-confirm-modal',
     credit,
     faxConfiguration,
     notifications,

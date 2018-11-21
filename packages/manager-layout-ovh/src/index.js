@@ -12,6 +12,8 @@ import ssoAuth from 'ovh-angular-sso-auth';
 import OvhHttp from 'ovh-angular-http';
 
 import telecomUniverseComponents from '@ovh-ux/telecom-universe-components';
+import 'ovh-angular-contracts';
+import 'ovh-angular-ui-confirm-modal';
 
 import core from '@ovh-ux/manager-core';
 import freefax from '@ovh-ux/manager-freefax';
@@ -44,6 +46,8 @@ angular
     translate,
     navbar,
     telecomUniverseComponents,
+    'ovh-angular-contracts',
+    'ovh-angular-ui-confirm-modal',
   ])
   .run((ssoAuthentication/* , User */) => {
     ssoAuthentication.login(); // .then(() => User.getUser());
