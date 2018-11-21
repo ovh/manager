@@ -9,6 +9,11 @@
    <translation id="freefax_change_password" qtlid="80394">Changer le mot de passe</translation>
    <translation id="freefax_detail_error" qtlid="395583">Oups ! Nous n'avons pas pu récupérer les information de votre freefax.</translation>
    <translation id="freefax_expired_error" qtlid="186975">Service expiré</translation>
+   <translation id="freefax_cancel" qtlid="37863">Annuler</translation>
+   <translation id="freefax_submit" qtlid="26047">Valider</translation>
+   <translation id="freefax_ok" qtlid="224880">Ok</translation>
+   <translation id="freefax_edit" qtlid="6766">Éditer</translation>
+   <translation id="freefax_required_fields" qtlid="399567">Les champs marqués d'un astérisque sont obligatoires.</translation>
 
 <!-- credits -->
    <translation id="freefax_general_credit" qtlid="306604">Commander des fax</translation>
@@ -18,6 +23,7 @@
    <translation id="freefax_credit_loaded" qtlid="306643">Votre bon de commande de {{amount}} fax, soit {{quantity}} unités, pour un montant de {{total}} TTC est disponible. Cliquez sur le lien ci-dessous pour valider votre commande.</translation>
    <translation id="freefax_credit_billing" qtlid="306656">Régler votre commande</translation>
    <translation id="freefax_credit_unit" qtlid="306669">{{fax}} Fax ({{quantity}} unités)</translation>
+   <translation id="freefax_credit_generate_order" qtlid="186219">Générer le bon de commande</translation>
 
 <!-- notifications -->
    <translation id="freefax_notification_noNotification" qtlid="306682">Il n'y a aucune notification enregistrée.</translation>

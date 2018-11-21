@@ -77,7 +77,7 @@
                 <div class="oui-tile__definition">
                     <form name="faxConfigurationForm"
                           data-ng-submit="FaxConfCtrl.submit()">
-                        <p data-translate="common_required_fields"></p>
+                        <p data-translate="freefax_required_fields"></p>
 
                         <!-- EXPEDITOR -->
                         <div class="form-group"
@@ -172,8 +172,8 @@
                                     data-translate="freefax_reset_password_btn"
                                     data-ng-really-click="FaxConfCtrl.generatePassword()"
                                     data-ng-really-message="{{:: 'freefax_reset_password_confirm' | translate }}"
-                                    data-ng-really-confirm="{{:: 'ok' | translate }}"
-                                    data-ng-really-cancel="{{:: 'cancel' | translate }}"
+                                    data-ng-really-confirm="{{:: 'freefax_ok' | translate }}"
+                                    data-ng-really-cancel="{{:: 'freefax_cancel' | translate }}"
                                     data-ng-really-window-class="revert-really-buttons"
                                     data-ng-disabled="FaxConfCtrl.generatingPassword">
                             </button>
@@ -229,13 +229,13 @@
                             <button class="btn btn-primary"
                                     type="submit"
                                     data-ng-disabled="faxConfigurationForm.$invalid || FaxConfCtrl.loading "
-                                    data-translate="submit">
+                                    data-translate="freefax_submit">
                             </button>
                             <button class="btn btn-default"
                                     type="reset"
                                     data-ng-click="FaxConfCtrl.cancelEditMode()"
                                     data-ng-disabled="FaxConfCtrl.loading"
-                                    data-translate="cancel">
+                                    data-translate="freefax_cancel">
                             </button>
                             <oui-spinner class="d-inline-block align-middle ml-2"
                                          data-ng-if="FaxConfCtrl.loading"

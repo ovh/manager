@@ -162,14 +162,14 @@
                                 data-ng-if="!VoicemailConf.editMode"
                                 data-ng-click="VoicemailConf.enterEditMode()"
                                 data-ng-disabled="VoicemailConf.loading "
-                                data-translate="edit">
+                                data-translate="freefax_edit">
                             </button>
                             <button
                                 class="btn btn-primary no-transition"
                                 type="submit"
                                 data-ng-if="VoicemailConf.editMode"
                                 data-ng-disabled="voicemailConfigurationForm.$invalid || VoicemailConf.loading "
-                                data-translate="submit">
+                                data-translate="freefax_submit">
                             </button>
                             <button
                                 class="btn btn-default no-transition"
@@ -177,7 +177,7 @@
                                 data-ng-if="VoicemailConf.editMode"
                                 data-ng-click="VoicemailConf.cancelEditMode()"
                                 data-ng-disabled="VoicemailConf.loading"
-                                data-translate="cancel">
+                                data-translate="freefax_cancel">
                             </button>
                             <div class="text-center">
                                 <oui-spinner class="ml-2"
