@@ -1,5 +1,5 @@
 import angular from 'angular';
-import translate from 'angular-translate';
+import 'angular-translate';
 import translateAsyncLoader from '@ovh-ux/translate-async-loader';
 
 import 'ng-at-internet';
@@ -19,7 +19,7 @@ const moduleName = 'ovhManagerCore';
 angular
   .module(moduleName, [
     'ovh-api-services',
-    translate,
+    'pascalprecht.translate',
     translateLoaderPluggable.name,
     'ng-at-internet',
     translateAsyncLoader,
