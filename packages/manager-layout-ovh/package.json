@@ -9,6 +9,7 @@
     "dev": "webpack-dev-server --verbose"
   },
   "dependencies": {
+    "@ovh-ux/angular-uirouter-title": "^1.0.4",
     "@ovh-ux/manager-core": "^0.0.0",
     "@ovh-ux/manager-freefax": "^0.0.0",
     "@ovh-ux/manager-overthebox": "^0.0.0",

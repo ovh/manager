@@ -1402,6 +1402,13 @@
   resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-1.1.3.tgz#2b5a3ab3f918cca48a8c754c08168e3f03eba61b"
   integrity sha512-shAmDyaQC4H92APFoIaVDHCx5bStIocgvbwQyxPRrbUY20V1EYTbSDchWbuwlMG3V17cprZhA6+78JfB+3DTPw==
 
+"@ovh-ux/angular-uirouter-title@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/angular-uirouter-title/-/angular-uirouter-title-1.0.4.tgz#4c256b3b6b42872267ee66471d2c3e67b31d3165"
+  integrity sha1-TCVrO2tChyJn7mZHHSw+Z7MdMWU=
+  dependencies:
+    "@uirouter/angularjs" "^1.0.0"
+
 "@ovh-ux/codename-generator@^1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/codename-generator/-/codename-generator-1.0.0.tgz#3fd05d1fdcffe4c4ff6354b245ef2710284b7ae9"
@@ -1557,7 +1564,7 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.12.10.tgz#4fa76e6598b7de3f0cb6ec3abacc4f59e5b3a2ce"
   integrity sha512-8xZEYckCbUVgK8Eg7lf5Iy4COKJ5uXlnIOnePN0WUwSQggy9tolM+tDJf7wMOnT/JT/W9xDYIaYggt3mRV2O5w==
 
-"@uirouter/angularjs@^1.0.20":
+"@uirouter/angularjs@^1.0.0", "@uirouter/angularjs@^1.0.20":
   version "1.0.20"
   resolved "https://registry.yarnpkg.com/@uirouter/angularjs/-/angularjs-1.0.20.tgz#bd330544cb2f1c35987f610d8fc353071786c04e"
   integrity sha512-fY6bsesTL/tg8gyFHXaIjD1r5b7Ac+SYupodO9OzT4/gKI0YC+uGzLpQESAiXlT3fsxdEPVBzdtAbzXDwCKdEA==

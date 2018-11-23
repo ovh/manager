@@ -4,6 +4,7 @@ import '@ovh-ux/manager-core';
 import '@uirouter/angularjs';
 import 'ovh-angular-ui-confirm-modal';
 import 'ovh-api-services';
+import '@ovh-ux/angular-uirouter-title';
 
 import freeFaxInformations from './information/freeFax-information.html';
 
@@ -23,6 +24,7 @@ angular
     'ovhManagerCore',
     'telecomUniverseComponents',
     'ui.router',
+    'angular.uirouter.title',
     'ovh-angular-ui-confirm-modal',
     credit,
     faxConfiguration,
@@ -40,12 +42,11 @@ angular
       controllerAs: 'FreeFax',
       template,
       translations: ['.'],
-      // resolve: {
-      //   $title(translations, $translate, $stateParams) {
-      //     return $translate.instant('freefax_page_title',
-      // { name: $stateParams.serviceName }, null, null, 'escape');
-      //   },
-      // },
+      resolve: {
+        $title(translations, $translate, $stateParams) {
+          return $translate.instant('freefax_page_title', { name: $stateParams.serviceName }, null, null, 'escape');
+        },
+      },
     });
   });
 
