@@ -24,26 +24,24 @@ class MonoRepository {
   }
 
   static getReleaseVersion(version) {
-    let result = version.toLowerCase().trim().replace(' ', '-');
+    const result = version.toLowerCase().trim().replace(' ', '-');
     return execa.shell(`git tag -l '${version}*' --sort=taggerdate | tail -1`)
       .then(({ stdout }) => stdout)
-      .then(v => {
+      .then((v) => {
         if (v) {
           const matches = v.match(/-(\d+)$/);
           if (matches.length > 1) {
             const nextId = parseInt(matches[1], 10) + 1;
             return `${result}-${nextId}`;
-          } else {
-            return `${result}-1`;
           }
-        } else {
-          return result;
+          return `${result}-1`;
         }
+        return result;
       });
   }
 
   static release(version, repos) {
-    const commitMsg = repos.map(r => `* Package ${r.name} ${r.version}`).join('\n');
+    const commitMsg = repos.map(r => `* Package ${r.name} ${r.getPackageJson().version}`).join('\n');
     return execa.shell(`git add . && git commit -m 'Release: ${version}' -m '${commitMsg}' --no-verify`)
       .then(() => execa.shell(`git tag -a -m 'release: ${version}' '${version}'`));
   }
@@ -112,46 +110,107 @@ class Repository {
     });
   }
 
+  static fetchTags() {
+    return execa.shell('git describe --abbrev=0').then(({ stdout }) => stdout).catch(() => '');
+  }
+
+  createSmokeTag(tag) {
+    return execa.shell(`git tag ${this.name}@${this.version} ${tag}`);
+  }
+
+  deleteSmokeTag() {
+    return execa.shell(`git tag -d ${this.name}@${this.version}`);
+  }
+
   updateChangelog() {
-    const fetchTags = () => execa.shell('git describe --abbrev=0').then(({ stdout }) => stdout).catch(() => '');
-    const createSmokeTag = tag => execa.shell(`git tag ${this.name}@${this.version} ${tag}`);
-    const deleteSmokeTag = () => execa.shell(`git tag -d ${this.name}@${this.version}`);
     const getChangelog = () => execa.shell(`lerna exec --scope ${this.name} --concurrency 1 --no-sort -- conventional-changelog \
       --preset angular --lerna-package ${this.name} --commit-path ${this.location}`);
     const updateChangelog = () => execa.shell(`lerna exec --scope ${this.name} --concurrency 1 --no-sort -- conventional-changelog \
       --preset angular --infile CHANGELOG.md --same-file --lerna-package ${this.name} --commit-path ${this.location}`);
-    return fetchTags()
-      .then(createSmokeTag)
+    return this.constructor.fetchTags()
+      .then((...args) => this.createSmokeTag(args))
       .then(() => getChangelog()
         .then(({ stdout }) => {
           this.changelog = stdout.replace(/#/, `## ${this.name}`);
         }))
       .then(updateChangelog)
-      .then(deleteSmokeTag)
+      .then(() => this.deleteSmokeTag())
       .then(() => this);
   }
 
-  bump() {
-    return new Promise((resolve, reject) => {
-      bump({
-        preset: 'angular',
-        lernaPackage: this.name,
-        path: this.location,
-      }, (err, recommendation) => {
-        if (err) {
-          reject(err);
+  bump(prerelease = false, preid = null) {
+    return this.constructor.fetchTags()
+      .then((...args) => this.createSmokeTag(args))
+      .then(() => new Promise((resolve, reject) => {
+        bump({
+          preset: 'angular',
+          lernaPackage: this.name,
+          path: this.location,
+        }, (err, recommendation) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(recommendation);
+          }
+        });
+      }))
+      .then((recommendation) => {
+        const regExpSemverPreRelease = /(\d+)\.(\d+)\.(\d+)-(\w+)\.(\d+)/g;
+        let newVersion;
+
+        // Check if the last release was a pre-release
+        // If it's already a pre-release, we should sometimes but only the pre-release digit
+        // Because we don't want:
+        // - packageA@2.0.1-alpha.0
+        // - Patch on packageA
+        // - packageA@2.0.2-alpha.0
+        // But:
+        // - packageA@2.0.1-alpha.0
+        // - Patch on packageA
+        // - packageA@2.0.1-alpha.1
+        if (prerelease && regExpSemverPreRelease.test(this.version)) {
+          const matchs = this.version.match(regExpSemverPreRelease);
+          // 0: Fullmatch
+          // 1: Major digit
+          // 2: Minor digit
+          const minorDigit = parseInt(matchs[2], 10);
+          // 3: Patch Digit
+          // 4: Pre-release name
+          // 5: Digit of pre-release
+
+          if (recommendation.releaseType === 'patch') {
+          // Match example: 2.1.1-alpha.0 -> 2.1.1-alpha.1
+          // Match example: 2.1.0-alpha.0 -> 2.1.0-alpha.1
+            newVersion = semver.inc(this.version, 'prerelease', preid);
+          } else if (recommendation.releaseType === 'minor') {
+          // Min Minor
+            if (minorDigit > 0) {
+            // Match example: 2.1.0-alpha.0 -> 2.1.0-alpha.1
+              newVersion = semver.inc(this.version, 'prerelease', preid);
+            } else {
+            // Match example: 2.1.1-alpha.0 -> 2.2.0-alpha.0
+            // Match example: 2.0.1-alpha.0 -> 2.1.0-alpha.0
+              newVersion = semver.inc(this.version, 'preminor', preid);
+            }
+          } else {
+          // Min major
+          // Match example: 3.0.0-alpha.0 -> 3.0.0-alpha.1
+          // Match example: 2.1.1-alpha.0 -> 3.0.0-alpha.0
+          // Match example: 2.1.0-alpha.0 -> 3.0.0-alpha.0
+            newVersion = semver.inc(this.version, 'prerelease', preid);
+          }
         } else {
-          resolve(recommendation);
+          newVersion = semver.inc(this.version, prerelease ? `pre${recommendation.releaseType}` : recommendation.releaseType, preid);
         }
+
+        return this.updatePackageJson({ version: newVersion })
+          .then(() => this.deleteSmokeTag())
+          .then(() => ({
+            repository: this,
+            recommendation,
+            newVersion,
+          }));
       });
-    }).then((recommendation) => {
-      const newVersion = semver.inc(this.version, recommendation.releaseType);
-      return this.updatePackageJson({ version: newVersion }).then(() => ({
-        repository: this,
-        recommendation,
-        newVersion,
-      }));
-    });
   }
 
   hasChanges() {
