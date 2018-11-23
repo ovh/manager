@@ -159,7 +159,7 @@ export const SIDEBAR_CONFIG = {
     error: 'sidebar_load_error',
     category: 'freefax',
     icon: 'ovh-font ovh-font-print',
-    loadOnState: 'telecom.freefax',
+    loadOnState: 'freefax',
   },
   OVER_THE_BOX: {
     title: 'sidebar_section_otb',
@@ -183,12 +183,15 @@ export const STATE_MAPPING_SERVICE = {
     },
   },
   '/freefax/{serviceName}': {
-    state: 'welcome',
+    state: 'freefax',
+    prefix: 'sidebar_section_fax_prefix_freefax',
     stateParams: {
+      serviceName: 'resource.name',
     },
   },
   default: {
     state: 'welcome',
+    prefix: '',
     stateParams: {},
   },
 };

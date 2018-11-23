@@ -1,0 +1,68 @@
+.ui-view-container {
+  position: relative;
+
+  [ui-view],
+  [data-ui-view] {
+    transition: transform 0.5s ease-in, opacity 1s ease-in;
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  [ui-view].ng-enter,
+  [ui-view].ng-leave.ng-leave-active,
+  [data-ui-view].ng-enter,
+  [data-ui-view].ng-leave.ng-leave-active {
+    position: absolute;
+    opacity: 0;
+    left: 0;
+    right: 0;
+  }
+
+  [ui-view].ng-enter.ng-enter-active,
+  [ui-view].ng-leave,
+  [data-ui-view].ng-enter.ng-enter-active,
+  [data-ui-view].ng-leave {
+    position: absolute;
+    opacity: 1;
+    left: 0;
+    right: 0;
+  }
+
+  &.anim {
+    [ui-view].ng-enter,
+    [data-ui-view].ng-enter {
+      transform: translateX(100%);
+    }
+
+    [ui-view].ng-enter.ng-enter-active,
+    [ui-view].ng-leave,
+    [data-ui-view].ng-enter.ng-enter-active,
+    [data-ui-view].ng-leave {
+      transform: translateX(0);
+    }
+
+    [ui-view].ng-leave.ng-leave-active,
+    [data-ui-view].ng-leave.ng-leave-active {
+      transform: translateX(-100%);
+    }
+  }
+
+  &.invert-anim {
+    [ui-view].ng-enter,
+    [data-ui-view].ng-enter {
+      transform: translateX(-100%);
+    }
+
+    [ui-view].ng-enter.ng-enter-active,
+    [ui-view].ng-leave,
+    [data-ui-view].ng-enter.ng-enter-active,
+    [data-ui-view].ng-leave {
+      transform: translateX(0);
+    }
+
+    [ui-view].ng-leave.ng-leave-active,
+    [data-ui-view].ng-leave.ng-leave-active {
+      transform: translateX(100%);
+    }
+  }
+}
