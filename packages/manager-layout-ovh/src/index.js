@@ -15,7 +15,7 @@ import OvhHttp from 'ovh-angular-http';
 import telecomUniverseComponents from '@ovh-ux/telecom-universe-components';
 
 import core from '@ovh-ux/manager-core';
-import otb from '@ovh-ux/manager-otb';
+import overthebox from '@ovh-ux/manager-overthebox';
 import freefax from '@ovh-ux/manager-freefax';
 import welcome from '@ovh-ux/manager-welcome';
 
@@ -38,7 +38,7 @@ import './manager-layout-ovh.less';
 angular
   .module('ovhManager', [
     core,
-    otb,
+    overthebox,
     freefax,
     welcome,
     ngAria,

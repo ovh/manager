@@ -1,5 +1,5 @@
 {
-  "name": "@ovh-ux/manager-otb",
+  "name": "@ovh-ux/manager-overthebox",
   "version": "0.0.0",
   "license": "BSD-3-Clause",
   "main": "./dist/cjs/overTheBox.js",

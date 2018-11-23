@@ -10,7 +10,7 @@
   "dependencies": {
     "@ovh-ux/manager-core": "^0.0.0",
     "@ovh-ux/manager-freefax": "^0.0.0",
-    "@ovh-ux/manager-otb": "^0.0.0",
+    "@ovh-ux/manager-overthebox": "^0.0.0",
     "@ovh-ux/manager-universes-styles": "^0.0.0",
     "@ovh-ux/manager-webpack-config": "^3.0.0",
     "@ovh-ux/manager-welcome": "^0.0.0",
