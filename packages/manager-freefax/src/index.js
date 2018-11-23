@@ -2,7 +2,6 @@ import angular from 'angular';
 
 import '@ovh-ux/manager-core';
 import '@uirouter/angularjs';
-import 'ovh-angular-contracts';
 import 'ovh-angular-ui-confirm-modal';
 import 'ovh-api-services';
 
@@ -24,7 +23,6 @@ angular
     'ovhManagerCore',
     'telecomUniverseComponents',
     'ui.router',
-    'ovh-angular-contracts',
     'ovh-angular-ui-confirm-modal',
     credit,
     faxConfiguration,

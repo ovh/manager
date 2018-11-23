@@ -3,21 +3,21 @@
 
 @import "~ovh-ui-kit/packages/oui/stylekit";
 
-/* OVH-UI-KIT Bootstrap theme.
-/* @import "ovh-ui-kit-bs/src/ovh-ui-kit-bs"; */
-
+/* OVH-UI-KIT Bootstrap theme. */
+@import "~ovh-ui-kit-bs/src/ovh-ui-kit-bs";
 @import "~ovh-manager-webfont/dist/less/ovh-font.less";
+@import "~@ovh-ux/manager-universes-styles/src/telecom";
 
-/* Paths of the dependencies.
-@bs-path: "bootstrap";
-@oui-path: "ovh-ui-kit";
+/* Paths of the dependencies. */
+@bs-path: "~bootstrap";
+@oui-path: "~ovh-ui-kit";
 @icon-font-path: "../../bootstrap/fonts/";
 
+/*
 @oui-icon-dist-folder: "../../dist/icons";
 @ovh-font-path: "../fonts";
 
-@import "ovh-angular-sidebar-menu/src/less/ovh-angular-sidebar-menu";
-@import "ovh-angular-sidebar-menu/src/less/ovh-angular-sidebar-menu.dependencies.less"; */
+*/
 
 @sidebar_menu_offset_top: 0;
 
@@ -32,4 +32,5 @@
 .oui-sidebar-menu {
   width: 100%;
 }
+
 /* stylelint-enable at-rule-no-unknown */

@@ -1,12 +1,12 @@
+import 'script-loader!jquery'; // eslint-disable-line
+import 'script-loader!lodash'; // eslint-disable-line
+
 import angular from 'angular';
 import ngAria from 'angular-aria';
 import ngSanitize from 'angular-sanitize';
 import 'angular-resource';
 import translate from 'angular-translate';
 import _ from 'lodash';
-
-import 'script-loader!jquery'; // eslint-disable-line
-import 'script-loader!lodash'; // eslint-disable-line
 
 import ssoAuth from 'ovh-angular-sso-auth';
 import OvhHttp from 'ovh-angular-http';
@@ -26,10 +26,9 @@ import navbar from './navbar';
 import 'ovh-angular-otrs';
 import 'ovh-angular-apiv7';
 import 'ovh-ui-angular';
-import 'bootstrap';
 
-import './manager-layout-ovh.less';
 import './manager-layout-ovh.scss';
+import './manager-layout-ovh.less';
 
 angular
   .module('ovhManager', [
