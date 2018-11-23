@@ -5,7 +5,7 @@ export default /* @ngInject */ function ($http) {
       method: 'POST',
       serviceType: 'opentsdb',
       preventLogout: true,
-      url: ['https://', opts.service.graphEndpoint.host, 'api/query'].join('/'),
+      url: `https://${opts.service.graphEndpoint.host}/api/query`,
       headers: {
         Authorization: `Basic ${btoa(`${opts.service.graphEndpoint.readTokenID}:${opts.service.graphEndpoint.readToken}`)}`,
       },
