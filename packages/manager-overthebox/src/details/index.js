@@ -11,7 +11,7 @@ angular.module(moduleName, [])
   .constant('OVERTHEBOX_DETAILS', constant)
   .run(($templateCache) => {
     // import templates required by ng-include
-    $templateCache.put('app/telecom/overTheBox/warning/overTheBox-warning-notActivated.html', overTheBoxWarningNotActivated);
+    $templateCache.put('overTheBox/warning/overTheBox-warning-notActivated.html', overTheBoxWarningNotActivated);
   })
   .config(($stateProvider) => {
     $stateProvider.state('overTheBox.details', {
