@@ -77,8 +77,7 @@ const updateDependencies = dependencies => Promise
 const getReleaseVersion = (version, seed) => {
   if (!version) {
     const codename = new Codename(Sample, seed || '');
-    codename.encode().toLowerCase().trim().replace(' ', '-');
-    return MonoRepository.getReleaseVersion(version);
+    return MonoRepository.getReleaseVersion(codename.encode().toLowerCase().trim().replace(' ', '-'));
   }
   return Promise.resolve().then(() => version);
 };
