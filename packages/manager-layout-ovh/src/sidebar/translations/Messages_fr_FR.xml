@@ -25,6 +25,7 @@
    <translation id="sidebar_section_telephony" qtlid="29299">Téléphonie</translation>
    <translation id="sidebar_section_sms" qtlid="28243">SMS</translation>
    <translation id="sidebar_section_fax" qtlid="32926">Fax</translation>
+   <translation id="sidebar_section_fax_prefix_freefax" qtlid="196387">perso</translation>
    <translation id="sidebar_section_otb" qtlid="281977">OverTheBox</translation>
 
    <translation id="sidebar_load_error">Oups, nous n'arrivons pas à charger vos services.</translation>

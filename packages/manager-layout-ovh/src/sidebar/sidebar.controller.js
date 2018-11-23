@@ -66,6 +66,7 @@ export default class SidebarController {
     return {
       id: service.resource.name,
       title: service.resource.displayName || service.resource.name,
+      prefix: this.$translate.instant(serviceConfig.prefix),
       state: serviceConfig.state,
       stateParams: _.mapValues(serviceConfig.stateParams, param => _.get(service, param, '')),
     };

@@ -184,12 +184,14 @@ export const STATE_MAPPING_SERVICE = {
   },
   '/freefax/{serviceName}': {
     state: 'freefax',
+    prefix: 'sidebar_section_fax_prefix_freefax',
     stateParams: {
       serviceName: 'resource.name',
     },
   },
   default: {
     state: 'welcome',
+    prefix: '',
     stateParams: {},
   },
 };
