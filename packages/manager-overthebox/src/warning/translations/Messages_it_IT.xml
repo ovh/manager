@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="order_overTheBox_no_device_detected_title" qtlid="289289">Sembra che non ci siano OverTheBox nella tua rete locale.</translation>
+   <translation id="order_overTheBox_no_device_detected_advise" qtlid="289302">Verifica:</translation>
+   <translation id="order_overTheBox_no_device_detected_advise_internet" qtlid="289315">che il tuo OverTheBox sia connesso a Internet</translation>
+   <translation id="order_overTheBox_no_device_detected_advise_connected" qtlid="289328">di aver effettuato l'accesso al tuo Spazio Cliente OVH utilizzando la stessa rete del tuo OverTheBox</translation>
+   <translation id="order_overTheBox_no_device_detected_advise_needed" qtlid="305655">Hai bisogno di un consiglio per la configurazione? <a href="{{url}}" target="_blank">Clicca qui</a> per consultare le guide OVH.</translation>
+   <translation id="order_overTheBox_device_detected_title" qtlid="289354">Il tuo OverTheBox è presente nella tua rete locale.</translation>
+   <translation id="order_overTheBox_many_device_detected_title" qtlid="305668">{{count}} OverTheBox sono state trovate nella tua rete locale.</translation>
+   <translation id="order_overTheBox_device_detected_subscription_needed" qtlid="289367">Per utilizzare il dispositivo, sottoscrivi il servizio.</translation>
+   <translation id="overTheBox_device_not_activated" qtlid="289718">Il tuo OverTheBox non è ancora stato attivato</translation>
+   <translation id="overTheBox_device_not_activated_infos" qtlid="289731">Per completare la configurazione:</translation>
+   <translation id="overTheBox_device_not_activated_infos_connect" qtlid="305681">Accedi all'<a href="{{url}}" target="_blank" title="Nuova finestra">interfaccia di gestione</a></translation>
+   <translation id="overTheBox_device_not_activated_infos_help" qtlid="289757">Segui questi passaggi per configurare il tuo OverTheBox</translation>
+   <translation id="overTheBox_device_not_activated_infos_guide" qtlid="305694">Se hai bisogno di aiuto per configurare il tuo OverTheBox, consulta la <a href="{{url}}" target="_blank" title="Nuova finestra">guida all'installazione</a>.</translation>
+   <translation id="order_overTheBox_payment_no_means" qtlid="305707">Nessuna modalità di pagamento registrata</translation>
+   <translation id="order_overTheBox_payment_means" qtlid="305720">Il costo dell'abbonamento viene addebitato automaticamente ogni mese. Per effettuare i tuoi ordini, <a href="{{url}}" target="_blank" title="Nouvelle fenêtre">registra una modalità di pagamento (carta bancaria, Paypal...)</a>.</translation>
+   <translation id="order_overTheBox_device_detected_link_needed" qtlid="305733">È necessario effettuare l'associazione al tuo servizio.</translation>
+   <translation id="order_overTheBox_device_detected_service_config_needed" qtlid="305746">Accedi al tuo servizio <a href="{{url}}">{{service}}</a> per associarlo al tuo OverTheBox.</translation>
+   <translation id="order_overTheBox_device_to_link_link" qtlid="305759">Associa OverTheBox al tuo servizio</translation>
+   <translation id="order_overTheBox_device_detected_something_needed" qtlid="305772">Sulla tua rete sono stati individuati diversi OverTheBox e servizi non configurati. Accedi ai tuoi servizi per configurarli:</translation>
+</translations>

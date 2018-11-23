@@ -182,6 +182,12 @@ export const STATE_MAPPING_SERVICE = {
       serviceName: 'resource.name',
     },
   },
+  '/overTheBox/{serviceName}': {
+    state: 'overTheBox.details',
+    stateParams: {
+      serviceName: 'resource.name',
+    },
+  },
   '/freefax/{serviceName}': {
     state: 'freefax',
     prefix: 'sidebar_section_fax_prefix_freefax',

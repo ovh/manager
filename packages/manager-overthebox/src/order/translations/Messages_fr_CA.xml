@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="order_overTheBox_subscription_request" qtlid="289380">Je souhaite souscrire au service</translation>
+   <translation id="order_overTheBox_buy_hardware" qtlid="289393">Je souhaite acheter le matériel OVH.</translation>
+   <translation id="order_overTheBox_offer_options" qtlid="289406">Options de l'offre</translation>
+   <translation id="order_overTheBox_offer_informations" qtlid="289419">Informations de l'offre</translation>
+   <translation id="order_overTheBox_offer_contracts" qtlid="213336">Contrats</translation>
+   <translation id="order_overTheBox_offer_type" qtlid="289432">Type d'offre :</translation>
+   <translation id="order_overTheBox_offer_duration" qtlid="306175">Durée de l'offre (mois) :</translation>
+   <translation id="order_overTheBox_deviceId_informations" qtlid="289458">Si vous disposez de l'identifiant du périphérique, vous pouvez l'attacher à votre service. Dans le cas contraire, vous avez la possiblité d'attacher votre périphérique plus tard.</translation>
+   <translation id="order_overTheBox_deviceId" qtlid="289471">Identifiant du périphérique :</translation>
+   <translation id="order_overTheBox_deviceId_placeholder" qtlid="306188">Saisissez ou sélectionnez</translation>
+   <translation id="order_overTheBox_order_description" qtlid="9238">Description</translation>
+   <translation id="order_overTheBox_order_quantity" qtlid="37107">Quantité</translation>
+   <translation id="order_overTheBox_order_price_ht" qtlid="289497">Prix total</translation>
+   <translation id="order_overTheBox_order_price" qtlid="289497">Prix total</translation>
+   <translation id="order_overTheBox_command" qtlid="289510">Commander le service OverTheBox</translation>
+   <translation id="order_overTheBox_voucher" qtlid="306201">Code promotionnel :</translation>
+   <translation id="order_overTheBox_voucher_placeholder" qtlid="268017">Code promo.</translation>
+   <translation id="order_overTheBox_voucher_informations" qtlid="306214">Si vous disposez d'un code promo., saisissez-le ci-dessus.</translation>
+   <translation id="order_overTheBox_price_ht" qtlid="289536">HT.</translation>
+   <translation id="order_overTheBox_price_ttc" qtlid="289549">TTC.</translation>
+   <translation id="order_overTheBox_orderDone" qtlid="306227">Votre commande a bien été prise en compte. <a href="{{bcUrl}}" target="_blank">Cliquez ici pour accéder au bon de commande et le valider</a>.</translation>
+   <translation id="order_overTheBox_offers_error" qtlid="306240">Impossible de charger la liste des offres. Veuillez réessayer plus tard.</translation>
+   <translation id="order_overTheBox_sure_want_to_order" qtlid="306253">Nous avons détecté qu'une de vos OverTheBox n'est liée à aucun service et qu'au moins un de vos services ne gère pas d'OverTheBox.</translation>
+</translations>

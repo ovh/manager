@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="overTheBox_page_title" qtlid="395791">Mi OverTheBox "{{name}}"</translation>
+
+   <translation id="overTheBox_title" qtlid="281977">OverTheBox</translation>
+   <translation id="overTheBox_back" qtlid="4118">Volver</translation>
+   <translation id="overTheBox_tabs_detail" qtlid="305616">Mi OverTheBox</translation>
+   <translation id="overTheBox_tabs_remote" qtlid="305629">Acceso remoto</translation>
+   <translation id="overTheBox_tabs_tasks" qtlid="96716">Tareas</translation>
+   <translation id="overTheBox_tabs_docs" qtlid="300370">Guías</translation>
+   <translation id="overTheBox_tabs_logs" qtlid="62064">Logs</translation>
+
+   <translation id="overTheBox_no_device_found" qtlid="305642">No hay ningún OverTheBox conectado. No podrá crear ningún acceso remoto ni utilizar los accesos creados. Si necesita ayuda para configurar su OverTheBox, consulte la guía de instalación <a href="{{url}}" target="_blank" title="Nueva ventana">aquí</a>.</translation>
+</translations>
