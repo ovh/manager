@@ -12,8 +12,13 @@ import _ from 'lodash';
 import ssoAuth from 'ovh-angular-sso-auth';
 import OvhHttp from 'ovh-angular-http';
 
+import telecomUniverseComponents from '@ovh-ux/telecom-universe-components';
+import 'ovh-angular-contracts';
+import 'ovh-angular-ui-confirm-modal';
+
 import core from '@ovh-ux/manager-core';
 import otb from '@ovh-ux/manager-otb';
+import freefax from '@ovh-ux/manager-freefax';
 import welcome from '@ovh-ux/manager-welcome';
 
 import routing from './manager-layout-ovh.routes';
@@ -24,16 +29,18 @@ import 'angular-ui-bootstrap';
 import 'ovh-angular-otrs';
 import 'ovh-angular-apiv7';
 import 'ovh-ui-angular';
+
 import 'ovh-angular-responsive-tabs';
 import 'ovh-angular-ui-confirm-modal';
 
-import './manager-layout-ovh.less';
 import './manager-layout-ovh.scss';
+import './manager-layout-ovh.less';
 
 angular
   .module('ovhManager', [
     core,
     otb,
+    freefax,
     welcome,
     ngAria,
     ngSanitize,
@@ -48,6 +55,9 @@ angular
     OvhHttp,
     translate,
     navbar,
+    telecomUniverseComponents,
+    'ovh-angular-contracts',
+    'ovh-angular-ui-confirm-modal',
   ])
   .run((ssoAuthentication/* , User */) => {
     ssoAuthentication.login(); // .then(() => User.getUser());

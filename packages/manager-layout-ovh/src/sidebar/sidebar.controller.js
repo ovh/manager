@@ -36,6 +36,10 @@ export default class SidebarController {
     this.$rootScope.$broadcast('sidebar:loaded');
   }
 
+  hasMenuItemConfig(serviceName) {
+    return _.has(this.SIDEBAR_CONFIG, serviceName);
+  }
+
   getMenuItemConfig(serviceName) {
     const config = _.clone(_.get(this.SIDEBAR_CONFIG, serviceName, this.SIDEBAR_CONFIG.default));
 
@@ -62,14 +66,16 @@ export default class SidebarController {
     return {
       id: service.resource.name,
       title: service.resource.displayName || service.resource.name,
+      prefix: this.$translate.instant(serviceConfig.prefix),
       state: serviceConfig.state,
       stateParams: _.mapValues(serviceConfig.stateParams, param => _.get(service, param, '')),
     };
   }
 
   buildMenuTreeConfig(services) {
+    const filteredServices = _.filter(services, service => this.hasMenuItemConfig(service.name));
     return _.sortBy(
-      _.map(services, (service) => {
+      _.map(filteredServices, (service) => {
         const menuItem = this.getMenuItemConfig(service.name);
         if (_.has(service, 'subServices') && !_.isEmpty(service.subServices)) {
           menuItem.subServices = this.buildMenuTreeConfig(service.subServices);

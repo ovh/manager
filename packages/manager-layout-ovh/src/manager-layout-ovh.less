@@ -1,21 +1,25 @@
 /* stylelint-disable at-rule-no-unknown */
 @rem-base: rem-base(10px);
-@bs-path: "~bootstrap";
-@oui-path: "~ovh-ui-kit";
 
 @import "~ovh-ui-kit/packages/oui/stylekit";
-@import "~ovh-ui-kit-bs/src/ovh-ui-kit-bs";
 
+/* OVH-UI-KIT Bootstrap theme. */
+@import "~ovh-ui-kit-bs/src/ovh-ui-kit-bs";
 @import "~ovh-manager-webfont/dist/less/ovh-font.less";
 @import "~font-awesome/less/font-awesome.less";
-@import "~ovh-manager-webfont/dist/less/ovh-font";
+@import "~@ovh-ux/manager-universes-styles/src/telecom";
 
+/* Paths of the dependencies. */
+@bs-path: "~bootstrap";
+@oui-path: "~ovh-ui-kit";
 @icon-font-path: "../../bootstrap/fonts/";
+@fa-font-path: "../fonts";
+
+/*
 @oui-icon-dist-folder: "../../dist/icons";
 @ovh-font-path: "../fonts";
-@fa-font-path: "../fonts";
-@ovh-font-path:"../fonts/";
-@oui-font-source-sans-pro-folder: "../../packages/oui-typography/fonts/source-sans-pro";
+
+*/
 
 @sidebar_menu_offset_top: 0;
 @sidebar_menu_active_color: #59d2ef;
@@ -30,4 +34,5 @@
 .oui-sidebar-menu {
   width: 100%;
 }
+
 /* stylelint-enable at-rule-no-unknown */
