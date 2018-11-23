@@ -15,7 +15,9 @@
     "ng-at-internet": "^3.0.0"
   },
   "scripts": {
-    "dev": "rollup -c --watch"
+    "build": "rollup -c",
+    "dev": "rollup -c --watch",
+    "prepare": "yarn run build"
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "5.0.0-beta.1"

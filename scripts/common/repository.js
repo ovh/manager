@@ -23,6 +23,25 @@ class MonoRepository {
       .then(repos => repos.map(repo => new Repository(repo)));
   }
 
+  static getReleaseVersion(version) {
+    let result = version.toLowerCase().trim().replace(' ', '-');
+    return execa.shell(`git tag -l '${version}*' --sort=taggerdate | tail -1`)
+      .then(({ stdout }) => stdout)
+      .then(v => {
+        if (v) {
+          const matches = v.match(/-(\d+)$/);
+          if (matches.length > 1) {
+            const nextId = parseInt(matches[1], 10) + 1;
+            return `${result}-${nextId}`;
+          } else {
+            return `${result}-1`;
+          }
+        } else {
+          return result;
+        }
+      });
+  }
+
   static release(version, repos) {
     const commitMsg = repos.map(r => `* Package ${r.name} ${r.version}`).join('\n');
     return execa.shell(`git add . && git commit -m 'Release: ${version}' -m '${commitMsg}' --no-verify`)

@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 const ora = require('ora');
 const { MonoRepository } = require('../common/repository');
+const { Codename, Sample } = require('@ovh-ux/codename-generator');
 
 Promise.prototype.logging = function logging(opts) { // eslint-disable-line no-extend-native
   ora.promise(this, opts);
@@ -73,14 +74,25 @@ const updateDependencies = dependencies => Promise
     return deps;
   });
 
+const getReleaseVersion = (version, seed) => {
+  if (!version) {
+    const codename = new Codename(Sample, seed || '');
+    codename.encode().toLowerCase().trim().replace(' ', '-');
+    return MonoRepository.getReleaseVersion(version);
+  }
+  return Promise.resolve().then(() => version);
+};
+
 const release = (version, repos) => MonoRepository.release(version, repos)
   .logging(`releasing ${version}`)
-  .then(() => console.log(`    released ${version}`));
+  .then(() => console.log(`    released ${version}`))
+  .then(() => version);
 
 const releaseGithub = (accessToken, version, repos, options = {}) => MonoRepository
   .releaseGithub(accessToken, version, repos, options)
   .logging(`releasing on github ${version}`)
-  .then(() => console.log(`    released ${version} on github`));
+  .then(() => console.log(`    released ${version} on github`))
+  .then(() => version);
 
 module.exports = {
   checkChanges,
@@ -90,6 +102,7 @@ module.exports = {
   getDependenciesToUpdate,
   checkDependencies,
   updateDependencies,
+  getReleaseVersion,
   release,
   releaseGithub,
 };
