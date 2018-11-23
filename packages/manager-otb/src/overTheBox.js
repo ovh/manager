@@ -2,7 +2,6 @@ import 'ovh-angular-tail-logs';
 import 'angularjs-scroll-glue';
 
 import angular from 'angular';
-import telecomUniverseComponents from '@ovh-ux/telecom-universe-components';
 
 import constant from './overTheBox.constant';
 import controller from './overTheBox.controller';
@@ -19,7 +18,7 @@ import ovhManagerOtbTasks from './tasks/overTheBox-tasks';
 const moduleName = 'ovhManagerOtb';
 angular.module(moduleName, [
   'ui.router',
-  telecomUniverseComponents,
+  'telecomUniverseComponents',
   ovhManagerOtbConfigure,
   ovhManagerOtbDetails,
   ovhManagerOtbDocs,
@@ -48,7 +47,10 @@ angular.module(moduleName, [
         $title(translations, $translate, $stateParams, OvhApiOverTheBox) {
           return OvhApiOverTheBox.v6().get({
             serviceName: $stateParams.serviceName,
-          }).$promise.then(data => $translate.instant('overTheBox_page_title', { name: data.customerDescription || $stateParams.serviceName }, null, null, 'escape')).catch(() => $translate('overTheBox_page_title', { name: $stateParams.serviceName }));
+          }).$promise.then(data => $translate.instant(
+            'overTheBox_page_title', {
+              name: data.customerDescription || $stateParams.serviceName }, null, null, 'escape')
+          ).catch(() => $translate('overTheBox_page_title', { name: $stateParams.serviceName }));
         },
       },
       */

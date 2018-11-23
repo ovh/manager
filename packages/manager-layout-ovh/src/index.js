@@ -13,8 +13,6 @@ import ssoAuth from 'ovh-angular-sso-auth';
 import OvhHttp from 'ovh-angular-http';
 
 import telecomUniverseComponents from '@ovh-ux/telecom-universe-components';
-import 'ovh-angular-contracts';
-import 'ovh-angular-ui-confirm-modal';
 
 import core from '@ovh-ux/manager-core';
 import otb from '@ovh-ux/manager-otb';
@@ -30,6 +28,7 @@ import 'ovh-angular-otrs';
 import 'ovh-angular-apiv7';
 import 'ovh-ui-angular';
 
+import 'ovh-angular-contracts';
 import 'ovh-angular-responsive-tabs';
 import 'ovh-angular-ui-confirm-modal';
 

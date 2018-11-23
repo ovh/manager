@@ -8388,7 +8388,7 @@ ovh-angular-apiv7@^1.2.8:
 
 "ovh-angular-contracts@https://github.com/ovh-ux/ovh-angular-contracts.git#v3.x.x":
   version "2.0.0"
-  resolved "https://github.com/ovh-ux/ovh-angular-contracts.git#ed0d2f3e8fd511d76b0f9a45ca3ae2936a599ecf"
+  resolved "https://github.com/ovh-ux/ovh-angular-contracts.git#ed3c11e7c4a524bacf05a79f702e6e049cd9b637"
 
 ovh-angular-http@^4.0.0-alpha.0:
   version "4.0.0-alpha.0"
