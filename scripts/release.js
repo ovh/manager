@@ -3,19 +3,18 @@ const program = require('commander');
 const {
   checkChanges, getChangedRepositories, bumpRepositories,
   updateChangelogs, getDependenciesToUpdate, checkDependencies,
-  updateDependencies, release, releaseGithub,
+  updateDependencies, getReleaseVersion, release, releaseGithub,
 } = require('./release/index');
 
 program
-  .option('-v, --version <version>', 'version to release', '')
+  .option('-v, --version <version>', 'specify version name to release, otherwise it will be generated randomly', '')
+  .option('-s, --seed <seed>', 'specify seed to generate random version name', '')
   .option('-t, --token <token>', 'github access token', '')
   .option('--no-check', 'do not check if mono-repository has uncommited changes')
   .option('--draft-release', 'identify the github release as unpublished')
   .option('--pre-release', 'identify the github release as a prerelease')
+  .option('--no-release', 'skip github release')
   .action(() => {
-    if (!program.version) {
-      console.warn('Missing <version> option, no release will be done!');
-    }
     if (!program.token) {
       console.warn('Missing <token> option, no github release will be done!');
     }
@@ -29,17 +28,19 @@ program
         .then(updateDependencies)
         .then(() => repos))
       .then((repos) => {
-        if (program.version) {
-          return release(program.version, repos).then(() => {
-            if (program.token) {
-              const options = {
-                draft: program.draftRelease || false,
-                prerelease: program.preRelease || false,
-              };
-              return releaseGithub(program.token, program.version, repos, options);
-            }
-            return undefined;
-          });
+        if (program.release) {
+          return getReleaseVersion(program.version, program.seed)
+            .then(version => release(version, repos))
+            .then(version => {
+              if (program.token) {
+                const options = {
+                  draft: program.draftRelease || false,
+                  prerelease: program.preRelease || false,
+                };
+                return releaseGithub(program.token, version, repos, options);
+              }
+              return undefined;
+            });
         }
         return undefined;
       })
