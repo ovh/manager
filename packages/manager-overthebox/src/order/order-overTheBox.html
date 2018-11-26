@@ -16,19 +16,19 @@
              data-ng-show="!OrderOverTheBox.loaders.checking && !OrderOverTheBox.states.orderDone">
 
             <div data-ng-if="!OrderOverTheBox.hasDefaultPaymentMeans"
-                 data-ng-include="'app/telecom/overTheBox/warning/overTheBox-warning-noPaymentMeans.html'">
+                 data-ng-include="'overTheBox/warning/overTheBox-warning-noPaymentMeans.html'">
             </div>
 
             <div data-ng-if="OrderOverTheBox.devices.length === 0"
-                data-ng-include="'app/telecom/overTheBox/warning/overTheBox-warning-notFound.html'">
+                data-ng-include="'overTheBox/warning/overTheBox-warning-notFound.html'">
             </div>
 
             <div data-ng-if="(OrderOverTheBox.orphanDevices.length) && (!OrderOverTheBox.unlinkedServices.length)"
-                 data-ng-include="'app/telecom/overTheBox/warning/overTheBox-warning-noSubscription.html'">
+                 data-ng-include="'overTheBox/warning/overTheBox-warning-noSubscription.html'">
             </div>
 
             <div data-ng-if="(OrderOverTheBox.orphanDevices.length) && (OrderOverTheBox.unlinkedServices.length)"
-                 data-ng-include="'app/telecom/overTheBox/warning/overTheBox-warning-deviceToLink.html'">
+                 data-ng-include="'overTheBox/warning/overTheBox-warning-deviceToLink.html'">
             </div>
 
             <button class="btn btn-primary"
