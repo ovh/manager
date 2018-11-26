@@ -29,12 +29,12 @@ const getChangedRepositories = () => MonoRepository
       });
   });
 
-const bumpRepositories = (repos, prerelease = false, preid = null) => Promise.all(
-  repos.map(repo => repo.bump(prerelease, preid)),
+const bumpRepositories = (repos, type = null, prerelease = false, preid = null) => Promise.all(
+  repos.map(repo => repo.bump(type, prerelease, preid)),
 )
   .logging('bumping repositories')
   .then((bumps) => {
-    bumps.forEach(b => console.log(`    ${b.recommendation.releaseType} ${b.repository.toString()} to ${b.newVersion}`));
+    bumps.forEach(b => console.log(`    ${b.releaseType} ${b.repository.toString()} to ${b.newVersion}`));
     return bumps.map(b => b.repository);
   });
 
