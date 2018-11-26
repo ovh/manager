@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="freefax_page_title" qtlid="395570">Freefax {{name}}</translation>
+
+   <translation id="freefax_title" qtlid="306552">Gestión del contestador/fax {{serviceName}}</translation>
+   <translation id="freefax_general_information" qtlid="306565">Información general</translation>
+   <translation id="freefax_fax_configuration" qtlid="306578">Configuración del fax</translation>
+   <translation id="freefax_voicemail_configuration_title" qtlid="306591">Configuración del contestador</translation>
+   <translation id="freefax_change_password" qtlid="80394">Cambiar la contraseña</translation>
+   <translation id="freefax_detail_error" qtlid="395583">¡Vaya! No hemos podido cargar la información de su Freefax.</translation>
+   <translation id="freefax_expired_error" qtlid="186975">Servicio expirado</translation>
+
+<!-- credits -->
+   <translation id="freefax_general_credit" qtlid="306604">Contratar faxes</translation>
+   <translation id="freefax_credit_add_label" qtlid="306617">Cantidad de faxes</translation>
+   <translation id="freefax_credit_generate_order" qtlid="186219">Generar la orden de pedido</translation>
+   <translation id="freefax_credit_pdf" qtlid="306630">Versión PDF</translation>
+   <translation id="freefax_credit_loaded" qtlid="306643">La orden de pedido de {{amount}} fax(es), es decir, {{quantity}} unidades por un importe de {{total}} IVA incl., está disponible. Haga clic en el enlace de abajo para validar el pedido.</translation>
+   <translation id="freefax_credit_billing" qtlid="306656">Abonar el pedido</translation>
+   <translation id="freefax_credit_unit" qtlid="306669">{{fax}} Fax ({{quantity}} unidades)</translation>
+
+<!-- notifications -->
+   <translation id="freefax_notification_noNotification" qtlid="306682">No hay notificaciones guardadas.</translation>
+   <translation id="freefax_notifications_title" qtlid="306695">Notificaciones del contestador/fax {{serviceName}}</translation>
+   <translation id="freefax_notifications" qtlid="33250">Notificaciones</translation>
+   <translation id="freefax_notification_email" qtlid="33598">Correo electrónico</translation>
+   <translation id="freefax_notification_type" qtlid="306708">Notificación del contestador</translation>
+   <translation id="freefax_notification_source" qtlid="395596">Origen de la notificación</translation>
+   <translation id="freefax_notification_source_fax" qtlid="32926">Fax</translation>
+   <translation id="freefax_notification_source_voicemail" qtlid="88956">Contestador</translation>
+   <translation id="freefax_notification_source_both" qtlid="395609">Fax y contestador</translation>
+   <translation id="freefax_notification_type_simple" qtlid="306734">Solo notificación</translation>
+   <translation id="freefax_notification_type_attachment" qtlid="108287">Adjunto</translation>
+   <translation id="freefax_notification_add" qtlid="37923">Añadir</translation>
+   <translation id="freefax_notification_delete" qtlid="306747">Eliminar la notificación</translation>
+   <translation id="freefax_notification_confirm" qtlid="395622">¿Seguro que quiere eliminar la notificación <strong>{{email}}</strong>?</translation>
+   <translation id="freefax_notif_show_none" qtlid="306773">Sin seguimiento</translation>
+   <translation id="freefax_notif_show_one_or_many" qtlid="306786">{{count}} seguimiento(s)</translation>
+   <translation id="freefax_notif_read_error" qtlid="395635">¡Vaya! No hemos podido cargar las notificaciones.</translation>
+   <translation id="freefax_notif_save_error" qtlid="395648">¡Vaya! No hemos podido guardar la notificación.</translation>
+   <translation id="freefax_notif_save_success" qtlid="395661">Se han actualizado sus notificaciones.</translation>
+
+<!-- General informations -->
+   <translation id="freefax_domain" qtlid="66428">Dominio</translation>
+   <translation id="freefax_domain_expired" qtlid="395674">(Dominio caducado)</translation>
+   <translation id="freefax_line" qtlid="306799">Número de línea</translation>
+   <translation id="freefax_fax_remaining" qtlid="306812">Número de faxes restantes</translation>
+   <translation id="freefax_point_remaining" qtlid="89845">Puntos de fidelidad</translation>
+   <translation id="freefax_voicemail" qtlid="88956">Contestador</translation>
+   <translation id="freefax_voicemail_active" qtlid="306825">Contestador activo</translation>
+   <translation id="freefax_voicemail_inactive" qtlid="306838">Contestador inactivo</translation>
+
+<!-- Freefax configuration -->
+   <translation id="freefax_expeditor" qtlid="24535">Remitente</translation>
+   <translation id="freefax_expeditor_form_error" qtlid="306851">El campo no debe estar vacío.</translation>
+   <translation id="freefax_expeditor_mail" qtlid="306864">Correo electrónico del remitente</translation>
+   <translation id="freefax_expeditor_mail_form_error" qtlid="306877">El campo debe contener una dirección de correo electrónico válida.</translation>
+   <translation id="freefax_quality" qtlid="306890">Calidad por defecto</translation>
+   <translation id="freefax_max_try" qtlid="306903">Intentos máx. de envío</translation>
+   <translation id="freefax_quality" qtlid="306890">Calidad por defecto</translation>
+   <translation id="freefax_quality_normal" qtlid="67052">Normal</translation>
+   <translation id="freefax_quality_high" qtlid="306916">Alta</translation>
+   <translation id="freefax_quality_best" qtlid="306929">Óptima</translation>
+   <translation id="freefax_header" qtlid="306942">Encabezado de los faxes</translation>
+   <translation id="freefax_header_form_error" qtlid="306955">El campo debe contener de 1 a 50 caracteres.</translation>
+   <translation id="freefax_offer" qtlid="38217">Producto</translation>
+   <translation id="freefax_offer_ecofax_perso" qtlid="306968">EcoFax Perso</translation>
+
+<!-- Freefax header -->
+   <translation id="freefax_header_help" qtlid="306981">Ayuda sobre el encabezado de los faxes</translation>
+   <translation id="freefax_header_variable_column_description" qtlid="306994">Separa el texto en múltiples columnas del mismo tamaño.</translation>
+   <translation id="freefax_header_variable_task_identifier_description" qtlid="307007">Identificador de la tarea</translation>
+   <translation id="freefax_header_variable_attachment_name_description" qtlid="307020">Nombre del archivo adjunto</translation>
+   <translation id="freefax_header_variable_emission_id_description" qtlid="307033">Fax envío ID si vacío: número de fax</translation>
+   <translation id="freefax_header_variable_expeditor_email_description" qtlid="306864">Correo electrónico del remitente</translation>
+   <translation id="freefax_header_variable_fax_number_description" qtlid="152388">Fax</translation>
+   <translation id="freefax_header_variable_session_page_number_description" qtlid="307046">Número de página para la sesión</translation>
+   <translation id="freefax_header_variable_task_page_number_description" qtlid="307059">Número de página de la tarea</translation>
+   <translation id="freefax_header_variable_recipient_id_description" qtlid="307072">Fax recepción ID del destinatario</translation>
+   <translation id="freefax_header_variable_session_page_amount_description" qtlid="307085">Número total de páginas de la sesión</translation>
+   <translation id="freefax_header_variable_task_page_amount_description" qtlid="307098">Número total de páginas de la tarea</translation>
+   <translation id="freefax_header_variable_expeditor_name_description" qtlid="307111">Nombre del destinatario</translation>
+
+<!-- Freefax change password -->
+   <translation id="freefax_reset_password" qtlid="307124">Obtener una nueva contraseña</translation>
+   <translation id="freefax_reset_password_btn" qtlid="84801">Generar</translation>
+   <translation id="freefax_reset_password_confirm" qtlid="307137">¿Seguro que quiere generar una nueva contraseña?</translation>
+</translations>

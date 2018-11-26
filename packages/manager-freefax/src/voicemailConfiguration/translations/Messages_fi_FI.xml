@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="freefax_voicemail_configuration_title" qtlid="307150">Vastaajan konfigurointi</translation>
+   <translation id="freefax_voicemail_parameters" qtlid="307163">Vastaajan asetukset</translation>
+   <translation id="freefax_voicemail_activation" qtlid="307176">Aktivoi vastaaja</translation>
+   <translation id="freefax_voicemail_password" qtlid="307189">Salasana (4 numeroa)</translation>
+   <translation id="freefax_voicemail_change_password" qtlid="80394">Salasanamuutos</translation>
+   <translation id="freefax_voicemail_change_password_confirm" qtlid="31498">Hyväksy</translation>
+   <translation id="freefax_voicemail_ask_password" qtlid="307202">Postilaatikon salasana</translation>
+   <translation id="freefax_voicemail_always_ask_password" qtlid="307215">Vaadi aina salasana</translation>
+   <translation id="freefax_voicemail_sender_name" qtlid="307228">Lähettäjän nimi</translation>
+   <translation id="freefax_voicemail_sender_email" qtlid="307241">Lähettäjän sähköpostiosoite</translation>
+   <translation id="freefax_voicemail_keep_messages" qtlid="307254">Poista viesti automaattisesti lähetyksen jälkeen</translation>
+   <translation id="freefax_voicemail_audio_format" qtlid="307267">Vastaanota audio-viestit muodossa</translation>
+   <translation id="freefax_voicemail_redirection_emails" qtlid="307280">Sähköpostiosoite, johon viestit lähetetään</translation>
+   <translation id="freefax_voicemail_redirection_email" qtlid="33598">Sähköposti</translation>
+   <translation id="freefax_voicemail_redirection_type" qtlid="307293">tyyppi</translation>
+   <translation id="freefax_voicemail_success" qtlid="307306">Konfiguraation päivitys</translation>
+   <translation id="freefax_voicemail_bad_password" qtlid="307319">Virheellinen salasana</translation>
+</translations>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="overthebox_configure_reset" qtlid="305785">Perkrausite savo overTheBox</translation>
+   <translation id="overthebox_configure_order" qtlid="305798">Gavote naują overTheBox</translation>
+   <translation id="overthebox_configure_reset_explaination" qtlid="305811">Pasikeitė įrangos ID. Susiekite jį su suteiktomis paslaugomis skyriuje Įranga > Įrangos ID:</translation>
+   <translation id="overthebox_configure_order_explaination" qtlid="305824">Užsakėte naują įrangą. Tam taip pat reikia <a href="{{hash}}">užsakyti naują paslaugą</a>.</translation>
+</translations>

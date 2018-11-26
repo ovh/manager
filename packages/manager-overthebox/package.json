@@ -1,0 +1,27 @@
+{
+  "name": "@ovh-ux/manager-overthebox",
+  "version": "0.0.0",
+  "license": "BSD-3-Clause",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/cjs/index.js",
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c --watch"
+  },
+  "browser": "./dist/umd/index.js",
+  "dependencies": {
+    "lodash": "3.10.1"
+  },
+  "devDependencies": {
+    "@ovh-ux/component-rollup-config": "5.0.0-beta.1"
+  },
+  "peerDependencies": {
+    "@ovh-ux/telecom-universe-components": "^1.0.4",
+    "angular": "1.7.5",
+    "angularjs-scroll-glue": "^2.2.0",
+    "ovh-angular-responsive-tabs": "^4.0.0",
+    "ovh-angular-tail-logs": "^1.1.1"
+  }
+}

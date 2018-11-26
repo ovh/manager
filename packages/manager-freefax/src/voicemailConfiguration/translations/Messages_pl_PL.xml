@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="freefax_voicemail_configuration_title" qtlid="307150">Konfiguracja autorespondera</translation>
+   <translation id="freefax_voicemail_parameters" qtlid="307163">Ustawienia autorespondera</translation>
+   <translation id="freefax_voicemail_activation" qtlid="307176">Włącz autoresponder</translation>
+   <translation id="freefax_voicemail_password" qtlid="307189">Hasło (4 cyfry)</translation>
+   <translation id="freefax_voicemail_change_password" qtlid="80394">Zmień hasło</translation>
+   <translation id="freefax_voicemail_change_password_confirm" qtlid="31498">Potwierdź</translation>
+   <translation id="freefax_voicemail_ask_password" qtlid="307202">Hasło do poczty</translation>
+   <translation id="freefax_voicemail_always_ask_password" qtlid="307215">Zawsze żądaj hasła</translation>
+   <translation id="freefax_voicemail_sender_name" qtlid="307228">Nazwa nadawcy</translation>
+   <translation id="freefax_voicemail_sender_email" qtlid="307241">E-mail nadawcy</translation>
+   <translation id="freefax_voicemail_keep_messages" qtlid="307254">Automatycznie usuwaj wiadomość po wysłaniu</translation>
+   <translation id="freefax_voicemail_audio_format" qtlid="307267">Odbieraj wiadomości głosowe w formacie</translation>
+   <translation id="freefax_voicemail_redirection_emails" qtlid="307280">Adres elektroniczny, na który będą wysyłane wiadomości</translation>
+   <translation id="freefax_voicemail_redirection_email" qtlid="33598">E-mail</translation>
+   <translation id="freefax_voicemail_redirection_type" qtlid="307293">typ</translation>
+   <translation id="freefax_voicemail_success" qtlid="307306">Zaktualizowana konfiguracja</translation>
+   <translation id="freefax_voicemail_bad_password" qtlid="307319">Nieprawidłowe hasło</translation>
+</translations>

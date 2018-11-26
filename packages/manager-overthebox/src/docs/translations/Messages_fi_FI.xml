@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="overTheBox_docs_title" qtlid="300370">Oppaat</translation>
+
+   <translation id="overTheBox_docs_label_installation" qtlid="108721">Asennus</translation>
+   <translation id="overTheBox_docs_label_config" qtlid="305837">Edistynyt konfigurointi</translation>
+   <translation id="overTheBox_docs_label_intermediate" qtlid="305850">Niveau intermediaire</translation>
+   <translation id="overTheBox_docs_label_advanced" qtlid="305863">Niveau avancé</translation>
+
+   <translation id="overTheBox_docs_how_it_works" qtlid="305876">Comment fonctionne OverTheBox ?</translation>
+
+   <translation id="overTheBox_docs_quick_start" qtlid="305889">Mes 10 premières minutes avec OverTheBox</translation>
+   <translation id="overTheBox_docs_modem_dhcp_disable" qtlid="305902">Désactiver votre server DHCP</translation>
+   <translation id="overTheBox_docs_faq" qtlid="305915">FAQ OverTheBox</translation>
+
+   <translation id="overTheBox_docs_lan_configure" qtlid="305928">Configurer votre LAN</translation>
+   <translation id="overTheBox_docs_port_redirection" qtlid="305941">Redirection de port</translation>
+   <translation id="overTheBox_docs_permanent_dhcp_lease" qtlid="305954">Créer un bail DHCP permanent</translation>
+   <translation id="overTheBox_docs_factory_reset" qtlid="305967">Rétablir la configuration d'usine</translation>
+   <translation id="overTheBox_docs_aggregate_policy" qtlid="305980">Politique d'agrégation</translation>
+   <translation id="overTheBox_docs_router_coupling" qtlid="305993">DMZ : couplage OverTheBox avec un autre routeur</translation>
+   <translation id="overTheBox_docs_qos_activate" qtlid="306006">Activer la QoS</translation>
+   <translation id="overTheBox_docs_qos_principle" qtlid="319869">Fonctionnement et Customisation de la QoS</translation>
+   <translation id="overTheBox_docs_virtualbox_test" qtlid="345468">Tester OverTheBox sur VirtualBox</translation>
+   <translation id="overTheBox_docs_three_g_four_g" qtlid="319882">Intégration d'une clef 3G-4G</translation>
+
+   <translation id="overTheBox_docs_image_installation" qtlid="306019">Installer l'image OverTheBox sur votre matériel</translation>
+   <translation id="overTheBox_docs_otb_dhcp_disable" qtlid="306032">Désactiver le serveur DHCP d'OverTheBox</translation>
+   <translation id="overTheBox_docs_conf_import_export" qtlid="306045">Exporter et importer une configuration</translation>
+   <translation id="overTheBox_docs_modem_dhcp_monitoring_disable" qtlid="306058">Désactiver le monitoring DHCP des modems</translation>
+   <translation id="overTheBox_docs_dns_configure" qtlid="306071">Configurer votre propre serveur DNS</translation>
+   <translation id="overTheBox_docs_active_directory_add" qtlid="306084">Ajouter un serveur Active Directory dans les options DHCP</translation>
+   <translation id="overTheBox_docs_iphone_android_tethering" qtlid="306097">Tethering iPhone et Androïd</translation>
+   <translation id="overTheBox_docs_vlan_configuration" qtlid="306110">Configuration de VLAN</translation>
+   <translation id="overTheBox_docs_rate_test_protocol" qtlid="306123">Protocole de test de débit</translation>
+   <translation id="overTheBox_docs_modem_interface" qtlid="306136">Créer une interface modem manuellement</translation>
+   <translation id="overTheBox_docs_multiwan_route" qtlid="306149">Créer une route multiwan spécifique</translation>
+   <translation id="overTheBox_docs_firewall_rules" qtlid="306162">Règles Firewall</translation>
+   <translation id="overTheBox_docs_remote_access" qtlid="305629">Etäyhteys</translation>
+
+   <translation id="overTheBox_docs_open_new_tab" qtlid="222176">Uusi ikkuna</translation>
+</translations>
