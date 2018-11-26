@@ -30,12 +30,7 @@ program
       ))
       .then(updateChangelogs)
       .then(repos => getDependenciesToUpdate(repos)
-        .then((deps) => {
-          if (program.dependencyCheck) {
-            return checkDependencies(deps);
-          }
-          return deps;
-        })
+        .then(deps => (program.dependencyCheck ? checkDependencies(deps) : deps))
         .then(updateDependencies)
         .then(() => repos))
       .then((repos) => {

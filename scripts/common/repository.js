@@ -127,7 +127,7 @@ class Repository {
       --preset angular --lerna-package ${this.name} --commit-path ${this.location}`);
     const updateChangelog = () => execa.shell(`lerna exec --scope ${this.name} --concurrency 1 --no-sort -- conventional-changelog \
       --preset angular --infile CHANGELOG.md --same-file --lerna-package ${this.name} --commit-path ${this.location}`);
-    return this.constructor.fetchTags()
+    return Repository.fetchTags()
       .then((...args) => this.createSmokeTag(args))
       .then(() => getChangelog()
         .then(({ stdout }) => {
@@ -139,32 +139,26 @@ class Repository {
   }
 
   bump(prerelease = false, preid = null) {
-    return this.constructor.fetchTags()
+    return Repository.fetchTags()
       .then((...args) => this.createSmokeTag(args))
       .then(() => new Promise((resolve, reject) => {
         bump({
           preset: 'angular',
           lernaPackage: this.name,
           path: this.location,
-        }, (err, recommendation) => {
-          if (err) {
-            reject(err);
-          } else {
-            resolve(recommendation);
-          }
-        });
+        }, (err, recommendation) => (err ? reject(err) : resolve(recommendation)));
       }))
       .then((recommendation) => {
         const regExpSemverPreRelease = /(\d+)\.(\d+)\.(\d+)-(\w+)\.(\d+)/g;
         let newVersion;
 
         // Check if the last release was a pre-release
-        // If it's already a pre-release, we should sometimes but only the pre-release digit
+        // If it's already a pre-release, we should sometimes bump only the pre-release digit
         // Because we don't want:
         // - packageA@2.0.1-alpha.0
         // - Patch on packageA
         // - packageA@2.0.2-alpha.0
-        // But:
+        // Expected result:
         // - packageA@2.0.1-alpha.0
         // - Patch on packageA
         // - packageA@2.0.1-alpha.1
@@ -175,28 +169,28 @@ class Repository {
           // 2: Minor digit
           const minorDigit = parseInt(matchs[2], 10);
           // 3: Patch Digit
-          // 4: Pre-release name
-          // 5: Digit of pre-release
+          // 4: Prerelease name
+          // 5: Digit of prerelease
 
           if (recommendation.releaseType === 'patch') {
-          // Match example: 2.1.1-alpha.0 -> 2.1.1-alpha.1
-          // Match example: 2.1.0-alpha.0 -> 2.1.0-alpha.1
+            // Match example: 2.1.1-alpha.0 -> 2.1.1-alpha.1
+            // Match example: 2.1.0-alpha.0 -> 2.1.0-alpha.1
             newVersion = semver.inc(this.version, 'prerelease', preid);
           } else if (recommendation.releaseType === 'minor') {
-          // Min Minor
+            // Min Minor
             if (minorDigit > 0) {
-            // Match example: 2.1.0-alpha.0 -> 2.1.0-alpha.1
+              // Match example: 2.1.0-alpha.0 -> 2.1.0-alpha.1
               newVersion = semver.inc(this.version, 'prerelease', preid);
             } else {
-            // Match example: 2.1.1-alpha.0 -> 2.2.0-alpha.0
-            // Match example: 2.0.1-alpha.0 -> 2.1.0-alpha.0
+              // Match example: 2.1.1-alpha.0 -> 2.2.0-alpha.0
+              // Match example: 2.0.1-alpha.0 -> 2.1.0-alpha.0
               newVersion = semver.inc(this.version, 'preminor', preid);
             }
           } else {
-          // Min major
-          // Match example: 3.0.0-alpha.0 -> 3.0.0-alpha.1
-          // Match example: 2.1.1-alpha.0 -> 3.0.0-alpha.0
-          // Match example: 2.1.0-alpha.0 -> 3.0.0-alpha.0
+            // Min major
+            // Match example: 3.0.0-alpha.0 -> 3.0.0-alpha.1
+            // Match example: 2.1.1-alpha.0 -> 3.0.0-alpha.0
+            // Match example: 2.1.0-alpha.0 -> 3.0.0-alpha.0
             newVersion = semver.inc(this.version, 'prerelease', preid);
           }
         } else {
