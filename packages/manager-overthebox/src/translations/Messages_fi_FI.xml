@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="overTheBox_page_title" qtlid="395791">Mon OverTheBox "{{name}}"</translation>
+
+   <translation id="overTheBox_title" qtlid="281977">OverTheBox</translation>
+   <translation id="overTheBox_back" qtlid="4118">Takaisin</translation>
+   <translation id="overTheBox_tabs_detail" qtlid="305616">Oma OverTheBox</translation>
+   <translation id="overTheBox_tabs_remote" qtlid="305629">Etäyhteys</translation>
+   <translation id="overTheBox_tabs_tasks" qtlid="96716">Tehtävät</translation>
+   <translation id="overTheBox_tabs_docs" qtlid="300370">Oppaat</translation>
+   <translation id="overTheBox_tabs_logs" qtlid="62064">Lokit</translation>
+
+   <translation id="overTheBox_no_device_found" qtlid="305642">Yhtään OverTheBox -palvelua ei ole kytketty. Et voi luoda etäyhteyttä etkä käyttää luotuja yhteyksiä. OverTheBox -palvelun konfigurointiin löydät apua asennusohjeesta <a href="{{url}}" target="_blank" title="Uusi ikkuna">tästä</a>.</translation>
+</translations>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="navbar_brand_title">OVH</translation>
+   <translation id="navbar_labs" qtlid="383707">UX Labs</translation>
+   <translation id="navbar_gamma" qtlid="232401">Sunrise</translation>
+   <translation id="navbar_v3" qtlid="135931">Ancienne interface client</translation>
+   <translation id="navbar_portal" translate="none">MyOVH</translation>
+   <translation id="navbar_partners" qtlid="383512">Partenaires</translation>
+   <translation id="navbar_billing" qtlid="32950">Facturation</translation>
+   <translation id="navbar_billing_history" qtlid="159540">Mes factures</translation>
+   <translation id="navbar_billing_payments" qtlid="398781">Suivi des paiements</translation>
+   <translation id="navbar_means" qtlid="90049">Moyens de paiement</translation>
+   <translation id="navbar_means_mean" qtlid="139949">Mes moyens de paiement</translation>
+   <translation id="navbar_means_ovhaccount" qtlid="366826">Mon compte prépayé</translation>
+   <translation id="navbar_means_vouchers" qtlid="270917">Mes vouchers</translation>
+   <translation id="navbar_means_refunds" qtlid="139923">Mes avoirs</translation>
+   <translation id="navbar_means_fidelity" qtlid="260606">Mon espace fidélité</translation>
+   <translation id="navbar_means_credits" qtlid="448907">Mes crédits</translation>
+   <translation id="navbar_renew" qtlid="229658">Mes services</translation>
+   <translation id="navbar_renew_management" qtlid="287527">Gérer mes services</translation>
+   <translation id="navbar_renew_agreements" qtlid="204350">Mes contrats</translation>
+   <translation id="navbar_orders" qtlid="282809">Mes commandes</translation>
+   <translation id="navbar_contacts" qtlid="70541">Mes contacts</translation>
+   <translation id="navbar_list_ticket" qtlid="454039">Mes demandes d’assistance</translation>
+   <translation id="navbar_language" qtlid="30598">Langue</translation>
+   <translation id="navbar_account" qtlid="157642">Mon compte</translation>
+   <translation id="navbar_account_infos" qtlid="405499">Mon profil</translation>
+   <translation id="navbar_account_security" qtlid="125420">Sécurité</translation>
+   <translation id="navbar_account_emails" qtlid="266118">Emails reçus</translation>
+   <translation id="navbar_account_subscriptions" qtlid="144708">Mes abonnements</translation>
+   <translation id="navbar_account_ssh" qtlid="165897">Mes clés SSH</translation>
+   <translation id="navbar_account_advanced" qtlid="39958">Paramètres avancés</translation>
+   <translation id="navbar_changelog" qtlid="124964">Historique des mises à jour</translation>
+   <translation id="common_skip_to_main_content" qtlid="454052">Aller au contenu principal</translation>
+   <translation id="navbar_logout" qtlid="33658">Déconnexion</translation>
+
+   <translation id="navbar_support" qtlid="39994">Support</translation>
+   <translation id="navbar_support_assistance" qtlid="52699">Assistance</translation>
+   <translation id="navbar_support_all_guides" qtlid="260788">Tous les guides</translation>
+   <translation id="navbar_support_guide" qtlid="269604">Guide d'utilisation</translation>
+   <translation id="navbar_support_new_ticket" qtlid="260801">Créer une demande d'assistance</translation>
+   <translation id="navbar_support_list_ticket" qtlid="260814">Liste de mes demandes d'assistance</translation>
+   <translation id="navbar_support_email_history" qtlid="260091">Historique des emails</translation>
+   <translation id="navbar_support_telephony_contact" qtlid="260827">Assistance téléphonique</translation>
+
+   <translation id="navbar_notification_title" qtlid="33250">Notifications</translation>
+   <translation id="navbar_notification_see_all" qtlid="401914">Voir toutes les notifications</translation>
+   <translation id="navbar_notification_error_in_notification" qtlid="492055">Oups, il y a un problème !</translation>
+   <translation id="navbar_notification_error_in_notification_description" qtlid="492068">Nous n'arrivons pas à initialiser le menu.</translation>
+   <translation id="navbar_notification_mark_as_read" qtlid="70865">Marquer comme lu</translation>
+   <translation id="navbar_notification_mark_as_unread" qtlid="70877">Marquer comme non lu</translation>
+   <translation id="navbar_notification_none" qtlid="492081">Vous êtes à jour !</translation>
+   <translation id="navbar_notification_none_description" qtlid="492094">Vous n'avez aucune notification.</translation>
+</translations>

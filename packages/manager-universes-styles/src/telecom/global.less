@@ -1,0 +1,28 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.col-container,
+.row-container {
+  display: flex;
+  overflow: hidden;
+}
+
+.col-container {
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+
+  .col-item {
+    display: flex;
+    height: 100%;
+    position: relative;
+  }
+}

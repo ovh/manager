@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="overTheBox_remote" qtlid="305629">Nuotolinė prieiga</translation>
+   <translation id="overTheBox_remote_configure" qtlid="306266">Konfigūruoti nuotolinę prieigą</translation>
+
+   <translation id="overTheBox_remote_table_id" qtlid="25615">IP</translation>
+   <translation id="overTheBox_remote_table_port" qtlid="9034">Prievadas</translation>
+   <translation id="overTheBox_remote_table_connection" qtlid="55925">Jungtis</translation>
+   <translation id="overTheBox_remote_table_status" qtlid="26443">Būsena</translation>
+   <translation id="overTheBox_remote_table_authorized_by" qtlid="306279">Autorizuota</translation>
+   <translation id="overTheBox_remote_table_expire" qtlid="30406">Galioja iki</translation>
+   <translation id="overTheBox_remote_table_empty" qtlid="306292">Neišsaugota jokia nuotolinė prieiga.</translation>
+
+   <translation id="overTheBox_status_active" qtlid="55133">Įjungtas</translation>
+   <translation id="overTheBox_status_creating" qtlid="26227">Kuriama</translation>
+   <translation id="overTheBox_status_deleted" qtlid="306305">Ištrinta</translation>
+   <translation id="overTheBox_status_deleting" qtlid="152778">Trinama</translation>
+   <translation id="overTheBox_status_pendingValidation" qtlid="306318">Turi galioti</translation>
+   <translation id="overTheBox_status_toDelete" qtlid="152778">Trinama</translation>
+<translation id="overTheBox_status_undefined"/>
+<translation id="overTheBox_status_"/>
+
+   <translation id="overTheBox_remote_element_added" qtlid="306331">Nauja nuotolinė prieiga sukurta.</translation>
+   <translation id="overTheBox_remote_element_deleted" qtlid="306344">Nuotolinė prieiga trinama...</translation>
+
+   <translation id="overTheBox_remote_detail_ip" qtlid="26191">IP adresas</translation>
+   <translation id="overTheBox_remote_detail_public_key" qtlid="306357">Viešas raktas</translation>
+   <translation id="overTheBox_remote_detail_user" qtlid="7450">Vartotojas</translation>
+   <translation id="overTheBox_remote_detail_port" qtlid="9034">Prievadas</translation>
+   <translation id="overTheBox_remote_connection" qtlid="55925">Jungtis</translation>
+
+   <translation id="overTheBox_remote_add" qtlid="306370">Pridėti nuotolinę prieigą</translation>
+
+   <translation id="overTheBox_remote_add_allowedIp" qtlid="306383">Autorizuoti IP:</translation>
+   <translation id="overTheBox_remote_add_exposedPort" qtlid="306396">Matomi prievadai (443, 22, ...):</translation>
+   <translation id="overTheBox_remote_add_expirationDate" qtlid="108769">Galiojimo data:</translation>
+   <translation id="overTheBox_remote_add_publicKey" qtlid="306409">Viešasis raktas:</translation>
+
+   <translation id="overTheBox_remote_add_allowedIp_error" qtlid="306422">Neteisingas IP adresas.</translation>
+   <translation id="overTheBox_remote_add_exposedPort_error" qtlid="166677">Negaliojantis prievadas.</translation>
+   <translation id="overTheBox_remote_add_expirationDate_error" qtlid="306435">Neteisinga galiojimo data.</translation>
+   <translation id="overTheBox_remote_add_expirationDate_error_future" qtlid="395804">Nurodykite datą ateityje.</translation>
+   <translation id="overTheBox_remote_add_publicKey_error" qtlid="306448">Viešasis raktas būtinai turi būti naudojamas 22 prievade.</translation>
+
+   <translation id="overTheBox_remote_authorize_confirm" qtlid="306461">Ar tikrai norite leisti nuotolinį prisijungimą į prievadą {{port}} ?</translation>
+   <translation id="overTheBox_remote_authorize_tooltip" qtlid="306474">Leisti nuotolinę prieigą į prievadą {{port}}.</translation>
+
+   <translation id="overTheBox_remote_authorized" qtlid="306487">Nuotolinė prieiga autorizuota prievadui {{port}}.</translation>
+   <translation id="overTheBox_remote_authorized_failed" qtlid="306500">Nepavyko sukurti nuotolinės prieigos {{port}} prievade.</translation>
+
+   <translation id="overTheBox_remote_authorize_delete_confirm" qtlid="306513">Ar tikrai norite ištrinti nuotolinę prieigą į prievadą {{port}} ({{remoteAccessId}}) ?</translation>
+   <translation id="overTheBox_remote_authorize_delete_tooltip" qtlid="306526">Ištrinti nuotolinę prieigą į prievadą {{port}}.</translation>
+
+   <translation id="overTheBox_remote_public_key_tooltip" qtlid="306539">Raktas, leidžiantis saugų prisijungimą.</translation>
+
+   <translation id="overTheBox_remote_placeholder_ip" qtlid="395817">Kliento IP</translation>
+   <translation id="overTheBox_remote_error_unknown" qtlid="395830">Negalima sukurti nuotolinės prieigos. Prašome pabandyti vėliau.</translation>
+   <translation id="overTheBox_remote_error_no_contact" qtlid="395843">Negalima sukurti nuotolinės prieigos. Jūsų OverTheBox neveiks apie 10 minučių.</translation>
+
+</translations>

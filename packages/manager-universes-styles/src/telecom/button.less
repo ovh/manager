@@ -1,0 +1,87 @@
+.btn-link {
+  > i {
+    text-decoration: none;
+  }
+}
+
+.makeRoundedButton(@btnSize: 40px, @boxShadowSize: 5px, @iconFontSize: 1.6em) {
+  height: @btnSize;
+  width: @btnSize;
+  color: @oui-color-dodger;
+  background-color: #fff;
+  border: none;
+  border-radius: @btnSize/2;
+  box-shadow: 0 0 @boxShadowSize #888;
+  text-align: center;
+  padding: 0;
+  display: inline-block;
+
+  i {
+    font-size: @iconFontSize;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 @boxShadowSize @oui-color-brand;
+  }
+
+  &:hover,
+  &:active,
+  &:focus {
+    text-decoration: none;
+  }
+
+  &[disabled="disabled"] {
+    color: @gray-base;
+  }
+}
+
+.btn-actions {
+  .makeRoundedButton;
+
+  &-list {
+    .makeRoundedButton(@btnSize: 30px, @boxShadowSize: 5px, @iconFontSize: 1em);
+  }
+}
+
+// Fix btn-default incorrect padding
+div.btn-group {
+  label.btn-default {
+    padding: 0.6rem 2rem;
+  }
+}
+
+/* Special rule for footer buttons actions */
+.footer-button-container {
+  > button[type="reset"],
+  > a.btn-default {
+    margin: 0;
+  }
+}
+
+@media (min-width: @screen-sm-min) {
+  .footer-button-container {
+    > button[type="submit"] {
+      float: right;
+    }
+
+    > button[type="reset"],
+    > a.btn-default {
+      float: left;
+    }
+  }
+}
+
+@media (max-width: (@screen-sm-min - 1)) {
+  .footer-button-container {
+    > button[type="submit"] {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+
+    > button[type="reset"],
+    > a.btn-default {
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="overTheBox_dashboard_title" qtlid="305616">Oma OverTheBox</translation>
+   <translation id="overTheBox_dashboard_service_label" qtlid="463382">Nom du service :</translation>
+   <translation id="overTheBox_device_listing_title" qtlid="289588">Laitelista</translation>
+   <translation id="overTheBox_device_button_add" qtlid="317659">Uusi laite</translation>
+   <translation id="overTheBox_device_activation" qtlid="74958">Aktivointi</translation>
+   <translation id="overTheBox_device_id" qtlid="8194">ID</translation>
+   <translation id="overTheBox_device_last_seen" qtlid="289614">Viimeisin näkymä</translation>
+   <translation id="overTheBox_device_not_linked" qtlid="289627">Palveluusi ei ole liitetty yhtään laitetta.</translation>
+   <translation id="overTheBox_device_not_linked_infos" qtlid="317672">Jaatkaaksesi sinun on liitettävä laite palveluun.</translation>
+   <translation id="overTheBox_device_not_found" qtlid="289627">Palveluusi ei ole liitetty yhtään laitetta.</translation>
+   <translation id="order_overTheBox_no_device_detected" qtlid="289289">Yhtään OverTheBox-tuotetta ei havaittu paikallisverkossasi.</translation>
+   <translation id="overTheBox_device_link" qtlid="289653">Liitä laite</translation>
+   <translation id="overTheBox_device_link_manually" qtlid="289666">Liitä laite käsin. </translation>
+   <translation id="overTheBox_link_device_confirm" qtlid="289679">Haluatko liittää palvelusi tähän laitteeseen?</translation>
+   <translation id="overTheBox_change_device" qtlid="289692">Liitä toinen laite</translation>
+   <translation id="overTheBox_link_device_success" qtlid="317685">Laite on liitetty palveluusi.</translation>
+   <translation id="overTheBox_status" qtlid="101000">Tila:</translation>
+   <translation id="overTheBox_status_active" qtlid="55133">Aktiivinen</translation>
+   <translation id="overTheBox_status_creating" qtlid="317698">Luodaan ...</translation>
+   <translation id="overTheBox_status_deleted" qtlid="134514">Poistettu</translation>
+   <translation id="overTheBox_status_toCreate" qtlid="289809">Luominen</translation>
+   <translation id="overTheBox_status_toDelete" qtlid="147048">Poistettava</translation>
+   <translation id="overTheBox_status_true" qtlid="30250">Aktivoitu</translation>
+   <translation id="overTheBox_status_false" qtlid="24967">Deaktivoitu</translation>
+   <translation id="overTheBox_status_" qtlid="77142">Tuntematon</translation>
+   <translation id="overthebox_traffic" qtlid="89749">Veloitus</translation>
+   <translation id="overTheBox_tasks" qtlid="289822">Tehtävät:</translation>
+   <translation id="overTheBox_tasks_show" qtlid="289835">Katso tehtävät</translation>
+   <translation id="overTheBox_trafic" qtlid="39202">Liikenne</translation>
+
+   <translation id="overTheBox_bandwidth" qtlid="89749">Veloitus</translation>
+   <translation id="overTheBox_publicIp" qtlid="317711">Julkinen IP-osoite:</translation>
+   <translation id="overTheBox_deviceId" qtlid="317724">Laitteen tunniste:</translation>
+   <translation id="overTheBox_deviceId_button_title" qtlid="289471">Laitteen ID:</translation>
+   <translation id="overTheBox_device_state" qtlid="317737">Laitteen tila:</translation>
+   <translation id="overTheBox_expiration_date" qtlid="317750">Seuraava lasku:</translation>
+   <translation id="overTheBox_billing_date" qtlid="317750">Seuraava lasku:</translation>
+   <translation id="overTheBox_renew_auto" qtlid="98300">Automaattinen uusiminen</translation>
+
+   <translation id="overTheBox_error_rename" qtlid="317763">Palvelua {{serviceName}} ei voida nimetä uudelleen.</translation>
+
+   <translation id="overTheBox_action_reboot_label" qtlid="33538">Uudelleenkäynnistä</translation>
+   <translation id="overTheBox_action_update_label" qtlid="43462">Muokkaa</translation>
+   <translation id="overTheBox_action_launch_success" qtlid="317776">Etätoiminnan siirto laitteeseesi onnistui. Toimenpide saattaa kestää joitakin minuutteja.</translation>
+   <translation id="overTheBox_action_launch_error" qtlid="317789">Laitteesi ei suorittanut etätoimintaa. Ole hyvä ja aloita alusta.</translation>
+
+   <translation id="overTheBox_action_upgrade_title" qtlid="317802">Päivitä sovellukset</translation>
+   <translation id="overTheBox_action_upgrade_label" qtlid="317815">Päivitä overthebox-sovellukset.</translation>
+   <translation id="overTheBox_action_sysupgrade_title" qtlid="317828">Päivitä järjestelmä</translation>
+   <translation id="overTheBox_action_sysupgrade_label" qtlid="317841">Uudelleenasenna koneesi ja käynnistä se uudelleen käyttäen konfiguroinnin varmuuskopiota.</translation>
+
+   <translation id="overTheBox_graph_filter_last5min" qtlid="289900">Viimeiset 5 minuuttia</translation>
+   <translation id="overTheBox_graph_filter_lastHour" qtlid="289913">Viimeinen tunti</translation>
+   <translation id="overTheBox_graph_filter_last24Hour" qtlid="289926">Viimeiset 24 h</translation>
+   <translation id="overTheBox_graph_filter_lastWeek" qtlid="289939">Edellinen viikko</translation>
+   <translation id="overTheBox_graph_filter_lastMonth" qtlid="169680">Viimeinen kuukausi</translation>
+
+   <translation id="overthebox_general_information" qtlid="27115">Yleiset tiedot</translation>
+   <translation id="overthebox_device" qtlid="317854">Laite</translation>
+
+   <translation id="overthebox_traffic_download" qtlid="148760">Lataus</translation>
+   <translation id="overthebox_traffic_upload" qtlid="148747">Lähetys</translation>
+   <translation id="overthebox_traffic_error" qtlid="395687">Hups! Tiedonsiirron tietoja ei voitu hakea.</translation>
+
+   <translation id="overTheBox_delete_at_expiration_confirm" qtlid="317867">Poistamalla tämän valinnan palveluni uusitaan ilman eri toimenpiteitä laskutuspäivänä. </translation>
+   <translation id="overTheBox_no_delete_at_expiration_confirm" qtlid="317880">Ruksaamalla tämän laatikon, ymmärrän, että palveluni päättyy laskutuspäivänä.</translation>
+   <translation id="overTheBox_expiration_warning" qtlid="358591">Palvelu vanhenee {{date}}.</translation>
+   <translation id="overTheBox_expiration_warning_help" qtlid="397286;395713">Voit peruuttaa klikkaamalla « <b qtlid="285350">Peru irtisanominen</b> ».</translation>
+
+   <translation id="overTheBox_interface_if" qtlid="317906">Verkkokäyttöliittymä {{num}}</translation>
+   <translation id="overTheBox_interface_lan" qtlid="317919">lan käyttöliittymä {{num}}</translation>
+   <translation id="overTheBox_interface_tun" qtlid="317932">Tunnelli {{num}}</translation>
+
+   <translation id="overTheBox_resiliate" qtlid="48646">Irtisano</translation>
+   <translation id="overTheBox_cancel_resiliation" qtlid="285350">Peru irtisanominen</translation>
+   <translation id="overTheBox_resiliation_confirm" qtlid="395726">Haluatko irtisanoa OverTheBox -palvelun <strong>{{service}}</strong> (Irtisanominen astuu voimaan {{date}}) ?</translation>
+
+   <translation id="overTheBox_resiliation_error" qtlid="395739">Hups! Palvelua {{service}} ei voitu irtisanoa.</translation>
+   <translation id="overTheBox_resiliation_success" qtlid="395752">Palvelu {{service}} irtisanotaan {{date}}.</translation>
+   <translation id="overTheBox_resiliation_cancel_error" qtlid="395765">Hups! Palvelun {{service}} meneillään olevaa irtisanomista ei voitu peruuttaa.</translation>
+   <translation id="overTheBox_cancel_resiliation_success" qtlid="395778">Palvelusi {{service}} irtisanominen on peruutettu.</translation>
+
+   <translation id="overTheBox_statistics_bits_per_sec_legend" qtlid="456115">bits/s</translation>
+</translations>

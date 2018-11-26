@@ -1,0 +1,48 @@
+.overthebox-remote {
+  table.table {
+    tbody {
+      tr {
+        .service-item {
+          text-align: left !important;
+        }
+
+        .service-title {
+          font-weight: 600;
+        }
+
+        td {
+          * {
+            vertical-align: middle;
+          }
+
+          i.active {
+            color: @oui-color-success-dark;
+          }
+
+          i.create {
+            color: @oui-color-secondary;
+          }
+
+          i.delete {
+            color: @gray-base;
+          }
+
+          i.pending {
+            color: @oui-color-error-dark;
+          }
+
+          &.detail {
+            div.row {
+              border-left: solid 2px @oui-color-dodger;
+
+              pre {
+                display: inline-block;
+                vertical-align: middle;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

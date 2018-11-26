@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="overTheBox_page_title" qtlid="395791">Mano OverTheBox "{{name}}"</translation>
+
+   <translation id="overTheBox_title" qtlid="281977">OverTheBox</translation>
+   <translation id="overTheBox_back" qtlid="4118">Atgal</translation>
+   <translation id="overTheBox_tabs_detail" qtlid="305616">Mano OverTheBox</translation>
+   <translation id="overTheBox_tabs_remote" qtlid="305629">Nuotolinė prieiga</translation>
+   <translation id="overTheBox_tabs_tasks" qtlid="96716">Užduotys</translation>
+   <translation id="overTheBox_tabs_docs" qtlid="300370">Gidai</translation>
+   <translation id="overTheBox_tabs_logs" qtlid="62064">Žurnalai</translation>
+
+   <translation id="overTheBox_no_device_found" qtlid="305642">Neprijungtas joks OverTheBox. Negalite sukurti nuotolinės prieigos, nei naudoti jau sukurtos. Norėdami sužinoti daugiau apie konfigūraciją, spauskite <a href="{{url}}" target="_blank" title="Naujas langas">čia</a>.</translation>
+</translations>

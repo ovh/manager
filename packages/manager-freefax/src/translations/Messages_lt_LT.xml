@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="freefax_page_title" qtlid="395570">Freefax {{name}}</translation>
+
+   <translation id="freefax_title" qtlid="306552">Atsakiklio/fakso {{serviceName}} valdymas</translation>
+   <translation id="freefax_general_information" qtlid="306565">Bendra informacija</translation>
+   <translation id="freefax_fax_configuration" qtlid="306578">Fakso konfigūravimas</translation>
+   <translation id="freefax_voicemail_configuration_title" qtlid="306591">Atsakiklio valdymas</translation>
+   <translation id="freefax_change_password" qtlid="80394">Keisti slaptažodį</translation>
+   <translation id="freefax_detail_error" qtlid="395583">Negalima nuskaityti FreeFAX informacijos</translation>
+   <translation id="freefax_expired_error" qtlid="186975">Paslauga negalioja</translation>
+
+<!-- credits -->
+   <translation id="freefax_general_credit" qtlid="306604">Užsakyti faksą</translation>
+   <translation id="freefax_credit_add_label" qtlid="306617">Kiek faksų užsakyti</translation>
+   <translation id="freefax_credit_generate_order" qtlid="186219">Kurti užsakymą</translation>
+   <translation id="freefax_credit_pdf" qtlid="306630">PDF versija</translation>
+   <translation id="freefax_credit_loaded" qtlid="306643">Jūsų fakso po {{amount}} užsakymas, {{quantity}} vnt., bendra suma {{total}}, yra paruoštas. Spragtelėkite žemiau, kad patvirtintumėte užsakymą.</translation>
+   <translation id="freefax_credit_billing" qtlid="306656">Užsakymo valdymas</translation>
+   <translation id="freefax_credit_unit" qtlid="306669">{{fax}} Faksas ({{quantity}} vnt.)</translation>
+
+<!-- notifications -->
+   <translation id="freefax_notification_noNotification" qtlid="306682">Neišsaugoti jokie pranešimai.</translation>
+   <translation id="freefax_notifications_title" qtlid="306695">Atsakiklio/fakso pranešimai {{serviceName}}</translation>
+   <translation id="freefax_notifications" qtlid="33250">Pranešimai</translation>
+   <translation id="freefax_notification_email" qtlid="33598">El. paštas</translation>
+   <translation id="freefax_notification_type" qtlid="306708">Atsakiklio pranešimai</translation>
+   <translation id="freefax_notification_source" qtlid="395596">Pranešimo šaltinis</translation>
+   <translation id="freefax_notification_source_fax" qtlid="32926">Faksas</translation>
+   <translation id="freefax_notification_source_voicemail" qtlid="88956">Atsakiklis</translation>
+   <translation id="freefax_notification_source_both" qtlid="395609">Faksas ir atsakiklis</translation>
+   <translation id="freefax_notification_type_simple" qtlid="306734">Tik pranešimai</translation>
+   <translation id="freefax_notification_type_attachment" qtlid="108287">Priedas</translation>
+   <translation id="freefax_notification_add" qtlid="37923">Pridėti</translation>
+   <translation id="freefax_notification_delete" qtlid="306747">Ištrinti šį pranešimą</translation>
+   <translation id="freefax_notification_confirm" qtlid="395622">Ar tikrai norite ištrinti pranešimą <strong>{{email}}</strong>?</translation>
+   <translation id="freefax_notif_show_none" qtlid="306773">Niekas nesekama</translation>
+   <translation id="freefax_notif_show_one_or_many" qtlid="306786">sekama: {{count}} </translation>
+   <translation id="freefax_notif_read_error" qtlid="395635">Negalima nuskaityti pranešimo.</translation>
+   <translation id="freefax_notif_save_error" qtlid="395648">Negalima išsaugoti pranešimo.</translation>
+   <translation id="freefax_notif_save_success" qtlid="395661">Pranešimai atnaujinti.</translation>
+
+<!-- General informations -->
+   <translation id="freefax_domain" qtlid="66428">Domenas</translation>
+   <translation id="freefax_domain_expired" qtlid="395674">(Domenas nebegalioja)</translation>
+   <translation id="freefax_line" qtlid="306799">Linijos numeris</translation>
+   <translation id="freefax_fax_remaining" qtlid="306812">Likęs faksų skaičius</translation>
+   <translation id="freefax_point_remaining" qtlid="89845">Lojalumo taškai</translation>
+   <translation id="freefax_voicemail" qtlid="88956">Atsakiklis</translation>
+   <translation id="freefax_voicemail_active" qtlid="306825">Atsakiklis aktyvus</translation>
+   <translation id="freefax_voicemail_inactive" qtlid="306838">Atsakiklis neaktyvus</translation>
+
+<!-- Freefax configuration -->
+   <translation id="freefax_expeditor" qtlid="24535">Siuntėjas</translation>
+   <translation id="freefax_expeditor_form_error" qtlid="306851">Šis laukas negali būti tuščias</translation>
+   <translation id="freefax_expeditor_mail" qtlid="306864">Siuntėjo adresas</translation>
+   <translation id="freefax_expeditor_mail_form_error" qtlid="306877">Prašome įvesti galiojantį el. pašto adresą</translation>
+   <translation id="freefax_quality" qtlid="306890">Kokybė pagal nutylėjimą</translation>
+   <translation id="freefax_max_try" qtlid="306903">Didžiausias bandymų siųsti skaičius</translation>
+   <translation id="freefax_quality" qtlid="306890">Kokybė pagal nutylėjimą</translation>
+   <translation id="freefax_quality_normal" qtlid="67052">Normalus</translation>
+   <translation id="freefax_quality_high" qtlid="306916">Didelė</translation>
+   <translation id="freefax_quality_best" qtlid="306929">Optimali</translation>
+   <translation id="freefax_header" qtlid="306942">Fakso antraštė</translation>
+   <translation id="freefax_header_form_error" qtlid="306955">Prašome įvesti nuo 1 iki 50 simbolių</translation>
+   <translation id="freefax_offer" qtlid="38217">Pasiūlymas</translation>
+   <translation id="freefax_offer_ecofax_perso" qtlid="306968">EcoFax Perso</translation>
+
+<!-- Freefax header -->
+   <translation id="freefax_header_help" qtlid="306981">Fakso antraščių pagalba</translation>
+   <translation id="freefax_header_variable_column_description" qtlid="306994">Suskirstyti tekstą į vienodo dydžio stulpelius</translation>
+   <translation id="freefax_header_variable_task_identifier_description" qtlid="307007">Užduoties ID</translation>
+   <translation id="freefax_header_variable_attachment_name_description" qtlid="307020">Prisegto falo pavadinimas</translation>
+   <translation id="freefax_header_variable_emission_id_description" qtlid="307033">Fakso siuntimo ID. Jeigu tuščia: fakso numeris</translation>
+   <translation id="freefax_header_variable_expeditor_email_description" qtlid="306864">Siuntėjo adresas</translation>
+   <translation id="freefax_header_variable_fax_number_description" qtlid="152388">Fakso numeris</translation>
+   <translation id="freefax_header_variable_session_page_number_description" qtlid="307046">Sesijos puslapio numeris</translation>
+   <translation id="freefax_header_variable_task_page_number_description" qtlid="307059">Užduoties puslapio numeris</translation>
+   <translation id="freefax_header_variable_recipient_id_description" qtlid="307072">Gavėjo fakso priėmimo ID</translation>
+   <translation id="freefax_header_variable_session_page_amount_description" qtlid="307085">Visas sesijos puslapių skaičius</translation>
+   <translation id="freefax_header_variable_task_page_amount_description" qtlid="307098">Visas užduoties puslapių skaičius</translation>
+   <translation id="freefax_header_variable_expeditor_name_description" qtlid="307111">Gavėjo vardas</translation>
+
+<!-- Freefax change password -->
+   <translation id="freefax_reset_password" qtlid="307124">Gauti naują slaptažodį</translation>
+   <translation id="freefax_reset_password_btn" qtlid="84801">Generuoti</translation>
+   <translation id="freefax_reset_password_confirm" qtlid="307137">Ar tikrai norite kurti naują slaptažodį?</translation>
+</translations>
