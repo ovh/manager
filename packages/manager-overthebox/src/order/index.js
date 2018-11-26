@@ -12,10 +12,10 @@ const moduleName = 'ovhManagerOtbOrder';
 angular.module(moduleName, [])
   .run(($templateCache) => {
     // import templates required by ng-include
-    $templateCache.put('app/telecom/overTheBox/warning/overTheBox-warning-noPaymentMeans.html', overTheBoxWarningNoPaymentMeans);
-    $templateCache.put('app/telecom/overTheBox/warning/overTheBox-warning-notFound.html', overTheBoxWarningNotFound);
-    $templateCache.put('app/telecom/overTheBox/warning/overTheBox-warning-noSubscription.html', overTheBoxWarningNoSubscription);
-    $templateCache.put('app/telecom/overTheBox/warning/overTheBox-warning-deviceToLink.html', overTheBoxWarningDeviceToLink);
+    $templateCache.put('overTheBox/warning/overTheBox-warning-noPaymentMeans.html', overTheBoxWarningNoPaymentMeans);
+    $templateCache.put('overTheBox/warning/overTheBox-warning-notFound.html', overTheBoxWarningNotFound);
+    $templateCache.put('overTheBox/warning/overTheBox-warning-noSubscription.html', overTheBoxWarningNoSubscription);
+    $templateCache.put('overTheBox/warning/overTheBox-warning-deviceToLink.html', overTheBoxWarningDeviceToLink);
   })
   .config(($stateProvider) => {
     $stateProvider.state('overTheBox-order', {
