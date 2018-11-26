@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 const ora = require('ora');
-const { MonoRepository } = require('../common/repository');
 const { Codename, Sample } = require('@ovh-ux/codename-generator');
+const { MonoRepository } = require('../common/repository');
 
 Promise.prototype.logging = function logging(opts) { // eslint-disable-line no-extend-native
   ora.promise(this, opts);
@@ -25,11 +25,13 @@ const getChangedRepositories = () => MonoRepository
       .logging('listing changes')
       .then((changedRepos) => {
         changedRepos.forEach(r => console.log(`    ${r.toString()} has changes`));
-        return repos;
+        return changedRepos;
       });
   });
 
-const bumpRepositories = repos => Promise.all(repos.map(repo => repo.bump()))
+const bumpRepositories = (repos, prerelease = false, preid = null) => Promise.all(
+  repos.map(repo => repo.bump(prerelease, preid)),
+)
   .logging('bumping repositories')
   .then((bumps) => {
     bumps.forEach(b => console.log(`    ${b.recommendation.releaseType} ${b.repository.toString()} to ${b.newVersion}`));
