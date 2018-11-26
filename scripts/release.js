@@ -10,6 +10,7 @@ program
   .option('-v, --version <version>', 'specify version name to release, otherwise it will be generated randomly', '')
   .option('-s, --seed <seed>', 'specify seed to generate random version name', '')
   .option('-t, --token <token>', 'github access token', '')
+  .option('-f, --force', 'Release all packages even if they have no change')
   .option('--no-dependency-check', 'do not check range when update dependencies')
   .option('--no-check', 'do not check if mono-repository has uncommited changes')
   .option('--draft-release', 'identify the github release as unpublished')
@@ -23,7 +24,7 @@ program
     }
     return Promise.resolve()
       .then(() => (program.check ? checkChanges() : false))
-      .then(getChangedRepositories)
+      .then(() => getChangedRepositories(program.force))
       .then(repos => bumpRepositories(
         repos,
         program.releaseType || null,

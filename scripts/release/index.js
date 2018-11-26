@@ -14,14 +14,14 @@ const checkChanges = () => MonoRepository.hasUntrackedChanges().then((hasChanges
   }
 });
 
-const getChangedRepositories = () => MonoRepository
+const getChangedRepositories = (force = false) => MonoRepository
   .getRepositories()
   .logging('listing repositories')
   .then((repos) => {
     repos.forEach(r => console.log(`    ${r.toString()}`));
     const changes = repos.map(r => r.hasChanges());
     return Promise.all(changes)
-      .then(hasChanges => repos.filter((r, id) => hasChanges[id]))
+      .then(hasChanges => repos.filter((r, id) => force || hasChanges[id]))
       .logging('listing changes')
       .then((changedRepos) => {
         changedRepos.forEach(r => console.log(`    ${r.toString()} has changes`));
