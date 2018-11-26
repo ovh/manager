@@ -16,6 +16,7 @@ program
   .option('--pre-release', 'identify the github release as a prerelease')
   .option('--pre-id <preid>', 'preid for prerelease', '')
   .option('--no-release', 'skip github release')
+  .option('--release-type <releasetype>', 'Force a release as patch, minor or major')
   .action(() => {
     if (!program.token) {
       console.warn('Missing <token> option, no github release will be done!');
@@ -25,6 +26,7 @@ program
       .then(getChangedRepositories)
       .then(repos => bumpRepositories(
         repos,
+        program.releaseType || null,
         program.preRelease || false,
         program.preId || null,
       ))

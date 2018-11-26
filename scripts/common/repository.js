@@ -138,7 +138,7 @@ class Repository {
       .then(() => this);
   }
 
-  bump(prerelease = false, preid = null) {
+  bump(type = null, prerelease = false, preid = null) {
     return Repository.fetchTags()
       .then((...args) => this.createSmokeTag(args))
       .then(() => new Promise((resolve, reject) => {
@@ -149,6 +149,7 @@ class Repository {
         }, (err, recommendation) => (err ? reject(err) : resolve(recommendation)));
       }))
       .then((recommendation) => {
+        const releaseType = type || recommendation.releaseType;
         const regExpSemverPreRelease = /(\d+)\.(\d+)\.(\d+)-(\w+)\.(\d+)/g;
         let newVersion;
 
@@ -172,11 +173,11 @@ class Repository {
           // 4: Prerelease name
           // 5: Digit of prerelease
 
-          if (recommendation.releaseType === 'patch') {
+          if (releaseType === 'patch') {
             // Match example: 2.1.1-alpha.0 -> 2.1.1-alpha.1
             // Match example: 2.1.0-alpha.0 -> 2.1.0-alpha.1
             newVersion = semver.inc(this.version, 'prerelease', preid);
-          } else if (recommendation.releaseType === 'minor') {
+          } else if (releaseType === 'minor') {
             // Min Minor
             if (minorDigit > 0) {
               // Match example: 2.1.0-alpha.0 -> 2.1.0-alpha.1
@@ -194,14 +195,14 @@ class Repository {
             newVersion = semver.inc(this.version, 'prerelease', preid);
           }
         } else {
-          newVersion = semver.inc(this.version, prerelease ? `pre${recommendation.releaseType}` : recommendation.releaseType, preid);
+          newVersion = semver.inc(this.version, prerelease ? `pre${releaseType}` : releaseType, preid);
         }
 
         return this.updatePackageJson({ version: newVersion })
           .then(() => this.deleteSmokeTag())
           .then(() => ({
             repository: this,
-            recommendation,
+            releaseType,
             newVersion,
           }));
       });
