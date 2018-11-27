@@ -48,7 +48,7 @@
     "ng-csv": "^0.3.6",
     "ovh-angular-actions-menu": "^4.0.0",
     "ovh-angular-apiv7": "^1.2.8",
-    "ovh-angular-contracts": "https://github.com/ovh-ux/ovh-angular-contracts.git#v3.x.x",
+    "@ovh-ux/ovh-angular-contracts": "https://github.com/ovh-ux/ovh-angular-contracts.git#v3.x.x",
     "ovh-angular-http": "^4.0.0-alpha.1",
     "ovh-angular-otrs": "https://github.com/ovh-ux/ovh-angular-otrs.git#17796f93cbb0a586d08dd17030e4aa2f9f47a34e",
     "ovh-angular-responsive-popover": "5.0.0-alpha.2",
