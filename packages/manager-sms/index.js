@@ -9,6 +9,7 @@ import options from './options';
 import order from './order';
 import phonebooks from './phonebooks';
 import receivers from './receivers';
+import senders from './senders';
 
 const moduleName = 'ovhManagerSms';
 
@@ -19,6 +20,7 @@ angular.module(moduleName, [
   order,
   phonebooks,
   receivers,
+  senders,
 ]).config(($stateProvider) => {
   $stateProvider.state('telecom.sms', {
     url: '/sms/:serviceName',

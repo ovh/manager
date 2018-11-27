@@ -1,4 +1,7 @@
-angular.module('managerApp').controller('TelecomSmsSendersTerminateCtrl', class TelecomSmsSendersTerminateCtrl {
+import angular from 'angular';
+import _ from 'lodash';
+
+export default /* @ngInject */ class TelecomSmsSendersTerminateCtrl {
   constructor($q, $timeout, $uibModalInstance, OvhApiSms, sender) {
     this.$q = $q;
     this.$timeout = $timeout;
@@ -63,4 +66,4 @@ angular.module('managerApp').controller('TelecomSmsSendersTerminateCtrl', class 
   close() {
     return this.$uibModalInstance.close(true);
   }
-});
+}

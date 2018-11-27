@@ -1,4 +1,6 @@
-angular.module('managerApp').controller('TelecomSmsSendersRemoveCtrl', class TelecomSmsSendersRemoveCtrl {
+import angular from 'angular';
+
+export default /* @ngInject */ class TelecomSmsSendersRemoveCtrl {
   constructor($q, $stateParams, $timeout, $uibModalInstance, OvhApiSms, sender) {
     this.$q = $q;
     this.$stateParams = $stateParams;
@@ -20,9 +22,9 @@ angular.module('managerApp').controller('TelecomSmsSendersRemoveCtrl', class Tel
   }
 
   /**
-     * Remove sender.
-     * @return {Promise}
-     */
+   * Remove sender.
+   * @return {Promise}
+   */
   remove() {
     this.loading.removeSender = true;
     return this.$q.all([
@@ -48,4 +50,4 @@ angular.module('managerApp').controller('TelecomSmsSendersRemoveCtrl', class Tel
   close() {
     return this.$uibModalInstance.close(true);
   }
-});
+}

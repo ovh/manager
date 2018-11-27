@@ -1,4 +1,6 @@
-angular.module('managerApp').controller('TelecomSmsSendersBlacklistedRemoveCtrl', class TelecomSmsSendersBlacklistedRemoveCtrl {
+import angular from 'angular';
+
+export default /* @ngInject */ class TelecomSmsSendersBlacklistedRemoveCtrl {
   constructor($q, $stateParams, $timeout, $uibModalInstance, OvhApiSms, blacklist) {
     this.$q = $q;
     this.$stateParams = $stateParams;
@@ -48,4 +50,4 @@ angular.module('managerApp').controller('TelecomSmsSendersBlacklistedRemoveCtrl'
   close() {
     return this.$uibModalInstance.close(true);
   }
-});
+}
