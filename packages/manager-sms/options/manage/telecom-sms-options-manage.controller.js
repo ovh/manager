@@ -1,4 +1,7 @@
-angular.module('managerApp').controller('TelecomSmsOptionsManageCtrl', class TelecomSmsOptionsManageCtrl {
+import controller from './update/telecom-sms-options-manage-update.controller';
+import template from './update/telecom-sms-options-manage-update.html';
+
+export default /* @ngInject */ class TelecomSmsOptionsManageCtrl {
   constructor($uibModal, TucSmsMediator, TucToastError) {
     this.$uibModal = $uibModal;
     this.TucSmsMediator = TucSmsMediator;
@@ -28,10 +31,10 @@ angular.module('managerApp').controller('TelecomSmsOptionsManageCtrl', class Tel
   update(service) {
     this.$uibModal.open({
       animation: true,
-      templateUrl: 'app/telecom/sms/options/manage/update/telecom-sms-options-manage-update.html',
-      controller: 'TelecomSmsOptionsManageUpdateCtrl',
+      template,
+      controller,
       controllerAs: 'OptionsManageUpdateCtrl',
       resolve: { service: () => service },
     });
   }
-});
+}

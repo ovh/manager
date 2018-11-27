@@ -1,10 +1,16 @@
-angular.module('managerApp').config(($stateProvider) => {
+import angular from 'angular';
+import controller from './telecom-sms-order.controller';
+import template from './telecom-sms-order.html';
+
+const moduleName = 'ovhManagerSmsOrder';
+
+angular.module(moduleName, []).config(($stateProvider) => {
   $stateProvider.state('telecom.sms.order', {
     url: '/order',
     views: {
       'smsInnerView@telecom.sms': {
-        templateUrl: 'app/telecom/sms/order/telecom-sms-order.html',
-        controller: 'TelecomSmsOrderCtrl',
+        template,
+        controller,
         controllerAs: 'SmsOrder',
       },
     },
@@ -21,3 +27,5 @@ angular.module('managerApp').config(($stateProvider) => {
   500000,
   NaN,
 ]);
+
+export default moduleName;

@@ -1,4 +1,6 @@
-angular.module('managerApp').controller('TelecomSmsPhonebooksCreateCtrl', class TelecomSmsPhonebooksCreateCtrl {
+import _ from 'lodash';
+
+export default /* @ngInject */ class TelecomSmsPhonebooksCreateCtrl {
   constructor($state, $stateParams, OvhApiSms, TucToastError) {
     this.$state = $state;
     this.$stateParams = $stateParams;
@@ -33,4 +35,4 @@ angular.module('managerApp').controller('TelecomSmsPhonebooksCreateCtrl', class 
       this.phonebookToAdd.isAdding = false;
     });
   }
-});
+}

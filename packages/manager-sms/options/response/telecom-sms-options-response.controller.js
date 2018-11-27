@@ -1,4 +1,14 @@
-angular.module('managerApp').controller('TelecomSmsOptionsResponseCtrl', class TelecomSmsOptionsResponseCtrl {
+import angular from 'angular';
+import _ from 'lodash';
+
+import addController from './add/telecom-sms-options-response-add.controller';
+import addTemplate from './add/telecom-sms-options-response-add.html';
+import editController from './edit/telecom-sms-options-response-edit.controller';
+import editTemplate from './edit/telecom-sms-options-response-edit.html';
+import removeController from './remove/telecom-sms-options-response-remove.controller';
+import removeTemplate from './remove/telecom-sms-options-response-remove.html';
+
+export default /* @ngInject */ class TelecomSmsOptionsResponseCtrl {
   constructor(
     $q,
     $stateParams,
@@ -142,8 +152,8 @@ angular.module('managerApp').controller('TelecomSmsOptionsResponseCtrl', class T
   addTrackingOptions() {
     const modal = this.$uibModal.open({
       animation: true,
-      templateUrl: 'app/telecom/sms/options/response/add/telecom-sms-options-response-add.html',
-      controller: 'TelecomSmsOptionsResponseAddCtrl',
+      template: addTemplate,
+      controller: addController,
       controllerAs: 'OptionsResponseAddCtrl',
       resolve: {
         params: () => {
@@ -173,8 +183,8 @@ angular.module('managerApp').controller('TelecomSmsOptionsResponseCtrl', class T
   editTrackingOptions($index, option) {
     const modal = this.$uibModal.open({
       animation: true,
-      templateUrl: 'app/telecom/sms/options/response/edit/telecom-sms-options-response-edit.html',
-      controller: 'TelecomSmsOptionsResponseEditCtrl',
+      template: editTemplate,
+      controller: editController,
       controllerAs: 'OptionsResponseEditCtrl',
       resolve: {
         service: () => this.service,
@@ -201,8 +211,8 @@ angular.module('managerApp').controller('TelecomSmsOptionsResponseCtrl', class T
   removeTrackingOptions($index, option) {
     const modal = this.$uibModal.open({
       animation: true,
-      templateUrl: 'app/telecom/sms/options/response/remove/telecom-sms-options-response-remove.html',
-      controller: 'TelecomSmsOptionsResponseRemoveCtrl',
+      templateUrl: removeTemplate,
+      controller: removeController,
       controllerAs: 'OptionsResponseRemoveCtrl',
       resolve: {
         service: () => this.service,
@@ -231,4 +241,4 @@ angular.module('managerApp').controller('TelecomSmsOptionsResponseCtrl', class T
             && this.service.smsResponse.text === this.smsResponse.text
     );
   }
-});
+}

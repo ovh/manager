@@ -1,4 +1,6 @@
-angular.module('managerApp').controller('TelecomSmsDashboardCtrl', class TelecomSmsDashboardCtrl {
+import _ from 'lodash';
+
+export default class /* @ngInject */ TelecomSmsDashboardCtrl {
   constructor($q, $stateParams, $translate, OvhApiSms, TucSmsMediator, TucToastError) {
     this.$q = $q;
     this.$stateParams = $stateParams;
@@ -189,4 +191,4 @@ angular.module('managerApp').controller('TelecomSmsDashboardCtrl', class Telecom
       this.loading.stats = false;
     });
   }
-});
+}

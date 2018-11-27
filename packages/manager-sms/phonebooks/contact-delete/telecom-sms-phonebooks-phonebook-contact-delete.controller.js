@@ -1,4 +1,7 @@
-angular.module('managerApp').controller('TelecomSmsPhonebooksPhonebookContactDeleteCtrl', class TelecomSmsPhonebooksPhonebookContactDeleteCtrl {
+import angular from 'angular';
+import _ from 'lodash';
+
+export default /* @ngInject */ class TelecomSmsPhonebooksPhonebookContactDeleteCtrl {
   constructor($q, $stateParams, $timeout, $uibModalInstance, data, OvhApiSms) {
     this.$q = $q;
     this.$stateParams = $stateParams;
@@ -59,4 +62,4 @@ angular.module('managerApp').controller('TelecomSmsPhonebooksPhonebookContactDel
   close() {
     return this.$uibModalInstance.close(true);
   }
-});
+}

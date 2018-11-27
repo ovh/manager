@@ -1,13 +1,30 @@
-angular.module('managerApp').config(($stateProvider) => {
+import angular from 'angular';
+import controller from './telecom-sms.controller';
+import telecomView from './telecom-sms.html';
+import smsView from './telecom-sms-main.view.html';
+
+import dashboard from './dashboard';
+import guides from './guides';
+import options from './options';
+import order from './order';
+
+const moduleName = 'ovhManagerSms';
+
+angular.module(moduleName, [
+  dashboard,
+  guides,
+  options,
+  order,
+]).config(($stateProvider) => {
   $stateProvider.state('telecom.sms', {
     url: '/sms/:serviceName',
     views: {
       'telecomView@telecom': {
-        templateUrl: 'app/telecom/sms/telecom-sms.html',
+        template: telecomView,
       },
       'smsView@telecom.sms': {
-        templateUrl: 'app/telecom/sms/telecom-sms-main.view.html',
-        controller: 'TelecomSmsCtrl',
+        template: smsView,
+        controller,
         controllerAs: 'TelecomSmsCtrl',
       },
     },
@@ -31,3 +48,5 @@ angular.module('managerApp').config(($stateProvider) => {
     ],
   });
 });
+
+export default moduleName;

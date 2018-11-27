@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('TelecomSmsOptionsCtrl', class TelecomSmsOptionsCtrl {
+export default /* @ngInject */ class TelecomSmsOptionsCtrl {
   constructor($translate) {
     this.$translate = $translate;
   }
@@ -18,4 +18,4 @@ angular.module('managerApp').controller('TelecomSmsOptionsCtrl', class TelecomSm
       text: this.$translate.instant('sms_options_recredit'),
     }];
   }
-});
+}
