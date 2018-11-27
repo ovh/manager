@@ -1,4 +1,7 @@
-angular.module('managerApp').controller('TelecomSmsReceiversReadCtrl', class TelecomSmsReceiversReadCtrl {
+import angular from 'angular';
+import _ from 'lodash';
+
+export default /* @ngInject */ class TelecomSmsReceiversReadCtrl {
   constructor($stateParams, $translate, $uibModalInstance, receiver, csv) {
     this.$stateParams = $stateParams;
     this.$translate = $translate;
@@ -29,4 +32,4 @@ angular.module('managerApp').controller('TelecomSmsReceiversReadCtrl', class Tel
   close() {
     return this.$uibModalInstance.close(true);
   }
-});
+}

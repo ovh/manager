@@ -1,4 +1,6 @@
-angular.module('managerApp').controller('TelecomSmsReceiversRemoveCtrl', class TelecomSmsReceiversRemoveCtrl {
+import angular from 'angular';
+
+export default /* @ngInject */ class TelecomSmsReceiversRemoveCtrl {
   constructor($q, $stateParams, $timeout, $uibModalInstance, OvhApiSms, receiver) {
     this.$q = $q;
     this.$stateParams = $stateParams;
@@ -48,4 +50,4 @@ angular.module('managerApp').controller('TelecomSmsReceiversRemoveCtrl', class T
   close() {
     return this.$uibModalInstance.close(true);
   }
-});
+}

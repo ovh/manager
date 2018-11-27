@@ -1,4 +1,7 @@
-angular.module('managerApp').controller('TelecomSmsReceiversEditCtrl', class TelecomSmsReceiversEditCtrl {
+import angular from 'angular';
+import _ from 'lodash';
+
+export default /* @ngInject */ class TelecomSmsReceiversEditCtrl {
   constructor($q, $stateParams, $timeout, $uibModalInstance, OvhApiSms, receiver) {
     this.$q = $q;
     this.$stateParams = $stateParams;
@@ -63,4 +66,4 @@ angular.module('managerApp').controller('TelecomSmsReceiversEditCtrl', class Tel
       _.pick(this.receiver, this.attributes),
     );
   }
-});
+}
