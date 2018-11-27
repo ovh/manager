@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('TelecomSmsSmsCtrl', class TelecomSmsSmsCtrl {
+export default /* @ngInject */ class TelecomSmsSmsCtrl {
   constructor($translate) {
     this.$translate = $translate;
   }
@@ -38,4 +38,4 @@ angular.module('managerApp').controller('TelecomSmsSmsCtrl', class TelecomSmsSms
       text: this.$translate.instant('sms_sms_manage_templates'),
     }];
   }
-});
+}

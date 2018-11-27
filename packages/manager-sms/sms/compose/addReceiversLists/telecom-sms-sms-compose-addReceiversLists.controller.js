@@ -1,4 +1,7 @@
-angular.module('managerApp').controller('TelecomSmsSmsComposeAddReceiversListsCtrl', class TelecomSmsSmsComposeAddReceiversListsCtrl {
+import angular from 'angular';
+import _ from 'lodash';
+
+export default /* @ngInject */ class TelecomSmsSmsComposeAddReceiversListsCtrl {
   constructor($stateParams, $timeout, $uibModalInstance, TucSmsMediator, receivers) {
     this.$stateParams = $stateParams;
     this.$timeout = $timeout;
@@ -45,4 +48,4 @@ angular.module('managerApp').controller('TelecomSmsSmsComposeAddReceiversListsCt
   hasSelected() {
     return _.some(this.receivers, { isSelected: true });
   }
-});
+}

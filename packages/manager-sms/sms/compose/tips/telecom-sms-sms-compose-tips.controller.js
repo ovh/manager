@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('TelecomSmsSmsComposeTipsCtrl', class TelecomSmsSmsComposeTipsCtrl {
+export default /* @ngInject */ class TelecomSmsSmsComposeTipsCtrl {
   constructor($uibModalInstance) {
     this.$uibModalInstance = $uibModalInstance;
   }
@@ -6,4 +6,4 @@ angular.module('managerApp').controller('TelecomSmsSmsComposeTipsCtrl', class Te
   close() {
     return this.$uibModalInstance.close(true);
   }
-});
+}
