@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="sms_section_back_link" qtlid="340874">Paluu lähettäjälistaan</translation>
+
+   <translation id="sms_senders_blacklisted_manage_title" qtlid="340562">Hallitse estettyjä lähettäjiä </translation>
+
+   <translation id="sms_senders_blacklisted_information_title" qtlid="26551">Tiedot</translation>
+   <translation id="sms_senders_blacklisted_information_text_1" qtlid="340887">Lista vastaanottajista, jotka ovat estäneet tekstiviestit joltakin lähettäjältäsi.</translation>
+   <translation id="sms_senders_blacklisted_information_text_2" qtlid="340900">Jos poistat numeron tältä listalta, lähettäjiesi tekstiviestejä voidaan taas lähettää tälle vastaanottajalle. </translation>
+
+   <translation id="sms_senders_blacklisted_delete_list" qtlid="393607">Poista valittu numero</translation>
+   <translation id="sms_senders_blacklisted_delete_lists" qtlid="393620">Poista {{ count }} valittua numeroa</translation>
+   <translation id="sms_senders_blacklisted_delete_list_success" qtlid="393633">Suppression en cours…</translation>
+
+   <translation id="sms_senders_blacklisted_label_date" qtlid="24523">Päivämäärä</translation>
+   <translation id="sms_senders_blacklisted_label_number" qtlid="30778">Numero</translation>
+
+   <translation id="sms_senders_blacklisted_empty" qtlid="340913">Ei yhtään estettyä lähettäjää.</translation>
+
+   <translation id="sms_senders_blacklisted_title" qtlid="340926">Poista estetty lähettäjä</translation>
+   <translation id="sms_senders_blacklisted_confirm" qtlid="340939">Haluatko varmasti poistaa estetyn lähettäjän <b>"{{ sender }}"</b>&#160;?</translation>
+
+   <translation id="sms_senders_blacklisted_sender_ko" qtlid="340952">Estettyä lähettäjää ei voida poistaa.<br/>{{error}}</translation>
+</translations>

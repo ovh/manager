@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="sms_section_back_link" qtlid="341186">Volver a los SMS</translation>
+
+   <translation id="sms_sms_incoming_title" qtlid="341199">SMS recibidos</translation>
+
+   <translation id="sms_sms_incoming_label_date" qtlid="24523">Fecha</translation>
+   <translation id="sms_sms_incoming_label_sender" qtlid="24535">Remitente</translation>
+   <translation id="sms_sms_incoming_label_message" qtlid="30574">Mensaje</translation>
+
+   <translation id="sms_sms_incoming_empty" qtlid="341212">No se ha recibido ningún SMS.</translation>
+
+   <translation id="sms_sms_incoming_read_title" qtlid="339639">Consultar</translation>
+   <translation id="sms_sms_incoming_read_label_sms_size" qtlid="341225">Tamaño del SMS</translation>
+   <translation id="sms_sms_incoming_read_label_sms_size_text" qtlid="341238">{{ numberOfSms }} SMS ({{ credits | number: 2 }} créditos)</translation>
+   <translation id="sms_sms_incoming_read_label_message" qtlid="341251">Mensaje completo</translation>
+
+   <translation id="sms_sms_incoming_remove_title" qtlid="9983">Confirmar</translation>
+   <translation id="sms_sms_incoming_remove_confirm" qtlid="341264">¿Seguro que quiere eliminar el SMS mostrado a continuación?</translation>
+   <translation id="sms_sms_incoming_removing" qtlid="341277">Eliminando el SMS...</translation>
+   <translation id="sms_sms_incoming_removed" qtlid="341290">SMS eliminado</translation>
+   <translation id="sms_sms_incoming_remove_ko" qtlid="341303">No se ha podido eliminar el SMS.<br/>{{error}}</translation>
+
+   <translation id="sms_sms_incoming_download_history" qtlid="341316">Descargar el historial</translation>
+   <translation id="sms_sms_incoming_download_history_ko" qtlid="394933">¡Vaya! No se ha podido descargar el historial.</translation>
+
+   <translation id="sms_sms_incoming_remove" qtlid="394946">Eliminar el SMS seleccionado</translation>
+   <translation id="sms_sms_incoming_remove_plural" qtlid="394959">Eliminar los {{ count }} SMS seleccionados</translation>
+   <translation id="sms_sms_incoming_remove_success" qtlid="393633">Eliminando…</translation>
+</translations>

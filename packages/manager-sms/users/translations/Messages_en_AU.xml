@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="sms_users_manage_title" qtlid="338690">Gestion des comptes utilisateurs</translation>
+
+   <translation id="sms_users_actions_templates" qtlid="72797">Alerts</translation>
+
+   <translation id="sms_users_label_id" qtlid="46792">ID</translation>
+   <translation id="sms_users_label_quota_status" qtlid="338703">Activer le quota ?</translation>
+   <translation id="sms_users_label_quota" qtlid="6874">Quota</translation>
+   <translation id="sms_users_label_alert" qtlid="338716">Activer l’alerte ?</translation>
+   <translation id="sms_users_label_threshold" qtlid="33562">Limit</translation>
+   <translation id="sms_users_label_notification" qtlid="32386">Notification</translation>
+
+   <translation id="sms_users_empty" qtlid="215741">No user</translation>
+
+   <translation id="sms_users_sr_only_actions" qtlid="72809">Actions</translation>
+
+   <translation id="sms_users_action_change_password" qtlid="80394">Change password</translation>
+   <translation id="sms_users_action_change_password_label" qtlid="2270">Password</translation>
+   <translation id="sms_users_action_quota" qtlid="6874">Quota</translation>
+   <translation id="sms_users_action_limit" qtlid="33562">Limit</translation>
+   <translation id="sms_users_action_restriction_ip" qtlid="338729">Restrictions par IP pour http2sms</translation>
+   <translation id="sms_users_action_restriction_ip_label" qtlid="393191">Restrictions</translation>
+   <translation id="sms_users_action_url_callback" qtlid="338742">URL de callback</translation>
+   <translation id="sms_users_action_url_callback_label" qtlid="393204">Callback</translation>
+
+   <translation id="sms_users_add_user" qtlid="7150">Add user</translation>
+   <translation id="sms_users_add_user_title" qtlid="338755">Nouveau compte utilisateur</translation>
+   <translation id="sms_users_add_user_login_label" qtlid="338768">Identifiant&#160;:&#160;</translation>
+   <translation id="sms_users_add_user_login_placeholder" qtlid="46792">ID</translation>
+   <translation id="sms_users_add_user_login_error_required" qtlid="338781">Le champ "identifiant" est obligatoire.</translation>
+   <translation id="sms_users_add_user_login_error_maxlength" qtlid="338794">Le champ "identifiant" ne doit pas dépasser les 40 caractères.</translation>
+   <translation id="sms_users_add_user_password_label" qtlid="334894">Mot de passe&#160;:&#160;</translation>
+   <translation id="sms_users_add_user_password_placeholder" qtlid="2270">Password</translation>
+   <translation id="sms_users_add_user_password_required" qtlid="334946">Le champ "mot de passe" est obligatoire.</translation>
+   <translation id="sms_users_add_user_password_error_pattern" qtlid="338807">Le champ "mot de passe" doit être composé de 8 caractères alphanumériques.</translation>
+   <translation id="sms_users_add_user_adding" qtlid="393217">Ajout de l’utilisateur…</translation>
+   <translation id="sms_users_add_user_added" qtlid="334933">Utilisateur ajouté&#160;!&#160;</translation>
+   <translation id="sms_users_add_user_ko" qtlid="338846">Impossible de créer l’utilisateur.<br/>{{error}}</translation>
+
+   <translation id="sms_users_templates_title" qtlid="393230">Personnalisation des alertes</translation>
+   <translation id="sms_users_templates_customized_email_mode_label" qtlid="393243">Alertes e-mails</translation>
+   <translation id="sms_users_templates_email_from_label" qtlid="393256">Émetteur de l’e-mail&#160;:</translation>
+   <translation id="sms_users_templates_email_from_placeholder" qtlid="393269">Adresse e-mail (champ requis).</translation>
+   <translation id="sms_users_templates_email_from_error_required" qtlid="393282">Le champ "Adresse e-mail" est obligatoire.</translation>
+   <translation id="sms_users_templates_email_from_error_email" qtlid="393295">Merci de renseigner une adresse e-mail valide.</translation>
+   <translation id="sms_users_templates_email_subject_label" qtlid="393308">Objet&#160;</translation>
+   <translation id="sms_users_templates_email_subject_placeholder" qtlid="393321">Objet de l’e-mail (champ requis).</translation>
+   <translation id="sms_users_templates_email_subject_error_required" qtlid="393334">Le champ "Objet de l’e-mail" est obligatoire.</translation>
+   <translation id="sms_users_templates_email_body_label" qtlid="393347">Corps de l’e-mail (champ requis).</translation>
+   <translation id="sms_users_templates_email_body_placeholder" qtlid="393347">Corps de l’e-mail (champ requis).</translation>
+   <translation id="sms_users_templates_email_body_error_required" qtlid="393360">Le champ "Corps de l’e-mail" est obligatoire.</translation>
+   <translation id="sms_users_templates_customized_sms_mode_label" qtlid="393373">Alertes SMS</translation>
+   <translation id="sms_users_templates_sms_body_label" qtlid="393386">Contenu du SMS&#160;</translation>
+   <translation id="sms_users_templates_sms_body_placeholder" qtlid="393399">Contenu du SMS (champ requis).</translation>
+   <translation id="sms_users_templates_sms_body_error_required" qtlid="393412">Le champ "Contenu du SMS" est obligatoire.</translation>
+   <translation id="sms_users_templates_sms_body_error_maxlength" qtlid="393425">Vous avez dépassé la limite des <b>{{ maxlenght }}</b> caractères.</translation>
+   <translation id="sms_users_templates_sms_body_characters_left" qtlid="288158">Remaining characters </translation>
+   <translation id="sms_users_templates_labels_tooltip" qtlid="393438">Les alertes de bases seront remplacées.</translation>
+   <translation id="sms_users_templates_variable_info" qtlid="393451">Les variables sont disponibles pour les champs "Corps de l’e-mail" & "Contenu du SMS".</translation>
+   <translation id="sms_users_templates_variable_user" qtlid="393464">Identifiant&#160;:</translation>
+   <translation id="sms_users_templates_variable_remaining" qtlid="393477">Quota restant&#160;:</translation>
+   <translation id="sms_users_templates_variable_alertthreshold" qtlid="393490">Seuil d’alerte&#160;:</translation>
+   <translation id="sms_users_templates_variable_creditsleft" qtlid="393503">Crédit restant&#160;:</translation>
+   <translation id="sms_users_templates_adding" qtlid="393516">Personnalisation des alertes en cours…</translation>
+   <translation id="sms_users_templates_added" qtlid="393529">Personnalisation des alertes effectuée</translation>
+   <translation id="sms_users_templates_update_ko" qtlid="393542">Impossible de modifier la personnalisation des alertes.</translation>
+
+   <translation id="sms_users_change_password_user_title" qtlid="80394">Change password</translation>
+   <translation id="sms_users_change_password_user_info" qtlid="338859">Vous changez actuellement le mot de passe de l’utilisateur <b>«{{ login }}»</b>.</translation>
+   <translation id="sms_users_change_password_user_password_label" qtlid="334894">Mot de passe&#160;:&#160;</translation>
+   <translation id="sms_users_change_password_user_password_placeholder" qtlid="2270">Password</translation>
+   <translation id="sms_users_change_password_user_password_error_required" qtlid="334946">Le champ "mot de passe" est obligatoire.</translation>
+   <translation id="sms_users_change_password_user_password_error_pattern" qtlid="338807">Le champ "mot de passe" doit être composé de 8 caractères alphanumériques.</translation>
+   <translation id="sms_users_change_password_user_changing" qtlid="338872">Changement du mot de passe…</translation>
+   <translation id="sms_users_change_password_user_changed" qtlid="338885">Mot de passe modifié&#160;!&#160;</translation>
+   <translation id="sms_users_change_password_user_ko" qtlid="338898">Impossible de changer le mot de passe de l’utilisateur.<br/>{{error}}</translation>
+
+   <translation id="sms_users_quota_user_title" qtlid="6874">Quota</translation>
+   <translation id="sms_users_quota_user_info" qtlid="338911">Vous changez actuellement le quota de l’utilisateur <b>«{{ login }}»</b>.</translation>
+   <translation id="sms_users_quota_user_activate_label" qtlid="338924">Activer le quota&#160;?</translation>
+   <translation id="sms_users_quota_user_new_quota_label" qtlid="231474">New quota</translation>
+   <translation id="sms_users_quota_user_new_quota_placeholder" qtlid="231474">New quota</translation>
+   <translation id="sms_users_quota_user_new_quota_error_required" qtlid="338937">Le champ "nouveau quota" est obligatoire.</translation>
+   <translation id="sms_users_quota_user_new_quota_error_number" qtlid="338950">Veuillez saisir un quota valide.</translation>
+   <translation id="sms_users_quota_user_new_quota_error_min" qtlid="338963">La valeur minimum de ce champ doit être de 0.</translation>
+   <translation id="sms_users_quota_user_new_quota_error_max" qtlid="338976">La valeur maximum de ce champ doit être de {{ creditLeft }}.</translation>
+   <translation id="sms_users_quota_user_adding" qtlid="338989">Ajout du quota…</translation>
+   <translation id="sms_users_quota_user_added" qtlid="339002">Quota ajouté&#160;!&#160;</translation>
+   <translation id="sms_users_quota_user_ko" qtlid="339015">Impossible de changer le quota de l’utilisateur.<br/>{{error}}</translation>
+
+   <translation id="sms_users_limit_user_title" qtlid="33562">Limit</translation>
+   <translation id="sms_users_limit_user_info" qtlid="339028">Vous changez actuellement la limite de l’utilisateur <b>«{{ login }}»</b>.</translation>
+   <translation id="sms_users_limit_user_alert_activate_label" qtlid="339041">Activer l’alerte&#160;?</translation>
+   <translation id="sms_users_limit_user_alert_threshold_label" qtlid="339054">Seuil d’alerte</translation>
+   <translation id="sms_users_limit_user_alert_threshold_error_required" qtlid="339067">Le champ "seuil d’alerte" est obligatoire.</translation>
+   <translation id="sms_users_limit_user_alert_threshold_error_min" qtlid="393555">La valeur minimum du seuil d’alerte doit être de 1.</translation>
+   <translation id="sms_users_limit_user_alert_threshold_placeholder" qtlid="339054">Seuil d’alerte</translation>
+   <translation id="sms_users_limit_user_support_label" qtlid="32386">Notification</translation>
+   <translation id="sms_users_limit_user_support_both" qtlid="339080">Mail et SMS</translation>
+   <translation id="sms_users_limit_user_support_mail" qtlid="21679">Mail</translation>
+   <translation id="sms_users_limit_user_support_sms" qtlid="28243">SMS</translation>
+   <translation id="sms_users_limit_user_alert_email_label" qtlid="69509">Email</translation>
+   <translation id="sms_users_limit_user_alert_email_placehoder" qtlid="11315">Email address</translation>
+   <translation id="sms_users_limit_user_alert_email_error_required" qtlid="339093">Le champ "adresse e-mail" est obligatoire.</translation>
+   <translation id="sms_users_limit_user_alert_email_error_email" qtlid="339106">Adresse e-mail non valide.</translation>
+   <translation id="sms_users_limit_user_alert_number_label" qtlid="30778">Number</translation>
+   <translation id="sms_users_limit_user_alert_number_placeholder" qtlid="339119">Numéro (au format international)</translation>
+   <translation id="sms_users_limit_user_alert_number_error_required" qtlid="339132">Le champ "numéro" est obligatoire.</translation>
+   <translation id="sms_users_limit_user_alert_number_error_pattern" qtlid="339145">Veuillez saisir un numéro valide.</translation>
+   <translation id="sms_users_limit_user_adding" qtlid="339158">Ajout de la limite…</translation>
+   <translation id="sms_users_limit_user_added" qtlid="339171">Limite ajoutée&#160;!&#160;</translation>
+   <translation id="sms_users_limit_user_ko" qtlid="339184">Impossible de changer la limite de l’utilisateur.<br/>{{error}}</translation>
+
+   <translation id="sms_users_restrict_user_title" qtlid="339197">Restriction par IP pour http2sms</translation>
+   <translation id="sms_users_restrict_user_info" qtlid="339210">Vous changez actuellement les restrictions d’IP de l’utilisateur <b>«{{ login }}»</b>.</translation>
+   <translation id="sms_users_restrict_user_restrict_label" qtlid="339223">Restriction n°{{ index }}</translation>
+   <translation id="sms_users_restrict_user_restrict_placeholder" qtlid="339223">Restriction n°{{ index }}</translation>
+   <translation id="sms_users_restrict_user_restrict_error_pattern" qtlid="339236">Adresse IP invalide.</translation>
+   <translation id="sms_users_restrict_user_adding" qtlid="339249">Ajout de la restriction d’IP…</translation>
+   <translation id="sms_users_restrict_user_added" qtlid="339262">Restriction d’IP ajoutée&#160;!&#160;</translation>
+   <translation id="sms_users_restrict_user_ko" qtlid="339275">Impossible de changer les restrictions par IP pour http2sms de l’utilisateur.<br/>{{error}}</translation>
+
+   <translation id="sms_users_callback_user_info" qtlid="339288">Vous changez actuellement l’URL de callback de l’utilisateur <b>«{{ login }}»</b>.</translation>
+   <translation id="sms_users_callback_user_url_required" qtlid="339301">Le champ "URL de callback" est obligatoire.</translation>
+   <translation id="sms_users_callback_user_url_error_pattern" qtlid="339314">Le lien doit commencer par http:// ou https://.</translation>
+   <translation id="sms_users_callback_user_url_error_url" qtlid="339327">L’URL renseignée n’est pas valide.</translation>
+   <translation id="sms_users_callback_user_adding" qtlid="339340">Ajout de l’URL de callback…</translation>
+   <translation id="sms_users_callback_user_added" qtlid="339353">URL de callback ajoutée&#160;!&#160;</translation>
+   <translation id="sms_users_callback_user_ko" qtlid="339366">Impossible de changer l’URL de callback.<br/>{{error}}</translation>
+
+   <translation id="sms_users_remove_user_title" qtlid="9983">Order confirmation </translation>
+   <translation id="sms_users_remove_user_confirm" qtlid="339379">Voulez-vous vraiment supprimer l’utilisateur <b>«{{ user }}»</b>&#160;?</translation>
+   <translation id="sms_users_remove_user_removing" qtlid="339392">Suppression de l’utilisateur en cours…</translation>
+   <translation id="sms_users_remove_user_removed" qtlid="339405">Utilisateur supprimé</translation>
+   <translation id="sms_users_remove_user_ko" qtlid="339418">Impossible de supprimer l’utilisateur.<br/>{{error}}</translation>
+</translations>

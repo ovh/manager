@@ -1,0 +1,188 @@
+<section class="telecom-sms-order">
+
+    <div class="text-center" data-ng-if="SmsOrder.loading.init">
+        <oui-spinner></oui-spinner>
+    </div>
+
+    <div class="widget-presentation"
+         data-ng-if="!SmsOrder.loading.init">
+
+        <header class="widget-presentation-header">
+            <h2 class="widget-presentation-title"
+                data-translate="sms_order_title">
+            </h2>
+        </header>
+
+        <form id="SmsOrderForm"
+              name="SmsOrderForm">
+
+            <div class="row">
+                <div class="col-xs-12 col-md-6">
+
+                    <!-- ACCOUNT -->
+                    <div class="form-group">
+                        <label for="account"
+                               class="control-label"
+                               data-translate="sms_order_account_label">
+                        </label>
+                        <select id="account"
+                                name="account"
+                                class="form-control"
+                                required
+                                data-ng-model="SmsOrder.order.account"
+                                data-ng-change="SmsOrder.getPrices();"
+                                data-ng-options="smsAccount as smsAccount.label for smsAccount in SmsOrder.availableAccounts"
+                                data-ng-disabled="SmsOrder.loading.prices">
+                        </select>
+                    </div>
+
+                    <!-- CREDIT -->
+                    <div class="form-group"
+                         data-ng-if="SmsOrder.order.account">
+                        <label for="credit"
+                               class="control-label"
+                               data-translate="sms_order_credit_label">
+                        </label>
+                        <select id="credit"
+                                name="credit"
+                                class="form-control"
+                                required
+                                data-ng-model="SmsOrder.order.credit"
+                                data-ng-change="SmsOrder.getPrices(); SmsOrder.order.customCredit = SmsOrder.order.min"
+                                data-ng-options="credit as credit.label for credit in SmsOrder.availableCredits"
+                                data-ng-disabled="SmsOrder.loading.prices">
+                        </select>
+                    </div>
+
+                    <!-- CUSTOMCREDIT -->
+                    <div class="form-group clearfix"
+                         data-ng-if="SmsOrder.customCreditSelected()">
+                        <label for="customCredit"
+                               class="control-label"
+                               data-translate="sms_order_credit_custom_label">
+                        </label>
+                        <input-number-spinner class="float-left"
+                                              data-ng-model="SmsOrder.order.customCredit"
+                                              data-input-number-spinner-min="SmsOrder.order.min"
+                                              data-input-number-spinner-max="SmsOrder.order.max"
+                                              data-input-number-spinner-on-change="SmsOrder.getDebouncedPrices()">
+                        </input-number-spinner>
+                    </div>
+
+                    <div data-ng-if="!SmsOrder.loading.prices">
+
+                        <div class="form-group"
+                             data-ng-if="detail.detailType !== 'MUTE'"
+                             data-ng-repeat="detail in SmsOrder.prices.details">
+                            <label class="control-label"
+                                   data-ng-if="detail.detailType == 'QUANTITY'"
+                                   data-translate="sms_order_price_quantity">
+                            </label>
+                            <label class="control-label"
+                                   data-ng-if="detail.detailType == 'GIFT'"
+                                   data-translate="sms_order_price_gift">
+                            </label>
+                            <p class="form-control-static font-weight-bold"
+                               data-ng-class="{
+                                   'text-success' : detail.detailType == 'GIFT',
+                                   'text-danger' : detail.detailType == 'QUANTITY'
+                               }"
+                               data-ng-bind="detail.totalPrice.text">
+                            </p>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label"
+                                   data-translate="sms_order_price_total_vat">
+                            </label>
+                            <p class="form-control-static font-weight-bold text-danger"
+                               data-ng-bind="SmsOrder.prices.prices.tax.text">
+                            </p>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label"
+                                   data-translate="sms_order_price_total">
+                            </label>
+                            <p class="form-control-static font-weight-bold text-danger"
+                               data-ng-bind="SmsOrder.prices.prices.withTax.text">
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="text-center" data-ng-if="SmsOrder.loading.prices">
+                <oui-spinner></oui-spinner>
+            </div>
+
+            <div data-ng-if="!SmsOrder.loading.prices">
+
+                <div data-contracts="SmsOrder.contracts"
+                     data-full-text="true"
+                     data-contracts-validated="SmsOrder.contractsAccepted">
+                </div>
+
+                <div class="checkbox">
+                    <label>
+                        <input
+                            type="checkbox"
+                            name="retract"
+                            id="retract"
+                            data-ng-model="SmsOrder.retract">
+                        <span data-translate="sms_order_retract"></span>
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <button class="btn btn-link"
+                            type="button"
+                            data-ng-click="SmsOrder.showMore = !SmsOrder.showMore"
+                            data-translate="sms_order_more_info">
+                    </button>
+                    <div class="alert alert-info"
+                         role="alert"
+                         data-ng-if="SmsOrder.showMore"
+                         data-translate="sms_order_retract_info">
+                    </div>
+                </div>
+
+                <div data-ng-if="!SmsOrder.prices.url">
+                    <button type="button"
+                            role="button"
+                            class="btn btn-primary"
+                            data-ng-disabled="SmsOrder.loading.order || !SmsOrder.contractsAccepted || !SmsOrder.retract"
+                            data-ng-click="SmsOrder.doOrder()">
+                        <span class="ovh-font ovh-font-cart my-0 mr-2"
+                              aria-hidden="true"
+                              data-ng-if="!SmsOrder.loading.order">
+                        </span>
+                        <oui-spinner class="mr-2"
+                                     data-ng-if="SmsOrder.loading.order"
+                                     data-size="s">
+                        </oui-spinner>
+                        <span data-translate="sms_order_order"></span>
+                    </button>
+                </div>
+
+                <div class="mb-3"
+                     data-ng-if="SmsOrder.prices.url">
+                    <span data-translate="sms_order_bc"></span>
+                    <a target="_blank"
+                       rel="noopener"
+                       title="{{:: 'sms_order_order' | translate}}"
+                       data-ng-href="{{SmsOrder.prices.url}}">
+                        <span data-translate="sms_order_order_url"></span>
+                        <span class="ovh-font ovh-font-newtab ml-2" aria-hidden="true"></span>
+                    </a>
+                </div>
+            </div>
+        </form>
+
+    </div>
+    <!-- /.widget-presentation -->
+
+</section>
+<!-- /.telecom-sms-order -->

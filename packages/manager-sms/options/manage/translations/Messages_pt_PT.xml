@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="sms_section_back_link" qtlid="340159">Revenir aux options</translation>
+
+   <translation id="sms_options_manage_title" qtlid="340133">Options générales</translation>
+
+   <translation id="sms_options_manage_information_title" qtlid="26551">Informações</translation>
+   <translation id="sms_options_manage_information_text" qtlid="340172">OVH vous propose de paramétrer des URLs de callback pour être averti lors d’un événement sur un SMS.</translation>
+   <translation id="sms_options_manage_information_types_available" qtlid="340185">Deux types de callbacks sont disponibles&#160;:</translation>
+   <translation id="sms_options_manage_information_type_callback" qtlid="340198"><b>Le callback de changement d’état</b>&#160;:&#160;Lorsqu’un SMS envoyé change d’état (ex: de "envoyé" vers "remis").</translation>
+   <translation id="sms_options_manage_information_type_stop_callback" qtlid="340211"><b>Le callback STOP</b>&#160;:&#160;Lorsqu’un destinataire répond "STOP" à un de vos SMS pour vous blacklister.</translation>
+
+   <translation id="sms_options_manage_configure_title" qtlid="4010">Configurar</translation>
+
+   <translation id="sms_options_manage_configure_callback_label" qtlid="340224">URL de callback changements d’état&#160;:</translation>
+   <translation id="sms_options_manage_configure_stop_callback_label" qtlid="340237">URL de callback STOP&#160;:</translation>
+   <translation id="sms_options_manage_configure_callback_empty" qtlid="340250">Aucune URL configurée.</translation>
+
+   <translation id="sms_options_manage_update_title" qtlid="340263">Configuration des URLs</translation>
+   <translation id="sms_options_manage_update_callback_label" qtlid="340276">URL de callback changements d’état</translation>
+   <translation id="sms_options_manage_update_stopcallback_label" qtlid="340289">URL de callback STOP</translation>
+   <translation id="sms_options_manage_update_callbacks_error_pattern" qtlid="339314">Le lien doit commencer par http:// ou https://.</translation>
+   <translation id="sms_options_manage_update_callbacks_error_url" qtlid="339327">L’URL renseignée n’est pas valide.</translation>
+   <translation id="sms_options_manage_updating" qtlid="340302">Configuration des URLs…</translation>
+   <translation id="sms_options_manage_updated" qtlid="340315">Configuration des URLs effectuée</translation>
+</translations>

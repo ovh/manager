@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="sms_page_title" qtlid="394712">SMS "{{name}}"</translation>
+
+   <translation id="sms_tabs_dashboard" qtlid="45376">Informacje ogólne</translation>
+   <translation id="sms_tabs_sms" qtlid="28243">SMS</translation>
+   <translation id="sms_tabs_contacts" qtlid="32206">Kontakt</translation>
+   <translation id="sms_tabs_phonebooks" qtlid="394725">Carnet d’adresses</translation>
+   <translation id="sms_tabs_senders" qtlid="40490">Nadawcy</translation>
+   <translation id="sms_tabs_api_users" qtlid="339431">Użytkownicy API</translation>
+   <translation id="sms_tabs_options" qtlid="23395">Opcje</translation>
+   <translation id="sms_tabs_guides" qtlid="300370">Przewodniki</translation>
+
+   <translation id="sms_rename_error" qtlid="317633">Nie można zmienić nazwy pakietu {{serviceName}}.</translation>
+   <translation id="sms_loading_error" qtlid="463356">Une erreur est survenue lors du chargement de SMS</translation>
+
+   <translation id="sms_feature_soon_available" qtlid="339444">Funkcjonalność ta będzie wkrótce dostępna.</translation>
+</translations>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="sms_receivers_manage_title" qtlid="339587">Valdyti gavėjus</translation>
+
+   <translation id="sms_receivers_label_description" qtlid="3818">Pavadinimas</translation>
+   <translation id="sms_receivers_label_date" qtlid="339600">Pridėjimo data</translation>
+   <translation id="sms_receivers_label_records" qtlid="339613">Kontaktų skaičius</translation>
+   <translation id="sms_receivers_label_auto_update" qtlid="339626">Automatinis atnaujinimas</translation>
+
+   <translation id="sms_receivers_sr_only_actions" qtlid="72809">Veiksmai</translation>
+
+   <translation id="sms_receivers_action_read" qtlid="339639">Tikrinti</translation>
+   <translation id="sms_receivers_action_clean" qtlid="339652">Valyti</translation>
+   <translation id="sms_receivers_action_export" qtlid="39286">Parsisiuntimas</translation>
+
+   <translation id="sms_receivers_information_title" qtlid="26551">Informacija</translation>
+   <translation id="sms_receivers_information_text_1" qtlid="394738">Galite sukurti iki 9 kontaktų sąrašų, jie turi būti tekstiniai arba <em>.csv</em> failai.</translation>
+   <translation id="sms_receivers_information_text_1_guide_start" qtlid="394751">Galite peržiūrėti gidą adresu</translation>
+   <translation id="sms_receivers_information_text_1_guide_end" qtlid="394764">gavėjų sąrašas</translation>
+   <translation id="sms_receivers_information_text_3" qtlid="339691">OVH suteikia galimybę išvalyti gavėjų sąrašą už 0,1 kredito/abonentui.</translation>
+   <translation id="sms_receivers_information_text_4" qtlid="339704">Bazės valymas panaikins kontaktų duplikatus ir pašalins neteisingus.<br/>Išvalytas failas pakeis senesnį, tačiau bus išsaugota senojo kopija. Operacijos pabaigoje gausite laišką su operacijos ataskaita.</translation>
+
+   <translation id="sms_receivers_empty" qtlid="339717">Jokių gavėjų.</translation>
+
+   <translation id="sms_receivers_delete_receiver" qtlid="394777">Ištrinti pasirinktą failą</translation>
+   <translation id="sms_receivers_delete_receivers" qtlid="394790">Ištrinti {{ count }} pasirinktus failus</translation>
+   <translation id="sms_receivers_delete_receivers_success" qtlid="393633">Trinama</translation>
+
+   <translation id="sms_receivers_add_receiver" qtlid="394803">Pridėti gavėjų sąrašą</translation>
+   <translation id="sms_receivers_add_mode_document" qtlid="394816">Naudojant failą</translation>
+   <translation id="sms_receivers_add_mode_url" qtlid="394829">Naudojant URL</translation>
+   <translation id="sms_receivers_add_description_label" qtlid="339743">Vardas:&#160;</translation>
+   <translation id="sms_receivers_add_description_placeholder" qtlid="394179">Vardas (privalomas laukas)</translation>
+   <translation id="sms_receivers_add_description_error_required" qtlid="339756">Laukelis "vardas" yra privalomas.</translation>
+   <translation id="sms_receivers_add_description_error_maxlength" qtlid="339769">Laukelyje "vardas" galima įvesti iki 40 simbolių.</translation>
+   <translation id="sms_receivers_add_file_label" qtlid="394842">Gavėjų sąrašas</translation>
+   <translation id="sms_receivers_add_file_invalid" qtlid="337845">Nepalaikomas failo formatas.</translation>
+   <translation id="sms_receivers_add_url_label" qtlid="394855">URL: &#160;</translation>
+   <translation id="sms_receivers_add_url_placeholder" qtlid="394868">URL (privalomas laukas)</translation>
+   <translation id="sms_receivers_add_url_error_required" qtlid="394881">Laukelis "URL" yra privalomas</translation>
+   <translation id="sms_receivers_add_url_error_pattern" qtlid="339314">Nuoroda turi prasidėti http:// arba https://.</translation>
+   <translation id="sms_receivers_add_url_error_url" qtlid="339327">Nurodytas neteisingas URL.</translation>
+   <translation id="sms_receivers_add_auto_update_label" qtlid="339821">Iš naujo įkelti failą prieš siunčiant SMS.</translation>
+   <translation id="sms_receivers_add_receiver_adding" qtlid="338820">Pridėti gavėjų sąrašą...</translation>
+   <translation id="sms_receivers_add_receiver_added" qtlid="338833">Gavėjų sąrašas pridėtas!&#160;</translation>
+   <translation id="sms_receivers_add_receiver_slot_is_full" qtlid="339834">Pasiektas maksimalus sąrašų skaičius.</translation>
+   <translation id="sms_receivers_add_receiver_slot_please_remove_one" qtlid="339847">Prašome ištrinti bent vieną prieš įkeliant naują.</translation>
+   <translation id="sms_receivers_add_receiver_column_number_required" qtlid="339860">CSV faile pažymėkite bent vieną stulpelį "number".</translation>
+   <translation id="sms_receivers_add_receiver_line_errors" qtlid="394894">Jūsų faile yra klaida, eilutė: <b>{{ line }}</b>.</translation>
+   <translation id="sms_receivers_add_receiver_is_cleaning" qtlid="346417">Valomas vienas kontaktų sąrašas...</translation>
+   <translation id="sms_receivers_add_receiver_ko" qtlid="339873">Negalima gauti gavėjų sąrašo.<br/>{{error}}</translation>
+
+   <translation id="sms_receivers_edit_receiver_editing" qtlid="339886">Gavėjų sąrašo atnaujinimas...</translation>
+   <translation id="sms_receivers_edit_receiver_edited" qtlid="339899">Gavėjų sąrašas atnaujintas!&#160;</translation>
+   <translation id="sms_receivers_edit_receiver_ko" qtlid="394907">Negalima redaguoti gavėjų sąrašo.<br/>{{error}}</translation>
+
+   <translation id="sms_receivers_read_receiver_title" qtlid="339639">Tikrinti</translation>
+   <translation id="sms_receivers_read_receiver_title_list" qtlid="339912">Sąrašo pavadinimas:&#160;</translation>
+   <translation id="sms_receivers_read_receiver_truncate_text" qtlid="339925">10 pirmųjų kontaktų peržiūra sąraše {{ receivers }}.</translation>
+   <translation id="sms_receivers_read_receiver_export" qtlid="69881">Eksportuoti</translation>
+   <translation id="sms_receivers_read_receiver_parse_error" qtlid="339938">Kontaktų sąrašas negali būti sugeneruotas.</translation>
+   <translation id="sms_receivers_read_receiver_parse_ko" qtlid="339951">Negalima sugeneruoti gavėjų sąrašo.</translation>
+
+   <translation id="sms_receivers_clean_receiver_title" qtlid="339652">Valyti</translation>
+   <translation id="sms_receivers_clean_receiver_confirm" qtlid="339964">Ar tikrai norite išvalyti kontaktus?</translation>
+   <translation id="sms_receivers_clean_receiver_options_available_text" qtlid="339977">Galimos dvi parinktys:</translation>
+   <translation id="sms_receivers_clean_receiver_options_freemium_label" qtlid="339990">Freemium</translation>
+   <translation id="sms_receivers_clean_receiver_options_freemium_text" qtlid="340003">Dublikatų šalinimas ir sintaksės tikrinimas <em>(Nemokamai)</em></translation>
+   <translation id="sms_receivers_clean_receiver_options_premium_label" qtlid="180941">Premium</translation>
+   <translation id="sms_receivers_clean_receiver_options_premium_text" qtlid="340016">Dublikatų šalinimas ir kontaktų tikrinimas naudojant HLR užklausas <em>(Šio veiksmo kaina kreditais: {{ credit | number:2 }}.)</em></translation>
+   <translation id="sms_receivers_clean_receiver_cleaning" qtlid="340029">Gavėjų sąrašo valymas...</translation>
+   <translation id="sms_receivers_clean_receiver_cleaning_started" qtlid="346430">Valymo užduotis sukurta!&#160;</translation>
+   <translation id="sms_receivers_clean_receiver_ko" qtlid="340055">Negalima išvalyti gavėjų sąrašo.<br/>{{error}}</translation>
+
+   <translation id="sms_receivers_remove_receiver_title" qtlid="340068">Ištrinti gavėjų sąrašą</translation>
+   <translation id="sms_receivers_remove_receiver_confirm" qtlid="340081">Ar tikrai norite ištrinti gavėjų sąrašą <b>«{{ receiver }}»</b>&#160;?</translation>
+   <translation id="sms_receivers_remove_receiver_removing" qtlid="340094">Gavėjų sąrašas trinamas...</translation>
+   <translation id="sms_receivers_remove_receiver_removed" qtlid="340107">Gavėjų sąrašas ištrintas</translation>
+   <translation id="sms_receivers_remove_receiver_ko" qtlid="394920">Negalima ištrinti gavėjų sąrašo.<br/>{{error}}</translation>
+</translations>

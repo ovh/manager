@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="sms_actions" qtlid="339457">Je veux…</translation>
+   <translation id="sms_actions_send_sms" qtlid="288145">Eine SMS versenden</translation>
+   <translation id="sms_actions_credit_account" qtlid="339470">Créditer mon compte</translation>
+   <translation id="sms_actions_create_contact" qtlid="339483">Créer un contact</translation>
+   <translation id="sms_actions_create_sender" qtlid="339496">Créer un expéditeur</translation>
+   <translation id="sms_actions_create_api_user" qtlid="339509">Créer un utilisateur API</translation>
+   <translation id="sms_actions_clean_contact_list" qtlid="339522">Nettoyer la liste des contacts</translation>
+   <translation id="sms_consumed" qtlid="339535">Suivi conso</translation>
+   <translation id="sms_consumed_credit_left" qtlid="339548">SMS restants</translation>
+   <translation id="sms_consumed_automatic_recredit_amount" qtlid="339561">Recharge automatique</translation>
+   <translation id="sms_consumed_automatic_recredit_amount_activate" qtlid="94435">aktiviert</translation>
+   <translation id="sms_consumed_automatic_recredit_amount_disactivate" qtlid="229971">deaktiviert</translation>
+   <translation id="sms_consumed_last_recharge" qtlid="339574">Dernière recharge</translation>
+   <translation id="sms_statistics_title" qtlid="26671">Statistiken</translation>
+   <translation id="sms_statistics_filter_month" qtlid="20203">Laufender Monat</translation>
+   <translation id="sms_statistics_filter_sender" qtlid="394647">Tous les expéditeurs</translation>
+   <translation id="sms_statistics_outgoing" qtlid="394660">SMS envoyé</translation>
+   <translation id="sms_statistics_outgoing_plural" qtlid="394673">SMS envoyés</translation>
+   <translation id="sms_statistics_incoming" qtlid="394686">SMS reçu</translation>
+   <translation id="sms_statistics_incoming_plural" qtlid="341199">SMS reçus</translation>
+   <translation id="sms_statistics_planned" qtlid="394699">SMS planifié</translation>
+   <translation id="sms_statistics_planned_plural" qtlid="342031">SMS planifiés</translation>
+</translations>

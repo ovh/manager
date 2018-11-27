@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="sms_actions" qtlid="339457">Vorrei...</translation>
+   <translation id="sms_actions_send_sms" qtlid="288145">Invia un SMS</translation>
+   <translation id="sms_actions_credit_account" qtlid="339470">Accreditare il mio account</translation>
+   <translation id="sms_actions_create_contact" qtlid="339483">Creare un contatto</translation>
+   <translation id="sms_actions_create_sender" qtlid="339496">Creare un mittente</translation>
+   <translation id="sms_actions_create_api_user" qtlid="339509">Creare un utente API</translation>
+   <translation id="sms_actions_clean_contact_list" qtlid="339522">Rimuovere elementi dalla lista dei contatti</translation>
+   <translation id="sms_consumed" qtlid="339535">Monitora consumi</translation>
+   <translation id="sms_consumed_credit_left" qtlid="339548">SMS restanti</translation>
+   <translation id="sms_consumed_automatic_recredit_amount" qtlid="339561">Ricarica automatica</translation>
+   <translation id="sms_consumed_automatic_recredit_amount_activate" qtlid="94435">attivato</translation>
+   <translation id="sms_consumed_automatic_recredit_amount_disactivate" qtlid="229971">disattivata</translation>
+   <translation id="sms_consumed_last_recharge" qtlid="339574">Ultima ricarica</translation>
+   <translation id="sms_statistics_title" qtlid="26671">Statistiche</translation>
+   <translation id="sms_statistics_filter_month" qtlid="20203">Mese in corso</translation>
+   <translation id="sms_statistics_filter_sender" qtlid="394647">Tutti i mittenti</translation>
+   <translation id="sms_statistics_outgoing" qtlid="394660">SMS inviato</translation>
+   <translation id="sms_statistics_outgoing_plural" qtlid="394673">SMS inviati</translation>
+   <translation id="sms_statistics_incoming" qtlid="394686">SMS ricevuto</translation>
+   <translation id="sms_statistics_incoming_plural" qtlid="341199">SMS ricevuti</translation>
+   <translation id="sms_statistics_planned" qtlid="394699">SMS programmato</translation>
+   <translation id="sms_statistics_planned_plural" qtlid="342031">SMS pianificati</translation>
+</translations>

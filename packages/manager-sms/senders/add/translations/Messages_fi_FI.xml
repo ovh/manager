@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="sms_section_back_link" qtlid="340874">Paluu lähettäjälistaan</translation>
+
+   <translation id="sms_senders_add_sender_title" qtlid="340627">Ajouter un expéditeur</translation>
+   <translation id="sms_senders_add_sender_choice_manual" qtlid="346560">Ajouter manuellement des expéditeurs</translation>
+   <translation id="sms_senders_add_sender_choice_personal" qtlid="346573">Ajouter des expéditeurs à partir de données personnelles</translation>
+   <translation id="sms_senders_add_sender_choice_domain" qtlid="346586">Ajouter des expéditeurs à partir de vos noms de domaine OVH</translation>
+   <translation id="sms_senders_add_sender_info_pricing" qtlid="133253">Hinnasto</translation>
+   <translation id="sms_senders_add_sender_info_pricing_text" qtlid="340965">Validation d’un nom&#160;:&#160;<b>Gratuit</b>.</translation>
+   <translation id="sms_senders_add_sender_info_timetable_validation" qtlid="340978">Horaires de validation</translation>
+   <translation id="sms_senders_add_sender_info_timetable_validation_text" qtlid="340991">Nom (validation manuelle sous un à deux jours ouvrés)&#160;:&#160;<b>Du lundi au vendredi de 8h à 20h</b>.</translation>
+   <translation id="sms_senders_add_sender_warning_title" qtlid="341004">Attention&#160;:&#160;</translation>
+   <translation id="sms_senders_add_sender_warning_text" qtlid="341017">Les opérateurs mobiles interdisent les envois de SMS avec des numéros de téléphone en tant qu’expéditeur.<br/>Vous pouvez utiliser un expéditeur personnalisé alphabétique ou le numéro court permettant la réponse.</translation>
+   <translation id="sms_senders_add_sender_warning_text_domains" qtlid="346599">Seuls les domaines de 11 caractères ou moins sont compatibles.</translation>
+   <translation id="sms_senders_add_sender_warning_text_nichandle" qtlid="360242">Certains téléphones n’affichent pas les caractères de ponctuation dans les expéditeurs.</translation>
+   <translation id="sms_senders_add_sender_label" qtlid="341030">Expéditeur&#160;:&#160;</translation>
+   <translation id="sms_senders_add_sender_placeholder" qtlid="24535">Lähettäjä</translation>
+   <translation id="sms_senders_add_sender_error_required" qtlid="341043">Le champ "expéditeur" est obligatoire.</translation>
+   <translation id="sms_senders_add_sender_error_pattern" qtlid="341056">Le champ "expéditeur" doit être composé uniquement de caractères alphabétiques.</translation>
+   <translation id="sms_senders_add_sender_error_maxlength" qtlid="341069">Le champ "expéditeur" ne peut excéder les 11 caractères.</translation>
+   <translation id="sms_senders_add_sender_description_label" qtlid="340666">Description&#160;:&#160;</translation>
+   <translation id="sms_senders_add_sender_description_placeholder" qtlid="341082">Description (facultatif)</translation>
+   <translation id="sms_senders_add_sender_description_error_maxlength" qtlid="341095">Le champ "description" ne peut excéder les 40 caractères.</translation>
+   <translation id="sms_senders_add_sender_reason_label" qtlid="341108">Courte justification&#160;:&#160;</translation>
+   <translation id="sms_senders_add_sender_reason_placeholder" qtlid="341121">Courte justification</translation>
+   <translation id="sms_senders_add_sender_reason_error_required" qtlid="341134">Le champ "courte justification" est obligatoire.</translation>
+   <translation id="sms_senders_add_sender_reason_error_maxlength" qtlid="341147">Le champ "courte justification" ne peut excéder les 250 caractères.</translation>
+   <translation id="sms_senders_add_sender_adding" qtlid="341160">Ajout de l’expéditeur…</translation>
+   <translation id="sms_senders_add_sender_added" qtlid="341173">Expéditeur ajouté&#160;!&#160;</translation>
+   <translation id="sms_senders_add_sender_personal_empty" qtlid="346612">Aucune donnée personnelle disponible.</translation>
+   <translation id="sms_senders_add_sender_domain_empty" qtlid="346625">Aucun nom de domaine disponible.</translation>
+   <translation id="sms_senders_add_sender_sr_only" qtlid="346638">Ajouter {{ sender }}</translation>
+   <translation id="sms_senders_add_sender" qtlid="393568">Ajouter l’expéditeur sélectionné</translation>
+   <translation id="sms_senders_add_senders" qtlid="393581">Ajouter les {{ count }} expéditeurs sélectionnés</translation>
+   <translation id="sms_senders_add_senders_success" qtlid="393594">Ajout en cours…</translation>
+</translations>

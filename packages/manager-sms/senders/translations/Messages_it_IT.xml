@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="sms_senders_manage_blacklisted" qtlid="340562">Gestisci i mittenti inseriti in una blacklist&#13;
+ </translation>
+
+   <translation id="sms_senders_manage_title" qtlid="340575">Gestisci i mittenti</translation>
+
+   <translation id="sms_senders_label_sender" qtlid="24535">Mittente</translation>
+   <translation id="sms_senders_label_referer" qtlid="2642">Tipo</translation>
+   <translation id="sms_senders_label_description" qtlid="9238">Descrizione</translation>
+   <translation id="sms_senders_label_status" qtlid="26443">Stato</translation>
+
+   <translation id="sms_senders_sr_only_actions" qtlid="72809">Azioni</translation>
+
+   <translation id="sms_senders_referer_custom" qtlid="50062">Personalizzato</translation>
+   <translation id="sms_senders_referer_domain" qtlid="340588">Dominio OVH</translation>
+   <translation id="sms_senders_referer_line" qtlid="42802">Linea</translation>
+   <translation id="sms_senders_referer_nic" qtlid="340601">Dati personali</translation>
+   <translation id="sms_senders_referer_owner" qtlid="30634">Proprietario</translation>
+   <translation id="sms_senders_referer_virtual" qtlid="360229">Numero virtuale</translation>
+
+   <translation id="sms_senders_status_disable" qtlid="24967">Disattivo</translation>
+   <translation id="sms_senders_status_enable" qtlid="30250">Attivo</translation>
+   <translation id="sms_senders_status_refused" qtlid="159878">Rifiutato</translation>
+   <translation id="sms_senders_status_waitingValidation" qtlid="313169">Convalida in corso...</translation>
+   <translation id="sms_senders_status_delete_at_expiration" qtlid="393646">Disattivazione in corso...</translation>
+   <translation id="sms_senders_status_expired" qtlid="58676">Scaduto</translation>
+
+   <translation id="sms_senders_empty" qtlid="340614">Nessun mittente</translation>
+
+   <translation id="sms_senders_delete_sender" qtlid="393659">Elimina il mittente selezionato</translation>
+   <translation id="sms_senders_delete_senders" qtlid="393672">Elimina i {{ count }} mittenti selezionati</translation>
+   <translation id="sms_senders_delete_senders_success" qtlid="393633">Eliminazione in corso...</translation>
+
+   <translation id="sms_senders_add_sender" qtlid="340627">Aggiungi un mittente</translation>
+
+   <translation id="sms_senders_edit_sender_title" qtlid="340640">Modifica il mittente</translation>
+   <translation id="sms_senders_edit_sender_information" qtlid="340653">Stai modificando il mittente <b>"{{ sender }}"</b>.</translation>
+   <translation id="sms_senders_edit_sender_description_label" qtlid="340666">Descrizione:&#160;</translation>
+   <translation id="sms_senders_edit_sender_description_placeholder" qtlid="9238">Descrizione</translation>
+   <translation id="sms_senders_edit_sender_status_label" qtlid="340679">Attiva il mittente</translation>
+   <translation id="sms_senders_edit_sender_editing" qtlid="340692">Aggiornamento mittente in corso...</translation>
+   <translation id="sms_senders_edit_sender_edited" qtlid="340705">Mittente aggiornato!&#160;</translation>
+   <translation id="sms_senders_edit_sender_ko" qtlid="393685">Impossibile modificare il mittente.<br/>{{error}}</translation>
+
+   <translation id="sms_senders_valid_sender_title" qtlid="340718">Conferma il mittente</translation>
+   <translation id="sms_senders_valid_sender_information" qtlid="340731">Conferma il mittente <b>"{{ sender }}"</b>.</translation>
+   <translation id="sms_senders_valid_sender_justification_label" qtlid="340744">Conferma:&#160;</translation>
+   <translation id="sms_senders_valid_sender_justification_placeholder" qtlid="340757">Nuova giustificazione</translation>
+   <translation id="sms_senders_valid_sender_validating" qtlid="340770">Conferma mittente in corso...</translation>
+   <translation id="sms_senders_valid_sender_validated" qtlid="340783">Mittente confermato! &#160;</translation>
+
+   <translation id="sms_senders_remove_sender_title" qtlid="340796">Elimina il mittente</translation>
+   <translation id="sms_senders_remove_sender_confirm" qtlid="340809">Vuoi davvero eliminare il mittente <b>"{{ sender }}"</b>?</translation>
+   <translation id="sms_senders_remove_sender_removing" qtlid="340822">Eliminazione mittente in corso...</translation>
+   <translation id="sms_senders_remove_sender_removed" qtlid="340835">Mittente eliminato</translation>
+   <translation id="sms_senders_remove_sender_ko" qtlid="340848">Impossibile eliminare il mittente.<br/>{{error}}</translation>
+
+   <translation id="sms_senders_create_sender_ko" qtlid="340861">Impossibile creare il mittente.<br/>{{error}}</translation>
+
+   <translation id="sms_senders_terminate_alert" qtlid="393698">Lista dei servizi in scadenza:</translation>
+   <translation id="sms_senders_terminate_alert_list" qtlid="393711">Il tuo numero virtuale <b>{{sender}}</b> scade il {{date}}.</translation>
+   <translation id="sms_senders_terminate_cancel" qtlid="285350">Annulla chiusura </translation>
+   <translation id="sms_senders_terminate_sender_title" qtlid="393724">Disattiva il numero virtuale</translation>
+   <translation id="sms_senders_terminate_sender_terminating" qtlid="393737">Richiesta di disattivazione del numero virtuale in corso...</translation>
+   <translation id="sms_senders_terminate_sender_terminated" qtlid="393750">Richiesta di disattivazione del numero virtuale registrata!</translation>
+   <translation id="sms_senders_terminate_sender_cancelling" qtlid="393763">Annullamento della richiesta di disattivazione del numero virtuale in corso...</translation>
+   <translation id="sms_senders_terminate_sender_cancelled" qtlid="393776">Richiesta di annullamento del numero virtuale registrata!</translation>
+   <translation id="sms_senders_terminate_sender_info" qtlid="393789">Vuoi disattivare il numero virtuale <b>«{{ number }}»</b> (la disattivazione diventerà effettiva il {{ date }})?</translation>
+   <translation id="sms_senders_terminate_sender_info_cancel" qtlid="393802">Vuoi annullare la richiesta di disattivazione del numero virtuale <b>«{{ number }}»</b>?</translation>
+   <translation id="sms_senders_terminate_sender_ko" qtlid="393815">Ops! Impossibile disattivare il numero virtuale.<br/>{{error}}</translation>
+</translations>

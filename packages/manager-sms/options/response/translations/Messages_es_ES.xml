@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="sms_section_back_link" qtlid="340159">Volver a las opciones</translation>
+
+   <translation id="sms_options_response_information_title" qtlid="26551">Información</translation>
+   <translation id="sms_options_response_information_text_1" qtlid="345962">Al recibir un SMS tras el envío de un SMS que permita la respuesta, podrá elegir entre tres opciones:</translation>
+   <translation id="sms_options_response_information_list_item_1" qtlid="345975">No hacer nada</translation>
+   <translation id="sms_options_response_information_list_item_2" qtlid="345988">Llamar un script alojado por usted mismo</translation>
+   <translation id="sms_options_response_information_list_item_3" qtlid="346001">Responder automáticamente mediante un mensaje de texto predefinido <em>(coste:&#160;1 SMS)</em></translation>
+   <translation id="sms_options_response_information_text_2" qtlid="346014">De forma paralela, también podrá recibir una notificación de la recepción de un SMS por email <em>(gratuit)</em> o SMS <em>(coste:&#160;1 SMS)</em>.</translation>
+   <translation id="sms_options_response_information_text_3" qtlid="346027">Recuerde que el cliente solo podrá responder en 48 horas. Una vez transcurrido este período de tiempo, no recibirá la respuesta.</translation>
+
+   <translation id="sms_options_response_sr_only_actions" qtlid="72809">Acciones</translation>
+
+<!-- ACTION -->
+   <translation id="sms_options_response_action_title" qtlid="346040">Acción en la recepción</translation>
+   <translation id="sms_options_response_action_option_none" qtlid="8674">Ninguno</translation>
+   <translation id="sms_options_response_action_option_cgi" qtlid="346053">Llamar un CGI</translation>
+   <translation id="sms_options_response_action_option_text" qtlid="346066">Responder con un mensaje de texto predefinido</translation>
+   <translation id="sms_options_response_action_url_cgi_label" qtlid="346079">URL del CGI</translation>
+   <translation id="sms_options_response_action_cgi_url_required" qtlid="346092">El campo "URL de CGI" es obligatorio.</translation>
+   <translation id="sms_options_response_action_cgi_url_error_pattern" qtlid="339314">El enlace debe empezar por http:// o https://.</translation>
+   <translation id="sms_options_response_action_cgi_url_error_url" qtlid="339327">La URL introducida no es válida.</translation>
+   <translation id="sms_options_response_action_text_label" qtlid="234708">Texto.</translation>
+   <translation id="sms_options_response_action_text_error_required" qtlid="346105">El campo «Texto» es obligatorio.</translation>
+   <translation id="sms_options_response_action_status_success" qtlid="346118">Acción en la recepción añadida</translation>
+   <translation id="sms_options_response_action_text_characters_left" qtlid="341459">Caracteres restantes:</translation>
+   <translation id="sms_options_response_action_text_equivalent" qtlid="341472">Equivale a:</translation>
+   <translation id="sms_options_response_action_text_sms" qtlid="28243">SMS</translation>
+   <translation id="sms_options_response_action_text_alert_maxlength" qtlid="346131">Ha superado el límite de <b>255</b> SMS.</translation>
+
+<!-- TRACKING -->
+   <translation id="sms_options_response_tracking_title" qtlid="346144">Notificación a la recepción</translation>
+   <translation id="sms_options_response_tracking_media_label" qtlid="28543">Multimedia</translation>
+   <translation id="sms_options_response_tracking_email_number_label" qtlid="346157">Dirección de correo / Número</translation>
+   <translation id="sms_options_response_tracking_email_sender_label" qtlid="24535">Remitente</translation>
+   <translation id="sms_options_response_tracking_empty" qtlid="346183">No hay ninguna notificación configurada.</translation>
+   <translation id="sms_options_response_tracking_add" qtlid="346196">Añadir una notificación</translation>
+
+<!-- TRACKING modal ADD -->
+   <translation id="sms_options_response_tracking_add_title" qtlid="346209">Añadir una notificación</translation>
+   <translation id="sms_options_response_tracking_add_media_label" qtlid="28543">Multimedia</translation>
+   <translation id="sms_options_response_tracking_add_media_email" qtlid="33598">Correo electrónico</translation>
+   <translation id="sms_options_response_tracking_add_media_sms" qtlid="28243">SMS</translation>
+   <translation id="sms_options_response_tracking_add_sender_email_label" qtlid="24535">Remitente</translation>
+   <translation id="sms_options_response_tracking_add_sender_email_error_required" qtlid="346222">El campo «Remitente» es obligatorio.</translation>
+   <translation id="sms_options_response_tracking_add_sender_email_error_email" qtlid="346235">La dirección de correo introducida no es válida.</translation>
+   <translation id="sms_options_response_tracking_add_target_email_label" qtlid="50686">Dirección de correo</translation>
+   <translation id="sms_options_response_tracking_add_target_email_error_required" qtlid="346248">El campo «Dirección email» es obligatorio.</translation>
+   <translation id="sms_options_response_tracking_add_target_email_error_email" qtlid="346235">La dirección de correo introducida no es válida.</translation>
+   <translation id="sms_options_response_tracking_add_sender_number_label" qtlid="24535">Remitente</translation>
+   <translation id="sms_options_response_tracking_add_target_number_label" qtlid="30778">Número</translation>
+   <translation id="sms_options_response_tracking_add_target_number_placeholder" qtlid="360099">Número (ejemplo: +33301020304 o 0033301020304)</translation>
+   <translation id="sms_options_response_tracking_add_target_number_error_required" qtlid="346261">El campo «Número» es obligatorio.</translation>
+   <translation id="sms_options_response_tracking_add_target_number_error_pattern" qtlid="360112">Introduzca un número nacional o internacional válido.</translation>
+   <translation id="sms_options_response_tracking_add_option_adding" qtlid="346274">Añadiendo una notificación...</translation>
+   <translation id="sms_options_response_tracking_add_option_added" qtlid="346287">¡Notificación añadida!&#160;</translation>
+   <translation id="sms_options_response_tracking_add_option_ko" qtlid="346300">No se puede añadir la notificación.<br/>{{error}}</translation>
+
+<!-- TRACKING modal EDIT -->
+   <translation id="sms_options_response_tracking_edit_option_editing" qtlid="346313">Actualizando la notificación...</translation>
+   <translation id="sms_options_response_tracking_edit_option_edited" qtlid="346326">¡Notificación actualizada!&#160;</translation>
+   <translation id="sms_options_response_tracking_edit_option_ko" qtlid="346339">No se puede editar la notificación.<br/>{{error}}</translation>
+
+<!-- TRACKING modal REMOVE -->
+   <translation id="sms_options_response_tracking_remove_title" qtlid="346352">Eliminar una notificación</translation>
+   <translation id="sms_options_response_tracking_remove_confirm" qtlid="346365">¿Desea eliminar la siguiente notificación?</translation>
+   <translation id="sms_options_response_tracking_remove_option_removing" qtlid="346378">Eliminando la notificación...</translation>
+   <translation id="sms_options_response_tracking_remove_option_removed" qtlid="346391">Se ha eliminado la notificación.&#160;</translation>
+   <translation id="sms_options_response_tracking_remove_option_ko" qtlid="346404">No se puede eliminar la notificación. <br/>{{error}}</translation>
+</translations>
