@@ -1219,6 +1219,14 @@ angular.module("ovh-angular-sidebar-menu").provider("SidebarMenu", function () {
                     }
                     if (stateInfos.included) {
                         return item.loadSubItems().then(function () {
+                            // Automatically close same level opened item if it is not current one
+                            var openedItem = _.find(sidebarMenuService.getAllMenuItems(), { isOpen: true, level: item.level });
+                            var someItemIsOpened = openedItem != null;
+
+                            if (someItemIsOpened && openedItem.id !== item.id) {
+                                openedItem.toggleOpen();
+                            }
+
                             if (item.hasSubItems() && !item.isOpen) {
                                 item.toggleOpen();
                             }
