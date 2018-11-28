@@ -1,5 +1,16 @@
-import config from '@ovh-ux/component-rollup-config';
+import rollupConfig from '@ovh-ux/component-rollup-config';
 
-export default config({
-  input: 'src/index.js',
+const config = rollupConfig({
+  input: './src/index.js',
 });
+
+export default [
+  config.cjs(),
+  config.umd({
+    output: {
+      globals: {
+        angular: 'angular',
+      },
+    },
+  }),
+];

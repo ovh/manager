@@ -14,7 +14,7 @@
   "files": [
     "dist"
   ],
-  "main": "./dist/index.js",
+  "main": "./dist/cjs/index.js",
   "scripts": {
     "build": "rollup -c",
     "lint": "eslint --quiet --fix src",
@@ -24,10 +24,11 @@
     "version": "npx conventional-changelog-cli -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
     "postversion": "git push && git push --tags"
   },
+  "browser": "./dist/umd/translate-async-loader.js",
   "devDependencies": {
     "@commitlint/cli": "^7.1.2",
     "@commitlint/config-angular": "^7.1.2",
-    "@ovh-ux/component-rollup-config": "^3.0.1",
+    "@ovh-ux/component-rollup-config": "^5.0.0-beta.1",
     "eslint": "^5.9.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",
