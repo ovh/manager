@@ -166,7 +166,7 @@ export const SIDEBAR_CONFIG = {
     error: 'sidebar_load_error',
     category: 'overTheBox',
     icon: 'ovh-font ovh-font-overTheBox',
-    loadOnState: 'telecom.overTheBox',
+    loadOnState: 'overTheBox',
   },
   // temp for detecting missing sidebar config
   default: {
