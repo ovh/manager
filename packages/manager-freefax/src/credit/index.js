@@ -12,7 +12,7 @@ const moduleName = 'managerFreefaxCredit';
 
 angular
   .module(moduleName, [
-    'ovh-angular-contracts',
+    'ovhAngularContracts',
   ])
   .constant('FREEFAX_DISCRETE_CREDIT', DISCRETE_CREDIT)
   .controller('FreeFaxCreditCtrl', controller)

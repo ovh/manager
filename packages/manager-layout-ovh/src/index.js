@@ -28,7 +28,7 @@ import 'ovh-angular-otrs';
 import 'ovh-angular-apiv7';
 import 'ovh-ui-angular';
 
-import 'ovh-angular-contracts';
+import '@ovh-ux/ovh-angular-contracts';
 import 'ovh-angular-responsive-tabs';
 import 'ovh-angular-ui-confirm-modal';
 
@@ -48,7 +48,7 @@ angular
     'ovh-angular-responsive-tabs',
     'ovh-angular-tail-logs',
     'ovh-angular-ui-confirm-modal',
-    'ovh-angular-contracts',
+    'ovhAngularContracts',
     'ovh-angular-ui-confirm-modal',
     OvhHttp,
     sidebar,
