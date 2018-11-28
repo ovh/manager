@@ -17,7 +17,7 @@
     "lint:html": "htmlhint 'packages/**/*.html'",
     "lint:js": "eslint --fix .",
     "lint:md": "remark -qf .",
-    "packages:publish": "npx lerna exec --no-private -- yarn publish --access=public",
+    "packages:publish": "node ./scripts/publish",
     "start": "lerna run dev --stream --parallel",
     "test": "yarn lint",
     "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
