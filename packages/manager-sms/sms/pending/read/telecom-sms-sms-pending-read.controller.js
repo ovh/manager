@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('TelecomSmsSmsPendingReadCtrl', class TelecomSmsSmsPendingReadCtrl {
+export default /* @ngInject */ class TelecomSmsSmsPendingReadCtrl {
   constructor($uibModalInstance, pendingSms) {
     this.$uibModalInstance = $uibModalInstance;
     this.pendingSms = pendingSms;
@@ -7,4 +7,4 @@ angular.module('managerApp').controller('TelecomSmsSmsPendingReadCtrl', class Te
   close() {
     return this.$uibModalInstance.close(true);
   }
-});
+}

@@ -1,4 +1,7 @@
-angular.module('managerApp').controller('TelecomSmsUsersCallbackCtrl', class TelecomSmsUsersCallbackCtrl {
+import angular from 'angular';
+import _ from 'lodash';
+
+export default /* @ngInject */ class TelecomSmsUsersCallbackCtrl {
   constructor($q, $stateParams, $timeout, $uibModalInstance, OvhApiSms, user) {
     this.$q = $q;
     this.$stateParams = $stateParams;
@@ -64,4 +67,4 @@ angular.module('managerApp').controller('TelecomSmsUsersCallbackCtrl', class Tel
       _.pick(this.user, this.attributes),
     );
   }
-});
+}

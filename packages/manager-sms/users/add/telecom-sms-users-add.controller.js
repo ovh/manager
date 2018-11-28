@@ -1,4 +1,7 @@
-angular.module('managerApp').controller('TelecomSmsUsersAddCtrl', class TelecomSmsUsersAddCtrl {
+import angular from 'angular';
+import _ from 'lodash';
+
+export default /* @ngInject */ class TelecomSmsUsersAddCtrl {
   constructor($q, $stateParams, $timeout, $uibModalInstance, OvhApiSms) {
     this.$q = $q;
     this.$stateParams = $stateParams;
@@ -48,4 +51,4 @@ angular.module('managerApp').controller('TelecomSmsUsersAddCtrl', class TelecomS
   close() {
     return this.$uibModalInstance.close(true);
   }
-});
+}

@@ -1,4 +1,7 @@
-angular.module('managerApp').controller('TelecomSmsUsersRestrictByIpCtrl', class TelecomSmsUsersRestrictByIpCtrl {
+import angular from 'angular';
+import _ from 'lodash';
+
+export default /* @ngInject */ class TelecomSmsUsersRestrictByIpCtrl {
   constructor($q, $stateParams, $timeout, $uibModalInstance, OvhApiSms, user) {
     this.$q = $q;
     this.$stateParams = $stateParams;
@@ -69,4 +72,4 @@ angular.module('managerApp').controller('TelecomSmsUsersRestrictByIpCtrl', class
   hasChanged() {
     return !_.isEqual(_.without(this.model.user.ipRestrictions, ''), this.user.ipRestrictions);
   }
-});
+}

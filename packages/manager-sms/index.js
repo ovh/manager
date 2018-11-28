@@ -12,6 +12,8 @@ import order from './order';
 import phonebooks from './phonebooks';
 import receivers from './receivers';
 import senders from './senders';
+import sms from './sms';
+import users from './users';
 
 const moduleName = 'ovhManagerSms';
 
@@ -23,6 +25,8 @@ angular.module(moduleName, [
   phonebooks,
   receivers,
   senders,
+  sms,
+  users,
 ])
   .constant('SMS_URL', constant.SMS_URL)
   .constant('SMS_GUIDES', constant.SMS_GUIDES)

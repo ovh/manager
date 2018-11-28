@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('TelecomSmsSmsOutgoingReadCtrl', class TelecomSmsSmsOutgoingReadCtrl {
+export default /* @ngInject */ class TelecomSmsSmsOutgoingReadCtrl {
   constructor($uibModalInstance, outgoingSms, outgoingSmsHlr) {
     this.$uibModalInstance = $uibModalInstance;
     this.outgoingSms = outgoingSms;
@@ -8,4 +8,4 @@ angular.module('managerApp').controller('TelecomSmsSmsOutgoingReadCtrl', class T
   close() {
     return this.$uibModalInstance.close(true);
   }
-});
+}

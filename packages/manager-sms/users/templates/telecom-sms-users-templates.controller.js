@@ -1,4 +1,7 @@
-angular.module('managerApp').controller('TelecomSmsUsersTemplatesCtrl', class TelecomSmsUsersTemplatesCtrl {
+import angular from 'angular';
+import _ from 'lodash';
+
+export default /* @ngInject */ class TelecomSmsUsersTemplatesCtrl {
   constructor($q, $stateParams, $timeout, $uibModalInstance, OvhApiSms, service, SMS_ALERTS) {
     this.$q = $q;
     this.$stateParams = $stateParams;
@@ -63,4 +66,4 @@ angular.module('managerApp').controller('TelecomSmsUsersTemplatesCtrl', class Te
       _.pick(this.service, this.attributes),
     );
   }
-});
+}

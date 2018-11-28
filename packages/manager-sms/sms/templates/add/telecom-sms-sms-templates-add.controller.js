@@ -1,4 +1,6 @@
-angular.module('managerApp').controller('TelecomSmsSmsTemplateAddCtrl', class TelecomSmsSmsTemplateAddCtrl {
+import angular from 'angular';
+
+export default /* @ngInject */ class TelecomSmsSmsTemplateAddCtrl {
   constructor(
     $q,
     $stateParams,
@@ -76,4 +78,4 @@ angular.module('managerApp').controller('TelecomSmsSmsTemplateAddCtrl', class Te
   close() {
     return this.$uibModalInstance.close(true);
   }
-});
+}

@@ -4,12 +4,20 @@ import template from './telecom-sms-sms.html';
 
 import compose from './compose';
 import hlr from './hlr';
+import incoming from './incoming';
+import outgoing from './outgoing';
+import pending from './pending';
+import templates from './templates';
 
 const moduleName = 'ovhManagerSmsSms';
 
 angular.module(moduleName, [
   compose,
   hlr,
+  incoming,
+  outgoing,
+  pending,
+  templates,
 ]).config(($stateProvider) => {
   $stateProvider.state('telecom.sms.sms', {
     url: '/sms',
