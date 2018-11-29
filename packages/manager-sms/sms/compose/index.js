@@ -7,10 +7,10 @@ import './addPhonebookContact/telecom-sms-sms-compose-addPhonebookContact.less';
 const moduleName = 'ovhManagerSmsSmsCompose';
 
 angular.module(moduleName, []).config(($stateProvider) => {
-  $stateProvider.state('telecom.sms.sms.compose', {
+  $stateProvider.state('sms.sms.compose', {
     url: '/compose',
     views: {
-      'smsView@telecom.sms': {
+      'smsView@sms': {
         template,
         controller,
         controllerAs: 'SmsComposeCtrl',

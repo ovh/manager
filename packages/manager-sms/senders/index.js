@@ -11,10 +11,10 @@ angular.module(moduleName, [
   add,
   blacklisted,
 ]).config(($stateProvider) => {
-  $stateProvider.state('telecom.sms.senders', {
+  $stateProvider.state('sms.senders', {
     url: '/senders',
     views: {
-      'smsInnerView@telecom.sms': {
+      'smsInnerView@sms': {
         template,
         controller,
         controllerAs: 'SmsSendersCtrl',

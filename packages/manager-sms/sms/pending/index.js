@@ -6,10 +6,10 @@ import template from './telecom-sms-sms-pending.html';
 const moduleName = 'ovhManagerSmsSmsPending';
 
 angular.module(moduleName, []).config(($stateProvider) => {
-  $stateProvider.state('telecom.sms.sms.pending', {
+  $stateProvider.state('sms.sms.pending', {
     url: '/pending',
     views: {
-      'smsView@telecom.sms': {
+      'smsView@sms': {
         template,
         controller,
         controllerAs: 'SmsPendingCtrl',

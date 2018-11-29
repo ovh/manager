@@ -9,10 +9,10 @@ const moduleName = 'ovhManagerSmsPhonebooks';
 angular.module(moduleName, [
   create,
 ]).config(($stateProvider) => {
-  $stateProvider.state('telecom.sms.phonebooks', {
+  $stateProvider.state('sms.phonebooks', {
     url: '/phonebooks',
     views: {
-      'smsInnerView@telecom.sms': {
+      'smsInnerView@sms': {
         template,
         controller,
         controllerAs: 'PhonebooksCtrl',

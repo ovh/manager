@@ -110,7 +110,7 @@ export default /* @ngInject */ class TelecomSmsSendersAddCtrl {
       reason: 'sendersAvailableForValidation',
     }).$promise.then(() => {
       this.TucToast.success(this.$translate.instant('sms_senders_add_sender_added'));
-      return this.$state.go('telecom.sms.senders');
+      return this.$state.go('sms.senders');
     }).catch((err) => {
       this.TucToastError(err);
     }).finally(() => {
@@ -130,7 +130,7 @@ export default /* @ngInject */ class TelecomSmsSendersAddCtrl {
       sender: this.sender.sender,
       description: this.sender.description,
       reason: this.sender.reason,
-    }).$promise.then(() => this.$state.go('telecom.sms.senders')).catch((err) => {
+    }).$promise.then(() => this.$state.go('sms.senders')).catch((err) => {
       this.TucToastError(err);
     }).finally(() => {
       this.loading.adding = false;
@@ -167,7 +167,7 @@ export default /* @ngInject */ class TelecomSmsSendersAddCtrl {
     this.TucToast.info(this.$translate.instant('sms_senders_add_senders_success'));
     return this.$q.all(queries).then(() => {
       this.senders.availableForValidation.selected = {};
-      return this.$state.go('telecom.sms.senders');
+      return this.$state.go('sms.senders');
     }).catch((err) => {
       this.TucToastError(err);
     }).finally(() => {

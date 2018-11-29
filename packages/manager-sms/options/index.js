@@ -13,10 +13,10 @@ angular.module(moduleName, [
   recredit,
   response,
 ]).config(($stateProvider) => {
-  $stateProvider.state('telecom.sms.options', {
+  $stateProvider.state('sms.options', {
     url: '/options',
     views: {
-      'smsInnerView@telecom.sms': {
+      'smsInnerView@sms': {
         template,
         controller,
         controllerAs: 'TelecomSmsOptionsCtrl',

@@ -6,15 +6,15 @@ export default /* @ngInject */ class TelecomSmsOptionsCtrl {
   $onInit() {
     this.actions = [{
       name: 'options_manage',
-      sref: 'telecom.sms.options.manage',
+      sref: 'sms.options.manage',
       text: this.$translate.instant('sms_options_manage'),
     }, {
       name: 'options_response',
-      sref: 'telecom.sms.options.response',
+      sref: 'sms.options.response',
       text: this.$translate.instant('sms_options_response'),
     }, {
       name: 'options_recredit',
-      sref: 'telecom.sms.options.recredit',
+      sref: 'sms.options.recredit',
       text: this.$translate.instant('sms_options_recredit'),
     }];
   }

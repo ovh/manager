@@ -19,7 +19,7 @@ angular.module(moduleName, [
   pending,
   templates,
 ]).config(($stateProvider) => {
-  $stateProvider.state('telecom.sms.sms', {
+  $stateProvider.state('sms.sms', {
     url: '/sms',
     views: {
       smsInnerView: {

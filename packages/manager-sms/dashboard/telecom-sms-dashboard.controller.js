@@ -45,27 +45,27 @@ export default class /* @ngInject */ TelecomSmsDashboardCtrl {
     };
     this.actions = [{
       name: 'compose_message',
-      sref: 'telecom.sms.sms.compose',
+      sref: 'sms.sms.compose',
       text: this.$translate.instant('sms_actions_send_sms'),
     }, {
       name: 'recredit_options',
-      sref: 'telecom.sms.order',
+      sref: 'sms.order',
       text: this.$translate.instant('sms_actions_credit_account'),
     }, {
       name: 'manage_recipient_new',
-      sref: 'telecom.sms.receivers',
+      sref: 'sms.receivers',
       text: this.$translate.instant('sms_actions_create_contact'),
     }, {
       name: 'manage_senders',
-      sref: 'telecom.sms.senders.add',
+      sref: 'sms.senders.add',
       text: this.$translate.instant('sms_actions_create_sender'),
     }, {
       name: 'manage_soapi_users',
-      sref: 'telecom.sms.users',
+      sref: 'sms.users',
       text: this.$translate.instant('sms_actions_create_api_user'),
     }, {
       name: 'manage_blacklisted_senders',
-      sref: 'telecom.sms.receivers',
+      sref: 'sms.receivers',
       text: this.$translate.instant('sms_actions_clean_contact_list'),
     }];
 

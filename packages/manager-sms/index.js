@@ -2,7 +2,6 @@ import angular from 'angular';
 
 import constant from './telecom-sms.constant';
 import controller from './telecom-sms.controller';
-import telecomView from './telecom-sms.html';
 import smsView from './telecom-sms-main.view.html';
 
 import dashboard from './dashboard';
@@ -33,18 +32,11 @@ angular.module(moduleName, [
   .constant('SMS_ALERTS', constant.SMS_ALERTS)
   .constant('SMS_PHONEBOOKS', constant.SMS_PHONEBOOKS)
   .config(($stateProvider) => {
-    $stateProvider.state('telecom.sms', {
+    $stateProvider.state('sms', {
       url: '/sms/:serviceName',
-      views: {
-        'telecomView@telecom': {
-          template: telecomView,
-        },
-        'smsView@telecom.sms': {
-          template: smsView,
-          controller,
-          controllerAs: 'TelecomSmsCtrl',
-        },
-      },
+      template: smsView,
+      controller,
+      controllerAs: 'TelecomSmsCtrl',
       abstract: true,
       resolve: {
         initSms: ($q, $stateParams, TucSmsMediator) => {

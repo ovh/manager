@@ -27,7 +27,7 @@ export default /* @ngInject */ class TelecomSmsPhonebooksCreateCtrl {
     this.phonebookToAdd.isAdding = true;
     return this.api.sms.phonebooks.create({
       serviceName: this.$stateParams.serviceName,
-    }, _.pick(this.phonebookToAdd, 'name')).$promise.then(phonebook => this.$state.go('telecom.sms.phonebooks', {
+    }, _.pick(this.phonebookToAdd, 'name')).$promise.then(phonebook => this.$state.go('sms.phonebooks', {
       bookKey: phonebook.bookKey,
     })).catch((err) => {
       this.TucToastError(err);

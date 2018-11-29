@@ -5,10 +5,10 @@ import controller from './telecom-sms-dashboard.controller';
 const moduleName = 'ovhManagerSmsDashboard';
 
 angular.module(moduleName, []).config(($stateProvider) => {
-  $stateProvider.state('telecom.sms.dashboard', {
+  $stateProvider.state('sms.dashboard', {
     url: '',
     views: {
-      'smsInnerView@telecom.sms': {
+      'smsInnerView@sms': {
         template,
         controller,
         controllerAs: 'SmsDashboardCtrl',

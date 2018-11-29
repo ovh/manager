@@ -6,10 +6,10 @@ import template from './telecom-sms-receivers.html';
 const moduleName = 'ovhManagerSmsReceivers';
 
 angular.module(moduleName, []).config(($stateProvider) => {
-  $stateProvider.state('telecom.sms.receivers', {
+  $stateProvider.state('sms.receivers', {
     url: '/receivers',
     views: {
-      'smsInnerView@telecom.sms': {
+      'smsInnerView@sms': {
         template,
         controller,
         controllerAs: 'SmsReceiversCtrl',

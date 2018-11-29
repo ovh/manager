@@ -147,13 +147,13 @@ export const SIDEBAR_CONFIG = {
   //   allowSearch: true,
   //   infiniteScroll: true,
   // },
-  // SMS: {
-  //   title: 'sidebar_section_sms',
-  //   error: 'sidebar_load_error',
-  //   category: 'sms',
-  //   icon: 'ovh-font ovh-font-message',
-  //   loadOnState: 'telecom.sms',
-  // },
+  SMS: {
+    title: 'sidebar_section_sms',
+    error: 'sidebar_load_error',
+    category: 'sms',
+    icon: 'ovh-font ovh-font-message',
+    loadOnState: 'sms',
+  },
   FAX: {
     title: 'sidebar_section_fax',
     error: 'sidebar_load_error',
@@ -166,7 +166,7 @@ export const SIDEBAR_CONFIG = {
     error: 'sidebar_load_error',
     category: 'overTheBox',
     icon: 'ovh-font ovh-font-overTheBox',
-    loadOnState: 'telecom.overTheBox',
+    loadOnState: 'overTheBox',
   },
   // temp for detecting missing sidebar config
   default: {

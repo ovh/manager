@@ -5,10 +5,10 @@ import template from './telecom-sms-guides.html';
 const moduleName = 'ovhManagerSmsGuides';
 
 angular.module(moduleName, []).config(($stateProvider) => {
-  $stateProvider.state('telecom.sms.guides', {
+  $stateProvider.state('sms.guides', {
     url: '/guides',
     views: {
-      'smsInnerView@telecom.sms': {
+      'smsInnerView@sms': {
         template,
         controller,
         controllerAs: 'SmsGuidesCtrl',

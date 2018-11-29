@@ -17,6 +17,7 @@ import telecomUniverseComponents from '@ovh-ux/telecom-universe-components';
 import core from '@ovh-ux/manager-core';
 import overthebox from '@ovh-ux/manager-overthebox';
 import freefax from '@ovh-ux/manager-freefax';
+import sms from '@ovh-ux/manager-sms';
 import welcome from '@ovh-ux/manager-welcome';
 
 import routing from './manager-layout-ovh.routes';
@@ -52,6 +53,7 @@ angular
     'ovh-angular-ui-confirm-modal',
     OvhHttp,
     sidebar,
+    sms,
     ssoAuth,
     telecomUniverseComponents,
     translate,
