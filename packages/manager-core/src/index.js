@@ -11,7 +11,7 @@ import translateServiceProvider from './translate/translate.service';
 import sessionService from './session/session.service';
 
 import {
-  MANAGER_URLS, LANGUAGES, REDIRECT_URLS, URLS,
+  LANGUAGES, REDIRECT_URLS, URLS,
 } from './manager-core.constants';
 
 const moduleName = 'ovhManagerCore';
@@ -26,7 +26,7 @@ angular
   ])
   .constant('constants', {})
   .constant('LANGUAGES', LANGUAGES)
-  .constant('MANAGER_URLS', MANAGER_URLS)
+
   .constant('REDIRECT_URLS', REDIRECT_URLS)
   // TODO : remove TARGET constant
   // We have to deliver a SPA without any reference to the TARGET, should be managed by the API
