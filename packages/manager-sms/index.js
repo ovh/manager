@@ -2,7 +2,7 @@ import angular from 'angular';
 
 import constant from './telecom-sms.constant';
 import controller from './telecom-sms.controller';
-import smsView from './telecom-sms-main.view.html';
+import smsView from './telecom-sms.html';
 
 import dashboard from './dashboard';
 import guides from './guides';
@@ -45,6 +45,7 @@ angular.module(moduleName, [
             .setCurrentSmsService(smsDetails[$stateParams.serviceName]));
           return $q.when({ init: true });
         },
+
         $title: (translations, $translate, OvhApiSms, $stateParams) => OvhApiSms.v6()
           .get({
             serviceName: $stateParams.serviceName,

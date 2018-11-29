@@ -22,7 +22,7 @@ angular.module(moduleName, [
   $stateProvider.state('sms.sms', {
     url: '/sms',
     views: {
-      smsInnerView: {
+      'smsInnerView@sms': {
         template,
         controller,
         controllerAs: 'TelecomSmsSmsCtrl',
