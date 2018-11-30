@@ -13,7 +13,8 @@
   },
   "browser": "./dist/umd/index.js",
   "dependencies": {
-    "lodash": "3.10.1"
+    "lodash": "3.10.1",
+    "moment": "^2.22.2"
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "5.0.0-beta.1"
