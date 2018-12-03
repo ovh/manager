@@ -2,7 +2,7 @@ import rollupConfig from '@ovh-ux/component-rollup-config';
 import path from 'path';
 
 const config = rollupConfig({
-  input: 'index.js',
+  input: 'src/index.js',
 }, {
   lessTildeImporter: {
     paths: [
