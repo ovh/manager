@@ -490,7 +490,12 @@ export const URLS = {
       FI: 'https://docs.ovh.com/fi/storage/sync-rclone-object-storage/',
       IE: 'https://docs.ovh.com/ie/en/storage/sync-rclone-object-storage/',
     },
+    overTheBox: 'https://docs.ovh.com/display/public/CRXDSL/Accueil+xDSL',
   },
+  overTheBoxManager: 'http://overthebox.ovh',
+  orderExpressLite: 'https://www.ovhtelecom.fr/adsl/express-lite/',
+  orderBoost: 'https://www.ovhtelecom.fr/adsl/offres-de-connexion.xml',
+  keyGenHelp: 'https://www.ovh.com/fr/g1769.creation_des_cles_ssh',
 };
 
 export default {
