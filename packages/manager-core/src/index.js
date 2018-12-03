@@ -25,13 +25,13 @@ angular
     translateAsyncLoader,
   ])
   .constant('constants', {})
-  .constant('LANGUAGES', LANGUAGES)
+  .constant('CORE_LANGUAGES', LANGUAGES)
 
-  .constant('REDIRECT_URLS', REDIRECT_URLS)
+  .constant('CORE_REDIRECT_URLS', REDIRECT_URLS)
   // TODO : remove TARGET constant
   // We have to deliver a SPA without any reference to the TARGET, should be managed by the API
   .constant('TARGET', 'EU')
-  .constant('URLS', URLS)
+  .constant('CORE_URLS', URLS)
   .provider('TranslateService', translateServiceProvider)
   .config(($translateProvider, translatePluggableLoaderProvider, TranslateServiceProvider) => {
     TranslateServiceProvider.setUserLocale();
