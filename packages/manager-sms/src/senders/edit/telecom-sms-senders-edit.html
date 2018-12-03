@@ -6,7 +6,7 @@
         <button
             type="button"
             class="close float-right"
-            aria-label="{{ ::'cancel' | translate }}"
+            aria-label="{{ ::'sms_cancel' | translate }}"
             data-ng-click="SendersEditCtrl.cancel()">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -88,7 +88,7 @@
             class="btn btn-default"
             data-ng-click="SendersEditCtrl.cancel()"
             data-ng-disabled="SendersEditCtrl.loading.editSender || SendersEditCtrl.edited"
-            data-translate="cancel">
+            data-translate="sms_cancel">
         </button>
         <button
             type="submit"

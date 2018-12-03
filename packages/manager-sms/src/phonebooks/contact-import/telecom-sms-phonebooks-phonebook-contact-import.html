@@ -6,7 +6,7 @@
         <button
             type="button"
             class="close float-right"
-            aria-label="{{ ::'cancel' | translate }}"
+            aria-label="{{ ::'sms_cancel' | translate }}"
             data-ng-click="ContactImportCtrl.cancel()">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -55,7 +55,7 @@
             type="button"
             class="btn btn-default"
             data-ng-click="ContactImportCtrl.cancel()"
-            data-translate="cancel"
+            data-translate="sms_cancel"
             data-ng-disabled="ContactImportCtrl.phonecontactForm.isImporting ||
                               ContactImportCtrl.phonecontactForm.hasBeenImported">
         </button>

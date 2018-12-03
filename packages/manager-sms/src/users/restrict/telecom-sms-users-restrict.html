@@ -6,7 +6,7 @@
         <button
             type="button"
             class="close float-right"
-            aria-label="{{ ::'cancel' | translate }}"
+            aria-label="{{ ::'sms_cancel' | translate }}"
             data-ng-click="UsersRestrictByIpCtrl.cancel()">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -73,7 +73,7 @@
             type="button"
             class="btn btn-default"
             data-ng-click="UsersRestrictByIpCtrl.cancel()"
-            data-translate="cancel"
+            data-translate="sms_cancel"
             data-ng-disabled="UsersRestrictByIpCtrl.loading.restrictByIpUser ||
                               UsersRestrictByIpCtrl.restricted">
         </button>
