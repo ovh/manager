@@ -9,10 +9,10 @@ import map from 'lodash/map';
  * @description Manage translations
  */
 export default class TranslateServiceProvider {
-  constructor(LANGUAGES, TARGET) {
+  constructor(CORE_LANGUAGES, TARGET) {
     'ngInject';
 
-    this.LANGUAGES = LANGUAGES;
+    this.LANGUAGES = CORE_LANGUAGES;
     this.TARGET = TARGET;
     this.storageKey = 'univers-selected-language';
     this.localeRegex = /^([a-zA-Z]+)(?:[_-]([a-zA-Z]+))?$/;
