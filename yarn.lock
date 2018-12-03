@@ -1446,6 +1446,34 @@
     rollup-pluginutils "^2.3.3"
     slash "^2.0.0"
 
+"@ovh-ux/component-rollup-config@5.0.0-beta.2":
+  version "5.0.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/component-rollup-config/-/component-rollup-config-5.0.0-beta.2.tgz#69b20a741254d1964e457228059d1041bce78019"
+  integrity sha512-oBIszG3xOy/ltFmP76+JJeiHBMCsA7fL8xk20+W9JLQo1FNgZGRXyLj30ypFVc4ty/BFI1kAh2+soYdaxA7YeQ==
+  dependencies:
+    "@babel/core" "^7.1.2"
+    "@babel/plugin-syntax-dynamic-import" "^7.0.0"
+    "@babel/preset-env" "^7.1.6"
+    "@ovh-ux/rollup-plugin-less-tilde-importer" "^1.0.0-beta.0"
+    babel-plugin-angularjs-annotate "^0.9.0"
+    camelcase "^5.0.0"
+    estree-walker "^0.5.2"
+    less "^3.8.1"
+    less-plugin-remcalc "^0.1.0"
+    lodash "^4.17.11"
+    magic-string "^0.25.1"
+    node-sass "^4.10.0"
+    rollup "^0.66.6"
+    rollup-plugin-babel "^4.0.3"
+    rollup-plugin-commonjs "^9.2.0"
+    rollup-plugin-html "^0.2.1"
+    rollup-plugin-less "^0.1.5"
+    rollup-plugin-node-resolve "^3.4.0"
+    rollup-plugin-peer-deps-external "^2.2.0"
+    rollup-plugin-sass "^0.9.2"
+    rollup-pluginutils "^2.3.3"
+    slash "^2.0.0"
+
 "@ovh-ux/component-rollup-config@^3.0.1":
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/@ovh-ux/component-rollup-config/-/component-rollup-config-3.0.1.tgz#dc79b2671578802950e7472ee85f3eb4e63d51af"
@@ -1533,6 +1561,14 @@
     "@ovh-ux/translate-async-loader" "^1.0.4"
     filesize "^3.6.1"
     lodash "^4.17.11"
+
+"@ovh-ux/rollup-plugin-less-tilde-importer@^1.0.0-beta.0":
+  version "1.0.0-beta.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/rollup-plugin-less-tilde-importer/-/rollup-plugin-less-tilde-importer-1.0.0-beta.0.tgz#eaf065c6e1fd039db0ddfb2f30955aec987e0c63"
+  integrity sha512-ahcWHh6a28Y3jfmLkmhhMM7IctXM41aAbfbpl4ZT1kxXad3yzrwZ4jZksFqjZvUsfxvcQFsxxx8KXhwSJm1WPg==
+  dependencies:
+    magic-string "^0.25.1"
+    rollup-pluginutils "^2.3.3"
 
 "@ovh-ux/telecom-universe-components@^1.0.4":
   version "1.0.5"
