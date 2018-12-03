@@ -76,7 +76,7 @@
                       data-translate="yes" >
                 </span>
                 <span data-ng-if="$row.quotaInformations.quotaStatus === 'inactive'"
-                      data-translate="no" class="text-capitalize">
+                      data-translate="sms_no" class="text-capitalize">
                 </span>
             </oui-column>
             <oui-column data-title="'sms_users_label_quota' | translate"
@@ -87,7 +87,7 @@
             <oui-column data-title="'sms_users_label_alert' | translate"
                         data-property="alertThresholdInformations.alertThreshold" data-sortable>
                 <span class="text-capitalize"
-                      data-translate="{{:: ($row.alertThresholdInformations.alertThreshold === -1) ? 'no' : 'yes' }}">
+                      data-translate="{{:: ($row.alertThresholdInformations.alertThreshold === -1) ? 'sms_no' : 'yes' }}">
                 </span>
             </oui-column>
             <oui-column data-title="'sms_users_label_threshold' | translate"
