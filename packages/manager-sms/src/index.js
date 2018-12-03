@@ -54,7 +54,7 @@ angular.module(moduleName, [
           .catch(() => $translate('sms_page_title', { name: $stateParams.serviceName })),
       },
       translations: [
-        '../sms',
+        '.',
       ],
     });
   });
