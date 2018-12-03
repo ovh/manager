@@ -5,7 +5,7 @@
   "description": "OVH Control Panel also known as Manager",
   "license": "BSD-3-Clause",
   "workspaces": [
-    "packages/*"
+    "packages/manager/*"
   ],
   "scripts": {
     "build": "lerna run build --stream --parallel",
