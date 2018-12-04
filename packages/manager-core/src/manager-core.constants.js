@@ -1,14 +1,3 @@
-export const MANAGER_URLS = {
-  default: 'https://www.ovh.com/manager/#/',
-  sunrise: 'https://www.ovh.com/manager/sunrise/index.html#/',
-  gamma: 'https://www.ovh.com/manager/sunrise/index.html#/',
-  v3: 'https://www.ovh.com/managerv3/home.pl',
-  portal: 'https://www.ovh.com/manager/portal/index.html#/',
-  partners: 'https://www.ovh.com/manager/partners/',
-  labs: 'https://www.ovh.com/manager/sunrise/uxlabs/#!/',
-};
-
-
 export const LANGUAGES = {
   available: [{
     name: 'Deutsch',
@@ -501,9 +490,14 @@ export const URLS = {
       FI: 'https://docs.ovh.com/fi/storage/sync-rclone-object-storage/',
       IE: 'https://docs.ovh.com/ie/en/storage/sync-rclone-object-storage/',
     },
+    overTheBox: 'https://docs.ovh.com/display/public/CRXDSL/Accueil+xDSL',
   },
+  overTheBoxManager: 'http://overthebox.ovh',
+  orderExpressLite: 'https://www.ovhtelecom.fr/adsl/express-lite/',
+  orderBoost: 'https://www.ovhtelecom.fr/adsl/offres-de-connexion.xml',
+  keyGenHelp: 'https://www.ovh.com/fr/g1769.creation_des_cles_ssh',
 };
 
 export default {
-  MANAGER_URLS, LANGUAGES, REDIRECT_URLS, URLS,
+  LANGUAGES, REDIRECT_URLS, URLS,
 };

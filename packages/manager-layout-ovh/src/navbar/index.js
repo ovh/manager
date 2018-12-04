@@ -5,6 +5,7 @@ import _ from 'lodash';
 
 import core from '@ovh-ux/manager-core';
 
+import { MANAGER_URLS } from './navbar.constants';
 import template from './navbar.html';
 import controller from './navbar.controller';
 import navbarService from './navbar.service';
@@ -23,6 +24,7 @@ export default angular
     'oui',
     'ovh-angular-otrs',
   ])
+  .constant('MANAGER_URLS', MANAGER_URLS)
   .component('ovhManagerNavbar', {
     template,
     controller,

@@ -3,7 +3,7 @@ import moment from 'moment';
 import _ from 'lodash';
 
 export default /* @ngInject */ function
-($stateParams, $translate, $scope, $q, URLS, OVER_THE_BOX, OVERTHEBOX_REMOTE_STATUS,
+($stateParams, $translate, $scope, $q, CORE_URLS, OVER_THE_BOX, OVERTHEBOX_REMOTE_STATUS,
   OvhApiOverTheBox, TucToastError, TucToast, TucIpAddress, tucValidator) {
   const self = this;
 
@@ -14,7 +14,7 @@ export default /* @ngInject */ function
   this.remoteStatus = OVERTHEBOX_REMOTE_STATUS;
 
   this.validator = tucValidator;
-  this.publicKeyHelperUrl = URLS.keyGenHelp;
+  this.publicKeyHelperUrl = CORE_URLS.keyGenHelp;
   this.pickerOpened = false;
   this.maxRemotes = OVER_THE_BOX.maxRemotes;
 

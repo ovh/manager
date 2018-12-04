@@ -1,10 +1,10 @@
 export default /* @ngInject */ function
-($stateParams, $translate, $q, OvhApiOverTheBox, SidebarMenu, TucToast, URLS) {
+($stateParams, $translate, $q, OvhApiOverTheBox, SidebarMenu, TucToast, CORE_URLS) {
   const self = this;
 
   self.dice = Math.round(Math.random() * 100);
-  self.expressLiteOrder = URLS.orderExpressLite;
-  self.orderBoost = URLS.orderBoost;
+  self.expressLiteOrder = CORE_URLS.orderExpressLite;
+  self.orderBoost = CORE_URLS.orderBoost;
 
   this.disabledRemote = true;
 

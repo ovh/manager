@@ -8,16 +8,16 @@ export default class ManagerNavbarService {
     $translate,
     asyncLoader,
     // FeatureAvailabilityService,
-    LANGUAGES,
+    CORE_LANGUAGES,
     MANAGER_URLS,
     NavbarNotificationService,
     OtrsPopupService,
-    REDIRECT_URLS,
+    CORE_REDIRECT_URLS,
     SessionService,
     ssoAuthentication,
     TARGET,
     TranslateService,
-    URLS,
+    CORE_URLS,
   ) {
     'ngInject';
 
@@ -25,17 +25,17 @@ export default class ManagerNavbarService {
     this.$translate = $translate;
     // this.featureAvailabilityService = FeatureAvailabilityService;
     this.asyncLoader = asyncLoader;
-    this.LANGUAGES = LANGUAGES;
+    this.LANGUAGES = CORE_LANGUAGES;
     this.MANAGER_URLS = MANAGER_URLS;
     this.navbarNotificationService = NavbarNotificationService;
     this.otrsPopupService = OtrsPopupService;
-    this.REDIRECT_URLS = REDIRECT_URLS;
+    this.REDIRECT_URLS = CORE_REDIRECT_URLS;
 
     this.sessionService = SessionService;
     this.ssoAuthentication = ssoAuthentication;
     this.TARGET = TARGET;
     this.translateService = TranslateService;
-    this.URLS = URLS;
+    this.URLS = CORE_URLS;
   }
 
   getAssistanceMenu(locale) {
