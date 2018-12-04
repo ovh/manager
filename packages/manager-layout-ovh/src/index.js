@@ -32,6 +32,7 @@ import 'ovh-ui-angular';
 import 'ovh-angular-contracts';
 import 'ovh-angular-responsive-tabs';
 import 'ovh-angular-ui-confirm-modal';
+import 'ovh-angular-pagination-front';
 
 import './manager-layout-ovh.scss';
 import './manager-layout-ovh.less';
@@ -51,6 +52,7 @@ angular
     'ovh-angular-ui-confirm-modal',
     'ovh-angular-contracts',
     'ovh-angular-ui-confirm-modal',
+    'ovh-angular-pagination-front',
     OvhHttp,
     sidebar,
     sms,

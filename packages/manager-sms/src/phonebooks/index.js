@@ -23,6 +23,11 @@ angular.module(moduleName, [
     },
     translations: ['.'],
   });
-});
+}).factory('TelecomSmsPhoneBooksNumber', () => ({
+  isValid: number => !!(number
+       && number.match(/^\+?(\d|\.| |#|-)+$/)
+       && number.length < 26
+       && number.length > 2),
+}));
 
 export default moduleName;

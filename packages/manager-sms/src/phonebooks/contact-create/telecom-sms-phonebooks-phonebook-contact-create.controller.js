@@ -4,7 +4,7 @@ import _ from 'lodash';
 export default /* @ngInject */ class TelecomSmsPhonebooksPhonebookContactCreateCtrl {
   constructor(
     $q, $stateParams, $timeout, $uibModalInstance,
-    data, TucPhonebookcontact, OvhApiSms, TelephonyMediator,
+    data, TucPhonebookcontact, OvhApiSms, TelecomSmsPhoneBooksNumber,
   ) {
     this.$q = $q;
     this.$stateParams = $stateParams;
@@ -17,7 +17,7 @@ export default /* @ngInject */ class TelecomSmsPhonebooksPhonebookContactCreateC
         phonebookContact: OvhApiSms.Phonebooks().PhonebookContact().v6(),
       },
     };
-    this.TelephonyMediator = TelephonyMediator;
+    this.TelecomSmsPhoneBooksNumber = TelecomSmsPhoneBooksNumber;
   }
 
   $onInit() {
@@ -74,7 +74,7 @@ export default /* @ngInject */ class TelecomSmsPhonebooksPhonebookContactCreateC
    * @return {Boolean}
    */
   isValidNumber(value) {
-    return !_.isEmpty(value) ? this.TelephonyMediator.IsValidNumber(value) : true;
+    return !_.isEmpty(value) ? this.TelecomSmsPhoneBooksNumber.IsValid(value) : true;
   }
 
   /**
