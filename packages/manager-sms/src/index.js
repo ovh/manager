@@ -34,9 +34,13 @@ angular.module(moduleName, [
   .config(($stateProvider) => {
     $stateProvider.state('sms', {
       url: '/sms/:serviceName',
-      template: smsView,
-      controller,
-      controllerAs: 'TelecomSmsCtrl',
+      views: {
+        '': {
+          template: smsView,
+          controller,
+          controllerAs: 'TelecomSmsCtrl',
+        },
+      },
       abstract: true,
       resolve: {
         initSms: ($q, $stateParams, TucSmsMediator) => {

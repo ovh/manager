@@ -1570,10 +1570,10 @@
     magic-string "^0.25.1"
     rollup-pluginutils "^2.3.3"
 
-"@ovh-ux/telecom-universe-components@^1.0.4":
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/telecom-universe-components/-/telecom-universe-components-1.0.5.tgz#fefb20c668e35bc7e564645915a554fa448253e5"
-  integrity sha512-ECMmo4fPJJiS7FvQh8BTCM+qH277zFWp8Fihh2jQJXq0qs7x2160cELSjW0ugRNz0Qgsr0CGxuHR6Uj00kXydQ==
+"@ovh-ux/telecom-universe-components@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/telecom-universe-components/-/telecom-universe-components-1.1.0.tgz#4464f75de9577e5083f7b15b67d9cfd018507a0d"
+  integrity sha512-yGA5S9JlKFTH7U5tvnQv1JnzmawQL30q1kE4choXtN+89lqOOBVUi6RkDtpFk7j7/6t2eYNiDRkgZAZCNML4IA==
   dependencies:
     bootstrap "^3.3.7"
     ovh-ui-kit "^2.22.0"

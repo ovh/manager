@@ -16,7 +16,7 @@ angular.module(moduleName, []).config(($stateProvider) => {
       },
     },
     translations: [
-      '../../sms/users',
+      '.',
     ],
   });
 });
