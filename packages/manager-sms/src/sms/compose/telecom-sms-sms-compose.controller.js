@@ -11,7 +11,7 @@ import tipsSizeTemplate from './tips/telecom-sms-sms-compose-tips-size.html';
 export default /* @ngInject */ class TelecomSmsSmsComposeCtrl {
   constructor(
     $q, $translate, $stateParams, $filter, $uibModal,
-    OvhApiSms, TucSmsMediator, OvhApiMe, atInternet, TucToast, TucToastError, URLS,
+    OvhApiSms, TucSmsMediator, OvhApiMe, atInternet, TucToast, TucToastError, SMS_URL,
   ) {
     this.$q = $q;
     this.$translate = $translate;
@@ -34,7 +34,7 @@ export default /* @ngInject */ class TelecomSmsSmsComposeCtrl {
     this.atInternet = atInternet;
     this.TucToast = TucToast;
     this.TucToastError = TucToastError;
-    this.constant = { URLS };
+    this.SMS_URL = SMS_URL;
   }
 
   $onInit() {
@@ -89,7 +89,7 @@ export default /* @ngInject */ class TelecomSmsSmsComposeCtrl {
       },
     };
     this.urls = {
-      receivers: _.get(this.constant.URLS, 'guides.sms.receivers'),
+      receivers: _.get(this.SMS_URL, 'guides.receivers'),
     };
 
     this.loading.init = true;

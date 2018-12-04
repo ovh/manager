@@ -15,7 +15,7 @@ import removeController from './remove/telecom-sms-receivers-remove.controller';
 export default /* @ngInject */ class TelecomSmsReceiversCtrl {
   constructor(
     $scope, $stateParams, $q, $filter, $uibModal, $translate, $timeout,
-    OvhApiSms, TucCsvParser, TucToast, TucToastError, URLS,
+    OvhApiSms, TucCsvParser, TucToast, TucToastError, SMS_URL,
   ) {
     this.$filter = $filter;
     this.$q = $q;
@@ -33,7 +33,7 @@ export default /* @ngInject */ class TelecomSmsReceiversCtrl {
     this.TucCsvParser = TucCsvParser;
     this.TucToast = TucToast;
     this.TucToastError = TucToastError;
-    this.constant = { URLS };
+    this.SMS_URL = SMS_URL;
   }
 
   $onInit() {
@@ -61,7 +61,7 @@ export default /* @ngInject */ class TelecomSmsReceiversCtrl {
       data: null,
     };
     this.urls = {
-      receivers: _.get(this.constant.URLS, 'guides.sms.receivers'),
+      receivers: _.get(this.SMS_URL, 'guides.receivers'),
     };
 
     this.receivers.isLoading = true;

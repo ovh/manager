@@ -1,5 +1,8 @@
 const SMS_URL = {
   hlrTermsOfUse: 'https://www.ovh.com/fr/support/documents_legaux/version/conditions_particulieres_HLR_2016-04-07.pdf',
+  guides: {
+    receivers: 'https://www.ovh.com/fr/g2402.liste_de_destinataire_sms',
+  },
 };
 
 const SMS_GUIDES = {
