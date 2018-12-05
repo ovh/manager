@@ -12,7 +12,7 @@ import readController from './read/telecom-sms-receivers-read.controller';
 import removeTemplate from './remove/telecom-sms-receivers-remove.html';
 import removeController from './remove/telecom-sms-receivers-remove.controller';
 
-export default /* @ngInject */ class TelecomSmsReceiversCtrl {
+export default class TelecomSmsReceiversCtrl {
   constructor(
     $scope, $stateParams, $q, $filter, $uibModal, $translate, $timeout,
     OvhApiSms, TucCsvParser, TucToast, TucToastError, SMS_URL,

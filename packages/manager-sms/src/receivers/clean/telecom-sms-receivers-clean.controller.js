@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-export default /* @ngInject */ class TelecomSmsReceiversCleanCtrl {
+export default class TelecomSmsReceiversCleanCtrl {
   constructor($q, $stateParams, $timeout, $uibModalInstance, OvhApiSms, TucSmsMediator, receiver) {
     this.$q = $q;
     this.$stateParams = $stateParams;

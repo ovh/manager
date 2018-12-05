@@ -8,7 +8,7 @@ import tipsController from './tips/telecom-sms-sms-compose-tips.controller';
 import tipsComposeTemplate from './tips/telecom-sms-sms-compose-tips-compose.html';
 import tipsSizeTemplate from './tips/telecom-sms-sms-compose-tips-size.html';
 
-export default /* @ngInject */ class TelecomSmsSmsComposeCtrl {
+export default class TelecomSmsSmsComposeCtrl {
   constructor(
     $q, $translate, $stateParams, $filter, $uibModal,
     OvhApiSms, TucSmsMediator, OvhApiMe, atInternet, TucToast, TucToastError, SMS_URL,

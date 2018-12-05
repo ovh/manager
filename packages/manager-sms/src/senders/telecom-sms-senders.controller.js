@@ -8,7 +8,7 @@ import removeTemplate from './remove/telecom-sms-senders-remove.html';
 import terminateController from './terminate/telecom-sms-senders-terminate.controller';
 import terminateTemplate from './terminate/telecom-sms-senders-terminate.html';
 
-export default /* @ngInject */ class TelecomSmsSendersCtrl {
+export default class TelecomSmsSendersCtrl {
   constructor(
     $stateParams, $q, $filter, $timeout, $uibModal, $translate,
     OvhApiSms, TucToast, TucToastError,

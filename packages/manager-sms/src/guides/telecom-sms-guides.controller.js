@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-export default /* @ngInject */ class TelecomSmsGuidesCtrl {
+export default class TelecomSmsGuidesCtrl {
   constructor($translate, TucSmsMediator, TucToastError, SMS_GUIDES) {
     this.$translate = $translate;
     this.TucSmsMediator = TucSmsMediator;

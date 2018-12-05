@@ -6,7 +6,7 @@ import readTemplate from './read/telecom-sms-sms-pending-read.html';
 import removeController from './remove/telecom-sms-sms-pending-remove.controller';
 import removeTemplate from './remove/telecom-sms-sms-pending-remove.html';
 
-export default /* @ngInject */ class TelecomSmsSmsPendingCtrl {
+export default class TelecomSmsSmsPendingCtrl {
   constructor(
     $stateParams, $q, $filter, $uibModal, $translate, $timeout,
     OvhApiSms, TucToast, TucToastError,

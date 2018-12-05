@@ -1,4 +1,4 @@
-export default /* @ngInject */ class TelecomSmsOptionsCtrl {
+export default class TelecomSmsOptionsCtrl {
   constructor($translate) {
     this.$translate = $translate;
   }

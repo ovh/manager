@@ -1,4 +1,4 @@
-export default /* @ngInject */ class TelecomSmsSmsIncomingReadCtrl {
+export default class TelecomSmsSmsIncomingReadCtrl {
   constructor($uibModalInstance, incomingSms) {
     this.$uibModalInstance = $uibModalInstance;
     this.incomingSms = incomingSms;

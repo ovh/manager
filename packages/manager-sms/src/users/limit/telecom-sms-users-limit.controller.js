@@ -1,7 +1,7 @@
 import angular from 'angular';
 import _ from 'lodash';
 
-export default /* @ngInject */ class TelecomSmsUsersLimitCtrl {
+export default class TelecomSmsUsersLimitCtrl {
   constructor(
     $q, $stateParams, $timeout, $uibModalInstance,
     OvhApiMe, OvhApiSms, TucSmsMediator, user, TucToastError,

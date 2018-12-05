@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-export default /* @ngInject */ class TelecomSmsOrderCtrl {
+export default class TelecomSmsOrderCtrl {
   constructor(
     $q, $translate, $filter, $stateParams,
     atInternet, TucSmsMediator, OvhApiOrder, tucDebounce, TucToast, SMS_ORDER_PREFIELDS_VALUES,

@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-export default /* @ngInject */ class TelecomSmsPhonebooksCreateCtrl {
+export default class TelecomSmsPhonebooksCreateCtrl {
   constructor($state, $stateParams, OvhApiSms, TucToastError) {
     this.$state = $state;
     this.$stateParams = $stateParams;

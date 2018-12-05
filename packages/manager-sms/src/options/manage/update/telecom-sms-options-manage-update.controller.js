@@ -1,7 +1,7 @@
 import angular from 'angular';
 import _ from 'lodash';
 
-export default /* @ngInject */ class TelecomSmsOptionsManageUpdateCtrl {
+export default class TelecomSmsOptionsManageUpdateCtrl {
   constructor($q, $stateParams, $timeout, $uibModalInstance, OvhApiSms, service) {
     this.$q = $q;
     this.$stateParams = $stateParams;

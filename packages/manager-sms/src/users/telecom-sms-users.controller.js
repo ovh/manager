@@ -18,7 +18,7 @@ import callbackTemplate from './callback/telecom-sms-users-callback.html';
 import removeController from './remove/telecom-sms-users-remove.controller';
 import removeTemplate from './remove/telecom-sms-users-remove.html';
 
-export default /* @ngInject */ class TelecomSmsUsersCtrl {
+export default class TelecomSmsUsersCtrl {
   constructor(
     $stateParams, $q, $filter, $uibModal, $translate,
     OvhApiSms, TucSmsMediator, TucToast, TucToastError,

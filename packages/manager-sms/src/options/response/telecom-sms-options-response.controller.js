@@ -8,7 +8,7 @@ import editTemplate from './edit/telecom-sms-options-response-edit.html';
 import removeController from './remove/telecom-sms-options-response-remove.controller';
 import removeTemplate from './remove/telecom-sms-options-response-remove.html';
 
-export default /* @ngInject */ class TelecomSmsOptionsResponseCtrl {
+export default class TelecomSmsOptionsResponseCtrl {
   constructor(
     $q,
     $stateParams,

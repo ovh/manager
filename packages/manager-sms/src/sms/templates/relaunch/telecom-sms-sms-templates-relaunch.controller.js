@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-export default /* @ngInject */ class TelecomSmsSmsTemplateRelaunchCtrl {
+export default class TelecomSmsSmsTemplateRelaunchCtrl {
   constructor($q, $stateParams, $timeout, $uibModalInstance, OvhApiSms, template) {
     this.$q = $q;
     this.$stateParams = $stateParams;

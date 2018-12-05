@@ -1,7 +1,7 @@
 import angular from 'angular';
 import _ from 'lodash';
 
-export default /* @ngInject */ class TelecomSmsPhonebooksPhonebookContactCreateCtrl {
+export default class TelecomSmsPhonebooksPhonebookContactCreateCtrl {
   constructor(
     $q, $stateParams, $timeout, $uibModalInstance,
     data, TucPhonebookcontact, OvhApiSms, TelecomSmsPhoneBooksNumber,

@@ -12,7 +12,7 @@ import importTemplate from './contact-import/telecom-sms-phonebooks-phonebook-co
 import updateController from './contact-update/telecom-sms-phonebooks-phonebook-contact-update.controller';
 import updateTemplate from './contact-update/telecom-sms-phonebooks-phonebook-contact-update.html';
 
-export default /* @ngInject */ class TelecomSmsPhonebooksCtrl {
+export default class TelecomSmsPhonebooksCtrl {
   constructor(
     $document, $filter, $q, $scope, $stateParams, $translate, $timeout, $uibModal, $window,
     OvhApiSms, TucToast, TucToastError, SMS_PHONEBOOKS,
