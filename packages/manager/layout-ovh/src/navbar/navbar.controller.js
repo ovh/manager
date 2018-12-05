@@ -1,7 +1,7 @@
 export default class NavbarController {
-  constructor($rootScope, ManagerNavbarService) {
-    'ngInject';
+  /* @ngInject */
 
+  constructor($rootScope, ManagerNavbarService) {
     this.$rootScope = $rootScope;
     this.ManagerNavbarService = ManagerNavbarService;
 

@@ -3,6 +3,8 @@ import {
 } from 'lodash';
 
 export default class ManagerNavbarService {
+  /* @ngInject */
+
   constructor(
     $q,
     $translate,
@@ -19,8 +21,6 @@ export default class ManagerNavbarService {
     TranslateService,
     CORE_URLS,
   ) {
-    'ngInject';
-
     this.$q = $q;
     this.$translate = $translate;
     // this.featureAvailabilityService = FeatureAvailabilityService;
