@@ -25,6 +25,8 @@ import sidebar from './sidebar';
 import navbar from './navbar';
 
 import 'angular-ui-bootstrap';
+import 'ng-at-internet';
+import 'at-internet-ui-router-plugin';
 import 'ovh-angular-otrs';
 import 'ovh-angular-apiv7';
 import 'ovh-ui-angular';
@@ -39,9 +41,11 @@ import './manager-layout-ovh.less';
 
 angular
   .module('ovhManager', [
+    'atInternetUiRouterPlugin',
     core,
     freefax,
     navbar,
+    'ng-at-internet',
     ngAria,
     ngSanitize,
     'oui',

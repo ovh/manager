@@ -21,6 +21,8 @@
   "peerDependencies": {
     "@ovh-ux/telecom-universe-components": "^1.0.4",
     "angular": "1.7.5",
+    "at-internet-ui-router-plugin": "^1.0.0",
+    "ng-at-internet": "^3.1.1",
     "ovh-angular-responsive-tabs": "^4.0.0"
   }
 }
