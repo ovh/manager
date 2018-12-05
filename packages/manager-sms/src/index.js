@@ -1,5 +1,7 @@
 import angular from 'angular';
 
+import './telecom-sms.less';
+
 import constant from './telecom-sms.constant';
 import controller from './telecom-sms.controller';
 import smsView from './telecom-sms.html';
