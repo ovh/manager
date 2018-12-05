@@ -8,7 +8,7 @@
     "packages/manager/*"
   ],
   "scripts": {
-    "build": "lerna run build --stream --parallel",
+    "build": "lerna run build --stream",
     "clean": "yarn run clean:dist && npx rimraf **/node_modules",
     "clean:dist": "npx rimraf dist packages/**/dist",
     "links": "ls -l node_modules/ | grep ^l || echo 'no linked packages'",
