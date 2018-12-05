@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-universes-styles",
-  "version": "1.0.0-alpha.0",
+  "version": "1.0.0-alpha.1",
   "license": "BSD-3-Clause",
   "peerDependencies": {
     "ovh-ui-kit": "^2.21.5",
