@@ -1,7 +1,8 @@
 import angular from 'angular';
 import _ from 'lodash';
 
-export default class TelecomSmsSendersTerminateCtrl {
+export default class {
+  /* @ngInject */
   constructor($q, $timeout, $uibModalInstance, OvhApiSms, sender) {
     this.$q = $q;
     this.$timeout = $timeout;

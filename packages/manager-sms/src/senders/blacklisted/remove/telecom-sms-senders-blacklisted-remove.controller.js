@@ -1,6 +1,7 @@
 import angular from 'angular';
 
-export default class TelecomSmsSendersBlacklistedRemoveCtrl {
+export default class {
+  /* @ngInject */
   constructor($q, $stateParams, $timeout, $uibModalInstance, OvhApiSms, blacklist) {
     this.$q = $q;
     this.$stateParams = $stateParams;

@@ -1,4 +1,5 @@
-export default class TelecomSmsSmsComposeTipsCtrl {
+export default class {
+  /* @ngInject */
   constructor($uibModalInstance) {
     this.$uibModalInstance = $uibModalInstance;
   }

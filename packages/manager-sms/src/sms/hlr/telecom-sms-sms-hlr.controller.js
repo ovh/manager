@@ -1,6 +1,7 @@
 import _ from 'lodash';
 
-export default class TelecomSmsSmsHlrCtrl {
+export default class {
+  /* @ngInject */
   constructor(
     $stateParams, $q, $translate,
     OvhApiSms, TucSmsMediator, tucValidator, TucToast, TucToastError, SMS_URL,

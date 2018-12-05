@@ -1,7 +1,8 @@
 import angular from 'angular';
 import _ from 'lodash';
 
-export default class TelecomSmsReceiversReadCtrl {
+export default class {
+  /* @ngInject */
   constructor($stateParams, $translate, $uibModalInstance, receiver, csv) {
     this.$stateParams = $stateParams;
     this.$translate = $translate;

@@ -1,7 +1,8 @@
 import angular from 'angular';
 import _ from 'lodash';
 
-export default class TelecomSmsOptionsResponseEditCtrl {
+export default class {
+  /* @ngInject */
   constructor(
     $q, $stateParams, $timeout, $uibModalInstance,
     OvhApiSms, TucSmsMediator, service, senders, index, option, TucToastError,

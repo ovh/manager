@@ -1,7 +1,8 @@
 import controller from './update/telecom-sms-options-manage-update.controller';
 import template from './update/telecom-sms-options-manage-update.html';
 
-export default class TelecomSmsOptionsManageCtrl {
+export default class {
+  /* @ngInject */
   constructor($uibModal, TucSmsMediator, TucToastError) {
     this.$uibModal = $uibModal;
     this.TucSmsMediator = TucSmsMediator;

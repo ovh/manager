@@ -1,6 +1,7 @@
 import angular from 'angular';
 
-export default /* @nInject */ class TelecomSmsSmsPendingRemoveCtrl {
+export default /* @nInject */ class {
+  /* @ngInject */
   constructor($q, $stateParams, $timeout, $uibModalInstance, OvhApiSms, pendingSms) {
     this.$q = $q;
     this.$stateParams = $stateParams;

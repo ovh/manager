@@ -6,7 +6,8 @@ import readTemplate from './read/telecom-sms-sms-incoming-read.html';
 import removeController from './remove/telecom-sms-sms-incoming-remove.controller';
 import removeTemplate from './remove/telecom-sms-sms-incoming-remove.html';
 
-export default class TelecomSmsSmsIncomingCtrl {
+export default class {
+  /* @ngInject */
   constructor(
     $filter, $q, $scope, $stateParams, $translate, $timeout, $uibModal, $window,
     OvhApiSms, OvhApiMe, TucToast, TucToastError,

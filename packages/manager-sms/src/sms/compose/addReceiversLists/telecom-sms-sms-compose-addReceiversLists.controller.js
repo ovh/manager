@@ -1,7 +1,8 @@
 import angular from 'angular';
 import _ from 'lodash';
 
-export default class TelecomSmsSmsComposeAddReceiversListsCtrl {
+export default class {
+  /* @ngInject */
   constructor($stateParams, $timeout, $uibModalInstance, TucSmsMediator, receivers) {
     this.$stateParams = $stateParams;
     this.$timeout = $timeout;

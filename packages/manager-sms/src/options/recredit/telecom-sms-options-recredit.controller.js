@@ -2,7 +2,8 @@ import _ from 'lodash';
 import template from './update/telecom-sms-options-recredit-update.html';
 import controller from './update/telecom-sms-options-recredit-update.controller';
 
-export default class TelecomSmsOptionsRecreditCtrl {
+export default class {
+  /* @ngInject */
   constructor(
     $q, $stateParams, $translate, $uibModal,
     OvhApiOrderSms, TucSmsMediator, TucToast, TucToastError,

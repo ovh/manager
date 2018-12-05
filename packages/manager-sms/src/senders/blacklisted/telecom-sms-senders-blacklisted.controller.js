@@ -3,7 +3,8 @@ import _ from 'lodash';
 import controller from './remove/telecom-sms-senders-blacklisted-remove.controller';
 import template from './remove/telecom-sms-senders-blacklisted-remove.html';
 
-export default class TelecomSmsSendersBlacklistedCtrl {
+export default class {
+  /* @ngInject */
   constructor(
     $stateParams, $q, $filter, $timeout, $uibModal, $translate,
     OvhApiSms, TucToast, TucToastError,

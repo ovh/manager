@@ -9,7 +9,8 @@ import relaunchTemplate from './relaunch/telecom-sms-sms-templates-relaunch.html
 import removeController from './remove/telecom-sms-sms-templates-remove.controller';
 import removeTemplate from './remove/telecom-sms-sms-templates-remove.html';
 
-export default class TelecomSmsSmsTemplatesCtrl {
+export default class {
+  /* @ngInject */
   constructor(
     $q,
     $translate,
