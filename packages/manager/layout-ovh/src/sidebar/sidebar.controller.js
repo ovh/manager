@@ -1,6 +1,8 @@
 import _ from 'lodash';
 
 export default class SidebarController {
+  /* @ngInject */
+
   constructor(
     $translate,
     $rootScope,
@@ -9,8 +11,6 @@ export default class SidebarController {
     SIDEBAR_STATE_MAPPING_SERVICE,
     SidebarMenu,
   ) {
-    'ngInject';
-
     this.$translate = $translate;
     this.$rootScope = $rootScope;
     this.OvhApiServices = OvhApiServices;

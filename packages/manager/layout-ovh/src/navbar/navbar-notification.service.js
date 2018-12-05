@@ -2,6 +2,8 @@ import _ from 'lodash';
 import moment from 'moment';
 
 export default class NavbarNotificationService {
+  /* @ngInject */
+
   constructor(
     $interval,
     $q,
@@ -9,8 +11,6 @@ export default class NavbarNotificationService {
     OvhApiNotificationAapi,
     TARGET,
   ) {
-    'ngInject';
-
     this.$interval = $interval;
     this.$q = $q;
     this.$translate = $translate;
