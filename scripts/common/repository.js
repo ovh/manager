@@ -30,7 +30,7 @@ class MonoRepository {
       .then((v) => {
         if (v) {
           const matches = v.match(/-(\d+)$/);
-          if (matches.length > 1) {
+          if (matches && matches.length > 1) {
             const nextId = parseInt(matches[1], 10) + 1;
             return `${result}-${nextId}`;
           }
