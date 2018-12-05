@@ -1,7 +1,7 @@
 export default class SessionService {
-  constructor(OvhApiMe) {
-    'ngInject';
+  /* @ngInject */
 
+  constructor(OvhApiMe) {
     this.OvhApiMe = OvhApiMe.v6();
   }
 
