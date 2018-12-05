@@ -1,4 +1,5 @@
 import angular from 'angular';
+import moment from 'moment';
 import _ from 'lodash';
 
 import readController from './read/telecom-sms-sms-outgoing-read.controller';

@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import moment from 'moment';
 
 import addPhonebookController from './addPhonebookContact/telecom-sms-sms-compose-addPhonebookContact.controller';
 import addPhonebookTemplate from './addPhonebookContact/telecom-sms-sms-compose-addPhonebookContact.html';
