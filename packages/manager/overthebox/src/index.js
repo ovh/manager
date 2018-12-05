@@ -2,6 +2,7 @@ import 'ovh-angular-tail-logs';
 import 'angularjs-scroll-glue';
 
 import angular from 'angular';
+import '@ovh-ux/manager-core';
 
 import constant from './overTheBox.constant';
 import controller from './overTheBox.controller';
@@ -19,6 +20,7 @@ const moduleName = 'ovhManagerOtb';
 angular.module(moduleName, [
   'ui.router',
   'telecomUniverseComponents',
+  'ovhManagerCore',
   configure,
   details,
   docs,
