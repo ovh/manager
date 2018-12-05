@@ -18,7 +18,7 @@
     "lint:js": "eslint --fix .",
     "lint:md": "remark -qf .",
     "packages:publish": "node ./scripts/publish",
-    "start": "lerna run dev --stream --parallel",
+    "start": "lerna run dev --stream",
     "test": "yarn lint",
     "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
     "release": "node ./scripts/release"
