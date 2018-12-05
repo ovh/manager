@@ -9,9 +9,9 @@ import map from 'lodash/map';
  * @description Manage translations
  */
 export default class TranslateServiceProvider {
-  constructor(CORE_LANGUAGES, TARGET) {
-    'ngInject';
+  /* @ngInject */
 
+  constructor(CORE_LANGUAGES, TARGET) {
     this.LANGUAGES = CORE_LANGUAGES;
     this.TARGET = TARGET;
     this.storageKey = 'univers-selected-language';
