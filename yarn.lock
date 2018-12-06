@@ -8500,9 +8500,10 @@ ovh-angular-http@^4.0.0-alpha.1:
     bootstrap "~3.3.0"
     lodash "^4.17.11"
 
-ovh-angular-pagination-front@ovh-ux/ovh-angular-pagination-front:
-  version "7.0.0"
-  resolved "https://codeload.github.com/ovh-ux/ovh-angular-pagination-front/tar.gz/1d2cc2cef1f123267bae1e0936e808e14494560e"
+ovh-angular-pagination-front@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/ovh-angular-pagination-front/-/ovh-angular-pagination-front-6.0.0.tgz#ac310848bddc1e0fea81b01cab0c0159a9ca128b"
+  integrity sha1-rDEISL3cHg/qgbAcqwwBWanKEos=
 
 ovh-angular-responsive-popover@5.0.0-alpha.2:
   version "5.0.0-alpha.2"

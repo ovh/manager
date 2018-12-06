@@ -54,7 +54,7 @@
     "ovh-angular-apiv7": "^1.2.8",
     "ovh-angular-http": "^4.0.0-alpha.1",
     "ovh-angular-otrs": "https://github.com/ovh-ux/ovh-angular-otrs.git#17796f93cbb0a586d08dd17030e4aa2f9f47a34e",
-    "ovh-angular-pagination-front": "ovh-ux/ovh-angular-pagination-front",
+    "ovh-angular-pagination-front": "^6.0.0",
     "ovh-angular-responsive-popover": "5.0.0-alpha.2",
     "ovh-angular-responsive-tabs": "^4.0.0",
     "ovh-angular-sidebar-menu": "^8.0.0-alpha.1",
