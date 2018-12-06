@@ -14,7 +14,7 @@ export default /* @ngInject */ function (
   /**
    * submit / unsubmit with keys
    */
-  this.watchKey = function ($event, notif, valid) {
+  this.watchKey = function watchKey($event, notif, valid) {
     if ($event.keyCode === 13 && valid) {
       self.update(notif);
     }
@@ -31,7 +31,7 @@ export default /* @ngInject */ function (
    * @param {FreefaxNotificationObject} current    Current object
    * @return {Boolean}
    */
-  this.isUnique = function (val, collection, current) {
+  this.isUnique = function isUnique(val, collection, current) {
     const other = _.filter(collection, elt => elt.email !== current.email);
     return !_.some(other, { email: val });
   };
@@ -41,7 +41,7 @@ export default /* @ngInject */ function (
    * @param {FreefaxNotificationObject} notif Current notification (optional)
    * @return {Promise}
    */
-  this.update = function (notifParam) {
+  this.update = function update(notifParam) {
     const notif = notifParam || {};
     notif.busy = true;
     const notifications = _.filter(this.notifications, elt => elt.email !== notif.email);
@@ -68,7 +68,7 @@ export default /* @ngInject */ function (
    * Cancel the edition of a BDHCP
    * @param {FreefaxNotificationObject} notif Notification
    */
-  this.cancel = function (notif) {
+  this.cancel = function cancel(notif) {
     if (!notif.cancel()) {
       _.remove(self.notifications, notif);
     }
@@ -77,7 +77,7 @@ export default /* @ngInject */ function (
   /**
    * Add a notification in edition mode
    */
-  this.add = function () {
+  this.add = function add() {
     _.forEach(this.notifications, (notif) => {
       if (notif.editMode) {
         self.cancel(notif);
@@ -92,7 +92,7 @@ export default /* @ngInject */ function (
    * Destroy a notification
    * @return {Promise}
    */
-  this.destroy = function (notif) {
+  this.destroy = function destroy(notif) {
     const removed = _.remove(this.notifications, { email: notif.email });
     return this.update().then(data => data).catch((err) => {
       self.notifications.push(removed[0]);

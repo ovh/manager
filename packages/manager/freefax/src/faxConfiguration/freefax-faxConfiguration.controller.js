@@ -46,17 +46,17 @@ export default /* @ngInject */ function (
     $scope.freeFax.fromName = savedModelData.fromName;
   }
 
-  this.cancelEditMode = function () {
+  this.cancelEditMode = function cancelEditMode() {
     restoreFormData();
     self.editMode = false;
   };
 
-  this.enterEditMode = function () {
+  this.enterEditMode = function enterEditMode() {
     saveFormData();
     self.editMode = true;
   };
 
-  this.generatePassword = function () {
+  this.generatePassword = function generatePassword() {
     this.generatingPassword = true;
     OvhApiFreeFax.v6().resetPassword({
       serviceName: $stateParams.serviceName,
@@ -67,12 +67,12 @@ export default /* @ngInject */ function (
     });
   };
 
-  this.togglePassword = function () {
+  this.togglePassword = function togglePassword() {
     this.showPassword = !this.showPassword;
     this.passwordDisplay = this.showPassword ? this.generatedPassword : '*****';
   };
 
-  this.submit = function () {
+  this.submit = function submit() {
     const formData = {
       faxMaxCall: $scope.freeFax.faxMaxCall,
       faxQuality: $scope.freeFax.faxQuality,
