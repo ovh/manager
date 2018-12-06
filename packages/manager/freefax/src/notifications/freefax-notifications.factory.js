@@ -12,7 +12,7 @@ export default /* @ngInject */ ($translate) => {
      * Object constructor
      * @param {Object} data Data from AAPI
      */
-  const FreefaxNotificationObject = function (data) {
+  const FreefaxNotificationObject = function FreefaxNotificationObject(data) {
     _.extend(
       this,
       template,
@@ -27,7 +27,7 @@ export default /* @ngInject */ ($translate) => {
   /**
      * Cancel edit mode
      */
-  FreefaxNotificationObject.prototype.cancel = function () {
+  FreefaxNotificationObject.prototype.cancel = function cancel() {
     this.toggleEdit(false);
     return this.inApi;
   };
@@ -35,7 +35,7 @@ export default /* @ngInject */ ($translate) => {
   /**
      * Enter Edit Mode
      */
-  FreefaxNotificationObject.prototype.edit = function () {
+  FreefaxNotificationObject.prototype.edit = function edit() {
     this.tempValue = _.pick(this, Object.keys(template));
     this.toggleEdit(true);
   };
@@ -45,7 +45,7 @@ export default /* @ngInject */ ($translate) => {
      * @param {Boolean} state [Optional] if set, for the edit mode state
      * @return {Boolean} new edit mode state
      */
-  FreefaxNotificationObject.prototype.toggleEdit = function (state) {
+  FreefaxNotificationObject.prototype.toggleEdit = function toggleEdit(state) {
     if (_.isBoolean(state)) {
       this.editMode = state;
     } else {
@@ -57,7 +57,7 @@ export default /* @ngInject */ ($translate) => {
   /**
      * Accept the editing values
      */
-  FreefaxNotificationObject.prototype.accept = function () {
+  FreefaxNotificationObject.prototype.accept = function accept() {
     _.extend(this, this.tempValue);
     this.toggleEdit(false);
   };

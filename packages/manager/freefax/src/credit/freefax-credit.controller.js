@@ -21,7 +21,7 @@ export default /* @ngInject */ function (
     self.quantity = null;
   }
 
-  self.getPrice = function (amount) {
+  self.getPrice = function getPrice(amount) {
     self.contracts = [];
     self.cost = null;
     OvhApiFreeFax.v6().getPrice({
@@ -37,7 +37,7 @@ export default /* @ngInject */ function (
     });
   };
 
-  self.order = function (amount) {
+  self.order = function order(amount) {
     self.orderDone = true;
     OvhApiFreeFax.v6().orderCredits(null, {
       quantity: amount,
