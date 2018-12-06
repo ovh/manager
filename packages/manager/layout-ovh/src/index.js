@@ -24,17 +24,16 @@ import routing from './manager-layout-ovh.routes';
 import sidebar from './sidebar';
 import navbar from './navbar';
 
-import 'angular-ui-bootstrap';
-import 'ng-at-internet';
-import 'at-internet-ui-router-plugin';
-import 'ovh-angular-otrs';
-import 'ovh-angular-apiv7';
-import 'ovh-ui-angular';
-
 import '@ovh-ux/ovh-angular-contracts';
+import 'angular-ui-bootstrap';
+import 'at-internet-ui-router-plugin';
+import 'ng-at-internet';
+import 'ovh-angular-apiv7';
+import 'ovh-angular-otrs';
+import 'ovh-angular-pagination-front';
 import 'ovh-angular-responsive-tabs';
 import 'ovh-angular-ui-confirm-modal';
-import 'ovh-angular-pagination-front';
+import 'ovh-ui-angular';
 
 import './manager-layout-ovh.scss';
 import './manager-layout-ovh.less';
