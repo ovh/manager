@@ -20,7 +20,7 @@
     "@ovh-ux/component-rollup-config": "5.0.0-beta.2"
   },
   "peerDependencies": {
-    "@ovh-ux/angular-uirouter-title": "^1.0.4",
+    "@ovh-ux/ng-uirouter-title": "^2.0.0-beta.2",
     "@ovh-ux/manager-core": "^1.1.0-alpha.0",
     "@ovh-ux/manager-universes-styles": "^1.0.0-alpha.1",
     "@ovh-ux/ovh-angular-contracts": "^3.0.0-beta.0",

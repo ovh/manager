@@ -21,6 +21,7 @@
     "@ovh-ux/component-rollup-config": "5.0.0-beta.2"
   },
   "peerDependencies": {
+    "@ovh-ux/ng-uirouter-title": "^2.0.0-beta.2",
     "@ovh-ux/manager-core": "^1.1.0-alpha.0",
     "@ovh-ux/telecom-universe-components": "^1.3.0",
     "@uirouter/angularjs": "^1.0.15",

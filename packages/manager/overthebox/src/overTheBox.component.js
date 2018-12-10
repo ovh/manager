@@ -2,6 +2,7 @@ import angular from 'angular';
 
 import '@ovh-ux/manager-core';
 import '@ovh-ux/telecom-universe-components';
+import '@ovh-ux/ng-uirouter-title';
 import 'angularjs-scroll-glue';
 import 'ovh-angular-tail-logs';
 
@@ -26,6 +27,7 @@ angular
     'ovh-angular-tail-logs',
     'telecomUniverseComponents',
     'ovhManagerCore',
+    'ngUirouterTitle',
     configure,
     details,
     docs,
