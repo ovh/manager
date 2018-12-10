@@ -1,4 +1,5 @@
-import _ from 'lodash';
+import head from 'lodash/head';
+import get from 'lodash/get';
 import moment from 'moment';
 
 export default {
@@ -44,7 +45,7 @@ export default {
         intersect: false,
         callbacks: {
           title(data) {
-            const timestamp = moment(_.get(_.first(data), 'xLabel'));
+            const timestamp = moment(get(head(data), 'xLabel'));
             return timestamp.fromNow();
           },
         },
