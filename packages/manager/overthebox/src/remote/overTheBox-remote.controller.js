@@ -1,6 +1,6 @@
 import angular from 'angular';
 import moment from 'moment';
-import _ from 'lodash';
+import set from 'lodash/set';
 
 export default /* @ngInject */ function
 ($stateParams, $translate, $scope, $q, CORE_URLS, OVER_THE_BOX, OVERTHEBOX_REMOTE_STATUS,
@@ -149,7 +149,7 @@ export default /* @ngInject */ function
    * @param remote
    */
   this.authorize = function authorize(remote) {
-    _.set(remote, 'busy', true);
+    set(remote, 'busy', true);
     return OvhApiOverTheBox.v6().authorizeRemote(
       {
         serviceName: $stateParams.serviceName,
@@ -157,7 +157,7 @@ export default /* @ngInject */ function
       },
       null,
     ).$promise.then(() => self.reloadRemote(remote), (err) => {
-      _.set(remote, 'busy', false);
+      set(remote, 'busy', false);
       return new TucToastError(err);
     });
   };
@@ -168,7 +168,7 @@ export default /* @ngInject */ function
    * @returns {*}
    */
   this.reloadRemote = function reloadedRemote(remote) {
-    _.set(remote, 'busy', true);
+    set(remote, 'busy', true);
     return OvhApiOverTheBox.v6().loadRemote({
       serviceName: $stateParams.serviceName,
       remoteAccessId: remote.remoteAccessId,
@@ -182,7 +182,7 @@ export default /* @ngInject */ function
         TucToast.error($translate.instant('overTheBox_remote_authorized_failed', { port: reloaded.exposedPort }));
       }
     }, TucToastError).finally(() => {
-      _.set(remote, 'busy', false);
+      set(remote, 'busy', false);
     });
   };
 
@@ -191,7 +191,7 @@ export default /* @ngInject */ function
    * @param remote
    */
   this.remove = function remove(remote) {
-    _.set(remote, 'busy', true);
+    set(remote, 'busy', true);
     return OvhApiOverTheBox.v6().deleteRemote({
       serviceName: $stateParams.serviceName,
       remoteAccessId: remote.remoteAccessId,
@@ -199,7 +199,7 @@ export default /* @ngInject */ function
       TucToast.success($translate.instant('overTheBox_remote_element_deleted'));
       self.reloadRemote(remote);
     }, TucToastError).finally(() => {
-      _.set(remote, 'busy', false);
+      set(remote, 'busy', false);
     });
   };
 

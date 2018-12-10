@@ -1,6 +1,9 @@
 import angular from 'angular';
 import moment from 'moment';
-import _ from 'lodash';
+import isArray from 'lodash/isArray';
+import forEach from 'lodash/forEach';
+import map from 'lodash/map';
+import sortBy from 'lodash/sortBy';
 
 export default /* @ngInject */ function
 ($scope, $rootScope, $filter, $translate, $q, $stateParams, OVER_THE_BOX, OVERTHEBOX_DETAILS,
@@ -56,7 +59,7 @@ export default /* @ngInject */ function
     let currentMax = 0;
     let rateUnit = 'Mbps';
     let rate = 0;
-    if (_.isArray(series) && series.length && series[0].dps) {
+    if (isArray(series) && series.length && series[0].dps) {
       Object.keys(series[0].dps).forEach((timeStmp) => {
         currentMax = 0;
         for (let i = 0; i < series.length; i += 1) {
@@ -82,7 +85,7 @@ export default /* @ngInject */ function
   }
 
   function makeGraphPositive(graph) {
-    _.forEach(Object.keys(graph.dps), (key) => {
+    forEach(Object.keys(graph.dps), (key) => {
       graph.dps[key] = graph.dps[key] < 0 ? 0 : graph.dps[key]; // eslint-disable-line
     });
   }
@@ -114,12 +117,12 @@ export default /* @ngInject */ function
       const filteredDown = inData
         .filter(d => self.kpiInterfaces.indexOf(d.tags.iface) > -1);
 
-      _.forEach(filteredDown, makeGraphPositive);
+      forEach(filteredDown, makeGraphPositive);
       self.download = computeSpeed(filteredDown);
 
       const filteredUp = outData
         .filter(d => self.kpiInterfaces.indexOf(d.tags.iface) > -1);
-      _.forEach(filteredUp, makeGraphPositive);
+      forEach(filteredUp, makeGraphPositive);
       self.upload = computeSpeed(filteredUp);
 
       // Download chart
@@ -135,18 +138,18 @@ export default /* @ngInject */ function
         item => displayBitrate(item.yLabel),
       );
 
-      const downSeries = _.chain(filteredDown)
-        .map(d => ({
+      const downSeries = sortBy(
+        map(filteredDown, d => ({
           name: d.tags.iface,
           data: Object.keys(d.dps).map(key => ({
             x: key * 1000,
             y: d.dps[key] * 8,
           })),
-        }))
-        .sortByOrder(['name'], ['asc'])
-        .value();
+        })),
+        ['name'],
+      );
 
-      _.forEach(downSeries, (serie) => {
+      forEach(downSeries, (serie) => {
         self.chartDown.addSerie(
           serie.name,
           serie.data,
@@ -175,18 +178,18 @@ export default /* @ngInject */ function
         item => displayBitrate(item.yLabel),
       );
 
-      const upSeries = _.chain(filteredUp)
-        .map(d => ({
+      const upSeries = sortBy(
+        map(filteredUp, d => ({
           name: d.tags.iface,
           data: Object.keys(d.dps).map(key => ({
             x: key * 1000,
             y: d.dps[key] * 8,
           })),
-        }))
-        .sortByOrder(['name'], ['asc'])
-        .value();
+        })),
+        ['name'],
+      );
 
-      _.forEach(upSeries, (serie) => {
+      forEach(upSeries, (serie) => {
         self.chartUp.addSerie(
           serie.name,
           serie.data,

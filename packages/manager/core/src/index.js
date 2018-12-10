@@ -1,5 +1,5 @@
 import angular from 'angular';
-import _ from 'lodash';
+import kebabCase from 'lodash/kebabCase';
 import translateAsyncLoader from '@ovh-ux/translate-async-loader';
 
 import 'angular-dynamic-locale';
@@ -56,7 +56,7 @@ angular
   .run((tmhDynamicLocaleCache, tmhDynamicLocale, TranslateService) => {
     const injectAngularLocale = lang => tmhDynamicLocaleCache.put(lang, angular.injector(['ngLocale']).get('$locale'));
     const defaultLanguage = TranslateService.getUserLocale();
-    const angularLocale = _.kebabCase(defaultLanguage);
+    const angularLocale = kebabCase(defaultLanguage);
 
     let angularLocalePromise;
     switch (angularLocale) {

@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import find from 'lodash/find';
 
 export default /* @ngInject */ function (
   $q,
@@ -32,7 +32,7 @@ export default /* @ngInject */ function (
     }).$promise.then((voiceMail) => {
       self.voiceMail = voiceMail;
       self.voiceMailPassword = '';
-      self.voiceMail.audioFormat = _.find(self.audioFormatList, {
+      self.voiceMail.audioFormat = find(self.audioFormatList, {
         value: self.voiceMail.audioFormat,
       });
       return self.voiceMail;
@@ -52,7 +52,7 @@ export default /* @ngInject */ function (
 
   this.cancelEditMode = function cancelEditMode() {
     self.voiceMail = JSON.parse(self.savedConf);
-    self.voiceMail.audioFormat = _.find(self.audioFormatList, {
+    self.voiceMail.audioFormat = find(self.audioFormatList, {
       value: self.voiceMail.audioFormat.value,
     });
     self.editMode = false;

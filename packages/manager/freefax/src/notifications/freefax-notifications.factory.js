@@ -1,5 +1,10 @@
 import angular from 'angular';
-import _ from 'lodash';
+
+import assignIn from 'lodash/assignIn';
+import isBoolean from 'lodash/isBoolean';
+import isEmpty from 'lodash/isEmpty';
+import pick from 'lodash/pick';
+import snakeCase from 'lodash/snakeCase';
 
 export default /* @ngInject */ ($translate) => {
   const template = {
@@ -13,10 +18,10 @@ export default /* @ngInject */ ($translate) => {
      * @param {Object} data Data from AAPI
      */
   const FreefaxNotificationObject = function FreefaxNotificationObject(data) {
-    _.extend(
+    assignIn(
       this,
       template,
-      _.pick(
+      pick(
         data,
         Object.keys(template),
       ),
@@ -36,7 +41,7 @@ export default /* @ngInject */ ($translate) => {
      * Enter Edit Mode
      */
   FreefaxNotificationObject.prototype.edit = function edit() {
-    this.tempValue = _.pick(this, Object.keys(template));
+    this.tempValue = pick(this, Object.keys(template));
     this.toggleEdit(true);
   };
 
@@ -46,7 +51,7 @@ export default /* @ngInject */ ($translate) => {
      * @return {Boolean} new edit mode state
      */
   FreefaxNotificationObject.prototype.toggleEdit = function toggleEdit(state) {
-    if (_.isBoolean(state)) {
+    if (isBoolean(state)) {
       this.editMode = state;
     } else {
       this.editMode = !this.editMode;
@@ -58,7 +63,7 @@ export default /* @ngInject */ ($translate) => {
      * Accept the editing values
      */
   FreefaxNotificationObject.prototype.accept = function accept() {
-    _.extend(this, this.tempValue);
+    assignIn(this, this.tempValue);
     this.toggleEdit(false);
   };
 
@@ -67,10 +72,10 @@ export default /* @ngInject */ ($translate) => {
      */
   Object.defineProperty(FreefaxNotificationObject.prototype, 'id', {
     get() {
-      if (_.isEmpty(this.email)) {
+      if (isEmpty(this.email)) {
         return null;
       }
-      return _.snakeCase(this.email);
+      return snakeCase(this.email);
     },
     set: angular.noop,
   });
