@@ -7,8 +7,8 @@
     "dist"
   ],
   "scripts": {
-    "build": "rollup -c",
-    "dev": "rollup -c --watch",
+    "build": "rollup -c --environment BUILD:production",
+    "dev": "rollup -c --environment BUILD:development --watch",
     "prepare": "yarn run build"
   },
   "browser": "./dist/umd/index.js",

@@ -19,8 +19,8 @@
     "ovh-api-services": "^3.18.0"
   },
   "scripts": {
-    "build": "rollup -c",
-    "dev": "rollup -c --watch",
+    "build": "rollup -c --environment BUILD:production",
+    "dev": "rollup -c --environment BUILD:development --watch",
     "prepare": "yarn run build"
   },
   "devDependencies": {
