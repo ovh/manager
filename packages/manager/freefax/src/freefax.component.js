@@ -3,7 +3,7 @@ import angular from 'angular';
 
 import '@ovh-ux/manager-core';
 import '@ovh-ux/telecom-universe-components';
-import '@ovh-ux/angular-uirouter-title';
+import '@ovh-ux/ng-uirouter-title';
 import 'ovh-angular-ui-confirm-modal';
 import 'ovh-api-services';
 
@@ -26,7 +26,7 @@ export default angular
     'telecomUniverseComponents',
     'ui.router',
     'ovh-angular-ui-confirm-modal',
-    'angular.uirouter.title',
+    'ngUirouterTitle',
     credit,
     faxConfiguration,
     notifications,
