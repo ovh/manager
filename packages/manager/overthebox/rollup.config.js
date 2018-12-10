@@ -4,14 +4,21 @@ const config = rollupConfig({
   input: 'src/index.js',
 });
 
-export default [
-  config.cjs(),
-  config.umd({
-    output: {
-      globals: {
-        angular: 'angular',
-        telecomUniverseComponents: '@ovh-ux/telecom-universe-components',
+const outputs = [];
+
+outputs.push(config.cjs());
+
+if (process.env.BUILD === 'production') {
+  outputs.push(
+    config.umd({
+      output: {
+        globals: {
+          angular: 'angular',
+          telecomUniverseComponents: '@ovh-ux/telecom-universe-components',
+        },
       },
-    },
-  }),
-];
+    }),
+  );
+}
+
+export default outputs;
