@@ -15,6 +15,8 @@ import 'ovh-api-services';
 import 'ovh-ui-angular';
 import 'ovh-angular-otrs';
 
+import './navbar.less';
+
 export default angular
   .module('ovhManagerNavbar', [
     core,

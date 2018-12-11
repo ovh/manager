@@ -9,6 +9,7 @@ const moduleName = 'ovhManagerWelcome';
 angular.module(moduleName, [
   ocLazyLoad,
   'ui.router',
-]).config(routing);
+])
+  .config(routing);
 
 export default moduleName;
