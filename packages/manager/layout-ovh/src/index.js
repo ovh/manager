@@ -30,6 +30,7 @@ import 'angular-ui-bootstrap';
 import 'at-internet-ui-router-plugin';
 import 'ng-at-internet';
 import 'ovh-angular-apiv7';
+import 'ovh-angular-checkbox-table';
 import 'ovh-angular-otrs';
 import 'ovh-angular-pagination-front';
 import 'ovh-angular-responsive-tabs';
@@ -51,6 +52,7 @@ angular
     ngSanitize,
     'oui',
     overthebox,
+    'ovh-angular-checkbox-table',
     'ovh-angular-otrs',
     'ovh-angular-responsive-tabs',
     'ovh-angular-tail-logs',
