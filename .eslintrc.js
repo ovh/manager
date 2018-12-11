@@ -11,6 +11,7 @@ module.exports = {
   rules: {
     'no-bitwise': ['error', { allow: ['~'] }],
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
+    'import/no-unresolved': 0,
   },
   settings: {
     'import/resolver': {
