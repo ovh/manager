@@ -6,9 +6,10 @@ const config = rollupConfig({
 
 const outputs = [];
 
-outputs.push(config.cjs());
+outputs.push(config.es());
 
 if (process.env.BUILD === 'production') {
+  outputs.push(config.cjs());
   outputs.push(
     config.umd({
       output: {

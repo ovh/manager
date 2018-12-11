@@ -3,13 +3,13 @@
   "version": "1.0.0-alpha.1",
   "license": "BSD-3-Clause",
   "main": "./dist/cjs/index.js",
-  "dependencies": {
-    "oclazyload": "^1.1.0"
-  },
+  "browser": "./dist/umd/welcome.js",
+  "module": "./dist/esm/index.js",
   "peerDependencies": {
     "@ovh-ux/manager-core": "^1.1.0-alpha.0",
     "@uirouter/angularjs": "^1.0.15",
-    "angular": "~1.6.10"
+    "angular": "~1.6.10",
+    "oclazyload": "^1.1.0"
   },
   "scripts": {
     "build": "rollup -c --environment BUILD:production",
