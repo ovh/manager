@@ -12,8 +12,6 @@ import _ from 'lodash';
 import ssoAuth from 'ovh-angular-sso-auth';
 import OvhHttp from 'ovh-angular-http';
 
-import telecomUniverseComponents from '@ovh-ux/telecom-universe-components';
-
 import core from '@ovh-ux/manager-core';
 import overthebox from '@ovh-ux/manager-overthebox';
 import freefax from '@ovh-ux/manager-freefax';
@@ -46,14 +44,12 @@ angular
     overthebox,
     'ovh-angular-otrs',
     'ovh-angular-responsive-tabs',
-    'ovh-angular-tail-logs',
     'ovh-angular-ui-confirm-modal',
     'ovhAngularContracts',
     'ovh-angular-ui-confirm-modal',
     OvhHttp,
     sidebar,
     ssoAuth,
-    telecomUniverseComponents,
     translate,
     'ui.bootstrap',
     welcome,
