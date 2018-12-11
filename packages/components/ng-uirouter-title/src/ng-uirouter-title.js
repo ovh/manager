@@ -1,4 +1,5 @@
 import angular from 'angular';
+import '@uirouter/angularjs';
 
 const moduleName = 'ngUirouterTitle';
 angular
