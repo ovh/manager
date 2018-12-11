@@ -3,6 +3,8 @@
   "version": "1.1.0-alpha.0",
   "license": "BSD-3-Clause",
   "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "browser": "./dist/umd/core.js",
   "files": [
     "dist"
   ],
