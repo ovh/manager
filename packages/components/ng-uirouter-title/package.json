@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/angular-uirouter-title",
-  "version": "1.0.4",
+  "version": "2.0.0-beta.0",
   "description": "AngularJS module for updating browser title/history based on the current ui-router state.",
   "keywords": [
     "angular",
