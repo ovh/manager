@@ -1,3 +1,7 @@
+# [1.0.0-alpha.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-freefax@1.0.0-alpha.1...@ovh-ux/manager-freefax@1.0.0-alpha.2) (2018-12-05)
+
+
+
 # [1.0.0-alpha.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-freefax@1.0.0-alpha.0...@ovh-ux/manager-freefax@1.0.0-alpha.1) (2018-11-28)
 
 

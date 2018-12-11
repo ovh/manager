@@ -1,14 +1,15 @@
-import _ from 'lodash';
+import forEach from 'lodash/forEach';
+import snakeCase from 'lodash/snakeCase';
 
 export default /* @ngInject */ function ($translate, OVER_THE_BOX) {
   const self = this;
 
   function injectTitleInUrl(descriptor, lang) {
     if (descriptor.url && descriptor.url[lang]) {
-      descriptor.url[lang] = descriptor.url[lang].replace('{title}', _.snakeCase($translate.instant(descriptor.label))); // eslint-disable-line
+      descriptor.url[lang] = descriptor.url[lang].replace('{title}', snakeCase($translate.instant(descriptor.label))); // eslint-disable-line
     }
     if (descriptor.subs) {
-      _.forEach(descriptor.subs, (sub) => {
+      forEach(descriptor.subs, (sub) => {
         injectTitleInUrl(sub, lang);
       });
     }

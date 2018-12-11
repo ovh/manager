@@ -1,4 +1,8 @@
-import _ from 'lodash';
+import filter from 'lodash/filter';
+import forEach from 'lodash/forEach';
+import map from 'lodash/map';
+import remove from 'lodash/remove';
+import some from 'lodash/some';
 
 export default /* @ngInject */ function (
   $q,
@@ -14,7 +18,7 @@ export default /* @ngInject */ function (
   /**
    * submit / unsubmit with keys
    */
-  this.watchKey = function ($event, notif, valid) {
+  this.watchKey = function watchKey($event, notif, valid) {
     if ($event.keyCode === 13 && valid) {
       self.update(notif);
     }
@@ -31,9 +35,9 @@ export default /* @ngInject */ function (
    * @param {FreefaxNotificationObject} current    Current object
    * @return {Boolean}
    */
-  this.isUnique = function (val, collection, current) {
-    const other = _.filter(collection, elt => elt.email !== current.email);
-    return !_.some(other, { email: val });
+  this.isUnique = function isUnique(val, collection, current) {
+    const other = filter(collection, elt => elt.email !== current.email);
+    return !some(other, { email: val });
   };
 
   /**
@@ -41,10 +45,10 @@ export default /* @ngInject */ function (
    * @param {FreefaxNotificationObject} notif Current notification (optional)
    * @return {Promise}
    */
-  this.update = function (notifParam) {
+  this.update = function update(notifParam) {
     const notif = notifParam || {};
     notif.busy = true;
-    const notifications = _.filter(this.notifications, elt => elt.email !== notif.email);
+    const notifications = filter(this.notifications, elt => elt.email !== notif.email);
     notifications.push(notif.tempValue);
     return OvhApiFreeFax.Aapi().notificationsUpdate({
       serviceName: $stateParams.serviceName,
@@ -68,17 +72,17 @@ export default /* @ngInject */ function (
    * Cancel the edition of a BDHCP
    * @param {FreefaxNotificationObject} notif Notification
    */
-  this.cancel = function (notif) {
+  this.cancel = function cancel(notif) {
     if (!notif.cancel()) {
-      _.remove(self.notifications, notif);
+      remove(self.notifications, notif);
     }
   };
 
   /**
    * Add a notification in edition mode
    */
-  this.add = function () {
-    _.forEach(this.notifications, (notif) => {
+  this.add = function add() {
+    forEach(this.notifications, (notif) => {
       if (notif.editMode) {
         self.cancel(notif);
       }
@@ -92,8 +96,8 @@ export default /* @ngInject */ function (
    * Destroy a notification
    * @return {Promise}
    */
-  this.destroy = function (notif) {
-    const removed = _.remove(this.notifications, { email: notif.email });
+  this.destroy = function destroy(notif) {
+    const removed = remove(this.notifications, { email: notif.email });
     return this.update().then(data => data).catch((err) => {
       self.notifications.push(removed[0]);
       return $q.reject(err);
@@ -128,7 +132,7 @@ export default /* @ngInject */ function (
    */
   function getTypeChoices() {
     return OvhApiFreeFax.v6().schema().$promise.then((data) => {
-      self.typeChoices = _.map(data.models['telephony.ServiceVoicemailMailOptionEnum'].enum, value => ({
+      self.typeChoices = map(data.models['telephony.ServiceVoicemailMailOptionEnum'].enum, value => ({
         value,
         label: $translate.instant(`freefax_notification_type_${value}`),
       }));
@@ -142,7 +146,7 @@ export default /* @ngInject */ function (
   function init() {
     self.typeChoices = [];
 
-    self.sourceChoices = _.map(['fax', 'voicemail', 'both'], elt => ({
+    self.sourceChoices = map(['fax', 'voicemail', 'both'], elt => ({
       value: elt,
       label: $translate.instant(`freefax_notification_source_${elt}`),
     }));

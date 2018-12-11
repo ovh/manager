@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import head from 'lodash/head';
 
 export default /* @ngInject */ function (
   OvhApiFreeFax,
@@ -21,14 +21,14 @@ export default /* @ngInject */ function (
     self.quantity = null;
   }
 
-  self.getPrice = function (amount) {
+  self.getPrice = function getPrice(amount) {
     self.contracts = [];
     self.cost = null;
     OvhApiFreeFax.v6().getPrice({
       quantity: amount,
     }).$promise.then((data) => {
       self.cost = data.prices;
-      const detail = _.head(data.details);
+      const detail = head(data.details);
       self.quantity = detail.quantity;
       self.contracts = data.contracts;
     }, (err) => {
@@ -37,12 +37,12 @@ export default /* @ngInject */ function (
     });
   };
 
-  self.order = function (amount) {
+  self.order = function order(amount) {
     self.orderDone = true;
     OvhApiFreeFax.v6().orderCredits(null, {
       quantity: amount,
     }).$promise.then((response) => {
-      const detail = _.head(response.details);
+      const detail = head(response.details);
       self.bill = {
         url: response.url,
         total: response.prices.withTax.text,

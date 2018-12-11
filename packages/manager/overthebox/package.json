@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-overthebox",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.2",
   "license": "BSD-3-Clause",
   "files": [
     "dist"
@@ -13,14 +13,14 @@
   },
   "browser": "./dist/umd/index.js",
   "dependencies": {
-    "lodash": "3.10.1",
+    "lodash": "4.17.11",
     "moment": "^2.22.2"
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "5.0.0-beta.1"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-core": "^1.0.0-alpha.0",
+    "@ovh-ux/manager-core": "^1.1.0-alpha.0",
     "@ovh-ux/telecom-universe-components": "^1.0.4",
     "angular": "1.7.5",
     "angularjs-scroll-glue": "^2.2.0",
