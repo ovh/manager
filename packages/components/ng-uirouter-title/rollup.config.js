@@ -1,7 +1,7 @@
 import rollupConfig from '@ovh-ux/component-rollup-config';
 
 const config = rollupConfig({
-  input: 'src/angular-uirouter-title.js',
+  input: 'src/ng-uirouter-title.js',
 });
 
 export default [

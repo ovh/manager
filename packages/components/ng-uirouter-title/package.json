@@ -1,5 +1,5 @@
 {
-  "name": "@ovh-ux/angular-uirouter-title",
+  "name": "@ovh-ux/ng-uirouter-title",
   "version": "2.0.0-beta.0",
   "description": "AngularJS module for updating browser title/history based on the current ui-router state.",
   "keywords": [
@@ -8,13 +8,13 @@
     "title",
     "ovh"
   ],
-  "repository": "ovh-ux/angular-uirouter-title",
+  "repository": "ovh-ux/ng-uirouter-title",
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "files": [
     "dist"
   ],
-  "main": "./dist/cjs/angular-uirouter-title.js",
+  "main": "./dist/cjs/ng-uirouter-title.js",
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c --watch",
@@ -25,7 +25,7 @@
     "version": "npx conventional-changelog-cli -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
     "postversion": "git push && git push --tags"
   },
-  "browser": "./dist/umd/angular-uirouter-title.js",
+  "browser": "./dist/umd/ng-uirouter-title.js",
   "devDependencies": {
     "@babel/core": "^7.1.2",
     "@babel/preset-env": "^7.1.0",

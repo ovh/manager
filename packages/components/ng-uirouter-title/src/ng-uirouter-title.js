@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-const moduleName = 'ovhAngularUiRouterTitle';
+const moduleName = 'ngUirouterTitle';
 angular
   .module(moduleName, [
     'ui.router',
