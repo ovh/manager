@@ -4,7 +4,6 @@ const moduleName = 'ngUirouterTitle';
 angular
   .module(moduleName, [
     'ui.router',
-    'ui.router.title',
   ])
   .run(/* ngInject */ ($transitions) => {
     $transitions.onSuccess({}, (transition) => {
