@@ -4,9 +4,7 @@ const config = rollupConfig({
   input: 'src/index.js',
 });
 
-const outputs = [];
-
-outputs.push(config.es());
+const outputs = [config.es()];
 
 if (process.env.BUILD === 'production') {
   outputs.push(config.cjs());
