@@ -12,14 +12,20 @@ const config = rollupConfig({
   },
 });
 
-export default [
-  config.cjs(),
-  config.umd({
-    output: {
-      globals: {
-        angular: 'angular',
-        telecomUniverseComponents: '@ovh-ux/telecom-universe-components',
+const outputs = [config.es()];
+
+if (process.env.BUILD === 'production') {
+  outputs.push(config.cjs());
+  outputs.push(
+    config.umd({
+      output: {
+        globals: {
+          angular: 'angular',
+          telecomUniverseComponents: '@ovh-ux/telecom-universe-components',
+        },
       },
-    },
-  }),
-];
+    }),
+  );
+}
+
+export default outputs;
