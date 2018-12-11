@@ -34,6 +34,7 @@
    <translation id="overTheBox_publicIp" qtlid="317711">Adresse IP publique&#160;:</translation>
    <translation id="overTheBox_deviceId" qtlid="317724">Identifiant du périphérique&#160;:</translation>
    <translation id="overTheBox_deviceId_button_title" qtlid="289471">Identifiant du périphérique :</translation>
+   <translation id="overTheBox_deviceId_modify" qtlid="37875">Modifier</translation>
    <translation id="overTheBox_device_state" qtlid="317737">État du périphérique&#160;:</translation>
    <translation id="overTheBox_expiration_date" qtlid="317750">Prochaine facturation&#160;:</translation>
    <translation id="overTheBox_billing_date" qtlid="317750">Prochaine facturation&#160;:</translation>
