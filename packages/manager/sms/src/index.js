@@ -1,67 +1,22 @@
 import angular from 'angular';
-
-import './telecom-sms.less';
-
-import constant from './telecom-sms.constant';
-import controller from './telecom-sms.controller';
-import smsView from './telecom-sms.html';
-
-import dashboard from './dashboard';
-import guides from './guides';
-import options from './options';
-import order from './order';
-import phonebooks from './phonebooks';
-import receivers from './receivers';
-import senders from './senders';
-import sms from './sms';
-import users from './users';
+import '@uirouter/angularjs';
+import 'oclazyload';
 
 const moduleName = 'ovhManagerSms';
 
 angular.module(moduleName, [
-  dashboard,
-  guides,
-  options,
-  order,
-  phonebooks,
-  receivers,
-  senders,
-  sms,
-  users,
+  'ui.router',
+  'oc.lazyLoad',
 ])
-  .constant('SMS_URL', constant.SMS_URL)
-  .constant('SMS_GUIDES', constant.SMS_GUIDES)
-  .constant('SMS_ALERTS', constant.SMS_ALERTS)
-  .constant('SMS_PHONEBOOKS', constant.SMS_PHONEBOOKS)
-  .config(($stateProvider) => {
-    $stateProvider.state('sms', {
+  .config(/* @ngInject */ ($stateProvider) => {
+    $stateProvider.state('sms.**', {
       url: '/sms/:serviceName',
-      views: {
-        '': {
-          template: smsView,
-          controller,
-          controllerAs: 'TelecomSmsCtrl',
-        },
-      },
-      abstract: true,
-      resolve: {
-        initSms: ($q, $stateParams, TucSmsMediator) => {
-          // init sms services
-          TucSmsMediator.initAll().then(smsDetails => TucSmsMediator
-            .setCurrentSmsService(smsDetails[$stateParams.serviceName]));
-          return $q.when({ init: true });
-        },
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-        $title: (translations, $translate, OvhApiSms, $stateParams) => OvhApiSms.v6()
-          .get({
-            serviceName: $stateParams.serviceName,
-          }).$promise
-          .then(data => $translate.instant('sms_page_title', { name: data.description || $stateParams.serviceName }, null, null, 'escape'))
-          .catch(() => $translate('sms_page_title', { name: $stateParams.serviceName })),
+        return import('./telecom-sms.component')
+          .then(mod => $ocLazyLoad.inject(mod.default || mod));
       },
-      translations: [
-        '.',
-      ],
     });
   });
 
