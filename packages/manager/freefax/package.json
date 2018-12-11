@@ -2,11 +2,11 @@
   "name": "@ovh-ux/manager-freefax",
   "version": "1.0.0-alpha.2",
   "license": "BSD-3-Clause",
-  "main": "./dist/cjs/index.js",
-  "module": "./dist/esm/index.js",
   "files": [
     "dist"
   ],
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
   "scripts": {
     "build": "rollup -c --environment BUILD:production",
     "dev": "rollup -c --environment BUILD:development --watch",
@@ -23,11 +23,11 @@
     "@ovh-ux/angular-uirouter-title": "^1.0.4",
     "@ovh-ux/manager-core": "^1.1.0-alpha.0",
     "@ovh-ux/manager-universes-styles": "^1.0.0-alpha.1",
+    "@ovh-ux/ovh-angular-contracts": "https://github.com/ovh-ux/ovh-angular-contracts.git#v3.x.x",
     "@ovh-ux/telecom-universe-components": "^1.0.4",
     "@uirouter/angularjs": "^1.0.15",
     "angular": "^1.7.5",
     "angular-translate": "^2.18.1",
-    "@ovh-ux/ovh-angular-contracts": "https://github.com/ovh-ux/ovh-angular-contracts.git#v3.x.x",
     "oclazyload": "^1.1.0",
     "ovh-angular-ui-confirm-modal": "^1.0.2",
     "ovh-api-services": "^3.24.0",
