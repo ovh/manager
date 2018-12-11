@@ -8,7 +8,6 @@ export default class ManagerNavbarService {
   constructor(
     $q,
     $translate,
-    asyncLoader,
     // FeatureAvailabilityService,
     CORE_LANGUAGES,
     MANAGER_URLS,
@@ -24,7 +23,6 @@ export default class ManagerNavbarService {
     this.$q = $q;
     this.$translate = $translate;
     // this.featureAvailabilityService = FeatureAvailabilityService;
-    this.asyncLoader = asyncLoader;
     this.LANGUAGES = CORE_LANGUAGES;
     this.MANAGER_URLS = MANAGER_URLS;
     this.navbarNotificationService = NavbarNotificationService;
@@ -296,13 +294,6 @@ export default class ManagerNavbarService {
     }
   }
 
-  loadTranslations() {
-    return this.asyncLoader.addTranslations(
-      import(`./translations/Messages_${this.$translate.use()}.xml`)
-        .then(module => module.default),
-    );
-  }
-
   // Get managers links for main-links attribute
   getManagerLinks() {
     const managerUrls = this.MANAGER_URLS;
@@ -346,7 +337,6 @@ export default class ManagerNavbarService {
       };
     };
     return this.$q.all({
-      translate: this.loadTranslations(),
       user: this.sessionService.getUser(),
       notifications: this.navbarNotificationService.getNavbarContent(),
     })
