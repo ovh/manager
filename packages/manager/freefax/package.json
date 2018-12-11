@@ -24,7 +24,7 @@
     "@ovh-ux/manager-core": "^1.1.0-alpha.0",
     "@ovh-ux/manager-universes-styles": "^1.0.0-alpha.1",
     "@ovh-ux/ovh-angular-contracts": "https://github.com/ovh-ux/ovh-angular-contracts.git#v3.x.x",
-    "@ovh-ux/telecom-universe-components": "^1.0.4",
+    "@ovh-ux/telecom-universe-components": "^1.3.0",
     "@uirouter/angularjs": "^1.0.15",
     "angular": "^1.7.5",
     "angular-translate": "^2.18.1",
