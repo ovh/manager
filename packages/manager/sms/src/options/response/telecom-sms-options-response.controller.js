@@ -212,7 +212,7 @@ export default class {
   removeTrackingOptions($index, option) {
     const modal = this.$uibModal.open({
       animation: true,
-      templateUrl: removeTemplate,
+      template: removeTemplate,
       controller: removeController,
       controllerAs: 'OptionsResponseRemoveCtrl',
       resolve: {
