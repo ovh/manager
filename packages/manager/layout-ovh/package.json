@@ -27,6 +27,7 @@
     "angular-cookies": "^1.7.5",
     "angular-dynamic-locale": "^0.1.37",
     "angular-i18n": "~1.5.x",
+    "angular-messages": "^1.7.5",
     "angular-resource": "^1.7.5",
     "angular-sanitize": "1.7.5",
     "angular-translate": "^2.18.1",

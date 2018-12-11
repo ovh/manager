@@ -4,6 +4,7 @@ import 'script-loader!moment'; // eslint-disable-line
 
 import angular from 'angular';
 import ngAria from 'angular-aria';
+import ngMessages from 'angular-messages';
 import ngSanitize from 'angular-sanitize';
 import 'angular-resource';
 import translate from 'angular-translate';
@@ -46,6 +47,7 @@ angular
     navbar,
     'ng-at-internet',
     ngAria,
+    ngMessages,
     ngSanitize,
     'oui',
     overthebox,
