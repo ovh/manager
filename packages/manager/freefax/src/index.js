@@ -1,14 +1,13 @@
 import angular from 'angular';
-
 import '@uirouter/angularjs';
-import ocLazyLoad from 'oclazyload';
+import 'oclazyload';
 
 const moduleName = 'ovhManagerFreeFax';
 
 angular
   .module(moduleName, [
     'ui.router',
-    ocLazyLoad,
+    'oc.lazyLoad',
   ])
   .config(/* @ngInject */($stateProvider) => {
     $stateProvider.state('freefax.**', {
