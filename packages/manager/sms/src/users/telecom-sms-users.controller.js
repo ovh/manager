@@ -157,7 +157,7 @@ export default class {
       animation: true,
       template: changePasswordTemplate,
       controller: changePasswordController,
-      controllerAs: 'UsersChangePasswordCtrl',
+      controllerAs: '$ctrl',
       resolve: { user: () => user },
     });
     modal.result.then(() => this.refresh()).catch((error) => {
