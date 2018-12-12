@@ -1,3 +1,12 @@
+# [2.0.0-beta.2](https://github.com/ovh-ux/ng-uirouter-title/compare/v2.0.0-beta.1...v2.0.0-beta.2) (2018-12-12)
+
+
+### Bug Fixes
+
+* use initial title if $title is not defined ([28b3104](https://github.com/ovh-ux/ng-uirouter-title/commit/28b3104))
+
+
+
 # [2.0.0-beta.1](https://github.com/ovh-ux/ng-uirouter-title/compare/v2.0.0-beta.0...v2.0.0-beta.1) (2018-12-11)
 
 
