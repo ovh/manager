@@ -1,4 +1,4 @@
-<section class="telecom-sms"
+<section class="telecom-legacy telecom-sms"
          data-ui-view="smsView">
 
     <!-- LOADING -->
@@ -73,8 +73,7 @@
 
     <main class="telecom-section-content" role="main">
           <tuc-toast-message></tuc-toast-message>
-          <div class="p-5"
-               data-ng-if="!TelecomSmsCtrl.loading.init"
+          <div data-ng-if="!TelecomSmsCtrl.loading.init"
                data-ui-view="smsInnerView">
           </div>
     </main>
