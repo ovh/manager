@@ -4,9 +4,9 @@
   "description": "AngularJS module for updating browser title/history based on the current ui-router state.",
   "keywords": [
     "angular",
-    "uirouter",
+    "ovh",
     "title",
-    "ovh"
+    "uirouter"
   ],
   "repository": "ovh-ux/ng-uirouter-title",
   "license": "BSD-3-Clause",
@@ -26,6 +26,9 @@
     "postversion": "git push && git push --tags"
   },
   "browser": "./dist/umd/ng-uirouter-title.js",
+  "dependencies": {
+    "lodash": "^4.17.11"
+  },
   "devDependencies": {
     "@babel/core": "^7.1.2",
     "@babel/preset-env": "^7.1.0",
