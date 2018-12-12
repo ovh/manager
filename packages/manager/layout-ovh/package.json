@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-layout-ovh",
-  "version": "1.1.0-alpha.0",
+  "version": "1.1.0",
   "private": true,
   "license": "BSD-3-Clause",
   "main": "./src/index.js",
@@ -9,11 +9,11 @@
     "dev": "webpack-dev-server --verbose"
   },
   "dependencies": {
-    "@ovh-ux/manager-core": "^1.1.0-alpha.0",
-    "@ovh-ux/manager-freefax": "^1.0.0-alpha.2",
-    "@ovh-ux/manager-overthebox": "^1.0.0-alpha.2",
-    "@ovh-ux/manager-universes-styles": "^1.0.0-alpha.1",
-    "@ovh-ux/manager-welcome": "^1.0.0-alpha.1",
+    "@ovh-ux/manager-core": "^1.1.0",
+    "@ovh-ux/manager-freefax": "^1.0.0",
+    "@ovh-ux/manager-overthebox": "^1.0.0",
+    "@ovh-ux/manager-universes-styles": "^1.0.0",
+    "@ovh-ux/manager-welcome": "^1.0.0",
     "@ovh-ux/ovh-angular-contracts": "^3.0.0-beta.0",
     "@ovh-ux/ng-uirouter-title": "^2.0.0-beta.2",
     "@ovh-ux/ovh-utils-angular": "^14.0.0-alpha.1",
