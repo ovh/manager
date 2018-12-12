@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import head from 'lodash/head';
 
 export default /* @ngInject */ function ($translate, $q, $scope, OvhApiOrderOverTheBoxNew,
   OvhApiPriceOverTheBoxOffer, OvhApiOverTheBox, TucToast, TucToastError, OvhApiMePaymentMean) {
@@ -82,7 +82,7 @@ export default /* @ngInject */ function ($translate, $q, $scope, OvhApiOrderOver
   self.startOrder = function startOrder() {
     return self.getOrderOffers().then((offers) => {
       if (offers.length === 1) {
-        self.orderModel.offer = _.first(offers);
+        self.orderModel.offer = head(offers);
         self.getOrderDurations().finally(() => {
           self.states.order = true;
         });
@@ -115,10 +115,10 @@ export default /* @ngInject */ function ($translate, $q, $scope, OvhApiOrderOver
     }).$promise.then((durations) => {
       self.durations = durations;
       if (durations.length === 1) {
-        self.orderModel.duration = _.first(self.durations);
+        self.orderModel.duration = head(self.durations);
       }
       if (self.devices.length === 1) {
-        self.orderModel.deviceId = _.first(self.devices).deviceId;
+        self.orderModel.deviceId = head(self.devices).deviceId;
       }
 
       return durations;

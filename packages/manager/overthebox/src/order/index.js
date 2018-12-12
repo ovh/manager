@@ -23,11 +23,14 @@ angular.module(moduleName, [])
       template,
       controller,
       controllerAs: 'OrderOverTheBox',
-      translations: [
-        '.',
-        '..',
-        '../warning',
-      ],
+      translations: {
+        value: [
+          '.',
+          '..',
+          '../warning',
+        ],
+        format: 'json',
+      },
     });
   });
 

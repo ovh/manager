@@ -1,0 +1,22 @@
+{
+ "freefax_voicemail_configuration_title": "Configurazione della segreteria",
+ "freefax_voicemail_parameters": "Impostazioni della segreteria",
+ "freefax_voicemail_activation": "Attiva la segreteria",
+ "freefax_voicemail_password": "Password (4 cifre)",
+ "freefax_voicemail_change_password": "Modifica la password",
+ "freefax_voicemail_change_password_confirm": "Conferma",
+ "freefax_voicemail_ask_password": "Password della segreteria",
+ "freefax_voicemail_always_ask_password": "Chiedi sempre la password",
+ "freefax_voicemail_sender_name": "Nome del mittente",
+ "freefax_voicemail_sender_email": "Email del mittente",
+ "freefax_voicemail_keep_messages": "Elimina automaticamente il messaggio dopo l'invio",
+ "freefax_voicemail_audio_format": "Ricevi i messaggi audio in formato",
+ "freefax_voicemail_redirection_emails": "Indirizzo di posta a cui saranno inviati i messaggi",
+ "freefax_voicemail_redirection_email": "Email",
+ "freefax_voicemail_redirection_type": "tipo",
+ "freefax_voicemail_success": "Configurazione aggiornata",
+ "freefax_voicemail_bad_password": "Password non corretta",
+ "freefax_voicemail_cancel": "Annuler",
+ "freefax_voicemail_submit": "Valider",
+ "freefax_voicemail_edit": "Éditer"
+}

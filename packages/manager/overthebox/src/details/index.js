@@ -23,7 +23,10 @@ angular.module(moduleName, [])
           controllerAs: 'OverTheBoxDetails',
         },
       },
-      translations: ['.', '../warning', '../remote'],
+      translations: {
+        value: ['.', '../warning', '../remote'],
+        format: 'json',
+      },
     });
   })
   .service('OverTheBoxGraphService', overTheBoxGraphService);

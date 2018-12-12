@@ -15,7 +15,10 @@ angular.module(moduleName, [])
           controllerAs: 'OverTheBoxDocs',
         },
       },
-      translations: ['.'],
+      translations: {
+        value: ['.'],
+        format: 'json',
+      },
     });
   });
 

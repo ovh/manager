@@ -11,7 +11,10 @@ angular.module(moduleName, [])
       template,
       controller,
       controllerAs: 'OverTheBoxConfigure',
-      translations: ['.'],
+      translations: {
+        value: ['.'],
+        format: 'json',
+      },
     });
 
     // special redirection for /configure/overTheBox which is inside internal OTB UX

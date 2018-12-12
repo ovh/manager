@@ -17,7 +17,10 @@ angular.module(moduleName, [])
           controllerAs: 'OverTheBoxRemote',
         },
       },
-      translations: ['.'],
+      translations: {
+        value: ['.'],
+        format: 'json',
+      },
     });
   });
 

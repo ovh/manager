@@ -15,6 +15,8 @@ import 'ovh-api-services';
 import 'ovh-ui-angular';
 import 'ovh-angular-otrs';
 
+import './navbar.less';
+
 export default angular
   .module('ovhManagerNavbar', [
     core,
@@ -31,14 +33,8 @@ export default angular
   })
   .service('ManagerNavbarService', navbarService)
   .service('NavbarNotificationService', notificationService)
-
-  .run(($translate, asyncLoader, ouiNavbarConfiguration) => {
-    asyncLoader.addTranslations(
-      import(`./translations/Messages_${$translate.use()}.xml`)
-        .catch(() => import(`./translations/Messages_${$translate.fallbackLanguage()}.xml`))
-        .then(x => x.default),
-    );
-    $translate.refresh();
+  .run(/* @ngTranslationsInject:json ./translations */)
+  .run(($translate, ouiNavbarConfiguration) => {
     _.set(ouiNavbarConfiguration, 'translations', {
       notification: {
         errorInNotification: $translate.instant('navbar_notification_error_in_notification'),

@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import find from 'lodash/find';
 
 export default /* @ngInject */ function (
   $q,
@@ -32,7 +32,7 @@ export default /* @ngInject */ function (
     }).$promise.then((voiceMail) => {
       self.voiceMail = voiceMail;
       self.voiceMailPassword = '';
-      self.voiceMail.audioFormat = _.find(self.audioFormatList, {
+      self.voiceMail.audioFormat = find(self.audioFormatList, {
         value: self.voiceMail.audioFormat,
       });
       return self.voiceMail;
@@ -50,15 +50,15 @@ export default /* @ngInject */ function (
     });
   }
 
-  this.cancelEditMode = function () {
+  this.cancelEditMode = function cancelEditMode() {
     self.voiceMail = JSON.parse(self.savedConf);
-    self.voiceMail.audioFormat = _.find(self.audioFormatList, {
+    self.voiceMail.audioFormat = find(self.audioFormatList, {
       value: self.voiceMail.audioFormat.value,
     });
     self.editMode = false;
   };
 
-  this.enterEditMode = function () {
+  this.enterEditMode = function enterEditMode() {
     self.password = [
       '',
       '',
@@ -67,7 +67,7 @@ export default /* @ngInject */ function (
     self.editMode = true;
   };
 
-  this.saveConfiguration = function (conf) {
+  this.saveConfiguration = function saveConfiguration(conf) {
     const tasks = [
       self.save(conf),
     ];
@@ -82,20 +82,20 @@ export default /* @ngInject */ function (
     }, TucToastError);
   };
 
-  this.validPassword = function (val) {
+  this.validPassword = function validPassword(val) {
     return (/^[0-9]{4}$/).test(val) || !val;
   };
 
-  this.validName = function (val) {
+  this.validName = function validName(val) {
     return (/^[\wàèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅå\s\-_']*$/).test(val) || !val;
   };
 
-  this.checkPassword = function () {
+  this.checkPassword = function checkPassword() {
     return (self.password[0] === self.password[1])
             && self.validPassword(self.password[0]);
   };
 
-  this.save = function (conf) {
+  this.save = function save(conf) {
     const tasks = [
       OvhApiFreeFax.v6().voiceMailPut({
         serviceName: $stateParams.serviceName,
@@ -119,7 +119,7 @@ export default /* @ngInject */ function (
     return $q.all(tasks);
   };
 
-  this.changePassword = function (newPassword) {
+  this.changePassword = function changePassword(newPassword) {
     return $q((resolve, reject) => {
       if (!self.checkPassword()) {
         TucToast.error($translate.instant('freefax_voicemail_bad_password'));

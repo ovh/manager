@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<translations>
-   <translation id="overthebox_configure_reset" qtlid="305785">Se ha reiniciado el OverTheBox</translation>
-   <translation id="overthebox_configure_order" qtlid="305798">Ha recibido su nuevo OverTheBox</translation>
-   <translation id="overthebox_configure_reset_explaination" qtlid="305811">Su dispositivo ha cambiado de identificador. Ahora debe asociar este último a un servicio existente del apartado «Periférico» > «Identificador del periférico»:</translation>
-   <translation id="overthebox_configure_order_explaination" qtlid="305824">Ha adquirido un nuevo dispositivo. Ahora debe <a href="{{hash}}">suscribir un nuevo servicio</a>.</translation>
-</translations>
