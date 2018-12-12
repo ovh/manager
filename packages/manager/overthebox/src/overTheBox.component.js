@@ -2,6 +2,7 @@ import angular from 'angular';
 
 import '@ovh-ux/manager-core';
 import '@ovh-ux/telecom-universe-components';
+import '@ovh-ux/ng-uirouter-title';
 import 'angularjs-scroll-glue';
 import 'ovh-angular-tail-logs';
 
@@ -26,6 +27,7 @@ angular
     'ovh-angular-tail-logs',
     'telecomUniverseComponents',
     'ovhManagerCore',
+    'ngUirouterTitle',
     configure,
     details,
     docs,
@@ -39,12 +41,15 @@ angular
       url: '/overTheBox/:serviceName',
       abstract: true,
       component: 'ovhManagerOverTheBoxComponent',
-      translations: [
-        '.',
-        './details',
-        './warning',
-        './remote',
-      ],
+      translations: {
+        value: [
+          '.',
+          './details',
+          './warning',
+          './remote',
+        ],
+        format: 'json',
+      },
       resolve: {
         $title(translations, $translate, $stateParams, OvhApiOverTheBox) {
           return OvhApiOverTheBox.v6().get({

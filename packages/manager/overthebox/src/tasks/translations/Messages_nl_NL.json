@@ -1,0 +1,11 @@
+{
+ "overTheBox_tasks_list": "Overzicht van taken",
+ "overTheBox_tasks_id": "ID",
+ "overTheBox_tasks_name": "Naam",
+ "overTheBox_tasks_status": "Status",
+ "overTheBox_no_task": "Geen taken",
+ "overTheBox_tasks_status_todo": "om te doen",
+ "overTheBox_tasks_status_doing": "Wordt uitgevoerd",
+ "overTheBox_tasks_status_done": "Beëindigd",
+ "overTheBox_tasks_status_error": "Error"
+}

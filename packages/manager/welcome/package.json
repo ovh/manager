@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-welcome",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0",
   "license": "BSD-3-Clause",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
@@ -11,10 +11,10 @@
   },
   "browser": "./dist/umd/welcome.js",
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "5.0.0-beta.1"
+    "@ovh-ux/component-rollup-config": "5.0.0-beta.3"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-core": "^1.1.0-alpha.0",
+    "@ovh-ux/manager-core": "^1.1.0",
     "@uirouter/angularjs": "^1.0.15",
     "angular": "~1.6.10",
     "oclazyload": "^1.1.0"
