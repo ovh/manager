@@ -68,13 +68,20 @@ const checkDependencies = dependencies => new Promise((resolve, reject) => {
     return deps;
   });
 
-const updateDependencies = dependencies => Promise
-  .all(dependencies.map(d => d.update()))
-  .logging('updating dependencies')
-  .then((deps) => {
-    deps.forEach(d => console.log(`    in ${d.repository.name}: updated ${d.dependency.name} dependency to ${d.semanticVersion}`));
-    return deps;
-  });
+const updateDependencies = (dependencies) => {
+  const promiseSerial = funcs => funcs.reduce((promise, func) => promise.then(
+    result => func()
+      .then(Array.prototype.concat.bind(result)),
+  ),
+  Promise.resolve([]));
+
+  return promiseSerial(dependencies.map(d => () => d.update()))
+    .logging('updating dependencies')
+    .then((deps) => {
+      deps.forEach(d => console.log(`    in ${d.repository.name}: updated ${d.dependency.name} dependency to ${d.semanticVersion}`));
+      return deps;
+    });
+};
 
 const getReleaseVersion = (version, seed) => {
   if (!version) {
