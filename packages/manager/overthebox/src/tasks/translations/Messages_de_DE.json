@@ -1,11 +1,11 @@
 {
-  "overTheBox_tasks_list": "Task List",
-  "overTheBox_tasks_id": "ID",
-  "overTheBox_tasks_name": "Name",
-  "overTheBox_tasks_status": "Status",
-  "overTheBox_no_task": "Keine Tasks",
-  "overTheBox_tasks_status_todo": "Zu erledigen",
-  "overTheBox_tasks_status_doing": "Wird ausgeführt",
-  "overTheBox_tasks_status_done": "Abgeschlossen",
-  "overTheBox_tasks_status_error": "Fehler"
+ "overTheBox_tasks_list": "Task List",
+ "overTheBox_tasks_id": "ID",
+ "overTheBox_tasks_name": "Name",
+ "overTheBox_tasks_status": "Status",
+ "overTheBox_no_task": "Keine Tasks",
+ "overTheBox_tasks_status_todo": "Zu erledigen",
+ "overTheBox_tasks_status_doing": "Wird ausgeführt",
+ "overTheBox_tasks_status_done": "Abgeschlossen",
+ "overTheBox_tasks_status_error": "Fehler"
 }

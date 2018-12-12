@@ -1,11 +1,11 @@
 {
-  "overTheBox_tasks_list": "Tehtävälista",
-  "overTheBox_tasks_id": "ID",
-  "overTheBox_tasks_name": "Nimi",
-  "overTheBox_tasks_status": "Tila",
-  "overTheBox_no_task": "Ei tehtävää",
-  "overTheBox_tasks_status_todo": "Seuraava tehtävä",
-  "overTheBox_tasks_status_doing": "Käynnissä",
-  "overTheBox_tasks_status_done": "Päättynyt",
-  "overTheBox_tasks_status_error": "Virhe"
+ "overTheBox_tasks_list": "Task list ",
+ "overTheBox_tasks_id": "ID",
+ "overTheBox_tasks_name": "Name",
+ "overTheBox_tasks_status": "Status",
+ "overTheBox_no_task": "No task",
+ "overTheBox_tasks_status_todo": "To do",
+ "overTheBox_tasks_status_doing": "In progress",
+ "overTheBox_tasks_status_done": "Terminated",
+ "overTheBox_tasks_status_error": "Error"
 }

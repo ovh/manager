@@ -1,11 +1,11 @@
 {
-  "overTheBox_tasks_list": "Lista dos trabalhos",
-  "overTheBox_tasks_id": "ID",
-  "overTheBox_tasks_name": "Apelido",
-  "overTheBox_tasks_status": "Estado",
-  "overTheBox_no_task": "Nenhuma operação",
-  "overTheBox_tasks_status_todo": "A fazer",
-  "overTheBox_tasks_status_doing": "Em curso",
-  "overTheBox_tasks_status_done": "Terminada",
-  "overTheBox_tasks_status_error": "Erro"
+ "overTheBox_tasks_list": "Lista dos trabalhos",
+ "overTheBox_tasks_id": "ID",
+ "overTheBox_tasks_name": "Apelido",
+ "overTheBox_tasks_status": "Estado",
+ "overTheBox_no_task": "Nenhuma operação",
+ "overTheBox_tasks_status_todo": "A fazer",
+ "overTheBox_tasks_status_doing": "Em curso",
+ "overTheBox_tasks_status_done": "Terminada",
+ "overTheBox_tasks_status_error": "Erro"
 }

@@ -1,6 +1,6 @@
 {
-  "overthebox_configure_reset": "Perkrausite savo overTheBox",
-  "overthebox_configure_order": "Gavote naują overTheBox",
-  "overthebox_configure_reset_explaination": "Pasikeitė įrangos ID. Susiekite jį su suteiktomis paslaugomis skyriuje Įranga > Įrangos ID:",
-  "overthebox_configure_order_explaination": "Užsakėte naują įrangą. Tam taip pat reikia <a href=\"{{hash}}\">užsakyti naują paslaugą</a>."
+ "overthebox_configure_reset": "You have restarted your OverTheBox",
+ "overthebox_configure_order": "You have received your OverTheBox",
+ "overthebox_configure_reset_explaination": "Your device has changed ID. Go to \"Device > Device ID\" and attach the new ID to an existing service:",
+ "overthebox_configure_order_explaination": "You have just got a new device. You now have to <a href=\"{{hash}}\">subscribe to a new service</a>."
 }
