@@ -1,0 +1,11 @@
+{
+  "overTheBox_page_title": "Mano OverTheBox \"{{name}}\"",
+  "overTheBox_title": "OverTheBox",
+  "overTheBox_back": "Atgal",
+  "overTheBox_tabs_detail": "Mano OverTheBox",
+  "overTheBox_tabs_remote": "Nuotolinė prieiga",
+  "overTheBox_tabs_tasks": "Užduotys",
+  "overTheBox_tabs_docs": "Gidai",
+  "overTheBox_tabs_logs": "Žurnalai",
+  "overTheBox_no_device_found": "Neprijungtas joks OverTheBox. Negalite sukurti nuotolinės prieigos, nei naudoti jau sukurtos. Norėdami sužinoti daugiau apie konfigūraciją, spauskite <a href=\"{{url}}\" target=\"_blank\" title=\"Naujas langas\">čia</a>."
+}

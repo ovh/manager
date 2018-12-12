@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<translations>
-   <translation id="overthebox_configure_reset" qtlid="305785">You have restarted your OverTheBox</translation>
-   <translation id="overthebox_configure_order" qtlid="305798">You have received your OverTheBox</translation>
-   <translation id="overthebox_configure_reset_explaination" qtlid="305811">Your device has changed ID. Go to "Device > Device ID" and attach the new ID to an existing service:</translation>
-   <translation id="overthebox_configure_order_explaination" qtlid="305824">You have just got a new device. You now have to <a href="{{hash}}">subscribe to a new service</a>.</translation>
-</translations>

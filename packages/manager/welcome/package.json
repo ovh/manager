@@ -11,7 +11,7 @@
   },
   "browser": "./dist/umd/welcome.js",
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "5.0.0-beta.1"
+    "@ovh-ux/component-rollup-config": "5.0.0-beta.3"
   },
   "peerDependencies": {
     "@ovh-ux/manager-core": "^1.1.0-alpha.0",

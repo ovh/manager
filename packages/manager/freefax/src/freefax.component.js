@@ -44,7 +44,10 @@ export default angular
   .config(($stateProvider) => {
     $stateProvider.state('freefax', {
       url: '/freefax/:serviceName',
-      translations: ['.'],
+      translations: {
+        value: ['.'],
+        format: 'json',
+      },
       resolve: {
         $title(translations, $translate, $stateParams) {
           return $translate.instant('freefax_page_title', { name: $stateParams.serviceName }, null, null, 'escape');

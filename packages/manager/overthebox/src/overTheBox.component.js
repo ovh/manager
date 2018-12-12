@@ -41,12 +41,15 @@ angular
       url: '/overTheBox/:serviceName',
       abstract: true,
       component: 'ovhManagerOverTheBoxComponent',
-      translations: [
-        '.',
-        './details',
-        './warning',
-        './remote',
-      ],
+      translations: {
+        value: [
+          '.',
+          './details',
+          './warning',
+          './remote',
+        ],
+        format: 'json',
+      },
       resolve: {
         $title(translations, $translate, $stateParams, OvhApiOverTheBox) {
           return OvhApiOverTheBox.v6().get({

@@ -25,7 +25,10 @@ angular
       template,
       controller,
       controllerAs: 'VoicemailConf',
-      translations: ['.'],
+      translations: {
+        value: ['.'],
+        format: 'json',
+      },
     });
   })
   .constant('FREEFAX_AUDIO_FORMAT', AUDIO_FORMAT);

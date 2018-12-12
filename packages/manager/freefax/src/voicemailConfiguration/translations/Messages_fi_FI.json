@@ -1,0 +1,19 @@
+{
+  "freefax_voicemail_configuration_title": "Vastaajan konfigurointi",
+  "freefax_voicemail_parameters": "Vastaajan asetukset",
+  "freefax_voicemail_activation": "Aktivoi vastaaja",
+  "freefax_voicemail_password": "Salasana (4 numeroa)",
+  "freefax_voicemail_change_password": "Salasanamuutos",
+  "freefax_voicemail_change_password_confirm": "Hyväksy",
+  "freefax_voicemail_ask_password": "Postilaatikon salasana",
+  "freefax_voicemail_always_ask_password": "Vaadi aina salasana",
+  "freefax_voicemail_sender_name": "Lähettäjän nimi",
+  "freefax_voicemail_sender_email": "Lähettäjän sähköpostiosoite",
+  "freefax_voicemail_keep_messages": "Poista viesti automaattisesti lähetyksen jälkeen",
+  "freefax_voicemail_audio_format": "Vastaanota audio-viestit muodossa",
+  "freefax_voicemail_redirection_emails": "Sähköpostiosoite, johon viestit lähetetään",
+  "freefax_voicemail_redirection_email": "Sähköposti",
+  "freefax_voicemail_redirection_type": "tyyppi",
+  "freefax_voicemail_success": "Konfiguraation päivitys",
+  "freefax_voicemail_bad_password": "Virheellinen salasana"
+}

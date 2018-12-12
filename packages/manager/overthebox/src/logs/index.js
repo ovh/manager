@@ -15,7 +15,10 @@ angular.module(moduleName, [])
           controllerAs: 'OTBLogs',
         },
       },
-      translations: ['.'],
+      translations: {
+        value: ['.'],
+        format: 'json',
+      },
     });
   });
 

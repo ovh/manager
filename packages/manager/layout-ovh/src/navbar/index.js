@@ -33,7 +33,7 @@ export default angular
   })
   .service('ManagerNavbarService', navbarService)
   .service('NavbarNotificationService', notificationService)
-  .run(/* @ngTranslationsInject ./translations */)
+  .run(/* @ngTranslationsInject:json ./translations */)
   .run(($translate, ouiNavbarConfiguration) => {
     _.set(ouiNavbarConfiguration, 'translations', {
       notification: {
