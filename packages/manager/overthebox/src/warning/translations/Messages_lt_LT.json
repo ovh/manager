@@ -1,0 +1,21 @@
+{
+  "order_overTheBox_no_device_detected_title": "Jūsų lokaliame tinkle neaptikta jokios OverTheBox paslaugos.",
+  "order_overTheBox_no_device_detected_advise": "Įsitikinkite:",
+  "order_overTheBox_no_device_detected_advise_internet": "kad paslauga prijungta prie interneto",
+  "order_overTheBox_no_device_detected_advise_connected": "kad esate prisijungę prie valdymo sąsajos iš to paties tinklo kaip ir OverTheBox.",
+  "order_overTheBox_no_device_detected_advise_needed": "Reikia prijungimo pagalbos? <a href=\"{{url}}\" target=\"_blank\">Spragtelėkite čia</a>, kad atidarytumėt OVH klientų gidus.",
+  "order_overTheBox_device_detected_title": "Jūsų OverTheBox paslauga aptikta jūsų lokaliame tinkle.",
+  "order_overTheBox_many_device_detected_title": "Tinkle aptikta OverTheBox: {{count}}.",
+  "order_overTheBox_device_detected_subscription_needed": "Norėdami naudotis įranga, turite užsakyti OVH paslaugą.",
+  "overTheBox_device_not_activated": "Jūsų OverTheBox paslauga neįjungta.",
+  "overTheBox_device_not_activated_infos": "Norėdami užbaigti konfigūravimą:",
+  "overTheBox_device_not_activated_infos_connect": "Prisijunkite prie <a href=\"{{url}}\" target=\"_blank\" title=\"Nouvelle fenêtre\">valdymo sąsajos</a>",
+  "overTheBox_device_not_activated_infos_help": "Sekite OverTheBox konfigūravimo žingsnius",
+  "overTheBox_device_not_activated_infos_guide": "Nor4dami palengvinti OverTheBox konfigūravimą, skaitykite <a href=\"{{url}}\" target=\"_blank\" title=\"Nouvelle fenêtre\">diegimo gidą</a>.",
+  "order_overTheBox_payment_no_means": "Neišsaugota jokia mokėjimo priemonė.",
+  "order_overTheBox_payment_means": "Abonementas apmokamas kas mėnesį, tai atliekama automatiškai, dėl to prieš užsakant prašome išsaugoti <a href=\"{{url}}\" target=\"_blank\" title=\"Naujas langas\">mokėjimo priemonę (kortelę, Paypal ar SEPA paskyrą)</a>.",
+  "order_overTheBox_device_detected_link_needed": "Galite jį prijungti prie savo paslaugų.",
+  "order_overTheBox_device_detected_service_config_needed": "Pereikite prie paslaugos <a href=\"{{url}}\">{{service}}</a>, kad susietumėte ją su OverTheBox.",
+  "order_overTheBox_device_to_link_link": "Susieti OverTheBox su paslauga",
+  "order_overTheBox_device_detected_something_needed": "Turite kelias nesukonfigūruotas paslaugas, tinkle taip pat aptikti keli OverTheBox. Pereikite į paslaugų valdymo puslapius, kad jas sukonfigūruotumėte:"
+}

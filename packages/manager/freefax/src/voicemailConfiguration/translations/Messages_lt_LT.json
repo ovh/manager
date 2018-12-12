@@ -1,0 +1,19 @@
+{
+  "freefax_voicemail_configuration_title": "Atsakiklio kongifūravimas",
+  "freefax_voicemail_parameters": "Atsakiklio parametrai",
+  "freefax_voicemail_activation": "Aktyvuoti atsakiklį",
+  "freefax_voicemail_password": "Slaptažodis (4 skaičiai)",
+  "freefax_voicemail_change_password": "Keisti slaptažodį",
+  "freefax_voicemail_change_password_confirm": "Patvirtinti",
+  "freefax_voicemail_ask_password": "Pranešimų slaptažodis",
+  "freefax_voicemail_always_ask_password": "Visada prašyti slaptažodžio",
+  "freefax_voicemail_sender_name": "Siuntėjo vardas",
+  "freefax_voicemail_sender_email": "Siuntėjo el. pašto adresas",
+  "freefax_voicemail_keep_messages": "Automatiškai ištrinti žinutes po išsiuntimo",
+  "freefax_voicemail_audio_format": "Garsines žinutes gauti formatu",
+  "freefax_voicemail_redirection_emails": "Adresas, iš kurio siunčiami pranešimai",
+  "freefax_voicemail_redirection_email": "El. paštas",
+  "freefax_voicemail_redirection_type": "type",
+  "freefax_voicemail_success": "Konfigūracijos atnaujinimas",
+  "freefax_voicemail_bad_password": "Neteisingas slaptažodis"
+}

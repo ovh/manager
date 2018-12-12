@@ -1,0 +1,11 @@
+{
+  "overTheBox_page_title": "Mon OverTheBox \"{{name}}\"",
+  "overTheBox_title": "OverTheBox",
+  "overTheBox_back": "Takaisin",
+  "overTheBox_tabs_detail": "Oma OverTheBox",
+  "overTheBox_tabs_remote": "Etäyhteys",
+  "overTheBox_tabs_tasks": "Tehtävät",
+  "overTheBox_tabs_docs": "Oppaat",
+  "overTheBox_tabs_logs": "Lokit",
+  "overTheBox_no_device_found": "Yhtään OverTheBox -palvelua ei ole kytketty. Et voi luoda etäyhteyttä etkä käyttää luotuja yhteyksiä. OverTheBox -palvelun konfigurointiin löydät apua asennusohjeesta <a href=\"{{url}}\" target=\"_blank\" title=\"Uusi ikkuna\">tästä</a>."
+}

@@ -16,6 +16,6 @@ angular
   })
   .constant('SIDEBAR_CONFIG', SIDEBAR_CONFIG)
   .constant('SIDEBAR_STATE_MAPPING_SERVICE', STATE_MAPPING_SERVICE)
-  .run(/* @ngTranslationsInject ./translations */);
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

@@ -1,0 +1,11 @@
+{
+  "overTheBox_tasks_list": "Lista dei task",
+  "overTheBox_tasks_id": "ID",
+  "overTheBox_tasks_name": "Nome",
+  "overTheBox_tasks_status": "Stato",
+  "overTheBox_no_task": "Nessun task ",
+  "overTheBox_tasks_status_todo": "Da fare",
+  "overTheBox_tasks_status_doing": "In corso",
+  "overTheBox_tasks_status_done": "Completata",
+  "overTheBox_tasks_status_error": "Errore"
+}

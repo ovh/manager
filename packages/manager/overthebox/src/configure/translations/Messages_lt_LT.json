@@ -1,0 +1,6 @@
+{
+  "overthebox_configure_reset": "Perkrausite savo overTheBox",
+  "overthebox_configure_order": "Gavote naują overTheBox",
+  "overthebox_configure_reset_explaination": "Pasikeitė įrangos ID. Susiekite jį su suteiktomis paslaugomis skyriuje Įranga > Įrangos ID:",
+  "overthebox_configure_order_explaination": "Užsakėte naują įrangą. Tam taip pat reikia <a href=\"{{hash}}\">užsakyti naują paslaugą</a>."
+}

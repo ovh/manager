@@ -15,7 +15,10 @@ angular.module(moduleName, [])
           controllerAs: 'OverTheBoxTasks',
         },
       },
-      translations: ['.'],
+      translations: {
+        value: ['.'],
+        format: 'json',
+      },
     });
   });
 

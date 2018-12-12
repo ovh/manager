@@ -1,0 +1,6 @@
+{
+  "overthebox_configure_reset": "Vous avez redémarré votre overTheBox",
+  "overthebox_configure_order": "Vous avez reçu votre nouvelle overTheBox",
+  "overthebox_configure_reset_explaination": "Votre équipement a changé son identifiant. Vous devez maintenant rattacher ce dernier à un service existant dans la section \"Périphérique > Identifiant du périphérique\" :",
+  "overthebox_configure_order_explaination": "Vous avez fait l'acquisition d'un nouvel équipement. Vous devez <a href=\"{{hash}}\">souscrire à un nouveau service</a>."
+}

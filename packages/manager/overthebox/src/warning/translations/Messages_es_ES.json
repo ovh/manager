@@ -1,0 +1,21 @@
+{
+  "order_overTheBox_no_device_detected_title": "No se ha detectado ningún OverTheBox en su red local.",
+  "order_overTheBox_no_device_detected_advise": "Asegúrese de que:",
+  "order_overTheBox_no_device_detected_advise_internet": "esté conectado a internet,",
+  "order_overTheBox_no_device_detected_advise_connected": "usted esté conectado al área de cliente desde la misma red que su OverTheBox.",
+  "order_overTheBox_no_device_detected_advise_needed": "¿Necesita ayuda para sus conexiones? Haga clic <a href=\"{{url}}\" target=\"_blank\">aquí</a> para consultar las guías de usuario de OVH.",
+  "order_overTheBox_device_detected_title": "Se ha detectado su OverTheBox en su red local.",
+  "order_overTheBox_many_device_detected_title": "Se han detectado {{count}} OverTheBox en su red local.",
+  "order_overTheBox_device_detected_subscription_needed": "Para utilizar el equipo, debe contratar el servicio de OVH.",
+  "overTheBox_device_not_activated": "El OverTheBox no está activado.",
+  "overTheBox_device_not_activated_infos": "Para finalizar la configuración:",
+  "overTheBox_device_not_activated_infos_connect": "Conéctese al <a href=\"{{url}}\" target=\"_blank\" title=\"Nueva ventana\">área de cliente</a>",
+  "overTheBox_device_not_activated_infos_help": "Siga el procedimiento de configuración del OverTheBox",
+  "overTheBox_device_not_activated_infos_guide": "Si necesita ayuda para configurar su OverTheBox, consulte la <a href=\"{{url}}\" target=\"_blank\" title=\"Nueva ventana\">guía de instalación</a>.",
+  "order_overTheBox_payment_no_means": "No hay ninguna forma de pago guardada",
+  "order_overTheBox_payment_means": "El pago de la cuota mensual se carga automáticamente el día de la facturación mensual a su forma de pago (tarjeta de crédito o débito, cuenta bancaria o adeudo directo SEPA). Por lo tanto, es necesario <a href=\"{{url}}\" target=\"_blank\" title=\"Nueva ventana\">registrar una forma de pago</a> para poder hacer un pedido.",
+  "order_overTheBox_device_detected_link_needed": "Es necesario asociarla a su servicio.",
+  "order_overTheBox_device_detected_service_config_needed": "Acceda a su servicio <a href=\"{{url}}\">{{service}}</a> para asignarle el OverTheBox.",
+  "order_overTheBox_device_to_link_link": "Asociar el OverTheBox a su servicio",
+  "order_overTheBox_device_detected_something_needed": "Tiene varios servicios no configurados y se han detectado varios OverTheBox en su red. Acceda a las páginas de los servicios para configurarlos:"
+}

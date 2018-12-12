@@ -1,0 +1,6 @@
+{
+  "overthebox_configure_reset": "Olet uudelleenkäynnistänyt overTheBox-palvelusi",
+  "overthebox_configure_order": "Olet saanut uuden overTheBox-palvelusi",
+  "overthebox_configure_reset_explaination": "Laitteesi on muuttanut tunnisteensa. Sinun täytyy yhdistää se olemassa olevaan palveluun osiossa \"Palvelu> Palvelun ID\" :",
+  "overthebox_configure_order_explaination": "Olet saanut juuri uuden laitteen. Sinun täytyy <a href=\"{{hash}}\">tilata uusi palvelu</a>."
+}

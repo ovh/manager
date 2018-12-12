@@ -1,0 +1,11 @@
+{
+  "overTheBox_tasks_list": "Tehtävälista",
+  "overTheBox_tasks_id": "ID",
+  "overTheBox_tasks_name": "Nimi",
+  "overTheBox_tasks_status": "Tila",
+  "overTheBox_no_task": "Ei tehtävää",
+  "overTheBox_tasks_status_todo": "Seuraava tehtävä",
+  "overTheBox_tasks_status_doing": "Käynnissä",
+  "overTheBox_tasks_status_done": "Päättynyt",
+  "overTheBox_tasks_status_error": "Virhe"
+}
