@@ -1,3 +1,7 @@
+@import "~ovh-ui-kit/packages/oui-color/_variables";
+@import "~ovh-ui-kit/packages/oui-typography/_variables";
+@import "~bootstrap/less/variables.less";
+
 .telecom-legacy {
   .telecom-section-header {
     clear: both;
@@ -31,7 +35,11 @@
     overflow: visible !important;
   }
 
-  // @import './telecom/ovh-angular-input-number-spinner';
+  // TODO: Delete this custom style once we remove editable service name component
+  // and use page-header ui-kit component with header-tabs
+  .oui-header-tabs {
+    background-color: @oui-color-nurse;
+  }
 
   @import './telecom/button';
   @import './telecom/common';
@@ -39,11 +47,11 @@
   @import './telecom/form';
   @import './telecom/global';
   @import './telecom/header';
+  @import './telecom/ovh-angular-input-number-spinner';
   @import './telecom/popover';
   @import './telecom/revert-really-buttons';
   @import './telecom/service';
   @import './telecom/tables';
   @import './telecom/uiview-animate';
-  @import './telecom/variables';
   @import './telecom/widget-presentation';
 }
