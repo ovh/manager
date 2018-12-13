@@ -8,6 +8,8 @@
    <!-- COMMON -->
    <translation id="tools_lineDiagnostics_detail_yes" qtlid="34776">Oui</translation>
    <translation id="tools_lineDiagnostics_detail_no" qtlid="34788">Non</translation>
+   <translation id="tools_lineDiagnostics_cancel">Annuler</translation>
+   <translation id="tools_lineDiagnostics_continue">Continuer</translation>
    <translation id="tools_lineDiagnostics_waitingRobot">Test technique en cours.</translation>
    <translation id="tools_lineDiagnostics_please_wait">Veuillez patienter</translation>
    <translation id="tools_lineDiagnostics_hours_to">à</translation>
@@ -21,8 +23,13 @@
 
    <translation id="tools_lineDiagnostics_diagnostic_run_error">Une erreur est survenue lors du diagnostic. Veuillez réessayer plus tard.</translation>
    <translation id="tools_lineDiagnostics_diagnostic_cancel_error">Une erreur est survenue lors de l'annulation du diagnostic</translation>
-   <translation id="tools_lineDiagnostics_detection_step_modem_question">Votre modem est-il synchronisé ?</translation>
-   <translation id="tools_lineDiagnostics_detection_step_modem_question_help">Un voyant sur le modem (broadband ou ADSL) devrait vous indiquer le statut de la synchronisation. Si ce n'est pas le cas, vous devriez retrouver ce statut de synchronisation sur l'interface du modem.</translation>
+   <translation id="tools_lineDiagnostics_detection_step_modem_question">Quel est l'état du voyant de synchronisation (Broadband ou ADSL) de votre modem ?</translation>
+   <translation id="tools_lineDiagnostics_detection_step_modem_question_help">Exemple de voyant broadband</translation>
+   <translation id="tools_lineDiagnostics_detection_step_modem_light_on">Fixe</translation>
+   <translation id="tools_lineDiagnostics_detection_step_modem_light_off">Éteint</translation>
+   <translation id="tools_lineDiagnostics_detection_step_modem_light_blink">Clignotant</translation>
+   <translation id="tools_lineDiagnostics_detection_step_info_title">Votre connexion est fonctionnelle.</translation>
+   <translation id="tools_lineDiagnostics_detection_step_info">Si toutefois vous rencontrez un débit anormalement faible ou des pertes de synchronisation, cliquez sur « {{continueButtonLabel}} ».</translation>
    <translation id="tools_lineDiagnostics_detection_step_warning_title">Nous avons détecté un incident sur votre ligne.</translation>
    <translation id="tools_lineDiagnostics_detection_step_warning">Nous allons maintenant lancer un diagnostic de votre ligne pour rétablir votre accès internet rapidement.
    </translation>
@@ -135,12 +142,12 @@
    <translation id="tools_lineDiagnostics_solution_proposal_step_request_form_question_individualSite_title">S'agit-il de votre domicile ?</translation>
    <translation id="tools_lineDiagnostics_solution_proposal_step_request_form_question_siteClosedDays_title">Quels sont le ou les jours de fermeture de votre site ?</translation>
    <translation id="tools_lineDiagnostics_solution_proposal_step_request_form_question_siteOpening_title">Merci de nous indiquer les horaires d'accès au site.</translation>
-   <translation id="tools_lineDiagnostics_solution_proposal_step_request_form_question_modemType_title">Si votre modem diffère de celui indiqué par défaut, merci de nous en indiquer la marque et la référence.</translation>
+   <translation id="tools_lineDiagnostics_solution_proposal_step_request_form_question_modemType_title">Merci d'indiquer la marque et la référence de votre modem.</translation>
    <translation id="tools_lineDiagnostics_solution_proposal_step_request_form_question_modemMac_title">Merci d'indiquer l'adresse MAC de votre modem.</translation>
    <translation id="tools_lineDiagnostics_solution_proposal_step_request_form_question_datetimeOfAppearance_title">Merci d'indiquer la date et l'heure approximative d'apparition du dysfonctionnement.</translation>
    <translation id="tools_lineDiagnostics_solution_proposal_step_request_form_question_idAppointment_title">Choisissez l'un des créneaux suivants pour permettre le passage de notre technicien.</translation>
    <translation id="tools_lineDiagnostics_solution_proposal_step_request_form_question_idAppointment_text">Choisissez un créneau.</translation>
-   <translation id="tools_lineDiagnostics_solution_proposal_step_request_form_question_contactPhone_title">Merci de nous indiquer un numéro si celui inscrit dans votre espace client a changé.</translation>
+   <translation id="tools_lineDiagnostics_solution_proposal_step_request_form_question_contactPhone_title">Merci d'indiquer un numéro sur lequel vous pourrez être joint.</translation>
    <translation id="tools_lineDiagnostics_solution_proposal_step_request_form_question_followBySms_title">Souhaitez-vous suivre le déroulement des opérations par SMS ?</translation>
    <translation id="tools_lineDiagnostics_solution_proposal_step_request_form_question_ovhTicket_title">Si un ticket est actuellement ouvert pour ce dysfonctionnement, merci de nous en indiquer le numéro.</translation>
    <translation id="tools_lineDiagnostics_solution_proposal_step_request_form_question_comment_title">Précisez ici toutes les informations nécessaires au bon rétablissement de votre connexion Internet, ainsi que vos disponibilités. (Entre 5 et 200 caractères)</translation>
@@ -168,7 +175,6 @@
    <translation id="tools_lineDiagnostics_solution_proposal_step_cancelled_subtitle">Nous mettons tout en oeuvre pour le résoudre au plus vite. N'hésitez pas à réitérer cette manipulation ultérieurement.</translation>
 
    <translation id="tools_lineDiagnostics_solution_proposal_step_exit_diagnostic">Quitter</translation>
-   <translation id="tools_lineDiagnostics_solution_proposal_step_intervention_request_continue">Continuer</translation>
    <translation id="tools_lineDiagnostics_solution_proposal_step_intervention_request_validation">Valider ma demande d'intervention</translation>
 
    <translation id="tools_lineDiagnostics_solution_proposal_step_interventionRequested_title">Une intervention a été demandée.</translation>
@@ -178,6 +184,11 @@
    <translation id="tools_lineDiagnostics_solution_proposal_step_waitingValidation_subtitle">Une demande d'intervention a été effectuée et est en attente de validation de la part de l'assistance technique OVH. Un ticket de suivi sera créé une fois cette validation effectuée.</translation>
 
    <translation id="tools_lineDiagnostics_solution_proposal_step_validationRefused">La demande d'intervention a été refusée par l'assistance technique OVH.</translation>
+
+   <!-- Modal -->
+   <translation id="tools_lineDiagnostics_confirm_modal_title">Confirmation de demande d'intervention</translation>
+   <translation id="tools_lineDiagnostics_confirm_modal_explanation">Afin de finaliser votre demande d'intervention, nous allons réaliser un test technique qui rendra votre <strong>connexion internet indisponible pendant 15 minutes</strong> environ. Merci de prendre toutes les précautions nécessaires avant de continuer.</translation>
+   <translation id="tools_lineDiagnostics_confirm_modal_unplug_modem_text">Immédiatement après avoir cliqué sur {{continueButtonLabel}}, vous devez débrancher votre modem de votre prise téléphonique.</translation>
 
    <!-- ERRORS -->
    <translation id="tools_lineDiagnostics_error_context_monitoringTodoAlreadyExists_title" qtlid="407078">Surveillance de la ligne déjà en cours.</translation>

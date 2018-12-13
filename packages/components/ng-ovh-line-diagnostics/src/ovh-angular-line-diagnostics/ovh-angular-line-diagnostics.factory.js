@@ -94,6 +94,10 @@ angular.module("ovh-angular-line-diagnostics").factory("LineDiagnosticFactory", 
             return !_.isUndefined(question) ? question.defaultValue : null;
         }
 
+        setDefaultValue (answer) {
+            this.data.answers[answer] = this.data.answers[answer] || this.getQuestionDefaultValue(answer);
+        }
+
         convertToRequestParams () {
             const defaultFaultType = DIAGNOSTICS_CONSTANTS.FAULT_TYPES.UNKNOWN;
             return {

@@ -1,8 +1,10 @@
 angular.module("ovh-angular-line-diagnostics").controller("LineDiagnosticsCtrl", class LineDiagnosticsCtrl {
-    constructor ($interval, $timeout, $translate, atInternet, LineDiagnostics, LineDiagnosticFactory, Toast, DIAGNOSTICS_CONSTANTS) {
+    constructor ($interval, $state, $timeout, $translate, $uibModal, atInternet, LineDiagnostics, LineDiagnosticFactory, Toast, DIAGNOSTICS_CONSTANTS) {
         this.$interval = $interval;
+        this.$state = $state; // used in HTML
         this.$timeout = $timeout;
         this.$translate = $translate;
+        this.$uibModal = $uibModal;
         this.atInternet = atInternet;
         this.LineDiagnosticsService = LineDiagnostics;
         this.LineDiagnosticFactory = LineDiagnosticFactory;
@@ -191,6 +193,10 @@ angular.module("ovh-angular-line-diagnostics").controller("LineDiagnosticsCtrl",
 
     isMonitoringAlreadyExists () {
         return _.isEqual(_.get(this.currentLineDiagnostic, "data.error", ""), this.DIAGNOSTICS_CONSTANTS.ERRORS.MONITORING_EXISTS);
+    }
+
+    setDefaultValue (answer) {
+        this.currentLineDiagnostic.setDefaultValue(answer);
     }
 
     addActionDone (action) {

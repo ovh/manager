@@ -118,22 +118,22 @@
                     <div class="row">
                         <oui-field class="col-md-4 col-xs-8"
                                    data-label="{{:: 'tools_lineDiagnostics_investigation_step_question_downloadBandwidthTest_title' | translate }}"
-                                   data-ng-if="$ctrl.currentLineDiagnostic.hasQuestionToAnswer('downloadBandwidthTest')">
+                                   data-ng-if="$ctrl.currentLineDiagnostic.hasQuestionToAnswer('downloadBandwidthTest')"
+                                   data-ng-init="$ctrl.setDefaultValue('downloadBandwidthTest')">
                             <input class="oui-input"
                                    type="text"
                                    name="downloadBandwidthTest"
-                                   value="$ctrl.currentLineDiagnostic.getQuestionDefaultValue('downloadBandwidthTest')"
                                    data-ng-model="$ctrl.currentLineDiagnostic.data.answers.downloadBandwidthTest"
                                    data-required>
                         </oui-field>
 
                         <oui-field class="col-md-4 col-xs-8"
                                    data-label="{{:: 'tools_lineDiagnostics_investigation_step_question_uploadBandwidthTest_title' | translate }}"
-                                   data-ng-if="$ctrl.currentLineDiagnostic.hasQuestionToAnswer('uploadBandwidthTest')">
+                                   data-ng-if="$ctrl.currentLineDiagnostic.hasQuestionToAnswer('uploadBandwidthTest')"
+                                   data-ng-init="$ctrl.setDefaultValue('uploadBandwidthTest')">
                             <input class="oui-input"
                                    type="text"
                                    name="uploadBandwidthTest"
-                                   value="$ctrl.currentLineDiagnostic.getQuestionDefaultValue('uploadBandwidthTest')"
                                    data-ng-model="$ctrl.currentLineDiagnostic.data.answers.uploadBandwidthTest"
                                    data-required>
                         </oui-field>
