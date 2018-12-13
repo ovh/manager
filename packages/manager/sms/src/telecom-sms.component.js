@@ -1,6 +1,7 @@
 import angular from 'angular';
 
 import '@ovh-ux/telecom-universe-components';
+import '@ovh-ux/manager-telecom-styles';
 
 import './telecom-sms.less';
 

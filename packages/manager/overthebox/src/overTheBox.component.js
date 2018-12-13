@@ -1,6 +1,7 @@
 import angular from 'angular';
 
 import '@ovh-ux/manager-core';
+import '@ovh-ux/manager-telecom-styles';
 import '@ovh-ux/telecom-universe-components';
 import '@ovh-ux/ng-uirouter-title';
 import 'angularjs-scroll-glue';
