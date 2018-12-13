@@ -1,0 +1,145 @@
+<section class="telecom-sms-sms-templates">
+
+    <header>
+        <tuc-section-back-link data-tuc-section-back-link-to-state="sms.sms"
+                           data-tuc-section-back-link-title="{{ 'sms_section_back_link' | translate }}">
+        </tuc-section-back-link>
+        <h1 data-translate="sms_sms_templates_title"></h1>
+    </header>
+
+    <!-- LOADING -->
+    <div class="text-center"
+         data-ng-if="$ctrl.loading.init">
+        <oui-spinner></oui-spinner>
+    </div>
+
+    <div class="telecom-section-content"
+         data-ng-if="!$ctrl.loading.init">
+
+        <tuc-toast-message></tuc-toast-message>
+
+        <div class="row">
+            <div class="col-xs-12 col-md-6 mb-5">
+                <div class="widget-presentation">
+                    <header class="widget-presentation-header">
+                        <h2 class="widget-presentation-title"
+                            data-translate="sms_sms_templates_title_informations">
+                        </h2>
+                    </header>
+                    <p data-translate="sms_sms_templates_informations_text_1"></p>
+                    <p data-translate="sms_sms_templates_informations_text_2"></p>
+                    <p data-translate="sms_sms_templates_informations_text_3"></p>
+                    <p data-translate="sms_sms_templates_informations_text_4"></p>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-6">
+                <div class="widget-presentation">
+                    <header class="widget-presentation-header">
+                        <h2 class="widget-presentation-title"
+                            data-translate="sms_sms_templates_informations_example_title">
+                        </h2>
+                    </header>
+                    <dl>
+                        <dt data-translate="sms_sms_templates_informations_example_dt_1"></dt>
+                        <dd data-translate="sms_sms_templates_informations_example_dd_1"></dd>
+                        <dt data-translate="sms_sms_templates_informations_example_dt_2"></dt>
+                        <dd data-translate="sms_sms_templates_informations_example_dd_2"></dd>
+                        <dt data-translate="sms_sms_templates_informations_example_dt_3"></dt>
+                        <dd data-translate="sms_sms_templates_informations_example_dd_3"></dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-3 clearfix">
+            <div class="btn-group float-left mr-3"
+                 data-uib-dropdown
+                 data-dropdown-append-to-body>
+                <button id="btn-sms-templates-actions"
+                        type="button"
+                        class="btn btn-default"
+                        data-uib-dropdown-toggle>
+                    <span class="fa fa-bars" aria-hidden="true"></span>
+                    <span data-translate="sms_common_actions"></span>
+                    <span class="ovh-font ovh-font-small-arrow-down" aria-hidden="true"></span>
+                </button>
+                <ul class="dropdown-menu"
+                    role="menu"
+                    aria-labelledby="btn-sms-templates-actions"
+                    data-uib-dropdown-menu>
+                    <li role="menuitem">
+                        <button
+                            type="button"
+                            class="btn btn-link"
+                            data-ng-click="$ctrl.add()"
+                            data-translate="sms_common_add"
+                            data-uib-tooltip="{{:: 'sms_sms_templates_add' | translate }}"
+                            data-tooltip-placement="right"
+                            data-tooltip-append-to-body="true">
+                        </button>
+                    </li>
+                    <li role="menuitem">
+                        <button
+                            type="button"
+                            class="btn btn-link"
+                            data-ng-click="$ctrl.refresh()"
+                            data-translate="sms_common_refresh"
+                            data-uib-tooltip="{{:: 'sms_common_refresh_data' | translate }}"
+                            data-tooltip-placement="right"
+                            data-tooltip-append-to-body="true">
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <oui-datagrid data-rows="$ctrl.templates.raw"
+                      data-row-loader="$ctrl.getDetails($row)"
+                      data-ng-if="!$ctrl.templates.isLoading">
+            <oui-column data-title="'sms_sms_templates_list_title_name' | translate" data-property="name" data-sortable="asc">
+                {{$row.name || '-'}}
+            </oui-column>
+
+            <oui-column data-title="'sms_sms_templates_list_title_date' | translate" data-property="datetime" data-sortable>
+                {{$row.datetime | date:'shortDate' || '-'}}
+            </oui-column>
+
+            <oui-column data-title="'sms_sms_templates_list_title_type' | translate" data-property="activity" data-sortable>
+                {{(('sms_sms_templates_add_activity_type_' + $row.activity) | translate) || '-'}}
+            </oui-column>
+
+            <oui-column data-title="'sms_sms_templates_list_title_description' | translate" data-property="description" data-sortable>
+                {{$row.description || '-'}}
+            </oui-column>
+
+            <oui-column data-title="'sms_sms_templates_list_title_message' | translate" data-property="message" data-sortable>
+                {{$row.message || '-'}}
+            </oui-column>
+
+            <oui-column data-title="'sms_sms_templates_list_title_status' | translate" data-property="status" data-sortable>
+                <span class="ovh-font"
+                      data-ng-class="{
+                          'ovh-font-inprogress text-info' : $row.status === 'waitingValidation',
+                          'ovh-font-activer' : $row.status === 'disable',
+                          'ovh-font-success text-success' : $row.status === 'enable',
+                          'ovh-font-failure text-danger' : $row.status === 'refused'
+                      }">
+               </span>
+            </oui-column>
+
+            <oui-action-menu data-align="end" data-compact>
+                <oui-action-menu-item on-click="$ctrl.edit($row)">
+                    <span data-translate="sms_edit"></span>
+                </oui-action-menu-item>
+                <oui-action-menu-item on-click="$ctrl.relaunch($row)">
+                    <span data-translate="sms_common_relaunch"></span>
+                </oui-action-menu-item>
+                <oui-action-menu-item on-click="$ctrl.remove($row)">
+                    <span data-translate="sms_delete"></span>
+                </oui-action-menu-item>
+            </oui-action-menu>
+        </oui-datagrid>
+
+    </div>
+</section>
+<!-- /.telecom-sms-sms-templates -->

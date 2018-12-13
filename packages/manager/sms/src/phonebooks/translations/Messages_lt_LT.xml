@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+<!-- PHONEBOOK -->
+   <translation id="sms_phonebooks_phonebook_title" qtlid="393828">Adresų knygelės valdymas</translation>
+   <translation id="sms_phonebooks_phonebook_select_label" qtlid="393841">Pasirinkite adresų knygelę:</translation>
+   <translation id="sms_phonebooks_phonebook_ko" qtlid="393854">Negalima nuskaityti adresų knygelės</translation>
+
+<!-- PHONEBOOK CREATE -->
+   <translation id="sms_phonebooks_phonebook_create" qtlid="393867">Pridėti adresų knygelę</translation>
+   <translation id="sms_phonebooks_phonebook_create_info" qtlid="393880">Nerasta jokia adresų knygelė</translation>
+   <translation id="sms_phonebooks_phonebook_create_name_placeholder" qtlid="393893">Adresų knygelės pavadinimas</translation>
+   <translation id="sms_phonebooks_phonebook_create_name_error_required" qtlid="393906">Adresų knygelės pavadinimas yra privalomas</translation>
+   <translation id="sms_phonebooks_phonebook_create_name_error_pattern" qtlid="393919">Adresų knygelės pavadinimas turi būti sudarytas iš raidžių ir skaičių</translation>
+   <translation id="sms_phonebooks_phonebook_create_name_error_maxlength" qtlid="393932">Adresų knygelės pavadinimas negali viršyti 50 simbolių</translation>
+
+<!-- PHONEBOOK UPDATE -->
+   <translation id="sms_phonebooks_phonebook_update_name_label" qtlid="393945">Knygelė:</translation>
+   <translation id="sms_phonebooks_phonebook_update_name_sr_only" qtlid="393958">Redaguoti adresų knygelę</translation>
+   <translation id="sms_phonebooks_phonebook_update_ko" qtlid="393971">Negalima redaguoti adresų knygelės.</translation>
+
+<!-- PHONEBOOK DELETE -->
+   <translation id="sms_phonebooks_phonebook_delete" qtlid="393984">Ištrinti adresų knygelę</translation>
+   <translation id="sms_phonebooks_phonebook_delete_info" qtlid="393997">Visi knygelėje esantys adresai taip pat bus ištrinti.</translation>
+   <translation id="sms_phonebooks_phonebook_delete_confirm" qtlid="394010">Ar tikrai norite ištrinti knygelę <b>«{{ name }}»</b>&#160;?</translation>
+   <translation id="sms_phonebooks_phonebook_deleting" qtlid="394023">Adresų knygelė trinama...</translation>
+   <translation id="sms_phonebooks_phonebook_deleted" qtlid="394036">Adresų knygelė ištrinta!</translation>
+   <translation id="sms_phonebooks_phonebook_delete_ko" qtlid="394049">Negalima ištrinti adresų knygelės.<br/>{{ error }}</translation>
+
+<!-- PHONEBOOKCONTACT -->
+   <translation id="sms_phonebooks_phonebook_contact_title" qtlid="73073">Kontaktų valdymas</translation>
+   <translation id="sms_phonebooks_phonebook_contact_column_surname" qtlid="3818">Pavadinimas</translation>
+   <translation id="sms_phonebooks_phonebook_contact_column_name" qtlid="23323">Vardas</translation>
+   <translation id="sms_phonebooks_phonebook_contact_column_group" qtlid="33298">Įmonė</translation>
+   <translation id="sms_phonebooks_phonebook_contact_column_home_phone" qtlid="394062">Fiksuotas <small>(domicile)</small></translation>
+   <translation id="sms_phonebooks_phonebook_contact_column_home_mobile" qtlid="394075">Mobilus <small>(domicile)</small></translation>
+   <translation id="sms_phonebooks_phonebook_contact_column_work_phone" qtlid="394088">Fiksuotas <small>(professionnel)</small></translation>
+   <translation id="sms_phonebooks_phonebook_contact_column_work_mobile" qtlid="394101">Mobilus <small>(professionnel)</small></translation>
+   <translation id="sms_phonebooks_phonebook_contact_column_home_phone_title" qtlid="394114">Fiksuotas (domicile)</translation>
+   <translation id="sms_phonebooks_phonebook_contact_column_home_mobile_title" qtlid="394127">Mobilus (domicile)</translation>
+   <translation id="sms_phonebooks_phonebook_contact_column_work_phone_title" qtlid="394140">Fiksuotas (professionnel)</translation>
+   <translation id="sms_phonebooks_phonebook_contact_column_work_mobile_title" qtlid="394153">Mobilus (professionnel)</translation>
+   <translation id="sms_phonebooks_phonebook_contact_empty" qtlid="97964">Nerastas joks kontaktas.</translation>
+   <translation id="sms_phonebooks_phonebook_contact_ko" qtlid="394166">Negalima gauti kontaktų sąrašo</translation>
+
+<!-- PHONEBOOK CONTACT CREATE -->
+   <translation id="sms_phonebooks_phonebook_contact_create" qtlid="57836">Pridėti kontaktą</translation>
+   <translation id="sms_phonebooks_phonebook_contact_create_surname_placeholder" qtlid="394179">Vardas (privalomas laukas)</translation>
+   <translation id="sms_phonebooks_phonebook_contact_create_surname_error_required" qtlid="394192">Vardas yra privalomas</translation>
+   <translation id="sms_phonebooks_phonebook_contact_create_surname_error_maxlength" qtlid="394205">Kontakto vardas turi būti trumpesnis nei 246 simboliai</translation>
+   <translation id="sms_phonebooks_phonebook_contact_create_name_placeholder" qtlid="394218">Pavardė (privalomas laukas)</translation>
+   <translation id="sms_phonebooks_phonebook_contact_create_name_error_required" qtlid="394231">Pavardė yra privaloma.</translation>
+   <translation id="sms_phonebooks_phonebook_contact_create_name_error_maxlength" qtlid="394244">Kontakto pavardė turi būti trumpesnė nei 246 simboliai</translation>
+   <translation id="sms_phonebooks_phonebook_contact_create_group_placeholder" qtlid="394257">Įmonė (privalomas laukas)</translation>
+   <translation id="sms_phonebooks_phonebook_contact_create_group_select" qtlid="394270">Pasirinkite įmonę</translation>
+   <translation id="sms_phonebooks_phonebook_contact_create_group_error_required" qtlid="394283">Laukas "įmonė" yra privalomas</translation>
+   <translation id="sms_phonebooks_phonebook_contact_create_group_error_maxlength" qtlid="394296">Kontaktų grupės pavadinimas turi būti trumpesnis nei 50 simbolių</translation>
+   <translation id="sms_phonebooks_phonebook_contact_create_error_numbers" qtlid="394309">Įveskite bent vieną numerį</translation>
+   <translation id="sms_phonebooks_phonebook_contact_create_error_phonenumber" qtlid="340484">Įveskite galiojantį numerį</translation>
+   <translation id="sms_phonebooks_phonebook_contact_creating" qtlid="394322">Kontaktas kuriamas</translation>
+   <translation id="sms_phonebooks_phonebook_contact_created" qtlid="394335">Kontaktas sukurtas!</translation>
+   <translation id="sms_phonebooks_phonebook_contact_create_ko" qtlid="394348">Negalima sukurti kontakto adresų knygelėje.<br/>{{ error }}</translation>
+
+<!-- PHONEBOOK CONTACT UPDATE -->
+   <translation id="sms_phonebooks_phonebook_contact_update" qtlid="394361">Redaguoti kontaktą</translation>
+   <translation id="sms_phonebooks_phonebook_contact_updating" qtlid="394374">Kontaktas keičiamas</translation>
+   <translation id="sms_phonebooks_phonebook_contact_updated" qtlid="394387">Kontaktas sėkmingai pakeistas!</translation>
+   <translation id="sms_phonebooks_phonebook_contact_update_ko" qtlid="394400">Negalima redaguoti kontakto.<br/>{{ error }}</translation>
+
+<!-- PHONEBOOK CONTACT DELETE -->
+   <translation id="sms_phonebooks_phonebook_contact_delete" qtlid="151152">Pašalinti kontaktą</translation>
+   <translation id="sms_phonebooks_phonebook_contact_delete_confirm" qtlid="394413">Ar tikrai norite ištrinti kontaktą <b>«{{ name }}»</b>&#160;?</translation>
+   <translation id="sms_phonebooks_phonebook_contact_deleting" qtlid="394426">Kontaktas trinamas</translation>
+   <translation id="sms_phonebooks_phonebook_contact_deleted" qtlid="394439">Kontaktas ištrintas!</translation>
+   <translation id="sms_phonebooks_phonebook_contact_delete_success" qtlid="394452">Kontaktas ištrintas</translation>
+   <translation id="sms_phonebooks_phonebook_contact_delete_ko" qtlid="394465">Negalima ištrinti kontakto.<br/>{{ error }}</translation>
+
+<!-- PHONEBOOK CONTACT SELECTED DELETE -->
+   <translation id="sms_phonebooks_phonebook_contact_selected_delete" qtlid="394478">Ištrinti pasirinktą kontaktą</translation>
+   <translation id="sms_phonebooks_phonebook_contact_selected_delete_plural" qtlid="394491">Ištrinti pažymėtus kontaktus: {{ count }}</translation>
+   <translation id="sms_phonebooks_phonebook_contact_selected_delete_info" qtlid="393633">Trinama</translation>
+   <translation id="sms_phonebooks_phonebook_contact_selected_delete_ko" qtlid="394504">Negalima ištrinti pažymėtų kontaktų.<br/>{{ error }}</translation>
+
+<!-- PHONEBOOK CONTACT IMPORT -->
+   <translation id="sms_phonebooks_phonebook_contact_import" qtlid="69869">Importuoti</translation>
+   <translation id="sms_phonebooks_phonebook_contact_import_title" qtlid="85749">Importuoti kontaktus</translation>
+   <translation id="sms_phonebooks_phonebook_contact_import_info" qtlid="394517">Visi jūsų faile nurodyti numeriai turi būti tarptautiniu formatu</translation>
+   <translation id="sms_phonebooks_phonebook_contact_import_file_label" qtlid="394530">Kontaktų failas</translation>
+   <translation id="sms_phonebooks_phonebook_contact_import_file_invalid" qtlid="337845">Nepalaikomas failo formatas.</translation>
+   <translation id="sms_phonebooks_phonebook_contact_importing" qtlid="394543">Kontaktai įkeliami</translation>
+   <translation id="sms_phonebooks_phonebook_contact_imported" qtlid="394556">Kontaktų importavimas baigtas!</translation>
+   <translation id="sms_phonebooks_phonebook_contact_import_ko" qtlid="394569">Negalima importuoti kontaktų.<br/>{{ error }}</translation>
+   <translation id="sms_phonebooks_phonebook_contact_import_alert_task" qtlid="394582">Kontaktai įkeliami...</translation>
+
+<!-- PHONEBOOK CONTACT EXPORT -->
+   <translation id="sms_phonebooks_phonebook_contact_export" qtlid="69881">Eksportuoti</translation>
+   <translation id="sms_phonebooks_phonebook_contact_export_ok" qtlid="394595">Kontaktų eksportavimas baigtas!</translation>
+   <translation id="sms_phonebooks_phonebook_contact_export_ko" qtlid="394608">Negalima eksportuoti kontaktų</translation>
+</translations>

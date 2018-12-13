@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="sms_section_back_link" qtlid="340159">Paluu lisävalintoihin</translation>
+
+   <translation id="sms_options_manage_title" qtlid="340133">Yleiset valinnat</translation>
+
+   <translation id="sms_options_manage_information_title" qtlid="26551">Tiedot</translation>
+   <translation id="sms_options_manage_information_text" qtlid="340172">OVH suosittelee callback URL:ien määrittämistä, jotta saat tekstiviestiilmoituksia tapahtumista</translation>
+   <translation id="sms_options_manage_information_types_available" qtlid="340185">Saatavilla on kaksi callback-palvelua:</translation>
+   <translation id="sms_options_manage_information_type_callback" qtlid="340198"><b>Tilanmuutos callback</b>:&#160;Kun lähetetyn tekstiviestin tila muuttuu (esim. "lähetetty" -tilasta tilaan "vastaanotettu").</translation>
+   <translation id="sms_options_manage_information_type_stop_callback" qtlid="340211"><b>STOP callback</b>:&#160;Kun jokin vastaanottajistasi vastaa tekstiviestiisi "STOP" siirtääksesi numerosi mustalle listalle.</translation>
+
+   <translation id="sms_options_manage_configure_title" qtlid="4010">Konfiguroi</translation>
+
+   <translation id="sms_options_manage_configure_callback_label" qtlid="340224">Tilanmuutos callback -palvelun URL:</translation>
+   <translation id="sms_options_manage_configure_stop_callback_label" qtlid="340237">STOP callback URL:</translation>
+   <translation id="sms_options_manage_configure_callback_empty" qtlid="340250">Yhtään URL:ia ei ole konfiguroitu.</translation>
+
+   <translation id="sms_options_manage_update_title" qtlid="340263">URL:ien konfigurointi</translation>
+   <translation id="sms_options_manage_update_callback_label" qtlid="340276">Tilanmuutos callback URL</translation>
+   <translation id="sms_options_manage_update_stopcallback_label" qtlid="340289">STOP callback URL</translation>
+   <translation id="sms_options_manage_update_callbacks_error_pattern" qtlid="339314">Linkin on alettava muodossa http:// tai https://.</translation>
+   <translation id="sms_options_manage_update_callbacks_error_url" qtlid="339327">Annettu URL ei kelpaa.</translation>
+   <translation id="sms_options_manage_updating" qtlid="340302">Konfiguroidaan URL:eja…</translation>
+   <translation id="sms_options_manage_updated" qtlid="340315">URL:ien konfigurointi suoritettu</translation>
+</translations>

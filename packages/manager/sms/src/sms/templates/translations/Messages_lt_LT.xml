@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="sms_section_back_link" qtlid="341186">Grįžti prie SMS</translation>
+   <translation id="sms_sms_templates_title" qtlid="342070">Pranešimų modeliai</translation>
+   <translation id="sms_sms_templates_title_informations" qtlid="26551">Informacija</translation>
+   <translation id="sms_sms_templates_informations_text_1" qtlid="342083">Norint siųsti SMS JAV teritorijoje, būtina patvirtinti pranešimų modelį.</translation>
+   <translation id="sms_sms_templates_informations_text_2" qtlid="342096">Galimi tik paprasti, įspėjimų ir dvigubo autentifikavimo SMS pranešimai, reklaminiai SMS yra draudžiami.</translation>
+   <translation id="sms_sms_templates_informations_text_3" qtlid="342109">Kai nustatysite modelį, galėsite siųsti SMS lygiai taip pat, kaip ir į kitas šalis. Suderinamumo su modeliu paieška atliekama automatiškai.</translation>
+   <translation id="sms_sms_templates_informations_text_4" qtlid="342122">Galite išsaugoti kelis pranešimų modelius. Modelio kintamieji turi būti apibrėžti ir išskirti simboliu <em>#</em>.</translation>
+   <translation id="sms_sms_templates_informations_text_6" qtlid="342135">Demonstracijoje pranešimų modeliai galimi be patvirtinimo:&#160;</translation>
+   <translation id="sms_sms_templates_informations_text_7" qtlid="342148">Jūsų saugos kodas yra #CODE#.</translation>
+   <translation id="sms_sms_templates_informations_text_8" qtlid="342161">ID #ID# objektas #OBJECT# netinkamas: #ERROR#.</translation>
+   <translation id="sms_sms_templates_informations_text_9" qtlid="342174">Paketas nr. #PACKAGENUMBER# buvo pristatytas adresu #ADDRESS#.</translation>
+   <translation id="sms_sms_templates_informations_example_title" qtlid="342187">Modelių pavyzdžiai</translation>
+   <translation id="sms_sms_templates_informations_example_dt_1" qtlid="150554">Prisijungimas</translation>
+   <translation id="sms_sms_templates_informations_example_dd_1" qtlid="342200">Saugos kodas: #CODE#. Geros dienos!</translation>
+   <translation id="sms_sms_templates_informations_example_dt_2" qtlid="22219">Įspėjimas</translation>
+   <translation id="sms_sms_templates_informations_example_dd_2" qtlid="342213">Mūsų stebėjimo sistema aptiko, kad serveris #SERVER# neatsako į PING užklausas.</translation>
+   <translation id="sms_sms_templates_informations_example_dt_3" qtlid="342226">Įprastas</translation>
+   <translation id="sms_sms_templates_informations_example_dd_3" qtlid="342239">Sveiki, #LOGIN#, jūsų paskyra www.ovh.com sukurta!</translation>
+   <translation id="sms_sms_templates_list_title_name" qtlid="3818">Pavadinimas</translation>
+   <translation id="sms_sms_templates_list_title_date" qtlid="26419">Sukūrimo data</translation>
+   <translation id="sms_sms_templates_list_title_message" qtlid="30574">Pranešimas</translation>
+   <translation id="sms_sms_templates_list_title_description" qtlid="9238">Apibūdinimas</translation>
+   <translation id="sms_sms_templates_list_title_status" qtlid="26443">Būsena</translation>
+   <translation id="sms_sms_templates_list_title_type" qtlid="2642">Tipas</translation>
+   <translation id="sms_sms_templates_list_empty" qtlid="342252">Neturite jokio modelio.</translation>
+   <translation id="sms_sms_templates_sr_only_actions" qtlid="72809">Veiksmai</translation>
+   <translation id="sms_sms_templates_action_relaunch" qtlid="31378">Paleisti iš naujo</translation>
+
+<!-- TEMPLATE modal ADD -->
+   <translation id="sms_sms_templates_add" qtlid="342265">Pridėti modelį</translation>
+   <translation id="sms_sms_templates_added" qtlid="342278">Modelis laukia patvirtinimo</translation>
+   <translation id="sms_sms_templates_adding" qtlid="342291">Modelio kūrimas</translation>
+   <translation id="sms_sms_templates_adding_ko" qtlid="342304">Nepavyko sukurti modelio. {{error}}</translation>
+   <translation id="sms_sms_templates_add_description_label" qtlid="342317">Apibūdinimas (privaloma)</translation>
+   <translation id="sms_sms_templates_add_description_placeholder" qtlid="342330">Apibūdinimas (privaloma)</translation>
+   <translation id="sms_sms_templates_add_name_label" qtlid="342343">Pavadinimas (privaloma)</translation>
+   <translation id="sms_sms_templates_add_name_placeholder" qtlid="342356">Pavadinimas (privaloma)</translation>
+   <translation id="sms_sms_templates_add_name_error_maxlength" qtlid="395011">Pavadinimas turi būti trumpesnis nei 249 simboliai</translation>
+   <translation id="sms_sms_templates_add_message_label" qtlid="342369">Modelis (privaloma)</translation>
+   <translation id="sms_sms_templates_add_message_placeholder" qtlid="342382">Modelis (privaloma)</translation>
+   <translation id="sms_sms_templates_add_message_error_maxlength" qtlid="342395">Modelis turi būti mažesnis nei 249 simboliai</translation>
+   <translation id="sms_sms_templates_add_message_error_minlength" qtlid="342408">Modelis turi būti mažiausiai 31 simbolio ilgio</translation>
+   <translation id="sms_sms_templates_add_activity_placeholder" qtlid="342421">Veikla (privaloma)</translation>
+   <translation id="sms_sms_templates_add_activity_type_alerting" qtlid="22219">Įspėjimas</translation>
+   <translation id="sms_sms_templates_add_activity_type_authentification" qtlid="150554">Prisijungimas</translation>
+   <translation id="sms_sms_templates_add_activity_type_transactional" qtlid="342434">Pavedimų apdorojimo sistema</translation>
+   <translation id="sms_sms_templates_init" qtlid="242769">Duomenys kraunami </translation>
+   <translation id="sms_sms_templates_add_description_error_maxlength" qtlid="342447">Apibūdinimas turi būti mažesnis nei 249 simboliai</translation>
+   <translation id="sms_sms_templates_add_description_error_minlength" qtlid="342460">Apibūdinimas turi būti mažiausiai 31 simbolio ilgio</translation>
+
+<!-- TEMPLATE modal EDIT -->
+   <translation id="sms_sms_templates_edit" qtlid="346651">Keisti modelį</translation>
+   <translation id="sms_sms_templates_edit_status_label" qtlid="346664">Aktyvuoti modelį</translation>
+   <translation id="sms_sms_templates_editing" qtlid="346677">Modelio keitimas...</translation>
+   <translation id="sms_sms_templates_edited" qtlid="346690">Modelis pakeistas</translation>
+   <translation id="sms_sms_templates_editing_ko" qtlid="346703">Nepavyko pakeisti modelio. {{error}}</translation>
+
+<!-- TEMPLATE modal RELAUNCH -->
+   <translation id="sms_sms_templates_relaunch" qtlid="346716">Paleisti tvirtinimą iš naujo</translation>
+   <translation id="sms_sms_templates_relaunching" qtlid="346729">Patvirtinimas paleidžiamas iš naujo...</translation>
+   <translation id="sms_sms_templates_relaunched" qtlid="346742">Pakartotinis tvirtinimas išsiųstas</translation>
+   <translation id="sms_sms_templates_relaunching_ko" qtlid="346755">Nepavyko pakartotinai patvirtinti {{error}}</translation>
+
+<!-- TEMPLATE modal REMOVE -->
+   <translation id="sms_sms_templates_remove" qtlid="346768">Ištrinti modelį</translation>
+   <translation id="sms_sms_templates_removing" qtlid="346781">Modelis tikrinamas...</translation>
+   <translation id="sms_sms_templates_removed" qtlid="346794">Modelis ištrintas</translation>
+   <translation id="sms_sms_templates_removing_ko" qtlid="346807">Nepavyko ištrinti modelio. {{error}}</translation>
+</translations>

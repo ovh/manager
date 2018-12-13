@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="sms_section_back_link" qtlid="340874">Zurück zu den Absendern</translation>
+
+   <translation id="sms_senders_add_sender_title" qtlid="340627">Absender hinzufügen</translation>
+   <translation id="sms_senders_add_sender_choice_manual" qtlid="346560">Absender manuell hinzufügen</translation>
+   <translation id="sms_senders_add_sender_choice_personal" qtlid="346573">Absender über persönliche Daten hinzufügen</translation>
+   <translation id="sms_senders_add_sender_choice_domain" qtlid="346586">Absender über Ihre OVH Domains hinzufügen</translation>
+   <translation id="sms_senders_add_sender_info_pricing" qtlid="133253">Preise</translation>
+   <translation id="sms_senders_add_sender_info_pricing_text" qtlid="340965">Namensvalidierung:&#160;<b>Gratis</b>.</translation>
+   <translation id="sms_senders_add_sender_info_timetable_validation" qtlid="340978">Zeiten zur Validierung</translation>
+   <translation id="sms_senders_add_sender_info_timetable_validation_text" qtlid="340991">Name (manuelle Validierung nach 1-2 Werktagen):&#160;<b>Von Montag bis Freitag, 8-20 Uhr</b>.</translation>
+   <translation id="sms_senders_add_sender_warning_title" qtlid="341004">Achtung:&#160;</translation>
+   <translation id="sms_senders_add_sender_warning_text" qtlid="341017">Die Mobilfunkanbieter erlauben keinen SMS-Versand mit Telefonnummern als Absender.<br/>Sie können einen personalisierten Absender (mit alphabetischen Zeichen) oder die verkürzte Rufnummer zur Antwort verwenden.</translation>
+   <translation id="sms_senders_add_sender_warning_text_domains" qtlid="346599">Nur Domains mit 11 Zeichen oder weniger sind kompatibel.</translation>
+   <translation id="sms_senders_add_sender_warning_text_nichandle" qtlid="360242">Einige Telefone zeigen die Zeichensetzung im Absender nicht an.</translation>
+   <translation id="sms_senders_add_sender_label" qtlid="341030">Absender:&#160;</translation>
+   <translation id="sms_senders_add_sender_placeholder" qtlid="24535">Absender</translation>
+   <translation id="sms_senders_add_sender_error_required" qtlid="341043">Das Feld „Absender" ist ein Pflichtfeld.</translation>
+   <translation id="sms_senders_add_sender_error_pattern" qtlid="341056">Das Feld „Absender" darf ausschließlich Buchstaben enthalten.</translation>
+   <translation id="sms_senders_add_sender_error_maxlength" qtlid="341069">Das Feld „Absender" darf höchstens 11 Zeichen enthalten.</translation>
+   <translation id="sms_senders_add_sender_description_label" qtlid="340666">Beschreibung:&#160;</translation>
+   <translation id="sms_senders_add_sender_description_placeholder" qtlid="341082">Beschreibung (optional)</translation>
+   <translation id="sms_senders_add_sender_description_error_maxlength" qtlid="341095">Das Feld „Beschreibung" darf höchstens 40 Zeichen enthalten.</translation>
+   <translation id="sms_senders_add_sender_reason_label" qtlid="341108">Kurze Begründung:&#160;</translation>
+   <translation id="sms_senders_add_sender_reason_placeholder" qtlid="341121">Kurze Begründung</translation>
+   <translation id="sms_senders_add_sender_reason_error_required" qtlid="341134">Das Feld „Kurze Begründung" ist ein Pflichtfeld.</translation>
+   <translation id="sms_senders_add_sender_reason_error_maxlength" qtlid="341147">Das Feld „Kurze Begründung" darf höchstens 250 Zeichen enthalten.</translation>
+   <translation id="sms_senders_add_sender_adding" qtlid="341160">Absender wird hinzugefügt...</translation>
+   <translation id="sms_senders_add_sender_added" qtlid="341173">Absender wurde hinzugefügt!&#160;</translation>
+   <translation id="sms_senders_add_sender_personal_empty" qtlid="346612">Keine persönlichen Daten verfügbar.</translation>
+   <translation id="sms_senders_add_sender_domain_empty" qtlid="346625">Keine Domain verfügbar.</translation>
+   <translation id="sms_senders_add_sender_sr_only" qtlid="346638">{{ sender }} hinzufügen</translation>
+   <translation id="sms_senders_add_sender" qtlid="393568">Ausgewählten Absender hinzufügen</translation>
+   <translation id="sms_senders_add_senders" qtlid="393581">Die {{ count }} ausgewählten Absender hinzufügen</translation>
+   <translation id="sms_senders_add_senders_success" qtlid="393594">Wird hinzugefügt...</translation>
+</translations>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="sms_section_back_link" qtlid="341186">Paluu tekstiviesteihin</translation>
+
+   <translation id="sms_sms_outgoing_title" qtlid="342018">Lähetysten historiatiedot</translation>
+
+   <translation id="sms_sms_outgoing_label_select" qtlid="386027">Valitse</translation>
+   <translation id="sms_sms_outgoing_label_date" qtlid="24523">Päivämäärä</translation>
+   <translation id="sms_sms_outgoing_label_sender" qtlid="24535">Lähettäjä</translation>
+   <translation id="sms_sms_outgoing_label_receiver" qtlid="40442">Vastaanottaja</translation>
+   <translation id="sms_sms_outgoing_label_tariff_code" qtlid="32290">Kohde</translation>
+   <translation id="sms_sms_outgoing_label_message" qtlid="30574">Viesti</translation>
+   <translation id="sms_sms_outgoing_label_status" qtlid="26443">Tila</translation>
+
+   <translation id="sms_sms_outgoing_empty" qtlid="342538">Ei historiatietoja</translation>
+
+   <translation id="sms_sms_outgoing_status_delivered" qtlid="360645">Lähetetty</translation>
+
+   <translation id="sms_sms_outgoing_number_allowed_response" qtlid="342486">Vastauksen mahdollistava numero</translation>
+   <translation id="sms_sms_outgoing_number_allowed_response_fr_only" qtlid="342499">Vain Ranska</translation>
+
+   <translation id="sms_sms_outgoing_delete" qtlid="394946">Poista valittu tekstiviesti</translation>
+   <translation id="sms_sms_outgoing_delete_plural" qtlid="394959">Poista {{ count }} valittua tekstiviestiä</translation>
+   <translation id="sms_sms_outgoing_delete_success" qtlid="393633">Suppression en cours…</translation>
+
+   <translation id="sms_sms_outgoing_read_title" qtlid="339639">Tarkastele</translation>
+   <translation id="sms_sms_outgoing_read_label_operator" qtlid="342551">Vastaanottajan operaattori</translation>
+   <translation id="sms_sms_outgoing_read_label_sms_size" qtlid="341225">Tekstiviestin koko</translation>
+   <translation id="sms_sms_outgoing_read_label_sms_size_text" qtlid="341238">{{ numberOfSms }} SMS (tai {{ credits | number: 2 }} krediittiä)</translation>
+   <translation id="sms_sms_outgoing_read_label_message" qtlid="341251">Message complet</translation>
+
+   <translation id="sms_sms_outgoing_remove_title" qtlid="9983">Vahvista</translation>
+   <translation id="sms_sms_outgoing_remove_confirm" qtlid="341264">Haluatko varmasti poistaa alla näkyvän tekstiviestin?</translation>
+   <translation id="sms_sms_outgoing_removing" qtlid="341277">Poistetaan tekstiviestiä...</translation>
+   <translation id="sms_sms_outgoing_removed" qtlid="341290">Tekstiviesti poistettu</translation>
+
+   <translation id="sms_sms_outgoing_remove_ko" qtlid="341303">Tekstiviestin poistaminen ei onnistu.<br/>{{error}}</translation>
+
+   <translation id="sms_sms_outgoing_download_history" qtlid="341316">Lataa historiatiedot</translation>
+   <translation id="sms_sms_outgoing_download_history_ko" qtlid="394933">Hups! Historiatietojen latausta ei voitu tehdä.</translation>
+</translations>

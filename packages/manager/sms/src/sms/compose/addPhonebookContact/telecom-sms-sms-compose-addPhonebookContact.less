@@ -1,0 +1,51 @@
+@import '~bootstrap/less/variables';
+
+@media (min-width: @screen-sm-min) {
+  .table--header-fixed > thead,
+  .table--header-fixed > tbody {
+    display: block;
+  }
+
+  .table--header-fixed > tbody {
+    max-height: 280px;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .table--header-fixed > thead > tr,
+  .table--header-fixed > tbody > tr {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .table--header-fixed > thead > tr > th:nth-child(1),
+  .table--header-fixed > tbody > tr > td:nth-child(1):not(.text-center) {
+    float: left;
+    width: 10%;
+  }
+
+  .table--header-fixed > tbody > tr > td.text-center {
+    display: block;
+    width: 100%;
+    padding-right: 0;
+  }
+
+  /* stylelint-disable no-descending-specificity */
+  .table--header-fixed > thead > tr > th:nth-child(2),
+  .table--header-fixed > tbody > tr > td:nth-child(2),
+  .table--header-fixed > thead > tr > th:nth-child(3),
+  .table--header-fixed > tbody > tr > td:nth-child(3) {
+    float: left;
+    width: 20%;
+  }
+
+  .table--header-fixed > thead > tr > th:nth-child(4),
+  .table--header-fixed > tbody > tr > td:nth-child(4),
+  .table--header-fixed > thead > tr > th:nth-child(5),
+  .table--header-fixed > tbody > tr > td:nth-child(5) {
+    float: left;
+    width: 25%;
+  }
+  /* stylelint-enable no-descending-specificity */
+}

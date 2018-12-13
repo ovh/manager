@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="sms_section_back_link" qtlid="340874">Ritorna ai mittenti</translation>
+
+   <translation id="sms_senders_blacklisted_manage_title" qtlid="340562">Gestisci i mittenti inseriti in una blacklist&#13;
+ </translation>
+
+   <translation id="sms_senders_blacklisted_information_title" qtlid="26551">Informazioni</translation>
+   <translation id="sms_senders_blacklisted_information_text_1" qtlid="340887">Lista dei destinatari che hanno bloccato la ricezione di SMS provenienti da uno dei tuoi mittenti.</translation>
+   <translation id="sms_senders_blacklisted_information_text_2" qtlid="340900">Se elimini un numero della lista, la ricezione di SMS provenienti dai tuoi mittenti sarà ripristinata verso questo destinatario.</translation>
+
+   <translation id="sms_senders_blacklisted_delete_list" qtlid="393607">Elimina il numero selezionato</translation>
+   <translation id="sms_senders_blacklisted_delete_lists" qtlid="393620">Elimina i {{ count }} numeri selezionati</translation>
+   <translation id="sms_senders_blacklisted_delete_list_success" qtlid="393633">Eliminazione in corso...</translation>
+
+   <translation id="sms_senders_blacklisted_label_date" qtlid="24523">Data</translation>
+   <translation id="sms_senders_blacklisted_label_number" qtlid="30778">Numero</translation>
+
+   <translation id="sms_senders_blacklisted_empty" qtlid="340913">Nessun mittente inserito nella blacklist.&#13;
+&#13;
+ </translation>
+
+   <translation id="sms_senders_blacklisted_title" qtlid="340926">Elimina il mittente inserito nella blacklist.</translation>
+   <translation id="sms_senders_blacklisted_confirm" qtlid="340939">Vuoi davvero eliminare il mittente inserito nella blacklist <b>"{{ sender }}"</b>?</translation>
+
+   <translation id="sms_senders_blacklisted_sender_ko" qtlid="340952">Impossibile eliminare il mittente inserito nella blacklist.<br/>{{error}}</translation>
+</translations>

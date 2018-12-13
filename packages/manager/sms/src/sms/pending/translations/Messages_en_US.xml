@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="sms_section_back_link" qtlid="341186">Retour aux SMS</translation>
+
+   <translation id="sms_sms_pending_title" qtlid="342031">SMS planifiés</translation>
+
+   <translation id="sms_sms_pending_label_date" qtlid="24523">Date</translation>
+   <translation id="sms_sms_pending_label_scheduled" qtlid="312480">Programmed</translation>
+   <translation id="sms_sms_pending_label_sender" qtlid="24535">Sender</translation>
+   <translation id="sms_sms_pending_label_receiver" qtlid="40442">Recipient</translation>
+   <translation id="sms_sms_pending_label_message" qtlid="30574">Message</translation>
+   <translation id="sms_sms_pending_label_status" qtlid="26443">Status</translation>
+
+   <translation id="sms_sms_pending_empty" qtlid="342473">Aucun SMS planifié</translation>
+
+   <translation id="sms_sms_pending_number_allowed_response" qtlid="342486">Numéro permettant la réponse</translation>
+   <translation id="sms_sms_pending_number_allowed_response_fr_only" qtlid="342499">France uniqument</translation>
+
+   <translation id="sms_sms_pending_read_title" qtlid="339639">Consulter</translation>
+   <translation id="sms_sms_pending_read_label_sms_size" qtlid="341225">Taille du SMS</translation>
+   <translation id="sms_sms_pending_read_label_sms_size_text" qtlid="341238">{{ numberOfSms }} SMS (soit {{ credits | number: 2 }} crédits)</translation>
+   <translation id="sms_sms_pending_read_label_message" qtlid="341251">Message complet</translation>
+
+   <translation id="sms_sms_pending_remove_title" qtlid="9983">Confirmation</translation>
+   <translation id="sms_sms_pending_remove_confirm" qtlid="341264">Êtes-vous sûr de vouloir supprimer le SMS affiché ci-dessous&#160;?</translation>
+   <translation id="sms_sms_pending_removing" qtlid="341277">Suppression du SMS en cours…</translation>
+   <translation id="sms_sms_pending_removed" qtlid="341290">SMS supprimé</translation>
+
+   <translation id="sms_sms_pending_cancel_all" qtlid="342512">Annuler tous les envois planifiés</translation>
+
+   <translation id="sms_sms_pending_ko" qtlid="342525">Impossible de supprimer le SMS.</translation>
+
+   <translation id="sms_sms_pending_cancel" qtlid="394972">Annuler le SMS sélectionné</translation>
+   <translation id="sms_sms_pending_cancel_plural" qtlid="394985">Annuler les {{ count }} SMS sélectionnés</translation>
+   <translation id="sms_sms_pending_cancel_success" qtlid="394998">Annulation en cours…</translation>
+</translations>
