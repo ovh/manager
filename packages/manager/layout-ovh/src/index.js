@@ -91,6 +91,9 @@ angular
       return localConfig;
     },
   }))
+  .config(($locationProvider) => {
+    $locationProvider.hashPrefix('');
+  })
   .config((ssoAuthenticationProvider, $httpProvider, OVH_SSO_AUTH_LOGIN_URL) => {
     ssoAuthenticationProvider.setLoginUrl(OVH_SSO_AUTH_LOGIN_URL);
     ssoAuthenticationProvider.setLogoutUrl(`${OVH_SSO_AUTH_LOGIN_URL}?action=disconnect`);
