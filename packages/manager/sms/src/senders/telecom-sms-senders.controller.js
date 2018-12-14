@@ -1,5 +1,12 @@
 import angular from 'angular';
-import _ from 'lodash';
+import chunk from 'lodash/chunk';
+import filter from 'lodash/filter';
+import flatten from 'lodash/flatten';
+import get from 'lodash/get';
+import map from 'lodash/map';
+import set from 'lodash/set';
+import some from 'lodash/some';
+import trimStart from 'lodash/trimStart';
 
 import editController from './edit/telecom-sms-senders-edit.controller';
 import editTemplate from './edit/telecom-sms-senders-edit.html';
@@ -52,21 +59,21 @@ export default class {
   refresh() {
     this.senders.isLoading = true;
     this.resetAllCache();
-    return this.fetchSenders().then(senders => this.$q.all(_.map(senders, (sender) => {
-      _.set(sender, 'serviceInfos', null);
+    return this.fetchSenders().then(senders => this.$q.all(map(senders, (sender) => {
+      set(sender, 'serviceInfos', null);
       if (sender.type === 'virtual') {
-        const number = `00${_.trimLeft(sender.sender, '+')}`;
+        const number = `00${trimStart(sender.sender, '+')}`;
         return this.api.sms.virtualNumbers
           .getVirtualNumbersServiceInfos({ number }).$promise
           .then((serviceInfos) => {
-            _.set(sender, 'serviceInfos', serviceInfos);
+            set(sender, 'serviceInfos', serviceInfos);
             return sender;
           });
       }
       return this.$q.resolve(sender);
     })).then((sendersResult) => {
       this.senders.raw = sendersResult;
-      this.senders.hasExpiration = _.some(this.senders.raw, 'serviceInfos.renew.deleteAtExpiration');
+      this.senders.hasExpiration = some(this.senders.raw, 'serviceInfos.renew.deleteAtExpiration');
       this.sortSenders();
     })).catch((err) => {
       this.TucToastError(err);
@@ -93,11 +100,11 @@ export default class {
         serviceName: this.$stateParams.serviceName,
       }).$promise
       .then(sendersIds => this.$q
-        .all(_.map(_.chunk(sendersIds, 50), chunkIds => this.api.sms.senders.getBatch({
+        .all(map(chunk(sendersIds, 50), chunkIds => this.api.sms.senders.getBatch({
           serviceName: this.$stateParams.serviceName,
           sender: chunkIds.join('|'),
         }).$promise))
-        .then(chunkResult => _.pluck(_.flatten(chunkResult), 'value')));
+        .then(chunkResult => map(flatten(chunkResult), 'value')));
   }
 
   /**
@@ -131,7 +138,7 @@ export default class {
    * @return {Array}
    */
   getSelection() {
-    return _.filter(this.senders.raw, sender => sender && sender.type !== 'virtual' && this.senders.selected && this.senders.selected[sender.sender]);
+    return filter(this.senders.raw, sender => sender && sender.type !== 'virtual' && this.senders.selected && this.senders.selected[sender.sender]);
   }
 
   /**
@@ -171,7 +178,7 @@ export default class {
     });
     modal.result.then(() => this.refresh()).catch((error) => {
       if (error && error.type === 'API') {
-        this.TucToast.error(this.$translate.instant('sms_senders_edit_sender_ko', { error: _.get(error, 'msg.data.message') }));
+        this.TucToast.error(this.$translate.instant('sms_senders_edit_sender_ko', { error: get(error, 'msg.data.message') }));
       }
     });
   }
@@ -190,7 +197,7 @@ export default class {
     });
     modal.result.then(() => this.refresh()).catch((error) => {
       if (error && error.type === 'API') {
-        this.TucToast.error(this.$translate.instant('sms_senders_remove_sender_ko', { error: _.get(error, 'msg.data.message') }));
+        this.TucToast.error(this.$translate.instant('sms_senders_remove_sender_ko', { error: get(error, 'msg.data.message') }));
       }
     });
   }
@@ -209,7 +216,7 @@ export default class {
     });
     modal.result.then(() => this.refresh()).catch((error) => {
       if (error && error.type === 'API') {
-        this.TucToast.error(this.$translate.instant('sms_senders_terminate_sender_ko', { error: _.get(error, 'msg.data.message') }));
+        this.TucToast.error(this.$translate.instant('sms_senders_terminate_sender_ko', { error: get(error, 'msg.data.message') }));
       }
     });
   }
@@ -242,6 +249,6 @@ export default class {
    * @return {Array}
    */
   getSendersDeletedAtExpiration() {
-    return _.filter(this.senders.raw, 'serviceInfos.renew.deleteAtExpiration');
+    return filter(this.senders.raw, 'serviceInfos.renew.deleteAtExpiration');
   }
 }

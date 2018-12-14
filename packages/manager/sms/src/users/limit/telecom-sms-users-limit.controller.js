@@ -1,5 +1,5 @@
 import angular from 'angular';
-import _ from 'lodash';
+import isEmpty from 'lodash/isEmpty';
 
 export default class {
   /* @ngInject */
@@ -62,7 +62,7 @@ export default class {
    * @return {Promise}
    */
   fetchUserEmail() {
-    if (_.isEmpty(this.user.alertThresholdInformations.alertEmail)) {
+    if (isEmpty(this.user.alertThresholdInformations.alertEmail)) {
       return this.api.user.get().$promise.then((user) => {
         this.model.user.alertThresholdInformations.alertEmail = user.email;
       });

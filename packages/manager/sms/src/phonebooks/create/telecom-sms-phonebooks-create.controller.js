@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import pick from 'lodash/pick';
 
 export default class {
   /* @ngInject */
@@ -28,7 +28,7 @@ export default class {
     this.phonebookToAdd.isAdding = true;
     return this.api.sms.phonebooks.create({
       serviceName: this.$stateParams.serviceName,
-    }, _.pick(this.phonebookToAdd, 'name')).$promise.then(phonebook => this.$state.go('sms.phonebooks', {
+    }, pick(this.phonebookToAdd, 'name')).$promise.then(phonebook => this.$state.go('sms.phonebooks', {
       bookKey: phonebook.bookKey,
     })).catch((err) => {
       this.TucToastError(err);

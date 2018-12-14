@@ -1,4 +1,5 @@
-import _ from 'lodash';
+import get from 'lodash/get';
+import pick from 'lodash/pick';
 
 import addController from './add/telecom-sms-sms-templates-add.controller';
 import addTemplate from './add/telecom-sms-sms-templates-add.html';
@@ -131,7 +132,7 @@ export default class {
       this.templates.raw = templates.map(name => ({ name }));
     })).catch((error) => {
       if (error && error.type === 'API') {
-        this.TucToast.error(this.$translate.instant('sms_sms_templates_adding_ko', { error: _.get(error, 'msg.data.message') }));
+        this.TucToast.error(this.$translate.instant('sms_sms_templates_adding_ko', { error: get(error, 'msg.data.message') }));
       }
     });
   }
@@ -146,11 +147,11 @@ export default class {
       template: editTemplate,
       controller: editController,
       controllerAs: 'TemplateEditCtrl',
-      resolve: { template: () => _.pick(template, this.templateItemModel) },
+      resolve: { template: () => pick(template, this.templateItemModel) },
     });
     modal.result.then(() => this.refresh()).catch((error) => {
       if (error && error.type === 'API') {
-        this.TucToast.error(this.$translate.instant('sms_sms_templates_editing_ko', { error: _.get(error, 'msg.data.message') }));
+        this.TucToast.error(this.$translate.instant('sms_sms_templates_editing_ko', { error: get(error, 'msg.data.message') }));
       }
     });
   }
@@ -165,11 +166,11 @@ export default class {
       template: relaunchTemplate,
       controller: relaunchController,
       controllerAs: 'TemplateRelaunchCtrl',
-      resolve: { template: () => _.pick(template, this.templateItemModel) },
+      resolve: { template: () => pick(template, this.templateItemModel) },
     });
     modal.result.then(() => this.refresh()).catch((error) => {
       if (error && error.type === 'API') {
-        this.TucToast.error(this.$translate.instant('sms_sms_templates_relaunching_ko', { error: _.get(error, 'msg.data.message') }));
+        this.TucToast.error(this.$translate.instant('sms_sms_templates_relaunching_ko', { error: get(error, 'msg.data.message') }));
       }
     });
   }
@@ -184,7 +185,7 @@ export default class {
       template: removeTemplate,
       controller: removeController,
       controllerAs: 'TemplateRemoveCtrl',
-      resolve: { template: () => _.pick(template, this.templateItemModel) },
+      resolve: { template: () => pick(template, this.templateItemModel) },
     });
     modal.result.then(() => this.api.sms.templates.query({
       serviceName: this.$stateParams.serviceName,
@@ -192,7 +193,7 @@ export default class {
       this.templates.raw = templates.map(name => ({ name }));
     })).catch((error) => {
       if (error && error.type === 'API') {
-        this.TucToast.error(this.$translate.instant('sms_sms_templates_removing_ko', { error: _.get(error, 'msg.data.message') }));
+        this.TucToast.error(this.$translate.instant('sms_sms_templates_removing_ko', { error: get(error, 'msg.data.message') }));
       }
     });
   }

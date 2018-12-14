@@ -1,4 +1,7 @@
-import _ from 'lodash';
+import assign from 'lodash/assign';
+import set from 'lodash/set';
+import startsWith from 'lodash/startsWith';
+import trimStart from 'lodash/trimStart';
 
 export default class {
   /* @ngInject */
@@ -82,11 +85,11 @@ export default class {
         id: item.id,
       }).$promise
       .then((hlr) => {
-        _.set(hlr, 'transformed', true);
+        set(hlr, 'transformed', true);
         return hlr;
       })
       .then(hlr => this.fetchPhoneOperator(hlr)
-        .then(operator => _.assign(hlr, { operatorName: operator.operator }))
+        .then(operator => assign(hlr, { operatorName: operator.operator }))
         .catch(() => hlr));
   }
 
@@ -118,8 +121,8 @@ export default class {
    */
   static formatReceiverNumber(number) {
     if (number) {
-      if (_.startsWith(number, '00')) {
-        return `+${_.trimLeft(number, '00')}`;
+      if (startsWith(number, '00')) {
+        return `+${trimStart(number, '00')}`;
       } if (number.charAt(0) === '0') {
         return `+33${number.slice(1)}`;
       }
