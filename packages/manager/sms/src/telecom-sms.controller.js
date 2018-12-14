@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import get from 'lodash/get';
 
 export default class {
   /* @ngInject */
@@ -23,7 +23,7 @@ export default class {
       this.service = this.TucSmsMediator.getCurrentSmsService();
       this.serviceNameSave = this.updateServiceNameSave.bind(this);
     }).catch((error) => {
-      this.TucToast.error(`${this.$translate.instant('sms_loading_error', this.$stateParams.serviceNameSave)} ${_.get(error, 'data.message', '')}`);
+      this.TucToast.error(`${this.$translate.instant('sms_loading_error', this.$stateParams.serviceNameSave)} ${get(error, 'data.message', '')}`);
     }).finally(() => {
       this.loading.init = false;
     });
@@ -43,7 +43,7 @@ export default class {
         title: this.service.getDisplayedName(),
       }, this.service.name, 'telecom-sms-section');
     }).catch((error) => {
-      this.TucToast.error(`${this.$translate.instant('sms_rename_error', this.$stateParams.serviceNameSave)} ${_.get(error, 'data.message', '')}`);
+      this.TucToast.error(`${this.$translate.instant('sms_rename_error', this.$stateParams.serviceNameSave)} ${get(error, 'data.message', '')}`);
       this.service.stopEdition(true);
       return this.$q.reject(error);
     });

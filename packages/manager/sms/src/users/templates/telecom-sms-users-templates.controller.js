@@ -1,5 +1,7 @@
 import angular from 'angular';
-import _ from 'lodash';
+import get from 'lodash/get';
+import isEqual from 'lodash/isEqual';
+import pick from 'lodash/pick';
 
 export default class {
   /* @ngInject */
@@ -24,8 +26,8 @@ export default class {
     this.model = {
       service: angular.copy(this.service),
     };
-    this.smsBodyMaxLength = _.get(this.constant.SMS_ALERTS, 'sms.bodyMaxLength');
-    this.variables = _.get(this.constant.SMS_ALERTS, 'variables');
+    this.smsBodyMaxLength = get(this.constant.SMS_ALERTS, 'sms.bodyMaxLength');
+    this.variables = get(this.constant.SMS_ALERTS, 'variables');
   }
 
   /**
@@ -37,7 +39,7 @@ export default class {
     return this.$q.all([
       this.api.sms.put({
         serviceName: this.$stateParams.serviceName,
-      }, _.pick(this.model.service, this.attributes)).$promise,
+      }, pick(this.model.service, this.attributes)).$promise,
       this.$timeout(angular.noop, 1000),
     ]).then(() => {
       this.loading.updateTemplates = false;
@@ -62,9 +64,9 @@ export default class {
      * @return {Boolean}
      */
   hasChanged() {
-    return !_.isEqual(
-      _.pick(this.model.service, this.attributes),
-      _.pick(this.service, this.attributes),
+    return !isEqual(
+      pick(this.model.service, this.attributes),
+      pick(this.service, this.attributes),
     );
   }
 }

@@ -1,5 +1,5 @@
 import angular from 'angular';
-import _ from 'lodash';
+import pick from 'lodash/pick';
 
 export default class {
   /* @ngInject */
@@ -33,7 +33,7 @@ export default class {
     return this.$q.all([
       this.api.sms.users.create({
         serviceName: this.$stateParams.serviceName,
-      }, _.pick(this.user, this.attributes)).$promise,
+      }, pick(this.user, this.attributes)).$promise,
       this.$timeout(angular.noop, 1000),
     ]).then(() => {
       this.loading.addUser = false;

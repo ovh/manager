@@ -1,5 +1,6 @@
 import angular from 'angular';
-import _ from 'lodash';
+import isEqual from 'lodash/isEqual';
+import without from 'lodash/without';
 
 export default class {
   /* @ngInject */
@@ -45,7 +46,7 @@ export default class {
         serviceName: this.$stateParams.serviceName,
         login: this.model.user.login,
       }, {
-        ipRestrictions: _.without(this.model.user.ipRestrictions, ''),
+        ipRestrictions: without(this.model.user.ipRestrictions, ''),
       }).$promise,
       this.$timeout(angular.noop, 1000),
     ]).then(() => {
@@ -71,6 +72,6 @@ export default class {
      * @return {Boolean}
      */
   hasChanged() {
-    return !_.isEqual(_.without(this.model.user.ipRestrictions, ''), this.user.ipRestrictions);
+    return !isEqual(without(this.model.user.ipRestrictions, ''), this.user.ipRestrictions);
   }
 }

@@ -1,4 +1,7 @@
-import _ from 'lodash';
+import forEach from 'lodash/forEach';
+import has from 'lodash/has';
+import isString from 'lodash/isString';
+import snakeCase from 'lodash/snakeCase';
 
 export default class {
   /* @ngInject */
@@ -37,14 +40,14 @@ export default class {
    * Inject title in URL.
    */
   injectTitleInUrl() {
-    if (_.has(this.guides, 'sections')) {
-      _.forEach(this.guides.sections, (section) => {
-        if (_.has(section, 'guides')) {
-          _.forEach(section.guides, (guide) => {
-            if (_.has(guide, ['url', this.language]) && _.isString(guide.label)) {
+    if (has(this.guides, 'sections')) {
+      forEach(this.guides.sections, (section) => {
+        if (has(section, 'guides')) {
+          forEach(section.guides, (guide) => {
+            if (has(guide, ['url', this.language]) && isString(guide.label)) {
               guide.url[this.language] = guide.url[this.language].replace( // eslint-disable-line
                 '{title}',
-                _.snakeCase(this.$translate.instant(guide.label)),
+                snakeCase(this.$translate.instant(guide.label)),
               );
               this.count += 1;
             }

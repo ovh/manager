@@ -1,5 +1,5 @@
 import angular from 'angular';
-import _ from 'lodash';
+import get from 'lodash/get';
 
 export default class {
   /* @ngInject */
@@ -23,7 +23,7 @@ export default class {
     this.model = {
       sender: angular.copy(this.sender),
     };
-    this.number = _.get(this.sender, 'serviceInfos.domain');
+    this.number = get(this.sender, 'serviceInfos.domain');
   }
 
   /**

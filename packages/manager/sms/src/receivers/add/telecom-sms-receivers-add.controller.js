@@ -1,5 +1,10 @@
 import angular from 'angular';
-import _ from 'lodash';
+import endsWith from 'lodash/endsWith';
+import get from 'lodash/get';
+import head from 'lodash/head';
+import isArray from 'lodash/isArray';
+import last from 'lodash/last';
+import some from 'lodash/some';
 
 export default class {
   /* @ngInject */
@@ -77,7 +82,7 @@ export default class {
         autoUpdate: this.receiverForm.autoUpdate,
         csvUrl: this.receiverForm.url,
         description: this.receiverForm.description,
-        slotId: _.head(this.slot.available),
+        slotId: head(this.slot.available),
       }).$promise;
     } else {
       promise = this.api.user.document.upload(
@@ -89,15 +94,15 @@ export default class {
         autoUpdate: this.receiverForm.autoUpdate,
         documentId: doc.id,
         description: this.receiverForm.description,
-        slotId: _.head(this.slot.available),
+        slotId: head(this.slot.available),
       }).$promise);
     }
     return promise.catch((err) => {
-      const message = _.get(err, 'data.message');
+      const message = get(err, 'data.message');
       if (message) {
         const lineErrors = message.match(/on line (\d+)$/);
-        if (_.isArray(lineErrors)) {
-          this.lineErrors = _.last(lineErrors);
+        if (isArray(lineErrors)) {
+          this.lineErrors = last(lineErrors);
         }
       }
       this.loading.addReceiver = false;
@@ -113,7 +118,7 @@ export default class {
   checkValidTextExtention(file) {
     const validExtensions = ['csv', 'txt'];
     const fileName = file ? file.name : '';
-    const found = _.some(validExtensions, ext => _.endsWith(fileName.toLowerCase(), ext));
+    const found = some(validExtensions, ext => endsWith(fileName.toLowerCase(), ext));
     if (!found) {
       this.TucToastError(this.$translate.instant('sms_receivers_add_file_invalid'));
     }

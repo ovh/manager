@@ -1,5 +1,6 @@
 import angular from 'angular';
-import _ from 'lodash';
+import isEqual from 'lodash/isEqual';
+import pick from 'lodash/pick';
 
 export default class {
   /* @ngInject */
@@ -38,7 +39,7 @@ export default class {
       this.api.sms.users.edit({
         serviceName: this.$stateParams.serviceName,
         login: this.model.user.login,
-      }, _.pick(this.model.user, this.attributes)).$promise,
+      }, pick(this.model.user, this.attributes)).$promise,
       this.$timeout(angular.noop, 1000),
     ]).then(() => {
       this.loading.changePasswordUser = false;
@@ -63,9 +64,9 @@ export default class {
      * @return {Boolean}
      */
   hasChanged() {
-    return !_.isEqual(
-      _.pick(this.model.user, this.attributes),
-      _.pick(this.user, this.attributes),
+    return !isEqual(
+      pick(this.model.user, this.attributes),
+      pick(this.user, this.attributes),
     );
   }
 }

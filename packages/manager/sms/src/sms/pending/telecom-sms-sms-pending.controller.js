@@ -1,5 +1,10 @@
 import angular from 'angular';
-import _ from 'lodash';
+import chunk from 'lodash/chunk';
+import each from 'lodash/each';
+import filter from 'lodash/filter';
+import flatten from 'lodash/flatten';
+import map from 'lodash/map';
+import set from 'lodash/set';
 import moment from 'moment';
 
 import readController from './read/telecom-sms-sms-pending-read.controller';
@@ -70,9 +75,9 @@ export default class {
   fetchPendingSmsWithStatus() {
     return this.fetchPendingSms()
       .then(pending => this.$q
-        .all(_.map(pending, sms => this.fetchPendingSmsStatus(sms.ptt)
+        .all(map(pending, sms => this.fetchPendingSmsStatus(sms.ptt)
           .then((status) => {
-            _.set(sms, 'status', status);
+            set(sms, 'status', status);
           })))
         .then(() => pending));
   }
@@ -87,14 +92,14 @@ export default class {
         serviceName: this.$stateParams.serviceName,
       }).$promise
       .then(pendingIds => this.$q
-        .all(_.map(_.chunk(pendingIds, 50), id => this.api.sms.jobs.getBatch({
+        .all(map(chunk(pendingIds, 50), id => this.api.sms.jobs.getBatch({
           serviceName: this.$stateParams.serviceName,
           id,
         }).$promise))
         .then((chunkResult) => {
-          const results = _.pluck(_.flatten(chunkResult), 'value');
-          return _.each(results, (sms) => {
-            _.set(sms, 'scheduledDatetime', moment(sms.creationDatetime).add(sms.differedDelivery, 'minutes').format());
+          const results = map(flatten(chunkResult), 'value');
+          return each(results, (sms) => {
+            set(sms, 'scheduledDatetime', moment(sms.creationDatetime).add(sms.differedDelivery, 'minutes').format());
           });
         }));
   }
@@ -141,7 +146,7 @@ export default class {
    * @return {Array}
    */
   getSelection() {
-    return _.filter(
+    return filter(
       this.pending.paginated,
       pending => pending && this.pending.selected && this.pending.selected[pending.id],
     );
@@ -215,7 +220,7 @@ export default class {
     this.loading.cancelAll = true;
     return this.$q.all([
       this.$timeout(angular.noop, 1000),
-    ].concat(_.each(this.pending.raw, sms => this.api.sms.jobs.delete({
+    ].concat(each(this.pending.raw, sms => this.api.sms.jobs.delete({
       serviceName: this.$stateParams.serviceName,
       id: sms.id,
     }).$promise))).then(() => this.refresh()).catch((err) => {

@@ -1,6 +1,9 @@
 import angular from 'angular';
 import moment from 'moment';
-import _ from 'lodash';
+import filter from 'lodash/filter';
+import isEmpty from 'lodash/isEmpty';
+import set from 'lodash/set';
+import sortBy from 'lodash/sortBy';
 
 import readController from './read/telecom-sms-sms-outgoing-read.controller';
 import readTemplate from './read/telecom-sms-sms-outgoing-read.html';
@@ -85,7 +88,7 @@ export default class {
       serviceName: this.$stateParams.serviceName,
       receiver: this.outgoing.filterBy.receiver || null,
       sender,
-    }).$promise.then(outgoing => _.sortBy(outgoing).reverse());
+    }).$promise.then(outgoing => sortBy(outgoing).reverse());
   }
 
   /**
@@ -121,14 +124,14 @@ export default class {
       serviceName: this.$stateParams.serviceName,
       id,
     }).$promise.then((outgoing) => {
-      if (_.isEmpty(outgoing.sender)) {
-        _.set(outgoing, 'isShortNumber', true);
-        _.set(outgoing, 'sender', this.$translate.instant('sms_sms_outgoing_number_allowed_response'));
+      if (isEmpty(outgoing.sender)) {
+        set(outgoing, 'isShortNumber', true);
+        set(outgoing, 'sender', this.$translate.instant('sms_sms_outgoing_number_allowed_response'));
       }
       return this.api.smsJobs.getPtts({
         ptt: outgoing.ptt,
       }).$promise.then((ptt) => {
-        _.set(outgoing, 'status', ptt.comment);
+        set(outgoing, 'status', ptt.comment);
         return outgoing;
       });
     });
@@ -165,7 +168,7 @@ export default class {
    * @return {Array}
    */
   getSelection() {
-    return _.filter(
+    return filter(
       this.outgoing.paginated,
       outgoing => outgoing && this.outgoing.selected && this.outgoing.selected[outgoing.id],
     );

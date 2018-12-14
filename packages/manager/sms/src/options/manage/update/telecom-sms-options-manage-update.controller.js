@@ -1,5 +1,6 @@
 import angular from 'angular';
-import _ from 'lodash';
+import isEqual from 'lodash/isEqual';
+import pick from 'lodash/pick';
 
 export default class {
   /* @ngInject */
@@ -35,7 +36,7 @@ export default class {
     return this.$q.all([
       this.api.sms.put({
         serviceName: this.$stateParams.serviceName,
-      }, _.pick(this.model.service, this.attributs)).$promise,
+      }, pick(this.model.service, this.attributs)).$promise,
       this.$timeout(angular.noop, 1000),
     ]).then(() => {
       this.loading.updateOptions = false;
@@ -62,9 +63,9 @@ export default class {
      * @return {Boolean}
      */
   hasChanged() {
-    return !_.isEqual(
-      _.pick(this.model.service, this.attributs),
-      _.pick(this.service, this.attributs),
+    return !isEqual(
+      pick(this.model.service, this.attributs),
+      pick(this.service, this.attributs),
     );
   }
 }
