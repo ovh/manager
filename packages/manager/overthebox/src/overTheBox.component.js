@@ -2,10 +2,9 @@ import angular from 'angular';
 
 import '@ovh-ux/manager-core';
 import '@ovh-ux/manager-telecom-styles';
-import '@ovh-ux/telecom-universe-components';
+import '@ovh-ux/ng-tail-logs';
 import '@ovh-ux/ng-uirouter-title';
-import 'angularjs-scroll-glue';
-import 'ovh-angular-tail-logs';
+import '@ovh-ux/telecom-universe-components';
 
 import constant from './overTheBox.constant';
 import controller from './overTheBox.controller';
@@ -19,13 +18,12 @@ import order from './order';
 import remote from './remote';
 import tasks from './tasks';
 
-import './overTheBox.less';
 
 const moduleName = 'OvhManagerOverTheBoxComponent';
 
 angular
   .module(moduleName, [
-    'ovh-angular-tail-logs',
+    'ngTailLogs',
     'telecomUniverseComponents',
     'ovhManagerCore',
     'ngUirouterTitle',
