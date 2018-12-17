@@ -16,6 +16,7 @@ import OvhHttp from 'ovh-angular-http';
 
 import core from '@ovh-ux/manager-core';
 import overthebox from '@ovh-ux/manager-overthebox';
+import privateDatabase from '@ovh-ux/manager-private-database';
 import freefax from '@ovh-ux/manager-freefax';
 import sms from '@ovh-ux/manager-sms';
 import welcome from '@ovh-ux/manager-welcome';
@@ -59,6 +60,7 @@ angular
     'ovh-angular-ui-confirm-modal',
     'ovh-angular-pagination-front',
     OvhHttp,
+    privateDatabase,
     sidebar,
     sms,
     ssoAuth,

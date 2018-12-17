@@ -1,0 +1,633 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<translations>
+   <translation id="button_renew" qtlid="210124">Verlengen</translation>
+   <translation id="privateDatabase_dashboard_state" qtlid="297124">Service-status</translation>
+   <translation id="privateDatabase_dashboard_disk_usage" qtlid="76758">Gebruikte geheugenruimte</translation>
+   <translation id="privateDatabase_dashboard_guide_help" qtlid="271556">Hulp nodig met uw privé-databases? </translation>
+   <translation id="privateDatabase_dashboard_quota" qtlid="258951">Totale ruimte in gebruik : {0}</translation>
+   <translation id="privateDatabase_dashboard_version" qtlid="34210">Versie</translation>
+   <translation id="privateDatabase_dashboard_version_mariadb_101" qtlid="444430">MariaDB 10.1</translation>
+   <translation id="privateDatabase_dashboard_version_mariadb_102" qtlid="473256">MariaDB 10.2</translation>
+   <translation id="privateDatabase_dashboard_version_mysql_41" qtlid="215572">MySQL 4.1</translation>
+   <translation id="privateDatabase_dashboard_version_mysql_50" qtlid="215585">MySQL 5.0</translation>
+   <translation id="privateDatabase_dashboard_version_mysql_51" qtlid="215598">MySQL 5.1</translation>
+   <translation id="privateDatabase_dashboard_version_mysql_55" qtlid="215611">MySQL 5.5</translation>
+   <translation id="privateDatabase_dashboard_version_mysql_56" qtlid="215624">MySQL 5.6</translation>
+   <translation id="privateDatabase_dashboard_version_mysql_57" qtlid="288483">MySQL 5.7</translation>
+   <translation id="privateDatabase_dashboard_version_postgresql_94" qtlid="282718">PostgreSQL 9.4</translation>
+   <translation id="privateDatabase_dashboard_version_postgresql_95" qtlid="354197">PostgreSQL 9.5</translation>
+   <translation id="privateDatabase_dashboard_version_postgresql_96" qtlid="360970">PostgreSQL 9.6</translation>
+   <translation id="privateDatabase_dashboard_version_postgresql_10" qtlid="444443">PostgreSQL 10</translation>
+   <translation id="privateDatabase_dashboard_version_mongodb_34" qtlid="448301">MongoDB 3.4</translation>
+   <translation id="privateDatabase_dashboard_version_redis_32" qtlid="448314">Redis 3.2</translation>
+   <translation id="privateDatabase_dashboard_version_mongodb_40" qtlid="506219">MongoDB 4.0</translation>
+   <translation id="privateDatabase_dashboard_version_redis_40" qtlid="506206">Redis 4.0</translation>
+   <translation id="privateDatabase_dashboard_nb_cpu" qtlid="215637">Aantal cpu's</translation>
+   <translation id="privateDatabase_dashboard_ip" qtlid="25615">IP</translation>
+   <translation id="privateDatabase_dashboard_detached" qtlid="136100">Vervallen</translation>
+   <translation id="privateDatabase_dashboard_restartPending" qtlid="215650">Het herstarten wordt uitgevoerd</translation>
+   <translation id="privateDatabase_dashboard_startPending" qtlid="215663">Het starten wordt uitgevoerd</translation>
+   <translation id="privateDatabase_dashboard_started" qtlid="26743">Gestart</translation>
+   <translation id="privateDatabase_dashboard_stopPending" qtlid="215676">Het stoppen wordt uitgevoerd</translation>
+   <translation id="privateDatabase_dashboard_stopped" qtlid="26755">Gestopt</translation>
+   <translation id="privateDatabase_dashboard_type" qtlid="2642">Type</translation>
+   <translation id="privateDatabase_dashboard_type_mysql" qtlid="196894">MySQL</translation>
+   <translation id="privateDatabase_dashboard_type_postgresql" qtlid="196907">PostgreSQL</translation>
+   <translation id="privateDatabase_dashboard_type_redis" qtlid="448327">Redis</translation>
+   <translation id="privateDatabase_dashboard_type_mongodb" qtlid="444706">MongoDB</translation>
+   <translation id="privateDatabase_dashboard_type_mariadb" qtlid="444719">MariaDB</translation>
+   <translation id="privateDatabase_dashboard_ram" qtlid="31354">RAM</translation>
+   <translation id="privateDatabase_dashboard_information" qtlid="217574">De server is in rusttoestand. Sommige functies zijn dan ook uitgeschakeld.</translation>
+   <translation id="privateDatabase_dashboard_changeversion_information" qtlid="217587">De server wordt gemigreerd. Sommige functies zijn dan ook uitgeschakeld.</translation>
+   <translation id="privateDatabase_dashboard_not_administrator_information" qtlid="404642">U bent niet de database administrator. </translation>
+   <translation id="privateDatabase_dashboard_datacenter" qtlid="30802">Datacenter</translation>
+   <translation id="privateDatabase_dashboard_datacenter_p19" qtlid="93991">Parijs</translation>
+   <translation id="privateDatabase_dashboard_datacenter_gra1" qtlid="264192">Gravelines</translation>
+   <translation id="privateDatabase_dashboard_infrastructure" qtlid="125552">Infrastructuur</translation>
+   <translation id="privateDatabase_dashboard_infrastructure_legacy" qtlid="254817">Legacy</translation>
+   <translation id="privateDatabase_dashboard_infrastructure_sailabove" qtlid="254830">SailAbove</translation>
+   <translation id="privateDatabase_dashboard_infrastructure_docker" qtlid="263468">Docker</translation>
+   <translation id="privateDatabase_dashboard_hostname" qtlid="192201">Hostnaam</translation>
+   <translation id="privateDatabase_dashboard_host" qtlid="135229">Host</translation>
+   <translation id="privateDatabase_dashboard_port_legacy" qtlid="254843">FTP port</translation>
+   <translation id="privateDatabase_dashboard_port_docker" qtlid="262947">SFTP Port </translation>
+   <translation id="privateDatabase_dashboard_port" qtlid="9034">Port</translation>
+   <translation id="privateDatabase_dashboard_certificate" qtlid="19771">Certificaat</translation>
+   <translation id="privateDatabase_dashboard_certificate_tooltip" qtlid="448340">Er is geen certificaat vereist om verbinding te maken met uw instance. Het is echter wel vereist als u de verbinding ernaar wilt versleutelen.</translation>
+   <translation id="privateDatabase_dashboard_see_certificate" qtlid="448353">Certificaat bekijken</translation>
+   <translation id="privateDatabase_dashboard_service_hosting_more" qtlid="325924">Bekijk de lijst</translation>
+   <translation id="privateDatabase_dashboard_service_hosting_linked" qtlid="444456">Gekoppeld webhostingplan</translation>
+   <translation id="privateDatabase_dashboard_service_hosting_linked_none" qtlid="30646">Geen</translation>
+
+   <translation id="privateDatabase_dashboard_connections_title" qtlid="250927">Inloggegevens</translation>
+   <translation id="privateDatabase_dashboard_ftp_informations_legacy" qtlid="50410">FTP</translation>
+   <translation id="privateDatabase_dashboard_ftp_informations_docker" qtlid="295296">SFTP</translation>
+   <translation id="privateDatabase_dashboard_ftp_username" qtlid="56045">Gebruikersnaam</translation>
+   <translation id="privateDatabase_dashboard_admin_informations" qtlid="264001">Beheer van database</translation>
+   <translation id="privateDatabase_dashboard_admin_informations_users" qtlid="264014">Ga naar het 'gebruikers en rechten' tab</translation>
+
+   <translation id="privateDatabase_dashboard_name_validate" qtlid="26047">Bevestigen</translation>
+   <translation id="privateDatabase_dashboard_name_cancel" qtlid="37863">Annuleren</translation>
+
+   <translation id="privateDatabase_tab_USER" qtlid="215689">Gebruikers en rechten</translation>
+   <translation id="privateDatabase_tab_STATE" qtlid="351922">Algemene informatie</translation>
+   <translation id="privateDatabase_tab_DATABASE" qtlid="7870">Databases</translation>
+   <translation id="privateDatabase_tab_WHITELIST" qtlid="404655">Geautoriseerde IP's</translation>
+   <translation id="privateDatabase_tab_LOGS" qtlid="62064">Logs</translation>
+   <translation id="privateDatabase_tab_CONFIGURATION" qtlid="4406">Configuratie</translation>
+   <translation id="privateDatabase_dashboard_general_informations" qtlid="27115">Algemene informatie</translation>
+   <translation id="privateDatabase_configurations_select" qtlid="263481">Selecteer het type database:</translation>
+
+   <translation id="privateDatabase_configurations_general_mysql" qtlid="263494">Algemene configuratie van MySql</translation>
+   <translation id="privateDatabase_configurations_general_mariadb" qtlid="404668">Algemene MariaDB configuratie</translation>
+   <translation id="privateDatabase_configurations_general_redis" qtlid="448366">Redis algemene configuratie</translation>
+   <translation id="privateDatabase_configurations_general_postgresql" qtlid="371149">Algemene PostgreSQL configuratie</translation>
+   <translation id="privateDatabase_configurations_general_postgresql_soon" qtlid="371162">Binnenkort beschikbaar voor PostgreSQL</translation>
+
+   <translation id="privateDatabase_configuration_alert" qtlid="482212">Elke wijziging herstart de server.</translation>
+   <translation id="privateDatabase_configuration_edit_btn" qtlid="185452">Bewerken</translation>
+   <translation id="privateDatabase_configuration_cancel_btn" qtlid="37863">Annuleren</translation>
+   <translation id="privateDatabase_configuration_confirm_btn" qtlid="41326">Toepassen</translation>
+   <translation id="privateDatabase_configuration_reboot" qtlid="263520">De configuratie wordt aangepast. Uw server gaat opnieuw starten.</translation>
+   <translation id="privateDatabase_configuration_error_put" qtlid="263533">Er is een fout opgetreden tijdens de aanpassing van de configuratie.</translation>
+   <translation id="privateDatabase_configuration_error" qtlid="233047">Er is een fout opgetreden tijdens het ophalen van de gegevens.</translation>
+   <translation id="privateDatabase_configuration_success" qtlid="263546">Uw server is opnieuw gestart en de configuratie is succesvol aangepast.</translation>
+   <translation id="privateDatabase_configuration_autoCommit" qtlid="263559">Bepaalt of de auto-commit-modus al dan niet is ingeschakeld, dat wil zeggen als verzoeken automatisch zijn uitgevoerd of als ze moeten worden vastgelegd om te kunnen werken.</translation>
+   <translation id="privateDatabase_configuration_maxConnections" qtlid="263572">Maximaal aantal geautoriseerde verbindingen met de server.</translation>
+   <translation id="privateDatabase_configuration_skipInnodb" qtlid="263585">Het gebruik van InnoDB-tabellen deactiveren.</translation>
+   <translation id="privateDatabase_configuration_maxConnections" qtlid="263598">Maximaal aantal gelijktijdige verbindingen</translation>
+   <translation id="privateDatabase_configuration_maxAllowedPacket" qtlid="263611">Maximale grootte van elk pakket.</translation>
+   <translation id="privateDatabase_configuration_tmpdir" qtlid="363709">Dit is een tijdelijke map. /dev/shm betekent opslag in RAM (voor betere prestaties), terwijl /tmp verwijst naar de opslag op de harde schijf (aanbevolen voor incidentele resource-intensieve taken).</translation>
+   <translation id="privateDatabase_configuration_innodbBufferPoolSize" qtlid="263637">Grootte gebufferd geheugen (MB)</translation>
+   <translation id="privateDatabase_configuration_event_scheduler" qtlid="370187">Status van de event orchestrator</translation>
+   <translation id="privateDatabase_configuration_interactive_timeout" qtlid="370200">Het aantal seconden aan inactiviteit tijdens een command line verbinding, waarna de server de verbinding sluit.</translation>
+   <translation id="privateDatabase_configuration_wait_timeout" qtlid="370213">Het aantal seconden aan inactiviteit tijdens een externe verbinding, waarna de server de verbinding sluit.</translation>
+
+   <translation id="privateDatabase_configuration_field_autocommit" qtlid="482225">Bepaalt of SLQ-transacties automatisch worden ingediend of niet.</translation>
+   <translation id="privateDatabase_configuration_field_event_scheduler" qtlid="482238">Hiermee kunt u de uitvoering van geplande query's direct op de MySQL-server activeren.</translation>
+   <translation id="privateDatabase_configuration_field_innodb_buffer_pool_size" qtlid="482251">De grootte van de buffer kiezen (in megabytes).</translation>
+   <translation id="privateDatabase_configuration_field_interactive_timeout" qtlid="482264">Het aantal seconden dat de server wacht op activiteit op een interactieve verbinding voordat deze wordt afgesloten.</translation>
+   <translation id="privateDatabase_configuration_field_max_allowed_packet" qtlid="482277">Maximale pakketgrootte (in megabytes).</translation>
+   <translation id="privateDatabase_configuration_field_max_connections" qtlid="482290">Aantal toegestane gelijktijdige verbindingen op Private SQL.</translation>
+   <translation id="privateDatabase_configuration_field_max_user_connections" qtlid="482303">Aantal toegestane gelijktijdige verbindingen per gebruiker.</translation>
+   <translation id="privateDatabase_configuration_field_tmpdir" qtlid="482316">Directory van tijdelijke bestanden (RAM of harde schijf van een exemplaar).</translation>
+   <translation id="privateDatabase_configuration_field_wait_timeout" qtlid="482329">De tijd dat de server wacht op de activiteit op een niet-interactieve verbinding voordat deze wordt gesloten (in seconden).</translation>
+
+   <translation id="privateDatabase_capability_disabled_explanation" qtlid="448379">Deze functie is niet beschikbaar bij dit type database. </translation>
+
+   <translation id="privateDatabase_action_changepassword" qtlid="80394">Wijzig het wachtwoord </translation>
+   <translation id="privateDatabase_action_grants" qtlid="215715">Het beheren van de rechten</translation>
+   <translation id="privateDatabase_action_delete_user" qtlid="49550">De gebruiker verwijderen</translation>
+   <translation id="privateDatabase_tabs_user_grants" qtlid="215728">Database rechten</translation>
+
+   <translation id="privateDatabase_tabs_user_name" qtlid="56045">Gebruikersnaam</translation>
+   <translation id="privateDatabase_tabs_creation_date" qtlid="26419">Aanmaakdatum</translation>
+
+   <translation id="privateDatabase_tabs_refresh_data" qtlid="413284">Data opnieuw laden</translation>
+
+   <translation id="privateDatabase_tabs_user_no_grant" qtlid="30646">Geen</translation>
+   <translation id="privateDatabase_tabs_no_user" qtlid="215741">Geen gebruiker</translation>
+   <translation id="privateDatabase_tabs_no_user_error" qtlid="232995">De gebruikers kunnen niet worden weergegeven</translation>
+   <translation id="privateDatabase_tabs_user_grant_admin" qtlid="43948">Beheerder</translation>
+   <translation id="privateDatabase_tabs_user_grant_admin_tooltip" qtlid="342715">Autorisatie van de volgende verzoeken: Select / Insert / Update / Delete / Create / Alter / Drop</translation>
+   <translation id="privateDatabase_tabs_user_grant_none" qtlid="30646">Geen</translation>
+   <translation id="privateDatabase_tabs_user_grant_none_tooltip" qtlid="342728">Geen database rechten</translation>
+   <translation id="privateDatabase_tabs_user_grant_ro" qtlid="6958">Lezen</translation>
+   <translation id="privateDatabase_tabs_user_grant_ro_tooltip" qtlid="342741">Autorisatie van de volgende verzoeken: Select</translation>
+   <translation id="privateDatabase_tabs_user_grant_rw" qtlid="215754">Lezen/Schrijven</translation>
+   <translation id="privateDatabase_tabs_user_grant_rw_tooltip" qtlid="342754">Autorisatie van de volgende verzoeken: Select / Insert / Update / Delete</translation>
+   <translation id="privateDatabase_tabs_user_grant_change" qtlid="233430">Wijziging van de gebruikersrechten:</translation>
+
+   <translation id="privateDatabase_no_db" qtlid="215767">U heeft geen database</translation>
+   <translation id="privateDatabase_database" qtlid="275052">Database</translation>
+   <translation id="privateDatabase_tabs_user_grant_updating" qtlid="215780">Het updaten van de rechten wordt uitgevoerd</translation>
+   <translation id="privateDatabase_tabs_users_grant_error_deleting" qtlid="215793">U kunt de gebruikersrechten niet wijzigen tijdens de verwijdering</translation>
+
+   <translation id="privateDatabase_delete_user_title" qtlid="7666">Een gebruiker verwijderen</translation>
+   <translation id="privateDatabase_delete_user_success" qtlid="215806">Het verzoek tot verwijdering werd uitgevoerd</translation>
+   <translation id="privateDatabase_delete_user_fail" qtlid="215819">Bij het verwijderingsverzoek is een fout opgetreden.</translation>
+   <translation id="privateDatabase_delete_user_confirm" qtlid="215832">Het verwijderen van de gebruiker bevestigen: {0}</translation>
+   <translation id="privateDatabase_tabs_user_deleting" qtlid="215845">Verwijdering van de gebruiker wordt uitgevoerd</translation>
+   <translation id="privateDatabase_tabs_user_options" qtlid="413297">Opties</translation>
+
+   <translation id="privateDatabase_tabs_users_grant_error" qtlid="215858">Er is een fout opgetreden tijdens de wijziging van de rechten.</translation>
+   <translation id="privateDatabase_tabs_users_grant_success" qtlid="215871">De rechten zijn succesvol gewijzigd</translation>
+   <translation id="privateDatabase_tabs_users_grant_doing" qtlid="215884">De wijziging wordt van kracht binnen een paar minuten </translation>
+
+   <translation id="privateDatabase_add_user_title" qtlid="7150">Een gebruiker toevoegen</translation>
+   <translation id="privateDatabase_add_user_password" qtlid="2270">Wachtwoord</translation>
+   <translation id="privateDatabase_add_user_password_confirm" qtlid="9382">Bevestig wachtwoord</translation>
+   <translation id="privateDatabase_action_changepassword_doing" qtlid="215897">Wijziging van het wachtwoord wordt uitgevoerd</translation>
+   <translation id="privateDatabase_add_user_name" qtlid="56045">Gebruikersnaam</translation>
+   <translation id="privateDatabase_add_user_error_password_required" qtlid="215910">Het wachtwoord is verplicht</translation>
+   <translation id="privateDatabase_add_user_error_password_minlength" qtlid="413310">Het wachtwoord is te kort</translation>
+   <translation id="privateDatabase_add_user_error_password_maxlength" qtlid="413323">Het wachtwoord is te lang</translation>
+   <translation id="privateDatabase_add_user_error_password_pattern" qtlid="215923">Het wachtwoord voldoet niet aan onze veiligheidscriteria.</translation>
+   <translation id="privateDatabase_add_user_error_password_confirm_required" qtlid="243539">Bevestiging van het wachtwoord is verplicht</translation>
+   <translation id="privateDatabase_add_user_error_password_confirm_pattern" qtlid="243552">De ingevoerde wachtwoorden komen niet overeen</translation>
+   <translation id="privateDatabase_add_user_error_password_confirm_minlength" qtlid="413310">Het wachtwoord is te kort</translation>
+   <translation id="privateDatabase_add_user_error_password_confirm_maxlength" qtlid="413323">Het wachtwoord is te lang</translation>
+   <translation id="privateDatabase_add_user_error_name_required" qtlid="215936">De naam is verplicht</translation>
+   <translation id="privateDatabase_add_user_error_name_minlength" qtlid="413336">De naam is te kort</translation>
+   <translation id="privateDatabase_add_user_error_name_maxlength" qtlid="413349">De naam is te lang</translation>
+   <translation id="privateDatabase_add_user_error_name_pattern" qtlid="215949">De naam is ongeldig</translation>
+   <translation id="privateDatabase_add_user_error_name_exist" qtlid="244742">Deze naam bestaat al.</translation>
+   <translation id="privateDatabase_add_user_success" qtlid="216846">De nieuwe gebruiker werd aangemaakt en zal binnenkort geactiveerd worden</translation>
+   <translation id="privateDatabase_add_user_fail" qtlid="215975">Er is een fout opgetreden tijdens het ​​verzoek om de gebruiker toe te voegen</translation>
+   <translation id="privateDatabase_tabs_user_adding" qtlid="233008">Wordt toegevoegd...</translation>
+   <translation id="privateDatabase_tabs_add_user" qtlid="7150">Een gebruiker toevoegen</translation>
+   <translation id="privateDatabase_order_datacenter_p19" qtlid="93991">Parijs</translation>
+   <translation id="privateDatabase_order_datacenter_gra1" qtlid="264192">Gravelines</translation>
+   <translation id="privateDatabase_order_step1_hosting" qtlid="323366">Te gebruiken hostig packs</translation>
+
+   <translation id="privateDatabase_order_step1_hosting_warning" qtlid="434278">Private SQL is alleen compatibel met webhostingpakketten die in hetzelfde datacenter zijn gevestigd, zoals degene die is geselecteerd. Als u een ander webhostingpakket in uw account of een ander webhostingpakket wilt gebruiken en u niet weet welk datacenter het is gevestigd, kunt u deze informatie vinden in het tabblad 'Algemene informatie' van dit hostingpakket.</translation>
+
+   <translation id="privateDatabase_order_step1_hosting_info" qtlid="323392">Private SQL moet worden geïnstalleerd in hetzelfde datacenter als het hosting pack. </translation>
+
+   <translation id="privateDatabase_order_step1_no_hosting_warning" qtlid="323405">Private SQL is alleen compatibel met hosting diensten in hetzelfde datacenter. Als u een hosting pack op een ander account hebt en u weet niet welke datacenter het is dan kunt u zich inloggen op het andere account om uit te vinden wat het datacenter is van uw hosting pakket bij "Algemene informatie".</translation>
+
+   <translation id="privateDatabase_order_step1_clouddb_warning" qtlid="404681">Let op, CloudDB is niet compatibel met OVH web hosting packs. </translation>
+
+   <translation id="privateDatabase_change_rootPassword" qtlid="80394">Wijzig het wachtwoord </translation>
+   <translation id="privateDatabase_password_legacy" qtlid="260000">FTP wachtwoord</translation>
+   <translation id="privateDatabase_change_rootPassword_title" qtlid="80394">Wijzig het wachtwoord </translation>
+   <translation id="privateDatabase_password_docker" qtlid="251824">Wachtwoord van de server</translation>
+   <translation id="privateDatabase_change_rootPassword_new" qtlid="17177">Nieuw wachtwoord</translation>
+   <translation id="privateDatabase_change_rootPassword_confirm" qtlid="9983">Bevestiging</translation>
+   <translation id="privateDatabase_change_rootPassword_conditions" qtlid="216001">Let op! Het wachtwoord moet voldoen aan de volgende voorwaarden: <br/>- Minimaal {0} tekens<br/>- Maximaal {1} tekens<br/>- Ten minste een hoofdletter<br/>- Ten minste een kleine letter<br/>- Ten minste een nummer<br/>- Moet alleen letters en cijfers bevatten.</translation>
+   <translation id="privateDatabase_change_rootPassword_error_equals" qtlid="216014">De wachtwoorden zijn verschillend.</translation>
+   <translation id="privateDatabase_change_rootPassword_error_pattern" qtlid="216027">Het wachtwoord format is incorrect.</translation>
+   <translation id="privateDatabase_change_rootPassword_error_required" qtlid="216040">Verplicht veld</translation>
+   <translation id="privateDatabase_change_rootPassword_error_minlength" qtlid="413310">Het wachtwoord is te kort</translation>
+   <translation id="privateDatabase_change_rootPassword_error_maxlength" qtlid="413323">Het wachtwoord is te lang</translation>
+   <translation id="privateDatabase_change_rootPassword_confirm_error_pattern" qtlid="243552">De ingevoerde wachtwoorden komen niet overeen</translation>
+   <translation id="privateDatabase_change_rootPassword_confirm_error_minlength" qtlid="413310">Het wachtwoord is te kort</translation>
+   <translation id="privateDatabase_change_rootPassword_confirm_error_maxlength" qtlid="413323">Het wachtwoord is te lang</translation>
+   <translation id="privateDatabase_change_rootPassword_success" qtlid="216053">Het verzoek om het wachtwoord te wijzigen zal binnen enkele ogenblikken worden uitgevoerd.</translation>
+   <translation id="privateDatabase_change_rootPassword_fail" qtlid="216066">Er is een fout opgetreden tijdens het verzoek om het wachtwoord te wijzigen.</translation>
+   <translation id="privateDatabase_change_userPassword" qtlid="80394">Wijzig het wachtwoord </translation>
+   <translation id="privateDatabase_change_userPassword_title" qtlid="80394">Wijzig het wachtwoord </translation>
+   <translation id="privateDatabase_change_userPassword_new" qtlid="17177">Nieuw wachtwoord</translation>
+   <translation id="privateDatabase_change_userPassword_confirm" qtlid="9983">Bevestiging</translation>
+   <translation id="privateDatabase_change_userPassword_conditions" qtlid="216001">Let op! Het wachtwoord moet voldoen aan de volgende voorwaarden: <br/>- Minimaal {0} tekens<br/>- Maximaal {1} tekens<br/>- Ten minste een hoofdletter<br/>- Ten minste een kleine letter<br/>- Ten minste een nummer<br/>- Moet alleen letters en cijfers bevatten.</translation>
+   <translation id="privateDatabase_add_user_conditions" qtlid="221149">Let op, de naam moet aan de volgende voorwaarden voldoen: <br/>- minimaal {0} tekens<br/>- Maximaal {1} tekens<br/>- Moet bestaan ​​uit alleen cijfers en letters.<br/>- Kan de volgende tekens bevatten "-", "_", "."</translation>
+   <translation id="privateDatabase_change_userPassword_error_equals" qtlid="216014">De wachtwoorden zijn verschillend.</translation>
+   <translation id="privateDatabase_change_userPassword_error_pattern" qtlid="216027">Het wachtwoord format is incorrect.</translation>
+   <translation id="privateDatabase_change_userPassword_error_required" qtlid="216040">Verplicht veld</translation>
+   <translation id="privateDatabase_change_userPassword_error_minlength" qtlid="413310">Het wachtwoord is te kort</translation>
+   <translation id="privateDatabase_change_userPassword_error_maxlength" qtlid="413323">Het wachtwoord is te lang</translation>
+   <translation id="privateDatabase_change_userPassword_confirm_error_pattern" qtlid="243552">De ingevoerde wachtwoorden komen niet overeen</translation>
+   <translation id="privateDatabase_change_userPassword_confirm_error_minlength" qtlid="413310">Het wachtwoord is te kort</translation>
+   <translation id="privateDatabase_change_userPassword_confirm_error_maxlength" qtlid="413323">Het wachtwoord is te lang</translation>
+   <translation id="privateDatabase_change_userPassword_success" qtlid="216053">Het verzoek om het wachtwoord te wijzigen zal binnen enkele ogenblikken worden uitgevoerd.</translation>
+   <translation id="privateDatabase_change_userPassword_fail" qtlid="216066">Er is een fout opgetreden tijdens het verzoek om het wachtwoord te wijzigen.</translation>
+   <translation id="privateDatabase_change_userPassword_done" qtlid="216079">Het wachtwoord is gewijzigd.</translation>
+   <translation id="privateDatabase_change_ip" qtlid="225380">IP van de server</translation>
+
+   <translation id="privateDatabase_change_version" qtlid="216092">De versie wijzigen</translation>
+   <translation id="privateDatabase_change_version_title" qtlid="216092">De versie wijzigen</translation>
+   <translation id="privateDatabase_change_version_step1" qtlid="217145">Naar welke versie wilt u uw server migreren? Momenteel: {0}.</translation>
+   <translation id="privateDatabase_change_version_step1_fail" qtlid="216118">Er is een fout opgetreden bij het ophalen van de beschikbare versies.</translation>
+   <translation id="privateDatabase_change_version_available" qtlid="216131">Beschikbare versies:</translation>
+   <translation id="privateDatabase_change_version_available_select" qtlid="159046">Selecteer...</translation>
+   <translation id="privateDatabase_change_version_step2" qtlid="353374">Bevestig aub de migratue van uw Private SQL: {0} naar versie {1}.</translation>
+   <translation id="privateDatabase_change_version_warn_1" qtlid="353387">Als veiligheidsmaatregel raden wij u aan om vooraf aan de migratie een backup te maken van al uw databases.</translation>
+   <translation id="privateDatabase_change_version_warn_2" qtlid="353400">Let op: deze migratie zal een reboot van de Private SQL veroorzaken. </translation>
+   <translation id="privateDatabase_change_version_success" qtlid="217171">Het verzoek om uw server te migreren zal binnen enkele ogenblikken worden uitgevoerd.</translation>
+   <translation id="privateDatabase_change_version_fail" qtlid="217184">Er is een fout opgetreden tijdens het migratieverzoek van uw server.</translation>
+   <translation id="privateDatabase_change_version_null" qtlid="259652">U heeft geen andere beschikbare versie.</translation>
+
+   <translation id="privateDatabase_refresh" qtlid="216183">De informatie updaten</translation>
+   <translation id="privateDatabase_refresh_title" qtlid="216183">De informatie updaten</translation>
+   <translation id="privateDatabase_refresh_step1" qtlid="217197">U staat op het punt om de gegevens op uw server te updaten.</translation>
+   <translation id="privateDatabase_refresh_success" qtlid="217210">Het verzoek om gegevens te updaten met uw server zal binnen enkele ogenblikken worden uitgevoerd.</translation>
+   <translation id="privateDatabase_refresh_fail" qtlid="217223">Er is een fout opgetreden bij het ​​verzoek om uw gegevens met uw server bij te werken.</translation>
+
+   <translation id="privateDatabase_restart" qtlid="33538">Opnieuw starten</translation>
+   <translation id="privateDatabase_restart_title" qtlid="217236">Herstart de server </translation>
+   <translation id="privateDatabase_restart_step1" qtlid="217249">U staat op het punt uw server te herstarten.</translation>
+   <translation id="privateDatabase_restart_success" qtlid="217262">Het verzoek om uw server te herstarten, zal binnen enkele ogenblikken worden uitgevoerd.</translation>
+   <translation id="privateDatabase_restart_fail" qtlid="217275">Er is een fout opgetreden tijdens het verzoek om uw server opnieuw te starten.</translation>
+
+   <translation id="privateDatabase_start" qtlid="25951">Starten</translation>
+   <translation id="privateDatabase_start_title" qtlid="217288">De server herstarten</translation>
+   <translation id="privateDatabase_start_step1" qtlid="217301">U gaat uw server herstarten.</translation>
+   <translation id="privateDatabase_start_success" qtlid="217314">Het verzoek om uw server te starten zal binnen enkele ogenblikken worden uitgevoerd.</translation>
+   <translation id="privateDatabase_start_fail" qtlid="217327">Er is een fout opgetreden tijdens het verzoek om uw server te herstarten.</translation>
+
+   <translation id="privateDatabase_stop" qtlid="108480">Stoppen</translation>
+   <translation id="privateDatabase_stop_title" qtlid="217340">De server stopzetten</translation>
+   <translation id="privateDatabase_stop_step1" qtlid="217353">U staat op het punt uw server stop te zetten.</translation>
+   <translation id="privateDatabase_stop_success" qtlid="217366">Het verzoek om de server stop te zetten zal binnen enkele ogenblikken worden uitgevoerd.</translation>
+   <translation id="privateDatabase_stop_fail" qtlid="217379">Er is een fout opgetreden tijdens het verzoek om uw server uit te zetten.</translation>
+
+   <translation id="privateDatabase_global_actions_success_changeVersion" qtlid="217392">Het migreren van uw server is voltooid.</translation>
+   <translation id="privateDatabase_global_actions_success_start" qtlid="217405">Het starten van uw server werd met succes uitgevoerd.</translation>
+   <translation id="privateDatabase_global_actions_success_stop" qtlid="217418">Uw server is uitgezet.</translation>
+   <translation id="privateDatabase_global_actions_success_restart" qtlid="217431">Uw server is met succes herstart.</translation>
+   <translation id="privateDatabase_global_actions_success_changeRootPassword" qtlid="216443">De wijziging van het wachtwoord werd uitgevoerd.</translation>
+   <translation id="privateDatabase_global_actions_success_changeFtpPassword" qtlid="216443">De wijziging van het wachtwoord werd uitgevoerd.</translation>
+   <translation id="privateDatabase_global_actions_success_refresh" qtlid="217444">Uw gegevens zijn geüpdatet</translation>
+
+   <translation id="privateDatabase_global_actions_fail_changeVersion" qtlid="217457">Er is een fout opgetreden bij het migreren van uw server.</translation>
+   <translation id="privateDatabase_global_actions_fail_start" qtlid="217470">Er is een fout opgetreden bij het starten van uw server.</translation>
+   <translation id="privateDatabase_global_actions_fail_stop" qtlid="217483">Er is een fout opgetreden bij het stopzetten van uw server.</translation>
+   <translation id="privateDatabase_global_actions_fail_restart" qtlid="217496">Er is een fout opgetreden bij het herstarten van uw server.</translation>
+   <translation id="privateDatabase_global_actions_fail_changeRootPassword" qtlid="216521">Er is een fout opgetreden tijdens de wijziging van het wachtwoord.</translation>
+   <translation id="privateDatabase_global_actions_fail_changeFtpPassword" qtlid="216521">Er is een fout opgetreden tijdens de wijziging van het wachtwoord.</translation>
+   <translation id="privateDatabase_global_actions_fail_refresh" qtlid="217509">Er is een fout opgetreden tijdens het updaten van de gegevens.</translation>
+
+   <translation id="privateDatabase_bdd_name" qtlid="3818">Naam</translation>
+   <translation id="privateDatabase_bdd_dumps_count" qtlid="304407">Backups</translation>
+   <translation id="privateDatabase_bdd_dumps_none" qtlid="434291">Er zijn geen backups van uw databases verwijderd gedurende de afgelopen 30 dagen</translation>
+   <translation id="privateDatabase_bdd_creationDate" qtlid="26419">Aanmaakdatum</translation>
+   <translation id="privateDatabase_bdd_quota" qtlid="76758">Gebruikte geheugenruimte</translation>
+   <translation id="privateDatabase_action_scheduleDumpBDD" qtlid="263051">Plan uw back-ups</translation>
+   <translation id="privateDatabase_action_deleteBDD" qtlid="216547">De database verwijderen</translation>
+   <translation id="privateDatabase_action_users" qtlid="7174">De gebruikers beheren</translation>
+   <translation id="privateDatabase_action_dump_now" qtlid="263285">Maak nu een back-up aan</translation>
+   <translation id="privateDatabase_action_import_from_file" qtlid="261942">Een bestand importeren</translation>
+   <translation id="privateDatabase_action_list_dumps" qtlid="263298">Laat back-ups zien</translation>
+   <translation id="privateDatabase_delete_bdd_title" qtlid="196881">De database verwijderen</translation>
+   <translation id="privateDatabase_delete_bdd_confirm" qtlid="216560">De verwijdering van de database bevestigen: {0}</translation>
+   <translation id="privateDatabase_delete_bdd_success" qtlid="216573">Het verzoek om de database te verwijderen is uitgevoerd</translation>
+   <translation id="privateDatabase_delete_bdd_fail" qtlid="216586">Er is een fout opgetreden tijdens het verwijderen van de database.</translation>
+   <translation id="privateDatabase_dump_in_progress" qtlid="304420">Backup wordt aangemaakt...</translation>
+   <translation id="privateDatabase_restore_in_progress" qtlid="223827">Herstel wordt uitgevoerd...</translation>
+   <translation id="privateDatabase_dump_bdd_creationDate" qtlid="26419">Aanmaakdatum</translation>
+   <translation id="privateDatabase_dump_bdd_deletionDate" qtlid="95563">Verwijderingsdatum</translation>
+   <translation id="privateDatabase_dump_bdd_in_progress" qtlid="263324">De back-up van de database is in behandeling genomen.</translation>
+   <translation id="privateDatabase_dump_bdd_success" qtlid="263337">De back-up van de database is goed uitgevoerd.</translation>
+   <translation id="privateDatabase_dump_bdd_fail" qtlid="263350">Er is een fout opgetreden tijdens de back-up van de database.</translation>
+   <translation id="privateDatabase_tabs_bdd_deleting" qtlid="216599">Het verwijderen van de database wordt uitgevoerd...</translation>
+
+   <translation id="privateDatabase_add_bdd_title" qtlid="216612">Het toevoegen van een database</translation>
+   <translation id="privateDatabase_dump_bdd_title" qtlid="404694">Gearchiveerde backups</translation>
+   <translation id="privateDatabase_add_bdd_name" qtlid="60059">Basisnaam</translation>
+   <translation id="privateDatabase_add_bdd_error_name_pattern" qtlid="216625">De naam voldoet niet aan de regels.</translation>
+   <translation id="privateDatabase_add_bdd_error_name_required" qtlid="216040">Verplicht veld</translation>
+   <translation id="privateDatabase_create_bdd_conditions" qtlid="216638">Let op, de naam moet voldoen aan de volgende voorwaarden: <br/>- Minimaal {0} tekens<br/>- Maximaal {1} tekens<br/>- Mag alleen cijfers en letters bevatten.</translation>
+   <translation id="privateDatabase_add_bdd_success" qtlid="216651">Het verzoek om de database aan te maken werd uitgevoerd</translation>
+   <translation id="privateDatabase_add_bdd_fail" qtlid="216664">Er is een fout opgetreden tijdens het aanmaken van de database.</translation>
+   <translation id="privateDatabase_tabs_bdd_adding" qtlid="216677">Het toevoegen van de database werd uitgevoerd</translation>
+   <translation id="privateDatabase_add_bdd_new_user" qtlid="7810">Een gebruiker registreren</translation>
+   <translation id="privateDatabase_add_bdd_new_user_login" qtlid="56045">Gebruikersnaam</translation>
+   <translation id="privateDatabase_add_bdd_new_user_grant" qtlid="65286">Rechten</translation>
+   <translation id="privateDatabase_add_bdd_new_user_grant_none" qtlid="30646">Geen</translation>
+   <translation id="privateDatabase_add_bdd_new_user_grant_admin" qtlid="43948">Beheerder</translation>
+   <translation id="privateDatabase_add_bdd_new_user_grant_ro" qtlid="17333">read-only</translation>
+   <translation id="privateDatabase_add_bdd_new_user_grant_rw" qtlid="300526">Lezen/schrijven</translation>
+   <translation id="privateDatabase_add_bdd_new_user_password" qtlid="2270">Wachtwoord</translation>
+   <translation id="privateDatabase_add_bdd_new_user_password_confirm" qtlid="300539">Bevestig wachtwoord</translation>
+   <translation id="privateDatabase_add_bdd_new_user_password_tooltip" qtlid="300552">Tussen de 8 en 31 tekens, ten minste één hoofdletter, één kleine letter en een getal, kan alleen bestaan uit cijfers en letters</translation>
+
+   <translation id="privateDatabase_add_authorized_ip" qtlid="448392">Voeg een geautoriseerd IP-adres toe</translation>
+   <translation id="privateDatabase_add_authorized_ip_explanation" qtlid="448405">U hebt nog geen IP-adres dat geautoriseerd is voor toegang tot uw databases. Voer het IP-adres in van de server waarvoor u toegang tot uw databases wilt verlenen.</translation>
+   <translation id="privateDatabase_add_authorized_ip_description" qtlid="448418">Eerste toegang tot de database</translation>
+   <translation id="privateDatabase_add_authorized_ip_title" qtlid="455633">IP-adres met toegang tot de database</translation>
+
+   <translation id="privateDatabase_restore_bdd_application" qtlid="404707">Maak dit eerst opnieuw in de Database Management tab.</translation>
+   <translation id="privateDatabase_restore_bdd_close" qtlid="4670">Sluiten</translation>
+   <translation id="privateDatabase_restore_bdd_confirm" qtlid="272290">Wilt u de backup herstellen van <strong>{0}</strong> de <strong>{1}</strong> database?</translation>
+   <translation id="privateDatabase_restore_bdd_continue" qtlid="4070">Doorgaan</translation>
+   <translation id="privateDatabase_restore_bdd_error" qtlid="404720">Fout bij het laden. </translation>
+   <translation id="privateDatabase_restore_bdd_fail" qtlid="413362">Er is een fout opgetreden tijdens het herstel van de backup. Deze fout is mogelijk ontstaan omdat de database niet bestaat, of omdat er geen gebruikers met de vereiste rechten zijn.</translation>
+   <translation id="privateDatabase_restore_bdd_go_list" qtlid="404746">Beheer uw databases</translation>
+   <translation id="privateDatabase_restore_bdd_impossible" qtlid="404759">U kunt alleen een bestaande <strong>database</strong> herstellen.</translation>
+   <translation id="privateDatabase_restore_bdd_restore" qtlid="36120">Herstellen</translation>
+   <translation id="privateDatabase_restore_bdd_warning" qtlid="404772">Er bestaat al een database met dezelfde naam. Als u besluit om door te gaan met het herstel dan wordt de inhoud van deze database verwijderd en vervangen door de gekozen backup.</translation>
+
+
+   <translation id="privateDatabase_tabs_dumps_change" qtlid="263363">Database back-ups</translation>
+   <translation id="privateDatabase_tabs_dumps_archive_change" qtlid="404785">Verwijderde database backups van de afgelopen {0} dagen</translation>
+   <translation id="privateDatabase_tabs_dumps_creation_date" qtlid="26419">Aanmaakdatum</translation>
+   <translation id="privateDatabase_tabs_dumps_deletion_date" qtlid="95563">Verwijderingsdatum</translation>
+   <translation id="privateDatabase_tabs_dumps_actions" qtlid="72809">Handelingen</translation>
+   <translation id="privateDatabase_tabs_dumps_no_dumps" qtlid="263376">Er is geen back-up gemaakt voor deze database.</translation>
+   <translation id="privateDatabase_tabs_dumps_fail_retrieve_dumps" qtlid="263389">Er is een fout opgetreden tijdens het terugvinden van de back-uplijst. </translation>
+   <translation id="privateDatabase_tabs_dumps_download_dump" qtlid="263402">Back-up downloaden</translation>
+   <translation id="privateDatabase_tabs_dumps_restore_dump" qtlid="263415">De back-up restaureren</translation>
+   <translation id="privateDatabase_tabs_dumps_restore_in_progress" qtlid="263428">De herstelling van de backup is in behandeling genomen.</translation>
+   <translation id="privateDatabase_tabs_dumps_restore_success" qtlid="263441">De restauratie van de back-up is goed uitgevoerd.</translation>
+   <translation id="privateDatabase_tabs_dumps_restore_fail" qtlid="263454">Er is een fout opgetreden tijdens de restauratie van de back-up:</translation>
+   <translation id="privateDatabase_tabs_dumps_delete" qtlid="448431">Backup verwijderen</translation>
+   <translation id="privateDatabase_tabs_dumps_delete_title" qtlid="448444">Backup verwijderen</translation>
+   <translation id="privateDatabase_tabs_dumps_delete_confirm" qtlid="448457">Weet u zeker dat u de backup van <strong>{0}</strong> van de <strong>{1}</strong> database wilt verwijderen?</translation>
+   <translation id="privateDatabase_tabs_dumps_delete_start" qtlid="448470">Uw verzoek om de database-backup te verwijderen is verwerkt. </translation>
+   <translation id="privateDatabase_tabs_dumps_delete_done" qtlid="448483">De database-backup is nu verwijderd. </translation>
+   <translation id="privateDatabase_tabs_dumps_delete_error" qtlid="448496">Er is een fout opgetreden tijdens het verwijderen van de database-backup. </translation>
+
+   <translation id="privateDatabase_tabs_users_database_error" qtlid="135294">Er is een fout opgetreden tijdens het laden van de gegevens.</translation>
+   <translation id="privateDatabase_tabs_users_database_username" qtlid="7450">Gebruiker</translation>
+   <translation id="privateDatabase_tabs_users_database_no_users" qtlid="329538">U heeft geen gebruikers voor deze database</translation>
+   <translation id="privateDatabase_tabs_users_database_name" qtlid="329551">Database gebruikers</translation>
+   <translation id="privateDatabase_tabs_users_database_grant_admin" qtlid="43948">Beheerder</translation>
+   <translation id="privateDatabase_tabs_users_database_grant_none" qtlid="30646">Geen</translation>
+   <translation id="privateDatabase_tabs_users_database_grant_ro" qtlid="6958">Lezen</translation>
+   <translation id="privateDatabase_tabs_users_database_grant_rw" qtlid="215754">Lezen/Schrijven</translation>
+
+   <translation id="privateDatabase_order_title" qtlid="217522">Het bestellen van een private database server</translation>
+   <translation id="privateDatabase_order_step1_title" qtlid="217535">1. Configuratie van de server</translation>
+   <translation id="privateDatabase_order_step1_version" qtlid="217548">Server versie</translation>
+   <translation id="privateDatabase_order_step1_ram" qtlid="28195">Ram</translation>
+   <translation id="privateDatabase_order_step1_datacenter" qtlid="30802">Datacenter</translation>
+   <translation id="privateDatabase_order_step1_error" qtlid="216729">Er is een fout opgetreden tijdens het ophalen van de beschikbare databases.</translation>
+   <translation id="privateDatabase_order_step2_title" qtlid="186076">2. Selecteer een periode</translation>
+   <translation id="privateDatabase_order_step2_duration_fail" qtlid="216742">Bij het ophalen van de beschikbare looptijden is een fout opgetreden.</translation>
+   <translation id="privateDatabase_order_step2_price_fail" qtlid="216755">Bij het ophalen van de tarieven voor deze periode, is een fout opgetreden.</translation>
+   <translation id="privateDatabase_order_step3_title" qtlid="186089">3. Validatie</translation>
+   <translation id="privateDatabase_order_step3_contracts_check" qtlid="161139">Ik bevestig dat ik de algemene voorwaarden volledig heb gelezen en begrepen.</translation>
+   <translation id="privateDatabase_order_step3_question" qtlid="217561">Klik op "Bestelbon genereren" om uw persoonlijke database server te bestellen.</translation>
+   <translation id="privateDatabase_order_step3_contracts_ask" qtlid="161646">Lees en accepteer de onderstaande algemene voorwaarden, en klik dan op "Volgende":</translation>
+   <translation id="privateDatabase_order_step3_generate" qtlid="186219">Plaats een bestelling</translation>
+   <translation id="privateDatabase_order_step3_generating" qtlid="169511">Bestelbon wordt aangemaakt...</translation>
+   <translation id="privateDatabase_order_step3_generated" qtlid="169524">De bestelbon werd aangemaakt</translation>
+   <translation id="privateDatabase_order_step3_clic_here" qtlid="169537">Klik hieronder op "Betalen", om uw bestelling te bevestigen.</translation>
+   <translation id="privateDatabase_order_step3_pay_button" qtlid="130183">Betalen</translation>
+   <translation id="privateDatabase_order_step3_bc_information" qtlid="167886">Er wordt een nieuwe tab geopend en u wordt automatisch doorgestuurd naar OVH's verlengingsscherm.</translation>
+   <translation id="privateDatabase_order_step3_fail" qtlid="216781">Er is een fout opgetreden bij het genereren van de bestelling.</translation>
+
+   <translation id="privateDatabase_change_ram" qtlid="37875">Wijzigen</translation>
+   <translation id="privateDatabase_change_ram_title" qtlid="217106">Wijzig de hoeveelheid RAM-geheugen</translation>
+   <translation id="privateDatabase_order_select_ram_description" qtlid="217119">De geselecteerde hoeveelheid RAM-geheugen vervangt de huidige hoeveelheid.</translation>
+   <translation id="privateDatabase_order_select_ram_placeholder" qtlid="491990">Selecteer...</translation>
+
+   <translation id="privateDatabase_RAM_add_select" qtlid="31858">RAM-geheugen</translation>
+   <translation id="privateDatabase_order_select_ram" qtlid="216807">Selecteer de gewenste hoeveelheid.</translation>
+   <translation id="privateDatabase_RAM_add_select_duration" qtlid="216820">De gewenste periode selecteren.</translation>
+   <translation id="privateDatabase_RAM_add_do_order" qtlid="216833">De wijziging wordt uitgevoerd, zodra de betaling voor de bestelling is verwerkt. </translation>
+   <translation id="privateDatabase_RAM_add_do_order_attention" qtlid="108456">Opgelet!</translation>
+   <translation id="privateDatabase_RAM_add_do_order_warning" qtlid="304433">Hierdoor zal de server opnieuw gestart worden. </translation>
+   <translation id="privateDatabase_RAM_loading_order" qtlid="221162">Het aanbod wordt geladen</translation>
+   <translation id="privateDatabase_order_RAM_finish_success" qtlid="444732">Uw <a href="{0}" target="_blank">bestelling</a> is aangemaakt. Het RAM-volume wordt aangepast als u het hebt gevalideerd.</translation>
+   <translation id="privateDatabase_order_RAM_finish_error" qtlid="181227">Er is een fout opgetreden tijdens het maken van de bestelling.</translation>
+   <translation id="privateDatabase_order_RAM_resume" qtlid="177496">Bestellingsoverzicht</translation>
+   <translation id="privateDatabase_order_RAM_price_HT" qtlid="146177">Totale prijs excl. btw:</translation>
+   <translation id="privateDatabase_order_RAM_price_TTC" qtlid="146190">Totale prijs incl. btw:</translation>
+   <translation id="privateDatabase_expiration_date" qtlid="33010">Vervaldatum</translation>
+   <translation id="privateDatabase_renew_date" qtlid="98300">Automatisch verlengen</translation>
+   <translation id="privateDatabase_gui" qtlid="103642">Gebruikersinterface</translation>
+   <translation id="privateDatabase_tabs_bdd_no" qtlid="220746">Geen databases</translation>
+
+   <translation id="privateDatabase_tab_TASK" qtlid="195633">Huidige taken</translation>
+   <translation id="privateDatabase_tabs_tasks_name" qtlid="85509">Functie</translation>
+   <translation id="privateDatabase_tabs_tasks_startDate" qtlid="159176">Startdatum</translation>
+   <translation id="privateDatabase_tabs_tasks_lastUpdate" qtlid="434304">Laatste update</translation>
+   <translation id="privateDatabase_tabs_tasks_doneDate" qtlid="299910">Einddatum</translation>
+   <translation id="privateDatabase_tabs_tasks_null" qtlid="159163">Geen recente taken</translation>
+
+   <translation id="privateDatabase_dashboard_loading_error" qtlid="299475">Er is een fout opgetreden: </translation>
+   <translation id="privateDatabase_displayName_length" qtlid="260208">De naam kan niet uit meer dan 250 tekens bestaan.</translation>
+
+   <translation id="privateDatabase_tab_CRON" qtlid="263064">Geplande backups</translation>
+   <translation id="privateDatabase_add_cron_title" qtlid="263077">Voeg een geplande back-up toe</translation>
+   <translation id="privateDatabase_tabs_cron_command" qtlid="199299">Uit te voeren opdracht</translation>
+   <translation id="privateDatabase_tabs_cron_database" qtlid="275065">Database</translation>
+   <translation id="privateDatabase_tabs_cron_description" qtlid="9238">Beschrijving</translation>
+   <translation id="privateDatabase_tabs_cron_frequency" qtlid="30442">Frequentie</translation>
+   <translation id="privateDatabase_tabs_cron_status" qtlid="33790">Status</translation>
+   <translation id="privateDatabase_tabs_cron_email" qtlid="33598">E-mail</translation>
+   <translation id="privateDatabase_tabs_cron_null" qtlid="263090">Geen Cron-taak beschikbaar</translation>
+   <translation id="privateDatabase_tabs_cron_status_disabled" qtlid="125084">Gedeactiveerd</translation>
+   <translation id="privateDatabase_tabs_cron_status_enabled" qtlid="62028">Geactiveerd</translation>
+   <translation id="privateDatabase_tabs_cron_status_suspended" qtlid="125096">Opgeschort</translation>
+   <translation id="privateDatabase_tabs_cron_label_database_name" qtlid="275078">Database</translation>
+   <translation id="privateDatabase_tabs_cron_configuration_delete_title" qtlid="263103">Verwijder een geplande back-up</translation>
+   <translation id="privateDatabase_tabs_cron_configuration_delete_step1_question" qtlid="263116">Weet u zeker dat u het volgende geplande back-up wilt verwijderen?</translation>
+   <translation id="privateDatabase_tabs_cron_configuration_delete_success" qtlid="263129">Het geplande back-up zal worden verwijderd.</translation>
+   <translation id="privateDatabase_tabs_cron_configuration_delete_fail" qtlid="263142">Er is een fout opgetreden tijdens de verwijdering van het geplande back-up.</translation>
+
+   <translation id="privateDatabase_tab_METRICS" qtlid="271819">Metrics</translation>
+   <translation id="privateDatabase_metrics_no_data" qtlid="271871">Geen data beschikbaar. </translation>
+
+   <translation id="privateDatabase_metrics_memoryUsages_title" qtlid="284789">RAM - memory gebruik statistieken </translation>
+   <translation id="privateDatabase_metrics_memoryUsages_graph_dbaas_metrics_docker_container_mem_usage_percent" qtlid="271845">RAM gebruik</translation>
+
+   <translation id="privateDatabase_metrics_activeConnections_title" qtlid="284802">Statistieken over actieve verbindingen </translation>
+   <translation id="privateDatabase_metrics_activeConnections_graph_dbaas_metrics_mysql_connexion_count" qtlid="272578">Actieve verbindingen</translation>
+
+   <translation id="privateDatabase_metrics_queryExecutionTimes_title" qtlid="284815">Query runtime statistieken</translation>
+   <translation id="privateDatabase_metrics_queryExecutionTimes_graph_dbaas_metrics_mysql_query_time_average" qtlid="272604">Runtime aanvragen</translation>
+
+   <translation id="privateDatabase_metrics_memoryUsages_graph_y" qtlid="31858">RAM-geheugen</translation>
+   <translation id="privateDatabase_metrics_activeConnections_graph_mysql_active_connections" qtlid="272578">Actieve verbindingen</translation>
+   <translation id="privateDatabase_metrics_connections_graph_dbaas_metrics_mysql_connexion_count" qtlid="272578">Actieve verbindingen</translation>
+   <translation id="privateDatabase_metrics_memory_graph_memory_rss" qtlid="271845">RAM gebruik</translation>
+   <translation id="privateDatabase_metrics_memory_graph_memory_hierarchical_memory_limit" qtlid="271858">Maximale RAM limiet</translation>
+   <translation id="privateDatabase_metrics_wrong_version" qtlid="412152">Geen data beschikbaar voor versie(s) {0}.</translation>
+   <translation id="privateDatabase_metrics_time_graph_mysql_ms" qtlid="272591">Milliseconden</translation>
+   <translation id="privateDatabase_metrics_time_range_DAY" qtlid="284828">Afgelopen 24 uur</translation>
+   <translation id="privateDatabase_metrics_time_range_WEEK" qtlid="37491">Vorige week</translation>
+   <translation id="privateDatabase_metrics_time_range_MONTH" qtlid="37503">Afgelopen maand</translation>
+
+   <translation id="privateDatabase_order_sql_main_title" qtlid="352074">Bestel een SQL database </translation>
+   <translation id="privateDatabase_order_sql_no_host_warning" qtlid="354132">De Start SQL oplossing is alleen verkrijgbaar met een hosting pack. </translation>
+   <translation id="privateDatabase_order_sql_order_host_link" qtlid="354145">Bestel een hosting pack </translation>
+
+   <translation id="privateDatabase_order_sql_sub_title_1" qtlid="352087">U moet in het bezit zijn van een hosting pack om Private SQL en Start SQL opties te verkrijgen. </translation>
+   <translation id="privateDatabase_order_sql_sub_title_2" qtlid="405655">CloudDB vereist een dienst die toegang heeft tot het publieke netwerk/internet.</translation>
+   <translation id="privateDatabase_order_sql_type_title" qtlid="352100">1. Database types</translation>
+   <translation id="privateDatabase_order_sql_type_sub_title" qtlid="352113">Welke database service wilt u? </translation>
+
+   <translation id="privateDatabase_order_sql_type_start_label" qtlid="352126">Start SQL</translation>
+   <translation id="privateDatabase_order_sql_type_start_text" qtlid="507276">Eenvoudige en effectieve databases voor de dagelijkse behoeften van uw OVH webhosting (met uitzondering van Cloud Web)</translation>
+   <translation id="privateDatabase_order_sql_type_start_info_title" qtlid="353413">Start SQL database eigenschappen:</translation>
+   <translation id="privateDatabase_order_sql_type_start_info_line_1" qtlid="353426">Database grootte van 100 MB tot 800 MB</translation>
+   <translation id="privateDatabase_order_sql_type_start_info_line_2" qtlid="353439">MySQL 5.5 or 5.6 afhankelijk van het datacenter</translation>
+   <translation id="privateDatabase_order_sql_type_start_info_line_3" qtlid="353452">Maximaal 30 gelijktijdige verbindingen per database</translation>
+   <translation id="privateDatabase_order_sql_type_start_info_line_4" qtlid="353465">Beschikbare backups</translation>
+
+   <translation id="privateDatabase_order_sql_type_start_hosting_info" qtlid="353478">Let op: packs van dezelfde grootte kunnen niet worden gecombineerd. Als u al een SQL pack van dezelfde grootte bezit voor dit domein, dan zal het nieuwe pack de oude vervangen. </translation>
+
+   <translation id="privateDatabase_order_sql_type_premium_label" qtlid="72845">Prive SQL</translation>
+   <translation id="privateDatabase_order_sql_type_premium_text" qtlid="507289">Gegarandeerde Memory Performance (RAM) databases voor uw OVH webhosting</translation>
+   <translation id="privateDatabase_order_sql_type_premium_info_title" qtlid="353491">Voordelen van SQL Private: </translation>
+   <translation id="privateDatabase_order_sql_type_premium_info_line_1" qtlid="404811">Onbeperkt aantal databases</translation>
+   <translation id="privateDatabase_order_sql_type_premium_info_line_2" qtlid="455646">Gegarandeerd RAM-geheugen {0} - {1}</translation>
+   <translation id="privateDatabase_order_sql_type_premium_info_line_3" qtlid="353530">Dagelijkse automatische backups</translation>
+   <translation id="privateDatabase_order_sql_type_premium_info_line_4" qtlid="404824">Tot 200 gelijktijdige verbindingen</translation>
+   <translation id="privateDatabase_order_sql_type_premium_info_line_5" qtlid="404837">Alleen toegankelijk vanaf uw OVH web hosting</translation>
+   <translation id="privateDatabase_order_sql_type_premium_info_line_6" qtlid="455659">Gegarandeerde opslagruimte van 8 GB tot 64 GB</translation>
+
+   <translation id="privateDatabase_order_sql_type_dbaas_label" qtlid="404863">CloudDB</translation>
+   <translation id="privateDatabase_order_sql_type_dbaas_text" qtlid="507302">Ideaal als aanvulling op alle OVH cloudproducten zoals onze VPS, dedicated servers, Public Cloud instances en Cloud Web</translation>
+   <translation id="privateDatabase_order_sql_type_dbaas_info_title" qtlid="404876">CloudDB kenmerken:</translation>
+   <translation id="privateDatabase_order_sql_type_dbaas_info_line_1" qtlid="404889">Alleen toegankelijk vanaf het publieke netwerk.</translation>
+   <translation id="privateDatabase_order_sql_type_dbaas_info_line_2" qtlid="404811">Onbeperkt aantal databases</translation>
+   <translation id="privateDatabase_order_sql_type_dbaas_info_line_3" qtlid="455646">Gegarandeerd RAM-geheugen {0} - {1}</translation>
+   <translation id="privateDatabase_order_sql_type_dbaas_info_line_4" qtlid="455659">Gegarandeerde opslagruimte van 8 GB tot 64 GB</translation>
+   <translation id="privateDatabase_order_sql_type_dbaas_info_line_5" qtlid="353530">Dagelijkse automatische backups</translation>
+   <translation id="privateDatabase_order_sql_type_dbaas_info_line_6" qtlid="404824">Tot 200 gelijktijdige verbindingen</translation>
+
+   <translation id="privateDatabase_order_sql_domains_title" qtlid="352139">2. Voer de domeininformatie in</translation>
+   <translation id="privateDatabase_order_sql_customize_title" qtlid="404902">2. Personalisatie</translation>
+   <translation id="privateDatabase_order_sql_domains_pack_title" qtlid="352152">Selecteer een pack van databases</translation>
+   <translation id="privateDatabase_order_sql_domains_pack_db_SQLPERSO_1_BASES_400_MB" qtlid="352165">1 400 MB database </translation>
+   <translation id="privateDatabase_order_sql_domains_pack_db_SQLPERSO_1_BASES_800_MB" qtlid="352178">1 800 MB database </translation>
+   <translation id="privateDatabase_order_sql_domains_pack_db_SQLPERSO_20_BASES_100_MB" qtlid="352191">20 x 100 MB databases </translation>
+   <translation id="privateDatabase_order_sql_domains_pack_db_SQLPERSO_20_BASES_200_MB" qtlid="352204">20 x 200 MB databases </translation>
+   <translation id="privateDatabase_order_sql_domains_pack_db_SQLPERSO_2_BASES_400_MB" qtlid="352217">2 x 400 MB databases </translation>
+   <translation id="privateDatabase_order_sql_domains_pack_db_SQLPERSO_2_BASES_800_MB" qtlid="352230">2 x 800 MB databases </translation>
+   <translation id="privateDatabase_order_sql_domains_pack_db_SQLPERSO_50_BASES_100_MB" qtlid="352243">50 x 100 MB databases </translation>
+   <translation id="privateDatabase_order_sql_domains_pack_db_SQLPERSO_50_BASES_200_MB" qtlid="352256">50 x 200 MB databases </translation>
+   <translation id="privateDatabase_order_sql_domains_pack_db_SQLPERSO_5_BASES_100_MB" qtlid="352269">5 x 100 MB databases </translation>
+   <translation id="privateDatabase_order_sql_domains_pack_db_SQLPERSO_5_BASES_200_MB" qtlid="352282">5 x 200 MB databases</translation>
+   <translation id="privateDatabase_order_sql_domains_pack_db_SQLPERSO_5_BASES_400_MB" qtlid="352295">5 x 400 MB databases </translation>
+   <translation id="privateDatabase_order_sql_domains_pack_db_SQLPERSO_5_BASES_800_MB" qtlid="352308">5 x 800 MB databases </translation>
+   <translation id="privateDatabase_order_sql_included_title" qtlid="108456">Opgelet!</translation>
+   <translation id="privateDatabase_order_sql_included_info" qtlid="507328">Houd er rekening mee dat u al een database hebt die is opgenomen in uw {0} oplossing. Ga naar het volgende tabblad om het in te schakelen:</translation>
+   <translation id="privateDatabase_order_sql_included_link" qtlid="507341">Algemene informatie over uw webhostingplan</translation>
+   <translation id="privateDatabase_order_sql_period_title" qtlid="352321">3. Kies duur </translation>
+   <translation id="privateDatabase_order_sql_period_sub_title" qtlid="352334">Voor hoe lang wilt u het gebruiken? </translation>
+   <translation id="privateDatabase_order_sql_contracts_title" qtlid="352347">4. Contracten</translation>
+   <translation id="privateDatabase_order_sql_contracts_checkbox_label" qtlid="352360">Ik heb de volgende contracten gelezen en geaccepteerd: </translation>
+   <translation id="privateDatabase_order_sql_button_label" qtlid="186219">Plaats een bestelling</translation>
+   <translation id="privateDatabase_order_bc_created_info" qtlid="352373">De bestelbon is aangemaakt. </translation>
+   <translation id="privateDatabase_order_bc_created_redirection_info" qtlid="352386">U zult worden doorgestuurd naar de OVH betaal-interface. </translation>
+   <translation id="privateDatabase_order_show_bc_button_label" qtlid="352399">Bestelbon weergeven</translation>
+
+<!-- WHITELIST -->
+<!-- IP -->
+   <translation id="privateDatabase_tabs_whitelist_list_ip_network" qtlid="404915">IP/mask</translation>
+   <translation id="privateDatabase_tabs_whitelist_list_ip_network_description" qtlid="404928">Lijst van geautoriseerde IP's</translation>
+<!-- SERVICE -->
+   <translation id="privateDatabase_tabs_whitelist_list_service" qtlid="7702">Database</translation>
+   <translation id="privateDatabase_tabs_whitelist_list_service_description" qtlid="404941">Deze IP toegang verlenen tot de databases</translation>
+   <translation id="privateDatabase_tabs_whitelist_list_service_true" qtlid="208898">Geautoriseerd</translation>
+   <translation id="privateDatabase_tabs_whitelist_list_service_false" qtlid="404954">Niet geautoriseerd </translation>
+<!-- SFTP -->
+   <translation id="privateDatabase_tabs_whitelist_list_sftp" qtlid="295296">SFTP</translation>
+   <translation id="privateDatabase_tabs_whitelist_list_sftp_description" qtlid="404967">Dit IP-adres toegang verlenen tot de SFTP-poort</translation>
+   <translation id="privateDatabase_tabs_whitelist_list_sftp_true" qtlid="208898">Geautoriseerd</translation>
+   <translation id="privateDatabase_tabs_whitelist_list_sftp_false" qtlid="404954">Niet geautoriseerd </translation>
+<!-- DESCRIPTION -->
+   <translation id="privateDatabase_tabs_whitelist_list_status" qtlid="9238">Beschrijving</translation>
+   <translation id="privateDatabase_tabs_whitelist_list_status_description" qtlid="404980">Whitelist beschrijving</translation>
+   <translation id="privateDatabase_tabs_whitelist_list_status_created" qtlid="42370">-</translation>
+   <translation id="privateDatabase_tabs_whitelist_list_status_creating" qtlid="29647">Bezig met aanmaken</translation>
+   <translation id="privateDatabase_tabs_whitelist_list_status_deleting" qtlid="152778">Wordt verwijderd</translation>
+   <translation id="privateDatabase_tabs_whitelist_list_status_updating" qtlid="367813">Update wordt uitgevoerd</translation>
+<!-- RELOAD -->
+   <translation id="privateDatabase_tabs_whitelist_list_reload_description" qtlid="218081">Het herladen van de tabel</translation>
+<!-- POPOVER -->
+   <translation id="privateDatabase_tabs_whitelist_list_popover_description" qtlid="23395">Opties</translation>
+   <translation id="privateDatabase_tabs_whitelist_list_popover_edit" qtlid="404993">Whitelist wijzigen</translation>
+   <translation id="privateDatabase_tabs_whitelist_list_popover_delete" qtlid="405006">Whitelist verwijderen</translation>
+<!-- LIST -->
+   <translation id="privateDatabase_tabs_whitelist_list_add_whitelist" qtlid="405019">IP-adres/mask toevoegen</translation>
+   <translation id="privateDatabase_tabs_whitelist_list_no_whitelist_info" qtlid="405032">Let op, om toegang te krijgen tot uw databases moet u minimaal één IP-adres machtigen.</translation>
+   <translation id="privateDatabase_tabs_whitelist_list_no_whitelist" qtlid="405045">U heeft geen geautoriseerde IP-adressen</translation>
+<!-- ADD -->
+   <translation id="privateDatabase_modale_whitelist_add_title" qtlid="405019">IP-adres/mask toevoegen</translation>
+   <translation id="privateDatabase_modale_whitelist_add_info" qtlid="405058">Nieuw IP/mask toevoegen aan uw whitelist</translation>
+   <translation id="privateDatabase_modale_whitelist_add_success" qtlid="405071">Whitelist creatie is geregistreerd</translation>
+   <translation id="privateDatabase_modale_whitelist_add_fail" qtlid="405084">Er is een fout opgetreden tijdens het creëren van de whitelist. </translation>
+   <translation id="privateDatabase_modale_whitelist_add_ip" qtlid="404915">IP/mask</translation>
+   <translation id="privateDatabase_modale_whitelist_add_ip_tooltip" qtlid="405097">IP-adres/mask moet een IPv4 (127.0.0.1 of 127.0.0.0/32) zijn</translation>
+   <translation id="privateDatabase_modale_whitelist_add_ip_title" qtlid="405110">IP-adres/mask naar whitelist</translation>
+   <translation id="privateDatabase_modale_whitelist_add_name" qtlid="9238">Beschrijving</translation>
+   <translation id="privateDatabase_modale_whitelist_add_service" qtlid="7702">Database</translation>
+   <translation id="privateDatabase_modale_whitelist_add_service_title" qtlid="405123">Dit IP-adres/mask toegang verlenen tot de database</translation>
+   <translation id="privateDatabase_modale_whitelist_add_sftp" qtlid="295296">SFTP</translation>
+   <translation id="privateDatabase_modale_whitelist_add_sftp_title" qtlid="405136">Dit IP-adres/mask toegang verlenen tot de SFTP</translation>
+   <translation id="privateDatabase_modale_whitelist_add_restriction_info" qtlid="405149">Beperkingen aanbrengen op: </translation>
+<!-- DELETE -->
+   <translation id="privateDatabase_modale_whitelist_delete_title" qtlid="405162">Een IP-adres/mask verwijderen</translation>
+   <translation id="privateDatabase_modale_whitelist_delete_info" qtlid="405175">Weet u zeker dat u de {0} IP-adres/mask van uw whitelist wilt verwijderen? </translation>
+   <translation id="privateDatabase_modale_whitelist_delete_success" qtlid="405188">Verwijdering van IP-adres/mask is geregistreerd. </translation>
+   <translation id="privateDatabase_modale_whitelist_delete_fail" qtlid="405201">Er is een fout opgetreden bij het verwijderen van de IP-adres/mask.</translation>
+<!-- UPDATE -->
+   <translation id="privateDatabase_modale_whitelist_update_title" qtlid="405214">IP-adres/mask wijzigen</translation>
+   <translation id="privateDatabase_modale_whitelist_update_info" qtlid="405227">Nieuw IP-adres/mask wijzigen voor uw whitelist</translation>
+   <translation id="privateDatabase_modale_whitelist_update_success" qtlid="405240">Whitelist wijzigig is geregistreerd.</translation>
+   <translation id="privateDatabase_modale_whitelist_update_fail" qtlid="405253">Er is een fout opgetreden tijdens het wijzigen van de whitelist. </translation>
+   <translation id="privateDatabase_modale_whitelist_update_ip" qtlid="404915">IP/mask</translation>
+   <translation id="privateDatabase_modale_whitelist_update_name" qtlid="9238">Beschrijving</translation>
+   <translation id="privateDatabase_modale_whitelist_update_service" qtlid="7702">Database</translation>
+   <translation id="privateDatabase_modale_whitelist_update_service_title" qtlid="405266">IP-adres/mask toegang verlenen tot de databases</translation>
+   <translation id="privateDatabase_modale_whitelist_update_sftp" qtlid="295296">SFTP</translation>
+   <translation id="privateDatabase_modale_whitelist_update_sftp_title" qtlid="405136">Dit IP-adres/mask toegang verlenen tot de SFTP</translation>
+   <translation id="privateDatabase_modale_whitelist_update_restriction_info" qtlid="405149">Beperkingen aanbrengen op: </translation>
+
+<!-- LOGS -->
+   <translation id="privateDatabase_tabs_logs_list_title" qtlid="413375">Mijn database logs</translation>
+   <translation id="privateDatabase_tabs_logs_list_no_logs" qtlid="413388">Er is momenteel geen log </translation>
+
+<!-- OOM -->
+   <translation id="privateDatabase_no_oom" qtlid="440313">Geen memory overflow te rapporteren.</translation>
+   <translation id="privateDatabase_warning_oom" qtlid="440326">er zijn recentelijk {0} memory overflows opgetreden.  </translation>
+   <translation id="privateDatabase_modale_oom_title" qtlid="436957">RAM-capaciteit overschreden</translation>
+   <translation id="privateDatabase_modale_oom_state_button" qtlid="505751">Controleer RAM overflow</translation>
+   <translation id="privateDatabase_modale_oom_confirm_button" qtlid="440339">Meer RAM bestellen</translation>
+   <translation id="privateDatabase_modale_oom_close_button" qtlid="4670">Sluiten</translation>
+   <translation id="privateDatabase_modale_oom_info" qtlid="440352">RAM-overflows zijn opgetreden in de laatste {0} dagen. <br />Alleen de {1} meest recente overflows zijn beschikbaar.</translation>
+   <translation id="privateDatabase_modale_oom_tab_event_date" qtlid="24523">Datum</translation>
+   <translation id="privateDatabase_modale_oom_tab_size_reached" qtlid="436983">Bereikte capaciteit</translation>
+   <translation id="privateDatabase_modale_oom_tab_uptime" qtlid="436996">Tijd sinds laatst overschreden</translation>
+   <translation id="privateDatabase_modale_oom_no_oom" qtlid="437009">Geen overschrijding van RAM-capaciteit.</translation>
+   <translation id="privateDatabase_modale_oom_info_order" qtlid="437022">We raden u aan om de RAM-capaciteit van uw {0} te verhogen om deze problemen op te lossen.</translation>
+
+<!-- EXTENSIONS -->
+<!-- LIST -->
+   <translation id="privateDatabase_tabs_list_extensions_title" qtlid="341927">Extensies</translation>
+   <translation id="privateDatabase_tabs_list_extensions_extension" qtlid="94231">Extensie</translation>
+   <translation id="privateDatabase_tabs_list_extensions_description" qtlid="9238">Beschrijving</translation>
+   <translation id="privateDatabase_tabs_list_extensions_enabled" qtlid="55133">Actief</translation>
+
+<!-- INFOS -->
+   <translation id="privateDatabase_tabs_list_go_extensions" qtlid="437035">Extensies bekijken</translation>
+   <translation id="privateDatabase_tabs_list_extensions_info" qtlid="437048">Extensies van databases {0}</translation>
+   <translation id="privateDatabase_tabs_list_extensions_no_extensions" qtlid="437061">Geen extensie beschikbaar</translation>
+   <translation id="privateDatabase_tabs_list_extensions_enable_info" qtlid="437074">Extensie activeren</translation>
+   <translation id="privateDatabase_tabs_list_extensions_disable_info" qtlid="437087">Extensie deactiveren</translation>
+   <translation id="privateDatabase_tabs_list_extensions_reload_info" qtlid="437100">Extensies reloaden</translation>
+
+<!-- ALERTS -->
+   <translation id="privateDatabase_tabs_list_extensions_retrieve_infos" qtlid="437113">Er is een fout opgetreden tijdens het dataherstel.</translation>
+   <translation id="privateDatabase_tabs_list_extensions_enable_success" qtlid="437126">De extensie is geactiveerd.</translation>
+   <translation id="privateDatabase_tabs_list_extensions_enable_error" qtlid="437139">Er is een fout opgetreden tijdens het instellen van de extensie. </translation>
+   <translation id="privateDatabase_tabs_list_extensions_disable_success" qtlid="437152">De extensie is gedeactiveerd. </translation>
+   <translation id="privateDatabase_tabs_list_extensions_disable_error" qtlid="437165">Er is een fout opgetreden tijdens het deactiveren van de extensie. </translation>
+
+
+</translations>

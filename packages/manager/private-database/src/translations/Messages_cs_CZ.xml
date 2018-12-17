@@ -1,0 +1,645 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<translations>
+   <translation id="button_renew" qtlid="210124">Obnovit</translation>
+   <translation id="privateDatabase_dashboard_state" qtlid="297124">Stav služby</translation>
+   <translation id="privateDatabase_dashboard_disk_usage" qtlid="76758">Použitý prostor</translation>
+   <translation id="privateDatabase_dashboard_guide_help" qtlid="271556">Potřebujete pomoci s privátními databázemi?</translation>
+   <translation id="privateDatabase_dashboard_quota" qtlid="258951">Celkové využité místo: {0}</translation>
+   <translation id="privateDatabase_dashboard_version" qtlid="34210">Verze</translation>
+   <translation id="privateDatabase_dashboard_version_mariadb_101" qtlid="444430">MariaDB 10.1</translation>
+   <translation id="privateDatabase_dashboard_version_mariadb_102" qtlid="473256">MariaDB 10.2</translation>
+   <translation id="privateDatabase_dashboard_version_mysql_41" qtlid="215572">MySQL 4.1</translation>
+   <translation id="privateDatabase_dashboard_version_mysql_50" qtlid="215585">MySQL 5.0</translation>
+   <translation id="privateDatabase_dashboard_version_mysql_51" qtlid="215598">MySQL 5.1</translation>
+   <translation id="privateDatabase_dashboard_version_mysql_55" qtlid="215611">MySQL 5.5</translation>
+   <translation id="privateDatabase_dashboard_version_mysql_56" qtlid="215624">MySQL 5.6</translation>
+   <translation id="privateDatabase_dashboard_version_mysql_57" qtlid="288483">MySQL 5.7</translation>
+   <translation id="privateDatabase_dashboard_version_postgresql_94" qtlid="282718">PostgreSQL 9.4</translation>
+   <translation id="privateDatabase_dashboard_version_postgresql_95" qtlid="354197">PostgreSQL 9.5</translation>
+   <translation id="privateDatabase_dashboard_version_postgresql_96" qtlid="360970">PostgreSQL 9.6</translation>
+   <translation id="privateDatabase_dashboard_version_postgresql_10" qtlid="444443">PostgreSQL 10</translation>
+   <translation id="privateDatabase_dashboard_version_mongodb_34" qtlid="448301">MongoDB 3.4</translation>
+   <translation id="privateDatabase_dashboard_version_redis_32" qtlid="448314">Redis 3.2</translation>
+   <translation id="privateDatabase_dashboard_version_mongodb_40" qtlid="506219">MongoDB 4.0</translation>
+   <translation id="privateDatabase_dashboard_version_redis_40" qtlid="506206">Redis 4.0</translation>
+   <translation id="privateDatabase_dashboard_nb_cpu" qtlid="215637">Počet CPU</translation>
+   <translation id="privateDatabase_dashboard_ip" qtlid="25615">IP</translation>
+   <translation id="privateDatabase_dashboard_detached" qtlid="136100">Zrušený</translation>
+   <translation id="privateDatabase_dashboard_restartPending" qtlid="215650">Restartování...</translation>
+   <translation id="privateDatabase_dashboard_startPending" qtlid="215663">Spouštění...</translation>
+   <translation id="privateDatabase_dashboard_started" qtlid="26743">Spuštěno</translation>
+   <translation id="privateDatabase_dashboard_stopPending" qtlid="215676">Vypínání...</translation>
+   <translation id="privateDatabase_dashboard_stopped" qtlid="26755">Zastaveno</translation>
+   <translation id="privateDatabase_dashboard_type" qtlid="2642">Typ</translation>
+   <translation id="privateDatabase_dashboard_type_mysql" qtlid="196894">MySQL</translation>
+   <translation id="privateDatabase_dashboard_type_postgresql" qtlid="196907">PostgreSQL</translation>
+   <translation id="privateDatabase_dashboard_type_redis" qtlid="448327">Redis</translation>
+   <translation id="privateDatabase_dashboard_type_mongodb" qtlid="444706">MongoDB</translation>
+   <translation id="privateDatabase_dashboard_type_mariadb" qtlid="444719">MariaDB</translation>
+   <translation id="privateDatabase_dashboard_ram" qtlid="31354">RAM</translation>
+   <translation id="privateDatabase_dashboard_information" qtlid="217574">Server je v nečinném stavu. Některé funkce jsou tak deaktivovány.</translation>
+   <translation id="privateDatabase_dashboard_changeversion_information" qtlid="217587">Server je migrován, některé funkce jsou kvůli tomu deaktivovány.</translation>
+   <translation id="privateDatabase_dashboard_not_administrator_information" qtlid="404642">Nejste administrátor databáze.</translation>
+   <translation id="privateDatabase_dashboard_datacenter" qtlid="30802">Datacentrum</translation>
+   <translation id="privateDatabase_dashboard_datacenter_p19" qtlid="93991">Paříž</translation>
+   <translation id="privateDatabase_dashboard_datacenter_gra1" qtlid="264192">Gravelines</translation>
+   <translation id="privateDatabase_dashboard_infrastructure" qtlid="125552">Infrastruktura</translation>
+   <translation id="privateDatabase_dashboard_infrastructure_legacy" qtlid="254817">Legacy</translation>
+   <translation id="privateDatabase_dashboard_infrastructure_sailabove" qtlid="254830">SailAbove</translation>
+   <translation id="privateDatabase_dashboard_infrastructure_docker" qtlid="263468">Docker</translation>
+   <translation id="privateDatabase_dashboard_hostname" qtlid="192201">Název hostitele</translation>
+   <translation id="privateDatabase_dashboard_host" qtlid="135229">Host</translation>
+   <translation id="privateDatabase_dashboard_port_legacy" qtlid="254843">Port FTP</translation>
+   <translation id="privateDatabase_dashboard_port_docker" qtlid="262947">SFTP port</translation>
+   <translation id="privateDatabase_dashboard_port" qtlid="9034">Port</translation>
+   <translation id="privateDatabase_dashboard_certificate" qtlid="19771">Certifikát</translation>
+   <translation id="privateDatabase_dashboard_certificate_tooltip" qtlid="448340">Pro samotné připojení k instanci není certifikát zapotřebí. Pokud si však budete přát připojení k instanci šifrovat, budete certifikát potřebovat.</translation>
+   <translation id="privateDatabase_dashboard_see_certificate" qtlid="448353">Zobrazit certifikát</translation>
+   <translation id="privateDatabase_dashboard_service_hosting_more" qtlid="325924">Prohlédněte si seznam</translation>
+   <translation id="privateDatabase_dashboard_service_hosting_linked" qtlid="444456">Připojený webhosting</translation>
+   <translation id="privateDatabase_dashboard_service_hosting_linked_none" qtlid="30646">Ne</translation>
+
+   <translation id="privateDatabase_dashboard_connections_title" qtlid="250927">Přístupové údaje</translation>
+   <translation id="privateDatabase_dashboard_ftp_informations_legacy" qtlid="50410">FTP</translation>
+   <translation id="privateDatabase_dashboard_ftp_informations_docker" qtlid="295296">SFTP</translation>
+   <translation id="privateDatabase_dashboard_ftp_username" qtlid="56045">Uživatelské jméno</translation>
+   <translation id="privateDatabase_dashboard_admin_informations" qtlid="264001">Administrace databáze</translation>
+   <translation id="privateDatabase_dashboard_admin_informations_users" qtlid="264014">Přejděte do záložky uživatelů a práv</translation>
+
+   <translation id="privateDatabase_dashboard_name_validate" qtlid="26047">Schválit</translation>
+   <translation id="privateDatabase_dashboard_name_cancel" qtlid="37863">Zrušit</translation>
+
+   <translation id="privateDatabase_tab_USER" qtlid="215689">Uživatelé a oprávnění</translation>
+   <translation id="privateDatabase_tab_STATE" qtlid="351922">Obecné informace</translation>
+   <translation id="privateDatabase_tab_DATABASE" qtlid="7870">Databáze</translation>
+   <translation id="privateDatabase_tab_WHITELIST" qtlid="404655">Autorizované IP adresy</translation>
+   <translation id="privateDatabase_tab_LOGS" qtlid="62064">Logy</translation>
+   <translation id="privateDatabase_tab_CONFIGURATION" qtlid="4406">Konfigurace</translation>
+   <translation id="privateDatabase_dashboard_general_informations" qtlid="27115">Základní informace</translation>
+   <translation id="privateDatabase_configurations_select" qtlid="263481">Zvolte typ své databáze:</translation>
+
+   <translation id="privateDatabase_configurations_general_mysql" qtlid="263494">Obecné nastavení MySQL</translation>
+   <translation id="privateDatabase_configurations_general_mariadb" qtlid="404668">Obecné nastavení MariaDB</translation>
+   <translation id="privateDatabase_configurations_general_redis" qtlid="448366">Obecné nastavení Redis</translation>
+   <translation id="privateDatabase_configurations_general_postgresql" qtlid="371149">Obecné nastavení PostgreSQL</translation>
+   <translation id="privateDatabase_configurations_general_postgresql_soon" qtlid="371162">Již brzy k dispozici pro PostgreSQL</translation>
+
+   <translation id="privateDatabase_configuration_alert" qtlid="482212">Jakákoli změna bude mít za následek restart serveru.</translation>
+   <translation id="privateDatabase_configuration_edit_btn" qtlid="185452">Upravit</translation>
+   <translation id="privateDatabase_configuration_cancel_btn" qtlid="37863">Zrušit</translation>
+   <translation id="privateDatabase_configuration_confirm_btn" qtlid="41326">Provést změny</translation>
+   <translation id="privateDatabase_configuration_reboot" qtlid="263520">Nastavení bylo změněno. Váš server bude restartován.</translation>
+   <translation id="privateDatabase_configuration_error_put" qtlid="263533">Při změně nastavení došlo k chybě.</translation>
+   <translation id="privateDatabase_configuration_error" qtlid="233047">Při získávání dat došlo k chybě.</translation>
+   <translation id="privateDatabase_configuration_success" qtlid="263546">Restartování a nastavení Vašeho serveru bylo úspěšné.</translation>
+   <translation id="privateDatabase_configuration_autoCommit" qtlid="263559">Určuje nastavení režimu auto-commit (zda se požadavky nasadí automaticky, nebo zda je nutné je nasadit manuálně, aby začali fungovat).</translation>
+   <translation id="privateDatabase_configuration_maxConnections" qtlid="263572">Maximální počet autorizovaných souběžných připojení na server.</translation>
+   <translation id="privateDatabase_configuration_skipInnodb" qtlid="263585">Zakázat používání InnoDB tabulek.</translation>
+   <translation id="privateDatabase_configuration_maxConnections" qtlid="263598">Maximální počet souběžných připojení</translation>
+   <translation id="privateDatabase_configuration_maxAllowedPacket" qtlid="263611">Maximální velikost každého paketu.</translation>
+   <translation id="privateDatabase_configuration_tmpdir" qtlid="363709">Jedná se o adresář dočasných souborů. /dev/shm odkazuje na RAM pro extra výkon, zatímco /tmp na diskové úložiště (doporučeno pro příležitostné operace náročné na zdroje).&#13;
+&#13;
+</translation>
+   <translation id="privateDatabase_configuration_innodbBufferPoolSize" qtlid="263637">Velikost paměťového bufferu (MB)</translation>
+   <translation id="privateDatabase_configuration_event_scheduler" qtlid="370187">Status orchestrátoru událostí</translation>
+   <translation id="privateDatabase_configuration_interactive_timeout" qtlid="370200">Počet vteřin nečinnosti během připojení přes příkazový řádek, po jejichž uplynutí server připojení ukončí.&#13;
+</translation>
+   <translation id="privateDatabase_configuration_wait_timeout" qtlid="370213">Počet vteřin nečinnosti během externího připojení, po jejichž uplynutí server připojení ukončí.&#13;
+</translation>
+
+   <translation id="privateDatabase_configuration_field_autocommit" qtlid="482225">Určuje, zda jsou SQL transakce prováděny automaticky či nikoli.</translation>
+   <translation id="privateDatabase_configuration_field_event_scheduler" qtlid="482238">Používá se pro spuštění naprogramovaných požadavků přímo na MySQL serveru.</translation>
+   <translation id="privateDatabase_configuration_field_innodb_buffer_pool_size" qtlid="482251">Velikost vyrovnávací paměti (MB).</translation>
+   <translation id="privateDatabase_configuration_field_interactive_timeout" qtlid="482264">Doba, během níž bude server čekat na aktivitu v interaktivním spojení, než dojde k uzavření spojení (v sekundách).</translation>
+   <translation id="privateDatabase_configuration_field_max_allowed_packet" qtlid="482277">Maximální velikost paketu (MB).</translation>
+   <translation id="privateDatabase_configuration_field_max_connections" qtlid="482290">Počet autorizovaných simultánních připojení na Private SQL.</translation>
+   <translation id="privateDatabase_configuration_field_max_user_connections" qtlid="482303">Počet autorizovaných simultánních připojení na uživatele.</translation>
+   <translation id="privateDatabase_configuration_field_tmpdir" qtlid="482316">Dočasný adresář souborů (RAM nebo disk instance).</translation>
+   <translation id="privateDatabase_configuration_field_wait_timeout" qtlid="482329">Doba, během níž bude server čekat na aktivitu v neinteraktivním spojení, než dojde k uzavření spojení (v sekundách).&#13;
+&#13;
+</translation>
+
+   <translation id="privateDatabase_capability_disabled_explanation" qtlid="448379">Tato funkce není pro daný typ databáze k dispozici.</translation>
+
+   <translation id="privateDatabase_action_changepassword" qtlid="80394">Změna hesla</translation>
+   <translation id="privateDatabase_action_grants" qtlid="215715">Správa oprávnění</translation>
+   <translation id="privateDatabase_action_delete_user" qtlid="49550">Smazat uživatele</translation>
+   <translation id="privateDatabase_tabs_user_grants" qtlid="215728">Oprávnění databází</translation>
+
+   <translation id="privateDatabase_tabs_user_name" qtlid="56045">Uživatelské jméno</translation>
+   <translation id="privateDatabase_tabs_creation_date" qtlid="26419">Datum vytvoření</translation>
+
+   <translation id="privateDatabase_tabs_refresh_data" qtlid="413284">Znovu načíst data</translation>
+
+   <translation id="privateDatabase_tabs_user_no_grant" qtlid="30646">Ne</translation>
+   <translation id="privateDatabase_tabs_no_user" qtlid="215741">Žádný uživatel</translation>
+   <translation id="privateDatabase_tabs_no_user_error" qtlid="232995">Není možné zobrazit uživatele</translation>
+   <translation id="privateDatabase_tabs_user_grant_admin" qtlid="43948">Administrativní kontakt</translation>
+   <translation id="privateDatabase_tabs_user_grant_admin_tooltip" qtlid="342715">Autorizace požadavků typu: Select / Insert / Update / Delete / Create / Alter / Drop</translation>
+   <translation id="privateDatabase_tabs_user_grant_none" qtlid="30646">Ne</translation>
+   <translation id="privateDatabase_tabs_user_grant_none_tooltip" qtlid="342728">Žádná práva k databázi</translation>
+   <translation id="privateDatabase_tabs_user_grant_ro" qtlid="6958">Čtení</translation>
+   <translation id="privateDatabase_tabs_user_grant_ro_tooltip" qtlid="342741">Autorizace požadavků typu: Select</translation>
+   <translation id="privateDatabase_tabs_user_grant_rw" qtlid="215754">Čtení/Zápis</translation>
+   <translation id="privateDatabase_tabs_user_grant_rw_tooltip" qtlid="342754">Autorizace požadavků typu: Select / Insert / Update / Delete</translation>
+   <translation id="privateDatabase_tabs_user_grant_change" qtlid="233430">Změna uživatelských práv:</translation>
+
+   <translation id="privateDatabase_no_db" qtlid="215767">Nemáte databázi</translation>
+   <translation id="privateDatabase_database" qtlid="275052">Databáze</translation>
+   <translation id="privateDatabase_tabs_user_grant_updating" qtlid="215780">Změna oprávnění</translation>
+   <translation id="privateDatabase_tabs_users_grant_error_deleting" qtlid="215793">Nemůžete měnit oprávnění uživatele, který se maže.</translation>
+
+   <translation id="privateDatabase_delete_user_title" qtlid="7666">Odebrat uživatele</translation>
+   <translation id="privateDatabase_delete_user_success" qtlid="215806">Požadavek na vymazání byl úspěšně přijat.</translation>
+   <translation id="privateDatabase_delete_user_fail" qtlid="215819">Při požadavku o vymazání došlo k chybě.</translation>
+   <translation id="privateDatabase_delete_user_confirm" qtlid="215832">Potvrdit vymazání uživatele: {0}</translation>
+   <translation id="privateDatabase_tabs_user_deleting" qtlid="215845">Uživatel se maže...</translation>
+   <translation id="privateDatabase_tabs_user_options" qtlid="413297">Možnosti</translation>
+
+   <translation id="privateDatabase_tabs_users_grant_error" qtlid="215858">Při změně oprávnění došlo k chybě.</translation>
+   <translation id="privateDatabase_tabs_users_grant_success" qtlid="215871">Oprávnění byla úspěšně změněna.</translation>
+   <translation id="privateDatabase_tabs_users_grant_doing" qtlid="215884">Změna bude aktivní během několika minut.</translation>
+
+   <translation id="privateDatabase_add_user_title" qtlid="7150">Přidat uživatele</translation>
+   <translation id="privateDatabase_add_user_password" qtlid="2270">Heslo</translation>
+   <translation id="privateDatabase_add_user_password_confirm" qtlid="9382">Potvrzení hesla</translation>
+   <translation id="privateDatabase_action_changepassword_doing" qtlid="215897">Heslo bylo změněno</translation>
+   <translation id="privateDatabase_add_user_name" qtlid="56045">Uživatelské jméno</translation>
+   <translation id="privateDatabase_add_user_error_password_required" qtlid="215910">Heslo je povinné</translation>
+   <translation id="privateDatabase_add_user_error_password_minlength" qtlid="413310">Heslo je příliš krátké</translation>
+   <translation id="privateDatabase_add_user_error_password_maxlength" qtlid="413323">Heslo je příliš dlouhé</translation>
+   <translation id="privateDatabase_add_user_error_password_pattern" qtlid="215923">Heslo neodpovídá našim bezpečnostním pravidlům.</translation>
+   <translation id="privateDatabase_add_user_error_password_confirm_required" qtlid="243539">Potvrzení hesla je povinné</translation>
+   <translation id="privateDatabase_add_user_error_password_confirm_pattern" qtlid="243552">Hesla se neshodují</translation>
+   <translation id="privateDatabase_add_user_error_password_confirm_minlength" qtlid="413310">Heslo je příliš krátké</translation>
+   <translation id="privateDatabase_add_user_error_password_confirm_maxlength" qtlid="413323">Heslo je příliš dlouhé</translation>
+   <translation id="privateDatabase_add_user_error_name_required" qtlid="215936">Jméno je povinné</translation>
+   <translation id="privateDatabase_add_user_error_name_minlength" qtlid="413336">Název je příliš krátký</translation>
+   <translation id="privateDatabase_add_user_error_name_maxlength" qtlid="413349">Název je příliš dlouhý</translation>
+   <translation id="privateDatabase_add_user_error_name_pattern" qtlid="215949">Název není platný</translation>
+   <translation id="privateDatabase_add_user_error_name_exist" qtlid="244742">Tento název již existuje</translation>
+   <translation id="privateDatabase_add_user_success" qtlid="216846">Přidání uživatele bylo registrováno a bude brzy aktivní.</translation>
+   <translation id="privateDatabase_add_user_fail" qtlid="215975">Při přidávání uživatele došlo k chybě</translation>
+   <translation id="privateDatabase_tabs_user_adding" qtlid="233008">Přidávání...</translation>
+   <translation id="privateDatabase_tabs_add_user" qtlid="7150">Přidat uživatele</translation>
+   <translation id="privateDatabase_order_datacenter_p19" qtlid="93991">Paříž</translation>
+   <translation id="privateDatabase_order_datacenter_gra1" qtlid="264192">Gravelines</translation>
+   <translation id="privateDatabase_order_step1_hosting" qtlid="323366">Webhosting k použití</translation>
+
+   <translation id="privateDatabase_order_step1_hosting_warning" qtlid="434278">Private SQL je kompatibilní pouze s webhostingovým řešením nacházejícím se ve stejném datacentru (jako je tomu právě v tomto případě). Pokud si přejete použít jiný webhosting a nejste si jisti, v jakém datacentru se nachází, můžete se o tom přesvědčit v rozhraní pro správu webhostingu (záložka "Základní informace").</translation>
+
+   <translation id="privateDatabase_order_step1_hosting_info" qtlid="323392">Privátní SQL by mělo být nainstalované ve stejném datacentru, jako Váš hostingový balíček</translation>
+
+   <translation id="privateDatabase_order_step1_no_hosting_warning" qtlid="323405">Privátní SQL je kompatibilní pouze s hostingy ve stejném datacentru. Pokud máte pod jiným účtem webhosting v jiném datacentru, nebo si nejste jistí, přihlašte se k onomu účtu a zjistěte si, ve kterém datacentru se nachází. Tato informace je uvedena u Vašeho webhostingu v sekci "Obecné informace".</translation>
+
+   <translation id="privateDatabase_order_step1_clouddb_warning" qtlid="404681">Pozor: CloudDB není kompatibilní s webhostingem OVH.</translation>
+
+   <translation id="privateDatabase_change_rootPassword" qtlid="80394">Změna hesla</translation>
+   <translation id="privateDatabase_password_legacy" qtlid="260000">Heslo FTP</translation>
+   <translation id="privateDatabase_change_rootPassword_title" qtlid="80394">Změna hesla</translation>
+   <translation id="privateDatabase_password_docker" qtlid="251824">Heslo serveru</translation>
+   <translation id="privateDatabase_change_rootPassword_new" qtlid="17177">Nové heslo</translation>
+   <translation id="privateDatabase_change_rootPassword_confirm" qtlid="9983">Potvrzení hesla</translation>
+   <translation id="privateDatabase_change_rootPassword_conditions" qtlid="216001">Pozor, Heslo musí splňovat následující pravidla: <br/>- Minimální délka {0} znaků<br/>- Maximální délka {1} znaků<br/>- Alespoň jedno velké písmeno<br/>- Alespoň jedno malé písmeno<br/>- Alespoň jedno číslo<br/>- Musí obsahovat pouze číslice a písmena.</translation>
+   <translation id="privateDatabase_change_rootPassword_error_equals" qtlid="216014">Hesla nejsou shodná.</translation>
+   <translation id="privateDatabase_change_rootPassword_error_pattern" qtlid="216027">Formát hesla není platný.</translation>
+   <translation id="privateDatabase_change_rootPassword_error_required" qtlid="216040">Požadovaná pole.</translation>
+   <translation id="privateDatabase_change_rootPassword_error_minlength" qtlid="413310">Heslo je příliš krátké</translation>
+   <translation id="privateDatabase_change_rootPassword_error_maxlength" qtlid="413323">Heslo je příliš dlouhé</translation>
+   <translation id="privateDatabase_change_rootPassword_confirm_error_pattern" qtlid="243552">Hesla se neshodují</translation>
+   <translation id="privateDatabase_change_rootPassword_confirm_error_minlength" qtlid="413310">Heslo je příliš krátké</translation>
+   <translation id="privateDatabase_change_rootPassword_confirm_error_maxlength" qtlid="413323">Heslo je příliš dlouhé</translation>
+   <translation id="privateDatabase_change_rootPassword_success" qtlid="216053">Žádost o změnu hesla bude aktivní za několik minut.</translation>
+   <translation id="privateDatabase_change_rootPassword_fail" qtlid="216066">Při požadavku na změnu hesla došlo k chybě.</translation>
+   <translation id="privateDatabase_change_userPassword" qtlid="80394">Změna hesla</translation>
+   <translation id="privateDatabase_change_userPassword_title" qtlid="80394">Změna hesla</translation>
+   <translation id="privateDatabase_change_userPassword_new" qtlid="17177">Nové heslo</translation>
+   <translation id="privateDatabase_change_userPassword_confirm" qtlid="9983">Potvrzení hesla</translation>
+   <translation id="privateDatabase_change_userPassword_conditions" qtlid="216001">Pozor, Heslo musí splňovat následující pravidla: <br/>- Minimální délka {0} znaků<br/>- Maximální délka {1} znaků<br/>- Alespoň jedno velké písmeno<br/>- Alespoň jedno malé písmeno<br/>- Alespoň jedno číslo<br/>- Musí obsahovat pouze číslice a písmena.</translation>
+   <translation id="privateDatabase_add_user_conditions" qtlid="221149">Pozor: Název musí splňovat následující kritéria: <br/>- Minimálně {0} znaků<br/>- Maximálně {1} znaků<br/>- Může obsahovat pouze číslice a písmena.<br/>- Může obsahovat následující znaky "-", "_", "."</translation>
+   <translation id="privateDatabase_change_userPassword_error_equals" qtlid="216014">Hesla nejsou shodná.</translation>
+   <translation id="privateDatabase_change_userPassword_error_pattern" qtlid="216027">Formát hesla není platný.</translation>
+   <translation id="privateDatabase_change_userPassword_error_required" qtlid="216040">Požadovaná pole.</translation>
+   <translation id="privateDatabase_change_userPassword_error_minlength" qtlid="413310">Heslo je příliš krátké</translation>
+   <translation id="privateDatabase_change_userPassword_error_maxlength" qtlid="413323">Heslo je příliš dlouhé</translation>
+   <translation id="privateDatabase_change_userPassword_confirm_error_pattern" qtlid="243552">Hesla se neshodují</translation>
+   <translation id="privateDatabase_change_userPassword_confirm_error_minlength" qtlid="413310">Heslo je příliš krátké</translation>
+   <translation id="privateDatabase_change_userPassword_confirm_error_maxlength" qtlid="413323">Heslo je příliš dlouhé</translation>
+   <translation id="privateDatabase_change_userPassword_success" qtlid="216053">Žádost o změnu hesla bude aktivní za několik minut.</translation>
+   <translation id="privateDatabase_change_userPassword_fail" qtlid="216066">Při požadavku na změnu hesla došlo k chybě.</translation>
+   <translation id="privateDatabase_change_userPassword_done" qtlid="216079">Heslo bylo úspěšně změněno.</translation>
+   <translation id="privateDatabase_change_ip" qtlid="225380">IP serveru</translation>
+
+   <translation id="privateDatabase_change_version" qtlid="216092">Aktualizovat verzi</translation>
+   <translation id="privateDatabase_change_version_title" qtlid="216092">Aktualizovat verzi</translation>
+   <translation id="privateDatabase_change_version_step1" qtlid="217145">Na jakou verzi byste chtěli zmigrovat svůj server? Současný: {0}.</translation>
+   <translation id="privateDatabase_change_version_step1_fail" qtlid="216118">Při vyhledávání dostupných verzí došlo k chybě.</translation>
+   <translation id="privateDatabase_change_version_available" qtlid="216131">Dostupné verze:</translation>
+   <translation id="privateDatabase_change_version_available_select" qtlid="159046">Zvolte...</translation>
+   <translation id="privateDatabase_change_version_step2" qtlid="353374">Potvrďte prosím migraci služby Private SQL: {0} na verzi {1}.</translation>
+   <translation id="privateDatabase_change_version_warn_1" qtlid="353387">Z bezpečnostních důvodů doporučujeme před migrací provést zálohu všech databází.&#13;
+&#13;
+</translation>
+   <translation id="privateDatabase_change_version_warn_2" qtlid="353400">Upozornění: služba Private SQL bude v důsledku migrace restartována.</translation>
+   <translation id="privateDatabase_change_version_success" qtlid="217171">Požadavek o migraci serveru bude během několika minut zaregistrován.</translation>
+   <translation id="privateDatabase_change_version_fail" qtlid="217184">Při zadávání požadavku na migraci Vašeho serveru došlo k chybě.</translation>
+   <translation id="privateDatabase_change_version_null" qtlid="259652">Jiná verze není k dispozici.</translation>
+
+   <translation id="privateDatabase_refresh" qtlid="216183">Synchronizace informací</translation>
+   <translation id="privateDatabase_refresh_title" qtlid="216183">Synchronizace informací</translation>
+   <translation id="privateDatabase_refresh_step1" qtlid="217197">Chystáte se synchronizovat data s Vaším serverem.</translation>
+   <translation id="privateDatabase_refresh_success" qtlid="217210">Požadavek na synchronizaci Vašich dat s Vaším serverem bude brzy proveden.</translation>
+   <translation id="privateDatabase_refresh_fail" qtlid="217223">Při požadavku na synchronizaci Vašich dat došlo k chybě.</translation>
+
+   <translation id="privateDatabase_restart" qtlid="33538">Restart</translation>
+   <translation id="privateDatabase_restart_title" qtlid="217236">Reboot serveru</translation>
+   <translation id="privateDatabase_restart_step1" qtlid="217249">Chystáte se rebootovat svůj server</translation>
+   <translation id="privateDatabase_restart_success" qtlid="217262">Požadavek o reboot Vašeho serveru bude brzy proveden.</translation>
+   <translation id="privateDatabase_restart_fail" qtlid="217275">Při požadavku o reboot Vašeho serveru došlo k chybě.</translation>
+
+   <translation id="privateDatabase_start" qtlid="25951">Restart</translation>
+   <translation id="privateDatabase_start_title" qtlid="217288">Spouštění serveru</translation>
+   <translation id="privateDatabase_start_step1" qtlid="217301">Chystáte se spustit svůj server.</translation>
+   <translation id="privateDatabase_start_success" qtlid="217314">Požadavek o spuštění Vašeho serveru bude brzy proveden.</translation>
+   <translation id="privateDatabase_start_fail" qtlid="217327">Při požadavku o spuštění serveru došlo k chybě.</translation>
+
+   <translation id="privateDatabase_stop" qtlid="108480">Zastavit</translation>
+   <translation id="privateDatabase_stop_title" qtlid="217340">Vypnout server</translation>
+   <translation id="privateDatabase_stop_step1" qtlid="217353">Chystáte se vypnout Váš server.</translation>
+   <translation id="privateDatabase_stop_success" qtlid="217366">Požadavek o vypnutí Vašeho serveru bude brzy proveden.</translation>
+   <translation id="privateDatabase_stop_fail" qtlid="217379">Při požadavku na vypnutí Vašeho serveru došlo k chybě.</translation>
+
+   <translation id="privateDatabase_global_actions_success_changeVersion" qtlid="217392">Váš server byl úspěšně migrován.</translation>
+   <translation id="privateDatabase_global_actions_success_start" qtlid="217405">Váš server byl úspěšně spuštěn.</translation>
+   <translation id="privateDatabase_global_actions_success_stop" qtlid="217418">Váš server byl úspěšně vypnut.</translation>
+   <translation id="privateDatabase_global_actions_success_restart" qtlid="217431">Váš server byl úspěšně rebootován.</translation>
+   <translation id="privateDatabase_global_actions_success_changeRootPassword" qtlid="216443">Vaše heslo bylo úspěšně změněno.</translation>
+   <translation id="privateDatabase_global_actions_success_changeFtpPassword" qtlid="216443">Vaše heslo bylo úspěšně změněno.</translation>
+   <translation id="privateDatabase_global_actions_success_refresh" qtlid="217444">Vaše data byla úspěšně synchronizována s Vaším serverem.</translation>
+
+   <translation id="privateDatabase_global_actions_fail_changeVersion" qtlid="217457">Při migraci Vašeho serveru došlo k chybě.</translation>
+   <translation id="privateDatabase_global_actions_fail_start" qtlid="217470">Při spouštění Vašeho serveru došlo k chybě.</translation>
+   <translation id="privateDatabase_global_actions_fail_stop" qtlid="217483">Při vypínání serveru došlo k chybě.</translation>
+   <translation id="privateDatabase_global_actions_fail_restart" qtlid="217496">Při rebootování Vašeho serveru došlo k chybě.</translation>
+   <translation id="privateDatabase_global_actions_fail_changeRootPassword" qtlid="216521">Při změně hesla došlo k chybě.</translation>
+   <translation id="privateDatabase_global_actions_fail_changeFtpPassword" qtlid="216521">Při změně hesla došlo k chybě.</translation>
+   <translation id="privateDatabase_global_actions_fail_refresh" qtlid="217509">Při synchronizaci Vašich dat se serverem došlo k chybě.</translation>
+
+   <translation id="privateDatabase_bdd_name" qtlid="3818">Název</translation>
+   <translation id="privateDatabase_bdd_dumps_count" qtlid="304407">Zálohy</translation>
+   <translation id="privateDatabase_bdd_dumps_none" qtlid="434291">Za posledních 30 dní nebyla odstraněna žádná databázová záloha</translation>
+   <translation id="privateDatabase_bdd_creationDate" qtlid="26419">Datum vytvoření</translation>
+   <translation id="privateDatabase_bdd_quota" qtlid="76758">Použitý prostor</translation>
+   <translation id="privateDatabase_action_scheduleDumpBDD" qtlid="263051">Plánování záloh</translation>
+   <translation id="privateDatabase_action_deleteBDD" qtlid="216547">Vymazat databázi</translation>
+   <translation id="privateDatabase_action_users" qtlid="7174">Správa uživatelů</translation>
+   <translation id="privateDatabase_action_dump_now" qtlid="263285">Zálohovat nyní</translation>
+   <translation id="privateDatabase_action_import_from_file" qtlid="261942">Nahrát soubor</translation>
+   <translation id="privateDatabase_action_list_dumps" qtlid="263298">Zobrazit zálohy</translation>
+   <translation id="privateDatabase_delete_bdd_title" qtlid="196881">Vymazat databázi</translation>
+   <translation id="privateDatabase_delete_bdd_confirm" qtlid="216560">Potvrzení vymazání databáze: {0}</translation>
+   <translation id="privateDatabase_delete_bdd_success" qtlid="216573">Vymazání databáze bylo přijato.</translation>
+   <translation id="privateDatabase_delete_bdd_fail" qtlid="216586">Při mazání databáze došlo k chybě.</translation>
+   <translation id="privateDatabase_dump_in_progress" qtlid="304420">Probíhá zálohování...</translation>
+   <translation id="privateDatabase_restore_in_progress" qtlid="223827">Obnovování...</translation>
+   <translation id="privateDatabase_dump_bdd_creationDate" qtlid="26419">Datum vytvoření</translation>
+   <translation id="privateDatabase_dump_bdd_deletionDate" qtlid="95563">Datum vymazání</translation>
+   <translation id="privateDatabase_dump_bdd_in_progress" qtlid="263324">Požadavek o zálohu databáze byl proveden.</translation>
+   <translation id="privateDatabase_dump_bdd_success" qtlid="263337">Záloha databáze proběhla úspěšně.</translation>
+   <translation id="privateDatabase_dump_bdd_fail" qtlid="263350">Při zálohování Vaší databáze došlo k chybě.</translation>
+   <translation id="privateDatabase_tabs_bdd_deleting" qtlid="216599">Databáze se maže...</translation>
+
+   <translation id="privateDatabase_add_bdd_title" qtlid="216612">Přidání databáze</translation>
+   <translation id="privateDatabase_dump_bdd_title" qtlid="404694">Archivované zálohy</translation>
+   <translation id="privateDatabase_add_bdd_name" qtlid="60059">Název databáze</translation>
+   <translation id="privateDatabase_add_bdd_error_name_pattern" qtlid="216625">Název neodpovídá pravidlům.</translation>
+   <translation id="privateDatabase_add_bdd_error_name_required" qtlid="216040">Požadovaná pole.</translation>
+   <translation id="privateDatabase_create_bdd_conditions" qtlid="216638">Název musí splňovat následující pravidla:<br/>- Minimálně {0} znaků<br/>- Maximálně {1} znaků<br/>- Musí obsahovat pouze číslice a písmena.</translation>
+   <translation id="privateDatabase_add_bdd_success" qtlid="216651">Požadavek na vytvoření databáze byl přijat.</translation>
+   <translation id="privateDatabase_add_bdd_fail" qtlid="216664">Při vytváření databáze došlo k chybě.</translation>
+   <translation id="privateDatabase_tabs_bdd_adding" qtlid="216677">Databáze se přidává...</translation>
+   <translation id="privateDatabase_add_bdd_new_user" qtlid="7810">Vytvořit uživatele</translation>
+   <translation id="privateDatabase_add_bdd_new_user_login" qtlid="56045">Uživatelské jméno</translation>
+   <translation id="privateDatabase_add_bdd_new_user_grant" qtlid="65286">Práva</translation>
+   <translation id="privateDatabase_add_bdd_new_user_grant_none" qtlid="30646">Ne</translation>
+   <translation id="privateDatabase_add_bdd_new_user_grant_admin" qtlid="43948">Administrativní kontakt</translation>
+   <translation id="privateDatabase_add_bdd_new_user_grant_ro" qtlid="17333">Pouze pro čtení</translation>
+   <translation id="privateDatabase_add_bdd_new_user_grant_rw" qtlid="300526">Čtení zápis</translation>
+   <translation id="privateDatabase_add_bdd_new_user_password" qtlid="2270">Heslo</translation>
+   <translation id="privateDatabase_add_bdd_new_user_password_confirm" qtlid="300539">Potvrďte heslo</translation>
+   <translation id="privateDatabase_add_bdd_new_user_password_tooltip" qtlid="300552">Mezi 8 a 31 znaky, alespoň jedno velké písmeno, jedno malé písmeno a číslo. Pouze písmena a čísla (alfanumerické znaky).</translation>
+
+   <translation id="privateDatabase_add_authorized_ip" qtlid="448392">Přidat autorizovanou IP adresu</translation>
+   <translation id="privateDatabase_add_authorized_ip_explanation" qtlid="448405">V současné době nemáte žádnou autorizovanou IP adresu pro přístup k Vašim databázím. Zadejte prosím IP adresu serveru, jemuž chcete přístup k databázím umožnit.</translation>
+   <translation id="privateDatabase_add_authorized_ip_description" qtlid="448418">Prvotní přístup do databáze</translation>
+   <translation id="privateDatabase_add_authorized_ip_title" qtlid="455633">IP adresa s přístupem k databázi</translation>
+
+   <translation id="privateDatabase_restore_bdd_application" qtlid="404707">Nejprve je prosím vytvořte na záložce správy databází.</translation>
+   <translation id="privateDatabase_restore_bdd_close" qtlid="4670">Zavřít</translation>
+   <translation id="privateDatabase_restore_bdd_confirm" qtlid="272290">Chcete obnovit zálohu databáze <strong>{1}</strong> ze dne <strong>{0}</strong>?</translation>
+   <translation id="privateDatabase_restore_bdd_continue" qtlid="4070">Pokračovat</translation>
+   <translation id="privateDatabase_restore_bdd_error" qtlid="404720">Při načítání došlo k chybě.</translation>
+   <translation id="privateDatabase_restore_bdd_fail" qtlid="413362">Při obnovování zálohy došlo k chybě. Mohlo se tak stát z důvodu neexistence databáze nebo absence dostatečných uživatelských práv.</translation>
+   <translation id="privateDatabase_restore_bdd_go_list" qtlid="404746">Spravovat databáze</translation>
+   <translation id="privateDatabase_restore_bdd_impossible" qtlid="404759">Obnovit lze pouze <strong>existující databázi</strong>.</translation>
+   <translation id="privateDatabase_restore_bdd_restore" qtlid="36120">Obnovení</translation>
+   <translation id="privateDatabase_restore_bdd_warning" qtlid="404772">Databáze s tímto názvem již existuje. Pokud se rozhodnete pokračovat v procesu obnovení, obsah této databáze bude vymazán a nahrazen zvolenou zálohou.</translation>
+
+
+   <translation id="privateDatabase_tabs_dumps_change" qtlid="263363">Záloha databáze</translation>
+   <translation id="privateDatabase_tabs_dumps_archive_change" qtlid="404785">Počet záloh databází smazaných v rámci posledních {0} dní.</translation>
+   <translation id="privateDatabase_tabs_dumps_creation_date" qtlid="26419">Datum vytvoření</translation>
+   <translation id="privateDatabase_tabs_dumps_deletion_date" qtlid="95563">Datum vymazání</translation>
+   <translation id="privateDatabase_tabs_dumps_actions" qtlid="72809">Akce</translation>
+   <translation id="privateDatabase_tabs_dumps_no_dumps" qtlid="263376">Pro tuto databázi nebyla vytvořena žádná záloha.</translation>
+   <translation id="privateDatabase_tabs_dumps_fail_retrieve_dumps" qtlid="263389">Při získávání seznamu záloh došlo k chybě.</translation>
+   <translation id="privateDatabase_tabs_dumps_download_dump" qtlid="263402">Stáhnout zálohu</translation>
+   <translation id="privateDatabase_tabs_dumps_restore_dump" qtlid="263415">Obnovit zálohu</translation>
+   <translation id="privateDatabase_tabs_dumps_restore_in_progress" qtlid="263428">Obnovení zálohy provedeno.</translation>
+   <translation id="privateDatabase_tabs_dumps_restore_success" qtlid="263441">Záloha úspěšně obnovena.</translation>
+   <translation id="privateDatabase_tabs_dumps_restore_fail" qtlid="263454">Při obnovení zálohy došlo k chybě.</translation>
+   <translation id="privateDatabase_tabs_dumps_delete" qtlid="448431">Odstranit zálohu</translation>
+   <translation id="privateDatabase_tabs_dumps_delete_title" qtlid="448444">Odstranit zálohu</translation>
+   <translation id="privateDatabase_tabs_dumps_delete_confirm" qtlid="448457">Opravdu si přejete odstranit zálohu databáze <strong>{1}</strong> ze dne <strong>{0}</strong>?</translation>
+   <translation id="privateDatabase_tabs_dumps_delete_start" qtlid="448470">Požadavek na odstranění databázové zálohy byl přijat.</translation>
+   <translation id="privateDatabase_tabs_dumps_delete_done" qtlid="448483">Záloha databáze byla úspěšně odstraněna.</translation>
+   <translation id="privateDatabase_tabs_dumps_delete_error" qtlid="448496">Při odstraňování databázové zálohy došlo k chybě.</translation>
+
+   <translation id="privateDatabase_tabs_users_database_error" qtlid="135294">Při načítání dat došlo k chybě</translation>
+   <translation id="privateDatabase_tabs_users_database_username" qtlid="7450">Uživatel</translation>
+   <translation id="privateDatabase_tabs_users_database_no_users" qtlid="329538">Pro tuto databázi nemáte žádného uživatele</translation>
+   <translation id="privateDatabase_tabs_users_database_name" qtlid="329551">Uživatelé databáze</translation>
+   <translation id="privateDatabase_tabs_users_database_grant_admin" qtlid="43948">Administrativní kontakt</translation>
+   <translation id="privateDatabase_tabs_users_database_grant_none" qtlid="30646">Ne</translation>
+   <translation id="privateDatabase_tabs_users_database_grant_ro" qtlid="6958">Čtení</translation>
+   <translation id="privateDatabase_tabs_users_database_grant_rw" qtlid="215754">Čtení/Zápis</translation>
+
+   <translation id="privateDatabase_order_title" qtlid="217522">Objednávání privátního databázového serveru</translation>
+   <translation id="privateDatabase_order_step1_title" qtlid="217535">1. Nastavení serveru</translation>
+   <translation id="privateDatabase_order_step1_version" qtlid="217548">Verze serveru</translation>
+   <translation id="privateDatabase_order_step1_ram" qtlid="28195">RAM</translation>
+   <translation id="privateDatabase_order_step1_datacenter" qtlid="30802">Datacentrum</translation>
+   <translation id="privateDatabase_order_step1_error" qtlid="216729">Při vyhledávání dostupných databází došlo k chybě.</translation>
+   <translation id="privateDatabase_order_step2_title" qtlid="186076">2. Volba délky trvání</translation>
+   <translation id="privateDatabase_order_step2_duration_fail" qtlid="216742">Při vyhledávání dostupných délek trvání došlo k chybě.</translation>
+   <translation id="privateDatabase_order_step2_price_fail" qtlid="216755">Při vyhledávání dostupných cen pro délku trvání došlo k chybě.</translation>
+   <translation id="privateDatabase_order_step3_title" qtlid="186089">3. Schválení</translation>
+   <translation id="privateDatabase_order_step3_contracts_check" qtlid="161139">Četl jsem a plně rozumím podmínkám.</translation>
+   <translation id="privateDatabase_order_step3_question" qtlid="217561">Pro objednání privátního databázového serveru klikněte na "Generovat objednávku".</translation>
+   <translation id="privateDatabase_order_step3_contracts_ask" qtlid="161646">Přečtěte si a potvrďte níže uvedené podmínky používání. Poté klikněte na "Vytvořit objednávku".</translation>
+   <translation id="privateDatabase_order_step3_generate" qtlid="186219">Generovat objednávku</translation>
+   <translation id="privateDatabase_order_step3_generating" qtlid="169511">Vytváření objednávky...</translation>
+   <translation id="privateDatabase_order_step3_generated" qtlid="169524">Objednávka byla úspěšně vytvořena.</translation>
+   <translation id="privateDatabase_order_step3_clic_here" qtlid="169537">K potvrzení objednávky prosím klikněte na tlačítko "Zaplatit".</translation>
+   <translation id="privateDatabase_order_step3_pay_button" qtlid="130183">Zaplatit</translation>
+   <translation id="privateDatabase_order_step3_bc_information" qtlid="167886">Otevře se nová záložka a budete automaticky přesměrováni do platebního rozhraní OVH.</translation>
+   <translation id="privateDatabase_order_step3_fail" qtlid="216781">Během vytváření objednávky došlo k chybě.</translation>
+
+   <translation id="privateDatabase_change_ram" qtlid="37875">Upravit</translation>
+   <translation id="privateDatabase_change_ram_title" qtlid="217106">Změna kapacity RAM</translation>
+   <translation id="privateDatabase_order_select_ram_description" qtlid="217119">Zvolená hodnota nahradí současnou kapacitu.</translation>
+   <translation id="privateDatabase_order_select_ram_placeholder" qtlid="491990">Zvolte...</translation>
+
+   <translation id="privateDatabase_RAM_add_select" qtlid="31858">RAM</translation>
+   <translation id="privateDatabase_order_select_ram" qtlid="216807">Zvolte požadovanou kapacitu.</translation>
+   <translation id="privateDatabase_RAM_add_select_duration" qtlid="216820">Zvolte požadovanou délku trvání.</translation>
+   <translation id="privateDatabase_RAM_add_do_order" qtlid="216833">Změna bude aktivní po přijetí Vaší platby.</translation>
+   <translation id="privateDatabase_RAM_add_do_order_attention" qtlid="108456">Pozor!</translation>
+   <translation id="privateDatabase_RAM_add_do_order_warning" qtlid="304433">Operace způsobí restart serveru.</translation>
+   <translation id="privateDatabase_RAM_loading_order" qtlid="221162">Načítání služeb...</translation>
+   <translation id="privateDatabase_order_RAM_finish_success" qtlid="444732">Vaše <a href="{0}" target="_blank">obejdnávka</a> byla úspěšně vytvořena. Objem RAM bude upraven po jejím potvrzení.</translation>
+   <translation id="privateDatabase_order_RAM_finish_error" qtlid="181227">Při potvrzení objednávky došlo k chybě.</translation>
+   <translation id="privateDatabase_order_RAM_resume" qtlid="177496">Shrnutí Vaší objednávky</translation>
+   <translation id="privateDatabase_order_RAM_price_HT" qtlid="146177">Celková cena bez DPH:</translation>
+   <translation id="privateDatabase_order_RAM_price_TTC" qtlid="146190">Celková cena s DPH:</translation>
+   <translation id="privateDatabase_expiration_date" qtlid="33010">Datum expirace</translation>
+   <translation id="privateDatabase_renew_date" qtlid="98300">Automatické obnovení</translation>
+   <translation id="privateDatabase_gui" qtlid="103642">Uživatelské rozhraní</translation>
+   <translation id="privateDatabase_tabs_bdd_no" qtlid="220746">Žádné databáze</translation>
+
+   <translation id="privateDatabase_tab_TASK" qtlid="195633">Probíhající úkoly</translation>
+   <translation id="privateDatabase_tabs_tasks_name" qtlid="85509">Funkce</translation>
+   <translation id="privateDatabase_tabs_tasks_startDate" qtlid="159176">Datum vytvoření</translation>
+   <translation id="privateDatabase_tabs_tasks_lastUpdate" qtlid="434304">Poslední aktualizace</translation>
+   <translation id="privateDatabase_tabs_tasks_doneDate" qtlid="299910">Konec</translation>
+   <translation id="privateDatabase_tabs_tasks_null" qtlid="159163">Žádné nedávné úkoly</translation>
+
+   <translation id="privateDatabase_dashboard_loading_error" qtlid="299475">Objevila se chyba:</translation>
+   <translation id="privateDatabase_displayName_length" qtlid="260208">Délka jména nesmí přesáhnout 250 znaků.</translation>
+
+   <translation id="privateDatabase_tab_CRON" qtlid="263064">Naplánované zálohy</translation>
+   <translation id="privateDatabase_add_cron_title" qtlid="263077">Přidat plánovaný bod obnovení</translation>
+   <translation id="privateDatabase_tabs_cron_command" qtlid="199299">Příkaz k provedení</translation>
+   <translation id="privateDatabase_tabs_cron_database" qtlid="275065">Databáze</translation>
+   <translation id="privateDatabase_tabs_cron_description" qtlid="9238">Popis</translation>
+   <translation id="privateDatabase_tabs_cron_frequency" qtlid="30442">Frekvence</translation>
+   <translation id="privateDatabase_tabs_cron_status" qtlid="33790">Stav</translation>
+   <translation id="privateDatabase_tabs_cron_email" qtlid="33598">E-mail</translation>
+   <translation id="privateDatabase_tabs_cron_null" qtlid="263090">Žádný cron úkol</translation>
+   <translation id="privateDatabase_tabs_cron_status_disabled" qtlid="125084">Deaktivováno</translation>
+   <translation id="privateDatabase_tabs_cron_status_enabled" qtlid="62028">Aktivováno</translation>
+   <translation id="privateDatabase_tabs_cron_status_suspended" qtlid="125096">Zrušit</translation>
+   <translation id="privateDatabase_tabs_cron_label_database_name" qtlid="275078">Databáze</translation>
+   <translation id="privateDatabase_tabs_cron_configuration_delete_title" qtlid="263103">Vymazat naplánovanou zálohu</translation>
+   <translation id="privateDatabase_tabs_cron_configuration_delete_step1_question" qtlid="263116">Opravdu si přejete vymazat následující naplánovanou zálohu?</translation>
+   <translation id="privateDatabase_tabs_cron_configuration_delete_success" qtlid="263129">Plánovaná záloha bude vymazána.</translation>
+   <translation id="privateDatabase_tabs_cron_configuration_delete_fail" qtlid="263142">Při mazání plánované zálohy došlo k chybě.</translation>
+
+   <translation id="privateDatabase_tab_METRICS" qtlid="271819">Metriky</translation>
+   <translation id="privateDatabase_metrics_no_data" qtlid="271871">Žádná data k dispozici.</translation>
+
+   <translation id="privateDatabase_metrics_memoryUsages_title" qtlid="284789">Statistiky využití RAM</translation>
+   <translation id="privateDatabase_metrics_memoryUsages_graph_dbaas_metrics_docker_container_mem_usage_percent" qtlid="271845">Využití RAM</translation>
+
+   <translation id="privateDatabase_metrics_activeConnections_title" qtlid="284802">Statistiky aktivních připojení</translation>
+   <translation id="privateDatabase_metrics_activeConnections_graph_dbaas_metrics_mysql_connexion_count" qtlid="272578">Aktivní připojení</translation>
+
+   <translation id="privateDatabase_metrics_queryExecutionTimes_title" qtlid="284815">Statistiky časů prováděných operací</translation>
+   <translation id="privateDatabase_metrics_queryExecutionTimes_graph_dbaas_metrics_mysql_query_time_average" qtlid="272604">Doba zpracování požadavku</translation>
+
+   <translation id="privateDatabase_metrics_memoryUsages_graph_y" qtlid="31858">RAM</translation>
+   <translation id="privateDatabase_metrics_activeConnections_graph_mysql_active_connections" qtlid="272578">Aktivní připojení</translation>
+   <translation id="privateDatabase_metrics_connections_graph_dbaas_metrics_mysql_connexion_count" qtlid="272578">Aktivní připojení</translation>
+   <translation id="privateDatabase_metrics_memory_graph_memory_rss" qtlid="271845">Využití RAM</translation>
+   <translation id="privateDatabase_metrics_memory_graph_memory_hierarchical_memory_limit" qtlid="271858">Max. limit RAM</translation>
+   <translation id="privateDatabase_metrics_wrong_version" qtlid="412152">Data nedostupná pro verzi/verze {0}.&#13;
+</translation>
+   <translation id="privateDatabase_metrics_time_graph_mysql_ms" qtlid="272591">Milisekundy</translation>
+   <translation id="privateDatabase_metrics_time_range_DAY" qtlid="284828">Posledních 24 hodin</translation>
+   <translation id="privateDatabase_metrics_time_range_WEEK" qtlid="37491">Minulý týden</translation>
+   <translation id="privateDatabase_metrics_time_range_MONTH" qtlid="37503">Minulý měsíc</translation>
+
+   <translation id="privateDatabase_order_sql_main_title" qtlid="352074">Objednat databázi SQL</translation>
+   <translation id="privateDatabase_order_sql_no_host_warning" qtlid="354132">Nabídku Start SQL nelze objednat bez webhostingu</translation>
+   <translation id="privateDatabase_order_sql_order_host_link" qtlid="354145">Objednat webhosting</translation>
+
+   <translation id="privateDatabase_order_sql_sub_title_1" qtlid="352087">Podmínkou pro objednání databáze Private SQL či Start SQL je aktivní webhostingové řešení.</translation>
+   <translation id="privateDatabase_order_sql_sub_title_2" qtlid="405655">CloudDB vyžaduje službu s přístupem k veřejné síti (internet).</translation>
+   <translation id="privateDatabase_order_sql_type_title" qtlid="352100">1. Výběr databáze</translation>
+   <translation id="privateDatabase_order_sql_type_sub_title" qtlid="352113">Zvolte požadovaný typ databáze.</translation>
+
+   <translation id="privateDatabase_order_sql_type_start_label" qtlid="352126">Start SQL</translation>
+   <translation id="privateDatabase_order_sql_type_start_text" qtlid="507276">Bases de données simples et efficaces pour les besoins de tous les jours de votre hébergement Web-Hosting OVH (hors offre Cloud Web)</translation>
+   <translation id="privateDatabase_order_sql_type_start_info_title" qtlid="353413">Charakteristiky databáze Start SQL:&#13;
+&#13;
+</translation>
+   <translation id="privateDatabase_order_sql_type_start_info_line_1" qtlid="353426">Velikost databáze od 100 MB do 800 MB</translation>
+   <translation id="privateDatabase_order_sql_type_start_info_line_2" qtlid="353439">MySQL 5.5 nebo 5.6 v závislosti na datacentru</translation>
+   <translation id="privateDatabase_order_sql_type_start_info_line_3" qtlid="353452">Max. 30 simultánních připojení na databázi</translation>
+   <translation id="privateDatabase_order_sql_type_start_info_line_4" qtlid="353465">Možnost zálohování</translation>
+
+   <translation id="privateDatabase_order_sql_type_start_hosting_info" qtlid="353478">Upozornění: balíčky databází o stejné velikosti nelze kombinovat. Pokud již pro tuto doménu disponujete SQL balíčkem dané velikosti, bude tento balíček nahrazen balíčkem novým.</translation>
+
+   <translation id="privateDatabase_order_sql_type_premium_label" qtlid="72845">SQL Private</translation>
+   <translation id="privateDatabase_order_sql_type_premium_text" qtlid="507289">Bases de données aux performances mémoires (RAM) garanties pour votre hébergement Web-Hosting OVH</translation>
+   <translation id="privateDatabase_order_sql_type_premium_info_title" qtlid="353491">Výhody Private SQL:</translation>
+   <translation id="privateDatabase_order_sql_type_premium_info_line_1" qtlid="404811">Neomezený počet databází</translation>
+   <translation id="privateDatabase_order_sql_type_premium_info_line_2" qtlid="455646">Garantovaná RAM {0} až {1}</translation>
+   <translation id="privateDatabase_order_sql_type_premium_info_line_3" qtlid="353530">Automatické zálohy na denní bázi</translation>
+   <translation id="privateDatabase_order_sql_type_premium_info_line_4" qtlid="404824">Až 200 simultánních připojení</translation>
+   <translation id="privateDatabase_order_sql_type_premium_info_line_5" qtlid="404837">Přístupné pouze z Vašeho OVH webhostingu</translation>
+   <translation id="privateDatabase_order_sql_type_premium_info_line_6" qtlid="455659">Garantovaný diskový prostor 8 GB až 64 GB</translation>
+
+   <translation id="privateDatabase_order_sql_type_dbaas_label" qtlid="404863">CloudDB</translation>
+   <translation id="privateDatabase_order_sql_type_dbaas_text" qtlid="507302">Idéales en complément de tous nos produits Cloud OVH comme nos VPS, serveurs dédiés, instances Public Cloud et Web Hosting Cloud Web</translation>
+   <translation id="privateDatabase_order_sql_type_dbaas_info_title" qtlid="404876">Parametry CloudDB:</translation>
+   <translation id="privateDatabase_order_sql_type_dbaas_info_line_1" qtlid="404889">Přístupné pouze z veřejné sítě</translation>
+   <translation id="privateDatabase_order_sql_type_dbaas_info_line_2" qtlid="404811">Neomezený počet databází</translation>
+   <translation id="privateDatabase_order_sql_type_dbaas_info_line_3" qtlid="455646">Garantovaná RAM {0} až {1}</translation>
+   <translation id="privateDatabase_order_sql_type_dbaas_info_line_4" qtlid="455659">Garantovaný diskový prostor 8 GB až 64 GB</translation>
+   <translation id="privateDatabase_order_sql_type_dbaas_info_line_5" qtlid="353530">Automatické zálohy na denní bázi</translation>
+   <translation id="privateDatabase_order_sql_type_dbaas_info_line_6" qtlid="404824">Až 200 simultánních připojení</translation>
+
+   <translation id="privateDatabase_order_sql_domains_title" qtlid="352139">2. Zadejte informace o doméně</translation>
+   <translation id="privateDatabase_order_sql_customize_title" qtlid="404902">2. Přizpůsobení</translation>
+   <translation id="privateDatabase_order_sql_domains_pack_title" qtlid="352152">Vyberte balíček databází</translation>
+   <translation id="privateDatabase_order_sql_domains_pack_db_SQLPERSO_1_BASES_400_MB" qtlid="352165">1x 400 MB</translation>
+   <translation id="privateDatabase_order_sql_domains_pack_db_SQLPERSO_1_BASES_800_MB" qtlid="352178">1x 800 MB</translation>
+   <translation id="privateDatabase_order_sql_domains_pack_db_SQLPERSO_20_BASES_100_MB" qtlid="352191">20x 100 MB</translation>
+   <translation id="privateDatabase_order_sql_domains_pack_db_SQLPERSO_20_BASES_200_MB" qtlid="352204">20x 200 MB</translation>
+   <translation id="privateDatabase_order_sql_domains_pack_db_SQLPERSO_2_BASES_400_MB" qtlid="352217">2x 400 MB</translation>
+   <translation id="privateDatabase_order_sql_domains_pack_db_SQLPERSO_2_BASES_800_MB" qtlid="352230">2x 800 MB</translation>
+   <translation id="privateDatabase_order_sql_domains_pack_db_SQLPERSO_50_BASES_100_MB" qtlid="352243">50x 100 MB</translation>
+   <translation id="privateDatabase_order_sql_domains_pack_db_SQLPERSO_50_BASES_200_MB" qtlid="352256">50x 200 MB</translation>
+   <translation id="privateDatabase_order_sql_domains_pack_db_SQLPERSO_5_BASES_100_MB" qtlid="352269">5x 100 MB</translation>
+   <translation id="privateDatabase_order_sql_domains_pack_db_SQLPERSO_5_BASES_200_MB" qtlid="352282">5x 200 MB</translation>
+   <translation id="privateDatabase_order_sql_domains_pack_db_SQLPERSO_5_BASES_400_MB" qtlid="352295">5x 400 MB</translation>
+   <translation id="privateDatabase_order_sql_domains_pack_db_SQLPERSO_5_BASES_800_MB" qtlid="352308">5x 800 MB</translation>
+   <translation id="privateDatabase_order_sql_included_title" qtlid="108456">Pozor!</translation>
+   <translation id="privateDatabase_order_sql_included_info" qtlid="507328">N'oubliez pas que vous avez déjà une base de données incluse dans votre offre {0}. Pour l'activer, rendez-vous dans l'onglet</translation>
+   <translation id="privateDatabase_order_sql_included_link" qtlid="507341">Informations Générales de votre hébergement</translation>
+   <translation id="privateDatabase_order_sql_period_title" qtlid="352321">3. Zvolte časové období</translation>
+   <translation id="privateDatabase_order_sql_period_sub_title" qtlid="352334">Jak dlouho si přejete svou databázi využívat?</translation>
+   <translation id="privateDatabase_order_sql_contracts_title" qtlid="352347">4. Smluvní dokumenty</translation>
+   <translation id="privateDatabase_order_sql_contracts_checkbox_label" qtlid="352360">Přečetl(a) jsem si a přijímám smluvní podmínky vyplývající z následujících dokumentů:</translation>
+   <translation id="privateDatabase_order_sql_button_label" qtlid="186219">Generovat objednávku</translation>
+   <translation id="privateDatabase_order_bc_created_info" qtlid="352373">Vaše objednávka byla vytvořena.</translation>
+   <translation id="privateDatabase_order_bc_created_redirection_info" qtlid="352386">Nyní budete přesměrováni do platebního rozhraní OVH.</translation>
+   <translation id="privateDatabase_order_show_bc_button_label" qtlid="352399">Zobrazit objednávku</translation>
+
+<!-- WHITELIST -->
+<!-- IP -->
+   <translation id="privateDatabase_tabs_whitelist_list_ip_network" qtlid="404915">IP/maska</translation>
+   <translation id="privateDatabase_tabs_whitelist_list_ip_network_description" qtlid="404928">Seznam autorizovaných IP adres</translation>
+<!-- SERVICE -->
+   <translation id="privateDatabase_tabs_whitelist_list_service" qtlid="7702">Databáze</translation>
+   <translation id="privateDatabase_tabs_whitelist_list_service_description" qtlid="404941">Udělit této IP adrese přístup do databází</translation>
+   <translation id="privateDatabase_tabs_whitelist_list_service_true" qtlid="208898">Autorizováno</translation>
+   <translation id="privateDatabase_tabs_whitelist_list_service_false" qtlid="404954">Neautorizováno</translation>
+<!-- SFTP -->
+   <translation id="privateDatabase_tabs_whitelist_list_sftp" qtlid="295296">SFTP</translation>
+   <translation id="privateDatabase_tabs_whitelist_list_sftp_description" qtlid="404967">Udělit této IP adrese přístup k SFTP portu</translation>
+   <translation id="privateDatabase_tabs_whitelist_list_sftp_true" qtlid="208898">Autorizováno</translation>
+   <translation id="privateDatabase_tabs_whitelist_list_sftp_false" qtlid="404954">Neautorizováno</translation>
+<!-- DESCRIPTION -->
+   <translation id="privateDatabase_tabs_whitelist_list_status" qtlid="9238">Popis</translation>
+   <translation id="privateDatabase_tabs_whitelist_list_status_description" qtlid="404980">Popis whitelistu</translation>
+   <translation id="privateDatabase_tabs_whitelist_list_status_created" qtlid="42370">-</translation>
+   <translation id="privateDatabase_tabs_whitelist_list_status_creating" qtlid="29647">Probíhá vytváření</translation>
+   <translation id="privateDatabase_tabs_whitelist_list_status_deleting" qtlid="152778">Mazáni</translation>
+   <translation id="privateDatabase_tabs_whitelist_list_status_updating" qtlid="367813">Probíhá aktualizace</translation>
+<!-- RELOAD -->
+   <translation id="privateDatabase_tabs_whitelist_list_reload_description" qtlid="218081">Obnovit tabulku</translation>
+<!-- POPOVER -->
+   <translation id="privateDatabase_tabs_whitelist_list_popover_description" qtlid="23395">Možnosti</translation>
+   <translation id="privateDatabase_tabs_whitelist_list_popover_edit" qtlid="404993">Upravit whitelist</translation>
+   <translation id="privateDatabase_tabs_whitelist_list_popover_delete" qtlid="405006">Odstranit whitelist</translation>
+<!-- LIST -->
+   <translation id="privateDatabase_tabs_whitelist_list_add_whitelist" qtlid="405019">Přidat IP  adresu/masku</translation>
+   <translation id="privateDatabase_tabs_whitelist_list_no_whitelist_info" qtlid="405032">Upozornění: za účelem získání přístupu k databázím je zapotřebí autorizovat alespoň jednu IP adresu.</translation>
+   <translation id="privateDatabase_tabs_whitelist_list_no_whitelist" qtlid="405045">Zatím jste neautorizovali žádnou IP adresu</translation>
+<!-- ADD -->
+   <translation id="privateDatabase_modale_whitelist_add_title" qtlid="405019">Přidat IP  adresu/masku</translation>
+   <translation id="privateDatabase_modale_whitelist_add_info" qtlid="405058">Přidat novou IP adresu/masku do whitelistu</translation>
+   <translation id="privateDatabase_modale_whitelist_add_success" qtlid="405071">Požadavek na vytvoření whitelistu byl přijat</translation>
+   <translation id="privateDatabase_modale_whitelist_add_fail" qtlid="405084">Při vytváření whitelistu došlo k chybě.</translation>
+   <translation id="privateDatabase_modale_whitelist_add_ip" qtlid="404915">IP/maska</translation>
+   <translation id="privateDatabase_modale_whitelist_add_ip_tooltip" qtlid="405097">IP adresa/maska musí být ve formě IPv4&#13;
+(127.0.0.1 nebo 127.0.0.0/32)</translation>
+   <translation id="privateDatabase_modale_whitelist_add_ip_title" qtlid="405110">IP adresa/maska pro přidání do whitelistu</translation>
+   <translation id="privateDatabase_modale_whitelist_add_name" qtlid="9238">Popis</translation>
+   <translation id="privateDatabase_modale_whitelist_add_service" qtlid="7702">Databáze</translation>
+   <translation id="privateDatabase_modale_whitelist_add_service_title" qtlid="405123">Umožnit této IP adrese/masce přístup do databáze</translation>
+   <translation id="privateDatabase_modale_whitelist_add_sftp" qtlid="295296">SFTP</translation>
+   <translation id="privateDatabase_modale_whitelist_add_sftp_title" qtlid="405136">Umožnit této IP adrese/masce přístup k SFTP</translation>
+   <translation id="privateDatabase_modale_whitelist_add_restriction_info" qtlid="405149">Aplikovat restrikce na:</translation>
+<!-- DELETE -->
+   <translation id="privateDatabase_modale_whitelist_delete_title" qtlid="405162">Odstranit IP adresu/masku</translation>
+   <translation id="privateDatabase_modale_whitelist_delete_info" qtlid="405175">Opravdu si přejete odstranit IP adresu/masku {0} ze svého whitelistu?</translation>
+   <translation id="privateDatabase_modale_whitelist_delete_success" qtlid="405188">Požadavek na odstranění IP adresy/masky byl přijat.</translation>
+   <translation id="privateDatabase_modale_whitelist_delete_fail" qtlid="405201">Při odstraňování IP adresy/masky došlo k chybě.</translation>
+<!-- UPDATE -->
+   <translation id="privateDatabase_modale_whitelist_update_title" qtlid="405214">Upravit IP adresu/masku</translation>
+   <translation id="privateDatabase_modale_whitelist_update_info" qtlid="405227">Upravit novou IP adresu/masku ve whitelistu</translation>
+   <translation id="privateDatabase_modale_whitelist_update_success" qtlid="405240">Požadavek na úpravu whitelistu byl přijat.</translation>
+   <translation id="privateDatabase_modale_whitelist_update_fail" qtlid="405253">Při provádění úprav na whitelistu došlo k chybě.</translation>
+   <translation id="privateDatabase_modale_whitelist_update_ip" qtlid="404915">IP/maska</translation>
+   <translation id="privateDatabase_modale_whitelist_update_name" qtlid="9238">Popis</translation>
+   <translation id="privateDatabase_modale_whitelist_update_service" qtlid="7702">Databáze</translation>
+   <translation id="privateDatabase_modale_whitelist_update_service_title" qtlid="405266">Udělit této IP adrese/masce přístup do databáze</translation>
+   <translation id="privateDatabase_modale_whitelist_update_sftp" qtlid="295296">SFTP</translation>
+   <translation id="privateDatabase_modale_whitelist_update_sftp_title" qtlid="405136">Umožnit této IP adrese/masce přístup k SFTP</translation>
+   <translation id="privateDatabase_modale_whitelist_update_restriction_info" qtlid="405149">Aplikovat restrikce na:</translation>
+
+<!-- LOGS -->
+   <translation id="privateDatabase_tabs_logs_list_title" qtlid="413375">Logy mé databáze</translation>
+   <translation id="privateDatabase_tabs_logs_list_no_logs" qtlid="413388">Aktuálně nejsou k dispozici žádné logy</translation>
+
+<!-- OOM -->
+   <translation id="privateDatabase_no_oom" qtlid="440313">Nebylo zaznamenáno žádné přetečení paměti.</translation>
+   <translation id="privateDatabase_warning_oom" qtlid="440326">Počet případů přetečení paměti v poslední době: {0}</translation>
+   <translation id="privateDatabase_modale_oom_title" qtlid="436957">Přetečení paměti RAM</translation>
+   <translation id="privateDatabase_modale_oom_state_button" qtlid="505751">Vérifier les dépassements de la mémoire vive</translation>
+   <translation id="privateDatabase_modale_oom_confirm_button" qtlid="440339">Objednat více RAM</translation>
+   <translation id="privateDatabase_modale_oom_close_button" qtlid="4670">Zavřít</translation>
+   <translation id="privateDatabase_modale_oom_info" qtlid="440352">V posledních {0} dnech došlo k přetečení paměti.<br />K dispozici je pouze posledních {1} přetečení.</translation>
+   <translation id="privateDatabase_modale_oom_tab_event_date" qtlid="24523">Datum</translation>
+   <translation id="privateDatabase_modale_oom_tab_size_reached" qtlid="436983">Přetečený objem</translation>
+   <translation id="privateDatabase_modale_oom_tab_uptime" qtlid="436996">Čas od posledního přetečení</translation>
+   <translation id="privateDatabase_modale_oom_no_oom" qtlid="437009">Kapacita RAM nebyla překročena.</translation>
+   <translation id="privateDatabase_modale_oom_info_order" qtlid="437022">Za účelem vyhnutí se podobným situacím doporučujeme provést navýšení objemu RAM na službě {0}.</translation>
+
+<!-- EXTENSIONS -->
+<!-- LIST -->
+   <translation id="privateDatabase_tabs_list_extensions_title" qtlid="341927">Rozšíření</translation>
+   <translation id="privateDatabase_tabs_list_extensions_extension" qtlid="94231">Přípona</translation>
+   <translation id="privateDatabase_tabs_list_extensions_description" qtlid="9238">Popis</translation>
+   <translation id="privateDatabase_tabs_list_extensions_enabled" qtlid="55133">Aktivní</translation>
+
+<!-- INFOS -->
+   <translation id="privateDatabase_tabs_list_go_extensions" qtlid="437035">Zobrazit rozšíření</translation>
+   <translation id="privateDatabase_tabs_list_extensions_info" qtlid="437048">Rozšíření databáze {0}</translation>
+   <translation id="privateDatabase_tabs_list_extensions_no_extensions" qtlid="437061">Žádné dostupné rozšíření</translation>
+   <translation id="privateDatabase_tabs_list_extensions_enable_info" qtlid="437074">Aktivovat rozšíření</translation>
+   <translation id="privateDatabase_tabs_list_extensions_disable_info" qtlid="437087">Deaktivovat rozšíření</translation>
+   <translation id="privateDatabase_tabs_list_extensions_reload_info" qtlid="437100">Obnovit rozšíření</translation>
+
+<!-- ALERTS -->
+   <translation id="privateDatabase_tabs_list_extensions_retrieve_infos" qtlid="437113">Při načítání dat došlo k chybě.</translation>
+   <translation id="privateDatabase_tabs_list_extensions_enable_success" qtlid="437126">Rozšíření bylo úspěšně aktivováno.</translation>
+   <translation id="privateDatabase_tabs_list_extensions_enable_error" qtlid="437139">Během aktivace rozšíření došlo k chybě.</translation>
+   <translation id="privateDatabase_tabs_list_extensions_disable_success" qtlid="437152">Rozšíření bylo úspěšně deaktivováno.</translation>
+   <translation id="privateDatabase_tabs_list_extensions_disable_error" qtlid="437165">Během deaktivace rozšíření došlo k chybě.</translation>
+
+
+</translations>

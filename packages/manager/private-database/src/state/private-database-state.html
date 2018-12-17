@@ -1,0 +1,387 @@
+<div class="container-fluid px-0" data-ng-controller="PrivateDatabaseStateCtrl as stateCtrl">
+    <div class="row">
+        <div class="col-md-9">
+            <div data-ovh-alert="{{alerts.main}}"></div>
+
+            <div data-ng-if="stateCtrl.database">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="oui-tile mb-5">
+                            <h3 class="oui-header_4 oui-tile__title"
+                                data-translate="privateDatabase_dashboard_general_informations"></h3>
+                            <div class="oui-tile__body">
+                                <ul class="list-unstyled">
+                                    <li class="oui-tile__item"
+                                        data-ng-if="stateCtrl.database.state">
+                                        <div class="oui-tile__definition">
+                                            <strong class="oui-tile__term d-block"
+                                                    data-translate="privateDatabase_dashboard_state"></strong>
+                                            <div class="oui-status"
+                                                 data-ng-class="{
+                                                    'oui-status_error': stateCtrl.database.state === 'detached',
+                                                    'oui-status_warning' : stateCtrl.database.state === 'restartPending' || stateCtrl.database.state === 'stopPending' || database.state === 'stopped',
+                                                    'oui-status_success' : stateCtrl.database.state === 'startPending' || stateCtrl.database.state === 'started' }"
+                                                 data-ng-bind="'privateDatabase_dashboard_' + stateCtrl.database.state | translate">
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="oui-tile__item">
+                                        <div class="oui-tile__definition">
+                                            <strong class="oui-tile__term d-block"
+                                                    data-translate="privateDatabase_dashboard_type"></strong>
+                                            <span data-ng-bind=":: 'privateDatabase_dashboard_type_' + stateCtrl.database.type | translate"></span>
+                                        </div>
+                                    </li>
+                                    <li class="oui-tile__item">
+                                        <div class="oui-tile__definition">
+                                            <div class="d-flex w-100">
+                                                <div>
+                                                    <strong class="oui-tile__term d-block" data-translate="privateDatabase_dashboard_version"></strong>
+                                                    <span data-ng-bind=":: (('privateDatabase_dashboard_version_' + stateCtrl.database.version | translate) == 'privateDatabase_dashboard_version_' + stateCtrl.database.version)? stateCtrl.database.version: ('privateDatabase_dashboard_version_' + stateCtrl.database.version | translate)"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <oui-action-menu data-compact data-align="end"
+                                                         data-ng-if="!stateCtrl.isExpired">
+                                            <oui-action-menu-item data-on-click="setAction('database/version/update/private-database-database-version-update', stateCtrl.database)"
+                                                                  data-ng-disabled="taskState.lockAction">
+                                                <span data-translate="privateDatabase_change_version"></span>
+                                            </oui-action-menu-item>
+                                        </oui-action-menu>
+                                    </li>
+                                    <li class="oui-tile__item">
+                                        <div class="oui-tile__definition">
+                                            <div class="d-flex w-100">
+                                                <div class="w-50">
+                                                    <strong class="oui-tile__term d-block"
+                                                            data-translate="privateDatabase_dashboard_ram"></strong>
+                                                    <div class="oui-status"
+                                                         data-ng-bind="::stateCtrl.database.ram.value + ('unit_size_' + stateCtrl.database.ram.unit | translate)"
+                                                         data-ng-class="stateCtrl.database.oom.realList.length >= stateCtrl.database.oom.nbOomError ? 'oui-status_error' : (stateCtrl.database.oom.realList.length > 0 ? 'oui-status_warning' : 'oui-status_success')">
+                                                    </div>
+                                                    <button class="btn btn-icon btn-xs d-block text-wrap text-left" type="button" title="{{:: 'privateDatabase_modale_oom_title' | translate }}"
+                                                            data-ng-class="stateCtrl.database.oom.realList.length > stateCtrl.database.oom.nbOomError ? 'text-danger' : (stateCtrl.database.oom.realList.length > 0 ? 'text-warning' : '')"
+                                                            data-ng-click="stateCtrl.goToOom()">
+                                                        <span data-ng-if="stateCtrl.database.oom.realList.length > 0" class="fa fa-exclamation-triangle" aria-hidden="true"></span>
+                                                        <span data-ng-if="stateCtrl.database.oom.realList.length === 0" class="fa fa-check-circle" aria-hidden="true"></span>
+                                                        <span data-ng-if="stateCtrl.database.oom.realList.length > 0" data-ng-bind-html="'privateDatabase_warning_oom' | translate: { t0: stateCtrl.database.oom.realList.length }"></span>
+                                                        <span data-ng-if="stateCtrl.database.oom.realList.length === 0" data-ng-bind-html="'privateDatabase_no_oom' | translate"></span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <oui-action-menu data-compact data-align="end"
+                                                         data-ng-if="!stateCtrl.isExpired">
+                                            <oui-action-menu-item data-on-click="setAction('database/ram/update/private-database-database-ram-update', stateCtrl.database)"
+                                                                  data-ng-disabled="taskState.lockAction">
+                                                <span data-translate="privateDatabase_change_ram_title"></span>
+                                            </oui-action-menu-item>
+                                            <oui-action-menu-item data-on-click="stateCtrl.goToOom()"
+                                                                  data-ng-disabled="taskState.lockAction">
+                                                <span data-translate="privateDatabase_modale_oom_state_button"></span>
+                                            </oui-action-menu-item>
+                                        </oui-action-menu>
+                                    </li>
+                                    <li class="oui-tile__item">
+                                        <div class="d-flex flex-column">
+                                            <strong class="oui-tile__term"
+                                                    data-translate="privateDatabase_dashboard_disk_usage"></strong>
+                                            <oui-progress>
+                                                <oui-progress-bar data-ng-if="stateCtrl.database.quotaPercent.value < 51"
+                                                                  data-type="success"
+                                                                  data-value="stateCtrl.database.quotaPercent.value">
+                                                    <span class="oui-progress__label"
+                                                          data-ng-bind="::stateCtrl.convertBytesSize(stateCtrl.database.quotaUsed.value, stateCtrl.database.quotaUsed.unit, 2) + ' / ' + stateCtrl.convertBytesSize(stateCtrl.database.quotaSize.value, stateCtrl.database.quotaSize.unit)"></span>
+                                                </oui-progress-bar>
+                                                <oui-progress-bar data-ng-if="stateCtrl.database.quotaPercent.value > 50 && stateCtrl.database.quotaPercent.value < 81"
+                                                                  data-type="warning"
+                                                                  data-value="stateCtrl.database.quotaPercent.value">
+                                                    <span class="oui-progress__label"
+                                                          data-ng-bind="::stateCtrl.convertBytesSize(stateCtrl.database.quotaUsed.value, stateCtrl.database.quotaUsed.unit, 2) + ' / ' + stateCtrl.convertBytesSize(stateCtrl.database.quotaSize.value, stateCtrl.database.quotaSize.unit)"></span>
+                                                </oui-progress-bar>
+                                                <oui-progress-bar data-ng-if="stateCtrl.database.quotaPercent.value > 80"
+                                                                  data-type="error"
+                                                                  data-value="stateCtrl.database.quotaPercent.value">
+                                                    <span class="oui-progress__label"
+                                                          data-ng-bind="::stateCtrl.convertBytesSize(stateCtrl.database.quotaUsed.value, stateCtrl.database.quotaUsed.unit, 2) + ' / ' + stateCtrl.convertBytesSize(stateCtrl.database.quotaSize.value, stateCtrl.database.quotaSize.unit)"></span>
+                                                </oui-progress-bar>
+                                            </oui-progress>
+                                        </div>
+                                    </li>
+                                    <li class="oui-tile__item">
+                                        <div class="oui-tile__definition">
+                                            <strong class="oui-tile__term d-block"
+                                                    data-translate="privateDatabase_dashboard_infrastructure"></strong>
+                                            <span data-ng-bind=":: 'privateDatabase_dashboard_infrastructure_' + stateCtrl.database.infrastructure | translate"></span>
+                                        </div>
+                                    </li>
+                                    <li class="oui-tile__item">
+                                        <div class="oui-tile__definition">
+                                            <strong class="oui-tile__term d-block"
+                                                    data-translate="privateDatabase_dashboard_datacenter"></strong>
+                                            <span data-ng-bind=":: (('privateDatabase_dashboard_datacenter_' + stateCtrl.database.datacenter | translate) == 'privateDatabase_dashboard_datacenter_' + stateCtrl.database.datacenter)? stateCtrl.database.datacenter: ('privateDatabase_dashboard_datacenter_' + stateCtrl.database.datacenter | translate)"></span>
+                                        </div>
+                                    </li>
+                                    <li class="oui-tile__item">
+                                        <div class="oui-tile__definition">
+                                            <strong class="oui-tile__term d-block"
+                                                    data-translate="privateDatabase_dashboard_host"></strong>
+                                            <span data-ng-bind="stateCtrl.database.server"></span>
+                                        </div>
+                                    </li>
+                                    <li class="oui-tile__item">
+                                        <div class="oui-tile__definition">
+                                            <div data-ng-if="isRenew()">
+                                                <strong class="oui-tile__term d-block"
+                                                        data-translate="privateDatabase_renew_date"></strong>
+                                                <span
+                                                    data-ng-bind="::stateCtrl.database.serviceInfos.expiration | date:'MMMM yyyy'"></span>
+                                            </div>
+                                            <div class="d-flex w-100" data-ng-if="!isRenew()">
+                                                <div>
+                                                    <strong class="oui-tile__term d-block"
+                                                            data-translate="privateDatabase_expiration_date"
+                                                            data-ng-if="!isRenew()"></strong>
+                                                    <span data-ng-bind="::stateCtrl.database.serviceInfos.expiration | date:'mediumDate'"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <oui-action-menu data-compact data-align="end"
+                                                         data-ng-if="!isRenew()">
+                                                    <oui-action-menu-item title="{{:: 'button_renew' | translate }}"
+                                                                          data-ng-href="#/billing/autoRenew?selectedType=HOSTING_PRIVATE_DATABASE&searchText={{stateCtrl.database.serviceName}}">
+                                                        <span data-translate="button_renew"></span>
+                                                    </oui-action-menu-item>
+                                        </oui-action-menu>
+                                    </li>
+                                    <li class="oui-tile__item" data-ng-if="stateCtrl.database.offer === 'classic'">
+                                        <div class="oui-tile__definition">
+                                            <strong class="oui-tile__term d-block"
+                                                    data-translate="privateDatabase_dashboard_service_hosting_linked"></strong>
+                                            <span data-ng-if="stateCtrl.hostingsLinked && stateCtrl.hostingsLinked.length === 0"
+                                                  data-translate="privateDatabase_dashboard_service_hosting_linked_none"></span>
+                                            <button class="btn btn-link p-0" type="button"
+                                                    data-ng-if="stateCtrl.hostingsLinked && stateCtrl.hostingsLinked.length === 1"
+                                                    data-ng-bind="stateCtrl.hostingsLinked[0].name"
+                                                    data-ng-click="stateCtrl.goToHosting(stateCtrl.hostingsLinked[0].name)"
+                                                    data-ng-disabled="!stateCtrl.hostingsLinked[0].isAdmin">
+                                            </button>
+                                            <button class="btn btn-icon" type="button" title="{{:: 'privateDatabase_dashboard_service_hosting_more' | translate }}"
+                                                    data-ng-if="stateCtrl.hostingsLinked && stateCtrl.hostingsLinked.length > 1"
+                                                    data-ng-click="stateCtrl.displayMore.value = !stateCtrl.displayMore.value">
+                                                <span class="fa fa-plus-square-o"
+                                                      data-ng-if="!stateCtrl.displayMore.value"
+                                                      aria-hidden="true"></span>
+                                                <span class="fa fa-minus-square-o"
+                                                      data-ng-if="stateCtrl.displayMore.value"
+                                                      aria-hidden="true"></span>
+                                                <span class="ml-3"
+                                                      data-translate="privateDatabase_dashboard_service_hosting_more"></span>
+                                            </button>
+                                            <ul data-ng-if="stateCtrl.displayMore.value">
+                                                <li data-ng-repeat="hostingLinked in stateCtrl.hostingsLinked track by $index"
+                                                    data-ng-class="{'animated fadeInDown fast-fade-in-down': stateCtrl.displayMore.value}">
+                                                    <button class="btn btn-link p-0" type="button"
+                                                            data-ng-click="stateCtrl.goToHosting(hostingLinked.name)"
+                                                            data-ng-disabled="!stateCtrl.hostingsLinked.isAdmin"
+                                                            data-ng-bind="hostingLinked.name">
+                                                    </button>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="oui-tile mb-5" data-ng-if="stateCtrl.database.offer === 'classic'">
+                            <h3 class="oui-header_4 oui-tile__title"
+                                data-translate="privateDatabase_dashboard_admin_informations"></h3>
+                            <div class="oui-tile__body">
+                                <ul class="list-unstyled">
+                                    <li class="oui-tile__item">
+                                        <div class="oui-tile__definition">
+                                            <strong class="oui-tile__term d-block" data-translate="privateDatabase_gui"></strong>
+                                            <a data-ng-href="{{stateCtrl.database.guiURL}}" target="_blank"
+                                               data-ng-bind="::stateCtrl.database.guiURL"></a>
+                                        </div>
+                                    </li>
+                                    <li class="oui-tile__item">
+                                        <div class="oui-tile__definition">
+                                            <strong class="oui-tile__term d-block"
+                                                    data-translate="privateDatabase_tab_USER"></strong>
+                                            <button class="btn btn-link p-0" type="button"
+                                                    data-translate="privateDatabase_dashboard_admin_informations_users"
+                                                    data-ng-click="setSelectedTab('USER')">
+                                            </button>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="oui-tile mb-5">
+                            <h3 class="oui-header_4 oui-tile__title"
+                                data-translate="privateDatabase_dashboard_connections_title"></h3>
+                            <div class="oui-tile__body">
+                                <h4 class="oui-header_5 oui-tile__definition">SQL</h4>
+                                <ul class="list-unstyled">
+                                    <li class="oui-tile__item">
+                                        <div class="oui-tile__definition">
+                                            <strong class="oui-tile__term d-block"
+                                                    data-translate="privateDatabase_dashboard_hostname"></strong>
+                                            <span data-ng-if="stateCtrl.database.infrastructure === 'docker'"
+                                                  data-ng-bind="::stateCtrl.database.hostname"></span>
+                                            <span data-ng-if="stateCtrl.database.infrastructure === 'legacy'"
+                                                  data-ng-bind="::stateCtrl.database.ip"></span>
+                                        </div>
+                                    </li>
+                                    <li class="oui-tile__item">
+                                        <div class="oui-tile__definition">
+                                            <strong class="oui-tile__term d-block"
+                                                    data-translate="privateDatabase_dashboard_port"></strong>
+                                            <span data-ng-bind="::stateCtrl.database.port"></span>
+                                        </div>
+                                    </li>
+                                    <li class="oui-tile__item">
+                                        <div class="oui-tile__definition">
+                                            <strong class="oui-tile__term d-block"
+                                                    data-translate="privateDatabase_tab_USER"></strong>
+                                            <button class="btn btn-link p-0" type="button"
+                                                    data-translate="privateDatabase_dashboard_admin_informations_users"
+                                                    data-ng-click="setSelectedTab('USER')">
+                                            </button>
+                                        </div>
+                                    </li>
+                                    <li class="oui-tile__item" data-ng-if="stateCtrl.database.tlsCa">
+                                        <div class="oui-tile__definition">
+                                            <div class="d-flex w-100">
+                                                <div>
+                                                    <div class="d-block">
+                                                        <strong class="oui-tile__term"
+                                                                data-translate="privateDatabase_dashboard_certificate"></strong>
+                                                        <span class="fa fa-info-circle"
+                                                              aria-hidden="true"
+                                                              data-uib-tooltip="{{ 'privateDatabase_dashboard_certificate_tooltip' | translate }}"
+                                                              data-tooltip-append-to-body="true"
+                                                              data-tooltip-placement="top"></span>
+                                                    </div>
+                                                    <span data-ng-bind="::stateCtrl.database.certificateType"></span>
+                                                </div>
+                                                <div class="ml-auto my-auto">
+                                                    <oui-action-menu data-compact data-align="end">
+                                                        <oui-action-menu-item data-on-click="setAction('database/certificate/private-database-database-certificate', stateCtrl.database)">
+                                                            <span data-translate="privateDatabase_dashboard_see_certificate"></span>
+                                                        </oui-action-menu-item>
+                                                    </oui-action-menu>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="oui-tile__body">
+                                <h4 class="oui-header_5 oui-tile__definition"
+                                    data-ng-bind="'privateDatabase_dashboard_ftp_informations_' + stateCtrl.database.infrastructure | translate"></h4>
+                                <ul class="list-unstyled">
+                                    <li class="oui-tile__item">
+                                        <div class="oui-tile__definition">
+                                            <strong class="oui-tile__term d-block"
+                                                    data-translate="privateDatabase_dashboard_ftp_username"></strong>
+                                            <span data-ng-if="stateCtrl.database.infrastructure === 'legacy'"
+                                                  data-ng-bind="::stateCtrl.database.serviceName"></span>
+                                            <span data-ng-if="stateCtrl.database.infrastructure === 'docker'">admin</span>
+                                        </div>
+                                    </li>
+                                    <li class="oui-tile__item">
+                                        <div class="oui-tile__definition">
+                                            <div class="d-flex w-100">
+                                                <div>
+                                                    <strong class="oui-tile__term d-block"
+                                                            data-ng-bind="'privateDatabase_password_' + stateCtrl.database.infrastructure | translate"></strong>
+                                                    <span data-ng-show="!taskState.changeFtpPassword">********</span>
+                                                </div>
+                                                <div class="ml-auto my-auto"
+                                                     data-ng-if="!stateCtrl.isExpired">
+                                                    <oui-action-menu data-compact data-align="end"
+                                                                     data-ng-if="!taskState.changeFtpPassword">
+                                                        <oui-action-menu-item data-on-click="stateCtrl.changeFtpPassword()"
+                                                                              data-ng-disabled="taskState.lockAction">
+                                                            <span data-translate="privateDatabase_change_rootPassword"></span>
+                                                        </oui-action-menu-item>
+                                                    </oui-action-menu>
+                                                    <span class="ml-auto my-auto"
+                                                          data-ng-show="taskState.changeFtpPassword">
+                                                        <oui-spinner data-size="s"></oui-spinner>
+                                                        <span data-translate="privateDatabase_action_changepassword_doing"></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="oui-tile__item"
+                                        data-ng-if="stateCtrl.database.infrastructure === 'legacy'">
+                                        <div class="oui-tile__definition">
+                                            <div class="d-flex w-100">
+                                                <div>
+                                                    <strong class="oui-tile__term d-block"
+                                                            data-translate="privateDatabase_password_docker"></strong>
+                                                    <span data-ng-show="!taskState.changeRootPassword">********</span>
+                                                </div>
+                                                <div class="ml-auto my-auto">
+                                                    <button class="btn btn-default text-wrap" type="button" title="{{:: 'privateDatabase_change_rootPassword' | translate }}"
+                                                            data-translate="privateDatabase_change_rootPassword"
+                                                            data-ng-click="stateCtrl.changeRootPassword()"
+                                                            data-ng-disabled="taskState.lockAction"
+                                                            data-ng-show="!taskState.changeRootPassword">
+                                                    </button>
+                                                    <span data-ng-show="taskState.changeRootPassword">
+                                                        <oui-spinner data-size="s"></oui-spinner>
+                                                        <span data-translate="privateDatabase_action_changepassword_doing"></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="oui-tile__item">
+                                        <div class="oui-tile__definition">
+                                            <strong class="oui-tile__term d-block"
+                                                    data-translate="privateDatabase_dashboard_hostname"></strong>
+                                            <span data-ng-bind="::stateCtrl.database.hostnameFtp"></span>
+                                        </div>
+                                    </li>
+                                    <li class="oui-tile__item">
+                                        <div class="oui-tile__definition">
+                                            <strong class="oui-tile__term d-block"
+                                                    data-translate="privateDatabase_dashboard_port"></strong>
+                                            <span data-ng-bind="::stateCtrl.database.portFtp"></span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="oui-tile mb-5" data-ng-if="guides">
+                <h3 class="oui-header_4 oui-tile__title" data-translate="guide_add_subtitle"></h3>
+                <div class="oui-tile__body">
+                    <ul class="list-unstyled">
+                        <li class="oui-tile__item oui-tile__item_button"
+                            data-ng-repeat="guide in guides track by $index">
+                            <a class="oui-tile__button oui-button oui-button_link oui-button_full-width d-flex text-wrap" target="_blank"
+                               data-ng-href="{{guide.url}}">
+                                <span data-ng-bind="guide.title | translate"></span>
+                                <span class="fa fa-external-link my-auto ml-auto" aria-hidden="true"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -13,13 +13,13 @@ export const SIDEBAR_CONFIG = {
   //   loadOnState: 'app.hosting',
   //   allowSearch: true,
   // },
-  // PRIVATE_DATABASE: {
-  //   title: 'sidebar_section_database',
-  //   category: 'database',
-  //   icon: 'ovh-font ovh-font-database',
-  //   loadOnState: 'app.private-database',
-  //   allowSearch: true,
-  // },
+  PRIVATE_DATABASE: {
+    title: 'sidebar_section_database',
+    category: 'database',
+    icon: 'ovh-font ovh-font-database',
+    loadOnState: 'app.private-database',
+    allowSearch: true,
+  },
   // EMAIL_PRO: {
   //   title: 'sidebar_section_emailPro',
   //   category: 'email',
@@ -176,8 +176,9 @@ export const SIDEBAR_CONFIG = {
 };
 
 export const STATE_MAPPING_SERVICE = {
-  '/sms/{serviceName}': {
-    state: 'sms.dashboard',
+  '/freefax/{serviceName}': {
+    state: 'freefax',
+    prefix: 'sidebar_section_fax_prefix_freefax',
     stateParams: {
       serviceName: 'resource.name',
     },
@@ -188,9 +189,14 @@ export const STATE_MAPPING_SERVICE = {
       serviceName: 'resource.name',
     },
   },
-  '/freefax/{serviceName}': {
-    state: 'freefax',
-    prefix: 'sidebar_section_fax_prefix_freefax',
+  '/configuration/private_database/{serviceName}': {
+    state: 'private-database',
+    stateParams: {
+      serviceName: 'resource.name',
+    },
+  },
+  '/sms/{serviceName}': {
+    state: 'sms.dashboard',
     stateParams: {
       serviceName: 'resource.name',
     },
