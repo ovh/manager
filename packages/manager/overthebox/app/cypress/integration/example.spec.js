@@ -28,13 +28,11 @@ describe('OverTheBox', () => {
     cy.wait('@availableActions');
 
     cy.fixture('overthebox').as('overTheBoxFixture');
-    const customServiceName = cy.wait('@overTheBoxFixture').then(overthebox => overthebox.customerDescription);
 
-    cy
-      .get('h1')
-      .then(el => expect(el.text().trim()).to.equal(customServiceName));
-
-    expect(true).to.equal(true);
-    expect(false).to.equal(false);
+    cy.get('@overTheBoxFixture').then((overthebox) => {
+      cy
+        .get('h1')
+        .then(el => expect(el.text().trim()).to.equal(overthebox.customerDescription));
+    });
   });
 });
