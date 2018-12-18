@@ -15,7 +15,7 @@
   "browser": "./dist/umd/core.js",
   "dependencies": {
     "@ovh-ux/translate-async-loader": "^1.0.4",
-    "lodash": "^3.10.1"
+    "lodash": "^4.17.11"
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "5.0.0-beta.3"

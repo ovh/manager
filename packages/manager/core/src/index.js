@@ -1,5 +1,5 @@
 import angular from 'angular';
-import _ from 'lodash';
+import set from 'lodash/set';
 
 import 'angular-aria';
 import 'angular-sanitize';
@@ -182,9 +182,9 @@ angular
   })
   .config((OvhHttpProvider) => {
     // OvhHttpProvider.rootPath = constants.swsProxyPath;
-    _.set(OvhHttpProvider, 'clearCacheVerb', ['POST', 'PUT', 'DELETE']);
-    _.set(OvhHttpProvider, 'returnSuccessKey', 'data'); // By default, request return response.data
-    _.set(OvhHttpProvider, 'returnErrorKey', 'data'); // By default, request return error.data
+    set(OvhHttpProvider, 'clearCacheVerb', ['POST', 'PUT', 'DELETE']);
+    set(OvhHttpProvider, 'returnSuccessKey', 'data'); // By default, request return response.data
+    set(OvhHttpProvider, 'returnErrorKey', 'data'); // By default, request return error.data
   });
 
 
