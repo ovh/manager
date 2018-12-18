@@ -1,4 +1,7 @@
-import _ from 'lodash';
+import forEach from 'lodash/forEach';
+import isNaN from 'lodash/isNaN';
+import set from 'lodash/set';
+import toArray from 'lodash/toArray';
 
 export default class {
   /* @ngInject */
@@ -41,9 +44,9 @@ export default class {
     this.availableCredits = null;
 
     this.availableCredits = [];
-    _.forEach(this.constant.SMS_ORDER_PREFIELDS_VALUES, (value, idx) => {
+    forEach(this.constant.SMS_ORDER_PREFIELDS_VALUES, (value, idx) => {
       this.availableCredits.push({
-        label: _.isNaN(value) ? this.$translate.instant('sms_order_credit_custom') : this.$filter('number')(value),
+        label: isNaN(value) ? this.$translate.instant('sms_order_credit_custom') : this.$filter('number')(value),
         value,
       });
       if (value === this.order.min) {
@@ -53,18 +56,18 @@ export default class {
 
     this.loading.init = true;
     this.TucSmsMediator.initAll().then(() => {
-      const availableAccounts = _.toArray(this.TucSmsMediator.getAccounts())
+      const availableAccounts = toArray(this.TucSmsMediator.getAccounts())
         .sort((a, b) => a.name.localeCompare(b.name));
 
       // We have to format it to become human readable
-      _.forEach(availableAccounts, (account, idx) => {
+      forEach(availableAccounts, (account, idx) => {
         // if no description, take sms id
         if (account.description === '') {
-          _.set(account, 'label', account.name);
+          set(account, 'label', account.name);
         } else if (account.description !== account.name) {
-          _.set(account, 'label', `${account.description} (${account.name})`);
+          set(account, 'label', `${account.description} (${account.name})`);
         } else {
-          _.set(account, 'label', account.name);
+          set(account, 'label', account.name);
         }
 
         // If we are on a service, preselect

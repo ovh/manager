@@ -1,4 +1,6 @@
-import _ from 'lodash';
+import assign from 'lodash/assign';
+import result from 'lodash/result';
+import set from 'lodash/set';
 import template from './update/telecom-sms-options-recredit-update.html';
 import controller from './update/telecom-sms-options-recredit-update.controller';
 
@@ -48,9 +50,9 @@ export default class {
       return this.api.orderSms.getCredits({
         serviceName: this.$stateParams.serviceName,
         quantity: service.automaticRecreditAmount,
-      }).$promise.then(credits => _.result(credits, 'prices.withoutTax')).then(price => _.assign(service, { price }));
+      }).$promise.then(credits => result(credits, 'prices.withoutTax')).then(price => assign(service, { price }));
     }
-    _.set(service, 'price', null);
+    set(service, 'price', null);
     return this.$q.when(service);
   }
 

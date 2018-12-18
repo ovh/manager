@@ -21,7 +21,7 @@
   },
   "browser": "./dist/umd/index.js",
   "dependencies": {
-    "lodash": "3.10.1",
+    "lodash": "^4.17.11",
     "moment": "^2.22.2"
   },
   "devDependencies": {

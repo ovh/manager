@@ -1,5 +1,5 @@
 import angular from 'angular';
-import _ from 'lodash';
+import remove from 'lodash/remove';
 
 export default class {
   /* @ngInject */
@@ -38,7 +38,7 @@ export default class {
      */
   remove() {
     this.loading.removeTrackingOption = true;
-    _.remove(
+    remove(
       this.model.service.smsResponse.trackingOptions,
       this.model.service.smsResponse.trackingOptions[this.model.index],
     );

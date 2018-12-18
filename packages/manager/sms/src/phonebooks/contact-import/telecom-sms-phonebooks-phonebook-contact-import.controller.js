@@ -1,5 +1,7 @@
 import angular from 'angular';
-import _ from 'lodash';
+import endsWith from 'lodash/endsWith';
+import get from 'lodash/get';
+import some from 'lodash/some';
 
 export default class {
   /* @ngInject */
@@ -48,7 +50,7 @@ export default class {
         this.phonecontactForm.uploadedFile,
       ).then(doc => this.api.sms.phonebooks.import({
         serviceName: this.$stateParams.serviceName,
-        bookKey: _.get(this.phonebook, 'bookKey'),
+        bookKey: get(this.phonebook, 'bookKey'),
       }, {
         documentId: doc.id,
       }).$promise),
@@ -56,7 +58,7 @@ export default class {
       this.phonecontactForm.isImporting = false;
       this.phonecontactForm.hasBeenImported = true;
       return this.$timeout(() => this.close({
-        taskId: _.get(result.import, 'taskId'),
+        taskId: get(result.import, 'taskId'),
       }), 1000);
     }).catch(err => this.cancel({
       type: 'API',
@@ -72,7 +74,7 @@ export default class {
   checkValidTextExtention(file) {
     const validExtensions = ['csv', 'xls', 'xlsx'];
     const fileName = file ? file.name : '';
-    const found = _.some(validExtensions, ext => _.endsWith(fileName.toLowerCase(), ext));
+    const found = some(validExtensions, ext => endsWith(fileName.toLowerCase(), ext));
     if (!found) {
       this.TucToastError(this.$translate.instant('sms_phonebooks_phonebook_contact_import_file_invalid'));
     }

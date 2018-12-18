@@ -1,5 +1,6 @@
 import angular from 'angular';
-import _ from 'lodash';
+import has from 'lodash/has';
+import pull from 'lodash/pull';
 
 export default class {
   /* @ngInject */
@@ -37,7 +38,7 @@ export default class {
     this.loading.init = true;
     return this.TucSmsMediator.initDeferred.promise
       .then(() => this.TucSmsMediator.getApiScheme().then((schema) => {
-        this.availableTrackingMedia = _.pull(schema.models['sms.ResponseTrackingMediaEnum'].enum, 'voice');
+        this.availableTrackingMedia = pull(schema.models['sms.ResponseTrackingMediaEnum'].enum, 'voice');
         return this.availableTrackingMedia;
       })).catch((err) => {
         this.TucToastError(err);
@@ -58,7 +59,7 @@ export default class {
    * Handle tracking sender number.
    */
   handleTrackingSenderNumber() {
-    this.trackingOptions.sender = _.has(this.trackingSender, 'sender') ? this.trackingSender.sender : '';
+    this.trackingOptions.sender = has(this.trackingSender, 'sender') ? this.trackingSender.sender : '';
   }
 
   /**

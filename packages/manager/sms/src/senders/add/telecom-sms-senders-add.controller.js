@@ -1,5 +1,9 @@
 import angular from 'angular';
-import _ from 'lodash';
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import map from 'lodash/map';
+import union from 'lodash/union';
+import uniqBy from 'lodash/uniqBy';
 
 export default class {
   /* @ngInject */
@@ -48,25 +52,25 @@ export default class {
       sendersAvailableForValidation: this.fetchSendersAvailableForValidation(),
     }).then((results) => {
       this.sendersAvailableForValidation = results.sendersAvailableForValidation;
-      return this.$q.all(_.map(results.senders, sender => this.api.smsSenders.get({
+      return this.$q.all(map(results.senders, sender => this.api.smsSenders.get({
         serviceName: this.$stateParams.serviceName,
         sender,
       }).$promise));
     }).then((senders) => {
-      this.senders.availableForValidation.domains = _.filter(
+      this.senders.availableForValidation.domains = filter(
         this.sendersAvailableForValidation,
         { referer: 'domain' },
       );
-      this.senders.availableForValidation.domains = _.filter(
+      this.senders.availableForValidation.domains = filter(
         this.senders.availableForValidation.domains,
-        domain => !_.find(senders, {
+        domain => !find(senders, {
           sender: domain.sender,
         }),
       );
-      this.senders.availableForValidation.nichandle = _.uniq(_.filter(this.sendersAvailableForValidation, { referer: 'nichandle' }), 'sender');
-      this.senders.availableForValidation.nichandle = _.filter(
+      this.senders.availableForValidation.nichandle = uniqBy(filter(this.sendersAvailableForValidation, { referer: 'nichandle' }), 'sender');
+      this.senders.availableForValidation.nichandle = filter(
         this.senders.availableForValidation.nichandle,
-        nichandle => !_.find(senders, {
+        nichandle => !find(senders, {
           sender: nichandle.sender,
         }),
       );
@@ -143,11 +147,11 @@ export default class {
    * @return {Array}
    */
   getSelection() {
-    const allSelectedSenders = _.union(
+    const allSelectedSenders = union(
       this.senders.availableForValidation.nichandle,
       this.senders.availableForValidation.domains,
     );
-    return _.filter(allSelectedSenders, sender => this.senders.availableForValidation.selected
+    return filter(allSelectedSenders, sender => this.senders.availableForValidation.selected
       && this.senders.availableForValidation.selected[sender.sender]);
   }
 

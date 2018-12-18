@@ -1,5 +1,6 @@
 import angular from 'angular';
-import _ from 'lodash';
+import isEqual from 'lodash/isEqual';
+import pick from 'lodash/pick';
 
 export default class {
   /* @ngInject */
@@ -37,7 +38,7 @@ export default class {
       this.api.sms.receivers.edit({
         serviceName: this.$stateParams.serviceName,
         slotId: this.model.receiver.slotId,
-      }, _.pick(this.model.receiver, this.attributes)).$promise,
+      }, pick(this.model.receiver, this.attributes)).$promise,
       this.$timeout(angular.noop, 1000),
     ]).then(() => {
       this.loading.editReceiver = false;
@@ -62,9 +63,9 @@ export default class {
      * @return {Boolean}
      */
   hasChanged() {
-    return !_.isEqual(
-      _.pick(this.model.receiver, this.attributes),
-      _.pick(this.receiver, this.attributes),
+    return !isEqual(
+      pick(this.model.receiver, this.attributes),
+      pick(this.receiver, this.attributes),
     );
   }
 }

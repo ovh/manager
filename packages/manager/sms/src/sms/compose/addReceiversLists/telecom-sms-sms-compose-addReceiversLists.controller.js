@@ -1,5 +1,5 @@
 import angular from 'angular';
-import _ from 'lodash';
+import some from 'lodash/some';
 
 export default class {
   /* @ngInject */
@@ -47,6 +47,6 @@ export default class {
      * @return {Boolean}
      */
   hasSelected() {
-    return _.some(this.receivers, { isSelected: true });
+    return some(this.receivers, { isSelected: true });
   }
 }

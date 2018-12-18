@@ -1,5 +1,6 @@
 import angular from 'angular';
-import _ from 'lodash';
+import get from 'lodash/get';
+import kebabCase from 'lodash/kebabCase';
 
 export default class {
   /* @ngInject */
@@ -23,10 +24,10 @@ export default class {
      * @return {String}
      */
   setFilename() {
-    return `${_.kebabCase([
+    return `${kebabCase([
       this.$stateParams.serviceName,
       this.$translate.instant('sms_tabs_contacts'),
-      _.get(this.model.receiver, 'description', ''),
+      get(this.model.receiver, 'description', ''),
     ].join())}.csv`;
   }
 

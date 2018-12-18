@@ -1,5 +1,6 @@
 import angular from 'angular';
-import _ from 'lodash';
+import get from 'lodash/get';
+import pull from 'lodash/pull';
 
 export default class {
   /* @ngInject */
@@ -42,7 +43,7 @@ export default class {
     this.loading.init = true;
     return this.TucSmsMediator.initDeferred.promise
       .then(() => this.TucSmsMediator.getApiScheme().then((schema) => {
-        this.availableTrackingMedia = _.pull(schema.models['sms.ResponseTrackingMediaEnum'].enum, 'voice');
+        this.availableTrackingMedia = pull(schema.models['sms.ResponseTrackingMediaEnum'].enum, 'voice');
         this.trackingOptions.media = this.model.option.media;
         this.trackingSender.sender = this.model.option.sender;
       })).catch((err) => {
@@ -59,7 +60,7 @@ export default class {
   edit() {
     this.model.service.smsResponse.trackingOptions[this.model.index] = {
       media: this.trackingOptions.media,
-      sender: this.trackingOptions.media === 'sms' ? _.get(this.trackingSender.sender, 'sender') : this.model.option.sender,
+      sender: this.trackingOptions.media === 'sms' ? get(this.trackingSender.sender, 'sender') : this.model.option.sender,
       target: this.model.option.target,
     };
     this.loading.editTrackingOption = true;

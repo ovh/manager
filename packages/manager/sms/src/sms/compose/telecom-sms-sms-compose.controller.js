@@ -1,4 +1,19 @@
-import _ from 'lodash';
+import assign from 'lodash/assign';
+import each from 'lodash/each';
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import flatten from 'lodash/flatten';
+import get from 'lodash/get';
+import head from 'lodash/head';
+import map from 'lodash/map';
+import omit from 'lodash/omit';
+import pull from 'lodash/pull';
+import set from 'lodash/set';
+import size from 'lodash/size';
+import sortBy from 'lodash/sortBy';
+import sum from 'lodash/sum';
+import sumBy from 'lodash/sumBy';
+import union from 'lodash/union';
 import moment from 'moment';
 
 import addPhonebookController from './addPhonebookContact/telecom-sms-sms-compose-addPhonebookContact.controller';
@@ -91,7 +106,7 @@ export default class {
       },
     };
     this.urls = {
-      receivers: _.get(this.SMS_URL, 'guides.receivers'),
+      receivers: get(this.SMS_URL, 'guides.receivers'),
     };
 
     this.loading.init = true;
@@ -107,9 +122,9 @@ export default class {
       this.senders.raw = result.senders;
       this.receivers.raw = result.receivers;
       this.phonebooks.raw = result.phonebooks;
-      this.phonebooks.current = _.head(this.phonebooks.raw);
+      this.phonebooks.current = head(this.phonebooks.raw);
       return this.senders.raw;
-    }).then(senders => _.each(senders, (sender) => {
+    }).then(senders => each(senders, (sender) => {
       if (sender.type === 'virtual') {
         this.senders.virtual.push(sender);
       } else if (/\d+/.test(sender.sender)) {
@@ -134,7 +149,7 @@ export default class {
   fetchEnums() {
     return this.TucSmsMediator.getApiScheme().then((schema) => {
       const smsClass = {
-        smsClass: _.pull(schema.models['sms.ClassEnum'].enum, 'toolkit'),
+        smsClass: pull(schema.models['sms.ClassEnum'].enum, 'toolkit'),
       };
       return smsClass;
     });
@@ -158,11 +173,11 @@ export default class {
         serviceName: this.$stateParams.serviceName,
       }).$promise
       .then(sendersIds => this.$q
-        .all(_.map(sendersIds, sender => this.api.sms.senders.get({
+        .all(map(sendersIds, sender => this.api.sms.senders.get({
           serviceName: this.$stateParams.serviceName,
           sender,
         }).$promise))
-        .then(senders => _.filter(senders, { status: 'enable' })));
+        .then(senders => filter(senders, { status: 'enable' })));
   }
 
   /**
@@ -175,7 +190,7 @@ export default class {
         serviceName: this.$stateParams.serviceName,
       }).$promise
       .then(receiversIds => this.$q
-        .all(_.map(receiversIds, slotId => this.api.sms.receivers.get({
+        .all(map(receiversIds, slotId => this.api.sms.receivers.get({
           serviceName: this.$stateParams.serviceName,
           slotId,
         }).$promise)));
@@ -191,10 +206,10 @@ export default class {
         serviceName: this.$stateParams.serviceName,
       }).$promise
       .then(phonebooksIds => this.$q
-        .all(_.map(phonebooksIds, bookKey => this.api.sms.phonebooks.get({
+        .all(map(phonebooksIds, bookKey => this.api.sms.phonebooks.get({
           serviceName: this.$stateParams.serviceName,
           bookKey,
-        }).$promise)).then(phonebooks => _.sortBy(phonebooks, 'name')));
+        }).$promise)).then(phonebooks => sortBy(phonebooks, 'name')));
   }
 
   /**
@@ -202,7 +217,7 @@ export default class {
    * @return {Object}
    */
   computeRemainingChar() {
-    return _.assign(this.message, this.TucSmsMediator.getSmsInfoText(
+    return assign(this.message, this.TucSmsMediator.getSmsInfoText(
       this.sms.message,
       !this.sms.noStopClause, // suffix
     ));
@@ -213,7 +228,7 @@ export default class {
    * @return {Boolean}
    */
   isVirtualNumber() {
-    return !!_.find(this.senders.virtual, { sender: this.sms.sender });
+    return !!find(this.senders.virtual, { sender: this.sms.sender });
   }
 
   /**
@@ -266,8 +281,8 @@ export default class {
    */
   createSms(slotId) {
     const phonebookContactNumber = [];
-    _.each(this.phonebooks.lists, contact => phonebookContactNumber.push(_.get(contact, contact.type)));
-    const receivers = _.union(phonebookContactNumber, this.sms.receivers ? [this.sms.receivers] : null);
+    each(this.phonebooks.lists, contact => phonebookContactNumber.push(get(contact, contact.type)));
+    const receivers = union(phonebookContactNumber, this.sms.receivers ? [this.sms.receivers] : null);
     const differedPeriod = this.sms.differedPeriod ? this.getDifferedPeriod() : null;
     const sender = this.sms.sender === 'shortNumber' ? null : this.sms.sender;
     const senderForResponse = this.sms.sender === 'shortNumber' ? true : this.sms.senderForResponse;
@@ -336,7 +351,7 @@ export default class {
     }
     this.receivers.records = 0;
     this.receivers.count = 0;
-    return _.map(this.receivers.raw, receiver => _.set(receiver, 'isSelected', false));
+    return map(this.receivers.raw, receiver => set(receiver, 'isSelected', false));
   }
 
   /**
@@ -357,8 +372,8 @@ export default class {
     modal.result.then((receivers) => {
       this.receivers = {
         raw: receivers,
-        count: _.size(_.filter(receivers, 'isSelected')),
-        records: _.sum(_.pluck(_.filter(receivers, 'isSelected'), 'records')),
+        count: size(filter(receivers, 'isSelected')),
+        records: sum(map(filter(receivers, 'isSelected'), 'records')),
       };
     });
   }
@@ -378,7 +393,7 @@ export default class {
     });
     modal.result.then((result) => {
       this.phonebooks.lists = [];
-      _.each(result, contact => this.phonebooks.lists.push(contact));
+      each(result, contact => this.phonebooks.lists.push(contact));
     });
   }
 
@@ -402,24 +417,24 @@ export default class {
    */
   send(form) {
     const promises = [];
-    const slotIds = _.pluck(_.filter(this.receivers.raw, 'isSelected'), 'slotId');
+    const slotIds = map(filter(this.receivers.raw, 'isSelected'), 'slotId');
     this.loading.send = true;
     if (this.isVirtualNumber()) {
-      if (this.sms.receivers || _.size(this.phonebooks.lists)) {
+      if (this.sms.receivers || size(this.phonebooks.lists)) {
         promises.push(this.api.sms.virtualNumbers.jobs.send({
           serviceName: this.$stateParams.serviceName,
           number: this.sms.sender,
-        }, _.omit(this.createSms(), [
+        }, omit(this.createSms(), [
           'sender',
           'noStopClause',
           'senderForResponse',
         ])).$promise);
       }
-      if (_.size(slotIds)) {
-        _.map(slotIds, slotId => promises.push(this.api.sms.virtualNumbers.jobs.send({
+      if (size(slotIds)) {
+        map(slotIds, slotId => promises.push(this.api.sms.virtualNumbers.jobs.send({
           serviceName: this.$stateParams.serviceName,
           number: this.sms.sender,
-        }, _.omit(this.createSms(slotId), [
+        }, omit(this.createSms(slotId), [
           'receivers',
           'sender',
           'noStopClause',
@@ -427,22 +442,22 @@ export default class {
         ])).$promise));
       }
     } else {
-      if (this.sms.receivers || _.size(this.phonebooks.lists)) {
+      if (this.sms.receivers || size(this.phonebooks.lists)) {
         promises.push(this.api.sms.jobs.send({
           serviceName: this.$stateParams.serviceName,
         }, this.createSms()).$promise);
       }
-      if (_.size(slotIds)) {
-        _.map(slotIds, slotId => promises.push(this.api.sms.jobs.send({
+      if (size(slotIds)) {
+        map(slotIds, slotId => promises.push(this.api.sms.jobs.send({
           serviceName: this.$stateParams.serviceName,
-        }, _.omit(this.createSms(slotId), 'receivers')).$promise));
+        }, omit(this.createSms(slotId), 'receivers')).$promise));
       }
     }
 
     return this.$q.all(promises).then((results) => {
-      const totalCreditsRemoved = _.sum(results, 'totalCreditsRemoved');
-      const invalidReceivers = _.chain(results).pluck('invalidReceivers').flatten().value();
-      const validReceivers = _.chain(results).pluck('validReceivers').flatten().value();
+      const totalCreditsRemoved = sumBy(results, 'totalCreditsRemoved');
+      const invalidReceivers = flatten(map(results, 'invalidReceivers'));
+      const validReceivers = flatten(map(results, 'validReceivers'));
 
       // update the creditLeft value (displayed on the dashboard)
       this.service.creditsLeft -= totalCreditsRemoved;
@@ -453,14 +468,14 @@ export default class {
         chapter2: 'telecom-sms-sms',
         chapter3: 'telecom-sms-sms-compose',
         customObject: {
-          nichandle: _.get(this.user, 'nichandle'),
-          country: _.get(this.user, 'country'),
+          nichandle: get(this.user, 'nichandle'),
+          country: get(this.user, 'country'),
           receiversCount: this.receivers.count,
           receiversLists: this.receivers.records + (this.sms.receivers ? 1 : 0),
           phonebookContactCount: this.phonebooks.lists.length,
           totalCreditsRemoved,
-          invalidReceivers: _.size(invalidReceivers),
-          validReceivers: _.size(validReceivers),
+          invalidReceivers: size(invalidReceivers),
+          validReceivers: size(validReceivers),
         },
       });
       this.resetForm(form);
