@@ -189,7 +189,7 @@ export const STATE_MAPPING_SERVICE = {
       serviceName: 'resource.name',
     },
   },
-  '/configuration/private_database/{serviceName}': {
+  '/hosting/privateDatabase/{serviceName}': {
     state: 'private-database',
     stateParams: {
       serviceName: 'resource.name',

@@ -1,25 +1,25 @@
-<div data-ng-controller="PrivateDatabaseCtrl as ctrl">
+<div>
     <div data-ovh-alert="{{alerts.page}}"></div>
 
-    <div class="text-center" data-ng-if="ctrl.loaders.details">
+    <div class="text-center" data-ng-if="$ctrl.loaders.details">
         <oui-spinner data-size="l"></oui-spinner>
     </div>
 
-    <div class="page-header" data-ng-show="!ctrl.loaders.details">
+    <div class="page-header" data-ng-show="!$ctrl.loaders.details">
         <div class="row">
             <div class="col-md-9">
                 <strong data-ng-if="database.offer === 'classic'"
                         data-translate="privateDatabase_order_sql_type_premium_label"></strong>
                 <strong data-ng-if="database.offer === 'public'"
                         data-translate="privateDatabase_order_sql_type_dbaas_label"></strong>
-                <div class="mb-3" data-ng-show="!ctrl.editMode">
+                <div class="mb-3" data-ng-show="!$ctrl.editMode">
                     <div class="d-flex">
                         <h1 class="d-inline-block mb-0"
                             data-ng-bind="database.displayName || database.serviceName || dbName"></h1>
                         <button class="btn btn-icon my-auto ml-2" type="button"
-                                data-ng-click="ctrl.editDisplayName()"
+                                data-ng-click="$ctrl.editDisplayName()"
                                 data-ng-show="database"
-                                data-ng-if="!ctrl.isExpired">
+                                data-ng-if="!$ctrl.isExpired">
                             <span class="oui-icon oui-icon-pen_line oui-icon_small" aria-hidden="true"></span>
                             <span class="sr-only" data-translate="privateDatabase_configuration_edit_btn"></span>
                         </button>
@@ -30,13 +30,13 @@
                 </div>
 
                 <form class="my-4" name="formEditDisplayName" novalidate
-                      data-ng-show="ctrl.editMode"
-                      data-ng-submit="ctrl.saveDisplayName()">
+                      data-ng-show="$ctrl.editMode"
+                      data-ng-submit="$ctrl.saveDisplayName()">
                     <div class="oui-input-group">
                         <input type="text" class="oui-input" name="txtDisplayName" id="privatedatabase-group-name"
-                               data-event-blur="ctrl.newDisplayName.value = ''"
+                               data-event-blur="$ctrl.newDisplayName.value = ''"
                                data-ng-maxlength="250"
-                               data-ng-model="ctrl.newDisplayName.value">
+                               data-ng-model="$ctrl.newDisplayName.value">
                         <button class="oui-button" type="submit"
                                 data-ng-disabled="formEditDisplayName.$invalid">
                             <span class="fa fa-check" aria-hidden="true"></span>
@@ -44,7 +44,7 @@
                                   data-translate="privateDatabase_dashboard_name_validate"></span>
                         </button>
                         <button class="oui-button" type="button"
-                                data-ng-click="ctrl.editMode = false">
+                                data-ng-click="$ctrl.editMode = false">
                             <span class="fa fa-remove" aria-hidden="true"></span>
                             <span class="sr-only"
                                   data-translate="privateDatabase_dashboard_name_cancel"></span>
@@ -53,7 +53,7 @@
                 </form>
 
                 <div class="alert alert-danger" role="alert"
-                     data-ng-if="ctrl.editMode && formEditDisplayName.txtDisplayName.$dirty && formEditDisplayName.$invalid"
+                     data-ng-if="$ctrl.editMode && formEditDisplayName.txtDisplayName.$dirty && formEditDisplayName.$invalid"
                      data-ng-messages="formEditDisplayName.txtDisplayName.$error">
                     <div data-ng-message="maxlength" data-ng-bind=":: 'privateDatabase_displayName_length' | translate"></div>
                 </div>
@@ -75,7 +75,7 @@
                         <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-right">
-                        <li data-ng-if="!ctrl.isExpired">
+                        <li data-ng-if="!$ctrl.isExpired">
                             <i class="oui-icon oui-icon-power_line" aria-hidden="true"></i>
                             <button class="btn btn-link" type="button" title="{{ 'privateDatabase_restart' | translate }}"
                                     data-translate="privateDatabase_restart"
@@ -84,7 +84,7 @@
                             </button>
                         </li>
                         <li class="dropdown-divider"
-                            data-ng-if="!ctrl.isExpired">
+                            data-ng-if="!$ctrl.isExpired">
                             <i class="oui-icon oui-icon-user_line" aria-hidden="true"></i>
                             <a class="btn btn-link" title="{{:: 'core_change_owner' | translate }} ({{:: 'core_new_window' | translate }})" target="_blank"
                                data-ng-href="{{::changeOwnerUrl}}"
@@ -105,7 +105,7 @@
         </div>
     </div>
 
-    <div data-ng-if="!ctrl.loaders.details">
+    <div data-ng-if="!$ctrl.loaders.details">
 
         <div data-ng-show="!(!taskState.changeVersion && database.state !== 'started') && !taskState.changeVersion">
             <p data-ng-if="!taskState.changeVersion && database && database.state !== 'started'"

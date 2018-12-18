@@ -1,4 +1,4 @@
-const changeOwner = {
+const changeOwnerURL = {
   CZ: 'https://www.ovh.cz/cgi-bin/procedure/procedureChangeOwner.cgi',
   DE: 'https://www.ovh.de/cgi-bin/procedure/procedureChangeOwner.cgi',
   ES: 'https://www.ovh.es/cgi-bin/procedure/procedureChangeOwner.cgi',
@@ -17,4 +17,4 @@ const changeOwner = {
   WS: 'https://www.ovh.es/cgi-bin/procedure/procedureChangeOwner.cgi',
 };
 
-export default { changeOwner };
+export default { changeOwnerURL };

@@ -1,32 +1,29 @@
 import angular from 'angular';
 import managerCore from '@ovh-ux/manager-core';
 import ovhUtilsAngular from '@ovh-ux/ovh-utils-angular';
+import webUniverseComponents from '@ovh-ux/web-universe-components';
 
 import controller from './private-database.controller';
+import tabsController from './private-database-tabs.controller';
 import template from './private-database.html';
 import privateDatabaseService from './private-database.service';
 import privateDatabaseExtensionService from './database/extension/private-database-database-extension.service';
-
-console.log(controller);
 
 const moduleName = 'ovhManagerPrivateDatabase';
 
 angular.module(moduleName, [
   managerCore,
   ovhUtilsAngular,
+  webUniverseComponents,
 ])
   .service('PrivateDatabase', privateDatabaseService)
   .service('PrivateDatabaseExtension', privateDatabaseExtensionService)
+  .controller('PrivateDatabaseTabsCtrl', tabsController)
   .config(($stateProvider) => {
     $stateProvider.state('private-database', {
-      url: '/configuration/private_database/:productId?tab',
-      views: {
-        '': {
-          template,
-          controller,
-          controllerAs: 'PrivateDatabaseCtrl',
-        },
-      },
+      url: '/configuration/private_database/:serviceName?tab',
+      template,
+      controller,
       reloadOnSearch: false,
       resolve: {
         navigationInformations: [
@@ -41,7 +38,7 @@ angular.module(moduleName, [
           },
         ],
       },
-      translations: ['../private-database', '../hosting'],
+      translations: ['.'],
     });
 
   /*
@@ -54,7 +51,8 @@ angular.module(moduleName, [
         'Navigator',
         '$rootScope',
         (Navigator, $rootScope) => {
-          $rootScope.currentSectionInformation = 'private_database'; // eslint-disable-line no-param-reassign
+          $rootScope.currentSectionInformation =
+            'private_database'; // eslint-disable-line no-param-reassign
           return Navigator.setNavigationInformation({
             leftMenuVisible: true,
             configurationSelected: true,
@@ -78,7 +76,8 @@ angular.module(moduleName, [
         'Navigator',
         '$rootScope',
         (Navigator, $rootScope) => {
-          $rootScope.currentSectionInformation = 'private_database'; // eslint-disable-line no-param-reassign
+          $rootScope.currentSectionInformation =
+            'private_database'; // eslint-disable-line no-param-reassign
           return Navigator.setNavigationInformation({
             leftMenuVisible: true,
             configurationSelected: true,
@@ -89,6 +88,6 @@ angular.module(moduleName, [
     translations: ['../private-database'],
   });
   */
-});
+  });
 
 export default moduleName;

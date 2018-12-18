@@ -1,7 +1,9 @@
 import _ from 'lodash';
+import constants from './private-database-constants';
 
-export default class {
+export default class PrivateDatabaseCtrl {
   /* @ngInject */
+
   constructor(
     $q,
     $rootScope,
@@ -27,7 +29,7 @@ export default class {
   }
 
   $onInit() {
-    this.productId = this.$stateParams.productId;
+    this.productId = this.$stateParams.serviceName;
     this.isExpired = false;
 
     this.$scope.alerts = {
@@ -47,15 +49,10 @@ export default class {
 
     this.$scope.database = null;
 
-    this.sessionService.getUser().then((data) => {
-      console.log(data);
+    this.sessionService.getUser().then(({ ovhSubsidiary }) => {
+      this.$scope.changeOwnerUrl = _.get(constants.changeOwnerURL,
+        ovhSubsidiary, constants.changeOwnerURL.FR);
     });
-
-    /*
-    this.userService.getUrlOf('changeOwner').then((link) => {
-      this.$scope.changeOwnerUrl = link;
-    });
-    */
 
     _.forEach(['done', 'error'], (state) => {
       this.$scope.$on(
