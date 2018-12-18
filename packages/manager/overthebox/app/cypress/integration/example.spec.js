@@ -1,5 +1,5 @@
 describe('OverTheBox', () => {
-  it('Module is standalone', async () => {
+  it('should be a standalone module', async () => {
     cy.server();
 
     // Mocks
