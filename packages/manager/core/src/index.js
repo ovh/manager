@@ -1,10 +1,20 @@
 import angular from 'angular';
+import _ from 'lodash';
+
+import 'angular-aria';
+import 'angular-sanitize';
+import 'angular-resource';
+
 import kebabCase from 'lodash/kebabCase';
 import translateAsyncLoader from '@ovh-ux/translate-async-loader';
+import OvhHttp from 'ovh-angular-http';
+import ssoAuth from 'ovh-angular-sso-auth';
 
 import 'angular-dynamic-locale';
 import 'angular-translate';
 import 'angular-translate-loader-pluggable';
+
+import 'ovh-angular-apiv7';
 import 'ovh-api-services';
 
 import translateServiceProvider from './translate/translate.service';
@@ -18,11 +28,14 @@ const moduleName = 'ovhManagerCore';
 
 angular
   .module(moduleName, [
+    'ngSanitize',
     'angular-translate-loader-pluggable',
     'ovh-api-services',
     'pascalprecht.translate',
     'tmh.dynamicLocale',
     translateAsyncLoader,
+    OvhHttp,
+    ssoAuth,
   ])
   .constant('constants', {})
   .constant('CORE_LANGUAGES', LANGUAGES)
@@ -115,6 +128,63 @@ angular
     angularLocalePromise
       .then(() => injectAngularLocale(angularLocale))
       .then(() => tmhDynamicLocale.set(angularLocale));
+  })
+  .run((ssoAuthentication/* , User */) => {
+    ssoAuthentication.login(); // .then(() => User.getUser());
+  })
+  .constant('OVH_SSO_AUTH_LOGIN_URL', '/auth')
+  .factory('serviceTypeInterceptor', () => ({
+    request(config) {
+      const localConfig = config;
+      if (/^(\/?engine\/)?2api(-m)?\//.test(localConfig.url)) {
+        localConfig.url = localConfig.url.replace(/^(\/?engine\/)?2api(-m)?/, '');
+        localConfig.serviceType = 'aapi';
+      }
+
+      if (/^apiv6\//.test(localConfig.url)) {
+        localConfig.url = localConfig.url.replace(/^apiv6/, '');
+        localConfig.serviceType = 'apiv6';
+      }
+
+      if (/^apiv7\//.test(localConfig.url)) {
+        localConfig.url = localConfig.url.replace(/^apiv7/, '');
+        localConfig.serviceType = 'apiv7';
+      }
+
+      return localConfig;
+    },
+  }))
+  .config((ssoAuthenticationProvider, $httpProvider, OVH_SSO_AUTH_LOGIN_URL) => {
+    ssoAuthenticationProvider.setLoginUrl(OVH_SSO_AUTH_LOGIN_URL);
+    ssoAuthenticationProvider.setLogoutUrl(`${OVH_SSO_AUTH_LOGIN_URL}?action=disconnect`);
+
+    // if (!constants.prodMode) {
+    ssoAuthenticationProvider.setUserUrl('/engine/apiv6/me');
+    // }
+
+    ssoAuthenticationProvider.setConfig([
+      {
+        serviceType: 'apiv6',
+        urlPrefix: '/engine/apiv6',
+      },
+      {
+        serviceType: 'aapi',
+        urlPrefix: '/engine/2api',
+      },
+      {
+        serviceType: 'apiv7',
+        urlPrefix: '/engine/apiv7',
+      },
+    ]);
+
+    $httpProvider.interceptors.push('serviceTypeInterceptor');
+    $httpProvider.interceptors.push('ssoAuthInterceptor');
+  })
+  .config((OvhHttpProvider) => {
+    // OvhHttpProvider.rootPath = constants.swsProxyPath;
+    _.set(OvhHttpProvider, 'clearCacheVerb', ['POST', 'PUT', 'DELETE']);
+    _.set(OvhHttpProvider, 'returnSuccessKey', 'data'); // By default, request return response.data
+    _.set(OvhHttpProvider, 'returnErrorKey', 'data'); // By default, request return error.data
   });
 
 
