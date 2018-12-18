@@ -5,7 +5,8 @@
   "description": "OVH Control Panel also known as Manager",
   "license": "BSD-3-Clause",
   "workspaces": [
-    "packages/manager/*"
+    "packages/manager/*",
+    "packages/manager/**/app"
   ],
   "scripts": {
     "build": "lerna run build --stream",
@@ -19,7 +20,8 @@
     "lint:md": "remark -qf .",
     "packages:publish": "node ./scripts/publish",
     "start": "lerna run dev --stream --parallel",
-    "test": "yarn lint",
+    "test": "yarn lint && yarn run test:e2e",
+    "test:e2e": "lerna run test:e2e --stream",
     "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
     "release": "node ./scripts/release"
   },
@@ -35,6 +37,7 @@
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-import-resolver-lerna": "^1.0.0",
     "execa": "^1.0.0",
+    "find-free-port": "^2.0.0",
     "htmlhint": "^0.10.0",
     "husky": "^1.0.0",
     "lerna": "^3.4.3",
@@ -47,7 +50,8 @@
     "remark-preset-lint-recommended": "^3.0.2",
     "semver": "^5.6.0",
     "stylelint": "^9.5.0",
-    "stylelint-config-standard": "^18.2.0"
+    "stylelint-config-standard": "^18.2.0",
+    "tcp-port-used": "^1.0.1"
   },
   "engines": {
     "node": ">=8.11"
