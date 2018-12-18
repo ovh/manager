@@ -7,7 +7,11 @@ import controller from './private-database.controller';
 import tabsController from './private-database-tabs.controller';
 import template from './private-database.html';
 import privateDatabaseService from './private-database.service';
+import privateDatabaseOomService from './oom/private-database-oom.service';
 import privateDatabaseExtensionService from './database/extension/private-database-database-extension.service';
+
+import stateController from './state/private-database-state.controller';
+import stateTemplate from './state/private-database-state.html';
 
 const moduleName = 'ovhManagerPrivateDatabase';
 
@@ -16,14 +20,20 @@ angular.module(moduleName, [
   ovhUtilsAngular,
   webUniverseComponents,
 ])
+  .run(($templateCache) => {
+    $templateCache.put('private-database/state/private-database-state.html', stateTemplate);
+  })
   .service('PrivateDatabase', privateDatabaseService)
+  .service('OomService', privateDatabaseOomService)
   .service('PrivateDatabaseExtension', privateDatabaseExtensionService)
   .controller('PrivateDatabaseTabsCtrl', tabsController)
+  .controller('PrivateDatabaseStateCtrl', stateController)
   .config(($stateProvider) => {
     $stateProvider.state('private-database', {
       url: '/configuration/private_database/:serviceName?tab',
       template,
       controller,
+      controllerAs: '$ctrl',
       reloadOnSearch: false,
       resolve: {
         navigationInformations: [

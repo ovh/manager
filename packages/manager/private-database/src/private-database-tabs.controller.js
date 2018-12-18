@@ -1,13 +1,13 @@
-import angular from 'angular';
 import _ from 'lodash';
 
 export default class PrivateDatabaseTabsCtrl {
   /* @ngInject */
 
-  constructor($location, $scope, $stateParams) {
+  constructor($location, $scope, $stateParams, $filter) {
     this.$location = $location;
     this.$scope = $scope;
     this.$stateParams = $stateParams;
+    this.$filter = $filter;
   }
 
   $onInit() {
@@ -60,9 +60,9 @@ export default class PrivateDatabaseTabsCtrl {
 
     if (
       this.currentTab
-      && this.$scope.tabs.indexOf(angular.uppercase(this.currentTab)) !== -1
+      && this.$scope.tabs.indexOf(this.$filter('uppercase')(this.currentTab)) !== -1
     ) {
-      this.$scope.setSelectedTab(angular.uppercase(this.currentTab));
+      this.$scope.setSelectedTab(this.$filter('uppercase')(this.currentTab));
     } else {
       this.$scope.setSelectedTab(this.defaultTab);
     }

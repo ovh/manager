@@ -26,11 +26,13 @@ export default class PrivateDatabaseCtrl {
     this.privateDatabaseExtensionService = PrivateDatabaseExtension;
     this.privateDatabaseService = PrivateDatabase;
     this.sessionService = SessionService;
+    this.isLoading = false;
   }
 
   $onInit() {
     this.productId = this.$stateParams.serviceName;
     this.isExpired = false;
+    this.isLoading = true;
 
     this.$scope.alerts = {
       page: 'privateDataBase.alerts.page',
@@ -155,6 +157,8 @@ export default class PrivateDatabaseCtrl {
       if (!this.isExpired) {
         this.getTasksToPoll();
       }
+    }).finally(() => {
+      // this.isLoading = false;
     });
   }
 

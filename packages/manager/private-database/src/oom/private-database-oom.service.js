@@ -1,18 +1,15 @@
-angular.module('services').service(
-  'OomService',
-  class OomService {
-    constructor($http) {
-      this.$http = $http;
+export default class OomService {
+  /* @ngInject */
 
-      this.swsProxypassPath = 'hosting/privateDatabase';
+  constructor($http) {
+    this.$http = $http;
+    this.swsProxypassPath = 'hosting/privateDatabase';
+    this.rootPath = 'apiv6';
+  }
 
-      this.rootPath = 'apiv6';
-    }
-
-    getOomList(serviceName) {
-      return this.$http
-        .get(`${this.rootPath}/${this.swsProxypassPath}/${serviceName}/oom`)
-        .then(res => res.data);
-    }
-  },
-);
+  getOomList(serviceName) {
+    return this.$http
+      .get(`${this.rootPath}/${this.swsProxypassPath}/${serviceName}/oom`)
+      .then(res => res.data);
+  }
+}

@@ -22,6 +22,7 @@
   },
   "browser": "./dist/umd/index.js",
   "dependencies": {
+    "filesize": "^3.5.10",
     "lodash": "3.10.1",
     "moment": "^2.22.2"
   },
