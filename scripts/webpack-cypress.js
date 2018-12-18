@@ -1,6 +1,7 @@
 const execa = require('execa');
-const tcpPortUsed = require('tcp-port-used');
 const fp = require('find-free-port');
+const kill = require('kill-port');
+const tcpPortUsed = require('tcp-port-used');
 
 fp(3000, (err, port) => {
   const webpackApp = execa.shell(`yarn start --port ${port}`);
@@ -12,7 +13,7 @@ fp(3000, (err, port) => {
       cypressShell.stdout.pipe(process.stdout);
       return cypressShell;
     })
-    .then(() => execa.shell(`kill -9 $(lsof -i:${port} -t)`))
+    .then(() => kill(port))
     .then(() => process.exit(0))
     .catch((err) => { console.error(err); process.exit(1); }); // eslint-disable-line
 });
