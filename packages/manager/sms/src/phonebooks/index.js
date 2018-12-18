@@ -1,33 +1,24 @@
 import angular from 'angular';
-import controller from './telecom-sms-phonebooks.controller';
-import template from './telecom-sms-phonebooks.html';
-
-import create from './create';
+import '@uirouter/angularjs';
+import 'oclazyload';
 
 const moduleName = 'ovhManagerSmsPhonebooks';
 
-angular.module(moduleName, [
-  create,
-]).config(($stateProvider) => {
-  $stateProvider.state('sms.phonebooks', {
-    url: '/phonebooks',
-    views: {
-      'smsInnerView@sms': {
-        template,
-        controller,
-        controllerAs: 'PhonebooksCtrl',
+angular
+  .module(moduleName, [
+    'ui.router',
+    'oc.lazyLoad',
+  ])
+  .config(($stateProvider) => {
+    $stateProvider.state('sms.phonebooks.**', {
+      url: '/phonebooks',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+        return import('./telecom-sms-phonebooks.component')
+          .then(mod => $ocLazyLoad.inject(mod.default || mod));
       },
-    },
-    params: {
-      bookKey: null,
-    },
-    translations: ['.'],
+    });
   });
-}).factory('TelecomSmsPhoneBooksNumber', () => ({
-  isValid: number => !!(number
-       && number.match(/^\+?(\d|\.| |#|-)+$/)
-       && number.length < 26
-       && number.length > 2),
-}));
 
 export default moduleName;
