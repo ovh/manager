@@ -9,9 +9,11 @@ import template from './private-database.html';
 import privateDatabaseService from './private-database.service';
 import privateDatabaseOomService from './oom/private-database-oom.service';
 import privateDatabaseExtensionService from './database/extension/private-database-database-extension.service';
+import privateDatabaseChangeVersionCtrl from './database/version/update/private-database-database-version-update.controller';
 
 import stateController from './state/private-database-state.controller';
 import stateTemplate from './state/private-database-state.html';
+import versionTemplate from './database/version/update/private-database-database-version-update.html';
 
 const moduleName = 'ovhManagerPrivateDatabase';
 
@@ -22,12 +24,15 @@ angular.module(moduleName, [
 ])
   .run(($templateCache) => {
     $templateCache.put('private-database/state/private-database-state.html', stateTemplate);
+    $templateCache.put('private-database/database/version/update/private-database-database-version-update.html', versionTemplate);
   })
   .service('PrivateDatabase', privateDatabaseService)
   .service('OomService', privateDatabaseOomService)
   .service('PrivateDatabaseExtension', privateDatabaseExtensionService)
   .controller('PrivateDatabaseTabsCtrl', tabsController)
   .controller('PrivateDatabaseStateCtrl', stateController)
+  .controller('PrivateDatabaseChangeVersionCtrl', privateDatabaseChangeVersionCtrl)
+
   .config(($stateProvider) => {
     $stateProvider.state('private-database', {
       url: '/configuration/private_database/:serviceName?tab',
