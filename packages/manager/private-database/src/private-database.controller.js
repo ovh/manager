@@ -178,7 +178,9 @@ export default class PrivateDatabaseCtrl {
         this.isExpired = _.get(database, 'serviceInfos.status') === 'expired';
         this.$scope.guides = [];
 
-        this.userService.getUrlOf('guides').then((guides) => {
+        this.sessionService.getUser().then(
+          ({ ovhSubsidiary }) => _.get(constants.guides, ovhSubsidiary, constants.guides.FR),
+        ).then((guides) => {
           if (this.$scope.database && guides) {
             if (this.$scope.database.offer === 'classic') {
               if (guides.hostingPrivateDatabase) {
