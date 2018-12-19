@@ -27,6 +27,10 @@ import 'ng-at-internet';
 import 'ovh-angular-apiv7';
 import 'ovh-ui-angular';
 
+import 'ovh-ui-kit/dist/oui.css';
+import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
+import 'ovh-manager-webfont/dist/css/ovh-font.css';
+
 import './manager-layout-ovh.scss';
 import './manager-layout-ovh.less';
 

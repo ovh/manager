@@ -6,6 +6,8 @@ import { SIDEBAR_CONFIG, STATE_MAPPING_SERVICE } from './sidebar.constants';
 import template from './sidebar.html';
 import controller from './sidebar.controller';
 
+import './sidebar.less';
+
 const moduleName = 'ovh-manager-sidebar';
 
 angular
