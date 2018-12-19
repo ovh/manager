@@ -1,18 +1,17 @@
-angular.module('services').service(
-  'PrivateDatabaseLogsService',
-  class PrivateDatabaseLogsService {
-    constructor($http) {
-      this.$http = $http;
+export default class PrivateDatabaseLogsService {
+  /* @ngInject */
 
-      this.apiVersion = 'apiv6';
-    }
+  constructor($http) {
+    this.$http = $http;
 
-    getLogs(serviceName) {
-      return this.$http
-        .post(`${
-          this.apiVersion
-        }/hosting/privateDatabase/${serviceName}/generateTemporaryLogsLink`)
-        .then(res => res.data);
-    }
-  },
-);
+    this.apiVersion = 'apiv6';
+  }
+
+  getLogs(serviceName) {
+    return this.$http
+      .post(`${
+        this.apiVersion
+      }/hosting/privateDatabase/${serviceName}/generateTemporaryLogsLink`)
+      .then(res => res.data);
+  }
+}

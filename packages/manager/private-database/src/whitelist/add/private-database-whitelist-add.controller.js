@@ -1,64 +1,65 @@
-angular.module('App').controller(
-  'PrivateDatabaseAddWhitelistCtrl',
-  class PrivateDatabaseAddWhitelistCtrl {
-    constructor(
-      Alerter,
-      WhitelistService,
-      $rootScope,
-      $scope,
-      $stateParams,
-      $translate,
-      WucValidator,
-    ) {
-      this.alerter = Alerter;
-      this.whitelistService = WhitelistService;
-      this.$rootScope = $rootScope;
-      this.$scope = $scope;
-      this.$stateParams = $stateParams;
-      this.$translate = $translate;
-      this.validator = WucValidator;
-    }
+import _ from 'lodash';
 
-    $onInit() {
-      this.productId = this.$stateParams.productId;
+export default class PrivateDatabaseAddWhitelistCtrl {
+  /* @ngInject */
 
-      this.model = {
-        ip: '',
-        name: '',
-        service: false,
-        sftp: false,
-      };
+  constructor(
+    Alerter,
+    WhitelistService,
+    $rootScope,
+    $scope,
+    $stateParams,
+    $translate,
+    WucValidator,
+  ) {
+    this.alerter = Alerter;
+    this.whitelistService = WhitelistService;
+    this.$rootScope = $rootScope;
+    this.$scope = $scope;
+    this.$stateParams = $stateParams;
+    this.$translate = $translate;
+    this.validator = WucValidator;
+  }
 
-      this.$scope.addWhitelist = () => {
-        this.whitelistService
-          .createWhitelist(this.productId, this.model)
-          .then(() => {
-            this.alerter.success(
-              this.$translate.instant('privateDatabase_modale_whitelist_add_success'),
-              this.$scope.alerts.main,
-            );
-          })
-          .catch((err) => {
-            this.alerter.alertFromSWS(
-              this.$translate.instant('privateDatabase_modale_whitelist_add_fail'),
-              _.get(err, 'data', err),
-              this.$scope.alerts.main,
-            );
-          })
-          .finally(() => this.$scope.resetAction());
-      };
-    }
+  $onInit() {
+    this.productId = this.$stateParams.serviceName;
 
-    isIpValid(ip) {
-      return (
-        this.validator.isValidIpv4Block(ip) || this.validator.isValidIpv4(ip)
-      );
-    }
+    this.model = {
+      ip: '',
+      name: '',
+      service: false,
+      sftp: false,
+    };
 
-    isWhitelistValid() {
-      return (
-        this.isIpValid(this.model.ip) && (this.model.service || this.model.sftp)
-      );
-    }
-  },
-);
+    this.$scope.addWhitelist = () => {
+      this.whitelistService
+        .createWhitelist(this.productId, this.model)
+        .then(() => {
+          this.alerter.success(
+            this.$translate.instant('privateDatabase_modale_whitelist_add_success'),
+            this.$scope.alerts.main,
+          );
+        })
+        .catch((err) => {
+          this.alerter.alertFromSWS(
+            this.$translate.instant('privateDatabase_modale_whitelist_add_fail'),
+            _.get(err, 'data', err),
+            this.$scope.alerts.main,
+          );
+        })
+        .finally(() => this.$scope.resetAction());
+    };
+  }
+
+  isIpValid(ip) {
+    return (
+      this.validator.isValidIpv4Block(ip) || this.validator.isValidIpv4(ip)
+    );
+  }
+
+  isWhitelistValid() {
+    return (
+      this.isIpValid(this.model.ip) && (this.model.service || this.model.sftp)
+    );
+  }
+}

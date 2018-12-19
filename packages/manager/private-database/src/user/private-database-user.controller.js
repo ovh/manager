@@ -1,18 +1,14 @@
-angular.module('App').controller('PrivateDatabaseUsersCtrl', [
-  '$scope',
+export default /* @ngInject */ ($scope) => {
+  $scope.userView = 'private-database/user/list/private-database-user-list.html';
+  $scope.user = null;
 
-  ($scope) => {
-    $scope.userView = 'private-database/user/list/private-database-user-list.html';
+  $scope.goToGrants = (user) => {
+    $scope.user = user;
+    $scope.userView = 'private-database/user/grants/private-database-user-grants.html';
+  };
+
+  $scope.goToList = () => {
     $scope.user = null;
-
-    $scope.goToGrants = (user) => {
-      $scope.user = user;
-      $scope.userView = 'private-database/user/grants/private-database-user-grants.html';
-    };
-
-    $scope.goToList = () => {
-      $scope.user = null;
-      $scope.userView = 'private-database/user/list/private-database-user-list.html';
-    };
-  },
-]);
+    $scope.userView = 'private-database/user/list/private-database-user-list.html';
+  };
+};

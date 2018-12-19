@@ -1,41 +1,40 @@
-angular.module('App').controller(
-  'PrivateDatabaseLogsCtrl',
-  class PrivateDatabaseLogsCtrl {
-    constructor($scope, $stateParams, OvhTailLogs, PrivateDatabaseLogsService) {
-      this.$scope = $scope;
-      this.$stateParams = $stateParams;
-      this.OvhTailLogs = OvhTailLogs;
-      this.privateDatabaseLogsService = PrivateDatabaseLogsService;
-    }
+export default class PrivateDatabaseLogsCtrl {
+  /* @ngInject */
 
-    $onInit() {
-      this.productId = this.$stateParams.productId;
+  constructor($scope, $stateParams, OvhTailLogs, PrivateDatabaseLogsService) {
+    this.$scope = $scope;
+    this.$stateParams = $stateParams;
+    this.OvhTailLogs = OvhTailLogs;
+    this.privateDatabaseLogsService = PrivateDatabaseLogsService;
+  }
 
-      this.logger = new this.OvhTailLogs({
-        source: () => this.privateDatabaseLogsService
-          .getLogs(this.productId)
-          .then(logs => logs.url),
-        delay: 2000,
-      });
+  $onInit() {
+    this.productId = this.$stateParams.serviceName;
 
-      this.startLog();
-    }
+    this.logger = new this.OvhTailLogs({
+      source: () => this.privateDatabaseLogsService
+        .getLogs(this.productId)
+        .then(logs => logs.url),
+      delay: 2000,
+    });
 
-    $onDestroy() {
-      this.logger.stop();
-    }
+    this.startLog();
+  }
 
-    stopLog() {
-      this.logger.stop();
-    }
+  $onDestroy() {
+    this.logger.stop();
+  }
 
-    startLog() {
-      this.logger.log();
-    }
+  stopLog() {
+    this.logger.stop();
+  }
 
-    getLogs() {
-      this.logger = this.logger.logs;
-      return this.logger;
-    }
-  },
-);
+  startLog() {
+    this.logger.log();
+  }
+
+  getLogs() {
+    this.logger = this.logger.logs;
+    return this.logger;
+  }
+}

@@ -10,9 +10,13 @@ import privateDatabaseService from './private-database.service';
 import privateDatabaseOomService from './oom/private-database-oom.service';
 import privateDatabaseExtensionService from './database/extension/private-database-database-extension.service';
 import privateDatabaseChangeVersionCtrl from './database/version/update/private-database-database-version-update.controller';
+import userCtrl from './user/private-database-user.controller';
+import userListCtrl from './user/list/private-database-user-list.controller';
 
 import stateController from './state/private-database-state.controller';
 import stateTemplate from './state/private-database-state.html';
+import userListTemplate from './user/list/private-database-user-list.html';
+import userTemplate from './user/private-database-user.html';
 import versionTemplate from './database/version/update/private-database-database-version-update.html';
 
 const moduleName = 'ovhManagerPrivateDatabase';
@@ -25,6 +29,8 @@ angular.module(moduleName, [
   .run(($templateCache) => {
     $templateCache.put('private-database/state/private-database-state.html', stateTemplate);
     $templateCache.put('private-database/database/version/update/private-database-database-version-update.html', versionTemplate);
+    $templateCache.put('private-database/user/list/private-database-user-list.html', userListTemplate);
+    $templateCache.put('private-database/user/private-database-user.html', userTemplate);
   })
   .service('PrivateDatabase', privateDatabaseService)
   .service('OomService', privateDatabaseOomService)
@@ -32,7 +38,8 @@ angular.module(moduleName, [
   .controller('PrivateDatabaseTabsCtrl', tabsController)
   .controller('PrivateDatabaseStateCtrl', stateController)
   .controller('PrivateDatabaseChangeVersionCtrl', privateDatabaseChangeVersionCtrl)
-
+  .controller('PrivateDatabaseUsersCtrl', userCtrl)
+  .controller('PrivateDatabaseUsersListCtrl', userListCtrl)
   .config(($stateProvider) => {
     $stateProvider.state('private-database', {
       url: '/configuration/private_database/:serviceName?tab',

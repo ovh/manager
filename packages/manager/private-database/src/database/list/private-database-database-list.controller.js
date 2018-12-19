@@ -1,223 +1,226 @@
-angular
-  .module('App')
-  .controller('PrivateDatabaseBDDsListCtrl', class PrivateDatabaseBDDsListCtrl {
-    constructor($q, $scope, $stateParams, $translate, Alerter, PrivateDatabase) {
-      this.$q = $q;
-      this.$scope = $scope;
-      this.$stateParams = $stateParams;
-      this.$translate = $translate;
-      this.alerter = Alerter;
-      this.privateDatabaseService = PrivateDatabase;
-    }
+import angular from 'angular';
+import _ from 'lodash';
 
-    $onInit() {
-      this.productId = this.$stateParams.productId;
+export default class PrivateDatabaseBDDsListCtrl {
+  /* @ngInject */
 
-      const statusToWatch = ['start', 'done', 'error'];
-      this.itemsPerPage = 10;
-      this.bddsDetails = [];
-      this.loaders = {
-        bdd: false,
-      };
+  constructor($q, $scope, $stateParams, $translate, Alerter, PrivateDatabase) {
+    this.$q = $q;
+    this.$scope = $scope;
+    this.$stateParams = $stateParams;
+    this.$translate = $translate;
+    this.alerter = Alerter;
+    this.privateDatabaseService = PrivateDatabase;
+  }
 
-      this.canImport = false;
+  $onInit() {
+    this.productId = this.$stateParams.serviceName;
 
-      this.currentAddBdds = [];
+    const statusToWatch = ['start', 'done', 'error'];
+    this.itemsPerPage = 10;
+    this.bddsDetails = [];
+    this.loaders = {
+      bdd: false,
+    };
 
-      this.isPostgreSql = this.$scope.database.version.match(/postgresql/);
+    this.canImport = false;
 
-      _.forEach(statusToWatch, (state) => {
-        this.$scope.$on(`privateDatabase.database.delete.${state}`, this[`onDataBaseDelete${state}`].bind(this));
-        this.$scope.$on(`privateDatabase.database.create.${state}`, this[`onDataBaseCreate${state}`].bind(this));
-        this.$scope.$on(`privateDatabase.database.dump.${state}`, this[`onDataBaseDump${state}`].bind(this));
-        this.$scope.$on(`privateDatabase.database.restore.${state}`, this[`onDataBaseRestore${state}`].bind(this));
-        this.$scope.$on(`privateDatabase.database.wizard.${state}`, this[`onDataBaseCreate${state}`].bind(this));
+    this.currentAddBdds = [];
+
+    this.isPostgreSql = this.$scope.database.version.match(/postgresql/);
+
+    _.forEach(statusToWatch, (state) => {
+      this.$scope.$on(`privateDatabase.database.delete.${state}`, this[`onDataBaseDelete${state}`].bind(this));
+      this.$scope.$on(`privateDatabase.database.create.${state}`, this[`onDataBaseCreate${state}`].bind(this));
+      this.$scope.$on(`privateDatabase.database.dump.${state}`, this[`onDataBaseDump${state}`].bind(this));
+      this.$scope.$on(`privateDatabase.database.restore.${state}`, this[`onDataBaseRestore${state}`].bind(this));
+      this.$scope.$on(`privateDatabase.database.wizard.${state}`, this[`onDataBaseCreate${state}`].bind(this));
+    });
+
+    _.forEach(['done', 'error'], (state) => {
+      this.$scope.$on(`privateDatabase.global.actions.${state}`, (e, taskOpt) => {
+        this.$scope.lockAction = taskOpt.lock ? false : this.$scope.lockAction;
       });
+    });
 
-      _.forEach(['done', 'error'], (state) => {
-        this.$scope.$on(`privateDatabase.global.actions.${state}`, (e, taskOpt) => {
-          this.$scope.lockAction = taskOpt.lock ? false : this.$scope.lockAction;
-        });
+    this.$scope.$on('privateDatabase.global.actions.start', (e, taskOpt) => {
+      this.$scope.lockAction = taskOpt.lock || this.$scope.lockAction;
+    });
+
+    this.privateDatabaseService.restartPoll(this.productId, ['database/delete', 'database/create', 'database/dump', 'database/restore']);
+
+    this.getBDDS();
+  }
+
+  getBDDS() {
+    this.loaders.bdd = true;
+    this.bddsIds = null;
+
+    this.privateDatabaseService.getBDDSId(this.productId)
+      .then((bdds) => {
+        this.bddsIds = bdds;
+      })
+      .finally(() => {
+        this.loaders.bdd = this.bddsIds.length > 0;
       });
+  }
 
-      this.$scope.$on('privateDatabase.global.actions.start', (e, taskOpt) => {
-        this.$scope.lockAction = taskOpt.lock || this.$scope.lockAction;
+  getPromise(promise) {
+    promise.then(
+      () => {
+        this.privateDatabaseService.restartPoll(this.productId, ['database/delete', 'database/create']);
+      },
+      () => {
+        this.privateDatabaseService.restartPoll(this.productId, ['database/delete', 'database/create']);
+      },
+    );
+  }
+
+  transformItem(item) {
+    let detailedItem;
+    return this.privateDatabaseService.getBDD(this.productId, item)
+      .then((originalDetailedItem) => {
+        detailedItem = _(originalDetailedItem).clone();
+
+        return this.privateDatabaseService.getDumpsBDD(this.productId, item);
+      })
+      .then((dumps) => {
+        detailedItem.dumpsCount = dumps.length;
+        return detailedItem;
       });
+  }
 
-      this.privateDatabaseService.restartPoll(this.productId, ['database/delete', 'database/create', 'database/dump', 'database/restore']);
+  onTransformItemDone() {
+    this.loaders.bdd = false;
+  }
 
-      this.getBDDS();
+  dumpBDD(bdd) {
+    this.privateDatabaseService.dumpBDD(this.productId, bdd.databaseName, true)
+      .then(() => {
+        this.alerter.success(this.$translate.instant('privateDatabase_dump_bdd_in_progress'), this.$scope.alerts.main);
+      })
+      .catch(() => {
+        this.alerter.error(this.$translate.instant('privateDatabase_dump_bdd_fail'), this.$scope.alerts.main);
+      });
+  }
+
+  importFromFile(bdd) {
+    this.$scope.setAction('database/import/private-database-database-import', bdd.databaseName);
+  }
+
+  importFromFilesIfPossible(bdd) {
+    if (this.canImport && !this.isDisabled(bdd)) {
+      this.importFromFile(bdd);
     }
+  }
 
-    getBDDS() {
-      this.loaders.bdd = true;
-      this.bddsIds = null;
+  isDisabled(bdd) {
+    return this.$scope.database.state !== 'started' || this.$scope.taskState.changeVersion || bdd.waitDump || bdd.waitRestore;
+  }
 
-      this.privateDatabaseService.getBDDSId(this.productId)
-        .then((bdds) => {
-          this.bddsIds = bdds;
-        })
-        .finally(() => {
-          this.loaders.bdd = this.bddsIds.length > 0;
-        });
-    }
+  findItemIndex(databaseName) {
+    const deferred = this.$q.defer();
 
-    getPromise(promise) {
-      promise.then(
-        () => {
-          this.privateDatabaseService.restartPoll(this.productId, ['database/delete', 'database/create']);
-        },
-        () => {
-          this.privateDatabaseService.restartPoll(this.productId, ['database/delete', 'database/create']);
-        },
+    let unregisterWatch = null;
+
+    const todo = () => {
+      const idx = _.findIndex(this.bddsDetails, bdd => bdd.databaseName === databaseName);
+
+      if (idx !== -1) {
+        deferred.resolve(idx);
+
+        if (unregisterWatch) {
+          unregisterWatch();
+        }
+      }
+    };
+
+    if (!_.isEmpty(this.bddsDetails)) {
+      todo();
+    } else {
+      unregisterWatch = this.$scope.$watch(
+        angular.bind(this, () => this.bddsDetails.length),
+        todo,
       );
     }
 
-    transformItem(item) {
-      let detailedItem;
-      return this.privateDatabaseService.getBDD(this.productId, item)
-        .then((originalDetailedItem) => {
-          detailedItem = _(originalDetailedItem).clone();
+    return deferred.promise;
+  }
 
-          return this.privateDatabaseService.getDumpsBDD(this.productId, item);
-        })
-        .then((dumps) => {
-          detailedItem.dumpsCount = dumps.length;
-          return detailedItem;
-        });
-    }
-
-    onTransformItemDone() {
-      this.loaders.bdd = false;
-    }
-
-    dumpBDD(bdd) {
-      this.privateDatabaseService.dumpBDD(this.productId, bdd.databaseName, true)
-        .then(() => {
-          this.alerter.success(this.$translate.instant('privateDatabase_dump_bdd_in_progress'), this.$scope.alerts.main);
-        })
-        .catch(() => {
-          this.alerter.error(this.$translate.instant('privateDatabase_dump_bdd_fail'), this.$scope.alerts.main);
-        });
-    }
-
-    importFromFile(bdd) {
-      this.$scope.setAction('database/import/private-database-database-import', bdd.databaseName);
-    }
-
-    importFromFilesIfPossible(bdd) {
-      if (this.canImport && !this.isDisabled(bdd)) {
-        this.importFromFile(bdd);
+  onDataBaseDeletestart(evt, opts) {
+    this.findItemIndex(opts.databaseName).then((idx) => {
+      if (idx !== -1) {
+        this.bddsDetails[idx].waitDelete = true;
       }
-    }
+    });
+  }
 
-    isDisabled(bdd) {
-      return this.$scope.database.state !== 'started' || this.$scope.taskState.changeVersion || bdd.waitDump || bdd.waitRestore;
-    }
+  onDataBaseDeletedone() {
+    this.getBDDS();
+    this.alerter.success(this.$translate.instant('privateDatabase_delete_user_success'), this.$scope.alerts.main);
+  }
 
-    findItemIndex(databaseName) {
-      const deferred = this.$q.defer();
-
-      let unregisterWatch = null;
-
-      const todo = () => {
-        const idx = _.findIndex(this.bddsDetails, bdd => bdd.databaseName === databaseName);
-
-        if (idx !== -1) {
-          deferred.resolve(idx);
-
-          if (unregisterWatch) {
-            unregisterWatch();
-          }
-        }
-      };
-
-      if (!_.isEmpty(this.bddsDetails)) {
-        todo();
-      } else {
-        unregisterWatch = this.$scope.$watch(
-          angular.bind(this, () => this.bddsDetails.length),
-          todo,
-        );
+  onDataBaseDeleteerror(opts) {
+    this.findItemIndex(opts.databaseName).then((idx) => {
+      if (idx !== -1) {
+        delete this.bddsDetails[idx].waitDelete;
+        this.alerter.error(this.$translate.instant('privateDatabase_delete_bdd_fail'), this.$scope.alerts.main);
       }
+    });
+  }
 
-      return deferred.promise;
+  onDataBaseCreatestart(evt, opts) {
+    if (this.currentAddBdds.indexOf(opts.databaseName) === -1) {
+      this.currentAddBdds.push(opts.databaseName);
     }
+  }
 
-    onDataBaseDeletestart(evt, opts) {
-      this.findItemIndex(opts.databaseName).then((idx) => {
-        if (idx !== -1) {
-          this.bddsDetails[idx].waitDelete = true;
-        }
-      });
-    }
+  onDataBaseCreatedone(evt, opts) {
+    this.getBDDS();
 
-    onDataBaseDeletedone() {
-      this.getBDDS();
-      this.alerter.success(this.$translate.instant('privateDatabase_delete_user_success'), this.$scope.alerts.main);
-    }
+    _.remove(this.currentAddBdds, name => opts.databaseName === name);
 
-    onDataBaseDeleteerror(opts) {
-      this.findItemIndex(opts.databaseName).then((idx) => {
-        if (idx !== -1) {
-          delete this.bddsDetails[idx].waitDelete;
-          this.alerter.error(this.$translate.instant('privateDatabase_delete_bdd_fail'), this.$scope.alerts.main);
-        }
-      });
-    }
+    this.alerter.success(this.$translate.instant('privateDatabase_add_bdd_success'), this.$scope.alerts.main);
+  }
 
-    onDataBaseCreatestart(evt, opts) {
-      if (this.currentAddBdds.indexOf(opts.databaseName) === -1) {
-        this.currentAddBdds.push(opts.databaseName);
-      }
-    }
+  onDataBaseCreateerror(opts) {
+    this.currentAddBdds = _.remove(this.currentAddBdds, opts.databaseName);
+    this.alerter.error(this.$translate.instant('privateDatabase_add_bdd_fail'), this.$scope.alerts.main);
+  }
 
-    onDataBaseCreatedone(evt, opts) {
-      this.getBDDS();
+  onDataBaseDumpstart(evt, opts) {
+    this.findItemIndex(opts.databaseName).then((idx) => {
+      this.bddsDetails[idx].waitDump = true;
+    });
+  }
 
-      _.remove(this.currentAddBdds, name => opts.databaseName === name);
+  onDataBaseDumpdone() {
+    this.getBDDS();
+    this.alerter.success(this.$translate.instant('privateDatabase_dump_bdd_success'), this.$scope.alerts.main);
+  }
 
-      this.alerter.success(this.$translate.instant('privateDatabase_add_bdd_success'), this.$scope.alerts.main);
-    }
+  onDataBaseDumperror(opts) {
+    this.findItemIndex(opts.databaseName).then((idx) => {
+      delete this.bddsDetails[idx].waitDump;
+      this.alerter.error(this.$translate.instant('privateDatabase_dump_bdd_fail'), this.$scope.alerts.main);
+    });
+  }
 
-    onDataBaseCreateerror(opts) {
-      this.currentAddBdds = _.remove(this.currentAddBdds, opts.databaseName);
-      this.alerter.error(this.$translate.instant('privateDatabase_add_bdd_fail'), this.$scope.alerts.main);
-    }
+  onDataBaseRestorestart(evt, opts) {
+    this.findItemIndex(opts.databaseName).then((idx) => {
+      this.bddsDetails[idx].waitRestore = true;
+    });
+  }
 
-    onDataBaseDumpstart(evt, opts) {
-      this.findItemIndex(opts.databaseName).then((idx) => {
-        this.bddsDetails[idx].waitDump = true;
-      });
-    }
+  onDataBaseRestoredone() {
+    this.getBDDS();
+    this.alerter.success(this.$translate.instant('privateDatabase_tabs_dumps_restore_success'), this.$scope.alerts.main);
+  }
 
-    onDataBaseDumpdone() {
-      this.getBDDS();
-      this.alerter.success(this.$translate.instant('privateDatabase_dump_bdd_success'), this.$scope.alerts.main);
-    }
-
-    onDataBaseDumperror(opts) {
-      this.findItemIndex(opts.databaseName).then((idx) => {
-        delete this.bddsDetails[idx].waitDump;
-        this.alerter.error(this.$translate.instant('privateDatabase_dump_bdd_fail'), this.$scope.alerts.main);
-      });
-    }
-
-    onDataBaseRestorestart(evt, opts) {
-      this.findItemIndex(opts.databaseName).then((idx) => {
-        this.bddsDetails[idx].waitRestore = true;
-      });
-    }
-
-    onDataBaseRestoredone() {
-      this.getBDDS();
-      this.alerter.success(this.$translate.instant('privateDatabase_tabs_dumps_restore_success'), this.$scope.alerts.main);
-    }
-
-    onDataBaseRestoreerror(opts) {
-      this.findItemIndex(opts.databaseName).then((idx) => {
-        delete this.bddsDetails[idx].waitRestore;
-        this.alerter.error(this.$translate.instant('privateDatabase_tabs_dumps_restore_fail'), this.$scope.alerts.main);
-      });
-    }
-  });
+  onDataBaseRestoreerror(opts) {
+    this.findItemIndex(opts.databaseName).then((idx) => {
+      delete this.bddsDetails[idx].waitRestore;
+      this.alerter.error(this.$translate.instant('privateDatabase_tabs_dumps_restore_fail'), this.$scope.alerts.main);
+    });
+  }
+}

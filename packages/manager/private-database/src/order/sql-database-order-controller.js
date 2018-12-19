@@ -1,485 +1,489 @@
-angular.module('App').controller(
-  'SqlDatabaseOrderCtrl',
-  class SqlDatabaseOrderCtrl {
-    constructor(
-      $q, $scope, $stateParams, $timeout, $translate, $window,
-      atInternet,
-      WucConverterService, Hosting, HostingDatabase, HostingOptionOrder, PrivateDatabase, User,
-    ) {
-      this.$q = $q;
-      this.$scope = $scope;
-      this.$stateParams = $stateParams;
-      this.$timeout = $timeout;
-      this.$translate = $translate;
-      this.$window = $window;
+import angular from 'angular';
+import filesize from 'filesize';
+import _ from 'lodash';
+import punycode from 'punycode';
 
-      this.atInternet = atInternet;
-      this.WucConverterService = WucConverterService;
-      this.Hosting = Hosting;
-      this.HostingDatabase = HostingDatabase;
-      this.HostingOptionOrder = HostingOptionOrder;
-      this.PrivateDatabase = PrivateDatabase;
-      this.User = User;
-    }
+export default class SqlDatabaseOrderCtrl {
+  /* @ngInject */
 
-    $onInit() {
-      this.hostingUrl = '#/configuration/hosting/';
-      this.orderType = this.$stateParams.orderType;
-      this.currentHosting = this.$stateParams.currentHosting;
+  constructor(
+    $q, $scope, $stateParams, $timeout, $translate, $window,
+    atInternet,
+    WucConverterService, Hosting, HostingDatabase, HostingOptionOrder, PrivateDatabase, User,
+  ) {
+    this.$q = $q;
+    this.$scope = $scope;
+    this.$stateParams = $stateParams;
+    this.$timeout = $timeout;
+    this.$translate = $translate;
+    this.$window = $window;
 
-      this.selectedHosting = null;
-      this.includedOffer = false;
+    this.atInternet = atInternet;
+    this.WucConverterService = WucConverterService;
+    this.Hosting = Hosting;
+    this.HostingDatabase = HostingDatabase;
+    this.HostingOptionOrder = HostingOptionOrder;
+    this.PrivateDatabase = PrivateDatabase;
+    this.User = User;
+  }
 
-      this.$scope.alerts = {
-        order: 'privatedatabase.alerts.order',
-        durations: 'privatedatabase.alerts.order.duration',
-      };
+  $onInit() {
+    this.hostingUrl = '#/configuration/hosting/';
+    this.orderType = this.$stateParams.orderType;
+    this.currentHosting = this.$stateParams.currentHosting;
 
-      this.loading = {
-        init: false,
-        durations: false,
-        prices: false,
-        bc: false,
-        window: false,
-      };
+    this.selectedHosting = null;
+    this.includedOffer = false;
 
-      this.data = [];
-      this.model = {
-        type: null,
-        datacenter: null,
-        version: null,
-        ram: null,
-        dbPack: null,
-        hosting: null,
-        duration: null,
-        contract: false,
-      };
+    this.$scope.alerts = {
+      order: 'privatedatabase.alerts.order',
+      durations: 'privatedatabase.alerts.order.duration',
+    };
 
-      this.load();
+    this.loading = {
+      init: false,
+      durations: false,
+      prices: false,
+      bc: false,
+      window: false,
+    };
 
-      this.User.getUser().then((user) => {
-        this.user = user;
-      });
-    }
+    this.data = [];
+    this.model = {
+      type: null,
+      datacenter: null,
+      version: null,
+      ram: null,
+      dbPack: null,
+      hosting: null,
+      duration: null,
+      contract: false,
+    };
 
-    convertBytesSize(nb, unit = 'MB') {
-      const res = filesize(this.WucConverterService.convertToOctet(nb, unit), { output: 'object', round: 0, base: -1 });
-      const resUnit = this.$translate.instant(`unit_size_${res.symbol}`);
+    this.load();
 
-      return `${res.value} ${resUnit}`;
-    }
+    this.User.getUser().then((user) => {
+      this.user = user;
+    });
+  }
 
-    load() {
-      const typeConverter = {
-        dbaas: 'public',
-        private: 'classic',
-      };
+  convertBytesSize(nb, unit = 'MB') {
+    const res = filesize(this.WucConverterService.convertToOctet(nb, unit), { output: 'object', round: 0, base: -1 });
+    const resUnit = this.$translate.instant(`unit_size_${res.symbol}`);
 
-      this.loading.init = true;
+    return `${res.value} ${resUnit}`;
+  }
 
-      return this.PrivateDatabase
-        .getOrderModels()
-        .then((models) => {
-          const dbaasName = _.get(models, 'hosting.PrivateDatabase.OfferEnum').enum[1];
-          const sqlName = _.get(models, 'hosting.PrivateDatabase.OfferEnum').enum[0];
+  load() {
+    const typeConverter = {
+      dbaas: 'public',
+      private: 'classic',
+    };
 
-          this.model.type = typeConverter[this.orderType] || sqlName;
+    this.loading.init = true;
 
-          return this.$q
-            .all({
-              dbaasOrderCapacities: this.PrivateDatabase.getAvailableOrderCapacities(dbaasName),
-              privateOrderCapacities: this.PrivateDatabase.getAvailableOrderCapacities(sqlName),
-              domainNames: this.Hosting.getHostings(),
-              dbPack: this.HostingOptionOrder.getOrderEnums('hosting.web.database.SqlPersoOfferEnum'),
-            })
-            .then((result) => {
-              this.data = [
-                {
-                  key: 'dbaas',
-                  offer: dbaasName,
-                  datacenters: result.dbaasOrderCapacities.datacenter,
-                  versions: result.dbaasOrderCapacities.version.sort(),
-                  rams: result.dbaasOrderCapacities.ram,
-                  dbPack: null,
-                  hostings: null,
-                  durations: null,
-                  tooltips: {
-                    rams: {
-                      min: this.convertBytesSize(_.min(result.dbaasOrderCapacities.ram)),
-                      max: this.convertBytesSize(_.max(result.dbaasOrderCapacities.ram)),
-                    },
+    return this.PrivateDatabase
+      .getOrderModels()
+      .then((models) => {
+        const dbaasName = _.get(models, 'hosting.PrivateDatabase.OfferEnum').enum[1];
+        const sqlName = _.get(models, 'hosting.PrivateDatabase.OfferEnum').enum[0];
+
+        this.model.type = typeConverter[this.orderType] || sqlName;
+
+        return this.$q
+          .all({
+            dbaasOrderCapacities: this.PrivateDatabase.getAvailableOrderCapacities(dbaasName),
+            privateOrderCapacities: this.PrivateDatabase.getAvailableOrderCapacities(sqlName),
+            domainNames: this.Hosting.getHostings(),
+            dbPack: this.HostingOptionOrder.getOrderEnums('hosting.web.database.SqlPersoOfferEnum'),
+          })
+          .then((result) => {
+            this.data = [
+              {
+                key: 'dbaas',
+                offer: dbaasName,
+                datacenters: result.dbaasOrderCapacities.datacenter,
+                versions: result.dbaasOrderCapacities.version.sort(),
+                rams: result.dbaasOrderCapacities.ram,
+                dbPack: null,
+                hostings: null,
+                durations: null,
+                tooltips: {
+                  rams: {
+                    min: this.convertBytesSize(_.min(result.dbaasOrderCapacities.ram)),
+                    max: this.convertBytesSize(_.max(result.dbaasOrderCapacities.ram)),
                   },
                 },
-                {
-                  key: 'premium',
-                  offer: sqlName,
-                  datacenters: result.privateOrderCapacities.datacenter,
-                  versions: result.privateOrderCapacities.version.sort(),
-                  rams: result.privateOrderCapacities.ram,
-                  dbPack: null,
-                  hostings: [],
-                  durations: null,
-                  tooltips: {
-                    rams: {
-                      min: this.convertBytesSize(_.min(result.privateOrderCapacities.ram)),
-                      max: this.convertBytesSize(_.max(result.privateOrderCapacities.ram)),
-                    },
+              },
+              {
+                key: 'premium',
+                offer: sqlName,
+                datacenters: result.privateOrderCapacities.datacenter,
+                versions: result.privateOrderCapacities.version.sort(),
+                rams: result.privateOrderCapacities.ram,
+                dbPack: null,
+                hostings: [],
+                durations: null,
+                tooltips: {
+                  rams: {
+                    min: this.convertBytesSize(_.min(result.privateOrderCapacities.ram)),
+                    max: this.convertBytesSize(_.max(result.privateOrderCapacities.ram)),
                   },
                 },
-                {
-                  key: 'start',
-                  offer: 'start',
-                  datacenters: null,
-                  versions: null,
-                  rams: null,
-                  dbPack: result.dbPack,
-                  hostings: [],
-                  durations: null,
-                },
-              ];
-              return result;
-            });
-        })
-        .then(({ domainNames }) => this.$q
-          .all(_.map(domainNames, domainName => this.Hosting.getHosting(domainName)))
-          .then(hostings => _.filter(hostings, 'state', 'active'))
-          .then((hostings) => {
-            this.noHostValue = 'other';
-
-            _.find(this.data, 'key', 'start').hostings = _.map(hostings, hosting => ({
-              name: hosting.serviceName,
-              displayName: punycode.toUnicode(hosting.serviceName),
-              datacenter: hosting.datacenter,
-              stillHasFreeDbOffer: false,
-            }));
-            _.find(this.data, 'key', 'premium').hostings = angular.copy(_.find(this.data, 'key', 'start').hostings);
-            _.find(this.data, 'key', 'premium').hostings.push({
-              datacenter: null,
-              displayName: this.$translate.instant('common_other'),
-              name: this.noHostValue,
-              stillHasFreeDbOffer: false,
-            });
-
-            this.model.hosting = this.currentHosting || null;
-
-            if (this.model.hosting) {
-              this.selectedHosting = this.findHosting(this.model.hosting);
-              this.checkFreeDbOffer();
-              this.model.datacenter = this.selectedHosting.datacenter || null;
-            }
-          }))
-        .catch(err => this.alerter.alertFromSWS(this.$translate.instant('privateDatabase_order_step1_error'), err, this.$scope.alerts.durations))
-        .finally(() => {
-          this.loading.init = false;
-        });
-    }
-
-    changeType() {
-      this.model.datacenter = null;
-      this.model.version = null;
-      this.model.ram = null;
-      this.model.dbPack = null;
-      this.model.hosting = null;
-      this.getDuration();
-      this.resetOrder();
-    }
-
-    onHostingSelected() {
-      if (!this.selectedHosting) {
-        return;
-      }
-
-      this.setDatacenter();
-      this.getDuration();
-      this.checkFreeDbOffer();
-    }
-
-    checkFreeDbOffer() {
-      if (this.selectedHosting.name !== this.noHostValue) {
-        this.HostingDatabase.getPrivateDatabaseCapabilities(this.selectedHosting.name)
-          .then((capabilities) => {
-            this.selectedHosting.stillHasFreeDbOffer = _.some(capabilities);
+              },
+              {
+                key: 'start',
+                offer: 'start',
+                datacenters: null,
+                versions: null,
+                rams: null,
+                dbPack: result.dbPack,
+                hostings: [],
+                durations: null,
+              },
+            ];
+            return result;
           });
-      }
-    }
+      })
+      .then(({ domainNames }) => this.$q
+        .all(_.map(domainNames, domainName => this.Hosting.getHosting(domainName)))
+        .then(hostings => _.filter(hostings, 'state', 'active'))
+        .then((hostings) => {
+          this.noHostValue = 'other';
 
-    shouldDisplayFreeDbWarning() {
-      return this.isPrivateDb()
-        && _.get(this.model, 'ram') === '512'
-        && _.get(this.selectedHosting, 'stillHasFreeDbOffer');
-    }
-
-    /*
-       * DURATION
-       */
-    getDuration() {
-      this.loading.durations = true;
-      this.model.duration = null;
-      this.resetOrder();
-      const selected = this.getData(this.model.type);
-
-      return this[`getDurations${selected.key}`](selected).then((durations) => {
-        this.loading.prices = true;
-        return this[`getPrices${selected.key}`](selected, durations);
-      });
-    }
-
-    getDurationspremium(data) {
-      const { version, ram } = this.model;
-
-      return this.PrivateDatabase
-        .orderDuration(version, ram)
-        .then((durations) => {
-          data.durations = _.map(durations, duration => ({ // eslint-disable-line no-param-reassign
-            duration,
-            details: {},
+          _.find(this.data, 'key', 'start').hostings = _.map(hostings, hosting => ({
+            name: hosting.serviceName,
+            displayName: punycode.toUnicode(hosting.serviceName),
+            datacenter: hosting.datacenter,
+            stillHasFreeDbOffer: false,
           }));
-          this.model.duration = _.last(durations);
-          return durations;
-        })
-        .catch(err => this.alerter.alertFromSWS(this.$translate.instant('privateDatabase_order_step2_duration_fail'), err, this.$scope.alerts.durations))
-        .finally(() => {
-          this.loading.durations = false;
-        });
-    }
+          _.find(this.data, 'key', 'premium').hostings = angular.copy(_.find(this.data, 'key', 'start').hostings);
+          _.find(this.data, 'key', 'premium').hostings.push({
+            datacenter: null,
+            displayName: this.$translate.instant('common_other'),
+            name: this.noHostValue,
+            stillHasFreeDbOffer: false,
+          });
 
-    getDurationsdbaas(data) {
-      const { version, ram } = this.model;
+          this.model.hosting = this.currentHosting || null;
 
-      return this.getDurationspremium(data, version, ram);
-    }
-
-    getDurationsstart(data) {
-      const { hosting, dbPack: startDbVersion } = this.model;
-
-      return this.HostingOptionOrder
-        .getSqlPersoAllowedDurations(hosting, startDbVersion)
-        .then((durations) => {
-          data.durations = _.map(durations, duration => ({ // eslint-disable-line no-param-reassign
-            duration,
-            details: {},
-          }));
-          this.model.duration = _.last(durations);
-          return durations;
-        })
-        .catch(err => this.alerter.alertFromSWS(this.$translate.instant('privateDatabase_order_step2_duration_fail'), err, this.$scope.alerts.durations))
-        .finally(() => {
-          this.loading.durations = false;
-        });
-    }
-
-    /*
-       * PRICE
-       */
-    getPricespremium(data, durations) {
-      const { version, ram } = this.model;
-
-      return this.$q
-        .all(_.map(
-          durations,
-          duration => this.PrivateDatabase
-            .orderPrice(version, ram, duration)
-            .then((details) => {
-              _.find(data.durations, 'duration', duration).details = details;
-              return details;
-            }),
-        ))
-        .then(() => {
-          if (durations && durations.length === 1) {
-            this.model.duration = _.first(durations);
+          if (this.model.hosting) {
+            this.selectedHosting = this.findHosting(this.model.hosting);
+            this.checkFreeDbOffer();
+            this.model.datacenter = this.selectedHosting.datacenter || null;
           }
-        })
-        .catch(err => this.alerter.alertFromSWS(this.$translate.instant('privateDatabase_order_step2_price_fail'), err, this.$scope.alerts.order))
-        .finally(() => { this.loading.prices = false; });
+        }))
+      .catch(err => this.alerter.alertFromSWS(this.$translate.instant('privateDatabase_order_step1_error'), err, this.$scope.alerts.durations))
+      .finally(() => {
+        this.loading.init = false;
+      });
+  }
+
+  changeType() {
+    this.model.datacenter = null;
+    this.model.version = null;
+    this.model.ram = null;
+    this.model.dbPack = null;
+    this.model.hosting = null;
+    this.getDuration();
+    this.resetOrder();
+  }
+
+  onHostingSelected() {
+    if (!this.selectedHosting) {
+      return;
     }
 
-    getPricesdbaas(data, durations) {
-      return this.getPricespremium(data, durations);
+    this.setDatacenter();
+    this.getDuration();
+    this.checkFreeDbOffer();
+  }
+
+  checkFreeDbOffer() {
+    if (this.selectedHosting.name !== this.noHostValue) {
+      this.HostingDatabase.getPrivateDatabaseCapabilities(this.selectedHosting.name)
+        .then((capabilities) => {
+          this.selectedHosting.stillHasFreeDbOffer = _.some(capabilities);
+        });
     }
+  }
 
-    getPricesstart(data, durations) {
-      const { hosting, dbPack: startDbVersion } = this.model;
+  shouldDisplayFreeDbWarning() {
+    return this.isPrivateDb()
+      && _.get(this.model, 'ram') === '512'
+      && _.get(this.selectedHosting, 'stillHasFreeDbOffer');
+  }
 
-      return this.$q
-        .all(_.map(durations, duration => this.HostingOptionOrder
-          .getSqlPersoPrice(hosting, startDbVersion, duration)
+  /*
+     * DURATION
+     */
+  getDuration() {
+    this.loading.durations = true;
+    this.model.duration = null;
+    this.resetOrder();
+    const selected = this.getData(this.model.type);
+
+    return this[`getDurations${selected.key}`](selected).then((durations) => {
+      this.loading.prices = true;
+      return this[`getPrices${selected.key}`](selected, durations);
+    });
+  }
+
+  getDurationspremium(data) {
+    const { version, ram } = this.model;
+
+    return this.PrivateDatabase
+      .orderDuration(version, ram)
+      .then((durations) => {
+        data.durations = _.map(durations, duration => ({ // eslint-disable-line no-param-reassign
+          duration,
+          details: {},
+        }));
+        this.model.duration = _.last(durations);
+        return durations;
+      })
+      .catch(err => this.alerter.alertFromSWS(this.$translate.instant('privateDatabase_order_step2_duration_fail'), err, this.$scope.alerts.durations))
+      .finally(() => {
+        this.loading.durations = false;
+      });
+  }
+
+  getDurationsdbaas(data) {
+    const { version, ram } = this.model;
+
+    return this.getDurationspremium(data, version, ram);
+  }
+
+  getDurationsstart(data) {
+    const { hosting, dbPack: startDbVersion } = this.model;
+
+    return this.HostingOptionOrder
+      .getSqlPersoAllowedDurations(hosting, startDbVersion)
+      .then((durations) => {
+        data.durations = _.map(durations, duration => ({ // eslint-disable-line no-param-reassign
+          duration,
+          details: {},
+        }));
+        this.model.duration = _.last(durations);
+        return durations;
+      })
+      .catch(err => this.alerter.alertFromSWS(this.$translate.instant('privateDatabase_order_step2_duration_fail'), err, this.$scope.alerts.durations))
+      .finally(() => {
+        this.loading.durations = false;
+      });
+  }
+
+  /*
+     * PRICE
+     */
+  getPricespremium(data, durations) {
+    const { version, ram } = this.model;
+
+    return this.$q
+      .all(_.map(
+        durations,
+        duration => this.PrivateDatabase
+          .orderPrice(version, ram, duration)
           .then((details) => {
             _.find(data.durations, 'duration', duration).details = details;
             return details;
-          })))
-        .then(() => {
-          if (durations && durations.length === 1) {
-            this.model.duration = _.first(durations);
-          }
-        })
-        .catch(err => this.alerter.alertFromSWS(this.$translate.instant('privateDatabase_order_step2_price_fail'), err, this.$scope.alerts.order))
-        .finally(() => { this.loading.prices = false; });
-    }
+          }),
+      ))
+      .then(() => {
+        if (durations && durations.length === 1) {
+          this.model.duration = _.first(durations);
+        }
+      })
+      .catch(err => this.alerter.alertFromSWS(this.$translate.instant('privateDatabase_order_step2_price_fail'), err, this.$scope.alerts.order))
+      .finally(() => { this.loading.prices = false; });
+  }
 
-    /*
-       * BC
-       */
-    generateBc() {
-      if (!this.model.contract) {
-        return null;
-      }
-      this.loading.window = true;
-      return this[`generateBc${this.getData(this.model.type).key}`]();
-    }
+  getPricesdbaas(data, durations) {
+    return this.getPricespremium(data, durations);
+  }
 
-    generateBcpremium() {
-      this.loading.bc = true;
+  getPricesstart(data, durations) {
+    const { hosting, dbPack: startDbVersion } = this.model;
 
-      return this.PrivateDatabase
-        .orderPrivateDatabase(
-          this.model.version,
-          this.model.ram,
-          this.model.duration,
-          this.model.datacenter,
-        )
+    return this.$q
+      .all(_.map(durations, duration => this.HostingOptionOrder
+        .getSqlPersoPrice(hosting, startDbVersion, duration)
         .then((details) => {
-          this.order = details;
-          this.$timeout(() => {
-            this.loading.window = false;
-            this.openBc();
-          }, 5000);
-        })
-        .catch(err => this.alerter.alertFromSWS(this.$translate.instant('privateDatabase_order_step3_fail'), err, this.$scope.alerts.order))
-        .finally(() => {
-          this.loading.bc = false;
-        });
+          _.find(data.durations, 'duration', duration).details = details;
+          return details;
+        })))
+      .then(() => {
+        if (durations && durations.length === 1) {
+          this.model.duration = _.first(durations);
+        }
+      })
+      .catch(err => this.alerter.alertFromSWS(this.$translate.instant('privateDatabase_order_step2_price_fail'), err, this.$scope.alerts.order))
+      .finally(() => { this.loading.prices = false; });
+  }
+
+  /*
+     * BC
+     */
+  generateBc() {
+    if (!this.model.contract) {
+      return null;
     }
+    this.loading.window = true;
+    return this[`generateBc${this.getData(this.model.type).key}`]();
+  }
 
-    generateBcdbaas() {
-      this.loading.bc = true;
+  generateBcpremium() {
+    this.loading.bc = true;
 
-      return this.PrivateDatabase
-        .orderDBaaS(this.model.version, this.model.ram, this.model.duration, this.model.datacenter)
-        .then((details) => {
-          this.order = details;
-          this.$timeout(() => {
-            this.loading.window = false;
-            this.openBc();
-          }, 5000);
-        })
-        .catch(err => this.alerter.alertFromSWS(this.$translate.instant('privateDatabase_order_step3_fail'), err, this.$scope.alerts.order))
-        .finally(() => { this.loading.bc = false; });
-    }
-
-    generateBcstart() {
-      this.loading.bc = true;
-
-      return this.HostingOptionOrder
-        .orderSqlPerso(this.model.hosting, this.model.dbPack, this.model.duration)
-        .then((details) => {
-          this.order = details;
-          this.$timeout(() => {
-            this.loading.window = false;
-            this.openBc();
-          }, 5000);
-        })
-        .catch(err => this.alerter.alertFromSWS(this.$translate.instant('privateDatabase_order_step3_fail'), err, this.$scope.alerts.order))
-        .finally(() => { this.loading.bc = false; });
-    }
-
-    /*
-       * ORDER
-       */
-    canOrder() {
-      return !this.loading.bc && !this.loading.window;
-    }
-
-    canOrderpremium() {
-      return this.model.contract
-        && this.model.duration
-        && this.model.ram
-        && this.model.hosting
-        && this.model.datacenter
-        && this.model.version;
-    }
-
-    canOrderdbaas() {
-      return this.model.contract
-        && this.model.duration
-        && this.model.ram
-        && this.model.datacenter
-        && this.model.version;
-    }
-
-    canOrderstart() {
-      return this.model.contract
-        && this.model.duration
-        && this.model.hosting
-        && this.model.datacenter
-        && this.model.dbPack;
-    }
-
-    /*
-       * UTILS
-       */
-    getData(type) {
-      return _.find(this.data, 'offer', type);
-    }
-
-    getDurationDetails(type, duration) {
-      if (!duration) {
-        return null;
-      }
-      return _.find(this.getData(type).durations, 'duration', duration).details;
-    }
-
-    setDatacenter() {
-      if (_.isEmpty(this.selectedHosting) || this.selectedHosting === this.noHostValue) {
-        return;
-      }
-      this.model.hosting = this.selectedHosting.name;
-      this.model.datacenter = this.selectedHosting.datacenter || null;
-    }
-
-    openBc() {
-      this.atInternet.trackOrder({
-        name: `[sql-${this.model.type}]::${this.model.version || this.model.dbPack}[${this.model.version || this.model.dbPack}]`,
-        page: 'web::payment-pending',
-        orderId: this.order.orderId,
-        priceTaxFree: this.order.prices.withoutTax.value,
-        price: this.order.prices.withTax.value,
-        status: 1,
+    return this.PrivateDatabase
+      .orderPrivateDatabase(
+        this.model.version,
+        this.model.ram,
+        this.model.duration,
+        this.model.datacenter,
+      )
+      .then((details) => {
+        this.order = details;
+        this.$timeout(() => {
+          this.loading.window = false;
+          this.openBc();
+        }, 5000);
+      })
+      .catch(err => this.alerter.alertFromSWS(this.$translate.instant('privateDatabase_order_step3_fail'), err, this.$scope.alerts.order))
+      .finally(() => {
+        this.loading.bc = false;
       });
-      this.$window.open(this.order.url);
-    }
+  }
 
-    findHosting(name) {
-      return _.find(this.getData(this.model.type).hostings, 'name', name);
-    }
+  generateBcdbaas() {
+    this.loading.bc = true;
 
-    isCloudDbOrPrivateDb() {
-      return this.isCloudDb() || this.isPrivateDb();
-    }
+    return this.PrivateDatabase
+      .orderDBaaS(this.model.version, this.model.ram, this.model.duration, this.model.datacenter)
+      .then((details) => {
+        this.order = details;
+        this.$timeout(() => {
+          this.loading.window = false;
+          this.openBc();
+        }, 5000);
+      })
+      .catch(err => this.alerter.alertFromSWS(this.$translate.instant('privateDatabase_order_step3_fail'), err, this.$scope.alerts.order))
+      .finally(() => { this.loading.bc = false; });
+  }
 
-    isCloudDb() {
-      return this.getData(this.model.type).key === 'dbaas';
-    }
+  generateBcstart() {
+    this.loading.bc = true;
 
-    isPrivateDb() {
-      return this.getData(this.model.type).key === 'premium';
-    }
+    return this.HostingOptionOrder
+      .orderSqlPerso(this.model.hosting, this.model.dbPack, this.model.duration)
+      .then((details) => {
+        this.order = details;
+        this.$timeout(() => {
+          this.loading.window = false;
+          this.openBc();
+        }, 5000);
+      })
+      .catch(err => this.alerter.alertFromSWS(this.$translate.instant('privateDatabase_order_step3_fail'), err, this.$scope.alerts.order))
+      .finally(() => { this.loading.bc = false; });
+  }
 
-    isStart() {
-      return this.getData(this.model.type).key === 'start';
-    }
+  /*
+     * ORDER
+     */
+  canOrder() {
+    return !this.loading.bc && !this.loading.window;
+  }
 
-    resetOrder() {
-      this.order = null;
-    }
+  canOrderpremium() {
+    return this.model.contract
+      && this.model.duration
+      && this.model.ram
+      && this.model.hosting
+      && this.model.datacenter
+      && this.model.version;
+  }
 
-    makeHostingUrl(serviceName) {
-      return this.hostingUrl + serviceName;
-    }
+  canOrderdbaas() {
+    return this.model.contract
+      && this.model.duration
+      && this.model.ram
+      && this.model.datacenter
+      && this.model.version;
+  }
 
-    getNormalizedRAMSize(ramSize) {
-      return ramSize < 1024
-        ? ramSize + this.$translate.instant('unit_size_MB')
-        : ramSize / 1024 + this.$translate.instant('unit_size_GB');
+  canOrderstart() {
+    return this.model.contract
+      && this.model.duration
+      && this.model.hosting
+      && this.model.datacenter
+      && this.model.dbPack;
+  }
+
+  /*
+     * UTILS
+     */
+  getData(type) {
+    return _.find(this.data, 'offer', type);
+  }
+
+  getDurationDetails(type, duration) {
+    if (!duration) {
+      return null;
     }
-  },
-);
+    return _.find(this.getData(type).durations, 'duration', duration).details;
+  }
+
+  setDatacenter() {
+    if (_.isEmpty(this.selectedHosting) || this.selectedHosting === this.noHostValue) {
+      return;
+    }
+    this.model.hosting = this.selectedHosting.name;
+    this.model.datacenter = this.selectedHosting.datacenter || null;
+  }
+
+  openBc() {
+    this.atInternet.trackOrder({
+      name: `[sql-${this.model.type}]::${this.model.version || this.model.dbPack}[${this.model.version || this.model.dbPack}]`,
+      page: 'web::payment-pending',
+      orderId: this.order.orderId,
+      priceTaxFree: this.order.prices.withoutTax.value,
+      price: this.order.prices.withTax.value,
+      status: 1,
+    });
+    this.$window.open(this.order.url);
+  }
+
+  findHosting(name) {
+    return _.find(this.getData(this.model.type).hostings, 'name', name);
+  }
+
+  isCloudDbOrPrivateDb() {
+    return this.isCloudDb() || this.isPrivateDb();
+  }
+
+  isCloudDb() {
+    return this.getData(this.model.type).key === 'dbaas';
+  }
+
+  isPrivateDb() {
+    return this.getData(this.model.type).key === 'premium';
+  }
+
+  isStart() {
+    return this.getData(this.model.type).key === 'start';
+  }
+
+  resetOrder() {
+    this.order = null;
+  }
+
+  makeHostingUrl(serviceName) {
+    return this.hostingUrl + serviceName;
+  }
+
+  getNormalizedRAMSize(ramSize) {
+    return ramSize < 1024
+      ? ramSize + this.$translate.instant('unit_size_MB')
+      : ramSize / 1024 + this.$translate.instant('unit_size_GB');
+  }
+}

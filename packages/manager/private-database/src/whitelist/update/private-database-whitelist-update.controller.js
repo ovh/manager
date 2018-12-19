@@ -1,54 +1,53 @@
-angular.module('App').controller(
-  'PrivateDatabaseUpdateWhitelistCtrl',
-  class PrivateDatabaseUpdateWhitelistCtrl {
-    constructor(
-      Alerter,
-      WhitelistService,
-      $rootScope,
-      $scope,
-      $stateParams,
-      $translate,
-      WucValidator,
-    ) {
-      this.alerter = Alerter;
-      this.whitelistService = WhitelistService;
-      this.$rootScope = $rootScope;
-      this.$scope = $scope;
-      this.$stateParams = $stateParams;
-      this.$translate = $translate;
-      this.validator = WucValidator;
-    }
+export default class PrivateDatabaseUpdateWhitelistCtrl {
+  /* @ngInject */
 
-    $onInit() {
-      this.productId = this.$stateParams.productId;
+  constructor(
+    Alerter,
+    WhitelistService,
+    $rootScope,
+    $scope,
+    $stateParams,
+    $translate,
+    WucValidator,
+  ) {
+    this.alerter = Alerter;
+    this.whitelistService = WhitelistService;
+    this.$rootScope = $rootScope;
+    this.$scope = $scope;
+    this.$stateParams = $stateParams;
+    this.$translate = $translate;
+    this.validator = WucValidator;
+  }
 
-      this.whitelistToUpdate = this.$scope.currentActionData;
+  $onInit() {
+    this.productId = this.$stateParams.serviceName;
 
-      this.whitelistId = this.whitelistToUpdate.ip;
+    this.whitelistToUpdate = this.$scope.currentActionData;
 
-      this.model = {
-        name: this.whitelistToUpdate.name,
-        service: this.whitelistToUpdate.service,
-        sftp: this.whitelistToUpdate.sftp,
-      };
+    this.whitelistId = this.whitelistToUpdate.ip;
 
-      this.$scope.updateWhitelist = () => {
-        this.whitelistService
-          .updateWhitelist(this.productId, this.whitelistId, this.model)
-          .then(() => this.alerter.success(
-            this.$translate.instant('privateDatabase_modale_whitelist_update_success'),
-            this.$scope.alerts.main,
-          ))
-          .catch(() => this.alerter.error(
-            this.$translate.instant('privateDatabase_modale_whitelist_update_fail'),
-            this.$scope.alerts.main,
-          ))
-          .finally(() => this.$scope.resetAction());
-      };
-    }
+    this.model = {
+      name: this.whitelistToUpdate.name,
+      service: this.whitelistToUpdate.service,
+      sftp: this.whitelistToUpdate.sftp,
+    };
 
-    isWhitelistValid() {
-      return this.model.service || this.model.sftp;
-    }
-  },
-);
+    this.$scope.updateWhitelist = () => {
+      this.whitelistService
+        .updateWhitelist(this.productId, this.whitelistId, this.model)
+        .then(() => this.alerter.success(
+          this.$translate.instant('privateDatabase_modale_whitelist_update_success'),
+          this.$scope.alerts.main,
+        ))
+        .catch(() => this.alerter.error(
+          this.$translate.instant('privateDatabase_modale_whitelist_update_fail'),
+          this.$scope.alerts.main,
+        ))
+        .finally(() => this.$scope.resetAction());
+    };
+  }
+
+  isWhitelistValid() {
+    return this.model.service || this.model.sftp;
+  }
+}

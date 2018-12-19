@@ -1,43 +1,42 @@
-angular.module('App').controller(
-  'PrivateDatabaseTasksCtrl',
-  class PrivateDatabaseTasksCtrl {
-    constructor($scope, $stateParams, $translate, Alerter, PrivateDatabase) {
-      this.$scope = $scope;
-      this.$translate = $translate;
-      this.productId = $stateParams.productId;
-      this.privateDatabaseService = PrivateDatabase;
-      this.alerter = Alerter;
-    }
+export default class PrivateDatabaseTasksCtrl {
+  /* @ngInject */
 
-    $onInit() {
-      this.getTasks();
-    }
+  constructor($scope, $stateParams, $translate, Alerter, PrivateDatabase) {
+    this.$scope = $scope;
+    this.$translate = $translate;
+    this.productId = $stateParams.productId;
+    this.privateDatabaseService = PrivateDatabase;
+    this.alerter = Alerter;
+  }
 
-    getTasks() {
-      this.taskDetails = null;
+  $onInit() {
+    this.getTasks();
+  }
 
-      return this.privateDatabaseService
-        .getTasks(this.productId)
-        .then((ids) => {
-          this.taskDetails = ids.sort((a, b) => b - a).map(id => ({ id }));
-        })
-        .catch(() => {
-          this.alerter.error(
-            this.$translate.instant('privateDatabase_configuration_error'),
-            this.$scope.alerts.main,
-          );
-        });
-    }
+  getTasks() {
+    this.taskDetails = null;
 
-    transformItem(item) {
-      return this.privateDatabaseService
-        .getTaskDetails(this.productId, item.id)
-        .catch(() => {
-          this.alerter.error(
-            this.$translate.instant('privateDatabase_configuration_error'),
-            this.$scope.alerts.main,
-          );
-        });
-    }
-  },
-);
+    return this.privateDatabaseService
+      .getTasks(this.productId)
+      .then((ids) => {
+        this.taskDetails = ids.sort((a, b) => b - a).map(id => ({ id }));
+      })
+      .catch(() => {
+        this.alerter.error(
+          this.$translate.instant('privateDatabase_configuration_error'),
+          this.$scope.alerts.main,
+        );
+      });
+  }
+
+  transformItem(item) {
+    return this.privateDatabaseService
+      .getTaskDetails(this.productId, item.id)
+      .catch(() => {
+        this.alerter.error(
+          this.$translate.instant('privateDatabase_configuration_error'),
+          this.$scope.alerts.main,
+        );
+      });
+  }
+}

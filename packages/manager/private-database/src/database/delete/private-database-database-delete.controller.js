@@ -1,39 +1,38 @@
-angular.module('App').controller(
-  'PrivateDatabaseDeleteBDDCtrl',
-  class PrivateDatabaseDeleteBDDCtrl {
-    constructor($scope, $stateParams, $translate, Alerter, PrivateDatabase) {
-      this.$scope = $scope;
-      this.$stateParams = $stateParams;
-      this.$translate = $translate;
-      this.alerter = Alerter;
-      this.privateDatabaseService = PrivateDatabase;
-    }
+export default class PrivateDatabaseDeleteBDDCtrl {
+  /* @ngInject */
 
-    $onInit() {
-      this.productId = this.$stateParams.productId;
+  constructor($scope, $stateParams, $translate, Alerter, PrivateDatabase) {
+    this.$scope = $scope;
+    this.$stateParams = $stateParams;
+    this.$translate = $translate;
+    this.alerter = Alerter;
+    this.privateDatabaseService = PrivateDatabase;
+  }
 
-      this.bddToDelete = this.$scope.currentActionData;
+  $onInit() {
+    this.productId = this.$stateParams.serviceName;
 
-      this.$scope.deleteBDD = () => this.deleteBDD();
-    }
+    this.bddToDelete = this.$scope.currentActionData;
 
-    deleteBDD() {
-      this.$scope.resetAction();
+    this.$scope.deleteBDD = () => this.deleteBDD();
+  }
 
-      this.privateDatabaseService
-        .deleteBDD(this.productId, this.bddToDelete.databaseName)
-        .then(() => {
-          this.alerter.success(
-            this.$translate.instant('privateDatabase_delete_bdd_success'),
-            this.$scope.alerts.main,
-          );
-        })
-        .catch(() => {
-          this.alerter.error(
-            this.$translate.instant('privateDatabase_delete_bdd_fail'),
-            this.$scope.alerts.main,
-          );
-        });
-    }
-  },
-);
+  deleteBDD() {
+    this.$scope.resetAction();
+
+    this.privateDatabaseService
+      .deleteBDD(this.productId, this.bddToDelete.databaseName)
+      .then(() => {
+        this.alerter.success(
+          this.$translate.instant('privateDatabase_delete_bdd_success'),
+          this.$scope.alerts.main,
+        );
+      })
+      .catch(() => {
+        this.alerter.error(
+          this.$translate.instant('privateDatabase_delete_bdd_fail'),
+          this.$scope.alerts.main,
+        );
+      });
+  }
+}

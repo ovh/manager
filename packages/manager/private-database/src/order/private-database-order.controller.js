@@ -1,216 +1,217 @@
-angular.module('App').controller(
-  'PrivateDatabaseOrderCtrl',
-  class PrivateDatabaseOrderCtrl {
-    constructor(
-      Alerter,
-      $location,
-      Hosting,
-      PrivateDatabase,
-      $q,
-      $scope,
-      $translate,
-      User,
-    ) {
-      this.alerter = Alerter;
-      this.$location = $location;
-      this.hostingService = Hosting;
-      this.privateDatabaseService = PrivateDatabase;
-      this.$q = $q;
-      this.$scope = $scope;
-      this.$translate = $translate;
-      this.User = User;
-    }
+import _ from 'lodash';
 
-    $onInit() {
-      this.$scope.alerts = {
-        order: 'privatedatabase.alerts.order',
-        durations: 'privatedatabase.alerts.order.duration',
-      };
+export default class PrivateDatabaseOrderCtrl {
+  /* @ngInject */
 
-      this.datacenterSelected = this.$location.search().datacenter;
+  constructor(
+    Alerter,
+    $location,
+    Hosting,
+    PrivateDatabase,
+    $q,
+    $scope,
+    $translate,
+    User,
+  ) {
+    this.alerter = Alerter;
+    this.$location = $location;
+    this.hostingService = Hosting;
+    this.privateDatabaseService = PrivateDatabase;
+    this.$q = $q;
+    this.$scope = $scope;
+    this.$translate = $translate;
+    this.User = User;
+  }
 
-      this.selectedHosting = {
-        value: '',
-      };
+  $onInit() {
+    this.$scope.alerts = {
+      order: 'privatedatabase.alerts.order',
+      durations: 'privatedatabase.alerts.order.duration',
+    };
 
-      this.list = {
-        versions: [],
-        ramSize: [],
-      };
+    this.datacenterSelected = this.$location.search().datacenter;
 
-      this.selectedOrder = {
-        config: {
-          version: null,
-          ramSize: null,
-          datacenter: this.datacenterSelected,
-        },
-        duration: null,
-        contractsValidated: false,
-      };
+    this.selectedHosting = {
+      value: '',
+    };
 
-      this.loading = {
-        init: false,
-        durations: false,
-        prices: false,
-        bc: false,
-      };
+    this.list = {
+      versions: [],
+      ramSize: [],
+    };
 
-      this.durations = {
-        available: null,
-        details: {},
-      };
+    this.selectedOrder = {
+      config: {
+        version: null,
+        ramSize: null,
+        datacenter: this.datacenterSelected,
+      },
+      duration: null,
+      contractsValidated: false,
+    };
 
-      this.order = null;
+    this.loading = {
+      init: false,
+      durations: false,
+      prices: false,
+      bc: false,
+    };
 
-      this.loading.init = true;
+    this.durations = {
+      available: null,
+      details: {},
+    };
 
-      this.$scope.$on('$destroy', () => {
-        const queryParams = this.$location.search();
+    this.order = null;
 
-        if (queryParams && queryParams.datacenter) {
-          delete queryParams.datacenter;
-          this.$location.search(queryParams);
-        }
-      });
+    this.loading.init = true;
 
-      this.$scope.sortRam = (ram) => {
-        if (_.isString(ram)) {
-          return +ram;
-        }
-        return '';
-      };
+    this.$scope.$on('$destroy', () => {
+      const queryParams = this.$location.search();
 
-      this.User.getUser().then((user) => {
-        this.user = user;
-      });
-
-      this.init();
-    }
-
-    loadPrices(durations) {
-      this.loading.prices = true;
-
-      this.$q
-        .all(_.map(durations, duration => this.privateDatabaseService
-          .orderPrice(
-            this.selectedOrder.config.version,
-            this.selectedOrder.config.ramSize,
-            duration,
-          )
-          .then((details) => {
-            this.durations.details[duration] = details;
-            return details;
-          })))
-        .then(() => {
-          if (durations && durations.length === 1) {
-            [this.model.duration] = durations;
-          }
-
-          this.loading.prices = false;
-        })
-        .catch((data) => {
-          this.alerter.alertFromSWS(
-            this.$translate.instant('privateDatabase_order_step2_price_fail'),
-            data,
-            this.$scope.alerts.order,
-          );
-          this.loading.durations = false;
-        });
-    }
-
-    init() {
-      this.$q
-        .all({
-          models: this.privateDatabaseService.getOrderModels(),
-          hostings: this.hostingService.getHostings(),
-        })
-        .then((result) => {
-          this.list.versions = result.models['hosting.PrivateDatabase.OrderableVersionEnum'].enum;
-          this.list.ramSize = result.models['hosting.PrivateDatabase.AvailableRamSizeEnum'].enum;
-          this.list.datacenters = result.models['hosting.PrivateDatabase.DatacenterEnum'].enum;
-          this.hostings = result.hostings;
-        })
-        .catch(() => this.alerter.error(
-          this.$translate.instant('privateDatabase_order_step1_error'),
-          this.$scope.alerts.order,
-        ))
-        .finally(() => {
-          this.loading.init = false;
-        });
-    }
-
-    onHostingChanged() {
-      this.selectedOrder.config.datacenter = null;
-
-      if (this.selectedHosting.value === 'other') {
-        return;
+      if (queryParams && queryParams.datacenter) {
+        delete queryParams.datacenter;
+        this.$location.search(queryParams);
       }
-      this.hostingService
-        .getHosting(this.selectedHosting.value)
-        .then((hosting) => {
-          this.selectedOrder.config.datacenter = hosting.datacenter;
-        })
-        .catch(() => this.alerter.error(
-          this.$translate.instant('privateDatabase_order_step1_error'),
-          this.$scope.alerts.order,
-        ));
-    }
+    });
 
-    getDurations() {
-      this.alerter.resetMessage(this.$scope.alerts.durations);
+    this.$scope.sortRam = (ram) => {
+      if (_.isString(ram)) {
+        return +ram;
+      }
+      return '';
+    };
 
-      this.durations = {
-        available: null,
-        details: {},
-      };
-      this.loading.durations = true;
+    this.User.getUser().then((user) => {
+      this.user = user;
+    });
 
-      return this.privateDatabaseService
-        .orderDuration(
+    this.init();
+  }
+
+  loadPrices(durations) {
+    this.loading.prices = true;
+
+    this.$q
+      .all(_.map(durations, duration => this.privateDatabaseService
+        .orderPrice(
           this.selectedOrder.config.version,
           this.selectedOrder.config.ramSize,
-        )
-        .then((durations) => {
-          this.durations.available = durations;
-          this.loadPrices(durations);
-        })
-        .catch(data => this.alerter.alertFromSWS(
-          this.$translate.instant('privateDatabase_order_step2_duration_fail'),
-          data,
-          this.$scope.alerts.durations,
-        ))
-        .finally(() => {
-          this.loading.durations = false;
-        });
-    }
-
-    generateBc() {
-      this.loading.bc = true;
-
-      return this.privateDatabaseService
-        .orderPrivateDatabase(
-          this.selectedOrder.config.version,
-          this.selectedOrder.config.ramSize,
-          this.selectedOrder.duration,
-          this.selectedOrder.config.datacenter,
+          duration,
         )
         .then((details) => {
-          this.order = details;
-          this.loading.bc = false;
-        })
-        .catch((data) => {
-          this.alerter.alertFromSWS(
-            this.$translate.instant('privateDatabase_order_step3_fail'),
-            data,
-            this.$scope.alerts.order,
-          );
-          this.loading.durations = false;
-        });
-    }
+          this.durations.details[duration] = details;
+          return details;
+        })))
+      .then(() => {
+        if (durations && durations.length === 1) {
+          [this.model.duration] = durations;
+        }
 
-    openBc() {
-      window.open(this.order.url);
-      this.init();
+        this.loading.prices = false;
+      })
+      .catch((data) => {
+        this.alerter.alertFromSWS(
+          this.$translate.instant('privateDatabase_order_step2_price_fail'),
+          data,
+          this.$scope.alerts.order,
+        );
+        this.loading.durations = false;
+      });
+  }
+
+  init() {
+    this.$q
+      .all({
+        models: this.privateDatabaseService.getOrderModels(),
+        hostings: this.hostingService.getHostings(),
+      })
+      .then((result) => {
+        this.list.versions = result.models['hosting.PrivateDatabase.OrderableVersionEnum'].enum;
+        this.list.ramSize = result.models['hosting.PrivateDatabase.AvailableRamSizeEnum'].enum;
+        this.list.datacenters = result.models['hosting.PrivateDatabase.DatacenterEnum'].enum;
+        this.hostings = result.hostings;
+      })
+      .catch(() => this.alerter.error(
+        this.$translate.instant('privateDatabase_order_step1_error'),
+        this.$scope.alerts.order,
+      ))
+      .finally(() => {
+        this.loading.init = false;
+      });
+  }
+
+  onHostingChanged() {
+    this.selectedOrder.config.datacenter = null;
+
+    if (this.selectedHosting.value === 'other') {
+      return;
     }
-  },
-);
+    this.hostingService
+      .getHosting(this.selectedHosting.value)
+      .then((hosting) => {
+        this.selectedOrder.config.datacenter = hosting.datacenter;
+      })
+      .catch(() => this.alerter.error(
+        this.$translate.instant('privateDatabase_order_step1_error'),
+        this.$scope.alerts.order,
+      ));
+  }
+
+  getDurations() {
+    this.alerter.resetMessage(this.$scope.alerts.durations);
+
+    this.durations = {
+      available: null,
+      details: {},
+    };
+    this.loading.durations = true;
+
+    return this.privateDatabaseService
+      .orderDuration(
+        this.selectedOrder.config.version,
+        this.selectedOrder.config.ramSize,
+      )
+      .then((durations) => {
+        this.durations.available = durations;
+        this.loadPrices(durations);
+      })
+      .catch(data => this.alerter.alertFromSWS(
+        this.$translate.instant('privateDatabase_order_step2_duration_fail'),
+        data,
+        this.$scope.alerts.durations,
+      ))
+      .finally(() => {
+        this.loading.durations = false;
+      });
+  }
+
+  generateBc() {
+    this.loading.bc = true;
+
+    return this.privateDatabaseService
+      .orderPrivateDatabase(
+        this.selectedOrder.config.version,
+        this.selectedOrder.config.ramSize,
+        this.selectedOrder.duration,
+        this.selectedOrder.config.datacenter,
+      )
+      .then((details) => {
+        this.order = details;
+        this.loading.bc = false;
+      })
+      .catch((data) => {
+        this.alerter.alertFromSWS(
+          this.$translate.instant('privateDatabase_order_step3_fail'),
+          data,
+          this.$scope.alerts.order,
+        );
+        this.loading.durations = false;
+      });
+  }
+
+  openBc() {
+    window.open(this.order.url);
+    this.init();
+  }
+}
