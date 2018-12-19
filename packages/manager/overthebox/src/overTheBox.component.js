@@ -2,10 +2,17 @@ import angular from 'angular';
 
 import '@ovh-ux/manager-core';
 import '@ovh-ux/manager-telecom-styles';
+import 'angularjs-scroll-glue';
+
 import '@ovh-ux/telecom-universe-components';
 import '@ovh-ux/ng-uirouter-title';
-import 'angularjs-scroll-glue';
 import 'ovh-angular-tail-logs';
+import 'ovh-angular-responsive-tabs';
+import 'ovh-angular-ui-confirm-modal';
+
+import 'ovh-ui-kit/dist/oui.css';
+import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
+import 'ovh-manager-webfont/dist/css/ovh-font.css';
 
 import constant from './overTheBox.constant';
 import controller from './overTheBox.controller';
@@ -20,15 +27,17 @@ import remote from './remote';
 import tasks from './tasks';
 
 import './overTheBox.less';
+import './overTheBox.scss';
 
 const moduleName = 'OvhManagerOverTheBoxComponent';
 
 angular
   .module(moduleName, [
+    'ovh-angular-responsive-tabs',
     'ovh-angular-tail-logs',
     'telecomUniverseComponents',
-    'ovhManagerCore',
     'ngUirouterTitle',
+    'ovh-angular-ui-confirm-modal',
     configure,
     details,
     docs,

@@ -8,6 +8,8 @@ import '@ovh-ux/ng-uirouter-title';
 import 'ovh-angular-ui-confirm-modal';
 import 'ovh-api-services';
 
+import '@ovh-ux/ovh-angular-contracts';
+
 import credit from './credit';
 import faxConfiguration from './faxConfiguration';
 import notifications from './notifications';
