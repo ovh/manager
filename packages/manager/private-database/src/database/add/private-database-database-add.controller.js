@@ -10,7 +10,6 @@ export default class PrivateDatabaseAddBddCtrl {
     $translate,
     Alerter,
     PrivateDatabase,
-    Hosting,
     WhitelistService,
     WucValidator,
   ) {
@@ -20,7 +19,6 @@ export default class PrivateDatabaseAddBddCtrl {
     this.$translate = $translate;
     this.Alerter = Alerter;
     this.PrivateDatabase = PrivateDatabase;
-    this.Hosting = Hosting;
     this.whitelistService = WhitelistService;
     this.validator = WucValidator;
   }
@@ -167,17 +165,31 @@ export default class PrivateDatabaseAddBddCtrl {
     return this.checkPassword() && this.checkPasswordConfirm();
   }
 
+  static validatesPassword(password, customConditions = undefined) {
+    const min = _.get(customConditions, 'min', 8);
+    const max = _.get(customConditions, 'max', 30);
+    return !!(
+      password
+      && password.length >= min
+      && password.length <= max
+      && password.match(/.*[0-9].*/)
+      && password.match(/.*[a-z].*/)
+      && password.match(/.*[A-Z].*/)
+      && password.match(/^[a-zA-Z0-9]+$/)
+    );
+  }
+
   checkPassword() {
     return (
       this.model.user.password.value
-      && this.Hosting.constructor.isPasswordValid(this.model.user.password.value)
+      && PrivateDatabaseAddBddCtrl.validatesPassword(this.model.user.password.value)
     );
   }
 
   checkPasswordConfirm() {
     return (
       this.model.user.password.confirm
-      && this.Hosting.constructor.isPasswordValid(this.model.user.password.confirm)
+      && PrivateDatabaseAddBddCtrl.validatesPassword(this.model.user.password.confirm)
       && this.model.user.password.confirm === this.model.user.password.value
     );
   }

@@ -7,10 +7,11 @@ export default class SqlDatabaseOrderCtrl {
   /* @ngInject */
 
   constructor(
-    $q, $scope, $stateParams, $timeout, $translate, $window,
+    $http, $q, $scope, $stateParams, $timeout, $translate, $window,
     atInternet,
-    WucConverterService, Hosting, HostingDatabase, HostingOptionOrder, PrivateDatabase, User,
+    WucConverterService, HostingOptionOrder, PrivateDatabase, User,
   ) {
+    this.$http = $http;
     this.$q = $q;
     this.$scope = $scope;
     this.$stateParams = $stateParams;
@@ -20,8 +21,6 @@ export default class SqlDatabaseOrderCtrl {
 
     this.atInternet = atInternet;
     this.WucConverterService = WucConverterService;
-    this.Hosting = Hosting;
-    this.HostingDatabase = HostingDatabase;
     this.HostingOptionOrder = HostingOptionOrder;
     this.PrivateDatabase = PrivateDatabase;
     this.User = User;
@@ -74,6 +73,20 @@ export default class SqlDatabaseOrderCtrl {
     return `${res.value} ${resUnit}`;
   }
 
+  getHostingOptionOrderEnums(key) {
+    return this.$http
+      .get('apiv6/order.json', { cache: true })
+      .then((response) => {
+        if (response.data && response.data.models) {
+          return key
+            ? response.data.models[key].enum
+            : response.data.models;
+        }
+        return [];
+      })
+      .catch(() => []);
+  }
+
   load() {
     const typeConverter = {
       dbaas: 'public',
@@ -94,8 +107,8 @@ export default class SqlDatabaseOrderCtrl {
           .all({
             dbaasOrderCapacities: this.PrivateDatabase.getAvailableOrderCapacities(dbaasName),
             privateOrderCapacities: this.PrivateDatabase.getAvailableOrderCapacities(sqlName),
-            domainNames: this.Hosting.getHostings(),
-            dbPack: this.HostingOptionOrder.getOrderEnums('hosting.web.database.SqlPersoOfferEnum'),
+            domainNames: () => this.$http.get('/hosting/web'),
+            dbPack: this.getHostingOptionOrderEnums('hosting.web.database.SqlPersoOfferEnum'),
           })
           .then((result) => {
             this.data = [
@@ -146,7 +159,7 @@ export default class SqlDatabaseOrderCtrl {
           });
       })
       .then(({ domainNames }) => this.$q
-        .all(_.map(domainNames, domainName => this.Hosting.getHosting(domainName)))
+        .all(_.map(domainNames, domainName => this.$http.get(`/hosting/web/${domainName}`)))
         .then(hostings => _.filter(hostings, 'state', 'active'))
         .then((hostings) => {
           this.noHostValue = 'other';
@@ -201,7 +214,7 @@ export default class SqlDatabaseOrderCtrl {
 
   checkFreeDbOffer() {
     if (this.selectedHosting.name !== this.noHostValue) {
-      this.HostingDatabase.getPrivateDatabaseCapabilities(this.selectedHosting.name)
+      this.$http.get(`/hosting/web/${this.selectedHosting.name}/privateDatabaseCreationCapabilities`)
         .then((capabilities) => {
           this.selectedHosting.stillHasFreeDbOffer = _.some(capabilities);
         });

@@ -26,6 +26,7 @@ import taskTemplate from './task/private-database-task.html';
 import privateDatabaseService from './private-database.service';
 import privateDatabaseLogsService from './logs/private-database-logs.service';
 import privateDatabaseOomService from './oom/private-database-oom.service';
+import whitelistService from './whitelist/private-database-whitelist.service';
 
 const moduleName = 'ovhManagerPrivateDatabase';
 
@@ -47,6 +48,7 @@ angular.module(moduleName, [
   .service('PrivateDatabase', privateDatabaseService)
   .service('PrivateDatabaseLogsService', privateDatabaseLogsService)
   .service('OomService', privateDatabaseOomService)
+  .service('whitelistService', whitelistService)
   .controller('PrivateDatabaseConfigurationsCtrl', configurationController)
   .controller('PrivateDatabaseLogsCtrl', logsController)
   .controller('PrivateDatabaseMetricsCtrl', metricsController)

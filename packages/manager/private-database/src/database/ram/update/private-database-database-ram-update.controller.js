@@ -11,7 +11,7 @@ export default class PrivateDatabaseChangeRamCtrl {
     $translate,
     Alerter,
     PrivateDatabase,
-    User,
+    SessionService,
   ) {
     this.$rootScope = $rootScope;
     this.$scope = $scope;
@@ -19,7 +19,7 @@ export default class PrivateDatabaseChangeRamCtrl {
     this.$translate = $translate;
     this.alerter = Alerter;
     this.privateDatabaseService = PrivateDatabase;
-    this.userService = User;
+    this.sessionService = SessionService;
   }
 
   $onInit() {
@@ -49,8 +49,8 @@ export default class PrivateDatabaseChangeRamCtrl {
 
     this.$scope.sortRam = ram => +ram;
 
-    this.userService.getUser().then((user) => {
-      this.data.ovhSubsidiary = user.ovhSubsidiary;
+    this.sessionService.getUser().then(({ ovhSubsidiary }) => {
+      this.data.ovhSubsidiary = ovhSubsidiary;
     });
 
     /*= =============================

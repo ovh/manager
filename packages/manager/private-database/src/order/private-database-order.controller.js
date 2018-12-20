@@ -6,7 +6,7 @@ export default class PrivateDatabaseOrderCtrl {
   constructor(
     Alerter,
     $location,
-    Hosting,
+    $http,
     PrivateDatabase,
     $q,
     $scope,
@@ -15,7 +15,7 @@ export default class PrivateDatabaseOrderCtrl {
   ) {
     this.alerter = Alerter;
     this.$location = $location;
-    this.hostingService = Hosting;
+    this.$http = $http;
     this.privateDatabaseService = PrivateDatabase;
     this.$q = $q;
     this.$scope = $scope;
@@ -124,7 +124,7 @@ export default class PrivateDatabaseOrderCtrl {
     this.$q
       .all({
         models: this.privateDatabaseService.getOrderModels(),
-        hostings: this.hostingService.getHostings(),
+        hostings: () => this.$http.get('/hosting/web'),
       })
       .then((result) => {
         this.list.versions = result.models['hosting.PrivateDatabase.OrderableVersionEnum'].enum;
@@ -147,8 +147,7 @@ export default class PrivateDatabaseOrderCtrl {
     if (this.selectedHosting.value === 'other') {
       return;
     }
-    this.hostingService
-      .getHosting(this.selectedHosting.value)
+    this.$http.get(`/hosting/web/${this.selectedHosting.value}`)
       .then((hosting) => {
         this.selectedOrder.config.datacenter = hosting.datacenter;
       })
