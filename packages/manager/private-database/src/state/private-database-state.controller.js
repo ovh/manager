@@ -31,7 +31,7 @@ export default class PrivateDatabaseStateCtrl {
   }
 
   $onInit() {
-    this.productId = this.$stateParams.productId;
+    this.productId = this.$stateParams.serviceName;
 
     this.database = this.$scope.database;
     this.isExpired = _.get(this.database, 'serviceInfos.status') === 'expired';

@@ -69,7 +69,7 @@ export default class PrivateDatabaseAddUserCtrl {
   addUser() {
     this.$scope.resetAction();
     return this.PrivateDatabase.addUser(
-      this.$stateParams.productId,
+      this.$stateParams.serviceName,
       this.model.password.value,
       this.model.user.value,
     )

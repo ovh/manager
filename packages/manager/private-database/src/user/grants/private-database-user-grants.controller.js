@@ -12,7 +12,7 @@ export default class PrivateDatabaseUsersGrantsCtrl {
   }
 
   $onInit() {
-    this.productId = this.$stateParams.productId;
+    this.productId = this.$stateParams.serviceName;
 
     this.grants = ['admin', 'rw', 'ro', 'none'];
 

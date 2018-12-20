@@ -4,7 +4,7 @@ export default class PrivateDatabaseTasksCtrl {
   constructor($scope, $stateParams, $translate, Alerter, PrivateDatabase) {
     this.$scope = $scope;
     this.$translate = $translate;
-    this.productId = $stateParams.productId;
+    this.productId = $stateParams.serviceName;
     this.privateDatabaseService = PrivateDatabase;
     this.alerter = Alerter;
   }

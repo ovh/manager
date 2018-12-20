@@ -21,7 +21,7 @@ export default class PrivateDatabaseStopCtrl {
     this.$scope.resetAction();
 
     this.privateDatabaseService
-      .stopDatabase(this.$stateParams.productId)
+      .stopDatabase(this.$stateParams.serviceName)
       .then((task) => {
         this.$scope.pollAction(task);
         this.alerter.success(

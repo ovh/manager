@@ -3,43 +3,36 @@ import managerCore from '@ovh-ux/manager-core';
 import ovhUtilsAngular from '@ovh-ux/ovh-utils-angular';
 import webUniverseComponents from '@ovh-ux/web-universe-components';
 
+import privateDatabaseUser from './user';
+import privateDatabaseDatabase from './database';
+
 import controller from './private-database.controller';
 import tabsController from './private-database-tabs.controller';
 import template from './private-database.html';
 import privateDatabaseService from './private-database.service';
-import privateDatabaseOomService from './oom/private-database-oom.service';
-import privateDatabaseExtensionService from './database/extension/private-database-database-extension.service';
-import privateDatabaseChangeVersionCtrl from './database/version/update/private-database-database-version-update.controller';
-import userCtrl from './user/private-database-user.controller';
-import userListCtrl from './user/list/private-database-user-list.controller';
 
+import privateDatabaseOomService from './oom/private-database-oom.service';
 import stateController from './state/private-database-state.controller';
+
 import stateTemplate from './state/private-database-state.html';
-import userListTemplate from './user/list/private-database-user-list.html';
-import userTemplate from './user/private-database-user.html';
-import versionTemplate from './database/version/update/private-database-database-version-update.html';
 
 const moduleName = 'ovhManagerPrivateDatabase';
 
 angular.module(moduleName, [
   managerCore,
   ovhUtilsAngular,
+  privateDatabaseUser,
+  privateDatabaseDatabase,
   webUniverseComponents,
 ])
   .run(($templateCache) => {
+    // state
     $templateCache.put('private-database/state/private-database-state.html', stateTemplate);
-    $templateCache.put('private-database/database/version/update/private-database-database-version-update.html', versionTemplate);
-    $templateCache.put('private-database/user/list/private-database-user-list.html', userListTemplate);
-    $templateCache.put('private-database/user/private-database-user.html', userTemplate);
   })
   .service('PrivateDatabase', privateDatabaseService)
   .service('OomService', privateDatabaseOomService)
-  .service('PrivateDatabaseExtension', privateDatabaseExtensionService)
   .controller('PrivateDatabaseTabsCtrl', tabsController)
   .controller('PrivateDatabaseStateCtrl', stateController)
-  .controller('PrivateDatabaseChangeVersionCtrl', privateDatabaseChangeVersionCtrl)
-  .controller('PrivateDatabaseUsersCtrl', userCtrl)
-  .controller('PrivateDatabaseUsersListCtrl', userListCtrl)
   .config(($stateProvider) => {
     $stateProvider.state('private-database', {
       url: '/configuration/private_database/:serviceName?tab',
