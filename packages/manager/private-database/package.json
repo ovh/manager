@@ -35,9 +35,11 @@
     "@ovh-ux/web-universe-components": "^1.0.0",
     "@uirouter/angularjs": "^1.0.15",
     "angular": "1.7.5",
+    "angularjs-scroll-glue": "^2.2.0",
     "at-internet-ui-router-plugin": "^1.0.0",
     "ng-at-internet": "^3.1.1",
     "oclazyload": "^1.1.0",
-    "ovh-angular-responsive-tabs": "^4.0.0"
+    "ovh-angular-responsive-tabs": "^4.0.0",
+    "ovh-angular-tail-logs": "^1.1.1"
   }
 }
