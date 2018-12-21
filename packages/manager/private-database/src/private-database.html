@@ -71,7 +71,7 @@
                 <div class="btn-group ml-auto mt-4">
                     <button type="button" class="oui-button oui-button_dropdown mb-0" aria-expanded="false" aria-haspopup="true"
                             data-toggle="dropdown">
-                        <span data-translate="common_actions"></span>
+                        <span data-translate="privateDatabase_common_actions"></span>
                         <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-right">
@@ -86,16 +86,16 @@
                         <li class="dropdown-divider"
                             data-ng-if="!$ctrl.isExpired">
                             <i class="oui-icon oui-icon-user_line" aria-hidden="true"></i>
-                            <a class="btn btn-link" title="{{:: 'core_change_owner' | translate }} ({{:: 'core_new_window' | translate }})" target="_blank"
+                            <a class="btn btn-link" title="{{:: 'privateDatabase_core_change_owner' | translate }} ({{:: 'privateDatabase_core_new_window' | translate }})" target="_blank"
                                data-ng-href="{{::changeOwnerUrl}}"
-                               data-translate="core_change_owner">
+                               data-translate="privateDatabase_core_change_owner">
                             </a>
                         </li>
                         <li>
                             <i class="oui-icon oui-icon-gear_line" aria-hidden="true"></i>
                             <a class="btn btn-link"
                                data-ng-href="{{ '#/useraccount/contacts?tab=SERVICES&serviceName=' + database.serviceName }}"
-                               data-translate="contacts_management"
+                               data-translate="privateDatabase_contacts_management"
                                data-ng-hide="database.isExpired">
                             </a>
                         </li>

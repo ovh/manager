@@ -68,7 +68,7 @@ export default class SqlDatabaseOrderCtrl {
 
   convertBytesSize(nb, unit = 'MB') {
     const res = filesize(this.WucConverterService.convertToOctet(nb, unit), { output: 'object', round: 0, base: -1 });
-    const resUnit = this.$translate.instant(`unit_size_${res.symbol}`);
+    const resUnit = this.$translate.instant(`privateDatabase_unit_size_${res.symbol}`);
 
     return `${res.value} ${resUnit}`;
   }
@@ -496,7 +496,7 @@ export default class SqlDatabaseOrderCtrl {
 
   getNormalizedRAMSize(ramSize) {
     return ramSize < 1024
-      ? ramSize + this.$translate.instant('unit_size_MB')
-      : ramSize / 1024 + this.$translate.instant('unit_size_GB');
+      ? ramSize + this.$translate.instant('privateDatabase_unit_size_MB')
+      : ramSize / 1024 + this.$translate.instant('privateDatabase_unit_size_GB');
   }
 }

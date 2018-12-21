@@ -58,7 +58,7 @@ export default class PrivateDatabaseStateCtrl {
       round: decimalWanted,
       base: -1,
     });
-    const resUnit = this.$translate.instant(`unit_size_${res.symbol}`);
+    const resUnit = this.$translate.instant(`privateDatabase_unit_size_${res.symbol}`);
 
     return `${res.value} ${resUnit}`;
   }

@@ -629,5 +629,50 @@
    <translation id="privateDatabase_tabs_list_extensions_disable_success" qtlid="437152">Extension correctement désactivée.</translation>
    <translation id="privateDatabase_tabs_list_extensions_disable_error" qtlid="437165">Une erreur est survenue lors de la désactivation de l'extension.</translation>
 
+   <translation id="privateDatabase_hosting_tab_DATABASES_configuration_import_title" qtlid="286214">Import de la base de données</translation>
+   <translation id="privateDatabase_hosting_tab_DATABASES_table_popover_import_step0_new_file_mode" qtlid="288301">Importer un nouveau fichier</translation>
+   <translation id="privateDatabase_hosting_tab_DATABASES_table_popover_import_step0_existing_file_mode" qtlid="288314">Utiliser un fichier existant</translation>
+
+   <translation id="privateDatabase_hosting_tab_DATABASES_table_popover_import_step1_load_documents_error" qtlid="286240">Une erreur est survenue lors de l'obtention de vos documents :</translation>
+   <translation id="privateDatabase_hosting_tab_DATABASES_table_popover_import_step1_upload_file_file" qtlid="448262">Fichier (.gz, .sql, .txt) :</translation>
+   <translation id="privateDatabase_hosting_tab_DATABASES_table_popover_import_step1_upload_file_name" qtlid="286266">Nom du fichier :</translation>
+   <translation id="privateDatabase_hosting_tab_DATABASES_table_popover_import_step1_upload_file_name_info" qtlid="296713">Donnez un titre à votre document pour le retrouver plus rapidement.</translation>
+   <translation id="privateDatabase_hosting_tab_DATABASES_table_popover_import_step1_upload_file_name_required_error" qtlid="286279">Le nom du fichier est obligatoire.</translation>
+   <translation id="privateDatabase_hosting_tab_DATABASES_table_popover_import_step1_upload_file_file_format_error" qtlid="286305">Le type de fichier doit être respecté.</translation>
+   <translation id="privateDatabase_hosting_tab_DATABASES_table_popover_import_step1_upload_file_file_required_error" qtlid="286318">Le fichier est obligatoire.</translation>
+   <translation id="privateDatabase_hosting_tab_DATABASES_table_popover_import_step1_upload" qtlid="52807">Envoyer</translation>
+   <translation id="privateDatabase_hosting_tab_DATABASES_table_popover_import_step1_upload_succes" qtlid="286331">Votre fichier a été envoyé avec succès.</translation>
+   <translation id="privateDatabase_hosting_tab_DATABASES_table_popover_import_step1_upload_fail" qtlid="286344">Échec lors de l'envoi du fichier :</translation>
+   <translation id="privateDatabase_hosting_tab_DATABASES_table_popover_import_step1_choose_file" qtlid="286357">Fichiers présents dans votre compte :</translation>
+   <translation id="privateDatabase_hosting_tab_DATABASES_table_popover_import_step2_title" qtlid="84237">Options additionnelles :</translation>
+   <translation id="privateDatabase_hosting_tab_DATABASES_table_popover_import_step2_flush_database" qtlid="286370">Vider la base de données actuelle</translation>
+   <translation id="privateDatabase_hosting_tab_DATABASES_table_popover_import_step2_send_email" qtlid="286383">Envoyer un e-mail à la fin de l'import</translation>
+   <translation id="privateDatabase_hosting_tab_DATABASES_table_popover_import_step3_succes" qtlid="286396">Une tâche d'import a été ajoutée à la section tâches en cours.</translation>
+   <translation id="privateDatabase_hosting_tab_DATABASES_table_popover_import_step3_fail" qtlid="286409">Un problème est survenu lors de l'envoi. Veuillez réessayer.</translation>
+   <translation id="privateDatabase_hosting_tab_DATABASES_table_popover_import_step1_upload_file_name_info" qtlid="296713">Donnez un titre à votre document pour le retrouver plus rapidement.</translation>
+   <translation id="privateDatabase_hosting_tab_DATABASES_table_popover_import_step1_upload_file_name_required_error" qtlid="286279">Le nom du fichier est obligatoire.</translation
+   <translation id="privateDatabase_common_actions" qtlid="72809">Actions</translation>
+   <translation id="privateDatabase_common_back" qtlid="4118">Retour</translation>
+   <translation id="privateDatabase_common_other" qtlid="19963">Autre</translation>
+   <translation id="privateDatabase_contacts_management" qtlid="32206">Contacts</translation>
+   <translation id="privateDatabase_core_change_owner" qtlid="271491">Changer de propriétaire</translation>
+   <translation id="privateDatabase_core_new_window" qtlid="222176">Nouvelle fenêtre</translation>
+   <translation id="privateDatabase_unit_size_B" qtlid="121975">o</translation>
+   <translation id="privateDatabase_unit_size_KB" qtlid="121987">ko</translation>
+   <translation id="privateDatabase_unit_size_MB" qtlid="48878">Mo</translation>
+   <translation id="privateDatabase_unit_size_GB" qtlid="48890">Go</translation>
+   <translation id="privateDatabase_unit_size_TB" qtlid="70121">To</translation>
+   <translation id="privateDatabase_unit_size_PB" qtlid="121999">Po</translation>
+   <translation id="privateDatabase_unit_size_EB" qtlid="122011">Eo</translation>
+   <translation id="privateDatabase_unit_size_ZB" qtlid="122023">Zo</translation>
+   <translation id="privateDatabase_unit_size_YB" qtlid="122035">Yo</translation>
+   <translation id="privateDatabase_unit_size_KiB" qtlid="180252">Kio</translation>
+   <translation id="privateDatabase_unit_size_MiB" qtlid="180265">Mio</translation>
+   <translation id="privateDatabase_unit_size_GiB" qtlid="180278">Gio</translation>
+   <translation id="privateDatabase_unit_size_TiB" qtlid="180291">Tio</translation>
+   <translation id="privateDatabase_unit_size_PiB" qtlid="180304">Pio</translation>
+   <translation id="privateDatabase_unit_size_EiB" qtlid="180317">Eio</translation>
+   <translation id="privateDatabase_unit_size_ZiB" qtlid="180330">Zio</translation>
+   <translation id="privateDatabase_unit_size_YiB" qtlid="180343">Yio</translation>
 
 </translations>

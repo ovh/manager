@@ -17,7 +17,7 @@
                     <select class="oui-select__input" name="capacity" id="selectRamCapacity"
                             data-ng-disabled="ramCtrl.loading.availableRam"
                             data-ng-model="ramCtrl.model.capacity"
-                            data-ng-options="ram + ('unit_size_MB' | translate) for ram in ramCtrl.data.availableRam | orderBy:sortRam">
+                            data-ng-options="ram + ('privateDatabase_unit_size_MB' | translate) for ram in ramCtrl.data.availableRam | orderBy:sortRam">
                         <option value="" disabled
                                 data-translate="privateDatabase_order_select_ram_placeholder"></option>
                     </select>

@@ -16,7 +16,7 @@
                     <span data-ng-bind="$row.date | date:'medium'"></span>
                 </oui-column>
                 <oui-column data-title="'privateDatabase_modale_oom_tab_size_reached' | translate">
-                    <span data-ng-bind="$row.overflow.value + ('unit_size_' + $row.overflow.symbol | translate)"></span>
+                    <span data-ng-bind="$row.overflow.value + ('privateDatabase_unit_size_' + $row.overflow.symbol | translate)"></span>
                 </oui-column>
                 <oui-column data-title="'privateDatabase_modale_oom_tab_uptime' | translate" data-property="uptime">
                     <span data-ng-if="$row.uptime !== -1"

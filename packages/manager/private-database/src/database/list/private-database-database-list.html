@@ -47,7 +47,7 @@
                         <td data-ng-bind="bdd.creationDate | date:'mediumDate'"
                             data-ng-if="!bdd.waitDelete"></td>
                         <td class="text-center"
-                            data-ng-bind="bdd.quotaUsed.value + ('unit_size_' + bdd.quotaUsed.unit | translate)"
+                            data-ng-bind="bdd.quotaUsed.value + ('privateDatabase_unit_size_' + bdd.quotaUsed.unit | translate)"
                             data-ng-if="!bdd.waitDelete"></td>
                         <td class="text-center"
                             data-ng-if="!bdd.waitDelete">
