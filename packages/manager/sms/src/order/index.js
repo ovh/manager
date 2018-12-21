@@ -1,31 +1,24 @@
 import angular from 'angular';
-import controller from './telecom-sms-order.controller';
-import template from './telecom-sms-order.html';
+import '@uirouter/angularjs';
+import 'oclazyload';
 
 const moduleName = 'ovhManagerSmsOrder';
 
-angular.module(moduleName, []).config(($stateProvider) => {
-  $stateProvider.state('sms.order', {
-    url: '/order',
-    views: {
-      'smsInnerView@sms': {
-        template,
-        controller,
-        controllerAs: 'SmsOrder',
+angular
+  .module(moduleName, [
+    'ui.router',
+    'oc.lazyLoad',
+  ])
+  .config(($stateProvider) => {
+    $stateProvider.state('sms.order.**', {
+      url: '/order',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+        return import('./telecom-sms-order.component')
+          .then(mod => $ocLazyLoad.inject(mod.default || mod));
       },
-    },
-    translations: ['.'],
+    });
   });
-}).constant('SMS_ORDER_PREFIELDS_VALUES', [
-  100,
-  500,
-  1000,
-  5000,
-  10000,
-  50000,
-  100000,
-  500000,
-  NaN,
-]);
 
 export default moduleName;

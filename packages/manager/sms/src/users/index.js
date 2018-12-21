@@ -1,24 +1,24 @@
 import angular from 'angular';
+import '@uirouter/angularjs';
+import 'oclazyload';
 
-import controller from './telecom-sms-users.controller';
-import template from './telecom-sms-users.html';
 
 const moduleName = 'ovhManagerSmsSmsUsers';
 
-angular.module(moduleName, []).config(($stateProvider) => {
-  $stateProvider.state('sms.users', {
-    url: '/users',
-    views: {
-      'smsInnerView@sms': {
-        template,
-        controller,
-        controllerAs: 'SmsUsersCtrl',
+angular
+  .module(moduleName, [
+    'ui.router',
+    'oc.lazyLoad',
+  ]).config(($stateProvider) => {
+    $stateProvider.state('sms.users.**', {
+      url: '/users',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+        return import('./telecom-sms-users.component')
+          .then(mod => $ocLazyLoad.inject(mod.default || mod));
       },
-    },
-    translations: [
-      '.',
-    ],
+    });
   });
-});
 
 export default moduleName;
