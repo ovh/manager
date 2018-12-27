@@ -9,6 +9,7 @@
     "lint": "eslint src/. --ext .js --quiet",
     "test": "grunt test"
   },
+  "main": "bin/ovh-utils-angular.tpls.min.js",
   "keywords": [
     "angular",
     "utils"
