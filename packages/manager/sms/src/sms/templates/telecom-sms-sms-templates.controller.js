@@ -176,15 +176,15 @@ export default class {
   }
 
   /**
-     * Opens a modal to remove a given template.
-     * @param  {Object} template
-     */
+   * Opens a modal to remove a given template.
+   * @param  {Object} template
+   */
   remove(template) {
     const modal = this.$uibModal.open({
       animation: true,
       template: removeTemplate,
       controller: removeController,
-      controllerAs: 'TemplateRemoveCtrl',
+      controllerAs: '$ctrl',
       resolve: { template: () => pick(template, this.templateItemModel) },
     });
     modal.result.then(() => this.api.sms.templates.query({
