@@ -547,6 +547,10 @@ angular.module('ua.alerter').directive('ovhAlert', function () {
                 $scope.ovhAlertMessageDetails = null;
             };
 
+            $scope.expandDetails = function() {
+                $scope.expand = !$scope.expand;
+            };
+
             if ($attr.ovhAlertHideRemoveButton !== undefined) {
                 $scope.ovhAlertHideRemoveButton = true;
             }
@@ -7247,12 +7251,7 @@ angular.module('ovh-utils-angular').run(['$templateCache', function($templateCac
 
 
   $templateCache.put('js/ovh-utils-angular/alerter/alerter.html',
-    "<div class=\"alert alert-dismissible\" role=alert data-ng-class=ovhAlertType data-ng-if=ovhAlertMessage><button class=close type=button data-ng-click=resetMessages() data-ng-if=!ovhAlertHideRemoveButton></button> <span data-ng-bind-html=ovhAlertMessage></span><div data-ng-if=ovhAlertMessageDetails><a class=text-underline data-tooltip-box data-tb-unique=true data-tb-content-template=components/ovh-utils-angular/alerter/tooltipErrorMessages.html data-tb-hide-on-blur=true data-tb-placement=bottom data-translate=common_alerts_message_see_more></a></div></div>"
-  );
-
-
-  $templateCache.put('js/ovh-utils-angular/alerter/tooltipErrorMessages.html',
-    "<ul style=\"margin: 0 0 5px 10px\"><li class=fs12 data-ng-repeat=\"ovhAlertMessage in ovhAlertMessageDetails\">{{ovhAlertMessage.id}} : {{ovhAlertMessage.message}}</li></ul>"
+    "<div class=\"alert alert-dismissible\" role=alert data-ng-class=ovhAlertType data-ng-if=ovhAlertMessage><button class=close type=button data-ng-click=resetMessages() data-ng-if=!ovhAlertHideRemoveButton></button> <span data-ng-bind-html=ovhAlertMessage></span><div data-ng-if=ovhAlertMessageDetails><button class=\"btn btn-link\" type=button aria-expanded=\"{{ expand }}\" data-translate=\"{{ expand ? 'common_alerts_message_see_less' : 'common_alerts_message_see_more' }}\" data-ng-click=expandDetails()></button><ul data-ng-if=expand><li data-ng-repeat=\"ovhAlertMessage in ::ovhAlertMessageDetails track by $index\"><span data-ng-bind=ovhAlertMessage.id></span> : <span data-ng-bind=ovhAlertMessage.message></span></li></ul></div></div>"
   );
 
 

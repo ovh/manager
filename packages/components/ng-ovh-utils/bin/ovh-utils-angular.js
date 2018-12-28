@@ -547,6 +547,10 @@ angular.module('ua.alerter').directive('ovhAlert', function () {
                 $scope.ovhAlertMessageDetails = null;
             };
 
+            $scope.expandDetails = function() {
+                $scope.expand = !$scope.expand;
+            };
+
             if ($attr.ovhAlertHideRemoveButton !== undefined) {
                 $scope.ovhAlertHideRemoveButton = true;
             }
