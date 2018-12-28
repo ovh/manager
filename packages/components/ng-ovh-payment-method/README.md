@@ -16,18 +16,14 @@ yarn add @ovh-ux/ng-payment-method
 import ovhAngularPaymentMethod from '@ovh-ux/ng-payment-method';
 
 // add the ovhAngularPaymentMethod module as dependency of your angular project
-angular.module('myApp', [
-  ...
-  ovhAngularPaymentMethod,
-  ...
-]);
-
-...
-
-// set the target - this will tell to the component which APIs the component needs to call
-angular.module('myApp').config((ovhPaymentMethodProvider, constants) => {
-  ovhPaymentMethodProvider.setTarget(constants.target);
-});
+angular
+  .module('myApp', [
+    ovhAngularPaymentMethod,
+  ])
+  .config((ovhPaymentMethodProvider, constants) => {
+    // set the target - this will tell to the component which APIs the component needs to call
+    ovhPaymentMethodProvider.setTarget(constants.target);
+  });
 ```
 
 ## Test
