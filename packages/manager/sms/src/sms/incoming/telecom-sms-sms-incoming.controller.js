@@ -1,5 +1,9 @@
 import angular from 'angular';
-import _ from 'lodash';
+import chunk from 'lodash/chunk';
+import filter from 'lodash/filter';
+import flatten from 'lodash/flatten';
+import get from 'lodash/get';
+import map from 'lodash/map';
 import moment from 'moment';
 
 import readController from './read/telecom-sms-sms-incoming-read.controller';
@@ -86,11 +90,11 @@ export default class {
         serviceName: this.$stateParams.serviceName,
       }).$promise
       .then(incomingIds => this.$q
-        .all(_.map(_.chunk(incomingIds, 50), id => this.api.smsIncoming.getBatch({
+        .all(map(chunk(incomingIds, 50), id => this.api.smsIncoming.getBatch({
           serviceName: this.$stateParams.serviceName,
           id,
         }).$promise))
-        .then(chunkResult => _.pluck(_.flatten(chunkResult), 'value')));
+        .then(chunkResult => map(flatten(chunkResult), 'value')));
   }
 
   /**
@@ -146,7 +150,7 @@ export default class {
    * @return {Promise}
    */
   getSelection() {
-    return _.filter(
+    return filter(
       this.incoming.raw,
       incoming => incoming && this.incoming.selected && this.incoming.selected[incoming.id],
     );
@@ -207,7 +211,7 @@ export default class {
     });
     modal.result.then(() => this.refresh()).catch((error) => {
       if (error && error.type === 'API') {
-        this.TucToast.error(this.$translate.instant('sms_sms_incoming_remove_ko', { error: _.get(error, 'msg.data.message') }));
+        this.TucToast.error(this.$translate.instant('sms_sms_incoming_remove_ko', { error: get(error, 'msg.data.message') }));
       }
     });
   }

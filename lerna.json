@@ -1,7 +1,8 @@
 {
   "lerna": "3.4.3",
   "packages": [
-    "packages/manager/*"
+    "packages/manager/*",
+    "packages/manager/**/app"
   ],
   "npmClient": "yarn",
   "useWorkspaces": true,

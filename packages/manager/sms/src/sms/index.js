@@ -1,34 +1,21 @@
 import angular from 'angular';
-import controller from './telecom-sms-sms.controller';
-import template from './telecom-sms-sms.html';
-
-import compose from './compose';
-import hlr from './hlr';
-import incoming from './incoming';
-import outgoing from './outgoing';
-import pending from './pending';
-import templates from './templates';
+import '@uirouter/angularjs';
+import 'oclazyload';
 
 const moduleName = 'ovhManagerSmsSms';
 
 angular.module(moduleName, [
-  compose,
-  hlr,
-  incoming,
-  outgoing,
-  pending,
-  templates,
+  'ui.router',
+  'oc.lazyLoad',
 ]).config(($stateProvider) => {
-  $stateProvider.state('sms.sms', {
+  $stateProvider.state('sms.sms.**', {
     url: '/sms',
-    views: {
-      'smsInnerView@sms': {
-        template,
-        controller,
-        controllerAs: 'TelecomSmsSmsCtrl',
-      },
+    lazyLoad: ($transition$) => {
+      const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+      return import('./telecom-sms-sms.component')
+        .then(mod => $ocLazyLoad.inject(mod.default || mod));
     },
-    translations: ['.'],
   });
 });
 

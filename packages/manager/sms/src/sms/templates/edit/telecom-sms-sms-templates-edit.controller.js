@@ -1,5 +1,6 @@
 import angular from 'angular';
-import _ from 'lodash';
+import isEqual from 'lodash/isEqual';
+import pick from 'lodash/pick';
 
 export default class {
   /* @ngInject */
@@ -79,9 +80,9 @@ export default class {
    * @return {Boolean}
    */
   hasChanged() {
-    return !_.isEqual(
-      _.pick(this.model.template, this.attributes),
-      _.pick(this.template, this.attributes),
+    return !isEqual(
+      pick(this.model.template, this.attributes),
+      pick(this.template, this.attributes),
     );
   }
 }

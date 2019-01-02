@@ -1,27 +1,24 @@
 import angular from 'angular';
-import controller from './telecom-sms-senders.controller';
-import template from './telecom-sms-senders.html';
-
-import add from './add';
-import blacklisted from './blacklisted';
+import '@uirouter/angularjs';
+import 'oclazyload';
 
 const moduleName = 'ovhManagerSmsSenders';
 
-angular.module(moduleName, [
-  add,
-  blacklisted,
-]).config(($stateProvider) => {
-  $stateProvider.state('sms.senders', {
-    url: '/senders',
-    views: {
-      'smsInnerView@sms': {
-        template,
-        controller,
-        controllerAs: 'SmsSendersCtrl',
+angular
+  .module(moduleName, [
+    'ui.router',
+    'oc.lazyLoad',
+  ])
+  .config(($stateProvider) => {
+    $stateProvider.state('sms.senders.**', {
+      url: '/senders',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+        return import('./telecom-sms-senders.component')
+          .then(mod => $ocLazyLoad.inject(mod.default || mod));
       },
-    },
-    translations: ['.', './add'],
+    });
   });
-});
 
 export default moduleName;

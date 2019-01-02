@@ -1,5 +1,10 @@
 import angular from 'angular';
-import _ from 'lodash';
+import assign from 'lodash/assign';
+import isEqual from 'lodash/isEqual';
+import map from 'lodash/map';
+import pick from 'lodash/pick';
+import result from 'lodash/result';
+import sortBy from 'lodash/sortBy';
 
 export default class {
   /* @ngInject */
@@ -37,7 +42,7 @@ export default class {
     this.loading.init = true;
     return this.TucSmsMediator.initDeferred.promise
       .then(() => this.TucSmsMediator.getApiScheme().then((schema) => {
-        this.availablePackQuantity = _.sortBy(_.map(schema.models['sms.PackQuantityAutomaticRecreditEnum'].enum, Number));
+        this.availablePackQuantity = sortBy(map(schema.models['sms.PackQuantityAutomaticRecreditEnum'].enum, Number));
       })).then(this.getAmount()).catch((err) => {
         this.TucToastError(err);
       }).finally(() => {
@@ -56,7 +61,7 @@ export default class {
         serviceName: this.$stateParams.serviceName,
         quantity: this.model.service.automaticRecreditAmount,
       }).$promise.then((credits) => {
-        this.price = _.result(credits, 'prices.withoutTax');
+        this.price = result(credits, 'prices.withoutTax');
         return this.price;
       }).finally(() => {
         this.loading.price = false;
@@ -75,12 +80,12 @@ export default class {
     return this.$q.all([
       this.api.sms.put({
         serviceName: this.$stateParams.serviceName,
-      }, _.pick(this.model.service, this.attributs)).$promise,
+      }, pick(this.model.service, this.attributs)).$promise,
       this.$timeout(angular.noop, 1000),
     ]).then(() => {
       this.loading.updateOptions = false;
       this.updated = true;
-      _.assign(this.service, _.pick(this.model.service, this.attributs), { price: null });
+      assign(this.service, pick(this.model.service, this.attributs), { price: null });
       return this.$timeout(() => this.close(), 1500);
     }).catch(error => this.cancel({
       type: 'API',
@@ -101,9 +106,9 @@ export default class {
    * @return {Boolean}
    */
   hasChanged() {
-    return !_.isEqual(
-      _.pick(this.model.service, this.attributs),
-      _.pick(this.service, this.attributs),
+    return !isEqual(
+      pick(this.model.service, this.attributs),
+      pick(this.service, this.attributs),
     );
   }
 }

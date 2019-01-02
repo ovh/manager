@@ -1,21 +1,24 @@
 import angular from 'angular';
-import template from './telecom-sms-dashboard.html';
-import controller from './telecom-sms-dashboard.controller';
+import '@uirouter/angularjs';
+import 'oclazyload';
 
 const moduleName = 'ovhManagerSmsDashboard';
 
-angular.module(moduleName, []).config(($stateProvider) => {
-  $stateProvider.state('sms.dashboard', {
-    url: '',
-    views: {
-      'smsInnerView@sms': {
-        template,
-        controller,
-        controllerAs: 'SmsDashboardCtrl',
+angular
+  .module(moduleName, [
+    'ui.router',
+    'oc.lazyLoad',
+  ])
+  .config(($stateProvider) => {
+    $stateProvider.state('sms.dashboard.**', {
+      url: '',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+        return import('./telecom-sms-dashboard.component')
+          .then(mod => $ocLazyLoad.inject(mod.default || mod));
       },
-    },
-    translations: ['.', '../sms/compose'],
+    });
   });
-});
 
 export default moduleName;

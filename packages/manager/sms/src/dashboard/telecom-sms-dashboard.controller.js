@@ -1,4 +1,8 @@
-import _ from 'lodash';
+import capitalize from 'lodash/capitalize';
+import chunk from 'lodash/chunk';
+import filter from 'lodash/filter';
+import flatten from 'lodash/flatten';
+import map from 'lodash/map';
 import moment from 'moment';
 
 export default class {
@@ -148,7 +152,7 @@ export default class {
     for (let i = 1; i <= this.stats.limit; i += 1) {
       monthsAvailable.push({
         index: this.stats.moment.month - i,
-        name: _.capitalize(moment().month(this.stats.moment.month - i).format('MMMM')),
+        name: capitalize(moment().month(this.stats.moment.month - i).format('MMMM')),
         fromYear: moment().month(this.stats.moment.month - i).format('YYYY'),
       });
     }
@@ -172,15 +176,15 @@ export default class {
     }).then((results) => {
       if (sender) {
         return this.$q
-          .all(_.map(
-            _.chunk(results.outgoing, 50),
+          .all(map(
+            chunk(results.outgoing, 50),
             id => this.api.sms.outgoing.getBatch({
               serviceName: this.$stateParams.serviceName,
               id,
             }).$promise.catch(err => this.TucToastError(err)),
           ))
-          .then(chunkResult => _.pluck(_.flatten(chunkResult), 'value')).then((sms) => {
-            this.stats.data.outgoing = _.filter(sms, { sender }).length;
+          .then(chunkResult => map(flatten(chunkResult), 'value')).then((sms) => {
+            this.stats.data.outgoing = filter(sms, { sender }).length;
             this.stats.data.incoming = 0;
           }).catch(err => this.TucToastError(err));
       }

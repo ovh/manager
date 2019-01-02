@@ -1,5 +1,10 @@
 import angular from 'angular';
-import _ from 'lodash';
+import filter from 'lodash/filter';
+import get from 'lodash/get';
+import has from 'lodash/has';
+import indexOf from 'lodash/indexOf';
+import kebabCase from 'lodash/kebabCase';
+import map from 'lodash/map';
 
 import addTemplate from './add/telecom-sms-receivers-add.html';
 import addController from './add/telecom-sms-receivers-add.controller';
@@ -62,7 +67,7 @@ export default class {
       data: null,
     };
     this.urls = {
-      receivers: _.get(this.SMS_URL, 'guides.receivers'),
+      receivers: get(this.SMS_URL, 'guides.receivers'),
     };
 
     this.receivers.isLoading = true;
@@ -88,13 +93,13 @@ export default class {
 
       // slotId isn't auto generated :( and must be in the range 1…9.
       for (let i = 1; i <= this.slot.threshold; i += 1) {
-        if (_.indexOf(this.slot.raw, i) === -1) {
+        if (indexOf(this.slot.raw, i) === -1) {
           this.slot.available.push(i);
         }
       }
       this.slot.count = receiversIds.length;
       this.slot.isFull = this.slot.count >= this.slot.threshold;
-      return this.$q.all(_.map(receiversIds, slotId => this.api.sms.receivers.get({
+      return this.$q.all(map(receiversIds, slotId => this.api.sms.receivers.get({
         serviceName: this.$stateParams.serviceName,
         slotId,
       }).$promise));
@@ -132,7 +137,7 @@ export default class {
    * @return {Array}
    */
   getSelection() {
-    return _.filter(
+    return filter(
       this.receivers.raw,
       receiver => receiver && this.receivers.selected && this.receivers.selected[receiver.slotId],
     );
@@ -169,7 +174,7 @@ export default class {
     });
     modal.result.then(() => this.refresh(), (error) => {
       if (error && error.type === 'API') {
-        this.TucToast.error(this.$translate.instant('sms_receivers_add_receiver_ko', { error: _.get(error, 'msg.data.message') }));
+        this.TucToast.error(this.$translate.instant('sms_receivers_add_receiver_ko', { error: get(error, 'msg.data.message') }));
       }
     });
   }
@@ -188,7 +193,7 @@ export default class {
     });
     modal.result.then(() => this.refresh(), (error) => {
       if (error && error.type === 'API') {
-        this.TucToast.error(this.$translate.instant('sms_receivers_edit_receiver_ko', { error: _.get(error, 'msg.data.message') }));
+        this.TucToast.error(this.$translate.instant('sms_receivers_edit_receiver_ko', { error: get(error, 'msg.data.message') }));
       }
     });
   }
@@ -230,7 +235,7 @@ export default class {
       resolve: { receiver: () => receiver },
     });
     modal.result.then((response) => {
-      if (_.has(response, 'taskId')) {
+      if (has(response, 'taskId')) {
         this.receivers.isCleaning = true;
         return this.api.sms.task.poll(this.$scope, {
           serviceName: this.$stateParams.serviceName,
@@ -243,7 +248,7 @@ export default class {
       return response;
     }).catch((error) => {
       if (error && error.type === 'API') {
-        this.TucToast.error(this.$translate.instant('sms_receivers_clean_receiver_ko', { error: _.get(error, 'msg.data.message') }));
+        this.TucToast.error(this.$translate.instant('sms_receivers_clean_receiver_ko', { error: get(error, 'msg.data.message') }));
       }
     });
     return modal;
@@ -265,7 +270,7 @@ export default class {
         this.csv.data = this.TucCsvParser.parse(csv.data);
       } catch (err) {
         this.csv.data = null;
-        this.TucToast.error(this.$translate.instant('sms_receivers_read_receiver_parse_ko', { error: _.get(err, 'msg.data.message') }));
+        this.TucToast.error(this.$translate.instant('sms_receivers_read_receiver_parse_ko', { error: get(err, 'msg.data.message') }));
       }
       return this.csv.data;
     }).catch((err) => {
@@ -279,7 +284,7 @@ export default class {
    * @param {Object} receiver
    */
   setFilename(receiver) {
-    return `${_.kebabCase([
+    return `${kebabCase([
       this.$stateParams.serviceName,
       this.$translate.instant('sms_tabs_contacts'),
       receiver.description,
@@ -300,7 +305,7 @@ export default class {
     });
     modal.result.then(() => this.refresh(), (error) => {
       if (error && error.type === 'API') {
-        this.TucToast.error(this.$translate.instant('sms_receivers_remove_receiver_ko', { error: _.get(error, 'msg.data.message') }));
+        this.TucToast.error(this.$translate.instant('sms_receivers_remove_receiver_ko', { error: get(error, 'msg.data.message') }));
       }
     });
   }

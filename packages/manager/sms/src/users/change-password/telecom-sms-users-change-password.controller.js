@@ -1,5 +1,5 @@
 import angular from 'angular';
-import _ from 'lodash';
+import pick from 'lodash/pick';
 
 export default class {
   /* @ngInject */
@@ -23,7 +23,7 @@ export default class {
     this.changed = false;
     this.attributes = ['password'];
     this.model = {
-      user: _.pick(angular.copy(this.user), 'login'),
+      user: pick(angular.copy(this.user), 'login'),
     };
     this.passwordPattern = /^\w{8}$/;
   }
@@ -38,7 +38,7 @@ export default class {
       this.api.sms.users.edit({
         serviceName: this.$stateParams.serviceName,
         login: this.user.login,
-      }, _.pick(this.model.user, this.attributes)).$promise,
+      }, pick(this.model.user, this.attributes)).$promise,
       this.$timeout(angular.noop, 1000),
     ]).then(() => {
       this.loading.changePasswordUser = false;

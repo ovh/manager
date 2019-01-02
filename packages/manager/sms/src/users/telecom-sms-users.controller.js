@@ -1,5 +1,6 @@
 import angular from 'angular';
-import _ from 'lodash';
+import get from 'lodash/get';
+import map from 'lodash/map';
 
 import addController from './add/telecom-sms-users-add.controller';
 import addTemplate from './add/telecom-sms-users-add.html';
@@ -77,7 +78,7 @@ export default class {
   fetchUsers() {
     return this.api.smsUsers.query({
       serviceName: this.$stateParams.serviceName,
-    }).$promise.then(loginIds => this.$q.all(_.map(loginIds, login => this.api.smsUsers.get({
+    }).$promise.then(loginIds => this.$q.all(map(loginIds, login => this.api.smsUsers.get({
       serviceName: this.$stateParams.serviceName,
       login,
     }).$promise)));
@@ -121,7 +122,7 @@ export default class {
     });
     modal.result.then(() => this.refresh()).catch((error) => {
       if (error && error.type === 'API') {
-        this.TucToast.error(this.$translate.instant('sms_users_add_user_ko', { error: _.get(error, 'msg.data.message') }));
+        this.TucToast.error(this.$translate.instant('sms_users_add_user_ko', { error: get(error, 'msg.data.message') }));
       }
     });
   }
@@ -143,7 +144,7 @@ export default class {
       this.service = service;
     }).catch(error => this.TucToastError(error))).catch((error) => {
       if (error && error.type === 'API') {
-        this.TucToast.error(this.$translate.instant('sms_users_templates_update_ko', { error: _.get(error, 'msg.data.message') }));
+        this.TucToast.error(this.$translate.instant('sms_users_templates_update_ko', { error: get(error, 'msg.data.message') }));
       }
     });
   }
@@ -162,7 +163,7 @@ export default class {
     });
     modal.result.then(() => this.refresh()).catch((error) => {
       if (error && error.type === 'API') {
-        this.TucToast.error(this.$translate.instant('sms_users_change_password_user_ko', { error: _.get(error, 'msg.data.message') }));
+        this.TucToast.error(this.$translate.instant('sms_users_change_password_user_ko', { error: get(error, 'msg.data.message') }));
       }
     });
   }
@@ -189,7 +190,7 @@ export default class {
     });
     modal.result.then(() => this.refresh()).catch((error) => {
       if (error && error.type === 'API') {
-        this.TucToast.error(this.$translate.instant('sms_users_quota_user_ko', { error: _.get(error, 'msg.data.message') }));
+        this.TucToast.error(this.$translate.instant('sms_users_quota_user_ko', { error: get(error, 'msg.data.message') }));
       }
     });
   }
@@ -208,7 +209,7 @@ export default class {
     });
     modal.result.then(() => this.refresh()).catch((error) => {
       if (error && error.type === 'API') {
-        this.TucToast.error(this.$translate.instant('sms_users_limit_user_ko', { error: _.get(error, 'msg.data.message') }));
+        this.TucToast.error(this.$translate.instant('sms_users_limit_user_ko', { error: get(error, 'msg.data.message') }));
       }
     });
   }
@@ -227,7 +228,7 @@ export default class {
     });
     modal.result.then(() => this.refresh()).catch((error) => {
       if (error && error.type === 'API') {
-        this.TucToast.error(this.$translate.instant('sms_users_restrict_user_ko', { error: _.get(error, 'msg.data.message') }));
+        this.TucToast.error(this.$translate.instant('sms_users_restrict_user_ko', { error: get(error, 'msg.data.message') }));
       }
     });
   }
@@ -246,7 +247,7 @@ export default class {
     });
     modal.result.then(() => this.refresh()).catch((error) => {
       if (error && error.type === 'API') {
-        this.TucToast.error(this.$translate.instant('sms_users_callback_user_ko', { error: _.get(error, 'msg.data.message') }));
+        this.TucToast.error(this.$translate.instant('sms_users_callback_user_ko', { error: get(error, 'msg.data.message') }));
       }
     });
   }
@@ -265,7 +266,7 @@ export default class {
     });
     modal.result.then(() => this.refresh()).catch((error) => {
       if (error && error.type === 'API') {
-        this.TucToast.error(this.$translate.instant('sms_users_remove_user_ko', { error: _.get(error, 'msg.data.message') }));
+        this.TucToast.error(this.$translate.instant('sms_users_remove_user_ko', { error: get(error, 'msg.data.message') }));
       }
     });
   }

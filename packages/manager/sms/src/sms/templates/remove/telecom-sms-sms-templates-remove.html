@@ -1,69 +1,36 @@
-<form name="removeSmsTemplateForm"
-      id="removeSmsTemplateForm"
-      data-ng-submit="TemplateRemoveCtrl.remove()">
+<oui-modal data-heading="{{:: 'sms_sms_templates_remove' | translate }}"
+           data-primary-action="$ctrl.remove()"
+           data-primary-label="{{:: 'submit' | translate }}"
+           data-primary-disabled="$ctrl.loading.removeTemplate || $ctrl.removed"
+           data-secondary-action="$ctrl.cancel()"
+           data-secondary-label="{{:: 'cancel' | translate }}"
+           data-secondary-disabled="$ctrl.loading.removeTemplate || $ctrl.removed"
+           data-on-dismiss="$ctrl.cancel()"
+           data-loading="$ctrl.loading.removeTemplate && !$ctrl.removed">
+    <dl class="dl-horizontal"
+        data-ng-if="!$ctrl.loading.removeTemplate && !$ctrl.removed">
+        <!-- NAME -->
+        <dt data-translate="sms_sms_templates_list_title_name"></dt>
+        <dd class="word-break"
+            data-ng-bind="::$ctrl.template.name"></dd>
 
-    <div class="modal-header">
-        <button
-            type="button"
-            class="close float-right"
-            aria-label="{{ ::'sms_cancel' | translate }}"
-            data-ng-click="TemplateRemoveCtrl.cancel()">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
+        <!-- DATETIME -->
+        <dt data-translate="sms_sms_templates_list_title_date"></dt>
+        <dd data-ng-bind="::$ctrl.template.datetime | date:'shortDate'"></dd>
 
-    <div class="modal-body"
-         data-ng-if="!TemplateRemoveCtrl.loading.removeTemplate && !TemplateRemoveCtrl.removed">
-        <h3 class="modal-title"
-            data-translate="sms_sms_templates_remove">
-        </h3>
-        <dl class="dl-horizontal">
-            <!-- NAME -->
-            <dt data-translate="sms_sms_templates_list_title_name"></dt>
-            <dd data-ng-bind="TemplateRemoveCtrl.template.name"></dd>
+        <!-- ACTIVITY -->
+        <dt data-translate="sms_sms_templates_list_title_type"></dt>
+        <dd data-ng-bind="::$ctrl.template.activity"></dd>
 
-            <!-- DATETIME -->
-            <dt data-translate="sms_sms_templates_list_title_date"></dt>
-            <dd data-ng-bind="TemplateRemoveCtrl.template.datetime | date:'shortDate'"></dd>
+        <!-- DESCRIPTION -->
+        <dt data-translate="sms_sms_templates_list_title_description"></dt>
+        <dd class="word-break"
+            data-ng-bind="::$ctrl.template.description"></dd>
+    </dl>
 
-            <!-- ACTIVITY -->
-            <dt data-translate="sms_sms_templates_list_title_type"></dt>
-            <dd data-ng-bind="TemplateRemoveCtrl.template.activity"></dd>
-
-            <!-- DESCRIPTION -->
-            <dt data-translate="sms_sms_templates_list_title_description"></dt>
-            <dd data-ng-bind="TemplateRemoveCtrl.template.description"></dd>
-        </dl>
-    </div>
-
-    <div class="modal-body text-center"
-         data-ng-if="TemplateRemoveCtrl.loading.removeTemplate && !TemplateRemoveCtrl.removed">
-        <oui-spinner></oui-spinner>
-        <h4 data-translate="sms_sms_templates_removing"></h4>
-    </div>
-
-    <div class="modal-body"
-         data-ng-if="TemplateRemoveCtrl.removed">
-        <tuc-success-drawing-check data-draw-success-check="TemplateRemoveCtrl.removed">
+    <div data-ng-if="$ctrl.removed">
+        <tuc-success-drawing-check data-draw-success-check="$ctrl.removed">
             <h4 data-translate="sms_sms_templates_removed"></h4>
         </tuc-success-drawing-check>
     </div>
-
-    <div class="modal-footer">
-        <button
-            type="button"
-            class="btn btn-default"
-            data-ng-click="TemplateRemoveCtrl.cancel()"
-            data-ng-disabled="TemplateRemoveCtrl.loading.removeTemplate || TemplateRemoveCtrl.removed"
-            data-translate="sms_cancel">
-        </button>
-        <button
-            type="submit"
-            class="btn btn-primary"
-            data-ng-disabled="removeSmsTemplateForm.$invalid ||
-                              TemplateRemoveCtrl.loading.removeTemplate ||
-                              TemplateRemoveCtrl.removed"
-            data-translate="sms_submit">
-        </button>
-    </div>
-</form>
+</oui-modal>

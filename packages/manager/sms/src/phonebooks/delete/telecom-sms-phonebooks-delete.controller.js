@@ -1,5 +1,5 @@
 import angular from 'angular';
-import _ from 'lodash';
+import get from 'lodash/get';
 
 export default class {
   /* @ngInject */
@@ -33,7 +33,7 @@ export default class {
     return this.$q.all([
       this.api.sms.phonebooks.delete({
         serviceName: this.$stateParams.serviceName,
-        bookKey: _.get(this.phonebook, 'bookKey'),
+        bookKey: get(this.phonebook, 'bookKey'),
       }).$promise,
       this.$timeout(angular.noop, 1000),
     ]).then(() => {

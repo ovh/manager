@@ -1,5 +1,5 @@
 export default /* @ngInject */ function
-($stateParams, $translate, $q, OvhApiOverTheBox, SidebarMenu, TucToast, CORE_URLS) {
+($scope, $stateParams, $translate, $q, OvhApiOverTheBox, TucToast, CORE_URLS) {
   const self = this;
 
   self.dice = Math.round(Math.random() * 100);
@@ -34,9 +34,11 @@ export default /* @ngInject */ function
       customerDescription: str,
     }).$promise.then(() => {
       self.service.customerDescription = str;
-      SidebarMenu.updateItemDisplay({
-        title: self.service.customerDescription || self.service.serviceName,
-      }, self.service.serviceName, 'telecom-otb-section');
+
+      $scope.$emit(
+        'overTheBox_updateName',
+        self.service.customerDescription || self.service.serviceName,
+      );
       return str;
     }).catch((err) => {
       TucToast.error($translate.instant('overTheBox_error_rename', $stateParams));

@@ -1,5 +1,7 @@
 import angular from 'angular';
-import _ from 'lodash';
+import filter from 'lodash/filter';
+import get from 'lodash/get';
+import map from 'lodash/map';
 import controller from './remove/telecom-sms-senders-blacklisted-remove.controller';
 import template from './remove/telecom-sms-senders-blacklisted-remove.html';
 
@@ -65,7 +67,7 @@ export default class {
         serviceName: this.$stateParams.serviceName,
       }).$promise
       .then(blacklistsIds => this.$q
-        .all(_.map(blacklistsIds, number => this.api.sms.blacklists.get({
+        .all(map(blacklistsIds, number => this.api.sms.blacklists.get({
           serviceName: this.$stateParams.serviceName,
           number,
         }).$promise)));
@@ -102,7 +104,7 @@ export default class {
    * @return {Array}
    */
   getSelection() {
-    return _.filter(
+    return filter(
       this.blacklists.raw,
       list => list && this.blacklists.selected && this.blacklists.selected[list.number],
     );
@@ -145,7 +147,7 @@ export default class {
     });
     modal.result.then(() => this.refresh()).catch((error) => {
       if (error && error.type === 'API') {
-        this.TucToast.error(this.$translate.instant('sms_senders_blacklisted_sender_ko', { error: _.get(error, 'msg.data.message') }));
+        this.TucToast.error(this.$translate.instant('sms_senders_blacklisted_sender_ko', { error: get(error, 'msg.data.message') }));
       }
     });
   }

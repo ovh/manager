@@ -1,5 +1,9 @@
 import angular from 'angular';
-import _ from 'lodash';
+import assign from 'lodash/assign';
+import get from 'lodash/get';
+import isEmpty from 'lodash/isEmpty';
+import isEqual from 'lodash/isEqual';
+import pick from 'lodash/pick';
 
 export default class {
   /* @ngInject */
@@ -38,7 +42,7 @@ export default class {
       isUpdating: false,
       hasBeenUpdated: false,
     };
-    _.assign(this.phonecontactForm, this.contact);
+    assign(this.phonecontactForm, this.contact);
   }
 
   /**
@@ -60,8 +64,8 @@ export default class {
     return this.$q.all([
       this.api.sms.phonebooks.phonebookContact.update({
         serviceName: this.$stateParams.serviceName,
-        bookKey: _.get(this.phonebook, 'bookKey'),
-        id: _.get(this.contact, 'id'),
+        bookKey: get(this.phonebook, 'bookKey'),
+        id: get(this.contact, 'id'),
       }, this.TucPhonebookcontact.getContactData(this.phonecontactForm)).$promise,
       this.$timeout(angular.noop, 1000),
     ]).then(() => {
@@ -80,7 +84,7 @@ export default class {
    * @return {Boolean}
    */
   isValidNumber(value) {
-    return !_.isEmpty(value) ? this.TelecomSmsPhoneBooksNumber.IsValid(value) : true;
+    return !isEmpty(value) ? this.TelecomSmsPhoneBooksNumber.IsValid(value) : true;
   }
 
   /**
@@ -105,6 +109,6 @@ export default class {
    */
   hasChanged() {
     const fields = ['surname', 'name', 'group', 'homePhone', 'homeMobile', 'workPhone', 'workMobile'];
-    return !_.isEqual(_.pick(this.phonecontactForm, fields), _.pick(this.data.contact, fields));
+    return !isEqual(pick(this.phonecontactForm, fields), pick(this.data.contact, fields));
   }
 }

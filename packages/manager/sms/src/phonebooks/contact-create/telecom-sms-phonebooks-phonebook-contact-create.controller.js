@@ -1,5 +1,6 @@
 import angular from 'angular';
-import _ from 'lodash';
+import get from 'lodash/get';
+import isEmpty from 'lodash/isEmpty';
 
 export default class {
   /* @ngInject */
@@ -56,7 +57,7 @@ export default class {
     return this.$q.all([
       this.api.sms.phonebookContact.create({
         serviceName: this.$stateParams.serviceName,
-        bookKey: _.get(this.phonebook, 'bookKey'),
+        bookKey: get(this.phonebook, 'bookKey'),
       }, this.TucPhonebookcontact.getContactData(this.phonecontactForm)).$promise,
       this.$timeout(angular.noop, 1000),
     ]).then(() => {
@@ -75,7 +76,7 @@ export default class {
    * @return {Boolean}
    */
   isValidNumber(value) {
-    return !_.isEmpty(value) ? this.TelecomSmsPhoneBooksNumber.IsValid(value) : true;
+    return !isEmpty(value) ? this.TelecomSmsPhoneBooksNumber.IsValid(value) : true;
   }
 
   /**

@@ -1,5 +1,8 @@
 import angular from 'angular';
-import _ from 'lodash';
+import assign from 'lodash/assign';
+import filter from 'lodash/filter';
+import map from 'lodash/map';
+import result from 'lodash/result';
 
 import addController from './add/telecom-sms-options-response-add.controller';
 import addTemplate from './add/telecom-sms-options-response-add.html';
@@ -64,7 +67,7 @@ export default class {
       // ["cgi", "none", "text"] => ["none", "cgi", "text"]
       this.enums.smsResponseType.splice(0, 0, this.enums.smsResponseType.splice(1, 1)[0]);
       this.service = angular.copy(responses.service);
-      this.smsResponse = angular.copy(_.result(this.service, 'smsResponse'));
+      this.smsResponse = angular.copy(result(this.service, 'smsResponse'));
       this.senders = responses.senders;
       this.computeRemainingChar();
     }).catch((err) => {
@@ -104,10 +107,10 @@ export default class {
   fetchSenders() {
     return this.api.smsSenders.query({
       serviceName: this.$stateParams.serviceName,
-    }).$promise.then(sendersIds => this.$q.all(_.map(sendersIds, sender => this.api.smsSenders.get({
+    }).$promise.then(sendersIds => this.$q.all(map(sendersIds, sender => this.api.smsSenders.get({
       serviceName: this.$stateParams.serviceName,
       sender,
-    }).$promise)).then(senders => _.filter(senders, { status: 'enable' })));
+    }).$promise)).then(senders => filter(senders, { status: 'enable' })));
   }
 
   /**
@@ -115,7 +118,7 @@ export default class {
      * @return {Object}
      */
   computeRemainingChar() {
-    return _.assign(this.message, this.TucSmsMediator.getSmsInfoText(
+    return assign(this.message, this.TucSmsMediator.getSmsInfoText(
       this.smsResponse.text,
       false, // suffix
     ));
@@ -138,7 +141,7 @@ export default class {
       },
     }).$promise.then(() => {
       this.service.smsResponse = this.smsResponse;
-      this.smsResponse = angular.copy(_.result(this.service, 'smsResponse'));
+      this.smsResponse = angular.copy(result(this.service, 'smsResponse'));
       this.TucToast.success(this.$translate.instant('sms_options_response_action_status_success'));
     }).catch((err) => {
       this.TucToastError(err);
@@ -168,7 +171,7 @@ export default class {
     });
     modal.result.then(() => this.fetchService().then((service) => {
       this.service = angular.copy(service);
-      this.smsResponse = angular.copy(_.result(this.service, 'smsResponse'));
+      this.smsResponse = angular.copy(result(this.service, 'smsResponse'));
     })).catch((error) => {
       if (error && error.type === 'API') {
         this.TucToast.error(this.$translate.instant('sms_options_response_tracking_add_option_ko', { error: error.message }));
@@ -196,7 +199,7 @@ export default class {
     });
     modal.result.then(() => this.fetchService().then((service) => {
       this.service = angular.copy(service);
-      this.smsResponse = angular.copy(_.result(this.service, 'smsResponse'));
+      this.smsResponse = angular.copy(result(this.service, 'smsResponse'));
     })).catch((error) => {
       if (error && error.type === 'API') {
         this.TucToast.error(this.$translate.instant('sms_options_response_tracking_edit_option_ko', { error: error.message }));
@@ -223,7 +226,7 @@ export default class {
     });
     modal.result.then(() => this.fetchService().then((service) => {
       this.service = angular.copy(service);
-      this.smsResponse = angular.copy(_.result(this.service, 'smsResponse'));
+      this.smsResponse = angular.copy(result(this.service, 'smsResponse'));
     })).catch((error) => {
       if (error && error.type === 'API') {
         this.TucToast.error(this.$translate.instant('sms_options_response_tracking_remove_option_ko', { error: error.message }));

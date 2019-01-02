@@ -2,6 +2,8 @@ import angular from 'angular';
 
 import '@ovh-ux/telecom-universe-components';
 import '@ovh-ux/manager-telecom-styles';
+import 'ovh-angular-checkbox-table';
+import 'ovh-angular-responsive-tabs';
 
 import './telecom-sms.less';
 
@@ -21,18 +23,21 @@ import users from './users';
 
 const moduleName = 'ovhManagerSmsComponent';
 
-angular.module(moduleName, [
-  'telecomUniverseComponents',
-  dashboard,
-  guides,
-  options,
-  order,
-  phonebooks,
-  receivers,
-  senders,
-  sms,
-  users,
-])
+angular
+  .module(moduleName, [
+    'telecomUniverseComponents',
+    'ovh-angular-checkbox-table',
+    'ovh-angular-responsive-tabs',
+    dashboard,
+    guides,
+    options,
+    order,
+    phonebooks,
+    receivers,
+    senders,
+    sms,
+    users,
+  ])
   .constant('SMS_URL', constant.SMS_URL)
   .constant('SMS_GUIDES', constant.SMS_GUIDES)
   .constant('SMS_ALERTS', constant.SMS_ALERTS)

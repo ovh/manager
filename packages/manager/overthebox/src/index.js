@@ -1,4 +1,6 @@
 import angular from 'angular';
+
+import '@ovh-ux/manager-core';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
@@ -7,6 +9,7 @@ const moduleName = 'ovhManagerOtb';
 angular.module(moduleName, [
   'ui.router',
   'oc.lazyLoad',
+  'ovhManagerCore',
 ])
   .config(/* @ngInject */ ($stateProvider) => {
     $stateProvider.state('overTheBox.**', {
