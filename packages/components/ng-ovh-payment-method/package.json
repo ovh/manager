@@ -35,6 +35,7 @@
     "lint-staged": "^7.3.0"
   },
   "peerDependencies": {
+    "@ovh-ux/translate-async-loader": "^1.0.8",
     "angular": "^1.5.0",
     "angular-translate": "^2.17.0",
     "lodash": "~3.10.1",
