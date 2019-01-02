@@ -86,7 +86,7 @@ export default class OvhPaymentMethodService {
         .value());
     }
 
-    return $q.when(['CREDIT_CARD']);
+    return this.$q.when(['CREDIT_CARD']);
   }
 
   /* ----------  Payment Means  ---------- */
@@ -270,25 +270,25 @@ export default class OvhPaymentMethodService {
 
   /* ----------  Payment types  ---------- */
 
-  getAvailablePaymentTypes(translated) {
-    return this.$q.all({
-      legacyTypes: this.getLegacyPaymentTypes(),
-      paymentMethodTypes: this.OvhApiMe.Payment().Method().v6().availableMethods().$promise,
-    }).then(({ legacyTypes, paymentMethodTypes }) => {
-      console.log(legacyTypes, paymentMethodTypes);
-    });
-
-    const paymentTypes = this.target !== 'US' ? AVAILABLE_PAYMENT_MEANS : [];
-
-    if (!translated) {
-      return paymentTypes;
-    }
-
-    return _.map(paymentTypes, paymentType => ({
-      value: paymentType,
-      text: this.$translate.instant(`ovh_payment_type_${_.snakeCase(paymentType)}`),
-    }));
-  }
+  // getAvailablePaymentTypes(translated) {
+  //   return this.$q.all({
+  //     legacyTypes: this.getLegacyPaymentTypes(),
+  //     paymentMethodTypes: this.OvhApiMe.Payment().Method().v6().availableMethods().$promise,
+  //   }).then(({ legacyTypes, paymentMethodTypes }) => {
+  //     console.log(legacyTypes, paymentMethodTypes);
+  //   });
+  //
+  //   const paymentTypes = this.target !== 'US' ? AVAILABLE_PAYMENT_MEANS : [];
+  //
+  //   if (!translated) {
+  //     return paymentTypes;
+  //   }
+  //
+  //   return _.map(paymentTypes, paymentType => ({
+  //     value: paymentType,
+  //     text: this.$translate.instant(`ovh_payment_type_${_.snakeCase(paymentType)}`),
+  //   }));
+  // }
 
   /* ----------  Action on paymentMethod  ---------- */
 
