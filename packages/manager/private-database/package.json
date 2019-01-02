@@ -31,8 +31,8 @@
   },
   "peerDependencies": {
     "@ovh-ux/manager-core": "^1.1.0",
-    "@ovh-ux/ovh-utils-angular": "^14.0.0-alpha.1",
-    "@ovh-ux/web-universe-components": "^1.0.0",
+    "@ovh-ux/ovh-utils-angular": "^14.0.0",
+    "@ovh-ux/web-universe-components": "^1.1.0",
     "@uirouter/angularjs": "^1.0.15",
     "angular": "1.7.5",
     "angularjs-scroll-glue": "^2.2.0",

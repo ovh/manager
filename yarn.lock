@@ -1579,10 +1579,10 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/ovh-angular-contracts/-/ovh-angular-contracts-3.0.0-beta.0.tgz#fb1501243c8bffcd969d6b164123f09f3891e32d"
   integrity sha512-JXhLnIgjXRteyzCCTpKzcq+CRF6IDOktuJp/X2ZPNy1qpaAviRt9wdSuowO8fXjnBiCjZ/0VxN6NwAwRIBbDVw==
 
-"@ovh-ux/ovh-utils-angular@^14.0.0-alpha.1":
-  version "14.0.0-alpha.1"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ovh-utils-angular/-/ovh-utils-angular-14.0.0-alpha.1.tgz#8f29f648a258ae0d7753fb9e1896b863364a5af1"
-  integrity sha512-tVesMARNWjArQXaE7qBT69OOD/e4yxuHZ9xgBTqraRzM5NsZ3ETHU65aKypV+EfoFqsCkqUvEJ/6ErmuysP38w==
+"@ovh-ux/ovh-utils-angular@^14.0.0":
+  version "14.0.2"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ovh-utils-angular/-/ovh-utils-angular-14.0.2.tgz#837fbfcd093287971aa6d0733a1bbad0e008e8e7"
+  integrity sha512-mJPo16TErF948lbvS6JBeue9HjqN29C6ub5Hl++61CuSYTDeNTHIsXELC4TW1QiNP7otGZm93jf2Fb0ZMsjTbg==
   dependencies:
     "@ovh-ux/translate-async-loader" "^1.0.4"
     filesize "^3.6.1"
@@ -1610,9 +1610,9 @@
   integrity sha512-8yEhPeRTSxtEO9ODXRYZw6pzRQiV5ULCTi8mIzt39m/b9N2TcIF4ILTPsaa8xpE4npHKa/iYgL9z0HJUFi2LGQ==
 
 "@ovh-ux/web-universe-components@^1.1.0":
-  version "1.1.0-beta.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/web-universe-components/-/web-universe-components-1.1.0-beta.0.tgz#4b6f3fd24b81e0eba2bb26c3b0edcddbbaa61100"
-  integrity sha512-GU9j8U0NhYPHcOjmOpHDz3GefCTBLg/E8GwPcy+fHu8OFKUdGdqsriQ436g2FO0Gt3rf5h7eysHPG/rGs1dlsw==
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/web-universe-components/-/web-universe-components-1.1.0.tgz#cfd819e850786270d687167b63c75ef560509838"
+  integrity sha512-31Na0ckF52H6fPB/HU3BLeibPbb+wpoYRUKhR3BkI5mSyGShur8y9yP6988fol/O4O3od5dtAFWb6Pp19nOiBg==
   dependencies:
     bootstrap "^3.3.7"
     ovh-ui-kit "^2.22.0"
