@@ -1,8 +1,7 @@
 import angular from 'angular';
-import '@uirouter/angularjs';
-
-import 'ng-at-internet';
 import '@ovh-ux/ovh-angular-contracts';
+import '@uirouter/angularjs';
+import 'ng-at-internet';
 
 import controller from './telecom-sms-order.controller';
 import template from './telecom-sms-order.html';
