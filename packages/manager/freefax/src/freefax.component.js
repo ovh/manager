@@ -3,9 +3,12 @@ import angular from 'angular';
 
 import '@ovh-ux/manager-core';
 import '@ovh-ux/telecom-universe-components';
+import '@ovh-ux/manager-telecom-styles';
 import '@ovh-ux/ng-uirouter-title';
 import 'ovh-angular-ui-confirm-modal';
 import 'ovh-api-services';
+
+import '@ovh-ux/ovh-angular-contracts';
 
 import credit from './credit';
 import faxConfiguration from './faxConfiguration';
@@ -16,8 +19,6 @@ import controller from './freefax.controller';
 import template from './freefax.html';
 
 import freeFaxInformations from './information/freeFax-information.html';
-
-import './freefax.less';
 
 export default angular
   .module('OvhManagerFreefaxComponent', [

@@ -1,0 +1,205 @@
+@import '~bootstrap/less/variables.less';
+@import '~ovh-ui-kit/packages/oui-color/_variables.less';
+@import '~ovh-ui-kit/packages/oui-typography/_variables.less';
+
+/* stylelint-disable no-descending-specificity */
+@service-button-bg-color: @gray-lighter;
+
+.services-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 0;
+
+  .service-item {
+    margin: 6px 0;
+  }
+}
+
+.telecom-link {
+  strong {
+    vertical-align: middle;
+  }
+}
+
+.service-title {
+  font-size: @font-size-base;
+  text-align: left !important;
+  font-weight: 400;
+}
+
+.service-item {
+  position: relative;
+  margin-bottom: 16px;
+  line-height: 25px;
+  color: @gray-base;
+
+  &.main-service {
+    .service-button-description {
+      .action-icon {
+        font-size: 32px;
+        color: @oui-color-dodger;
+      }
+    }
+  }
+}
+
+.informations-list {
+  margin-bottom: 0;
+
+  dt,
+  dd {
+    display: inline-block;
+    min-height: 48px;
+    font-weight: 400;
+  }
+
+  dt {
+    padding-top: 12px;
+  }
+
+  dd {
+    margin-bottom: 8px;
+
+    > span {
+      display: inline-block;
+      padding-top: 12px;
+    }
+  }
+}
+
+.service-button {
+  display: table;
+  overflow: hidden;
+  width: 100%;
+  min-height: 48px;
+  padding: 12px;
+  position: relative;
+  background-color: @service-button-bg-color;
+  color: @gray-base;
+  font-size: @font-size-base;
+  font-weight: 400;
+
+  &.disabled,
+  .disabled & {
+    cursor: default;
+    opacity: 0.5;
+
+    .ovh-font {
+      color: @gray-base;
+    }
+
+    .service-button-description {
+      .description-subtext {
+        color: @gray-base;
+      }
+    }
+
+    .link-name {
+      display: none;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+      .ovh-font {
+        color: @gray-base;
+      }
+
+      .service-button-description {
+        .description-subtext {
+          color: @gray-base;
+        }
+      }
+    }
+  }
+
+  &:hover:not(span),
+  &:focus:not(span),
+  &:active:not(span) {
+    text-decoration: none;
+    color: @gray-base;
+
+    .link-name,
+    .ovh-font {
+      color: @oui-link-font-color_hover;
+    }
+
+    .ovh-font-arrow-right {
+      right: 8px;
+    }
+
+    .link-name {
+      right: 8px;
+
+      .ovh-font-arrow-right {
+        margin-left: 0;
+      }
+    }
+  }
+
+  .ovh-font {
+    color: @oui-color-brand;
+
+    &.text-success {
+      color: @oui-color-success-dark;
+    }
+
+    &.text-danger {
+      color: @oui-color-error-dark;
+    }
+  }
+
+  .service-button-description {
+    display: table-cell;
+    vertical-align: middle;
+    padding-right: 30%;
+    height: 100%;
+    line-height: 1.5em;
+
+    .description-title,
+    .description-subtext {
+      font-size: @font-size-base;
+      color: @gray-dark;
+      line-height: 18px;
+      padding-left: 12px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .description-subtext {
+      color: @oui-color-dodger;
+    }
+  }
+
+  .link-name,
+  .ovh-font-arrow-right {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    margin-top: -12px;
+  }
+
+  .ovh-font-arrow-right {
+    transition: right 250ms ease-out, margin-left 250ms ease-out;
+    margin-top: -7px;
+  }
+
+  .link-name {
+    transition: right 250ms ease-out;
+
+    .ovh-font-arrow-right {
+      position: static;
+      margin-left: 2px;
+      margin-top: -2px;
+    }
+  }
+}
+
+.telecom-telephony {
+  .service-button {
+    .service-button-description {
+      padding-right: 24px;
+    }
+  }
+}
+/* stylelint-enable no-descending-specificity */

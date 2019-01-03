@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+<!-- PHONEBOOK -->
+   <translation id="sms_phonebooks_phonebook_title" qtlid="393828">Gestisci la rubrica</translation>
+   <translation id="sms_phonebooks_phonebook_select_label" qtlid="393841">Seleziona la tua rubrica:</translation>
+   <translation id="sms_phonebooks_phonebook_ko" qtlid="393854">Ops! Impossible recuperare la rubrica.</translation>
+
+<!-- PHONEBOOK CREATE -->
+   <translation id="sms_phonebooks_phonebook_create" qtlid="393867">Aggiungi rubrica</translation>
+   <translation id="sms_phonebooks_phonebook_create_info" qtlid="393880">Nessuna rubrica trovata.</translation>
+   <translation id="sms_phonebooks_phonebook_create_name_placeholder" qtlid="393893">Nome della rubrica</translation>
+   <translation id="sms_phonebooks_phonebook_create_name_error_required" qtlid="393906">Il campo "Nome della rubrica" è obbligatorio.</translation>
+   <translation id="sms_phonebooks_phonebook_create_name_error_pattern" qtlid="393919">Il nome della rubrica deve contenere solo caratteri alfanumerici.</translation>
+   <translation id="sms_phonebooks_phonebook_create_name_error_maxlength" qtlid="393932">Il nome della rubrica deve contenere meno di 50 caratteri.</translation>
+
+<!-- PHONEBOOK UPDATE -->
+   <translation id="sms_phonebooks_phonebook_update_name_label" qtlid="393945">Rubrica:</translation>
+   <translation id="sms_phonebooks_phonebook_update_name_sr_only" qtlid="393958">Modifica la rubrica</translation>
+   <translation id="sms_phonebooks_phonebook_update_ko" qtlid="393971">Ops! Impossibile modificare la rubrica.</translation>
+
+<!-- PHONEBOOK DELETE -->
+   <translation id="sms_phonebooks_phonebook_delete" qtlid="393984">Elimina la rubrica</translation>
+   <translation id="sms_phonebooks_phonebook_delete_info" qtlid="393997">Ti ricordiamo che anche i contatti presenti nella rubrica verranno eliminati.</translation>
+   <translation id="sms_phonebooks_phonebook_delete_confirm" qtlid="394010">Vuoi davvero eliminare la rubrica <b>«{{ name }}»</b>?</translation>
+   <translation id="sms_phonebooks_phonebook_deleting" qtlid="394023">Eliminazione della rubrica in corso...</translation>
+   <translation id="sms_phonebooks_phonebook_deleted" qtlid="394036">Rubrica eliminata!</translation>
+   <translation id="sms_phonebooks_phonebook_delete_ko" qtlid="394049">Ops! Impossibile eliminare la rubrica.<br/>{{ error }}</translation>
+
+<!-- PHONEBOOKCONTACT -->
+   <translation id="sms_phonebooks_phonebook_contact_title" qtlid="73073">Gestisci i contatti</translation>
+   <translation id="sms_phonebooks_phonebook_contact_column_surname" qtlid="3818">Nome</translation>
+   <translation id="sms_phonebooks_phonebook_contact_column_name" qtlid="23323">Nome</translation>
+   <translation id="sms_phonebooks_phonebook_contact_column_group" qtlid="33298">Società</translation>
+   <translation id="sms_phonebooks_phonebook_contact_column_home_phone" qtlid="394062">Fisso <small>(domicilio)</small></translation>
+   <translation id="sms_phonebooks_phonebook_contact_column_home_mobile" qtlid="394075">Cellulare <small>(domicilio)</small></translation>
+   <translation id="sms_phonebooks_phonebook_contact_column_work_phone" qtlid="394088">Fisso <small>(professionale)</small></translation>
+   <translation id="sms_phonebooks_phonebook_contact_column_work_mobile" qtlid="394101">Cellulare <small>(professionale)</small></translation>
+   <translation id="sms_phonebooks_phonebook_contact_column_home_phone_title" qtlid="394114">Fisso (domicilio)</translation>
+   <translation id="sms_phonebooks_phonebook_contact_column_home_mobile_title" qtlid="394127">Cellulare (domicilio)</translation>
+   <translation id="sms_phonebooks_phonebook_contact_column_work_phone_title" qtlid="394140">Fisso (professionale)</translation>
+   <translation id="sms_phonebooks_phonebook_contact_column_work_mobile_title" qtlid="394153">Cellulare (professionale)</translation>
+   <translation id="sms_phonebooks_phonebook_contact_empty" qtlid="97964">Nessun contatto individuato.</translation>
+   <translation id="sms_phonebooks_phonebook_contact_ko" qtlid="394166">Ops! Impossibile recuperare la lista dei contatti.</translation>
+
+<!-- PHONEBOOK CONTACT CREATE -->
+   <translation id="sms_phonebooks_phonebook_contact_create" qtlid="57836">Aggiungi un contatto</translation>
+   <translation id="sms_phonebooks_phonebook_contact_create_surname_placeholder" qtlid="394179">Nome (campo obbligatorio)</translation>
+   <translation id="sms_phonebooks_phonebook_contact_create_surname_error_required" qtlid="394192">Il campo "Cognome" è obbligatorio.</translation>
+   <translation id="sms_phonebooks_phonebook_contact_create_surname_error_maxlength" qtlid="394205">Il cognome del contatto deve contenere almeno 246 caratteri.</translation>
+   <translation id="sms_phonebooks_phonebook_contact_create_name_placeholder" qtlid="394218">Nome (campo obbligatorio)</translation>
+   <translation id="sms_phonebooks_phonebook_contact_create_name_error_required" qtlid="394231">Il campo "Nome" è obbligatorio.</translation>
+   <translation id="sms_phonebooks_phonebook_contact_create_name_error_maxlength" qtlid="394244">Il nome del contatto deve contenere almeno 246 caratteri.</translation>
+   <translation id="sms_phonebooks_phonebook_contact_create_group_placeholder" qtlid="394257">Società (campo obbligatorio)</translation>
+   <translation id="sms_phonebooks_phonebook_contact_create_group_select" qtlid="394270">Seleziona una società</translation>
+   <translation id="sms_phonebooks_phonebook_contact_create_group_error_required" qtlid="394283">Il campo "Società" è obbligatorio.</translation>
+   <translation id="sms_phonebooks_phonebook_contact_create_group_error_maxlength" qtlid="394296">Il gruppo del contatto deve contenere almeno 50 caratteri.</translation>
+   <translation id="sms_phonebooks_phonebook_contact_create_error_numbers" qtlid="394309">Inserisci almeno un numero</translation>
+   <translation id="sms_phonebooks_phonebook_contact_create_error_phonenumber" qtlid="340484">Inserisci un numero valido.</translation>
+   <translation id="sms_phonebooks_phonebook_contact_creating" qtlid="394322">Aggiunta del contatto in corso...</translation>
+   <translation id="sms_phonebooks_phonebook_contact_created" qtlid="394335">Il contatto è stato aggiunto correttamente!</translation>
+   <translation id="sms_phonebooks_phonebook_contact_create_ko" qtlid="394348">Ops! Impossibile aggiungere il contatto alla rubrica.<br/>{{ error }}</translation>
+
+<!-- PHONEBOOK CONTACT UPDATE -->
+   <translation id="sms_phonebooks_phonebook_contact_update" qtlid="394361">Modifica un contatto</translation>
+   <translation id="sms_phonebooks_phonebook_contact_updating" qtlid="394374">Modifica del contatto in corso...</translation>
+   <translation id="sms_phonebooks_phonebook_contact_updated" qtlid="394387">Il contatto è stato modificato correttamente!</translation>
+   <translation id="sms_phonebooks_phonebook_contact_update_ko" qtlid="394400">Ops! Impossibile modificare il contatto.<br/>{{ error }}</translation>
+
+<!-- PHONEBOOK CONTACT DELETE -->
+   <translation id="sms_phonebooks_phonebook_contact_delete" qtlid="151152">Elimina un contatto</translation>
+   <translation id="sms_phonebooks_phonebook_contact_delete_confirm" qtlid="394413">Vuoi davvero eliminare il contatto <b>«{{ name }}»</b>?</translation>
+   <translation id="sms_phonebooks_phonebook_contact_deleting" qtlid="394426">Eliminazione del contatto in corso...</translation>
+   <translation id="sms_phonebooks_phonebook_contact_deleted" qtlid="394439">Contatto eliminato!</translation>
+   <translation id="sms_phonebooks_phonebook_contact_delete_success" qtlid="394452">Il contatto è stato eliminato correttamente.</translation>
+   <translation id="sms_phonebooks_phonebook_contact_delete_ko" qtlid="394465">Ops! Impossibile eliminare il contatto.<br/>{{ error }}</translation>
+
+<!-- PHONEBOOK CONTACT SELECTED DELETE -->
+   <translation id="sms_phonebooks_phonebook_contact_selected_delete" qtlid="394478">Elimina il contatto selezionato.</translation>
+   <translation id="sms_phonebooks_phonebook_contact_selected_delete_plural" qtlid="394491">Elimina i {{ count }} contatti selezionati.</translation>
+   <translation id="sms_phonebooks_phonebook_contact_selected_delete_info" qtlid="393633">Eliminazione in corso...</translation>
+   <translation id="sms_phonebooks_phonebook_contact_selected_delete_ko" qtlid="394504">Ops! Impossibile eliminare i contatti selezionati.<br/>{{ error }}</translation>
+
+<!-- PHONEBOOK CONTACT IMPORT -->
+   <translation id="sms_phonebooks_phonebook_contact_import" qtlid="69869">Importa</translation>
+   <translation id="sms_phonebooks_phonebook_contact_import_title" qtlid="85749">Importa i contatti</translation>
+   <translation id="sms_phonebooks_phonebook_contact_import_info" qtlid="394517">I numeri del tuo file devono essere in formato internazionale.</translation>
+   <translation id="sms_phonebooks_phonebook_contact_import_file_label" qtlid="394530">File di contatti</translation>
+   <translation id="sms_phonebooks_phonebook_contact_import_file_invalid" qtlid="337845">Formato del file non supportato.</translation>
+   <translation id="sms_phonebooks_phonebook_contact_importing" qtlid="394543">Importazione dei contatti in corso...</translation>
+   <translation id="sms_phonebooks_phonebook_contact_imported" qtlid="394556">Importazione dei contatti completata!</translation>
+   <translation id="sms_phonebooks_phonebook_contact_import_ko" qtlid="394569">Ops! Impossibile importare i tuoi contatti.<br/>{{ error }}</translation>
+   <translation id="sms_phonebooks_phonebook_contact_import_alert_task" qtlid="394582">Importazione dei contatti in corso...</translation>
+
+<!-- PHONEBOOK CONTACT EXPORT -->
+   <translation id="sms_phonebooks_phonebook_contact_export" qtlid="69881">Esporta</translation>
+   <translation id="sms_phonebooks_phonebook_contact_export_ok" qtlid="394595">Esportazione dei contatti completata!</translation>
+   <translation id="sms_phonebooks_phonebook_contact_export_ko" qtlid="394608">Ops! Impossibile esportare i tuoi contatti.</translation>
+</translations>

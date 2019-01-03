@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="sms_guides_section_compose" qtlid="395284">Escribir un SMS</translation>
+   <translation id="sms_guides_compose_faq" qtlid="395297">Preguntas frecuentes</translation>
+   <translation id="sms_guides_compose_filters" qtlid="395310">Lista de excepciones y filtros según los destinos</translation>
+   <translation id="sms_guides_compose_manager" qtlid="395323">Cómo enviar un SMS desde el área de cliente</translation>
+   <translation id="sms_guides_compose_email" qtlid="395336">Cómo enviar un SMS desde una dirección de correo electrónico</translation>
+   <translation id="sms_guides_compose_url" qtlid="395349">Cómo enviar un SMS mediante una URL</translation>
+   <translation id="sms_guides_compose_usa" qtlid="395362">Cómo enviar un SMS a Estados Unidos</translation>
+   <translation id="sms_guides_compose_campaign" qtlid="395375">Mi primera campaña de SMS</translation>
+   <translation id="sms_guides_compose_hlr" qtlid="395388">Todo lo que hay que saber sobre el HLR</translation>
+
+   <translation id="sms_guides_section_outgoing" qtlid="342018">Historial de envíos</translation>
+   <translation id="sms_guides_outgoing_faq" qtlid="395401">Cómo consultar mi historial de envíos</translation>
+
+   <translation id="sms_guides_section_options" qtlid="23395">Opciones</translation>
+   <translation id="sms_guides_options_callback" qtlid="395414">Guía de uso del callback SMS</translation>
+
+   <translation id="sms_guides_section_users" qtlid="7174">Gestionar los usuarios</translation>
+   <translation id="sms_guides_users_about" qtlid="395427">Todo lo que hay que saber sobre los usuarios de SMS</translation>
+   <translation id="sms_guides_users_faq" qtlid="395440">Para qué sirve un usuario de SMS</translation>
+   <translation id="sms_guides_users_add" qtlid="395453">Cómo añadir un nuevo usuario de SMS</translation>
+   <translation id="sms_guides_users_quota" qtlid="395466">Cómo gestionar el consumo de SMS en un usuario</translation>
+
+   <translation id="sms_guides_section_api" qtlid="395479">Uso de la API</translation>
+   <translation id="sms_guides_api_cookbook" qtlid="395492">API SMS Cookbook</translation>
+   <translation id="sms_guides_api_java" qtlid="395505">Enviar SMS con la API de OVH en Java</translation>
+   <translation id="sms_guides_api_csharp" qtlid="395518">Enviar SMS con la API de OVH en C#</translation>
+   <translation id="sms_guides_api_nodejs" qtlid="395531">Enviar SMS con la API de OVH en Node.js</translation>
+   <translation id="sms_guides_api_php" qtlid="395544">Enviar SMS con la API de OVH en PHP</translation>
+
+   <translation id="sms_guides_empty" qtlid="395557">No hay ninguna guía disponible en el idioma seleccionado.</translation>
+</translations>

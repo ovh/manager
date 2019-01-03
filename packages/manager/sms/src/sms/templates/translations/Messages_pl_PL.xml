@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="sms_section_back_link" qtlid="341186">Retour aux SMS</translation>
+   <translation id="sms_sms_templates_title" qtlid="342070">Modèles de messages</translation>
+   <translation id="sms_sms_templates_title_informations" qtlid="26551">Informacje</translation>
+   <translation id="sms_sms_templates_informations_text_1" qtlid="342083">Pour envoyer des SMS vers les États-Unis, vous devez au préalable valider des modèles de messages.</translation>
+   <translation id="sms_sms_templates_informations_text_2" qtlid="342096">Seuls les messages transactionnels, d'alerte et de double-authentification sont autorisés, et aucun modèle de SMS publicitaire ne sera accepté.</translation>
+   <translation id="sms_sms_templates_informations_text_3" qtlid="342109">Une fois vos modèles définis, l'envoi de SMS se fera de la même manière que pour les autres pays, la recherche de compatibilité avec un modèle étant totalement automatique.</translation>
+   <translation id="sms_sms_templates_informations_text_4" qtlid="342122">Vous pouvez demander la validation de plusieurs modèles de messages. Des parties variables dans le modèle peuvent être définies et doivent être délimitées par le caractère <em>#</em>.</translation>
+   <translation id="sms_sms_templates_informations_text_6" qtlid="342135">À titre de démonstration, les modèles de messages suivants sont disponibles sans validation&#160;:&#160;</translation>
+   <translation id="sms_sms_templates_informations_text_7" qtlid="342148">Your security code is #CODE#.</translation>
+   <translation id="sms_sms_templates_informations_text_8" qtlid="342161">The #OBJECT# of ID #ID# is in fail state: #ERROR#.</translation>
+   <translation id="sms_sms_templates_informations_text_9" qtlid="342174">Your package number #PACKAGENUMBER# has been delivered to your address #ADDRESS#.</translation>
+   <translation id="sms_sms_templates_informations_example_title" qtlid="342187">Exemples de modèles</translation>
+   <translation id="sms_sms_templates_informations_example_dt_1" qtlid="150554">Logowanie</translation>
+   <translation id="sms_sms_templates_informations_example_dd_1" qtlid="342200">Your security code is: #CODE#. Have a good day!</translation>
+   <translation id="sms_sms_templates_informations_example_dt_2" qtlid="22219">Alert</translation>
+   <translation id="sms_sms_templates_informations_example_dd_2" qtlid="342213">Our monitoring system detected your server #SERVER# doesn't respond to ping requests.</translation>
+   <translation id="sms_sms_templates_informations_example_dt_3" qtlid="342226">Transactionnel</translation>
+   <translation id="sms_sms_templates_informations_example_dd_3" qtlid="342239">Hi #LOGIN#, your account has been created on www.ovh.com!</translation>
+   <translation id="sms_sms_templates_list_title_name" qtlid="3818">Nazwa</translation>
+   <translation id="sms_sms_templates_list_title_date" qtlid="26419">Data utworzenia</translation>
+   <translation id="sms_sms_templates_list_title_message" qtlid="30574">Wiadomość</translation>
+   <translation id="sms_sms_templates_list_title_description" qtlid="9238">Opis</translation>
+   <translation id="sms_sms_templates_list_title_status" qtlid="26443">Status</translation>
+   <translation id="sms_sms_templates_list_title_type" qtlid="2642">Typ</translation>
+   <translation id="sms_sms_templates_list_empty" qtlid="342252">Vous n'avez aucun modèle.</translation>
+   <translation id="sms_sms_templates_sr_only_actions" qtlid="72809">Operacje</translation>
+   <translation id="sms_sms_templates_action_relaunch" qtlid="31378">Wznów</translation>
+
+<!-- TEMPLATE modal ADD -->
+   <translation id="sms_sms_templates_add" qtlid="342265">Ajouter un modèle</translation>
+   <translation id="sms_sms_templates_added" qtlid="342278">Modèle envoyé en validation</translation>
+   <translation id="sms_sms_templates_adding" qtlid="342291">Création du modèle</translation>
+   <translation id="sms_sms_templates_adding_ko" qtlid="342304">La création du modèle a échoué. {{error}}</translation>
+   <translation id="sms_sms_templates_add_description_label" qtlid="342317">Description&#160;(requis)</translation>
+   <translation id="sms_sms_templates_add_description_placeholder" qtlid="342330">Description (requis)</translation>
+   <translation id="sms_sms_templates_add_name_label" qtlid="342343">Nom&#160;(requis)</translation>
+   <translation id="sms_sms_templates_add_name_placeholder" qtlid="342356">Nom (requis)</translation>
+   <translation id="sms_sms_templates_add_name_error_maxlength" qtlid="395011">Le nom doit faire moins de 249 caractères</translation>
+   <translation id="sms_sms_templates_add_message_label" qtlid="342369">Modèle&#160;(requis)</translation>
+   <translation id="sms_sms_templates_add_message_placeholder" qtlid="342382">Modèle (requis)</translation>
+   <translation id="sms_sms_templates_add_message_error_maxlength" qtlid="342395">Le modèle doit faire moins de 249 caractères</translation>
+   <translation id="sms_sms_templates_add_message_error_minlength" qtlid="342408">Le modèle doit faire au moins 31 caractères</translation>
+   <translation id="sms_sms_templates_add_activity_placeholder" qtlid="342421">Activité (requis)</translation>
+   <translation id="sms_sms_templates_add_activity_type_alerting" qtlid="22219">Alert</translation>
+   <translation id="sms_sms_templates_add_activity_type_authentification" qtlid="150554">Logowanie</translation>
+   <translation id="sms_sms_templates_add_activity_type_transactional" qtlid="342434">Système de traitement transactionnel</translation>
+   <translation id="sms_sms_templates_init" qtlid="242769">Trwa pobieranie informacji</translation>
+   <translation id="sms_sms_templates_add_description_error_maxlength" qtlid="342447">La description doit faire moins de 249 caractères</translation>
+   <translation id="sms_sms_templates_add_description_error_minlength" qtlid="342460">La description doit faire au moins 31 caractères</translation>
+
+<!-- TEMPLATE modal EDIT -->
+   <translation id="sms_sms_templates_edit" qtlid="346651">Modifier le modèle</translation>
+   <translation id="sms_sms_templates_edit_status_label" qtlid="346664">Activer le modèle</translation>
+   <translation id="sms_sms_templates_editing" qtlid="346677">Modification du modèle…</translation>
+   <translation id="sms_sms_templates_edited" qtlid="346690">Modèle modifié</translation>
+   <translation id="sms_sms_templates_editing_ko" qtlid="346703">La modification du modèle a échoué. {{error}}</translation>
+
+<!-- TEMPLATE modal RELAUNCH -->
+   <translation id="sms_sms_templates_relaunch" qtlid="346716">Relancer la validation</translation>
+   <translation id="sms_sms_templates_relaunching" qtlid="346729">Relance de validation…</translation>
+   <translation id="sms_sms_templates_relaunched" qtlid="346742">Relance de validation envoyée</translation>
+   <translation id="sms_sms_templates_relaunching_ko" qtlid="346755">La relance de validation a échoué. {{error}}</translation>
+
+<!-- TEMPLATE modal REMOVE -->
+   <translation id="sms_sms_templates_remove" qtlid="346768">Supprimer un modèle</translation>
+   <translation id="sms_sms_templates_removing" qtlid="346781">Suppression du modèle…</translation>
+   <translation id="sms_sms_templates_removed" qtlid="346794">Modèle supprimé</translation>
+   <translation id="sms_sms_templates_removing_ko" qtlid="346807">La suppression du modèle a échoué. {{error}}</translation>
+</translations>

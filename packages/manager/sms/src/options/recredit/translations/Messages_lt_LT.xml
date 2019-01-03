@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="sms_section_back_link" qtlid="340159">Grįžti prie parinkčių</translation>
+
+   <translation id="sms_options_recredit_title" qtlid="339561">Automatinis perkrovimas</translation>
+
+   <translation id="sms_options_recredit_information_title" qtlid="26551">Informacija</translation>
+   <translation id="sms_options_recredit_information_text" qtlid="340328">Jūs galite automatiškai papildyti savo SMS sąskaitą pasiekus tam tikrą ribą.<br/>Šis papildymas įvykdomas automatiškai, apmokėjimui naudojama jūsų OVH paskyra.</translation>
+   <translation id="sms_options_recredit_information_note" qtlid="340341">Dėmesio, papildymas yra galimas tik tuomet, jeigu jūsų OVH paskyroje yra teigiamas arba nulinis balansas. Jūs galite papildyti savo paskyrą Telecom skiltyje.</translation>
+
+   <translation id="sms_options_recredit_manage_title" qtlid="340354">Parinkčių valdymas</translation>
+
+   <translation id="sms_options_recredit_manage_threshold_label" qtlid="340367">Minimali riba:</translation>
+   <translation id="sms_options_recredit_manage_threshold_text" qtlid="340380">{{ creditThresholdForAutomaticRecredit | number:2 }} kreditų</translation>
+   <translation id="sms_options_recredit_manage_quantity_label" qtlid="340393">Papildymo suma:</translation>
+   <translation id="sms_options_recredit_manage_quantity_text" qtlid="340406">{{ automaticRecreditAmount }} kreditų</translation>
+   <translation id="sms_options_recredit_manage_quantity_empty_text" qtlid="340419">Nepapildyti</translation>
+   <translation id="sms_options_recredit_manage_quantity_price_text" qtlid="340432">({{ price }})</translation>
+
+   <translation id="sms_options_recredit_update_title" qtlid="340445">Valdyti automatinį papildymą</translation>
+   <translation id="sms_options_recredit_update_threshold_label" qtlid="340458">Minimali riba</translation>
+   <translation id="sms_options_recredit_update_threshold_error_required" qtlid="340471">Būtina užpildyti lauką „Minimali riba“.</translation>
+   <translation id="sms_options_recredit_update_threshold_error_min" qtlid="338963">Šio lauko reikšmė negali būti mažesnė už 0</translation>
+   <translation id="sms_options_recredit_update_threshold_error_number" qtlid="340484">Įveskite galiojantį numerį</translation>
+   <translation id="sms_options_recredit_update_quantity_label" qtlid="340497">Papildymo suma</translation>
+   <translation id="sms_options_recredit_update_quantity_option" qtlid="496863">{{ amount }} crédits</translation>
+   <translation id="sms_options_recredit_updating" qtlid="340523">Konfigūruojamas automatinis papildymas…</translation>
+   <translation id="sms_options_recredit_updated" qtlid="340536">Automatinis papildymas sukonfigūruotas</translation>
+   <translation id="sms_options_recredit_update_ko" qtlid="340549">Nepavyko atnaujinti automatinio papildymo konfigūracijos.<br/>{{error}}</translation>
+</translations>

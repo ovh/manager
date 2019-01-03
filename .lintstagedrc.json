@@ -9,5 +9,8 @@
   "*.less": [
     "stylelint 'packages/**/*.less' --fix",
     "git add"
+  ],
+  "*.md": [
+    "remark -qf ."
   ]
 }

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="sms_section_back_link" qtlid="340874">Retour aux expéditeurs</translation>
+
+   <translation id="sms_senders_blacklisted_manage_title" qtlid="340562">Gérer les expéditeurs blacklistés</translation>
+
+   <translation id="sms_senders_blacklisted_information_title" qtlid="26551">Informações</translation>
+   <translation id="sms_senders_blacklisted_information_text_1" qtlid="340887">Liste de vos destinataires qui ont bloqué les réceptions de SMS en provenance de l’un de vos expéditeurs.</translation>
+   <translation id="sms_senders_blacklisted_information_text_2" qtlid="340900">Si vous supprimez un numéro de la liste, la réception de SMS en provenance de vos expéditeurs sera rétablie vers ce destinataire.</translation>
+
+   <translation id="sms_senders_blacklisted_delete_list" qtlid="393607">Supprimer le numéro sélectionné</translation>
+   <translation id="sms_senders_blacklisted_delete_lists" qtlid="393620">Supprimer les {{ count }} numéros sélectionnés</translation>
+   <translation id="sms_senders_blacklisted_delete_list_success" qtlid="393633">Suppression en cours…</translation>
+
+   <translation id="sms_senders_blacklisted_label_date" qtlid="24523">Data</translation>
+   <translation id="sms_senders_blacklisted_label_number" qtlid="30778">Número</translation>
+
+   <translation id="sms_senders_blacklisted_empty" qtlid="340913">Aucun expéditeur blacklisté.</translation>
+
+   <translation id="sms_senders_blacklisted_title" qtlid="340926">Supprimer l’expéditeur blacklisté</translation>
+   <translation id="sms_senders_blacklisted_confirm" qtlid="340939">Voulez-vous vraiment supprimer l’expéditeur blacklisté <b>«{{ sender }}»</b>&#160;?</translation>
+
+   <translation id="sms_senders_blacklisted_sender_ko" qtlid="340952">Impossible de supprimer l’expéditeur blacklisté.<br/>{{error}}</translation>
+</translations>

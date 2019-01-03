@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="sms_section_back_link" qtlid="341186">Ritorna agli SMS</translation>
+
+   <translation id="sms_sms_hlr_title" qtlid="342044">HLR</translation>
+
+   <translation id="sms_sms_hlr_alert_not_enough_credits" qtlid="360385">Il tuo credito non è sufficiente per inviare una richiesta HLR.</translation>
+
+   <translation id="sms_sms_hlr_information_title" qtlid="26551">Informazioni</translation>
+   <translation id="sms_sms_hlr_information_text_1" qtlid="360398">Le richieste HLR ti permettono di sapere se un numero di telefono è attivo prima di inviargli un SMS.</translation>
+   <translation id="sms_sms_hlr_information_text_2" qtlid="360411">Se il numero è valido, il risultato indica l'operatore presso cui il telefono risulta registrato.</translation>
+   <translation id="sms_sms_hlr_information_text_3" qtlid="360424">Ogni richiesta viene fatturata <b>0,1 crediti</b>.</translation>
+
+   <translation id="sms_sms_hlr_query_title" qtlid="360437">Nuova richiesta HLR</translation>
+   <translation id="sms_sms_hlr_query_label_number" qtlid="30778">Numero</translation>
+   <translation id="sms_sms_hlr_query_number_error_required" qtlid="360450">Il campo "Numero" è obbligatorio.</translation>
+   <translation id="sms_sms_hlr_query_cgu_text" qtlid="360463">Per utilizzare il servizio HLR, è necessario accettare le <a href="{{ url }}" target="_blank">Condizioni Particolari di utilizzo del Servizio</a>.</translation>
+   <translation id="sms_sms_hlr_query_label_cgu" qtlid="360476">Ho preso visione e accetto le Condizioni Particolari di utilizzo del Servizio.</translation>
+   <translation id="sms_sms_hlr_query_send" qtlid="360489">Invia la richiesta</translation>
+   <translation id="sms_sms_hlr_query_text_1" qtlid="360502">Vuoi eliminare il contenuto di un file di destinatari?</translation>
+   <translation id="sms_sms_hlr_query_text_2" qtlid="360515">Accedi</translation>
+   <translation id="sms_sms_hlr_query_text_3" qtlid="360528">alla pagina di gestione dei destinatari</translation>
+   <translation id="sms_sms_hlr_query_send_success" qtlid="360541">La richiesta HLR è stata inviata correttamente.</translation>
+   <translation id="sms_sms_hlr_query_send_failed" qtlid="360554">Impossibile inviare la richiesta HLR.</translation>
+
+   <translation id="sms_sms_hlr_read_title" qtlid="360567">Consulta le richieste precedenti</translation>
+   <translation id="sms_sms_hlr_read_label_date" qtlid="24523">Data</translation>
+   <translation id="sms_sms_hlr_read_label_cost" qtlid="6218">Costo</translation>
+   <translation id="sms_sms_hlr_read_label_status" qtlid="26443">Stato</translation>
+   <translation id="sms_sms_hlr_read_label_number" qtlid="30778">Numero</translation>
+   <translation id="sms_sms_hlr_read_label_operator_code" qtlid="63052">Operatore</translation>
+   <translation id="sms_sms_hlr_read_label_valid" qtlid="55133">Attivo</translation>
+   <translation id="sms_sms_hlr_read_label_reachable" qtlid="360580">Raggiungibile</translation>
+   <translation id="sms_sms_hlr_read_label_ported" qtlid="360593">Portato</translation>
+   <translation id="sms_sms_hlr_read_label_roaming" qtlid="360606">In roaming</translation>
+   <translation id="sms_sms_hlr_read_empty" qtlid="360619">Nessuna richiesta HLR effettuata</translation>
+
+   <translation id="sms_sms_hlr_read_cost_value" qtlid="360632">{{ credit | number:2 }} credito</translation>
+</translations>

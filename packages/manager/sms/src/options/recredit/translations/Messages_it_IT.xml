@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="sms_section_back_link" qtlid="340159">Ritorna alle opzioni</translation>
+
+   <translation id="sms_options_recredit_title" qtlid="339561">Ricarica automatica</translation>
+
+   <translation id="sms_options_recredit_information_title" qtlid="26551">Informazioni</translation>
+   <translation id="sms_options_recredit_information_text" qtlid="340328">Puoi ricaricare automaticamente il tuo account SMS quando il tuo saldo raggiunge una determinata soglia.<br/>La ricarica automatica verrà addebitata sul tuo conto cliente OVH.</translation>
+   <translation id="sms_options_recredit_information_note" qtlid="340341">Ti ricordiamo che è possibile effettuare la ricarica solo se il saldo del tuo conto cliente OVH è positivo o pari a zero. Per accreditare il tuo conto cliente, accedi alla sezione "Fatturazione" del tuo Spazio Cliente Telecom.</translation>
+
+   <translation id="sms_options_recredit_manage_title" qtlid="340354">Gestisci le opzioni</translation>
+
+   <translation id="sms_options_recredit_manage_threshold_label" qtlid="340367">Soglia minima:</translation>
+   <translation id="sms_options_recredit_manage_threshold_text" qtlid="340380">{{ creditThresholdForAutomaticRecredit | number:2 }} crediti</translation>
+   <translation id="sms_options_recredit_manage_quantity_label" qtlid="340393">Quantità da ricaricare:</translation>
+   <translation id="sms_options_recredit_manage_quantity_text" qtlid="340406">{{ automaticRecreditAmount }} crediti</translation>
+   <translation id="sms_options_recredit_manage_quantity_empty_text" qtlid="340419">Non ricaricare</translation>
+   <translation id="sms_options_recredit_manage_quantity_price_text" qtlid="340432">({{ price }})</translation>
+
+   <translation id="sms_options_recredit_update_title" qtlid="340445">Gestisci la ricarica automatica</translation>
+   <translation id="sms_options_recredit_update_threshold_label" qtlid="340458">Soglia minima</translation>
+   <translation id="sms_options_recredit_update_threshold_error_required" qtlid="340471">Il campo "Soglia minima" è obbligatorio.</translation>
+   <translation id="sms_options_recredit_update_threshold_error_min" qtlid="338963">Il valore minimo di questo campo deve essere 0.</translation>
+   <translation id="sms_options_recredit_update_threshold_error_number" qtlid="340484">Inserisci un numero valido.</translation>
+   <translation id="sms_options_recredit_update_quantity_label" qtlid="340497">Quantità da ricaricare</translation>
+   <translation id="sms_options_recredit_update_quantity_option" qtlid="496863">{{ amount }} crédits</translation>
+   <translation id="sms_options_recredit_updating" qtlid="340523">Configurazione dela ricarica automatica...</translation>
+   <translation id="sms_options_recredit_updated" qtlid="340536">Configurazione dela ricarica automatica effettuata</translation>
+   <translation id="sms_options_recredit_update_ko" qtlid="340549">Impossibile aggiornare la configurazione dela ricarica automatica.<br/>{{error}}</translation>
+</translations>

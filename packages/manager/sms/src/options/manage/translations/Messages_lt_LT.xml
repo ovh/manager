@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="sms_section_back_link" qtlid="340159">Grįžti prie parinkčių</translation>
+
+   <translation id="sms_options_manage_title" qtlid="340133">Pagrindiniai nustatymai</translation>
+
+   <translation id="sms_options_manage_information_title" qtlid="26551">Informacija</translation>
+   <translation id="sms_options_manage_information_text" qtlid="340172">OVH jums siūlo keisti "callback" URL, kuris bus siunčiamas SMS žinute.</translation>
+   <translation id="sms_options_manage_information_types_available" qtlid="340185">Galimi du callback tipai:</translation>
+   <translation id="sms_options_manage_information_type_callback" qtlid="340198"><b>Būsenos pasikeitimo callback</b>:&#160;SMS siunčiama pasikeitus būsenai (pvz.: iš "išsiųsta" į "gauta").</translation>
+   <translation id="sms_options_manage_information_type_stop_callback" qtlid="340211"><b>STOP callback</b>: Kai gavėjas atsako "STOP" į vieną jūsų SMS, kad užblokuotų siuntimą.</translation>
+
+   <translation id="sms_options_manage_configure_title" qtlid="4010">Konfigūruoti</translation>
+
+   <translation id="sms_options_manage_configure_callback_label" qtlid="340224">Būsenos pakeitimo callback URL:</translation>
+   <translation id="sms_options_manage_configure_stop_callback_label" qtlid="340237">callback STOP&#160;URL:</translation>
+   <translation id="sms_options_manage_configure_callback_empty" qtlid="340250">Nesukonfigūruotas joks URL.</translation>
+
+   <translation id="sms_options_manage_update_title" qtlid="340263">URL konfigūravimas</translation>
+   <translation id="sms_options_manage_update_callback_label" qtlid="340276">Būsenos pakeitimo callback URL</translation>
+   <translation id="sms_options_manage_update_stopcallback_label" qtlid="340289">callback STOP URL</translation>
+   <translation id="sms_options_manage_update_callbacks_error_pattern" qtlid="339314">Nuoroda turi prasidėti http:// arba https://.</translation>
+   <translation id="sms_options_manage_update_callbacks_error_url" qtlid="339327">Nurodytas neteisingas URL.</translation>
+   <translation id="sms_options_manage_updating" qtlid="340302">URL konfigūravimas…</translation>
+   <translation id="sms_options_manage_updated" qtlid="340315">URL konfigūravimas baigtas</translation>
+</translations>

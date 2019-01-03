@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="sms_section_back_link" qtlid="341186">Ritorna agli SMS</translation>
+
+   <translation id="sms_sms_compose_title" qtlid="288145">Invia un SMS</translation>
+
+   <translation id="sms_sms_compose_section_configure" qtlid="395024">Configura il mittente e il destinatario</translation>
+   <translation id="sms_sms_compose_section_compose" qtlid="395037">Componi un messaggio</translation>
+
+   <translation id="sms_sms_compose_alert_not_enough_credits" qtlid="341329">Il tuo credito non è sufficiente per l'invio di SMS.</translation>
+   <translation id="sms_sms_compose_alert_not_enough_credits_receivers" qtlid="395050">Il tuo credito potrebbe non essere sufficiente per consentire l'invio a tutti i contatti selezionati.</translation>
+
+   <translation id="sms_sms_compose_sender_label" qtlid="24535">Mittente</translation>
+   <translation id="sms_sms_compose_sender_optgroup_label_response" qtlid="341342">Mittenti che permettono la risposta</translation>
+   <translation id="sms_sms_compose_sender_optgroup_label_alphanumeric" qtlid="341355">Mittenti alfanumerici</translation>
+   <translation id="sms_sms_compose_sender_optgroup_label_other" qtlid="341368">Altri mittenti</translation>
+   <translation id="sms_sms_compose_sender_option_short_number" qtlid="341381">Numero che permette la risposta (solo in Francia)</translation>
+   <translation id="sms_sms_compose_sender_option_virtual_number" qtlid="360255">{{ sender }} <em>(numero virtuale)</em></translation>
+   <translation id="sms_sms_compose_sender_option" qtlid="341394">Seleziona un mittente</translation>
+   <translation id="sms_sms_compose_sender_manage" qtlid="340575">Gestisci i mittenti</translation>
+   <translation id="sms_sms_compose_receivers_manage" qtlid="339587">Gestisci i destinatari</translation>
+
+   <translation id="sms_sms_compose_recipient_label" qtlid="341407">Inserisci il numero di un solo destinatario</translation>
+   <translation id="sms_sms_compose_recipient_placeholder" qtlid="341420">Numero del destinatario (esempio: +33601020304)</translation>
+   <translation id="sms_sms_compose_recipient_error_required" qtlid="341433">Il campo "Destinatario" è obbligatorio.</translation>
+   <translation id="sms_sms_compose_recipient_error_pattern" qtlid="463369">Le numéro du destinataire doit être au format international.</translation>
+
+   <translation id="sms_sms_compose_phonebook_manage" qtlid="341446">Rubrica</translation>
+
+   <translation id="sms_sms_compose_message_label" qtlid="30574">Messaggio</translation>
+   <translation id="sms_sms_compose_message_placeholder" qtlid="67292">Il tuo messaggio</translation>
+   <translation id="sms_sms_compose_message_characters_left" qtlid="341459">Caratteri rimanenti:</translation>
+   <translation id="sms_sms_compose_message_characters_left_warning_8bit" qtlid="395063">Il tuo messaggio contiene uno o più caratteri speciali.</translation>
+   <translation id="sms_sms_compose_message_sms" qtlid="28243">SMS</translation>
+   <translation id="sms_sms_compose_message_equivalent" qtlid="341472">Equivale a:</translation>
+   <translation id="sms_sms_compose_message_info_estimation_title" qtlid="395076">Stima dell'invio</translation>
+   <translation id="sms_sms_compose_message_info_estimation_receivers_selected" qtlid="395089">Numero di destinatari:</translation>
+   <translation id="sms_sms_compose_message_info_estimation_credits_left" qtlid="393503">Credito residuo:</translation>
+   <translation id="sms_sms_compose_message_info_estimation_credit_remaining" qtlid="395102">Credito residuo dopo l'operazione:</translation>
+   <translation id="sms_sms_compose_message_info_estimation_note_1" qtlid="395115">Il costo varia in base ai destinatari.</translation>
+   <translation id="sms_sms_compose_message_info_estimation_note_2" qtlid="395128">Visualizza le tariffe</translation>
+   <translation id="sms_sms_compose_message_info_estimation_note_3" qtlid="395141">Questo valore è puramente indicativo.</translation>
+   <translation id="sms_sms_compose_message_stop_info_start" qtlid="342637">Il messaggio "<b>STOP: [numero breve]</b>"</translation>
+   <translation id="sms_sms_compose_message_stop_info_tooltip" qtlid="341498">Esempio di numero breve: 36111</translation>
+   <translation id="sms_sms_compose_message_stop_info_end" qtlid="341511">è aggiunto alla fine dell'SMS.</translation>
+   <translation id="sms_sms_compose_message_stop_description" qtlid="341524">Per motivi legali, il tuo SMS sarà inviato esclusivamente <strong>tra le 8:00 e le 20:00, dal lunedì al sabato</strong>.</translation>
+   <translation id="sms_sms_compose_message_advice_title" qtlid="341537">Suggerimento:</translation>
+   <translation id="sms_sms_compose_message_advice_info" qtlid="341550">Per inviare i tuoi SMS utilizza preferibilmente un mittente alfabetico. In questo modo eviti i filtri di alcuni operatori sui mittenti, in particolare sui numeri di cellulari.</translation>
+   <translation id="sms_sms_compose_message_advice_description_1" qtlid="341563">La personalizzaziobe del mittente alfabetico è offerta da OVH, richiedi la tua</translation>
+   <translation id="sms_sms_compose_message_advice_description_2" qtlid="341576">su questa pagina</translation>
+   <translation id="sms_sms_compose_message_advice_description_3" qtlid="341589">(conferma automatica immediata o manuale entro 24/48 ore).</translation>
+   <translation id="sms_sms_compose_message_error_required" qtlid="341602">Il campo "Messaggio" è obbligatorio.</translation>
+   <translation id="sms_sms_compose_message_alert_maxlength" qtlid="346131">Hai superato il limite di <b>255</b> SMS.</translation>
+
+   <translation id="sms_sms_compose_no_stop_clause_label" qtlid="341615">Dichiaro che questo SMS non è di carattere pubblicitario e richiedo la revoca del messaggio STOP.</translation>
+
+   <translation id="sms_sms_compose_more_options" qtlid="267796">Opzioni avanzate</translation>
+
+   <translation id="sms_sms_compose_differed_period_instant" qtlid="40478">Invio immediato</translation>
+   <translation id="sms_sms_compose_differed_period_delayed" qtlid="40610">Invio differito</translation>
+   <translation id="sms_sms_compose_differed_period_date_label" qtlid="341628">Data:</translation>
+   <translation id="sms_sms_compose_differed_period_date_placeholder" qtlid="341641">Seleziona una data di invio</translation>
+   <translation id="sms_sms_compose_differed_period_date_error_required" qtlid="341654">Il campo "Data" è obbligatorio.</translation>
+   <translation id="sms_sms_compose_differed_period_time_label" qtlid="341667">Ora:</translation>
+
+   <translation id="sms_sms_compose_class_label" qtlid="40682">Tipo di SMS</translation>
+   <translation id="sms_sms_compose_class_flash" qtlid="341680">Flash</translation>
+   <translation id="sms_sms_compose_class_phoneDisplay" qtlid="48998">Standard</translation>
+   <translation id="sms_sms_compose_class_sim" qtlid="341693">SIM</translation>
+
+   <translation id="sms_sms_compose_class_info_flash" qtlid="341706">Il Flash SMS viene visualizzato direttamente sullo schermo del telefono.</translation>
+   <translation id="sms_sms_compose_class_info_phoneDisplay" qtlid="40310">Gli SMS Standard sono gli SMS correntemente più utilizzati.</translation>
+   <translation id="sms_sms_compose_class_info_sim" qtlid="341719">L'SMS SIM viene salvato automaticamente sulla carta SIM del telefono.</translation>
+
+   <translation id="sms_sms_compose_send" qtlid="52807">Invia</translation>
+
+   <translation id="sms_sms_compose_status_success" qtlid="341732">Il tuo SMS è stato inviato</translation>
+   <translation id="sms_sms_compose_status_failed" qtlid="341745">Si è verificato un errore durante l'invio del tuo SMS</translation>
+   <translation id="sms_sms_compose_status_invalid_receivers" qtlid="341758">Non è stato possibile inviare il tuo SMS a questi numeri:&#160;</translation>
+
+   <translation id="sms_sms_compose_open_new_tab" qtlid="222176">Nuova finestra</translation>
+
+   <translation id="sms_sms_compose_tips_title" qtlid="285447">Tips</translation>
+
+   <translation id="sms_sms_compose_tip_compose_title" qtlid="341771">Composizione di un SMS</translation>
+   <translation id="sms_sms_compose_tip_compose_paragraphe_1" qtlid="341784">Un SMS ha una lunghezza massima di 160 caratteri.</translation>
+   <translation id="sms_sms_compose_tip_compose_paragraphe_2" qtlid="341797">Se il messaggio supera 160 caratteri, sarà suddiviso in più SMS:</translation>
+   <translation id="sms_sms_compose_tip_compose_list_item_1" qtlid="341810">1 SMS -> max. 160 caratteri (160/sms)</translation>
+   <translation id="sms_sms_compose_tip_compose_list_item_2" qtlid="341823">2 SMS -> max. 306 caratteri (153/sms)</translation>
+   <translation id="sms_sms_compose_tip_compose_list_item_3" qtlid="341836">3 SMS -> max. 459 caratteri (153/sms)</translation>
+   <translation id="sms_sms_compose_tip_compose_list_item_4" qtlid="341849">… (153/sms)</translation>
+
+   <translation id="sms_sms_compose_tip_size_title" qtlid="341862">Lunghezza di un SMS</translation>
+   <translation id="sms_sms_compose_tip_size_paragraphe_1" qtlid="341875">La lunghezza massima di un SMS è di 160 caratteri (norma GSM 03.38).</translation>
+   <translation id="sms_sms_compose_tip_size_paragraphe_2" qtlid="341888">Le 2 tabelle qui sotto indicano i caratteri che possono essere utilizzati.</translation>
+   <translation id="sms_sms_compose_tip_size_paragraphe_3" qtlid="341901"><b>Attenzione:</b> l’utilizzo di caratteri non presenti in queste tabelle comporta il passaggio della codifica in Unicode e la riduzione della lunghezza massima di un SMS a 70 caratteri.</translation>
+   <translation id="sms_sms_compose_tip_size_characters_basics" qtlid="341914">Caratteri base</translation>
+   <translation id="sms_sms_compose_tip_size_characters_extensions" qtlid="341927">Estensioni</translation>
+   <translation id="sms_sms_compose_tip_size_tooltip_characters_label" qtlid="341940">Carattere:</translation>
+   <translation id="sms_sms_compose_tip_size_tooltip_space" qtlid="342650">[Spazio]</translation>
+   <translation id="sms_sms_compose_tip_size_tooltip_line_feed" qtlid="342663">[Nuova linea]</translation>
+   <translation id="sms_sms_compose_tip_size_tooltip_escape" qtlid="342676">[Escape]</translation>
+   <translation id="sms_sms_compose_tip_size_tooltip_carriage_return" qtlid="342689">[Ritorno al carrello]</translation>
+   <translation id="sms_sms_compose_tip_size_tooltip_form_feed" qtlid="342702">[Interruzione di pagina]</translation>
+
+   <translation id="sms_sms_compose_add_receivers_select" qtlid="395154">Lista dei destinatari</translation>
+   <translation id="sms_sms_compose_add_receivers_selected_single" qtlid="395167"><strong>{{ count }}</strong> lista selezionata</translation>
+   <translation id="sms_sms_compose_add_receivers_selected_multiple" qtlid="395180"><strong>{{ count }}</strong> liste selezionate</translation>
+   <translation id="sms_sms_compose_add_receivers_lists_title" qtlid="360307">Aggiungi una lista di destinatari</translation>
+   <translation id="sms_sms_compose_add_receivers_select_lists" qtlid="360320">Seleziona i file che contengono i destinatari:</translation>
+   <translation id="sms_sms_compose_add_receivers_label" qtlid="360333">{{ description }} (<small><b>{{ records }}</b> contatto</small>)</translation>
+   <translation id="sms_sms_compose_add_receivers_label_plural" qtlid="360346">{{ description }} (<small><b>{{ records }}</b> contatti</small>)</translation>
+   <translation id="sms_sms_compose_add_receivers_adding" qtlid="360359">Aggiunta destinatari in corso...</translation>
+   <translation id="sms_sms_compose_add_receivers_added" qtlid="360372">Destinatari aggiunti</translation>
+   <translation id="sms_sms_compose_add_receivers_parse_ko" qtlid="339951">Impossibile generare la lista dei destinatari.</translation>
+
+   <translation id="sms_sms_compose_add_phonebooks_selected_single" qtlid="395193"><strong>{{ count }}</strong> contatto selezionato</translation>
+   <translation id="sms_sms_compose_add_phonebooks_selected_multiple" qtlid="395206"><strong>{{ count }}</strong> contatti selezionati</translation>
+
+   <translation id="sms_sms_compose_add_phonebook_contact_title" qtlid="395219">Aggiungi contatti</translation>
+   <translation id="sms_sms_compose_add_phonebook_contact_info" qtlid="395232">Per inviare campagne SMS, utilizza preferibilmente file di destinatari CSV.</translation>
+   <translation id="sms_sms_compose_add_phonebook_contact_phonebook_select_label" qtlid="393841">Seleziona la tua rubrica:</translation>
+   <translation id="sms_sms_compose_add_phonebook_contact_filter_select_label" qtlid="395245">Filtro:</translation>
+   <translation id="sms_sms_compose_add_phonebook_contact_filter_select_all" qtlid="69173">Tutti</translation>
+   <translation id="sms_sms_compose_add_phonebook_contact_filter_select_homeMobile" qtlid="394127">Cellulare (domicilio)</translation>
+   <translation id="sms_sms_compose_add_phonebook_contact_filter_select_homePhone" qtlid="394114">Fisso (domicilio)</translation>
+   <translation id="sms_sms_compose_add_phonebook_contact_filter_select_workMobile" qtlid="394153">Cellulare (professionale)</translation>
+   <translation id="sms_sms_compose_add_phonebook_contact_filter_select_workPhone" qtlid="394140">Fisso (professionale)</translation>
+   <translation id="sms_sms_compose_add_phonebook_contact_column_surname" qtlid="3818">Nome</translation>
+   <translation id="sms_sms_compose_add_phonebook_contact_column_name" qtlid="23323">Nome</translation>
+   <translation id="sms_sms_compose_add_phonebook_contact_column_phonenumber" qtlid="30778">Numero</translation>
+   <translation id="sms_sms_compose_add_phonebook_contact_column_type" qtlid="2642">Tipo</translation>
+   <translation id="sms_sms_compose_add_phonebook_contact_phonenumber_type_homeMobile" qtlid="394075">Cellulare <small>(domicilio)</small></translation>
+   <translation id="sms_sms_compose_add_phonebook_contact_phonenumber_type_homePhone" qtlid="394062">Fisso <small>(domicilio)</small></translation>
+   <translation id="sms_sms_compose_add_phonebook_contact_phonenumber_type_workMobile" qtlid="394101">Cellulare <small>(professionale)</small></translation>
+   <translation id="sms_sms_compose_add_phonebook_contact_phonenumber_type_workPhone" qtlid="394088">Fisso <small>(professionale)</small></translation>
+   <translation id="sms_sms_compose_add_phonebook_contact_empty" qtlid="97964">Nessun contatto individuato.</translation>
+   <translation id="sms_sms_compose_add_phonebook_contact_adding" qtlid="395258">Aggiornamento dei contatti...</translation>
+   <translation id="sms_sms_compose_add_phonebook_contact_added" qtlid="395271">Lista dei contatti aggiornata!</translation>
+   <translation id="sms_sms_compose_add_phonebook_contact_ko" qtlid="394166">Ops! Impossibile recuperare la lista dei contatti.</translation>
+</translations>

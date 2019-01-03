@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="sms_section_back_link" qtlid="340874">Volver a los remitentes</translation>
+
+   <translation id="sms_senders_add_sender_title" qtlid="340627">Añadir a un remitente</translation>
+   <translation id="sms_senders_add_sender_choice_manual" qtlid="346560">Añadir remitentes manualmente</translation>
+   <translation id="sms_senders_add_sender_choice_personal" qtlid="346573">Añadir remitentes a partir de datos personales</translation>
+   <translation id="sms_senders_add_sender_choice_domain" qtlid="346586">Añadir remitentes a partir de sus dominios OVH</translation>
+   <translation id="sms_senders_add_sender_info_pricing" qtlid="133253">Consumo</translation>
+   <translation id="sms_senders_add_sender_info_pricing_text" qtlid="340965">Validación de un nombre:&#160;<b>gratuita</b>.</translation>
+   <translation id="sms_senders_add_sender_info_timetable_validation" qtlid="340978">Horarios de validación</translation>
+   <translation id="sms_senders_add_sender_info_timetable_validation_text" qtlid="340991">Nombre (validación manual en 1-2 días laborables):&#160;<b>de lunes a viernes, de 8:00 a 20:00</b>.</translation>
+   <translation id="sms_senders_add_sender_warning_title" qtlid="341004">Atención:&#160;</translation>
+   <translation id="sms_senders_add_sender_warning_text" qtlid="341017">Las operadoras de móvil no autorizan los envíos de SMS con números de teléfono como remitente.<br/>Puede utilizar un remitente alfabético personalizado o el número corto que permite responder.</translation>
+   <translation id="sms_senders_add_sender_warning_text_domains" qtlid="346599">Solo son compatibles los dominios de 11 caracteres o menos.</translation>
+   <translation id="sms_senders_add_sender_warning_text_nichandle" qtlid="360242">Algunos teléfonos no muestran los caracteres de puntuación en los remitentes.</translation>
+   <translation id="sms_senders_add_sender_label" qtlid="341030">Remitente:&#160;</translation>
+   <translation id="sms_senders_add_sender_placeholder" qtlid="24535">Remitente</translation>
+   <translation id="sms_senders_add_sender_error_required" qtlid="341043">El campo «Remitente» es obligatorio.</translation>
+   <translation id="sms_senders_add_sender_error_pattern" qtlid="341056">El campo «Remitente» solo puede estar formado por caracteres alfabéticos.</translation>
+   <translation id="sms_senders_add_sender_error_maxlength" qtlid="341069">El campo «Remitente» no puede tener más de 11 caracteres.</translation>
+   <translation id="sms_senders_add_sender_description_label" qtlid="340666">Descripción:&#160;</translation>
+   <translation id="sms_senders_add_sender_description_placeholder" qtlid="341082">Descripción (opcional)</translation>
+   <translation id="sms_senders_add_sender_description_error_maxlength" qtlid="341095">El campo «Descripción» no puede tener más de 40 caracteres.</translation>
+   <translation id="sms_senders_add_sender_reason_label" qtlid="341108">Breve justificación:&#160;</translation>
+   <translation id="sms_senders_add_sender_reason_placeholder" qtlid="341121">Breve justificación</translation>
+   <translation id="sms_senders_add_sender_reason_error_required" qtlid="341134">El campo «Breve justificación» es obligatorio.</translation>
+   <translation id="sms_senders_add_sender_reason_error_maxlength" qtlid="341147">El campo «Breve justificación» no puede tener más de 250 caracteres.</translation>
+   <translation id="sms_senders_add_sender_adding" qtlid="341160">Añadiendo el remitente…</translation>
+   <translation id="sms_senders_add_sender_added" qtlid="341173">Se ha añadido el remitente.&#160;</translation>
+   <translation id="sms_senders_add_sender_personal_empty" qtlid="346612">No hay datos personales disponibles.</translation>
+   <translation id="sms_senders_add_sender_domain_empty" qtlid="346625">No hay dominios disponibles.</translation>
+   <translation id="sms_senders_add_sender_sr_only" qtlid="346638">Añadir {{ sender }}</translation>
+   <translation id="sms_senders_add_sender" qtlid="393568">Añadir al remitente seleccionado</translation>
+   <translation id="sms_senders_add_senders" qtlid="393581">Añadir a los {{ count }} remitentes seleccionados</translation>
+   <translation id="sms_senders_add_senders_success" qtlid="393594">Añadiendo...</translation>
+</translations>
