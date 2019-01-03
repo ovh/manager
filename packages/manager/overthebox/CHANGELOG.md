@@ -1,3 +1,18 @@
+# [1.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-overthebox@1.0.0...@ovh-ux/manager-overthebox@1.1.0) (2019-01-03)
+
+
+### Bug Fixes
+
+* rework imports to improve standalone modules ([9cdabab](https://github.com/ovh-ux/manager/commit/9cdabab))
+* use [@ovh-ux](https://github.com/ovh-ux)/manager-telecom-styles ([d9d6f3f](https://github.com/ovh-ux/manager/commit/d9d6f3f))
+
+
+### Features
+
+* add new worspace to test overTheBox module in standalone ([b6ec049](https://github.com/ovh-ux/manager/commit/b6ec049))
+
+
+
 # [1.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-overthebox@1.0.0-alpha.2...@ovh-ux/manager-overthebox@1.0.0) (2018-12-12)
 
 
