@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-payment-method",
-  "version": "0.0.0",
+  "version": "1.0.0-alpha.0",
   "description": "OVH Payment Methods wrapper for angular",
   "author": "OVH SAS",
   "license": "BSD-3-Clause",
