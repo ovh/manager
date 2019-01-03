@@ -1,3 +1,19 @@
+# [1.2.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-layout-ovh@1.1.0...@ovh-ux/manager-layout-ovh@1.2.0) (2019-01-03)
+
+
+### Bug Fixes
+
+* **manager-layout-ovh:** remove default  prefix ([dc5a9fe](https://github.com/ovh-ux/manager/commit/dc5a9fe))
+* rework imports to improve standalone modules ([9cdabab](https://github.com/ovh-ux/manager/commit/9cdabab))
+* use [@ovh-ux](https://github.com/ovh-ux)/manager-telecom-styles ([d9d6f3f](https://github.com/ovh-ux/manager/commit/d9d6f3f))
+
+
+### Features
+
+* **manager-sms:** initial module import ([9aac091](https://github.com/ovh-ux/manager/commit/9aac091))
+
+
+
 # [1.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-layout-ovh@1.1.0-alpha.0...@ovh-ux/manager-layout-ovh@1.1.0) (2018-12-12)
 
 

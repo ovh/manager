@@ -1,3 +1,28 @@
+# [2.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom-styles@1.0.0...@ovh-ux/manager-telecom-styles@2.0.0) (2019-01-03)
+
+
+### Bug Fixes
+
+* rework imports to improve standalone modules ([9cdabab](https://github.com/ovh-ux/manager/commit/9cdabab))
+
+
+### Code Refactoring
+
+* rename universes-styles to telecom-styles ([d2cd1a9](https://github.com/ovh-ux/manager/commit/d2cd1a9))
+
+
+### BREAKING CHANGES
+
+* @ovh-ux/manager-universes-styles is now @ovh-ux/manager-telecom-styles
+
+    Before:
+      import @ovh-ux/manager-telecom-styles/src/telecom.less in less
+
+    After:
+      import @ovh-ux/manager-telecom-styles in javascript
+
+
+
 # [1.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-universes-styles@1.0.0-alpha.1...@ovh-ux/manager-universes-styles@1.0.0) (2018-12-12)
 
 

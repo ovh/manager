@@ -1,3 +1,12 @@
+## [1.1.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@1.1.0...@ovh-ux/manager-core@1.1.1) (2019-01-03)
+
+
+### Bug Fixes
+
+* rework imports to improve standalone modules ([9cdabab](https://github.com/ovh-ux/manager/commit/9cdabab))
+
+
+
 # [1.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@1.1.0-alpha.0...@ovh-ux/manager-core@1.1.0) (2018-12-12)
 
 
