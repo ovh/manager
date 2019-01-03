@@ -1,85 +1,110 @@
 <section class="telecom-sms-receivers">
-
     <div class="widget-presentation">
-
         <header class="widget-presentation-header">
-            <h2 class="widget-presentation-title"
-                data-translate="sms_receivers_information_title">
-            </h2>
+            <h2
+                class="widget-presentation-title"
+                data-translate="sms_receivers_information_title"
+            ></h2>
         </header>
 
         <p data-translate="sms_receivers_information_text_1"></p>
         <p data-ng-if="SmsReceiversCtrl.urls.receivers">
-            <span data-translate="sms_receivers_information_text_1_guide_start"></span>
-            <a class="telecom-link"
+            <span
+                data-translate="sms_receivers_information_text_1_guide_start"
+            ></span>
+            <a
+                class="telecom-link"
                 title="{{:: 'sms_receivers_information_text_1_guide_end' | translate }} ({{:: 'common_open_new_tab' | translate }})"
                 target="_blank"
-                data-ng-href="{{ SmsReceiversCtrl.urls.receivers }}">
-                <span data-translate="sms_receivers_information_text_1_guide_end"></span>
-                <i class="ovh-font ovh-font-newtab" aria-hidden="true"></i>
-            </a>.
+                data-ng-href="{{ SmsReceiversCtrl.urls.receivers }}"
+            >
+                <span
+                    data-translate="sms_receivers_information_text_1_guide_end"
+                ></span>
+                <i class="ovh-font ovh-font-newtab" aria-hidden="true"></i> </a
+            >.
         </p>
         <p data-translate="sms_receivers_information_text_3"></p>
         <p data-translate="sms_receivers_information_text_4"></p>
-
-    </div><!-- .widget-presentation -->
+    </div>
+    <!-- .widget-presentation -->
 
     <div class="widget-presentation">
-
         <header class="widget-presentation-header">
-            <h2 class="widget-presentation-title"
-                data-translate="sms_receivers_manage_title">
-            </h2>
+            <h2
+                class="widget-presentation-title"
+                data-translate="sms_receivers_manage_title"
+            ></h2>
         </header>
 
-        <div class="alert alert-danger mb-4"
-                role="alert"
-                data-ng-if="SmsReceiversCtrl.slot.isFull">
+        <div
+            class="alert alert-danger mb-4"
+            role="alert"
+            data-ng-if="SmsReceiversCtrl.slot.isFull"
+        >
             <p data-translate="sms_receivers_add_receiver_slot_is_full"></p>
-            <p data-translate="sms_receivers_add_receiver_slot_please_remove_one"></p>
+            <p
+                data-translate="sms_receivers_add_receiver_slot_please_remove_one"
+            ></p>
         </div>
 
-        <div class="alert alert-info mb-4"
-                role="alert"
-                data-ng-if="SmsReceiversCtrl.receivers.isCleaning"
-                data-translate="sms_receivers_add_receiver_is_cleaning">
-        </div>
+        <div
+            class="alert alert-info mb-4"
+            role="alert"
+            data-ng-if="SmsReceiversCtrl.receivers.isCleaning"
+            data-translate="sms_receivers_add_receiver_is_cleaning"
+        ></div>
 
         <div class="mb-3 clearfix">
-            <div class="btn-group float-left mr-3"
-                    data-uib-dropdown
-                    data-dropdown-append-to-body>
-                <button id="btn-sms-receivers-actions"
-                        type="button"
-                        class="btn btn-default"
-                        data-uib-dropdown-toggle>
+            <div
+                class="btn-group float-left mr-3"
+                data-uib-dropdown
+                data-dropdown-append-to-body
+            >
+                <button
+                    id="btn-sms-receivers-actions"
+                    type="button"
+                    class="btn btn-default"
+                    data-uib-dropdown-toggle
+                >
                     <span class="fa fa-bars" aria-hidden="true"></span>
                     <span data-translate="sms_common_actions"></span>
-                    <span class="ovh-font ovh-font-small-arrow-down" aria-hidden="true"></span>
+                    <span
+                        class="ovh-font ovh-font-small-arrow-down"
+                        aria-hidden="true"
+                    ></span>
                 </button>
-                <ul class="dropdown-menu"
+                <ul
+                    class="dropdown-menu"
                     role="menu"
                     aria-labelledby="btn-sms-receivers-actions"
-                    data-uib-dropdown-menu>
+                    data-uib-dropdown-menu
+                >
                     <li role="menuitem">
-                        <i class="ovh-font ovh-font-add-circle" aria-hidden="true"></i>
+                        <i
+                            class="ovh-font ovh-font-add-circle"
+                            aria-hidden="true"
+                        ></i>
                         <button
                             type="button"
                             class="btn btn-link"
                             data-ng-click="SmsReceiversCtrl.add()"
                             data-ng-disabled="SmsReceiversCtrl.receivers.isLoading || SmsReceiversCtrl.slot.isFull"
-                            data-translate="sms_common_add">
-                        </button>
+                            data-translate="sms_common_add"
+                        ></button>
                     </li>
                     <li role="menuitem">
-                        <i class="ovh-font ovh-font-arrow-rotate" aria-hidden="true"></i>
+                        <i
+                            class="ovh-font ovh-font-arrow-rotate"
+                            aria-hidden="true"
+                        ></i>
                         <button
                             type="button"
                             class="btn btn-link"
                             data-ng-click="SmsReceiversCtrl.refresh()"
                             data-ng-disabled="SmsReceiversCtrl.receivers.isDeleting"
-                            data-translate="sms_common_refresh">
-                        </button>
+                            data-translate="sms_common_refresh"
+                        ></button>
                     </li>
                 </ul>
             </div>
@@ -87,35 +112,46 @@
                 type="button"
                 class="btn btn-default btn-block-xs-only"
                 data-ng-disabled="SmsReceiversCtrl.getSelection().length === 0 || SmsReceiversCtrl.receivers.isDeleting"
-                data-ng-click="SmsReceiversCtrl.deleteSelectedReceivers()">
-                <span class="oui-icon oui-icon-trash_line mr-2"
-                        aria-hidden="true"
-                        data-ng-if="!SmsReceiversCtrl.receivers.isDeleting">
+                data-ng-click="SmsReceiversCtrl.deleteSelectedReceivers()"
+            >
+                <span
+                    class="oui-icon oui-icon-trash_line mr-2"
+                    aria-hidden="true"
+                    data-ng-if="!SmsReceiversCtrl.receivers.isDeleting"
+                >
                 </span>
-                <oui-spinner class="mr-2"
-                                data-ng-if="SmsReceiversCtrl.receivers.isDeleting"
-                                data-size="s">
+                <oui-spinner
+                    class="mr-2"
+                    data-ng-if="SmsReceiversCtrl.receivers.isDeleting"
+                    data-size="s"
+                >
                 </oui-spinner>
-                <span data-ng-pluralize
-                        data-count="SmsReceiversCtrl.getSelection().length"
-                        data-when="{
+                <span
+                    data-ng-pluralize
+                    data-count="SmsReceiversCtrl.getSelection().length"
+                    data-when="{
                             '0': ('sms_receivers_delete_receiver' | translate),
                             'one': ('sms_receivers_delete_receiver' | translate),
                             'other': ('sms_receivers_delete_receivers' | translate:{ count: {} })
-                        }">
+                        }"
+                >
                 </span>
             </button>
-            <oui-spinner class="ml-2"
-                            data-ng-if="SmsReceiversCtrl.receivers.isReading"
-                            data-size="s">
+            <oui-spinner
+                class="ml-2"
+                data-ng-if="SmsReceiversCtrl.receivers.isReading"
+                data-size="s"
+            >
             </oui-spinner>
         </div>
 
         <div class="table-responsive">
-            <table class="table"
-                    data-ng-class="{
+            <table
+                class="table"
+                data-ng-class="{
                         'table-hover table-striped': SmsReceiversCtrl.receivers.raw.length > 1
-                    }">
+                    }"
+            >
                 <thead>
                     <tr>
                         <th scope="col" width="40px">
@@ -127,22 +163,28 @@
                                 data-ovh-checkbox-table-ids-all="SmsReceiversCtrl.receivers.raw"
                                 data-ovh-checkbox-table-ids-page="SmsReceiversCtrl.receivers.paginated"
                                 data-ovh-checkbox-table-ids-selected="SmsReceiversCtrl.receivers.selected"
-                                data-ovh-checkbox-table-id="slotId" />
+                                data-ovh-checkbox-table-id="slotId"
+                            />
                         </th>
                         <th scope="col">
                             <button
                                 type="button"
                                 class="btn btn-link p-0"
                                 data-ng-disabled="!SmsReceiversCtrl.receivers.sorted.length"
-                                data-ng-click="SmsReceiversCtrl.orderBy('description')">
-                                <span data-translate="sms_receivers_label_description"></span>
-                                <span class="oui-icon align-baseline"
-                                        aria-hidden="true"
-                                        data-ng-class="{
+                                data-ng-click="SmsReceiversCtrl.orderBy('description')"
+                            >
+                                <span
+                                    data-translate="sms_receivers_label_description"
+                                ></span>
+                                <span
+                                    class="oui-icon align-baseline"
+                                    aria-hidden="true"
+                                    data-ng-class="{
                                             'oui-icon-arrow-down': SmsReceiversCtrl.receivers.orderBy !== 'description',
                                             'oui-icon-arrow-down': SmsReceiversCtrl.receivers.orderBy === 'description' && SmsReceiversCtrl.receivers.orderDesc,
                                             'oui-icon-arrow-up': SmsReceiversCtrl.receivers.orderBy === 'description' && !SmsReceiversCtrl.receivers.orderDesc
-                                        }">
+                                        }"
+                                >
                                 </span>
                             </button>
                         </th>
@@ -151,15 +193,20 @@
                                 type="button"
                                 class="btn btn-link p-0"
                                 data-ng-disabled="!SmsReceiversCtrl.receivers.sorted.length"
-                                data-ng-click="SmsReceiversCtrl.orderBy('datetime')">
-                                <span data-translate="sms_receivers_label_date"></span>
-                                <span class="oui-icon align-baseline"
-                                        aria-hidden="true"
-                                        data-ng-class="{
+                                data-ng-click="SmsReceiversCtrl.orderBy('datetime')"
+                            >
+                                <span
+                                    data-translate="sms_receivers_label_date"
+                                ></span>
+                                <span
+                                    class="oui-icon align-baseline"
+                                    aria-hidden="true"
+                                    data-ng-class="{
                                             'oui-icon-arrow-down': SmsReceiversCtrl.receivers.orderBy !== 'datetime',
                                             'oui-icon-arrow-down': SmsReceiversCtrl.receivers.orderBy === 'datetime' && SmsReceiversCtrl.receivers.orderDesc,
                                             'oui-icon-arrow-up': SmsReceiversCtrl.receivers.orderBy === 'datetime' && !SmsReceiversCtrl.receivers.orderDesc
-                                        }">
+                                        }"
+                                >
                                 </span>
                             </button>
                         </th>
@@ -168,15 +215,20 @@
                                 type="button"
                                 class="btn btn-link p-0"
                                 data-ng-disabled="!SmsReceiversCtrl.receivers.sorted.length"
-                                data-ng-click="SmsReceiversCtrl.orderBy('records')">
-                                <span data-translate="sms_receivers_label_records"></span>
-                                <span class="oui-icon align-baseline"
-                                        aria-hidden="true"
-                                        data-ng-class="{
+                                data-ng-click="SmsReceiversCtrl.orderBy('records')"
+                            >
+                                <span
+                                    data-translate="sms_receivers_label_records"
+                                ></span>
+                                <span
+                                    class="oui-icon align-baseline"
+                                    aria-hidden="true"
+                                    data-ng-class="{
                                             'oui-icon-arrow-down': SmsReceiversCtrl.receivers.orderBy !== 'records',
                                             'oui-icon-arrow-down': SmsReceiversCtrl.receivers.orderBy === 'records' && SmsReceiversCtrl.receivers.orderDesc,
                                             'oui-icon-arrow-up': SmsReceiversCtrl.receivers.orderBy === 'records' && !SmsReceiversCtrl.receivers.orderDesc
-                                        }">
+                                        }"
+                                >
                                 </span>
                             </button>
                         </th>
@@ -185,101 +237,148 @@
                                 type="button"
                                 class="btn btn-link p-0"
                                 data-ng-disabled="!SmsReceiversCtrl.receivers.sorted.length"
-                                data-ng-click="SmsReceiversCtrl.orderBy('autoUpdate')">
-                                <span data-translate="sms_receivers_label_auto_update"></span>
-                                <span class="oui-icon align-baseline"
-                                        aria-hidden="true"
-                                        data-ng-class="{
+                                data-ng-click="SmsReceiversCtrl.orderBy('autoUpdate')"
+                            >
+                                <span
+                                    data-translate="sms_receivers_label_auto_update"
+                                ></span>
+                                <span
+                                    class="oui-icon align-baseline"
+                                    aria-hidden="true"
+                                    data-ng-class="{
                                             'oui-icon-arrow-down': SmsReceiversCtrl.receivers.orderBy !== 'autoUpdate',
                                             'oui-icon-arrow-down': SmsReceiversCtrl.receivers.orderBy === 'autoUpdate' && SmsReceiversCtrl.receivers.orderDesc,
                                             'oui-icon-arrow-up': SmsReceiversCtrl.receivers.orderBy === 'autoUpdate' && !SmsReceiversCtrl.receivers.orderDesc
-                                        }">
+                                        }"
+                                >
                                 </span>
                             </button>
                         </th>
-                        <th scope="col"
+                        <th
+                            scope="col"
                             class="text-right"
-                            data-translate="sms_common_actions">
-                        </th>
+                            data-translate="sms_common_actions"
+                        ></th>
                     </tr>
                 </thead>
                 <tbody data-ng-if="!SmsReceiversCtrl.receivers.isLoading">
-                    <tr data-ng-repeat="receiver in SmsReceiversCtrl.receivers.paginated | orderBy:SmsReceiversCtrl.receivers.orderBy:SmsReceiversCtrl.receivers.orderDesc track by receiver.slotId">
+                    <tr
+                        data-ng-repeat="receiver in SmsReceiversCtrl.receivers.paginated | orderBy:SmsReceiversCtrl.receivers.orderBy:SmsReceiversCtrl.receivers.orderDesc track by receiver.slotId"
+                    >
                         <td>
                             <input
                                 type="checkbox"
                                 data-ng-disabled="SmsReceiversCtrl.receivers.isDeleting"
-                                data-ng-model="SmsReceiversCtrl.receivers.selected[receiver.slotId]" />
+                                data-ng-model="SmsReceiversCtrl.receivers.selected[receiver.slotId]"
+                            />
                         </td>
                         <td data-ng-bind="receiver.description"></td>
-                        <td data-ng-bind="receiver.datetime | date:'dd/MM/yyyy HH:mm:ss'"></td>
+                        <td
+                            data-ng-bind="receiver.datetime | date:'dd/MM/yyyy HH:mm:ss'"
+                        ></td>
                         <td data-ng-bind="receiver.records"></td>
-                        <td class="text-capitalize"
-                            data-ng-bind="(receiver.autoUpdate ? 'sms_yes' : 'sms_no') | translate">
-                        </td>
+                        <td
+                            class="text-capitalize"
+                            data-ng-bind="(receiver.autoUpdate ? 'sms_yes' : 'sms_no') | translate"
+                        ></td>
                         <td class="text-right">
-                            <div class="btn-group"
-                                    data-uib-dropdown
-                                    data-dropdown-append-to-body>
-                                <button id="btn-sms-receivers-action-{{ index }}"
-                                        type="button"
-                                        class="btn btn-link"
-                                        data-uib-dropdown-toggle>
-                                    <span class="ovh-font ovh-font-dots" aria-hidden="true"></span>
-                                    <span class="sr-only"
-                                            data-translate="sms_common_actions">
+                            <div
+                                class="btn-group"
+                                data-uib-dropdown
+                                data-dropdown-append-to-body
+                            >
+                                <button
+                                    id="btn-sms-receivers-action-{{ index }}"
+                                    type="button"
+                                    class="btn btn-link"
+                                    data-uib-dropdown-toggle
+                                >
+                                    <span
+                                        class="ovh-font ovh-font-dots"
+                                        aria-hidden="true"
+                                    ></span>
+                                    <span
+                                        class="sr-only"
+                                        data-translate="sms_common_actions"
+                                    >
                                     </span>
                                 </button>
-                                <ul class="dropdown-menu dropdown-menu-right"
+                                <ul
+                                    class="dropdown-menu dropdown-menu-right"
                                     role="menu"
-                                    aria-labelledby="btn-sms-receivers-action-{{ index }}"
-                                    data-uib-dropdown-menu>
+                                    aria-labelledby="btn-sms-receivers-action-{{
+                                        index
+                                    }}"
+                                    data-uib-dropdown-menu
+                                >
                                     <li role="menuitem">
-                                        <i class="ovh-font ovh-font-editer" aria-hidden="true"></i>
+                                        <i
+                                            class="ovh-font ovh-font-editer"
+                                            aria-hidden="true"
+                                        ></i>
                                         <button
                                             type="button"
                                             class="btn btn-link"
                                             data-ng-click="SmsReceiversCtrl.edit(receiver)"
-                                            data-translate="sms_edit">
-                                        </button>
+                                            data-translate="sms_edit"
+                                        ></button>
                                     </li>
                                     <li role="menuitem">
-                                        <i class="ovh-font ovh-font-details" aria-hidden="true"></i>
+                                        <i
+                                            class="ovh-font ovh-font-details"
+                                            aria-hidden="true"
+                                        ></i>
                                         <button
                                             type="button"
                                             class="btn btn-link"
                                             data-ng-click="SmsReceiversCtrl.read(receiver)"
-                                            data-translate="sms_receivers_action_read">
-                                        </button>
+                                            data-translate="sms_receivers_action_read"
+                                        ></button>
                                     </li>
                                     <li role="menuitem">
-                                        <i class="ovh-font ovh-font-broom" aria-hidden="true"></i>
+                                        <i
+                                            class="ovh-font ovh-font-broom"
+                                            aria-hidden="true"
+                                        ></i>
                                         <button
                                             type="button"
                                             class="btn btn-link"
                                             data-ng-click="SmsReceiversCtrl.clean(receiver)"
                                             data-ng-disabled="SmsReceiversCtrl.receivers.isCleaning"
-                                            data-translate="sms_receivers_action_clean">
-                                        </button>
+                                            data-translate="sms_receivers_action_clean"
+                                        ></button>
                                     </li>
                                     <li role="menuitem">
-                                        <i class="ovh-font ovh-font-download" aria-hidden="true"></i>
+                                        <i
+                                            class="ovh-font ovh-font-download"
+                                            aria-hidden="true"
+                                        ></i>
                                         <button
                                             type="button"
                                             class="btn btn-link"
                                             data-ng-csv="SmsReceiversCtrl.getCsvData(receiver)"
-                                            data-filename="{{ SmsReceiversCtrl.setFilename(receiver) }}">
-                                            <span data-translate="sms_receivers_action_export"></span>
+                                            data-filename="{{
+                                                SmsReceiversCtrl.setFilename(
+                                                    receiver
+                                                )
+                                            }}"
+                                        >
+                                            <span
+                                                data-translate="sms_receivers_action_export"
+                                            ></span>
                                         </button>
                                     </li>
                                     <li role="menuitem">
-                                        <i class="ovh-font ovh-font-bin" aria-hidden="true"></i>
+                                        <i
+                                            class="ovh-font ovh-font-bin"
+                                            aria-hidden="true"
+                                        ></i>
                                         <button
                                             type="button"
                                             class="btn btn-link"
                                             data-ng-click="SmsReceiversCtrl.remove(receiver)"
-                                            data-translate="sms_delete">
-                                        </button>
+                                            data-translate="sms_delete"
+                                        ></button>
                                     </li>
                                 </ul>
                             </div>
@@ -293,30 +392,37 @@
                         </td>
                     </tr>
                 </tbody>
-                <tbody data-ng-if="!SmsReceiversCtrl.receivers.isLoading && !SmsReceiversCtrl.receivers.raw.length">
+                <tbody
+                    data-ng-if="!SmsReceiversCtrl.receivers.isLoading && !SmsReceiversCtrl.receivers.raw.length"
+                >
                     <tr>
-                        <td colspan="6"
+                        <td
+                            colspan="6"
                             class="text-center"
-                            data-translate="sms_receivers_empty">
-                        </td>
+                            data-translate="sms_receivers_empty"
+                        ></td>
                     </tr>
                 </tbody>
             </table>
         </div>
-        <div class="mt-2"
-                data-ng-show="!SmsReceiversCtrl.receivers.isLoading && SmsReceiversCtrl.receivers.raw.length"
-                data-pagination-front
-                data-items="SmsReceiversCtrl.receivers.sorted"
-                data-paginated-items="SmsReceiversCtrl.receivers.paginated"
-                data-current-page="currentPage"
-                data-nb-pages="nbPages"
-                data-items-per-page="itemsPerPage"
-                data-page-placeholder="{{'sms_common_pagination_page' | translate: {currentPage:currentPage, nbPages:nbPages} }}"
-                data-item-per-page-placeholder="{{'sms_common_pagination_display' | translate}}">
-        </div>
-
+        <div
+            class="mt-2"
+            data-ng-show="!SmsReceiversCtrl.receivers.isLoading && SmsReceiversCtrl.receivers.raw.length"
+            data-pagination-front
+            data-items="SmsReceiversCtrl.receivers.sorted"
+            data-paginated-items="SmsReceiversCtrl.receivers.paginated"
+            data-current-page="currentPage"
+            data-nb-pages="nbPages"
+            data-items-per-page="itemsPerPage"
+            data-page-placeholder="{{
+                'sms_common_pagination_page'
+                    | translate: { currentPage: currentPage, nbPages: nbPages }
+            }}"
+            data-item-per-page-placeholder="{{
+                'sms_common_pagination_display' | translate
+            }}"
+        ></div>
     </div>
     <!-- .widget-presentation -->
-
 </section>
 <!-- /.telecom-sms-receivers -->
