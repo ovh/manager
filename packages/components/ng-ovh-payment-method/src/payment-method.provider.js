@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-import OvhPaymentMehtodService from './payment-method.service';
+import OvhPaymentMethodService from './payment-method.service';
 
 export default class OvhPaymentMethodProvider {
   /* @ngInject */
@@ -17,7 +17,7 @@ export default class OvhPaymentMethodProvider {
     return target;
   }
 
-  $get($q, $translate, OvhApiMe) {
-    return new OvhPaymentMehtodService($q, $translate, OvhApiMe, this.target);
+  $get($q, $translate, $window, OvhApiMe) {
+    return new OvhPaymentMethodService($q, $translate, $window, OvhApiMe, this.target);
   }
 }

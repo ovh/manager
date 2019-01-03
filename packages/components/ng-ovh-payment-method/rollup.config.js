@@ -10,6 +10,8 @@ export default [
     output: {
       globals: {
         angular: 'angular',
+        lodash: '_',
+        'angular-translate': 'pascalprecht.translate',
       },
     },
   }),
