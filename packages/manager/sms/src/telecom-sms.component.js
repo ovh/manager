@@ -35,8 +35,8 @@ angular
   .module(moduleName, [
     'telecomUniverseComponents',
     'ovh-angular-checkbox-table',
-    'ovh-angular-responsive-tabs',
     'ovh-angular-pagination-front',
+    'ovh-angular-responsive-tabs',
     dashboard,
     guides,
     options,
