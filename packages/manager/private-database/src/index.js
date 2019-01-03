@@ -12,6 +12,7 @@ import controller from './private-database.controller';
 import configurationController from './configuration/private-database-configuration.controller';
 import logsController from './logs/private-database-logs.controller';
 import metricsController from './metrics/private-database-metrics.controller';
+import oomController from './oom/private-database-oom.controller';
 import tabsController from './private-database-tabs.controller';
 import stateController from './state/private-database-state.controller';
 import taskController from './task/private-database-task.controller';
@@ -20,6 +21,7 @@ import template from './private-database.html';
 import configurationTemplate from './configuration/private-database-configuration.html';
 import logsTemplate from './logs/private-database-logs.html';
 import metricsTemplate from './metrics/private-database-metrics.html';
+import oomTemplate from './oom/private-database-oom.html';
 import stateTemplate from './state/private-database-state.html';
 import taskTemplate from './task/private-database-task.html';
 
@@ -42,6 +44,7 @@ angular.module(moduleName, [
     $templateCache.put('private-database/configuration/private-database-configuration.html', configurationTemplate);
     $templateCache.put('private-database/logs/private-database-logs.html', logsTemplate);
     $templateCache.put('private-database/metrics/private-database-metrics.html', metricsTemplate);
+    $templateCache.put('private-database/oom/private-database-oom.html', oomTemplate);
     $templateCache.put('private-database/state/private-database-state.html', stateTemplate);
     $templateCache.put('private-database/task/private-database-task.html', taskTemplate);
   })
@@ -52,6 +55,7 @@ angular.module(moduleName, [
   .controller('PrivateDatabaseConfigurationsCtrl', configurationController)
   .controller('PrivateDatabaseLogsCtrl', logsController)
   .controller('PrivateDatabaseMetricsCtrl', metricsController)
+  .controller('PrivateDatabaseOomCtrl', oomController)
   .controller('PrivateDatabaseTabsCtrl', tabsController)
   .controller('PrivateDatabaseStateCtrl', stateController)
   .controller('PrivateDatabaseTasksCtrl', taskController)
@@ -77,54 +81,6 @@ angular.module(moduleName, [
       },
       translations: ['.'],
     });
-
-  /*
-  $stateProvider.state('app.private-database-order', {
-    url: '/configuration/private_database',
-    templateUrl: 'private-database/order/private-database-order.html',
-    controller: 'PrivateDatabaseOrderCtrl',
-    resolve: {
-      navigationInformations: [
-        'Navigator',
-        '$rootScope',
-        (Navigator, $rootScope) => {
-          $rootScope.currentSectionInformation =
-            'private_database'; // eslint-disable-line no-param-reassign
-          return Navigator.setNavigationInformation({
-            leftMenuVisible: true,
-            configurationSelected: true,
-          });
-        },
-      ],
-    },
-    translations: ['../private-database'],
-  });
-
-  $stateProvider.state('app.sql-order', {
-    url: '/configuration/sql_order?orderType&currentHosting',
-    params: {
-      currentHosting: { value: null, squash: true },
-      orderType: { value: 'private' },
-    },
-    templateUrl: 'private-database/order/sql-database-order.html',
-    controller: 'SqlDatabaseOrderCtrl',
-    resolve: {
-      navigationInformations: [
-        'Navigator',
-        '$rootScope',
-        (Navigator, $rootScope) => {
-          $rootScope.currentSectionInformation =
-            'private_database'; // eslint-disable-line no-param-reassign
-          return Navigator.setNavigationInformation({
-            leftMenuVisible: true,
-            configurationSelected: true,
-          });
-        },
-      ],
-    },
-    translations: ['../private-database'],
-  });
-  */
   });
 
 export default moduleName;

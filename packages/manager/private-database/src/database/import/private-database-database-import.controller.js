@@ -5,21 +5,23 @@ export default class PrivateDatabaseImportCtrl {
   /* @ngInject */
 
   constructor(
+    $http,
+    $q,
     $rootScope,
     $scope,
     $stateParams,
     $translate,
     Alerter,
     PrivateDatabase,
-    User,
   ) {
+    this.$http = $http;
+    this.$q = $q;
     this.$rootScope = $rootScope;
     this.$scope = $scope;
     this.$stateParams = $stateParams;
     this.$translate = $translate;
     this.alerter = Alerter;
     this.privateDatabaseService = PrivateDatabase;
-    this.userService = User;
   }
 
   $onInit() {
@@ -58,13 +60,58 @@ export default class PrivateDatabaseImportCtrl {
     this.$scope.resetDocumentSelection = () => this.resetDocumentSelection();
   }
 
+  uploadFile(filename, file, tags) {
+    if (filename == null || filename === '' || _.isEmpty(file.name)) {
+      throw new Error("File doesn't have a name");
+    }
+
+    let idFile;
+    let documentResponse;
+
+    const filenameSplitted = file.name.split('.');
+    const fileNameExtension = filenameSplitted[filenameSplitted.length - 1];
+    const givenFilenameSplitted = filename.split('.');
+    const givenFilenameExtension = givenFilenameSplitted[givenFilenameSplitted.length - 1];
+
+    let finalExtension = '';
+    if (fileNameExtension !== givenFilenameExtension) {
+      finalExtension = `.${fileNameExtension}`;
+    }
+
+    const params = {
+      name: `${filename}${finalExtension}`,
+    };
+
+    if (tags) {
+      angular.extend(params, { tags });
+    }
+
+    return this.$http
+      .post('apiv6/me/document', params)
+      .then((response) => {
+        documentResponse = response;
+
+        return this.$http.post('apiv6/me/document/cors', {
+          origin: window.location.origin,
+        });
+      })
+      .then(() => {
+        idFile = documentResponse.data.id;
+
+        return this.$http.put(documentResponse.data.putUrl, file, {
+          serviceType: 'external',
+          headers: { 'Content-Type': 'multipart/form-data' },
+        });
+      })
+      .then(() => idFile);
+  }
+
   submit() {
     const file = _.head(this.file);
     const filename = this.model.uploadFileName;
     this.isSendingFile = true;
 
-    this.userService
-      .uploadFile(filename, file, [this.importScriptTag])
+    this.uploadFile(filename, file, [this.importScriptTag])
       .then((id) => {
         _.set(this.model, 'document.id', id);
         this.atLeastOneFileHasBeenSend = true;
@@ -77,8 +124,12 @@ export default class PrivateDatabaseImportCtrl {
   getDocuments() {
     if (this.selected.action === this.model.actions.IMPORT_FROM_EXISTING) {
       this.loading.documents = true;
-      this.userService
-        .getDocuments()
+      this.$http.get('apiv6/me/document')
+        .then(response => response.data)
+        .then((data) => {
+          const queries = data.map(id => this.$http.get(`apiv6/me/document/${id}`).then(response => response.data));
+          return this.$q.all(queries);
+        })
         .then((data) => {
           const onlyImportScripts = [];
 

@@ -23,6 +23,9 @@ export default class PrivateDatabaseCtrl {
     this.$timeout = $timeout;
     this.$translate = $translate;
     this.alerter = Alerter;
+    this.newDisplayName = {
+      value: '',
+    };
     this.privateDatabaseExtensionService = PrivateDatabaseExtension;
     this.privateDatabaseService = PrivateDatabase;
     this.sessionService = SessionService;

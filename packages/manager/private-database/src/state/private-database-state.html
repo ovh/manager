@@ -368,14 +368,14 @@
 
         <div class="col-md-3">
             <div class="oui-tile mb-5" data-ng-if="guides">
-                <h3 class="oui-header_4 oui-tile__title" data-translate="guide_add_subtitle"></h3>
+                <h3 class="oui-header_4 oui-tile__title" data-translate="privateDatabase_guide_add_subtitle"></h3>
                 <div class="oui-tile__body">
                     <ul class="list-unstyled">
                         <li class="oui-tile__item oui-tile__item_button"
                             data-ng-repeat="guide in guides track by $index">
                             <a class="oui-tile__button oui-button oui-button_link oui-button_full-width d-flex text-wrap" target="_blank"
                                data-ng-href="{{guide.url}}">
-                                <span data-ng-bind="guide.title | translate"></span>
+                                <span data-ng-bind="('privateDatabase_' + guide.title) | translate"></span>
                                 <span class="fa fa-external-link my-auto ml-auto" aria-hidden="true"></span>
                             </a>
                         </li>
