@@ -4,6 +4,12 @@ import '@ovh-ux/telecom-universe-components';
 import '@ovh-ux/manager-telecom-styles';
 import 'ovh-angular-checkbox-table';
 import 'ovh-angular-responsive-tabs';
+import 'ovh-angular-pagination-front';
+
+import 'ovh-ui-kit/dist/oui.css';
+import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
+import 'ovh-manager-webfont/dist/css/ovh-font.css';
+import 'font-awesome/css/font-awesome.css';
 
 import './telecom-sms.less';
 
@@ -21,6 +27,8 @@ import senders from './senders';
 import sms from './sms';
 import users from './users';
 
+import './telecom-sms.scss';
+
 const moduleName = 'ovhManagerSmsComponent';
 
 angular
@@ -28,6 +36,7 @@ angular
     'telecomUniverseComponents',
     'ovh-angular-checkbox-table',
     'ovh-angular-responsive-tabs',
+    'ovh-angular-pagination-front',
     dashboard,
     guides,
     options,

@@ -1,6 +1,9 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
 
+import 'ng-at-internet';
+import '@ovh-ux/ovh-angular-contracts';
+
 import controller from './telecom-sms-order.controller';
 import template from './telecom-sms-order.html';
 
@@ -9,6 +12,8 @@ const moduleName = 'ovhManagerSmsOrderComponent';
 angular
   .module(moduleName, [
     'ui.router',
+    'ng-at-internet',
+    'ovhAngularContracts',
   ])
   .config(($stateProvider) => {
     $stateProvider.state('sms.order', {
