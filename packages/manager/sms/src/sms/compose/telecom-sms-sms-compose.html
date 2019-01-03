@@ -18,7 +18,7 @@
         <tuc-toast-message></tuc-toast-message>
 
         <div class="row">
-            <div class="col-xs-12 col-md-3 float-right">
+            <div class="col-md-3 float-right">
 
                 <div class="oui-tile">
                     <h3 class="oui-header_3 oui-tile__title"
@@ -57,7 +57,7 @@
                 </div>
 
             </div>
-            <div class="col-xs-12 col-md-9">
+            <div class="col-md-9">
 
                 <div class="alert alert-warning"
                      role="alert"
@@ -90,7 +90,7 @@
                                    data-translate="sms_sms_compose_sender_label">
                             </label>
                             <div class="row">
-                                <div class="col-xs-12 col-md-8">
+                                <div class="col-md-8">
                                     <select
                                         name="sender"
                                         id="sender"
@@ -132,7 +132,7 @@
                                         </optgroup>
                                     </select>
                                 </div>
-                                <div class="col-xs-12 col-md-4">
+                                <div class="col-md-4">
                                     <a class="d-inline-block mt-2"
                                        data-ui-sref="sms.senders"
                                        data-translate="sms_sms_compose_sender_manage"
@@ -151,7 +151,7 @@
                                    data-translate="sms_sms_compose_recipient_label">
                             </label>
                             <div class="row">
-                                <div class="col-xs-12 col-md-8">
+                                <div class="col-md-8">
                                     <input
                                         type="tel"
                                         name="recipient"
@@ -221,7 +221,7 @@
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="col-xs-12 col-md-4">
+                                <div class="col-md-4">
                                     <a class="d-inline-block mt-2"
                                        data-ng-if="!SmsComposeCtrl.receivers.raw.length"
                                        data-ui-sref="sms.receivers"
@@ -248,7 +248,7 @@
                                    data-translate="sms_sms_compose_message_label">
                             </label>
                             <div class="row">
-                                <div class="col-xs-12 col-md-8">
+                                <div class="col-md-8">
                                     <textarea
                                         name="message"
                                         id="message"
@@ -272,7 +272,7 @@
                                 </span>
                             </span>
                             <div class="row">
-                                <div class="col-xs-12 col-md-8">
+                                <div class="col-md-8">
                                     <div class="text-right text-secondary"
                                          data-ng-hide="SmsComposeCtrl.message.maxLengthReached">
                                         <span data-translate="sms_sms_compose_message_characters_left"></span>
@@ -351,7 +351,7 @@
                         <div class="mt-4"
                              data-ng-show="SmsComposeCtrl.moreOptions">
                             <div class="row mb-4">
-                                <div class="col-xs-12 col-md-6">
+                                <div class="col-md-6">
                                     <div class="radio">
                                         <label>
                                             <input
@@ -436,7 +436,7 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-xs-12 col-md-8">
+                                <div class="col-md-8">
                                     <label for="class"
                                            class="control-label"
                                            data-translate="sms_sms_compose_class_label">
