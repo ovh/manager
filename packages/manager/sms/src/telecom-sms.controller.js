@@ -2,11 +2,11 @@ import get from 'lodash/get';
 
 export default class {
   /* @ngInject */
-  constructor($q, $stateParams, $translate, SidebarMenu, TucSmsMediator, TucToast) {
+  constructor($q, $stateParams, $scope, $translate, TucSmsMediator, TucToast) {
     this.$q = $q;
     this.$stateParams = $stateParams;
     this.$translate = $translate;
-    this.SidebarMenu = SidebarMenu;
+    this.$scope = $scope;
     this.TucSmsMediator = TucSmsMediator;
     this.TucToast = TucToast;
   }
@@ -39,9 +39,7 @@ export default class {
     this.service.description = newServiceDescription;
     return this.service.save().then(() => {
       this.service.stopEdition();
-      this.SidebarMenu.updateItemDisplay({
-        title: this.service.getDisplayedName(),
-      }, this.service.name, 'telecom-sms-section');
+      this.$scope.$emit('sms_updateName', this.service.name, this.service.getDisplayedName());
     }).catch((error) => {
       this.TucToast.error(`${this.$translate.instant('sms_rename_error', this.$stateParams.serviceNameSave)} ${get(error, 'data.message', '')}`);
       this.service.stopEdition(true);

@@ -1,5 +1,6 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
+import 'ng-at-internet';
 
 import controller from './telecom-sms-sms.controller';
 import template from './telecom-sms-sms.html';
@@ -16,6 +17,7 @@ const moduleName = 'ovhManagerSmsSmsComponent';
 angular
   .module(moduleName, [
     'ui.router',
+    'ng-at-internet',
     compose,
     hlr,
     incoming,
