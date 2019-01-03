@@ -2,6 +2,7 @@
 <translations>
    <translation id="sms_actions" qtlid="339457">Je veux…</translation>
    <translation id="sms_actions_send_sms" qtlid="288145">Envoyer un SMS</translation>
+   <translation id="sms_actions_credit_account" qtlid="339470">Créditer mon compte</translation>
    <translation id="sms_actions_create_contact" qtlid="339483">Créer un contact</translation>
    <translation id="sms_actions_create_sender" qtlid="339496">Créer un expéditeur</translation>
    <translation id="sms_actions_create_api_user" qtlid="339509">Créer un utilisateur API</translation>
