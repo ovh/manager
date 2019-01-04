@@ -3,7 +3,16 @@ import managerCore from '@ovh-ux/manager-core';
 import ovhUtilsAngular from '@ovh-ux/ovh-utils-angular';
 import webUniverseComponents from '@ovh-ux/web-universe-components';
 import 'angularjs-scroll-glue';
+import 'bootstrap';
+import 'chart.js';
+import 'ovh-angular-pagination-front';
 import 'ovh-angular-tail-logs';
+import 'ovh-ui-angular';
+
+import 'ovh-ui-kit/dist/oui.css';
+import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
+import 'font-awesome/css/font-awesome.css';
+import './private-database.scss';
 
 import privateDatabaseUser from './user';
 import privateDatabaseDatabase from './database';
@@ -36,6 +45,8 @@ angular.module(moduleName, [
   managerCore,
   ovhUtilsAngular,
   'ovh-angular-tail-logs',
+  'ovh-angular-pagination-front',
+  'oui',
   privateDatabaseUser,
   privateDatabaseDatabase,
   webUniverseComponents,
