@@ -1,5 +1,5 @@
-import path from 'path';
 import rollupConfig from '@ovh-ux/component-rollup-config';
+import path from 'path';
 
 const config = rollupConfig({
   input: 'src/index.js',
@@ -7,7 +7,7 @@ const config = rollupConfig({
   lessTildeImporter: {
     paths: [
       path.resolve(__dirname, 'node_modules'),
-      path.resolve(__dirname, '../../../node_modules'),
+      path.resolve(__dirname, '../../../../node_modules'),
     ],
   },
 });
