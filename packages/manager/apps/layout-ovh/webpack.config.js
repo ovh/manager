@@ -19,7 +19,7 @@ module.exports = (env = {}) => {
       modules: [
         './node_modules',
         path.resolve(__dirname, 'node_modules'),
-        path.resolve(__dirname, '../../node_modules'),
+        path.resolve(__dirname, '../../../node_modules'),
       ],
       mainFields: ['module', 'browser', 'main'],
     },

@@ -1,5 +1,5 @@
-import rollupConfig from '@ovh-ux/component-rollup-config';
 import path from 'path';
+import rollupConfig from '@ovh-ux/component-rollup-config';
 
 const config = rollupConfig({
   input: 'src/index.js',
@@ -7,7 +7,7 @@ const config = rollupConfig({
   lessTildeImporter: {
     paths: [
       path.resolve(__dirname, 'node_modules'),
-      path.resolve(__dirname, '../../../node_modules'),
+      path.resolve(__dirname, '../../../../node_modules'),
     ],
   },
 });
@@ -21,7 +21,6 @@ if (process.env.BUILD === 'production') {
       output: {
         globals: {
           angular: 'angular',
-          telecomUniverseComponents: '@ovh-ux/telecom-universe-components',
         },
       },
     }),
