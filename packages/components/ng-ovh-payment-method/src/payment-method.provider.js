@@ -3,8 +3,6 @@ import angular from 'angular';
 import OvhPaymentMethodService from './payment-method.service';
 
 export default class OvhPaymentMethodProvider {
-  /* @ngInject */
-
   constructor() {
     this.target = 'EU';
   }
@@ -17,7 +15,8 @@ export default class OvhPaymentMethodProvider {
     return target;
   }
 
-  $get($q, $translate, $window, OvhApiMe) {
-    return new OvhPaymentMethodService($q, $translate, $window, OvhApiMe, this.target);
+  /* @ngInject */
+  $get($q, $translate, OvhApiMe) {
+    return new OvhPaymentMethodService($q, $translate, OvhApiMe, this.target);
   }
 }
