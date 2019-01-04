@@ -7,7 +7,7 @@ const config = rollupConfig({
   lessTildeImporter: {
     paths: [
       path.resolve(__dirname, 'node_modules'),
-      path.resolve(__dirname, '../../../node_modules'),
+      path.resolve(__dirname, '../../../../node_modules'),
     ],
   },
 });
@@ -16,15 +16,7 @@ const outputs = [config.es()];
 
 if (process.env.BUILD === 'production') {
   outputs.push(config.cjs());
-  outputs.push(
-    config.umd({
-      output: {
-        globals: {
-          angular: 'angular',
-        },
-      },
-    }),
-  );
+  outputs.push(config.umd());
 }
 
 export default outputs;

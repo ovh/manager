@@ -5,8 +5,8 @@
   "description": "OVH Control Panel also known as Manager",
   "license": "BSD-3-Clause",
   "workspaces": [
-    "packages/manager/*",
-    "packages/manager/**/app"
+    "packages/manager/apps/*",
+    "packages/manager/modules/*"
   ],
   "scripts": {
     "build": "lerna run build --stream",
@@ -34,7 +34,7 @@
     "conventional-recommended-bump": "^4.0.4",
     "eslint": "^5.8.0",
     "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-import-resolver-lerna": "^1.0.0",
+    "eslint-import-resolver-lerna": "jleveugle/eslint-import-resolver-lerna",
     "execa": "^1.0.0",
     "find-free-port": "^2.0.0",
     "htmlhint": "^0.10.0",
