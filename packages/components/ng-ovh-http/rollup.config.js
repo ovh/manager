@@ -5,6 +5,7 @@ const config = rollupConfig({
 });
 
 export default [
+  config.es(),
   config.cjs(),
   config.umd({
     output: {
