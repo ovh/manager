@@ -2,12 +2,22 @@
   "root": true,
   "extends": "airbnb-base",
   "parser": "babel-eslint",
-  "plugins": ["angular"],
+  "plugins": [
+    "angular",
+    "markdown"
+  ],
   "env": {
     "browser": true,
     "jquery": true
   },
   "rules": {
     "import/no-unresolved": 0
-  }
+  },
+  "overrides": [{
+    "files": ["**/*.md"],
+    "rules": {
+      "no-undef": "off",
+      "no-unused-vars": "off"
+    }
+  }]
 }
