@@ -1,8 +1,5 @@
 {
-  "root": true,
   "extends": "airbnb-base",
-  "parser": "babel-eslint",
-  "plugins": ["angular"],
   "env": {
     "browser": true
   },
