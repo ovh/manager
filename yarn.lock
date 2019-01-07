@@ -9246,11 +9246,6 @@ ovh-angular-http@^4.0.0-alpha.1:
     bootstrap "~3.3.0"
     lodash "^4.17.11"
 
-ovh-angular-pagination-front@^6.0.0:
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/ovh-angular-pagination-front/-/ovh-angular-pagination-front-6.0.0.tgz#ac310848bddc1e0fea81b01cab0c0159a9ca128b"
-  integrity sha1-rDEISL3cHg/qgbAcqwwBWanKEos=
-
 ovh-angular-pagination-front@^7.0.0:
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/ovh-angular-pagination-front/-/ovh-angular-pagination-front-7.0.0.tgz#484d333f357cdb2ea0abd3f76ae35491d2b8aae0"
