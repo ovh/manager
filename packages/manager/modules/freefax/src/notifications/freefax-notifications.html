@@ -1,7 +1,10 @@
-<section class="telecom-freefax-notifications">
+<section class="telecom-freefax-notifications"
+         data-e2e-id="freefax.notifications:section">
 
     <header>
-        <tuc-section-back-link data-tuc-section-back-link-to-state="freefax"></tuc-section-back-link>
+        <tuc-section-back-link
+            data-tuc-section-back-link-to-state="freefax"
+            data-e2e-id="freefax.notifications:navigation:back"></tuc-section-back-link>
         <h1 data-translate="freefax_notifications_title"
             data-translate-values="{ serviceName: FreefaxNotifications.serviceName }">
         </h1>
@@ -17,7 +20,7 @@
                 data-ng-click="FreefaxNotifications.add()"
                 data-ng-disabled="!FreefaxNotifications.notifications ||
                                   FreefaxNotifications.notifications.length >= FreefaxNotifications.maxNotifications"
-                data-translate-attr="{ title: 'components_notification_add' }">
+                data-translate-attr="{ title: 'freefax_notification_add_title' }">
             <i class="oui-icon oui-icon-add mr-2" aria-hidden="true"></i>
             <span data-translate="freefax_notification_add"></span>
         </button>
