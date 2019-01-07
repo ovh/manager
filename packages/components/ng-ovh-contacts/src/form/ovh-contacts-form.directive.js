@@ -7,7 +7,7 @@ export default () => ({
   require: '?^^form',
   scope: {
     mode: '@',
-    predifinedProfile: '@',
+    predefinedProfile: '@',
   },
   templateUrl: (element, attributes) => {
     const mode = _.get(attributes, 'mode', 'stepper');

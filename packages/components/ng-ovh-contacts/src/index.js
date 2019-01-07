@@ -1,5 +1,5 @@
 import angular from 'angular';
-import ngTranslate from 'angular-translate';
+import 'angular-translate';
 import 'ovh-api-services';
 import 'ovh-ui-angular';
 
@@ -18,7 +18,7 @@ const moduleName = 'ngOvhContacts';
 
 angular
   .module(moduleName, [
-    ngTranslate,
+    'pascalprecht.translate',
     'oui',
     'ovh-api-services',
   ])

@@ -58,8 +58,8 @@ export default class OvhContactsService {
     const contact = contactParam;
 
     return this.OvhApiMe.Contact().v6().create({}, contact).$promise
-      .then((response) => {
-        contact.id = response.id;
+      .then(({ id }) => {
+        contact.id = id;
         return new OvhContact(contact);
       });
   }

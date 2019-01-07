@@ -45,10 +45,10 @@ export default class OvhContactsFormCtrl {
     };
   }
 
-  static recursiveHelper(rules, callback, prefix) {
+  static traverseRules(rules, callback, prefix) {
     _.keys(rules).forEach((ruleKey) => {
       if (!_.has(rules, `${ruleKey}.fullType`)) {
-        OvhContactsFormCtrl.recursiveHelper(_.get(rules, ruleKey), callback, ruleKey);
+        OvhContactsFormCtrl.traverseRules(_.get(rules, ruleKey), callback, ruleKey);
       } else {
         callback(_.get(rules, ruleKey), prefix ? `${prefix}.${ruleKey}` : ruleKey);
       }
@@ -114,7 +114,7 @@ export default class OvhContactsFormCtrl {
   }
 
   setPhonePlaceholder() {
-    this.placeholders.phone = _.first(_.get(this.rules, 'phone.examples', []));
+    this.placeholders.phone = _.head(_.get(this.rules, 'phone.examples', []));
   }
 
   getProvinceLabel(forLabel) {
@@ -141,7 +141,7 @@ export default class OvhContactsFormCtrl {
         // set initial default value and initial model
         if (!this.initialDefaultValues) {
           this.initialDefaultValues = {};
-          OvhContactsFormCtrl.recursiveHelper(rules, (rule, ruleKey) => {
+          OvhContactsFormCtrl.traverseRules(rules, (rule, ruleKey) => {
             if (rule.defaultValue) {
               _.set(this.initialDefaultValues, ruleKey, rule.defaultValue);
               _.set(this.model.contact, ruleKey, rule.defaultValue);
@@ -181,15 +181,15 @@ export default class OvhContactsFormCtrl {
     this.loading.init = true;
 
     return this.getRules()
-      .finally(() => {
-        this.loading.init = false;
-      })
       .catch((error) => {
         this.alerter.type = 'error';
         this.alerter.message = [
           this.$translate.instant('ovh_contact_form_load_error'),
           _.get(error, 'message.data', ''),
         ].join(' ');
+      })
+      .finally(() => {
+        this.loading.init = false;
       });
   }
 }
