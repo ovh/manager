@@ -5,11 +5,12 @@ import get from 'lodash/get';
 import has from 'lodash/has';
 
 const moduleName = 'ngUirouterTitle';
+
 angular
   .module(moduleName, [
     'ui.router',
   ])
-  .run(/* ngInject */($transitions) => {
+  .run(/* @ngInject */ ($transitions) => {
     const initialTitle = document.title;
 
     $transitions.onSuccess({}, (transition) => {
