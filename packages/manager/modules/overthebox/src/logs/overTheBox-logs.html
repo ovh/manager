@@ -9,7 +9,7 @@
                 data-translate="overTheBox_logs_title">
             </h2>
 
-            <ovh-tail-logs>
+            <tail-logs>
                 <div class="row"
                     data-ng-repeat="log in OTBLogs.logger.logs track by $index"
                     data-ng-class="{
@@ -26,7 +26,7 @@
                 <div data-ng-if="OTBLogs.logger.logs.length === 0"
                      data-translate="overTheBox_logs_no_logs">
                 </div>
-            </ovh-tail-logs>
+            </tail-logs>
         </div>
 
     </div>
