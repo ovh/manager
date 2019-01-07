@@ -15,6 +15,7 @@
     "dist"
   ],
   "main": "./dist/cjs/ng-uirouter-title.js",
+  "browser": "./dist/umd/ng-uirouter-title.js",
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c --watch",
@@ -25,7 +26,6 @@
     "version": "npx conventional-changelog-cli -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
     "postversion": "git push && git push --tags"
   },
-  "browser": "./dist/umd/ng-uirouter-title.js",
   "dependencies": {
     "lodash": "^4.17.11"
   },
