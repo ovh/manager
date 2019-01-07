@@ -1,20 +1,20 @@
 {
-  "name": "ovh-angular-http",
+  "name": "@ovh-ux/ng-ovh-http",
   "version": "4.0.1-alpha.0",
-  "description": "Simple http provider for OVH API.",
+  "description": "Simple HTTP provider for OVH API.",
   "keywords": [
     "angular",
     "http",
     "provider"
   ],
-  "repository": "ovh-ux/ovh-angular-http",
+  "repository": "ovh-ux/ng-ovh-http",
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "files": [
     "dist"
   ],
-  "main": "./dist/cjs/ovh-angular-http.js",
-  "browser": "./dist/umd/ovh-angular-http.js",
+  "main": "./dist/cjs/index.js",
+  "browser": "./dist/umd/ng-ovh-http.js",
   "scripts": {
     "build": "rollup -c",
     "lint": "run-p lint:js lint:md",

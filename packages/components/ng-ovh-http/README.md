@@ -1,37 +1,16 @@
-# ovh-angular-http
+# ng-ovh-http
 
-![githubbanner](https://user-images.githubusercontent.com/3379410/27423240-3f944bc4-5731-11e7-87bb-3ff603aff8a7.png)
+> Simple HTTP provider for OVH API.
 
-[![Maintenance](https://img.shields.io/maintenance/yes/2018.svg)]() [![Chat on gitter](https://img.shields.io/gitter/room/ovh/ux.svg)](https://gitter.im/ovh/ux) [![Build Status](https://travis-ci.org/ovh-ux/ovh-angular-http.svg)](https://travis-ci.org/ovh-ux/ovh-angular-http)
+[![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-http)](https://npmjs.com/package/@ovh-ux/ng-ovh-http) [![Dependencies](https://badgen.net/david/dep/ovh-ux/ng-ovh-http)](https://npmjs.com/package/@ovh-ux/ng-ovh-http?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/ng-ovh-http)](https://npmjs.com/package/@ovh-ux/ng-ovh-http?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
 
-[![NPM](https://nodei.co/npm/ovh-angular-http.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/ovh-angular-http/)
-
-> Simple http provider for OVH API.
-
-## Installation
-
-### Bower
+## Install
 
 ```sh
-$ bower install ovh-angular-http --save
+yarn add @ovh-ux/ng-ovh-http
 ```
 
-### NPM
-
-```sh
-$ npm install ovh-angular-http --save
-```
-
-## Get the sources
-
-```sh
-$ git clone https://github.com/ovh-ux/ovh-angular-http.git
-$ cd ovh-angular-http
-$ npm install
-$ bower install
-```
-
-## Configuration
+## Usage
 
 ```js
 import angular from 'angular';
@@ -51,25 +30,21 @@ angular
   });
 ```
 
-## Usage
-
-<!-- eslint-skip -->
-
 ```js
-  // HTTP request
-  OvhHttp["get", "put", "post", "delete"](URL, options);
+// HTTP request
+OvhHttp['get', 'put', 'post', 'delete'](URL, options);
 
-  // Get API schema (option only rootPath)
-  OvhHttp.schema(URL, options);
+// Get API schema (option only rootPath)
+OvhHttp.schema(URL, options);
 
-  // Get specifically enum of API schema (option only rootPath)
-  OvhHttp.models(URL, enumName, options);
+// Get specifically enum of API schema (option only rootPath)
+OvhHttp.models(URL, enumName, options);
 
-  // return window.encodeURIComponent(param);
-  OvhHttp.encode(param);
+// return window.encodeURIComponent(param);
+OvhHttp.encode(param);
 ```
 
-## Options
+### Options
 
 ```js
 const options = {
@@ -146,17 +121,16 @@ angular
   });
 ```
 
-You've developed a new cool feature? Fixed an annoying bug? We'd be happy
-to hear from you!
+## Test
 
-Have a look in [CONTRIBUTING.md](https://github.com/ovh-ux/ovh-angular-http/blob/master/CONTRIBUTING.md)
+```sh
+yarn test
+```
 
-## Related links
+## Contributing
 
-* Contribute: https://github.com/ovh-ux/ovh-angular-http/blob/master/CONTRIBUTING.md
-* Report bugs: https://github.com/ovh-ux/ovh-angular-http/issues
-* Get latest version: https://github.com/ovh-ux/ovh-angular-http
+Always feel free to help out! Whether it's [filing bugs and feature requests](https://github.com/ovh-ux/ng-ovh-http/issues/new) or working on some of the [open issues](https://github.com/ovh-ux/ng-ovh-http/issues), our [contributing guide](CONTRIBUTING.md) will help get you started.
 
 ## License
 
-See https://github.com/ovh-ux/ovh-angular-http/blob/master/LICENSE
+[BSD-3-Clause](LICENSE) © OVH SAS

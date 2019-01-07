@@ -12,6 +12,7 @@
   "overrides": [{
     "files": ["**/*.md"],
     "rules": {
+      "no-sequences": "off",
       "no-undef": "off",
       "no-unused-vars": "off"
     }
