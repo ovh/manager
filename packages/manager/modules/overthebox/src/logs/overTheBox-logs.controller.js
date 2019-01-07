@@ -1,4 +1,4 @@
-export default /* @ngInject */ function ($scope, $stateParams, OvhApiOverTheBox, OvhTailLogs) {
+export default /* @ngInject */ function ($scope, $stateParams, OvhApiOverTheBox, TailLogs) {
   const self = this;
 
   self.logger = null;
@@ -17,7 +17,7 @@ export default /* @ngInject */ function ($scope, $stateParams, OvhApiOverTheBox,
   };
 
   function init() {
-    self.logger = new OvhTailLogs({
+    self.logger = new TailLogs({
       source() {
         return OvhApiOverTheBox.v6().getLogs({
           serviceName: $stateParams.serviceName,
