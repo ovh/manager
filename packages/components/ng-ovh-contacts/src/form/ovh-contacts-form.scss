@@ -1,0 +1,46 @@
+.ovh-contacts-form {
+    .phone-number-field {
+        .flag-icon {
+            width: 30px;
+            height: 23px;
+            border-radius: 3px;
+        }
+
+        .oui-ui-select.ui-select-container {
+            width: 150px;
+
+            .ui-select-match {
+                text-align: center;
+
+                .flag-icon {
+                    margin-bottom: 3px;
+                }
+            }
+
+            .ui-select-search, .ui-select-match {
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+                box-shadow: inset 2px 2px 1px 0 rgba(18, 40, 68, 0.07);
+            }
+
+            .ui-select-dropdown {
+                width: auto;
+                max-width: inherit;
+
+                .ui-select-choices-row-inner {
+                  white-space: nowrap;
+
+                  .flag-icon {
+                      margin-right: .5rem;
+                  }
+                }
+            }
+        }
+
+        .oui-input_phone {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            border-left: 0;
+        }
+    }
+}

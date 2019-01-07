@@ -1,0 +1,51 @@
+{
+  "name": "@ovh-ux/ng-contacts",
+  "version": "0.0.0",
+  "description": "Helpers for managing OVH Contacts",
+  "author": "OVH SAS",
+  "license": "BSD-3-Clause",
+  "repository": "ovh-ux/ng-contacts",
+  "keywords": [
+    "contacts",
+    "ovh",
+    "creation",
+    "edition"
+  ],
+  "main": "./dist/cjs/index.js",
+  "browser": "./dist/umd/translate-async-loader.js",
+  "scripts": {
+    "build": "rollup -c",
+    "prepare": "rollup -c",
+    "start": "rollup -c --watch",
+    "test": "eslint --quiet src",
+    "lint": "eslint --quiet --fix src",
+    "version": "npx conventional-changelog-cli -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
+    "postversion": "git push && git push --tags"
+  },
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "@commitlint/cli": "^7.1.2",
+    "@commitlint/config-angular": "^7.1.2",
+    "@ovh-ux/component-rollup-config": "v5.0.0-beta.2",
+    "eslint": "^5.9.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "husky": "^1.1.3",
+    "lint-staged": "^7.3.0"
+  },
+  "peerDependencies": {
+    "angular": "^1.5.0",
+    "angular-translate": "^2.17.0",
+    "bootstrap": "~3.3.7",
+    "bs4": "twbs/bootstrap#v4.0.0-beta",
+    "lodash": "~3.10.1",
+    "moment": "^2.20.1",
+    "ovh-api-services": "^3.21.1",
+    "ovh-ui-angular": "^2.23.x",
+    "ovh-ui-kit": "^2.23.x",
+    "ui-select": "^0.19.8",
+    "flag-icon-css": "^3.2.1"
+  }
+}

@@ -1,0 +1,22 @@
+<button class="ui-select-match"
+    aria-haspopup="true"
+    aria-expanded="{{$select.open}}"
+    ng-class="{ 'ui-select-match_focus': $select.focus }"
+    ng-hide="$select.searchEnabled && $select.open"
+    ng-disabled="$select.disabled"
+    ng-click="$select.activate()"
+    tabindex="-1"
+    type="button">
+    <span class="ui-select-toggle"
+        aria-label="{{ $select.baseTitle }} activate">
+        <span class="ui-select-placeholder"
+            ng-show="$select.isEmpty()"
+            ng-bind="::$select.placeholder">
+        </span>
+        <span class="ui-select-match-text"
+            ng-hide="$select.isEmpty()"
+            ng-transclude>
+        </span>
+        <span class="oui-icon oui-icon-chevron-down"></span>
+    </span>
+</button>

@@ -1,0 +1,152 @@
+<div class="ovh-contacts-form ovh-contacts-form-fieldset">
+
+    <div class="text-center"
+         data-ng-if="$ctrl.loading.init">
+        <oui-spinner></oui-spinner>
+    </div>
+
+    <div data-ng-if="!$ctrl.loading.init">
+        <oui-message class="mb-3"
+                     data-ng-if="$ctrl.alerter.message"
+                     data-type="{{ $ctrl.alerter.type }}">
+            <span data-ng-bind="$ctrl.alerter.message"></span>
+        </oui-message>
+
+        <fieldset>
+            <legend data-translate="ovh_contact_form_section_general_information"></legend>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <!-- fistName -->
+                    <oui-field data-label="{{ :: 'ovh_contact_form_first_name' | translate }}">
+                        <input type="text" class="oui-input"
+                               name="firstName" id="firstName"
+                               data-ng-model="$ctrl.model.contact.firstName"
+                               data-ng-required="!$ctrl.rules.firstName.canBeNull" />
+                    </oui-field> <!-- End of fistName -->
+
+                    <!-- lastName -->
+                    <oui-field data-label="{{ :: 'ovh_contact_form_last_name' | translate }}">
+                        <input type="text" class="oui-input"
+                               name="lastName" id="lastName"
+                               data-ng-model="$ctrl.model.contact.lastName"
+                               data-ng-required="!$ctrl.rules.lastName.canBeNull" />
+                    </oui-field> <!-- End of lastName -->
+                </div>
+            </div>
+
+        </fieldset>
+
+        <fieldset>
+            <legend data-translate="ovh_contact_form_section_contact_information"></legend>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <!-- county -->
+                    <oui-field data-label="{{ :: 'ovh_contact_form_country' | translate }}">
+                        <label class="oui-select">
+                            <select class="oui-select__input"
+                                    name="addressCountry" id="addressCountry"
+                                    data-ng-model="$ctrl.model.contact.address.country"
+                                    data-ng-options="country.value as country.label for country in $ctrl.rules.address.country.enum"
+                                    data-ng-change="$ctrl.onCountryChange()">
+                            </select>
+                            <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
+                        </label>
+                    </oui-field> <!-- End of county -->
+
+                    <!-- address.line1 -->
+                    <oui-field data-label="{{ :: 'ovh_contact_form_address_line1' | translate }}">
+                        <input type="text" class="oui-input"
+                               name="addressLine1" id="addressLine1"
+                               data-ng-model="$ctrl.model.contact.address.line1"
+                               data-ng-required="!$ctrl.rules.address.line1.canBeNull" />
+                    </oui-field> <!-- End of address.line1 -->
+
+                    <!-- address.zip -->
+                    <oui-field data-label="{{ :: 'ovh_contact_form_address_zip' | translate }}">
+                        <input type="text" class="oui-input"
+                               name="addressZip" id="addressZip"
+                               data-ng-model="$ctrl.model.contact.address.zip"
+                               data-ng-required="!$ctrl.rules.address.zip.canBeNull"
+                               data-ng-pattern="$ctrl.rules.address.zip.regularExpression" />
+                    </oui-field> <!-- End of address.zip -->
+
+                    <!-- address.city -->
+                    <oui-field data-label="{{ :: 'ovh_contact_form_address_city' | translate }}">
+                        <input type="text" class="oui-input"
+                               name="addressCity" id="addressCity"
+                               data-ng-model="$ctrl.model.contact.address.city"
+                               data-ng-required="!$ctrl.rules.address.city.canBeNull"
+                               data-ng-pattern="$ctrl.rules.address.city.regularExpression" />
+                    </oui-field> <!-- End of address.city -->
+
+                    <!-- address.province -->
+                    <oui-field data-label="{{ $ctrl.getProvinceLabel(true) }}"
+                               data-ng-if="$ctrl.rules.address.province">
+                        <label class="oui-select">
+                            <select class="oui-select__input"
+                                    name="addressProvince" id="addressProvince"
+                                    data-ng-model="$ctrl.model.contact.address.province"
+                                    data-ng-options="province.value as province.label for province in $ctrl.rules.address.province.enum">
+                                <option value=""
+                                        data-ng-bind="$ctrl.getProvinceLabel()">
+                                </option>
+                            </select>
+                            <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
+                        </label>
+                    </oui-field> <!-- End of address.province -->
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend data-translate="ovh_contact_form_section_contact"></legend>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <!-- email -->
+                    <oui-field data-label="{{ :: 'ovh_contact_form_email' | translate }}">
+                        <input type="text" class="oui-input"
+                               name="email" id="email"
+                               data-ng-model="$ctrl.model.contact.email"
+                               data-ng-required="!$ctrl.rules.email.canBeNull"
+                               data-ng-pattern="$ctrl.rules.email.regularExpression" />
+                    </oui-field> <!-- End of email -->
+
+                    <!-- phone -->
+                    <oui-field data-label="{{ :: 'ovh_contact_form_phone' | translate }}"
+                               data-help-text="{{ :: 'ovh_contact_from_phone_help_text' | translate }}">
+                        <div class="oui-input-group phone-number-field">
+                            <ui-select data-ng-model="$ctrl.model.phone.country"
+                                       theme="oui-ui-select-flag"
+                                       data-on-select="$ctrl.onPhoneCountryChange()">
+                                <ui-select-match>
+                                    <span class="d-inline-block align-middle"
+                                          data-ng-class="'flag-icon flag-icon-' + $select.selected.value.toLowerCase()">
+                                    </span>
+                                </ui-select-match>
+                                <ui-select-choices data-repeat="phoneCountry.value as phoneCountry in ($ctrl.rules.phoneCountry.enum | filter: $select.search) track by $index">
+                                    <span class="d-inline-block align-middle"
+                                          data-ng-class="'flag-icon flag-icon-' + phoneCountry.value.toLowerCase()">
+                                    </span>
+                                    <span data-ng-bind="phoneCountry.label"></span>
+                                </ui-select-choices>
+                            </ui-select>
+                            <input type="text"
+                                   class="oui-input oui-input_phone m-0"
+                                   name="phone"
+                                   id="phone"
+                                   data-ng-model="$ctrl.model.phone.getterSetter"
+                                   data-ng-model-options="{ getterSetter: true, allowInvalid: true }"
+                                   data-ng-required="!$ctrl.rules.phone.canBeNull"
+                                   data-ng-pattern="$ctrl.model.phone.validator"
+                                   data-ng-attr-placeholder="{{ $ctrl.placeholders.phone }}"/>
+                        </div>
+                    </oui-field>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+
+</div>
