@@ -26,7 +26,6 @@ import order from './order';
 import remote from './remote';
 import tasks from './tasks';
 
-import './overTheBox.less';
 import './overTheBox.scss';
 
 const moduleName = 'OvhManagerOverTheBoxComponent';
