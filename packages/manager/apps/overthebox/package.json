@@ -19,8 +19,7 @@
     "oclazyload": "^1.1.0",
     "ovh-angular-apiv7": "^1.2.8",
     "ovh-angular-responsive-tabs": "^4.0.0",
-    "ovh-angular-sso-auth": "^4.0.0-alpha.2",
-    "ovh-angular-tail-logs": "^1.1.1"
+    "ovh-angular-sso-auth": "^4.0.0-alpha.2"
   },
   "devDependencies": {
     "@ovh-ux/manager-webpack-config": "^3.0.0",
