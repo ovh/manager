@@ -7,7 +7,7 @@
   ],
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
-  "browser": "./dist/umd/index.js",
+  "browser": "./dist/umd/overthebox.js",
   "scripts": {
     "build": "rollup -c --environment BUILD:production",
     "dev": "rollup -c --environment BUILD:development --watch",
