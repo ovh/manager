@@ -1,88 +1,53 @@
-# ovh-angular-tail-logs
+# ng-tail-logs
 
-![OVH component](https://user-images.githubusercontent.com/3379410/27423240-3f944bc4-5731-11e7-87bb-3ff603aff8a7.png)
+> AngularJS tail logs module.
 
-[![NPM](https://nodei.co/npm/ovh-angular-tail-logs.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/ovh-angular-tail-logs/)
+[![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-tail-logs)](https://npmjs.com/package/@ovh-ux/ng-tail-logs) [![Dependencies](https://badgen.net/david/dep/ovh-ux/ng-tail-logs)](https://npmjs.com/package/@ovh-ux/ng-tail-logs?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/ng-tail-logs)](https://npmjs.com/package/@ovh-ux/ng-tail-logs?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
 
-[![Maintenance](https://img.shields.io/maintenance/yes/2018.svg)]() [![Chat on gitter](https://img.shields.io/gitter/room/ovh/ux.svg)](https://gitter.im/ovh/ux)
+Poll a log API for displaying messages
 
-[Poll a log API for displaying messages](https://github.com/ovh-ux/ovh-angular-tail-logs)
+## Install
 
+```sh
+yarn add @ovh-ux/ng-tail-logs
+```
 
-[![Build Status](https://travis-ci.org/ovh/ovh-angular-tail-logs.svg)](https://travis-ci.org/ovh/ovh-angular-tail-logs)
+## Usage
 
-```javascript
-    angular.module("myapp", ["ovh-angular-tail-logs"]).controller("myCtrl", function ($q, OvhTailLogs) {
-        this.logger = new OvhTailLogs({
-            source: function () {
-                return $q.when("http://my-log-url");
-            },
-            delay: 2000
-        });
+```js
+import angular from 'angular';
+import '@ovh-ux/ng-tail-logs';
 
+angular
+  .module('myApp', ['ngTailLogs'])
+  .controller('MyCtrl', /* @ngInject */ ($q, TailLogs) => {
+    this.logger = new TailLogs({
+      source: () => $q.when('http://my-log-url'),
+      delay: 2000,
     });
+  });
 ```
 
 ```html
-<div data-ng-controller="myCtrl as Ctrl">
-    <ovh-tail-logs>
-        <div data-ng-repeat="log in Ctrl.logger.logs track by $index"
-            data-ng-bind="log.message">
+<div data-ng-controller="MyCtrl as $ctrl">
+    <tail-logs>
+        <div data-ng-repeat="log in $ctrl.logger.logs track by $index"
+             data-ng-bind="log.message">
         </div>
-    </ovh-tail-logs>
+    </tail-logs>
 </div>
 ```
 
-# Installation
+## Test
 
-## Bower
-
-    bower install ovh-angular-tail-logs --save
-
-## NPM
-
-    npm install ovh-angular-tail-logs --save
-
-
-# Configuration
-
-1. Include `ovh-angular-tail-logs.css` in your app:
-
-  `<link rel="stylesheet" href="bower_components/ovh-angular-tail-logs/dist/ovh-angular-tail-logs.css"/>`
-
-2. Include `ovh-angular-tail-logs.js` in your app:
-
-  `<script src="bower_components/ovh-angular-tail-logs/dist/ovh-angular-tail-logs.js"></script>`
-
-3. Add `ovh-angular-tail-logs` as a new module dependency in your angular app.
-
-  `var myapp = angular.module('myapp', ['ovh-angular-tail-logs']);`
-
-## Get the sources
-
-```bash
-    git clone https://github.com/ovh/ovh-angular-tail-logs.git
-    cd ovh-angular-tail-logs
-    npm install
-    bower install
+```sh
+yarn test
 ```
 
-You've developed a new cool feature ? Fixed an annoying bug ? We'd be happy
-to hear from you !
+## Contributing
 
-Have a look in [CONTRIBUTING.md](https://github.com/ovh-ux/ovh-angular-tail-logs/blob/master/CONTRIBUTING.md)
+Always feel free to help out! Whether it's [filing bugs and feature requests](https://github.com/ovh-ux/ng-tail-logs/issues/new) or working on some of the [open issues](https://github.com/ovh-ux/ng-tail-logs/issues), our [contributing guide](CONTRIBUTING.md) will help get you started.
 
-## Build the documentation
-```
-grunt ngdocs
-```
+## License
 
-# Related links
-
- * Contribute: https://github.com/ovh-ux/ovh-angular-tail-logs
- * Report bugs: https://github.com/ovh-ux/ovh-angular-tail-logs/issues
- * Get latest version: https://github.com/ovh-ux/ovh-angular-tail-logs
-
-# License
-
-See https://github.com/ovh-ux/ovh-angular-tail-logs/blob/master/LICENSE
+[BSD-3-Clause](LICENSE) © OVH SAS
