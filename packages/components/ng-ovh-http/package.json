@@ -14,6 +14,7 @@
     "dist"
   ],
   "main": "./dist/cjs/ovh-angular-http.js",
+  "browser": "./dist/umd/ovh-angular-http.js",
   "scripts": {
     "build": "rollup -c",
     "lint": "run-p lint:js",
@@ -23,7 +24,6 @@
     "version": "npx conventional-changelog-cli -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
     "postversion": "git push && git push --tags"
   },
-  "browser": "./dist/umd/ovh-angular-http.js",
   "dependencies": {
     "lodash": "~4.17.11",
     "urijs": "^1.19.1"
