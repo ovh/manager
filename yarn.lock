@@ -1567,6 +1567,13 @@
     request "^2.88.0"
     webpack-dev-server "^3.1.9"
 
+"@ovh-ux/ng-tail-logs@^2.0.0-beta.0":
+  version "2.0.0-beta.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-tail-logs/-/ng-tail-logs-2.0.0-beta.0.tgz#8f12741174ec1f615fbfac4f98f63262268643e3"
+  integrity sha512-fFMAEctKZoXJrpru596iBMc0V/uqZzZNdwA4heqVyqdBaTbzFFVw4x9SO78DGBG0mpIz/t25UHMXsBK5KE8WXA==
+  dependencies:
+    lodash "^4.17.11"
+
 "@ovh-ux/ng-uirouter-title@^2.0.0-beta.2":
   version "2.0.0-beta.2"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-uirouter-title/-/ng-uirouter-title-2.0.0-beta.2.tgz#1c0548d534d91c738ebe408482ac0cf1a06f4c12"
@@ -2010,14 +2017,6 @@ ajv-keywords@^3.1.0:
   resolved "https://registry.yarnpkg.com/ajv-keywords/-/ajv-keywords-3.2.0.tgz#e86b819c602cf8821ad637413698f1dec021847a"
   integrity sha1-6GuBnGAs+IIa1jdBNpjx3sAhhHo=
 
-ajv@^4.9.1:
-  version "4.11.8"
-  resolved "https://registry.yarnpkg.com/ajv/-/ajv-4.11.8.tgz#82ffb02b29e662ae53bdc20af15947706739c536"
-  integrity sha1-gv+wKynmYq5TvcIK8VlHcGc5xTY=
-  dependencies:
-    co "^4.6.0"
-    json-stable-stringify "^1.0.1"
-
 ajv@^5.1.0:
   version "5.5.2"
   resolved "https://registry.yarnpkg.com/ajv/-/ajv-5.5.2.tgz#73b5eeca3fab653e3d3f9422b341ad42205dc965"
@@ -2043,7 +2042,7 @@ amdefine@>=0.0.4:
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
   integrity sha1-SlKCrBZHKek2Gbz9OtFR+BfOkfU=
 
-angular-aria@1.7.5:
+angular-aria@1.7.5, angular-aria@^1.7.5:
   version "1.7.5"
   resolved "https://registry.yarnpkg.com/angular-aria/-/angular-aria-1.7.5.tgz#e66334d80ad6b4b01f005f590d7c7eef0064312f"
   integrity sha512-X2dGRw+PK7hrV7/X1Ns4e5P3KC/OBFi1l7z//D/v7zbZObsAx48qBoX7unsck+s4+mnO+ikNNkHG5N49VfAyRw==
@@ -2080,7 +2079,7 @@ angular-sanitize@1.3.x:
   resolved "https://registry.yarnpkg.com/angular-sanitize/-/angular-sanitize-1.3.20.tgz#5b1caa4176b8db2039d7d1c1527537a61be3cd67"
   integrity sha1-WxyqQXa42yA519HBUnU3phvjzWc=
 
-angular-sanitize@1.7.5:
+angular-sanitize@1.7.5, angular-sanitize@^1.7.5:
   version "1.7.5"
   resolved "https://registry.yarnpkg.com/angular-sanitize/-/angular-sanitize-1.7.5.tgz#75d49e15071ca9c70581e76d20940f26372e24d2"
   integrity sha512-wjKCJOIwrkEvfD0keTnKGi6We13gtoCAQIHcdoqyoo3gwvcgNfYymVQIS3+iCGVcjfWz0jHuS3KgB4ysRWsTTA==
@@ -2126,7 +2125,7 @@ angular@1.3.x:
   resolved "https://registry.yarnpkg.com/angular/-/angular-1.3.20.tgz#b23a3d7c5e7f99f7d95b9b4d49b9ac355269baee"
   integrity sha1-sjo9fF5/mffZW5tNSbmsNVJpuu4=
 
-angular@1.7.5, "angular@>=1.2.26 <=1.7", "angular@>=1.3.0 <2.0.0", angular@~1.x:
+angular@1.7.5, "angular@>=1.2.26 <=1.7", "angular@>=1.3.0 <2.0.0", angular@^1.7.5:
   version "1.7.5"
   resolved "https://registry.yarnpkg.com/angular/-/angular-1.7.5.tgz#d1c1c01c6f5dc835638f3f9aa51012857bdac49e"
   integrity sha512-760183yxtGzni740IBTieNuWLtPNAoMqvmC0Z62UoU0I3nqk+VJuO3JbQAXOyvo3Oy/ZsdNQwrSTh/B0OQZjNw==
@@ -5990,11 +5989,6 @@ handlebars@^4.0.2:
   optionalDependencies:
     uglify-js "^3.1.4"
 
-har-schema@^1.0.5:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/har-schema/-/har-schema-1.0.5.tgz#d263135f43307c02c602afc8fe95970c0151369e"
-  integrity sha1-0mMTX0MwfALGAq/I/pWXDAFRNp4=
-
 har-schema@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/har-schema/-/har-schema-2.0.0.tgz#a94c2224ebcac04782a0d9035521f24735b7ec92"
@@ -6004,9 +5998,6 @@ har-validator@~4.2.1:
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/har-validator/-/har-validator-4.2.1.tgz#33481d0f1bbff600dd203d75812a6a5fba002e2a"
   integrity sha1-M0gdDxu/9gDdID11gSpqX7oALio=
-  dependencies:
-    ajv "^4.9.1"
-    har-schema "^1.0.5"
 
 har-validator@~5.0.3:
   version "5.0.3"
@@ -7196,13 +7187,6 @@ json-stable-stringify-without-jsonify@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/json-stable-stringify-without-jsonify/-/json-stable-stringify-without-jsonify-1.0.1.tgz#9db7b59496ad3f3cfef30a75142d2d930ad72651"
   integrity sha1-nbe1lJatPzz+8wp1FC0tkwrXJlE=
-
-json-stable-stringify@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/json-stable-stringify/-/json-stable-stringify-1.0.1.tgz#9a759d39c5f2ff503fd5300646ed445f88c4f9af"
-  integrity sha1-mnWdOcXy/1A/1TAGRu1EX4jE+a8=
-  dependencies:
-    jsonify "~0.0.0"
 
 json-stringify-safe@^5.0.1, json-stringify-safe@~5.0.1:
   version "5.0.1"
@@ -9279,15 +9263,17 @@ ovh-angular-swimming-poll@^3.0.0:
   resolved "https://registry.yarnpkg.com/ovh-angular-swimming-poll/-/ovh-angular-swimming-poll-3.0.0.tgz#496ccae4c8edbfd04719b05fe99fb98c00b1c78f"
   integrity sha1-SWzK5Mjtv9BHGbBf6Z+5jACxx48=
 
-ovh-angular-tail-logs@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/ovh-angular-tail-logs/-/ovh-angular-tail-logs-1.1.1.tgz#6287a577ca5214de0ad1cd9bfb39b34762076b66"
-  integrity sha1-Yoeld8pSFN4K0c2b+zmzR2IHa2Y=
-
 ovh-angular-ui-confirm-modal@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/ovh-angular-ui-confirm-modal/-/ovh-angular-ui-confirm-modal-1.0.2.tgz#92e6736588a4fb1de6353f1a17ab1962679a698d"
   integrity sha512-3V17DbzWjUjl9sKCd25Oycn+7eqg6iW+DpizwVmixHFzDNDMnpKSGmxRLrOq+q9YNE7IepoAKWjoSiy2+zOEEg==
+
+ovh-api-services@^3.24.0:
+  version "3.27.1"
+  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-3.27.1.tgz#4b4de84a07695180a8226798ace5978a8809a2d5"
+  integrity sha512-kTkZm9eFXCuYlNT+ZhK5jM75tMWm0L9nHwVXqLPpBOndT2xTHtwONxiGDbMdrtKvCyLFlXm4MUDPhdsrxHOa0Q==
+  dependencies:
+    lodash "^3.10.1"
 
 "ovh-api-services@https://github.com/ovh-ux/ovh-api-services.git#42cb36c4dbf424bb67efe19a569e3f854ab4b124":
   version "3.24.0"
@@ -9308,7 +9294,7 @@ ovh-ngstrap@^4.0.2:
   resolved "https://registry.yarnpkg.com/ovh-ngstrap/-/ovh-ngstrap-4.0.2.tgz#059291bfb9f59b78df991e476dd2ede0507cb3c9"
   integrity sha1-BZKRv7n1m3jfmR5HbdLt4FB8s8k=
 
-ovh-ui-angular@^2.23.0:
+ovh-ui-angular@^2.21.4, ovh-ui-angular@^2.23.0:
   version "2.23.0"
   resolved "https://registry.yarnpkg.com/ovh-ui-angular/-/ovh-ui-angular-2.23.0.tgz#5171a8ffa191dde62eca9b6a2ebd6d8cdcb41da9"
   integrity sha512-vbUQ4XWRrUvz9OHjEYin2gkHg8zw4yRXziq1jccxtp8qSPb8+8h2cjKrLdQ6YCmDFJnEiGSwJ7NTz9QpFHcqHA==

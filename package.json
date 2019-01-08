@@ -20,7 +20,7 @@
     "lint:md": "remark -qf .",
     "packages:publish": "node ./scripts/publish",
     "test": "yarn lint && yarn run test:e2e",
-    "test:e2e": "lerna run test:e2e --stream",
+    "test:e2e": "lerna run test:e2e --stream --concurrency=1",
     "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
     "release": "node ./scripts/release"
   },

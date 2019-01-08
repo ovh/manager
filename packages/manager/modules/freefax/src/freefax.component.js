@@ -1,14 +1,14 @@
 
 import angular from 'angular';
 
-import '@ovh-ux/manager-core';
 import '@ovh-ux/telecom-universe-components';
 import '@ovh-ux/manager-telecom-styles';
 import '@ovh-ux/ng-uirouter-title';
 import 'ovh-angular-ui-confirm-modal';
 import 'ovh-api-services';
 
-import '@ovh-ux/ovh-angular-contracts';
+import 'ovh-ui-kit/dist/oui.css';
+import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
 
 import credit from './credit';
 import faxConfiguration from './faxConfiguration';
@@ -23,7 +23,6 @@ import freeFaxInformations from './information/freeFax-information.html';
 export default angular
   .module('OvhManagerFreefaxComponent', [
     'ovh-api-services',
-    'ovhManagerCore',
     'telecomUniverseComponents',
     'ui.router',
     'ovh-angular-ui-confirm-modal',

@@ -32,6 +32,7 @@
   "freefax_notification_type_simple": "Notification seule",
   "freefax_notification_type_attachment": "Pièce jointe",
   "freefax_notification_add": "Ajouter",
+  "freefax_notification_add_title": "Ajouter une alerte",
   "freefax_notification_delete": "Supprimer cette notification",
   "freefax_notification_confirm": "Voulez-vous vraiment supprimer la notification <strong>{{email}}</strong> ?",
   "freefax_notif_show_none": "Aucun suivi",
