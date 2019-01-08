@@ -1,32 +1,26 @@
-// angular.module('managerApp').controller('TelecomDashboardCtrl'
-export default /* @ngInject */ function (TelecomMediator, TucToastError, URLS) {
+import constant from './telecom-dashboard.constant';
+
+export default /* @ngInject */ function (OvhApiMeVipStatus, TucToastError) {
   const self = this;
 
   self.loading = {
     vip: false,
   };
 
-  self.expressLiteOrder = URLS.orderExpressLite;
+  self.expressLiteOrder = constant.orderExpressLite;
   self.isVip = false;
-
-  /*= =====================================
-    =            INITIALIZATION            =
-    ====================================== */
 
   function init() {
     self.loading.vip = true;
-
-    console.log('ctrl init');
-
-    return TelecomMediator.deferred.vip.promise.then((vipStatus) => {
-      self.isVip = vipStatus;
-    }, err => new TucToastError(err, 'telecom_dashboard_auth_failed')).finally(() => {
-      self.loading.vip = false;
-    });
+    return OvhApiMeVipStatus.v6().get().$promise
+      .then((vipStatus) => {
+        self.isVip = vipStatus;
+      })
+      .catch(err => new TucToastError(err, 'telecom_dashboard_auth_failed'))
+      .finally(() => {
+        self.loading.vip = false;
+      });
   }
-
-  /* -----  End of INITIALIZATION  ------*/
 
   init();
 }
-console.log('ctrl loader');

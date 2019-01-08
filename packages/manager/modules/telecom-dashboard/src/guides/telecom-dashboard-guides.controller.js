@@ -1,16 +1,19 @@
-angular.module('managerApp').controller('TelecomDashboardGuidesCtrl', class TelecomDashboardGuidesCtrl {
-  constructor(atInternet, URLS) {
+import _ from 'lodash';
+import constant from '../telecom-dashboard.constant';
+
+export default class TelecomDashboardGuidesCtrl {
+  /* @ngInject */
+  constructor(atInternet) {
     this.atInternet = atInternet;
-    this.URLS = URLS;
   }
 
   $onInit() {
     this.guides = ['packActivate', 'modemConfig', 'modemReinit', 'interruptedService'];
-    this.links = _.pick(this.URLS.guides, this.guides);
+    this.links = _.pick(constant.guides, this.guides);
   }
 
   trackRedirection(link) {
-    const index = _.findIndex(this.guides, guide => this.URLS.guides[guide] === link) + 1;
+    const index = _.findIndex(this.guides, guide => constant.guides[guide] === link) + 1;
     return this.atInternet.trackClick({
       name: `TopGuide-Telecom-${index}`,
       type: 'navigation',
@@ -18,4 +21,4 @@ angular.module('managerApp').controller('TelecomDashboardGuidesCtrl', class Tele
       chapter1: 'telecom',
     });
   }
-});
+}
