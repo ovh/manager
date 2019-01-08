@@ -10,7 +10,7 @@
     "@ovh-ux/manager-core": "^1.1.1",
     "@ovh-ux/manager-sms": "^0.1.0",
     "@ovh-ux/manager-telecom-styles": "^2.0.0",
-    "@ovh-ux/ovh-angular-contracts": "^3.0.0-beta.0",
+    "@ovh-ux/ng-ovh-contracts": "^3.0.0-beta.1",
     "@ovh-ux/telecom-universe-components": "^1.4.0",
     "@uirouter/angularjs": "^1.0.15",
     "angular": "1.7.5",
