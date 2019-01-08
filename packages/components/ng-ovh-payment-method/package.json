@@ -1,17 +1,17 @@
 {
-  "name": "@ovh-ux/ng-payment-method",
+  "name": "@ovh-ux/ng-ovh-payment-method",
   "version": "1.0.0-alpha.1",
-  "description": "OVH Payment Methods wrapper for angular",
+  "description": "OVH Payment Methods wrapper for AngularJS",
   "author": "OVH SAS",
   "license": "BSD-3-Clause",
-  "repository": "ovh-ux/ng-payment-method",
+  "repository": "ovh-ux/ng-ovh-payment-method",
   "keywords": [
     "payment",
     "method",
     "ovh"
   ],
   "main": "./dist/cjs/index.js",
-  "browser": "./dist/umd/ng-payment-method.js",
+  "browser": "./dist/umd/ng-ovh-payment-method.js",
   "scripts": {
     "build": "rollup -c",
     "prepare": "rollup -c",
