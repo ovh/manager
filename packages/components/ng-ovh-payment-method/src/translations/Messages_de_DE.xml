@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="ovh_payment_type_bank_account" qtlid="176911">Lastschrift</translation>
+   <translation id="ovh_payment_type_paypal" qtlid="98228">Paypal</translation>
+   <translation id="ovh_payment_type_credit_card" qtlid="89809">Kreditkarte</translation>
+   <translation id="ovh_payment_type_deferred_payment_account" qtlid="406931">Stundungskonto</translation>
+   <translation id="ovh_payment_type_internal_trusted_account" qtlid="406931">Stundungskonto</translation>
+   <translation id="ovh_payment_type_enterprise" qtlid="516195">Unternehmenskonto</translation>
+
+   <translation id="ovh_payment_status_valid" qtlid="177249">Validiert</translation>
+   <translation id="ovh_payment_status_expired" qtlid="58676">Abgelaufen</translation>
+   <translation id="ovh_payment_status_proposed_by_customer" qtlid="90205">Warten auf Validierung</translation>
+   <translation id="ovh_payment_status_too_many_failures" qtlid="316034">Ungültig (zu viele gescheiterte Validierungsversuche)</translation>
+   <translation id="ovh_payment_status_broken" qtlid="436367">Kaputt</translation>
+   <translation id="ovh_payment_status_canceled" qtlid="27631">Abgebrochen</translation>
+   <translation id="ovh_payment_status_canceling" qtlid="409792">Wird storniert</translation>
+   <translation id="ovh_payment_status_canceled_by_customer" qtlid="436380">Storniert vom Benutzer</translation>
+   <translation id="ovh_payment_status_created" qtlid="90205">Warten auf Validierung</translation>
+   <translation id="ovh_payment_status_error" qtlid="45508">Fehler</translation>
+   <translation id="ovh_payment_status_valid_for_credit" qtlid="436393">Für Zahlungen validiert</translation>
+   <translation id="ovh_payment_status_pending_validation" qtlid="90133">Validierung wird durchgeführt</translation>
+   <translation id="ovh_payment_status_waiting_for_documents" qtlid="325575">Warten auf Eingang</translation>
+   <translation id="ovh_payment_status_null" qtlid="374560">Information nicht verfügbar </translation>
+</translations>
