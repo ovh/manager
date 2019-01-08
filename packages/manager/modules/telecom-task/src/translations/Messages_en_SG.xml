@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telecom_task_page_title" qtlid="76470">Ongoing operations </translation>
+
+   <translation id="telecom_task_service" qtlid="305330">Summary of operations </translation>
+   <translation id="telecom_task_date" qtlid="24523">Date</translation>
+   <translation id="telecom_task_cancelled" qtlid="164623">Cancelled</translation>
+   <translation id="telecom_task_doing" qtlid="26383">In progress</translation>
+   <translation id="telecom_task_done" qtlid="305343">Done </translation>
+   <translation id="telecom_task_error" qtlid="45508">Error</translation>
+   <translation id="telecom_task_problem" qtlid="270800">Issue</translation>
+   <translation id="telecom_task_todo" qtlid="305356">Scheduled</translation>
+   <translation id="telecom_task_all" qtlid="290472">All </translation>
+   <translation id="telecom_task_status" qtlid="26443">Status</translation>
+   <translation id="telecom_task_function" qtlid="56105">Action</translation>
+   <translation id="telecom_task_pack" qtlid="82929">Pack</translation>
+   <translation id="telecom_task_filter_status_placeholder" qtlid="305369">Filter by status</translation>
+   <translation id="telecom_task_status" qtlid="26443">Status</translation>
+   <translation id="telecom_task_function" qtlid="56105">Action</translation>
+   <translation id="telecom_task_filter_none" qtlid="305382">All operations </translation>
+   <translation id="telecom_task_none" qtlid="305395">No task found </translation>
+   <translation id="telecom_task_page" qtlid="305408">Page</translation>
+   <translation id="telecom_task_page_amount" qtlid="305421">elements per page </translation>
+
+   <translation id="createTelephonyPhone" qtlid="305434">Order a professional phone </translation>
+   <translation id="createNas" qtlid="305447">Activate Cloud NAS online storage </translation>
+   <translation id="createFax" qtlid="305460">Activate the EcoFax service </translation>
+   <translation id="createTelephonyLine" qtlid="305473">Create a phone line </translation>
+   <translation id="telephonyLineRenewConfiguration" qtlid="305486">Reactivate a phone line </translation>
+   <translation id="createDomain" qtlid="305499">Order a domain </translation>
+   <translation id="createHubic" qtlid="305512">Create a HubiC account </translation>
+   <translation id="createHostedEmail" qtlid="111786">Create e-mail account</translation>
+   <translation id="createExchange" qtlid="305525">Create an Exchange account </translation>
+   <translation id="pendingMigration" qtlid="305538">Migrate service </translation>
+   <translation id="regeneratePromoCode" qtlid="305551">Regenerate promo code </translation>
+   <translation id="changePackOffer" qtlid="305564">Change service </translation>
+   <translation id="packXdslAddressMove" qtlid="86745">Moving</translation>
+   <translation id="accessDiagnosticRun" qtlid="309724">Diagnostic de la ligne</translation>
+
+</translations>

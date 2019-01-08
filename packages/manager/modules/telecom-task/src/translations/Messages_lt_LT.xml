@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telecom_task_page_title" qtlid="76470">Vykdomos operacijos</translation>
+
+   <translation id="telecom_task_service" qtlid="305330">Operacijų suvestinė</translation>
+   <translation id="telecom_task_date" qtlid="24523">Data</translation>
+   <translation id="telecom_task_cancelled" qtlid="164623">Atšaukta</translation>
+   <translation id="telecom_task_doing" qtlid="26383">Vykdoma</translation>
+   <translation id="telecom_task_done" qtlid="305343">Atlikta</translation>
+   <translation id="telecom_task_error" qtlid="45508">Klaida</translation>
+   <translation id="telecom_task_problem" qtlid="270800">Problema</translation>
+   <translation id="telecom_task_todo" qtlid="305356">Suprogramuota</translation>
+   <translation id="telecom_task_all" qtlid="290472">Visi</translation>
+   <translation id="telecom_task_status" qtlid="26443">Būsena</translation>
+   <translation id="telecom_task_function" qtlid="56105">Veiksmas</translation>
+   <translation id="telecom_task_pack" qtlid="82929">Paketas</translation>
+   <translation id="telecom_task_filter_status_placeholder" qtlid="305369">Filtruoti pagal būseną</translation>
+   <translation id="telecom_task_status" qtlid="26443">Būsena</translation>
+   <translation id="telecom_task_function" qtlid="56105">Veiksmas</translation>
+   <translation id="telecom_task_filter_none" qtlid="305382">Visos operacijos</translation>
+   <translation id="telecom_task_none" qtlid="305395">Nerasta jokių užduočių</translation>
+   <translation id="telecom_task_page" qtlid="305408">Puslapis</translation>
+   <translation id="telecom_task_page_amount" qtlid="305421">elementai puslapyje</translation>
+
+   <translation id="createTelephonyPhone" qtlid="305434">Užsakyti profesionalią telefoniją</translation>
+   <translation id="createNas" qtlid="305447">Saugyklos aktyvavimas Cloud NAS linijoje</translation>
+   <translation id="createFax" qtlid="305460">EcoFax paslaugos aktyvavimas</translation>
+   <translation id="createTelephonyLine" qtlid="305473">Telefonijos linijos kūrimas</translation>
+   <translation id="telephonyLineRenewConfiguration" qtlid="305486">Pakartotinis telefonijos linijos aktyvavimas</translation>
+   <translation id="createDomain" qtlid="305499">Domenu užsakymas</translation>
+   <translation id="createHubic" qtlid="305512">HubiC paskyros kūrimas</translation>
+   <translation id="createHostedEmail" qtlid="111786">El. pašto paskyros kūrimas</translation>
+   <translation id="createExchange" qtlid="305525">Exchange paskyros kūrimas</translation>
+   <translation id="pendingMigration" qtlid="305538">Paslaugos migravimas</translation>
+   <translation id="regeneratePromoCode" qtlid="305551">Nuolaidos kodo generavimas</translation>
+   <translation id="changePackOffer" qtlid="305564">Pasiūlymo keitimas</translation>
+   <translation id="packXdslAddressMove" qtlid="86745">Perkėlimas</translation>
+   <translation id="accessDiagnosticRun" qtlid="309724">Linijos diagnostika</translation>
+
+</translations>
