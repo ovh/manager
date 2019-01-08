@@ -623,7 +623,7 @@ export default class PrivateDatabase {
 
     // do poll
     return this.Poll
-      .poll(`${this.swsProxypassPath}/${serviceName}/tasks/${opts.taskId}`, null, {
+      .poll(`${this.swsProxypassPath}/${serviceName}/tasks/${opts.taskId}`, {}, {
         namespace: opts.namespace,
       })
       .then(
