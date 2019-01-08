@@ -20,7 +20,6 @@ import routing from './manager-layout-ovh.routes';
 import sidebar from './sidebar';
 import navbar from './navbar';
 
-import '@ovh-ux/ovh-angular-contracts';
 import 'angular-ui-bootstrap';
 import 'at-internet-ui-router-plugin';
 import 'ng-at-internet';

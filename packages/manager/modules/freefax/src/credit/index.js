@@ -2,7 +2,7 @@ import angular from 'angular';
 
 import 'ovh-api-services';
 import 'ovh-ui-angular';
-import '@ovh-ux/ovh-angular-contracts';
+import '@ovh-ux/ng-ovh-contracts';
 
 import { DISCRETE_CREDIT } from './freefax-credit.constants';
 import controller from './freefax-credit.controller';
@@ -12,7 +12,7 @@ const moduleName = 'managerFreefaxCredit';
 
 angular
   .module(moduleName, [
-    'ovhAngularContracts',
+    'ngOvhContracts',
   ])
   .constant('FREEFAX_DISCRETE_CREDIT', DISCRETE_CREDIT)
   .controller('FreeFaxCreditCtrl', controller)
