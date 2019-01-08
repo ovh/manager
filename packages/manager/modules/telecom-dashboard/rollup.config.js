@@ -16,16 +16,7 @@ const outputs = [config.es()];
 
 if (process.env.BUILD === 'production') {
   outputs.push(config.cjs());
-  outputs.push(
-    config.umd({
-      output: {
-        globals: {
-          // angular: 'angular',
-          // telecomUniverseComponents: '@ovh-ux/telecom-universe-components',
-        },
-      },
-    }),
-  );
+  outputs.push(config.umd());
 }
 
 export default outputs;
