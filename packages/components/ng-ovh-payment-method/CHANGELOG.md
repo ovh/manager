@@ -1,3 +1,7 @@
+# [1.0.0](https://github.com/ovh-ux/ng-ovh-payment-method/compare/v1.0.0-alpha.1...v1.0.0) (2019-01-08)
+
+
+
 # [1.0.0-alpha.1](https://github.com/ovh-ux/ng-payment-method/compare/v1.0.0-alpha.0...v1.0.0-alpha.1) (2019-01-04)
 
 
