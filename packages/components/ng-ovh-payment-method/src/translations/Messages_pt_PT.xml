@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="ovh_payment_type_bank_account" qtlid="176911">Conta bancária</translation>
+   <translation id="ovh_payment_type_paypal" qtlid="98228">Paypal</translation>
+   <translation id="ovh_payment_type_credit_card" qtlid="89809">Cartão bancário</translation>
+   <translation id="ovh_payment_type_deferred_payment_account" qtlid="406931">Conta de pagamento diferido</translation>
+   <translation id="ovh_payment_type_internal_trusted_account" qtlid="406931">Conta de pagamento diferido</translation>
+   <translation id="ovh_payment_type_enterprise" qtlid="516195">Conta da empresa</translation>
+
+   <translation id="ovh_payment_status_valid" qtlid="177249">Validado</translation>
+   <translation id="ovh_payment_status_expired" qtlid="58676">Expirado</translation>
+   <translation id="ovh_payment_status_proposed_by_customer" qtlid="90205">A aguardar validação</translation>
+   <translation id="ovh_payment_status_too_many_failures" qtlid="316034">Inválido (demasiadas tentativas de validação em erro)</translation>
+   <translation id="ovh_payment_status_broken" qtlid="436367">Quebrado</translation>
+   <translation id="ovh_payment_status_canceled" qtlid="27631">Anulado</translation>
+   <translation id="ovh_payment_status_canceling" qtlid="409792">Anulação em curso</translation>
+   <translation id="ovh_payment_status_canceled_by_customer" qtlid="436380">Anulado pelo utilizador</translation>
+   <translation id="ovh_payment_status_created" qtlid="90205">A aguardar validação</translation>
+   <translation id="ovh_payment_status_error" qtlid="45508">Com erro</translation>
+   <translation id="ovh_payment_status_valid_for_credit" qtlid="436393">Válido para crédito</translation>
+   <translation id="ovh_payment_status_pending_validation" qtlid="90133">Validação em curso</translation>
+   <translation id="ovh_payment_status_waiting_for_documents" qtlid="325575">Aguardar receção</translation>
+   <translation id="ovh_payment_status_null" qtlid="374560">Informação não disponível</translation>
+</translations>
