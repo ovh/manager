@@ -1586,7 +1586,7 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/ovh-angular-contracts/-/ovh-angular-contracts-3.0.0-beta.0.tgz#fb1501243c8bffcd969d6b164123f09f3891e32d"
   integrity sha512-JXhLnIgjXRteyzCCTpKzcq+CRF6IDOktuJp/X2ZPNy1qpaAviRt9wdSuowO8fXjnBiCjZ/0VxN6NwAwRIBbDVw==
 
-"@ovh-ux/ovh-utils-angular@^14.0.0":
+"@ovh-ux/ovh-utils-angular@^14.0.0", "@ovh-ux/ovh-utils-angular@^14.0.0-alpha.1":
   version "14.0.2"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ovh-utils-angular/-/ovh-utils-angular-14.0.2.tgz#837fbfcd093287971aa6d0733a1bbad0e008e8e7"
   integrity sha512-mJPo16TErF948lbvS6JBeue9HjqN29C6ub5Hl++61CuSYTDeNTHIsXELC4TW1QiNP7otGZm93jf2Fb0ZMsjTbg==
@@ -2125,7 +2125,7 @@ angular@1.3.x:
   resolved "https://registry.yarnpkg.com/angular/-/angular-1.3.20.tgz#b23a3d7c5e7f99f7d95b9b4d49b9ac355269baee"
   integrity sha1-sjo9fF5/mffZW5tNSbmsNVJpuu4=
 
-angular@1.7.5, "angular@>=1.2.26 <=1.7", "angular@>=1.3.0 <2.0.0", angular@^1.7.5:
+angular@1.7.5, "angular@>=1.2.26 <=1.7", "angular@>=1.3.0 <2.0.0", angular@^1.7.5, angular@~1.x:
   version "1.7.5"
   resolved "https://registry.yarnpkg.com/angular/-/angular-1.7.5.tgz#d1c1c01c6f5dc835638f3f9aa51012857bdac49e"
   integrity sha512-760183yxtGzni740IBTieNuWLtPNAoMqvmC0Z62UoU0I3nqk+VJuO3JbQAXOyvo3Oy/ZsdNQwrSTh/B0OQZjNw==
@@ -5998,6 +5998,9 @@ har-validator@~4.2.1:
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/har-validator/-/har-validator-4.2.1.tgz#33481d0f1bbff600dd203d75812a6a5fba002e2a"
   integrity sha1-M0gdDxu/9gDdID11gSpqX7oALio=
+  dependencies:
+    ajv "^4.9.1"
+    har-schema "^1.0.5"
 
 har-validator@~5.0.3:
   version "5.0.3"
@@ -9262,6 +9265,11 @@ ovh-angular-swimming-poll@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/ovh-angular-swimming-poll/-/ovh-angular-swimming-poll-3.0.0.tgz#496ccae4c8edbfd04719b05fe99fb98c00b1c78f"
   integrity sha1-SWzK5Mjtv9BHGbBf6Z+5jACxx48=
+
+ovh-angular-tail-logs@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/ovh-angular-tail-logs/-/ovh-angular-tail-logs-1.1.1.tgz#6287a577ca5214de0ad1cd9bfb39b34762076b66"
+  integrity sha1-Yoeld8pSFN4K0c2b+zmzR2IHa2Y=
 
 ovh-angular-ui-confirm-modal@^1.0.2:
   version "1.0.2"

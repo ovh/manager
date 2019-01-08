@@ -6,7 +6,7 @@ import 'angularjs-scroll-glue';
 import 'bootstrap';
 import 'chart.js';
 import 'ovh-angular-pagination-front';
-import 'ovh-angular-tail-logs';
+import '@ovh-ux/ng-tail-logs';
 import 'ovh-ui-angular';
 
 import 'ovh-ui-kit/dist/oui.css';
@@ -44,7 +44,7 @@ const moduleName = 'ovhManagerPrivateDatabase';
 angular.module(moduleName, [
   managerCore,
   ovhUtilsAngular,
-  'ovh-angular-tail-logs',
+  'ngTailLogs',
   'ovh-angular-pagination-front',
   'oui',
   privateDatabaseUser,
