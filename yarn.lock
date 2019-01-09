@@ -1583,6 +1583,14 @@
     bootstrap "^3.3.7"
     ovh-ui-kit "^2.22.0"
 
+"@ovh-ux/telecom-universe-components@^1.5.1":
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/telecom-universe-components/-/telecom-universe-components-1.5.1.tgz#695e20a5696832519a7edfe437648cff5ddb844b"
+  integrity sha512-xVFOfs3VQ809BnZCv5DSXrV8iMxHB/IFje2O3wLxDBprx+c9SDxj4BfZ0vVZScFXF9+WZk7ZrfLwOEZJONiz7g==
+  dependencies:
+    bootstrap "^3.3.7"
+    ovh-ui-kit "^2.22.0"
+
 "@ovh-ux/translate-async-loader@^1.0.0", "@ovh-ux/translate-async-loader@^1.0.4", "@ovh-ux/translate-async-loader@^1.0.7":
   version "1.0.8"
   resolved "https://registry.yarnpkg.com/@ovh-ux/translate-async-loader/-/translate-async-loader-1.0.8.tgz#7cbdc3dfed1042f511206ff6bb9f14c33b8406ba"
