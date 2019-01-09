@@ -12,9 +12,7 @@ export default class OvhPaymentMethodService {
   constructor($q, $translate, $window, OvhApiMe, target) {
     this.$q = $q;
     this.$translate = $translate;
-    this.$window = $window;
     this.OvhApiMe = OvhApiMe;
-    this.target = target;
 
     this.ovhPaymentMethodLegacy = new OvhPaymentMethodLegacy(
       $q, $translate, $window, OvhApiMe, target,
