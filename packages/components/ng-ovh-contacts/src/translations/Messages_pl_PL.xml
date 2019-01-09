@@ -1,0 +1,647 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="ovh_contact_form_load_error" qtlid="517472">Une erreur est survenue lors du chargement du formulaire de création de contact.</translation>
+
+   <translation id="ovh_contact_form_section_general_information" qtlid="27115">Informacje ogólne</translation>
+   <translation id="ovh_contact_form_section_contact_information" qtlid="33370">Współrzędne</translation>
+   <translation id="ovh_contact_form_section_contact" qtlid="32206">Kontakt</translation>
+
+<!-- General information fields -->
+   <translation id="ovh_contact_form_first_name" qtlid="23323">Imię</translation>
+   <translation id="ovh_contact_form_last_name" qtlid="3818">Nazwa</translation>
+
+<!-- Contact information fields -->
+   <translation id="ovh_contact_form_country" qtlid="25171">Kraj</translation>
+   <translation id="ovh_contact_form_address_line1" qtlid="30430">Adres</translation>
+   <translation id="ovh_contact_form_address_zip" qtlid="30346">Kod pocztowy</translation>
+   <translation id="ovh_contact_form_address_city" qtlid="33310">Miasto</translation>
+   <translation id="ovh_contact_form_address_area" qtlid="32434">Województwo</translation>
+   <translation id="ovh_contact_form_address_area_optional" qtlid="517485">Choisissez votre région (optionnel)</translation>
+   <translation id="ovh_contact_form_address_province" qtlid="38577">Region</translation>
+   <translation id="ovh_contact_form_address_province_optional" qtlid="517498">Choisissez votre province (optionnel)</translation>
+   <translation id="ovh_contact_form_address_state" qtlid="434845">Stan</translation>
+   <translation id="ovh_contact_form_address_state_optional" qtlid="517511">Choisissez votre état (optionnel)</translation>
+
+<!-- Contact fields -->
+   <translation id="ovh_contact_form_email" qtlid="69509">E-mail</translation>
+   <translation id="ovh_contact_form_phone" qtlid="152505">Numer telefonu</translation>
+   <translation id="ovh_contact_from_phone_help_text" qtlid="517524">Numéro de téléphone au format international</translation>
+
+<!-- COUNTRIES -->
+   <translation id="ovh_contact_form_nichandle_country_enum_AD" qtlid="43510">Andora</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_AE" qtlid="187014">Zjednoczone Emiraty Arabskie</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_AF" qtlid="172683">Afganistan</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_AG" qtlid="187027">Antigua i Barbuda</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_AI" qtlid="187040">Anguilla</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_AL" qtlid="43798">Albania</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_AM" qtlid="187053">Armenia</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_AO" qtlid="187066">Angola</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_AR" qtlid="187079">Argentyna</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_AS" qtlid="187092">Samoa Amerykańskie</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_AT" qtlid="43570">Austria</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_AU" qtlid="179940">Australia</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_AW" qtlid="187105">Aruba</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_AX" qtlid="187118">Wyspy Alandzkie</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_AZ" qtlid="187131">Azerbejdżan</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_BA" qtlid="43822">Bośnia i Hercegowina</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_BB" qtlid="187144">Barbados</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_BD" qtlid="187157">Bangladesz</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_BE" qtlid="29059">Belgia</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_BF" qtlid="187170">Burkina Faso</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_BG" qtlid="43678">Bułgaria</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_BH" qtlid="187183">Bahrajn</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_BI" qtlid="187196">Burundi</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_BJ" qtlid="187209">Benin</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_BL" qtlid="187222">Saint Barthelemy</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_BM" qtlid="187235">Bermudy</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_BN" qtlid="187248">Brunei Darussalam</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_BO" qtlid="187261">Boliwia</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_BQ" qtlid="187274">Karaiby</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_BR" qtlid="187287">Brazylia</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_BS" qtlid="187300">Bahamy</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_BT" qtlid="187313">Bhoutan</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_BW" qtlid="187326">Botswana</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_BY" qtlid="43762">Białoruś</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_BZ" qtlid="187352">Belize</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_CA" qtlid="108733">Kanada</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_CC" qtlid="187365">Wyspy Kokosowe</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_CD" qtlid="187378">Demokratyczna Republika Kongo</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_CF" qtlid="187391">Republika Środkowoafrykańska</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_CG" qtlid="187404">Kongo</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_CH" qtlid="40954">Szwajcaria</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_CI" qtlid="187417">Wybrzeże Kości Słoniowej</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_CK" qtlid="187430">Wyspy Cooka</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_CL" qtlid="187443">Chile</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_CM" qtlid="187456">Kamerun</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_CN" qtlid="187469">Chiny</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_CO" qtlid="187482">Kolumbia</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_CR" qtlid="187495">Costa Rica</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_CU" qtlid="187508">Kuba</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_CV" qtlid="187521">Wyspy Zielonego Przylądka</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_CW" qtlid="187534">Curaçao</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_CX" qtlid="187547">Wyspa Bożego Narodzenia</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_CY" qtlid="43810">Cypr</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_CZ" qtlid="40918">Czechy</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_DE" qtlid="29083">Niemcy</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_DJ" qtlid="187560">Dżibuti</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_DK" qtlid="187573">Dania</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_DM" qtlid="187586">Dominika</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_DO" qtlid="187599">Dominikana, Republika</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_DZ" qtlid="187612">Algieria</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_EC" qtlid="187625">Ekwador</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_EE" qtlid="43630">Estonia</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_EG" qtlid="187638">Egipt</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_EH" qtlid="187651">Sahara Zachodnia</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_ER" qtlid="187664">Erytrea</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_ES" qtlid="29095">Hiszpania</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_ET" qtlid="187677">Etiopia</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_FI" qtlid="40942">Finlandia</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_FJ" qtlid="187690">Fidżi</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_FK" qtlid="187703">Falklandy</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_FM" qtlid="187716">Sfederowane Stany Mikronezji</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_FO" qtlid="187729">Wyspy Owcze</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_FR" qtlid="29047">Francja</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_GA" qtlid="187742">Gabon</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_GB" qtlid="29071">Wielka Brytania</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_GD" qtlid="187755">Grenada</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_GE" qtlid="187768">Gruzja</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_GF" qtlid="187781">Gujana Francuska</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_GG" qtlid="187794">Guernesey</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_GH" qtlid="187807">Ghana</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_GI" qtlid="187820">Gibraltar</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_GL" qtlid="187833">Grenlandia</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_GM" qtlid="187846">Gambia</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_GN" qtlid="187859">Gwinea</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_GP" qtlid="187872">Guadelupa</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_GQ" qtlid="187885">Gwinea Równikowa</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_GR" qtlid="43726">Grecja</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_GS" qtlid="187898">Georgia Południowa i Sandwich Południowy</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_GT" qtlid="187911">Gwatemala</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_GU" qtlid="187924">Guam</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_GW" qtlid="187937">Gwinea Bissau</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_GY" qtlid="187950">Gujana</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_HK" qtlid="187963">Hong-Kong</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_HN" qtlid="187976">Honduras</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_HR" qtlid="43690">Chorwacja</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_HT" qtlid="187989">Haiti</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_HU" qtlid="188002">Węgry</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_ID" qtlid="188015">Indonezja</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_IE" qtlid="40894">Irlandia</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_IL" qtlid="188028">Izrael</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_IM" qtlid="43534">Wyspa Man</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_IN" qtlid="188041">Indie</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_IO" qtlid="188054">Ocean Indyjski, Terytorium Brytyjskie</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_IQ" qtlid="188067">Irak</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_IR" qtlid="188080">Islamska Republika Iranu</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_IS" qtlid="188093">Islandia</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_IT" qtlid="40870">Włochy</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_JE" qtlid="188106">Jersey</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_JM" qtlid="188119">Jamajka</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_JO" qtlid="188132">Jordania</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_JP" qtlid="188145">Japonia</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_KE" qtlid="188158">Kenia</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_KG" qtlid="188171">Kirgistan</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_KH" qtlid="188184">Kambodża</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_KI" qtlid="188197">Kiribati</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_KM" qtlid="188210">Komory</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_KN" qtlid="188223">Saint-Kitts-Et-Nevis</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_KP" qtlid="188236">Korea, Demokratyczna Republika Ludowa</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_KR" qtlid="188249">Korea Południowa</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_KW" qtlid="188262">Kuwejt</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_KY" qtlid="188275">Kajmany, Wyspy</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_KZ" qtlid="188288">Kazachstan</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_LA" qtlid="435445">Laos, Republika Ludowo-Demokratyczna</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_LB" qtlid="188314">Liban</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_LC" qtlid="188327">Sainte-Lucie</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_LI" qtlid="188340">Liechtenstein</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_LK" qtlid="188353">Sri Lanka</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_LR" qtlid="188366">Liberia</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_LS" qtlid="188379">Lesotho</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_LT" qtlid="43582">Litwa</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_LU" qtlid="43474">Luxembourg</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_LV" qtlid="43642">Łotwa</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_LY" qtlid="188392">Libia</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_MA" qtlid="188405">Maroko</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_MC" qtlid="43486">Monako</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_MD" qtlid="43750">Mołdawia</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_ME" qtlid="43714">Czarnogóra</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_MF" qtlid="188444">Saint Martin (część Francuska)</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_MG" qtlid="188457">Madagaskar</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_MH" qtlid="188470">Wyspy Marshalla</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_MK" qtlid="43786">Macedonia</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_ML" qtlid="188483">Mali</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_MM" qtlid="188496">Myanmar</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_MN" qtlid="188509">Mongolia</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_MO" qtlid="188522">Makao</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_MP" qtlid="188535">Wyspy Mariany</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_MQ" qtlid="188548">Martynika</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_MR" qtlid="188561">Mauretania</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_MS" qtlid="188574">Montserrat</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_MT" qtlid="43876">Malta</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_MU" qtlid="177587">Republika Mauritiusa</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_MV" qtlid="188587">Malediwy</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_MW" qtlid="188600">Malawi</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_MX" qtlid="188613">Meksyk</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_MY" qtlid="188626">Malezja</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_MZ" qtlid="188639">Mozambik</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_NA" qtlid="188652">Namibia</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_NC" qtlid="188665">Nowa Kaledonia</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_NE" qtlid="188678">Niger</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_NF" qtlid="188691">Wyspa Norfolk</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_NG" qtlid="188704">Nigeria</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_NI" qtlid="188717">Nikaragua</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_NL" qtlid="40906">Holandia</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_NO" qtlid="43594">Norwegia</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_NP" qtlid="188730">Nepal</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_NR" qtlid="188743">Nauru</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_NU" qtlid="188756">Niue</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_NZ" qtlid="188769">Nowa Zelandia</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_OM" qtlid="188782">Oman</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_PA" qtlid="188795">Panama</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_PE" qtlid="188808">Peru</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_PF" qtlid="188821">Polinezja Francuska</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_PG" qtlid="188834">Papua Nowa Gwinea</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_PH" qtlid="188847">Filipiny</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_PK" qtlid="188860">Pakistan</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_PL" qtlid="40858">Polska</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_PM" qtlid="188873">Saint-Pierre-Et-Miquelon</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_PN" qtlid="188886">Pitcairn</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_PR" qtlid="188899">Porto Rico</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_PS" qtlid="435458">Palestyńskie Terytoria Okupowane</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_PT" qtlid="40882">Portugalia</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_PW" qtlid="188925">Palaos</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_PY" qtlid="188938">Paragwaj</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_QA" qtlid="188951">Katar</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_QC" qtlid="188964">Quebec</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_RE" qtlid="444521">Reunion, wyspa</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_RO" qtlid="43666">Rumunia</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_RS" qtlid="188990">Republika Serbii (Dawniej Seria i Czarnogóra). </translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_RU" qtlid="43618">Rosja</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_RW" qtlid="189003">Rwanda</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_SA" qtlid="189016">Arabia Saudyjska</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_SB" qtlid="189029">Wyspy Salomona</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_SC" qtlid="189042">Seszele</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_SD" qtlid="189055">Sudan</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_SE" qtlid="43606">Szwecja</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_SG" qtlid="189068">Singapur</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_SH" qtlid="189081">Sainte-Hélène</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_SI" qtlid="43702">Słowenia</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_SJ" qtlid="189094">Svalbard i Wyspa Jan Mayen</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_SK" qtlid="43654">Słowacja</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_SL" qtlid="189107">Sierra Leone</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_SM" qtlid="43498">Saint-Marin</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_SN" qtlid="189120">Senegal</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_SO" qtlid="189133">Somalia</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_SR" qtlid="189146">Surinam</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_SS" qtlid="189159">Południowy Sudan</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_ST" qtlid="189172">Sao Tomé-Et-Principe</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_SV" qtlid="189185">Salwador</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_SX" qtlid="189198">Saint-Martin (Królestwo Holandii)</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_SY" qtlid="189211">Syria</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_SZ" qtlid="189224">Suazi</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_TC" qtlid="189237">Wyspy Turks i Caicos</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_TD" qtlid="189250">Czad</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_TF" qtlid="189263">Francuskie Terytoria Południowe</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_TG" qtlid="189276">Togo</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_TH" qtlid="189289">Tajlandia</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_TJ" qtlid="189302">Tadżykistan</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_TK" qtlid="189315">Tokelau</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_TL" qtlid="435471">Wschodni Timur</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_TM" qtlid="189341">Turkmenistan</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_TN" qtlid="189354">Tunezja</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_TO" qtlid="189367">Tonga</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_TR" qtlid="43738">Turcja</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_TT" qtlid="189380">Trynidad i Tobago</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_TV" qtlid="189393">Tuvalu</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_TW" qtlid="435484">Tajwan, Republika Chińska</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_TZ" qtlid="189419">Tanzania</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_UA" qtlid="43774">Ukraina</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_UG" qtlid="189432">Uganda</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_UK" qtlid="29071">Wielka Brytania</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_UM" qtlid="189445">Dalekie Wyspy Mniejsze Stanów Zjednoczonych</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_US" qtlid="108396">Stany Zjednoczone</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_UY" qtlid="189458">Urugwaj</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_UZ" qtlid="189471">Uzbekistan</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_VA" qtlid="43522">Watykan</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_VC" qtlid="189497">Saint-Vincent i Grenadyny</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_VE" qtlid="189510">Wenezuela</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_VG" qtlid="189523">Brytyjskie Wyspy Dziewicze</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_VI" qtlid="189536">Wyspy Dziewicze Stanów Zjednoczonych</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_VN" qtlid="189549">Wietnam</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_VU" qtlid="189562">Vanuatu</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_WF" qtlid="189575">Wallis i Futuna</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_WS" qtlid="189588">Samoa</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_YE" qtlid="189601">Jemen</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_YT" qtlid="189614">Majotta</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_ZA" qtlid="189627">Republika Południowej Afryki</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_ZM" qtlid="189640">Zambia</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_ZW" qtlid="189653">Zimbabwe</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_ASIA" qtlid="99500">Azja</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_EU" qtlid="93979">Europa</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_LTE" qtlid="43582">Litwa</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_WE" qtlid="108396">Stany Zjednoczone</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_AC" qtlid="377864">Wyspa Wniebowstąpienia</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_AQ" qtlid="377877">Antarktyda</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_DG" qtlid="377890">Diego Garcia</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_EA" qtlid="377903">Ceuta</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_IC" qtlid="377916">Wyspy Kanaryjskie</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_TA" qtlid="377929">Tristan da Cunha (archipelag)</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_XK" qtlid="377942">Republika Kosowa</translation>
+
+<!-- PROVINCE -->
+   <translation id="ovh_contact_form_address_province_AU_NSW" qtlid="377955">Nowa Południowa Walia</translation>
+   <translation id="ovh_contact_form_address_province_AU_QLD" qtlid="377968">Queensland</translation>
+   <translation id="ovh_contact_form_address_province_AU_SA" qtlid="377981">Południowa Australia</translation>
+   <translation id="ovh_contact_form_address_province_AU_TAS" qtlid="377994">Tasmania</translation>
+   <translation id="ovh_contact_form_address_province_AU_VIC" qtlid="378007">Victoria</translation>
+   <translation id="ovh_contact_form_address_province_AU_WA" qtlid="378020">Zachodnia Australia</translation>
+   <translation id="ovh_contact_form_address_province_AU_ACT" qtlid="378033">Australijskie Terytorium Stołeczne</translation>
+   <translation id="ovh_contact_form_address_province_AU_NT" qtlid="378046">Terytorium Północne</translation>
+
+   <translation id="ovh_contact_form_address_province_WE_AL" qtlid="378059">Alabama</translation>
+   <translation id="ovh_contact_form_address_province_WE_AK" qtlid="378072">Alaska</translation>
+   <translation id="ovh_contact_form_address_province_WE_AZ" qtlid="378085">Arizona</translation>
+   <translation id="ovh_contact_form_address_province_WE_AR" qtlid="378098">Arkansas</translation>
+   <translation id="ovh_contact_form_address_province_WE_CA" qtlid="378111">Kalifornia</translation>
+   <translation id="ovh_contact_form_address_province_WE_CO" qtlid="378124">Kolorado</translation>
+   <translation id="ovh_contact_form_address_province_WE_CT" qtlid="378137">Connecticut</translation>
+   <translation id="ovh_contact_form_address_province_WE_DE" qtlid="378150">Delaware</translation>
+   <translation id="ovh_contact_form_address_province_WE_DC" qtlid="378163">Dystrykt Kolumbii</translation>
+   <translation id="ovh_contact_form_address_province_WE_FL" qtlid="378176">Floryda</translation>
+   <translation id="ovh_contact_form_address_province_WE_GA" qtlid="240091">Gruzja</translation>
+   <translation id="ovh_contact_form_address_province_WE_HI" qtlid="378189">Hawaje</translation>
+   <translation id="ovh_contact_form_address_province_WE_ID" qtlid="378202">Idaho</translation>
+   <translation id="ovh_contact_form_address_province_WE_IL" qtlid="378215">Illinois</translation>
+   <translation id="ovh_contact_form_address_province_WE_IN" qtlid="378228">Indiana</translation>
+   <translation id="ovh_contact_form_address_province_WE_IA" qtlid="378241">Iowa</translation>
+   <translation id="ovh_contact_form_address_province_WE_KS" qtlid="378254">Kansas</translation>
+   <translation id="ovh_contact_form_address_province_WE_KY" qtlid="378267">Kentucky</translation>
+   <translation id="ovh_contact_form_address_province_WE_LA" qtlid="378280">Luizjana</translation>
+   <translation id="ovh_contact_form_address_province_WE_ME" qtlid="378293">Maine</translation>
+   <translation id="ovh_contact_form_address_province_WE_MD" qtlid="378306">Maryland</translation>
+   <translation id="ovh_contact_form_address_province_WE_MA" qtlid="378319">Massachusetts</translation>
+   <translation id="ovh_contact_form_address_province_WE_MI" qtlid="378332">Michigan</translation>
+   <translation id="ovh_contact_form_address_province_WE_MN" qtlid="378345">Minnesota</translation>
+   <translation id="ovh_contact_form_address_province_WE_MS" qtlid="378358">Mississippi</translation>
+   <translation id="ovh_contact_form_address_province_WE_MO" qtlid="378371">Missouri</translation>
+   <translation id="ovh_contact_form_address_province_WE_MT" qtlid="378384">Montana</translation>
+   <translation id="ovh_contact_form_address_province_WE_NE" qtlid="378397">Nebraska</translation>
+   <translation id="ovh_contact_form_address_province_WE_NV" qtlid="378410">Nevada</translation>
+   <translation id="ovh_contact_form_address_province_WE_NH" qtlid="378423">New Hampshire</translation>
+   <translation id="ovh_contact_form_address_province_WE_NJ" qtlid="378436">New Jersey</translation>
+   <translation id="ovh_contact_form_address_province_WE_NM" qtlid="378449">Nowy Meksyk</translation>
+   <translation id="ovh_contact_form_address_province_WE_NY" qtlid="93859">New York</translation>
+   <translation id="ovh_contact_form_address_province_WE_NC" qtlid="378462">Karolina Północna</translation>
+   <translation id="ovh_contact_form_address_province_WE_ND" qtlid="378475">Dakota Północna</translation>
+   <translation id="ovh_contact_form_address_province_WE_OH" qtlid="378488">Ohio</translation>
+   <translation id="ovh_contact_form_address_province_WE_OK" qtlid="378501">Oklahoma</translation>
+   <translation id="ovh_contact_form_address_province_WE_OR" qtlid="378514">Oregon</translation>
+   <translation id="ovh_contact_form_address_province_WE_PA" qtlid="378527">Pensylwania</translation>
+   <translation id="ovh_contact_form_address_province_WE_RI" qtlid="378540">Rhode Island</translation>
+   <translation id="ovh_contact_form_address_province_WE_SC" qtlid="378553">Karolina Południowa</translation>
+   <translation id="ovh_contact_form_address_province_WE_SD" qtlid="378566">Dakota Południowa</translation>
+   <translation id="ovh_contact_form_address_province_WE_TN" qtlid="378579">Tennessee</translation>
+   <translation id="ovh_contact_form_address_province_WE_TX" qtlid="378592">Teksas</translation>
+   <translation id="ovh_contact_form_address_province_WE_UT" qtlid="378605">Utah</translation>
+   <translation id="ovh_contact_form_address_province_WE_VT" qtlid="378618">Vermont</translation>
+   <translation id="ovh_contact_form_address_province_WE_VA" qtlid="378631">Wirginia</translation>
+   <translation id="ovh_contact_form_address_province_WE_WA" qtlid="378644">Waszyngton</translation>
+   <translation id="ovh_contact_form_address_province_WE_WV" qtlid="378657">Wirginia Zachodnia</translation>
+   <translation id="ovh_contact_form_address_province_WE_WI" qtlid="378670">Wisconsin</translation>
+   <translation id="ovh_contact_form_address_province_WE_WY" qtlid="378683">Wyoming</translation>
+
+   <translation id="ovh_contact_form_address_province_US_AL" qtlid="378059">Alabama</translation>
+   <translation id="ovh_contact_form_address_province_US_AK" qtlid="378072">Alaska</translation>
+   <translation id="ovh_contact_form_address_province_US_AZ" qtlid="378085">Arizona</translation>
+   <translation id="ovh_contact_form_address_province_US_AR" qtlid="378098">Arkansas</translation>
+   <translation id="ovh_contact_form_address_province_US_CA" qtlid="378111">Kalifornia</translation>
+   <translation id="ovh_contact_form_address_province_US_CO" qtlid="378124">Kolorado</translation>
+   <translation id="ovh_contact_form_address_province_US_CT" qtlid="378137">Connecticut</translation>
+   <translation id="ovh_contact_form_address_province_US_DE" qtlid="378150">Delaware</translation>
+   <translation id="ovh_contact_form_address_province_US_DC" qtlid="378163">Dystrykt Kolumbii</translation>
+   <translation id="ovh_contact_form_address_province_US_FL" qtlid="378176">Floryda</translation>
+   <translation id="ovh_contact_form_address_province_US_GA" qtlid="240091">Gruzja</translation>
+   <translation id="ovh_contact_form_address_province_US_HI" qtlid="378189">Hawaje</translation>
+   <translation id="ovh_contact_form_address_province_US_ID" qtlid="378202">Idaho</translation>
+   <translation id="ovh_contact_form_address_province_US_IL" qtlid="378215">Illinois</translation>
+   <translation id="ovh_contact_form_address_province_US_IN" qtlid="378228">Indiana</translation>
+   <translation id="ovh_contact_form_address_province_US_IA" qtlid="378241">Iowa</translation>
+   <translation id="ovh_contact_form_address_province_US_KS" qtlid="378254">Kansas</translation>
+   <translation id="ovh_contact_form_address_province_US_KY" qtlid="378267">Kentucky</translation>
+   <translation id="ovh_contact_form_address_province_US_LA" qtlid="378280">Luizjana</translation>
+   <translation id="ovh_contact_form_address_province_US_ME" qtlid="378293">Maine</translation>
+   <translation id="ovh_contact_form_address_province_US_MD" qtlid="378306">Maryland</translation>
+   <translation id="ovh_contact_form_address_province_US_MA" qtlid="378319">Massachusetts</translation>
+   <translation id="ovh_contact_form_address_province_US_MI" qtlid="378332">Michigan</translation>
+   <translation id="ovh_contact_form_address_province_US_MN" qtlid="378345">Minnesota</translation>
+   <translation id="ovh_contact_form_address_province_US_MS" qtlid="378358">Mississippi</translation>
+   <translation id="ovh_contact_form_address_province_US_MO" qtlid="378371">Missouri</translation>
+   <translation id="ovh_contact_form_address_province_US_MT" qtlid="378384">Montana</translation>
+   <translation id="ovh_contact_form_address_province_US_NE" qtlid="378397">Nebraska</translation>
+   <translation id="ovh_contact_form_address_province_US_NV" qtlid="378410">Nevada</translation>
+   <translation id="ovh_contact_form_address_province_US_NH" qtlid="378423">New Hampshire</translation>
+   <translation id="ovh_contact_form_address_province_US_NJ" qtlid="378436">New Jersey</translation>
+   <translation id="ovh_contact_form_address_province_US_NM" qtlid="378449">Nowy Meksyk</translation>
+   <translation id="ovh_contact_form_address_province_US_NY" qtlid="93859">New York</translation>
+   <translation id="ovh_contact_form_address_province_US_NC" qtlid="378462">Karolina Północna</translation>
+   <translation id="ovh_contact_form_address_province_US_ND" qtlid="378475">Dakota Północna</translation>
+   <translation id="ovh_contact_form_address_province_US_OH" qtlid="378488">Ohio</translation>
+   <translation id="ovh_contact_form_address_province_US_OK" qtlid="378501">Oklahoma</translation>
+   <translation id="ovh_contact_form_address_province_US_OR" qtlid="378514">Oregon</translation>
+   <translation id="ovh_contact_form_address_province_US_PA" qtlid="378527">Pensylwania</translation>
+   <translation id="ovh_contact_form_address_province_US_RI" qtlid="378540">Rhode Island</translation>
+   <translation id="ovh_contact_form_address_province_US_SC" qtlid="378553">Karolina Południowa</translation>
+   <translation id="ovh_contact_form_address_province_US_SD" qtlid="378566">Dakota Południowa</translation>
+   <translation id="ovh_contact_form_address_province_US_TN" qtlid="378579">Tennessee</translation>
+   <translation id="ovh_contact_form_address_province_US_TX" qtlid="378592">Teksas</translation>
+   <translation id="ovh_contact_form_address_province_US_UT" qtlid="378605">Utah</translation>
+   <translation id="ovh_contact_form_address_province_US_VT" qtlid="378618">Vermont</translation>
+   <translation id="ovh_contact_form_address_province_US_VA" qtlid="378631">Wirginia</translation>
+   <translation id="ovh_contact_form_address_province_US_WA" qtlid="378644">Waszyngton</translation>
+   <translation id="ovh_contact_form_address_province_US_WV" qtlid="378657">Wirginia Zachodnia</translation>
+   <translation id="ovh_contact_form_address_province_US_WI" qtlid="378670">Wisconsin</translation>
+   <translation id="ovh_contact_form_address_province_US_WY" qtlid="378683">Wyoming</translation>
+
+   <translation id="ovh_contact_form_address_province_IE_CW" qtlid="378696">Carlow</translation>
+   <translation id="ovh_contact_form_address_province_IE_CN" qtlid="378709">Cavan</translation>
+   <translation id="ovh_contact_form_address_province_IE_CE" qtlid="378722">Clare</translation>
+   <translation id="ovh_contact_form_address_province_IE_CO" qtlid="378735">Cork</translation>
+   <translation id="ovh_contact_form_address_province_IE_DL" qtlid="378748">Donegal</translation>
+   <translation id="ovh_contact_form_address_province_IE_D" qtlid="378761">Dublin</translation>
+   <translation id="ovh_contact_form_address_province_IE_G" qtlid="378774">Galway</translation>
+   <translation id="ovh_contact_form_address_province_IE_KY" qtlid="378787">Kerry</translation>
+   <translation id="ovh_contact_form_address_province_IE_KE" qtlid="378800">Kildare</translation>
+   <translation id="ovh_contact_form_address_province_IE_KK" qtlid="378813">Kilkenny</translation>
+   <translation id="ovh_contact_form_address_province_IE_LS" qtlid="378826">Laois</translation>
+   <translation id="ovh_contact_form_address_province_IE_LM" qtlid="378839">Leitrim</translation>
+   <translation id="ovh_contact_form_address_province_IE_LK" qtlid="378852">Limerick</translation>
+   <translation id="ovh_contact_form_address_province_IE_LD" qtlid="378865">Longford</translation>
+   <translation id="ovh_contact_form_address_province_IE_LH" qtlid="378878">Louth</translation>
+   <translation id="ovh_contact_form_address_province_IE_MO" qtlid="378891">Mayo</translation>
+   <translation id="ovh_contact_form_address_province_IE_MH" qtlid="378904">Meath</translation>
+   <translation id="ovh_contact_form_address_province_IE_MN" qtlid="378917">Monaghan</translation>
+   <translation id="ovh_contact_form_address_province_IE_OY" qtlid="378930">Offaly</translation>
+   <translation id="ovh_contact_form_address_province_IE_RN" qtlid="378943">Roscommon</translation>
+   <translation id="ovh_contact_form_address_province_IE_SO" qtlid="378956">Sligo</translation>
+   <translation id="ovh_contact_form_address_province_IE_TA" qtlid="378969">Tipperary</translation>
+   <translation id="ovh_contact_form_address_province_IE_WD" qtlid="378982">Waterford</translation>
+   <translation id="ovh_contact_form_address_province_IE_WH" qtlid="378995">Westmeath</translation>
+   <translation id="ovh_contact_form_address_province_IE_WW" qtlid="379008">Wexford</translation>
+   <translation id="ovh_contact_form_address_province_IE_WX" qtlid="379021">Wicklow</translation>
+   <translation id="ovh_contact_form_address_province_IE_D1" qtlid="379034">Dublin 1</translation>
+   <translation id="ovh_contact_form_address_province_IE_D2" qtlid="379047">Dublin 2</translation>
+   <translation id="ovh_contact_form_address_province_IE_D3" qtlid="379060">Dublin 3</translation>
+   <translation id="ovh_contact_form_address_province_IE_D4" qtlid="379073">Dublin 4</translation>
+   <translation id="ovh_contact_form_address_province_IE_D5" qtlid="379086">Dublin 5</translation>
+   <translation id="ovh_contact_form_address_province_IE_D6" qtlid="379099">Dublin 6</translation>
+   <translation id="ovh_contact_form_address_province_IE_D7" qtlid="379112">Dublin 7</translation>
+   <translation id="ovh_contact_form_address_province_IE_D8" qtlid="379125">Dublin 8</translation>
+   <translation id="ovh_contact_form_address_province_IE_D9" qtlid="379138">Dublin 9</translation>
+   <translation id="ovh_contact_form_address_province_IE_D10" qtlid="379151">Dublin 10</translation>
+   <translation id="ovh_contact_form_address_province_IE_D11" qtlid="379164">Dublin 11</translation>
+   <translation id="ovh_contact_form_address_province_IE_D12" qtlid="379177">Dublin 12</translation>
+   <translation id="ovh_contact_form_address_province_IE_D13" qtlid="379190">Dublin 13</translation>
+   <translation id="ovh_contact_form_address_province_IE_D14" qtlid="379203">Dublin 14</translation>
+   <translation id="ovh_contact_form_address_province_IE_D15" qtlid="379216">Dublin 15</translation>
+   <translation id="ovh_contact_form_address_province_IE_D16" qtlid="379229">Dublin 16</translation>
+   <translation id="ovh_contact_form_address_province_IE_D17" qtlid="379242">Dublin 17</translation>
+   <translation id="ovh_contact_form_address_province_IE_D18" qtlid="379255">Dublin 18</translation>
+   <translation id="ovh_contact_form_address_province_IE_D19" qtlid="379268">Dublin 19</translation>
+   <translation id="ovh_contact_form_address_province_IE_D20" qtlid="379281">Dublin 20</translation>
+   <translation id="ovh_contact_form_address_province_IE_D21" qtlid="379294">Dublin 21</translation>
+   <translation id="ovh_contact_form_address_province_IE_D22" qtlid="379307">Dublin 22</translation>
+   <translation id="ovh_contact_form_address_province_IE_D23" qtlid="379320">Dublin 23</translation>
+   <translation id="ovh_contact_form_address_province_IE_D24" qtlid="379333">Dublin 24</translation>
+
+   <translation id="ovh_contact_form_address_province_CA_AB" qtlid="379346">Alberta</translation>
+   <translation id="ovh_contact_form_address_province_CA_BC" qtlid="379359">Kolumbia Brytyjska</translation>
+   <translation id="ovh_contact_form_address_province_CA_MB" qtlid="379372">Manitoba</translation>
+   <translation id="ovh_contact_form_address_province_CA_NB" qtlid="379385">Nowy Brunszwik</translation>
+   <translation id="ovh_contact_form_address_province_CA_NL" qtlid="379398">Nowa Fundlandia i Labrador</translation>
+   <translation id="ovh_contact_form_address_province_CA_NS" qtlid="379411">Nowa Szkocja</translation>
+   <translation id="ovh_contact_form_address_province_CA_NT" qtlid="379424">Terytora Północno-Zachodnie</translation>
+   <translation id="ovh_contact_form_address_province_CA_NU" qtlid="379437">Nunavut</translation>
+   <translation id="ovh_contact_form_address_province_CA_ON" qtlid="379450">Ontario</translation>
+   <translation id="ovh_contact_form_address_province_CA_PE" qtlid="379463">Wyspa Księcia Edwarda</translation>
+   <translation id="ovh_contact_form_address_province_CA_QC" qtlid="188964">Quebec</translation>
+   <translation id="ovh_contact_form_address_province_CA_SK" qtlid="379476">Saskatchewan</translation>
+   <translation id="ovh_contact_form_address_province_CA_YT" qtlid="379489">Yukon</translation>
+
+   <translation id="ovh_contact_form_address_province_ES_01" qtlid="379502">Alava</translation>
+   <translation id="ovh_contact_form_address_province_ES_02" qtlid="379515">Albacete</translation>
+   <translation id="ovh_contact_form_address_province_ES_03" qtlid="379528">Alicante</translation>
+   <translation id="ovh_contact_form_address_province_ES_04" qtlid="379541">Almeria</translation>
+   <translation id="ovh_contact_form_address_province_ES_05" qtlid="379554">Avila</translation>
+   <translation id="ovh_contact_form_address_province_ES_06" qtlid="379567">Badajoz</translation>
+   <translation id="ovh_contact_form_address_province_ES_07" qtlid="379580">Baleary</translation>
+   <translation id="ovh_contact_form_address_province_ES_08" qtlid="379593">Barcelona</translation>
+   <translation id="ovh_contact_form_address_province_ES_09" qtlid="379606">Burgos</translation>
+   <translation id="ovh_contact_form_address_province_ES_10" qtlid="379619">Caceres</translation>
+   <translation id="ovh_contact_form_address_province_ES_11" qtlid="379632">Cadiz</translation>
+   <translation id="ovh_contact_form_address_province_ES_12" qtlid="379645">Castellon</translation>
+   <translation id="ovh_contact_form_address_province_ES_13" qtlid="379658">Ciudad Real</translation>
+   <translation id="ovh_contact_form_address_province_ES_14" qtlid="379671">Cordoba</translation>
+   <translation id="ovh_contact_form_address_province_ES_15" qtlid="379684">La Coruña</translation>
+   <translation id="ovh_contact_form_address_province_ES_16" qtlid="379697">Cuenca</translation>
+   <translation id="ovh_contact_form_address_province_ES_17" qtlid="379710">Gerona</translation>
+   <translation id="ovh_contact_form_address_province_ES_18" qtlid="379723">Granada</translation>
+   <translation id="ovh_contact_form_address_province_ES_19" qtlid="379736">Guadalajara</translation>
+   <translation id="ovh_contact_form_address_province_ES_20" qtlid="379749">Guipuzcoa</translation>
+   <translation id="ovh_contact_form_address_province_ES_21" qtlid="379762">Huelva</translation>
+   <translation id="ovh_contact_form_address_province_ES_22" qtlid="379775">Huesca</translation>
+   <translation id="ovh_contact_form_address_province_ES_23" qtlid="379788">Jaen</translation>
+   <translation id="ovh_contact_form_address_province_ES_24" qtlid="379801">Leon</translation>
+   <translation id="ovh_contact_form_address_province_ES_25" qtlid="379814">Lerida</translation>
+   <translation id="ovh_contact_form_address_province_ES_26" qtlid="379827">La Rioja</translation>
+   <translation id="ovh_contact_form_address_province_ES_27" qtlid="379840">Lugo</translation>
+   <translation id="ovh_contact_form_address_province_ES_28" qtlid="94027">Madryt</translation>
+   <translation id="ovh_contact_form_address_province_ES_29" qtlid="379853">Malaga</translation>
+   <translation id="ovh_contact_form_address_province_ES_30" qtlid="379866">Murcia</translation>
+   <translation id="ovh_contact_form_address_province_ES_31" qtlid="379879">Navarra</translation>
+   <translation id="ovh_contact_form_address_province_ES_32" qtlid="379892">Orense</translation>
+   <translation id="ovh_contact_form_address_province_ES_33" qtlid="379905">Asturias</translation>
+   <translation id="ovh_contact_form_address_province_ES_34" qtlid="379918">Palencia</translation>
+   <translation id="ovh_contact_form_address_province_ES_35" qtlid="379931">Las Palmas</translation>
+   <translation id="ovh_contact_form_address_province_ES_36" qtlid="379944">Pontevedra</translation>
+   <translation id="ovh_contact_form_address_province_ES_37" qtlid="379957">Salamanca</translation>
+   <translation id="ovh_contact_form_address_province_ES_38" qtlid="379970">Santa Cruz Tenerife</translation>
+   <translation id="ovh_contact_form_address_province_ES_39" qtlid="379983">Cantabria</translation>
+   <translation id="ovh_contact_form_address_province_ES_40" qtlid="379996">Segovia</translation>
+   <translation id="ovh_contact_form_address_province_ES_41" qtlid="380009">Sevilla</translation>
+   <translation id="ovh_contact_form_address_province_ES_42" qtlid="380022">Soria</translation>
+   <translation id="ovh_contact_form_address_province_ES_43" qtlid="380035">Tarragona</translation>
+   <translation id="ovh_contact_form_address_province_ES_44" qtlid="380048">Teruel</translation>
+   <translation id="ovh_contact_form_address_province_ES_45" qtlid="380061">Toledo</translation>
+   <translation id="ovh_contact_form_address_province_ES_46" qtlid="380074">Valencia</translation>
+   <translation id="ovh_contact_form_address_province_ES_47" qtlid="380087">Valladolid</translation>
+   <translation id="ovh_contact_form_address_province_ES_48" qtlid="380100">Vizcaya</translation>
+   <translation id="ovh_contact_form_address_province_ES_49" qtlid="380113">Zamora</translation>
+   <translation id="ovh_contact_form_address_province_ES_50" qtlid="380126">Zaragoza</translation>
+   <translation id="ovh_contact_form_address_province_ES_51" qtlid="377903">Ceuta</translation>
+   <translation id="ovh_contact_form_address_province_ES_52" qtlid="380139">Melilla</translation>
+
+   <translation id="ovh_contact_form_address_province_QC_AB" qtlid="379346">Alberta</translation>
+   <translation id="ovh_contact_form_address_province_QC_BC" qtlid="380152">Kolumbia Brytyjska</translation>
+   <translation id="ovh_contact_form_address_province_QC_MB" qtlid="379372">Manitoba</translation>
+   <translation id="ovh_contact_form_address_province_QC_NB" qtlid="380165">Nowy Brunszwik</translation>
+   <translation id="ovh_contact_form_address_province_QC_NL" qtlid="380178">Nowa Fundlandia i Labrador</translation>
+   <translation id="ovh_contact_form_address_province_QC_NS" qtlid="380191">Nowa Szkocja</translation>
+   <translation id="ovh_contact_form_address_province_QC_NT" qtlid="380204">Terytoria Północno-Zachodnie</translation>
+   <translation id="ovh_contact_form_address_province_QC_NU" qtlid="379437">Nunavut</translation>
+   <translation id="ovh_contact_form_address_province_QC_ON" qtlid="379450">Ontario</translation>
+   <translation id="ovh_contact_form_address_province_QC_PE" qtlid="380217">Wyspa Księcia Edwarda</translation>
+   <translation id="ovh_contact_form_address_province_QC_QC" qtlid="276493">Quebec</translation>
+   <translation id="ovh_contact_form_address_province_QC_SK" qtlid="379476">Saskatchewan</translation>
+   <translation id="ovh_contact_form_address_province_QC_YT" qtlid="379489">Yukon</translation>
+
+   <translation id="ovh_contact_form_address_province_IT_AG" qtlid="380230">Agrigento (Sycylia)</translation>
+   <translation id="ovh_contact_form_address_province_IT_AL" qtlid="380243">Alessandria (Piemont)</translation>
+   <translation id="ovh_contact_form_address_province_IT_AN" qtlid="380256">Ancona (Marche)</translation>
+   <translation id="ovh_contact_form_address_province_IT_AO" qtlid="380269">Aosta (Dolina Aosty)</translation>
+   <translation id="ovh_contact_form_address_province_IT_AR" qtlid="380282">Arezzo (Toscania)</translation>
+   <translation id="ovh_contact_form_address_province_IT_AP" qtlid="380295">Ascoli Piceno (Marche)</translation>
+   <translation id="ovh_contact_form_address_province_IT_AT" qtlid="380308">Asti (Piemont)</translation>
+   <translation id="ovh_contact_form_address_province_IT_AV" qtlid="380321">Avellino (Kampania)</translation>
+   <translation id="ovh_contact_form_address_province_IT_BA" qtlid="380334">Bari (Apulia)</translation>
+   <translation id="ovh_contact_form_address_province_IT_BL" qtlid="380347">Belluno (Wenecja)</translation>
+   <translation id="ovh_contact_form_address_province_IT_BN" qtlid="380360">Benevento (Kampania)</translation>
+   <translation id="ovh_contact_form_address_province_IT_BG" qtlid="380373">Bergamo (Lombardia)</translation>
+   <translation id="ovh_contact_form_address_province_IT_BI" qtlid="380386">Biella (Piemont)</translation>
+   <translation id="ovh_contact_form_address_province_IT_BO" qtlid="380399">Bolonia (Emilia-Romania)</translation>
+   <translation id="ovh_contact_form_address_province_IT_BZ" qtlid="380412">Bolzano (Trydent-Górna Adyga)</translation>
+   <translation id="ovh_contact_form_address_province_IT_BS" qtlid="380425">Brescia (Lombardia)</translation>
+   <translation id="ovh_contact_form_address_province_IT_BR" qtlid="380438">Brindisi (Apulia)</translation>
+   <translation id="ovh_contact_form_address_province_IT_CA" qtlid="380451">Cagliari (Sardynia)</translation>
+   <translation id="ovh_contact_form_address_province_IT_CL" qtlid="380464">Caltanissetta (Sycylia)</translation>
+   <translation id="ovh_contact_form_address_province_IT_CB" qtlid="380477">Campobasso (Molise)</translation>
+   <translation id="ovh_contact_form_address_province_IT_CI" qtlid="380490">Carbonia-Iglesias (Sardynia)</translation>
+   <translation id="ovh_contact_form_address_province_IT_CE" qtlid="380503">Caserta (Kampania)</translation>
+   <translation id="ovh_contact_form_address_province_IT_CT" qtlid="380516">Catania (Sycylia)</translation>
+   <translation id="ovh_contact_form_address_province_IT_CZ" qtlid="380529">Catanzaro (Kalabria)</translation>
+   <translation id="ovh_contact_form_address_province_IT_CH" qtlid="380542">Chieti (Abruzja)</translation>
+   <translation id="ovh_contact_form_address_province_IT_CO" qtlid="380555">Como (Lombardia)</translation>
+   <translation id="ovh_contact_form_address_province_IT_CS" qtlid="380568">Cosenza (Kalabria)</translation>
+   <translation id="ovh_contact_form_address_province_IT_CR" qtlid="380581">Cremona (Lombardia)</translation>
+   <translation id="ovh_contact_form_address_province_IT_KR" qtlid="380594">Crotone (Kalabria)</translation>
+   <translation id="ovh_contact_form_address_province_IT_CN" qtlid="380607">Cuneo (Piemont)</translation>
+   <translation id="ovh_contact_form_address_province_IT_EN" qtlid="380620">Enna (Sycylia)</translation>
+   <translation id="ovh_contact_form_address_province_IT_FE" qtlid="380633">Ferrara (Emilia-Romania)</translation>
+   <translation id="ovh_contact_form_address_province_IT_FI" qtlid="380646">Florencja (Toscania)</translation>
+   <translation id="ovh_contact_form_address_province_IT_FG" qtlid="380659">Foggia (Apulia)</translation>
+   <translation id="ovh_contact_form_address_province_IT_FC" qtlid="380672">Forli-Cesena (Emilia-Romania)</translation>
+   <translation id="ovh_contact_form_address_province_IT_FR" qtlid="380685">Frosinone (Lazio)</translation>
+   <translation id="ovh_contact_form_address_province_IT_GE" qtlid="380698">Genua (Liguria)</translation>
+   <translation id="ovh_contact_form_address_province_IT_GO" qtlid="380711">Gorizia (Friuli-Wenecja Julijska)</translation>
+   <translation id="ovh_contact_form_address_province_IT_GR" qtlid="380724">Grosseto (Toscania)</translation>
+   <translation id="ovh_contact_form_address_province_IT_IM" qtlid="380737">Imperia (Liguria)</translation>
+   <translation id="ovh_contact_form_address_province_IT_IS" qtlid="380750">Isernia (Molise)</translation>
+   <translation id="ovh_contact_form_address_province_IT_SP" qtlid="380763">La Spezia (Liguria)</translation>
+   <translation id="ovh_contact_form_address_province_IT_AQ" qtlid="380776">L'Aquila (Abruzja)</translation>
+   <translation id="ovh_contact_form_address_province_IT_LT" qtlid="380789">Latina (Lazio)</translation>
+   <translation id="ovh_contact_form_address_province_IT_LE" qtlid="380802">Lecce (Apulia)</translation>
+   <translation id="ovh_contact_form_address_province_IT_LC" qtlid="380815">Lecco (Lombardia)</translation>
+   <translation id="ovh_contact_form_address_province_IT_LI" qtlid="380828">Livorno (Toscania)</translation>
+   <translation id="ovh_contact_form_address_province_IT_LO" qtlid="380841">Lodi (Lombardia)</translation>
+   <translation id="ovh_contact_form_address_province_IT_LU" qtlid="380854">Lucca (Toscania)</translation>
+   <translation id="ovh_contact_form_address_province_IT_MC" qtlid="380867">Macerata (Marche)</translation>
+   <translation id="ovh_contact_form_address_province_IT_MN" qtlid="380880">Mantova (Lombardia)</translation>
+   <translation id="ovh_contact_form_address_province_IT_MS" qtlid="380893">Massa-Carrara (Toscania)</translation>
+   <translation id="ovh_contact_form_address_province_IT_MT" qtlid="380906">Matera (Basilicata)</translation>
+   <translation id="ovh_contact_form_address_province_IT_ME" qtlid="380919">Messina (Sycylia)</translation>
+   <translation id="ovh_contact_form_address_province_IT_MI" qtlid="380932">Mediolan (Lombardia)</translation>
+   <translation id="ovh_contact_form_address_province_IT_MO" qtlid="380945">Modena (Emilia-Romania)</translation>
+   <translation id="ovh_contact_form_address_province_IT_NA" qtlid="380958">Neapol (Kampania)</translation>
+   <translation id="ovh_contact_form_address_province_IT_NO" qtlid="380971">Novara (Piemont)</translation>
+   <translation id="ovh_contact_form_address_province_IT_NU" qtlid="380984">Nuoro (Sardynia)</translation>
+   <translation id="ovh_contact_form_address_province_IT_OT" qtlid="380997">Olbia-Tempio (Sardynia)</translation>
+   <translation id="ovh_contact_form_address_province_IT_OR" qtlid="381010">Oristano (Sardynia)</translation>
+   <translation id="ovh_contact_form_address_province_IT_PD" qtlid="381023">Padwa (Wenecja)</translation>
+   <translation id="ovh_contact_form_address_province_IT_PA" qtlid="381036">Palermo (Sycylia)</translation>
+   <translation id="ovh_contact_form_address_province_IT_PR" qtlid="381049">Parma (Emilia-Romania)</translation>
+   <translation id="ovh_contact_form_address_province_IT_PV" qtlid="381062">Pawia (Lombardia)</translation>
+   <translation id="ovh_contact_form_address_province_IT_PG" qtlid="381075">Perugia (Umbria)</translation>
+   <translation id="ovh_contact_form_address_province_IT_PU" qtlid="381088">Pesaro i Urbino (Marche)</translation>
+   <translation id="ovh_contact_form_address_province_IT_PE" qtlid="381101">Pescara (Abruzja)</translation>
+   <translation id="ovh_contact_form_address_province_IT_PC" qtlid="381114">Piacenza (Emilia-Romania)</translation>
+   <translation id="ovh_contact_form_address_province_IT_PI" qtlid="381127">Piza (Toscania)</translation>
+   <translation id="ovh_contact_form_address_province_IT_PT" qtlid="381140">Pistoia (Toscania)</translation>
+   <translation id="ovh_contact_form_address_province_IT_PN" qtlid="381153">Pordenone (Friuli-Wenecja Julijska)</translation>
+   <translation id="ovh_contact_form_address_province_IT_PZ" qtlid="381166">Potenza (Basilicata)</translation>
+   <translation id="ovh_contact_form_address_province_IT_PO" qtlid="381179">Prato (Toscania)</translation>
+   <translation id="ovh_contact_form_address_province_IT_RG" qtlid="381192">Ragusa (Sycylia)</translation>
+   <translation id="ovh_contact_form_address_province_IT_RA" qtlid="381205">Ravenna (Emilia-Romania)</translation>
+   <translation id="ovh_contact_form_address_province_IT_RC" qtlid="381218">Reggio Calabria (Kalabria)</translation>
+   <translation id="ovh_contact_form_address_province_IT_RE" qtlid="381231">Reggio Emilia (Emilia-Romania)</translation>
+   <translation id="ovh_contact_form_address_province_IT_RI" qtlid="381244">Rieti (Lazio)</translation>
+   <translation id="ovh_contact_form_address_province_IT_RN" qtlid="381257">Rimini (Emilia-Romania)</translation>
+   <translation id="ovh_contact_form_address_province_IT_RM" qtlid="381270">Rzym (Lazio)</translation>
+   <translation id="ovh_contact_form_address_province_IT_RO" qtlid="381283">Rovigo (Wenecja)</translation>
+   <translation id="ovh_contact_form_address_province_IT_SA" qtlid="381296">Salerno (Kampania)</translation>
+   <translation id="ovh_contact_form_address_province_IT_VS" qtlid="381309">Medio Campidano (Sardynia)</translation>
+   <translation id="ovh_contact_form_address_province_IT_SS" qtlid="381322">Sassari (Sardynia)</translation>
+   <translation id="ovh_contact_form_address_province_IT_SV" qtlid="381335">Savona (Liguria)</translation>
+   <translation id="ovh_contact_form_address_province_IT_SI" qtlid="381348">Siena (Toscania)</translation>
+   <translation id="ovh_contact_form_address_province_IT_SR" qtlid="381361">Siracusa (Sycylia)</translation>
+   <translation id="ovh_contact_form_address_province_IT_SO" qtlid="381374">Sondrio (Lombardia)</translation>
+   <translation id="ovh_contact_form_address_province_IT_TA" qtlid="381387">Taranto (Apulia)</translation>
+   <translation id="ovh_contact_form_address_province_IT_TE" qtlid="381400">Teramo (Abruzja)</translation>
+   <translation id="ovh_contact_form_address_province_IT_TR" qtlid="381413">Terni (Umbria)</translation>
+   <translation id="ovh_contact_form_address_province_IT_TO" qtlid="381426">Turyn (Piemont)</translation>
+   <translation id="ovh_contact_form_address_province_IT_OG" qtlid="381439">Ogliastra (Sardynia)</translation>
+   <translation id="ovh_contact_form_address_province_IT_TP" qtlid="381452">Trapani (Sycylia)</translation>
+   <translation id="ovh_contact_form_address_province_IT_TN" qtlid="381465">Trydent (Trydent-Górna Adyga)</translation>
+   <translation id="ovh_contact_form_address_province_IT_TV" qtlid="381478">Treviso (Wenecja)</translation>
+   <translation id="ovh_contact_form_address_province_IT_TS" qtlid="381491">Triest (Friuli-Wenecja Julijska)</translation>
+   <translation id="ovh_contact_form_address_province_IT_UD" qtlid="381504">Udine (Friuli-Wenecja Julijska)</translation>
+   <translation id="ovh_contact_form_address_province_IT_VA" qtlid="381517">Varese (Lombardia)</translation>
+   <translation id="ovh_contact_form_address_province_IT_VE" qtlid="381530">Wenecja (Wenecja Euganejska)</translation>
+   <translation id="ovh_contact_form_address_province_IT_VB" qtlid="381543">Verbano-Cusio-Ossola (Piemont)</translation>
+   <translation id="ovh_contact_form_address_province_IT_VC" qtlid="381556">Vercelli (Piemont)</translation>
+   <translation id="ovh_contact_form_address_province_IT_VR" qtlid="381569">Werona (Wenecja Euganejska)</translation>
+   <translation id="ovh_contact_form_address_province_IT_VV" qtlid="381582">Vibo Valentia (Kalabria)</translation>
+   <translation id="ovh_contact_form_address_province_IT_VI" qtlid="381595">Vicenza (Wenecja Euganejska)</translation>
+   <translation id="ovh_contact_form_address_province_IT_VT" qtlid="381608">Viterbo (Lazio)</translation>
+   <translation id="ovh_contact_form_address_province_IT_BT" qtlid="381621">Barletta-Andria-Trani (Apulia)</translation>
+   <translation id="ovh_contact_form_address_province_IT_FM" qtlid="381634">Fermo (Marche)</translation>
+   <translation id="ovh_contact_form_address_province_IT_MB" qtlid="381647">Monza E Brianza (Lombardia)</translation>
+</translations>
