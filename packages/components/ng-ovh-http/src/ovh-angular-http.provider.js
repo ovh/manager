@@ -34,7 +34,7 @@ export default function () {
   self.returnSuccessKey = null;
   self.returnErrorKey = null;
 
-  self.$get = function $get($http, $q, $rootScope, $cacheFactory) {
+  self.$get = /* @ngInject */ function $get($http, $q, $rootScope, $cacheFactory) {
     const api = {};
 
     api.cache = {};
