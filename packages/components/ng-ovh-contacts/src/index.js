@@ -3,7 +3,7 @@ import 'angular-translate';
 import 'ovh-api-services';
 import 'ovh-ui-angular';
 
-import ovhContactsService from './ovh-contacts.service';
+import ovhContactsProvider from './ovh-contacts.provider';
 import ovhContactFormDirective from './form/ovh-contacts-form.directive';
 import './form/ovh-contacts-form.scss';
 
@@ -23,7 +23,7 @@ angular
     'ovh-api-services',
   ])
   .run(/* @ngTranslationsInject ./translations */)
-  .service('ovhContacts', ovhContactsService)
+  .provider('ovhContacts', ovhContactsProvider)
   .directive('ovhContactForm', ovhContactFormDirective)
   .run(($templateCache) => {
     // add different template for ovh-contacts-form

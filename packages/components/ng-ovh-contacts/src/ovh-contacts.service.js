@@ -1,12 +1,12 @@
 import angular from 'angular';
 
 // lodash imports
-import chain from 'lodash/chain';
 import find from 'lodash/find';
 import get from 'lodash/get';
 import keyBy from 'lodash/keyBy';
 import keys from 'lodash/keys';
 import map from 'lodash/map';
+import reject from 'lodash/reject';
 import set from 'lodash/set';
 import snakeCase from 'lodash/snakeCase';
 
@@ -24,12 +24,13 @@ let meSchemas;
 export default class OvhContactsService {
   /* @ngInject */
 
-  constructor($q, $translate, OvhApiMe, OvhApiNewAccount) {
+  constructor($q, $translate, OvhApiMe, OvhApiNewAccount, target) {
     // dependencies injections
     this.$q = $q;
     this.$translate = $translate;
     this.OvhApiMe = OvhApiMe;
     this.OvhApiNewAccount = OvhApiNewAccount;
+    this.target = target;
   }
 
   /**
@@ -98,15 +99,30 @@ export default class OvhContactsService {
    *  @return {Promise} That returns an Array of contacts objects.
    */
   getContacts(options = GET_LIST_DEFAULT_OPTIONS) {
-    return this.OvhApiMe.Contact().v7().query()
-      .expand()
-      .execute()
-      .$promise
+    let promise;
+
+    if (this.target === 'EU') {
+      promise = this.OvhApiMe.Contact().v7().query()
+        .expand()
+        .execute()
+        .$promise
+        .then((contactsList) => {
+          const contacts = reject(contactsList, ['value', null]);
+          return map(contacts, 'value');
+        });
+    } else {
+      promise = this.OvhApiMe.Contact().v6().query().$promise
+        .then(contactIds => this.$q.all(map(contactIds, (contactId) => {
+          const contactPromise = this.OvhApiMe.Contact().v6().get({
+            contactId,
+          });
+          return contactPromise.$promise;
+        })));
+    }
+
+    return promise
       .then((contactsList) => {
-        let contacts = chain(contactsList)
-          .reject(['value', null])
-          .map('value')
-          .value();
+        let contacts = contactsList;
 
         if (options.avoidDuplicates) {
           contacts = OvhContactsHelper.filterSimilarContacts(contacts);

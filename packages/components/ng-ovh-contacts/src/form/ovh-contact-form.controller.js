@@ -27,7 +27,7 @@ export default class OvhContactsFormCtrl {
       init: false,
     };
 
-    this.model = {
+    this.models = {
       phone: {
         country: null,
         number: null,
@@ -95,28 +95,28 @@ export default class OvhContactsFormCtrl {
 
   getPhoneNumber(newPhoneModel) {
     if (angular.isDefined(newPhoneModel)) {
-      this.model.phone.number = newPhoneModel;
+      this.models.phone.number = newPhoneModel;
 
-      this.model.contact.phone = OvhContactsFormCtrl.cleanPhoneNumber(
+      this.model.phone = OvhContactsFormCtrl.cleanPhoneNumber(
         newPhoneModel,
         this.rules.phone.prefix,
       );
     }
 
-    return this.model.phone.number;
+    return this.models.phone.number;
   }
 
   validatePhoneNumber() {
     if (this.rules.phone.regularExpression) {
       return new RegExp(this.rules.phone.regularExpression)
-        .test(this.model.contact.phone);
+        .test(this.model.phone);
     }
     return true;
   }
 
   setPhoneCountry() {
-    if (!this.model.contact.phone) {
-      this.model.phone.country = this.model.contact.address.country;
+    if (!this.model.phone) {
+      this.models.phone.country = this.model.address.country;
       this.setPhonePlaceholder();
     }
   }
@@ -127,9 +127,9 @@ export default class OvhContactsFormCtrl {
 
   getProvinceLabel(forLabel) {
     let areaTranslationKey = forLabel ? 'ovh_contact_form_address_area' : 'ovh_contact_form_address_area_optional';
-    if (['US', 'WE'].indexOf(this.model.contact.address.country) > -1) {
+    if (['US', 'WE'].indexOf(this.model.address.country) > -1) {
       areaTranslationKey = forLabel ? 'ovh_contact_form_address_state' : 'ovh_contact_form_address_state_optional';
-    } else if (this.model.contact.address.country === 'CA') {
+    } else if (this.model.address.country === 'CA') {
       areaTranslationKey = forLabel ? 'ovh_contact_form_address_province' : 'ovh_contact_form_address_province_optional';
     }
 
@@ -140,8 +140,8 @@ export default class OvhContactsFormCtrl {
     const predefinedFields = get(PREDEFINED_CONTACT_PROFILES, this.predefinedProfile, null);
 
     return this.ovhContacts.getCreationRules({
-      country: this.model.contact.address.country,
-      phoneCountry: this.model.phone.country,
+      country: this.model.address.country,
+      phoneCountry: this.models.phone.country,
     }, predefinedFields)
       .then((rules) => {
         this.rules = rules;
@@ -152,7 +152,7 @@ export default class OvhContactsFormCtrl {
           OvhContactsFormCtrl.traverseRules(rules, (rule, ruleKey) => {
             if (rule.defaultValue) {
               set(this.initialDefaultValues, ruleKey, rule.defaultValue);
-              set(this.model.contact, ruleKey, rule.defaultValue);
+              set(this.model, ruleKey, rule.defaultValue);
               if (ruleKey === 'address.country') {
                 this.setPhoneCountry();
               }
@@ -188,8 +188,13 @@ export default class OvhContactsFormCtrl {
   $onInit() {
     this.loading.init = true;
 
+    if (!this.model) {
+      this.model = this.models.contact;
+    }
+
     return this.getRules()
       .catch((error) => {
+        console.log(error);
         this.alerter.type = 'error';
         this.alerter.message = [
           this.$translate.instant('ovh_contact_form_load_error'),

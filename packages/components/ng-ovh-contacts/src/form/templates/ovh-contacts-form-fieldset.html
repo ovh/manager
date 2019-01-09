@@ -21,7 +21,7 @@
                     <oui-field data-label="{{ :: 'ovh_contact_form_first_name' | translate }}">
                         <input type="text" class="oui-input"
                                name="firstName" id="firstName"
-                               data-ng-model="$ctrl.model.contact.firstName"
+                               data-ng-model="$ctrl.model.firstName"
                                data-ng-required="!$ctrl.rules.firstName.canBeNull" />
                     </oui-field> <!-- End of firstName -->
 
@@ -29,7 +29,7 @@
                     <oui-field data-label="{{ :: 'ovh_contact_form_last_name' | translate }}">
                         <input type="text" class="oui-input"
                                name="lastName" id="lastName"
-                               data-ng-model="$ctrl.model.contact.lastName"
+                               data-ng-model="$ctrl.model.lastName"
                                data-ng-required="!$ctrl.rules.lastName.canBeNull" />
                     </oui-field> <!-- End of lastName -->
                 </div>
@@ -47,7 +47,7 @@
                         <label class="oui-select">
                             <select class="oui-select__input"
                                     name="addressCountry" id="addressCountry"
-                                    data-ng-model="$ctrl.model.contact.address.country"
+                                    data-ng-model="$ctrl.model.address.country"
                                     data-ng-options="country.value as country.label for country in $ctrl.rules.address.country.enum"
                                     data-ng-change="$ctrl.onCountryChange()">
                             </select>
@@ -59,7 +59,7 @@
                     <oui-field data-label="{{ :: 'ovh_contact_form_address_line1' | translate }}">
                         <input type="text" class="oui-input"
                                name="addressLine1" id="addressLine1"
-                               data-ng-model="$ctrl.model.contact.address.line1"
+                               data-ng-model="$ctrl.model.address.line1"
                                data-ng-required="!$ctrl.rules.address.line1.canBeNull" />
                     </oui-field> <!-- End of address.line1 -->
 
@@ -67,7 +67,7 @@
                     <oui-field data-label="{{ :: 'ovh_contact_form_address_zip' | translate }}">
                         <input type="text" class="oui-input"
                                name="addressZip" id="addressZip"
-                               data-ng-model="$ctrl.model.contact.address.zip"
+                               data-ng-model="$ctrl.model.address.zip"
                                data-ng-required="!$ctrl.rules.address.zip.canBeNull"
                                data-ng-pattern="$ctrl.rules.address.zip.regularExpression" />
                     </oui-field> <!-- End of address.zip -->
@@ -76,7 +76,7 @@
                     <oui-field data-label="{{ :: 'ovh_contact_form_address_city' | translate }}">
                         <input type="text" class="oui-input"
                                name="addressCity" id="addressCity"
-                               data-ng-model="$ctrl.model.contact.address.city"
+                               data-ng-model="$ctrl.model.address.city"
                                data-ng-required="!$ctrl.rules.address.city.canBeNull"
                                data-ng-pattern="$ctrl.rules.address.city.regularExpression" />
                     </oui-field> <!-- End of address.city -->
@@ -87,7 +87,7 @@
                         <label class="oui-select">
                             <select class="oui-select__input"
                                     name="addressProvince" id="addressProvince"
-                                    data-ng-model="$ctrl.model.contact.address.province"
+                                    data-ng-model="$ctrl.model.address.province"
                                     data-ng-options="province.value as province.label for province in $ctrl.rules.address.province.enum">
                                 <option value=""
                                         data-ng-bind="$ctrl.getProvinceLabel()">
@@ -109,7 +109,7 @@
                     <oui-field data-label="{{ :: 'ovh_contact_form_email' | translate }}">
                         <input type="text" class="oui-input"
                                name="email" id="email"
-                               data-ng-model="$ctrl.model.contact.email"
+                               data-ng-model="$ctrl.model.email"
                                data-ng-required="!$ctrl.rules.email.canBeNull"
                                data-ng-pattern="$ctrl.rules.email.regularExpression" />
                     </oui-field> <!-- End of email -->
@@ -118,7 +118,7 @@
                     <oui-field data-label="{{ :: 'ovh_contact_form_phone' | translate }}"
                                data-help-text="{{ :: 'ovh_contact_from_phone_help_text' | translate }}">
                         <div class="oui-input-group phone-number-field">
-                            <ui-select data-ng-model="$ctrl.model.phone.country"
+                            <ui-select data-ng-model="$ctrl.models.phone.country"
                                        theme="oui-ui-select-flag"
                                        data-on-select="$ctrl.onPhoneCountryChange()">
                                 <ui-select-match>
@@ -137,10 +137,10 @@
                                    class="oui-input oui-input_phone m-0"
                                    name="phone"
                                    id="phone"
-                                   data-ng-model="$ctrl.model.phone.getterSetter"
+                                   data-ng-model="$ctrl.models.phone.getterSetter"
                                    data-ng-model-options="{ getterSetter: true, allowInvalid: true }"
                                    data-ng-required="!$ctrl.rules.phone.canBeNull"
-                                   data-ng-pattern="$ctrl.model.phone.validator"
+                                   data-ng-pattern="$ctrl.models.phone.validator"
                                    data-ng-attr-placeholder="{{ $ctrl.placeholders.phone }}"/>
                         </div>
                     </oui-field>

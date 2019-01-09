@@ -2,9 +2,9 @@ import angular from 'angular';
 import moment from 'moment';
 
 // lodash imports
-import chain from 'lodash/chain';
 import find from 'lodash/find';
 import get from 'lodash/get';
+import groupBy from 'lodash/groupBy';
 import has from 'lodash/has';
 import indexOf from 'lodash/indexOf';
 import isEqual from 'lodash/isEqual';
@@ -34,26 +34,25 @@ export default class OvhContactsHelper {
    *  @return {Array}          The contacts list without duplicates.
    */
   static filterSimilarContacts(contacts) {
-    return chain(contacts)
-      .groupBy((contact) => {
-        // group contact to detect contact that are the same
-        const contactCopy = {
-          lastName: contact.lastName,
-          firstName: contact.firstName,
-          email: contact.email,
+    const groupedContacts = groupBy(contacts, (contact) => {
+      // group contact to detect contact that are the same
+      const contactCopy = {
+        lastName: contact.lastName,
+        firstName: contact.firstName,
+        email: contact.email,
+      };
+      if (contact.address) {
+        contactCopy.address = {
+          country: contact.address.country,
+          line1: contact.address.line1,
+          zip: contact.address.zip,
+          city: contact.address.city,
         };
-        if (contact.address) {
-          contactCopy.address = {
-            country: contact.address.country,
-            line1: contact.address.line1,
-            zip: contact.address.zip,
-            city: contact.address.city,
-          };
-        }
-        return JSON.stringify(contactCopy);
-      })
-      .map(groups => groups[0])
-      .value();
+      }
+      return JSON.stringify(contactCopy);
+    });
+
+    return map(groupedContacts, groups => groups[0]);
   }
 
   static normalizeDate(date) {

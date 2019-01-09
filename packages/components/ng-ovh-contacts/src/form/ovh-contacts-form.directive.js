@@ -6,6 +6,7 @@ export default () => ({
   restrict: 'E',
   require: '?^^form',
   scope: {
+    model: '<',
     mode: '@',
     predefinedProfile: '@',
   },
