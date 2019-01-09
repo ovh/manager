@@ -92,8 +92,8 @@ export default class PrivateDatabaseChangeRamCtrl {
 
   getResumePrice(price) {
     return price.value === 0
-      ? this.$translate.instant('price_free')
-      : this.$translate.instant('price_ht_label', { price: price.text });
+      ? this.$translate.instant('privateDatabase_price_free')
+      : this.$translate.instant('privateDatabase_price_ht_label', { price: price.text });
   }
 
   getDurations() {

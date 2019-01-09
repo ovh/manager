@@ -683,5 +683,7 @@
   <translation id="privateDatabase_guide_add_hosting_private_database_dbaas_beginPostgre" qtlid="404434">Demarrez avec PostgreSQL</translation>
   <translation id="privateDatabase_required_fields" qtlid="433550">Les champs suivis d'un astérisque sont obligatoires.</translation>
   <translation id="privateDatabase_wizard_action_question" qtlid="284750">Quelle action voulez-vous effectuer ?</translation>
+  <translation id="privateDatabase_price_free" qtlid="195776">Inclus</translation>
+  <translation id="privateDatabase_price_ht_label" qtlid="503254">{{price}}&#160;HT</translation>
 
 </translations>
