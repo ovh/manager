@@ -1,3 +1,12 @@
+# [2.0.0-beta.3](https://github.com/ovh-ux/ng-uirouter-title/compare/v2.0.0-beta.2...v2.0.0-beta.3) (2019-01-09)
+
+
+### Bug Fixes
+
+* **bower:** add bowerrc file to use the right registry ([3496c04](https://github.com/ovh-ux/ng-uirouter-title/commit/3496c04))
+
+
+
 # [2.0.0-beta.2](https://github.com/ovh-ux/ng-uirouter-title/compare/v2.0.0-beta.1...v2.0.0-beta.2) (2018-12-12)
 
 
