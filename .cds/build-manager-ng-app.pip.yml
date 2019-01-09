@@ -1,0 +1,26 @@
+version: v1.0
+name: build-manager-ng-app
+parameters:
+  name:
+    type: string
+    description: npm module name
+jobs:
+- job: Build
+  steps:
+  - optional: true
+    script:
+    - worker download --tag=manager-{{.cds.workflow}}-{{.cds.version}}
+    - tar xzf manager.tar.gz
+    - rm manager.tar.gz
+    - cd manager
+    - npx lerna run build --scope="{{.cds.pip.name}}" --include-filtered-dependencies
+    - MODULE_PATH=`npx lerna list -ap --scope="{{.cds.pip.name}}"`
+    - cd $MODULE_PATH
+    - MODULE_FOLDER_NAME=`basename $PWD`
+    - ARCHIVE_NAME="app-dist-$MODULE_FOLDER_NAME"
+    - '# Compress the result of build (dist folder)'
+    - mv dist $MODULE_FOLDER_NAME
+    - tar czf $ARCHIVE_NAME.tar.gz ./$MODULE_FOLDER_NAME/*
+    - worker upload $MODULE_PATH/$ARCHIVE_NAME.tar.gz --tag=app-$MODULE_FOLDER_NAME-dist-{{.cds.version}}
+  requirements:
+  - model: nodejs-10.x

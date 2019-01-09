@@ -1,0 +1,38 @@
+version: v1.0
+name: build-ovh-manager
+jobs:
+- job: Install
+  steps:
+  - gitClone:
+      branch: '{{.git.branch}}'
+      commit: '{{.git.hash}}'
+      depth: "false"
+      directory: '{{.cds.workspace}}/manager'
+      url: '{{.git.http_url}}'
+  - script:
+    - cd manager
+    - DEPS_TAR="deps.tar.gz"
+    - YARN_CACHE_FOLDER=".yarn-cache"
+    - YARN_LOCK_MD5=`md5sum yarn.lock | awk '{print $1;}'`;
+    - YARN_LOCK_TAG="yarn-targz-$YARN_LOCK_MD5-{{.cds.workflow}}"
+    - echo "Trying to get dependencies from cache $YARN_LOCK_TAG"
+    - if worker cache pull $YARN_LOCK_TAG; then
+    - "\techo \"-> Extract dependencies from cache\""
+    - "\trm yarn.lock"
+    - " \ttar xzf $DEPS_TAR"
+    - fi
+    - echo "-> Install dependencies"
+    - yarn --cache-folder $YARN_CACHE_FOLDER
+    - echo "-> dependencies installed"
+    - if [ -f $DEPS_TAR ]; then
+    - "\trm $DEPS_TAR"
+    - fi
+    - if [ -d $YARN_CACHE_FOLDER ]; then
+    - "\trm -rf $YARN_CACHE_FOLDER"
+    - fi
+    - cd ..
+    - tar czf manager.tar.gz manager/. .cache/Cypress
+    - worker upload manager.tar.gz --tag=manager-{{.cds.workflow}}-{{.cds.version}}
+  requirements:
+  - binary: git
+  - model: nodejs-10.x

@@ -1,0 +1,48 @@
+version: v1.0
+name: release-one-manager
+jobs:
+- job: Release
+  steps:
+  - gitClone:
+      branch: '{{.git.branch}}'
+      commit: '{{.git.hash}}'
+      depth: "false"
+      directory: '{{.cds.workspace}}/manager'
+      password: '{{.cds.proj.CDS_GITHUB_USER_TOKEN}}'
+      url: '{{.git.http_url}}'
+      user: '{{.cds.proj.CDS_GITHUB_USER}}'
+  - script:
+    - '#!/bin/bash'
+    - git config --global user.name {{.cds.app.github_user_name}}
+    - git config --global user.email {{.cds.app.github_user_email}}
+    - git config --global push.default matching
+    - git config --global github.token {{.cds.app.token}}
+    - cd manager
+    - DEPS_TAR="deps.tar.gz"
+    - YARN_CACHE_FOLDER=".yarn-cache"
+    - YARN_LOCK_MD5=`md5sum yarn.lock | awk '{print $1;}'`;
+    - YARN_LOCK_TAG="yarn-targz-$YARN_LOCK_MD5-{{.cds.workflow}}"
+    - echo "Trying to get dependencies from cache $YARN_LOCK_TAG"
+    - if worker cache pull $YARN_LOCK_TAG; then
+    - "\techo \"-> Extract dependencies from cache\""
+    - "\trm yarn.lock"
+    - " \ttar xzf $DEPS_TAR"
+    - '    yarn --prefer-offline --cache-folder $YARN_CACHE_FOLDER'
+    - else
+    - '    echo "-> Install dependencies"'
+    - "\tyarn --prefer-offline --cache-folder $YARN_CACHE_FOLDER"
+    - '    echo "-> dependencies installed"'
+    - "\ttar czf $DEPS_TAR yarn.lock $YARN_CACHE_FOLDER"
+    - "\tworker cache push $YARN_LOCK_TAG $DEPS_TAR"
+    - fi
+    - if [ -f $DEPS_TAR ]; then
+    - "\trm $DEPS_TAR"
+    - fi
+    - if [ -d $YARN_CACHE_FOLDER ]; then
+    - "\trm -rf $YARN_CACHE_FOLDER"
+    - fi
+    - yarn release --no-dependency-check --token={{.cds.proj.CDS_GITHUB_USER_TOKEN}}
+      --organization={{.cds.proj.github_organization}} --seed={{.cds.app.codename_seed}}
+  requirements:
+  - binary: git
+  - model: nodejs-10.x

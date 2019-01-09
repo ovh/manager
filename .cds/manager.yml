@@ -1,0 +1,144 @@
+name: manager
+version: v1.0
+workflow:
+  autosync-master-develop:
+    depends_on:
+    - empty
+    when:
+    - success
+    pipeline: auto-merge
+    application: manager
+  create-unified-dist:
+    depends_on:
+    - manager-freefax-app
+    - manager-layout-ovh
+    - manager-overthebox-app
+    - manager-private-database-app
+    - manager-sms-app
+    - manager-telecom-task
+    - test-manager
+    when:
+    - success
+    pipeline: build-manager-dist
+    application: manager
+  deploy-UXCI-EU:
+    depends_on:
+    - create-unified-dist
+    when:
+    - success
+    pipeline: deploy_uxci
+    application: manager
+    environment: uxci-eu
+  empty:
+    when:
+    - success
+    pipeline: empty
+    application: manager
+    payload:
+      git.author: ""
+      git.branch: master
+      git.hash: ""
+      git.hash.before: ""
+      git.message: ""
+      git.repository: ovh-ux/manager
+      git.tag: ""
+  installation:
+    depends_on:
+    - empty
+    conditions:
+      check:
+      - variable: cds.triggered_by.fullname
+        operator: ne
+        value: CDS Agent
+    when:
+    - success
+    pipeline: build-ovh-manager
+    application: manager
+  manager-freefax-app:
+    depends_on:
+    - installation
+    when:
+    - success
+    pipeline: build-manager-ng-app
+    application: manager
+    parameters:
+      name: '@ovh-ux/manager-freefax-app'
+  manager-layout-ovh:
+    depends_on:
+    - installation
+    when:
+    - success
+    pipeline: build-manager-ng-app
+    application: manager
+    parameters:
+      name: '@ovh-ux/manager-layout-ovh'
+  manager-overthebox-app:
+    depends_on:
+    - installation
+    when:
+    - success
+    pipeline: build-manager-ng-app
+    application: manager
+    parameters:
+      name: '@ovh-ux/manager-overthebox-app'
+  manager-private-database-app:
+    depends_on:
+    - installation
+    when:
+    - success
+    pipeline: build-manager-ng-app
+    application: manager
+    parameters:
+      name: '@ovh-ux/manager-private-database-app'
+  manager-sms-app:
+    depends_on:
+    - installation
+    when:
+    - success
+    pipeline: build-manager-ng-app
+    application: manager
+    parameters:
+      name: '@ovh-ux/manager-sms-app'
+  manager-telecom-task:
+    depends_on:
+    - installation
+    when:
+    - success
+    pipeline: build-manager-ng-app
+    application: manager
+    parameters:
+      name: '@ovh-ux/manager-telecom-task-app'
+  publish-on-NPM:
+    depends_on:
+    - release
+    when:
+    - success
+    pipeline: one-manager-publish
+    application: manager
+    one_at_a_time: true
+  release:
+    depends_on:
+    - create-unified-dist
+    conditions:
+      check:
+      - variable: git.branch
+        operator: eq
+        value: master
+    when:
+    - success
+    pipeline: release-one-manager
+    application: manager
+    one_at_a_time: true
+  test-manager:
+    depends_on:
+    - installation
+    when:
+    - success
+    pipeline: test-manager
+    application: manager
+hooks:
+  empty:
+  - type: RepositoryWebHook
+    ref: "1543331264"
+metadata:
+  default_tags: git.branch,git.author

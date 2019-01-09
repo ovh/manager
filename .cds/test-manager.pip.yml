@@ -1,0 +1,66 @@
+version: v1.0
+name: test-manager
+jobs:
+- job: e2e
+  steps:
+  - optional: true
+    script:
+    - worker download --tag=manager-{{.cds.workflow}}-{{.cds.version}}
+    - tar xzf manager.tar.gz
+    - cd manager
+    - DEPS_TAR=deps.tar.gz
+    - YARN_CACHE_FOLDER=".yarn-cache"
+    - YARN_LOCK_MD5=`md5sum yarn.lock | awk '{print $1;}'`;
+    - YARN_LOCK_TAG="yarn-targz-$YARN_LOCK_MD5-{{.cds.workflow}}"
+    - echo "Trying to get dependencies from cache $YARN_LOCK_TAG"
+    - if worker cache pull $YARN_LOCK_TAG; then
+    - "\techo \"-> Extract dependencies from cache\""
+    - "\trm yarn.lock"
+    - " \ttar xzf $DEPS_TAR"
+    - fi
+    - echo "-> Install dependencies"
+    - yarn --network-concurrency=1 --prefer-offline --cache-folder $YARN_CACHE_FOLDER
+    - echo "-> dependencies installed"
+    - tar czf $DEPS_TAR yarn.lock $YARN_CACHE_FOLDER
+    - worker cache push $YARN_LOCK_TAG $DEPS_TAR
+    - if [ -f $DEPS_TAR ]; then
+    - "\trm $DEPS_TAR"
+    - fi
+    - if [ -d $YARN_CACHE_FOLDER ]; then
+    - "\trm -rf $YARN_CACHE_FOLDER"
+    - fi
+    - yarn build
+    - yarn test:e2e
+  requirements:
+  - model: manager-cypress-worker-model
+- job: lint
+  steps:
+  - script:
+    - worker download --tag=manager-{{.cds.workflow}}-{{.cds.version}}
+    - tar xzf manager.tar.gz
+    - cd manager
+    - DEPS_TAR=deps.tar.gz
+    - YARN_CACHE_FOLDER=".yarn-cache"
+    - YARN_LOCK_MD5=`md5sum yarn.lock | awk '{print $1;}'`;
+    - YARN_LOCK_TAG="yarn-targz-$YARN_LOCK_MD5-{{.cds.workflow}}"
+    - echo "Trying to get dependencies from cache $YARN_LOCK_TAG"
+    - if worker cache pull $YARN_LOCK_TAG; then
+    - "\techo \"-> Extract dependencies from cache\""
+    - "\trm yarn.lock"
+    - " \ttar xzf $DEPS_TAR"
+    - fi
+    - echo "-> Install dependencies"
+    - yarn --network-concurrency=1 --prefer-offline --cache-folder $YARN_CACHE_FOLDER
+    - echo "-> dependencies installed"
+    - tar czf $DEPS_TAR yarn.lock $YARN_CACHE_FOLDER
+    - worker cache push $YARN_LOCK_TAG $DEPS_TAR
+    - if [ -f $DEPS_TAR ]; then
+    - "\trm $DEPS_TAR"
+    - fi
+    - if [ -d $YARN_CACHE_FOLDER ]; then
+    - "\trm -rf $YARN_CACHE_FOLDER"
+    - fi
+    - yarn build
+    - yarn lint
+  requirements:
+  - model: nodejs-10.x

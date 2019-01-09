@@ -1,0 +1,18 @@
+version: v1.0
+name: build-manager-dist
+jobs:
+- job: Download
+  steps:
+  - script:
+    - '#!/bin/bash'
+    - ROOT_APP="layout-ovh"
+    - mkdir dist && mkdir dist/client
+    - worker download --pattern="app-dist-*"
+    - mv *.tar.gz dist/client
+    - cd dist/client
+    - for i in `ls | grep .tar.gz`; do tar xzf $i; rm $i; done
+    - mv $ROOT_APP/* .
+    - rm -r $ROOT_APP
+    - cd {{.cds.workspace}}
+    - tar czf dist.tar.gz ./dist/*
+    - worker upload dist.tar.gz --tag=dist-{{.cds.version}}

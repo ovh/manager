@@ -1,0 +1,51 @@
+version: v1.0
+name: one-manager-publish
+jobs:
+- job: Publish
+  steps:
+  - gitClone:
+      branch: '{{.git.branch}}'
+      commit: HEAD
+      depth: "false"
+      directory: '{{.cds.workspace}}'
+      password: '{{.cds.proj.CDS_GITHUB_USER_TOKEN}}'
+      url: '{{.git.http_url}}'
+      user: '{{.cds.proj.CDS_GITHUB_USER}}'
+  - script:
+    - '#!/bin/bash'
+    - node -v
+    - npm -v
+    - git config --global user.name {{.cds.app.github_user_name}}
+    - git config --global user.email {{.cds.app.github_user_email}}
+    - git config --global push.default matching
+    - git config --global github.token {{.cds.app.token}}
+    - npm i -g yarn
+    - yarn config set registry "https://registry.npmjs.org/"
+    - npm config set "//registry.npmjs.org/:_authToken" "{{.cds.proj.npm-token}}"
+    - DEPS_TAR="deps.tar.gz"
+    - YARN_CACHE_FOLDER=".yarn-cache"
+    - YARN_LOCK_MD5=`md5sum yarn.lock | awk '{print $1;}'`;
+    - YARN_LOCK_TAG="yarn-targz-$YARN_LOCK_MD5-{{.cds.workflow}}"
+    - echo "Trying to get dependencies from cache $YARN_LOCK_TAG"
+    - if worker cache pull $YARN_LOCK_TAG; then
+    - "\techo \"-> Extract dependencies from cache\""
+    - "\trm yarn.lock"
+    - " \ttar xzf $DEPS_TAR"
+    - '    yarn --prefer-offline --cache-folder $YARN_CACHE_FOLDER'
+    - else
+    - '    echo "-> Install dependencies"'
+    - "\tyarn --prefer-offline --cache-folder $YARN_CACHE_FOLDER"
+    - '    echo "-> dependencies installed"'
+    - "\ttar czf $DEPS_TAR yarn.lock $YARN_CACHE_FOLDER"
+    - "\tworker cache push $YARN_LOCK_TAG $DEPS_TAR"
+    - fi
+    - if [ -f $DEPS_TAR ]; then
+    - "\trm $DEPS_TAR"
+    - fi
+    - if [ -d $YARN_CACHE_FOLDER ]; then
+    - "\trm -rf $YARN_CACHE_FOLDER"
+    - fi
+    - yarn packages:publish
+  requirements:
+  - binary: git
+  - model: nodejs-10.x
