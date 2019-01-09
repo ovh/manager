@@ -17,8 +17,9 @@ import voicemailConfiguration from './voicemailConfiguration';
 
 import controller from './freefax.controller';
 import template from './freefax.html';
-
 import freeFaxInformations from './information/freeFax-information.html';
+
+import './freefax.scss';
 
 export default angular
   .module('OvhManagerFreefaxComponent', [
