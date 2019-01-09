@@ -9159,10 +9159,10 @@ ovh-angular-checkbox-table@^0.1.2:
     jquery "~2.1.3"
     lodash "~3.3.0"
 
-ovh-angular-http@^4.0.0-alpha.1:
-  version "4.0.0-alpha.1"
-  resolved "https://registry.yarnpkg.com/ovh-angular-http/-/ovh-angular-http-4.0.0-alpha.1.tgz#68740c07b4d8f0801ddab5b5be58903c05d03a7c"
-  integrity sha512-kSptJIQhWQ7oUKB37rTVepeZZdh3fcZanmUEdI8scmwaU+/DLJjj4r4tUg33qcvmqQ2zugnyqYUTgV+A43DUJA==
+ovh-angular-http@^4.0.1-alpha.0:
+  version "4.0.1-alpha.0"
+  resolved "https://registry.yarnpkg.com/ovh-angular-http/-/ovh-angular-http-4.0.1-alpha.0.tgz#b1e6d652a9892100738e25c45cd21c3c418995bb"
+  integrity sha512-FjK+laWVw/LurhpI4GRx84I5znxqPknaIFs18rntjxsZ2iacDocdBBzyjZGJrhoZzlokfdjW3LMlOo+FHzXOlQ==
   dependencies:
     lodash "~4.17.11"
     urijs "^1.19.1"
@@ -9202,10 +9202,10 @@ ovh-angular-sidebar-menu@^8.0.0-alpha.3:
   resolved "https://registry.yarnpkg.com/ovh-angular-sidebar-menu/-/ovh-angular-sidebar-menu-8.0.0-alpha.4.tgz#54ebefb5262b1ece89b6dffd1e94d8e48a277b5d"
   integrity sha512-o0ZlSgNqCvUTXUQ7StWCP1Ix2bUNQGMW+V8Lg2o06FLK1W5KSqtZBjiKOk2eOvaH2K+3P5foq2TjprOiEsLOyQ==
 
-ovh-angular-sso-auth@^4.0.0-alpha.2:
-  version "4.0.0-alpha.2"
-  resolved "https://registry.yarnpkg.com/ovh-angular-sso-auth/-/ovh-angular-sso-auth-4.0.0-alpha.2.tgz#d01a566769d4befdaaddb5b6d2f1ec86acd6579d"
-  integrity sha512-6xCBA42fCAjD6lDvpBUDJ33PY4GeYvnT7CXWQf9sYdKKNYhVm/sTnkYg7dGBgifiu5mzPbgvUaPx+nGd/Sh0VQ==
+ovh-angular-sso-auth@^4.0.0-alpha.3:
+  version "4.0.0-alpha.3"
+  resolved "https://registry.yarnpkg.com/ovh-angular-sso-auth/-/ovh-angular-sso-auth-4.0.0-alpha.3.tgz#52f3faaf0bf8430506c54bc808dd7d068b806ab9"
+  integrity sha512-Tjvuu16h1t96hT87Bv4u2PpE0PpPDgVunN6ebONiUlXlC9Zr4EKQU+RqXMBP1sk2NjXmn8taKGwmGQMzyanLRw==
 
 ovh-angular-swimming-poll@^3.0.0:
   version "3.0.0"
