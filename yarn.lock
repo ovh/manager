@@ -1551,10 +1551,10 @@
   dependencies:
     lodash "^4.17.11"
 
-"@ovh-ux/ng-uirouter-title@^2.0.0-beta.2":
-  version "2.0.0-beta.2"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-uirouter-title/-/ng-uirouter-title-2.0.0-beta.2.tgz#1c0548d534d91c738ebe408482ac0cf1a06f4c12"
-  integrity sha512-nccTpUuUdhI8iYuCHwsgROUIq4ShToozzEORrpecHSJcuYS7kLRVr7oX+qZ7g1dWZmCgddt9VAU0JOOBZ7k/zw==
+"@ovh-ux/ng-uirouter-title@^2.0.0-beta.3":
+  version "2.0.0-beta.3"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-uirouter-title/-/ng-uirouter-title-2.0.0-beta.3.tgz#ac1b4e2fc55e34e8a0d9643f85d65912d32bf4d2"
+  integrity sha512-ynw1xi7AVI/K7Bg6qFO/ApnrSyrr0g4YduWd9fRRZ4H6eUpJUlu3T/SibTzJ/5nyKyg1BnFH/wlB2SEF0Oplpw==
   dependencies:
     lodash "^4.17.11"
 
