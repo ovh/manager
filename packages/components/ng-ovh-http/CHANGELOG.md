@@ -1,3 +1,12 @@
+## [4.0.1-alpha.0](https://github.com/ovh-ux/ovh-angular-http/compare/v4.0.0-alpha.1...v4.0.1-alpha.0) (2019-01-09)
+
+
+### Bug Fixes
+
+* **dependency injection:** add missing ng-inject ([213ad57](https://github.com/ovh-ux/ovh-angular-http/commit/213ad57))
+
+
+
 # [4.0.0-alpha.1](https://github.com/ovh-ux/ovh-angular-http/compare/v4.0.0-alpha.0...v4.0.0-alpha.1) (2018-11-27)
 
 
