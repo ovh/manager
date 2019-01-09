@@ -1,6 +1,17 @@
 import angular from 'angular';
-import _ from 'lodash';
 import moment from 'moment';
+
+// lodash imports
+import chain from 'lodash/chain';
+import find from 'lodash/find';
+import get from 'lodash/get';
+import has from 'lodash/has';
+import indexOf from 'lodash/indexOf';
+import isEqual from 'lodash/isEqual';
+import keys from 'lodash/keys';
+import map from 'lodash/map';
+import set from 'lodash/set';
+import startsWith from 'lodash/startsWith';
 
 import {
   CONTACT_TO_NIC_FIELDS_MAPPING,
@@ -10,8 +21,8 @@ const getMappedKey = (property, prefix) => {
   let mappedKey = property;
   const fullProperty = prefix ? `${prefix}.${property}` : property;
 
-  if (_.has(CONTACT_TO_NIC_FIELDS_MAPPING, fullProperty)) {
-    mappedKey = _.get(CONTACT_TO_NIC_FIELDS_MAPPING, fullProperty);
+  if (has(CONTACT_TO_NIC_FIELDS_MAPPING, fullProperty)) {
+    mappedKey = get(CONTACT_TO_NIC_FIELDS_MAPPING, fullProperty);
   }
   return mappedKey;
 };
@@ -23,7 +34,7 @@ export default class OvhContactsHelper {
    *  @return {Array}          The contacts list without duplicates.
    */
   static filterSimilarContacts(contacts) {
-    return _.chain(contacts)
+    return chain(contacts)
       .groupBy((contact) => {
         // group contact to detect contact that are the same
         const contactCopy = {
@@ -69,7 +80,7 @@ export default class OvhContactsHelper {
 
       if (phonePrefix) {
         const alternativePhonePrefix = `00${phonePrefix.replace('+', '')}`;
-        if (_.startsWith(phoneNumber, alternativePhonePrefix)) {
+        if (startsWith(phoneNumber, alternativePhonePrefix)) {
           phoneNumber = `${phonePrefix}${phoneNumber.slice(alternativePhonePrefix.length)}`;
         }
       }
@@ -87,26 +98,26 @@ export default class OvhContactsHelper {
     const contact = {};
     let nicVal;
 
-    _.keys(contactProperties).forEach((propKey) => {
+    keys(contactProperties).forEach((propKey) => {
       if (propKey === 'address') {
-        _.keys(contactProperties.address).forEach((addressPropKey) => {
-          nicVal = _.get(nic, getMappedKey(addressPropKey, 'address'), null);
-          _.set(contact, `address.${addressPropKey}`, nicVal);
+        keys(contactProperties.address).forEach((addressPropKey) => {
+          nicVal = get(nic, getMappedKey(addressPropKey, 'address'), null);
+          set(contact, `address.${addressPropKey}`, nicVal);
         });
       } else if (propKey === 'birthDay') {
         if (new RegExp(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/).test(nic.birthDay)) {
           const splittedDate = nic[propKey].split('/');
-          _.set(contact, propKey, splittedDate.reverse().join('-'));
+          set(contact, propKey, splittedDate.reverse().join('-'));
         } else {
-          _.set(contact, propKey, null);
+          set(contact, propKey, null);
         }
       } else {
-        nicVal = _.get(
+        nicVal = get(
           nic,
           getMappedKey(propKey),
-          _.get(nic, getMappedKey(propKey.toLowerCase()), null),
+          get(nic, getMappedKey(propKey.toLowerCase()), null),
         );
-        _.set(contact, propKey, nicVal);
+        set(contact, propKey, nicVal);
       }
     });
 
@@ -124,10 +135,10 @@ export default class OvhContactsHelper {
   static findMatchingContactFromNic(transformedNic, contacts) {
     let contact = null;
 
-    contact = _.find(contacts, (contactParam) => {
+    contact = find(contacts, (contactParam) => {
       const copiedContact = angular.copy(contactParam);
       copiedContact.id = null;
-      return _.isEqual(transformedNic, copiedContact);
+      return isEqual(transformedNic, copiedContact);
     });
 
     return contact || transformedNic;
@@ -143,16 +154,16 @@ export default class OvhContactsHelper {
     const contactProps = contactProperties;
     const contactAddressProps = contactAddressProperties;
 
-    _.map(contactProps, (propParam, propKey) => {
+    map(contactProps, (propParam, propKey) => {
       const prop = propParam;
-      _.set(prop, 'name', propKey);
+      set(prop, 'name', propKey);
       return prop;
     });
 
     contactProps.address = {};
-    _.keys(contactAddressProps).forEach((propKey) => {
+    keys(contactAddressProps).forEach((propKey) => {
       contactAddressProps[propKey].name = `address.${propKey}`;
-      _.set(contactProps, `address.${propKey}`, contactAddressProps[propKey]);
+      set(contactProps, `address.${propKey}`, contactAddressProps[propKey]);
     });
 
     return contactProps;
@@ -162,50 +173,50 @@ export default class OvhContactsHelper {
    *  Merge the contact properties with /newAccount/rules.
    *  @param  {Object} apiSchemas           The schema of /me API.
    *  @param  {Array}  rules                An array containing the nic creation rules
-   *  @param  {Array}  predifinedProperties An array containing the list of contact creation fields.
+   *  @param  {Array}  predefinedProperties An array containing the list of contact creation fields.
    *  @return {Object}                      An object with necessary fields for contact creation.
    */
-  static mergeContactPropertiesWithCreationRules(apiSchemas, rules, predifinedProperties) {
+  static mergeContactPropertiesWithCreationRules(apiSchemas, rules, predefinedProperties) {
     const contactProps = OvhContactsHelper.mergeContactEnumsProperties(
-      _.get(apiSchemas, 'models["contact.Contact"].properties'),
-      _.get(apiSchemas, 'models["contact.Address"].properties'),
+      get(apiSchemas, 'models["contact.Contact"].properties'),
+      get(apiSchemas, 'models["contact.Address"].properties'),
     );
 
     const setContactFieldRule = (contactProp, rule, fullType) => {
       // set enum if propery have one
       if (fullType.indexOf('.') > -1) {
-        const typeEnum = _.get(apiSchemas, `models['${fullType}'].enum`, null);
-        _.set(contactProps, `${contactProp}.enum`, typeEnum);
+        const typeEnum = get(apiSchemas, `models['${fullType}'].enum`, null);
+        set(contactProps, `${contactProp}.enum`, typeEnum);
       } else if (rule.in) {
-        _.set(contactProps, `${contactProp}.enum`, rule.in);
+        set(contactProps, `${contactProp}.enum`, rule.in);
       }
 
       // set default value if provided by rule
-      _.set(contactProps, `${contactProp}.defaultValue`, rule.defaultValue);
+      set(contactProps, `${contactProp}.defaultValue`, rule.defaultValue);
 
       // set regular expression if provided by rule
-      _.set(contactProps, `${contactProp}.regularExpression`, rule.regularExpression);
+      set(contactProps, `${contactProp}.regularExpression`, rule.regularExpression);
 
       // set prefix and example if provided by rule
-      _.set(contactProps, `${contactProp}.prefix`, rule.prefix);
-      _.set(contactProps, `${contactProp}.examples`, rule.examples);
+      set(contactProps, `${contactProp}.prefix`, rule.prefix);
+      set(contactProps, `${contactProp}.examples`, rule.examples);
     };
 
     const setContactFieldsRules = (properties, prefix) => {
       const props = properties;
 
-      _.keys(props).forEach((propKey) => {
-        const fullProperty = _.get(props, propKey);
+      keys(props).forEach((propKey) => {
+        const fullProperty = get(props, propKey);
         const propertyKeyPath = prefix ? `${prefix}.${propKey}` : propKey;
 
-        if (!_.has(fullProperty, 'fullType')) {
+        if (!has(fullProperty, 'fullType')) {
           // if fullType is not set it means that it's a nested properties object
           setContactFieldsRules(fullProperty, propertyKeyPath);
-        } else if (_.indexOf(predifinedProperties, propertyKeyPath) > -1) {
-          const rule = _.get(
+        } else if (indexOf(predefinedProperties, propertyKeyPath) > -1) {
+          const rule = get(
             rules,
             getMappedKey(propKey, prefix),
-            _.get(rules, getMappedKey(propKey, prefix).toLowerCase()),
+            get(rules, getMappedKey(propKey, prefix).toLowerCase()),
           );
 
           if (rule) {
@@ -223,12 +234,12 @@ export default class OvhContactsHelper {
     setContactFieldsRules(contactProps);
 
     // add phone country rule
-    _.set(contactProps, 'phoneCountry', {
+    set(contactProps, 'phoneCountry', {
       name: 'phoneCountry',
       fullType: 'nichandle.CountryEnum',
       canBeNull: 1,
     });
-    setContactFieldRule('phoneCountry', _.get(rules, 'phoneCountry'), 'nichandle.CountryEnum');
+    setContactFieldRule('phoneCountry', get(rules, 'phoneCountry'), 'nichandle.CountryEnum');
 
     return contactProps;
   }

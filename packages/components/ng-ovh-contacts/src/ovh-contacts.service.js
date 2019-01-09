@@ -1,5 +1,14 @@
 import angular from 'angular';
-import _ from 'lodash'; // comment this line when developping on manager due to lodash version conflicts.
+
+// lodash imports
+import chain from 'lodash/chain';
+import find from 'lodash/find';
+import get from 'lodash/get';
+import keyBy from 'lodash/keyBy';
+import keys from 'lodash/keys';
+import map from 'lodash/map';
+import set from 'lodash/set';
+import snakeCase from 'lodash/snakeCase';
 
 import OvhContact from './helpers/ovh-contact.class';
 import OvhContactsHelper from './helpers/ovh-contacts.helpers';
@@ -36,8 +45,8 @@ export default class OvhContactsService {
     })
       .then(({ nic, apiSchemas }) => {
         const contactProperties = OvhContactsHelper.mergeContactEnumsProperties(
-          _.get(apiSchemas, 'models["contact.Contact"].properties'),
-          _.get(apiSchemas, 'models["contact.Address"].properties'),
+          get(apiSchemas, 'models["contact.Contact"].properties'),
+          get(apiSchemas, 'models["contact.Address"].properties'),
         );
 
         const nicToContact = new OvhContact(
@@ -94,7 +103,7 @@ export default class OvhContactsService {
       .execute()
       .$promise
       .then((contactsList) => {
-        let contacts = _.chain(contactsList)
+        let contacts = chain(contactsList)
           .reject(['value', null])
           .map('value')
           .value();
@@ -106,7 +115,7 @@ export default class OvhContactsService {
           contacts = options.customFilter(contacts);
         }
 
-        return _.map(contacts, contactOptions => new OvhContact(contactOptions));
+        return map(contacts, contactOptions => new OvhContact(contactOptions));
       });
   }
 
@@ -116,15 +125,15 @@ export default class OvhContactsService {
    *  @param  {Object} rulesOpts Arguments that will be posted to /newAccount/rules call
    *  @return {Promise}          That returns a list of creation rules.
    */
-  getCreationRules(rulesOpts = {}, predifinedProperties = null) {
+  getCreationRules(rulesOpts = {}, predefinedProperties = null) {
     const options = rulesOpts;
 
     return this.getConnectedNic()
       .then((me) => {
-        _.set(options, 'ovhCompany', me.ovhCompany);
-        _.set(options, 'ovhSubsidiary', me.ovhSubsidiary);
-        _.set(options, 'country', rulesOpts.country || me.country);
-        _.set(options, 'phoneCountry', rulesOpts.phoneCountry || rulesOpts.country || me.country);
+        set(options, 'ovhCompany', me.ovhCompany);
+        set(options, 'ovhSubsidiary', me.ovhSubsidiary);
+        set(options, 'country', rulesOpts.country || me.country);
+        set(options, 'phoneCountry', rulesOpts.phoneCountry || rulesOpts.country || me.country);
 
         return options;
       })
@@ -135,18 +144,18 @@ export default class OvhContactsService {
       .then(({ apiSchemas, creationRules }) => {
         const rules = OvhContactsHelper.mergeContactPropertiesWithCreationRules(
           apiSchemas,
-          _.indexBy(creationRules, 'fieldName'),
-          predifinedProperties,
+          keyBy(creationRules, 'fieldName'),
+          predefinedProperties,
         );
 
         // translate properties with enum
         // first get rules with enum
         const getRulesWithEnum = (rulesParam, result = []) => {
-          _.keys(rulesParam).forEach((ruleKey) => {
+          keys(rulesParam).forEach((ruleKey) => {
             if (ruleKey === 'address') {
               getRulesWithEnum(rulesParam.address, result);
-            } else if (_.get(rulesParam, `${ruleKey}.enum`)) {
-              result.push(_.get(rulesParam, ruleKey));
+            } else if (get(rulesParam, `${ruleKey}.enum`)) {
+              result.push(get(rulesParam, ruleKey));
             }
           });
 
@@ -156,12 +165,12 @@ export default class OvhContactsService {
         getRulesWithEnum(rules).forEach((ruleParam) => {
           const rule = ruleParam;
 
-          rule.enum = _.map(rule.enum, (enumVal) => {
-            let translationKey = `ovh_contact_form_${_.snakeCase(rule.fullType)}_${enumVal}`;
-            const enumExtra = _.find(ENUMS_TO_TRANSFORM, { path: rule.name });
+          rule.enum = map(rule.enum, (enumVal) => {
+            let translationKey = `ovh_contact_form_${snakeCase(rule.fullType)}_${enumVal}`;
+            const enumExtra = find(ENUMS_TO_TRANSFORM, { path: rule.name });
 
             if (enumExtra && enumExtra.dependsOfCountry) {
-              translationKey = `ovh_contact_form_${_.snakeCase(rule.fullType !== 'string' ? rule.fullType : rule.name)}_${options.country}_${enumVal}`;
+              translationKey = `ovh_contact_form_${snakeCase(rule.fullType !== 'string' ? rule.fullType : rule.name)}_${options.country}_${enumVal}`;
             }
 
             return {

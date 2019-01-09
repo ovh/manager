@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import get from 'lodash/get';
 
 import controller from './ovh-contact-form.controller';
 
@@ -10,7 +10,7 @@ export default () => ({
     predefinedProfile: '@',
   },
   templateUrl: (element, attributes) => {
-    const mode = _.get(attributes, 'mode', 'stepper');
+    const mode = get(attributes, 'mode', 'stepper');
     return `ovh-contacts-form/templates/ovh-contacts-form-${mode}.html`;
   },
   controller,

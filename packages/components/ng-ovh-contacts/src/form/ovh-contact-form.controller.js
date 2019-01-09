@@ -1,9 +1,17 @@
 import angular from 'angular';
-import _ from 'lodash';
+
+// lodash imports
+import filter from 'lodash/filter';
+import get from 'lodash/get';
+import has from 'lodash/has';
+import head from 'lodash/head';
+import keys from 'lodash/keys';
+import set from 'lodash/set';
+import startsWith from 'lodash/startsWith';
 
 import {
   ENUMS_TO_TRANSFORM,
-  PREDIFINED_CONTACT_PROFILES,
+  PREDEFINED_CONTACT_PROFILES,
 } from '../ovh-contacts.constants';
 
 export default class OvhContactsFormCtrl {
@@ -46,11 +54,11 @@ export default class OvhContactsFormCtrl {
   }
 
   static traverseRules(rules, callback, prefix) {
-    _.keys(rules).forEach((ruleKey) => {
-      if (!_.has(rules, `${ruleKey}.fullType`)) {
-        OvhContactsFormCtrl.traverseRules(_.get(rules, ruleKey), callback, ruleKey);
+    keys(rules).forEach((ruleKey) => {
+      if (!has(rules, `${ruleKey}.fullType`)) {
+        OvhContactsFormCtrl.traverseRules(get(rules, ruleKey), callback, ruleKey);
       } else {
-        callback(_.get(rules, ruleKey), prefix ? `${prefix}.${ruleKey}` : ruleKey);
+        callback(get(rules, ruleKey), prefix ? `${prefix}.${ruleKey}` : ruleKey);
       }
     });
   }
@@ -65,7 +73,7 @@ export default class OvhContactsFormCtrl {
 
       if (phonePrefix) {
         const alternativePhonePrefix = `00${phonePrefix.replace('+', '')}`;
-        if (_.startsWith(phoneNumberParam, alternativePhonePrefix)) {
+        if (startsWith(phoneNumberParam, alternativePhonePrefix)) {
           phoneNumber = `${phonePrefix}${phoneNumberParam.slice(alternativePhonePrefix.length)}`;
         }
       }
@@ -114,7 +122,7 @@ export default class OvhContactsFormCtrl {
   }
 
   setPhonePlaceholder() {
-    this.placeholders.phone = _.head(_.get(this.rules, 'phone.examples', []));
+    this.placeholders.phone = head(get(this.rules, 'phone.examples', []));
   }
 
   getProvinceLabel(forLabel) {
@@ -129,12 +137,12 @@ export default class OvhContactsFormCtrl {
   }
 
   getRules() {
-    const predifinedFields = _.get(PREDIFINED_CONTACT_PROFILES, this.predifinedProfile, null);
+    const predefinedFields = get(PREDEFINED_CONTACT_PROFILES, this.predefinedProfile, null);
 
     return this.ovhContacts.getCreationRules({
       country: this.model.contact.address.country,
       phoneCountry: this.model.phone.country,
-    }, predifinedFields)
+    }, predefinedFields)
       .then((rules) => {
         this.rules = rules;
 
@@ -143,8 +151,8 @@ export default class OvhContactsFormCtrl {
           this.initialDefaultValues = {};
           OvhContactsFormCtrl.traverseRules(rules, (rule, ruleKey) => {
             if (rule.defaultValue) {
-              _.set(this.initialDefaultValues, ruleKey, rule.defaultValue);
-              _.set(this.model.contact, ruleKey, rule.defaultValue);
+              set(this.initialDefaultValues, ruleKey, rule.defaultValue);
+              set(this.model.contact, ruleKey, rule.defaultValue);
               if (ruleKey === 'address.country') {
                 this.setPhoneCountry();
               }
@@ -156,18 +164,18 @@ export default class OvhContactsFormCtrl {
       })
       .then((rules) => {
         // sort the enums that need to be sorted
-        _.filter(ENUMS_TO_TRANSFORM, { sort: true }).forEach((enumDef) => {
-          if (_.has(rules, enumDef.path)) {
-            const sortedEnum = _.get(rules, `${enumDef.path}.enum`, []).sort((valA, valB) => {
-              if (valA.value === _.get(this.initialDefaultValues, enumDef.path)) {
+        filter(ENUMS_TO_TRANSFORM, { sort: true }).forEach((enumDef) => {
+          if (has(rules, enumDef.path)) {
+            const sortedEnum = get(rules, `${enumDef.path}.enum`, []).sort((valA, valB) => {
+              if (valA.value === get(this.initialDefaultValues, enumDef.path)) {
                 return -1;
-              } if (valB.value === _.get(this.initialDefaultValues, enumDef.path)) {
+              } if (valB.value === get(this.initialDefaultValues, enumDef.path)) {
                 return 1;
               }
               return valA.label.localeCompare(valB.label);
             });
 
-            _.set(rules, `${enumDef.path}.enum`, sortedEnum);
+            set(rules, `${enumDef.path}.enum`, sortedEnum);
           }
         });
 
@@ -185,7 +193,7 @@ export default class OvhContactsFormCtrl {
         this.alerter.type = 'error';
         this.alerter.message = [
           this.$translate.instant('ovh_contact_form_load_error'),
-          _.get(error, 'message.data', ''),
+          get(error, 'message.data', ''),
         ].join(' ');
       })
       .finally(() => {

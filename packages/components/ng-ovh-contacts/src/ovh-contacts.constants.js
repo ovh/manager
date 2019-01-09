@@ -25,7 +25,7 @@ export const GET_LIST_DEFAULT_OPTIONS = {
   customFilter: null,
 };
 
-export const PREDIFINED_CONTACT_PROFILES = {
+export const PREDEFINED_CONTACT_PROFILES = {
   billing: [
     'lastName',
     'firstName',
@@ -43,5 +43,5 @@ export default {
   CONTACT_TO_NIC_FIELDS_MAPPING,
   ENUMS_TO_TRANSFORM,
   GET_LIST_DEFAULT_OPTIONS,
-  PREDIFINED_CONTACT_PROFILES,
+  PREDEFINED_CONTACT_PROFILES,
 };
