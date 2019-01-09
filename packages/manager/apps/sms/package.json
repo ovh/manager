@@ -11,7 +11,7 @@
     "@ovh-ux/manager-sms": "^0.1.0",
     "@ovh-ux/manager-telecom-styles": "^2.0.0",
     "@ovh-ux/ng-ovh-contracts": "^3.0.0-beta.1",
-    "@ovh-ux/telecom-universe-components": "^1.4.0",
+    "@ovh-ux/telecom-universe-components": "^1.5.1",
     "@uirouter/angularjs": "^1.0.15",
     "angular": "1.7.5",
     "at-internet-ui-router-plugin": "^1.0.0",
