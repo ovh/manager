@@ -41,7 +41,9 @@ export default class OvhPaymentMethodLegacy {
       return this.addPaymentMean(paymentMethodType, paymentMethodParams);
     }
 
-    return this.$q.when('TODO');
+    return this.addUSPaymentMethod(_.merge({
+      paymentType: paymentMethodType,
+    }, paymentMethodParams));
   }
 
   /**
@@ -255,6 +257,10 @@ export default class OvhPaymentMethodLegacy {
           }).$promise.then(usPaymentMethod => (options.transform
             ? this.transformUSPaymentMethodToPaymentMethod(usPaymentMethod)
             : usPaymentMethod)))));
+  }
+
+  addUSPaymentMethod(params) {
+    return this.OvhApiMe.PaymentMethod().v6().save({}, params).$promise;
   }
 
   /**
