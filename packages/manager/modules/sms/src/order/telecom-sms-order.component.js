@@ -1,5 +1,5 @@
 import angular from 'angular';
-import '@ovh-ux/ovh-angular-contracts';
+import '@ovh-ux/ng-ovh-contracts';
 import '@uirouter/angularjs';
 import 'ng-at-internet';
 
@@ -12,7 +12,7 @@ angular
   .module(moduleName, [
     'ui.router',
     'ng-at-internet',
-    'ovhAngularContracts',
+    'ngOvhContracts',
   ])
   .config(($stateProvider) => {
     $stateProvider.state('sms.order', {
