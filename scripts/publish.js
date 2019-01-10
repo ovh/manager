@@ -7,7 +7,14 @@ execa.shell('lerna ls -pl --json')
     return Promise.all(
       packages.map(
         pkg => execa.shell(`npm info ${pkg.name}@${pkg.version}`)
-          .then(output => Object.assign(pkg, { publish: output.stdout.length > 0 })),
+          .then(output => Object.assign(pkg, { publish: output.stdout.length > 0 }))
+          .catch((err) => {
+            if (!err.stderr.includes('404')) {
+              console.error(err);
+              process.exit(1);
+            }
+            return Object.assign(pkg, { publish: false });
+          }),
       ),
     );
   })
