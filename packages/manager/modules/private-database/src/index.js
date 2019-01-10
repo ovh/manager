@@ -13,6 +13,7 @@ import 'ovh-ui-kit/dist/oui.css';
 import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
 import 'font-awesome/css/font-awesome.css';
 import './private-database.scss';
+import './private-database.less';
 
 import privateDatabaseUser from './user';
 import privateDatabaseDatabase from './database';
