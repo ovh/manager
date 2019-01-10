@@ -3,8 +3,6 @@ import angular from 'angular';
 import OvhContactsService from './ovh-contacts.service';
 
 export default class ovhContactsProvider {
-  /* @ngInject */
-
   constructor() {
     this.target = 'EU';
   }
@@ -17,6 +15,7 @@ export default class ovhContactsProvider {
     return target;
   }
 
+  /* @ngInject */
   $get($q, $translate, OvhApiMe, OvhApiNewAccount) {
     return new OvhContactsService($q, $translate, OvhApiMe, OvhApiNewAccount, this.target);
   }
