@@ -57,7 +57,6 @@ angular
     'ovh-angular-otrs',
     'ovh-angular-responsive-tabs',
     'ovh-angular-ui-confirm-modal',
-    'ovhAngularContracts',
     'ovh-angular-ui-confirm-modal',
     'ovh-angular-pagination-front',
     OvhHttp,
