@@ -3,18 +3,18 @@
 ## Install
 
 ```sh
-yarn add @ovh-ux/telecom-dashboard
+yarn add @ovh-ux/manager-telecom-dashboard
 ```
 
 ## Usage
 
 ```js
 import 'angular';
-import telecomDashboard from '@ovh-ux/telecom-dashboard';
+import ovhManagerTelecomDashboard from '@ovh-ux/manager-telecom-dashboard';
 
 angular
   .module('myApp', [
-    telecomDashboard,
+    ovhManagerTelecomDashboard,
   ]);
 ```
 

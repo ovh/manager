@@ -1,4 +1,6 @@
-@import "~bootstrap4/scss/_functions";
-@import "~bootstrap4/scss/_variables";
-@import "~bootstrap4/scss/_mixins";
-@import '~bootstrap4/scss/_utilities.scss';
+.telecom-dashboard {
+  @import "~bootstrap4/scss/_functions";
+  @import "~bootstrap4/scss/_variables";
+  @import "~bootstrap4/scss/_mixins";
+  @import '~bootstrap4/scss/_utilities.scss';
+}

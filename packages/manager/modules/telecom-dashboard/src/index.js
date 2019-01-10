@@ -3,8 +3,8 @@ import '@uirouter/angularjs';
 import 'ng-at-internet';
 import 'at-internet-ui-router-plugin';
 import '@ovh-ux/ng-uirouter-title';
-import core from '@ovh-ux/manager-core';
-import tuc from '@ovh-ux/telecom-universe-components';
+import ovhManagerCore from '@ovh-ux/manager-core';
+import telecomUniverseComponents from '@ovh-ux/telecom-universe-components';
 import '@ovh-ux/manager-telecom-styles';
 
 import 'ovh-ui-kit/dist/oui.css';
@@ -26,11 +26,11 @@ const moduleName = 'ovhManagerTelecomDashboard';
 
 angular
   .module(moduleName, [
-    core,
+    ovhManagerCore,
     'ng-at-internet',
     'atInternetUiRouterPlugin',
     'ngUirouterTitle',
-    tuc,
+    telecomUniverseComponents,
     'ui.router',
   ])
   .config(/* @ngInject */ ($stateProvider) => {
