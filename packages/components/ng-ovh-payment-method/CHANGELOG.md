@@ -1,3 +1,22 @@
+# [1.1.0](https://github.com/ovh-ux/ng-ovh-payment-method/compare/v1.0.0...v1.1.0) (2019-01-10)
+
+
+### Bug Fixes
+
+* ignore tools folder ([0e3a7b2](https://github.com/ovh-ux/ng-ovh-payment-method/commit/0e3a7b2))
+* **i18n:** retrieve ([8c1fa70](https://github.com/ovh-ux/ng-ovh-payment-method/commit/8c1fa70))
+* **i18n:** submit ([67dce90](https://github.com/ovh-ux/ng-ovh-payment-method/commit/67dce90))
+* provider injection ([f009267](https://github.com/ovh-ux/ng-ovh-payment-method/commit/f009267))
+* remove non necessary accessible attributes ([4b002b2](https://github.com/ovh-ux/ng-ovh-payment-method/commit/4b002b2))
+* service injections ([a078118](https://github.com/ovh-ux/ng-ovh-payment-method/commit/a078118))
+
+
+### Features
+
+* add new US payment method ([5a7c30e](https://github.com/ovh-ux/ng-ovh-payment-method/commit/5a7c30e))
+
+
+
 # [1.0.0](https://github.com/ovh-ux/ng-ovh-payment-method/compare/v1.0.0-alpha.1...v1.0.0) (2019-01-08)
 
 
