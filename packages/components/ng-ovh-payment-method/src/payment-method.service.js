@@ -98,7 +98,9 @@ export default class OvhPaymentMethodService {
         .addPaymentMethod(paymentMethodType.original.value, params);
     }
 
-    return this.OvhApiMe.Payment().Method().v6().save().$promise;
+    const addParams = params;
+    addParams.paymentType = paymentMethodType.paymentType.value;
+    return this.OvhApiMe.Payment().Method().v6().save({}, addParams).$promise;
   }
 
   /**
