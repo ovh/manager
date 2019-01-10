@@ -1,7 +1,3 @@
-## [1.1.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@1.1.1...@ovh-ux/manager-core@1.1.2) (2019-01-10)
-
-
-
 ## [1.1.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@1.1.0...@ovh-ux/manager-core@1.1.1) (2019-01-03)
 
 

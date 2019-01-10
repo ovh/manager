@@ -1,7 +1,3 @@
-## [2.0.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom-styles@2.0.0...@ovh-ux/manager-telecom-styles@2.0.1) (2019-01-10)
-
-
-
 # [2.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom-styles@1.0.0...@ovh-ux/manager-telecom-styles@2.0.0) (2019-01-03)
 
 

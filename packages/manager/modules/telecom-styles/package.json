@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-telecom-styles",
-  "version": "2.0.1",
+  "version": "2.0.0",
   "license": "BSD-3-Clause",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
