@@ -16,8 +16,12 @@
   "module": "./dist/esm/index.js",
   "browser": "./dist/umd/sms.js",
   "scripts": {
-    "build": "rollup -c",
-    "dev": "rollup -c --watch",
+    "build": "rollup -c --environment BUILD:production",
+    "dev": "rollup -c --environment BUILD:development",
+    "dev:watch": "yarn run dev --watch",
+    "start": "lerna run build --stream --scope='@ovh-ux/manager-sms' --include-filtered-dependencies",
+    "start:dev": "lerna run dev --stream --scope='@ovh-ux/manager-sms' --include-filtered-dependencies",
+    "start:watch": "lerna run dev:watch --stream --parallel --scope='@ovh-ux/manager-sms' --include-filtered-dependencies",
     "prepare": "yarn run build"
   },
   "dependencies": {
