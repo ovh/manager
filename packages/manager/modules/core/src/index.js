@@ -175,6 +175,10 @@ angular
         serviceType: 'apiv7',
         urlPrefix: '/engine/apiv7',
       },
+      {
+        serviceType: 'ws',
+        urlPrefix: '/engine/ws',
+      },
     ]);
 
     $httpProvider.interceptors.push('serviceTypeInterceptor');
