@@ -1,3 +1,12 @@
+## [1.1.1-alpha.0](https://github.com/ovh-ux/ng-ovh-payment-method/compare/v1.1.0...v1.1.1-alpha.0) (2019-01-11)
+
+
+### Bug Fixes
+
+* open window for new payment method add ([32c8c0f](https://github.com/ovh-ux/ng-ovh-payment-method/commit/32c8c0f))
+
+
+
 # [1.1.0](https://github.com/ovh-ux/ng-ovh-payment-method/compare/v1.0.0...v1.1.0) (2019-01-10)
 
 
