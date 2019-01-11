@@ -10,7 +10,7 @@ yarn add @ovh-ux/manager-private-database
 
 ```js
 import 'angular';
-import privateDatabase from '@ovh-ux/manager-private-database
+import privateDatabase from '@ovh-ux/manager-private-database';
 
 angular
   .module('myApp', [
