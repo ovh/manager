@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_service_contact_infos" qtlid="26551">Tiedot</translation>
+   <translation id="telephony_service_contact_edit" qtlid="459417">Modifier les coordonnées</translation>
+   <translation id="telephony_service_contact_required" qtlid="459430">Tämä kenttä on pakollinen.</translation>
+   <translation id="telephony_service_contact_address" qtlid="30430">Osoite</translation>
+   <translation id="telephony_service_contact_legalform" qtlid="459443">Forme légale</translation>
+   <translation id="telephony_service_contact_legalform_individual" qtlid="33850">Yksityishenkilö</translation>
+   <translation id="telephony_service_contact_legalform_professional" qtlid="59795">Työ</translation>
+   <translation id="telephony_service_contact_legalform_corporation" qtlid="49022">Yritys</translation>
+   <translation id="telephony_service_contact_legalform_association" qtlid="34138">Yhdistys</translation>
+   <translation id="telephony_service_contact_lastname" qtlid="3818">Nimi</translation>
+   <translation id="telephony_service_contact_firstname" qtlid="23323">Etunimi</translation>
+   <translation id="telephony_service_contact_occupation" qtlid="101048">Työnimike</translation>
+   <translation id="telephony_service_contact_siret" qtlid="459456">Numéro SIRET</translation>
+   <translation id="telephony_service_contact_siret_invalid" qtlid="459469">Le numéro de SIRET saisi est invalide</translation>
+   <translation id="telephony_service_contact_ape" qtlid="459482">APE / NAF</translation>
+   <translation id="telephony_service_contact_ape_invalid" qtlid="459495">Le code APE doit comporter 4 chiffres et 1 lettre.</translation>
+   <translation id="telephony_service_contact_social_nomination" qtlid="459508">Dénomination de l’entreprise</translation>
+   <translation id="telephony_service_contact_social_nomination_extra" qtlid="459521">Complément de désignation (Sigle, SARL, …)</translation>
+   <translation id="telephony_service_contact_email" qtlid="50686">Sähköpostiosoite</translation>
+   <translation id="telephony_service_contact_country" qtlid="25171">Laskutusmaa</translation>
+   <translation id="telephony_service_contact_zipcode" qtlid="30346">Postinumero</translation>
+   <translation id="telephony_service_contact_city" qtlid="33310">Postitoimipaikka</translation>
+   <translation id="telephony_service_contact_cedex" qtlid="459534">Cedex</translation>
+   <translation id="telephony_service_contact_urbandistrict" qtlid="459547">Arrondissement (pour Paris, Lyon et Marseille)</translation>
+   <translation id="telephony_service_contact_waynumber" qtlid="459560">Numéro de voie</translation>
+   <translation id="telephony_service_contact_wayname" qtlid="459573">Kadun nimi</translation>
+   <translation id="telephony_service_contact_addressextra" qtlid="459586">Complément d’adresse</translation>
+   <translation id="telephony_service_contact_addressextra_invalid" qtlid="459599">Le complément d’adresse ne doit contenir ni caractères spéciaux ni accents</translation>
+   <translation id="telephony_service_contact_waynumberextra" qtlid="459612">Complément du numéro dans la voie</translation>
+   <translation id="telephony_service_contact_waynumberextra_short" qtlid="307878">Täydennys</translation>
+   <translation id="telephony_service_contact_address2" qtlid="459612">Complément du numéro dans la voie</translation>
+   <translation id="telephony_service_contact_universal_directory" qtlid="459625">Parution dans les annuaires</translation>
+   <translation id="telephony_service_contact_universal_directory_publish" qtlid="459638">Publication dans l’annuaire</translation>
+   <translation id="telephony_service_contact_display_marketing" qtlid="459651">Démarchage téléphonique accepté</translation>
+   <translation id="telephony_service_contact_search_reverse" qtlid="459664">Publication dans l’annuaire inversé</translation>
+   <translation id="telephony_service_contact_display_name" qtlid="459677">Affichage du nom</translation>
+   <translation id="telephony_service_contact_address_publish" qtlid="459690">Publication de l’adresse</translation>
+   <translation id="telephony_service_contact_address_publish_full" qtlid="87525">Täydellinen</translation>
+   <translation id="telephony_service_contact_address_publish_city" qtlid="77802">Vain postitoimipaikka</translation>
+   <translation id="telephony_service_contact_terminal_type" qtlid="459703">Type d’équipement</translation>
+   <translation id="telephony_service_contact_service_description" qtlid="459716">Désignation de la ligne</translation>
+   <translation id="telephony_service_contact_service_description_help" qtlid="459729">Ce champ permet de préciser l’affectation générale de la ligne (standard, accueil, SAV, …) mais ne doit pas être utilisé pour faire paraître une seconde dénomination, information publicitaire ou décrire l’activité de l’entreprise.</translation>
+   <translation id="telephony_service_contact_pjdenomination" qtlid="459742">Dénomination Pages jaunes / 118712</translation>
+   <translation id="telephony_service_contact_pjdenomination_help" qtlid="459755">Sur 100 caractères. Si vide : identique à la dénomination de l’entreprise.</translation>
+   <translation id="telephony_service_contact_directory_code" qtlid="459768">Rubrique</translation>
+   <translation id="telephony_service_contact_directory_code_siret_warn" qtlid="459781">Vous devez saisir un numéro de SIRET.</translation>
+   <translation id="telephony_service_contact_sync" qtlid="459794">Synchronisé</translation>
+   <translation id="telephony_service_contact_sync_pending" qtlid="459807">Synchronisation programmée</translation>
+   <translation id="telephony_service_contact_status" qtlid="26443">Tila</translation>
+   <translation id="telephony_service_contact_status_todo" qtlid="459820">Non effectué</translation>
+   <translation id="telephony_service_contact_status_doing" qtlid="26383">Käynnissä</translation>
+   <translation id="telephony_service_contact_status_done" qtlid="27607">Valmis</translation>
+   <translation id="telephony_service_contact_apply" qtlid="249107">Ota muutokset käyttöön</translation>
+   <translation id="telephony_service_contact_must_fill" qtlid="102777">Tämä kenttä on pakollinen</translation>
+   <translation id="telephony_service_contact_city_not_found" qtlid="459833">Aucune ville n’a été trouvée pour ce code postal.</translation>
+   <translation id="telephony_service_contact_success" qtlid="459846">Vos coordonnées ont bien été mises à jour.</translation>
+
+   <translation id="telephony_service_contact_bulk_all_success" qtlid="459859">La modification des coordonnées a bien été appliquée aux services sélectionnés.</translation>
+   <translation id="telephony_service_contact_bulk_some_success" qtlid="459872">La modification des coordonnées a bien été appliquée à {{ count }} des services sélectionnés.</translation>
+   <translation id="telephony_service_contact_bulk_error" qtlid="459885">La modification des coordonnées n'a pu être appliquée au(x) service(s) suivant(s) :</translation>
+   <translation id="telephony_service_contact_bulk_on_error" qtlid="459898">Oups ! Une erreur est survenue lors de la modification des coordonnées.</translation>
+</translations>

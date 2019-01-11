@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_alias_portability_order_back_link" qtlid="460639">Retour au groupe</translation>
+   <translation id="telephony_alias_portability_order_title" qtlid="334049">Demander une portabilité</translation>
+   <translation id="telephony_alias_portability_order_order" qtlid="43558">Commander</translation>
+   <translation id="telephony_alias_portability_order_infos_title" qtlid="26551">Informations</translation>
+   <translation id="telephony_alias_portability_order_infos" qtlid="460652">Durant toute la durée de votre contrat, la portabilité de vos numéros géographiques et non-géographiques vers OVH est totalement gratuite.</translation>
+   <translation id="telephony_alias_portability_order_infos_country" qtlid="460665">La portabilité est pour le moment restreinte aux pays suivants : <strong>France</strong>, <strong>Belgique</strong> et <strong>Suisse</strong>.</translation>
+   <translation id="telephony_alias_portability_order_warning_title" qtlid="314201">Attention :</translation>
+   <translation id="telephony_alias_portability_order_warning_1" qtlid="460678">Afin de vous prémunir contre toute interruption de service de votre numéro porté, demandez la résiliation de votre ligne téléphonique auprès de votre prestataire actuel uniquement <strong>lorsque la portabilité est terminée</strong>.</translation>
+   <translation id="telephony_alias_portability_order_warning_2" qtlid="460691">Néanmoins, si vous résiliez votre ligne chez votre opérateur actuel, vous avez 40 jours pour demander la portabilité. Après ce délai, vous perdrez votre numéro.</translation>
+   <translation id="telephony_alias_portability_order_warning_3" qtlid="460704">Si vous portez le numéro sur lequel votre connexion Internet est rattachée, votre accès à Internet sera coupé.</translation>
+   <translation id="telephony_alias_portability_order_type" qtlid="460717">Vous souhaitez commander une portabilité pour :</translation>
+   <translation id="telephony_alias_portability_order_landline" qtlid="460730">Un numéro isolé</translation>
+   <translation id="telephony_alias_portability_order_sda" qtlid="460743">Un ou plusieurs numéros appartenant à une tranche de numéros (SDA)</translation>
+   <translation id="telephony_alias_portability_order_callNumber" qtlid="460756">Numéro à porter (format international)</translation>
+   <translation id="telephony_alias_portability_order_sda_warning" qtlid="480149">Les numéros spéciaux ne pouvantt faire l'objet d'une demande de portabilité en numéro isolé, veuillez choisir la portabilité pour une tranche de numéros (SDA)</translation>
+   <translation id="telephony_alias_portability_order_number_international" qtlid="460769">N° au format international</translation>
+   <translation id="telephony_alias_portability_order_callNumber_pattern_error" qtlid="460782">Veuillez saisir un numéro au format international (0033… ou +33…).</translation>
+   <translation id="telephony_alias_portability_order_desireDate" qtlid="480162">Date de portabilité souhaitée :</translation>
+   <translation id="telephony_alias_portability_order_desireDate_sooner" qtlid="480175">Au plus tôt</translation>
+   <translation id="telephony_alias_portability_order_desireDate_custom" qtlid="454306">Choisir la date</translation>
+   <translation id="telephony_alias_portability_order_desireDate_pattern_error" qtlid="460795">La date saisie est invalide.</translation>
+   <translation id="telephony_alias_portability_order_rio" qtlid="310257">RIO</translation>
+   <translation id="telephony_alias_portability_order_rio_pattern_error" qtlid="460808">Le RIO saisi est invalide.</translation>
+   <translation id="telephony_alias_portability_order_rio_info" qtlid="460821">Relevé d'Identité Opérateur : appelez le 3179 pour obtenir le RIO de votre numéro.</translation>
+   <translation id="telephony_alias_portability_order_contact_help" qtlid="460834">Renseignez avec précision les informations indiquées sur la facture de votre opérateur actuel</translation>
+   <translation id="telephony_alias_portability_order_contact_personal_infos" qtlid="96680">Informations personnelles</translation>
+   <translation id="telephony_alias_portability_order_contact_social_reason" qtlid="459443">Forme légale</translation>
+   <translation id="telephony_alias_portability_order_contact_social_reason_individual" qtlid="33850">Particulier</translation>
+   <translation id="telephony_alias_portability_order_contact_social_reason_corporation" qtlid="59795">Professionnel</translation>
+   <translation id="telephony_alias_portability_order_contact_firstname" qtlid="23323">Prénom</translation>
+   <translation id="telephony_alias_portability_order_contact_lastname" qtlid="3818">Nom</translation>
+   <translation id="telephony_alias_portability_order_contact_corporation_name" qtlid="276844">Nom de la société</translation>
+   <translation id="telephony_alias_portability_order_contact_gsm" qtlid="152440">Numéro de cellulaire</translation>
+   <translation id="telephony_alias_portability_order_contact_gsm_help" qtlid="460847">Ce numéro ne sera pas utilisé à des fins commerciales, mais uniquement pour le suivi de votre portabilité</translation>
+   <translation id="telephony_alias_portability_order_contact_siret" qtlid="460860">Numéro de siret ou d'entreprise</translation>
+   <translation id="telephony_alias_portability_order_contact_address" qtlid="460873">Adresse d'installation de la ligne</translation>
+   <translation id="telephony_alias_portability_order_contact_country" qtlid="25171">Pays</translation>
+   <translation id="telephony_alias_portability_order_contact_country_france" qtlid="29047">France</translation>
+   <translation id="telephony_alias_portability_order_contact_country_belgium" qtlid="29059">Belgique</translation>
+   <translation id="telephony_alias_portability_order_contact_country_switzerland" qtlid="40954">Suisse</translation>
+   <translation id="telephony_alias_portability_order_contact_zip" qtlid="30346">Code postal</translation>
+   <translation id="telephony_alias_portability_order_contact_zip_pattern_error" qtlid="460886">Code postal invalide.</translation>
+   <translation id="telephony_alias_portability_order_contact_city" qtlid="33310">Ville</translation>
+   <translation id="telephony_alias_portability_order_contact_street_number" qtlid="459560">Numéro de voie</translation>
+   <translation id="telephony_alias_portability_order_contact_street_number_extra" qtlid="460899">Complément du numéro de voie</translation>
+   <translation id="telephony_alias_portability_order_contact_street_number_pattern_error" qtlid="460912">Numéro de voie invalide.</translation>
+   <translation id="telephony_alias_portability_order_contact_street_name" qtlid="459573">Nom de la voie</translation>
+   <translation id="telephony_alias_portability_order_contact_street_type" qtlid="460925">Type de voie</translation>
+   <translation id="telephony_alias_portability_order_contact_building" qtlid="313000">Bâtiment</translation>
+   <translation id="telephony_alias_portability_order_contact_stair" qtlid="313052">Escalier</translation>
+   <translation id="telephony_alias_portability_order_contact_floor" qtlid="313026">Étage</translation>
+   <translation id="telephony_alias_portability_order_contact_pj" qtlid="460938">Publication dans l'annuaire</translation>
+   <translation id="telephony_alias_portability_order_contact_required" qtlid="459430">Ce champ est requis.</translation>
+   <translation id="telephony_alias_portability_order_billing_account" qtlid="254102">Groupe de facturation</translation>
+   <translation id="telephony_alias_portability_order_redirect_line" qtlid="460951">Souhaitez-vous rediriger le numéro vers une ligne ?</translation>
+   <translation id="telephony_alias_portability_order_redirect_line_choose" qtlid="460964">Choisir une ligne</translation>
+   <translation id="telephony_alias_portability_order_redirect_line_info" qtlid="460977">Si vous ne sélectionnez aucune ligne, vous pourrez effectuer la redirection plus tard.</translation>
+   <translation id="telephony_alias_portability_order_sda_info" qtlid="460990">Vous souhaitez :</translation>
+   <translation id="telephony_alias_portability_order_sda_all" qtlid="461003">Porter votre numéro principal et l’ensemble des numéros Sélection Directe à l'Arrivée (SDA) rattachés. (Dans ce cas, la liste des SDA vous sera transmise par mail dans les prochains jours.)</translation>
+   <translation id="telephony_alias_portability_order_sda_select" qtlid="461016">Porter votre numéro principal et une partie des numéros Sélection Directe à l'Arrivée (SDA).</translation>
+   <translation id="telephony_alias_portability_order_sda_add" qtlid="461029">Numéro SDA à ajouter :</translation>
+   <translation id="telephony_alias_portability_order_sda_add_list" qtlid="461042">Les numéros suivants seront également portés :</translation>
+   <translation id="telephony_alias_portability_order_description" qtlid="9238">Description</translation>
+   <translation id="telephony_alias_portability_order_unit_price" qtlid="259961">Prix unitaire</translation>
+   <translation id="telephony_alias_portability_order_quantity" qtlid="37107">Quantité</translation>
+   <translation id="telephony_alias_portability_order_total" qtlid="32458">Total</translation>
+   <translation id="telephony_alias_portability_order_total_tax_free" qtlid="37143">Total</translation>
+   <translation id="telephony_alias_portability_order_total_tax" qtlid="279470">TVA</translation>
+   <translation id="telephony_alias_portability_order_total_with_tax" qtlid="37167">Total avec taxes</translation>
+   <translation id="telephony_alias_portability_order_error" qtlid="461055">Oups ! Une erreur est survenue lors de la demande portabilité.</translation>
+   <translation id="telephony_alias_portability_order_address_too_long" qtlid="461068">L'ensemble des champs "Numéro de la voie", "Complément au numéro de voie", "Type de voie" et "Nom de la voie" ne doit pas dépasser 35 caractères.</translation>
+   <translation id="telephony_alias_portability_order_success" qtlid="461081">Votre demande de portabilité a bien été prise en compte.</translation>
+   <translation id="telephony_alias_portability_order_success_warning" qtlid="461094"><strong>Attention !</strong> Afin que la portabilité soit lancée, il vous faut valider votre bon de commande en suivant les instructions que vous trouverez en cliquant sur le lien ci-dessous.</translation>
+   <translation id="telephony_alias_portability_order_url" qtlid="35352">Bon de commande</translation>
+   <translation id="telephony_alias_portability_order_step" qtlid="461107">Étape {{ current }}/{{ total }}</translation>
+   <translation id="telephony_alias_portability_order_step_1" qtlid="461120">Numéro à porter</translation>
+   <translation id="telephony_alias_portability_order_step_2" qtlid="26551">Informations</translation>
+   <translation id="telephony_alias_portability_order_step_3" qtlid="333282">Configuration du numéro</translation>
+   <translation id="telephony_alias_portability_order_step_4" qtlid="461133">Finalisation</translation>
+
+   <translation id="telephony_alias_portability_order_number_category" qtlid="480188">Catégorie du numéro spécial</translation>
+</translations>

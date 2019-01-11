@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_add_group_title" qtlid="44776">Een groep toevoegen</translation>
+   <translation id="telephony_add_group_contracts" qtlid="334335">Vous devez accepter les contrats afin de valider la commande.</translation>
+   <translation id="telephony_add_group_infos" qtlid="334348">Vous pouvez commander de nouveaux groupes afin d'organiser et gérer plus facilement vos lignes et numéros.</translation>
+   <translation id="telephony_add_group_order" qtlid="334361">Commander un nouveau groupe de téléphonie</translation>
+   <translation id="telephony_add_group_free" qtlid="130495">Gratis</translation>
+   <translation id="telephony_add_group_success" qtlid="334374">La demande de création a été enregistrée avec succés.</translation>
+   <translation id="telephony_add_group_success_bc" qtlid="334387">Afin de finaliser votre demande, merci de valider ce</translation>
+   <translation id="telephony_add_group_success_bc2" qtlid="292800">bon de commande</translation>
+</translations>

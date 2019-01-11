@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_group_manage_contacts_nic_admin" qtlid="386183">NIC administraattori</translation>
+   <translation id="telephony_group_manage_contacts_nic_tech" qtlid="386196">NIC tekninen yhteyshenkilö</translation>
+   <translation id="telephony_group_manage_contacts_nic_billing" qtlid="386209">NIC laskutusyhteyshenkilö</translation>
+   <translation id="telephony_group_manage_contacts_group" qtlid="59507">Ryhmä</translation>
+   <translation id="telephony_group_manage_contacts_lines" qtlid="42802">Linja</translation>
+   <translation id="telephony_group_manage_contacts_alias" qtlid="30778">Numero</translation>
+   <translation id="telephony_group_manage_contacts_title" qtlid="73073">Hallitse yhteystietoja</translation>
+   <translation id="telephony_group_manage_contacts_pending_task" qtlid="386222">Pyyntö odottaa vahvistusta</translation>
+   <translation id="telephony_group_manage_contacts_change_success" qtlid="386235">Yhteystietojen muutospyyntö on lähetetty.</translation>
+   <translation id="telephony_group_manage_contacts_change_info" qtlid="386248">Yhteystietojen hallinnassa voit jakaa oikeuksia muille henkilöille, antaa heille yhden linjan, aliaksen tai ryhmän hallinnan.<br/> Valitun yhteyshenkilön tyypistä riippuen oikeudet eivät ole samat:<br/><br/><strong>Administraattori :</strong> tämä yhteyshenkilö voi hallita yhden linjan teknisiä ominaisuuksia ja antaa "teknisen yhteyshenkilön" oikeudet jollekin toiselle.<br/><strong>Tekninen yhteyshenkilö:</strong> tämä yhteyshenkilä hallitsee ainoastaan linjan, aliaksen tai ryhmän teknisiä ominaisuuksia.<br/><strong>Laskutusyhteyshenkilö:</strong> tämä yhteyshenkilö hallitsee ainoastaan laskutusta. (laskujen maksu jne.)</translation>
+   <translation id="telephony_group_manage_contacts_disabled" qtlid="386261">Ei saatavilla tälle palvelulle</translation>
+</translations>

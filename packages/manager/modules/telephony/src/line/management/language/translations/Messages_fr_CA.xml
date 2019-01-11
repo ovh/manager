@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_line_language_informations_title" qtlid="26551">Informations</translation>
+   <translation id="telephony_line_language_informations_detail" qtlid="360008">Changez ici la langue de votre ligne pour que les annonces vocales soient diffusées dans une autre langue. Si vous utilisez un téléphone LG, la langue sélectionnée sera utilisée pour l'interface du téléphone.</translation>
+   <translation id="telephony_line_language_title" qtlid="360021">Langue de la ligne</translation>
+   <translation id="telephony_line_language_back_link" qtlid="338053">Retour à la gestion de la ligne</translation>
+   <translation id="telephony_line_language_value_placeholder" qtlid="323651">Sélectionnez une langue</translation>
+   <translation id="telephony_line_language_value_dutch" qtlid="33982">Néerlandais</translation>
+   <translation id="telephony_line_language_value_english_uk" qtlid="360034">Anglais (Royaume-Uni)</translation>
+   <translation id="telephony_line_language_value_french" qtlid="29684">Français</translation>
+   <translation id="telephony_line_language_value_french_be" qtlid="360047">Français (Belgique)</translation>
+   <translation id="telephony_line_language_value_german" qtlid="31618">Allemand</translation>
+   <translation id="telephony_line_language_value_italian" qtlid="33502">Italien</translation>
+   <translation id="telephony_line_language_value_spanish" qtlid="33454">Espagnol</translation>
+   <translation id="telephony_line_language_validate" qtlid="323638">Changer la langue</translation>
+   <translation id="telephony_line_language_error_init" qtlid="360060">Impossible de récuperer la langue de votre ligne</translation>
+   <translation id="telephony_line_language_error_change" qtlid="360073">Impossible de modifier la langue de votre ligne</translation>
+   <translation id="telephony_line_language_ok_change" qtlid="360086">Langue changée avec succès</translation>
+</translations>

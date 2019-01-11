@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_order_nongeographical_title" qtlid="333997">Commander un numéro non-géographique</translation>
+   <translation id="telephony_order_nongeographical_submit_title" qtlid="333997">Commander un numéro non-géographique</translation>
+   <translation id="telephony_order_nongeographical_amount_title" qtlid="333399">Je commande</translation>
+   <translation id="telephony_order_nongeographical_amount_title" qtlid="333412">Nombre de numéros&#160;:</translation>
+   <translation id="telephony_order_nongeographical_specific_title" qtlid="333451">Choix du numéro</translation>
+   <translation id="telephony_order_nongeographical_retractation_title" qtlid="319973">Právo na odstoupení od smlouvy (zpětvzetí)</translation>
+   <translation id="telephony_order_nongeographical_address_title" qtlid="333464">Coordonnées du titulaire du numéro</translation>
+
+   <translation id="telephony_order_nongeographical_zone_tip" qtlid="333477">Ville ou code postal</translation>
+
+   <translation id="telephony_order_nongeographical_numbers_error" qtlid="333490">Impossible de charger la liste des présélections de numéros.</translation>
+
+   <translation id="telephony_order_nongeographical_order_error" qtlid="347093">La commande de numéro(s) non-géographique(s) a échoué. Veuillez réessayer ultérieurement.</translation>
+   <translation id="telephony_order_nongeographical_order_error_city" qtlid="333503">{{city}} n'appartient pas à la zone ({{zone}})</translation>
+   <translation id="telephony_order_nongeographical_order_success" qtlid="347106">Numéro(s) non-géographique(s) commandé(s). Veuillez accepter les conditions générales de vente et régler votre commande.</translation>
+</translations>

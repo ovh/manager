@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_service_fax_settings_main_title" qtlid="306578">Configura il fax</translation>
+   <translation id="telephony_service_fax_settings_general_options" qtlid="340133">Opzioni generali</translation>
+   <translation id="telephony_service_fax_settings_general_options_fax_quality" qtlid="356914">Qualità di invio:</translation>
+   <translation id="telephony_service_fax_settings_general_options_fax_quality_normal" qtlid="67052">Normale</translation>
+   <translation id="telephony_service_fax_settings_general_options_fax_quality_high" qtlid="66332">Alto</translation>
+   <translation id="telephony_service_fax_settings_general_options_fax_quality_best" qtlid="356927">Migliore</translation>
+   <translation id="telephony_service_fax_settings_general_options_fax_max_call" qtlid="356940">Numero di tentativi di invio:</translation>
+   <translation id="telephony_service_fax_settings_header" qtlid="356953">Intestazione dei fax trasmessi</translation>
+   <translation id="telephony_service_fax_settings_header_help" qtlid="306981">Aiuto intestazione fax</translation>
+   <translation id="telephony_service_fax_settings_header_help_info0" qtlid="306994">Separa il testo in più colonne di dimensione uguale</translation>
+   <translation id="telephony_service_fax_settings_header_help_info1" qtlid="307007">Identificativo task</translation>
+   <translation id="telephony_service_fax_settings_header_help_info2" qtlid="307033">Fax trasmissione ID. Se vuoto: numero di fax</translation>
+   <translation id="telephony_service_fax_settings_header_help_info3" qtlid="307020">Nome allegato</translation>
+   <translation id="telephony_service_fax_settings_header_help_info4" qtlid="460288">Mail de l’expéditeur</translation>
+   <translation id="telephony_service_fax_settings_header_help_info5" qtlid="152388">FAX</translation>
+   <translation id="telephony_service_fax_settings_header_help_info6" qtlid="307059">Numero di pagina del task</translation>
+   <translation id="telephony_service_fax_settings_header_help_info7" qtlid="307072">Fax ricezione ID del destinatario</translation>
+   <translation id="telephony_service_fax_settings_header_help_info8" qtlid="307098">Numero di pagine totale del task</translation>
+   <translation id="telephony_service_fax_settings_header_help_info9" qtlid="460301">Numéro de fax du destinataire</translation>
+   <translation id="telephony_service_fax_settings_header_help_info10" qtlid="307111">Nome del destinatario</translation>
+   <translation id="telephony_service_fax_settings_header_update" qtlid="460314">Appliquer l’entête</translation>
+   <translation id="telephony_service_fax_settings_header_update_success" qtlid="460327">Entête enregistrée</translation>
+   <translation id="telephony_service_fax_settings_header_error_maxlength" qtlid="460340">Le champ "Entête des fax émis" ne doit pas dépasser les 50 caractères.</translation>
+   <translation id="telephony_service_fax_settings_notification_options" qtlid="356966">Opzioni delle notifiche</translation>
+   <translation id="telephony_service_fax_settings_notification_options_from_name" qtlid="356979">Nome del mittente:</translation>
+   <translation id="telephony_service_fax_settings_notification_options_from_name_error_required" qtlid="356992">Il campo "Nome mittente" è obbligatorio.</translation>
+   <translation id="telephony_service_fax_settings_notification_options_from_email" qtlid="391202">Indirizzo email del mittente:</translation>
+   <translation id="telephony_service_fax_settings_notification_options_from_email_error_email" qtlid="391215">L'indirizzo email non è valido.</translation>
+   <translation id="telephony_service_fax_settings_notification_options_mail_format" qtlid="357031">Formato email:</translation>
+   <translation id="telephony_service_fax_settings_notification_options_mail_format_html" qtlid="357044">HTML</translation>
+   <translation id="telephony_service_fax_settings_notification_options_mail_format_text" qtlid="234708">Testo</translation>
+   <translation id="telephony_service_fax_settings_notification_options_update" qtlid="337936">Applica le opzioni</translation>
+   <translation id="telephony_service_fax_settings_notification_options_update_success" qtlid="337949">Opzioni registrate</translation>
+   <translation id="telephony_service_fax_settings_notification_settings_update" qtlid="284867">Applica la configurazione</translation>
+   <translation id="telephony_service_fax_settings_notification_settings_update_settings_success" qtlid="460353">Configuration enregistrée</translation>
+   <translation id="telephony_service_fax_settings_notification_settings_update_settings_error" qtlid="263533">Si è verificato un errore durante la modifica della configurazione</translation>
+   <translation id="telephony_service_fax_settings_addresses_to_notify" qtlid="337975">Indirizzo email di notifica</translation>
+   <translation id="telephony_service_fax_settings_addresses_to_notify_add" qtlid="71357">Aggiungi un indirizzo e-mail</translation>
+   <translation id="telephony_service_fax_settings_addresses_to_notify_empty" qtlid="357057">Non hai ancora configurato l'indirizzo email di notifica.</translation>
+   <translation id="telephony_service_fax_settings_addresses_to_notify_placeholder" qtlid="69509">Email</translation>
+   <translation id="telephony_service_fax_settings_addresses_to_notify_error_required" qtlid="357070">Il campo "Email" è obbligatorio.</translation>
+   <translation id="telephony_service_fax_settings_addresses_to_notify_error_email" qtlid="391215">L'indirizzo email non è valido.</translation>
+   <translation id="telephony_service_fax_settings_addresses_to_notify_info_limit" qtlid="338014">È possibile inviare la notifica a un massimo di 5 indirizzi email.</translation>
+
+   <translation id="telephony_service_fax_settings_update_bulk_all_success" qtlid="460366">La modification de la configuration a bien été appliquée aux services sélectionnés.</translation>
+   <translation id="telephony_service_fax_settings_update_bulk_some_success" qtlid="460379">La modification de la configuration a bien été appliquée à {{ count }} des services sélectionnés.</translation>
+   <translation id="telephony_service_fax_settings_update_bulk_error" qtlid="460392">La modification de la configuration n'a pu être appliquée au(x) service(s) suivant(s) :</translation>
+   <translation id="telephony_service_fax_settings_update_bulk_on_error" qtlid="460405">Oups ! Une erreur est survenue lors de la modification de la configuration.</translation>
+</translations>

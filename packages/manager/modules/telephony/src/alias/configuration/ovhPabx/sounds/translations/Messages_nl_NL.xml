@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_alias_ovh_pabx_sounds_list_title" qtlid="462797">Liste des sons</translation>
+
+   <translation id="telephony_alias_ovh_pabx_sounds_list_info1" qtlid="480253">Ici, vous pouvez gérer les sons disponibles.</translation>
+   <translation id="telephony_alias_ovh_pabx_sounds_list_info2" qtlid="480266">Une fois vos sons paramétrés, il vous faut les ajouter dans la configuration de votre serveur vocal pour les utiliser.</translation>
+<!-- ADD SOUND -->
+   <translation id="telephony_alias_ovh_pabx_sounds_add" qtlid="462810">Ajouter un son</translation>
+   <translation id="telephony_alias_ovh_pabx_sounds_add_limitations" qtlid="462823">Taille max. : 10 Mo, formats principaux autorisés : wav, mp3, ogg et wma.</translation>
+   <translation id="telephony_alias_ovh_pabx_sounds_add_selected_file" qtlid="462836">Fichier sélectionné: {{ file }}.</translation>
+   <translation id="telephony_alias_ovh_pabx_sounds_add_bad_name" qtlid="462849">Le nom du fichier ne doit pas dépasser 30 caractères et ne peut contenir que des caractères alphanumériques, des tirets bas ou des espaces.</translation>
+   <translation id="telephony_alias_ovh_pabx_sounds_add_bad_size" qtlid="462862">La taille du fichier ne doit pas dépasser 10 Mo.</translation>
+   <translation id="telephony_alias_ovh_pabx_sounds_add_bad_extension" qtlid="462875">Seules les extensions wav, mp3, ogg et wma sont acceptées.</translation>
+   <translation id="telephony_alias_ovh_pabx_sounds_add_file_exists" qtlid="462888">Le fichier existe déjà dans la liste de sons ou le même fichier au format wav existe déjà.</translation>
+</translations>

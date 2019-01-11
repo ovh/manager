@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_line_mgcp_ip_restriction_title" qtlid="336831">MGCP ribojimas per IP</translation>
+   <translation id="telephony_line_mgcp_ip_restriction_line_title" qtlid="390669">Linijos MGCP apribojimai</translation>
+   <translation id="telephony_line_mgcp_ip_restriction_line_info" qtlid="479863">{{ restriction? 'La restriction ' + restriction : 'Cette restriction' }} est utilisée sur la ligne actuellement sélectionnée.</translation>
+   <translation id="telephony_line_mgcp_ip_restriction_customer_code_title" qtlid="390695">MGCP apribojimai susieti su jūsų kliento kodu</translation>
+   <translation id="telephony_line_mgcp_ip_restriction_customer_code_info" qtlid="390708">Šie apribojimai naudojami diegiant naujas linijas, užsakytas su jūsų kliento kodu.</translation>
+   <translation id="telephony_line_mgcp_ip_restriction_label" qtlid="390721">Autorizuotas IP adresas:</translation>
+   <translation id="telephony_line_mgcp_ip_restriction_placeholder" qtlid="390734">Autorizuotas IP adresas (pavyzdys: 213.186.33.33)</translation>
+   <translation id="telephony_line_mgcp_ip_restriction_default_placeholder" qtlid="458832">Adresse IP autorisée (exemple : 213.186.33.33/24)</translation>
+   <translation id="telephony_line_mgcp_ip_restriction_error_pattern" qtlid="339236">Neteisingas IP adresas.</translation>
+   <translation id="telephony_line_mgcp_ip_restriction_submit" qtlid="458845">Ajouter l’adresse IP</translation>
+   <translation id="telephony_line_mgcp_ip_restriction_edit_success" qtlid="390747">Keitimai užregistruoti ir bus aktyvūs po 5 minučių.</translation>
+   <translation id="telephony_line_mgcp_ip_restriction_edit_error" qtlid="390760">Klaida keičiant autorizuotus IP adresus.</translation>
+</translations>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_group_billing_repayment_history_title" qtlid="35880">Historial de transferencias</translation>
+
+   <translation id="telephony_group_billing_repayment_history_init_error" qtlid="357291">¡Vaya! Se ha producido un error al borrar el historial de transferencias.</translation>
+   <translation id="telephony_group_billing_repayment_history_download_error" qtlid="357304">¡Vaya! Se ha producido un error al descargar el detalle de la transferencia.</translation>
+
+   <translation id="telephony_group_billing_repayment_history_informations" qtlid="386781">Esta sección recoge las transferencias de las llamadas recibidas en los números especiales de su grupo. Para acceder a los costes generados por las llamadas entrantes,</translation>
+
+   <translation id="telephony_group_billing_repayment_history_informations_link" qtlid="386794">acceda a los costes SVA de su grupo.</translation>
+   <translation id="telephony_group_billing_repayment_history_list_title" qtlid="357330">Transferencias del grupo {{ groupName }}</translation>
+   <translation id="telephony_group_billing_repayment_history_list_date" qtlid="259289">Fecha de solicitud</translation>
+   <translation id="telephony_group_billing_repayment_history_list_price" qtlid="45328">Importe</translation>
+   <translation id="telephony_group_billing_repayment_history_list_no_results" qtlid="357343">No se han encontrado transferencias</translation>
+   <translation id="telephony_group_billing_repayment_history_list_download_csv" qtlid="357356">Detalles de la transferencia en formato CSV</translation>
+
+</translations>

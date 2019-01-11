@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_line_calls_events_title" qtlid="335167">Išskirtinių blokavimų valdymas</translation>
+
+   <translation id="telephony_line_calls_events_info" qtlid="387289">Kalendoriuje galite kurti įmonės nedarbo laiko ruožus.</translation>
+   <translation id="telephony_line_calls_events_warning" qtlid="387302">Dėmesio, nurodyti ruožai bus aktyvūs tik aktyvavus valandinius ruožus.</translation>
+
+   <translation id="telephony_line_calls_events_load_error" qtlid="387315">Klaida keičiant išskirtinius laikus.</translation>
+
+</translations>

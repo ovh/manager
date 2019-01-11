@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_line_calls_back_link" qtlid="335115">Retour à la gestion des appels</translation>
+   <translation id="telephony_line_calls_actions_line_manage_onboarding" qtlid="335128">Cliquez & glissez sur l'agenda pour créer une plage horaire</translation>
+   <translation id="telephony_line_calls_actions_line_manage_filtering_lists_new" qtlid="335141">Filtrage d'appels</translation>
+   <translation id="telephony_line_calls_actions_line_locking" qtlid="334660">Verrouillage des appels sortants</translation>
+   <translation id="telephony_line_calls_actions_line_forwardcall" qtlid="93355">Renvoi d'appel</translation>
+   <translation id="telephony_line_calls_actions_line_displayNumber" qtlid="58532">Présentation du numéro</translation>
+   <translation id="telephony_line_calls_actions_line_simultaneouslines" qtlid="303718">Appels simultanés</translation>
+   <translation id="telephony_line_calls_actions_line_manage_slots" qtlid="335154">Gérer les plages horaires</translation>
+   <translation id="telephony_line_calls_actions_line_calendar" qtlid="335167">Gérer les fermetures exceptionnelles</translation>
+   <translation id="telephony_line_calls_actions_line_callWaiting" qtlid="335180">Double appel et Intercom</translation>
+   <translation id="telephony_line_calls_actions_line_abbreviated_numbers" qtlid="334192">Numéros abrégés</translation>
+   <translation id="telephony_line_calls_actions_line_click2call" qtlid="335193">Appel en 1 clic (Click2Call)</translation>
+   <translation id="telephony_line_calls_actions_line_external_number_display" qtlid="387146">Présentation d'un numéro externe</translation>
+</translations>

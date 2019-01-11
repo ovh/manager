@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_options_group_title" qtlid="334400">Opcje grupy</translation>
+   <translation id="telephony_billing_account_administration_options_group_hiddenExternalNumber" qtlid="456804">Relevé de consommations</translation>
+   <translation id="telephony_billing_account_administration_options_group_hiddenExternalNumber_label" qtlid="479499">Masquer les appels entrants/sortants sur le relevé de consommation</translation>
+   <translation id="telephony_billing_account_administration_options_group_overrideDisplayedNumber" qtlid="456830">Présentation numéro interne/externe</translation>
+   <translation id="telephony_billing_account_administration_options_group_overrideDisplayedNumber_info" qtlid="479512">Très utile dans une entreprise. Présenter le numéro du standard pour vos appels extérieurs et présenter votre propre numéro pour les appels internes à l'entreprise.</translation>
+   <translation id="telephony_billing_account_administration_options_group_overrideDisplayedNumber_label" qtlid="479525">Utiliser un affichage distinct pour le numéro interne/externe</translation>
+   <translation id="telephony_billing_account_administration_options_group_displayOnIncomingCall" qtlid="456869">Affichage de la description des lignes</translation>
+   <translation id="telephony_billing_account_administration_options_group_displayOnIncomingCall_info" qtlid="456882">Présenter la description des lignes lors des appels.</translation>
+   <translation id="telephony_billing_account_administration_options_group_displayOnIncomingCall_label" qtlid="479538">Présenter la description des lignes lors des appels</translation>
+   <translation id="telephony_billing_account_administration_options_group_success_changing" qtlid="456908">Les options du groupe ont été mises à jour.</translation>
+   <translation id="telephony_billing_account_administration_options_group_error_loading" qtlid="456921">Oups ! Une erreur est survenue lors de la récupération des options du groupe.</translation>
+   <translation id="telephony_billing_account_administration_options_group_error_changing" qtlid="456934">Oups ! Impossible de modifier les options du groupe.</translation>
+</translations>

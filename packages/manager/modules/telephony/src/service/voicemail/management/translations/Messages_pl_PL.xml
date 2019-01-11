@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_line_answer_voicemail_directories_main_title" qtlid="337546">Odsłuchiwanie i zarządzanie wiadomościami</translation>
+
+   <translation id="telephony_line_answer_voicemail_directories_title" qtlid="337559">Zarządzanie wiadomościami z poczty głosowej</translation>
+   <translation id="telephony_line_answer_voicemail_directories_delete_message" qtlid="337572">Usuń wiadomość</translation>
+   <translation id="telephony_line_answer_voicemail_directories_delete_message_plural" qtlid="337585">Usuń {{ count }} wiadomości.</translation>
+   <translation id="telephony_line_answer_voicemail_directories_listen_message" qtlid="337598">Odsłuchaj</translation>
+   <translation id="telephony_line_answer_voicemail_directories_download_message" qtlid="39286">Pobierz</translation>
+   <translation id="telephony_line_answer_voicemail_directories_refresh_message" qtlid="250030">Odśwież</translation>
+   <translation id="telephony_line_answer_voicemail_directories_empty" qtlid="105791">Nie masz żadnej wiadomości.</translation>
+   <translation id="telephony_line_answer_voicemail_directories_caller" qtlid="303549">Dzwoniący</translation>
+   <translation id="telephony_line_answer_voicemail_directories_date" qtlid="24523">Data</translation>
+   <translation id="telephony_line_answer_voicemail_directories_duration" qtlid="8218">Okres</translation>
+</translations>

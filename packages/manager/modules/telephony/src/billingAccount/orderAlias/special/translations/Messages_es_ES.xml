@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_order_special_title" qtlid="334010">Contratar un número especial</translation>
+   <translation id="telephony_order_special_submit_title" qtlid="334010">Contratar un número especial</translation>
+   <translation id="telephony_order_special_amount_title" qtlid="333399">Contrato</translation>
+   <translation id="telephony_order_special_amount_title" qtlid="333412">Cantidad de números:</translation>
+   <translation id="telephony_order_special_range_title" qtlid="346846">Rango:</translation>
+   <translation id="telephony_order_special_typology_title" qtlid="346859">Tipología:</translation>
+   <translation id="telephony_order_special_specific_title" qtlid="333451">Elección del número</translation>
+   <translation id="telephony_order_special_retractation_title" qtlid="319973">Derecho de desistimiento</translation>
+   <translation id="telephony_order_special_address_title" qtlid="333464">Información del titular del número</translation>
+
+   <translation id="telephony_order_special_zone_tip" qtlid="333477">Localidad o código postal</translation>
+
+   <translation id="telephony_order_special_numbers_error" qtlid="333490">No se ha podido cargar la lista de preselecciones de números.</translation>
+
+   <translation id="telephony_order_special_order_error" qtlid="346872">No se ha podido enviar el pedido de números especiales. Por favor, vuelva a intentarlo más adelante.</translation>
+
+   <translation id="telephony_order_special_order_success" qtlid="333516">El pedido de números geográficos se ha enviado. Por favor, acepte las condiciones generales de venta y abone el pedido.</translation>
+   <translation id="telephony_order_special_range_error" qtlid="346885">No se han podido cargar los rangos de números.</translation>
+</translations>

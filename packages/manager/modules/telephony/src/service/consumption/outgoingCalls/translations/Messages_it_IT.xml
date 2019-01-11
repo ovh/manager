@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_service_consumption_outgoing_all" qtlid="336714">Tutte le chiamate effettuate</translation>
+   <translation id="telephony_service_consumption_outgoing_empty" qtlid="336727">Nessuna chiamata effettuata</translation>
+   <translation id="telephony_service_consumption_outgoing_not_found" qtlid="391189">Nessuna chiamata corrisponde a questo filtro</translation>
+   <translation id="telephony_service_consumption_outgoing_period" qtlid="336454">Periodo dal <strong>{{ start }}</strong> al <strong>{{ end }}</strong></translation>
+   <translation id="telephony_service_consumption_outgoing_priceplan" qtlid="336740">Forfait: chiamate: <strong>{{ calls }}</strong>, durata: <strong>{{ duration }}</strong></translation>
+   <translation id="telephony_service_consumption_outgoing_outplan" qtlid="336753">Consumi aggiuntivi: chiamate: <strong>{{ calls }}</strong>, durata: <strong>{{ duration }}</strong>, prezzo: <strong>{{ price }}</strong> +IVA</translation>
+</translations>

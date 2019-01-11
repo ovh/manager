@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_lines_group_title" qtlid="334413">Agrupamiento de líneas</translation>
+   <translation id="telephony_lines_group_info" qtlid="26551">Información</translation>
+   <translation id="telephony_lines_group_select" qtlid="386027">Selección</translation>
+   <translation id="telephony_lines_group_select_another" qtlid="17431">Anterior</translation>
+   <translation id="telephony_lines_group_select_ba_help" qtlid="386040">Seleccione el grupo con los servicios que desea asociar al grupo actual:</translation>
+   <translation id="telephony_lines_group_select_help" qtlid="386053">Seleccione los servicios que desea asociar al grupo actual:</translation>
+   <translation id="telephony_lines_group_line_count" qtlid="386066">Cantidad de líneas asociadas: <strong>{{lines}}</strong></translation>
+   <translation id="telephony_lines_group_number_count" qtlid="386079">Cantidad de números asociados: <strong>{{numbers}}</strong></translation>
+   <translation id="telephony_lines_group_telephony_group" qtlid="345910">Grupo de telefonía</translation>
+   <translation id="telephony_lines_group_line_and_number" qtlid="386092">Líneas y números</translation>
+   <translation id="telephony_lines_group_line" qtlid="42802">Línea</translation>
+   <translation id="telephony_lines_group_alias" qtlid="30778">Número</translation>
+   <translation id="telephony_lines_group_pool" qtlid="386105">Rango de números</translation>
+   <translation id="telephony_lines_group_attach" qtlid="386118">Asociar los servicios seleccionados</translation>
+   <translation id="telephony_lines_group_service_none" qtlid="386131">El grupo {{ group }} no contiene ningún servicio que pueda asociar.</translation>
+   <translation id="telephony_lines_group_attach_success" qtlid="386144">Los servicios se han asociado correctamente.</translation>
+   <translation id="telephony_lines_group_attach_warning" qtlid="386157">Algunos servicios no han sido asociados.</translation>
+</translations>

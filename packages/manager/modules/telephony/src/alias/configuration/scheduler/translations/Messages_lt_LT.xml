@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_alias_configuration_scheduler_title" qtlid="335167">Išskirtinių blokavimų valdymas</translation>
+   <translation id="telephony_alias_configuration_scheduler_info" qtlid="392528">Kalendorius leidžia nustatyti išskirtinius laikus, pavyzdžiui, valstybines šventes, kuomet įmonė nedirba.</translation>
+   <translation id="telephony_alias_configuration_scheduler_load_error" qtlid="461354">Oups ! Une erreur est survenue lors du chargement de vos fermetures exceptionnelles.</translation>
+</translations>

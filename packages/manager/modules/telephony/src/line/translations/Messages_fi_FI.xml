@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_line_page_title" qtlid="387354">Liittymä "{{name}}"</translation>
+   <translation id="telephony_line_tab_manage" qtlid="72737">Hallinta</translation>
+   <translation id="telephony_line_tab_consumption" qtlid="25639">Käyttö</translation>
+   <translation id="telephony_line_tab_call_management" qtlid="334621">Puhelujen hallinta</translation>
+   <translation id="telephony_line_tab_music_management" qtlid="334634">Musiikin hallinta</translation>
+   <translation id="telephony_line_tab_answering_machine" qtlid="88956">Vastaaja</translation>
+   <translation id="telephony_line_tab_phone" qtlid="34174">Puhelin</translation>
+   <translation id="telephony_line_tab_contact_details" qtlid="33370">Yhteystiedot</translation>
+   <translation id="telephony_line_tab_assist" qtlid="52699">Tuki</translation>
+   <translation id="telephony_line_tab_fax" qtlid="32926">Faksi</translation>
+
+   <translation id="telephony_line_rename_error" qtlid="334647">Liittymän {{serviceName}} uudelleennimeäminen ei onnistu.</translation>
+
+   <translation id="telephony_line_offer_type_individual" qtlid="358565">SIP Discovery</translation>
+   <translation id="telephony_line_offer_type_priceplan" qtlid="358578">SIP Entreprise</translation>
+   <translation id="telephony_line_expire_date" qtlid="358591">Palvelu vanhenee {{date}}.</translation>
+   <translation id="telephony_line_expire_link" qtlid="358604">Voit peruuttaa klikkaamalla tästä.</translation>
+   <translation id="telephony_line_convert_date" qtlid="387367">Tämä liittymä muuttuu numeroksi {{ date }}.</translation>
+   <translation id="telephony_line_convert_link" qtlid="458195">Vous pourrez annuler dans la section suivante.</translation>
+</translations>

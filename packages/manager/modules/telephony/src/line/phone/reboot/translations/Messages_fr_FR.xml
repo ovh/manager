@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_line_phone_reboot_title">Redémarrer le téléphone</translation>
+   <translation id="telephony_line_phone_reboot_section_title">Plug & Phone</translation>
+   <translation id="telephony_line_phone_reboot_phone_brand">Modèle</translation>
+   <translation id="telephony_line_phone_reboot_phone_mac_address">Adresse MAC</translation>
+   <translation id="telephony_line_phone_reboot_phone">Redémarrer</translation>
+   <translation id="telephony_line_phone_reboot_error">Oups, une erreur est survenue lors du redémarrage du téléphone.</translation>
+   <translation id="telephony_line_phone_reboot_unsupported">Impossible de redémarrer à distance ce type de téléphone.</translation>
+   <translation id="telephony_line_phone_reboot_success">Redémarrage en cours.</translation>
+</translations>

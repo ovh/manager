@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_group_billing_credit_threshold_title" qtlid="386912">Modifier votre limite de dépôt de garantie</translation>
+   <translation id="telephony_group_billing_credit_threshold_info_subtitle" qtlid="26551">Informações</translation>
+   <translation id="telephony_group_billing_credit_threshold_credit_threshold" qtlid="357486">Votre limite actuelle est de&#160;:</translation>
+   <translation id="telephony_group_billing_credit_threshold_allowed_out_plan" qtlid="357499">Votre hors forfait autorisé actuel est de&#160;:</translation>
+   <translation id="telephony_group_billing_credit_threshold_current_out_plan" qtlid="357512">Votre hors forfait global actuel est de&#160;:</translation>
+   <translation id="telephony_group_billing_credit_threshold_credits_label" qtlid="357525">Modification du crédit&#160;:</translation>
+   <translation id="telephony_group_billing_credit_threshold_new_credit" qtlid="357538">Après validation, votre limite sera de&#160;:</translation>
+   <translation id="telephony_group_billing_credit_threshold_without_tax" qtlid="101397">s/IVA</translation>
+   <translation id="telephony_group_billing_credit_threshold_contracts_subtitle" qtlid="357551">Aceitação dos contratos</translation>
+   <translation id="telephony_group_billing_credit_threshold_contracts" qtlid="357564">Vous devez accepter les contrats OVH avant de valider la demande de dépôt de garantie.</translation>
+   <translation id="telephony_group_billing_credit_threshold_submit" qtlid="37875">Alterar</translation>
+   <translation id="telephony_group_billing_credit_threshold_success" qtlid="357577">La demande de modification de la limite a été enregistrée avec succès !</translation>
+</translations>

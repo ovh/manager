@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="voip_time_condition_slots_type_slot1">Créneau 1</translation>
+   <translation id="voip_time_condition_slots_type_slot2">Créneau 2</translation>
+   <translation id="voip_time_condition_slots_type_slot3">Créneau 3</translation>
+   <translation id="voip_time_condition_slots_type_available">Horaires d’ouverture</translation>
+   <translation id="voip_time_condition_slots_type_unavailable">Horaires de fermeture</translation>
+   <translation id="voip_time_condition_slots_undefined">Non configuré</translation>
+   <translation id="voip_time_condition_slots_configure">Configurer</translation>
+   <translation id="voip_time_condition_slots_redirect_type_voicemail">Rediriger vers le répondeur&#160;: <span class="no-wrap">{{ number }}</span></translation>
+   <translation id="voip_time_condition_slots_redirect_type_number">Rediriger vers le numéro&#160;: <span class="no-wrap">{{ number }}</span></translation>
+
+   <translation id="voip_time_condition_slots_type_available_help">Créneaux durant lesquels il est possible de vous joindre en appliquant la file d’appels configurée</translation>
+   <translation id="voip_time_condition_slots_type_unavailable_help">Créneaux durant lesquels il est impossible de vous joindre.</translation>
+   <translation id="voip_time_condition_slots_type_slot_help">Créneaux supplémentaires durant lesquels l’appelant sera redirigé vers un autre numéro ou un répondeur.</translation>
+
+<!-- POPOVER -->
+   <translation id="voip_time_condition_slots_redirect_popover_back_btn_title">Retour</translation>
+<!-- TITLES -->
+   <translation id="voip_time_condition_slots_redirect_popover_slot1_title">Configuration du créneau 1</translation>
+   <translation id="voip_time_condition_slots_redirect_popover_slot1_help">Comportement à adopter pour les plages horaires utilisant le créneau 1.</translation>
+   <translation id="voip_time_condition_slots_redirect_popover_slot2_title">Configuration du créneau 2</translation>
+   <translation id="voip_time_condition_slots_redirect_popover_slot2_help">Comportement à adopter pour les plages horaires utilisant le créneau 2.</translation>
+   <translation id="voip_time_condition_slots_redirect_popover_slot3_title">Configuration du créneau 3</translation>
+   <translation id="voip_time_condition_slots_redirect_popover_slot3_help">Comportement à adopter pour les plages horaires utilisant le créneau 3.</translation>
+   <translation id="voip_time_condition_slots_redirect_popover_unavailable_title">Créneaux hors plages horaires</translation>
+   <translation id="voip_time_condition_slots_redirect_popover_unavailable_help">Comportement par défaut à adopter en dehors des plages horaires.</translation>
+   <translation id="voip_time_condition_slots_redirect_popover_unavailable_help_timeout">Ce comportement sera déclenché après le délai de renvoi renseigné.</translation>
+<!-- FIELDS -->
+   <translation id="voip_time_condition_slots_redirect_popover_redirect_type">Rediriger l'appel vers</translation>
+   <translation id="voip_time_condition_slots_redirect_popover_redirect_type_voicemail">Un répondeur</translation>
+   <translation id="voip_time_condition_slots_redirect_popover_redirect_type_voicemail_explain">Permet de renvoyer l'appel vers le répondeur de l'une de vos lignes (sans la faire sonner).</translation>
+   <translation id="voip_time_condition_slots_redirect_popover_redirect_type_number">Un numéro externe</translation>
+   <translation id="voip_time_condition_slots_redirect_popover_redirect_type_number_explain">Permet de renvoyer l'appel vers un numéro externe (hors OVH).</translation>
+   <translation id="voip_time_condition_slots_redirect_popover_redirect_type_number_ovh">Une ligne ou un numéro OVH</translation>
+   <translation id="voip_time_condition_slots_redirect_popover_redirect_type_number_ovh_explain">Permet de renvoyer l'appel vers l'une de vos lignes OVH ou l'un de vos numéros OVH.</translation>
+   <translation id="voip_time_condition_slots_redirect_popover_number_to_redirect">Numéro vers lequel rediriger</translation>
+   <translation id="voip_time_condition_slots_redirect_popover_number_to_redirect_placeholder">Numéro au format international (ex: +3312345678)</translation>
+   <translation id="voip_time_condition_slots_redirect_popover_number_to_redirect_required">Le numéro vers lequel rediriger est obligatoire.</translation>
+   <translation id="voip_time_condition_slots_redirect_popover_number_to_redirect_format">Le numéro doit être au format international (ex: +3312345678).</translation>
+<!-- FILTER -->
+   <translation id="telecom_sidebar_section_telephony_filter_number">Numéro</translation>
+   <translation id="telecom_sidebar_section_telephony_filter_line">Ligne SIP</translation>
+   <translation id="telecom_sidebar_section_telephony_filter_fax">Fax</translation>
+   <translation id="telecom_sidebar_section_telephony_filter_plug_fax">Plug & Fax</translation>
+   <translation id="telecom_sidebar_section_telephony_filter_trunk">Ligne SIP Trunk</translation>
+</translations>

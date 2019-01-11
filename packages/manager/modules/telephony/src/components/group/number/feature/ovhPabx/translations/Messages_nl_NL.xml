@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_number_feature_ovh_pabx_load_error" qtlid="464409">Oups ! Une erreur est survenue lors du chargement de votre menu interactif.</translation>
+   <translation id="telephony_number_feature_ovh_pabx_action_interactive_menu_management" qtlid="396844">Gérer les menus interactifs</translation>
+   <translation id="telephony_number_feature_ovh_pabx_action_sound_management" qtlid="396857">Gérer les sons</translation>
+   <translation id="telephony_number_feature_ovh_pabx_action_delete_title" qtlid="59699">Verwijdering</translation>
+
+<!-- DIALPLAN -->
+<!-- DIALPLAN OPTIONS -->
+   <translation id="telephony_number_feature_ovh_pabx_dialplan_name_bad_format" qtlid="463720">Le nom ne peut contenir que des lettres (sans accents), chiffres, tirets bas ou des espaces.</translation>
+   <translation id="telephony_number_feature_ovh_pabx_dialplan_transfer_timeout" qtlid="464422">Timeout de transfert d'appel (en s.)</translation>
+   <translation id="telephony_number_feature_ovh_pabx_dialplan_anonymous_acceptation" qtlid="464435">Accepter les appels masqués</translation>
+   <translation id="telephony_number_feature_ovh_pabx_dialplan_anonymous_rejection" qtlid="464448">Rejet d'appel masqué</translation>
+   <translation id="telephony_number_feature_ovh_pabx_dialplan_anonymous_rejection_active" qtlid="464461">Rejeter les appels masqués</translation>
+   <translation id="telephony_number_feature_ovh_pabx_dialplan_anonymous_rejection_inactive" qtlid="464474">Ne pas rejeter les appels masqués</translation>
+   <translation id="telephony_number_feature_ovh_pabx_dialplan_show_caller_number" qtlid="392697">Numéro à présenter</translation>
+   <translation id="telephony_number_feature_ovh_pabx_dialplan_show_caller_number_explain" qtlid="464487">Le numéro à présenter permet de définir la présentation lors d'un appel entrant sur le téléphone qui reçoit cet appel.</translation>
+   <translation id="telephony_number_feature_ovh_pabx_dialplan_show_caller_number_both" qtlid="392723">Les deux numéros</translation>
+   <translation id="telephony_number_feature_ovh_pabx_dialplan_show_caller_number_both_explain" qtlid="464500">Le téléphone cible (qui reçoit l'appel) verra sur son écran le numéro de l'alias (numéro qui est composé par l’appelant).</translation>
+   <translation id="telephony_number_feature_ovh_pabx_dialplan_show_caller_number_caller" qtlid="392710">Le numéro de l'appelant</translation>
+   <translation id="telephony_number_feature_ovh_pabx_dialplan_show_caller_number_caller_explain" qtlid="464513">Le téléphone cible (qui reçoit l'appel) verra sur son écran la ligne qui compose l'appel ainsi que le numéro alias qui est composé.</translation>
+   <translation id="telephony_number_feature_ovh_pabx_dialplan_step_none" qtlid="464526">Aucune étape configurée</translation>
+   <translation id="telephony_number_feature_ovh_pabx_dialplan_step_count" qtlid="464539">{{ count }} étapes configurées</translation>
+   <translation id="telephony_number_feature_ovh_pabx_dialplan_step_count_single" qtlid="464552">1 étape configurée</translation>
+   <translation id="telephony_number_feature_ovh_pabx_dialplan_action_show_steps" qtlid="464565">Afficher les étapes</translation>
+   <translation id="telephony_number_feature_ovh_pabx_dialplan_action_hide_steps" qtlid="464578">Cacher les étapes</translation>
+
+<!-- STEPS -->
+   <translation id="telephony_number_feature_ovh_pabx_step_add" qtlid="464591">Ajouter une étape</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_add_error" qtlid="464604">Oups ! Une erreur est survenue lors de la création de l'étape.</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_see" qtlid="464617">Voir l'étape {{ number }}</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_number" qtlid="464630">Étape {{ position }}</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_actions_count" qtlid="464643">{{ count }} actions</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_actions_count_single" qtlid="464656">{{ count }} action</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_activate" qtlid="464669">Activer l'étape</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_active" qtlid="29635">Actief</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_desactivate" qtlid="464682">Désactiver l'étape</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_inactive" qtlid="312701">Inactive</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_add_rule" qtlid="464695">Ajouter une action</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_add_rule_invalid" qtlid="464708">Ajouter une action si condition non vérifiée</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_advanced" qtlid="305837">Geavanceerde configuratiepagina</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_remove" qtlid="464721">Supprimer l'étape</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_collapse" qtlid="464734">Cacher les actions</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_expand" qtlid="464747">Afficher les actions</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_count" qtlid="464760">{{ count }} actions configurées</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_count_single" qtlid="464773">1 action configurée</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_count_none" qtlid="464786">Aucune action configurée</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_condition" qtlid="318660">Conditions :</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_no_condition" qtlid="464799">Pas de conditions</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_remove_error" qtlid="464812">Oups ! Une erreur est survenue lors de la suppression de l'étape.</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_invalid_actions" qtlid="464825">{{count}} actions si condition(s) non vérifiée(s)</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_invalid_actions_single" qtlid="464838">1 action si condition(s) non vérifiée(s)</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_no_invalid_actions" qtlid="464851">Aucune action si condition(s) non vérifiée(s)</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_invalid_actions_show" qtlid="464864">Afficher les actions si condition(s) non vérifiée(s)</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_invalid_actions_hide" qtlid="464877">Cacher les actions si condition(s) non vérifiée(s)</translation>
+<!-- STEPS CONDITIONS -->
+   <translation id="telephony_number_feature_ovh_pabx_step_conditions_infos" qtlid="464890">La configuration avancée vous permet d'établir des conditions selon lesquelles la stratégie jouée sera différente.</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_conditions_none" qtlid="464903">Aucune condition définie</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_no_conditions" qtlid="464916">Aucune condition</translation>
+<!-- SCHEDULER CONDITION -->
+   <translation id="telephony_number_feature_ovh_pabx_step_conditions_scheduler" qtlid="464929">Jours exceptionnels</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_conditions_scheduler_infos" qtlid="464942">Vous pouvez paramétrer vos jours de fermetures exceptionnelles <a data-ui-sref="telecom.telephony.alias.configuration.scheduler.ovhPabx">sur cette page</a>.</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_conditions_scheduler_scheduler1" qtlid="335258">Créneau 1</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_conditions_scheduler_scheduler2" qtlid="335271">Créneau 2</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_conditions_scheduler_scheduler3" qtlid="335284">Créneau 3</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_conditions_scheduler_holidays" qtlid="396597">Jours chômés (Hors plages horaires)</translation>
+<!-- TIME CONDITIONS -->
+   <translation id="telephony_number_feature_ovh_pabx_step_conditions_time_condition" qtlid="464955">Plages horaires génériques</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_conditions_time_condition_no_slot" qtlid="464968">Aucune plage horaire définie</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_conditions_time_condition_slot" qtlid="464981">Plages horaires {{ index }}</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_conditions_time_condition_slot_count" qtlid="464994">{{ count }} plages horaires définies</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_conditions_time_condition_slot_count_single" qtlid="465007">{{ count }} plage horaire définie</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_conditions_time_condition_slot_add" qtlid="465020">Ajouter des plages horaires</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_conditions_time_condition_slot_from" qtlid="69077">Van</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_conditions_time_condition_slot_to" qtlid="69089">Aan</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_conditions_time_condition_bad_slot" qtlid="465033">Veuillez sélectionner une heure valide dans les créneaux disponibles (tous les quarts d'heure).</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_conditions_time_condition_collision" qtlid="465046">Dans cette configuration, une ou plusieurs plages horaires rentrent en conflit.</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_conditions_time_condition_bad_hours" qtlid="465059">L'heure de fin doit être plus tardive que l'heure de début.</translation>
+<!-- SCREEN LIST CONDITIONS -->
+   <translation id="telephony_number_feature_ovh_pabx_step_conditions_screen_list" qtlid="465072">Filtrages d'appels</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_conditions_screen_list_infos" qtlid="465085">Une fois le type de liste sélectionné, vous aurez la possibilité de saisir tout ou partie du numéro :</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_conditions_screen_list_infos1" qtlid="465098">+33123455678 : le numéro complet ;</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_conditions_screen_list_infos2" qtlid="465111">+3312345 : les numéros commencant par ce numéro.</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_conditions_screen_list_type" qtlid="465124">Type de liste</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_conditions_screen_list_type_incoming_black_list" qtlid="324288">Liste noire</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_conditions_screen_list_type_incoming_white_list" qtlid="324301">Liste blanche</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_conditions_screen_list_numbers" qtlid="465137">Liste des numéros</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_conditions_screen_list_numbers_empty" qtlid="465150">Aucun numéro ajouté à la liste</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_conditions_screen_list_number_placeholder" qtlid="465163">Ajouter un numéro à la liste</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_conditions_screen_list_number_remove" qtlid="465176">Supprimer ce numéro</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_conditions_screen_list_number_add_pattern" qtlid="465189">Le numéro ne peut contenir que des chiffres et peut être précédé par un +.</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_conditions_screen_list_number_add_match" qtlid="465202">Ce numéro est déjà associé à {{ number }}</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_conditions_screen_list_number_count" qtlid="465215">{{ count }} numéros</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_conditions_screen_list_number_count_single" qtlid="465228">{{ count }} numéro</translation>
+
+<!-- RULES -->
+   <translation id="telephony_number_feature_ovh_pabx_step_rule_action_edit" qtlid="464344">Modifier l'action</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_rule_action_delete" qtlid="465241">Supprimer l'action</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_rule_action_delete_error" qtlid="465254">Oups ! Une erreur est survenue lors de la suppression de l'action.</translation>
+<!-- ACTIONS -->
+<!-- SET CALLER NAME -->
+   <translation id="telephony_number_feature_ovh_pabx_step_rule_set_caller_name" qtlid="324535">Définir un nom d'appelant</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_rule_set_caller_name_explain" qtlid="465267">Permet de changer, au cours de l'appel, le nom de l'appelant qui sera présenté sur le téléphone de la ligne qui décroche l'appel.</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_rule_set_caller_name_action_param" qtlid="463941">Nom de l'appelant</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_rule_set_caller_name_action_param_required" qtlid="463954">Veuillez donner un nom d'appelant.</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_rule_set_caller_name_action_param_bad_format" qtlid="463967">Le nom de l'appelant ne peut contenir que des lettres (sans accents), chiffres, tirets bas ou des espaces.</translation>
+<!-- BRIDGE -->
+   <translation id="telephony_number_feature_ovh_pabx_step_rule_bridge" qtlid="432163">Transférer l'appel</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_rule_bridge_explain" qtlid="463980">Permet simplement de transférer l'appel vers une ligne.</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_rule_bridge_to_number" qtlid="463993">Transférer vers le numéro</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_rule_bridge_action_param_required" qtlid="464006">Veuillez spécifier un numéro vers lequel transférer l'appel.</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_rule_bridge_action_param_bad_format" qtlid="464019">Le numéro vers lequel transférer l'appel doit être au format international (ex: +33312345678).</translation>
+<!-- HANGUP -->
+   <translation id="telephony_number_feature_ovh_pabx_step_rule_hangup" qtlid="397754">Ophangen</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_rule_hangup_explain" qtlid="465280">Permet de mettre fin à l'appel.</translation>
+<!-- IVR -->
+   <translation id="telephony_number_feature_ovh_pabx_step_rule_ivr" qtlid="324574">Lancer un menu interactif</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_rule_ivr_explain" qtlid="465293">Permet de proposer à l'appelant un menu avec lequel il pourra interagir grâce aux touches de son téléphone.</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_rule_ivr_menu_to_launch" qtlid="464357">Menu à lancer</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_rule_ivr_menu_no_selected" qtlid="464370">Aucun menu sélectionné</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_rule_ivr_menu_add_menu" qtlid="462719">Ajouter un menu interactif</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_rule_ivr_menu_add_menu_new" qtlid="432358">Nouveau menu</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_rule_ivr_menu_add_menu_new_name" qtlid="462745">Mon menu interactif {{ index }}</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_rule_ivr_menu_add_menu_explain" qtlid="465306">Commencez l'édition d'un menu interractif en cliquant sur ce bouton !</translation>
+<!-- PLAYBACK / ENDLESS PLAYBACK -->
+   <translation id="telephony_number_feature_ovh_pabx_step_rule_playback" qtlid="432540">Jouer un son</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_rule_playback_explain" qtlid="464097">Permet de jouer un son.</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_rule_playback_sound_to_play" qtlid="324444">Son à jouer</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_rule_playback_no_sound" qtlid="463772">Aucun son sélectionné</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_rule_endless_playback" qtlid="465319">Jouer un son en boucle</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_rule_endless_playback_explain" qtlid="465332">Permet de jouer un son en boucle jusqu'à ce que l'appelant raccroche.</translation>
+<!-- SLEEP -->
+   <translation id="telephony_number_feature_ovh_pabx_step_rule_sleep" qtlid="324613">Lancer une temporisation</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_rule_sleep_explain" qtlid="465345">Permet simplement de choisir une durée (en ms) pendant laquelle il ne se passera rien.</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_rule_sleep_duration" qtlid="465358">Durée de temporisation (en milliseconde)</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_rule_sleep_during" qtlid="465371">{{ time }} ms</translation>
+<!-- VOICEMAIL -->
+   <translation id="telephony_number_feature_ovh_pabx_step_rule_voicemail" qtlid="465384">Envoyer sur le répondeur</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_rule_voicemail_explain" qtlid="465397">Permet de renvoyer l'appel vers le répondeur de l'une de vos lignes OVH (sans la faire sonner).</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_rule_voicemail_line" qtlid="465410">Ligne OVH</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_rule_voicemail_line_choice" qtlid="465423">Choix de la ligne OVH</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_rule_voicemail_no_line" qtlid="465436">Aucune ligne OVH sélectionnée</translation>
+<!-- DTMF -->
+   <translation id="telephony_number_feature_ovh_pabx_step_rule_read_dtmf" qtlid="464110">Variable d'entrée DTMF</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_rule_read_dtmf_explain" qtlid="464123">Permet, par exemple, de récupérer un identifiant client.</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_rule_read_dtmf_var" qtlid="464136">Nom de la variable d'entrée DTMF</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_rule_read_dtmf_action_param_required" qtlid="464149">Veuillez spécifier un nom de variable d'entrée DTMF.</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_rule_read_dtmf_action_param_bad_format" qtlid="464162">Le nom de variable d'entrée DTMF ne peut contenir que des lettres (sans accents) ou des chiffres.</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_rule_read_dtmf_action_param_too_long" qtlid="464175">Le nom de variable d'entrée DTMF ne peut pas dépasser 24 caractères.</translation>
+<!-- TTS -->
+   <translation id="telephony_number_feature_ovh_pabx_step_rule_tts" qtlid="324639">Lire un TTS</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_rule_tts_explain" qtlid="465449">Permet de lire un texte écrit en un texte parlé.</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_rule_tts_to_read" qtlid="465462">TTS à lire</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_rule_tts_no_selected" qtlid="465475">Aucun TTS sélectionné</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_rule_tts_choice" qtlid="465488">Choix du TTS</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_rule_tts_add" qtlid="462914">Ajouter un TTS</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_rule_tts_add_explain" qtlid="465501">Ajoutez un texte afin qu'il soit lu en texte parlé.</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_rule_tts_list" qtlid="462927">Liste des TTS</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_rule_no_tts_added" qtlid="465514">Aucun TTS ajouté</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_rule_tts_info" qtlid="465527">Vous pouvez gérer vos Text To Speach <a data-ui-sref="telecom.telephony.alias.configuration.ovhPabx.tts">sur la page de gestion des TTS</a>.</translation>
+<!-- HUNTING -->
+   <translation id="telephony_number_feature_ovh_pabx_step_rule_hunting" qtlid="464032">Faire sonner les membres de la file</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_rule_hunting_explain" qtlid="465540">Permet de faire sonner simultanément tous les membres de la file d'appel sélectionnée.</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_rule_hunting_info" qtlid="465553">Vous pouvez paramétrer vos files d'appels <a data-ui-sref="telecom.telephony.alias.configuration.queues.ovhPabx">sur la page de gestion des files d'appels</a>.</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_rule_hunting_choice" qtlid="465566">Choix de la file d'appel</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_rule_hunting_no_queue" qtlid="465579">Aucune file d'appel sélectionnée</translation>
+<!-- EDITION -->
+   <translation id="telephony_number_feature_ovh_pabx_step_rule_new" qtlid="464695">Ajouter une action</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_rule_edit" qtlid="465592">Modifier une action</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_rule_action" qtlid="464331">Action à exécuter</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_rule_create_error" qtlid="465605">Oups ! Une erreur est survenue lors de la création de l'action.</translation>
+   <translation id="telephony_number_feature_ovh_pabx_step_rule_edit_error" qtlid="465618">Oups ! Une erreur est survenue lors de la modification de l'action.</translation>
+</translations>

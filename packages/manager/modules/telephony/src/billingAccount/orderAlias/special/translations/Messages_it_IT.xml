@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_order_special_title" qtlid="334010">Ordina un numero speciale</translation>
+   <translation id="telephony_order_special_submit_title" qtlid="334010">Ordina un numero speciale</translation>
+   <translation id="telephony_order_special_amount_title" qtlid="333399">Ordino</translation>
+   <translation id="telephony_order_special_amount_title" qtlid="333412">Quantità di numeri:</translation>
+   <translation id="telephony_order_special_range_title" qtlid="346846">Intervallo:</translation>
+   <translation id="telephony_order_special_typology_title" qtlid="346859">Tipo:</translation>
+   <translation id="telephony_order_special_specific_title" qtlid="333451">Scegli il numero</translation>
+   <translation id="telephony_order_special_retractation_title" qtlid="319973">Diritto di recesso</translation>
+   <translation id="telephony_order_special_address_title" qtlid="333464">Dati del titolare del numero</translation>
+
+   <translation id="telephony_order_special_zone_tip" qtlid="333477">Città o CAP</translation>
+
+   <translation id="telephony_order_special_numbers_error" qtlid="333490">Impossibile caricare la lista delle preselezioni di numeri.</translation>
+
+   <translation id="telephony_order_special_order_error" qtlid="346872">L'ordine dei tuoi numeri speciali non è andato a buon fine, ti preghiamo di riprovare.&#13;
+&#13;
+</translation>
+
+   <translation id="telephony_order_special_order_success" qtlid="333516">L'ordine dei numeri geografici è stato effettuato. Ti preghiamo di saldare il tuo ordine.</translation>
+   <translation id="telephony_order_special_range_error" qtlid="346885">Impossibile caricare gli intervalli di numeri.</translation>
+</translations>

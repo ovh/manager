@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_device_associate_line_count" qtlid="467087">Lignes configurées ({{ count }}/{{ total }}) :</translation>
+   <translation id="telephony_device_associate_ip_address" qtlid="467100">Adresse IP publique</translation>
+   <translation id="telephony_device_associate_attach" qtlid="247859">Verbinden</translation>
+   <translation id="telephony_device_associate_attach_success" qtlid="467113">Votre équipement a été rattaché avec succès à cette ligne.</translation>
+   <translation id="telephony_device_associate_attach_empty" qtlid="458923">Aucun équipement compatible.</translation>
+</translations>

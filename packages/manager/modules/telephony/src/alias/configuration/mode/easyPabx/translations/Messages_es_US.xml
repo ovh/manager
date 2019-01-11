@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_alias_configuration_mode_easy_pabx_no_reply_timer" qtlid="462420">Délai sur non réponse</translation>
+   <translation id="telephony_alias_configuration_mode_easy_pabx_no_reply_timer_info" qtlid="462433"><strong>Délai sur non réponse</strong> : durée maximale avant que l'appelant ne sorte de la file d'attente.</translation>
+
+   <translation id="telephony_alias_configuration_mode_easy_pabx_voicemail" qtlid="88956">Répondeur</translation>
+   <translation id="telephony_alias_configuration_mode_easy_pabx_voicemail_info" qtlid="392593"><strong>Répondeur</strong> : répondeur sur lequel renvoyer en cas de non-réponse.</translation>
+   <translation id="telephony_alias_configuration_mode_easy_pabx_no_voicemail" qtlid="30646">Aucun</translation>
+
+   <translation id="telephony_alias_configuration_mode_easy_pabx_loading_error" qtlid="462446">Une erreur est survenue lors du chargement des options de votre easyPabx.</translation>
+   <translation id="telephony_alias_configuration_mode_easy_pabx_save_success" qtlid="462459">Les modifications apportées à votre easyPabx ont été appliquées avec succès.</translation>
+   <translation id="telephony_alias_configuration_mode_easy_pabx_save_error" qtlid="462472">Oups ! Une erreur est survenue lors de la modification des options de votre easyPabx.</translation>
+
+</translations>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_group_back_link" qtlid="334166">Paluu ryhmien laskutuksen hallintaan</translation>
+   <translation id="telephony_group_tab_admin" qtlid="30538">Hallinnointi</translation>
+   <translation id="telephony_group_tab_dashboard" qtlid="45376">Ohjauspaneeli</translation>
+   <translation id="telephony_group_tab_billing" qtlid="32950">Laskutus</translation>
+   <translation id="telephony_group_tab_orderAlias" qtlid="333256">Numeroiden tilaus</translation>
+   <translation id="telephony_group_tab_contacts_book" qtlid="334179">Yhteystietoluettelo</translation>
+   <translation id="telephony_group_tab_short_numbers" qtlid="334192">Lyhytvalintanumerot</translation>
+   <translation id="telephony_group_tab_contacts_manage" qtlid="73073">Hallitse yhteystietoja</translation>
+   <translation id="telephony_group_tab_guides" qtlid="300370">Oppaat</translation>
+
+   <translation id="telephony_group_loading_error" qtlid="334205">Laskutustilisi ({{billingAccount}}) tietoja ei voida ladata.</translation>
+   <translation id="telephony_group_rename_error" qtlid="334218">Laskutustiliäsi {{billingAccount}} ei voida nimetä uudelleen.</translation>
+   <translation id="telephony_group_termination_warning" qtlid="456973">Le groupe sera supprimé le <strong>{{ date }}</strong>.</translation>
+   <translation id="telephony_group_termination_warning_link" qtlid="456986">Vous pouvez annuler en cliquant ici</translation>
+</translations>

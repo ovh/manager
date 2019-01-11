@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_number_incoming_calls" qtlid="358916">Llamadas entrantes</translation>
+   <translation id="telephony_number_save_error" qtlid="396727">¡Vaya! Se ha producido un error al realizar la copia de seguridad de la configuración de su número.</translation>
+   <translation id="telephony_number_save_doing" qtlid="124303">Modificando...</translation>
+
+<!-- ACTIONS -->
+   <translation id="telephony_number_action_change_type" qtlid="332918">Cambiar el tipo de número</translation>
+   <translation id="telephony_number_action_scheduler" qtlid="392515">Gestionar períodos excepcionales</translation>
+
+<!-- FEATURES -->
+<!-- REDIRECT -->
+   <translation id="telephony_number_feature_redirect_to" qtlid="396740">Redirigir hacia</translation>
+   <translation id="telephony_number_feature_redirect_add_conditions" qtlid="396753">Añadir condiciones</translation>
+   <translation id="telephony_number_feature_redirect_not_set" qtlid="396766">Ningún destino seleccionado.</translation>
+   <translation id="telephony_number_feature_redirect_not_set_explain" qtlid="396779">Modifique la redirección a partir del menú representado por «...» más arriba.</translation>
+   <translation id="telephony_number_feature_redirect_to_another_group" qtlid="396792">Redirigir hacia otro servicio.</translation>
+   <translation id="telephony_number_feature_redirect_save_error" qtlid="396805">¡Vaya! Se ha producido un error al modificar la redirección.</translation>
+<!-- SPECIFIC ACTIONS -->
+   <translation id="telephony_number_feature_redirect_action_edit" qtlid="99224">Modificar la redirección</translation>
+
+<!-- OVHPABX -->
+   <translation id="telephony_number_feature_ovh_pabx_dial_plan" qtlid="396818">Plan de marcación:</translation>
+   <translation id="telephony_number_feature_ovh_pabx_action_option" qtlid="396831">Modificar las opciones del plan de marcación:</translation>
+   <translation id="telephony_number_feature_ovh_pabx_action_interactive_menu_management" qtlid="396844">Administrar los menús interactivos</translation>
+   <translation id="telephony_number_feature_ovh_pabx_action_sound_management" qtlid="396857">Administrar los sonidos</translation>
+
+<!-- SVI -->
+   <translation id="telephony_number_feature_svi" qtlid="396870">Servidor vocal intercativo en VXML</translation>
+   <translation id="telephony_number_feature_svi_edit" qtlid="356888">Configurar los parámetros del servidor de voz</translation>
+   <translation id="telephony_number_feature_svi_popover_title" qtlid="396883">Parámetros del servidor vocal</translation>
+   <translation id="telephony_number_feature_svi_url" qtlid="396896">URL de su configuración VXML</translation>
+   <translation id="telephony_number_feature_svi_url_record" qtlid="396909">Etiqueta «record» VXML</translation>
+   <translation id="telephony_number_feature_svi_url_record_help" qtlid="396922">El destino al que se enviará el registro.</translation>
+   <translation id="telephony_number_feature_svi_bad_url_format" qtlid="396935">El formato de la URL no es válido. P.ej.: http://www.midominio.com.</translation>
+   <translation id="telephony_number_feature_svi_required_url" qtlid="396948">La URL del archivo de configuración VXML es obligatoria.</translation>
+   <translation id="telephony_number_feature_svi_bad_url_ftp_format" qtlid="396961">El formato de la URL FTP debe ser un directorio (terminado en /). P.ej.: ftp://www.midominio.com/midirectorio/.</translation>
+   <translation id="telephony_number_feature_svi_bad_url_mailto_format" qtlid="396974">El formato de la dirección de correo no es válido. P.ej.: ejemplo@midominio.com.</translation>
+   <translation id="telephony_number_feature_svi_save_error" qtlid="396987">¡Vaya! Se ha producido un error al modificar los parámetros de su servidor vocal.</translation>
+
+<!-- FOOTER -->
+   <translation id="telephony_number_footer_question" qtlid="395934">¿Realizar una copia de seguridad de mi configuración?</translation>
+</translations>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_line_assist_troubleshooting_manual_config_title" qtlid="389824">Rankinis įrangos konfigūravimas</translation>
+
+<!-- FACTORY RESET -->
+   <translation id="telephony_line_assist_troubleshooting_manual_config_factory_reset" qtlid="389837">Įrangos atstatymas į originalią konfigūraciją.</translation>
+<!-- CISCO -->
+   <translation id="telephony_line_assist_troubleshooting_manual_config_cisco_factory_reset_step1" qtlid="389850">Pereikite į įrangos konfigūravimo meniu (puslapio piktograma įrangoje).</translation>
+   <translation id="telephony_line_assist_troubleshooting_manual_config_cisco_factory_reset_step2" qtlid="389863">Eikite į meniu <strong>14 - Factory Reset</strong>.</translation>
+   <translation id="telephony_line_assist_troubleshooting_manual_config_cisco_factory_reset_step3" qtlid="389876">Jūsų įranga bus perkrauta naudojant gamyklinius parametrus.</translation>
+<!-- LINKSYS -->
+   <translation id="telephony_line_assist_troubleshooting_manual_config_linksys_factory_reset_step1" qtlid="389889">Prijunkite telefoną prie įrangos RJ11 linijos.</translation>
+   <translation id="telephony_line_assist_troubleshooting_manual_config_linksys_factory_reset_step2" qtlid="389902">Atjunkite Ethernet kabelį</translation>
+   <translation id="telephony_line_assist_troubleshooting_manual_config_linksys_factory_reset_step3" qtlid="508182">Composez <strong><span class="tuc-custom-asterisk"></span><span class="tuc-custom-asterisk"></span><span class="tuc-custom-asterisk"></span><span class="tuc-custom-asterisk"></span></strong> puis <strong>73738#</strong>.</translation>
+   <translation id="telephony_line_assist_troubleshooting_manual_config_linksys_factory_reset_step4" qtlid="389928">Įranga paprašys perkrovimo patvirtinimo, tai padarysite paspaudę <strong>1</strong>.</translation>
+   <translation id="telephony_line_assist_troubleshooting_manual_config_linksys_factory_reset_step5" qtlid="389876">Jūsų įranga bus perkrauta naudojant gamyklinius parametrus.</translation>
+   <translation id="telephony_line_assist_troubleshooting_manual_config_linksys_factory_reset_step6" qtlid="389941">Galite prijungti įrangą prie vietinio tinklo.</translation>
+<translation id="telephony_line_assist_troubleshooting_manual_config_linksys_factory_reset_step"/>
+<!-- LG -->
+   <translation id="telephony_line_assist_troubleshooting_manual_config_lg_factory_reset_step1" qtlid="389954">Spauskite mygtuką <strong>Parameters</strong> (navigacinio mygtuko dešinėje).</translation>
+   <translation id="telephony_line_assist_troubleshooting_manual_config_lg_factory_reset_step2" qtlid="389967">Spauskite mygtuką <strong>7</strong>, kad pereitumėte į meniu <strong>Verr./Déverr. Config</strong></translation>
+   <translation id="telephony_line_assist_troubleshooting_manual_config_lg_factory_reset_step3" qtlid="389980">Įveskite slaptažodį <strong>0000</strong></translation>
+   <translation id="telephony_line_assist_troubleshooting_manual_config_lg_factory_reset_step4" qtlid="389993">Spauskite mygtuką <strong>6</strong>, kad pereitumėte prie <strong>Reikšmių pagal nutylėjimą</strong>.</translation>
+   <translation id="telephony_line_assist_troubleshooting_manual_config_lg_factory_reset_step5" qtlid="390006">Spauskite <strong>Oui</strong>.</translation>
+   <translation id="telephony_line_assist_troubleshooting_manual_config_lg_factory_reset_step6" qtlid="390019">Spauskite mygtuką <strong>9</strong>.</translation>
+   <translation id="telephony_line_assist_troubleshooting_manual_config_lg_factory_reset_step7" qtlid="390032">Spauskite <strong>Yes</strong>.</translation>
+   <translation id="telephony_line_assist_troubleshooting_manual_config_lg_factory_reset_step8" qtlid="389876">Jūsų įranga bus perkrauta naudojant gamyklinius parametrus.</translation>
+<!-- THOMSON -->
+   <translation id="telephony_line_assist_troubleshooting_manual_config_thomson_factory_reset_step1" qtlid="390045">Perkraukite telefoną atjungdami maitinimą ir laikykite įspaudę mygtukus + ir - (telefono apačioje) mažiausiai 30 sekundžių (laikykite įspaudę viso perkrovimo metu).</translation>
+   <translation id="telephony_line_assist_troubleshooting_manual_config_thomson_st2030_factory_reset_step1" qtlid="479954">Redémarrez électriquement votre téléphone et maintenez les touches "casque" et "micro coupé" pendant au moins 30 secondes (veuillez à rester appuyé durant toute la phase de démarrage).</translation>
+   <translation id="telephony_line_assist_troubleshooting_manual_config_thomson_factory_reset_step2" qtlid="390058">Perkraukite telefoną atjungdami maitinimą ir laikykite įspaudę mygtukus + ir -.</translation>
+
+<!-- FIND IP -->
+   <translation id="telephony_line_assist_troubleshooting_manual_config_find_ip" qtlid="390071">Įrangos privataus IP adreso nustatymas.</translation>
+<!-- CISCO -->
+   <translation id="telephony_line_assist_troubleshooting_manual_config_cisco_find_ip_step1" qtlid="389850">Pereikite į įrangos konfigūravimo meniu (puslapio piktograma įrangoje).</translation>
+   <translation id="telephony_line_assist_troubleshooting_manual_config_cisco_find_ip_step2" qtlid="390084">Eikite į meniu <strong>9 - Network</strong>.</translation>
+   <translation id="telephony_line_assist_troubleshooting_manual_config_cisco_find_ip_step3" qtlid="390097">IP adresas nurodytas ties <strong>CurrentIP</strong>.</translation>
+<!-- LINKSYS -->
+   <translation id="telephony_line_assist_troubleshooting_manual_config_linksys_find_ip_step1" qtlid="389889">Prijunkite telefoną prie įrangos RJ11 linijos.</translation>
+   <translation id="telephony_line_assist_troubleshooting_manual_config_linksys_find_ip_step2" qtlid="508195">Composez <strong><span class="tuc-custom-asterisk"></span><span class="tuc-custom-asterisk"></span><span class="tuc-custom-asterisk"></span><span class="tuc-custom-asterisk"></span></strong> puis <strong>110#</strong>.</translation>
+   <translation id="telephony_line_assist_troubleshooting_manual_config_linksys_find_ip_step3" qtlid="390123">Balsas anglų kalba pasakys įrangos IP adreso skaičius vieną po kito.</translation>
+   <translation id="telephony_line_assist_troubleshooting_manual_config_find_ip_step4" qtlid="390136">Įveskite IP adresą ir patvirtinkite:</translation>
+   <translation id="telephony_line_assist_troubleshooting_manual_config_find_ip_step4_placeholder" qtlid="390149">Privatus IP adresas</translation>
+   <translation id="telephony_line_assist_troubleshooting_manual_config_find_ip_step4_invalid_private_ip" qtlid="390162">Neteisingas privatus IP adresas (pvz.: 192.168.1.1).</translation>
+<!-- LG -->
+   <translation id="telephony_line_assist_troubleshooting_manual_config_lg_find_ip_step1" qtlid="389954">Spauskite mygtuką <strong>Parameters</strong> (navigacinio mygtuko dešinėje).</translation>
+   <translation id="telephony_line_assist_troubleshooting_manual_config_lg_find_ip_step2" qtlid="390175">Spauskite mygtuką 8, kad pereitumėte į meniu <strong>Informations</strong>.</translation>
+<!-- THOMSON -->
+   <translation id="telephony_line_assist_troubleshooting_manual_config_thomson_find_ip_step1" qtlid="390188">Atidarykite telefono meniu ir eikite Admin → View parameters → Network configuration.</translation>
+   <translation id="telephony_line_assist_troubleshooting_manual_config_thomson_find_ip_step2" qtlid="390201">IP adresas matomas dalyje <strong>IP address</strong>.</translation>
+
+<!-- INTERFACE CONNECTION -->
+   <translation id="telephony_line_assist_troubleshooting_manual_config_interface_connection" qtlid="390214">Prisijungimas prie sąsajos įrangos perkonfigūravimui.</translation>
+   <translation id="telephony_line_assist_troubleshooting_manual_config_interface_connection_step1" qtlid="390227">Spragtelėję nuorodą <a target="_blank" href="{{ href }}">{{ href }}</a>, pereisite į įrangos web sąsają, kokia pavaizduota iliustracijoje.</translation>
+   <translation id="telephony_line_assist_troubleshooting_manual_config_interface_connection_step2_cisco" qtlid="390240">Spragtelėkite <strong>Voice</strong>.</translation>
+   <translation id="telephony_line_assist_troubleshooting_manual_config_interface_connection_step2" qtlid="390253">Spragtelėkite <strong>Provisionning</strong>.</translation>
+   <translation id="telephony_line_assist_troubleshooting_manual_config_interface_connection_step3" qtlid="390266"><strong>Provision Enable</strong> parinkties įjungimui pasirinkite <strong>yes</strong>.</translation>
+   <translation id="telephony_line_assist_troubleshooting_manual_config_interface_connection_step4_cisco" qtlid="390279">Parinkčiai <strong>Profile Rule</strong> nustatykite reikšmę <strong>http://cisco.prov.voip.ovh.net:51080/init.cfg</strong></translation>
+   <translation id="telephony_line_assist_troubleshooting_manual_config_interface_connection_step5_cisco" qtlid="390292">Spauskite <strong>Submit All Changes</strong>, kad išsaugotumėte parametrus.</translation>
+   <translation id="telephony_line_assist_troubleshooting_manual_config_interface_connection_step4_linksys" qtlid="390305">Parinkčiai <strong>Profile Rule</strong> įveskite reikšmę <strong>http://lk.prov.voip.ovh.net:51080/init.cfg</strong></translation>
+   <translation id="telephony_line_assist_troubleshooting_manual_config_interface_connection_step5_linksys" qtlid="390318">Spauskite <strong>Submit</strong>, kad išsaugotumėte parametrus.</translation>
+<!-- LG -->
+   <translation id="telephony_line_assist_troubleshooting_manual_config_interface_connection_lg_step1" qtlid="390331">Spragtelėkite <strong>Login</strong>.</translation>
+   <translation id="telephony_line_assist_troubleshooting_manual_config_interface_connection_lg_step2" qtlid="390344">Jeigu reikės prisijungti, įveskite šiuos duomenis:</translation>
+   <translation id="telephony_line_assist_troubleshooting_manual_config_interface_connection_lg_step2_user" qtlid="390357">Vartotojas: <strong>private</strong>.</translation>
+   <translation id="telephony_line_assist_troubleshooting_manual_config_interface_connection_lg_step2_password" qtlid="390370">Slaptažodis: <strong>lip</strong>.</translation>
+   <translation id="telephony_line_assist_troubleshooting_manual_config_interface_connection_lg_step3" qtlid="390383">Pereikite į meniu <strong>Upgrade Configuration</strong>.</translation>
+   <translation id="telephony_line_assist_troubleshooting_manual_config_interface_connection_lg_step4" qtlid="390396">Pažymėkite <strong>HTTP/HTTPS</strong>.</translation>
+   <translation id="telephony_line_assist_troubleshooting_manual_config_interface_connection_lg_step5" qtlid="390409">Jeigu paprašys <strong>HTTP/HTTPS URL</strong>, įveskite <strong>http://lgn.prov.voip.ovh.net:51080/ip{{ model }}</strong></translation>
+   <translation id="telephony_line_assist_troubleshooting_manual_config_interface_connection_lg_step6" qtlid="390422">Jeigu paprašys <strong>MAC Cfg. Format</strong>, įveskite <strong>cfg/$MAC</strong></translation>
+   <translation id="telephony_line_assist_troubleshooting_manual_config_interface_connection_lg_step7" qtlid="390435">Norėdami baigti, spragtelėkite <strong>Change</strong>, po to <strong>Reboot</strong>, kad išsaugotumėte ir pradėtumėte naudoti naujai įvestus parametrus.</translation>
+<!-- THOMSON -->
+   <translation id="telephony_line_assist_troubleshooting_manual_config_interface_connection_thomson_step1" qtlid="390448">Prisijunkite su šiais duomenimis:</translation>
+   <translation id="telephony_line_assist_troubleshooting_manual_config_interface_connection_thomson_step1_user" qtlid="390461">Vartotojas: <strong>administrator</strong>.</translation>
+   <translation id="telephony_line_assist_troubleshooting_manual_config_interface_connection_thomson_step1_password" qtlid="390474">Slaptažodis: <strong>784518</strong>.</translation>
+   <translation id="telephony_line_assist_troubleshooting_manual_config_interface_connection_thomson_step2" qtlid="390487">Spauskite <strong>Setup</strong>, po to <strong>Auto Provisioning</strong> ir <strong>Basic Setup</strong>.</translation>
+   <translation id="telephony_line_assist_troubleshooting_manual_config_interface_connection_thomson_step3" qtlid="390500">Parinkčiai <strong>Auto Provisioning Setting</strong> nustatykite <strong>HTTP preset</strong>.</translation>
+   <translation id="telephony_line_assist_troubleshooting_manual_config_interface_connection_thomson_step4" qtlid="458819">Pour l'option <strong>Server IP Address</strong>, entrez la valeur <strong>{{ server }}</strong></translation>
+   <translation id="telephony_line_assist_troubleshooting_manual_config_interface_connection_thomson_step5" qtlid="390526">Patvirtinkite, kad išsaugotumėte parametrus.</translation>
+   <translation id="telephony_line_assist_troubleshooting_manual_config_interface_connection_thomson_step6" qtlid="390539">Spragtelėkite <strong>Restart</strong>, kad pritaikytume parametrus.</translation>
+
+<!-- GIGASET -->
+   <translation id="telephony_line_assist_troubleshooting_manual_config_gigaset_step1" qtlid="390552">Spauskite mygtuką, kad atidarytumėte meniu ir pereitumėte prie <strong>Paramètres</strong>.</translation>
+   <translation id="telephony_line_assist_troubleshooting_manual_config_gigaset_step2" qtlid="390565">Pasirinkite veiksmą <strong>Réinitialiser</strong>.</translation>
+   <translation id="telephony_line_assist_troubleshooting_manual_config_gigaset_step3" qtlid="390578">Įveskite administratoriaus slaptažodį: <stong>admin</stong></translation>
+   <translation id="telephony_line_assist_troubleshooting_manual_config_gigaset_step4" qtlid="390591">Patvirtinkite.</translation>
+
+<!-- SIEMENS -->
+   <translation id="telephony_line_assist_troubleshooting_manual_config_siemens_step1" qtlid="390604">Atjunkite telefono maitinimą.</translation>
+   <translation id="telephony_line_assist_troubleshooting_manual_config_siemens_step2" qtlid="390617"><strong>Laikykite įspaudę</strong> mygtuką iki galo.</translation>
+   <translation id="telephony_line_assist_troubleshooting_manual_config_siemens_step3" qtlid="390630">Atjunkite maitinimą laikydami mygtuką įspaudę.</translation>
+   <translation id="telephony_line_assist_troubleshooting_manual_config_siemens_step4" qtlid="390643">Laikykite mygtuką įspaustą <strong>20 sekundžių</strong>, po to atleiskite.</translation>
+   <translation id="telephony_line_assist_troubleshooting_manual_config_siemens_step5" qtlid="390656">Jūsų telefonas bus perkonfigūruotas per artimiausias dvi minutes.</translation>
+
+</translations>

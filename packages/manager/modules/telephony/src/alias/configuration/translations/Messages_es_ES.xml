@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_alias_configuration_back_link" qtlid="462121">Retour à la configuration du numéro</translation>
+   <translation id="telephony_alias_configuration_change_type" qtlid="332827">Cambiar el tipo de número</translation>
+
+   <translation id="telephony_alias_configuration_actions_number_modification_new" qtlid="332827">Cambiar el tipo de número</translation>
+   <translation id="telephony_alias_configuration_actions_number_redirect_modification" qtlid="332840">Configurar la redirección</translation>
+
+<!-- HUNTINGS -->
+   <translation id="telephony_alias_configuration_actions_number_hunting_beta" qtlid="356797">Beta de las colas de llamadas +</translation>
+   <translation id="telephony_alias_configuration_actions_number_hunting_mode" qtlid="340354">Administrar las opciones</translation>
+   <translation id="telephony_alias_configuration_actions_number_hunting_members" qtlid="356810">Administrar los miembros</translation>
+   <translation id="telephony_alias_configuration_actions_number_hunting_agents" qtlid="461367">Gérer les agents</translation>
+   <translation id="telephony_alias_configuration_actions_number_hunting_queues" qtlid="462134">Gérer les files</translation>
+   <translation id="telephony_alias_configuration_actions_number_hunting_slots" qtlid="335154">Configurar las franjas horarias</translation>
+   <translation id="telephony_alias_configuration_actions_number_hunting_events" qtlid="335167">Configurar los cierres excepcionales</translation>
+   <translation id="telephony_alias_configuration_actions_number_hunting_filtering" qtlid="356823">Configurar el filtrado de llamadas</translation>
+   <translation id="telephony_alias_configuration_actions_number_hunting_board" qtlid="462147">Consulter le tableau de bord</translation>
+   <translation id="telephony_alias_configuration_actions_number_hunting_records" qtlid="461731">Consulter les enregistrements</translation>
+
+<!-- EASYHUNTING -->
+
+<!-- CLOUDHUNTING -->
+   <translation id="telephony_alias_configuration_actions_number_cloud_hunting_events" qtlid="392515">Gestionar períodos excepcionales</translation>
+   <translation id="telephony_alias_configuration_actions_number_cloud_hunting_configuration" qtlid="356849">Configurar el plan de marcación</translation>
+   <translation id="telephony_alias_configuration_actions_number_cloud_hunting_beta" qtlid="462160">Migrer vers Contact Center Solution</translation>
+
+<!-- CONFERENCE -->
+   <translation id="telephony_alias_configuration_actions_number_manage_conference" qtlid="356862">Conferencia telefónica</translation>
+
+<!-- EASYPABX -->
+   <translation id="telephony_alias_configuration_actions_music_management" qtlid="356875">Configurar la música</translation>
+   <translation id="telephony_alias_configuration_actions_sounds_management" qtlid="396857">Administrar los sonidos</translation>
+   <translation id="telephony_alias_configuration_actions_menus_management" qtlid="396844">Administrar los menús interactivos</translation>
+   <translation id="telephony_alias_configuration_actions_tts_management" qtlid="432280">Gérer les TTS</translation>
+
+<!-- SVI -->
+   <translation id="telephony_alias_configuration_actions_number_svi_script_address" qtlid="356888">Configurar los parámetros del servidor de voz</translation>
+
+   <translation id="telephony_alias_configuration_load_error" qtlid="356901">¡Vaya! Se ha producido un error al cargar el número.</translation>
+
+   <translation id="telephony_alias_configuration_title" qtlid="511736">Configuration : {{ featureType }}</translation>
+   <translation id="telephony_alias_configuration_question_conference" qtlid="511749">Qu’est-ce que la conférence ?</translation>
+   <translation id="telephony_alias_configuration_question_contactCenterSolution" qtlid="511762">Qu’est-ce qu’une file d’appels ?</translation>
+   <translation id="telephony_alias_configuration_question_redirect" qtlid="511775">Qu’est-ce que la redirection d’appels ?</translation>
+   <translation id="telephony_alias_configuration_question_cloudIvr" qtlid="511788">Qu’est-ce qu’un serveur vocal interactif ?</translation>
+   <translation id="telephony_alias_configuration_question_svi" qtlid="511801">Qu’est-ce qu’un serveur vocal interactif en VXML ?</translation>
+   <translation id="telephony_alias_configuration_question_contactCenterSolutionExpert" qtlid="511814">Qu’est-ce que le Contact Center Solution ?</translation>
+
+   <translation id="telephony_alias_config_feature_type_redirect" qtlid="511827">En activant la {{featureType}} de votre ligne, restez joignable où que vous soyez. Vos appels sont renvoyés vers votre ligne du bureau ou votre ligne personnelle, en fonction de votre agenda.</translation>
+
+   <translation id="telephony_alias_config_feature_type_contactCenterSolution_first_part" qtlid="511840">Avec la {{featureType}}, vous pouvez gérer votre flux de communications.</translation>
+   <translation id="telephony_alias_config_feature_type_contactCenterSolution_second_part" qtlid="511853">Jouez un son d'accueil, personnalisez votre musique d'attente et faites sonner les postes de vos différents services en fonction de stratégies que vous définissez, sur des plages horaires choisies. Vous avez la possibilité de spécifier le nombre maximum d'appelants dans la file et le temps d'attente maximum. Si vous ne pouvez pas répondre, votre interlocuteur sera redirigé vers le répondeur d'une ligne OVH.</translation>
+
+   <translation id="telephony_alias_config_feature_type_conference_first_part" qtlid="511866">La {{featureType}} vous permet d’être en communication téléphonique avec plusieurs interlocuteurs en simultané. Protégez-la avec un code PIN, définissez une annonce personnalisée, enregistrez les participants et recevez un rapport par e-mail à la fin de la conférence.</translation>
+   <translation id="telephony_alias_config_feature_type_conference_second_part" qtlid="511879">Une interface vous propose également de suivre en temps réel les discussions des participants et de couper leur son ou leur micro.</translation>
+
+   <translation id="telephony_alias_config_change_type_label_redirect" qtlid="511892">Redirection d’appels</translation>
+   <translation id="telephony_alias_config_change_type_desc_redirect" qtlid="511905">La redirection d’appels vous permet de rediriger les appels reçus vers la ligne ou numéro de votre choix.</translation>
+
+   <translation id="telephony_alias_config_change_type_label_ddi" qtlid="462576">Redirection avec présentation de ce numéro sur ma ligne SIP ou mon Trunk</translation>
+   <translation id="telephony_alias_config_change_type_desc_ddi" qtlid="333061">ESte modo permite redirigir el número a la línea SIP o el Trunk que usted indique.<br/><br/>El número también podrá mostrarse para las llamadas salientes de la línea SIP o del Trunk que usted indique.</translation>
+
+   <translation id="telephony_alias_config_change_type_label_conference" qtlid="333074">Conferencia</translation>
+   <translation id="telephony_alias_config_change_type_desc_conference" qtlid="511918">La conférence vous permet d’être en communication téléphonique avec plusieurs interlocuteurs en simultané.</translation>
+
+   <translation id="telephony_alias_config_change_type_label_cloudIvr" qtlid="333100">Servidor de voz interactivo</translation>
+   <translation id="telephony_alias_config_change_type_desc_cloudIvr" qtlid="511931">Un serveur vocal interactif vous permet de guider l’appelant vers le service adéquat via plusieurs choix à effectuer.</translation>
+
+   <translation id="telephony_alias_config_change_type_label_svi" qtlid="511944">SVI VXML</translation>
+   <translation id="telephony_alias_config_change_type_desc_svi" qtlid="511957">Le Serveur vocal interactif en VXML vous permet, via une configuration 2.1, d’utiliser un menu interactif avancé. L’appelant est invité, via des messages pré-enregistrés ou une synthèse vocale, à interagir avec le serveur grâce aux touches de son téléphone. Selon la configuration choisie, il sera possible de lire des sons ou de transférer un appel vers d’autres numéros. Notez que seuls les transferts vers les numéros OVH sont possibles.</translation>
+
+   <translation id="telephony_alias_config_change_type_label_easyHunting" qtlid="324457">Cola de llamadas</translation>
+   <translation id="telephony_alias_config_change_type_desc_easyHunting" qtlid="333152">Con la cola de llamadas, puede gestionar el flujo de llamadas.<br/><br/>Reproduzca un sonido de bienvenida, personalice la música de espera y haga que suene el teléfono de los distintos trabajadores o departamentos en función de las estrategias que usted establezca, en las franjas horarias elegidas. Puede determinar el número máximo de llamadas en la cola y el tiempo máximo de espera. Si no puede responder, se redirigirá al interlocutor al contestador de una línea OVH.<br/><br/><b class="text-danger">Tenga en cuenta que, en este modo de funcionamiento, la redirección de llamadas de los miembros de la cola se desactiva automáticamente.</b></translation>
+
+   <translation id="telephony_alias_config_change_type_label_cloudHunting" qtlid="333165">Cola de llamadas (modo experto)</translation>
+
+   <translation id="telephony_alias_config_change_type_label_easyPabx" qtlid="60119">Easy PABX</translation>
+   <translation id="telephony_alias_config_change_type_desc_easyPabx" qtlid="333191">No pierda más llamadas gracias a easyPABX. Redirija su número hacia una o más líneas de OVH o números externos. Asigne las llamadas entrantes según las estrategias que usted mismo establezca. Si no puede responder, el interlocutor será redirigido hacia un contestador.</translation>
+
+   <translation id="telephony_alias_config_change_type_label_miniPabx" qtlid="333204">Mini PABX</translation>
+   <translation id="telephony_alias_config_change_type_desc_miniPabx" qtlid="333217">Con el miniPABX podrá gestionar el flujo de llamadas a los distintos departamentos o trabajadores en función de su disponibilidad. Usted elige el reparto de las llamadas, así como el número y el tiempo máximo de las llamadas en la cola.</translation>
+
+   <translation id="telephony_alias_config_change_type_label_contactCenterSolution" qtlid="324457">Cola de llamadas</translation>
+   <translation id="telephony_alias_config_change_type_desc_contactCenterSolution" qtlid="511970">La file d’appels vous permet de rediriger un appel entrant vers plusieurs lignes, rattachées ou non à votre identifiant OVH.</translation>
+
+   <translation id="telephony_alias_config_change_type_label_contactCenterSolutionExpert" qtlid="432904">Contact Center Solution</translation>
+   <translation id="telephony_alias_config_change_type_desc_contactCenterSolutionExpert" qtlid="511983">Avec le mode expert de Contact Center Solution, vous pouvez gérer le flux de vos appels de bout en bout. En fonction des numéros appelants ou des plages horaires, choisissez vous-même votre stratégie. Jouez des sons d'accueils, personnalisez votre musique d'attente, faites sonner les postes de vos différents services.</translation>
+
+<!-- Contact Center Solution -->
+   <translation id="telephony_alias_config_contactCenterSolution_tile_title" qtlid="511996">Paramétrage file d’appels</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_tile_line_management_action" qtlid="512009">Gestion des lignes dans la file (obligatoire)</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_tile_sounds_waiting_management_action" qtlid="512022">Gestion des sons et de l’attente (facultatif)</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_tile_time_condition_scheduler_management_action" qtlid="512035">Plages horaires et fermetures (conseillé)</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_tile_calls_filtering_action" qtlid="512048">Filtrage des appels (facultatif)</translation>
+
+<!-- Redirection -->
+   <translation id="telephony_alias_config_redirect_incoming_calls_heading" qtlid="512061">Vos appels entrants</translation>
+   <translation id="telephony_alias_config_redirect_line_to_redirect" qtlid="512074">Ligne vers laquelle vos appels seront redirigés</translation>
+   <translation id="telephony_alias_config_redirect_select_line" qtlid="512087">Sélectionner une ligne</translation>
+   <translation id="telephony_alias_config_redirect_change_line" qtlid="512100">Modifier la ligne</translation>
+   <translation id="telephony_alias_config_redirect_alert_forbidden_surcharged_number" qtlid="512113">Veuillez noter que la législation interdit les redirections vers les numéros surtaxés.</translation>
+   <translation id="telephony_alias_config_redirect_convert_to_ccs_helper" qtlid="512126">Pour faire une redirection vers une ligne externe, il vous faut configurer votre numéro en</translation>
+   <translation id="telephony_alias_config_redirect_get_error" qtlid="512139">Une erreur est survenue lors de la récupération des informations sur la redirection.</translation>
+   <translation id="telephony_alias_config_redirect_get_phone_error" qtlid="517459">Une erreur est survenue lors de la récupération des informations sur le téléphone de la ligne.</translation>
+   <translation id="telephony_alias_config_redirect_update_success" qtlid="512152">Les paramètres de la redirection ont été modifiés.</translation>
+   <translation id="telephony_alias_config_redirect_update_error" qtlid="512165">Une erreur est survenue lors de la modification des paramètres de la redirection.</translation>
+   <translation id="telephony_alias_config_redirect_outgoing_calls_heading" qtlid="512178">Vos appels sortants</translation>
+   <translation id="telephony_alias_config_redirect_optionnal" qtlid="356264">(opcional)</translation>
+   <translation id="telephony_alias_config_sip_line_activate_presentation" qtlid="512191">Activer la présentation de votre numéro lors des appels sortants</translation>
+   <translation id="telephony_alias_config_sip_line_activate_presentation_warning" qtlid="512204">Attention : si vous avez paramétré la présentation d’un autre numéro sur la ligne, il sera remplacé par ce numéro.</translation>
+
+<!-- Conference -->
+   <translation id="telephony_alias_config_title" qtlid="4406">Configuración</translation>
+   <translation id="telephony_alias_config_conference_access_pin_code" qtlid="512217">Code PIN d’accès</translation>
+   <translation id="telephony_alias_config_conference_access_pin_code_help" qtlid="512230">Vide ou 0 pour aucun</translation>
+   <translation id="telephony_alias_config_conference_customized_announcement" qtlid="337819">Anuncio personalizado</translation>
+   <translation id="telephony_alias_config_conference_customized_announcement_help" qtlid="512243">Vous pouvez choisir un fichier audio qui précédera l’entrée d’un participant dans la salle de conférence.</translation>
+   <translation id="telephony_alias_config_conference_add_sound" qtlid="462810">Ajouter un son</translation>
+   <translation id="telephony_alias_config_conference_record_conference" qtlid="512256">Enregistrement de la conférence</translation>
+   <translation id="telephony_alias_config_conference_entering_participants_microphone" qtlid="512269">Microphone des participants à l’entrée</translation>
+   <translation id="telephony_alias_config_conference_anonymous_calls" qtlid="512282">Appels anonymes</translation>
+   <translation id="telephony_alias_config_conference_language_conference" qtlid="466346">Langue de votre conférence</translation>
+   <translation id="telephony_alias_config_conference_access_pin_code" qtlid="512217">Code PIN d’accès</translation>
+   <translation id="telephony_alias_config_conference_administration" qtlid="30538">Administración</translation>
+   <translation id="telephony_alias_config_conference_receive_conference_report_email" qtlid="512295">Rapport de la conférence</translation>
+   <translation id="telephony_alias_config_conference_report_help" qtlid="512308">Vous recevrez par e-mail la date, l’heure, la durée et la liste des participants à la conférence. Et si vous l’avez activé, vous recevrez l’enregistrement de la conférence en pièce jointe.</translation>
+   <translation id="telephony_alias_config_conference_custom_email_placeholder" qtlid="466580">Adresse e-mail personnalisée</translation>
+   <translation id="telephony_alias_config_conference_receive_conference_report_white_label" qtlid="466619">Recevoir les rapports en marque blanche</translation>
+   <translation id="telephony_alias_config_conference_followup_control_conference" qtlid="512321">Suivi et contrôle de la conférence</translation>
+   <translation id="telephony_alias_config_conference_generate_urls" qtlid="512334">Générer les urls</translation>
+   <translation id="telephony_alias_config_conference_regenerate_urls" qtlid="512347">Regénérer les URLs</translation>
+   <translation id="telephony_alias_config_conference_delete_urls" qtlid="512360">Supprimer les URLs</translation>
+   <translation id="telephony_alias_config_conference_followup_urls" qtlid="512373">URL de suivi</translation>
+   <translation id="telephony_alias_config_conference_followup_urls_help" qtlid="512386">URL à communiquer aux appelants</translation>
+   <translation id="telephony_alias_config_conference_control_urls" qtlid="512399">URL de contrôle</translation>
+   <translation id="telephony_alias_config_conference_control_urls_help" qtlid="512412">URL pour administrer votre conférence</translation>
+   <translation id="telephony_alias_config_conference_activated" qtlid="30250">Activado</translation>
+   <translation id="telephony_alias_config_conference_deactivated" qtlid="24967">Desactivado</translation>
+   <translation id="telephony_alias_config_conference_active" qtlid="55133">Activo</translation>
+   <translation id="telephony_alias_config_conference_muted" qtlid="512425">Muet</translation>
+   <translation id="telephony_alias_config_conference_accepted" qtlid="512438">Acceptés</translation>
+   <translation id="telephony_alias_config_conference_rejected" qtlid="512451">Rejetés</translation>
+   <translation id="telephony_alias_config_conference_get_error" qtlid="512464">Une erreur est survenue lors de la récupération des informations sur la conférence.</translation>
+   <translation id="telephony_alias_config_conference_update_success" qtlid="512477">Les paramètres de la conférence ont été mis à jour.</translation>
+   <translation id="telephony_alias_config_conference_update_error" qtlid="512490">Une erreur est survenue lors de la mise à jour de la configuration de la conférence.</translation>
+   <translation id="telephony_alias_config_conference_generate_web_access_error" qtlid="512503">Une erreur est survenue lors de la génération des urls.</translation>
+   <translation id="telephony_alias_config_conference_delete_web_access_error" qtlid="512516">Une erreur est survenue lors de la suppression des urls.</translation>
+   <translation id="telephony_alias_config_conference_report_status_none" qtlid="466554">Aucun rapport</translation>
+   <translation id="telephony_alias_config_conference_report_status_other" qtlid="466567">Recevoir sur une autre adresse e-mail</translation>
+   <translation id="telephony_alias_config_conference_report_status_customer" qtlid="466541">Recevoir sur l’adresse e-mail de mon compte</translation>
+   <translation id="telephony_alias_config_conference_invalid_file_format" qtlid="337845">Formato de archivo no autorizado.</translation>
+
+</translations>

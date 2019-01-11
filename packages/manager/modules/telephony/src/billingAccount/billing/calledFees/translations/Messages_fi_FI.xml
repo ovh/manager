@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_group_billing_called_fees_title" qtlid="334478">Ryhmän SVA-kulut</translation>
+   <translation id="telephony_group_billing_called_fees_total_title" qtlid="386612">Total des coûts SVA</translation>
+   <translation id="telephony_group_billing_called_fees_total_price" qtlid="386625">{{ totalPrice }} €</translation>
+   <translation id="telephony_group_billing_called_fees_detail_title" qtlid="386638">Détails des coûts SVA</translation>
+   <translation id="telephony_group_billing_called_fees_detail_operator_name" qtlid="386651">{{ operator }}&#160;:</translation>
+   <translation id="telephony_group_billing_called_fees_detail_operator_other" qtlid="386664">Autres opérateurs&#160;:</translation>
+   <translation id="telephony_group_billing_called_fees_detail_total_call_singular" qtlid="386677">{{ call }} Appel</translation>
+   <translation id="telephony_group_billing_called_fees_detail_total_call_plural" qtlid="386690">{{ call }} Appels</translation>
+   <translation id="telephony_group_billing_called_fees_detail_total_call_empty" qtlid="386703">Aucun Appel</translation>
+   <translation id="telephony_group_billing_called_fees_detail_total_duration_price" qtlid="386716">({{ totalDuration }}sec.) soit {{ totalPrice }} HT</translation>
+   <translation id="telephony_group_billing_called_fees_detail_total_label" qtlid="386729">Total&#160;:</translation>
+   <translation id="telephony_group_billing_called_fees_detail_empty" qtlid="386742">Aucune information.</translation>
+   <translation id="telephony_group_billing_called_fees_error" qtlid="386755">Oups ! Impossible de récupérer les coûts SVA du groupe.</translation>
+</translations>

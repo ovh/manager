@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_line_tones_title" qtlid="358344">Musiikkien ja soittoäänten hallinta</translation>
+   <translation id="telephony_line_tones_info1" qtlid="358357">Tällä sivulla voit määrittää linjasi muusikit ja soittoäänet.<br /> Personointimahdollisuuksia on monia:</translation>
+   <translation id="telephony_line_tones_info2" qtlid="358370"><strong>Odotussoittoääni</strong>: korvaa oletuksena olevan odotusmusiikin.</translation>
+   <translation id="telephony_line_tones_info3" qtlid="358383"><strong>Odotusmusiikki</strong>: musiikki, jota soitetaan odotuksen ajan. Musiikkia soitetaan, jos asetat puhelinkeskustelun aikana soittajan pitoon.</translation>
+   <translation id="telephony_line_tones_info4" qtlid="358396"><strong>Ilmoitus varatusta linjasta</strong>: ilmoitus soitetaan kun linja on varattu. Ilmoitus soitetaan suorissa puheluissa (kulkematta easyPabx tai miniPabx-järjestelmän kautta), puheluja ei yhdistetä. </translation>
+   <translation id="telephony_line_tones_ringback" qtlid="358409">Odotussoittoääni</translation>
+   <translation id="telephony_line_tones_onhold" qtlid="358422">Odotusmusiikki</translation>
+   <translation id="telephony_line_tones_callwaiting" qtlid="358435">Varatun linjan ilmoitus</translation>
+   <translation id="telephony_line_tones_type_custom_sound" qtlid="358448">Personoitu</translation>
+   <translation id="telephony_line_tones_type_none" qtlid="101193">Oletuksena</translation>
+   <translation id="telephony_line_tones_type_predefined_1" qtlid="358461">Esimääritys 1</translation>
+   <translation id="telephony_line_tones_type_predefined_2" qtlid="358474">Esimääritys 2</translation>
+   <translation id="telephony_line_tones_choose_file" qtlid="358487">Valitse tiedosto</translation>
+   <translation id="telephony_line_tones_choose_file_confirm" qtlid="358500">Lähetä tiedosto</translation>
+   <translation id="telephony_line_tones_choose_file_ring_success" qtlid="358513">Soittoääni päivitetty</translation>
+   <translation id="telephony_line_tones_choose_file_sound_success" qtlid="358526">Musiikki päivitetty</translation>
+   <translation id="telephony_line_tones_choose_file_announce_success" qtlid="358539">Ilmoitus päivitetty</translation>
+   <translation id="telephony_line_tones_choose_file_type_error" qtlid="358552">Valitun tiedoston tiedostotyyppiä ei tueta.</translation>
+   <translation id="telephony_line_tones_apply" qtlid="249107">Ota muutokset käyttöön</translation>
+</translations>

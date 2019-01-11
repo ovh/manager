@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_line_assist_orders_title" qtlid="336298">Suivi des bons de commande</translation>
+   <translation id="telephony_line_assist_orders_column_date" qtlid="24523">Datum</translation>
+   <translation id="telephony_line_assist_orders_column_id" qtlid="289250">Bestellnummer </translation>
+   <translation id="telephony_line_assist_orders_column_status" qtlid="33790">Status</translation>
+   <translation id="telephony_line_assist_orders_order_status_cancelled" qtlid="164623">Abgebrochen</translation>
+   <translation id="telephony_line_assist_orders_order_status_cancelling" qtlid="282848">Wird storniert</translation>
+   <translation id="telephony_line_assist_orders_order_status_checking" qtlid="33802">Validierung</translation>
+   <translation id="telephony_line_assist_orders_order_status_delivered" qtlid="282861">Geliefert</translation>
+   <translation id="telephony_line_assist_orders_order_status_delivering" qtlid="282874">Wird geliefert</translation>
+   <translation id="telephony_line_assist_orders_order_status_documents_requested" qtlid="282887">Warten auf Dokumente</translation>
+   <translation id="telephony_line_assist_orders_order_status_not_paid" qtlid="282900">Unbezahlt</translation>
+   <translation id="telephony_line_assist_orders_order_status_unknown" qtlid="77142">Unbekannt</translation>
+   <translation id="telephony_line_assist_orders_order_url_title" qtlid="387809">Voir le bon de commande n°{{ id }}</translation>
+   <translation id="telephony_line_assist_orders_empty" qtlid="387822">Aucun bon de commande.</translation>
+</translations>

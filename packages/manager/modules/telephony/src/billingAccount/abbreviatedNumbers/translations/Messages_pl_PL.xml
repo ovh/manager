@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_abbreviated_numbers_title" qtlid="334192">Numery skrócone</translation>
+   <translation id="telephony_abbreviated_numbers_explaination" qtlid="334270">Numery skrócone to numery składające się z 3 lub 4 cyfr i rozpoczynające się od cyfry 7.</translation>
+   <translation id="telephony_abbreviated_numbers_pattern_error" qtlid="357278">Pole musi zawierać liczbę składającą się z 3 lub 4 cyfr i rozpoczynającą się od cyfry 7.</translation>
+</translations>

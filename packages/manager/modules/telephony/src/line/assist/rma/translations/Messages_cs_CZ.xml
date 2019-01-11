@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_line_assist_rma_title" qtlid="458507">Suivi RMA (retour de matériel)</translation>
+   <translation id="telephony_line_assist_rma_none" qtlid="458520">Vous n'avez aucun retour matériel en cours.</translation>
+   <translation id="telephony_line_assist_rma_number" qtlid="458533">N° de RMA : {{ number }}</translation>
+   <translation id="telephony_line_assist_rma_equipment" qtlid="458546">Référence matériel concerné</translation>
+   <translation id="telephony_line_assist_rma_equipment_new" qtlid="458559">Nouvel équipement</translation>
+   <translation id="telephony_line_assist_rma_type" qtlid="458572">Type du retour</translation>
+   <translation id="telephony_line_assist_rma_offer_new" qtlid="96547">Nová služba</translation>
+   <translation id="telephony_line_assist_rma_address" qtlid="458585">Adresse de livraison</translation>
+   <translation id="telephony_line_assist_rma_creation_date" qtlid="386404">Ouverture du ticket</translation>
+   <translation id="telephony_line_assist_rma_reception_date" qtlid="69125">Datum přijetí</translation>
+   <translation id="telephony_line_assist_rma_termination_date" qtlid="384779">Date de résiliation</translation>
+   <translation id="telephony_line_assist_rma_cancel" qtlid="458598">Annuler ce RMA</translation>
+   <translation id="telephony_line_assist_rma_cancel_success" qtlid="458611">Le RMA a bien été annulé</translation>
+
+   <translation id="telephony_line_assist_rma_type_after_sale_equipment_service_exchange" qtlid="458624">Echange équipement SAV</translation>
+   <translation id="telephony_line_assist_rma_type_after_sale_phone_service_exchange" qtlid="458637">Echange téléphone SAV</translation>
+   <translation id="telephony_line_assist_rma_type_equipment_restitution" qtlid="458650">Restitution d'équipement</translation>
+   <translation id="telephony_line_assist_rma_type_fast_exchange" qtlid="458663">Echange rapide</translation>
+   <translation id="telephony_line_assist_rma_type_old_merchandise_reception_before_exchange" qtlid="458676">Réception de l'ancien équipement avant échange</translation>
+   <translation id="telephony_line_assist_rma_type_phone_restitution" qtlid="458689">Restitution de téléphone</translation>
+   <translation id="telephony_line_assist_rma_type_resends_due_to_shipping_lost_by_the_carrier" qtlid="458702">Renvoi pour cause de coli perdu par le transporteur</translation>
+   <translation id="telephony_line_assist_rma_type_resends_due_to_shipping_not_withdraw" qtlid="458715">Renvoi pour cause de non réception</translation>
+   <translation id="telephony_line_assist_rma_type_specific_return_merchandise_authorisation" qtlid="458728">Autorisation spéciale</translation>
+   <translation id="telephony_line_assist_rma_type_termination" qtlid="59699">Smazat</translation>
+   <translation id="telephony_line_assist_rma_type_unknown" qtlid="77142">Neznámý</translation>
+   <translation id="telephony_line_assist_rma_step_n" qtlid="458741">Étape {{ number }}</translation>
+   <translation id="telephony_line_assist_rma_step_name_opening" qtlid="386404">Ouverture du ticket</translation>
+   <translation id="telephony_line_assist_rma_step_name_parcelReception" qtlid="386417">Réception du colis</translation>
+   <translation id="telephony_line_assist_rma_step_name_equipmentTesting" qtlid="458754">Test du matériel</translation>
+   <translation id="telephony_line_assist_rma_step_name_equipmentSending" qtlid="458767">Envoi du matériel</translation>
+   <translation id="telephony_line_assist_rma_step_name_parcelValidation" qtlid="458780">Validation du colis</translation>
+   <translation id="telephony_line_assist_rma_step_name_validation" qtlid="458793">Validation du changement de téléphone</translation>
+   <translation id="telephony_line_assist_rma_step_status_todo" qtlid="29467">Čekající</translation>
+   <translation id="telephony_line_assist_rma_step_status_done" qtlid="257114">Potvrzeno</translation>
+   <translation id="telephony_line_assist_rma_pdf_download" qtlid="458806">Télécharger le bon de retour</translation>
+</translations>

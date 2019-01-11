@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+<!-- CONDITION EDIT -->
+   <translation id="voip_time_condition_condition_popover_title" qtlid="466762">Modifier une plage horaire</translation>
+<!-- DAYS -->
+   <translation id="voip_time_condition_condition_popover_days" qtlid="323911">Dia da semana</translation>
+   <translation id="voip_time_condition_condition_popover_days_monday" qtlid="6346">Segunda-feira</translation>
+   <translation id="voip_time_condition_condition_popover_days_tuesday" qtlid="6358">Terça-feira</translation>
+   <translation id="voip_time_condition_condition_popover_days_wednesday" qtlid="6370">Quarta-feira</translation>
+   <translation id="voip_time_condition_condition_popover_days_thursday" qtlid="6382">Quinta-feira</translation>
+   <translation id="voip_time_condition_condition_popover_days_friday" qtlid="6394">Sexta-feira</translation>
+   <translation id="voip_time_condition_condition_popover_days_saturday" qtlid="6406">Sábado </translation>
+   <translation id="voip_time_condition_condition_popover_days_sunday" qtlid="6418">Domingo</translation>
+
+   <translation id="voip_time_condition_condition_popover_repeater" qtlid="513452">Répéter</translation>
+   <translation id="voip_time_condition_condition_popover_days_repeat_monday" qtlid="513465">Tous les lundis</translation>
+   <translation id="voip_time_condition_condition_popover_days_repeat_tuesday" qtlid="513478">Tous les mardis</translation>
+   <translation id="voip_time_condition_condition_popover_days_repeat_wednesday" qtlid="513491">Tous les mercredis</translation>
+   <translation id="voip_time_condition_condition_popover_days_repeat_thursday" qtlid="513504">Tous les jeudis</translation>
+   <translation id="voip_time_condition_condition_popover_days_repeat_friday" qtlid="513517">Tous les vendredis</translation>
+   <translation id="voip_time_condition_condition_popover_days_repeat_saturday" qtlid="513530">Tous les samedis</translation>
+   <translation id="voip_time_condition_condition_popover_days_repeat_sunday" qtlid="513543">Tous les dimanches</translation>
+   <translation id="voip_time_condition_condition_popover_days_repeat_weekDays" qtlid="513556">Seulement les jours de la semaine</translation>
+   <translation id="voip_time_condition_condition_popover_days_repeat_weekendDays" qtlid="513569">Seulement les week-ends</translation>
+   <translation id="voip_time_condition_condition_popover_days_repeat_weekDays_label" qtlid="199468">Todos os dias da semana</translation>
+   <translation id="voip_time_condition_condition_popover_days_repeat_weekendDays_label" qtlid="513582">Tout le week-end</translation>
+   <translation id="voip_time_condition_condition_popover_days_repeat_allDays_label" qtlid="154091">Diária</translation>
+
+   <translation id="voip_time_condition_condition_popover_policy" qtlid="335661">Rediriger les appels vers</translation>
+   <translation id="voip_time_condition_condition_popover_time_slot" qtlid="396662">Plage horaire</translation>
+   <translation id="voip_time_condition_condition_popover_time_slot_from" qtlid="69077">De</translation>
+   <translation id="voip_time_condition_condition_popover_time_slot_to" qtlid="8890">às</translation>
+   <translation id="voip_time_condition_condition_popover_time_slot_overlap" qtlid="466775">Cette plage horaire est en conflit avec une autre !</translation>
+
+   <translation id="voip_time_condition_condition_popover_delete" qtlid="59699">Supressão</translation>
+   <translation id="voip_time_condition_condition_popover_delete_confirm" qtlid="466788">Êtes-vous certain de vouloir supprimer cette plage horaire ?</translation>
+</translations>

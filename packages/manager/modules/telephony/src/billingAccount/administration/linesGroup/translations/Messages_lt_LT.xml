@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_lines_group_title" qtlid="334413">Linijų pergrupavimas</translation>
+   <translation id="telephony_lines_group_info" qtlid="26551">Informacija</translation>
+   <translation id="telephony_lines_group_select" qtlid="386027">Pasirinkite</translation>
+   <translation id="telephony_lines_group_select_another" qtlid="17431">Ankstesnis</translation>
+   <translation id="telephony_lines_group_select_ba_help" qtlid="386040">Pasirinkite paslaugų grupę, kuria norite pridėti prie dabartinės grupės:</translation>
+   <translation id="telephony_lines_group_select_help" qtlid="386053">Pasirinkite paslaugas, kurias prijungti prie dabartinės grupės:</translation>
+   <translation id="telephony_lines_group_line_count" qtlid="386066">Prijungtų linijų skaičius: <strong>{{lines}}</strong></translation>
+   <translation id="telephony_lines_group_number_count" qtlid="386079">Susietų numerių skaičius: <strong>{{numbers}}</strong></translation>
+   <translation id="telephony_lines_group_telephony_group" qtlid="345910">Telefonijos grupė</translation>
+   <translation id="telephony_lines_group_line_and_number" qtlid="386092">Linijos ir numeriai</translation>
+   <translation id="telephony_lines_group_line" qtlid="42802">Linija</translation>
+   <translation id="telephony_lines_group_alias" qtlid="30778">Numeris</translation>
+   <translation id="telephony_lines_group_pool" qtlid="386105">Numerių ruožas</translation>
+   <translation id="telephony_lines_group_attach" qtlid="386118">Pridėti pasirinktas paslaugas</translation>
+   <translation id="telephony_lines_group_service_none" qtlid="386131">Grupė {{ group }} neturi susietų paslaugų.</translation>
+   <translation id="telephony_lines_group_attach_success" qtlid="386144">Paslaugos sėkmingai pridėtos.</translation>
+   <translation id="telephony_lines_group_attach_warning" qtlid="386157">Kai kurios paslaugos negali būti pridėtos.</translation>
+</translations>

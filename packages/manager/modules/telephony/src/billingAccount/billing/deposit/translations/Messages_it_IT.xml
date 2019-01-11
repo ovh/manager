@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_billing_actions_billing_deposit_title" qtlid="357369">Aumenta il massimale del deposito di garanzia</translation>
+   <translation id="telephony_billing_actions_billing_informations_title" qtlid="26551">Informazioni</translation>
+   <translation id="telephony_billing_actions_billing_group_label" qtlid="357382">Gruppo di telefonia:</translation>
+   <translation id="telephony_billing_actions_billing_current_deposit_label" qtlid="357395">Cauzione attuale:</translation>
+   <translation id="telephony_billing_actions_billing_order_title" qtlid="8302">Ordine</translation>
+   <translation id="telephony_billing_actions_billing_amount_to_add_label" qtlid="357408">Somma da aggiungere:</translation>
+   <translation id="telephony_billing_actions_billing_future_amount_label" qtlid="357421">Cauzione dopo l'aggiunta:</translation>
+   <translation id="telephony_billing_actions_billing_purchase_order_title" qtlid="35352">Buono d'ordine</translation>
+   <translation id="telephony_billing_actions_billing_purchase_order_label" qtlid="357434">Nº ordine:</translation>
+   <translation id="telephony_billing_actions_billing_amount_order_label" qtlid="357447">Importo:</translation>
+   <translation id="telephony_billing_actions_billing_without_tax" qtlid="101397">+IVA</translation>
+   <translation id="telephony_billing_actions_billing_submit" qtlid="43558">Ordina</translation>
+</translations>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_line_tones_title" qtlid="358344">Melodijų ir garsų valdymas</translation>
+   <translation id="telephony_line_tones_info1" qtlid="358357">Šiame puslapyje galite nustatyti linijos melodijas ir garsus.<br /> Galite keisti šiuos nustatymus:</translation>
+   <translation id="telephony_line_tones_info2" qtlid="358370"><strong>Numatytasis skambutis</strong>: nustatykite skambutį pagal nutylėjimą.</translation>
+   <translation id="telephony_line_tones_info3" qtlid="358383"><strong>Laukimo muzika</strong>: muzika, kuri bus girdima, kol skambinantysis lauks sujungimo. Laukimo muzika taip pat bus girdima, kai skambutį perjungsite į laukimo režimą.</translation>
+   <translation id="telephony_line_tones_info4" qtlid="358396"><strong>Pranešimas apie užimtą liniją</strong>: pranešimas, kuris naudojamas, kai linijos užimtos. Pranešimas bus transliuojamas gavus tiesioginį skambutį (ne per easyPabx ar miniPabx), su skambinančiuoju ryšys nebus užmegztas.</translation>
+   <translation id="telephony_line_tones_ringback" qtlid="358409">Garsai pagal nutylėjimą</translation>
+   <translation id="telephony_line_tones_onhold" qtlid="358422">Laukimo muzika</translation>
+   <translation id="telephony_line_tones_callwaiting" qtlid="358435">Pranešimas apie užimtą liniją</translation>
+   <translation id="telephony_line_tones_type_custom_sound" qtlid="358448">Keisti</translation>
+   <translation id="telephony_line_tones_type_none" qtlid="101193">Pagal nutylėjimą</translation>
+   <translation id="telephony_line_tones_type_predefined_1" qtlid="358461">1 nustatytas</translation>
+   <translation id="telephony_line_tones_type_predefined_2" qtlid="358474">2 nustatytas</translation>
+   <translation id="telephony_line_tones_choose_file" qtlid="358487">Pasirinkti failą</translation>
+   <translation id="telephony_line_tones_choose_file_confirm" qtlid="358500">Siųsti failą</translation>
+   <translation id="telephony_line_tones_choose_file_ring_success" qtlid="358513">Garsai atnaujinti</translation>
+   <translation id="telephony_line_tones_choose_file_sound_success" qtlid="358526">Melodijos atnaujintos</translation>
+   <translation id="telephony_line_tones_choose_file_announce_success" qtlid="358539">Pranešimas atnaujintas</translation>
+   <translation id="telephony_line_tones_choose_file_type_error" qtlid="358552">Nepalaikomas pasirinkto failo formatas.</translation>
+   <translation id="telephony_line_tones_apply" qtlid="249107">Taikyti keitimus</translation>
+</translations>

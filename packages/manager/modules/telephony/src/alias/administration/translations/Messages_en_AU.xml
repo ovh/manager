@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_alias_administration_actions_number_to_line" qtlid="334023">Convertir un numéro alias en ligne</translation>
+   <translation id="telephony_alias_administration_actions_number_delete_line" qtlid="334036">Résilier un numéro</translation>
+</translations>

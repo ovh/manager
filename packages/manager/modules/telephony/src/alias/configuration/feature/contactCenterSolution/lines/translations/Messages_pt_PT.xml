@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_alias_config_contactCenterSolution_lines_title" qtlid="511229">File d’appels : gestion des lignes dans la file</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_lines_subtitle" qtlid="511242">Afin de mettre en place une {{feature}}, vous devez y ajouter au moins une ligne (ex. ligne fixe externe, ligne mobile, ligne SIP OVH, etc...)</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_lines_organization" qtlid="511255">Organisation de vos lignes</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_lines_add_line" qtlid="511268">Ajouter une ligne</translation>
+
+   <translation id="telephony_alias_config_contactCenterSolution_lines_type" qtlid="2642">Tipo</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_lines_number" qtlid="30778">Número</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_lines_name" qtlid="3818">Apelido</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_lines_timeout" qtlid="516455">Durée sonnerie</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_lines_wrapUpTime" qtlid="303705">Repos</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_lines_simultaneous_lines" qtlid="303718">Appels simultanés</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_lines_status" qtlid="26443">Estado</translation>
+
+   <translation id="telephony_alias_config_contactCenterSolution_lines_type_internal" qtlid="511281">Ligne SIP OVH</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_lines_type_external" qtlid="93271">Número externo</translation>
+
+   <translation id="telephony_alias_config_contactCenterSolution_lines_status_available" qtlid="30250">Ativado</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_lines_status_loggedOut" qtlid="24967">Desativado</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_lines_status_onBreak" qtlid="397156">En pause</translation>
+
+   <translation id="telephony_alias_config_contactCenterSolution_lines_seconds" qtlid="397208">{{ amount }} sec.</translation>
+
+   <translation id="telephony_alias_config_contactCenterSolution_lines_display_number" qtlid="511294">Numéro à afficher</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_lines_display_number_help" qtlid="511307">Il s’agit du numéro qui sera visible sur le téléphone de la personne qui reçoit l’appel.</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_lines_display_number" qtlid="511294">Numéro à afficher</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_lines_display_number_caller" qtlid="392710">Le numéro de l'appelant</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_lines_display_number_both" qtlid="392723">Les deux numéros</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_lines_display_number_alias" qtlid="511320">Le numéro de la file d’appels</translation>
+
+   <translation id="telephony_alias_config_contactCenterSolution_lines_strategy" qtlid="511333">Stratégie de sonnerie</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_lines_strategy_ringAll" qtlid="294906">Tudo ao mesmo tempo</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_lines_strategy_ringAll_info" qtlid="511346">Tous les téléphones sonnent en même temps. Le premier qui décroche prend l’appel sur son poste.</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_lines_strategy_cumulationByAgentOrder" qtlid="511359">Selon l’ordre défini dans la liste, cumulé</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_lines_strategy_cumulationByAgentOrder_info" qtlid="511372">Le premier téléphone de la file d’attente sonne. Le deuxième sonne à son tour après quelques secondes, en même temps que le premier. Le troisième commence à sonner quelques secondes après, etc.</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_lines_strategy_longestHangupAgent" qtlid="294867">O último a atender</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_lines_strategy_longestHangupAgent_info" qtlid="392788">Les téléphones sonnent les uns après les autres en suivant toujours le même ordre.</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_lines_strategy_longestIdleAgent" qtlid="294880">Do mais disponível para o menos disponível</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_lines_strategy_longestIdleAgent_info" qtlid="392801">Les téléphones sonneront suivant leur disponibilité depuis l'activation.</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_lines_strategy_random" qtlid="294893">Aleatório</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_lines_strategy_random_info" qtlid="496954">Les téléphones sonnent les uns après les autres de manière aléatoire.</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_lines_strategy_roundRobin" qtlid="294919">Conforme a repartição de carga</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_lines_strategy_roundRobin_info" qtlid="392827">Les téléphones sonneront suivant leur disponibilité depuis le dernier appel : le plus disponible en premier.</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_lines_strategy_sequentiallyByAgentOrder" qtlid="511385">Selon l’ordre défini dans la liste</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_lines_strategy_sequentiallyByAgentOrder_info" qtlid="392840">Le premier téléphone de la file d'attente sonne en premier, le deuxième est second, etc.</translation>
+
+   <translation id="telephony_alias_config_contactCenterSolution_lines_apply_forward_to_lines" qtlid="511398">Appliquer les renvois définis sur les lignes</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_lines_apply_forward_to_lines_help" qtlid="511411">Cette option permet d’appliquer les renvois d’appels configurés sur vos lignes.</translation>
+
+   <translation id="telephony_alias_config_contactCenterSolution_lines_get_error" qtlid="511424">Une erreur est survenue lors de la récupération de la file d’appels</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_lines_update_success" qtlid="511437">La file d’appels à été mise à jour.</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_lines_update_error" qtlid="511450">Une erreur est survenue lors de la mise à jour de la file d’appels</translation>
+
+   <translation id="telephony_alias_config_contactCenterSolution_lines_delete_line_success" qtlid="511463">La ligne a été supprimée</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_lines_delete_line_error" qtlid="511476">Une erreur est survenue lors de la suppression de la ligne</translation>
+
+<!-- Line creation -->
+   <translation id="telephony_alias_config_contactCenterSolution_lines_line_number_placeholder" qtlid="511489">Ex: 0033195959192</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_lines_line_add_number_precision_part_one" qtlid="511502">Veuillez noter que la législation interdit la redirection sur les numéros surtaxés.</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_lines_line_add_number_precision_part_two" qtlid="511515">Un appel redirigé vers une destination non comprise dans votre forfait vous sera facturé.</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_lines_line_add_number_precision_part_three" qtlid="511528">Les redirections vers un numéro mobile ou une ligne externe à OVH ne sont pas comprises dans les forfaits VoIP. Elles sont donc facturées à la seconde, sauf dans le cadre des forfaits mobile à l’heure.</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_lines_line_add_number_precision_link" qtlid="511541">Consulter les tarifs par destination.</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_lines_line_add_success" qtlid="511554">Vos lignes ont bien été ajoutées à la file d’appels.</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_lines_line_add_error" qtlid="511567">Une erreur est survenue lors de l’ajout de vos lignes.</translation>
+
+<!-- Line Deletion -->
+   <translation id="telephony_alias_config_contactCenterSolution_lines_delete_line_title" qtlid="511580">Supprimer la ligne</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_lines_delete_line_question" qtlid="511593">Êtes-vous sûr(e) de vouloir supprimer la ligne {{line}} de la file d’appels ?</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_lines_delete_line_success" qtlid="511606">La ligne a été supprimée de la file d’appels.</translation>
+
+<!-- Line Edition -->
+   <translation id="telephony_alias_config_contactCenterSolution_lines_line_title" qtlid="308177">Ligne {{index}}</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_lines_line_add" qtlid="511619">Ajouter une ligne supplémentaire</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_lines_line_timeout" qtlid="511632">Durée de la sonnerie avant de passer à la ligne suivante</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_lines_line_wrapUpTime" qtlid="511645">Temps de repos entre chaque prise d’appel</translation>
+
+   <translation id="telephony_alias_config_contactCenterSolution_lines_line_simultaneousLines" qtlid="511658">Appels simultanés par ligne</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_lines_line_time_help" qtlid="511671">Temps exprimé en secondes.</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_lines_line_secondes_help" qtlid="511684">20 secondes équivalent à 5 sonneries.</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_lines_line_wrap_up_time" qtlid="511645">Temps de repos entre chaque prise d’appel</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_lines_line_edit_success" qtlid="511697">La ligne a été mise à jour.</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_lines_line_edit_error" qtlid="511710">Une erreur est survenue lors de la mise à jour de la ligne.</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_lines_line_get_error" qtlid="511723">Une erreur est survenue lors de la récupération des lignes existantes.</translation>
+
+</translations>

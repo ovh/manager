@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_group_fax_management_back_link" qtlid="357083">Retour à la gestion du fax</translation>
+<!-- ACTIONS -->
+   <translation id="telephony_group_fax_management_action_informations" qtlid="27115">Informacje ogólne</translation>
+   <translation id="telephony_group_fax_management_action_terminate" qtlid="463200">Résiliation du fax</translation>
+</translations>

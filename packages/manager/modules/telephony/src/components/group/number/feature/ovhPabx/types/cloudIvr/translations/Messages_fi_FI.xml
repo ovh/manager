@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_number_feature_ovh_pabx_dialplan" qtlid="465631">Serveur vocal interactif :</translation>
+   <translation id="telephony_number_feature_ovh_pabx_dialplan_edit" qtlid="465644">Options du serveur vocal interactif</translation>
+   <translation id="telephony_number_feature_ovh_pabx_dialplan_new_name" qtlid="465657">Mon serveur vocal interactif</translation>
+   <translation id="telephony_number_feature_ovh_pabx_dialplan_action_edit" qtlid="465670">Modifier les options du serveur vocal interactif</translation>
+   <translation id="telephony_number_feature_ovh_pabx_dialplan_action_delete" qtlid="465683">Supprimer la configuration du serveur vocal interactif</translation>
+   <translation id="telephony_number_feature_ovh_pabx_dialplan_save_error" qtlid="465696">Oups ! Une erreur est survenue lors de la modification de votre serveur vocal interactif.</translation>
+   <translation id="telephony_number_feature_ovh_pabx_dialplan_create_error" qtlid="465709">Oups ! Une erreur est survenue lors de la création de votre serveur vocal interactif.</translation>
+   <translation id="telephony_number_feature_ovh_pabx_dialplan_delete_error" qtlid="465722">Oups ! Une erreur est survenue lors de la suppression de la configuration de votre serveur vocal interactif.</translation>
+   <translation id="telephony_number_feature_ovh_pabx_dialplan_name_explain" qtlid="465735">Ce nom sera présent sur le téléphone appelé lors d'un appel entrant si le numéro à présenter est configuré sur "SVI" ou "les 2 numéros".</translation>
+   <translation id="telephony_number_feature_ovh_pabx_dialplan_name_required" qtlid="465748">Veuillez donner un nom à votre serveur vocal interactif.</translation>
+   <translation id="telephony_number_feature_ovh_pabx_dialplan_transfer_timeout_explain" qtlid="465761">Lorsque le serveur vocal interactif comporte un transfert vers une ligne externe, si cette ligne ne décroche pas avant la durée configurée, l'appel passera à l'étape suivante.</translation>
+
+<!-- SHOW CALLER NUMBER -->
+   <translation id="telephony_number_feature_ovh_pabx_dialplan_show_caller_number_alias" qtlid="465774">Le numéro du SVI</translation>
+   <translation id="telephony_number_feature_ovh_pabx_dialplan_show_caller_number_alias_explain" qtlid="465787">Le téléphone cible (qui reçoit l'appel) verra sur son écran le numéro de la ligne qui compose le numéro du SVI (ligne appelante).</translation>
+</translations>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_service_choice_title" qtlid="397000">Choix du service</translation>
+
+<!-- FILTERS -->
+   <translation id="telephony_service_choice_filter_by" qtlid="397013">Filtrer par :</translation>
+   <translation id="telephony_service_choice_filter_by_type" qtlid="397026">Types</translation>
+   <translation id="telephony_service_choice_filter_by_group" qtlid="32962">Groupes</translation>
+   <translation id="telephony_service_choice_filter_type_sip" qtlid="397039">Lignes SIP</translation>
+   <translation id="telephony_service_choice_filter_type_trunk" qtlid="397052">Lignes Trunk</translation>
+   <translation id="telephony_service_choice_filter_type_fax" qtlid="32926">Fax</translation>
+   <translation id="telephony_service_choice_filter_type_number" qtlid="30778">Numéro</translation>
+
+<!-- SELECT -->
+   <translation id="telephony_service_choice_destination" qtlid="397065">Choisissez un service</translation>
+</translations>

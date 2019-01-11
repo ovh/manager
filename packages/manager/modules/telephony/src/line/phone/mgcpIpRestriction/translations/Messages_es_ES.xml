@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_line_phone_mgcp_ip_restriction_title" qtlid="336831">Restricción MGCP por IP</translation>
+   <translation id="telephony_line_phone_mgcp_ip_restriction_line_title" qtlid="390669">Restricción MGCP de la línea</translation>
+   <translation id="telephony_line_phone_mgcp_ip_restriction_line_info" qtlid="390682">Esta restricción se utiliza en la línea actualmente seleccionada.</translation>
+   <translation id="telephony_line_phone_mgcp_ip_restriction_customer_code_title" qtlid="390695">Restricción MGCP asociada a su código de cliente</translation>
+   <translation id="telephony_line_phone_mgcp_ip_restriction_customer_code_info" qtlid="390708">Esta restricción se utiliza al instalar nuevas líneas contratadas con su código de cliente.</translation>
+   <translation id="telephony_line_phone_mgcp_ip_restriction_label" qtlid="390721">Dirección IP autorizada:</translation>
+   <translation id="telephony_line_phone_mgcp_ip_restriction_placeholder" qtlid="390734">Dirección IP autorizada (p. ej.: 213.186.33.33)</translation>
+   <translation id="telephony_line_phone_mgcp_ip_restriction_default_placeholder" qtlid="458832">Adresse IP autorisée (exemple : 213.186.33.33/24)</translation>
+   <translation id="telephony_line_phone_mgcp_ip_restriction_error_pattern" qtlid="339236">La dirección IP indicada no es válida.</translation>
+   <translation id="telephony_line_phone_mgcp_ip_restriction_submit" qtlid="458845">Ajouter l’adresse IP</translation>
+   <translation id="telephony_line_phone_mgcp_ip_restriction_edit_success" qtlid="390747">La modificación se ha registrado y será efectiva en los próximos 5 minutos.</translation>
+   <translation id="telephony_line_phone_mgcp_ip_restriction_edit_error" qtlid="390760">¡Vaya! Se ha producido un error al modificar la dirección IP autorizada.</translation>
+   <translation id="telephony_line_phone_mgcp_ip_restriction_bulk_all_success" qtlid="479967">La modification de la restriction MGCP de ligne a bien été appliquée aux services sélectionnés.</translation>
+   <translation id="telephony_line_phone_mgcp_ip_restriction_bulk_some_success" qtlid="479980">La modification de la restriction MGCP de ligne a bien été appliquée à {{ count }} des services sélectionnés.</translation>
+   <translation id="telephony_line_phone_mgcp_ip_restriction_bulk_error" qtlid="479993">La modification de la restriction MGCP de ligne n'a pu être appliquée au(x) service(s) suivant(s) :</translation>
+   <translation id="telephony_line_phone_mgcp_ip_restriction_bulk_on_error" qtlid="480006">Oups ! Une erreur est survenue lors de la modification de la restriction MGCP de ligne.</translation>
+</translations>

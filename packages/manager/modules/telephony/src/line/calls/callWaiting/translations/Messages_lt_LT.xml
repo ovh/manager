@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_line_actions_line_calls_call_waiting_title" qtlid="335999">Dvigubi skambučiai ir intercom</translation>
+   <translation id="telephony_line_actions_line_calls_call_waiting_cw_checkbox_label" qtlid="387211">Įjungti dvigubą skambutį</translation>
+   <translation id="telephony_line_actions_line_calls_call_waiting_cw_title" qtlid="336012">Dvigubi skambučiai</translation>
+   <translation id="telephony_line_actions_line_calls_call_waiting_intercom_checkbox_label" qtlid="387224">Įjungti Intercom režimą su prefiksu <strong>3691</strong></translation>
+   <translation id="telephony_line_actions_line_calls_call_waiting_intercom_title" qtlid="387237">Intercom režimas</translation>
+   <translation id="telephony_line_actions_line_calls_call_waiting_load_error" qtlid="334686">Klaida nuskaitant konfigūraciją.</translation>
+   <translation id="telephony_line_actions_line_calls_call_waiting_save_error" qtlid="334712">Negalima išsaugoti konfigūracijos. Prašome pabandyti vėliau.</translation>
+   <translation id="telephony_line_actions_line_calls_call_waiting_cw_save_success_true" qtlid="336038">Dvigubi skambučiai aktyvuoti.</translation>
+   <translation id="telephony_line_actions_line_calls_call_waiting_cw_save_success_false" qtlid="336051">Dvigubi skambučiai išjungti.</translation>
+   <translation id="telephony_line_actions_line_calls_call_waiting_intercom_save_success_no" qtlid="387250">Intercom režimas išjungtas.</translation>
+   <translation id="telephony_line_actions_line_calls_call_waiting_intercom_save_success_prefixed" qtlid="387263">Intercom režimas įjungtas su prefiksu 3691.</translation>
+   <translation id="telephony_line_actions_line_calls_call_waiting_cw_explain" qtlid="336090">Ši funkcija leidžia įjungti ir išjungti "dvigubą skambutį", suteikiamą su linija.</translation>
+   <translation id="telephony_line_actions_line_calls_call_waiting_cw_explain1" qtlid="336103">Jeigu funkcija išjungta, negalėsite atlikti ar priimti antro vienalaikio skambučio.</translation>
+   <translation id="telephony_line_actions_line_calls_call_waiting_intercom_explain" qtlid="387276">Intercom režimas:&#160;Automatinis pertraukimas su garsiakalbio įjungimu.</translation>
+   <translation id="telephony_line_actions_line_calls_call_waiting_intercom_detail" qtlid="336129">OVH siūlomi telefonai, suderinami su Intercom, yra: Thomson ST2030, Cisco SPA5 serija ir LG IP 88XX.</translation>
+</translations>

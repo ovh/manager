@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_alias_page_title" qtlid="393048">Numéro "{{name}}"</translation>
+   <translation id="telephony_alias_tab_order" qtlid="333256">Commande de numéros</translation>
+   <translation id="telephony_alias_tab_number" qtlid="512997">Mon numéro</translation>
+   <translation id="telephony_alias_tab_portability" qtlid="333269">Portabilité</translation>
+   <translation id="telephony_alias_tab_administrative_management" qtlid="72737">Gestion</translation>
+   <translation id="telephony_alias_tab_number_configuration" qtlid="4406">Configuración</translation>
+   <translation id="telephony_alias_tab_consumption" qtlid="25639">Consumo</translation>
+   <translation id="telephony_alias_tab_special" qtlid="35820">Reversements</translation>
+   <translation id="telephony_alias_tab_bank_maker" qtlid="333295">Générateur de cartouche</translation>
+   <translation id="telephony_alias_tab_number_directory" qtlid="33370">Coordonnées</translation>
+   <translation id="telephony_alias_tab_statistics" qtlid="26671">Statistiques</translation>
+
+   <translation id="telephony_alias_tab_records" qtlid="303523">Enregistrements</translation>
+
+   <translation id="telephony_alias_rename_error" qtlid="333308">Impossible de renommer votre alias {{serviceName}}.</translation>
+   <translation id="telephony_alias_termination_warning" qtlid="393061">Le numéro sera résilié le <strong>{{ date }}</strong>.</translation>
+   <translation id="telephony_alias_termination_warning_cancel" qtlid="462953">Vous pourrez annuler dans la section suivante.</translation>
+   <translation id="telephony_alias_convert_warning" qtlid="393074">Le numéro sera converti en ligne le <strong>{{ date }}</strong>.</translation>
+   <translation id="telephony_alias_load_error" qtlid="393087">Oups ! Une erreur est survenue lors du chargement de votre numéro.</translation>
+
+   <translation id="telephony_alias_tab_item_line_management" qtlid="513010">Gestion des lignes</translation>
+   <translation id="telephony_alias_tab_item_sounds_waiting_management" qtlid="513023">Gestion des sons et de l’attente</translation>
+   <translation id="telephony_alias_tab_item_time_condition_management" qtlid="513036">Plages horaires et fermetures</translation>
+   <translation id="telephony_alias_tab_item_calls_filtering_management" qtlid="513049">Filtrage d’appels</translation>
+   <translation id="telephony_alias_tab_item_redirect_management" qtlid="46000">Redirection</translation>
+   <translation id="telephony_alias_tab_item_conference_management" qtlid="333074">Conférence</translation>
+   <translation id="telephony_alias_tab_item_cloudIvr_management" qtlid="333100">Serveur vocal interactif</translation>
+   <translation id="telephony_alias_tab_item_svi_management" qtlid="516494">Serveur Vocal Interactif en VXML</translation>
+   <translation id="telephony_alias_tab_item_ddi_management" qtlid="46000">Redirection</translation>
+   <translation id="telephony_alias_tab_item_contactCenterSolutionExpert_management" qtlid="513075">Contact Center Solution expert</translation>
+   <translation id="telephony_alias_tab_item_change_featureType" qtlid="513088">Changer de configuration</translation>
+
+   <translation id="telephony_alias_tile_information" qtlid="516507">Information</translation>
+   <translation id="telephony_alias_tile_configuration" qtlid="4406">Configuración</translation>
+   <translation id="telephony_alias_tile_detailed_consumption" qtlid="513101">Consommation détaillée</translation>
+
+   <translation id="telephony_alias_presentation_title" qtlid="513114">Qu’est-ce qu’un numéro&#160;?</translation>
+<translation id="telephony_alias_presentation_part_one" qtlid="513127">Un numéro, aussi appelé alias, est virtuel. À l’inverse d’une ligne téléphonique, il ne dispose d’aucun forfait d’appel ni d'aucun matériel.</translation>
+   <translation id="telephony_alias_presentation_part_two" qtlid="513140">Ce numéro est souvent votre premier moyen de contact avec le client, voire la carte de visite de votre entreprise. Il vous permet de mettre en place votre propre stratégie d'appels.</translation>
+<translation id="telephony_alias_presentation_part_three" qtlid="513153">Après l’avoir commandé ou l’avoir porté chez OVH, vous pouvez lui attribuer un rôle selon votre besoin&#160;: redirection simple, file d'appels, serveur vocal interactif multichoix ou encore conférence.</translation>
+
+   <translation id="telephony_alias_information_number" qtlid="30778">Número</translation>
+   <translation id="telephony_alias_information_region" qtlid="513166">Pays/code</translation>
+   <translation id="telephony_alias_information_region_code_format" qtlid="513179">+{{code}}</translation>
+   <translation id="telephony_alias_information_coordinates_directory" qtlid="513192">Coordonnées dans l'annuaire</translation>
+   <translation id="telephony_alias_information_number_to_line" qtlid="513205">Convertir le numéro en ligne</translation>
+   <translation id="telephony_alias_information_terminate_number" qtlid="513218">Résilier mon numéro</translation>
+   <translation id="telephony_alias_information_contact_edit" qtlid="459417">Modifier les coordonnées</translation>
+
+   <translation id="telephony_alias_configuration_configuration_type" qtlid="513231">Type de configuration</translation>
+
+   <translation id="telephony_alias_configuration_configuration_type_conference" qtlid="333074">Conférence</translation>
+   <translation id="telephony_alias_configuration_configuration_type_redirect" qtlid="46000">Redirection</translation>
+   <translation id="telephony_alias_configuration_configuration_type_redirect_destination" qtlid="513244">Vers la ligne</translation>
+   <translation id="telephony_alias_configuration_configuration_type_ddi" qtlid="46000">Redirection</translation>
+   <translation id="telephony_alias_configuration_configuration_type_conference" qtlid="333074">Conférence</translation>
+   <translation id="telephony_alias_configuration_configuration_type_cloudIvr" qtlid="333100">Serveur vocal interactif</translation>
+   <translation id="telephony_alias_configuration_configuration_type_svi" qtlid="333126">Serveur vocal interactif (mode expert) en VXML</translation>
+   <translation id="telephony_alias_configuration_configuration_type_easyHunting" qtlid="324457">File d'appels</translation>
+   <translation id="telephony_alias_configuration_configuration_type_cloudHunting" qtlid="333165">File d'appels (mode expert)</translation>
+   <translation id="telephony_alias_configuration_configuration_type_easyPabx" qtlid="60119">Easy PABX</translation>
+   <translation id="telephony_alias_configuration_configuration_type_miniPabx" qtlid="333204">Mini PABX</translation>
+   <translation id="telephony_alias_configuration_configuration_type_contactCenterSolution" qtlid="324457">File d'appels</translation>
+   <translation id="telephony_alias_configuration_configuration_type_contactCenterSolutionExpert" qtlid="432904">Contact Center Solution</translation>
+   <translation id="telephony_alias_configuration_configuration_type_empty" qtlid="8674">Aucune</translation>
+
+   <translation id="telephony_alias_configuration_redirect_to" qtlid="513244">Vers la ligne</translation>
+   <translation id="telephony_alias_configuration_choose" qtlid="513257">Choisir une configuration</translation>
+   <translation id="telephony_alias_configuration_configure" qtlid="513270">Paramétrer la configuration</translation>
+   <translation id="telephony_alias_configuration_delete_configuration" qtlid="513283">Supprimer la configuration</translation>
+   <translation id="telephony_alias_configuration_delete_configuration_question_part1" qtlid="513296">Êtes-vous sûr de vouloir supprimer votre configuration ?</translation>
+   <translation id="telephony_alias_configuration_delete_configuration_question_part2" qtlid="513309">Vous perdrez tous les paramètres que vous avez défini.</translation>
+   <translation id="telephony_alias_delete_ok" qtlid="513322">La configuration a été supprimée</translation>
+   <translation id="telephony_alias_delete_ko" qtlid="513335">Une erreur est survenue lors de la suppression de la configuration.</translation>
+
+   <translation id="telephony_alias_consumption_incoming_calls" qtlid="336402">Appels reçus</translation>
+   <translation id="telephony_alias_consumption_incoming_calls_during_current_month" qtlid="513348">Appels reçus durant le mois en cours</translation>
+   <translation id="telephony_alias_consumption_outgoing_calls" qtlid="87069">Appels émis</translation>
+   <translation id="telephony_alias_consumption_outgoing_calls_during_current_month" qtlid="513361">Appels émis durant le mois en cours</translation>
+   <translation id="telephony_alias_consumption_total_duration" qtlid="513374">Durée totale</translation>
+   <translation id="telephony_alias_consumption_outgoing_out_plan" qtlid="320532">Extras</translation>
+   <translation id="telephony_alias_consumption_outgoing_out_plan_detail" qtlid="513387">{{ price }} € HT</translation>
+   <translation id="telephony_alias_consumption_details" qtlid="225192">Ver el detalle</translation>
+
+   <translation id="telephony_alias_special_repayments" qtlid="512867">Reversements et coûts</translation>
+   <translation id="telephony_alias_special_number_rsva" qtlid="501821">Tarification du numéro</translation>
+
+   <translation id="telephony_alias_config_feature_type_contactCenterSolutionExpert" qtlid="511983">Avec le mode expert de Contact Center Solution, vous pouvez gérer le flux de vos appels de bout en bout. En fonction des numéros appelants ou des plages horaires, choisissez vous-même votre stratégie. Jouez des sons d'accueils, personnalisez votre musique d'attente, faites sonner les postes de vos différents services.</translation>
+   <translation id="telephony_alias_config_feature_type_cloudHunting" qtlid="513400">Avec la File d'appels expert, vous pouvez gérer votre flux de communications de manière plus complète. Jouez un son d'accueil, personnalisez votre musique d'attente et faites sonner les postes de vos différents services en fonction de stratégies que vous définissez, sur des plages horaires choisies. Vous pouvez indiquer le nombre maximum d'appelants dans la file et leur temps d'attente maximal. Cette solution est en bêta-test.</translation>
+   <translation id="telephony_alias_config_feature_type_svi" qtlid="511957">Le Serveur vocal interactif en VXML vous permet, via une configuration 2.1, d’utiliser un menu interactif avancé. L’appelant est invité, via des messages pré-enregistrés ou une synthèse vocale, à interagir avec le serveur grâce aux touches de son téléphone. Selon la configuration choisie, il sera possible de lire des sons ou de transférer un appel vers d’autres numéros. Notez que seuls les transferts vers les numéros OVH sont possibles.</translation>
+
+   <translation id="telephony_alias_config_obsolete_feature_type_part_one" qtlid="513413">Pour configurer votre numéro en Easy (ou mini) PABX, merci de vous rendre dans le</translation>
+   <translation id="telephony_alias_config_obsolete_feature_type_part_two" qtlid="513426">Sachez que prochainement cette configuration sera définitivement remplacée par la configuration File d'appels.</translation>
+   <translation id="telephony_alias_config_obsolete_feature_type_warning" qtlid="513439">Attention {{featureType}} est une configuration obsolète, ce choix ne sera plus proposé lors d’une nouvelle configuration.</translation>
+</translations>

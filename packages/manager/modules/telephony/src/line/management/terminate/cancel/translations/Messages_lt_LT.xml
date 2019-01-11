@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_group_line_cancel_terminate_title" qtlid="359943">Atšaukti linijos "{{ line }}" atsisakymą</translation>
+   <translation id="telephony_group_line_cancel_terminate_info_title" qtlid="26551">Informacija</translation>
+   <translation id="telephony_group_line_cancel_terminate_info_1" qtlid="359956">Šiame puslapyje galite atšaukti linijos atsisakymą.</translation>
+   <translation id="telephony_group_line_cancel_terminate_action_title" qtlid="359696">Atšaukti linijos atsisakymą</translation>
+   <translation id="telephony_group_line_cancel_terminate_terminate" qtlid="285350">Atšaukti atsisakymo prašymą</translation>
+   <translation id="telephony_group_line_cancel_terminating_ok" qtlid="359969">Atsisakymas atšauktas.</translation>
+   <translation id="telephony_group_line_cancel_terminating_ko" qtlid="359982">Klaida atšaukiant<br/>{{error}}</translation>
+   <translation id="telephony_group_line_cancel_terminate_action_label" qtlid="359995">Linijai pateiktas atsisakymo prašymas.<br/>Atsisakymas suplanuotas <b class="text-danger">{{executionDate}}</b>.<br/>Spragtelėję «Atšaukti atsisakymą», iškart pereisite prie atsisakymo atšaukimo.</translation>
+</translations>

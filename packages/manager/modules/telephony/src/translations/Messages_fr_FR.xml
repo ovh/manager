@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_page_title">Ma Téléphonie "{{name}}"</translation>
+   <translation id="telephony_default_title">Ma Téléphonie</translation>
+
+   <translation id="telephony_section_load_error">Oups ! Une erreur est survenue lors du chargement de la section.</translation>
+<!-- INFRASTRUCTURE -->
+   <translation id="telephony_infrastructure_incoming_call_label">Appels entrants</translation>
+   <translation id="telephony_infrastructure_my_number_label">Mon numéro</translation>
+   <translation id="telephony_infrastructure_redirect_to_label">Rediriger vers</translation>
+   <translation id="telephony_infrastructure_conditons_add">Ajouter des conditions</translation>
+   <translation id="telephony_infrastructure_label_otherLine">Tel. fixe ou mobile</translation>
+<translation id="telephony_infrastructure_label_undefined"/>
+   <translation id="telephony_infrastructure_other_line_additional_label">(hors n° OVH)</translation>
+   <translation id="telephony_infrastructure_my_number_configure">Configurer vos appels entrants / sortants</translation>
+   <translation id="telephony_infrastructure_my_number_redirect_modify">Modifier la redirection</translation>
+   <translation id="telephony_infrastructure_service_other">Autre</translation>
+   <translation id="telephony_save_bar_question">Sauvegarder ma configuration&nbsp;?</translation>
+   <translation id="telephony_save_bar_decline">Annuler</translation>
+   <translation id="telephony_save_bar_accept">Valider</translation>
+
+<!-- OFFERS -->
+   <translation id="priceplan_land_line_40_unlimited_mobile_fr_unlimited">VoIP Mob. Illimité</translation>
+   <translation id="priceplan_land_line_40_unlimited_mobile_fr_100_h">VoIP Mob. 100H</translation>
+   <translation id="priceplan_land_line_40_unlimited_mobile_fr_30_h">VoIP Mob. 30H</translation>
+   <translation id="priceplan_land_line_40_unlimited_mobile_fr_10_h">VoIP Mob. 10H</translation>
+   <translation id="priceplan_land_line_40_unlimited_mobile_fr_3_h">VoIP Mob. 3H</translation>
+   <translation id="priceplan_land_line_40_unlimited_mobile_fr_1_h">VoIP Mob 1H</translation>
+   <translation id="priceplan_land_line_40_unlimited">VoIP Illimité</translation>
+   <translation id="individual_land_line_40_unlimited_mobile_fr_unlimited">Perso Mob. Illimité</translation>
+   <translation id="individual_land_line_40_unlimited_mobile_fr_100_h">Perso Mob. 100H</translation>
+   <translation id="individual_land_line_40_unlimited_mobile_fr_30_h">Perso Mob. 30H</translation>
+   <translation id="individual_land_line_40_unlimited_mobile_fr_10_h">Perso Mob. 10H</translation>
+   <translation id="individual_land_line_40_unlimited_mobile_fr_3_h">Perso Mob. 3H</translation>
+   <translation id="individual_land_line_40_unlimited_mobile_fr_1_h">Perso Mob. 1H</translation>
+   <translation id="individual_land_line_40_unlimited">Perso Illimité</translation>
+   <translation id="sipfax">Fax Entreprise</translation>
+   <translation id="trunk_land_line_40_unlimited_mobile_fr_unlimited">VoIP Entreprise</translation>
+   <translation id="trunk">VoIP Entreprise</translation>
+   <translation id="voip_main_offer_priceplan_land_line_40_unlimited_10_v_3">VoIP Entreprise</translation>
+   <translation id="voip_main_offer_priceplan_land_line_40_unlimited_10_v_1">VoIP Entreprise</translation>
+
+<!-- PHONEBOOK -->
+   <translation id="telephony_phonebook_title">Carnet de contacts</translation>
+   <translation id="telephony_phonebook_label">Carnet&#160;:</translation>
+   <translation id="telephony_phonebook_create_title">Nouveau carnet de contacts</translation>
+   <translation id="telephony_phonebook_create_info">Aucun carnet de contacts n’a été trouvé. Vous pouvez en créer un à l’aide du formulaire ci-dessous.</translation>
+   <translation id="telephony_phonebook_create_label">Nom du carnet de contacts</translation>
+   <translation id="telephony_phonebook_create_submit">Créer le carnet de contacts</translation>
+   <translation id="telephony_phonebook_create_success">Ajout du carnet de contacts en cours…</translation>
+   <translation id="telephony_phonebook_create_name_error_required">Le champ "Nom du carnet de contacts" est obligatoire.</translation>
+   <translation id="telephony_phonebook_create_name_error_pattern">Le nom du carnet doit être composé uniquement de caractères alphanumériques.</translation>
+   <translation id="telephony_phonebook_create_name_error_maxlength">Le nom du carnet de contacts doit faire moins de 50 caractères.</translation>
+   <translation id="telephony_phonebook_update_label">Éditer le carnet de contacts</translation>
+   <translation id="telephony_phonebook_update_ko">Oups ! Impossible d’éditer le carnet de contacts.<br/>{{error}}</translation>
+   <translation id="telephony_phonebook_delete_label">Supprimer le carnet de contacts</translation>
+   <translation id="telephony_phonebook_delete_info">Notez que les contacts présents dans votre carnet de contacts seront également supprimés.</translation>
+   <translation id="telephony_phonebook_delete_success">Suppression en cours…</translation>
+   <translation id="telephony_phonebook_delete_confirm">Voulez-vous vraiment supprimer le carnet de contacts <b>«{{ name }}»</b>&#160;?</translation>
+   <translation id="telephony_phonebook_deleting">Suppression du carnet de contacts en cours…</translation>
+   <translation id="telephony_phonebook_deleted">Carnet de contacts supprimé !</translation>
+   <translation id="telephony_phonebook_delete_ko">Oups ! Impossible de supprimer le carnet de contacts.<br/>{{error}}</translation>
+   <translation id="telephony_phonebook_brand_not_supported">Oups ! La marque de votre téléphone ne supporte pas le carnet de contacts.</translation>
+   <translation id="telephony_phonebook_contact_title">Gestion des contacts</translation>
+   <translation id="telephony_phonebook_contact_action_import">Importer</translation>
+   <translation id="telephony_phonebook_contact_action_import_title">Importer des contacts</translation>
+   <translation id="telephony_phonebook_contact_action_import_info">L’ensemble des numéros de votre fichier doit être au format international.</translation>
+   <translation id="telephony_phonebook_contact_action_import_file_label">Fichier de contact</translation>
+   <translation id="telephony_phonebook_contact_action_import_file_invalid">Format de fichier non supporté.</translation>
+   <translation id="telephony_phonebook_contact_action_importing">Importation des contacts en cours…</translation>
+   <translation id="telephony_phonebook_contact_action_imported">Importation des contacts terminée&#160;!</translation>
+   <translation id="telephony_phonebook_contact_action_import_ko">Oups ! Impossible d’importer vos contacts.<br/>{{ error }}</translation>
+   <translation id="telephony_phonebook_contact_action_import_alert_task">Une tâche d’importation de contact est actuellement en cours…</translation>
+   <translation id="telephony_phonebook_contact_action_export">Exporter</translation>
+   <translation id="telephony_phonebook_contact_action_export_ok">Exportation des contacts terminée&#160;!</translation>
+   <translation id="telephony_phonebook_contact_action_export_ko">Oups ! Impossible d’exporter vos contacts.</translation>
+   <translation id="telephony_phonebook_contact_column_surname">Nom</translation>
+   <translation id="telephony_phonebook_contact_column_name">Prénom</translation>
+   <translation id="telephony_phonebook_contact_column_group">Société</translation>
+   <translation id="telephony_phonebook_contact_column_home_phone">Fixe <small>(domicile)</small></translation>
+   <translation id="telephony_phonebook_contact_column_home_mobile">Mobile <small>(domicile)</small></translation>
+   <translation id="telephony_phonebook_contact_column_work_phone">Fixe <small>(professionnel)</small></translation>
+   <translation id="telephony_phonebook_contact_column_work_mobile">Mobile <small>(professionnel)</small></translation>
+   <translation id="telephony_phonebook_contact_column_home_phone_title">Fixe (domicile)</translation>
+   <translation id="telephony_phonebook_contact_column_home_mobile_title">Mobile (domicile)</translation>
+   <translation id="telephony_phonebook_contact_column_work_phone_title">Fixe (professionnel)</translation>
+   <translation id="telephony_phonebook_contact_column_work_mobile_title">Mobile (professionnel)</translation>
+   <translation id="telephony_phonebook_contact_refresh">Rafraîchir</translation>
+   <translation id="telephony_phonebook_contact_empty">Aucun contact trouvé.</translation>
+   <translation id="telephony_phonebook_contact_add">Ajouter un contact</translation>
+   <translation id="telephony_phonebook_contact_add_surname_placeholder">Nom (champ requis)</translation>
+   <translation id="telephony_phonebook_contact_add_surname_error_required">Le champ "Nom" est obligatoire.</translation>
+   <translation id="telephony_phonebook_contact_add_surname_error_pattern">Le champ "Nom" doit être composé uniquement de caractères alphanumériques.</translation>
+   <translation id="telephony_phonebook_contact_add_surname_error_maxlength">Le nom du contact doit faire moins de 246 caractères.</translation>
+   <translation id="telephony_phonebook_contact_add_name_placeholder">Prénom (champ requis)</translation>
+   <translation id="telephony_phonebook_contact_add_name_error_required">Le champ "Prénom" est obligatoire.</translation>
+   <translation id="telephony_phonebook_contact_add_name_error_pattern">Le champ "Prénom" doit être composé uniquement de caractères alphanumériques.</translation>
+   <translation id="telephony_phonebook_contact_add_name_error_maxlength">Le prénom du contact doit faire moins de 246 caractères.</translation>
+   <translation id="telephony_phonebook_contact_add_group_select">Sélectionnez une société</translation>
+   <translation id="telephony_phonebook_contact_add_group_error_pattern">Le champ "Société" doit être composé uniquement de caractères alphanumériques.</translation>
+   <translation id="telephony_phonebook_contact_add_group_error_maxlength">Le groupe du contact doit faire moins de 50 caractères.</translation>
+   <translation id="telephony_phonebook_contact_add_error_phonenumber">Veuillez renseigner un numéro valide.</translation>
+   <translation id="telephony_phonebook_contact_add_error_numbers">Renseignez au moins un numéro</translation>
+   <translation id="telephony_phonebook_contact_adding">Ajout du contact en cours…</translation>
+   <translation id="telephony_phonebook_contact_added">Le contact a bien été ajouté !</translation>
+   <translation id="telephony_phonebook_contact_add_ko">Oups ! Impossible d’ajouter le contact au carnet de contacts.<br/>{{error}}</translation>
+   <translation id="telephony_phonebook_contact_updating">Édition du contact en cours…</translation>
+   <translation id="telephony_phonebook_contact_updated">Le contact a bien été édité !</translation>
+   <translation id="telephony_phonebook_contact_update_ko">Oups ! Impossible d’éditer le contact.<br/>{{error}}</translation>
+   <translation id="telephony_phonebook_contact_remove_success">Le contact a bien été supprimé.</translation>
+   <translation id="telephony_phonebook_contact_delete">Supprimer le contact sélectionné</translation>
+   <translation id="telephony_phonebook_contact_delete_plural">Supprimer les {{ count }} contacts sélectionnés</translation>
+   <translation id="telephony_phonebook_contact_delete_contacts_success">Suppression en cours…</translation>
+
+<!-- SERVICE TYPES -->
+   <translation id="telephony_service_type_alias">Numéro</translation>
+   <translation id="telephony_service_type_line">Ligne</translation>
+<!-- FEATURE TYPES -->
+   <translation id="telephony_service_feature_type_sip">Ligne SIP</translation>
+   <translation id="telephony_service_feature_type_mgcp">Ligne SIP</translation>
+   <translation id="telephony_service_feature_type_fax">FAX</translation>
+   <translation id="telephony_service_feature_type_freefax">FreeFax</translation>
+   <translation id="telephony_service_feature_type_trunk">Trunk</translation>
+   <translation id="telephony_service_feature_type_plugAndFax">Plug & Fax</translation>
+   <translation id="telephony_service_feature_type_voicefax">Fax</translation>
+
+<!-- TIMECONDITION -->
+   <translation id="telephony_common_time_condition_slot_from">de</translation>
+   <translation id="telephony_common_time_condition_slot_to">à</translation>
+
+<!-- EXPORT / IMPORT CONFIGURATION -->
+   <translation id="telephony_common_time_condition_export_configuration">Exporter des plages horaires</translation>
+   <translation id="telephony_common_time_condition_import_configuration">Importer des plages horaires</translation>
+   <translation id="telephony_common_time_condition_import_configuration_title">Importer des plages horaires</translation>
+   <translation id="telephony_common_time_condition_import_configuration_action">Fichier plage horaire</translation>
+   <translation id="telephony_common_time_condition_import_configuration_file_format">Formats de fichiers supportés : .json</translation>
+   <translation id="telephony_common_time_condition_import_configuration_invalid_format">Format de fichier invalide</translation>
+   <translation id="telephony_common_time_condition_import_configuration_processing">Import des plages horaires en cours</translation>
+   <translation id="telephony_common_time_condition_import_configuration_success">Plages horaires importées.</translation>
+   <translation id="telephony_common_time_condition_import_configuration_error">Echec lors de l'import des plages horaires.</translation>
+</translations>

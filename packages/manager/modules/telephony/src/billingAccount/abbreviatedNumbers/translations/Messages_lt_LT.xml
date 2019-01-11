@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_abbreviated_numbers_title" qtlid="334192">Trumpieji numeriai</translation>
+   <translation id="telephony_abbreviated_numbers_explaination" qtlid="334270">Trumpieji numeriai sudaryti iš 3 ar 4 skaitmenų ir prasideda 7.</translation>
+   <translation id="telephony_abbreviated_numbers_pattern_error" qtlid="357278">Laukelyje turi būti iš 3 ar 4 skaitmenų sudarytas skaičius, prasidedantis 7</translation>
+</translations>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_group_manage_contacts_nic_admin" qtlid="386183">Administratoriaus NIC</translation>
+   <translation id="telephony_group_manage_contacts_nic_tech" qtlid="386196">Techninis NIC</translation>
+   <translation id="telephony_group_manage_contacts_nic_billing" qtlid="386209">Sąskaitų NIC</translation>
+   <translation id="telephony_group_manage_contacts_group" qtlid="59507">Grupė</translation>
+   <translation id="telephony_group_manage_contacts_lines" qtlid="42802">Linija</translation>
+   <translation id="telephony_group_manage_contacts_alias" qtlid="30778">Numeris</translation>
+   <translation id="telephony_group_manage_contacts_title" qtlid="73073">Kontaktų valdymas</translation>
+   <translation id="telephony_group_manage_contacts_pending_task" qtlid="386222">Prašymas laukia patvirtinimo</translation>
+   <translation id="telephony_group_manage_contacts_change_success" qtlid="386235">Kontaktų keitimo prašymas išsiųstas</translation>
+   <translation id="telephony_group_manage_contacts_change_info" qtlid="386248">Valdydami kontaktus galite paskirstyti teises skirtingiems asmenims ir patikėti jiems linijų, alias ar grupių valdymą.<br/>Suteikiamos teisės priklauso nuo kontakto:<br/><br/><strong>Administratorius:</strong> paskirtas kontaktas valdo linijos techninius aspektus ir gali perleisti techninio kontakto teises kitam asmeniui.<br/><strong>Techninis kontaktas:</strong> valdo tik techninius linijų, alias ir grupių aspektus.<br/><strong>Sąskaitų kontaktas:</strong> kontaktas skirtas tik sąskaitoms (sąskaitų apmokėjimui ir pan.)</translation>
+   <translation id="telephony_group_manage_contacts_disabled" qtlid="386261">Paslaugos nepasiekiamumas</translation>
+</translations>

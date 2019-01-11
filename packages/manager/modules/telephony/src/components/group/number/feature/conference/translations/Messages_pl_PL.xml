@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+<!-- GENERAL -->
+   <translation id="telephony_number_feature_conference" qtlid="333074">Conférence</translation>
+   <translation id="telephony_number_feature_conference_edit" qtlid="466229">Gérer les paramètres de la conférence</translation>
+   <translation id="telephony_number_feature_conference_refresh_error" qtlid="466242">Oups ! Une erreur est survenue lors du rafraîchissement des informations de la conférence.</translation>
+   <translation id="telephony_number_feature_conference_load_error" qtlid="466255">Oups ! Une erreur est survenue lors du chargement des informations de la conférence.</translation>
+   <translation id="telephony_number_feature_conference_save_error" qtlid="466268">Oups ! Une erreur est survenue lors de la modification de vos paramètres.</translation>
+   <translation id="telephony_number_feature_conference_popover_title" qtlid="466281">Paramètres de la conférence</translation>
+   <translation id="telephony_number_feature_conference_general_lock" qtlid="466294">Verrouiller la conférence</translation>
+   <translation id="telephony_number_feature_conference_general_unlock" qtlid="466307">Déverrouiller la conférence</translation>
+   <translation id="telephony_number_feature_conference_general_mute_all_members" qtlid="466320">Activer mode muet sur tous les participants</translation>
+   <translation id="telephony_number_feature_conference_general_unmute_all_members" qtlid="466333">Désactiver mode muet sur tous les participants</translation>
+   <translation id="telephony_number_feature_conference_general_settings_language" qtlid="466346">Langue de votre conférence</translation>
+   <translation id="telephony_number_feature_conference_general_settings_pin" qtlid="466359">Code PIN</translation>
+   <translation id="telephony_number_feature_conference_general_settings_pin_help" qtlid="466372">vide ou "0" pour aucun</translation>
+   <translation id="telephony_number_feature_conference_general_settings_pin_invalid" qtlid="466385">Le code pin doit contenir entre 1 et 8 chiffres.</translation>
+   <translation id="telephony_number_feature_conference_general_settings_annoucement" qtlid="337819">Annonce personnalisée</translation>
+   <translation id="telephony_number_feature_conference_general_settings_record" qtlid="466398">Enregistrement</translation>
+   <translation id="telephony_number_feature_conference_general_settings_enter_muted" qtlid="466411">Rentrer muet</translation>
+   <translation id="telephony_number_feature_conference_general_settings_reject_anonymous" qtlid="387185">Rejet des appels anonymes</translation>
+   <translation id="telephony_number_feature_conference_general_settings_public_address_label" qtlid="466424">Adresse publique</translation>
+   <translation id="telephony_number_feature_conference_general_settings_public_address" qtlid="466437">Adresse publique de suivi</translation>
+   <translation id="telephony_number_feature_conference_general_settings_public_control_address" qtlid="466450">Adresse publique de contrôle</translation>
+   <translation id="telephony_number_feature_conference_general_settings_public_address_generate" qtlid="84801">Wygeneruj</translation>
+   <translation id="telephony_number_feature_conference_general_settings_public_address_regenerate" qtlid="303198">Wygeneruj ponownie</translation>
+   <translation id="telephony_number_feature_conference_general_settings_public_address_generating" qtlid="466463">Génération des adresses publiques…</translation>
+   <translation id="telephony_number_feature_conference_announcement" qtlid="337819">Annonce personnalisée</translation>
+   <translation id="telephony_number_feature_conference_announcement_info" qtlid="466476">Vous pouvez choisir un fichier audio qui précédera l’entrée dans la salle de conférence.</translation>
+   <translation id="telephony_number_feature_conference_announcement_file_label" qtlid="466489">Fichier actuel</translation>
+   <translation id="telephony_number_feature_conference_announcement_file" qtlid="391540">Fichier…</translation>
+   <translation id="telephony_number_feature_conference_announcement_file_empty" qtlid="30646">Żaden</translation>
+   <translation id="telephony_number_feature_conference_announcement_file_upload" qtlid="466502">Uploader un fichier audio</translation>
+   <translation id="telephony_number_feature_conference_announcement_file_invalid" qtlid="337845">Format de fichier non supporté.</translation>
+   <translation id="telephony_number_feature_conference_announcement_file_supported" qtlid="466515">Formats supportés : wav, mp3, ogg<br/>Taille maximale : 10 Mo</translation>
+   <translation id="telephony_number_feature_conference_report" qtlid="466528">Gestion des rapports</translation>
+   <translation id="telephony_number_feature_conference_report_status" qtlid="74417">E-mail do raportów</translation>
+   <translation id="telephony_number_feature_conference_report_status_customer" qtlid="466541">Recevoir sur l’adresse e-mail de mon compte</translation>
+   <translation id="telephony_number_feature_conference_report_status_none" qtlid="466554">Aucun rapport</translation>
+   <translation id="telephony_number_feature_conference_report_status_other" qtlid="466567">Recevoir sur une autre adresse e-mail</translation>
+   <translation id="telephony_number_feature_conference_report_email" qtlid="466580">Adresse e-mail personnalisée</translation>
+   <translation id="telephony_number_feature_conference_report_email_required" qtlid="466593">L’adresse email est requise pour recevoir le rapport.</translation>
+   <translation id="telephony_number_feature_conference_report_email_bad" qtlid="466606">Veuillez renseigner une adresse email valide.</translation>
+   <translation id="telephony_number_feature_conference_report_white_label" qtlid="466619">Recevoir les rapports en marque blanche</translation>
+
+<!-- PARTICIPANTS -->
+   <translation id="telephony_number_feature_conference_participants_connected_since" qtlid="466632">connecté depuis {{ date }}</translation>
+   <translation id="telephony_number_feature_conference_participants_actions_kick" qtlid="466645">Expulser</translation>
+   <translation id="telephony_number_feature_conference_participants_actions_deaf" qtlid="466658">Sourdine</translation>
+   <translation id="telephony_number_feature_conference_participants_actions_undeaf" qtlid="466671">Désactiver sourdine</translation>
+   <translation id="telephony_number_feature_conference_participants_actions_sound" qtlid="466684">Sensibilité micro</translation>
+   <translation id="telephony_number_feature_conference_participants_actions_sound_label" qtlid="466697">Choisissez la sensibilité micro&#160;:</translation>
+   <translation id="telephony_number_feature_conference_participants_state_talking" qtlid="466710">En train de parler</translation>
+   <translation id="telephony_number_feature_conference_participants_state_deaf" qtlid="466723">N’entend pas</translation>
+   <translation id="telephony_number_feature_conference_participants_state_muted" qtlid="466736">Ne peux pas parler</translation>
+   <translation id="telephony_number_feature_conference_participants_empty" qtlid="466749">Aucun participant dans la conférence</translation>
+</translations>

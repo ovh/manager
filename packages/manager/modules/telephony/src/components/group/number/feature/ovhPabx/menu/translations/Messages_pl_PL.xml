@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_number_feature_ovh_pabx_menu" qtlid="324431">Menu interactif</translation>
+
+   <translation id="telephony_number_feature_ovh_pabx_menu_entry_count" qtlid="463603">{{ count }} entrées configurées</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_entry_count_single" qtlid="463616">1 entrée configurée</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_entry_none" qtlid="463629">Aucune entrée configurée</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_entry_expand" qtlid="463642">Afficher les entrées</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_entry_collapse" qtlid="463655">Cacher les entrées</translation>
+
+<!-- OPTIONS -->
+   <translation id="telephony_number_feature_ovh_pabx_menu_options" qtlid="463668">Édition du menu interactif</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_options_create" qtlid="463681">Création d'un menu interactif</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_options_name" qtlid="463694">Nom du menu interactif</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_options_name_required" qtlid="463707">Veuillez donner un nom à votre menu interactif.</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_options_name_bad_format" qtlid="463720">Le nom ne peut contenir que des lettres (sans accents), chiffres, tirets bas ou des espaces.</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_options_greet_sound" qtlid="432384">Son d'accueil</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_options_greet_sound_type" qtlid="432371">Type de son d'accueil</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_options_greet_sound_explain" qtlid="463733">C'est le son qui sera joué dès le début d'appel. Il doit exposer à l'appelant les différents choix de touches possible.</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_options_invalid_sound" qtlid="432423">Son en cas d'action invalide</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_options_invalid_sound_type" qtlid="432410">Type de son en cas d'action invalide</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_options_invalid_sound_explain" qtlid="463746">C'est le son que l'appelant entendra s'il se trompe de touche.</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_options_sound_type_choice" qtlid="463759">Choix du type de son</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_options_sound_type_none" qtlid="30646">Żaden</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_options_sound_type_sound" qtlid="432202">Fichier son</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_options_sound_type_tts" qtlid="432267">Text-To-Speech</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_options_no_sound_selected" qtlid="463772">Aucun son sélectionné</translation>
+
+<!-- GREET AND INVALID SOUNDS -->
+   <translation id="telephony_number_feature_ovh_pabx_menu_options_sound_add" qtlid="462810">Ajouter un son</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_options_sound_to_play" qtlid="324444">Son à jouer</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_options_sound_bad_format" qtlid="463785">Formats principaux : wav, mp3, mp4, ogg et wma.</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_options_sound_bad_size" qtlid="463798">Fichier trop volumineux. Taille maximale : 10 Mo.</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_options_sound_file_exists" qtlid="463811">Nom de fichier déjà ajouté.</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_options_sound_bad_name" qtlid="463824">Nom de fichier incorrect. Ne peut dépasser 30 caractères (lettres, chiffres, tirets-bas ou espaces).</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_options_sound_add_choose" qtlid="463837">Ajouter un nouveau fichier</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_options_sound_add_explain" qtlid="463850">Max. 10 Mo. Formats principaux : wav, mp3, mp4, ogg et wma.</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_options_sound_existing_files" qtlid="463863">Sons déjà ajoutés :</translation>
+
+<!-- MENU ACTIONS LIST -->
+   <translation id="telephony_number_feature_ovh_pabx_menu_action_edit" qtlid="463876">Modifier le menu interactif</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_action_add_entry" qtlid="432462">Ajouter une entrée de menu</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_action_delete" qtlid="463889">Supprimer le menu interactif</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_action_delete_error" qtlid="463902">Oups ! Une erreur est survenue lors de la suppression du menu interactif.</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_action_delete_error_used" qtlid="463915">Oups ! Une erreur est survenue lors de la suppression du menu interactif. Le menu interactif est utilisé dans un ou plusieurs entrées de menu.</translation>
+
+<!-- MENU ENTRY AVAILABLE ACTIONS -->
+<!-- SET CALLER NAME -->
+   <translation id="telephony_number_feature_ovh_pabx_menu_entry_action_set_caller_name" qtlid="324535">Définir un nom d'appelant</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_entry_action_set_caller_name_explain" qtlid="463928">Permet de changer le nom de l'appelant qui sera présenté sur le téléphone de la ligne qui décroche l'appel.</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_entry_action_set_caller_name_action_param" qtlid="463941">Nom de l'appelant</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_entry_action_set_caller_name_action_param_required" qtlid="463954">Veuillez donner un nom d'appelant.</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_entry_action_set_caller_name_action_param_bad_format" qtlid="463967">Le nom de l'appelant ne peut contenir que des lettres (sans accents), chiffres, tirets bas ou des espaces.</translation>
+<!-- BRIDGE -->
+   <translation id="telephony_number_feature_ovh_pabx_menu_entry_action_bridge" qtlid="432163">Transférer l'appel</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_entry_action_bridge_explain" qtlid="463980">Permet simplement de transférer l'appel vers une ligne.</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_entry_action_bridge_to_number" qtlid="463993">Transférer vers le numéro</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_entry_action_bridge_action_param_required" qtlid="464006">Veuillez spécifier un numéro vers lequel transférer l'appel.</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_entry_action_bridge_action_param_bad_format" qtlid="464019">Le numéro vers lequel transférer l'appel doit être au format international (ex: +33312345678).</translation>
+<!-- CALLCENTER -->
+   <translation id="telephony_number_feature_ovh_pabx_menu_entry_action_callcenter" qtlid="464032">Faire sonner les membres de la file</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_entry_action_callcenter_explain" qtlid="464045">Permet de sélectionner des membres et de les faire sonner simultanément.</translation>
+<!-- MENU BACK -->
+   <translation id="telephony_number_feature_ovh_pabx_menu_entry_action_menu_back" qtlid="432488">Retour au menu précédent</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_entry_action_menu_back_explain" qtlid="464058">Utile lorsque vous avez plusieurs menus en cascade.</translation>
+<!-- MENU EXIT -->
+   <translation id="telephony_number_feature_ovh_pabx_menu_entry_action_menu_exit" qtlid="432501">Mettre fin au menu interactif</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_entry_action_menu_exit_explain" qtlid="464071">Permet de mettre fin à l'appel ou de passer à l'étape suivante du plan de numérotation (si défini).</translation>
+<!-- MENU SUB -->
+   <translation id="telephony_number_feature_ovh_pabx_menu_entry_action_menu_sub" qtlid="432514">Lancer un sous-menu</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_entry_action_launch_menu" qtlid="324574">Lancer un menu interactif</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_entry_action_menu_sub_explain" qtlid="464084">Permet de lancer un autre menu interactif lorsque la touche concernée est appuyée.</translation>
+<!-- MENU TOP -->
+   <translation id="telephony_number_feature_ovh_pabx_menu_entry_action_menu_top" qtlid="432527">Retour au menu principal</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_entry_action_menu_top_explain" qtlid="464058">Utile lorsque vous avez plusieurs menus en cascade.</translation>
+<!-- PLAYBACK -->
+   <translation id="telephony_number_feature_ovh_pabx_menu_entry_action_playback" qtlid="432540">Jouer un son</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_entry_action_playback_explain" qtlid="464097">Permet de jouer un son.</translation>
+<!-- READ DTMF -->
+   <translation id="telephony_number_feature_ovh_pabx_menu_entry_action_read_dtmf" qtlid="464110">Variable d'entrée DTMF</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_entry_action_read_dtmf_explain" qtlid="464123">Permet, par exemple, de récupérer un identifiant client.</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_entry_action_read_dtmf_var" qtlid="464136">Nom de la variable d'entrée DTMF</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_entry_action_read_dtmf_action_param_required" qtlid="464149">Veuillez spécifier un nom de variable d'entrée DTMF.</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_entry_action_read_dtmf_action_param_bad_format" qtlid="464162">Le nom de variable d'entrée DTMF ne peut contenir que des lettres (sans accents) ou des chiffres.</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_entry_action_read_dtmf_action_param_too_long" qtlid="464175">Le nom de variable d'entrée DTMF ne peut pas dépasser 24 caractères.</translation>
+
+<!-- MENU ENTRY EDIT -->
+<!-- MENU ENTRY ACTIONS LIST -->
+   <translation id="telephony_number_feature_ovh_pabx_menu_entry_edit" qtlid="464188">Modifier l'entrée du menu</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_entry_delete" qtlid="464201">Supprimer l'entrée du menu</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_entry_delete_error" qtlid="464214">Oups ! Une erreur est survenue lors de la suppression de l'entrée du menu interactif.</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_entry_edit_title" qtlid="464227">Édition de l'entrée du menu</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_entry_edit_error" qtlid="464240">Oups ! Une erreur est survenue lors de la sauvegarde de l'entrée du menu interactif.</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_entry_create_error" qtlid="464253">Oups ! Une erreur est survenue lors de la création de l'entrée du menu interactif.</translation>
+<!-- DTMF -->
+   <translation id="telephony_number_feature_ovh_pabx_menu_entry_edit_dtmf" qtlid="336870">Touche</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_entry_edit_dtmf_no_selected" qtlid="464266">Aucune touche sélectionnée</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_entry_edit_dtmf_change" qtlid="464279">Changement de la touche</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_entry_edit_dtmf_single_digit" qtlid="464292">Touche à 1 chiffre</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_entry_edit_dtmf_multi_digit_choose" qtlid="464305">Entrez une touche d'entrée</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_entry_edit_dtmf_multi_digit_reset" qtlid="464318">Effacer la touche actuelle</translation>
+<!-- ACTION TO EXECUTE -->
+   <translation id="telephony_number_feature_ovh_pabx_menu_entry_edit_action" qtlid="464331">Action à exécuter</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_entry_edit_action_change" qtlid="464344">Modifier l'action</translation>
+<!-- PLAYBACK -->
+   <translation id="telephony_number_feature_ovh_pabx_menu_entry_edit_playback" qtlid="324444">Son à jouer</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_entry_edit_playback_no_sound" qtlid="463772">Aucun son sélectionné</translation>
+<!-- MENU SUB -->
+   <translation id="telephony_number_feature_ovh_pabx_menu_entry_edit_menu_sub" qtlid="464357">Menu à lancer</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_entry_edit_menu_sub_no_menu" qtlid="464370">Aucun menu sélectionné</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_entry_edit_menu_sub_add_menu" qtlid="462719">Ajouter un menu interactif</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_entry_edit_menu_sub_add_menu_new" qtlid="432358">Nouveau menu</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_entry_edit_menu_sub_add_menu_new_name" qtlid="462745">Mon menu interactif {{ index }}</translation>
+   <translation id="telephony_number_feature_ovh_pabx_menu_entry_edit_menu_sub_add_menu_explain" qtlid="464383">Il vous sera possible d'éditer celui-ci après validation des options de l'entré du menu.</translation>
+</translations>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_service_fax_filtering_list_title" qtlid="460418">Activation des filtrages</translation>
+   <translation id="telephony_service_fax_filtering_list_label" qtlid="460431">Filtrage des Fax&#160;:</translation>
+   <translation id="telephony_service_fax_filtering_list_update_error" qtlid="480019">Une erreur est survenue lors de la modification du filtrage</translation>
+   <translation id="telephony_service_fax_filtering_list_type_no" qtlid="90973">Wyłącz</translation>
+   <translation id="telephony_service_fax_filtering_list_type_blacklist" qtlid="460444">Activer la liste noire</translation>
+   <translation id="telephony_service_fax_filtering_list_type_whitelist" qtlid="460457">Activer la liste blanche</translation>
+   <translation id="telephony_service_fax_filtering_new" qtlid="358721">Configurer de nouveaux filtrages</translation>
+   <translation id="telephony_service_fax_filtering_new_csv_import" qtlid="358773">Import CSV</translation>
+   <translation id="telephony_service_fax_filtering_new_list_label" qtlid="358942">Lista</translation>
+   <translation id="telephony_service_fax_filtering_new_list_select_whitelisted" qtlid="324301">Liste blanche</translation>
+   <translation id="telephony_service_fax_filtering_new_list_select_blacklisted" qtlid="324288">Liste noire</translation>
+   <translation id="telephony_service_fax_filtering_new_type_label" qtlid="2642">Typ</translation>
+   <translation id="telephony_service_fax_filtering_new_type_select_numbers" qtlid="30778">Numer</translation>
+   <translation id="telephony_service_fax_filtering_new_type_select_tsi" qtlid="460470">Identifiant de fax</translation>
+   <translation id="telephony_service_fax_filtering_new_number_label" qtlid="30778">Numer</translation>
+   <translation id="telephony_service_fax_filtering_new_number_placeholder" qtlid="358851">Au format international</translation>
+   <translation id="telephony_service_fax_filtering_new_success" qtlid="460483">Ajout du filtre en cours…</translation>
+   <translation id="telephony_service_fax_filtering_new_error" qtlid="480032">Une erreur est survenue lors de l'ajout du filtre</translation>
+   <translation id="telephony_service_fax_filtering_config" qtlid="169849">Aktualna konfiguracja</translation>
+   <translation id="telephony_service_fax_filtering_filter_type_select" qtlid="2642">Typ</translation>
+   <translation id="telephony_service_fax_filtering_filter_type_whitelistedNumbers" qtlid="460496">Liste blanche - Numéros</translation>
+   <translation id="telephony_service_fax_filtering_filter_type_whitelistedTSI" qtlid="460509">Liste blanche - Identifiants</translation>
+   <translation id="telephony_service_fax_filtering_filter_type_blacklistedNumbers" qtlid="460522">Liste noire - Numéros</translation>
+   <translation id="telephony_service_fax_filtering_filter_type_blacklistedTSI" qtlid="460535">Liste noire - Identifiants</translation>
+   <translation id="telephony_service_fax_filtering_column_number" qtlid="386326">Numéros</translation>
+   <translation id="telephony_service_fax_filtering_column_type" qtlid="2642">Typ</translation>
+   <translation id="telephony_service_fax_filtering_table_empty" qtlid="358994">Brak filtrów</translation>
+   <translation id="telephony_service_fax_filtering_table_export" qtlid="69881">Eksport</translation>
+   <translation id="telephony_service_fax_filtering_table_delete" qtlid="359007">Usuń wybrany filtr</translation>
+   <translation id="telephony_service_fax_filtering_table_delete_plural" qtlid="359020">Usuń {{ nb }} wybrane filtry</translation>
+   <translation id="telephony_service_fax_filtering_table_delete_success" qtlid="393633">Suppression en cours…</translation>
+   <translation id="telephony_service_fax_filtering_table_delete_error" qtlid="480045">Une erreur est survenue lors de la suppression du(es) filtre(s)</translation>
+   <translation id="telephony_service_fax_filtering_anonymous_rejection" qtlid="480058">Rejet des télécopies anonymes</translation>
+   <translation id="telephony_service_fax_filtering_anonymous_rejection_update_error" qtlid="480071">Erreur lors de la modification du rejet des télécopies anonymes</translation>
+   <translation id="telephony_service_fax_filtering_fetch_lists_error" qtlid="480084">Une erreur est survenue lors de la récupération du filtrage</translation>
+
+   <translation id="telephony_service_fax_filtering_bulk_all_success" qtlid="480097">La modification du filtrage des fax a bien été appliquée aux services sélectionnés.</translation>
+   <translation id="telephony_service_fax_filtering_bulk_some_success" qtlid="480110">La modification du filtrage des fax a bien été appliquée à {{ count }} des services sélectionnés.</translation>
+   <translation id="telephony_service_fax_filtering_bulk_error" qtlid="480123">La modification du filtrage des fax n'a pu être appliquée au(x) service(s) suivant(s) :</translation>
+   <translation id="telephony_service_fax_filtering_bulk_on_error" qtlid="480136">Oups ! Une erreur est survenue lors de la modification du filtrage des fax.</translation>
+</translations>

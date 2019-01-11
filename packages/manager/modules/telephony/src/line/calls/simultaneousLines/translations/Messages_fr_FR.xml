@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_line_actions_line_calls_simultaneous_line_title" qtlid="303718">Appels simultanés</translation>
+   <translation id="telephony_line_actions_line_calls_simultaneous_line_load_error" qtlid="334686">Erreur lors de la lecture de la configuration.</translation>
+   <translation id="telephony_line_actions_line_calls_simultaneous_line_write_error" qtlid="387068">Oups ! Impossible de modifier le nombre d'appels simultanés.</translation>
+   <translation id="telephony_line_actions_line_calls_simultaneous_line_order_error" qtlid="387081">Impossible de générer le bon de commande.</translation>
+   <translation id="telephony_line_actions_line_calls_simultaneous_line_label" qtlid="335206">Nombre d'appels simultanés</translation>
+   <translation id="telephony_line_actions_line_calls_simultaneous_details" qtlid="479551">(dont {{basic}} inclus avec la ligne et {{extra}} en option)</translation>
+   <translation id="telephony_line_actions_line_calls_maximum_simultaneous_line_label" qtlid="457428">Nombre d'appels simultanés maximum de la ligne :</translation>
+   <translation id="telephony_line_actions_line_calls_simultaneous_line_support" qtlid="387094">Votre configuration accepte plus de 100 appels simultanés. Pour changer cette valeur, merci de contacter le support au 1007.</translation>
+   <translation id="telephony_line_actions_line_calls_simultaneous_line_price_vat" qtlid="360190">TVA&#160;:&#160;</translation>
+   <translation id="telephony_line_actions_line_calls_simultaneous_line_price_without_vat" qtlid="360164">Prix&#160;(HT)&#160;:&#160;</translation>
+   <translation id="telephony_line_actions_line_calls_simultaneous_line_price_total" qtlid="360177">Total&#160;(TTC)&#160;:&#160;</translation>
+   <translation id="telephony_line_actions_line_calls_simultaneous_line_summary" qtlid="82725">Récapitulatif</translation>
+   <translation id="telephony_line_actions_line_calls_simultaneous_line_order_id" qtlid="457441">N° de commande</translation>
+   <translation id="telephony_line_actions_line_calls_simultaneous_line_order_link" qtlid="35352">Bon de commande</translation>
+   <translation id="telephony_line_actions_line_calls_simultaneous_line_order_click" qtlid="127348">Cliquez ici</translation>
+   <translation id="telephony_line_actions_line_calls_simultaneous_order" qtlid="43558">Commander</translation>
+   <translation id="telephony_line_actions_line_calls_simultaneous_bc" qtlid="334387">Afin de finaliser votre demande, merci de valider ce</translation>
+   <translation id="telephony_line_actions_line_calls_simultaneous_url" qtlid="292800">bon de commande</translation>
+   <translation id="telephony_line_actions_line_calls_simultaneous_order" qtlid="186219">Générer le bon de commande</translation>
+   <translation id="telephony_line_actions_line_calls_simultaneous_offerTasks" qtlid="387107">Une suppression du nombre d'appels simultanés est en cours. Elle sera effective le {{executionDate}}.</translation>
+   <translation id="telephony_line_actions_line_calls_simultaneous_offerTasks_1" qtlid="387120">Vous ne pouvez pas modifier le nombre d'appels simultanés pendant cette période.</translation>
+   <translation id="telephony_line_actions_line_calls_simultaneous_remove_validate" qtlid="26047">Valider</translation>
+   <translation id="telephony_line_actions_line_calls_simultaneous_remove_cancel" qtlid="37863">Annuler</translation>
+   <translation id="telephony_line_actions_line_calls_simultaneous_line_offer_task_error" qtlid="387133">Impossible de récupérer les tâches en cours.</translation>
+
+   <translation id="telephony_line_actions_line_calls_simultaneous_bulk_all_success" qtlid="457454">La modification du nombre d'appels simultanés a bien été appliquée aux services sélectionnés.</translation>
+   <translation id="telephony_line_actions_line_calls_simultaneous_bulk_some_success" qtlid="457467">La modification du nombre d'appels simultanés a bien été appliquée à {{ count }} des services sélectionnés.</translation>
+   <translation id="telephony_line_actions_line_calls_simultaneous_bulk_error" qtlid="457480">La modification du nombre d'appels simultanés n'a pu être appliquée au(x) service(s) suivant(s) :</translation>
+   <translation id="telephony_line_actions_line_calls_simultaneous_bulk_on_error" qtlid="457493">Oups ! Une erreur est survenue lors de la modification du nombre d'appels simultanés.</translation>
+
+<!-- TRUNK RATES -->
+   <translation id="telephony_line_actions_line_calls_trunk_simultaneous_info1" qtlid="479564">Votre offre vous permet d'associer les différents packs de canaux simultanés proposés par OVH afin d'obtenir votre Trunk sur mesure.</translation>
+   <translation id="telephony_line_actions_line_calls_trunk_simultaneous_info2" qtlid="479577">Une augmentation du nombre de canaux simultanés est effectuée immédiatement après paiement du bon de commande.</translation>
+   <translation id="telephony_line_actions_line_calls_trunk_simultaneous_info3" qtlid="479590">Une réduction du nombre de canaux simultanés sera effective au 1er du mois suivant la commande.</translation>
+   <translation id="telephony_line_actions_line_calls_trunk_simultaneous_channels_repartition_title" qtlid="479603">Répartition des packs</translation>
+
+   <translation id="telephony_line_actions_line_calls_trunk_simultaneous_current_channels_title" qtlid="479616">Quantité de canaux actuelle</translation>
+   <translation id="telephony_line_actions_line_calls_trunk_simultaneous_current_channels_quantity" qtlid="479629">Quantité actuelle</translation>
+   <translation id="telephony_line_actions_line_calls_trunk_simultaneous_current_channels_price" qtlid="479642">Prix actuel</translation>
+   <translation id="telephony_line_actions_line_calls_trunk_simultaneous_current_channels_get_channels_error" qtlid="479655">Une erreur est survenue lors de la récupération des canaux actuels</translation>
+
+   <translation id="telephony_line_actions_line_calls_trunk_simultaneous_pending_channels_quantity" qtlid="479668">Quantité au 1er du mois suivant</translation>
+   <translation id="telephony_line_actions_line_calls_trunk_simultaneous_pending_channels_price" qtlid="479681">Prix au 1er du mois suivant</translation>
+   <translation id="telephony_line_actions_line_calls_trunk_simultaneous_pending_channels_get_channels_error" qtlid="479694">Une erreur est survenue lors de la récupération des canaux au 1er du mois</translation>
+
+   <translation id="telephony_line_actions_line_calls_trunk_simultaneous_new_channels_title" qtlid="479707">Modifier le nombre de canaux disponibles</translation>
+   <translation id="telephony_line_actions_line_calls_trunk_simultaneous_new_channels_quantity_wanted" qtlid="479720">Quantité désirée</translation>
+   <translation id="telephony_line_actions_line_calls_trunk_simultaneous_new_channels_quantity_optimized" qtlid="479733">Quantité optimisée</translation>
+   <translation id="telephony_line_actions_line_calls_trunk_simultaneous_new_channels_price" qtlid="479746">Prix optimisé</translation>
+   <translation id="telephony_line_actions_line_calls_trunk_simultaneous_new_channels_minimum_bandwidth_recommended" qtlid="479759">Débit minimum recommandé</translation>
+   <translation id="telephony_line_actions_line_calls_trunk_simultaneous_new_get_channels_error" qtlid="479772">Une erreur est survenue lors de la récupération des canaux</translation>
+   <translation id="telephony_line_actions_line_calls_trunk_simultaneous_new_channels_update_error" qtlid="479785">Une erreur est survenue lors de la commande des nouveaux canaux.</translation>
+   <translation id="telephony_line_actions_line_calls_trunk_simultaneous_chart_channels_label" qtlid="479798">{{count}} canaux</translation>
+
+   <translation id="telephony_line_actions_line_calls_trunk_simultaneous_chart_legend_current" qtlid="103137">Actuelle</translation>
+   <translation id="telephony_line_actions_line_calls_trunk_simultaneous_chart_legend_pending" qtlid="479811">1er du mois suivant</translation>
+   <translation id="telephony_line_actions_line_calls_trunk_simultaneous_chart_legend_new" qtlid="479824">Nouvelle</translation>
+   <translation id="telephony_line_actions_line_calls_trunk_simultaneous_channels_price_per_month" qtlid="479837">/ par mois</translation>
+   <translation id="telephony_line_actions_line_calls_trunk_simultaneous_channels_bandwidth_rate" qtlid="479850">{{bandwidth}} Kbps</translation>
+
+</translations>

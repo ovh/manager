@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_order_international_title" qtlid="333321">Ordina un numero internazionale</translation>
+   <translation id="telephony_order_international_order_success" qtlid="333334">L'ordine dei numeri internazionali è stato effettuato. Ti preghiamo di saldare il tuo ordine.</translation>
+   <translation id="telephony_order_international_order_error" qtlid="333347">L'ordine dei tuoi numeri geografici non è andato a buon fine, ti preghiamo di riprovare.</translation>
+   <translation id="telephony_order_international_countries_error" qtlid="333360">Impossibile recuperare la lista dei Paesi</translation>
+   <translation id="telephony_order_international_address_message" qtlid="386873">Per poter disporre del tuo numero, inserisci dati validi nel Paese corrispondente.</translation>
+</translations>

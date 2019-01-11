@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_alias_members_add_success" qtlid="397078">Membre(s) ajouté(s) avec succès.</translation>
+   <translation id="telephony_alias_members_delete_success" qtlid="397091">Membre supprimé avec succès.</translation>
+   <translation id="telephony_alias_members_change_success" qtlid="397104">Membre mis à jour avec succès.</translation>
+   <translation id="telephony_alias_members_empty" qtlid="397117">La liste ne contient aucun membre.</translation>
+   <translation id="telephony_alias_members_drag1" qtlid="397130">Le pictogramme</translation>
+   <translation id="telephony_alias_members_drag2" qtlid="397143">vous permet d'effectuer un glisser-déposer afin de réordonner la position de vos membres dans la file.</translation>
+   <translation id="telephony_alias_members_number_external" qtlid="93271">Numer zewnętrzny</translation>
+   <translation id="telephony_alias_members_status" qtlid="26443">Status</translation>
+   <translation id="telephony_alias_members_status_available" qtlid="99920">Dostępny</translation>
+   <translation id="telephony_alias_members_status_onBreak" qtlid="397156">Przerwa</translation>
+   <translation id="telephony_alias_members_status_loggedOut" qtlid="77154">Rozłączony</translation>
+   <translation id="telephony_alias_members_timeout_val" qtlid="397169">Délai : {{ timeout }} sec.</translation>
+   <translation id="telephony_alias_members_wrap_up_time_val" qtlid="397182">Repos : {{ time }} sec.</translation>
+   <translation id="telephony_alias_members_simultaneous_lines_val" qtlid="397195">Appels simult. : {{ count }}</translation>
+   <translation id="telephony_alias_members_timeout" qtlid="303692">Opóźnienie</translation>
+   <translation id="telephony_alias_members_wrap_up_time" qtlid="303705">Odpoczynek</translation>
+   <translation id="telephony_alias_members_simultaneous_lines" qtlid="303718">Jednoczesne połączenia</translation>
+   <translation id="telephony_alias_members_seconds" qtlid="397208">{{ amount }} sec.</translation>
+   <translation id="telephony_alias_members_number" qtlid="30778">Numer</translation>
+   <translation id="telephony_alias_members_number_placeholder" qtlid="397221">Numéro au format international</translation>
+   <translation id="telephony_alias_members_number_add" qtlid="397234">Ajouter un autre numéro</translation>
+   <translation id="telephony_alias_members_add" qtlid="392502">Dodaj użytkownika</translation>
+   <translation id="telephony_alias_members_add_multiple" qtlid="397247">Ajouter {{ count }} membres</translation>
+   <translation id="telephony_alias_members_explanation" qtlid="466801">Pour chaque membre, vous pouvez définir sa position, le nombre d'appels simultanés, le délai durant lequel il sonne et le délai de repos avant la présentation d'un nouvel appel suite à un appel terminé.</translation>
+   <translation id="telephony_alias_members_add_modal-warning" qtlid="480201">Votre configuration possède un ou plusieurs numéros externes. Les appels vers ces numéros vous seront facturés hors forfait quelque soit votre forfait.</translation>
+   <translation id="telephony_alias_members_add_modal-question" qtlid="480214">Continuer avec cette configuration ?</translation>
+</translations>

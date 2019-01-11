@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_line_phone_actions_line_details_phon_offer" qtlid="27115">Informations générales</translation>
+   <translation id="telephony_line_phone_actions_line_codecs_management" qtlid="336766">Codecs</translation>
+   <translation id="telephony_line_phone_actions_line_interface" qtlid="336779">Choix de l'interface</translation>
+   <translation id="telephony_line_phone_actions_line_plug_and_phone_custom_parameters_list" qtlid="336792">Paramètres Plug & Phone personnalisés</translation>
+   <translation id="telephony_line_phone_actions_line_programmable_keys" qtlid="336805">Touches programmables</translation>
+   <translation id="telephony_line_phone_actions_line_phone_upgrade_firmware" qtlid="336818">Mise à jour du firmware</translation>
+   <translation id="telephony_line_phone_actions_line_phone_reboot" qtlid="33538">Redémarrer</translation>
+   <translation id="telephony_line_phone_actions_line_manage_mgcp_ip_restriction" qtlid="336831">Restriction MGCP par IP</translation>
+   <translation id="telephony_line_phone_actions_line_phone_order_plug_and_phone" qtlid="336844">Commander un Plug & Phone</translation>
+   <translation id="telephony_line_phone_actions_line_order_accessories" qtlid="336857">Commander des accessoires</translation>
+   <translation id="telephony_group_line_phone_section_back_link">Retour à la gestion du téléphone</translation>
+</translations>

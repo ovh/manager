@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_group_manage_contacts_nic_admin" qtlid="386183">ID de cliente del contacto administrador</translation>
+   <translation id="telephony_group_manage_contacts_nic_tech" qtlid="386196">ID de cliente del contacto técnico</translation>
+   <translation id="telephony_group_manage_contacts_nic_billing" qtlid="386209">ID de cliente del contacto de facturación</translation>
+   <translation id="telephony_group_manage_contacts_group" qtlid="59507">Grupo</translation>
+   <translation id="telephony_group_manage_contacts_lines" qtlid="42802">Línea</translation>
+   <translation id="telephony_group_manage_contacts_alias" qtlid="30778">Número</translation>
+   <translation id="telephony_group_manage_contacts_title" qtlid="73073">Gestión de contactos</translation>
+   <translation id="telephony_group_manage_contacts_pending_task" qtlid="386222">Solicitud pendiente de validación</translation>
+   <translation id="telephony_group_manage_contacts_change_success" qtlid="386235">La solicitud de cambio de contacto se ha enviado.</translation>
+   <translation id="telephony_group_manage_contacts_change_info" qtlid="386248">Con la gestión de los contactos, puede asignar permisos a otras personas y confiarles la gestión de una línea, alias o grupo.<br/>Según el tipo de contacto elegido, los permisos no son los mismos:<br/><br/><strong>Contacto administrador:</strong> el contacto designado puede gestionar los aspectos técnicos de una línea y asignar los permisos de contacto técnico a otra persona.<br/><strong>Contacto técnico:</strong> el contacto indicado gestiona únicamente los aspectos técnicos de una línea, alias o grupo.<br/><strong>Contacto de facturación:</strong> el contacto designado gestiona únicamente la facturación (como el pago de facturas).</translation>
+   <translation id="telephony_group_manage_contacts_disabled" qtlid="386261">No disponible para este servicio.</translation>
+</translations>

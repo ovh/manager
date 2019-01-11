@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_alias_contactCenterSolution_records_title" qtlid="303510">Gestão dos registos</translation>
+   <translation id="telephony_alias_contactCenterSolution_records_subtitle" qtlid="512529">Retrouvez l’ensemble des appels enregistrés de votre file d’appels.</translation>
+   <translation id="telephony_alias_contactCenterSolution_records_subtitle_help" qtlid="461757">Ces appels sont automatiquement supprimés après 60 jours.</translation>
+
+   <translation id="telephony_alias_contactCenterSolution_records_activation_title" qtlid="461809">Activation de l’enregistrement</translation>
+   <translation id="telephony_alias_contactCenterSolution_records_activation" qtlid="303575">Registo de chamadas</translation>
+   <translation id="telephony_alias_contactCenterSolution_records_activation_help" qtlid="512542">En activant cette option, vous acceptez <a href="{{link}}" rel="noopener" target="_blank">les conditions particulières</a> d’utilisation du service</translation>
+   <translation id="telephony_alias_contactCenterSolution_records_no_record_demand" qtlid="512555">Demande de non enregistrement d’appel</translation>
+   <translation id="telephony_alias_contactCenterSolution_records_no_record_demand_help" qtlid="512568">En activant cette option, l’appelant peut refuser d’être enregistré</translation>
+   <translation id="telephony_alias_contactCenterSolution_records_enabled" qtlid="30250">Ativado</translation>
+   <translation id="telephony_alias_contactCenterSolution_records_disabled" qtlid="24967">Desativado</translation>
+   <translation id="telephony_alias_contactCenterSolution_records_record_enabled" qtlid="516468">Activée</translation>
+   <translation id="telephony_alias_contactCenterSolution_records_record_disabled" qtlid="516481">Désactivée</translation>
+   <translation id="telephony_alias_contactCenterSolution_records_no_record_demand_language" qtlid="303601">Idioma da mensagem</translation>
+   <translation id="telephony_alias_contactCenterSolution_records_no_record_demand_digit" qtlid="512581">Chiffre à taper sur le téléphone</translation>
+
+   <translation id="telephony_alias_contactCenterSolution_records_list_title" qtlid="461861">Liste des enregistrements</translation>
+   <translation id="telephony_alias_contactCenterSolution_records_list_call_begin" qtlid="461913">Début de l’appel</translation>
+   <translation id="telephony_alias_contactCenterSolution_records_list_call_end" qtlid="461926">Fin de l’appel</translation>
+   <translation id="telephony_alias_contactCenterSolution_records_list_call_number" qtlid="58364">Número a chamar</translation>
+   <translation id="telephony_alias_contactCenterSolution_records_list_agent" qtlid="303562">Agente</translation>
+
+   <translation id="telephony_alias_contactCenterSolution_records_delete_question_one_title" qtlid="512594">Supprimer l’enregistrement</translation>
+   <translation id="telephony_alias_contactCenterSolution_records_delete_question_many_title" qtlid="512607">Supprimer les enregistrements</translation>
+   <translation id="telephony_alias_contactCenterSolution_records_delete_question_one" qtlid="512620">Êtes-vous sûr de vouloir supprimer l’enregistrement sélectionné ?</translation>
+   <translation id="telephony_alias_contactCenterSolution_records_delete_question_many" qtlid="512633">Êtes-vous sûr de vouloir supprimer les enregistrements sélectionnés ?</translation>
+
+   <translation id="telephony_alias_contactCenterSolution_records_download_selected_one" qtlid="461939">Télécharger l’enregistrement</translation>
+   <translation id="telephony_alias_contactCenterSolution_records_download_selected_many" qtlid="512646">Télécharger les enregistrements</translation>
+
+   <translation id="telephony_alias_contactCenterSolution_records_get_error" qtlid="512659">Une erreur est survenue lors de la récupération des enregistrements.</translation>
+   <translation id="telephony_alias_contactCenterSolution_records_update_queue_success" qtlid="512672">Les paramètres de l’activation de l’enregistrement ont été modifiés.</translation>
+   <translation id="telephony_alias_contactCenterSolution_records_update_queue_error" qtlid="512685">Une erreur est survenue lors de la modification des paramètres de l’activation de l’enregistrement.</translation>
+
+   <translation id="telephony_alias_contactCenterSolution_records_delete_success" qtlid="512698">Les enregistrements ont bien été supprimés.</translation>
+   <translation id="telephony_alias_contactCenterSolution_records_delete_error" qtlid="512711">Une erreur est survenue lors de la suppression des enregistrements.</translation>
+</translations>

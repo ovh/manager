@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_group_billing_deposit_movement_title" qtlid="386886">Garantinio užstato perkėlimas tarp grupių</translation>
+   <translation id="telephony_group_billing_deposit_movement_info" qtlid="357655">Valdyti garantinio užstato perkėlimą tarp grupių.</translation>
+   <translation id="telephony_group_billing_deposit_movement_source_subtitle" qtlid="97496">Source</translation>
+   <translation id="telephony_group_billing_deposit_movement_groups_label" qtlid="357668">Groupės:</translation>
+   <translation id="telephony_group_billing_deposit_movement_deposit_label" qtlid="357395">Dabartinis garantinis užstatas:</translation>
+   <translation id="telephony_group_billing_deposit_movement_amount_subtitle" qtlid="45328">Suma</translation>
+   <translation id="telephony_group_billing_deposit_movement_amount_label" qtlid="357447">Suma:</translation>
+   <translation id="telephony_group_billing_deposit_movement_destination_subtitle" qtlid="32290">Paskirtis</translation>
+   <translation id="telephony_group_billing_deposit_movement_estimate_label" qtlid="357681">Numatyta po patvirtinimo:</translation>
+   <translation id="telephony_group_billing_deposit_movement_without_tax" qtlid="101397">be PVM</translation>
+   <translation id="telephony_group_billing_deposit_movement_submit" qtlid="26047">Patvirtinti</translation>
+   <translation id="telephony_group_billing_deposit_movement_success" qtlid="357694">Užstato perkėlimo prašymas užregistruotas!</translation>
+   <translation id="telephony_group_billing_deposit_movement_error_amount_too_low" qtlid="386547">Norint atlikti perkėlimą, garantinis užstatas turi būti teigiamas!</translation>
+   <translation id="telephony_group_billing_deposit_movement_error_amount_required" qtlid="386560">Laukas "suma" yra privalomas.</translation>
+   <translation id="telephony_group_billing_deposit_movement_error_amount_number" qtlid="386573">Įveskite tinkamą sumą.</translation>
+   <translation id="telephony_group_billing_deposit_movement_error_amount_min" qtlid="386586">Mažiausia lauko reikšmė: {{ min }}.</translation>
+   <translation id="telephony_group_billing_deposit_movement_error_amount_max" qtlid="386599">Didžiausia lauko reikšmė {{ max }}.</translation>
+   <translation id="telephony_group_billing_deposit_movement_capability_error" qtlid="386899">Negalima patikrinti perkeliamų sąskaitų grupių.</translation>
+</translations>

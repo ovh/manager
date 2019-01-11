@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_order_title" qtlid="333529">Ordina un numero</translation>
+   <translation id="telephony_order_choice_title" qtlid="333542">Tipi di numeri</translation>
+   <translation id="telephony_order_will_cost" qtlid="333555">A partire da:</translation>
+   <translation id="telephony_order_per_period" qtlid="333568">/mese</translation>
+   <translation id="telephony_order_with_tax" qtlid="333581">({{ttc}} IVA incl.)</translation>
+   <translation id="telephony_order_without_tax" qtlid="333594">{{ht}}&#160;+IVA</translation>
+
+   <translation id="telephony_order_geographical_title" qtlid="333607">Numeri geografici</translation>
+   <translation id="telephony_order_geographical_tip" qtlid="333620">Ordina numeri geografici</translation>
+   <translation id="telephony_order_geographical_description" qtlid="333633">Associa la tua attività a un numero fisso</translation>
+   <translation id="telephony_order_nogeographical_title" qtlid="333646">Numeri non geografici</translation>
+   <translation id="telephony_order_nogeographical_tip" qtlid="333659">Ordina numeri non geografici</translation>
+   <translation id="telephony_order_nogeographical_description" qtlid="333633">Associa la tua attività a un numero fisso</translation>
+   <translation id="telephony_order_special_title" qtlid="333672">Numeri a valore aggiunto</translation>
+   <translation id="telephony_order_special_tip" qtlid="333685">Ordina numeri a valore aggiunto</translation>
+   <translation id="telephony_order_special_description" qtlid="333698">Resta taggiungibile grazie a un numero a tariffa speciale</translation>
+   <translation id="telephony_order_international_title" qtlid="333711">Numeri internazionali</translation>
+   <translation id="telephony_order_international_tip" qtlid="333724">Ordina numeri internazionali</translation>
+   <translation id="telephony_order_international_description" qtlid="333737">Proponi un numero locale ai tuoi clienti esteri</translation>
+
+   <translation id="telephony_order_geographical_count_plurial" qtlid="333750">{{value}} numeri</translation>
+   <translation id="telephony_order_geographical_count_singular" qtlid="333763">{{value}} numero</translation>
+
+   <translation id="telephony_order_address_zipcode" qtlid="30346">Codice postale</translation>
+   <translation id="telephony_order_address_city" qtlid="33310">Città</translation>
+   <translation id="telephony_order_address_street_number" qtlid="30778">Numero</translation>
+   <translation id="telephony_order_address_street_name" qtlid="152518">Via</translation>
+
+   <translation id="telephony_order_confirm" qtlid="333776">Ordina ({{total}} IVA incl.)</translation>
+
+   <translation id="telephony_order_identity_first_name" qtlid="23323">Nome</translation>
+   <translation id="telephony_order_identity_name" qtlid="3818">Nome</translation>
+   <translation id="telephony_order_identity_email" qtlid="393022">Posta</translation>
+   <translation id="telephony_order_identity_phone" qtlid="34174">Telefono</translation>
+
+   <translation id="telephony_order_identity_organisation" qtlid="49022">Società</translation>
+   <translation id="telephony_order_identity_ape" qtlid="333789">Codice APE</translation>
+   <translation id="telephony_order_identity_siret" qtlid="333802">SIRET</translation>
+   <translation id="telephony_order_identity_nomination" qtlid="307709">Ragione sociale</translation>
+
+   <translation id="telephony_order_legal" qtlid="333815">Convalida l'ordine</translation>
+   <translation id="telephony_order_validate_order_tip" qtlid="333828">Conferma l'ordine</translation>
+   <translation id="telephony_order_validate_order" qtlid="333841">Conferma e paga {{price}} IVA incl.</translation>
+
+   <translation id="telephony_order_coordinate_name_label" qtlid="333854">Identità:</translation>
+   <translation id="telephony_order_coordinate_address_label" qtlid="333867">Indirizzo:</translation>
+   <translation id="telephony_order_coordinate_universalDirectory_tip" qtlid="333880">Seleziona la casella per la pubblicazione sull'elenco telefonico.</translation>
+   <translation id="telephony_order_coordinate_universalDirectory" qtlid="333893">Pubblica le informazioni sull'elenco telefonico.</translation>
+   <translation id="telephony_order_coordinate_legalform_individual" qtlid="33850">Privato</translation>
+   <translation id="telephony_order_coordinate_legalform_company" qtlid="49022">Società</translation>
+
+   <translation id="telephony_order_number_type_common_label" qtlid="333906">Numero standard</translation>
+   <translation id="telephony_order_number_type_specific_label" qtlid="333919">Numero facile da ricordare</translation>
+
+   <translation id="telephony_order_retractation_retract_true" qtlid="393035">Intendi avvalerti della possibilità di esercitare il tuo diritto di recesso e, a questo titolo, accetti che l'esecuzione della prestazione abbia inizio alla scadenza di questo termine.<strong>Attivazione del servizio entro 14 giorni</strong>.&#13;
+&#13;
+&#13;
+ </translation>
+   <translation id="telephony_order_retractation_retract_false" qtlid="333945">Richiedi <strong>l'esecuzione immediata della prestazione e,</strong>a questo titolo, riconosci di poter esercitare il tuo diritto di recesso, conformemente alle disposizioni dell'articolo 121-20-2 del "Code de la Consommation" (codice del consumo francese).</translation>
+
+   <translation id="telephony_order_amount_title" qtlid="333412">Quantità di numeri:</translation>
+   <translation id="telephony_order_zone_title" qtlid="333425">Zona geografica:</translation>
+   <translation id="telephony_order_country_title" qtlid="333958">Paese:</translation>
+   <translation id="telephony_order_zone_tip" qtlid="333477">Città o CAP</translation>
+   <translation id="telephony_order_zone_error" qtlid="333971">Questa zona non esiste</translation>
+
+   <translation id="telephony_order_specific_title" qtlid="333451">Scegli il numero</translation>
+   <translation id="telephony_order_retractation_title" qtlid="319973">Diritto di recesso</translation>
+   <translation id="telephony_order_address_title" qtlid="333464">Dati del titolare del numero</translation>
+   <translation id="telephony_order_order_error_city" qtlid="333503">{{city}} non si trova nella zona ({{zone}})</translation>
+
+   <translation id="telephony_order_specific_numbers_error" qtlid="333490">Impossibile caricare la lista delle preselezioni di numeri.</translation>
+   <translation id="telephony_order_prices_error" qtlid="333984">Impossibile caricare le tariffe.</translation>
+</translations>

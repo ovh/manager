@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_line_actions_line_calls_display_number_title" qtlid="58532">Presentación del número</translation>
+   <translation id="telephony_line_actions_line_calls_display_number_read_error" qtlid="336155">No se ha podido acceder a la presentación del número.</translation>
+   <translation id="telephony_line_actions_line_calls_display_number_write_error" qtlid="336168">No se ha podido actualizar la presentación del número, ya que este no está en formato internacional o no le pertenece.</translation>
+   <translation id="telephony_line_actions_line_calls_display_number_write_success" qtlid="336181">Se ha actualizado la presentación del número.</translation>
+   <translation id="telephony_line_actions_line_calls_display_number_label" qtlid="387029">Quiero presentar un número en las llamadas salientes:</translation>
+   <translation id="telephony_line_actions_line_calls_display_number_choose" qtlid="457272">Choisir un autre numéro</translation>
+   <translation id="telephony_line_actions_line_calls_display_number_confirm" qtlid="249107">Aplicar los cambios</translation>
+   <translation id="telephony_line_actions_line_calls_display_number_info" qtlid="387042">En las llamadas salientes, muestre un número de su grupo u opte por el anonimato.</translation>
+   <translation id="telephony_line_actions_line_calls_identificationRestriction_checkbox_label" qtlid="387055">Permanecer anónimo</translation>
+   <translation id="telephony_line_actions_line_calls_submit_changes" qtlid="249107">Aplicar los cambios</translation>
+   <translation id="telephony_line_actions_line_calls_anonymous" qtlid="457285">Numéro masqué</translation>
+
+   <translation id="telephony_line_actions_line_calls_display_number_bulk_all_success" qtlid="457298">La modification de la présentation du numéro a bien été appliquée aux services sélectionnés.</translation>
+   <translation id="telephony_line_actions_line_calls_display_number_bulk_some_success" qtlid="457311">La modification de la présentation du numéro a bien été appliquée à {{ count }} des services sélectionnés.</translation>
+   <translation id="telephony_line_actions_line_calls_display_number_bulk_error" qtlid="457324">La modification de la présentation du numéro n'a pu être appliquée au(x) service(s) suivant(s) :</translation>
+   <translation id="telephony_line_actions_line_calls_display_number_bulk_on_error" qtlid="457337">Oups ! Une erreur est survenue lors de la modification de la présentation du numéro.</translation>
+</translations>

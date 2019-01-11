@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_line_answer_voicemail_directories_main_title" qtlid="337546">Pranešimų perklausymas ir valdymas</translation>
+
+   <translation id="telephony_line_answer_voicemail_directories_title" qtlid="337559">Atsakiklio pranešimų valdymas</translation>
+   <translation id="telephony_line_answer_voicemail_directories_delete_message" qtlid="337572">Žinučių trynimas</translation>
+   <translation id="telephony_line_answer_voicemail_directories_delete_message_plural" qtlid="337585">Trinti {{ count }} žinutes</translation>
+   <translation id="telephony_line_answer_voicemail_directories_listen_message" qtlid="337598">Klausyti</translation>
+   <translation id="telephony_line_answer_voicemail_directories_download_message" qtlid="39286">Parsisiuntimas</translation>
+   <translation id="telephony_line_answer_voicemail_directories_refresh_message" qtlid="250030">Atnaujinti</translation>
+   <translation id="telephony_line_answer_voicemail_directories_empty" qtlid="105791">Jūs neturite pranešimų.</translation>
+   <translation id="telephony_line_answer_voicemail_directories_caller" qtlid="303549">Pareiškėjas</translation>
+   <translation id="telephony_line_answer_voicemail_directories_date" qtlid="24523">Data</translation>
+   <translation id="telephony_line_answer_voicemail_directories_duration" qtlid="8218">Trukmė</translation>
+</translations>

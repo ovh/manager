@@ -14,6 +14,7 @@ import core from '@ovh-ux/manager-core';
 import overthebox from '@ovh-ux/manager-overthebox';
 import freefax from '@ovh-ux/manager-freefax';
 import sms from '@ovh-ux/manager-sms';
+import telephony from '@ovh-ux/manager-telephony';
 import welcome from '@ovh-ux/manager-welcome';
 
 import routing from './manager-layout-ovh.routes';
@@ -48,6 +49,7 @@ angular
     'ovh-angular-otrs',
     sidebar,
     sms,
+    telephony,
     translate,
     'ui.bootstrap',
     welcome,

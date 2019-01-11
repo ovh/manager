@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_line_fax_section_back_link" qtlid="357083">Grįžti prie fakso valdymo</translation>
+   <translation id="telephony_line_fax_action_line_password" qtlid="357096">Fakso slaptažodis</translation>
+   <translation id="telephony_line_fax_action_line_settings" qtlid="306578">Fakso konfigūravimas</translation>
+   <translation id="telephony_line_fax_action_line_white_label_domains" qtlid="357109">Ecofax domenai su "tuščiu ženklu"</translation>
+   <translation id="telephony_line_fax_action_line_filtering" qtlid="357122">Fakso filtravimas</translation>
+   <translation id="telephony_line_fax_action_line_campaigns" qtlid="357135">Fakso kampanijos</translation>
+   <translation id="telephony_line_fax_action_line_convert_to_voicefax" qtlid="357148">Konvertuoti Ecofax perso</translation>
+</translations>

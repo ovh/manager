@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_alias_ovh_pabx_menus_list_info1" qtlid="480227">Ici, vous pouvez gérer les menus interactifs disponibles.</translation>
+   <translation id="telephony_alias_ovh_pabx_menus_list_info2" qtlid="480240">Une fois vos menus paramétrés, il vous faut les ajouter dans la configuration de votre serveur vocal pour les utiliser.</translation>
+   <translation id="telephony_alias_ovh_pabx_menus_list_title" qtlid="462706">Liste des menus interactifs</translation>
+   <translation id="telephony_alias_ovh_pabx_menus_add_menu" qtlid="462719">Ajouter un menu interactif</translation>
+
+   <translation id="telephony_alias_ovh_pabx_menus_new_menu" qtlid="462732">Nouveau menu interactif</translation>
+   <translation id="telephony_alias_ovh_pabx_menus_new_menu_name" qtlid="462745">Mon menu interactif {{ index }}</translation>
+   <translation id="telephony_alias_ovh_pabx_menus_edit_menu" qtlid="462758">Édition du menu interactif {{ name }}</translation>
+</translations>

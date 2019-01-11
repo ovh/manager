@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_line_phone_order_title" qtlid="336844">Ordina un Plug & Phone</translation>
+   <translation id="telephony_line_phone_order_change_title" qtlid="458858">Changer de téléphone Plug & Phone</translation>
+   <translation id="telephony_line_phone_order_infos_title" qtlid="26551">Informazioni</translation>
+   <translation id="telephony_line_phone_order_rma_warning" qtlid="458871">Une demande de RMA est déjà en cours sur cette ligne.</translation>
+   <translation id="telephony_line_phone_order_rma_pending_info" qtlid="458884">Une demande de retour est en cours sur cette ligne.</translation>
+   <translation id="telephony_line_phone_order_rma_pdf_download" qtlid="458806">Télécharger le bon de retour</translation>
+   <translation id="telephony_line_phone_order_rma_cancel" qtlid="443182">Annulla la richiesta</translation>
+   <translation id="telephony_line_phone_order_infos_part1" qtlid="458897">Vous avez la possibilité de commander un Plug & Phone ou un Plug & Fax pour votre ligne ou d'attacher votre ligne à un équipement multi-lignes existant.</translation>
+   <translation id="telephony_line_phone_order_order_confirm" qtlid="333828">Conferma l'ordine</translation>
+   <translation id="telephony_line_phone_order_order_title" qtlid="458910">Commander un équipement</translation>
+   <translation id="telephony_line_phone_order_order_empty" qtlid="458923">Aucun équipement compatible.</translation>
+   <translation id="telephony_line_phone_order_order_a" qtlid="458936">Commander un {{ brand }}</translation>
+   <translation id="telephony_line_phone_order_order_prompt" qtlid="372583">Vorrei:</translation>
+   <translation id="telephony_line_phone_order_order_next" qtlid="69437">Step seguente</translation>
+   <translation id="telephony_line_phone_order_order_prev" qtlid="69449">Step precedente</translation>
+   <translation id="telephony_line_phone_order_order_change_for" qtlid="458949">Changer pour le {{ phone }}</translation>
+   <translation id="telephony_line_phone_order_order_price_tax_free" qtlid="458962">(caution {{ price }} HT)</translation>
+   <translation id="telephony_line_phone_order_order_price2_tax_free" qtlid="458975">({{ price }} HT)</translation>
+   <translation id="telephony_line_phone_order_process_title" qtlid="458988">Procédure :</translation>
+   <translation id="telephony_line_phone_order_process_return1" qtlid="459001">La ligne reste active et n'est pas résiliée, vous nous retournez l'ancien matériel dans un délai de 15 jours.</translation>
+   <translation id="telephony_line_phone_order_process_return2" qtlid="459014">La caution vous est restituée sous 10 jours après réception de l'ancien équipement.</translation>
+   <translation id="telephony_line_phone_order_process_exchange1" qtlid="459027">Vous conservez votre équipement actuel le temps de recevoir le nouvel équipement. Dès réception du nouveau matériel, vous nous retournez celui que vous possédez dans un délai de 15 jours.</translation>
+   <translation id="telephony_line_phone_order_process_exchange2" qtlid="459040">Vous payez la caution du nouveau matériel lors de la commande. Celle de l'ancien matériel vous est restituée sous 10 jours après réception de l'équipement par nos services.</translation>
+   <translation id="telephony_line_phone_order_return_phone" qtlid="459053">Renvoyer mon équipement actuel ({{ phone }})</translation>
+   <translation id="telephony_line_phone_order_return_address_title" qtlid="459066">Adresse de retour :</translation>
+   <translation id="telephony_line_phone_order_return_address_content" qtlid="459079">OVH SAS<br />Service Après Vente<br />13 rue Kellermann<br />59100 Roubaix</translation>
+   <translation id="telephony_line_phone_order_shipping_title" qtlid="55121">Consegna</translation>
+   <translation id="telephony_line_phone_order_shipping_contact" qtlid="384623">Contatto di consegna</translation>
+   <translation id="telephony_line_phone_order_shipping_mode" qtlid="384636">Modalità di consegna</translation>
+   <translation id="telephony_line_phone_order_shipping_mode_mondial_relay" qtlid="459092">Mondial Relay : {{ name }} - {{ street }}, {{ city }}</translation>
+   <translation id="telephony_line_phone_order_shipping_mode_other" qtlid="459105">Transporteur</translation>
+   <translation id="telephony_line_phone_order_summary_title" qtlid="177496">Riepilogo del tuo ordine</translation>
+   <translation id="telephony_line_phone_order_summary_title_short" qtlid="4082">Riepilogo</translation>
+   <translation id="telephony_line_phone_order_return_confirm" qtlid="459118">Confirmer la procédure de retour</translation>
+   <translation id="telephony_line_phone_order_return_infos1" qtlid="459131">Vous souhaitez rendre votre équipement <strong>{{ phoneBrand }}</strong>.</translation>
+   <translation id="telephony_line_phone_order_return_infos2" qtlid="459144">Un nouveau mot de passe SIP va vous être envoyé par email dès validation pour vous permettre d'utiliser votre ligne sans l'équipement.</translation>
+   <translation id="telephony_line_phone_order_return_success" qtlid="459157">Votre demande de retour à bien été prise en compte. Merci de télécharger le bon de retour pour restituer votre équipement.</translation>
+   <translation id="telephony_line_phone_order_success" qtlid="459170">Votre demande d'échange à bien été prise en compte. Merci de télécharger le bon de retour pour restituer votre équipement.</translation>
+   <translation id="telephony_line_phone_order_success2" qtlid="459183">Votre commande a bien été prise en compte. Merci de régler le bon de commande ci dessous afin de recevoir votre équipement.</translation>
+   <translation id="telephony_line_phone_order_url" qtlid="35352">Buono d'ordine</translation>
+   <translation id="telephony_line_phone_order_table_description" qtlid="9238">Descrizione</translation>
+   <translation id="telephony_line_phone_order_table_unit_price" qtlid="51715">Prezzo unitario IVA esclusa</translation>
+   <translation id="telephony_line_phone_order_table_quantity" qtlid="37107">Quantità</translation>
+   <translation id="telephony_line_phone_order_table_total" qtlid="133292">Prezzo IVA esclusa</translation>
+   <translation id="telephony_line_phone_order_prices_tax_free_total" qtlid="37143">Totale IVA esclusa</translation>
+   <translation id="telephony_line_phone_order_prices_tax_total" qtlid="279470">IVA</translation>
+   <translation id="telephony_line_phone_order_prices_with_tax_total" qtlid="37167">Totale IVA compresa</translation>
+   <translation id="telephony_line_phone_order_summary" qtlid="459196">Votre commande</translation>
+   <translation id="telephony_line_phone_order_contracts" qtlid="213336">Contratti</translation>
+   <translation id="telephony_line_phone_order_retract_title" qtlid="319973">Diritto di recesso</translation>
+   <translation id="telephony_line_phone_order_retract" qtlid="459209">Vous souhaitez disposer de la possibilité d'exercer votre droit de rétractation et acceptez qu'à ce titre le début de la prestation n'intervienne qu'à expiration de ce delai. Mise à disposition du service sous 14 jours.</translation>
+   <translation id="telephony_line_phone_order_noretract" qtlid="459222">Vous sollicitez l'exécution immédiate de la prestation et reconnaissez qu'à ce titre, vous ne pourrez exercer votre droit de rétractation conformément aux dispositions de l'article 121-20-2 du code de la consommation.</translation>
+   <translation id="telephony_line_phone_order_attach_title" qtlid="459235">Rattacher la ligne à un équipement actuel</translation>
+   <translation id="telephony_line_phone_pending_task_warning" qtlid="459248">Une ou plusieurs opérations sont en cours sur l'offre de cette ligne. Vous pourrez effectuer une commande lorsqu'elles seront terminées.</translation>
+   <translation id="telephony_line_phone_change_same_current_phone" qtlid="459261">Nous vous invitons à contacter le support afin d'effectuer un échange vers le même modèle de téléphone.</translation>
+</translations>

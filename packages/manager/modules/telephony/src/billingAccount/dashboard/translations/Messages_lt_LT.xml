@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="group_dashboard_actions" qtlid="302340">Aš noriu...</translation>
+   <translation id="telephony_group_billing_dashboard_actions_group_order" qtlid="333529">Užsakyti numerį</translation>
+   <translation id="telephony_group_billing_dashboard_actions_group_delete" qtlid="69929">Trinti grupę</translation>
+   <translation id="telephony_group_billing_dashboard_actions_group_last_bill" qtlid="386274">Peržiūrėti paskutines sąskaitas</translation>
+   <translation id="telephony_group_billing_dashboard_actions_portabilities" qtlid="386287">Peržiūrėti perkeliamumą</translation>
+   <translation id="telephony_group_billing_dashboard_actions_portabilities_create" qtlid="334049">Užsakyti perkeliamumą</translation>
+   <translation id="telephony_group_billing_dashboard_actions_fax_convertion" qtlid="456947">Convertir des Ecofax perso en Ecofax pro</translation>
+   <translation id="telephony_group_billing_dashboard_consumption_title" qtlid="25999">Sunaudojimas per mėnesį</translation>
+   <translation id="telephony_group_billing_dashboard_bill_title" qtlid="386300">Paskutinės 5 naudojimo ataskaitos.</translation>
+   <translation id="telephony_group_billing_dashboard_information_title" qtlid="386313">Bendra informacija</translation>
+   <translation id="telephony_group_billing_dashboard_lines" qtlid="190134">Linijos</translation>
+   <translation id="telephony_group_billing_dashboard_line" qtlid="42802">Linija</translation>
+   <translation id="telephony_group_billing_dashboard_aliases" qtlid="386326">Numerius</translation>
+   <translation id="telephony_group_billing_dashboard_alias" qtlid="30778">Numeris</translation>
+   <translation id="telephony_group_billing_dashboard_fax" qtlid="32926">Faksas</translation>
+   <translation id="telephony_group_billing_dashboard_mac" qtlid="42562">MAC adresas</translation>
+   <translation id="telephony_group_billing_dashboard_status" qtlid="33790">Būsena</translation>
+   <translation id="telephony_group_billing_dashboard_status_closed" qtlid="66236">Uždarytas</translation>
+   <translation id="telephony_group_billing_dashboard_status_deleted" qtlid="134514">Pašalinta</translation>
+   <translation id="telephony_group_billing_dashboard_status_enabled" qtlid="55133">Įjungtas</translation>
+   <translation id="telephony_group_billing_dashboard_status_expired" qtlid="386339">Negalioja</translation>
+   <translation id="telephony_group_billing_dashboard_bill_date" qtlid="24523">Data</translation>
+   <translation id="telephony_group_billing_dashboard_bill_amount" qtlid="20635">Viso be PVM</translation>
+   <translation id="telephony_group_billing_dashboard_bill_paid" qtlid="334569">Jau apmokėta</translation>
+   <translation id="telephony_group_billing_dashboard_bill_download" qtlid="39286">Parsisiuntimas</translation>
+   <translation id="telephony_group_billing_dashboard_bill_download_pdf" qtlid="334582">Sunaudojimo suvestinė PDF formatu</translation>
+   <translation id="telephony_group_billing_dashboard_bill_download_csv_emited" qtlid="334595">Išeinančių skambučių sąrašas CSV formatu</translation>
+   <translation id="telephony_group_billing_dashboard_bill_download_csv_received" qtlid="334608">Įeinančių skambučių sąrašas CSV formatu</translation>
+   <translation id="telephony_group_billing_dashboard_credit_current_out_plan" qtlid="386352">Ne paketas:&#160;</translation>
+   <translation id="telephony_group_billing_dashboard_bill_empty" qtlid="386365">Jokios naudojimo ataskaitos</translation>
+   <translation id="telephony_group_billing_dashboard_go_to_my_bills" qtlid="456960">Voir mes relevés de consommation</translation>
+   <translation id="telephony_group_billing_dashboard_network_title" qtlid="386391">VoIP parkas</translation>
+   <translation id="telephony_group_billing_dashboard_RMA_status_open" qtlid="386404">Kvito atidarymas</translation>
+   <translation id="telephony_group_billing_dashboard_RMA_status_closed" qtlid="8662">Baigta</translation>
+   <translation id="telephony_group_billing_dashboard_RMA_status_received" qtlid="386417">Paketo gavimas</translation>
+   <translation id="telephony_group_billing_dashboard_no_phone" qtlid="386430">Linija</translation>
+   <translation id="telephony_group_billing_dashboard_RMA_title" qtlid="386443">RMA</translation>
+   <translation id="telephony_group_billing_dashboard_calls" qtlid="59735">Skambučiai</translation>
+</translations>

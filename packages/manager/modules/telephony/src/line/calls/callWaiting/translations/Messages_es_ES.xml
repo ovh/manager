@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_line_actions_line_calls_call_waiting_title" qtlid="335999">Llamada en espera e interfono</translation>
+   <translation id="telephony_line_actions_line_calls_call_waiting_cw_checkbox_label" qtlid="387211">Activar la llamada en espera</translation>
+   <translation id="telephony_line_actions_line_calls_call_waiting_cw_title" qtlid="336012">Llamada en espera</translation>
+   <translation id="telephony_line_actions_line_calls_call_waiting_intercom_checkbox_label" qtlid="387224">Activar el modo interfono con prefijo <strong>3691</strong></translation>
+   <translation id="telephony_line_actions_line_calls_call_waiting_intercom_title" qtlid="387237">Modo interfono</translation>
+   <translation id="telephony_line_actions_line_calls_call_waiting_load_error" qtlid="334686">Se ha producido un error al leer la configuración.</translation>
+   <translation id="telephony_line_actions_line_calls_call_waiting_save_error" qtlid="334712">No se ha podido guardar la configuración. Por favor, vuelva a intentarlo más tarde.</translation>
+   <translation id="telephony_line_actions_line_calls_call_waiting_cw_save_success_true" qtlid="336038">La llamada en espera está activada.</translation>
+   <translation id="telephony_line_actions_line_calls_call_waiting_cw_save_success_false" qtlid="336051">La llamada en espera está desactivada.</translation>
+   <translation id="telephony_line_actions_line_calls_call_waiting_intercom_save_success_no" qtlid="387250">El modo interfono está desactivado.</translation>
+   <translation id="telephony_line_actions_line_calls_call_waiting_intercom_save_success_prefixed" qtlid="387263">El modo interfono está activo con el prefijo 3691.</translation>
+   <translation id="telephony_line_actions_line_calls_call_waiting_cw_explain" qtlid="336090">Esta opción permite activar o desactivar la función de llamada en espera de la que dispone su línea.</translation>
+   <translation id="telephony_line_actions_line_calls_call_waiting_cw_explain1" qtlid="336103">Si la opción está desactivada, no podrá transferir su llamada o descolgar una segunda llamada.</translation>
+   <translation id="telephony_line_actions_line_calls_call_waiting_intercom_explain" qtlid="387276">Modo interfono:&#160;descolgado automático con activación del altavoz.</translation>
+   <translation id="telephony_line_actions_line_calls_call_waiting_intercom_detail" qtlid="336129">Los teléfonos ofrecidos por OVH compatibles con el servicio interfono son: el Thomson ST2030, la serie Cisco SPA5 y la gama LG IP 88XX.</translation>
+</translations>

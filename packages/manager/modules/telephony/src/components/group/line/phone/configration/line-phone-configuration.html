@@ -1,0 +1,121 @@
+<div class="line-phone-configuration">
+
+    <!-- CONSULT MODE -->
+    <dl data-ng-if="!$ctrl.editMode">
+        <dt data-ng-repeat-start="config in $ctrl.configGroup.configs track by $index"
+            data-translate="{{ ['telephony_line_phone_configuration_config', config.name].join('_') | tucSnakeCase }}"
+            data-translate-default="{{ config.name }}"
+            data-ng-if="$ctrl.expertMode || (!$ctrl.expertMode && config.level === null)">
+        </dt>
+        <dd data-ng-repeat-end
+            class="mb-2"
+            data-ng-bind="$ctrl.getConfigValue(config) || '-'"
+            data-ng-if="$ctrl.expertMode || (!$ctrl.expertMode && config.level === null)">
+        </dd>
+    </dl>
+
+    <!-- EDIT MODE -->
+    <div data-ng-if="$ctrl.editMode">
+
+        <div data-ng-repeat="config in $ctrl.configGroup.configs track by $index"
+             data-ng-if="$ctrl.expertMode || (!$ctrl.expertMode && config.level === null)"
+             data-ng-switch="config.type"
+             class="mb-2">
+
+            <label data-ng-if="config.type !== 'ipv4' && config.type !== 'string'"
+                   for="{{ config.name }}"
+                   data-translate="{{ ['telephony_line_phone_configuration_config', config.name].join('_') | tucSnakeCase }}"
+                   data-translate-default="{{ config.name }}">
+            </label>
+
+            <!-- BOOLEAN TYPE -->
+            <div data-ng-switch-when="boolean"
+                 class="btn-group d-block clearfix">
+                <label class="btn btn-default"
+                       data-ng-model="config.value"
+                       data-uib-btn-radio="true"
+                       data-translate="telephony_line_phone_configuration_config_yes">
+                </label>
+                <label class="btn btn-default"
+                       data-ng-model="config.value"
+                       data-uib-btn-radio="false"
+                       data-translate="telephony_line_phone_configuration_config_no">
+                </label>
+            </div>
+
+            <!-- NUMERIC TYPE -->
+            <div data-ng-switch-when="numeric">
+                <input-number-spinner data-ng-model="config.value"
+                                      data-input-number-spinner-min="config.rangeValue.from"
+                                      data-input-number-spinner-max="config.rangeValue.to">
+                </input-number-spinner>
+            </div>
+
+            <!-- ENUMT TYPE (SELECT) -->
+            <div data-ng-switch-when="enum">
+                <select class="form-control"
+                        id="{{ config.name }}"
+                        data-ng-model="config.value"
+                        data-ng-options="value as ($ctrl.isEnumHasToBeTranslated(config.name) ? (['telephony_line_phone_configuration_config', value].join('_') | tucSnakeCase | translate) : value) for value in config['enum']">
+                </select>
+            </div>
+
+            <!-- IPV4 TYPE (INPUT TEXT WITH IPV4 VALIDATION) -->
+            <div data-ng-switch-when="ipv4"
+                 data-ng-class="{
+                     'has-error': $ctrl.configForm[config.name].$touched && $ctrl.configForm[config.name].$invalid
+                 }">
+                <label for="{{ config.name }}"
+                       class="control-label"
+                       data-translate="{{ ['telephony_line_phone_configuration_config', config.name].join('_') | tucSnakeCase }}">
+                </label>
+                <input type="text"
+                       id="{{ config.name }}"
+                       name="{{ config.name }}"
+                       data-ng-blur="$ctrl.onTextInputBlur(config)"
+                       data-ng-model="config.value"
+                       data-ui-validate="{ ipv4: '$ctrl.validator.isIP($value, 4)' }"
+                       placeholder="{{ $ctrl.getPlaceholderTranslation(config.name) }}"
+                       class="form-control">
+                <span class="help-block"
+                      role="alert"
+                      data-ng-if="$ctrl.configForm[config.name].$touched"
+                      data-ng-messages="$ctrl.configForm[config.name].$error">
+                    <span data-ng-message="ipv4"
+                          data-translate="telephony_line_phone_configuration_ipv4_invalid">
+                    </span>
+                </span>
+            </div>
+
+            <!-- DEFAULT - SHOULD BE STRING (INPUT TEXT) -->
+            <div data-ng-switch-default
+                 data-ng-class="{
+                     'has-error': $ctrl.configForm[config.name].$touched && $ctrl.configForm[config.name].$invalid
+                 }">
+                <label for="{{ config.name }}"
+                       class="control-label"
+                       data-translate="{{ ['telephony_line_phone_configuration_config', config.name].join('_') | tucSnakeCase }}">
+                </label>
+                <input type="text"
+                       id="{{ config.name }}"
+                       name="{{ config.name }}"
+                       data-ng-model="config.value"
+                       class="form-control"
+                       placeholder="{{ $ctrl.getPlaceholderTranslation(config.name) }}"
+                       data-ng-maxlength="{{ config.maxlength }}">
+                <span class="help-block"
+                      role="alert"
+                      data-ng-if="$ctrl.configForm[config.name].$touched"
+                      data-ng-messages="$ctrl.configForm[config.name].$error">
+                    <span data-ng-message="maxlength"
+                          data-translate="telephony_line_phone_configuration_maxlength_invalid"
+                          data-translate-values="{ maxlength: config.maxlength }">
+                    </span>
+                </span>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

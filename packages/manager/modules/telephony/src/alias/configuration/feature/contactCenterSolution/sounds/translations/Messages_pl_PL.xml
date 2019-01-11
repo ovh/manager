@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_alias_config_contactCenterSolution_sounds_title" qtlid="510956">File d’appels : gestion des sons et de l’attente</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_sounds_subtitle" qtlid="510969">Pour compléter votre stratégie, vous pouvez personnaliser avec des sons ce que vos clients entendront selon leur place dans la {{feature}}</translation>
+
+   <translation id="telephony_alias_config_contactCenterSolution_sounds_waiting_configuration" qtlid="510982">Configuration de l’attente</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_sounds_waiting_opening_annonce" qtlid="392879">Annonce avant mise en attente</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_sounds_waiting_opening_annonce_help" qtlid="510995">Annonce diffusée avant la mise en attente dans la file.</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_sounds_waiting_onHold" qtlid="358422">Musique d'attente</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_sounds_waiting_onHold_help" qtlid="511008">Musique diffusée lorsque l’appelant est en attente</translation>
+
+   <translation id="telephony_alias_config_contactCenterSolution_sounds_overflow_configuration" qtlid="511021">Configuration du débordement</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_sounds_overflow_max_waiting_calls" qtlid="294945">Nombre maximum d'appelants en attente</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_sounds_overflow_max_waiting_calls_help" qtlid="511034">Une fois le nombre maximum atteint, le ou les appelants supplémentaires entendront l’annonce de débordement, si vous y avez ajouté un son</translation>
+
+   <translation id="telephony_alias_config_contactCenterSolution_sounds_overflow_action_to_play_help" qtlid="516640">Lorsque le nombre maximal d’appelants en attente est atteint, l’appelant tombera sur le répondeur de la ligne sélectionnée ou entendra une annonce de débordement.</translation>
+
+   <translation id="telephony_alias_config_contactCenterSolution_sounds_closing_configuration" qtlid="511060">Configuration de fermeture</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_sounds_closing_timeout" qtlid="511073">Durée maximale d’attente dans la file</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_sounds_closing_timeout_help" qtlid="511086">Durée maximale avant que l’appelant ne sorte de la file d’attente. Il sera redirigé sur le répondeur de votre file d’appels ou sur l’annonce de fermeture, en fonction de votre configuration.</translation>
+
+   <translation id="telephony_alias_config_contactCenterSolution_sounds_closure_action_to_play_help" qtlid="511099">Lorsque la durée maximale d’attente dans la file est atteinte ou que les lignes de votre file d’appels sont déconnectées, l’appelant tombera sur le répondeur de la ligne sélectionnée ou entendra une annonce de fermeture.</translation>
+
+   <translation id="telephony_alias_config_contactCenterSolution_sounds_add_sound" qtlid="462810">Ajouter un son</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_sounds_add_voicemail" qtlid="221409">Dodaj autoresponder</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_sounds_time_in_minutes" qtlid="511112">Temps exprimé en minutes.</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_sounds_action_to_play" qtlid="511125">Action à jouer</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_sounds_action_voicemail" qtlid="511138">Renvoyer sur un répondeur.</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_sounds_closure_action_playback" qtlid="511151">Jouer une annonce de fermeture.</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_sounds_overflow_action_playback" qtlid="516653">Jouer une annonce de débordement.</translation>
+
+<!-- Sounds upload -->
+   <translation id="telephony_alias_config_contactCenterSolution_sounds_invalid" qtlid="392931">Format de fichier invalide.</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_sounds_size" qtlid="511164">Taille max. : 10 Mo.</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_sounds_list" qtlid="392944">Sélectionner un fichier existant :</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_sounds_delete" qtlid="135216">Usuń plik</translation>
+
+   <translation id="telephony_alias_config_contactCenterSolution_sounds_get_options_error" qtlid="511177">Une erreur est survenue lors de la récupération des options des sons et de l’attente de la file d’appels.</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_sounds_upload_error" qtlid="511190">Une erreur est survenue lors du téléchargement du fichier.</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_sounds_update_success" qtlid="511203">Les options des sons et de l’attente de la file d’appels ont été mises à jour.</translation>
+   <translation id="telephony_alias_config_contactCenterSolution_sounds_update_error" qtlid="511216">Une erreur est survenue lors la mise à jour des options de la file d’appels.</translation>
+</translations>

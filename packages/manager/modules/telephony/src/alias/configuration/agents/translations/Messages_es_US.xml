@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_alias_configuration_agents_title" qtlid="461367">Gérer les agents</translation>
+   <translation id="telephony_alias_configuration_agents_list" qtlid="461380">Liste des agents</translation>
+   <translation id="telephony_alias_configuration_agents_empty" qtlid="461393">Aucun agent configuré</translation>
+   <translation id="telephony_alias_configuration_agents_add" qtlid="461406">Ajouter un agent</translation>
+
+   <translation id="telephony_alias_configuration_agents_agent" qtlid="303562">Agente</translation>
+   <translation id="telephony_alias_configuration_agents_description" qtlid="9238">Descripción</translation>
+   <translation id="telephony_alias_configuration_agents_type" qtlid="93283">Type de numéro</translation>
+   <translation id="telephony_alias_configuration_agents_type_internal" qtlid="315306">Interno</translation>
+   <translation id="telephony_alias_configuration_agents_type_external" qtlid="496967">Externe</translation>
+   <translation id="telephony_alias_configuration_agents_timeout" qtlid="303692">Délai</translation>
+   <translation id="telephony_alias_configuration_agents_wrapUpTime" qtlid="303705">Repos</translation>
+   <translation id="telephony_alias_configuration_agents_simultaneousLines" qtlid="303718">Appels simultanés</translation>
+   <translation id="telephony_alias_configuration_agents_status" qtlid="8230">Estado</translation>
+   <translation id="telephony_alias_configuration_agents_number" qtlid="30778">Número</translation>
+   <translation id="telephony_alias_configuration_agents_number_placeholder" qtlid="397221">Numéro au format international</translation>
+   <translation id="telephony_alias_configuration_agents_number_add" qtlid="397234">Ajouter un autre numéro</translation>
+   <translation id="telephony_alias_configuration_agents_add" qtlid="461406">Ajouter un agent</translation>
+   <translation id="telephony_alias_configuration_agents_add_multiple" qtlid="461419">Ajouter {{ count }} agents</translation>
+
+   <translation id="telephony_alias_configuration_agents_delete_one" qtlid="461432">Supprimer l'agent sélectionné</translation>
+   <translation id="telephony_alias_configuration_agents_delete_n" qtlid="461445">Supprimer les {{ count }} agents sélectionnés</translation>
+
+   <translation id="telephony_alias_configuration_agents_add_success" qtlid="461458">Agent(s) ajouté(s) avec succès.</translation>
+   <translation id="telephony_alias_configuration_agents_delete_success" qtlid="461471">Agent(s) supprimé(s) avec succès.</translation>
+   <translation id="telephony_alias_configuration_agents_update_success" qtlid="461484">Agent(s) mis à jour avec succès.</translation>
+
+   <translation id="telephony_alias_configuration_agents_get_error" qtlid="496980">Une erreur est survenue lors de la récupération des agents.</translation>
+   <translation id="telephony_alias_configuration_agents_add_error" qtlid="496993">Une erreur est survenue l'ajout de l'agent.</translation>
+   <translation id="telephony_alias_configuration_agents_delete_error" qtlid="225811">Se ha producido un error durante la eliminación.</translation>
+   <translation id="telephony_alias_configuration_agents_update_error" qtlid="497006">Une erreur est survenue lors de la mise à jour de l'agent.</translation>
+
+   <translation id="telephony_alias_configuration_agents_status_available" qtlid="99920">Disponible</translation>
+   <translation id="telephony_alias_configuration_agents_status_loggedOut" qtlid="77154">Déconnecté</translation>
+   <translation id="telephony_alias_configuration_agents_status_onBreak" qtlid="397156">En pausa</translation>
+
+   <translation id="telephony_alias_configuration_agents_modal-warning" qtlid="480201">Votre configuration possède un ou plusieurs numéros externes. Les appels vers ces numéros vous seront facturés hors forfait quelque soit votre forfait.</translation>
+   <translation id="telephony_alias_configuration_agents_modal-question" qtlid="480214">Continuer avec cette configuration ?</translation>
+</translations>

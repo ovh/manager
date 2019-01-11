@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_line_convert_title" qtlid="387380">Converti una linea in numero</translation>
+   <translation id="telephony_line_convert_info_title" qtlid="26551">Informazioni</translation>
+   <translation id="telephony_line_convert_info1" qtlid="387393">Le richieste di conversione verranno prese in carico  al momento della prossima fatturazione. Fino a questa data, sarà possibile annullare le richieste.</translation>
+   <translation id="telephony_line_convert_info2" qtlid="387406">Una volta eseguita la conversione, la tua linea non sarà più operativa e non sarà più possible effettuare chiamate in uscita perché il numero verrà trasformato in alias.</translation>
+   <translation id="telephony_line_convert_info3" qtlid="387419">Se su questa linea hai un telefono Plug And Phone, quest'ultimo non funzionerà più e ne richiederemo la restituzione.</translation>
+   <translation id="telephony_line_convert_convert" qtlid="387432">Converti la linea {{ line }} in numero</translation>
+   <translation id="telephony_line_convert_cancel_convert" qtlid="387445">Annulla la richiesta di conversione</translation>
+   <translation id="telephony_line_convert_warning" qtlid="387458">La linea {{ line }} sarà convertita in numero il {{ date }}.</translation>
+   <translation id="telephony_line_convert_convert_success" qtlid="387471">Richiesta di conversione inviata.</translation>
+   <translation id="telephony_line_convert_cancel_success" qtlid="387484">La richiesta è stata annullata correttamente.</translation>
+
+   <translation id="telephony_line_convert_bulk_all_success" qtlid="458208">La demande de conversion en numéro a bien été appliquée aux services sélectionnés.</translation>
+   <translation id="telephony_line_convert_bulk_some_success" qtlid="458221">La demande de conversion en numéro a bien été appliquée à {{ count }} des services sélectionnés.</translation>
+   <translation id="telephony_line_convert_bulk_error" qtlid="458234">La demande de conversion en numéro n'a pu être appliquée au(x) service(s) suivant(s) :</translation>
+   <translation id="telephony_line_convert_bulk_on_error" qtlid="458247">Oups ! Une erreur est survenue lors de la demande de conversion en numéro.</translation>
+</translations>

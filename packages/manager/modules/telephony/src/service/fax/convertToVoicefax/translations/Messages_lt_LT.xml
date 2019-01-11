@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_service_fax_convert_to_voicefax_informations" qtlid="26551">Informacija</translation>
+   <translation id="telephony_service_fax_convert_to_voicefax_informations_info1" qtlid="460067">Les Ecofax perso sont convertibles en Ecofax pro.</translation>
+   <translation id="telephony_service_fax_convert_to_voicefax_informations_info2" qtlid="460080">Veuillez noter qu’après la conversion, le service vous sera facturé 0,99 € HT par mois.</translation>
+   <translation id="telephony_service_fax_convert_to_voicefax_informations_warning" qtlid="460093">Aucun Ecofax perso n'est disponible pour la conversion.</translation>
+   <translation id="telephony_service_fax_convert_to_voicefax_list" qtlid="460106">Liste des Ecofax convertibles du groupe</translation>
+   <translation id="telephony_service_fax_convert_to_voicefax_list_service_label" qtlid="460119">Sélectionnez votre numéro :</translation>
+   <translation id="telephony_service_fax_convert_to_voicefax_list_service_order" qtlid="186219">Kurti užsakymą</translation>
+   <translation id="telephony_service_fax_convert_to_voicefax_list_service_order_valid" qtlid="334387">Užsakymo baigimui patvirtinkite</translation>
+   <translation id="telephony_service_fax_convert_to_voicefax_list_service_order_url" qtlid="292800">užsakymą</translation>
+   <translation id="telephony_service_fax_convert_to_voicefax_list_error_loading" qtlid="460132">Oups ! Une erreur est survenue lors du chargement de la liste des Ecofax convertisibles du groupe.</translation>
+   <translation id="telephony_service_fax_convert_to_voicefax_list_error_ordering" qtlid="460145">Oups ! Une erreur est survenue lors de la génération du bon de commande.</translation>
+</translations>

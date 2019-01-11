@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_alias_configuration_calls_filtering_title" qtlid="335141">Skambučių filtravimas</translation>
+   <translation id="telephony_alias_configuration_calls_filtering_config" qtlid="461289">Consulter, modifier ou exporter la configuration actuelle</translation>
+   <translation id="telephony_alias_configuration_calls_filtering_new" qtlid="358721">Konfigūruoti naujus filtrus</translation>
+   <translation id="telephony_alias_configuration_calls_filtering_enable" qtlid="460418">Activation des filtrages</translation>
+   <translation id="telephony_alias_configuration_calls_filtering_incoming" qtlid="359033">Įeinančių skambučių filtravimas</translation>
+   <translation id="telephony_alias_configuration_calls_filtering_list_none" qtlid="358981">Neaktyvus joks sąrašas</translation>
+   <translation id="telephony_alias_configuration_calls_filtering_list_white" qtlid="324301">Liste blanche</translation>
+   <translation id="telephony_alias_configuration_calls_filtering_list_black" qtlid="324288">Liste noire</translation>
+</translations>

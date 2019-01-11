@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_service_consumption_outgoing_fax_all" qtlid="336571">Kaikki lähetetyt faksit</translation>
+   <translation id="telephony_service_consumption_outgoing_fax_empty" qtlid="336584">Ei lähetettyjä fakseja.</translation>
+   <translation id="telephony_service_consumption_outgoing_fax_period" qtlid="336454">Jakso <strong>{{ start }}</strong> - <strong>{{ end }}</strong></translation>
+   <translation id="telephony_service_consumption_outgoing_fax_empty" qtlid="336584">Ei lähetettyjä fakseja.</translation>
+   <translation id="telephony_service_consumption_outgoing_fax_not_found" qtlid="336597">Mikään faksi ei vastannut hakua. </translation>
+   <translation id="telephony_service_consumption_outgoing_fax_summary" qtlid="336610">Lähetetyt faksit: <strong>{{ fax }}</strong>, sivumäärä: <strong>{{ pages }}</strong>, hinta: {{ price }} HT</translation>
+   <translation id="telephony_service_consumption_outgoing_fax_pages" qtlid="59231">Sivut</translation>
+</translations>

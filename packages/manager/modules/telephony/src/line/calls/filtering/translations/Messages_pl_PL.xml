@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_line_calls_filtering_title" qtlid="335141">Filtrage d'appels</translation>
+   <translation id="telephony_line_calls_filtering_enable" qtlid="358708">Activation du filtrage</translation>
+   <translation id="telephony_line_calls_filtering_info" qtlid="358695">Afin que votre configuration de filtrage soit active, veuillez sélectionner la liste à appliquer aux appels entrants et sortants.</translation>
+   <translation id="telephony_line_calls_filtering_incoming" qtlid="359033">Filtrage appel entrant</translation>
+   <translation id="telephony_line_calls_filtering_list_white" qtlid="358955">Biała</translation>
+   <translation id="telephony_line_calls_filtering_list_black" qtlid="358968">Czarna</translation>
+   <translation id="telephony_line_calls_filtering_list_none" qtlid="358981">Brak aktywnych list</translation>
+   <translation id="telephony_line_calls_filtering_outgoing" qtlid="359046">Filtrage appel sortant</translation>
+   <translation id="telephony_line_calls_filtering_anonymous_reject" qtlid="387185">Rejet des appels anonymes</translation>
+   <translation id="telephony_line_calls_filtering_do_not_disturb" qtlid="387198">Ne pas déranger</translation>
+   <translation id="telephony_line_calls_filtering_absent" qtlid="80058">Abonent niedostępny</translation>
+   <translation id="telephony_line_calls_filtering_new" qtlid="358721">Configurer de nouveaux filtrages</translation>
+   <translation id="telephony_line_calls_filtering_config" qtlid="169849">Aktualna konfiguracja</translation>
+
+   <translation id="telephony_line_calls_filtering_bulk_all_success" qtlid="457818">Le filtrage d'appels a bien été appliqué aux services sélectionnés.</translation>
+   <translation id="telephony_line_calls_filtering_bulk_some_success" qtlid="457831">Le filtrage d'appels a bien été appliqué à {{ count }} des services sélectionnés.</translation>
+   <translation id="telephony_line_calls_filtering_bulk_error" qtlid="457844">Le filtrage d'appels n'a pas pu être appliqué au(x) service(s) suivant(s) :</translation>
+   <translation id="telephony_line_calls_filtering_bulk_on_error" qtlid="457857">Oups ! Une erreur est survenue lors de l'application du filtrage d'appels.</translation>
+
+</translations>

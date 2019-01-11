@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="group_dashboard_actions" qtlid="302340">Haluan...</translation>
+   <translation id="telephony_group_billing_dashboard_actions_group_order" qtlid="333529">Tilaa numero</translation>
+   <translation id="telephony_group_billing_dashboard_actions_group_delete" qtlid="69929">Poista ryhmä</translation>
+   <translation id="telephony_group_billing_dashboard_actions_group_last_bill" qtlid="386274">Consulter mes dernières factures</translation>
+   <translation id="telephony_group_billing_dashboard_actions_portabilities" qtlid="386287">Consulter mes portabilités en cours</translation>
+   <translation id="telephony_group_billing_dashboard_actions_portabilities_create" qtlid="334049">Pyydä liikuteltavuutta</translation>
+   <translation id="telephony_group_billing_dashboard_actions_fax_convertion" qtlid="456947">Convertir des Ecofax perso en Ecofax pro</translation>
+   <translation id="telephony_group_billing_dashboard_consumption_title" qtlid="25999">Kuukausittainen käyttö</translation>
+   <translation id="telephony_group_billing_dashboard_bill_title" qtlid="386300">Mes 5 derniers relevés de conso.</translation>
+   <translation id="telephony_group_billing_dashboard_information_title" qtlid="386313">Info. générales</translation>
+   <translation id="telephony_group_billing_dashboard_lines" qtlid="190134">Linjat</translation>
+   <translation id="telephony_group_billing_dashboard_line" qtlid="42802">Linja</translation>
+   <translation id="telephony_group_billing_dashboard_aliases" qtlid="386326">Numerot</translation>
+   <translation id="telephony_group_billing_dashboard_alias" qtlid="30778">Numero</translation>
+   <translation id="telephony_group_billing_dashboard_fax" qtlid="32926">Faksi</translation>
+   <translation id="telephony_group_billing_dashboard_mac" qtlid="42562">MAC-osoite</translation>
+   <translation id="telephony_group_billing_dashboard_status" qtlid="33790">Tila</translation>
+   <translation id="telephony_group_billing_dashboard_status_closed" qtlid="66236">Suljettu</translation>
+   <translation id="telephony_group_billing_dashboard_status_deleted" qtlid="134514">Poistettu</translation>
+   <translation id="telephony_group_billing_dashboard_status_enabled" qtlid="55133">Aktiivinen</translation>
+   <translation id="telephony_group_billing_dashboard_status_expired" qtlid="386339">Éxpiré</translation>
+   <translation id="telephony_group_billing_dashboard_bill_date" qtlid="24523">Päivämäärä</translation>
+   <translation id="telephony_group_billing_dashboard_bill_amount" qtlid="20635">Arvonlisäveroton hinta</translation>
+   <translation id="telephony_group_billing_dashboard_bill_paid" qtlid="334569">Déjà réglé</translation>
+   <translation id="telephony_group_billing_dashboard_bill_download" qtlid="39286">Lataa</translation>
+   <translation id="telephony_group_billing_dashboard_bill_download_pdf" qtlid="334582">Relevé de consommation au format PDF</translation>
+   <translation id="telephony_group_billing_dashboard_bill_download_csv_emited" qtlid="334595">Listing de vos appels émis au format CSV</translation>
+   <translation id="telephony_group_billing_dashboard_bill_download_csv_received" qtlid="334608">Listing de vos appels reçus au format CSV</translation>
+   <translation id="telephony_group_billing_dashboard_credit_current_out_plan" qtlid="386352">Hors forfait&#160;:&#160;</translation>
+   <translation id="telephony_group_billing_dashboard_bill_empty" qtlid="386365">Aucun rélevé de consommation</translation>
+   <translation id="telephony_group_billing_dashboard_go_to_my_bills" qtlid="456960">Voir mes relevés de consommation</translation>
+   <translation id="telephony_group_billing_dashboard_network_title" qtlid="386391">Mon parc VoIP</translation>
+   <translation id="telephony_group_billing_dashboard_RMA_status_open" qtlid="386404">Ouverture du ticket</translation>
+   <translation id="telephony_group_billing_dashboard_RMA_status_closed" qtlid="8662">Valmis</translation>
+   <translation id="telephony_group_billing_dashboard_RMA_status_received" qtlid="386417">Réception du colis</translation>
+   <translation id="telephony_group_billing_dashboard_no_phone" qtlid="386430">Ligne nue</translation>
+   <translation id="telephony_group_billing_dashboard_RMA_title" qtlid="386443">RMA</translation>
+   <translation id="telephony_group_billing_dashboard_calls" qtlid="59735">Puhelut</translation>
+</translations>

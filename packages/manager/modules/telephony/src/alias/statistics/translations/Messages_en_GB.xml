@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+
+   <translation id="telephony_alias_statistics_title" qtlid="510163">Statistiques d’appels</translation>
+   <translation id="telephony_alias_statistics_subtitle" qtlid="510176">Consultez en temps réel les statistiques ainsi que l’état de votre file d’appels</translation>
+   <translation id="telephony_alias_statistics_subtitle_help" qtlid="510189">Les données sont réinitialisées tous les jours à 00h heure française</translation>
+
+   <translation id="telephony_alias_statistics_calls_title" qtlid="59735">Calls</translation>
+   <translation id="telephony_alias_statistics_calls_qos_percentage" qtlid="510202">Qos de la file (pourcentage d’appels pris)</translation>
+   <translation id="telephony_alias_statistics_calls_total_received" qtlid="324015">Nombre total d'appels</translation>
+   <translation id="telephony_alias_statistics_calls_answered" qtlid="324028">Nombre d'appels répondus</translation>
+   <translation id="telephony_alias_statistics_calls_lost" qtlid="324041">Nombre d'appels perdus</translation>
+   <translation id="telephony_alias_statistics_calls_average_wait_time" qtlid="324054">Temps moyen d'attente dans la file</translation>
+   <translation id="telephony_alias_statistics_calls_average_duration" qtlid="466827">Durée moyenne des communications</translation>
+
+   <translation id="telephony_alias_statistics_calls_pending_title" qtlid="252230">Calls in progress</translation>
+   <translation id="telephony_alias_statistics_calls_pending_ongoing" qtlid="324080">Nombre d'appels en cours</translation>
+   <translation id="telephony_alias_statistics_calls_pending_waiting" qtlid="324093">Nombre d'appels en attente</translation>
+   <translation id="telephony_alias_statistics_calls_pending_maxWait" qtlid="294971">Temps d'attente maximum dans la file</translation>
+
+   <translation id="telephony_alias_statistics_calls_action_eavesdrop_type_listen" qtlid="337598">Écouter</translation>
+   <translation id="telephony_alias_statistics_calls_action_eavesdrop_type_whisper_agent" qtlid="466983">Écouter et chuchoter à l'agent</translation>
+   <translation id="telephony_alias_statistics_calls_action_eavesdrop_type_whisper_all" qtlid="466996">Écouter et chuchoter à tous</translation>
+
+   <translation id="telephony_alias_statistics_calls_action_eavesdrop_type_listen_help" qtlid="466944">Vous pouvez transférer une communication en cours. Pour cela, il vous suffit de renseigner un numéro de téléphone vers lequel la communication en cours sera automatiquement transférée.</translation>
+   <translation id="telephony_alias_statistics_calls_action_eavesdrop_type_whisper_agent_help" qtlid="467009">Vous pouvez écouter une communication en cours ou chuchoter dans celle-ci. Pour cela, il vous suffit de renseigner un numéro de téléphone qui sera appelé automatiquement et mis en relation avec la communication en cours.</translation>
+
+   <translation id="telephony_alias_statistics_calls_calling_number" qtlid="324106">Numéro de l'appelant</translation>
+   <translation id="telephony_alias_statistics_calls_queue_time" qtlid="324119">Entrée dans la file</translation>
+   <translation id="telephony_alias_statistics_calls_time" qtlid="466840">Prise d'appel</translation>
+   <translation id="telephony_alias_statistics_calls_agent_queue" qtlid="510215">Ligne de la file (Agents)</translation>
+
+   <translation id="telephony_alias_statistics_agents_ongoing" qtlid="324171">Nombre d'agents en appel</translation>
+   <translation id="telephony_alias_statistics_agents_pending" qtlid="324184">Nombre d'agents en attente</translation>
+   <translation id="telephony_alias_statistics_calls_agent_updated" qtlid="467048">Dernier changement de statut</translation>
+
+   <translation id="telephony_alias_statistics_fetch_error" qtlid="510228">Une erreur est survenue lors de la récupération des statistiques.</translation>
+
+   <translation id="telephony_alias_configuration_mode_info_title" qtlid="26671">Statistics</translation>
+   <translation id="telephony_alias_configuration_stats_qos" qtlid="466814">QoS de la file (pourcentage d'appels pris)</translation>
+   <translation id="telephony_alias_configuration_stats_qos_detail" qtlid="510241">{{percentage}} %</translation>
+   <translation id="telephony_alias_configuration_stats_calls_total" qtlid="324015">Nombre total d'appels</translation>
+   <translation id="telephony_alias_configuration_stats_calls_answered" qtlid="324028">Nombre d'appels répondus</translation>
+   <translation id="telephony_alias_configuration_stats_calls_lost" qtlid="324041">Nombre d'appels perdus</translation>
+   <translation id="telephony_alias_configuration_stats_calls_wait_average" qtlid="324054">Temps moyen d'attente dans la file</translation>
+   <translation id="telephony_alias_configuration_stats_calls_duration_average" qtlid="466827">Durée moyenne des communications</translation>
+   <translation id="telephony_alias_configuration_mode_calls_title" qtlid="59735">Calls</translation>
+   <translation id="telephony_alias_configuration_mode_calls_ongoing" qtlid="324080">Nombre d'appels en cours</translation>
+   <translation id="telephony_alias_configuration_mode_calls_pending" qtlid="324093">Nombre d'appels en attente</translation>
+   <translation id="telephony_alias_configuration_mode_calls_maxwait" qtlid="294971">Temps d'attente maximum dans la file</translation>
+   <translation id="telephony_alias_configuration_mode_calls_number" qtlid="324106">Numéro de l'appelant</translation>
+   <translation id="telephony_alias_configuration_mode_calls_queue_time" qtlid="324119">Entrée dans la file</translation>
+   <translation id="telephony_alias_configuration_mode_calls_time" qtlid="466840">Prise d'appel</translation>
+   <translation id="telephony_alias_configuration_mode_calls_agent" qtlid="303562">Agent</translation>
+   <translation id="telephony_alias_configuration_mode_calls_action" qtlid="56105">Action</translation>
+   <translation id="telephony_alias_configuration_mode_calls_action_intercept" qtlid="466853">Intercepter l'appel</translation>
+   <translation id="telephony_alias_configuration_mode_calls_action_intercept_number" qtlid="30778">Number</translation>
+   <translation id="telephony_alias_configuration_mode_calls_action_intercept_help" qtlid="466866">Vous pouvez intercepter une communication non établie. Pour cela, il vous suffit de renseigner un numéro de téléphone vers lequel la communication en cours sera automatiquement transférée.</translation>
+   <translation id="telephony_alias_configuration_mode_calls_action_intercept_confirm" qtlid="466879">Intercepter</translation>
+   <translation id="telephony_alias_configuration_mode_calls_action_intercept_success" qtlid="466892">Interception de l'appel en cours</translation>
+   <translation id="telephony_alias_configuration_mode_calls_action_hangup" qtlid="324587">Mettre fin à l'appel</translation>
+   <translation id="telephony_alias_configuration_mode_calls_action_hangup_help" qtlid="466905">Vous pouvez raccrocher l'appel en cours</translation>
+   <translation id="telephony_alias_configuration_mode_calls_action_hangup_confirm" qtlid="397754">Hang up</translation>
+   <translation id="telephony_alias_configuration_mode_calls_action_hangup_success" qtlid="466918">Fin de l'appel en cours</translation>
+   <translation id="telephony_alias_configuration_mode_calls_action_transfer" qtlid="432163">Transférer l'appel</translation>
+   <translation id="telephony_alias_configuration_mode_calls_action_transfer_number" qtlid="466931">Numéro de destination</translation>
+   <translation id="telephony_alias_configuration_mode_calls_action_transfer_help" qtlid="466944">Vous pouvez transférer une communication en cours. Pour cela, il vous suffit de renseigner un numéro de téléphone vers lequel la communication en cours sera automatiquement transférée.</translation>
+   <translation id="telephony_alias_configuration_mode_calls_action_transfert_confirm" qtlid="85869">Forward</translation>
+   <translation id="telephony_alias_configuration_mode_calls_action_transfert_success" qtlid="466957">Transfert de l'appel en cours</translation>
+   <translation id="telephony_alias_configuration_mode_calls_action_eavesdrop" qtlid="466970">Écouter ou chuchoter</translation>
+   <translation id="telephony_alias_configuration_mode_calls_action_eavesdrop_action" qtlid="56105">Action</translation>
+   <translation id="telephony_alias_configuration_mode_calls_action_eavesdrop_type_listen" qtlid="337598">Écouter</translation>
+   <translation id="telephony_alias_configuration_mode_calls_action_eavesdrop_type_whisper_agent" qtlid="466983">Écouter et chuchoter à l'agent</translation>
+   <translation id="telephony_alias_configuration_mode_calls_action_eavesdrop_type_whisper_all" qtlid="466996">Écouter et chuchoter à tous</translation>
+   <translation id="telephony_alias_configuration_mode_calls_action_eavesdrop_number" qtlid="30778">Number</translation>
+   <translation id="telephony_alias_configuration_mode_calls_action_eavesdrop_help" qtlid="467009">Vous pouvez écouter une communication en cours ou chuchoter dans celle-ci. Pour cela, il vous suffit de renseigner un numéro de téléphone qui sera appelé automatiquement et mis en relation avec la communication en cours.</translation>
+   <translation id="telephony_alias_statistics_calls_action_eavesdrop_confirm" qtlid="31498">Confirm</translation>
+   <translation id="telephony_alias_statistics_calls_action_eavesdrop_success" qtlid="467022">Mise en relation en cours</translation>
+   <translation id="telephony_alias_statistics_calls_empty" qtlid="324145">Aucun appel</translation>
+   <translation id="telephony_alias_statistics_agents_title" qtlid="324158">Agents</translation>
+   <translation id="telephony_alias_statistics_agents_ongoing" qtlid="324171">Nombre d'agents en appel</translation>
+   <translation id="telephony_alias_statistics_agents_pending" qtlid="324184">Nombre d'agents en attente</translation>
+   <translation id="telephony_alias_statistics_agents_empty" qtlid="467035">Aucun agent</translation>
+   <translation id="telephony_alias_statistics_agent_status" qtlid="26443">Status</translation>
+   <translation id="telephony_alias_statistics_agent_status_updated" qtlid="467048">Dernier changement de statut</translation>
+   <translation id="telephony_alias_statistics_agent_status_updated_ago" qtlid="324210">Il y a</translation>
+   <translation id="telephony_alias_statistics_agent_status_inAQueueCall" qtlid="467061">En appel</translation>
+   <translation id="telephony_alias_statistics_agent_status_loggedOut" qtlid="77154">Offline</translation>
+   <translation id="telephony_alias_statistics_agent_status_onBreak" qtlid="397156">Break</translation>
+   <translation id="telephony_alias_statistics_agent_status_receiving" qtlid="467074">En réception d'appel</translation>
+   <translation id="telephony_alias_statistics_agent_status_waiting" qtlid="29467">Pending</translation>
+</translations>

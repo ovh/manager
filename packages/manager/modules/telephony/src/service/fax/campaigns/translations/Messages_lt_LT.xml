@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_service_fax_campaigns_main_title" qtlid="357135">Fakso kampanijos</translation>
+   <translation id="telephony_service_fax_campaigns_title" qtlid="391228">Fakso kampanijų valdymas</translation>
+   <translation id="telephony_service_fax_campaigns_add_title" qtlid="391241">Nauja kampanija</translation>
+   <translation id="telephony_service_fax_campaigns_filter" qtlid="59207">Filtruoti</translation>
+   <translation id="telephony_service_fax_campaigns_filter_remove" qtlid="218939">Trinti filtrą</translation>
+   <translation id="telephony_service_fax_campaigns_list_title_name" qtlid="391254">Kampanija</translation>
+   <translation id="telephony_service_fax_campaigns_list_title_status" qtlid="33790">Būsena</translation>
+   <translation id="telephony_service_fax_campaigns_list_title_success" qtlid="26443">Būsena</translation>
+   <translation id="telephony_service_fax_campaigns_list_title_success_info" qtlid="391267">Gavėjų sąrašo importavimo būsena</translation>
+   <translation id="telephony_service_fax_campaigns_list_empty" qtlid="391280">Neturite jokios kampanijos</translation>
+   <translation id="telephony_service_fax_campaigns_list_not_found" qtlid="391293">Jokia fakso kampanija neatitinka paieškos.</translation>
+   <translation id="telephony_service_fax_campaigns_status_any" qtlid="391306">Visos fakso kampanijos</translation>
+   <translation id="telephony_service_fax_campaigns_status_todo" qtlid="37455">Suplanuota</translation>
+   <translation id="telephony_service_fax_campaigns_status_doing" qtlid="391319">Vykdoma</translation>
+   <translation id="telephony_service_fax_campaigns_status_stop" qtlid="391332">Sinchronizuojama</translation>
+   <translation id="telephony_service_fax_campaigns_status_stopTodo" qtlid="391345">Reikalavimų paleidimas</translation>
+   <translation id="telephony_service_fax_campaigns_status_stopDoing" qtlid="391358">Stabdoma</translation>
+   <translation id="telephony_service_fax_campaigns_status_error" qtlid="45508">Klaida</translation>
+   <translation id="telephony_service_fax_campaigns_status_done" qtlid="8662">Baigta</translation>
+   <translation id="telephony_service_fax_campaigns_success" qtlid="391371">Atlikta</translation>
+   <translation id="telephony_service_fax_campaigns_success_partial" qtlid="391384">Dalinai atlikta</translation>
+   <translation id="telephony_service_fax_campaigns_success_not_available" qtlid="26095">N/A</translation>
+   <translation id="telephony_service_fax_campaigns_success_failed" qtlid="330825">Nepavyko</translation>
+   <translation id="telephony_service_fax_campaigns_sr_only_actions" qtlid="72809">Veiksmai</translation>
+   <translation id="telephony_service_fax_campaigns_action_read" qtlid="37527">Išsamiau</translation>
+   <translation id="telephony_service_fax_campaigns_action_start" qtlid="391397">Paleisti kampaniją</translation>
+   <translation id="telephony_service_fax_campaigns_action_stop" qtlid="391410">Sustabdyti kampaniją</translation>
+   <translation id="telephony_service_fax_campaigns_start_ok" qtlid="391423">Kampanija paleista</translation>
+   <translation id="telephony_service_fax_campaigns_start_ko" qtlid="391436">Kampanija negali būti paleista.<br/>{{ error }}</translation>
+   <translation id="telephony_service_fax_campaigns_stop_ok" qtlid="391449">Kampanija sustabdyta</translation>
+   <translation id="telephony_service_fax_campaigns_stop_ko" qtlid="391462">Kampanija negali būti sustabyta.<br/>{{ error }}</translation>
+
+<!-- CAMPAIGNS modal ADD -->
+   <translation id="telephony_service_fax_campaigns_add_campaign_title" qtlid="391475">Kurti naują kampaniją</translation>
+   <translation id="telephony_service_fax_campaigns_add_campaign_label_name" qtlid="391488">Kampanijos pavadinimas</translation>
+   <translation id="telephony_service_fax_campaigns_add_campaign_name_error_required" qtlid="391501">Kampanijos pavadinimas yra būtinas</translation>
+   <translation id="telephony_service_fax_campaigns_add_campaign_name_error_maxlength" qtlid="391514">Kampanijos pavadinimas turi ūti trumpesnis nei 24 simboliai</translation>
+   <translation id="telephony_service_fax_campaigns_add_campaign_label_document" qtlid="460548">Document à faxer (format pdf)</translation>
+   <translation id="telephony_service_fax_campaigns_add_campaign_label_file" qtlid="391540">Failas</translation>
+   <translation id="telephony_service_fax_campaigns_add_campaign_file_invalid" qtlid="337845">Nepalaikomas failo formatas.</translation>
+   <translation id="telephony_service_fax_campaigns_add_campaign_label_quality" qtlid="391553">Siuntimo kokybė</translation>
+   <translation id="telephony_service_fax_campaigns_add_campaign_quality_normal" qtlid="67052">Normalus</translation>
+   <translation id="telephony_service_fax_campaigns_add_campaign_quality_high" qtlid="66332">Aukštas</translation>
+   <translation id="telephony_service_fax_campaigns_add_campaign_quality_best" qtlid="356927">Geriausia</translation>
+   <translation id="telephony_service_fax_campaigns_add_campaign_label_send_type" qtlid="391566">Siuntimo tipas</translation>
+   <translation id="telephony_service_fax_campaigns_add_campaign_send_type_automatic" qtlid="134215">Automatinis</translation>
+   <translation id="telephony_service_fax_campaigns_add_campaign_send_type_manual" qtlid="219797">Rankinis</translation>
+   <translation id="telephony_service_fax_campaigns_add_campaign_send_type_scheduled" qtlid="312480">Suprogramuota</translation>
+   <translation id="telephony_service_fax_campaigns_add_campaign_send_type_error_required" qtlid="391579">Siuntimo tipas yra privalomas</translation>
+   <translation id="telephony_service_fax_campaigns_add_campaign_label_send_date" qtlid="391592">Siuntimo data</translation>
+   <translation id="telephony_service_fax_campaigns_add_campaign_send_date_error_required" qtlid="391605">Siuntimo data yra privaloma</translation>
+   <translation id="telephony_service_fax_campaigns_add_campaign_send_date_error_date" qtlid="391618">Nurodyta neteisinga data</translation>
+   <translation id="telephony_service_fax_campaigns_add_campaign_label_send_date_time" qtlid="391631">Siuntimo valanda</translation>
+   <translation id="telephony_service_fax_campaigns_add_campaign_label_recipients_type_list" qtlid="391644">Įvesti gavėjus patiems</translation>
+   <translation id="telephony_service_fax_campaigns_add_campaign_label_recipients_type_document" qtlid="460561">Fichier de destinataires (format txt)</translation>
+   <translation id="telephony_service_fax_campaigns_add_campaign_label_recipients_list" qtlid="68981">Gavėjai</translation>
+   <translation id="telephony_service_fax_campaigns_add_campaign_palceholder_recipients_list_first" qtlid="391683">Numerių sąrašas, atskirtas kableliu, kabliataškiu arba iš naujos eilutės.</translation>
+   <translation id="telephony_service_fax_campaigns_add_campaign_palceholder_recipients_list_second" qtlid="391696">Numerių sudarymas: 6 - 17 simbolių, gali prasidėti +</translation>
+   <translation id="telephony_service_fax_campaigns_add_campaign_recipients_list_error_required" qtlid="391709">Laukas Gavėjai yra būtinas</translation>
+   <translation id="telephony_service_fax_campaigns_add_campaign_recipients_list_error_pattern" qtlid="391722">Neteisingas gavėjų sąrašas</translation>
+   <translation id="telephony_service_fax_campaigns_add_campaign_adding" qtlid="391735">Fakso kampanijos pridėjimas</translation>
+   <translation id="telephony_service_fax_campaigns_add_campaign_added" qtlid="391748">Kampanija sukurta!&#160;</translation>
+   <translation id="telephony_service_fax_campaigns_add_campaign_ko" qtlid="391761">Negalima sukurti kampanijos.<br/>{{ error }}</translation>
+
+<!-- CAMPAIGNS modal READ -->
+   <translation id="telephony_service_fax_campaigns_read_campaign_title" qtlid="339639">Tikrinti</translation>
+   <translation id="telephony_service_fax_campaigns_read_campaign_reference" qtlid="16445">Aprašas</translation>
+   <translation id="telephony_service_fax_campaigns_read_campaign_success" qtlid="26443">Būsena</translation>
+   <translation id="telephony_service_fax_campaigns_read_campaign_status" qtlid="33790">Būsena</translation>
+   <translation id="telephony_service_fax_campaigns_read_campaign_message" qtlid="30574">Pranešimas</translation>
+   <translation id="telephony_service_fax_campaigns_read_campaign_date_start" qtlid="391774">Pradėti</translation>
+   <translation id="telephony_service_fax_campaigns_read_campaign_date_start_scheduled" qtlid="391787">Suplanuotas paleidimas:</translation>
+   <translation id="telephony_service_fax_campaigns_read_campaign_date_end" qtlid="391800">Baigti</translation>
+   <translation id="telephony_service_fax_campaigns_read_campaign_count_total" qtlid="391813">Iš viso siunčiama:</translation>
+   <translation id="telephony_service_fax_campaigns_read_campaign_details_todo" qtlid="391826">Laukiantys siuntimai</translation>
+   <translation id="telephony_service_fax_campaigns_read_campaign_details_success" qtlid="391839">Sėkmingi siuntimai</translation>
+   <translation id="telephony_service_fax_campaigns_read_campaign_details_failed" qtlid="391852">Nepavykę siuntimai</translation>
+   <translation id="telephony_service_fax_campaigns_read_campaign_message_error_download" qtlid="391865">Klaida parsiunčiant failą.</translation>
+
+<!-- CAMPAIGNS modal REMOVE -->
+   <translation id="telephony_service_fax_campaigns_remove" qtlid="391878">Ištrinti kampaniją</translation>
+   <translation id="telephony_service_fax_campaigns_remove_campaign_confirm" qtlid="391891">Ar tikrai norite trinti kampaniją <b>«{{ campaign }}»</b>&#160;?</translation>
+   <translation id="telephony_service_fax_campaigns_removing" qtlid="391904">Kampanija trinama</translation>
+   <translation id="telephony_service_fax_campaigns_removed" qtlid="391917">Kampanija ištrinta</translation>
+   <translation id="telephony_service_fax_campaigns_removing_ko" qtlid="391930">Nepavyko ištrinti kampanijos.<br/>{{ error }}</translation>
+</translations>

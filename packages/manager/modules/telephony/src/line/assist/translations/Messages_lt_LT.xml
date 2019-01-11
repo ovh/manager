@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_line_assist_actions_line_view_logs_new" qtlid="336272">Consultation des notifications</translation>
+   <translation id="telephony_line_assist_actions_line_phone_assistance" qtlid="336285">Dépannage Plug'n'Phone</translation>
+   <translation id="telephony_line_assist_actions_line_orders_following_up" qtlid="336298">Suivi des bons de commande</translation>
+   <translation id="telephony_line_assist_actions_line_switch_password" qtlid="336311">Activer le nouveau téléphone</translation>
+   <translation id="telephony_line_assist_actions_line_sav_rma_status" qtlid="336324">Suivi RMA</translation>
+   <translation id="telephony_line_assist_actions_line_contact_support_and_guides" qtlid="336207">Guides et support</translation>
+
+   <translation id="telephony_line_assist_back_link" qtlid="336337">Retour à l'assistance</translation>
+</translations>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_add_group_title" qtlid="44776">Añadir un grupo</translation>
+   <translation id="telephony_add_group_contracts" qtlid="334335">Es necesario aceptar los contratos para validar el pedido.</translation>
+   <translation id="telephony_add_group_infos" qtlid="334348">Puede contratar nuevos grupos para organizar y gestionar con mayor facilidad sus líneas y números.</translation>
+   <translation id="telephony_add_group_order" qtlid="334361">Contratar un nuevo grupo de telefonía</translation>
+   <translation id="telephony_add_group_free" qtlid="130495">Gratuito</translation>
+   <translation id="telephony_add_group_success" qtlid="334374">La solicitud de creación se ha enviado correctamente.</translation>
+   <translation id="telephony_add_group_success_bc" qtlid="334387">Para enviar la solicitud, valide esta</translation>
+   <translation id="telephony_add_group_success_bc2" qtlid="292800">orden de pedido</translation>
+</translations>

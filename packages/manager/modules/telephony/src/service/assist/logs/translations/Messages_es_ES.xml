@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_line_assist_support_logs_title" qtlid="359189">Consulta y gestión de notificaciones</translation>
+   <translation id="telephony_line_assist_support_logs_infos" qtlid="359202">Esta página incluye las últimas notificaciones asociadas a su línea.</translation>
+
+   <translation id="telephony_line_assist_support_logs_init_error" qtlid="359215">¡Vaya! Se ha producido un error al iniciar las notificaciones.</translation>
+   <translation id="telephony_line_assist_support_logs_save_error" qtlid="359228">¡Vaya! Se ha producido un error al modificar los parámetros de notificaciones.</translation>
+   <translation id="telephony_line_assist_support_logs_refresh_error" qtlid="359241">¡Vaya! Se ha producido un error al cargar las notificaciones.</translation>
+
+   <translation id="telephony_line_assist_support_logs_configs" qtlid="359254">Parámetros de notificaciones</translation>
+   <translation id="telephony_line_assist_support_logs_configs_manage" qtlid="359267">Modificar los parámetros de notificaciones</translation>
+   <translation id="telephony_line_assist_support_logs_configs_validate" qtlid="26047">Aceptar</translation>
+   <translation id="telephony_line_assist_support_logs_configs_frequency" qtlid="359280">Recepción de notificaciones por correo electrónico</translation>
+   <translation id="telephony_line_assist_support_logs_configs_frequency_never" qtlid="8770">Nunca</translation>
+   <translation id="telephony_line_assist_support_logs_configs_frequency_once_a_day" qtlid="359293">Una vez al día</translation>
+   <translation id="telephony_line_assist_support_logs_configs_frequency_twice_a_day" qtlid="359306">Cada 12 horas</translation>
+   <translation id="telephony_line_assist_support_logs_configs_send_even_no_logs" qtlid="359319">Enviar aunque no haya ninguna notificación</translation>
+   <translation id="telephony_line_assist_support_logs_configs_send_even_no_logs_yes" qtlid="34776">Sí</translation>
+   <translation id="telephony_line_assist_support_logs_configs_send_even_no_logs_no" qtlid="34788">No</translation>
+   <translation id="telephony_line_assist_support_logs_configs_email" qtlid="359332">Dirección de correo</translation>
+   <translation id="telephony_line_assist_support_logs_configs_email_invalid" qtlid="359345">El valor introducido en el campo «Email» debe ser una dirección de correo válida.</translation>
+   <translation id="telephony_line_assist_support_logs_configs_email_required" qtlid="359358">La dirección de correo es obligatoria.</translation>
+   <translation id="telephony_line_assist_support_logs_configs_save" qtlid="359371">Modificando...</translation>
+
+   <translation id="telephony_line_assist_support_logs_list" qtlid="359384">Lista de las últimas notificaciones en su línea</translation>
+   <translation id="telephony_line_assist_support_logs_list_loading" qtlid="359397">Cargar las notificaciones</translation>
+   <translation id="telephony_line_assist_support_logs_list_days" qtlid="359410">Día de la consulta</translation>
+   <translation id="telephony_line_assist_support_logs_list_days_today" qtlid="169719">Hoy</translation>
+   <translation id="telephony_line_assist_support_logs_list_days_yesterday" qtlid="37479">Ayer</translation>
+   <translation id="telephony_line_assist_support_logs_list_days_2_days_ago" qtlid="359423">Anteayer</translation>
+   <translation id="telephony_line_assist_support_logs_list_days_3_days_ago" qtlid="359436">Hace tres días</translation>
+   <translation id="telephony_line_assist_support_logs_list_no_logs" qtlid="359449">Ninguna notificación en su línea</translation>
+
+   <translation id="telephony_line_assist_support_logs_bulk_all_success" qtlid="460015">Les paramètres de notification ont bien été appliqués aux services sélectionnés.</translation>
+   <translation id="telephony_line_assist_support_logs_bulk_some_success" qtlid="460028">Les paramètres de notification ont bien été appliqués à {{ count }} des services sélectionnés.</translation>
+   <translation id="telephony_line_assist_support_logs_bulk_error" qtlid="460041">Les paramètres de notification n'ont pas pu être appliqués au(x) service(s) suivant(s) :</translation>
+   <translation id="telephony_line_assist_support_logs_bulk_on_error" qtlid="460054">Oups ! Une erreur est survenue lors de l'application des paramètres de notification.</translation>
+</translations>

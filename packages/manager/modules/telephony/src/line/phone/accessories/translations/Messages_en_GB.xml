@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_line_phone_accessories_title" qtlid="336857">Commander des accessoires</translation>
+   <translation id="telephony_line_phone_accessories_load_error" qtlid="390773">Oups ! Une erreur est survenue lors du chargement des groupes de facturations.</translation>
+   <translation id="telephony_line_phone_accessories_cancel_order" qtlid="390786">Annuler la commande d'accessoires</translation>
+   <translation id="telephony_line_phone_accessories_previous" qtlid="390799">Retour à l'étape précédente</translation>
+
+<!-- ACCESSORIES NAMES -->
+   <translation id="telephony_line_phone_accessories_cisco_linksys_alim" qtlid="390812">Alimentation pour Cisco Linksys 5V/2A</translation>
+   <translation id="telephony_line_phone_accessories_cisco_spa_500_s" qtlid="390825">Module d´extension SPA500S pour Cisco SPA Série 5</translation>
+   <translation id="telephony_line_phone_accessories_devolo_avsmartduo" qtlid="390838">Module CPL Devolo AV Smart Duo</translation>
+   <translation id="telephony_line_phone_accessories_gigaset_c_530_h" qtlid="390851">Combiné supplémentaire Gigaset C530H</translation>
+   <translation id="telephony_line_phone_accessories_lg_alim" qtlid="390864">Alimentation pour téléphone LG</translation>
+   <translation id="telephony_line_phone_accessories_lg_dss_12" qtlid="390877">Module d´extension DSS12 pour téléphone LG</translation>
+   <translation id="telephony_line_phone_accessories_lg_dss_12_l" qtlid="390890">Module d´extension DSS12L pour téléphone LG</translation>
+   <translation id="telephony_line_phone_accessories_polycom_ip_5000_alim" qtlid="390903">Alimentation externe pour Polycom IP5000</translation>
+   <translation id="telephony_line_phone_accessories_sennheiser_ccel_191" qtlid="390916">Adaptateur casque Sennheiser vers Jack 2.5mm pour DECT et Cisco SPA</translation>
+   <translation id="telephony_line_phone_accessories_sennheiser_cstd_01" qtlid="390929">Adaptateur casque Sennheiser vers RJ9 pour Thomson ST2030</translation>
+   <translation id="telephony_line_phone_accessories_sennheiser_cstd_01_tb_30" qtlid="390942">Adaptateur casque Sennheiser vers RJ45 pour Thomson TB30</translation>
+   <translation id="telephony_line_phone_accessories_sennheiser_dwofficephone" qtlid="362634">Micro-casque sans-fil Sennheiser DW Office Phone</translation>
+   <translation id="telephony_line_phone_accessories_sennheiser_dwpro_2_phone" qtlid="362647">Micro-casque sans-fil Sennheiser DW 2 Pro Phone</translation>
+   <translation id="telephony_line_phone_accessories_sennheiser_ehsdhsg" qtlid="390955">Câble électronique Sennheiser EHS DHSG pour DW Office sur Thomson TB30</translation>
+   <translation id="telephony_line_phone_accessories_sennheiser_hsl_10" qtlid="362673">Module mécanique de décroché électronique Sennheiser HSL10</translation>
+   <translation id="telephony_line_phone_accessories_sennheiser_sc_232" qtlid="362816">Casque Sennheiser SC232</translation>
+   <translation id="telephony_line_phone_accessories_sennheiser_sc_262" qtlid="362777">Casque Sennheiser SC262</translation>
+   <translation id="telephony_line_phone_accessories_siemens_repeater" qtlid="362335">Siemens Gigaset Repeater</translation>
+   <translation id="telephony_line_phone_accessories_snom_m_9_c" qtlid="390968">Combiné supplémentaire Snom M9</translation>
+
+<!-- CHOICE STEP -->
+   <translation id="telephony_line_phone_accessories_choice_title" qtlid="350755">Choix des accessoires</translation>
+   <translation id="telephony_line_phone_accessories_choice_info" qtlid="390981">Cliquez sur l'image d'un accessoire pour accéder à sa fiche descriptive.</translation>
+   <translation id="telephony_line_phone_accessories_choice_load_error" qtlid="390994">Oups ! Une erreur est survenue lors du chargement des accessoires.</translation>
+   <translation id="telephony_line_phone_accessories_choice_order" qtlid="391007">Vous souhaitez commander :</translation>
+   <translation id="telephony_line_phone_accessories_choice_total" qtlid="391020">Prix de la commande :</translation>
+   <translation id="telephony_line_phone_accessories_choice_validate" qtlid="391033">Commander ces accessoires</translation>
+
+<!-- SHIPPING -->
+   <translation id="telephony_line_phone_accessories_shipping_title" qtlid="55121">Delivery</translation>
+   <translation id="telephony_line_phone_accessories_shipping_contact" qtlid="384623">Contact de livraison</translation>
+   <translation id="telephony_line_phone_accessories_shipping_mode" qtlid="384636">Mode de livraison</translation>
+   <translation id="telephony_line_phone_accessories_shipping_validate" qtlid="391046">Valider ce moyen de livraison</translation>
+
+<!-- RESUME -->
+   <translation id="telephony_line_phone_accessories_resume_title" qtlid="177496">Order summary</translation>
+   <translation id="telephony_line_phone_accessories_resume_validate" qtlid="391059">Finaliser ma commande</translation>
+   <translation id="telephony_line_phone_accessories_resume_load_error" qtlid="391072">Oups, une erreur est survenue lors de la récupération du résumé de votre commande.</translation>
+
+   <translation id="telephony_line_phone_accessories_resume_table_description" qtlid="9238">Description</translation>
+   <translation id="telephony_line_phone_accessories_resume_table_unit_price" qtlid="51715">Unit price ex. VAT</translation>
+   <translation id="telephony_line_phone_accessories_resume_table_quantity" qtlid="37107">Quantity</translation>
+   <translation id="telephony_line_phone_accessories_resume_table_total" qtlid="133292">Price ex. VAT</translation>
+   <translation id="telephony_line_phone_accessories_resume_prices_tax_free_total" qtlid="37143">Total ex. VAT</translation>
+   <translation id="telephony_line_phone_accessories_resume_prices_tax_total" qtlid="279470">VAT</translation>
+   <translation id="telephony_line_phone_accessories_resume_prices_with_tax_total" qtlid="37167">Total incl. VAT</translation>
+
+   <translation id="telephony_line_phone_accessories_resume_contact_title" qtlid="384623">Contact de livraison</translation>
+
+   <translation id="telephony_line_phone_accessories_resume_contracts_title" qtlid="213336">Contracts</translation>
+
+   <translation id="telephony_line_phone_accessories_resume_retract_title" qtlid="319973"></translation>
+
+<!-- FINALIZE -->
+   <translation id="telephony_line_phone_accessories_finalize_title" qtlid="35352">Purchase order</translation>
+   <translation id="telephony_line_phone_accessories_finalize_success" qtlid="391085">Votre commande a bien été prise en compte ! Veuillez régler le bon de commande pour recevoir vos accessoires.</translation>
+   <translation id="telephony_line_phone_accessories_finalize_error" qtlid="391098">Oups, une erreur est survenue lors de la création de votre bon de commande.</translation>
+   <translation id="telephony_line_phone_accessories_finalize_order_id" qtlid="391111">N° de bon de commande :</translation>
+   <translation id="telephony_line_phone_accessories_finalize_order_total_ht" qtlid="391124">Montant HT :</translation>
+   <translation id="telephony_line_phone_accessories_finalize_order_total_ttc" qtlid="391137">Montant TTC :</translation>
+
+
+</translations>

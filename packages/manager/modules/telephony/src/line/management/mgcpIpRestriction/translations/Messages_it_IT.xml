@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_line_mgcp_ip_restriction_title" qtlid="336831">Restrizione MGCP per IP</translation>
+   <translation id="telephony_line_mgcp_ip_restriction_line_title" qtlid="390669">Restrizione MGCP della linea</translation>
+   <translation id="telephony_line_mgcp_ip_restriction_line_info" qtlid="479863">{{ restriction? 'La restriction ' + restriction : 'Cette restriction' }} est utilisée sur la ligne actuellement sélectionnée.</translation>
+   <translation id="telephony_line_mgcp_ip_restriction_customer_code_title" qtlid="390695">Restrizione MGCP associata al tuo codice cliente</translation>
+   <translation id="telephony_line_mgcp_ip_restriction_customer_code_info" qtlid="390708">Questa restrizione viene utilizzata durante l’installazione delle nuove linee ordinate con il tuo codice cliente.</translation>
+   <translation id="telephony_line_mgcp_ip_restriction_label" qtlid="390721">Indirizzo IP autorizzato:</translation>
+   <translation id="telephony_line_mgcp_ip_restriction_placeholder" qtlid="390734">Indirizzo IP autorizzato (esempio: 213.186.33.33)</translation>
+   <translation id="telephony_line_mgcp_ip_restriction_default_placeholder" qtlid="458832">Adresse IP autorisée (exemple : 213.186.33.33/24)</translation>
+   <translation id="telephony_line_mgcp_ip_restriction_error_pattern" qtlid="339236">Indirizzo IP non valido.</translation>
+   <translation id="telephony_line_mgcp_ip_restriction_submit" qtlid="458845">Ajouter l’adresse IP</translation>
+   <translation id="telephony_line_mgcp_ip_restriction_edit_success" qtlid="390747">La modifica è stata presa in carico e diventerà effettiva entro 5 minuti.</translation>
+   <translation id="telephony_line_mgcp_ip_restriction_edit_error" qtlid="390760">Ops! Si è verificato un errore durante la modifica dell’Indirizzo IP autorizzato.</translation>
+</translations>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_order_title" qtlid="333529">Tilaa numero</translation>
+   <translation id="telephony_order_choice_title" qtlid="333542">Numerojen tyypit</translation>
+   <translation id="telephony_order_will_cost" qtlid="333555">Alkaen:</translation>
+   <translation id="telephony_order_per_period" qtlid="333568">/kk</translation>
+   <translation id="telephony_order_with_tax" qtlid="333581">(eli {{ttc}} sis.ALV)</translation>
+   <translation id="telephony_order_without_tax" qtlid="333594">{{ht}}&#160;ALV0</translation>
+
+   <translation id="telephony_order_geographical_title" qtlid="333607">Maantieteelliset numerot</translation>
+   <translation id="telephony_order_geographical_tip" qtlid="333620">Tilaa maantieteellisiä numeroja</translation>
+   <translation id="telephony_order_geographical_description" qtlid="333633">Liitä toiminnallesi lankapuhelinnumero</translation>
+   <translation id="telephony_order_nogeographical_title" qtlid="333646">Ei-maantieteelliset numerot</translation>
+   <translation id="telephony_order_nogeographical_tip" qtlid="333659">Tilaa ei-maantieteellisiä numeroja</translation>
+   <translation id="telephony_order_nogeographical_description" qtlid="333633">Liitä toiminnallesi lankapuhelinnumero</translation>
+   <translation id="telephony_order_special_title" qtlid="333672">Numerot lisäarvolla</translation>
+   <translation id="telephony_order_special_tip" qtlid="333685">Tilaa numeroja lisäarvolla</translation>
+   <translation id="telephony_order_special_description" qtlid="333698">Pysy yhteydessä erikoishinnoitellulla numerolla</translation>
+   <translation id="telephony_order_international_title" qtlid="333711">Kansainväliset numerot</translation>
+   <translation id="telephony_order_international_tip" qtlid="333724">Tilaa kansainvälisiä numeroja</translation>
+   <translation id="telephony_order_international_description" qtlid="333737">Ehdota paikallista numeroasi ulkomaisille asiakkaille</translation>
+
+   <translation id="telephony_order_geographical_count_plurial" qtlid="333750">{{value}} numeroa</translation>
+   <translation id="telephony_order_geographical_count_singular" qtlid="333763">{{value}} numero</translation>
+
+   <translation id="telephony_order_address_zipcode" qtlid="30346">Postinumero</translation>
+   <translation id="telephony_order_address_city" qtlid="33310">Postitoimipaikka</translation>
+   <translation id="telephony_order_address_street_number" qtlid="30778">Numero</translation>
+   <translation id="telephony_order_address_street_name" qtlid="152518">Katu</translation>
+
+   <translation id="telephony_order_confirm" qtlid="333776">Tilaa ({{total}} sis.ALV)</translation>
+
+   <translation id="telephony_order_identity_first_name" qtlid="23323">Etunimi</translation>
+   <translation id="telephony_order_identity_name" qtlid="3818">Nimi</translation>
+   <translation id="telephony_order_identity_email" qtlid="393022">Sähköposti</translation>
+   <translation id="telephony_order_identity_phone" qtlid="34174">Puhelin</translation>
+
+   <translation id="telephony_order_identity_organisation" qtlid="49022">Yritys</translation>
+   <translation id="telephony_order_identity_ape" qtlid="333789">APE-koodi</translation>
+   <translation id="telephony_order_identity_siret" qtlid="333802">Siret</translation>
+   <translation id="telephony_order_identity_nomination" qtlid="307709">Toiminimi</translation>
+
+   <translation id="telephony_order_legal" qtlid="333815">Tilauksen vahvistus</translation>
+   <translation id="telephony_order_validate_order_tip" qtlid="333828">Vahvista tilaus</translation>
+   <translation id="telephony_order_validate_order" qtlid="333841">Vahvista ja maksa {{price}} sis.ALV</translation>
+
+   <translation id="telephony_order_coordinate_name_label" qtlid="333854">Henkilötiedot:</translation>
+   <translation id="telephony_order_coordinate_address_label" qtlid="333867">Osoite:</translation>
+   <translation id="telephony_order_coordinate_universalDirectory_tip" qtlid="333880">Ruksaa vuosiluottelossa julkaisua varten.</translation>
+   <translation id="telephony_order_coordinate_universalDirectory" qtlid="333893">Julkaise vuosiluottelossa</translation>
+   <translation id="telephony_order_coordinate_legalform_individual" qtlid="33850">Yksityishenkilö</translation>
+   <translation id="telephony_order_coordinate_legalform_company" qtlid="49022">Yritys</translation>
+
+   <translation id="telephony_order_number_type_common_label" qtlid="333906">Standardinumeri</translation>
+   <translation id="telephony_order_number_type_specific_label" qtlid="333919">Helposti muistettava numero</translation>
+
+   <translation id="telephony_order_retractation_retract_true" qtlid="393035">Vous souhaitez disposer de la possibilité d'exercer votre droit de rétractation et acceptez qu'à ce titre le début de la prestation n'intervienne qu'à expiration de ce delai.<strong> Mise à disposition du service sous 14 jours</strong>.</translation>
+   <translation id="telephony_order_retractation_retract_false" qtlid="333945">Tilauksesi siirtyy<strong>välittömästi tuotantoon</strong> ja ymmärrät, ettei sinulla tästä johtuen ole Ranskan kuluttajansuojalain (artikla 121-20-2) mukaisesti peruutusoikeutta.</translation>
+
+   <translation id="telephony_order_amount_title" qtlid="333412">Numeroiden lukumäärä:</translation>
+   <translation id="telephony_order_zone_title" qtlid="333425">Maantieteellinen alue:</translation>
+   <translation id="telephony_order_country_title" qtlid="333958">Maa:</translation>
+   <translation id="telephony_order_zone_tip" qtlid="333477">Kaupunki tai postinumero</translation>
+   <translation id="telephony_order_zone_error" qtlid="333971">Tätä aluetta ei ole olemassa.</translation>
+
+   <translation id="telephony_order_specific_title" qtlid="333451">Numeron valinta</translation>
+   <translation id="telephony_order_retractation_title" qtlid="319973">Peruutusoikeus</translation>
+   <translation id="telephony_order_address_title" qtlid="333464">Numeron haltijan yhteystiedot </translation>
+   <translation id="telephony_order_order_error_city" qtlid="333503">{{city}}ei kuulu alueeseen ({{zone}})</translation>
+
+   <translation id="telephony_order_specific_numbers_error" qtlid="333490">Esivalittujen numerojen listaa ei voida ladata.</translation>
+   <translation id="telephony_order_prices_error" qtlid="333984">Hintoja ei voida ladata</translation>
+</translations>

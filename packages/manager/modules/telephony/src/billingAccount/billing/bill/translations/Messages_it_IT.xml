@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_group_billing_bill_title" qtlid="334439">Dettagli dei tuoi consumi</translation>
+   <translation id="telephony_group_billing_bill_subtitle" qtlid="334530">I tuoi consumi</translation>
+   <translation id="telephony_group_billing_bill_empty" qtlid="334556">Nessun dato disponibile</translation>
+   <translation id="telephony_group_billing_bill_date" qtlid="24523">Data</translation>
+   <translation id="telephony_group_billing_bill_amount" qtlid="20635">Imponibile IVA esclusa</translation>
+   <translation id="telephony_group_billing_bill_paid" qtlid="334569">Già saldato</translation>
+   <translation id="telephony_group_billing_bill_download" qtlid="39286">Esegui il download</translation>
+   <translation id="telephony_group_billing_bill_download_pdf" qtlid="334582">Dettagli dei tuoi consumi in formato PDF</translation>
+   <translation id="telephony_group_billing_bill_download_csv_emited" qtlid="334595">Lista delle tue chiamate effettuate in formato CSV</translation>
+   <translation id="telephony_group_billing_bill_download_csv_received" qtlid="334608">Lista delle tue chiamate ricevute in formato CSV</translation>
+   <translation id="telephony_group_billing_bill_refresh" qtlid="158708">Ricarica</translation>
+</translations>

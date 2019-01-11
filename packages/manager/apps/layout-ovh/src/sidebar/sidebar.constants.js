@@ -138,15 +138,15 @@ export const SIDEBAR_CONFIG = {
   //   allowSearch: true,
   //   infiniteScroll: true,
   // },
-  // TELEPHONY: {
-  //   title: 'sidebar_section_telephony',
-  //   error: 'sidebar_load_error',
-  //   category: 'telephony',
-  //   icon: 'ovh-font ovh-font-phone',
-  //   loadOnState: 'telecom.telephony',
-  //   allowSearch: true,
-  //   infiniteScroll: true,
-  // },
+  TELEPHONY: {
+    title: 'sidebar_section_telephony',
+    error: 'sidebar_load_error',
+    category: 'telephony',
+    icon: 'ovh-font ovh-font-phone',
+    loadOnState: 'telephony',
+    // allowSearch: true,
+    // infiniteScroll: true,
+  },
   SMS: {
     title: 'sidebar_section_sms',
     error: 'sidebar_load_error',
@@ -191,6 +191,12 @@ export const STATE_MAPPING_SERVICE = {
   '/freefax/{serviceName}': {
     state: 'freefax',
     prefix: 'sidebar_section_fax_prefix_freefax',
+    stateParams: {
+      serviceName: 'resource.name',
+    },
+  },
+  '/telephony/{serviceName}': {
+    state: 'telephony',
     stateParams: {
       serviceName: 'resource.name',
     },

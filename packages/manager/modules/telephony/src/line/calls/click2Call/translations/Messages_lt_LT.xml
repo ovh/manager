@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_group_line_calls_click2call_title" qtlid="334751">Click2call</translation>
+   <translation id="telephony_group_line_calls_click2call_ids_title" qtlid="55889">Identifikatoriai</translation>
+   <translation id="telephony_group_line_calls_click2call_informations_title" qtlid="26551">Informacija</translation>
+   <translation id="telephony_group_line_calls_click2call_informations_text_1" qtlid="334764">Click2Call paslauga sukurta siekiant palengvinti kontaktavimą su klientais.</translation>
+   <translation id="telephony_group_line_calls_click2call_informations_text_2" qtlid="334777">Susisiekite su klientais naudodami nuorodą svetainėje. OVH suteikia API, leidžiantį skambinti neliečiant telefono!</translation>
+   <translation id="telephony_group_line_calls_click2call_informations_text_3" qtlid="334790">Sukurkite ID, leidžianti aplikacijai ar asmeniui skambinti iš savo paskyros.</translation>
+
+   <translation id="telephony_group_line_calls_click2call_user_title_id" qtlid="46792">Identifikatorius</translation>
+   <translation id="telephony_group_line_calls_click2call_user_title_login" qtlid="41062">Prisijungimo vardas</translation>
+   <translation id="telephony_group_line_calls_click2call_user_title_creationDate" qtlid="26419">Sukūrimo data</translation>
+   <translation id="telephony_group_line_calls_click2call_no_user" qtlid="215741">Nėra naudotojų</translation>
+
+   <translation id="telephony_group_line_calls_click2call_call_title" qtlid="334803">Click2Call skambutis</translation>
+   <translation id="telephony_group_line_calls_click2call_call_number_to_call_label" qtlid="334816">Numeris, kuriuo skambinti:&#160;</translation>
+   <translation id="telephony_group_line_calls_click2call_call_number_to_call_placeholder" qtlid="334829">Įveskite numerį, kuriuo skambinti</translation>
+   <translation id="telephony_group_line_calls_click2call_call_do_call_label" qtlid="334842">Skambinti</translation>
+
+   <translation id="telephony_group_line_calls_click2call_call_do_ok" qtlid="334855">Skambinama linijoje {{serviceName}}.</translation>
+   <translation id="telephony_group_line_calls_click2call_call_do_ko" qtlid="334868">Nepavyko paskambinti</translation>
+
+   <translation id="telephony_group_line_calls_click2call_ids_add" qtlid="37923">Pridėti</translation>
+
+   <translation id="telephony_group_line_calls_click2call_addUser" qtlid="262843">Pridėti identifikatorių</translation>
+
+   <translation id="telephony_group_line_calls_click2call_no_users" qtlid="334998">Jūs dar neturite ID.</translation>
+   <translation id="telephony_group_line_calls_click2call_no_users_add" qtlid="335011">Spragtelėkite mygtuką "Pridėti", kad sukurtumėte naują ID.</translation>
+
+   <translation id="telephony_group_line_calls_click2call_removeUser_removing" qtlid="335024">Naudotojas trinamas...</translation>
+   <translation id="telephony_group_line_calls_click2call_removeUser_confirm" qtlid="386977">Ar tikrai norite ištrinti naudotoją <strong>{{name}}</strong>?&#160;</translation>
+   <translation id="telephony_group_line_calls_click2call_call_add_ko" qtlid="335050">Negalima pridėti naudotojo.<br/>{{error}}</translation>
+   <translation id="telephony_group_line_calls_click2call_removeUser_removed" qtlid="335063">ID ištrintas</translation>
+   <translation id="telephony_group_line_calls_click2call_removeUser" qtlid="335089">ID trynimas</translation>
+   <translation id="telephony_group_line_calls_click2call_removeUser_ko" qtlid="335102">Negalima ištrinti ID.<br/>{{error}}</translation>
+
+   <translation id="telephony_group_line_calls_click2call_changePasswordUser" qtlid="80394">Keisti slaptažodį</translation>
+   <translation id="telephony_group_line_calls_click2call_changePasswordUser_password_label" qtlid="334894">Slaptažodis:&#160;</translation>
+   <translation id="telephony_group_line_calls_click2call_changePasswordUser_password_placeholder" qtlid="2270">Slaptažodis</translation>
+   <translation id="telephony_group_line_calls_click2call_changePasswordUser_changingPassword" qtlid="215897">Slaptažodis keičiamas</translation>
+   <translation id="telephony_group_line_calls_click2call_changePasswordUser_changedPassword" qtlid="7918">Slaptažodis sėkmingai pakeistas</translation>
+</translations>

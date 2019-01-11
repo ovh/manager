@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_line_assist_support_title" qtlid="336207">Ohjeet ja tuki</translation>
+
+   <translation id="telephony_line_assist_support_guides_title" qtlid="300370">Oppaat</translation>
+   <translation id="telephony_line_assist_support_guides_explain" qtlid="460002">Pour vous aider dans la configuration et l'utilisation de votre téléphonie, <a href="{{ url }}" target="_blank" title="Accéder à nos guides">nos guides sont à votre disposition<i class="ovh-font ovh-font-newtab ml-4" /></a>.</translation>
+
+   <translation id="telephony_line_assist_support_support_title" qtlid="39994">Asiakaspalvelu</translation>
+   <translation id="telephony_line_assist_support_header" qtlid="336233">Nous contacter pour toute question :</translation>
+   <translation id="telephony_line_assist_support_contact_by_phone" qtlid="336246">Par téléphone au <b>1007</b> (Gratuit depuis un poste fixe) ou au <b>+33 9 72 10 10 07</b> (Prix d'un appel local depuis un poste fixe en France). Du lundi au vendredi, de 8h à 20h et le samedi, de 9h à 17h.</translation>
+   <translation id="telephony_line_assist_support_contact_ticket" qtlid="336259">Ouvrir un ticket incident</translation>
+
+</translations>

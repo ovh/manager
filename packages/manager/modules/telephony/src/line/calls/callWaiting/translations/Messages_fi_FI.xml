@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_line_actions_line_calls_call_waiting_title" qtlid="335999">Koputus ja hands free</translation>
+   <translation id="telephony_line_actions_line_calls_call_waiting_cw_checkbox_label" qtlid="387211">Activer le double appel</translation>
+   <translation id="telephony_line_actions_line_calls_call_waiting_cw_title" qtlid="336012">Koputus</translation>
+   <translation id="telephony_line_actions_line_calls_call_waiting_intercom_checkbox_label" qtlid="387224">Activer le mode Intercom avec préfixe <strong>3691</strong></translation>
+   <translation id="telephony_line_actions_line_calls_call_waiting_intercom_title" qtlid="387237">Mode Intercom</translation>
+   <translation id="telephony_line_actions_line_calls_call_waiting_load_error" qtlid="334686">Virhe konfiguraation lukemisessa. </translation>
+   <translation id="telephony_line_actions_line_calls_call_waiting_save_error" qtlid="334712">Konfiguraation tallennus ei onnistu. Ole hyvä ja yritä myöhemmin uudelleen.</translation>
+   <translation id="telephony_line_actions_line_calls_call_waiting_cw_save_success_true" qtlid="336038">Koputuspalvelu on aktivoitu. </translation>
+   <translation id="telephony_line_actions_line_calls_call_waiting_cw_save_success_false" qtlid="336051">Koputuspalvelu ei ole aktivoituna. </translation>
+   <translation id="telephony_line_actions_line_calls_call_waiting_intercom_save_success_no" qtlid="387250">Le mode Intercom est désactivé.</translation>
+   <translation id="telephony_line_actions_line_calls_call_waiting_intercom_save_success_prefixed" qtlid="387263">Le mode Intercom est activé avec le préfixe 3691.</translation>
+   <translation id="telephony_line_actions_line_calls_call_waiting_cw_explain" qtlid="336090">Tällä toiminnolla voit aktivoida "Koputuspalvelun" tai poistaa sen aktivoinnin linjallasi.</translation>
+   <translation id="telephony_line_actions_line_calls_call_waiting_cw_explain1" qtlid="336103">Jos valinta ei ole aktivoituna, et voi siirtää puheluitasi tai otaa toista puhelua. </translation>
+   <translation id="telephony_line_actions_line_calls_call_waiting_intercom_explain" qtlid="387276">Mode intercom&#160;:&#160;Décrochage automatique avec activation du haut parleur.</translation>
+   <translation id="telephony_line_actions_line_calls_call_waiting_intercom_detail" qtlid="336129">OVH:n suosittelemat hands free -palvelun kanssa yhteensopivat puhelimet: Thomson ST2030, Cisco SPA5 -sarja sekä LG IP 88XX -sarja.</translation>
+</translations>

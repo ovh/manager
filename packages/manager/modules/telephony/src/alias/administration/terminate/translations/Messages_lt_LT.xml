@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_alias_administration_terminate_title" qtlid="334036">Atsisakyti numerio</translation>
+   <translation id="telephony_alias_administration_terminate_subtitle" qtlid="391956">Numerio atsisakymas</translation>
+   <translation id="telephony_alias_administration_terminate_info_subtitle" qtlid="26551">Informacija</translation>
+   <translation id="telephony_alias_administration_terminate_info1" qtlid="391969">Šiame puslapyje galite atsisakyti numerio.</translation>
+   <translation id="telephony_alias_administration_terminate_info2" qtlid="338352">Numerio atsisakymas atliekamas kito apmokėjimo metu. Iki apmokėjimo periodo galėsite atšaukti atsisakymą.</translation>
+   <translation id="telephony_alias_administration_terminate_info3" qtlid="391982">Atsisakant numerio iš suteikto numerių banko bus atsisakyta viso numerių banko</translation>
+   <translation id="telephony_alias_administration_terminate_info5" qtlid="391995">Numeris, kurio atsisakyti:</translation>
+   <translation id="telephony_alias_administration_terminate_info4" qtlid="392008">Padėkite mums pagerinti paslaugas ir pateikite atsisakymo priežastį:</translation>
+   <translation id="telephony_alias_administration_terminate_warning" qtlid="392021">Numerio {{ number }} bus atsisakyta {{ date }}.</translation>
+   <translation id="telephony_alias_administration_terminate_reason" qtlid="392034">Atsisakymo priežastis</translation>
+   <translation id="telephony_alias_administration_terminate_details" qtlid="392047">Prašome patikslinti</translation>
+   <translation id="telephony_alias_administration_terminate_reason_addresseMove" qtlid="86745">Perkėlimas</translation>
+   <translation id="telephony_alias_administration_terminate_reason_billingDifficulties" qtlid="338469">Apmokėjimas nepritaikytas</translation>
+   <translation id="telephony_alias_administration_terminate_reason_cessationOfActivity" qtlid="313377">Nutraukiama veikla</translation>
+   <translation id="telephony_alias_administration_terminate_reason_missingOptions" qtlid="338482">Trūksta funkcijų</translation>
+   <translation id="telephony_alias_administration_terminate_reason_other" qtlid="19963">Kita</translation>
+   <translation id="telephony_alias_administration_terminate_reason_plugAndPhoneDifficulties" qtlid="338495">Techninės įrangos klaida</translation>
+   <translation id="telephony_alias_administration_terminate_reason_technicalDifficulties" qtlid="313429">Techninės problemos</translation>
+   <translation id="telephony_alias_administration_terminate_reason_moveToCompetitor" qtlid="338508">Pereinama pas konkurentus</translation>
+   <translation id="telephony_alias_administration_terminate_pool_warning" qtlid="392060">Visi numeriai iš šio ruožo bus atšaukti</translation>
+   <translation id="telephony_alias_administration_terminate" qtlid="48646">Atsisakyti</translation>
+   <translation id="telephony_alias_administration_terminate_success" qtlid="392073">Atsisakymas sėkmingai suplanuotas</translation>
+   <translation id="telephony_alias_administration_cancel_termination" qtlid="285350">Atšaukti atsisakymo prašymą</translation>
+   <translation id="telephony_alias_administration_cancel_termination_success" qtlid="392086">Atsisakymas atšauktas</translation>
+</translations>

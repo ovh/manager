@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_delete_group_title" qtlid="69929">Trinti grupę</translation>
+   <translation id="telephony_delete_group_warning" qtlid="334088">Ištrynus grupę taip pat bus panaikintos susijusios linijos ir numeriai.</translation>
+   <translation id="telephony_delete_group_infos" qtlid="334101">Grupės trynimas užregistruotas naujo mokėjimo laikotarpio pradžiai. Iki šios datos galėsite atšaukti trynimą.</translation>
+   <translation id="telephony_delete_group_pending" qtlid="334114">Grupės {{group}} trynimas bus atliekamas:</translation>
+   <translation id="telephony_delete_group_cancel" qtlid="173645">Atšaukti trynimą</translation>
+   <translation id="telephony_delete_group_cancel_success" qtlid="334127">Grupės {{group}} trynimas sėkmingai atšauktas.</translation>
+   <translation id="telephony_delete_group_delete" qtlid="334140">Trinti {{group}}</translation>
+   <translation id="telephony_delete_group_delete_success" qtlid="334153">Grupės {{group}} trynimas sėkmingai suplanuotas.</translation>
+</translations>

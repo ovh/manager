@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_line_actions_line_calls_call_waiting_title" qtlid="335999">Double appel et intercom</translation>
+   <translation id="telephony_line_actions_line_calls_call_waiting_cw_checkbox_label" qtlid="387211">Activer le double appel</translation>
+   <translation id="telephony_line_actions_line_calls_call_waiting_cw_title" qtlid="336012">Double appel</translation>
+   <translation id="telephony_line_actions_line_calls_call_waiting_intercom_checkbox_label" qtlid="387224">Activer le mode Intercom avec préfixe <strong>3691</strong></translation>
+   <translation id="telephony_line_actions_line_calls_call_waiting_intercom_title" qtlid="387237">Mode Intercom</translation>
+   <translation id="telephony_line_actions_line_calls_call_waiting_load_error" qtlid="334686">Erreur lors de la lecture de la configuration.</translation>
+   <translation id="telephony_line_actions_line_calls_call_waiting_save_error" qtlid="334712">Impossible de sauvegarder la configuration. Veuillez réessayer ultérieurement.</translation>
+   <translation id="telephony_line_actions_line_calls_call_waiting_cw_save_success_true" qtlid="336038">Le double appel est activé.</translation>
+   <translation id="telephony_line_actions_line_calls_call_waiting_cw_save_success_false" qtlid="336051">Le double appel est désactivé.</translation>
+   <translation id="telephony_line_actions_line_calls_call_waiting_intercom_save_success_no" qtlid="387250">Le mode Intercom est désactivé.</translation>
+   <translation id="telephony_line_actions_line_calls_call_waiting_intercom_save_success_prefixed" qtlid="387263">Le mode Intercom est activé avec le préfixe 3691.</translation>
+   <translation id="telephony_line_actions_line_calls_call_waiting_cw_explain" qtlid="336090">Cette option permets d'activer ou de désactiver la fonction "double appel", présente sur votre ligne.</translation>
+   <translation id="telephony_line_actions_line_calls_call_waiting_cw_explain1" qtlid="336103">Si l'option est désactivée, vous ne pourrez plus transférer votre appel ou prendre un deuxième appel.</translation>
+   <translation id="telephony_line_actions_line_calls_call_waiting_intercom_explain" qtlid="387276">Mode intercom&#160;:&#160;Décrochage automatique avec activation du haut parleur.</translation>
+   <translation id="telephony_line_actions_line_calls_call_waiting_intercom_detail" qtlid="336129">Les téléphones proposés par OVH comptatibles avec le service Intercom sont&#160;: le Thomson ST2030, la série Cisco SPA5 et la gamme LG IP 88XX.</translation>
+</translations>

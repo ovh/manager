@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_alias_configuration_queues_title" qtlid="461952">Gérer les files d'appels</translation>
+   <translation id="telephony_alias_configuration_queues_list" qtlid="461965">Files d'appels</translation>
+   <translation id="telephony_alias_configuration_queues_queue" qtlid="278950">Soubor</translation>
+   <translation id="telephony_alias_configuration_queues_queue_create" qtlid="461978">Ajouter une file</translation>
+   <translation id="telephony_alias_configuration_queues_queue_create_success" qtlid="461991">File ajoutée</translation>
+   <translation id="telephony_alias_configuration_queues_queue_delete" qtlid="324236">Supprimer la file</translation>
+   <translation id="telephony_alias_configuration_queues_queue_delete_success" qtlid="462004">File supprimée</translation>
+   <translation id="telephony_alias_configuration_queues_queue_update" qtlid="249107">Provést změny</translation>
+   <translation id="telephony_alias_configuration_queues_queue_update_success" qtlid="462017">Modifications appliquées</translation>
+   <translation id="telephony_alias_configuration_queues_agent_list" qtlid="462030">Agents membres de la file</translation>
+   <translation id="telephony_alias_configuration_queues_agent_add" qtlid="462043">Ajouter un membre à la file</translation>
+   <translation id="telephony_alias_configuration_queues_agent_add_helper" qtlid="462056">Numéro de l'agent à ajouter</translation>
+   <translation id="telephony_alias_configuration_queues_agent_select_add" qtlid="462069">Ajouter cet agent à la file</translation>
+   <translation id="telephony_alias_configuration_queues_agent_add_success" qtlid="462082">Membre ajouté</translation>
+   <translation id="telephony_alias_configuration_queues_options_manage" qtlid="340354">Spravovat funkce</translation>
+   <translation id="telephony_alias_configuration_queues_options" qtlid="23395">Možnosti</translation>
+   <translation id="telephony_alias_configuration_queues_description" qtlid="324223">Nom de la file</translation>
+   <translation id="telephony_alias_configuration_queues_strategy" qtlid="294841">Strategie</translation>
+   <translation id="telephony_alias_configuration_queues_follow_call_forwards" qtlid="392749">Suivre les renvois d'appels</translation>
+   <translation id="telephony_alias_configuration_queues_max_member" qtlid="294945">Nombre maximum d'appelants en attente</translation>
+   <translation id="telephony_alias_configuration_queues_max_wait_time" qtlid="462095">Temps d'attente maximum dans la file (en secondes)</translation>
+   <translation id="telephony_alias_configuration_queues_sound_on_hold" qtlid="358422">Musique d'attente</translation>
+   <translation id="telephony_alias_configuration_queues_sound_on_overflow" qtlid="392866">Annonce sur débordement</translation>
+   <translation id="telephony_alias_configuration_queues_sound_none" qtlid="30646">Ne</translation>
+   <translation id="telephony_alias_configuration_queues_sound_file" qtlid="392970">Fichier ...</translation>
+   <translation id="telephony_alias_configuration_queues_sound_invalid" qtlid="462108">Format de fichier invalide</translation>
+   <translation id="telephony_alias_configuration_queues_strategy_cumulationByAgentOrder" qtlid="294854">Selon l'ordre défini des membres, cumulé</translation>
+   <translation id="telephony_alias_configuration_queues_strategy_longestHangupAgent" qtlid="294867">Le plus ancien à avoir raccroché</translation>
+   <translation id="telephony_alias_configuration_queues_strategy_longestIdleAgent" qtlid="294880">Du plus disponible au moins disponible</translation>
+   <translation id="telephony_alias_configuration_queues_strategy_random" qtlid="294893">Aléatoire</translation>
+   <translation id="telephony_alias_configuration_queues_strategy_roundRobin" qtlid="294919">Selon une répartition de charge</translation>
+   <translation id="telephony_alias_configuration_queues_strategy_sequentiallyByAgentOrder" qtlid="294932">Selon l'ordre défini des membres</translation>
+   <translation id="telephony_alias_configuration_queues_strategy_ringAll" qtlid="294906">Tous en même temps</translation>
+
+   <translation id="telephony_alias_configuration_queues_modal-warning" qtlid="480201">Votre configuration possède un ou plusieurs numéros externes. Les appels vers ces numéros vous seront facturés hors forfait quelque soit votre forfait.</translation>
+   <translation id="telephony_alias_configuration_queues_modal-question" qtlid="480214">Continuer avec cette configuration ?</translation>
+</translations>

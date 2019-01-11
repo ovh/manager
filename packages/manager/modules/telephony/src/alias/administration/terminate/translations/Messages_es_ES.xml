@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_alias_administration_terminate_title" qtlid="334036">Dar un número de baja</translation>
+   <translation id="telephony_alias_administration_terminate_subtitle" qtlid="391956">Baja del número</translation>
+   <translation id="telephony_alias_administration_terminate_info_subtitle" qtlid="26551">Información</translation>
+   <translation id="telephony_alias_administration_terminate_info1" qtlid="391969">Desde esta página puede solicitar la baja de su número.</translation>
+   <translation id="telephony_alias_administration_terminate_info2" qtlid="338352">Las bajas solicitadas se aplicarán en la siguiente facturación. Hasta ese momento, es posible cancelar la solicitud.</translation>
+   <translation id="telephony_alias_administration_terminate_info3" qtlid="391982">La baja de un número que forme parte de un pool conllevará la baja de todo el pool.</translation>
+   <translation id="telephony_alias_administration_terminate_info5" qtlid="391995">Número a dar de baja:</translation>
+   <translation id="telephony_alias_administration_terminate_info4" qtlid="392008">Por favor, para ayudarnos a mejorar nuestros servicios indíquenos la razón de la baja:</translation>
+   <translation id="telephony_alias_administration_terminate_warning" qtlid="392021">El número {{ number }} se dará de baja el {{ date }}.</translation>
+   <translation id="telephony_alias_administration_terminate_reason" qtlid="392034">Motivo de la baja</translation>
+   <translation id="telephony_alias_administration_terminate_details" qtlid="392047">Por favor, indique</translation>
+   <translation id="telephony_alias_administration_terminate_reason_addresseMove" qtlid="86745">Traslado</translation>
+   <translation id="telephony_alias_administration_terminate_reason_billingDifficulties" qtlid="338469">Facturación inadecuada</translation>
+   <translation id="telephony_alias_administration_terminate_reason_cessationOfActivity" qtlid="313377">Cese de actividad</translation>
+   <translation id="telephony_alias_administration_terminate_reason_missingOptions" qtlid="338482">Falta de funcionalidades</translation>
+   <translation id="telephony_alias_administration_terminate_reason_other" qtlid="19963">Otro</translation>
+   <translation id="telephony_alias_administration_terminate_reason_plugAndPhoneDifficulties" qtlid="338495">Problemas con el aparato</translation>
+   <translation id="telephony_alias_administration_terminate_reason_technicalDifficulties" qtlid="313429">Problemas técnicos</translation>
+   <translation id="telephony_alias_administration_terminate_reason_moveToCompetitor" qtlid="338508">Cambio a otro proveedor</translation>
+   <translation id="telephony_alias_administration_terminate_pool_warning" qtlid="392060">Todos los números de este rango se darán de baja.</translation>
+   <translation id="telephony_alias_administration_terminate" qtlid="48646">Dar de baja</translation>
+   <translation id="telephony_alias_administration_terminate_success" qtlid="392073">Se ha programado la baja.</translation>
+   <translation id="telephony_alias_administration_cancel_termination" qtlid="285350">Cancelar la baja del servicio </translation>
+   <translation id="telephony_alias_administration_cancel_termination_success" qtlid="392086">Se ha cancelado la baja.</translation>
+</translations>

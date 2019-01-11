@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_service_consumption_outgoing_all" qtlid="336714">Tous les appels émis</translation>
+   <translation id="telephony_service_consumption_outgoing_empty" qtlid="336727">Aucun appel émis.</translation>
+   <translation id="telephony_service_consumption_outgoing_not_found" qtlid="391189">Aucun appel ne correspond à ce filtre.</translation>
+   <translation id="telephony_service_consumption_outgoing_period" qtlid="336454">Okres od <strong>{{ start }}</strong> do <strong>{{ end }}</strong></translation>
+   <translation id="telephony_service_consumption_outgoing_priceplan" qtlid="336740">Forfait : appel(s) : <strong>{{ calls }}</strong>, durée : <strong>{{ duration }}</strong></translation>
+   <translation id="telephony_service_consumption_outgoing_outplan" qtlid="336753">Hors forfait : appel(s) : <strong>{{ calls }}</strong>, durée : <strong>{{ duration }}</strong>, prix : <strong>{{ price }}</strong> HT</translation>
+</translations>

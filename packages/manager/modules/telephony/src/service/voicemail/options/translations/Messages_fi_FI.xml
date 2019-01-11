@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_line_answer_voicemail_options_recording_title" qtlid="337754">Etusivu ja viestien tallennus</translation>
+   <translation id="telephony_line_answer_voicemail_options_recording" qtlid="337767">Viestien tallennus:</translation>
+   <translation id="telephony_line_answer_voicemail_options_recording_disable_warn" qtlid="337780">Ääniviestien tallennuksen poistaminen päältä keskeyttää liitetiedostoja sisältävien sähköpostiviestien lähetyksen.</translation>
+   <translation id="telephony_line_answer_voicemail_options_greetings" qtlid="337793">Vastaajan pääviesti:</translation>
+   <translation id="telephony_line_answer_voicemail_options_recording_greet" qtlid="337806">Esi-ilmoitus</translation>
+   <translation id="telephony_line_answer_voicemail_options_recording_unavail" qtlid="337819">Personoitu ilmoitus</translation>
+   <translation id="telephony_line_answer_voicemail_options_recording_file" qtlid="337832">Tiedosto...</translation>
+   <translation id="telephony_line_answer_voicemail_options_recording_file_invalid" qtlid="337845">Tiedostoformaattia ei tueta.</translation>
+   <translation id="telephony_line_answer_voicemail_options_recording_file_download_error" qtlid="337858">Lataamasi pääviesti on saatavilla hetken kuluttua.</translation>
+   <translation id="telephony_line_answer_voicemail_options_recording_delete" qtlid="459911">Supprimer le message d'accueil</translation>
+   <translation id="telephony_line_answer_voicemail_options_recording_delete_confirm" qtlid="459924">Êtes-vous certain de vouloir supprimer le message d'accueil ?</translation>
+   <translation id="telephony_line_answer_voicemail_options_apply" qtlid="41326">Vahvista</translation>
+   <translation id="telephony_line_answer_voicemail_options_notification" qtlid="337871">Ilmoitusvalinnat</translation>
+   <translation id="telephony_line_answer_voicemail_options_audioformat" qtlid="337884">Audiotiedostojen formaatit:</translation>
+   <translation id="telephony_line_answer_voicemail_options_keep_message" qtlid="337897">Säilytä viestit ilmotuksen lähetyksen jälkeen:</translation>
+   <translation id="telephony_line_answer_voicemail_options_sender_name" qtlid="337910">Lähettäjän nimi:</translation>
+   <translation id="telephony_line_answer_voicemail_options_sender_mail" qtlid="337923">Lähettäjän sähköpostiosoite:</translation>
+   <translation id="telephony_line_answer_voicemail_options_update" qtlid="337936">Ota valinnat käyttöön</translation>
+   <translation id="telephony_line_answer_voicemail_options_update_success" qtlid="337949">Tallennetut valinnat</translation>
+   <translation id="telephony_line_answer_voicemail_options_update_error" qtlid="337962">Hups, valintojasi ei voida päivittää.</translation>
+   <translation id="telephony_line_answer_voicemail_options_mail_add" qtlid="71357">Lisää sähköpostiosoite</translation>
+   <translation id="telephony_line_answer_voicemail_options_mail_add_confirm" qtlid="37923">Lisää</translation>
+   <translation id="telephony_line_answer_voicemail_options_mail_cancel" qtlid="37863">Peruuta</translation>
+   <translation id="telephony_line_answer_voicemail_options_mail" qtlid="69509">Sähköposti</translation>
+   <translation id="telephony_line_answer_voicemail_options_mail_title" qtlid="337975">Sähköpostiosoitteet, joille ilmoitus lähetetään</translation>
+   <translation id="telephony_line_answer_voicemail_options_mail_type" qtlid="337988">Ilmoituksen tyyppi...</translation>
+   <translation id="telephony_line_answer_voicemail_options_mail_empty" qtlid="338001">Et ole vielä konfiguroinut sähköpostiosoitetta, jolle ilmoitus halutaan lähettää.</translation>
+   <translation id="telephony_line_answer_voicemail_options_mail_limit" qtlid="338014">Voit lähettää ilmoituksen enintään viiteen (5) sähköpostiosoitteeseen.</translation>
+   <translation id="telephony_line_answer_voicemail_options_mail_type_attachment" qtlid="338027">Viesti liitetiedostona</translation>
+   <translation id="telephony_line_answer_voicemail_options_mail_type_simple" qtlid="338040">Vain ilmoitus</translation>
+</translations>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_service_consumption_filter" qtlid="59207">Filtrar</translation>
+   <translation id="telephony_service_consumption_period" qtlid="336454">Período del <strong>{{ start }}</strong> al <strong>{{ end }}</strong></translation>
+   <translation id="telephony_service_consumption_date" qtlid="24523">Fecha</translation>
+   <translation id="telephony_service_consumption_calling" qtlid="30778">Número</translation>
+   <translation id="telephony_service_consumption_calling_unknown" qtlid="190082">Anónimo</translation>
+   <translation id="telephony_service_consumption_dialed" qtlid="81234">Número de destino</translation>
+   <translation id="telephony_service_consumption_duration" qtlid="8218">Duración</translation>
+   <translation id="telephony_service_consumption_price_ht" qtlid="133292">Precio (sin IVA)</translation>
+   <translation id="telephony_service_consumption_destination" qtlid="32290">Destino</translation>
+   <translation id="telephony_service_consumption_destination_any" qtlid="336467">Todos los destinos</translation>
+   <translation id="telephony_service_consumption_destination_landline" qtlid="247118">Fija</translation>
+   <translation id="telephony_service_consumption_destination_mobile" qtlid="59195">Móvil</translation>
+   <translation id="telephony_service_consumption_destination_special" qtlid="336480">Especiales</translation>
+   <translation id="telephony_service_consumption_type" qtlid="59171">Tipo</translation>
+   <translation id="telephony_service_consumption_type_any" qtlid="336493">Naturaleza indiferente</translation>
+   <translation id="telephony_service_consumption_type_transfer" qtlid="336506">Transferido</translation>
+   <translation id="telephony_service_consumption_type_incoming" qtlid="336519">Recibido</translation>
+   <translation id="telephony_service_consumption_type_outgoing" qtlid="336532">Enviado</translation>
+   <translation id="telephony_service_consumption_type_received" qtlid="336519">Recibido</translation>
+   <translation id="telephony_service_consumption_type_missing" qtlid="336545">Perdido</translation>
+   <translation id="telephony_service_consumption_type_sent" qtlid="336558">Enviado</translation>
+   <translation id="telephony_service_consumption_anonymous" qtlid="190082">Anónimo</translation>
+</translations>

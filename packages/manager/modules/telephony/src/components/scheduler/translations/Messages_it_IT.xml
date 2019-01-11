@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_scheduler_load_error" qtlid="395921">Ops! Si è verificato un errore durante il recupero delle chiusure eccezionali.</translation>
+
+   <translation id="telephony_scheduler_category_title" qtlid="396584">Categorie</translation>
+   <translation id="telephony_scheduler_closing_days_title" qtlid="510930">Planification des jours de fermeture</translation>
+   <translation id="telephony_scheduler_closing_days_subtitle" qtlid="510943">Planifiez des créneaux récurrents ou ponctuels durant lesquels vos correspondants seront redirigés vers un répondeur ou un autre numéro.</translation>
+
+<!-- SAVE -->
+   <translation id="telephony_scheduler_save" qtlid="395934">Salvare la configurazione?</translation>
+   <translation id="telephony_scheduler_save_error" qtlid="395947">Ops! Si è verificato un errore durante il salvataggio delle chiusure eccezionali.</translation>
+
+<!-- ACTIONS MENU -->
+   <translation id="telephony_scheduler_actions_add" qtlid="37923">Aggiungi</translation>
+   <translation id="telephony_scheduler_actions_import" qtlid="69869">Importa</translation>
+   <translation id="telephony_scheduler_actions_export" qtlid="69881">Esporta</translation>
+   <translation id="telephony_scheduler_actions_bank_holidays" qtlid="513595">Afficher les jours fériés</translation>
+   <translation id="telephony_scheduler_actions_bank_delete_all" qtlid="159891">Elimina tutto</translation>
+
+<!-- IMPORT ACTION -->
+   <translation id="telephony_scheduler_import_title" qtlid="395973">Importazione del calendario in formato ICS</translation>
+   <translation id="telephony_scheduler_import_select_file" qtlid="395986">File .ics/.ical da importare:</translation>
+   <translation id="telephony_scheduler_import_ics_file" qtlid="395999">File .ics/.ical</translation>
+   <translation id="telephony_scheduler_import_ics_file_format_error" qtlid="396012">Questo file non è in formato ICS (estensione .ics/.ical)</translation>
+   <translation id="telephony_scheduler_import_button" qtlid="396025">Avvia l'importazione</translation>
+   <translation id="telephony_scheduler_import_doing" qtlid="396038">Upload del file in corso...</translation>
+   <translation id="telephony_scheduler_import_upload_doing" qtlid="396038">Upload del file in corso...</translation>
+   <translation id="telephony_scheduler_import_upload_success" qtlid="396051">L'upload è terminato, l'importazione può iniziare</translation>
+   <translation id="telephony_scheduler_import_success" qtlid="396064">Importazione del calendario ICS completata correttamente.</translation>
+   <translation id="telephony_scheduler_import_error" qtlid="396077">Ops! Si è verificato un errore durante l'importazione del calendario in formato ICS.</translation>
+
+<!-- EXPORT ACTION -->
+   <translation id="telephony_scheduler_export_title" qtlid="69881">Esporta</translation>
+   <translation id="telephony_scheduler_export_filters" qtlid="396090">Categorie da esportare:</translation>
+   <translation id="telephony_scheduler_export_doing" qtlid="396103">Esportazione in corso...</translation>
+   <translation id="telephony_scheduler_export_error" qtlid="396116">Ops! Si è verificato un errore durante l'esportazione del calendario in formato ICS.</translation>
+
+<!-- BANK HOLIDAYS ACTION -->
+   <translation id="telephony_scheduler_bank_holidays_title" qtlid="396129">Aggiungi giorni festivi pubblici</translation>
+   <translation id="telephony_scheduler_bank_holidays_year_aria_label" qtlid="396142">Anno da visualizzare</translation>
+   <translation id="telephony_scheduler_bank_holidays_year" qtlid="37815">Anno</translation>
+   <translation id="telephony_scheduler_bank_holidays_already_in_schedular" qtlid="396155">Già aggiunto al calendario</translation>
+
+   <translation id="telephony_scheduler_bank_holidays_new_year" qtlid="396168">Capodanno</translation>
+   <translation id="telephony_scheduler_bank_holidays_easter_monday" qtlid="396181">Lunedì dell'Angelo</translation>
+   <translation id="telephony_scheduler_bank_holidays_labor_day" qtlid="396194">Festa del lavoro</translation>
+   <translation id="telephony_scheduler_bank_holidays_armistice_1945" qtlid="396207">Giornata della vittoria 1945&#13;
+&#13;
+</translation>
+   <translation id="telephony_scheduler_bank_holidays_ascension_day" qtlid="396220">Giovedì dell'Ascensione</translation>
+   <translation id="telephony_scheduler_bank_holidays_whit_monday" qtlid="396233">Lunedì di Pentecoste</translation>
+   <translation id="telephony_scheduler_bank_holidays_national_holiday" qtlid="396246">Festa nazionale</translation>
+   <translation id="telephony_scheduler_bank_holidays_assumption_day" qtlid="396259">Assunzione</translation>
+   <translation id="telephony_scheduler_bank_holidays_all_saints_day" qtlid="396272">Ognissanti</translation>
+   <translation id="telephony_scheduler_bank_holidays_armistice_1918" qtlid="396285">Armistizio</translation>
+   <translation id="telephony_scheduler_bank_holidays_christmas" qtlid="396298">Natale</translation>
+   <translation id="telephony_scheduler_bank_holidays_after_christmas" qtlid="396311">Giorno di Santo Stefano</translation>
+   <translation id="telephony_scheduler_bank_holidays_good_friday" qtlid="396324">Venerdì Santo</translation>
+   <translation id="telephony_scheduler_bank_holidays_epiphany" qtlid="396337">Epifania</translation>
+   <translation id="telephony_scheduler_bank_holidays_constitution_day" qtlid="396350">Giorno della Constituzione</translation>
+   <translation id="telephony_scheduler_bank_holidays_immaculate_conception" qtlid="396363">Immacolata Concezione</translation>
+   <translation id="telephony_scheduler_bank_holidays_may_day" qtlid="396376">May day bank holiday</translation>
+   <translation id="telephony_scheduler_bank_holidays_spring_bank_holiday" qtlid="396389">Spring Bank holiday</translation>
+   <translation id="telephony_scheduler_bank_holidays_summer_bank_holiday" qtlid="396402">Summer Bank holiday</translation>
+   <translation id="telephony_scheduler_bank_holidays_boxing_day" qtlid="396415">Boxing Day</translation>
+   <translation id="telephony_scheduler_bank_holidays_inject" qtlid="396428">Inserisci {{ count }} giorni festivi</translation>
+
+<!-- DELETE ALL -->
+   <translation id="telephony_scheduler_delete_all_confirm_question_title" qtlid="513608">Suppression des fermetures exceptionnelles</translation>
+   <translation id="telephony_scheduler_delete_all_confirm_question" qtlid="396441">Vuoi davvero eliminare tutte le chiusre eccezionali?</translation>
+
+<!-- TIME ZONE -->
+   <translation id="telephony_scheduler_options_time_zone_choose" qtlid="85893">Fuso orario</translation>
+   <translation id="telephony_scheduler_options_time_zone_europe_berlin" qtlid="396454">(GMT+01:00) Europe/Berlin</translation>
+   <translation id="telephony_scheduler_options_time_zone_europe_brussels" qtlid="396467">(GMT+01:00) Europe/Brussels</translation>
+   <translation id="telephony_scheduler_options_time_zone_europe_london" qtlid="396480">(GMT+00:00) Europe/London</translation>
+   <translation id="telephony_scheduler_options_time_zone_europe_madrid" qtlid="396493">(GMT+01:00) Europe/Madrid</translation>
+   <translation id="telephony_scheduler_options_time_zone_europe_paris" qtlid="396506">(GMT+01:00) Europe/Paris</translation>
+   <translation id="telephony_scheduler_options_time_zone_europe_zurich" qtlid="396519">(GMT+01:00) Europe/Zurich</translation>
+
+<!-- CATEGORIES -->
+   <translation id="telephony_scheduler_category_activation" qtlid="396532">Attiva le fasce orarie</translation>
+   <translation id="telephony_scheduler_category_activation_explain" qtlid="396545">Gli intervalli definiti verranno applicati solo dopo l'attivazione delle fasce orarie.</translation>
+   <translation id="telephony_scheduler_category_activation_yes" qtlid="34776">Sì</translation>
+   <translation id="telephony_scheduler_category_activation_no" qtlid="34788">No</translation>
+
+<!-- HEADER -->
+   <translation id="telephony_scheduler_header_previous_title" qtlid="396558">Periodo precedente</translation>
+   <translation id="telephony_scheduler_header_next_title" qtlid="396571">Periodo successivo</translation>
+
+<!-- CALENDAR -->
+   <translation id="telephony_scheduler_calendar_today" qtlid="169719">Oggi</translation>
+   <translation id="telephony_scheduler_calendar_month" qtlid="37803">Mese</translation>
+   <translation id="telephony_scheduler_calendar_week" qtlid="37791">Settimana</translation>
+   <translation id="telephony_scheduler_calendar_day" qtlid="39214">Giorno</translation>
+
+<!-- PARAMETERS -->
+   <translation id="telephony_scheduler_params_title" qtlid="11747">Impostazioni</translation>
+
+<!-- FILTERS -->
+   <translation id="telephony_scheduler_categories_title" qtlid="396584">Categorie</translation>
+   <translation id="telephony_scheduler_categories_scheduler_1" qtlid="335258">Fascia 1</translation>
+   <translation id="telephony_scheduler_categories_scheduler_2" qtlid="335271">Fascia 2</translation>
+   <translation id="telephony_scheduler_categories_scheduler_3" qtlid="335284">Fascia 3</translation>
+   <translation id="telephony_scheduler_categories_holidays" qtlid="396597">Giorni non lavorativi (fuori dalle fasce orarie)</translation>
+   <translation id="telephony_scheduler_categories_description_number" qtlid="396610">Trasferisci al numero: {{ number }}</translation>
+   <translation id="telephony_scheduler_categories_description_voicemail" qtlid="396623">Trasferisci alla segreteria telefonica: {{ number }}</translation>
+   <translation id="telephony_scheduler_categories_description_undefined" qtlid="102765">Non definito</translation>
+
+<!-- EVENTS -->
+   <translation id="telephony_scheduler_events_edit_title" qtlid="88689">Modificare l'evento</translation>
+   <translation id="telephony_scheduler_events_new_title" qtlid="88677">Nuovo evento</translation>
+   <translation id="telephony_scheduler_events_back" qtlid="396636">Ritorna alla modifica</translation>
+   <translation id="telephony_scheduler_events_title" qtlid="69113">Oggetto</translation>
+   <translation id="telephony_scheduler_events_category" qtlid="28459">Categoria</translation>
+   <translation id="telephony_scheduler_events_all_day" qtlid="396649">Intera giornata</translation>
+   <translation id="telephony_scheduler_events_time_slot" qtlid="396662">Fascia oraria</translation>
+   <translation id="telephony_scheduler_events_from" qtlid="88725">Dal</translation>
+   <translation id="telephony_scheduler_events_to" qtlid="88737">A</translation>
+   <translation id="telephony_scheduler_events_description" qtlid="9238">Descrizione</translation>
+   <translation id="telephony_scheduler_events_save" qtlid="37875">Modifica</translation>
+   <translation id="telephony_scheduler_events_create" qtlid="396675">Crea l'evento</translation>
+   <translation id="telephony_scheduler_events_date_start_edit" qtlid="159176">Data di inizio</translation>
+   <translation id="telephony_scheduler_events_date_end_edit" qtlid="299858">Data di fine</translation>
+   <translation id="telephony_scheduler_events_categories_choice" qtlid="396688">Scegli la categoria</translation>
+   <translation id="telephony_scheduler_events_delete_confirm" qtlid="59699">Cancella</translation>
+   <translation id="telephony_scheduler_events_delete_explain" qtlid="396701">Vuoi davvero eliminare questo evento?</translation>
+   <translation id="telephony_scheduler_events_no_categories_available" qtlid="396714">Per questo evento non sono disponibili categorie. Seleziona un altro intervallo o elimina un evento.</translation>
+
+</translations>

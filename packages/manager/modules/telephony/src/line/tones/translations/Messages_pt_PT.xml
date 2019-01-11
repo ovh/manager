@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_line_tones_title" qtlid="358344">Gestion des musiques et sonneries</translation>
+   <translation id="telephony_line_tones_info1" qtlid="358357">Cette page vous permet de définir des musiques et sonneries pour votre ligne.<br /> Plusieurs personnalisations s'offrent à vous :</translation>
+   <translation id="telephony_line_tones_info2" qtlid="358370"><strong>La sonnerie de pré-décroché</strong> : remplace la tonalité par défaut de pré-décroché.</translation>
+   <translation id="telephony_line_tones_info3" qtlid="358383"><strong>La musique d'attente</strong> : musique diffusée lorsque l'appelant est en attente. La musique d'attente sera diffusée si vous mettez en attente un interlocuteur lors d'une conversation téléphonique.</translation>
+   <translation id="telephony_line_tones_info4" qtlid="358396"><strong>L'annonce sur ligne occupée</strong> : annonce diffusée lorsque la ligne est occupée. L'annonce sera diffusée lors d'un appel direct (sans passer par un easyPabx ou un miniPabx au préalable), aucune mise en relation avec l'appelé ne sera établie.</translation>
+   <translation id="telephony_line_tones_ringback" qtlid="358409">Sonnerie de pré-décroché</translation>
+   <translation id="telephony_line_tones_onhold" qtlid="358422">Musique d'attente</translation>
+   <translation id="telephony_line_tones_callwaiting" qtlid="358435">Annonce sur ligne occupée</translation>
+   <translation id="telephony_line_tones_type_custom_sound" qtlid="358448">Personnalisée</translation>
+   <translation id="telephony_line_tones_type_none" qtlid="101193">Predefinido</translation>
+   <translation id="telephony_line_tones_type_predefined_1" qtlid="358461">Prédéfinie 1</translation>
+   <translation id="telephony_line_tones_type_predefined_2" qtlid="358474">Prédéfinie 2</translation>
+   <translation id="telephony_line_tones_choose_file" qtlid="358487">Choisir un fichier</translation>
+   <translation id="telephony_line_tones_choose_file_confirm" qtlid="358500">Envoyer le fichier</translation>
+   <translation id="telephony_line_tones_choose_file_ring_success" qtlid="358513">Sonnerie mise à jour</translation>
+   <translation id="telephony_line_tones_choose_file_sound_success" qtlid="358526">Musique mise à jour</translation>
+   <translation id="telephony_line_tones_choose_file_announce_success" qtlid="358539">Annonce mise à jour</translation>
+   <translation id="telephony_line_tones_choose_file_type_error" qtlid="358552">Le format du fichier sélectionné n'est pas supporté.</translation>
+   <translation id="telephony_line_tones_apply" qtlid="249107">Aplicar alterações</translation>
+</translations>

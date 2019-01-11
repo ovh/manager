@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_group_billing_tollfree_history_title" qtlid="334491">SVA kainų istorija</translation>
+
+   <translation id="telephony_group_billing_tollfree_history_init_error" qtlid="357590">Klaida nuskaitant SVA išlaidas.</translation>
+   <translation id="telephony_group_billing_tollfree_history_download_error" qtlid="357304">Klaida įkeliant apmokėjimo duomenis.</translation>
+
+   <translation id="telephony_group_billing_tollfree_history_list_title" qtlid="357603">SVA grupės {{ groupName }} išlaidos</translation>
+   <translation id="telephony_group_billing_tollfree_history_list_date" qtlid="357616">Sąskaitos data</translation>
+   <translation id="telephony_group_billing_tollfree_history_list_price" qtlid="357629">Sąskaitos suma</translation>
+   <translation id="telephony_group_billing_tollfree_history_list_download_csv" qtlid="357356">Apmokėjimo detalės CSV formatu</translation>
+   <translation id="telephony_group_billing_tollfree_history_list_no_results" qtlid="357343">Nerastas joks apmokėjimas</translation>
+</translations>

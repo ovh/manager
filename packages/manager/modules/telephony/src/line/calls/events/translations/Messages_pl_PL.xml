@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_line_calls_events_title" qtlid="335167">Gérer les fermetures exceptionnelles</translation>
+
+   <translation id="telephony_line_calls_events_info" qtlid="387289">Le calendrier vous permet de définir des plages de fermeture de votre entreprise.</translation>
+   <translation id="telephony_line_calls_events_warning" qtlid="387302">Attention, les créneaux définis ne seront appliqués qu'après activation de vos plages horaires.</translation>
+
+   <translation id="telephony_line_calls_events_load_error" qtlid="387315">Oups ! Une erreur est survenue lors du chargement des fermetures exceptionnelles.</translation>
+
+</translations>

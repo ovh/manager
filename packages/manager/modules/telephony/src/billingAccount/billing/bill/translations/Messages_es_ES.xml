@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_group_billing_bill_title" qtlid="334439">Detalle de consumo</translation>
+   <translation id="telephony_group_billing_bill_subtitle" qtlid="334530">Su detalle de consumo</translation>
+   <translation id="telephony_group_billing_bill_empty" qtlid="334556">No hay detalles disponibles</translation>
+   <translation id="telephony_group_billing_bill_date" qtlid="24523">Fecha</translation>
+   <translation id="telephony_group_billing_bill_amount" qtlid="20635">Importe sin IVA</translation>
+   <translation id="telephony_group_billing_bill_paid" qtlid="334569">Ya abonado</translation>
+   <translation id="telephony_group_billing_bill_download" qtlid="39286">Descargar</translation>
+   <translation id="telephony_group_billing_bill_download_pdf" qtlid="334582">Detalle de consumo en formato PDF</translation>
+   <translation id="telephony_group_billing_bill_download_csv_emited" qtlid="334595">Listado de llamadas enviadas en formato CSV</translation>
+   <translation id="telephony_group_billing_bill_download_csv_received" qtlid="334608">Listado de llamadas recibidas en formato CSV</translation>
+   <translation id="telephony_group_billing_bill_refresh" qtlid="158708">Actualizar</translation>
+</translations>

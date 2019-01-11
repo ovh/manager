@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_group_billing_credit_threshold_title" qtlid="386912">Keisti garantinio užstato limitą</translation>
+   <translation id="telephony_group_billing_credit_threshold_info_subtitle" qtlid="26551">Informacija</translation>
+   <translation id="telephony_group_billing_credit_threshold_credit_threshold" qtlid="357486">Dabartinis jūsų limitas:</translation>
+   <translation id="telephony_group_billing_credit_threshold_allowed_out_plan" qtlid="357499">Leistinas limitas neskaitant mokesčių:</translation>
+   <translation id="telephony_group_billing_credit_threshold_current_out_plan" qtlid="357512">Globalus limitas neskaitant mokesčių:</translation>
+   <translation id="telephony_group_billing_credit_threshold_credits_label" qtlid="357525">Kredito keitimas:</translation>
+   <translation id="telephony_group_billing_credit_threshold_new_credit" qtlid="357538">Po patvirtinimo limitas bus:</translation>
+   <translation id="telephony_group_billing_credit_threshold_without_tax" qtlid="101397">be PVM</translation>
+   <translation id="telephony_group_billing_credit_threshold_contracts_subtitle" qtlid="357551">Sąskaitų patvirtinimas</translation>
+   <translation id="telephony_group_billing_credit_threshold_contracts" qtlid="357564">Norėdami patvirtinti garantinį užstatą turite sutikti su OVH sutartimis.</translation>
+   <translation id="telephony_group_billing_credit_threshold_submit" qtlid="37875">Keisti</translation>
+   <translation id="telephony_group_billing_credit_threshold_success" qtlid="357577">Limito keitimo prašymas sėkmingai užregistruotas!</translation>
+</translations>

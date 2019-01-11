@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_group_fax_management_terminate_success" qtlid="338521">La tua richiesta è stata presa in carico.</translation>
+   <translation id="telephony_group_fax_management_terminate_error" qtlid="463031">Oups ! Une erreur est survenue lors de la résiliation de votre fax.</translation>
+   <translation id="telephony_group_fax_management_terminate_loading" qtlid="463044">Demande de résiliation en cours</translation>
+   <translation id="telephony_group_fax_management_terminate_info" qtlid="26551">Informazioni</translation>
+   <translation id="telephony_group_fax_management_terminate_info1" qtlid="463057">Cette page vous permet de demander la résiliation de votre fax.</translation>
+   <translation id="telephony_group_fax_management_terminate_info2" qtlid="338352">Le richieste di disattivazione verranno gestite durante la prossima fatturazione. Fino a quella data, sarà possibile annullare la domanda.</translation>
+   <translation id="telephony_group_fax_management_terminate_reason" qtlid="392008">Per aiutarci a migliorare i nostri servizi, indica il motivo per cui hai richiesto la disattivazione:</translation>
+   <translation id="telephony_group_fax_management_terminate_reason_choose" qtlid="463070">Choisissez une raison</translation>
+   <translation id="telephony_group_fax_management_terminate_reason_label_addresseMove" qtlid="86745">Trasferimento</translation>
+   <translation id="telephony_group_fax_management_terminate_reason_label_billingDifficulties" qtlid="338469">Fatturazione non adatta</translation>
+   <translation id="telephony_group_fax_management_terminate_reason_label_cessationOfActivity" qtlid="313377">Cessata attività</translation>
+   <translation id="telephony_group_fax_management_terminate_reason_label_missingOptions" qtlid="338482">Funzionalità non sufficienti</translation>
+   <translation id="telephony_group_fax_management_terminate_reason_label_other" qtlid="28603">Altri</translation>
+   <translation id="telephony_group_fax_management_terminate_reason_label_plugAndPhoneDifficulties" qtlid="338495">Problemi associati al materiale</translation>
+   <translation id="telephony_group_fax_management_terminate_reason_label_technicalDifficulties" qtlid="313429">Problemi tecnici</translation>
+   <translation id="telephony_group_fax_management_terminate_reason_label_moveToCompetitor" qtlid="338508">Passaggio a un altro fornitore</translation>
+   <translation id="telephony_group_fax_management_terminate_details" qtlid="338443">Specifica</translation>
+   <translation id="telephony_group_fax_management_terminate_button" qtlid="48646">Disattiva</translation>
+   <translation id="telephony_group_fax_management_terminate_cancel_doing" qtlid="463083">Annulation de la résiliation en cours</translation>
+<!-- CANCEL -->
+   <translation id="telephony_group_fax_management_terminate_cancel" qtlid="285350">Annulla chiusura </translation>
+   <translation id="telephony_group_fax_management_terminate_cancel_success" qtlid="463096">L'annulation de la résiliation de votre fax a été effectuée avec succès.</translation>
+   <translation id="telephony_group_fax_management_terminate_cancel_error" qtlid="463109">Oups ! Une erreur est survenue lors de l'annulation de la résiliation de votre fax.</translation>
+   <translation id="telephony_group_fax_management_terminate_cancel_doing" qtlid="463122">Une demande de résiliation pour le fax <strong>{{ serviceName }}</strong> est en cours et sera effective le <strong>{{ date }}</strong>.</translation>
+   <translation id="telephony_group_fax_management_terminate_cancel_explain" qtlid="463135">Vous pouvez annuler la demande jusqu'à cette date.</translation>
+   <translation id="telephony_group_fax_management_terminate_cancel_button" qtlid="285350">Annulla chiusura </translation>
+   <translation id="telephony_group_fax_management_terminate_cancel_loading" qtlid="463083">Annulation de la résiliation en cours</translation>
+
+   <translation id="telephony_group_fax_management_terminate_bulk_all_success" qtlid="463148">La demande de résiliation a bien été appliquée aux services sélectionnés</translation>
+   <translation id="telephony_group_fax_management_terminate_bulk_some_success" qtlid="463161">La demande de résiliation a bien été appliquée à {{ count}} des services sélectionnés</translation>
+   <translation id="telephony_group_fax_management_terminate_bulk_error" qtlid="463174">La demande de résiliation n'a pas pu être appliquée aux services suivants :</translation>
+   <translation id="telephony_group_fax_management_terminate_bulk_on_error" qtlid="463187">Oops ! Une erreur est survenue lors de la demande de résiliation</translation>
+</translations>

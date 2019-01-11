@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_alias_configuration_tones_old_pabx_sub_title" qtlid="358344">Gestion des musiques et sonneries</translation>
+
+   <translation id="telephony_alias_configuration_tones_old_pabx_info" qtlid="26551">Informações</translation>
+   <translation id="telephony_alias_configuration_tones_old_pabx_info_1" qtlid="461497">Cette page vous permet de définir des musiques et sonneries pour votre numéro.</translation>
+   <translation id="telephony_alias_configuration_tones_old_pabx_info_2" qtlid="461510">Deux personnalisations s'offrent à vous :</translation>
+   <translation id="telephony_alias_configuration_tones_old_pabx_info_3" qtlid="461523">Trois personnalisations s'offrent à vous :</translation>
+
+   <translation id="telephony_alias_configuration_tones_old_pabx_ring_back" qtlid="358409">Sonnerie de pré-décroché</translation>
+   <translation id="telephony_alias_configuration_tones_old_pabx_ring_back_custom" qtlid="461536">Sonnerie de pré-décroché personnalisée</translation>
+   <translation id="telephony_alias_configuration_tones_old_pabx_ring_back_info" qtlid="358370"><strong>La sonnerie de pré-décroché</strong> : remplace la tonalité par défaut de pré-décroché.</translation>
+   <translation id="telephony_alias_configuration_tones_old_pabx_ring_back_info_sub" qtlid="461549">La sonnerie de pré-décroché sera jouée si au moins un membre du groupe est disponible. Sinon, l'appelant est dirigé vers la musique d'attente.</translation>
+
+   <translation id="telephony_alias_configuration_tones_old_pabx_on_hold" qtlid="358422">Musique d'attente</translation>
+   <translation id="telephony_alias_configuration_tones_old_pabx_on_hold_custom" qtlid="461562">Musique d'attente personnalisée</translation>
+   <translation id="telephony_alias_configuration_tones_old_pabx_on_hold_info" qtlid="461575"><strong>La musique d'attente</strong> : musique diffusée lorsque l'appelant est en file d'attente.</translation>
+   <translation id="telephony_alias_configuration_tones_old_pabx_on_hold_info_sub" qtlid="461588">La musique d'attente sera jouée si tous les membres du groupe sont occupés.</translation>
+
+   <translation id="telephony_alias_configuration_tones_old_pabx_end_call" qtlid="392892">Annonce sur fermeture</translation>
+   <translation id="telephony_alias_configuration_tones_old_pabx_end_call_custom" qtlid="461601">Annonce sur fermeture personnalisée</translation>
+   <translation id="telephony_alias_configuration_tones_old_pabx_end_call_info" qtlid="461614"><strong>L'annonce sur fermeture</strong> : annonce diffusée lors de la fin d'appel.</translation>
+   <translation id="telephony_alias_configuration_tones_old_pabx_end_call_info_sub" qtlid="461627">L'annonce sera diffusée si aucun membre du groupe n'est activé.</translation>
+
+   <translation id="telephony_alias_configuration_tones_old_pabx_manage" qtlid="358344">Gestion des musiques et sonneries</translation>
+   <translation id="telephony_alias_configuration_tones_old_pabx_type_none" qtlid="30646">Nenhum</translation>
+   <translation id="telephony_alias_configuration_tones_old_pabx_type_custom_sound" qtlid="358448">Personnalisée</translation>
+   <translation id="telephony_alias_configuration_tones_old_pabx_type_predefined_1" qtlid="358461">Prédéfinie 1</translation>
+   <translation id="telephony_alias_configuration_tones_old_pabx_type_predefined_2" qtlid="358474">Prédéfinie 2</translation>
+
+   <translation id="telephony_alias_configuration_tones_old_pabx_type_custom_sound_add_file" qtlid="392918">Ajouter un fichier</translation>
+   <translation id="telephony_alias_configuration_tones_old_pabx_type_custom_sound_file_explain" qtlid="461640">Taille max. : 10 Mo, formats principaux autorisés : wav, mp3, mp4, ogg et wma.</translation>
+   <translation id="telephony_alias_configuration_tones_old_pabx_type_custom_sound_bad_format" qtlid="461653">Le format de fichier est invalide (formats autorisés : wav, mp3, mp4, ogg et wma).</translation>
+   <translation id="telephony_alias_configuration_tones_old_pabx_type_custom_sound_bad_size" qtlid="461666">Le fichier est trop volumineux (taille max. : 10 Mo).</translation>
+
+   <translation id="telephony_alias_configuration_tones_old_pabx_save_tones" qtlid="249107">Aplicar alterações</translation>
+
+   <translation id="telephony_alias_configuration_tones_old_pabx_load_error" qtlid="461679">Oups ! Une erreur est survenue lors du chargements de vos musiques.</translation>
+   <translation id="telephony_alias_configuration_tones_old_pabx_save_success" qtlid="461692">Les modifications apportées à vos musiques ont été appliquées avec succès.</translation>
+   <translation id="telephony_alias_configuration_tones_old_pabx_save_error" qtlid="461705">Oups ! Une erreur est survenue lors de la modification de vos musiques.</translation>
+</translations>

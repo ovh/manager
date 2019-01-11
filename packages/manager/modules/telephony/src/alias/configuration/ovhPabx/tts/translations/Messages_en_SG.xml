@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_alias_ovh_pabx_tts_title" qtlid="462901">Gestion des TTS (Text To Speech)</translation>
+   <translation id="telephony_alias_ovh_pabx_tts_add" qtlid="462914">Ajouter un TTS</translation>
+   <translation id="telephony_alias_ovh_pabx_tts_list_title" qtlid="462927">Liste des TTS</translation>
+   <translation id="telephony_alias_ovh_pabx_tts_list_delete_error" qtlid="462940">Oups ! Une erreur est survenue lors de la suppression du TTS.</translation>
+</translations>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_order_geographical_title_country" qtlid="333373">Commander un numéro géographique</translation>
+   <translation id="telephony_order_geographical_title" qtlid="358110">Commander un numéro géographique</translation>
+   <translation id="telephony_order_geographical_submit_title" qtlid="347119">Commander un numéro géographique</translation>
+   <translation id="telephony_order_geographical_back_link" qtlid="333386">Retour au choix des types de numéros</translation>
+   <translation id="telephony_order_geographical_amount_title" qtlid="333412">Nombre de numéros&#160;:</translation>
+   <translation id="telephony_order_geographical_zone_title" qtlid="333425">Zone géographique&#160;:</translation>
+   <translation id="telephony_order_geographical_zone_error" qtlid="333438">La zone géographique est incorrecte.</translation>
+   <translation id="telephony_order_geographical_specific_title" qtlid="333451">Choix du numéro</translation>
+   <translation id="telephony_order_geographical_retractation_title" qtlid="319973">Herroepingsrecht</translation>
+   <translation id="telephony_order_geographical_address_title" qtlid="333464">Coordonnées du titulaire du numéro</translation>
+   <translation id="telephony_order_geographical_submit_title" qtlid="347119">Commander un numéro géographique</translation>
+   <translation id="telephony_order_geographical_zone_tip" qtlid="333477">Ville ou code postal</translation>
+   <translation id="telephony_order_geographical_numbers_error" qtlid="333490">Impossible de charger la liste des présélections de numéros.</translation>
+   <translation id="telephony_order_geographical_order_error" qtlid="333347">La commande de numéro(s) géographique(s) a échoué. Veuillez réessayer ultérieurement.</translation>
+   <translation id="telephony_order_geographical_order_error_city" qtlid="333503">{{city}} n'appartient pas à la zone ({{zone}})</translation>
+   <translation id="telephony_order_geographical_order_success" qtlid="333516">Numéro(s) géographique(s) commandé(s). Veuillez accepter les conditions générales de vente et régler votre commande.</translation>
+</translations>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_order_back_link" qtlid="347067">Grįžti prie numerių užsakymo</translation>
+   <translation id="telephony_order_title" qtlid="333529">Užsakyti numerį</translation>
+   <translation id="telephony_order_choice_title" qtlid="333542">Numerių tipai</translation>
+   <translation id="telephony_order_will_cost" qtlid="333555">Nuo:</translation>
+   <translation id="telephony_order_per_period" qtlid="333568">/&#160;mėn.</translation>
+   <translation id="telephony_order_with_tax" qtlid="333581">(viso {{ttc}} su PVM)</translation>
+   <translation id="telephony_order_without_tax" qtlid="333594">{{ht}}&#160;be PVM</translation>
+   <translation id="telephony_order_back_link" qtlid="333386">Grįžti prie numerių tipo pasirinkimo</translation>
+
+   <translation id="telephony_order_geographical_title" qtlid="333607">Geografiniai numeriai</translation>
+   <translation id="telephony_order_geographical_tip" qtlid="333620">Užsakyti geografinius numerius</translation>
+   <translation id="telephony_order_geographical_description" qtlid="333633">Susiekite savo veiklą su fiksuotu numeriu</translation>
+   <translation id="telephony_order_nogeographical_title" qtlid="333646">Negeografiniai numeriai</translation>
+   <translation id="telephony_order_nogeographical_tip" qtlid="333659">Užsakyti negeografinius numerius</translation>
+   <translation id="telephony_order_nogeographical_description" qtlid="333633">Susiekite savo veiklą su fiksuotu numeriu</translation>
+   <translation id="telephony_order_special_title" qtlid="386860">Papildomai apmokestinami numeriai</translation>
+   <translation id="telephony_order_special_tip" qtlid="333685">Užsakyti padidinto tarifo numerį</translation>
+   <translation id="telephony_order_special_description" qtlid="333698">Būkite pasiekiami per specialaus tarifo numerį.</translation>
+   <translation id="telephony_order_international_title" qtlid="333711">Tarptautiniai numeriai</translation>
+   <translation id="telephony_order_international_tip" qtlid="333724">Užsakyti tarptautinį numerį</translation>
+   <translation id="telephony_order_international_description" qtlid="333737">Suteikite klientams iš užsienio tarptautinį numerį</translation>
+
+   <translation id="telephony_order_geographical_count_plurial" qtlid="333750">{{value}} numeriai(-ių)</translation>
+   <translation id="telephony_order_geographical_count_singular" qtlid="333763">{{value}} numeris</translation>
+
+   <translation id="telephony_order_address_zipcode" qtlid="30346">Pašto kodas</translation>
+   <translation id="telephony_order_address_city" qtlid="33310">Miestas</translation>
+   <translation id="telephony_order_address_street_number" qtlid="30778">Numeris</translation>
+   <translation id="telephony_order_address_street_name" qtlid="152518">Gatvė</translation>
+
+   <translation id="telephony_order_confirm" qtlid="333776">Užsakymas ({{total}} ne PVM)</translation>
+
+   <translation id="telephony_order_identity_first_name" qtlid="23323">Vardas</translation>
+   <translation id="telephony_order_identity_name" qtlid="3818">Pavadinimas</translation>
+   <translation id="telephony_order_identity_email" qtlid="33598">El. paštas</translation>
+   <translation id="telephony_order_identity_phone" qtlid="34174">Telefono numeris</translation>
+
+   <translation id="telephony_order_identity_mendatory" qtlid="360957">Žvaigždute pažymėti laukai yra privalomi.</translation>
+
+   <translation id="telephony_order_identity_organisation" qtlid="49022">Entreprise</translation>
+   <translation id="telephony_order_identity_ape" qtlid="333789">APE kodas</translation>
+   <translation id="telephony_order_identity_siret" qtlid="333802">Siret</translation>
+   <translation id="telephony_order_identity_nomination" qtlid="307709">Juridinis pavadinimas</translation>
+
+   <translation id="telephony_order_legal" qtlid="333815">Užsakymo patvirtinimas</translation>
+   <translation id="telephony_order_validate_order_tip" qtlid="358279">Užsakymas</translation>
+   <translation id="telephony_order_validate_order" qtlid="358305">Atidaryti užsakymą</translation>
+
+   <translation id="telephony_order_coordinate_name_label" qtlid="333854">Tapatybė:</translation>
+   <translation id="telephony_order_coordinate_address_label" qtlid="333867">Adresas:</translation>
+   <translation id="telephony_order_coordinate_universalDirectory_tip" qtlid="333880">Pažymėkite, jeigu norite būti publikuojami kataloge.</translation>
+   <translation id="telephony_order_coordinate_universalDirectory" qtlid="333893">Skelbti duomenis kataloge.</translation>
+   <translation id="telephony_order_coordinate_legalform_individual" qtlid="33850">Privatus asmuo</translation>
+   <translation id="telephony_order_coordinate_legalform_company" qtlid="49022">Entreprise</translation>
+
+   <translation id="telephony_order_number_type_common_label" qtlid="333906">Standartinis numeris</translation>
+   <translation id="telephony_order_number_type_premium_label" qtlid="333919">Lengvai įsimenamas numeris</translation>
+
+   <translation id="telephony_order_retractation_retract_true" qtlid="360983">Norite išsaugoti atsisakymo teisę ir sutinkate, kad atsisakymo teisė galios ribotą laiką.<strong> Ši teisė galios 14 dienų</strong>.</translation>
+   <translation id="telephony_order_retractation_retract_false" qtlid="333945">Norite <strong>neatidėlioto vykdymo</strong> ir sutinkate, kad nebus taikoma teisė atsisakyti paslaugos, kaip tai numatyta vartotojų kodekso 121-20-2 straipsnyje.</translation>
+
+   <translation id="telephony_order_amount_title" qtlid="333412">Numerių kiekis:</translation>
+   <translation id="telephony_order_zone_title" qtlid="333425">Geografinė zona:</translation>
+   <translation id="telephony_order_country_title" qtlid="333958">Šalis:</translation>
+   <translation id="telephony_order_zone_tip" qtlid="333477">Šalis arba pašto kodas</translation>
+   <translation id="telephony_order_zone_error" qtlid="358318">Įvedėte neteisingą zoną</translation>
+
+   <translation id="telephony_order_specific_title" qtlid="333451">Numerio pasirinkimas</translation>
+   <translation id="telephony_order_retractation_title" qtlid="319973">Teisė atsisakyti</translation>
+   <translation id="telephony_order_address_title" qtlid="333464">Numerio savininko duomenys</translation>
+   <translation id="telephony_order_order_error_city" qtlid="333503">{{city}} nėra zonoje ({{zone}})</translation>
+   <translation id="telephony_order_order_error_available" qtlid="347080">Užsakytas numeris nėra galimas. Prašome pasirinkti kitą.</translation>
+
+   <translation id="telephony_order_specific_numbers_error" qtlid="333490">Negalima įkrauti iš anksto pasirinktų numerių sąrašo.</translation>
+   <translation id="telephony_order_prices_error" qtlid="333984">Negalima įkrauti kainų.</translation>
+</translations>

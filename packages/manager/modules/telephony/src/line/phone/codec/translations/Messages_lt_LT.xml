@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_line_phone_codec_title" qtlid="347145">Linijos kodekai</translation>
+
+   <translation id="telephony_line_phone_codec_info1" qtlid="347158">Optimizuokite komunikacijos kokybę nustatydami linijoje naudojamą kodeką.</translation>
+   <translation id="telephony_line_phone_codec_info2" qtlid="347171">Naudojami kodekai turi įtakos duomenų srautui, įsitikinkite, kad naudojamas srautas bus pakankamas pasirinktam kodekui.</translation>
+   <translation id="telephony_line_phone_codec_info3" qtlid="347184">Norėdami sužinoti savo pralaidumą, eikite adresu <a href="http://voip.ovh.fr:51080" target="_blank">http://voip.ovh.fr:51080</a>.</translation>
+   <translation id="telephony_line_phone_codec_info4" qtlid="347197">Atkreipkite dėmesį, kad tarp OVH linijų bus naudojamais g722 kodekas.</translation>
+
+   <translation id="telephony_line_phone_codec_load_error" qtlid="347210">Klaida įkeliant liniją.</translation>
+
+   <translation id="telephony_line_phone_codec_current" qtlid="347223">Dabar naudojami kodekai:</translation>
+   <translation id="telephony_line_phone_codec_no_selected" qtlid="347236">Jokių nustatytų kodekų</translation>
+   <translation id="telephony_line_phone_codec_edit" qtlid="347249">Keisti kodekus</translation>
+
+   <translation id="telephony_line_phone_codec_edit_title" qtlid="347249">Keisti kodekus</translation>
+   <translation id="telephony_line_phone_codec_edit_codec_priority" qtlid="347262">Pasirinkite kodekų pirmumą:</translation>
+   <translation id="telephony_line_phone_codec_edit_codec_saving" qtlid="347275">Nauji kodekai išsaugomi.</translation>
+   <translation id="telephony_line_phone_codec_edit_codec_save_success" qtlid="347288">Nauji kodekai išsaugoti.</translation>
+   <translation id="telephony_line_phone_codec_edit_codec_save_error" qtlid="347301">Klaida išsaugant kodekus.</translation>
+   <translation id="telephony_line_phone_codec_edit_codec_load_error" qtlid="347314">Klaida įkeliant kodekus</translation>
+
+   <translation id="telephony_line_phone_codec_edit_codec_automatic" qtlid="391150">Automatiniai kodekai:</translation>
+   <translation id="telephony_line_phone_codec_edit_codec_automatic_yes" qtlid="34776">Taip</translation>
+   <translation id="telephony_line_phone_codec_edit_codec_automatic_no" qtlid="34788">Ne</translation>
+   <translation id="telephony_line_phone_codec_edit_codec_auto_choice" qtlid="391163">Automatiniai kodekai <em>(ši funkcija yra bandoma, ji leidžia geriau suderinti kodekus)</em>.</translation>
+
+   <translation id="telephony_line_phone_codec_bulk_all_success" qtlid="459274">La modification des codecs a bien été appliquée aux services sélectionnés.</translation>
+   <translation id="telephony_line_phone_codec_bulk_some_success" qtlid="459287">La modification des codecs a bien été appliquée à {{ count }} des services sélectionnés.</translation>
+   <translation id="telephony_line_phone_codec_bulk_error" qtlid="459300">La modification des codecs n'a pu être appliquée au(x) service(s) suivant(s) :</translation>
+   <translation id="telephony_line_phone_codec_bulk_on_error" qtlid="459313">Oups ! Une erreur est survenue lors de la modification des codecs.</translation>
+</translations>

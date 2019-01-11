@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_guides_empty" qtlid="395557">Aucun guide n’est disponible pour la langue sélectionnée.</translation>
+   <translation id="telephony_guides_section_line" qtlid="23143">Lignes téléphoniques</translation>
+   <translation id="telephony_guides_activate_services" qtlid="516692">Activer ou désactiver des services depuis le téléphone</translation>
+   <translation id="telephony_guides_configure_call_forward" qtlid="516705">Filtrer et renvoyer ses appels</translation>
+   <translation id="telephony_guides_configure_programmable_keys" qtlid="516718">Configurer les touches programmables de votre téléphone OVH</translation>
+   <translation id="telephony_guides_configure_exceptionnal_closures" qtlid="516731">Configurer des plages horaires et des fermetures exceptionnelles sur une ligne</translation>
+   <translation id="telephony_guides_configure_answering_machine" qtlid="516744">Configurer et consulter le répondeur de sa ligne</translation>
+   <translation id="telephony_guides_configure_click2call" qtlid="516757">Configurer et utiliser le Click2Call sur une ligne SIP</translation>
+   <translation id="telephony_guides_manage_abreviated_numbers" qtlid="516770">Gérer des numéros abrégés sur une ligne SIP</translation>
+   <translation id="telephony_guides_manage_simultaneous_calling" qtlid="516783">Gérer et utiliser les appels simultanés</translation>
+   <translation id="telephony_guides_manage_number_presentation" qtlid="516796">Configurer la présentation de son numéro</translation>
+   <translation id="telephony_guides_import_phonebook" qtlid="516809">Gérer un carnet de contacts sur une ligne SIP</translation>
+   <translation id="telephony_guides_intercom_mode" qtlid="516822">Gérer le mode intercom de votre ligne</translation>
+   <translation id="telephony_guides_update_sounds" qtlid="516835">Modifier les musiques et sonneries de votre ligne</translation>
+   <translation id="telephony_guides_restrict_sip_line" qtlid="516848">Restreindre sa ligne SIP OVH par IP</translation>
+
+   <translation id="telephony_guides_section_phone_troubleshooting" qtlid="516861">Diagnostic et dépannage</translation>
+   <translation id="telephony_guides_phone_troubleshooting_pap" qtlid="516874">Dépanner son téléphone Plug and Phone</translation>
+</translations>

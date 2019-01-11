@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_trunk_external_number_info1" qtlid="457870">Votre offre SIP trunk vous permet de présenter des numéros externes au réseau OVH sur votre ligne.</translation>
+   <translation id="telephony_trunk_external_number_info2" qtlid="457883">Votre nombre de lignes simultanées vous permet de configurer jusqu'à {{ count }} numéros externes.</translation>
+   <translation id="telephony_trunk_external_number_info2_single" qtlid="457896">Votre nombre de lignes simultanées vous permet de configurer jusqu'à 1 numéro externe.</translation>
+   <translation id="telephony_trunk_external_number_info3" qtlid="457909">Une validation automatique par téléphone aura lieu à chaque ajout de numéro externe.</translation>
+   <translation id="telephony_trunk_external_number_info4" qtlid="457922">Veuillez également noter que les numéros de portables ne sont pas autorisés pour cette fonctionnalité.</translation>
+
+   <translation id="telephony_trunk_external_number_presented" qtlid="457935">Numéros présentés</translation>
+   <translation id="telephony_trunk_external_number_presented_list_no_number" qtlid="457948">Aucun numéro externe configuré</translation>
+   <translation id="telephony_trunk_external_number_presented_list_number_status" qtlid="26443">Estado</translation>
+   <translation id="telephony_trunk_external_number_presented_list_number_status_waiting_validation" qtlid="90133">Validação em curso</translation>
+   <translation id="telephony_trunk_external_number_presented_list_number_status_enabled" qtlid="257114">Validado</translation>
+   <translation id="telephony_trunk_external_number_presented_list_number_status_refused" qtlid="457961">Numéro refusé</translation>
+   <translation id="telephony_trunk_external_number_presented_list_number_status_to_delete" qtlid="457974">Numéro à supprimer</translation>
+   <translation id="telephony_trunk_external_number_presented_list_number_delete" qtlid="457987">Supprimer le numéro externe de la liste</translation>
+
+   <translation id="telephony_trunk_external_number_add" qtlid="458000">Ajouter un numéro externe</translation>
+   <translation id="telephony_trunk_external_number_add_number" qtlid="93271">Número externo</translation>
+   <translation id="telephony_trunk_external_number_add_auto_validate" qtlid="458013">Auto-validation</translation>
+   <translation id="telephony_trunk_external_number_add_auto_validate_explain" qtlid="458026">L'auto-validation vous est proposée car vous êtes partenaire OVH. En cochant cette option, vous vous engagez à être titulaire du numéro externe.</translation>
+   <translation id="telephony_trunk_external_number_add_number_required" qtlid="458039">Veuillez spécifier un numéro externe.</translation>
+   <translation id="telephony_trunk_external_number_add_number_pattern" qtlid="458052">Veuillez spécifier un numéro externe au format international (ex : +33123456789).</translation>
+   <translation id="telephony_trunk_external_number_add_number_prefix" qtlid="458065">Le pays du numéro externe doit être le même que le numéro de la ligne trunk ({{ prefix }}).</translation>
+
+   <translation id="telephony_trunk_external_number_add_validation_success1" qtlid="458078">Une validation du numéro va avoir lieu dans quelques instants.</translation>
+   <translation id="telephony_trunk_external_number_add_validation_success2" qtlid="458091">Lors de la validation, veuillez entrer le code suivant : <strong>{{ validationCode }}</strong>.</translation>
+   <translation id="telephony_trunk_external_number_add_validation_success_add_new_number" qtlid="458104">Ajouter un nouveau numéro</translation>
+
+   <translation id="telephony_trunk_external_number_load_error" qtlid="458117">Oups ! Une erreur est survenue lors du chargement de vos numéros externes.</translation>
+   <translation id="telephony_trunk_external_number_delete_success" qtlid="458130">Le numéro externe a été supprimé avec succès.</translation>
+   <translation id="telephony_trunk_external_number_add_error" qtlid="458143">Oups ! Une erreur est survenue lors de l'ajout du numéro externe.</translation>
+   <translation id="telephony_trunk_external_number_delete_error" qtlid="458156">Oups ! Une erreur est survenue lors de la suppression du numéro externe.</translation>
+</translations>

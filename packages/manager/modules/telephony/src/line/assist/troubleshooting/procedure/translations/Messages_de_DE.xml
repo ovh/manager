@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_line_assist_troubleshooting_procedure_title" qtlid="388212">Procédure de dépannage</translation>
+
+<!-- COMMON -->
+   <translation id="telephony_line_assist_troubleshooting_procedure_common_network_restrict" qtlid="388225">Si malgré ces premières vérifications vous ne pouvez toujours pas recevoir d'appels, il se peut qu'il y ait une restriction sur votre réseau.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_common_network_params" qtlid="388238">Vérifiez les paramètres de votre réseau :</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_common_network_check1" qtlid="388251">Vous possédez une Box d'opérateur ?</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_common_network_check1_step1" qtlid="388264">Passez le niveau de votre pare-feu (voir avec votre Fournisseur d'Accès Internet) sur faible.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_common_network_check2" qtlid="388277">Vous avez votre propre routeur et/ou firewall ?</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_common_network_check2_step1" qtlid="388290">Désactivez le SIP ALG / SIP Passthrough.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_common_network_check2_step2" qtlid="388303">Autorisez le trafic vers le réseau 91.121.128.0/23.</translation>
+
+<!-- SIEMES -->
+<!-- CALLOUT -->
+   <translation id="telephony_line_assist_troubleshooting_procedure_siemens_callout_step1" qtlid="388095">Sur le combiné appuyez sur le bouton central noir.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_siemens_callout_step2" qtlid="388108">Allez dans <strong>Réglages</strong>.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_siemens_callout_step3" qtlid="388121">Allez dans <strong>Téléphonie</strong>.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_siemens_callout_step4" qtlid="388316">Allez dans <strong>Envoi Connexion</strong>.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_siemens_callout_step5" qtlid="388329">Choisissez <strong>INT1</strong> (Ou le nom de votre combiné).</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_siemens_callout_step6" qtlid="388342">Dans <strong>Connexion pour appels sortants</strong> choisissez <strong>IP1</strong> ou <strong>SIP OVH</strong>.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_siemens_callout_step7" qtlid="388355">Cliquez sur <strong>Sauver</strong>.</translation>
+<!-- CALLIN -->
+   <translation id="telephony_line_assist_troubleshooting_procedure_siemens_callin_main_explain" qtlid="388368">Généralement ce comportement est dû à un pare-feu trop restrictif sur votre routeur.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_siemens_callin_follow" qtlid="388381">Dans un premier temps suivez ces étapes afin de modifier la configuration de votre téléphone :</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_siemens_callin_step1" qtlid="388394">Rendez-vous sur l'adresse suivante : <a target="_blank" href="http://gigaset-config.com">http://gigaset-config.com</a>.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_siemens_callin_step2" qtlid="388407">La page vous demande le code PIN du téléphone, qui est <strong>0000 par défaut</strong>.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_siemens_callin_step3" qtlid="388420">Cliquez sur <strong>Paramètres</strong>.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_siemens_callin_step4" qtlid="388433">Cliquez sur <strong>Téléphonie</strong>.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_siemens_callin_step5" qtlid="388446">Dans la partie <strong>Connexion IP</strong> cliquez sur Modifier à la line <strong>IP1</strong></translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_siemens_callin_step6" qtlid="388459">Cliquez sur <strong>Afficher les paramètres avancés</strong>.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_siemens_callin_step7" qtlid="388472">Sur la ligne <strong>Mode Outbound Proxy</strong>, cliquez sur <strong>Toujours</strong>.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_siemens_callin_step8" qtlid="388485">Dans le champ <strong>Outbound Proxy</strong> entrez <stong>91.121.129.159</stong>.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_siemens_callin_step9" qtlid="388498">Dans le champ <strong>Port</strong> entrez <strong>5962</strong>.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_siemens_callin_step10" qtlid="388511">Cliquez sur <strong>Définir et redémarrer le combiné</strong>.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_siemens_callin_check_params" qtlid="388524">Si la problématique est persistante nous vous invitons à vérifier ces paramètres :</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_siemens_callin_check_box" qtlid="388537">Vous possédez une Box d'opérateur ?</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_siemens_callin_check_box_step" qtlid="388264">Passez le niveau de votre pare-feu (voir avec votre Fournisseur d'Accès Internet) sur faible.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_siemens_callin_check_firewall" qtlid="388550">Vous avez votre propre routeur et/ou firewall ?</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_siemens_callin_check_firewall_step1" qtlid="388290">Désactivez le SIP ALG / SIP Passthrough.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_siemens_callin_check_firewall_step2" qtlid="388303">Autorisez le trafic vers le réseau 91.121.128.0/23.</translation>
+<!-- BLUEBUTTON -->
+   <translation id="telephony_line_assist_troubleshooting_procedure_siemens_bluebutton_main_explain" qtlid="388563">Ce dysfonctionnement peut arriver dans deux situations :</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_siemens_bluebutton_step1" qtlid="388576">Le câble Ethernet n'est pas branché correctement sur votre base ou sur votre switch / routeur. Vérifiez que le câble est bien branché sur votre switch / routeur et que sur la base Gigaset il soit branché sur le côté de la base. Si le défaut est persistant, testez un autre câble.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_siemens_bluebutton_step2" qtlid="388589">L'alimentation de la base ne se fait pas. Vérifiez que la prise au dos de la base est bien branchée ainsi que la prise électrique. Testez sur une autre prise électrique si le défaut est persistant.</translation>
+<!-- NOBASE -->
+   <translation id="telephony_line_assist_troubleshooting_procedure_siemens_nobase_main_explain" qtlid="388602">Ce message est affiché lorsque le combiné ne parvient pas à se connecter en DECT à votre base.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_siemens_nobase_causes" qtlid="388615">Plusieurs causes possibles :</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_siemens_nobase_cause1" qtlid="388628">La base n'est pas alimentée électriquement : vérifiez son branchement électrique.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_siemens_nobase_cause2" qtlid="388641">Vous possédez plusieurs bases DECT et celles-ci sont trop proches (Empilées, les unes derrières les autres) : espacez les bases pour qu'il n'y ai pas de perturbation du signal DECT.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_siemens_nobase_cause3" qtlid="388654">Vous êtes hors de portée de la base. Rapprochez-vous de celle-ci, si le combiné fonctionne il vous faudra prendre un Gigaset Repeater <a data-ui-sref="{{ sref }}">ici</a> ou replacer la base à un endroit plus optimum.</translation>
+<!-- REGISTER -->
+   <translation id="telephony_line_assist_troubleshooting_procedure_siemens_register_main_explain" qtlid="388667">Votre combiné ne parvient pas à enregistrer votre ligne sur notre infrastructure.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_siemens_register_check" qtlid="388680">Vérifiez dans l'ordre :</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_siemens_register_step1" qtlid="388693">Vérifiez que le câble Ethernet est bien branché sur le côté droit de votre base et sur votre switch / routeur. (Le bouton de la base doit être allumé en bleu) Vérifiez également que votre connexion internet est fonctionnelle.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_siemens_register_step2" qtlid="388706">Redémarrez la base électriquement (En débranchant l'alimentation de la base).</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_siemens_register_step3" qtlid="388719">Vérifiez que votre téléphone possède bien une adresse IP, pour ce faire appuyez une seconde sur le bouton bleu de la base. Le combiné va sonner et afficher à l'écran « IP : xxx.xxx.xxx.xxx. Votre IP doit être différente de 0.0.0.0.</translation>
+<!-- PHONEBOOK -->
+   <translation id="telephony_line_assist_troubleshooting_procedure_siemens_phonebook_get_ip" qtlid="388732">Récupération de l'adresse IP privée du téléphone :</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_siemens_phonebook_get_ip_step1" qtlid="388745">Appuyez une seconde sur le bouton <strong>Bleu</strong> de la base à configurer.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_siemens_phonebook_get_ip_step2" qtlid="388758">Votre combiné va sonner, et afficher l'adresse IP de la base. Par exemple : <strong>192.168.1.10</strong>.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_siemens_phonebook_get_ip_step3" qtlid="388771">Sur votre ordinateur (<strong>Sur le même réseau que votre base</strong>), entrez l'adresse IP notée sur le combiné dans la barre d'adresses de votre naviguateur sous la forme : <strong>http://IP_DU_TEL/</strong>.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_siemens_phonebook_step1" qtlid="388784">Après avoir entré l'adresse IP du téléphone dans votre navigateur, la page vous demande un code PIN. Par défaut celui-ci est <strong>0000</strong>.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_siemens_phonebook_step2" qtlid="388797">Maintenant que vous êtes connecté, modifiez l'adresse dans votre navigateur par <strong>http://IP_DU_TEL/settings_services_eeprom_provider.html</strong>.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_siemens_phonebook_step3" qtlid="388810">Vous êtes alors redirigé sur un formulaire de configuration.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_siemens_phonebook_step4" qtlid="388823">Cochez <strong>Yes</strong> pour l'option <strong>Enable EPROM Phonebook Provider</strong>.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_siemens_phonebook_step5" qtlid="388836">Entrez <strong>Entreprise</strong> dans la partie <strong>Provider name</strong></translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_siemens_phonebook_step6" qtlid="388849">Entrez <strong>Carnet d'entreprise</strong> dans la partie <strong>Directory name (Private)</strong>.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_siemens_phonebook_step7" qtlid="479941">Renseignez l'URL suivante dans <strong>Server URL : http://pb.voip.ovh.net/sm/{{serverUrl}}/pb.cgi</strong>.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_siemens_phonebook_step8" qtlid="388875">Entrez <strong>FR</strong> dans la partie <strong>Country code</strong>.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_siemens_phonebook_step9" qtlid="388888">Sélectionnez <strong>ROM DATA</strong> dans la partie <strong>Authentification mode</strong></translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_siemens_phonebook_step10" qtlid="388901">Parmi les options <strong>Capabilities</strong>, cochez :</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_siemens_phonebook_step10_choice1" qtlid="388914">Search people</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_siemens_phonebook_step10_choice2" qtlid="388927">Search business</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_siemens_phonebook_step10_choice3" qtlid="388940">Reverse search</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_siemens_phonebook_step10_choice4" qtlid="388953">Private network directory</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_siemens_phonebook_step10_choice5" qtlid="388966">Autolookup</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_siemens_phonebook_step10_choice6" qtlid="388979">Nickname for Private network directory</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_siemens_phonebook_step10_choice7" qtlid="388992">Send MAC address</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_siemens_phonebook_step11" qtlid="389005">Cliquez sur <strong>Définir</strong>.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_siemens_phonebook_step12" qtlid="389018">Rendez-vous à la page <strong>http://IP_DU_TEL/settings_services_online_directory.html</strong>.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_siemens_phonebook_step13" qtlid="389031">Cochez "<strong>Entreprise</strong>".</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_siemens_phonebook_step14" qtlid="389044">Sélectionnez "<strong>Entreprise</strong>".</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_siemens_phonebook_step15" qtlid="389005">Cliquez sur <strong>Définir</strong>.</translation>
+
+<!-- CISCO -->
+<!-- MUTE -->
+   <translation id="telephony_line_assist_troubleshooting_procedure_cisco_mute_main_explain" qtlid="389057">Lorsque la touche muet est rouge c'est que votre téléphone ne détecte pas de connexion réseau.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_cisco_mute_step1" qtlid="389070">Vérifiez le branchement de votre câble sur le téléphone.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_cisco_mute_step2" qtlid="389083">Vérifiez le branchement de votre câble réseau sur votre switch ou votre routeur.</translation>
+<!-- NETWORK -->
+   <translation id="telephony_line_assist_troubleshooting_procedure_cisco_network_main_explain" qtlid="389096">Généralement cette problématique est présente lorsque le téléphone ne se voit pas attribuer d'adresse IP par votre serveur DHCP.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_cisco_network_checks" qtlid="389109">Vérifiez le bon raccordement de votre poste à votre réseau et vérifiez la configuration de votre routeur :</translation>
+<!-- LED ORANGE -->
+   <translation id="telephony_line_assist_troubleshooting_procedure_cisco_led_orange_main_explain" qtlid="389122">Les touches sont oranges lorsque le téléphone est configuré mais que la ligne ne parvient pas à s'enregistrer.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_cisco_led_orange_check1" qtlid="389135">Vérifiez dans un premier temps que votre connexion Internet est fonctionnelle. Redémarrez votre poste électriquement.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_cisco_led_orange_check2" qtlid="389148">Si après un redémarrage votre ligne fonctionne quelques minutes, vérifiez les paramètres de votre réseau :</translation>
+<!-- CALLIN -->
+   <translation id="telephony_line_assist_troubleshooting_procedure_cisco_callin_main_explain" qtlid="389161">Généralement sur les postes Cisco SPA lorsque votre téléphone ne vous permet pas de recevoir d'appels et que les touches de fonctions sont bien allumées en vert, le mode « Ne Pas Déranger » (Ou « Do Not Disturb ») est activé.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_cisco_callin_check_1" qtlid="389174">Pour vérifier que ce mode est activé, sur l'écran du téléphone vous devriez avoir la touche « NPD » ou « DND » affichée avec un « - » devant.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_cisco_callin_step_1" qtlid="389187">Pour le désactiver il suffit d'appuyer sur la touche de fonction la plus à droite, sous l'écran.</translation>
+
+<!-- LINKSYS -->
+<!-- NOPOWER -->
+   <translation id="telephony_line_assist_troubleshooting_procedure_linksys_nopower_main_explain" qtlid="389200">Si le voyant Power n'est pas allumé, cela signifie que votre matériel n'est pas correctement alimenté.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_linksys_nopower_checks" qtlid="389213">L'origine de cette situation se situe :</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_linksys_nopower_check1" qtlid="389226">Soit dans le raccordement à la prise électrique.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_linksys_nopower_check1_step1" qtlid="389239">Vérifiez que l'adaptateur a le même comportement lorsqu'il est branché sur une autre prise murale.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_linksys_nopower_check2" qtlid="389252">Soit au niveau du chargeur de l'adaptateur.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_linksys_nopower_check2_step1" qtlid="389265">Testez le chargeur d'un adaptateur identique si vous en avez.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_linksys_nopower_check2_step2" qtlid="389278">Sinon, n'hésitez pas à tester votre adaptateur avec un chargeur identique : 5V - 2A.</translation>
+<!-- LINE1 OFF -->
+   <translation id="telephony_line_assist_troubleshooting_procedure_linksys_line1off_main_explain1" qtlid="389291">Le fait que le voyant « Line 1 » est éteint signifie que votre ligne OVH n'est pas enregistrée (authentifiée) dans l'adaptateur.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_linksys_line1off_main_explain2" qtlid="389304">Autrement dit, le boîtier ne communique pas avec le serveur de téléphonie : aucune chance que vous puissiez émettre ou recevoir un appel via votre ligne.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_linksys_line1off_step1" qtlid="389317">Nous vous invitons à vérifier que l'origine du comportement ne se situe pas sur votre réseau local.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_linksys_line1off_step2" qtlid="389330">Pour ce faire, branchez l'équipement directement derrière votre routeur ou sur un autre réseau.</translation>
+<!-- LINE1 ON BUT NO CALL -->
+   <translation id="telephony_line_assist_troubleshooting_procedure_linksys_line1onbutnocall_main_explain" qtlid="389343">Le fait que le voyant « Line 1 » est allumé en vert fixe signifie que votre ligne OVH est bien enregistrée (authentifiée) dans l'adaptateur.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_linksys_line1onbutnocall_step1" qtlid="389356">En raccordant un combiné sur « Phone 1 », vous devriez pouvoir émettre et recevoir des appels.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_linksys_line1onbutnocall_step2" qtlid="389369">Si ce n'est pas le cas, vérifiez qu'il n'y a pas de tonalité sur le port « Phone 2 » non plus.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_linksys_line1onbutnocall_step3" qtlid="389382">Le combiné employé peut également être à la source du problème rencontré.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_linksys_line1onbutnocall_step4" qtlid="389395">Pour écarter cette hypothèse, testez votre combiné sur un autre adaptateur ou testez un autre combiné sur l'adaptateur.</translation>
+<!-- REDLIGHT -->
+   <translation id="telephony_line_assist_troubleshooting_procedure_linksys_redlight_main_explain" qtlid="389408">L'équipement a détecté une anomalie logicielle ou matérielle.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_linksys_redlight_step1" qtlid="389421">Pour palier à ce problème, raccordez le boîtier en direct (en évitant les matériels intermédiaires tels que switchs et boîtiers CPL) sur votre routeur ou votre Box jusqu'à 24 h, le temps que l'adaptateur télécharge une nouvelle version du micro-logiciel.</translation>
+<!-- CHRISTMAS TREE -->
+   <translation id="telephony_line_assist_troubleshooting_procedure_linksys_christmastree_main_explain" qtlid="389434">L'équipement a détecté une mise à jour du micro-logiciel interne de l'équipement.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_linksys_christmastree_step1" qtlid="389447">Pour installer cette mise à jour et rendre votre équipement fonctionnel, raccordez le boîtier en direct (en évitant les matériels intermédiaires tels que switchs et boîtiers CPL) sur votre routeur ou votre Box jusqu'à 24 h, le temps que la mise à jour s'effectue.</translation>
+
+<!-- POLYCOM -->
+<!-- POWER -->
+   <translation id="telephony_line_assist_troubleshooting_procedure_polycom_step1" qtlid="389460">Vous utilisez l'alimentation externe et votre pieuvre ne s'allume pas.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_polycom_check1" qtlid="389473">Vérifiez que la prise électrique soit bien branchée.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_polycom_check2" qtlid="389486">Vérifiez que le câble Ethernet est correctement branché comme représenté sur ce schéma.</translation>
+
+<!-- GIGASET -->
+<!-- UPGRADE -->
+   <translation id="telephony_line_assist_troubleshooting_procedure_gigaset_upgrade_main_explain" qtlid="389499">Ce message s'affiche lorsque le téléphone rencontre une erreur de firmware ou s'il a été passé en mode « Recovery ».</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_gigaset_upgrade_step1" qtlid="389512">Pour restaurer votre téléphone suivez la procédure indiquée par Gigaset sur la page suivante : <a target="_blank" href="https://teamwork.gigaset.com/gigawiki/display/GPPPO/DExxx+-+Recovery+mode">https://teamwork.gigaset.com/gigawiki/display/GPPPO/DExxx+-+Recovery+mode</a>.</translation>
+<!-- CALLIN -->
+   <translation id="telephony_line_assist_troubleshooting_procedure_gigaset_callin_main_explain" qtlid="389525">Généralement, ce comportement est dû au mode « Ne pas déranger » qui est activé.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_gigaset_callin_step1" qtlid="389538">Pour le désactiver, appuyez simplement sur la touche</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_gigaset_callin_step2" qtlid="389551">Si les appels entrants ne fonctionnent toujours pas après cette vérification, il se peut qu'il y ai une restriction sur votre réseau.</translation>
+
+<!-- LG -->
+<!-- NO NETWORK -->
+   <translation id="telephony_line_assist_troubleshooting_procedure_lg_nonetwork_main_explain" qtlid="389564">Ce message s'affiche lorsque le téléphone n'est pas connecté au réseau.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_lg_nonetwork_check1" qtlid="389577">Si votre téléphone fonctionne correctement, mais que l'écran reste figé sur « Absence réseau », il suffit de vérifier que le câble Ethernet est bien branché sur le port 1 du téléphone.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_lg_nonetwork_step1" qtlid="389590">Reportez-vous au schéma suivant.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_lg_nonetwork_step2" qtlid="389603">Si le message est persistant malgré cette première vérification, assurez-vous que le câble Ethernet est bien branché sur votre switch ou votre routeur.</translation>
+<!-- CONNECTION -->
+   <translation id="telephony_line_assist_troubleshooting_procedure_lg_connection_main_explain" qtlid="389616">Si le téléphone vous affiche ce message, c'est qu'il ne parvient pas à récupérer sa configuration sur nos serveurs.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_lg_connection_check1" qtlid="389629">Vérifiez que votre accès Internet fonctionne et que votre téléphone est bien branché sur votre réseau local.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_lg_connection_check2" qtlid="389642">Si le problème persiste, vous pouvez également vérifier que le poste possède bien une adresse IP valide.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_lg_connection_check2_step1" qtlid="389655">Appuyez sur la touche « Paramètres », représentée par un engrenage.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_lg_connection_check2_step2" qtlid="389668">Appuyez sur la touche « 8 » pour accéder au menu « Informations ».</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_lg_connection_check2_step3" qtlid="389681">Vérifiez que l'adresse IP affichée est différente de <strong>127.0.0.1</strong>.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_lg_connection_check3" qtlid="389694">Si ce n'est le cas, vérifiez la configuration de votre réseau.</translation>
+<!-- FORBIDDEN -->
+   <translation id="telephony_line_assist_troubleshooting_procedure_lg_forbidden_main_explain1" qtlid="389707">Lorsque le bouton « Sens Interdit » est allumé en rouge sur le téléphone, cela signifie que le mode « Ne pas déranger » est activé.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_lg_forbidden_main_explain2" qtlid="389720">Ce mode permet de bloquer les appels entrants sur le téléphone et de diffuser le message suivant à votre correspondant « Votre correspondant ne souhaite pas être dérangé, merci de le rappeler ultérieurement ».</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_lg_forbidden_step1" qtlid="389733">Désactivez le renvoi d'appels en appuyant sur la touche « Sens interdit ».</translation>
+
+<!-- THOMSON -->
+<!-- NOIP -->
+   <translation id="telephony_line_assist_troubleshooting_procedure_thomson_noip_main_explain" qtlid="389746">Si votre téléphone affiche pas de connexion IP, ceci signifie qu'il n'est pas bien connecté au réseau.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_thomson_noip_check1" qtlid="389759">Consultez l'adresse IP de votre téléphone en vous rendant dans la partie configuration réseau : Admin → View parameters → Network configuration.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_thomson_noip_check2" qtlid="389772">Si l'adresse IP dans la partie <strong>IP address</strong> est « 0.0.0.0 », vérifiez la configuration de votre réseau et que le DHCP attribue bien une adresse à votre téléphone.</translation>
+<!-- LOCAL -->
+   <translation id="telephony_line_assist_troubleshooting_procedure_thomson_local_main_explain" qtlid="389785">Il s'agit d'un simple problème d'affichage de votre téléphone.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_thomson_local_step1" qtlid="389798">Pour résoudre ce problème d'affichage, laissez simplement un message sur votre répondeur.</translation>
+   <translation id="telephony_line_assist_troubleshooting_procedure_thomson_local_step2" qtlid="389811">Cela permettra au téléphone de récupérer un nouveau fichier de configuration.</translation>
+
+</translations>

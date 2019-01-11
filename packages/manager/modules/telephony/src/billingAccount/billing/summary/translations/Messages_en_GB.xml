@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_group_billing_summary_title" qtlid="334452">Consommation générale</translation>
+   <translation id="telephony_group_billing_summary_consumption_total_label" qtlid="32458">Total</translation>
+   <translation id="telephony_group_billing_summary_consumption_incoming_label" qtlid="386456">Entrants</translation>
+   <translation id="telephony_group_billing_summary_consumption_outgoing_label" qtlid="386469">Sortants</translation>
+   <translation id="telephony_group_billing_summary_consumption_transfer_label" qtlid="190329">Transferred</translation>
+   <translation id="telephony_group_billing_summary_consumption_summary_title" qtlid="386482">Résumé du groupe</translation>
+   <translation id="telephony_group_billing_summary_consumption_details_title" qtlid="456999">Détail des services (en nombre d'appels)</translation>
+   <translation id="telephony_group_billing_summary_consumption_service_label" qtlid="31042">Service</translation>
+   <translation id="telephony_group_billing_summary_consumptioninit_error" qtlid="386508">Erreur lors de la récupération de la consommation</translation>
+   <translation id="telephony_group_billing_summary_consumptioninit_no_results" qtlid="386521">Aucune consommation</translation>
+   <translation id="telephony_group_billing_summary_calls_number_single" qtlid="457012">{{ count }} appel</translation>
+   <translation id="telephony_group_billing_summary_calls_number" qtlid="457025">{{ count }} appels</translation>
+</translations>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_service_fax_campaigns_main_title" qtlid="357135">Campañas de fax</translation>
+   <translation id="telephony_service_fax_campaigns_title" qtlid="391228">Gestión de las campañas de fax</translation>
+   <translation id="telephony_service_fax_campaigns_add_title" qtlid="391241">Nueva campaña</translation>
+   <translation id="telephony_service_fax_campaigns_filter" qtlid="59207">Filtrar</translation>
+   <translation id="telephony_service_fax_campaigns_filter_remove" qtlid="218939">Eliminar el filtro</translation>
+   <translation id="telephony_service_fax_campaigns_list_title_name" qtlid="391254">Campaña</translation>
+   <translation id="telephony_service_fax_campaigns_list_title_status" qtlid="33790">Estado</translation>
+   <translation id="telephony_service_fax_campaigns_list_title_success" qtlid="26443">Estado</translation>
+   <translation id="telephony_service_fax_campaigns_list_title_success_info" qtlid="391267">Estado de importación de la lista de destinatarios.</translation>
+   <translation id="telephony_service_fax_campaigns_list_empty" qtlid="391280">No hay campañas.</translation>
+   <translation id="telephony_service_fax_campaigns_list_not_found" qtlid="391293">No hay campañas de fax que se ajusten a la búsqueda.</translation>
+   <translation id="telephony_service_fax_campaigns_status_any" qtlid="391306">Todas las campañas de fax</translation>
+   <translation id="telephony_service_fax_campaigns_status_todo" qtlid="37455">Planificado</translation>
+   <translation id="telephony_service_fax_campaigns_status_doing" qtlid="391319">En ejecución</translation>
+   <translation id="telephony_service_fax_campaigns_status_stop" qtlid="391332">En sincronización</translation>
+   <translation id="telephony_service_fax_campaigns_status_stopTodo" qtlid="391345">Lanzamiento manual necesario</translation>
+   <translation id="telephony_service_fax_campaigns_status_stopDoing" qtlid="391358">Deteniendo</translation>
+   <translation id="telephony_service_fax_campaigns_status_error" qtlid="45508">En error</translation>
+   <translation id="telephony_service_fax_campaigns_status_done" qtlid="8662">Finalizado</translation>
+   <translation id="telephony_service_fax_campaigns_success" qtlid="391371">Realizado</translation>
+   <translation id="telephony_service_fax_campaigns_success_partial" qtlid="391384">Realizado parcialmente</translation>
+   <translation id="telephony_service_fax_campaigns_success_not_available" qtlid="26095">N/A</translation>
+   <translation id="telephony_service_fax_campaigns_success_failed" qtlid="330825">KO</translation>
+   <translation id="telephony_service_fax_campaigns_sr_only_actions" qtlid="72809">Acciones</translation>
+   <translation id="telephony_service_fax_campaigns_action_read" qtlid="37527">Detalles</translation>
+   <translation id="telephony_service_fax_campaigns_action_start" qtlid="391397">Lanzar la campaña</translation>
+   <translation id="telephony_service_fax_campaigns_action_stop" qtlid="391410">Detener la campaña</translation>
+   <translation id="telephony_service_fax_campaigns_start_ok" qtlid="391423">La campaña se ha lanzado correctamente.</translation>
+   <translation id="telephony_service_fax_campaigns_start_ko" qtlid="391436">No se ha podido lanzar la campaña.<br/>{{ error }}</translation>
+   <translation id="telephony_service_fax_campaigns_stop_ok" qtlid="391449">Se ha detenido la campaña.</translation>
+   <translation id="telephony_service_fax_campaigns_stop_ko" qtlid="391462">No se ha podido detener la campaña.<br/>{{ error }}</translation>
+
+<!-- CAMPAIGNS modal ADD -->
+   <translation id="telephony_service_fax_campaigns_add_campaign_title" qtlid="391475">Añadir una nueva campaña</translation>
+   <translation id="telephony_service_fax_campaigns_add_campaign_label_name" qtlid="391488">Nombre de la campaña</translation>
+   <translation id="telephony_service_fax_campaigns_add_campaign_name_error_required" qtlid="391501">El campo «Nombre de la campaña» es obligatorio.</translation>
+   <translation id="telephony_service_fax_campaigns_add_campaign_name_error_maxlength" qtlid="391514">El nombre de la campaña debe tener menos de 24 caracteres.</translation>
+   <translation id="telephony_service_fax_campaigns_add_campaign_label_document" qtlid="460548">Document à faxer (format pdf)</translation>
+   <translation id="telephony_service_fax_campaigns_add_campaign_label_file" qtlid="391540">Archivo…</translation>
+   <translation id="telephony_service_fax_campaigns_add_campaign_file_invalid" qtlid="337845">Formato de archivo no autorizado.</translation>
+   <translation id="telephony_service_fax_campaigns_add_campaign_label_quality" qtlid="391553">Calidad de envío</translation>
+   <translation id="telephony_service_fax_campaigns_add_campaign_quality_normal" qtlid="67052">Normal</translation>
+   <translation id="telephony_service_fax_campaigns_add_campaign_quality_high" qtlid="66332">Alta</translation>
+   <translation id="telephony_service_fax_campaigns_add_campaign_quality_best" qtlid="356927">Mejor</translation>
+   <translation id="telephony_service_fax_campaigns_add_campaign_label_send_type" qtlid="391566">Tipo de envío</translation>
+   <translation id="telephony_service_fax_campaigns_add_campaign_send_type_automatic" qtlid="134215">Automática</translation>
+   <translation id="telephony_service_fax_campaigns_add_campaign_send_type_manual" qtlid="219797">Manual</translation>
+   <translation id="telephony_service_fax_campaigns_add_campaign_send_type_scheduled" qtlid="312480">Programado</translation>
+   <translation id="telephony_service_fax_campaigns_add_campaign_send_type_error_required" qtlid="391579">El campo «Tipo de envío» es obligatorio.</translation>
+   <translation id="telephony_service_fax_campaigns_add_campaign_label_send_date" qtlid="391592">Fecha de envío</translation>
+   <translation id="telephony_service_fax_campaigns_add_campaign_send_date_error_required" qtlid="391605">El campo «Fecha de envío» es obligatorio.</translation>
+   <translation id="telephony_service_fax_campaigns_add_campaign_send_date_error_date" qtlid="391618">La fecha introducida no es válida.</translation>
+   <translation id="telephony_service_fax_campaigns_add_campaign_label_send_date_time" qtlid="391631">Hora de envío</translation>
+   <translation id="telephony_service_fax_campaigns_add_campaign_label_recipients_type_list" qtlid="391644">Introducir los destinatarios manualmente</translation>
+   <translation id="telephony_service_fax_campaigns_add_campaign_label_recipients_type_document" qtlid="460561">Fichier de destinataires (format txt)</translation>
+   <translation id="telephony_service_fax_campaigns_add_campaign_label_recipients_list" qtlid="68981">Destinatarios</translation>
+   <translation id="telephony_service_fax_campaigns_add_campaign_palceholder_recipients_list_first" qtlid="391683">Lista de números separada por coma, punto y coma o salto de línea.</translation>
+   <translation id="telephony_service_fax_campaigns_add_campaign_palceholder_recipients_list_second" qtlid="391696">Composición de los números: de 6 a 17 cifras, pudiendo empezar por el símbolo +</translation>
+   <translation id="telephony_service_fax_campaigns_add_campaign_recipients_list_error_required" qtlid="391709">El campo «Destinatarios» es obligatorio.</translation>
+   <translation id="telephony_service_fax_campaigns_add_campaign_recipients_list_error_pattern" qtlid="391722">La lista introducida no es válida.</translation>
+   <translation id="telephony_service_fax_campaigns_add_campaign_adding" qtlid="391735">Añadiendo una campaña de fax…</translation>
+   <translation id="telephony_service_fax_campaigns_add_campaign_added" qtlid="391748">Se ha añadido la campaña.&#160;</translation>
+   <translation id="telephony_service_fax_campaigns_add_campaign_ko" qtlid="391761">No se ha podido crear la campaña.<br/>{{ error }}</translation>
+
+<!-- CAMPAIGNS modal READ -->
+   <translation id="telephony_service_fax_campaigns_read_campaign_title" qtlid="339639">Consultar</translation>
+   <translation id="telephony_service_fax_campaigns_read_campaign_reference" qtlid="16445">Referencia</translation>
+   <translation id="telephony_service_fax_campaigns_read_campaign_success" qtlid="26443">Estado</translation>
+   <translation id="telephony_service_fax_campaigns_read_campaign_status" qtlid="33790">Estado</translation>
+   <translation id="telephony_service_fax_campaigns_read_campaign_message" qtlid="30574">Mensaje</translation>
+   <translation id="telephony_service_fax_campaigns_read_campaign_date_start" qtlid="391774">Lanzada el</translation>
+   <translation id="telephony_service_fax_campaigns_read_campaign_date_start_scheduled" qtlid="391787">Lanzamiento programado para el</translation>
+   <translation id="telephony_service_fax_campaigns_read_campaign_date_end" qtlid="391800">Finalizada el</translation>
+   <translation id="telephony_service_fax_campaigns_read_campaign_count_total" qtlid="391813">Número total de envíos</translation>
+   <translation id="telephony_service_fax_campaigns_read_campaign_details_todo" qtlid="391826">Envíos pendientes</translation>
+   <translation id="telephony_service_fax_campaigns_read_campaign_details_success" qtlid="391839">Envíos correctamente realizados</translation>
+   <translation id="telephony_service_fax_campaigns_read_campaign_details_failed" qtlid="391852">Envíos fallidos</translation>
+   <translation id="telephony_service_fax_campaigns_read_campaign_message_error_download" qtlid="391865">Se ha producido un error al cargar el archivo.</translation>
+
+<!-- CAMPAIGNS modal REMOVE -->
+   <translation id="telephony_service_fax_campaigns_remove" qtlid="391878">Eliminar una campaña</translation>
+   <translation id="telephony_service_fax_campaigns_remove_campaign_confirm" qtlid="391891">¿Seguro que quiere eliminar la campaña <b>«{{ campaign }}»</b>?</translation>
+   <translation id="telephony_service_fax_campaigns_removing" qtlid="391904">Eliminando la campaña…</translation>
+   <translation id="telephony_service_fax_campaigns_removed" qtlid="391917">Se ha eliminado la campaña.</translation>
+   <translation id="telephony_service_fax_campaigns_removing_ko" qtlid="391930">No se ha podido eliminar la campaña.<br/>{{ error }}</translation>
+</translations>

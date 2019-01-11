@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_order_international_title" qtlid="333321">Tilaa kansainvälinen numero</translation>
+   <translation id="telephony_order_international_order_success" qtlid="333334">Olet tilannut kansainvälisen numeron. Ole hyvä ja hyväksy yleiset käyttöehdot ja maksa tilaus.</translation>
+   <translation id="telephony_order_international_order_error" qtlid="333347">Maantieteellisen numeron tilaus epäonnistui. Ole hyvä ja yritä myöhemmin uudestaan. </translation>
+   <translation id="telephony_order_international_countries_error" qtlid="333360">Maalistan hakeminen ei onnistu. </translation>
+</translations>

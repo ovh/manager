@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_group_line_calls_click2call_changePassword_back" qtlid="386925">Peru käyttäjän muokkaus</translation>
+   <translation id="telephony_group_line_calls_click2call_changePassword_title" qtlid="386938">Muokkaa käyttäjän {{name}} salasanaa</translation>
+
+   <translation id="telephony_group_line_calls_click2call_changePassword_password_placeholder" qtlid="2270">Salasana</translation>
+   <translation id="telephony_group_line_calls_click2call_changePassword_success" qtlid="386951">Käytäjän <strong>{{name}}</strong> muokkaus onnistui!&#160;</translation>
+   <translation id="telephony_group_line_calls_click2call_changePassword_fail" qtlid="386964">Hups! Käyttäjän <strong>{{name}}</strong> salasanaa ei voitu vaihtaa.</translation>
+
+   <translation id="telephony_group_line_calls_click2call_changePassword_rule_size" qtlid="384597">Täytyy sisältää 8 - 20 merkkiä</translation>
+   <translation id="telephony_group_line_calls_click2call_changePassword_rule_special" qtlid="384610">Täytyy sisältää lukuja, kirjaimia tai {{list}}</translation>
+</translations>

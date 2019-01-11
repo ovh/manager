@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_group_billing_actions_group_billing_back_link" qtlid="334517">Grįžti prie sąskaitų</translation>
+   <translation id="telephony_group_billing_actions_group_billing_deposit" qtlid="334426">Garantinis užstatas</translation>
+   <translation id="telephony_group_billing_actions_group_billing_deposit_movement" qtlid="346820">Garantinio užstato paskirstymas grupėms</translation>
+   <translation id="telephony_group_billing_actions_group_billing_credit_threshold" qtlid="346833">Keisti garantinio užstato limitą</translation>
+   <translation id="telephony_group_billing_actions_group_billing_bill" qtlid="334439">Naudojimas</translation>
+   <translation id="telephony_group_billing_actions_group_call_list_summary" qtlid="334452">Bendras naudojimas</translation>
+   <translation id="telephony_group_billing_actions_group_repayments" qtlid="334465">Grupės SVA reverse</translation>
+   <translation id="telephony_group_billing_actions_group_reversments_history" qtlid="35880">Mokėjimų istorija</translation>
+   <translation id="telephony_group_billing_actions_group_group_called_fees" qtlid="334478">Grupės SVA kaina</translation>
+   <translation id="telephony_group_billing_actions_group_called_fees_history" qtlid="334491">SVA kainų istorija</translation>
+   <translation id="telephony_group_billing_actions_group_banking_management" qtlid="334504">Keisti bankinius duomenis</translation>
+   <translation id="telephony_group_billing_actions_group_delayed_account_transfert" qtlid="287215">Mokėjimas į banko sąskaitą</translation>
+</translations>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_number_feature_ovh_pabx_dialplan" qtlid="465943">Contact Center Solution (mode expert) :</translation>
+   <translation id="telephony_number_feature_ovh_pabx_dialplan_edit" qtlid="465956">Options du CCS</translation>
+   <translation id="telephony_number_feature_ovh_pabx_dialplan_new_name" qtlid="465969">Mon CCS</translation>
+   <translation id="telephony_number_feature_ovh_pabx_dialplan_action_edit" qtlid="465982">Modifier les options du CCS</translation>
+   <translation id="telephony_number_feature_ovh_pabx_dialplan_action_delete" qtlid="465995">Supprimer la configuration du CCS</translation>
+   <translation id="telephony_number_feature_ovh_pabx_dialplan_save_error" qtlid="466008">Oups ! Une erreur est survenue lors de la modification de votre Contact Center Solution.</translation>
+   <translation id="telephony_number_feature_ovh_pabx_dialplan_create_error" qtlid="466021">Oups ! Une erreur est survenue lors de la création de votre Contact Center Solution.</translation>
+   <translation id="telephony_number_feature_ovh_pabx_dialplan_delete_error" qtlid="466034">Oups ! Une erreur est survenue lors de la suppression de la configuration de votre Contact Center Solution.</translation>
+   <translation id="telephony_number_feature_ovh_pabx_dialplan_name_required" qtlid="466047">Veuillez donner un nom à votre Contact Center Solution.</translation>
+   <translation id="telephony_number_feature_ovh_pabx_dialplan_transfer_timeout_explain" qtlid="466060">Lorsque le CCS comporte un transfert vers une ligne externe, si cette ligne ne décroche pas avant la durée configurée, l'appel passera à l'étape suivante.</translation>
+   <translation id="telephony_number_feature_ovh_pabx_dialplan_name_explain" qtlid="465930">Ce nom sera présent sur le téléphone appelé lors d'un appel entrant.</translation>
+
+<!-- SHOW CALLER NUMBER -->
+   <translation id="telephony_number_feature_ovh_pabx_dialplan_show_caller_number_alias" qtlid="466073">Le numéro du CCS</translation>
+   <translation id="telephony_number_feature_ovh_pabx_dialplan_show_caller_number_alias_explain" qtlid="466086">Le téléphone cible (qui reçoit l'appel) verra sur son écran le numéro de la ligne qui compose le numéro du CCS (ligne appelante).</translation>
+</translations>

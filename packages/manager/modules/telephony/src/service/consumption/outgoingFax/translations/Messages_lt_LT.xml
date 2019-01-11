@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_service_consumption_outgoing_fax_all" qtlid="336571">Visi išsiųsti faksai</translation>
+   <translation id="telephony_service_consumption_outgoing_fax_empty" qtlid="336584">Nėra išsiųstų faksų.</translation>
+   <translation id="telephony_service_consumption_outgoing_fax_period" qtlid="336454">Periodas nuo <strong>{{ start }}</strong> iki <strong>{{ end }}</strong></translation>
+   <translation id="telephony_service_consumption_outgoing_fax_empty" qtlid="336584">Nėra išsiųstų faksų.</translation>
+   <translation id="telephony_service_consumption_outgoing_fax_not_found" qtlid="336597">Joks faksas neatitinka paieškos.</translation>
+   <translation id="telephony_service_consumption_outgoing_fax_summary" qtlid="336610">Išsiųsti failai: <strong>{{ fax }}</strong>, puslapių skaičius: <strong>{{ pages }}</strong>, kaina: {{ price }} be PVM</translation>
+   <translation id="telephony_service_consumption_outgoing_fax_pages" qtlid="59231">Puslapiai</translation>
+</translations>

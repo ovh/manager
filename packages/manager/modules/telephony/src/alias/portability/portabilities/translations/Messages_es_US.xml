@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_alias_portabilities_back_link" qtlid="391943">Retour à l'administration de numéro</translation>
+   <translation id="telephony_alias_default_portabilities_back_link" qtlid="334075">Retour à l'administration de groupe</translation>
+   <translation id="telephony_alias_portabilities_title" qtlid="334062">Portabilités en cours</translation>
+   <translation id="telephony_alias_portabilities_subtitle" qtlid="392216">Liste des portabilités en cours</translation>
+   <translation id="telephony_alias_portabilities_empty" qtlid="392229">Aucune demande de portabilité en cours.</translation>
+   <translation id="telephony_alias_portabilities_date" qtlid="392242">Date de portabilité</translation>
+   <translation id="telephony_alias_portabilities_desired_date" qtlid="392255">Date de portabilité souhaitée</translation>
+   <translation id="telephony_alias_portabilities_creation_date" qtlid="259289">Fecha de solicitud</translation>
+   <translation id="telephony_alias_portabilities_reference" qtlid="16445">Référence</translation>
+   <translation id="telephony_alias_portabilities_operator" qtlid="63052">Opérateur</translation>
+   <translation id="telephony_alias_portabilities_numbers" qtlid="392268">Numéros portés</translation>
+   <translation id="telephony_alias_portabilities_duration" qtlid="392281">Durée estimée :</translation>
+   <translation id="telephony_alias_portabilities_step" qtlid="33790">État</translation>
+   <translation id="telephony_alias_portabilities_planed_on" qtlid="392294">Portabilité le <strong>{{ date }}</strong></translation>
+   <translation id="telephony_alias_portabilities_step_done_on" qtlid="392307">Effectué le {{ date }}</translation>
+   <translation id="telephony_alias_portabilities_step_status_cancelled" qtlid="27631">Annulé</translation>
+   <translation id="telephony_alias_portabilities_step_status_doing" qtlid="214896">En curso...</translation>
+   <translation id="telephony_alias_portabilities_step_status_done" qtlid="8662">Terminé</translation>
+   <translation id="telephony_alias_portabilities_step_status_error" qtlid="45508">En error</translation>
+   <translation id="telephony_alias_portabilities_step_status_todo" qtlid="392320">Plannifié</translation>
+   <translation id="telephony_alias_portabilities_step_name_acknowledgmentReceivedFromOperator" qtlid="392333">Accusé de l'opérateur reçu</translation>
+   <translation id="telephony_alias_portabilities_step_name_belgiumPortabilityRequestCreated" qtlid="461146">Envoi de la demande à l'opérateur cédant</translation>
+   <translation id="telephony_alias_portabilities_step_name_belgiumPortabilityRequestExecutionAcked" qtlid="461159">Exécution de la portabilité effectuée</translation>
+   <translation id="telephony_alias_portabilities_step_name_belgiumPortabilityRequestExecutionAsked" qtlid="461172">Exécution de la portabilité demandée</translation>
+   <translation id="telephony_alias_portabilities_step_name_belgiumPortabilityRequestExecutionCompleted" qtlid="461185">Finalisation de la portabilité</translation>
+   <translation id="telephony_alias_portabilities_step_name_belgiumPortabilityRequestValidated" qtlid="461198">Prise en charge de la demande par l'opérateur cédant</translation>
+   <translation id="telephony_alias_portabilities_step_name_belgiumPortabilityRequestWaitingUntilExec" qtlid="461211">Portabilité en attente d'exécution</translation>
+   <translation id="telephony_alias_portabilities_step_name_customerFormReceived" qtlid="392346">Formulaire reçu</translation>
+   <translation id="telephony_alias_portabilities_step_name_customerFormSent" qtlid="392359">Formulaire envoyé</translation>
+   <translation id="telephony_alias_portabilities_step_name_customerFormValidated" qtlid="392372">Formulaire validé</translation>
+   <translation id="telephony_alias_portabilities_step_name_finalReportReceivedFromOperator" qtlid="392385">Rapport final de l'opérateur reçu</translation>
+   <translation id="telephony_alias_portabilities_step_name_intermediateReportReceivedFromOperator" qtlid="392398">Rapport intermédiaire de l'opérateur reçu</translation>
+   <translation id="telephony_alias_portabilities_step_name_numberActivation" qtlid="392411">Numéro activé</translation>
+   <translation id="telephony_alias_portabilities_step_name_requestSentToOperator" qtlid="392424">Demande envoyée à l'opérateur</translation>
+   <translation id="telephony_alias_portabilities_step_name_sDASequenceReceivedFromOperator" qtlid="392437">sDASequence de l'opérateur reçu</translation>
+   <translation id="telephony_alias_portabilities_step_duration_NA" qtlid="26095">N/A</translation>
+   <translation id="telephony_alias_portabilities_step_duration_day" qtlid="392450">jour(s)</translation>
+   <translation id="telephony_alias_portabilities_step_duration_hour" qtlid="8902">heure(s)</translation>
+   <translation id="telephony_alias_portabilities_step_duration_openday" qtlid="392463">jour(s) ouvré(s)</translation>
+   <translation id="telephony_alias_portabilities_cancel" qtlid="461224">Annuler la portabilité ?</translation>
+   <translation id="telephony_alias_portabilities_cancel_confirm" qtlid="461237">Êtes-vous sûr de vouloir annuler votre demande de portabilité ?</translation>
+   <translation id="telephony_alias_portabilities_cancel_doing" qtlid="394998">Annulation en cours…</translation>
+   <translation id="telephony_alias_portabilities_cancel_success" qtlid="461250">La demande de portabilité a bien été annulée.</translation>
+   <translation id="telephony_alias_portabilities_cancel_error" qtlid="461263">Oups ! Une erreur est survenue lors de l'annulation de votre demande de portabilité.</translation>
+   <translation id="telephony_alias_portabilities_load_error" qtlid="461276">Oups ! Une erreur est survenue lors du chargement des portabilités en cours.</translation>
+</translations>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_group_line_calls_click2call_changePassword_back" qtlid="386925">Annulla la modifica dell'utente</translation>
+   <translation id="telephony_group_line_calls_click2call_changePassword_title" qtlid="386938">Modifica la password dell'utente {{name}}</translation>
+
+   <translation id="telephony_group_line_calls_click2call_changePassword_password_placeholder" qtlid="2270">Password</translation>
+   <translation id="telephony_group_line_calls_click2call_changePassword_success" qtlid="386951">Utente <strong>{{name}}</strong> modificato!&#160;</translation>
+   <translation id="telephony_group_line_calls_click2call_changePassword_fail" qtlid="386964">Ops! Impossibile modificare la password dell'utente <strong>{{name}}</strong>.</translation>
+
+   <translation id="telephony_group_line_calls_click2call_changePassword_rule_size" qtlid="384597">Deve contenere tra 8 e 20 caratteri</translation>
+   <translation id="telephony_group_line_calls_click2call_changePassword_rule_special" qtlid="384610">Deve contenere cifre, lettere non accentate o {{list}}</translation>
+</translations>

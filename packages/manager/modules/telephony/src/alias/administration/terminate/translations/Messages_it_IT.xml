@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_alias_administration_terminate_title" qtlid="334036">Disattiva un numero</translation>
+   <translation id="telephony_alias_administration_terminate_subtitle" qtlid="391956">Disattivazione del numero</translation>
+   <translation id="telephony_alias_administration_terminate_info_subtitle" qtlid="26551">Informazioni</translation>
+   <translation id="telephony_alias_administration_terminate_info1" qtlid="391969">Questa pagina ti permette di richiedere la disattivazione del tuo numero.</translation>
+   <translation id="telephony_alias_administration_terminate_info2" qtlid="338352">Le richieste di disattivazione verranno gestite durante la prossima fatturazione. Fino a quella data, sarà possibile annullare la domanda.</translation>
+   <translation id="telephony_alias_administration_terminate_info3" qtlid="391982">La disattivazione di un numero incluso in un pool comporta la disattivazione di tutto il pool.</translation>
+   <translation id="telephony_alias_administration_terminate_info5" qtlid="391995">Numero da disattivare:</translation>
+   <translation id="telephony_alias_administration_terminate_info4" qtlid="392008">Per aiutarci a migliorare i nostri servizi, indica il motivo per cui hai richiesto la disattivazione:</translation>
+   <translation id="telephony_alias_administration_terminate_warning" qtlid="392021">Il numero {{ number }} verrà disattivato il {{ date }}.</translation>
+   <translation id="telephony_alias_administration_terminate_reason" qtlid="392034">Motivo della disattivazione</translation>
+   <translation id="telephony_alias_administration_terminate_details" qtlid="392047">Indica</translation>
+   <translation id="telephony_alias_administration_terminate_reason_addresseMove" qtlid="86745">Trasferimento</translation>
+   <translation id="telephony_alias_administration_terminate_reason_billingDifficulties" qtlid="338469">Fatturazione non adatta</translation>
+   <translation id="telephony_alias_administration_terminate_reason_cessationOfActivity" qtlid="313377">Cessata attività</translation>
+   <translation id="telephony_alias_administration_terminate_reason_missingOptions" qtlid="338482">Funzionalità non sufficienti</translation>
+   <translation id="telephony_alias_administration_terminate_reason_other" qtlid="19963">Altro</translation>
+   <translation id="telephony_alias_administration_terminate_reason_plugAndPhoneDifficulties" qtlid="338495">Problemi associati al materiale</translation>
+   <translation id="telephony_alias_administration_terminate_reason_technicalDifficulties" qtlid="313429">Problemi tecnici</translation>
+   <translation id="telephony_alias_administration_terminate_reason_moveToCompetitor" qtlid="338508">Passaggio a un altro fornitore</translation>
+   <translation id="telephony_alias_administration_terminate_pool_warning" qtlid="392060">Tutti i numeri di questa pagina verranno disattivati.</translation>
+   <translation id="telephony_alias_administration_terminate" qtlid="48646">Disattiva</translation>
+   <translation id="telephony_alias_administration_terminate_success" qtlid="392073">Disattivazione pianificata correttamente.</translation>
+   <translation id="telephony_alias_administration_cancel_termination" qtlid="285350">Annulla chiusura </translation>
+   <translation id="telephony_alias_administration_cancel_termination_success" qtlid="392086">Disattivazione annullata</translation>
+</translations>

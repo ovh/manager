@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_group_consumption_pie_chart_incoming_labels" qtlid="386456">In entrata</translation>
+   <translation id="telephony_group_consumption_pie_chart_incoming_label" qtlid="33550">Entrante</translation>
+   <translation id="telephony_group_consumption_pie_chart_outgoing_labels" qtlid="386469">In uscita</translation>
+   <translation id="telephony_group_consumption_pie_chart_outgoing_label" qtlid="30886">Uscente</translation>
+   <translation id="telephony_group_consumption_pie_chart_transfer_labels" qtlid="190329">Trasferiti</translation>
+   <translation id="telephony_group_consumption_pie_chart_transfer_label" qtlid="336506">Inoltrata</translation>
+   <translation id="telephony_group_consumption_pie_chart_total_label" qtlid="32458">Totale</translation>
+</translations>

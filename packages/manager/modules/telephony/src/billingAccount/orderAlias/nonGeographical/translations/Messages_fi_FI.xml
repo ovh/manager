@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_order_nongeographical_title" qtlid="333997">Tilaa ei-maantieteellinen numero</translation>
+   <translation id="telephony_order_nongeographical_submit_title" qtlid="333997">Tilaa ei-maantieteellinen numero</translation>
+   <translation id="telephony_order_nongeographical_amount_title" qtlid="333399">Tilaa</translation>
+   <translation id="telephony_order_nongeographical_amount_title" qtlid="333412">Numeroiden lukumäärä:</translation>
+   <translation id="telephony_order_nongeographical_specific_title" qtlid="333451">Numeron valinta</translation>
+   <translation id="telephony_order_nongeographical_retractation_title" qtlid="319973">Peruutusoikeus</translation>
+   <translation id="telephony_order_nongeographical_address_title" qtlid="333464">Numeron haltijan yhteystiedot </translation>
+
+   <translation id="telephony_order_nongeographical_zone_tip" qtlid="333477">Kaupunki tai postinumero</translation>
+
+   <translation id="telephony_order_nongeographical_numbers_error" qtlid="333490">Esivalittujen numerojen listaa ei voida ladata.</translation>
+
+   <translation id="telephony_order_nongeographical_order_error" qtlid="347093">Ei-maantieteellisen numeron tilaus epäonnistui. Ole hyvä ja yritä myöhemmin uudelleen.</translation>
+   <translation id="telephony_order_nongeographical_order_error_city" qtlid="333503">{{city}}ei kuulu alueeseen ({{zone}})</translation>
+   <translation id="telephony_order_nongeographical_order_success" qtlid="347106">Ei-maantieteellisten numeroiden tilaus. Ole hyvä ja hyväksy yleiset käyttöehdot sekä suorita tilauksen maksu.</translation>
+</translations>

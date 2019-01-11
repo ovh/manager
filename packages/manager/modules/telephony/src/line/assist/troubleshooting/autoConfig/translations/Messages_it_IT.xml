@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_line_assist_troubleshooting_auto_config_title" qtlid="387835">Riconfigurazione automatica del tuo dispositivo</translation>
+   <translation id="telephony_line_assist_troubleshooting_auto_config_info" qtlid="387848">Procederemo alla riconfigurazione automatica del tuo dispositivo.</translation>
+   <translation id="telephony_line_assist_troubleshooting_auto_config_fill_ip" qtlid="387861">Inserisci l'indirizzo IP del tuo dispositivo per procedere alla sua reimpostazione.</translation>
+   <translation id="telephony_line_assist_troubleshooting_auto_config_reset_config" qtlid="387874">Riconfigura il telefono.</translation>
+   <translation id="telephony_line_assist_troubleshooting_auto_config_reboot" qtlid="387887">Riavvia elettricamente il tuo dispositivo.</translation>
+   <translation id="telephony_line_assist_troubleshooting_auto_config_after_reboot" qtlid="387900">Dopo il riavvio, l'apparecchio dovrebbe connettersi alla rete OVH ed essere di nuovo operativo.</translation>
+   <translation id="telephony_line_assist_troubleshooting_auto_config_last_ip" qtlid="387913">L'ultimo indirizzo IP utilizzato dal dispositivo è stato recuperato.</translation>
+   <translation id="telephony_line_assist_troubleshooting_auto_config_your_ip" qtlid="387926">L'indirizzo IP con cui ti connetti allo Spazio Cliente è: <strong>{{ ip }}</strong> ({{ domain }}).</translation>
+   <translation id="telephony_line_assist_troubleshooting_auto_config_check_ip" qtlid="387939">Verifica che si tratti dello stessa connessione utilizzata dal tuo parco telefonico.</translation>
+   <translation id="telephony_line_assist_troubleshooting_auto_config_public_ip" qtlid="387952">Indirizzo IP pubblico del dispositivo:</translation>
+   <translation id="telephony_line_assist_troubleshooting_auto_config_public_ip_invalid" qtlid="387965">Inserisci un indirizzo IPv4 valido (formato: xxx.xxx.xxx.xxx).</translation>
+   <translation id="telephony_line_assist_troubleshooting_auto_config_public_ip_placeholder" qtlid="26191">Indirizzo IP</translation>
+   <translation id="telephony_line_assist_troubleshooting_auto_config_error" qtlid="387978">Ops! Si è verificato un errore durante la riconfigurazione automatica del tuo dispositivo. Ti preghiamo di riprovare o contattare il supporto.</translation>
+<!-- REINIT -->
+   <translation id="telephony_line_assist_troubleshooting_auto_config_reinit" qtlid="387991">Reimposta il tuo dispositivo</translation>
+   <translation id="telephony_line_assist_troubleshooting_auto_config_reinit_explain" qtlid="388004">Prima di generare la configurazione del tuo telefono, è necessario reimpostarlo.</translation>
+   <translation id="telephony_line_assist_troubleshooting_auto_config_reinit_step1" qtlid="388017">Telefono avviato, tieni premuto il tasto <strong>OK</strong> per 10 secondi.</translation>
+   <translation id="telephony_line_assist_troubleshooting_auto_config_reinit_step2" qtlid="479876">Une fenêtre apparaît, vous demandant de confirmer la réinitialisation usine, confirmez en appuyant de nouveau sur <strong>OK</strong>.</translation>
+   <translation id="telephony_line_assist_troubleshooting_auto_config_reinit_step3" qtlid="388043">Al riavvio del telefono, puoi passare al secondo step: la riconfigurazione automatica del dispositivo.</translation>
+   <translation id="telephony_line_assist_troubleshooting_auto_config_W56P_reinit_step1" qtlid="479889">Téléphone démarré, restez appuyé sur le bouton <strong>OK</strong> pour entrer dans le menu.</translation>
+   <translation id="telephony_line_assist_troubleshooting_auto_config_W56P_reinit_step2" qtlid="479902">Le menu apparaît, sélectionnez l'option "Reset Base" et validez.</translation>
+   <translation id="telephony_line_assist_troubleshooting_auto_config_W56P_reinit_step3" qtlid="388043">Al riavvio del telefono, puoi passare al secondo step: la riconfigurazione automatica del dispositivo.</translation>
+
+<!-- MAC ADDRESS -->
+   <translation id="telephony_line_assist_troubleshooting_auto_config_mac_address" qtlid="479915">Vérification de l’adresse MAC de votre téléphone</translation>
+   <translation id="telephony_line_assist_troubleshooting_auto_config_mac_address_explain" qtlid="508208">Merci de vérifier que l’adresse MAC<span class="tuc-custom-asterisk"></span> de votre téléphone est la&#160;:&#160;<strong>{{ macAddress }}</strong></translation>
+   <translation id="telephony_line_assist_troubleshooting_auto_config_mac_address_explain_note" qtlid="397312">Si trova nella parte posteriore del tuo telefono.</translation>
+   <translation id="telephony_line_assist_troubleshooting_auto_config_mac_address_W56P_explain_note" qtlid="479928">Celle-ci se situe sur la base, sur la face arrière de votre téléphone</translation>
+
+<!-- SIEMENS -->
+   <translation id="telephony_line_assist_troubleshooting_auto_config_siemens_reset_config" qtlid="387874">Riconfigura il telefono.</translation>
+   <translation id="telephony_line_assist_troubleshooting_auto_config_siemens_step1" qtlid="388095">Premi il tasto centrale nero della cornetta.</translation>
+   <translation id="telephony_line_assist_troubleshooting_auto_config_siemens_step2" qtlid="388108">Seleziona <strong>Impostazioni</strong>.</translation>
+   <translation id="telephony_line_assist_troubleshooting_auto_config_siemens_step3" qtlid="388121">Seleziona <strong>Telefonia</strong>.</translation>
+   <translation id="telephony_line_assist_troubleshooting_auto_config_siemens_step4" qtlid="388134">Accedi a <strong>Assist VOIP</strong>.</translation>
+   <translation id="telephony_line_assist_troubleshooting_auto_config_siemens_step5" qtlid="388147">Inserisci il tuo codice PIN (<strong>0000</strong> di default).</translation>
+   <translation id="telephony_line_assist_troubleshooting_auto_config_siemens_step6" qtlid="388160">Seleziona l'account <strong>IP1</strong>.</translation>
+   <translation id="telephony_line_assist_troubleshooting_auto_config_siemens_step7" qtlid="388173">Premi <strong>Sì</strong> quando il dispositivo ti chiede se disponi di un codice di autoconfigurazione.</translation>
+   <translation id="telephony_line_assist_troubleshooting_auto_config_siemens_step8" qtlid="388186">Inserisci questo codice di auto-configurazione: <strong>{{ code }}</strong></translation>
+   <translation id="telephony_line_assist_troubleshooting_auto_config_siemens_step9" qtlid="388199">Premi <strong>OK</strong>.</translation>
+</translations>

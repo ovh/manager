@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_service_consumption_filter" qtlid="59207">Suodata</translation>
+   <translation id="telephony_service_consumption_period" qtlid="336454">Jakso <strong>{{ start }}</strong> - <strong>{{ end }}</strong></translation>
+   <translation id="telephony_service_consumption_date" qtlid="24523">Päivämäärä</translation>
+   <translation id="telephony_service_consumption_calling" qtlid="30778">Numero</translation>
+   <translation id="telephony_service_consumption_calling_unknown" qtlid="190082">Anonyymi</translation>
+   <translation id="telephony_service_consumption_dialed" qtlid="81234">Soitettu numero</translation>
+   <translation id="telephony_service_consumption_duration" qtlid="8218">Kesto</translation>
+   <translation id="telephony_service_consumption_price_ht" qtlid="133292">Hinta (ALV 0 %)</translation>
+   <translation id="telephony_service_consumption_destination" qtlid="32290">Kohde</translation>
+   <translation id="telephony_service_consumption_destination_any" qtlid="336467">Toute destination</translation>
+   <translation id="telephony_service_consumption_destination_landline" qtlid="247118">Kiinteä</translation>
+   <translation id="telephony_service_consumption_destination_mobile" qtlid="59195">Mobiili</translation>
+   <translation id="telephony_service_consumption_destination_special" qtlid="336480">Spéciaux</translation>
+   <translation id="telephony_service_consumption_type" qtlid="59171">Luonne</translation>
+   <translation id="telephony_service_consumption_type_any" qtlid="336493">Nature indifférente</translation>
+   <translation id="telephony_service_consumption_type_transfer" qtlid="336506">Siirretty</translation>
+   <translation id="telephony_service_consumption_type_incoming" qtlid="336519">Reçu</translation>
+   <translation id="telephony_service_consumption_type_outgoing" qtlid="336532">Émis</translation>
+   <translation id="telephony_service_consumption_type_received" qtlid="336519">Reçu</translation>
+   <translation id="telephony_service_consumption_type_missing" qtlid="336545">Manqué</translation>
+   <translation id="telephony_service_consumption_type_sent" qtlid="336558">Envoyé</translation>
+   <translation id="telephony_service_consumption_anonymous" qtlid="190082">Anonyymi</translation>
+</translations>

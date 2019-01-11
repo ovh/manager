@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_line_calls_events_title" qtlid="335167">Configurar los cierres excepcionales</translation>
+
+   <translation id="telephony_line_calls_events_info" qtlid="387289">El calendario le permite definir los períodos de cierre de su empresa.</translation>
+   <translation id="telephony_line_calls_events_warning" qtlid="387302">Atención: Los períodos definidos solo se aplicarán tras la activación de sus franjas horarias.</translation>
+
+   <translation id="telephony_line_calls_events_load_error" qtlid="387315">¡Vaya! Se ha producido un error al cargar los cierres excepcionales.</translation>
+
+</translations>

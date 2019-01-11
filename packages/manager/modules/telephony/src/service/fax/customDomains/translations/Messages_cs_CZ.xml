@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_service_fax_custom_domains_informations" qtlid="26551">Informace</translation>
+   <translation id="telephony_service_fax_custom_domains_informations_alert_info1" qtlid="460158">Les domaines Ecofax Marque Blanche vous permettent d'envoyer des Fax en utilisant le service Ecofax via votre propre nom de domaine.<br/>Vous pourrez, ainsi, envoyer un fax en utilisant une adresse email du type <strong>0102030405@masociete.com</strong>.</translation>
+   <translation id="telephony_service_fax_custom_domains_informations_alert_info2" qtlid="460171">Le domaine que vous renseignez doit avoir un enregistrement MX 1 vers <strong>mail.ecofax.fr</strong>.</translation>
+   <translation id="telephony_service_fax_custom_domains_configuration" qtlid="460184">Domaines configurés</translation>
+   <translation id="telephony_service_fax_custom_domains_configuration_table_column_domain" qtlid="8458">Doména</translation>
+   <translation id="telephony_service_fax_custom_domains_configuration_table_column_action" qtlid="72809">Akce</translation>
+   <translation id="telephony_service_fax_custom_domains_configuration_table_action_delete" qtlid="460197">Supprimer le domaine {{ domain }} Ecofax Marque Blanche</translation>
+   <translation id="telephony_service_fax_custom_domains_configuration_table_empty" qtlid="460210">Aucun domaine n'est actuellement configuré.</translation>
+   <translation id="telephony_service_fax_custom_domains_configuration_form_add_label" qtlid="8602">Přidat doménu</translation>
+   <translation id="telephony_service_fax_custom_domains_configuration_form_add_success" qtlid="460223">Votre domaine a bien été ajouté.</translation>
+   <translation id="telephony_service_fax_custom_domains_configuration_form_add_error" qtlid="460236">Oups ! Une erreur est survenue lors de l'ajout de votre domaine.</translation>
+   <translation id="telephony_service_fax_custom_domains_configuration_form_remove_success" qtlid="460249">Votre domaine a bien été supprimé.</translation>
+   <translation id="telephony_service_fax_custom_domains_configuration_form_remove_error" qtlid="460262">Oups ! Une erreur est survenue lors de la suppression de votre domaine.</translation>
+   <translation id="telephony_service_fax_custom_domains_error_loading" qtlid="460275">Oups ! Une erreur est survenue lors du chargement de vos domaines ecofax marque blanche.</translation>
+</translations>

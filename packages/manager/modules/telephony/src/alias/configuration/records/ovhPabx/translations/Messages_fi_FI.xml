@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_alias_configuration_records_back_link" qtlid="332866">Paluu konfiguraatioon</translation>
+   <translation id="telephony_alias_configuration_records_condition" qtlid="461718">Pour utiliser cette fonctionnalité, vous devez activer le type serveur vocal interactif ou le type file d’appel (mode expert).</translation>
+
+   <translation id="telephony_alias_configuration_records_title" qtlid="461731">Consulter les enregistrements</translation>
+   <translation id="telephony_alias_configuration_records_info1" qtlid="461744">Vous trouverez ci-dessous l’ensemble des appels enregistrés de votre file d’appels.</translation>
+   <translation id="telephony_alias_configuration_records_info2" qtlid="461757">Ces appels sont automatiquement supprimés après 60 jours.</translation>
+   <translation id="telephony_alias_configuration_records_queues_title" qtlid="461770">Files d’appels</translation>
+   <translation id="telephony_alias_configuration_records_queues_label" qtlid="461783">Sélectionnez une file d’appel&#160;:</translation>
+   <translation id="telephony_alias_configuration_records_queue" qtlid="461796">File : {{ id }}</translation>
+   <translation id="telephony_alias_configuration_records_form_title" qtlid="461809">Activation de l’enregistrement</translation>
+   <translation id="telephony_alias_configuration_records_form_record" qtlid="303575">Puheluiden tallennus</translation>
+   <translation id="telephony_alias_configuration_records_form_ask_for_record_disabling" qtlid="461822">Activer la demande de non enregistrement d’appel</translation>
+   <translation id="telephony_alias_configuration_records_form_record_disabling_language" qtlid="461835">Choix de la langue du message</translation>
+   <translation id="telephony_alias_configuration_records_form_record_disabling_language_french" qtlid="29684">ranska</translation>
+   <translation id="telephony_alias_configuration_records_form_record_disabling_language_english" qtlid="33838">englanti</translation>
+   <translation id="telephony_alias_configuration_records_form_record_disabling_digit" qtlid="461848">Choix du chiffre</translation>
+   <translation id="telephony_alias_configuration_records_form_submit" qtlid="249107">Ota muutokset käyttöön</translation>
+   <translation id="telephony_alias_configuration_records_list_title" qtlid="461861">Liste des enregistrements</translation>
+   <translation id="telephony_alias_configuration_records_list_empty" qtlid="461874">Aucun enregistrement</translation>
+   <translation id="telephony_alias_configuration_records_list_delete" qtlid="461887">Supprimer l’enregistrement sélectionné</translation>
+   <translation id="telephony_alias_configuration_records_list_delete_plural" qtlid="461900">Supprimer les {{ nb }} enregistrements sélectionnés</translation>
+   <translation id="telephony_alias_configuration_records_list_delete_success" qtlid="393633">Suppression en cours…</translation>
+   <translation id="telephony_alias_configuration_records_list_call_start" qtlid="461913">Début de l’appel</translation>
+   <translation id="telephony_alias_configuration_records_list_call_end" qtlid="461926">Fin de l’appel</translation>
+   <translation id="telephony_alias_configuration_records_list_call_id_number" qtlid="58364">Soittajan numero</translation>
+   <translation id="telephony_alias_configuration_records_list_agent" qtlid="303562">Agentti</translation>
+   <translation id="telephony_alias_configuration_records_list_duration" qtlid="8218">Kesto</translation>
+   <translation id="telephony_alias_configuration_records_list_file_url" qtlid="406078">Linkki</translation>
+   <translation id="telephony_alias_configuration_records_list_file_url_sr_only" qtlid="461939">Télécharger l’enregistrement</translation>
+</translations>

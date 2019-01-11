@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_line_phone_codec_title" qtlid="347145">Codecs de la ligne</translation>
+
+   <translation id="telephony_line_phone_codec_info1" qtlid="347158">Optimisez la qualité de vos communications en influant sur le codec prioritairement employé par votre ligne.</translation>
+   <translation id="telephony_line_phone_codec_info2" qtlid="347171">Les codecs configurés influant sur la bande passante utilisée, pensez à vérifier que votre débit est suffisant pour les codecs que vous choisissez.</translation>
+   <translation id="telephony_line_phone_codec_info3" qtlid="347184">Pour connaître le débit de votre accès Internet, rendez-vous sur <a href="http://voip.ovh.fr" target="_blank">http://voip.ovh.fr</a>.</translation>
+   <translation id="telephony_line_phone_codec_info4" qtlid="347197">Veuillez noter que le codec g722 ne sera utilisé que durant les appels entre lignes OVH.</translation>
+
+   <translation id="telephony_line_phone_codec_load_error" qtlid="347210">Oups ! Une erreur est survenue lors du chargement de la ligne.</translation>
+
+   <translation id="telephony_line_phone_codec_current" qtlid="347223">Codecs définis actuellement :</translation>
+   <translation id="telephony_line_phone_codec_no_selected" qtlid="347236">Aucun codecs définis</translation>
+   <translation id="telephony_line_phone_codec_edit" qtlid="347249">Modifier les codecs</translation>
+
+   <translation id="telephony_line_phone_codec_edit_title" qtlid="347249">Modifier les codecs</translation>
+   <translation id="telephony_line_phone_codec_edit_codec_priority" qtlid="347262">Choisissez un ordre de priorité pour vos codecs :</translation>
+   <translation id="telephony_line_phone_codec_edit_codec_saving" qtlid="347275">Sauvegarde des nouveaux codecs en cours.</translation>
+   <translation id="telephony_line_phone_codec_edit_codec_save_success" qtlid="347288">Sauvegarde des nouveaux codecs terminée.</translation>
+   <translation id="telephony_line_phone_codec_edit_codec_save_error" qtlid="347301">Oups ! Une erreur est survenue lors de la sauvegarde de vos codecs.</translation>
+   <translation id="telephony_line_phone_codec_edit_codec_load_error" qtlid="347314">Oups ! Une erreur est survenue lors du chargement des codecs.</translation>
+
+   <translation id="telephony_line_phone_codec_edit_codec_automatic" qtlid="391150">Codecs automatiques :</translation>
+   <translation id="telephony_line_phone_codec_edit_codec_automatic_yes" qtlid="34776">Sim</translation>
+   <translation id="telephony_line_phone_codec_edit_codec_automatic_no" qtlid="34788">Não</translation>
+   <translation id="telephony_line_phone_codec_edit_codec_auto_choice" qtlid="391163">Codecs automatiques <em>(cette option est en test et permet de rendre plus souple la négociation de codecs)</em>.</translation>
+
+   <translation id="telephony_line_phone_codec_bulk_all_success" qtlid="459274">La modification des codecs a bien été appliquée aux services sélectionnés.</translation>
+   <translation id="telephony_line_phone_codec_bulk_some_success" qtlid="459287">La modification des codecs a bien été appliquée à {{ count }} des services sélectionnés.</translation>
+   <translation id="telephony_line_phone_codec_bulk_error" qtlid="459300">La modification des codecs n'a pu être appliquée au(x) service(s) suivant(s) :</translation>
+   <translation id="telephony_line_phone_codec_bulk_on_error" qtlid="459313">Oups ! Une erreur est survenue lors de la modification des codecs.</translation>
+</translations>

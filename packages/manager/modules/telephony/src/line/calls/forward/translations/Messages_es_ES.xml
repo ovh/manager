@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_line_actions_line_calls_forward_title" qtlid="93355">Redirección de llamadas</translation>
+   <translation id="telephony_line_actions_line_calls_forward_backup_title" qtlid="335804">Redirección cuando la línea esté ilocalizable o desconectada</translation>
+   <translation id="telephony_line_actions_line_calls_forward_busy_title" qtlid="335817">Redirección cuando la línea esté ocupada</translation>
+   <translation id="telephony_line_actions_line_calls_forward_no_reply_title" qtlid="335830">Redirección cuando no hay respuesta</translation>
+   <translation id="telephony_line_actions_line_calls_forward_no_reply_before" qtlid="335843">antes</translation>
+   <translation id="telephony_line_actions_line_calls_forward_no_reply_after" qtlid="335856">segundo(s)</translation>
+   <translation id="telephony_line_actions_line_calls_forward_unconditional_title" qtlid="335869">Redirección de todas las llamadas</translation>
+   <translation id="telephony_line_actions_line_calls_forward_explaination" qtlid="335882">Configure una redirección de las llamadas entrantes en diversas condiciones.</translation>
+   <translation id="telephony_line_actions_line_calls_forward_warning" qtlid="335895">Debido a que algunos operadores filtran las llamadas redirigidas, es posible que la línea remota no reciba las llamadas redirigidas.</translation>
+   <translation id="telephony_line_actions_line_calls_forward_options_load_error" qtlid="335908">Error de lectura de las redirecciones de llamadas.</translation>
+   <translation id="telephony_line_actions_line_calls_forward_schema_load_error" qtlid="335921">Error de lectura de los tipos de redirecciones de llamadas.</translation>
+   <translation id="telephony_line_actions_line_calls_forward_number_load_error" qtlid="335934">Error de lectura de los números.</translation>
+   <translation id="telephony_line_actions_line_calls_forward_save_success" qtlid="335947">Las redirecciones de llamadas se han actualizado.</translation>
+   <translation id="telephony_line_actions_line_calls_forward_save_error" qtlid="335960">No se han podido guardar las redirecciones de llamadas.</translation>
+   <translation id="telephony_line_actions_line_calls_forward_label_from" qtlid="387159">Redirigir hacia un</translation>
+   <translation id="telephony_line_actions_line_calls_forward_label_to" qtlid="387172">al número</translation>
+
+
+   <translation id="telephony_line_actions_line_calls_forward_fax" qtlid="32926">Fax</translation>
+   <translation id="telephony_line_actions_line_calls_forward_number" qtlid="34174">Teléfono</translation>
+   <translation id="telephony_line_actions_line_calls_forward_voicemail" qtlid="88956">Contestador</translation>
+   <translation id="telephony_line_actions_line_calls_forward_external" qtlid="335973">Número externo a OVH</translation>
+
+   <translation id="telephony_line_actions_line_calls_forward_time_range" qtlid="335986">Valor comprendido entre 5 y 60</translation>
+
+   <translation id="telephony_line_actions_line_calls_forward_bulk_all_success" qtlid="457766">La modification du renvoi d'appel a bien été appliquée aux services sélectionnés</translation>
+   <translation id="telephony_line_actions_line_calls_forward_bulk_some_success" qtlid="457779">La modification du renvoi d'appel a bien été appliquée à {{ count }} des services sélectionnés</translation>
+   <translation id="telephony_line_actions_line_calls_forward_bulk_error" qtlid="457792">La modification du renvoi d'appel n'a pu être appliquée au(x) service(s) suivant(s) :</translation>
+   <translation id="telephony_line_actions_line_calls_forward_bulk_on_error" qtlid="457805">Oups ! Une erreur est survenue lors de la modification du renvoi d'appel</translation>
+</translations>

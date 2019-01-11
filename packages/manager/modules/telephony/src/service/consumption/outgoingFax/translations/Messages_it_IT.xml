@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_service_consumption_outgoing_fax_all" qtlid="336571">Tutti i fax trasmessi.</translation>
+   <translation id="telephony_service_consumption_outgoing_fax_empty" qtlid="336584">Nessun fax trasmesso.</translation>
+   <translation id="telephony_service_consumption_outgoing_fax_period" qtlid="336454">Periodo dal <strong>{{ start }}</strong> al <strong>{{ end }}</strong></translation>
+   <translation id="telephony_service_consumption_outgoing_fax_empty" qtlid="336584">Nessun fax trasmesso.</translation>
+   <translation id="telephony_service_consumption_outgoing_fax_not_found" qtlid="336597">Nessun fax corrisponde alla ricerca.</translation>
+   <translation id="telephony_service_consumption_outgoing_fax_summary" qtlid="336610">Fax trasmesso: <strong>{{ fax }}</strong>; numero di pagine: <strong>{{ pages }}</strong>; prezzo: {{ price }} +IVA</translation>
+   <translation id="telephony_service_consumption_outgoing_fax_pages" qtlid="59231">Pagine</translation>
+</translations>

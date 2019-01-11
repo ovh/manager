@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_line_phone_accessories_title" qtlid="336857">Užsakyti priedus</translation>
+   <translation id="telephony_line_phone_accessories_load_error" qtlid="390773">Klaida įkeliant sąskaitų grupes.</translation>
+   <translation id="telephony_line_phone_accessories_cancel_order" qtlid="390786">Atšaukti priedo užsakymą</translation>
+   <translation id="telephony_line_phone_accessories_previous" qtlid="390799">Grįžti prie ankstesnio etapo</translation>
+
+<!-- ACCESSORIES NAMES -->
+   <translation id="telephony_line_phone_accessories_cisco_linksys_alim" qtlid="390812">Maitinimo blokas, skirtas Cisco Linksys 5V/2A</translation>
+   <translation id="telephony_line_phone_accessories_cisco_spa_500_s" qtlid="390825">SPA500S praplėtimo blokas, skirtas Cisco SPA Series 5</translation>
+   <translation id="telephony_line_phone_accessories_devolo_avsmartduo" qtlid="390838">CPL Devolo AV Smart Duo modulis</translation>
+   <translation id="telephony_line_phone_accessories_gigaset_c_530_h" qtlid="390851">Papildomas ragelis Gigaset C530H</translation>
+   <translation id="telephony_line_phone_accessories_lg_alim" qtlid="390864">Maitinimo blokas LG telefonui</translation>
+   <translation id="telephony_line_phone_accessories_lg_dss_12" qtlid="390877">Praplėtimo modelis DSS12 LG telefonui</translation>
+   <translation id="telephony_line_phone_accessories_lg_dss_12_l" qtlid="390890">Praplėtimo modelis DSS12L LG telefonui</translation>
+   <translation id="telephony_line_phone_accessories_polycom_ip_5000_alim" qtlid="390903">Išorinis maitinimo blokas, skirtas Polycom IP5000</translation>
+   <translation id="telephony_line_phone_accessories_sennheiser_ccel_191" qtlid="390916">Sennheiser Jack 2.5mm adapteris, skirtas DECT ir Cisco SPA</translation>
+   <translation id="telephony_line_phone_accessories_sennheiser_cstd_01" qtlid="390929">Sennheiser RJ9 adapteris, skirtas Thomson ST2030</translation>
+   <translation id="telephony_line_phone_accessories_sennheiser_cstd_01_tb_30" qtlid="390942">Sennheiser RJ45 adapteris, skirtas Thomson TB30</translation>
+   <translation id="telephony_line_phone_accessories_sennheiser_dwofficephone" qtlid="362634">Belaidis ragelis Sennheiser DW Office Phone</translation>
+   <translation id="telephony_line_phone_accessories_sennheiser_dwpro_2_phone" qtlid="362647">Belaidis ragelis Sennheiser DW 2 Pro Phone</translation>
+   <translation id="telephony_line_phone_accessories_sennheiser_ehsdhsg" qtlid="390955">Sennheiser EHS DHSG kabelis, skirtas Thomson TB30 DW Office </translation>
+   <translation id="telephony_line_phone_accessories_sennheiser_hsl_10" qtlid="362673">Mechaninis modulis elektroniniam Sennheiser HSL10</translation>
+   <translation id="telephony_line_phone_accessories_sennheiser_sc_232" qtlid="362816">Sennheiser SC232 ragelis</translation>
+   <translation id="telephony_line_phone_accessories_sennheiser_sc_262" qtlid="362777">Sennheiser SC262 ragelis</translation>
+   <translation id="telephony_line_phone_accessories_siemens_repeater" qtlid="362335">Siemens Gigaset Repeater</translation>
+   <translation id="telephony_line_phone_accessories_snom_m_9_c" qtlid="390968">Papildomas ragelis Snom M9</translation>
+
+<!-- CHOICE STEP -->
+   <translation id="telephony_line_phone_accessories_choice_title" qtlid="350755">Priedų pasirinkimas</translation>
+   <translation id="telephony_line_phone_accessories_choice_info" qtlid="390981">Spragtelėkite priedo paveikslėlį, kad matytumėte jo aprašymą.</translation>
+   <translation id="telephony_line_phone_accessories_choice_load_error" qtlid="390994">Klaida įkeliant priedus.</translation>
+   <translation id="telephony_line_phone_accessories_choice_order" qtlid="391007">Norite užsakyti:</translation>
+   <translation id="telephony_line_phone_accessories_choice_total" qtlid="391020">Užsakymo kaina:</translation>
+   <translation id="telephony_line_phone_accessories_choice_validate" qtlid="391033">Užsakyti priedą</translation>
+
+<!-- SHIPPING -->
+   <translation id="telephony_line_phone_accessories_shipping_title" qtlid="55121">Pristatymas</translation>
+   <translation id="telephony_line_phone_accessories_shipping_contact" qtlid="384623">Pristatymo adresas</translation>
+   <translation id="telephony_line_phone_accessories_shipping_mode" qtlid="384636">Pristatymo būdas</translation>
+   <translation id="telephony_line_phone_accessories_shipping_validate" qtlid="391046">Patvirtinti pristatymo būdą</translation>
+
+<!-- RESUME -->
+   <translation id="telephony_line_phone_accessories_resume_title" qtlid="177496">Užsakymo santrauka</translation>
+   <translation id="telephony_line_phone_accessories_resume_validate" qtlid="391059">Užbaigti užsakymą</translation>
+   <translation id="telephony_line_phone_accessories_resume_load_error" qtlid="391072">Klaida gaunant užsakymo suvestinę</translation>
+
+   <translation id="telephony_line_phone_accessories_resume_table_description" qtlid="9238">Apibūdinimas</translation>
+   <translation id="telephony_line_phone_accessories_resume_table_unit_price" qtlid="51715">Vieneto kaina be PVM</translation>
+   <translation id="telephony_line_phone_accessories_resume_table_quantity" qtlid="37107">Kiekis</translation>
+   <translation id="telephony_line_phone_accessories_resume_table_total" qtlid="133292">Kaina be PVM</translation>
+   <translation id="telephony_line_phone_accessories_resume_prices_tax_free_total" qtlid="37143">Viso be PVM</translation>
+   <translation id="telephony_line_phone_accessories_resume_prices_tax_total" qtlid="279470">PVM</translation>
+   <translation id="telephony_line_phone_accessories_resume_prices_with_tax_total" qtlid="37167">Viso su PVM</translation>
+
+   <translation id="telephony_line_phone_accessories_resume_contact_title" qtlid="384623">Pristatymo adresas</translation>
+
+   <translation id="telephony_line_phone_accessories_resume_contracts_title" qtlid="213336">Sutartys</translation>
+
+   <translation id="telephony_line_phone_accessories_resume_retract_title" qtlid="319973">Teisė atsisakyti</translation>
+
+<!-- FINALIZE -->
+   <translation id="telephony_line_phone_accessories_finalize_title" qtlid="35352">Užsakymas</translation>
+   <translation id="telephony_line_phone_accessories_finalize_success" qtlid="391085">Jūsų užsakymas priimtas! Prašome užbaigti užsakymą, kad gautumėte priedus.</translation>
+   <translation id="telephony_line_phone_accessories_finalize_error" qtlid="391098">Klaida kuriant užsakymą.</translation>
+   <translation id="telephony_line_phone_accessories_finalize_order_id" qtlid="391111">Užsakymo nr.:</translation>
+   <translation id="telephony_line_phone_accessories_finalize_order_total_ht" qtlid="391124">Suma be PVM:</translation>
+   <translation id="telephony_line_phone_accessories_finalize_order_total_ttc" qtlid="391137">Suma su PVM:</translation>
+
+
+</translations>

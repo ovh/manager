@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_line_tones_title" qtlid="358344">Gestión de música y timbres</translation>
+   <translation id="telephony_line_tones_info1" qtlid="358357">Desde esta página podrá establecer la música y los timbres de su línea.<br /> Puede personalizar varios elementos:</translation>
+   <translation id="telephony_line_tones_info2" qtlid="358370"><strong>Timbre de predescolgado</strong>: Sustituye a la tonalidad por defecto de predescolgado.</translation>
+   <translation id="telephony_line_tones_info3" qtlid="358383"><strong>Música de espera</strong>: Música reproducida cuando el interlocutor está en espera. La música de espera se reproducirá al poner en espera al interlocutor durante una conversación telefónica.</translation>
+   <translation id="telephony_line_tones_info4" qtlid="358396"><strong>Anuncio de línea ocupada</strong>: Mensaje anunciado cuando la línea está ocupada. El anuncio se difundirá cuando entre una llamada directa (que no pase previamente por un easyPabx o miniPabx). No se establecerá ningún contacto con la persona que efectúa la llamada.</translation>
+   <translation id="telephony_line_tones_ringback" qtlid="358409">Timbre de predescolgado</translation>
+   <translation id="telephony_line_tones_onhold" qtlid="358422">Música de espera</translation>
+   <translation id="telephony_line_tones_callwaiting" qtlid="358435">Anuncio de línea ocupada</translation>
+   <translation id="telephony_line_tones_type_custom_sound" qtlid="358448">Personalizado</translation>
+   <translation id="telephony_line_tones_type_none" qtlid="101193">Por defecto</translation>
+   <translation id="telephony_line_tones_type_predefined_1" qtlid="358461">Predeterminado 1</translation>
+   <translation id="telephony_line_tones_type_predefined_2" qtlid="358474">Predeterminado 2</translation>
+   <translation id="telephony_line_tones_choose_file" qtlid="358487">Elegir un archivo</translation>
+   <translation id="telephony_line_tones_choose_file_confirm" qtlid="358500">Enviar el archivo</translation>
+   <translation id="telephony_line_tones_choose_file_ring_success" qtlid="358513">Timbre actualizado</translation>
+   <translation id="telephony_line_tones_choose_file_sound_success" qtlid="358526">Música actualizada</translation>
+   <translation id="telephony_line_tones_choose_file_announce_success" qtlid="358539">Anuncio actualizado</translation>
+   <translation id="telephony_line_tones_choose_file_type_error" qtlid="358552">El formato del archivo seleccionado no está autorizado.</translation>
+   <translation id="telephony_line_tones_apply" qtlid="249107">Aplicar los cambios</translation>
+</translations>

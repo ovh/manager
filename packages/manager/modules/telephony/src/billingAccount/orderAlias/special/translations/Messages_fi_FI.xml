@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_order_special_title" qtlid="334010">Tilaa erikoisnumero</translation>
+   <translation id="telephony_order_special_submit_title" qtlid="334010">Tilaa erikoisnumero</translation>
+   <translation id="telephony_order_special_amount_title" qtlid="333399">Tilaa</translation>
+   <translation id="telephony_order_special_amount_title" qtlid="333412">Numeroiden lukumäärä:</translation>
+   <translation id="telephony_order_special_range_title" qtlid="346846">Plage&#160;:</translation>
+   <translation id="telephony_order_special_typology_title" qtlid="346859">Typologie&#160;:</translation>
+   <translation id="telephony_order_special_specific_title" qtlid="333451">Numeron valinta</translation>
+   <translation id="telephony_order_special_retractation_title" qtlid="319973">Peruutusoikeus</translation>
+   <translation id="telephony_order_special_address_title" qtlid="333464">Numeron haltijan yhteystiedot </translation>
+
+   <translation id="telephony_order_special_zone_tip" qtlid="333477">Kaupunki tai postinumero</translation>
+
+   <translation id="telephony_order_special_numbers_error" qtlid="333490">Esivalittujen numerojen listaa ei voida ladata.</translation>
+
+   <translation id="telephony_order_special_order_error" qtlid="346872">La commande de numéro(s) spécial(aux) a échoué. Veuillez réessayer ultérieurement.</translation>
+
+   <translation id="telephony_order_special_order_success" qtlid="333516">Tilattua maantieeteellistä numeroa. Ole hyvä ja hyväksy yleiset käyttöehdot ja suorita tilauksen maksu.</translation>
+   <translation id="telephony_order_special_range_error" qtlid="346885">Impossible de charger les plages de numéros.</translation>
+</translations>

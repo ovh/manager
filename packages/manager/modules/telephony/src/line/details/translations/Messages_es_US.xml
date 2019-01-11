@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_line_details_global_info_title" qtlid="359462">Informations sur la ligne</translation>
+   <translation id="telephony_line_details_service_name_label" qtlid="30778">Número</translation>
+   <translation id="telephony_line_details_label" qtlid="359475">Intitulé de la ligne</translation>
+   <translation id="telephony_line_details_country" qtlid="359488">Pays / Code pays</translation>
+   <translation id="telephony_line_details_next_bill" qtlid="359501">Prochaine facturation</translation>
+   <translation id="telephony_line_details_simultaneous_call" qtlid="303718">Appels simultanés</translation>
+   <translation id="telephony_line_details_simultaneous_call_details" qtlid="458169">(dont {{extra}} en option et {{toBeDeleted}} en attente de résiliation)</translation>
+   <translation id="telephony_line_details_offer" qtlid="458182">Détails de l'offre</translation>
+
+   <translation id="telephony_line_details_global_group_title" qtlid="59627">Informations sur le groupe</translation>
+   <translation id="telephony_line_details_group_label" qtlid="9238">Descripción</translation>
+   <translation id="telephony_line_details_group_id" qtlid="43936">Nom du groupe</translation>
+
+   <translation id="telephony_line_details_hardware_title" qtlid="359514">Informations sur le matériel</translation>
+   <translation id="telephony_line_details_hardware_model" qtlid="26143">Modèle</translation>
+   <translation id="telephony_line_details_hardware_combi" qtlid="359527">Combiné</translation>
+   <translation id="telephony_line_details_hardware_mac" qtlid="42562">Adresse MAC</translation>
+   <translation id="telephony_line_details_hardware_ip" qtlid="26191">Adresse IP</translation>
+   <translation id="telephony_line_details_hardware_port" qtlid="9034">Puerto</translation>
+   <translation id="telephony_line_details_hardware_protocol" qtlid="19711">Protocole</translation>
+   <translation id="telephony_line_details_hardware_infra" qtlid="125552">Infraestructura</translation>
+   <translation id="telephony_line_details_hardware_status" qtlid="26443">Estado</translation>
+
+   <translation id="telephony_line_details_sip_title" qtlid="359540">Informations SIP</translation>
+   <translation id="telephony_line_details_sip_login" qtlid="359553">Login / User name</translation>
+   <translation id="telephony_line_details_sip_auth_login" qtlid="359566">Authorization user name</translation>
+   <translation id="telephony_line_details_sip_domain" qtlid="359579">Domain / Registrar</translation>
+   <translation id="telephony_line_details_sip_infra" qtlid="125552">Infraestructura</translation>
+   <translation id="telephony_line_details_sip_last_rec" qtlid="359592">Date du dernier enregistrement</translation>
+   <translation id="telephony_line_details_sip_last_rec_info" qtlid="359605">Un enregistrement sur le réseau est valable durant une heure.</translation>
+   <translation id="telephony_line_details_sip_ip_local" qtlid="359618">Ip / port local</translation>
+   <translation id="telephony_line_details_sip_ip_public" qtlid="359631">Ip / port publique</translation>
+
+</translations>

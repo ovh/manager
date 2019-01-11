@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_line_language_informations_title" qtlid="26551">Informacija</translation>
+   <translation id="telephony_line_language_informations_detail" qtlid="360008">Čia galite pakeisti linijos pranešimų kalbą. Jeigu naudojate LG telefoną, telefono sąsajoje taip pat bus naudojama ši kalba.</translation>
+   <translation id="telephony_line_language_title" qtlid="360021">Linijos kalba</translation>
+   <translation id="telephony_line_language_back_link" qtlid="338053">Grįžti prie linijos valdymo</translation>
+   <translation id="telephony_line_language_value_placeholder" qtlid="323651">Pasirinkite kalbą</translation>
+   <translation id="telephony_line_language_value_dutch" qtlid="33982">Olandų</translation>
+   <translation id="telephony_line_language_value_english_uk" qtlid="360034">Anglų (UK)</translation>
+   <translation id="telephony_line_language_value_french" qtlid="29684">Prancūzų</translation>
+   <translation id="telephony_line_language_value_french_be" qtlid="360047">Prancūzų (Belgų)</translation>
+   <translation id="telephony_line_language_value_german" qtlid="31618">Vokiečių</translation>
+   <translation id="telephony_line_language_value_italian" qtlid="33502">Italų</translation>
+   <translation id="telephony_line_language_value_spanish" qtlid="33454">Ispanų</translation>
+   <translation id="telephony_line_language_validate" qtlid="323638">Pakeisti kalbą</translation>
+   <translation id="telephony_line_language_error_init" qtlid="360060">Negalima nuskaityti linijos kalbos</translation>
+   <translation id="telephony_line_language_error_change" qtlid="360073">Negalima keisti linijos kalbos</translation>
+   <translation id="telephony_line_language_ok_change" qtlid="360086">Kalba sėkmingai pakeista</translation>
+</translations>

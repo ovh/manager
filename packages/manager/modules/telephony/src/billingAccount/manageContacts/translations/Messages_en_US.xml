@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_group_manage_contacts_nic_admin" qtlid="386183">NIC administrateur</translation>
+   <translation id="telephony_group_manage_contacts_nic_tech" qtlid="386196">NIC technique</translation>
+   <translation id="telephony_group_manage_contacts_nic_billing" qtlid="386209">NIC facturation</translation>
+   <translation id="telephony_group_manage_contacts_group" qtlid="59507">Group</translation>
+   <translation id="telephony_group_manage_contacts_lines" qtlid="42802">Line</translation>
+   <translation id="telephony_group_manage_contacts_alias" qtlid="30778">Number</translation>
+   <translation id="telephony_group_manage_contacts_title" qtlid="73073">Manage contacts</translation>
+   <translation id="telephony_group_manage_contacts_pending_task" qtlid="386222">Demande en attente de validation</translation>
+   <translation id="telephony_group_manage_contacts_change_success" qtlid="386235">Votre demande de changement de contact a bien été envoyée.</translation>
+   <translation id="telephony_group_manage_contacts_change_info" qtlid="386248">Avec la gestion des contacts, vous pouvez attribuer des droits à d'autres personnes et leur confier la gestion d'une ligne, d'un alias ou d'un groupe.<br/>Selon le type de contact choisi, les droits ne sont pas les mêmes :<br/><br/><strong>Contact administrateur :</strong> le contact désigné peut gérer les aspects techniques d'une ligne et attribuer les droits de "contact technique" à une autre personne.<br/><strong>Contact technique :</strong> le contact désigné gère uniquement les aspects techniques d'une ligne, d'un alias ou d'un groupe.<br/><strong>Contact facturation :</strong> le contact désigné gère uniquement la facturation. (paiement des factures etc...)</translation>
+   <translation id="telephony_group_manage_contacts_disabled" qtlid="386261">Indisponible pour ce service</translation>
+</translations>

@@ -1,0 +1,75 @@
+// slots colors definition
+@telephony-slot1-color: @oui-color-california;
+@telephony-slot2-color: rgb(153, 153, 255, 1);
+@telephony-slot3-color: rgb(255, 51, 204, 1);
+@telephony-slot-available-color: rgb(26, 227, 135);
+
+.telecom-telephony {
+  footer.voip-action-bar {
+    background-color: rgba(70, 70, 70, 0.9);
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    padding: @padding-large-horizontal;
+    z-index: @zindex-modal-background;
+    font-size: 1.2em;
+  }
+
+  /* ----------  Special rules for action-bar  ---------- */
+  // medium rules (desktop)
+  @media (min-width: @screen-md-min) {
+    footer.voip-action-bar {
+      left: 100% / 6;
+    }
+  }
+
+  // medium rules (tablet...)
+  @media (max-width: (@screen-md-min - 1)) {
+    footer.voip-action-bar {
+      left: 100% / 4;
+    }
+  }
+
+  // small rules (phone)
+  @media (max-width: (@screen-sm-min - 1)) {
+    footer.voip-action-bar {
+      left: 0;
+    }
+  }
+
+  // TODO : this style have to be implemented into ui-kit once the select-picker component will have the transclude slot refactored
+  .oui-select-picker__transclude-container {
+    height: 15rem;
+
+    .transclude-image-container > img {
+      display: block;
+      height: 100%;
+      max-width: 85%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  // Specific style for custom buttons into datagrid
+  .row-height-limited {
+    td.oui-datagrid__cell > .ng-scope {
+      max-height: 4rem;
+    }
+  }
+
+  .content-precision-after::after {
+    content: "\2731";
+    vertical-align: super;
+    color: @oui-color-pomegranate;
+    font-size: 0.6rem;
+    margin: 0 0.2rem 0 0.2rem;
+  }
+
+  .content-precision-before::before {
+    content: "\2731";
+    vertical-align: super;
+    color: @oui-color-pomegranate;
+    font-size: 0.6rem;
+    margin: 0 0.2rem 0 0.2rem;
+  }
+}

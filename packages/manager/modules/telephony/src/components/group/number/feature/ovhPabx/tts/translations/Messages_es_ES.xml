@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_number_feature_ovh_pabx_tts_voice" qtlid="432319">Voix</translation>
+   <translation id="telephony_number_feature_ovh_pabx_tts_voice_helene" qtlid="466138">Hélène (français - femme)</translation>
+   <translation id="telephony_number_feature_ovh_pabx_tts_voice_loic" qtlid="466151">Loïc (français - homme)</translation>
+   <translation id="telephony_number_feature_ovh_pabx_tts_voice_jenny" qtlid="466164">Jenny (anglais - femme)</translation>
+   <translation id="telephony_number_feature_ovh_pabx_tts_voice_bruce" qtlid="466177">Bruce (anglais - homme)</translation>
+
+   <translation id="telephony_number_feature_ovh_pabx_tts_text" qtlid="234708">Texto.</translation>
+</translations>

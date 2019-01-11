@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_alias_sva_generator_config" qtlid="4406">Konfigūracija</translation>
+   <translation id="telephony_alias_sva_generator_panpanpan" qtlid="333295">Dėžutės generatorius</translation>
+   <translation id="telephony_alias_sva_generator_fill" qtlid="393100">Spalva</translation>
+   <translation id="telephony_alias_sva_generator_fill_gradient" qtlid="393113">Gradientas</translation>
+   <translation id="telephony_alias_sva_generator_fill_simple" qtlid="393126">Be gradiento</translation>
+   <translation id="telephony_alias_sva_generator_fill_black" qtlid="393139">Juoda</translation>
+   <translation id="telephony_alias_sva_generator_format" qtlid="393152">Rodyti numerį</translation>
+   <translation id="telephony_alias_sva_generator_unsupported" qtlid="393165">Dėžutė galima tik su specialiais numeriais</translation>
+</translations>

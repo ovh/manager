@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_abbreviated_numbers_title" qtlid="334192">Números abreviados</translation>
+   <translation id="telephony_abbreviated_numbers_explaination" qtlid="334270">Los números abreviados son números de 3 o 4 cifras que empiezan por 7.</translation>
+   <translation id="telephony_abbreviated_numbers_pattern_error" qtlid="357278">El campo debe contener un número de 3 o 4 cifras que empiece por 7.</translation>
+</translations>

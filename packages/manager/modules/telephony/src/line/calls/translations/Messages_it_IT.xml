@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_line_calls_back_link" qtlid="335115">Ritorna alla gestione delle chiamate</translation>
+   <translation id="telephony_line_calls_actions_line_manage_onboarding" qtlid="335128">Clicca e trascina sul calendario per creare una fascia oraria</translation>
+   <translation id="telephony_line_calls_actions_line_manage_filtering_lists_new" qtlid="335141">Filtro chiamate</translation>
+   <translation id="telephony_line_calls_actions_line_locking" qtlid="334660">Blocco delle chiamate in uscita</translation>
+   <translation id="telephony_line_calls_actions_line_forwardcall" qtlid="93355">Trasferimento di chiamata</translation>
+   <translation id="telephony_line_calls_actions_line_displayNumber" qtlid="58532">Caller ID</translation>
+   <translation id="telephony_line_calls_actions_line_simultaneouslines" qtlid="303718">Chiamate simultanee</translation>
+   <translation id="telephony_line_calls_actions_line_manage_slots" qtlid="335154">Gestisci le fasce orarie</translation>
+   <translation id="telephony_line_calls_actions_line_calendar" qtlid="335167">Gestisci le chiusure eccezionali</translation>
+   <translation id="telephony_line_calls_actions_line_callWaiting" qtlid="335180">Avviso di chiamata e Intercom</translation>
+   <translation id="telephony_line_calls_actions_line_abbreviated_numbers" qtlid="334192">Numeri brevi</translation>
+   <translation id="telephony_line_calls_actions_line_click2call" qtlid="335193">Chiamata in 1 click (Click2Call)</translation>
+   <translation id="telephony_line_calls_actions_line_external_number_display" qtlid="387146">Presentazione di un numero esterno</translation>
+</translations>

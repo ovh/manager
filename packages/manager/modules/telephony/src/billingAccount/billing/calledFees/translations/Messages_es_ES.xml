@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_group_billing_called_fees_title" qtlid="334478">Costes SVA del grupo</translation>
+   <translation id="telephony_group_billing_called_fees_total_title" qtlid="386612">Total de costes SVA</translation>
+   <translation id="telephony_group_billing_called_fees_total_price" qtlid="386625">{{ totalPrice }} €</translation>
+   <translation id="telephony_group_billing_called_fees_detail_title" qtlid="386638">Detalles de los costes SVA</translation>
+   <translation id="telephony_group_billing_called_fees_detail_operator_name" qtlid="386651">{{ operator }}:</translation>
+   <translation id="telephony_group_billing_called_fees_detail_operator_other" qtlid="386664">Otros operadores:</translation>
+   <translation id="telephony_group_billing_called_fees_detail_total_call_singular" qtlid="386677">{{ call }} llamada</translation>
+   <translation id="telephony_group_billing_called_fees_detail_total_call_plural" qtlid="386690">{{ call }} llamadas</translation>
+   <translation id="telephony_group_billing_called_fees_detail_total_call_empty" qtlid="386703">No hay llamadas.</translation>
+   <translation id="telephony_group_billing_called_fees_detail_total_duration_price" qtlid="386716">({{ totalDuration }} seg.), {{ totalPrice }} + IVA</translation>
+   <translation id="telephony_group_billing_called_fees_detail_total_label" qtlid="386729">Total:</translation>
+   <translation id="telephony_group_billing_called_fees_detail_empty" qtlid="386742">No hay datos.</translation>
+   <translation id="telephony_group_billing_called_fees_error" qtlid="386755">¡Vaya! No se han podido cargar los costes SVA del grupo.</translation>
+</translations>

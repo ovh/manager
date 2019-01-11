@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_group_line_calls_click2call_title" qtlid="334751">Click2call</translation>
+   <translation id="telephony_group_line_calls_click2call_ids_title" qtlid="55889">Identificadores</translation>
+   <translation id="telephony_group_line_calls_click2call_informations_title" qtlid="26551">Información</translation>
+   <translation id="telephony_group_line_calls_click2call_informations_text_1" qtlid="334764">El servicio Click2Call ha sido diseñado para facilitarle la comunicación con sus clientes.</translation>
+   <translation id="telephony_group_line_calls_click2call_informations_text_2" qtlid="334777">Llame a sus clientes con un simple enlace en su página web. OVH proporciona una API para permitir realizar llamadas ¡sin tocar el teléfono!</translation>
+   <translation id="telephony_group_line_calls_click2call_informations_text_3" qtlid="334790">Cree identificadores para autorizar a una aplicación o persona a realizar llamadas en su cuenta.</translation>
+
+   <translation id="telephony_group_line_calls_click2call_user_title_id" qtlid="46792">Usuario</translation>
+   <translation id="telephony_group_line_calls_click2call_user_title_login" qtlid="41062">Usuario</translation>
+   <translation id="telephony_group_line_calls_click2call_user_title_creationDate" qtlid="26419">Fecha de creación</translation>
+   <translation id="telephony_group_line_calls_click2call_no_user" qtlid="215741">No hay usuarios.</translation>
+
+   <translation id="telephony_group_line_calls_click2call_call_title" qtlid="334803">Llamada Click2Call</translation>
+   <translation id="telephony_group_line_calls_click2call_call_number_to_call_label" qtlid="334816">Llamar al número:&#160;</translation>
+   <translation id="telephony_group_line_calls_click2call_call_number_to_call_placeholder" qtlid="334829">Introduzca aquí el número al que se realizará la llamada</translation>
+   <translation id="telephony_group_line_calls_click2call_call_do_call_label" qtlid="334842">Llamar</translation>
+
+   <translation id="telephony_group_line_calls_click2call_call_do_ok" qtlid="334855">La llamada está en curso en la línea {{serviceName}}.</translation>
+   <translation id="telephony_group_line_calls_click2call_call_do_ko" qtlid="334868">La llamada no ha podido realizarse.</translation>
+
+   <translation id="telephony_group_line_calls_click2call_ids_add" qtlid="37923">Añadir</translation>
+
+   <translation id="telephony_group_line_calls_click2call_addUser" qtlid="262843">Añadir un ID de cliente</translation>
+
+   <translation id="telephony_group_line_calls_click2call_no_users" qtlid="334998">Todavía no tengo identificador.</translation>
+   <translation id="telephony_group_line_calls_click2call_no_users_add" qtlid="335011">Haga clic en el botón «Añadir» para crear un nuevo identificador.</translation>
+
+   <translation id="telephony_group_line_calls_click2call_removeUser_removing" qtlid="335024">Eliminando el usuario...</translation>
+   <translation id="telephony_group_line_calls_click2call_removeUser_confirm" qtlid="386977">¿Desea eliminar al usuario <strong>{{name}}</strong>?&#160;</translation>
+   <translation id="telephony_group_line_calls_click2call_call_add_ko" qtlid="335050">No se ha podido añadir el usuario.<br/>{{error}}</translation>
+   <translation id="telephony_group_line_calls_click2call_removeUser_removed" qtlid="335063">Se ha eliminado el identificador.</translation>
+   <translation id="telephony_group_line_calls_click2call_removeUser" qtlid="335089">Eliminación de un identificador</translation>
+   <translation id="telephony_group_line_calls_click2call_removeUser_ko" qtlid="335102">No se ha podido eliminar el identificador.<br/>{{error}}</translation>
+
+   <translation id="telephony_group_line_calls_click2call_changePasswordUser" qtlid="80394">Cambiar la contraseña</translation>
+   <translation id="telephony_group_line_calls_click2call_changePasswordUser_password_label" qtlid="334894">Contraseña:&#160;</translation>
+   <translation id="telephony_group_line_calls_click2call_changePasswordUser_password_placeholder" qtlid="2270">Contraseña</translation>
+   <translation id="telephony_group_line_calls_click2call_changePasswordUser_changingPassword" qtlid="215897">Cambiando la contraseña...</translation>
+   <translation id="telephony_group_line_calls_click2call_changePasswordUser_changedPassword" qtlid="7918">Contraseña cambiada con éxito</translation>
+</translations>

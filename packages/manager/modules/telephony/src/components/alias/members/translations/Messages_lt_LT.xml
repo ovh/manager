@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_alias_members_add_success" qtlid="397078">Nariai sėkmingai pridėti</translation>
+   <translation id="telephony_alias_members_delete_success" qtlid="397091">Narys sėkmingai ištrintas</translation>
+   <translation id="telephony_alias_members_change_success" qtlid="397104">Narys sėkmingai atnaujintas</translation>
+   <translation id="telephony_alias_members_empty" qtlid="397117">Sąraše nėra narių</translation>
+   <translation id="telephony_alias_members_drag1" qtlid="397130">Piktograma</translation>
+   <translation id="telephony_alias_members_drag2" qtlid="397143">leidžia įjungti "tempk-paleisk" veiksmą narių pergrupavimui eilėje.</translation>
+   <translation id="telephony_alias_members_number_external" qtlid="93271">Išorinis numeris</translation>
+   <translation id="telephony_alias_members_status" qtlid="26443">Būsena</translation>
+   <translation id="telephony_alias_members_status_available" qtlid="99920">Galimi</translation>
+   <translation id="telephony_alias_members_status_onBreak" qtlid="397156">Pristabdyta</translation>
+   <translation id="telephony_alias_members_status_loggedOut" qtlid="77154">Neprisijungęs</translation>
+   <translation id="telephony_alias_members_timeout_val" qtlid="397169">Uždelsimas: {{ timeout }} sek.</translation>
+   <translation id="telephony_alias_members_wrap_up_time_val" qtlid="397182">Liko: {{ time }} sek.</translation>
+   <translation id="telephony_alias_members_simultaneous_lines_val" qtlid="397195">Vienalaikiai skambučiai: {{ count }}</translation>
+   <translation id="telephony_alias_members_timeout" qtlid="303692">Liko</translation>
+   <translation id="telephony_alias_members_wrap_up_time" qtlid="303705">Perkėlimas</translation>
+   <translation id="telephony_alias_members_simultaneous_lines" qtlid="303718">Vienalaikiai skambučiai</translation>
+   <translation id="telephony_alias_members_seconds" qtlid="397208">{{ amount }} sek.</translation>
+   <translation id="telephony_alias_members_number" qtlid="30778">Numeris</translation>
+   <translation id="telephony_alias_members_number_placeholder" qtlid="397221">Numeris tarptautiniu formatu</translation>
+   <translation id="telephony_alias_members_number_add" qtlid="397234">Pridėti kitą numerį</translation>
+   <translation id="telephony_alias_members_add" qtlid="392502">Pridėti narį</translation>
+   <translation id="telephony_alias_members_add_multiple" qtlid="397247">Pridėti {{ count }} narius</translation>
+   <translation id="telephony_alias_members_explanation" qtlid="466801">Pour chaque membre, vous pouvez définir sa position, le nombre d'appels simultanés, le délai durant lequel il sonne et le délai de repos avant la présentation d'un nouvel appel suite à un appel terminé.</translation>
+   <translation id="telephony_alias_members_add_modal-warning" qtlid="480201">Votre configuration possède un ou plusieurs numéros externes. Les appels vers ces numéros vous seront facturés hors forfait quelque soit votre forfait.</translation>
+   <translation id="telephony_alias_members_add_modal-question" qtlid="480214">Continuer avec cette configuration ?</translation>
+</translations>

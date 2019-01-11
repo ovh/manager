@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_alias_ovh_pabx_condition" qtlid="461718">Pour utiliser cette fonctionnalité, vous devez activer le type serveur vocal interactif ou le type file d’appel (mode expert).</translation>
+   <translation id="telephony_alias_ovh_pabx_menu_condition" qtlid="462771">Vous devez activer le type serveur vocal interactif afin de pouvoir gérer les menus interactifs.</translation>
+   <translation id="telephony_alias_ovh_pabx_tts_condition" qtlid="462784">Vous devez activer le type Contact Center Solution mode expert afin de pouvoir gérer les Text To Speech.</translation>
+</translations>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_group_billing_group_repayments_title" qtlid="334465">Reversements SVA du groupe</translation>
+   <translation id="telephony_group_billing_group_repayments_info1" qtlid="457038">Cette section concerne les reversements des appels reçus sur les numéros spéciaux de votre groupe.</translation>
+   <translation id="telephony_group_billing_group_repayments_info2" qtlid="457051">Pour accéder aux coûts générés par les appels entrants,</translation>
+   <translation id="telephony_group_billing_group_repayments_info3" qtlid="386794">accédez aux coûts SVA de votre groupe.</translation>
+   <translation id="telephony_group_billing_group_repayments_error" qtlid="457064">Oups ! Impossible de récupérer les reversements SVA du groupe</translation>
+   <translation id="telephony_group_billing_group_repayments_detail_title" qtlid="457077">Détails des reversements</translation>
+   <translation id="telephony_group_billing_group_repayments_detail_operator_name" qtlid="386651">{{ operator }}&#160;:</translation>
+   <translation id="telephony_group_billing_group_repayments_detail_operator_other" qtlid="386664">Autres opérateurs&#160;:</translation>
+   <translation id="telephony_group_billing_group_repayments_detail_total_call_singular" qtlid="386677">{{ call }} Appel</translation>
+   <translation id="telephony_group_billing_group_repayments_detail_total_call_plural" qtlid="386690">{{ call }} Appels</translation>
+   <translation id="telephony_group_billing_group_repayments_detail_total_call_empty" qtlid="386703">Aucun Appel</translation>
+   <translation id="telephony_group_billing_group_repayments_detail_total_duration_price" qtlid="386716">({{ totalDuration }}sec.) soit {{ totalPrice }} HT</translation>
+   <translation id="telephony_group_billing_group_repayments_detail_total_label" qtlid="386729">Total&#160;:</translation>
+   <translation id="telephony_group_billing_group_repayments_total_title" qtlid="457090">Total des reversements</translation>
+   <translation id="telephony_group_billing_group_repayments_total_differed_label" qtlid="35796">Uitgesteld</translation>
+   <translation id="telephony_group_billing_group_repayments_total_repayable_label" qtlid="35808">Beschikbaar</translation>
+   <translation id="telephony_group_billing_group_repayments_total_total_label" qtlid="32458">Totaal</translation>
+   <translation id="telephony_group_billing_group_repayments_total_price" qtlid="457103">{{ price }} €</translation>
+   <translation id="telephony_group_billing_group_repayments_no_amount_available" qtlid="457116">Aucune somme n’est actuellement disponible.</translation>
+   <translation id="telephony_group_billing_group_repayments_consumptions_empty" qtlid="386742">Aucune information.</translation>
+   <translation id="telephony_group_billing_group_repayments_ask_new_repayment" qtlid="457129">Demander le reversement de la somme disponible</translation>
+   <translation id="telephony_group_billing_group_repayments_ask_new_repayment_info" qtlid="457142">La demande de reversement de la somme disponible n’est possible qu’à partir d’un montant de 1&#160;€.</translation>
+   <translation id="telephony_group_billing_group_repayments_ask_new_repayment_label" qtlid="457155">Numéro personnalisé de facture (max. 30 caractères)</translation>
+   <translation id="telephony_group_billing_group_repayments_ask_new_repayment_label_short" qtlid="457168">Numéro de facture</translation>
+   <translation id="telephony_group_billing_group_repayments_ask_new_repayment_error_more_that_one" qtlid="457181">Désolé, un reversement est déjà en cours…</translation>
+   <translation id="telephony_group_billing_group_repayments_ask_new_repayment_error_more_that_one" qtlid="457181">Désolé, un reversement est déjà en cours…</translation>
+   <translation id="telephony_group_billing_group_repayments_ask_new_repayment_error" qtlid="457194">Oups ! Une erreur est survenue lors de la demande de reversement de la somme disponible.</translation>
+   <translation id="telephony_group_billing_group_repayments_ask_new_repayment_success" qtlid="457207">Votre demande de reversement de la somme disponible a été effectuée avec succès.</translation>
+</translations>

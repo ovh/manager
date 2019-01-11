@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_group_line_cancel_terminate_title" qtlid="359943">Annulla la disattivazione della linea "{{ line }}"</translation>
+   <translation id="telephony_group_line_cancel_terminate_info_title" qtlid="26551">Informazioni</translation>
+   <translation id="telephony_group_line_cancel_terminate_info_1" qtlid="359956">Da questa pagina puoi annullare la disattivazione della tua linea.</translation>
+   <translation id="telephony_group_line_cancel_terminate_action_title" qtlid="359696">Annulla la disattivazione della linea</translation>
+   <translation id="telephony_group_line_cancel_terminate_terminate" qtlid="285350">Annulla chiusura </translation>
+   <translation id="telephony_group_line_cancel_terminating_ok" qtlid="359969">La richiesta di disattivazione è stata annullata.</translation>
+   <translation id="telephony_group_line_cancel_terminating_ko" qtlid="359982">Si è verificato un errore durante la richiesta di annullamento<br/>{{error}}</translation>
+   <translation id="telephony_group_line_cancel_terminate_action_label" qtlid="359995">Sulla linea è in corso la procedura di disattivazione.<br/>La disattivazione è programmata per il<b class="text-danger">{{executionDate}}</b>.<br/>Per annullare l'operazione, clicca su "Annulla la disattivazione".</translation>
+</translations>

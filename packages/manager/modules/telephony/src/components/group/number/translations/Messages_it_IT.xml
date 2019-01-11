@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_number_incoming_calls" qtlid="358916">Chiamate in entrata</translation>
+   <translation id="telephony_number_save_error" qtlid="396727">Ops! Si è verificato un errore durante il salvataggio della configurazione del tuo numero.</translation>
+   <translation id="telephony_number_save_doing" qtlid="124303">Modifica in corso</translation>
+
+<!-- ACTIONS -->
+   <translation id="telephony_number_action_change_type" qtlid="332918">Modifica il tipo di numero</translation>
+   <translation id="telephony_number_action_scheduler" qtlid="392515">Gestisci fasce orarie eccezionali</translation>
+
+<!-- FEATURES -->
+<!-- REDIRECT -->
+   <translation id="telephony_number_feature_redirect_to" qtlid="396740">Reindirizza verso</translation>
+   <translation id="telephony_number_feature_redirect_add_conditions" qtlid="396753">Aggiungi condizioni</translation>
+   <translation id="telephony_number_feature_redirect_not_set" qtlid="396766">Nessuna destinazione selezionata.</translation>
+   <translation id="telephony_number_feature_redirect_not_set_explain" qtlid="396779">Modifica il reindirizzamento a partire dal menu indicato da "..." qui sotto.</translation>
+   <translation id="telephony_number_feature_redirect_to_another_group" qtlid="396792">Reindirizza verso un altro servizio.</translation>
+   <translation id="telephony_number_feature_redirect_save_error" qtlid="396805">Ops! Si è verificato un errore durante la modifica del reindirizzamento.</translation>
+<!-- SPECIFIC ACTIONS -->
+   <translation id="telephony_number_feature_redirect_action_edit" qtlid="99224">Modifica il reindirizzamento</translation>
+
+<!-- OVHPABX -->
+   <translation id="telephony_number_feature_ovh_pabx_dial_plan" qtlid="396818">Piano di numerazione:</translation>
+   <translation id="telephony_number_feature_ovh_pabx_action_option" qtlid="396831">Modifica le opzioni del piano di numerazione</translation>
+   <translation id="telephony_number_feature_ovh_pabx_action_interactive_menu_management" qtlid="396844">Gestisci i menu interattivi</translation>
+   <translation id="telephony_number_feature_ovh_pabx_action_sound_management" qtlid="396857">Gestisci i suoni</translation>
+
+<!-- SVI -->
+   <translation id="telephony_number_feature_svi" qtlid="396870">Server vocale interattivo in VXML</translation>
+   <translation id="telephony_number_feature_svi_edit" qtlid="356888">Gestisci le impostazioni del server vocale</translation>
+   <translation id="telephony_number_feature_svi_popover_title" qtlid="396883">Impostazioni del server vocale</translation>
+   <translation id="telephony_number_feature_svi_url" qtlid="396896">URL della tua configurazione VXML</translation>
+   <translation id="telephony_number_feature_svi_url_record" qtlid="396909">Tag elementi VXML</translation>
+   <translation id="telephony_number_feature_svi_url_record_help" qtlid="396922">La destinazione dove verrà inviata la registrazione.</translation>
+   <translation id="telephony_number_feature_svi_bad_url_format" qtlid="396935">Il formato dell'URL non è valido. Es.: http://www.tuodominio.com.</translation>
+   <translation id="telephony_number_feature_svi_required_url" qtlid="396948">L'URL del file di configurazione VXML è obbligatorio.</translation>
+   <translation id="telephony_number_feature_svi_bad_url_ftp_format" qtlid="396961">Il formato dell'URL FTP deve essere una directory (che termina con /). Es.: ftp://www.tuodominio.com/tuacartella/.</translation>
+   <translation id="telephony_number_feature_svi_bad_url_mailto_format" qtlid="396974">Il formato dell'indirizzo email non è valido. Es.: esempio@tuodominio.com.&#13;
+&#13;
+</translation>
+   <translation id="telephony_number_feature_svi_save_error" qtlid="396987">Ops! Si è verificato un errore durante la modifica delle impostazioni del tuo server vocale.</translation>
+
+<!-- FOOTER -->
+   <translation id="telephony_number_footer_question" qtlid="395934">Salvare la configurazione?</translation>
+</translations>

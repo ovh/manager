@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_group_fax_assist_back_link" qtlid="336337">Retour à l'assistance</translation>
+<!-- ACTIONS -->
+   <translation id="telephony_group_fax_assist_action_logs" qtlid="336272">Consultation des notifications</translation>
+   <translation id="telephony_group_fax_assist_action_support" qtlid="336207">Guides et support</translation>
+   <translation id="telephony_group_fax_assist_action_orders" qtlid="336298">Informacje o zamówieniach</translation>
+</translations>

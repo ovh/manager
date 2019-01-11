@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_number_feature_ovh_pabx_sound_popover_section_add" qtlid="462810">Ajouter un son</translation>
+   <translation id="telephony_number_feature_ovh_pabx_sound_popover_section_bad_format" qtlid="463785">Formats principaux : wav, mp3, mp4, ogg et wma.</translation>
+   <translation id="telephony_number_feature_ovh_pabx_sound_popover_section_bad_size" qtlid="463798">Fichier trop volumineux. Taille maximale : 10 Mo.</translation>
+   <translation id="telephony_number_feature_ovh_pabx_sound_popover_section_file_exists" qtlid="463811">Nom de fichier déjà ajouté.</translation>
+   <translation id="telephony_number_feature_ovh_pabx_sound_popover_section_bad_name" qtlid="463824">Nom de fichier incorrect. Ne peut dépasser 30 caractères (lettres, chiffres, tirets-bas ou espaces).</translation>
+   <translation id="telephony_number_feature_ovh_pabx_sound_popover_section_add_choose" qtlid="463837">Ajouter un nouveau fichier</translation>
+   <translation id="telephony_number_feature_ovh_pabx_sound_popover_section_add_explain" qtlid="463850">Max. 10 Mo. Formats principaux : wav, mp3, mp4, ogg et wma.</translation>
+   <translation id="telephony_number_feature_ovh_pabx_sound_popover_section_existing_files" qtlid="463863">Sons déjà ajoutés :</translation>
+</translations>

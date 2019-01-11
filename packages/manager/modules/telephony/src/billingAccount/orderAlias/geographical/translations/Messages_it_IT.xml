@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_order_geographical_title_country" qtlid="333373">Ordina un numero geografico ({{country}})</translation>
+   <translation id="telephony_order_geographical_title" qtlid="358110">Ordina un numero geografico</translation>
+   <translation id="telephony_order_geographical_submit_title" qtlid="347119">Ordina un numero geografico</translation>
+   <translation id="telephony_order_geographical_back_link" qtlid="333386">Ritorna alla scelta dei tipi di numero</translation>
+   <translation id="telephony_order_geographical_amount_title" qtlid="333412">Quantità di numeri:</translation>
+   <translation id="telephony_order_geographical_zone_title" qtlid="333425">Zona geografica:</translation>
+   <translation id="telephony_order_geographical_zone_error" qtlid="333438">La zona geografica non è corretta.</translation>
+   <translation id="telephony_order_geographical_specific_title" qtlid="333451">Scegli il numero</translation>
+   <translation id="telephony_order_geographical_retractation_title" qtlid="319973">Diritto di recesso</translation>
+   <translation id="telephony_order_geographical_address_title" qtlid="333464">Dati del titolare del numero</translation>
+   <translation id="telephony_order_geographical_submit_title" qtlid="347119">Ordina un numero geografico</translation>
+   <translation id="telephony_order_geographical_zone_tip" qtlid="333477">Città o CAP</translation>
+   <translation id="telephony_order_geographical_numbers_error" qtlid="333490">Impossibile caricare la lista delle preselezioni di numeri.</translation>
+   <translation id="telephony_order_geographical_order_error" qtlid="333347">L'ordine dei tuoi numeri geografici non è andato a buon fine, ti preghiamo di riprovare.</translation>
+   <translation id="telephony_order_geographical_order_error_city" qtlid="333503">{{city}} non si trova nella zona ({{zone}})</translation>
+   <translation id="telephony_order_geographical_order_success" qtlid="333516">L'ordine dei numeri geografici è stato effettuato. Ti preghiamo di saldare il tuo ordine.</translation>
+</translations>

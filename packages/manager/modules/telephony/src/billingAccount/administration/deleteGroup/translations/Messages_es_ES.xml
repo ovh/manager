@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_delete_group_title" qtlid="69929">Eliminar el grupo</translation>
+   <translation id="telephony_delete_group_warning" qtlid="334088">La eliminación de un grupo de telefonía implica la baja de las líneas y números asociados.</translation>
+   <translation id="telephony_delete_group_infos" qtlid="334101">La solicitud de eliminación de un grupo se planifica para la fecha de la próxima facturación. Puede cancelarse hasta esa fecha.</translation>
+   <translation id="telephony_delete_group_pending" qtlid="334114">Eliminación del grupo {{group}} planificada el:</translation>
+   <translation id="telephony_delete_group_cancel" qtlid="173645">Cancelar la eliminación</translation>
+   <translation id="telephony_delete_group_cancel_success" qtlid="334127">La eliminación del grupo {{group}} se ha cancelado correctamente.</translation>
+   <translation id="telephony_delete_group_delete" qtlid="334140">Eliminar {{group}}</translation>
+   <translation id="telephony_delete_group_delete_success" qtlid="334153">La eliminación del grupo {{group}} se ha planificado correctamente.</translation>
+</translations>

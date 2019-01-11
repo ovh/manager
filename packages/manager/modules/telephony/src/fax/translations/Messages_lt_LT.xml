@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_fax_page_title" qtlid="393178">Faksas "{{name}}"</translation>
+   <translation id="telephony_fax_loading_error" qtlid="462966">Oups ! Une erreur est survenue lors du chargement.</translation>
+<!-- TABS -->
+   <translation id="telephony_fax_tab_manage" qtlid="72737">Valdymas</translation>
+   <translation id="telephony_fax_tab_consumption" qtlid="25639">Sunaudojimas</translation>
+   <translation id="telephony_fax_tab_voicemail" qtlid="88956">Atsakiklis</translation>
+   <translation id="telephony_fax_tab_fax" qtlid="32926">Faksas</translation>
+   <translation id="telephony_fax_tab_contact" qtlid="33370">Kontaktiniai duomenys</translation>
+   <translation id="telephony_fax_tab_assist" qtlid="52699">Pagalba</translation>
+
+   <translation id="telephony_fax_no_service_back_link" qtlid="462979">Retour à la gestion du groupe</translation>
+   <translation id="telephony_fax_section_back_link" qtlid="357083">Grįžti prie fakso valdymo</translation>
+   <translation id="telephony_fax_rename_error" qtlid="357161">Negalima pervadinti fakso {{serviceName}}.</translation>
+
+   <translation id="telephony_fax_termination_warning" qtlid="462992">La ligne sera résiliée le <strong>{{ date }}</strong>.</translation>
+   <translation id="telephony_fax_termination_warning_cancel" qtlid="358604">Galite atšaukti spragtelėję čia.</translation>
+</translations>

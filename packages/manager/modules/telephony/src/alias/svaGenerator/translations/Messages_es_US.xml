@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_alias_sva_generator_config" qtlid="4406">Configuración</translation>
+   <translation id="telephony_alias_sva_generator_panpanpan" qtlid="333295">Générateur de cartouche</translation>
+   <translation id="telephony_alias_sva_generator_fill" qtlid="393100">Couleur de cartouche</translation>
+   <translation id="telephony_alias_sva_generator_fill_gradient" qtlid="393113">Dégradé couleur</translation>
+   <translation id="telephony_alias_sva_generator_fill_simple" qtlid="393126">Couleur sans dégradé</translation>
+   <translation id="telephony_alias_sva_generator_fill_black" qtlid="393139">Aplat noir</translation>
+   <translation id="telephony_alias_sva_generator_format" qtlid="393152">Affichage du numéro</translation>
+   <translation id="telephony_alias_sva_generator_unsupported" qtlid="393165">Le cartouche n'est disponible que pour les numéros spéciaux.</translation>
+</translations>

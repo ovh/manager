@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_group_line_cancel_terminate_title" qtlid="359943">Annulé la résiliation de la ligne "{{ line }}"</translation>
+   <translation id="telephony_group_line_cancel_terminate_info_title" qtlid="26551">Informações</translation>
+   <translation id="telephony_group_line_cancel_terminate_info_1" qtlid="359956">Cette page vous permet d'annuler votre demande de résiliation de votre ligne.</translation>
+   <translation id="telephony_group_line_cancel_terminate_action_title" qtlid="359696">Annuler la résiliation de la ligne</translation>
+   <translation id="telephony_group_line_cancel_terminate_terminate" qtlid="285350">Anular cancelamento do serviço</translation>
+   <translation id="telephony_group_line_cancel_terminating_ok" qtlid="359969">La résiliation a été annulée.</translation>
+   <translation id="telephony_group_line_cancel_terminating_ko" qtlid="359982">Une erreur est survenue lors de la demande d'annulation<br/>{{error}}</translation>
+   <translation id="telephony_group_line_cancel_terminate_action_label" qtlid="359995">Vous avez une demande de résiliation en cours sur la ligne.<br/>Cette résiliation est programmée le <b class="text-danger">{{executionDate}}</b>.<br/>En cliquant sur le bouton «Annuler la résiliation», vous procédez à l'annulation immédiate de la résiliation.</translation>
+</translations>

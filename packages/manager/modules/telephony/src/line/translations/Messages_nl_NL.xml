@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_line_page_title" qtlid="387354">Ligne "{{name}}"</translation>
+   <translation id="telephony_line_tab_manage" qtlid="72737">Beheer</translation>
+   <translation id="telephony_line_tab_consumption" qtlid="25639">Verbruik</translation>
+   <translation id="telephony_line_tab_call_management" qtlid="334621">Gestion des appels</translation>
+   <translation id="telephony_line_tab_music_management" qtlid="334634">Gestion des musiques</translation>
+   <translation id="telephony_line_tab_answering_machine" qtlid="88956">Beantwoorder</translation>
+   <translation id="telephony_line_tab_phone" qtlid="34174">Telefoon</translation>
+   <translation id="telephony_line_tab_contact_details" qtlid="33370">Contact</translation>
+   <translation id="telephony_line_tab_assist" qtlid="52699">Support</translation>
+   <translation id="telephony_line_tab_fax" qtlid="32926">Fax</translation>
+
+   <translation id="telephony_line_rename_error" qtlid="334647">Impossible de renommer votre ligne {{serviceName}}.</translation>
+
+   <translation id="telephony_line_offer_type_individual" qtlid="358565">SIP découverte</translation>
+   <translation id="telephony_line_offer_type_priceplan" qtlid="358578">SIP Entreprise</translation>
+   <translation id="telephony_line_expire_date" qtlid="358591">Le service expire le {{date}}.</translation>
+   <translation id="telephony_line_expire_link" qtlid="358604">Vous pouvez annuler en cliquant ici.</translation>
+   <translation id="telephony_line_convert_date" qtlid="387367">Cette ligne sera convertie en numéro le {{ date }}.</translation>
+   <translation id="telephony_line_convert_link" qtlid="458195">Vous pourrez annuler dans la section suivante.</translation>
+</translations>

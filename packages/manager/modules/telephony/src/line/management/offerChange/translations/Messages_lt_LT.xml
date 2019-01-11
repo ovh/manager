@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_line_management_change_offer_title" qtlid="359709">Planas ir keitimas</translation>
+
+   <translation id="telephony_line_management_change_offer_informations" qtlid="359462">Linijos informacija</translation>
+   <translation id="telephony_line_management_change_offer_informations_group" qtlid="359722">Grupė:</translation>
+   <translation id="telephony_line_management_change_offer_informations_next_billing" qtlid="359735">Būsima sąskaita:</translation>
+   <translation id="telephony_line_management_change_offer_informations_offer" qtlid="359748">Dabartinis planas:</translation>
+
+   <translation id="telephony_line_management_change_offer_change_button" qtlid="359761">Keisti planą</translation>
+   <translation id="telephony_line_management_change_offer_change_edit_title" qtlid="359774">Plano keitimas</translation>
+   <translation id="telephony_line_management_change_offer_change_edit_available_offers" qtlid="359787">Galimi pasiūlymai</translation>
+   <translation id="telephony_line_management_change_offer_change_edit_selected_price" qtlid="83913">Kaina</translation>
+   <translation id="telephony_line_management_change_offer_change_edit_selected_date" qtlid="359800">Data, nuo kada įsigalios:</translation>
+
+   <translation id="telephony_line_management_change_offer_change_doing" qtlid="359813">Plano keitimo prašymas apdorojamas...</translation>
+   <translation id="telephony_line_management_change_offer_change_success" qtlid="359826">Plano keitimo prašymas užregistruotas</translation>
+
+   <translation id="telephony_line_management_change_offer_change_error_init" qtlid="359839">Klaida gaunant plano keitimo informaciją</translation>
+   <translation id="telephony_line_management_change_offer_change_error_save" qtlid="359852">Klaida registruojant plano keitimą</translation>
+   <translation id="telephony_line_management_change_offer_change_error_init_modal" qtlid="359865">Klaida įkeliant galimus pasiūlymus</translation>
+
+   <translation id="telephony_line_management_change_offer_change_pending" qtlid="359878">Plano keitimas numatytas {{ date }}.</translation>
+   <translation id="telephony_line_management_change_offer_change_pending_new_offer" qtlid="359891">Naujas planas: {{ offer }}</translation>
+   <translation id="telephony_line_management_change_offer_change_pending_cancel" qtlid="332489">Atšaukti pasiūlymo keitimą</translation>
+   <translation id="telephony_line_management_change_offer_change_pending_cancel_confirm" qtlid="359904">Ar tikrai norite atšaukti plano keitimą?</translation>
+   <translation id="telephony_line_management_change_offer_change_pending_cancel_doing" qtlid="359917">Plano keitimas atšaukiamas...</translation>
+   <translation id="telephony_line_management_change_offer_change_pending_cancel_error" qtlid="359930">Klaida atšaukiant plano keitimą.</translation>
+
+   <translation id="telephony_line_management_change_offer_bulk_all_success" qtlid="458364">Le changement d'offre a bien été appliqué aux services sélectionnés.</translation>
+   <translation id="telephony_line_management_change_offer_bulk_some_success" qtlid="458377">Le changement d'offre a bien été appliqué à {{ count }} des services sélectionnés.</translation>
+   <translation id="telephony_line_management_change_offer_bulk_error" qtlid="458390">Le changement d'offre n'a pu êtr appliquée au(x) service(s) suivant(s) :</translation>
+   <translation id="telephony_line_management_change_offer_bulk_on_error" qtlid="332710">Klaida keičiant pasiūlymą.</translation>
+
+</translations>

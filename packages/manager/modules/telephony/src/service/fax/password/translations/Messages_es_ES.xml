@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_service_fax_password_main_title" qtlid="2270">Contraseña</translation>
+   <translation id="telephony_service_fax_password_title" qtlid="357174">Gestión de la contraseña del fax</translation>
+   <translation id="telephony_service_fax_password_number_info_line" qtlid="357252">Línea:</translation>
+   <translation id="telephony_service_fax_password_error_password_required" qtlid="357187">El campo «Contraseña» es obligatorio.</translation>
+   <translation id="telephony_service_fax_password_error_password_minlength" qtlid="357200">La contraseña debe tener al menos 6 caracteres.</translation>
+   <translation id="telephony_service_fax_password_error_password_maxlength" qtlid="357213">La contraseña no puede tener más de 12 caracteres.</translation>
+   <translation id="telephony_service_fax_password_label_confirm" qtlid="31498">Confirmar</translation>
+   <translation id="telephony_service_fax_password_error_confirm_password_match" qtlid="357226">Las contraseñas no son iguales.</translation>
+   <translation id="telephony_service_fax_password_apply" qtlid="249107">Aplicar los cambios</translation>
+   <translation id="telephony_service_fax_password_change_success" qtlid="337715">La contraseña se ha cambiado correctamente.</translation>
+   <translation id="telephony_service_fax_password_change_error" qtlid="357239">No se ha podido configurar la contraseña.<br/>{{ error }}</translation>
+
+   <translation id="telephony_service_fax_password_bulk_all_success" qtlid="458455">La modification du mot de passe a bien été appliquée aux services sélectionnés.</translation>
+   <translation id="telephony_service_fax_password_bulk_some_success" qtlid="458468">La modification du mot de passe a bien été appliquée à {{ count }} des services sélectionnés.</translation>
+   <translation id="telephony_service_fax_password_bulk_error" qtlid="458481">La modification du mot de passe n'a pu être appliquée au(x) service(s) suivant(s) :</translation>
+   <translation id="telephony_service_fax_password_bulk_on_error" qtlid="460574">Oups ! Une erreur est survenue lors de la modification du mot de passe .</translation>
+</translations>
