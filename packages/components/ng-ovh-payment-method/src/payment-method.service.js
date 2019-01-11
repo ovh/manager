@@ -12,6 +12,7 @@ export default class OvhPaymentMethodService {
   constructor($q, $translate, $window, OvhApiMe, target) {
     this.$q = $q;
     this.$translate = $translate;
+    this.$window = $window;
     this.OvhApiMe = OvhApiMe;
 
     this.ovhPaymentMethodLegacy = new OvhPaymentMethodLegacy(
@@ -100,7 +101,11 @@ export default class OvhPaymentMethodService {
 
     const addParams = params;
     addParams.paymentType = paymentMethodType.paymentType.value;
-    return this.OvhApiMe.Payment().Method().v6().save({}, addParams).$promise;
+    return this.OvhApiMe.Payment().Method().v6().save({}, addParams).$promise
+      .then((response) => {
+        this.$window.location = response.url;
+        return response;
+      });
   }
 
   /**
