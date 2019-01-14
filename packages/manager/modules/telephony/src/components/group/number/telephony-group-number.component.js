@@ -1,18 +1,11 @@
-(function () {
-  angular.module('managerApp').run(($translate, asyncLoader) => {
-    asyncLoader.addTranslations(
-      import(`./translations/Messages_${$translate.use()}.xml`)
-        .catch(() => import(`./translations/Messages_${$translate.fallbackLanguage()}.xml`))
-        .then(x => x.default),
-    );
-    $translate.refresh();
-  });
-  angular.module('managerApp').component('telephonyNumber', {
-    templateUrl: 'components/telecom/telephony/group/number/telephony-group-number.html',
-    bindings: {
-      number: '=telephonyNumber',
-      featureActions: '=telephonyNumberFeatureActions',
-    },
-    controller: 'TelephonyNumberCtrl',
-  });
-}());
+import controller from './telephony-group-number.component.controller';
+import template from './telephony-group-number.html';
+
+export default {
+  template,
+  bindings: {
+    number: '=telephonyNumber',
+    featureActions: '=telephonyNumberFeatureActions',
+  },
+  controller,
+};

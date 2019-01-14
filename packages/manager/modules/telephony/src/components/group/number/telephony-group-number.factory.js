@@ -1,4 +1,7 @@
-angular.module('managerApp').factory('TelephonyGroupNumber', ($q, $injector, OvhApiTelephony, tucVoipServiceTask) => {
+import angular from 'angular';
+import _ from 'lodash';
+
+export default /* @ngInject */ ($q, $injector, OvhApiTelephony, tucVoipServiceTask) => {
   /*= ==================================
     =            CONSTRUCTOR            =
     =================================== */
@@ -41,7 +44,7 @@ angular.module('managerApp').factory('TelephonyGroupNumber', ($q, $injector, Ovh
     =            PROTOTYPE METHODS            =
     ========================================= */
 
-  TelephonyGroupNumber.prototype.getDisplayedName = function () {
+  TelephonyGroupNumber.prototype.getDisplayedName = function getDisplayedName() {
     const self = this;
 
     return self.description || self.serviceName;
@@ -49,7 +52,7 @@ angular.module('managerApp').factory('TelephonyGroupNumber', ($q, $injector, Ovh
 
   /* ----------  API CALLS  ----------*/
 
-  TelephonyGroupNumber.prototype.save = function () {
+  TelephonyGroupNumber.prototype.save = function save() {
     const self = this;
     const savePromises = [];
 
@@ -67,7 +70,7 @@ angular.module('managerApp').factory('TelephonyGroupNumber', ($q, $injector, Ovh
 
   /* ----------  FEATURE  ----------*/
 
-  TelephonyGroupNumber.prototype.getFeature = function (featureType, refresh) {
+  TelephonyGroupNumber.prototype.getFeature = function getFeature(featureType, refresh) {
     const self = this;
 
     if (self.feature && !refresh) {
@@ -83,7 +86,7 @@ angular.module('managerApp').factory('TelephonyGroupNumber', ($q, $injector, Ovh
     });
   };
 
-  TelephonyGroupNumber.prototype.getFeatureFamily = function (featureTypeParam) {
+  TelephonyGroupNumber.prototype.getFeatureFamily = function getFeatureFamily(featureTypeParam) {
     const self = this;
     let featureType = featureTypeParam;
 
@@ -115,7 +118,7 @@ angular.module('managerApp').factory('TelephonyGroupNumber', ($q, $injector, Ovh
     }
   };
 
-  TelephonyGroupNumber.prototype.changeFeatureType = function () {
+  TelephonyGroupNumber.prototype.changeFeatureType = function changeFeatureType() {
     const self = this;
 
     return OvhApiTelephony.Number().v6()
@@ -144,7 +147,7 @@ angular.module('managerApp').factory('TelephonyGroupNumber', ($q, $injector, Ovh
 
   /* ----------  TASK  ----------*/
 
-  TelephonyGroupNumber.prototype.getTerminationTask = function () {
+  TelephonyGroupNumber.prototype.getTerminationTask = function getTerminationTask() {
     const self = this;
     return OvhApiTelephony.Service().OfferTask().v6()
       .query({
@@ -164,7 +167,7 @@ angular.module('managerApp').factory('TelephonyGroupNumber', ($q, $injector, Ovh
 
   /* ----------  EDITION  ----------*/
 
-  TelephonyGroupNumber.prototype.startEdition = function (startFeatureEdition) {
+  TelephonyGroupNumber.prototype.startEdition = function startEdition(startFeatureEdition) {
     const self = this;
 
     self.inEdition = true;
@@ -180,7 +183,7 @@ angular.module('managerApp').factory('TelephonyGroupNumber', ($q, $injector, Ovh
     return self;
   };
 
-  TelephonyGroupNumber.prototype.stopEdition = function (cancel, stopFeatureEdition) {
+  TelephonyGroupNumber.prototype.stopEdition = function stopEdition(cancel, stopFeatureEdition) {
     const self = this;
 
     if (self.saveForEdition && cancel) {
@@ -197,7 +200,7 @@ angular.module('managerApp').factory('TelephonyGroupNumber', ($q, $injector, Ovh
     return self;
   };
 
-  TelephonyGroupNumber.prototype.hasChange = function (attr) {
+  TelephonyGroupNumber.prototype.hasChange = function hasChange(attr) {
     const self = this;
 
     if (!self.inEdition || !self.saveForEdition) {
@@ -221,4 +224,4 @@ angular.module('managerApp').factory('TelephonyGroupNumber', ($q, $injector, Ovh
   /* -----  End of PROTOTYPE METHODS  ------*/
 
   return TelephonyGroupNumber;
-});
+};
