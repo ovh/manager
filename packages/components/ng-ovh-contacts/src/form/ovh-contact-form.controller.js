@@ -88,7 +88,22 @@ export default class OvhContactsFormCtrl {
   }
 
   onPhoneCountryChange() {
-    return this.getRules().then(this.setPhonePlaceholder.bind(this));
+    return this.getRules().then(() => {
+      // set the placeholder with new selected country prefix
+      this.setPhonePlaceholder();
+
+      // When phone country change, the pattern change too
+      // But... the validation is not done automatically.
+      // So... be sure that the phone validation is done.
+      const phoneModel = this.formCtrl.phone;
+      const modelValue = phoneModel.$modelValue;
+      const viewValue = phoneModel.$viewValue;
+      const phoneModelValid = phoneModel.$validators.pattern(modelValue, viewValue);
+      phoneModel.$setValidity('pattern', phoneModelValid);
+
+      // set the focus to phone field to fix error display
+      this.setElementFocus('phone');
+    });
   }
 
   /* ----------  Helpers  ---------- */
@@ -150,9 +165,9 @@ export default class OvhContactsFormCtrl {
         if (!this.initialDefaultValues) {
           this.initialDefaultValues = {};
           OvhContactsFormCtrl.traverseRules(rules, (rule, ruleKey) => {
-            if (rule.defaultValue) {
+            if (ruleKey !== 'phoneCountry' && (rule.defaultValue || rule.initialValue)) {
               set(this.initialDefaultValues, ruleKey, rule.defaultValue);
-              set(this.model, ruleKey, rule.defaultValue);
+              set(this.model, ruleKey, rule.initialValue || rule.defaultValue);
               if (ruleKey === 'address.country') {
                 this.setPhoneCountry();
               }
@@ -194,7 +209,6 @@ export default class OvhContactsFormCtrl {
 
     return this.getRules()
       .catch((error) => {
-        console.log(error);
         this.alerter.type = 'error';
         this.alerter.message = [
           this.$translate.instant('ovh_contact_form_load_error'),

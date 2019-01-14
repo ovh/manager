@@ -22,7 +22,7 @@
                         <input type="text" class="oui-input"
                                name="firstName" id="firstName"
                                data-ng-model="$ctrl.model.firstName"
-                               data-ng-required="!$ctrl.rules.firstName.canBeNull" />
+                               data-ng-required="$ctrl.rules.firstName.required" />
                     </oui-field> <!-- End of firstName -->
 
                     <!-- lastName -->
@@ -30,7 +30,7 @@
                         <input type="text" class="oui-input"
                                name="lastName" id="lastName"
                                data-ng-model="$ctrl.model.lastName"
-                               data-ng-required="!$ctrl.rules.lastName.canBeNull" />
+                               data-ng-required="$ctrl.rules.lastName.required" />
                     </oui-field> <!-- End of lastName -->
                 </div>
             </div>
@@ -60,7 +60,7 @@
                         <input type="text" class="oui-input"
                                name="addressLine1" id="addressLine1"
                                data-ng-model="$ctrl.model.address.line1"
-                               data-ng-required="!$ctrl.rules.address.line1.canBeNull" />
+                               data-ng-required="!$ctrlrules.address.line1.required" />
                     </oui-field> <!-- End of address.line1 -->
 
                     <!-- address.zip -->
@@ -68,7 +68,7 @@
                         <input type="text" class="oui-input"
                                name="addressZip" id="addressZip"
                                data-ng-model="$ctrl.model.address.zip"
-                               data-ng-required="!$ctrl.rules.address.zip.canBeNull"
+                               data-ng-required="!$ctrlrules.address.zip.required"
                                data-ng-pattern="$ctrl.rules.address.zip.regularExpression" />
                     </oui-field> <!-- End of address.zip -->
 
@@ -77,7 +77,7 @@
                         <input type="text" class="oui-input"
                                name="addressCity" id="addressCity"
                                data-ng-model="$ctrl.model.address.city"
-                               data-ng-required="!$ctrl.rules.address.city.canBeNull"
+                               data-ng-required="!$ctrlrules.address.city.required"
                                data-ng-pattern="$ctrl.rules.address.city.regularExpression" />
                     </oui-field> <!-- End of address.city -->
 
@@ -110,7 +110,7 @@
                         <input type="text" class="oui-input"
                                name="email" id="email"
                                data-ng-model="$ctrl.model.email"
-                               data-ng-required="!$ctrl.rules.email.canBeNull"
+                               data-ng-required="$ctrl.rules.email.required"
                                data-ng-pattern="$ctrl.rules.email.regularExpression" />
                     </oui-field> <!-- End of email -->
 
@@ -139,7 +139,7 @@
                                    id="phone"
                                    data-ng-model="$ctrl.models.phone.getterSetter"
                                    data-ng-model-options="{ getterSetter: true, allowInvalid: true }"
-                                   data-ng-required="!$ctrl.rules.phone.canBeNull"
+                                   data-ng-required="$ctrl.rules.phone.required"
                                    data-ng-pattern="$ctrl.models.phone.validator"
                                    data-ng-attr-placeholder="{{ $ctrl.placeholders.phone }}"/>
                         </div>

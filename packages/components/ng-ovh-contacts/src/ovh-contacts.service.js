@@ -148,8 +148,8 @@ export default class OvhContactsService {
       .then((me) => {
         set(options, 'ovhCompany', me.ovhCompany);
         set(options, 'ovhSubsidiary', me.ovhSubsidiary);
-        set(options, 'country', rulesOpts.country || me.country);
-        set(options, 'phoneCountry', rulesOpts.phoneCountry || rulesOpts.country || me.country);
+        set(options, 'country', options.country || me.country);
+        set(options, 'phoneCountry', options.phoneCountry || options.country || me.country);
 
         return options;
       })
@@ -162,6 +162,7 @@ export default class OvhContactsService {
           apiSchemas,
           keyBy(creationRules, 'fieldName'),
           predefinedProperties,
+          options,
         );
 
         // translate properties with enum
