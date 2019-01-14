@@ -1,4 +1,7 @@
-angular.module('managerApp').component('linePhoneConfiguration', {
+import _ from 'lodash';
+import template from './line-phone-configuration.html';
+
+export default {
   require: {
     configForm: '^form',
   },
@@ -7,7 +10,7 @@ angular.module('managerApp').component('linePhoneConfiguration', {
     editMode: '=linePhoneConfigurationEditMode',
     expertMode: '=linePhoneConfigurationExpertMode',
   },
-  templateUrl: 'components/telecom/telephony/group/line/phone/configration/line-phone-configuration.html',
+  template,
   controller($translate, tucValidator, LINE_PHONE_CONFIGURATION) {
     const self = this;
 
@@ -17,11 +20,11 @@ angular.module('managerApp').component('linePhoneConfiguration', {
       =            HELPERS            =
       =============================== */
 
-    self.isEnumHasToBeTranslated = function (configName) {
+    self.isEnumHasToBeTranslated = function isEnumHasToBeTranslated(configName) {
       return LINE_PHONE_CONFIGURATION.configEnumsToTranslate.indexOf(configName) > -1;
     };
 
-    self.getConfigValue = function (config) {
+    self.getConfigValue = function getConfigValue(config) {
       switch (config.type) {
         case 'boolean':
           return config.value ? $translate.instant('telephony_line_phone_configuration_config_yes') : $translate.instant('telephony_line_phone_configuration_config_no');
@@ -32,7 +35,7 @@ angular.module('managerApp').component('linePhoneConfiguration', {
       }
     };
 
-    self.getPlaceholderTranslation = function (configName) {
+    self.getPlaceholderTranslation = function getPlaceholderTranslation(configName) {
       const trKey = ['telephony_line_phone_configuration_config', _.snakeCase(configName)].join('_');
       const translated = $translate.instant(trKey);
       return translated !== trKey ? translated : configName;
@@ -44,7 +47,7 @@ angular.module('managerApp').component('linePhoneConfiguration', {
       =            EVENTS            =
       ============================== */
 
-    self.onTextInputBlur = function (config) {
+    self.onTextInputBlur = function onTextInputBlur(config) {
       if (_.isEmpty(config.value)) {
         _.set(config, 'value', config.prevValue);
       }
@@ -52,4 +55,4 @@ angular.module('managerApp').component('linePhoneConfiguration', {
 
     /* -----  End of EVENTS  ------*/
   },
-});
+};

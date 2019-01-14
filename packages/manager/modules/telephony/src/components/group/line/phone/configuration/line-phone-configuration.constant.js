@@ -1,4 +1,4 @@
-angular.module('managerApp').constant('LINE_PHONE_CONFIGURATION', {
+const LINE_PHONE_CONFIGURATION = {
   configEnumsToTranslate: [
     'AuthResync',
     'AutomaticAnswer',
@@ -17,4 +17,6 @@ angular.module('managerApp').constant('LINE_PHONE_CONFIGURATION', {
     'UseOutboundProxy',
     'VlanMode',
   ],
-});
+};
+
+export default { LINE_PHONE_CONFIGURATION };

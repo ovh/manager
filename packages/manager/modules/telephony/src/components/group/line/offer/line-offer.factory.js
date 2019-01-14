@@ -1,9 +1,11 @@
+import _ from 'lodash';
+
 /**
  *  Need to have client/app/telecom/telephony/line translations files to be loaded
  *  for fullgetFullDescription method.
  *  This should be the case when a state like telecom.telephony.line.* is loaded.
  */
-angular.module('managerApp').factory('TelephonyGroupLineOffer', ($translate) => {
+export default /* @ngInject */ ($translate) => {
   const availableOfferTypes = ['priceplan', 'individual', 'trunk'];
 
   /*= ==================================
@@ -33,7 +35,7 @@ angular.module('managerApp').factory('TelephonyGroupLineOffer', ($translate) => 
     =            PROTOTYPE METHODS            =
     ========================================= */
 
-  TelephonyGroupLineOffer.prototype.getType = function () {
+  TelephonyGroupLineOffer.prototype.getType = function getType() {
     const self = this;
     let intersect;
 
@@ -46,7 +48,7 @@ angular.module('managerApp').factory('TelephonyGroupLineOffer', ($translate) => 
     return undefined;
   };
 
-  TelephonyGroupLineOffer.prototype.getFullDescription = function () {
+  TelephonyGroupLineOffer.prototype.getFullDescription = function getFullDescription() {
     const self = this;
 
     return self.type && self.type !== 'trunk' ? [$translate.instant(`telephony_line_offer_type_${self.type}`), self.description].join(' - ') : self.description;
@@ -55,4 +57,4 @@ angular.module('managerApp').factory('TelephonyGroupLineOffer', ($translate) => 
   /* -----  End of PROTOTYPE METHODS  ------*/
 
   return TelephonyGroupLineOffer;
-});
+};
