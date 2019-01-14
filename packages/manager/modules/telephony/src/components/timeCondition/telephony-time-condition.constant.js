@@ -1,10 +1,12 @@
-angular.module('managerApp').constant('VOIP_TIME_CONDITION', {
+const VOIP_TIME_CONDITION = {
   slotTypesCount: {
     sip: 3,
     easyHunting: 3,
     ovhPabx: 0,
   },
-}).constant('VOIP_TIME_CONDITION_DEFAULT_SLOTS', [{
+};
+
+const VOIP_TIME_CONDITION_DEFAULT_SLOTS = [{
   name: 'available',
   noConfig: true,
   inEdition: false,
@@ -24,7 +26,9 @@ angular.module('managerApp').constant('VOIP_TIME_CONDITION', {
   name: 'unavailable',
   noConfig: true,
   inEdition: false,
-}]).constant('VOIP_TIMECONDITION_ORDERED_DAYS', [
+}];
+
+const VOIP_TIMECONDITION_ORDERED_DAYS = [
   'monday',
   'tuesday',
   'wednesday',
@@ -32,4 +36,10 @@ angular.module('managerApp').constant('VOIP_TIME_CONDITION', {
   'friday',
   'saturday',
   'sunday',
-]);
+];
+
+export default {
+  VOIP_TIME_CONDITION,
+  VOIP_TIME_CONDITION_DEFAULT_SLOTS,
+  VOIP_TIMECONDITION_ORDERED_DAYS,
+};
