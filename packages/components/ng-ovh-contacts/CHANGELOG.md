@@ -1,3 +1,12 @@
+# [1.0.0-alpha.2](https://github.com/ovh-ux/ng-ovh-contacts/compare/v1.0.0-alpha.1...v1.0.0-alpha.2) (2019-01-14)
+
+
+### Bug Fixes
+
+* ui-select templates ([cc4da30](https://github.com/ovh-ux/ng-ovh-contacts/commit/cc4da30))
+
+
+
 # [1.0.0-alpha.1](https://github.com/ovh-ux/ng-ovh-contacts/compare/v1.0.0-alpha.0...v1.0.0-alpha.1) (2019-01-14)
 
 

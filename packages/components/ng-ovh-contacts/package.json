@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-contacts",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.2",
   "description": "Helpers for managing OVH Contacts",
   "author": "OVH SAS",
   "license": "BSD-3-Clause",
