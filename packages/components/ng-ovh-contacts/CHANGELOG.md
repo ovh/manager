@@ -1,3 +1,12 @@
+# [1.0.0-alpha.1](https://github.com/ovh-ux/ng-ovh-contacts/compare/v1.0.0-alpha.0...v1.0.0-alpha.1) (2019-01-14)
+
+
+### Bug Fixes
+
+* use API POST params for creation rules ([1bf81b5](https://github.com/ovh-ux/ng-ovh-contacts/commit/1bf81b5))
+
+
+
 # 1.0.0-alpha.0 (2019-01-10)
 
 
