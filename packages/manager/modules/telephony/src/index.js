@@ -1,5 +1,7 @@
 import angular from 'angular';
+import '@ovh-ux/telecom-universe-components';
 
+import constant from './telecom-telephony.constant';
 import telecomTelephonyTemplate from './telecom-telephony.html';
 import telecomTelephonyMainTemplate from './telecom-telephony-main.view.html';
 
@@ -11,8 +13,17 @@ const moduleName = 'ovhManagerTelephony';
 
 angular.module(moduleName, [
   components,
+  'telecomUniverseComponents',
   'ui.router',
 ])
+  .constant('TELEPHONY_INFRASTRUCTURE_OPTIONS', constant.TELEPHONY_INFRASTRUCTURE_OPTIONS)
+  .constant('TELEPHONY_RMA', constant.TELEPHONY_RMA)
+  .constant('TELEPHONY_REPAYMENT_CONSUMPTION', constant.TELEPHONY_REPAYMENT_CONSUMPTION)
+  .constant('TELEPHONY_SERVICE', constant.TELEPHONY_SERVICE)
+  .constant('TELEPHONY_ALIAS_CONFERENCE', constant.TELEPHONY_ALIAS_CONFERENCE)
+  .constant('TELEPHONY_ALIAS_CONTACT_CENTER_SOLUTION', constant.TELEPHONY_ALIAS_CONTACT_CENTER_SOLUTION)
+  .constant('TELEPHONY_ALIAS_OBSOLETE_FEATURE_TYPES', constant.TELEPHONY_ALIAS_OBSOLETE_FEATURE_TYPES)
+  .constant('TELEPHONY_GUIDES', constant.TELEPHONY_GUIDES)
   .config(($stateProvider) => {
     $stateProvider.state('telephony', {
       url: '/telephony/:billingAccount',
@@ -27,7 +38,7 @@ angular.module(moduleName, [
         'telephonyView@telephony': {
           template: telecomTelephonyMainTemplate,
         },
-        /*
+        /* @TODO
         'groupView@telecom.telephony': {
           templateUrl: 'app/telecom/telephony/billingAccount/telecom-telephony-billing-account.html',
           controller: 'TelecomTelephonyBillingAccountCtrl',
@@ -40,7 +51,7 @@ angular.module(moduleName, [
         },
         */
       },
-      /*
+      /* @TODO
       resolve: {
         initTelephony($q, $stateParams, TelephonyMediator) {
           // init all groups, lines and numbers
