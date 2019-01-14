@@ -1,12 +1,8 @@
-angular.module('managerApp').run(($translate, asyncLoader) => {
-  asyncLoader.addTranslations(
-    import(`./translations/Messages_${$translate.use()}.xml`)
-      .catch(() => import(`./translations/Messages_${$translate.fallbackLanguage()}.xml`))
-      .then(x => x.default),
-  );
-  $translate.refresh();
-});
-angular.module('managerApp').factory('VoipTimeConditionCondition', (voipTimeCondition, VOIP_TIMECONDITION_ORDERED_DAYS) => {
+import angular from 'angular';
+import _ from 'lodash';
+import moment from 'moment';
+
+export default /* @ngInject */ (voipTimeCondition, VOIP_TIMECONDITION_ORDERED_DAYS) => {
   /*= ==================================
     =            CONSTRUCTOR            =
     =================================== */
@@ -57,7 +53,7 @@ angular.module('managerApp').factory('VoipTimeConditionCondition', (voipTimeCond
     =            PROTOTYPE METHODS            =
     ========================================= */
 
-  VoipTimeConditionCondition.prototype.setOptions = function (conditionOptions) {
+  VoipTimeConditionCondition.prototype.setOptions = function setOptions(conditionOptions) {
     const self = this;
     let timeFrom;
     let timeTo;
@@ -85,7 +81,7 @@ angular.module('managerApp').factory('VoipTimeConditionCondition', (voipTimeCond
     return self;
   };
 
-  VoipTimeConditionCondition.prototype.clone = function () {
+  VoipTimeConditionCondition.prototype.clone = function clone() {
     const self = this;
     const timeConditionOptions = angular.copy(self);
     delete timeConditionOptions.conditionId;
@@ -93,7 +89,7 @@ angular.module('managerApp').factory('VoipTimeConditionCondition', (voipTimeCond
     return new VoipTimeConditionCondition(timeConditionOptions);
   };
 
-  VoipTimeConditionCondition.prototype.getTimeMoment = function (time) {
+  VoipTimeConditionCondition.prototype.getTimeMoment = function getTimeMoment(time) {
     const self = this;
     const timePath = time ? `time${_.capitalize(time)}` : 'timeFrom';
     const splittedTime = _.get(self, timePath).split(':');
@@ -104,7 +100,7 @@ angular.module('managerApp').factory('VoipTimeConditionCondition', (voipTimeCond
       .second(splittedTime[2]);
   };
 
-  VoipTimeConditionCondition.prototype.toFullCalendarEvent = function () {
+  VoipTimeConditionCondition.prototype.toFullCalendarEvent = function toFullCalendarEvent() {
     const self = this;
 
     return {
@@ -117,7 +113,7 @@ angular.module('managerApp').factory('VoipTimeConditionCondition', (voipTimeCond
 
   /* ----------  API Calls  ----------*/
 
-  VoipTimeConditionCondition.prototype.create = function () {
+  VoipTimeConditionCondition.prototype.create = function create() {
     const self = this;
 
     const conditionResources = voipTimeCondition.getResource('condition', self.featureType);
@@ -134,7 +130,7 @@ angular.module('managerApp').factory('VoipTimeConditionCondition', (voipTimeCond
       });
   };
 
-  VoipTimeConditionCondition.prototype.save = function () {
+  VoipTimeConditionCondition.prototype.save = function save() {
     const self = this;
     const conditionResources = voipTimeCondition.getResource('condition', self.featureType);
 
@@ -144,7 +140,7 @@ angular.module('managerApp').factory('VoipTimeConditionCondition', (voipTimeCond
     ).$promise;
   };
 
-  VoipTimeConditionCondition.prototype.remove = function () {
+  VoipTimeConditionCondition.prototype.remove = function remove() {
     const self = this;
     const conditionResources = voipTimeCondition.getResource('condition', self.featureType);
 
@@ -154,7 +150,7 @@ angular.module('managerApp').factory('VoipTimeConditionCondition', (voipTimeCond
 
   /* ----------  EDITION  ----------*/
 
-  VoipTimeConditionCondition.prototype.startEdition = function () {
+  VoipTimeConditionCondition.prototype.startEdition = function startEdition() {
     const self = this;
 
     self.inEdition = true;
@@ -176,8 +172,8 @@ angular.module('managerApp').factory('VoipTimeConditionCondition', (voipTimeCond
     return self;
   };
 
-  VoipTimeConditionCondition.prototype.stopEdition = function (cancel, cancelToOriginalSave,
-    resetOriginalSave) {
+  VoipTimeConditionCondition.prototype.stopEdition = function stopEdition(cancel,
+    cancelToOriginalSave, resetOriginalSave) {
     const self = this;
     let fromObject;
 
@@ -207,7 +203,7 @@ angular.module('managerApp').factory('VoipTimeConditionCondition', (voipTimeCond
     return self;
   };
 
-  VoipTimeConditionCondition.prototype.hasChange = function (property, fromOriginal) {
+  VoipTimeConditionCondition.prototype.hasChange = function hasChange(property, fromOriginal) {
     const self = this;
     let compareToObject = null;
 
@@ -235,4 +231,4 @@ angular.module('managerApp').factory('VoipTimeConditionCondition', (voipTimeCond
   /* -----  End of PROTOTYPE METHODS  ------*/
 
   return VoipTimeConditionCondition;
-});
+};

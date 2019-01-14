@@ -1,4 +1,7 @@
-angular.module('managerApp').factory('TelephonyGroupLinePhoneFunction', ($q, OvhApiTelephony) => {
+import angular from 'angular';
+import _ from 'lodash';
+
+export default /* @ngInject */ ($q, OvhApiTelephony) => {
   const mandatoriesPhoneFunctionOptions = [
     'billingAccount',
     'serviceName',
@@ -50,7 +53,7 @@ angular.module('managerApp').factory('TelephonyGroupLinePhoneFunction', ($q, Ovh
   /* ----------  FEATURE OPTIONS  ----------*/
 
   TelephonyGroupLineFunctionPhone.prototype
-    .setPhoneFunctionInfos = function (phoneFunctionOptions) {
+    .setPhoneFunctionInfos = function setPhoneFunctionInfos(phoneFunctionOptions) {
       const self = this;
 
       angular.forEach(_.keys(phoneFunctionOptions), (phoneFunctionOptionsKey) => {
@@ -62,20 +65,21 @@ angular.module('managerApp').factory('TelephonyGroupLinePhoneFunction', ($q, Ovh
       return self;
     };
 
-  TelephonyGroupLineFunctionPhone.prototype.getAvailableFunctions = function () {
-    const self = this;
-    return OvhApiTelephony.Line().Phone().FunctionKey().v6()
-      .availableFunctions({
-        billingAccount: self.billingAccount,
-        serviceName: self.serviceName,
-        keyNum: self.keyNum,
-      }).$promise.then(availableFunction => availableFunction, (error) => {
-        const message = error.data && error.data.message;
-        return $q.reject(message);
-      });
-  };
+  TelephonyGroupLineFunctionPhone
+    .prototype.getAvailableFunctions = function getAvailableFunctions() {
+      const self = this;
+      return OvhApiTelephony.Line().Phone().FunctionKey().v6()
+        .availableFunctions({
+          billingAccount: self.billingAccount,
+          serviceName: self.serviceName,
+          keyNum: self.keyNum,
+        }).$promise.then(availableFunction => availableFunction, (error) => {
+          const message = error.data && error.data.message;
+          return $q.reject(message);
+        });
+    };
 
-  TelephonyGroupLineFunctionPhone.prototype.save = function () {
+  TelephonyGroupLineFunctionPhone.prototype.save = function save() {
     const self = this;
 
     return OvhApiTelephony.Line().Phone().FunctionKey().v6()
@@ -92,7 +96,7 @@ angular.module('managerApp').factory('TelephonyGroupLinePhoneFunction', ($q, Ovh
       });
   };
 
-  TelephonyGroupLineFunctionPhone.prototype.getFunctions = function () {
+  TelephonyGroupLineFunctionPhone.prototype.getFunctions = function getFunctions() {
     const self = this;
     const resultKeys = [];
     const requests = [];
@@ -119,4 +123,4 @@ angular.module('managerApp').factory('TelephonyGroupLinePhoneFunction', ($q, Ovh
   };
 
   return TelephonyGroupLineFunctionPhone;
-});
+};

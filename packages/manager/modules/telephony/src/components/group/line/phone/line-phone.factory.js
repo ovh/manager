@@ -1,4 +1,8 @@
-angular.module('managerApp').factory('TelephonyGroupLinePhone', ($q, OvhApiTelephony, TelephonyGroupLinePhoneFunction, TelephonyGroupLinePhoneConfiguration) => {
+import angular from 'angular';
+import _ from 'lodash';
+
+export default /* @ngInject */ ($q, OvhApiTelephony,
+  TelephonyGroupLinePhoneFunction, TelephonyGroupLinePhoneConfiguration) => {
   const mandatoriesPhoneOptions = [
     'billingAccount',
     'serviceName',
@@ -51,13 +55,13 @@ angular.module('managerApp').factory('TelephonyGroupLinePhone', ($q, OvhApiTelep
 
   /* ----------  FEATURE OPTIONS  ----------*/
 
-  TelephonyGroupLinePhone.prototype.getFormattedMacAddress = function () {
+  TelephonyGroupLinePhone.prototype.getFormattedMacAddress = function getFormattedMacAddress() {
     const self = this;
 
     return self.macAddress !== '' ? self.macAddress.match(/.{2}/g).join(':') : '';
   };
 
-  TelephonyGroupLinePhone.prototype.setPhoneInfos = function (phoneOptions) {
+  TelephonyGroupLinePhone.prototype.setPhoneInfos = function setPhoneInfos(phoneOptions) {
     const self = this;
 
     angular.forEach(_.keys(phoneOptions), (phoneOptionsKey) => {
@@ -71,7 +75,7 @@ angular.module('managerApp').factory('TelephonyGroupLinePhone', ($q, OvhApiTelep
     return self;
   };
 
-  TelephonyGroupLinePhone.prototype.getPhone = function () {
+  TelephonyGroupLinePhone.prototype.getPhone = function getPhone() {
     const self = this;
 
     return OvhApiTelephony.Line().Phone().v6().get({
@@ -80,7 +84,7 @@ angular.module('managerApp').factory('TelephonyGroupLinePhone', ($q, OvhApiTelep
     }).$promise.then(phoneOptions => phoneOptions, () => null);
   };
 
-  TelephonyGroupLinePhone.prototype.getSip = function () {
+  TelephonyGroupLinePhone.prototype.getSip = function getSip() {
     const self = this;
 
     return OvhApiTelephony.Line().Options().v6().get({
@@ -95,7 +99,7 @@ angular.module('managerApp').factory('TelephonyGroupLinePhone', ($q, OvhApiTelep
     }), () => null);
   };
 
-  TelephonyGroupLinePhone.prototype.getIps = function () {
+  TelephonyGroupLinePhone.prototype.getIps = function getIps() {
     const self = this;
 
     return OvhApiTelephony.Line().v6().ips({
@@ -109,7 +113,7 @@ angular.module('managerApp').factory('TelephonyGroupLinePhone', ($q, OvhApiTelep
     }, () => null);
   };
 
-  TelephonyGroupLinePhone.prototype.getRMAs = function () {
+  TelephonyGroupLinePhone.prototype.getRMAs = function getRMAs() {
     const self = this;
 
     return OvhApiTelephony.Line().Phone().RMA().v6()
@@ -130,7 +134,7 @@ angular.module('managerApp').factory('TelephonyGroupLinePhone', ($q, OvhApiTelep
       }, () => null);
   };
 
-  TelephonyGroupLinePhone.prototype.resetConfig = function (ip) {
+  TelephonyGroupLinePhone.prototype.resetConfig = function resetConfig(ip) {
     const self = this;
 
     return OvhApiTelephony.Line().Phone().v6().resetConfig({
@@ -141,12 +145,12 @@ angular.module('managerApp').factory('TelephonyGroupLinePhone', ($q, OvhApiTelep
     }).$promise;
   };
 
-  TelephonyGroupLinePhone.prototype.hasPhone = function () {
+  TelephonyGroupLinePhone.prototype.hasPhone = function hasPhone() {
     const self = this;
     return self.macAddress && self.brand;
   };
 
-  TelephonyGroupLinePhone.prototype.getFunctionKeys = function () {
+  TelephonyGroupLinePhone.prototype.getFunctionKeys = function getFunctionKeys() {
     const self = this;
 
     if (self.hasPhone()) {
@@ -169,7 +173,7 @@ angular.module('managerApp').factory('TelephonyGroupLinePhone', ($q, OvhApiTelep
 
   /* ----------  CONFIGURATIONS  ----------*/
 
-  TelephonyGroupLinePhone.prototype.setConfigurations = function (configurationOptions) {
+  TelephonyGroupLinePhone.prototype.setConfigurations = function setConfig(configurationOptions) {
     const self = this;
 
     angular.forEach(configurationOptions, (options) => {
@@ -180,7 +184,7 @@ angular.module('managerApp').factory('TelephonyGroupLinePhone', ($q, OvhApiTelep
   };
 
   TelephonyGroupLinePhone.prototype
-    .changePhoneConfiguration = function (configsToSaveParam, refreshPhone, reboot) {
+    .changePhoneConfiguration = function changeConfig(configsToSaveParam, refreshPhone, reboot) {
       const self = this;
       let configsToSave = configsToSaveParam;
 
@@ -213,7 +217,7 @@ angular.module('managerApp').factory('TelephonyGroupLinePhone', ($q, OvhApiTelep
 
   /* ----------  INITIALIZATION  ----------*/
 
-  TelephonyGroupLinePhone.prototype.initDeffered = function () {
+  TelephonyGroupLinePhone.prototype.initDeffered = function initDeffered() {
     const self = this;
 
     return $q
@@ -229,4 +233,4 @@ angular.module('managerApp').factory('TelephonyGroupLinePhone', ($q, OvhApiTelep
   /* -----  End of PROTOTYPE METHODS  ------*/
 
   return TelephonyGroupLinePhone;
-});
+};
