@@ -1,14 +1,18 @@
-angular.module('managerApp').constant('SCHEDULER_CATEGORY_TO_TIME_CONDITION_SLOT_TYPE', {
+const SCHEDULER_CATEGORY_TO_TIME_CONDITION_SLOT_TYPE = {
   holidays: 'unavailable',
   scheduler1: 'slot1',
   scheduler2: 'slot2',
   scheduler3: 'slot3',
-}).constant('SCHEDULER_CATEGORY_TO_ICS_VEVENT_CATEGORY', {
+};
+
+const SCHEDULER_CATEGORY_TO_ICS_VEVENT_CATEGORY = {
   holidays: 'holidays',
   scheduler1: 'genericScreenListIndex1',
   scheduler2: 'genericScreenListIndex2',
   scheduler3: 'genericScreenListIndex3',
-}).constant('SCHEDULER_BANK_HOLIDAYS', {
+};
+
+const SCHEDULER_BANK_HOLIDAYS = {
   FR: [{
     name: 'new_year',
     date: '01-01',
@@ -177,4 +181,10 @@ angular.module('managerApp').constant('SCHEDULER_CATEGORY_TO_TIME_CONDITION_SLOT
     name: 'christmas',
     date: '12-25',
   }],
-});
+};
+
+export default {
+  SCHEDULER_CATEGORY_TO_TIME_CONDITION_SLOT_TYPE,
+  SCHEDULER_CATEGORY_TO_ICS_VEVENT_CATEGORY,
+  SCHEDULER_BANK_HOLIDAYS,
+};
