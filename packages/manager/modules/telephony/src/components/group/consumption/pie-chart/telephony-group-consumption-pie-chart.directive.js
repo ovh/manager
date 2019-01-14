@@ -1,12 +1,7 @@
-angular.module('managerApp').run(($translate, asyncLoader) => {
-  asyncLoader.addTranslations(
-    import(`./translations/Messages_${$translate.use()}.xml`)
-      .catch(() => import(`./translations/Messages_${$translate.fallbackLanguage()}.xml`))
-      .then(x => x.default),
-  );
-  $translate.refresh();
-});
-angular.module('managerApp').directive('groupConsumptionPieChart', ($window) => {
+import controller from './telephony-group-consumption-pie-chart.controller';
+import template from './telephony-group-consumption-pie-chart.html';
+
+export default /* @ngInject */ ($window) => {
   const { d3 } = $window;
   if (!d3) {
     throw new Error('D3 must be load');
@@ -16,9 +11,9 @@ angular.module('managerApp').directive('groupConsumptionPieChart', ($window) => 
     scope: {
       dataset: '=',
     },
+    controller,
     controllerAs: 'PieCtrl',
-    controller: 'GroupConsumptionPieChartCtrl',
-    templateUrl: 'components/telecom/telephony/group/consumption/pie-chart/telephony-group-consumption-pie-chart.html',
+    template,
     link($scope, $element, $attr, $ctrl) {
       const sizeRatio = $element.parent('div')[0].offsetWidth;
       const animationRatio = 20;
@@ -54,7 +49,8 @@ angular.module('managerApp').directive('groupConsumptionPieChart', ($window) => 
         .append('path')
         .attr('d', arc)
         .attr('class', d => d.data.label)
-        .each(function (d) {
+        .each(function eachArcs(d) {
+          // eslint-disable-next-line no-underscore-dangle
           return this._current === d;
         });
 
@@ -111,10 +107,12 @@ angular.module('managerApp').directive('groupConsumptionPieChart', ($window) => 
             .duration(duration)
             .ease(d3.easeBounce)
             .attr('class', d => d.data.label)
-            .attrTween('d', function (a) {
+            .attrTween('d', function attrTweenCallback(a) {
+              // eslint-disable-next-line no-underscore-dangle
               const i = d3.interpolate(this._current, a);
+              // eslint-disable-next-line no-underscore-dangle
               this._current = i(0);
-              return function (t) {
+              return function transition(t) {
                 return arc(i(t));
               };
             });
@@ -122,4 +120,4 @@ angular.module('managerApp').directive('groupConsumptionPieChart', ($window) => 
       });
     },
   };
-});
+};

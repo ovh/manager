@@ -1,25 +1,26 @@
-angular.module('managerApp').controller(
-  'GroupConsumptionPieChartCtrl',
-  function GroupConsumptionPieChartCtrl($scope, $translatePartialLoader, $translate) {
-    const self = this;
+import _ from 'lodash';
 
-    this.loading = {
-      translations: true,
-    };
+export default /* @ngInject */ function GroupConsumptionPieChartCtrl() {
+  const self = this;
 
-    this.setDataset = function (dataset) {
-      self.dataset = dataset;
-    };
+  this.loading = {
+    translations: true,
+  };
 
-    this.getTotal = function () {
-      return _.sum(self.dataset, set => set.count);
-    };
+  this.setDataset = function setDataset(dataset) {
+    self.dataset = dataset;
+  };
 
-    this.$onInit = function () {
-      $translatePartialLoader.addPart('../components/telecom/telephony/group/consumption/pie-chart');
-      return $translate.refresh().finally(() => {
-        self.loading.translations = false;
-      });
-    };
-  },
-);
+  this.getTotal = function getTotal() {
+    return _.sum(self.dataset, set => set.count);
+  };
+
+  /*
+  this.$onInit = function () {
+    $translatePartialLoader.addPart('../components/telecom/telephony/group/consumption/pie-chart');
+    return $translate.refresh().finally(() => {
+      self.loading.translations = false;
+    });
+  };
+  */
+}
