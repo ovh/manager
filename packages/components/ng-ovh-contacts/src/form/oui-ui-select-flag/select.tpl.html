@@ -1,9 +1,8 @@
-<div class="oui-ui-select ui-select-container"
+<div class="oui-ui-select oui-ui-select_single ui-select-container"
     ng-class="{ 'ui-select-container_open': $select.open }">
     <input class="ui-select-search"
         aria-expanded="{{$select.open}}"
         aria-label="{{$select.baseTitle}}"
-        aria-owns="ui-select-choices-{{ $select.generatedId }}"
         autocomplete="off"
         autocorrect="off"
         autocapitalize="off"
@@ -13,7 +12,8 @@
         tabindex="-1"
         type="search">
     <div class="ui-select-match"></div><!-- replaced by match.html -->
-    <div class="ui-select-dropdown">
+    <div class="ui-select-dropdown"
+        ng-show="$select.items.length > 0">
         <div class="ui-select-header"></div><!-- replaced by header.html -->
         <div class="ui-select-choices"></div><!-- replaced by choices.html -->
         <div class="ui-select-footer"></div><!-- replaced by footer.html -->
