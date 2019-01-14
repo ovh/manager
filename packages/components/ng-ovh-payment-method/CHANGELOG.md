@@ -1,3 +1,14 @@
+## [1.1.1-alpha.1](https://github.com/ovh-ux/ng-ovh-payment-method/compare/v1.1.1-alpha.0...v1.1.1-alpha.1) (2019-01-14)
+
+
+### Bug Fixes
+
+* add missing informations ([f115d00](https://github.com/ovh-ux/ng-ovh-payment-method/commit/f115d00))
+* **i18n:** retrieve ([c6821b7](https://github.com/ovh-ux/ng-ovh-payment-method/commit/c6821b7))
+* **i18n:** submit ([09f4485](https://github.com/ovh-ux/ng-ovh-payment-method/commit/09f4485))
+
+
+
 ## [1.1.1-alpha.0](https://github.com/ovh-ux/ng-ovh-payment-method/compare/v1.1.0...v1.1.1-alpha.0) (2019-01-11)
 
 
