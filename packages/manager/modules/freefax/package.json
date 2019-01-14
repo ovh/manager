@@ -12,9 +12,9 @@
     "build": "rollup -c --environment BUILD:production",
     "dev": "rollup -c --environment BUILD:development",
     "dev:watch": "yarn run dev --watch",
-    "start": "lerna run build --stream --scope='@ovh-ux/manager-freefax' --include-filtered-dependencies",
-    "start:dev": "lerna run dev --stream --scope='@ovh-ux/manager-freefax' --include-filtered-dependencies",
-    "start:watch": "lerna run dev:watch --stream --parallel --scope='@ovh-ux/manager-freefax' --include-filtered-dependencies",
+    "start": "lerna exec --stream --scope='@ovh-ux/manager-freefax' --include-filtered-dependencies -- yarn run build",
+    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-freefax' --include-filtered-dependencies -- yarn run dev",
+    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-freefax' --include-filtered-dependencies -- yarn run dev:watch",
     "prepare": "yarn run build"
   },
   "dependencies": {

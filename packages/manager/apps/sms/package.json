@@ -6,9 +6,9 @@
     "build": "webpack",
     "dev": "webpack-dev-server",
     "dev:watch": "yarn run dev",
-    "start": "lerna run build --stream --scope='@ovh-ux/manager-sms-app' --include-filtered-dependencies",
-    "start:dev": "lerna run dev --stream --scope='@ovh-ux/manager-sms-app' --include-filtered-dependencies",
-    "start:watch": "lerna run dev:watch --stream --parallel --scope='@ovh-ux/manager-sms-app' --include-filtered-dependencies"
+    "start": "lerna exec --stream --scope='@ovh-ux/manager-sms-app' --include-filtered-dependencies -- yarn run build",
+    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-sms-app' --include-filtered-dependencies -- yarn run dev",
+    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-sms-app' --include-filtered-dependencies -- yarn run dev:watch"
   },
   "dependencies": {
     "@ovh-ux/manager-core": "^1.1.2",
