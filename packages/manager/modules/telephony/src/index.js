@@ -30,6 +30,7 @@ angular.module(moduleName, [
   .constant('TELEPHONY_ALIAS_OBSOLETE_FEATURE_TYPES', constant.TELEPHONY_ALIAS_OBSOLETE_FEATURE_TYPES)
   .constant('TELEPHONY_GUIDES', constant.TELEPHONY_GUIDES)
   .constant('TELEPHONY_REDIRECT_URLS', constant.TELEPHONY_REDIRECT_URLS)
+  .constant('TELEPHONY_REDIRECT_V4_HASH', constant.TELEPHONY_REDIRECT_V4_HASH)
   .config(($stateProvider) => {
     $stateProvider.state('telephony', {
       url: '/telephony/:billingAccount',
