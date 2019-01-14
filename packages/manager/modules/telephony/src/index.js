@@ -1,6 +1,7 @@
 import angular from 'angular';
 import '@ovh-ux/manager-core';
 import '@ovh-ux/telecom-universe-components';
+import 'ovh-angular-responsive-tabs';
 
 import 'ovh-ui-kit/dist/oui.css';
 import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
@@ -17,6 +18,7 @@ const moduleName = 'ovhManagerTelephony';
 
 angular.module(moduleName, [
   components,
+  'ovh-angular-responsive-tabs',
   'ovhManagerCore',
   'telecomUniverseComponents',
   'ui.router',
