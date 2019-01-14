@@ -1,4 +1,7 @@
-angular.module('managerApp').service('telephonyScheduler', function ($q, $translate, TelephonyMediator, SCHEDULER_CATEGORY_TO_TIME_CONDITION_SLOT_TYPE, VOIP_TIME_CONDITION_DEFAULT_SLOTS) {
+import _ from 'lodash';
+
+export default /* @ngInject */ function ($q, $translate, TelephonyMediator,
+  SCHEDULER_CATEGORY_TO_TIME_CONDITION_SLOT_TYPE, VOIP_TIME_CONDITION_DEFAULT_SLOTS) {
   const self = this;
 
   let timeZones = null;
@@ -10,7 +13,7 @@ angular.module('managerApp').service('telephonyScheduler', function ($q, $transl
 
   /* ----------  TIMEZONE  ----------*/
 
-  self.getAvailableTimeZones = function () {
+  self.getAvailableTimeZones = function getAvailableTimeZones() {
     if (timeZones) {
       return $q.when(timeZones);
     }
@@ -26,14 +29,14 @@ angular.module('managerApp').service('telephonyScheduler', function ($q, $transl
 
   /* ----------  CATEGORIES  ----------*/
 
-  self.getAvailableCategories = function () {
+  self.getAvailableCategories = function getAvailableCategories() {
     if (categories) {
       return $q.when(categories);
     }
     return TelephonyMediator.getApiModelEnum('telephony.SchedulerCategoryEnum');
   };
 
-  self.convertCategoryToSlot = function (timeCondition, category) {
+  self.convertCategoryToSlot = function convertCategoryToSlot(timeCondition, category) {
     const slots = timeCondition ? timeCondition.slots : VOIP_TIME_CONDITION_DEFAULT_SLOTS;
 
     return _.find(slots, {
@@ -42,4 +45,4 @@ angular.module('managerApp').service('telephonyScheduler', function ($q, $transl
   };
 
   /* -----  End of API ENUMS  ------*/
-});
+}

@@ -1,16 +1,14 @@
-angular.module('managerApp').run(($translate, asyncLoader) => {
-  asyncLoader.addTranslations(
-    import(`./translations/Messages_${$translate.use()}.xml`)
-      .catch(() => import(`./translations/Messages_${$translate.fallbackLanguage()}.xml`))
-      .then(x => x.default),
-  );
-  $translate.refresh();
-});
-angular.module('managerApp').directive('telephonyScheduler', ($compile, $locale) => ({
+import angular from 'angular';
+import _ from 'lodash';
+import moment from 'moment';
+import controller from './telephony-scheduler.directive.controller';
+import template from './telephony-scheduler.html';
+
+export default /* @ngInject */ ($compile, $locale) => ({
   restrict: 'E',
   transclude: true,
-  templateUrl: 'components/telecom/telephony/scheduler/telephony-scheduler.html',
-  controller: 'TelephonySchedulerCtrl',
+  template,
+  controller,
   controllerAs: '$ctrl',
   bindToController: true,
   scope: {
@@ -97,13 +95,13 @@ angular.module('managerApp').directive('telephonyScheduler', ($compile, $locale)
       eventScope.scheduler = telephonySchedulerCtrl.scheduler;
       eventScope.timeCondition = telephonySchedulerCtrl.timeCondition;
 
-      eventScope.onSave = function () {
+      eventScope.onSave = function onSave() {
         manageSave(schedulerEvent, uiCalEvent);
       };
-      eventScope.onCancel = function () {
+      eventScope.onCancel = function onCancel() {
         manageCancel();
       };
-      eventScope.onDelete = function (ev) {
+      eventScope.onDelete = function onDelete(ev) {
         manageDelete(ev, uiCalEvent);
       };
 
@@ -206,4 +204,4 @@ angular.module('managerApp').directive('telephonyScheduler', ($compile, $locale)
 
     _.set(telephonySchedulerCtrl, 'calendarOptions', _.defaultsDeep(scope.options || {}, defaultOptions));
   },
-}));
+});
