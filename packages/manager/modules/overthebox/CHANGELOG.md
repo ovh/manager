@@ -1,3 +1,7 @@
+## [1.1.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-overthebox@1.1.0...@ovh-ux/manager-overthebox@1.1.1) (2019-01-10)
+
+
+
 # [1.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-overthebox@1.0.0...@ovh-ux/manager-overthebox@1.1.0) (2019-01-03)
 
 
