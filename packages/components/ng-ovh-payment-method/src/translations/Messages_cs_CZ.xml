@@ -11,14 +11,20 @@
    <translation id="ovh_payment_status_expired" qtlid="58676">Expirace</translation>
    <translation id="ovh_payment_status_proposed_by_customer" qtlid="90205">Čeká na schválení</translation>
    <translation id="ovh_payment_status_too_many_failures" qtlid="316034">Neplatné (příliš mnoho neúspěšných pokusů o ověření)</translation>
+   <translation id="ovh_payment_status_blocked" qtlid="108901">Blokován</translation>
    <translation id="ovh_payment_status_broken" qtlid="436367">Nefunkční</translation>
    <translation id="ovh_payment_status_canceled" qtlid="27631">Zrušit</translation>
    <translation id="ovh_payment_status_canceling" qtlid="409792">Stornování</translation>
    <translation id="ovh_payment_status_canceled_by_customer" qtlid="436380">Zrušeno zákazníkem</translation>
+   <translation id="ovh_payment_status_canceling_by_customer" qtlid="517537">En cours d'annulation par l'utilisateur</translation>
    <translation id="ovh_payment_status_created" qtlid="90205">Čeká na schválení</translation>
+   <translation id="ovh_payment_status_creating" qtlid="29647">Probíhá vytváření</translation>
    <translation id="ovh_payment_status_error" qtlid="45508">Chyba</translation>
    <translation id="ovh_payment_status_valid_for_credit" qtlid="436393">Ověřeno pro platby</translation>
    <translation id="ovh_payment_status_pending_validation" qtlid="90133">Probíhá schvalování</translation>
    <translation id="ovh_payment_status_waiting_for_documents" qtlid="325575">Čeká na přijetí</translation>
+   <translation id="ovh_payment_status_maintenance" qtlid="517550">Maintenance en cours</translation>
+   <translation id="ovh_payment_status_paused" qtlid="517563">Mis en pause</translation>
+   <translation id="ovh_payment_status_failed" qtlid="517576">Invalide (erreur de saisie)</translation>
    <translation id="ovh_payment_status_null" qtlid="374560">Informace není k dispozici</translation>
 </translations>
