@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingCtrl', function ($translate, TelephonyMediator, REDIRECT_URLS) {
+angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingCtrl', function ($translate, TelephonyMediator, TELEPHONY_REDIRECT_URLS) {
   const self = this;
 
   self.actions = null;
@@ -50,12 +50,12 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingCt
       text: $translate.instant('telephony_group_billing_actions_group_called_fees_history'),
     }, {
       name: 'group_banking_management',
-      url: REDIRECT_URLS.billingMean,
+      url: TELEPHONY_REDIRECT_URLS.billingMean,
       isExternal: true,
       text: $translate.instant('telephony_group_billing_actions_group_banking_management'),
     }, {
       name: 'group_delayed_account_transfert',
-      url: REDIRECT_URLS.ovhAccount,
+      url: TELEPHONY_REDIRECT_URLS.ovhAccount,
       isExternal: true,
       text: $translate.instant('telephony_group_billing_actions_group_delayed_account_transfert'),
     }];

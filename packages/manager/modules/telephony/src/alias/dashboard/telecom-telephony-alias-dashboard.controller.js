@@ -3,7 +3,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasDashboardControlle
     $q, $state, $stateParams, $translate, $uibModal,
     atInternet, OvhApiTelephony, TucChartjsFactory, TucToast,
     tucVoipService, tucVoipServiceAlias,
-    REDIRECT_URLS, TELEPHONY_ALIAS_CONSUMPTION, TELEPHONY_ALIAS_OBSOLETE_FEATURE_TYPES,
+    TELEPHONY_REDIRECT_URLS, TELEPHONY_ALIAS_CONSUMPTION, TELEPHONY_ALIAS_OBSOLETE_FEATURE_TYPES,
   ) {
     this.$q = $q;
     this.$state = $state;
@@ -16,7 +16,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasDashboardControlle
     this.tucVoipService = tucVoipService;
     this.tucVoipServiceAlias = tucVoipServiceAlias;
 
-    this.REDIRECT_URLS = REDIRECT_URLS;
+    this.TELEPHONY_REDIRECT_URLS = TELEPHONY_REDIRECT_URLS;
     this.TELEPHONY_ALIAS_CONSUMPTION = TELEPHONY_ALIAS_CONSUMPTION;
     this.TELEPHONY_ALIAS_OBSOLETE_FEATURE_TYPES = TELEPHONY_ALIAS_OBSOLETE_FEATURE_TYPES;
 

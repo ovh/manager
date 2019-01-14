@@ -243,6 +243,12 @@ const TELEPHONY_GUIDES = {
   ],
 };
 
+const TELEPHONY_REDIRECT_URLS = {
+  billingMean: 'https://www.ovh.com/manager/dedicated/index.html#/billing/mean',
+  telephonyV4: 'https://www.ovh.com/managerv3/telephony2-main.pl',
+  ovhAccount: 'https://www.ovh.com/manager/dedicated/index.html#/billing/ovhaccount',
+};
+
 export default {
   TELEPHONY_INFRASTRUCTURE_OPTIONS,
   TELEPHONY_RMA,
@@ -252,4 +258,5 @@ export default {
   TELEPHONY_ALIAS_CONTACT_CENTER_SOLUTION,
   TELEPHONY_ALIAS_OBSOLETE_FEATURE_TYPES,
   TELEPHONY_GUIDES,
+  TELEPHONY_REDIRECT_URLS,
 };

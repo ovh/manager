@@ -1,7 +1,7 @@
 import _ from 'lodash';
 
 export default /* @ngInject */ function ($q, $stateParams, OvhApiTelephony,
-  TelephonyVoipService, REDIRECT_URLS, REDIRECT_V4_HASH) {
+  TelephonyVoipService, TELEPHONY_REDIRECT_URLS, REDIRECT_V4_HASH) {
   const self = this;
   let currentGroup = null;
 
@@ -29,7 +29,7 @@ export default /* @ngInject */ function ($q, $stateParams, OvhApiTelephony,
     ============================================ */
 
   self.getV6ToV4RedirectionUrl = function getV6ToV4RedirectionUrl(constantPath) {
-    let url = REDIRECT_URLS.telephonyV4 + _.get(REDIRECT_V4_HASH, constantPath);
+    let url = TELEPHONY_REDIRECT_URLS.telephonyV4 + _.get(REDIRECT_V4_HASH, constantPath);
 
     if ($stateParams.serviceName) {
       url = url.replace('{lineNumber}', $stateParams.serviceName);

@@ -1,5 +1,9 @@
 import angular from 'angular';
+import '@ovh-ux/manager-core';
 import '@ovh-ux/telecom-universe-components';
+
+import 'ovh-ui-kit/dist/oui.css';
+import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
 
 import constant from './telecom-telephony.constant';
 import telecomTelephonyTemplate from './telecom-telephony.html';
@@ -13,6 +17,7 @@ const moduleName = 'ovhManagerTelephony';
 
 angular.module(moduleName, [
   components,
+  'ovhManagerCore',
   'telecomUniverseComponents',
   'ui.router',
 ])
@@ -24,6 +29,7 @@ angular.module(moduleName, [
   .constant('TELEPHONY_ALIAS_CONTACT_CENTER_SOLUTION', constant.TELEPHONY_ALIAS_CONTACT_CENTER_SOLUTION)
   .constant('TELEPHONY_ALIAS_OBSOLETE_FEATURE_TYPES', constant.TELEPHONY_ALIAS_OBSOLETE_FEATURE_TYPES)
   .constant('TELEPHONY_GUIDES', constant.TELEPHONY_GUIDES)
+  .constant('TELEPHONY_REDIRECT_URLS', constant.TELEPHONY_REDIRECT_URLS)
   .config(($stateProvider) => {
     $stateProvider.state('telephony', {
       url: '/telephony/:billingAccount',
