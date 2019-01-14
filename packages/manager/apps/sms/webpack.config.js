@@ -14,7 +14,7 @@ module.exports = (env = {}) => {
     resolve: {
       modules: [
         path.resolve(process.cwd(), './node_modules'),
-        path.resolve(process.cwd(), '../../../node_modules'),
+        path.resolve(process.cwd(), '../../../../node_modules'),
       ],
       mainFields: ['module', 'browser', 'main'],
     },

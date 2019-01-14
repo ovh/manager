@@ -1,3 +1,7 @@
+## [1.0.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-welcome@1.0.0...@ovh-ux/manager-welcome@1.0.1) (2019-01-10)
+
+
+
 # [1.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-welcome@1.0.0-alpha.1...@ovh-ux/manager-welcome@1.0.0) (2018-12-12)
 
 
