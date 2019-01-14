@@ -339,6 +339,22 @@ export default class OvhPaymentMethodLegacy {
   transformPaymentMeanToPaymentMethod(paymentMean) {
     const paymentType = _.get(paymentMean, 'paymentType', null);
     const paymentStatus = _.get(paymentMean, 'state', null);
+    let paymentLabel;
+
+    switch (paymentType) {
+      case 'paypal':
+        paymentLabel = paymentMean.email;
+        break;
+      case 'creditCard':
+        paymentLabel = paymentMean.number;
+        break;
+      case 'bankAccount':
+        paymentLabel = paymentMean.iban;
+        break;
+      default:
+        paymentLabel = paymentMean.label || null;
+        break;
+    }
 
     return {
       paymentSubType: _.get(paymentMean, 'type', null),
@@ -354,7 +370,8 @@ export default class OvhPaymentMethodLegacy {
       billingContactId: null,
       creationDate: _.get(paymentMean, 'creationDate', null),
       lastUpdate: null,
-      label: paymentMean.label || paymentMean.number || paymentMean.iban || null,
+      label: paymentLabel,
+      expirationDate: _.get(paymentMean, 'expirationDate', null),
       original: paymentMean,
     };
   }

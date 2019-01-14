@@ -15,7 +15,7 @@
   "scripts": {
     "build": "rollup -c",
     "prepare": "rollup -c",
-    "start": "rollup -c --watch",
+    "dev": "rollup -c --watch",
     "test": "eslint --quiet src",
     "lint": "eslint --quiet --fix src",
     "version": "npx conventional-changelog-cli -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
