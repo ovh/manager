@@ -1,8 +1,11 @@
 /* eslint-disable global-require, import/no-dynamic-require, no-use-before-define */
+const concat = require('concat-stream');
+const conventionalCommitsParser = require('conventional-commits-parser');
 const bump = require('conventional-recommended-bump');
 const execa = require('execa');
 const fs = require('fs');
 const github = require('octonode');
+const gitRawCommits = require('git-raw-commits');
 const path = require('path');
 const semver = require('semver');
 
@@ -209,9 +212,19 @@ class Repository {
   }
 
   hasChanges() {
-    return execa
-      .shell(`npx lerna diff ${this.name}`)
-      .then(({ stdout }) => stdout.length > 0);
+    return new Promise((resolve) => {
+      this.constructor.fetchTags().then((tag) => {
+        gitRawCommits({
+          format: '%B%n-hash-%n%H',
+          from: tag || '',
+          path: this.location,
+        })
+          .pipe(conventionalCommitsParser())
+          .pipe(concat((commits) => {
+            resolve(commits.filter(({ type, notes }) => ['feat', 'fix', 'perf'].includes(type) || notes.length > 0).length > 0);
+          }));
+      });
+    });
   }
 
   getDependencies() {

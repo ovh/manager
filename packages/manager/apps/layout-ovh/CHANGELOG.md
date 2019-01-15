@@ -1,3 +1,7 @@
+## [1.2.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-layout-ovh@1.2.0...@ovh-ux/manager-layout-ovh@1.2.1) (2019-01-10)
+
+
+
 # [1.2.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-layout-ovh@1.1.0...@ovh-ux/manager-layout-ovh@1.2.0) (2019-01-03)
 
 

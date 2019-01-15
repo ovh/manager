@@ -1,20 +1,24 @@
 {
   "name": "@ovh-ux/manager-layout-ovh",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "private": true,
   "license": "BSD-3-Clause",
   "main": "./src/index.js",
   "scripts": {
-    "build": "webpack --env=production",
-    "dev": "webpack-dev-server --verbose"
+    "build": "webpack",
+    "dev": "webpack-dev-server",
+    "dev:watch": "yarn run dev",
+    "start": "lerna exec --stream --scope='@ovh-ux/manager-layout-ovh' --include-filtered-dependencies -- yarn run build",
+    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-layout-ovh' --include-filtered-dependencies -- yarn run dev",
+    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-layout-ovh' --include-filtered-dependencies -- yarn run dev:watch"
   },
   "dependencies": {
-    "@ovh-ux/manager-core": "^1.1.1",
-    "@ovh-ux/manager-freefax": "^1.0.1",
-    "@ovh-ux/manager-overthebox": "^1.1.0",
-    "@ovh-ux/manager-sms": "^0.1.0",
-    "@ovh-ux/manager-telecom-styles": "^2.0.0",
-    "@ovh-ux/manager-welcome": "^1.0.0",
+    "@ovh-ux/manager-core": "^1.1.2",
+    "@ovh-ux/manager-freefax": "^1.0.2",
+    "@ovh-ux/manager-overthebox": "^1.1.1",
+    "@ovh-ux/manager-sms": "^0.1.1",
+    "@ovh-ux/manager-telecom-styles": "^2.0.1",
+    "@ovh-ux/manager-welcome": "^1.0.1",
     "@ovh-ux/ng-ovh-contracts": "^3.0.0-beta.1",
     "@ovh-ux/ng-tail-logs": "^2.0.0-beta.0",
     "@ovh-ux/ng-uirouter-title": "^2.0.0-beta.3",

@@ -1,18 +1,22 @@
 {
   "name": "@ovh-ux/manager-core",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "license": "BSD-3-Clause",
   "files": [
     "dist"
   ],
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
+  "browser": "./dist/umd/core.js",
   "scripts": {
     "build": "rollup -c --environment BUILD:production",
-    "dev": "rollup -c --environment BUILD:development --watch",
-    "prepare": "yarn run build"
+    "dev": "rollup -c --environment BUILD:development",
+    "dev:watch": "yarn run dev --watch",
+    "prepare": "yarn run build",
+    "start": "lerna exec --stream --scope='@ovh-ux/manager-core' --include-filtered-dependencies -- yarn run build",
+    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-core' --include-filtered-dependencies -- yarn run dev",
+    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-core' --include-filtered-dependencies -- yarn run dev:watch"
   },
-  "browser": "./dist/umd/core.js",
   "dependencies": {
     "@ovh-ux/translate-async-loader": "^1.0.4",
     "lodash": "^4.17.11"
@@ -21,6 +25,7 @@
     "@ovh-ux/component-rollup-config": "5.0.0-beta.3"
   },
   "peerDependencies": {
+    "@uirouter/angularjs": "^1.0.20",
     "angular": "^1.7.5",
     "angular-aria": "^1.7.5",
     "angular-dynamic-locale": "^0.1.37",
@@ -32,6 +37,7 @@
     "ovh-angular-apiv7": "^1.2.8",
     "ovh-angular-http": "^4.0.1-alpha.0",
     "ovh-angular-sso-auth": "^4.0.0-alpha.3",
-    "ovh-api-services": "^3.18.0"
+    "ovh-api-services": "^3.18.0",
+    "ovh-ui-angular": "^2.23.0"
   }
 }

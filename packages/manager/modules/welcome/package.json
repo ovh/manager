@@ -1,12 +1,16 @@
 {
   "name": "@ovh-ux/manager-welcome",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "BSD-3-Clause",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "scripts": {
     "build": "rollup -c --environment BUILD:production",
-    "dev": "rollup -c --environment BUILD:development --watch",
+    "dev": "rollup -c --environment BUILD:development",
+    "dev:watch": "yarn run dev --watch",
+    "start": "lerna exec --stream --scope='@ovh-ux/manager-welcome' --include-filtered-dependencies -- yarn run build",
+    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-welcome' --include-filtered-dependencies -- yarn run dev",
+    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-welcome' --include-filtered-dependencies -- yarn run dev:watch",
     "prepare": "yarn run build"
   },
   "browser": "./dist/umd/welcome.js",
@@ -14,7 +18,7 @@
     "@ovh-ux/component-rollup-config": "5.0.0-beta.3"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-core": "^1.1.0",
+    "@ovh-ux/manager-core": "^1.1.2",
     "@uirouter/angularjs": "^1.0.15",
     "angular": "~1.6.10",
     "oclazyload": "^1.1.0"
