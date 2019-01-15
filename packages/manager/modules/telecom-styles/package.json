@@ -6,7 +6,11 @@
   "module": "./dist/esm/index.js",
   "scripts": {
     "build": "rollup -c --environment BUILD:production",
-    "dev": "rollup -c --environment BUILD:development --watch",
+    "dev": "rollup -c --environment BUILD:development",
+    "dev:watch": "yarn run dev --watch",
+    "start": "lerna exec --stream --scope='@ovh-ux/manager-telecom-styles' --include-filtered-dependencies -- yarn run build",
+    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-telecom-styles' --include-filtered-dependencies -- yarn run dev",
+    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-telecom-styles' --include-filtered-dependencies -- yarn run dev:watch",
     "prepare": "yarn run build"
   },
   "browser": "./dist/umd/index.js",

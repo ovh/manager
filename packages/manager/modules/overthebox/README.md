@@ -1,6 +1,6 @@
 # manager-overthebox
 
-[![npm version](https://badgen.net/npm/v/@ovh-ux/manager-overthebox)](https://www.npmjs.com/package/@ovh-ux/manager-overthebox) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/manager-overthebox)](https://npmjs.com/package/@ovh-ux/manager-overthebox) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager-overthebox)](https://npmjs.com/package/@ovh-ux/manager-overthebox?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager-overthebox)](https://npmjs.com/package/@ovh-ux/manager-overthebox?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![npm version](https://badgen.net/npm/v/@ovh-ux/manager-overthebox)](https://www.npmjs.com/package/@ovh-ux/manager-overthebox) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/manager-overthebox)](https://npmjs.com/package/@ovh-ux/manager-overthebox) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/manager/modules/overthebox)](https://npmjs.com/package/@ovh-ux/manager-overthebox?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/manager/modules/overthebox)](https://npmjs.com/package/@ovh-ux/manager-overthebox?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
 
 ## Install
 
@@ -18,6 +18,32 @@ angular
   .module('myApp', [
     managerOverthebox,
   ]);
+```
+
+## Build
+
+```sh
+# Build in production mode
+yarn start
+```
+
+## Development
+
+If you want to contribute to the project, follow theses instructions:
+
+Foremost, you should launch a global installation at the root folder of this repository:
+
+```sh
+yarn install
+```
+
+Then you just have to start the project in development mode. For this, two choices are possible according to your needs:
+
+```sh
+# Build the `manager-overthebox` workspace and all the nested workspaces in development mode and watch only `manager-overthebox` workspace
+yarn start:dev
+# Build and watch the `manager-overthebox` workspace and all the nested workspaces in development mode
+yarn start:watch
 ```
 
 ## Documentation

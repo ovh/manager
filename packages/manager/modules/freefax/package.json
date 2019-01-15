@@ -10,7 +10,11 @@
   "browser": "./dist/umd/freefax.js",
   "scripts": {
     "build": "rollup -c --environment BUILD:production",
-    "dev": "rollup -c --environment BUILD:development --watch",
+    "dev": "rollup -c --environment BUILD:development",
+    "dev:watch": "yarn run dev --watch",
+    "start": "lerna exec --stream --scope='@ovh-ux/manager-freefax' --include-filtered-dependencies -- yarn run build",
+    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-freefax' --include-filtered-dependencies -- yarn run dev",
+    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-freefax' --include-filtered-dependencies -- yarn run dev:watch",
     "prepare": "yarn run build"
   },
   "dependencies": {

@@ -5,8 +5,12 @@
   "license": "BSD-3-Clause",
   "main": "./src/index.js",
   "scripts": {
-    "build": "webpack --env=production",
-    "dev": "webpack-dev-server --verbose"
+    "build": "webpack",
+    "dev": "webpack-dev-server",
+    "dev:watch": "yarn run dev",
+    "start": "lerna exec --stream --scope='@ovh-ux/manager-layout-ovh' --include-filtered-dependencies -- yarn run build",
+    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-layout-ovh' --include-filtered-dependencies -- yarn run dev",
+    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-layout-ovh' --include-filtered-dependencies -- yarn run dev:watch"
   },
   "dependencies": {
     "@ovh-ux/manager-core": "^1.1.2",

@@ -4,10 +4,10 @@ const kill = require('kill-port');
 const tcpPortUsed = require('tcp-port-used');
 
 fp(3000, (err, port) => {
-  const webpackApp = execa.shell(`yarn start --port ${port}`);
+  const webpackApp = execa.shell(`yarn start:dev --port ${port}`);
   webpackApp.stdout.pipe(process.stdout);
 
-  tcpPortUsed.waitUntilUsed(port, 500, 1000 * 60 * 2)
+  tcpPortUsed.waitUntilUsed(port, 500, 1000 * 60 * 5)
     .then(() => {
       const cypressShell = execa.shell(`cypress run --config baseUrl=http://localhost:${port}`);
       cypressShell.stdout.pipe(process.stdout);
