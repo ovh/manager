@@ -70,4 +70,5 @@ angular
   .config((OtrsPopupProvider /* , constants */) => {
     OtrsPopupProvider.setBaseUrlTickets('');
   })
+  .config($locationProvider => $locationProvider.hashPrefix(''))
   .config(routing);
