@@ -1,7 +1,7 @@
 import angular from 'angular';
-import managerCore from '@ovh-ux/manager-core';
-import ovhUtilsAngular from '@ovh-ux/ovh-utils-angular';
-import webUniverseComponents from '@ovh-ux/web-universe-components';
+import '@ovh-ux/manager-core';
+import '@ovh-ux/ovh-utils-angular';
+import '@ovh-ux/web-universe-components';
 import 'angularjs-scroll-glue';
 import 'bootstrap';
 import 'chart.js';
@@ -43,14 +43,14 @@ import whitelistService from './whitelist/private-database-whitelist.service';
 const moduleName = 'ovhManagerPrivateDatabase';
 
 angular.module(moduleName, [
-  managerCore,
-  ovhUtilsAngular,
   'ngTailLogs',
   'ovh-angular-pagination-front',
+  'ovh-utils-angular',
+  'ovhManagerCore',
   'oui',
   privateDatabaseUser,
   privateDatabaseDatabase,
-  webUniverseComponents,
+  'webUniverseComponents',
 ])
   .run(($templateCache) => {
     $templateCache.put('private-database/configuration/private-database-configuration.html', configurationTemplate);
