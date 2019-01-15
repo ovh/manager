@@ -5,7 +5,7 @@
         <span data-translate="privateDatabase_common_back"></span>
     </oui-back-button>
 
-    <h2 data-ng-bind-html="'privateDatabase_tabs_dumps_change' | translate + ' ' + bdd.name"></h2>
+    <h2 data-ng-bind-html="('privateDatabase_tabs_dumps_change' | translate) + ' ' + bdd.name"></h2>
 
     <oui-datagrid data-rows="bdd.dumps">
         <oui-column data-title="'privateDatabase_bdd_name' | translate" data-property="databaseName" data-sortable></oui-column>

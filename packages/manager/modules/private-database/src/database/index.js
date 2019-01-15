@@ -60,7 +60,7 @@ angular.module(moduleName, [])
     $templateCache.put('private-database/database/ram/update/private-database-database-ram-update.html', ramUpdateTemplate);
     $templateCache.put('private-database/database/restart/private-database-database-restart.html', restartTemplate);
     $templateCache.put('private-database/database/restore/private-database-database-restore.html', restoreTemplate);
-    $templateCache.put('private-database/database/restore/private-database-database-restore-archive.html', restoreArchiveTemplate);
+    $templateCache.put('private-database/database/restore-archive/private-database-database-restore-archive.html', restoreArchiveTemplate);
     $templateCache.put('private-database/database/start/private-database-database-start.html', startTemplate);
     $templateCache.put('private-database/database/stop/private-database-database-stop.html', stopTemplate);
     $templateCache.put('private-database/database/user/private-database-database-user.html', userTemplate);
