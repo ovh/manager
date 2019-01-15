@@ -1,3 +1,12 @@
+## [1.0.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-freefax@1.0.2...@ovh-ux/manager-freefax@1.0.3) (2019-01-15)
+
+
+### Bug Fixes
+
+* **freefax:** add bootstrap4 styles ([33c9f75](https://github.com/ovh-ux/manager/commit/33c9f75))
+
+
+
 ## [1.0.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-freefax@1.0.1...@ovh-ux/manager-freefax@1.0.2) (2019-01-10)
 
 
