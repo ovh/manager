@@ -1,3 +1,13 @@
+# [1.2.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@1.1.2...@ovh-ux/manager-core@1.2.0) (2019-01-15)
+
+
+### Features
+
+* **core:** add ovh-ui-angular translations ([a5adff5](https://github.com/ovh-ux/manager/commit/a5adff5))
+* **core:** add sso config for ws servicetype ([906528d](https://github.com/ovh-ux/manager/commit/906528d))
+
+
+
 ## [1.1.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@1.1.1...@ovh-ux/manager-core@1.1.2) (2019-01-10)
 
 

@@ -1,3 +1,12 @@
+## [0.1.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-sms-app@0.1.1...@ovh-ux/manager-sms-app@0.1.2) (2019-01-15)
+
+
+### Bug Fixes
+
+* sort import to fix undefined lodash ([3bd12fc](https://github.com/ovh-ux/manager/commit/3bd12fc))
+
+
+
 ## [0.1.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-sms-app@0.1.0...@ovh-ux/manager-sms-app@0.1.1) (2019-01-10)
 
 
