@@ -9,6 +9,7 @@ import kebabCase from 'lodash/kebabCase';
 import translateAsyncLoader from '@ovh-ux/translate-async-loader';
 import OvhHttp from 'ovh-angular-http';
 import ssoAuth from 'ovh-angular-sso-auth';
+import ovhOuiAngularTranslations from './translate/ovh-ui-angular';
 
 import 'angular-dynamic-locale';
 import 'angular-translate';
@@ -34,6 +35,7 @@ angular
     'pascalprecht.translate',
     'tmh.dynamicLocale',
     translateAsyncLoader,
+    ovhOuiAngularTranslations,
     OvhHttp,
     ssoAuth,
   ])
