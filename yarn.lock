@@ -9345,7 +9345,7 @@ ovh-ui-angular@^2.21.4, ovh-ui-angular@^2.23.0:
     popper.js "^1.14.4"
     ui-select "^0.19.8"
 
-ovh-ui-kit-bs@^2.1.0:
+ovh-ui-kit-bs@^2.0.1, ovh-ui-kit-bs@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/ovh-ui-kit-bs/-/ovh-ui-kit-bs-2.1.0.tgz#0048b7bf3275302744d902f63687965e95679555"
   integrity sha512-+cDziAGn4LYiB78+8aT2JAb287e7MsUCCcVTI7QQb6YVhYoW2gcs6wcEBPUgsYV6WOR6rZj//R9hq+DVaQebHg==

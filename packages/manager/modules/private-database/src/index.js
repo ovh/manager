@@ -63,7 +63,7 @@ angular.module(moduleName, [
   .service('PrivateDatabase', privateDatabaseService)
   .service('PrivateDatabaseLogsService', privateDatabaseLogsService)
   .service('OomService', privateDatabaseOomService)
-  .service('whitelistService', whitelistService)
+  .service('WhitelistService', whitelistService)
   .controller('PrivateDatabaseConfigurationsCtrl', configurationController)
   .controller('PrivateDatabaseLogsCtrl', logsController)
   .controller('PrivateDatabaseMetricsCtrl', metricsController)
