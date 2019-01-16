@@ -1,3 +1,14 @@
+## [1.1.1](https://github.com/ovh-ux/ng-ovh-payment-method/compare/v1.1.1-alpha.1...v1.1.1) (2019-01-16)
+
+
+### Bug Fixes
+
+* failed status translation ([9299212](https://github.com/ovh-ux/ng-ovh-payment-method/commit/9299212))
+* **i18n:** submit ([edf234f](https://github.com/ovh-ux/ng-ovh-payment-method/commit/edf234f))
+* **i18n:** submit ([255c9cb](https://github.com/ovh-ux/ng-ovh-payment-method/commit/255c9cb))
+
+
+
 ## [1.1.1-alpha.1](https://github.com/ovh-ux/ng-ovh-payment-method/compare/v1.1.1-alpha.0...v1.1.1-alpha.1) (2019-01-14)
 
 
