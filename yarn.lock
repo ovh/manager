@@ -9288,11 +9288,6 @@ ovh-angular-swimming-poll@^3.0.0:
   resolved "https://registry.yarnpkg.com/ovh-angular-swimming-poll/-/ovh-angular-swimming-poll-3.0.0.tgz#496ccae4c8edbfd04719b05fe99fb98c00b1c78f"
   integrity sha1-SWzK5Mjtv9BHGbBf6Z+5jACxx48=
 
-ovh-angular-tail-logs@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/ovh-angular-tail-logs/-/ovh-angular-tail-logs-1.1.1.tgz#6287a577ca5214de0ad1cd9bfb39b34762076b66"
-  integrity sha1-Yoeld8pSFN4K0c2b+zmzR2IHa2Y=
-
 ovh-angular-ui-confirm-modal@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/ovh-angular-ui-confirm-modal/-/ovh-angular-ui-confirm-modal-1.0.2.tgz#92e6736588a4fb1de6353f1a17ab1962679a698d"
