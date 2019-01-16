@@ -1,3 +1,12 @@
+# [1.0.0](https://github.com/ovh-ux/ng-ovh-contacts/compare/v1.0.0-alpha.2...v1.0.0) (2019-01-16)
+
+
+### Bug Fixes
+
+* **i18n:** retrieve ([eb5079c](https://github.com/ovh-ux/ng-ovh-contacts/commit/eb5079c))
+
+
+
 # [1.0.0-alpha.2](https://github.com/ovh-ux/ng-ovh-contacts/compare/v1.0.0-alpha.1...v1.0.0-alpha.2) (2019-01-14)
 
 
