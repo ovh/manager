@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <translations>
-   <translation id="ovh_contact_form_load_error" qtlid="517472">Une erreur est survenue lors du chargement du formulaire de création de contact.</translation>
+   <translation id="ovh_contact_form_load_error" qtlid="517472">Se ha producido un error al cargar el formulario de creación de contacto.</translation>
 
    <translation id="ovh_contact_form_section_general_information" qtlid="27115">Información general</translation>
    <translation id="ovh_contact_form_section_contact_information" qtlid="33370">Coordonnées</translation>
@@ -16,16 +16,16 @@
    <translation id="ovh_contact_form_address_zip" qtlid="30346">Código postal</translation>
    <translation id="ovh_contact_form_address_city" qtlid="33310">Ciudad</translation>
    <translation id="ovh_contact_form_address_area" qtlid="32434">Région</translation>
-   <translation id="ovh_contact_form_address_area_optional" qtlid="517485">Choisissez votre région (optionnel)</translation>
+   <translation id="ovh_contact_form_address_area_optional" qtlid="517485">Seleccione su región (opcional)</translation>
    <translation id="ovh_contact_form_address_province" qtlid="38577">Provincia</translation>
-   <translation id="ovh_contact_form_address_province_optional" qtlid="517498">Choisissez votre province (optionnel)</translation>
+   <translation id="ovh_contact_form_address_province_optional" qtlid="517498">Seleccione su provincia (opcional)</translation>
    <translation id="ovh_contact_form_address_state" qtlid="434845">Estado</translation>
-   <translation id="ovh_contact_form_address_state_optional" qtlid="517511">Choisissez votre état (optionnel)</translation>
+   <translation id="ovh_contact_form_address_state_optional" qtlid="517511">Seleccione su estado (opcional)</translation>
 
 <!-- Contact fields -->
    <translation id="ovh_contact_form_email" qtlid="69509">E-mail</translation>
    <translation id="ovh_contact_form_phone" qtlid="152505">Teléfono</translation>
-   <translation id="ovh_contact_from_phone_help_text" qtlid="517524">Numéro de téléphone au format international</translation>
+   <translation id="ovh_contact_from_phone_help_text" qtlid="517524">Número de teléfono en formato internacional</translation>
 
 <!-- COUNTRIES -->
    <translation id="ovh_contact_form_nichandle_country_enum_AD" qtlid="43510">Andorre</translation>
@@ -63,7 +63,7 @@
    <translation id="ovh_contact_form_nichandle_country_enum_BW" qtlid="187326">Botsuana</translation>
    <translation id="ovh_contact_form_nichandle_country_enum_BY" qtlid="43762">Biélorussie</translation>
    <translation id="ovh_contact_form_nichandle_country_enum_BZ" qtlid="187352">Belice</translation>
-   <translation id="ovh_contact_form_nichandle_country_enum_CA" qtlid="108733">Canada</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_CA" qtlid="108733">Canadá</translation>
    <translation id="ovh_contact_form_nichandle_country_enum_CC" qtlid="187365">Cocos (Keeling), Islas</translation>
    <translation id="ovh_contact_form_nichandle_country_enum_CD" qtlid="187378">Congo, República Democrática del</translation>
    <translation id="ovh_contact_form_nichandle_country_enum_CF" qtlid="187391">Centroafricana, República</translation>
@@ -82,7 +82,7 @@
    <translation id="ovh_contact_form_nichandle_country_enum_CX" qtlid="187547">Christmas, Isla</translation>
    <translation id="ovh_contact_form_nichandle_country_enum_CY" qtlid="43810">Chypre</translation>
    <translation id="ovh_contact_form_nichandle_country_enum_CZ" qtlid="40918">République tchèque</translation>
-   <translation id="ovh_contact_form_nichandle_country_enum_DE" qtlid="29083">Allemagne</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_DE" qtlid="29083">Alemania</translation>
    <translation id="ovh_contact_form_nichandle_country_enum_DJ" qtlid="187560">Yibuti</translation>
    <translation id="ovh_contact_form_nichandle_country_enum_DK" qtlid="187573">Dinamarca</translation>
    <translation id="ovh_contact_form_nichandle_country_enum_DM" qtlid="187586">Dominica</translation>
@@ -93,16 +93,16 @@
    <translation id="ovh_contact_form_nichandle_country_enum_EG" qtlid="187638">Egipto</translation>
    <translation id="ovh_contact_form_nichandle_country_enum_EH" qtlid="187651">Sahara Occidental</translation>
    <translation id="ovh_contact_form_nichandle_country_enum_ER" qtlid="187664">Eritrea</translation>
-   <translation id="ovh_contact_form_nichandle_country_enum_ES" qtlid="29095">Espagne</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_ES" qtlid="29095">España</translation>
    <translation id="ovh_contact_form_nichandle_country_enum_ET" qtlid="187677">Etiopía</translation>
    <translation id="ovh_contact_form_nichandle_country_enum_FI" qtlid="40942">Finlande</translation>
    <translation id="ovh_contact_form_nichandle_country_enum_FJ" qtlid="187690">Fiyi</translation>
    <translation id="ovh_contact_form_nichandle_country_enum_FK" qtlid="187703">Malvinas, Islas (Fakland)</translation>
    <translation id="ovh_contact_form_nichandle_country_enum_FM" qtlid="187716">Micronesia, Estados Federados de</translation>
    <translation id="ovh_contact_form_nichandle_country_enum_FO" qtlid="187729">Feroe, Islas</translation>
-   <translation id="ovh_contact_form_nichandle_country_enum_FR" qtlid="29047">France</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_FR" qtlid="29047">Francia</translation>
    <translation id="ovh_contact_form_nichandle_country_enum_GA" qtlid="187742">Gabón</translation>
-   <translation id="ovh_contact_form_nichandle_country_enum_GB" qtlid="29071">Royaume-Uni</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_GB" qtlid="29071">Reino Unido</translation>
    <translation id="ovh_contact_form_nichandle_country_enum_GD" qtlid="187755">Granada</translation>
    <translation id="ovh_contact_form_nichandle_country_enum_GE" qtlid="187768">Georgia</translation>
    <translation id="ovh_contact_form_nichandle_country_enum_GF" qtlid="187781">Guayana Francesa</translation>
@@ -134,7 +134,7 @@
    <translation id="ovh_contact_form_nichandle_country_enum_IQ" qtlid="188067">Irak</translation>
    <translation id="ovh_contact_form_nichandle_country_enum_IR" qtlid="188080">Irán, República Islámica de</translation>
    <translation id="ovh_contact_form_nichandle_country_enum_IS" qtlid="188093">Islandia</translation>
-   <translation id="ovh_contact_form_nichandle_country_enum_IT" qtlid="40870">Italie</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_IT" qtlid="40870">Italia</translation>
    <translation id="ovh_contact_form_nichandle_country_enum_JE" qtlid="188106">Jersey</translation>
    <translation id="ovh_contact_form_nichandle_country_enum_JM" qtlid="188119">Jamaica</translation>
    <translation id="ovh_contact_form_nichandle_country_enum_JO" qtlid="188132">Jordania</translation>
@@ -203,7 +203,7 @@
    <translation id="ovh_contact_form_nichandle_country_enum_PG" qtlid="188834">Papúa Nueva Guinea</translation>
    <translation id="ovh_contact_form_nichandle_country_enum_PH" qtlid="188847">Filipinas</translation>
    <translation id="ovh_contact_form_nichandle_country_enum_PK" qtlid="188860">Pakistán</translation>
-   <translation id="ovh_contact_form_nichandle_country_enum_PL" qtlid="40858">Pologne</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_PL" qtlid="40858">Polonia</translation>
    <translation id="ovh_contact_form_nichandle_country_enum_PM" qtlid="188873">San Pedro y Miquelón</translation>
    <translation id="ovh_contact_form_nichandle_country_enum_PN" qtlid="188886">Pitcairn, Islas</translation>
    <translation id="ovh_contact_form_nichandle_country_enum_PR" qtlid="188899">Puerto Rico</translation>
@@ -257,7 +257,7 @@
    <translation id="ovh_contact_form_nichandle_country_enum_TZ" qtlid="189419">Tanzania, República Unida de</translation>
    <translation id="ovh_contact_form_nichandle_country_enum_UA" qtlid="43774">Ukraine</translation>
    <translation id="ovh_contact_form_nichandle_country_enum_UG" qtlid="189432">Uganda</translation>
-   <translation id="ovh_contact_form_nichandle_country_enum_UK" qtlid="29071">Royaume-Uni</translation>
+   <translation id="ovh_contact_form_nichandle_country_enum_UK" qtlid="29071">Reino Unido</translation>
    <translation id="ovh_contact_form_nichandle_country_enum_UM" qtlid="189445">Islas menores alejadas de los Estados Unidos</translation>
    <translation id="ovh_contact_form_nichandle_country_enum_US" qtlid="108396">États-Unis</translation>
    <translation id="ovh_contact_form_nichandle_country_enum_UY" qtlid="189458">Uruguay</translation>

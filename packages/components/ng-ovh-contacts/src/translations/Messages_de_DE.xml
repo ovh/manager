@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <translations>
-   <translation id="ovh_contact_form_load_error" qtlid="517472">Une erreur est survenue lors du chargement du formulaire de création de contact.</translation>
+   <translation id="ovh_contact_form_load_error" qtlid="517472">Beim Laden des Formulars zur Kontakterstellung ist ein Fehler aufgetreten.</translation>
 
    <translation id="ovh_contact_form_section_general_information" qtlid="27115">Allgemeine Informationen</translation>
    <translation id="ovh_contact_form_section_contact_information" qtlid="33370">Kontakt</translation>
@@ -16,16 +16,16 @@
    <translation id="ovh_contact_form_address_zip" qtlid="30346">Postleitzahl</translation>
    <translation id="ovh_contact_form_address_city" qtlid="33310">Stadt</translation>
    <translation id="ovh_contact_form_address_area" qtlid="32434">Region</translation>
-   <translation id="ovh_contact_form_address_area_optional" qtlid="517485">Choisissez votre région (optionnel)</translation>
+   <translation id="ovh_contact_form_address_area_optional" qtlid="517485">Wählen Sie Ihre Region (optional)</translation>
    <translation id="ovh_contact_form_address_province" qtlid="38577">Provinz</translation>
-   <translation id="ovh_contact_form_address_province_optional" qtlid="517498">Choisissez votre province (optionnel)</translation>
+   <translation id="ovh_contact_form_address_province_optional" qtlid="517498">Wählen Sie Ihre Provinz (optional)</translation>
    <translation id="ovh_contact_form_address_state" qtlid="434845">Staat</translation>
-   <translation id="ovh_contact_form_address_state_optional" qtlid="517511">Choisissez votre état (optionnel)</translation>
+   <translation id="ovh_contact_form_address_state_optional" qtlid="517511">Wählen Sie Ihren Staat (optional)</translation>
 
 <!-- Contact fields -->
    <translation id="ovh_contact_form_email" qtlid="69509">E-Mail-Adresse</translation>
    <translation id="ovh_contact_form_phone" qtlid="152505">Telefonnummer</translation>
-   <translation id="ovh_contact_from_phone_help_text" qtlid="517524">Numéro de téléphone au format international</translation>
+   <translation id="ovh_contact_from_phone_help_text" qtlid="517524">Telefonnummer im internationalen Format</translation>
 
 <!-- COUNTRIES -->
    <translation id="ovh_contact_form_nichandle_country_enum_AD" qtlid="43510">Andorra</translation>
