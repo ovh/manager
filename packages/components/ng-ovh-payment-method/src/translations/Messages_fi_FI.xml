@@ -25,6 +25,6 @@
    <translation id="ovh_payment_status_waiting_for_documents" qtlid="325575">Odottaa saapumista</translation>
    <translation id="ovh_payment_status_maintenance" qtlid="517550">Maintenance en cours</translation>
    <translation id="ovh_payment_status_paused" qtlid="517563">Mis en pause</translation>
-   <translation id="ovh_payment_status_failed" qtlid="517576">Invalide (erreur de saisie)</translation>
+   <translation id="ovh_payment_status_failed" qtlid="262999">Kelpaamaton</translation>
    <translation id="ovh_payment_status_null" qtlid="374560">Tietoja ei saatavilla</translation>
 </translations>

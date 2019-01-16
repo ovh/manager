@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <translations>
    <translation id="ovh_payment_type_bank_account" qtlid="176911">Cuenta bancaria</translation>
-   <translation id="ovh_payment_type_paypal" qtlid="98228">Paypal</translation>
-   <translation id="ovh_payment_type_credit_card" qtlid="89809">Carte bancaire</translation>
+   <translation id="ovh_payment_type_paypal" qtlid="98228">PayPal</translation>
+   <translation id="ovh_payment_type_credit_card" qtlid="89809">Tarjeta bancaria</translation>
    <translation id="ovh_payment_type_deferred_payment_account" qtlid="406931">Cuenta de pago diferido</translation>
    <translation id="ovh_payment_type_internal_trusted_account" qtlid="406931">Cuenta de pago diferido</translation>
    <translation id="ovh_payment_type_enterprise" qtlid="516195">Cuenta de empresa</translation>
@@ -25,6 +25,6 @@
    <translation id="ovh_payment_status_waiting_for_documents" qtlid="325575">Pendiente de recepción</translation>
    <translation id="ovh_payment_status_maintenance" qtlid="517550">Maintenance en cours</translation>
    <translation id="ovh_payment_status_paused" qtlid="517563">Mis en pause</translation>
-   <translation id="ovh_payment_status_failed" qtlid="517576">Invalide (erreur de saisie)</translation>
+   <translation id="ovh_payment_status_failed" qtlid="262999">No válido</translation>
    <translation id="ovh_payment_status_null" qtlid="374560">Información no disponible</translation>
 </translations>
