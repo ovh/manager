@@ -1597,6 +1597,15 @@
     filesize "^3.6.1"
     lodash "^4.17.11"
 
+"@ovh-ux/ovh-utils-angular@^14.0.3-alpha.0":
+  version "14.0.3-alpha.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ovh-utils-angular/-/ovh-utils-angular-14.0.3-alpha.0.tgz#a592656a70552884cd5b12dd1e947f073791b7b6"
+  integrity sha512-cM4LIRACMHvIoOOKdV/4Piz09WUR34T7MyUtFqzrFfsuCa/04gPYWRvRjjR3hZylFWwk9d3Qq+jYsT0JFbcKGw==
+  dependencies:
+    "@ovh-ux/translate-async-loader" "^1.0.4"
+    filesize "^3.6.1"
+    lodash "^4.17.11"
+
 "@ovh-ux/rollup-plugin-less-tilde-importer@^1.0.0-beta.0":
   version "1.0.0-beta.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/rollup-plugin-less-tilde-importer/-/rollup-plugin-less-tilde-importer-1.0.0-beta.0.tgz#eaf065c6e1fd039db0ddfb2f30955aec987e0c63"
