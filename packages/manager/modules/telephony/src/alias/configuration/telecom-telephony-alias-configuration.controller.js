@@ -48,7 +48,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationCtrl'
   getFeatureTypeActions() {
     const ovhPabxActions = [{
       name: 'number_modification_new',
-      sref: 'telecom.telephony.alias.configuration.changeType',
+      sref: 'telecom.telephony.alias.changeType',
       text: this.$translate.instant('telephony_alias_configuration_actions_number_modification_new'),
     }];
 
