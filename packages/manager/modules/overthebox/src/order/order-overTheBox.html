@@ -1,4 +1,5 @@
-<div class="telecom-overTheBox-order">
+<div class="telecom-overTheBox-order"
+      data-e2e-id="otb:order">
     <header>
         <h1 data-translate="overTheBox_title"></h1>
     </header>
@@ -204,9 +205,9 @@
                             data-ng-hide="OrderOverTheBox.states.orderDone"
                             data-ng-click="OrderOverTheBox.order()"
                             data-ng-disabled="!OrderOverTheBox.contractsAccepted || OrderOverTheBox.loaders.create"
-                            data-translate-attr="{ 'title': 'common_generate_order' }">
+                            data-translate-attr="{ 'title': 'overTheBox_order_generate_order' }">
                         <i class="ovh-font ovh-font-cart mr-2" aria-hidden="true"></i>
-                        <span data-translate="common_generate_order"></span>
+                        <span data-translate="overTheBox_order_generate_order"></span>
                     </button>
                 </form>
             </div>
