@@ -1,4 +1,4 @@
-# manager-layout-ovh
+# manager-telecom-task
 
 ## Installation
 
@@ -28,9 +28,9 @@ yarn install
 Then you just have to start the project in development mode. For this, two choices are possible according to your needs:
 
 ```sh
-# Build the `manager-layout-ovh` workspace and all the nested workspaces in development mode and watch only `manager-layout-ovh` workspace
+# Build the `manager-telecom-task` workspace and all the nested workspaces in development mode and watch only `manager-telecom-task` workspace
 yarn start:dev
-# Build and watch the `manager-layout-ovh` workspace and all the nested workspaces in development mode
+# Build and watch the `manager-telecom-task` workspace and all the nested workspaces in development mode
 yarn start:watch
 ```
 

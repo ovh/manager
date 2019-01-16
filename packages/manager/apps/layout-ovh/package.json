@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-layout-ovh",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "private": true,
   "license": "BSD-3-Clause",
   "main": "./src/index.js",
@@ -13,8 +13,8 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-layout-ovh' --include-filtered-dependencies -- yarn run dev:watch"
   },
   "dependencies": {
-    "@ovh-ux/manager-core": "^1.1.2",
-    "@ovh-ux/manager-freefax": "^1.0.2",
+    "@ovh-ux/manager-core": "^1.2.0",
+    "@ovh-ux/manager-freefax": "^1.0.3",
     "@ovh-ux/manager-overthebox": "^1.1.1",
     "@ovh-ux/manager-private-database": "^0.0.0",
     "@ovh-ux/manager-sms": "^0.1.1",

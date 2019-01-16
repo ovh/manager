@@ -1,23 +1,11 @@
 # manager-overthebox
 
-[![npm version](https://badgen.net/npm/v/@ovh-ux/manager-overthebox)](https://www.npmjs.com/package/@ovh-ux/manager-overthebox) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/manager-overthebox)](https://npmjs.com/package/@ovh-ux/manager-overthebox) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/manager/modules/overthebox)](https://npmjs.com/package/@ovh-ux/manager-overthebox?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/manager/modules/overthebox)](https://npmjs.com/package/@ovh-ux/manager-overthebox?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+## Installation
 
-## Install
+Foremost, you should launch a global installation at the root folder of this repository:
 
 ```sh
-yarn add @ovh-ux/manager-overthebox
-```
-
-## Usage
-
-```js
-import 'angular';
-import managerOverthebox from '@ovh-ux/manager-overthebox';
-
-angular
-  .module('myApp', [
-    managerOverthebox,
-  ]);
+yarn install
 ```
 
 ## Build
@@ -45,10 +33,6 @@ yarn start:dev
 # Build and watch the `manager-overthebox` workspace and all the nested workspaces in development mode
 yarn start:watch
 ```
-
-## Documentation
-
-* Documentation OVH OverTheBox — [https://docs.ovh.com/fr/overthebox/](https://docs.ovh.com/fr/overthebox/)
 
 ## Contributing
 

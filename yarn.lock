@@ -1568,14 +1568,16 @@
     webpack-dev-server "^3.1.9"
 
 "@ovh-ux/ng-ovh-contracts@^3.0.0-beta.1":
-  version "3.0.0-beta.1"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-contracts/-/ng-ovh-contracts-3.0.0-beta.1.tgz#177b746cc3ec6eebab69204b8f7c4e858dbbabea"
-  integrity sha512-2QQ9vbjxmKtSvHsWoFSkO3Pw35pDlXHHBWDJ1PVUgvKh8HZoLzl0xeS/+6JsGDkhsI69NjgAXDHeZ0tZOMv6Sg==
+  version "3.0.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-contracts/-/ng-ovh-contracts-3.0.0-beta.2.tgz#33e8793077b3b33517b2c64ee71142a4cd6c07e0"
+  integrity sha512-a2KQX3beO7hP6aoXAnbsCdlXA/V1BQJOcc+bd9MRRIMexbpSaqzE5AqV6tRoVP/GGIS50qHXs1ewcFyINI41Lw==
+  dependencies:
+    animated-scroll-to "^1.2.2"
 
 "@ovh-ux/ng-tail-logs@^2.0.0-beta.0":
-  version "2.0.0-beta.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-tail-logs/-/ng-tail-logs-2.0.0-beta.0.tgz#8f12741174ec1f615fbfac4f98f63262268643e3"
-  integrity sha512-fFMAEctKZoXJrpru596iBMc0V/uqZzZNdwA4heqVyqdBaTbzFFVw4x9SO78DGBG0mpIz/t25UHMXsBK5KE8WXA==
+  version "2.0.0-beta.1"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-tail-logs/-/ng-tail-logs-2.0.0-beta.1.tgz#823fc41c98770e428d93882e7cdf47f1a7e1711b"
+  integrity sha512-tcyEnkqb71p+ImlsRalsqdZ/RcN1lixjUVItsR1oLooliiXumdPgmAjlGm6elBs3Gb+vzDq0+uouFwLxfeYVKg==
   dependencies:
     lodash "^4.17.11"
 
@@ -1740,16 +1742,16 @@
   integrity sha512-7EJYyKTL7tFR8+gDbB6Wwz/arpGa0Mywk1TJbNzKzHtzbwVmY4HR9WqS5VV7dsBUKQmPNr192jHr/VpBluj/hg==
 
 "@uirouter/angularjs@^1.0.15", "@uirouter/angularjs@^1.0.20":
-  version "1.0.20"
-  resolved "https://registry.yarnpkg.com/@uirouter/angularjs/-/angularjs-1.0.20.tgz#bd330544cb2f1c35987f610d8fc353071786c04e"
-  integrity sha512-fY6bsesTL/tg8gyFHXaIjD1r5b7Ac+SYupodO9OzT4/gKI0YC+uGzLpQESAiXlT3fsxdEPVBzdtAbzXDwCKdEA==
+  version "1.0.21"
+  resolved "https://registry.yarnpkg.com/@uirouter/angularjs/-/angularjs-1.0.21.tgz#cc56eaa28287e455da3ca841207f15d2cae2fc2f"
+  integrity sha512-gr9KAOrx0Dk+DVEk370uaYC3g/DvqafR2R+D4XNTo3DQ9V5ORSoRi8z8jtd7A4nb8198UW9ITA0klSEg3WPuSw==
   dependencies:
-    "@uirouter/core" "5.0.21"
+    "@uirouter/core" "5.0.22"
 
-"@uirouter/core@5.0.21":
-  version "5.0.21"
-  resolved "https://registry.yarnpkg.com/@uirouter/core/-/core-5.0.21.tgz#b6c4c311e9416a1e8ce76b072e042a60224d1b3a"
-  integrity sha512-QWHc0wT00qtYNkT0BXZaFNLLHZyux0qJjF8c2WklW5/Q0Z866NoJjJErEMWjQb/AR+olkR2NlfEEi8KTQU2OpA==
+"@uirouter/core@5.0.22":
+  version "5.0.22"
+  resolved "https://registry.yarnpkg.com/@uirouter/core/-/core-5.0.22.tgz#4d36280b8d7871f7bd3e5f695a0f83ce6e559e48"
+  integrity sha512-J0BVWRDfAmRWKJAesszU6lvu8ApJQ+6gd6OI0v+02hUEgl3a8K2fQ6oP4La3xPbVnl8W4iH7ouvWOc8cJPZPag==
 
 "@webassemblyjs/ast@1.7.11":
   version "1.7.11"
@@ -2134,6 +2136,11 @@ angularjs-scroll-glue@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/angularjs-scroll-glue/-/angularjs-scroll-glue-2.2.0.tgz#07d3399ac16ca874c63b6b5ee2ee30558b37e5d1"
   integrity sha1-B9M5msFsqHTGO2te4u4wVYs35dE=
+
+animated-scroll-to@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/animated-scroll-to/-/animated-scroll-to-1.2.2.tgz#d6688e72f3ecec1a296fc2b36fe29290e7fff694"
+  integrity sha512-16ipIWWKvRGAeTfgiqTdXDBLPU0fCIq5sGDMQSdQnIjkxgm3pHzzUZiJ+rT/3xVbOXpTTN72vf2C4y9vepDBHA==
 
 ansi-align@^2.0.0:
   version "2.0.0"
@@ -9294,9 +9301,9 @@ ovh-angular-ui-confirm-modal@^1.0.2:
   integrity sha512-3V17DbzWjUjl9sKCd25Oycn+7eqg6iW+DpizwVmixHFzDNDMnpKSGmxRLrOq+q9YNE7IepoAKWjoSiy2+zOEEg==
 
 ovh-api-services@^3.24.0:
-  version "3.27.1"
-  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-3.27.1.tgz#4b4de84a07695180a8226798ace5978a8809a2d5"
-  integrity sha512-kTkZm9eFXCuYlNT+ZhK5jM75tMWm0L9nHwVXqLPpBOndT2xTHtwONxiGDbMdrtKvCyLFlXm4MUDPhdsrxHOa0Q==
+  version "3.31.0"
+  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-3.31.0.tgz#b4b50dd8816b36b9266c6362c922b6c3fdda8996"
+  integrity sha512-ngb65X6BEBvR+dFYKdu8wgEKqKwFY1WFQGiJQoavQ1H0xEilAiURwkVXCpTUVufTA17fqdM1Ob4IY8WraQ6eAQ==
   dependencies:
     lodash "^3.10.1"
 
