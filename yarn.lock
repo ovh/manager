@@ -1539,10 +1539,10 @@
     request "^2.88.0"
     webpack-dev-server "^3.1.9"
 
-"@ovh-ux/ng-ovh-contracts@^3.0.0-beta.1":
-  version "3.0.0-beta.2"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-contracts/-/ng-ovh-contracts-3.0.0-beta.2.tgz#33e8793077b3b33517b2c64ee71142a4cd6c07e0"
-  integrity sha512-a2KQX3beO7hP6aoXAnbsCdlXA/V1BQJOcc+bd9MRRIMexbpSaqzE5AqV6tRoVP/GGIS50qHXs1ewcFyINI41Lw==
+"@ovh-ux/ng-ovh-contracts@^3.0.0-beta.3":
+  version "3.0.0-beta.3"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-contracts/-/ng-ovh-contracts-3.0.0-beta.3.tgz#1dcd3612160f4c5eebd31a4bc12a2c632b35618f"
+  integrity sha512-1tApDRCcCp1lBVFojfwc8Uy0Ytaxjubxyh9dCiUtW701J+3c3F724wrzpnovPEB6UoH7blQ9Xr4Zc8Je6CzhUA==
   dependencies:
     animated-scroll-to "^1.2.2"
 
