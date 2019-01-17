@@ -27,7 +27,7 @@
   "peerDependencies": {
     "@ovh-ux/manager-core": "^1.2.0",
     "@ovh-ux/manager-telecom-styles": "^2.0.1",
-    "@ovh-ux/ng-ovh-contracts": "^3.0.0-beta.1",
+    "@ovh-ux/ng-ovh-contracts": "^3.0.0-beta.3",
     "@ovh-ux/ng-uirouter-title": "^2.0.0-beta.3",
     "@ovh-ux/telecom-universe-components": "^1.5.1",
     "@uirouter/angularjs": "^1.0.15",
