@@ -1,3 +1,12 @@
+## [1.1.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-overthebox@1.1.2...@ovh-ux/manager-overthebox@1.1.3) (2019-01-17)
+
+
+### Bug Fixes
+
+* **overthebox:** add missing ng-ovh-contracts dependency ([6f61f65](https://github.com/ovh-ux/manager/commit/6f61f65))
+
+
+
 ## [1.1.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-overthebox@1.1.1...@ovh-ux/manager-overthebox@1.1.2) (2019-01-17)
 
 
