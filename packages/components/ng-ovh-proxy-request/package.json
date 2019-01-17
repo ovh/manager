@@ -1,6 +1,6 @@
 {
   "name": "ovh-angular-proxy-request",
-  "version": "0.1.0",
+  "version": "0.1.1-alpha.0",
   "description": "Simple configurable request handler to use in service for any manager",
   "repository": "ovh-ux/ovh-angular-proxy-request.git",
   "license": "BSD-3-Clause",
