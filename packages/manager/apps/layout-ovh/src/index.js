@@ -10,6 +10,8 @@ import ngSanitize from 'angular-sanitize';
 import 'angular-resource';
 import translate from 'angular-translate';
 
+import 'bootstrap';
+
 import OvhHttp from 'ovh-angular-http';
 
 import core from '@ovh-ux/manager-core';
