@@ -1,3 +1,12 @@
+## [1.1.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-overthebox@1.1.3...@ovh-ux/manager-overthebox@1.1.4) (2019-01-17)
+
+
+### Bug Fixes
+
+* **overthebox:** add serviceName in updateName event ([f471fad](https://github.com/ovh-ux/manager/commit/f471fad))
+
+
+
 ## [1.1.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-overthebox@1.1.2...@ovh-ux/manager-overthebox@1.1.3) (2019-01-17)
 
 
