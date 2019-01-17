@@ -1,4 +1,6 @@
 import angular from 'angular';
+import '@ovh-ux/ng-ovh-contracts';
+
 import controller from './order-overTheBox.controller';
 import template from './order-overTheBox.html';
 
@@ -8,6 +10,7 @@ const moduleName = 'ovhManagerOtbOrder';
 
 angular
   .module(moduleName, [
+    'ngOvhContracts',
     ovhManagerOtbWarning,
   ])
   .config(($stateProvider) => {
