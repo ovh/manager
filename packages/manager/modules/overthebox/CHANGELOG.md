@@ -1,3 +1,14 @@
+## [1.1.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-overthebox@1.1.1...@ovh-ux/manager-overthebox@1.1.2) (2019-01-17)
+
+
+### Bug Fixes
+
+* use new component to display contracts ([f0e0a1b](https://github.com/ovh-ux/manager/commit/f0e0a1b))
+* **overthebox:** add warning module ([3d5328c](https://github.com/ovh-ux/manager/commit/3d5328c))
+* **overthebox-app:** update tests ([b372189](https://github.com/ovh-ux/manager/commit/b372189))
+
+
+
 ## [1.1.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-overthebox@1.1.0...@ovh-ux/manager-overthebox@1.1.1) (2019-01-10)
 
 
