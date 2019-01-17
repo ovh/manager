@@ -1,3 +1,12 @@
+## [0.1.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-sms@0.1.1...@ovh-ux/manager-sms@0.1.2) (2019-01-17)
+
+
+### Bug Fixes
+
+* use new component to display contracts ([f0e0a1b](https://github.com/ovh-ux/manager/commit/f0e0a1b))
+
+
+
 ## [0.1.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-sms@0.1.0...@ovh-ux/manager-sms@0.1.1) (2019-01-10)
 
 
