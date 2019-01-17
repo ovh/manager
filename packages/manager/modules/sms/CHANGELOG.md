@@ -1,3 +1,12 @@
+## [0.1.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-sms@0.1.2...@ovh-ux/manager-sms@0.1.3) (2019-01-17)
+
+
+### Bug Fixes
+
+* **deps:** bump [@ovh-ux](https://github.com/ovh-ux)/ng-ovh-contracts dependency ([5cdfb1a](https://github.com/ovh-ux/manager/commit/5cdfb1a))
+
+
+
 ## [0.1.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-sms@0.1.1...@ovh-ux/manager-sms@0.1.2) (2019-01-17)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-sms",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "OVH SMS product control panel",
   "keywords": [
     "control",
