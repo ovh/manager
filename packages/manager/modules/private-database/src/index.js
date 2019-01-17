@@ -3,7 +3,6 @@ import '@ovh-ux/manager-core';
 import '@ovh-ux/ovh-utils-angular';
 import '@ovh-ux/web-universe-components';
 import 'angularjs-scroll-glue';
-import 'bootstrap';
 import 'chart.js';
 import 'ovh-angular-pagination-front';
 import '@ovh-ux/ng-tail-logs';
