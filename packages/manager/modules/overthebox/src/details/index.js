@@ -1,18 +1,19 @@
 import angular from 'angular';
+
+import ovhManagerOtbWarning from '../warning';
+
 import constant from './overTheBox-details.constant';
 import controller from './overTheBox-details.controller';
 import overTheBoxGraphService from './overTheBox-details.service';
-import overTheBoxWarningNotActivated from '../warning/overTheBox-warning-notActivated.html';
 import template from './overTheBox-details.html';
 
 const moduleName = 'ovhManagerOtbDetails';
 
-angular.module(moduleName, [])
+angular
+  .module(moduleName, [
+    ovhManagerOtbWarning,
+  ])
   .constant('OVERTHEBOX_DETAILS', constant)
-  .run(($templateCache) => {
-    // import templates required by ng-include
-    $templateCache.put('overTheBox/warning/overTheBox-warning-notActivated.html', overTheBoxWarningNotActivated);
-  })
   .config(($stateProvider) => {
     $stateProvider.state('overTheBox.details', {
       url: '/details',
@@ -24,7 +25,7 @@ angular.module(moduleName, [])
         },
       },
       translations: {
-        value: ['.', '../warning', '../remote'],
+        value: ['.', '../remote'],
         format: 'json',
       },
     });
