@@ -37,6 +37,7 @@ export default /* @ngInject */ function
 
       $scope.$emit(
         'overTheBox_updateName',
+        self.service.serviceName,
         self.service.customerDescription || self.service.serviceName,
       );
       return str;
