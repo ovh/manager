@@ -1,23 +1,20 @@
-angular.module("ovh-angular-otrs")
-    .provider("OtrsPopup", function () {
-        "use strict";
+import angular from 'angular';
 
-        var self = this;
-        var baseUrlTickets = null;
+export default function () {
+  const self = this;
+  let baseUrlTickets = null;
 
-        self.setBaseUrlTickets = function (url) {
-            if (angular.isDefined(url) && angular.isString(url)) {
-                baseUrlTickets = url;
-            } else {
-                throw new Error("An URL must be specified.");
-            }
-        };
+  self.setBaseUrlTickets = (url) => {
+    if (angular.isDefined(url) && angular.isString(url)) {
+      baseUrlTickets = url;
+    } else {
+      throw new Error('An URL must be specified.');
+    }
+  };
 
-        self.$get = function () {
-            return {
-                getBaseUrlTickets: function () {
-                    return baseUrlTickets;
-                }
-            };
-        };
-    });
+  self.$get = () => ({
+    getBaseUrlTickets() {
+      return baseUrlTickets;
+    },
+  });
+}

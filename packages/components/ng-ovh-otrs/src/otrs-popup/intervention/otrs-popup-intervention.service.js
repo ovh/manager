@@ -1,65 +1,70 @@
-angular.module("ovh-angular-otrs")
-    .service("OtrsPopupInterventionService", function ($q, OvhApiDedicatedServer) {
-        "use strict";
+import assign from 'lodash/assign';
+import includes from 'lodash/includes';
+import some from 'lodash/some';
 
-        var self = this;
+export default class OtrsPopupInterventionService {
+  constructor($q, OvhApiDedicatedServer) {
+    'ngInject';
 
-        self.sendDiskReplacement = function (serviceName, disk) {
-            var diskToSend = _.assign({}, disk);
+    this.$q = $q;
+    this.OvhApiDedicatedServer = OvhApiDedicatedServer;
+  }
 
-            if (!diskToSend.comment) {
-                diskToSend.comment = "No message";
-            }
+  getServerInfo(serviceName) {
+    return this.OvhApiDedicatedServer.v6().get({
+      serverName: serviceName,
+    }).$promise;
+  }
 
-            return OvhApiDedicatedServer.v6().askHardDiskDriveReplacement({
-                serverName: serviceName
-            }, {
-                comment: diskToSend.comment,
-                disks: diskToSend.disks,
-                inverse: diskToSend.inverse
-            }).$promise;
-        };
+  getHardwareInfo(serviceName) {
+    return this.OvhApiDedicatedServer.v6().getHardware({
+      serverName: serviceName,
+    }).$promise;
+  }
 
-        self.getServerInterventionInfo = function (serviceName) {
-            return $q.all({
-                serverInfo: getServerInfo(serviceName),
-                hardwareInfo: getHardwareInfo(serviceName)
-            }).then(function (results) {
-                return {
-                    canHotSwap: canHotSwap(results.serverInfo, results.hardwareInfo),
-                    hasMegaRaid: hasMegaRaidCard(results.hardwareInfo),
-                    slotInfo: slotInfo(results.serverInfo, results.hardwareInfo)
-                };
-            });
-        };
+  static canHotSwap(serverInfo, hardwareInfo) {
+    return serverInfo.commercialRange.toUpperCase() === 'HG' && includes(['2U', '4U'], hardwareInfo.formFactor.toUpperCase());
+  }
 
-        function getServerInfo (serviceName) {
-            return OvhApiDedicatedServer.v6().get({
-                serverName: serviceName
-            }).$promise;
-        }
+  static hasMegaRaidCard(hardwareInfo) {
+    return some(hardwareInfo.diskGroups, { raidController: 'MegaRaid' });
+  }
 
-        function getHardwareInfo (serviceName) {
-            return OvhApiDedicatedServer.v6().getHardware({
-                serverName: serviceName
-            }).$promise;
-        }
+  static slotInfo(serverInfo, hardwareInfo) {
+    const canUseSlotId = serverInfo.commercialRange.toUpperCase() === 'HG';
+    const slotsCount = hardwareInfo.formFactor && hardwareInfo.formFactor.toUpperCase() === '4U' ? 24 : 12;
 
-        function canHotSwap (serverInfo, hardwareInfo) {
-            return serverInfo.commercialRange.toUpperCase() === "HG" && _.includes(["2U", "4U"], hardwareInfo.formFactor.toUpperCase());
-        }
+    return {
+      canUseSlotId,
+      slotsCount,
+    };
+  }
 
-        function hasMegaRaidCard (hardwareInfo) {
-            return _.some(hardwareInfo.diskGroups, { raidController: "MegaRaid" });
-        }
+  sendDiskReplacement(serviceName, disk) {
+    const diskToSend = assign({}, disk);
 
-        function slotInfo (serverInfo, hardwareInfo) {
-            var canUseSlotId = serverInfo.commercialRange.toUpperCase() === "HG";
-            var slotsCount = hardwareInfo.formFactor && hardwareInfo.formFactor.toUpperCase() === "4U" ? 24 : 12;
+    if (!diskToSend.comment) {
+      diskToSend.comment = 'No message';
+    }
 
-            return {
-                canUseSlotId: canUseSlotId,
-                slotsCount: slotsCount
-            };
-        }
-    });
+    return this.OvhApiDedicatedServer.v6().askHardDiskDriveReplacement({
+      serverName: serviceName,
+    }, {
+      comment: diskToSend.comment,
+      disks: diskToSend.disks,
+      inverse: diskToSend.inverse,
+    }).$promise;
+  }
+
+  getServerInterventionInfo(serviceName) {
+    return this.$q.all({
+      serverInfo: this.getServerInfo(serviceName),
+      hardwareInfo: this.getHardwareInfo(serviceName),
+    })
+      .then(results => ({
+        canHotSwap: this.canHotSwap(results.serverInfo, results.hardwareInfo),
+        hasMegaRaid: this.hasMegaRaidCard(results.hardwareInfo),
+        slotInfo: this.slotInfo(results.serverInfo, results.hardwareInfo),
+      }));
+  }
+}

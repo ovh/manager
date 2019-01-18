@@ -1,3 +1,22 @@
+# [7.0.0-alpha.1](https://github.com/ovh-ux/ovh-angular-otrs/compare/v6.2.3-alpha.0...v7.0.0-alpha.1) (2019-01-17)
+
+
+
+# [7.0.0-alpha.0](https://github.com/ovh-ux/ovh-angular-otrs/compare/v6.2.3-alpha.0...v7.0.0-alpha.0) (2019-01-17)
+
+
+
+## [6.2.3-alpha.0](https://github.com/ovh-ux/ovh-angular-otrs/compare/v6.2.2...v6.2.3-alpha.0) (2019-01-17)
+
+
+### Bug Fixes
+
+* **bootstrap:** remove bootstrap import ([713c5cb](https://github.com/ovh-ux/ovh-angular-otrs/commit/713c5cb))
+* **bootstrap:** remove bootstrap import ([bbd75bf](https://github.com/ovh-ux/ovh-angular-otrs/commit/bbd75bf))
+* **eslint:** add missing angular imports ([9091c2e](https://github.com/ovh-ux/ovh-angular-otrs/commit/9091c2e))
+
+
+
 # Changelog
 
 ## [4.0.1] - 2018-04-11

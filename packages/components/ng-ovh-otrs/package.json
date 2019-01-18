@@ -1,35 +1,54 @@
 {
-  "name": "ovh-angular-otrs",
-  "version": "6.3.0",
+  "name": "@ovh-ux/ng-ovh-otrs",
+  "version": "7.0.0-alpha.1",
   "description": "Manage OTRS tickets",
-  "main": "./dist/ovh-angular-otrs.min.js",
-  "repository": "ovh-ux/ovh-angular-otrs",
-  "author": "OVH SAS",
+  "repository": "ovh-ux/ng-ovh-otrs",
   "license": "BSD-3-Clause",
-  "devDependencies": {
-    "eslint": "^4.0.0",
-    "eslint-config-ovh": "^0.1.1",
-    "grunt": "0.4.x",
-    "grunt-angular-templates": "^1.1.0",
-    "grunt-autoprefixer": "~2.2.0",
-    "grunt-bump": "~0.5.0",
-    "grunt-complexity": "~0.1.0",
-    "grunt-contrib-clean": "~0.6.0",
-    "grunt-contrib-concat": "~0.5.0",
-    "grunt-contrib-connect": "^0.10.1",
-    "grunt-contrib-copy": "~0.7.0",
-    "grunt-contrib-less": "~1.0.0",
-    "grunt-contrib-uglify": "~0.8.0",
-    "grunt-contrib-watch": "~0.6.1",
-    "grunt-eslint": "^20.0.0",
-    "grunt-injector": "^0.6.0",
-    "grunt-ng-annotate": "~0.10.0",
-    "grunt-ovh-translation": "^2.1.1",
-    "jasmine-core": "^2.6.4",
-    "matchdep": "^0.3.0"
-  },
+  "author": "OVH SAS",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/cjs/index.js",
+  "browser": "./dist/umd/ng-ovh-otrs.js",
   "scripts": {
-    "test": "npm run lint",
-    "lint": "eslint . --quiet --ext .js"
+    "build": "rollup -c",
+    "dev": "rollup -c --watch",
+    "lint": "run-p lint:css lint:js lint:md",
+    "lint:css": "stylelint 'client/**/*.less' --fix",
+    "lint:js": "eslint --quiet --fix --format=pretty src",
+    "lint:md": "eslint --quiet --fix --format=pretty --ext .md .",
+    "prepare": "rollup -c",
+    "test": "yarn run lint",
+    "version": "npx conventional-changelog-cli -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
+    "postversion": "git push && git push --tags"
+  },
+  "dependencies": {
+    "lodash": "^4.17.11"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^7.1.2",
+    "@commitlint/config-angular": "^7.1.2",
+    "@ovh-ux/component-rollup-config": "^5.0.0-beta.4",
+    "bootstrap": "^3.3.6",
+    "eslint": "^5.9.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-formatter-pretty": "^2.0.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-markdown": "^1.0.0",
+    "htmlhint": "^0.10.1",
+    "husky": "^1.1.3",
+    "lint-staged": "^7.3.0",
+    "npm-run-all": "^4.1.5",
+    "stylelint": "^9.5.0",
+    "stylelint-config-standard": "^18.2.0"
+  },
+  "peerDependencies": {
+    "angular": "^1.7.5",
+    "angular-translate": "^2.18.1",
+    "bootstrap": "^3.3.6",
+    "font-awesome": "^4.7.0",
+    "jquery": "^2.1.3",
+    "ovh-api-services": "^3.15.1",
+    "ovh-jquery-ui-draggable-ng": "^0.0.5"
   }
 }

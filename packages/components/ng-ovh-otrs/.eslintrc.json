@@ -1,10 +1,19 @@
 {
-    "extends": "./node_modules/eslint-config-ovh/configs/es5-browser.js",
+  "extends": "airbnb-base",
+  "plugins": [
+    "markdown"
+  ],
+  "env": {
+    "browser": true
+  },
+  "rules": {
+    "import/no-unresolved": 0
+  },
+  "overrides": [{
+    "files": ["**/*.md"],
     "rules": {
-        "no-magic-numbers": "off"
-    },
-    "globals":{
-        "module": true,
-        "require": true
+      "no-undef": "off",
+      "no-unused-vars": "off"
     }
+  }]
 }
