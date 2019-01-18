@@ -1,3 +1,31 @@
+# [7.0.0-beta.0](https://github.com/ovh-ux/ng-ovh-otrs/compare/v7.0.0-alpha.1...v7.0.0-beta.0) (2019-01-18)
+
+
+### Code Refactoring
+
+* add missing ng prefix to the angular module name ([8b74854](https://github.com/ovh-ux/ng-ovh-otrs/commit/8b74854))
+
+
+### BREAKING CHANGES
+
+* module is now named as `ngOvhOtrs`
+
+
+
+# [6.3.0](https://github.com/ovh-ux/ng-ovh-otrs/compare/v6.2.2...v6.3.0) (2018-11-08)
+
+
+### Bug Fixes
+
+* remove package-lock.json and add .npmrc file ([2aed6b1](https://github.com/ovh-ux/ng-ovh-otrs/commit/2aed6b1))
+
+
+### Features
+
+* **tracking:** add tracking on request creation ([3e2ac69](https://github.com/ovh-ux/ng-ovh-otrs/commit/3e2ac69))
+
+
+
 # [7.0.0-alpha.1](https://github.com/ovh-ux/ovh-angular-otrs/compare/v6.2.3-alpha.0...v7.0.0-alpha.1) (2019-01-17)
 
 

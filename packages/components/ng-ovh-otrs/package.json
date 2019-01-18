@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-otrs",
-  "version": "7.0.0-alpha.1",
+  "version": "7.0.0-beta.0",
   "description": "Manage OTRS tickets",
   "repository": "ovh-ux/ng-ovh-otrs",
   "license": "BSD-3-Clause",
