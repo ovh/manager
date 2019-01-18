@@ -16,10 +16,10 @@ angular
     blacklisted,
   ])
   .config(($stateProvider) => {
-    $stateProvider.state('sms.senders', {
+    $stateProvider.state('sms.service.senders', {
       url: '/senders',
       views: {
-        'smsInnerView@sms': {
+        smsInnerView: {
           template,
           controller,
           controllerAs: 'SmsSendersCtrl',
