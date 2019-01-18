@@ -2,6 +2,7 @@ import filesize from 'filesize';
 import _ from 'lodash';
 
 export default class PrivateDatabaseStateCtrl {
+  /* @ngInject */
   constructor(
     $q,
     $rootScope,
