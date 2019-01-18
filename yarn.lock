@@ -1640,6 +1640,13 @@
     bootstrap "^3.3.7"
     ovh-ui-kit "^2.22.0"
 
+"@ovh-ux/web-universe-components@https://github.com/ovh-ux/web-universe-components.git#fix/expiration":
+  version "1.2.0"
+  resolved "https://github.com/ovh-ux/web-universe-components.git#79db3b091ea1789a4315232503890569e350de7b"
+  dependencies:
+    bootstrap "^3.3.7"
+    ovh-ui-kit "^2.22.0"
+
 "@samverschueren/stream-to-observable@^0.3.0":
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/@samverschueren/stream-to-observable/-/stream-to-observable-0.3.0.tgz#ecdf48d532c58ea477acfcab80348424f8d0662f"
