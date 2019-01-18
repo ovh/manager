@@ -26,10 +26,10 @@ angular
     templates,
   ])
   .config(($stateProvider) => {
-    $stateProvider.state('sms.sms', {
+    $stateProvider.state('sms.service.sms', {
       url: '/sms',
       views: {
-        'smsInnerView@sms': {
+        smsInnerView: {
           template,
           controller,
           controllerAs: 'TelecomSmsSmsCtrl',

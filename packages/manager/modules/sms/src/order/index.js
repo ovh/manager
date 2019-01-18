@@ -10,6 +10,16 @@ angular
     'oc.lazyLoad',
   ])
   .config(($stateProvider) => {
+    $stateProvider.state('sms.service.order.**', {
+      url: '/order',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+        return import('./telecom-sms-order.component')
+          .then(mod => $ocLazyLoad.inject(mod.default || mod));
+      },
+    });
+
     $stateProvider.state('sms.order.**', {
       url: '/order',
       lazyLoad: ($transition$) => {

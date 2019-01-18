@@ -14,10 +14,10 @@ angular
     create,
   ])
   .config(($stateProvider) => {
-    $stateProvider.state('sms.phonebooks', {
+    $stateProvider.state('sms.service.phonebooks', {
       url: '/phonebooks',
       views: {
-        'smsInnerView@sms': {
+        smsInnerView: {
           template,
           controller,
           controllerAs: 'PhonebooksCtrl',

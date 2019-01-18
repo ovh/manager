@@ -6,7 +6,7 @@ import template from './telecom-sms-phonebooks-create.html';
 const moduleName = 'ovhModuleSmsPhonebooksCreate';
 
 angular.module(moduleName, []).config(($stateProvider) => {
-  $stateProvider.state('sms.phonebooks.create', {
+  $stateProvider.state('sms.service.phonebooks.create', {
     url: '/create',
     views: {
       'smsView@sms': {

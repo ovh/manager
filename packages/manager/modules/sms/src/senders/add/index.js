@@ -5,7 +5,7 @@ import template from './telecom-sms-senders-add.html';
 const moduleName = 'ovhManagerSmsSendersAdd';
 
 angular.module(moduleName, []).config(($stateProvider) => {
-  $stateProvider.state('sms.senders.add', {
+  $stateProvider.state('sms.service.senders.add', {
     url: '/add',
     views: {
       'smsView@sms': {
