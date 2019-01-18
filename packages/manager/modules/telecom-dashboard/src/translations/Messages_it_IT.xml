@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telecom_dashboard_title" qtlid="304667">Riepilogo dei tuoi servizi</translation>
+   <translation id="telecom_dashboard_page_title" qtlid="304667">Riepilogo dei tuoi servizi</translation>
+
+   <translation id="telecom_dashboard_date" qtlid="24523">Data</translation>
+   <translation id="telecom_dashboard_references" qtlid="16445">Referenza</translation>
+   <translation id="telecom_dashboard_payment_mean" qtlid="140014">Metodo di pagamento</translation>
+   <translation id="telecom_dashboard_total_price" qtlid="20647">Importo IVA inclusa</translation>
+   <translation id="telecom_dashboard_download" qtlid="39286">Esegui il download</translation>
+   <translation id="telecom_dashboard_bill_url" qtlid="304940">Pagina Web</translation>
+   <translation id="telecom_dashboard_bill_pdf" qtlid="304953">Scarica in PDF</translation>
+   <translation id="telecom_dashboard_bill_title" qtlid="304966">Le tue ultime 6 fatture</translation>
+   <translation id="telecom_dashboard_bill_more" qtlid="304979">Visualizza più fatture</translation>
+   <translation id="telecom_dashboard_bill_none" qtlid="304992">Non sono presenti fatture</translation>
+
+   <translation id="telecom_dashboard_task_title" qtlid="305005">I tuoi task</translation>
+
+   <translation id="telecom_dashboard_FAQ_title" qtlid="300370">Guide</translation>
+   <translation id="telecom_dashboard_FAQ_Activate" qtlid="305018">Attiva i tuoi servizi</translation>
+   <translation id="telecom_dashboard_FAQ_managed_modem" qtlid="305031">Configura il tuo modem</translation>
+   <translation id="telecom_dashboard_FAQ_init_modem" qtlid="305044">Effettua il reset del tuo modem</translation>
+   <translation id="telecom_dashboard_FAQ_restore_service" qtlid="508169">Rétablir mon service</translation>
+   <translation id="telecom_dashboard_incident_impact" qtlid="305057">Incidente rilevato</translation>
+
+   <translation id="telecom_dashboard_services_title" qtlid="305070">I tuoi servizi</translation>
+
+   <translation id="telecom_dashboard_services_internet" qtlid="246975">Internet</translation>
+   <translation id="telecom_dashboard_services_telephony" qtlid="29299">Telefonia</translation>
+   <translation id="telecom_dashboard_services_sms" qtlid="28243">SMS</translation>
+   <translation id="telecom_dashboard_services_hubic" qtlid="305083">HubiC</translation>
+   <translation id="telecom_dashboard_services_exchange" qtlid="80430">Exchange</translation>
+   <translation id="telecom_dashboard_services_fax" qtlid="32926">Fax</translation>
+
+   <translation id="telecom_dashboard_services_internet_none" qtlid="305096">Nessuna linea xDSL</translation>
+   <translation id="telecom_dashboard_services_telephony_none" qtlid="305109">Nessun servizio di telefonia</translation>
+   <translation id="telecom_dashboard_services_sms_none" qtlid="305122">Nessun SMS</translation>
+   <translation id="telecom_dashboard_services_hubic_none" qtlid="305135">Nessun servizio hubiC</translation>
+   <translation id="telecom_dashboard_services_exchange_none" qtlid="305148">Nessun servizio Exchange</translation>
+   <translation id="telecom_dashboard_services_fax_none" qtlid="305161">Nessun servizio di fax</translation>
+
+   <translation id="telecom_dashboard_services_incidents_one" qtlid="305174">incidente rilevato</translation>
+   <translation id="telecom_dashboard_services_incidents_other" qtlid="305187">incidenti rilevati</translation>
+
+   <translation id="telecom_dashboard_auth_failed" qtlid="305200">Impossibile recuperare le informazioni relative all'utente.</translation>
+   <translation id="telecom_dashboard_express_lite_desc" qtlid="455712">Express Lite comprend donc un modem offrant un accès à internet et une ligne VoIP pour <span class="ad-price font-weight-bold fs14">22,99€ HT</span>&#160;/&#160;mois.</translation>
+   <translation id="telecom_dashboard_express_lite_title" qtlid="304888">OVH ti propone una nuova offerta base con connessione ADSL e VDSL.</translation>
+   <translation id="telecom_dashboard_discover" qtlid="304927">Scopri l'offerta</translation>
+</translations>

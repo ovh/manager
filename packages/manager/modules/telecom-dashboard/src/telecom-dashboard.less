@@ -1,0 +1,38 @@
+@import "~bootstrap/less/variables.less";
+@import "~ovh-ui-kit/packages/oui-color/_variables";
+
+.telecom-dashboard {
+  div.flash {
+    div.alert {
+      margin: 32px 32px 0;
+      z-index: 9999;
+    }
+
+    .balance-price {
+      color: @oui-color-error-dark;
+      font-weight: bold;
+    }
+
+    @media (max-width: @screen-sm-max) {
+      div.alert {
+        margin: 16px 12px 24px;
+      }
+    }
+  }
+
+  .dashboard-vip-icon {
+    padding: 0 7px 6px 9px;
+    font-size: 24px;
+    color: white;
+    background-color: @oui-color-dodger;
+    border-radius: 50%;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  @media (max-width: @screen-sm-max) {
+    .dashboard-vip-icon {
+      display: none;
+    }
+  }
+}
