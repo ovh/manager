@@ -1,3 +1,23 @@
+## [4.0.1-beta.0](https://github.com/ovh-ux/ng-ovh-http/compare/v3.0.1...v4.0.1-beta.0) (2019-01-18)
+
+
+### Bug Fixes
+
+* **dependency injection:** add missing ng-inject ([7a78836](https://github.com/ovh-ux/ng-ovh-http/commit/7a78836))
+* **deps:** upgrade npm-run-all to v4.1.5 ([332ed4c](https://github.com/ovh-ux/ng-ovh-http/commit/332ed4c))
+
+
+### Code Refactoring
+
+* add missing ng prefix to the angular module name ([f490b5c](https://github.com/ovh-ux/ng-ovh-http/commit/f490b5c))
+
+
+### BREAKING CHANGES
+
+* module is now named as `ngOvhHttp`
+
+
+
 ## [4.0.1-alpha.0](https://github.com/ovh-ux/ovh-angular-http/compare/v4.0.0-alpha.1...v4.0.1-alpha.0) (2019-01-09)
 
 
