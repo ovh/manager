@@ -1,3 +1,7 @@
+# [1.0.0-alpha.0](https://github.com/ovh-ux/ovh-angular-proxy-request/compare/v0.1.1-alpha.0...v1.0.0-alpha.0) (2019-01-18)
+
+
+
 ## [0.1.1-alpha.0](https://github.com/ovh-ux/ovh-angular-proxy-request/compare/v0.1.0...v0.1.1-alpha.0) (2019-01-17)
 
 
