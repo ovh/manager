@@ -1,3 +1,17 @@
+# [2.0.0](https://github.com/ovh-ux/ng-translate-async-loader/compare/v1.0.8...v2.0.0) (2019-01-21)
+
+
+### Code Refactoring
+
+* add missing ng prefix to the angular module name ([e0b9a91](https://github.com/ovh-ux/ng-translate-async-loader/commit/e0b9a91))
+
+
+### BREAKING CHANGES
+
+* module is now named as `ngTranslateAsyncLoader`
+
+
+
 ## [1.0.8](https://github.com/ovh-ux/translate-async-loader/compare/v1.0.7...v1.0.8) (2018-11-28)
 
 
