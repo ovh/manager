@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telecom_dashboard_title" qtlid="304667">Palveluiden yhteenveto</translation>
+   <translation id="telecom_dashboard_page_title" qtlid="304667">Palveluiden yhteenveto</translation>
+
+   <translation id="telecom_dashboard_date" qtlid="24523">Päivämäärä</translation>
+   <translation id="telecom_dashboard_references" qtlid="16445">Viite</translation>
+   <translation id="telecom_dashboard_payment_mean" qtlid="140014">Maksuväline</translation>
+   <translation id="telecom_dashboard_total_price" qtlid="20647">Arvonlisäverollinen hinta</translation>
+   <translation id="telecom_dashboard_download" qtlid="39286">Lataa</translation>
+   <translation id="telecom_dashboard_bill_url" qtlid="304940">Verkkosivu</translation>
+   <translation id="telecom_dashboard_bill_pdf" qtlid="304953">Lataa PDF</translation>
+   <translation id="telecom_dashboard_bill_title" qtlid="304966">Kuusi viimeisintä laskua</translation>
+   <translation id="telecom_dashboard_bill_more" qtlid="304979">Näytä enemmän laskuja</translation>
+   <translation id="telecom_dashboard_bill_none" qtlid="304992">Yhtään laskua ei löytynyt</translation>
+
+   <translation id="telecom_dashboard_task_title" qtlid="305005">Omat tehtävät</translation>
+
+   <translation id="telecom_dashboard_FAQ_title" qtlid="300370">Oppaat</translation>
+   <translation id="telecom_dashboard_FAQ_Activate" qtlid="305018">Palvelujen aktivointi</translation>
+   <translation id="telecom_dashboard_FAQ_managed_modem" qtlid="305031">Modeemin konfigurointi</translation>
+   <translation id="telecom_dashboard_FAQ_init_modem" qtlid="305044">Modeemin nollaus</translation>
+   <translation id="telecom_dashboard_FAQ_restore_service" qtlid="508169">Rétablir mon service</translation>
+   <translation id="telecom_dashboard_incident_impact" qtlid="305057">Havaittu häiriö</translation>
+
+   <translation id="telecom_dashboard_services_title" qtlid="305070">Omat Palvelut</translation>
+
+   <translation id="telecom_dashboard_services_internet" qtlid="246975">Internet</translation>
+   <translation id="telecom_dashboard_services_telephony" qtlid="29299">Puhe</translation>
+   <translation id="telecom_dashboard_services_sms" qtlid="28243">SMS</translation>
+   <translation id="telecom_dashboard_services_hubic" qtlid="305083">HubiC</translation>
+   <translation id="telecom_dashboard_services_exchange" qtlid="80430">Exchange</translation>
+   <translation id="telecom_dashboard_services_fax" qtlid="32926">Faksi</translation>
+
+   <translation id="telecom_dashboard_services_internet_none" qtlid="305096">Ei yhtään xDSL-linjaa</translation>
+   <translation id="telecom_dashboard_services_telephony_none" qtlid="305109">Ei puhelinpalvelua</translation>
+   <translation id="telecom_dashboard_services_sms_none" qtlid="305122">Ei SMS-palvelua</translation>
+   <translation id="telecom_dashboard_services_hubic_none" qtlid="305135">Ei HubiC-palvelua</translation>
+   <translation id="telecom_dashboard_services_exchange_none" qtlid="305148">Ei Exchange-palvelua</translation>
+   <translation id="telecom_dashboard_services_fax_none" qtlid="305161">Ei faksia</translation>
+
+   <translation id="telecom_dashboard_services_incidents_one" qtlid="305174">havaittu häiriö</translation>
+   <translation id="telecom_dashboard_services_incidents_other" qtlid="305187">havaittuja häiriöitä</translation>
+
+   <translation id="telecom_dashboard_auth_failed" qtlid="305200">Käyttäjätietojen hakeminen ei onnistu.</translation>
+   <translation id="telecom_dashboard_express_lite_desc" qtlid="455712">Express Lite comprend donc un modem offrant un accès à internet et une ligne VoIP pour <span class="ad-price font-weight-bold fs14">22,99€ HT</span>&#160;/&#160;mois.</translation>
+   <translation id="telecom_dashboard_express_lite_title" qtlid="304888">OVH lanseeraa uuden ADSL ja VDSL-yhteyspalvelun.</translation>
+   <translation id="telecom_dashboard_discover" qtlid="304927">Tutustu tuotteeseen</translation>
+</translations>

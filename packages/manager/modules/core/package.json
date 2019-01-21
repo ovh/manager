@@ -22,7 +22,7 @@
     "lodash": "^4.17.11"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "5.0.0-beta.3"
+    "@ovh-ux/component-rollup-config": "5.0.0-beta.5"
   },
   "peerDependencies": {
     "@uirouter/angularjs": "^1.0.20",

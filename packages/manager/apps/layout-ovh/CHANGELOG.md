@@ -1,3 +1,21 @@
+## [1.2.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-layout-ovh@1.2.3...@ovh-ux/manager-layout-ovh@1.2.4) (2019-01-21)
+
+
+### Bug Fixes
+
+* **telecom-styles:** fix elements using rem ([00c5425](https://github.com/ovh-ux/manager/commit/00c5425))
+
+
+
+## [1.2.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-layout-ovh@1.2.2...@ovh-ux/manager-layout-ovh@1.2.3) (2019-01-17)
+
+
+### Bug Fixes
+
+* use new component to display contracts ([f0e0a1b](https://github.com/ovh-ux/manager/commit/f0e0a1b))
+
+
+
 ## [1.2.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-layout-ovh@1.2.1...@ovh-ux/manager-layout-ovh@1.2.2) (2019-01-15)
 
 
