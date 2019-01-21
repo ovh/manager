@@ -1,3 +1,30 @@
+## [14.0.3-beta.0](https://github.com/ovh-ux/ng-ovh-utils/compare/v14.0.3-alpha.0...v14.0.3-beta.0) (2019-01-21)
+
+
+### Code Refactoring
+
+* add missing ovh prefix to the angular module name ([14aaef7](https://github.com/ovh-ux/ng-ovh-utils/commit/14aaef7))
+
+
+### BREAKING CHANGES
+
+* module is now named as `ngOvhUtils`
+
+
+
+## [13.0.4](https://github.com/ovh-ux/ng-ovh-utils/compare/v13.0.3...v13.0.4) (2018-12-28)
+
+
+### Bug Fixes
+
+* **alerter:** fix details display for sws batch result  ([1b7dc5f](https://github.com/ovh-ux/ng-ovh-utils/commit/1b7dc5f))
+
+
+
+## [13.0.3](https://github.com/ovh-ux/ng-ovh-utils/compare/v14.0.0-alpha.1...v13.0.3) (2018-12-27)
+
+
+
 ## [14.0.3-alpha.0](https://github.com/ovh-ux/ovh-utils-angular/compare/v14.0.2...v14.0.3-alpha.0) (2019-01-16)
 
 
