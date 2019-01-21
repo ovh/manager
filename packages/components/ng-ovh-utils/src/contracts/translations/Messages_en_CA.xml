@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="ua_contract_next" qtlid="17743">Next</translation>
+   <translation id="ua_contract_previous" qtlid="17431">Previous</translation>
+   <translation id="ua_download_contract" qtlid="503228">Open "{{name}}" contract in PDF</translation>
+   <translation id="ua_contract_help" qtlid="180382">Scroll down to the contracts in order to validate  them.</translation>
+   <translation id="ua_contracts_list_title" qtlid="503241">There are {{count}} contracts to read.</translation>
+   <translation id="ua_contract_list_title" qtlid="180408">There is 1 contract to read.</translation>
+   <translation id="ua_contracts_agree" qtlid="180421">I accept the terms and conditions</translation>
+   <translation id="ua_contract_agree" qtlid="180434">I accept the terms and conditions</translation>
+</translations>

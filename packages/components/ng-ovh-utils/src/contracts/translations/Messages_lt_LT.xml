@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="ua_contract_next" qtlid="17743">Toliau</translation>
+   <translation id="ua_contract_previous" qtlid="17431">Ankstesnis</translation>
+   <translation id="ua_download_contract" qtlid="503228">Peržiūrėti sutartį {{name}} PDF formatu</translation>
+   <translation id="ua_contract_help" qtlid="180382">Norėdami patvirtinti sutartis, pereikite prie jų pabaigos.</translation>
+   <translation id="ua_contracts_list_title" qtlid="503241">Liko neperžiūrėta sutarčių: {{count}} </translation>
+   <translation id="ua_contract_list_title" qtlid="180408">Reikia peržiūrėti 1 sutartį</translation>
+   <translation id="ua_contracts_agree" qtlid="180421">Sutinku su sutartimis</translation>
+   <translation id="ua_contract_agree" qtlid="180434">Sutinku su sutartimi</translation>
+</translations>

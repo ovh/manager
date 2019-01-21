@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="ua_unit_size_B" qtlid="121975">o</translation>
+   <translation id="ua_unit_size_KB" qtlid="121987">ko</translation>
+   <translation id="ua_unit_size_MB" qtlid="48878">Mo</translation>
+   <translation id="ua_unit_size_GB" qtlid="48890">Go</translation>
+   <translation id="ua_unit_size_TB" qtlid="70121">To</translation>
+   <translation id="ua_unit_size_PB" qtlid="121999">Po</translation>
+   <translation id="ua_unit_size_EB" qtlid="122011">Eo</translation>
+   <translation id="ua_unit_size_ZB" qtlid="122023">Zo</translation>
+   <translation id="ua_unit_size_YB" qtlid="122035">Yo</translation>
+</translations>

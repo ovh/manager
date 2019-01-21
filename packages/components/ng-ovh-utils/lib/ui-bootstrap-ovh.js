@@ -1,1 +1,0 @@
-ui-bootstrap/ovh/ui-bootstrap-0.2.0.js

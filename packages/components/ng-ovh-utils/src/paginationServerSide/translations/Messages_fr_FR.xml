@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="ua_pagination_page" qtlid="503215">Page {{current}} / {{last}}</translation>
+   <translation id="ua_pagination_go" qtlid="31522">OK</translation>
+   <translation id="ua_pagination_display" qtlid="69353">Afficher</translation>
+</translations>

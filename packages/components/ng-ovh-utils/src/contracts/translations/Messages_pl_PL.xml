@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="ua_contract_next" qtlid="17743">Dalej</translation>
+   <translation id="ua_contract_previous" qtlid="17431">Wstecz</translation>
+   <translation id="ua_download_contract" qtlid="503228">Otwórz umowę "{{name}}" w formacie PDF</translation>
+   <translation id="ua_contract_help" qtlid="180382">Przed zatwierdzeniem regulaminów należy je przeczytać.</translation>
+   <translation id="ua_contracts_list_title" qtlid="503241">Liczba umów do przeczytania: {{count}}</translation>
+   <translation id="ua_contract_list_title" qtlid="180408">Masz 1 regulamin do przeczytania.</translation>
+   <translation id="ua_contracts_agree" qtlid="180421">Akceptuję regulaminy</translation>
+   <translation id="ua_contract_agree" qtlid="180434">Akceptuję regulamin</translation>
+</translations>

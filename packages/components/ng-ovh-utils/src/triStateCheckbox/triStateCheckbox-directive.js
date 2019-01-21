@@ -20,7 +20,8 @@
  *            data-tri-state-checkbox="id"        <!-- (ID is optional) -->
  *            data-tsc-ids-all="arrayFull"        <!-- Array with all IDs -->
  *            data-tsc-ids-selected="arraySel"    <!-- Array with IDs selected -->
- *            data-tsc-on-click="foo(newState)"   <!-- Parent scope function called when user click on the checkbox -->
+ *            data-tsc-on-click="foo(newState)"
+ *            <!-- Parent scope function called when user click on the checkbox -->
  *     />
  *
  * </code>
@@ -30,70 +31,70 @@
  * If the user click on the checkbox, it call a function with the new state in param.
  * With this, you can update your array/view!
  */
-angular.module('ua.triStateCheckbox').directive('triStateCheckbox', ['$timeout', function ($timeout) {
-    'use strict';
-    return {
-        restrict : 'A',
-        scope    : {
-            idsAll      : '=tscIdsAll',
-            idsSelected : '=tscIdsSelected',
-            onClick     : '&tscOnClick'
-        },
-        link     : function ($scope, el) {
-            var initialized = false;
+import angular from 'angular';
 
-            $scope.state = 0;
+export default /* @ngInject */ function ($timeout) {
+  return {
+    restrict: 'A',
+    scope: {
+      idsAll: '=tscIdsAll',
+      idsSelected: '=tscIdsSelected',
+      onClick: '&tscOnClick',
+    },
+    link($scope, el) {
+      let initialized = false;
 
-            function init() {
-                $scope.$watch('idsAll.length', function() {
-                    autoUpdateState();
-                });
-                $scope.$watch('idsSelected.length', function() {
-                    autoUpdateState();
-                });
-                initialized = true;
-            }
+      $scope.state = 0;
 
-            function autoUpdateState() {
-                if ($scope.idsAll.length && $scope.idsAll.length === $scope.idsSelected.length) {
-                    setStateTo(2);
-                } else if ($scope.idsAll.length && $scope.idsSelected.length > 0) {
-                    setStateTo(1);
-                } else {
-                    setStateTo(0);
-                }
-            }
-
-            function setStateTo(nbr) {
-                if (!initialized) {
-                    return;
-                }
-                $scope.state = nbr;
-                $timeout(function() {
-                    el.prop({
-                        'checked'       : (nbr === 2 ? true : false),
-                        'indeterminate' : (nbr === 1 ? true : false)
-                    });
-                });
-            }
-
-            $scope.$watch('idsAll', function() {
-                if (!initialized && angular.isArray($scope.idsAll) && $scope.idsAll.length) {
-                    init();
-                }
-            });
-
-            // @todo test touch
-            el.bind('click touchend', function(e) {
-                e.preventDefault();
-                if ($scope.state === 2) {
-                    setStateTo(0);
-                } else {
-                    setStateTo($scope.state + 1);
-                }
-                $scope.onClick({ state: $scope.state });
-            });
-
+      function setStateTo(nbr) {
+        if (!initialized) {
+          return;
         }
-    };
-}]);
+        $scope.state = nbr;
+        $timeout(() => {
+          el.prop({
+            checked: nbr === 2,
+            indeterminate: nbr === 1,
+          });
+        });
+      }
+
+      function autoUpdateState() {
+        if ($scope.idsAll.length && $scope.idsAll.length === $scope.idsSelected.length) {
+          setStateTo(2);
+        } else if ($scope.idsAll.length && $scope.idsSelected.length > 0) {
+          setStateTo(1);
+        } else {
+          setStateTo(0);
+        }
+      }
+
+      function init() {
+        $scope.$watch('idsAll.length', () => {
+          autoUpdateState();
+        });
+        $scope.$watch('idsSelected.length', () => {
+          autoUpdateState();
+        });
+        initialized = true;
+      }
+
+      $scope.$watch('idsAll', () => {
+        if (!initialized && angular.isArray($scope.idsAll) && $scope.idsAll.length) {
+          init();
+        }
+      });
+
+      // @todo test touch
+      el.bind('click touchend', (e) => {
+        e.preventDefault();
+        if ($scope.state === 2) {
+          setStateTo(0);
+        } else {
+          setStateTo($scope.state + 1);
+        }
+        $scope.onClick({ state: $scope.state });
+      });
+    },
+  };
+}

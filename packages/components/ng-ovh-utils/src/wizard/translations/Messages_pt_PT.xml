@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="ua_wizard_cancel" qtlid="37863">Anular</translation>
+   <translation id="ua_wizard_confirm" qtlid="26047">Validar</translation>
+   <translation id="ua_wizard_next" qtlid="17743">Seguinte</translation>
+   <translation id="ua_wizard_previous" qtlid="17431">Anterior</translation>
+   <translation id="ua_wizard_close" qtlid="4670">Encerrar</translation>
+   <translation id="ua_wizard_breadcrumb" qtlid="486451">Etapa {{ currentStep }} sur {{ stepCount }}</translation>
+   <translation id="ua_wizard_help" qtlid="26035">Ajuda</translation>
+</translations>

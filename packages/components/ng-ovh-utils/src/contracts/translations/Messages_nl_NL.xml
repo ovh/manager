@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="ua_contract_next" qtlid="17743">Volgende</translation>
+   <translation id="ua_contract_previous" qtlid="17431">Vorige</translation>
+   <translation id="ua_download_contract" qtlid="503228">"{{name}}" contract openen als PDF</translation>
+   <translation id="ua_contract_help" qtlid="180382">Scroll naar beneden naar de contracten om deze te bevestigen.</translation>
+   <translation id="ua_contracts_list_title" qtlid="503241">Er zijn {{count}} contracten beschikbaar voor weergave.</translation>
+   <translation id="ua_contract_list_title" qtlid="180408">Er is 1 contract, dat u kunt raadplegen.</translation>
+   <translation id="ua_contracts_agree" qtlid="180421">Ik accepteer de contracten</translation>
+   <translation id="ua_contract_agree" qtlid="180434">Ik accepteer het contract</translation>
+</translations>

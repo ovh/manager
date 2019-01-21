@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="ua_contract_next" qtlid="17743">Siguiente</translation>
+   <translation id="ua_contract_previous" qtlid="17431">Anterior</translation>
+   <translation id="ua_download_contract" qtlid="503228">Abrir el contrato «{{name}}» en PDF</translation>
+   <translation id="ua_contract_help" qtlid="180382">Hay que recorrer los contratos completos para poder aceptarlos.</translation>
+   <translation id="ua_contracts_list_title" qtlid="503241">Hay {{count}} contratos pendientes de consultar.</translation>
+   <translation id="ua_contract_list_title" qtlid="180408">Hay un contrato pendiente de consultar.</translation>
+   <translation id="ua_contracts_agree" qtlid="180421">Acepto los contratos</translation>
+   <translation id="ua_contract_agree" qtlid="180434">Acepto el contrato</translation>
+</translations>

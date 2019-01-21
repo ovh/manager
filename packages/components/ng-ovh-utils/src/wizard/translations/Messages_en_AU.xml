@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="ua_wizard_cancel" qtlid="37863">Cancel</translation>
+   <translation id="ua_wizard_confirm" qtlid="26047">Confirm</translation>
+   <translation id="ua_wizard_next" qtlid="17743">Next</translation>
+   <translation id="ua_wizard_previous" qtlid="17431">Previous</translation>
+   <translation id="ua_wizard_close" qtlid="4670">Close</translation>
+   <translation id="ua_wizard_breadcrumb" qtlid="486451">Step {{ currentStep }} of {{ stepCount }}</translation>
+   <translation id="ua_wizard_help" qtlid="26035">Help</translation>
+</translations>

@@ -1,93 +1,104 @@
-angular.module('ua.wizardForm').directive('wizardFormStep', ['$translate', function ($translate) {
-    'use strict';
-    return {
-        restrict    : 'A',
-        require     : '^wizardForm',
-        transclude  : true,
-        scope       : true,
-        templateUrl : 'components/ovh-utils-angular/wizardForm/wizardFormStep/wizardFormStep.html',
-        compile     : function () {
-            return {
-                pre : function ($scope, $elem, $attr, $wizardCtrl) {
+import angular from 'angular';
 
-                    $scope.stepShown = false;
+import template from './wizardFormStep.html';
 
-                    $scope.onLoad = function () {
-                        if ($attr.wizardFormStepOnLoad && angular.isFunction($scope[$attr.wizardFormStepOnLoad])) {
-                            $scope[$attr.wizardFormStepOnLoad]();
-                        }
-                    };
+export default /* @ngInject */ function ($translate) {
+  return {
+    restrict: 'A',
+    require: '^wizardForm',
+    transclude: true,
+    scope: true,
+    template,
+    compile() {
+      return {
+        pre($scope, $elem, $attr, $wizardCtrl) {
+          $scope.stepShown = false;
 
-                    // Check step valid
-                    if ($attr.wizardFormStepValid) {
-                        $scope.stepValid = !!$scope.$eval($attr.wizardFormStepValid);
+          $scope.onLoad = function () {
+            if (
+              $attr.wizardFormStepOnLoad
+              && angular.isFunction($scope[$attr.wizardFormStepOnLoad])
+            ) {
+              $scope[$attr.wizardFormStepOnLoad]();
+            }
+          };
 
-                        $scope.$watch($attr.wizardFormStepValid, function (newValue) {
-                            $scope.stepValid = newValue;
-                            $wizardCtrl.checkStepShow();
-                        }, true);
+          // Check step valid
+          if ($attr.wizardFormStepValid) {
+            $scope.stepValid = !!$scope.$eval($attr.wizardFormStepValid);
 
-                    } else {
-                        $scope.stepValid = true;
-                    }
+            $scope.$watch(
+              $attr.wizardFormStepValid,
+              (newValue) => {
+                $scope.stepValid = newValue;
+                $wizardCtrl.checkStepShow();
+              },
+              true,
+            );
+          } else {
+            $scope.stepValid = true;
+          }
 
-                    // onLoad when shown
-                    if ($attr.wizardFormStepOnLoad && angular.isFunction($scope[$attr.wizardFormStepOnLoad])) {
-                        $scope.$watch('stepShown', function (newValue, oldValue) {
-                            if (oldValue === false && newValue === true || (oldValue === true && newValue === true && $scope.stepNumber === 1)) {
-                                $scope.onLoad();
-                            }
-                        });
-                    }
+          // onLoad when shown
+          if (
+            $attr.wizardFormStepOnLoad
+            && angular.isFunction($scope[$attr.wizardFormStepOnLoad])
+          ) {
+            $scope.$watch('stepShown', (newValue, oldValue) => {
+              if (
+                (oldValue === false && newValue === true)
+                || (oldValue === true && newValue === true && $scope.stepNumber === 1)
+              ) {
+                $scope.onLoad();
+              }
+            });
+          }
 
-                    // Title
-                    if ($attr.wizardFormStepTitle !== undefined) {
-                        $scope.$watch($attr.wizardFormStepTitle, function (newText) {
-                            $scope.stepTitle = newText;
-                        });
-                    }
+          // Title
+          if ($attr.wizardFormStepTitle !== undefined) {
+            $scope.$watch($attr.wizardFormStepTitle, (newText) => {
+              $scope.stepTitle = newText;
+            });
+          }
 
-                    // Title step number
-                    if ($attr.wizardFormStepTitleCount) {
-                        $scope.stepTitleCount = true;
-                    } else {
-                        $scope.stepTitleCount = false;
-                    }
+          // Title step number
+          if ($attr.wizardFormStepTitleCount) {
+            $scope.stepTitleCount = true;
+          } else {
+            $scope.stepTitleCount = false;
+          }
 
-                    // Title step icon
-                    if ($attr.wizardFormStepTitleIcon) {
-                        $scope.stepTitleIcon = $scope.$eval($attr.wizardFormStepTitleIcon);
-                    }
+          // Title step icon
+          if ($attr.wizardFormStepTitleIcon) {
+            $scope.stepTitleIcon = $scope.$eval($attr.wizardFormStepTitleIcon);
+          }
 
-                    // Title check icons
-                    if ($attr.wizardFormStepTitleCheck) {
-                        $scope.stepTitleCheck = true;
-                    } else {
-                        $scope.stepTitleCheck = false;
-                    }
+          // Title check icons
+          if ($attr.wizardFormStepTitleCheck) {
+            $scope.stepTitleCheck = true;
+          } else {
+            $scope.stepTitleCheck = false;
+          }
 
-                    // Hidden text
-                    if ($attr.wizardFormStepHiddenText !== undefined) {
-                        $scope.$watch($attr.wizardFormStepHiddenText, function (newText) {
-                            $scope.stepHiddenText = newText;
-                        });
-                    } else {
-                        $scope.stepHiddenText = $translate.instant('wizard_hidden_text');
-                    }
+          // Hidden text
+          if ($attr.wizardFormStepHiddenText !== undefined) {
+            $scope.$watch($attr.wizardFormStepHiddenText, (newText) => {
+              $scope.stepHiddenText = newText;
+            });
+          } else {
+            $scope.stepHiddenText = $translate.instant('ua_wizard_hidden_text');
+          }
+        },
+        post($scope, $elem, $attr, $wizardCtrl) {
+          $scope.stepNumber = $wizardCtrl.getStepCount() + 1;
 
-                },
-                post: function ($scope, $elem, $attr, $wizardCtrl) {
+          $wizardCtrl.addStep($scope);
 
-                    $scope.stepNumber = $wizardCtrl.getStepCount() + 1;
-
-                    $wizardCtrl.addStep($scope);
-
-                    $scope.loadStep = function () {
-                        $scope.onLoad();
-                    };
-
-                }
-            };
-        }
-    };
-}]);
+          $scope.loadStep = function () {
+            $scope.onLoad();
+          };
+        },
+      };
+    },
+  };
+}

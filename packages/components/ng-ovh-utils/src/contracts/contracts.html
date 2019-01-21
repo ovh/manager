@@ -12,20 +12,20 @@
             <label>
                 <input type="checkbox" id="validateContracts" name="validateContract" value="false"
                        data-ng-model="agree">
-                <span data-translate="contracts_agree"></span>
+                <span data-translate="ua_contracts_agree"></span>
             </label>
         </div>
     </div>
     <div data-ng-show="fullText == true">
         <p class="font-weight-bold text-center">
            <span data-ng-if="contracts.length > 1"
-                 data-translate="contracts_list_title"
+                 data-translate="ua_contracts_list_title"
                  data-translate-values="{
                      count: contracts.length
                  }">
            </span>
            <span data-ng-if="contracts.length <= 1"
-                 data-translate="contract_list_title">
+                 data-translate="ua_contract_list_title">
            </span>
         </p>
 
@@ -51,7 +51,7 @@
                 <div class="contracts-breadcrumb">
                     <a class="pull-left contracts-breadcrumb-navigate contracts-breadcrumb-navigate-previous">
                         <span class="fa fa-chevron-left" aria-hidden="true"></span>
-                        <span data-translate="contract_previous"></span>
+                        <span data-translate="ua_contract_previous"></span>
                     </a>
                     <ul id="contracts-menu">
                         <li class="contracts-breadcrumb-navigate"
@@ -64,7 +64,7 @@
                         </li>
                     </ul>
                     <a class="pull-right contracts-breadcrumb-navigate contracts-breadcrumb-navigate-next">
-                        <span data-translate="contract_next"></span>
+                        <span data-translate="ua_contract_next"></span>
                         <span class="fa fa-chevron-right" aria-hidden="true"></span>
                     </a>
                 </div>
@@ -74,7 +74,7 @@
 
             <a class="accordion-toggle contracts-toggle-icon center" title="{{contract.name}}" target="_blank"
                data-ng-href="{{currentContract.url}}">
-                <span data-translate="download_contract"
+                <span data-translate="ua_download_contract"
                       data-translate-values="{
                           name: currentContract.name
                       }">
@@ -91,11 +91,11 @@
                     <input type="checkbox" id="validateContract"
                            name="validateContract"
                            data-ng-model="agree" value="false">
-                    <span data-translate="contracts_agree"></span>
+                    <span data-translate="ua_contracts_agree"></span>
                 </label>
 
                 <span class="font-weight-bold pull-right red"
-                      data-translate="contract_help"
+                      data-translate="ua_contract_help"
                       data-ng-show="disabled == true">
                 </span>
             </div>

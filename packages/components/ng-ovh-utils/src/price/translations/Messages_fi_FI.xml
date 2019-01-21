@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="ua_price_ht_label" qtlid="503254">{{price}}&#160;ALV0</translation>
+   <translation id="ua_price_ttc_label" qtlid="503267">{{price}} sis.ALV</translation>
+   <translation id="ua_price_free" qtlid="195776">Sisältyy</translation>
+   <translation id="ua_price_label_yearly" qtlid="288977">/vuosi</translation>
+</translations>

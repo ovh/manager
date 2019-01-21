@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="ua_wizard_cancel" qtlid="37863">Annulla</translation>
+   <translation id="ua_wizard_confirm" qtlid="26047">Conferma</translation>
+   <translation id="ua_wizard_next" qtlid="17743">Seguente</translation>
+   <translation id="ua_wizard_previous" qtlid="17431">Precedente</translation>
+   <translation id="ua_wizard_close" qtlid="4670">Chiudi</translation>
+   <translation id="ua_wizard_breadcrumb" qtlid="486451">Step {{ currentStep }} di {{ stepCount }}</translation>
+   <translation id="ua_wizard_help" qtlid="26035">Aiuto</translation>
+</translations>

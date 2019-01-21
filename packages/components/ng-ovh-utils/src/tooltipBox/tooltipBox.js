@@ -1,4 +1,13 @@
-angular.module('ua.tooltipBox', []).constant('ovhDirectives.constant.tooltipBox.CONFIG_OPTIONS', [
+import angular from 'angular';
+
+import tooltipBoxDirective from './tooltipBox-directive';
+import './tooltipBox.less';
+
+const moduleName = 'ua.tooltipBox';
+
+angular
+  .module(moduleName, [])
+  .constant('tooltipBoxConfig', [
     'container',
     'selector',
     'title',
@@ -10,5 +19,8 @@ angular.module('ua.tooltipBox', []).constant('ovhDirectives.constant.tooltipBox.
     'html',
     'trigger',
     'delay',
-    'hideOnBlur'
-]);
+    'hideOnBlur',
+  ])
+  .directive('tooltipBox', tooltipBoxDirective);
+
+export default moduleName;

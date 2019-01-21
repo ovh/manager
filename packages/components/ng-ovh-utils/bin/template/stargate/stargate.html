@@ -1,7 +1,0 @@
-<li data-ng-repeat="gate in gates"
-    data-ng-class="{'selected': gate.selected}"
-    data-ng-class-odd="'odd'"
-    data-ng-class-even="'even'"
-    class="{{ gate.name | lowercase }}">
-    <a href="{{gate.targetEndpoint}}" title="{{::tr('universe_' + gate.name + '_name')}}" data-ng-bind="::tr('universe_' + gate.name + '_name')"></a>
-</li>
