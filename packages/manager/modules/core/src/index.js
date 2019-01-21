@@ -7,7 +7,7 @@ import 'angular-resource';
 
 import kebabCase from 'lodash/kebabCase';
 import translateAsyncLoader from '@ovh-ux/translate-async-loader';
-import OvhHttp from 'ovh-angular-http';
+import ngOvhHttp from '@ovh-ux/ng-ovh-http';
 import ssoAuth from 'ovh-angular-sso-auth';
 import ovhOuiAngularTranslations from './translate/ovh-ui-angular';
 
@@ -36,7 +36,7 @@ angular
     'tmh.dynamicLocale',
     translateAsyncLoader,
     ovhOuiAngularTranslations,
-    OvhHttp,
+    ngOvhHttp,
     ssoAuth,
   ])
   .constant('constants', {})

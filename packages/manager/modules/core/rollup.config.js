@@ -12,7 +12,9 @@ if (process.env.BUILD === 'production') {
     config.umd({
       output: {
         globals: {
+          '@ovh-ux/ng-ovh-http': 'ngOvhHttp',
           angular: 'angular',
+          'ovh-angular-sso-auth': 'ssoAuth',
         },
       },
     }),
