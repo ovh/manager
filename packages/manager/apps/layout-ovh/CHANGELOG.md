@@ -1,3 +1,12 @@
+## [1.2.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-layout-ovh@1.2.3...@ovh-ux/manager-layout-ovh@1.2.4) (2019-01-21)
+
+
+### Bug Fixes
+
+* **telecom-styles:** fix elements using rem ([00c5425](https://github.com/ovh-ux/manager/commit/00c5425))
+
+
+
 ## [1.2.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-layout-ovh@1.2.2...@ovh-ux/manager-layout-ovh@1.2.3) (2019-01-17)
 
 

@@ -1,3 +1,13 @@
+## [1.1.5](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-overthebox@1.1.4...@ovh-ux/manager-overthebox@1.1.5) (2019-01-21)
+
+
+### Bug Fixes
+
+* **overthebox:** retrieve i18n translations ([cbfc8bb](https://github.com/ovh-ux/manager/commit/cbfc8bb))
+* **telecom-styles:** fix elements using rem ([00c5425](https://github.com/ovh-ux/manager/commit/00c5425))
+
+
+
 ## [1.1.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-overthebox@1.1.3...@ovh-ux/manager-overthebox@1.1.4) (2019-01-17)
 
 

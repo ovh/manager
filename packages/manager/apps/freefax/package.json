@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-freefax-app",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "private": true,
   "scripts": {
     "build": "webpack",
@@ -14,8 +14,8 @@
   },
   "dependencies": {
     "@ovh-ux/manager-core": "^1.2.0",
-    "@ovh-ux/manager-freefax": "^1.0.4",
-    "@ovh-ux/manager-telecom-styles": "^2.0.1",
+    "@ovh-ux/manager-freefax": "^1.0.6",
+    "@ovh-ux/manager-telecom-styles": "^2.0.2",
     "@ovh-ux/ng-ovh-contracts": "^3.0.0-beta.3",
     "@ovh-ux/ng-uirouter-title": "^2.0.0-beta.3",
     "@ovh-ux/telecom-universe-components": "^1.5.1",
