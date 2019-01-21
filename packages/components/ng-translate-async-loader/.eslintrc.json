@@ -1,5 +1,8 @@
 {
   "extends": "airbnb-base",
+  "plugins": [
+    "markdown"
+  ],
   "rules": {
     "import/no-unresolved": 0
   }

@@ -1,4 +1,4 @@
-# Contributing to translate-async-loader
+# Contributing to ng-translate-async-loader
 
 This project accepts contributions. In order to contribute, you should
 pay attention to a few things:
@@ -17,8 +17,8 @@ The contributions should be submitted through Github Pull Requests.
 
 # Licensing for new files
 
-translate-async-loader is licensed under a BSD-3-Clause license. Anything
-contributed to translate-async-loader must be released under this license.
+ng-translate-async-loader is licensed under a BSD-3-Clause license. Anything
+contributed to ng-translate-async-loader must be released under this license.
 
 When introducing a new file into the project, please make sure it has a
 copyright header making clear under which license it's being released.
