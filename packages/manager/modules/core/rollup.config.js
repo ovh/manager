@@ -13,8 +13,8 @@ if (process.env.BUILD === 'production') {
       output: {
         globals: {
           '@ovh-ux/ng-ovh-http': 'ngOvhHttp',
+          '@ovh-ux/ng-ovh-sso-auth': 'ngOvhSsoAuth',
           angular: 'angular',
-          'ovh-angular-sso-auth': 'ssoAuth',
         },
       },
     }),

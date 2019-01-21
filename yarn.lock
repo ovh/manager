@@ -1581,6 +1581,11 @@
     lodash "~4.17.11"
     urijs "^1.19.1"
 
+"@ovh-ux/ng-ovh-sso-auth@^4.0.0-beta.0":
+  version "4.0.0-beta.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-sso-auth/-/ng-ovh-sso-auth-4.0.0-beta.0.tgz#7eda7067390366c883e95fe569ad3dffa147c445"
+  integrity sha512-4U2f68rhM9Zjig+LgwpFT1tqAyHRo5Ljp1yEpqvwJdBWDdXkScPpzmqCPMBUWF/wEijrTFjKCNfAA45U0ElMlQ==
+
 "@ovh-ux/ng-tail-logs@^2.0.0-beta.0":
   version "2.0.0-beta.1"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-tail-logs/-/ng-tail-logs-2.0.0-beta.1.tgz#823fc41c98770e428d93882e7cdf47f1a7e1711b"
@@ -9286,11 +9291,6 @@ ovh-angular-sidebar-menu@^8.0.0-alpha.3:
   version "8.0.0-alpha.4"
   resolved "https://registry.yarnpkg.com/ovh-angular-sidebar-menu/-/ovh-angular-sidebar-menu-8.0.0-alpha.4.tgz#54ebefb5262b1ece89b6dffd1e94d8e48a277b5d"
   integrity sha512-o0ZlSgNqCvUTXUQ7StWCP1Ix2bUNQGMW+V8Lg2o06FLK1W5KSqtZBjiKOk2eOvaH2K+3P5foq2TjprOiEsLOyQ==
-
-ovh-angular-sso-auth@^4.0.0-alpha.3:
-  version "4.0.0-alpha.3"
-  resolved "https://registry.yarnpkg.com/ovh-angular-sso-auth/-/ovh-angular-sso-auth-4.0.0-alpha.3.tgz#52f3faaf0bf8430506c54bc808dd7d068b806ab9"
-  integrity sha512-Tjvuu16h1t96hT87Bv4u2PpE0PpPDgVunN6ebONiUlXlC9Zr4EKQU+RqXMBP1sk2NjXmn8taKGwmGQMzyanLRw==
 
 ovh-angular-swimming-poll@^3.0.0:
   version "3.0.0"
