@@ -1,3 +1,12 @@
+## [0.1.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-sms@0.1.3...@ovh-ux/manager-sms@0.1.4) (2019-01-21)
+
+
+### Bug Fixes
+
+* **telecom-styles:** fix elements using rem ([00c5425](https://github.com/ovh-ux/manager/commit/00c5425))
+
+
+
 ## [0.1.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-sms@0.1.2...@ovh-ux/manager-sms@0.1.3) (2019-01-17)
 
 

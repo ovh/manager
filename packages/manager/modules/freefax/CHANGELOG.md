@@ -1,3 +1,12 @@
+## [1.0.6](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-freefax@1.0.5...@ovh-ux/manager-freefax@1.0.6) (2019-01-21)
+
+
+### Bug Fixes
+
+* **telecom-styles:** fix elements using rem ([00c5425](https://github.com/ovh-ux/manager/commit/00c5425))
+
+
+
 ## [1.0.5](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-freefax@1.0.4...@ovh-ux/manager-freefax@1.0.5) (2019-01-17)
 
 
