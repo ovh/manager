@@ -1,8 +1,8 @@
 {
-  "name": "ovh-angular-proxy-request",
+  "name": "@ovh-ux/ng-ovh-proxy-request",
   "version": "1.0.0-alpha.1",
   "description": "Simple configurable request handler to use in service for any manager",
-  "repository": "ovh-ux/ovh-angular-proxy-request.git",
+  "repository": "ovh-ux/ng-ovh-proxy-request",
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "files": [
@@ -10,7 +10,7 @@
   ],
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
-  "browser": "./dist/umd/ovh-angular-proxy-request.js",
+  "browser": "./dist/umd/ng-ovh-proxy-request.js",
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c --watch",

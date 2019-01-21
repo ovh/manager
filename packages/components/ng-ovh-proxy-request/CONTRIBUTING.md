@@ -1,4 +1,4 @@
-# Contributing to ovh-angular-proxy-request
+# Contributing to ng-ovh-proxy-request
 
 This project accepts contributions. In order to contribute, you should
 pay attention to a few things:
@@ -17,8 +17,8 @@ The contributions should be submitted through Github Pull Requests.
 
 # Licensing for new files
 
-ovh-angular-proxy-request is licensed under a BSD-3-Clause license. Anything
-contributed to ovh-angular-proxy-request must be released under this license.
+ng-ovh-proxy-request is licensed under a BSD-3-Clause license. Anything
+contributed to ng-ovh-proxy-request must be released under this license.
 
 When introducing a new file into the project, please make sure it has a
 copyright header making clear under which license it's being released.
