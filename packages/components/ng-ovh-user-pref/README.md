@@ -11,10 +11,20 @@
 ## Install
 
 ```sh
-yarn add ovh-angular-user-pref
+yarn add @ovh-ux/ng-ovh-user-pref
 ```
 
 ## Usage
+
+```js
+import angular from 'angular';
+import ngOvhUserPref from '@ovh-ux/ng-ovh-user-pref';
+
+angular
+  .module('myApp', [
+    ngOvhUserPref,
+  ]);
+```
 
 + Format :
     -   The format of a key must be in uppercase, words separated by underscores `_`
@@ -22,7 +32,7 @@ yarn add ovh-angular-user-pref
 
 ## Contributing
 
-Always feel free to help out! Whether it's [filing bugs and feature requests](https://github.com/ovh-ux/ovh-angular-user-pref/issues/new) or working on some of the [open issues](https://github.com/ovh-ux/ovh-angular-user-pref/issues), our [contributing guide](CONTRIBUTING.md) will help get you started.
+Always feel free to help out! Whether it's [filing bugs and feature requests](https://github.com/ovh-ux/ng-ovh-user-pref/issues/new) or working on some of the [open issues](https://github.com/ovh-ux/ng-ovh-user-pref/issues), our [contributing guide](CONTRIBUTING.md) will help get you started.
 
 ## License
 

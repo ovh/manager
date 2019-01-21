@@ -21,7 +21,7 @@ export default function ovhAngularUserPrefProvider() {
   /**
    * @ngdoc function
    * @name setRegex
-   * @methodOf ovh-angular-user-pref.ovhUserPrefProvider
+   * @methodOf ng-ovh-user-pref.ovhUserPrefProvider
    * @param {Regex} to check format of keys
    * @description
    * Configure the regex
@@ -42,7 +42,7 @@ export default function ovhAngularUserPrefProvider() {
   /**
    * @ngdoc function
    * @name setApiv6Path
-   * @methodOf ovh-angular-user-pref.ovhUserPrefProvider
+   * @methodOf ng-ovh-user-pref.ovhUserPrefProvider
    * @param {String} apiv6Path Path to configure routes
    * @description
    * Configure the route of apiv6
@@ -53,7 +53,7 @@ export default function ovhAngularUserPrefProvider() {
 
   /**
    * @ngdoc service
-   * @name ovh-angular-user-pref.ovhUserPref
+   * @name ng-ovh-user-pref.ovhUserPref
    * @description
    * <p>Getter / setter for preferences</p>
    */
@@ -67,7 +67,7 @@ export default function ovhAngularUserPrefProvider() {
     /**
      * @ngdoc function
      * @name getKeys
-     * @methodOf ovh-angular-user-pref.ovhUserPref
+     * @methodOf ng-ovh-user-pref.ovhUserPref
      * @param {Object=} [opts=undefined] Special options to pass to the api
      * @return {Promise} Resource promise
      * @description
@@ -83,7 +83,7 @@ export default function ovhAngularUserPrefProvider() {
     /**
      * @ngdoc function
      * @name getValue
-     * @methodOf ovh-angular-user-pref.ovhUserPref
+     * @methodOf ng-ovh-user-pref.ovhUserPref
      * @param {String}  key              Key to read
      * @param {Object=} [opts=undefined] Special options to pass to the api
      * @return {Promise} Resource promise
@@ -112,7 +112,7 @@ export default function ovhAngularUserPrefProvider() {
     /**
      * @ngdoc function
      * @name create
-     * @methodOf ovh-angular-user-pref.ovhUserPref
+     * @methodOf ng-ovh-user-pref.ovhUserPref
      * @param {String} key      Key of the preference to create
      * @param {Object} newValue Value to assign
      * @return {Promise} Resource promise
@@ -148,7 +148,7 @@ export default function ovhAngularUserPrefProvider() {
     /**
      * @ngdoc function
      * @name assign
-     * @methodOf ovh-angular-user-pref.ovhUserPref
+     * @methodOf ng-ovh-user-pref.ovhUserPref
      * @param {String} key      Key of the preference
      * @param {Object} newValue Value to assign
      * @return {Promise} Resource promise
@@ -193,7 +193,7 @@ export default function ovhAngularUserPrefProvider() {
     /**
      * @ngdoc function
      * @name remove
-     * @methodOf ovh-angular-user-pref.ovhUserPref
+     * @methodOf ng-ovh-user-pref.ovhUserPref
      * @param {String} key Key to delete
      * @return {Promise} Resource promise
      * @description

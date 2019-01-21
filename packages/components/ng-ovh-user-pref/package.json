@@ -1,11 +1,11 @@
 {
-  "name": "ovh-angular-user-pref",
+  "name": "@ovh-ux/ng-ovh-user-pref",
   "version": "1.0.0-alpha.0",
   "description": "An angular service to create/get/delete user preferences",
   "keywords": [
     "angular"
   ],
-  "repository": "ovh-ux/ovh-angular-user-pref",
+  "repository": "ovh-ux/ng-ovh-user-pref",
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "files": [
@@ -13,7 +13,7 @@
   ],
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
-  "browser": "./dist/umd/ovh-angular-user-pref.js",
+  "browser": "./dist/umd/ng-ovh-user-pref.js",
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c --watch",
