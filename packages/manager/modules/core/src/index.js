@@ -8,7 +8,7 @@ import 'angular-resource';
 import kebabCase from 'lodash/kebabCase';
 import translateAsyncLoader from '@ovh-ux/translate-async-loader';
 import ngOvhHttp from '@ovh-ux/ng-ovh-http';
-import ssoAuth from 'ovh-angular-sso-auth';
+import ngOvhSsoAuth from '@ovh-ux/ng-ovh-sso-auth';
 import ovhOuiAngularTranslations from './translate/ovh-ui-angular';
 
 import 'angular-dynamic-locale';
@@ -37,7 +37,7 @@ angular
     translateAsyncLoader,
     ovhOuiAngularTranslations,
     ngOvhHttp,
-    ssoAuth,
+    ngOvhSsoAuth,
   ])
   .constant('constants', {})
   .constant('CORE_LANGUAGES', LANGUAGES)
@@ -184,7 +184,7 @@ angular
     ]);
 
     $httpProvider.interceptors.push('serviceTypeInterceptor');
-    $httpProvider.interceptors.push('ssoAuthInterceptor');
+    $httpProvider.interceptors.push('OvhSsoAuthInterceptor');
   })
   .config((OvhHttpProvider) => {
     // OvhHttpProvider.rootPath = constants.swsProxyPath;
