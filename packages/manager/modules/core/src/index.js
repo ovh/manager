@@ -6,7 +6,7 @@ import 'angular-sanitize';
 import 'angular-resource';
 
 import kebabCase from 'lodash/kebabCase';
-import translateAsyncLoader from '@ovh-ux/translate-async-loader';
+import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import ngOvhHttp from '@ovh-ux/ng-ovh-http';
 import ngOvhSsoAuth from '@ovh-ux/ng-ovh-sso-auth';
 import ovhOuiAngularTranslations from './translate/ovh-ui-angular';
@@ -34,7 +34,7 @@ angular
     'ovh-api-services',
     'pascalprecht.translate',
     'tmh.dynamicLocale',
-    translateAsyncLoader,
+    ngTranslateAsyncLoader,
     ovhOuiAngularTranslations,
     ngOvhHttp,
     ngOvhSsoAuth,
