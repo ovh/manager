@@ -13,10 +13,10 @@ const moduleName = 'managerFreefaxVoicemailConfiguration';
 
 angular
   .module(moduleName, [
+    'ngOvhTelecomUniverseComponents',
     'oui',
     'ovh-api-services',
     'pascalprecht.translate',
-    'telecomUniverseComponents',
     'ui.router',
   ])
   .config(/* @ngInject */($stateProvider) => {

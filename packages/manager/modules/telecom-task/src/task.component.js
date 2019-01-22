@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-import '@ovh-ux/telecom-universe-components';
+import '@ovh-ux/ng-ovh-telecom-universe-components';
 import '@ovh-ux/manager-telecom-styles';
 import '@ovh-ux/ng-uirouter-title';
 import 'angular-ui-bootstrap';
@@ -16,9 +16,9 @@ import template from './task.html';
 
 export default angular
   .module('OvhManagerTelecomTaskComponent', [
+    'ngOvhTelecomUniverseComponents',
     'ngUirouterTitle',
     'ovh-api-services',
-    'telecomUniverseComponents',
     'ui.bootstrap',
     'ui.router',
   ])
