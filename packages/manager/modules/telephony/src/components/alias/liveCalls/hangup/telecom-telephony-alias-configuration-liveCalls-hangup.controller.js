@@ -1,17 +1,19 @@
-angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationLiveCallsHangupCtrl', function ($uibModalInstance, $translate, TucToast, params) {
+import _ from 'lodash';
+
+export default /* @ngInject */ function ($uibModalInstance, $translate, TucToast, params) {
   const self = this;
 
-  self.$onInit = function () {
+  self.$onInit = function $onInit() {
     self.number = null;
     self.error = null;
     self.isSubmitting = false;
   };
 
-  self.cancel = function () {
+  self.cancel = function cancel() {
     $uibModalInstance.dismiss();
   };
 
-  self.submit = function () {
+  self.submit = function submit() {
     self.isSubmitting = true;
     self.error = null;
     return params.apiEndpoint.Hunting().Queue().LiveCalls().v6()
@@ -29,4 +31,4 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationLiveC
         self.isSubmitting = false;
       });
   };
-});
+}

@@ -1,17 +1,24 @@
-angular.module('managerApp').run(($translate, asyncLoader) => {
-  asyncLoader.addTranslations(
-    import(`./translations/Messages_${$translate.use()}.xml`)
-      .catch(() => import(`./translations/Messages_${$translate.fallbackLanguage()}.xml`))
-      .then(x => x.default),
-  );
-  $translate.refresh();
-});
-angular.module('managerApp').component('telecomTelephonyAliasLiveCalls', {
+import _ from 'lodash';
+import template from './telecom-telephony-alias-configuration-liveCalls.html';
+
+import eavesdropCtrl from './eavesdrop/telecom-telephony-alias-configuration-liveCalls-eavesdrop.controller';
+import eavesdropTpl from './eavesdrop/telecom-telephony-alias-configuration-liveCalls-eavesdrop.html';
+
+import hangupCtrl from './hangup/telecom-telephony-alias-configuration-liveCalls-hangup.controller';
+import hangupTpl from './hangup/telecom-telephony-alias-configuration-liveCalls-hangup.html';
+
+import interceptCtrl from './intercept/telecom-telephony-alias-configuration-liveCalls-intercept.controller';
+import interceptTpl from './intercept/telecom-telephony-alias-configuration-liveCalls-intercept.html';
+
+import transfertCtrl from './transfer/telecom-telephony-alias-configuration-liveCalls-transfer.controller';
+import transfertTpl from './transfer/telecom-telephony-alias-configuration-liveCalls-transfer.html';
+
+export default {
   bindings: {
     apiEndpoint: '<',
     queueId: '<',
   },
-  templateUrl: 'components/telecom/telephony/alias/liveCalls/telecom-telephony-alias-configuration-liveCalls.html',
+  template,
   controller(
     $scope, $stateParams, $q, $timeout, $uibModal, $translate, $translatePartialLoader,
     moment, TucToastError,
@@ -21,7 +28,7 @@ angular.module('managerApp').component('telecomTelephonyAliasLiveCalls', {
     let poller = null;
     let stopPolling = false;
 
-    self.$onInit = function () {
+    self.$onInit = function $onInit() {
       self.isLoading = true;
 
       $scope.$on('$destroy', () => {
@@ -44,7 +51,7 @@ angular.module('managerApp').component('telecomTelephonyAliasLiveCalls', {
       });
     };
 
-    self.getQueueId = function () {
+    self.getQueueId = function getQueueId() {
       if (self.queueId) {
         return $q.when(self.queueId);
       }
@@ -54,7 +61,7 @@ angular.module('managerApp').component('telecomTelephonyAliasLiveCalls', {
       }).$promise.then(ids => _.first(ids));
     };
 
-    self.refreshStats = function (queueId) {
+    self.refreshStats = function refreshStats(queueId) {
       return $q.all({
         stats: self.fetchQueueLiveStatistics(queueId),
         calls: self.fetchQueueLiveCalls(queueId),
@@ -66,8 +73,8 @@ angular.module('managerApp').component('telecomTelephonyAliasLiveCalls', {
       });
     };
 
-    self.pollStats = function (queueId) {
-      const periodicRefresh = function () {
+    self.pollStats = function pollStats(queueId) {
+      const periodicRefresh = function periodicRefresh() {
         self.refreshStats(queueId).finally(() => {
           if (!stopPolling) {
             poller = $timeout(periodicRefresh, 1000);
@@ -77,7 +84,7 @@ angular.module('managerApp').component('telecomTelephonyAliasLiveCalls', {
       $timeout(periodicRefresh, 1000);
     };
 
-    self.fetchQueueLiveStatistics = function (queueId) {
+    self.fetchQueueLiveStatistics = function fetchQueueLiveStatistics(queueId) {
       return self.apiEndpoint.Hunting().Queue().v6().getLiveStatistics({
         billingAccount: $stateParams.billingAccount,
         serviceName: $stateParams.serviceName,
@@ -85,7 +92,7 @@ angular.module('managerApp').component('telecomTelephonyAliasLiveCalls', {
       }).$promise;
     };
 
-    self.fetchQueueLiveCalls = function (queueId) {
+    self.fetchQueueLiveCalls = function fetchQueueLiveCalls(queueId) {
       return self.apiEndpoint.Hunting().Queue().LiveCalls().v6()
         .query({
           billingAccount: $stateParams.billingAccount,
@@ -105,7 +112,7 @@ angular.module('managerApp').component('telecomTelephonyAliasLiveCalls', {
           )));
     };
 
-    self.fetchAgentsLiveStatus = function (queueId) {
+    self.fetchAgentsLiveStatus = function fetchAgentsLiveStatus(queueId) {
       self.apiEndpoint.Hunting().Queue().Agent().v6()
         .resetAllCache();
       return self.apiEndpoint.Hunting().Queue().Agent().v6()
@@ -130,28 +137,28 @@ angular.module('managerApp').component('telecomTelephonyAliasLiveCalls', {
           )));
     };
 
-    self.getAverageWaitTime = function () {
+    self.getAverageWaitTime = function getAverageWaitTime() {
       return self.stats.totalWaitingDuration / self.stats.callsTotal;
     };
 
-    self.getAverageCallTime = function () {
+    self.getAverageCallTime = function getAverageCallTime() {
       return self.stats.totalCallDuration / self.stats.callsAnswered;
     };
 
-    self.getQoS = function () {
+    self.getQoS = function getQoS() {
       // percentage rounded with two decimals
       return Math.round((self.stats.callsAnswered / self.stats.callsTotal) * 100 * 100) / 100;
     };
 
-    self.getOngoingCalls = function () {
+    self.getOngoingCalls = function getOngoingCalls() {
       return _.filter(self.calls, call => call && call.state === 'Answered' && call.answered && !call.end);
     };
 
-    self.getPendingCalls = function () {
+    self.getPendingCalls = function getPendingCalls() {
       return _.filter(self.calls, call => call && call.state === 'Waiting' && !call.answered && !call.end);
     };
 
-    self.getMaxWaitTime = function () {
+    self.getMaxWaitTime = function getMaxWaitTime() {
       let max = 0;
       let value = 0;
       _.each(self.getPendingCalls(), (call) => {
@@ -164,19 +171,19 @@ angular.module('managerApp').component('telecomTelephonyAliasLiveCalls', {
       return value;
     };
 
-    self.getOnCallAgentsCount = function () {
+    self.getOnCallAgentsCount = function getOnCallAgentsCount() {
       return _.filter(self.agentsStatus, agent => agent.status === 'inAQueueCall' || agent.status === 'receiving').length;
     };
 
-    self.getWaitingAgentsCount = function () {
+    self.getWaitingAgentsCount = function getWaitingAgentsCount() {
       return _.filter(self.agentsStatus, agent => agent.status === 'waiting').length;
     };
 
-    self.interceptCall = function (call) {
+    self.interceptCall = function interceptCall(call) {
       $uibModal.open({
         animation: true,
-        templateUrl: 'components/telecom/telephony/alias/liveCalls/intercept/telecom-telephony-alias-configuration-liveCalls-intercept.html',
-        controller: 'TelecomTelephonyAliasConfigurationLiveCallsInterceptCtrl',
+        templateUrl: interceptTpl,
+        controller: interceptCtrl,
         controllerAs: '$ctrl',
         resolve: {
           params() {
@@ -192,11 +199,11 @@ angular.module('managerApp').component('telecomTelephonyAliasLiveCalls', {
       });
     };
 
-    self.hangupCall = function (call) {
+    self.hangupCall = function hangupCall(call) {
       $uibModal.open({
         animation: true,
-        templateUrl: 'components/telecom/telephony/alias/liveCalls/hangup/telecom-telephony-alias-configuration-liveCalls-hangup.html',
-        controller: 'TelecomTelephonyAliasConfigurationLiveCallsHangupCtrl',
+        templateUrl: hangupTpl,
+        controller: hangupCtrl,
         controllerAs: '$ctrl',
         resolve: {
           params() {
@@ -212,11 +219,11 @@ angular.module('managerApp').component('telecomTelephonyAliasLiveCalls', {
       });
     };
 
-    self.transfertCall = function (call) {
+    self.transfertCall = function transfertCall(call) {
       $uibModal.open({
         animation: true,
-        templateUrl: 'components/telecom/telephony/alias/liveCalls/transfert/telecom-telephony-alias-configuration-liveCalls-transfert.html',
-        controller: 'TelecomTelephonyAliasConfigurationLiveCallsTransfertCtrl',
+        templateUrl: transfertTpl,
+        controller: transfertCtrl,
         controllerAs: '$ctrl',
         resolve: {
           params() {
@@ -232,11 +239,11 @@ angular.module('managerApp').component('telecomTelephonyAliasLiveCalls', {
       });
     };
 
-    self.eavesdropCall = function (call) {
+    self.eavesdropCall = function eavesdropCall(call) {
       $uibModal.open({
         animation: true,
-        templateUrl: 'components/telecom/telephony/alias/liveCalls/eavesdrop/telecom-telephony-alias-configuration-liveCalls-eavesdrop.html',
-        controller: 'TelecomTelephonyAliasConfigurationLiveCallsEavesdropCtrl',
+        templateUrl: eavesdropTpl,
+        controller: eavesdropCtrl,
         controllerAs: '$ctrl',
         resolve: {
           params() {
@@ -252,4 +259,4 @@ angular.module('managerApp').component('telecomTelephonyAliasLiveCalls', {
       });
     };
   },
-});
+};
