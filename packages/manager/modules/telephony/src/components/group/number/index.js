@@ -3,7 +3,7 @@ import angular from 'angular';
 import constant from './telephony-group-number.constant';
 import groupNumberComponent from './telephony-group-number.component';
 import groupNumberFactory from './telephony-group-number.factory';
-// @TODO import './telephony-group-number.less';
+import './telephony-group-number.less';
 
 const moduleName = 'ovhManagerTelephonyGroupNumber';
 

@@ -1,4 +1,7 @@
-angular.module('managerApp').controller('voipServiceChoicePopoverCtrl', function ($scope, $q, $translate, $translatePartialLoader, $filter, TelephonyMediator) {
+import angular from 'angular';
+import _ from 'lodash';
+
+export default /* @ngInject */ function ($scope, $q, $translate, $filter, TelephonyMediator) {
   const self = this;
 
   self.loading = {
@@ -20,7 +23,7 @@ angular.module('managerApp').controller('voipServiceChoicePopoverCtrl', function
   self.selectedService = null;
 
 
-  self.getServiceType = function (service) {
+  self.getServiceType = function getServiceType(service) {
     if (service.serviceType === 'alias') {
       return 'number';
     } if (service.isFax) {
@@ -31,7 +34,7 @@ angular.module('managerApp').controller('voipServiceChoicePopoverCtrl', function
     return service.isPlugNFax ? 'plugAndFax' : 'sip';
   };
 
-  self.excludeFilter = function (service) {
+  self.excludeFilter = function excludeFilter(service) {
     if (angular.isArray(self.excludeServices)) {
       return self.excludeServices.indexOf(service.serviceName) < 0;
     }
@@ -45,7 +48,7 @@ angular.module('managerApp').controller('voipServiceChoicePopoverCtrl', function
     return true;
   };
 
-  self.onValidate = function () {
+  self.onValidate = function onValidate() {
     // close popover
     self.popoverOptions.popoverIsOpen = false;
 
@@ -57,7 +60,7 @@ angular.module('managerApp').controller('voipServiceChoicePopoverCtrl', function
     self.search = '';
   };
 
-  self.onCancel = function () {
+  self.onCancel = function onCancel() {
     // close popover
     self.popoverOptions.popoverIsOpen = false;
 
@@ -91,4 +94,4 @@ angular.module('managerApp').controller('voipServiceChoicePopoverCtrl', function
       self.loading.init = false;
     });
   };
-});
+}

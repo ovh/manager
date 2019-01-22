@@ -4,6 +4,7 @@ import alias from './alias';
 import associateDevice from './associateDevice';
 import group from './group';
 import scheduler from './scheduler';
+import service from './service';
 import timeCondition from './timeCondition';
 
 import mediatorService from './telephony-mediator.service';
@@ -16,6 +17,7 @@ angular.module(moduleName, [
   associateDevice,
   group,
   scheduler,
+  service,
   timeCondition,
 ])
   .service('TelephonyMediator', mediatorService)

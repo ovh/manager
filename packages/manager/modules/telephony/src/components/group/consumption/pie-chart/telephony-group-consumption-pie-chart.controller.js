@@ -4,7 +4,7 @@ export default /* @ngInject */ function GroupConsumptionPieChartCtrl() {
   const self = this;
 
   this.loading = {
-    translations: true,
+    translations: false,
   };
 
   this.setDataset = function setDataset(dataset) {
@@ -14,13 +14,4 @@ export default /* @ngInject */ function GroupConsumptionPieChartCtrl() {
   this.getTotal = function getTotal() {
     return _.sum(self.dataset, set => set.count);
   };
-
-  /*
-  this.$onInit = function () {
-    $translatePartialLoader.addPart('../components/telecom/telephony/group/consumption/pie-chart');
-    return $translate.refresh().finally(() => {
-      self.loading.translations = false;
-    });
-  };
-  */
 }

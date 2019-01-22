@@ -1,14 +1,11 @@
-angular.module('managerApp').run(($translate, asyncLoader) => {
-  asyncLoader.addTranslations(
-    import(`./translations/Messages_${$translate.use()}.xml`)
-      .catch(() => import(`./translations/Messages_${$translate.fallbackLanguage()}.xml`))
-      .then(x => x.default),
-  );
-  $translate.refresh();
-});
-angular.module('managerApp').directive('voipServiceChoicePopover', $compile => ({
+import angular from 'angular';
+import _ from 'lodash';
+
+import controller from './telecom-telephony-service-choice-popover.directive.controller';
+
+export default /* @ngInject */ $compile => ({
   restrict: 'A',
-  controller: 'voipServiceChoicePopoverCtrl',
+  controller,
   controllerAs: '$ctrl',
   bindToController: true,
   compile() {
@@ -23,7 +20,7 @@ angular.module('managerApp').directive('voipServiceChoicePopover', $compile => (
       },
       post(tScope, tElement, tAttributes, tCtrl) {
         // add attribute to element to allow a popover on it
-        tElement.attr('data-responsive-popover', "'components/telecom/telephony/service/choice-popover/telecom-telephony-service-choice-popover.html'");
+        tElement.attr('data-responsive-popover', "'telecom/telephony/components/service/telecom-telephony-service-choice-popover.html'");
         angular.forEach(tCtrl.popoverOptions, (optionValue, key) => {
           const tmpAttrKey = `data-${_.kebabCase(key)}`;
           if (key !== 'popoverIsOpen') {
@@ -47,4 +44,4 @@ angular.module('managerApp').directive('voipServiceChoicePopover', $compile => (
     choiceArgs: '<?',
     excludeServices: '<?',
   },
-}));
+});
