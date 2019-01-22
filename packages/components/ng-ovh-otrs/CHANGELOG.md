@@ -1,3 +1,13 @@
+# [7.0.0-beta.1](https://github.com/ovh-ux/ng-ovh-otrs/compare/v7.0.0-beta.0...v7.0.0-beta.1) (2019-01-22)
+
+
+### Bug Fixes
+
+* **popup.service:** rename duplicate properties ([80b684c](https://github.com/ovh-ux/ng-ovh-otrs/commit/80b684c))
+* add dynamic translations and remove drag'n'drop error ([6a77fd4](https://github.com/ovh-ux/ng-ovh-otrs/commit/6a77fd4))
+
+
+
 # [7.0.0-beta.0](https://github.com/ovh-ux/ng-ovh-otrs/compare/v7.0.0-alpha.1...v7.0.0-beta.0) (2019-01-18)
 
 
