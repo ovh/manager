@@ -1,12 +1,9 @@
-angular.module('managerApp').run(($translate, asyncLoader) => {
-  asyncLoader.addTranslations(
-    import(`./translations/Messages_${$translate.use()}.xml`)
-      .catch(() => import(`./translations/Messages_${$translate.fallbackLanguage()}.xml`))
-      .then(x => x.default),
-  );
-  $translate.refresh();
-});
-angular.module('managerApp').directive('svaGenerator', ($q, $translatePartialLoader, $translate, $timeout, SvaGeneratorConfig) => {
+import angular from 'angular';
+import _ from 'lodash';
+
+import svaTemplate from './telephony-alias-svaGenerator.html';
+
+export default /* @ngInject */ ($q, $translate, $timeout, SvaGeneratorConfig) => {
   function normalizeNumber(number) {
     if (angular.isString(number)) {
       const n = number.replace(/\s/g, '');
@@ -53,10 +50,10 @@ angular.module('managerApp').directive('svaGenerator', ($q, $translatePartialLoa
   function loadImage(src) {
     return $q((resolve, reject) => {
       const result = new Image();
-      result.onload = function () {
+      result.onload = function onload() {
         resolve(result);
       };
-      result.error = function (err) {
+      result.error = function error(err) {
         reject(err);
       };
       result.src = src;
@@ -96,7 +93,7 @@ angular.module('managerApp').directive('svaGenerator', ($q, $translatePartialLoa
       pricePerCall: '=',
       pricePerMinute: '=',
     },
-    templateUrl: 'components/telecom/telephony/alias/svaGenerator/telephony-alias-svaGenerator.html',
+    template: svaTemplate,
     link(scope, element) {
       _.set(scope, 'invalidNumber', false);
 
@@ -228,11 +225,10 @@ angular.module('managerApp').directive('svaGenerator', ($q, $translatePartialLoa
         }
       }
 
-      $translatePartialLoader.addPart('../components/telecom/telephony/alias/svaGenerator');
       $translate.refresh().then(() => {
         _.set(scope, 'scale', SvaGeneratorConfig.scale['14pt']);
         scope.$watchGroup(['number', 'numberFormat', 'fill', 'pricePerCall', 'pricePerMinute'], refresh);
       });
     },
   };
-});
+};
