@@ -195,10 +195,10 @@ export const STATE_MAPPING_SERVICE = {
       serviceName: 'resource.name',
     },
   },
-  '/telephony/{serviceName}': {
+  '/telephony/{billingAccount}': {
     state: 'telephony',
     stateParams: {
-      serviceName: 'resource.name',
+      billingAccount: 'resource.name',
     },
   },
   default: {
