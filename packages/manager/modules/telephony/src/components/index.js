@@ -1,5 +1,7 @@
 import angular from 'angular';
 
+import alias from './alias';
+import associateDevice from './associateDevice';
 import group from './group';
 import scheduler from './scheduler';
 import timeCondition from './timeCondition';
@@ -10,6 +12,8 @@ import voipService from './telephony-voip-service.service';
 const moduleName = 'ovhManagerTelephonyComponents';
 
 angular.module(moduleName, [
+  alias,
+  associateDevice,
   group,
   scheduler,
   timeCondition,

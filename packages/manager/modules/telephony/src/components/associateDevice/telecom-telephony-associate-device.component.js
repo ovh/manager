@@ -1,25 +1,18 @@
-angular.module('managerApp').run(($translate, asyncLoader) => {
-  asyncLoader.addTranslations(
-    import(`./translations/Messages_${$translate.use()}.xml`)
-      .catch(() => import(`./translations/Messages_${$translate.fallbackLanguage()}.xml`))
-      .then(x => x.default),
-  );
-  $translate.refresh();
-});
-angular.module('managerApp').component('telecomTelephonyAssociateDevice', {
+import _ from 'lodash';
+
+import template from './telecom-telephony-associate-device.html';
+
+export default {
   bindings: {
     billingAccount: '<',
     serviceName: '<',
     macAddress: '=',
   },
-  templateUrl: 'components/telecom/telephony/associateDevice/telecom-telephony-associate-device.html',
-  controller(
-    $scope, $state, $q, $translatePartialLoader, $translate,
-    OvhApiTelephony, TelephonyMediator, TucToastError,
-  ) {
+  template,
+  controller($scope, $state, $q, $translate, OvhApiTelephony, TelephonyMediator, TucToastError) {
     const self = this;
 
-    self.$onInit = function () {
+    self.$onInit = function $onInit() {
       self.isInitialized = false;
       self.selectedMac = null;
       self.ipAddress = null;
@@ -28,7 +21,6 @@ angular.module('managerApp').component('telecomTelephonyAssociateDevice', {
         const phone = self.findPhoneByMac(mac);
         self.ipAddress = phone ? phone.ip : null;
       });
-      $translatePartialLoader.addPart('../components/telecom/telephony/associateDevice');
       return $translate.refresh().then(self.fetchAssociablesPhones).then((phones) => {
         self.phones = phones;
       }).catch(err => new TucToastError(err))
@@ -37,7 +29,7 @@ angular.module('managerApp').component('telecomTelephonyAssociateDevice', {
         });
     };
 
-    self.fetchAssociablesPhones = function () {
+    self.fetchAssociablesPhones = function fetchAssociablesPhones() {
       return OvhApiTelephony.Line().v6()
         .listAssociablePhones({
           billingAccount: self.billingAccount,
@@ -64,11 +56,11 @@ angular.module('managerApp').component('telecomTelephonyAssociateDevice', {
         })));
     };
 
-    self.findPhoneByMac = function (mac) {
+    self.findPhoneByMac = function findPhoneByMac(mac) {
       return _.find(self.phones, { macAddress: mac });
     };
 
-    self.attachDevice = function () {
+    self.attachDevice = function attachDevice() {
       self.isAttaching = true;
       return OvhApiTelephony.Line().v6().associateDevice({
         billingAccount: self.billingAccount,
@@ -88,4 +80,4 @@ angular.module('managerApp').component('telecomTelephonyAssociateDevice', {
       });
     };
   },
-});
+};
