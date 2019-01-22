@@ -4,6 +4,7 @@ import translate from 'angular-translate';
 import _ from 'lodash';
 
 import core from '@ovh-ux/manager-core';
+import ngOvhOtrs from '@ovh-ux/ng-ovh-otrs';
 
 import { MANAGER_URLS } from './navbar.constants';
 import template from './navbar.html';
@@ -13,7 +14,6 @@ import notificationService from './navbar-notification.service';
 
 import 'ovh-api-services';
 import 'ovh-ui-angular';
-import 'ovh-angular-otrs';
 
 import './navbar.less';
 
@@ -24,8 +24,11 @@ export default angular
     translate,
     'ovh-api-services',
     'oui',
-    'ovh-angular-otrs',
+    ngOvhOtrs,
   ])
+  .config(/* @ngInject */ (OtrsPopupProvider) => {
+    OtrsPopupProvider.setBaseUrlTickets('https://www.ovh.com/manager/dedicated/index.html#/ticket');
+  })
   .constant('MANAGER_URLS', MANAGER_URLS)
   .component('ovhManagerNavbar', {
     template,
