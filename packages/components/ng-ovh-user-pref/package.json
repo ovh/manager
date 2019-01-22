@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-user-pref",
-  "version": "1.0.0-alpha.0",
+  "version": "1.0.0-beta.0",
   "description": "An angular service to create/get/delete user preferences",
   "keywords": [
     "angular"
