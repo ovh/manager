@@ -9,6 +9,7 @@
     "dist"
   ],
   "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
   "browser": "./dist/umd/ng-ovh-otrs.js",
   "scripts": {
     "build": "rollup -c",
@@ -23,12 +24,13 @@
     "postversion": "git push && git push --tags"
   },
   "dependencies": {
+    "draggable": "^4.2.0",
     "lodash": "^4.17.11"
   },
   "devDependencies": {
     "@commitlint/cli": "^7.1.2",
     "@commitlint/config-angular": "^7.1.2",
-    "@ovh-ux/component-rollup-config": "^5.0.0-beta.4",
+    "@ovh-ux/component-rollup-config": "^5.0.0-beta.5",
     "bootstrap": "^3.3.6",
     "eslint": "^5.9.0",
     "eslint-config-airbnb-base": "^13.1.0",
@@ -48,7 +50,6 @@
     "bootstrap": "^3.3.6",
     "font-awesome": "^4.7.0",
     "jquery": "^2.1.3",
-    "ovh-api-services": "^3.15.1",
-    "ovh-jquery-ui-draggable-ng": "^0.0.5"
+    "ovh-api-services": "^3.15.1"
   }
 }

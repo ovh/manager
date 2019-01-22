@@ -5,6 +5,7 @@ const config = configGenerator({
 });
 
 export default [
+  config.es(),
   config.cjs(),
   config.umd({
     output: {

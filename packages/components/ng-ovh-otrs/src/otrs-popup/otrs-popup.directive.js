@@ -1,3 +1,6 @@
+import Draggable from 'draggable';
+
+import controller from './otrs-popup.controller';
 import template from './otrs-popup.html';
 import './otrs-popup.less';
 
@@ -6,6 +9,8 @@ export default function () {
     restrict: 'A',
     scope: {},
     replace: false,
+    controller,
+    controllerAs: 'OtrsPopupCtrl',
     template,
     link: ($scope, $element) => {
       $scope.status = {
@@ -59,6 +64,10 @@ export default function () {
 
       $element.children('.otrs-popup.draggable').one('drag', (event, ui) => {
         ui.helper.removeClass('otrs-popup-initial');
+      });
+
+      new Draggable($element[0], { // eslint-disable-line
+        handle: $element.find('#headerPopup')[0],
       });
     },
   };

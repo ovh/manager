@@ -11,6 +11,7 @@ import times from 'lodash/times';
 import values from 'lodash/values';
 
 export default /* @ngInject */ function (
+  $injector,
   $q,
   $rootScope,
   $scope,
@@ -323,13 +324,8 @@ export default /* @ngInject */ function (
       throw new Error('A baseUrlTickets must be specified.');
     }
 
-    // hide alert
-    manageAlert();
-    if (!OtrsPopupService.isOpen()) {
-      return $q.when([]);
-    }
-
     return $q.all({
+      translations: $injector.invoke(/* @ngTranslationsInject ./translations */),
       services: self.getServices(),
       me: OvhApiMe.v6().get().$promise,
       meVipStatus: OvhApiMeVipStatus.v6().get().$promise,

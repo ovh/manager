@@ -1,6 +1,5 @@
 import angular from 'angular';
 import 'ovh-api-services';
-import 'ovh-jquery-ui-draggable-ng';
 import 'angular-translate';
 
 import {
@@ -26,7 +25,6 @@ const moduleName = 'ngOvhOtrs';
 angular
   .module(moduleName, [
     'ovh-api-services',
-    'ovh-jquery-ui-draggable-ng',
     'pascalprecht.translate',
   ])
   .constant('OTRS_POPUP_ASSISTANCE_ENUM', ASSISTANCE_ENUM)
