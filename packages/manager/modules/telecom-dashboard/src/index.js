@@ -4,7 +4,7 @@ import 'ng-at-internet';
 import 'at-internet-ui-router-plugin';
 import '@ovh-ux/ng-uirouter-title';
 import '@ovh-ux/manager-core';
-import '@ovh-ux/telecom-universe-components';
+import '@ovh-ux/ng-ovh-telecom-universe-components';
 import '@ovh-ux/manager-telecom-styles';
 
 import 'ovh-ui-kit/dist/oui.css';
@@ -30,7 +30,7 @@ angular
     'ng-at-internet',
     'ngUirouterTitle',
     'ovhManagerCore',
-    'telecomUniverseComponents',
+    'ngOvhTelecomUniverseComponents',
     'ui.router',
   ])
   .config(/* @ngInject */ ($stateProvider) => {

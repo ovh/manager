@@ -1586,6 +1586,14 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-sso-auth/-/ng-ovh-sso-auth-4.0.0-beta.0.tgz#7eda7067390366c883e95fe569ad3dffa147c445"
   integrity sha512-4U2f68rhM9Zjig+LgwpFT1tqAyHRo5Ljp1yEpqvwJdBWDdXkScPpzmqCPMBUWF/wEijrTFjKCNfAA45U0ElMlQ==
 
+"@ovh-ux/ng-ovh-telecom-universe-components@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-telecom-universe-components/-/ng-ovh-telecom-universe-components-2.0.1.tgz#eac42bbfefde4710e2d5a722fb62805d871ef9ef"
+  integrity sha512-U0ZBIi0c8X/VNungkYAoWWnr76NpMuNo53ZiJSI32HpA7LPe3bDnqjVPLk8+tFfSmkhM+d4mEJl1Nu50rY8bpw==
+  dependencies:
+    bootstrap "^3.3.7"
+    ovh-ui-kit "^2.22.0"
+
 "@ovh-ux/ng-tail-logs@^2.0.0-beta.0":
   version "2.0.0-beta.1"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-tail-logs/-/ng-tail-logs-2.0.0-beta.1.tgz#823fc41c98770e428d93882e7cdf47f1a7e1711b"
@@ -1616,14 +1624,6 @@
   dependencies:
     magic-string "^0.25.1"
     rollup-pluginutils "^2.3.3"
-
-"@ovh-ux/telecom-universe-components@^1.3.0", "@ovh-ux/telecom-universe-components@^1.5.1":
-  version "1.5.1"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/telecom-universe-components/-/telecom-universe-components-1.5.1.tgz#695e20a5696832519a7edfe437648cff5ddb844b"
-  integrity sha512-xVFOfs3VQ809BnZCv5DSXrV8iMxHB/IFje2O3wLxDBprx+c9SDxj4BfZ0vVZScFXF9+WZk7ZrfLwOEZJONiz7g==
-  dependencies:
-    bootstrap "^3.3.7"
-    ovh-ui-kit "^2.22.0"
 
 "@ovh-ux/translate-async-loader@^1.0.0", "@ovh-ux/translate-async-loader@^1.0.4", "@ovh-ux/translate-async-loader@^1.0.7":
   version "1.0.8"

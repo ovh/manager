@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-import '@ovh-ux/telecom-universe-components';
+import '@ovh-ux/ng-ovh-telecom-universe-components';
 import '@ovh-ux/manager-telecom-styles';
 import 'ovh-angular-checkbox-table';
 import 'ovh-angular-responsive-tabs';
@@ -33,7 +33,7 @@ const moduleName = 'ovhManagerSmsComponent';
 
 angular
   .module(moduleName, [
-    'telecomUniverseComponents',
+    'ngOvhTelecomUniverseComponents',
     'ovh-angular-checkbox-table',
     'ovh-angular-pagination-front',
     'ovh-angular-responsive-tabs',
