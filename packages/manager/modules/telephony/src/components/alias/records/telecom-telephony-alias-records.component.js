@@ -1,20 +1,14 @@
-angular.module('managerApp').run(($translate, asyncLoader) => {
-  asyncLoader.addTranslations(
-    import(`./translations/Messages_${$translate.use()}.xml`)
-      .catch(() => import(`./translations/Messages_${$translate.fallbackLanguage()}.xml`))
-      .then(x => x.default),
-  );
-  $translate.refresh();
-});
-angular.module('managerApp').component('telecomTelephonyAliasRecords', {
+import angular from 'angular';
+import _ from 'lodash';
+
+import template from './telecom-telephony-alias-records.html';
+
+export default /* @ngInject */ {
   bindings: {
     api: '=',
   },
-  templateUrl: 'components/telecom/telephony/alias/records/telecom-telephony-alias-records.html',
-  controller(
-    $filter, $q, $timeout, $translate, $translatePartialLoader,
-    TelephonyMediator, TucToastError, TucToast,
-  ) {
+  template,
+  controller($filter, $q, $timeout, $translate, TelephonyMediator, TucToastError, TucToast) {
     const self = this;
 
     /*= ==============================
@@ -46,11 +40,11 @@ angular.module('managerApp').component('telecomTelephonyAliasRecords', {
       });
     }
 
-    self.hasChanges = function () {
+    self.hasChanges = function hasChanges() {
       return !angular.equals(self.queues.selected, self.queueForm);
     };
 
-    self.getSelection = function () {
+    self.getSelection = function getSelection() {
       return _.filter(
         self.records.raw,
         record => self.records.selected && self.records.selected[record.id],
@@ -63,7 +57,7 @@ angular.module('managerApp').component('telecomTelephonyAliasRecords', {
         =            ACTIONS            =
         =============================== */
 
-    self.changeQueue = function () {
+    self.changeQueue = function changeQueue() {
       self.queues.isLoading = true;
       $timeout(angular.noop, 100).finally(() => {
         self.queueForm = angular.copy(self.queues.selected);
@@ -71,7 +65,7 @@ angular.module('managerApp').component('telecomTelephonyAliasRecords', {
       });
     };
 
-    self.submitQueueChanges = function () {
+    self.submitQueueChanges = function submitQueueChanges() {
       const attrs = ['record', 'askForRecordDisabling', 'recordDisablingLanguage', 'recordDisablingDigit'];
       self.queues.isUpdating = true;
       return self.api.updateQueue(self.queueForm).then(() => {
@@ -81,11 +75,11 @@ angular.module('managerApp').component('telecomTelephonyAliasRecords', {
       });
     };
 
-    self.undoChanges = function () {
+    self.undoChanges = function undoChanges() {
       self.queueForm = angular.copy(self.queues.selected);
     };
 
-    self.sortRecords = function () {
+    self.sortRecords = function sortRecords() {
       let data = angular.copy(self.records.raw);
       data = $filter('orderBy')(
         data,
@@ -100,7 +94,7 @@ angular.module('managerApp').component('telecomTelephonyAliasRecords', {
       }
     };
 
-    self.orderRecordsBy = function (by) {
+    self.orderRecordsBy = function orderRecordsBy(by) {
       if (self.records.orderBy === by) {
         self.records.orderDesc = !self.records.orderDesc;
       } else {
@@ -109,7 +103,7 @@ angular.module('managerApp').component('telecomTelephonyAliasRecords', {
       self.sortRecords();
     };
 
-    self.deleteSelectedRecords = function () {
+    self.deleteSelectedRecords = function deleteSelectedRecords() {
       const records = self.getSelection();
       self.records.isDeleting = true;
       TucToast.info($translate.instant('telephony_alias_configuration_records_list_delete_success'));
@@ -127,7 +121,7 @@ angular.module('managerApp').component('telecomTelephonyAliasRecords', {
         =            INITIALIZATION            =
         ====================================== */
 
-    self.$onInit = function () {
+    self.$onInit = function $onInit() {
       self.enums = null;
       self.queues = {
         raw: [],
@@ -146,7 +140,6 @@ angular.module('managerApp').component('telecomTelephonyAliasRecords', {
         isLoading: false,
         isDeleting: false,
       };
-      $translatePartialLoader.addPart('../components/telecom/telephony/alias/records');
       return $translate.refresh().finally(() => {
         self.isInitialized = true;
         return $q.all({
@@ -161,4 +154,4 @@ angular.module('managerApp').component('telecomTelephonyAliasRecords', {
 
     /* -----  End of INITIALIZATION  ------*/
   },
-});
+};
