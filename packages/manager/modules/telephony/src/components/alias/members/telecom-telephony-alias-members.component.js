@@ -1,20 +1,17 @@
-angular.module('managerApp').run(($translate, asyncLoader) => {
-  asyncLoader.addTranslations(
-    import(`./translations/Messages_${$translate.use()}.xml`)
-      .catch(() => import(`./translations/Messages_${$translate.fallbackLanguage()}.xml`))
-      .then(x => x.default),
-  );
-  $translate.refresh();
-});
-angular.module('managerApp').component('telecomTelephonyAliasMembers', {
+import angular from 'angular';
+import _ from 'lodash';
+
+import template from './telecom-telephony-alias-members.html';
+
+export default {
   bindings: {
     api: '=',
   },
-  templateUrl: 'components/telecom/telephony/alias/members/telecom-telephony-alias-members.html',
-  controller($q, $translate, $translatePartialLoader, TucToast, TucToastError) {
+  template,
+  controller($q, $translate, TucToast, TucToastError) {
     const self = this;
 
-    self.$onInit = function () {
+    self.$onInit = function $onInit() {
       self.loaders = {
         init: false,
         deleting: false,
@@ -32,7 +29,6 @@ angular.module('managerApp').component('telecomTelephonyAliasMembers', {
       self.memberInEdition = null;
       self.memberToDelete = null;
 
-      $translatePartialLoader.addPart('../components/telecom/telephony/alias/members');
       return $translate.refresh().finally(() => {
         self.isInitialized = true;
         return self.refreshMembers().catch(err => new TucToastError(err)).finally(() => {
@@ -41,7 +37,7 @@ angular.module('managerApp').component('telecomTelephonyAliasMembers', {
       });
     };
 
-    self.api.addMembersToList = function (toAdd) {
+    self.api.addMembersToList = function addMembersToList(toAdd) {
       _.each(toAdd.reverse(), (member) => {
         self.members.unshift(member);
       });
@@ -50,11 +46,11 @@ angular.module('managerApp').component('telecomTelephonyAliasMembers', {
       });
     };
 
-    self.api.getMemberList = function () {
+    self.api.getMemberList = function getMemberList() {
       return angular.copy(self.members);
     };
 
-    self.refreshMembers = function () {
+    self.refreshMembers = function refreshMembers() {
       self.members = null;
       return self.api.fetchMembers()
         .then(members => self.api.reorderMembers(members)).then((orderedMembers) => {
@@ -66,7 +62,7 @@ angular.module('managerApp').component('telecomTelephonyAliasMembers', {
         });
     };
 
-    self.updateMemberDescription = function (member) {
+    self.updateMemberDescription = function updateMemberDescription(member) {
       if (member.description === undefined) {
         self.api.fetchMemberDescription(member)
           .then((result) => {
@@ -78,7 +74,7 @@ angular.module('managerApp').component('telecomTelephonyAliasMembers', {
       }
     };
 
-    self.onSwapMembers = function (fromMember, toMember) {
+    self.onSwapMembers = function onSwapMembers(fromMember, toMember) {
       const from = angular.copy(fromMember);
       const to = angular.copy(toMember);
 
@@ -108,7 +104,7 @@ angular.module('managerApp').component('telecomTelephonyAliasMembers', {
         });
     };
 
-    self.onMoveMember = function (ev, ui) {
+    self.onMoveMember = function onMoveMember(ev, ui) {
       const targetPosition = ui.item.attr('data-position');
       const movedMember = self.members[targetPosition];
       const swappedMember = self.membersBeforeDrag[targetPosition];
@@ -121,16 +117,16 @@ angular.module('managerApp').component('telecomTelephonyAliasMembers', {
       self.onSwapMembers(movedMember, swappedMember);
     };
 
-    self.startMemberEdition = function (member) {
+    self.startMemberEdition = function startMemberEdition(member) {
       self.memberInEdition = angular.copy(member);
       self.memberInEdition.timeout = member.timeout ? member.timeout : 1;
     };
 
-    self.cancelMemberEdition = function () {
+    self.cancelMemberEdition = function cancelMemberEdition() {
       self.memberInEdition = null;
     };
 
-    self.submitMemberChanges = function () {
+    self.submitMemberChanges = function submitMemberChanges() {
       self.loaders.editing = true;
       const attrs = ['status', 'timeout', 'wrapUpTime', 'simultaneousLines'];
       return self.api.updateMember(self.memberInEdition).then(() => {
@@ -143,7 +139,7 @@ angular.module('managerApp').component('telecomTelephonyAliasMembers', {
       });
     };
 
-    self.deleteMember = function (toDelete) {
+    self.deleteMember = function deleteMember(toDelete) {
       self.loaders.deleting = true;
       self.api.deleteMember(self.memberToDelete).then(() => {
         self.memberToDelete = null;
@@ -158,4 +154,4 @@ angular.module('managerApp').component('telecomTelephonyAliasMembers', {
         });
     };
   },
-});
+};

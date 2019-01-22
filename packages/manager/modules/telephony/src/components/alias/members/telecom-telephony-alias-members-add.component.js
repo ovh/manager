@@ -1,12 +1,18 @@
-angular.module('managerApp').component('telecomTelephonyAliasMembersAdd', {
+import _ from 'lodash';
+
+import template from './telecom-telephony-alias-members-add.html';
+import addModalCtrl from './telecom-telephony-alias-members-add-modal.controller';
+import addModalTpl from './telecom-telephony-alias-members-add-modal.html';
+
+export default {
   bindings: {
     api: '=',
   },
-  templateUrl: 'components/telecom/telephony/alias/members/telecom-telephony-alias-members-add.html',
-  controller($q, $translate, $translatePartialLoader, $uibModal, TucToast, TucToastError) {
+  template,
+  controller($q, $translate, $uibModal, TucToast, TucToastError) {
     const self = this;
 
-    self.$onInit = function () {
+    self.$onInit = function $onInit() {
       self.addMemberForm = {
         numbers: [null],
         options: {},
@@ -22,18 +28,17 @@ angular.module('managerApp').component('telecomTelephonyAliasMembersAdd', {
       // forms
       self.resetMemberAddForm();
 
-      $translatePartialLoader.addPart('../components/telecom/telephony/alias/members');
       return $translate.refresh().finally(() => {
         self.isInitialized = true;
         return self.refreshMembers().catch(err => new TucToastError(err));
       });
     };
 
-    self.onChooseServicePopover = function (service, pos) {
+    self.onChooseServicePopover = function onChooseServicePopover(service, pos) {
       self.addMemberForm.numbers[pos] = service.serviceName;
     };
 
-    self.resetMemberAddForm = function () {
+    self.resetMemberAddForm = function resetMemberAddForm() {
       self.addMemberForm.numbers = [null];
       self.addMemberForm.options = {
         timeout: 20,
@@ -43,7 +48,7 @@ angular.module('managerApp').component('telecomTelephonyAliasMembersAdd', {
       };
     };
 
-    self.getServicesToExclude = function () {
+    self.getServicesToExclude = function getServicesToExclude() {
       const services = _.pluck(self.api.getMemberList(), 'number').concat(self.addMemberForm.numbers);
       self.servicesToExclude.splice(0, self.servicesToExclude.length);
       _.each(services, (s) => {
@@ -52,11 +57,11 @@ angular.module('managerApp').component('telecomTelephonyAliasMembersAdd', {
       return self.servicesToExclude;
     };
 
-    self.addMembers = function (form) {
+    self.addMembers = function addMembers(form) {
       const modal = $uibModal.open({
         animation: true,
-        templateUrl: 'components/telecom/telephony/alias/members/telecom-telephony-alias-members-add-modal.html',
-        controller: 'telecomTelephonyAliasMembersAddModal',
+        templateUrl: addModalTpl,
+        controller: addModalCtrl,
         controllerAs: '$ctrl',
       });
       modal.result.then(() => {
@@ -78,7 +83,7 @@ angular.module('managerApp').component('telecomTelephonyAliasMembersAdd', {
       });
     };
 
-    self.removeMemberAt = function (index) {
+    self.removeMemberAt = function removeMemberAt(index) {
       if (index === 0 && self.addMemberForm.numbers.length === 1) {
         self.addMemberForm.numbers[0] = null;
       } else {
@@ -86,4 +91,4 @@ angular.module('managerApp').component('telecomTelephonyAliasMembersAdd', {
       }
     };
   },
-});
+};

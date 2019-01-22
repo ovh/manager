@@ -1,4 +1,5 @@
-angular.module('managerApp').controller('telecomTelephonyAliasMembersAddModal', class telecomTelephonyAliasMembersAddModal {
+export default class telecomTelephonyAliasMembersAddModal {
+  /* @ngInject */
   constructor($uibModalInstance) {
     this.$uibModalInstance = $uibModalInstance;
   }
@@ -10,4 +11,4 @@ angular.module('managerApp').controller('telecomTelephonyAliasMembersAddModal', 
   close() {
     return this.$uibModalInstance.close(true);
   }
-});
+}
