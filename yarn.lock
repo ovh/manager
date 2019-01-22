@@ -1594,7 +1594,7 @@
     bootstrap "^3.3.7"
     ovh-ui-kit "^2.22.0"
 
-"@ovh-ux/ng-tail-logs@^2.0.0-beta.0":
+"@ovh-ux/ng-tail-logs@^2.0.0-beta.1":
   version "2.0.0-beta.1"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-tail-logs/-/ng-tail-logs-2.0.0-beta.1.tgz#823fc41c98770e428d93882e7cdf47f1a7e1711b"
   integrity sha512-tcyEnkqb71p+ImlsRalsqdZ/RcN1lixjUVItsR1oLooliiXumdPgmAjlGm6elBs3Gb+vzDq0+uouFwLxfeYVKg==
