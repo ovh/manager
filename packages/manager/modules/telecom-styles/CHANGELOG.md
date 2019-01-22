@@ -1,3 +1,16 @@
+## [2.0.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom-styles@2.0.1...@ovh-ux/manager-telecom-styles@2.0.2) (2019-01-21)
+
+
+### Bug Fixes
+
+* **telecom-styles:** fix elements using rem ([00c5425](https://github.com/ovh-ux/manager/commit/00c5425))
+
+
+
+## [2.0.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom-styles@2.0.0...@ovh-ux/manager-telecom-styles@2.0.1) (2019-01-10)
+
+
+
 # [2.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom-styles@1.0.0...@ovh-ux/manager-telecom-styles@2.0.0) (2019-01-03)
 
 

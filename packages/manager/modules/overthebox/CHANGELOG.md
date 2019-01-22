@@ -1,3 +1,46 @@
+## [1.1.5](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-overthebox@1.1.4...@ovh-ux/manager-overthebox@1.1.5) (2019-01-21)
+
+
+### Bug Fixes
+
+* **overthebox:** retrieve i18n translations ([cbfc8bb](https://github.com/ovh-ux/manager/commit/cbfc8bb))
+* **telecom-styles:** fix elements using rem ([00c5425](https://github.com/ovh-ux/manager/commit/00c5425))
+
+
+
+## [1.1.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-overthebox@1.1.3...@ovh-ux/manager-overthebox@1.1.4) (2019-01-17)
+
+
+### Bug Fixes
+
+* **overthebox:** add serviceName in updateName event ([f471fad](https://github.com/ovh-ux/manager/commit/f471fad))
+
+
+
+## [1.1.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-overthebox@1.1.2...@ovh-ux/manager-overthebox@1.1.3) (2019-01-17)
+
+
+### Bug Fixes
+
+* **overthebox:** add missing ng-ovh-contracts dependency ([6f61f65](https://github.com/ovh-ux/manager/commit/6f61f65))
+
+
+
+## [1.1.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-overthebox@1.1.1...@ovh-ux/manager-overthebox@1.1.2) (2019-01-17)
+
+
+### Bug Fixes
+
+* use new component to display contracts ([f0e0a1b](https://github.com/ovh-ux/manager/commit/f0e0a1b))
+* **overthebox:** add warning module ([3d5328c](https://github.com/ovh-ux/manager/commit/3d5328c))
+* **overthebox-app:** update tests ([b372189](https://github.com/ovh-ux/manager/commit/b372189))
+
+
+
+## [1.1.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-overthebox@1.1.0...@ovh-ux/manager-overthebox@1.1.1) (2019-01-10)
+
+
+
 # [1.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-overthebox@1.0.0...@ovh-ux/manager-overthebox@1.1.0) (2019-01-03)
 
 

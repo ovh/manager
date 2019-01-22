@@ -1,3 +1,48 @@
+## [1.0.6](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-freefax@1.0.5...@ovh-ux/manager-freefax@1.0.6) (2019-01-21)
+
+
+### Bug Fixes
+
+* **telecom-styles:** fix elements using rem ([00c5425](https://github.com/ovh-ux/manager/commit/00c5425))
+
+
+
+## [1.0.5](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-freefax@1.0.4...@ovh-ux/manager-freefax@1.0.5) (2019-01-17)
+
+
+### Bug Fixes
+
+* **deps:** bump [@ovh-ux](https://github.com/ovh-ux)/ng-ovh-contracts dependency ([5cdfb1a](https://github.com/ovh-ux/manager/commit/5cdfb1a))
+
+
+
+## [1.0.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-freefax@1.0.3...@ovh-ux/manager-freefax@1.0.4) (2019-01-17)
+
+
+### Bug Fixes
+
+* use new component to display contracts ([f0e0a1b](https://github.com/ovh-ux/manager/commit/f0e0a1b))
+
+
+
+## [1.0.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-freefax@1.0.2...@ovh-ux/manager-freefax@1.0.3) (2019-01-15)
+
+
+### Bug Fixes
+
+* **freefax:** add bootstrap4 styles ([33c9f75](https://github.com/ovh-ux/manager/commit/33c9f75))
+
+
+
+## [1.0.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-freefax@1.0.1...@ovh-ux/manager-freefax@1.0.2) (2019-01-10)
+
+
+### Bug Fixes
+
+* **freefax:** add bootstrap4 styles ([27f6ea7](https://github.com/ovh-ux/manager/commit/27f6ea7))
+
+
+
 ## [1.0.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-freefax@1.0.0...@ovh-ux/manager-freefax@1.0.1) (2019-01-03)
 
 
