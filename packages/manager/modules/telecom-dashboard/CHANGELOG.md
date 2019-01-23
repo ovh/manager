@@ -1,3 +1,12 @@
+## [0.1.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom-dashboard@0.1.0...@ovh-ux/manager-telecom-dashboard@0.1.1) (2019-01-23)
+
+
+### Bug Fixes
+
+* **telecom-dashboard:** lint scripts entries to fix package main entry ([4bdd422](https://github.com/ovh-ux/manager/commit/4bdd422))
+
+
+
 # [0.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom-dashboard@0.0.0...@ovh-ux/manager-telecom-dashboard@0.1.0) (2019-01-21)
 
 
