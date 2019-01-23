@@ -1,3 +1,36 @@
+# [5.0.0-alpha.2](https://github.com/ovh-ux/ovh-angular-responsive-popover/compare/v5.0.0-alpha.1...v5.0.0-alpha.2) (2018-11-27)
+
+
+### Bug Fixes
+
+* bump npm-run-all@4.1.5 ([e3b6b7e](https://github.com/ovh-ux/ovh-angular-responsive-popover/commit/e3b6b7e))
+
+
+
+<a name="5.0.0-alpha.1"></a>
+# [5.0.0-alpha.1](https://github.com/ovh-ux/ovh-angular-responsive-popover/compare/v5.0.0-alpha.0...v5.0.0-alpha.1) (2018-10-25)
+
+
+### Bug Fixes
+
+* **responsivepopoverpopup:** module name is now correct ([93e1c57](https://github.com/ovh-ux/ovh-angular-responsive-popover/commit/93e1c57))
+
+
+
+<a name="5.0.0-alpha.0"></a>
+# [5.0.0-alpha.0](https://github.com/ovh-ux/ovh-angular-responsive-popover/compare/4.0.1...5.0.0-alpha.0) (2018-10-23)
+
+
+### Bug Fixes
+
+* remove jshint and jscs ([48f1fa2](https://github.com/ovh-ux/ovh-angular-responsive-popover/commit/48f1fa2))
+* **build:** use component-rollup-config ([fee4f3f](https://github.com/ovh-ux/ovh-angular-responsive-popover/commit/fee4f3f))
+* **build:** use component-webpack-config ([a2e59c6](https://github.com/ovh-ux/ovh-angular-responsive-popover/commit/a2e59c6))
+* **ngAnnotate:** add ngInject ([8f7d618](https://github.com/ovh-ux/ovh-angular-responsive-popover/commit/8f7d618))
+* **popup:** fix export ([fc1d08e](https://github.com/ovh-ux/ovh-angular-responsive-popover/commit/fc1d08e))
+
+
+
 # Change log
 All notable changes to this project will be documented in this file.
 
