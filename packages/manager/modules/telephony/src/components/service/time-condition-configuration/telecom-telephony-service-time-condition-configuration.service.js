@@ -1,4 +1,7 @@
-angular.module('managerApp').service('voipTimeConditionConfiguration', class voipTimeConditionConfiguration {
+import moment from 'moment';
+
+export default class voipTimeConditionConfiguration {
+  /* @ngInject */
   constructor($http, $q, $timeout, OvhApiMe) {
     this.$http = $http;
     this.$q = $q;
@@ -44,4 +47,4 @@ angular.module('managerApp').service('voipTimeConditionConfiguration', class voi
           .success(data => data)
           .error(error => this.$q.reject(error))));
   }
-});
+}
