@@ -1,4 +1,7 @@
-angular.module('managerApp').controller('TelecomTelephonyServiceAssistOrdersCtrl', function ($filter, $q, $translate, $stateParams, OvhApiTelephony, OvhApiMeOrder, TelephonyMediator) {
+import _ from 'lodash';
+
+export default /* @ngInject */ function ($filter, $q, $translate, $stateParams,
+  OvhApiTelephony, OvhApiMeOrder, TelephonyMediator) {
   const self = this;
   self.service = null;
 
@@ -22,7 +25,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceAssistOrdersCtrl
   =            INITIALIZATION            =
   ====================================== */
 
-  self.$onInit = function () {
+  self.$onInit = function $onInit() {
     self.ordersRaw = null;
 
     return TelephonyMediator.getGroup($stateParams.billingAccount).then(() => {
@@ -37,4 +40,4 @@ angular.module('managerApp').controller('TelecomTelephonyServiceAssistOrdersCtrl
   };
 
   /* -----  End of INITIALIZATION  ------*/
-});
+}

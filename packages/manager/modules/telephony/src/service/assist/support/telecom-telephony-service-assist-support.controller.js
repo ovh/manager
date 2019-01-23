@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('TelecomTelephonyServiceAssistSupportCtrl', function ($stateParams, TelephonyMediator, OtrsPopupService, URLS) {
+export default /* @ngInject */ function ($stateParams, TelephonyMediator, OtrsPopupService, URLS) {
   const self = this;
 
   self.loading = {
@@ -12,7 +12,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceAssistSupportCtr
     =            ACTIONS            =
     =============================== */
 
-  self.openSupportTicket = function () {
+  self.openSupportTicket = function openSupportTicket() {
     if (!OtrsPopupService.isLoaded()) {
       OtrsPopupService.init();
     } else {
@@ -39,4 +39,4 @@ angular.module('managerApp').controller('TelecomTelephonyServiceAssistSupportCtr
   /* -----  End of INITIALIZATION  ------*/
 
   init();
-});
+}
