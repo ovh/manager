@@ -51,27 +51,27 @@ export default class {
     };
     this.actions = [{
       name: 'compose_message',
-      sref: 'sms.sms.compose',
+      sref: 'sms.service.sms.compose',
       text: this.$translate.instant('sms_actions_send_sms'),
     }, {
       name: 'recredit_options',
-      sref: 'sms.order',
+      sref: 'sms.service.order',
       text: this.$translate.instant('sms_actions_credit_account'),
     }, {
       name: 'manage_recipient_new',
-      sref: 'sms.receivers',
+      sref: 'sms.service.receivers',
       text: this.$translate.instant('sms_actions_create_contact'),
     }, {
       name: 'manage_senders',
-      sref: 'sms.senders.add',
+      sref: 'sms.service.senders.add',
       text: this.$translate.instant('sms_actions_create_sender'),
     }, {
       name: 'manage_soapi_users',
-      sref: 'sms.users',
+      sref: 'sms.service.users',
       text: this.$translate.instant('sms_actions_create_api_user'),
     }, {
       name: 'manage_blacklisted_senders',
-      sref: 'sms.receivers',
+      sref: 'sms.service.receivers',
       text: this.$translate.instant('sms_actions_clean_contact_list'),
     }];
 

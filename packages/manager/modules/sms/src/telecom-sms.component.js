@@ -5,6 +5,7 @@ import '@ovh-ux/manager-telecom-styles';
 import 'ovh-angular-checkbox-table';
 import 'ovh-angular-responsive-tabs';
 import 'ovh-angular-pagination-front';
+import 'ovh-api-services';
 
 import 'ovh-ui-kit/dist/oui.css';
 import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
@@ -37,6 +38,7 @@ angular
     'ovh-angular-checkbox-table',
     'ovh-angular-pagination-front',
     'ovh-angular-responsive-tabs',
+    'ovh-api-services',
     dashboard,
     guides,
     options,
@@ -52,8 +54,8 @@ angular
   .constant('SMS_ALERTS', constant.SMS_ALERTS)
   .constant('SMS_PHONEBOOKS', constant.SMS_PHONEBOOKS)
   .config(($stateProvider) => {
-    $stateProvider.state('sms', {
-      url: '/sms/:serviceName',
+    $stateProvider.state('sms.service', {
+      url: '/:serviceName',
       views: {
         '': {
           template: smsView,

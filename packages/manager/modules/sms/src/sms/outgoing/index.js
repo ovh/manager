@@ -6,7 +6,7 @@ import template from './telecom-sms-sms-outgoing.html';
 const moduleName = 'ovhManagerSmsSmsOutgoing';
 
 angular.module(moduleName, []).config(($stateProvider) => {
-  $stateProvider.state('sms.sms.outgoing', {
+  $stateProvider.state('sms.service.sms.outgoing', {
     url: '/outgoing',
     views: {
       'smsView@sms': {

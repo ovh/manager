@@ -9269,7 +9269,7 @@ ovh-angular-ui-confirm-modal@^1.0.2:
   resolved "https://registry.yarnpkg.com/ovh-angular-ui-confirm-modal/-/ovh-angular-ui-confirm-modal-1.0.2.tgz#92e6736588a4fb1de6353f1a17ab1962679a698d"
   integrity sha512-3V17DbzWjUjl9sKCd25Oycn+7eqg6iW+DpizwVmixHFzDNDMnpKSGmxRLrOq+q9YNE7IepoAKWjoSiy2+zOEEg==
 
-ovh-api-services@^3.24.0:
+ovh-api-services@^3.24.0, ovh-api-services@^3.31.0:
   version "3.31.0"
   resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-3.31.0.tgz#b4b50dd8816b36b9266c6362c922b6c3fdda8996"
   integrity sha512-ngb65X6BEBvR+dFYKdu8wgEKqKwFY1WFQGiJQoavQ1H0xEilAiURwkVXCpTUVufTA17fqdM1Ob4IY8WraQ6eAQ==

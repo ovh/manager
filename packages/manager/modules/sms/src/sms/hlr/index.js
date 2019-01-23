@@ -5,7 +5,7 @@ import template from './telecom-sms-sms-hlr.html';
 const moduleName = 'ovhManagerSmsSmsHlr';
 
 angular.module(moduleName, []).config(($stateProvider) => {
-  $stateProvider.state('sms.sms.hlr', {
+  $stateProvider.state('sms.service.sms.hlr', {
     url: '/hlr',
     views: {
       'smsView@sms': {

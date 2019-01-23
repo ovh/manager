@@ -8,7 +8,7 @@ angular.module(moduleName, [
   'ui.router',
   'oc.lazyLoad',
 ]).config(($stateProvider) => {
-  $stateProvider.state('sms.sms.**', {
+  $stateProvider.state('sms.service.sms.**', {
     url: '/sms',
     lazyLoad: ($transition$) => {
       const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');

@@ -10,7 +10,7 @@ angular
     'oc.lazyLoad',
   ])
   .config(($stateProvider) => {
-    $stateProvider.state('sms.guides.**', {
+    $stateProvider.state('sms.service.guides.**', {
       url: '/guides',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
