@@ -1,4 +1,8 @@
-angular.module('managerApp').controller('TelecomTelephonyServiceFaxCustomDomainsCtrl', function ($filter, $q, $stateParams, $timeout, $translate, OvhApiDomain, TelephonyMediator, TucToast, OvhApiMe) {
+import _ from 'lodash';
+import angular from 'angular';
+
+export default /* @ngInject */ function ($filter, $q, $stateParams, $timeout, $translate,
+  OvhApiDomain, TelephonyMediator, TucToast, OvhApiMe) {
   const self = this;
 
   /* ===============================
@@ -28,7 +32,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxCustomDomains
   =            ACTIONS            =
   =============================== */
 
-  self.sortCustomDomains = function () {
+  self.sortCustomDomains = function sortCustomDomains() {
     let data = angular.copy(self.customDomains.raw);
     data = $filter('orderBy')(
       data,
@@ -38,7 +42,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxCustomDomains
     self.customDomains.sorted = data;
   };
 
-  self.addCustomDomains = function (form) {
+  self.addCustomDomains = function addCustomDomains(form) {
     self.addCustomDomainsForm.isAdding = true;
     return OvhApiMe.Fax().CustomDomains().v6().create({}, _.pick(self.addCustomDomainsForm, 'domain')).$promise.then(() => {
       form.$setPristine();
@@ -52,12 +56,12 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxCustomDomains
     });
   };
 
-  self.cancelCustomDomains = function (form) {
+  self.cancelCustomDomains = function cancelCustomDomains(form) {
     form.$setPristine();
     self.addCustomDomainsForm.domain = null;
   };
 
-  self.removeCustomDomains = function (domain) {
+  self.removeCustomDomains = function removeCustomDomains(domain) {
     _.set(domain, 'isDeleting', true);
     return $q.all([
       OvhApiMe.Fax().CustomDomains().v6().remove({
@@ -74,7 +78,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxCustomDomains
     });
   };
 
-  self.refresh = function () {
+  self.refresh = function refresh() {
     self.customDomains.isLoading = true;
     return $q.all({
       domains: fetchDomains(),
@@ -128,4 +132,4 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxCustomDomains
   /* -----  End of INITIALIZATION  ------*/
 
   init();
-});
+}
