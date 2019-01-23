@@ -1,66 +1,42 @@
+# ng-ovh-actions-menu
 
-# ovh-angular-actions-menu
+> An actions menu gives the opportunity to group a set of actions available for a specific context under a single
+menu.
 
-![githubbanner](https://user-images.githubusercontent.com/3379410/27423240-3f944bc4-5731-11e7-87bb-3ff603aff8a7.png)
+[![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-actions-menu)](https://npmjs.com/package/@ovh-ux/ng-ovh-actions-menu) [![Dependencies](https://badgen.net/david/dep/ovh-ux/ng-ovh-actions-menu)](https://npmjs.com/package/@ovh-ux/ng-ovh-actions-menu?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/ng-ovh-actions-menu)](https://npmjs.com/package/@ovh-ux/ng-ovh-actions-menu?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
 
-[![Maintenance](https://img.shields.io/maintenance/yes/2018.svg)]() [![Chat on gitter](https://img.shields.io/gitter/room/ovh/ux.svg)](https://gitter.im/ovh/ux) [![Build Status](https://travis-ci.org/ovh-ux/ovh-angular-actions-menu.svg)](https://travis-ci.org/ovh-ux/ovh-angular-actions-menu)
+## Install
 
-[![NPM](https://nodei.co/npm/ovh-angular-actions-menu.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/ovh-angular-actions-menu/)
-
-> An actions menu gives the opportunity to group a set of actions available for a specific context under a single menu.
-
-`ovh-angular-actions-menu` module follows the UX specification
-
-## Dependencies
-
-- [pascalprecht.translate](https://github.com/angular-translate/angular-translate)
-- [responsivePopover](https://github.com/ovh-ux/ovh-angular-responsive-popover)
-
-## Installation
-
-## Bower
-
-    bower install ovh-angular-actions-menu --save
-
-## NPM
-
-    npm install ovh-angular-actions-menu --save
-
-## Get the sources
-
-```bash
-    git clone https://github.com/ovh-ux/ovh-angular-actions-menu.git
-    cd ovh-angular-actions-menu
-    npm install
-    bower install
+```sh
+yarn add @ovh-ux/ng-ovh-actions-menu
 ```
 
-You've developed a new cool feature? Fixed an annoying bug? We'd be happy
-to hear from you!
+## Usage
 
-Have a look in [CONTRIBUTING.md](https://github.com/ovh-ux/ovh-angular-actions-menu/blob/master/CONTRIBUTING.md)
+Then inject actionsMenu module in your module declaration:
 
- Then inject actionsMenu module in your module declaration:
- ```javascript
- angular.module("myModule", [
-     ...
-     "ovh-angular-actions-menu",
-     ...
- ]);
- ```
+```js
+import angular from 'angular';
+import '@ovh-ux/ng-ovh-responsive-popover';
 
- ## TODO
+angular
+  .module('myApp', [
+    'ngOvhResponsivePopover',
+  ]);
+```
 
- - customizing page width ;
- - customizing open animation ;
- - actions with confirmation.
+## TODO
+
+- customizing page width ;
+- customizing open animation ;
+- actions with confirmation.
 
 ## Documentation
 
 For a full documentation of the module, launch:
 
-```
-# grunt ngdocs && grunt connect
+```sh
+grunt ngdocs && grunt connect
 ```
 
 Then go on `http://localhost:9090`.
@@ -75,83 +51,70 @@ This is the main directive of the module. It's creating a popover with desired a
 
 | Param | Type | Details |
 | ---- | ---- | ---- |
-| actions-menu-options | Object[] | A list of actions options that will be displayed into actionsMenu. See ActionsMenu factory and ActionsMenuItem factory for available options. |
-| actions-menu-popover-settings | Object | A list of options of the popover. For now only : class, placement, trigger and isOpen options are supported. Feel free to add others!!! See [ui.bootstrap.popover](https://angular-ui.github.io/bootstrap/#/popover) for more informations. |
-| actions-menu-on-select-option | Function | A callback taking item id as single parameter. |
+| ng-ovh-actions-menu-options | Object[] | A list of actions options that will be displayed into actionsMenu. See ActionsMenu factory and ActionsMenuItem factory for available options. |
+| ng-ovh-actions-menu-popover-settings | Object | A list of options of the popover. For now only : class, placement, trigger and isOpen options are supported. Feel free to add others!!! See [ui.bootstrap.popover](https://angular-ui.github.io/bootstrap/#/popover) for more informations. |
 
 #### Example
 
-  The following example will open an actions popover with 2 actions inside it:
+The following example will open an actions popover with 2 actions inside it:
 
- In your controller:
+In your controller:
 
- ```javascript
- angular.module("myManagerModule").controller("myTestController", function ($scope) {
-     $scope.popoverSettings = {
-         "popover-class": "my-custom-class",
-         "popover-placement": "bottom-right"
-     };
+```js
+import angular from 'angular';
 
-     $scope.actionsOptions = [{
-         title: "My Beautiful title",
-         icon: "filled-check",
-         href: "http://www.google.be"
-     }, {
-         title: "My Other title",
-         icon: "filled-error",
-         state: "my-manager.state1"
-     }];
+angular
+  .module('myApp')
+  .controller('MyCtrl', /* @ngInject */ ($scope) => {
+    $scope.popoverSettings = {
+      'popover-class': 'my-custom-class',
+      'popover-placement': 'bottom-right',
+    };
 
-     $scope.onSelectOption = function (id) {
-        console.log("Option has been selected!", id);
-     };
- });
- ```
+    $scope.actionsOptions = [{
+      title: 'My Beautiful title',
+      icon: 'filled-check',
+      href: 'http://www.google.be',
+    }, {
+      title: 'My Other title',
+      icon: 'filled-error',
+      state: 'my-manager.state1',
+    }];
+  });
+```
 
- And in your html view:
+And in your html view:
 
- ```html
- <actions-menu data-actions-menu-options="actionsOptions"
-               data-actions-menu-popover-settings="popoverSettings"
-               data-actions-menu-on-select-option="onSelectOption(id)">
-     <i class="my-font my-font-actions"></i>
-     Button actions
- </actions-menu>
- ```
+```html
+<actions-menu data-ng-ovh-actions-menu-options="actionsOptions"
+             data-ng-ovh-actions-menu-popover-settings="popoverSettings">
+   <i class="my-font my-font-actions"></i>
+   Button actions
+</actions-menu>
+```
 
 ### <a name="actionsMenu_directive_actionsMenuItem"></a>`actionsMenuItem` - directive
 
 This directive represent an item into an actions menu.
 
- This directive is included by its parent directive: actionsMenu, and should not be called offside of the module scope.
+This directive is included by its parent directive: actionsMenu, and should not be called offside of the module scope.
 
 ### Arguments
 
 | Param | Type | Details |
 | ---- | ---- | ---- |
-| actions-menu-item | ActionMenuItem | An instance of ActionMenuItem. |
-| actions-menu-item-on-click | Function | A callback function called when the action menu item has been clicked. |
+| ng-ovh-actions-menu-item | ActionMenuItem | An instance of ActionMenuItem. |
+| ng-ovh-actions-menu-item-on-click | Function | A callback function called when the action menu item has been clicked. |
 
 ### <a name="actionsMenu_object_ActionsMenu"></a>`ActionsMenu` - object
 
 Factory that describe an actions menu.
 
- A new instance of ActionsMenu is created and used by the actionsMenu directive.
+A new instance of ActionsMenu is created and used by the actionsMenu directive.
 
 ## Dependencies
 
 * ActionsMenuItem
-
-# Related links
-
- * Contribute: https://github.com/ovh-ux/ovh-angular-actions-menu/blob/master/CONTRIBUTING.md
- * Report bugs: https://github.com/ovh-ux/ovh-angular-actions-menu/issues
- * Get latest version: https://github.com/ovh-ux/ovh-angular-actions-menu
-
-# License
-
-See https://github.com/ovh-ux/ovh-angular-actions-menu/blob/master/LICENSE
-
 
 ### Arguments
 
@@ -178,17 +141,21 @@ Add an actions menu item into actions list.
 
 #### Example
 
-  ```javascript
-     angular.module("myManagerApp").controller("MyTestCtrl", function (ActionsMenu) {
-         var actionMenu = new ActionsMenu({
-             actionsMenuItems: [{
-                 title: "My Beautiful title",
-                 icon: "filled-check",
-                 href: "http://www.google.be"
-             }]
-         });
-     });
- ```
+```js
+import angular from 'angular';
+
+angular
+  .module('myApp')
+  .controller('MyCtrl', /* @ngInject */ (ActionsMenu) => {
+    const actionMenu = new ActionsMenu({
+      actionsMenuItems: [{
+        title: 'My Beautiful title',
+        icon: 'filled-check',
+        href: 'http://www.google.be',
+      }],
+    });
+  });
+```
 
 ### <a name="actionsMenu_object_ActionsMenuItem"></a>`ActionsMenuItem` - object
 
@@ -207,7 +174,6 @@ Factory that describe an item into an actions menu.
 | options.subActions | Array<Object> | Sub actions options to be added to the actions menu item. The options are the same of a first level item options. The actionsMenu directive only manage two levels of actions (only level one items with potentially sub actions). |
 | options.target | String | The target of the href anchor tag. This will be the target html attribute. |
 | options.title | String | The title of the actions menu item. |
-| options.id | String | The id of the actions menu item passed to onSelectOption handler. |
 
 #### Methods
 ##### getFullSref
@@ -245,21 +211,25 @@ Check if the instance of actions menu item has sub actions defined.
 
 #### Example
 
-  ```javascript
-     angular.module("myManagerApp").controller("MyTestCtrl", function (ActionsMenuItem) {
-         var actionMenuItem = new ActionsMenuItem({
-             title: "My Beautiful title",
-             icon: "filled-check",
-             href: "http://www.google.be"
-         });
-     });
- ```
+```js
+import angular from 'angular';
+
+angular
+  .module('myApp')
+  .controller('MyCtrl', /* @ngInject */ (ActionsMenuItem) => {
+    const actionMenuItem = new ActionsMenuItem({
+      title: 'My Beautiful title',
+      icon: 'filled-check',
+      href: 'http://www.google.be',
+    });
+  });
+```
 
 ### <a name="actionsMenu_actionsMenuProvider"></a>`actionsMenuProvider` - provider
 
 * relates to the service : [actionsMenu](#actionsMenu_service_actionsMenu)
 
-actionsMenuProvider allows developper to configure the path of the translation file.
+actionsMenuProvider allows developer to configure the path of the translation file.
 
 #### Methods
 ##### setTranslationPath
@@ -279,11 +249,15 @@ Allows you to change the default location of the translation file of the module.
 
 #### Example
 
-  ```javascript
-    angular.module("myManagerApp").config(function (actionsMenuProvider) {
-         // set a new path for translations of the module
-         actionsMenuProvider.setTranslationPath("/the/new/translation/path");
-     });
+```js
+import angular from 'angular';
+
+angular
+  .module('myApp')
+  .config((actionsMenuProvider) => {
+    // set a new path for translations of the module
+    actionsMenuProvider.setTranslationPath('/the/new/translation/path');
+  });
 ```
 
 ### <a name="actionsMenu_service_actionsMenu"></a>`actionsMenu` - service
@@ -301,3 +275,21 @@ Load the translation file from the configured path.
 | Type | Description |
 | ---- | ---- |
 | Promise | When the translation file is loaded. |
+
+## Test
+
+```sh
+yarn test
+```
+
+## Related
+
+- [ng-ovh-responsive-popover](https://github.com/ovh-ux/ng-ovh-responsive-popover)
+
+## Contributing
+
+Always feel free to help out! Whether it's [filing bugs and feature requests](https://github.com/ovh-ux/ng-ovh-actions-menu/issues/new) or working on some of the [open issues](https://github.com/ovh-ux/ng-ovh-actions-menu/issues), our [contributing guide](CONTRIBUTING.md) will help get you started.
+
+## License
+
+[BSD-3-Clause](LICENSE) © OVH SAS
