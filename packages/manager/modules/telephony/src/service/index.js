@@ -4,6 +4,7 @@ import assist from './assist';
 import consumption from './consumption';
 import contact from './contact';
 import fax from './fax';
+import timeCondition from './time-condition';
 
 const moduleName = 'ovhManagerTelephonyService';
 
@@ -12,6 +13,7 @@ angular.module(moduleName, [
   consumption,
   contact,
   fax,
+  timeCondition,
 ])
   .run(/* @ngTranslationsInject ./translations */);
 
