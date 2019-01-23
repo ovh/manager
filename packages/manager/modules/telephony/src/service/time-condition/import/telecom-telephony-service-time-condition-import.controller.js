@@ -1,4 +1,7 @@
-angular.module('managerApp').controller('TelecomTelephonyServiceTimeConditionImportCtrl', class TelecomTelephonyServiceTimeConditionImportCtrl {
+import _ from 'lodash';
+
+export default class TelecomTelephonyServiceTimeConditionImportCtrl {
+  /* @ngInject */
   constructor($translate, $uibModalInstance, TucToast, voipTimeConditionConfiguration) {
     this.$translate = $translate;
     this.$uibModalInstance = $uibModalInstance;
@@ -32,4 +35,4 @@ angular.module('managerApp').controller('TelecomTelephonyServiceTimeConditionImp
 
     return this.validFormatFile;
   }
-});
+}

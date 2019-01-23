@@ -1,4 +1,8 @@
-angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailDefaultCtrl', function ($scope, $stateParams, $q, $timeout, $filter, $translate, TucToastError, OvhApiTelephony, tucTelephonyBulk, TucToast) {
+import _ from 'lodash';
+import angular from 'angular';
+
+export default /* @ngInject */ function ($scope, $stateParams, $q, $timeout, $filter, $translate,
+  TucToastError, OvhApiTelephony, tucTelephonyBulk, TucToast) {
   const self = this;
 
   function fetchLines() {
@@ -38,7 +42,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailDefault
     });
   }
 
-  self.saveDefaultVoicemail = function () {
+  self.saveDefaultVoicemail = function saveDefaultVoicemail() {
     self.saving = true;
     const save = OvhApiTelephony.Line().v6().setOptions({
       billingAccount: $stateParams.billingAccount,
@@ -57,11 +61,11 @@ angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailDefault
     });
   };
 
-  self.cancel = function () {
+  self.cancel = function cancel() {
     self.options.defaultVoicemail = self.defaultVoicemail;
   };
 
-  self.formatNumber = function (number) {
+  self.formatNumber = function formatNumber(number) {
     const formatted = $filter('tucPhoneNumber')(number.serviceName);
     if (number.description) {
       return number.description === number.serviceName ? formatted : `${formatted} ${number.description}`;
@@ -87,17 +91,17 @@ angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailDefault
     },
   };
 
-  self.getBulkParams = function () {
+  self.getBulkParams = function getBulkParams() {
     return {
       defaultVoicemail: self.options.defaultVoicemail,
     };
   };
 
-  self.filterServices = function (services) {
+  self.filterServices = function filterServices(services) {
     return _.filter(services, service => ['sip', 'mgcp'].indexOf(service.featureType) > -1);
   };
 
-  self.onBulkSuccess = function (bulkResult) {
+  self.onBulkSuccess = function onBulkSuccess(bulkResult) {
     // display message of success or error
     tucTelephonyBulk.getTucToastInfos(bulkResult, {
       fullSuccess: $translate.instant('telephony_line_answer_default_voicemail_bulk_all_success'),
@@ -117,7 +121,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailDefault
     init();
   };
 
-  self.onBulkError = function (error) {
+  self.onBulkError = function onBulkError(error) {
     TucToast.error([$translate.instant('telephony_line_answer_default_voicemail_bulk_on_error'), _.get(error, 'msg.data')].join(' '));
   };
-});
+}
