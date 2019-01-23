@@ -87,13 +87,36 @@ export default class OvhPaymentMethodLegacy {
     return this.deleteUSPaymentMethod(legacyPaymentMethod);
   }
 
+  /**
+   *  Get available payment mean types. This will regroup the infos provided by API
+   *  with the infos from constants.
+   *  @return {Promise} That returns an array of available payment means
+   *                    transformed to payment method types.
+   */
   getAvailablePaymentMethodTypes() {
-    const availablePaymentMeans = _.get(AVAILABLE_PAYMENT_MEANS, this.target);
+    const availablePromise = this.$q.when(_.get(AVAILABLE_PAYMENT_MEANS, this.target));
 
-    return this.$q.when(_.chain(availablePaymentMeans)
-      .filter({ registerable: true })
-      .map(this.transformLegacyPaymentMethodTypeToPaymentMethodType.bind(this))
-      .value());
+    return this.$q.all({
+      infos: availablePromise,
+      availableMeans: this.OvhApiMe.AvailableAutomaticPaymentMeans().v6().get().$promise,
+    }).then(({ infos, availableMeans }) => {
+      const registerablePaymentMeans = _.filter(infos, (paymentMeanInfos) => {
+        if (!_.get(availableMeans, paymentMeanInfos.value)) {
+          return false;
+        }
+
+        if (!paymentMeanInfos.registerable) {
+          return false;
+        }
+
+        return true;
+      });
+
+      return _.map(
+        registerablePaymentMeans,
+        this.transformLegacyPaymentMethodTypeToPaymentMethodType.bind(this),
+      );
+    });
   }
 
   /* =====================================
