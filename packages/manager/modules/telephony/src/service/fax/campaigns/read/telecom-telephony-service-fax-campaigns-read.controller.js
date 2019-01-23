@@ -1,4 +1,8 @@
-angular.module('managerApp').controller('TelecomTelephonyServiceFaxCampaignsReadCtrl', function ($stateParams, $q, $uibModalInstance, OvhApiTelephony, campaign, TucToastError) {
+import angular from 'angular';
+import _ from 'lodash';
+
+export default /* @ngInject */ function ($stateParams, $q, $uibModalInstance,
+  OvhApiTelephony, campaign, TucToastError) {
   const self = this;
 
   /*= ==============================
@@ -19,7 +23,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxCampaignsRead
   =            ACTIONS            =
   =============================== */
 
-  self.close = function () {
+  self.close = function close() {
     return $uibModalInstance.close(true);
   };
 
@@ -65,4 +69,4 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxCampaignsRead
   /* -----  End of INITIALIZATION  ------*/
 
   init();
-});
+}

@@ -1,4 +1,17 @@
-angular.module('managerApp').controller('TelecomTelephonyServiceFaxCampaignsCtrl', function ($q, $stateParams, $translate, $filter, $uibModal, OvhApiTelephony, TucToast, TucToastError, tucValidator) {
+import _ from 'lodash';
+import angular from 'angular';
+import moment from 'moment';
+
+import addCtrl from './add/telecom-telephony-service-fax-campaigns-add.controller';
+import addTpl from './add/telecom-telephony-service-fax-campaigns-add.html';
+import readCtrl from './read/telecom-telephony-service-fax-campaigns-read.controller';
+import readTpl from './read/telecom-telephony-service-fax-campaigns-read.html';
+import './read/telecom-telephony-service-fax-campaigns-read.less';
+import removeCtrl from './remove/telecom-telephony-service-fax-campaigns-remove.controller';
+import removeTpl from './remove/telecom-telephony-service-fax-campaigns-remove.html';
+
+export default /* @ngInject */ function ($q, $stateParams, $translate, $filter, $uibModal,
+  OvhApiTelephony, TucToast, TucToastError, tucValidator) {
   const self = this;
 
   /*= ==============================
@@ -34,7 +47,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxCampaignsCtrl
   =            ACTIONS            =
   =============================== */
 
-  self.applySorting = function () {
+  self.applySorting = function applySorting() {
     let data = angular.copy(self.campaigns.raw);
     data = $filter('filter')(data, self.campaigns.filterBy, true);
     data = $filter('orderBy')(
@@ -45,7 +58,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxCampaignsCtrl
     self.campaigns.sorted = data;
   };
 
-  self.toggleShowFilter = function () {
+  self.toggleShowFilter = function toggleShowFilter() {
     self.campaigns.showFilter = !self.campaigns.showFilter;
     self.campaigns.filterBy = {
       status: undefined,
@@ -53,7 +66,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxCampaignsCtrl
     self.applySorting();
   };
 
-  self.orderBy = function (by) {
+  self.orderBy = function orderBy(by) {
     if (self.campaigns.orderBy === by) {
       self.campaigns.orderDesc = !self.campaigns.orderDesc;
     } else {
@@ -62,7 +75,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxCampaignsCtrl
     self.applySorting();
   };
 
-  self.refresh = function () {
+  self.refresh = function refresh() {
     self.campaigns.isLoading = true;
     OvhApiTelephony.Fax().Campaigns().v6().resetQueryCache();
     OvhApiTelephony.Fax().Campaigns().v6().resetCache();
@@ -74,11 +87,11 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxCampaignsCtrl
     });
   };
 
-  self.addCampaign = function () {
+  self.addCampaign = function addCampaign() {
     const modal = $uibModal.open({
       animation: true,
-      templateUrl: 'app/telecom/telephony/service/fax/campaigns/add/telecom-telephony-service-fax-campaigns-add.html',
-      controller: 'TelecomTelephonyServiceFaxCampaignsAddCtrl',
+      templateUrl: addTpl,
+      controller: addCtrl,
       controllerAs: 'CampaignsAddCtrl',
     });
 
@@ -93,7 +106,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxCampaignsCtrl
     return modal;
   };
 
-  self.readCampaign = function ($event, campaign) {
+  self.readCampaign = function readCampaign($event, campaign) {
     $event.preventDefault();
 
     if (campaign.status === 'stop') {
@@ -102,8 +115,8 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxCampaignsCtrl
 
     const modal = $uibModal.open({
       animation: true,
-      templateUrl: 'app/telecom/telephony/service/fax/campaigns/read/telecom-telephony-service-fax-campaigns-read.html',
-      controller: 'TelecomTelephonyServiceFaxCampaignsReadCtrl',
+      templateUrl: readTpl,
+      controller: readCtrl,
       controllerAs: 'CampaignsReadCtrl',
       resolve: {
         campaign() { return campaign; },
@@ -113,7 +126,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxCampaignsCtrl
     return modal;
   };
 
-  self.startCampaign = function ($event, campaign) {
+  self.startCampaign = function startCampaign($event, campaign) {
     $event.preventDefault();
 
     if (campaign.status === 'todo' || campaign.status === 'doing' || campaign.status === 'stop') {
@@ -133,7 +146,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxCampaignsCtrl
     });
   };
 
-  self.stopCampaign = function ($event, campaign) {
+  self.stopCampaign = function stopCampaign($event, campaign) {
     $event.preventDefault();
 
     if (campaign.status === 'stopTodo' || campaign.status === 'stopDoing') {
@@ -153,13 +166,13 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxCampaignsCtrl
     });
   };
 
-  self.removeCampaign = function ($event, campaign) {
+  self.removeCampaign = function removeCampaign($event, campaign) {
     $event.preventDefault();
 
     const modal = $uibModal.open({
       animation: true,
-      templateUrl: 'app/telecom/telephony/service/fax/campaigns/remove/telecom-telephony-service-fax-campaigns-remove.html',
-      controller: 'TelecomTelephonyServiceFaxCampaignsRemoveCtrl',
+      templateUrl: removeTpl,
+      controller: removeCtrl,
       controllerAs: 'CampaignsRemoveCtrl',
       resolve: {
         campaign() { return campaign; },
@@ -209,4 +222,4 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxCampaignsCtrl
   /* -----  End of INITIALIZATION  ------*/
 
   init();
-});
+}
