@@ -1,3 +1,12 @@
+## [1.1.2](https://github.com/ovh-ux/ng-ovh-payment-method/compare/v1.1.1...v1.1.2) (2019-01-23)
+
+
+### Bug Fixes
+
+* get informations from API for available mean types ([6b970f9](https://github.com/ovh-ux/ng-ovh-payment-method/commit/6b970f9))
+
+
+
 ## [1.1.1](https://github.com/ovh-ux/ng-ovh-payment-method/compare/v1.1.1-alpha.1...v1.1.1) (2019-01-16)
 
 
