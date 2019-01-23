@@ -1,4 +1,9 @@
-angular.module('managerApp').controller('TelecomTelephonyServiceConsumptionIncomingFaxCtrl', function ($stateParams, $q, $translate, $filter, $timeout, OvhApiTelephony, TucToastError) {
+import _ from 'lodash';
+import angular from 'angular';
+import moment from 'moment';
+
+export default /* @ngInject */ function ($stateParams, $q, $translate, $filter, $timeout,
+  OvhApiTelephony, TucToastError) {
   const self = this;
 
   function fetchIncomingConsumption() {
@@ -24,7 +29,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceConsumptionIncom
       });
   }
 
-  self.$onInit = function () {
+  self.$onInit = function $onInit() {
     self.consumption = {
       raw: null,
       sorted: null,
@@ -49,13 +54,13 @@ angular.module('managerApp').controller('TelecomTelephonyServiceConsumptionIncom
     }, err => new TucToastError(err));
   };
 
-  self.refresh = function () {
+  self.refresh = function refresh() {
     OvhApiTelephony.Service().FaxConsumption().v6().resetCache();
     OvhApiTelephony.Service().FaxConsumption().v6().resetQueryCache();
     self.$onInit();
   };
 
-  self.applySorting = function () {
+  self.applySorting = function applySorting() {
     let data = angular.copy(self.consumption.raw);
     data = $filter('filter')(data, self.consumption.filterBy);
     data = $filter('orderBy')(
@@ -66,11 +71,11 @@ angular.module('managerApp').controller('TelecomTelephonyServiceConsumptionIncom
     self.consumption.sorted = data;
   };
 
-  self.toggleShowFilter = function () {
+  self.toggleShowFilter = function toggleShowFilter() {
     self.consumption.showFilter = !self.consumption.showFilter;
     self.consumption.filterBy = {
       calling: undefined,
     };
     self.applySorting();
   };
-});
+}
