@@ -23,10 +23,10 @@ export const AVAILABLE_PAYMENT_MEANS = {
     registerable: false,
   }],
   US: [{
-    value: 'CREDIT_CARD',
+    value: 'creditCard',
     registerable: true,
   }, {
-    value: 'DEFERRED_PAYMENT_ACCOUNT',
+    value: 'deferredPaymentAccount',
     registerable: false,
   }],
 };
