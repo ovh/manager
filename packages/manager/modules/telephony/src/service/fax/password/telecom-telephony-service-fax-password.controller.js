@@ -1,17 +1,20 @@
-angular.module('managerApp').controller('TelecomTelephonyServiceFaxPasswordCtrl', function ($stateParams, $translate, $timeout, TelephonyMediator, OvhApiTelephony, TucToast, TucToastError, tucTelephonyBulk) {
+import _ from 'lodash';
+
+export default /* @ngInject */ function ($stateParams, $translate, $timeout,
+  TelephonyMediator, OvhApiTelephony, TucToast, TucToastError, tucTelephonyBulk) {
   const self = this;
 
   /*= ==============================
     =            ACTIONS            =
     =============================== */
 
-  self.reset = function () {
+  self.reset = function reset() {
     self.passwordForm.password = '';
     self.passwordForm.confirm = '';
     self.passwordForm.isSuccess = false;
   };
 
-  self.submitPasswordChange = function (form) {
+  self.submitPasswordChange = function submitPasswordChange(form) {
     self.passwordForm.isUpdating = true;
     self.passwordForm.isSuccess = false;
     return OvhApiTelephony.Fax().v6().changePassword({
@@ -76,11 +79,11 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxPasswordCtrl'
     },
   };
 
-  self.filterServices = function (services) {
+  self.filterServices = function filterServices(services) {
     return _.filter(services, service => ['fax', 'voicefax'].indexOf(service.featureType) > -1);
   };
 
-  self.getBulkParams = function () {
+  self.getBulkParams = function getBulkParams() {
     const data = {
       password: self.passwordForm.password,
     };
@@ -88,7 +91,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxPasswordCtrl'
     return data;
   };
 
-  self.onBulkSuccess = function (bulkResult) {
+  self.onBulkSuccess = function onBulkSuccess(bulkResult) {
     // display message of success or error
     tucTelephonyBulk.getTucToastInfos(bulkResult, {
       fullSuccess: $translate.instant('telephony_service_fax_password_bulk_all_success'),
@@ -107,11 +110,11 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxPasswordCtrl'
     self.faxPasswordForm.$setUntouched();
   };
 
-  self.onBulkError = function (error) {
+  self.onBulkError = function onBulkError(error) {
     TucToast.error([$translate.instant('telephony_service_fax_password_bulk_on_error'), _.get(error, 'msg.data')].join(' '));
   };
 
   /* -----  End of BULK  ------ */
 
   init();
-});
+}
