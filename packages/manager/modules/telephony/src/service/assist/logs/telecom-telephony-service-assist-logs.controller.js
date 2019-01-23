@@ -1,4 +1,8 @@
-angular.module('managerApp').controller('TelecomTelephonyServiceAssistLogsCtrl', function ($q, $translate, $state, $stateParams, tucVoipService, tucVoipLineFeature, OvhApiMe, TucToast, PAGINATION_PER_PAGE, tucTelephonyBulk) {
+import angular from 'angular';
+import _ from 'lodash';
+
+export default /* @ngInject */ function ($q, $translate, $state, $stateParams,
+  tucVoipService, tucVoipLineFeature, OvhApiMe, TucToast, PAGINATION_PER_PAGE, tucTelephonyBulk) {
   const self = this;
 
   self.service = null;
@@ -34,7 +38,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceAssistLogsCtrl',
   /**
    *  Refresh service logs.
    */
-  self.onLogsFrequencySelectChange = function () {
+  self.onLogsFrequencySelectChange = function onLogsFrequencySelectChange() {
     self.loading.refresh = true;
 
     return tucVoipService
@@ -54,7 +58,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceAssistLogsCtrl',
   /**
    *  Start edition of the feature notifications.
    */
-  self.onStartEditBtnClick = function () {
+  self.onStartEditBtnClick = function onStartEditBtnClick() {
     // copy notifications from fetched feature
     self.edition.notifications = angular.copy(self.service.feature.notifications);
 
@@ -80,7 +84,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceAssistLogsCtrl',
   /**
    *  Cancel all the modifications made to feature notifications.
    */
-  self.onCancelEditionBtnClick = function () {
+  self.onCancelEditionBtnClick = function onCancelEditionBtnClick() {
     self.edition.notifications = null;
     self.edition.mode = false;
   };
@@ -88,7 +92,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceAssistLogsCtrl',
   /**
    *  Launch the feature notifications save.
    */
-  self.onNotificationsEditFormSubmit = function () {
+  self.onNotificationsEditFormSubmit = function onNotificationsEditFormSubmit() {
     self.loading.save = true;
 
     // reset email and sendIfNull if frequency is "Never"
@@ -116,7 +120,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceAssistLogsCtrl',
   =            INITIALIZATION            =
   ====================================== */
 
-  self.$onInit = function () {
+  self.$onInit = function $onInit() {
     self.loading.init = true;
 
     return tucVoipService
@@ -152,11 +156,11 @@ angular.module('managerApp').controller('TelecomTelephonyServiceAssistLogsCtrl',
     },
   };
 
-  self.filterServices = function (services) {
+  self.filterServices = function filterServices(services) {
     return _.filter(services, service => ['sip', 'mgcp'].indexOf(service.featureType) > -1);
   };
 
-  self.getBulkParams = function () {
+  self.getBulkParams = function getBulkParams() {
     self.bulkDatas.infos.actions[0].route = `/telephony/{billingAccount}/${self.type}/{serviceName}`;
     const logs = self.edition.mode
       ? self.edition.notifications.logs : self.service.feature.notifications.logs;
@@ -168,7 +172,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceAssistLogsCtrl',
     };
   };
 
-  self.onBulkSuccess = function (bulkResult) {
+  self.onBulkSuccess = function onBulkSuccess(bulkResult) {
     // display message of success or error
     tucTelephonyBulk.getTucToastInfos(bulkResult, {
       fullSuccess: $translate.instant('telephony_line_assist_support_logs_bulk_all_success'),
@@ -186,7 +190,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceAssistLogsCtrl',
     self.$onInit();
   };
 
-  self.onBulkError = function (error) {
+  self.onBulkError = function onBulkError(error) {
     TucToast.error([$translate.instant('telephony_line_assist_support_logs_bulk_on_error'), _.get(error, 'msg.data')].join(' '));
   };
-});
+}

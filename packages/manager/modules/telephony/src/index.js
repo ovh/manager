@@ -10,9 +10,10 @@ import constant from './telecom-telephony.constant';
 import telecomTelephonyTemplate from './telecom-telephony.html';
 import telecomTelephonyMainTemplate from './telecom-telephony-main.view.html';
 
-import components from './components';
 import billingAccountTpl from './billingAccount/telecom-telephony-billing-account.html';
 import billingAccountCtrl from './billingAccount/telecom-telephony-billing-account.controller';
+import components from './components';
+import service from './service';
 
 const moduleName = 'ovhManagerTelephony';
 
@@ -20,6 +21,7 @@ angular.module(moduleName, [
   components,
   'ovh-angular-responsive-tabs',
   'ovhManagerCore',
+  service,
   'telecomUniverseComponents',
   'ui.router',
 ])
