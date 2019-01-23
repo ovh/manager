@@ -1,4 +1,7 @@
-angular.module('managerApp').service('TelephonySidebar', function ($translate, SidebarMenu, tucTelecomVoip, tucVoipService) {
+import angular from 'angular';
+import _ from 'lodash';
+
+export default /* @nInject */ function ($translate, SidebarMenu, tucTelecomVoip, tucVoipService) {
   const self = this;
   self.mainSectionItem = null;
 
@@ -21,7 +24,7 @@ angular.module('managerApp').service('TelephonySidebar', function ($translate, S
   /*
      * Telephony sidebar initilization
      */
-  self.initTelephonySubsection = function () {
+  self.initTelephonySubsection = function initTelephonySubsection() {
     return tucTelecomVoip.fetchAll().then((billingAccounts) => {
       /* ----------  billingAccount display  ---------- */
 
@@ -96,7 +99,7 @@ angular.module('managerApp').service('TelephonySidebar', function ($translate, S
     });
   };
 
-  self.init = function () {
+  self.init = function init() {
     self.mainSectionItem = SidebarMenu.addMenuItem({
       title: $translate.instant('telecom_sidebar_section_telephony'),
       error: $translate.instant('telecom_sidebar_load_error'),
@@ -112,4 +115,4 @@ angular.module('managerApp').service('TelephonySidebar', function ($translate, S
 
     return self.mainSectionItem;
   };
-});
+}
