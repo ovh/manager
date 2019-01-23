@@ -1,3 +1,17 @@
+# [5.0.0-beta.0](https://github.com/ovh-ux/ng-ovh-responsive-popover/compare/v5.0.0-alpha.2...v5.0.0-beta.0) (2019-01-23)
+
+
+### Code Refactoring
+
+* add missing ng prefix to the angular module name ([a725690](https://github.com/ovh-ux/ng-ovh-responsive-popover/commit/a725690))
+
+
+### BREAKING CHANGES
+
+* module is now named as `ngOvhResponsivePopover`
+
+
+
 # [5.0.0-alpha.2](https://github.com/ovh-ux/ovh-angular-responsive-popover/compare/v5.0.0-alpha.1...v5.0.0-alpha.2) (2018-11-27)
 
 
