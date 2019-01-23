@@ -1,7 +1,7 @@
 import _ from 'lodash';
 
 export default /* @ngInject */ function ($q, $translate, $stateParams, TelephonyMediator,
-  SidebarMenu, TucToast, OvhApiOrder, OvhApiTelephony) {
+  TucToast, OvhApiOrder, OvhApiTelephony) {
   const self = this;
 
   self.loading = {
@@ -22,9 +22,10 @@ export default /* @ngInject */ function ($q, $translate, $stateParams, Telephony
     self.group.description = newServiceName;
     return self.group.save().then(() => {
       self.group.stopEdition();
-      SidebarMenu.updateItemDisplay({
-        title: self.group.getDisplayedName(),
-      }, self.group.billingAccount, 'telecom-telephony-section');
+      /* @TODO */
+      // SidebarMenu.updateItemDisplay({
+      //   title: self.group.getDisplayedName(),
+      // }, self.group.billingAccount, 'telecom-telephony-section');
     }, (error) => {
       self.group.stopEdition(true);
       TucToast.error([$translate.instant('telephony_group_rename_error', $stateParams), error.data.message].join(' '));

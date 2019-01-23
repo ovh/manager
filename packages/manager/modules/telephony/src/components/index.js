@@ -9,7 +9,8 @@ import timeCondition from './timeCondition';
 
 import mediatorService from './telephony-mediator.service';
 import voipService from './telephony-voip-service.service';
-import sidebarService from './sidebar/telephony-sidebar.service';
+/* @TODO remove reference to sidebar service -> should be managed by the host project */
+// import sidebarService from './sidebar/telephony-sidebar.service';
 
 const moduleName = 'ovhManagerTelephonyComponents';
 
@@ -22,7 +23,7 @@ angular.module(moduleName, [
   timeCondition,
 ])
   .service('TelephonyMediator', mediatorService)
-  .service('TelephonyVoipService', voipService)
-  .service('TelephonySidebar', sidebarService);
+  .service('TelephonyVoipService', voipService);
+// .service('TelephonySidebar', sidebarService);
 
 export default moduleName;
