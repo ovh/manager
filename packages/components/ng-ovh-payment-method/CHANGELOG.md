@@ -1,3 +1,12 @@
+## [1.1.3](https://github.com/ovh-ux/ng-ovh-payment-method/compare/v1.1.2...v1.1.3) (2019-01-23)
+
+
+### Bug Fixes
+
+* US available payment mean ([95df5d0](https://github.com/ovh-ux/ng-ovh-payment-method/commit/95df5d0))
+
+
+
 ## [1.1.2](https://github.com/ovh-ux/ng-ovh-payment-method/compare/v1.1.1...v1.1.2) (2019-01-23)
 
 
