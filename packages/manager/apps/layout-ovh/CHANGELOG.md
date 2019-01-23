@@ -1,3 +1,12 @@
+## [1.2.5](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-layout-ovh@1.2.4...@ovh-ux/manager-layout-ovh@1.2.5) (2019-01-23)
+
+
+### Bug Fixes
+
+* **layout-ovh:** update sms.dashboard state to sms.service.dashboard ([2c526e4](https://github.com/ovh-ux/manager/commit/2c526e4))
+
+
+
 ## [1.2.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-layout-ovh@1.2.3...@ovh-ux/manager-layout-ovh@1.2.4) (2019-01-21)
 
 

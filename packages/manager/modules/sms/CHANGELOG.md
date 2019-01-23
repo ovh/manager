@@ -1,3 +1,17 @@
+# [1.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-sms@0.1.4...@ovh-ux/manager-sms@1.0.0) (2019-01-23)
+
+
+### Features
+
+* **sms:** add global sms order ([e723a8b](https://github.com/ovh-ux/manager/commit/e723a8b))
+
+
+### BREAKING CHANGES
+
+* **sms:** rename sms.* states to sms.service.*
+
+
+
 ## [0.1.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-sms@0.1.3...@ovh-ux/manager-sms@0.1.4) (2019-01-21)
 
 
