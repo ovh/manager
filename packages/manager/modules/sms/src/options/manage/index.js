@@ -8,7 +8,7 @@ angular.module(moduleName, []).config(($stateProvider) => {
   $stateProvider.state('sms.service.options.manage', {
     url: '/manage',
     views: {
-      'smsView@sms': {
+      'smsView@sms.service': {
         template,
         controller,
         controllerAs: 'TelecomSmsOptionsManageCtrl',

@@ -8,7 +8,7 @@ angular.module(moduleName, []).config(($stateProvider) => {
   $stateProvider.state('sms.service.options.recredit', {
     url: '/recredit',
     views: {
-      'smsView@sms': {
+      'smsView@sms.service': {
         template,
         controller,
         controllerAs: 'TelecomSmsOptionsRecreditCtrl',
