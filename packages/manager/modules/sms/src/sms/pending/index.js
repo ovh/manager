@@ -9,7 +9,7 @@ angular.module(moduleName, []).config(($stateProvider) => {
   $stateProvider.state('sms.service.sms.pending', {
     url: '/pending',
     views: {
-      'smsView@sms': {
+      'smsView@sms.service': {
         template,
         controller,
         controllerAs: 'SmsPendingCtrl',
