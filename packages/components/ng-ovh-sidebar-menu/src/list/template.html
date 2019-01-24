@@ -1,0 +1,12 @@
+<ul data-vs-repeat class="oui-sidebar-list">
+    <li class="oui-sidebar-list__item"
+        data-ng-class="{
+            'category-{{item.category}}' : item.category !== 'none',
+            'status-{{item.status}}' : item.status !== 'none',
+        }"
+        data-ng-if="(ListCtrl.namespace && item.namespace === ListCtrl.namespace) || (!ListCtrl.namespace && !item.namespace)"
+        data-sidebar-menu-list-item="item"
+        data-ng-repeat="item in ListCtrl.items track by $index"
+        aria-haspopup="true" aria-expanded="false">
+    </li>
+</ul>
