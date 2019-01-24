@@ -76,7 +76,7 @@ export default class {
    * @return {Boolean}
    */
   isValidNumber(value) {
-    return !isEmpty(value) ? this.TelecomSmsPhoneBooksNumber.IsValid(value) : true;
+    return !isEmpty(value) ? this.TelecomSmsPhoneBooksNumber.isValid(value) : true;
   }
 
   /**
