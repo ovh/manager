@@ -1,3 +1,72 @@
+# [8.0.0-beta.0](https://github.com/ovh-ux/ng-ovh-sidebar-menu/compare/v8.0.0-alpha.4...v8.0.0-beta.0) (2019-01-24)
+
+
+### Code Refactoring
+
+* add missing ng prefix to the angular module name ([a262680](https://github.com/ovh-ux/ng-ovh-sidebar-menu/commit/a262680))
+
+
+### BREAKING CHANGES
+
+* module is now named as `ngOvhSidebarMenu`
+
+
+
+## [7.2.2](https://github.com/ovh-ux/ng-ovh-sidebar-menu/compare/v7.2.1...v7.2.2) (2018-11-28)
+
+
+
+## [7.2.1](https://github.com/ovh-ux/ng-ovh-sidebar-menu/compare/v8.0.0-alpha.1...v7.2.1) (2018-11-28)
+
+
+### Bug Fixes
+
+* remove jshint and jscs ([37264b1](https://github.com/ovh-ux/ng-ovh-sidebar-menu/commit/37264b1))
+* **bower:** add bowerrc file to use the right registry ([26e58eb](https://github.com/ovh-ux/ng-ovh-sidebar-menu/commit/26e58eb))
+* **provider:** close automatic menu item on change state ([bf68c23](https://github.com/ovh-ux/ng-ovh-sidebar-menu/commit/bf68c23))
+
+
+
+# [7.2.0](https://github.com/ovh-ux/ng-ovh-sidebar-menu/compare/v7.1.3...v7.2.0) (2018-06-07)
+
+
+### Bug Fixes
+
+* set min version in package.json ([2f7c30d](https://github.com/ovh-ux/ng-ovh-sidebar-menu/commit/2f7c30d))
+
+
+### Features
+
+* add actions menu click handling ([5865801](https://github.com/ovh-ux/ng-ovh-sidebar-menu/commit/5865801))
+
+
+
+## [7.1.3](https://github.com/ovh-ux/ng-ovh-sidebar-menu/compare/v7.1.2...v7.1.3) (2018-06-06)
+
+
+
+## [7.1.2](https://github.com/ovh-ux/ng-ovh-sidebar-menu/compare/v7.1.1...v7.1.2) (2018-05-24)
+
+
+
+## [7.1.1](https://github.com/ovh-ux/ng-ovh-sidebar-menu/compare/v7.1.0...v7.1.1) (2018-05-24)
+
+
+### Bug Fixes
+
+* **i18n:** retrieve translations ([9f0e168](https://github.com/ovh-ux/ng-ovh-sidebar-menu/commit/9f0e168))
+
+
+
+# [7.1.0](https://github.com/ovh-ux/ng-ovh-sidebar-menu/compare/v7.0.0...v7.1.0) (2018-04-10)
+
+
+### Features
+
+* add onclick function to side bar external link ([7fc53ac](https://github.com/ovh-ux/ng-ovh-sidebar-menu/commit/7fc53ac))
+
+
+
 # [8.0.0-alpha.4](https://github.com/ovh-ux/ovh-angular-sidebar-menu/compare/v8.0.0-alpha.3...v8.0.0-alpha.4) (2018-12-17)
 
 
