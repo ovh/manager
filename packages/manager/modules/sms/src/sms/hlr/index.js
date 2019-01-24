@@ -8,7 +8,7 @@ angular.module(moduleName, []).config(($stateProvider) => {
   $stateProvider.state('sms.service.sms.hlr', {
     url: '/hlr',
     views: {
-      'smsView@sms': {
+      'smsView@sms.service': {
         template,
         controller,
         controllerAs: 'SmsHlrCtrl',

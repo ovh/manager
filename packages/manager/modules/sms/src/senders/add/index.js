@@ -8,7 +8,7 @@ angular.module(moduleName, []).config(($stateProvider) => {
   $stateProvider.state('sms.service.senders.add', {
     url: '/add',
     views: {
-      'smsView@sms': {
+      'smsView@sms.service': {
         template,
         controller,
         controllerAs: 'SmsSendersAddCtrl',
