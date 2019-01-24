@@ -1,3 +1,12 @@
+## [1.0.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-sms@1.0.0...@ovh-ux/manager-sms@1.0.1) (2019-01-24)
+
+
+### Bug Fixes
+
+* **sms:** restore access to states ([d9d3355](https://github.com/ovh-ux/manager/commit/d9d3355))
+
+
+
 # [1.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-sms@0.1.4...@ovh-ux/manager-sms@1.0.0) (2019-01-23)
 
 
