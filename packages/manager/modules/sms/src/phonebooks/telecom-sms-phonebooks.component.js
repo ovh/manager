@@ -1,5 +1,6 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
+import 'angular-ui-validate';
 
 import controller from './telecom-sms-phonebooks.controller';
 import template from './telecom-sms-phonebooks.html';
@@ -11,6 +12,7 @@ const moduleName = 'ovhManagerSmsPhonebooksComponent';
 angular
   .module(moduleName, [
     'ui.router',
+    'ui.validate',
     create,
   ])
   .config(($stateProvider) => {
