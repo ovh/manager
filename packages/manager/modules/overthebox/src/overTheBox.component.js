@@ -25,6 +25,7 @@ import logs from './logs';
 import order from './order';
 import remote from './remote';
 import tasks from './tasks';
+import warning from './warning';
 
 import './overTheBox.scss';
 
@@ -44,6 +45,7 @@ angular
     order,
     remote,
     tasks,
+    warning,
   ])
   .config(($stateProvider) => {
     $stateProvider.state('overTheBox', {
@@ -51,12 +53,7 @@ angular
       abstract: true,
       component: 'ovhManagerOverTheBoxComponent',
       translations: {
-        value: [
-          '.',
-          './details',
-          './warning',
-          './remote',
-        ],
+        value: ['.'],
         format: 'json',
       },
       resolve: {

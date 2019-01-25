@@ -13,6 +13,7 @@ angular
   .module(moduleName, [
     ovhManagerOtbWarning,
   ])
+  .run(/* @ngTranslationsInject:json ./translations */)
   .constant('OVERTHEBOX_DETAILS', constant)
   .config(($stateProvider) => {
     $stateProvider.state('overTheBox.details', {
