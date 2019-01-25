@@ -18,6 +18,8 @@
     "@ovh-ux/telecom-universe-components": "^1.5.1",
     "@uirouter/angularjs": "^1.0.15",
     "angular": "1.7.5",
+    "angular-messages": "^1.7.6",
+    "angular-ui-validate": "^1.2.3",
     "at-internet-ui-router-plugin": "^1.0.0",
     "font-awesome": "4.7.0",
     "jquery": "^2.1.3",
