@@ -1,3 +1,12 @@
+## [1.0.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-sms-app@1.0.0...@ovh-ux/manager-sms-app@1.0.1) (2019-01-25)
+
+
+### Bug Fixes
+
+* **sms:** add error missing dependencies ([#144](https://github.com/ovh-ux/manager/issues/144)) ([b96ff13](https://github.com/ovh-ux/manager/commit/b96ff13))
+
+
+
 # [1.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-sms-app@0.1.3...@ovh-ux/manager-sms-app@1.0.0) (2019-01-23)
 
 
