@@ -1,4 +1,11 @@
-angular.module('managerApp').service('TelecomTelephonyBillingAccountOrderAliasService', function ($q, OvhApiTelephony, OvhApiMe, TELEPHONY_NUMBER_OFFER) {
+import _ from 'lodash';
+
+export default /* @ngInject */ function TelecomTelephonyBillingAccountOrderAliasService(
+  $q,
+  OvhApiTelephony,
+  OvhApiMe,
+  TELEPHONY_NUMBER_OFFER,
+) {
   /**
    * Replace all spaces by no-breaking-spaces
    * @param {String} str Input string
@@ -22,7 +29,7 @@ angular.module('managerApp').service('TelecomTelephonyBillingAccountOrderAliasSe
    * Get the current user country
    * @returns {Promise}
    */
-  this.getUser = function () {
+  this.getUser = function getUser() {
     return OvhApiMe.v6()
       .get().$promise
       .then((user) => {
@@ -41,7 +48,7 @@ angular.module('managerApp').service('TelecomTelephonyBillingAccountOrderAliasSe
    * @param          {Object} filter         Filter to apply on the 2API response
    * @returns {Promise}
    */
-  this.getOfferDetails = function (billingAccount, country, idsParam, filter) {
+  this.getOfferDetails = function getOfferDetails(billingAccount, country, idsParam, filter) {
     TELEPHONY_NUMBER_OFFER.detail.international.clarification = `(${generateInternationalClarification(country)})`; // eslint-disable-line
     const ids = _.isArray(idsParam) ? idsParam : [idsParam];
     return OvhApiTelephony.Number().Aapi().prices({
@@ -80,7 +87,7 @@ angular.module('managerApp').service('TelecomTelephonyBillingAccountOrderAliasSe
    * @param {Object} filter         Filter to apply on the 2API response
    * @returns {Promise}
    */
-  this.getOffers = function (billingAccount, country, filter) {
+  this.getOffers = function getOffers(billingAccount, country, filter) {
     return this.getOfferDetails(billingAccount, country, TELEPHONY_NUMBER_OFFER.list, filter);
   };
 
@@ -92,7 +99,7 @@ angular.module('managerApp').service('TelecomTelephonyBillingAccountOrderAliasSe
    * @param {String} range   Beginning of the number
    * @returns {*}
    */
-  this.getPredefinedNumbers = function (country, type, zone, range) {
+  this.getPredefinedNumbers = function getPredefinedNumbers(country, type, zone, range) {
     return OvhApiTelephony.Number().v6().getSpecificNumbers({
       country,
       type,
@@ -115,7 +122,7 @@ angular.module('managerApp').service('TelecomTelephonyBillingAccountOrderAliasSe
    * @param {String} country        be | ch | de | es | fr | gb
    * @param {string} type           geographic | nogeographic | special
    */
-  this.getPrice = function (billingAccount, country, type) {
+  this.getPrice = function getPrice(billingAccount, country, type) {
     return this.getOfferDetails(
       billingAccount,
       country,
@@ -141,8 +148,8 @@ angular.module('managerApp').service('TelecomTelephonyBillingAccountOrderAliasSe
    * Get all foreign countries
    * @return {Promise}
    */
-  this.getForeignCountries = function () {
+  this.getForeignCountries = function getForeignCountries() {
     return this.getUser()
       .then(() => OvhApiTelephony.v6().schema().$promise.then(schema => schema.models['telephony.NumberCountryEnum'].enum));
   };
-});
+}

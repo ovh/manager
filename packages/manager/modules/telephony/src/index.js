@@ -5,15 +5,18 @@ import 'ovh-angular-responsive-tabs';
 
 import 'ovh-ui-kit/dist/oui.css';
 import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
+import 'ovh-manager-webfont/dist/css/ovh-font.css';
+import 'font-awesome/css/font-awesome.css';
+
+import billingAccount from './billingAccount';
 
 import constant from './telecom-telephony.constant';
-import telecomTelephonyTemplate from './telecom-telephony.html';
-import telecomTelephonyMainTemplate from './telecom-telephony-main.view.html';
-
-import billingAccountTpl from './billingAccount/telecom-telephony-billing-account.html';
-import billingAccountCtrl from './billingAccount/telecom-telephony-billing-account.controller';
 import components from './components';
 import service from './service';
+
+import routing from './telecom-telephony.routes';
+
+import './telecom-telephony.scss';
 
 const moduleName = 'ovhManagerTelephony';
 
@@ -24,7 +27,9 @@ angular.module(moduleName, [
   service,
   'telecomUniverseComponents',
   'ui.router',
+  billingAccount,
 ])
+  .constant('PAGINATION_PER_PAGE', 5)
   .constant('TELEPHONY_INFRASTRUCTURE_OPTIONS', constant.TELEPHONY_INFRASTRUCTURE_OPTIONS)
   .constant('TELEPHONY_RMA', constant.TELEPHONY_RMA)
   .constant('TELEPHONY_REPAYMENT_CONSUMPTION', constant.TELEPHONY_REPAYMENT_CONSUMPTION)
@@ -35,51 +40,6 @@ angular.module(moduleName, [
   .constant('TELEPHONY_GUIDES', constant.TELEPHONY_GUIDES)
   .constant('TELEPHONY_REDIRECT_URLS', constant.TELEPHONY_REDIRECT_URLS)
   .constant('TELEPHONY_REDIRECT_V4_HASH', constant.TELEPHONY_REDIRECT_V4_HASH)
-  .config(($stateProvider) => {
-    $stateProvider.state('telephony', {
-      url: '/telephony/:billingAccount',
-      views: {
-        '': {
-          template: billingAccountTpl,
-          controller: billingAccountCtrl,
-        },
-        'telecomView@telephony': {
-          template: telecomTelephonyTemplate,
-        },
-        'telephonyView@telephony': {
-          template: telecomTelephonyMainTemplate,
-        },
-        /* @TODO
-        'groupView@telecom.telephony': {
-          templateUrl: 'app/telecom/telephony/billingAccount/telecom-telephony-billing-account.html',
-          controller: 'TelecomTelephonyBillingAccountCtrl',
-          controllerAs: 'BillingAccountCtrl',
-        },
-        'groupInnerView@telephony': {
-          templateUrl: 'app/telecom/telephony/billingAccount/dashboard/telecom-telephony-billing-account-dashboard.html',
-          controller: 'TelecomTelephonyBillingAccountDashboardCtrl',
-          controllerAs: 'DashboardCtrl',
-        },
-        */
-      },
-      /* @TODO
-      resolve: {
-        initTelephony($q, $stateParams, TelephonyMediator) {
-          // init all groups, lines and numbers
-          TelephonyMediator.init()
-            .then(() => TelephonyMediator.getGroup($stateParams.billingAccount)
-              .then(group => TelephonyMediator.setCurrentGroup(group)));
-          return $q.when({ init: true });
-        },
-        $title(translations, $translate, $stateParams, OvhApiTelephony) {
-          return OvhApiTelephony.v6().get({
-            billingAccount: $stateParams.billingAccount,
-          }).$promise.then(data => $translate.instant('telephony_page_title', { name: data.description || $stateParams.billingAccount }, null, null, 'escape')).catch(() => $translate('telephony_page_title', { name: $stateParams.billingAccount }));
-        },
-      },
-      */
-      translations: ['.', './billingAccount', './billingAccount/dashboard'],
-    });
-  });
+  .config(routing);
 
 export default moduleName;

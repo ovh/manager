@@ -1,7 +1,14 @@
 import _ from 'lodash';
 
-export default /* @ngInject */ function ($q, $translate, $stateParams, TelephonyMediator,
-  TucToast, OvhApiOrder, OvhApiTelephony) {
+export default /* @ngInject */ function (
+  $q,
+  $translate,
+  $stateParams,
+  TelephonyMediator,
+  TucToast,
+  OvhApiOrder,
+  OvhApiTelephony,
+) {
   const self = this;
 
   self.loading = {

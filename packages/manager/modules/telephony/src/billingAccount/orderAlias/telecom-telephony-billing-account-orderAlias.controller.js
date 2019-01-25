@@ -1,4 +1,10 @@
-angular.module('managerApp').controller('TelecomTelephonyBillingAccountOrderAliasCtrl', function ($q, $state, $stateParams, atInternet, TelephonyMediator, TelecomTelephonyBillingAccountOrderAliasService) {
+export default /* @ngInject */ function TelecomTelephonyBillingAccountOrderAliasCtrl(
+  $q,
+  $state,
+  $stateParams,
+  atInternet,
+  TelecomTelephonyBillingAccountOrderAliasService,
+) {
   this.state = $state.parent;
 
   const self = this;
@@ -40,4 +46,4 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountOrderAlia
   }
 
   init();
-});
+}

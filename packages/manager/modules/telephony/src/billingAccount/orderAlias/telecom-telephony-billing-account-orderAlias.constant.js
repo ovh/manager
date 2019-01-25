@@ -1,4 +1,4 @@
-angular.module('managerApp').constant('TELEPHONY_NUMBER_OFFER', {
+export const TELEPHONY_NUMBER_OFFER = {
   list: [
     'geographical',
     'no-geographical',
@@ -12,7 +12,7 @@ angular.module('managerApp').constant('TELEPHONY_NUMBER_OFFER', {
       tip: 'telephony_order_geographical_tip',
       description: 'telephony_order_geographical_description',
       clarification: '(&nbsp;01,&nbsp;02,&nbsp;...&nbsp;)',
-      state: 'telecom.telephony.orderAlias.geographical',
+      state: 'telephony.billingAccount.orderAlias.geographical',
     },
     'no-geographical': {
       id: 'no-geographical',
@@ -20,7 +20,7 @@ angular.module('managerApp').constant('TELEPHONY_NUMBER_OFFER', {
       tip: 'telephony_order_nogeographical_tip',
       description: 'telephony_order_nogeographical_description',
       clarification: '(&nbsp;09&nbsp;)',
-      state: 'telecom.telephony.orderAlias.nongeographical',
+      state: 'telephony.billingAccount.orderAlias.nongeographical',
     },
     special: {
       id: 'special',
@@ -28,7 +28,7 @@ angular.module('managerApp').constant('TELEPHONY_NUMBER_OFFER', {
       tip: 'telephony_order_special_tip',
       description: 'telephony_order_special_description',
       clarification: '(&nbsp;08&nbsp;)',
-      state: 'telecom.telephony.orderAlias.special',
+      state: 'telephony.billingAccount.orderAlias.special',
     },
     international: {
       id: 'international',
@@ -36,7 +36,7 @@ angular.module('managerApp').constant('TELEPHONY_NUMBER_OFFER', {
       tip: 'telephony_order_international_tip',
       description: 'telephony_order_international_description',
       clarification: '(&nbsp;+32,&nbsp;+44,&nbsp;+49,&nbsp;...&nbsp;)',
-      state: 'telecom.telephony.orderAlias.international',
+      state: 'telephony.billingAccount.orderAlias.international',
     },
   },
   preAmount: [
@@ -65,4 +65,8 @@ angular.module('managerApp').constant('TELEPHONY_NUMBER_OFFER', {
     ch: '+41',
     es: '+34',
   },
-});
+};
+
+export default {
+  TELEPHONY_NUMBER_OFFER,
+};
