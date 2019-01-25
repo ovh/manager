@@ -1,3 +1,13 @@
+## [1.0.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-sms@1.0.1...@ovh-ux/manager-sms@1.0.2) (2019-01-25)
+
+
+### Bug Fixes
+
+* **sms:** add error missing dependencies ([#144](https://github.com/ovh-ux/manager/issues/144)) ([b96ff13](https://github.com/ovh-ux/manager/commit/b96ff13))
+* **sms.compose:** improve addPhonebookContact form display ([6a0e6d5](https://github.com/ovh-ux/manager/commit/6a0e6d5))
+
+
+
 ## [1.0.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-sms@1.0.0...@ovh-ux/manager-sms@1.0.1) (2019-01-24)
 
 
