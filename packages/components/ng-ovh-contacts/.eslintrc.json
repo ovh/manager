@@ -1,5 +1,8 @@
 {
   "extends": "airbnb-base",
+  "plugins": [
+    "markdown"
+  ],
   "env": {
     "browser": true
   },
