@@ -1,5 +1,8 @@
 {
   "extends": "airbnb-base",
+  "env": {
+    "browser": true
+  },
   "rules": {
     "import/no-unresolved": 0
   }
