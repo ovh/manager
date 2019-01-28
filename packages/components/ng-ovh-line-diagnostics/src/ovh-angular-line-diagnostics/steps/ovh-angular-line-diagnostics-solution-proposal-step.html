@@ -401,6 +401,17 @@
                     </oui-field>
                 </div>
 
+                <oui-field
+                    data-label="{{:: 'tools_lineDiagnostics_solution_proposal_step_request_form_question_modemMac_title' | translate }}"
+                    data-ng-if="$ctrl.currentLineDiagnostic.hasQuestionToAnswer('modemMac')"
+                    data-ng-init="$ctrl.setDefaultValue('modemMac')">
+                    <input class="oui-input"
+                           type="text"
+                           name="modemMac"
+                           data-ng-model="$ctrl.currentLineDiagnostic.data.answers.modemMac"
+                           required>
+                </oui-field>
+
                 <oui-field data-label="{{:: 'tools_lineDiagnostics_solution_proposal_step_request_form_question_comment_title' | translate }}">
                     <oui-textarea data-name="comment"
                                   data-model="$ctrl.currentLineDiagnostic.data.answers.comment"
