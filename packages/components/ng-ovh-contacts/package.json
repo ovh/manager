@@ -2,29 +2,32 @@
   "name": "@ovh-ux/ng-ovh-contacts",
   "version": "1.0.0",
   "description": "Helpers for managing OVH Contacts",
-  "author": "OVH SAS",
-  "license": "BSD-3-Clause",
-  "repository": "ovh-ux/ng-ovh-contacts",
   "keywords": [
     "contacts",
-    "ovh",
     "creation",
-    "edition"
+    "edition",
+    "ovh"
+  ],
+  "repository": "ovh-ux/ng-ovh-contacts",
+  "license": "BSD-3-Clause",
+  "author": "OVH SAS",
+  "files": [
+    "dist"
   ],
   "main": "./dist/cjs/index.js",
   "browser": "./dist/umd/ng-ovh-contacts.js",
   "scripts": {
     "build": "rollup -c",
-    "prepare": "rollup -c",
     "dev": "rollup -c --watch",
-    "test": "eslint --quiet src",
     "lint": "eslint --quiet --fix src",
+    "prepare": "rollup -c",
+    "test": "eslint --quiet src",
     "version": "npx conventional-changelog-cli -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
     "postversion": "git push && git push --tags"
   },
-  "files": [
-    "dist"
-  ],
+  "dependencies": {
+    "lodash": "^4.17.11"
+  },
   "devDependencies": {
     "@commitlint/cli": "^7.1.2",
     "@commitlint/config-angular": "^7.1.2",
@@ -48,8 +51,5 @@
     "ovh-ui-angular": "^2.23.x",
     "ovh-ui-kit": "^2.23.x",
     "ui-select": "^0.19.8"
-  },
-  "dependencies": {
-    "lodash": "^4.17.11"
   }
 }
