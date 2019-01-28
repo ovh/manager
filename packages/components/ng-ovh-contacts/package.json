@@ -15,6 +15,7 @@
     "dist"
   ],
   "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
   "browser": "./dist/umd/ng-ovh-contacts.js",
   "scripts": {
     "build": "rollup -c",
