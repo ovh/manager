@@ -20,7 +20,8 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c --watch",
-    "lint": "run-p lint:js",
+    "lint": "run-p lint:html lint:js",
+    "lint:html": "htmlhint 'src/**/*.html'",
     "lint:js": "eslint --quiet --fix src",
     "prepare": "rollup -c",
     "test": "eslint --quiet src",
