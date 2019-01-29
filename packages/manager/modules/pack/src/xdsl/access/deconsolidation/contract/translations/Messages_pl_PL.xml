@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_access_deconsolidation_contract_title" qtlid="9983">Potwierdź</translation>
+   <translation id="xdsl_access_deconsolidation_contract_are_you_sure" qtlid="309243">Czy chcesz wykonać następującą operację:</translation>
+   <translation id="xdsl_access_deconsolidation_contract_modification_operation" qtlid="310140">Dégroupage Total</translation>
+   <translation id="xdsl_access_deconsolidation_contract_modified" qtlid="310309">sur la ligne suivante: <strong>{{ serviceName }}</strong></translation>
+   <translation id="xdsl_access_deconsolidation_contract_number_not_transferred" qtlid="310322">Sans RIO, votre numéro sera perdu.</translation>
+   <translation id="xdsl_access_deconsolidation_contract_price" qtlid="310335">Cette opération vous sera facturée <span class="text-underline">{{ price }}</span>.</translation>
+   <translation id="xdsl_access_deconsolidation_contract_monthlyPrice" qtlid="310348">Vous allez changer d'offre d'un dégroupage partiel à total, votre abonnement mensuel sera de <span class="text-underline">{{ price }}</span> /mois.</translation>
+   <translation id="xdsl_access_deconsolidation_contract_desc_agreement1" qtlid="310361">Le passage de partiel à total vous ré-engage pour {{ engagement }} mois.</translation>
+   <translation id="xdsl_access_deconsolidation_contract_desc_agreement2" qtlid="310374">Vous sollicitez l'exécution immédiate de la prestation et reconnaissez qu'à ce titre, vous ne pourrez pas exercer votre droit de rétractation conformément aux dispositions de l'article L.121-21-8 du code de la consommation. Mise en place du service sous 7 jours (Délai moyen constaté).</translation>
+   <translation id="xdsl_access_deconsolidation_contract_desc_agreement3" qtlid="310387">Je reconnais avoir pris connaissance des Conditions Générales de Vente de <a target="_blank" href="{{ packAdslPro2013 }}">l'offre xDSL Express</a> et/ou de <a target="_blank" href="{{ packAdslEnterprise2013 }}">l'offre Enterprise</a>.</translation>
+</translations>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_modem_dhcp_title" qtlid="311778">DHCP</translation>
+   <translation id="xdsl_modem_dhcp_description" qtlid="311791">Un servidor DHCP (Dynamic Host Configuration Protocol) tiene la función de asignar una dirección IP y una máscara de subred a un elemento conectado por una duración determinada (a través de las concesiones DHCP). DHCP también puede configurar otros parámetros como la dirección de la pasarela (gateway) por defecto o de los servidores DNS, por ejemplo.</translation>
+
+   <translation id="xdsl_modem_dhcp_server_dhcp" qtlid="311804">Servidor DHCP</translation>
+   <translation id="xdsl_modem_dhcp_gateway" qtlid="259844">Pasarela</translation>
+   <translation id="xdsl_modem_dhcp_primary_dns" qtlid="311817">DNS primario</translation>
+   <translation id="xdsl_modem_dhcp_secondary_dns" qtlid="170408">DNS secundario</translation>
+   <translation id="xdsl_modem_dhcp_dns_domain" qtlid="311830">Nombre de dominio DHCP</translation>
+   <translation id="xdsl_modem_dhcp_playa_dhcp" qtlid="311843">Rango DHCP</translation>
+   <translation id="xdsl_modem_dhcp_playa_dhcp_start" qtlid="456479">Adresse de début de la plage DHCP</translation>
+   <translation id="xdsl_modem_dhcp_playa_dhcp_end" qtlid="456492">Adresse de fin de la plage DHCP</translation>
+   <translation id="xdsl_modem_dhcp_allocation_time" qtlid="311856">Duración de asignación de una dirección</translation>
+
+   <translation id="xdsl_modem_dhcp_gateway_tooltip" qtlid="311869">Dirección IP del dispositivo al que se enviarán los datos antes de acceder a internet (por defecto, la dirección IP LAN del módem)</translation>
+   <translation id="xdsl_modem_dhcp_primary_dns_tooltip" qtlid="311882">Dirección IP del servidor de nombres que será utilizado por los dispositivos que reciban una dirección del servidor DHCP</translation>
+   <translation id="xdsl_modem_dhcp_secondary_dns_tooltip" qtlid="311895">Dirección IP de un segundo servidor de nombres con el que se contactará si el primero no responde</translation>
+   <translation id="xdsl_modem_dhcp_dns_domain_tooltip" qtlid="311908">Nombre del dominio gestionado por el DHCP</translation>
+   <translation id="xdsl_modem_dhcp_playa_dhcp_tooltip" qtlid="311921">Dirección de inicio y de fin del rango de direcciones IP que el servidor DHCP proporcionará a la red local</translation>
+   <translation id="xdsl_modem_dhcp_allocation_time_tooltip" qtlid="311934">Duración de conservación de la dirección IP por el dispositivo antes de que expire (renovación automática)</translation>
+
+   <translation id="xdsl_modem_dhcp_success" qtlid="311947">El DHCP <strong>{{ name }}</strong> se ha editado correctamente.</translation>
+   <translation id="xdsl_modem_dhcp_submit_error" qtlid="385273">¡Vaya! No hemos podido actualizar el DHCP.</translation>
+   <translation id="xdsl_modem_dhcp_error" qtlid="385286">¡Vaya! No hemos podido cargar la información relativa al DHCP.</translation>
+</translations>

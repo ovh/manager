@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="hosted_email_detail_loading_error" qtlid="384285">Oups ! Nous n'avons pas pu récupérer les informations relatives à votre compte email.</translation>
+   <translation id="hosted_email_detail_change_password_error" qtlid="384298">Oups ! Le changement de mot de passe a échoué.</translation>
+   <translation id="hosted_email_detail_change_password_success" qtlid="384311">Votre nouveau mot de passe a été modifié sur le compte {{email}}.</translation>
+   <translation id="hosted_email_detail_title" qtlid="384324">Hosted Email {{name}}</translation>
+   <translation id="hosted_email_detail_general_information" qtlid="27115">Informacje ogólne</translation>
+   <translation id="hosted_email_detail_client_change_password" qtlid="8434">Zmień hasło</translation>
+   <translation id="hosted_email_detail_active" qtlid="55133">Aktywny</translation>
+   <translation id="hosted_email_detail_inactive" qtlid="105310">Nieaktywny</translation>
+   <translation id="hosted_email_detail_status" qtlid="26443">Status</translation>
+   <translation id="hosted_email_detail_webmail" qtlid="384337">URL du serveur Webmail</translation>
+   <translation id="hosted_email_detail_client_configuration" qtlid="384350">Configuration client email</translation>
+   <translation id="hosted_email_detail_open_webmail" qtlid="384363">Ouvrir le client webmail</translation>
+   <translation id="hosted_email_detail_type" qtlid="48938">Typ konta</translation>
+
+   <translation id="hosted_email_detail_quota_value" qtlid="384376">{{value}} {{valueUnit}} / {{total}} {{totalUnit}}</translation>
+   <translation id="hosted_email_detail_quota" qtlid="6874">Quota</translation>
+
+   <translation id="hosted_email_detail_byte" qtlid="92777">bajty</translation>
+   <translation id="hosted_email_detail_Kb" qtlid="44692">KB</translation>
+   <translation id="hosted_email_detail_Mb" qtlid="48878">MB</translation>
+   <translation id="hosted_email_detail_Gb" qtlid="48890">GB</translation>
+   <translation id="hosted_email_detail_Tb" qtlid="70121">TB</translation>
+
+   <translation id="hosted_email_detail_host" qtlid="2678">Host</translation>
+   <translation id="hosted_email_detail_ip" qtlid="26191">Adres IP</translation>
+   <translation id="hosted_email_detail_port" qtlid="384389">port</translation>
+   <translation id="hosted_email_detail_smtp_auth" qtlid="384402">Authentification SMTP</translation>
+   <translation id="hosted_email_detail_start_tls" qtlid="384415">Chiffrement TLS</translation>
+
+   <translation id="hosted_email_detail_av" qtlid="384428">Anti-Virus</translation>
+   <translation id="hosted_email_detail_as" qtlid="384441">Anti-Spam</translation>
+
+   <translation id="hosted_email_detail_exchange_25g" qtlid="384454">Exchange 25Go</translation>
+   <translation id="hosted_email_detail_exchange_1g" qtlid="384467">Exchange 1Go</translation>
+   <translation id="hosted_email_detail_exchange_2013" qtlid="384480">Exchange 2013</translation>
+   <translation id="hosted_email_detail_exchange_standard_1g" qtlid="384467">Exchange 1Go</translation>
+   <translation id="hosted_email_detail_exchange_basic_1g" qtlid="384467">Exchange 1Go</translation>
+   <translation id="hosted_email_detail_exchange_standard" qtlid="384454">Exchange 25Go</translation>
+   <translation id="hosted_email_detail_hostedemail_individual" qtlid="384493">Hosted 25Go</translation>
+
+   <translation id="hosted_email_detail_server_smtp" qtlid="384506">Serveur courrier sortant (SMTP)</translation>
+   <translation id="hosted_email_detail_server_smtps" qtlid="384519">Serveur courrier sortant (SMTPS)</translation>
+   <translation id="hosted_email_detail_server_imap" qtlid="384532">Serveur courrier entrant (IMAP)</translation>
+   <translation id="hosted_email_detail_server_imaps" qtlid="384545">Serveur courrier entrant (IMAPS)</translation>
+   <translation id="hosted_email_detail_server_pop3" qtlid="384558">Serveur courrier entrant (POP3)</translation>
+   <translation id="hosted_email_detail_server_pop3s" qtlid="384571">Serveur courrier entrant (POP3S)</translation>
+   <translation id="hosted_email_detail_server_submission" qtlid="384584">Serveur Submission</translation>
+
+   <translation id="hosted_email_detail_change_password_rule_size" qtlid="384597">Musi zawierać od 8 do 20 znaków</translation>
+   <translation id="hosted_email_detail_change_password_rule_special" qtlid="384610">Musi zawierać cyfry, litery bez akcentów lub {{list}}</translation>
+   <translation id="hosted_email_detail_client_change_password_submit" qtlid="8434">Zmień hasło</translation>
+   <translation id="hosted_email_detail_client_change_password_label" qtlid="17177">Nowe hasło</translation>
+
+   <translation id="hosted_email_detail_client_delete_account" qtlid="150294">Usuń konto</translation>
+   <translation id="hosted_email_detail_client_delete_account_warning" qtlid="455946">Attention ! En supprimant votre compte, l'ensemble des messages qu'il contient seront <strong>définitivement</strong> supprimés. Aucune procédure de récupération des données ne sera possible après cette suppression.</translation>
+   <translation id="hosted_email_detail_client_delete_account_confirm" qtlid="173632">Potwierdź operację usunięcia</translation>
+   <translation id="hosted_email_detail_client_delete_account_success" qtlid="455959">Votre compte {{email}} est en cours de suppression.</translation>
+   <translation id="hosted_email_detail_client_delete_account_error" qtlid="455972">Oups ! La suppression du compte a échoué.</translation>
+</translations>

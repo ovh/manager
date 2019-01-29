@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="pack_xdsl_access_ip_order_operation_title" qtlid="309243">Êtes-vous sûr(e) de vouloir effectuer l'opération suivante :</translation>
+   <translation id="pack_xdsl_access_ip_order_operation" qtlid="309256">Commande d'un bloc de {{amountIp}} adresses IP</translation>
+   <translation id="pack_xdsl_access_ip_order_title" qtlid="114378">Order an IP block</translation>
+   <translation id="pack_xdsl_access_ip_order_service_title" qtlid="309269">sur le service suivant :</translation>
+   <translation id="pack_xdsl_access_ip_order_disclaim" qtlid="309282">Ces adresses IP seront activées sous {{hoursBeforeActivation}} heure. Vous serez prélevé de {{price}} HT sous {{hoursBeforeCollected}}h. Ce service est soumis à un engagement initial de {{engagementMinimumMonths}} mois</translation>
+   <translation id="pack_xdsl_access_ip_order_are_you_sure_title" qtlid="309295">Êtes-vous sûr(e) de vouloir effectuer l'opération suivante:</translation>
+   <translation id="pack_xdsl_access_ip_order_immediate_execution" qtlid="309308">Je reconnais qu'OVH procédera à l'exécution immédiate de la prestation à compter de la validation de ma commande et à ce titre je renonce expressément à exercer mon droit de rétractation conformément aux dispositions de l'article L.121-21-8 du code de la consommation.</translation>
+   <translation id="pack_xdsl_access_ip_order_accept_conditions" qtlid="309321">J'ai lu et j'accepte les conditions liées au service d'adresses IP supplémentaires</translation>
+   <translation id="pack_xdsl_access_ip_order_accept_conditions_contract" qtlid="309334">Voir le contrat</translation>
+   <translation id="pack_xdsl_access_ip_order_no" qtlid="37863">Cancel</translation>
+   <translation id="pack_xdsl_access_ip_order_yes" qtlid="43558">Order</translation>
+   <translation id="pack_xdsl_access_ip_order_validation" qtlid="455985">La commande du bloc d'IP a bien été prise en compte.</translation>
+</translations>

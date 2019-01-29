@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telefony_activation_add_line_title" qtlid="307956">Puhelinlinjojen aktivointi</translation>
+   <translation id="telefony_activation_add_line_intro" qtlid="307969">Voit aktivoida pakettiisi kuuluvat puhelinlinjat</translation>
+   <translation id="telefony_activation_add_line_intro_multiline" qtlid="307982">Jos aktivoit useampia puhelinlinjoja samanaikaisesti, maksat vain yhden kerran postituskulut.</translation>
+   <translation id="telefony_activation_with_phone_header" qtlid="307995">Puhelimella</translation>
+   <translation id="telefony_activation_no_more_port_modem" qtlid="308008">Modeemilla ei ole enää linjoja saatavilla, tarvitaan puhelin</translation>
+   <translation id="telefony_activation_total_error" qtlid="307358">Tapahtui virhe latauksen aikana.</translation>
+   <translation id="telefony_activation_success_validation" qtlid="308021">Pyyntösi on rekisteröity</translation>
+   <translation id="telefony_activation_an_error_ocurred" qtlid="308034">Liittymäsi luomisessa tapahtui virhe</translation>
+   <translation id="telefony_activation_shipping_address_label" qtlid="308047">Valitse osoite ja puhelimesi toimitustapa</translation>
+   <translation id="telefony_activation_shipping_transporter_label" qtlid="308060">Toimitus kuriiripalveluna (+ {{cost}}€ ALV0) 24 tunnin kuluessa (lähetyksen jälkeen)</translation>
+   <translation id="telefony_activation_shipping_relay_label" qtlid="308073">Maksuton toimitus Mondial Relay -pisteeseen 48h kuluessa (lähetyksestä)</translation>
+   <translation id="telefony_activation_shipping_mode" qtlid="308086">Toimitustapa:</translation>
+   <translation id="telefony_activation_widget_activate_price_free" qtlid="130495">Ilmainen</translation>
+   <translation id="telefony_activation_widget_free_slot_zero" qtlid="308099">Sinulla ei ole enää käytettävissä olevia palveluja. </translation>
+   <translation id="telefony_activation_widget_activate_price_title" qtlid="83913">Hinta</translation>
+   <translation id="telefony_activation_widget_activate_button_label" qtlid="120486">Vahvista tilauksesi</translation>
+   <translation id="telefony_activation_widget_slot_count" qtlid="308112">Liittymien määrä</translation>
+   <translation id="telefony_activation_widget_on_doing" qtlid="308125">Sinulla on yksi tai useampi liittymä aktivoitavana.</translation>
+   <translation id="telefony_activation_widget_free_slot" qtlid="308138">Lisättävien liittymien määrä:</translation>
+   <translation id="telefony_activation_widget_line_on_modem" qtlid="308151">Vain yksi linja voidaan aktivoda modeemille. Siitä eteenpäin tarvitaan ylimääräisä OVH:n takuusummaa vastaan toimittamia tarvikkeita.</translation>
+   <translation id="telefony_activation_widget_lines_on_modem" qtlid="308164">Vain {{linesOnModem}} linjat voidaan aktivoida modeemilla. Siitä eteenpäin tarvitaan ylimääräisiä OVH:n takuusummaa vastaan toimittamia laitteita.</translation>
+   <translation id="telefony_activation_hardware_line" qtlid="308177">Liittymä {{index}}</translation>
+   <translation id="telefony_activation_hardware_caution_label" qtlid="308190">Takaus</translation>
+   <translation id="telefony_activation_hardware_doc_label" qtlid="79290">Tekniset tiedot</translation>
+   <translation id="telefony_activation_hardware_select_label" qtlid="84153">Valitse</translation>
+   <translation id="telefony_activation_hardware_unselect_label" qtlid="69893">Muuta</translation>
+   <translation id="telefony_activation_hardware_select_all_label" qtlid="308203">Tilaa tämä laite kaikille liittymille</translation>
+   <translation id="telefony_activation_shipping_price_label" qtlid="308216">Postituskulut</translation>
+   <translation id="telefony_activation_total_price_label" qtlid="190459">Yhteissumma</translation>
+   <translation id="telefony_activation_done" qtlid="308229">Tilauksesi on rekisteröity.</translation>
+   <translation id="telephony_activation_select_number_of_lines" qtlid="308242">Valitse liittymien määrä.</translation>
+   <translation id="telephony_activation_order_group_none" qtlid="308255">Yksittäisten liittymien tilaus</translation>
+   <translation id="telephony_activation_order_group_mondialRelay" qtlid="308268">Liittymien tilaus puhelimen kanssa</translation>
+   <translation id="telephony_activation_order_group_shipping" qtlid="308268">Liittymien tilaus puhelimen kanssa</translation>
+   <translation id="telephony_activation_order_error" qtlid="308281">Virhe tilauksessa:</translation>
+   <translation id="telephony_activation_order_error_global" qtlid="308294">Virhe [{{code}}] {{text}}: Huomio, tilaukset (liittymien aktivointi) voidaan jakaa useaan ryhmään ja lähettää erikseen. Yksi tilaus on epäonnistunut, estäen seuraavat tilaukset. On kuitenkin mahdollista, että osa tilauksista vahvistettiin aiemmin. Tarkista lista tästä:</translation>
+<translation id="telephony_activation_order_link"><a target="_blank" href="{{url}}" qtlid="308307">tilaus n°{{id}}
+<i class="ovh-font ovh-font-newtab"/></a></translation>
+   <translation id="telephony_activation_order_error_detail_title" qtlid="308320">Tiedot:</translation>
+   <translation id="telephony_activation_order_resume" qtlid="356771">Klikkaa alla olevaa linkkiä päästäksesi tilauslomakkeeseen</translation>
+   <translation id="telephony_activation_order_link" qtlid="356784">Mene tilauslomakkeeseen</translation>
+</translations>

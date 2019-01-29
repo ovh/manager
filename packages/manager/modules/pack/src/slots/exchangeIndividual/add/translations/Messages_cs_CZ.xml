@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="add_an_account" qtlid="317646">Přidat účet Exchange (Individual)</translation>
+   <translation id="account_informations" qtlid="317594">Informace o účtu</translation>
+   <translation id="account_last_name" qtlid="3818">Název</translation>
+   <translation id="account_first_name" qtlid="23323">Jméno</translation>
+   <translation id="account_display_name" qtlid="23515">Zobrazit název</translation>
+   <translation id="antispam_option" qtlid="317607">Chci využít antivirovou a antispamovou ochranu</translation>
+   <translation id="all_fields_are_required" qtlid="297579">Všechna pole jsou povinná</translation>
+   <translation id="success_validation" qtlid="308021">Váš požadavek byl přijat</translation>
+   <translation id="an_error_ocurred" qtlid="317620">Během vytváření účtu se objevila chyba</translation>
+</translations>

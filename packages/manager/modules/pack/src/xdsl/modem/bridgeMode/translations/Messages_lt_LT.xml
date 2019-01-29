@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_modem_bridge_mode_status" qtlid="507001">Mode bridge activé</translation>
+   <translation id="xdsl_modem_bridge_mode_description" qtlid="311583">Bridge režimo įjungimas rezervuotas pažangiam naudojimui. Šis režimas naudongas, kai norite naudoti savo maršrutizatorių už OVH modemo. Jeigu nenaudojate maršrutizatoriaus, tik vienas įrenginys gaus IP adresą ir turės prieigą prie interneto. Įjungus šį režimą bus išjungta dauguma modemų funkcijų, įskaitant Wi-Fi ir prievadų nukreipimus.</translation>
+   <translation id="xdsl_modem_bridge_mode_warning" qtlid="311596">Dėmesio, kai įjungiamas Bridge režimas, atkurti maršrutizatoriaus veikimą (modeme) galima tik rankiniu būdu atstačius gamyklinius parametrus (reset).</translation>
+   <translation id="xdsl_modem_bridge_mode_success_validation_on" qtlid="311609">Bridge režimas įjungiamas</translation>
+   <translation id="xdsl_modem_bridge_mode_success_validation_off" qtlid="311622">Bridge režimo įjungimas: Rankiniu būdu atstatykite gamyklinius parametrus.</translation>
+   <translation id="xdsl_modem_bridge_mode_an_error_ocurred" qtlid="311635">[Bridge režimas] Klaida!</translation>
+   <translation id="xdsl_modem_bridge_really_on" qtlid="311648">Ar tikrai norite įjungti Bridge režimą?</translation>
+   <translation id="xdsl_modem_bridge_really_off" qtlid="311661">Ar tikrai norite išjungti Bridge režimą?</translation>
+</translations>

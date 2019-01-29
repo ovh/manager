@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_modem_lan_title" qtlid="312077">IP LAN</translation>
+   <translation id="xdsl_modem_lan_description" qtlid="312090">Une adresse IP est attribuée à chaque élément connecté au réseau LAN (Local Area Network). Les IP cohabitant dans ce réseau local, non accessibles depuis l'extérieur car non routées sur Internet par nature, forment des IP dites locales aussi appelées IP LAN. Si vous modifiez l’adresse IP LAN statique du routeur, la configuration du DHCP, des redirections de port et des baux vous sera proposée. Si vous configurez l'adressage IP du modem en DHCP, la configuration des redirection de ports vous sera proposée.</translation>
+
+   <translation id="xdsl_modem_lan_addressingType" qtlid="312103">Méthode de récupération d'adresse IP</translation>
+   <translation id="xdsl_modem_lan_ip" qtlid="312116">Adresse IP LAN</translation>
+   <translation id="xdsl_modem_lan_subnetMask" qtlid="311024">Subnet Mask</translation>
+
+   <translation id="xdsl_modem_lan_addressingType_tooltip" qtlid="312129">Le routeur peut récupérer une adresse automatiquement ou avoir une adresse fixe</translation>
+   <translation id="xdsl_modem_lan_ip_tooltip" qtlid="312142">Adresse utilisée pour joindre le routeur</translation>
+   <translation id="xdsl_modem_lan_subnetMask_tooltip" qtlid="312155">Masque de sous réseau de l'adresse statique</translation>
+
+   <translation id="xdsl_modem_lan_addressingType_Static" qtlid="312168">Statique</translation>
+   <translation id="xdsl_modem_lan_addressingType_DHCP" qtlid="311778">DHCP</translation>
+
+   <translation id="xdsl_modem_lan_success" qtlid="385416">Le LAN <strong>{{ name }}</strong> a été mis à jour.</translation>
+   <translation id="xdsl_modem_lan_error" qtlid="385429">Oups ! Nous n'avons pas pu récupérer les informations relatives à votre LAN.</translation>
+   <translation id="xdsl_modem_lan_submit_error" qtlid="385442">Oups ! Nous n'avons pas pu mettre à jour les informations relatives à votre LAN.</translation>
+</translations>

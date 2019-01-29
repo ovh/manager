@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_access_lns_ratelimit_title" qtlid="310036">Internetyhteyden optimointi</translation>
+   <translation id="xdsl_access_lns_ratelimit_activate" qtlid="310049">Poista linjan tiedonsiirtorajoitus</translation>
+   <translation id="xdsl_access_lns_ratelimit_description" qtlid="310062">Saatavilla ainoastaan France Telecomilla. Säädä tiedonsiirron korkein raja OVH:n laitteiden mukaan. Tämä säätö voi sujuvoittaa navigointia joissain harvinaisissa pakettien menetystapauksissa.</translation>
+   <translation id="xdsl_access_lns_ratelimit_warning" qtlid="310075">Tämä toimenpide voi kestää jopa 10 minuuttia ja yhteytesi katkeaa hetkeksi. </translation>
+   <translation id="xdsl_access_lns_ratelimit_really_on" qtlid="310088">Haluatko aktivoida tiedonsiirtorajoituksen linjalle?</translation>
+   <translation id="xdsl_access_lns_ratelimit_really_off" qtlid="310101">Haluatko deaktivoida linjan tiedonsiirtorajoituksen?</translation>
+   <translation id="xdsl_access_lns_ratelimit_doing" qtlid="310114">Linjan tiedonsiirtorajoituksen muutos</translation>
+</translations>

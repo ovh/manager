@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_modem_cant_be_managed" qtlid="311089">Šis modemas negali būti konfigūruojamas OVH.</translation>
+
+   <translation id="xdsl_modem_general_config" qtlid="311102">Pagrindinė konfigūracija</translation>
+   <translation id="xdsl_modem_network_config" qtlid="311115">Tinklo konfigūracija</translation>
+   <translation id="xdsl_modem_advanced_config" qtlid="311128">Pažangi konfigūracija</translation>
+   <translation id="xdsl_modem_network" qtlid="25591">Tinklas</translation>
+
+
+   <translation id="xdsl_modem_firewall" qtlid="311141">Ugniasienė</translation>
+   <translation id="xdsl_modem_wifi" qtlid="311154">WiFi</translation>
+   <translation id="xdsl_modem_modem" qtlid="42538">Modemas</translation>
+   <translation id="xdsl_modem_managedBy" qtlid="311167">Nuotolinė konfigūracija</translation>
+   <translation id="xdsl_modem_bridge" qtlid="311180">Bridge režimas</translation>
+   <translation id="xdsl_modem_mtu" qtlid="311193">MTU</translation>
+   <translation id="xdsl_modem_dmz" qtlid="310959">DMZ</translation>
+
+   <translation id="xdsl_modem_warning_managedBy" qtlid="345884"><a href="#">Nuotolinė konfigūracija</a> neįjungta šiam modemui!</translation>
+   <translation id="xdsl_modem_warning_bridge" qtlid="311219"><a href="#">Bridge režimas</a> neleis jungtis prie modemo konfigūracijos.</translation>
+
+   <translation id="xdsl_model_access_error" qtlid="385455">Negalime gauti paketo informacijos.</translation>
+   <translation id="xdsl_model_task_error" qtlid="385468">Negalima gauti vykdomų užduočių.</translation>
+   <translation id="xdsl_modem_modem_error" qtlid="385481">Negalima gauti modemo informacijos.</translation>
+
+   <translation id="xdsl_modem_firmware" qtlid="510150">Firmware</translation>
+</translations>

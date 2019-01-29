@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_modem_device_status" qtlid="311232">Dispositivi connessi</translation>
+   <translation id="xdsl_modem_device_connected" qtlid="311245">Lista dei dispositivi connessi</translation>
+
+   <translation id="xdsl_modem_device_show_none" qtlid="311258">Nessun dispositivo connesso</translation>
+   <translation id="xdsl_modem_device_show_many" qtlid="311271">{{count}} dispositivi connessi</translation>
+   <translation id="xdsl_modem_device_show_one" qtlid="311284">{{count}} dispositivo connesso</translation>
+
+   <translation id="xdsl_modem_device_mac" qtlid="42562">Indirizzo MAC</translation>
+   <translation id="xdsl_modem_device_ip" qtlid="26191">Indirizzo IP</translation>
+   <translation id="xdsl_modem_device_host" qtlid="3818">Nome</translation>
+   <translation id="xdsl_modem_device_connection_type" qtlid="307293">tipo</translation>
+   <translation id="xdsl_modem_device_other" qtlid="19963">Altro</translation>
+   <translation id="xdsl_modem_device_waiting_refresh" qtlid="311297">In attesa di aggiornamento</translation>
+   <translation id="xdsl_modem_refresh" qtlid="250030">Aggiorna</translation>
+   <translation id="xdsl_modem_refresh_error" qtlid="385494">Ops! Impossibile aggiornare la lista dei tuoi dispositivi connessi.</translation>
+   <translation id="xdsl_modem_connected_list_error" qtlid="385507">Ops! Impossibile recuperare la lista dei tuoi dispositivi connessi.</translation>
+</translations>

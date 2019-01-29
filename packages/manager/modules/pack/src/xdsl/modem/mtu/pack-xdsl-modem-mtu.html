@@ -1,0 +1,23 @@
+<form name="MtuForm" data-ng-submit="MtuCtrl.changeMtuSize()">
+    <div class="form-group">
+        <select
+            class="form-control"
+            name="configMtu"
+            id="configMtu"
+            data-ng-model="MtuCtrl.mtuCurrentValueTmp"
+            data-ng-options="data.value for data in MtuCtrl.mtuValues"
+            data-ng-disabled="!MtuCtrl.mediator.capabilities.canChangeMtu || MtuCtrl.mediator.tasks.changeMTU || MtuCtrl.loading">
+        </select>
+    </div>
+    <button class="btn btn-primary mt-1"
+            type="submit"
+            data-ng-disabled="!MtuCtrl.mediator.capabilities.canChangeMtu || MtuCtrl.mtuCurrentValue === MtuCtrl.mtuCurrentValueTmp">
+            <span data-ng-if="MtuCtrl.mediator.tasks.changeMTU">
+                <oui-spinner class="mr-2"
+                             data-size="s">
+                </oui-spinner>
+                <span data-translate="xdsl_modem_mtu_doing"></span>
+            </span>
+        <span data-ng-if="!MtuCtrl.mediator.tasks.changeMTU" data-translate="xdsl_modem_mtu_submit"></span>
+    </button>
+</form>

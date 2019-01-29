@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="pack_move_title" qtlid="86745">Muutto</translation>
+   <translation id="pack_move_operation_already_pending" qtlid="312493">Pakettisi muutto on käynnissä.</translation>
+   <translation id="pack_move_legacy_offer" qtlid="385962">Pakettisi ei ole kelvollinen, jotta voit suorittaa muuton, sinun täytyy päivittää pakettisi uudemmalla tuotteella.</translation>
+   <translation id="pack_move_legacy_offer_upgrade_offer" qtlid="231292">Päivitä palvelu</translation>
+   <translation id="pack_move_line_title" qtlid="310712">Linjan testaus</translation>
+   <translation id="pack_move_line_subtitle" qtlid="312532">Testaa uutta osoitettasi vastaavalla puhelinnumerolla.</translation>
+   <translation id="pack_move_address_subtitle" qtlid="312545">Testaa uudella osoitteella</translation>
+   <translation id="pack_move_line_synchronisation" qtlid="312558">{{type}}, teoreettinen synkornoninti arvioitu:</translation>
+   <translation id="pack_move_eligibility_title" qtlid="312571">Kelpoisuus</translation>
+   <translation id="pack_move_line_keep_number" qtlid="312584">Säilytä numerot</translation>
+   <translation id="pack_move_meeting_slots" qtlid="312597">France Telecom -tapaaminen</translation>
+   <translation id="pack_move_eligibility_phone_form_error" qtlid="312610">Syötetyn numeron on oltava voimassa eikä se saa sisältää väliviivoja tai välilyöntejä.</translation>
+   <translation id="pack_move_eligibility_subtitle" qtlid="105634">Olet kelvollinen seuraaviin eriytystyyppeihin:</translation>
+   <translation id="pack_move_eligibility_synchronisation_estimated_rate_title" qtlid="479486">Débit synchronisation estimé :</translation>
+   <translation id="pack_move_eligibility_synchronisation_download" qtlid="312649">Download:</translation>
+   <translation id="pack_move_eligibility_synchronisation_byMonth" qtlid="312662">/kuukausi</translation>
+   <translation id="pack_move_eligibility_synchronisation_nra" qtlid="312675">Tämä linja on kiinnitetty NRA:han <strong>{{name}}</strong>, joka sijaitsee <strong>{{distance}}</strong> metrin päässä.</translation>
+   <translation id="pack_move_eligibility_synchronisation_line" qtlid="312688">Linjan tila:</translation>
+   <translation id="pack_move_eligibility_synchronisation_line_active" qtlid="29635">Aktiivinen</translation>
+   <translation id="pack_move_eligibility_synchronisation_line_inactive" qtlid="312701">Ei aktiivinen</translation>
+   <translation id="pack_move_eligibility_synchronisation_upload" qtlid="312714">Upload:</translation>
+   <translation id="pack_move_eligibility_synchronisation_mbps" qtlid="105550">Mbps</translation>
+   <translation id="pack_move_eligibility_unbundling_total" qtlid="79338">Täydellinen eriyttäminen</translation>
+   <translation id="pack_move_eligibility_unbundling_createNeighbour" qtlid="312727">Lähiympäristön luominen</translation>
+   <translation id="pack_move_eligibility_unbundling_creation" qtlid="312740">Linjan luominen</translation>
+   <translation id="pack_move_eligibility_unbundling_partial" qtlid="79350">Osittainen eriyttäminen</translation>
+   <translation id="pack_move_eligibility_line_status_active" qtlid="456557">Ligne active</translation>
+   <translation id="pack_move_eligibility_line_status_inactive" qtlid="456570">Ligne inactive</translation>
+   <translation id="pack_move_eligibility_provider" qtlid="312753">Palveluntarjoaja: {{provider}}</translation>
+   <translation id="pack_move_keepLine" qtlid="312766">Haluan säilyttää numeron:</translation>
+   <translation id="pack_move_portLine" qtlid="456583">Je souhaite conserver mon numéro :</translation>
+   <translation id="pack_move_validate" qtlid="312792">Vahvista muutto</translation>
+   <translation id="pack_move_success" qtlid="312805">Linjasi muutto astuu voimaan muutaman päivän kuluessa.</translation>
+   <translation id="pack_move_cannot_move" qtlid="312818">Pakettia ei voida muuttaa valitulle linjalle.</translation>
+   <translation id="pack_move_cannot_validate_move" qtlid="312831">Pakettiasi ei voida muuttaa: {{message}}</translation>
+   <translation id="pack_move_line_current_address" qtlid="312844">Nykyinen osoite</translation>
+   <translation id="pack_move_line_future_address" qtlid="312857">Tuleva osoite</translation>
+   <translation id="pack_move_portLine_cost" qtlid="456596">La conservation vous sera facturée <span class="font-weight-bold text-price">50€</span></translation>
+
+   <translation id="pack_move_eligibility_error" qtlid="312883">Kelpoisuustesti ei ole tällä hetkellä saatavilla. Ole hyvä ja yritä myöhemmin uudelleen.</translation>
+   <translation id="pack_move_eligibility_no_offers" qtlid="385975">Liittymä {{ number }} ei ole kelvollinen millekään tuotteellemme.</translation>
+
+   <translation id="pack_move_portLine_disabled" qtlid="312896">Et voi siirtää numeroasi. </translation>
+   <translation id="pack_move_portLine_warning" qtlid="456609">La conservation du numéro de téléphone de votre accès entraînera la coupure de l'accès internet lui étant rattaché.</translation>
+   <translation id="pack_move_keepLine_disabled" qtlid="312909">Et voi säilyttää tätä numeroa.</translation>
+
+   <translation id="pack_move_unbundling_total" qtlid="79338">Täydellinen eriyttäminen</translation>
+   <translation id="pack_move_unbundling_partial" qtlid="79350">Osittainen eriyttäminen</translation>
+
+   <translation id="pack_move_line_address_door" qtlid="312922">Ovi:</translation>
+   <translation id="pack_move_line_address_floor" qtlid="312935">Kerros:</translation>
+   <translation id="pack_move_line_address_stairs" qtlid="312948">Porrastasanne:</translation>
+   <translation id="pack_move_line_address_building" qtlid="312961">Rakennus:</translation>
+   <translation id="pack_move_line_address_residence" qtlid="312974">Asunto:</translation>
+
+   <translation id="pack_move_rio" qtlid="310257">RIO</translation>
+
+   <translation id="pack_move_eligibility_address_more" qtlid="312987">Lisätietoja</translation>
+
+   <translation id="pack_move_eligibility_number" qtlid="152505">Puhelinnumero</translation>
+   <translation id="pack_move_eligibility_zipcode" qtlid="30346">Postinumero</translation>
+   <translation id="pack_move_eligibility_city" qtlid="33310">Postitoimipaikka</translation>
+   <translation id="pack_move_eligibility_street" qtlid="152518">Katu</translation>
+   <translation id="pack_move_eligibility_street_number" qtlid="30778">Numero</translation>
+   <translation id="pack_move_eligibility_building" qtlid="313000">Rakennus</translation>
+   <translation id="pack_move_eligibility_door" qtlid="313013">Rappu</translation>
+   <translation id="pack_move_eligibility_floor" qtlid="313026">Kerros</translation>
+   <translation id="pack_move_eligibility_residence" qtlid="313039">Asunto</translation>
+   <translation id="pack_move_eligibility_stair" qtlid="313052">Rappu</translation>
+   <translation id="pack_move_eligibility_error" qtlid="313065">Tapahtui virhe kelpoisuustestin aikana.</translation>
+   <translation id="pack_move_eligibility_address_error_pairs" qtlid="456622">Nous avons enregistré un dysfonctionnement dans l’éligibilité de votre adresse de redirection : le nombre de paires est insuffisant pour créer une nouvelle ligne fixe</translation>
+   <translation id="pack_move_eligibility_address_error_neighbour" qtlid="456635">Nous avons enregistré un dysfonctionnement dans l’éligibilité de votre adresse de redirection : une erreur est survenue lors de la recherche du numéro de rue</translation>
+   <translation id="pack_move_eligibility_street_error" qtlid="456648">La rue {{partial}} est introuvable</translation>
+
+   <translation id="pack_move_eligibility_creation_price_label" qtlid="313078">asennuskulut</translation>
+
+   <translation id="pack_move_eligibility_zipcode_error" qtlid="313091">Postinumeroa {{zipcode}} vastaavaa kaupunkia ei löydy</translation>
+
+   <translation id="pack_move_fake_meeting" qtlid="313104">Yksikään alla olevista ajoista ei sovi minulle. Haluan, että France Telecom ottaa minuun yhteyttä toisen ajankohdan sopimiseksi.</translation>
+   <translation id="pack_move_no_fake_meeting" qtlid="313117">Valitsen tapaamiselle kellonajan. </translation>
+   <translation id="pack_move_programmed_meeting_select" qtlid="313130">Valitse aikaväli tapaamiselle.</translation>
+   <translation id="pack_move_programmed_meeting" qtlid="313143">Tapaaminen on sovittu <strong>{{day}}</strong> välillä  <strong>{{start}}</strong> ja <strong>{{end}}</strong>.</translation>
+   <translation id="pack_move_contact_name" qtlid="313156">Yhteyshenkilö, jonka tiedot välitetään France Telecomille</translation>
+   <translation id="pack_move_pending_validation" qtlid="313169">Varmistetaan</translation>
+   <translation id="pack_move_error_validation" qtlid="313182">Virhe varmistuksessa</translation>
+   <translation id="pack_move_success_validation" qtlid="313195">Varmistus vahvistettu</translation>
+   <translation id="pack_move_no_erdv_info" qtlid="313208">France Telecom ottaa sinuun yhteyttä mahdollisimman pian sopiakseen ajankohdan toimenpiteelle.</translation>
+   <translation id="pack_move_contact_name_info" qtlid="313221">Ilmoita henkilön nimi, joka tulee varmimmin vastaanottamaan teknikon tapaamispäivänä.</translation>
+   <translation id="pack_move_mandatory_field" qtlid="313234">Tähdellä merkityt kentät ovat pakollisia</translation>
+
+   <translation id="pack_move_slamming_error" qtlid="456661">Oups ! Nous n'avons pas pu vérifier la portabilité de votre numéro</translation>
+</translations>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="pack_xdsl_page_title" qtlid="384649">Pack "{{name}}"</translation>
+   <translation id="pack_xdsl_service_list" qtlid="308437">Gestisci il pack {{packName}}</translation>
+   <translation id="pack_xdsl_service_more_one" qtlid="308450">{{count}} aggiuntivo</translation>
+   <translation id="pack_xdsl_service_more_many" qtlid="308463">{{count}} aggiuntivi</translation>
+   <translation id="pack_xdsl_access" qtlid="308476">I tuoi accessi</translation>
+   <translation id="pack_xdsl_no_service_available" qtlid="308489">Nessun servizio disponibile</translation>
+   <translation id="pack_xdsl_resiliation_success_notification" qtlid="384662">La tua richiesta di disattivazione del servizio è stata presa in carico. Ricordati che, se cambi idea, è possibile annullarla.</translation>
+   <translation id="pack_xdsl_resiliation_cancel_success_notification" qtlid="384675">La tua richiesta di disattivazione del servizio è stata annullata. Ti ringraziamo per aver scelto di continuare a utilizzare i servizi OVH!</translation>
+   <translation id="pack_xdsl_avalaibleSlot_0" qtlid="308502">Hai consumato tutti i tuoi {{packType}} per questo pack</translation>
+   <translation id="pack_xdsl_avalaibleSlot_1" qtlid="308515">{{avalaible}} disponibile</translation>
+   <translation id="pack_xdsl_avalaibleSlot_n" qtlid="308528">{{avalaible}} disponibili</translation>
+   <translation id="pack_xdsl_access_services_0" qtlid="308541">Nessun accesso</translation>
+   <translation id="pack_xdsl_access_description" qtlid="9238">Descrizione</translation>
+   <translation id="pack_xdsl_access_type" qtlid="2642">Tipo</translation>
+   <translation id="pack_xdsl_access_accessName" qtlid="46792">Identificativo</translation>
+   <translation id="pack_xdsl_voipLine_domain" qtlid="8458">Dominio</translation>
+   <translation id="pack_xdsl_voipLine_billingAccount" qtlid="33862">Account</translation>
+   <translation id="pack_xdsl_hubic_domain" qtlid="8458">Dominio</translation>
+   <translation id="pack_xdsl_hubic_size" qtlid="7726">Dimensione</translation>
+   <translation id="pack_xdsl_hubic_voucher" qtlid="308554">(Codice: {{voucher}})</translation>
+   <translation id="pack_xdsl_hubic_is_used" qtlid="479265">Déja utilisé</translation>
+   <translation id="pack_xdsl_hubic_used_voucher_pending_details" qtlid="479278">Récupération des données...</translation>
+   <translation id="pack_xdsl_hubic_used_email" qtlid="479291">Adresse email : {{email}}</translation>
+   <translation id="pack_xdsl_hubic_used_email_unavailable" qtlid="479304">Donnée indisponible</translation>
+   <translation id="pack_xdsl_hubic_domain_details_error" qtlid="479317">Une erreur est survenue lors de la récupération du détail des domaines</translation>
+   <translation id="xdslAccess" qtlid="305603">Accesso Internet</translation>
+   <translation id="xdslAccess_default_sidebar_title" qtlid="308476">I tuoi accessi</translation>
+   <translation id="voipLine" qtlid="29299">Telefonia</translation>
+   <translation id="domain" qtlid="66428">Dominio</translation>
+   <translation id="voipEcoFax" qtlid="308567">EcoFax Pro</translation>
+   <translation id="hubic" qtlid="305083">HubiC</translation>
+   <translation id="task" qtlid="31078">Operazioni</translation>
+   <translation id="pack_xdsl_hubic_activate" qtlid="308580">Utilizza la tua offerta hubiC</translation>
+   <translation id="pack_xdsl_hubic_loading_error" qtlid="384688">Ops! Impossibile generare la lista dei tuoi servizi hubiC.</translation>
+   <translation id="promotionCode" qtlid="308593">Buono sconto</translation>
+   <translation id="exchangeAccount" qtlid="384701">Exchange (Account)</translation>
+   <translation id="exchangeLite" qtlid="308619">Exchange (Lite)</translation>
+   <translation id="exchangeOrganization" qtlid="384714">Exchange (Organizzazione)</translation>
+   <translation id="siteBuilderFull" qtlid="384727">Site Builder (Completo)</translation>
+   <translation id="siteBuilderStart" qtlid="98852">Site Builder</translation>
+   <translation id="voipAlias" qtlid="9466">Alias</translation>
+   <translation id="informations" qtlid="306565">Informazioni generali</translation>
+   <translation id="exchangeIndividual" qtlid="384740">Exchange (Individuale)</translation>
+   <translation id="add" qtlid="308671">aggiungi</translation>
+   <translation id="no_item" qtlid="308684">nessun elemento</translation>
+   <translation id="used" qtlid="308697">utilizzati</translation>
+   <translation id="used_one" qtlid="308710"><strong>{{count}}</strong> utilizzato</translation>
+   <translation id="used_many" qtlid="308723"><strong>{{count}}</strong> utilizzati</translation>
+   <translation id="coming_soon" qtlid="250043">In arrivo</translation>
+   <translation id="hostedEmail" qtlid="308736">Hosted Email</translation>
+   <translation id="emailPro" qtlid="496928">xDSL E-mail</translation>
+   <translation id="my_service" qtlid="229658">I tuoi servizi</translation>
+   <translation id="manage_my_pack" qtlid="308749">Gestisci il pack</translation>
+   <translation id="account" qtlid="308762">account</translation>
+   <translation id="size" qtlid="308775">dimensione</translation>
+   <translation id="move" qtlid="308788">Trasferisci</translation>
+   <translation id="pack_xdsl_information_associated_line" qtlid="384753">Linea associata</translation>
+
+
+   <translation id="pack_xdsl_status" qtlid="308801">Stato del pack</translation>
+   <translation id="pack_xdsl_ok" qtlid="308814">Pack attivo</translation>
+   <translation id="pack_xdsl_expired" qtlid="308827">Pack scaduto</translation>
+   <translation id="pack_xdsl_inCreation" qtlid="308840">Creazione del pack in corso...</translation>
+   <translation id="pack_xdsl_offer_name" qtlid="233274">Offerta</translation>
+   <translation id="pack_xdsl_pack_id" qtlid="308853">Identificativo del pack</translation>
+   <translation id="pack_xdsl_created_date" qtlid="26419">Data di creazione</translation>
+   <translation id="pack_xdsl_engaged_date" qtlid="308866">Impegnato fino al</translation>
+   <translation id="pack_xdsl_not_engaged" qtlid="384766">Hai rescisso il tuo contratto.</translation>
+   <translation id="pack_xdsl_resiliation_date" qtlid="384779">Data di disattivazione</translation>
+   <translation id="pack_xdsl_pack_link_address" qtlid="308879">Indirizzo di connessione</translation>
+
+   <translation id="still_pending" qtlid="308892">in corso di creazione</translation>
+
+<!-- EX-EMAIL -->
+   <translation id="account_name" qtlid="33598">Email</translation>
+   <translation id="all_fields_are_required" qtlid="297579">Tutti i campi sono obbligatori</translation>
+   <translation id="required_fields_are_tag_with_a_star" qtlid="342793">&#160;I campi indicati con un asterisco sono obbligatori</translation>
+   <translation id="in_validation" qtlid="308931">La tua richiesta è in corso</translation>
+   <translation id="title_min_size" qtlid="308983">Il nome dell'account deve contenere almeno 5 caratteri</translation>
+<!-- /EX-EMAIL -->
+
+
+<!-- NO ELEMENT -->
+   <translation id="you_dont_have_any_service" qtlid="309061">Non sono presenti servizi attivi</translation>
+   <translation id="create_a_new_service_with_the_adding_button" qtlid="309074">Per attivare un nuovo servizio, clicca sul link "Attiva un servizio".</translation>
+   <translation id="create_a_new_hubic_with_the_adding_button" qtlid="309087">Per attivare un nuovo servizio, clicca sul link "Approfitta della tua offerta hubiC"</translation>
+<!-- /NO ELEMENT -->
+
+   <translation id="pack_xdsl_loading" qtlid="309100">Caricamento del tuo pack in corso...</translation>
+   <translation id="pack_xdsl_this_pack_seems_to_be_unavailable" qtlid="309126">Impossibile trovare questo pack.</translation>
+
+   <translation id="pack_promotion_code_proposal" qtlid="309139">OVH ti offre un buono sconto dal valore di <strong>{{text}}</strong> +IVA, valido su tutti i nostri prodotti (esclusi forfait ADSL-VDSL/SDSL, offerta hubiC, acquisto di materiale e deposito cauzionale per il telefono, credito dell'account cliente OVH e acquisto di punti prepagati).</translation>
+   <translation id="pack_promotion_code_question" qtlid="309152">Ne approfitto</translation>
+   <translation id="pack_promotion_code_modal_title" qtlid="309165">Utilizzo il buono sconto</translation>
+   <translation id="pack_promotion_code_condition" qtlid="309178">Confermi di essere a conoscenza che, generando il coupon da <strong>{{text}}</strong> +IVA, sottoscrivo un nuovo contratto per <b>{{engagement}} mesi</b> per il <b>pack completo</b>. Questa operazione è <b>irreversible</b>.</translation>
+   <translation id="pack_promotion_code_confirm" qtlid="309191">Sottoscrivo un nuovo contratto</translation>
+   <translation id="pack_rename_error" qtlid="317633">Impossibile rinominare il tuo pack {{serviceName}}.</translation>
+
+   <translation id="pack_offer_migration" qtlid="25783">Cambia piano</translation>
+
+   <translation id="pack_xdsl_oops_an_error_is_occured" qtlid="385455">Ops! Impossibile recuperare le informazioni relative al tuo pack.</translation>
+</translations>

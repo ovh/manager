@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_access_deconsolidation_title" qtlid="310140">Desagregación total</translation>
+   <translation id="xdsl_access_deconsolidation_validate" qtlid="310153">Aceptar la desagregación</translation>
+
+   <translation id="xdsl_access_deconsolidation_legacy_offer" qtlid="310166">Su línea corresponde a un producto obsoleto. Para poder acceder a la desagregación total, debe actualizar su pack a uno más reciente.</translation>
+   <translation id="xdsl_access_deconsolidation_legacy_offer_upgrade" qtlid="231292">Actualizar mi servicio</translation>
+
+   <translation id="xdsl_access_deconsolidation_createNeighbour" qtlid="32458">Total</translation>
+   <translation id="xdsl_access_deconsolidation_creation" qtlid="32458">Total</translation>
+   <translation id="xdsl_access_deconsolidation_partial" qtlid="77166">Parcial</translation>
+   <translation id="xdsl_access_deconsolidation_total" qtlid="32458">Total</translation>
+
+   <translation id="xdsl_access_deconsolidation_warning_total" qtlid="385130">Ya está en desagregación total. No es posible volver a desagregación parcial.</translation>
+   <translation id="xdsl_access_deconsolidation_warning_partial" qtlid="310192">Ya está en desagregación parcial; puede cambiar a desagregación total.</translation>
+   <translation id="xdsl_access_deconsolidation_desc_important" qtlid="310205">Esta operación es irreversible. Tarda una media de 7 días laborables y debe prever una interrupción del servicio aproximada de 30 minutos.</translation>
+
+   <translation id="xdsl_access_deconsolidation_success" qtlid="310218">Cambio a desagregación total. Vamos a redirigirle.</translation>
+   <translation id="xdsl_access_deconsolidation_really" qtlid="310231">¿Seguro que quiere cambiar a desagregación total?</translation>
+
+   <translation id="xdsl_access_deconsolidation_number_not_transferred" qtlid="310244">El número no se portará.</translation>
+
+   <translation id="xdsl_access_deconsolidation_rio" qtlid="310257">RIO</translation>
+   <translation id="xdsl_access_deconsolidation_rio_title" qtlid="310270">Conservar mi número</translation>
+   <translation id="xdsl_access_deconsolidation_rio_warning" qtlid="310283">Es imprescindible que indique el código RIO asociado a su número. De lo contrario, lo perderá.</translation>
+   <translation id="xdsl_access_deconsolidation_rio_help" qtlid="310296">¿Cómo obtener su RIO? Es muy sencillo. Antes de realizar la contratación, llame gratuitamente al 3179 (desde Francia) desde su línea fija.</translation>
+</translations>

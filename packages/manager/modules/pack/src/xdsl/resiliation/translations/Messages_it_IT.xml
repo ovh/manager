@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_resiliation_title" qtlid="310829">Disattiva il servizio</translation>
+   <translation id="xdsl_resiliation_service_forbidden" qtlid="310842">Impossibile disattivare solo questo servizio, è collegato al pack.</translation>
+   <translation id="xdsl_resiliation_engaged" qtlid="310855">Data di scadenza del contratto</translation>
+   <translation id="xdsl_resiliation_not_engaged" qtlid="310868">Hai rescisso il tuo contratto.</translation>
+   <translation id="xdsl_resiliation_resiliation_date" qtlid="310881">Disattivazione il</translation>
+   <translation id="xdsl_resiliation_due" qtlid="310894">Residuo da saldare</translation>
+   <translation id="xdsl_resiliation_type_name" qtlid="310907">il servizio</translation>
+   <translation id="xdsl_resiliation_cancel" qtlid="310920">Annulla la tua richiesta di disattivazione</translation>
+   <translation id="xdsl_resiliation_cancel_really" qtlid="386847">Stai per annullare la disattivazione di "{{description}}". Vuoi continuare?</translation>
+   <translation id="xdsl_resiliation_service_date_format" qtlid="313468">gg/mm/aaaa</translation>
+   <translation id="xdsl_resiliation_mail" qtlid="310946">Riceverai un'email di conferma con il buono da allegare al pacco di restituzione del modem.</translation>
+   <translation id="xdsl_resiliation_terminate_info_1" qtlid="385559">La tua richiesta di disattivazione è in corso. <br/> L'operazione è programmata per il {{date}}. Per procedere all'annullamento immediato, clicca su "Annulla la disattivazione".</translation>
+</translations>

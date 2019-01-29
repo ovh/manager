@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_modem_wifi_status_enabled" qtlid="479330">Wi-Fi activé</translation>
+   <translation id="xdsl_modem_detault_wifi_status_enabled" qtlid="479343">Wi-Fi activé par défaut</translation>
+   <translation id="xdsl_modem_wifi_status_disabled" qtlid="479356">Wi-Fi désactivé</translation>
+   <translation id="xdsl_modem_default_wifi_status_disabled" qtlid="479369">Wi-Fi désactivé par défaut</translation>
+   <translation id="xdsl_modem_wifi_description" qtlid="311427">Wi-Fi tilassa voit konfiguroida verkon ilman modeemin kytkemistä johdolla, jotta langattomat laitteesi voivat yhdistää siihen.</translation>
+
+   <translation id="xdsl_modem_wifi_success_validation_on" qtlid="311440">Aktivoidaan Wi-Fiä</translation>
+   <translation id="xdsl_modem_wifi_success_validation_off" qtlid="311453">Wi-Fin deaktivointi on käynnissä</translation>
+
+   <translation id="xdsl_modem_wifi_really_on" qtlid="311466">Haluatko varmasti aktivoida Wi-Fin?</translation>
+   <translation id="xdsl_modem_wifi_really_off" qtlid="311479">Haluatko varmasti deaktivoida Wi-Fin?</translation>
+
+   <translation id="xdsl_modem_wifi_configure" qtlid="311492">Konfiguroi Wi-Fi</translation>
+   <translation id="xdsl_modem_wifi_configure_many" qtlid="456232">Configurer les réseaux Wi-Fi</translation>
+   <translation id="xdsl_modem_wifi_read_error" qtlid="385143">Hups! Wifiin liittyviä tietoja ei voitu hakea.</translation>
+   <translation id="xdsl_modem_wifi_update_error" qtlid="385156">Hups! Modeemisi wifiä ei voitu päivittää.</translation>
+</translations>

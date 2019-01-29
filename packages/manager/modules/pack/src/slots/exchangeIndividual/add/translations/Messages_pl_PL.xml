@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="add_an_account" qtlid="317646">Dodaj konto Exchange (Individual)</translation>
+   <translation id="account_informations" qtlid="317594">Informacje na temat konta</translation>
+   <translation id="account_last_name" qtlid="3818">Nazwa</translation>
+   <translation id="account_first_name" qtlid="23323">Imię</translation>
+   <translation id="account_display_name" qtlid="23515">Nazwa do wyświetlenia</translation>
+   <translation id="antispam_option" qtlid="317607">Chcę skorzystać z ochrony antywirusowej i antyspamowej.</translation>
+   <translation id="all_fields_are_required" qtlid="297579">Wszystkie pola są obowiązkowe</translation>
+   <translation id="success_validation" qtlid="308021">Zlecenie zostało zarejestrowane.</translation>
+   <translation id="an_error_ocurred" qtlid="317620">Wystąpił błąd podczas tworzenia konta.</translation>
+</translations>

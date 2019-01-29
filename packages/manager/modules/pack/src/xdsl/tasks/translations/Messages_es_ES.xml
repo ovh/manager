@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_tasks_list" qtlid="289575">Lista de tareas</translation>
+   <translation id="xdsl_tasks_name" qtlid="3818">Nombre</translation>
+   <translation id="xdsl_tasks_id" qtlid="8194">ID</translation>
+   <translation id="xdsl_tasks_status" qtlid="26443">Estado</translation>
+   <translation id="xdsl_tasks_status_todo" qtlid="134605">Pendiente</translation>
+   <translation id="xdsl_tasks_status_doing" qtlid="26383">En proceso</translation>
+   <translation id="xdsl_tasks_status_done" qtlid="26395">Finalizada</translation>
+   <translation id="xdsl_tasks_status_error" qtlid="26407">Error</translation>
+   <translation id="xdsl_tasks_status_problem" qtlid="270800">Problema</translation>
+   <translation id="xdsl_no_task" qtlid="217093">No hay tareas.</translation>
+   <translation id="xdsl_tasks_update_date" qtlid="228748">Fecha de actualización</translation>
+</translations>

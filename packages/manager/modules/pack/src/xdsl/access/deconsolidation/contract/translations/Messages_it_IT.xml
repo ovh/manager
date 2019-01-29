@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_access_deconsolidation_contract_title" qtlid="9983">Conferma</translation>
+   <translation id="xdsl_access_deconsolidation_contract_are_you_sure" qtlid="309243">Vuoi davvero effettuare questa operazione:</translation>
+   <translation id="xdsl_access_deconsolidation_contract_modification_operation" qtlid="310140">Unbundling Totale</translation>
+   <translation id="xdsl_access_deconsolidation_contract_modified" qtlid="310309">su questa linea: <strong>{{ serviceName }}</strong></translation>
+   <translation id="xdsl_access_deconsolidation_contract_number_not_transferred" qtlid="310322">Senza RIO, perderai il tuo numero.</translation>
+   <translation id="xdsl_access_deconsolidation_contract_price" qtlid="310335">Questa operazione sarà fatturata <span class="text-underline">{{ price }}</span>.</translation>
+   <translation id="xdsl_access_deconsolidation_contract_monthlyPrice" qtlid="310348">Se modifichi la tua offerta da unbundling parziale a totale, il tuo abbonamento mensile sarà di <span class="text-underline">{{ price }}</span>/mese.</translation>
+   <translation id="xdsl_access_deconsolidation_contract_desc_agreement1" qtlid="310361">Il passaggio da unbundling parziale a totale comporta un impeno di ulteriori {{ engagement }} mesi.</translation>
+   <translation id="xdsl_access_deconsolidation_contract_desc_agreement2" qtlid="310374">Richiedi l'esecuzione immediata della prestazione e, a questo titolo, riconosci di non poter esercitare il tuo diritto di recesso, conformemente alle disposizioni dell'articolo L.121-21-8 del Codice del Consumo francese. Attivazione del servizio entro 7 giorni (periodo medio constatato).&#13;
+&#13;
+</translation>
+   <translation id="xdsl_access_deconsolidation_contract_desc_agreement3" qtlid="310387">Confermo di aver preso visione delle Condizioni Generali di Vendita dell'<a target="_blank" href="{{ packAdslPro2013 }}">offerta xDSL Express</a> o dell'<a target="_blank" href="{{ packAdslEnterprise2013 }}">offerta Enterprise</a>.</translation>
+</translations>

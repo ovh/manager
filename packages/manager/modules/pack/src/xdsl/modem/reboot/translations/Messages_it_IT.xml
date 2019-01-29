@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_modem_reboot" qtlid="311713">Riavvia il modem</translation>
+   <translation id="xdsl_modem_reboot_an_error_ocurred" qtlid="311726">[Riavvio Modem] Si è verificato un errore!</translation>
+   <translation id="xdsl_modem_reboot_success" qtlid="311739">Riavvio del modem in corso...</translation>
+   <translation id="xdsl_modem_reboot_success_end" qtlid="311752">Riavvio del modem completato</translation>
+   <translation id="xdsl_modem_reboot_really" qtlid="311765">Vuoi davvero riavviare il tuo modem?</translation>
+</translations>

@@ -1,0 +1,34 @@
+<button type="button"
+    class="btn btn-primary mb-3"
+    data-ng-really-click="ResetCtrl.resetModem(false)"
+    data-ng-really-message="{{ 'xdsl_modem_reset_really' | translate }}"
+    data-ng-really-confirm="{{ 'ok' | translate }}"
+    data-ng-really-cancel="{{ 'cancel' | translate }}"
+    data-ng-really-window-class="revert-really-buttons"
+    data-ng-disabled="!ResetCtrl.mediator.capabilities.canReset">
+    <span data-ng-if="ResetCtrl.mediator.tasks.resetModem">
+        <oui-spinner class="mr-2"
+                     data-size="s">
+        </oui-spinner>
+        <span data-translate="xdsl_modem_reset_success"></span>
+    </span>
+    <span data-ng-if="!ResetCtrl.mediator.tasks.resetModem"
+          data-translate="xdsl_modem_reset"></span>
+</button>
+<button type="button"
+    class="btn btn-primary mb-3 ml-1"
+    data-ng-really-click="ResetCtrl.resetModem(true)"
+    data-ng-really-message="{{ 'xdsl_modem_reset_ovh_config_really' | translate }}"
+    data-ng-really-confirm="{{ 'ok' | translate }}"
+    data-ng-really-cancel="{{ 'cancel' | translate }}"
+    data-ng-really-window-class="revert-really-buttons"
+    data-ng-disabled="!ResetCtrl.mediator.capabilities.canReset">
+    <span data-ng-if="ResetCtrl.mediator.tasks.resetModem">
+        <oui-spinner class="mr-2"
+                     data-size="s">
+        </oui-spinner>
+        <span data-translate="xdsl_modem_reset_ovh_config_success"></span>
+    </span>
+    <span data-ng-if="!ResetCtrl.mediator.tasks.resetModem"
+          data-translate="xdsl_modem_reset_ovh_config"></span>
+</button>

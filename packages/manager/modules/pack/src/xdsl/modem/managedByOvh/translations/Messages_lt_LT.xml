@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_modem_managedBy_title" qtlid="507014">Configuration à distance activée</translation>
+   <translation id="xdsl_modem_managedBy_description" qtlid="311323">Modemas gali būti konfigūruojamas arba kliento paskyroje, arba naudojant jo vidinę valdymo sąsają. Jei įjungsite modemo konfigūravimą kliento paskyroje, jūs išjungsite modemo vidinę valdymo sąsają.</translation>
+   <translation id="xdsl_modem_managedBy_warning" qtlid="311336">Dėmesio: konfigūravimas galimas tik vienoje sąsajoje. </translation>
+   <translation id="xdsl_modem_managedBy_warning_override" qtlid="385520">Dėmesio: konfigūracijos įjungimas nuotoliniu būdu panaikins jūsų modemo esamus nustatymus. </translation>
+   <translation id="xdsl_modem_managedBy_success_validation_on" qtlid="311349">Įjungiamas konfigūravimas nuotoliniu būdu</translation>
+   <translation id="xdsl_modem_managedBy_success_validation_off" qtlid="311362">Išjungiamas konfigūravimas nuotoliniu būdu</translation>
+   <translation id="xdsl_modem_managedBy_an_error_ocurred" qtlid="311375">[Įjungimas Konfigūravimas Nuotoliniu būdu] Įvyko klaida!</translation>
+
+
+   <translation id="xdsl_modem_managedBy_really_on" qtlid="311388">Ar tikrai norite įjungti konfigūravimą nuotoliniu būdu?</translation>
+   <translation id="xdsl_modem_managedBy_really_off" qtlid="311401">Ar tikrai norite išjungti konfigūravimą nuotoliniu būdu?</translation>
+</translations>

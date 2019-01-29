@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_modem_dhcp_title" qtlid="311778">DHCP</translation>
+   <translation id="xdsl_modem_dhcp_description" qtlid="311791">DHCP (Dynamic Host Configuration Protocol) serveris paskiria IP adresą ir potinklio šabloną prijungtiems prietaisams, tam tikram laikui (pagal DHCP nustatymus). DHCP taip pat gali konfigūruoti kitus parametrus, pavyzdžiui, šliuzą (gateway) arba DNS serverius.</translation>
+
+   <translation id="xdsl_modem_dhcp_server_dhcp" qtlid="311804">DHCP serveris</translation>
+   <translation id="xdsl_modem_dhcp_gateway" qtlid="259844">Šliuzas (gateway)</translation>
+   <translation id="xdsl_modem_dhcp_primary_dns" qtlid="311817">Pirminis DNS</translation>
+   <translation id="xdsl_modem_dhcp_secondary_dns" qtlid="170408">Antrinis DNS</translation>
+   <translation id="xdsl_modem_dhcp_dns_domain" qtlid="311830">DHCP domenas</translation>
+   <translation id="xdsl_modem_dhcp_playa_dhcp" qtlid="311843">DHCP ruožas</translation>
+   <translation id="xdsl_modem_dhcp_playa_dhcp_start" qtlid="456479">Adresse de début de la plage DHCP</translation>
+   <translation id="xdsl_modem_dhcp_playa_dhcp_end" qtlid="456492">Adresse de fin de la plage DHCP</translation>
+   <translation id="xdsl_modem_dhcp_allocation_time" qtlid="311856">Adreso suteikimo trukmė</translation>
+
+   <translation id="xdsl_modem_dhcp_gateway_tooltip" qtlid="311869">Įrangos IP adresas, į kurį siunčiami paketai iš interneto (pagal nutylėjimą tai yra modemo LAN IP adresas)</translation>
+   <translation id="xdsl_modem_dhcp_primary_dns_tooltip" qtlid="311882">Vardų serverio IP adresas yra adresas, kurį naudoja įranga, gaunanti adresus iš DHCP</translation>
+   <translation id="xdsl_modem_dhcp_secondary_dns_tooltip" qtlid="311895">Antrinis vardų serverio IP adresas yra adresas, kurį naudoja įranga, kai neveikia pirminis</translation>
+   <translation id="xdsl_modem_dhcp_dns_domain_tooltip" qtlid="311908">DHCP valdomas domenas</translation>
+   <translation id="xdsl_modem_dhcp_playa_dhcp_tooltip" qtlid="311921">IP adresų ruo-o, kurį DHCP serveris teiks vietinio tinklo įrenginiams, pradžia ir pabaiga</translation>
+   <translation id="xdsl_modem_dhcp_allocation_time_tooltip" qtlid="311934">IP adreso suteikimo trukmė, t.y. laikas, kiek galios suteiktas IP adresas (atnaujinama automatiškai)</translation>
+
+   <translation id="xdsl_modem_dhcp_success" qtlid="311947">DHCP <strong>{{ name }}</strong> sėkmingai nustatytas!</translation>
+   <translation id="xdsl_modem_dhcp_submit_error" qtlid="385273">Oi! DHCP nebuvo atnaujintas.</translation>
+   <translation id="xdsl_modem_dhcp_error" qtlid="385286">Oi! Nepavyko gauti DHCP duomenų.</translation>
+</translations>

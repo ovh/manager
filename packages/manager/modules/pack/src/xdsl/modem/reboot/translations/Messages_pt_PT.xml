@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_modem_reboot" qtlid="311713">Redémarrer le modem</translation>
+   <translation id="xdsl_modem_reboot_an_error_ocurred" qtlid="311726">[Redémarrage Modem] Une erreur est survenue !</translation>
+   <translation id="xdsl_modem_reboot_success" qtlid="311739">Redémarrage du modem en cours.</translation>
+   <translation id="xdsl_modem_reboot_success_end" qtlid="311752">Redémarrage du modem complété.</translation>
+   <translation id="xdsl_modem_reboot_really" qtlid="311765">Êtes-vous sûr(e) de vouloir redémarrer votre modem ?</translation>
+</translations>

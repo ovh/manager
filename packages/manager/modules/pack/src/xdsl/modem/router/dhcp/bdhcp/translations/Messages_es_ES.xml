@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_modem_bdhcp_title" qtlid="311960">Reservas DHCP</translation>
+   <translation id="xdsl_modem_bdhcp_description" qtlid="311973">La dirección MAC permite identificar de manera única un dispositivo en la red (LAN e internet). Las reservas DHCP sirven para asignar una dirección IP fija a un dispositivo gracias a dicha dirección MAC. Estas reservas se utilizan principalmente en el alojamiento de servicios (servidor web, SSH, etc.), cuando quiere comunicar con ellos desde el exterior a través de redirecciones de puerto (que podrá configurar en paralelo).</translation>
+
+   <translation id="xdsl_modem_bdhcp_name" qtlid="3818">Nombre</translation>
+   <translation id="xdsl_modem_bdhcp_ip" qtlid="26191">Dirección IP</translation>
+   <translation id="xdsl_modem_bdhcp_mac" qtlid="42562">Dirección MAC</translation>
+
+   <translation id="xdsl_modem_bdhcp_ip_tooltip" qtlid="311986">La dirección IP debe pertenecer al intervalo de 192.168.1.64 a 192.168.1.253</translation>
+
+   <translation id="xdsl_modem_bdhcp_delete_really" qtlid="385299">¿Seguro que quiere eliminar la reserva <strong>{{ name }}</strong>?</translation>
+
+   <translation id="xdsl_modem_bdhcp_add" qtlid="312012">Añadir una reserva</translation>
+
+   <translation id="xdsl_modem_bdhcp_placeholder_name" qtlid="312025">Nombre de la reserva</translation>
+
+   <translation id="xdsl_modem_bdhcp_add_success" qtlid="397273;385338">Se ha añadido la reserva <strong qtlid="385325">{{ name }}</strong>.</translation>
+   <translation id="xdsl_modem_bdhcp_edit_success" qtlid="385351">Se ha actualizado la reserva <strong>{{ name }}</strong>.</translation>
+   <translation id="xdsl_modem_bdhcp_del_success" qtlid="385364">Se ha eliminado la reserva <strong>{{ name }}</strong>.</translation>
+   <translation id="xdsl_modem_bdhcp_add_error" qtlid="385377">¡Vaya! No se ha podido añadir la reserva <strong>{{ name }}</strong>.</translation>
+   <translation id="xdsl_modem_bdhcp_edit_error" qtlid="385390">¡Vaya! No se ha podido actualizar la reserva <strong>{{ name }}</strong>.</translation>
+   <translation id="xdsl_modem_bdhcp_del_error" qtlid="385403">¡Vaya! No se ha podido eliminar la reserva <strong>{{ name }}</strong>.</translation>
+</translations>

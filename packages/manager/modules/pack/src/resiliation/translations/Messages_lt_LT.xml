@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="pack_resiliation_title" qtlid="313299">Paketo atsisakymas</translation>
+   <translation id="pack_resiliation_engaged" qtlid="310855">Įsipareigojimo pabaiga</translation>
+   <translation id="pack_resiliation_not_engaged" qtlid="310868">Nėra įsipareigojimo.</translation>
+   <translation id="pack_resiliation_resiliation_date" qtlid="310881">Atsisakyti</translation>
+   <translation id="pack_resiliation_due" qtlid="310894">Liko mokėti</translation>
+   <translation id="pack_resiliation_type_name" qtlid="313312">paketas</translation>
+   <translation id="pack_resiliation_cancel" qtlid="310920">Atšaukti atsisakymą</translation>
+   <translation id="pack_resiliation_planed_on" qtlid="385572">Atsisakymas numatytas:</translation>
+   <translation id="pack_resiliation_cancel_really" qtlid="385585">Tuojau atšauksite paslaugos atsisakymą. Ar norite tęsti?</translation>
+   <translation id="pack_resiliation_mail" qtlid="310946">Jums išsiųstas patvirtinimo laiškas. Laiške taip pat yra grąžinimo kvitas, kurį reikia pateikti grąžinant modemą.</translation>
+
+   <translation id="pack_resiliation_button" qtlid="48646">Atsisakyti</translation>
+   <translation id="pack_resiliation_confirm" qtlid="313325">Atsisakau</translation>
+   <translation id="pack_resiliation_confirm_title" qtlid="313338">Abonemento atsisakymas</translation>
+   <translation id="pack_resiliation_infos" qtlid="385598">Atsisakymas atliekamas šiame puslapyje. Galite išsaugoti kai kuriuos su paketu susijusiu produktus. Popierinės procedūros nereikalingos. Gausite tik el. laišką atsisakymo patvirtinimui.</translation>
+   <translation id="pack_resiliation_reason_title" qtlid="385611">Atsisakymo priežastis</translation>
+   <translation id="pack_resiliation_reason" qtlid="313351">Dėl kokios priežasties norite atsisakyti?</translation>
+   <translation id="pack_resiliation_choice_addressMove" qtlid="86745">Perkėlimas</translation>
+   <translation id="pack_resiliation_choice_billingProblems" qtlid="313364">Netinkama apmokėjimo sistema</translation>
+   <translation id="pack_resiliation_choice_cessationOfActivity" qtlid="313377">Nutraukiama veikla</translation>
+   <translation id="pack_resiliation_choice_changeOfTerms" qtlid="313390">Pagrindinių naudojimo sąlygų pasikeitimai</translation>
+   <translation id="pack_resiliation_choice_ftth" qtlid="313403">Perėjimas prie optinio pluošto (FTTH)</translation>
+   <translation id="pack_resiliation_choice_goToCompetitor" qtlid="313416">Perėjimas pas konkurentus</translation>
+   <translation id="pack_resiliation_choice_other" qtlid="19963">Kita</translation>
+   <translation id="pack_resiliation_choice_technicalProblems" qtlid="313429">Techninės problemos</translation>
+   <translation id="pack_resiliation_cancel" qtlid="313442">Atšaukti paslaugos atsisakymą</translation>
+   <translation id="pack_resiliation_cancel_title" qtlid="385624">Atšaukti atsisakymo prašymą</translation>
+   <translation id="pack_resiliation_comment" qtlid="313455">Palikite komentarą (neprivaloma)</translation>
+   <translation id="pack_resiliation_comment2" qtlid="385637">Nurodykite atsisakymo priežastį (neprivaloma)</translation>
+   <translation id="pack_resiliation_comment_required" qtlid="385650">Nurodykite atsisakymo priežastį</translation>
+   <translation id="pack_resiliation_date_format" qtlid="313468">dd/mm/metai</translation>
+   <translation id="pack_resiliation_date_format_error" qtlid="313481">neteisinga data, naudokite datos pasirinkimo funkciją arba įveskite datą formatu</translation>
+   <translation id="pack_resiliation_services_to_keep" qtlid="385663">Pasirinkite paslaugas, kurias norite išsaugoti.</translation>
+   <translation id="pack_resiliation_disabled_field_help" qtlid="313507">Pilkai pažymėtos paslaugos negali būti išsaugotos.</translation>
+   <translation id="pack_resiliation_services_cannot_keep" qtlid="313520">Atsisakę paketo negalėsite išsaugoti šios paslaugos.</translation>
+   <translation id="pack_resiliation_subservices_load_error" qtlid="313533">Klaida įkeliant paslaugų atsisakymo informaciją. Negalima tęsti atsisakymo.</translation>
+   <translation id="pack_resiliation_hubic_disclamer" qtlid="509417">Vos comptes hubiC seront automatiquement basculés en offre gratuite 25 Go. Si vos données dépassent la capacité de stockage d'une offre gratuite, ces dernières restent accessibles.</translation>
+   <translation id="pack_resiliation_fee" qtlid="385689">Atsisakymo mokestis:</translation>
+   <translation id="pack_resiliation_keeping_fee" qtlid="385702">Papildomo numerio išsaugojimas:</translation>
+   <translation id="pack_resiliation_monthly_pass" qtlid="268289">Mėnesinis mokestis:</translation>
+   <translation id="pack_resiliation_excluding_tax" qtlid="313611">{{amount}} {{currency}} be PVM</translation>
+   <translation id="pack_resiliation_excluding_tax_annually" qtlid="385715">{{amount}} {{currency}} be PVM/metams</translation>
+   <translation id="pack_resiliation_excluding_tax_monthly" qtlid="385728">{{amount}} {{currency}} be PVM/mėn.</translation>
+   <translation id="pack_resiliation_price_tax_free" qtlid="322703">{{ price }} be PVM</translation>
+   <translation id="pack_resiliation_fee_summary_total_title" qtlid="385741">Visas atsisakymo mokestis, įskaitant išsaugomas paslaugas</translation>
+   <translation id="pack_resiliation_Nthly_pass" qtlid="313637">Abonementas už {{month}} mėn.:</translation>
+   <translation id="pack_resiliation_annually_pass" qtlid="385754">Mėnesinis mokestis:</translation>
+   <translation id="pack_resiliation_check_all_domain" qtlid="313663">Išsaugoti visus domenus</translation>
+   <translation id="pack_resiliation_check_all_hubic" qtlid="313676">Išsaugoti visas hubiC paskyras</translation>
+   <translation id="pack_resiliation_check_all_voipLine" qtlid="313689">Išsaugoti visas linijas</translation>
+   <translation id="pack_resiliation_check_all_exchangeIndividual" qtlid="385767">Visų Exchange (Individual)paskyrų išsaugojimas</translation>
+   <translation id="pack_resiliation_check_all_exchangeLite" qtlid="313715">Išsaugoti visas Exchange (Lite) paskyras</translation>
+   <translation id="pack_resiliation_check_all_exchangeOrganization" qtlid="385780">Išsaugoti visas Exchange (Organizacija) dėžutes</translation>
+   <translation id="pack_resiliation_check_all_exchangeAccount" qtlid="385793">Išsaugoti visas Exchange (paskyra) dėžutes</translation>
+   <translation id="pack_resiliation_check_all_voipEcoFax" qtlid="313754">Išsaugoti EcoFax Pro</translation>
+   <translation id="pack_resiliation_check_all_hostedEmail" qtlid="313767">Išsaugoti visas Hosted Emails dėžutes</translation>
+   <translation id="pack_resiliation_check_all_voipAlias" qtlid="313780">Išsaugoti visus alias</translation>
+   <translation id="pack_resiliation_check_all_siteBuilderFull" qtlid="313793">Išsaugoti visus Site Builder (Full)</translation>
+   <translation id="pack_resiliation_check_all_siteBuilderStart" qtlid="313806">Išsaugoti visus Site Builder</translation>
+   <translation id="pack_resiliation_delete_all_domain" qtlid="385806">Toliau nurodyti domenai bus ištrinti</translation>
+   <translation id="pack_resiliation_delete_all_hubic" qtlid="385819">Nurodytos Hubic paskyros bus ištrintos</translation>
+   <translation id="pack_resiliation_delete_all_voipLine" qtlid="385832">Nurodytos linijos bus ištrintos</translation>
+   <translation id="pack_resiliation_delete_all_exchangeIndividual" qtlid="385845">Nurodytos Exchange (Individual) paskyros bus ištrintos</translation>
+   <translation id="pack_resiliation_delete_all_exchangeLite" qtlid="385858">Nurodytos Exchange (Lite) paskyros bus ištrintos</translation>
+   <translation id="pack_resiliation_delete_all_exchangeOrganization" qtlid="385871">Nurodytos Exchange (Organisation) paskyros bus ištrintos</translation>
+   <translation id="pack_resiliation_delete_all_exchangeAccount" qtlid="385884">Nurodytos Exchange (paskyros) paskyros bus ištrintos</translation>
+   <translation id="pack_resiliation_delete_all_voipEcoFax" qtlid="385897">Nurodytos EcoFax Pro paskyros bus ištrintos</translation>
+   <translation id="pack_resiliation_delete_all_hostedEmail" qtlid="385910">Nurodytos Hosted el. pašto paskyros bus ištrintos</translation>
+   <translation id="pack_resiliation_delete_all_voipAlias" qtlid="385923">Nurodyti papildomi pavadinimai bus ištrinti</translation>
+   <translation id="pack_resiliation_delete_all_siteBuilderFull" qtlid="385936">Nurodytos Site Builder (Full) paskyros bus ištrintos</translation>
+   <translation id="pack_resiliation_delete_all_siteBuilderStart" qtlid="385949">Nurodytos Site Builder paskyros bus ištrintos</translation>
+   <translation id="pack_resiliation_mandatory_field" qtlid="313234">Žvaigždute pažymėti laukai yra privalomi.</translation>
+</translations>

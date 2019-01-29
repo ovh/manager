@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_modem_device_status" qtlid="311232">Yhdistetyt laitteet</translation>
+   <translation id="xdsl_modem_device_connected" qtlid="311245">Lista yhdistetyistä laitteista</translation>
+
+   <translation id="xdsl_modem_device_show_none" qtlid="311258">Ei yhtään laitetta yhdistettynä</translation>
+   <translation id="xdsl_modem_device_show_many" qtlid="311271">{{count}} laitetta yhdistettynä</translation>
+   <translation id="xdsl_modem_device_show_one" qtlid="311284">{{count}} laite yhdistettynä</translation>
+
+   <translation id="xdsl_modem_device_mac" qtlid="42562">MAC-osoite</translation>
+   <translation id="xdsl_modem_device_ip" qtlid="26191">IP-osoite</translation>
+   <translation id="xdsl_modem_device_host" qtlid="3818">Nimi</translation>
+   <translation id="xdsl_modem_device_connection_type" qtlid="307293">tyyppi</translation>
+   <translation id="xdsl_modem_device_other" qtlid="19963">Muu</translation>
+   <translation id="xdsl_modem_device_waiting_refresh" qtlid="311297">Odottaa virkistystä</translation>
+   <translation id="xdsl_modem_refresh" qtlid="250030">Virkistä</translation>
+   <translation id="xdsl_modem_refresh_error" qtlid="385494">Hups! Yhdistettyjen laitteiden luetteloa ei voida virkistää.</translation>
+   <translation id="xdsl_modem_connected_list_error" qtlid="385507">Hups! Yhdistettyjen laitteiden luotteloa ei voitu hakea.</translation>
+</translations>

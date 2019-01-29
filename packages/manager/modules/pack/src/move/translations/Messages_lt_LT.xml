@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="pack_move_title" qtlid="86745">Perkėlimas</translation>
+   <translation id="pack_move_operation_already_pending" qtlid="312493">Paketas perkeliamas</translation>
+   <translation id="pack_move_legacy_offer" qtlid="385962">Jūsų paketas netinkamas, norėdami pereiti prie perkėlimo, atnaujinkite paketą į naujesnį.</translation>
+   <translation id="pack_move_legacy_offer_upgrade_offer" qtlid="231292">Didinti paslaugos galingumą</translation>
+   <translation id="pack_move_line_title" qtlid="310712">Linijos tikrinimas</translation>
+   <translation id="pack_move_line_subtitle" qtlid="312532">Patikrinkite su telefonijos numeriu, priklausančiu naujam adresui.</translation>
+   <translation id="pack_move_address_subtitle" qtlid="312545">Tikrinti su nauju adresu</translation>
+   <translation id="pack_move_line_synchronisation" qtlid="312558">{{type}} sinchronizavimas bus baigtas:</translation>
+   <translation id="pack_move_eligibility_title" qtlid="312571">Tinkamumas</translation>
+   <translation id="pack_move_line_keep_number" qtlid="312584">Išsaugoti numerius</translation>
+   <translation id="pack_move_meeting_slots" qtlid="312597">Pereiti prie France Telecom</translation>
+   <translation id="pack_move_eligibility_phone_form_error" qtlid="312610">Prašome įvesti galiojantį numerį be brūkšnelių ar tarpų</translation>
+   <translation id="pack_move_eligibility_subtitle" qtlid="105634">Jums galimas šis degrupavimas:</translation>
+   <translation id="pack_move_eligibility_synchronisation_estimated_rate_title" qtlid="479486">Débit synchronisation estimé :</translation>
+   <translation id="pack_move_eligibility_synchronisation_download" qtlid="312649">Download:</translation>
+   <translation id="pack_move_eligibility_synchronisation_byMonth" qtlid="312662">/mėn.</translation>
+   <translation id="pack_move_eligibility_synchronisation_nra" qtlid="312675">Ši linija prijungta prie NRA <strong>{{name}}</strong>, esančios už <strong>{{distance}}</strong> metrų.</translation>
+   <translation id="pack_move_eligibility_synchronisation_line" qtlid="312688">Linijos būsena:</translation>
+   <translation id="pack_move_eligibility_synchronisation_line_active" qtlid="29635">Aktyvi</translation>
+   <translation id="pack_move_eligibility_synchronisation_line_inactive" qtlid="312701">Neaktyvi</translation>
+   <translation id="pack_move_eligibility_synchronisation_upload" qtlid="312714">Upload:</translation>
+   <translation id="pack_move_eligibility_synchronisation_mbps" qtlid="105550">Mbps</translation>
+   <translation id="pack_move_eligibility_unbundling_total" qtlid="79338">Visiškas pergrupavimas</translation>
+   <translation id="pack_move_eligibility_unbundling_createNeighbour" qtlid="312727">Tinklo kūrimas</translation>
+   <translation id="pack_move_eligibility_unbundling_creation" qtlid="312740">Linijos kūrimas</translation>
+   <translation id="pack_move_eligibility_unbundling_partial" qtlid="79350">Dalinis pergrupavimas</translation>
+   <translation id="pack_move_eligibility_line_status_active" qtlid="456557">Ligne active</translation>
+   <translation id="pack_move_eligibility_line_status_inactive" qtlid="456570">Ligne inactive</translation>
+   <translation id="pack_move_eligibility_provider" qtlid="312753">Teikėjas: {{provider}}</translation>
+   <translation id="pack_move_keepLine" qtlid="312766">Pageidauju išsaugoti numerį:</translation>
+   <translation id="pack_move_portLine" qtlid="456583">Je souhaite conserver mon numéro :</translation>
+   <translation id="pack_move_validate" qtlid="312792">Patvirtinti perkėlimą</translation>
+   <translation id="pack_move_success" qtlid="312805">Linijos perkėlimas bus baigtas po kelių dienų.</translation>
+   <translation id="pack_move_cannot_move" qtlid="312818">Negalima perkelti paketo į pasirinktą liniją.</translation>
+   <translation id="pack_move_cannot_validate_move" qtlid="312831">Negalima perkelti paketo: {{message}}</translation>
+   <translation id="pack_move_line_current_address" qtlid="312844">Dabartinis adresas</translation>
+   <translation id="pack_move_line_future_address" qtlid="312857">Būsimas adresas</translation>
+   <translation id="pack_move_portLine_cost" qtlid="456596">La conservation vous sera facturée <span class="font-weight-bold text-price">50€</span></translation>
+
+   <translation id="pack_move_eligibility_error" qtlid="312883">Perkeliamumo testas šiuo metu neprieinamas. Prašome pabandyti vėliau.</translation>
+   <translation id="pack_move_eligibility_no_offers" qtlid="385975">Linija{{ number }} nesuderinama su pasiūlymais.</translation>
+
+   <translation id="pack_move_portLine_disabled" qtlid="312896">Negalite perkelti savo numerio.</translation>
+   <translation id="pack_move_portLine_warning" qtlid="456609">La conservation du numéro de téléphone de votre accès entraînera la coupure de l'accès internet lui étant rattaché.</translation>
+   <translation id="pack_move_keepLine_disabled" qtlid="312909">Negalite išsaugoti šio numerio.</translation>
+
+   <translation id="pack_move_unbundling_total" qtlid="79338">Visiškas pergrupavimas</translation>
+   <translation id="pack_move_unbundling_partial" qtlid="79350">Dalinis pergrupavimas</translation>
+
+   <translation id="pack_move_line_address_door" qtlid="312922">Butas:</translation>
+   <translation id="pack_move_line_address_floor" qtlid="312935">Aukštas:</translation>
+   <translation id="pack_move_line_address_stairs" qtlid="312948">Laiptinė:</translation>
+   <translation id="pack_move_line_address_building" qtlid="312961">Pastatas:</translation>
+   <translation id="pack_move_line_address_residence" qtlid="312974">Rezidencija:</translation>
+
+   <translation id="pack_move_rio" qtlid="310257">RIO</translation>
+
+   <translation id="pack_move_eligibility_address_more" qtlid="312987">Daugiau patikslinimų</translation>
+
+   <translation id="pack_move_eligibility_number" qtlid="152505">Telefono nr.</translation>
+   <translation id="pack_move_eligibility_zipcode" qtlid="30346">Pašto kodas</translation>
+   <translation id="pack_move_eligibility_city" qtlid="33310">Miestas</translation>
+   <translation id="pack_move_eligibility_street" qtlid="152518">Gatvė</translation>
+   <translation id="pack_move_eligibility_street_number" qtlid="30778">Numeris</translation>
+   <translation id="pack_move_eligibility_building" qtlid="313000">Pastatas</translation>
+   <translation id="pack_move_eligibility_door" qtlid="313013">Butas</translation>
+   <translation id="pack_move_eligibility_floor" qtlid="313026">Aukštas</translation>
+   <translation id="pack_move_eligibility_residence" qtlid="313039">Rezidencija</translation>
+   <translation id="pack_move_eligibility_stair" qtlid="313052">Laiptinė</translation>
+   <translation id="pack_move_eligibility_error" qtlid="313065">Klaida tikrinant perkeliamumą:</translation>
+   <translation id="pack_move_eligibility_address_error_pairs" qtlid="456622">Nous avons enregistré un dysfonctionnement dans l’éligibilité de votre adresse de redirection : le nombre de paires est insuffisant pour créer une nouvelle ligne fixe</translation>
+   <translation id="pack_move_eligibility_address_error_neighbour" qtlid="456635">Nous avons enregistré un dysfonctionnement dans l’éligibilité de votre adresse de redirection : une erreur est survenue lors de la recherche du numéro de rue</translation>
+   <translation id="pack_move_eligibility_street_error" qtlid="456648">La rue {{partial}} est introuvable</translation>
+
+   <translation id="pack_move_eligibility_creation_price_label" qtlid="313078">diegimo mokestis</translation>
+
+   <translation id="pack_move_eligibility_zipcode_error" qtlid="313091">Negalima rasti miesto su pašto kodu {{zipcode}}</translation>
+
+   <translation id="pack_move_fake_meeting" qtlid="313104">Joks pateiktas laikas netinka, noriu, kad France Telekom susisiektų su manimi dėl kito laiko paskyrimo.</translation>
+   <translation id="pack_move_no_fake_meeting" qtlid="313117">Renkuosi susitikimo laiką.</translation>
+   <translation id="pack_move_programmed_meeting_select" qtlid="313130">Pasirinkite susitikimo laiką</translation>
+   <translation id="pack_move_programmed_meeting" qtlid="313143">Susitikimas paskirtas <strong>{{day}}</strong>, nuo <strong>{{start}}</strong> iki <strong>{{end}}</strong>.</translation>
+   <translation id="pack_move_contact_name" qtlid="313156">Kontakto vardas, kuris bus perduotas France Telecom</translation>
+   <translation id="pack_move_pending_validation" qtlid="313169">Tvirtinama</translation>
+   <translation id="pack_move_error_validation" qtlid="313182">Klaida tvirtinant</translation>
+   <translation id="pack_move_success_validation" qtlid="313195">Patvirtinta</translation>
+   <translation id="pack_move_no_erdv_info" qtlid="313208">France Telecom netrukus su jumis susisieks, kad paskirtų intervencijos datą.</translation>
+   <translation id="pack_move_contact_name_info" qtlid="313221">Prašome pateikti asmens vardą, kuris pasitiks technikus.</translation>
+   <translation id="pack_move_mandatory_field" qtlid="313234">Žvaigždute pažymėti laukai yra privalomi.</translation>
+
+   <translation id="pack_move_slamming_error" qtlid="456661">Oups ! Nous n'avons pas pu vérifier la portabilité de votre numéro</translation>
+</translations>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_modem_lan_title" qtlid="312077">IP LAN</translation>
+   <translation id="xdsl_modem_lan_description" qtlid="312090">A cada elemento conectado a la red LAN (Local Area Network) se le asigna una dirección IP. Las IP existentes en dicha red local, a las que no es posible acceder desde el exterior debido a que no están enrutadas en internet por naturaleza, forman IP llamadas «locales» o «IP LAN». Si usted modifica la dirección IP LAN estática del router, deberá configurar también el DHCP, las redirecciones de puertos y de reservas. Si configura el direccionamiento IP del módem en DHCP, deberá configurar también las redirecciones de puertos.</translation>
+
+   <translation id="xdsl_modem_lan_addressingType" qtlid="312103">Método de obtención de la dirección IP</translation>
+   <translation id="xdsl_modem_lan_ip" qtlid="312116">Dirección IP LAN</translation>
+   <translation id="xdsl_modem_lan_subnetMask" qtlid="311024">Máscara de subred</translation>
+
+   <translation id="xdsl_modem_lan_addressingType_tooltip" qtlid="312129">El router puede obtener una dirección automáticamente o tener una dirección fija</translation>
+   <translation id="xdsl_modem_lan_ip_tooltip" qtlid="312142">Dirección utilizada para contactar con el router</translation>
+   <translation id="xdsl_modem_lan_subnetMask_tooltip" qtlid="312155">Máscara de subred de la dirección estática</translation>
+
+   <translation id="xdsl_modem_lan_addressingType_Static" qtlid="312168">Estática</translation>
+   <translation id="xdsl_modem_lan_addressingType_DHCP" qtlid="311778">DHCP</translation>
+
+   <translation id="xdsl_modem_lan_success" qtlid="385416">Se ha actualizado la LAN <strong>{{ name }}</strong>.</translation>
+   <translation id="xdsl_modem_lan_error" qtlid="385429">¡Vaya! No se ha podido cargar la información relativa a la LAN.</translation>
+   <translation id="xdsl_modem_lan_submit_error" qtlid="385442">¡Vaya! No se ha podido actualizar la información relativa a la LAN.</translation>
+</translations>

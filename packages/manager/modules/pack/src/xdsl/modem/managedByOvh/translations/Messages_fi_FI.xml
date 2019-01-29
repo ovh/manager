@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_modem_managedBy_title" qtlid="507014">Configuration à distance activée</translation>
+   <translation id="xdsl_modem_managedBy_description" qtlid="311323">Modeemin konfiguraatio voidaan tehdä joko Hallintapaneelissa tai sen sisäisessä käyttöliittymässä. Aktivoimalla modeemin Hallintapaneelista kytket modeemin sisäisen käyttöliittymän pois päältä. &#13;
+</translation>
+   <translation id="xdsl_modem_managedBy_warning" qtlid="311336">Huom, konfiguraation voi tehdä ainoastaan yhdeltä käyttöliittymältä</translation>
+   <translation id="xdsl_modem_managedBy_warning_override" qtlid="385520">Attention, l'activation de la configuration à distance va écraser le paramétrage actuel de votre modem.</translation>
+   <translation id="xdsl_modem_managedBy_success_validation_on" qtlid="311349">Etäkonfiguraatiota aktivoidaan</translation>
+   <translation id="xdsl_modem_managedBy_success_validation_off" qtlid="311362">Kytketään etäkonfiguraatiota pois päältä</translation>
+   <translation id="xdsl_modem_managedBy_an_error_ocurred" qtlid="311375">[Etäkonfiguraation Aktivointi] Tapahtui virhe!</translation>
+
+
+   <translation id="xdsl_modem_managedBy_really_on" qtlid="311388">Haluatko varmasti aktivoida etäkonfiguraation?</translation>
+   <translation id="xdsl_modem_managedBy_really_off" qtlid="311401">Haluatko varmasti kytkeä etäkonfiguraation pois päältä?</translation>
+</translations>

@@ -9236,6 +9236,11 @@ ovh-angular-pagination-front@^7.0.0:
   resolved "https://registry.yarnpkg.com/ovh-angular-pagination-front/-/ovh-angular-pagination-front-7.0.0.tgz#484d333f357cdb2ea0abd3f76ae35491d2b8aae0"
   integrity sha1-SE0zPzV82y6gq9P3auNUkdK4quA=
 
+ovh-angular-q-allsettled@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/ovh-angular-q-allsettled/-/ovh-angular-q-allsettled-0.3.1.tgz#6fabcf33b3afb67161ec698092c7fc9a22f3db04"
+  integrity sha1-b6vPM7OvtnFh7GmAksf8miLz2wQ=
+
 ovh-angular-responsive-popover@5.0.0-alpha.2:
   version "5.0.0-alpha.2"
   resolved "https://registry.yarnpkg.com/ovh-angular-responsive-popover/-/ovh-angular-responsive-popover-5.0.0-alpha.2.tgz#96704f2277502d082d25e9280d71d110c7a91c84"

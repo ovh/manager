@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_modem_bridge_mode_status" qtlid="507001">Mode bridge activé</translation>
+   <translation id="xdsl_modem_bridge_mode_description" qtlid="311583">La activación del modo bridge está reservada a un uso avanzado. Este modo puede ser útil si quiere utilizar su propio router conectado detrás del módem OVH. Si no tiene router, solo un periférico podrá obtener la dirección IP pública de acceso y, por tanto, tener acceso a internet. La activación de este modo desactivará numerosas funcionalidades del módem, como el wifi y las redirecciones de puertos.</translation>
+   <translation id="xdsl_modem_bridge_mode_warning" qtlid="311596">Atención: Una vez activado el modo bridge, la única forma de hacer que el módem vuelva a modo router es realizar una restauración manual de los parámetros de fábrica (reseteo).</translation>
+   <translation id="xdsl_modem_bridge_mode_success_validation_on" qtlid="311609">Activando el modo bridge...</translation>
+   <translation id="xdsl_modem_bridge_mode_success_validation_off" qtlid="311622">Desactivación del modo bridge: reinicie manualmente el módem para validar la acción.</translation>
+   <translation id="xdsl_modem_bridge_mode_an_error_ocurred" qtlid="311635">Modo bridge: Se ha producido un error.</translation>
+   <translation id="xdsl_modem_bridge_really_on" qtlid="311648">¿Seguro que quiere activar el modo bridge?</translation>
+   <translation id="xdsl_modem_bridge_really_off" qtlid="311661">¿Seguro que quiere desactivar el modo bridge?</translation>
+</translations>

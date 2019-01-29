@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_modem_dhcp_title" qtlid="311778">DHCP</translation>
+   <translation id="xdsl_modem_dhcp_description" qtlid="311791">Un server DHCP (Dynamic Host Configuration Protocol) gestisce l'assegnazione di un indirizzo IP e di una maschera di sottorete a un elemento connesso, per una durata specifica e tramite i lease DHCP. Il DHCP può configurare anche altri parametri, come l’indirizzo del gateway predefinito o dei server DNS.</translation>
+
+   <translation id="xdsl_modem_dhcp_server_dhcp" qtlid="311804">Server DHCP</translation>
+   <translation id="xdsl_modem_dhcp_gateway" qtlid="259844">Gateway</translation>
+   <translation id="xdsl_modem_dhcp_primary_dns" qtlid="311817">DNS principale</translation>
+   <translation id="xdsl_modem_dhcp_secondary_dns" qtlid="170408">DNS Secondario</translation>
+   <translation id="xdsl_modem_dhcp_dns_domain" qtlid="311830">Dominio DHCP</translation>
+   <translation id="xdsl_modem_dhcp_playa_dhcp" qtlid="311843">Intervallo DHCP</translation>
+   <translation id="xdsl_modem_dhcp_playa_dhcp_start" qtlid="456479">Adresse de début de la plage DHCP</translation>
+   <translation id="xdsl_modem_dhcp_playa_dhcp_end" qtlid="456492">Adresse de fin de la plage DHCP</translation>
+   <translation id="xdsl_modem_dhcp_allocation_time" qtlid="311856">Durata dell'assegnazione di un indirizzo</translation>
+
+   <translation id="xdsl_modem_dhcp_gateway_tooltip" qtlid="311869">Indirizzo IP del dispositivo a cui saranno inviati i tuoi dati prima dell'accesso a Internet (di default l'indirizzo IP LAN del modem)</translation>
+   <translation id="xdsl_modem_dhcp_primary_dns_tooltip" qtlid="311882">Indirizzo IP del server DNS che sarà utilizzato dai nodi di rete che ricevono una risposta dal server DHCP</translation>
+   <translation id="xdsl_modem_dhcp_secondary_dns_tooltip" qtlid="311895">Indirizzo IP del secondo server DNS da contattare nel caso in cui il primo non risponda</translation>
+   <translation id="xdsl_modem_dhcp_dns_domain_tooltip" qtlid="311908">Dominio gestito dal DHCP</translation>
+   <translation id="xdsl_modem_dhcp_playa_dhcp_tooltip" qtlid="311921">Indirizzo di inizio e fine dell'intervallo di IP che il server DHCP fornirà alla rete locale</translation>
+   <translation id="xdsl_modem_dhcp_allocation_time_tooltip" qtlid="311934">Durata di validità dell'indirizzo IP del dispositivo prima della scadenza (rinnovo automatico)</translation>
+
+   <translation id="xdsl_modem_dhcp_success" qtlid="311947">Il DHCP <strong>{{ name }}</strong> è stato modificato correttamente!</translation>
+   <translation id="xdsl_modem_dhcp_submit_error" qtlid="385273">Ops! Impossibile aggiornare il DHCP.</translation>
+   <translation id="xdsl_modem_dhcp_error" qtlid="385286">Ops! Impossibile recuperare le informazioni relative al DHCP.</translation>
+</translations>

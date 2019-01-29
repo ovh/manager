@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="pack_move_contract_title" qtlid="9983">Patvirtinimas</translation>
+   <translation id="pack_move_contract_are_you_sure" qtlid="309243">Ar tikrai norite atlikti šią operaciją:</translation>
+   <translation id="pack_move_contract_move" qtlid="86745">Perkėlimas</translation>
+   <translation id="pack_move_contract_action" qtlid="313247">ADSL linija <strong>{{lineNumber}}</strong> bus aktyvuota.</translation>
+   <translation id="pack_move_contract_action_create" qtlid="313260">Nauja linija bus sukurta su adresu:</translation>
+   <translation id="pack_move_contract_fake_meeting" qtlid="313273">Su manim susisieks France Telecom ir suderins susitikimo laiką.</translation>
+   <translation id="pack_move_contract_meeting" qtlid="313143">Susitikimas paskirtas <strong>{{day}}</strong>, nuo <strong>{{start}}</strong> iki <strong>{{end}}</strong>.</translation>
+   <translation id="pack_move_contract_rules" qtlid="313286">Suprantu, kad prieigos perkėlimas pratęs įsipareigojimą 12 mėnesių, kurie prasidės po perkėlimo. Dabartinė mano prieiga bus uždaryta mėnesio pabaigoje, suteikus naują prieigą.</translation>
+   <translation id="pack_move_contract_porta_rules" qtlid="456674">Je comprends que le déménagement de mon accès engendre un réengagement de 12 mois qui débutetera à l'activation de mon nouvel accès.</translation>
+</translations>

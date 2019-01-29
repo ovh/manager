@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="pack_xdsl_access_ip_order_operation_title" qtlid="309243">Ar tikrai norite atlikti šią operaciją:</translation>
+   <translation id="pack_xdsl_access_ip_order_operation" qtlid="309256">Užsakyti {{amountIp}} IP adresų bloką</translation>
+   <translation id="pack_xdsl_access_ip_order_title" qtlid="114378">Užsakyti IP bloką</translation>
+   <translation id="pack_xdsl_access_ip_order_service_title" qtlid="309269">šiai paslaugai:</translation>
+   <translation id="pack_xdsl_access_ip_order_disclaim" qtlid="309282">Šie IP adresai bus aktyvuoti po {{hoursBeforeActivation}} val. Turėsite sumokėti {{price}} be PVm iki {{hoursBeforeCollected}} val. Ši paslauga užsakoma mažiausiai {{engagementMinimumMonths}} mėn.</translation>
+   <translation id="pack_xdsl_access_ip_order_are_you_sure_title" qtlid="309295">Ar tikrai norite atlikti šią operaciją:</translation>
+   <translation id="pack_xdsl_access_ip_order_immediate_execution" qtlid="309308">Sutinku, kad užsakoma Paslauga bus suteikta visa apimtimi nedelsiant, apmokėjus užsakymą ir gavus pranešimą apie Paslaugos suteikimą, todėl patvirtinu, kad nuo Paslaugos suteikimo momento nebegalėsiu pasinaudoti teise atsisakyti Paslaugos, kaip numatyta Lietuvos Respublikos Civilinio Kodekso 6.228-10 straipsnio 2 dalyje.</translation>
+   <translation id="pack_xdsl_access_ip_order_accept_conditions" qtlid="309321">Perskaičiau ir sutinku su papildomų IP adresų suteikimo sutarties nuostatomis.</translation>
+   <translation id="pack_xdsl_access_ip_order_accept_conditions_contract" qtlid="309334">Skaityti sutartį</translation>
+   <translation id="pack_xdsl_access_ip_order_no" qtlid="37863">Anuliuoti</translation>
+   <translation id="pack_xdsl_access_ip_order_yes" qtlid="43558">Užsakyti</translation>
+   <translation id="pack_xdsl_access_ip_order_validation" qtlid="455985">La commande du bloc d'IP a bien été prise en compte.</translation>
+</translations>

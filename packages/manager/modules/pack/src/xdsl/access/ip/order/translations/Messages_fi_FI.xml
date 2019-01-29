@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="pack_xdsl_access_ip_order_operation_title" qtlid="309243">Haluatko varmasti suorittaa seuraavan operaation:</translation>
+   <translation id="pack_xdsl_access_ip_order_operation" qtlid="309256">Tilaa {{amountIp}} IP-osoitteen</translation>
+   <translation id="pack_xdsl_access_ip_order_title" qtlid="114378">Tilaa IP-osoitelohko</translation>
+   <translation id="pack_xdsl_access_ip_order_service_title" qtlid="309269">seuraavalle palvelulle:</translation>
+   <translation id="pack_xdsl_access_ip_order_disclaim" qtlid="309282">Nämä IP-osoitteet aktivoidaan {{hoursBeforeActivation}} tunnin kuluessa. Sinulta veloitetaan {{price}}  {{hoursBeforeCollected}} tunnin kuluessa. Tämä palvelu edellyttää alkuperäisen {{engagementMinimumMonths}} kuukauden sitoutumisen</translation>
+   <translation id="pack_xdsl_access_ip_order_are_you_sure_title" qtlid="309295">Haluatko varmasti suorittaa seuraavan operaation:</translation>
+   <translation id="pack_xdsl_access_ip_order_immediate_execution" qtlid="309308">Ymmärrän, että OVH siirtää palvelun välittömästi tilauksen vahvistuksen jälkeen tuotantoon,  tästä johtuen minulla ei ole kuluttajansuojalain mukaista peruuttamisoikeutta. </translation>
+   <translation id="pack_xdsl_access_ip_order_accept_conditions" qtlid="309321">Olen lukenut ylimääräisiin IP-osoitteisiin liittyvät sopimusehdot ja hyväksyn ne.&#13;
+</translation>
+   <translation id="pack_xdsl_access_ip_order_accept_conditions_contract" qtlid="309334">Katso sopimus</translation>
+   <translation id="pack_xdsl_access_ip_order_no" qtlid="37863">Peruuta</translation>
+   <translation id="pack_xdsl_access_ip_order_yes" qtlid="43558">Tilaa</translation>
+   <translation id="pack_xdsl_access_ip_order_validation" qtlid="455985">La commande du bloc d'IP a bien été prise en compte.</translation>
+</translations>

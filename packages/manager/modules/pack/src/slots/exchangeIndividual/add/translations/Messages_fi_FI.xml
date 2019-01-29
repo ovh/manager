@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="add_an_account" qtlid="317646">Lisää Exchange-tili (Individual)</translation>
+   <translation id="account_informations" qtlid="317594">Tilin tiedot</translation>
+   <translation id="account_last_name" qtlid="3818">Nimi</translation>
+   <translation id="account_first_name" qtlid="23323">Etunimi</translation>
+   <translation id="account_display_name" qtlid="23515">Näyttönimi</translation>
+   <translation id="antispam_option" qtlid="317607">Haluan hyödyntää virus- ja roskapostitorjuntaa </translation>
+   <translation id="all_fields_are_required" qtlid="297579">Kaikki kentät ovat pakollisia</translation>
+   <translation id="success_validation" qtlid="308021">Pyyntösi on rekisteröity</translation>
+   <translation id="an_error_ocurred" qtlid="317620">Tapahtui virhe tilisi luonnissa</translation>
+</translations>

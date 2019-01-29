@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_modem_reboot" qtlid="311713">Restart the modem </translation>
+   <translation id="xdsl_modem_reboot_an_error_ocurred" qtlid="311726">[Modem restart] There was an error!</translation>
+   <translation id="xdsl_modem_reboot_success" qtlid="311739">Modem restarting </translation>
+   <translation id="xdsl_modem_reboot_success_end" qtlid="311752">Modem restart complete. </translation>
+   <translation id="xdsl_modem_reboot_really" qtlid="311765">Are you sure that you want to restart your modem?</translation>
+</translations>

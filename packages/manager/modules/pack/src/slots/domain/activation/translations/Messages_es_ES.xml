@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="domain_activation_total_error" qtlid="307358">Se ha producido un error durante la carga.</translation>
+   <translation id="domain_activation_widget_title" qtlid="307371">Activación de un dominio</translation>
+   <translation id="domain_activation_widget_intro1" qtlid="307384">Por favor, cumplimente el siguiente formulario</translation>
+   <translation id="domain_activation_form_domain_label" qtlid="307397">dominio</translation>
+   <translation id="domain_activation_activated_domains_reminder" qtlid="307410">Dominios ya activados en su pack</translation>
+   <translation id="domain_activation_activated_domains_null" qtlid="307423">No hay ningún dominio ya activado.</translation>
+   <translation id="domain_activation_no_tld" qtlid="307436">No hay ningún TLD disponible. Si no se ha producido ningún error, puede deberse a la lentitud de carga de los datos o a que su pack no permita activar dominios.</translation>
+   <translation id="domain_activation_error_on_check_disponibility" qtlid="307449">Un error bloquea la verificación de la disponibilidad del dominio.</translation>
+   <translation id="domain_activation_check_dispo" qtlid="307462">Verificación de la disponibilidad</translation>
+   <translation id="domain_activation_is_already_in_pack" qtlid="455894">{{ domain }} est déjà activé dans votre Pack. Veuillez choisir un autre nom de domaine.</translation>
+   <translation id="domain_activation_is_available" qtlid="455907">{{ domain }} est disponible.</translation>
+   <translation id="domain_activation_fill_form" qtlid="307501">Puede completar el siguiente formulario.</translation>
+   <translation id="domain_activation_is_unavailable" qtlid="455920">{{domain}} est déjà pris.</translation>
+   <translation id="domain_activation_do_you_transfert" qtlid="307527">Quiere transferirlo:</translation>
+   <translation id="domain_activation_do_transfert_yes" qtlid="50134">sí</translation>
+   <translation id="domain_activation_do_transfert_no" qtlid="50602">no</translation>
+   <translation id="domain_activation_form_authinfo" qtlid="307540">Código de autorización de transferencia (AuthInfo)</translation>
+   <translation id="domain_activation_i_have_check_is_available" qtlid="307553">Lo he comprobado, el dominio está disponible</translation>
+   <translation id="domain_activation_i_have_check_is_not_available" qtlid="307566">El dominio me pertenece</translation>
+   <translation id="domain_activation_form_ok_transfert_button" qtlid="307579">Transferir el dominio</translation>
+   <translation id="domain_activation_form_ok_activate_button" qtlid="307592">Activar el dominio</translation>
+   <translation id="domain_activation_you_are" qtlid="307605">Soy:</translation>
+   <translation id="domain_activation_is_individual" qtlid="307618">particular o autónomo</translation>
+   <translation id="domain_activation_is_corporation" qtlid="307631">empresa</translation>
+   <translation id="domain_activation_is_association" qtlid="307644">asociación</translation>
+   <translation id="domain_activation_confidential_for_afnic" qtlid="307657">Esta información es confidencial. El registro AFNIC no está autorizado a publicar los datos en el WHOIS. El servicio WHOIS es una base de datos de acceso público, comparable a una guía telefónica pero de internet.</translation>
+   <translation id="domain_activation_authentification_methode" qtlid="307670">Método de identificación:</translation>
+   <translation id="domain_activation_corporation_name_info" qtlid="307683">La denominación social debe ser la que figure en su extracto k-bis. Asegúrese de no indicar el nombre comercial sino la denominación social. Puede consultar su denominación social en las siguientes páginas: www.societe.com o www.sirene.fr.</translation>
+   <translation id="domain_activation_corporation_siren" qtlid="110694">CIF</translation>
+   <translation id="domain_activation_corporation_mark" qtlid="307696">Marca registrada</translation>
+   <translation id="domain_activation_corporation_vat" qtlid="112122">Número de IVA intercomunitario</translation>
+   <translation id="domain_activation_corporation_name" qtlid="307709">Denominación social</translation>
+   <translation id="domain_activation_corporation_other" qtlid="307722">Otro número de identificación específico de su país</translation>
+   <translation id="domain_activation_corporation_none" qtlid="112146">Ninguna identificación</translation>
+<translation id="domain_activation_authinfo_info" qtlid="307735">Tenga en cuenta que la transferencia no podrá completarse sin el AuthInfo. El AuthInfo es un número de identificación que debe proporcionarle su antiguo agente registrador (el proveedor que gestiona actualmente el dominio). Para obtenerlo, solicíteselo a su antiguo proveedor. Una vez disponga de él, podrá continuar el pedido.</translation>
+   <translation id="domain_activation_corporation_inpi" qtlid="307748">N° INPI</translation>
+   <translation id="domain_activation_corporation_brand_owner" qtlid="307761">Titular de la marca</translation>
+   <translation id="domain_activation_corporation_vat_info" qtlid="307774">La denominación social debe corresponder con la del número de IVA. Asegúrese de no indicar el nombre comercial sino la denominación social.</translation>
+   <translation id="domain_activation_corporation_id_number" qtlid="307787">N° de identificación</translation>
+   <translation id="domain_activation_corporation_noid_info" qtlid="307800">La indicación de un número de identificación es opcional para los dominios registrados en el AFNIC. No obstante, se recomienda proporcionarlo, ya que eso permite al AFNIC verificar más fácilmente que el propietario del dominio cumple los requisitos para registrarlo.</translation>
+   <translation id="domain_activation_corporation_waldec" qtlid="116982">Número WALDEC</translation>
+   <translation id="domain_activation_corporation_publication_detail" qtlid="307813">Detalles de publicación</translation>
+   <translation id="domain_activation_corporation_declaration" qtlid="307826">Declaración</translation>
+   <translation id="domain_activation_corporation_publication" qtlid="307839">Publicación</translation>
+   <translation id="domain_activation_corporation_announce" qtlid="307852">Anuncio</translation>
+   <translation id="domain_activation_corporation_asso_page" qtlid="305408">Página</translation>
+   <translation id="domain_activation_zip_code_birth" qtlid="307865">C.P. del lugar de nacimiento</translation>
+   <translation id="domain_activation_date_birth" qtlid="38289">Fecha de nacimiento</translation>
+   <translation id="domain_activation_country_birth" qtlid="269877">País de nacimiento</translation>
+   <translation id="domain_activation_city_birth" qtlid="163856">Localidad de nacimiento</translation>
+   <translation id="domain_activation_organisation" qtlid="32278">Organización</translation>
+   <translation id="domain_activation_organisation_complement" qtlid="307878">Complemento</translation>
+   <translation id="domain_activation_unable_to_save_domain" qtlid="307891">No se ha podido registrar el dominio.</translation>
+   <translation id="domain_activation_domain_is_saved" qtlid="455933">Domaine enregistré avec succès. Vous allez être redirigé vers la vue globale de votre pack.</translation>
+   <translation id="domain_activation_saving_domain" qtlid="307917">Registro del dominio</translation>
+   <translation id="domain_activation_please_wait" qtlid="307930">espere</translation>
+   <translation id="domain_activation_required_fields" qtlid="386834">Campos obligatorios.</translation>
+</translations>

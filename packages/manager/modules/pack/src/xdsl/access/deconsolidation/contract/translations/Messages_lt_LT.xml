@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_access_deconsolidation_contract_title" qtlid="9983">Patvirtinimas</translation>
+   <translation id="xdsl_access_deconsolidation_contract_are_you_sure" qtlid="309243">Ar tikrai norite atlikti šią operaciją:</translation>
+   <translation id="xdsl_access_deconsolidation_contract_modification_operation" qtlid="310140">Visiškas atskyrimas</translation>
+   <translation id="xdsl_access_deconsolidation_contract_modified" qtlid="310309">šioje linijoje: <strong>{{ serviceName }}</strong></translation>
+   <translation id="xdsl_access_deconsolidation_contract_number_not_transferred" qtlid="310322">Be RIO numeris bus prarastas.</translation>
+   <translation id="xdsl_access_deconsolidation_contract_price" qtlid="310335">Ši operacija kainuos <span class="text-underline">{{ price }}</span>.</translation>
+   <translation id="xdsl_access_deconsolidation_contract_monthlyPrice" qtlid="310348">Pakeisite dalinį atskyrimą į visišką atskyrimą, dėl to mėnesinis abonementas bus <span class="text-underline">{{ price }}</span> /mėn.</translation>
+   <translation id="xdsl_access_deconsolidation_contract_desc_agreement1" qtlid="310361">Perėjimas nuo dalinio prie visiško pakeis įsipareigojimą į {{ engagement }} mėn.</translation>
+   <translation id="xdsl_access_deconsolidation_contract_desc_agreement2" qtlid="310374">Sutinku, kad užsakoma Paslauga bus suteikta visa apimtimi nedelsiant, apmokėjus užsakymą ir gavus pranešimą apie Paslaugos suteikimą, todėl patvirtinu, kad nuo Paslaugos suteikimo momento nebegalėsiu pasinaudoti teise atsisakyti Paslaugos, kaip numatyta Vartotojų Kodekso  L.121-21-8straipsnyje. Paslaugos diegimas atliekamas per 7 dienas.</translation>
+   <translation id="xdsl_access_deconsolidation_contract_desc_agreement3" qtlid="310387">Susipažinau ir sutinku laikytis pagrindinių <a target="_blank" href="{{ packAdslPro2013 }}">xDSL Express</a> ir/ar <a target="_blank" href="{{ packAdslEnterprise2013 }}">Enterprise</a> sutarties taisyklių.</translation>
+</translations>

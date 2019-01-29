@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="pack_move_contract_title" qtlid="9983">Confirmar</translation>
+   <translation id="pack_move_contract_are_you_sure" qtlid="309243">¿Seguro que quiere realizar la siguiente operación:</translation>
+   <translation id="pack_move_contract_move" qtlid="86745">Traslado</translation>
+   <translation id="pack_move_contract_action" qtlid="313247">Va a activarse la línea ADSL <strong>{{lineNumber}}</strong>.</translation>
+   <translation id="pack_move_contract_action_create" qtlid="313260">Se va a crear una nueva línea en la dirección:</translation>
+   <translation id="pack_move_contract_fake_meeting" qtlid="313273">France Telecom se pondrá en contacto conmigo para acordar una cita.</translation>
+   <translation id="pack_move_contract_meeting" qtlid="313143">Se ha programado una cita el <strong>{{day}}</strong> entre <strong>{{start}}</strong> y <strong>{{end}}</strong>.</translation>
+   <translation id="pack_move_contract_rules" qtlid="313286">Entiendo que el traslado de mi acceso conlleva un nuevo período de compromiso de 12 meses que empezará a contar desde la activación de mi nuevo acceso. Mi acceso actual se cerrará al final del mes de puesta en servicio de mi nuevo acceso.</translation>
+   <translation id="pack_move_contract_porta_rules" qtlid="456674">Je comprends que le déménagement de mon accès engendre un réengagement de 12 mois qui débutetera à l'activation de mon nouvel accès.</translation>
+</translations>

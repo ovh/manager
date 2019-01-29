@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="pack_xdsl_access_ip_order_operation_title" qtlid="309243">¿Seguro que quiere realizar la siguiente operación:</translation>
+   <translation id="pack_xdsl_access_ip_order_operation" qtlid="309256">Contratación de un bloque de {{amountIp}} direcciones IP</translation>
+   <translation id="pack_xdsl_access_ip_order_title" qtlid="114378">Contratar un bloque de IP</translation>
+   <translation id="pack_xdsl_access_ip_order_service_title" qtlid="309269">en el siguiente servicio:</translation>
+   <translation id="pack_xdsl_access_ip_order_disclaim" qtlid="309282">Las direcciones IP se activarán en {{hoursBeforeActivation}} hora(s). Se le cargará el importe de {{price}} + IVA en {{hoursBeforeCollected}} hora(s). Este servicio está sujeto a un compromiso inicial de {{engagementMinimumMonths}} meses.</translation>
+   <translation id="pack_xdsl_access_ip_order_are_you_sure_title" qtlid="309295">¿Seguro que quiere realizar la siguiente operación:</translation>
+   <translation id="pack_xdsl_access_ip_order_immediate_execution" qtlid="309308">Je reconnais qu'OVH procédera à l'exécution immédiate de la prestation à compter de la validation de ma commande et à ce titre je renonce expressément à exercer mon droit de rétractation conformément aux dispositions de l'article L.121-21-8 du code de la consommation.&#13;
+&#13;
+Acepto que OVH proceda a la ejecución inmediata del servicio una vez sea validado mi pedido y, por consiguiente, renuncio expresamente a ejercer mi derecho de desistimiento, con arreglo a lo dispuesto en los artículos 102 y 103 del Real Decreto Legislativo 1/2007, por el que se aprueba el texto refundido de la Ley General para la Defensa de los Consumidores y Usuarios.</translation>
+   <translation id="pack_xdsl_access_ip_order_accept_conditions" qtlid="309321">He leído y acepto las condiciones del servicio de direcciones IP adicionales.</translation>
+   <translation id="pack_xdsl_access_ip_order_accept_conditions_contract" qtlid="309334">Ver el contrato</translation>
+   <translation id="pack_xdsl_access_ip_order_no" qtlid="37863">Cancelar</translation>
+   <translation id="pack_xdsl_access_ip_order_yes" qtlid="43558">Contratar</translation>
+   <translation id="pack_xdsl_access_ip_order_validation" qtlid="455985">La commande du bloc d'IP a bien été prise en compte.</translation>
+</translations>

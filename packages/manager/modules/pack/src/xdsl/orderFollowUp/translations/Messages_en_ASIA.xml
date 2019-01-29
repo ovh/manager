@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telecom_pack_xdsl_order_follow_up_intro" qtlid="42394">Order Tracking</translation>
+   <translation id="telecom_pack_xdsl_order_follow_up_total_error" qtlid="307358">Une erreur est survenue pendant le chargement.</translation>
+   <translation id="telecom_pack_xdsl_order_follow_up_step_name_accessIsOperational" qtlid="312324">Votre accès est opérationnel</translation>
+   <translation id="telecom_pack_xdsl_order_follow_up_step_name_checkInfrastructure" qtlid="312337">Validation de la construction de votre accès</translation>
+   <translation id="telecom_pack_xdsl_order_follow_up_step_name_configureAccessOnOVH" qtlid="312350">Configuration de l'accès sur les équipements OVH</translation>
+   <translation id="telecom_pack_xdsl_order_follow_up_step_name_orderPayed" qtlid="312363">Paiement de la commande</translation>
+   <translation id="telecom_pack_xdsl_order_follow_up_step_name_orderReceived" qtlid="312376">Order creation</translation>
+   <translation id="telecom_pack_xdsl_order_follow_up_step_name_orderTreatment" qtlid="312389">Traitement de la commande</translation>
+   <translation id="telecom_pack_xdsl_order_follow_up_step_name_sendModem" qtlid="312402">Envoi du modem</translation>
+   <translation id="telecom_pack_xdsl_order_follow_up_step_name_sendOrderToProvider" qtlid="312415">Envoi de la commande au fournisseur d'accès</translation>
+   <translation id="telecom_pack_xdsl_order_follow_up_step_name_setupCustomerPremisesEquipment" qtlid="312428">Installation des équiquements</translation>
+   <translation id="telecom_pack_xdsl_order_follow_up_step_name_waitingForProviderInstallReport" qtlid="312441">Attente du rapport du fournisseur d'accès</translation>
+   <translation id="telecom_pack_xdsl_order_follow_up_step_name_waitingForWithdrawalPeriodToBeOver" qtlid="312454">Attente de la fin de la période de rétractation du client</translation>
+   <translation id="telecom_pack_xdsl_order_follow_up_step_duration_minute" qtlid="44212">minute</translation>
+   <translation id="telecom_pack_xdsl_order_follow_up_step_duration_plurals_minute" qtlid="44224">minutes</translation>
+   <translation id="telecom_pack_xdsl_order_follow_up_step_duration_hour" qtlid="40234">hour</translation>
+   <translation id="telecom_pack_xdsl_order_follow_up_step_duration_plurals_hour" qtlid="44236">hours</translation>
+   <translation id="telecom_pack_xdsl_order_follow_up_step_duration_day" qtlid="44248">day</translation>
+   <translation id="telecom_pack_xdsl_order_follow_up_step_duration_plurals_day" qtlid="44260">days</translation>
+   <translation id="telecom_pack_xdsl_order_follow_up_header_estimated_time" qtlid="312467">Estimation durée :</translation>
+   <translation id="telecom_pack_xdsl_order_follow_up_header_status" qtlid="317568">Status:</translation>
+   <translation id="telecom_pack_xdsl_order_follow_up_status_todo" qtlid="312480">Programmé</translation>
+   <translation id="telecom_pack_xdsl_order_follow_up_status_doing" qtlid="26383">In progress</translation>
+   <translation id="telecom_pack_xdsl_order_follow_up_status_done" qtlid="8662">Terminate</translation>
+   <translation id="telecom_pack_xdsl_order_follow_up_status_error" qtlid="45508">Error</translation>
+<translation id="telecom_pack_xdsl_order_follow_up_status_"/>
+</translations>

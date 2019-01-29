@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_modem_bdhcp_title" qtlid="311960">DHCP susiejimas</translation>
+   <translation id="xdsl_modem_bdhcp_description" qtlid="311973">MAC adresas yra unikalus ir leidžia identifikuoti techninę įrangą tinkle (LAN ar internete). Naudojant MAC adresą, DHCP susiejimas sujungia fiksuotą IP adresą su įranga. DHCP susiejimas dažniausiai naudojamas teikiant interneto paslaugas (web serverio, SSH ir t.t.), kad įranga būtų pasiekiama iš tinklo išorės, naudojant prievadų peradresavimą (tai taip pat galite keisti).</translation>
+
+   <translation id="xdsl_modem_bdhcp_name" qtlid="3818">Pavadinimas</translation>
+   <translation id="xdsl_modem_bdhcp_ip" qtlid="26191">IP adresas</translation>
+   <translation id="xdsl_modem_bdhcp_mac" qtlid="42562">MAC adresas</translation>
+
+   <translation id="xdsl_modem_bdhcp_ip_tooltip" qtlid="311986">IP adresas turi būti intervale nuo 192.168.1.64 iki 192.168.1.253</translation>
+
+   <translation id="xdsl_modem_bdhcp_delete_really" qtlid="385299">Ar tikrai norite pašalinti užstatą <strong>{{ name }}</strong> ?</translation>
+
+   <translation id="xdsl_modem_bdhcp_add" qtlid="312012">Sukurti susiejimą</translation>
+
+   <translation id="xdsl_modem_bdhcp_placeholder_name" qtlid="312025">Susiejimo pavadinimas</translation>
+
+   <translation id="xdsl_modem_bdhcp_add_success" qtlid="397273;385338">Užstatas <strong qtlid="385325">{{ name }}</strong> pridėtas.</translation>
+   <translation id="xdsl_modem_bdhcp_edit_success" qtlid="385351">Užstatas <strong>{{ name }}</strong> atnaujintas.</translation>
+   <translation id="xdsl_modem_bdhcp_del_success" qtlid="385364">Užstatas <strong>{{ name }}</strong> ištrintas.</translation>
+   <translation id="xdsl_modem_bdhcp_add_error" qtlid="385377">Negalime pridėti užstato <strong>{{ name }}</strong>.</translation>
+   <translation id="xdsl_modem_bdhcp_edit_error" qtlid="385390">Negalima atnaujinti užstato <strong>{{ name }}</strong>.</translation>
+   <translation id="xdsl_modem_bdhcp_del_error" qtlid="385403">Negalima ištrinti užstato <strong>{{ name }}</strong>.</translation>
+</translations>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_modem_wifi_config_title" qtlid="456245">Configuration du réseau Wi-Fi {{ ssid }}</translation>
+   <translation id="xdsl_modem_wifi_config_list_title" qtlid="456258">Liste des réseaux Wi-Fi disponibles</translation>
+
+   <translation id="xdsl_modem_wifi_config_wifi" qtlid="456271">Activer le Wi-Fi :</translation>
+   <translation id="xdsl_modem_wifi_config_state" qtlid="8230">Estado</translation>
+
+   <translation id="xdsl_modem_wifi_config_table_ssid" qtlid="456284">Identifiant (SSID)</translation>
+   <translation id="xdsl_modem_wifi_config_ssid" qtlid="317971">Identifiant réseau (SSID)</translation>
+   <translation id="xdsl_modem_wifi_config_ssid_required" qtlid="456297">L'identifiant réseau est obligatoire.</translation>
+   <translation id="xdsl_modem_wifi_config_ssid_too_short" qtlid="456310">L'identifiant réseau doit au minimum être composé de 2 caractères.</translation>
+   <translation id="xdsl_modem_wifi_config_ssid_too_long" qtlid="456323">L'identifiant réseau doit au maximum être composé de 32 caractères.</translation>
+   <translation id="xdsl_modem_wifi_config_ssid_wrong_chars" qtlid="456336">L'identifiant réseau ne peut pas contenir d'accents.</translation>
+
+   <translation id="xdsl_modem_wifi_config_ssid_advertisement" qtlid="456349">Visibilité du réseau</translation>
+   <translation id="xdsl_modem_wifi_config_ssid_table_visibility" qtlid="106979">Visibilidade</translation>
+
+   <translation id="xdsl_modem_wifi_config_security" qtlid="125420">Segurança</translation>
+   <translation id="xdsl_modem_wifi_config_type_changed" qtlid="456362">La modification du type de sécurité necessite l'encodage d'un nouveau mot de passe.</translation>
+
+   <translation id="xdsl_modem_wifi_config_key" qtlid="317997">Clé Wi-Fi</translation>
+   <translation id="xdsl_modem_wifi_config_key_too_short" qtlid="456375">La clé Wi-Fi doit au minimum être composée de 6 caractères.</translation>
+   <translation id="xdsl_modem_wifi_config_key_required" qtlid="456388">La clé Wi-Fi est obligatoire.</translation>
+
+   <translation id="xdsl_modem_wifi_config_canal" qtlid="279730">Canal</translation>
+   <translation id="xdsl_modem_wifi_config_table_frequency" qtlid="30442">Frequência</translation>
+   <translation id="xdsl_modem_wifi_config_table_guest" qtlid="456414">Invité</translation>
+
+   <translation id="xdsl_modem_wifi_config_state_enabled" qtlid="30250">Ativado</translation>
+   <translation id="xdsl_modem_wifi_config_state_disabled" qtlid="24967">Desativado</translation>
+
+   <translation id="xdsl_modem_wifi_config_description" qtlid="311427">Le mode Wi-Fi permet de configurer le réseau sans fil du modem pour que vos équipements sans fil puissent s'y connecter.</translation>
+
+   <translation id="xdsl_modem_wifi_config_ssid_tooltip" qtlid="318023">L'identifiant réseau (ou SSID en terme technique) est le nom qui sera diffusé et apparaitra comme réseau sans fil disponible à proximité de votre modem.</translation>
+   <translation id="xdsl_modem_wifi_config_ssid_advertisement_tooltip" qtlid="318036">L'identifiant (nom) réseau peut être visible publiquement ou masqué. Si masqué, il faut donc connaitre le nom de votre réseau pour y accéder, car il n'apparaîtra pas dans la liste des réseaux sans fil disponibles.</translation>
+   <translation id="xdsl_modem_wifi_config_security_tooltip" qtlid="318049">La sécurité définit le type et la force de cryptage, du mot de passe requis pour accéder à votre réseau sans fil. Il est recommandé d'utiliser "WPA et WPA2" utilisant un cryptage plus élevé.</translation>
+   <translation id="xdsl_modem_wifi_config_key_tooltip" qtlid="318062">La clé Wi-Fi est le mot de passe qui sera demandé pour pouvoir accéder à votre réseau sans fil. Il est judicieux de renseigner une clé complexe, c'est-à-dire contenant des lettres ET chiffres, avec majuscules ET minuscules.</translation>
+   <translation id="xdsl_modem_wifi_config_canal_tooltip" qtlid="509573">La plage de canaux disponibles correspond à des fréquences différentes. Il n'y a pas de recommandation particulière de choix entre un canal et un autre.</translation>
+
+   <translation id="xdsl_modem_wifi_config_new_key" qtlid="303029">Nova chave</translation>
+   <translation id="xdsl_modem_wifi_config_retype_new_key" qtlid="318088">Ressaisissez la nouvelle clé</translation>
+
+   <translation id="xdsl_modem_wifi_config_key_not_matching" qtlid="456427">Les clés Wi-Fi ne sont pas identiques !</translation>
+
+   <translation id="xdsl_modem_wifi_config_visible" qtlid="46300">Vísivel</translation>
+   <translation id="xdsl_modem_wifi_config_hidden" qtlid="128274">Oculto</translation>
+
+   <translation id="xdsl_modem_wifi_config_really" qtlid="318114">Êtes-vous sûr(e) de vouloir modifier votre configuration Wi-Fi ?</translation>
+
+   <translation id="xdsl_modem_wifi_config_success" qtlid="456440">Configuration Wi-Fi mis à jour avec succès !</translation>
+   <translation id="xdsl_modem_wifi_config_success_single" qtlid="318127">Configuration Wi-Fi mis à jour avec succès ! Vous allez être redirigé(e).</translation>
+
+   <translation id="xdsl_modem_wifi_config_error_missing" qtlid="318140">Wi-Fi non existant!</translation>
+
+   <translation id="xdsl_modem_wifi_None" qtlid="8674">Nenhuma</translation>
+   <translation id="xdsl_modem_wifi_WEP" qtlid="318153">WEP</translation>
+   <translation id="xdsl_modem_wifi_WPA" qtlid="318166">WPA</translation>
+   <translation id="xdsl_modem_wifi_WPA2" qtlid="318179">WPA2</translation>
+   <translation id="xdsl_modem_wifi_WPAandWPA2" qtlid="318192">WPA et WPA2</translation>
+
+   <translation id="xdsl_modem_wifi_read_error" qtlid="385169">Oups ! Nous n'avons pas pu récupérer les informations relatives à votre wifi.</translation>
+   <translation id="xdsl_modem_wifi_write_error" qtlid="385182">Oups ! Nous n'avons pas pu mettre à jour votre wifi.</translation>
+   <translation id="xdsl_modem_wifi_config_info" qtlid="456453">Une modification de configuration d'un réseau Wi-Fi est déjà en cours. Les modifications que vous allez apporter seront appliquées une fois cette modification terminée.</translation>
+
+</translations>

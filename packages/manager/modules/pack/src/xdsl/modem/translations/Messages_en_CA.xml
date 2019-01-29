@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_modem_cant_be_managed" qtlid="311089">Ce modem ne peut pas être configuré par OVH.</translation>
+
+   <translation id="xdsl_modem_general_config" qtlid="311102">Configuration générale</translation>
+   <translation id="xdsl_modem_network_config" qtlid="311115">Configuration réseau</translation>
+   <translation id="xdsl_modem_advanced_config" qtlid="311128">Configurations avancées</translation>
+   <translation id="xdsl_modem_network" qtlid="25591">Network</translation>
+
+
+   <translation id="xdsl_modem_firewall" qtlid="311141">Pare-Feu</translation>
+   <translation id="xdsl_modem_wifi" qtlid="311154">WiFi</translation>
+   <translation id="xdsl_modem_modem" qtlid="42538">Modem</translation>
+   <translation id="xdsl_modem_managedBy" qtlid="311167">Configuration à distance</translation>
+   <translation id="xdsl_modem_bridge" qtlid="311180">Mode Bridge</translation>
+   <translation id="xdsl_modem_mtu" qtlid="311193">MTU</translation>
+   <translation id="xdsl_modem_dmz" qtlid="310959">DMZ</translation>
+
+   <translation id="xdsl_modem_warning_managedBy" qtlid="345884">La <a href="#">configuration à distance</a> n'est pas activée pour ce modem !</translation>
+   <translation id="xdsl_modem_warning_bridge" qtlid="311219">Le <a href="#">mode bridge</a> ne vous permet plus d'accéder à la configuration du modem.</translation>
+
+   <translation id="xdsl_model_access_error" qtlid="385455">Oups ! Nous n'avons pas pu récupérer les informations relatives à votre pack.</translation>
+   <translation id="xdsl_model_task_error" qtlid="385468">Oups ! Nous n'avons pas pu récupérer la pile de tâches en cours.</translation>
+   <translation id="xdsl_modem_modem_error" qtlid="385481">Oups ! Nous n'avons pas pu récupérer les informations relatives à votre modem.</translation>
+
+   <translation id="xdsl_modem_firmware" qtlid="510150">Firmware</translation>
+</translations>

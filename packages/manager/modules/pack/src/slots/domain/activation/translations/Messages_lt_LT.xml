@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="domain_activation_total_error" qtlid="307358">Klaida įkeliant.</translation>
+   <translation id="domain_activation_widget_title" qtlid="307371">Domeno aktyvavimas</translation>
+   <translation id="domain_activation_widget_intro1" qtlid="307384">Prašome užpildyti formą žemiau</translation>
+   <translation id="domain_activation_form_domain_label" qtlid="307397">domenas</translation>
+   <translation id="domain_activation_activated_domains_reminder" qtlid="307410">Pakete jau aktyvuoti domenai</translation>
+   <translation id="domain_activation_activated_domains_null" qtlid="307423">joks domenas dar neaktyvuotas.</translation>
+   <translation id="domain_activation_no_tld" qtlid="307436">Negalimas joks TLD. Jeigu nematote klaidos, tai gali būti dėl lėto duomenų įkrovimo arba paketas neleidžia aktyvuoti domenų.</translation>
+   <translation id="domain_activation_error_on_check_disponibility" qtlid="307449">Klaida blokuoja domeno pasiekiamumo tikrinimą.</translation>
+   <translation id="domain_activation_check_dispo" qtlid="307462">Pasiekiamumo tikrinimas</translation>
+   <translation id="domain_activation_is_already_in_pack" qtlid="455894">{{ domain }} est déjà activé dans votre Pack. Veuillez choisir un autre nom de domaine.</translation>
+   <translation id="domain_activation_is_available" qtlid="455907">{{ domain }} est disponible.</translation>
+   <translation id="domain_activation_fill_form" qtlid="307501">Užpildykite formą žemiau.</translation>
+   <translation id="domain_activation_is_unavailable" qtlid="455920">{{domain}} est déjà pris.</translation>
+   <translation id="domain_activation_do_you_transfert" qtlid="307527">Ar norite perkelti:</translation>
+   <translation id="domain_activation_do_transfert_yes" qtlid="50134">taip</translation>
+   <translation id="domain_activation_do_transfert_no" qtlid="50602">ne</translation>
+   <translation id="domain_activation_form_authinfo" qtlid="307540">Perkėlimo kodas (AuthInfo)</translation>
+   <translation id="domain_activation_i_have_check_is_available" qtlid="307553">Patvirtinu, kad domenas yra laisvas</translation>
+   <translation id="domain_activation_i_have_check_is_not_available" qtlid="307566">^is domenas priklauso man</translation>
+   <translation id="domain_activation_form_ok_transfert_button" qtlid="307579">Perkelti šį domeną</translation>
+   <translation id="domain_activation_form_ok_activate_button" qtlid="307592">Aktyvuoti šį domeną</translation>
+   <translation id="domain_activation_you_are" qtlid="307605">Jūs esate:</translation>
+   <translation id="domain_activation_is_individual" qtlid="307618">privatus asmuo</translation>
+   <translation id="domain_activation_is_corporation" qtlid="307631">įmonė</translation>
+   <translation id="domain_activation_is_association" qtlid="307644">asociacija</translation>
+   <translation id="domain_activation_confidential_for_afnic" qtlid="307657">Ši informacija liks konfidenciali, AFNIC nepublikuoja jos Whois duomenų bazėje. WHOIS duomenų bazė yra vieša, tai yra savotiškas telefonų knygos atitikmuo internete.</translation>
+   <translation id="domain_activation_authentification_methode" qtlid="307670">Identifikavimo metodas:</translation>
+   <translation id="domain_activation_corporation_name_info" qtlid="307683">Įmonės pavadinimas turi būti nurodytas k-bis išraše. Įveskite ne prekės ženklą, bet įmonės pavadinimą. Pavadinimą galite patikrinti naudodami šias nuorodas: www.societe.com arba www.sirene.fr</translation>
+   <translation id="domain_activation_corporation_siren" qtlid="110694"></translation>
+   <translation id="domain_activation_corporation_mark" qtlid="307696">Registruotas prekės ženklas</translation>
+   <translation id="domain_activation_corporation_vat" qtlid="112122">Bendrijos PVM kodas</translation>
+   <translation id="domain_activation_corporation_name" qtlid="307709">Juridinis pavadinimas</translation>
+   <translation id="domain_activation_corporation_other" qtlid="307722">Kitas identifikavimo numeris, naudojamas jūsų šalyje</translation>
+   <translation id="domain_activation_corporation_none" qtlid="112146">Jokio identifikavimo</translation>
+<translation id="domain_activation_authinfo_info" qtlid="307735">Atkreipkite dėmesį, kad perkėlimui būtinas AuthInfo kodas. Tai yra identifikacinis kodas, kurį turi suteikti senasis registratorius (t.y. registratorius, kuris aptarnauja domeną). Norėdami gauti kodą, susisiekite su senuoju registratoriumi. Tuomet galėsite pereiti prie užsakymo.</translation>
+   <translation id="domain_activation_corporation_inpi" qtlid="307748">INPI Nr.</translation>
+   <translation id="domain_activation_corporation_brand_owner" qtlid="307761"></translation>
+   <translation id="domain_activation_corporation_vat_info" qtlid="307774">Pavadinimas turi atitikti tą, kuris nurodytas prie PVM kodo.</translation>
+   <translation id="domain_activation_corporation_id_number" qtlid="307787">Identifikacijos nr.</translation>
+   <translation id="domain_activation_corporation_noid_info" qtlid="307800">Identifikacinio numerio pateikimas nėra privalomas, jeigu domenas registruotas AFNIC. Tačiau rekomenduojama jį nurodyti, nes tai leis AFNIC lengviau patikrinti domeno savininko duomenis ir teisę naudoti domeną.</translation>
+   <translation id="domain_activation_corporation_waldec" qtlid="116982">WALDEC numeris</translation>
+   <translation id="domain_activation_corporation_publication_detail" qtlid="307813">Publikavimo data</translation>
+   <translation id="domain_activation_corporation_declaration" qtlid="307826">Deklaracija</translation>
+   <translation id="domain_activation_corporation_publication" qtlid="307839">Publikacija</translation>
+   <translation id="domain_activation_corporation_announce" qtlid="307852">Pranešimas</translation>
+   <translation id="domain_activation_corporation_asso_page" qtlid="305408">Puslapis</translation>
+   <translation id="domain_activation_zip_code_birth" qtlid="307865">Pašto kodas</translation>
+   <translation id="domain_activation_date_birth" qtlid="38289">Gimimo data</translation>
+   <translation id="domain_activation_country_birth" qtlid="269877">Gimimo šalis</translation>
+   <translation id="domain_activation_city_birth" qtlid="163856">Gimimo miestas</translation>
+   <translation id="domain_activation_organisation" qtlid="32278">Organizacija</translation>
+   <translation id="domain_activation_organisation_complement" qtlid="307878">Papildymas</translation>
+   <translation id="domain_activation_unable_to_save_domain" qtlid="307891">Negalima užregistruoti domeno</translation>
+   <translation id="domain_activation_domain_is_saved" qtlid="455933">Domaine enregistré avec succès. Vous allez être redirigé vers la vue globale de votre pack.</translation>
+   <translation id="domain_activation_saving_domain" qtlid="307917">Domeno registravimas</translation>
+   <translation id="domain_activation_please_wait" qtlid="307930">prašome palaukti</translation>
+   <translation id="domain_activation_required_fields" qtlid="386834">Privalomi laukai</translation>
+</translations>

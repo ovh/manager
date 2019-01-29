@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_modem_ports_title" qtlid="224646">Redirección de puertos</translation>
+   <translation id="xdsl_modem_ports_description" qtlid="312194">Una redirección de puertos permite reenviar de un puerto (o rango de puertos) del módem hacia un puerto (o rango de puertos) determinado(s) de un dispositivo de su red. Si el módem está en modo router, no es posible acceder directamente desde internet a los dispositivos presentes en su red local. Una redirección de puertos permite acceder a ellos desde el exterior.</translation>
+
+   <translation id="xdsl_modem_ports_name" qtlid="3818">Nombre</translation>
+   <translation id="xdsl_modem_ip_source" qtlid="138376">IP de origen</translation>
+   <translation id="xdsl_modem_ports_port_begin" qtlid="312207">Puerto inicial</translation>
+   <translation id="xdsl_modem_ports_port_end" qtlid="312220">Puerto final</translation>
+   <translation id="xdsl_modem_ports_protocol" qtlid="19711">Protocolo</translation>
+   <translation id="xdsl_modem_ports_internal_client" qtlid="161581">IP de destino</translation>
+   <translation id="xdsl_modem_ports_internal_port" qtlid="312233">Puerto interno</translation>
+
+   <translation id="xdsl_modem_ports_internal_port_tooltip" qtlid="312246">Si el puerto final es distinto del puerto inicial, la redirección se hará a un rango de puertos internos de tamaño equivalente que empiecen por el valor indicado en «Puerto interno».</translation>
+
+   <translation id="xdsl_modem_ports_add" qtlid="312259">Añadir una redirección de puertos</translation>
+
+   <translation id="xdsl_modem_ports_delete_really" qtlid="312272">¿Seguro que quiere eliminar la redirección de puertos?</translation>
+
+   <translation id="xdsl_modem_ports_placeholder_redirection" qtlid="19639">HTTP</translation>
+   <translation id="xdsl_modem_ports_placeholder_ip_source" qtlid="385195">109.190.xxx.xxx (opcional)</translation>
+
+   <translation id="xdsl_modem_ports_add_success" qtlid="312285">La redirección de puertos <strong>{{ name }}</strong> se ha añadido correctamente.</translation>
+   <translation id="xdsl_modem_ports_edit_success" qtlid="312298">La redirección de puertos <strong>{{ name }}</strong> se ha editado correctamente.</translation>
+   <translation id="xdsl_modem_ports_del_success" qtlid="312311">La redirección de puertos <strong>{{ name }}</strong> se ha eliminado correctamente.</translation>
+
+   <translation id="xdsl_modem_ports_firewall_info" qtlid="385208">Para garantizar que las reglas de redirección funcionen correctamente, el cortafuegos del módem debe estar desactivado.</translation>
+   <translation id="xdsl_modem_ports_firewall_explaination" qtlid="385221">La seguridad de su red no se verá afectada. El cortafuegos solo dejará pasar las peticiones entrantes destinadas a la IP en la que se aplique una regla de redirección.</translation>
+
+   <translation id="xdsl_modem_ports_read_error" qtlid="385234">¡Vaya! No se han podido leer las redirecciones de puertos.</translation>
+   <translation id="xdsl_modem_ports_add_error" qtlid="385247">No se ha podido añadir la redirección de puerto <strong>{{ name }}</strong>.</translation>
+   <translation id="xdsl_modem_ports_edit_error" qtlid="385260">No se ha podido actualizar la redirección de puerto <strong>{{ name }}</strong>.</translation>
+   <translation id="xdsl_modem_ports_del_error" qtlid="385260">No se ha podido actualizar la redirección de puerto <strong>{{ name }}</strong>.</translation>
+</translations>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_modem_dmz_status" qtlid="310959">DMZ</translation>
+   <translation id="xdsl_modem_dmz_description" qtlid="310972">DMZ (demilitarizuotos zonos) dalis OVH modemuose sukuria prieigą visais prievadais prie vidinio tinklo iš išorės. Dėmesio, norint sukurti tikrą DMZ, reikia išjungti ugniasienę, visa apsauga turi būti kompiuteriuose.</translation>
+   <translation id="xdsl_modem_dmz_warning" qtlid="310985">Dėmesio, vėlesni DMZ konfigūracijos keitimai (parametrų keitimas, išjungimas) kelioms minutės nutrauks jungtį.</translation>
+   <translation id="xdsl_modem_dmz_dmz_address" qtlid="310998">DMZ IP adresas</translation>
+   <translation id="xdsl_modem_dmz_modem_address" qtlid="311011">Modemo IP adresas</translation>
+   <translation id="xdsl_modem_dmz_mask_address" qtlid="311024">Potinklio netmask</translation>
+   <translation id="xdsl_modem_dmz_none" qtlid="8674">Tuščia</translation>
+   <translation id="xdsl_modem_dmz_unknown" qtlid="311037">Nežinoma</translation>
+   <translation id="xdsl_modem_dmz_an_error_ocurred" qtlid="311050">[DMZ] Klaida!</translation>
+   <translation id="xdsl_modem_dmz_doing" qtlid="311063">Atliekamas DMZ IP adreso keitimas</translation>
+   <translation id="xdsl_modem_dmz_delete_really" qtlid="311076">Ar tikrai norite ištrinti DMZ?</translation>
+</translations>

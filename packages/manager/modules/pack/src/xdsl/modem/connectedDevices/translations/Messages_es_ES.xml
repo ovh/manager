@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_modem_device_status" qtlid="311232">Dispositivos conectados</translation>
+   <translation id="xdsl_modem_device_connected" qtlid="311245">Lista de dispositivos conectados</translation>
+
+   <translation id="xdsl_modem_device_show_none" qtlid="311258">No hay dispositivos conectados</translation>
+   <translation id="xdsl_modem_device_show_many" qtlid="311271">{{count}} dispositivos conectados</translation>
+   <translation id="xdsl_modem_device_show_one" qtlid="311284">{{count}} dispositivo conectado</translation>
+
+   <translation id="xdsl_modem_device_mac" qtlid="42562">Dirección MAC</translation>
+   <translation id="xdsl_modem_device_ip" qtlid="26191">Dirección IP</translation>
+   <translation id="xdsl_modem_device_host" qtlid="3818">Nombre</translation>
+   <translation id="xdsl_modem_device_connection_type" qtlid="307293">tipo</translation>
+   <translation id="xdsl_modem_device_other" qtlid="19963">Otro</translation>
+   <translation id="xdsl_modem_device_waiting_refresh" qtlid="311297">Pendiente de actualización</translation>
+   <translation id="xdsl_modem_refresh" qtlid="250030">Actualizar</translation>
+   <translation id="xdsl_modem_refresh_error" qtlid="385494">¡Vaya! No se ha podido actualizar la lista de dispositivos conectados.</translation>
+   <translation id="xdsl_modem_connected_list_error" qtlid="385507">¡Vaya! No se ha podido cargar la lista de dispositivos conectados.</translation>
+</translations>

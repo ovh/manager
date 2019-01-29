@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_resiliation_title" qtlid="310829">Baja del servicio</translation>
+   <translation id="xdsl_resiliation_service_forbidden" qtlid="310842">Este servicio no puede darse de baja por separado, ya que está asociado a su pack.</translation>
+   <translation id="xdsl_resiliation_engaged" qtlid="310855">Fecha de fin de compromiso</translation>
+   <translation id="xdsl_resiliation_not_engaged" qtlid="310868">Ya ha finalizado su compromiso.</translation>
+   <translation id="xdsl_resiliation_resiliation_date" qtlid="310881">Se dará de baja el</translation>
+   <translation id="xdsl_resiliation_due" qtlid="310894">Restante por pagar</translation>
+   <translation id="xdsl_resiliation_type_name" qtlid="310907">el servicio</translation>
+   <translation id="xdsl_resiliation_cancel" qtlid="310920">Cancelar mi solicitud de baja</translation>
+   <translation id="xdsl_resiliation_cancel_really" qtlid="386847">Va a cancelar la baja de «{{description}}». ¿Quiere continuar?</translation>
+   <translation id="xdsl_resiliation_service_date_format" qtlid="313468">dd/mm/aaaa</translation>
+   <translation id="xdsl_resiliation_mail" qtlid="310946">Vamos a enviarle por correo electrónico un mensaje que contiene la hoja de devolución que debe adjuntar al paquete de devolución del módem.</translation>
+   <translation id="xdsl_resiliation_terminate_info_1" qtlid="385559">Ya existe una solicitud de baja. <br/> Dicha baja está programada para el {{date}}. Haga clic en «Cancelar la baja» si desea cancelar de inmediato la baja.</translation>
+</translations>

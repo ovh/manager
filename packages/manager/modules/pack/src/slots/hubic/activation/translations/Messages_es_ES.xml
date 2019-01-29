@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="hubic_activation_total_error" qtlid="307358">Se ha producido un error durante la carga.</translation>
+   <translation id="hubic_activation_widget-title" qtlid="308333">Activación hubiC</translation>
+   <translation id="hubic_activation_widget-intro" qtlid="308346">Para disfrutar de su regalo hubiC en su plan, debe tener una cuenta de hubiC. Si todavía no la tiene, cree una gratuita en <a href="https://www.hubic.com" target="new">hubic.com</a>.<br /> A continuación, acceda a la siguiente página para utilizar sus códigos de activación: <a href="https://hubic.com/home/gift/" target="new">hubic.com/home/gift/</a>.</translation>
+   <translation id="hubic_activation_widget_hubic_header" qtlid="108275">hubiC</translation>
+   <translation id="hubic_activation_widget_voucher_header" qtlid="308359">Código no utilizado</translation>
+</translations>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_modem_bridge_mode_status" qtlid="507001">Mode bridge activé</translation>
+   <translation id="xdsl_modem_bridge_mode_description" qtlid="311583">Bridge-tilan aktivointi on varattu edistyneeseen käyttöön. Se voi olla hyödyllinen, jos haluat käyttää OVH:n reitittimen taakse yhdistettyä omaa reitintä. Jos sinulla ei ole reititintä, vain yksi laite voi saada julkisen IP-osoitteen ja siis Internetyhteyden. Tilan aktivointi katkaisee monta modeemin ominaisuutta kuten erityisesti Wifin sekä porttien uudelleenohjaukset. </translation>
+   <translation id="xdsl_modem_bridge_mode_warning" qtlid="311596">Huomio, kun bridge-tila on aktivoitu, ainoa tapa siirtää modeemi reititintilaan on palauttaa tehdasasetukset (reset) käsin.</translation>
+   <translation id="xdsl_modem_bridge_mode_success_validation_on" qtlid="311609">Bridge-tilaa aktivoidaan</translation>
+   <translation id="xdsl_modem_bridge_mode_success_validation_off" qtlid="311622">Bridge-tilaa deaktivoidaan: Nollaa modeemisi manuaalisesti vahvistaaksesi toiminnon.</translation>
+   <translation id="xdsl_modem_bridge_mode_an_error_ocurred" qtlid="311635">[Mode bridge] Tapahtui virhe!</translation>
+   <translation id="xdsl_modem_bridge_really_on" qtlid="311648">Haluatko varmasti aktivoida Bridge-tilan?</translation>
+   <translation id="xdsl_modem_bridge_really_off" qtlid="311661">Haluatko varmasti kytkeä Bridge-tilan pois päältä?</translation>
+</translations>

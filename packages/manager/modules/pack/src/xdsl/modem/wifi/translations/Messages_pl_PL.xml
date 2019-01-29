@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_modem_wifi_status_enabled" qtlid="479330">Wi-Fi activé</translation>
+   <translation id="xdsl_modem_detault_wifi_status_enabled" qtlid="479343">Wi-Fi activé par défaut</translation>
+   <translation id="xdsl_modem_wifi_status_disabled" qtlid="479356">Wi-Fi désactivé</translation>
+   <translation id="xdsl_modem_default_wifi_status_disabled" qtlid="479369">Wi-Fi désactivé par défaut</translation>
+   <translation id="xdsl_modem_wifi_description" qtlid="311427">Tryb Wi-Fi pozwala na skonfigurowanie sieci bez podłączania modemu za pomocą kabla.</translation>
+
+   <translation id="xdsl_modem_wifi_success_validation_on" qtlid="311440">Trwa włączanie Wi-Fi.</translation>
+   <translation id="xdsl_modem_wifi_success_validation_off" qtlid="311453">Trwa wyłączanie Wi-Fi.</translation>
+
+   <translation id="xdsl_modem_wifi_really_on" qtlid="311466">Czy chcesz włączyć Wi-Fi?</translation>
+   <translation id="xdsl_modem_wifi_really_off" qtlid="311479">Czy chcesz wyłączyć Wi-Fi?</translation>
+
+   <translation id="xdsl_modem_wifi_configure" qtlid="311492">Skonfiguruj Wi-Fi</translation>
+   <translation id="xdsl_modem_wifi_configure_many" qtlid="456232">Configurer les réseaux Wi-Fi</translation>
+   <translation id="xdsl_modem_wifi_read_error" qtlid="385143">Nie mogliśmy pobrać informacji związanych z siecią wifi.</translation>
+   <translation id="xdsl_modem_wifi_update_error" qtlid="385156">Nie mogliśmy zaktualizować&#160;sieci wifi dla Twojego modemu.</translation>
+</translations>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_access_deconsolidation_contract_title" qtlid="9983">Confirmar</translation>
+   <translation id="xdsl_access_deconsolidation_contract_are_you_sure" qtlid="309243">¿Seguro que quiere realizar la siguiente operación:</translation>
+   <translation id="xdsl_access_deconsolidation_contract_modification_operation" qtlid="310140">Desagregación total</translation>
+   <translation id="xdsl_access_deconsolidation_contract_modified" qtlid="310309">en la siguiente línea: <strong>{{ serviceName }}</strong></translation>
+   <translation id="xdsl_access_deconsolidation_contract_number_not_transferred" qtlid="310322">Sin RIO, perderá su número.</translation>
+   <translation id="xdsl_access_deconsolidation_contract_price" qtlid="310335">Esta operación tiene un coste de <span class="text-underline">{{ price }}</span>.</translation>
+   <translation id="xdsl_access_deconsolidation_contract_monthlyPrice" qtlid="310348">Va a cambiar de desagregación parcial a total. Su cuota de suscripción mensual será de <span class="text-underline">{{ price }}</span>/mes.</translation>
+   <translation id="xdsl_access_deconsolidation_contract_desc_agreement1" qtlid="310361">El cambio de parcial a total implica un nuevo período de compromiso de {{ engagement }} mes.</translation>
+   <translation id="xdsl_access_deconsolidation_contract_desc_agreement2" qtlid="310374">Solicito la ejecución inmediata del servicio y reconozco que no podré ejercer el derecho de desistimiento, con arreglo a lo dispuesto en los artículos 102 y 103 del Real Decreto Legislativo 1/2007 por el que se aprueba el texto refundido de la Ley General para la Defensa de los Consumidores y Usuarios y otras leyes complementarias. Activación del servicio en 7 días (plazo medio).</translation>
+   <translation id="xdsl_access_deconsolidation_contract_desc_agreement3" qtlid="310387">He leído y acepto las Condiciones Generales de Venta de <a target="_blank" href="{{ packAdslPro2013 }}">la oferta xDSL Express</a> y/o <a target="_blank" href="{{ packAdslEnterprise2013 }}">la oferta Enterprise</a>.</translation>
+</translations>

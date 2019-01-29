@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_access_profile_tooltip_interleaved" qtlid="318205"><b>Interleaved :</b> Profiili auto oletus</translation>
+   <translation id="xdsl_access_profile_tooltip_fast" qtlid="318218"><b>Fast : </b> Profiili auto in fastPath (parannettu ping ilman virheiden korjausta)</translation>
+   <translation id="xdsl_access_profile_tooltip_ginp" qtlid="318231"><b>G.INP : </b> Tämä laajennus parantaa virheidenkorjausta liittymän suorituskykyyn vaikuttamatta. DSLAM käyttää melua vastaa suojaustilaa(INP, Impulse Noise Protection). </translation>
+   <translation id="xdsl_access_profile_tooltip_auto" qtlid="318244"><b>AUTO-[valeur]M :</b> DSLAM synkronoi maksimaalisesti tiedonsiirtoon</translation>
+   <translation id="xdsl_access_profile_tooltip_snr" qtlid="318257"><b>SNR-[valeur] : </b> DSLAM analysoi linjan laadun ja muodostaa signaali/melu(SNR) suhteen annetussa arvossa. Mitä korkeampi luku, sitä vakaampi linja, mutta tiedonsiirtonopeus on pienempi. Profiileissa ilman vahvaa SNR-lukua, DSLAM pyrkii saamaan SNR-arvon 6.    </translation>
+   <translation id="xdsl_access_profile_tooltip_time" qtlid="318270">Muokkaus on voimassa 1 - 5 minuutin kuluessa.</translation>
+   <translation id="xdsl_access_dslam_an_error_ocurred" qtlid="318283">[DSLAM] Tapahtui virhe!</translation>
+   <translation id="xdsl_access_profile_doing" qtlid="318296">Vaihdetaan profiilia</translation>
+</translations>

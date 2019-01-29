@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="hubic_activation_total_error" qtlid="307358">Si è verificato un errore durante il caricamento.</translation>
+   <translation id="hubic_activation_widget-title" qtlid="308333">Attiva hubiC</translation>
+   <translation id="hubic_activation_widget-intro" qtlid="308346">Per usufruire di tutti i vantaggi hubiC con il tuo pack, è necessario disporre di un account hubiC. Se non ne hai ancora uno, crealo gratuitamente su <a href="https://www.hubic.com" target="new">hubic.com</a>.<br /> e poi accedi alla pagina <a href="https://hubic.com/home/gift/" target="new">hubic.com/home/gift/</a> per attivare i tuoi codici.</translation>
+   <translation id="hubic_activation_widget_hubic_header" qtlid="108275">hubiC</translation>
+   <translation id="hubic_activation_widget_voucher_header" qtlid="308359">Codice non utilizzato</translation>
+</translations>

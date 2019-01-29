@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telecom_pack_migration_back_link_title" qtlid="331709">Retour vers le détail du pack</translation>
+   <translation id="telecom_pack_migration_title" qtlid="305564">Alteração da oferta</translation>
+
+<!-- TABLE -->
+   <translation id="telecom_pack_migration_current_offer" qtlid="331722">Offre actuelle : {{ offerName }}</translation>
+   <translation id="telecom_pack_migration_monthly_subscription" qtlid="331735">Preço mensal</translation>
+   <translation id="telecom_pack_migration_commitment" qtlid="331748">Engagement</translation>
+   <translation id="telecom_pack_migration_services_to_delete" qtlid="331761">Services à supprimer</translation>
+   <translation id="telecom_pack_migration_services_to_delete_explain" qtlid="331774">Certains services attachés à votre offre actuelle devront être supprimés afin que le changement soit effectif.</translation>
+   <translation id="telecom_pack_migration_offer_services_to_delete_explain" qtlid="331787">Le choix des services à supprimer vous sera proposé à l'étape suivante.</translation>
+   <translation id="telecom_pack_migration_options" qtlid="23395">Opções</translation>
+   <translation id="telecom_pack_migration_commitment_month" qtlid="331800">{{ number }} mois</translation>
+   <translation id="telecom_pack_migration_commitment_none" qtlid="30646">Nenhum</translation>
+   <translation id="telecom_pack_migration_option_unavailable" qtlid="91957">Indisponível </translation>
+   <translation id="telecom_pack_migration_accounts_activated" qtlid="331813">{{ number }} comptes activés</translation>
+   <translation id="telecom_pack_migration_account_activated" qtlid="331826">{{ number }} compte activé</translation>
+   <translation id="telecom_pack_migration_choose_offer" qtlid="331839">Choisir cette offre</translation>
+
+<!-- VOIP LINE -->
+   <translation id="telecom_pack_migration_line_title" qtlid="23143">Linhas telefónicas</translation>
+   <translation id="telecom_pack_migration_lines_included" qtlid="331852">{{ number }} lignes incluses</translation>
+   <translation id="telecom_pack_migration_line_included" qtlid="331865">{{ number }} ligne incluse</translation>
+   <translation id="telecom_pack_migration_lines_activated" qtlid="331878">{{ number }} lignes activées</translation>
+   <translation id="telecom_pack_migration_line_activated" qtlid="331891">{{ number }} ligne activée</translation>
+   <translation id="telecom_pack_migration_add_lines_upto" qtlid="331904">Ajoutez jusqu'à {{ max }} lignes</translation>
+   <translation id="telecom_pack_migration_line_additional_text" qtlid="331917">/ligne</translation>
+
+<!-- EXCHANGE -->
+   <translation id="telecom_pack_migration_exchange_title" qtlid="80430">Exchange</translation>
+   <translation id="telecom_pack_migration_exchange_accounts_included" qtlid="331930">{{ number }} comptes mails inclus</translation>
+   <translation id="telecom_pack_migration_exchange_account_included" qtlid="331943">{{ number }} compte mail inclus</translation>
+   <translation id="telecom_pack_migration_add_exchange_account_upto" qtlid="331956">Ajoutez jusqu'à {{ max }} comptes mails</translation>
+   <translation id="telecom_pack_migration_account_additional_text" qtlid="331969">/compte</translation>
+
+<!-- HUBIC -->
+   <translation id="telecom_pack_migration_hubic_title" qtlid="108275">hubiC</translation>
+   <translation id="telecom_pack_migration_hubic_accounts_included" qtlid="331982">{{ number }} comptes inclus</translation>
+   <translation id="telecom_pack_migration_hubic_account_included" qtlid="331995">{{ number }} compte inclus</translation>
+
+<!-- ECOFAX -->
+   <translation id="telecom_pack_migration_ecofax_title" qtlid="332008">Lignes EcoFax</translation>
+   <translation id="telecom_pack_migration_ecofax_lines_included" qtlid="332021">{{ number }} lines EcoFax incluses</translation>
+   <translation id="telecom_pack_migration_ecofax_line_included" qtlid="332034">{{ number }} ligne EcoFax incluse</translation>
+
+<!-- DOMAIN -->
+   <translation id="telecom_pack_migration_domain_title" qtlid="66428">Domínio</translation>
+   <translation id="telecom_pack_migration_domains_included" qtlid="332047">{{ number }} noms de domaine inclus</translation>
+   <translation id="telecom_pack_migration_domain_included" qtlid="332060">{{ number }} nom de domaine inclus</translation>
+   <translation id="telecom_pack_migration_add_domains_upto" qtlid="332073">Ajoutez jusqu'à {{ max }} domaines</translation>
+   <translation id="telecom_pack_migration_domain_additional_text" qtlid="332086">/domaine</translation>
+
+<!-- GTR -->
+   <translation id="telecom_pack_migration_gtr_title" qtlid="332099">GTR (si éligible)</translation>
+   <translation id="telecom_pack_migration_gtr_available" qtlid="332112">GTR OVH disponible</translation>
+   <translation id="telecom_pack_migration_gtr_add" qtlid="332125">Ajouter la GTR OVH</translation>
+
+   <translation id="telecom_pack_migration_offer_choice" qtlid="332138">Choix de l'offre</translation>
+   <translation id="telecom_pack_migration_offer_choice_error_loading" qtlid="332151">Oups ! Nous ne parvenons pas à charger les offres disponibles pour votre pack.</translation>
+   <translation id="telecom_pack_migration_offer_choice_no_offers" qtlid="332164">Aucun changement d'offre n'est disponible avec votre offre actuelle.</translation>
+   <translation id="telecom_pack_migration_offer_choice_offer" qtlid="332177">Offre {{ description }}</translation>
+   <translation id="telecom_pack_migration_offer_choice_offer_monthly_price" qtlid="332190">{{ price }} HT / mois</translation>
+   <translation id="telecom_pack_migration_offer_choice_offer_more_infos" qtlid="332203">En savoir plus sur l'offre {{ description }}</translation>
+
+   <translation id="telecom_pack_migration_confirm_resume_title" qtlid="332216">Résumé du changement d'offre :</translation>
+   <translation id="telecom_pack_migration_confirm_migrate_to" qtlid="332229">Changement de l'offre "{{ fromOffer }}" pour l'offre "{{ toOffer }}".</translation>
+   <translation id="telecom_pack_migration_confirm_header_entitled" qtlid="11027">Intitulado</translation>
+   <translation id="telecom_pack_migration_confirm_header_price" qtlid="259961">Preço unitário</translation>
+   <translation id="telecom_pack_migration_confirm_header_quantity" qtlid="37107">Quantidade</translation>
+   <translation id="telecom_pack_migration_confirm_header_total" qtlid="270007">Preço s/IVA/mês</translation>
+
+   <translation id="telecom_pack_migration_confirm_current_offer" qtlid="332177">Offre {{ description }}</translation>
+   <translation id="telecom_pack_migration_confirm_resume_voip_line" qtlid="332242">Ligne(s) téléphonique(s) supplémentaire(s)</translation>
+   <translation id="telecom_pack_migration_confirm_resume_voip_ecofax" qtlid="332255">Ligne(s) EcoFax supplémentaire(s)</translation>
+   <translation id="telecom_pack_migration_confirm_resume_exchange_account" qtlid="332268">Compte(s) email(s) supplémentaire(s)</translation>
+   <translation id="telecom_pack_migration_confirm_resume_dom1" qtlid="332281">Nom(s) de domaine supplémentaire(s)</translation>
+   <translation id="telecom_pack_migration_confirm_resume_gtr_ovh" qtlid="332294">Option GTR OVH (si éligible)</translation>
+   <translation id="telecom_pack_migration_confirm_resume_total" qtlid="332307">Soit un total de :</translation>
+
+   <translation id="telecom_pack_migration_confirm_resume_domain" qtlid="66428">Domínio</translation>
+   <translation id="telecom_pack_migration_confirm_resume_exchangeAccount" qtlid="332320">Compte Exchange</translation>
+   <translation id="telecom_pack_migration_confirm_resume_exchangeIndividual" qtlid="332333">Compte Exchange Individuel</translation>
+   <translation id="telecom_pack_migration_confirm_resume_exchangeLite" qtlid="332346">Compte Exchange Lite</translation>
+   <translation id="telecom_pack_migration_confirm_resume_exchangeOrganization" qtlid="332359">Compte Exchange Organization</translation>
+   <translation id="telecom_pack_migration_confirm_resume_hostedEmail" qtlid="332372">Compte hostedEmail</translation>
+   <translation id="telecom_pack_migration_confirm_resume_hubic" qtlid="332385">Compte hubiC</translation>
+   <translation id="telecom_pack_migration_confirm_resume_modem" qtlid="42538">Modem</translation>
+   <translation id="telecom_pack_migration_confirm_resume_overTheBoxHardware" qtlid="332398">Matériel Over The Box</translation>
+   <translation id="telecom_pack_migration_confirm_resume_overTheBoxService" qtlid="332411">Over The Box</translation>
+   <translation id="telecom_pack_migration_confirm_resume_siteBuilderFull" qtlid="332424">SiteBuilder Full</translation>
+   <translation id="telecom_pack_migration_confirm_resume_siteBuilderStart" qtlid="332437">SiteBuilder Start</translation>
+   <translation id="telecom_pack_migration_confirm_resume_voipAlias" qtlid="152505">Número de telefone</translation>
+   <translation id="telecom_pack_migration_confirm_resume_voipBillingAccount" qtlid="332450">Compte de facturation téléphonie</translation>
+   <translation id="telecom_pack_migration_confirm_resume_voipEcoFax" qtlid="332463">Ligne EcoFax</translation>
+   <translation id="telecom_pack_migration_confirm_resume_voipLine" qtlid="83145">Linha telefónica</translation>
+   <translation id="telecom_pack_migration_confirm_resume_xdslAccess" qtlid="305603">Accès Internet</translation>
+   <translation id="telecom_pack_migration_confirm_resume_emailPro" qtlid="506793">Compte emailPro</translation>
+
+   <translation id="telecom_pack_migration_confirm_contracts_accept_title" qtlid="213336">Contratos</translation>
+   <translation id="telecom_pack_migration_confirm_contracts_accept_button" qtlid="332476">Valider le changement d'offre</translation>
+   <translation id="telecom_pack_migration_confirm_cancel_button" qtlid="332489">Annuler le changement d'offre</translation>
+   <translation id="telecom_pack_migration_confirm_contracts_accept_explain" qtlid="332502">En cliquant sur "Valider le changement d'offre", vous reconnaissez avoir pris connaissance et acceptez les contrats suivants :</translation>
+   <translation id="telecom_pack_migration_confirm_no_commitment" qtlid="332515">Ce changement d’offre n’est sujet à aucun réengagement.</translation>
+   <translation id="telecom_pack_migration_confirm_commitment" qtlid="332528">Un réengagement de {{ month }} mois débutera à la date de facturation.</translation>
+   <translation id="telecom_pack_migration_confirm_new_offer_price" qtlid="332541">Votre nouvel abonnement mensuel s'élève à : <span class="text-price">{{ price }}</span> <span class="text-infos">HT/mois</span>, applicable dès livraison de votre nouvel accès. Vous en serez informé par e-mail.</translation>
+   <translation id="telecom_pack_migration_confirm_shipping" qtlid="332554">Vous avez sélectionné le mode de livraison de votre nouveau modem par transporteur (+ <span class="text-price">{{ transportPrice }} €</span> <span class="text-infos">HT</span>). Votre première mensualité sera donc de <span class="text-price">{{ price }}</span> <span class="text-infos">HT</span>.</translation>
+   <translation id="telecom_pack_migration_confirm_service_to_delete_title" qtlid="332567">Services qui seront supprimés</translation>
+   <translation id="telecom_pack_migration_confirm_service_to_delete_total" qtlid="332580">Au total {{ count }} services seront supprimés durant le changement d'offre.</translation>
+   <translation id="telecom_pack_migration_confirm_service_to_delete_table_service_type" qtlid="161451">Tipo de serviço</translation>
+   <translation id="telecom_pack_migration_confirm_service_to_delete_table_service_count" qtlid="332593">Nombre de services à supprimer</translation>
+   <translation id="telecom_pack_migration_confirm_service_to_delete_table_service_names" qtlid="332606">Noms des services à supprimer</translation>
+
+   <translation id="telecom_pack_migration_shipping_title" qtlid="332619">Choisissez l’adresse et le mode de livraison de votre modem</translation>
+   <translation id="telecom_pack_migration_shipping_explain" qtlid="332632">Le changement d'offre que vous avez sélectionné nécessite l'envoi d'un nouveau modem. Veuillez choisir l'adresse et le mode de livraison de votre modem.</translation>
+   <translation id="telecom_pack_migration_shipping_explain2" qtlid="332645">La procédure de renvoi de votre modem actuel va vous être donnée par e-mail.</translation>
+   <translation id="telecom_pack_migration_shipping_confirm" qtlid="332658">Confirmer ce mode de livraison</translation>
+   <translation id="telecom_pack_migration_shipping_addresses_error" qtlid="332671">Oups ! Une erreur est survenue lors du chargement de vos adresses de livraisons.</translation>
+
+   <translation id="telecom_pack_migration_doing" qtlid="332684">Changement d'offre en cours</translation>
+
+   <translation id="telecom_pack_migration_success_title" qtlid="332697">Félicitations ! Votre changement d'offre a bien été pris en compte.</translation>
+   <translation id="telecom_pack_migration_error" qtlid="332710">Oups ! Une erreur est survenue lors du changement d'offre.</translation>
+   <translation id="telecom_pack_migration_already_pending" qtlid="332723">Un changement d'offre est déjà en cours.</translation>
+
+   <translation id="telecom_pack_migration_service_delete_explain" qtlid="332736">Veuillez sélectionner les services qui doivent être supprimés lors du changement d'offre. Il se peut que certains services soient sélectionnés automatiquement. Ces services seront obligatoirement supprimés lors du changement d'offre.</translation>
+   <translation id="telecom_pack_migration_service_delete_count_multiple" qtlid="332749">{{count}} services à supprimer</translation>
+   <translation id="telecom_pack_migration_service_delete_count_single" qtlid="332762">{{count}} service à supprimer</translation>
+   <translation id="telecom_pack_migration_service_delete_confirm" qtlid="332775">Confirmer la suppression de services</translation>
+
+   <translation id="telecom_pack_migration_shipping_contact" qtlid="384623">Contact de livraison</translation>
+   <translation id="telecom_pack_migration_shipping_mode" qtlid="384636">Mode de livraison</translation>
+
+<!-- BUILDING DETAILS -->
+   <translation id="telecom_pack_migration_building_details_select_engagment" qtlid="506806">Veuillez choisir votre engagement</translation>
+   <translation id="telecom_pack_migration_building_details_engagment_month" qtlid="40222">mês</translation>
+   <translation id="telecom_pack_migration_building_details_select_building" qtlid="506819">Veuillez indiquer votre bâtiment</translation>
+   <translation id="telecom_pack_migration_building_details_select_a_building" qtlid="506832">Sélectionner un bâtiment</translation>
+   <translation id="telecom_pack_migration_building_details_select_stair" qtlid="506845">Veuillez indiquer votre escalier</translation>
+   <translation id="telecom_pack_migration_building_details_select_a_stair" qtlid="506858">Sélectionner un escalier</translation>
+   <translation id="telecom_pack_migration_building_details_select_floor" qtlid="506871">Veuillez indiquer votre étage</translation>
+   <translation id="telecom_pack_migration_building_details_select_a_floor" qtlid="506884">Sélectionner un étage</translation>
+   <translation id="telecom_pack_migration_building_details_building" qtlid="313000">Bâtiment</translation>
+   <translation id="telecom_pack_migration_building_details_stair" qtlid="313052">Escadas</translation>
+   <translation id="telecom_pack_migration_building_details_floor" qtlid="506897">Etage</translation>
+   <translation id="telecom_pack_migration_building_details_confirm" qtlid="506910">Confirmer la sélection</translation>
+   <translation id="telecom_pack_migration_building_details_none" qtlid="30646">Nenhum</translation>
+   <translation id="telecom_pack_migration_building_details_unknown" qtlid="77142">Desconhecido</translation>
+   <translation id="telecom_pack_migration_building_details_title" qtlid="509105">Référence des bâtiments pour les offres FTTH</translation>
+   <translation id="telecom_pack_migration_pto_title" qtlid="509118">Boîtier Fibre PTO (Point de Terminaison Optique)</translation>
+   <translation id="telecom_pack_migration_pto_description" qtlid="509131">Disposez-vous déjà d'un boitier fibre à l'adresse d'installation ? (prise optique murale)</translation>
+   <translation id="telecom_pack_migration_pto_check_yes" qtlid="509144">Oui je dispose d'un boîter PTO</translation>
+   <translation id="telecom_pack_migration_pto_check_no" qtlid="509157">Non je ne dispose pas d'un boîter PTO</translation>
+   <translation id="telecom_pack_migration_pto_reference" qtlid="509170">Saisissez votre référence PTO</translation>
+   <translation id="telecom_pack_migration_pto_where" qtlid="509183">Où trouver votre numéro de référence du boîtier PTO ?</translation>
+   <translation id="telecom_pack_migration_pto_where_description" qtlid="509196">Cette référence est inscrite sur le boîtier PTO et est composée de chiffres et de lettres sous la forme OO-XXXX-XXXX /C</translation>
+   <translation id="telecom_pack_migration_pto_yes_not_known" qtlid="509209">J'ai un boîtier mais je ne connais pas son numéro</translation>
+
+</translations>

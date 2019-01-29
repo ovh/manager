@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="email_pro_detail_loading_error" qtlid="384285">Oups ! Nous n'avons pas pu récupérer les informations relatives à votre compte email.</translation>
+   <translation id="email_pro_detail_change_password_error" qtlid="384298">Oups ! Le changement de mot de passe a échoué.</translation>
+   <translation id="email_pro_detail_change_password_success" qtlid="384311">Votre nouveau mot de passe a été modifié sur le compte {{email}}.</translation>
+   <translation id="email_pro_detail_title" qtlid="496876">xDSL E-mail {{name}}</translation>
+   <translation id="email_pro_detail_general_information" qtlid="27115">General information</translation>
+   <translation id="email_pro_detail_client_change_password" qtlid="8434">Modify password</translation>
+
+   <translation id="email_pro_detail_active" qtlid="55133">Active</translation>
+   <translation id="email_pro_detail_inactive" qtlid="105310">Inactive</translation>
+
+   <translation id="email_pro_detail_status" qtlid="26443">Status</translation>
+   <translation id="email_pro_detail_webmail" qtlid="384337">URL du serveur Webmail</translation>
+   <translation id="email_pro_detail_open_webmail" qtlid="384363">Ouvrir le client webmail</translation>
+
+   <translation id="email_pro_detail_need_help" qtlid="435497">Need help?</translation>
+   <translation id="email_pro_detail_guide" qtlid="298469">View guide </translation>
+
+   <translation id="email_pro_detail_quota_value" qtlid="384376">{{value}} {{valueUnit}} / {{total}} {{totalUnit}}</translation>
+   <translation id="email_pro_detail_quota" qtlid="6874">Quota</translation>
+
+   <translation id="email_pro_detail_B" qtlid="92777">bytes</translation>
+   <translation id="email_pro_detail_K" qtlid="44692">KB</translation>
+   <translation id="email_pro_detail_M" qtlid="48878">MB</translation>
+   <translation id="email_pro_detail_G" qtlid="48890">GB</translation>
+   <translation id="email_pro_detail_T" qtlid="70121">TB</translation>
+
+   <translation id="email_pro_detail_client_change_password_submit" qtlid="8434">Modify password</translation>
+
+   <translation id="email_pro_detail_client_delete_account" qtlid="150294">Delete the account</translation>
+   <translation id="email_pro_detail_client_delete_account_warning" qtlid="455946">Attention ! En supprimant votre compte, l'ensemble des messages qu'il contient seront <strong>définitivement</strong> supprimés. Aucune procédure de récupération des données ne sera possible après cette suppression.</translation>
+   <translation id="email_pro_detail_client_delete_account_confirm" qtlid="173632">Confirm deletion</translation>
+   <translation id="email_pro_detail_client_delete_account_success" qtlid="455959">Votre compte {{email}} est en cours de suppression.</translation>
+   <translation id="email_pro_detail_client_delete_account_error" qtlid="455972">Oups ! La suppression du compte a échoué.</translation>
+</translations>
