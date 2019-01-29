@@ -2,7 +2,7 @@ import angular from 'angular';
 import '@ovh-ux/manager-core';
 import '@ovh-ux/manager-telecom-styles';
 import '@ovh-ux/ng-ovh-contracts';
-import '@ovh-ux/telecom-universe-components';
+import '@ovh-ux/ng-ovh-telecom-universe-components';
 import '@uirouter/angularjs';
 import 'ng-at-internet';
 import 'ovh-api-services';
@@ -27,7 +27,7 @@ angular
     'ngOvhContracts',
     'ovh-api-services',
     'ovhManagerCore',
-    'telecomUniverseComponents',
+    'ngOvhTelecomUniverseComponents',
   ])
   .component('smsOrderComponent', {
     controller,

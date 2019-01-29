@@ -1,7 +1,6 @@
-
 import angular from 'angular';
 
-import '@ovh-ux/telecom-universe-components';
+import '@ovh-ux/ng-ovh-telecom-universe-components';
 import '@ovh-ux/manager-telecom-styles';
 import '@ovh-ux/ng-uirouter-title';
 import 'ovh-angular-ui-confirm-modal';
@@ -24,7 +23,7 @@ import './freefax.scss';
 export default angular
   .module('OvhManagerFreefaxComponent', [
     'ovh-api-services',
-    'telecomUniverseComponents',
+    'ngOvhTelecomUniverseComponents',
     'ui.router',
     'ovh-angular-ui-confirm-modal',
     'ngUirouterTitle',

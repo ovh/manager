@@ -21,7 +21,6 @@ if (process.env.BUILD === 'production') {
       output: {
         globals: {
           angular: 'angular',
-          telecomUniverseComponents: '@ovh-ux/telecom-universe-components',
         },
       },
     }),

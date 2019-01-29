@@ -1,5 +1,5 @@
 import angular from 'angular';
-import sidebarMenu from 'ovh-angular-sidebar-menu';
+import ngOvhSidebarMenu from '@ovh-ux/ng-ovh-sidebar-menu';
 
 import { SIDEBAR_CONFIG, STATE_MAPPING_SERVICE } from './sidebar.constants';
 
@@ -11,7 +11,7 @@ import './sidebar.less';
 const moduleName = 'ovh-manager-sidebar';
 
 angular
-  .module(moduleName, [sidebarMenu])
+  .module(moduleName, [ngOvhSidebarMenu])
   .component('ovhManagerSidebar', {
     template,
     controller,
