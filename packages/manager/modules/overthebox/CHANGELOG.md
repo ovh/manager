@@ -1,3 +1,19 @@
+# [2.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-overthebox@1.1.5...@ovh-ux/manager-overthebox@2.0.0) (2019-01-29)
+
+
+### Build System
+
+* **deps:** upgrade ng-ovh-telecom-universe-components to v2.0.1 ([3ffc516](https://github.com/ovh-ux/manager/commit/3ffc516))
+* **deps:** upgrade ng-translate-async-loader to v2.0.0 ([40e8ea7](https://github.com/ovh-ux/manager/commit/40e8ea7))
+
+
+### BREAKING CHANGES
+
+* **deps:** replace `@ovh-ux/translate-async-loader` by `@ovh-ux/ng-translate-async-loader`
+* **deps:** replace `@ovh-ux/telecom-universe-components` by `@ovh-ux/ng-ovh-telecom-universe-components`
+
+
+
 ## [1.1.5](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-overthebox@1.1.4...@ovh-ux/manager-overthebox@1.1.5) (2019-01-21)
 
 
