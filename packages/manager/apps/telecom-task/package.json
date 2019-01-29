@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-telecom-task-app",
-  "version": "0.1.1",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "build": "webpack",
@@ -13,9 +13,9 @@
     "test:e2e": "lerna exec --scope @ovh-ux/manager-telecom-task-app -- node \\$LERNA_ROOT_PATH/scripts/webpack-cypress"
   },
   "dependencies": {
-    "@ovh-ux/manager-core": "^1.2.0",
+    "@ovh-ux/manager-core": "^2.0.0",
     "@ovh-ux/manager-telecom-styles": "^2.0.2",
-    "@ovh-ux/manager-telecom-task": "^0.1.1",
+    "@ovh-ux/manager-telecom-task": "^1.0.0",
     "@ovh-ux/ng-ovh-telecom-universe-components": "^2.0.1",
     "@ovh-ux/ng-uirouter-title": "^2.0.0-beta.3",
     "@uirouter/angularjs": "^1.0.15",
