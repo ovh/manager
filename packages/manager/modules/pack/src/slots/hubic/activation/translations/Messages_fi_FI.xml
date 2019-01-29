@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="hubic_activation_total_error" qtlid="307358">Tapahtui virhe latauksen aikana.</translation>
+   <translation id="hubic_activation_widget-title" qtlid="308333">hubiC-palvelun aktivointi</translation>
+   <translation id="hubic_activation_widget-intro" qtlid="308346">Jotta voit hyödyntää hubiC-palvelua pakettisi yhteydessä, sinulla on oltava hubiC-tili. Mikäli sinulla ei ole vielä tiliä, voit luoda sellaisen ilmaiseksi osoitteessa <a href="https://www.hubic.com" target="new">hubic.com</a>.<br /> Tämän jälkeen, mene seuraavalle sivulle aktivoimaan aktivointikoodit: <a href="https://hubic.com/home/gift/" target="new">hubic.com/home/gift/</a>.</translation>
+   <translation id="hubic_activation_widget_hubic_header" qtlid="108275">hubiC</translation>
+   <translation id="hubic_activation_widget_voucher_header" qtlid="308359">Käyttämätön koodi</translation>
+</translations>

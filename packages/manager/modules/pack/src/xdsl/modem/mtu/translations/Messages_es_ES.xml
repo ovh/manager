@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_modem_mtu_status" qtlid="311193">MTU</translation>
+   <translation id="xdsl_modem_mtu_description" qtlid="311674">La modificación del valor de MTU (Maximum Transmission Unit) está reservada a un uso avanzado y solo puede modificarse para los accesos de red (PPPoE). En algunos casos, reducir su valor puede resolver dificultades de navegación o de conexión FTP.</translation>
+   <translation id="xdsl_modem_mtu_an_error_ocurred" qtlid="311687">MTU: Se ha producido un error.</translation>
+   <translation id="xdsl_modem_mtu_doing" qtlid="311700">Cambiando el valor del MTU...</translation>
+   <translation id="xdsl_modem_mtu_submit" qtlid="26047">Aceptar</translation>
+   <translation id="xdsl_modem_mtu_change" qtlid="47548">Valor</translation>
+</translations>

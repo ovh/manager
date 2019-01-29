@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_modem_firewall_title" qtlid="318309">Niveau du Pare-feu</translation>
+   <translation id="xdsl_modem_firewall_description" qtlid="456466">Protège votre réseau local de connexions externes indésirables.</translation>
+   <translation id="xdsl_modem_firewall_level_blockall" qtlid="318335">Imperméable</translation>
+   <translation id="xdsl_modem_firewall_level_disabled" qtlid="24967">Disabled</translation>
+   <translation id="xdsl_modem_firewall_level_normal" qtlid="96704">Normal</translation>
+   <translation id="xdsl_modem_firewall_change" qtlid="318348">Niveau</translation>
+   <translation id="xdsl_modem_firewall_doing" qtlid="318361">Modification du pare-feu en cours</translation>
+   <translation id="xdsl_modem_firewall_submit" qtlid="26047">Confirm</translation>
+   <translation id="xdsl_modem_firewall_an_error_ocurred" qtlid="318374">FIREWALLj:&#160;Une erreur est survenue !</translation>
+</translations>

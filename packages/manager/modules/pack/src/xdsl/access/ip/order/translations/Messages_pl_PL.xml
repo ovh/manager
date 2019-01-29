@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="pack_xdsl_access_ip_order_operation_title" qtlid="309243">Czy chcesz wykonać następującą operację:</translation>
+   <translation id="pack_xdsl_access_ip_order_operation" qtlid="309256">Zamówienie bloku {{amountIp}} adresów IP</translation>
+   <translation id="pack_xdsl_access_ip_order_title" qtlid="114378">Zamów blok adresów IP</translation>
+   <translation id="pack_xdsl_access_ip_order_service_title" qtlid="309269">dla tej usługi:</translation>
+   <translation id="pack_xdsl_access_ip_order_disclaim" qtlid="309282">Te adresy IP zostaną włączone za {{hoursBeforeActivation}} godz. Pobierzemy płatność w kwocie {{price}} netto za {{hoursBeforeCollected}} godz. Usługę tę należy zamówić na minimum {{engagementMinimumMonths}} miesięcy.</translation>
+   <translation id="pack_xdsl_access_ip_order_are_you_sure_title" qtlid="309295">Czy chcesz wykonać następującą operację:</translation>
+   <translation id="pack_xdsl_access_ip_order_immediate_execution" qtlid="309308">Wyrażam zgodę na natychmiastową realizację usługi i jednocześnie rezygnuję z prawa do odstąpienia od umowy (podstawa prawna: artykuł L.121-21-8 Kodeksu konsumenta).</translation>
+   <translation id="pack_xdsl_access_ip_order_accept_conditions" qtlid="309321">Przeczytałem i akceptuję warunki związne z usługą dodatkowych adresów IP</translation>
+   <translation id="pack_xdsl_access_ip_order_accept_conditions_contract" qtlid="309334">Wyświetl regulamin</translation>
+   <translation id="pack_xdsl_access_ip_order_no" qtlid="37863">Anuluj</translation>
+   <translation id="pack_xdsl_access_ip_order_yes" qtlid="43558">Zamów</translation>
+   <translation id="pack_xdsl_access_ip_order_validation" qtlid="455985">La commande du bloc d'IP a bien été prise en compte.</translation>
+</translations>

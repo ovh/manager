@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_access_deconsolidation_title" qtlid="310140">Unbundling Totale</translation>
+   <translation id="xdsl_access_deconsolidation_validate" qtlid="310153">Conferma l'unbundling</translation>
+
+   <translation id="xdsl_access_deconsolidation_legacy_offer" qtlid="310166">Sulla tua linea è attiva un'offerta obsoleta. Per abilitare l'unbundling totale, aggiorna il tuo pack con un'offerta più recente.</translation>
+   <translation id="xdsl_access_deconsolidation_legacy_offer_upgrade" qtlid="231292">Aggiorna della tua offerta</translation>
+
+   <translation id="xdsl_access_deconsolidation_createNeighbour" qtlid="32458">Totale</translation>
+   <translation id="xdsl_access_deconsolidation_creation" qtlid="32458">Totale</translation>
+   <translation id="xdsl_access_deconsolidation_partial" qtlid="77166">Parziale</translation>
+   <translation id="xdsl_access_deconsolidation_total" qtlid="32458">Totale</translation>
+
+   <translation id="xdsl_access_deconsolidation_warning_total" qtlid="385130">L'unbundling totale è già attivo. Non è possibile ritornare all'unbundling parziale.</translation>
+   <translation id="xdsl_access_deconsolidation_warning_partial" qtlid="310192">Al momento è attivo l'unbundling parziale, puoi passare all'unbundling totale.</translation>
+   <translation id="xdsl_access_deconsolidation_desc_important" qtlid="310205">Questa operazione è irreversibile. Potrebbe richiedere fino a 7 giorni lavorativi e comportare un'interruzione di servizio di circa 30 minuti.</translation>
+
+   <translation id="xdsl_access_deconsolidation_success" qtlid="310218">Passaggio all'unbundling totale, stai per essere reindirizzato...</translation>
+   <translation id="xdsl_access_deconsolidation_really" qtlid="310231">Vuoi davvero effettuare il passaggio all'unbundling totale?</translation>
+
+   <translation id="xdsl_access_deconsolidation_number_not_transferred" qtlid="310244">Non potrai mantenere il tuo numero</translation>
+
+   <translation id="xdsl_access_deconsolidation_rio" qtlid="310257">RIO</translation>
+   <translation id="xdsl_access_deconsolidation_rio_title" qtlid="310270">Mantieni il tuo numero</translation>
+   <translation id="xdsl_access_deconsolidation_rio_warning" qtlid="310283">Per non perdere il tuo numero, è necessario includere il codice RIO ad esso associato.</translation>
+   <translation id="xdsl_access_deconsolidation_rio_help" qtlid="310296">Come ottenere il tuo RIO? Niente di più semplice: prima di eseguire la sottoscrizione, chiama gratuitamente il 3179 dalla tua linea fissa.</translation>
+</translations>

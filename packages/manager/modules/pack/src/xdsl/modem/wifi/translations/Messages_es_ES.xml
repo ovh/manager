@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_modem_wifi_status_enabled" qtlid="479330">Wi-Fi activé</translation>
+   <translation id="xdsl_modem_detault_wifi_status_enabled" qtlid="479343">Wi-Fi activé par défaut</translation>
+   <translation id="xdsl_modem_wifi_status_disabled" qtlid="479356">Wi-Fi désactivé</translation>
+   <translation id="xdsl_modem_default_wifi_status_disabled" qtlid="479369">Wi-Fi désactivé par défaut</translation>
+   <translation id="xdsl_modem_wifi_description" qtlid="311427">El modo wifi permite configurar la red inalámbrica del módem para que puedan conectarse a ella sus dispositivos inalámbricos.</translation>
+
+   <translation id="xdsl_modem_wifi_success_validation_on" qtlid="311440">Activando el wifi...</translation>
+   <translation id="xdsl_modem_wifi_success_validation_off" qtlid="311453">Desactivando el wifi...</translation>
+
+   <translation id="xdsl_modem_wifi_really_on" qtlid="311466">¿Seguro que quiere activar el wifi?</translation>
+   <translation id="xdsl_modem_wifi_really_off" qtlid="311479">¿Seguro que quiere desactivar el wifi?</translation>
+
+   <translation id="xdsl_modem_wifi_configure" qtlid="311492">Configurar el wifi</translation>
+   <translation id="xdsl_modem_wifi_configure_many" qtlid="456232">Configurer les réseaux Wi-Fi</translation>
+   <translation id="xdsl_modem_wifi_read_error" qtlid="385143">¡Vaya! No se ha podido cargar la información relativa al wifi.</translation>
+   <translation id="xdsl_modem_wifi_update_error" qtlid="385156">¡Vaya! No se ha podido actualizar el wifi de su módem.</translation>
+</translations>

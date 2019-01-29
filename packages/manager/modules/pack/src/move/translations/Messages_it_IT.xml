@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="pack_move_title" qtlid="86745">Trasferimento</translation>
+   <translation id="pack_move_operation_already_pending" qtlid="312493">Trasferimento del tuo pack in corso...</translation>
+   <translation id="pack_move_legacy_offer" qtlid="385962">Il tuo pack non è compatibile. Per procedere con il trasferimento, aggiornalo con un'offerta più recente.</translation>
+   <translation id="pack_move_legacy_offer_upgrade_offer" qtlid="231292">Aggiorna della tua offerta</translation>
+   <translation id="pack_move_line_title" qtlid="310712">Test della linea</translation>
+   <translation id="pack_move_line_subtitle" qtlid="312532">Esegui un test utilizzando il numero di telefono corrispondente al tuo nuovo indirizzo.</translation>
+   <translation id="pack_move_address_subtitle" qtlid="312545">Esegui un test con il nuovo indirizzo</translation>
+   <translation id="pack_move_line_synchronisation" qtlid="312558">In {{type}}, la sincronizzazione teorica stimata è di:</translation>
+   <translation id="pack_move_eligibility_title" qtlid="312571">Compatibilità</translation>
+   <translation id="pack_move_line_keep_number" qtlid="312584">Conserva i tuoi numeri</translation>
+   <translation id="pack_move_meeting_slots" qtlid="312597">Accedi a France Telecom</translation>
+   <translation id="pack_move_eligibility_phone_form_error" qtlid="312610">Il numero inserito deve essere valido e non deve contenere trattini o spazi</translation>
+   <translation id="pack_move_eligibility_subtitle" qtlid="105634">Hai diritto al tipo di disaggregazione seguente:</translation>
+   <translation id="pack_move_eligibility_synchronisation_estimated_rate_title" qtlid="479486">Débit synchronisation estimé :</translation>
+   <translation id="pack_move_eligibility_synchronisation_download" qtlid="312649">Download:</translation>
+   <translation id="pack_move_eligibility_synchronisation_byMonth" qtlid="312662">/mese</translation>
+   <translation id="pack_move_eligibility_synchronisation_nra" qtlid="312675">Questa linea è collegata all'NRA <strong>{{name}}</strong> situato a <strong>{{distance}}</strong> metri.</translation>
+   <translation id="pack_move_eligibility_synchronisation_line" qtlid="312688">Stato della lines:</translation>
+   <translation id="pack_move_eligibility_synchronisation_line_active" qtlid="29635">Attivo</translation>
+   <translation id="pack_move_eligibility_synchronisation_line_inactive" qtlid="312701">Inattivo</translation>
+   <translation id="pack_move_eligibility_synchronisation_upload" qtlid="312714">Upload:</translation>
+   <translation id="pack_move_eligibility_synchronisation_mbps" qtlid="105550">Mbps</translation>
+   <translation id="pack_move_eligibility_unbundling_total" qtlid="79338">Separazione totale</translation>
+   <translation id="pack_move_eligibility_unbundling_createNeighbour" qtlid="312727">Creazione da numero pilota</translation>
+   <translation id="pack_move_eligibility_unbundling_creation" qtlid="312740">Creazione della linea</translation>
+   <translation id="pack_move_eligibility_unbundling_partial" qtlid="79350">Separazione parziale</translation>
+   <translation id="pack_move_eligibility_line_status_active" qtlid="456557">Ligne active</translation>
+   <translation id="pack_move_eligibility_line_status_inactive" qtlid="456570">Ligne inactive</translation>
+   <translation id="pack_move_eligibility_provider" qtlid="312753">Provider: {{provider}}</translation>
+   <translation id="pack_move_keepLine" qtlid="312766">Voglio conservare il numero:</translation>
+   <translation id="pack_move_portLine" qtlid="456583">Je souhaite conserver mon numéro :</translation>
+   <translation id="pack_move_validate" qtlid="312792">Conferma il trasferimento</translation>
+   <translation id="pack_move_success" qtlid="312805">Il trasferimento della tua linea diventerà effettivo in pochi giorni.</translation>
+   <translation id="pack_move_cannot_move" qtlid="312818">Impossibile trasferire il tuo pack alla linea scelta.</translation>
+   <translation id="pack_move_cannot_validate_move" qtlid="312831">Impossibile trasferire il tuo pack: {{message}}</translation>
+   <translation id="pack_move_line_current_address" qtlid="312844">Indirizzo attuale</translation>
+   <translation id="pack_move_line_future_address" qtlid="312857">Nuovo indirizzo</translation>
+   <translation id="pack_move_portLine_cost" qtlid="456596">La conservation vous sera facturée <span class="font-weight-bold text-price">50€</span></translation>
+
+   <translation id="pack_move_eligibility_error" qtlid="312883">Il test di compatibilità al momento non è disponibile, ti preghiamo di riprovare.</translation>
+   <translation id="pack_move_eligibility_no_offers" qtlid="385975">La linea {{ number }} non è compatibile con nessuna delle nostre offerte.</translation>
+
+   <translation id="pack_move_portLine_disabled" qtlid="312896">Non puoi conservare il tuo numero.</translation>
+   <translation id="pack_move_portLine_warning" qtlid="456609">La conservation du numéro de téléphone de votre accès entraînera la coupure de l'accès internet lui étant rattaché.</translation>
+   <translation id="pack_move_keepLine_disabled" qtlid="312909">Non puoi conservare il tuo numero.</translation>
+
+   <translation id="pack_move_unbundling_total" qtlid="79338">Separazione totale</translation>
+   <translation id="pack_move_unbundling_partial" qtlid="79350">Separazione parziale</translation>
+
+   <translation id="pack_move_line_address_door" qtlid="312922">Porta:</translation>
+   <translation id="pack_move_line_address_floor" qtlid="312935">Piano:</translation>
+   <translation id="pack_move_line_address_stairs" qtlid="312948">Piano:</translation>
+   <translation id="pack_move_line_address_building" qtlid="312961">Palazzo:</translation>
+   <translation id="pack_move_line_address_residence" qtlid="312974">Residenza:</translation>
+
+   <translation id="pack_move_rio" qtlid="310257">RIO</translation>
+
+   <translation id="pack_move_eligibility_address_more" qtlid="312987">Altre informazioni</translation>
+
+   <translation id="pack_move_eligibility_number" qtlid="152505">Telefono</translation>
+   <translation id="pack_move_eligibility_zipcode" qtlid="30346">Codice postale</translation>
+   <translation id="pack_move_eligibility_city" qtlid="33310">Città</translation>
+   <translation id="pack_move_eligibility_street" qtlid="152518">Via</translation>
+   <translation id="pack_move_eligibility_street_number" qtlid="30778">Numero</translation>
+   <translation id="pack_move_eligibility_building" qtlid="313000">Palazzo</translation>
+   <translation id="pack_move_eligibility_door" qtlid="313013">Porta</translation>
+   <translation id="pack_move_eligibility_floor" qtlid="313026">Piano</translation>
+   <translation id="pack_move_eligibility_residence" qtlid="313039">Residenza</translation>
+   <translation id="pack_move_eligibility_stair" qtlid="313052">Scala</translation>
+   <translation id="pack_move_eligibility_error" qtlid="313065">Si è verificato un errore durante il test di compatibilità:</translation>
+   <translation id="pack_move_eligibility_address_error_pairs" qtlid="456622">Nous avons enregistré un dysfonctionnement dans l’éligibilité de votre adresse de redirection : le nombre de paires est insuffisant pour créer une nouvelle ligne fixe</translation>
+   <translation id="pack_move_eligibility_address_error_neighbour" qtlid="456635">Nous avons enregistré un dysfonctionnement dans l’éligibilité de votre adresse de redirection : une erreur est survenue lors de la recherche du numéro de rue</translation>
+   <translation id="pack_move_eligibility_street_error" qtlid="456648">La rue {{partial}} est introuvable</translation>
+
+   <translation id="pack_move_eligibility_creation_price_label" qtlid="313078">spese di attivazione</translation>
+
+   <translation id="pack_move_eligibility_zipcode_error" qtlid="313091">Nessuna città corrisponde al CAP {{zipcode}}</translation>
+
+   <translation id="pack_move_fake_meeting" qtlid="313104">Vorrei essere contattato da France Telecom per fissare l'appuntamento in un'altra fascia oraria.</translation>
+   <translation id="pack_move_no_fake_meeting" qtlid="313117">Scelgo un orario per l'appuntamento.</translation>
+   <translation id="pack_move_programmed_meeting_select" qtlid="313130">Seleziona una fascia oraria per il tuo appuntamento</translation>
+   <translation id="pack_move_programmed_meeting" qtlid="313143">L'appuntamento è stato fissato il <strong>{{day}}</strong>, tra le <strong>{{start}}</strong> e le <strong>{{end}}</strong>.</translation>
+   <translation id="pack_move_contact_name" qtlid="313156">Nome del contatto da comunicare a France Telecom</translation>
+   <translation id="pack_move_pending_validation" qtlid="313169">Convalida in corso...</translation>
+   <translation id="pack_move_error_validation" qtlid="313182">Si è verificato un errore durante la convalida</translation>
+   <translation id="pack_move_success_validation" qtlid="313195">Convalida completata!</translation>
+   <translation id="pack_move_no_erdv_info" qtlid="313208">France Telecom ti contatterà il prima possibile per fissare per l'intervento in loco.</translation>
+   <translation id="pack_move_contact_name_info" qtlid="313221">Comunica il nome della persona che accoglierà il tecnico il giorno dell'appuntamento.</translation>
+   <translation id="pack_move_mandatory_field" qtlid="313234">I campi indicati con un asterisco sono obbligatori.</translation>
+
+   <translation id="pack_move_slamming_error" qtlid="456661">Oups ! Nous n'avons pas pu vérifier la portabilité de votre numéro</translation>
+</translations>

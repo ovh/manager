@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_modem_reboot" qtlid="311713">Perkrauti modemą</translation>
+   <translation id="xdsl_modem_reboot_an_error_ocurred" qtlid="311726">[Modemo perkrovimas] Klaida!</translation>
+   <translation id="xdsl_modem_reboot_success" qtlid="311739">Modemas perkraunamas.</translation>
+   <translation id="xdsl_modem_reboot_success_end" qtlid="311752">Modemas perkrautas.</translation>
+   <translation id="xdsl_modem_reboot_really" qtlid="311765">Ar tikrai norite perkrauti modemą?</translation>
+</translations>

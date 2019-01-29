@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_modem_lan_title" qtlid="312077">IP LAN</translation>
+   <translation id="xdsl_modem_lan_description" qtlid="312090">A ogni elemento connesso alla rete LAN (Local Area Network) viene assegnato un indirizzo IP. Gli IP presenti in questa rete locale, non accessibili dall'esterno in quanto non esposti su Internet, costituiscono gli IP detti locali o IP LAN. La modifica dell’indirizzo IP LAN statico del router comporta l'aggiornamento della configurazione del server DHCP, dell'inoltro delle porte e del tempo di lease. Se configuri l'indirizzamento IP del modem in DHCP, la configurazione dell'inoltro delle porte sarà modificata di conseguenza.</translation>
+
+   <translation id="xdsl_modem_lan_addressingType" qtlid="312103">Modalità di recupero di indirizzi IP</translation>
+   <translation id="xdsl_modem_lan_ip" qtlid="312116">Indirizzo IP LAN</translation>
+   <translation id="xdsl_modem_lan_subnetMask" qtlid="311024">Maschera di sottorete</translation>
+
+   <translation id="xdsl_modem_lan_addressingType_tooltip" qtlid="312129">Il router può recuperare automaticamente un indirizzo o averne uno fisso</translation>
+   <translation id="xdsl_modem_lan_ip_tooltip" qtlid="312142">Indirizzo utilizzato per raggiungere il router</translation>
+   <translation id="xdsl_modem_lan_subnetMask_tooltip" qtlid="312155">Maschera dia sottorete dell'indirizzo statico</translation>
+
+   <translation id="xdsl_modem_lan_addressingType_Static" qtlid="312168">Statico</translation>
+   <translation id="xdsl_modem_lan_addressingType_DHCP" qtlid="311778">DHCP</translation>
+
+   <translation id="xdsl_modem_lan_success" qtlid="385416">La LAN <strong>{{ name }}</strong> è stata aggiornata.</translation>
+   <translation id="xdsl_modem_lan_error" qtlid="385429">Ops! Impossibile recuperare le informazioni relative alla tua LAN.</translation>
+   <translation id="xdsl_modem_lan_submit_error" qtlid="385442">Ops! Impossibile aggiornare le informazioni relative alla tua LAN.</translation>
+</translations>

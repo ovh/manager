@@ -1,0 +1,154 @@
+<form name="addressCollectForm"
+      data-ng-submit="PackMoveEligibilityAddress.submitAddress()">
+    <div class="form-group">
+        <label for="zipCodeElem"
+               data-translate="pack_move_eligibility_zipcode">
+        </label>
+        <input type="text"
+            class="form-control"
+            id="zipCodeElem"
+            name="zipCode"
+            data-translate-attr="{ placeholder: 'pack_move_eligibility_zipcode' }"
+            data-ng-model="PackMoveEligibilityAddress.address.zipCode"
+            data-ui-validate="'PackMoveEligibilityAddress.validator.tucIsZipcode($value, [\'metropolitanFrance\'])'"
+            data-ng-change="PackMoveEligibilityAddress.getCities(PackMoveEligibilityAddress.address.zipCode)"
+            data-ng-disabled="PackMoveEligibilityAddress.loaders.cities || PackMoveEligibilityAddress.method !== 'address'"
+            required>
+    </div>
+    <div class="form-group"
+         data-ng-if="PackMoveEligibilityAddress.cities.length">
+        <label for="cityElem"
+               data-translate="pack_move_eligibility_city">
+        </label>
+        <select class="form-control"
+                name="city"
+                id="cityElem"
+                data-translate-attr="{ placeholder: 'pack_move_eligibility_city' }"
+                data-ng-model="PackMoveEligibilityAddress.address.city"
+                data-ng-disabled="PackMoveEligibilityAddress.loaders.streets || PackMoveEligibilityAddress.method !== 'address'"
+                data-ng-change="PackMoveEligibilityAddress.address.street = null"
+                required
+                data-ng-options="city as city.name for city in PackMoveEligibilityAddress.cities">
+        </select>
+    </div>
+    <div class="form-group"
+         data-ng-if="PackMoveEligibilityAddress.address.city.inseeCode && addressCollectForm.zipCode.$valid">
+         <label for="streetNumberElem"
+                data-translate="pack_move_eligibility_street_number">
+         </label>
+         <input type="text"
+             class="form-control"
+             id="streetNumberElem"
+             name="streetNumber"
+             data-translate-attr="{ placeholder: 'pack_move_eligibility_street_number' }"
+             data-ng-disabled="PackMoveEligibilityAddress.method !== 'address'"
+             data-ng-model="PackMoveEligibilityAddress.address.streetNumber" />
+    </div>
+    <div class="form-group"
+         data-ng-if="PackMoveEligibilityAddress.address.city.inseeCode && addressCollectForm.zipCode.$valid">
+         <label for="streetElem"
+                data-translate="pack_move_eligibility_street">
+         </label>
+         <input type="text"
+             class="form-control"
+             id="streetElem"
+             name="street"
+             data-ng-disabled="!PackMoveEligibilityAddress.address.city || PackMoveEligibilityAddress.method !== 'address'"
+             required
+             data-translate-attr="{ placeholder: 'pack_move_eligibility_street' }"
+             data-ui-validate="'PackMoveEligibilityAddress.checkSelectedStreets($value)'"
+             data-uib-typeahead="street as street.name for street in PackMoveEligibilityAddress.getStreets($viewValue)"
+             data-uib-typeahead-loading="PackMoveEligibilityAddress.loaders.streets"
+             data-ng-model="PackMoveEligibilityAddress.address.street" />
+    </div>
+
+    <button type="button"
+            data-ng-if="PackMoveEligibilityAddress.address.street.rivoliCode"
+            data-ng-disabled="PackMoveEligibilityAddress.method !== 'address'"
+            data-ng-click="PackMoveEligibilityAddress.moreInfo = !PackMoveEligibilityAddress.moreInfo"
+            class="btn btn-link p-0 mb-3">
+        <i class="ovh-font"
+           aria-hidden="true"
+           data-ng-class="{
+               'ovh-font-disclosure-right': !PackMoveEligibilityAddress.moreInfo,
+               'ovh-font-disclosure-down': PackMoveEligibilityAddress.moreInfo
+           }">
+        </i>
+        <span data-translate="pack_move_eligibility_address_more"></span>
+    </button>
+
+    <div data-ng-if="PackMoveEligibilityAddress.moreInfo">
+        <div class="form-group">
+            <label for="residence"
+                   data-translate="pack_move_eligibility_residence">
+            </label>
+            <input type="text"
+                   class="form-control"
+                   id="residence"
+                   name="residence"
+                   data-ng-disabled="!PackMoveEligibilityAddress.address.street.rivoliCode || PackMoveEligibilityAddress.method !== 'address'"
+                   data-translate-attr="{ placeholder: 'pack_move_eligibility_residence' }"
+                   data-ng-model="PackMoveEligibilityAddress.address.residence" />
+        </div>
+        <div class="form-group">
+            <label for="buildingElem"
+                   data-translate="pack_move_eligibility_building">
+            </label>
+            <input type="text"
+                class="form-control"
+                id="buildingElem"
+                name="building"
+                data-ng-disabled="!PackMoveEligibilityAddress.address.street.rivoliCode || PackMoveEligibilityAddress.method !== 'address'"
+                data-translate-attr="{ placeholder: 'pack_move_eligibility_building' }"
+                data-ng-model="PackMoveEligibilityAddress.address.building" />
+        </div>
+        <div class="form-group">
+            <label for="floorElem"
+                   data-translate="pack_move_eligibility_floor">
+            </label>
+            <input type="text"
+                class="form-control"
+                id="floorElem"
+                name="floor"
+                data-ng-disabled="!PackMoveEligibilityAddress.address.street.rivoliCode || PackMoveEligibilityAddress.method !== 'address'"
+                data-translate-attr="{ placeholder: 'pack_move_eligibility_floor' }"
+                data-ng-model="PackMoveEligibilityAddress.address.floor" />
+        </div>
+        <div class="form-group">
+            <label for="stairElem"
+                   data-translate="pack_move_eligibility_stair">
+            </label>
+            <input type="text"
+               class="form-control"
+               id="stairElem"
+               name="stair"
+               data-ng-disabled="!PackMoveEligibilityAddress.address.street.rivoliCode || PackMoveEligibilityAddress.method !== 'address'"
+               data-translate-attr="{ placeholder: 'pack_move_eligibility_stair' }"
+               data-ng-model="PackMoveEligibilityAddress.address.stair" />
+        </div>
+        <div class="form-group">
+            <label for="doorElem"
+                   data-translate="pack_move_eligibility_door">
+            </label>
+            <input type="text"
+               class="form-control"
+               id="doorElem"
+               name="door"
+               data-ng-disabled="!PackMoveEligibilityAddress.address.street.rivoliCode || PackMoveEligibilityAddress.method !== 'address'"
+               data-translate-attr="{ placeholder: 'pack_move_eligibility_door' }"
+               data-ng-model="PackMoveEligibilityAddress.address.door" />
+        </div>
+    </div>
+
+    <div class="mt-3">
+        <button type="submit"
+                data-ng-disabled="PackMoveEligibilityAddress.loading || addressCollectForm.$invalid || PackMoveEligibilityAddress.method !== 'address'"
+                data-translate="submit"
+                class="btn btn-primary">
+        </button>
+        <oui-spinner class="ml-2"
+                     data-ng-if="PackMoveEligibilityAddress.loading"
+                     data-size="s">
+        </oui-spinner>
+    </div>
+</form>

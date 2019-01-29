@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_access_lns_ratelimit_title" qtlid="310036">Ottimizza l'accesso Internet</translation>
+   <translation id="xdsl_access_lns_ratelimit_activate" qtlid="310049">Elimina la soglia massima di velocità della linea</translation>
+   <translation id="xdsl_access_lns_ratelimit_description" qtlid="310062">Disponibile solo per le reti France Telecom. Adatta il limite superiore della velocità della linea sui sipositivi OVH: questa operazione può rendere più fluida la mavigazione, nei rari casi di perdita di pacchetti.</translation>
+   <translation id="xdsl_access_lns_ratelimit_warning" qtlid="310075">Questa operazione può richiedere fino a 10 minuti e comportare un'interruzione della connessione di qualche minuto.</translation>
+   <translation id="xdsl_access_lns_ratelimit_really_on" qtlid="310088">Vuoi davvero attivare la soglia massima di velocità della linea?</translation>
+   <translation id="xdsl_access_lns_ratelimit_really_off" qtlid="310101">Vuoi davvero disattivare la soglia massima di velocità della linea?</translation>
+   <translation id="xdsl_access_lns_ratelimit_doing" qtlid="310114">Modifica la soglia massima di velocità della linea</translation>
+</translations>

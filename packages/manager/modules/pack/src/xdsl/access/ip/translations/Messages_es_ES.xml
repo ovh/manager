@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="pack_xdsl_access_ip_title" qtlid="44284">Registro DNS inverso</translation>
+   <translation id="pack_xdsl_access_ip_ip" qtlid="25615">IP</translation>
+   <translation id="pack_xdsl_access_ip_dns" qtlid="32086">DNS</translation>
+   <translation id="pack_xdsl_access_ip_add_entry" qtlid="387731">Añadir una dirección IP</translation>
+   <translation id="pack_xdsl_access_ip_delete_really" qtlid="309230">¿Seguro que quiere borrar el registro DNS inverso de {{ipReverse}}?</translation>
+</translations>

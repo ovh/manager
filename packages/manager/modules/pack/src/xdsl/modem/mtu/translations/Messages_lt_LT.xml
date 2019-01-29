@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_modem_mtu_status" qtlid="311193">MTU</translation>
+   <translation id="xdsl_modem_mtu_description" qtlid="311674">MTU (Maximum Transmission Unit) reikšmės keitimas yra skirtas pažangiam naudojimui ir keičiamas tik surinkimo (PPPoE) paslaugoms. Tam tikrais atvejais reikšmės sumažinimas gali apsunkinti naršymą ar FTP prieigą.</translation>
+   <translation id="xdsl_modem_mtu_an_error_ocurred" qtlid="311687">[MTU] Klaida!</translation>
+   <translation id="xdsl_modem_mtu_doing" qtlid="311700">MTU reikšmė keičiama</translation>
+   <translation id="xdsl_modem_mtu_submit" qtlid="26047">Patvirtinti</translation>
+   <translation id="xdsl_modem_mtu_change" qtlid="47548">Reikšmė</translation>
+</translations>

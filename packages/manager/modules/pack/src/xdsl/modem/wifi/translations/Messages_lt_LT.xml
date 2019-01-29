@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_modem_wifi_status_enabled" qtlid="479330">Wi-Fi activé</translation>
+   <translation id="xdsl_modem_detault_wifi_status_enabled" qtlid="479343">Wi-Fi activé par défaut</translation>
+   <translation id="xdsl_modem_wifi_status_disabled" qtlid="479356">Wi-Fi désactivé</translation>
+   <translation id="xdsl_modem_default_wifi_status_disabled" qtlid="479369">Wi-Fi désactivé par défaut</translation>
+   <translation id="xdsl_modem_wifi_description" qtlid="311427">Wi-Fi režimas leidžia konfigūruoti tinklą nenaudojant kabelių, nes įranga prijungiama bevieliu būdu.</translation>
+
+   <translation id="xdsl_modem_wifi_success_validation_on" qtlid="311440">Wi-Fi įjungiamas</translation>
+   <translation id="xdsl_modem_wifi_success_validation_off" qtlid="311453">Wi-Fi išjungiamas</translation>
+
+   <translation id="xdsl_modem_wifi_really_on" qtlid="311466">Ar tikrai norite įjungti Wi-Fi?</translation>
+   <translation id="xdsl_modem_wifi_really_off" qtlid="311479">Ar tikrai norite išjungti Wi-Fi?</translation>
+
+   <translation id="xdsl_modem_wifi_configure" qtlid="311492">Konfigūruoti Wi-Fi</translation>
+   <translation id="xdsl_modem_wifi_configure_many" qtlid="456232">Configurer les réseaux Wi-Fi</translation>
+   <translation id="xdsl_modem_wifi_read_error" qtlid="385143">Negalima gauti wi-fi informacijos.</translation>
+   <translation id="xdsl_modem_wifi_update_error" qtlid="385156">Negalima atnaujinti wi-fi modeme.</translation>
+</translations>

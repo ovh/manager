@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_modem_reboot" qtlid="311713">Uudelleenkäynnistä modeemi</translation>
+   <translation id="xdsl_modem_reboot_an_error_ocurred" qtlid="311726">[Modeemin uudelleenkäynnistys] Tapahtui virhe!</translation>
+   <translation id="xdsl_modem_reboot_success" qtlid="311739">Modeemia käynnistetään uudelleen.</translation>
+   <translation id="xdsl_modem_reboot_success_end" qtlid="311752">Modeemin uudelleenkäynnistys on valmis.</translation>
+   <translation id="xdsl_modem_reboot_really" qtlid="311765">Haluatko varmasti käynnistää modeemin uudelleen?</translation>
+</translations>

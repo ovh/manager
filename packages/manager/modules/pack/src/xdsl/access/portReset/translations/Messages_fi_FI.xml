@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_access_dslam_reset" qtlid="169654">Nollaa</translation>
+   <translation id="xdsl_access_dslam_reset_an_error_ocurred" qtlid="310764">[Yhteysportin nollaus] Tapahtui virhe!</translation>
+   <translation id="xdsl_access_dslam_reset_success" qtlid="310777">Yhteysportin nollaus</translation>
+   <translation id="xdsl_access_dslam_reset_really" qtlid="310790">Haluatko varmasti nollata yhteysporttisi?</translation>
+
+   <translation id="xdsl_access_dslam_reset_description" qtlid="310803">Tällä toiminnolla voit nollata linjasi yhteysportin sen kiinnityskohdassa DSL-keskittimeen. Huom! Yhteys katkeaa muutaman minuutin ajaksi. </translation>
+   <translation id="xdsl_access_dslam_reset_warning" qtlid="310816">Huom! Yhteytesi katkeaa muutana minuutin ajaksi.</translation>
+</translations>

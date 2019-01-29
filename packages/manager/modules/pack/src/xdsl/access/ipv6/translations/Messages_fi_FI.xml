@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_access_ipv6_status" qtlid="506923">IPv6 activée</translation>
+   <translation id="xdsl_access_ipv6_description" qtlid="309945">IPv6-reitityksen aktivointi on voimassa 5-10 minuutin kuluessa. Tätä toimenpidettä seuraa modeemisi firmwaren päivitys. Huom, tämä firmware on vasta beta-vaiheessa. Päivityksen yhteydessä tapahtuu siis todennäköisesti yhteyskatkos, mikä pätee sekä IPv6-aktivointiin että deaktivointiin.</translation>
+   <translation id="xdsl_access_ipv6_warning" qtlid="309958">Ole hyvä ja odota äläkä sammuta modeemiasi operaation aikana. </translation>
+   <translation id="xdsl_access_ipv6_success_validation_on" qtlid="309971">Aktivoidaan IPv6-protokollaa</translation>
+   <translation id="xdsl_access_ipv6_success_validation_off" qtlid="309984">IPv6-protokollaa deaktivoidaan</translation>
+   <translation id="xdsl_access_ipv6_an_error_ocurred" qtlid="309997">[IPv6] Tapahtui virhe!</translation>
+   <translation id="xdsl_access_ipv6_really_on" qtlid="310010">Haluatko varrmasti aktivoida IPv6-protkollan?</translation>
+   <translation id="xdsl_access_ipv6_really_off" qtlid="310023">Haluatko varmasti deaktivoida IPv6-protokollan?</translation>
+   <translation id="xdsl_access_ipv6_zyxel_warning" qtlid="508819">Cette action réinitialisera votre modem. Êtes-vous sûr(e) de vouloir continuer ?</translation>
+</translations>

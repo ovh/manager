@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_missing-rio_title" qtlid="479382">Portabilité de numéro</translation>
+   <translation id="xdsl_missing-rio_leave-number_label" qtlid="479395">S'affranchir de votre numéro : {{num}}</translation>
+   <translation id="xdsl_missing-rio_port-number_label" qtlid="479408">Conservez votre numéro de téléphone : {{num}}</translation>
+   <translation id="xdsl_missing-rio_label" qtlid="479421">Veuillez entrer le code RIO afin de porter votre numéro.</translation>
+   <translation id="xdsl_missing-rio_label_tooltip" qtlid="479434">Comment obtenir un code RIO (Relevé d'identité Opérateur) ? Rien de plus simple. Appelez gratuitement le 3179 depuis votre ligne fixe : {{num}}. Ce numéro est accessible 24 h/24, 7 jours sur 7. Le RIO est un identifiant unique comprenant 12 caractères.</translation>
+   <translation id="xdsl_missing-rio_required" qtlid="479447">Le champ est obligatoire</translation>
+   <translation id="xdsl_missing-rio_init_error" qtlid="479460">Votre cas ne semble pas concerné par une erreur de RIO, ou bien vous nous avez déjà communiqué cette information.</translation>
+   <translation id="xdsl_missing-rio_send" qtlid="26047">Conferma</translation>
+   <translation id="xdsl_missing-rio_sent" qtlid="479473">Votre portabilité a été envoyée avec succès.</translation>
+   <translation id="xdsl_missing-rio_error" qtlid="307358">Si è verificato un errore durante il caricamento.</translation>
+</translations>

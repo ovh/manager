@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_access_deconsolidation_title" qtlid="310140">Visiškas atskyrimas</translation>
+   <translation id="xdsl_access_deconsolidation_validate" qtlid="310153">Patvirtinti degrupavimą</translation>
+
+   <translation id="xdsl_access_deconsolidation_legacy_offer" qtlid="310166">Jūsų linijos naudoją seną pasiūlymą. Norėdami atlikti degrupavimą, atnaujinkite paketą iki naujesnės versijos.</translation>
+   <translation id="xdsl_access_deconsolidation_legacy_offer_upgrade" qtlid="231292">Didinti paslaugos galingumą</translation>
+
+   <translation id="xdsl_access_deconsolidation_createNeighbour" qtlid="32458">Viso</translation>
+   <translation id="xdsl_access_deconsolidation_creation" qtlid="32458">Viso</translation>
+   <translation id="xdsl_access_deconsolidation_partial" qtlid="77166">Dalinis</translation>
+   <translation id="xdsl_access_deconsolidation_total" qtlid="32458">Viso</translation>
+
+   <translation id="xdsl_access_deconsolidation_warning_total" qtlid="385130">Jūs jau pasirinkote visišką degrupavimą. Negalite grįžti prie dalinio.</translation>
+   <translation id="xdsl_access_deconsolidation_warning_partial" qtlid="310192">Užsakėte dalinį degrupavimą. Galite pereiti ir prie visiško degrupavimo.</translation>
+   <translation id="xdsl_access_deconsolidation_desc_important" qtlid="310205">Ši operacija NEATKURIAMA. Ji truks apie 7 darbo dienas. Paslaugų veikimas gali sutrikti 30 minučių.</translation>
+
+   <translation id="xdsl_access_deconsolidation_success" qtlid="310218">Pereinama prie visiško pergrupavimo! Tuojau būsite nukreipti.</translation>
+   <translation id="xdsl_access_deconsolidation_really" qtlid="310231">Ar tikrai norite pereiti prie visiško degrupavimo?</translation>
+
+   <translation id="xdsl_access_deconsolidation_number_not_transferred" qtlid="310244">Jūsų numeris nebus susietas.</translation>
+
+   <translation id="xdsl_access_deconsolidation_rio" qtlid="310257">RIO</translation>
+   <translation id="xdsl_access_deconsolidation_rio_title" qtlid="310270">Išsaugoti numerį</translation>
+   <translation id="xdsl_access_deconsolidation_rio_warning" qtlid="310283">Įveskite numeriui suteiktą RIO kodą, kitaip numeris bus prarastas.</translation>
+   <translation id="xdsl_access_deconsolidation_rio_help" qtlid="310296">Kaip gauti RIO kodą? Nėra paprasčiau. Prieš užsakydami paskambinkite nemokamu numeriu 3179 iš fiksuoto ryšio telefono.</translation>
+</translations>

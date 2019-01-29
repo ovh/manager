@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+<!-- ORDER FOLLOW UP -->
+<!-- STEP NAMES -->
+   <translation id="telecom_common_pack_xdsl_order_step_name_accessIsOperational" qtlid="312324">Prieiga veikianti</translation>
+   <translation id="telecom_common_pack_xdsl_order_step_name_checkInfrastructure" qtlid="312337">Prieigos kūrimo tikrinimas</translation>
+   <translation id="telecom_common_pack_xdsl_order_step_name_configureAccessOnOVH" qtlid="312350">Prieigos prie OVH įrangos tikrinimas</translation>
+   <translation id="telecom_common_pack_xdsl_order_step_name_orderPayed" qtlid="312363">Užsakymo apmokėjimas</translation>
+   <translation id="telecom_common_pack_xdsl_order_step_name_orderReceived" qtlid="312376">Užsakymo kūrimas</translation>
+   <translation id="telecom_common_pack_xdsl_order_step_name_orderTreatment" qtlid="312389">Užsakymo apdorojimas</translation>
+   <translation id="telecom_common_pack_xdsl_order_step_name_sendModem" qtlid="312402">Modemo siuntimas</translation>
+   <translation id="telecom_common_pack_xdsl_order_step_name_sendOrderToProvider" qtlid="312415">Užsakymo siuntimas paslaugų teikėjui</translation>
+   <translation id="telecom_common_pack_xdsl_order_step_name_setupCustomerPremisesEquipment" qtlid="312428">Įrangos diegimas</translation>
+   <translation id="telecom_common_pack_xdsl_order_step_name_waitingForProviderInstallReport" qtlid="312441">Laukiama paslaugų teikėjo atsakymo</translation>
+   <translation id="telecom_common_pack_xdsl_order_step_name_waitingForWithdrawalPeriodToBeOver" qtlid="312454">Laukiama kliento atsisakymo periodo pabaigos.</translation>
+<!-- STATUS -->
+   <translation id="telecom_common_pack_xdsl_order_status_todo" qtlid="312480">Suprogramuota</translation>
+   <translation id="telecom_common_pack_xdsl_order_status_doing" qtlid="26383">Vykdoma</translation>
+   <translation id="telecom_common_pack_xdsl_order_status_done" qtlid="8662">Baigta</translation>
+   <translation id="telecom_common_pack_xdsl_order_status_error" qtlid="45508">Klaida</translation>
+<translation id="telecom_common_pack_xdsl_order_status_"/>
+</translations>

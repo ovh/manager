@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_modem_bdhcp_title" qtlid="311960">Baux DHCP</translation>
+   <translation id="xdsl_modem_bdhcp_description" qtlid="311973">L'adresse MAC permet d'identifier de manière unique un équipement sur le réseau (LAN et Internet). Les baux DHCP servent à assigner une adresse IP fixe à un équipement grâce à cette adresse MAC. Ces baux sont principalements utilisés si vous hébergez des services (serveur web, SSH, etc) et que vous souhaitez les contacter depuis l'extérieur, via des redirections de port (que vous pourrez configurer en parallèle).</translation>
+
+   <translation id="xdsl_modem_bdhcp_name" qtlid="3818">Nom</translation>
+   <translation id="xdsl_modem_bdhcp_ip" qtlid="26191">Adresse IP</translation>
+   <translation id="xdsl_modem_bdhcp_mac" qtlid="42562">Adresse MAC</translation>
+
+   <translation id="xdsl_modem_bdhcp_ip_tooltip" qtlid="311986">L'adresse IP doit appartenir à l'intervalle 192.168.1.64 à 192.168.1.253</translation>
+
+   <translation id="xdsl_modem_bdhcp_delete_really" qtlid="385299">Êtes-vous sûr(e) de vouloir supprimer le bail <strong>{{ name }}</strong> ?</translation>
+
+   <translation id="xdsl_modem_bdhcp_add" qtlid="312012">Ajouter un Bail</translation>
+
+   <translation id="xdsl_modem_bdhcp_placeholder_name" qtlid="312025">Nom du Bail</translation>
+
+   <translation id="xdsl_modem_bdhcp_add_success" qtlid="397273;385338">Le bail <strong qtlid="385325">{{ name }}</strong> a été ajouté.</translation>
+   <translation id="xdsl_modem_bdhcp_edit_success" qtlid="385351">Le bail <strong>{{ name }}</strong> a été mis à jour.</translation>
+   <translation id="xdsl_modem_bdhcp_del_success" qtlid="385364">Le bail <strong>{{ name }}</strong> a été supprimé.</translation>
+   <translation id="xdsl_modem_bdhcp_add_error" qtlid="385377">Oups ! Nous n'avons pas pu ajouter le bail <strong>{{ name }}</strong>.</translation>
+   <translation id="xdsl_modem_bdhcp_edit_error" qtlid="385390">Oups ! Nous n'avons pas pu mettre à jour le bail <strong>{{ name }}</strong>.</translation>
+   <translation id="xdsl_modem_bdhcp_del_error" qtlid="385403">Oups ! Nous n'avons pas pu supprimer le bail <strong>{{ name }}</strong>.</translation>
+</translations>

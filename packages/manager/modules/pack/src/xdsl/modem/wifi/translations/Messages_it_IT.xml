@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_modem_wifi_status_enabled" qtlid="479330">Wi-Fi activé</translation>
+   <translation id="xdsl_modem_detault_wifi_status_enabled" qtlid="479343">Wi-Fi activé par défaut</translation>
+   <translation id="xdsl_modem_wifi_status_disabled" qtlid="479356">Wi-Fi désactivé</translation>
+   <translation id="xdsl_modem_default_wifi_status_disabled" qtlid="479369">Wi-Fi désactivé par défaut</translation>
+   <translation id="xdsl_modem_wifi_description" qtlid="311427">La modalità Wi-Fi permette di configurare la rete wireless del modem per consentire ai tuoi dispositivi di accedere a Internet.</translation>
+
+   <translation id="xdsl_modem_wifi_success_validation_on" qtlid="311440">Attivazione del Wi-Fi in corso...</translation>
+   <translation id="xdsl_modem_wifi_success_validation_off" qtlid="311453">Disattivazione del Wi-Fi in corso...</translation>
+
+   <translation id="xdsl_modem_wifi_really_on" qtlid="311466">Vuoi davvero attivare il Wi-Fi?</translation>
+   <translation id="xdsl_modem_wifi_really_off" qtlid="311479">Vuoi davvero disattivare il Wi-Fi?</translation>
+
+   <translation id="xdsl_modem_wifi_configure" qtlid="311492">Configura il Wi-Fi</translation>
+   <translation id="xdsl_modem_wifi_configure_many" qtlid="456232">Configurer les réseaux Wi-Fi</translation>
+   <translation id="xdsl_modem_wifi_read_error" qtlid="385143">Ops, impossibile recuperare le informazioni relative al Wi-Fi.</translation>
+   <translation id="xdsl_modem_wifi_update_error" qtlid="385156">Ops, impossibile aggiornare il Wi-Fi del tuo modem.</translation>
+</translations>

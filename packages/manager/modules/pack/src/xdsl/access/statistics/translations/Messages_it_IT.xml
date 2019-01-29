@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_statistics_title" qtlid="26671">Statistiche</translation>
+   <translation id="xdsl_statistics_period" qtlid="10775">Periodicità</translation>
+   <translation id="xdsl_statistics_sync_title" qtlid="60698">Sincronizzazione</translation>
+   <translation id="xdsl_statistics_traffic_title" qtlid="39202">Traffico</translation>
+   <translation id="xdsl_statistics_ping_title" qtlid="34644">Ping</translation>
+   <translation id="xdsl_statistics_snr_title" qtlid="309425">Margine di rumore</translation>
+   <translation id="xdsl_statistics_attenuation_title" qtlid="40126">Attenuazione</translation>
+   <translation id="xdsl_statistics_upload_label" qtlid="148747">Upload</translation>
+   <translation id="xdsl_statistics_download_label" qtlid="148760">Download</translation>
+   <translation id="xdsl_statistics_daily_label" qtlid="60366">Giornaliero</translation>
+   <translation id="xdsl_statistics_weekly_label" qtlid="8806">Settimanale</translation>
+   <translation id="xdsl_statistics_monthly_label" qtlid="60378">Mensile</translation>
+   <translation id="xdsl_statistics_yearly_label" qtlid="60390">Annuale</translation>
+   <translation id="xdsl_statistics_preview_label" qtlid="309438">Recentemente</translation>
+   <translation id="xdsl_statistics_error" qtlid="309451">I dati non sono momentaneamente disponibili</translation>
+   <translation id="xdsl_statistics_hour" qtlid="309464">(ora UTC/GMT ({{-offset}}) h)</translation>
+
+   <translation id="xdsl_statistics_bits_per_sec_legend" qtlid="456115">bits/s</translation>
+   <translation id="xdsl_statistics_millisecond_legend" qtlid="456128">ms</translation>
+   <translation id="xdsl_statistics_decibel_legend" qtlid="456141">dB</translation>
+   <translation id="xdsl_statistics_ping_ms" qtlid="456154">{{value}} ms</translation>
+   <translation id="xdsl_statistics_ping_s" qtlid="456167">{{value}} s</translation>
+   <translation id="xdsl_statistics_decibel" qtlid="456180">{{value}} dB</translation>
+</translations>

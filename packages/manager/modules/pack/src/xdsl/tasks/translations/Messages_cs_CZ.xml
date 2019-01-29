@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_tasks_list" qtlid="289575">Seznam úkolů</translation>
+   <translation id="xdsl_tasks_name" qtlid="3818">Název</translation>
+   <translation id="xdsl_tasks_id" qtlid="8194">ID</translation>
+   <translation id="xdsl_tasks_status" qtlid="26443">Stav</translation>
+   <translation id="xdsl_tasks_status_todo" qtlid="134605">K provedení</translation>
+   <translation id="xdsl_tasks_status_doing" qtlid="26383">Probíhá</translation>
+   <translation id="xdsl_tasks_status_done" qtlid="26395">Ukončeno</translation>
+   <translation id="xdsl_tasks_status_error" qtlid="26407">Chyba</translation>
+   <translation id="xdsl_tasks_status_problem" qtlid="270800">Problém</translation>
+   <translation id="xdsl_no_task" qtlid="217093">Žádný úkol</translation>
+   <translation id="xdsl_tasks_update_date" qtlid="228748">Datum aktualizace</translation>
+</translations>

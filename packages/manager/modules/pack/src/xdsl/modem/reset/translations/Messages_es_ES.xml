@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_modem_reset" qtlid="311505">Reiniciar el módem</translation>
+   <translation id="xdsl_modem_reset_ovh_config" qtlid="456505">Réinitialiser la configuration OVH</translation>
+   <translation id="xdsl_modem_reset_an_error_ocurred" qtlid="311518">[Reinicio del módem] Se ha producido un error.</translation>
+   <translation id="xdsl_modem_reset_ovh_config_an_error_ocurred" qtlid="456518">[Réinitialisation de la configuration OVH] Une erreur est survenue !</translation>
+   <translation id="xdsl_modem_reset_success" qtlid="311531">Reiniciando el módem...</translation>
+   <translation id="xdsl_modem_reset_ovh_config_success" qtlid="456531">Réinitialisation de la configuration OVH en cours.</translation>
+   <translation id="xdsl_modem_reset_really" qtlid="311544">¿Seguro que quiere reiniciar el módem?</translation>
+   <translation id="xdsl_modem_reset_ovh_config_really" qtlid="456544">Êtes-vous sûr(e) de vouloir réinitialiser la configuration OVH ?</translation>
+   <translation id="xdsl_modem_reset_success_end" qtlid="311557">Reinicio del módem finalizado. Espere unos minutos para que se configure el módem.</translation>
+</translations>

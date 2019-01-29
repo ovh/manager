@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_details_address" qtlid="308879">Adresse de raccordement</translation>
+   <translation id="xdsl_details_NRA_title" qtlid="40102">NRA</translation>
+   <translation id="xdsl_details_NRA_distance" qtlid="63040">Vzdálenost NRA</translation>
+   <translation id="xdsl_details_NRA_name" qtlid="309477">Nom du NRA</translation>
+   <translation id="xdsl_details_NRO_title" qtlid="506936">NRO</translation>
+   <translation id="xdsl_details_NRO_name" qtlid="506949">Nom du NRO</translation>
+   <translation id="xdsl_details_sectionLength_values" qtlid="309490">{{diameter}}mm : {{length}}m</translation>
+   <translation id="xdsl_details_cable_type" qtlid="309503">Type de câble</translation>
+   <translation id="xdsl_details_att" qtlid="40126">Oslabení</translation>
+   <translation id="xdsl_details_db" qtlid="309516">{{mitigation}} dB</translation>
+   <translation id="xdsl_details_PTO_title" qtlid="506962">PTO</translation>
+   <translation id="xdsl_details_PTO_reference" qtlid="506975">Référence du PTO</translation>
+   <translation id="xdsl_details_syncDown" qtlid="309529">{{syncDown}} Kbps</translation>
+   <translation id="xdsl_details_syncUp" qtlid="309542">{{syncUp}} Kbps</translation>
+   <translation id="xdsl_details_metters" qtlid="309555">{{distance}} mètres</translation>
+   <translation id="xdsl_details_LNS" qtlid="45520">LNS</translation>
+   <translation id="xdsl_resiliate" qtlid="48646">Zrušit</translation>
+
+   <translation id="xdsl_details_title" qtlid="27115">Základní informace</translation>
+   <translation id="xdsl_details_connection_title" qtlid="55925">Připojení</translation>
+
+   <translation id="xdsl_details_caracteristics" qtlid="309568">Caractéristiques</translation>
+   <translation id="xdsl_details_mac_address" qtlid="42562">MAC adresa</translation>
+   <translation id="xdsl_details_serial_number" qtlid="506988">Numéro de série</translation>
+   <translation id="xdsl_details_modem_model" qtlid="455998">Modèle du modem</translation>
+   <translation id="xdsl_details_mac_address_description" qtlid="309581">Adresse physique de l'équipement</translation>
+   <translation id="xdsl_details_sync_label" qtlid="60698">Synchronizace</translation>
+   <translation id="xdsl_details_concentrationPoint_lineHead_label" qtlid="309594">Tête</translation>
+   <translation id="xdsl_details_concentrationPoint_lineInitialSectionPair_label" qtlid="309607">Paire</translation>
+   <translation id="xdsl_details_concentrationPoint_lineInitialSection_label" qtlid="309620">Amorce</translation>
+   <translation id="xdsl_details_followUp_label" qtlid="78870">Stopovat objednávku</translation>
+   <translation id="xdsl_details_followUp_label_step_name_detail" qtlid="456011">Afficher le suivi</translation>
+   <translation id="xdsl_details_details_label" qtlid="37527">Detaily</translation>
+   <translation id="xdsl_details_status_label" qtlid="33790">Stav</translation>
+   <translation id="xdsl_details_type_label" qtlid="2642">Typ</translation>
+   <translation id="xdsl_details_degroupage_label" qtlid="309633">Dégroupage</translation>
+   <translation id="xdsl_details_dns_really" qtlid="309646">Êtes-vous sûr(e) de vouloir changer le reverse DNS ?</translation>
+   <translation id="xdsl_details_dns_placeholder" qtlid="44284">Reverzní DNS</translation>
+   <translation id="xdsl_details_button_move" qtlid="308788">Déménager</translation>
+   <translation id="xdsl_details_button_move_disabled" qtlid="384909">Demande de déménagement en cours</translation>
+   <translation id="xdsl_details_button_deconsolidation" qtlid="79338">Celkové rozdělení</translation>
+   <translation id="xdsl_details_button_diagnostic" qtlid="515246">Lancer l'outil</translation>
+   <translation id="xdsl_details_button_ipv4" qtlid="44284">Reverzní DNS</translation>
+   <translation id="xdsl_details_button_ipv6" qtlid="44284">Reverzní DNS</translation>
+   <translation id="xdsl_details_add_dns" qtlid="309659">Ajouter un reverse DNS</translation>
+   <translation id="xdsl_details_connection" qtlid="52267">Typ připojení</translation>
+   <translation id="xdsl_details_profile" qtlid="309672">Profil de connexion</translation>
+   <translation id="xdsl_details_reset_dslam_port" qtlid="309685">Port de connexion</translation>
+   <translation id="xdsl_details_rate_limit" qtlid="309698">Gestion de débit</translation>
+   <translation id="xdsl_details_diagnostic_description" qtlid="515259">Vous rencontrez des difficultés avec votre accès internet ? Utilisez notre outil de résolution de problèmes.</translation>
+   <translation id="xdsl_details_diagnostic_not_yet_available" qtlid="515272">L'outil de résolution de problèmes n'est pas encore disponible pour votre type d'accès internet.</translation>
+   <translation id="xdsl_details_diagnostic_label" qtlid="309711">Diagnostic de ligne</translation>
+   <translation id="xdsl_details_diagnostic" qtlid="309724">Diagnostic de la ligne</translation>
+   <translation id="xdsl_details_diagnostic_modal_button" qtlid="515285">Plus de détails sur l'état de ma ligne</translation>
+   <translation id="xdsl_details_diagnostic_modal_title" qtlid="515298">Détails de l'état de votre ligne</translation>
+   <translation id="xdsl_details_diagnostic_modal_loading" qtlid="515311">Un diagnostic est en cours... Merci de patienter quelques instants.</translation>
+   <translation id="xdsl_details_diagnostic_modal_loading_info" qtlid="515324">Vous pouvez fermer cette fenêtre et y revenir plus tard si vous le souhaitez.</translation>
+   <translation id="xdsl_details_diagnostic_modal_relaunch_status_check" qtlid="515337">Lancer un test</translation>
+   <translation id="xdsl_details_diagnostic_modal_relaunch_status_remaining_checks" qtlid="515350">({{remainingChecks}} restants)</translation>
+   <translation id="xdsl_details_diagnostic_modal_relaunch_status_no_remaining_checks" qtlid="515363">Tests épuisés</translation>
+   <translation id="xdsl_details_diagnostic_modal_status_term_time" qtlid="310452">Heure du diagnostic</translation>
+   <translation id="xdsl_details_diagnostic_modal_status_term_isActiveOnLns" qtlid="310543">Passerelle de sortie LNS</translation>
+   <translation id="xdsl_details_diagnostic_modal_status_term_isActiveOnLns_true" qtlid="515376">Votre équipement est actif.</translation>
+   <translation id="xdsl_details_diagnostic_modal_status_term_isActiveOnLns_false" qtlid="515389">Votre équipement n'est pas actif.</translation>
+   <translation id="xdsl_details_diagnostic_modal_status_term_ping" qtlid="310582">Réponse aux pings</translation>
+   <translation id="xdsl_details_diagnostic_modal_status_term_ping_true" qtlid="515402">Votre équipement répond aux pings.</translation>
+   <translation id="xdsl_details_diagnostic_modal_status_term_ping_false" qtlid="515415">Votre équipement ne répond pas aux pings.</translation>
+   <translation id="xdsl_details_diagnostic_modal_status_term_sync" qtlid="310647">Synchronisation de la ligne</translation>
+   <translation id="xdsl_details_diagnostic_modal_status_term_sync_true" qtlid="515428">La ligne est synchronisée.</translation>
+   <translation id="xdsl_details_diagnostic_modal_status_term_sync_false" qtlid="515441">La ligne n'est pas synchronisée.</translation>
+   <translation id="xdsl_details_diagnostic_modal_status_term_isModemConnected" qtlid="310491">Statut de connexion</translation>
+   <translation id="xdsl_details_diagnostic_modal_status_term_isModemConnected_true" qtlid="515454">Votre équipement OVH est connecté.</translation>
+   <translation id="xdsl_details_diagnostic_modal_status_term_isModemConnected_false" qtlid="515467">Votre équipement OVH est déconnecté.</translation>
+
+<!-- IPs -->
+   <translation id="xdsl_details_ips_v4" qtlid="101781">IPv4</translation>
+   <translation id="xdsl_details_ips_v6" qtlid="34126">IPv6</translation>
+   <translation id="xdsl_details_ips_remove_only_extra" qtlid="309737">Il n'est possible d'enlever que les blocks d'IPs supplémentaires</translation>
+   <translation id="xdsl_details_ips_manage" qtlid="456024">gérer les IPs</translation>
+   <translation id="xdsl_details_ips_delete" qtlid="456037">supprimer ce bloc d'IPs</translation>
+   <translation id="xdsl_details_ips_notifications" qtlid="72797">Upozornění</translation>
+   <translation id="xdsl_details_ips_title" qtlid="309750">IPs</translation>
+   <translation id="xdsl_details_ips_order" qtlid="43558">Objednat</translation>
+   <translation id="xdsl_access_ip_delete_really" qtlid="309763">Voulez-vous vraiment supprimer le block d'IP <b>{{ip}}/{{range}}</b></translation>
+   <translation id="xdsl_details_ips_block_pending_order" qtlid="456050">Une commande est en cours de validation</translation>
+   <translation id="xdsl_access_ip_block_delete_success" qtlid="456063">Votre demande de suppression du bloc d'IP <b>{{ip}}</b> a bien été prise en compte.</translation>
+   <translation id="xdsl_access_ip_block_delete_error" qtlid="456076">Une erreur est survenue lors de la demande de suppression du bloc d'IP.</translation>
+   <translation id="xdsl_access_ip_is_being_deleted" qtlid="456089">en cours de suppression</translation>
+
+<!-- status -->
+   <translation id="xdsl_details_status_active" qtlid="55133">Aktivní</translation>
+   <translation id="xdsl_details_status_cancelled" qtlid="164623">Zrušeno</translation>
+   <translation id="xdsl_details_status_close" qtlid="56117">Uzavřený</translation>
+   <translation id="xdsl_details_status_deleting" qtlid="152778">Mazáni</translation>
+   <translation id="xdsl_details_status_doing" qtlid="29647">Probíhá vytváření</translation>
+   <translation id="xdsl_details_status_migration" qtlid="309776">En cours de migration</translation>
+   <translation id="xdsl_details_status_slamming" qtlid="309789">Écrasée</translation>
+   <translation id="xdsl_details_status_upgradeOffer" qtlid="309802">Offre mise à jour</translation>
+
+<!-- Migration -->
+   <translation id="xdsl_details_migration" qtlid="305564">Changement d'offre</translation>
+   <translation id="xdsl_details_migration_upgrade" qtlid="309815">Changer l'offre</translation>
+
+<!-- notfications -->
+   <translation id="xdsl_details_notif_show_none_part1" qtlid="309828">Créer des alertes afin d'être notifié par Email</translation>
+   <translation id="xdsl_details_notif_show_none_part2" qtlid="309841">et / ou SMS lorsque l'accès ne répond plus.</translation>
+   <translation id="xdsl_details_notif_show_many" qtlid="309854">{{count}} alertes programmées</translation>
+   <translation id="xdsl_details_notif_show_one" qtlid="309867">{{count}} alerte programmée</translation>
+   <translation id="xdsl_details_notif_show_alerts" qtlid="456102">Afficher les alertes</translation>
+
+<!-- collecte -->
+   <translation id="xdsl_connection_ovh" qtlid="309880">Dégroupé OVH</translation>
+   <translation id="xdsl_connection_no_ovh" qtlid="309893">Collecte</translation>
+
+   <translation id="xdsl_access_amount_download" qtlid="309906">Volume téléchargé dans le mois</translation>
+   <translation id="xdsl_access_amount_upload" qtlid="309919">Volume émis dans le mois</translation>
+
+<!-- action -->
+   <translation id="xdsl_details_action" qtlid="72809">Akce</translation>
+   <translation id="xdsl_details_transfert" qtlid="309932">Modifier mon offre</translation>
+</translations>

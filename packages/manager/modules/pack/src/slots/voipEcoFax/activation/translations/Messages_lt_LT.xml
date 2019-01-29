@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="fax_activation_total_error" qtlid="307358">Klaida įkeliant.</translation>
+   <translation id="fax_activation_widget-title" qtlid="308372">Fakso linijos(-ų) aktyvavimas</translation>
+   <translation id="fax_activation_widget-intro" qtlid="308385">Savo paslaugai sukursite fakso liniją.<br />Po aktyvavimo gausite laišką, kuriame bus fakso linijos numeris ir prisijungimai.<br />Šios paslaugos naudojimui rekomenduojame įsidiegti programą <a href="{{ecoFaxUrl}}" target="new">EcoFax</a>.</translation>
+   <translation id="fax_activation_widget_free_slot" qtlid="308398">Dar turite nepanaudotų paslaugų: <strong class="pack-item-count">{{available}}</strong>.</translation>
+   <translation id="fax_activation_widget_free_slot_zero" qtlid="308099">Neturite nepanaudotų paslaugų.</translation>
+   <translation id="fax_activation_widget_activate_button_lable" qtlid="76734">Įjungti</translation>
+   <translation id="fax_activation_widget_success" qtlid="308411">Fakso linija aktyvuojama</translation>
+   <translation id="fax_activation_widget_on_doing" qtlid="308424">Viena ar kelios fakso linijos aktyvuojamos.</translation>
+</translations>

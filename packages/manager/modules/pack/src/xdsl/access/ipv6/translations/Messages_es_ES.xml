@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_access_ipv6_status" qtlid="506923">IPv6 activée</translation>
+   <translation id="xdsl_access_ipv6_description" qtlid="309945">La activación del enrutamiento IPv6 será efectiva en los próximos 5-10 minutos. Esta operación va acompañada de una actualización del firmware del módem. Atención: dicho firmware todavía está en fase beta, por lo que hay que prever un corte de la conexión al realizar la actualización, válida tanto para la activación como para la desactivación de IPv6.</translation>
+   <translation id="xdsl_access_ipv6_warning" qtlid="309958">Por favor, espere y no apague el módem hasta que finalice la operación</translation>
+   <translation id="xdsl_access_ipv6_success_validation_on" qtlid="309971">Activando IPv6...</translation>
+   <translation id="xdsl_access_ipv6_success_validation_off" qtlid="309984">Desactivando IPv6...</translation>
+   <translation id="xdsl_access_ipv6_an_error_ocurred" qtlid="309997">IPv6: Se ha producido un error.</translation>
+   <translation id="xdsl_access_ipv6_really_on" qtlid="310010">¿Seguro que quiere activar IPv6?</translation>
+   <translation id="xdsl_access_ipv6_really_off" qtlid="310023">¿Seguro que quiere desactivar IPv6?</translation>
+   <translation id="xdsl_access_ipv6_zyxel_warning" qtlid="508819">Cette action réinitialisera votre modem. Êtes-vous sûr(e) de vouloir continuer ?</translation>
+</translations>

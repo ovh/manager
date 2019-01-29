@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_modem_managedBy_title" qtlid="507014">Configuration à distance activée</translation>
+   <translation id="xdsl_modem_managedBy_description" qtlid="311323">Il tuo modem può essere configurato dal tuo Spazio Cliente OVH o dalla sua interfaccia interna. Attivando la configurazione del modem dal tuo Spazio Cliente OVH, l'interfaccia interna viene disattivata.</translation>
+   <translation id="xdsl_modem_managedBy_warning" qtlid="311336">Attenzione: per effettuare la configurazione è possibile utilizzare una sola interfaccia</translation>
+   <translation id="xdsl_modem_managedBy_warning_override" qtlid="385520">Attenzione: l'attivazione della configurazione a distanza cancellerà le impostaioni attuali del tuo modem.</translation>
+   <translation id="xdsl_modem_managedBy_success_validation_on" qtlid="311349">Attivazione della configurazione a distanza in corso...</translation>
+   <translation id="xdsl_modem_managedBy_success_validation_off" qtlid="311362">Disattivazione della configurazione a distanza in corso...</translation>
+   <translation id="xdsl_modem_managedBy_an_error_ocurred" qtlid="311375">[Attivazione Configurazione a Distanza] Si è verificato un errore!</translation>
+
+
+   <translation id="xdsl_modem_managedBy_really_on" qtlid="311388">Vuoi davvero attivare la configurazione a distanza?</translation>
+   <translation id="xdsl_modem_managedBy_really_off" qtlid="311401">Vuoi davvero disattivare la configurazione a distanza?</translation>
+</translations>

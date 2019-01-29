@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_modem_cant_be_managed" qtlid="311089">Este módem no puede ser configurado por OVH.</translation>
+
+   <translation id="xdsl_modem_general_config" qtlid="311102">Configuración general</translation>
+   <translation id="xdsl_modem_network_config" qtlid="311115">Configuración de red</translation>
+   <translation id="xdsl_modem_advanced_config" qtlid="311128">Configuraciones avanzadas</translation>
+   <translation id="xdsl_modem_network" qtlid="25591">Red</translation>
+
+
+   <translation id="xdsl_modem_firewall" qtlid="311141">Cortafuegos</translation>
+   <translation id="xdsl_modem_wifi" qtlid="311154">Wifi</translation>
+   <translation id="xdsl_modem_modem" qtlid="42538">Módem</translation>
+   <translation id="xdsl_modem_managedBy" qtlid="311167">Configuración remota</translation>
+   <translation id="xdsl_modem_bridge" qtlid="311180">Modo Bridge</translation>
+   <translation id="xdsl_modem_mtu" qtlid="311193">MTU</translation>
+   <translation id="xdsl_modem_dmz" qtlid="310959">DMZ</translation>
+
+   <translation id="xdsl_modem_warning_managedBy" qtlid="345884">La <a href="#">configuración remota</a> no está activa para este módem.</translation>
+   <translation id="xdsl_modem_warning_bridge" qtlid="311219">El <a href="#">modo «bridge»</a> ya no le permite acceder a la configuración del módem.</translation>
+
+   <translation id="xdsl_model_access_error" qtlid="385455">¡Vaya! No hemos podido cargar los datos de su pack.</translation>
+   <translation id="xdsl_model_task_error" qtlid="385468">¡Vaya! No hemos podido cargar la pila de tareas en curso.</translation>
+   <translation id="xdsl_modem_modem_error" qtlid="385481">¡Vaya! No hemos podido cargar los datos de su módem.</translation>
+
+   <translation id="xdsl_modem_firmware" qtlid="510150">Firmware</translation>
+</translations>

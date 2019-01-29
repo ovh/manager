@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="pack_move_contract_title" qtlid="9983">Vahvista</translation>
+   <translation id="pack_move_contract_are_you_sure" qtlid="309243">Haluatko varmasti suorittaa seuraavan operaation:</translation>
+   <translation id="pack_move_contract_move" qtlid="86745">Muutto</translation>
+   <translation id="pack_move_contract_action" qtlid="313247">ADSL-linja <strong>{{lineNumber}}</strong> aktivoidaan.</translation>
+   <translation id="pack_move_contract_action_create" qtlid="313260">Uusi linja luodaan osoitteeseen:</translation>
+   <translation id="pack_move_contract_fake_meeting" qtlid="313273">France Telecom ottaa minuun yhteyttä tapaamisen sopimista varten.</translation>
+   <translation id="pack_move_contract_meeting" qtlid="313143">Tapaaminen on sovittu <strong>{{day}}</strong> välillä  <strong>{{start}}</strong> ja <strong>{{end}}</strong>.</translation>
+   <translation id="pack_move_contract_rules" qtlid="313286">Ymmärrän, että liittymän siirto johtaa uuteen 12 kuukauden sitoutumiseen, joka alkaa uuden liittymän aktivoinnista. Nykyinen liittymä suljetaan sen kuukauden lopussa jona uusi liittymä aktivoidaan.</translation>
+   <translation id="pack_move_contract_porta_rules" qtlid="456674">Je comprends que le déménagement de mon accès engendre un réengagement de 12 mois qui débutetera à l'activation de mon nouvel accès.</translation>
+</translations>

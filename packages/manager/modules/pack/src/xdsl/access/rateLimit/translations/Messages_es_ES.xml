@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_access_lns_ratelimit_title" qtlid="310036">Optimización del acceso a internet</translation>
+   <translation id="xdsl_access_lns_ratelimit_activate" qtlid="310049">Eliminar el límite del ancho de banda de la línea</translation>
+   <translation id="xdsl_access_lns_ratelimit_description" qtlid="310062">Disponible solo para las redes France Télecom. Ajustar el límite superior del ancho de banda de la línea en los dispositivos de OVH. Este ajuste puede hacer más fluida la navegación, en algunos casos poco frecuentes de pérdida de paquetes.</translation>
+   <translation id="xdsl_access_lns_ratelimit_warning" qtlid="310075">Esta operación puede tardar hasta 10 minutos en realizarse y la conexión se interrumpirá un momento.</translation>
+   <translation id="xdsl_access_lns_ratelimit_really_on" qtlid="310088">¿Seguro que quiere activar el límite del ancho de banda de la línea?</translation>
+   <translation id="xdsl_access_lns_ratelimit_really_off" qtlid="310101">¿Seguro que quiere desactivar el límite del ancho de banda de la línea?</translation>
+   <translation id="xdsl_access_lns_ratelimit_doing" qtlid="310114">Cambio del límite de ancho de banda de la línea</translation>
+</translations>

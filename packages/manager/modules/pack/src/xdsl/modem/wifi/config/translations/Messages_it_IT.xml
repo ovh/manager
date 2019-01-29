@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_modem_wifi_config_title" qtlid="456245">Configuration du réseau Wi-Fi {{ ssid }}</translation>
+   <translation id="xdsl_modem_wifi_config_list_title" qtlid="456258">Liste des réseaux Wi-Fi disponibles</translation>
+
+   <translation id="xdsl_modem_wifi_config_wifi" qtlid="456271">Activer le Wi-Fi :</translation>
+   <translation id="xdsl_modem_wifi_config_state" qtlid="8230">Stato</translation>
+
+   <translation id="xdsl_modem_wifi_config_table_ssid" qtlid="456284">Identifiant (SSID)</translation>
+   <translation id="xdsl_modem_wifi_config_ssid" qtlid="317971">Identificativo di rete (SSID)</translation>
+   <translation id="xdsl_modem_wifi_config_ssid_required" qtlid="456297">L'identifiant réseau est obligatoire.</translation>
+   <translation id="xdsl_modem_wifi_config_ssid_too_short" qtlid="456310">L'identifiant réseau doit au minimum être composé de 2 caractères.</translation>
+   <translation id="xdsl_modem_wifi_config_ssid_too_long" qtlid="456323">L'identifiant réseau doit au maximum être composé de 32 caractères.</translation>
+   <translation id="xdsl_modem_wifi_config_ssid_wrong_chars" qtlid="456336">L'identifiant réseau ne peut pas contenir d'accents.</translation>
+
+   <translation id="xdsl_modem_wifi_config_ssid_advertisement" qtlid="456349">Visibilité du réseau</translation>
+   <translation id="xdsl_modem_wifi_config_ssid_table_visibility" qtlid="106979">Visibilità</translation>
+
+   <translation id="xdsl_modem_wifi_config_security" qtlid="125420">Sicurezza</translation>
+   <translation id="xdsl_modem_wifi_config_type_changed" qtlid="456362">La modification du type de sécurité necessite l'encodage d'un nouveau mot de passe.</translation>
+
+   <translation id="xdsl_modem_wifi_config_key" qtlid="317997">Chiave Wi-Fi</translation>
+   <translation id="xdsl_modem_wifi_config_key_too_short" qtlid="456375">La clé Wi-Fi doit au minimum être composée de 6 caractères.</translation>
+   <translation id="xdsl_modem_wifi_config_key_required" qtlid="456388">La clé Wi-Fi est obligatoire.</translation>
+
+   <translation id="xdsl_modem_wifi_config_canal" qtlid="279730">Canale</translation>
+   <translation id="xdsl_modem_wifi_config_table_frequency" qtlid="30442">Frequenza</translation>
+   <translation id="xdsl_modem_wifi_config_table_guest" qtlid="456414">Invité</translation>
+
+   <translation id="xdsl_modem_wifi_config_state_enabled" qtlid="30250">Attivo</translation>
+   <translation id="xdsl_modem_wifi_config_state_disabled" qtlid="24967">Disattivo</translation>
+
+   <translation id="xdsl_modem_wifi_config_description" qtlid="311427">La modalità Wi-Fi permette di configurare la rete wireless del modem per consentire ai tuoi dispositivi di accedere a Internet.</translation>
+
+   <translation id="xdsl_modem_wifi_config_ssid_tooltip" qtlid="318023">L'identificativo di rete (SSID) è il nome assegnato alla rete wireless disponibile in prossimità del tuo modem.</translation>
+   <translation id="xdsl_modem_wifi_config_ssid_advertisement_tooltip" qtlid="318036">L'identificativo di rete può essere mostrato pubblicamente o nascosto. In quest'ultimo caso, il nome non compare nella lista delle reti wireless disponibili e per accedere è necessario conoscere il nome della rete.</translation>
+   <translation id="xdsl_modem_wifi_config_security_tooltip" qtlid="318049">La sicurezza definisce il tipo e il livello della crittografia della password di accesso alla tua rete wireless. Ti consogliamo di utilizzare "WPA e WPA2" con una crittografia più elevata.</translation>
+   <translation id="xdsl_modem_wifi_config_key_tooltip" qtlid="318062">La chiave Wi-Fi è la password che verrà chiesta per accedere alla tua rete wireless. Ti consigliamo di utilizzare una password complessa, con lettere e numeri, maiuscole e minuscole.</translation>
+   <translation id="xdsl_modem_wifi_config_canal_tooltip" qtlid="509573">La plage de canaux disponibles correspond à des fréquences différentes. Il n'y a pas de recommandation particulière de choix entre un canal et un autre.</translation>
+
+   <translation id="xdsl_modem_wifi_config_new_key" qtlid="303029">Nuova chiave</translation>
+   <translation id="xdsl_modem_wifi_config_retype_new_key" qtlid="318088">Inserisci di nuovo la chiave</translation>
+
+   <translation id="xdsl_modem_wifi_config_key_not_matching" qtlid="456427">Les clés Wi-Fi ne sont pas identiques !</translation>
+
+   <translation id="xdsl_modem_wifi_config_visible" qtlid="46300">Visibile</translation>
+   <translation id="xdsl_modem_wifi_config_hidden" qtlid="128274">Mascherato</translation>
+
+   <translation id="xdsl_modem_wifi_config_really" qtlid="318114">Vuoi davvero modificare la tua configurazione Wi-Fi?</translation>
+
+   <translation id="xdsl_modem_wifi_config_success" qtlid="456440">Configuration Wi-Fi mis à jour avec succès !</translation>
+   <translation id="xdsl_modem_wifi_config_success_single" qtlid="318127">Configurazione Wi-Fi aggiornata correttamente! Stai per essere reindirizzato...</translation>
+
+   <translation id="xdsl_modem_wifi_config_error_missing" qtlid="318140">Wi-Fi non esistente!</translation>
+
+   <translation id="xdsl_modem_wifi_None" qtlid="8674">Nessuno</translation>
+   <translation id="xdsl_modem_wifi_WEP" qtlid="318153">WEP</translation>
+   <translation id="xdsl_modem_wifi_WPA" qtlid="318166">WPA</translation>
+   <translation id="xdsl_modem_wifi_WPA2" qtlid="318179">WPA2</translation>
+   <translation id="xdsl_modem_wifi_WPAandWPA2" qtlid="318192">WPA e WPA2</translation>
+
+   <translation id="xdsl_modem_wifi_read_error" qtlid="385169">Ops! Impossibile recuperare le informazioni relative al tuo Wi-Fi.</translation>
+   <translation id="xdsl_modem_wifi_write_error" qtlid="385182">Ops! Impossibile aggiornare il tuo Wi-Fi.&#13;
+</translation>
+   <translation id="xdsl_modem_wifi_config_info" qtlid="456453">Une modification de configuration d'un réseau Wi-Fi est déjà en cours. Les modifications que vous allez apporter seront appliquées une fois cette modification terminée.</translation>
+
+</translations>

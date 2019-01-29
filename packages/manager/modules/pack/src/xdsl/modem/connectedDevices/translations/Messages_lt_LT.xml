@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_modem_device_status" qtlid="311232">Prijungti telefonai</translation>
+   <translation id="xdsl_modem_device_connected" qtlid="311245">Prijungtų telefonų sąrašas</translation>
+
+   <translation id="xdsl_modem_device_show_none" qtlid="311258">Neprijungti jokie telefonai</translation>
+   <translation id="xdsl_modem_device_show_many" qtlid="311271">Prijungta telefonų: {{count}}</translation>
+   <translation id="xdsl_modem_device_show_one" qtlid="311284">Prijungta telefonų: {{count}}</translation>
+
+   <translation id="xdsl_modem_device_mac" qtlid="42562">MAC adresas</translation>
+   <translation id="xdsl_modem_device_ip" qtlid="26191">IP adresas</translation>
+   <translation id="xdsl_modem_device_host" qtlid="3818">Pavadinimas</translation>
+   <translation id="xdsl_modem_device_connection_type" qtlid="307293">type</translation>
+   <translation id="xdsl_modem_device_other" qtlid="19963">Kita</translation>
+   <translation id="xdsl_modem_device_waiting_refresh" qtlid="311297">Laukiama atnaujinimo</translation>
+   <translation id="xdsl_modem_refresh" qtlid="250030">Atnaujinti</translation>
+   <translation id="xdsl_modem_refresh_error" qtlid="385494">Negalime atnaujinti prijungtos įrangos sąrašo.</translation>
+   <translation id="xdsl_modem_connected_list_error" qtlid="385507">Negalima gauti prijungtos įrangos sąrašo.</translation>
+</translations>

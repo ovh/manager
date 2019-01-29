@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="notification_explanation" qtlid="507315">Les notifications d'un accès {{ access }} servent à indiquer lorsqu'un accès ne répond plus ainsi que le moment où il remonte.</translation>
+</translations>

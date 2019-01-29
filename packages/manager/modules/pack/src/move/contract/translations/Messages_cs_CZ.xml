@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="pack_move_contract_title" qtlid="9983">Potvrzení hesla</translation>
+   <translation id="pack_move_contract_are_you_sure" qtlid="309243">Êtes-vous sûr(e) de vouloir effectuer l'opération suivante :</translation>
+   <translation id="pack_move_contract_move" qtlid="86745">Přesun</translation>
+   <translation id="pack_move_contract_action" qtlid="313247">La ligne ADSL <strong>{{lineNumber}}</strong> va être activée.</translation>
+   <translation id="pack_move_contract_action_create" qtlid="313260">Une nouvelle ligne va être créé à l'adresse :</translation>
+   <translation id="pack_move_contract_fake_meeting" qtlid="313273">Je serai contacté par France Telecom pour convenir d'un rendez-vous.</translation>
+   <translation id="pack_move_contract_meeting" qtlid="313143">Un rendez-vous est programmé le <strong>{{day}}</strong> entre <strong>{{start}}</strong> et <strong>{{end}}</strong>.</translation>
+   <translation id="pack_move_contract_rules" qtlid="313286">Je comprends que le déménagement de mon accès engendre un réengagement de 12 mois qui débutetera à l'activation de mon nouvel accès. Mon accès actuel sera cloturé à la fin du mois de mise en service de mon nouvel accès.</translation>
+   <translation id="pack_move_contract_porta_rules" qtlid="456674">Je comprends que le déménagement de mon accès engendre un réengagement de 12 mois qui débutetera à l'activation de mon nouvel accès.</translation>
+</translations>

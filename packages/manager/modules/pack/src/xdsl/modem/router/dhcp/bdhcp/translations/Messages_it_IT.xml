@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_modem_bdhcp_title" qtlid="311960">Lease DHCP</translation>
+   <translation id="xdsl_modem_bdhcp_description" qtlid="311973">L'indirizzo MAC permette di identificare in modo univoco un dispositivo sulla rete (LAN e Internet) e, grazie ad esso, i lease DHCP possono assegnare un indirizzo IP statico al dispositivo. I lease vengono utilizzati principalmente per contattare dall'esterno i servizi ospitati (server Web, SSH, etc.) tramite l'inoltro delle porte che puoi configurare in parallelo.&#13;
+&#13;
+</translation>
+
+   <translation id="xdsl_modem_bdhcp_name" qtlid="3818">Nome</translation>
+   <translation id="xdsl_modem_bdhcp_ip" qtlid="26191">Indirizzo IP</translation>
+   <translation id="xdsl_modem_bdhcp_mac" qtlid="42562">Indirizzo MAC</translation>
+
+   <translation id="xdsl_modem_bdhcp_ip_tooltip" qtlid="311986">L'indrizzo IP deve essere compreso nell'intervallo da 192.168.1.64 a 192.168.1.253</translation>
+
+   <translation id="xdsl_modem_bdhcp_delete_really" qtlid="385299">Vuoi davvero eliminare il lease <strong>{{ name }}</strong>?</translation>
+
+   <translation id="xdsl_modem_bdhcp_add" qtlid="312012">Aggiungi un lease</translation>
+
+   <translation id="xdsl_modem_bdhcp_placeholder_name" qtlid="312025">Nome del lease</translation>
+
+   <translation id="xdsl_modem_bdhcp_add_success" qtlid="397273;385338">Il lease <strong qtlid="385325">{{ name }}</strong> è stato aggiunto.</translation>
+   <translation id="xdsl_modem_bdhcp_edit_success" qtlid="385351">Il lease <strong>{{ name }}</strong> è stato aggiornato.</translation>
+   <translation id="xdsl_modem_bdhcp_del_success" qtlid="385364">Il lease <strong>{{ name }}</strong> è stato eliminato.</translation>
+   <translation id="xdsl_modem_bdhcp_add_error" qtlid="385377">Ops! Impossibile aggiungere il lease <strong>{{ name }}</strong>.</translation>
+   <translation id="xdsl_modem_bdhcp_edit_error" qtlid="385390">Ops! Impossibile aggiornare il lease <strong>{{ name }}</strong>.</translation>
+   <translation id="xdsl_modem_bdhcp_del_error" qtlid="385403">Ops! Impossibile eliminare il lease <strong>{{ name }}</strong>.</translation>
+</translations>

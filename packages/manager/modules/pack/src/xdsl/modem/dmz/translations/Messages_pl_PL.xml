@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_modem_dmz_status" qtlid="310959">DMZ</translation>
+   <translation id="xdsl_modem_dmz_description" qtlid="310972">Część DMZ na modemach OVH pozwala na połączenie z daną maszyną spoza sieci lokalnej. Uwaga: Aby część DMZ działała, należy wyłączyć zaporę. Maszyna powinna posiadać własną ochronę.</translation>
+   <translation id="xdsl_modem_dmz_warning" qtlid="310985">Uwaga: Każdka późniejsza zmiana w konfiguracji usługi DMZ (zmiana/usunięcie) spowoduje niedostępność połączenia przez kilka minut.</translation>
+   <translation id="xdsl_modem_dmz_dmz_address" qtlid="310998">Adres IP DMZ</translation>
+   <translation id="xdsl_modem_dmz_modem_address" qtlid="311011">Adres IP modemu</translation>
+   <translation id="xdsl_modem_dmz_mask_address" qtlid="311024">Maska podsieci</translation>
+   <translation id="xdsl_modem_dmz_none" qtlid="8674">Brak</translation>
+   <translation id="xdsl_modem_dmz_unknown" qtlid="311037">Nieznane</translation>
+   <translation id="xdsl_modem_dmz_an_error_ocurred" qtlid="311050">[DMZ] Wystąpił błąd!</translation>
+   <translation id="xdsl_modem_dmz_doing" qtlid="311063">Trwa modyfikowanie adresu IP DMZ.</translation>
+   <translation id="xdsl_modem_dmz_delete_really" qtlid="311076">Czy chcesz usunąć DMZ?</translation>
+</translations>

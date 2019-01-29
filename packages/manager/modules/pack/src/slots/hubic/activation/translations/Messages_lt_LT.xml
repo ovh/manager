@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="hubic_activation_total_error" qtlid="307358">Klaida įkeliant.</translation>
+   <translation id="hubic_activation_widget-title" qtlid="308333">hubiC įjungimas</translation>
+   <translation id="hubic_activation_widget-intro" qtlid="308346">Norint pasinaudoti hubiC privalumais pakete, reikia turėti hubiC paskyrą. Jeigu neturite jos, galite nemokamai ją susikurti svetainėje <a href="https://www.hubic.com" target="new">hubic.com</a>.<br /> Po to atidarykite šį puslapį, kad aktyvuotumėte kodus: <a href="https://hubic.com/home/gift/" target="new">hubic.com/home/gift/</a>.</translation>
+   <translation id="hubic_activation_widget_hubic_header" qtlid="108275">hubiC</translation>
+   <translation id="hubic_activation_widget_voucher_header" qtlid="308359">Kodas nenaudojamas</translation>
+</translations>

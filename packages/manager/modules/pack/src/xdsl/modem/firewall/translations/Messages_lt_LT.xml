@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_modem_firewall_title" qtlid="318309">Ugniasienės lygmuo</translation>
+   <translation id="xdsl_modem_firewall_description" qtlid="456466">Protège votre réseau local de connexions externes indésirables.</translation>
+   <translation id="xdsl_modem_firewall_level_blockall" qtlid="318335">Nepralaidus</translation>
+   <translation id="xdsl_modem_firewall_level_disabled" qtlid="24967">Išjungta</translation>
+   <translation id="xdsl_modem_firewall_level_normal" qtlid="96704">Normalus</translation>
+   <translation id="xdsl_modem_firewall_change" qtlid="318348">Lygis</translation>
+   <translation id="xdsl_modem_firewall_doing" qtlid="318361">Ugniasienė keičiama</translation>
+   <translation id="xdsl_modem_firewall_submit" qtlid="26047">Patvirtinti</translation>
+   <translation id="xdsl_modem_firewall_an_error_ocurred" qtlid="318374">FIREWALL:&#160;Klaida!</translation>
+</translations>

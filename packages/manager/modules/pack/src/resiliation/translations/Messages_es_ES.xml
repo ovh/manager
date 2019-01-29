@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="pack_resiliation_title" qtlid="313299">Dar de baja un pack</translation>
+   <translation id="pack_resiliation_engaged" qtlid="310855">Fecha de fin de compromiso</translation>
+   <translation id="pack_resiliation_not_engaged" qtlid="310868">Ya ha finalizado su compromiso.</translation>
+   <translation id="pack_resiliation_resiliation_date" qtlid="310881">Se dará de baja el</translation>
+   <translation id="pack_resiliation_due" qtlid="310894">Restante por pagar</translation>
+   <translation id="pack_resiliation_type_name" qtlid="313312">el pack</translation>
+   <translation id="pack_resiliation_cancel" qtlid="310920">Cancelar mi solicitud de baja</translation>
+   <translation id="pack_resiliation_planed_on" qtlid="385572">Baja del servicio prevista el:</translation>
+   <translation id="pack_resiliation_cancel_really" qtlid="385585">Va a cancelar la solicitud de baja. ¿Quiere continuar?</translation>
+   <translation id="pack_resiliation_mail" qtlid="310946">Vamos a enviarle por correo electrónico un mensaje que contiene la hoja de devolución que debe adjuntar al paquete de devolución del módem.</translation>
+
+   <translation id="pack_resiliation_button" qtlid="48646">Dar de baja</translation>
+   <translation id="pack_resiliation_confirm" qtlid="313325">Dar de baja</translation>
+   <translation id="pack_resiliation_confirm_title" qtlid="313338">Dar de baja mi suscripción</translation>
+   <translation id="pack_resiliation_infos" qtlid="385598">La baja se realiza desde esta página. Existe la posibilidad de conservar determinados productos asociados a su pack, sin que sea necesario realizar un procedimiento en papel. Una vez enviada la solicitud recibirá un mensaje de correo electrónico.</translation>
+   <translation id="pack_resiliation_reason_title" qtlid="385611">Motivo de la baja</translation>
+   <translation id="pack_resiliation_reason" qtlid="313351">¿Por qué motivo quiere darlo de baja?</translation>
+   <translation id="pack_resiliation_choice_addressMove" qtlid="86745">Traslado</translation>
+   <translation id="pack_resiliation_choice_billingProblems" qtlid="313364">Sistema de facturación inadecuado</translation>
+   <translation id="pack_resiliation_choice_cessationOfActivity" qtlid="313377">Cese de actividad</translation>
+   <translation id="pack_resiliation_choice_changeOfTerms" qtlid="313390">Cambio de las condiciones generales de uso</translation>
+   <translation id="pack_resiliation_choice_ftth" qtlid="313403">Cambio a fibra (FTTH)</translation>
+   <translation id="pack_resiliation_choice_goToCompetitor" qtlid="313416">Cambio a un servicio de la competencia</translation>
+   <translation id="pack_resiliation_choice_other" qtlid="19963">Otro</translation>
+   <translation id="pack_resiliation_choice_technicalProblems" qtlid="313429">Problemas técnicos</translation>
+   <translation id="pack_resiliation_cancel" qtlid="313442">Cancelar la baja en curso</translation>
+   <translation id="pack_resiliation_cancel_title" qtlid="385624">Cancelar la solicitud de baja</translation>
+   <translation id="pack_resiliation_comment" qtlid="313455">Déjenos un comentario (opcional)</translation>
+   <translation id="pack_resiliation_comment2" qtlid="385637">Por favor, indique los motivos por los que desea dar de baja el servicio (opcional)</translation>
+   <translation id="pack_resiliation_comment_required" qtlid="385650">Por favor, indique los motivos por los que desea dar de baja el servicio</translation>
+   <translation id="pack_resiliation_date_format" qtlid="313468">dd/mm/aaaa</translation>
+   <translation id="pack_resiliation_date_format_error" qtlid="313481">Fecha no válida. Utilice el calendario o indique una fecha en formato</translation>
+   <translation id="pack_resiliation_services_to_keep" qtlid="385663">Seleccione los servicios que desee conservar</translation>
+   <translation id="pack_resiliation_disabled_field_help" qtlid="313507">No es posible conservar los servicios indicados en gris.</translation>
+   <translation id="pack_resiliation_services_cannot_keep" qtlid="313520">Si da de baja el pack, no puede conservar este servicio.</translation>
+   <translation id="pack_resiliation_subservices_load_error" qtlid="313533">Se ha producido un error al cargar la información de baja de los servicios asociados. No es posible continuar tramitando la baja.</translation>
+   <translation id="pack_resiliation_hubic_disclamer" qtlid="509417">Vos comptes hubiC seront automatiquement basculés en offre gratuite 25 Go. Si vos données dépassent la capacité de stockage d'une offre gratuite, ces dernières restent accessibles.</translation>
+   <translation id="pack_resiliation_fee" qtlid="385689">Gastos de baja del servicio:</translation>
+   <translation id="pack_resiliation_keeping_fee" qtlid="385702">Gastos de conservación del número alias:</translation>
+   <translation id="pack_resiliation_monthly_pass" qtlid="268289">Suscripción mensual:</translation>
+   <translation id="pack_resiliation_excluding_tax" qtlid="313611">{{amount}} {{currency}} + IVA</translation>
+   <translation id="pack_resiliation_excluding_tax_annually" qtlid="385715">{{amount}} {{currency}}/año + IVA</translation>
+   <translation id="pack_resiliation_excluding_tax_monthly" qtlid="385728">{{amount}} {{currency}}/mes + IVA</translation>
+   <translation id="pack_resiliation_price_tax_free" qtlid="322703">{{ price }} + IVA</translation>
+   <translation id="pack_resiliation_fee_summary_total_title" qtlid="385741">Total de gastos de baja del servicio y suscripciones en función de los servicios conservados</translation>
+   <translation id="pack_resiliation_Nthly_pass" qtlid="313637">Abono de {{month}} meses:</translation>
+   <translation id="pack_resiliation_annually_pass" qtlid="385754">Suscripción anual:</translation>
+   <translation id="pack_resiliation_check_all_domain" qtlid="313663">Conservar todos mis dominios</translation>
+   <translation id="pack_resiliation_check_all_hubic" qtlid="313676">Conservar todas mis cuentas de hubic</translation>
+   <translation id="pack_resiliation_check_all_voipLine" qtlid="313689">Conservar todas mis líneas</translation>
+   <translation id="pack_resiliation_check_all_exchangeIndividual" qtlid="385767">Conservar todos mis buzones Exchange (particular)</translation>
+   <translation id="pack_resiliation_check_all_exchangeLite" qtlid="313715">Conservar todos mis buzones Exchange (Lite)</translation>
+   <translation id="pack_resiliation_check_all_exchangeOrganization" qtlid="385780">Conservar todos mis buzones Exchange  (organización)</translation>
+   <translation id="pack_resiliation_check_all_exchangeAccount" qtlid="385793">Conservar todos mis buzones Exchange (cuenta)</translation>
+   <translation id="pack_resiliation_check_all_voipEcoFax" qtlid="313754">Conservar todos mis EcoFax Pro</translation>
+   <translation id="pack_resiliation_check_all_hostedEmail" qtlid="313767">Conservar todos mis Hosted Emails</translation>
+   <translation id="pack_resiliation_check_all_voipAlias" qtlid="313780">Conservar todos mis alias</translation>
+   <translation id="pack_resiliation_check_all_siteBuilderFull" qtlid="313793">Conservar todos mis Site Builder (Full)</translation>
+   <translation id="pack_resiliation_check_all_siteBuilderStart" qtlid="313806">Conservar todos mis Site Builder</translation>
+   <translation id="pack_resiliation_delete_all_domain" qtlid="385806">Se van a eliminar los siguientes dominios</translation>
+   <translation id="pack_resiliation_delete_all_hubic" qtlid="385819">Se van a eliminar las siguientes cuentas hubiC</translation>
+   <translation id="pack_resiliation_delete_all_voipLine" qtlid="385832">Se van a eliminar las siguientes líneas</translation>
+   <translation id="pack_resiliation_delete_all_exchangeIndividual" qtlid="385845">Se van a eliminar los siguientes buzones Exchange (particular)</translation>
+   <translation id="pack_resiliation_delete_all_exchangeLite" qtlid="385858">Se van a eliminar los siguientes buzones Exchange (Lite)</translation>
+   <translation id="pack_resiliation_delete_all_exchangeOrganization" qtlid="385871">Se van a eliminar los siguientes buzones Exchange (organización)</translation>
+   <translation id="pack_resiliation_delete_all_exchangeAccount" qtlid="385884">Se van a eliminar los siguientes buzones Exchange (cuenta)</translation>
+   <translation id="pack_resiliation_delete_all_voipEcoFax" qtlid="385897">Se van a eliminar las siguientes cuentas EcoFax Pro</translation>
+   <translation id="pack_resiliation_delete_all_hostedEmail" qtlid="385910">Se van a eliminar las siguientes cuentas Hosted Emails</translation>
+   <translation id="pack_resiliation_delete_all_voipAlias" qtlid="385923">Se van a eliminar los siguientes alias</translation>
+   <translation id="pack_resiliation_delete_all_siteBuilderFull" qtlid="385936">Se van a eliminar las siguientes cuentas Site Builder (full)</translation>
+   <translation id="pack_resiliation_delete_all_siteBuilderStart" qtlid="385949">Se van a eliminar las siguientes cuentas Site Builder</translation>
+   <translation id="pack_resiliation_mandatory_field" qtlid="313234">Los campos marcados con asterisco son obligatorios.</translation>
+</translations>

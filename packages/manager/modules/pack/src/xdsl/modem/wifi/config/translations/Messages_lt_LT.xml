@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_modem_wifi_config_title" qtlid="456245">Configuration du réseau Wi-Fi {{ ssid }}</translation>
+   <translation id="xdsl_modem_wifi_config_list_title" qtlid="456258">Liste des réseaux Wi-Fi disponibles</translation>
+
+   <translation id="xdsl_modem_wifi_config_wifi" qtlid="456271">Activer le Wi-Fi :</translation>
+   <translation id="xdsl_modem_wifi_config_state" qtlid="8230">Būsena</translation>
+
+   <translation id="xdsl_modem_wifi_config_table_ssid" qtlid="456284">Identifiant (SSID)</translation>
+   <translation id="xdsl_modem_wifi_config_ssid" qtlid="317971">Tinklo identifikatorius (SSID)</translation>
+   <translation id="xdsl_modem_wifi_config_ssid_required" qtlid="456297">L'identifiant réseau est obligatoire.</translation>
+   <translation id="xdsl_modem_wifi_config_ssid_too_short" qtlid="456310">L'identifiant réseau doit au minimum être composé de 2 caractères.</translation>
+   <translation id="xdsl_modem_wifi_config_ssid_too_long" qtlid="456323">L'identifiant réseau doit au maximum être composé de 32 caractères.</translation>
+   <translation id="xdsl_modem_wifi_config_ssid_wrong_chars" qtlid="456336">L'identifiant réseau ne peut pas contenir d'accents.</translation>
+
+   <translation id="xdsl_modem_wifi_config_ssid_advertisement" qtlid="456349">Visibilité du réseau</translation>
+   <translation id="xdsl_modem_wifi_config_ssid_table_visibility" qtlid="106979">Matomumas</translation>
+
+   <translation id="xdsl_modem_wifi_config_security" qtlid="125420">Saugumas</translation>
+   <translation id="xdsl_modem_wifi_config_type_changed" qtlid="456362">La modification du type de sécurité necessite l'encodage d'un nouveau mot de passe.</translation>
+
+   <translation id="xdsl_modem_wifi_config_key" qtlid="317997">Wi-Fi raktas</translation>
+   <translation id="xdsl_modem_wifi_config_key_too_short" qtlid="456375">La clé Wi-Fi doit au minimum être composée de 6 caractères.</translation>
+   <translation id="xdsl_modem_wifi_config_key_required" qtlid="456388">La clé Wi-Fi est obligatoire.</translation>
+
+   <translation id="xdsl_modem_wifi_config_canal" qtlid="279730">Kanalas</translation>
+   <translation id="xdsl_modem_wifi_config_table_frequency" qtlid="30442">Dažnis</translation>
+   <translation id="xdsl_modem_wifi_config_table_guest" qtlid="456414">Invité</translation>
+
+   <translation id="xdsl_modem_wifi_config_state_enabled" qtlid="30250">Įjungta</translation>
+   <translation id="xdsl_modem_wifi_config_state_disabled" qtlid="24967">Išjungta</translation>
+
+   <translation id="xdsl_modem_wifi_config_description" qtlid="311427">Wi-Fi režimas leidžia konfigūruoti tinklą nenaudojant kabelių, nes įranga prijungiama bevieliu būdu.</translation>
+
+   <translation id="xdsl_modem_wifi_config_ssid_tooltip" qtlid="318023">Tinklo identifikatorius (arba SSID) yra pavadinimas, kuris laisvai skleidžiamas ir matomas įrenginiuose, kominkuojančiuose su modemu.</translation>
+   <translation id="xdsl_modem_wifi_config_ssid_advertisement_tooltip" qtlid="318036">Tinklo identifikatorius (pavadinimas) gali būti matomas viešai arba slepiamas. Jeigu jis slepiamas, norint prisijungti reikės jį žinoti, kadangi jis nebus matomas tinklo nuostatose.</translation>
+   <translation id="xdsl_modem_wifi_config_security_tooltip" qtlid="318049">Saugumas nustatomas naudojant įvairius šifravimo tipus bei stiprumą, o tinklas pasiekiamas tik įvedus slaptažodį. Rekomenduojame naudoti "WPA arba WPA2" šifravimą, kadangi tai šie tipai naudoja pažangesnius šifravimo metodus.</translation>
+   <translation id="xdsl_modem_wifi_config_key_tooltip" qtlid="318062">Wi-Fi raktas - tai slaptažodis, kurio reikia norint prisijungti prie tinklo. Patartina naudoti sudėtingą raktą, t.y. sudarytą iš skaičių ir didžiųjų bei mažųjų raidžių.</translation>
+   <translation id="xdsl_modem_wifi_config_canal_tooltip" qtlid="509573">La plage de canaux disponibles correspond à des fréquences différentes. Il n'y a pas de recommandation particulière de choix entre un canal et un autre.</translation>
+
+   <translation id="xdsl_modem_wifi_config_new_key" qtlid="303029">Naujas raktas</translation>
+   <translation id="xdsl_modem_wifi_config_retype_new_key" qtlid="318088">Įveskite raktą dar kartą</translation>
+
+   <translation id="xdsl_modem_wifi_config_key_not_matching" qtlid="456427">Les clés Wi-Fi ne sont pas identiques !</translation>
+
+   <translation id="xdsl_modem_wifi_config_visible" qtlid="46300">Matomas</translation>
+   <translation id="xdsl_modem_wifi_config_hidden" qtlid="128274">Paslėpta</translation>
+
+   <translation id="xdsl_modem_wifi_config_really" qtlid="318114">Ar tikrai norite keisti Wi-Fi konfigūraciją?</translation>
+
+   <translation id="xdsl_modem_wifi_config_success" qtlid="456440">Configuration Wi-Fi mis à jour avec succès !</translation>
+   <translation id="xdsl_modem_wifi_config_success_single" qtlid="318127">Wi-Fi konfigūraciją sėkmingai atnaujinta. Tuojau būsite nukreipti.</translation>
+
+   <translation id="xdsl_modem_wifi_config_error_missing" qtlid="318140">Wi-Fi neegzistuoja!</translation>
+
+   <translation id="xdsl_modem_wifi_None" qtlid="8674">Tuščia</translation>
+   <translation id="xdsl_modem_wifi_WEP" qtlid="318153">WEP</translation>
+   <translation id="xdsl_modem_wifi_WPA" qtlid="318166">WPA</translation>
+   <translation id="xdsl_modem_wifi_WPA2" qtlid="318179">WPA2</translation>
+   <translation id="xdsl_modem_wifi_WPAandWPA2" qtlid="318192">WPA ir WPA2</translation>
+
+   <translation id="xdsl_modem_wifi_read_error" qtlid="385169">Negalima gauti wifi informacijos.</translation>
+   <translation id="xdsl_modem_wifi_write_error" qtlid="385182">Negalima atnaujinti wifi.</translation>
+   <translation id="xdsl_modem_wifi_config_info" qtlid="456453">Une modification de configuration d'un réseau Wi-Fi est déjà en cours. Les modifications que vous allez apporter seront appliquées une fois cette modification terminée.</translation>
+
+</translations>

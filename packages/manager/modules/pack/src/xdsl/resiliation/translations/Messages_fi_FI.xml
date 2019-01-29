@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_resiliation_title" qtlid="310829">Palvelun irtisanominen</translation>
+   <translation id="xdsl_resiliation_service_forbidden" qtlid="310842">Tätä palvelua ei voida irtisanoa yksin, koska se on osa pakettia. </translation>
+   <translation id="xdsl_resiliation_engaged" qtlid="310855">Sitoutumisen päättymispäivä</translation>
+   <translation id="xdsl_resiliation_not_engaged" qtlid="310868">Et ole enää sitoutunut. </translation>
+   <translation id="xdsl_resiliation_resiliation_date" qtlid="310881">Irtisanominen tapahtuu</translation>
+   <translation id="xdsl_resiliation_due" qtlid="310894">Maksettavaa jäljellä</translation>
+   <translation id="xdsl_resiliation_type_name" qtlid="310907">palvelu</translation>
+   <translation id="xdsl_resiliation_cancel" qtlid="310920">Peru irtisanominen</translation>
+   <translation id="xdsl_resiliation_cancel_really" qtlid="386847">Vous êtes sur le point d'annuler la résiliation de «{{description}}». Voulez-vous continuer ?</translation>
+   <translation id="xdsl_resiliation_service_date_format" qtlid="313468">pp/kk/vvvv</translation>
+   <translation id="xdsl_resiliation_mail" qtlid="310946">Sinulle lähetetään vahvistusviesti. Tämä sähköpostiviesti sisältää modeemin palautuspaketin mukaan liitettävän palautuslomakkeen.  </translation>
+   <translation id="xdsl_resiliation_terminate_info_1" qtlid="385559">Vous avez une demande de résiliation en cours. <br/> Cette résiliation est programmée le {{date}}. En cliquant sur le bouton «Annuler ma résiliation», vous procédez à l'annulation immédiate de la résiliation.</translation>
+</translations>

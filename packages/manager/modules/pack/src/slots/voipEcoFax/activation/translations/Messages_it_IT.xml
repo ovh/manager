@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="fax_activation_total_error" qtlid="307358">Si è verificato un errore durante il caricamento.</translation>
+   <translation id="fax_activation_widget-title" qtlid="308372">Attiva linee fax</translation>
+   <translation id="fax_activation_widget-intro" qtlid="308385">Stai per creare una linea fax nel tuo Pack.<br />Una volta attivata, riceverai un'email con il numero della linea e degli identificativi associati.<br />Per utilizzare il tuo servizio, ti consigliamo di utilizzare il software <a href="{{ecoFaxUrl}}" target="new">EcoFax</a>.</translation>
+   <translation id="fax_activation_widget_free_slot" qtlid="308398">Hai ancora <strong class="pack-item-count">{{available}}</strong> servizi disponibili.</translation>
+   <translation id="fax_activation_widget_free_slot_zero" qtlid="308099">Non hai più servizi disponibili</translation>
+   <translation id="fax_activation_widget_activate_button_lable" qtlid="76734">Attiva</translation>
+   <translation id="fax_activation_widget_success" qtlid="308411">Attivazione linea fax in corso...</translation>
+   <translation id="fax_activation_widget_on_doing" qtlid="308424">Una o più linee fax risultano in corso di attivazione.</translation>
+</translations>

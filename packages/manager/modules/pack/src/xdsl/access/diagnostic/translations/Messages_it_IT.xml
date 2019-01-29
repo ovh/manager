@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="pack_xdsl_access_diagnostic_title" qtlid="501691">Diagnostic de votre ligne</translation>
+   <translation id="pack_xdsl_access_diagnostic_wizard_title" qtlid="384818">Assistente risoluzione dei problemi</translation>
+
+   <translation id="pack_xdsl_access_diagnostic_launch" qtlid="310413">Avvia una diagnostica</translation>
+   <translation id="pack_xdsl_access_diagnostic_assistant_launch" qtlid="384831">Avvia l'assistente</translation>
+   <translation id="pack_xdsl_access_diagnostic_remaining" qtlid="310426">{{value}} rimanenti</translation>
+   <translation id="pack_xdsl_access_diagnostic_wizard_radio_probleme1" qtlid="384844">La diagnostica della linea indica un problema di sincronizzazione.</translation>
+   <translation id="pack_xdsl_access_diagnostic_wizard_radio_probleme2" qtlid="384857">Ho una perdita totale di connessione.</translation>
+   <translation id="pack_xdsl_access_diagnostic_wizard_radio_probleme3" qtlid="384870">Il mio operatore rileva una connessione ma non riesco a connettermi.</translation>
+   <translation id="pack_xdsl_access_diagnostic_general" qtlid="310439">Report sullo stato della linea</translation>
+
+   <translation id="pack_xdsl_access_diagnostic_time" qtlid="310452">Orario della diagnostica</translation>
+
+   <translation id="pack_xdsl_access_diagnostic_access_incident_ongoing" qtlid="310465">Risoluzione di un incidente OVH in corso...</translation>
+
+   <translation id="pack_xdsl_access_diagnostic_access_works" qtlid="310478">Nessun incidente</translation>
+   <translation id="pack_xdsl_access_diagnostic_access_fails" qtlid="68036">Incidente</translation>
+   <translation id="pack_xdsl_access_diagnostic_modem_connected" qtlid="310491">Stato della connessione</translation>
+   <translation id="pack_xdsl_access_diagnostic_modem_state_disconnected" qtlid="310504">Il tuo dispositivo OVH è scollegato</translation>
+   <translation id="pack_xdsl_access_diagnostic_modem_state_connected" qtlid="310517">Il tuo dispositivo OVH è connesso</translation>
+   <translation id="pack_xdsl_access_diagnostic_modem_state_running" qtlid="310530">Test del dispositivo in corso...</translation>
+
+   <translation id="pack_xdsl_access_diagnostic_active_on_lns" qtlid="310543">Gateway in uscita LNS</translation>
+   <translation id="pack_xdsl_access_diagnostic_lns_active_ok" qtlid="310556">Il tuo dispositivo è attivo</translation>
+   <translation id="pack_xdsl_access_diagnostic_lns_active_ko" qtlid="310569">Il tuo dispositivo non è attivo</translation>
+
+   <translation id="pack_xdsl_access_diagnostic_ping" qtlid="310582">Risposta ai ping</translation>
+   <translation id="pack_xdsl_access_diagnostic_ping_ko" qtlid="310595">Il tuo dispositivo non risponde ai ping</translation>
+   <translation id="pack_xdsl_access_diagnostic_ping_ok" qtlid="310608">Il tuo dispositivo risponde correttamente ai ping</translation>
+   <translation id="pack_xdsl_access_diagnostic_ping_running" qtlid="310621">Ping in corso...</translation>
+
+   <translation id="pack_xdsl_access_diagnostic_line" qtlid="310634">Linea n°{{name}}</translation>
+
+   <translation id="pack_xdsl_access_diagnostic_line_sync" qtlid="310647">Sincronizzazione della linea</translation>
+   <translation id="pack_xdsl_access_diagnostic_line_sync_ko" qtlid="310660">La linea non è sincronizzata</translation>
+   <translation id="pack_xdsl_access_diagnostic_line_sync_ok" qtlid="310673">La linea è sincronizzata</translation>
+
+   <translation id="pack_xdsl_access_diagnostic_line_proposed_profile_id" qtlid="310686">Profilo di connessione proposto</translation>
+   <translation id="pack_xdsl_access_diagnostic_line_current_profile_id" qtlid="310699">Profilo di connessione corrente</translation>
+   <translation id="pack_xdsl_access_diagnostic_line_line_test" qtlid="310712">Test della linea</translation>
+
+   <translation id="pack_xdsl_access_diagnostic_line_line_test_actionPending" qtlid="26383">In corso</translation>
+   <translation id="pack_xdsl_access_diagnostic_line_line_test_customerSideProblem" qtlid="310725">Problema lato client</translation>
+   <translation id="pack_xdsl_access_diagnostic_line_line_test_error" qtlid="26407">Errore</translation>
+   <translation id="pack_xdsl_access_diagnostic_line_line_test_noProblem" qtlid="310738">Funzionamento OK</translation>
+   <translation id="pack_xdsl_access_diagnostic_line_line_test_ovhSideProblem" qtlid="310751">Problema lato OVH</translation>
+
+   <translation id="pack_xdsl_access_diagnostic_line_error_diag_launch" qtlid="384883">Impossibile avviare la diagnostica.</translation>
+   <translation id="pack_xdsl_access_diagnostic_line_error_diag_poll" qtlid="384896">Si è verificato un errore durante la diagnostica.</translation>
+</translations>

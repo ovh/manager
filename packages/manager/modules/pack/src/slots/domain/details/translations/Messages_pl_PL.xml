@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="domain_details_total_error" qtlid="307332">Brakuje parametru w adresie.</translation>
+   <translation id="domain_details_widget_title" qtlid="307345">Informacje o domenie</translation>
+   <translation id="domain_details_comming_soon" qtlid="250043">Dostępne wkrótce</translation>
+   <translation id="domain_details_back_button" qtlid="4118">Powrót</translation>
+</translations>

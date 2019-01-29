@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_access_deconsolidation_title" qtlid="310140">Dégroupage Total</translation>
+   <translation id="xdsl_access_deconsolidation_validate" qtlid="310153">Valider le dégroupage</translation>
+
+   <translation id="xdsl_access_deconsolidation_legacy_offer" qtlid="310166">Votre ligne appartient à une offre désuète. Pour être éligible au dégroupage total, vous devez mettre à jour votre pack avec une offre plus récente.</translation>
+   <translation id="xdsl_access_deconsolidation_legacy_offer_upgrade" qtlid="231292">Mettre à jour mon offre</translation>
+
+   <translation id="xdsl_access_deconsolidation_createNeighbour" qtlid="32458">Total</translation>
+   <translation id="xdsl_access_deconsolidation_creation" qtlid="32458">Total</translation>
+   <translation id="xdsl_access_deconsolidation_partial" qtlid="77166">Partiel</translation>
+   <translation id="xdsl_access_deconsolidation_total" qtlid="32458">Total</translation>
+
+   <translation id="xdsl_access_deconsolidation_warning_total" qtlid="385130">Vous êtes déjà en dégroupage total. Vous ne pouvez pas revenir au dégroupage partiel.</translation>
+   <translation id="xdsl_access_deconsolidation_warning_partial" qtlid="310192">Vous êtes en dégroupage partiel, vous pouvez évoluer vers le dégroupage total.</translation>
+   <translation id="xdsl_access_deconsolidation_desc_important" qtlid="310205">Cette opération est IRRÉVERSIBLE. Elle prend en moyenne 7 jours ouvrés. Une interruption de service d'environ 30 minutes est à prévoir.</translation>
+
+   <translation id="xdsl_access_deconsolidation_success" qtlid="310218">Passage au dégroupage total ! Vous allez être redirigé(e).</translation>
+   <translation id="xdsl_access_deconsolidation_really" qtlid="310231">Êtes-vous sûr(e) de vouloir effectuer passer au Dégroupage Total ?</translation>
+
+   <translation id="xdsl_access_deconsolidation_number_not_transferred" qtlid="310244">Votre numéro ne sera pas porté.</translation>
+
+   <translation id="xdsl_access_deconsolidation_rio" qtlid="310257">RIO</translation>
+   <translation id="xdsl_access_deconsolidation_rio_title" qtlid="310270">Garder mon numéro</translation>
+   <translation id="xdsl_access_deconsolidation_rio_warning" qtlid="310283">Joignez impérativement le code RIO rattaché à votre numéro, sinon votre numéro sera perdu.</translation>
+   <translation id="xdsl_access_deconsolidation_rio_help" qtlid="310296">Comment obtenir votre RIO ? Rien de plus simple. Avant de souscrire, appelez gratuitement le 3179 depuis votre ligne fixe.</translation>
+</translations>

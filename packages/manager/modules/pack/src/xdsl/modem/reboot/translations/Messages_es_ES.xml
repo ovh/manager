@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_modem_reboot" qtlid="311713">Reiniciar el módem</translation>
+   <translation id="xdsl_modem_reboot_an_error_ocurred" qtlid="311726">Reinicio del módem: se ha producido un error.</translation>
+   <translation id="xdsl_modem_reboot_success" qtlid="311739">Reiniciando el módem...</translation>
+   <translation id="xdsl_modem_reboot_success_end" qtlid="311752">Reinicio del módem finalizado.</translation>
+   <translation id="xdsl_modem_reboot_really" qtlid="311765">¿Seguro que quiere reiniciar el módem?</translation>
+</translations>

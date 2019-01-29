@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telefony_activation_add_line_title" qtlid="307956">Activación de líneas telefónicas</translation>
+   <translation id="telefony_activation_add_line_intro" qtlid="307969">Puede activar las líneas telefónicas incluidas en su pack.</translation>
+   <translation id="telefony_activation_add_line_intro_multiline" qtlid="307982">Si activa varias líneas con teléfono a la vez, solo tendrá que abonar una vez los gastos de transporte.</translation>
+   <translation id="telefony_activation_with_phone_header" qtlid="307995">Con teléfono</translation>
+   <translation id="telefony_activation_no_more_port_modem" qtlid="308008">No queda ninguna línea disponible en el módem. Es necesario un teléfono.</translation>
+   <translation id="telefony_activation_total_error" qtlid="307358">Se ha producido un error durante la carga.</translation>
+   <translation id="telefony_activation_success_validation" qtlid="308021">Su solicitud se ha enviado.</translation>
+   <translation id="telefony_activation_an_error_ocurred" qtlid="308034">Se ha producido un error al crear la línea</translation>
+   <translation id="telefony_activation_shipping_address_label" qtlid="308047">Elija la dirección y el modo de entrega del teléfono</translation>
+   <translation id="telefony_activation_shipping_transporter_label" qtlid="308060">Entrega por transportista (+{{cost}} € + IVA) en 24 horas (desde el envío)</translation>
+   <translation id="telefony_activation_shipping_relay_label" qtlid="308073">Entrega gratuita en punto Mondial Relay en 48 horas (desde el envío)</translation>
+   <translation id="telefony_activation_shipping_mode" qtlid="308086">Modo de entrega:</translation>
+   <translation id="telefony_activation_widget_activate_price_free" qtlid="130495">Gratuito</translation>
+   <translation id="telefony_activation_widget_free_slot_zero" qtlid="308099">Ya no tiene servicios disponibles.</translation>
+   <translation id="telefony_activation_widget_activate_price_title" qtlid="83913">Precio</translation>
+   <translation id="telefony_activation_widget_activate_button_label" qtlid="120486">Validar el pedido</translation>
+   <translation id="telefony_activation_widget_slot_count" qtlid="308112">Número de líneas</translation>
+   <translation id="telefony_activation_widget_on_doing" qtlid="308125">Se están activado una o más líneas.</translation>
+   <translation id="telefony_activation_widget_free_slot" qtlid="308138">Número de líneas a añadir:</translation>
+   <translation id="telefony_activation_widget_line_on_modem" qtlid="308151">Solo puede activarse una línea en el módem. Para más líneas, son necesarios dispositivos adicionales que OVH proporciona bajo fianza.</translation>
+   <translation id="telefony_activation_widget_lines_on_modem" qtlid="308164">Solo pueden activarse {{linesOnModem}} líneas en el módem. Para más líneas, son necesarios dispositivos adicionales que OVH proporciona bajo fianza.</translation>
+   <translation id="telefony_activation_hardware_line" qtlid="308177">Línea {{index}}</translation>
+   <translation id="telefony_activation_hardware_caution_label" qtlid="308190">Fianza</translation>
+   <translation id="telefony_activation_hardware_doc_label" qtlid="79290">Ficha técnica</translation>
+   <translation id="telefony_activation_hardware_select_label" qtlid="84153">Elegir</translation>
+   <translation id="telefony_activation_hardware_unselect_label" qtlid="69893">Cambiar</translation>
+   <translation id="telefony_activation_hardware_select_all_label" qtlid="308203">Pedir este dispositivo en todas las líneas</translation>
+   <translation id="telefony_activation_shipping_price_label" qtlid="308216">Gastos de transporte</translation>
+   <translation id="telefony_activation_total_price_label" qtlid="190459">Importe total</translation>
+   <translation id="telefony_activation_done" qtlid="308229">El pedido se ha enviado correctamente.</translation>
+   <translation id="telephony_activation_select_number_of_lines" qtlid="308242">Seleccione el número de líneas.</translation>
+   <translation id="telephony_activation_order_group_none" qtlid="308255">Contratación de solo líneas</translation>
+   <translation id="telephony_activation_order_group_mondialRelay" qtlid="308268">Contratación de líneas con teléfono</translation>
+   <translation id="telephony_activation_order_group_shipping" qtlid="308268">Contratación de líneas con teléfono</translation>
+   <translation id="telephony_activation_order_error" qtlid="308281">Error en el pedido:</translation>
+   <translation id="telephony_activation_order_error_global" qtlid="308294">Error [{{code}}] {{text}}: Atención: Los pedidos (activación de líneas) pueden dividirse en varios grupos y enviarse por separado. Uno no ha podido realizarse y ha bloqueado los siguientes, pero es posible que una parte del pedido haya sido validada con anterioridad. Por favor, compruebe la lista a continuación:</translation>
+<translation id="telephony_activation_order_link"><a target="_blank" href="{{url}}" qtlid="308307">pedido n° {{id}}
+<i class="ovh-font ovh-font-newtab"/></a></translation>
+   <translation id="telephony_activation_order_error_detail_title" qtlid="308320">Detalle:</translation>
+   <translation id="telephony_activation_order_resume" qtlid="356771">Para ir a la orden de pedido, haga clic en el enlace de abajo</translation>
+   <translation id="telephony_activation_order_link" qtlid="356784">Ir a la orden de pedido</translation>
+</translations>

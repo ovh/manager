@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_resiliation_title" qtlid="310829">Résiliation du service</translation>
+   <translation id="xdsl_resiliation_service_forbidden" qtlid="310842">Ce service ne peut pas être résilié seul car il est lié à son pack.</translation>
+   <translation id="xdsl_resiliation_engaged" qtlid="310855">Date de fin d'engagement</translation>
+   <translation id="xdsl_resiliation_not_engaged" qtlid="310868">Vous n'êtes plus engagé.</translation>
+   <translation id="xdsl_resiliation_resiliation_date" qtlid="310881">Résiliation au</translation>
+   <translation id="xdsl_resiliation_due" qtlid="310894">Restant à payer</translation>
+   <translation id="xdsl_resiliation_type_name" qtlid="310907">le service</translation>
+   <translation id="xdsl_resiliation_cancel" qtlid="310920">Annuler ma résiliation</translation>
+   <translation id="xdsl_resiliation_cancel_really" qtlid="386847">Vous êtes sur le point d'annuler la résiliation de «{{description}}». Voulez-vous continuer ?</translation>
+   <translation id="xdsl_resiliation_service_date_format" qtlid="313468">tt/mm/jjjj</translation>
+   <translation id="xdsl_resiliation_mail" qtlid="310946">Un e-mail de confirmation va vous être envoyé. Cet e-mail contient le bon de retour à joindre dans le colis de retour du modem.</translation>
+   <translation id="xdsl_resiliation_terminate_info_1" qtlid="385559">Vous avez une demande de résiliation en cours. <br/> Cette résiliation est programmée le {{date}}. En cliquant sur le bouton «Annuler ma résiliation», vous procédez à l'annulation immédiate de la résiliation.</translation>
+</translations>

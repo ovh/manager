@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_access_profile_tooltip_interleaved" qtlid="318205"><b>Interleaved :</b> Profil auto par défaut</translation>
+   <translation id="xdsl_access_profile_tooltip_fast" qtlid="318218"><b>Fast : </b> Profil auto en fastPath (ping amélioré sans&#160;correction d'erreur)</translation>
+   <translation id="xdsl_access_profile_tooltip_ginp" qtlid="318231"><b>G.INP : </b> Cette extension améliore la correction d’erreur sans affecter la performance de la ligne. Le DSLAM va utiliser le mode de protection (INP, Impulse Noise Protection) contre le bruit.</translation>
+   <translation id="xdsl_access_profile_tooltip_auto" qtlid="318244"><b>AUTO-[valeur]M :</b> Le DSLAM va synchroniser au maximum sur le débit</translation>
+   <translation id="xdsl_access_profile_tooltip_snr" qtlid="318257"><b>SNR-[valeur] : </b> Le DSLAM va analyser la qualité de la ligne et va negocier un rapport signal/bruit (SNR) au chiffre indique. Plus le chiffre est grand plus la stablilité de la ligne sera bonne mais plus le débit sera petit. Sur les profils sans SNR forces, le DSLAM essaie&#160;;d'avoir un SNR de 6.</translation>
+   <translation id="xdsl_access_profile_tooltip_time" qtlid="318270">La modification sera effective sous 1 à 5 minutes.</translation>
+   <translation id="xdsl_access_dslam_an_error_ocurred" qtlid="318283">[DSLAM] Une erreur est survenue !</translation>
+   <translation id="xdsl_access_profile_doing" qtlid="318296">Changement de profil en cours</translation>
+</translations>

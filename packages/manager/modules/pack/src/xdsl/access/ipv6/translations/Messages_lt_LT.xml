@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_access_ipv6_status" qtlid="506923">IPv6 activée</translation>
+   <translation id="xdsl_access_ipv6_description" qtlid="309945">IPv6 naudojimas pradės veikti po 5 - 10 minučių. Ši operacija taip pat atnaujins modemo įrangą. Dėmesio, programinė įranga vis dar Beta fazėje. Atnaujinimo metu dings ryšys, jis trumpam dingsta įjungiam ir išjungiant IPv6.</translation>
+   <translation id="xdsl_access_ipv6_warning" qtlid="309958">Prašome palaukti ir neišjungti modemo atnaujinimo metu.</translation>
+   <translation id="xdsl_access_ipv6_success_validation_on" qtlid="309971">IPv6 įjungiamas</translation>
+   <translation id="xdsl_access_ipv6_success_validation_off" qtlid="309984">IPv6 išjungiamas</translation>
+   <translation id="xdsl_access_ipv6_an_error_ocurred" qtlid="309997">[IPv6] Klaida!</translation>
+   <translation id="xdsl_access_ipv6_really_on" qtlid="310010">Ar tikrai norite įjungti IPv6?</translation>
+   <translation id="xdsl_access_ipv6_really_off" qtlid="310023">Ar tikrai norite išjungti IPv6?</translation>
+   <translation id="xdsl_access_ipv6_zyxel_warning" qtlid="508819">Cette action réinitialisera votre modem. Êtes-vous sûr(e) de vouloir continuer ?</translation>
+</translations>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_page_title" qtlid="385533">xDSL "{{name}}"</translation>
+   <translation id="xdsl_tabs_details" qtlid="26551">Informations</translation>
+   <translation id="xdsl_tabs_modem" qtlid="309204">Mon modem</translation>
+   <translation id="xdsl_tabs_line" qtlid="309217">Mon accès</translation>
+   <translation id="xdsl_tabs_tasks" qtlid="96716">Tâches</translation>
+
+   <translation id="xdsl_rename_error" qtlid="332814">Impossible de renommer votre accès {{serviceName}}.</translation>
+</translations>
