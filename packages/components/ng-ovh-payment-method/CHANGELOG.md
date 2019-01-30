@@ -1,3 +1,12 @@
+## [1.1.4](https://github.com/ovh-ux/ng-ovh-payment-method/compare/v1.1.3...v1.1.4) (2019-01-30)
+
+
+### Bug Fixes
+
+* **legacy.us:** transform paymentType for POST ([23a7e38](https://github.com/ovh-ux/ng-ovh-payment-method/commit/23a7e38))
+
+
+
 ## [1.1.3](https://github.com/ovh-ux/ng-ovh-payment-method/compare/v1.1.2...v1.1.3) (2019-01-23)
 
 
