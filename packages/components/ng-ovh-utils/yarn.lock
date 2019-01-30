@@ -787,6 +787,11 @@
     rollup-pluginutils "^2.3.3"
     slash "^2.0.0"
 
+"@ovh-ux/ng-translate-async-loader@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-translate-async-loader/-/ng-translate-async-loader-2.0.0.tgz#df0d155c6c2e38b53704ff4ca9b419f0695a88bf"
+  integrity sha512-CmAT0/rTYN/Niwtuo1pcY+y46nqGCR2dO6+4twqGiRkqu/ksgklZ4weaqF9Xgl/KYLv+zcCmxZf0J1gfXs7kag==
+
 "@ovh-ux/rollup-plugin-less-tilde-importer@^1.0.0-beta.0":
   version "1.0.0-beta.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/rollup-plugin-less-tilde-importer/-/rollup-plugin-less-tilde-importer-1.0.0-beta.0.tgz#eaf065c6e1fd039db0ddfb2f30955aec987e0c63"
@@ -794,11 +799,6 @@
   dependencies:
     magic-string "^0.25.1"
     rollup-pluginutils "^2.3.3"
-
-"@ovh-ux/translate-async-loader@^1.0.4":
-  version "1.0.8"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/translate-async-loader/-/translate-async-loader-1.0.8.tgz#7cbdc3dfed1042f511206ff6bb9f14c33b8406ba"
-  integrity sha512-8yEhPeRTSxtEO9ODXRYZw6pzRQiV5ULCTi8mIzt39m/b9N2TcIF4ILTPsaa8xpE4npHKa/iYgL9z0HJUFi2LGQ==
 
 "@samverschueren/stream-to-observable@^0.3.0":
   version "0.3.0"

@@ -15,6 +15,8 @@
 
 import angular from 'angular';
 
+import '@ovh-ux/ng-translate-async-loader';
+
 import alerter from './alerter/alerter';
 import contracts from './contracts/contracts';
 import humanReadableSize from './humanReadableSize/humanReadableSize';
@@ -36,6 +38,7 @@ angular.module(moduleName, [
   contracts,
   humanReadableSize,
   navigator,
+  'ngTranslateAsyncLoader',
   paginationServerSide,
   poll,
   popover,
