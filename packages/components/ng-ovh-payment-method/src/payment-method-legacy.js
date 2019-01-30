@@ -283,7 +283,10 @@ export default class OvhPaymentMethodLegacy {
   }
 
   addUSPaymentMethod(params) {
-    return this.OvhApiMe.PaymentMethod().v6().save({}, params).$promise;
+    const addParams = params;
+    addParams.paymentType = _.snakeCase(addParams.paymentType).toUpperCase();
+
+    return this.OvhApiMe.PaymentMethod().v6().save({}, addParams).$promise;
   }
 
   /**
