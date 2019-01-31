@@ -1,5 +1,4 @@
 <div class="pagination-container">
-
     <ul data-uib-pagination
         data-total-items="totalItems"
         data-max-size="maxSize"
@@ -21,10 +20,9 @@
                 data-ng-options="size for size in [5, 10, 20, 40, 80, 100]">
             <option value=""
                     selected="selected"
-                    disabled data-ng-bind="itemPerPagePlaceholder" selected="selected">
+                    disabled data-ng-bind="itemPerPagePlaceholder">
             </option>
         </select>
-
         <input class="form-control"
                name="currentPageInput"
                type="number"
@@ -37,5 +35,4 @@
                data-ng-blur="goPage = null"
                data-ng-keypress="changePageKeyPress($event);" />
     </div>
-
 </div>
