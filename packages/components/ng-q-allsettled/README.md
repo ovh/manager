@@ -1,100 +1,37 @@
-# ovh-angular-q-allSettled
+# ng-q-allsettled
 
-![OVH components](https://user-images.githubusercontent.com/3379410/27423240-3f944bc4-5731-11e7-87bb-3ff603aff8a7.png)
+> AngularJS module for updating browser title based on the current ui-router state.
 
-[![Maintenance](https://img.shields.io/maintenance/yes/2018.svg)]() [![Chat on gitter](https://img.shields.io/gitter/room/ovh/ux.svg)](https://gitter.im/ovh/ux)
+[![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-q-allsettled)](https://npmjs.com/package/@ovh-ux/ng-q-allsettled) [![Dependencies](https://badgen.net/david/dep/ovh-ux/ng-q-allsettled)](https://npmjs.com/package/@ovh-ux/ng-q-allsettled?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/ng-q-allsettled)](https://npmjs.com/package/@ovh-ux/ng-q-allsettled?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
 
-[![NPM](https://nodei.co/npm/ovh-angular-q-allsettled.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/ovh-angular-q-allsettled/)
+## Install
 
-[Copy of kriskowal/q => allSettled](https://github.com/kriskowal/q/wiki/API-Reference "Documentation")
-
-Returns a promise that is fulfilled with an array of promise state snapshots, but only after all the original promises have settled, i.e. become either fulfilled or rejected.
-
-This method is often used in its static form on arrays of promises, in order to execute a number of operations concurrently and be notified when they all finish, regardless of success or failure. For example:
-
-## Example
-
-```javascript
-angular.module("app", [
-  'ovh-angular-q-allSettled',
+```sh
+yarn add @ovh-ux/ng-q-allsettled
 ```
 
-```javascript
-    var tinkyWinky = $q.defer(),
-        dipsy = $q.defer(),
-        laaLaa = $q.defer(),
-        po = $q.defer();
+## Usage
 
-    $timeout(function(){
-        console.log("ok tinkyWinky");
-        tinkyWinky.resolve("tinkyWinky success");
-    }, 1000);
-    $timeout(function(){
-        console.log("error dipsy");
-        dipsy.reject("dipsy error");
-    }, 2000);
-    $timeout(function(){
-        console.log("ok laaLaa");
-        laaLaa.resolve("laaLaa success");
-    }, 3000);
-    $timeout(function(){
-        console.log("error po");
-        po.reject("tutu error");
-    }, 4000);
+```js
+import angular from 'angular';
+import '@ovh-ux/ng-q-allsettled';
 
-    $q.all([tinkyWinky.promise, dipsy.promise, laaLaa.promise, po.promise]).then(function(){
-        console.log("Q ALL DONE");
-        console.log(arguments);
-    }, function(){
-        console.log("Q ONE ERROR BUT ALL NOT DONE");
-        console.log(arguments);
-    });
-
-    $q.allSettled([tinkyWinky.promise, dipsy.promise, laaLaa.promise, po.promise]).then(function(){
-        console.log("ALL DONE");
-        console.log(arguments);
-    }, function(){
-        console.log("ONE OR MORE ERROR");
-        console.log(arguments);
-    });
+angular
+  .module('myApp', [
+    'ngQAllSettled',
+  ]);
 ```
 
+## Test
 
-# Installation
-
-## Bower
-    bower install ovh-angular-q-allsettled --save
-
-## NPM
-
-    npm install ovh-angular-q-allsettled --save
-
-## Get the sources
-
-```bash
-    git clone https://github.com/ovh-ux/ovh-angular-q-allSettled.git
-    cd ovh-angular-q-allSettled
-    npm install
-    bower install
+```sh
+yarn test
 ```
 
-You've developed a new cool feature ? Fixed an annoying bug ? We'd be happy
-to hear from you !
+## Contributing
 
-Have a look in [CONTRIBUTING.md](https://github.com/ovh-ux/ovh-angular-q-allSettled/blob/master/CONTRIBUTING.md)
+Always feel free to help out! Whether it's [filing bugs and feature requests](https://github.com/ovh-ux/ng-q-allsettled/issues/new) or working on some of the [open issues](https://github.com/ovh-ux/ng-q-allsettled/issues), our [contributing guide](CONTRIBUTING.md) will help get you started.
 
-## Run the tests
+## License
 
-```bash
-npm test
-```
-
-# Related links
-
- * Contribute: https://github.com/ovh-ux/ovh-angular-q-allSettled
- * Report bugs: https://github.com/ovh-ux/ovh-angular-q-allSettled/issues
- * Get latest version: https://github.com/ovh-ux/ovh-angular-q-allSettled
-
-# License
-
-See https://github.com/ovh-ux/ovh-angular-q-allSettled/blob/master/LICENSE
+[BSD-3-Clause](LICENSE) © OVH SAS
