@@ -1,21 +1,26 @@
-# OVH simple country list
+# ng-ovh-simple-country-list
 
-![githubbanner](https://user-images.githubusercontent.com/3379410/27423240-3f944bc4-5731-11e7-87bb-3ff603aff8a7.png)
+> OVH simple country list provide a "full" (ISO-3166-1) list of countries with translation possibility. (translations are not available yet)
 
-[![Maintenance](https://img.shields.io/maintenance/yes/2018.svg)]() [![Chat on gitter](https://img.shields.io/gitter/room/ovh/ux.svg)](https://gitter.im/ovh/ux) [![Build Status](https://travis-ci.org/ovh-ux/ovh-angular-simple-country-list.svg)](https://travis-ci.org/ovh-ux/ovh-angular-simple-country-list)
+[![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-simple-country-list)](https://npmjs.com/package/@ovh-ux/ng-ovh-simple-country-list) [![Dependencies](https://badgen.net/david/dep/ovh-ux/ng-ovh-simple-country-list)](https://npmjs.com/package/@ovh-ux/ng-ovh-simple-country-list?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/ng-ovh-simple-country-list)](https://npmjs.com/package/@ovh-ux/ng-ovh-simple-country-list?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
 
-[![NPM](https://nodei.co/npm/ovh-angular-simple-country-list.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/ovh-angular-simple-country-list/)
+## Install
 
-OVH simple country list provide a "full" (ISO-3166-1) list of countries with translation possibility.
-(translations are not available yet)
+```sh
+yarn add @ovh-ux/ng-ovh-simple-country-list
+```
 
-## Example
+## Usage
 
-* The list is sorted by the iso contry name and not by the country code.
+```js
+import angular from 'angular';
+import '@ovh-ux/ng-ovh-simple-country-list';
 
-
-```javascript
-angular.module("app", ["ovh-angular-simple-country-list"]).controller("YourController", function (OvhSimpleCountryList) {
+angular
+  .module('myApp', [
+    'ngOvhSimpleCountryList',
+  ])
+  .controller('myController', /* @ngInject */ (OvhSimpleCountryList) => {
     // set the disired language. Default is iso/en
     OvhSimpleCountryList.setLanguage('en_GB');
 
@@ -27,42 +32,19 @@ angular.module("app", ["ovh-angular-simple-country-list"]).controller("YourContr
 
     var countryListAsSimpleArray = OvhSimpleCountryList.asObject; //lazy builded property
     // {'AD': 'ANDORRA', 'AE': 'UNITED ARAB EMIRATES', ... }
-});
-
+  });
 ```
 
+## Test
 
-## Installation
-
-### Bower
-
-    bower install ovh-angular-simple-country-list --save
-
-### NPM
-
-    npm install ovh-angular-simple-country-list --save
-
-### Get the sources
-
-```bash
-    git clone https://github.com/ovh-ux/ovh-angular-simple-country-list.git
-    cd ovh-angular-simple-country-list
-    npm install
-    bower install
+```sh
+yarn test
 ```
 
-You've developed a new cool feature? Fixed an annoying bug? We'd be happy
-to hear from you!
+## Contributing
 
+Always feel free to help out! Whether it's [filing bugs and feature requests](https://github.com/ovh-ux/ng-ovh-simple-country-list/issues/new) or working on some of the [open issues](https://github.com/ovh-ux/ng-ovh-simple-country-list/issues), our [contributing guide](CONTRIBUTING.md) will help get you started.
 
-Have a look in [CONTRIBUTING.md](https://github.com/ovh-ux/ovh-angular-simple-country-list/blob/master/CONTRIBUTING.md)
+## License
 
-# Related links
-
- * Contribute: https://github.com/ovh-ux/ovh-angular-simple-country-list
- * Report bugs: https://github.com/ovh-ux/ovh-angular-simple-country-list/issues
- * Get latest version: https://github.com/ovh-ux/ovh-angular-simple-country-list
-
-# License
-
-See https://github.com/ovh-ux/ovh-angular-simple-country-list/blob/master/LICENSE
+[BSD-3-Clause](LICENSE) © OVH SAS
