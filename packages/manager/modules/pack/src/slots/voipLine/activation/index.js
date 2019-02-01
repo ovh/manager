@@ -4,7 +4,7 @@ import '@uirouter/angularjs';
 import 'angular-translate';
 import 'angular-ui-bootstrap';
 import 'ovh-api-services';
-// TODO : https://github.com/ovh-ux/ovh-angular-mondial-relay
+import '@ovh-ux/ng-ovh-mondial-relay';
 
 import controller from './controller';
 import template from './template.html';
@@ -16,6 +16,7 @@ const moduleName = 'ovhManagerPackSlotsVoipLineActivation';
 angular
   .module(moduleName, [
     'ngOvhTelecomUniverseComponents',
+    'ngOvhMondialRelay',
     'ovh-api-services',
     'pascalprecht.translate',
     'ui.bootstrap',

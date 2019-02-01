@@ -1573,9 +1573,29 @@
   dependencies:
     animated-scroll-to "^1.2.2"
 
-"@ovh-ux/ng-ovh-simple-country-list@git://github.com/ovh-ux/ovh-angular-simple-country-list#refactor/rollup":
-  version "0.0.9"
-  resolved "git://github.com/ovh-ux/ovh-angular-simple-country-list#0ed28e5180278e1c0fea370b985f60d795cfe59c"
+"@ovh-ux/ng-ovh-input-password@git://github.com/ovh-ux/ovh-angular-input-password/#refactor/rollup":
+  version "1.2.5"
+  resolved "git://github.com/ovh-ux/ovh-angular-input-password/#315f21f0c4aefb82f70dbdfdc7145d2377e5a844"
+  dependencies:
+    bootstrap "~3.3.7"
+    lodash "^4.17.11"
+    ovh-ui-kit "^2.23.1"
+    ovh-ui-kit-bs "^2.1.1"
+
+"@ovh-ux/ng-ovh-mondial-relay@git://github.com/ovh-ux/ovh-angular-mondial-relay/#refactor/rollup":
+  version "4.1.1"
+  resolved "git://github.com/ovh-ux/ovh-angular-mondial-relay/#2ef7dbe0c47ee6813daa5f37e44ba35ddfae0a94"
+  dependencies:
+    bootstrap "~3.3.7"
+    leaflet "0.7.x"
+    lodash "^4.17.11"
+    ovh-ui-kit "^2.23.1"
+    ovh-ui-kit-bs "^2.1.1"
+
+"@ovh-ux/ng-ovh-simple-country-list@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-simple-country-list/-/ng-ovh-simple-country-list-1.0.0.tgz#654d7c91cdc5e37ecae101ab67c923ee6b0786d3"
+  integrity sha512-9kyC+7lpQVTz2LutD6Qukg5NNDwLY3UGI813Sa+ld4ERxP+c7F4qQAL3qV2W2fQPAP9ZYgDw3gJOmKmdZBQZQQ==
   dependencies:
     lodash "^4.17.11"
 
@@ -2074,6 +2094,11 @@ angular-i18n@~1.5.x:
   version "1.5.11"
   resolved "https://registry.yarnpkg.com/angular-i18n/-/angular-i18n-1.5.11.tgz#3d0482032d06f1437c6192cd8ef6045e692aa689"
   integrity sha1-PQSCAy0G8UN8YZLNjvYEXmkqpok=
+
+angular-leaflet-directive@0.8.5:
+  version "0.8.5"
+  resolved "https://registry.yarnpkg.com/angular-leaflet-directive/-/angular-leaflet-directive-0.8.5.tgz#8eb275587e54eb00f4aa3090284ea0a81a44290d"
+  integrity sha1-jrJ1WH5U6wD0qjCQKE6gqBpEKQ0=
 
 angular-messages@^1.7.5:
   version "1.7.5"
@@ -7378,6 +7403,11 @@ lcid@^2.0.0:
   integrity sha512-avPEb8P8EGnwXKClwsNUgryVjllcRqtMYa49NTsbQagYuT1DcXnl1915oxWjoyGrXR6zH/Y0Zc96xWsPcoDKeA==
   dependencies:
     invert-kv "^2.0.0"
+
+leaflet@0.7.x:
+  version "0.7.7"
+  resolved "https://registry.yarnpkg.com/leaflet/-/leaflet-0.7.7.tgz#1e352ba54e63d076451fa363c900890cb2cf75ee"
+  integrity sha1-HjUrpU5j0HZFH6NjyQCJDLLPde4=
 
 lerna@^3.4.3:
   version "3.6.0"

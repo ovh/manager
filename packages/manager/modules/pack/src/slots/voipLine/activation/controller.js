@@ -13,13 +13,14 @@ import remove from 'lodash/remove';
 import set from 'lodash/set';
 import sum from 'lodash/sum';
 
+import { COST_SHIPPING_TRANSPORTER } from './constants';
+
 export default class {
   /* @ngInject */
   constructor(
     $stateParams,
     OvhApiPackXdsl,
     OvhApiPackXdslVoipLine,
-    costs,
     $q,
     $translate,
     TucToastError,
@@ -27,35 +28,35 @@ export default class {
     this.$stateParams = $stateParams;
     this.OvhApiPackXdsl = OvhApiPackXdsl;
     this.OvhApiPackXdslVoipLine = OvhApiPackXdslVoipLine;
-    this.costs = costs;
     this.$q = $q;
     this.$translate = $translate;
     this.TucToastError = TucToastError;
   }
 
   $onInit() {
-    this.transporterCost = this.costs.voip.shipping.transporter.value;
+    this.transporterCost = COST_SHIPPING_TRANSPORTER.value;
     this.canUncheckOrderablePhones = true;
     this.shippingMode = 'mondialRelay';
     this.mondialRelay = null;
+
+    const deposit = () => {
+      let depositTotal = 0;
+      if (this.modem.lines) {
+        this.modem.lines.forEach((line) => {
+          if (line.enabled && line.hardware) {
+            depositTotal += line.hardware.deposit.value;
+          }
+        });
+      }
+      return depositTotal;
+    };
+
+    const transportCost = () => ((this.shippingMode === 'mondialRelay') || !this.isShipping() ? 0 : COST_SHIPPING_TRANSPORTER.value);
+
     this.bill = {
-      deposit() {
-        let deposit = 0;
-        if (this.modem.lines) {
-          this.modem.lines.forEach((line) => {
-            if (line.enabled && line.hardware) {
-              deposit += line.hardware.deposit.value;
-            }
-          });
-        }
-        return deposit;
-      },
-      transportCost() {
-        return (this.shippingMode === 'mondialRelay') || !this.isShipping() ? 0 : this.costs.voip.shipping.transporter.value;
-      },
-      total() {
-        return this.deposit() + this.transportCost();
-      },
+      deposit,
+      transportCost,
+      total: () => deposit() + transportCost(),
     };
     this.modem = {};
     this.orderCountSelect = [];
@@ -87,8 +88,8 @@ export default class {
 
       this.buildSlotCount(this.modem.availableSlots.available);
 
-      this.shippingAddresses = this.removeDuplicateAddress(data[2]);
-      this.framedShippingAddresses = this.buildFramedObject(this.shippingAddresses);
+      this.shippingAddresses = this.constructor.removeDuplicateAddress(data[2]);
+      this.framedShippingAddresses = this.constructor.buildFramedObject(this.shippingAddresses);
     }, this.TucToastError);
   }
 
@@ -211,17 +212,20 @@ export default class {
       set(line, 'enabled', index < this.orderCount.value);
     });
 
-    this.framedLines = this.buildFramedObject(this.modem.lines, 2, (line, localIndex) => {
-      if (!line.enabled) {
-        return false;
-      }
-      return {
-        line,
-        carouselIndex: 0,
-        availableHardwares: JSON.parse(JSON.stringify(this.hardwares)),
-        index: localIndex + 1,
-      };
-    });
+    this.framedLines = this.constructor.buildFramedObject(
+      this.modem.lines, 2,
+      (line, localIndex) => {
+        if (!line.enabled) {
+          return false;
+        }
+        return {
+          line,
+          carouselIndex: 0,
+          availableHardwares: JSON.parse(JSON.stringify(this.hardwares)),
+          index: localIndex + 1,
+        };
+      },
+    );
 
     this.checkIfStillCanUncheckOrderablePhones();
   }
