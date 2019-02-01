@@ -1764,6 +1764,27 @@
     lodash "~4.17.11"
     urijs "^1.19.1"
 
+"@ovh-ux/ng-ovh-input-password@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-input-password/-/ng-ovh-input-password-2.0.0.tgz#721404b0fd29a3ac3060a48aeab07f79c894a92a"
+  integrity sha512-Oh1mXiH6QJFmssRr7pHXgWIhmWmNKC/TzaCCiMw8AcwFeBLLgr/UB/QdfexqH+XQUYWNoah4anRn5JdGvPRKAQ==
+  dependencies:
+    bootstrap "~3.3.7"
+    lodash "^4.17.11"
+    ovh-ui-kit "^2.23.1"
+    ovh-ui-kit-bs "^2.1.1"
+
+"@ovh-ux/ng-ovh-mondial-relay@^6.0.1":
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-mondial-relay/-/ng-ovh-mondial-relay-6.0.1.tgz#b75b9c2383d0f0329cbe18ba56c6e3e75648f378"
+  integrity sha512-TaAsgQ1mRZRWKtHeZd/l/4EaxFQf0R5KmAYrbF20O5inm1E/Kc6E8aaUcWK5UlUc1BOTydpC+/T2j22IaaNDCQ==
+  dependencies:
+    bootstrap "~3.3.7"
+    leaflet "0.7.x"
+    lodash "^4.17.11"
+    ovh-ui-kit "^2.23.1"
+    ovh-ui-kit-bs "^2.1.1"
+
 "@ovh-ux/ng-ovh-otrs@^7.1.4":
   version "7.1.4"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-otrs/-/ng-ovh-otrs-7.1.4.tgz#e49c9696dc9a86281ae4bd3f71c43c1fc4a7a36c"
@@ -2352,7 +2373,17 @@ angular-i18n@~1.7.8:
   resolved "https://registry.yarnpkg.com/angular-i18n/-/angular-i18n-1.7.8.tgz#b341165dd7027720610fd456ea0d3355616fc0a8"
   integrity sha512-H1fV3/2fL85fEMxbZrpgdqT2N686pt0keXBxNBFfgadnGWvNABzEzJDZnN/tCQKtxL4WIcnRYfVpY+nUf6RoFw==
 
-angular-messages@^1.7.5, angular-messages@^1.7.6:
+angular-leaflet-directive@0.8.5:
+  version "0.8.5"
+  resolved "https://registry.yarnpkg.com/angular-leaflet-directive/-/angular-leaflet-directive-0.8.5.tgz#8eb275587e54eb00f4aa3090284ea0a81a44290d"
+  integrity sha1-jrJ1WH5U6wD0qjCQKE6gqBpEKQ0=
+
+angular-messages@^1.7.5:
+  version "1.7.5"
+  resolved "https://registry.yarnpkg.com/angular-messages/-/angular-messages-1.7.5.tgz#7c2fd781315a43a19838b117da0142a988454e14"
+  integrity sha512-YDpJpFLyrIgZjE/sIAjgww1y6r3QqXBJbNDI0QjftD37vHXLkwvAOo3A4bxPw8BikyGLcJrFrgf6hRAzntJIWA==
+
+angular-messages@^1.7.6:
   version "1.7.8"
   resolved "https://registry.yarnpkg.com/angular-messages/-/angular-messages-1.7.8.tgz#746da9c955f855ef6ceac34b2a5eb8b1b12e6a78"
   integrity sha512-e7Oq4ugdTcAp4kLP9TNOh6mfSsYO2Uwf7NavLuNWqahDGRHYXilo2gcI/vxmFjPBOwAmreXrhYlpGLlJdzxfQg==
@@ -7693,6 +7724,11 @@ lcid@^2.0.0:
   dependencies:
     invert-kv "^2.0.0"
 
+leaflet@0.7.x:
+  version "0.7.7"
+  resolved "https://registry.yarnpkg.com/leaflet/-/leaflet-0.7.7.tgz#1e352ba54e63d076451fa363c900890cb2cf75ee"
+  integrity sha1-HjUrpU5j0HZFH6NjyQCJDLLPde4=
+
 lerna@^3.13.4:
   version "3.14.1"
   resolved "https://registry.yarnpkg.com/lerna/-/lerna-3.14.1.tgz#6bce5d2d4958e853f51387f8f41a8f2d9aa4a8ea"
@@ -9498,7 +9534,7 @@ ovh-common-style@^5.0.0:
   resolved "https://registry.yarnpkg.com/ovh-common-style/-/ovh-common-style-5.0.0.tgz#f99c19bdb78d3b5fba4ab7b1437229f430e2a282"
   integrity sha512-qe2fV+pLEFEJdZOlM33N3Rmlg582kJgc+b+E5/U8W56FkFYIxS3Lmvi1QrN/+ig7SKwt6ftvPmKLBbwwcGkKPQ==
 
-ovh-manager-webfont@^1.2.0:
+ovh-manager-webfont@^1.0.2, ovh-manager-webfont@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/ovh-manager-webfont/-/ovh-manager-webfont-1.2.0.tgz#e59e89e6248b7bf97b204bb18521b2f5bd347961"
   integrity sha512-J2ticTEGQEKbiE0NpI8yaiGmVFrbyllonUHcIsfgaEhY1gl9cug0ktiJGTc40sVFwlygsNYoM360xZvJkeX7lw==
