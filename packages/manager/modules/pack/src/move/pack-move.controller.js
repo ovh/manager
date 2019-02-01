@@ -155,7 +155,7 @@ angular.module('managerApp').controller('PackMoveCtrl', function (
 
         default:
           $timeout(() => {
-            $state.go('telecom.pack', {
+            $state.go('pack', {
               packName: $stateParams.packName,
             });
           }, 3000);

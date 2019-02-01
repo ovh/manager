@@ -109,7 +109,7 @@
                         <div class="service-item px-0">
                             <a class="service-button"
                                  data-ng-disabled="!XdslModem.mediator.capabilities.canChangeDMZ || (XdslModem.mediator.tasks.changeModemConfigDMZ === true)"
-                                 data-ui-sref="telecom.pack.xdsl.modem.dmz">
+                                 data-ui-sref="pack.xdsl.modem.dmz">
 
                                 <div class="service-button-description">
                                     <div class="description-title-small description-title-fullHeight">
@@ -130,7 +130,7 @@
                 </div>
 
                 <div class="my-3" data-ng-class="{ 'disabled' : !XdslModem.mediator.capabilities.canChangeFirmware || XdslModem.mediator.tasks.changeModemConfigFirmware }">
-                    <label data-oui-tooltip="{{:: 'xdsl_modem_firmware_description' | translate}}" 
+                    <label data-oui-tooltip="{{:: 'xdsl_modem_firmware_description' | translate}}"
                            data-translate="xdsl_modem_firmware"
                            oui-tooltip-placement="top-start">
                     </label>

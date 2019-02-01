@@ -1,14 +1,20 @@
 import angular from 'angular';
+import '@ovh-ux/ng-ovh-telecom-universe-components';
+import '@ovh-ux/ng-pagination-front';
+import 'angular-translate';
+import 'ovh-api-services';
 
-import { PAGINATION_PER_PAGE, TASK_STATUS } from './pack-task.constants';
-import component from './pack-task-slot.component';
+import component from './component';
 
 const moduleName = 'ovhManagerPackSlotsTask';
 
 angular
-  .module(moduleName, [])
-  .component('packTaskSlot', component)
-  .constant('PACK_SLOTS_TASK_PAGINATION_PER_PAGE', PAGINATION_PER_PAGE)
-  .constant('PACK_SLOTS_TASK_STATUS', TASK_STATUS);
+  .module(moduleName, [
+    'ngOvhTelecomUniverseComponents',
+    'ngPaginationFront',
+    'ovh-api-services',
+    'pascalprecht.translate',
+  ])
+  .component('packTaskSlot', component);
 
 export default moduleName;

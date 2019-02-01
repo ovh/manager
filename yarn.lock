@@ -1797,6 +1797,13 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-sidebar-menu/-/ng-ovh-sidebar-menu-8.3.2.tgz#e5b6451418ec7eb70660cf755a6f72d64bd7ac75"
   integrity sha512-dJHMLgbHVVOL9vNbdfgMNpL/4W9g0jkfRSpWXeeMQVawIeLi181MMZu3FvTsS7RDjIcdzEF46jCmsk0X5Aq7dg==
 
+"@ovh-ux/ng-ovh-simple-country-list@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-simple-country-list/-/ng-ovh-simple-country-list-1.0.0.tgz#654d7c91cdc5e37ecae101ab67c923ee6b0786d3"
+  integrity sha512-9kyC+7lpQVTz2LutD6Qukg5NNDwLY3UGI813Sa+ld4ERxP+c7F4qQAL3qV2W2fQPAP9ZYgDw3gJOmKmdZBQZQQ==
+  dependencies:
+    lodash "^4.17.11"
+
 "@ovh-ux/ng-ovh-sso-auth@^4.1.0":
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-sso-auth/-/ng-ovh-sso-auth-4.1.0.tgz#658c6eba11e8a4ab8162fe4242a93680230e48e9"
@@ -1808,6 +1815,14 @@
   integrity sha512-kZDL0SFo2SK6yFDHhyMT7A3r8Q8czQlCKI914vMB5OQrRucX3dCNABnBaft5GKvTmDlBmCdH8ixT/H9IV9vdbA==
   dependencies:
     lodash "^4.17.11"
+
+"@ovh-ux/ng-ovh-telecom-universe-components@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-telecom-universe-components/-/ng-ovh-telecom-universe-components-2.0.1.tgz#eac42bbfefde4710e2d5a722fb62805d871ef9ef"
+  integrity sha512-U0ZBIi0c8X/VNungkYAoWWnr76NpMuNo53ZiJSI32HpA7LPe3bDnqjVPLk8+tFfSmkhM+d4mEJl1Nu50rY8bpw==
+  dependencies:
+    bootstrap "^3.3.7"
+    ovh-ui-kit "^2.22.0"
 
 "@ovh-ux/ng-ovh-telecom-universe-components@^3.0.3":
   version "3.0.3"
@@ -1829,10 +1844,17 @@
   dependencies:
     lodash "^4.17.11"
 
-"@ovh-ux/ng-pagination-front@^2.0.0-beta.3", "@ovh-ux/ng-pagination-front@^8.0.0-alpha.0":
+"@ovh-ux/ng-pagination-front@^8.0.0-alpha.0":
   version "8.0.0-alpha.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-pagination-front/-/ng-pagination-front-8.0.0-alpha.0.tgz#fd84086d04068734cebb2a3e216a8db9116a0d7b"
   integrity sha512-dQyronfFuCQR/Cb02PGbFWXtTy55eqjMcBY8LlvsB1kmBVy7gmbcf2AgD3Kliuv4sr8T6al1i5e6WPh/xS88Ag==
+  dependencies:
+    lodash "^4.17.11"
+
+"@ovh-ux/ng-q-allsettled@^1.0.0-alpha.0":
+  version "1.0.0-alpha.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-q-allsettled/-/ng-q-allsettled-1.0.0-alpha.0.tgz#d08efdb12dfea731a04e39b8bb4a52fbe998ce64"
+  integrity sha512-PMhF7SKPHuYDdoAYHQc/uQhiBhi46Xfm130ZZ73tKTXp+BUP/ZpzJzBt50kNCz0GqzjfoSevVj22WNc2aMgBnA==
   dependencies:
     lodash "^4.17.11"
 
@@ -1893,14 +1915,6 @@
   dependencies:
     magic-string "^0.25.1"
     rollup-pluginutils "^2.3.3"
-
-"@ovh-ux/telecom-universe-components@^1.5.1":
-  version "1.5.2"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/telecom-universe-components/-/telecom-universe-components-1.5.2.tgz#edf102e5d3cc161a89efb838072a684f10fb3941"
-  integrity sha512-VKAEjOjQ0uyPtPhwiBxvOQfauBQeI1fNXriuTSIZ4czdUnuMTLUVQk/82CGlu8Bm8NwOPM7nxqphzdcKMhA42w==
-  dependencies:
-    bootstrap "^3.3.7"
-    ovh-ui-kit "^2.22.0"
 
 "@ovh-ux/translate-async-loader@^1.0.0", "@ovh-ux/translate-async-loader@^1.0.4":
   version "1.0.8"
@@ -9445,11 +9459,6 @@ ovh-angular-checkbox-table@^0.1.2:
 ovh-angular-pagination-front@ovh-ux/ovh-angular-pagination-front#^5.1.0:
   version "5.0.0"
   resolved "https://codeload.github.com/ovh-ux/ovh-angular-pagination-front/tar.gz/7b21072dfd25a8b1a5aece207a8e2f27e756b86c"
-
-ovh-angular-q-allsettled@^0.3.1:
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/ovh-angular-q-allsettled/-/ovh-angular-q-allsettled-0.3.1.tgz#6fabcf33b3afb67161ec698092c7fc9a22f3db04"
-  integrity sha1-b6vPM7OvtnFh7GmAksf8miLz2wQ=
 
 ovh-angular-q-allsettled@ovh-ux/ovh-angular-q-allSettled#^0.3.1:
   version "0.3.1"

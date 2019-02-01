@@ -43,7 +43,7 @@ angular.module('managerApp')
         }
         TucToast.success($translate.instant('xdsl_access_deconsolidation_success'));
         $timeout(() => {
-          $state.go('telecom.pack.xdsl');
+          $state.go('pack.xdsl');
         }, 3000);
       });
     };

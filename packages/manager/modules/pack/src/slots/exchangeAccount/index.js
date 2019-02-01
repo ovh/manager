@@ -1,13 +1,16 @@
 import angular from 'angular';
+import 'ovh-api-services';
+import 'ovh-ui-angular';
 
-import { EXCHANGE_ACCOUNT_URL } from './pack-exchangeAccount.constants';
-import component from './pack-exchangeAccount-slot.component';
+import component from './component';
 
 const moduleName = 'ovhManagerPackSlotsExchangeAccount';
 
 angular
-  .module(moduleName, [])
-  .constant('PACK_SLOTS_EXCHANGE_ACCOUNT_URL', EXCHANGE_ACCOUNT_URL)
+  .module(moduleName, [
+    'oui',
+    'ovh-api-services',
+  ])
   .component('packExchangeAccountSlot', component);
 
 export default moduleName;
