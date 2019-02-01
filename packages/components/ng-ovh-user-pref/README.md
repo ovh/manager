@@ -1,12 +1,8 @@
-# OVH Angular user pref
+# ng-ovh-user-pref
 
-> An angular service to create/get/delete user preferences
+> An AngularJS service to create/get/delete user preferences.
 
-  -     Create an user preference on api.ovh.com
-  -     Merge an existing user preference on api.ovh.com
-  -     Get all keys of user preference for one user
-  -     Get user preference for a specific key
-  -     Delete an user preference for a specific key
+[![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-user-pref)](https://npmjs.com/package/@ovh-ux/ng-ovh-user-pref) [![Dependencies](https://badgen.net/david/dep/ovh-ux/ng-ovh-user-pref)](https://npmjs.com/package/@ovh-ux/ng-ovh-user-pref?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/ng-ovh-user-pref)](https://npmjs.com/package/@ovh-ux/ng-ovh-user-pref?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
 
 ## Install
 
@@ -26,9 +22,21 @@ angular
   ]);
 ```
 
-+ Format :
-    -   The format of a key must be in uppercase, words separated by underscores `_`
-    -   Key name sample : (`COMMON_LANG`, `WEB_DOMAIN_FAVORITES`, `DEDICATED_DASHBOARD`, ...)
+- Create an user preference on api.ovh.com.
+- Merge an existing user preference on api.ovh.com.
+- Get all keys of user preference for one user.
+- Get user preference for a specific key.
+- Delete an user preference for a specific key.
+
+Format:
+- The format of a key must be in uppercase, words separated by underscores `_`.
+- Key name sample: (`COMMON_LANG`, `WEB_DOMAIN_FAVORITES`, `DEDICATED_DASHBOARD`, ...).
+
+## Test
+
+```sh
+yarn test
+```
 
 ## Contributing
 
