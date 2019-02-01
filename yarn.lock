@@ -1573,12 +1573,45 @@
   dependencies:
     animated-scroll-to "^1.2.2"
 
+"@ovh-ux/ng-ovh-simple-country-list@git://github.com/ovh-ux/ovh-angular-simple-country-list#refactor/rollup":
+  version "0.0.9"
+  resolved "git://github.com/ovh-ux/ovh-angular-simple-country-list#0ed28e5180278e1c0fea370b985f60d795cfe59c"
+  dependencies:
+    lodash "^4.17.11"
+
+"@ovh-ux/ng-ovh-telecom-universe-components@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-telecom-universe-components/-/ng-ovh-telecom-universe-components-2.0.1.tgz#eac42bbfefde4710e2d5a722fb62805d871ef9ef"
+  integrity sha512-U0ZBIi0c8X/VNungkYAoWWnr76NpMuNo53ZiJSI32HpA7LPe3bDnqjVPLk8+tFfSmkhM+d4mEJl1Nu50rY8bpw==
+  dependencies:
+    bootstrap "^3.3.7"
+    ovh-ui-kit "^2.22.0"
+
+"@ovh-ux/ng-pagination-front@^8.0.0-alpha.0":
+  version "8.0.0-alpha.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-pagination-front/-/ng-pagination-front-8.0.0-alpha.0.tgz#fd84086d04068734cebb2a3e216a8db9116a0d7b"
+  integrity sha512-dQyronfFuCQR/Cb02PGbFWXtTy55eqjMcBY8LlvsB1kmBVy7gmbcf2AgD3Kliuv4sr8T6al1i5e6WPh/xS88Ag==
+  dependencies:
+    lodash "^4.17.11"
+
+"@ovh-ux/ng-q-allsettled@^1.0.0-alpha.0":
+  version "1.0.0-alpha.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-q-allsettled/-/ng-q-allsettled-1.0.0-alpha.0.tgz#d08efdb12dfea731a04e39b8bb4a52fbe998ce64"
+  integrity sha512-PMhF7SKPHuYDdoAYHQc/uQhiBhi46Xfm130ZZ73tKTXp+BUP/ZpzJzBt50kNCz0GqzjfoSevVj22WNc2aMgBnA==
+  dependencies:
+    lodash "^4.17.11"
+
 "@ovh-ux/ng-tail-logs@^2.0.0-beta.0":
   version "2.0.0-beta.1"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-tail-logs/-/ng-tail-logs-2.0.0-beta.1.tgz#823fc41c98770e428d93882e7cdf47f1a7e1711b"
   integrity sha512-tcyEnkqb71p+ImlsRalsqdZ/RcN1lixjUVItsR1oLooliiXumdPgmAjlGm6elBs3Gb+vzDq0+uouFwLxfeYVKg==
   dependencies:
     lodash "^4.17.11"
+
+"@ovh-ux/ng-translate-async-loader@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-translate-async-loader/-/ng-translate-async-loader-2.0.0.tgz#df0d155c6c2e38b53704ff4ca9b419f0695a88bf"
+  integrity sha512-CmAT0/rTYN/Niwtuo1pcY+y46nqGCR2dO6+4twqGiRkqu/ksgklZ4weaqF9Xgl/KYLv+zcCmxZf0J1gfXs7kag==
 
 "@ovh-ux/ng-uirouter-title@^2.0.0-beta.2", "@ovh-ux/ng-uirouter-title@^2.0.0-beta.3":
   version "2.0.0-beta.3"
@@ -9235,11 +9268,6 @@ ovh-angular-pagination-front@^7.0.0:
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/ovh-angular-pagination-front/-/ovh-angular-pagination-front-7.0.0.tgz#484d333f357cdb2ea0abd3f76ae35491d2b8aae0"
   integrity sha1-SE0zPzV82y6gq9P3auNUkdK4quA=
-
-ovh-angular-q-allsettled@^0.3.1:
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/ovh-angular-q-allsettled/-/ovh-angular-q-allsettled-0.3.1.tgz#6fabcf33b3afb67161ec698092c7fc9a22f3db04"
-  integrity sha1-b6vPM7OvtnFh7GmAksf8miLz2wQ=
 
 ovh-angular-responsive-popover@5.0.0-alpha.2:
   version "5.0.0-alpha.2"

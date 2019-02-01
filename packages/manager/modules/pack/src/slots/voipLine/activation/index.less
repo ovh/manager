@@ -1,0 +1,73 @@
+.telecom-pack-voipLine-activation {
+
+  @oui-path: "../../../ovh-ui-kit";
+
+  @import "~ovh-ui-kit/packages/oui-color/_variables";
+  @import "~ovh-ui-kit/packages/oui-typography/_variables";
+  @import "~ovh-ui-kit-bs/src/bootstrap/_variables";
+
+  .voipLine-hardware-image,
+  .carousel-caption {
+    display: inline-block;
+    width: 35%;
+    min-height: 120px;
+    vertical-align: top;
+    margin-bottom: 32px;
+  }
+
+  .voipLine-hardware-image img {
+    max-width: 90%;
+    max-height: 120px;
+    margin-left: 0;
+  }
+
+  .carousel-caption {
+    padding: 0;
+    position: static;
+    text-shadow: none;
+    color: @gray-dark;
+    text-align: left;
+
+    h4 {
+      margin-top: 0;
+    }
+  }
+
+  .carousel-control {
+    text-shadow: none;
+    cursor: pointer;
+
+    &.left,
+    &.right {
+      background-image: none;
+      background-repeat: no-repeat;
+    }
+
+    .glyphicon-chevron-left,
+    .glyphicon-chevron-right {
+      &::before {
+        color: @oui-color-dodger;
+      }
+    }
+  }
+
+  .carousel-indicators {
+    bottom: 0;
+
+    li {
+      border: none;
+      background-color: fadeout(@oui-color-dodger, 85%);
+
+      &.active {
+        background-color: @oui-color-dodger;
+      }
+    }
+  }
+
+  .selected-hardware {
+    .voipLine-hardware-image,
+    .carousel-caption {
+      margin-bottom: 0;
+    }
+  }
+}

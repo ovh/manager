@@ -1,12 +1,21 @@
 import angular from 'angular';
-import '@ovh-ux/ng-pagination-front';
-import component from './pack-informations-slot.component';
+import '@ovh-ux/ng-ovh-telecom-universe-components';
+import '@uirouter/angularjs';
+import 'angular-translate';
+import 'ovh-api-services';
+import 'ovh-ui-angular';
+
+import component from './component';
 
 const moduleName = 'ovhManagerPackSlotsInformations';
 
 angular
   .module(moduleName, [
-    'ngPaginationFront',
+    'ngOvhTelecomUniverseComponents',
+    'oui',
+    'ovh-api-services',
+    'pascalprecht.translate',
+    'ui.router',
   ])
   .component('packInformationsSlot', component);
 

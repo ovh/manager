@@ -1,0 +1,33 @@
+<div>
+    <div class="oui-tile__body"
+         data-ng-if="$ctrl.loading">
+        <div class="oui-tile__definition text-center">
+            <oui-spinner></oui-spinner>
+        </div>
+    </div>
+
+    <div class="oui-tile__body"
+         data-ng-if="!$ctrl.loading && $ctrl.services.length > 0">
+        <ul class="list-unstyled">
+            <li class="oui-tile__item oui-tile__item_button"
+                 data-ng-repeat="service in $ctrl.services track by service.name">
+                <div class="oui-tile__definition">
+                    <strong class="oui-tile__term d-block"
+                            data-ng-bind="service.name">
+                    </strong>
+                    <span class="oui-tile__description"
+                          data-ng-bind="service.domain">
+                    </span>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="oui-tile__body"
+         data-ng-if="$ctrl.service.available > 0">
+         <a class="oui-tile__button oui-button oui-button_link oui-button_icon-right oui-button_full-width"
+            data-ui-sref="pack.exchangeIndividual-add">
+            <span data-translate="common_order_activate_service"></span>
+            <i class="oui-icon oui-icon-chevron-right" aria-hidden="true"></i>
+         </a>
+    </div>
+</div>

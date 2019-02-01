@@ -257,7 +257,7 @@ angular.module('managerApp').controller('PackResiliationCtrl', function ($stateP
         _.remove(_.map(self.model.subServicesToKeep, (value, key) => (value ? key : null)), null),
     }).$promise.then(() => {
       _.set(resiliationNotification, 'success', true);
-      $state.go('telecom.pack', { packName: $stateParams.packName });
+      $state.go('pack', { packName: $stateParams.packName });
     }).catch(err => new TucToastError(err)).finally(() => {
       self.loading = false;
     });
@@ -273,7 +273,7 @@ angular.module('managerApp').controller('PackResiliationCtrl', function ($stateP
       packName: pack.packName,
     }, null).$promise.then(() => {
       _.set(resiliationNotification, 'cancelSuccess', true);
-      $state.go('telecom.pack', { packName: $stateParams.packName });
+      $state.go('pack', { packName: $stateParams.packName });
     }, err => new TucToastError(err)).finally(() => {
       self.loading = false;
     });

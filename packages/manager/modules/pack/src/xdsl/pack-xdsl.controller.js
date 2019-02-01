@@ -52,7 +52,7 @@ angular.module('managerApp').controller('PackXdslCtrl', function ($q, $transitio
   this.updateUIForState = function (state) {
     self.currentState = state.name;
     if ($stateParams.packName === 'sdsl') {
-      if (state.name === 'telecom.pack.xdsl' || state.name === 'telecom.pack.xdsl.modem' || state.name === 'telecom.pack.xdsl.tasks') {
+      if (state.name === 'pack.xdsl' || state.name === 'pack.xdsl.modem' || state.name === 'pack.xdsl.tasks') {
         setAnim('anim');
         return;
       }
@@ -61,28 +61,28 @@ angular.module('managerApp').controller('PackXdslCtrl', function ($q, $transitio
     smoothScroll(document.body);
 
     switch (state.name) {
-      case 'telecom.pack.xdsl.modem.wifi':
-      case 'telecom.pack.xdsl.modem.dmz':
-      case 'telecom.pack.xdsl.access-notifications':
-      case 'telecom.pack.xdsl.access-diagnostic':
-      case 'telecom.pack.xdsl.access-migration':
-      case 'telecom.pack.xdsl.access-ip':
-      case 'telecom.pack.xdsl.access-deconsolidation':
-      case 'telecom.pack.xdsl.access-order':
-      case 'telecom.pack.xdsl.access-resiliation':
-      case 'telecom.pack.xdsl.missing-rio':
-      case 'telecom.pack.xdsl.line-diagnostic':
+      case 'pack.xdsl.modem.wifi':
+      case 'pack.xdsl.modem.dmz':
+      case 'pack.xdsl.access-notifications':
+      case 'pack.xdsl.access-diagnostic':
+      case 'pack.xdsl.access-migration':
+      case 'pack.xdsl.access-ip':
+      case 'pack.xdsl.access-deconsolidation':
+      case 'pack.xdsl.access-order':
+      case 'pack.xdsl.access-resiliation':
+      case 'pack.xdsl.missing-rio':
+      case 'pack.xdsl.line-diagnostic':
         setAnim('invert-anim');
         self.content.back.state = '^';
         getXdsl().then((xdsl) => {
           self.content.status = xdsl.status;
         });
         break;
-      case 'telecom.pack.xdsl.modem':
-      case 'telecom.pack.xdsl.tasks':
-      case 'telecom.pack.xdsl':
+      case 'pack.xdsl.modem':
+      case 'pack.xdsl.tasks':
+      case 'pack.xdsl':
         setAnim('anim');
-        self.content.back.state = 'telecom.pack';
+        self.content.back.state = 'pack';
         getXdsl().then((xdsl) => {
           self.content.status = xdsl.status;
         });
