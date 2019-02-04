@@ -14,23 +14,23 @@ yarn add @ovh-ux/ng-ovh-simple-country-list
 
 ```js
 import angular from 'angular';
-import '@ovh-ux/ng-ovh-simple-country-list';
+import ngOvhSimpleCountryList from '@ovh-ux/ng-ovh-simple-country-list';
 
 angular
   .module('myApp', [
-    'ngOvhSimpleCountryList',
+    ngOvhSimpleCountryList,
   ])
   .controller('myController', /* @ngInject */ (OvhSimpleCountryList) => {
     // set the disired language. Default is iso/en
     OvhSimpleCountryList.setLanguage('en_GB');
 
-    var countryListAsValueLabel = OvhSimpleCountryList.asDataForSelect; //lazy builded property
+    const countryListAsValueLabel = OvhSimpleCountryList.asDataForSelect; // lazy builded property
     // [{'value':'AD', 'label': 'ANDORRA'}, {'value':'AE', 'label': 'UNITED ARAB EMIRATES'}, ... ]
 
-    var countryListAsSimpleArray = OvhSimpleCountryList.asArray; //lazy builded property
+    const countryListAsSimpleArray = OvhSimpleCountryList.asArray; // lazy builded property
     // ['ANDORRA', 'UNITED ARAB EMIRATES', 'AFGHANISTAN', ...]
 
-    var countryListAsSimpleArray = OvhSimpleCountryList.asObject; //lazy builded property
+    const countryListAsSimpleOject = OvhSimpleCountryList.asObject; // lazy builded property
     // {'AD': 'ANDORRA', 'AE': 'UNITED ARAB EMIRATES', ... }
   });
 ```
