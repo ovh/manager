@@ -12,7 +12,7 @@ import translate from 'angular-translate';
 
 import 'bootstrap';
 
-import OvhHttp from 'ovh-angular-http';
+import '@ovh-ux/ng-ovh-http';
 
 import core from '@ovh-ux/manager-core';
 import overthebox from '@ovh-ux/manager-overthebox';
@@ -32,8 +32,8 @@ import 'ovh-angular-apiv7';
 import 'ovh-ui-angular';
 
 import 'ovh-angular-checkbox-table';
-import 'ovh-angular-otrs';
-import 'ovh-angular-pagination-front';
+import '@ovh-ux/ng-ovh-otrs';
+import '@ovh-ux/ng-pagination-front';
 import 'ovh-angular-responsive-tabs';
 import 'ovh-angular-ui-confirm-modal';
 
@@ -56,11 +56,11 @@ angular
     ngSanitize,
     'oui',
     overthebox,
-    'ovh-angular-otrs',
+    'ngOvhOtrs',
     'ovh-angular-responsive-tabs',
     'ovh-angular-ui-confirm-modal',
-    'ovh-angular-pagination-front',
-    OvhHttp,
+    'ngPaginationFront',
+    'ngOvhHttp',
     privateDatabase,
     sidebar,
     sms,

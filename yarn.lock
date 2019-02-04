@@ -1609,6 +1609,11 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-payment-method/-/ng-ovh-payment-method-1.1.4.tgz#5e68760825ba1b20a9676b78fc7cb5469e4470a1"
   integrity sha512-fDM2g5IjO3xDgse6Ei4fXDxWrOfd4VSEPfJq17VQzr1hMJAuoWDRvZWDcahyUhDGIRIsH6t+nRmLIKS+qHm4yQ==
 
+"@ovh-ux/ng-ovh-proxy-request@^1.0.0-beta.0":
+  version "1.0.0-beta.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-proxy-request/-/ng-ovh-proxy-request-1.0.0-beta.0.tgz#45e2397515326f6c43f99221f746401509b7db1d"
+  integrity sha512-JtCQLoxNfl7T1kz/draSsfH/dGjKQ7cwN2ArMsuYlZ9MVPaPlhf4PQz11WHSAQXxCcvZKsJ/AYmWUCKZlzI94w==
+
 "@ovh-ux/ng-ovh-responsive-popover@^5.0.0-beta.0":
   version "5.0.0-beta.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-responsive-popover/-/ng-ovh-responsive-popover-5.0.0-beta.0.tgz#d3420bf15096d791c8788fda616c8386d4ff0558"
@@ -1634,6 +1639,27 @@
   dependencies:
     bootstrap "^3.3.7"
     ovh-ui-kit "^2.22.0"
+
+"@ovh-ux/ng-ovh-user-pref@^1.0.0-beta.0":
+  version "1.0.0-beta.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-user-pref/-/ng-ovh-user-pref-1.0.0-beta.0.tgz#9da7fa9cecfeb8924a308507b30a7ab98aa40b79"
+  integrity sha512-J16VXhkgPpJL2D1reBuolAKUKV4AzjrNUEI3pp8exXG53Yc8+xv4iq5CuEGH9Eni50iEE2t7Q5c0BMb+DT/1Jg==
+  dependencies:
+    lodash "^4.17.11"
+
+"@ovh-ux/ng-ovh-web-universe-components@https://github.com/ovh-ux/web-universe-components.git#minor-updates":
+  version "1.2.1"
+  resolved "https://github.com/ovh-ux/web-universe-components.git#20ddb7b3e745113be51838b56a5f20ce06126ba0"
+  dependencies:
+    bootstrap "^3.3.7"
+    ovh-ui-kit "^2.22.0"
+
+"@ovh-ux/ng-pagination-front@8.0.0-alpha.0":
+  version "8.0.0-alpha.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-pagination-front/-/ng-pagination-front-8.0.0-alpha.0.tgz#fd84086d04068734cebb2a3e216a8db9116a0d7b"
+  integrity sha512-dQyronfFuCQR/Cb02PGbFWXtTy55eqjMcBY8LlvsB1kmBVy7gmbcf2AgD3Kliuv4sr8T6al1i5e6WPh/xS88Ag==
+  dependencies:
+    lodash "^4.17.11"
 
 "@ovh-ux/ng-tail-logs@^2.0.0-beta.0", "@ovh-ux/ng-tail-logs@^2.0.0-beta.1":
   version "2.0.0-beta.1"
@@ -1684,21 +1710,6 @@
   version "1.0.8"
   resolved "https://registry.yarnpkg.com/@ovh-ux/translate-async-loader/-/translate-async-loader-1.0.8.tgz#7cbdc3dfed1042f511206ff6bb9f14c33b8406ba"
   integrity sha512-8yEhPeRTSxtEO9ODXRYZw6pzRQiV5ULCTi8mIzt39m/b9N2TcIF4ILTPsaa8xpE4npHKa/iYgL9z0HJUFi2LGQ==
-
-"@ovh-ux/web-universe-components@^1.1.0":
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/web-universe-components/-/web-universe-components-1.2.2.tgz#766ef10aa89145b8de2a0282d46eb0eaf8f03c12"
-  integrity sha512-Nn8DUt3mBYb/KPk/KmGS8ODW2bDLHLcVkbICGaOACnrS/GAxdaXS/ycaVDOMd7lnV0Zf4ATC099j4J/Pm+5Ukw==
-  dependencies:
-    bootstrap "^3.3.7"
-    ovh-ui-kit "^2.22.0"
-
-"@ovh-ux/web-universe-components@https://github.com/ovh-ux/web-universe-components.git#fix/expiration":
-  version "1.2.1"
-  resolved "https://github.com/ovh-ux/web-universe-components.git#12af9a0b6b280e9baec4f495d580f1b4e60b671b"
-  dependencies:
-    bootstrap "^3.3.7"
-    ovh-ui-kit "^2.22.0"
 
 "@samverschueren/stream-to-observable@^0.3.0":
   version "0.3.0"
@@ -9378,11 +9389,6 @@ ovh-angular-pagination-front@^7.0.0:
   resolved "https://registry.yarnpkg.com/ovh-angular-pagination-front/-/ovh-angular-pagination-front-7.0.0.tgz#484d333f357cdb2ea0abd3f76ae35491d2b8aae0"
   integrity sha1-SE0zPzV82y6gq9P3auNUkdK4quA=
 
-ovh-angular-proxy-request@^1.0.0-alpha.1:
-  version "1.0.0-alpha.1"
-  resolved "https://registry.yarnpkg.com/ovh-angular-proxy-request/-/ovh-angular-proxy-request-1.0.0-alpha.1.tgz#698cb62ccec79f6c82600d04bd6ec9c3dc06a1ad"
-  integrity sha512-9s2M8kvrvez5wRDa5s2cC2wvNV4oVvyCyLE7tC6EntCJthfQG6+/2+eajfvnJu7OIi8g1INHtPWEyrzdxrxlvg==
-
 ovh-angular-responsive-tabs@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/ovh-angular-responsive-tabs/-/ovh-angular-responsive-tabs-4.0.0.tgz#85b66d7032612c3ed1a14cb29f83d1331b50c1df"
@@ -9397,13 +9403,6 @@ ovh-angular-ui-confirm-modal@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/ovh-angular-ui-confirm-modal/-/ovh-angular-ui-confirm-modal-1.0.2.tgz#92e6736588a4fb1de6353f1a17ab1962679a698d"
   integrity sha512-3V17DbzWjUjl9sKCd25Oycn+7eqg6iW+DpizwVmixHFzDNDMnpKSGmxRLrOq+q9YNE7IepoAKWjoSiy2+zOEEg==
-
-ovh-angular-user-pref@^1.0.0-alpha.0:
-  version "1.0.0-alpha.0"
-  resolved "https://registry.yarnpkg.com/ovh-angular-user-pref/-/ovh-angular-user-pref-1.0.0-alpha.0.tgz#5139d958b1f063a62098f5f1f431c6156b71a0cc"
-  integrity sha512-O9rCuy5NDNLEwrksq/M+Ief6TH5EXk/P22q6jlofB6C8Qi4BA8DQD6UvkIU89yFJrS4m/2ezOP7x7KSvPrZ6Fg==
-  dependencies:
-    lodash "^4.17.11"
 
 ovh-api-services@^3.24.0, ovh-api-services@^3.31.0:
   version "3.31.0"

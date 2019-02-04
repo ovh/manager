@@ -1,7 +1,7 @@
 import angular from 'angular';
 import '@ovh-ux/manager-core';
 import '@ovh-ux/ovh-utils-angular';
-import '@ovh-ux/web-universe-components';
+import '@ovh-ux/ng-ovh-web-universe-components';
 import 'angularjs-scroll-glue';
 import 'chart.js';
 import 'ovh-angular-pagination-front';
@@ -49,7 +49,7 @@ angular.module(moduleName, [
   'oui',
   privateDatabaseUser,
   privateDatabaseDatabase,
-  'webUniverseComponents',
+  'ngOvhWebUniverseComponents',
 ])
   .run(($templateCache) => {
     $templateCache.put('private-database/configuration/private-database-configuration.html', configurationTemplate);
