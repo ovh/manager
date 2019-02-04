@@ -59,7 +59,6 @@ angular
     'ovh-angular-otrs',
     'ovh-angular-responsive-tabs',
     'ovh-angular-ui-confirm-modal',
-    'ovh-angular-ui-confirm-modal',
     'ovh-angular-pagination-front',
     OvhHttp,
     privateDatabase,
@@ -69,8 +68,5 @@ angular
     'ui.bootstrap',
     welcome,
   ])
-  .config((OtrsPopupProvider /* , constants */) => {
-    OtrsPopupProvider.setBaseUrlTickets('');
-  })
   .config($locationProvider => $locationProvider.hashPrefix(''))
   .config(routing);

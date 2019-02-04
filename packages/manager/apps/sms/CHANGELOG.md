@@ -1,3 +1,40 @@
+# [2.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-sms-app@1.0.1...@ovh-ux/manager-sms-app@2.0.0) (2019-01-29)
+
+
+### Build System
+
+* **deps:** upgrade ng-ovh-telecom-universe-components to v2.0.1 ([3ffc516](https://github.com/ovh-ux/manager/commit/3ffc516))
+
+
+### BREAKING CHANGES
+
+* **deps:** replace `@ovh-ux/telecom-universe-components` by `@ovh-ux/ng-ovh-telecom-universe-components`
+
+
+
+## [1.0.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-sms-app@1.0.0...@ovh-ux/manager-sms-app@1.0.1) (2019-01-25)
+
+
+### Bug Fixes
+
+* **sms:** add error missing dependencies ([#144](https://github.com/ovh-ux/manager/issues/144)) ([b96ff13](https://github.com/ovh-ux/manager/commit/b96ff13))
+
+
+
+# [1.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-sms-app@0.1.3...@ovh-ux/manager-sms-app@1.0.0) (2019-01-23)
+
+
+### Features
+
+* **sms:** add global sms order ([e723a8b](https://github.com/ovh-ux/manager/commit/e723a8b))
+
+
+### BREAKING CHANGES
+
+* **sms:** rename sms.* states to sms.service.*
+
+
+
 ## [0.1.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-sms-app@0.1.2...@ovh-ux/manager-sms-app@0.1.3) (2019-01-17)
 
 

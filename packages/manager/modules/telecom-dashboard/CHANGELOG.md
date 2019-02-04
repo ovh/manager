@@ -1,3 +1,26 @@
+# [1.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom-dashboard@0.1.1...@ovh-ux/manager-telecom-dashboard@1.0.0) (2019-01-29)
+
+
+### Build System
+
+* **deps:** upgrade ng-ovh-telecom-universe-components to v2.0.1 ([3ffc516](https://github.com/ovh-ux/manager/commit/3ffc516))
+
+
+### BREAKING CHANGES
+
+* **deps:** replace `@ovh-ux/telecom-universe-components` by `@ovh-ux/ng-ovh-telecom-universe-components`
+
+
+
+## [0.1.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom-dashboard@0.1.0...@ovh-ux/manager-telecom-dashboard@0.1.1) (2019-01-23)
+
+
+### Bug Fixes
+
+* **telecom-dashboard:** lint scripts entries to fix package main entry ([4bdd422](https://github.com/ovh-ux/manager/commit/4bdd422))
+
+
+
 # [0.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom-dashboard@0.0.0...@ovh-ux/manager-telecom-dashboard@0.1.0) (2019-01-21)
 
 

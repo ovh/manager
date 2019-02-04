@@ -12,10 +12,10 @@ const moduleName = 'managerFreefaxFaxConfiguration';
 
 angular
   .module(moduleName, [
+    'ngOvhTelecomUniverseComponents',
     'oui',
     'ovh-api-services',
     'pascalprecht.translate',
-    'telecomUniverseComponents',
     'ui.router',
   ])
   .controller('FreefaxConfigurationCtrl', controller)

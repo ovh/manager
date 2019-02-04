@@ -1,5 +1,5 @@
 import angular from 'angular';
-import '@ovh-ux/translate-async-loader';
+import '@ovh-ux/ng-translate-async-loader';
 
 import overTheBoxWarningController from './overTheBox-warning.controller';
 import overTheBoxWarningDeviceToLinkController from './overTheBox-warning-deviceToLink.controller';

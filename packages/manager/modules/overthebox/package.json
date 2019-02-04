@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-overthebox",
-  "version": "1.1.5",
+  "version": "2.0.0",
   "license": "BSD-3-Clause",
   "files": [
     "dist"
@@ -25,13 +25,13 @@
     "@ovh-ux/component-rollup-config": "5.0.0-beta.5"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-core": "^1.2.0",
+    "@ovh-ux/manager-core": "^2.0.0",
     "@ovh-ux/manager-telecom-styles": "^2.0.2",
     "@ovh-ux/ng-ovh-contracts": "^3.0.0-beta.3",
-    "@ovh-ux/ng-tail-logs": "^2.0.0-beta.0",
+    "@ovh-ux/ng-ovh-telecom-universe-components": "^2.0.1",
+    "@ovh-ux/ng-tail-logs": "^2.0.0-beta.1",
+    "@ovh-ux/ng-translate-async-loader": "^2.0.0",
     "@ovh-ux/ng-uirouter-title": "^2.0.0-beta.3",
-    "@ovh-ux/telecom-universe-components": "^1.5.1",
-    "@ovh-ux/translate-async-loader": "^1.0.8",
     "@uirouter/angularjs": "^1.0.15",
     "angular": "1.7.5",
     "angularjs-scroll-glue": "^2.2.0",

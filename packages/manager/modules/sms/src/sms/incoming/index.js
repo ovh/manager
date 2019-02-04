@@ -6,10 +6,10 @@ import template from './telecom-sms-sms-incoming.html';
 const moduleName = 'ovhManagerSmsSmsIncoming';
 
 angular.module(moduleName, []).config(($stateProvider) => {
-  $stateProvider.state('sms.sms.incoming', {
+  $stateProvider.state('sms.service.sms.incoming', {
     url: '/incoming',
     views: {
-      'smsView@sms': {
+      'smsView@sms.service': {
         template,
         controller,
         controllerAs: 'SmsIncomingCtrl',

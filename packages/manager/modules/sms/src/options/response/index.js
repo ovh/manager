@@ -5,10 +5,10 @@ import template from './telecom-sms-options-response.html';
 const moduleName = 'ovhManagerSmsOptionsResponse';
 
 angular.module(moduleName, []).config(($stateProvider) => {
-  $stateProvider.state('sms.options.response', {
+  $stateProvider.state('sms.service.options.response', {
     url: '/response',
     views: {
-      'smsView@sms': {
+      'smsView@sms.service': {
         template,
         controller,
         controllerAs: 'TelecomSmsOptionsResponseCtrl',

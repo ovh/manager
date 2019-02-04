@@ -1,3 +1,17 @@
+# [2.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-freefax@1.0.6...@ovh-ux/manager-freefax@2.0.0) (2019-01-29)
+
+
+### Build System
+
+* **deps:** upgrade ng-ovh-telecom-universe-components to v2.0.1 ([3ffc516](https://github.com/ovh-ux/manager/commit/3ffc516))
+
+
+### BREAKING CHANGES
+
+* **deps:** replace `@ovh-ux/telecom-universe-components` by `@ovh-ux/ng-ovh-telecom-universe-components`
+
+
+
 ## [1.0.6](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-freefax@1.0.5...@ovh-ux/manager-freefax@1.0.6) (2019-01-21)
 
 

@@ -5,10 +5,10 @@ import template from './telecom-sms-options-recredit.html';
 const moduleName = 'ovhManagerSmsOptionsRecredit';
 
 angular.module(moduleName, []).config(($stateProvider) => {
-  $stateProvider.state('sms.options.recredit', {
+  $stateProvider.state('sms.service.options.recredit', {
     url: '/recredit',
     views: {
-      'smsView@sms': {
+      'smsView@sms.service': {
         template,
         controller,
         controllerAs: 'TelecomSmsOptionsRecreditCtrl',

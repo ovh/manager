@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-telecom-dashboard",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "OVH Telecom dashboard",
   "keywords": [
     "control",
@@ -17,18 +17,22 @@
   "module": "./dist/esm/index.js",
   "browser": "./dist/umd/telecom-dashboard.js",
   "scripts": {
-    "build": "rollup -c",
-    "dev": "rollup -c --watch",
+    "build": "rollup -c --environment BUILD:production",
+    "dev": "rollup -c --environment BUILD:development",
+    "dev:watch": "yarn run dev --watch",
+    "start": "lerna exec --stream --scope='@ovh-ux/manager-telecom-dashboard' --include-filtered-dependencies -- yarn run build",
+    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-telecom-dashboard' --include-filtered-dependencies -- yarn run dev",
+    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-telecom-dashboard' --include-filtered-dependencies -- yarn run dev",
     "prepare": "yarn run build"
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "5.0.0-beta.5"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-core": "^1.2.0",
+    "@ovh-ux/manager-core": "^2.0.0",
     "@ovh-ux/manager-telecom-styles": "^2.0.2",
-    "@ovh-ux/ng-uirouter-title": "^2.0.0-beta.2",
-    "@ovh-ux/telecom-universe-components": "^1.3.0",
+    "@ovh-ux/ng-ovh-telecom-universe-components": "^2.0.1",
+    "@ovh-ux/ng-uirouter-title": "^2.0.0-beta.3",
     "@uirouter/angularjs": "^1.0.15",
     "angular": "1.7.5",
     "at-internet-ui-router-plugin": "^1.0.0",

@@ -115,7 +115,7 @@ export default class {
       reason: 'sendersAvailableForValidation',
     }).$promise.then(() => {
       this.TucToast.success(this.$translate.instant('sms_senders_add_sender_added'));
-      return this.$state.go('sms.senders');
+      return this.$state.go('sms.service.senders');
     }).catch((err) => {
       this.TucToastError(err);
     }).finally(() => {
@@ -135,7 +135,7 @@ export default class {
       sender: this.sender.sender,
       description: this.sender.description,
       reason: this.sender.reason,
-    }).$promise.then(() => this.$state.go('sms.senders')).catch((err) => {
+    }).$promise.then(() => this.$state.go('sms.service.senders')).catch((err) => {
       this.TucToastError(err);
     }).finally(() => {
       this.loading.adding = false;
@@ -172,7 +172,7 @@ export default class {
     this.TucToast.info(this.$translate.instant('sms_senders_add_senders_success'));
     return this.$q.all(queries).then(() => {
       this.senders.availableForValidation.selected = {};
-      return this.$state.go('sms.senders');
+      return this.$state.go('sms.service.senders');
     }).catch((err) => {
       this.TucToastError(err);
     }).finally(() => {

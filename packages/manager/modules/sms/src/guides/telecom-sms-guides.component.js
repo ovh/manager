@@ -11,10 +11,10 @@ angular
     'ui.router',
   ])
   .config(($stateProvider) => {
-    $stateProvider.state('sms.guides', {
+    $stateProvider.state('sms.service.guides', {
       url: '/guides',
       views: {
-        'smsInnerView@sms': {
+        smsInnerView: {
           template,
           controller,
           controllerAs: 'SmsGuidesCtrl',

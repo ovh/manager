@@ -5,10 +5,10 @@ import template from './telecom-sms-senders-blacklisted.html';
 const moduleName = 'ovhManagerSmsSendersBlacklisted';
 
 angular.module(moduleName, []).config(($stateProvider) => {
-  $stateProvider.state('sms.senders.blacklisted', {
+  $stateProvider.state('sms.service.senders.blacklisted', {
     url: '/blacklisted',
     views: {
-      'smsView@sms': {
+      'smsView@sms.service': {
         template,
         controller,
         controllerAs: 'SmsSendersBlacklistedCtrl',
