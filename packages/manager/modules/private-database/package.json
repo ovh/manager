@@ -17,9 +17,13 @@
   "module": "./dist/esm/index.js",
   "browser": "./dist/umd/private-database.js",
   "scripts": {
-    "build": "rollup -c",
-    "dev": "rollup -c --watch",
-    "prepare": "yarn run build"
+    "build": "rollup -c --environment BUILD:production",
+    "dev": "rollup -c --environment BUILD:development",
+    "dev:watch": "yarn run dev --watch",
+    "prepare": "yarn run build",
+    "start": "lerna exec --stream --scope='@ovh-ux/manager-private-database' --include-filtered-dependencies -- yarn run build",
+    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-private-database' --include-filtered-dependencies -- yarn run dev",
+    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-private-database' --include-filtered-dependencies -- yarn run dev"
   },
   "dependencies": {
     "filesize": "^3.5.10",
