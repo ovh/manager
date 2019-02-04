@@ -81,7 +81,7 @@
     "ovh-api-services": "https://github.com/ovh-ux/ovh-api-services.git#42cb36c4dbf424bb67efe19a569e3f854ab4b124",
     "ovh-manager-webfont": "^1.0.2",
     "ovh-ngstrap": "^4.0.2",
-    "ovh-ui-angular": "^2.23.0",
+    "ovh-ui-angular": "^2.24.1",
     "ovh-ui-kit": "^2.23.1",
     "ovh-ui-kit-bs": "^2.1.1",
     "punycode": "^1.2.4",
