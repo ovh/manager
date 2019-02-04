@@ -32,6 +32,7 @@
   "peerDependencies": {
     "@ovh-ux/manager-core": "^1.1.0",
     "@ovh-ux/ng-ovh-web-universe-components": "https://github.com/ovh-ux/web-universe-components.git#minor-updates",
+    "@ovh-ux/ng-pagination-front": "8.0.0-alpha.0",
     "@ovh-ux/ng-tail-logs": "^2.0.0-beta.0",
     "@ovh-ux/ovh-utils-angular": "^14.0.0",
     "@uirouter/angularjs": "^1.0.15",
@@ -42,7 +43,6 @@
     "chart.js": "^2.7.2",
     "font-awesome": "4.7.0",
     "jquery": "^2.1.3",
-    "ovh-angular-pagination-front": "^7.0.0",
     "ovh-angular-responsive-tabs": "^4.0.0",
     "ovh-ui-angular": "^2.23.0",
     "ovh-ui-kit": "^2.23.1",
