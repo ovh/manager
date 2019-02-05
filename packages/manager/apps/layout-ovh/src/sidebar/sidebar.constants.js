@@ -196,7 +196,7 @@ export const STATE_MAPPING_SERVICE = {
     },
   },
   '/sms/{serviceName}': {
-    state: 'sms.dashboard',
+    state: 'sms.service.dashboard',
     stateParams: {
       serviceName: 'resource.name',
     },
