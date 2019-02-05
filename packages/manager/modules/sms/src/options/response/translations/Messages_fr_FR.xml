@@ -58,6 +58,7 @@
    <translation id="sms_options_response_tracking_add_option_ko" qtlid="346300">Impossible d’ajouter la notification.<br/>{{error}}</translation>
 
 <!-- TRACKING modal EDIT -->
+   <translation id="sms_options_response_tracking_edit_option">Modification de la notification…</translation>
    <translation id="sms_options_response_tracking_edit_option_editing" qtlid="346313">Mise à jour de la notification…</translation>
    <translation id="sms_options_response_tracking_edit_option_edited" qtlid="346326">Notification mise à jour&#160;!&#160;</translation>
    <translation id="sms_options_response_tracking_edit_option_ko" qtlid="346339">Impossible d’éditer la notification.<br/>{{error}}</translation>
