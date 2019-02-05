@@ -78,7 +78,7 @@
     "ovh-angular-responsive-tabs": "^4.0.0",
     "ovh-angular-swimming-poll": "^3.0.0",
     "ovh-angular-ui-confirm-modal": "^1.0.2",
-    "ovh-api-services": "https://github.com/ovh-ux/ovh-api-services.git#42cb36c4dbf424bb67efe19a569e3f854ab4b124",
+    "ovh-api-services": "^3.33.0",
     "ovh-manager-webfont": "^1.0.2",
     "ovh-ngstrap": "^4.0.2",
     "ovh-ui-angular": "^2.24.1",

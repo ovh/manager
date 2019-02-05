@@ -9404,16 +9404,12 @@ ovh-angular-ui-confirm-modal@^1.0.2:
   resolved "https://registry.yarnpkg.com/ovh-angular-ui-confirm-modal/-/ovh-angular-ui-confirm-modal-1.0.2.tgz#92e6736588a4fb1de6353f1a17ab1962679a698d"
   integrity sha512-3V17DbzWjUjl9sKCd25Oycn+7eqg6iW+DpizwVmixHFzDNDMnpKSGmxRLrOq+q9YNE7IepoAKWjoSiy2+zOEEg==
 
-ovh-api-services@^3.24.0, ovh-api-services@^3.31.0:
-  version "3.31.0"
-  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-3.31.0.tgz#b4b50dd8816b36b9266c6362c922b6c3fdda8996"
-  integrity sha512-ngb65X6BEBvR+dFYKdu8wgEKqKwFY1WFQGiJQoavQ1H0xEilAiURwkVXCpTUVufTA17fqdM1Ob4IY8WraQ6eAQ==
+ovh-api-services@^3.33.0:
+  version "3.33.0"
+  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-3.33.0.tgz#ac4dc6a4f025530fb1f2116a4550f5d544b373d2"
+  integrity sha512-pVno5PB6ohnrm6uOPJLBoaf8NmPjfhHmn0PyzdBKAqiPc12w93Q1XOFJU5vaBw24rUMvD7NG3H0+iRdZsafyNg==
   dependencies:
     lodash "^3.10.1"
-
-"ovh-api-services@https://github.com/ovh-ux/ovh-api-services.git#42cb36c4dbf424bb67efe19a569e3f854ab4b124":
-  version "3.24.0"
-  resolved "https://github.com/ovh-ux/ovh-api-services.git#42cb36c4dbf424bb67efe19a569e3f854ab4b124"
 
 ovh-manager-webfont@^1.0.2:
   version "1.0.2"
