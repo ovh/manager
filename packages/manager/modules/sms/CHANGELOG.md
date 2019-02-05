@@ -1,3 +1,12 @@
+## [2.0.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-sms@2.0.0...@ovh-ux/manager-sms@2.0.1) (2019-02-05)
+
+
+### Bug Fixes
+
+* **sms.options:** set right modal title ([#158](https://github.com/ovh-ux/manager/issues/158)) ([7ae753f](https://github.com/ovh-ux/manager/commit/7ae753f))
+
+
+
 # [2.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-sms@1.0.2...@ovh-ux/manager-sms@2.0.0) (2019-01-29)
 
 
