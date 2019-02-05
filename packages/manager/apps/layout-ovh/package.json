@@ -28,7 +28,7 @@
     "@ovh-ux/ng-ovh-sidebar-menu": "^8.0.0-beta.0",
     "@ovh-ux/ng-ovh-sso-auth": "^4.0.0-beta.0",
     "@ovh-ux/ng-ovh-telecom-universe-components": "^2.0.1",
-    "@ovh-ux/ng-ovh-web-universe-components": "https://github.com/ovh-ux/web-universe-components.git#minor-updates",
+    "@ovh-ux/ng-ovh-web-universe-components": "^2.0.0",
     "@ovh-ux/ng-pagination-front": "8.0.0-alpha.0",
     "@ovh-ux/ng-tail-logs": "^2.0.0-beta.1",
     "@ovh-ux/ng-translate-async-loader": "^2.0.0",

@@ -1647,9 +1647,10 @@
   dependencies:
     lodash "^4.17.11"
 
-"@ovh-ux/ng-ovh-web-universe-components@https://github.com/ovh-ux/web-universe-components.git#minor-updates":
-  version "1.2.1"
-  resolved "https://github.com/ovh-ux/web-universe-components.git#20ddb7b3e745113be51838b56a5f20ce06126ba0"
+"@ovh-ux/ng-ovh-web-universe-components@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-web-universe-components/-/ng-ovh-web-universe-components-2.0.0.tgz#e171f664742ebecd2a52f096973feda01597c5fa"
+  integrity sha512-6ZS3efu1c54KJLK+k6vlthWdPyWigQk9RAyI8pZ+T7Uprhil/uaFGNgdgLKNJnqQv9ah8vcCsdDJLSSqTJcecw==
   dependencies:
     bootstrap "^3.3.7"
     ovh-ui-kit "^2.22.0"
