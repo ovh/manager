@@ -1512,14 +1512,6 @@
     rollup-pluginutils "^2.3.3"
     slash "^2.0.0"
 
-"@ovh-ux/manager-core@^1.1.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core/-/manager-core-1.2.0.tgz#3978af0118a855705a271bc37a4f62678b39ce69"
-  integrity sha512-W/wOnmYawDzxHg6kIYQ/SfNvKz5LU12nxs1snlhfUelDbBuK6zLAHgstlYR8jRGbgaMuZPQiekVmIDwNGWou8g==
-  dependencies:
-    "@ovh-ux/translate-async-loader" "^1.0.4"
-    lodash "^4.17.11"
-
 "@ovh-ux/manager-webpack-config@^3.0.0", "@ovh-ux/manager-webpack-config@^3.0.1":
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-webpack-config/-/manager-webpack-config-3.0.1.tgz#d03713e9c1a7701f693fce217076e38dbe5f9cc3"

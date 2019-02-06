@@ -34,7 +34,6 @@
     "@ovh-ux/component-rollup-config": "5.0.0-beta.5"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-core": "^1.1.0",
     "@ovh-ux/ng-ovh-web-universe-components": "^2.0.0",
     "@ovh-ux/ng-pagination-front": "8.0.0-alpha.0",
     "@ovh-ux/ng-tail-logs": "^2.0.0-beta.0",
