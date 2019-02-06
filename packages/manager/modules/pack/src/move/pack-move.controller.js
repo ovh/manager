@@ -155,7 +155,7 @@ angular.module('managerApp').controller('PackMoveCtrl', function (
 
         default:
           $timeout(() => {
-            $state.go('pack', {
+            $state.go('telecom.pack', {
               packName: $stateParams.packName,
             });
           }, 3000);
@@ -306,6 +306,18 @@ angular.module('managerApp').controller('PackMoveCtrl', function (
       && this.offer.selected.meetingSlots.meetingSlots.length)) {
       this.offer.meetingSlots.fakeMeeting = true;
     }
+  };
+
+  /**
+   * Check if can keep line number
+   * @returns {boolean}
+   */
+  this.canKeepLineNumber = function () {
+    const canKeep = this.offer.selected.portability.eligible && this.offer.selected.unbundling !== 'partial';
+    if (!canKeep) {
+      self.form.futureLandline.keepLineNumber = false;
+    }
+    return canKeep;
   };
 
   /**

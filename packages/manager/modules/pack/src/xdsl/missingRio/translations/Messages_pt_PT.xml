@@ -9,5 +9,5 @@
    <translation id="xdsl_missing-rio_init_error" qtlid="479460">Votre cas ne semble pas concerné par une erreur de RIO, ou bien vous nous avez déjà communiqué cette information.</translation>
    <translation id="xdsl_missing-rio_send" qtlid="26047">Validar</translation>
    <translation id="xdsl_missing-rio_sent" qtlid="479473">Votre portabilité a été envoyée avec succès.</translation>
-   <translation id="xdsl_missing-rio_error" qtlid="307358">Une erreur est survenue pendant le chargement.</translation>
+   <translation id="xdsl_missing-rio_error" qtlid="307358">Ocorreu um erro durante o carregamento.</translation>
 </translations>

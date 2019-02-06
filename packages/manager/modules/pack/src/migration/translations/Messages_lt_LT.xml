@@ -6,6 +6,8 @@
 <!-- TABLE -->
    <translation id="telecom_pack_migration_current_offer" qtlid="331722">Dabartinis pasiūlymas: {{ offerName }}</translation>
    <translation id="telecom_pack_migration_monthly_subscription" qtlid="331735">Mėnesinis abonementas</translation>
+   <translation id="telecom_pack_migration_modem_rental" qtlid="518037">Location modem</translation>
+   <translation id="telecom_pack_migration_installation_costs" qtlid="330643">Diegimo mokestis</translation>
    <translation id="telecom_pack_migration_commitment" qtlid="331748">Įsipareigojimas</translation>
    <translation id="telecom_pack_migration_services_to_delete" qtlid="331761">Paslaugos, kurias trinti</translation>
    <translation id="telecom_pack_migration_services_to_delete_explain" qtlid="331774">Po keitimo kai kurios dabartinio paketo paslaugos bus ištrintos.</translation>
@@ -17,6 +19,9 @@
    <translation id="telecom_pack_migration_accounts_activated" qtlid="331813">aktyvios paskyros: {{ number }}</translation>
    <translation id="telecom_pack_migration_account_activated" qtlid="331826">{{ number }} aktyvi paskyra</translation>
    <translation id="telecom_pack_migration_choose_offer" qtlid="331839">Pasirinkti šį pasiūlymą</translation>
+   <translation id="telecom_pack_migration_no_install_fees" qtlid="518050">Compris dans l'abonnement</translation>
+   <translation id="telecom_pack_migration_first_year_promo" qtlid="518063">pendant 12 mois puis :</translation>
+
 
 <!-- VOIP LINE -->
    <translation id="telecom_pack_migration_line_title" qtlid="23143">Telefonijos linijos</translation>

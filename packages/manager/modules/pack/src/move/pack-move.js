@@ -1,8 +1,8 @@
 angular.module('managerApp').config(($stateProvider) => {
-  $stateProvider.state('pack.move', {
+  $stateProvider.state('telecom.pack.move', {
     url: '/move',
     views: {
-      'packView@pack': {
+      'packView@telecom.pack': {
         templateUrl: 'app/telecom/pack/move/pack-move.html',
         controller: 'PackMoveCtrl',
         controllerAs: 'PackMove',

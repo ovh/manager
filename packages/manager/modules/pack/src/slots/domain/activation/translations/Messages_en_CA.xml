@@ -3,7 +3,7 @@
    <translation id="domain_activation_total_error" qtlid="307358">Une erreur est survenue pendant le chargement.</translation>
    <translation id="domain_activation_widget_title" qtlid="307371">Activation d’un domaine</translation>
    <translation id="domain_activation_widget_intro1" qtlid="307384">Veuillez compléter le formulaire ci-dessous</translation>
-   <translation id="domain_activation_form_domain_label" qtlid="307397">domaine</translation>
+   <translation id="domain_activation_form_domain_label" qtlid="307397">domain name</translation>
    <translation id="domain_activation_activated_domains_reminder" qtlid="307410">Domaines déjà activés sur votre Pack</translation>
    <translation id="domain_activation_activated_domains_null" qtlid="307423">aucun domaine déjà activé.</translation>
    <translation id="domain_activation_no_tld" qtlid="307436">Aucun TLD disponible. Si aucune erreur n’est survenue, ceci peut être dû à une lenteur de chargement des données ou votre Pack ne permet pas d’activer des domaines.</translation>

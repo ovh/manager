@@ -7,6 +7,6 @@
    <translation id="xdsl_modem_firewall_level_normal" qtlid="96704">Normal</translation>
    <translation id="xdsl_modem_firewall_change" qtlid="318348">Niveau</translation>
    <translation id="xdsl_modem_firewall_doing" qtlid="318361">Modification du pare-feu en cours</translation>
-   <translation id="xdsl_modem_firewall_submit" qtlid="26047">Valider</translation>
+   <translation id="xdsl_modem_firewall_submit" qtlid="26047">Aceptar</translation>
    <translation id="xdsl_modem_firewall_an_error_ocurred" qtlid="318374">FIREWALLj:&#160;Une erreur est survenue !</translation>
 </translations>

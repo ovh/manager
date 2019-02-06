@@ -1,85 +1,90 @@
 angular.module('managerApp').config(($stateProvider) => {
-  $stateProvider.state('pack.xdsl.modem', {
+  $stateProvider.state('telecom.pack.xdsl.modem', {
     url: '/modem',
     views: {
-      'xdslView@pack.xdsl': {
+      'xdslView@telecom.pack.xdsl': {
         templateUrl: 'app/telecom/pack/xdsl/modem/pack-xdsl-modem.html',
         controller: 'XdslModemCtrl',
         controllerAs: 'XdslModem',
       },
-      'bridgeModeView@pack.xdsl.modem': {
+      'bridgeModeView@telecom.pack.xdsl.modem': {
         templateUrl: 'app/telecom/pack/xdsl/modem/bridgeMode/pack-xdsl-modem-bridgeMode.html',
         controller: 'XdslModemBridgeModeCtrl',
         controllerAs: 'BridgeCtrl',
       },
-      'connectedDeviceView@pack.xdsl.modem': {
+      'connectedDeviceView@telecom.pack.xdsl.modem': {
         templateUrl: 'app/telecom/pack/xdsl/modem/connectedDevices/pack-xdsl-modem-connectedDevices.html',
         controller: 'XdslModemConnectedDevicesCtrl',
         controllerAs: 'DeviceCtrl',
       },
-      'dmzView@pack.xdsl.modem': {
+      'dmzView@telecom.pack.xdsl.modem': {
         templateUrl: 'app/telecom/pack/xdsl/modem/dmz/pack-xdsl-modem-dmz.html',
         controller: 'XdslModemDmzCtrl',
         controllerAs: 'DmzCtrl',
       },
-      'firewallView@pack.xdsl.modem': {
+      'firewallView@telecom.pack.xdsl.modem': {
         templateUrl: 'app/telecom/pack/xdsl/modem/firewall/pack-xdsl-modem-firewall.html',
         controller: 'XdslModemFirewallCtrl',
         controllerAs: 'FirewallCtrl',
       },
-      'managedByOvhView@pack.xdsl.modem': {
+      'managedByOvhView@telecom.pack.xdsl.modem': {
         templateUrl: 'app/telecom/pack/xdsl/modem/managedByOvh/pack-xdsl-modem-managedByOvh.html',
         controller: 'XdslModemManagedByCtrl',
         controllerAs: 'ManagedByCtrl',
       },
-      'mtuView@pack.xdsl.modem': {
+      'mtuView@telecom.pack.xdsl.modem': {
         templateUrl: 'app/telecom/pack/xdsl/modem/mtu/pack-xdsl-modem-mtu.html',
         controller: 'XdslModemMtuCtrl',
         controllerAs: 'MtuCtrl',
       },
-      'modemRebootView@pack.xdsl.modem': {
+      'modemRebootView@telecom.pack.xdsl.modem': {
         templateUrl: 'app/telecom/pack/xdsl/modem/reboot/pack-xdsl-modem-reboot.html',
         controller: 'XdslModemRebootCtrl',
         controllerAs: 'RebootCtrl',
       },
-      'modemResetView@pack.xdsl.modem': {
+      'modemResetView@telecom.pack.xdsl.modem': {
         templateUrl: 'app/telecom/pack/xdsl/modem/reset/pack-xdsl-modem-reset.html',
         controller: 'XdslModemResetCtrl',
         controllerAs: 'ResetCtrl',
       },
-      'routerView@pack.xdsl.modem': {
+      'routerView@telecom.pack.xdsl.modem': {
         templateUrl: 'app/telecom/pack/xdsl/modem/router/pack-xdsl-modem-router.html',
         controller: 'XdslModemRouterCtrl',
         controllerAs: 'RouterCtrl',
       },
-      'routerBdhcpView@pack.xdsl.modem': {
+      'routerBdhcpView@telecom.pack.xdsl.modem': {
         templateUrl: 'app/telecom/pack/xdsl/modem/router/dhcp/bdhcp/pack-xdsl-modem-dhcp-bdhcp.html',
         controller: 'XdslModemDhcpBdhcpCtrl',
         controllerAs: 'BdhcpCtrl',
       },
-      'routerDhcpView@pack.xdsl.modem': {
+      'routerDhcpView@telecom.pack.xdsl.modem': {
         templateUrl: 'app/telecom/pack/xdsl/modem/router/dhcp/pack-xdsl-modem-dhcp.html',
         controller: 'XdslModemDhcpCtrl',
         controllerAs: 'DhcpCtrl',
       },
-      'routerLanView@pack.xdsl.modem': {
+      'routerLanView@telecom.pack.xdsl.modem': {
         templateUrl: 'app/telecom/pack/xdsl/modem/router/lan/pack-xdsl-modem-lan.html',
         controller: 'XdslModemLanCtrl',
         controllerAs: 'LanCtrl',
       },
-      'routerPortView@pack.xdsl.modem': {
+      'routerPortView@telecom.pack.xdsl.modem': {
         templateUrl: 'app/telecom/pack/xdsl/modem/router/ports/pack-xdsl-modem-ports.html',
         controller: 'XdslModemPortsCtrl',
         controllerAs: 'PortCtrl',
       },
-      'wifiView@pack.xdsl.modem': {
+      'wifiView@telecom.pack.xdsl.modem': {
         templateUrl: 'app/telecom/pack/xdsl/modem/wifi/pack-xdsl-modem-wifi.html',
         controller: 'XdslModemWifiCtrl',
         controllerAs: 'WifiCtrl',
       },
-      'firmwareView@pack.xdsl.modem': {
+      'firmwareView@telecom.pack.xdsl.modem': {
         templateUrl: 'app/telecom/pack/xdsl/modem/firmware/pack-xdsl-modem-firmware.html',
         controller: 'XdslModemFirmwareCtrl',
+        controllerAs: '$ctrl',
+      },
+      'serviceView@telecom.pack.xdsl.modem': {
+        templateUrl: 'app/telecom/pack/xdsl/modem/service/pack-xdsl-modem-service.html',
+        controller: 'XdslModemServiceCtrl',
         controllerAs: '$ctrl',
       },
     },
@@ -99,6 +104,7 @@ angular.module('managerApp').config(($stateProvider) => {
       './router/ports',
       './wifi',
       './firmware',
+      './service',
     ],
   });
 });

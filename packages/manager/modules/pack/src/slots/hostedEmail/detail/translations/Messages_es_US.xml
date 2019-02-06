@@ -18,10 +18,10 @@
    <translation id="hosted_email_detail_quota" qtlid="6874">Límite</translation>
 
    <translation id="hosted_email_detail_byte" qtlid="92777">octets</translation>
-   <translation id="hosted_email_detail_Kb" qtlid="44692">Ko</translation>
-   <translation id="hosted_email_detail_Mb" qtlid="48878">Mo</translation>
-   <translation id="hosted_email_detail_Gb" qtlid="48890">Go</translation>
-   <translation id="hosted_email_detail_Tb" qtlid="70121">To</translation>
+   <translation id="hosted_email_detail_Kb" qtlid="44692">KB</translation>
+   <translation id="hosted_email_detail_Mb" qtlid="48878">MB</translation>
+   <translation id="hosted_email_detail_Gb" qtlid="48890">GB</translation>
+   <translation id="hosted_email_detail_Tb" qtlid="70121">TB</translation>
 
    <translation id="hosted_email_detail_host" qtlid="2678">Hôte</translation>
    <translation id="hosted_email_detail_ip" qtlid="26191">Adresse IP</translation>

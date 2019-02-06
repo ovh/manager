@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <translations>
-   <translation id="fax_activation_total_error" qtlid="307358">Une erreur est survenue pendant le chargement.</translation>
+   <translation id="fax_activation_total_error" qtlid="307358">Beim Laden ist ein Fehler aufgetreten.</translation>
    <translation id="fax_activation_widget-title" qtlid="308372">Activation de ligne(s) fax</translation>
    <translation id="fax_activation_widget-intro" qtlid="308385">Vous allez créer une ligne fax dans le cadre de votre pack.<br />Après activation, un e-mail va vous être envoyé. Il contient le numéro de la ligne fax ainsi que ses identifiants.<br />Pour utiliser votre service nous vous conseillons le logiciel <a href="{{ecoFaxUrl}}" target="new">EcoFax</a>.</translation>
    <translation id="fax_activation_widget_free_slot" qtlid="308398">Vous avez encore <strong class="pack-item-count">{{available}}</strong> service(s) disponible(s).</translation>

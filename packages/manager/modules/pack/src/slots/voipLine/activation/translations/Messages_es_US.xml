@@ -12,9 +12,9 @@
    <translation id="telefony_activation_shipping_transporter_label" qtlid="308060">Livraison par transporteur (+ {{cost}}€ HT) sous 24h (après envoi)</translation>
    <translation id="telefony_activation_shipping_relay_label" qtlid="308073">Livraison gratuite en point Mondial Relay sous 48h (après envoi)</translation>
    <translation id="telefony_activation_shipping_mode" qtlid="308086">Mode de livraison:</translation>
-   <translation id="telefony_activation_widget_activate_price_free" qtlid="130495">Gratuit</translation>
+   <translation id="telefony_activation_widget_activate_price_free" qtlid="130495">Gratuito</translation>
    <translation id="telefony_activation_widget_free_slot_zero" qtlid="308099">Vous n'avez plus de service disponible.</translation>
-   <translation id="telefony_activation_widget_activate_price_title" qtlid="83913">Prix</translation>
+   <translation id="telefony_activation_widget_activate_price_title" qtlid="83913">Precio</translation>
    <translation id="telefony_activation_widget_activate_button_label" qtlid="120486">Valider la commande</translation>
    <translation id="telefony_activation_widget_slot_count" qtlid="308112">Nombre de lignes</translation>
    <translation id="telefony_activation_widget_on_doing" qtlid="308125">Vous avez une ou plusieurs lignes en cours d'activation.</translation>
@@ -24,7 +24,7 @@
    <translation id="telefony_activation_hardware_line" qtlid="308177">Ligne {{index}}</translation>
    <translation id="telefony_activation_hardware_caution_label" qtlid="308190">Fianza</translation>
    <translation id="telefony_activation_hardware_doc_label" qtlid="79290">Fiche technique</translation>
-   <translation id="telefony_activation_hardware_select_label" qtlid="84153">Choisir</translation>
+   <translation id="telefony_activation_hardware_select_label" qtlid="84153">Elegir</translation>
    <translation id="telefony_activation_hardware_unselect_label" qtlid="69893">Changer</translation>
    <translation id="telefony_activation_hardware_select_all_label" qtlid="308203">Commander cet équipement sur toutes les lignes</translation>
    <translation id="telefony_activation_shipping_price_label" qtlid="308216">Frais de port</translation>
