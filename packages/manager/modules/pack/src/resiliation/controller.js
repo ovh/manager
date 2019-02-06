@@ -1,0 +1,377 @@
+import angular from 'angular';
+import get from 'lodash/get';
+import map from 'lodash/map';
+import remove from 'lodash/remove';
+import set from 'lodash/set';
+import some from 'lodash/some';
+
+import templateModal from './template.modal.html';
+
+export default class {
+  /* @ngInject */
+  constructor(
+    $stateParams,
+    $state,
+    $templateCache,
+    $timeout,
+    $translate,
+    $uibModal,
+    TucToastError,
+    OvhApiPackXdslResiliation,
+    OvhApiMe,
+    resiliationNotification,
+    tucValidator,
+  ) {
+    this.$stateParams = $stateParams;
+    this.$state = $state;
+    this.$templateCache = $templateCache;
+    this.$timeout = $timeout;
+    this.$translate = $translate;
+    this.$uibModal = $uibModal;
+    this.TucToastError = TucToastError;
+    this.OvhApiPackXdslResiliation = OvhApiPackXdslResiliation;
+    this.OvhApiMe = OvhApiMe;
+    this.resiliationNotification = resiliationNotification;
+    this.tucValidator = tucValidator;
+  }
+
+  $onInit() {
+    this.model = {
+      subServicesToKeep: {},
+    };
+    this.switch = {};
+    this.config = {
+      orderedServicesToList: [
+        'xdslAccess',
+        'domain',
+        'voipLine',
+        'exchangeAccount',
+        'exchangeIndividual',
+        'exchangeLite',
+        'exchangeOrganization',
+        'voipEcoFax',
+        'hostedEmail',
+        'siteBuilderFull',
+        'siteBuilderStart',
+        'voipAlias',
+      ],
+      xdslAccess: {
+        cannotBeKept: true,
+      },
+    };
+    this.resiliationTerms = null;
+
+    this.subServicesTerms = null;
+    this.subServicesTermsLoading = false;
+    this.loading = true;
+    this.model.when = null;
+    this.dpOpts = {};
+
+    this.OvhApiPackXdslResiliation
+      .Aapi()
+      .terms({
+        packId: this.$stateParams.packName,
+      })
+      .$promise
+      .then((data) => {
+        this.dpOpts.minDate = data.data.minResiliationDate
+          ? new Date(data.data.minResiliationDate) : new Date();
+        this.minResiliationDate = this.dpOpts.minDate;
+        this.resiliationTerms = {};
+
+        angular.forEach(data, (val, key) => {
+          if (key.indexOf('$') !== 0) {
+            this.resiliationTerms[key] = data[key];
+          }
+        });
+
+        this.resiliationTerms.typeName = this.$translate.instant('pack_resiliation_type_name');
+        if (this.resiliationTerms.data.resiliationReasons) {
+          this.resiliationTerms.data.resiliationReasons = map(
+            this.resiliationTerms.data.resiliationReasons,
+            reason => ({
+              value: reason,
+              label: this.$translate.instant(`pack_resiliation_choice_${reason}`),
+            }),
+          );
+        }
+
+        this.resiliationTerms.nameToDisplay = this.resiliationTerms.packName;
+        if (this.resiliationTerms.name) {
+          this.resiliationTerms.nameToDisplay = this.resiliationTerms.name;
+        }
+
+        this.updateFeeSummary();
+      })
+      .catch(err => new this.TucToastError(err))
+      .finally(() => {
+        this.loading = false;
+      });
+
+    this.subServicesTermsLoading = true;
+    this.subServicesTerms = null;
+    this.subServicesTermsError = false;
+
+    this.OvhApiPackXdslResiliation
+      .Aapi()
+      .subServicesTerms({
+        packId: this.$stateParams.packName,
+      })
+      .$promise
+      .then((data) => {
+        this.subServicesTerms = data;
+      })
+      .catch((err) => {
+        this.subServicesTermsError = true;
+        return new this.TucToastError(err);
+      })
+      .finally(() => {
+        this.subServicesTermsLoading = false;
+      });
+  }
+
+  /**
+   * Get the current currency symbol
+   *
+   * @return promise with the symbol of the current currency
+   */
+  getCurrentCurrencySymbol() {
+    return this.OvhApiMe
+      .v6()
+      .get()
+      .$promise
+      .then(me => (me && me.currency ? me.currency.symbol : ''));
+  }
+
+  /**
+   * Validator for the resiliationDate
+   * @param {Date} specifiedDate Date to validate
+   */
+  checkDate() {
+    return !this.model.when || (
+      this.tucValidator.isDate(this.model.when)
+      && (this.model.when >= this.minResiliationDate)
+    );
+  }
+
+  /**
+   * Apply the state of the global checkbox to all the sub checkbox if needed
+   * @param {String} the type of the service
+   */
+  switchApply(serviceType) {
+    let isUpdated = false;
+    angular.forEach(this.subServicesTerms[serviceType], (service) => {
+      if (service.keepServiceTerms.isAllowed) {
+        this.model.subServicesToKeep[service.id] = this.switch[serviceType];
+        isUpdated = true;
+      }
+    });
+
+    if (isUpdated) {
+      this.updateFeeSummary();
+    } else {
+      this.$timeout(() => {
+        this.switch[serviceType] = !this.switch[serviceType];
+      }, 200);
+    }
+  }
+
+  /**
+   * Update the fee summary
+   */
+  updateFeeSummary() {
+    this.feeSummary = {
+      duePrice: get(this, 'resiliationTerms.data.due'),
+      keepingPrice: 0.0,
+      renewPrice: {},
+    };
+
+    this.config.orderedServicesToList.forEach((serviceType) => {
+      if (this.subServicesTerms && this.subServicesTerms[serviceType]) {
+        this.subServicesTerms[serviceType].forEach((service) => {
+          angular.forEach(this.model.subServicesToKeep, (go, serviceId) => {
+            let key;
+
+            // the key of the Object is a stringified service id
+            if (go && String(service.id) === serviceId) {
+              key = service.keepServiceTerms.renewPeriod.toString();
+
+              // [IEEE 754]: store int to avoid flotting point number storage problem
+              this.feeSummary.keepingPrice += service.keepServiceTerms.price.value * 100;
+
+              if (this.feeSummary.renewPrice[key] === undefined) {
+                this.feeSummary.renewPrice[key] = 0;
+              }
+
+              this.feeSummary.renewPrice[key] += service.keepServiceTerms.renewPrice.value * 100;
+            }
+          });
+        });
+      }
+    });
+
+    // [IEEE 754]: restore real value: Int -> float (.2)
+    this.feeSummary.keepingPrice = this.feeSummary.keepingPrice
+      ? Number(this.feeSummary.keepingPrice / 100).toFixed(2) : '0';
+
+    angular.forEach(this.feeSummary.renewPrice, (value, key) => {
+      this.feeSummary.renewPrice[key] = Number(this.feeSummary.renewPrice[key] / 100).toFixed(2);
+    });
+
+    this.getCurrentCurrencySymbol().then((currency) => {
+      this.feeSummary.currency = currency;
+    });
+  }
+
+  /**
+   * Check the state of the global checkbox
+   * @param {String} the type of the service
+   */
+  checkSwitchState(serviceType) {
+    for (let i = 0, imax = this.subServicesTerms[serviceType].length;
+      i < imax && this.switch[serviceType];
+      i += 1) {
+      const service = this.subServicesTerms[serviceType][i];
+      if (service.keepServiceTerms.isAllowed && !this.model.subServicesToKeep[service.id]) {
+        this.switch[serviceType] = false;
+      }
+    }
+  }
+
+  /**
+   * Check/update all things depending of the checked sub services
+   * @param {String} the type of the service
+   */
+  updateAllInfluencedByCheckedSubServices(serviceType) {
+    this.checkSwitchState(serviceType);
+    this.updateFeeSummary();
+  }
+
+  /**
+   * True if serviceType has at least one sub service allowed to be kept,
+   * false otherwise.
+   */
+  hasKeepableSubServices(serviceType) {
+    return some(this.subServicesTerms[serviceType], service => get(service, 'keepServiceTerms.isAllowed'));
+  }
+
+  /**
+   * Compute the new price according to the new date
+   * @returns {*}
+   */
+  computePrice() {
+    this.computingPrice = true;
+    return this.OvhApiPackXdslResiliation
+      .v6()
+      .resiliationTerms({
+        packName: this.$stateParams.packName,
+        resiliationDate: this.model.when ? this.model.when.toISOString() : null,
+      }, null)
+      .$promise
+      .then((data) => {
+        this.resiliationTerms.data.due = data.due;
+        this.updateFeeSummary();
+      }, err => new this.TucToastError(err)).finally(() => {
+        this.computingPrice = false;
+      });
+  }
+
+  /**
+   * Open the date picker
+   * @param event
+   */
+  openDatePicker(event) {
+    this.pickerOpened = true;
+    this.pickerOpenedPreventConflict = true;
+    event.stopPropagation();
+
+    this.$timeout(() => {
+      this.pickerOpenedPreventConflict = false;
+    }, 500);
+  }
+
+  /**
+   * Switch the date picker state, if is open then close,
+   * if is closed then open it
+   *
+   * @param event
+   */
+  switchDatePickerState(event) {
+    if (!this.pickerOpenedPreventConflict) {
+      this.pickerOpened = !this.pickerOpened;
+    }
+
+    event.stopPropagation();
+  }
+
+  /**
+   * Resiliate a pack
+   * @param  {Object} pack   Pack to resiliate
+   * @param  {Object} survey Reason to resiliate
+   * @param {Boolean} accept If true the resiliation must be done
+   */
+  resiliatePack() {
+    this.loading = true;
+    return this.OvhApiPackXdslResiliation
+      .v6()
+      .resiliate({
+        packName: this.$stateParams.packName,
+      }, {
+        resiliationSurvey: {
+          type: this.model.reason.value,
+          comment: this.model.comment ? this.model.comment : null,
+        },
+        resiliationDate: this.model.when ? this.model.when.toISOString() : null,
+        servicesToKeep:
+          remove(map(this.model.subServicesToKeep, (value, key) => (value ? key : null)), null),
+      })
+      .$promise
+      .then(() => {
+        set(this.resiliationNotification, 'success', true);
+        this.$state.go('pack', { packName: this.$stateParams.packName });
+      })
+      .catch(err => new this.TucToastError(err)).finally(() => {
+        this.loading = false;
+      });
+  }
+
+  /**
+   * Cancel an on-going resiliation
+   * @param  {Object} pack Pack to cancel resiliation
+   */
+  cancelPackResiliation(pack) {
+    this.loading = true;
+    return this.OvhApiPackXdslResiliation
+      .v6()
+      .cancelResiliation({
+        packName: pack.packName,
+      }, null)
+      .$promise
+      .then(() => {
+        set(this.resiliationNotification, 'cancelSuccess', true);
+        this.$state.go('pack', { packName: this.$stateParams.packName });
+      }, err => new this.TucToastError(err)).finally(() => {
+        this.loading = false;
+      });
+  }
+
+  openConfirmation() {
+    const reason = this.resiliationReason;
+    this.$uibModal
+      .open({
+        template: templateModal,
+        controllerAs: 'ResiliationModelCtrl',
+        controller(subject) {
+          this.resiliation = { confirm: {} };
+          this.subject = subject;
+        },
+        resolve: {
+          subject() {
+            return reason;
+          },
+        },
+      })
+      .result
+      .then(this.resiliatePack);
+  }
+}

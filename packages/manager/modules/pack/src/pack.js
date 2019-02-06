@@ -8,6 +8,8 @@ import 'ovh-api-services';
 import 'ovh-ui-kit/dist/oui.css';
 import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
 
+import resiliation from './resiliation';
+
 import { DASHBOARD_SERVICES, PACK } from './constants';
 
 import controller from './controller';
@@ -25,6 +27,7 @@ angular
     'ovhManagerCore',
     'ngOvhTelecomUniverseComponents',
     'ui.router',
+    resiliation,
     slots,
   ])
   .constant('PACK_DASHBOARD_SERVICES', DASHBOARD_SERVICES)

@@ -1,0 +1,53 @@
+<div id="pack-resiliation-service-modal" class="pack-contract-modal">
+        <div class="modal-header">
+            <button
+                type="button"
+                class="close float-right"
+                aria-label="{{ ::'resiliation_common_cancel' | translate }}"
+                data-ng-click="ContactAddCtrl.cancel()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <h3 class="modal-title" data-translate="resiliation_confirm_title"></h3>
+            <h1 data-ng-bind="ResiliationModelCtrl.subject.name"></h1>
+            <ul class="list-unstyled">
+                <li>
+                    <div class="checkbox mr-3">
+                        <label for="resiliation_message1">
+                            <input
+                                type="checkbox"
+                                id="resiliation_message1"
+                                name="resiliation_message1"
+                                data-ng-model="ResiliationModelCtrl.resiliation.confirm.one">
+                            <span data-translate="resiliation_message1"></span>
+                        </label>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="checkbox mr-3">
+                        <label for="resiliation_message2">
+                            <input
+                                type="checkbox"
+                                id="resiliation_message2"
+                                name="resiliation_message2"
+                                data-ng-model="ResiliationModelCtrl.resiliation.confirm.two">
+                            <span data-translate="resiliation_message2"></span>
+                        </label>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="modal-footer">
+            <button type="button"
+                    class="btn btn-primary"
+                    data-ng-click="$close('ok')"
+                    data-ng-disabled="!ResiliationModelCtrl.resiliation.confirm.one || !ResiliationModelCtrl.resiliation.confirm.two"
+                    data-translate="resiliation_confirm"></button>
+            <button type="button"
+                    class="btn btn-default"
+                    data-ng-click="$dismiss('cancel')"
+                    data-translate="resiliation_common_cancel"></button>
+        </div>
+    </div>
