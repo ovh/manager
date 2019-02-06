@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <translations>
    <translation id="telecom_pack_xdsl_order_follow_up_intro" qtlid="42394">Acompanhe a sua encomenda</translation>
-   <translation id="telecom_pack_xdsl_order_follow_up_total_error" qtlid="307358">Une erreur est survenue pendant le chargement.</translation>
+   <translation id="telecom_pack_xdsl_order_follow_up_total_error" qtlid="307358">Ocorreu um erro durante o carregamento.</translation>
    <translation id="telecom_pack_xdsl_order_follow_up_step_name_accessIsOperational" qtlid="312324">Votre accès est opérationnel</translation>
    <translation id="telecom_pack_xdsl_order_follow_up_step_name_checkInfrastructure" qtlid="312337">Validation de la construction de votre accès</translation>
    <translation id="telecom_pack_xdsl_order_follow_up_step_name_configureAccessOnOVH" qtlid="312350">Configuration de l'accès sur les équipements OVH</translation>

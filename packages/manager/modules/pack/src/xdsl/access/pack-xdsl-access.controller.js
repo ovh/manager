@@ -125,7 +125,7 @@ angular.module('managerApp').controller('XdslAccessCtrl', class XdslAccessCtrl {
     if (this.accessDiagnostic === null && !this.$scope.loaders.accessDiagnosticLaunched) {
       this.launchDiagnostic();
     }
-    this.$state.go('pack.xdsl.access-diagnostic-details');
+    this.$state.go('telecom.pack.xdsl.access-diagnostic-details');
   }
 
   launchDiagnostic() {

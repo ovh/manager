@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <translations>
-   <translation id="hubic_activation_total_error" qtlid="307358">Une erreur est survenue pendant le chargement.</translation>
+   <translation id="hubic_activation_total_error" qtlid="307358">Beim Laden ist ein Fehler aufgetreten.</translation>
    <translation id="hubic_activation_widget-title" qtlid="308333">Activation hubiC</translation>
    <translation id="hubic_activation_widget-intro" qtlid="308346">Pour profiter de votre avantage hubiC dans le cadre de votre pack, vous devez disposer d'un compte hubiC, si ce n'est pas le cas veuillez commencer par créer un compte gratuit sur <a href="https://www.hubic.com" target="new">hubic.com</a>.<br /> Ensuite, rendez-vous sur cette page pour activer vos codes d'activation : <a href="https://hubic.com/home/gift/" target="new">hubic.com/home/gift/</a>.</translation>
    <translation id="hubic_activation_widget_hubic_header" qtlid="108275">hubiC</translation>

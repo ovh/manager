@@ -21,10 +21,10 @@
    <translation id="email_pro_detail_quota" qtlid="6874">Límite</translation>
 
    <translation id="email_pro_detail_B" qtlid="92777">octets</translation>
-   <translation id="email_pro_detail_K" qtlid="44692">Ko</translation>
-   <translation id="email_pro_detail_M" qtlid="48878">Mo</translation>
-   <translation id="email_pro_detail_G" qtlid="48890">Go</translation>
-   <translation id="email_pro_detail_T" qtlid="70121">To</translation>
+   <translation id="email_pro_detail_K" qtlid="44692">KB</translation>
+   <translation id="email_pro_detail_M" qtlid="48878">MB</translation>
+   <translation id="email_pro_detail_G" qtlid="48890">GB</translation>
+   <translation id="email_pro_detail_T" qtlid="70121">TB</translation>
 
    <translation id="email_pro_detail_client_change_password_submit" qtlid="8434">Modifier le mot de passe</translation>
 

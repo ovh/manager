@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="xdsl_modem_service_title">Services</translation>
+   <translation id="xdsl_modem_service_bloc_ip">Bloc d'IP</translation>
+   <translation id="xdsl_modem_service_call_waiting">Mise en attente d'appel</translation>
+   <translation id="xdsl_modem_service_content_sharing">Partage de contenu</translation>
+   <translation id="xdsl_modem_service_ftp">FTP</translation>
+   <translation id="xdsl_modem_service_ipsec_alg">Ipsec ALG</translation>
+   <translation id="xdsl_modem_service_sip_alg">SIP ALG</translation>
+   <translation id="xdsl_modem_service_upnp">UPnP</translation>
+   <translation id="xdsl_modem_service_modal_title">Êtes-vous sûr(e) de vouloir activer/désactiver le partage de contenu ?</translation>
+   <translation id="xdsl_modem_service_description">Attention, l'activation/désactivation du partage de contenu entraîne l'activation/désactivation de tous les partages : partage d'imprimante, DLNAD, Samba, CIFS, FTP, UPnP, UPnP AV.</translation>
+   <translation id="xdsl_modem_service_bloc_ip_doing">Modification du statut du bloc d'IP en cours.</translation>
+   <translation id="xdsl_modem_service_bloc_ip_an_error_ocurred">Bloc d'IP&#160;:&#160;Une erreur est survenue !</translation>
+   <translation id="xdsl_modem_service_call_waiting_doing">Modification du statut de la mise en attente d'appel en cours.</translation>
+   <translation id="xdsl_modem_service_call_waiting_an_error_ocurred">Mise en attente d'appel&#160;:&#160;Une erreur est survenue !</translation>
+   <translation id="xdsl_modem_service_content_sharing_doing">Modification du statut du partage de contenu en cours.</translation>
+   <translation id="xdsl_modem_service_content_sharing_an_error_ocurred">Partage de contenu&#160;:&#160;Une erreur est survenue !</translation>
+   <translation id="xdsl_modem_service_ftp_doing">Modification du statut du FTP en cours.</translation>
+   <translation id="xdsl_modem_service_ftp_an_error_ocurred">FTP&#160;:&#160;Une erreur est survenue !></translation>
+   <translation id="xdsl_modem_service_ipsec_alg_doing">Modification du statut de l'Ipsec ALG en cours.</translation>
+   <translation id="xdsl_modem_service_ipsec_alg_an_error_ocurred">Ipsec ALG&#160;:&#160;Une erreur est survenue !</translation>
+   <translation id="xdsl_modem_service_sip_alg_doing">Modification du statut du SIP ALG en cours.</translation>
+   <translation id="xdsl_modem_service_sip_alg_an_error_ocurred">SIP ALG&#160;:&#160;Une erreur est survenue !</translation>
+   <translation id="xdsl_modem_service_upnp_doing">Modification du statut de UPnP en cours.</translation>
+   <translation id="xdsl_modem_service_upnp_an_error_ocurred">UPnP&#160;:&#160;Une erreur est survenue !</translation>
+</translations>

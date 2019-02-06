@@ -60,15 +60,48 @@
                                     data-ng-bind-html="OffersCtrl.process.pack.offerPrice.text | tucFormatPrice"></td>
                                 <td class="table-comparison__cell table-comparison__cell--border table-comparison__value"
                                     data-title="{{ offer.description }}"
-                                    data-ng-repeat="offer in OffersCtrl.process.migrationOffers.result.offers track by $index"
-                                    data-ng-bind-html="offer.displayedPrice.text | tucFormatPrice">
+                                    data-ng-repeat="offer in OffersCtrl.process.migrationOffers.result.offers track by $index">
+                                    <div data-ng-if="!offer.firstYearPromo" data-ng-bind-html="offer.displayedPrice.text | tucFormatPrice"></div>
+                                    <div data-ng-if="offer.firstYearPromo">
+                                        <div data-ng-bind-html="offer.firstYearPromo.text | tucFormatPrice"></div>
+                                        <div data-translate="telecom_pack_migration_first_year_promo"></div>
+                                        <small data-ng-bind-html="offer.price.text | tucFormatPrice"></small>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="table-comparison__property">
+                                <th class="table-comparison__cell table-comparison__cell--border table-comparison__property-name"
+                                    scope="row"
+                                    data-translate="telecom_pack_migration_modem_rental"></th>
+                                <td class="table-comparison__cell table-comparison__cell--border table-comparison__value table-comparison--item-base"
+                                    data-translate-attr="{ 'data-title' : 'telecom_pack_migration_current_offer' }"
+                                    data-translate-values="{ offerName : OffersCtrl.process.pack.offerDescription }">/</td>
+                                <td class="table-comparison__cell table-comparison__cell--border table-comparison__value"
+                                    data-title="{{ offer.description }}"
+                                    data-ng-repeat="offer in OffersCtrl.process.migrationOffers.result.offers track by $index">
+                                    <span data-ng-if="!offer.modemRental" data-translate="telecom_pack_migration_no_install_fees"></span>
+                                    <span data-ng-if="offer.modemRental" data-ng-bind-html="offer.modemRental.text | tucFormatPrice"></span>
+                                </td>
+                            </tr>
+                            <tr class="table-comparison__property">
+                                <th class="table-comparison__cell table-comparison__cell--border table-comparison__property-name"
+                                    scope="row"
+                                    data-translate="telecom_pack_migration_installation_costs"></th>
+                                <td class="table-comparison__cell table-comparison__cell--border table-comparison__value table-comparison--item-base"
+                                    data-translate-attr="{ 'data-title' : 'telecom_pack_migration_current_offer' }"
+                                    data-translate-values="{ offerName : OffersCtrl.process.pack.offerDescription }">/</td>
+                                <td class="table-comparison__cell table-comparison__cell--border table-comparison__value"
+                                    data-title="{{ offer.description }}"
+                                    data-ng-repeat="offer in OffersCtrl.process.migrationOffers.result.offers track by $index">
+                                    <span ng-if="offer.installFees" data-ng-bind-html="offer.installFees.text | tucFormatPrice"></span>
                                 </td>
                             </tr>
                             <tr class="table-comparison__property">
                                 <th class="table-comparison__cell table-comparison__cell--border table-comparison__property-name"
                                     scope="row"
                                     data-translate="telecom_pack_migration_commitment"></th>
-                                <td class="table-comparison__cell table-comparison__cell--border table-comparison__value table-comparison--item-base" data-translate-attr="{ 'data-title' : 'telecom_pack_migration_current_offer', 'number' : '12' }"
+                                <td class="table-comparison__cell table-comparison__cell--border table-comparison__value table-comparison--item-base" 
+                                    data-translate-attr="{ 'data-title' : 'telecom_pack_migration_current_offer', 'number' : '12' }"
                                     data-translate-values="{ offerName : OffersCtrl.process.pack.offerDescription, number : 12 }"
                                     data-translate="telecom_pack_migration_commitment_month">
                                 </td>
@@ -88,7 +121,8 @@
                                         data-uib-tooltip="{{ 'telecom_pack_migration_services_to_delete_explain' | translate }}">
                                    </span>
                                 </th>
-                                <td class="table-comparison__cell table-comparison__cell--border table-comparison__value table-comparison--item-base" data-translate-attr="{ 'data-title' : 'telecom_pack_migration_current_offer' }"
+                                <td class="table-comparison__cell table-comparison__cell--border table-comparison__value table-comparison--item-base" 
+                                    data-translate-attr="{ 'data-title' : 'telecom_pack_migration_current_offer' }"
                                     data-translate-values="{ offerName : OffersCtrl.process.pack.offerDescription }">/</td>
                                 <td class="table-comparison__cell table-comparison__value table-comparison__cell--border"
                                     data-title="{{ offer.description }}"
@@ -114,7 +148,8 @@
                                     <span class="ovh-font ovh-font-phone table-comparison__property-icon" aria-hidden="true"></span>
                                     <span data-translate="telecom_pack_migration_line_title"></span>
                                 </th>
-                                <td class="table-comparison__cell table-comparison__value table-comparison--item-base" data-translate-attr="{ 'data-title' : 'telecom_pack_migration_current_offer' }"
+                                <td class="table-comparison__cell table-comparison__value table-comparison--item-base" 
+                                    data-translate-attr="{ 'data-title' : 'telecom_pack_migration_current_offer' }"
                                     data-translate-values="{ offerName : OffersCtrl.process.pack.offerDescription }">
                                     <div data-ng-if="OffersCtrl.process.pack.options.voipLine">
                                         <strong class="d-block"
@@ -168,7 +203,8 @@
                                     <span class="ovh-font ovh-font-mail table-comparison__property-icon" aria-hidden="true"></span>
                                     <span data-translate="telecom_pack_migration_exchange_title"></span>
                                 </th>
-                                <td class="table-comparison__cell table-comparison__value table-comparison--item-base" data-translate-attr="{ 'data-title' : 'telecom_pack_migration_current_offer' }"
+                                <td class="table-comparison__cell table-comparison__value table-comparison--item-base" 
+                                    data-translate-attr="{ 'data-title' : 'telecom_pack_migration_current_offer' }"
                                     data-translate-values="{ offerName : OffersCtrl.process.pack.offerDescription }">
                                     <div data-ng-if="OffersCtrl.process.pack.options.exchangeAccount">
                                         <strong class="d-block"

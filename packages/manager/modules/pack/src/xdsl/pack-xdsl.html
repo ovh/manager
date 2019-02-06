@@ -21,13 +21,13 @@
 
         <nav role="navigation">
             <responsive-tabs>
-                <responsive-tab data-state="pack.xdsl"
+                <responsive-tab data-state="telecom.pack.xdsl"
                                 data-dropdown-title="{{ 'xdsl_tabs_line' | translate }}">
                     <span data-translate="xdsl_tabs_line"></span>
                 </responsive-tab>
-                <responsive-tab data-state="pack.xdsl.modem"
+                <responsive-tab data-state="telecom.pack.xdsl.modem"
                                 disabled="PackXdslCtrl.disabledModem"
-                                data-ng-if="PackXdslCtrl.content.status === 'active' || PackXdslCtrl.content.status === 'migration'"
+                                data-ng-if="PackXdslCtrl.isModemTabAvailable()"
                                 data-dropdown-title="{{ 'xdsl_tabs_modem' | translate }}">
                     <span data-translate="xdsl_tabs_modem"></span>
                 </responsive-tab>
@@ -36,7 +36,7 @@
                           class="fa fa-plus"
                           aria-hidden="true"></span>
                 </responsive-tab-more>
-                <responsive-tab data-state="pack.xdsl.tasks"
+                <responsive-tab data-state="telecom.pack.xdsl.tasks"
                                 data-dropdown-title="{{ 'xdsl_tabs_tasks' | translate }}">
                     <span data-translate="xdsl_tabs_tasks"></span>
                 </responsive-tab>

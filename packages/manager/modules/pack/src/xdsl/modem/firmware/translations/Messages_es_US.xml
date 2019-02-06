@@ -5,5 +5,5 @@
    <translation id="xdsl_modem_firmware_an_error_ocurred" qtlid="510111">FIRMWARE&#160;:&#160;Une erreur est survenue !</translation>
    <translation id="xdsl_modem_firmware_error" qtlid="510124">Oups ! Nous n'avons pas pu récupérer la version du firmware.</translation>
    <translation id="xdsl_modem_firmware_doing" qtlid="510137">Modification de la version du firmware en cours</translation>
-   <translation id="xdsl_modem_fimware_submit" qtlid="26047">Valider</translation>
+   <translation id="xdsl_modem_fimware_submit" qtlid="26047">Aceptar</translation>
 </translations>

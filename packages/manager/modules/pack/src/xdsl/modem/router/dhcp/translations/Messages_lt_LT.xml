@@ -23,4 +23,7 @@
    <translation id="xdsl_modem_dhcp_success" qtlid="311947">DHCP <strong>{{ name }}</strong> sėkmingai nustatytas!</translation>
    <translation id="xdsl_modem_dhcp_submit_error" qtlid="385273">Oi! DHCP nebuvo atnaujintas.</translation>
    <translation id="xdsl_modem_dhcp_error" qtlid="385286">Oi! Nepavyko gauti DHCP duomenų.</translation>
+   <translation id="xdsl_modem_dhcp_modal_title" qtlid="519389">Adresse IP refusée</translation>
+   <translation id="xdsl_modem_dhcp_modal_desc" qtlid="519402">L'adresse IP {{ ipUsed&#160;}} est un ancien serveur DNS OVH.</translation>
+   <translation id="xdsl_modem_dhcp_modal_desc_next" qtlid="519415">Les DNS OVH valides sont {{ ipsToUse }}.</translation>
 </translations>

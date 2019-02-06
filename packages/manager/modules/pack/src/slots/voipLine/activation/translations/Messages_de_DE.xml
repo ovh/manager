@@ -5,7 +5,7 @@
    <translation id="telefony_activation_add_line_intro_multiline" qtlid="307982">Si vous activez plusieurs lignes avec des téléphones en même temps, vous ne paierez qu'une fois les frais de port.</translation>
    <translation id="telefony_activation_with_phone_header" qtlid="307995">Avec téléphone</translation>
    <translation id="telefony_activation_no_more_port_modem" qtlid="308008">Plus de ligne disponible sur le modem, un téléphone est nécessaire</translation>
-   <translation id="telefony_activation_total_error" qtlid="307358">Une erreur est survenue pendant le chargement.</translation>
+   <translation id="telefony_activation_total_error" qtlid="307358">Beim Laden ist ein Fehler aufgetreten.</translation>
    <translation id="telefony_activation_success_validation" qtlid="308021">Votre demande a bien été prise en compte</translation>
    <translation id="telefony_activation_an_error_ocurred" qtlid="308034">Une erreur est survenue lors de la création de votre ligne</translation>
    <translation id="telefony_activation_shipping_address_label" qtlid="308047">Choisissez l’adresse et le mode de livraison de votre téléphone</translation>
