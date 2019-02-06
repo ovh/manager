@@ -11,7 +11,7 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-private-database-app' --include-filtered-dependencies -- yarn run dev:watch"
   },
   "dependencies": {
-    "@ovh-ux/manager-core": "^1.1.0",
+    "@ovh-ux/manager-core": "^2.0.0",
     "@ovh-ux/manager-private-database": "^0.0.0",
     "@ovh-ux/ng-ovh-payment-method": "^1.1.1",
     "@ovh-ux/ng-ovh-proxy-request": "^1.0.0-beta.0",
