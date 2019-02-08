@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-responsive-tabs",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "description": "Wrapper for Angular UI Bootstrap directive 'Tabs'",
   "keywords": [
     "bootstrap",
