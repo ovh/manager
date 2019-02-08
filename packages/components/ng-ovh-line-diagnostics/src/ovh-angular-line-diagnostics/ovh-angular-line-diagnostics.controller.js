@@ -1,5 +1,5 @@
 angular.module("ovh-angular-line-diagnostics").controller("LineDiagnosticsCtrl", class LineDiagnosticsCtrl {
-    constructor ($interval, $state, $timeout, $translate, $uibModal, atInternet, LineDiagnostics, LineDiagnosticFactory, Toast, DIAGNOSTICS_CONSTANTS) {
+    constructor ($interval, $state, $timeout, $translate, $uibModal, atInternet, LineDiagnostics, LineDiagnosticFactory, TucToast, DIAGNOSTICS_CONSTANTS) {
         this.$interval = $interval;
         this.$state = $state; // used in HTML
         this.$timeout = $timeout;
@@ -8,7 +8,7 @@ angular.module("ovh-angular-line-diagnostics").controller("LineDiagnosticsCtrl",
         this.atInternet = atInternet;
         this.LineDiagnosticsService = LineDiagnostics;
         this.LineDiagnosticFactory = LineDiagnosticFactory;
-        this.Toast = Toast;
+        this.TucToast = TucToast;
 
         this.DIAGNOSTICS_CONSTANTS = DIAGNOSTICS_CONSTANTS;
         this.bandwidthTestSite = this.DIAGNOSTICS_CONSTANTS.BANDWIDTH_TEST_SITE;
@@ -37,7 +37,7 @@ angular.module("ovh-angular-line-diagnostics").controller("LineDiagnosticsCtrl",
                 this.runLineDiagnostic();
             }, delayRequestStart);
         }).catch(() => {
-            this.Toast.error(this.$translate.instant("tools_lineDiagnostics_error_loading_translations"));
+            this.TucToast.error(this.$translate.instant("tools_lineDiagnostics_error_loading_translations"));
         });
     }
 
@@ -70,7 +70,7 @@ angular.module("ovh-angular-line-diagnostics").controller("LineDiagnosticsCtrl",
         }).catch((error) => {
             if (!_.isEmpty(error)) {
                 this.checkDiagnosticStatus(error);
-                this.Toast.error([this.$translate.instant("tools_lineDiagnostics_diagnostic_run_error"), error.message].join(" "));
+                this.TucToast.error([this.$translate.instant("tools_lineDiagnostics_diagnostic_run_error"), error.message].join(" "));
             }
         }).finally(() => {
             this.loading = false;
@@ -85,7 +85,7 @@ angular.module("ovh-angular-line-diagnostics").controller("LineDiagnosticsCtrl",
     cancelLineDiagnostic () {
         return this.LineDiagnosticsService.getCancelDiagnostic({ number: this.lineNumber, serviceName: this.serviceName }).$promise
             .catch((error) => {
-                this.Toast.error([this.$translate.instant("tools_lineDiagnostics_diagnostic_cancel_error"), _.get(error, "data.message", "")].join(" "));
+                this.TucToast.error([this.$translate.instant("tools_lineDiagnostics_diagnostic_cancel_error"), _.get(error, "data.message", "")].join(" "));
             });
     }
 
