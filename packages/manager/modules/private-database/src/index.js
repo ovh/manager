@@ -1,9 +1,13 @@
+/* global moment */
+
 import angular from 'angular';
+import _ from 'lodash';
+
 import '@ovh-ux/manager-core';
 import '@ovh-ux/ovh-utils-angular';
 import '@ovh-ux/ng-ovh-web-universe-components';
 import 'angularjs-scroll-glue';
-import 'chart.js';
+import 'chart.js/dist/Chart';
 import '@ovh-ux/ng-pagination-front';
 import '@ovh-ux/ng-tail-logs';
 import 'ovh-ui-angular';
@@ -92,6 +96,14 @@ angular.module(moduleName, [
       },
       translations: ['.'],
     });
+  })
+  .run(($translate) => {
+    const selectedLanguageValue = $translate.use();
+
+    if (_(moment).isObject() && _(selectedLanguageValue).isString()) {
+      const locale = selectedLanguageValue.replace(/_/, '-');
+      moment.locale(locale);
+    }
   });
 
 export default moduleName;

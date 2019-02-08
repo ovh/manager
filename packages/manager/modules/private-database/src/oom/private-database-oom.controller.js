@@ -1,6 +1,7 @@
+/* global moment */
+
 import filesize from 'filesize';
 import _ from 'lodash';
-import moment from 'moment';
 
 export default class PrivateDatabaseOomCtrl {
   /* @ngInject */

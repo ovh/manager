@@ -1,6 +1,7 @@
+/* global moment */
+
 import angular from 'angular';
 import _ from 'lodash';
-import moment from 'moment';
 
 export default class PrivateDatabase {
   /* @ngInject */

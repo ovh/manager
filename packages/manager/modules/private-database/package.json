@@ -26,6 +26,7 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-private-database' --include-filtered-dependencies -- yarn run dev"
   },
   "dependencies": {
+    "@ovh-ux/manager-core": "^2.0.0",
     "filesize": "^3.5.10",
     "lodash": "3.10.1",
     "moment": "^2.22.2"
