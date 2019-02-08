@@ -1,105 +1,100 @@
-![githubbanner](https://user-images.githubusercontent.com/3379410/27423240-3f944bc4-5731-11e7-87bb-3ff603aff8a7.png)
+# ng-ovh-swimming-poll
 
-[![Maintenance](https://img.shields.io/maintenance/yes/2018.svg)]() [![Chat on gitter](https://img.shields.io/gitter/room/ovh/ux.svg)](https://gitter.im/ovh/ux) [![Build Status](https://travis-ci.org/ovh-ux/ovh-angular-swimming-poll.svg)](https://travis-ci.org/ovh-ux/ovh-angular-swimming-poll)
+> A poller to swim easily to success status!
 
-[![NPM](https://nodei.co/npm/ovh-angular-swimming-poll.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/ovh-angular-swimming-poll/)
-
-# Swimming-poll
-_A poller to swim easily to success status!_
-
-
-## Features
-
- * Understand standard Task states
- * Customizable states (with object or function)
- * Can share the result between differents scopes
- * Can retry when error rejection is triggered (with retryMaxAttempts, retryCountAttempts and retryTimeoutDelay task options)
+[![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-swimming-poll)](https://npmjs.com/package/@ovh-ux/ng-ovh-swimming-poll) [![Dependencies](https://badgen.net/david/dep/ovh-ux/ng-ovh-swimming-poll)](https://npmjs.com/package/@ovh-ux/ng-ovh-swimming-poll?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/ng-ovh-swimming-poll)](https://npmjs.com/package/@ovh-ux/ng-ovh-swimming-poll?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
 
 ## Install
 
-### NPM
-
-```
-$ npm install ovh-angular-swimming-poll --save
+```sh
+yarn add @ovh-ux/ng-ovh-swimming-poll
 ```
 
-### Bower
+## Usage
 
-```
-$ bower install ovh-angular-swimming-poll --save
-```
+```js
+import angular from 'angular';
+import ngOvhSwimmingPoll from '@ovh-ux/ng-ovh-swimming-poll';
 
-## Get the sources
-
-```bash
-$ git clone https://github.com/ovh-ux/ovh-angular-swimming-poll.git
-$ cd ovh-angular-swimming-poll
-$ npm install
-$ bower install
+angular
+  .module('myApp', [
+    ngOvhSwimmingPoll,
+  ]);
 ```
 
-## How to use?
+### Features
+
+- Understand standard Task states
+- Customizable states (with object or function)
+- Can share the result between different scopes
+- Can retry when error rejection is triggered (with retryMaxAttempts, retryCountAttempts and retryTimeoutDelay task options)
 
 ### With OVH standard task
 
 The poller can manage return from OVH Task standard. This library understand OVH status and return promise when the task is finished.
 
-```javascript
-function (Poller) {
-    var url = '/task/42';
-    Poller.poll(
-        url,
-        null,   // params
-        {
-            namespace: 'a_namespace',
-            method: 'get',
-            scope: $scope.$id
-        }
-    ).then(function (result) {
-        console.log('result contains http response if task status is successful');
-    }, function (result) {
-        console.log('result contains http response if task status is in error state');
-    }, function (result) {
-        console.log('result contains http response if task status is in pending state');
+```js
+function createPoller(Poller) {
+  const url = '/task/42';
+  Poller
+    .poll(
+      url,
+      null, // params
+      {
+        namespace: 'a_namespace',
+        method: 'get',
+        scope: $scope.$id,
+      },
+    )
+    .then((result) => {
+      console.log('result contains http response if task status is successful');
+    }, (result) => {
+      console.log('result contains http response if task status is in error state');
+    }, (result) => {
+      console.log('result contains http response if task status is in pending state');
     });
+}
 ```
 
 ### With custom validation rules
 
 When you want to poll another thing that an OVH task, you had to define your custom validation rules.
 
-```javascript
-function (Poller) {
-    var url = '/ip/192.168.1.1/status';
-    Poller.poll(
-        url,
-        {
-            headers: 'demo'
+```js
+function createPoller(Poller) {
+  const url = '/ip/192.168.1.1/status';
+  Poller
+    .poll(
+      url,
+      {
+        headers: 'demo',
+      },
+      {
+        namespace: 'a_namespace',
+        method: 'get',
+        scope: $scope.$id,
+        successRule: {
+          status: 'yeah_it_works',
+          billingStatus(elem) {
+            return elem.billing.status === 'nietMeerGeld';
+          },
         },
-        {
-            namespace: 'a_namespace',
-            method: 'get',
-            scope: $scope.$id,
-            successRule: { 
-                status: 'yeah_it_works', 
-                billingStatus : function (elem) {
-                    return elem.billing.status === 'nietMeerGeld';
-                }
-            },
-            errorRule: { 
-                status: 'oh_damned',
-                billingStatus : function (elem) {
-                    return elem.billing.status === 'verdom';
-                }
-            }
-        }
-    ).then(function (result) {
-        console.log('result contains http response if status is yeah_it_works');
-    }, function (result) {
-        console.log('result contains http response if status is oh_damned');
-    }, function (result) {
-        console.log('result contains http response if status is not oh_damned and not yeah_it_works');
+        errorRule: {
+          status: 'oh_damned',
+          billingStatus(elem) {
+            return elem.billing.status === 'verdom';
+          },
+        },
+      },
+    )
+    .then((result) => {
+      console.log('result contains http response if status is yeah_it_works');
+    }, (result) => {
+      console.log('result contains http response if status is oh_damned');
+    }, (result) => {
+      console.log('result contains http response if status is not oh_damned and not yeah_it_works');
     });
+}
 ```
 
 ### With custom validations rules, on a listing
@@ -110,37 +105,38 @@ You can do a polling on listing request. In this case:
  * else, promise will send a notify with the http response
 
 ```javascript
-function (Poller) {
-    var url = '/ip';
-    Poller.poll(
-        url,
-        {
-            headers: 'demo'
+function createPoller(Poller) {
+  const url = '/ip';
+  Poller.poll(
+    url,
+    {
+      headers: 'demo',
+    },
+    {
+      namespace: 'a_namespace',
+      method: 'get',
+      scope: $scope.$id,
+      successRule: {
+        status: 'yeah_it_works',
+        billingStatus(elem) {
+          return elem.billing.status === 'nietMeerGeld';
         },
-        {
-            namespace: 'a_namespace',
-            method: 'get',
-            scope: $scope.$id,
-            successRule: { 
-                status: 'yeah_it_works', 
-                billingStatus : function (elem) {
-                    return elem.billing.status === 'nietMeerGeld';
-                }
-            },
-            errorRule: { 
-                status: 'oh_damned',
-                billingStatus : function (elem) {
-                    return elem.billing.status === 'verdom';
-                }
-            }
-        }
-    ).then(function (result) {
-        console.log('result contains http response if all statuses are yeah_it_works');
-    }, function (result) {
-        console.log('result contains http response if one or more status is oh_damned and other yeah_it_works');
-    }, function (result) {
-        console.log('result contains http response if one or more status is not a finalized status');
-    });
+      },
+      errorRule: {
+        status: 'oh_damned',
+        billingStatus(elem) {
+          return elem.billing.status === 'verdom';
+        },
+      },
+    },
+  ).then((result) => {
+    console.log('result contains http response if all statuses are yeah_it_works');
+  }, (result) => {
+    console.log('result contains http response if one or more status is oh_damned and other yeah_it_works');
+  }, (result) => {
+    console.log('result contains http response if one or more status is not a finalized status');
+  });
+}
 ```
 
 ### With time interval
@@ -148,47 +144,39 @@ function (Poller) {
 You can specify the interval as a fix value or a function
 
 ```javascript
-function (Poller) {
-    var url = '/task/42';
-    Poller.poll(
-        url,
-        null,   // params
-        {
-            namespace: 'a_namespace',
-            method: 'get',
-            scope: $scope.$id,
-            interval: function(iteration) {
-                return 10 * Math.exp(iteration);
-            }
-        }
-    ).then(function (result) {
-        console.log('result contains http response if task status is successful');
-    }, function (result) {
-        console.log('result contains http response if task status is in error state');
-    }, function (result) {
-        console.log('result contains http response if task status is in pending state');
-    });
+function createPoller(Poller) {
+  const url = '/task/42';
+  Poller.poll(
+    url,
+    null, // params
+    {
+      namespace: 'a_namespace',
+      method: 'get',
+      scope: $scope.$id,
+      interval(iteration) {
+        return 10 * Math.exp(iteration);
+      },
+    },
+  ).then((result) => {
+    console.log('result contains http response if task status is successful');
+  }, (result) => {
+    console.log('result contains http response if task status is in error state');
+  }, (result) => {
+    console.log('result contains http response if task status is in pending state');
+  });
+}
 ```
 
-# Contributing
+## Test
 
-You've developed a new cool feature ? Fixed an annoying bug ? We'd be happy
-to hear from you !
-
-Have a look in [CONTRIBUTING.md](https://github.com/ovh-ux/ovh-angular-swimming-poll/blob/master/CONTRIBUTING.md)
-
-## Run the tests
-
-```
-$ npm test
+```sh
+yarn test
 ```
 
-## Related links
+## Contributing
 
- * Contribute: https://github.com/ovh-ux/ovh-angular-swimming-poll/blob/master/CONTRIBUTING.md
- * Report bugs: https://github.com/ovh-ux/ovh-angular-swimming-poll/issues
- * Get latest version: https://github.com/ovh-ux/ovh-angular-swimming-poll
+Always feel free to help out! Whether it's [filing bugs and feature requests](https://github.com/ovh-ux/ng-ovh-swimming-poll/issues/new) or working on some of the [open issues](https://github.com/ovh-ux/ng-ovh-swimming-poll/issues), our [contributing guide](CONTRIBUTING.md) will help get you started.
 
-# License
+## License
 
-See https://github.com/ovh-ux/ovh-angular-swimming-poll/blob/master/LICENSE
+[BSD-3-Clause](LICENSE) © OVH SAS
