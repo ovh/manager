@@ -1,12 +1,8 @@
-# Toaster
-
-![OVH component deprecated](https://user-images.githubusercontent.com/3379410/27423263-520b94d8-5731-11e7-996a-f8579e70c33b.png)
-
-![deprecated](https://img.shields.io/badge/status-deprecated-red.svg) [![Build Status](https://travis-ci.org/ovh-ux/ovh-angular-toaster.svg)](https://travis-ci.org/ovh-ux/ovh-angular-toaster)
-
-[![NPM](https://nodei.co/npm/ovh-angular-toaster.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/ovh-angular-toaster/)
+# ng-ovh-toaster
 
 > A factory to create toast
+
+[![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-toaster)](https://npmjs.com/package/@ovh-ux/ng-ovh-toaster) [![Dependencies](https://badgen.net/david/dep/ovh-ux/ng-ovh-toaster)](https://npmjs.com/package/@ovh-ux/ng-ovh-toaster?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/ng-ovh-toaster)](https://npmjs.com/package/@ovh-ux/ng-ovh-toaster?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
 
 ---
 
@@ -16,170 +12,89 @@
 
 ---
 
-
 Toaster is a component to show an in-app notification, like a [toast](http://developer.android.com/guide/topics/ui/notifiers/toasts.html) for android applications.
 
-# Example
+## Install
 
-Require Angular module `toaster`.
-If you need to change theme or css classes, you can define it inside module configuration like this:
-
- ```javascript
- angular.module("myApp", ['ovh-angular-toaster']).config(function (ToastProvider) {
-
-	 // CSS classes
-     ToastProvider.setExtraClasses('messenger-fixed messenger-on-bottom messenger-on-right');
-
-     // Graphic theme
-     ToastProvider.setTheme('air');
-
-     // Set duration
-     ToastProvider.setHideAfter(42);
- });
- ```
-
- To add a notification, you had to inject Toast as dependency and use it like this example inside a controller
-
- ```javascript
- angular.module('myApp').controller('iLikeLicorn',[ 'Toast', function (Toast) {
-     "use strict";
-
-     Toast.success("Licorns eat toast?");
-
- }]);
- ```
- Toast can by targetted with an ID. So, you can update a toast on-the-fly, like this:
-
- ```javascript
- Toast.info('Loading...', {
-     id: 42,
-     hideAfter: false
- });
-
- $timeout(function () {
-     Toast.success('Done!', {
-         id: 42
-     });
- }, 2000);
- ```
-
- Also, a main Toast fct returns the instance of the Toast created. Then you can play with it!
-
- ```javascript
- var msg = Toast.info('Hello!', {
-     hideAfter: false
- });
-
- $timeout(function () {
-     Toast.hide(msg);
-     $timeout(function () {
-         Toast.show(msg);
-     }, 2000);
- }, 2000);
- ```
-
-## Installation
-
-## Bower
-
-    bower install ovh-angular-toaster --save
-
-## NPM
-
-    npm install ovh-angular-toaster --save
-
-## Get the sources
-
-```bash
-    git clone https://github.com/ovh-ux/ovh-angular-toaster.git
-    cd ovh-angular-toaster
-    npm install
-    bower install
+```sh
+yarn add @ovh-ux/ng-ovh-toaster
 ```
 
-### __Warning__
-By default, CSS from messenger dependency download fonts from google...
-Two themes are banned :
-* __air__
-* __ice__
+## Usage
 
-__Don't forgot to disable CSS loading!!!__
+```js
+import angular from 'angular';
+import ngOvhToaster from '@ovh-ux/ng-ovh-toaster';
 
-Toaster include version of these themes without fonts dependencies.
-To avoid loading CSS file, you had to exclude theses files into your wiredep (in gruntfile.js), like this:
+angular
+  .module('myApp', [
+    ngOvhToaster,
+  ])
+  .config(/* @ngInject */(ToastProvider) => {
+    // CSS classes
+    ToastProvider.setExtraClasses('messenger-fixed messenger-on-bottom messenger-on-right');
 
-```javascript
-wiredep: {
-  target: {
-    ...
-    exclude: [
-        'bower_components/messenger/build/css/messenger-theme-air.css',              'bower_components/messenger/build/css/messenger-theme-ice.css']
-  }
-},
+    // Graphic theme
+    ToastProvider.setTheme('air');
+
+    // Set duration
+    ToastProvider.setHideAfter(42);
+  })
+  .controller('MyController', class {
+    /* @ngInject */
+    constructor($timeout, Toast) {
+      this.$timeout = $timeout;
+      this.Toast = Toast;
+    }
+
+    $onInit() {
+      // To add a notification, you had to inject Toast as dependency
+      // and use it like this example inside a controller
+      this.Toast.success('My Toast message');
+
+      // Toast can by targetted with an ID. So, you can update a toast on-the-fly, like this:
+      this.Toast.info('Loading...', {
+        id: 42,
+        hideAfter: false,
+      });
+
+      this.$timeout(function () {
+        this.Toast.success('Done!', {
+          id: 42,
+        });
+      }, 2000);
+
+      // Also, a main Toast fct returns the instance of the Toast created.
+      // Then you can play with it!
+      const msg = this.Toast.info('Hello!', {
+        hideAfter: false,
+      });
+
+      this.$timeout(function () {
+        this.Toast.hide(msg);
+        this.$timeout(function () {
+          this.Toast.show(msg);
+        }, 2000);
+      }, 2000);
+    }
+  });
 ```
 
-## Features
+## Related
 
- * Show a notification with _success, error, info_ or _light_ mode.
- * Can by update on-the-fly!
- * Automatically hidden by default.
- * Doesn't translate message by default. The best way is to translate before send message to Toaster.
+- [Messenger](https://github.com/HubSpot/messenger)
+- ngSanitize
 
-## Dependencies
+## Test
 
- * [Messenger](https://github.com/HubSpot/messenger)
- * ngSanitize
+```sh
+yarn test
+```
 
+## Contributing
 
-## API
+Always feel free to help out! Whether it's [filing bugs and feature requests](https://github.com/ovh-ux/ng-ovh-toaster/issues/new) or working on some of the [open issues](https://github.com/ovh-ux/ng-ovh-toaster/issues), our [contributing guide](CONTRIBUTING.md) will help get you started.
 
-### Main functions
+## License
 
- * __Toast.success(message, parameters)__ show a success notification.
- * __Toast.info(message, parameters)__ show an information notification.
- * __Toast.error(message, parameters)__ show an error notification.
- * __Toast.light(message, parameters)__ show a light notification.
-
- __Params:__
-  * __message__: message to show
-  * __parameters__: Object to configure lib use to show notification. Please report to [Messenger repo](https://github.com/HubSpot/messenger) documentation. Inside parameters, you can add all parameters from Messenger library: [Messenger documentation](https://github.com/HubSpot/messenger/blob/master/docs/intro.md)
-
- __Returns:__
-  * __notification__: the instance of the Toast.
-
-### Others functions
-
- * __Toast.infoWithInProgress(messageProgress, message, parameters)__ show a info notification with progress information. Return notification reference.
- * __Toast.update(notification, message, parameters)__ update message inside notification. Return operation status.
- * __Toast.show(notification)__ show a specific notification. Return operation status.
- * __Toast.hide(notification)__ hide a specific notification. Return operation status.
- * __Toast.hideAll()__ hide all notification. Return operation status.
-
-
-
- You've developed a new cool feature? Fixed an annoying bug? We'd be happy
- to hear from you!
-
- Have a look in [CONTRIBUTING.md](https://github.com/ovh-ux/ovh-angular-toaster/blob/master/CONTRIBUTING.md)
-
- ## Run the tests
-
- ```
- npm test
- ```
-
- ## Build the documentation
-
- ```
- grunt ngdocs
- ```
-
- # Related links
-
-  * Contribute: https://github.com/ovh-ux/ovh-angular-toaster/CONCONTRIBUTING.md
-  * Report bugs: https://github.com/ovh-ux/ovh-angular-toaster/issues
-  * Get latest version: https://github.com/ovh-ux/ovh-angular-toaster
-
- # License
-
- See https://github.com/ovh-ux/ovh-angular-toaster/blob/master/LICENSE
+[BSD-3-Clause](LICENSE) © OVH SAS
