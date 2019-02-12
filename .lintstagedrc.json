@@ -1,0 +1,13 @@
+{
+  "*.html": [
+    "htmlhint 'src/**/*.html'"
+  ],
+  "*.js": [
+    "eslint --fix",
+    "git add"
+  ],
+  "*.less": [
+    "stylelint 'src/**/*.less' --fix",
+    "git add"
+  ]
+}
