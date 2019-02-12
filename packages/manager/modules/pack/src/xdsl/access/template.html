@@ -25,16 +25,16 @@
                                          data-translate="xdsl_details_status_label"></div>
                                     <div class="oui-tile__description">
                                         <div class="mb-3 d-flex align-items-center justify-content-between">
-                                            <div data-ng-bind-html="XdslAccess.statusLabel"></div>
+                                            <div data-ng-bind-html="$ctrl.statusLabel"></div>
                                             <oui-button data-variant="link"
-                                                        data-on-click="XdslAccess.openDetailsPopup()">
+                                                        data-on-click="$ctrl.openDetailsPopup()">
                                                 <span data-translate="xdsl_details_diagnostic_modal_button"></span>
                                             </oui-button>
                                         </div>
                                         <p data-ng-if="!access.xdsl.isFiber" data-translate="xdsl_details_diagnostic_description"></p>
                                         <p data-ng-if="access.xdsl.isFiber" data-translate="xdsl_details_diagnostic_not_yet_available"></p>
                                         <button class="oui-button oui-button_full-width oui-button_icon-right oui-button_secondary"
-                                                data-ui-sref="telecom.pack.xdsl.access-diagnostic"
+                                                data-ui-sref="pack.xdsl.access-diagnostic"
                                                 data-ng-disabled="access.xdsl.isFiber">
                                             <span data-translate="xdsl_details_button_diagnostic"></span>
                                             <span class="oui-icon oui-icon_circle oui-icon-chevron-right"
@@ -51,23 +51,23 @@
                                          data-translate="xdsl_details_sync_label"></div>
                                     <div class="oui-tile__description">
                                         <div class="text-uppercase"
-                                             data-ng-if="XdslAccess.lineDetails.syncDown">
+                                             data-ng-if="$ctrl.lineDetails.syncDown">
                                             <span class="fa fa-arrow-down"
                                                   aria-hidden="true"></span>
                                             <span data-translate="xdsl_details_syncDown"
-                                                  data-translate-values="{ syncDown: XdslAccess.lineDetails.syncDown }">
+                                                  data-translate-values="{ syncDown: $ctrl.lineDetails.syncDown }">
                                             </span>
                                         </div>
                                         <div class="text-uppercase"
-                                             data-ng-if="XdslAccess.lineDetails.syncUp">
+                                             data-ng-if="$ctrl.lineDetails.syncUp">
                                             <span class="fa fa-arrow-up"
                                                   aria-hidden="true"></span>
                                             <span data-translate="xdsl_details_syncUp"
-                                                  data-translate-values="{ syncUp: XdslAccess.lineDetails.syncUp }">
+                                                  data-translate-values="{ syncUp: $ctrl.lineDetails.syncUp }">
                                             </span>
                                         </div>
                                         <span
-                                            data-ng-if="!XdslAccess.lineDetails.syncUp && !XdslAccess.lineDetails.syncDown">-</span>
+                                            data-ng-if="!$ctrl.lineDetails.syncUp && !$ctrl.lineDetails.syncDown">-</span>
                                     </div>
                                 </div>
                             </li>
@@ -78,7 +78,7 @@
                                     <div class="oui-tile__term" data-translate="xdsl_details_att"></div>
                                     <div class="oui-tile__description"
                                          data-translate="xdsl_details_db"
-                                         data-translate-values="{ mitigation: XdslAccess.lineDetails.mitigation }">
+                                         data-translate-values="{ mitigation: $ctrl.lineDetails.mitigation }">
                                     </div>
                                 </div>
                             </li>
@@ -98,20 +98,20 @@
                                 <div class="oui-tile__definition">
                                     <div class="oui-tile__term" data-translate="xdsl_details_degroupage_label"></div>
                                     <div class="oui-tile__description"
-                                         data-ng-if="XdslAccess.lineDetails.deconsolidation !== 'partial' || access.tasks.current.accessPartToTotal"
-                                         data-translate="xdsl_access_deconsolidation_{{XdslAccess.lineDetails.deconsolidation}}"
+                                         data-ng-if="$ctrl.lineDetails.deconsolidation !== 'partial' || access.tasks.current.accessPartToTotal"
+                                         data-translate="xdsl_access_deconsolidation_{{$ctrl.lineDetails.deconsolidation}}"
                                          data-uib-tooltip-template="'pack-xdsl-access-tooltip-deconsolidation.html'"
-                                         data-tooltip-enable="XdslAccess.lineDetails.deconsolidation"
+                                         data-tooltip-enable="$ctrl.lineDetails.deconsolidation"
                                          data-tooltip-placement="right">
                                     </div>
                                     <div class="oui-tile__description"
-                                         data-ng-if="XdslAccess.lineDetails.deconsolidation === 'partial' && !access.tasks.current.accessPartToTotal">
+                                         data-ng-if="$ctrl.lineDetails.deconsolidation === 'partial' && !access.tasks.current.accessPartToTotal">
                                         <a class="service-button"
-                                           data-ui-sref="telecom.pack.xdsl.access-deconsolidation"
+                                           data-ui-sref="pack.xdsl.access-deconsolidation"
                                            data-uib-tooltip-template="'pack-xdsl-access-tooltip-deconsolidation.html'"
-                                           data-tooltip-enable="XdslAccess.lineDetails.deconsolidation"
+                                           data-tooltip-enable="$ctrl.lineDetails.deconsolidation"
                                            data-tooltip-placement="right">
-                                            <div data-translate="xdsl_access_deconsolidation_{{XdslAccess.lineDetails.deconsolidation}}">
+                                            <div data-translate="xdsl_access_deconsolidation_{{$ctrl.lineDetails.deconsolidation}}">
                                             </div>
 
                                             <span data-translate="xdsl_details_button_deconsolidation"></span>
@@ -126,7 +126,7 @@
                                 <div class="oui-tile__definition">
                                     <div class="oui-tile__term" data-translate="xdsl_details_address"></div>
                                     <div class="oui-tile__description">
-                                        <div data-ng-if="XdslAccess.pendingAddressMove">
+                                        <div data-ng-if="$ctrl.pendingAddressMove">
                                             <span data-ng-bind="access.xdsl.address.numberStreet"></span>
                                             <span data-ng-bind="access.xdsl.address.street"></span>,
                                             <span data-ng-bind="access.xdsl.address.zipCode"></span>
@@ -142,7 +142,7 @@
                                             <span data-ng-bind="access.xdsl.address.city"></span>
                                         </div>
                                         <div
-                                            data-ng-if="!XdslAccess.pendingAddressMove && access.xdsl.accessType !== 'sdsl'">
+                                            data-ng-if="!$ctrl.pendingAddressMove && access.xdsl.accessType !== 'sdsl'">
                                             <div class="mb-3">
                                                 <span data-ng-bind="access.xdsl.address.numberStreet"></span>
                                                 <span data-ng-bind="access.xdsl.address.street"></span>,
@@ -152,7 +152,7 @@
 
                                             <button class="oui-button oui-button_secondary oui-button_full-width oui-button_icon-right"
                                                     data-ng-disabled="access.xdsl.isFiber"
-                                                    data-ui-sref="telecom.pack.move"
+                                                    data-ui-sref="pack.move"
                                                     role="button">
                                                 <span data-translate="xdsl_details_button_move"></span>
                                                 <span class="oui-icon oui-icon_circle oui-icon-chevron-right"
@@ -171,14 +171,14 @@
                                     <div class="oui-tile__description">
                                         <div class="mb-3">
                                             <p class="text-default"
-                                               data-ng-class="{ 'description-title-fullHeight' : !XdslAccess.actualOrder.doneDateLocale }"
-                                               data-translate="telecom_pack_xdsl_order_follow_up_step_name_{{XdslAccess.actualOrder.name}}"></p>
+                                               data-ng-class="{ 'description-title-fullHeight' : !$ctrl.actualOrder.doneDateLocale }"
+                                               data-translate="telecom_pack_xdsl_order_follow_up_step_name_{{$ctrl.actualOrder.name}}"></p>
                                             <p class="text-default"
-                                               data-ng-if="XdslAccess.actualOrder.doneDateLocale"
-                                               data-ng-bind="XdslAccess.actualOrder.doneDateLocale"></p>
+                                               data-ng-if="$ctrl.actualOrder.doneDateLocale"
+                                               data-ng-bind="$ctrl.actualOrder.doneDateLocale"></p>
                                         </div>
                                         <a class="oui-button oui-button_full-width oui-button_icon-right oui-button_secondary"
-                                           data-ui-sref="telecom.pack.xdsl.access-order">
+                                           data-ui-sref="pack.xdsl.access-order">
                                             <span data-translate="xdsl_details_followUp_label_step_name_detail"></span>
                                             <span class="oui-icon oui-icon_circle oui-icon-chevron-right"
                                                   aria-hidden="true"></span>
@@ -208,7 +208,7 @@
                                         </div>
 
                                         <a class="oui-button oui-button_full-width oui-button_icon-right oui-button_secondary"
-                                           data-ui-sref="telecom.pack.xdsl.access-notifications">
+                                           data-ui-sref="pack.xdsl.access-notifications">
                                             <span data-translate="xdsl_details_notif_show_alerts"></span>
                                             <span class="oui-icon oui-icon_circle oui-icon-chevron-right"
                                                   aria-hidden="true"></span>
@@ -220,7 +220,7 @@
                             <li class="oui-tile__item">
                                 <div class="oui-tile__definition">
                                     <a class="btn btn-default btn-block"
-                                       data-ui-sref="telecom.pack.xdsl.access-resiliation"
+                                       data-ui-sref="pack.xdsl.access-resiliation"
                                        data-translate="xdsl_resiliate"
                                        data-translate-attr="{title: 'common_resiliation'}"></a>
                                 </div>
@@ -252,48 +252,48 @@
                                             data-translate="xdsl_details_NRA_distance"></dt>
                                         <dd class="oui-tile__description"
                                             data-translate="xdsl_details_metters"
-                                            data-translate-values="{ distance: XdslAccess.lineDetails.distance }">
+                                            data-translate-values="{ distance: $ctrl.lineDetails.distance }">
                                         </dd>
 
                                         <dt class="oui-tile__term"
                                             data-translate="xdsl_details_cable_type"></dt>
                                         <dd class="oui-tile__description"
-                                            data-ng-if="XdslAccess.lineDetails.lineSectionsLength.length"
+                                            data-ng-if="$ctrl.lineDetails.lineSectionsLength.length"
                                             data-translate="xdsl_details_sectionLength_values"
-                                            data-translate-values="{ diameter: XdslAccess.lineDetails.lineSectionsLength[0].diameter, length: XdslAccess.lineDetails.lineSectionsLength[0].length }">
+                                            data-translate-values="{ diameter: $ctrl.lineDetails.lineSectionsLength[0].diameter, length: $ctrl.lineDetails.lineSectionsLength[0].length }">
                                         </dd>
                                         <dd class="oui-tile__description"
-                                            data-ng-if="!XdslAccess.lineDetails.lineSectionsLength.length">-
+                                            data-ng-if="!$ctrl.lineDetails.lineSectionsLength.length">-
                                         </dd>
 
                                         <dt class="oui-tile__term"
                                             data-translate="xdsl_details_concentrationPoint_lineHead_label"></dt>
                                         <dd class="oui-tile__description"
-                                            data-ng-if="XdslAccess.lineDetails.concentrationPoint.lineHead"
-                                            data-ng-bind="XdslAccess.lineDetails.concentrationPoint.lineHead">
+                                            data-ng-if="$ctrl.lineDetails.concentrationPoint.lineHead"
+                                            data-ng-bind="$ctrl.lineDetails.concentrationPoint.lineHead">
                                         </dd>
                                         <dd class="oui-tile__description"
-                                            data-ng-if="!XdslAccess.lineDetails.concentrationPoint.lineHead">-
+                                            data-ng-if="!$ctrl.lineDetails.concentrationPoint.lineHead">-
                                         </dd>
 
                                         <dt class="oui-tile__term"
                                             data-translate="xdsl_details_concentrationPoint_lineInitialSection_label"></dt>
                                         <dd class="oui-tile__description"
-                                            data-ng-if="XdslAccess.lineDetails.concentrationPoint.lineInitialSection"
-                                            data-ng-bind="XdslAccess.lineDetails.concentrationPoint.lineInitialSection">
+                                            data-ng-if="$ctrl.lineDetails.concentrationPoint.lineInitialSection"
+                                            data-ng-bind="$ctrl.lineDetails.concentrationPoint.lineInitialSection">
                                         </dd>
                                         <dd class="oui-tile__description"
-                                            data-ng-if="!XdslAccess.lineDetails.concentrationPoint.lineInitialSection">-
+                                            data-ng-if="!$ctrl.lineDetails.concentrationPoint.lineInitialSection">-
                                         </dd>
 
                                         <dt class="oui-tile__term"
                                             data-translate="xdsl_details_concentrationPoint_lineInitialSectionPair_label"></dt>
                                         <dd class="oui-tile__description"
-                                            data-ng-if="XdslAccess.lineDetails.concentrationPoint.lineInitialSectionPair"
-                                            data-ng-bind="XdslAccess.lineDetails.concentrationPoint.lineInitialSectionPair">
+                                            data-ng-if="$ctrl.lineDetails.concentrationPoint.lineInitialSectionPair"
+                                            data-ng-bind="$ctrl.lineDetails.concentrationPoint.lineInitialSectionPair">
                                         </dd>
                                         <dd class="oui-tile__description"
-                                            data-ng-if="!XdslAccess.lineDetails.concentrationPoint.lineInitialSectionPair">
+                                            data-ng-if="!$ctrl.lineDetails.concentrationPoint.lineInitialSectionPair">
                                             -
                                         </dd>
                                     </dl>
@@ -319,7 +319,7 @@
                                         <dt class="oui-tile__term"
                                             data-translate="xdsl_details_PTO_reference"></dt>
                                         <dd class="oui-tile__description"
-                                            data-ng-bind="XdslAccess.lineDetails.number"></dd>
+                                            data-ng-bind="$ctrl.lineDetails.number"></dd>
                                     </dl>
                                 </div>
                             </li>
@@ -328,12 +328,12 @@
                                 <div class="oui-tile__definition">
                                     <h4 class="oui-header_5" data-translate="xdsl_details_ips_title"></h4>
                                     <!-- IP V4 -->
-                                    <div data-ng-if="XdslAccess.ipsV4.length > 0">
+                                    <div data-ng-if="$ctrl.ipsV4.length > 0">
                                         <div class="oui-tile__term"
                                              data-translate="xdsl_details_ips_v4"></div>
                                         <div class="oui-tile__description">
                                             <div class="my-2 ip-row-height"
-                                                 data-ng-repeat="ip in XdslAccess.ipsV4 | orderBy:'-range' track by ip.ip">
+                                                 data-ng-repeat="ip in $ctrl.ipsV4 | orderBy:'-range' track by ip.ip">
                                                 <div class="d-inline-block my-2"
                                                      data-ng-bind="ip.ip + '&nbsp;/&nbsp;' + ip.range">
                                                 </div>
@@ -342,7 +342,7 @@
                                                 <div class="float-right">
                                                     <a data-ng-disabled="ip.deleting"
                                                        title="{{ip.ip}} / {{ip.range}} : {{::'xdsl_details_ips_manage' | translate }}"
-                                                       data-ui-sref="telecom.pack.xdsl.access-ip({block:ip.getBlock()})"
+                                                       data-ui-sref="pack.xdsl.access-ip({block:ip.getBlock()})"
                                                        class="btn btn-default">
                                                         <span class="oui-icon oui-icon-gear_line"
                                                               aria-hidden="true"></span>
@@ -351,7 +351,7 @@
                                                             data-ng-disabled="ip.deleting || ip.range === constants.rangeOfBaseIpv4IP || ip.status === 'toDelete'"
                                                             class="btn btn-default"
                                                             title="{{ip.ip}} / {{ip.range}} {{:: 'common_table_delete' | translate }}"
-                                                            data-ng-really-click="XdslAccess.deleteIps(ip)"
+                                                            data-ng-really-click="$ctrl.deleteIps(ip)"
                                                             data-ng-really-message="{{::'xdsl_access_ip_delete_really' | translate:ip}}"
                                                             data-ng-really-confirm="{{::'ok' | translate }}"
                                                             data-ng-really-cancel="{{::'cancel' | translate }}"
@@ -368,7 +368,7 @@
                                         </div>
                                     </div>
                                     <!-- IP V6 -->
-                                    <div data-ng-if="XdslAccess.ipsV6.length > 0">
+                                    <div data-ng-if="$ctrl.ipsV6.length > 0">
                                         <span class="tooltip-label oui-tile__term"
                                               data-uib-tooltip-template="'pack-xdsl-access-tooltip-ips.html'"
                                               data-tooltip-append-to-body="true"
@@ -376,15 +376,20 @@
                                               data-translate="xdsl_details_ips_v6">
                                         </span>
                                         <div class="oui-tile__description">
-                                            <div data-ng-include="'app/telecom/pack/xdsl/access/ipv6/pack-xdsl-access-ipv6.html'"></div>
+                                            <pack-xdsl-access-ip-v6
+                                                data-service-name="$ctrl.serviceName"
+                                                data-routing-ip-v6="access.tasks.current.routingIpv6"
+                                                data-ipv6-enabled="access.xdsl.ipv6Enabled"
+                                                data-is-zyxel="access.isZyxel">
+                                            </pack-xdsl-access-ip-v6>
                                             <div class="my-2 ip-row-height"
-                                                 data-ng-repeat="ip in XdslAccess.ipsV6 | orderBy:'-range' track by ip.ip">
+                                                 data-ng-repeat="ip in $ctrl.ipsV6 | orderBy:'-range' track by ip.ip">
                                                 <div class="d-inline-block my-2"
                                                      data-ng-bind="ip.ip + '&nbsp;/&nbsp;' + ip.range">
                                                 </div>
                                                 <div class="float-right">
                                                     <a data-ng-disabled="ip.deleting"
-                                                       data-ui-sref="telecom.pack.xdsl.access-ip({block:ip.getBlock()})"
+                                                       data-ui-sref="pack.xdsl.access-ip({block:ip.getBlock()})"
                                                        title="{{ip.ip}} / {{ip.range}} : {{::'xdsl_details_ips_manage' | translate }}"
                                                        class="btn btn-default">
                                                         <span class="oui-icon oui-icon-gear_line"></span>
@@ -402,11 +407,11 @@
                                             </div>
                                         </div>
                                         <div class="oui-tile__actions">
-                                            <em class="text-warning pl-1" data-ng-if="XdslAccess.hasPendingOrderAdditionalIpOption() && XdslAccess.canHaveMoreIps()" data-translate="xdsl_details_ips_block_pending_order"></em>
+                                            <em class="text-warning pl-1" data-ng-if="$ctrl.hasPendingOrderAdditionalIpOption() && $ctrl.canHaveMoreIps()" data-translate="xdsl_details_ips_block_pending_order"></em>
                                             <button type="button"
                                                     class="oui-button oui-button_full-width oui-button_icon-left oui-button_primary mt-3"
-                                                    data-ng-disabled="!XdslAccess.canHaveMoreIps() || XdslAccess.hasPendingOrderAdditionalIpOption()"
-                                                    data-ng-click="XdslAccess.orderIps()">
+                                                    data-ng-disabled="!$ctrl.canHaveMoreIps() || $ctrl.hasPendingOrderAdditionalIpOption()"
+                                                    data-ng-click="$ctrl.orderIps()">
                                                 <span class="ovh-font ovh-font-cart mr-2"
                                                       aria-hidden="true"></span>
                                                 <span data-translate="xdsl_details_ips_order"></span>
@@ -433,19 +438,24 @@
 
                                         <div class="my-2"
                                          data-ng-if="access.xdsl.capabilities.canChangeDslamProfile">
-                                        <label>
-                                            <a href="https://www.ovh.com/fr/a1649.adsl-vdsl-quel-profil-box"
-                                               target="_blank"
-                                               data-tooltip-append-to-body="true"
-                                               data-tooltip-placement="right"
-                                               data-uib-tooltip-template="'pack-xdsl-access-tooltip-dslamProfile.html'">
-                                                <span data-translate="xdsl_details_profile"></span>
-                                                <i class="ovh-font ovh-font-question ml-1"
-                                                   aria-hidden="true"></i>
-                                            </a>
-                                        </label>
-                                        <div class="oui-tile__description"
-                                             data-ng-include="'app/telecom/pack/xdsl/access/profil/pack-xdsl-access-profil.html'"></div>
+                                            <label>
+                                                <a href="https://www.ovh.com/fr/a1649.adsl-vdsl-quel-profil-box"
+                                                target="_blank"
+                                                data-tooltip-append-to-body="true"
+                                                data-tooltip-placement="right"
+                                                data-uib-tooltip-template="'pack-xdsl-access-tooltip-dslamProfile.html'">
+                                                    <span data-translate="xdsl_details_profile"></span>
+                                                    <i class="ovh-font ovh-font-question ml-1"
+                                                    aria-hidden="true"></i>
+                                                </a>
+                                            </label>
+                                            <div class="oui-tile__description">
+                                                <pack-xdsl-access-profil
+                                                    data-service-name="$ctrl.serviceName"
+                                                    data-number="$ctrl.number"
+                                                    data-current-task="access.tasks.current">
+                                                </pack-xdsl-access-profil>
+                                            </div>
                                         </div>
 
                                         <div class="my-2"
@@ -472,7 +482,7 @@
                                         </div>
                                     </div>
 
-                                    <div data-ng-if="XdslAccess.modem">
+                                    <div data-ng-if="$ctrl.modem">
                                         <span data-ng-if="access.xdsl.isFiber" class="oui-tile__term" data-translate="xdsl_details_serial_number"></span>
                                         <div data-ng-if="!access.xdsl.isFiber">
                                             <span data-translate="xdsl_details_mac_address" class="oui-tile__term"></span>
@@ -482,13 +492,13 @@
                                             </oui-popover>
                                         </div>
                                         <div class="oui-tile__description"
-                                             data-ng-bind="XdslAccess.modem.macAddress"></div>
+                                             data-ng-bind="$ctrl.modem.macAddress"></div>
 
                                         <div class="oui-tile__term"
                                              data-translate="xdsl_details_modem_model">
                                         </div>
                                         <div class="oui-tile__description"
-                                             data-ng-bind="XdslAccess.modem.model">
+                                             data-ng-bind="$ctrl.modem.model">
                                         </div>
                                     </div>
                                 </div>

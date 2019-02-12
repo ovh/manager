@@ -1,9 +1,28 @@
-angular.module('managerApp').controller('XdslAccessCtrl', class XdslAccessCtrl {
+import _ from 'lodash';
+import { FIBER_ACCESS, OLD_V6_SERVICE_TRANSFERT_URL, PACK_IP } from './constants';
+
+export default class XdslAccessCtrl {
+  /* @ngInject */
   constructor(
-    $filter, $q, $rootScope, $scope, $state, $stateParams, $templateCache, $translate, $uibModal,
-    OvhApiPackXdsl, OvhApiXdsl, OvhApiXdslDiagnostic, OvhApiXdslIps, OvhApiXdslLines,
-    OvhApiXdslModem, OvhApiXdslNotifications, TucToast, TucToastError, XdslTaskPoller,
-    PACK, PACK_IP, REDIRECT_URLS,
+    $filter,
+    $q,
+    $rootScope,
+    $scope,
+    $state,
+    $stateParams,
+    $templateCache,
+    $translate,
+    $uibModal,
+    OvhApiPackXdsl,
+    OvhApiXdsl,
+    OvhApiXdslDiagnostic,
+    OvhApiXdslIps,
+    OvhApiXdslLines,
+    OvhApiXdslModem,
+    OvhApiXdslNotifications,
+    TucToast,
+    TucToastError,
+    XdslTaskPoller,
   ) {
     this.$filter = $filter;
     this.$q = $q;
@@ -24,14 +43,14 @@ angular.module('managerApp').controller('XdslAccessCtrl', class XdslAccessCtrl {
     this.TucToast = TucToast;
     this.TucToastError = TucToastError;
     this.XdslTaskPoller = XdslTaskPoller;
-    this.PACK = PACK;
-    this.PACK_IP = PACK_IP;
-    this.REDIRECT_URLS = REDIRECT_URLS;
   }
 
   $onInit() {
+    this.serviceName = this.$stateParams.serviceName;
     this.packName = this.$stateParams.packName;
     this.number = this.$stateParams.number;
+
+
 
     this.$scope.loaders = {
       details: true,
@@ -51,7 +70,7 @@ angular.module('managerApp').controller('XdslAccessCtrl', class XdslAccessCtrl {
     };
 
     this.$scope.constants = {
-      rangeOfBaseIpv4IP: this.PACK_IP.baseIpv4Range,
+      rangeOfBaseIpv4IP: PACK_IP.baseIpv4Range,
     };
 
     this.getLinesDetails();
@@ -67,6 +86,17 @@ angular.module('managerApp').controller('XdslAccessCtrl', class XdslAccessCtrl {
       if (this.$scope.access.xdsl.accessName === data.xdslId) {
         this.$scope.access.xdsl.description = data.description;
       }
+    });
+
+    this.$scope.$on('packXDSLUpdateCurrentTask', (event, updateObject) => {
+      this.$scope.access.tasks.current = {
+        ...this.$scope.access.tasks.current,
+        ...updateObject,
+      };
+    });
+
+    this.$scope.$on('packXDSLUpdateIpV6Enabled', (event, ipv6Enabled) => {
+      this.$scope.access.xdsl.ipv6Enabled = ipv6Enabled;
     });
 
     /*
@@ -125,7 +155,7 @@ angular.module('managerApp').controller('XdslAccessCtrl', class XdslAccessCtrl {
     if (this.accessDiagnostic === null && !this.$scope.loaders.accessDiagnosticLaunched) {
       this.launchDiagnostic();
     }
-    this.$state.go('telecom.pack.xdsl.access-diagnostic-details');
+    this.$state.go('pack.xdsl.access-diagnostic-details');
   }
 
   launchDiagnostic() {
@@ -176,8 +206,8 @@ angular.module('managerApp').controller('XdslAccessCtrl', class XdslAccessCtrl {
     }
   }
 
-  getOldV6TransfertUrl() {
-    return this.REDIRECT_URLS.oldV6ServiceTransfert;
+  static getOldV6TransfertUrl() {
+    return OLD_V6_SERVICE_TRANSFERT_URL;
   }
 
   getIps() {
@@ -200,7 +230,7 @@ angular.module('managerApp').controller('XdslAccessCtrl', class XdslAccessCtrl {
   }
 
   canHaveMoreIps() {
-    return _.filter(this.ipsV4, ip => ip.range !== this.PACK_IP.baseIpv4Range).length === 0;
+    return _.filter(this.ipsV4, ip => ip.range !== PACK_IP.baseIpv4Range).length === 0;
   }
 
   orderIps() {
@@ -265,7 +295,7 @@ angular.module('managerApp').controller('XdslAccessCtrl', class XdslAccessCtrl {
       }).$promise.then((access) => {
         this.$scope.loaders.xdsl = false;
         this.$scope.access.xdsl = _.assign(access, {
-          isFiber: _.includes(this.PACK.fiberAccess, access.accessType),
+          isFiber: _.includes(FIBER_ACCESS, access.accessType),
         });
         this.setStatusLabel(this.$scope.access.xdsl.status);
         return this.$scope.access.xdsl;
@@ -338,4 +368,4 @@ angular.module('managerApp').controller('XdslAccessCtrl', class XdslAccessCtrl {
       this.$scope.loaders.details = false;
     });
   }
-});
+}

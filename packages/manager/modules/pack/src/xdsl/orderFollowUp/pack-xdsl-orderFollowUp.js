@@ -1,11 +1,11 @@
 angular.module('managerApp').config(($stateProvider) => {
-  $stateProvider.state('telecom.pack.xdsl.access-order', {
+  $stateProvider.state('pack.xdsl.access-order', {
     url: '/order',
     views: {
-      'accessView@telecom.pack.xdsl': {
+      'accessView@pack.xdsl': {
         templateUrl: 'app/telecom/pack/xdsl/orderFollowUp/pack-xdsl-orderFollowUp.html',
       },
-      'followUp@telecom.pack.xdsl.access-order': {
+      'followUp@pack.xdsl.access-order': {
         templateUrl: 'app/telecom/pack/xdsl/orderFollowUp/pack-xdsl-orderFollowUp-main.view.html',
         controller: 'XdslOrderFollowUpCtrl',
         controllerAs: 'OrderFollowUpCtrl',

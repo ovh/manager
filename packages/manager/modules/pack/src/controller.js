@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import { FIBER_ACCESS } from './xdsl/access/constants';
 
 export default class PackCtrl {
   /* @ngInject; */
@@ -118,7 +119,7 @@ export default class PackCtrl {
           {
             informations: packInfo.detail,
             mainAccess: _.assign(mainAccess, {
-              isFiberPack: _.includes(this.PACK.fiberAccess, mainAccess.accessType),
+              isFiberPack: _.includes(FIBER_ACCESS, mainAccess.accessType),
             }),
           },
         );

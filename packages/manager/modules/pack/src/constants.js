@@ -14,8 +14,6 @@ export const PACK = {
       index: 60,
     },
   },
-
-  fiberAccess: ['ftth'],
 };
 
 export const DASHBOARD_SERVICES = [
