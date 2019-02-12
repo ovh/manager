@@ -16,6 +16,7 @@ import controller from './controller';
 import template from './template.html';
 
 import slots from './slots';
+import xdsl from './xdsl';
 
 import './index.scss';
 
@@ -29,6 +30,7 @@ angular
     'ui.router',
     resiliation,
     slots,
+    xdsl,
   ])
   .constant('PACK_DASHBOARD_SERVICES', DASHBOARD_SERVICES)
   .constant('PACK_PACK', PACK)

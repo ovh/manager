@@ -1,4 +1,7 @@
-angular.module('managerApp').service('XdslTaskPoller', class XdslTaskPoller {
+import _ from 'lodash';
+
+export default class {
+  /* @ngInject */
   constructor(OvhApiXdslTasksCurrent) {
     this.OvhApiXdslTasksCurrent = OvhApiXdslTasksCurrent;
 
@@ -43,4 +46,4 @@ angular.module('managerApp').service('XdslTaskPoller', class XdslTaskPoller {
   unregister(ticket) {
     _.pull(this.handlers[ticket.taskId], ticket.handler);
   }
-});
+}
