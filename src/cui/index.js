@@ -1,12 +1,12 @@
 import angular from 'angular';
 
-import cui from './cui';
+import tabs from './tabs';
 
-const moduleName = 'ngOvhCloudUniverseComponents';
+const moduleName = 'ngOvhCloudUniverseComponentsCui';
 
 angular
   .module(moduleName, [
-    cui,
+    tabs,
   ]);
 
 export default moduleName;
