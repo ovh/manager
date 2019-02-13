@@ -1,54 +1,41 @@
-# OVH  Stop Event
+# ng-ovh-stop-event
 
-![githubbanner](https://user-images.githubusercontent.com/3379410/27423240-3f944bc4-5731-11e7-87bb-3ff603aff8a7.png)
+> Simply stop event
 
-[![Maintenance](https://img.shields.io/maintenance/yes/2018.svg)]() [![Chat on gitter](https://img.shields.io/gitter/room/ovh/ux.svg)](https://gitter.im/ovh/ux) [![Build Status](https://travis-ci.org/ovh-ux/ovh-angular-stop-event.svg)](https://travis-ci.org/ovh-ux/ovh-angular-stop-event)
+[![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-stop-event)](https://npmjs.com/package/@ovh-ux/ng-ovh-stop-event) [![Dependencies](https://badgen.net/david/dep/ovh-ux/ng-ovh-stop-event)](https://npmjs.com/package/@ovh-ux/ng-ovh-stop-event?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/ng-ovh-stop-event)](https://npmjs.com/package/@ovh-ux/ng-ovh-stop-event?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
 
-[![NPM](https://nodei.co/npm/ovh-angular-stop-event.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/ovh-angular-stop-event/)
+## Install
 
-Simply stop event
+```sh
+yarn add @ovh-ux/ng-ovh-stop-event
+```
 
-## Example
+## Usage
+
+```js
+import angular from 'angular';
+import ngOvhStopEvent from '@ovh-ux/ng-ovh-stop-event';
+
+angular
+  .module('myApp', [
+    ngOvhStopEvent,
+  ]);
+```
 
 ```html
-    <ANY data-ovh-angular-stop-event></ANY>
+<ANY data-ovh-angular-stop-event></ANY>
 ```
 
-## Installation
+## Test
 
-### Bower
-
-    bower install ovh-angular-stop-event --save
-
-### NPM
-
-    npm install ovh-angular-stop-event --save
-
-### Get the sources
-
-```bash
-    git clone https://github.com/ovh-ux/ovh-angular-stop-event.git
-    cd ovh-angular-stop-event
-    npm install
-    bower install
+```sh
+yarn test
 ```
 
-You've developed a new cool feature? Fixed an annoying bug? We'd be happy
-to hear from you!
+## Contributing
 
-Have a look in [CONTRIBUTING.md](https://github.com/ovh-ux/ovh-angular-stop-event/blob/master/CONTRIBUTING.md)
+Always feel free to help out! Whether it's [filing bugs and feature requests](https://github.com/ovh-ux/ng-ovh-stop-event/issues/new) or working on some of the [open issues](https://github.com/ovh-ux/ng-ovh-stop-event/issues), our [contributing guide](CONTRIBUTING.md) will help get you started.
 
-## Run the tests
-```
-npm test
-```
+## License
 
-# Related links
-
- * Contribute: https://github.com/ovh-ux/ovh-angular-stop-event
- * Report bugs: https://github.com/ovh-ux/ovh-angular-stop-event/issues
- * Get latest version: https://github.com/ovh-ux/ovh-angular-stop-event
-
-# License
-
-See https://github.com/ovh-ux/ovh-angular-stop-event/blob/master/LICENSE
+[BSD-3-Clause](LICENSE) © OVH SAS
