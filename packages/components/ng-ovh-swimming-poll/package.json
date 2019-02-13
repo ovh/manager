@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-swimming-poll",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "description": "A poller to swim easily to success status!",
   "keywords": [
     "angular",
