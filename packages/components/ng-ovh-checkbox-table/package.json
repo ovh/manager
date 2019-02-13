@@ -1,39 +1,49 @@
 {
-  "name": "ovh-angular-checkbox-table",
+  "name": "@ovh-ux/ng-ovh-checkbox-table",
   "version": "0.1.2",
   "description": "Multi checkbox management for table",
+  "keywords": [
+    "angular",
+    "http",
+    "provider"
+  ],
+  "repository": "ovh-ux/ng-ovh-checkbox-table",
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
-  "main": "./dist/ovh-angular-checkbox-table.min.js",
-  "repository": "ovh-ux/ovh-angular-checkbox-table",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "browser": "./dist/umd/ng-ovh-checkbox-table.js",
   "scripts": {
-    "test": "grunt test"
+    "build": "rollup -c",
+    "dev": "rollup -c --watch",
+    "lint": "run-p lint:js lint:md",
+    "lint:js": "eslint --quiet --fix --format=pretty src",
+    "lint:md": "eslint --quiet --fix --format=pretty --ext .md .",
+    "prepare": "rollup -c",
+    "test": "yarn run lint",
+    "version": "npx conventional-changelog-cli -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
+    "postversion": "git push && git push --tags"
   },
   "dependencies": {
-    "jquery": "~2.1.3",
-    "lodash": "~3.3.0",
-    "angular": "1.3.x",
-    "angular-sanitize": "1.3.x"
+    "lodash": "^4.17.11"
   },
   "devDependencies": {
-    "eslint": "^4.0.0",
-    "eslint-config-ovh": "^0.1.1",
-    "grunt": "0.4.x",
-    "grunt-bump": "~0.3.0",
-    "grunt-complexity": "~0.1.0",
-    "grunt-contrib-clean": "~0.6.0",
-    "grunt-contrib-concat": "~0.5.0",
-    "grunt-contrib-copy": "~0.7.0",
-    "grunt-contrib-uglify": "~0.8.0",
-    "grunt-contrib-watch": "~0.6.1",
-    "grunt-eslint": "^20.0.0",
-    "grunt-karma": "~0.10.1",
-    "grunt-ng-annotate": "~0.10.0",
-    "jasmine-core": "^2.3.4",
-    "karma": "~0.13.3",
-    "karma-jasmine": "~0.3.0",
-    "karma-phantomjs-launcher": "~1.0.0",
-    "matchdep": "^0.3.0",
-    "phantomjs-prebuilt": "2.1.7"
+    "@commitlint/cli": "^7.1.2",
+    "@commitlint/config-angular": "^7.1.2",
+    "@ovh-ux/component-rollup-config": "^5.0.0-beta.9",
+    "eslint": "^5.6.1",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-formatter-pretty": "^2.0.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-markdown": "^1.0.0",
+    "husky": "^1.1.0",
+    "lint-staged": "^7.3.0",
+    "npm-run-all": "^4.1.5"
+  },
+  "peerDependencies": {
+    "angular": "~1.6"
   }
 }
