@@ -4289,11 +4289,6 @@ lodash@4.17.11, lodash@^4, lodash@^4.0.0, lodash@^4.17.10, lodash@^4.17.11, loda
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
   integrity sha512-cQKh8igo5QUhZ7lg38DYWAxMvjSAKG0A8wGSVimP07SIUEK2UO+arSRKbRZWtelMtN5V0Hkwh5ryOto/SshYIg==
 
-lodash@^3.10.1:
-  version "3.10.1"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-3.10.1.tgz#5bf45e8e49ba4189e17d482789dfd15bd140b7b6"
-  integrity sha1-W/Rejkm6QYnhfUgnid/RW9FAt7Y=
-
 log-symbols@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/log-symbols/-/log-symbols-1.0.2.tgz#376ff7b58ea3086a0f09facc74617eca501e1a18"
@@ -4622,6 +4617,11 @@ mixin-object@^2.0.1:
   integrity sha1-MAV0OOrGz3+MR2fzhkjWaX11yQM=
   dependencies:
     minimist "0.0.8"
+
+moment@^2.24.0:
+  version "2.24.0"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.24.0.tgz#0d055d53f5052aa653c9f6eb68bb5d12bf5c2b5b"
+  integrity sha512-bV7f+6l2QigeBBZSM/6yTNq4P2fNpSWj/0e7jQcy87A8e7o2nAfP/34/2ky5Vw4B9S446EtIhodAzkFCcR4dQg==
 
 ms@2.0.0:
   version "2.0.0"
@@ -5030,13 +5030,6 @@ osenv@0, osenv@^0.1.4:
   dependencies:
     os-homedir "^1.0.0"
     os-tmpdir "^1.0.0"
-
-ovh-api-services@^3.35.0:
-  version "3.35.0"
-  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-3.35.0.tgz#3bdd250507457fbf2b6116e075bba5ae8b7d999e"
-  integrity sha512-Udy9QlIS3s4PKhmlAnKJXXq9Z310c6RandPALkY7tcI9P61g7g+S491UwUTkn5VX6NiVUzLd8HYVQ+D6JewCKg==
-  dependencies:
-    lodash "^3.10.1"
 
 p-defer@^1.0.0:
   version "1.0.0"
