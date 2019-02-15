@@ -5054,6 +5054,13 @@ osenv@0, osenv@^0.1.4:
     os-homedir "^1.0.0"
     os-tmpdir "^1.0.0"
 
+ovh-ui-kit@^2.24.2:
+  version "2.24.2"
+  resolved "https://registry.yarnpkg.com/ovh-ui-kit/-/ovh-ui-kit-2.24.2.tgz#27e7c945c81f22745657d4eeb8b6a96022a87828"
+  integrity sha512-yLdyZskNlDUnx29XCYY5SppcJYaVBrNOpa682D+rw1s79Y9/dwAlF6qWD47NWDRK2XzgJR8U7xTjvbersuGBwg==
+  dependencies:
+    less-plugin-remcalc "^0.1.0"
+
 p-defer@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/p-defer/-/p-defer-1.0.0.tgz#9f6eb182f6c9aa8cd743004a7d4f96b196b0fb0c"
