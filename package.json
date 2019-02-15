@@ -54,6 +54,7 @@
   "peerDependencies": {
     "@uirouter/angularjs": "^1.0.22",
     "angular": "^1.5.0",
-    "ovh-api-services": "^3.35.0"
+    "ovh-api-services": "^3.35.0",
+    "ovh-ui-angular": "^2.24.2"
   }
 }

@@ -1,5 +1,6 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
+import 'ovh-ui-angular';
 
 import component from './component';
 import tabDirective from './tab/directive';
@@ -11,6 +12,7 @@ const moduleName = 'cuiTabs';
 
 angular
   .module(moduleName, [
+    'oui',
     'ui.router',
   ])
   .component('cuiTabs', component)
