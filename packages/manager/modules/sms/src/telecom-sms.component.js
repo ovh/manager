@@ -4,7 +4,6 @@ import '@ovh-ux/ng-ovh-telecom-universe-components';
 import '@ovh-ux/manager-telecom-styles';
 import 'angular-messages';
 import 'ovh-angular-checkbox-table';
-import 'ovh-angular-responsive-tabs';
 import '@ovh-ux/ng-pagination-front';
 import 'ovh-api-services';
 
@@ -38,7 +37,6 @@ angular
     'ngOvhTelecomUniverseComponents',
     'ngPaginationFront',
     'ovh-angular-checkbox-table',
-    'ovh-angular-responsive-tabs',
     'ovh-api-services',
     'ngMessages',
     dashboard,
