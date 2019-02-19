@@ -8,6 +8,6 @@ const moduleName = 'cuiMessage';
 angular
   .module(moduleName, [
   ])
-  .component('CuiMessageContainer', component);
+  .component('cuiMessageContainer', component);
 
 export default moduleName;
