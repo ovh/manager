@@ -1,3 +1,17 @@
+# [5.0.0](https://github.com/ovh-ux/ng-ovh-mondial-relay/compare/v4.1.1...v5.0.0) (2019-02-19)
+
+
+### Code Refactoring
+
+* update stack with component-rollup-config ([#18](https://github.com/ovh-ux/ng-ovh-mondial-relay/issues/18)) ([d52ec1d](https://github.com/ovh-ux/ng-ovh-mondial-relay/commit/d52ec1d))
+
+
+### BREAKING CHANGES
+
+* module is now named `ngOvhMondialRelay`
+
+
+
 # Changelog
 
 ## [4.0.0] - 2018-04-05
