@@ -1,14 +1,16 @@
 import angular from 'angular';
 
-import cui from './cui';
 import cucAutofocus from './autofocus';
 import cucAutoSelect from './autoselect';
 import cucClickEnterOnKeypress from './clickEnterOnKeypress';
+import cucConfig from './config';
+import cucHelper from './helper';
 import cucMessage from './message';
 import cucNavigation from './navigation';
 import cucPoll from './poll';
 import cucProducts from './products';
 import cucSmoothScrollHere from './smoothScrollHere';
+import cui from './cui';
 
 const moduleName = 'ngOvhCloudUniverseComponents';
 
@@ -18,11 +20,14 @@ angular
     cucAutofocus,
     cucAutoSelect,
     cucClickEnterOnKeypress,
+    cucConfig,
+    cucHelper,
     cucMessage,
     cucNavigation,
     cucPoll,
     cucProducts,
     cucSmoothScrollHere,
+    cui,
   ]);
 
 export default moduleName;
