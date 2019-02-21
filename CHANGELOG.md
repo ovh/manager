@@ -1,3 +1,17 @@
+# [0.1.0-alpha.4](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/compare/v0.1.0-alpha.3...v0.1.0-alpha.4) (2019-02-21)
+
+
+### Bug Fixes
+
+* **peerdeps:** upgrade ovh-api-services to v4.0.0 ([55c1709](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/commit/55c1709))
+
+
+### Features
+
+* **directives:** add directives ([#10](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/issues/10)) ([67e0b4e](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/commit/67e0b4e))
+
+
+
 # [0.1.0-alpha.3](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/compare/v0.1.0-alpha.2...v0.1.0-alpha.3) (2019-02-20)
 
 
