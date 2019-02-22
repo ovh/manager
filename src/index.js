@@ -10,6 +10,7 @@ import cucNavigation from './navigation';
 import cucPoll from './poll';
 import cucProducts from './products';
 import cucSmoothScrollHere from './smoothScrollHere';
+import cucVrack from './vrack';
 import cui from './cui';
 
 const moduleName = 'ngOvhCloudUniverseComponents';
@@ -27,6 +28,7 @@ angular
     cucPoll,
     cucProducts,
     cucSmoothScrollHere,
+    cucVrack,
     cui,
   ]);
 
