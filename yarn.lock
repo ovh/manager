@@ -1618,6 +1618,13 @@
   dependencies:
     lodash "^4.17.11"
 
+"@ovh-ux/ng-ovh-checkbox-table@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-checkbox-table/-/ng-ovh-checkbox-table-1.0.0.tgz#0a431f47fbde05dd48ed8fe38693a4a76079af5d"
+  integrity sha512-3DWHTCsKJROCwPzOCchWSf65AyKxQHsqVw2sdifym5MMsHgbwmGSBUyGrxOlWzilKjaUffh9NlQPTDXuv+hGHA==
+  dependencies:
+    lodash "^4.17.11"
+
 "@ovh-ux/ng-ovh-contracts@^3.0.0-beta.3":
   version "3.0.0-beta.3"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-contracts/-/ng-ovh-contracts-3.0.0-beta.3.tgz#1dcd3612160f4c5eebd31a4bc12a2c632b35618f"
@@ -2163,11 +2170,6 @@ angular-resource@^1.7.5:
   resolved "https://registry.yarnpkg.com/angular-resource/-/angular-resource-1.7.5.tgz#80007af3aed8b6278bf2344e8e5257ea7bca333e"
   integrity sha512-zlCKVNa2nnZNb4Lz3YFPKhsYG+v+t4STEsjkWRbii6PfwSrtH9R/zGpCOkBNFnq3naeZMMmd5aIIgHi5a7k9jA==
 
-angular-sanitize@1.3.x:
-  version "1.3.20"
-  resolved "https://registry.yarnpkg.com/angular-sanitize/-/angular-sanitize-1.3.20.tgz#5b1caa4176b8db2039d7d1c1527537a61be3cd67"
-  integrity sha1-WxyqQXa42yA519HBUnU3phvjzWc=
-
 angular-sanitize@1.7.5, angular-sanitize@^1.7.5:
   version "1.7.5"
   resolved "https://registry.yarnpkg.com/angular-sanitize/-/angular-sanitize-1.7.5.tgz#75d49e15071ca9c70581e76d20940f26372e24d2"
@@ -2206,11 +2208,6 @@ angular-vs-repeat@^2.0.9:
   version "2.0.9"
   resolved "https://registry.yarnpkg.com/angular-vs-repeat/-/angular-vs-repeat-2.0.9.tgz#fc2713f14223c8dccf37e7b900b2dadb932c2b0b"
   integrity sha512-b2ehZgJLlm5YBJL2h8WgqtQIhaYzVgH3Gn9aI+eZUTgodrWFq3u4bBCdgAi85vrpG7uM09n1D/eApwAy6jfKag==
-
-angular@1.3.x:
-  version "1.3.20"
-  resolved "https://registry.yarnpkg.com/angular/-/angular-1.3.20.tgz#b23a3d7c5e7f99f7d95b9b4d49b9ac355269baee"
-  integrity sha1-sjo9fF5/mffZW5tNSbmsNVJpuu4=
 
 angular@1.7.5, "angular@>=1.2.26 <=1.7", "angular@>=1.3.0 <2.0.0", angular@^1.7.5:
   version "1.7.5"
@@ -7233,11 +7230,6 @@ jquery@^2.1.3:
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-2.2.4.tgz#2c89d6889b5eac522a7eea32c14521559c6cbf02"
   integrity sha1-LInWiJterFIqfuoywUUhVZxsvwI=
 
-jquery@~2.1.3:
-  version "2.1.4"
-  resolved "https://registry.yarnpkg.com/jquery/-/jquery-2.1.4.tgz#228bde698a0c61431dc2630a6a154f15890d2317"
-  integrity sha1-IoveaYoMYUMdwmMKahVPFYkNIxc=
-
 js-base64@^2.1.8:
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/js-base64/-/js-base64-2.5.0.tgz#42255ba183ab67ce59a0dee640afdc00ab5ae93e"
@@ -8157,11 +8149,6 @@ lodash@^3.10.1:
   version "3.10.1"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-3.10.1.tgz#5bf45e8e49ba4189e17d482789dfd15bd140b7b6"
   integrity sha1-W/Rejkm6QYnhfUgnid/RW9FAt7Y=
-
-lodash@~3.3.0:
-  version "3.3.1"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-3.3.1.tgz#3b914d4a1bb27efcee076e0dfa58152018e2042e"
-  integrity sha1-O5FNShuyfvzuB24N+lgVIBjiBC4=
 
 log-symbols@2.2.0, log-symbols@^2.0.0, log-symbols@^2.2.0:
   version "2.2.0"
@@ -9362,16 +9349,6 @@ osenv@0, osenv@^0.1.4, osenv@^0.1.5:
   dependencies:
     os-homedir "^1.0.0"
     os-tmpdir "^1.0.0"
-
-ovh-angular-checkbox-table@^0.1.2:
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/ovh-angular-checkbox-table/-/ovh-angular-checkbox-table-0.1.2.tgz#b3b4dfed3274068d323463e3b07c2a25108e14be"
-  integrity sha1-s7Tf7TJ0Bo0yNGPjsHwqJRCOFL4=
-  dependencies:
-    angular "1.3.x"
-    angular-sanitize "1.3.x"
-    jquery "~2.1.3"
-    lodash "~3.3.0"
 
 ovh-angular-responsive-tabs@^4.0.0:
   version "4.0.0"

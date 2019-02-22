@@ -1,9 +1,9 @@
 import angular from 'angular';
 
+import '@ovh-ux/ng-ovh-checkbox-table';
 import '@ovh-ux/ng-ovh-telecom-universe-components';
 import '@ovh-ux/manager-telecom-styles';
 import 'angular-messages';
-import 'ovh-angular-checkbox-table';
 import '@ovh-ux/ng-pagination-front';
 import 'ovh-api-services';
 
@@ -34,9 +34,9 @@ const moduleName = 'ovhManagerSmsComponent';
 
 angular
   .module(moduleName, [
+    'ngOvhCheckboxTable',
     'ngOvhTelecomUniverseComponents',
     'ngPaginationFront',
-    'ovh-angular-checkbox-table',
     'ovh-api-services',
     'ngMessages',
     dashboard,

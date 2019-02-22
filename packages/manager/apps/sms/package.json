@@ -15,6 +15,7 @@
     "@ovh-ux/manager-sms": "^3.0.0",
     "@ovh-ux/manager-telecom-styles": "^2.0.2",
     "@ovh-ux/ng-ovh-apiv7": "^2.0.0",
+    "@ovh-ux/ng-ovh-checkbox-table": "^1.0.0",
     "@ovh-ux/ng-ovh-contracts": "^3.0.0-beta.3",
     "@ovh-ux/ng-ovh-telecom-universe-components": "^2.0.1",
     "@ovh-ux/ng-pagination-front": "^8.0.0-alpha.0",
@@ -28,7 +29,6 @@
     "lodash": "^3.10.1",
     "ng-at-internet": "^3.1.1",
     "oclazyload": "^1.1.0",
-    "ovh-angular-checkbox-table": "^0.1.2",
     "ovh-angular-ui-confirm-modal": "^1.0.2",
     "ovh-api-services": "^4.2.0"
   },
