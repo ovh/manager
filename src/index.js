@@ -6,6 +6,7 @@ import cucAutoSelect from './autoselect';
 import cucClickEnterOnKeypress from './clickEnterOnKeypress';
 import cucMessage from './message';
 import cucNavigation from './navigation';
+import cucOrderedHash from './orderedHash';
 import cucPoll from './poll';
 import cucProducts from './products';
 import cucSmoothScrollHere from './smoothScrollHere';
@@ -20,6 +21,7 @@ angular
     cucClickEnterOnKeypress,
     cucMessage,
     cucNavigation,
+    cucOrderedHash,
     cucPoll,
     cucProducts,
     cucSmoothScrollHere,
