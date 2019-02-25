@@ -1,7 +1,15 @@
-import configGenerator from '@ovh-ux/component-rollup-config';
+import path from 'path';
+import rollupConfig from '@ovh-ux/component-rollup-config';
 
-const config = configGenerator({
+const config = rollupConfig({
   input: './src/index.js',
+}, {
+  lessTildeImporter: {
+    paths: [
+      path.resolve(__dirname, 'node_modules'),
+      path.resolve(__dirname, '../../../../node_modules'),
+    ],
+  },
 });
 
 export default [
@@ -9,19 +17,7 @@ export default [
   config.umd({
     output: {
       globals: {
-        '@ovh-ux/ng-translate-async-loader': 'ngTranslateAsyncLoader',
-        '@uirouter/angularjs': 'uiRouter',
         angular: 'angular',
-        'angular-translate': 'translate',
-        'chart.js': 'Chart',
-        'CSV-JS': 'CSV',
-        'ip-address': 'ipAddress',
-        jquery: '$',
-        'jsplumb/dist/js/jsplumb': 'jsplumb',
-        lodash: '_',
-        moment: 'moment',
-        punycode: 'punycode',
-        'validator-js': 'validator',
       },
     },
   }),
