@@ -1,0 +1,12 @@
+{
+ "vrack_title": "Objednávka vRack",
+ "vrack_subtitle": "Objednávka této služby je zdarma. Váš vRack bude dodán do několika minut.",
+ "vrack_validationPending": "Dokončete prosím svou <a href=\"{{url}}\" target='_blank'>objednávku zdarma</a>.",
+ "vrack_order_delay": "Váš vRack bude k dispozici do několika minut po schválení objednávky.",
+ "vrack_order": "Objednat",
+ "vrack_order_install_now_label": "Nainstalovat nyní",
+ "vrack_contract_empty": "Akceptovali jste veškerá smluvní ujednání týkající se tohoto produktu.",
+ "vrack_error": "Došlo k chybě.",
+ "vrack_error_reason": "Objevila se chyba: {{message}}",
+ "vrack_adding_success": "Požadavek na aktivaci vRack byl přijat a bude proveden během několika minut od schválení objednávky číslo <a href=\"{{data.url}}\" target='_blank'>{{data.orderId}}</a> validée."
+}
