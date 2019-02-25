@@ -204,7 +204,7 @@ export default class {
   remove(incomingSms) {
     const modal = this.$uibModal.open({
       animation: true,
-      templateUrl: removeTemplate,
+      template: removeTemplate,
       controller: removeController,
       controllerAs: 'IncomingRemoveCtrl',
       resolve: { incomingSms: () => incomingSms },
