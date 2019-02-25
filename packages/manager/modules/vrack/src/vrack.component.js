@@ -1,7 +1,7 @@
 import angular from 'angular';
 
 import controller from './vrack.controller';
-import template from './vrack.template.html';
+import template from './vrack.html';
 import vrackService from './vrack.service';
 
 import actionsPartials from './partials/actions.html';
