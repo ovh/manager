@@ -1,3 +1,12 @@
+# [0.1.0-alpha.5](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/compare/v0.1.0-alpha.4...v0.1.0-alpha.5) (2019-02-25)
+
+
+### Features
+
+* **ordered-hash:** add ordered-hash factory ([#8](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/issues/8)) ([b9d77dd](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/commit/b9d77dd))
+
+
+
 # [0.1.0-alpha.4](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/compare/v0.1.0-alpha.3...v0.1.0-alpha.4) (2019-02-21)
 
 
