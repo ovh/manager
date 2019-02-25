@@ -1,4 +1,7 @@
-class VrackService {
+import _ from 'lodash';
+
+export default class VrackService {
+  /* @ ngInject */
   constructor($q, $translate, ControllerHelper, OvhApiCloudProject, OvhApiVrack) {
     this.$q = $q;
     this.$translate = $translate;
@@ -96,5 +99,3 @@ class VrackService {
     return this.OvhApiVrack.v6().task({ serviceName, taskId }).$promise;
   }
 }
-
-angular.module('managerApp').service('VrackService', VrackService);

@@ -1,4 +1,7 @@
-angular.module('managerApp').controller('VrackMoveDialogCtrl', function VrackMoveDialogCtrl($scope, $q, $translate, $uibModalInstance, Toast, OvhApiVrack, OvhApiVrackDedicatedCloudDatacenter) {
+import _ from 'lodash';
+
+export default /* @ngInject */ function VrackMoveDialogCtrl($scope, $q, $translate,
+  $uibModalInstance, Toast, OvhApiVrack, OvhApiVrackDedicatedCloudDatacenter) {
   const self = this;
 
   self.form = null;
@@ -24,7 +27,7 @@ angular.module('managerApp').controller('VrackMoveDialogCtrl', function VrackMov
     self.fetchAllowedVracks();
   }
 
-  self.fetchAllowedVracks = function () {
+  self.fetchAllowedVracks = function fetchAllowedVracks() {
     if (self.loaders.allowedVrack) {
       return $q.when();
     }
@@ -47,7 +50,7 @@ angular.module('managerApp').controller('VrackMoveDialogCtrl', function VrackMov
     });
   };
 
-  self.fetchVracks = function () {
+  self.fetchVracks = function fetchVracks() {
     if (self.loaders.vracks) {
       return;
     }
@@ -63,7 +66,7 @@ angular.module('managerApp').controller('VrackMoveDialogCtrl', function VrackMov
     });
   };
 
-  self.getDisplayName = function (vrackId) {
+  self.getDisplayName = function getDisplayName(vrackId) {
     const vrack = _.find(self.getVracks(), { id: vrackId });
 
     if (vrack && !_.isEmpty(vrack.name)) {
@@ -73,19 +76,19 @@ angular.module('managerApp').controller('VrackMoveDialogCtrl', function VrackMov
     return vrackId;
   };
 
-  self.dismiss = function () {
+  self.dismiss = function dismiss() {
     $uibModalInstance.dismiss();
   };
 
-  self.getAllowedVracks = function () {
+  self.getAllowedVracks = function getAllowedVracks() {
     return self.collections.allowedVracks;
   };
 
-  self.getVracks = function () {
+  self.getVracks = function getVracks() {
     return self.collections.vracks;
   };
 
-  self.submit = function () {
+  self.submit = function submit() {
     if (!self.form.$valid || self.loaders.move) {
       return $q.when();
     }
@@ -107,9 +110,9 @@ angular.module('managerApp').controller('VrackMoveDialogCtrl', function VrackMov
     });
   };
 
-  self.hasPendingRequests = function () {
+  self.hasPendingRequests = function hasPendingRequests() {
     return self.loaders.move;
   };
 
   init();
-});
+}

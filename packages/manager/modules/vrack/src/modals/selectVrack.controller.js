@@ -1,4 +1,7 @@
-class SelectVrackCtrl {
+import _ from 'lodash';
+
+export default class SelectVrackCtrl {
+  /* @ngInject */
   constructor($q, $window, $uibModalInstance, $stateParams, params) {
     this.$q = $q;
     this.projectId = $stateParams.projectId;
@@ -71,5 +74,3 @@ class SelectVrackCtrl {
     this.modal.dismiss('cancel');
   }
 }
-
-angular.module('managerApp').controller('SelectVrackCtrl', SelectVrackCtrl);
