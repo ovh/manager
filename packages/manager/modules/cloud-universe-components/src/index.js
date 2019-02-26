@@ -4,6 +4,7 @@ import cucAutofocus from './autofocus';
 import cucAutoSelect from './autoselect';
 import cucClickEnterOnKeypress from './clickEnterOnKeypress';
 import cucConfig from './config';
+import cucCurrency from './currency';
 import cucFeatureAvailability from './featureAvailability';
 import cucHelper from './helper';
 import cucMessage from './message';
@@ -24,6 +25,7 @@ angular
     cucAutoSelect,
     cucClickEnterOnKeypress,
     cucConfig,
+    cucCurrency,
     cucFeatureAvailability,
     cucHelper,
     cucMessage,
