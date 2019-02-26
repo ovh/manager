@@ -9,7 +9,7 @@
             data-ng-class="{
                 'hidden': !VrackCtrl.isAdding() && !VrackCtrl.isRemoving()
             }">
-        <span data-translate="common_add"></span>
+        <span data-translate="vrack_common_add"></span>
         <i class="oui-icon oui-icon_circle oui-icon-chevron-right"></i>
     </button>
 </div>
@@ -21,12 +21,12 @@
                 'hidden': !VrackCtrl.isAdding() && !VrackCtrl.isRemoving()
             }">
         <i class="oui-icon oui-icon_circle oui-icon-chevron-left"></i>
-        <span data-translate="common_remove"></span>
+        <span data-translate="vrack_common_remove"></span>
     </button>
 </div>
 
 <button class="oui-button oui-button_secondary"
-    data-translate="common_move"
+    data-translate="vrack_common_move"
     data-ng-show="VrackCtrl.isMoving()"
     data-ng-click="VrackCtrl.moveSelectedService()">
 </button>

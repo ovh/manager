@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import map from 'lodash/map';
 import angular from 'angular';
 
 import selectVrackCtrl from './modals/selectVrack.controller';
@@ -337,8 +338,8 @@ export default /* @ngInject */ function VrackCtrl($scope, $q, $stateParams,
       /**
            * First, we check if there is any new pending tasks ...
            */
-      const currentTasks = _.pluck(tasks, 'id');
-      const previousTasks = _.pluck(self.data.pendingTasks, 'id');
+      const currentTasks = map(tasks, 'id');
+      const previousTasks = map(self.data.pendingTasks, 'id');
       if (_.difference(currentTasks, previousTasks).length
         || _.difference(previousTasks, currentTasks).length) {
         self.resetCache(); // a task changed, vrack state might have changed too
@@ -399,7 +400,7 @@ export default /* @ngInject */ function VrackCtrl($scope, $q, $stateParams,
   };
 
   self.isPending = function isPending(serviceId) {
-    const ids = _.uniq(_.pluck(self.data.pendingTasks, 'targetDomain'));
+    const ids = _.uniq(map(self.data.pendingTasks, 'targetDomain'));
     return ids.indexOf(serviceId) >= 0;
   };
 

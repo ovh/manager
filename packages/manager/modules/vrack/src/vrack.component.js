@@ -27,25 +27,24 @@ export default angular
     controllerAs: 'VrackCtrl',
   })
   .config(($stateProvider) => {
-    $stateProvider.state('freefax', {
-      url: '/vrack/:vrackId',
-      component: 'ovhManagerVrackComponent',
-      translations: {
-        value: ['../common', '.', './modals'],
-        format: 'json',
-      },
-    });
-  /*
-  $stateProvider
-    .state('vrack-home', {
+    /*
+    $stateProvider.state('vrack.home', {
       url: '/vrack',
-      templateUrl: 'app/vrack/vrack.html',
-      controller: 'VrackCtrl',
+      template,
+      controller,
       controllerAs: 'VrackCtrl',
       translations: {
-        value: ['../common', '.'],
+        value: ['.'],
         format: 'json',
       },
     });
     */
+    $stateProvider.state('vrack', {
+      url: '/vrack/:vrackId',
+      component: 'ovhManagerVrackComponent',
+      translations: {
+        value: ['.', './modals'],
+        format: 'json',
+      },
+    });
   });

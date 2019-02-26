@@ -81,7 +81,7 @@ export default class VrackService {
 
   unlinkVrackModal(text) {
     return this.CucControllerHelper.modal.showConfirmationModal({
-      submitButtonText: this.$translate.instant('common_deactivate'),
+      submitButtonText: this.$translate.instant('vrack_common_deactivate'),
       titleText: this.$translate.instant('private_network_deactivate'),
       text: text || this.$translate.instant('private_network_deactivate_confirmation'),
     });
