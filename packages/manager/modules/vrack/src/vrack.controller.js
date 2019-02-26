@@ -3,10 +3,11 @@ import angular from 'angular';
 
 import selectVrackCtrl from './modals/selectVrack.controller';
 import selectVrackTpl from './modals/selectVrack.html';
+import constant from './vrack.constant';
 
 export default /* @ngInject */ function VrackCtrl($scope, $q, $stateParams,
-  $state, $timeout, $translate, $uibModal, CucCloudMessage, SidebarMenu,
-  OvhApiVrack, OvhApiCloudProject, OvhApiMe, URLS, VrackService) {
+  $state, $timeout, $translate, $uibModal, CucCloudMessage,
+  OvhApiVrack, OvhApiCloudProject, OvhApiMe, VrackService) {
   const self = this;
   const pollingInterval = 5000;
 
@@ -461,10 +462,13 @@ export default /* @ngInject */ function VrackCtrl($scope, $q, $stateParams,
         CucCloudMessage.error([$translate.instant('vrack_error'), (err.data && err.data.message) || err.message || ''].join(' '));
       })
       .finally(() => {
+        /*
         const menuItem = SidebarMenu.getItemById(self.serviceName);
         if (menuItem) {
           menuItem.title = self.name || self.serviceName;
         }
+        */
+        // @TODO emit event
         self.nameBackup = null;
       });
   };
@@ -682,9 +686,9 @@ export default /* @ngInject */ function VrackCtrl($scope, $q, $stateParams,
       .then((user) => {
         if (user.ovhSubsidiary === 'FR') {
           // Roadmap is only available in french
-          self.vRackCloudRoadmapGuide = URLS.guides.vrack.FR;
+          self.vRackCloudRoadmapGuide = constant.VRACK_URLS.guides.vrack.FR;
         }
-        self.changeOwnerUrl = URLS.changeOwner[user.ovhSubsidiary];
+        self.changeOwnerUrl = constant.VRACK_URLS.changeOwner[user.ovhSubsidiary];
       });
   }
 

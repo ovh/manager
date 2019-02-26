@@ -2,10 +2,10 @@ import _ from 'lodash';
 
 export default class VrackService {
   /* @ ngInject */
-  constructor($q, $translate, ControllerHelper, OvhApiCloudProject, OvhApiVrack) {
+  constructor($q, $translate, CucControllerHelper, OvhApiCloudProject, OvhApiVrack) {
     this.$q = $q;
     this.$translate = $translate;
-    this.ControllerHelper = ControllerHelper;
+    this.CucControllerHelper = CucControllerHelper;
     this.OvhApiVrack = OvhApiVrack;
     this.OvhApiCloudProject = OvhApiCloudProject;
     this.OvhApiCloudProjectV6 = OvhApiCloudProject.v6();
@@ -31,11 +31,11 @@ export default class VrackService {
   }
 
   getOrderUrl() {
-    return this.ControllerHelper.navigation.getConstant('website_order.vrack');
+    return this.CucControllerHelper.navigation.getConstant('website_order.vrack');
   }
 
   selectVrackModal(vRacks, orderUrl) {
-    return this.ControllerHelper.modal.showModal({
+    return this.CucControllerHelper.modal.showModal({
       modalConfig: {
         templateUrl: 'app/vrack/modals/selectVrack.html',
         controller: 'SelectVrackCtrl',
@@ -80,7 +80,7 @@ export default class VrackService {
   }
 
   unlinkVrackModal(text) {
-    return this.ControllerHelper.modal.showConfirmationModal({
+    return this.CucControllerHelper.modal.showConfirmationModal({
       submitButtonText: this.$translate.instant('common_deactivate'),
       titleText: this.$translate.instant('private_network_deactivate'),
       text: text || this.$translate.instant('private_network_deactivate_confirmation'),
