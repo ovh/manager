@@ -2,6 +2,7 @@ import angular from 'angular';
 import 'angular-ui-bootstrap';
 import '@ovh-ux/manager-core';
 import '@uirouter/angularjs';
+import '@ovh-ux/ng-ovh-cloud-universe-components';
 import 'oclazyload';
 
 import vrackAdd from './add';
@@ -13,6 +14,7 @@ angular.module(moduleName, [
   'ui.bootstrap',
   'oc.lazyLoad',
   'ovhManagerCore',
+  'ngOvhCloudUniverseComponents',
   vrackAdd,
 ]).config(/* @ngInject */($stateProvider) => {
   $stateProvider.state('vrack.**', {
