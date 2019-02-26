@@ -19,7 +19,7 @@ angular
       controller,
       controllerAs: 'VrackAddCtrl',
       translations: {
-        value: ['../../common', '..', '.'],
+        value: ['..', '.'],
         format: 'json',
       },
     });

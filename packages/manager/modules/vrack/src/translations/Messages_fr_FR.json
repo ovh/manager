@@ -31,5 +31,11 @@
   "vrack_move_dialog_warning_notice": "Cette opération entraîne une interruption de service d'environ 5 minutes.",
   "vrack_move_dialog_choose_vrack_label": "vRack de destination:",
   "vrack_move_dialog_choose_vrack_default_option": "Selectionnez un vRack",
-  "vrack_move_dialog_request_error": "Oups, l'opération de déplacement du datacenter a échouée."
+  "vrack_move_dialog_request_error": "Oups, l'opération de déplacement du datacenter a échouée.",
+  "vrack_common_cancel": "Annuler",
+  "vrack_common_move": "Déplacer",
+  "vrack_common_add": "Ajouter",
+  "vrack_common_remove": "Retirer",
+  "vrack_common_deactivate": "Désactiver",
+  "vrack_common_new_window": "Nouvelle fenêtre"
 }
