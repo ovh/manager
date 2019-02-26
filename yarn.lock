@@ -1512,6 +1512,36 @@
     rollup-pluginutils "^2.3.3"
     slash "^2.0.0"
 
+"@ovh-ux/component-rollup-config@^5.0.0-beta.9":
+  version "5.0.0-beta.9"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/component-rollup-config/-/component-rollup-config-5.0.0-beta.9.tgz#14b9e329a39f57a56c783ddf50d25f3089849508"
+  integrity sha512-vntsgUf7HUJOvv4w29mdTD5K3RkqZvYFpvRJJu9ofOwv/uL754x84ry3IU+7wmDIoS+74JBSkiBn49PTy9F8cA==
+  dependencies:
+    "@babel/core" "^7.1.2"
+    "@babel/plugin-syntax-dynamic-import" "^7.0.0"
+    "@babel/preset-env" "^7.1.6"
+    "@ovh-ux/rollup-plugin-less-tilde-importer" "^1.0.0-beta.0"
+    babel-plugin-angularjs-annotate "^0.10.0"
+    camelcase "^5.0.0"
+    estree-walker "^0.6.0"
+    less "^3.8.1"
+    less-plugin-remcalc "^0.1.0"
+    lodash "^4.17.11"
+    magic-string "^0.25.1"
+    node-sass "^4.10.0"
+    rollup "^1.1.2"
+    rollup-plugin-babel "^4.3.2"
+    rollup-plugin-commonjs "^9.2.0"
+    rollup-plugin-html "^0.2.1"
+    rollup-plugin-img "^1.1.0"
+    rollup-plugin-json "^3.1.0"
+    rollup-plugin-less "^0.1.5"
+    rollup-plugin-node-resolve "^4.0.0"
+    rollup-plugin-peer-deps-external "^2.2.0"
+    rollup-plugin-sass "^1.1.0"
+    rollup-pluginutils "^2.3.3"
+    slash "^2.0.0"
+
 "@ovh-ux/manager-webpack-config@^3.0.1":
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-webpack-config/-/manager-webpack-config-3.0.1.tgz#d03713e9c1a7701f693fce217076e38dbe5f9cc3"
@@ -2750,7 +2780,7 @@ bootstrap@^3.3.7:
   resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-3.4.0.tgz#f8d77540dd3062283d2ae7687e21c1e691961640"
   integrity sha512-F1yTDO9OHKH0xjl03DsOe8Nu1OWBIeAugGMhy3UTIYDdbbIPesQIhCEbj+HEr6wqlwweGAlP8F3OBC6kEuhFuw==
 
-bootstrap@~3.3.7:
+bootstrap@~3.3.0, bootstrap@~3.3.7:
   version "3.3.7"
   resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-3.3.7.tgz#5a389394549f23330875a3b150656574f8a9eb71"
   integrity sha1-WjiTlFSfIzMIdaOxUGVldPip63E=
@@ -4790,9 +4820,10 @@ eslint-config-airbnb-base@^13.1.0:
     object.assign "^4.1.0"
     object.entries "^1.0.4"
 
-eslint-import-resolver-lerna@jleveugle/eslint-import-resolver-lerna:
-  version "1.0.0"
-  resolved "https://codeload.github.com/jleveugle/eslint-import-resolver-lerna/tar.gz/5e503982d70aa23bffd13a97bb6e757657767537"
+eslint-import-resolver-lerna@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/eslint-import-resolver-lerna/-/eslint-import-resolver-lerna-1.1.0.tgz#4069a41742651de953ea1063a455aec952388a69"
+  integrity sha512-4olD03ngUo7Q7yRuOF5Gb9WxOc+CLEnw+rt95TnjUWQJ4pn0h9XWSybAr2gswOhre0NHXwwhAhPE8CAiwISFyw==
 
 eslint-import-resolver-node@^0.3.1:
   version "0.3.2"
@@ -7368,6 +7399,11 @@ jsprim@^1.2.2:
     json-schema "0.2.3"
     verror "1.10.0"
 
+jsurl@^0.1.5:
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/jsurl/-/jsurl-0.1.5.tgz#2a5c8741de39cacafc12f448908bf34e960dcee8"
+  integrity sha1-KlyHQd45ysr8EvRIkIvzTpYNzug=
+
 jszip@^3.1.5:
   version "3.1.5"
   resolved "https://registry.yarnpkg.com/jszip/-/jszip-3.1.5.tgz#e3c2a6c6d706ac6e603314036d43cd40beefdf37"
@@ -8631,6 +8667,11 @@ moment@^2.10.6, moment@^2.22.2:
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.23.0.tgz#759ea491ac97d54bac5ad776996e2a58cc1bc225"
   integrity sha512-3IE39bHVqFbWWaPOMHZF98Q9c3LDKGTmypMiTM2QygGXXElkFWIH7GxfmlwmY2vwa+wmNsoYZmG2iusf1ZjJoA==
 
+moment@^2.24.0:
+  version "2.24.0"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.24.0.tgz#0d055d53f5052aa653c9f6eb68bb5d12bf5c2b5b"
+  integrity sha512-bV7f+6l2QigeBBZSM/6yTNq4P2fNpSWj/0e7jQcy87A8e7o2nAfP/34/2ky5Vw4B9S446EtIhodAzkFCcR4dQg==
+
 move-concurrently@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/move-concurrently/-/move-concurrently-1.0.1.tgz#be2c005fda32e0b29af1f05d7c4b33214c701f92"
@@ -9377,6 +9418,13 @@ ovh-ui-kit@^2.22.0, ovh-ui-kit@^2.23.1:
   version "2.23.1"
   resolved "https://registry.yarnpkg.com/ovh-ui-kit/-/ovh-ui-kit-2.23.1.tgz#4c3a3980575d693b33a1d5d056c210be0ba67376"
   integrity sha512-i2/S0A/agP27DxiMHf6Y+ueMQpQU8j5YJkVq0uW0+1gFV228VaesCZezSeOH6XFTChAzPSJS79nuAvIFvo48Fw==
+  dependencies:
+    less-plugin-remcalc "^0.1.0"
+
+ovh-ui-kit@^2.24.2:
+  version "2.24.2"
+  resolved "https://registry.yarnpkg.com/ovh-ui-kit/-/ovh-ui-kit-2.24.2.tgz#27e7c945c81f22745657d4eeb8b6a96022a87828"
+  integrity sha512-yLdyZskNlDUnx29XCYY5SppcJYaVBrNOpa682D+rw1s79Y9/dwAlF6qWD47NWDRK2XzgJR8U7xTjvbersuGBwg==
   dependencies:
     less-plugin-remcalc "^0.1.0"
 
@@ -11171,6 +11219,13 @@ rollup-plugin-html@^0.2.1:
     html-minifier "^3.0.2"
     rollup-pluginutils "^1.5.0"
 
+rollup-plugin-img@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/rollup-plugin-img/-/rollup-plugin-img-1.1.0.tgz#17ec10045f6c234a7a59ff1e2d46af4524dd3ffb"
+  integrity sha512-44JyY0wBQFNjM2pB7Yv1uUwMW4S1bjdnzLmUPShrDeACSMvn798i9ttwiBkfls+QjSY0qLrNqMacUTDX93Q0MA==
+  dependencies:
+    rollup-pluginutils "^2.0.1"
+
 rollup-plugin-json@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/rollup-plugin-json/-/rollup-plugin-json-3.1.0.tgz#7c1daf60c46bc21021ea016bd00863561a03321b"
@@ -11231,6 +11286,14 @@ rollup-pluginutils@^1.5.0, rollup-pluginutils@^1.5.1:
   dependencies:
     estree-walker "^0.2.1"
     minimatch "^3.0.2"
+
+rollup-pluginutils@^2.0.1:
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/rollup-pluginutils/-/rollup-pluginutils-2.4.1.tgz#de43ab54965bbf47843599a7f3adceb723de38db"
+  integrity sha512-wesMQ9/172IJDIW/lYWm0vW0LiKe5Ekjws481R7z9WTRtmO59cqyM/2uUlxvf6yzm/fElFmHUobeQOYz46dZJw==
+  dependencies:
+    estree-walker "^0.6.0"
+    micromatch "^3.1.10"
 
 rollup@^0.34.7:
   version "0.34.13"
