@@ -15,7 +15,7 @@
  "order_overTheBox_order_price": "Totaalprijs",
  "order_overTheBox_command": "Bestel de OverTheBox service",
  "order_overTheBox_voucher": "Code promotionnel :",
- "order_overTheBox_voucher_placeholder": "Promotiecode.   ",
+ "order_overTheBox_voucher_placeholder": "Promotiecode.\n\n\n",
  "order_overTheBox_voucher_informations": "Si vous disposez d'un code promo., saisissez-le ci-dessus.",
  "order_overTheBox_price_ht": "excl. btw",
  "order_overTheBox_price_ttc": "incl. btw",

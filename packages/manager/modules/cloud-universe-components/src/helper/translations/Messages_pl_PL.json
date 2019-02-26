@@ -1,0 +1,14 @@
+{
+ "cuc_helper_modal_ok": "OK",
+ "cuc_helper_cancel": "Anuluj",
+ "cuc_helper_edit": "Zmień",
+ "cuc_helper_modal_cancel": "Anuluj",
+ "cuc_helper_delete": "Usuń",
+ "cuc_helper_global_error": "Wystąpił błąd podczas operacji: {{message}}",
+ "cuc_helper_global_success": "Operacja przebiegła pomyślnie.",
+ "cuc_helper_name_change_modal_title": "Zmień nazwę",
+ "cuc_helper_name_change_modal_service_name_label": "Domyślna nazwa",
+ "cuc_helper_name_change_modal_display_name_label": "Spersonalizowana nazwa",
+ "cuc_helper_order_success": "Zamówienie <a href=\"{{orderUrl}}\" target=\"_blank\">{{orderId}}</a>zostało utworzone.",
+ "cuc_helper_order_error": "Błąd podczas tworzenia zamówienia: {{ message }}"
+}
