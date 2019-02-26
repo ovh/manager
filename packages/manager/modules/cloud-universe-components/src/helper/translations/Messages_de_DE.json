@@ -1,0 +1,14 @@
+{
+ "cuc_helper_modal_ok": "OK",
+ "cuc_helper_cancel": "Abbrechen",
+ "cuc_helper_edit": "Ändern",
+ "cuc_helper_modal_cancel": "Abbrechen",
+ "cuc_helper_delete": "Löschen",
+ "cuc_helper_global_error": "Bei dem Vorgang ist ein Fehler aufgetreten: {{message}}",
+ "cuc_helper_global_success": "Der Vorgang wurde erfolgreich beendet.",
+ "cuc_helper_name_change_modal_title": "Namen ändern",
+ "cuc_helper_name_change_modal_service_name_label": "Standardname",
+ "cuc_helper_name_change_modal_display_name_label": "Personalisierter Name",
+ "cuc_helper_order_success": "Der Bestellschein <a href=\"{{orderUrl}}\" target=\"_blank\">{{orderId}}</a> wurde erfolgreich gelöscht.",
+ "cuc_helper_order_error": "Bei der Erstellung des Bestellscheins ist ein Fehler aufgetreten: {{ message }}"
+}

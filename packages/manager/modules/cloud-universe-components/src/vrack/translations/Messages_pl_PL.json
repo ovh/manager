@@ -1,0 +1,12 @@
+{
+ "cuc_vrack_common_cancel": "Anuluj",
+ "cuc_vrack_deactivate": "Wyłącz",
+ "cuc_vrack_private_network_deactivate": "Wyłącz prywatne sieci",
+ "cuc_vrack_private_network_deactivate_confirmation": "Czy na pewno chcesz wyłączyć sieci prywatne dla tej usługi?",
+ "cuc_vrack_private_network_select_placeholder": "Wybierz",
+ "cuc_vrack_private_network_activate": "Włącz",
+ "cuc_vrack_private_network_activate_new_vRack_description": "Zostaniesz przekierowany do zamówienia w celu aktywacji nowej sieci vRack. Następnie będziesz mógł powiązać ją z Twoimi usługami. Konfiguracja będzie aktywna w ciągu kilku sekund.",
+ "cuc_vrack_private_network_activate_title": "Włącz prywatne sieci",
+ "cuc_vrack_private_network_activate_existing": "Istniejąca",
+ "cuc_vrack_private_network_activate_new": "Nowe"
+}

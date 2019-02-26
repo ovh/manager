@@ -1,0 +1,14 @@
+{
+ "cuc_helper_modal_ok": "OK",
+ "cuc_helper_cancel": "Anular",
+ "cuc_helper_edit": "Alterar",
+ "cuc_helper_modal_cancel": "Anular",
+ "cuc_helper_delete": "Eliminar",
+ "cuc_helper_global_error": "Ocorreu um erro durante a operação: {{message}}",
+ "cuc_helper_global_success": "A operação foi concretizada com sucesso",
+ "cuc_helper_name_change_modal_title": "Alterar o nome",
+ "cuc_helper_name_change_modal_service_name_label": "Nome predefinido",
+ "cuc_helper_name_change_modal_display_name_label": "Nome personalizado",
+ "cuc_helper_order_success": "A nota de encomenda <a href=\"{{orderUrl}}\" target=\"_blank\">{{orderId}}</a> foi criada com sucesso.",
+ "cuc_helper_order_error": "Erro durante a criação da nota de encomenda: {{ message }}"
+}
