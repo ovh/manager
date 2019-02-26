@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-freefax",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "license": "BSD-3-Clause",
   "files": [
     "dist"
@@ -25,7 +25,7 @@
     "@ovh-ux/component-rollup-config": "5.0.0-beta.5"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-core": "^2.0.0",
+    "@ovh-ux/manager-core": "^3.0.0",
     "@ovh-ux/manager-telecom-styles": "^2.0.2",
     "@ovh-ux/ng-ovh-contracts": "^3.0.0-beta.3",
     "@ovh-ux/ng-ovh-telecom-universe-components": "^2.0.1",

@@ -1,3 +1,12 @@
+# [0.1.0](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/compare/@ovh-ux/ng-ovh-cloud-universe-components@0.1.0-alpha.5...@ovh-ux/ng-ovh-cloud-universe-components@0.1.0) (2019-02-26)
+
+
+### Bug Fixes
+
+* **cloud-universe-components:** replace jquery by angular.element ([a158264](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/commit/a158264))
+
+
+
 # [0.1.0-alpha.5](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/compare/v0.1.0-alpha.4...v0.1.0-alpha.5) (2019-02-25)
 
 

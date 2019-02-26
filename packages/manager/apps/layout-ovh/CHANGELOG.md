@@ -1,3 +1,19 @@
+# [3.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-layout-ovh@2.0.0...@ovh-ux/manager-layout-ovh@3.0.0) (2019-02-26)
+
+
+### Build System
+
+* **deps:** upgrade ng-ovh-apiv7 to v2.0.0 ([ac6ac62](https://github.com/ovh-ux/manager/commit/ac6ac62))
+* **deps:** upgrade ng-pagination-front to v8.0.0-alpha.0 ([f820440](https://github.com/ovh-ux/manager/commit/f820440))
+
+
+### BREAKING CHANGES
+
+* **deps:** replace `ovh-angular-apiv7` by `@ovh-ux/ng-ovh-apiv7`
+* **deps:** replace `ovh-angular-pagination-front` by `@ovh-ux/ng-pagination-front`
+
+
+
 # [2.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-layout-ovh@1.2.5...@ovh-ux/manager-layout-ovh@2.0.0) (2019-01-29)
 
 

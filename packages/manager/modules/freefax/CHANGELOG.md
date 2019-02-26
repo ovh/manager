@@ -1,3 +1,17 @@
+# [3.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-freefax@2.0.0...@ovh-ux/manager-freefax@3.0.0) (2019-02-26)
+
+
+### Build System
+
+* **deps:** upgrade ng-ovh-apiv7 to v2.0.0 ([ac6ac62](https://github.com/ovh-ux/manager/commit/ac6ac62))
+
+
+### BREAKING CHANGES
+
+* **deps:** replace `ovh-angular-apiv7` by `@ovh-ux/ng-ovh-apiv7`
+
+
+
 # [2.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-freefax@1.0.6...@ovh-ux/manager-freefax@2.0.0) (2019-01-29)
 
 
