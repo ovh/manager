@@ -1,4 +1,4 @@
-import $ from 'jquery';
+import angular from 'angular';
 import isNumber from 'lodash/isNumber';
 
 export default /* @ngInject */ $timeout => ({
@@ -11,7 +11,7 @@ export default /* @ngInject */ $timeout => ({
 
     function tryScroll() {
       if (element.height()) {
-        $('html,body').animate({
+        angular.element('html,body').animate({
           scrollTop: Math.max(0, element.offset().top + offset),
         }, delay);
       } else if (maxRetries > 0) {
