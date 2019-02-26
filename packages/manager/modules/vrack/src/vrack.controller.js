@@ -5,6 +5,7 @@ import angular from 'angular';
 import selectVrackCtrl from './modals/selectVrack.controller';
 import selectVrackTpl from './modals/selectVrack.html';
 import constant from './vrack.constant';
+import arrowIcon from '../assets/icon_vrack-mapper-arrows.svg';
 
 export default /* @ngInject */ function VrackCtrl($scope, $q, $stateParams,
   $state, $timeout, $translate, $uibModal, CucCloudMessage,
@@ -23,6 +24,7 @@ export default /* @ngInject */ function VrackCtrl($scope, $q, $stateParams,
   self.changeOwnerUrl = null;
   self.vRackCloudRoadmapGuide = null;
   self.vrackService = VrackService;
+  self.arrowIcon = arrowIcon;
 
   self.modals = {
     move: null,
