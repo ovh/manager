@@ -1,4 +1,5 @@
 import angular from 'angular';
+import 'angular-ui-bootstrap';
 import '@ovh-ux/manager-core';
 import '@uirouter/angularjs';
 import 'oclazyload';
@@ -9,6 +10,7 @@ const moduleName = 'ovhManagerVrack';
 
 angular.module(moduleName, [
   'ui.router',
+  'ui.bootstrap',
   'oc.lazyLoad',
   'ovhManagerCore',
   vrackAdd,
