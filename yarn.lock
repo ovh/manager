@@ -4790,9 +4790,10 @@ eslint-config-airbnb-base@^13.1.0:
     object.assign "^4.1.0"
     object.entries "^1.0.4"
 
-eslint-import-resolver-lerna@jleveugle/eslint-import-resolver-lerna:
-  version "1.0.0"
-  resolved "https://codeload.github.com/jleveugle/eslint-import-resolver-lerna/tar.gz/5e503982d70aa23bffd13a97bb6e757657767537"
+eslint-import-resolver-lerna@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/eslint-import-resolver-lerna/-/eslint-import-resolver-lerna-1.1.0.tgz#4069a41742651de953ea1063a455aec952388a69"
+  integrity sha512-4olD03ngUo7Q7yRuOF5Gb9WxOc+CLEnw+rt95TnjUWQJ4pn0h9XWSybAr2gswOhre0NHXwwhAhPE8CAiwISFyw==
 
 eslint-import-resolver-node@^0.3.1:
   version "0.3.2"
