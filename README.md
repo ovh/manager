@@ -12,7 +12,7 @@ Clone this repository and let's go at the root of the folder :)
 cd manager
 ```
 
-Install it by using yarn >= 1.7 (we are using workspace feature: <https://yarnpkg.com/lang/en/docs/cli/workspace/>)
+Install it by using yarn >= 1.12.3 (we are using workspace feature: <https://yarnpkg.com/lang/en/docs/cli/workspace/>)
 
 ```bash
 yarn install

@@ -4,8 +4,7 @@ import '@ovh-ux/ng-ovh-telecom-universe-components';
 import '@ovh-ux/manager-telecom-styles';
 import 'angular-messages';
 import 'ovh-angular-checkbox-table';
-import 'ovh-angular-responsive-tabs';
-import 'ovh-angular-pagination-front';
+import '@ovh-ux/ng-pagination-front';
 import 'ovh-api-services';
 
 import 'ovh-ui-kit/dist/oui.css';
@@ -36,9 +35,8 @@ const moduleName = 'ovhManagerSmsComponent';
 angular
   .module(moduleName, [
     'ngOvhTelecomUniverseComponents',
+    'ngPaginationFront',
     'ovh-angular-checkbox-table',
-    'ovh-angular-pagination-front',
-    'ovh-angular-responsive-tabs',
     'ovh-api-services',
     'ngMessages',
     dashboard,
