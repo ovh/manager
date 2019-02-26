@@ -50,6 +50,11 @@ export const FEATURE_AVAILABILITY = {
       CA: ALL_CANADIAN_SUBSIDIARIES,
     },
   },
+  KUBE: {
+    sidebarOrder: {
+      EU: ALL_EUROPEAN_SUBSIDIARIES,
+    },
+  },
   DEDICATED_CLOUD: {
     sidebarMenu: {
       EU: ALL_EUROPEAN_SUBSIDIARIES,
