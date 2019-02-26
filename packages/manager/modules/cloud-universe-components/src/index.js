@@ -6,6 +6,7 @@ import cucClickEnterOnKeypress from './clickEnterOnKeypress';
 import cucConfig from './config';
 import cucFeatureAvailability from './featureAvailability';
 import cucHelper from './helper';
+import cucHighlightedElement from './highlightedElement';
 import cucMessage from './message';
 import cucNavigation from './navigation';
 import cucOrderedHash from './orderedHash';
@@ -26,6 +27,7 @@ angular
     cucConfig,
     cucFeatureAvailability,
     cucHelper,
+    cucHighlightedElement,
     cucMessage,
     cucNavigation,
     cucOrderedHash,
