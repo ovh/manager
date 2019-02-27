@@ -1542,6 +1542,14 @@
     rollup-pluginutils "^2.3.3"
     slash "^2.0.0"
 
+"@ovh-ux/manager-core@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core/-/manager-core-2.0.0.tgz#24914c831c87d5241bca49cc418aa4dfcdee040c"
+  integrity sha512-cor3MH5jX+vvR+rZcsGmBhTNv4wfEcirHft3MwoghXSp6cpHmON5Ujcm1DSwlyRyaeSAY6fzyS5s6zu0PXyHKQ==
+  dependencies:
+    "@ovh-ux/ng-translate-async-loader" "^2.0.0"
+    lodash "^4.17.11"
+
 "@ovh-ux/manager-webpack-config@^3.0.1":
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-webpack-config/-/manager-webpack-config-3.0.1.tgz#d03713e9c1a7701f693fce217076e38dbe5f9cc3"
@@ -1658,6 +1666,13 @@
   dependencies:
     bootstrap "^3.3.7"
     ovh-ui-kit "^2.22.0"
+
+"@ovh-ux/ng-ovh-user-pref@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-user-pref/-/ng-ovh-user-pref-1.0.0.tgz#fd5035855e09758de6f5e886bff78011f44bd0f9"
+  integrity sha512-EmVfYGu8zjjqOfh/R7a291sswbpcbtt2IEmGAorETgUMZIB/CnAQvD5ELzf4NseUJHjG6G0W9HFyJ6u9jkFJRA==
+  dependencies:
+    lodash "^4.17.11"
 
 "@ovh-ux/ng-pagination-front@^8.0.0-alpha.0":
   version "8.0.0-alpha.0"

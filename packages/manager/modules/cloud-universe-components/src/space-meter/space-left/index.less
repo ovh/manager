@@ -1,0 +1,75 @@
+/* Space Meter - Space-left */
+@cloud-space-meter-space-left-width: 100%;
+
+/* Space Meter - Space-left Text */
+@cloud-space-meter-space-left-text-font-weight: 700;
+@cloud-space-meter-space-left-text-border-bottom-color: #7d7d7d;
+
+/* Space Meter - Space-left Tooltip */
+@cloud-space-meter-tooltip-background-color: white;
+@cloud-space-meter-tooltip-box-shadow: 0 2px 5px 0 rgba(219, 220, 229, 0.5);
+@cloud-space-meter-tooltip-border-color: #eee;
+@cloud-space-meter-tooltip-font-size: 1.2rem;
+@cloud-space-meter-tooltip-font-color: #333;
+@cloud-space-meter-tooltip-arrow-border-color: #ccc;
+@cloud-space-meter-tooltip-arrow-border-top-color: white !important;
+@cloud-space-meter-tooltip-inner-height: 10rem;
+@cloud-space-meter-tooltip-inner-width: 24rem;
+
+.cloud-space-meter-space-left {
+  display: block;
+  width: @cloud-space-meter-space-left-width;
+
+  &_column {
+    display: block;
+    text-align: left;
+    margin-bottom: 1rem;
+  }
+
+  &__text {
+    &_strong {
+      font-weight: @cloud-space-meter-space-left-text-font-weight;
+    }
+
+    &_hoverable {
+      border-bottom-width: 1px;
+      border-bottom-style: dotted;
+      border-bottom-color: @cloud-space-meter-space-left-text-border-bottom-color;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  &__tooltip {
+    opacity: 1 !important;
+
+    > .tooltip-inner {
+      width: @cloud-space-meter-tooltip-inner-width;
+      height: @cloud-space-meter-tooltip-inner-height;
+      color: @cloud-space-meter-tooltip-font-color;
+      font-size: @cloud-space-meter-tooltip-font-size;
+      background-color: @cloud-space-meter-tooltip-background-color;
+      border-bottom: 0;
+      box-shadow: @cloud-space-meter-tooltip-box-shadow;
+      border-style: solid;
+      border-color: @cloud-space-meter-tooltip-border-color;
+      border-width: 1px 1px 0 1px;
+      padding: 1rem;
+    }
+
+    > .tooltip-arrow {
+      border-top-color: @cloud-space-meter-tooltip-arrow-border-top-color;
+
+      &::after {
+        content: '';
+        position: absolute;
+        border-bottom-style: solid;
+        border-bottom-width: 1px;
+        border-bottom-color: @cloud-space-meter-tooltip-arrow-border-color;
+        bottom: 0;
+      }
+    }
+  }
+}
