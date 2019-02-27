@@ -9406,6 +9406,11 @@ ovh-api-services@^4.2.0:
   dependencies:
     lodash "^3.10.1"
 
+ovh-common-style@^3.2.2:
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/ovh-common-style/-/ovh-common-style-3.2.2.tgz#66f4637c7393d1bd5118b05b63b034f26120a41f"
+  integrity sha1-ZvRjfHOT0b1RGLBbY7A08mEgpB8=
+
 ovh-manager-webfont@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/ovh-manager-webfont/-/ovh-manager-webfont-1.0.2.tgz#8f9d358d138c2650a557bdac7a2d1908e962418d"
