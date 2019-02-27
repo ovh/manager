@@ -5,7 +5,7 @@
  "cuc_vrack_private_network_deactivate_confirmation": "Are you sure you want to disable private networks for this service?",
  "cuc_vrack_private_network_select_placeholder": "Select",
  "cuc_vrack_private_network_activate": "Enable",
- "cuc_vrack_private_network_activate_new_vRack_description": "You will be redirected to the order, so that you can enable the new vRack. You can then associate it with your services. The configuration will become operational in a few seconds.",
+ "cuc_vrack_private_network_activate_new_vRack_description": "Activate a new vRack and connect it to your project.",
  "cuc_vrack_private_network_activate_title": "Enable private networks",
  "cuc_vrack_private_network_activate_existing": "Existing",
  "cuc_vrack_private_network_activate_new": "New"
