@@ -24,7 +24,7 @@
  "sidebar_section_telephony": "Telefonia",
  "sidebar_section_sms": "SMS",
  "sidebar_section_fax": "Fax",
- "sidebar_section_fax_prefix_freefax": "perso",
+ "sidebar_section_fax_prefix_freefax": "Personale",
  "sidebar_section_otb": "OverTheBox",
- "sidebar_load_error": "Ops! Impossibile caricare le tue informazioni"
+ "sidebar_load_error": "Ops! Impossibile caricare i tuoi servizi"
 }
