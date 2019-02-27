@@ -5,6 +5,8 @@
 @import '~bootstrap/less/mixins';
 @import '~font-awesome/less/font-awesome';
 @import '~ovh-ui-kit/packages/oui-color/_variables';
+@import '~ovh-ui-kit/packages/oui-icons/_icons';
+@import '~ovh-ui-kit/packages/oui-navbar/_variables';
 @import '~ovh-ui-kit/packages/oui-typography/_variables';
 @import '~ovh-ui-kit-bs/src/bootstrap/_variables';
 @import '~ovh-common-style/less/helpers';
@@ -213,7 +215,6 @@
     }
   }
 
-  @import './common/less/button';
   @import './cda/cda';
   @import './cda/details/home/detail/cda-detail.component.less';
   @import './cda/user/details/cda-user-details';
@@ -261,16 +262,16 @@
   @import './cloud/project/openstack/users/openrc/openstack-users-openrc';
   @import './cloud/project/storage/storage-add/storage-add';
   @import './cloud/project/storage/storage';
+  @import './common/common';
+  @import './common/less/button';
+  @import './common/less/flag';
+  @import './common/less/link';
+  @import './common/less/navbar';
+  @import './common/less/ovh-alert';
 }
 
 // // inject:less
 // // inject:less
-// @import 'common/common.less';
-// @import 'common/less/button.less';
-// @import 'common/less/flag.less';
-// @import 'common/less/link.less';
-// @import 'common/less/navbar.less';
-// @import 'common/less/ovh-alert.less';
 // @import 'common/less/utils.less';
 // @import 'dbaas/dbaas-metrics/dashboard/chart-pie/metrics-chart-pie.component.less';
 // @import 'dbaas/dbaas-metrics/dashboard/metrics-dashboard.less';
