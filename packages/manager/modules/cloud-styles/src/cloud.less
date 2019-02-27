@@ -1,8 +1,15 @@
 @oui-path: "../../../ovh-ui-kit";
 
+@import "~bootstrap/less/utilities.less";
+@import "~bootstrap/less/mixins.less";
 @import "~ovh-ui-kit/packages/oui-color/_variables";
 @import "~ovh-ui-kit/packages/oui-typography/_variables";
 @import "~ovh-ui-kit-bs/src/bootstrap/_variables";
+@import "~ovh-common-style/less/helpers.less";
+@import "~ovh-common-style/less/animation.less";
+@import "~ovh-common-style/less/table.less";
+@import "~ovh-common-style/less/datepicker-ui.less";
+@import "~ovh-common-style/less/spinner/spinner.less";
 @import "~ovh-common-style/less/fonts/open-sans.less";
 
 .cloud-legacy {
@@ -220,8 +227,6 @@
     }
   }
 
-  // @import "cloud/less/cloud.ribbonOffer.less";
-  // @import "cloud/less/cloud.sweet-success.less";
   @import "common/less/button.less";
   @import "cda/cda.less";
   @import "cda/details/home/detail/cda-detail.component.less";
@@ -232,13 +237,15 @@
   @import "cloud/project/compute/infrastructure/cloud-project-compute-infrastructure.less";
   @import "cloud/less/cloud.classic-tabs.less";
   @import "cloud/less/cloud.popover.less";
+  @import "cloud/less/cloud.ribbonOffer.less";
+  @import "cloud/less/cloud.sweet-success.less";
+  @import "cloud/offer/cloud-offer.less";
+  @import "cloud/project/add/cloud-project-add.less";
+  @import "cloud/project/billing/cloud-project-billing.less";
 }
 
 // // inject:less
 // // inject:less
-// @import "cloud/offer/cloud-offer.less";
-// @import "cloud/project/add/cloud-project-add.less";
-// @import "cloud/project/billing/cloud-project-billing.less";
 // @import "cloud/project/billing/consumption/cloud-project-billing-consumption.less";
 // @import "cloud/project/billing/consumption/current/cloud-project-billing-consumption-current.less";
 // @import "cloud/project/billing/consumption/estimate/cloud-project-billing-consumption-estimate.less";
