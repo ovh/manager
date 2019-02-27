@@ -1512,7 +1512,7 @@
     rollup-pluginutils "^2.3.3"
     slash "^2.0.0"
 
-"@ovh-ux/component-rollup-config@5.0.0-beta.9", "@ovh-ux/component-rollup-config@^5.0.0-beta.9":
+"@ovh-ux/component-rollup-config@^5.0.0-beta.9":
   version "5.0.0-beta.9"
   resolved "https://registry.yarnpkg.com/@ovh-ux/component-rollup-config/-/component-rollup-config-5.0.0-beta.9.tgz#14b9e329a39f57a56c783ddf50d25f3089849508"
   integrity sha512-vntsgUf7HUJOvv4w29mdTD5K3RkqZvYFpvRJJu9ofOwv/uL754x84ry3IU+7wmDIoS+74JBSkiBn49PTy9F8cA==
@@ -1617,17 +1617,6 @@
   integrity sha512-EnJEEmoNCTjnCv/501GDZjxYt17YgGbVBr6BfqF6kD4FSf+TQpsP2sOKEXDLIj0oJUYRhU4z5d97AjX9zFSrFg==
   dependencies:
     lodash "^4.17.11"
-
-"@ovh-ux/ng-ovh-cloud-universe-components@^0.0.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-cloud-universe-components/-/ng-ovh-cloud-universe-components-0.1.0.tgz#378f0c680514d7e973ad0186d7366f05059de50b"
-  integrity sha512-7GVCM4cvMnVTGIf2rvP0N3tBNo5coWL4WMSZSP0AluDV8a9hJNWNuzPB3rQ6yBmewr+3cWpWNZz/HSo7RVqpVw==
-  dependencies:
-    bootstrap "~3.3.0"
-    jsurl "^0.1.5"
-    lodash "^4.17.11"
-    moment "^2.24.0"
-    ovh-ui-kit "^2.24.2"
 
 "@ovh-ux/ng-ovh-contracts@^3.0.0-beta.3":
   version "3.0.0-beta.3"
@@ -5525,7 +5514,7 @@ follow-redirects@^1.0.0:
   dependencies:
     debug "=3.1.0"
 
-font-awesome@4.7.0:
+font-awesome@4.7.0, font-awesome@^4.0.0:
   version "4.7.0"
   resolved "https://registry.yarnpkg.com/font-awesome/-/font-awesome-4.7.0.tgz#8fa8cf0411a1a31afd07b06d2902bb9fc815a133"
   integrity sha1-j6jPBBGhoxr9B7BtKQK7n8gVoTM=
@@ -9406,6 +9395,11 @@ ovh-api-services@^4.2.0:
   dependencies:
     lodash "^3.10.1"
 
+ovh-common-style@^3.2.2:
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/ovh-common-style/-/ovh-common-style-3.2.2.tgz#66f4637c7393d1bd5118b05b63b034f26120a41f"
+  integrity sha1-ZvRjfHOT0b1RGLBbY7A08mEgpB8=
+
 ovh-manager-webfont@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/ovh-manager-webfont/-/ovh-manager-webfont-1.0.2.tgz#8f9d358d138c2650a557bdac7a2d1908e962418d"
@@ -9440,7 +9434,7 @@ ovh-ui-kit@^2.22.0, ovh-ui-kit@^2.23.1:
   dependencies:
     less-plugin-remcalc "^0.1.0"
 
-ovh-ui-kit@^2.24.2:
+ovh-ui-kit@^2.24.2, ovh-ui-kit@~2.24.0:
   version "2.24.2"
   resolved "https://registry.yarnpkg.com/ovh-ui-kit/-/ovh-ui-kit-2.24.2.tgz#27e7c945c81f22745657d4eeb8b6a96022a87828"
   integrity sha512-yLdyZskNlDUnx29XCYY5SppcJYaVBrNOpa682D+rw1s79Y9/dwAlF6qWD47NWDRK2XzgJR8U7xTjvbersuGBwg==

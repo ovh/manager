@@ -1,0 +1,21 @@
+@logs-offer-box-color: #59d2ef;
+
+.basic-offer {
+  ul.dashed {
+    list-style-type: none;
+  }
+
+  ul.dashed > li::before {
+    content: "-";
+    color: @logs-offer-box-color;
+    margin-left: -1rem;
+    font-weight: 600;
+    padding-right: 10px;
+  }
+}
+
+.sub-heading {
+  font-size: 14px;
+  margin-left: 2.5rem;
+  margin-top: -1rem;
+}
