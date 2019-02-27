@@ -5,6 +5,15 @@
 @import "~ovh-ui-kit-bs/src/bootstrap/_variables";
 
 .cloud-legacy {
+
+  @MobileTopNavHeight: 55px;
+  @TopNavHeight: 44px;
+  @TopNavResponsiveLeft: 15px;
+  @TopNavBackground: #122844;
+  @TopNavBackgroundHover: darken(@TopNavBackground, 4%);
+  @MobileNavBackground: #424d61;
+  @TopNavColor: #ffffff;
+
   // @import 'bootstrap/less/bootstrap.less';
   // @rem-base: rem-base(10px);
 
@@ -42,52 +51,39 @@
   @screen-md-min: @oui-responsive-breakpoint-tablet;
   @screen-md-max: (@oui-responsive-breakpoint-medium - 1px);
   @screen-lg-min: @oui-responsive-breakpoint-medium;
-
-  @component-offset-horizontal : 200px;
+  @component-offset-horizontal: 200px;
   @modal-backdrop-bg: @oui-color-shuttle;
 
   // Params use by bootstrap and app
-  @v6-min-with : 801px;
+  @v6-min-with: 801px;
+  @v6-max-with: 800px;
 
-  @v6-max-with : 800px;
+  @font-size-base: 12px;
 
-  @font-size-base : 12px;
-
-  @border-radius-base : 2px;
-
-  @border-radius-large : 2px;
-
-  @border-radius-small : 1px;
-
-  @top_bar_height : 80px;
+  @border-radius-base: 2px;
+  @border-radius-large: 2px;
+  @border-radius-small: 1px;
+  @top_bar_height: 80px;
 
   // App params structure
-  
-  @topnavheight : 44px;
+  @TopNavHeight: 44px;
+  @MobileTopNavHeight: @TopNavHeight;
 
-  @mobiletopnavheight : @TopNavHeight;
+  @TopTabBackground: #e0e0e0;
+  @TopNavBackground: @TopTabBackground;
 
-  @toptabbackground : #e0e0e0;
+  @UNIVERS: #edc200;
+  @UNIVERS_HOVER: #e9d473;
+  @UNIVERS_SECONDARY: hsl(168, 32%, 54%); //#65afa0;
+  @UNIVERS_SECONDARY_HOVER: lighten(@UNIVERS_SECONDARY, 8%);
 
-  @topnavbackground : @TopTabBackground;
-
-  @univers : #edc200;
-
-  @univers_hover : #e9d473;
-
-  @univers_secondary : hsl(168, 32%, 54%); //#65afa0;
-  
-
-  @univers_secondary_hover : lighten(@UNIVERS_SECONDARY, 8%);
-
-  @defaultfontsize : 12px;
+  @DefaultFontSize: 12px;
 
   // Zindex
-  
-  @zindexfulloverlay : 1040;
+  @zIndexFullOverlay: 1040;
   @imgPath: '../assets/';
 
-  @table-header-background-color : @UNIVERS_SECONDARY;
+  @table-header-background-color: @UNIVERS_SECONDARY;
 
   :not(.oui-header-tabs__dropdown-container) > .oui-header-tabs__item_active > a {
     border-bottom-color: @UNIVERS;
