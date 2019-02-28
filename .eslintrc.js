@@ -8,6 +8,9 @@ module.exports = {
     browser: true,
     jquery: true,
   },
+  globals: {
+    d3: true,
+  },
   rules: {
     'no-bitwise': ['error', { allow: ['~'] }],
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
