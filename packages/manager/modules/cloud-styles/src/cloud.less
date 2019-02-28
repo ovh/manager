@@ -2,6 +2,7 @@
 
 @import '~bootstrap/less/bootstrap';
 @rem-base: rem-base(10px);
+
 @import "~ovh-ui-kit/packages/oui/stylekit";
 @import '~font-awesome/less/font-awesome';
 @import '~ovh-angular-sidebar-menu/less/ovh-angular-sidebar-menu';
@@ -25,318 +26,319 @@
 // .cloud-legacy {
 
   @MobileTopNavHeight: 55px;
-  @TopNavHeight: 44px;
-  @TopNavResponsiveLeft: 15px;
-  @TopNavBackground: #122844;
-  @TopNavBackgroundHover: darken(@TopNavBackground, 4%);
-  @MobileNavBackground: #424d61;
-  @TopNavColor: #ffffff;
+@TopNavHeight: 44px;
+@TopNavResponsiveLeft: 15px;
+@TopNavBackground: #122844;
+@TopNavBackgroundHover: darken(@TopNavBackground, 4%);
+@MobileNavBackground: #424d61;
+@TopNavColor: #ffffff;
 
-  @ovh-angular-slider-handle-background: #8d919c;
-  @ovh-angular-slider-handle-border-color: darken(@ovh-angular-slider-handle-background, 5%);
-  @ovh-angular-slider-handle-hover-background: #009fe3;
-  @ovh-angular-slider-handle-hover-border-color: darken(@ovh-angular-slider-handle-background, 5%);
-  @ovh-angular-slider-bubble-limit-color: #777;
+@ovh-angular-slider-handle-background: #8d919c;
+@ovh-angular-slider-handle-border-color: darken(@ovh-angular-slider-handle-background, 5%);
+@ovh-angular-slider-handle-hover-background: #009fe3;
+@ovh-angular-slider-handle-hover-border-color: darken(@ovh-angular-slider-handle-background, 5%);
+@ovh-angular-slider-bubble-limit-color: #777;
 
-  // Overide Bootstrap Params
+// Overide Bootstrap Params
   @screen-xs-max: @v6-max-with;
-  @screen-sm-min: @v6-min-with;
-  @screen-sm-max: (@oui-responsive-breakpoint-tablet - 1px);
-  @screen-md-min: @oui-responsive-breakpoint-tablet;
-  @screen-md-max: (@oui-responsive-breakpoint-medium - 1px);
-  @screen-lg-min: @oui-responsive-breakpoint-medium;
-  @component-offset-horizontal: 200px;
-  @modal-backdrop-bg: @oui-color-shuttle;
+@screen-sm-min: @v6-min-with;
+@screen-sm-max: (@oui-responsive-breakpoint-tablet - 1px);
+@screen-md-min: @oui-responsive-breakpoint-tablet;
+@screen-md-max: (@oui-responsive-breakpoint-medium - 1px);
+@screen-lg-min: @oui-responsive-breakpoint-medium;
+@component-offset-horizontal: 200px;
+@modal-backdrop-bg: @oui-color-shuttle;
 
-  // Params use by bootstrap and app
+// Params use by bootstrap and app
   @v6-min-with: 801px;
-  @v6-max-with: 800px;
+@v6-max-with: 800px;
 
-  @font-size-base: 12px;
+@font-size-base: 12px;
 
-  @border-radius-base: 2px;
-  @border-radius-large: 2px;
-  @border-radius-small: 1px;
-  @top_bar_height: 80px;
+@border-radius-base: 2px;
+@border-radius-large: 2px;
+@border-radius-small: 1px;
+@top_bar_height: 80px;
 
-  // App params structure
+// App params structure
   @TopNavHeight: 44px;
-  @MobileTopNavHeight: @TopNavHeight;
+@MobileTopNavHeight: @TopNavHeight;
 
-  @TopTabBackground: #e0e0e0;
-  @TopNavBackground: @TopTabBackground;
+@TopTabBackground: #e0e0e0;
+@TopNavBackground: @TopTabBackground;
 
-  @UNIVERS: #edc200;
-  @UNIVERS_HOVER: #e9d473;
-  @UNIVERS_SECONDARY: hsl(168, 32%, 54%); //#65afa0;
+@UNIVERS: #edc200;
+@UNIVERS_HOVER: #e9d473;
+@UNIVERS_SECONDARY: hsl(168, 32%, 54%); //#65afa0;
   @UNIVERS_SECONDARY_HOVER: lighten(@UNIVERS_SECONDARY, 8%);
 
-  @DefaultFontSize: 12px;
+@DefaultFontSize: 12px;
 
-  // Zindex
+// Zindex
   @zIndexFullOverlay: 1040;
-  @imgPath: '../assets/';
+@imgPath: '../assets/';
 
-  @table-header-background-color: @UNIVERS_SECONDARY;
+@table-header-background-color: @UNIVERS_SECONDARY;
 
-  :not(.oui-header-tabs__dropdown-container) > .oui-header-tabs__item_active > a {
-    border-bottom-color: @UNIVERS;
-  }
+:not(.oui-header-tabs__dropdown-container) > .oui-header-tabs__item_active > a {
+  border-bottom-color: @UNIVERS;
+}
 
-  .table {
-    &.table-pretty {
-      thead {
-        a {
-          color: white;
-          text-decoration: none;
-          cursor: pointer;
-        }
+.table {
+  &.table-pretty {
+    thead {
+      a {
+        color: white;
+        text-decoration: none;
+        cursor: pointer;
       }
     }
   }
+}
 
-  /*
+/*
    * Base structure
    */
-  html {
-    height: 100%;
-  }
+html {
+  height: 100%;
+}
 
-  /* Move down content because we have a fixed navbar that is 50px tall */
-  @media (min-width: @v6-min-with) {
-    body {
-      margin-top: @TopNavHeight;
-    }
+/* Move down content because we have a fixed navbar that is 50px tall */
+@media (min-width: @v6-min-with) {
+  body {
+    margin-top: @TopNavHeight;
   }
+}
 
-  .browsehappy {
-    background: #ccc;
-    color: #000;
-    padding: 0 10px;
-  }
+.browsehappy {
+  background: #ccc;
+  color: #000;
+  padding: 0 10px;
+}
 
-  //BackDrop
+//BackDrop
   #full-overlay {
-    background: black;
-    opacity: 0.4;
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    z-index: @zIndexFullOverlay;
+  background: black;
+  opacity: 0.4;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: @zIndexFullOverlay;
+  display: none;
+
+  &.nav-open {
     display: none;
-
-    &.nav-open {
-      display: none;
-    }
   }
-  //Mobile
+}
+//Mobile
   @media (max-width: @v6-max-with) {
-    #full-overlay[class*='nav-open'] {
-      display: block;
-    }
+  #full-overlay[class*='nav-open'] {
+    display: block;
   }
+}
 
-  /*
+/*
    * content
    */
 
+#content {
+  padding: 0;
+
+  .page-header {
+    margin-top: 0;
+  }
+}
+
+@media (max-width: @v6-max-with) {
   #content {
-    padding: 0;
-
-    .page-header {
-      margin-top: 0;
-    }
+    margin-top: @MobileTopNavHeight - 1;
   }
+}
 
-  @media (max-width: @v6-max-with) {
-    #content {
-      margin-top: @MobileTopNavHeight - 1;
-    }
-  }
-
-  /*
+/*
    * container
    */
 
+.container {
+  width: auto;
+}
+
+@media screen and (min-width: @v6-min-with) {
   .container {
-    width: auto;
+    max-width: 730px;
   }
+}
 
-  @media screen and (min-width: @v6-min-with) {
-    .container {
-      max-width: 730px;
-    }
-  }
-
-  /*
+/*
    * Tabs
    */
 
-  .tab-container {
-    background-color: @TopTabBackground;
-    box-shadow: inset 0 -4px 7px -5px #bbb;
+.tab-container {
+  background-color: @TopTabBackground;
+  box-shadow: inset 0 -4px 7px -5px #bbb;
 
-    .nav.nav-tabs {
-      border-bottom: 0;
+  .nav.nav-tabs {
+    border-bottom: 0;
 
-      > li {
+    > li {
+      a {
+        color: @TopNavBackground;
+        display: inline-block;
+        text-align: center;
+        padding: 15px 25px;
+        border: 0;
+        font-size: 12px;
+
+        i {
+          display: block;
+          font-size: 30px;
+        }
+      }
+
+      &.disabled {
+        opacity: 0.3;
+      }
+
+      &.active {
+        background-color: white;
+        box-shadow: 0 -5px 7px #bbb;
+
         a {
-          color: @TopNavBackground;
-          display: inline-block;
-          text-align: center;
-          padding: 15px 25px;
           border: 0;
-          font-size: 12px;
-
-          i {
-            display: block;
-            font-size: 30px;
-          }
-        }
-
-        &.disabled {
-          opacity: 0.3;
-        }
-
-        &.active {
           background-color: white;
-          box-shadow: 0 -5px 7px #bbb;
-
-          a {
-            border: 0;
-            background-color: white;
-            border-radius: 0;
-            color: @UNIVERS_SECONDARY;
-          }
-        }
-
-        &:not(.disabled) a:hover {
-          background: transparent;
+          border-radius: 0;
           color: @UNIVERS_SECONDARY;
         }
       }
+
+      &:not(.disabled) a:hover {
+        background: transparent;
+        color: @UNIVERS_SECONDARY;
+      }
     }
   }
+}
 
-  @import './cda/cda';
-  @import './cda/details/home/detail/cda-detail.component.less';
-  @import './cda/user/details/cda-user-details';
-  @import './cda/user/details/permissions/edit/cda-user-details-permission-list-edit';
-  @import './cloud/cloud';
-  @import './cloud/cloud.variables.less';
-  @import './cloud/project/compute/infrastructure/cloud-project-compute-infrastructure';
-  @import './cloud/less/cloud.classic-tabs.less';
-  @import './cloud/less/cloud.popover.less';
-  @import './cloud/less/cloud.ribbonOffer.less';
-  @import './cloud/less/cloud.sweet-success.less';
-  @import './cloud/offer/cloud-offer';
-  @import './cloud/project/add/cloud-project-add';
-  @import './cloud/project/billing/cloud-project-billing';
-  @import './cloud/project/billing/consumption/cloud-project-billing-consumption';
-  @import './cloud/project/billing/consumption/current/cloud-project-billing-consumption-current';
-  @import './cloud/project/billing/consumption/estimate/cloud-project-billing-consumption-estimate';
-  @import './cloud/project/billing/history/cloud-project-billing-history';
-  @import './cloud/project/billing/history/details/cloud-project-billing-history-details';
-  @import './cloud/project/billing/rights/cloud-project-billing-rights';
-  @import './cloud/project/cloud-project';
-  @import './cloud/project/compute/cloud-project-compute';
-  @import './cloud/project/compute/infrastructure/ip/add_OLD_/cloud-project-compute-infrastructure-ip-add';
-  @import './cloud/project/compute/infrastructure/less/cloud-project-compute-infrastructure-ip';
-  @import './cloud/project/compute/infrastructure/less/cloud-project-compute-infrastructure-vm';
-  @import './cloud/project/compute/infrastructure/less/cloud-project-compute-infrastructure-volume';
-  @import './cloud/project/compute/infrastructure/openstackClient/cloud-project-compute-infrastructure-openstack-client';
-  @import './cloud/project/compute/infrastructure/popover/cloud-project-compute-infrastructure-popover';
-  @import './cloud/project/compute/infrastructure/privateNetwork/cloud-project-compute-infrastructure-privateNetwork';
-  @import './cloud/project/compute/infrastructure/privateNetwork/cloud-project-compute-infrastructure-privateNetworks';
-  @import './cloud/project/compute/infrastructure/privateNetwork/dialog/cloud-project-compute-infrastructure-privateNetwork-dialog-menu-item.less';
-  @import './cloud/project/compute/infrastructure/privateNetwork/dialog/cloud-project-compute-infrastructure-privateNetwork-dialog-region';
-  @import './cloud/project/compute/infrastructure/privateNetwork/dialog/cloud-project-compute-infrastructure-privateNetwork-dialog';
-  @import './cloud/project/compute/infrastructure/virtualMachine/addEdit/cloud-project-compute-infrastructure-virtualMachine-addEdit';
-  @import './cloud/project/compute/infrastructure/virtualMachine/loginInformation/cloud-project-compute-infrastructure-virtual-machine-login-information';
-  @import './cloud/project/compute/infrastructure/virtualMachine/monitoring/cloud-project-compute-infrastructure-virtualMachine-monitoring';
-  @import './cloud/project/compute/infrastructure/volume/addEdit/cloud-project-compute-infrastructure-volume-addEdit';
-  @import './cloud/project/compute/loadbalancer/cloud-project-compute-loadbalancer';
-  @import './cloud/project/compute/quota/cloud-project-compute-quota';
-  @import './cloud/project/compute/regions/regions';
-  @import './cloud/project/compute/ssh/cloud-project-compute-ssh';
-  @import './cloud/project/details/cloud-project-details';
-  @import './cloud/project/onboarding/onboarding-pci';
-  @import './cloud/project/openstack/openstack';
-  @import './cloud/project/openstack/users/openrc/openstack-users-openrc';
-  @import './cloud/project/storage/storage-add/storage-add';
-  @import './cloud/project/storage/storage';
-  @import './common/common';
-  @import './common/less/button';
-  @import './common/less/flag';
-  @import './common/less/link';
-  @import './common/less/navbar';
-  @import './common/less/ovh-alert';
-  @import './common/less/utils';
-  @import './dbaas/dbaas-metrics/dashboard/chart-pie/metrics-chart-pie.component.less';
-  @import './dbaas/dbaas-metrics/dashboard/metrics-dashboard';
-  @import './dbaas/dbaas-metrics/platform/metrics-platform';
-  @import './dbaas/dbaas-metrics/token/add/metrics-token-add';
-  @import './dbaas/dbaas-metrics/token/metrics-token';
-  @import './dbaas/dbaas-metrics/token/preview/metrics-token-preview';
-  @import './dbaas/logs/detail/account/password/logs-account-password';
-  @import './dbaas/logs/detail/inputs/add/configure/logs-inputs-add-configure';
-  @import './dbaas/logs/detail/inputs/add/logs-inputs-add';
-  @import './dbaas/logs/detail/inputs/add/networks/logs-inputs-add-networks';
-  @import './dbaas/logs/detail/logs-detail';
-  @import './dbaas/logs/detail/offer/logs-offer';
-  @import './dbaas/logs/detail/options/logs-options';
-  @import './dbaas/logs/detail/roles/logs-roles';
-  @import './dbaas/logs/detail/streams/alerts/home/alerts-home';
-  @import './dbaas/logs/detail/streams/archives/streams-archives';
-  @import './dbaas/logs/detail/streams/logs-streams';
-  @import './dbaas/logs/welcome/logs-welcome';
-  @import './dbaas/ts/dbaasts';
-  @import './dbaas/ts/dbaasts.variables.less';
-  @import './dbaas/ts/project/details/key/dbaasts-project-details-key';
-  @import './dbaas/ts/project/details/settings/dbaasts-project-details-settings';
-  @import './deskaas/deskaas-details/deskaas-details';
-  @import './deskaas/deskaas-upgrade/deskaas-upgrade';
-  @import './deskaas/deskaas';
-  @import './home/home';
-  @import './iplb/home/bullet-chart';
-  @import './iplb/home/home';
-  @import './iplb/home/status-card';
-  @import './iplb/iplb';
-  @import './iplb/vrack/iplb-vrack';
-  @import './nasha/add/nasha-add';
-  @import './nasha/nasha';
-  @import './nasha/partition/access/add/nasha-partition-access-add';
-  @import './nasha/partition/access/nasha-partition-access';
-  @import './nasha/partition/custom-snapshot/add/nasha-partition-custom-snapshot-add';
-  @import './nasha/partition/nasha-partition';
-  @import './nasha/partition/update/nasha-partition-update';
-  @import './oui-less-override';
-  @import './ui-components/accordion/accordion-list';
-  @import './ui-components/accordion/accordion';
-  @import './ui-components/advanced-options/advanced-options';
-  @import './ui-components/dual-list/dual-list';
-  @import './ui-components/form/form';
-  @import './ui-components/grid/grid';
-  @import './ui-components/icons/button-action';
-  @import './ui-components/inline-adder/inline-adder';
-  @import './ui-components/input/key-value';
-  @import './ui-components/modal/modal';
-  @import './ui-components/panel/panel';
-  @import './ui-components/preview-list/_variables';
-  @import './ui-components/preview-list/preview-list';
-  @import './ui-components/table/_normalize';
-  @import './ui-components/table/_variables';
-  @import './ui-components/table/_mixins';
-  @import './ui-components/table/table';
-  @import './veeam/veeam';
-  @import './vps/dashboard/vps-tile-status';
-  @import './vps/modal/shortcut/kvm/vps-kvm';
-  @import './vps/modal/shortcut/reinstall/vps-reinstall';
-  @import './vps/vps';
-  @import './vrack/add/vrack-add';
-  @import './vrack/vrack-mapper';
-  @import './vrack/vrack';
-// }
+@import './cda/cda';
+@import './cda/details/home/detail/cda-detail.component.less';
+@import './cda/user/details/cda-user-details';
+@import './cda/user/details/permissions/edit/cda-user-details-permission-list-edit';
+@import './cloud/cloud';
+@import './cloud/cloud.variables.less';
+@import './cloud/project/compute/infrastructure/cloud-project-compute-infrastructure';
+@import './cloud/less/cloud.classic-tabs.less';
+@import './cloud/less/cloud.popover.less';
+@import './cloud/less/cloud.ribbonOffer.less';
+@import './cloud/less/cloud.sweet-success.less';
+@import './cloud/offer/cloud-offer';
+@import './cloud/project/add/cloud-project-add';
+@import './cloud/project/billing/cloud-project-billing';
+@import './cloud/project/billing/consumption/cloud-project-billing-consumption';
+@import './cloud/project/billing/consumption/current/cloud-project-billing-consumption-current';
+@import './cloud/project/billing/consumption/estimate/cloud-project-billing-consumption-estimate';
+@import './cloud/project/billing/history/cloud-project-billing-history';
+@import './cloud/project/billing/history/details/cloud-project-billing-history-details';
+@import './cloud/project/billing/rights/cloud-project-billing-rights';
+@import './cloud/project/cloud-project';
+@import './cloud/project/compute/cloud-project-compute';
+@import './cloud/project/compute/infrastructure/ip/add_OLD_/cloud-project-compute-infrastructure-ip-add';
+@import './cloud/project/compute/infrastructure/less/cloud-project-compute-infrastructure-ip';
+@import './cloud/project/compute/infrastructure/less/cloud-project-compute-infrastructure-vm';
+@import './cloud/project/compute/infrastructure/less/cloud-project-compute-infrastructure-volume';
+@import './cloud/project/compute/infrastructure/openstackClient/cloud-project-compute-infrastructure-openstack-client';
+@import './cloud/project/compute/infrastructure/popover/cloud-project-compute-infrastructure-popover';
+@import './cloud/project/compute/infrastructure/privateNetwork/cloud-project-compute-infrastructure-privateNetwork';
+@import './cloud/project/compute/infrastructure/privateNetwork/cloud-project-compute-infrastructure-privateNetworks';
+@import './cloud/project/compute/infrastructure/privateNetwork/dialog/cloud-project-compute-infrastructure-privateNetwork-dialog-menu-item.less';
+@import './cloud/project/compute/infrastructure/privateNetwork/dialog/cloud-project-compute-infrastructure-privateNetwork-dialog-region';
+@import './cloud/project/compute/infrastructure/privateNetwork/dialog/cloud-project-compute-infrastructure-privateNetwork-dialog';
+@import './cloud/project/compute/infrastructure/virtualMachine/addEdit/cloud-project-compute-infrastructure-virtualMachine-addEdit';
+@import './cloud/project/compute/infrastructure/virtualMachine/loginInformation/cloud-project-compute-infrastructure-virtual-machine-login-information';
+@import './cloud/project/compute/infrastructure/virtualMachine/monitoring/cloud-project-compute-infrastructure-virtualMachine-monitoring';
+@import './cloud/project/compute/infrastructure/volume/addEdit/cloud-project-compute-infrastructure-volume-addEdit';
+@import './cloud/project/compute/loadbalancer/cloud-project-compute-loadbalancer';
+@import './cloud/project/compute/quota/cloud-project-compute-quota';
+@import './cloud/project/compute/regions/regions';
+@import './cloud/project/compute/ssh/cloud-project-compute-ssh';
+@import './cloud/project/details/cloud-project-details';
+@import './cloud/project/onboarding/onboarding-pci';
+@import './cloud/project/openstack/openstack';
+@import './cloud/project/openstack/users/openrc/openstack-users-openrc';
+@import './cloud/project/storage/storage-add/storage-add';
+@import './cloud/project/storage/storage';
+@import './common/common';
+@import './common/less/button';
+@import './common/less/flag';
+@import './common/less/link';
+@import './common/less/navbar';
+@import './common/less/ovh-alert';
+@import './common/less/utils';
+@import './dbaas/dbaas-metrics/dashboard/chart-pie/metrics-chart-pie.component.less';
+@import './dbaas/dbaas-metrics/dashboard/metrics-dashboard';
+@import './dbaas/dbaas-metrics/platform/metrics-platform';
+@import './dbaas/dbaas-metrics/token/add/metrics-token-add';
+@import './dbaas/dbaas-metrics/token/metrics-token';
+@import './dbaas/dbaas-metrics/token/preview/metrics-token-preview';
+@import './dbaas/logs/detail/account/password/logs-account-password';
+@import './dbaas/logs/detail/inputs/add/configure/logs-inputs-add-configure';
+@import './dbaas/logs/detail/inputs/add/logs-inputs-add';
+@import './dbaas/logs/detail/inputs/add/networks/logs-inputs-add-networks';
+@import './dbaas/logs/detail/logs-detail';
+@import './dbaas/logs/detail/offer/logs-offer';
+@import './dbaas/logs/detail/options/logs-options';
+@import './dbaas/logs/detail/roles/logs-roles';
+@import './dbaas/logs/detail/streams/alerts/home/alerts-home';
+@import './dbaas/logs/detail/streams/archives/streams-archives';
+@import './dbaas/logs/detail/streams/logs-streams';
+@import './dbaas/logs/welcome/logs-welcome';
+@import './dbaas/ts/dbaasts';
+@import './dbaas/ts/dbaasts.variables.less';
+@import './dbaas/ts/project/details/key/dbaasts-project-details-key';
+@import './dbaas/ts/project/details/settings/dbaasts-project-details-settings';
+@import './deskaas/deskaas-details/deskaas-details';
+@import './deskaas/deskaas-upgrade/deskaas-upgrade';
+@import './deskaas/deskaas';
+@import './home/home';
+@import './iplb/home/bullet-chart';
+@import './iplb/home/home';
+@import './iplb/home/status-card';
+@import './iplb/iplb';
+@import './iplb/vrack/iplb-vrack';
+@import './nasha/add/nasha-add';
+@import './nasha/nasha';
+@import './nasha/partition/access/add/nasha-partition-access-add';
+@import './nasha/partition/access/nasha-partition-access';
+@import './nasha/partition/custom-snapshot/add/nasha-partition-custom-snapshot-add';
+@import './nasha/partition/nasha-partition';
+@import './nasha/partition/update/nasha-partition-update';
+@import './oui-less-override';
+@import './ui-components/accordion/accordion-list';
+@import './ui-components/accordion/accordion';
+@import './ui-components/advanced-options/advanced-options';
+@import './ui-components/dual-list/dual-list';
+@import './ui-components/form/form';
+@import './ui-components/grid/grid';
+@import './ui-components/icons/button-action';
+@import './ui-components/inline-adder/inline-adder';
+@import './ui-components/input/key-value';
+@import './ui-components/modal/modal';
+@import './ui-components/panel/panel';
+@import './ui-components/preview-list/_variables';
+@import './ui-components/preview-list/preview-list';
+@import './ui-components/table/_normalize';
+@import './ui-components/table/_variables';
+@import './ui-components/table/_mixins';
+@import './ui-components/table/table';
+@import './veeam/veeam';
+@import './vps/dashboard/vps-tile-status';
+@import './vps/modal/shortcut/kvm/vps-kvm';
+@import './vps/modal/shortcut/reinstall/vps-reinstall';
+@import './vps/vps';
+@import './vrack/add/vrack-add';
+@import './vrack/vrack-mapper';
+@import './vrack/vrack';
+
+/* } */
 
 @import (less) '~animate.css/animate.css';
 @import (less) '~bootstrap-additions/dist/modules/popover.min.css';

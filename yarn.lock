@@ -1619,9 +1619,9 @@
     lodash "^4.17.11"
 
 "@ovh-ux/ng-ovh-cloud-universe-components@^0.0.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-cloud-universe-components/-/ng-ovh-cloud-universe-components-0.1.0.tgz#378f0c680514d7e973ad0186d7366f05059de50b"
-  integrity sha512-7GVCM4cvMnVTGIf2rvP0N3tBNo5coWL4WMSZSP0AluDV8a9hJNWNuzPB3rQ6yBmewr+3cWpWNZz/HSo7RVqpVw==
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-cloud-universe-components/-/ng-ovh-cloud-universe-components-0.2.0.tgz#b71418814a61cf05b5e65cb22c8ba118a36daeb9"
+  integrity sha512-cfYEexVR/P1NJbe2qm7iiYHM8KZeLkAYySMe86n1QW9xlGpfk96sYe2mJlvhEzDCUD81YoGMBDl7hIXTVRFgxw==
   dependencies:
     bootstrap "~3.3.0"
     jsurl "^0.1.5"
@@ -9393,6 +9393,10 @@ osenv@0, osenv@^0.1.4, osenv@^0.1.5:
     os-homedir "^1.0.0"
     os-tmpdir "^1.0.0"
 
+ovh-angular-actions-menu@ovh-ux/ovh-angular-actions-menu#^3.2.0:
+  version "3.2.0"
+  resolved "https://codeload.github.com/ovh-ux/ovh-angular-actions-menu/tar.gz/b63ed0d2dbefc915b0bb18dc426ea7b83cc00c50"
+
 ovh-angular-checkbox-table@^0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/ovh-angular-checkbox-table/-/ovh-angular-checkbox-table-0.1.2.tgz#b3b4dfed3274068d323463e3b07c2a25108e14be"
@@ -9407,6 +9411,14 @@ ovh-angular-responsive-tabs@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/ovh-angular-responsive-tabs/-/ovh-angular-responsive-tabs-4.0.0.tgz#85b66d7032612c3ed1a14cb29f83d1331b50c1df"
   integrity sha1-hbZtcDJhLD7RoUyyn4PRMxtQwd8=
+
+ovh-angular-sidebar-menu@ovh-ux/ovh-angular-sidebar-menu#^7.2.2:
+  version "7.2.2"
+  resolved "https://codeload.github.com/ovh-ux/ovh-angular-sidebar-menu/tar.gz/e7531945333ebcad5945b8ede9609d94d2f42b3e"
+
+ovh-angular-slider@ovh-ux/ovh-angular-slider#^0.2.2:
+  version "0.2.3"
+  resolved "https://codeload.github.com/ovh-ux/ovh-angular-slider/tar.gz/eeb148ccf526848c5d60c10dcba9e79a14d5fa91"
 
 ovh-angular-swimming-poll@^3.0.0:
   version "3.0.0"
