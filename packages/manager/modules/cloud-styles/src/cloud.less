@@ -1,46 +1,30 @@
-@import '~bootstrap/less/bootstrap';
-@import "~ovh-ui-kit/packages/oui/stylekit";
-@import '~font-awesome/less/font-awesome';
+@import '~bootstrap/less/variables';
+@import '~bootstrap/less/mixins';
+@import '~bootstrap/less/utilities';
+@import '~bootstrap/less/buttons';
+@import '~bootstrap/less/dropdowns';
+@import "~ovh-ui-kit/packages/oui-responsive/_mixins";
+@import "~ovh-ui-kit/packages/oui-color/_variables";
+@import "~ovh-ui-kit/packages/oui-navbar/_variables";
+@import "~ovh-ui-kit/packages/oui-typography/_variables";
+@import "~ovh-ui-kit/packages/oui-typography/_mixins";
+@import "~ovh-ui-kit/packages/oui-icons/_variables";
+@import "~ovh-ui-kit/packages/oui/_settings";
+@import "~ovh-ui-kit/packages/oui-button/_variables";
+@import "~ovh-ui-kit/packages/oui-button/_mixins";
+@import "~ovh-ui-kit/packages/oui-animation/_mixins";
+@import '~font-awesome/less/mixins';
+@import '~font-awesome/less/variables';
 @import '~ovh-common-style/less/helpers';
 @import '~ovh-common-style/less/fonts/open-sans';
 
-@ovh-angular-slider-handle-background: #8d919c;
-@ovh-angular-slider-handle-border-color: darken(@ovh-angular-slider-handle-background, 5%);
-@ovh-angular-slider-handle-hover-background: #009fe3;
-@ovh-angular-slider-handle-hover-border-color: darken(@ovh-angular-slider-handle-background, 5%);
-@ovh-angular-slider-bubble-limit-color: #777;
-
 .cloud-legacy {
 
-  @MobileTopNavHeight: 55px;
-  @TopNavHeight: 44px;
   @TopNavResponsiveLeft: 15px;
   @TopNavBackground: #122844;
   @TopNavBackgroundHover: darken(@TopNavBackground, 4%);
   @MobileNavBackground: #424d61;
   @TopNavColor: #ffffff;
-
-  @ovh-angular-slider-handle-background: #8d919c;
-  @ovh-angular-slider-handle-border-color: darken(@ovh-angular-slider-handle-background, 5%);
-  @ovh-angular-slider-handle-hover-background: #009fe3;
-  @ovh-angular-slider-handle-hover-border-color: darken(@ovh-angular-slider-handle-background, 5%);
-  @ovh-angular-slider-bubble-limit-color: #777;
-
-  // Overide Bootstrap Params
-  @screen-xs-max: @v6-max-with;
-  @screen-sm-min: @v6-min-with;
-  @screen-sm-max: (@oui-responsive-breakpoint-tablet - 1px);
-  @screen-md-min: @oui-responsive-breakpoint-tablet;
-  @screen-md-max: (@oui-responsive-breakpoint-medium - 1px);
-  @screen-lg-min: @oui-responsive-breakpoint-medium;
-  @component-offset-horizontal: 200px;
-  @modal-backdrop-bg: @oui-color-shuttle;
-
-  // Params use by bootstrap and app
-  @v6-min-with: 801px;
-  @v6-max-with: 800px;
-
-  @font-size-base: 12px;
 
   @border-radius-base: 2px;
   @border-radius-large: 2px;
@@ -61,10 +45,6 @@
 
   @DefaultFontSize: 12px;
 
-  // Zindex
-  @zIndexFullOverlay: 1040;
-  @imgPath: '../assets/';
-
   @table-header-background-color: @UNIVERS_SECONDARY;
 
   :not(.oui-header-tabs__dropdown-container) > .oui-header-tabs__item_active > a {
@@ -78,129 +58,6 @@
           color: white;
           text-decoration: none;
           cursor: pointer;
-        }
-      }
-    }
-  }
-
-  /*
-   * Base structure
-   */
-  html {
-    height: 100%;
-  }
-
-  /* Move down content because we have a fixed navbar that is 50px tall */
-  @media (min-width: @v6-min-with) {
-    body {
-      margin-top: @TopNavHeight;
-    }
-  }
-
-  .browsehappy {
-    background: #ccc;
-    color: #000;
-    padding: 0 10px;
-  }
-
-  //BackDrop
-  #full-overlay {
-    background: black;
-    opacity: 0.4;
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    z-index: @zIndexFullOverlay;
-    display: none;
-
-    &.nav-open {
-      display: none;
-    }
-  }
-  //Mobile
-  @media (max-width: @v6-max-with) {
-    #full-overlay[class*='nav-open'] {
-      display: block;
-    }
-  }
-
-  /*
-   * content
-   */
-
-  #content {
-    padding: 0;
-
-    .page-header {
-      margin-top: 0;
-    }
-  }
-
-  @media (max-width: @v6-max-with) {
-    #content {
-      margin-top: @MobileTopNavHeight - 1;
-    }
-  }
-
-  /*
-   * container
-   */
-
-  .container {
-    width: auto;
-  }
-
-  @media screen and (min-width: @v6-min-with) {
-    .container {
-      max-width: 730px;
-    }
-  }
-
-  /*
-   * Tabs
-   */
-
-  .tab-container {
-    background-color: @TopTabBackground;
-    box-shadow: inset 0 -4px 7px -5px #bbb;
-
-    .nav.nav-tabs {
-      border-bottom: 0;
-
-      > li {
-        a {
-          color: @TopNavBackground;
-          display: inline-block;
-          text-align: center;
-          padding: 15px 25px;
-          border: 0;
-          font-size: 12px;
-
-          i {
-            display: block;
-            font-size: 30px;
-          }
-        }
-
-        &.disabled {
-          opacity: 0.3;
-        }
-
-        &.active {
-          background-color: white;
-          box-shadow: 0 -5px 7px #bbb;
-
-          a {
-            border: 0;
-            background-color: white;
-            border-radius: 0;
-            color: @UNIVERS_SECONDARY;
-          }
-        }
-
-        &:not(.disabled) a:hover {
-          background: transparent;
-          color: @UNIVERS_SECONDARY;
         }
       }
     }
