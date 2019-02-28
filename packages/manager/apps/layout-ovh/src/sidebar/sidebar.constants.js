@@ -118,11 +118,11 @@ export const SIDEBAR_CONFIG = {
   //   icon: 'ovh-font ovh-font-iplb',
   //   loadOnState: 'network.iplb',
   // },
-  VRACK: {
-    title: 'sidebar_section_vrack',
-    icon: 'ovh-font ovh-font-vRack',
-    loadOnState: 'vrack',
-  },
+  // VRACK: {
+  //   title: 'sidebar_section_vrack',
+  //   icon: 'ovh-font ovh-font-vRack',
+  //   loadOnState: 'vrack',
+  // },
   // CLOUD_DESKTOP: {
   //   title: 'sidebar_section_cloud_desktop',
   //   icon: 'ovh-font ovh-font-cloud-desktop',
@@ -191,13 +191,6 @@ export const STATE_MAPPING_SERVICE = {
   '/freefax/{serviceName}': {
     state: 'freefax',
     prefix: 'sidebar_section_fax_prefix_freefax',
-    stateParams: {
-      serviceName: 'resource.name',
-    },
-  },
-  '/vrack/{serviceName}': {
-    state: 'vrack',
-    prefix: 'sidebar_section_vrack',
     stateParams: {
       serviceName: 'resource.name',
     },
