@@ -57,9 +57,9 @@ export default function ovhAngularUserPrefProvider() {
    * @description
    * <p>Getter / setter for preferences</p>
    */
-  self.$get = /* @ngInject */ function $get(api, $q, OVH_USER_PREF) {
+  self.$get = /* @ngInject */ function $get(ovhProxyRequest, $q, OVH_USER_PREF) {
     const ovhUserPrefService = {};
-    config.apiv6Path = config.apiv6Path || removeTrailingSlashes(api.pathPrefix());
+    config.apiv6Path = config.apiv6Path || removeTrailingSlashes(ovhProxyRequest.pathPrefix());
 
     // default : CATEGORY_TYPE (_DETAILS)*
     config.regex = config.regex || /^[A-Z]+_[A-Z][A-Z0-9]*(?:_[A-Z0-9]*)*$/;
@@ -76,7 +76,10 @@ export default function ovhAngularUserPrefProvider() {
     ovhUserPrefService.getKeys = function getKeys(opts) {
       const options = assign(opts || {}, { serviceType: 'apiv6' });
 
-      return api.get(self.paramsInjector(OVH_USER_PREF.path.get, null, config.apiv6Path), options)
+      return ovhProxyRequest.get(
+        self.paramsInjector(OVH_USER_PREF.path.get, null, config.apiv6Path),
+        options,
+      )
         .then(resp => (resp ? resp.data : []));
     };
 
@@ -93,7 +96,7 @@ export default function ovhAngularUserPrefProvider() {
     ovhUserPrefService.getValue = function getValue(key, opts) {
       const options = assign(opts || {}, { serviceType: 'apiv6' });
 
-      return api.get(self.paramsInjector(
+      return ovhProxyRequest.get(self.paramsInjector(
         OVH_USER_PREF.path.getKey,
         { key },
         config.apiv6Path,
@@ -131,13 +134,17 @@ export default function ovhAngularUserPrefProvider() {
       }
       pendingCreationRequests[key] = createCanceller; // set new canceller
 
-      return api.post(self.paramsInjector(OVH_USER_PREF.path.create, null, config.apiv6Path), {
-        key,
-        value: angular.toJson(value),
-      }, {
-        serviceType: 'apiv6',
-        timeout: createCanceller.promise,
-      }).then(resp => (resp ? resp.data : resp))
+      return ovhProxyRequest.post(
+        self.paramsInjector(OVH_USER_PREF.path.create, null, config.apiv6Path),
+        {
+          key,
+          value: angular.toJson(value),
+        },
+        {
+          serviceType: 'apiv6',
+          timeout: createCanceller.promise,
+        },
+      ).then(resp => (resp ? resp.data : resp))
         .finally(() => {
           if (pendingCreationRequests[key] === createCanceller) {
             delete pendingCreationRequests[key]; // create done, remove pending canceller
@@ -161,7 +168,7 @@ export default function ovhAngularUserPrefProvider() {
       }
 
       return ovhUserPrefService.getValue(key)
-        .then(value => api.post(
+        .then(value => ovhProxyRequest.post(
           self.paramsInjector(OVH_USER_PREF.path.assign, null, config.apiv6Path),
           {
             key,
@@ -173,7 +180,7 @@ export default function ovhAngularUserPrefProvider() {
         ), (err) => {
           // if key is not found, create it
           if (err && err.status === 404) {
-            return api.post(
+            return ovhProxyRequest.post(
               self.paramsInjector(OVH_USER_PREF.path.create, null, config.apiv6Path),
               {
                 key,
@@ -209,7 +216,7 @@ export default function ovhAngularUserPrefProvider() {
         delete pendingCreationRequests[key]; // delete canceller reference
       }
 
-      return api.delete(
+      return ovhProxyRequest.delete(
         self.paramsInjector(
           OVH_USER_PREF.path.remove,
           { key },
