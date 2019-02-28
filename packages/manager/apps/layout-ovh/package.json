@@ -18,6 +18,7 @@
     "@ovh-ux/manager-overthebox": "^2.0.1",
     "@ovh-ux/manager-sms": "^3.0.0",
     "@ovh-ux/manager-telecom-styles": "^2.0.2",
+    "@ovh-ux/manager-vrack": "^0.0.0",
     "@ovh-ux/manager-welcome": "^1.0.1",
     "@ovh-ux/ng-ovh-actions-menu": "^5.0.0-alpha.0",
     "@ovh-ux/ng-ovh-apiv7": "^2.0.0",

@@ -2233,6 +2233,11 @@ angularjs-scroll-glue@^2.2.0:
   resolved "https://registry.yarnpkg.com/angularjs-scroll-glue/-/angularjs-scroll-glue-2.2.0.tgz#07d3399ac16ca874c63b6b5ee2ee30558b37e5d1"
   integrity sha1-B9M5msFsqHTGO2te4u4wVYs35dE=
 
+animate.css@~3.1.0:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/animate.css/-/animate.css-3.1.1.tgz#409fa07327bed52f9490a6d352e8dd4d825dd4fb"
+  integrity sha1-QJ+gcye+1S+UkKbTUujdTYJd1Ps=
+
 animated-scroll-to@^1.2.2:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/animated-scroll-to/-/animated-scroll-to-1.2.2.tgz#d6688e72f3ecec1a296fc2b36fe29290e7fff694"
@@ -2789,6 +2794,11 @@ boom@2.x.x:
   integrity sha1-OciRjO/1eZ+D+UkqhI9iWt0Mdm8=
   dependencies:
     hoek "2.x.x"
+
+bootstrap-additions@~0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/bootstrap-additions/-/bootstrap-additions-0.3.1.tgz#9ab976c2d88b9ab747c376c757a80031f2ccf83e"
+  integrity sha1-mrl2wtiLmrdHw3bHV6gAMfLM+D4=
 
 bootstrap4@twbs/bootstrap#v4.0.0:
   version "4.0.0"
@@ -5489,6 +5499,11 @@ findup-sync@^2.0.0:
     is-glob "^3.1.0"
     micromatch "^3.0.4"
     resolve-dir "^1.0.1"
+
+flag-icon-css@~0.8.5:
+  version "0.8.6"
+  resolved "https://registry.yarnpkg.com/flag-icon-css/-/flag-icon-css-0.8.6.tgz#7dab89f99040c2a1113108132a1eab8c1dea44c4"
+  integrity sha1-fauJ+ZBAwqERMQgTKh6rjB3qRMQ=
 
 flat-cache@^1.2.1:
   version "1.3.4"
@@ -8457,6 +8472,10 @@ merge2@^1.2.3:
   resolved "https://registry.yarnpkg.com/merge2/-/merge2-1.2.3.tgz#7ee99dbd69bb6481689253f018488a1b902b0ed5"
   integrity sha512-gdUU1Fwj5ep4kplwcmftruWofEFt6lfpkkr3h860CXbAB9c3hGb55EOL2ali0Td5oebvW0E1+3Sr+Ur7XfKpRA==
 
+messenger@HubSpot/messenger#~1.4.1:
+  version "1.4.2"
+  resolved "https://codeload.github.com/HubSpot/messenger/tar.gz/a3df9a62a1677af45fb130e226a6cbf98c0cecf0"
+
 methods@^1.1.1, methods@~1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/methods/-/methods-1.1.2.tgz#5529a4d67654134edcc5266656835b0f851afcee"
@@ -9393,6 +9412,10 @@ ovh-angular-swimming-poll@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/ovh-angular-swimming-poll/-/ovh-angular-swimming-poll-3.0.0.tgz#496ccae4c8edbfd04719b05fe99fb98c00b1c78f"
   integrity sha1-SWzK5Mjtv9BHGbBf6Z+5jACxx48=
+
+ovh-angular-toaster@ovh-ux/ovh-angular-toaster#^0.8.0:
+  version "0.8.0"
+  resolved "https://codeload.github.com/ovh-ux/ovh-angular-toaster/tar.gz/06d24889e94b8d816afee8e94185697cf68f2338"
 
 ovh-angular-ui-confirm-modal@^1.0.2:
   version "1.0.2"
@@ -13782,6 +13805,11 @@ xtend@^4.0.0, xtend@^4.0.1, xtend@~4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/xtend/-/xtend-4.0.1.tgz#a5c6d532be656e23db820efb943a1f04998d63af"
   integrity sha1-pcbVMr5lbiPbgg77lDofBJmNY68=
+
+xterm@^3.4.1:
+  version "3.11.0"
+  resolved "https://registry.yarnpkg.com/xterm/-/xterm-3.11.0.tgz#2c10da3e965db9170430aa7b68f8965de3ff004d"
+  integrity sha512-VB9+s2Fhig31pNBkbxPnz+/wdCvxdQ6JQ0HZmWDwpULV8iAggzxoyUonB4FR+WW3lj0LNVb/ZaD64rxbw+HB4A==
 
 y18n@^3.2.0, y18n@^3.2.1:
   version "3.2.1"
