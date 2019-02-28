@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-freefax",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "license": "BSD-3-Clause",
   "files": [
     "dist"
