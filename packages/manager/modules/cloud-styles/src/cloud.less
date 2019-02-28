@@ -1,18 +1,11 @@
-@oui-path: '../../../ovh-ui-kit';
+@oui-path: 'ovh-ui-kit';
 
-@import '~bootstrap/less/buttons';
-@import '~bootstrap/less/dropdowns';
-@import '~bootstrap/less/utilities';
-@import '~bootstrap/less/mixins';
+@import '~bootstrap/less/bootstrap';
+@rem-base: rem-base(10px);
+@import "~ovh-ui-kit/packages/oui/stylekit";
 @import '~font-awesome/less/font-awesome';
-@import '~ovh-ui-kit/packages/oui-color/_variables';
-@import '~ovh-ui-kit/packages/oui-icons/_icons';
-@import '~ovh-ui-kit/packages/oui-input-group/_mixins';
-@import '~ovh-ui-kit/packages/oui-navbar/_variables';
-@import '~ovh-ui-kit/packages/oui-sidebar/sidebar';
-@import '~ovh-ui-kit/packages/oui-typography/_mixins';
-@import '~ovh-ui-kit/packages/oui-typography/_variables';
-@import '~ovh-ui-kit-bs/src/bootstrap/_variables';
+@import '~ovh-angular-sidebar-menu/less/ovh-angular-sidebar-menu';
+@import '~ovh-angular-actions-menu/less/ovh-angular-actions-menu';
 @import '~ovh-common-style/less/helpers';
 @import '~ovh-common-style/less/animation';
 @import '~ovh-common-style/less/table';
@@ -22,8 +15,14 @@
 @import '~ovh-common-style/less/spinner/spinner';
 @import '~ovh-common-style/less/fonts/open-sans';
 @import '~ovh-manager-webfont/dist/less/ovh-font';
+@import '~ovh-angular-slider/less/ovh-angular-slider';
+@ovh-angular-slider-handle-background: #8d919c;
+@ovh-angular-slider-handle-border-color: darken(@ovh-angular-slider-handle-background, 5%);
+@ovh-angular-slider-handle-hover-background: #009fe3;
+@ovh-angular-slider-handle-hover-border-color: darken(@ovh-angular-slider-handle-background, 5%);
+@ovh-angular-slider-bubble-limit-color: #777;
 
-.cloud-legacy {
+// .cloud-legacy {
 
   @MobileTopNavHeight: 55px;
   @TopNavHeight: 44px;
@@ -337,7 +336,7 @@
   @import './vrack/add/vrack-add';
   @import './vrack/vrack-mapper';
   @import './vrack/vrack';
-}
+// }
 
 @import (less) '~animate.css/animate.css';
 @import (less) '~bootstrap-additions/dist/modules/popover.min.css';
