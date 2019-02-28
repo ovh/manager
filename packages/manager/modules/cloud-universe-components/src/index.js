@@ -5,8 +5,10 @@ import cucAutoSelect from './autoselect';
 import cucClickEnterOnKeypress from './clickEnterOnKeypress';
 import cucConfig from './config';
 import cucConsumption from './consumption';
+import cucCurrency from './currency';
 import cucFeatureAvailability from './featureAvailability';
 import cucHelper from './helper';
+import cucHighlightedElement from './highlightedElement';
 import cucMessage from './message';
 import cucMonitoring from './monitoring';
 import cucNavigation from './navigation';
@@ -30,8 +32,10 @@ angular
     cucClickEnterOnKeypress,
     cucConfig,
     cucConsumption,
+    cucCurrency,
     cucFeatureAvailability,
     cucHelper,
+    cucHighlightedElement,
     cucMessage,
     cucMonitoring,
     cucNavigation,

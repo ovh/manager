@@ -1,3 +1,13 @@
+## [3.0.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-freefax@3.0.0...@ovh-ux/manager-freefax@3.0.1) (2019-02-28)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([1c99f17](https://github.com/ovh-ux/manager/commit/1c99f17))
+* **i18n:** add missing translations ([701d753](https://github.com/ovh-ux/manager/commit/701d753))
+
+
+
 # [3.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-freefax@2.0.0...@ovh-ux/manager-freefax@3.0.0) (2019-02-26)
 
 

@@ -20,11 +20,11 @@
  "sidebar_section_load_balancer": "Load Balancer",
  "sidebar_section_vrack": "vRack",
  "sidebar_section_cloud_desktop": "Cloud Desktop",
- "sidebar_section_pack": "Accès Internet",
+ "sidebar_section_pack": "Acesso Internet",
  "sidebar_section_telephony": "Serviço Telefónico",
  "sidebar_section_sms": "SMS",
  "sidebar_section_fax": "Fax",
  "sidebar_section_fax_prefix_freefax": "perso",
  "sidebar_section_otb": "OverTheBox",
- "sidebar_load_error": "Oups, nous n'arrivons pas à charger vos informations."
+ "sidebar_load_error": "Lamentamos, mas não foi possível carregar os seus serviços."
 }
