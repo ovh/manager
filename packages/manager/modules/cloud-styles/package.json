@@ -15,6 +15,12 @@
   },
   "browser": "./dist/umd/cloud-styles.js",
   "devDependencies": {
+    "animate.css": "~3.1.0",
+    "bootstrap-additions": "~0.3.1",
+    "flag-icon-css": "~0.8.5",
+    "messenger": "HubSpot/messenger#~1.4.1",
+    "xterm": "^3.4.1",
+    "ovh-angular-toaster": "ovh-ux/ovh-angular-toaster#^0.8.0",
     "@ovh-ux/component-rollup-config": "5.0.0-beta.9",
     "bootstrap": "~3.3.7",
     "font-awesome": "^4.0.0",

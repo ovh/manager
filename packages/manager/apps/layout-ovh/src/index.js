@@ -14,6 +14,7 @@ import core from '@ovh-ux/manager-core';
 import overthebox from '@ovh-ux/manager-overthebox';
 import freefax from '@ovh-ux/manager-freefax';
 import sms from '@ovh-ux/manager-sms';
+import vrack from '@ovh-ux/manager-vrack';
 import welcome from '@ovh-ux/manager-welcome';
 
 import routing from './manager-layout-ovh.routes';
@@ -49,6 +50,7 @@ angular
     sms,
     translate,
     'ui.bootstrap',
+    vrack,
     welcome,
   ])
   .config($locationProvider => $locationProvider.hashPrefix(''))

@@ -1,0 +1,36 @@
+.cui-modal {
+  //Default uibModal style override for oui-less.
+  .modal-content {
+    background-color: transparent;
+    box-shadow: none;
+    border: none;
+
+    .oui-modal {
+      background-color: white;
+
+      /* Ugly hack... in time we'll have to have better styles for modal in the ui-kit. */
+      .oui-list__header {
+        font-size: 1.6rem;
+        font-weight: bold;
+      }
+
+      .oui-list__link {
+        color: inherit;
+        font-size: inherit;
+        text-decoration: underline;
+        display: initial;
+      }
+
+      .oui-list__items {
+        font-size: 1.5rem;
+        padding-left: 15px;
+        margin-bottom: 8.5px;
+        list-style-type: disc;
+      }
+    }
+
+    .oui-checkbox__label {
+      font-size: 1.6rem;
+    }
+  }
+}
