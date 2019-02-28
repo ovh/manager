@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 const ora = require('ora');
 const { Codename, Sample } = require('@ovh-ux/codename-generator');
 const { MonoRepository } = require('../common/repository');
