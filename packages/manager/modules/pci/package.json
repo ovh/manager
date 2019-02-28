@@ -1,0 +1,25 @@
+{
+  "name": "@ovh-ux/manager-pci",
+  "version": "0.0.0",
+  "license": "BSD-3-Clause",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "browser": "./dist/umd/pci.js",
+  "scripts": {
+    "build": "rollup -c --environment BUILD:production",
+    "dev": "rollup -c --environment BUILD:development",
+    "dev:watch": "yarn run dev --watch",
+    "prepare": "yarn run build",
+    "start": "lerna exec --stream --scope='@ovh-ux/manager-pci' --include-filtered-dependencies -- yarn run build",
+    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-pci' --include-filtered-dependencies -- yarn run dev",
+    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-pci' --include-filtered-dependencies -- yarn run dev:watch"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@ovh-ux/component-rollup-config": "5.0.0-beta.9"
+  },
+  "peerDependencies": {}
+}

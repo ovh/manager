@@ -1512,7 +1512,7 @@
     rollup-pluginutils "^2.3.3"
     slash "^2.0.0"
 
-"@ovh-ux/component-rollup-config@^5.0.0-beta.9":
+"@ovh-ux/component-rollup-config@5.0.0-beta.9", "@ovh-ux/component-rollup-config@^5.0.0-beta.9":
   version "5.0.0-beta.9"
   resolved "https://registry.yarnpkg.com/@ovh-ux/component-rollup-config/-/component-rollup-config-5.0.0-beta.9.tgz#14b9e329a39f57a56c783ddf50d25f3089849508"
   integrity sha512-vntsgUf7HUJOvv4w29mdTD5K3RkqZvYFpvRJJu9ofOwv/uL754x84ry3IU+7wmDIoS+74JBSkiBn49PTy9F8cA==
@@ -1666,13 +1666,6 @@
   dependencies:
     bootstrap "^3.3.7"
     ovh-ui-kit "^2.22.0"
-
-"@ovh-ux/ng-ovh-user-pref@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-user-pref/-/ng-ovh-user-pref-1.0.0.tgz#fd5035855e09758de6f5e886bff78011f44bd0f9"
-  integrity sha512-EmVfYGu8zjjqOfh/R7a291sswbpcbtt2IEmGAorETgUMZIB/CnAQvD5ELzf4NseUJHjG6G0W9HFyJ6u9jkFJRA==
-  dependencies:
-    lodash "^4.17.11"
 
 "@ovh-ux/ng-pagination-front@^8.0.0-alpha.0":
   version "8.0.0-alpha.0"
