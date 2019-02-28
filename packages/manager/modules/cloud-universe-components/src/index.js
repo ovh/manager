@@ -7,6 +7,7 @@ import cucConfig from './config';
 import cucCurrency from './currency';
 import cucFeatureAvailability from './featureAvailability';
 import cucHelper from './helper';
+import cucHighlightedElement from './highlightedElement';
 import cucMessage from './message';
 import cucNavigation from './navigation';
 import cucOrderedHash from './orderedHash';
@@ -28,6 +29,7 @@ angular
     cucCurrency,
     cucFeatureAvailability,
     cucHelper,
+    cucHighlightedElement,
     cucMessage,
     cucNavigation,
     cucOrderedHash,
