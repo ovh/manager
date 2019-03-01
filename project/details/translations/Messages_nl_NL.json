@@ -1,0 +1,16 @@
+{
+ "cpd_project_redirect": "Doorsturen...",
+ "cpd_project_suspended": "Uw cloudproject is gedeactiveerd. Voor meer informatie kunt u contact opnemen met onze<a href=\"{{ url }}\">support</a>.",
+ "cpd_project_creating_help": "U wordt doorgestuurd wanneer het project wordt gecreëerd.",
+ "cpd_project_creating_havetopay": "Rond aub uw betaling af om uw oorspronkelijke bestelling te bevestigen.",
+ "cpd_project_creating_cancel": "Annuleer projectcreatie",
+ "cpd_project_creating_bc_havetopay": "Rond aub uw betaling af om uw <a href=\"{{url}}\" target=\"_blank\"> oorspronkelijke bestelling te bevestigen</a>.",
+ "cpd_project_creating_bc_support": "Als deze pagina enkele minuten na uw betaling nog steeds te zien is, neemt u aub contact op met onze  <a href=\"{{ url }}\">klantenservice</a>.",
+ "cpd_project_deleting": "Het project wordt verwijderd...",
+ "cpd_project_deleting_help": "U zult automatisch worden doorgestuurd zodra uw project is verwijderd.",
+ "cpd_project_created": "Uw project is klaar!",
+ "cpd_project_cancel_success": "Uw projectcreatie is geannuleerd. ",
+ "cpd_project_cancel_error_expired_status": "Uw project is verlopen. ",
+ "cpd_project_cancel_error_ok_status": "Uw project is al gecreëerd. ",
+ "cpd_project_cancel_error": "Er is een fout opgetreden tijdens het annuleren. "
+}

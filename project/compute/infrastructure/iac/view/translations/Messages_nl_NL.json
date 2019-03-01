@@ -1,0 +1,8 @@
+{
+ "cpciiac_view_title": "Kies een te implementeren infrastructuur ",
+ "cpciiac_view_intro": "Met slechts een paar klikken kunt u onbeheerde infrastructure-as-code in uw cloudproject implementeren met onze infrastructuurimplementatiescripts.",
+ "cpciiac_view_general_ERROR": "Er is een fout opgetreden bij het ophalen van de infrastructure-as-code sjablonen: {{message}}",
+ "cpciiac_view_stack_terraform-ovh-publiccloud-k8s": "Kubernetes",
+ "cpciiac_view_stack_ovh-analytics-openstack": "Hadoop",
+ "cpciiac_view_deployment_ERROR": "Er is een fout opgetreden bij het aanvragen van de implementatie: {{message}}"
+}

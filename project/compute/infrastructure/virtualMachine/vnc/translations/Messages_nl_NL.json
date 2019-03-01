@@ -1,0 +1,7 @@
+{
+ "cpcivm_vnc_title": "VNC console",
+ "cpcivm_vnc_tip": "Tip: als u niet kunt typen in het venster, klikt u op de blauwe balk er onder.",
+ "cpcivm_vnc_window": "Openen in een nieuw venster",
+ "cpcivm_vnc_error": "Error: niet mogelijk om de VNC console te openen.",
+ "cpcivm_vnc_linuxinfo": "Om de VNC console op de Linux machine te gebruiken, moet u eerst inloggen via SSH en een gebruiker met een wachtwoord configureren."
+}

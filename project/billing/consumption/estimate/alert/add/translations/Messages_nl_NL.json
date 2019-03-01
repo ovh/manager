@@ -1,0 +1,12 @@
+{
+ "cpbea_estimate_alert_add_header_title": "Vebruikswaarschuwing",
+ "cpbea_estimate_alert_add_mail_label": "E-mail",
+ "cpbea_estimate_alert_add_mail_required": "Voor het verzenden van de waarschuwing is een e-mailadres nodig. ",
+ "cpbea_estimate_alert_add_mail_bad_format": "Het e-mailadres is niet geldig.",
+ "cpbea_estimate_alert_add_threshold_label": "Limiet",
+ "cpbea_estimate_alert_add_threshold_required": "Maximaal resource verbruik is vereist.",
+ "cpbea_estimate_alert_add_cancel_btn": "Annuleren",
+ "cpbea_estimate_alert_add_submit_btn": "Opslaan",
+ "cpbea_estimate_alert_error": "Oeps, er is een fout opgetreden tijdens het opslaan van uw waarschuwing.  ",
+ "cpbea_estimate_alert_success": "Verbruikswaarschuwing opgeslagen"
+}

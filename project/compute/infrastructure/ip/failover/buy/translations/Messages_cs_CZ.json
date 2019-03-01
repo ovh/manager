@@ -1,0 +1,20 @@
+{
+ "cpciif_buy_title": "Nákup IP Failover Cloud",
+ "cpciif_buy_cloud_info": "Adresy IP Failover Cloud jsou přenositelné ze serveru na server v rámci stejného cloudového projektu a stejného kontinentu. Tyto IP adresy bude možno již brzy převádět i na další služby OVH. Stejně tak bude brzy možné nakupovat IP adresy pro jiné kontinenty.",
+ "cpciif_buy_quantity_select": "Vyberte počet IP Failover Cloud, který chcete objednat:",
+ "cpciif_buy_instance_select": "Vyberte server, ke kterému bude IP Failover Cloud připojena (tuto IP Failover bude již brzy možné směřovat na další služby OVH):",
+ "cpciif_buy_instance_select_plural": "Vyberte server, ke kterému budou IP Failover Cloud připojeny (tyto IP Failover bude již brzy možné směřovat na další služby OVH):",
+ "cpciif_buy_country_select": "Vyberte zemi pro IP Failover Cloud:",
+ "cpciif_buy_country_select_plural": "Vyberte zemi pro IP Failover Cloud:",
+ "cpciif_buy_limit_info": "Vaše současná infrastruktura Vám umožňuje objednat až {{ ips }} IP Failover Cloud.",
+ "cpciif_buy_init_error": "Nepodařilo se získat informace potřebné k nákupu IP Failover Cloud.",
+ "cpciif_buy_button_generate_bc": "Generovat objednávku",
+ "cpciif_buy_button_infos": "Instalační poplatek - bez měsíčních poplatků",
+ "cpciif_buy_error": "Během nákupu IP Failover Cloud došlo k chybě.",
+ "cpciif_buy_success": "Objednávka IP Failover Cloud je k dispozici<a href=\"{{ url }}\" target=\"_blank\">zde<i class=\"fa fa-external-link\"></i></a>",
+ "cpciif_buy_ip_na_soon": "Severoamerické IP budou k dispozici v krátké době",
+ "cpciif_buy_services": "Služba zahrnuje:",
+ "cpciif_buy_no_instance": "Nedisponujete žádným serverem.",
+ "cpciif_buy_price_tax_free": "({{price}} bez DPH)",
+ "cpciif_buy_no_instance_warning": "Pro nákup Failover Cloud IP adres musíte disponovat alespoň jedním serverem připojeným k Vašemu projektu."
+}

@@ -1,0 +1,10 @@
+{
+ "cpou_openrc_title": "Stažení souboru s konfigurací Openstack",
+ "cpou_openrc_expl": "Chystáte se stáhnout konfigurační soubor, který Vám umožní připojit se k rozhraní OpenStack.",
+ "cpou_openrc_more": "Zjistit více",
+ "cpou_openrc_form_select_region": "Výběr regionu, na který se použijí data ze souboru:",
+ "cpou_openrc_form_select_region_placeholder": "Výběr regionu",
+ "cpou_openrc_form_version3": "Utiliser le fichier de configuration OpenRC v3",
+ "cpou_openrc_getopenrc_success": "Probíhá stahování souboru s konfigurací",
+ "cpou_openrc_getopenrc_error": "Konfigurační soubor nelze stáhnout"
+}

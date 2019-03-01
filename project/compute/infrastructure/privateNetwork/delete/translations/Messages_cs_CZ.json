@@ -1,0 +1,6 @@
+{
+ "cpci_private_network_delete_title": "Odstranění privátní sítě",
+ "cpci_private_network_delete_confirm": "Opravdu si přejete odstranit tuto privátní síť?",
+ "cpci_private_network_delete_success": "Privátní síť byla úspěšně odstraněna",
+ "cpci_private_network_delete_error": "Při odstraňování privátní sítě došlo k chybě"
+}

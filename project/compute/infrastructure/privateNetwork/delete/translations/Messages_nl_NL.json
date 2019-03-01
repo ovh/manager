@@ -1,0 +1,6 @@
+{
+ "cpci_private_network_delete_title": "Privénetwerk verwijderen",
+ "cpci_private_network_delete_confirm": "Weet u zeker dta u het privénetwerk wilt verwijderen? ",
+ "cpci_private_network_delete_success": "Het privénetwerk is verwijderd",
+ "cpci_private_network_delete_error": "Er is een fout opgetreden tijdens het verwijderen van het privénetwerk"
+}

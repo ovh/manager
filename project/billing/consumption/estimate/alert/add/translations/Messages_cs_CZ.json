@@ -1,0 +1,12 @@
+{
+ "cpbea_estimate_alert_add_header_title": "Nastavení výstrahy",
+ "cpbea_estimate_alert_add_mail_label": "E-mail",
+ "cpbea_estimate_alert_add_mail_required": "Pro odeslání výstrahy je nutná e-mailová adresa.",
+ "cpbea_estimate_alert_add_mail_bad_format": "Neplatná e-mailová adresa.",
+ "cpbea_estimate_alert_add_threshold_label": "Výstražný práh",
+ "cpbea_estimate_alert_add_threshold_required": "Max. spotřeba nesmí být překročena.",
+ "cpbea_estimate_alert_add_cancel_btn": "Zrušit",
+ "cpbea_estimate_alert_add_submit_btn": "Uložit",
+ "cpbea_estimate_alert_error": "Při ukládání výstrahy o spotřebě došlo k chybě.",
+ "cpbea_estimate_alert_success": "Výstraha o spotřebě uložena."
+}
