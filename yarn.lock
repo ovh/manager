@@ -1512,7 +1512,7 @@
     rollup-pluginutils "^2.3.3"
     slash "^2.0.0"
 
-"@ovh-ux/component-rollup-config@5.0.0-beta.9", "@ovh-ux/component-rollup-config@^5.0.0-beta.9":
+"@ovh-ux/component-rollup-config@^5.0.0-beta.9":
   version "5.0.0-beta.9"
   resolved "https://registry.yarnpkg.com/@ovh-ux/component-rollup-config/-/component-rollup-config-5.0.0-beta.9.tgz#14b9e329a39f57a56c783ddf50d25f3089849508"
   integrity sha512-vntsgUf7HUJOvv4w29mdTD5K3RkqZvYFpvRJJu9ofOwv/uL754x84ry3IU+7wmDIoS+74JBSkiBn49PTy9F8cA==
@@ -1617,17 +1617,6 @@
   integrity sha512-EnJEEmoNCTjnCv/501GDZjxYt17YgGbVBr6BfqF6kD4FSf+TQpsP2sOKEXDLIj0oJUYRhU4z5d97AjX9zFSrFg==
   dependencies:
     lodash "^4.17.11"
-
-"@ovh-ux/ng-ovh-cloud-universe-components@^0.0.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-cloud-universe-components/-/ng-ovh-cloud-universe-components-0.2.0.tgz#b71418814a61cf05b5e65cb22c8ba118a36daeb9"
-  integrity sha512-cfYEexVR/P1NJbe2qm7iiYHM8KZeLkAYySMe86n1QW9xlGpfk96sYe2mJlvhEzDCUD81YoGMBDl7hIXTVRFgxw==
-  dependencies:
-    bootstrap "~3.3.0"
-    jsurl "^0.1.5"
-    lodash "^4.17.11"
-    moment "^2.24.0"
-    ovh-ui-kit "^2.24.2"
 
 "@ovh-ux/ng-ovh-contracts@^3.0.0-beta.3":
   version "3.0.0-beta.3"
@@ -9445,7 +9434,7 @@ ovh-ui-kit@^2.22.0, ovh-ui-kit@^2.23.1:
   dependencies:
     less-plugin-remcalc "^0.1.0"
 
-ovh-ui-kit@^2.24.2:
+ovh-ui-kit@^2.24.2, ovh-ui-kit@~2.24.0:
   version "2.24.2"
   resolved "https://registry.yarnpkg.com/ovh-ui-kit/-/ovh-ui-kit-2.24.2.tgz#27e7c945c81f22745657d4eeb8b6a96022a87828"
   integrity sha512-yLdyZskNlDUnx29XCYY5SppcJYaVBrNOpa682D+rw1s79Y9/dwAlF6qWD47NWDRK2XzgJR8U7xTjvbersuGBwg==
