@@ -11,8 +11,10 @@ import mappedPartials from './partials/mapped.html';
 import './vrack.less';
 import './vrack-mapper.less';
 
-export default angular
-  .module('OvhManagerFreefaxComponent', [
+const moduleName = 'OvhManagerVrackComponent';
+
+angular
+  .module(moduleName, [
     'ui.router',
   ])
   .run(/* @ngInject */ ($templateCache) => {
@@ -27,18 +29,6 @@ export default angular
     controllerAs: 'VrackCtrl',
   })
   .config(($stateProvider) => {
-    /*
-    $stateProvider.state('vrack.home', {
-      url: '/vrack',
-      template,
-      controller,
-      controllerAs: 'VrackCtrl',
-      translations: {
-        value: ['.'],
-        format: 'json',
-      },
-    });
-    */
     $stateProvider.state('vrack', {
       url: '/vrack/:vrackId',
       component: 'ovhManagerVrackComponent',
@@ -48,3 +38,5 @@ export default angular
       },
     });
   });
+
+export default moduleName;
