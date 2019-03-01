@@ -37,5 +37,16 @@
   "vrack_common_add": "Ajouter",
   "vrack_common_remove": "Retirer",
   "vrack_common_deactivate": "Désactiver",
-  "vrack_common_new_window": "Nouvelle fenêtre"
+  "vrack_common_new_window": "Nouvelle fenêtre",
+  "vrack_menu_title": "Vrack",
+  "vrack_menu_add": "Créer un vRack",
+  "vrack_menu_project_num": "Vrack {{num}}",
+  "vrack_service_type_dedicatedserver": "Serveur dédié",
+  "vrack_service_type_dedicatedcloud": "Private Cloud",
+  "vrack_service_type_dedicatedconnect": "Dedicated connect",
+  "vrack_service_type_legacyvrack": "Vrack legacy",
+  "vrack_service_type_dedicatedclouddatacenter": "Private Cloud",
+  "vrack_service_type_ip": "IP",
+  "vrack_service_type_cloudproject": "Projet Cloud",
+  "vrack_service_type_iploadbalancing": "Load Balancer"
 }
