@@ -1,0 +1,22 @@
+{
+ "cpcivm_monitoring_loading": "Nahrávání grafů.",
+ "cpcivm_monitoring_title": "Monitoring",
+ "cpcivm_monitoring_cpu_title": "CPU",
+ "cpcivm_monitoring_ram_title": "RAM",
+ "cpcivm_monitoring_hd_title": "Disky",
+ "cpcivm_monitoring_bandwidth_title": "Traffic",
+ "cpcivm_monitoring_comingSoon": "Již brzy",
+ "cpcivm_monitoring_unavailable": "Nedostupný",
+ "cpcivm_monitoring_netLimit": "Šířka pásma {{ netMax }} Mb/s",
+ "cpcivm_monitoring_more_cpu": "Pro více CPU",
+ "cpcivm_monitoring_more_ram": "Pro více RAM",
+ "cpcivm_monitoring_changeOffer": "vyberte jinou nabídku",
+ "cpcivm_monitoring_upload": "Upload",
+ "cpcivm_monitoring_download": "Download",
+ "cpcivm_monitoring_net_limit": "limit {{ trafficMax }} Mb/s",
+ "cpcivm_monitoring_period_lastday": "Posl. 24h",
+ "cpcivm_monitoring_period_lastweek": "Minulý týden",
+ "cpcivm_monitoring_period_lastmonth": "Minulý měsíc",
+ "cpcivm_monitoring_period_lastyear": "Loni",
+ "cpcivm_monitoring_error": "Data momentálně nejsou k dispozici."
+}

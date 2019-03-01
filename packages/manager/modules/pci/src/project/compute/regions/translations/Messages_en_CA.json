@@ -1,0 +1,13 @@
+{
+  "cpci_add_regions_title": "Add regions",
+  "cpci_add_regions_description": "OVH allow you to create your instances or containers on multiple region. By default, you will have access to few regions but you can add more regions through this panel.",
+  "cpci_add_regions_added_title": "Available regions",
+  "cpci_add_regions_available_to_add_title": "Regions you can add",
+  "cpci_add_regions_add_region": "Add a region",
+  "cpci_add_regions_get_regions_error": "Can not recover regions: {{message}}",
+  "cpci_add_regions_get_available_regions_error": "Failed to extract available regions: {{message}}",
+  "cpci_add_regions_add_region_error": "Could not add region: {{message}}",
+  "cpci_add_regions_add_region_success": "The activation of your new region {{ code }} is in progress, it could take up to 60 minutes. You'll be notified by mail once the region is available.",
+  "cpci_add_regions_all_added": "All added regions",
+  "cpci_add_regions_info_message": "Adding new regions could take few minutes. Once the regions have been added, you will be able to start instances and create containers."
+}

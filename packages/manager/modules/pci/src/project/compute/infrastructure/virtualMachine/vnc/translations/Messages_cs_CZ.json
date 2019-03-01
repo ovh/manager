@@ -1,0 +1,7 @@
+{
+ "cpcivm_vnc_title": "VNC konzole",
+ "cpcivm_vnc_tip": "Tip: jestliže nejste schopní psát v oknu, klikněte na modrou lištu níže.",
+ "cpcivm_vnc_window": "Otevřít v novém okně",
+ "cpcivm_vnc_error": "Chyba, není možné otevřít VNC konzoli.",
+ "cpcivm_vnc_linuxinfo": "Pro použití VNC konzole na Linuxovém serveru se musíte nejdříve přihlásit pomocí SSH a nastavit uživatele a heslo."
+}

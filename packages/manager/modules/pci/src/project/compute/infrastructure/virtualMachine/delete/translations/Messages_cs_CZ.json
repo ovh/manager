@@ -1,0 +1,6 @@
+{
+ "cpcivm_delete_title": "Mazání instance",
+ "cpcivm_delete_info": "Již jste zaplatili Vaši měsíční fakturu za tento server. Jakékoli předplacené dny budou ztraceny.",
+ "cpcivm_failover_info": "Následující adresy IP Failover budou permanentně odstraněny:",
+ "cpcivm_delete_confirm": "Jste si jisti, že chcete odstranit tuto instanci?"
+}

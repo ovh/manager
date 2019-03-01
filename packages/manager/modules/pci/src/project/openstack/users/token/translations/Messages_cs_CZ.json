@@ -1,0 +1,13 @@
+{
+ "cpou_token_title": "Vytvořit Openstack ticket",
+ "cpou_openrc_title": "Stažení souboru RC OpenStack",
+ "cpou_token_info": "Pro vygenerování tokenu Openstack zadejte heslo uživatele <b>{{ username }}</b>.",
+ "cpou_token_password_label": "Heslo",
+ "cpou_token_error": "Chyba, nebyli jsme schopní vygenerovat jednorázové heslo OpenStack.",
+ "cpou_token_title_information": "Poznamenejte si prosím toto jednorázové heslo. Později ho již nebudete moci získat.",
+ "cpou_token_xauthtoken": "Jednorázové heslo OpenStack, umožňující identifikovat Váš HTTP dotaz (X-Auth-Token), je:",
+ "cpou_token_xauthtoken_guide": "Příklad použití naleznete <a href=\"{{ link }}\" target=\"_blank\">v této příručce</a>.",
+ "cpou_token_catalog_region": "Region",
+ "cpou_token_catalog_service": "Služba",
+ "cpou_token_catalog_endpoint": "Endpoint"
+}

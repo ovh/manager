@@ -1,0 +1,15 @@
+{
+ "cpciif_import_title": "Importovat IP Failover OVH",
+ "cpciif_import_ips_error": "Chyba, nebylo možné získat seznam Vašich IP Failover.",
+ "cpciif_import_ips_empty": "Žádné dostupné IP Failover.",
+ "cpciif_import_ips": "IP Failover",
+ "cpciif_import_ips_country": "Země",
+ "cpciif_import_routedto": "Spjaté služby",
+ "cpciif_import_ips_route": "Zvolte si jednu či více IP Failover pro import:",
+ "cpciif_import_ips_32only": "Pozor: V současnosti lze importovat pouze bloky IPv4.",
+ "cpciif_import_routedto_park": "Parkování IP",
+ "cpciif_import_vms_route_of_success": "IP Failover {{ip}} bude importována do Vašeho projektu během několika sekund.",
+ "cpciif_import_vms_route_of_success_plural": "{{nbIps}} IP bude během několika sekund importováno do Vašeho projektu.",
+ "cpciif_import_vms_route_of_error": "Chyba, není možné přidat IP {{ip}} k Vašemu projektu.",
+ "cpciif_import_vms_route_of_error_plural": "Chyba, není možné přidat IP {{ips}} k Vašemu projektu."
+}

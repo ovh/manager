@@ -1,0 +1,6 @@
+{
+ "cpc_tab_billing": "Využití",
+ "cpc_tab_openstack_users": "Openstack",
+ "cpb_details_compute_error_message": "Vyskytla se chyba. Nejsme schopni zobrazit detaily infrastruktury.",
+ "cpb_read_only_access_alert": "Váš účet je v režimu čtení (\"read-only\") - některé operace proto nejsou dostupné. Pro získání zápisových práv (\"write\") kontaktujte prosím admina."
+}

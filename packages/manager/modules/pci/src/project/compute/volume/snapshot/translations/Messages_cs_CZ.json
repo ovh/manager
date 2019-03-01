@@ -1,0 +1,13 @@
+{
+ "cpcv_snapshot_add_title": "Vytváření zálohy svazku",
+ "cpcv_snapshot_choose_name": "Zadat název snapshotu:",
+ "cpcv_snapshot_name": "Název snapshotu",
+ "cpcv_snapshot_confirm": "Vytvořit snapshot",
+ "cpcv_snapshot_monthlyPrice": "({{ size | bytes:2:'true' }} x {{ price }} bez DPH/GiB/měs.)",
+ "cpcv_snapshot_name_error": "Zadejte prosím platný název zálohy.",
+ "cpcv_snapshot_name_length_error": "Název zálohy musí být kratší.",
+ "cpcv_snapshot_creation_info": "Zálohování...",
+ "cpcv_snapshot_creation_error": "Během zálohování svazku došlo k chybě.",
+ "cpcv_snapshot_error": "Během získávání informací o záloze došlo k chybě, zkuste to prosím později.",
+ "cpcv_snapshot_attach_warning": "Váš disk je momentálně připojen k instanci. Pro zachování integrity Vašich dat doporučujeme disk před zálohováním odpojit."
+}

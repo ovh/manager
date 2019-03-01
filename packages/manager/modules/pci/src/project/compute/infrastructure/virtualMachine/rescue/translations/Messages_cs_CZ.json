@@ -1,0 +1,14 @@
+{
+ "cpc_rescue_mode_title": "Reboot do režimu rescue",
+ "cpc_rescue_mode_valid": "Restart",
+ "cpc_rescue_mode_cancel": "Zrušit",
+ "cpc_rescue_mode_expl": "Chystáte se restartovat server v režimu rescue.",
+ "cpc_rescue_mode_label": "Můj obraz:",
+ "cpc_rescue_mode_defaut": "Distribuce Rescue Made-in-OVH",
+ "cpc_rescue_mode_pwd_expl": "Pokud zvolíte rescue-pro, získáte dočasné heslo, které použijete pro připojení k serveru v režimu rescue. Alternativou je přístup na server pomocí SSH a běžného klíče s tím rozdílem, že SSH fingerprint na serveru se nebude shodovat. Primární disk bude vystupovat jako disk číslo 2.",
+ "cpc_rescue_mode_success_linux": "Pro přístup k serveru {{vmName}} v režimu rescue použijte:<br/><code>rdesktop {{ip}}</code> s obvyklým klíčem SSH. Upozornění: v tomto režimu bude k dispozici pouze primární disk.",
+ "cpc_rescue_mode_success_pwd_linux": "Pro přístup k serveru {{vmName}} v režimu rescue použijte:<br/><code>ssh {{user}}@{{ip}}</code> s dočasným heslem {{pwd}} (heslo již nadále nebude nikde zobrazeno, poznamenejte si jej). Upozornění: v tomto režimu bude k dispozici pouze primární disk.",
+ "cpc_rescue_mode_success_windows": "Pro přístup k serveru {{vmName}} v režimu rescue použijte:<br/><code>rdesktop {{ip}}</code> s obvyklým klíčem SSH. Upozornění: v tomto režimu bude k dispozici pouze primární disk.",
+ "cpc_rescue_mode_success_pwd_windows": "Pro přístup k serveru {{vmName}} v režimu rescue použijte:<br/><code>rdesktop {{ip}}</code> s dočasným heslem {{pwd}} (heslo již nadále nebude nikde zobrazeno, poznamenejte si jej). Upozornění: v tomto režimu bude k dispozici pouze primární disk.",
+ "cpc_rescue_mode_error": "Váš server se nepodařilo restartovat v režimu rescue: {{message}}"
+}
