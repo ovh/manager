@@ -1,18 +1,12 @@
 {
-    "extends": "./node_modules/eslint-config-ovh/configs/es5-browser.js",
-    "rules": {
-        "no-unused-vars": "warn",
-        "no-void": "warn",
-        "no-cond-assign": "warn",
-        "no-mixed-operators" : "warn",
-        "no-restricted-properties": "off",
-        "no-param-reassign": "warn",
-        "no-shadow": "warn",
-        "no-underscore-dangle": "warn",
-        "no-magic-numbers": "off",
-        "consistent-return": "warn"
-    },
-    "globals":{
-        "module": true
-    }
- }
+  "extends": "airbnb-base",
+  "plugins": [
+    "markdown"
+  ],
+  "env": {
+    "browser": true
+  },
+  "rules": {
+    "import/no-unresolved": 0
+  }
+}
