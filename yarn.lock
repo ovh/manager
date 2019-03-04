@@ -9407,9 +9407,10 @@ ovh-manager-webfont@^1.0.2:
   resolved "https://registry.yarnpkg.com/ovh-manager-webfont/-/ovh-manager-webfont-1.0.2.tgz#8f9d358d138c2650a557bdac7a2d1908e962418d"
   integrity sha1-j501jROMJlClV72sei0ZCOliQY0=
 
-ovh-manager-webfont@ovh-ux/ovh-manager-webfont#^1.1.0:
+ovh-manager-webfont@^1.1.0:
   version "1.1.0"
-  resolved "https://codeload.github.com/ovh-ux/ovh-manager-webfont/tar.gz/4b976ddbcb272541b4959d4bf2621da5e3362276"
+  resolved "https://registry.yarnpkg.com/ovh-manager-webfont/-/ovh-manager-webfont-1.1.0.tgz#447bcdaca8075ce5919f7b1f71fc9612f2fe3f20"
+  integrity sha512-60j+iFk/inmj4FM3rJ/wCdoPay1dclMcw7x7rSpDCKCaB3/KT8G308gRkX/PQfkCnOIcDYw/AzkQ7QYeGAeWrw==
 
 ovh-ngstrap@^4.0.2:
   version "4.0.2"
