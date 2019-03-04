@@ -1,7 +1,7 @@
 import _ from 'lodash';
 
 export default class VrackService {
-  /* @ ngInject */
+  /* @ngInject */
   constructor($q, $translate, CucControllerHelper, OvhApiCloudProject, OvhApiVrack) {
     this.$q = $q;
     this.$translate = $translate;
