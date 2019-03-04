@@ -11,7 +11,6 @@ export default [
       globals: {
         angular: 'angular',
         lodash: '_',
-        'angular-translate': 'pascalprecht.translate',
       },
     },
   }),
