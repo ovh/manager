@@ -1,6 +1,6 @@
 import angular from 'angular';
-import ngTranslate from 'angular-translate';
-import '@ovh-ux/translate-async-loader';
+import 'angular-translate';
+import '@ovh-ux/ng-translate-async-loader';
 
 import 'ovh-api-services';
 
@@ -11,9 +11,9 @@ const moduleName = 'ngOvhPaymentMethod';
 
 angular
   .module(moduleName, [
+    'ngTranslateAsyncLoader',
     'ovh-api-services',
-    ngTranslate,
-    'translate-async-loader',
+    'pascalprecht.translate',
   ])
   .run(/* @ngTranslationsInject ./translations */)
   .provider('ovhPaymentMethod', paymentMethodProvider)
