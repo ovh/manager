@@ -35,6 +35,7 @@
   "peerDependencies": {
     "@ovh-ux/manager-cloud-styles": "git+https://github.com/ovh-ux/manager.git#split-manager-cloud-styles/cloud-styles",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^0.1.0",
+    "@ovh-ux/ng-ovh-contracts": "^3.0.0-beta.3",
     "@ovh-ux/manager-core": "^2.0.0",
     "@uirouter/angularjs": "^1.0.15",
     "angular": "1.7.5",

@@ -1,4 +1,5 @@
 import angular from 'angular';
+import '@ovh-ux/ng-ovh-contracts';
 
 import controller from './vrack.controller';
 import template from './vrack.html';
@@ -16,6 +17,7 @@ const moduleName = 'OvhManagerVrackComponent';
 angular
   .module(moduleName, [
     'ui.router',
+    'ngOvhContracts',
   ])
   .run(/* @ngInject */ ($templateCache) => {
     $templateCache.put('vrack/partials/actions.html', actionsPartials);
