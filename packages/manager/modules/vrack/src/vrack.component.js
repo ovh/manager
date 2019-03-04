@@ -28,7 +28,7 @@ angular
     controller,
     controllerAs: 'VrackCtrl',
   })
-  .config(($stateProvider) => {
+  .config(/* @ngInject */($stateProvider) => {
     $stateProvider.state('vrack', {
       url: '/vrack/:vrackId',
       component: 'ovhManagerVrackComponent',
