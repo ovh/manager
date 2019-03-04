@@ -41,6 +41,6 @@
     "angular-ui-bootstrap": "~1.3.3",
     "oclazyload": "^1.1.0",
     "ovh-ui-kit": "~2.24.0",
-    "ovh-manager-webfont": "ovh-ux/ovh-manager-webfont#^1.1.0"
+    "ovh-manager-webfont": "^1.1.0"
   }
 }
