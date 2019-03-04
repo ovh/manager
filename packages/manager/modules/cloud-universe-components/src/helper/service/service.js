@@ -165,7 +165,7 @@ export default class CucServiceHelper {
 
   loadOnNewPage(orderPromise, config = {}) {
     const newWindow = this.$window.open('', '_blank');
-    newWindow.document.write(this.$translate.instant('cuc_helper_order_error'));
+    newWindow.document.write(this.$translate.instant('cuc_helper_order_doing'));
     return orderPromise
       .then(this.orderSuccessHandler(newWindow))
       .then((data) => {
