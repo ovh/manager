@@ -16,7 +16,7 @@
  "freefax_voicemail_redirection_type": "type",
  "freefax_voicemail_success": "Configuration mise à jour",
  "freefax_voicemail_bad_password": "Mot de passe incorrect",
- "freefax_voicemail_cancel": "Annuler",
- "freefax_voicemail_submit": "Valider",
- "freefax_voicemail_edit": "Éditer"
+ "freefax_voicemail_cancel": "Abbrechen",
+ "freefax_voicemail_submit": "Bestätigen",
+ "freefax_voicemail_edit": "Bearbeiten"
 }

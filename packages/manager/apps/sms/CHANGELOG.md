@@ -1,3 +1,24 @@
+# [3.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-sms-app@2.0.0...@ovh-ux/manager-sms-app@3.0.0) (2019-02-26)
+
+
+### Build System
+
+* **deps:** upgrade ng-ovh-apiv7 to v2.0.0 ([ac6ac62](https://github.com/ovh-ux/manager/commit/ac6ac62))
+* **deps:** upgrade ng-pagination-front to v8.0.0-alpha.0 ([f820440](https://github.com/ovh-ux/manager/commit/f820440))
+
+
+### Features
+
+* **sms:** replace responsive-tabs by header-tabs component ([#203](https://github.com/ovh-ux/manager/issues/203)) ([f5cb0eb](https://github.com/ovh-ux/manager/commit/f5cb0eb))
+
+
+### BREAKING CHANGES
+
+* **deps:** replace `ovh-angular-apiv7` by `@ovh-ux/ng-ovh-apiv7`
+* **deps:** replace `ovh-angular-pagination-front` by `@ovh-ux/ng-pagination-front`
+
+
+
 # [2.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-sms-app@1.0.1...@ovh-ux/manager-sms-app@2.0.0) (2019-01-29)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-sms-app",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "private": true,
   "scripts": {
     "build": "webpack",
@@ -11,8 +11,8 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-sms-app' --include-filtered-dependencies -- yarn run dev:watch"
   },
   "dependencies": {
-    "@ovh-ux/manager-core": "^2.0.0",
-    "@ovh-ux/manager-sms": "^2.0.0",
+    "@ovh-ux/manager-core": "^3.0.0",
+    "@ovh-ux/manager-sms": "^3.0.0",
     "@ovh-ux/manager-telecom-styles": "^2.0.2",
     "@ovh-ux/ng-ovh-apiv7": "^2.0.0",
     "@ovh-ux/ng-ovh-contracts": "^3.0.0-beta.3",

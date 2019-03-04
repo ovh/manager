@@ -1542,9 +1542,13 @@
     rollup-pluginutils "^2.3.3"
     slash "^2.0.0"
 
-"@ovh-ux/manager-cloud-styles@git+https://github.com/ovh-ux/manager.git#split-manager-cloud-styles/cloud-styles":
-  version "0.0.0"
-  resolved "git+https://github.com/ovh-ux/manager.git#e60df1a184599542d664d4841428f0727a0b9553"
+"@ovh-ux/manager-core@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core/-/manager-core-2.0.0.tgz#24914c831c87d5241bca49cc418aa4dfcdee040c"
+  integrity sha512-cor3MH5jX+vvR+rZcsGmBhTNv4wfEcirHft3MwoghXSp6cpHmON5Ujcm1DSwlyRyaeSAY6fzyS5s6zu0PXyHKQ==
+  dependencies:
+    "@ovh-ux/ng-translate-async-loader" "^2.0.0"
+    lodash "^4.17.11"
 
 "@ovh-ux/manager-webpack-config@^3.0.1":
   version "3.0.1"
@@ -1613,17 +1617,6 @@
   integrity sha512-EnJEEmoNCTjnCv/501GDZjxYt17YgGbVBr6BfqF6kD4FSf+TQpsP2sOKEXDLIj0oJUYRhU4z5d97AjX9zFSrFg==
   dependencies:
     lodash "^4.17.11"
-
-"@ovh-ux/ng-ovh-cloud-universe-components@^0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-cloud-universe-components/-/ng-ovh-cloud-universe-components-0.1.0.tgz#378f0c680514d7e973ad0186d7366f05059de50b"
-  integrity sha512-7GVCM4cvMnVTGIf2rvP0N3tBNo5coWL4WMSZSP0AluDV8a9hJNWNuzPB3rQ6yBmewr+3cWpWNZz/HSo7RVqpVw==
-  dependencies:
-    bootstrap "~3.3.0"
-    jsurl "^0.1.5"
-    lodash "^4.17.11"
-    moment "^2.24.0"
-    ovh-ui-kit "^2.24.2"
 
 "@ovh-ux/ng-ovh-contracts@^3.0.0-beta.3":
   version "3.0.0-beta.3"
@@ -9407,11 +9400,6 @@ ovh-manager-webfont@^1.0.2:
   resolved "https://registry.yarnpkg.com/ovh-manager-webfont/-/ovh-manager-webfont-1.0.2.tgz#8f9d358d138c2650a557bdac7a2d1908e962418d"
   integrity sha1-j501jROMJlClV72sei0ZCOliQY0=
 
-ovh-manager-webfont@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/ovh-manager-webfont/-/ovh-manager-webfont-1.1.0.tgz#447bcdaca8075ce5919f7b1f71fc9612f2fe3f20"
-  integrity sha512-60j+iFk/inmj4FM3rJ/wCdoPay1dclMcw7x7rSpDCKCaB3/KT8G308gRkX/PQfkCnOIcDYw/AzkQ7QYeGAeWrw==
-
 ovh-ngstrap@^4.0.2:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/ovh-ngstrap/-/ovh-ngstrap-4.0.2.tgz#059291bfb9f59b78df991e476dd2ede0507cb3c9"
@@ -9441,7 +9429,7 @@ ovh-ui-kit@^2.22.0, ovh-ui-kit@^2.23.1:
   dependencies:
     less-plugin-remcalc "^0.1.0"
 
-ovh-ui-kit@^2.24.2, ovh-ui-kit@~2.24.0:
+ovh-ui-kit@^2.24.2:
   version "2.24.2"
   resolved "https://registry.yarnpkg.com/ovh-ui-kit/-/ovh-ui-kit-2.24.2.tgz#27e7c945c81f22745657d4eeb8b6a96022a87828"
   integrity sha512-yLdyZskNlDUnx29XCYY5SppcJYaVBrNOpa682D+rw1s79Y9/dwAlF6qWD47NWDRK2XzgJR8U7xTjvbersuGBwg==

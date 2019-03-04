@@ -12,11 +12,11 @@
  "freefax_voicemail_keep_messages": "Supprimer automatiquement le message après l'envoi",
  "freefax_voicemail_audio_format": "Recevoir les messages audio au format",
  "freefax_voicemail_redirection_emails": "Email address where messages will be sent to ",
- "freefax_voicemail_redirection_email": "Email address",
- "freefax_voicemail_redirection_type": "type",
+ "freefax_voicemail_redirection_email": "Email",
+ "freefax_voicemail_redirection_type": "Type",
  "freefax_voicemail_success": "Configuration updated ",
  "freefax_voicemail_bad_password": "Incorrect password ",
- "freefax_voicemail_cancel": "Annuler",
- "freefax_voicemail_submit": "Valider",
- "freefax_voicemail_edit": "Éditer"
+ "freefax_voicemail_cancel": "Cancel",
+ "freefax_voicemail_submit": "Confirm",
+ "freefax_voicemail_edit": "Edit"
 }

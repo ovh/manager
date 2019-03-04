@@ -1,0 +1,12 @@
+{
+ "cuc_vrack_common_cancel": "Cancelar",
+ "cuc_vrack_deactivate": "Desactivar",
+ "cuc_vrack_private_network_deactivate": "Desactivar las redes privadas",
+ "cuc_vrack_private_network_deactivate_confirmation": "¿Seguro que quiere desactivar las redes privadas para este servicio?",
+ "cuc_vrack_private_network_select_placeholder": "Seleccionar un vRack existente",
+ "cuc_vrack_private_network_activate": "Activar",
+ "cuc_vrack_private_network_activate_new_vRack_description": "Activar un nuevo vRack y asociarlo a su proyecto",
+ "cuc_vrack_private_network_activate_title": "Activar las redes privadas",
+ "cuc_vrack_private_network_activate_existing": "Existente",
+ "cuc_vrack_private_network_activate_new": "Nuevo"
+}

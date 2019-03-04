@@ -1,3 +1,45 @@
+# [0.3.0](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/compare/@ovh-ux/ng-ovh-cloud-universe-components@0.2.0...@ovh-ux/ng-ovh-cloud-universe-components@0.3.0) (2019-03-01)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([b106445](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/commit/b106445))
+* **i18n:** add missing translations ([aab7768](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/commit/aab7768))
+
+
+### Features
+
+* **cloud-universe-components:** add cloud components ([#221](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/issues/221)) ([8a036fc](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/commit/8a036fc))
+
+
+
+# [0.2.0](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/compare/@ovh-ux/ng-ovh-cloud-universe-components@0.1.0...@ovh-ux/ng-ovh-cloud-universe-components@0.2.0) (2019-02-28)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([1c99f17](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/commit/1c99f17))
+* **i18n:** add missing translations ([701d753](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/commit/701d753))
+* **i18n:** add missing translations ([318b7d0](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/commit/318b7d0))
+
+
+### Features
+
+* **cloud-universe-components:** add currency service and filter ([51a0bf0](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/commit/51a0bf0))
+* **cloud-universe-components:** add highlighted element ([de65663](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/commit/de65663))
+* **feature-availability:** add kube ([5a062ee](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/commit/5a062ee))
+
+
+
+# [0.1.0](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/compare/@ovh-ux/ng-ovh-cloud-universe-components@0.1.0-alpha.5...@ovh-ux/ng-ovh-cloud-universe-components@0.1.0) (2019-02-26)
+
+
+### Bug Fixes
+
+* **cloud-universe-components:** replace jquery by angular.element ([a158264](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/commit/a158264))
+
+
+
 # [0.1.0-alpha.5](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/compare/v0.1.0-alpha.4...v0.1.0-alpha.5) (2019-02-25)
 
 

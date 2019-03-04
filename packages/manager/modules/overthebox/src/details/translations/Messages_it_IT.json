@@ -1,6 +1,6 @@
 {
  "overTheBox_dashboard_title": "Il tuo OverTheBox",
- "overTheBox_dashboard_service_label": "Nom du service :",
+ "overTheBox_dashboard_service_label": "Nome del servizio:",
  "overTheBox_device_listing_title": "Lista delle periferiche",
  "overTheBox_device_button_add": "Nuova periferica",
  "overTheBox_device_activation": "Attivazione",
@@ -32,7 +32,7 @@
  "overTheBox_publicIp": "Indirizzo IP pubblico:",
  "overTheBox_deviceId": "Identificativo della periferica:",
  "overTheBox_deviceId_button_title": "Identificativo della periferica:",
- "overTheBox_deviceId_modify": "Modifier",
+ "overTheBox_deviceId_modify": "Modifica",
  "overTheBox_device_state": "Stato della periferica:",
  "overTheBox_expiration_date": "Prossima fatturazione:",
  "overTheBox_billing_date": "Prossima fatturazione:",

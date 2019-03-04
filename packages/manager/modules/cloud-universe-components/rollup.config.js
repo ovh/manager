@@ -18,6 +18,7 @@ export default [
     output: {
       globals: {
         angular: 'angular',
+        d3: 'd3',
       },
     },
   }),
