@@ -22,7 +22,7 @@
     "lodash": "^3.10.1",
     "oclazyload": "^1.1.0",
     "ovh-ui-kit": "~2.24.0",
-    "ovh-manager-webfont": "ovh-ux/ovh-manager-webfont#^1.1.0"
+    "ovh-manager-webfont": "^1.1.0"
   },
   "devDependencies": {
     "@ovh-ux/manager-webpack-config": "^3.0.1",
