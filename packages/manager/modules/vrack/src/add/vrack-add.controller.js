@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import pick from 'lodash/pick';
 
 export default /* @ngInject */ function (
   $q,
@@ -40,7 +40,7 @@ export default /* @ngInject */ function (
     return OvhApiOrder.Vrack().New().v6().create({
       quantity: this.model.quantityToOrder,
     }, {}).$promise.then((data) => {
-      CucCloudMessage.success($translate.instant('vrack_adding_success', { data: _.pick(data, ['url', 'orderId']) }));
+      CucCloudMessage.success($translate.instant('vrack_adding_success', { data: pick(data, ['url', 'orderId']) }));
       self.model.purchaseOrderUrl = data.url;
       self.loaders.validationPending = true;
     }).catch((error) => {

@@ -1,4 +1,5 @@
-import _ from 'lodash';
+import find from 'lodash/find';
+import isEmpty from 'lodash/isEmpty';
 
 export default /* @ngInject */ function VrackMoveDialogCtrl($scope, $q, $translate,
   $uibModalInstance, Toast, OvhApiVrack, OvhApiVrackDedicatedCloudDatacenter) {
@@ -67,9 +68,9 @@ export default /* @ngInject */ function VrackMoveDialogCtrl($scope, $q, $transla
   };
 
   self.getDisplayName = function getDisplayName(vrackId) {
-    const vrack = _.find(self.getVracks(), { id: vrackId });
+    const vrack = find(self.getVracks(), { id: vrackId });
 
-    if (vrack && !_.isEmpty(vrack.name)) {
+    if (vrack && !isEmpty(vrack.name)) {
       return vrack.name;
     }
 

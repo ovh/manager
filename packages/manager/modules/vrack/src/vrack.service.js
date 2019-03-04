@@ -1,4 +1,6 @@
-import _ from 'lodash';
+import includes from 'lodash/includes';
+import map from 'lodash/map';
+import set from 'lodash/set';
 
 export default class VrackService {
   /* @ngInject */
@@ -16,15 +18,15 @@ export default class VrackService {
   }
 
   isGroupedServiceType(serviceType) {
-    return _.includes(this.constructor.getGroupedServiceTypes(), serviceType);
+    return includes(this.constructor.getGroupedServiceTypes(), serviceType);
   }
 
   getVracks() {
     this.OvhApiVrack.Aapi().resetCache();
     return this.OvhApiVrack.Aapi().query().$promise.then((vracks) => {
-      _.map(vracks, (vrack) => {
-        _.set(vrack, 'serviceName', vrack.id);
-        _.set(vrack, 'displayName', vrack.name || vrack.id);
+      map(vracks, (vrack) => {
+        set(vrack, 'serviceName', vrack.id);
+        set(vrack, 'displayName', vrack.name || vrack.id);
       });
       return vracks;
     });

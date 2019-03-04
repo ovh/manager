@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import keyBy from 'lodash/keyBy';
 
 export default class SelectVrackCtrl {
   /* @ngInject */
@@ -14,7 +14,7 @@ export default class SelectVrackCtrl {
       activate: false,
     };
     // activate options ENUM
-    this.activateOptions = _.indexBy(['EXISTING', 'NEW']);
+    this.activateOptions = keyBy(['EXISTING', 'NEW']);
     // selected activate option
     this.selectedActivateOption = this.activateOptions.EXISTING;
     // selected vRack
