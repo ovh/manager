@@ -235,7 +235,7 @@ export default class OvhPaymentMethodLegacy {
     return this.getPaymentMeanResource(paymentMean.paymentType)
       .chooseAsDefaultPaymentMean({
         id: paymentMean.id,
-      }, {}).$promise;
+      }, null).$promise;
   }
 
   /**
