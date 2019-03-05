@@ -1,3 +1,22 @@
+# [2.0.0](https://github.com/ovh-ux/ng-ovh-payment-method/compare/v1.1.4...v2.0.0) (2019-03-05)
+
+
+### Bug Fixes
+
+* set null as post param for set default leagacy mean ([25aa3ef](https://github.com/ovh-ux/ng-ovh-payment-method/commit/25aa3ef))
+
+
+### Build System
+
+* **deps:** upgrade ng-translate-async-loader to v2.0.0 ([#41](https://github.com/ovh-ux/ng-ovh-payment-method/issues/41)) ([5039faa](https://github.com/ovh-ux/ng-ovh-payment-method/commit/5039faa))
+
+
+### BREAKING CHANGES
+
+* **deps:** replace `@ovh-ux/translate-async-loader` by `@ovh-ux/ng-translate-async-loader`
+
+
+
 ## [1.1.4](https://github.com/ovh-ux/ng-ovh-payment-method/compare/v1.1.3...v1.1.4) (2019-01-30)
 
 
