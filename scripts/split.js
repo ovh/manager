@@ -1,6 +1,4 @@
 #!/usr/bin/env node
-/* eslint-disable no-console */
-
 const execa = require('execa');
 const gitUrlParse = require('git-url-parse');
 const ora = require('ora');
