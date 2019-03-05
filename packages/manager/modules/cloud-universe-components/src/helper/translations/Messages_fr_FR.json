@@ -4,7 +4,7 @@
   "cuc_helper_edit": "Modifier",
   "cuc_helper_modal_cancel": "Annuler",
   "cuc_helper_delete": "Supprimer",
-  "cuc_helper_global_error": "Un erreur est survenue lors de l'opération : {{message}}",
+  "cuc_helper_global_error": "Une erreur est survenue lors de l'opération : {{message}}",
   "cuc_helper_global_success": "L'opération s'est déroulée avec succès.",
   "cuc_helper_name_change_modal_title": "Modifier le nom",
   "cuc_helper_name_change_modal_service_name_label": "Nom par défaut",
