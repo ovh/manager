@@ -96,8 +96,8 @@
    <translation id="otrs_service_category_DEDICATED_SERVER" qtlid="66032">Serwer dedykowany</translation>
    <translation id="otrs_service_category_DEDICATED_HOUSING" qtlid="371476">Serwer Housing</translation>
    <translation id="otrs_service_category_DEDICATED_CLOUD" qtlid="20131">Private Cloud</translation>
-   <translation id="otrs_service_category_HOSTING_WEB" qtlid="219979">Hosting www</translation>
-   <translation id="otrs_service_category_IP_LOADBALANCING" qtlid="219992">Ip Load Balancer</translation>
+   <translation id="otrs_service_category_HOSTING_WEB" qtlid="219979">Hosting WWW</translation>
+   <translation id="otrs_service_category_IP_LOADBALANCING" qtlid="219992">IP Load Balancer</translation>
    <translation id="otrs_service_category_LICENCE_CLOUD_LINUX" qtlid="220005">Licencja CloudLinux</translation>
    <translation id="otrs_service_category_LICENCE_CPANEL" qtlid="220018">Licencja cPanel</translation>
    <translation id="otrs_service_category_LICENCE_DIRECT_ADMIN" qtlid="220031">Licencja DirectAdmin</translation>
@@ -110,8 +110,8 @@
    <translation id="otrs_service_category_LICENCE_WORKLIGHT" qtlid="220083">Licencja Worklight</translation>
    <translation id="otrs_service_category_PACK_XDSL" qtlid="229632">Pakiet xDSL</translation>
    <translation id="otrs_service_category_ROUTER" qtlid="220096">Router</translation>
-   <translation id="otrs_service_category_HOSTING_DOMAIN" qtlid="285049">Hosting www + domena</translation>
-   <translation id="otrs_service_category_HOSTING_RESELLER" qtlid="325289">Hosting multi-stron</translation>
+   <translation id="otrs_service_category_HOSTING_DOMAIN" qtlid="285049">Hosting WWW + domena</translation>
+   <translation id="otrs_service_category_HOSTING_RESELLER" qtlid="325289">Hosting MultiSite</translation>
    <translation id="otrs_service_category_DEDICATED_NAS" qtlid="219914">Dedicated Nas</translation>
    <translation id="otrs_service_category_DEDICATED_NASHA" qtlid="219927">Dedicated NasHa</translation>
    <translation id="otrs_service_category_EXCHANGE_HOSTED" qtlid="80430">Exchange</translation>

@@ -33,7 +33,7 @@
    <translation id="otrs_menu_ticket_create" qtlid="29515">Créer un ticket</translation>
    <translation id="otrs_ticket_number" qtlid="245168">N° de ticket</translation>
    <translation id="otrs_ticket_service" qtlid="31042">Service</translation>
-   <translation id="otrs_ticket_category" qtlid="28459">Catégorie</translation>
+   <translation id="otrs_ticket_category" qtlid="28459">Categoría</translation>
    <translation id="otrs_ticket_type" qtlid="2642">Tipo</translation>
    <translation id="otrs_ticket_suject" qtlid="22639">Sujet</translation>
    <translation id="otrs_ticket_last_message_from" qtlid="228709">Último mensaje</translation>
@@ -58,7 +58,7 @@
    <translation id="otrs_popup_service_faq_sd" qtlid="319843">Servidores dedicados: preguntas frecuentes</translation>
    <translation id="otrs_popup_service_faq_vps" qtlid="319856">VPS: preguntas frecuentes</translation>
 
-   <translation id="otrs_service_category_DEDICATED" qtlid="31738">Dédié</translation>
+   <translation id="otrs_service_category_DEDICATED" qtlid="31738">Dedicado</translation>
    <translation id="otrs_service_category_EXCHANGE" qtlid="80430">Exchange</translation>
    <translation id="otrs_service_category_EMAIL_PRO" qtlid="374893">Correo electrónico profesional</translation>
    <translation id="otrs_service_category_HOSTING" qtlid="167457">Web Hosting</translation>
@@ -127,7 +127,7 @@
    <translation id="otrs_universe_choice" qtlid="406455">Universo:</translation>
    <translation id="otrs_universe_WEB" qtlid="135840">Web</translation>
    <translation id="otrs_universe_SUNRISE" qtlid="232401">Sunrise</translation>
-   <translation id="otrs_universe_TELECOM" qtlid="135827">VoIP</translation>
+   <translation id="otrs_universe_TELECOM" qtlid="135827">Telecom</translation>
    <translation id="otrs_universe_CLOUD_DEDICATED" qtlid="406468">Cloud y Dedicado</translation>
 
 <translation id="otrs_category_null"/>
@@ -152,8 +152,8 @@
    <translation id="otrs_popup_body" qtlid="75606">Message :</translation>
    <translation id="otrs_popup_subject" qtlid="55289">Sujet :</translation>
    <translation id="otrs_popup_add_ticket" qtlid="228436">Crear el ticket</translation>
-   <translation id="otrs_popup_continue" qtlid="4070">Continuer</translation>
-   <translation id="otrs_popup_back" qtlid="4118">Retour</translation>
+   <translation id="otrs_popup_continue" qtlid="4070">Continuar</translation>
+   <translation id="otrs_popup_back" qtlid="4118">Volver</translation>
    <translation id="otrs_popup_title" qtlid="228449">Creación de un ticket de soporte</translation>
    <translation id="otrs_popup_intervention" qtlid="361373">Crear una solicitud de intervención</translation>
    <translation id="otrs_popup_icon_minimize" qtlid="382037">Reducir la ventana de solicitud de soporte</translation>

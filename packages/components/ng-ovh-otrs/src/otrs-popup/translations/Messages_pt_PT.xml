@@ -154,7 +154,7 @@
    <translation id="otrs_popup_subject" qtlid="55289">Assunto:</translation>
    <translation id="otrs_popup_add_ticket" qtlid="228436">Criar ticket</translation>
    <translation id="otrs_popup_continue" qtlid="4070">Continuar</translation>
-   <translation id="otrs_popup_back" qtlid="4118">Voltar atrás</translation>
+   <translation id="otrs_popup_back" qtlid="4118">Retroceder</translation>
    <translation id="otrs_popup_title" qtlid="228449">Criação de um ticket de assistência</translation>
    <translation id="otrs_popup_intervention" qtlid="361373">Criar pedido de intervenção</translation>
    <translation id="otrs_popup_icon_minimize" qtlid="382037">Reduzir janela do pedido de assistência</translation>
