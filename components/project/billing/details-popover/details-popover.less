@@ -1,0 +1,27 @@
+@CLOUD_GREEN_COLOR      : #64afa0;
+
+.details-popover {
+  &.top {
+    margin-top: 0;
+  }
+
+  .details-popover-ctnr {
+    cursor: pointer;
+
+    .details-popover-content {
+      margin: 10px 10px;
+
+      p {
+        margin: 0 0 4px;
+
+        strong {
+          color: @CLOUD_GREEN_COLOR;
+        }
+      }
+    }
+
+    &.top {
+      margin-top: 30px;
+    }
+  }
+}
