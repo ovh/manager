@@ -3,6 +3,7 @@ import '@ovh-ux/manager-core';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
+import components from './components';
 import offer from './offer';
 import project from './project';
 
@@ -12,6 +13,7 @@ const moduleName = 'ovhManagerPci';
 
 angular
   .module(moduleName, [
+    components,
     offer,
     project,
     'ui.router',
