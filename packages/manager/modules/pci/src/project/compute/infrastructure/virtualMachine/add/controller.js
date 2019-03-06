@@ -1,11 +1,33 @@
-class CloudProjectComputeInfrastructureVirtualMachineAddCtrl {
-  constructor($q, $state, $stateParams, atInternet,
-    CloudFlavorService, CloudImageService, CloudProjectVirtualMachineAddService, CloudRegionService,
-    OvhCloudPriceHelper, OvhApiCloudProjectFlavor, OvhApiCloudProjectImage,
-    OvhApiCloudProjectInstance, OvhApiCloudProjectNetworkPrivate, OvhApiCloudProjectNetworkPublic,
-    OvhApiCloudProjectQuota, OvhApiCloudProjectRegion, OvhApiCloudProjectSnapshot,
-    OvhApiCloudProjectSshKey, CucCurrencyService, CucRegionService, CucServiceHelper, ovhDocUrl,
-    TARGET, URLS) {
+import _ from 'lodash';
+
+export default class CloudProjectComputeInfrastructureVirtualMachineAddCtrl {
+  /* @ngInject */
+  constructor(
+    $q,
+    $state,
+    $stateParams,
+    atInternet,
+    CloudFlavorService,
+    CloudImageService,
+    CloudProjectVirtualMachineAddService,
+    CloudRegionService,
+    OvhCloudPriceHelper,
+    OvhApiCloudProjectFlavor,
+    OvhApiCloudProjectImage,
+    OvhApiCloudProjectInstance,
+    OvhApiCloudProjectNetworkPrivate,
+    OvhApiCloudProjectNetworkPublic,
+    OvhApiCloudProjectQuota,
+    OvhApiCloudProjectRegion,
+    OvhApiCloudProjectSnapshot,
+    OvhApiCloudProjectSshKey,
+    CucCurrencyService,
+    CucRegionService,
+    CucServiceHelper,
+    ovhDocUrl,
+    TARGET,
+    URLS,
+  ) {
     this.$q = $q;
     this.$state = $state;
     this.$stateParams = $stateParams;
@@ -491,5 +513,3 @@ class CloudProjectComputeInfrastructureVirtualMachineAddCtrl {
     });
   }
 }
-
-angular.module('managerApp').controller('CloudProjectComputeInfrastructureVirtualMachineAddCtrl', CloudProjectComputeInfrastructureVirtualMachineAddCtrl);

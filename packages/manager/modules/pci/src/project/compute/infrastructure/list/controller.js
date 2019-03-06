@@ -1,8 +1,23 @@
-class CloudProjectComputeInfrastructureListCtrl {
-  constructor($scope, $q, $stateParams, $translate, $timeout, atInternet,
-    CucCloudMessage, CucCloudNavigation, CloudProjectOrchestrator,
+import _ from 'lodash';
+
+export default class CloudProjectComputeInfrastructureListCtrl {
+  /* @ngInject */
+  constructor(
+    $scope,
+    $q,
+    $stateParams,
+    $translate,
+    $timeout,
+    atInternet,
+    CucCloudMessage,
+    CucCloudNavigation,
+    CloudProjectOrchestrator,
     CloudProjectComputeInfrastructureService,
-    OvhApiCloudProjectVolume, CucRegionService, OvhApiCloudProjectFlavor, TARGET) {
+    OvhApiCloudProjectVolume,
+    CucRegionService,
+    OvhApiCloudProjectFlavor,
+    TARGET,
+  ) {
     this.$scope = $scope;
     this.$q = $q;
     this.$timeout = $timeout;
@@ -160,5 +175,3 @@ class CloudProjectComputeInfrastructureListCtrl {
     return this.InfrastructureService.openDeleteProjectModal();
   }
 }
-
-angular.module('managerApp').controller('CloudProjectComputeInfrastructureListCtrl', CloudProjectComputeInfrastructureListCtrl);

@@ -1,4 +1,6 @@
-class CloudRegionService {
+import _ from 'lodash';
+
+export default class CloudRegionService {
   static addOverQuotaInfos(region, quota) {
     const quotaByRegion = _.find(quota, { region: _.get(region, 'microRegion.code') });
     const instanceQuota = _.get(quotaByRegion, 'instance', false);
@@ -28,5 +30,3 @@ class CloudRegionService {
     }
   }
 }
-
-angular.module('managerApp').service('CloudRegionService', CloudRegionService);

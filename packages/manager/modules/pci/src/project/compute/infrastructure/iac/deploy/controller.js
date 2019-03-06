@@ -1,6 +1,14 @@
-class CloudProjectComputeInfrastructureIacDeployCtrl {
-  constructor($q, $state, $stateParams, CloudProjectComputeInfrastructureOpenstackClientService,
-    OvhApiCloudProjectStack, OvhApiMe, CucServiceHelper) {
+export default class CloudProjectComputeInfrastructureIacDeployCtrl {
+  /* @ngInject */
+  constructor(
+    $q,
+    $state,
+    $stateParams,
+    CloudProjectComputeInfrastructureOpenstackClientService,
+    OvhApiCloudProjectStack,
+    OvhApiMe,
+    CucServiceHelper,
+  ) {
     this.$q = $q;
     this.$state = $state;
     this.$stateParams = $stateParams;
@@ -69,5 +77,3 @@ class CloudProjectComputeInfrastructureIacDeployCtrl {
     this.$state.go('iaas.pci-project.compute.infrastructure.list');
   }
 }
-
-angular.module('managerApp').controller('CloudProjectComputeInfrastructureIacDeployCtrl', CloudProjectComputeInfrastructureIacDeployCtrl);

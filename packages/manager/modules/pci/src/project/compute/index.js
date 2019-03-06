@@ -2,6 +2,7 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'ovh-api-services';
 
+import infrastructure from './infrastructure';
 import loadbalancer from './loadbalancer';
 import quota from './quota';
 import regions from './regions';
@@ -18,6 +19,7 @@ const moduleName = 'ovhManagerPciProjectCompute';
 
 angular
   .module(moduleName, [
+    infrastructure,
     loadbalancer,
     'ovh-api-services',
     quota,

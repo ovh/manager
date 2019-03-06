@@ -1,6 +1,20 @@
-class CloudProjectComputeInfrastructureService {
-  constructor($rootScope, $state, $translate, $uibModal, CucCloudMessage, CucUserPref,
-    CloudProjectComputeInfrastructureOrchestrator, CucControllerHelper, CucServiceHelper, TARGET) {
+import angular from 'angular';
+import _ from 'lodash';
+
+export default class CloudProjectComputeInfrastructureService {
+  /* @ngInject */
+  constructor(
+    $rootScope,
+    $state,
+    $translate,
+    $uibModal,
+    CucCloudMessage,
+    CucUserPref,
+    CloudProjectComputeInfrastructureOrchestrator,
+    CucControllerHelper,
+    CucServiceHelper,
+    TARGET,
+  ) {
     this.$rootScope = $rootScope;
     this.$state = $state;
     this.$translate = $translate;
@@ -233,5 +247,3 @@ class CloudProjectComputeInfrastructureService {
       .then(view => _.get(view, 'view', 'diagram'));
   }
 }
-
-angular.module('managerApp').service('CloudProjectComputeInfrastructureService', CloudProjectComputeInfrastructureService);

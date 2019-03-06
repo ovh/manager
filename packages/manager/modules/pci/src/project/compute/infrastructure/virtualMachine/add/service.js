@@ -1,6 +1,17 @@
-class CloudProjectVirtualMachineAddService {
-  constructor($q, $translate, CloudFlavorService, CloudImageService, CucControllerModalHelper,
-    OvhApiCloudProject, OvhApiCloudProjectInstance, OvhApiCloudProjectNetworkPrivateSubnet) {
+import _ from 'lodash';
+
+export default class CloudProjectVirtualMachineAddService {
+  /* @ngInject */
+  constructor(
+    $q,
+    $translate,
+    CloudFlavorService,
+    CloudImageService,
+    CucControllerModalHelper,
+    OvhApiCloudProject,
+    OvhApiCloudProjectInstance,
+    OvhApiCloudProjectNetworkPrivateSubnet,
+  ) {
     this.$q = $q;
     this.$translate = $translate;
     this.CloudFlavorService = CloudFlavorService;
@@ -207,5 +218,3 @@ class CloudProjectVirtualMachineAddService {
     return Math.floor(value / 50) * 50;
   }
 }
-
-angular.module('managerApp').service('CloudProjectVirtualMachineAddService', CloudProjectVirtualMachineAddService);
