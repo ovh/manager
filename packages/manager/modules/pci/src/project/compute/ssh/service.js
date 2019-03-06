@@ -1,4 +1,5 @@
-class CloudProjectSSHKeyService {
+export default class CloudProjectSSHKeyService {
+  /* @ngInject */
   constructor(OvhApiCloudProjectSshKey) {
     this.OvhApiCloudProjectSshKey = OvhApiCloudProjectSshKey;
   }
@@ -15,5 +16,3 @@ class CloudProjectSSHKeyService {
     }).$promise;
   }
 }
-
-angular.module('managerApp').service('CloudProjectSSHKeyService', CloudProjectSSHKeyService);

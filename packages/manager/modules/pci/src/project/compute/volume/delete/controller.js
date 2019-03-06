@@ -1,5 +1,11 @@
-class CloudProjectComputeVolumeDeleteCtrl {
-  constructor($uibModalInstance, OvhApiCloudProjectVolume, serviceName, volume) {
+export default class CloudProjectComputeVolumeDeleteCtrl {
+  /* @ngInject */
+  constructor(
+    $uibModalInstance,
+    OvhApiCloudProjectVolume,
+    serviceName,
+    volume,
+  ) {
     this.$uibModalInstance = $uibModalInstance;
     this.OvhApiCloudProjectVolume = OvhApiCloudProjectVolume;
 
@@ -32,5 +38,3 @@ class CloudProjectComputeVolumeDeleteCtrl {
     this.$uibModalInstance.dismiss();
   }
 }
-
-angular.module('managerApp').controller('CloudProjectComputeVolumeDeleteCtrl', CloudProjectComputeVolumeDeleteCtrl);

@@ -1,8 +1,23 @@
-class CloudProjectComputeCtrl {
+import _ from 'lodash';
+
+import { PCI_ANNOUNCEMENTS } from './constants';
+
+export default class CloudProjectComputeCtrl {
+  /* @ngInject */
   constructor(
-    $q, $scope, $state, $stateParams, $translate, $window, OvhApiCloudProject, CucCloudMessage,
+    $q,
+    $scope,
+    $state,
+    $stateParams,
+    $translate,
+    $window,
+    OvhApiCloudProject,
+    CucCloudMessage,
     CloudProjectOrchestrator,
-    CucUserPref, CucFeatureAvailabilityService, OvhApiMe, moment, PCI_ANNOUNCEMENTS,
+    CucUserPref,
+    CucFeatureAvailabilityService,
+    OvhApiMe,
+    moment,
   ) {
     this.$q = $q;
     this.$scope = $scope;
@@ -134,5 +149,3 @@ class CloudProjectComputeCtrl {
     });
   }
 }
-
-angular.module('managerApp').controller('CloudProjectComputeCtrl', CloudProjectComputeCtrl);

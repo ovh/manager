@@ -4,10 +4,11 @@ import 'ovh-api-services';
 
 import controller from './controller';
 import template from './template.html';
+import service from './service';
 
 import './index.less';
 
-const moduleName = 'ovhManagerPciProjectComputeRegions';
+const moduleName = 'ovhManagerPciProjectComputeSnapshot';
 
 angular
   .module(moduleName, [
@@ -16,20 +17,22 @@ angular
   ])
   .config(/* @ngInject */($stateProvider) => {
     $stateProvider
-      .state('iaas.pci-project.compute.regions', {
-        url: '/regions',
+      .state('iaas.pci-project.compute.snapshot', {
+        url: '/snapshot',
+        sticky: true,
         views: {
           cloudProjectCompute: {
             template,
             controller,
-            controllerAs: '$ctrl',
+            controllerAs: 'CloudProjectComputeSnapshotCtrl',
           },
         },
         translations: {
-          value: ['.', './../infrastructure/virtualMachine/add'],
+          value: ['.'],
           format: 'json',
         },
       });
-  });
+  })
+  .service('CloudProjectComputeSnapshotPriceService', service);;
 
 export default moduleName;

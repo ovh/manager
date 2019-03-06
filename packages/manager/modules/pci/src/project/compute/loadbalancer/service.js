@@ -1,5 +1,13 @@
-class CloudProjectComputeLoadbalancerService {
-  constructor($q, OvhApiCloudProjectIplb, OvhApiIpLoadBalancing, OvhApiCloudProject) {
+import _ from 'lodash';
+
+export default class CloudProjectComputeLoadbalancerService {
+  /* @ngInject */
+  constructor(
+    $q,
+    OvhApiCloudProjectIplb,
+    OvhApiIpLoadBalancing,
+    OvhApiCloudProject,
+  ) {
     this.$q = $q;
     this.OvhApiCloudProjectIplb = OvhApiCloudProjectIplb;
     this.OvhApiIpLoadBalancing = OvhApiIpLoadBalancing;
@@ -129,5 +137,3 @@ class CloudProjectComputeLoadbalancerService {
     });
   }
 }
-
-angular.module('managerApp').service('CloudProjectComputeLoadbalancerService', CloudProjectComputeLoadbalancerService);

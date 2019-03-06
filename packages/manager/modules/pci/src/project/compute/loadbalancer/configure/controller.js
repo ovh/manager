@@ -1,9 +1,25 @@
-class CloudProjectComputeLoadbalancerConfigureCtrl {
+import _ from 'lodash';
+
+export default class CloudProjectComputeLoadbalancerConfigureCtrl {
   constructor(
-    $anchorScroll, $scope, $state, $stateParams, $q, $location, $window, $translate,
-    CloudProjectComputeLoadbalancerService, OvhApiIpLoadBalancing, OvhApiCloudProjectIplb,
-    OvhApiCloudProject, ovhDocUrl, CucCloudMessage, IpLoadBalancerTaskService,
-    CucControllerHelper, CucCloudPoll, CucServiceHelper,
+    $anchorScroll,
+    $scope,
+    $state,
+    $stateParams,
+    $q,
+    $location,
+    $window,
+    $translate,
+    CloudProjectComputeLoadbalancerService,
+    OvhApiIpLoadBalancing,
+    OvhApiCloudProjectIplb,
+    OvhApiCloudProject,
+    ovhDocUrl,
+    CucCloudMessage,
+    IpLoadBalancerTaskService,
+    CucControllerHelper,
+    CucCloudPoll,
+    CucServiceHelper,
   ) {
     this.$anchorScroll = $anchorScroll;
     this.$scope = $scope;
@@ -315,4 +331,3 @@ class CloudProjectComputeLoadbalancerConfigureCtrl {
     }
   }
 }
-angular.module('managerApp').controller('CloudProjectComputeLoadbalancerConfigureCtrl', CloudProjectComputeLoadbalancerConfigureCtrl);

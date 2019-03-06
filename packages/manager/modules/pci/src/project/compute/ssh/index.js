@@ -4,10 +4,11 @@ import 'ovh-api-services';
 
 import controller from './controller';
 import template from './template.html';
+import service from './service';
 
 import './index.less';
 
-const moduleName = 'ovhManagerPciProjectComputeRegions';
+const moduleName = 'ovhManagerPciProjectComputeSsh';
 
 angular
   .module(moduleName, [
@@ -16,8 +17,9 @@ angular
   ])
   .config(/* @ngInject */($stateProvider) => {
     $stateProvider
-      .state('iaas.pci-project.compute.regions', {
-        url: '/regions',
+      .state('iaas.pci-project.compute.ssh', {
+        url: '/ssh',
+        sticky: true,
         views: {
           cloudProjectCompute: {
             template,
@@ -26,10 +28,11 @@ angular
           },
         },
         translations: {
-          value: ['.', './../infrastructure/virtualMachine/add'],
+          value: ['.'],
           format: 'json',
         },
       });
-  });
+  })
+  .service('CloudProjectSSHKeyService', service);
 
 export default moduleName;

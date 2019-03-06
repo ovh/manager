@@ -1,4 +1,5 @@
-class RegionsCtrl {
+export default class RegionsCtrl {
+  /* @ngInject */
   constructor(
     $stateParams,
     CucCloudMessage,
@@ -113,5 +114,3 @@ class RegionsCtrl {
     this.addRegion.load();
   }
 }
-
-angular.module('managerApp').controller('RegionsCtrl', RegionsCtrl);

@@ -1,5 +1,11 @@
-class CloudProjectComputeSshDeleteCtrl {
-  constructor($uibModalInstance, OvhApiCloudProjectSshKey, serviceName, sshKey) {
+export default class CloudProjectComputeSshDeleteCtrl {
+  /* @ngInject */
+  constructor(
+    $uibModalInstance,
+    OvhApiCloudProjectSshKey,
+    serviceName,
+    sshKey,
+  ) {
     this.$uibModalInstance = $uibModalInstance;
     this.OvhApiCloudProjectSshKey = OvhApiCloudProjectSshKey;
 
@@ -31,5 +37,3 @@ class CloudProjectComputeSshDeleteCtrl {
     this.$uibModalInstance.dismiss();
   }
 }
-
-angular.module('managerApp').controller('CloudProjectComputeSshDeleteCtrl', CloudProjectComputeSshDeleteCtrl);

@@ -1,7 +1,18 @@
-class CloudProjectComputeLoadbalancerCtrl {
+import _ from 'lodash';
+
+export default class CloudProjectComputeLoadbalancerCtrl {
+  /* @ngInject */
   constructor(
-    $q, $translate, $state, $stateParams, CloudProjectComputeLoadbalancerService,
-    OvhApiCloudProjectIplb, OvhApiIpLoadBalancing, CucCloudMessage, OvhApiMe, URLS,
+    $q,
+    $translate,
+    $state,
+    $stateParams,
+    CloudProjectComputeLoadbalancerService,
+    OvhApiCloudProjectIplb,
+    OvhApiIpLoadBalancing,
+    CucCloudMessage,
+    OvhApiMe,
+    URLS,
   ) {
     this.$q = $q;
     this.$translate = $translate;
@@ -100,8 +111,3 @@ class CloudProjectComputeLoadbalancerCtrl {
     }
   }
 }
-
-angular.module('managerApp').controller(
-  'CloudProjectComputeLoadbalancerCtrl',
-  CloudProjectComputeLoadbalancerCtrl,
-);

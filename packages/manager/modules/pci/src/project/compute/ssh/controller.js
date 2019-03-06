@@ -1,6 +1,17 @@
-class CloudProjectComputeSshCtrl {
-  constructor(OvhApiCloudProjectSshKey, CloudProjectSSHKeyService, $translate,
-    CucControllerHelper, CucCloudMessage, $stateParams, ovhDocUrl) {
+import deleteController from './delete/controller';
+import deleteTemplate from './delete/template.html';
+
+export default class CloudProjectComputeSshCtrl {
+  /* @ngInject */
+  constructor(
+    OvhApiCloudProjectSshKey,
+    CloudProjectSSHKeyService,
+    $translate,
+    CucControllerHelper,
+    CucCloudMessage,
+    $stateParams,
+    ovhDocUrl,
+  ) {
     this.OvhApiCloudProjectSshKey = OvhApiCloudProjectSshKey;
     this.CloudProjectSSHKeyService = CloudProjectSSHKeyService;
     this.$translate = $translate;
@@ -82,8 +93,8 @@ class CloudProjectComputeSshCtrl {
   openDeleteSshKey(sshKey) {
     this.CucControllerHelper.modal.showModal({
       modalConfig: {
-        templateUrl: 'app/cloud/project/compute/ssh/delete/compute-ssh-delete.html',
-        controller: 'CloudProjectComputeSshDeleteCtrl',
+        template: deleteTemplate,
+        controller: deleteController,
         controllerAs: '$ctrl',
         resolve: {
           serviceName: () => this.serviceName,
@@ -163,5 +174,3 @@ class CloudProjectComputeSshCtrl {
     }
   }
 }
-
-angular.module('managerApp').controller('CloudProjectComputeSshCtrl', CloudProjectComputeSshCtrl);

@@ -5,9 +5,7 @@ import 'ovh-api-services';
 import controller from './controller';
 import template from './template.html';
 
-import './index.less';
-
-const moduleName = 'ovhManagerPciProjectComputeRegions';
+const moduleName = 'ovhManagerPciProjectComputeLoadbalancerConfigure';
 
 angular
   .module(moduleName, [
@@ -16,18 +14,14 @@ angular
   ])
   .config(/* @ngInject */($stateProvider) => {
     $stateProvider
-      .state('iaas.pci-project.compute.regions', {
-        url: '/regions',
+      .state('iaas.pci-project.compute.loadbalancerConfigure', {
+        url: '/:loadbalancerId/configure?validate',
         views: {
           cloudProjectCompute: {
             template,
             controller,
             controllerAs: '$ctrl',
           },
-        },
-        translations: {
-          value: ['.', './../infrastructure/virtualMachine/add'],
-          format: 'json',
         },
       });
   });
