@@ -10,5 +10,6 @@
  "cuc_helper_name_change_modal_service_name_label": "Nome predefinito",
  "cuc_helper_name_change_modal_display_name_label": "Nome personalizzato",
  "cuc_helper_order_success": "Il buono d'ordine <a href=\"{{orderUrl}}\" target=\"_blank\">{{orderId}}</a> è stato creato correttamente.",
- "cuc_helper_order_error": "Errore durante la creazione del buono d'ordine: {{ message }}"
+ "cuc_helper_order_error": "Errore durante la creazione del buono d'ordine: {{ message }}",
+ "cuc_helper_order_doing": "Creazione dell’ordine in corso..."
 }
