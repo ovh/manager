@@ -1,6 +1,14 @@
-class CloudProjectOpenStackUserAddCtrl {
-  constructor($translate, $uibModalInstance, CucControllerHelper, CucCloudMessage,
-    OpenstackUsersPassword, OvhApiCloud, serviceName) {
+export default class CloudProjectOpenStackUserAddCtrl {
+  /* @ngInject */
+  constructor(
+    $translate,
+    $uibModalInstance,
+    CucControllerHelper,
+    CucCloudMessage,
+    OpenstackUsersPassword,
+    OvhApiCloud,
+    serviceName,
+  ) {
     this.$translate = $translate;
     this.$uibModalInstance = $uibModalInstance;
     this.CucControllerHelper = CucControllerHelper;
@@ -36,5 +44,3 @@ class CloudProjectOpenStackUserAddCtrl {
     return this.saving.load();
   }
 }
-
-angular.module('managerApp').controller('CloudProjectOpenStackUserAddCtrl', CloudProjectOpenStackUserAddCtrl);

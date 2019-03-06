@@ -1,4 +1,5 @@
-class CloudProjectOpenstackUsersRcloneService {
+export default class CloudProjectOpenstackUsersRcloneService {
+  /* @ngInject */
   constructor(
     $httpParamSerializer,
     $q,
@@ -50,5 +51,3 @@ class CloudProjectOpenstackUsersRcloneService {
       });
   }
 }
-
-angular.module('managerApp').service('CloudProjectOpenstackUsersRcloneService', CloudProjectOpenstackUsersRcloneService);

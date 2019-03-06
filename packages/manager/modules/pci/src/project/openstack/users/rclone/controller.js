@@ -1,6 +1,13 @@
-class CloudProjectOpenstackUsersRcloneModalCtrl {
-  constructor($stateParams, $uibModalInstance, CloudProjectOpenstackUsersRcloneService,
-    CucControllerHelper, openstackUser, URLS) {
+export default class CloudProjectOpenstackUsersRcloneModalCtrl {
+  /* @ngInject */
+  constructor(
+    $stateParams,
+    $uibModalInstance,
+    CloudProjectOpenstackUsersRcloneService,
+    CucControllerHelper,
+    openstackUser,
+    URLS,
+  ) {
     this.$stateParams = $stateParams;
     this.$uibModalInstance = $uibModalInstance;
     this.CloudProjectOpenstackUsersRcloneService = CloudProjectOpenstackUsersRcloneService;
@@ -63,5 +70,3 @@ class CloudProjectOpenstackUsersRcloneModalCtrl {
     });
   }
 }
-
-angular.module('managerApp').controller('CloudProjectOpenstackUsersRcloneModalCtrl', CloudProjectOpenstackUsersRcloneModalCtrl);
