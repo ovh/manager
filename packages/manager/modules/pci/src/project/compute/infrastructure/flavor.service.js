@@ -167,6 +167,7 @@ export default class CloudFlavorService {
 
     const flavorContainsGPUs = _(['g1', 'g2', 'g3', 't1']).includes(augmentedFlavor.shortType);
     if (flavorContainsGPUs) {
+      augmentedFlavor.imageType = flavor.osType === 'windows' ? ['uefi'] : augmentedFlavor.imageType;
       augmentedFlavor.gpuCardCount = _(this.CLOUD_INSTANCE_NUMBER_OF_GPUS).get(
         numberType,
         this.CLOUD_INSTANCE_NUMBER_OF_GPUS.default,

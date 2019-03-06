@@ -65,7 +65,7 @@ angular
         },
       },
       translations: {
-        value: ['.', '../../../../../components/cloud/project/billing'],
+        value: ['.', '../../../components/project/billing'],
         format: 'json',
       },
     });
