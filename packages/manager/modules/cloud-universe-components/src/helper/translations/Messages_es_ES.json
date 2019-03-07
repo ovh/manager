@@ -4,11 +4,12 @@
  "cuc_helper_edit": "Editar",
  "cuc_helper_modal_cancel": "Cancelar",
  "cuc_helper_delete": "Eliminar",
- "cuc_helper_global_error": "Se ha producido un error durante la operación: {{message}}",
+ "cuc_helper_global_error": "Se ha producido un error al realizar la operación: {{message}}",
  "cuc_helper_global_success": "La operación se ha realizado correctamente.",
  "cuc_helper_name_change_modal_title": "Editar el nombre",
  "cuc_helper_name_change_modal_service_name_label": "Nombre por defecto",
  "cuc_helper_name_change_modal_display_name_label": "Nombre personalizado",
  "cuc_helper_order_success": "Se ha creado la orden de pedido <a href=\"{{orderUrl}}\" target=\"_blank\">{{orderId}}</a>.",
- "cuc_helper_order_error": "Error al crear la orden de pedido: {{ message }}"
+ "cuc_helper_order_error": "Error al crear la orden de pedido: {{ message }}",
+ "cuc_helper_order_doing": "Generando la orden de pedido..."
 }

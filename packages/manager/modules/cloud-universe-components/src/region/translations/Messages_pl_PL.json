@@ -25,7 +25,7 @@
  "cuc_region_SYD": "Sydney",
  "cuc_region_SYD_micro": "Sydney ({{ micro }})",
  "cuc_region_US": "Stany Zjednoczone",
- "cuc_region_US_micro": "États-Unis ({{ micro }})",
+ "cuc_region_US_micro": "Stany Zjednoczone ({{ micro }})",
  "cuc_region_localize": "Lokalizacja",
  "cuc_region_location_SBG": "Europa Środkowa (Francja)",
  "cuc_region_location_WAW": "Europa Środkowa (Polska)",
