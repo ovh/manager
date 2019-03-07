@@ -1,44 +1,47 @@
 {
-  "name": "ovh-angular-jquery-ui-droppable",
+  "name": "@ovh-ux/ng-ovh-jquery-ui-droppable",
   "version": "0.1.1",
-  "description": "Angular directove to wrap jqueri ui droppable module",
-  "main": "./dist/ovh-angular-jquery-ui-droppable.min.js",
-  "scripts": {
-    "test": "grunt test"
-  },
+  "description": "AngularJS directive to wrap jQuery UI droppable module",
+  "keywords": [
+    "angularjs",
+    "droppable",
+    "jquery"
+  ],
+  "repository": "ovh-ux/ng-ovh-jquery-ui-droppable",
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
-  "repository": "ovh-ux/ovh-angular-jquery-ui-droppable",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "browser": "./dist/umd/ng-ovh-jquery-ui-droppable.js",
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c --watch",
+    "lint": "run-p lint:js lint:md",
+    "lint:js": "eslint --quiet --fix --format=pretty src",
+    "lint:md": "eslint --quiet --fix --format=pretty --ext .md .",
+    "prepare": "rollup -c",
+    "test": "yarn run lint",
+    "version": "npx conventional-changelog-cli -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
+    "postversion": "git push && git push --tags"
+  },
   "devDependencies": {
-    "eslint": "^4.1.1",
-    "eslint-config-ovh": "^0.1.1",
-    "grunt-eslint": "^20.0.0",
-    "grunt": "0.4.x",
-    "grunt-angular-templates": "^1.0.3",
-    "grunt-autoprefixer": "~2.2.0",
-    "grunt-bump": "~0.3.0",
-    "grunt-complexity": "~0.1.0",
-    "grunt-concurrent": "^2.2.1",
-    "grunt-contrib-clean": "~0.6.0",
-    "grunt-contrib-concat": "~0.5.0",
-    "grunt-contrib-connect": "^1.0.1",
-    "grunt-contrib-copy": "~0.7.0",
-    "grunt-contrib-uglify": "~0.8.0",
-    "grunt-contrib-watch": "~0.6.1",
-    "grunt-jscs": "^3.0.1",
-    "grunt-karma": "~0.10.1",
-    "grunt-ng-annotate": "~0.10.0",
-    "grunt-ngdocs": "^0.2.10",
-    "grunt-open": "^0.2.3",
-    "grunt-wiredep": "^3.0.1",
-    "jasmine-core": "^2.3.4",
-    "jasmine-spec-reporter": "^2.5.0",
-    "karma": "~0.13.22",
-    "karma-jasmine": "~0.3.0",
-    "karma-ng-html2js-preprocessor": "^1.0.0",
-    "karma-phantomjs-launcher": "^1.0.1",
-    "karma-spec-reporter": "0.0.26",
-    "phantomjs-prebuilt": "^2.1.11",
-    "matchdep": "^0.3.0"
+    "@commitlint/cli": "^7.1.2",
+    "@commitlint/config-angular": "^7.1.2",
+    "@ovh-ux/component-rollup-config": "^5.0.0-beta.9",
+    "eslint": "^5.6.1",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-formatter-pretty": "^2.0.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-markdown": "^1.0.0",
+    "husky": "^1.1.0",
+    "lint-staged": "^8.1.5",
+    "npm-run-all": "^4.1.5"
+  },
+  "peerDependencies": {
+    "angular": "^1.3.x",
+    "jquery": "~2.1"
   }
 }

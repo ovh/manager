@@ -1,62 +1,37 @@
-# OVH Angular Jquery ui droppable
+# ng-ovh-jquery-ui-droppable
 
-![OVH component deprecated](https://user-images.githubusercontent.com/3379410/27423263-520b94d8-5731-11e7-996a-f8579e70c33b.png)
+> AngularJS directive to wrap jQuery UI droppable module
 
-![deprecated](https://img.shields.io/badge/status-deprecated-red.svg) [![Build Status](https://travis-ci.org/ovh-ux/ovh-angular-a-disabled.svg)](https://travis-ci.org/ovh-ux/ovh-angular-a-disabled)
+[![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-jquery-ui-droppable)](https://npmjs.com/package/@ovh-ux/ng-ovh-jquery-ui-droppable) [![Dependencies](https://badgen.net/david/dep/ovh-ux/ng-ovh-jquery-ui-droppable)](https://npmjs.com/package/@ovh-ux/ng-ovh-jquery-ui-droppable?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/ng-ovh-jquery-ui-droppable)](https://npmjs.com/package/@ovh-ux/ng-ovh-jquery-ui-droppable?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
 
-[![NPM](https://nodei.co/npm/ovh-angular-jquery-ui-droppable.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/ovh-angular-jquery-ui-droppable/)
+## Install
 
-## Example
-
-```javascript
-angular.module("yourModule", [
-    "ovh-angular-jquery-ui-droppable"
-]);
+```sh
+yarn add @ovh-ux/ng-ovh-jquery-ui-droppable
 ```
 
-## Installation
+## Usage
 
-### Bower
-```
-bower install ovh-angular-jquery-ui-droppable --save
-```
+```js
+import angular from 'angular';
+import ngOvhJqueryUiDroppable from '@ovh-ux/ng-ovh-jquery-ui-droppable';
 
-### NPM
-```
-npm install ovh-angular-jquery-ui-droppable --save
-```
-
-### Get the sources
-```bash
-git clone https://github.com/ovh-ux/ovh-angular-jquery-ui-droppable.git
-cd ovh-angular-jquery-ui-droppable
-npm install
-bower install
+angular
+  .module('myModule', [
+    ngOvhJqueryUiDroppable,
+  ]);
 ```
 
-You've developed a new cool feature? Fixed an annoying bug? We'd be happy
-to hear from you!
+## Test
 
-Have a look in [CONTRIBUTING.md](https://github.com/ovh-ux/ovh-angular-jquery-ui-droppable/blob/master/CONTRIBUTING.md)
-
-## Run the tests
-
-```
-npm test
+```sh
+yarn test
 ```
 
-## Build the documentation
+## Contributing
 
-```
-grunt ngdocs
-```
-
-## Related links
-
- * Contribute: https://github.com/ovh-ux/ovh-angular-jquery-ui-droppable/CONTRIBUTING.md
- * Report bugs: https://github.com/ovh-ux/ovh-angular-jquery-ui-droppable/issues
- * Get latest version: https://github.com/ovh-ux/ovh-angular-jquery-ui-droppable
+Always feel free to help out! Whether it's [filing bugs and feature requests](https://github.com/ovh-ux/ng-ovh-jquery-ui-droppable/issues/new) or working on some of the [open issues](https://github.com/ovh-ux/ng-ovh-jquery-ui-droppable/issues), our [contributing guide](CONTRIBUTING.md) will help get you started.
 
 ## License
 
-See https://github.com/ovh-ux/ovh-angular-jquery-ui-droppable/blob/master/LICENSE
+[BSD-3-Clause](LICENSE) © OVH SAS
