@@ -10,11 +10,11 @@
 }
 
 .oui-table {
-  font-size: rem-calc(16);
+  font-size: 0.625rem;
 
   &-empty {
-    margin-top: rem-calc(20);
-    padding: rem-calc(20);
+    margin-top: 0.78125rem;
+    padding: 0.78125rem;
     font-style: italic;
     text-align: center;
     border-radius: @oui-global-base-radius;
@@ -50,7 +50,7 @@
 
 .oui-radio-toggle-group {
   // Overidden to avoid text wrapping in radio component.
-  // This fix should be removed once it is fixed in the oui-radio component.
+  // This fix should be NaNremoved once it is fixed in the oui-radio component.
   max-width: none;
 
   .oui-radio-toggle {
@@ -67,7 +67,7 @@
 }
 
 .oui-tile-h-100 {
-  // This fix can be removed once fixed in the component
+  // This fix can be NaNremoved once fixed in the component
   .oui-tile {
     height: 100%;
   }
@@ -75,6 +75,6 @@
 
 .oui-popover__content-container {
   // Fix done to avoid words in the pop-over from breaking.
-  // This fix can be removed, once this fix is in the component.
+  // This fix can be NaNremoved, once this fix is in the component.
   word-break: normal;
 }

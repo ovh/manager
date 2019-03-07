@@ -1,6 +1,6 @@
-@rem-base: rem-base(10px);
+@oui-path: "../../../ovh-ui-kit";
+@bs-path: "../../bootstrap";
 
-@import '~bootstrap/less/bootstrap';
 @import "~ovh-ui-kit/packages/oui-responsive/_mixins";
 @import "~ovh-ui-kit/packages/oui-color/_variables";
 @import "~ovh-ui-kit/packages/oui-navbar/_variables";
@@ -15,6 +15,7 @@
 @import '~font-awesome/less/variables';
 @import '~ovh-common-style/less/helpers';
 @import '~ovh-common-style/less/fonts/open-sans';
+@import '~ovh-ui-kit-bs/src/ovh-ui-kit-bs';
 
 .cloud-legacy {
 
@@ -176,7 +177,4 @@
   @import './vps/modal/shortcut/kvm/vps-kvm';
   @import './vps/modal/shortcut/reinstall/vps-reinstall';
   @import './vps/vps';
-  @import './vrack/add/vrack-add';
-  @import './vrack/vrack-mapper';
-  @import './vrack/vrack';
 }
