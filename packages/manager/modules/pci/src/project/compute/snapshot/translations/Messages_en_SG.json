@@ -6,7 +6,7 @@
  "cpc_snapshot_min_disk": "Disk space required",
  "cpc_snapshot_min_disk1": "Max. space required (GiB)",
  "cpc_snapshot_min_disk2": "Max. space required (GiB)",
- "cpc_snapshot_total2": "As a guide, your current snaphshots total <span class=\"text-danger\">{{size | bytes:2:'true':'GiB'}}</span>, around <span class=\"text-danger\">{{price}} /ex. GST/month</span>.",
+ "cpc_snapshot_total2": "As a guide, your current snaphshots total <span class=\"text-danger\">{{size | cucBytes:2:'true':'GiB'}}</span>, around <span class=\"text-danger\">{{price}} /ex. GST/month</span>.",
  "cpc_snapshot_price": "Price excl. GST/month",
  "cpc_snapshot_creation_date": "Creation date",
  "cpc_snapshot_type": "Type",

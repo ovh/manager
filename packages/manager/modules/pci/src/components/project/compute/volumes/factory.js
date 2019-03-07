@@ -1,5 +1,8 @@
 import angular from 'angular';
-import _ from 'lodash';
+import find from 'lodash/find';
+import map from 'lodash/map';
+import remove from 'lodash/remove';
+import set from 'lodash/set';
 
 export default /* @ngInject */ (
   CloudProjectComputeVolumesVolumeFactory,
@@ -53,7 +56,7 @@ export default /* @ngInject */ (
     let vol;
     angular.forEach(this.volumes, (volume) => {
       if (!vol) {
-        vol = _.find(volume, { id: volumeId });
+        vol = find(volume, { id: volumeId });
       }
     });
     return vol;
@@ -67,7 +70,7 @@ export default /* @ngInject */ (
 
     targetId = targetId || 'unlinked';
 
-    _.set(volume, 'serviceName', this.serviceName); // Add projectId to item
+    set(volume, 'serviceName', this.serviceName); // Add projectId to item
 
     volume = checkVolume(volume); // eslint-disable-line
     volume.setInfos({
@@ -89,7 +92,7 @@ export default /* @ngInject */ (
     function removeVolumeFromList(volume, targetIdParam) {
       let targetId = targetIdParam;
       targetId = targetId || 'unlinked';
-      _.remove(this.volumes[targetId], { id: volume.id });
+      remove(this.volumes[targetId], { id: volume.id });
       return volume;
     };
 
@@ -101,7 +104,7 @@ export default /* @ngInject */ (
   VolumesFactory.prototype.prepareToJson = function prepareToJson() {
     const preparedToJson = {};
     angular.forEach(this.volumes, (volumes, targetId) => {
-      preparedToJson[targetId] = _.map(volumes, volume => volume.prepareToJson());
+      preparedToJson[targetId] = map(volumes, volume => volume.prepareToJson());
     });
     return {
       volumes: preparedToJson,

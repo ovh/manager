@@ -1,5 +1,6 @@
 import angular from 'angular';
-import _ from 'lodash';
+import map from 'lodash/map';
+import set from 'lodash/set';
 
 export default /* @ngInject */ (
   CloudProjectComputeInfraIpFactory,
@@ -73,7 +74,7 @@ export default /* @ngInject */ (
    *  Add an ip into ip list.
    */
   InternetFactory.prototype.addIpToList = function addIpToList(ip) {
-    _.set(ip, 'serviceName', this.serviceName); // Add projectId to IP
+    set(ip, 'serviceName', this.serviceName); // Add projectId to IP
     ip = checkIp(ip); // eslint-disable-line
     this.ipList.push(ip);
     return ip;
@@ -95,7 +96,7 @@ export default /* @ngInject */ (
   InternetFactory.prototype.prepareToJson = function prepareToJson() {
     const self = this;
     return {
-      ipList: _.map(this.ipList.sortedKeys, ipId => self.ipList.get(ipId).prepareToJson()),
+      ipList: map(this.ipList.sortedKeys, ipId => self.ipList.get(ipId).prepareToJson()),
     };
   };
 

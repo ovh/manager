@@ -1,4 +1,5 @@
-import _ from 'lodash';
+import find from 'lodash/find';
+import forEach from 'lodash/forEach';
 
 export default /* @ngInject */ function (
   $filter,
@@ -24,7 +25,7 @@ export default /* @ngInject */ function (
   }
 
   function updateVolumeConsumptionDetails(allProjectVolumes, volumeConsumptions) {
-    _.forEach(volumeConsumptions, (volumeConsumption) => {
+    forEach(volumeConsumptions, (volumeConsumption) => {
       const volumeConsumptionDetail = {};
       volumeConsumptionDetail.totalPrice = `${volumeConsumption.totalPrice.toFixed(2)} ${self.currencySymbol}`;
       volumeConsumptionDetail.volumeId = volumeConsumption.volumeId;
@@ -34,7 +35,7 @@ export default /* @ngInject */ function (
 
       volumeConsumptionDetail.amount = volumeConsumption.quantity.value;
 
-      const volumeDetail = _.find(allProjectVolumes, x => x.id === volumeConsumption.volumeId);
+      const volumeDetail = find(allProjectVolumes, x => x.id === volumeConsumption.volumeId);
       if (volumeDetail) {
         volumeConsumptionDetail.name = volumeDetail.name;
         volumeConsumptionDetail.size = volumeDetail.size;

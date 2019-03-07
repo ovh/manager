@@ -8,7 +8,7 @@ import controller from './controller';
 import template from './template.html';
 import service from './service';
 
-import './index.less';
+// TODO : import './index.less';
 
 const moduleName = 'ovhManagerPciProjectComputeLoadbalancer';
 
@@ -37,3 +37,5 @@ angular
       });
   })
   .service('CloudProjectComputeLoadbalancerService', service);
+
+export default moduleName;

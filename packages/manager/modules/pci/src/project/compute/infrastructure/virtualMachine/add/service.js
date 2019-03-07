@@ -1,4 +1,26 @@
-import _ from 'lodash';
+import assign from 'lodash/assign';
+import bind from 'lodash/bind';
+import cloneDeep from 'lodash/cloneDeep';
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import forEach from 'lodash/forEach';
+import get from 'lodash/get';
+import groupBy from 'lodash/groupBy';
+import has from 'lodash/has';
+import includes from 'lodash/includes';
+import indexOf from 'lodash/indexOf';
+import isEmpty from 'lodash/isEmpty';
+import map from 'lodash/map';
+import property from 'lodash/property';
+import reduce from 'lodash/reduce';
+import remove from 'lodash/remove';
+import set from 'lodash/set';
+import sortBy from 'lodash/sortBy';
+import some from 'lodash/some';
+import tap from 'lodash/tap';
+import thru from 'lodash/thru';
+import uniq from 'lodash/uniq';
+import uniqBy from 'lodash/uniqBy';
 
 export default class CloudProjectVirtualMachineAddService {
   /* @ngInject */
@@ -23,33 +45,38 @@ export default class CloudProjectVirtualMachineAddService {
   }
 
   getAugmentedImages(images) {
-    return _.map(_.uniq(images, 'id'), this.CloudImageService.constructor.augmentImage);
+    return map(uniqBy(images, 'id'), this.CloudImageService.constructor.augmentImage);
   }
 
   filterFlavorsByType(flavors, type) {
-    return _(flavors)
-      .filter({
-        available: true,
-        osType: type,
-      })
-      .map(flavor => this.CloudFlavorService.augmentFlavor(flavor))
-      .filter({
+    return filter(
+      map(
+        filter(
+          flavors,
+          {
+            available: true,
+            osType: type,
+          },
+        ),
+        flavor => this.CloudFlavorService.augmentFlavor(flavor),
+      ),
+      {
         diskType: 'ssd',
         flex: false,
-      })
-      .value();
+      },
+    );
   }
 
   static getFilteredFlavorsByRegion(flavors, regionCode) {
-    const filteredFlavors = _.uniq(_.remove(flavors, { region: regionCode }), 'name');
-    const usedFlavorNames = _.uniq(_.map(filteredFlavors, flavor => flavor.name));
-    const notAvailableFlavors = _.filter(
+    const filteredFlavors = uniqBy(remove(flavors, { region: regionCode }), 'name');
+    const usedFlavorNames = uniq(map(filteredFlavors, flavor => flavor.name));
+    const notAvailableFlavors = filter(
       flavors,
-      flavor => !_.include(usedFlavorNames, flavor.name),
+      flavor => !includes(usedFlavorNames, flavor.name),
     );
-    const outOfRegionFlavors = _.map(_.uniq(notAvailableFlavors, 'name'), (flavor) => {
-      _.set(flavor, 'regions', _.map(_.filter(notAvailableFlavors, f => f.name === flavor.name), 'region'));
-      _.set(flavor, 'disabled', 'NOT_AVAILABLE');
+    const outOfRegionFlavors = map(uniqBy(notAvailableFlavors, 'name'), (flavor) => {
+      set(flavor, 'regions', map(filter(notAvailableFlavors, f => f.name === flavor.name), 'region'));
+      set(flavor, 'disabled', 'NOT_AVAILABLE');
       delete flavor.region; // eslint-disable-line
       delete flavor.price; // eslint-disable-line
       return flavor;
@@ -59,27 +86,32 @@ export default class CloudProjectVirtualMachineAddService {
   }
 
   static getFilteredPrivateNetworksByRegion(privateNetworks, regionCode, subNets = []) {
-    return _.chain(privateNetworks)
-      .filter((network) => {
-        if (!_.has(subNets, network.id)) {
-          return false;
-        }
-        return _.some(network.regions, 'region', regionCode);
-      })
-      .sortBy('vlanId')
-      .map((network) => {
+    return map(
+      sortBy(
+        filter(
+          privateNetworks,
+          (network) => {
+            if (!has(subNets, network.id)) {
+              return false;
+            }
+            return some(network.regions, bind('region', regionCode));
+          },
+        ),
+        'vlanId',
+      ),
+      (network) => {
         const pad = Array(5).join('0');
-        return _.assign(network, {
+        return assign(network, {
           vlanId: pad.substring(0, pad.length - network.vlanId.toString().length) + network.vlanId,
         });
-      })
-      .value();
+      },
+    );
   }
 
   /* eslint-disable no-nested-ternary */
   getImageApps(images) {
-    return _.uniq(_.forEach(this.CloudImageService.constructor.getApps(images), (app) => {
-      _.set(app, 'appName', _.get(app, 'name', '')
+    return uniqBy(forEach(this.CloudImageService.constructor.getApps(images), (app) => {
+      set(app, 'appName', get(app, 'name', '')
         .replace(/^[a-z0-9\s]+ - /ig, '')
         .replace(' - deprecated', ''));
       delete app.region; // eslint-disable-line
@@ -89,46 +121,52 @@ export default class CloudProjectVirtualMachineAddService {
   /* eslint-enable no-nested-ternary */
 
   static getMostRecentVm(vms) {
-    return _.filter(vms, { status: 'ACTIVE' }).sort((vm1, vm2) => new Date(vm2.created) - new Date(vm1.created))[0] || null;
+    return filter(vms, { status: 'ACTIVE' }).sort((vm1, vm2) => new Date(vm2.created) - new Date(vm1.created))[0] || null;
   }
 
   getPrivateNetworksSubNets(serviceName, privateNetworks) {
     let networkIds = [];
-    return _.chain(privateNetworks)
-      .map(_.property('id'))
-      .tap((ids) => { networkIds = ids; })
-      .map(networkId => this.OvhApiCloudProjectNetworkPrivateSubnet.v6()
-        .query({ serviceName, networkId }).$promise)
-      .thru((promises) => { // .mapKeys on a more recent lodash.
+    return thru(
+      map(
+        tap(
+          map(
+            privateNetworks,
+            property('id'),
+          ),
+          (ids) => { networkIds = ids; },
+        ),
+        networkId => this.OvhApiCloudProjectNetworkPrivateSubnet.v6().query({ serviceName, networkId }).$promise,
+      ),
+      (promises) => { // .mapKeys on a more recent lodash.
         const collection = {};
-        _.forEach(promises, (promise, key) => {
+        forEach(promises, (promise, key) => {
           collection[networkIds[key]] = promise;
         });
         return this.$q.all(collection);
-      })
-      .value()
-      .then(subNets => subNets)
-      .catch(() => []);
+      },
+    )
+    .then(subNets => subNets)
+    .catch(() => []);
   }
 
   getRegionsByImageType(regions, allImages, imageType) {
     if (this.CloudImageService.constructor.isSnapshot(imageType)) {
-      return _.filter(regions, region => _.get(imageType, 'region', '') === region.microRegion.code);
+      return filter(regions, region => get(imageType, 'region', '') === region.microRegion.code);
     }
 
-    const filteredImages = _.filter(_.cloneDeep(allImages), {
-      distribution: _.get(imageType, 'distribution'),
-      nameGeneric: _.get(imageType, 'nameGeneric'),
+    const filteredImages = filter(cloneDeep(allImages), {
+      distribution: get(imageType, 'distribution'),
+      nameGeneric: get(imageType, 'nameGeneric'),
       status: 'active',
     });
-    const filteredRegions = _.uniq(_.map(filteredImages, image => image.region));
-    return _.filter(regions, region => _.indexOf(filteredRegions, region.microRegion.code) > -1);
+    const filteredRegions = uniq(map(filteredImages, image => image.region));
+    return filter(regions, region => indexOf(filteredRegions, region.microRegion.code) > -1);
   }
 
   static groupRegionsByDatacenter(regions) {
-    const groupedByMacroRegions = _.groupBy(regions, 'macroRegion.code');
-    const groupedRegions = _.map(groupedByMacroRegions, (microRegions) => {
-      const region = _.cloneDeep(microRegions[0]);
+    const groupedByMacroRegions = groupBy(regions, 'macroRegion.code');
+    const groupedRegions = map(groupedByMacroRegions, (microRegions) => {
+      const region = cloneDeep(microRegions[0]);
       region.dataCenters = microRegions;
       delete region.microRegion;
       delete region.disabled;
@@ -138,42 +176,44 @@ export default class CloudProjectVirtualMachineAddService {
   }
 
   groupFlavorsByCategory(flavors, flavorsTypes) {
-    return _(flavorsTypes)
-      .chain()
-      .reduce((previousValues, flavorType) => {
-        const flavorsOfCurrentFlavorType = _(flavors).filter({ type: flavorType }).value();
+    return sortBy(
+      reduce(
+        flavorsTypes,
+        (previousValues, flavorType) => {
+          const flavorsOfCurrentFlavorType = filter(flavors, { type: flavorType });
 
-        if (_(flavorsOfCurrentFlavorType).isEmpty()) {
+          if (isEmpty(flavorsOfCurrentFlavorType)) {
+            return previousValues;
+          }
+
+          const category = this.CloudFlavorService.getCategory(flavorType, true);
+          const categoryObject = find(previousValues, { category: category.id });
+          const matchingFlavors = filter(flavors, { type: flavorType });
+
+          if (!categoryObject) {
+            return previousValues.concat({
+              category: category.id,
+              order: category.order,
+              flavors: matchingFlavors,
+            });
+          }
+
+          categoryObject.flavors = categoryObject.flavors
+            .concat(matchingFlavors)
+            .sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true, sensitivity: 'base' }));
+
           return previousValues;
-        }
-
-        const category = this.CloudFlavorService.getCategory(flavorType, true);
-        const categoryObject = _(previousValues).find({ category: category.id });
-        const matchingFlavors = _(flavors).filter({ type: flavorType }).value();
-
-        if (!categoryObject) {
-          return previousValues.concat({
-            category: category.id,
-            order: category.order,
-            flavors: matchingFlavors,
-          });
-        }
-
-        categoryObject.flavors = categoryObject.flavors
-          .concat(matchingFlavors)
-          .sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true, sensitivity: 'base' }));
-
-        return previousValues;
-      }, [])
-      .sortBy('order')
-      .value();
+        },
+        [],
+      ),
+    );
   }
 
   hasVRack(serviceName) {
     return this.OvhApiCloudProject.v6().vrack({ serviceName }).$promise
       .then(() => true)
       .catch((err) => {
-        if (_.get(err, 'status') === 404) {
+        if (get(err, 'status') === 404) {
           return false;
         }
         return this.$q.reject(err);
@@ -196,14 +236,14 @@ export default class CloudProjectVirtualMachineAddService {
 
   createVirtualMachine(serviceName, data) {
     const postVm = {
-      flavorId: _.get(data, 'flavor.id'),
-      imageId: _.get(data, 'imageId.id'),
-      name: _.get(data, 'name', 'No Name'),
-      region: _.get(data, 'region.microRegion.code'),
-      sshKeyId: _.get(data, 'sshKey.id', undefined),
-      monthlyBilling: _.get(data, 'billingPeriod', '') === 'monthly',
-      userData: _.get(data, 'userData', undefined),
-      networks: _.get(data, 'networks', undefined),
+      flavorId: get(data, 'flavor.id'),
+      imageId: get(data, 'imageId.id'),
+      name: get(data, 'name', 'No Name'),
+      region: get(data, 'region.microRegion.code'),
+      sshKeyId: get(data, 'sshKey.id', undefined),
+      monthlyBilling: get(data, 'billingPeriod', '') === 'monthly',
+      userData: get(data, 'userData', undefined),
+      networks: get(data, 'networks', undefined),
     };
 
     if (data.number > 1) {

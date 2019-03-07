@@ -1,13 +1,14 @@
-import _ from 'lodash';
+import isArray from 'lodash/isArray';
+import map from 'lodash/map';
 
 export default /* @ngInject */ (
   $scope,
   storage,
   $uibModalInstance,
 ) => {
-  $scope.plural = _.isArray(storage) && storage.length > 1;
-  $scope.name = _.isArray(storage)
-    ? _.map(storage, 'name').join(', ')
+  $scope.plural = isArray(storage) && storage.length > 1;
+  $scope.name = isArray(storage)
+    ? map(storage, 'name').join(', ')
     : storage.name;
 
   $scope.valid = {

@@ -1,4 +1,6 @@
-import _ from 'lodash';
+import forEach from 'lodash/forEach';
+import map from 'lodash/map';
+import set from 'lodash/set';
 
 export default class CloudProjectComputeLoadbalancerCtrl {
   /* @ngInject */
@@ -12,7 +14,7 @@ export default class CloudProjectComputeLoadbalancerCtrl {
     OvhApiIpLoadBalancing,
     CucCloudMessage,
     OvhApiMe,
-    URLS,
+    PCI_URLS,
   ) {
     this.$q = $q;
     this.$translate = $translate;
@@ -31,7 +33,7 @@ export default class CloudProjectComputeLoadbalancerCtrl {
     };
 
     // Order link
-    this.urls = URLS;
+    this.PCI_URLS = PCI_URLS;
     this.locale = '';
     // Init locale for order link
     OvhApiMe.v6().get().$promise.then((user) => {
@@ -76,13 +78,13 @@ export default class CloudProjectComputeLoadbalancerCtrl {
           .query()
           .$promise
           .then(response => this.$q.all(
-            _.map(response, id => this.CloudProjectComputeLoadbalancerService.getLoadbalancer(id)),
+            map(response, id => this.CloudProjectComputeLoadbalancerService.getLoadbalancer(id)),
           )),
         loadbalancersImportedArray:
                     this.OvhApiCloudProjectIplb.v6().query({
                       serviceName: this.serviceName,
                     }).$promise.then(ids => this.$q.all(
-                      _.map(ids, id => this.OvhApiCloudProjectIplb.v6().get({
+                      map(ids, id => this.OvhApiCloudProjectIplb.v6().get({
                         serviceName: this.serviceName,
                         id,
                       }).$promise),
@@ -90,14 +92,14 @@ export default class CloudProjectComputeLoadbalancerCtrl {
       }).then(({ loadbalancers, loadbalancersImportedArray }) => {
         // Create a map of imported loadbalancers
         const loadBalancerImported = {};
-        _.forEach(loadbalancersImportedArray, (lb) => { loadBalancerImported[lb.iplb] = lb; });
+        forEach(loadbalancersImportedArray, (lb) => { loadBalancerImported[lb.iplb] = lb; });
 
         // Set openstack importation status
-        this.table.loadbalancer = _.map(loadbalancers, (lb) => {
+        this.table.loadbalancer = map(loadbalancers, (lb) => {
           if (loadBalancerImported[lb.serviceName]) {
-            _.set(lb, 'openstack', loadBalancerImported[lb.serviceName].status);
+            set(lb, 'openstack', loadBalancerImported[lb.serviceName].status);
           } else {
-            _.set(lb, 'openstack', 'not_imported');
+            set(lb, 'openstack', 'not_imported');
           }
           return lb;
         });

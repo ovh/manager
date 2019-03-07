@@ -1,5 +1,6 @@
 import angular from 'angular';
-import _ from 'lodash';
+import difference from 'lodash/difference';
+import set from 'lodash/set';
 
 export default /* @ngInject */ (
   CloudProjectComputeInfraVrackFactory,
@@ -75,7 +76,7 @@ export default /* @ngInject */ (
 
     // VMs are not present anymore: delete the VMs ID from IP's routedTo
     if (routedToToRemove.length) {
-      _.set(ip, 'routedTo', _.difference(ip.routedTo, routedToToRemove));
+      set(ip, 'routedTo', difference(ip.routedTo, routedToToRemove));
     }
     return ip;
   };

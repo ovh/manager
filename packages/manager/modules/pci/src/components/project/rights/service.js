@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import find from 'lodash/find';
 
 export default /* @ngInject */ function (
   OvhApiCloud,
@@ -32,6 +32,6 @@ export default /* @ngInject */ function (
       projectAdminNic: getProjectAdminNic(projectId),
     })
       .then(result => result.projectAdminNic === result.currentUserNic
-        || _.find(result.readWriteAccounts, nicWrite => nicWrite === result.currentUserNic));
+        || find(result.readWriteAccounts, nicWrite => nicWrite === result.currentUserNic));
   };
 }

@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 class CloudProjectComputeInfrastructureOpenstackClientService {
   constructor($q, $stateParams, $interval, OvhApiCloudProjectOpenstackClient,
     OvhApiCloudProjectRegion, CucServiceHelper) {

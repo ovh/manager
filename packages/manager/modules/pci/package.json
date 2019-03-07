@@ -12,13 +12,14 @@
     "build": "rollup -c --environment BUILD:production",
     "dev": "rollup -c --environment BUILD:development",
     "dev:watch": "yarn run dev --watch",
-    "prepare": "yarn run build",
     "start": "lerna exec --stream --scope='@ovh-ux/manager-pci' --include-filtered-dependencies -- yarn run build",
     "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-pci' --include-filtered-dependencies -- yarn run dev",
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-pci' --include-filtered-dependencies -- yarn run dev:watch"
   },
   "dependencies": {
-    "lodash": "^4.17.11"
+    "d3": "~3.5.13",
+    "lodash": "^4.17.11",
+    "moment": "^2.19"
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "5.0.0-beta.9"
@@ -26,9 +27,22 @@
   "peerDependencies": {
     "@ovh-ux/manager-core": "^3.0.0",
     "@ovh-ux/manager-telecom-styles": "^2.0.2",
+    "@ovh-ux/ng-ovh-cloud-universe-components": "^0.3.0",
+    "@ovh-ux/ng-ovh-doc-url": "^1.0.0",
+    "@ovh-ux/ng-ovh-proxy-request": "^1.0.0-beta.0",
+    "@ovh-ux/ng-ovh-swimming-poll": "^4.0.0",
+    "@ovh-ux/ng-ovh-user-pref": "^1.0.0",
     "@uirouter/angularjs": "^1.0.15",
     "angular": "1.7.5",
+    "angular-ui-bootstrap": "^1.3.3",
+    "messenger": "HubSpot/messenger#~1.4.1",
+    "ng-at-internet": "ovh-ux/ng-at-internet#^3.0.0",
     "oclazyload": "^1.1.0",
-    "ovh-ui-angular": "^2.24.2"
+    "ovh-angular-jsplumb": "ovh-ux/ovh-angular-jsplumb#^3.0.5",
+    "ovh-angular-otrs": "^6.3.0",
+    "ovh-angular-toaster": "ovh-ux/ovh-angular-toaster#^0.8.0",
+    "ovh-api-services": "^5.0.0",
+    "ovh-jquery-ui-draggable-ng": "ovh-ux/ovh-jquery-ui-draggable-ng#^0.0.5",
+    "ovh-ui-angular": "~2.24.0"
   }
 }

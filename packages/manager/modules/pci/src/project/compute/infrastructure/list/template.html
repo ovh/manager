@@ -73,7 +73,7 @@
             <oui-column data-title="'cpci_vm_hdd' | translate" data-property="volumes">
                 <span data-ng-bind="$row.volumes.length"
                       data-ng-if="$row.volumes.length === 0 || $row.volumes.length > 1"></span>
-                <span data-ng-bind="$row.volumes[0].name + ' (' + ($row.volumes[0].size | bytes:2:true:'GiB') + ')'"
+                <span data-ng-bind="$row.volumes[0].name + ' (' + ($row.volumes[0].size | cucBytes:2:true:'GiB') + ')'"
                       data-ng-if="$row.volumes.length === 1"></span>
             </oui-column>
             <oui-column data-title="'cpci_vm_price' | translate" data-property="price.price.value" data-sortable>

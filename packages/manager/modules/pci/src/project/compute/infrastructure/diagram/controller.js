@@ -1,5 +1,21 @@
 import angular from 'angular';
-import _ from 'lodash';
+import forEach from 'lodash/forEach';
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import get from 'lodash/get';
+import head from 'lodash/head';
+import includes from 'lodash/includes';
+import indexOf from 'lodash/indexOf';
+import intersection from 'lodash/intersection';
+import isArray from 'lodash/isArray';
+import isEmpty from 'lodash/isEmpty';
+import isString from 'lodash/isString';
+import map from 'lodash/map';
+import pull from 'lodash/pull';
+import set from 'lodash/set';
+import some from 'lodash/some';
+import tail from 'lodash/tail';
+import uniq from 'lodash/uniq';
 
 export default class CloudProjectComputeInfrastructureDiagramCtrl {
   /* @ngInject */
@@ -39,9 +55,9 @@ export default class CloudProjectComputeInfrastructureDiagramCtrl {
     CucRegionService,
     CLOUD_UNIT_CONVERSION,
     CLOUD_MONITORING,
-    REDIRECT_URLS,
+    PCI_REDIRECT_URLS,
     TARGET,
-    URLS,
+    PCI_URLS,
   ) {
     this.$rootScope = $rootScope;
     this.$scope = $scope;
@@ -81,9 +97,9 @@ export default class CloudProjectComputeInfrastructureDiagramCtrl {
     this.CucRegionService = CucRegionService;
     this.conversion = CLOUD_UNIT_CONVERSION;
     this.CLOUD_MONITORING = CLOUD_MONITORING;
-    this.REDIRECT_URLS = REDIRECT_URLS;
+    this.PCI_REDIRECT_URLS = PCI_REDIRECT_URLS;
     this.TARGET = TARGET;
-    this.URLS = URLS;
+    this.PCI_URLS = PCI_URLS;
   }
 
   $onInit() {
@@ -208,7 +224,7 @@ export default class CloudProjectComputeInfrastructureDiagramCtrl {
       // It's a connection drawn by the user (with its mouse)
       if (originalEvent) {
         const vmContinent = this.getVmContinent(connectedVm);
-        const continentCode = _.get(connectedIp, 'continentCode');
+        const continentCode = get(connectedIp, 'continentCode');
         const isValidLink = vmContinent && vmContinent === continentCode;
 
         if (isValidLink && (!this.model.currentLinkEdit || this.model.currentLinkEdit.action === 'attach')) {
@@ -220,7 +236,7 @@ export default class CloudProjectComputeInfrastructureDiagramCtrl {
               // It's a "move" : show a confirmation
               const connectedVmCurrent = this.infra.vrack.getVmById(connectedIp.routedTo[0]);
 
-              _.set(this.model, 'currentLinkEdit', {
+              set(this.model, 'currentLinkEdit', {
                 connection,
                 connectedIp,
                 connectedVm,
@@ -318,7 +334,7 @@ export default class CloudProjectComputeInfrastructureDiagramCtrl {
     });
 
     this.$scope.$on('droppable.drop', (event, obj) => {
-      const srcVmId = _.get(this.dragDropHelper, 'currentDraggedVolume.draggableInfo.srcVmId');
+      const srcVmId = get(this.dragDropHelper, 'currentDraggedVolume.draggableInfo.srcVmId');
       const targetVmId = obj.droppable.droppableId;
 
       if (srcVmId === 'unlinked') { // No Confirmation
@@ -403,7 +419,7 @@ export default class CloudProjectComputeInfrastructureDiagramCtrl {
        * @param {array} regionIds
        */
   initRegionFromIds(serviceName, regionIds) {
-    const getRegions = _.map(
+    const getRegions = map(
       regionIds,
       regionId => this.OvhApiCloudProjectRegion.v6().get({ serviceName, id: regionId }).$promise,
     );
@@ -457,7 +473,7 @@ export default class CloudProjectComputeInfrastructureDiagramCtrl {
     // Init Volumes
     initInfraQueue.push(this.CloudProjectOrchestrator.initVolumes({ serviceName })
       .then((volumes) => {
-        this.volumes = _.get(volumes, 'volumes');
+        this.volumes = get(volumes, 'volumes');
       }));
 
     return this.$q.all(initInfraQueue)
@@ -480,10 +496,10 @@ export default class CloudProjectComputeInfrastructureDiagramCtrl {
           this.addVolume();
         } else if (this.$stateParams.createNewVolumeFromSnapshot.snapshot) {
           this.addVolumeFromSnapshot(this.$stateParams.createNewVolumeFromSnapshot.snapshot);
-        } else if (_.isString(this.$stateParams.editVm) && !_.isEmpty(this.$stateParams.editVm)) {
+        } else if (isString(this.$stateParams.editVm) && !isEmpty(this.$stateParams.editVm)) {
           this.toggleVmEditionState(this.infra.vrack.publicCloud.items[this.$stateParams.editVm]);
-        } else if (_.isString(this.$stateParams.monitorVm)
-          && !_.isEmpty(this.$stateParams.monitorVm)) {
+        } else if (isString(this.$stateParams.monitorVm)
+          && !isEmpty(this.$stateParams.monitorVm)) {
           this.openVmMonitoringPanel(this.infra.vrack.publicCloud
             .items[this.$stateParams.monitorVm]);
         }
@@ -498,7 +514,7 @@ export default class CloudProjectComputeInfrastructureDiagramCtrl {
   initVlan() {
     return this.CloudProjectComputeInfrastructureOrchestrator.hasVrack()
       .then((hasVrack) => {
-        _.set(this.vlans, 'vRackStatus', hasVrack ? 'activated' : 'none');
+        set(this.vlans, 'vRackStatus', hasVrack ? 'activated' : 'none');
       })
       .finally(() => {
         this.loaders.vlans = false;
@@ -516,9 +532,9 @@ export default class CloudProjectComputeInfrastructureDiagramCtrl {
     return this.CucUserPref.get(`cloud_project_${serviceName}_infra_ipfo_import`)
       .then((ipfoToImportParam) => {
         let ipfoToImport = ipfoToImportParam;
-        ipfoToImport = _.get(ipfoToImport, 'ips', []);
-        if (_.isArray(ipfoToImport) && ipfoToImport.length > 0) {
-          _.forEach(ipfoToImport, (ipfo) => {
+        ipfoToImport = get(ipfoToImport, 'ips', []);
+        if (isArray(ipfoToImport) && ipfoToImport.length > 0) {
+          forEach(ipfoToImport, (ipfo) => {
             this.pollImportIpFailOver(serviceName, ipfo);
           });
         }
@@ -563,7 +579,7 @@ export default class CloudProjectComputeInfrastructureDiagramCtrl {
         }
         return null;
       }).then(() => {
-        _.pull(this.importedIpFailoverPending, ip);
+        pull(this.importedIpFailoverPending, ip);
         this.CucUserPref.set(`cloud_project_${serviceName}_infra_ipfo_import`, {
           ips: this.importedIpFailoverPending,
         });
@@ -592,12 +608,12 @@ export default class CloudProjectComputeInfrastructureDiagramCtrl {
        * Updates reverse dns of given ips.
        */
   updateReverseDns(ips) {
-    const reverseQueue = _.map(
+    const reverseQueue = map(
       ips,
       ip => this.OvhApiIp.Reverse().v6()
         .getReverseDns(ip.ip, ip.block)
         .then((dns) => {
-          _.set(ip, 'reverse', dns);
+          set(ip, 'reverse', dns);
         })
         .catch(() => this.$q.when(null)),
       // ok we choose to ignore errors here, so the application can still be used,
@@ -647,7 +663,7 @@ export default class CloudProjectComputeInfrastructureDiagramCtrl {
         this.CloudProjectComputeVolumesOrchestrator.turnOnVolumeEdition(volumeDraft);
       })
       .catch((err) => {
-        this.CucCloudMessage.error(`${this.$translate.instant('cpci_volume_add_from_snapshot_error')} ${_.get(err, 'data.message', '')}`);
+        this.CucCloudMessage.error(`${this.$translate.instant('cpci_volume_add_from_snapshot_error')} ${get(err, 'data.message', '')}`);
       });
   }
 
@@ -661,8 +677,8 @@ export default class CloudProjectComputeInfrastructureDiagramCtrl {
   // ------- REGION ACTIONS -------
 
   getVmContinent(vm) {
-    const region = _.find(this.regions, { name: vm.region });
-    return _.get(region, 'continentCode', undefined);
+    const region = find(this.regions, { name: vm.region });
+    return get(region, 'continentCode', undefined);
   }
 
   // ------- END REGION -------
@@ -691,13 +707,13 @@ export default class CloudProjectComputeInfrastructureDiagramCtrl {
   }
 
   deleteVirtualMachine(vm) {
-    _.set(vm, 'confirmLoading', true);
+    set(vm, 'confirmLoading', true);
     this.CloudProjectComputeInfrastructureOrchestrator.deleteVm(vm)
       .catch((err) => {
-        this.CucCloudMessage.error(`${this.$translate.instant('cpci_vm_delete_submit_error')} ${_.get(err, 'data.message', '')}`);
+        this.CucCloudMessage.error(`${this.$translate.instant('cpci_vm_delete_submit_error')} ${get(err, 'data.message', '')}`);
       })
       .finally(() => {
-        _.set(vm, 'confirmLoading', false);
+        set(vm, 'confirmLoading', false);
       });
   }
 
@@ -773,7 +789,7 @@ export default class CloudProjectComputeInfrastructureDiagramCtrl {
       .importIpFailOver(this.importedIpFailoverPending)
       .then((listTasksListIpsWithTasks) => {
         // Launch polling
-        _.forEach(listTasksListIpsWithTasks, (ipWithTask) => {
+        forEach(listTasksListIpsWithTasks, (ipWithTask) => {
           this.pollImportIpFailOver(this.$stateParams.projectId, ipWithTask.ip, ipWithTask.task);
         });
         this.refreshLinks();
@@ -797,19 +813,19 @@ export default class CloudProjectComputeInfrastructureDiagramCtrl {
        * Sort the ip in order to have the least crossing between links
        */
   ipAutoSort() {
-    const ipAutoSort = _.get(this.sort, 'ipAutoSort', false);
-    const ipListSortedKeys = _.get(this.infra, 'internet.ipList.sortedKeys', []);
-    const publicCloudSortedKeys = _.get(this.infra, 'vrack.publicCloud.sortedKeys', []);
+    const ipAutoSort = get(this.sort, 'ipAutoSort', false);
+    const ipListSortedKeys = get(this.infra, 'internet.ipList.sortedKeys', []);
+    const publicCloudSortedKeys = get(this.infra, 'vrack.publicCloud.sortedKeys', []);
 
     return (ip) => {
       // only if autoSort is enabled ...
       if (!ipAutoSort) {
-        return _.indexOf(ipListSortedKeys, ip.id);
+        return indexOf(ipListSortedKeys, ip.id);
       }
       let order = 0;
       let routeCount = 0;
-      _.forEach(ip.routedTo, (route) => {
-        const vmPosition = _.indexOf(publicCloudSortedKeys, route);
+      forEach(ip.routedTo, (route) => {
+        const vmPosition = indexOf(publicCloudSortedKeys, route);
         if (vmPosition !== -1) {
           order += vmPosition * 5; // arbitrary weight of 5 for a link with a vm
           routeCount += 1;
@@ -832,13 +848,13 @@ export default class CloudProjectComputeInfrastructureDiagramCtrl {
        * Sort IPs in their natural order
        */
   ipSortNatural() {
-    const ipNaturalSort = _.get(this.sort, 'ipNaturalSort', false);
-    const ipListSortedKeys = _.get(this.infra, 'internet.ipList.sortedKeys', []);
+    const ipNaturalSort = get(this.sort, 'ipNaturalSort', false);
+    const ipListSortedKeys = get(this.infra, 'internet.ipList.sortedKeys', []);
 
     return (ip) => {
       // only if natural sort is activated ...
       if (!ipNaturalSort) {
-        return _.indexOf(ipListSortedKeys, ip.id);
+        return indexOf(ipListSortedKeys, ip.id);
       }
 
       const ipRegex = new RegExp(/(\d+)\.(\d+)\.(\d+)\.(\d+)/);
@@ -959,14 +975,14 @@ export default class CloudProjectComputeInfrastructureDiagramCtrl {
           const id = $(this).attr('elid');
           const ip = this.infra.internet.getIpById(id);
           if (ip) {
-            this.$rootScope.$broadcast('cuc-highlighted-element.show', `compute,${_.get(ip, 'id', '')},vm-ACTIVE-${_.get(ip, 'continentCode', '')}`);
+            this.$rootScope.$broadcast('cuc-highlighted-element.show', `compute,${get(ip, 'id', '')},vm-ACTIVE-${get(ip, 'continentCode', '')}`);
           }
         },
         stop: () => {
           const id = $(this).attr('elid');
           const ip = this.infra.internet.getIpById(id);
           if (ip) {
-            this.$rootScope.$broadcast('cuc-highlighted-element.hide', `compute,${_.get(ip, 'id', '')},vm-ACTIVE-${_.get(ip, 'continentCode', '')}`);
+            this.$rootScope.$broadcast('cuc-highlighted-element.hide', `compute,${get(ip, 'id', '')},vm-ACTIVE-${get(ip, 'continentCode', '')}`);
           }
         },
       },
@@ -995,17 +1011,17 @@ export default class CloudProjectComputeInfrastructureDiagramCtrl {
                 };
                 if (connectedIp.type === 'failover' && connectedVm.image) {
                   const distribution = connectedVm.image.distribution
-                    || this.URLS.guides.ip_failover.defaultDistribution;
+                    || this.PCI_URLS.guides.ip_failover.defaultDistribution;
                   successMessage = {
                     textHtml: `${successMessage.text} ${this.$translate.instant('cpci_ip_attach_failover_help', {
-                      link: this.URLS.guides.ip_failover[this.user.ovhSubsidiary][distribution],
+                      link: this.PCI_URLS.guides.ip_failover[this.user.ovhSubsidiary][distribution],
                     })}`,
                   };
                 }
                 this.CucCloudMessage.success(successMessage);
               })
               .catch((err) => {
-                this.CucCloudMessage.error(`${this.$translate.instant('cpci_ip_attach_error', { ip: connectedIp.ip, instance: connectedVm.name })} ${_.get(err, 'data.message', '')}`);
+                this.CucCloudMessage.error(`${this.$translate.instant('cpci_ip_attach_error', { ip: connectedIp.ip, instance: connectedVm.name })} ${get(err, 'data.message', '')}`);
                 return this.$q.reject(err);
               })
               .finally(() => {
@@ -1036,14 +1052,14 @@ export default class CloudProjectComputeInfrastructureDiagramCtrl {
           // input radio
           if (ip.type === 'failover') {
             // list of compatible(s) vm(s) to attach the ip
-            const compatibleVms = _.filter(
+            const compatibleVms = filter(
               this.infra.vrack.publicCloud.items,
               vm => this.ipEdit.attach.canAttachIpToVm(ip, vm),
             );
 
             // do we have at least one compatible vm?
-            if (_.isArray(compatibleVms) && compatibleVms.length > 0) {
-              _.set(this.model, 'currentLinkEdit', {
+            if (isArray(compatibleVms) && compatibleVms.length > 0) {
+              set(this.model, 'currentLinkEdit', {
                 connectionCurrentVmId: ip.routedTo.length > 0 ? ip.routedTo[0] : null,
                 connectionVmId: ip.routedTo.length > 0 ? ip.routedTo[0] : null,
 
@@ -1069,7 +1085,7 @@ export default class CloudProjectComputeInfrastructureDiagramCtrl {
                 this.model.currentLinkEdit.connectionCurrent.addClass('cuc-highlighted-element cuc-highlighted-element-active');
               }
 
-              this.$rootScope.$broadcast('cuc-highlighted-element.show', `compute,vm-ACTIVE-${_.get(this.model, 'currentLinkEdit.connectedIp.continentCode', '')}`);
+              this.$rootScope.$broadcast('cuc-highlighted-element.show', `compute,vm-ACTIVE-${get(this.model, 'currentLinkEdit.connectedIp.continentCode', '')}`);
             } else {
               this.CucCloudMessage.error(this.$translate.instant('cpci_ipfo_attach_error'));
             }
@@ -1106,7 +1122,7 @@ export default class CloudProjectComputeInfrastructureDiagramCtrl {
           }
         },
         canAttachIpToVm: (ipSource, vmDest) => {
-          const continentCode = _.get(ipSource, 'continentCode');
+          const continentCode = get(ipSource, 'continentCode');
           let attachable = true;
           attachable = attachable && ipSource && vmDest;
           attachable = attachable && vmDest.status === 'ACTIVE';
@@ -1173,7 +1189,7 @@ export default class CloudProjectComputeInfrastructureDiagramCtrl {
           this.OvhApiCloudProjectVolumeSnapshot.v6()
             .query({ serviceName: this.serviceName }).$promise
             .then((snapshots) => {
-              if (_.find(snapshots, { volumeId: volume.id })) {
+              if (find(snapshots, { volumeId: volume.id })) {
                 this.CucCloudMessage.error({
                   textHtml: this.$translate.instant('cpci_volume_snapshotted_delete_info', {
                     url: this.$state.href('iaas.pci-project.compute.snapshot'),
@@ -1186,7 +1202,7 @@ export default class CloudProjectComputeInfrastructureDiagramCtrl {
               }
             })
             .catch((err) => {
-              this.CucCloudMessage.error(`${this.$translate.instant('cpci_volume_snapshot_error')} ${_.get(err, 'data.message', '')}`);
+              this.CucCloudMessage.error(`${this.$translate.instant('cpci_volume_snapshot_error')} ${get(err, 'data.message', '')}`);
             });
         },
         cancel: () => {
@@ -1201,7 +1217,7 @@ export default class CloudProjectComputeInfrastructureDiagramCtrl {
               this.$rootScope.$broadcast('cuc-highlighted-element.hide');
             })
             .catch((err) => {
-              this.CucCloudMessage.error(`${this.$translate.instant('cpci_volume_delete_error')} ${_.get(err, 'data.message', '')}`);
+              this.CucCloudMessage.error(`${this.$translate.instant('cpci_volume_delete_error')} ${get(err, 'data.message', '')}`);
             })
             .finally(() => {
               this.loaders.volumeActionConfirm = false;
@@ -1242,7 +1258,7 @@ export default class CloudProjectComputeInfrastructureDiagramCtrl {
               }
             })
             .catch((err) => {
-              this.CucCloudMessage.error(`${this.$translate.instant('cpci_volume_confirm_detach_error')} ${_.get(err, 'data.message', '')}`);
+              this.CucCloudMessage.error(`${this.$translate.instant('cpci_volume_confirm_detach_error')} ${get(err, 'data.message', '')}`);
             })
             .finally(() => {
               this.loaders.volumeActionConfirm = false;
@@ -1254,13 +1270,13 @@ export default class CloudProjectComputeInfrastructureDiagramCtrl {
       moveCheckbox: {
         launchConfirm: (volume, srcVm) => {
           // list of compatible(s) vm(s) to attach the volume
-          const compatibleVms = _.filter(
+          const compatibleVms = filter(
             this.infra.vrack.publicCloud.items,
             vm => this.volumeEdit.canAttachVolumeToVm(volume, vm),
           );
 
           // do we have at least one compatible vm?
-          if (_.isArray(compatibleVms) && compatibleVms.length > 0) {
+          if (isArray(compatibleVms) && compatibleVms.length > 0) {
             this.volumeEdit.action = 'moveCheckbox';
             this.volumeEdit.volume = volume;
             this.volumeEdit.srcVm = srcVm; // use in interface
@@ -1295,7 +1311,7 @@ export default class CloudProjectComputeInfrastructureDiagramCtrl {
         attachable = attachable && volumeSource && vmDest;
         attachable = attachable && vmDest.status === 'ACTIVE';
         attachable = attachable && volumeSource.region === vmDest.region;
-        attachable = attachable && _.first(volumeSource.attachedTo) !== vmDest.id;
+        attachable = attachable && head(volumeSource.attachedTo) !== vmDest.id;
         return attachable;
       },
     };
@@ -1318,7 +1334,7 @@ export default class CloudProjectComputeInfrastructureDiagramCtrl {
        * @returns {Array}
        */
   getUnlinkedVolumesRegions() {
-    const regions = _.map(this.volumes.unlinked, volume => volume.region);
+    const regions = map(this.volumes.unlinked, volume => volume.region);
 
     // if we are doing a drag & drop, we add the dragged volume region to the list
     // so it will be displayed as a droppable target in the region list
@@ -1326,7 +1342,7 @@ export default class CloudProjectComputeInfrastructureDiagramCtrl {
       regions.push(this.dragDropHelper.currentDraggedVolume.draggableInfo.volume.region);
     }
 
-    return _.uniq(regions);
+    return uniq(regions);
   }
 
   getTranslatedRegion(region) {
@@ -1378,10 +1394,7 @@ export default class CloudProjectComputeInfrastructureDiagramCtrl {
       return false;
     }
 
-    return _.chain(vm.ipAddresses)
-      .filter(ip => ip.type === 'private')
-      .map(ip => ip.ip)
-      .value();
+    return map(filter(vm.ipAddresses, ip => ip.type === 'private'), ip => ip.ip);
   }
 
   fetchPrivateNetworks() {
@@ -1398,7 +1411,7 @@ export default class CloudProjectComputeInfrastructureDiagramCtrl {
       .catch((err) => {
         this.collections.privateNetwork = [];
         this.CucCloudMessage.error(this.$translate.instant('cpci_private_network_query_error', {
-          message: _.get(err, 'data.message', ''),
+          message: get(err, 'data.message', ''),
         }));
       })
       .finally(() => {
@@ -1415,7 +1428,7 @@ export default class CloudProjectComputeInfrastructureDiagramCtrl {
   }
 
   anyVmEditMenuOpen() {
-    return _.any(this.$document.find('.vm-actions-dropdown.open'));
+    return some(this.$document.find('.vm-actions-dropdown.open'));
   }
 
   removeAllFades() {
@@ -1425,10 +1438,10 @@ export default class CloudProjectComputeInfrastructureDiagramCtrl {
     }
 
     const selectors = ['.faded-out', '.faded-path'];
-    _.each(selectors, (selector) => {
+    forEach(selectors, (selector) => {
       const nodes = this.$document.find(selector);
-      _.each(nodes, (node) => {
-        $(node).toggleClass(_.rest(selector).join(''));
+      forEach(nodes, (node) => {
+        $(node).toggleClass(tail(selector).join(''));
       });
     });
     this.jsplumbInstance.select().removeClass('faded-path');
@@ -1444,7 +1457,7 @@ export default class CloudProjectComputeInfrastructureDiagramCtrl {
     let currentInstanceId = $(e.currentTarget).data().instanceId;
 
     // always work with an array for uniformity
-    if (_.isString(currentInstanceId)) {
+    if (isString(currentInstanceId)) {
       currentInstanceId = [currentInstanceId];
     }
 
@@ -1453,15 +1466,15 @@ export default class CloudProjectComputeInfrastructureDiagramCtrl {
     const plumbLink = this.jsplumbInstance.select({ target: currentInstanceId });
 
     // instanceBox is the currently highlighted instance
-    const instanceBox = _.find(
+    const instanceBox = find(
       instancesBox,
-      box => _.includes(currentInstanceId, $(box).data().instanceId),
+      box => includes(currentInstanceId, $(box).data().instanceId),
     );
 
     // ips linked to the currently highlighted instance
-    const currentIps = _.filter(publicIPs, (ip) => {
+    const currentIps = filter(publicIPs, (ip) => {
       const { instanceId } = $(ip).data();
-      return _.any(_.intersection(instanceId, currentInstanceId));
+      return some(intersection(instanceId, currentInstanceId));
     });
 
     // fade everything

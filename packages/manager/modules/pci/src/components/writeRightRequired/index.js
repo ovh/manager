@@ -1,12 +1,15 @@
 import angular from 'angular';
 
+import componentsProjectRights from '../project/rights';
+
 import directive from './directive';
-import './region.less';
 
 const moduleName = 'ovhManagerPciComponentsWriteRightRequired';
 
 angular
-  .module(moduleName, [])
+  .module(moduleName, [
+    componentsProjectRights,
+  ])
   .directive('writeRightRequired', directive);
 
 export default moduleName;

@@ -6,7 +6,7 @@ import 'ovh-api-services';
 import controller from './controller';
 import template from './template.html';
 
-import './index.less';
+// TODO : import './index.less';
 
 const moduleName = 'ovhManagerPciProjectBillingConsumptionCurrent';
 
@@ -30,6 +30,7 @@ angular
         format: 'json',
       },
     });
+    console.log('flkdjlfkjdlk');
   });
 
 export default moduleName;

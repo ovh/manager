@@ -1,13 +1,14 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
 import 'ovh-api-services';
+import moment from 'moment';
 
 import details from './details';
 
 import controller from './controller';
 import template from './template.html';
 
-import './index.less';
+// TODO : import './index.less';
 
 const moduleName = 'ovhManagerPciProjectBillingHistory';
 

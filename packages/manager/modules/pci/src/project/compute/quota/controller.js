@@ -1,8 +1,11 @@
+import find from 'lodash/find';
+import map from 'lodash/map';
+
 export default /* @ngInject */ function CloudProjectComputeQuotaCtrl(
   $q,
   $stateParams,
   $translate,
-  REDIRECT_URLS,
+  PCI_REDIRECT_URLS,
   OvhApiCloudProject,
   OvhApiCloudProjectQuota,
   OvhApiMe,
@@ -30,8 +33,8 @@ export default /* @ngInject */ function CloudProjectComputeQuotaCtrl(
   };
 
   // PaymentMean URL (v6 dedicated) with sessionv6
-  this.paymentmeanUrl = REDIRECT_URLS.paymentMeans;
-  this.supportUrl = REDIRECT_URLS.support;
+  this.paymentmeanUrl = PCI_REDIRECT_URLS.paymentMeans;
+  this.supportUrl = PCI_REDIRECT_URLS.support;
 
   self.regionService = CucRegionService;
 
@@ -56,14 +59,14 @@ export default /* @ngInject */ function CloudProjectComputeQuotaCtrl(
 
     return OvhApiMe.PaymentMethod().v6().query({
       status: 'VALID',
-    }).$promise.then(paymentMethodIds => _.map(
+    }).$promise.then(paymentMethodIds => map(
       paymentMethodIds,
       paymentMethodId => $q.all(
         OvhApiMe.PaymentMethod().v6().get({
           id: paymentMethodId,
         }).$promise,
       ),
-    )).then(paymentMethods => _.find(paymentMethods, {
+    )).then(paymentMethods => find(paymentMethods, {
       default: true,
     }));
   }

@@ -1,5 +1,5 @@
 import angular from 'angular';
-import _ from 'lodash';
+import flatten from 'lodash/flatten';
 
 export default () => {
   /**
@@ -37,7 +37,7 @@ export default () => {
     return angular.extend(options, {
       type: 'public',
       routedTo: options.routedTo
-        ? _.flatten([options.routedTo])
+        ? flatten([options.routedTo])
         : [], // Ensure routedTo is always an array
     });
   };

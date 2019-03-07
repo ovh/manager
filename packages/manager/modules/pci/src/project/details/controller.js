@@ -12,7 +12,7 @@ export default /* @ngInject */ function CloudProjectDetailsCtrl(
   CucCloudMessage,
   $translate,
   $filter,
-  REDIRECT_URLS,
+  PCI_REDIRECT_URLS,
 ) {
   const self = this;
 
@@ -20,7 +20,7 @@ export default /* @ngInject */ function CloudProjectDetailsCtrl(
   this.project = null;
   this.order = null;
 
-  this.supportUrl = REDIRECT_URLS.support;
+  this.supportUrl = PCI_REDIRECT_URLS.support;
 
   self.loaders = {
     cancelCreation: false,

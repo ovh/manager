@@ -1,5 +1,7 @@
-angular.module('managerApp').factory('CloudProjectComputeInfraIpFactory',
-  (CloudProjectComputeInfraIpPublicFactory, CloudProjectComputeInfraIpFailoverFactory) => ({
-    public: CloudProjectComputeInfraIpPublicFactory,
-    failover: CloudProjectComputeInfraIpFailoverFactory,
-  }));
+export default /* @ngInject */ (
+  CloudProjectComputeInfraIpPublicFactory,
+  CloudProjectComputeInfraIpFailoverFactory,
+) => ({
+  public: CloudProjectComputeInfraIpPublicFactory,
+  failover: CloudProjectComputeInfraIpFailoverFactory,
+});

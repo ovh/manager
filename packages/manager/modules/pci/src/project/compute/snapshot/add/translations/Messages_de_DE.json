@@ -10,5 +10,5 @@
  "cpc_snapshot_add_success": "Das Backup {{snapshotname}} wird erstellt und ist in einigen Minuten verfügbar.",
  "cpc_snapshot_add_availibility": "Ihr Server wird für einige Sekunden angehalten, danach kann die Lese- und Schreib-Performance der Festplatte bis zur Fertigstellung der Sicherung verringert sein.",
  "cpc_snapshot_add_error": "Das Backup dieses Servers konnte nicht gestartet werden.",
- "cpc_snapshot_add_total": "({{size | bytes:2}}, also etwa {{price}} ohne MwSt / Monat)"
+ "cpc_snapshot_add_total": "({{size | cucBytes:2}}, also etwa {{price}} ohne MwSt / Monat)"
 }

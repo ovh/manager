@@ -3,7 +3,7 @@
  "cpcv_snapshot_choose_name": "Wpisz nazwę kopii zapasowej snapshot:",
  "cpcv_snapshot_name": "Nazwa kopii zapasowej snapshot",
  "cpcv_snapshot_confirm": "Uruchom kopię zapasową snapshot.",
- "cpcv_snapshot_monthlyPrice": "({{ size | bytes:2:'true' }} x {{ price }} netto/GB/m-c)",
+ "cpcv_snapshot_monthlyPrice": "({{ size | cucBytes:2:'true' }} x {{ price }} netto/GB/m-c)",
  "cpcv_snapshot_name_error": "Nadaj kopii zapasowej snapshot prawidłową nazwę.",
  "cpcv_snapshot_name_length_error": "Wybierz krótszą nazwę dla kopii zapasowej snapshot.",
  "cpcv_snapshot_creation_info": "Trwa tworzenie kopii zapasowej snapshot...",

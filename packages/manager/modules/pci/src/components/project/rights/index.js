@@ -1,8 +1,8 @@
 import angular from 'angular';
 
-import service from './services';
+import service from './service';
 
-const moduleName = 'ovhManagerPciComponentsProject';
+const moduleName = 'ovhManagerPciComponentsProjectRights';
 
 angular
   .module(moduleName, [])

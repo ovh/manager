@@ -11,7 +11,7 @@ import services from './services';
 import controller from './controller';
 import template from './template.html';
 
-import './index.less';
+// TODO : import './index.less';
 
 const moduleName = 'ovhManagerPciProjectStorage';
 

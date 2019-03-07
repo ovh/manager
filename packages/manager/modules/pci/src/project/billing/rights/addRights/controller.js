@@ -1,3 +1,5 @@
+import endsWith from 'lodash/endsWith';
+
 export default class CloudProjectBillingRightsAddCtrl {
   /* @ngInject */
   constructor(
@@ -47,6 +49,6 @@ export default class CloudProjectBillingRightsAddCtrl {
     if (/[@.]+/.test(name)) {
       return name;
     }
-    return _.endsWith(name, '-ovh') ? name : `${name}-ovh`;
+    return endsWith(name, '-ovh') ? name : `${name}-ovh`;
   }
 }

@@ -1,4 +1,8 @@
 import angular from 'angular';
+import find from 'lodash/find';
+import keyBy from 'lodash/keyBy';
+import remove from 'lodash/remove';
+import set from 'lodash/set';
 
 export default /* @ngInject */ function CloudProjectAddCtrl(
   $q,
@@ -6,14 +10,14 @@ export default /* @ngInject */ function CloudProjectAddCtrl(
   $translate,
   atInternet,
   Toast,
-  REDIRECT_URLS,
+  PCI_REDIRECT_URLS,
   CucFeatureAvailabilityService,
   OvhApiCloud,
   OvhApiMe,
   OvhApiVrack,
   $window,
   OvhApiMePaymentMeanCreditCard,
-  CloudProjectSidebar,
+  // CloudProjectSidebar,
   CloudProjectAdd,
 ) {
   const self = this;
@@ -43,20 +47,20 @@ export default /* @ngInject */ function CloudProjectAddCtrl(
     contractsAccepted: false,
     voucher: null,
     paymentMethod: null, // user choosen payment method (either MEAN or BC)
-    noPaymentMethodEnum: _.indexBy(['MEAN', 'BC']),
+    noPaymentMethodEnum: keyBy(['MEAN', 'BC']),
     catalogVersion: null, //  null == latest 1 === old catalog
   };
 
   // PaymentMean URL (v6 dedicated) with sessionv6
-  this.paymentmeanUrl = REDIRECT_URLS.paymentMeans;
+  this.paymentmeanUrl = PCI_REDIRECT_URLS.paymentMeans;
   // Add credit card URL
-  this.addCreditCardUrl = REDIRECT_URLS.addCreditCard;
+  this.addCreditCardUrl = PCI_REDIRECT_URLS.addCreditCard;
 
   function updateManager(projectId) {
-    CloudProjectSidebar.addToSection({
-      project_id: projectId, // jshint ignore:line
-      description: self.model.description,
-    });
+    // CloudProjectSidebar.addToSection({
+    //   project_id: projectId, // jshint ignore:line
+    //   description: self.model.description,
+    // });
     OvhApiVrack.v6().resetCache();
     OvhApiVrack.CloudProject().v6().resetQueryCache();
   }
@@ -81,7 +85,7 @@ export default /* @ngInject */ function CloudProjectAddCtrl(
         queueContracts.push(OvhApiMe.Agreements().v6().accept({
           id: contract.id,
         }, {}).$promise.then(() => {
-          _.remove(self.data.agreements, {
+          remove(self.data.agreements, {
             id: contract.id,
           });
         }));
@@ -129,7 +133,7 @@ export default /* @ngInject */ function CloudProjectAddCtrl(
               queue.push(OvhApiMe.Agreements().v6().contract({
                 id: contractId,
               }).$promise.then((contract) => {
-                _.set(contract, 'id', contractId);
+                set(contract, 'id', contractId);
                 self.data.agreements.push(contract);
               }));
             });
@@ -172,7 +176,7 @@ export default /* @ngInject */ function CloudProjectAddCtrl(
 
   // returns true if user has at least one 3D secure registered credit card
   this.has3dsCreditCard = function has3dsCreditCard() {
-    return angular.isDefined(_.find(self.data.creditCards, 'threeDsValidated'));
+    return angular.isDefined(find(self.data.creditCards, 'threeDsValidated'));
   };
 
   this.canCreateProject = function canCreateProject() {

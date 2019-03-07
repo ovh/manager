@@ -1,4 +1,6 @@
 
+import moment from 'moment';
+
 export default /* @ngInject */ function (
   $state,
   validParams,

@@ -1,4 +1,5 @@
-import _ from 'lodash';
+import forEach from 'lodash/forEach';
+import set from 'lodash/set';
 
 export default class CloudProjectAdd {
   /* @ngInject */
@@ -12,7 +13,7 @@ export default class CloudProjectAdd {
     OvhApiCloud,
     OvhApiMe,
     OvhApiVrack,
-    CloudProjectSidebar,
+    // CloudProjectSidebar,
   ) {
     this.$q = $q;
     this.$translate = $translate;
@@ -23,7 +24,7 @@ export default class CloudProjectAdd {
     this.Cloud = OvhApiCloud;
     this.User = OvhApiMe;
     this.Vrack = OvhApiVrack;
-    this.CloudProjectSidebar = CloudProjectSidebar;
+    // this.CloudProjectSidebar = CloudProjectSidebar;
   }
 
   startProject(voucher, description, catalogVersion) {
@@ -130,7 +131,7 @@ export default class CloudProjectAdd {
   getAllAgreementsInfo(agreementsIds) {
     const agreements = [];
     if (agreementsIds && agreementsIds.length) {
-      _.forEach(agreementsIds, (contractId) => {
+      forEach(agreementsIds, (contractId) => {
         agreements.push(this.getContractInfo(contractId));
       });
     }
@@ -143,16 +144,16 @@ export default class CloudProjectAdd {
     })
       .$promise
       .then((contract) => {
-        _.set(contract, 'id', contractId);
+        set(contract, 'id', contractId);
         return contract;
       });
   }
 
   updateManager(projectId, description) {
-    this.CloudProjectSidebar.addToSection({
-      project_id: projectId, // jshint ignore:line
-      description,
-    });
+    // this.CloudProjectSidebar.addToSection({
+    //   project_id: projectId, // jshint ignore:line
+    //   description,
+    // });
     this.Vrack.v6().resetCache();
     this.Vrack.CloudProject().v6().resetQueryCache();
   }

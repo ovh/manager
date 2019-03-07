@@ -1,5 +1,11 @@
-import alertAddController from './alert/controller';
-import alertAddTemplate from './alert/template.html';
+import head from 'lodash/head';
+import isEmpty from 'lodash/isEmpty';
+import isNull from 'lodash/isNull';
+
+import moment from 'moment';
+
+import alertAddController from './alert/add/controller';
+import alertAddTemplate from './alert/add/template.html';
 
 export default /* @ngInject */ function CloudProjectBillingConsumptionEstimateCtrl(
   $q,
@@ -128,14 +134,14 @@ export default /* @ngInject */ function CloudProjectBillingConsumptionEstimateCt
     // list alerts ids
     return getAlertIds()
       .then((alertIds) => {
-        if (_.isEmpty(alertIds)) {
+        if (isEmpty(alertIds)) {
           return null;
         }
-        return getAlert(_.first(alertIds));
+        return getAlert(head(alertIds));
       })
       .then((alertObject) => {
         self.data.alert = alertObject;
-        if (!_.isNull(alertObject)) {
+        if (!isNull(alertObject)) {
           initConsumptionChart();
         }
       }).finally(() => {
@@ -173,10 +179,10 @@ export default /* @ngInject */ function CloudProjectBillingConsumptionEstimateCt
     OvhApiCloudProjectAlerting.v6().getIds({
       serviceName: $stateParams.projectId,
     }).$promise.then((alertIds) => {
-      if (!_.isEmpty(alertIds)) {
+      if (!isEmpty(alertIds)) {
         return OvhApiCloudProjectAlerting.v6().delete({
           serviceName: $stateParams.projectId,
-          alertId: _.first(alertIds),
+          alertId: head(alertIds),
         }).$promise.then(() => {
           CucCloudMessage.success($translate.instant('cpbe_estimate_alert_delete_success'));
         });

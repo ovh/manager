@@ -10,5 +10,5 @@
   "cpc_snapshot_add_success": "El snapshot {{snapshotname}} va a comenzar. Estará disponible en unos minutos.",
   "cpc_snapshot_add_availibility": "El servidor se va a suspender durante unos segundos. A continuación, el rendimiento de lectura-escritura del disco podría verse afectado hasta que finalice el snapshot.",
   "cpc_snapshot_add_error": "¡Vaya! No se ha podido realizar el snapshot de este servidor.",
-  "cpc_snapshot_add_total": "({{size | bytes:2}}, aproximadamente {{price}}/mes + IVA)"
+  "cpc_snapshot_add_total": "({{size | cucBytes:2}}, aproximadamente {{price}}/mes + IVA)"
 }

@@ -6,7 +6,7 @@
  "cpc_snapshot_min_disk": "Rozmiar",
  "cpc_snapshot_min_disk1": "Maksymalny rozmiar (GiB)",
  "cpc_snapshot_min_disk2": "Maksymalny rozmiar (GiB)",
- "cpc_snapshot_total2": "Aktualne kopie zapasowe snapshot zajmują <span class=\"text-danger\">{{size | bytes:2:'true':'GiB'}}</span>, co daje około <span class=\"text-danger\">{{price}} netto/m-c</span>.",
+ "cpc_snapshot_total2": "Aktualne kopie zapasowe snapshot zajmują <span class=\"text-danger\">{{size | cucBytes:2:'true':'GiB'}}</span>, co daje około <span class=\"text-danger\">{{price}} netto/m-c</span>.",
  "cpc_snapshot_price": "Cena netto/m-c",
  "cpc_snapshot_creation_date": "Data utworzenia",
  "cpc_snapshot_type": "Typ",

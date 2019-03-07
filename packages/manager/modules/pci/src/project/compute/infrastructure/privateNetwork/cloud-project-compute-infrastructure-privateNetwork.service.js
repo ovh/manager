@@ -1,11 +1,13 @@
+import every from 'lodash/every';
+
 class CloudProjectComputeInfrastructurePrivateNetworkService {
-  constructor($q, $timeout, $translate, CucCloudMessage, URLS, OvhApiMe, OvhApiCloudProjectRegion,
+  constructor($q, $timeout, $translate, CucCloudMessage, PCI_URLS, OvhApiMe, OvhApiCloudProjectRegion,
     OvhApiCloudProjectNetworkPrivate, OvhApiCloudProjectNetworkPrivateSubnet) {
     this.$q = $q;
     this.$timeout = $timeout;
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
-    this.URLS = URLS;
+    this.PCI_URLS = PCI_URLS;
     this.User = OvhApiMe;
     this.Region = OvhApiCloudProjectRegion;
     this.OvhApiCloudProjectNetworkPrivate = OvhApiCloudProjectNetworkPrivate;
@@ -24,7 +26,7 @@ class CloudProjectComputeInfrastructurePrivateNetworkService {
       delete: false,
     };
 
-    this.urls = {
+    this.PCI_URLS = {
       api: null,
     };
 
@@ -118,10 +120,10 @@ class CloudProjectComputeInfrastructurePrivateNetworkService {
 
     return this.User.v6().get().$promise
       .then((me) => {
-        this.urls.api = this.URLS.guides.vlans[me.ovhSubsidiary].api;
+        this.PCI_URLS.api = this.PCI_URLS.guides.vlans[me.ovhSubsidiary].api;
       })
       .catch(() => {
-        this.urls.api = this.URLS.guides.vlans.FR.api;
+        this.PCI_URLS.api = this.PCI_URLS.guides.vlans.FR.api;
       })
       .finally(() => {
         this.loaders.url = false;
@@ -133,7 +135,7 @@ class CloudProjectComputeInfrastructurePrivateNetworkService {
   }
 
   getUrls() {
-    return this.urls;
+    return this.PCI_URLS;
   }
 
   savePrivateNetwork(projectId, privateNetwork, onSuccess) {
@@ -215,7 +217,7 @@ class CloudProjectComputeInfrastructurePrivateNetworkService {
   static areAllRegionsActive(network) {
     return (network.status === 'ACTIVE')
       && network.regions
-      && _.every(network.regions, region => region.status === 'ACTIVE');
+      && every(network.regions, region => region.status === 'ACTIVE');
   }
 
   deleteProjectNetworkPrivate(serviceName, networkId) {

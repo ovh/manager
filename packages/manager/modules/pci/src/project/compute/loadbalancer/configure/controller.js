@@ -1,4 +1,10 @@
-import _ from 'lodash';
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import forEach from 'lodash/forEach';
+import includes from 'lodash/includes';
+import mapValues from 'lodash/mapValues';
+import reduce from 'lodash/reduce';
+import values from 'lodash/values';
 
 export default class CloudProjectComputeLoadbalancerConfigureCtrl {
   constructor(
@@ -73,7 +79,7 @@ export default class CloudProjectComputeLoadbalancerConfigureCtrl {
   $onInit() {
     // Get loadbalancer pending tasks and define poller
     this.tasks = this.CucControllerHelper.request.getArrayLoader({
-      loaderFunction: () => this.IpLoadBalancerTaskService.getTasks(this.loadbalancerId).then(tasks => _.filter(tasks, task => _.includes(['todo', 'doing'], task.status))),
+      loaderFunction: () => this.IpLoadBalancerTaskService.getTasks(this.loadbalancerId).then(tasks => filter(tasks, task => includes(['todo', 'doing'], task.status))),
       successHandler: () => this.startTaskPolling(),
     });
     this.tasks.load();
@@ -129,7 +135,7 @@ export default class CloudProjectComputeLoadbalancerConfigureCtrl {
     })
       .then(({ servers, attachedServers }) => {
         this.attachedServers = attachedServers;
-        this.form.servers = _.mapValues(this.attachedServers, e => !!e);
+        this.form.servers = mapValues(this.attachedServers, e => !!e);
         this.table.server = servers;
       }).catch(() => {
         this.table.server = null;
@@ -144,11 +150,11 @@ export default class CloudProjectComputeLoadbalancerConfigureCtrl {
     let configurePromise = this.$q.resolve();
 
     // Configure the HTTP(80) loadbalancer
-    const configLoadBalancer = (_.values(this.form.servers).length
-      && _.reduce(
+    const configLoadBalancer = (values(this.form.servers).length
+      && reduce(
         this.form.servers,
         (res, value) => res && value, true,
-      )) || _.values(this.attachedServers).length > 0;
+      )) || values(this.attachedServers).length > 0;
     if (this.loadbalancer.status !== 'custom' && this.loadbalancer.status !== 'unavailable' && configLoadBalancer) {
       if (this.loadbalancer.status === 'available') {
         // Create farm and front
@@ -185,8 +191,8 @@ export default class CloudProjectComputeLoadbalancerConfigureCtrl {
 
       // Add or remove servers
       let modified = false;
-      _.forEach(this.form.servers, (enable, ip) => {
-        const server = _.find(this.table.server, { ip });
+      forEach(this.form.servers, (enable, ip) => {
+        const server = find(this.table.server, { ip });
         const displayName = server ? server.label : null;
         if (enable && !this.attachedServers[ip]) {
           modified = true;
@@ -315,10 +321,10 @@ export default class CloudProjectComputeLoadbalancerConfigureCtrl {
       items: this.tasks.data,
       pollFunction: task => this.IpLoadBalancerTaskService.getTask(this.loadbalancerId, task.id),
       stopCondition: (task) => {
-        const res = _.includes(['done', 'error'], task.status);
+        const res = includes(['done', 'error'], task.status);
         // Remove terminated tasks
         if (res) {
-          this.tasks.data = _.filter(this.tasks.data, t => t.id !== task.id);
+          this.tasks.data = filter(this.tasks.data, t => t.id !== task.id);
         }
         return res;
       },

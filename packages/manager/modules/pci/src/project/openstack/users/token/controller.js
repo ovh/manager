@@ -7,7 +7,7 @@ export default /* @ngInject */ function CloudProjectOpenstackUsersTokenCtrl(
   OvhApiCloudProjectUser,
   openstackUser,
   OpenstackUsersToken,
-  URLS,
+  PCI_URLS,
   OvhApiMe,
 ) {
   const self = this;
@@ -33,8 +33,8 @@ export default /* @ngInject */ function CloudProjectOpenstackUsersTokenCtrl(
 
   // returns openstack token guide depending on current choosen language
   function getTokenGuideUrl() {
-    const urls = URLS.guides.xauthtoken;
-    return urls[self.tokenGuide.lang.toUpperCase()];
+    const URLS = PCI_URLS.guides.xauthtoken;
+    return URLS[self.tokenGuide.lang.toUpperCase()];
   }
 
   self.generate = function generate() {

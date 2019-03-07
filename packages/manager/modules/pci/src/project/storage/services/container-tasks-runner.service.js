@@ -1,3 +1,10 @@
+import isArray from 'lodash/isArray';
+import isNumber from 'lodash/isNumber';
+import pick from 'lodash/pick';
+import reduce from 'lodash/reduce';
+import sum from 'lodash/sum';
+import values from 'lodash/values';
+
 /* eslint-disable no-param-reassign, prefer-destructuring, consistent-return */
 export default /* @ngInject */ function CloudStorageContainerTasksRunner(
   $q,
@@ -72,12 +79,14 @@ export default /* @ngInject */ function CloudStorageContainerTasksRunner(
    */
   self.countTasks = function countTasks() {
     const states = arguments; // eslint-disable-line
-    return _.chain(_.values(taskQueues))
-      .reduce((result, queue) => {
-        const currentSum = _.chain(queue).pick(states).sum().value();
+    return reduce(
+      values(taskQueues),
+      (result, queue) => {
+        const currentSum = sum(pick(queue, states));
         return result + currentSum;
-      }, 0)
-      .value();
+      },
+      0,
+    );
   };
 
   /**
@@ -129,11 +138,11 @@ export default /* @ngInject */ function CloudStorageContainerTasksRunner(
    * @return {Promise} the promise for all this task queue
    */
   self.enqueue = function enqueue(queueName, tasks, limit) {
-    if (_.isArray(queueName)) {
+    if (isArray(queueName)) {
       tasks = queueName;
       limit = tasks;
       queueName = defaultQueueName;
-      if (!_.isNumber(limit)) {
+      if (!isNumber(limit)) {
         limit = self.limit;
       }
     }

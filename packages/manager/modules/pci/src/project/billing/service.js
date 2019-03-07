@@ -1,4 +1,13 @@
-import _ from 'lodash';
+import clone from 'lodash/clone';
+import forEach from 'lodash/forEach';
+import assignIn from 'lodash/assignIn';
+import filter from 'lodash/filter';
+import flatten from 'lodash/flatten';
+import get from 'lodash/get';
+import map from 'lodash/map';
+import reduce from 'lodash/reduce';
+import reject from 'lodash/reject';
+import set from 'lodash/set';
 
 export default /* @ngInject */ function (
   $q,
@@ -11,41 +20,41 @@ export default /* @ngInject */ function (
   }
 
   function initHourlyInstanceList() {
-    if (!_.get(self.data, 'hourlyBilling') || !_.get(self.data, 'hourlyBilling.hourlyUsage')) {
+    if (!get(self.data, 'hourlyBilling') || !get(self.data, 'hourlyBilling.hourlyUsage')) {
       return;
     }
-    const hourlyInstances = _.flatten(_.map(
-      _.get(self.data, 'hourlyBilling.hourlyUsage.instance'),
-      instance => _.map(instance.details, (detail) => {
-        const newDetail = _.clone(detail);
+    const hourlyInstances = flatten(map(
+      get(self.data, 'hourlyBilling.hourlyUsage.instance'),
+      instance => map(instance.details, (detail) => {
+        const newDetail = clone(detail);
         newDetail.totalPrice = roundNumber(newDetail.totalPrice, 2);
-        return _.extend(newDetail, { reference: instance.reference, region: instance.region });
+        return assignIn(newDetail, { reference: instance.reference, region: instance.region });
       }),
     ));
     self.data.hourlyInstances = hourlyInstances;
-    self.data.totals.hourly.instance = _.reduce(
-      _.get(self.data, 'hourlyBilling.hourlyUsage.instance'),
+    self.data.totals.hourly.instance = reduce(
+      get(self.data, 'hourlyBilling.hourlyUsage.instance'),
       (sum, instance) => sum + roundNumber(instance.totalPrice, 2), 0,
     );
-    self.data.totals.hourly.instance = roundNumber(_.get(self.data, 'totals.hourly.instance'), 2);
+    self.data.totals.hourly.instance = roundNumber(get(self.data, 'totals.hourly.instance'), 2);
   }
 
   function initMonthlyInstanceList() {
-    if (!_.get(self.data, 'monthlyBilling') || !_.get(self.data, 'monthlyBilling.monthlyUsage')) {
+    if (!get(self.data, 'monthlyBilling') || !get(self.data, 'monthlyBilling.monthlyUsage')) {
       return;
     }
 
-    const monthlyInstances = _.flatten(_.map(
-      _.get(self.data, 'monthlyBilling.monthlyUsage.instance'),
-      instance => _.map(instance.details, (detail) => {
-        const newDetail = _.clone(detail);
+    const monthlyInstances = flatten(map(
+      get(self.data, 'monthlyBilling.monthlyUsage.instance'),
+      instance => map(instance.details, (detail) => {
+        const newDetail = clone(detail);
         newDetail.totalPrice = roundNumber(newDetail.totalPrice, 2);
-        return _.extend(newDetail, { reference: instance.reference, region: instance.region });
+        return assignIn(newDetail, { reference: instance.reference, region: instance.region });
       }),
     ));
 
     self.data.monthlyInstances = monthlyInstances;
-    self.data.totals.monthly.instance = _.reduce(
+    self.data.totals.monthly.instance = reduce(
       self.data.monthlyBilling.monthlyUsage.instance,
       (sum, instance) => sum + roundNumber(instance.totalPrice, 2),
       0,
@@ -57,12 +66,12 @@ export default /* @ngInject */ function (
     if (!self.data.hourlyBilling || !self.data.hourlyBilling.hourlyUsage) {
       return;
     }
-    _.each(self.data.hourlyBilling.hourlyUsage.objectStorage, (objectStorage) => {
-      _.set(objectStorage, 'totalPrice', roundNumber(objectStorage.totalPrice, 2));
+    forEach(self.data.hourlyBilling.hourlyUsage.objectStorage, (objectStorage) => {
+      set(objectStorage, 'totalPrice', roundNumber(objectStorage.totalPrice, 2));
     });
 
-    self.data.objectStorages = _.reject(self.data.hourlyBilling.hourlyUsage.storage, { type: 'pca' });
-    self.data.totals.hourly.objectStorage = _.reduce(
+    self.data.objectStorages = reject(self.data.hourlyBilling.hourlyUsage.storage, { type: 'pca' });
+    self.data.totals.hourly.objectStorage = reduce(
       self.data.objectStorages,
       (sum, storage) => sum + roundNumber(storage.totalPrice, 2),
       0,
@@ -74,12 +83,12 @@ export default /* @ngInject */ function (
     if (!self.data.hourlyBilling || !self.data.hourlyBilling.hourlyUsage) {
       return;
     }
-    _.each(self.data.hourlyBilling.hourlyUsage.archiveStorage, (archiveStorage) => {
-      _.set(archiveStorage, 'totalPrice', roundNumber(archiveStorage.totalPrice, 2));
+    forEach(self.data.hourlyBilling.hourlyUsage.archiveStorage, (archiveStorage) => {
+      set(archiveStorage, 'totalPrice', roundNumber(archiveStorage.totalPrice, 2));
     });
 
-    self.data.archiveStorages = _.filter(self.data.hourlyBilling.hourlyUsage.storage, { type: 'pca' });
-    self.data.totals.hourly.archiveStorage = _.reduce(
+    self.data.archiveStorages = filter(self.data.hourlyBilling.hourlyUsage.storage, { type: 'pca' });
+    self.data.totals.hourly.archiveStorage = reduce(
       self.data.archiveStorages,
       (sum, archiveStorage) => sum + roundNumber(archiveStorage.totalPrice, 2),
       0,
@@ -94,12 +103,12 @@ export default /* @ngInject */ function (
     if (!self.data.hourlyBilling || !self.data.hourlyBilling.hourlyUsage) {
       return;
     }
-    _.each(self.data.hourlyBilling.hourlyUsage.snapshot, (snapshot) => {
-      _.set(snapshot, 'totalPrice', roundNumber(snapshot.totalPrice, 2));
+    forEach(self.data.hourlyBilling.hourlyUsage.snapshot, (snapshot) => {
+      set(snapshot, 'totalPrice', roundNumber(snapshot.totalPrice, 2));
     });
 
     self.data.snapshots = self.data.hourlyBilling.hourlyUsage.snapshot;
-    self.data.totals.hourly.snapshot = _.reduce(
+    self.data.totals.hourly.snapshot = reduce(
       self.data.hourlyBilling.hourlyUsage.snapshot,
       (sum, snapshot) => sum + roundNumber(snapshot.totalPrice, 2),
       0,
@@ -111,17 +120,17 @@ export default /* @ngInject */ function (
     if (!self.data.hourlyBilling || !self.data.hourlyBilling.hourlyUsage) {
       return;
     }
-    const volumes = _.flatten(_.map(
+    const volumes = flatten(map(
       self.data.hourlyBilling.hourlyUsage.volume,
-      volume => _.map(volume.details, (detail) => {
-        const newDetail = _.clone(detail);
+      volume => map(volume.details, (detail) => {
+        const newDetail = clone(detail);
         newDetail.totalPrice = roundNumber(newDetail.totalPrice, 2);
-        return _.extend(newDetail, { type: volume.type, region: volume.region });
+        return assignIn(newDetail, { type: volume.type, region: volume.region });
       }),
     ));
 
     self.data.volumes = volumes;
-    self.data.totals.hourly.volume = _.reduce(
+    self.data.totals.hourly.volume = reduce(
       self.data.hourlyBilling.hourlyUsage.volume,
       (sum, volume) => sum + roundNumber(volume.totalPrice, 2),
       0,
@@ -133,10 +142,10 @@ export default /* @ngInject */ function (
     if (!self.data.hourlyBilling || !self.data.hourlyBilling.hourlyUsage) {
       return;
     }
-    const bandwidthByRegions = _.map(
+    const bandwidthByRegions = map(
       self.data.hourlyBilling.hourlyUsage.instanceBandwidth,
       (bandwidthByRegion) => {
-        const newBandwidthByRegion = _.clone(bandwidthByRegion);
+        const newBandwidthByRegion = clone(bandwidthByRegion);
         newBandwidthByRegion.outgoingBandwidth.totalPrice = roundNumber(
           newBandwidthByRegion.outgoingBandwidth.totalPrice,
           2,
@@ -151,7 +160,7 @@ export default /* @ngInject */ function (
       },
     );
     self.data.bandwidthByRegions = bandwidthByRegions;
-    self.data.totals.hourly.bandwidth = _.reduce(
+    self.data.totals.hourly.bandwidth = reduce(
       self.data.bandwidthByRegions,
       (sum, bandwidth) => sum + bandwidth.outgoingBandwidth.totalPrice,
       0,

@@ -20,7 +20,7 @@
         </button>
     </p>
     <br>
-    <p data-translate="cpci_errors_init_help3" data-translate-values="{ url: ComputeInfrastructureDiagramCtrl.REDIRECT_URLS.support }"></p>
+    <p data-translate="cpci_errors_init_help3" data-translate-values="{ url: ComputeInfrastructureDiagramCtrl.PCI_REDIRECT_URLS.support }"></p>
 </div>
 
 <div class="cloud-compute-infra" id="cloud-project-compute-infrastructure"
@@ -233,7 +233,7 @@
                                                                 (volume.getStatusGroup() !== 'ACTIVE' && volume.getStatusGroup() !== 'DRAFT')">
                                                             <span class="ovh-font ovh-font-bootDisk" title="{{::'common_disk_bootable' | translate}}"
                                                                   data-ng-if="volume.bootable"></span>
-                                                            <span class="vertical-middle">{{volume.size | bytes:2:true:'GiB'}}</span>
+                                                            <span class="vertical-middle">{{volume.size | cucBytes:2:true:'GiB'}}</span>
                                                             <i class="glyphicon glyphicon-menu-down"
                                                                write-right-required></i>
                                                         </button>
@@ -304,7 +304,7 @@
                                                 </div>
 
                                                 <div class="volume-detail-item-info">
-                                                    <span data-ng-bind="ComputeInfrastructureDiagramCtrl.dragDropHelper.currentDraggedVolume.draggableInfo.volume.size | bytes:2:true:'GiB'"></span>
+                                                    <span data-ng-bind="ComputeInfrastructureDiagramCtrl.dragDropHelper.currentDraggedVolume.draggableInfo.volume.size | cucBytes:2:true:'GiB'"></span>
                                                 </div>
                                             </li>
                                         </ul>
@@ -784,18 +784,18 @@
                                                          data-popover-trigger="mouseenter">
                                                         <span class="ovh-font ovh-font-warning fs14 right-space-m4" aria-hidden="true"></span>
                                                         <span data-translate="cpci_vm_ram_amount"
-                                                              data-translate-values="{ ram : (vm.flavor.ram * ComputeInfrastructureDiagramCtrl.conversion.MEGABYTE_TO_BYTE | bytes) }">
+                                                              data-translate-values="{ ram : (vm.flavor.ram * ComputeInfrastructureDiagramCtrl.conversion.MEGABYTE_TO_BYTE | cucBytes) }">
                                                         </span>
                                                     </div>
                                                     <div class="vm-stat stat-ram col-xs-4 text-center"
                                                          data-ng-if="!vm.monitoringData.mem.needUpgrade">
                                                         <span data-translate="cpci_vm_ram_amount"
-                                                              data-translate-values="{ ram : (vm.flavor.ram * ComputeInfrastructureDiagramCtrl.conversion.MEGABYTE_TO_BYTE | bytes) }">
+                                                              data-translate-values="{ ram : (vm.flavor.ram * ComputeInfrastructureDiagramCtrl.conversion.MEGABYTE_TO_BYTE | cucBytes) }">
                                                         </span>
                                                     </div>
                                                     <div class="vm-stat stat-disk col-xs-4 text-center"
                                                          data-translate="cpci_vm_disk_amount"
-                                                         data-translate-values="{ disk : (vm.flavor.disk | bytes:2:true:'GiB') }">
+                                                         data-translate-values="{ disk : (vm.flavor.disk | cucBytes:2:true:'GiB') }">
                                                     </div>
                                                 </div>
 
@@ -874,7 +874,7 @@
                                                                                 data-uib-dropdown-toggle>
                                                                             <span class="ovh-font ovh-font-bootDisk" title="{{:: 'common_disk_bootable' | translate}}"
                                                                                   data-ng-if="volume.bootable"></span>
-                                                                            <span data-ng-bind="volume.size | bytes:2:true:'GiB'"></span>
+                                                                            <span data-ng-bind="volume.size | cucBytes:2:true:'GiB'"></span>
                                                                             <i class="glyphicon glyphicon-menu-down"
                                                                                write-right-required></i>
                                                                         </button>
@@ -950,7 +950,7 @@
                                                                 </div>
 
                                                                 <div class="volume-detail-item-info">
-                                                                    <span data-ng-bind="ComputeInfrastructureDiagramCtrl.dragDropHelper.currentDraggedVolume.draggableInfo.volume.size | bytes:2:true:'GiB'"></span>
+                                                                    <span data-ng-bind="ComputeInfrastructureDiagramCtrl.dragDropHelper.currentDraggedVolume.draggableInfo.volume.size | cucBytes:2:true:'GiB'"></span>
                                                                 </div>
                                                             </li>
                                                         </ul>

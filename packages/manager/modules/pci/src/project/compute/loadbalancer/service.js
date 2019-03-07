@@ -1,4 +1,10 @@
-import _ from 'lodash';
+import filter from 'lodash/filter';
+import flatten from 'lodash/flatten';
+import forEach from 'lodash/forEach';
+import map from 'lodash/map';
+import set from 'lodash/set';
+import union from 'lodash/union';
+import uniqBy from 'lodash/uniqBy';
 
 export default class CloudProjectComputeLoadbalancerService {
   /* @ngInject */
@@ -35,7 +41,7 @@ export default class CloudProjectComputeLoadbalancerService {
               frontendId: frontendIds[0],
             }).$promise) || loadbalancer).then((frontend) => {
           if (frontend.frontendId) {
-            _.set(loadbalancer, 'frontend', frontend);
+            set(loadbalancer, 'frontend', frontend);
           }
           return (frontend.frontendId
             && frontend.defaultFarmId
@@ -45,25 +51,25 @@ export default class CloudProjectComputeLoadbalancerService {
             }).$promise) || loadbalancer;
         }).then((farm) => {
           if (farm.farmId) {
-            _.set(loadbalancer, 'farm', farm);
+            set(loadbalancer, 'farm', farm);
           }
           return loadbalancer;
         }).catch(() => {
-          _.set(loadbalancer, 'state', 'broken');
+          set(loadbalancer, 'state', 'broken');
           return loadbalancer;
         });
       })
       .then((loadbalancer) => {
         if (loadbalancer.state !== 'ok') {
-          _.set(loadbalancer, 'status', 'unavailable');
+          set(loadbalancer, 'status', 'unavailable');
         } else if (loadbalancer.frontend && loadbalancer.farm) {
-          _.set(loadbalancer, 'status', 'deployed');
+          set(loadbalancer, 'status', 'deployed');
         } else if (!loadbalancer.frontend && !loadbalancer.farm) {
-          _.set(loadbalancer, 'status', 'available');
+          set(loadbalancer, 'status', 'available');
         } else if (loadbalancer.state !== 'ok') {
-          _.set(loadbalancer, 'status', 'unavailable');
+          set(loadbalancer, 'status', 'unavailable');
         } else {
-          _.set(loadbalancer, 'status', 'custom');
+          set(loadbalancer, 'status', 'custom');
         }
         return loadbalancer;
       });
@@ -73,13 +79,13 @@ export default class CloudProjectComputeLoadbalancerService {
     return this.OvhApiCloudProjectIplb.v6().query({
       serviceName,
     }).$promise.then(ids => this.$q.all(
-      _.map(ids, id => this.OvhApiCloudProjectIplb.v6().get({
+      map(ids, id => this.OvhApiCloudProjectIplb.v6().get({
         serviceName,
         id,
       }).$promise),
     )).then((loadbalancers) => {
       const result = {};
-      _.forEach(loadbalancers, (lb) => {
+      forEach(loadbalancers, (lb) => {
         result[lb.iplb] = lb;
       });
       return result;
@@ -98,7 +104,7 @@ export default class CloudProjectComputeLoadbalancerService {
         farmId: loadbalancer.farm.farmId,
       }).$promise
       .then(serverIds => this.$q.all(
-        _.map(serverIds, serverId => this.OvhApiIpLoadBalancing.Farm().Http().Server().v6()
+        map(serverIds, serverId => this.OvhApiIpLoadBalancing.Farm().Http().Server().v6()
           .get({
             serviceName: loadbalancer.serviceName,
             farmId: loadbalancer.farm.farmId,
@@ -113,7 +119,7 @@ export default class CloudProjectComputeLoadbalancerService {
       attachedServers: this.getAttachedServers(loadbalancer),
     }).then(({ cloudServers, attachedServers }) => {
       const activeServers = {};
-      _.forEach(attachedServers, (attachedServer) => {
+      forEach(attachedServers, (attachedServer) => {
         if (attachedServer.status === 'active') {
           activeServers[attachedServer.address] = attachedServer;
         }
@@ -121,10 +127,10 @@ export default class CloudProjectComputeLoadbalancerService {
 
       // Generate array of object type as {ipv4, name}
       // Concat all public ip of public cloud and of the loadbalancer.
-      const servers = _.uniq(
-        _.union(
-          _.flatten(_.map(cloudServers, server => _.map(_.filter(server.ipAddresses, { type: 'public', version: 4 }), adresse => ({ label: server.name, ip: adresse.ip })))),
-          _.map(this.attachedServers, server => ({
+      const servers = uniqBy(
+        union(
+          flatten(map(cloudServers, server => map(filter(server.ipAddresses, { type: 'public', version: 4 }), adresse => ({ label: server.name, ip: adresse.ip })))),
+          map(this.attachedServers, server => ({
             label: server.displayName,
             ip: server.address,
           })),

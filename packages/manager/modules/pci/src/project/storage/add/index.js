@@ -7,7 +7,7 @@ import 'ovh-ui-angular';
 import controller from './controller';
 import template from './template.html';
 
-import './index.less';
+// TODO : import './index.less';
 
 const moduleName = 'ovhManagerPciProjectStorageAdd';
 

@@ -10,5 +10,5 @@
  "cpc_snapshot_add_success": "De {{snapshotname}} snapshot zal worden genomen en zal binnen enkele ogenblikken beschikbaar zijn.",
  "cpc_snapshot_add_availibility": "Uw server zal enkele seconden worden stilgelegd, lees/schrijfprestaties kunnen mogelijk beïnvloed worden totdat het snapshot proces klaar is.  ",
  "cpc_snapshot_add_error": "We kunnen geen snapshot van deze server maken.",
- "cpc_snapshot_add_total": "({{size | bytes:2}}, is ongeveer {{price}} excl. BTW/maand)"
+ "cpc_snapshot_add_total": "({{size | cucBytes:2}}, is ongeveer {{price}} excl. BTW/maand)"
 }

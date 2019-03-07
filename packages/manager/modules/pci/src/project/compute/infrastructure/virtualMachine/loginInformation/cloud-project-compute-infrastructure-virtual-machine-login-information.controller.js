@@ -1,3 +1,6 @@
+import find from 'lodash/find';
+import has from 'lodash/has';
+
 (() => {
   class CloudProjectComputeInfrastructureVirtualMachineLoginInformationCtrl {
     constructor(
@@ -56,7 +59,7 @@
     }
 
     getLoginInfo() {
-      if (_.has(this.data.vm.ipAddresses, 'length') && this.data.vm.image) {
+      if (has(this.data.vm.ipAddresses, 'length') && this.data.vm.image) {
         this.data.ip = this.constructor.getIp(this.data.vm.ipAddresses);
         this.data.image = this.CloudImageService.constructor.augmentImage(this.data.vm.image);
         return this.$q.resolve({});
@@ -76,7 +79,7 @@
     }
 
     static getIp(ipAddresses) {
-      return _.find(ipAddresses, { version: 4 }) || ipAddresses[0] || null;
+      return find(ipAddresses, { version: 4 }) || ipAddresses[0] || null;
     }
 
 

@@ -2,7 +2,7 @@ import angular from 'angular';
 
 import directive from './directive';
 
-import './index.less';
+// TODO : import './index.less';
 
 const moduleName = 'ovhManagerPciComponentsRunaboveFilelistener';
 

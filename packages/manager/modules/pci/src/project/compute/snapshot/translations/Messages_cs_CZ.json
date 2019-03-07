@@ -6,7 +6,7 @@
  "cpc_snapshot_min_disk": "Vyžadovaný diskový prostor",
  "cpc_snapshot_min_disk1": "Maximální požadovaný prostor (GiB)",
  "cpc_snapshot_min_disk2": "Max. prostor (GiB)",
- "cpc_snapshot_total2": "Vaše aktuální zálohy zabírají zhruba <span class=\"text-danger\">{{size | bytes:2:'true':'GiB'}}</span>, tedy zhruba <span class=\"text-danger\">{{price}} bez DPH/měs.</span>.",
+ "cpc_snapshot_total2": "Vaše aktuální zálohy zabírají zhruba <span class=\"text-danger\">{{size | cucBytes:2:'true':'GiB'}}</span>, tedy zhruba <span class=\"text-danger\">{{price}} bez DPH/měs.</span>.",
  "cpc_snapshot_price": "Cena bez DPH/měs.",
  "cpc_snapshot_creation_date": "Datum vytvoření",
  "cpc_snapshot_type": "Typ",

@@ -1,4 +1,15 @@
-import _ from 'lodash';
+import cloneDeep from 'lodash/cloneDeep';
+import filter from 'lodash/filter';
+import forEach from 'lodash/forEach';
+import get from 'lodash/get';
+import groupBy from 'lodash/groupBy';
+import includes from 'lodash/includes';
+import intersection from 'lodash/intersection';
+import isString from 'lodash/isString';
+import map from 'lodash/map';
+import set from 'lodash/set';
+import uniq from 'lodash/uniq';
+import uniqBy from 'lodash/uniqBy';
 
 import { CLOUD_APPLICATION_LIST } from './constants';
 
@@ -7,11 +18,11 @@ export default class CloudImageService {
     if (!image) {
       return null;
     }
-    const augmentedImage = _.cloneDeep(image);
+    const augmentedImage = cloneDeep(image);
 
-    if (_.includes(augmentedImage.tags, 'application')) {
+    if (includes(augmentedImage.tags, 'application')) {
       augmentedImage.apps = true;
-      augmentedImage.applications = _.intersection(augmentedImage.tags, CLOUD_APPLICATION_LIST);
+      augmentedImage.applications = intersection(augmentedImage.tags, CLOUD_APPLICATION_LIST);
     } else {
       augmentedImage.apps = false;
     }
@@ -22,20 +33,20 @@ export default class CloudImageService {
   }
 
   static getImageTypes(images) {
-    return _.uniq(_.map(images, 'type'));
+    return uniq(map(images, 'type'));
   }
 
   static getImagesByType(images, imagesTypes, region = null) {
     const filteredImages = {};
     const filter = { apps: false, status: 'active' };
 
-    if (_.isString(region)) {
+    if (isString(region)) {
       filter.region = region;
     }
 
-    _.forEach(imagesTypes, (imageType) => {
+    forEach(imagesTypes, (imageType) => {
       filter.type = imageType;
-      filteredImages[imageType] = _.filter(_.cloneDeep(images), filter);
+      filteredImages[imageType] = filter(cloneDeep(images), filter);
     });
 
     return filteredImages;
@@ -44,11 +55,11 @@ export default class CloudImageService {
   static getApps(images, region = null) {
     const filter = { apps: true, status: 'active' };
 
-    if (_.isString(region)) {
-      _.set(filter, 'region', region);
+    if (isString(region)) {
+      set(filter, 'region', region);
     }
 
-    return _.filter(_.cloneDeep(images), filter);
+    return filter(cloneDeep(images), filter);
   }
 
   /* eslint-disable no-nested-ternary */
@@ -56,10 +67,10 @@ export default class CloudImageService {
     const filteredImages = this.constructor.getImagesByType(images, imagesTypes, region);
     const groupedImages = {};
 
-    _.forEach(filteredImages, (list, type) => {
-      groupedImages[type] = _.groupBy(list, 'distribution');
-      _.forEach(groupedImages[type], (version, distribution) => {
-        groupedImages[type][distribution] = _.uniq(_.forEach(version, (image) => {
+    forEach(filteredImages, (list, type) => {
+      groupedImages[type] = groupBy(list, 'distribution');
+      forEach(groupedImages[type], (version, distribution) => {
+        groupedImages[type][distribution] = uniqBy(forEach(version, (image) => {
           delete image.region; // eslint-disable-line
           delete image.id; // eslint-disable-line
         }), 'name').sort((image1, image2) => (image1.name > image2.name ? -1 : image1.name < image2.name ? 1 : 0));
@@ -71,6 +82,6 @@ export default class CloudImageService {
   /* eslint-enable no-nested-ternary */
 
   static isSnapshot(image) {
-    return _.get(image, 'visibility', '') === 'private';
+    return get(image, 'visibility', '') === 'private';
   }
 }

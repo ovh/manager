@@ -1,3 +1,4 @@
+import moment from 'moment';
 
 export default /* @ngInject */ function ($state) {
   const self = this;

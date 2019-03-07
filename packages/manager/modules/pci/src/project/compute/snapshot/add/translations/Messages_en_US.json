@@ -10,5 +10,5 @@
  "cpc_snapshot_add_success": "The {{snapshotname}} snapshot is going to be taken and will be available in a few minutes.",
  "cpc_snapshot_add_availibility": "Your server will be suspended for a few seconds and read/write performance may be impacted until the backup is complete. ",
  "cpc_snapshot_add_error": "Oops! We were unable to take a snapshot of this server.",
- "cpc_snapshot_add_total": "({{size | bytes:2}}, approximately {{price}}/month/excl. taxes)"
+ "cpc_snapshot_add_total": "({{size | cucBytes:2}}, approximately {{price}}/month/excl. taxes)"
 }

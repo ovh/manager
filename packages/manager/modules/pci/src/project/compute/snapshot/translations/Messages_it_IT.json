@@ -6,7 +6,7 @@
  "cpc_snapshot_min_disk": "Spazio",
  "cpc_snapshot_min_disk1": "Spazio max. (GiB)",
  "cpc_snapshot_min_disk2": "Spazio max. (GiB)",
- "cpc_snapshot_total2": "Attualmente i tuoi Snapshot occupano <span class=\"text-danger\">{{size | bytes:2:'true':'GiB'}}</span>, cioè circa <span class=\"text-danger\">{{price}} + IVA/mese</span>.",
+ "cpc_snapshot_total2": "Attualmente i tuoi Snapshot occupano <span class=\"text-danger\">{{size | cucBytes:2:'true':'GiB'}}</span>, cioè circa <span class=\"text-danger\">{{price}} + IVA/mese</span>.",
  "cpc_snapshot_price": "Prezzo + IVA/mese",
  "cpc_snapshot_creation_date": "Data di creazione",
  "cpc_snapshot_type": "Tipo",

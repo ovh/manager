@@ -1,3 +1,5 @@
+import assignIn from 'lodash/assignIn';
+
 import angular from 'angular';
 
 export default /* @ngInject */ function (
@@ -17,7 +19,7 @@ export default /* @ngInject */ function (
     return `${projectId}_${containerId}`;
   }
 
-  _.extend(Cache.prototype, {
+  assignIn(Cache.prototype, {
     /**
      * Set container meta data cache value.
      * @param {string} projectId   project id

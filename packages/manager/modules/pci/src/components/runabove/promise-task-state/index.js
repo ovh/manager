@@ -2,7 +2,7 @@ import angular from 'angular';
 
 import component from './component';
 
-import './index.less';
+// TODO : import './index.less';
 
 const moduleName = 'ovhManagerPciComponentsRunabovePromiseTastState';
 

@@ -1,4 +1,16 @@
-import _ from 'lodash';
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import forEach from 'lodash/forEach';
+import get from 'lodash/get';
+import groupBy from 'lodash/groupBy';
+import head from 'lodash/head';
+import indexOf from 'lodash/indexOf';
+import isEmpty from 'lodash/isEmpty';
+import isString from 'lodash/isString';
+import map from 'lodash/map';
+import remove from 'lodash/remove';
+import set from 'lodash/set';
+import some from 'lodash/some';
 
 export default class CloudProjectComputeInfrastructureVirtualMachineAddCtrl {
   /* @ngInject */
@@ -26,7 +38,7 @@ export default class CloudProjectComputeInfrastructureVirtualMachineAddCtrl {
     CucServiceHelper,
     ovhDocUrl,
     TARGET,
-    URLS,
+    PCI_URLS,
   ) {
     this.$q = $q;
     this.$state = $state;
@@ -51,7 +63,7 @@ export default class CloudProjectComputeInfrastructureVirtualMachineAddCtrl {
     this.VirtualMachineAddService = CloudProjectVirtualMachineAddService;
     this.ovhDocUrl = ovhDocUrl;
     this.TARGET = TARGET;
-    this.URLS = URLS;
+    this.PCI_URLS = PCI_URLS;
   }
 
   $onInit() {
@@ -87,7 +99,7 @@ export default class CloudProjectComputeInfrastructureVirtualMachineAddCtrl {
       hasVRack: false,
     };
     this.submitted = {};
-    this.urls = {};
+    this.PCI_URLS = {};
   }
 
   initProject() {
@@ -95,11 +107,11 @@ export default class CloudProjectComputeInfrastructureVirtualMachineAddCtrl {
       .query({ serviceName: this.serviceName }).$promise;
     this.promisePublicNetworks = this.OvhApiCloudProjectNetworkPublic.v6()
       .query({ serviceName: this.serviceName }).$promise;
-    this.urls.vLansApiGuide = this.ovhDocUrl.getDocUrl('g2162.public_cloud_et_vrack_-_comment_utiliser_le_vrack_et_les_reseaux_prives_avec_les_instances_public_cloud');
+    this.PCI_URLS.vLansApiGuide = this.ovhDocUrl.getDocUrl('g2162.public_cloud_et_vrack_-_comment_utiliser_le_vrack_et_les_reseaux_prives_avec_les_instances_public_cloud');
     if (this.TARGET === 'US') {
-      this.urls.guidesSshkey = this.URLS.guides.ssh.create.US;
+      this.PCI_URLS.guidesSshkey = this.PCI_URLS.guides.ssh.create.US;
     } else {
-      this.urls.guidesSshkey = this.ovhDocUrl.getDocUrl('g1769.creating_ssh_keys');
+      this.PCI_URLS.guidesSshkey = this.ovhDocUrl.getDocUrl('g1769.creating_ssh_keys');
     }
 
     this.initOsList();
@@ -130,7 +142,7 @@ export default class CloudProjectComputeInfrastructureVirtualMachineAddCtrl {
       snapshots: this.OvhApiCloudProjectSnapshot.v6()
         .query({ serviceName: this.serviceName }).$promise
         .then((snapshots) => {
-          this.snapshots = _.map(snapshots, snapshot => _.set(snapshot, 'distribution', _.get(snapshot, 'type', 'linux')));
+          this.snapshots = map(snapshots, snapshot => set(snapshot, 'distribution', get(snapshot, 'type', 'linux')));
         })
         .catch(this.CucServiceHelper.errorHandler('cpcivm_add_step1_shapshots_ERROR')),
       sshKeys: this.OvhApiCloudProjectSshKey.v6().query({ serviceName: this.serviceName }).$promise,
@@ -138,7 +150,7 @@ export default class CloudProjectComputeInfrastructureVirtualMachineAddCtrl {
         .query({ serviceName: this.serviceName }).$promise,
     })
       .then(({ sshKeys, instances }) => {
-        this.displayedSnapshots = _.filter(this.snapshots, { status: 'active' });
+        this.displayedSnapshots = filter(this.snapshots, { status: 'active' });
         this.displayedImages = this.CloudImageService.groupImagesByType(
           this.images,
           this.enums.imagesTypes,
@@ -148,7 +160,7 @@ export default class CloudProjectComputeInfrastructureVirtualMachineAddCtrl {
 
         this.mostRecentVm = this.VirtualMachineAddService.constructor.getMostRecentVm(instances);
         if (this.mostRecentVm) {
-          this.model.sshKey = _.find(sshKeys, { id: this.mostRecentVm.sshKeyId });
+          this.model.sshKey = find(sshKeys, { id: this.mostRecentVm.sshKeyId });
         }
       })
       .catch(this.CucServiceHelper.errorHandler('cpcivm_add_step1_general_ERROR'))
@@ -158,7 +170,7 @@ export default class CloudProjectComputeInfrastructureVirtualMachineAddCtrl {
   }
 
   onSelectChange() {
-    if (_.get(this.model, 'imageType.type') === 'windows') {
+    if (get(this.model, 'imageType.type') === 'windows') {
       this.addingSshKey = false;
     }
   }
@@ -218,27 +230,27 @@ export default class CloudProjectComputeInfrastructureVirtualMachineAddCtrl {
     return this.$q.all({
       regions: this.OvhApiCloudProjectRegion.v6().query({ serviceName: this.serviceName }).$promise
         .then((regions) => {
-          this.regions = _.map(regions, region => this.CucRegionService.getRegion(region));
-          return this.VirtualMachineAddService.getRegionsByImageType(this.regions, this.images, _.get(this.model, 'imageType'));
+          this.regions = map(regions, region => this.CucRegionService.getRegion(region));
+          return this.VirtualMachineAddService.getRegionsByImageType(this.regions, this.images, get(this.model, 'imageType'));
         }),
       quota: this.promiseQuota
         .then((quota) => { this.quota = quota; })
         .catch(this.CucServiceHelper.errorHandler('cpcivm_add_step2_quota_ERROR')),
     })
       .then(({ regions }) => {
-        _.forEach(regions, (region) => {
+        forEach(regions, (region) => {
           // Add quota info
           this.CloudRegionService.constructor.addOverQuotaInfos(region, this.quota);
 
           // Check SSH Key opportunity
-          if (_.get(this.model, 'sshKey.regions', false)) {
+          if (get(this.model, 'sshKey.regions', false)) {
             this.CloudRegionService.constructor.checkSshKey(region, this.model.sshKey.regions);
           }
         });
 
         this.displayedRegions = this.VirtualMachineAddService.constructor
           .groupRegionsByDatacenter(regions);
-        this.groupedRegions = _.groupBy(this.displayedRegions, 'continent');
+        this.groupedRegions = groupBy(this.displayedRegions, 'continent');
       })
       .catch(this.CucServiceHelper.errorHandler('cpcivm_add_step2_regions_ERROR'))
       .finally(() => {
@@ -260,20 +272,20 @@ export default class CloudProjectComputeInfrastructureVirtualMachineAddCtrl {
     if (this.CloudImageService.constructor.isSnapshot(this.model.imageType)) {
       this.model.imageId = this.model.imageType;
     } else {
-      this.model.imageId = _.find(this.images, {
-        apps: _.get(this.model, 'imageType.apps', false),
+      this.model.imageId = find(this.images, {
+        apps: get(this.model, 'imageType.apps', false),
         distribution: this.model.imageType.distribution,
         nameGeneric: this.model.imageType.nameGeneric,
         region: this.model.region.microRegion.code,
         status: 'active',
-        type: _.get(this.model, 'imageType.type', 'linux'),
+        type: get(this.model, 'imageType.type', 'linux'),
       });
     }
   }
 
   checkSshKeyByRegion(sshKeyRegions) {
-    _.forEach(this.displayedRegions, (region) => {
-      _.forEach(region.dataCenters, (dataCenter) => {
+    forEach(this.displayedRegions, (region) => {
+      forEach(region.dataCenters, (dataCenter) => {
         this.CloudRegionService.constructor.checkSshKey(dataCenter, sshKeyRegions);
       });
     });
@@ -294,7 +306,7 @@ export default class CloudProjectComputeInfrastructureVirtualMachineAddCtrl {
       }).$promise)
       .then((sshKey) => {
         this.model.sshKey = sshKey;
-        _.set(_.find(this.displayedSshKeys, { id: sshKey.id }), 'regions', sshKey.regions);
+        set(find(this.displayedSshKeys, { id: sshKey.id }), 'regions', sshKey.regions);
         this.checkSshKeyByRegion(sshKey.regions);
       })
       .finally(() => {
@@ -344,13 +356,13 @@ export default class CloudProjectComputeInfrastructureVirtualMachineAddCtrl {
         }
 
         // Add price and quota info to each instance type
-        _.forEach(flavors, (flavor) => {
+        forEach(flavors, (flavor) => {
           this.CloudFlavorService.constructor.addPriceInfos(flavor, this.prices);
-          this.CloudFlavorService.constructor.addOverQuotaInfos(flavor, this.quota, _.get(this.model, 'imageId.minDisk', 0), _.get(this.model, 'imageId.minRam', 0));
+          this.CloudFlavorService.constructor.addOverQuotaInfos(flavor, this.quota, get(this.model, 'imageId.minDisk', 0), get(this.model, 'imageId.minRam', 0));
         });
 
         // Remove flavor without price (not in the catalog)
-        _.remove(flavors, flavor => _.isEmpty(_.get(flavor, 'price.price.text', '')));
+        remove(flavors, flavor => isEmpty(get(flavor, 'price.price.text', '')));
 
         let filteredFlavors = this.VirtualMachineAddService.constructor.getFilteredFlavorsByRegion(
           flavors,
@@ -358,18 +370,18 @@ export default class CloudProjectComputeInfrastructureVirtualMachineAddCtrl {
         );
 
         // Remove flavors if OS has restricted
-        const restrictedFlavors = _.get(this.model, 'imageId.flavorType') || [];
+        const restrictedFlavors = get(this.model, 'imageId.flavorType') || [];
         if (restrictedFlavors.length > 0) {
-          filteredFlavors = _.filter(
+          filteredFlavors = filter(
             filteredFlavors,
-            flavor => _.indexOf(restrictedFlavors, flavor.shortType) > -1,
+            flavor => indexOf(restrictedFlavors, flavor.shortType) > -1,
           );
         }
 
         // Remove incompatible flavors with selected image
-        filteredFlavors = _.filter(filteredFlavors, (flavor) => {
-          const restrictedImages = _.get(flavor, 'imageType', false);
-          return restrictedImages === false || _.some(restrictedImages, name => (new RegExp(name, 'gi')).test(this.model.imageType.name));
+        filteredFlavors = filter(filteredFlavors, (flavor) => {
+          const restrictedImages = get(flavor, 'imageType', false);
+          return restrictedImages === false || some(restrictedImages, name => (new RegExp(name, 'gi')).test(this.model.imageType.name));
         });
 
         this.groupedFlavors = this.VirtualMachineAddService.groupFlavorsByCategory(
@@ -413,9 +425,9 @@ export default class CloudProjectComputeInfrastructureVirtualMachineAddCtrl {
   }
 
   isStep4Valid() {
-    return !_.isEmpty(this.model.name)
+    return !isEmpty(this.model.name)
       && this.model.number > 0
-      && (!this.state.hasVRack || !_.isEmpty(this.model.networkId));
+      && (!this.state.hasVRack || !isEmpty(this.model.networkId));
   }
 
   resetStep4() {
@@ -457,8 +469,8 @@ export default class CloudProjectComputeInfrastructureVirtualMachineAddCtrl {
   }
 
   setInstanceName() {
-    if (_.isEmpty(this.model.name) || !this.isNameUpdated) {
-      this.model.name = `${_.get(this.model, 'flavor.name', '')}-${_.get(this.model, 'region.microRegion.code', '')}`.toLowerCase();
+    if (isEmpty(this.model.name) || !this.isNameUpdated) {
+      this.model.name = `${get(this.model, 'flavor.name', '')}-${get(this.model, 'region.microRegion.code', '')}`.toLowerCase();
     }
   }
 
@@ -471,7 +483,7 @@ export default class CloudProjectComputeInfrastructureVirtualMachineAddCtrl {
   }
 
   isStep5Valid() {
-    return _.isString(this.model.billingPeriod) && !_.isEmpty(this.model.billingPeriod);
+    return isString(this.model.billingPeriod) && !isEmpty(this.model.billingPeriod);
   }
 
   resetStep5() {
@@ -487,10 +499,10 @@ export default class CloudProjectComputeInfrastructureVirtualMachineAddCtrl {
     this.loaders.adding = true;
     this.submitted.step4 = true;
 
-    if (!_.isEmpty(this.model.networkId) && this.model.networkId !== 'none') {
+    if (!isEmpty(this.model.networkId) && this.model.networkId !== 'none') {
       this.model.networks = [
         { networkId: this.model.networkId },
-        { networkId: _.first(this.publicNetworks).id },
+        { networkId: head(this.publicNetworks).id },
       ];
     }
 

@@ -239,7 +239,7 @@
                         <span data-ng-class="{'opacity2-leave' : CloudProjectComputeSnapshotCtrl.toggle.snapshotDeleteId === snapshot.id,
                                             'opacity2-enter' : CloudProjectComputeSnapshotCtrl.toggle.snapshotDeleteId !== snapshot.id}"
                             data-ng-if="snapshot.size"
-                            data-ng-bind="::snapshot.size  | bytes:2:'true':'GiB'">
+                            data-ng-bind="::snapshot.size  | cucBytes:2:'true':'GiB'">
                         </span>
                     </td>
                     <td data-title="{{::'cpc_snapshot_price' | translate}}" class="oui-table__cell">

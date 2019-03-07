@@ -10,15 +10,18 @@ import snapshot from './snapshot';
 import ssh from './ssh';
 import volume from './volume';
 
+import componentsProject from '../../components/project';
+
 import controller from './controller';
 import template from './template.html';
 
-import './index.less';
+// TODO : import './index.less';
 
 const moduleName = 'ovhManagerPciProjectCompute';
 
 angular
   .module(moduleName, [
+    componentsProject,
     infrastructure,
     loadbalancer,
     'ovh-api-services',

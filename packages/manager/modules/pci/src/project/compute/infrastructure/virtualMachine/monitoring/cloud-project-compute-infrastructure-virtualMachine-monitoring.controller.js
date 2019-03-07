@@ -1,3 +1,9 @@
+import angular from 'angular';
+import last from 'lodash/last';
+import map from 'lodash/map';
+import max from 'lodash/max';
+import maxBy from 'lodash/maxBy';
+
 angular.module('managerApp')
   .controller('CloudProjectComputeInfrastructureVirtualMachineMonitoringCtrl',
     function CloudProjectComputeInfrastructureVirtualMachineMonitoringCtrl($rootScope, $scope, $q,
@@ -84,10 +90,10 @@ angular.module('managerApp')
       }
 
       function scaleData(rawData) {
-        const maxValue = _.chain(rawData.values)
-          .map(timeSerie => timeSerie.value)
-          .max()
-          .value();
+        const maxValue = max(
+          map(rawData.values, timeSerie => timeSerie.value),
+        );
+
         let divisionScale;
         let unit;
 
@@ -155,7 +161,7 @@ angular.module('managerApp')
 
         const { divisionScale, unit } = scaledData;
 
-        const data = _.map(rawData.values, e => ({
+        const data = map(rawData.values, e => ({
           timestamp: e.timestamp * 1000, // unix to js timestamp
           value: e.value / divisionScale,
         }));
@@ -187,7 +193,7 @@ angular.module('managerApp')
       }
 
       function updateMaxCPUPercentageForPeriod(data) {
-        self.dataPeriod.cpu.max = _.max(
+        self.dataPeriod.cpu.max = maxBy(
           data.values,
           v => (angular.isNumber(v.value)
             ? v.value
@@ -199,8 +205,8 @@ angular.module('managerApp')
       }
 
       function updateMaxRAMPercentageForPeriod(data) {
-        const total = _.last(self.vm.monitoringData.raw['mem:max'].values).value;
-        const maxUsed = _.max(
+        const total = last(self.vm.monitoringData.raw['mem:max'].values).value;
+        const maxUsed = maxBy(
           data.values,
           v => (angular.isNumber(v.value)
             ? v.value
@@ -214,7 +220,7 @@ angular.module('managerApp')
 
       function updateMaxNETUpPercentageForPeriod(data) {
         const total = self.vm.flavor.inboundBandwidth * CLOUD_UNIT_CONVERSION.MEGABYTE_TO_BYTE;
-        const maxUsed = _.max(
+        const maxUsed = maxBy(
           data.values,
           v => (angular.isNumber(v.value)
             ? v.value
@@ -228,7 +234,7 @@ angular.module('managerApp')
 
       function updateMaxNETDownPercentageForPeriod(data) {
         const total = self.vm.flavor.outboundBandwidth * CLOUD_UNIT_CONVERSION.MEGABYTE_TO_BYTE;
-        const maxUsed = _.max(
+        const maxUsed = maxBy(
           data.values,
           v => (angular.isNumber(v.value)
             ? v.value

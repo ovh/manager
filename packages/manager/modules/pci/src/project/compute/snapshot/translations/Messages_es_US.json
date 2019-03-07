@@ -6,7 +6,7 @@
   "cpc_snapshot_min_disk": "Espacio en disco requerido",
   "cpc_snapshot_min_disk1": "Tamaño máx. (Gio)",
   "cpc_snapshot_min_disk2": "Tamaño máx. (Gio) ",
-  "cpc_snapshot_total2": "A modo de información, los snapshots actuales suman <span class=\"text-danger\">{{size | bytes:2:'true':'GiB'}}</span>, es decir, aproximadamente <span class=\"text-danger\">{{price}}/mes</span>.",
+  "cpc_snapshot_total2": "A modo de información, los snapshots actuales suman <span class=\"text-danger\">{{size | cucBytes:2:'true':'GiB'}}</span>, es decir, aproximadamente <span class=\"text-danger\">{{price}}/mes</span>.",
   "cpc_snapshot_price": "Precio/mes",
   "cpc_snapshot_creation_date": "Fecha de creación",
   "cpc_snapshot_type": "Tipo",

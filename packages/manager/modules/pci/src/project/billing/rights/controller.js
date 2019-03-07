@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import indexOf from 'lodash/indexOf';
 
 import addRightsController from './addRights/controller';
 import addRightsTemplate from './addRights/template.html';
@@ -11,7 +11,7 @@ export default /* @ngInject */ function (
   CucCloudMessage,
   CucControllerHelper,
   $translate,
-  REDIRECT_URLS,
+  PCI_REDIRECT_URLS,
   $window,
 ) {
   const self = this;
@@ -75,7 +75,7 @@ export default /* @ngInject */ function (
         if (me.country) {
           // check if the user country is USA or Canada, in this case we display
           // email instead of NIC handle
-          self.model.isUSorCA = _.indexOf(['US', 'CA'], me.country.toUpperCase()) >= 0;
+          self.model.isUSorCA = indexOf(['US', 'CA'], me.country.toUpperCase()) >= 0;
         }
       });
     });
@@ -91,12 +91,12 @@ export default /* @ngInject */ function (
       */
 
   self.canChangeContacts = function canChangeContacts() {
-    return REDIRECT_URLS.contacts;
+    return PCI_REDIRECT_URLS.contacts;
   };
 
   self.openContacts = function openContacts() {
     if (self.canChangeContacts()) {
-      let redirectUrl = REDIRECT_URLS.contacts;
+      let redirectUrl = PCI_REDIRECT_URLS.contacts;
       redirectUrl = redirectUrl.replace('{serviceName}', serviceName);
       $window.open(redirectUrl, '_blank');
     }

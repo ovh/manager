@@ -1,5 +1,8 @@
-angular.module('managerApp').controller('RA.add.storage.stepContainerTypeCtrl', ['$scope', '$translate', 'URLS', 'TranslateService', 'OvhApiMe',
-  function ($scope, $translate, URLS, TranslateService, OvhApiMe) {
+import forEach from 'lodash/forEach';
+import set from 'lodash/set';
+
+angular.module('managerApp').controller('RA.add.storage.stepContainerTypeCtrl', ['$scope', '$translate', 'PCI_URLS', 'TranslateService', 'OvhApiMe',
+  function ($scope, $translate, PCI_URLS, TranslateService, OvhApiMe) {
     const self = this;
 
     $scope.childStep = 'name';
@@ -8,7 +11,7 @@ angular.module('managerApp').controller('RA.add.storage.stepContainerTypeCtrl', 
       code: 'pcs',
       name: $translate.instant('add_storage_category_pcs'),
       moreInfo: {
-        url: URLS.website_order.pcs.GB || URLS.website_order.pcs.WE,
+        url: PCI_URLS.website_order.pcs.GB || PCI_URLS.website_order.pcs.WE,
       },
       options: [{
         type: 'static',
@@ -35,7 +38,7 @@ angular.module('managerApp').controller('RA.add.storage.stepContainerTypeCtrl', 
       code: 'pca',
       name: $translate.instant('add_storage_category_pca'),
       moreInfo: {
-        url: URLS.website_order.pca.GB || URLS.website_order.pca.WE,
+        url: PCI_URLS.website_order.pca.GB || PCI_URLS.website_order.pca.WE,
       },
       options: [{
         type: 'archive',
@@ -53,8 +56,8 @@ angular.module('managerApp').controller('RA.add.storage.stepContainerTypeCtrl', 
     self.$onInit = function () {
       OvhApiMe.v6().get().$promise.then((me) => {
         const lang = me.ovhSubsidiary;
-        _.forEach($scope.categories, (category) => {
-          _.set(category, 'moreInfo.url', URLS.website_order[category.code][lang]);
+        forEach($scope.categories, (category) => {
+          set(category, 'moreInfo.url', PCI_URLS.website_order[category.code][lang]);
         });
       });
     };

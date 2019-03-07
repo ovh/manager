@@ -6,7 +6,7 @@ import controller from './controller';
 import template from './template.html';
 import service from './service';
 
-import './index.less';
+// TODO : import './index.less';
 
 const moduleName = 'ovhManagerPciProjectComputeSsh';
 

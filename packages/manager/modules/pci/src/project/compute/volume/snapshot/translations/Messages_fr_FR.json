@@ -3,7 +3,7 @@
   "cpcv_snapshot_choose_name": "Saisissez le nom de votre snapshot :",
   "cpcv_snapshot_name": "Nom du snapshot",
   "cpcv_snapshot_confirm": "Lancer le snapshot",
-  "cpcv_snapshot_monthlyPrice": "({{ size | bytes:2:'true' }} x {{ price }} HT/Gio/mois)",
+  "cpcv_snapshot_monthlyPrice": "({{ size | cucBytes:2:'true' }} x {{ price }} HT/Gio/mois)",
   "cpcv_snapshot_name_error": "Veuillez donner un nom valide à votre snapshot.",
   "cpcv_snapshot_name_length_error": "Veuillez choisir un nom de snapshot plus court.",
   "cpcv_snapshot_creation_info": "Snapshot en cours...",

@@ -1,9 +1,10 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
 import 'ovh-api-services';
+import 'ovh-angular-jsplumb';
 
 import diagram from './diagram';
-import iac from './iac';
+import iacDeploy from './iac/deploy';
 import list from './list';
 import virtualMachine from './virtualMachine';
 import volume from './volume';
@@ -16,16 +17,17 @@ import imageService from './image.service';
 import infrastructureService from './infrastructure.service';
 import regionService from './region.service';
 
-import './index.less';
+// TODO : import './index.less';
 
 const moduleName = 'ovhManagerPciProjectComputeInfrastructure';
 
 angular
   .module(moduleName, [
     diagram,
-    iac,
+    iacDeploy,
     list,
     'ovh-api-services',
+    'ovh-angular-jsplumb',
     'ui.router',
     virtualMachine,
     volume,
@@ -82,21 +84,21 @@ angular
         },
       });
   })
-  .config(/* @ngInject */(atInternetControllerDecoratorsProvider) => {
-    atInternetControllerDecoratorsProvider.decorate({
-      CloudProjectComputeInfrastructureDiagramCtrl: {
-        initInfra(atInternet, ctrl) {
-          ctrl.Cloud.Project().v6().query().$promise
-            .then((projects) => {
-              atInternet.trackEvent({
-                event: `CloudProject-${projects.length}`,
-                page: 'cloud::iaas::pci-project::compute::infrastructure::diagram',
-              });
-            });
-        },
-      },
-    });
-  })
+  // .config(/* @ngInject */(atInternetControllerDecoratorsProvider) => {
+  //   atInternetControllerDecoratorsProvider.decorate({
+  //     CloudProjectComputeInfrastructureDiagramCtrl: {
+  //       initInfra(atInternet, ctrl) {
+  //         ctrl.Cloud.Project().v6().query().$promise
+  //           .then((projects) => {
+  //             atInternet.trackEvent({
+  //               event: `CloudProject-${projects.length}`,
+  //               page: 'cloud::iaas::pci-project::compute::infrastructure::diagram',
+  //             });
+  //           });
+  //       },
+  //     },
+  //   });
+  // })
   .service('CloudFlavorService', flavorService)
   .service('CloudImageService', imageService)
   .service('CloudProjectComputeInfrastructureService', infrastructureService)

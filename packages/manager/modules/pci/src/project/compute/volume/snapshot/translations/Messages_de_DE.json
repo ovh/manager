@@ -3,7 +3,7 @@
  "cpcv_snapshot_choose_name": "Geben Sie den Namen Ihres Backups an:",
  "cpcv_snapshot_name": "Name des Backups",
  "cpcv_snapshot_confirm": "Das Backup starten",
- "cpcv_snapshot_monthlyPrice": "({{ size | bytes:2:'true' }} x {{ price }} ohne MwSt / GiB / Monat)",
+ "cpcv_snapshot_monthlyPrice": "({{ size | cucBytes:2:'true' }} x {{ price }} ohne MwSt / GiB / Monat)",
  "cpcv_snapshot_name_error": "Bitte vergeben Sie einen gültigen Namen für Ihre Sicherung.",
  "cpcv_snapshot_name_length_error": "Bitte wählen Sie einen kürzeren Namen für die Sicherung.",
  "cpcv_snapshot_creation_info": "Sicherung wird durchgeführt...",

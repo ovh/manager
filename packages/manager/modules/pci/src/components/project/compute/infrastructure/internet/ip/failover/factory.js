@@ -1,5 +1,5 @@
 import angular from 'angular';
-import _ from 'lodash';
+import flatten from 'lodash/flatten';
 
 export default /* @ngInject */ (
   OvhApiIpReverse,
@@ -40,7 +40,7 @@ export default /* @ngInject */ (
     return angular.extend(options, {
       type: 'failover',
       routedTo: options.routedTo
-        ? _.flatten([options.routedTo])
+        ? flatten([options.routedTo])
         : [], // Ensure routedTo is always an array
     });
   };

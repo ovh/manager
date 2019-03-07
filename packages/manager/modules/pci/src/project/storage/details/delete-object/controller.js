@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import map from 'lodash/map';
 
 export default /* @ngInject */ (
   $scope,
@@ -15,7 +15,7 @@ export default /* @ngInject */ (
   };
 
   $scope.names = () => {
-    return _.map($scope.elem, 'name').join('<br />');
+    return map($scope.elem, 'name').join('<br />');
   };
 
   $scope.confirm = () => {

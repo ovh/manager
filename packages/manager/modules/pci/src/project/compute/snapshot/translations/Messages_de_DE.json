@@ -6,7 +6,7 @@
  "cpc_snapshot_min_disk": "Größe",
  "cpc_snapshot_min_disk1": "Maximale Größe (GiB)",
  "cpc_snapshot_min_disk2": "Maximaler Speicherplatz (GiB)",
- "cpc_snapshot_total2": "Zur Information: Ihre Sicherungen belegen derzeit <span class=\"text-danger\">{{size | bytes:2:'true':'GiB'}}</span>, dies entspricht etwa <span class=\"text-danger\">{{price}} ohne MwSt / Monat</span>.",
+ "cpc_snapshot_total2": "Zur Information: Ihre Sicherungen belegen derzeit <span class=\"text-danger\">{{size | cucBytes:2:'true':'GiB'}}</span>, dies entspricht etwa <span class=\"text-danger\">{{price}} ohne MwSt / Monat</span>.",
  "cpc_snapshot_price": "Preis ohne MwSt / Monat",
  "cpc_snapshot_creation_date": "Erstellungsdatum",
  "cpc_snapshot_type": "Typ",

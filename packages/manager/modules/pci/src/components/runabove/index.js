@@ -7,7 +7,7 @@ import scrollHere from './scrollHere';
 import showByte from './show-byte';
 import units from './units';
 
-import './index.less';
+// TODO : import './index.less';
 
 const moduleName = 'ovhManagerPciComponentsRunabove';
 

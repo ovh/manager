@@ -1,3 +1,6 @@
+import find from 'lodash/find';
+import head from 'lodash/head';
+
 import { CLOUD_OPENRC_VERSION } from './constants';
 
 export default /* @ngInject */function OpenstackUsersOpenrcCtrl(
@@ -9,7 +12,7 @@ export default /* @ngInject */function OpenstackUsersOpenrcCtrl(
   OvhApiCloud,
   OvhApiMe,
   CucRegionService,
-  URLS,
+  PCI_URLS,
 ) {
   const self = this;
 
@@ -37,7 +40,7 @@ export default /* @ngInject */function OpenstackUsersOpenrcCtrl(
     self.loaders.guide = true;
     OvhApiMe.v6().get().$promise.then((me) => {
       const lang = me.ovhSubsidiary;
-      self.data.guideURL = URLS.guides.openstack[lang];
+      self.data.guideURL = PCI_URLS.guides.openstack[lang];
     }).finally(() => {
       self.loaders.guide = false;
     });
@@ -50,7 +53,7 @@ export default /* @ngInject */function OpenstackUsersOpenrcCtrl(
     }).$promise.then((regions) => {
       self.form.regions = regions;
       if (self.form.regions) {
-        self.data.region = _.first(self.form.regions);
+        self.data.region = head(self.form.regions);
       }
     }).finally(() => {
       self.loaders.regions = false;
@@ -64,7 +67,7 @@ export default /* @ngInject */function OpenstackUsersOpenrcCtrl(
 
   function buildOpenrcUrl() {
     let url = [
-      (_.find(CONFIG_API.apis, { serviceType: 'aapi' }) || {}).urlPrefix,
+      (find(CONFIG_API.apis, { serviceType: 'aapi' }) || {}).urlPrefix,
       OvhApiCloud.Project().User().Aapi().services.openrc.url,
       '?',
       $httpParamSerializer({

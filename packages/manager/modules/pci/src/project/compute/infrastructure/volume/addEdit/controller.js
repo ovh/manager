@@ -1,3 +1,5 @@
+import find from 'lodash/find';
+
 import {
   CLOUD_VOLUME_MAX_SIZE,
   CLOUD_VOLUME_MIN_SIZE,
@@ -241,7 +243,7 @@ export default /* @ngInject */ function CloudProjectComputeInfrastructureVolumeA
   // --------- QUOTAS ---------
   self.computeQuotas = function computeQuotas(region) {
     if (self.panelsData.quotas) {
-      const quota = _.find(self.panelsData.quotas, { region });
+      const quota = find(self.panelsData.quotas, { region });
       if (quota && quota.volume) {
         self.states.hasEnoughQuota = true;
         let availableGigabytes = CLOUD_VOLUME_MAX_SIZE;

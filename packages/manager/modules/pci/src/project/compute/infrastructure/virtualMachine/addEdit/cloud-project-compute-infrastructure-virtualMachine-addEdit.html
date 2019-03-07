@@ -596,10 +596,10 @@
                                  data-tooltip-placement="bottom">
                                 <i class="ovh-font ovh-font-cloudram inline-block vertical-middle"></i>
                                 <span data-ng-if="VmAddEditCtrl.displayData.quota.instance.maxRam === -1" class="vertical-middle fs10">
-                                    {{ :: VmAddEditCtrl.displayData.quota.instance.usedRAM > 0 ? ((VmAddEditCtrl.displayData.quota.instance.usedRAM * 1000000) | bytes:2) : VmAddEditCtrl.displayData.quota.instance.usedRAM }} / {{ :: 'cloud_common_unlimited' | translate }}
+                                    {{ :: VmAddEditCtrl.displayData.quota.instance.usedRAM > 0 ? ((VmAddEditCtrl.displayData.quota.instance.usedRAM * 1000000) | cucBytes:2) : VmAddEditCtrl.displayData.quota.instance.usedRAM }} / {{ :: 'cloud_common_unlimited' | translate }}
                                 </span>
                                 <span data-ng-if="VmAddEditCtrl.displayData.quota.instance.maxRam > -1" class="vertical-middle fs10">
-                                    {{ :: VmAddEditCtrl.displayData.quota.instance.usedRAM > 0 ? ((VmAddEditCtrl.displayData.quota.instance.usedRAM * 1000000) | bytes:2) : VmAddEditCtrl.displayData.quota.instance.usedRAM }} / {{ :: (VmAddEditCtrl.displayData.quota.instance.maxRam * 1000000) | bytes:2 }}
+                                    {{ :: VmAddEditCtrl.displayData.quota.instance.usedRAM > 0 ? ((VmAddEditCtrl.displayData.quota.instance.usedRAM * 1000000) | cucBytes:2) : VmAddEditCtrl.displayData.quota.instance.usedRAM }} / {{ :: (VmAddEditCtrl.displayData.quota.instance.maxRam * 1000000) | cucBytes:2 }}
                                 </span>
                             </div>
                         </div>
@@ -697,7 +697,7 @@
                                                 <button type="button" class="btn" data-ng-click="VmAddEditCtrl.viewFlavorsList('ram', categoryObject.category)">
                                                     <span class="upgradable"
                                                           data-translate="cpcivm_addedit_table_ram_details"
-                                                          data-translate-values="{ size: (VmAddEditCtrl.categoriesVmInEditionFlavor[categoryObject.category].ram * 1000000 | bytes) }">
+                                                          data-translate-values="{ size: (VmAddEditCtrl.categoriesVmInEditionFlavor[categoryObject.category].ram * 1000000 | cucBytes) }">
                                                     </span>
                                                     <div class="chevron-right">
                                                         <div class="chevron-wrapper">
@@ -714,7 +714,7 @@
                                             <dt data-translate="cpcivm_addedit_table_disk"></dt>
                                             <dd data-ng-if="categoryObject.category === 'vps' || (categoryObject.category !== 'vps' && VmAddEditCtrl.getFlavorOfCurrentRegionAndOSType(VmAddEditCtrl.categoriesVmInEditionFlavor[categoryObject.category], 'ceph', false) === undefined)">
                                                 <div data-translate="cpcivm_addedit_table_disk_details_ssd"
-                                                     data-translate-values="{ size: (VmAddEditCtrl.categoriesVmInEditionFlavor[categoryObject.category].disk | bytes:2:true:'GiB') }"></div>
+                                                     data-translate-values="{ size: (VmAddEditCtrl.categoriesVmInEditionFlavor[categoryObject.category].disk | cucBytes:2:true:'GiB') }"></div>
 
                                                 <div data-ng-show="VmAddEditCtrl.showFlex(categoryObject.category)">
                                                     <div class="checkbox" data-ng-disabled="VmAddEditCtrl.isIncompatible(categoryObject.category, 'ssd')">
@@ -740,7 +740,7 @@
                                                             data-ng-class="{'active': VmAddEditCtrl.model.diskType === 'ceph'}"
                                                             data-ng-disabled="VmAddEditCtrl.isIncompatible(categoryObject.category, 'ceph')"
                                                             data-uib-tooltip="{{:: VmAddEditCtrl.isIncompatible(categoryObject.category, 'ceph') ? ('cpcivm_addedit_flavor_disabled_WRONG_DISK_TYPE' | translate) : '' }}">
-                                                        <span data-ng-bind-html="'cpcivm_addedit_table_disk_details_ha_with_size' | translate: { size:  (VmAddEditCtrl.getFlavorOfCurrentRegionAndOSType(VmAddEditCtrl.categoriesVmInEditionFlavor[categoryObject.category], 'ceph', VmAddEditCtrl.model.flex).disk |  bytes: 2:true:'GiB') }">
+                                                        <span data-ng-bind-html="'cpcivm_addedit_table_disk_details_ha_with_size' | translate: { size:  (VmAddEditCtrl.getFlavorOfCurrentRegionAndOSType(VmAddEditCtrl.categoriesVmInEditionFlavor[categoryObject.category], 'ceph', VmAddEditCtrl.model.flex).disk |  cucBytes: 2:true:'GiB') }">
                                                         </span>
                                                     </button>
                                                     <button type="button"
@@ -749,7 +749,7 @@
                                                             data-ng-class="{'active': VmAddEditCtrl.model.diskType === 'ssd'}"
                                                             data-ng-disabled="VmAddEditCtrl.isIncompatible(categoryObject.category, 'ssd')"
                                                             data-uib-tooltip="{{:: VmAddEditCtrl.isIncompatible(categoryObject.category, 'ssd') ? ('cpcivm_addedit_flavor_disabled_WRONG_DISK_TYPE' | translate) : '' }}">
-                                                        <span data-ng-bind-html="'cpcivm_addedit_table_disk_details_ssd_with_size' | translate: { size:  (VmAddEditCtrl.getFlavorOfCurrentRegionAndOSType(VmAddEditCtrl.categoriesVmInEditionFlavor[categoryObject.category], 'ssd', VmAddEditCtrl.model.flex).disk | bytes: 2:true:'GiB') }">
+                                                        <span data-ng-bind-html="'cpcivm_addedit_table_disk_details_ssd_with_size' | translate: { size:  (VmAddEditCtrl.getFlavorOfCurrentRegionAndOSType(VmAddEditCtrl.categoriesVmInEditionFlavor[categoryObject.category], 'ssd', VmAddEditCtrl.model.flex).disk | cucBytes: 2:true:'GiB') }">
                                                         </span>
                                                     </button>
                                                 </div>
@@ -856,24 +856,24 @@
                                                         <td class="text-center"
                                                             data-translate="cpcivm_addedit_table_core_details_short"
                                                             data-translate-values="{ vCores: flavor.vcpus, frequency: flavor.frequency }"></td>
-                                                        <td class="text-center" data-ng-bind="::flavor.ram * 1000000 | bytes"></td>
+                                                        <td class="text-center" data-ng-bind="::flavor.ram * 1000000 | cucBytes"></td>
                                                         <td>
                                                             <div class="text-left"
                                                                  data-ng-if="flavor.vps"
                                                                  data-translate="cpcivm_addedit_table_disk_short_ssd"
-                                                                 data-translate-values="{ size: (flavor.disk | bytes: 2:true:'GiB') }"></div>
+                                                                 data-translate-values="{ size: (flavor.disk | cucBytes: 2:true:'GiB') }"></div>
                                                             <div data-ng-if="!flavor.vps && VmAddEditCtrl.getFlavorOfCurrentRegionAndOSType(flavor, 'ceph', false) !== undefined">
                                                                 <div class="text-left"
                                                                      data-translate="cpcivm_addedit_table_disk_short_ha"
-                                                                     data-translate-values="{ size: (VmAddEditCtrl.getFlavorOfCurrentRegionAndOSType(flavor, 'ceph', false).disk | bytes: 2:true:'GiB')}"></div>
+                                                                     data-translate-values="{ size: (VmAddEditCtrl.getFlavorOfCurrentRegionAndOSType(flavor, 'ceph', false).disk | cucBytes: 2:true:'GiB')}"></div>
                                                                 <div class="text-left"
                                                                      data-translate="cpcivm_addedit_table_disk_short_ssd_or"
-                                                                     data-translate-values="{ size: (VmAddEditCtrl.getFlavorOfCurrentRegionAndOSType(flavor, 'ssd', false).disk | bytes: 2:true:'GiB') }"></div>
+                                                                     data-translate-values="{ size: (VmAddEditCtrl.getFlavorOfCurrentRegionAndOSType(flavor, 'ssd', false).disk | cucBytes: 2:true:'GiB') }"></div>
                                                             </div>
                                                             <div data-ng-if="!flavor.vps && VmAddEditCtrl.getFlavorOfCurrentRegionAndOSType(flavor, 'ceph', false) === undefined">
                                                                 <div class="text-left"
                                                                  data-translate="cpcivm_addedit_table_disk_short_ssd"
-                                                                 data-translate-values="{ size: (flavor.disk | bytes: 2:true:'GiB') }"></div>
+                                                                 data-translate-values="{ size: (flavor.disk | cucBytes: 2:true:'GiB') }"></div>
                                                             </div>
                                                         </td>
 

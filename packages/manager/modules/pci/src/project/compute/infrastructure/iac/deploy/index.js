@@ -5,7 +5,7 @@ import 'ovh-api-services';
 import controller from './controller';
 import template from './template.html';
 
-const moduleName = 'ovhManagerPciProjectComputeInfrastructureIac';
+const moduleName = 'ovhManagerPciProjectComputeInfrastructureIacDeploy';
 
 angular
   .module(moduleName, [

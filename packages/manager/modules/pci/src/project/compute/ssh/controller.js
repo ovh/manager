@@ -1,3 +1,6 @@
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+
 import deleteController from './delete/controller';
 import deleteTemplate from './delete/template.html';
 
@@ -82,7 +85,7 @@ export default class CloudProjectComputeSshCtrl {
     if (this.createKey.loading) {
       return;
     }
-    const notUnique = _.find(this.keys.data, sshkey => sshkey.name === this.sshKey.name);
+    const notUnique = find(this.keys.data, sshkey => sshkey.name === this.sshKey.name);
     if (notUnique) {
       this.CucCloudMessage.error(this.$translate.instant('cpc_ssh_add_submit_name_error'));
       return;
@@ -126,7 +129,7 @@ export default class CloudProjectComputeSshCtrl {
 
   filterSshKeys() {
     if (this.searchSshKeysForm && this.searchSshKeysForm.$valid) {
-      const filteredKeys = _.filter(
+      const filteredKeys = filter(
         this.keys.data,
         sshKey => this.isSshKeyMatchSearchCriterias(sshKey),
       );

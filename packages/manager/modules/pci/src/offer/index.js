@@ -2,10 +2,13 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'ovh-api-services';
 
+
+import componentsProjectAdd from '../components/project/add';
+
 import controller from './controller';
 import template from './template.html';
 
-import './index.less';
+// TODO : import './index.less';
 
 const moduleName = 'ovhManagerPciOffer';
 
@@ -13,6 +16,7 @@ angular
   .module(moduleName, [
     'ovh-api-services',
     'ui.router',
+    componentsProjectAdd,
   ])
   .config(/* @ngInject */($stateProvider) => {
     $stateProvider

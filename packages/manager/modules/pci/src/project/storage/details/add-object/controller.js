@@ -1,3 +1,5 @@
+import endsWith from 'lodash/endsWith';
+
 export default /* @ngInject */ (
   $scope,
   $uibModalInstance,
@@ -18,7 +20,7 @@ export default /* @ngInject */ (
   $scope.$watch('uploadForm.files', (nv, old) => {
     if (old === null && nv !== null) {
       // when the prefix does not with a / it simply append the prefix to the file name.
-      if (!_.endsWith($scope.form.prefix, '/')) {
+      if (!endsWith($scope.form.prefix, '/')) {
         $scope.form.prefix += '/';
       }
 

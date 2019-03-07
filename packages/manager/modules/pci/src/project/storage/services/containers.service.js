@@ -1,3 +1,5 @@
+import pick from 'lodash/pick';
+
 import angular from 'angular';
 
 export default /* @ngInject */ function CloudStorageContainers(
@@ -17,7 +19,7 @@ export default /* @ngInject */ function CloudStorageContainers(
     function saveNameAndRegion(container) {
       const data = CloudStorageContainersConfiguration.containerMetaCache.get(projectId, container.id);
       if (!data) {
-        CloudStorageContainersConfiguration.containerMetaCache.set(projectId, container.id, _.pick(container, ['name', 'region']));
+        CloudStorageContainersConfiguration.containerMetaCache.set(projectId, container.id, pick(container, ['name', 'region']));
       }
     }
 

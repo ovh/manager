@@ -119,7 +119,7 @@
                                 </h3>
                                 <!-- CASE SIZE SPECIFIED -->
                                 <h3 data-ng-if="VolumeAddEditCtrl.volumeInEdition.size">
-                                    {{ VolumeAddEditCtrl.volumeInEdition.size | bytes:2:true:'GiB' }}
+                                    {{ VolumeAddEditCtrl.volumeInEdition.size | cucBytes:2:true:'GiB' }}
                                 </h3>
                                 <h4 data-ng-if="VolumeAddEditCtrl.volumeInEdition.size"
                                     translate="cpci_volume_price_per_month"
@@ -143,7 +143,7 @@
                             </div>
                             <div class="popover-list-item-text" data-ng-if="VolumeAddEditCtrl.volumeInEdition.size">
                                 <h3>
-                                    {{ VolumeAddEditCtrl.volumeInEdition.size * 1000000000 | bytes:2 }}
+                                    {{ VolumeAddEditCtrl.volumeInEdition.size * 1000000000 | cucBytes:2 }}
                                 </h3>
                             </div>
                         </div> -->
@@ -385,8 +385,8 @@
                                     data-display-callback="VolumeAddEditCtrl.reformatValue(value)"
                                     disabled="VolumeAddEditCtrl.loaders.save"
                                     markers-count="7"
-                                    markers-label-low="{{ VolumeAddEditCtrl.slider.min | bytes:2:true:'GiB' }}"
-                                    markers-label-high="{{ VolumeAddEditCtrl.slider.max | bytes:2:true:'GiB' }}"></ovh-slider>
+                                    markers-label-low="{{ VolumeAddEditCtrl.slider.min | cucBytes:2:true:'GiB' }}"
+                                    markers-label-high="{{ VolumeAddEditCtrl.slider.max | cucBytes:2:true:'GiB' }}"></ovh-slider>
 
                                 <div class="fs10 bottom-space-m12">
                                     <span data-translate="cpci_volume_addedit_info_maxsize" .

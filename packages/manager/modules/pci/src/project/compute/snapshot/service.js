@@ -1,5 +1,13 @@
-class CloudProjectComputeSnapshotPriceService {
-  constructor(OvhCloudPriceHelper) {
+import round from 'lodash/round';
+
+import angular from 'angular';
+import moment from 'moment';
+
+export default class CloudProjectComputeSnapshotPriceService {
+  /* @ngInject */
+  constructor(
+    OvhCloudPriceHelper,
+  ) {
     this.OvhCloudPriceHelper = OvhCloudPriceHelper;
   }
 
@@ -17,14 +25,12 @@ class CloudProjectComputeSnapshotPriceService {
       snapshotPrice.monthlyPrice = angular.copy(snapshotPrice.price);
 
       snapshotPrice.monthlyPrice.value = snapshotPrice.priceInUcents * moment.duration(1, 'months').asHours() / 100000000;
-      snapshotPrice.monthlyPrice.text = snapshotPrice.monthlyPrice.text.replace(/\d+(?:[.,]\d+)?/, _.round(snapshotPrice.monthlyPrice.value.toString(), 2));
+      snapshotPrice.monthlyPrice.text = snapshotPrice.monthlyPrice.text.replace(/\d+(?:[.,]\d+)?/, round(snapshotPrice.monthlyPrice.value.toString(), 2));
 
       snapshotPrice.totalPrice.value = snapshotPrice.monthlyPrice.value * size;
-      snapshotPrice.totalPrice.text = snapshotPrice.totalPrice.text.replace(/\d+(?:[.,]\d+)?/, _.round(snapshotPrice.totalPrice.value.toString(), 2));
+      snapshotPrice.totalPrice.text = snapshotPrice.totalPrice.text.replace(/\d+(?:[.,]\d+)?/, round(snapshotPrice.totalPrice.value.toString(), 2));
 
       return snapshotPrice;
     });
   }
 }
-
-angular.module('managerApp').service('CloudProjectComputeSnapshotPriceService', CloudProjectComputeSnapshotPriceService);

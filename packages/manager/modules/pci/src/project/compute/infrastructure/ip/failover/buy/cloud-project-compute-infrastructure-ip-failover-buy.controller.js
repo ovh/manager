@@ -1,3 +1,12 @@
+import defaults from 'lodash/defaults';
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import head from 'lodash/head';
+import indexOf from 'lodash/indexOf';
+import isNumber from 'lodash/isNumber';
+import keys from 'lodash/keys';
+import pickBy from 'lodash/pickBy';
+
 
 
 angular.module('managerApp')
@@ -44,13 +53,13 @@ angular.module('managerApp')
         getBuyIpsInfo();
       },
       instanceChanged() {
-        const instanceLoc = _.first(
-          _.keys(
-            _.pick(CLOUD_GEOLOCALISATION.instance,
-              region => _.indexOf(region, self.form.instance.region) >= 0),
+        const instanceLoc = head(
+          keys(
+            pickBy(CLOUD_GEOLOCALISATION.instance,
+              region => indexOf(region, self.form.instance.region) >= 0),
           ),
         );
-        self.form.countryEnum = _.defaults(CLOUD_GEOLOCALISATION.ipfo, {
+        self.form.countryEnum = defaults(CLOUD_GEOLOCALISATION.ipfo, {
           instanceLoc: [],
         })[instanceLoc];
         self.datas.billingInfo = null;
@@ -127,19 +136,19 @@ angular.module('managerApp')
       return $q.allSettled(promises).then(() => {
         // compute the max limit of IP Failovers
         angular.forEach(self.form.instances, (instance) => {
-          const flavor = _.first(_.filter(self.form.flavors, { id: instance.flavorId }));
+          const flavor = head(filter(self.form.flavors, { id: instance.flavorId }));
           if (flavor) {
             const limit = +CLOUD_IPFO_ORDER_LIMIT[flavor.type];
-            if (_.isNumber(limit) && _.isNumber(limit)) {
+            if (isNumber(limit) && isNumber(limit)) {
               self.form.maxIp += limit;
             }
           }
         });
 
         // subtract current IP from limit
-        const currentIps = _.filter(
+        const currentIps = filter(
           self.form.failoverIps,
-          ip => !ip.routedTo || _.find(
+          ip => !ip.routedTo || find(
             self.form.instances,
             instance => instance.id === ip.routedTo,
           ),
@@ -147,7 +156,7 @@ angular.module('managerApp')
         self.form.maxIp -= currentIps.length;
 
         // IP Failover must be attached to an ACTIVE instance
-        self.form.instances = _.filter(self.form.instances, { status: 'ACTIVE' });
+        self.form.instances = filter(self.form.instances, { status: 'ACTIVE' });
 
         // If no instance are available, disable buy IP
         if (self.form.instances.length === 0) {

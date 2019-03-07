@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 export default class CloudProjectOpenstackUsersRcloneModalCtrl {
   /* @ngInject */
   constructor(
@@ -6,14 +8,14 @@ export default class CloudProjectOpenstackUsersRcloneModalCtrl {
     CloudProjectOpenstackUsersRcloneService,
     CucControllerHelper,
     openstackUser,
-    URLS,
+    PCI_URLS,
   ) {
     this.$stateParams = $stateParams;
     this.$uibModalInstance = $uibModalInstance;
     this.CloudProjectOpenstackUsersRcloneService = CloudProjectOpenstackUsersRcloneService;
     this.CucControllerHelper = CucControllerHelper;
     this.openstackUser = openstackUser;
-    this.URLS = URLS;
+    this.PCI_URLS = PCI_URLS;
 
     this.projectId = $stateParams.projectId;
 
@@ -65,7 +67,7 @@ export default class CloudProjectOpenstackUsersRcloneModalCtrl {
     });
 
     this.rCloneFileGuide = this.CucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.CucControllerHelper.navigation.getConstant(_.get(this.URLS, 'guides.rCloneFile', ''))
+      loaderFunction: () => this.CucControllerHelper.navigation.getConstant(get(this.PCI_URLS, 'guides.rCloneFile', ''))
         .catch(error => this.cancel(error)),
     });
   }

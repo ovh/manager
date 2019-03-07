@@ -4,15 +4,21 @@ import '@uirouter/angularjs';
 import 'oclazyload';
 import 'ovh-ui-angular';
 
+import componentsProjectRights from '../components/project/rights';
+
 import add from './add';
 import billing from './billing';
+import compute from './compute';
 import details from './details';
 import onboarding from './onboarding';
+import openstack from './openstack';
 import rename from './rename';
+import storage from './storage';
 
+import controller from './controller';
 import template from './template.html';
 
-import './index.less';
+// TODO : import './index.less';
 
 const moduleName = 'ovhManagerPciProject';
 
@@ -20,13 +26,17 @@ angular
   .module(moduleName, [
     add,
     billing,
+    compute,
     details,
     'ui.router',
+    componentsProjectRights,
     'oc.lazyLoad',
     'oui',
     'ovhManagerCore',
     onboarding,
+    openstack,
     rename,
+    storage,
   ])
   .config(/* @ngInject */($stateProvider) => {
     $stateProvider
@@ -39,7 +49,7 @@ angular
         url: '/pci/project/{projectId}',
         abstract: true, // [don't touch] empty url goes to cloud-project.cloud-project-details
         template,
-        // controller: 'CloudProjectCtrl',
+        controller,
         controllerAs: 'CloudProjectCtrl',
         translations: {
           value: ['.', './billing'],

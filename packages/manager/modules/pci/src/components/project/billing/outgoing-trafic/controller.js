@@ -1,4 +1,5 @@
-import _ from 'lodash';
+import get from 'lodash/get';
+import includes from 'lodash/includes';
 
 export default class OutgoingTraficComponentCtrl {
   /* @ngInject */
@@ -42,12 +43,12 @@ export default class OutgoingTraficComponentCtrl {
   }
 
   isAPACRegion(region) {
-    return _.includes(this.apacRegions, region);
+    return includes(this.apacRegions, region);
   }
 
   getTrafficByRegion(regionByBandwidth) {
     if (this.isAPACRegion(regionByBandwidth.region)) {
-      const bandwidthUsedInGiB = _.get(regionByBandwidth, 'outgoingBandwidth.quantity.value', 0);
+      const bandwidthUsedInGiB = get(regionByBandwidth, 'outgoingBandwidth.quantity.value', 0);
       // convert GiB to GB
       const bandwidthUsedInGB = (
         this.CLOUD_UNIT_CONVERSION.GIBIBYTE_TO_BYTE * bandwidthUsedInGiB

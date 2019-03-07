@@ -1,5 +1,6 @@
 import angular from 'angular';
-import _ from 'lodash';
+import map from 'lodash/map';
+import set from 'lodash/set';
 
 export default /* @ngInject */ (
   CloudProjectComputeInfraVrackVmFactory,
@@ -58,7 +59,7 @@ export default /* @ngInject */ (
    *  Add a public vm into Vrack list
    */
   VrackFactory.prototype.addVmToPublicCloudList = function addVmToPublicCloudList(vm) {
-    _.set(vm, 'serviceName', this.serviceName); // Add projectId to VM
+    set(vm, 'serviceName', this.serviceName); // Add projectId to VM
     vm = checkVm(vm); // eslint-disable-line
     // Avoid conflict of adding an existing vm
     if (!this.publicCloud.get(vm)) {
@@ -83,7 +84,7 @@ export default /* @ngInject */ (
   VrackFactory.prototype.collapseAll = function collapseAll() {
     const items = this.publicCloud.getItems();
     angular.forEach(items, (vm) => {
-      _.set(vm, 'collapsed', true);
+      set(vm, 'collapsed', true);
     });
   };
 
@@ -93,7 +94,7 @@ export default /* @ngInject */ (
   VrackFactory.prototype.uncollapseAll = function uncollapseAll() {
     const items = this.publicCloud.getItems();
     angular.forEach(items, (vm) => {
-      _.set(vm, 'collapsed', false);
+      set(vm, 'collapsed', false);
     });
   };
 
@@ -103,7 +104,7 @@ export default /* @ngInject */ (
   VrackFactory.prototype.prepareToJson = function prepareToJson() {
     const self = this;
     return {
-      publicCloud: _.map(
+      publicCloud: map(
         this.publicCloud.sortedKeys,
         vmId => self.publicCloud.get(vmId).prepareToJson(),
       ),

@@ -1,7 +1,26 @@
+import angular from 'angular';
+import assign from 'lodash/assign';
+import bind from 'lodash/bind';
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import forEach from 'lodash/forEach';
+import get from 'lodash/get';
+import has from 'lodash/has';
+import head from 'lodash/head';
+import includes from 'lodash/includes';
+import isEmpty from 'lodash/isEmpty';
+import isNull from 'lodash/isNull';
+import last from 'lodash/last';
+import map from 'lodash/map';
+import set from 'lodash/set';
+import some from 'lodash/some';
+import sortBy from 'lodash/sortBy';
+import values from 'lodash/values';
+
 class PrivateNetworkListCtrl {
   constructor($window, $rootScope, $translate, $stateParams, $state, $q, $uibModal,
     CloudProjectComputeInfrastructurePrivateNetworkService, OvhApiCloudProjectNetworkPrivate,
-    OvhApiCloudProject, REDIRECT_URLS, CucCloudMessage, OvhApiMe, URLS, OvhApiVrack,
+    OvhApiCloudProject, PCI_REDIRECT_URLS, CucCloudMessage, OvhApiMe, PCI_URLS, OvhApiVrack,
     VrackSectionSidebarService, CucVrackService, CucCloudPoll, CucControllerHelper) {
     this.resources = {
       privateNetwork: OvhApiCloudProjectNetworkPrivate.v6(),
@@ -18,7 +37,7 @@ class PrivateNetworkListCtrl {
     this.$state = $state;
     this.$stateParams = $stateParams;
     this.User = OvhApiMe;
-    this.URLS = URLS;
+    this.PCI_URLS = PCI_URLS;
     this.CucCloudPoll = CucCloudPoll;
     this.VrackService = CucVrackService;
     this.CucControllerHelper = CucControllerHelper;
@@ -39,8 +58,8 @@ class PrivateNetworkListCtrl {
         get: false,
       },
     };
-    this.urls = {
-      vrack: REDIRECT_URLS.vRack,
+    this.PCI_URLS = {
+      vrack: PCI_REDIRECT_URLS.vRack,
     };
     this.models = {
       vrack: null,
@@ -81,11 +100,11 @@ class PrivateNetworkListCtrl {
       .then(() => this.fetchVrack())
       .then(() => this.User.v6().get().$promise)
       .then((user) => {
-        this.orderUrl = _.get(this.URLS.website_order, `vrack.${user.ovhSubsidiary}`);
+        this.orderUrl = get(this.PCI_URLS.website_order, `vrack.${user.ovhSubsidiary}`);
       })
       .then(() => this.VrackService.listOperations(this.$stateParams.projectId))
       .then((result) => {
-        const [status] = _.filter(result, f => f.status !== 'completed');
+        const [status] = filter(result, f => f.status !== 'completed');
         if (status) {
           this.loaders.vrack.link = true;
           this.pollOperationStatus(status.id);
@@ -185,7 +204,7 @@ class PrivateNetworkListCtrl {
           this.loaders.vrack.progress = res.progress;
           return res;
         }),
-      stopCondition: task => !task || _.includes(['completed', 'error'], task.status),
+      stopCondition: task => !task || includes(['completed', 'error'], task.status),
     });
 
     return this.poller;
@@ -230,7 +249,7 @@ class PrivateNetworkListCtrl {
     this.poller = this.CucCloudPoll.poll({
       item: taskToPoll,
       pollFunction: task => this.VrackService.getTask(vrack, task.id),
-      stopCondition: task => !task || _.includes(['done', 'error'], task.status),
+      stopCondition: task => !task || includes(['done', 'error'], task.status),
     });
 
     return this.poller;
@@ -269,15 +288,18 @@ class PrivateNetworkListCtrl {
 
   createPrivateNetworks(event, args) {
     this.hideDialog();
-    const subnets = _.chain(args.subnets)
-      .values()
-      .filter(subnet => _.contains(args.privateNetwork.regions, subnet.region))
-      .map(subnet => _.assign(subnet, { dhcp: args.isDHCPEnabled, network: args.globalNetwork }))
-      .value();
 
-    const onNetworkCreated = function (network) {
-      const promises = _.map(subnets, subnet => this.service
-        .saveSubnet(args.projectId, network.id, subnet).$promise, this);
+    const subnets = map(
+      filter(
+        values(args.subnets),
+        subnet => includes(args.privateNetwork.regions, subnet.region),
+      ),
+      subnet => assign(subnet, { dhcp: args.isDHCPEnabled, network: args.globalNetwork }),
+    );
+
+    const onNetworkCreated = function onNetworkCreated(network) {
+      const promises = map(subnets, bind(subnet => this.service
+        .saveSubnet(args.projectId, network.id, subnet).$promise, this));
       return this.$q.all(promises).then(() => this.fetchPrivateNetworks());
     }.bind(this);
 
@@ -295,9 +317,9 @@ class PrivateNetworkListCtrl {
     }).$promise
       .then((networks) => {
         this.collections.privateNetworks = networks;
-        _.forEach(this.collections.privateNetworks, (network) => {
+        forEach(this.collections.privateNetworks, (network) => {
           if (network.id) {
-            _.set(network, 'shortVlanId', _.last(network.id.split('_')));
+            set(network, 'shortVlanId', last(network.id.split('_')));
           }
         });
       }).catch(() => {
@@ -307,28 +329,28 @@ class PrivateNetworkListCtrl {
   }
 
   getPrivateNetworks() {
-    return _.sortBy(this.collections.privateNetworks, 'vlanId');
+    return sortBy(this.collections.privateNetworks, 'vlanId');
   }
 
   getVrackName() {
-    if (_.has(this.models.vrack, 'name') && !_.isEmpty(this.models.vrack.name)) {
+    if (has(this.models.vrack, 'name') && !isEmpty(this.models.vrack.name)) {
       return this.models.vrack.name;
-    } if (_.has(this.models.vrack, 'id') && !_.isEmpty(this.models.vrack.id)) {
+    } if (has(this.models.vrack, 'id') && !isEmpty(this.models.vrack.id)) {
       return this.models.vrack.id;
     }
     return this.$translate.instant('cpci_private_network_list_vrack_unnamed');
   }
 
   getVrackId() {
-    if (_.has(this.models.vrack, 'id') && !_.isEmpty(this.models.vrack.id)) {
+    if (has(this.models.vrack, 'id') && !isEmpty(this.models.vrack.id)) {
       return this.$q.when(this.models.vrack.id);
     }
 
-    if (_.isEmpty(this.models.vrack.name)) {
+    if (isEmpty(this.models.vrack.name)) {
       return this.fetchPrivateNetworks()
         .then(() => {
-          if (_.any(this.collections.privateNetworks)) {
-            return _.first(_.first(this.collections.privateNetworks).id.split('_'));
+          if (some(this.collections.privateNetworks)) {
+            return head(head(this.collections.privateNetworks).id.split('_'));
           }
           return this.$q.when(null);
         });
@@ -336,8 +358,8 @@ class PrivateNetworkListCtrl {
 
     return this.resources.aapi.query().$promise
       .then((vracks) => {
-        const vrack = _.find(vracks, { name: this.models.vrack.name });
-        return _.get(vrack, 'id', null);
+        const vrack = find(vracks, { name: this.models.vrack.name });
+        return get(vrack, 'id', null);
       })
       .catch(() => null);
   }
@@ -347,11 +369,11 @@ class PrivateNetworkListCtrl {
   }
 
   canGotoVrack() {
-    return this.hasVrack() && !_.isNull(this.models.vrack.id);
+    return this.hasVrack() && !isNull(this.models.vrack.id);
   }
 
   hasVrack() {
-    return this.loaders.vrack.get === false && !_.isNull(this.models.vrack);
+    return this.loaders.vrack.get === false && !isNull(this.models.vrack);
   }
 
   showDialog() {
@@ -372,10 +394,10 @@ class PrivateNetworkListCtrl {
   }
 
   hasPendingLoaders() {
-    return _.some(this.loaders, 'query', true)
-      || _.some(this.loaders, 'get', true)
-      || _.some(this.loaders, 'link', true)
-      || _.some(this.loaders, 'unlink', true)
+    return some(this.loaders, bind('query', true))
+      || some(this.loaders, bind('get', true))
+      || some(this.loaders, bind('link', true))
+      || some(this.loaders, bind('unlink', true))
       || this.isVrackCreating();
   }
 

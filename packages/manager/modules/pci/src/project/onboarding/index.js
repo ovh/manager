@@ -1,17 +1,17 @@
 import angular from 'angular';
-import '@ovh-ux/ng-ovh-user-pref';
+// import '@ovh-ux/ng-ovh-user-pref';
 import '@uirouter/angularjs';
 import 'angular-ui-bootstrap';
 
 import controller from './controller';
 
-import './index.less';
+// TODO : import './index.less';
 
 const moduleName = 'ovhManagerPciProjectOnboarding';
 
 angular
   .module(moduleName, [
-    'ngOvhUserPref',
+    // 'ngOvhUserPref',
     'ui.bootstrap',
     'ui.router',
   ])

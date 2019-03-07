@@ -1,6 +1,18 @@
 /* eslint-disable no-param-reassign */
 import angular from 'angular';
-import _ from 'lodash';
+import assign from 'lodash/assign';
+import compact from 'lodash/compact';
+import every from 'lodash/every';
+import forEach from 'lodash/forEach';
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import findIndex from 'lodash/findIndex';
+import last from 'lodash/last';
+import map from 'lodash/map';
+import padStart from 'lodash/padStart';
+import size from 'lodash/size';
+import sum from 'lodash/sum';
+import times from 'lodash/times';
 
 import addObjectTemplate from './add-object/template.html';
 import addObjectController from './add-object/controller';
@@ -96,7 +108,7 @@ export default /* @ngInject */ function (
     const hours = Math.floor(delay / 3600);
     const minutes = Math.floor((delay - hours * 3600) / 60);
     const seconds = delay - hours * 3600 - minutes * 60;
-    const delayText = _.map([hours, minutes, seconds], time => _.padLeft(time, 2, '0')).join(':');
+    const delayText = map([hours, minutes, seconds], time => padStart(time, 2, '0')).join(':');
     return $translate.instant('storage_availability_unsealing', { delay: delayText });
   }
 
@@ -154,7 +166,7 @@ export default /* @ngInject */ function (
   function getObject(name) {
     return CloudStorageContainer.list($scope.projectId, $stateParams.storageId)
       .then((details) => {
-        const file = _.find(details.objects, { name });
+        const file = find(details.objects, { name });
         file.region = details.region;
         return file;
       });
@@ -163,7 +175,7 @@ export default /* @ngInject */ function (
   function deleteObject(elem) {
     function createDeleteTask(element) {
       return function deleteTask() {
-        const index = _.findIndex(
+        const index = findIndex(
           $scope.objects,
           {
             name: element.name,
@@ -294,7 +306,7 @@ export default /* @ngInject */ function (
       .then((metaData) => {
         storageDetails.shortcut = metaData.shortcut;
 
-        _.each(storageDetails.objects, (file) => {
+        forEach(storageDetails.objects, (file) => {
           setFileStateText(file);
         });
 
@@ -302,10 +314,10 @@ export default /* @ngInject */ function (
         $scope.storage = storageDetails;
 
         if (storageDetails.objects.length === options.limit) {
-          $scope.getObjectList(encodeURIComponent(_.last($scope.objects).name));
+          $scope.getObjectList(encodeURIComponent(last($scope.objects).name));
         } else {
           const { accessCache } = CloudStorageContainersConfiguration;
-          const endpoint = _.find(
+          const endpoint = find(
             accessCache.get($scope.projectId).endpoints,
             {
               region: $scope.storage.region,
@@ -345,7 +357,7 @@ export default /* @ngInject */ function (
   }
 
   $scope.computeStorageSize = function computeStorageSize() {
-    return _.sum(_.map($scope.objects, 'size'));
+    return sum(map($scope.objects, 'size'));
   };
 
   $scope.openDNSHelp = function openDNSHelp() {
@@ -382,7 +394,7 @@ export default /* @ngInject */ function (
     if (file.retrievalState === CLOUD_PCA_FILE_STATE.SEALED) {
       const index = locationOf(file.name, $scope.objects);
       if (index > -1) {
-        $scope.objects[index] = _.assign(file, { sealingStateLoading: true });
+        $scope.objects[index] = assign(file, { sealingStateLoading: true });
       }
     }
     CloudStorageContainer.download($scope.projectId, $stateParams.storageId, file)
@@ -398,7 +410,7 @@ export default /* @ngInject */ function (
 
         return getObject(file.name)
           .then((data) => {
-            $scope.objects[index] = _.assign(file, data);
+            $scope.objects[index] = assign(file, data);
             return $scope.objects[index];
           })
           .then(setFileStateText);
@@ -411,7 +423,7 @@ export default /* @ngInject */ function (
   $scope.delete = function deleteObjectModal(element) {
     $uibModal.open({
       template: deleteObjectTemplate,
-      controller: deleteObjectController
+      controller: deleteObjectController,
       controllerAs: 'RA.storage.deleteObject',
       resolve: {
         params() {
@@ -425,15 +437,15 @@ export default /* @ngInject */ function (
   };
 
   $scope.deleteAll = function deleteAll() {
-    const toDelete = _.compact(
-      _.map(
+    const toDelete = compact(
+      map(
         $scope.model.selected,
         (selected, index) => (selected ? $scope.files[index] : null),
       ),
     );
     $uibModal.open({
       template: deleteObjectTemplate,
-      controller: deleteObjectController
+      controller: deleteObjectController,
       controllerAs: 'RA.storage.deleteObject',
       resolve: {
         params() {
@@ -441,7 +453,7 @@ export default /* @ngInject */ function (
         },
       },
     }).result.then(() => {
-      _.forEach(toDelete, (object) => {
+      forEach(toDelete, (object) => {
         deleteObject(object);
       });
       resetSelectionModel();
@@ -449,12 +461,12 @@ export default /* @ngInject */ function (
   };
 
   $scope.selectAll = function selectAll() {
-    $scope.model.selected = _.times($scope.files.length, () => $scope.model.allSelected);
+    $scope.model.selected = times($scope.files.length, () => $scope.model.allSelected);
   };
 
   $scope.select = function select() {
     $scope.model.allSelected = $scope.model.selected.length === $scope.files.length
-      && _.all($scope.model.selected, selected => selected);
+      && every($scope.model.selected, selected => selected);
   };
 
   $scope.manySelected = function manySelected() {
@@ -462,7 +474,7 @@ export default /* @ngInject */ function (
   };
 
   $scope.selectionCount = function selectionCount() {
-    return _.size(_.filter($scope.model.selected, value => value));
+    return size(filter($scope.model.selected, value => value));
   };
 
   $scope.$on('delete_object', (event, data) => {

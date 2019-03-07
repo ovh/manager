@@ -1,12 +1,17 @@
+import head from 'lodash/head';
+import indexOf from 'lodash/indexOf';
+import keys from 'lodash/keys';
+import pickBy from 'lodash/pickBy';
+
 angular.module('managerApp')
-  .controller('IpDropdownComponentCtrl', function ($translate, $window, REDIRECT_URLS, OvhApiIp, CucCloudMessage, CLOUD_GEOLOCALISATION) {
+  .controller('IpDropdownComponentCtrl', function ($translate, $window, PCI_REDIRECT_URLS, OvhApiIp, CucCloudMessage, CLOUD_GEOLOCALISATION) {
     const self = this;
 
     self.failoverAttach = function (ip) {
       self.onFailoverAttach({ ip });
     };
 
-    const ipActionUrlWithSession = REDIRECT_URLS.ipAction;
+    const ipActionUrlWithSession = PCI_REDIRECT_URLS.ipAction;
     self.ipActionRedirections = {
       firewall: ipActionUrlWithSession.replace('{action}', 'firewall'),
       mitigation: ipActionUrlWithSession.replace('{action}', 'mitigation'),
@@ -15,7 +20,7 @@ angular.module('managerApp')
 
     self.ipActionRedirect = function (action, ip) {
       let url = null;
-      const ipActionUrlWithSession = REDIRECT_URLS.ipAction; // eslint-disable-line
+      const ipActionUrlWithSession = PCI_REDIRECT_URLS.ipAction; // eslint-disable-line
       switch (action) {
         case 'reverse':
           if (self.isIpUserSameContinent(ip)) {
@@ -42,9 +47,9 @@ angular.module('managerApp')
     self.getUserContinent = function () {
       let continent = null;
       if (self.user) {
-        continent = _.first(_.keys(_.pick(
+        continent = head(keys(pickBy(
           CLOUD_GEOLOCALISATION.user,
-          region => _.indexOf(region, self.user.ovhSubsidiary) >= 0,
+          region => indexOf(region, self.user.ovhSubsidiary) >= 0,
         )));
       }
       return continent;
@@ -59,13 +64,13 @@ angular.module('managerApp')
           break;
         case 'public':
           // in case of public IP we get the location from the linked vm
-          linkedVmId = _.first(ip.routedTo);
+          linkedVmId = head(ip.routedTo);
           if (linkedVmId) {
             const linkedVm = self.infra.vrack.publicCloud.get(linkedVmId);
             if (linkedVm) {
-              continent = _.first(_.keys(_.pick(
+              continent = head(keys(pickBy(
                 CLOUD_GEOLOCALISATION.instance,
-                region => _.indexOf(region, linkedVm.region) >= 0,
+                region => indexOf(region, linkedVm.region) >= 0,
               )));
             }
           }

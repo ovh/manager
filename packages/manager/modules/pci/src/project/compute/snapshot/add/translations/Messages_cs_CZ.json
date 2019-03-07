@@ -10,5 +10,5 @@
  "cpc_snapshot_add_success": "Snapshot {{snapshotname}} se vytváří a bude dostupný během několika minut.",
  "cpc_snapshot_add_availibility": "Váš server bude během několika sekund pozastaven, výkon čtení/zápis může být ovlivněn až do dokončení zálohování.",
  "cpc_snapshot_add_error": "Chyba, nedošlo k vytvoření snapshotu tohoto serveru.",
- "cpc_snapshot_add_total": "({{size | bytes:2}}, tedy zhruba {{price}} bez DPH/měs.)"
+ "cpc_snapshot_add_total": "({{size | cucBytes:2}}, tedy zhruba {{price}} bez DPH/měs.)"
 }

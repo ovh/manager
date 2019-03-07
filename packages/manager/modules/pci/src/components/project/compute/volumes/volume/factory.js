@@ -1,5 +1,6 @@
 import angular from 'angular';
-import _ from 'lodash';
+import flatten from 'lodash/flatten';
+import moment from 'moment';
 
 export default /* @ngInject */ (
   $q,
@@ -45,7 +46,7 @@ export default /* @ngInject */ (
   VolumeFactory.prototype.getCustomOptions = function getCustomOptions(options) {
     return angular.extend(options, {
       attachedTo: options.attachedTo
-        ? _.flatten([options.attachedTo])
+        ? flatten([options.attachedTo])
         : [], // Ensure attachedTo is always an array
     });
   };

@@ -5,7 +5,7 @@
            data-ng-if="!CloudProjectComputeVolumeCtrl.loaders.table.volume && CloudProjectComputeVolumeCtrl.table.volume.length"
            data-translate="cpc_volume_total_size_price"
            data-translate-values="{
-                capacity : (CloudProjectComputeVolumeCtrl.totalResume.capacity * CloudProjectComputeVolumeCtrl.GIBIBYTE_TO_BYTE | bytes:2:'true'),
+                capacity : (CloudProjectComputeVolumeCtrl.totalResume.capacity * CloudProjectComputeVolumeCtrl.GIBIBYTE_TO_BYTE | cucBytes:2:'true'),
                 total : CloudProjectComputeVolumeCtrl.totalResume.price.text
            }">
         </p>
@@ -224,7 +224,7 @@
                     <td data-title="{{::'cpc_volume_size' | translate}}" class="oui-table__cell">
                         <span data-ng-class="{'opacity2-leave' : CloudProjectComputeVolumeCtrl.toggle.volumeDeleteId === volume.id,
                                             'opacity2-enter' : CloudProjectComputeVolumeCtrl.toggle.volumeDeleteId !== volume.id}"
-                             data-ng-bind=":: (volume.size * CloudProjectComputeVolumeCtrl.GIBIBYTE_TO_BYTE) | bytes:2:'true'">
+                             data-ng-bind=":: (volume.size * CloudProjectComputeVolumeCtrl.GIBIBYTE_TO_BYTE) | cucBytes:2:'true'">
                         </span>
                     </td>
                     <td data-title="{{::'cpc_volume_monthly_price' | translate}}" class="oui-table__cell">

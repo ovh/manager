@@ -1,3 +1,7 @@
+import filter from 'lodash/filter';
+import findLast from 'lodash/findLast';
+import get from 'lodash/get';
+
 (() => {
   class CloudProjectComputeInfrastructureVirtualmachineRescueCtrl {
     constructor(
@@ -46,7 +50,7 @@
               vmName: this.data.vm.name,
               user,
               ip: this.data.vm.ipAddresses[0].ip,
-              pwd: _.get(result, 'adminPassword', ''),
+              pwd: get(result, 'adminPassword', ''),
             }),
           });
         })
@@ -73,12 +77,12 @@
         flavorType: this.data.vm.type,
         region: this.data.vm.region,
       }).$promise.then((result) => {
-        this.data.images = _.filter(result, {
+        this.data.images = filter(result, {
           visibility: 'public',
           type: this.data.vm.image ? this.data.vm.image.type : 'linux',
         });
         if (this.constructor.isNonRescuableWithDefaultImage(this.data.vm)) {
-          this.data.selectedImage = _.findLast(this.data.images, {
+          this.data.selectedImage = findLast(this.data.images, {
             nameGeneric: this.data.vm.image.nameGeneric,
           });
         }

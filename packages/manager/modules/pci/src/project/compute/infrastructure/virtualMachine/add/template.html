@@ -276,7 +276,7 @@
                                         <span class="d-flex flex-wrap">
                                             <span data-translate="cpcivm_add_step3_label_ram"></span>
                                             <span class="ml-auto"
-                                                  data-ng-bind="flavor.ram | bytes:0:false:'MB'"></span>
+                                                  data-ng-bind="flavor.ram | cucBytes:0:false:'MB'"></span>
                                         </span>
                                         <span class="d-flex flex-wrap">
                                             <span data-translate="cpcivm_add_step3_label_core"></span>
@@ -287,7 +287,7 @@
                                         <span class="d-flex flex-wrap">
                                             <span data-translate="cpcivm_add_step3_label_disk"></span>
                                             <span class="ml-auto"
-                                                  data-ng-bind="(flavor.disk | bytes:2:false:'GB') + ' ' + (flavor.diskType | uppercase)"></span>
+                                                  data-ng-bind="(flavor.disk | cucBytes:2:false:'GB') + ' ' + (flavor.diskType | uppercase)"></span>
                                         </span>
                                         <span class="d-flex flex-wrap">
                                             <span data-translate="cpcivm_add_step3_label_bandwidth"></span>
@@ -353,7 +353,7 @@
                             <span class="d-flex flex-wrap">
                                 <span data-translate="cpcivm_add_step3_label_ram"></span>
                                 <span class="ml-auto"
-                                      data-ng-bind="$ctrl.model.flavor.ram | bytes:0:false:'MB'"></span>
+                                      data-ng-bind="$ctrl.model.flavor.ram | cucBytes:0:false:'MB'"></span>
                             </span>
                             <span class="d-flex flex-wrap">
                                 <span data-translate="cpcivm_add_step3_label_core"></span>
@@ -364,7 +364,7 @@
                             <span class="d-flex flex-wrap">
                                 <span data-translate="cpcivm_add_step3_label_disk"></span>
                                 <span class="ml-auto"
-                                      data-ng-bind="($ctrl.model.flavor.disk | bytes:2:false:'GB') + ' ' + ($ctrl.model.flavor.diskType | uppercase)"></span>
+                                      data-ng-bind="($ctrl.model.flavor.disk | cucBytes:2:false:'GB') + ' ' + ($ctrl.model.flavor.diskType | uppercase)"></span>
                             </span>
                             <span class="d-flex flex-wrap">
                                 <span data-translate="cpcivm_add_step3_label_bandwidth"></span>

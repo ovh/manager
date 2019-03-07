@@ -1,3 +1,8 @@
+import find from 'lodash/find';
+import map from 'lodash/map';
+
+import moment from 'moment';
+
 export default /* @ngInject */ function CloudProjectBillingHistoryDetailsCtrl(
   $state,
   $q,
@@ -10,14 +15,14 @@ export default /* @ngInject */ function CloudProjectBillingHistoryDetailsCtrl(
   OvhApiCloudProjectUsageCurrent,
   OvhApiCloudProject,
   OvhApiMe,
-  REDIRECT_URLS,
+  PCI_REDIRECT_URLS,
 ) {
   const self = this;
   self.year = null;
   self.month = null;
   self.data = {};
   self.monthBilling = null;
-  self.billingUrl = REDIRECT_URLS.billing;
+  self.billingUrl = PCI_REDIRECT_URLS.billing;
 
   self.getHourlyBillingDateInfo = function getHourlyBillingDateInfo() {
     const prev = moment(self.monthBilling).subtract(1, 'month');
@@ -35,7 +40,7 @@ export default /* @ngInject */ function CloudProjectBillingHistoryDetailsCtrl(
   };
 
   function getConsumptionDetails(periods) {
-    const detailPromises = _.map(periods, period => OvhApiCloudProjectUsageHistory.v6().get({
+    const detailPromises = map(periods, period => OvhApiCloudProjectUsageHistory.v6().get({
       serviceName: $stateParams.projectId,
       usageId: period.id,
     }).$promise);
@@ -48,10 +53,10 @@ export default /* @ngInject */ function CloudProjectBillingHistoryDetailsCtrl(
           monthlyDetails = OvhApiCloudProjectUsageCurrent.v6()
             .get({ serviceName: $stateParams.projectId }).$promise;
         } else {
-          monthlyDetails = _.find(periodDetails, detail => moment.utc(detail.period.from).isSame(self.monthBilling, 'month'));
+          monthlyDetails = find(periodDetails, detail => moment.utc(detail.period.from).isSame(self.monthBilling, 'month'));
         }
 
-        const hourlyDetails = _.find(
+        const hourlyDetails = find(
           periodDetails,
           detail => moment.utc(detail.period.from).isSame(self.previousMonth, 'month'),
         );

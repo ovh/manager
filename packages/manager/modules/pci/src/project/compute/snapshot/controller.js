@@ -1,5 +1,13 @@
 import angular from 'angular';
-import _ from 'lodash';
+import assign from 'lodash/assign';
+import every from 'lodash/every';
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import findIndex from 'lodash/findIndex';
+import forEach from 'lodash/forEach';
+import map from 'lodash/map';
+import set from 'lodash/set';
+import moment from 'moment';
 
 import deleteController from './delete/controller';
 import deleteTemplate from './delete/template.html';
@@ -110,7 +118,7 @@ export default function CloudProjectComputeSnapshotCtrl(
     }
     angular.forEach(self.table.snapshot, (snapshot) => {
       totalSize += snapshot.size;
-      _.set(snapshot, 'price', getMonthlyPrice(snapshot.size, snapshot.planCode));
+      set(snapshot, 'price', getMonthlyPrice(snapshot.size, snapshot.planCode));
       if (snapshot.price) {
         totalPrice += snapshot.price.value;
       }
@@ -132,7 +140,7 @@ export default function CloudProjectComputeSnapshotCtrl(
   };
 
   $scope.$watch('CloudProjectComputeSnapshotCtrl.table.snapshotFilterPage', (pageSnapshots) => {
-    self.table.snapshotFilterCheckboxPage = _.filter(pageSnapshots, snapshot => (snapshot.status === 'active' || snapshot.status === 'available') && !snapshot.isInstalledOnVm);
+    self.table.snapshotFilterCheckboxPage = filter(pageSnapshots, snapshot => (snapshot.status === 'active' || snapshot.status === 'available') && !snapshot.isInstalledOnVm);
   });
 
   $scope.$watch('CloudProjectComputeSnapshotCtrl.table.selected', () => {
@@ -140,7 +148,7 @@ export default function CloudProjectComputeSnapshotCtrl(
     self.toggle.openDeleteMultiConfirm = false;
     if (self.table.autoSelected.length) {
       angular.forEach(self.table.autoSelected, (snapshotId) => {
-        const isInSnapshotTable = _.findIndex(
+        const isInSnapshotTable = findIndex(
           self.table.snapshot,
           snapshot => snapshot.id === snapshotId,
         );
@@ -167,7 +175,7 @@ export default function CloudProjectComputeSnapshotCtrl(
   function filterSnapshot() {
     if ($scope.searchSnapshotForm && $scope.searchSnapshotForm.$valid) {
       let tab = self.table.snapshot;
-      tab = _.filter(self.table.snapshot, (snapshot) => {
+      tab = filter(self.table.snapshot, (snapshot) => {
         let result = true;
 
         if (self.search.name && snapshot.name) {
@@ -188,7 +196,7 @@ export default function CloudProjectComputeSnapshotCtrl(
       });
 
       self.table.snapshotFilter = tab;
-      self.table.snapshotFilterCheckbox = _.filter(
+      self.table.snapshotFilterCheckbox = filter(
         tab,
         snapshot => (
           snapshot.status === 'active' || snapshot.status === 'available'
@@ -234,8 +242,8 @@ export default function CloudProjectComputeSnapshotCtrl(
 
   function snapshotStateChange(oldSnapshots, newSnapshots) {
     let stateChanged = false;
-    _.forEach(newSnapshots, (snapshot) => {
-      const old = _.find(oldSnapshots, { id: snapshot.id });
+    forEach(newSnapshots, (snapshot) => {
+      const old = find(oldSnapshots, { id: snapshot.id });
       stateChanged = stateChanged || !old || old.status !== snapshot.status;
     });
     return stateChanged;
@@ -243,16 +251,16 @@ export default function CloudProjectComputeSnapshotCtrl(
 
   // transform snapshot type > snapshot is an image custom if this present in image as private
   function checkImagesCustom(snapshots) {
-    return _.map(snapshots, snapshot => _.assign(snapshot, {
-      type: (_.find(images, { id: snapshot.id, visibility: 'private' }) ? 'image' : '') + snapshot.type,
+    return map(snapshots, snapshot => assign(snapshot, {
+      type: (find(images, { id: snapshot.id, visibility: 'private' }) ? 'image' : '') + snapshot.type,
     }));
   }
 
   function checkImageInstalled() {
     angular.forEach(self.table.snapshot, (snapshot) => {
-      _.set(snapshot, 'isInstalledOnVm', !!_.find(instances, { imageId: snapshot.id }));
-      _.set(snapshot, 'installedVm', _.filter(instances, { imageId: snapshot.id }));
-      _.set(snapshot, 'installedVmNames', _.pluck(snapshot.installedVm, 'name'));
+      set(snapshot, 'isInstalledOnVm', !!find(instances, { imageId: snapshot.id }));
+      set(snapshot, 'installedVm', filter(instances, { imageId: snapshot.id }));
+      set(snapshot, 'installedVmNames', map(snapshot.installedVm, 'name'));
     });
   }
 
@@ -261,34 +269,34 @@ export default function CloudProjectComputeSnapshotCtrl(
       null,
       {
         successRule(snapshots) {
-          return _.every(snapshots, snapshot => snapshot.status === 'active');
+          return every(snapshots, snapshot => snapshot.status === 'active');
         },
         namespace: 'cloud.snapshots',
         notifyOnError: false,
       }).then((snapshotList) => {
       OvhApiCloudProjectSnapshot.v6().resetQueryCache();
       // get volume snapshots and concat new state instance snapshots
-      const volumeSnapshots = _.filter(self.table.snapshot, { type: 'volume' });
+      const volumeSnapshots = filter(self.table.snapshot, { type: 'volume' });
       self.table.snapshot = snapshotList.concat(volumeSnapshots);
       checkImageInstalled();
       filterSnapshot(); // orderBy is call by filterSnapshot();
       setPrice();
     }, (err) => {
       if (err && err.status) {
-        self.table.snapshot = _.filter(self.table.snapshot, { type: 'volume' });
+        self.table.snapshot = filter(self.table.snapshot, { type: 'volume' });
         CucCloudMessage.error([
           $translate.instant('cpc_snapshot_error'),
           (err.data && err.data.message) || '',
         ].join(' '));
       }
     }, (snapshotList) => {
-      const currentImageSnapshots = _.filter(self.table.snapshot, snapshot => snapshot.type !== 'volume');
+      const currentImageSnapshots = filter(self.table.snapshot, snapshot => snapshot.type !== 'volume');
       if (currentImageSnapshots.length !== snapshotList.length || snapshotStateChange(
         self.table.snapshot,
         snapshotList,
       )) {
         OvhApiCloudProjectSnapshot.v6().resetQueryCache();
-        const volumeSnapshots = _.filter(self.table.snapshot, { type: 'volume' });
+        const volumeSnapshots = filter(self.table.snapshot, { type: 'volume' });
         self.table.snapshot = snapshotList.concat(volumeSnapshots);
         checkImageInstalled();
         filterSnapshot(); // orderBy is call by filterSnapshot();
@@ -298,7 +306,7 @@ export default function CloudProjectComputeSnapshotCtrl(
   }
 
   function mapVolumeSnapshots(snapshots) {
-    return _.map(snapshots, volumeSnapshot => _.assign(volumeSnapshot, {
+    return map(snapshots, volumeSnapshot => assign(volumeSnapshot, {
       visibility: 'private',
       size: volumeSnapshot.size,
       type: 'volume',
@@ -310,31 +318,31 @@ export default function CloudProjectComputeSnapshotCtrl(
       null,
       {
         successRule(snapshots) {
-          return _.every(snapshots, snapshot => snapshot.status === 'available');
+          return every(snapshots, snapshot => snapshot.status === 'available');
         },
         namespace: 'cloud.snapshots',
         notifyOnError: false,
       }).then((snapshotList) => {
       OvhApiCloudProjectVolumeSnapshot.v6().resetAllCache();
       // get instance snapshots and concat new state volume snapshots
-      const imageSnapshots = _.filter(self.table.snapshot, snapshot => snapshot.type !== 'volume');
+      const imageSnapshots = filter(self.table.snapshot, snapshot => snapshot.type !== 'volume');
       const snapshots = checkImagesCustom(snapshotList);
       self.table.snapshot = imageSnapshots.concat(mapVolumeSnapshots(snapshots));
       filterSnapshot(); // orderBy is call by filterSnapshot();
       setPrice();
     }, (err) => {
       if (err && err.status) {
-        self.table.snapshot = _.filter(self.table.snapshot, snapshot => snapshot.type !== 'volume');
+        self.table.snapshot = filter(self.table.snapshot, snapshot => snapshot.type !== 'volume');
         CucCloudMessage.error([$translate.instant('cpc_snapshot_error'), (err.data && err.data.message) || ''].join(' '));
       }
     }, (snapshotList) => {
-      const currentVolumeSnapshots = _.filter(self.table.snapshot, { type: 'volume' });
+      const currentVolumeSnapshots = filter(self.table.snapshot, { type: 'volume' });
       if (
         currentVolumeSnapshots.length !== snapshotList.length
         || snapshotStateChange(self.table.snapshot, snapshotList)
       ) {
         OvhApiCloudProjectVolumeSnapshot.v6().resetAllCache();
-        const imageSnapshots = _.filter(self.table.snapshot, snapshot => snapshot.type !== 'volume');
+        const imageSnapshots = filter(self.table.snapshot, snapshot => snapshot.type !== 'volume');
         const snapshots = checkImagesCustom(snapshotList);
         self.table.snapshot = imageSnapshots.concat(mapVolumeSnapshots(snapshots));
         filterSnapshot(); // orderBy is call by filterSnapshot();
@@ -403,13 +411,13 @@ export default function CloudProjectComputeSnapshotCtrl(
         self.table.snapshot = snapshots.concat(volumes);
         checkImageInstalled();
         filterSnapshot(); // orderBy is call by filterSnapshot();
-        const instanceSnapshotsToPoll = _.filter(
+        const instanceSnapshotsToPoll = filter(
           self.table.snapshot,
           snapshot => snapshot.type !== 'volume' && snapshot.status !== 'active',
         );
 
 
-        const volumeSnapshotsToPoll = _.filter(
+        const volumeSnapshotsToPoll = filter(
           self.table.snapshot,
           snapshot => snapshot.type === 'volume' && snapshot.status !== 'available',
         );
