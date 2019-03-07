@@ -22,8 +22,8 @@ import navbar from './navbar';
 
 import '@ovh-ux/ng-ovh-apiv7';
 import 'angular-ui-bootstrap';
-import 'at-internet-ui-router-plugin';
-import 'ng-at-internet';
+import '@ovh-ux/ng-at-internet';
+import '@ovh-ux/ng-at-internet-ui-router-plugin';
 import 'ovh-ui-angular';
 
 import 'ovh-ui-kit/dist/oui.css';
@@ -39,7 +39,8 @@ angular
     core,
     freefax,
     navbar,
-    'ng-at-internet',
+    'ngAtInternet',
+    'ngAtInternetUiRouterPlugin',
     ngAria,
     ngMessages,
     ngSanitize,

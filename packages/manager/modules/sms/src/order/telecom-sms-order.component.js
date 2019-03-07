@@ -1,10 +1,10 @@
 import angular from 'angular';
+import '@ovh-ux/ng-at-internet';
 import '@ovh-ux/manager-core';
 import '@ovh-ux/manager-telecom-styles';
 import '@ovh-ux/ng-ovh-contracts';
 import '@ovh-ux/ng-ovh-telecom-universe-components';
 import '@uirouter/angularjs';
-import 'ng-at-internet';
 import 'ovh-api-services';
 
 import 'ovh-ui-kit/dist/oui.css';
@@ -23,7 +23,7 @@ const moduleName = 'ovhManagerSmsOrderComponent';
 angular
   .module(moduleName, [
     'ui.router',
-    'ng-at-internet',
+    'ngAtInternet',
     'ngOvhContracts',
     'ovh-api-services',
     'ovhManagerCore',

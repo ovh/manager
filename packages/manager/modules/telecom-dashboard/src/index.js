@@ -1,7 +1,7 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
-import 'ng-at-internet';
-import 'at-internet-ui-router-plugin';
+import '@ovh-ux/ng-at-internet';
+import '@ovh-ux/ng-at-internet-ui-router-plugin';
 import '@ovh-ux/ng-uirouter-title';
 import '@ovh-ux/manager-core';
 import '@ovh-ux/ng-ovh-telecom-universe-components';
@@ -26,8 +26,8 @@ const moduleName = 'ovhManagerTelecomDashboard';
 
 angular
   .module(moduleName, [
-    'atInternetUiRouterPlugin',
-    'ng-at-internet',
+    'ngAtInternet',
+    'ngAtInternetUiRouterPlugin',
     'ngUirouterTitle',
     'ovhManagerCore',
     'ngOvhTelecomUniverseComponents',

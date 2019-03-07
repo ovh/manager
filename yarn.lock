@@ -1604,6 +1604,20 @@
     request "^2.88.0"
     webpack-dev-server "^3.1.9"
 
+"@ovh-ux/ng-at-internet-ui-router-plugin@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-at-internet-ui-router-plugin/-/ng-at-internet-ui-router-plugin-2.0.0.tgz#ca1d5ee1cd9c513e63abcc1470b47114495714dc"
+  integrity sha512-AgZ9MOGcGcpLGKloaw+onAddNx8LvSDDevK7hNOuWyAtLBdkPf9PSGk79N6mhoZEO9/1cYrTwuwaOL0/qPBamA==
+  dependencies:
+    lodash "^4.17.11"
+
+"@ovh-ux/ng-at-internet@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-at-internet/-/ng-at-internet-4.0.0.tgz#8a703d7aa818dc6ca96157b2faf060839e06f319"
+  integrity sha512-gKKsS+VstwUxLseC8YTSILhhqSiceQ035Wb2hXbXtXWu4QkM48Sq6bWHWh7mw+IfGKXrHPGkF2S+XeLLdfCHvw==
+  dependencies:
+    lodash "^4.17.11"
+
 "@ovh-ux/ng-ovh-actions-menu@^5.0.0-alpha.0":
   version "5.0.0-alpha.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-actions-menu/-/ng-ovh-actions-menu-5.0.0-alpha.0.tgz#734b82586e15b8d3129bde5ab5625042db14d558"
@@ -2527,11 +2541,6 @@ asynckit@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/asynckit/-/asynckit-0.4.0.tgz#c79ed97f7f34cb8f2ba1bc9790bcc366474b4b79"
   integrity sha1-x57Zf380y48robyXkLzDZkdLS3k=
-
-at-internet-ui-router-plugin@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/at-internet-ui-router-plugin/-/at-internet-ui-router-plugin-1.0.0.tgz#a45c14948cfc22253979b28255c5f8a40e054f71"
-  integrity sha1-pFwUlIz8IiU5ebKCVcX4pA4FT3E=
 
 atob@^2.1.1:
   version "2.1.2"
@@ -8795,11 +8804,6 @@ next-tick@1:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/next-tick/-/next-tick-1.0.0.tgz#ca86d1fe8828169b0120208e3dc8424b9db8342c"
   integrity sha1-yobR/ogoFpsBICCOPchCS524NCw=
-
-ng-at-internet@^3.1.1:
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/ng-at-internet/-/ng-at-internet-3.1.1.tgz#3e65194faf5032cbde6290d78c4056b6a928a9cc"
-  integrity sha1-PmUZT69QMsveYpDXjEBWtqkoqcw=
 
 ng-csv@^0.3.6:
   version "0.3.6"
