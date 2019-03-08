@@ -2,10 +2,7 @@
 
 @import '~ovh-ui-kit-bs/src/bootstrap/_variables';
 @import '~bootstrap/less/mixins';
-// @import '~bootstrap/less/variables';
-
 @import '~bootstrap/less/utilities';
-@import '~bootstrap/less/buttons';
 @import "~ovh-ui-kit/packages/oui-responsive/_mixins";
 @import "~ovh-ui-kit/packages/oui-color/_variables";
 @import "~ovh-ui-kit/packages/oui-navbar/_variables";
@@ -66,6 +63,19 @@
     }
   }
 
+  div.cloud-compute-infra-primary-actions {
+    > button.oui-button_dropdown {
+      > span.oui-icon.oui-icon-chevron-down {
+        line-height: 1.5rem;
+        font-size: 1.5rem;
+      }
+    }
+  }
+
+  i.oui-icon.oui-icon-pen_line.oui-icon_small {
+    font-size: 1.5rem;
+  }
+
   @import './cda/cda';
   @import './cda/details/home/detail/cda-detail.component.less';
   @import './cda/user/details/cda-user-details';
@@ -112,7 +122,10 @@
   @import './cloud/project/openstack/openstack';
   @import './cloud/project/openstack/users/openrc/openstack-users-openrc';
   @import './cloud/project/storage/storage-add/storage-add';
-  @import './cloud/project/storage/storage';
+
+  /* @TODO fix storage style */
+
+  /* @import './cloud/project/storage/storage'; */
   @import './common/common';
   @import './common/less/button';
   @import './common/less/flag';
