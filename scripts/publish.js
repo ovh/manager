@@ -10,7 +10,7 @@ execa.shell('lerna ls -pl --json')
           .then(output => Object.assign(pkg, { publish: output.stdout.length > 0 }))
           .catch((err) => {
             if (!err.stderr.includes('404')) {
-              console.error(err); // eslint-disable-line
+              console.error(err);
               process.exit(1);
             }
             return Object.assign(pkg, { publish: false });
