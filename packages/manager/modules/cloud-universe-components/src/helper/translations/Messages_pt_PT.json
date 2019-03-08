@@ -10,5 +10,6 @@
  "cuc_helper_name_change_modal_service_name_label": "Nome predefinido",
  "cuc_helper_name_change_modal_display_name_label": "Nome personalizado",
  "cuc_helper_order_success": "A nota de encomenda <a href=\"{{orderUrl}}\" target=\"_blank\">{{orderId}}</a> foi criada com sucesso.",
- "cuc_helper_order_error": "Erro durante a criação da nota de encomenda: {{ message }}"
+ "cuc_helper_order_error": "Erro durante a criação da nota de encomenda: {{ message }}",
+ "cuc_helper_order_doing": "Criação da nota de encomenda em curso ..."
 }

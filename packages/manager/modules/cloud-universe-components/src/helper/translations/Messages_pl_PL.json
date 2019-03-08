@@ -10,5 +10,6 @@
  "cuc_helper_name_change_modal_service_name_label": "Domyślna nazwa",
  "cuc_helper_name_change_modal_display_name_label": "Spersonalizowana nazwa",
  "cuc_helper_order_success": "Zamówienie <a href=\"{{orderUrl}}\" target=\"_blank\">{{orderId}}</a>zostało utworzone.",
- "cuc_helper_order_error": "Błąd podczas tworzenia zamówienia: {{ message }}"
+ "cuc_helper_order_error": "Błąd podczas tworzenia zamówienia: {{ message }}",
+ "cuc_helper_order_doing": "Trwa generowanie zamówienia ..."
 }

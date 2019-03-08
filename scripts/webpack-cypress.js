@@ -15,5 +15,5 @@ fp(3000, (err, port) => {
     })
     .then(() => kill(port))
     .then(() => process.exit(0))
-    .catch((err) => { console.error(err); process.exit(1); }); // eslint-disable-line
+    .catch((err) => { console.error(err); process.exit(1); }); // eslint-disable-line no-shadow
 });

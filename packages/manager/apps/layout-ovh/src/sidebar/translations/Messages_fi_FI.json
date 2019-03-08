@@ -2,7 +2,7 @@
  "sidebar_section_domains": "Domains",
  "sidebar_section_hosting": "Hostings",
  "sidebar_section_database": "Databases",
- "sidebar_section_emailPro": "Business Email",
+ "sidebar_section_emailPro": "Professional Email",
  "sidebar_section_email": "Emails",
  "sidebar_section_microsoft": "Microsoft",
  "sidebar_section_exchange": "Exchange",
@@ -26,5 +26,5 @@
  "sidebar_section_fax": "Fax",
  "sidebar_section_fax_prefix_freefax": "personal",
  "sidebar_section_otb": "OverTheBox",
- "sidebar_load_error": "Oops, we're unable to load your information."
+ "sidebar_load_error": "Oops, we're unable to load your services."
 }

@@ -1,3 +1,12 @@
+## [3.0.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-layout-ovh@3.0.1...@ovh-ux/manager-layout-ovh@3.0.2) (2019-03-01)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([aab7768](https://github.com/ovh-ux/manager/commit/aab7768))
+
+
+
 ## [3.0.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-layout-ovh@3.0.0...@ovh-ux/manager-layout-ovh@3.0.1) (2019-02-28)
 
 
