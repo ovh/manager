@@ -11,12 +11,12 @@ yarn add @ovh-ux/manager-sms
 ## Usage
 
 ```js
-import 'angular';
-import managerSms from '@ovh-ux/manager-sms';
+import angular from 'angular';
+import ovhManagerSms from '@ovh-ux/manager-sms';
 
 angular
   .module('myApp', [
-    managerSms,
+    ovhManagerSms,
   ]);
 ```
 
