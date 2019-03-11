@@ -11,12 +11,12 @@ yarn add @ovh-ux/manager-telecom-task
 ## Usage
 
 ```js
-import 'angular';
-import managerTelecomTask from '@ovh-ux/manager-telecom-task';
+import angular from 'angular';
+import ovhManagerTelecomTask from '@ovh-ux/manager-telecom-task';
 
 angular
   .module('myApp', [
-    managerTelecomTask,
+    ovhManagerTelecomTask,
   ]);
 ```
 

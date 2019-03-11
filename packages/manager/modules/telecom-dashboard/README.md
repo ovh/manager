@@ -9,7 +9,7 @@ yarn add @ovh-ux/manager-telecom-dashboard
 ## Usage
 
 ```js
-import 'angular';
+import angular from 'angular';
 import ovhManagerTelecomDashboard from '@ovh-ux/manager-telecom-dashboard';
 
 angular
