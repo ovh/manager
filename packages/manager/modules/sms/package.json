@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-sms",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "OVH SMS product control panel",
   "keywords": [
     "control",
@@ -30,7 +30,9 @@
     "moment": "^2.22.2"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "5.0.0-beta.5"
+    "@ovh-ux/component-rollup-config": "5.0.0-beta.5",
+    "bootstrap": "~3.3.7",
+    "ovh-ui-kit": "^2.23.1"
   },
   "peerDependencies": {
     "@ovh-ux/manager-core": "^3.0.0",
