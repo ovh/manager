@@ -3,7 +3,32 @@
 @module-otrs-header-color: #3b4151;
 
 .otrs-container {
-  padding-top: 30px;
+  z-index: 10000;
+  position: fixed !important;
+
+  &.initial-setting,
+  &.minimize {
+    left: auto !important;
+    right: 0 !important;
+    top: auto !important;
+    bottom: 0 !important;
+    height: auto !important;
+  }
+
+  &.minimize {
+    width: auto !important;
+  }
+
+  &.maximize {
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  &.close {
+    display: none !important;
+  }
 }
 
 .otrs-popup {
@@ -11,81 +36,43 @@
   -moz-transition: background-color 500ms linear, height 500ms linear, width 500ms linear;
   -o-transition: background-color 500ms linear, height 500ms linear, width 500ms linear;
   transition: background-color 500ms linear, height 500ms linear, width 500ms linear;
-  position: fixed;
-  width: 30% !important;
-  height: auto !important;
+  width: 30vh !important;
   padding-bottom: 1%;
   background-color: rgba(255, 255, 255, 0.7);
   border: 1px solid rgb(225, 225, 239);
   box-shadow: rgba(0, 0, 0, 0.258824) 0 2px 5px 0;
-  z-index: 10000 !important;
   display: block;
-
-  #headerPopup {
-    position: absolute;
-    top: -30px;
-  }
-
-  &.maximize #headerPopup,
-  &.minimize #headerPopup {
-    position: static;
-  }
 
   #contentPopup {
     height: 100%;
     overflow-y: auto;
     padding: 0 20px;
+    max-height: 95vh;
   }
 
-  #contentPopup form {
+  .draggable-header {
+    width: 100%;
     cursor: move;
+    margin-left: 0 !important;
+    height: 30px;
+    text-align: left;
+    line-height: 30px;
+    color: #efefef;
+    background: @module-otrs-header-color;
+  }
+
+  &.maximize #contentPopup {
+    max-height: none;
   }
 
   &.minimize {
     height: 30px !important;
-    bottom: 0 !important;
-    right: 0 !important;
-    left: auto !important;
-    top: auto !important;
   }
 
   &.maximize {
     height: 100% !important;
     width: 100% !important;
-    top: 0 !important;
-    left: 0 !important;
     overflow: auto;
-  }
-
-  .draggable-body,
-  .draggable-footer,
-  .draggable-header, {
-    width: 100%;
-  }
-
-  .draggable-body {
-    -webkit-transition: height 500ms linear;
-    -moz-transition: height 500ms linear;
-    -o-transition: height 500ms linear;
-    transition: height 500ms linear;
-    height: 100%;
-    width: 100%;
-    overflow: auto;
-  }
-
-  &.minimize .draggable-body {
-    height: 0;
-    overflow: hidden;
-  }
-
-  &.maximize .draggable-body {
-    height: 100%;
-    width: 100%;
-    overflow: auto;
-  }
-
-  &.close {
-    display: none;
   }
 
   &:hover,
@@ -98,18 +85,12 @@
     background-color: rgba(255, 255, 255, 0.6);
   }
 
-  .draggable-header {
-    cursor: move;
-    margin-left: 0 !important;
-    height: 30px;
-    text-align: left;
-    line-height: 30px;
-    color: #efefef;
-    background: @module-otrs-header-color;
-  }
-
   .draggable-header span {
     margin-left: 5px;
+  }
+
+  .draggable-header .draggable-title {
+    overflow: hidden;
   }
 
   .draggable-header a.pull-right {
@@ -145,21 +126,19 @@
   }
 }
 
-.otrs-popup-initial {
-  bottom: 0;
-  right: 0;
-}
-
 @media (max-width: @screen-md) {
   .otrs-popup {
-    width: 98% !important;
-    height: 90% !important;
+    width: 98vw !important;
+
+    #contentPopup {
+      max-height: 86vh;
+    }
   }
 }
 
 @media (min-width: @screen-md) {
   .otrs-popup {
-    width: 30% !important;
+    width: 30vw !important;
   }
 }
 
@@ -177,14 +156,20 @@
 
 @media screen and (max-width: @screen-xs-max) and (orientation: portrait) {
   .otrs-popup {
-    width: 75% !important;
-    height: 75% !important;
+    width: 98vw !important;
+
+    #contentPopup {
+      max-height: 86vh;
+    }
   }
 }
 
 @media screen and (max-width: @screen-xs-max) and (orientation: landscape) {
   .otrs-popup {
-    width: 55% !important;
-    height: 70% !important;
+    width: 55vw !important;
+
+    #contentPopup {
+      max-height: 86vh;
+    }
   }
 }

@@ -32,11 +32,9 @@ export default /* @ngInject */ function (
   OTRS_POPUP_SERVICES,
   OTRS_POPUP_UNIVERSES,
   TICKET_CATEGORIES,
-  // UNIVERSE,
 ) {
   const self = this;
   const OTHER_SERVICE = 'other';
-  const UNIVERSE = 'WEB'; // TODO : remove UNIVERSE
 
   self.loaders = {
     send: false,
@@ -65,10 +63,7 @@ export default /* @ngInject */ function (
     };
 
     self.universes = get(OTRS_POPUP_UNIVERSES, $rootScope.target, OTRS_POPUP_UNIVERSES.EU);
-
-    const standardizedUniverse = UNIVERSE === 'GAMMA' ? 'SUNRISE' : UNIVERSE;
-
-    self.selectedUniverse = includes(['CLOUD', 'DEDICATED'], standardizedUniverse) || !standardizedUniverse ? 'CLOUD_DEDICATED' : standardizedUniverse;
+    [self.selectedUniverse] = self.universes;
 
     self.intervention = {
       serviceName: null,

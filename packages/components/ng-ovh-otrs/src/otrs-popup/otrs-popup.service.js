@@ -39,7 +39,7 @@ export default class OtrsPopupService {
   }
 
   toggle() {
-    if ($('[data-otrs-popup] .draggable').hasClass('close')) {
+    if ($('[data-otrs-popup]').hasClass('close')) {
       this.open();
       this.opened = true;
       this.$rootScope.$broadcast('otrs.popup.opened');

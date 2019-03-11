@@ -1,23 +1,16 @@
-<div class="draggable otrs-popup otrs-popup-initial"
+<div class="draggable otrs-popup"
      data-draggable
      data-options="{
          containment: 'body',
-         handle: '#headerPopup,
+         handle: '#draggableTitle,
          #contentPopup form'
      }"
      data-ng-class="{
         'minimize': status.minimize,
-        'maximize': status.maximize,
-        'close': status.close
+        'maximize': status.maximize
     }">
     <div>
-        <div class="draggable-header" id="headerPopup">
-            <span data-ng-if="OtrsPopupCtrl.formDetails === 'replacement-disk'"
-                  data-translate="otrs_popup_intervention">
-            </span>
-            <span data-ng-if="OtrsPopupCtrl.formDetails !== 'replacement-disk'"
-                  data-translate="otrs_popup_title">
-            </span>
+        <div class="draggable-header">
             <div class="otrs_popup_tools float-right">
                 <button type="button"
                         aria-label="{{:: 'otrs_popup_icon_minimize' | translate }}"
@@ -34,6 +27,14 @@
                         data-ng-click="close()">
                     <span class="fa fa-close" aria-hidden="true"></span>
                 </button>
+            </div>
+            <div id="draggableTitle" class="draggable-title">
+                <span data-ng-if="OtrsPopupCtrl.formDetails === 'replacement-disk'"
+                    data-translate="otrs_popup_intervention">
+                </span>
+                <span data-ng-if="OtrsPopupCtrl.formDetails !== 'replacement-disk'"
+                    data-translate="otrs_popup_title">
+                </span>
             </div>
         </div>
         <div id="contentPopup">

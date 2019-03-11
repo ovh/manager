@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <translations>
-   <translation id="otrs_detail_title" qtlid="245181">Back to your tickets</translation>
+   <translation id="otrs_detail_title">Assistance - Fil de discussion</translation>
    <translation id="otrs_detail_title2" qtlid="228774">- ticket {0}</translation>
    <translation id="otrs_detail_title3_open" qtlid="228787">- (In progress)</translation>
    <translation id="otrs_detail_title3_closed" qtlid="228800">- (Closed)</translation>
@@ -97,7 +97,7 @@
    <translation id="otrs_service_category_DEDICATED_HOUSING" qtlid="371476">Housing server </translation>
    <translation id="otrs_service_category_DEDICATED_CLOUD" qtlid="20131">Private Cloud</translation>
    <translation id="otrs_service_category_HOSTING_WEB" qtlid="219979">Web hosting service</translation>
-   <translation id="otrs_service_category_IP_LOADBALANCING" qtlid="219992">Load balancer IP</translation>
+   <translation id="otrs_service_category_LOAD_BALANCER" qtlid="219992">Load balancer IP</translation>
    <translation id="otrs_service_category_LICENCE_CLOUD_LINUX" qtlid="220005">CloudLinux licence</translation>
    <translation id="otrs_service_category_LICENCE_CPANEL" qtlid="220018">cPanel licence</translation>
    <translation id="otrs_service_category_LICENCE_DIRECT_ADMIN" qtlid="220031">DirectAdmin licence</translation>
