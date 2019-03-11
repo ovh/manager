@@ -1,3 +1,20 @@
+## [0.3.1](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/compare/@ovh-ux/ng-ovh-cloud-universe-components@0.3.0...@ovh-ux/ng-ovh-cloud-universe-components@0.3.1) (2019-03-08)
+
+
+### Bug Fixes
+
+* **cloud-universe-components:** udpate doing message ([1a6f841](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/commit/1a6f841))
+* **i18n:** add missing translations ([b610331](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/commit/b610331))
+* **i18n:** add missing translations ([d09abf4](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/commit/d09abf4))
+* **i18n:** add missing translations ([7235e15](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/commit/7235e15))
+* **i18n:** add missing translations ([b4e7219](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/commit/b4e7219))
+* **i18n:** add missing translations ([33ba61f](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/commit/33ba61f))
+* **i18n:** add missing translations ([3ef0e6f](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/commit/3ef0e6f))
+* **i18n:** add missing translations ([751ddcb](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/commit/751ddcb))
+* **i18n:** update french translation ([b786871](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/commit/b786871))
+
+
+
 # [0.3.0](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/compare/@ovh-ux/ng-ovh-cloud-universe-components@0.2.0...@ovh-ux/ng-ovh-cloud-universe-components@0.3.0) (2019-03-01)
 
 

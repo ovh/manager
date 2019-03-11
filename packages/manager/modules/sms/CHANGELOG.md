@@ -1,3 +1,12 @@
+# [3.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-sms@3.0.0...@ovh-ux/manager-sms@3.1.0) (2019-03-08)
+
+
+### Features
+
+* **sms.senders:** add column to display sender reason of reject ([7b9ba02](https://github.com/ovh-ux/manager/commit/7b9ba02))
+
+
+
 # [3.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-sms@2.0.1...@ovh-ux/manager-sms@3.0.0) (2019-02-26)
 
 
