@@ -1,3 +1,15 @@
+# [7.0.0](https://github.com/ovh-ux/ng-ovh-otrs/compare/v7.0.0-beta.1...v7.0.0) (2019-03-11)
+
+
+### Bug Fixes
+
+* **i18n:** retrieve translations ([cb7890a](https://github.com/ovh-ux/ng-ovh-otrs/commit/cb7890a))
+* **i18n:** retrieve translations ([#39](https://github.com/ovh-ux/ng-ovh-otrs/issues/39)) ([ba4b9ea](https://github.com/ovh-ux/ng-ovh-otrs/commit/ba4b9ea))
+* **i18n:** submit translations ([11904dd](https://github.com/ovh-ux/ng-ovh-otrs/commit/11904dd))
+* **otrs-popup:** minor improvements ([#38](https://github.com/ovh-ux/ng-ovh-otrs/issues/38)) ([3023faf](https://github.com/ovh-ux/ng-ovh-otrs/commit/3023faf))
+
+
+
 # [7.0.0-beta.1](https://github.com/ovh-ux/ng-ovh-otrs/compare/v7.0.0-beta.0...v7.0.0-beta.1) (2019-01-22)
 
 
