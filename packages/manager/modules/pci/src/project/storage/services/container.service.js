@@ -1,6 +1,8 @@
+import angular from 'angular';
 import pick from 'lodash/pick';
 import pickBy from 'lodash/pickBy';
 import set from 'lodash/set';
+import URI from 'URIjs/src/URITemplate';
 
 export default /* @ngInject */ function (
   $cacheFactory,
@@ -52,11 +54,13 @@ export default /* @ngInject */ function (
   // Improvement:
   // Avoid listing all containers to get metadata.
   function getContainerMeta(projectId, containerId) {
-    const containerMeta = CloudStorageContainersConfiguration.containerMetaCache.get(projectId, containerId);
+    const containerMeta = CloudStorageContainersConfiguration.containerMetaCache
+      .get(projectId, containerId);
     return containerMeta
       ? $q.resolve(containerMeta)
       : self.list(projectId, containerId)
-        .then(() => CloudStorageContainersConfiguration.containerMetaCache.get(projectId, containerId));
+        .then(() => CloudStorageContainersConfiguration.containerMetaCache
+          .get(projectId, containerId));
   }
 
   function getContainerUrl(baseUrl, containerName, file) {
@@ -96,7 +100,7 @@ export default /* @ngInject */ function (
    * @param  {string} containerId   container id
    * @return {Promise<Object>}      container metadata
    */
-  self.getMetaData = function (projectId, containerId) {
+  self.getMetaData = function getMetaData(projectId, containerId) {
     return ensureAccess(projectId)
       .then(() => getContainerMeta(projectId, containerId))
       .then(containerMeta => requestContainer(
@@ -128,7 +132,7 @@ export default /* @ngInject */ function (
    * @param  {string} containerId   container id
    * @return {Promise<Object>}      object containing the list of objects
    */
-  self.list = function (projectId, containerId) {
+  self.list = function list(projectId, containerId) {
     return OvhApiCloudProjectStorage.v6().get({
       projectId,
       containerId,
@@ -144,7 +148,7 @@ export default /* @ngInject */ function (
     const deferred = $q.defer();
     const xhr = new XMLHttpRequest();
 
-    const uploadProgress = function (e) {
+    const uploadProgress = function uploadProgress(e) {
       let res;
       if (e.lengthComputable) {
         res = Math.round(e.loaded * 100 / e.total);
@@ -157,7 +161,7 @@ export default /* @ngInject */ function (
       }
     };
 
-    const uploadComplete = function (e) {
+    const uploadComplete = function uploadComplete(e) {
       const xhr = e.srcElement || e.target;
       if (xhr.status >= 200 && xhr.status < 300) { // successful upload
         deferred.resolve(xhr);
@@ -166,12 +170,12 @@ export default /* @ngInject */ function (
       }
     };
 
-    const uploadFailed = function (e) {
+    const uploadFailed = function uploadFailed(e) {
       const xhr = e.srcElement || e.target;
       deferred.reject(xhr);
     };
 
-    const uploadCanceled = function (e) {
+    const uploadCanceled = function uploadCanceled(e) {
       const xhr = e.srcElement || e.target;
       deferred.reject(xhr);
     };
@@ -204,7 +208,7 @@ export default /* @ngInject */ function (
    * @param  {Object} object      object to download
    * @return {Promise}
    */
-  self.download = function (projectId, containerId, file) {
+  self.download = function download(projectId, containerId, file) {
     const weekDurationInMilliseconds = 6.048e+8;
     const expiration = new Date(Date.now() + weekDurationInMilliseconds);
 
@@ -241,7 +245,7 @@ export default /* @ngInject */ function (
    * @param  {Object} opts          upload opts
    * @return {Promise}
    */
-  self.upload = function (projectId, containerId, opts) {
+  self.upload = function uploadToContainer(projectId, containerId, opts) {
     if (!opts.file) {
       return $q.reject({
         errorCode: 'BAD_PARAMETERS',

@@ -15,6 +15,7 @@ import 'ovh-angular-otrs';
 import 'ovh-jquery-ui-draggable-ng';
 import '@ovh-ux/manager-cloud-styles';
 import 'ovh-angular-q-allsettled';
+import 'ovh-angular-pagination-front';
 
 import 'ovh-ui-kit/dist/oui.css';
 
@@ -64,6 +65,7 @@ angular
     'ovh-angular-otrs',
     'ovh-jquery-ui-draggable-ng',
     'ovh-angular-q-allSettled',
+    'ovh-angular-pagination-front',
     'oui',
   ])
   .config(/* @ngInject */($stateProvider) => {

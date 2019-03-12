@@ -210,15 +210,15 @@ export default class CloudProjectComputeInfrastructureDiagramCtrl {
 
       // Set connection style
       connection.setPaintStyle({
-        strokeStyle: this.constructor.getLinkColor(connectedIp.type),
-        lineWidth: 4,
+        stroke: this.constructor.getLinkColor(connectedIp.type),
+        strokeWidth: 4,
       });
       connection.addClass(`_jsPlumb_connector_ip_${connectedIp.type || ''}`);
       connection.addClass('fade-transition');
 
       // Don't up the size when hover ip public
       if (connectedIp.type === 'public') {
-        connection.setHoverPaintStyle({ lineWidth: 4 });
+        connection.setHoverPaintStyle({ strokeWidth: 4 });
       }
 
       // It's a connection drawn by the user (with its mouse)
@@ -229,7 +229,7 @@ export default class CloudProjectComputeInfrastructureDiagramCtrl {
 
         if (isValidLink && (!this.model.currentLinkEdit || this.model.currentLinkEdit.action === 'attach')) {
           // set dotted line
-          connection.setPaintStyle({ strokeStyle: this.constructor.getLinkColor(connectedIp.type), lineWidth: 8, dashstyle: '2 1' });
+          connection.setPaintStyle({ stroke: this.constructor.getLinkColor(connectedIp.type), strokeWidth: 8, dashstyle: '2 1' });
 
           if (connectedIp.type === 'failover') {
             if (connectedIp.routedTo.length > 0) {
@@ -912,8 +912,8 @@ export default class CloudProjectComputeInfrastructureDiagramCtrl {
     this.srcDrawOptionsBase = {
       connector: ['Bezier', { curviness: 100 }],
       connectorStyle: {
-        strokeStyle: this.constructor.getLinkColor(),
-        lineWidth: 4,
+        stroke: this.constructor.getLinkColor(),
+        strokeWidth: 4,
       },
     };
 
@@ -1040,7 +1040,7 @@ export default class CloudProjectComputeInfrastructureDiagramCtrl {
             // for manual attach
             if (this.model.currentLinkEdit.connectionCurrent) {
               // this.model.currentLinkEdit.connectionCurrent
-              //   .setHoverPaintStyle({ lineWidth : 8 });
+              //   .setHoverPaintStyle({ strokeWidth : 8 });
               this.model.currentLinkEdit.connectionCurrent.removeClass('cuc-highlighted-element cuc-highlighted-element-active');
             }
 
@@ -1081,7 +1081,7 @@ export default class CloudProjectComputeInfrastructureDiagramCtrl {
 
               // If there are a connection already, highlight it
               if (this.model.currentLinkEdit.connectionCurrent) {
-                this.model.currentLinkEdit.connectionCurrent.setHoverPaintStyle({ lineWidth: 4 });
+                this.model.currentLinkEdit.connectionCurrent.setHoverPaintStyle({ strokeWidth: 4 });
                 this.model.currentLinkEdit.connectionCurrent.addClass('cuc-highlighted-element cuc-highlighted-element-active');
               }
 
@@ -1111,13 +1111,13 @@ export default class CloudProjectComputeInfrastructureDiagramCtrl {
               .getVmById(this.model.currentLinkEdit.connectionVmId);
 
             // set connection style
-            this.model.currentLinkEdit.connection.setPaintStyle({ strokeStyle: this.constructor.getLinkColor(this.model.currentLinkEdit.connectedIp.type), lineWidth: 8, dashstyle: '2 1' });
+            this.model.currentLinkEdit.connection.setPaintStyle({ stroke: this.constructor.getLinkColor(this.model.currentLinkEdit.connectedIp.type), strokeWidth: 8, dashstyle: '2 1' });
             this.model.currentLinkEdit.connection.addClass('cuc-highlighted-element cuc-highlighted-element-active');
           } else if (this.model.currentLinkEdit.connectionCurrent) {
             this.model.currentLinkEdit.connectionCurrent.setPaintStyle({
-              strokeStyle: this.constructor
+              stroke: this.constructor
                 .getLinkColor(this.model.currentLinkEdit.connectedIp.type),
-              lineWidth: 4,
+              strokeWidth: 4,
             });
           }
         },

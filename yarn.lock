@@ -1641,10 +1641,9 @@
     lodash "~4.17.11"
     urijs "^1.19.1"
 
-"@ovh-ux/ng-ovh-jsplumb@^4.0.0":
+"@ovh-ux/ng-ovh-jsplumb@git+https://github.com/ovh-ux/ng-ovh-jsplumb.git#update-jsplumb":
   version "4.0.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-jsplumb/-/ng-ovh-jsplumb-4.0.0.tgz#88a17c012632274a9e74df094680fbeb79747a55"
-  integrity sha512-FaWtFQiIx77Bwye4Bc7TpNa37di2IyTsz8SNuit1KuLp/uTlE99l+gc/PKUIu8p8E/it1QzRfBAoKSC7UBB5SQ==
+  resolved "git+https://github.com/ovh-ux/ng-ovh-jsplumb.git#4fcaadcc0d8b39c81e5a6b31591f6013ec9729c4"
   dependencies:
     lodash "^4.17.11"
     urijs "^1.19.1"
@@ -2047,6 +2046,10 @@ JSONStream@^1.0.4, JSONStream@^1.3.4:
   dependencies:
     jsonparse "^1.2.0"
     through ">=2.2.7 <3"
+
+URIjs@medialize/URI.js#~1.15.0:
+  version "1.15.2"
+  resolved "https://codeload.github.com/medialize/URI.js/tar.gz/c51da7e8c0bdf46ae926d2388d3032e2347c61db"
 
 abbrev@1, abbrev@^1.1.1:
   version "1.1.1"
@@ -7261,6 +7264,10 @@ jest-validate@^23.5.0:
     leven "^2.1.0"
     pretty-format "^23.6.0"
 
+jquery-ui@components/jqueryui#~1.11.2:
+  version "1.11.4"
+  resolved "https://codeload.github.com/components/jqueryui/tar.gz/c34f8dbf3ba57b3784b93f26119f436c0e8288e1"
+
 jquery.scrollto@^2.1.2:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/jquery.scrollto/-/jquery.scrollto-2.1.2.tgz#e7580d9c7ac46ef5bb25319483f6f45713fd7c6c"
@@ -7436,6 +7443,11 @@ jsonparse@^1.2.0:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/jsonparse/-/jsonparse-1.3.1.tgz#3f4dae4a91fac315f71062f8521cc239f1366280"
   integrity sha1-P02uSpH6wxX3EGL4UhzCOfE2YoA=
+
+jsplumb@^2.9.0:
+  version "2.9.0"
+  resolved "https://registry.yarnpkg.com/jsplumb/-/jsplumb-2.9.0.tgz#4e79cbb06f3657e1515e7d2beb6e226afe050956"
+  integrity sha512-oq0vBcANpeMa3F7ABzm8uZe5rx2BJjMdEl2fI686tVwMfGKB5ZoStKClZCWu0UHIm73Iyt2Fg+hrv/eP1Qf/iw==
 
 jsplumb@~2.3.0:
   version "2.3.6"
@@ -9426,6 +9438,10 @@ ovh-angular-otrs@^6.3.0:
   version "6.3.0"
   resolved "https://registry.yarnpkg.com/ovh-angular-otrs/-/ovh-angular-otrs-6.3.0.tgz#3ad3c9626be1917b5f0f557375de3757ad9b08ba"
   integrity sha512-sXxQUlsC0ucl9UVcnSB9ZQsqTnKmW/zQZM+VH0gNpnJo9v3Klk4lHN3n0Wnd62Ic8Ke3Vjgk74Jk2THjQOHfcg==
+
+ovh-angular-pagination-front@ovh-ux/ovh-angular-pagination-front#^5.1.0:
+  version "5.0.0"
+  resolved "https://codeload.github.com/ovh-ux/ovh-angular-pagination-front/tar.gz/7b21072dfd25a8b1a5aece207a8e2f27e756b86c"
 
 ovh-angular-q-allsettled@ovh-ux/ovh-angular-q-allSettled#^0.3.1:
   version "0.3.1"
