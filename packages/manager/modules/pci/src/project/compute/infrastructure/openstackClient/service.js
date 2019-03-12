@@ -1,8 +1,15 @@
 import moment from 'moment';
 
-class CloudProjectComputeInfrastructureOpenstackClientService {
-  constructor($q, $stateParams, $interval, OvhApiCloudProjectOpenstackClient,
-    OvhApiCloudProjectRegion, CucServiceHelper) {
+export default class CloudProjectComputeInfrastructureOpenstackClientService {
+  /* @ngInject */
+  constructor(
+    $q,
+    $stateParams,
+    $interval,
+    OvhApiCloudProjectOpenstackClient,
+    OvhApiCloudProjectRegion,
+    CucServiceHelper,
+  ) {
     this.$q = $q;
     this.$interval = $interval;
     this.OvhApiCloudProjectOpenstackClient = OvhApiCloudProjectOpenstackClient;
@@ -145,6 +152,3 @@ class CloudProjectComputeInfrastructureOpenstackClientService {
     return this.ws && this.ws.opened;
   }
 }
-
-
-angular.module('managerApp').service('CloudProjectComputeInfrastructureOpenstackClientService', CloudProjectComputeInfrastructureOpenstackClientService);

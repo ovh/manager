@@ -1,7 +1,7 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
 import 'ovh-api-services';
-import 'ovh-angular-jsplumb';
+import '@ovh-ux/ng-ovh-jsplumb';
 
 import diagram from './diagram';
 import iacDeploy from './iac/deploy';
@@ -17,7 +17,7 @@ import imageService from './image.service';
 import infrastructureService from './infrastructure.service';
 import regionService from './region.service';
 
-// TODO : import './index.less';
+import './index.less';
 
 const moduleName = 'ovhManagerPciProjectComputeInfrastructure';
 
@@ -27,7 +27,7 @@ angular
     iacDeploy,
     list,
     'ovh-api-services',
-    'ovh-angular-jsplumb',
+    'ngOvhJsplumb',
     'ui.router',
     virtualMachine,
     volume,

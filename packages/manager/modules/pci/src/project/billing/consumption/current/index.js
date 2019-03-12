@@ -30,7 +30,6 @@ angular
         format: 'json',
       },
     });
-    console.log('flkdjlfkjdlk');
   });
 
 export default moduleName;

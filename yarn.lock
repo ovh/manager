@@ -1641,6 +1641,14 @@
     lodash "~4.17.11"
     urijs "^1.19.1"
 
+"@ovh-ux/ng-ovh-jsplumb@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-jsplumb/-/ng-ovh-jsplumb-4.0.0.tgz#88a17c012632274a9e74df094680fbeb79747a55"
+  integrity sha512-FaWtFQiIx77Bwye4Bc7TpNa37di2IyTsz8SNuit1KuLp/uTlE99l+gc/PKUIu8p8E/it1QzRfBAoKSC7UBB5SQ==
+  dependencies:
+    lodash "^4.17.11"
+    urijs "^1.19.1"
+
 "@ovh-ux/ng-ovh-otrs@^7.0.0-beta.1":
   version "7.0.0-beta.1"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-otrs/-/ng-ovh-otrs-7.0.0-beta.1.tgz#b4942fc1aad806d42755b19f4ff91932e25cb929"
@@ -5510,6 +5518,11 @@ findup-sync@^2.0.0:
     is-glob "^3.1.0"
     micromatch "^3.0.4"
     resolve-dir "^1.0.1"
+
+flag-icon-css@~0.8.5:
+  version "0.8.6"
+  resolved "https://registry.yarnpkg.com/flag-icon-css/-/flag-icon-css-0.8.6.tgz#7dab89f99040c2a1113108132a1eab8c1dea44c4"
+  integrity sha1-fauJ+ZBAwqERMQgTKh6rjB3qRMQ=
 
 flat-cache@^1.2.1:
   version "1.3.4"
@@ -9409,14 +9422,14 @@ ovh-angular-checkbox-table@^0.1.2:
     jquery "~2.1.3"
     lodash "~3.3.0"
 
-ovh-angular-jsplumb@ovh-ux/ovh-angular-jsplumb#^3.0.5:
-  version "3.0.5"
-  resolved "https://codeload.github.com/ovh-ux/ovh-angular-jsplumb/tar.gz/f63fae6bb7a2750f64a2938eb148dd0088891cec"
-
 ovh-angular-otrs@^6.3.0:
   version "6.3.0"
   resolved "https://registry.yarnpkg.com/ovh-angular-otrs/-/ovh-angular-otrs-6.3.0.tgz#3ad3c9626be1917b5f0f557375de3757ad9b08ba"
   integrity sha512-sXxQUlsC0ucl9UVcnSB9ZQsqTnKmW/zQZM+VH0gNpnJo9v3Klk4lHN3n0Wnd62Ic8Ke3Vjgk74Jk2THjQOHfcg==
+
+ovh-angular-q-allsettled@ovh-ux/ovh-angular-q-allSettled#^0.3.1:
+  version "0.3.1"
+  resolved "https://codeload.github.com/ovh-ux/ovh-angular-q-allSettled/tar.gz/8019e225db83fa3b1d01650c6583b20d81d392c9"
 
 ovh-angular-responsive-tabs@^4.0.0:
   version "4.0.0"
@@ -13832,6 +13845,11 @@ xtend@^4.0.0, xtend@^4.0.1, xtend@~4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/xtend/-/xtend-4.0.1.tgz#a5c6d532be656e23db820efb943a1f04998d63af"
   integrity sha1-pcbVMr5lbiPbgg77lDofBJmNY68=
+
+xterm@^3.4.1:
+  version "3.11.0"
+  resolved "https://registry.yarnpkg.com/xterm/-/xterm-3.11.0.tgz#2c10da3e965db9170430aa7b68f8965de3ff004d"
+  integrity sha512-VB9+s2Fhig31pNBkbxPnz+/wdCvxdQ6JQ0HZmWDwpULV8iAggzxoyUonB4FR+WW3lj0LNVb/ZaD64rxbw+HB4A==
 
 y18n@^3.2.0, y18n@^3.2.1:
   version "3.2.1"

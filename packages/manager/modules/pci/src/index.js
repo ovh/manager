@@ -13,6 +13,10 @@ import 'ovh-api-services';
 import 'ovh-ui-angular';
 import 'ovh-angular-otrs';
 import 'ovh-jquery-ui-draggable-ng';
+import '@ovh-ux/manager-cloud-styles';
+import 'ovh-angular-q-allsettled';
+
+import 'ovh-ui-kit/dist/oui.css';
 
 import components from './components';
 import offer from './offer';
@@ -59,6 +63,7 @@ angular
     'ovh-angular-toaster',
     'ovh-angular-otrs',
     'ovh-jquery-ui-draggable-ng',
+    'ovh-angular-q-allSettled',
     'oui',
   ])
   .config(/* @ngInject */($stateProvider) => {
@@ -66,7 +71,7 @@ angular
       .state('iaas', {
         url: '/iaas',
         abstract: true,
-        template: '<ui-view/>',
+        template: '<ui-view class="cloud-legacy"/>',
         translations: {
           format: 'json',
           value: ['../common', '.'],
@@ -75,7 +80,7 @@ angular
       .state('paas', {
         url: '/paas',
         abstract: true,
-        template: '<ui-view/>',
+        template: '<ui-view class="cloud-legacy"/>',
         translations: {
           value: ['../common', '.'],
           format: 'json',

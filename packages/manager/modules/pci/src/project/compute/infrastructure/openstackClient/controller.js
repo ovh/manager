@@ -1,11 +1,21 @@
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
 import set from 'lodash/set';
+import { Terminal } from 'xterm';
 
-class CloudProjectComputeInfrastructureOpenstackClientCtrl {
-  constructor($interval, $q, $stateParams, $translate, CucCloudMessage,
-    CloudProjectComputeInfrastructureOpenstackClientService, CucControllerHelper,
-    OvhApiCloudProjectOpenstackClient, OvhApiCloudProjectRegion) {
+export default class CloudProjectComputeInfrastructureOpenstackClientCtrl {
+  /* @ngInject */
+  constructor(
+    $interval,
+    $q,
+    $stateParams,
+    $translate,
+    CucCloudMessage,
+    CloudProjectComputeInfrastructureOpenstackClientService,
+    CucControllerHelper,
+    OvhApiCloudProjectOpenstackClient,
+    OvhApiCloudProjectRegion,
+  ) {
     this.$q = $q;
     this.$stateParams = $stateParams;
     this.$translate = $translate;
@@ -124,6 +134,3 @@ class CloudProjectComputeInfrastructureOpenstackClientCtrl {
     sessionStorage.setItem('CloudProjectComputeInfrastructureOpenstackClientCtrl.maximized', this.maximized);
   }
 }
-
-
-angular.module('managerApp').controller('CloudProjectComputeInfrastructureOpenstackClientCtrl', CloudProjectComputeInfrastructureOpenstackClientCtrl);

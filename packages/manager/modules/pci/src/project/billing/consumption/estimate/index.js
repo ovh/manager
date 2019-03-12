@@ -7,7 +7,7 @@ import template from './template.html';
 
 // TODO : import './index.less';
 
-const moduleName = 'ovhManagerPciProjectBillingConsumptionCurrent';
+const moduleName = 'ovhManagerPciProjectBillingConsumptionEstimate';
 
 angular
   .module(moduleName, [

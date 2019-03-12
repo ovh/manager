@@ -3,7 +3,7 @@ import angular from 'angular';
 import runabove from './runabove';
 import writeRightRequired from './writeRightRequired';
 
-// TODO : import './index.less';
+import './index.less';
 
 const moduleName = 'ovhManagerPciComponents';
 

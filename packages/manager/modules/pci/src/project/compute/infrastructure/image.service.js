@@ -38,28 +38,28 @@ export default class CloudImageService {
 
   static getImagesByType(images, imagesTypes, region = null) {
     const filteredImages = {};
-    const filter = { apps: false, status: 'active' };
+    const imageFilter = { apps: false, status: 'active' };
 
     if (isString(region)) {
-      filter.region = region;
+      imageFilter.region = region;
     }
 
     forEach(imagesTypes, (imageType) => {
-      filter.type = imageType;
-      filteredImages[imageType] = filter(cloneDeep(images), filter);
+      imageFilter.type = imageType;
+      filteredImages[imageType] = filter(cloneDeep(images), imageFilter);
     });
 
     return filteredImages;
   }
 
   static getApps(images, region = null) {
-    const filter = { apps: true, status: 'active' };
+    const filterApps = { apps: true, status: 'active' };
 
     if (isString(region)) {
-      set(filter, 'region', region);
+      set(filterApps, 'region', region);
     }
 
-    return filter(cloneDeep(images), filter);
+    return filter(cloneDeep(images), filterApps);
   }
 
   /* eslint-disable no-nested-ternary */

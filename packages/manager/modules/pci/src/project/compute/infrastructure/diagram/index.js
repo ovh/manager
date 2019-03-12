@@ -2,6 +2,8 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'ovh-api-services';
 
+import openstackClient from '../openstackClient';
+
 import controller from './controller';
 import template from './template.html';
 
@@ -11,6 +13,7 @@ angular
   .module(moduleName, [
     'ovh-api-services',
     'ui.router',
+    openstackClient,
   ])
   .config(/* @ngInject */($stateProvider) => {
     $stateProvider.state('iaas.pci-project.compute.infrastructure.diagram', {
