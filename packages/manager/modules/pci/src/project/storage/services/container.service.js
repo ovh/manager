@@ -2,7 +2,8 @@ import angular from 'angular';
 import pick from 'lodash/pick';
 import pickBy from 'lodash/pickBy';
 import set from 'lodash/set';
-import URI from 'URIjs/src/URITemplate';
+import URI from 'URIjs/src/URI';
+import 'URIjs/src/URITemplate';
 
 export default /* @ngInject */ function (
   $cacheFactory,
