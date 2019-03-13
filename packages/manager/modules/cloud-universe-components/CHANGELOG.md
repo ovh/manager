@@ -1,3 +1,14 @@
+## [0.3.2](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/compare/@ovh-ux/ng-ovh-cloud-universe-components@0.3.1...@ovh-ux/ng-ovh-cloud-universe-components@0.3.2) (2019-03-13)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([f70c1a5](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/commit/f70c1a5))
+* **i18n:** add missing translations ([6e26fa4](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/commit/6e26fa4))
+* **i18n:** add missing translations ([9c523af](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/commit/9c523af))
+
+
+
 ## [0.3.1](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/compare/@ovh-ux/ng-ovh-cloud-universe-components@0.3.0...@ovh-ux/ng-ovh-cloud-universe-components@0.3.1) (2019-03-08)
 
 
