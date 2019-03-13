@@ -1,3 +1,12 @@
+## [4.0.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@4.0.0...@ovh-ux/manager-core@4.0.1) (2019-03-13)
+
+
+### Bug Fixes
+
+* **manager-core:** add missing peerDeps ngOvhSwimmingPoll ([6e3df1f](https://github.com/ovh-ux/manager/commit/6e3df1f))
+
+
+
 # [4.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@3.0.0...@ovh-ux/manager-core@4.0.0) (2019-03-13)
 
 
