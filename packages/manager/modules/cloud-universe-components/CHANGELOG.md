@@ -1,3 +1,24 @@
+# [1.0.0](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/compare/@ovh-ux/ng-ovh-cloud-universe-components@0.3.2...@ovh-ux/ng-ovh-cloud-universe-components@1.0.0) (2019-03-13)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([f70c1a5](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/commit/f70c1a5))
+* **i18n:** add missing translations ([6e26fa4](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/commit/6e26fa4))
+* **i18n:** add missing translations ([9c523af](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/commit/9c523af))
+
+
+### Build System
+
+* **deps:** upgrade dependencies ([#252](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/issues/252)) ([f87f7b7](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/commit/f87f7b7))
+
+
+### BREAKING CHANGES
+
+* **deps:** replace both `@ovh-ux/ng-ovh-apiv7` and `ovh-angular-swimming-poll` by `@ovh-ux/ng-ovh-api-wrappers` and `@ovh-ux/ng-ovh-swimming-poll`
+
+
+
 ## [0.3.2](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/compare/@ovh-ux/ng-ovh-cloud-universe-components@0.3.1...@ovh-ux/ng-ovh-cloud-universe-components@0.3.2) (2019-03-13)
 
 
