@@ -1,7 +1,7 @@
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
 import set from 'lodash/set';
-import { Terminal } from 'xterm';
+import Terminal from 'xterm/dist/xterm';
 
 export default class CloudProjectComputeInfrastructureOpenstackClientCtrl {
   /* @ngInject */
