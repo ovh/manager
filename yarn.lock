@@ -891,6 +891,11 @@
     debug "^3.1.0"
     lodash.once "^4.1.1"
 
+"@fortawesome/fontawesome-free@^5.7.2":
+  version "5.7.2"
+  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-free/-/fontawesome-free-5.7.2.tgz#1498c3eb78ee7c78c5488418707de90aaf58d5d7"
+  integrity sha512-Ha4HshKdCVKgu4TVCtG8XyPPYdzTzNW4/fvPnn+LT7AosRABryhlRv4cc4+o84dgpvVJN9reN7jo/c+nYujFug==
+
 "@lerna/add@^3.6.0":
   version "3.6.0"
   resolved "https://registry.yarnpkg.com/@lerna/add/-/add-3.6.0.tgz#eea53efff0b3237774ddac6eaa84957140e89238"
@@ -1542,6 +1547,14 @@
     rollup-pluginutils "^2.3.3"
     slash "^2.0.0"
 
+"@ovh-ux/manager-core@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core/-/manager-core-2.0.0.tgz#24914c831c87d5241bca49cc418aa4dfcdee040c"
+  integrity sha512-cor3MH5jX+vvR+rZcsGmBhTNv4wfEcirHft3MwoghXSp6cpHmON5Ujcm1DSwlyRyaeSAY6fzyS5s6zu0PXyHKQ==
+  dependencies:
+    "@ovh-ux/ng-translate-async-loader" "^2.0.0"
+    lodash "^4.17.11"
+
 "@ovh-ux/manager-webpack-config@^3.0.1":
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-webpack-config/-/manager-webpack-config-3.0.1.tgz#d03713e9c1a7701f693fce217076e38dbe5f9cc3"
@@ -1621,6 +1634,13 @@
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-api-wrappers/-/ng-ovh-api-wrappers-3.0.0.tgz#25e09c019a7f9d4704d59ccb55732379fa50b4e1"
   integrity sha512-0iqzJxOh53DKPYmEcdLRTJl3+L5jC6x1TbdVvBYDT5sn8OE4lQP7r74G8sxxlx7bXGMQL9EzCcJD0xof/SZ3sQ==
+  dependencies:
+    lodash "^4.17.11"
+
+"@ovh-ux/ng-ovh-apiv7@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-apiv7/-/ng-ovh-apiv7-2.0.0.tgz#838e6c224bb37928de84b4a0eb8c0c8a6713f1d7"
+  integrity sha512-EnJEEmoNCTjnCv/501GDZjxYt17YgGbVBr6BfqF6kD4FSf+TQpsP2sOKEXDLIj0oJUYRhU4z5d97AjX9zFSrFg==
   dependencies:
     lodash "^4.17.11"
 
@@ -8822,6 +8842,19 @@ node-gyp@^3.8.0:
   version "3.8.0"
   resolved "https://registry.yarnpkg.com/node-gyp/-/node-gyp-3.8.0.tgz#540304261c330e80d0d5edce253a68cb3964218c"
   integrity sha512-3g8lYefrRRzvGeSowdJKAKyks8oUpLEd/DyPV4eMhVlhJ0aNaZqIrNUIPuEWWTAoPqyFkfGrM67MC69baqn6vA==
+  dependencies:
+    fstream "^1.0.0"
+    glob "^7.0.3"
+    graceful-fs "^4.1.2"
+    mkdirp "^0.5.0"
+    nopt "2 || 3"
+    npmlog "0 || 1 || 2 || 3 || 4"
+    osenv "0"
+    request "^2.87.0"
+    rimraf "2"
+    semver "~5.3.0"
+    tar "^2.0.0"
+    which "1"
 
 node-libs-browser@^2.0.0:
   version "2.1.0"
@@ -9348,6 +9381,13 @@ ovh-angular-ui-confirm-modal@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/ovh-angular-ui-confirm-modal/-/ovh-angular-ui-confirm-modal-1.0.2.tgz#92e6736588a4fb1de6353f1a17ab1962679a698d"
   integrity sha512-3V17DbzWjUjl9sKCd25Oycn+7eqg6iW+DpizwVmixHFzDNDMnpKSGmxRLrOq+q9YNE7IepoAKWjoSiy2+zOEEg==
+
+ovh-api-services@^4.0.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-4.2.0.tgz#6b85f990aefae1fbf5233718f856aa051dab98c5"
+  integrity sha512-IippIziLZplEJe6kX8SCZaaR7lLYm+iFbleL/G8x7zMkQeHDIwmKAiHWgAubXXoMyj/GgigBGlrYHiK8eNRAqg==
+  dependencies:
+    lodash "^3.10.1"
 
 ovh-api-services@^6.1.2:
   version "6.1.2"
