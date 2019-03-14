@@ -1,0 +1,24 @@
+{
+  "name": "@ovh-ux/manager-cloud-styles",
+  "version": "0.1.0",
+  "license": "BSD-3-Clause",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "browser": "./dist/umd/cloud-styles.js",
+  "scripts": {
+    "build": "rollup -c --environment BUILD:production",
+    "dev": "rollup -c --environment BUILD:development",
+    "dev:watch": "yarn run dev --watch",
+    "prepare": "yarn run build",
+    "start": "lerna exec --stream --scope='@ovh-ux/manager-cloud-styles' --include-filtered-dependencies -- yarn run build",
+    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-cloud-styles' --include-filtered-dependencies -- yarn run dev",
+    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-cloud-styles' --include-filtered-dependencies -- yarn run dev:watch"
+  },
+  "devDependencies": {
+    "@ovh-ux/component-rollup-config": "^5.0.0-beta.9",
+    "bootstrap": "~3.3.7",
+    "font-awesome": "^4.0.0",
+    "ovh-common-style": "^3.2.2",
+    "ovh-ui-kit": "~2.24.0"
+  }
+}

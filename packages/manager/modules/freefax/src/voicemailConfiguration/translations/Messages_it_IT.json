@@ -13,10 +13,10 @@
  "freefax_voicemail_audio_format": "Ricevi i messaggi audio in formato",
  "freefax_voicemail_redirection_emails": "Indirizzo di posta a cui saranno inviati i messaggi",
  "freefax_voicemail_redirection_email": "Email",
- "freefax_voicemail_redirection_type": "tipo",
+ "freefax_voicemail_redirection_type": "Tipo",
  "freefax_voicemail_success": "Configurazione aggiornata",
  "freefax_voicemail_bad_password": "Password non corretta",
- "freefax_voicemail_cancel": "Annuler",
- "freefax_voicemail_submit": "Valider",
- "freefax_voicemail_edit": "Éditer"
+ "freefax_voicemail_cancel": "Annulla",
+ "freefax_voicemail_submit": "Conferma",
+ "freefax_voicemail_edit": "Modifica"
 }

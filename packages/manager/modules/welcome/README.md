@@ -11,12 +11,12 @@ yarn add @ovh-ux/manager-welcome
 ## Usage
 
 ```js
-import 'angular';
-import managerWelcome from '@ovh-ux/manager-welcome';
+import angular from 'angular';
+import ovhManagerWelcome from '@ovh-ux/manager-welcome';
 
 angular
   .module('myApp', [
-    managerWelcome,
+    ovhManagerWelcome,
   ]);
 ```
 

@@ -1,3 +1,41 @@
+# [4.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-freefax@3.0.1...@ovh-ux/manager-freefax@4.0.0) (2019-03-13)
+
+
+### Build System
+
+* **deps:** upgrade dependencies ([#252](https://github.com/ovh-ux/manager/issues/252)) ([f87f7b7](https://github.com/ovh-ux/manager/commit/f87f7b7))
+
+
+### BREAKING CHANGES
+
+* **deps:** replace both `@ovh-ux/ng-ovh-apiv7` and `ovh-angular-swimming-poll` by `@ovh-ux/ng-ovh-api-wrappers` and `@ovh-ux/ng-ovh-swimming-poll`
+
+
+
+## [3.0.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-freefax@3.0.0...@ovh-ux/manager-freefax@3.0.1) (2019-02-28)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([1c99f17](https://github.com/ovh-ux/manager/commit/1c99f17))
+* **i18n:** add missing translations ([701d753](https://github.com/ovh-ux/manager/commit/701d753))
+
+
+
+# [3.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-freefax@2.0.0...@ovh-ux/manager-freefax@3.0.0) (2019-02-26)
+
+
+### Build System
+
+* **deps:** upgrade ng-ovh-apiv7 to v2.0.0 ([ac6ac62](https://github.com/ovh-ux/manager/commit/ac6ac62))
+
+
+### BREAKING CHANGES
+
+* **deps:** replace `ovh-angular-apiv7` by `@ovh-ux/ng-ovh-apiv7`
+
+
+
 # [2.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-freefax@1.0.6...@ovh-ux/manager-freefax@2.0.0) (2019-01-29)
 
 

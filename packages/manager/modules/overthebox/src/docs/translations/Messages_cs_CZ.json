@@ -1,7 +1,7 @@
 {
- "overTheBox_docs_title": "Příručky",
- "overTheBox_docs_label_installation": "Instalace",
- "overTheBox_docs_label_config": "Pokročilá konfigurace",
+ "overTheBox_docs_title": "Guides",
+ "overTheBox_docs_label_installation": "Installation",
+ "overTheBox_docs_label_config": "Configuration avancée",
  "overTheBox_docs_label_intermediate": "Niveau intermediaire",
  "overTheBox_docs_label_advanced": "Niveau avancé",
  "overTheBox_docs_how_it_works": "Comment fonctionne OverTheBox ?",
@@ -15,7 +15,7 @@
  "overTheBox_docs_aggregate_policy": "Politique d'agrégation",
  "overTheBox_docs_router_coupling": "DMZ : couplage OverTheBox avec un autre routeur",
  "overTheBox_docs_qos_activate": "Activer la QoS",
- "overTheBox_docs_qos_principle": "Fonctionnement et Customisation de la QoS",
+ "overTheBox_docs_qos_principle": "Fonctionnement et customisation de la QoS",
  "overTheBox_docs_virtualbox_test": "Tester OverTheBox sur VirtualBox",
  "overTheBox_docs_three_g_four_g": "Intégration d'une clef 3G-4G",
  "overTheBox_docs_image_installation": "Installer l'image OverTheBox sur votre matériel",
@@ -31,5 +31,5 @@
  "overTheBox_docs_multiwan_route": "Créer une route multiwan spécifique",
  "overTheBox_docs_firewall_rules": "Règles Firewall",
  "overTheBox_docs_remote_access": "Accès à distance",
- "overTheBox_docs_open_new_tab": "Nové okno"
+ "overTheBox_docs_open_new_tab": "Nouvelle fenêtre"
 }

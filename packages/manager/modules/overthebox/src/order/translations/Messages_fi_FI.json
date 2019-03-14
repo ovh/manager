@@ -22,5 +22,5 @@
  "order_overTheBox_orderDone": "Your order has been processed. <a href=\"{{bcUrl}}\" target=\"_blank\">Click here to access and confirm the purchase order</a>.",
  "order_overTheBox_offers_error": "Unable to change list of services. Please try again later. ",
  "order_overTheBox_sure_want_to_order": "We detected that one of your OverTheBox is not associated with any service and that at least one of your services does not support OverTheBox.",
- "overTheBox_order_generate_order": "Luo tilaus"
+ "overTheBox_order_generate_order": "Generate purchase order"
 }

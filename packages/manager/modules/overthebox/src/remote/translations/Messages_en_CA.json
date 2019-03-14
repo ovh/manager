@@ -6,7 +6,7 @@
  "overTheBox_remote_table_connection": "Connection",
  "overTheBox_remote_table_status": "Status",
  "overTheBox_remote_table_authorized_by": "Authorised by  ",
- "overTheBox_remote_table_expire": "Expiration",
+ "overTheBox_remote_table_expire": "Expiry",
  "overTheBox_remote_table_empty": "No remote access registered",
  "overTheBox_status_active": "Active",
  "overTheBox_status_creating": "Creating",

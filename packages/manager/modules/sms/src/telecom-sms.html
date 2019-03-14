@@ -19,54 +19,40 @@
             </tuc-editable-service-name>
         </header>
 
-        <nav role="navigation">
-            <responsive-tabs>
-
-                <responsive-tab data-state="sms.service.dashboard"
-                                data-dropdown-title="{{ 'sms_common_home' | translate }}">
-                    <span data-translate="sms_common_home"></span>
-                </responsive-tab>
-
-                <responsive-tab data-state="sms.service.sms"
-                                data-dropdown-title="{{ 'sms_tabs_sms' | translate }}">
-                    <span data-translate="sms_tabs_sms"></span>
-                </responsive-tab>
-
-                <responsive-tab data-state="sms.service.receivers"
-                                data-dropdown-title="{{ 'sms_tabs_contacts' | translate }}">
-                    <span data-translate="sms_tabs_contacts"></span>
-                </responsive-tab>
-
-                <responsive-tab data-state="sms.service.phonebooks"
-                                data-dropdown-title="{{ 'sms_tabs_phonebooks' | translate }}">
-                    <span data-translate="sms_tabs_phonebooks"></span>
-                </responsive-tab>
-
-                <responsive-tab data-state="sms.service.senders"
-                                data-dropdown-title="{{ 'sms_tabs_senders' | translate }}">
-                    <span data-translate="sms_tabs_senders"></span>
-                </responsive-tab>
-
-                <responsive-tab data-state="sms.service.users"
-                                data-dropdown-title="{{ 'sms_tabs_api_users' | translate }}">
-                    <span data-translate="sms_tabs_api_users"></span>
-                </responsive-tab>
-
-                <responsive-tab data-state="sms.service.options"
-                                data-dropdown-title="{{ 'sms_tabs_options' | translate }}">
-                    <span data-translate="sms_tabs_options"></span>
-                </responsive-tab>
-
-                <responsive-tab data-state="sms.service.guides"
-                                data-dropdown-title="{{ 'sms_tabs_guides' | translate }}">
-                    <span data-translate="sms_tabs_guides"></span>
-                </responsive-tab>
-
-                <responsive-tab-more>
-                    <i class="fa fa-plus"></i>
-                </responsive-tab-more>
-            </responsive-tabs>
-        </nav>
+        <oui-header-tabs>
+            <oui-header-tabs-item
+                data-text="{{:: 'sms_common_home' | translate }}"
+                data-state="sms.service.dashboard">
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                data-text="{{:: 'sms_tabs_sms' | translate }}"
+                data-state="sms.service.sms">
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                data-text="{{:: 'sms_tabs_contacts' | translate }}"
+                data-state="sms.service.receivers">
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                data-text="{{:: 'sms_tabs_phonebooks' | translate }}"
+                data-state="sms.service.phonebooks">
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                data-text="{{:: 'sms_tabs_senders' | translate }}"
+                data-state="sms.service.senders">
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                data-text="{{:: 'sms_tabs_api_users' | translate }}"
+                data-state="sms.service.users">
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                data-text="{{:: 'sms_tabs_options' | translate }}"
+                data-state="sms.service.options">
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                data-text="{{:: 'sms_tabs_guides' | translate }}"
+                data-state="sms.service.guides">
+            </oui-header-tabs-item>
+        </oui-header-tabs>
 
     </div>
     <!-- .telecom-section-header -->

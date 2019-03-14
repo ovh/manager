@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 const ora = require('ora');
 const { Codename, Sample } = require('@ovh-ux/codename-generator');
 const { MonoRepository } = require('../common/repository');
@@ -29,8 +28,14 @@ const getChangedRepositories = (force = false) => MonoRepository
       });
   });
 
-const bumpRepositories = (repos, type = null, prerelease = false, preid = null) => Promise.all(
-  repos.map(repo => repo.bump(type, prerelease, preid)),
+const bumpRepositories = (
+  repos,
+  type = null,
+  prerelease = false,
+  preid = null,
+  checkPreReleaseFile = true,
+) => Promise.all(
+  repos.map(repo => repo.bump(type, prerelease, preid, checkPreReleaseFile)),
 )
   .logging('bumping repositories')
   .then((bumps) => {

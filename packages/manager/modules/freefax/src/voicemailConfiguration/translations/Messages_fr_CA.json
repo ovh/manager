@@ -12,7 +12,7 @@
  "freefax_voicemail_keep_messages": "Supprimer automatiquement le message après l'envoi",
  "freefax_voicemail_audio_format": "Recevoir les messages audio au format",
  "freefax_voicemail_redirection_emails": "Adresses courriel où seront envoyés les messages",
- "freefax_voicemail_redirection_email": "Courriel",
+ "freefax_voicemail_redirection_email": "Email",
  "freefax_voicemail_redirection_type": "type",
  "freefax_voicemail_success": "Configuration mise à jour",
  "freefax_voicemail_bad_password": "Mot de passe incorrect",

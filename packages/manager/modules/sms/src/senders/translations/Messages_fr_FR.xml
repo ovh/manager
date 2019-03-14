@@ -8,6 +8,7 @@
    <translation id="sms_senders_label_referer" qtlid="2642">Type</translation>
    <translation id="sms_senders_label_description" qtlid="9238">Description</translation>
    <translation id="sms_senders_label_status" qtlid="26443">Statut</translation>
+   <translation id="sms_senders_label_comment">Commentaire</translation>
 
    <translation id="sms_senders_sr_only_actions" qtlid="72809">Actions</translation>
 

@@ -1,0 +1,15 @@
+{
+ "cuc_helper_modal_ok": "OK",
+ "cuc_helper_cancel": "Annuleren",
+ "cuc_helper_edit": "Wijzigen",
+ "cuc_helper_modal_cancel": "Annuleren",
+ "cuc_helper_delete": "Verwijderen",
+ "cuc_helper_global_error": "Er is een fout opgetreden tijdens de bewerking: {{message}}",
+ "cuc_helper_global_success": "De procedure is voltooid. ",
+ "cuc_helper_name_change_modal_title": "Naam wijzigen",
+ "cuc_helper_name_change_modal_service_name_label": "Standaard naam",
+ "cuc_helper_name_change_modal_display_name_label": "Gepersonaliseerde naam",
+ "cuc_helper_order_success": "<a href=\"{{orderUrl}}\" target=\"_blank\">{{orderId}}</a> bestelbon is aangemaakt.",
+ "cuc_helper_order_error": "Fout bij het aanmaken van de bestelling: {{message}}",
+ "cuc_helper_order_doing": "Aankoop bestelling wordt gemaakt..."
+}

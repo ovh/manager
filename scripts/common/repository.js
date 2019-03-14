@@ -141,7 +141,7 @@ class Repository {
       .then(() => this);
   }
 
-  bump(type = null, prerelease = false, preid = null) {
+  bump(type = null, prerelease = false, preid = null, checkPreReleaseFile = true) {
     return Repository.fetchTags()
       .then((...args) => this.createSmokeTag(args))
       .then(() => new Promise((resolve, reject) => {
@@ -155,6 +155,14 @@ class Repository {
         const releaseType = type || recommendation.releaseType;
         const regExpSemverPreRelease = /(\d+)\.(\d+)\.(\d+)-(\w+)\.(\d+)/g;
         let newVersion;
+        let preId = preid;
+        let preRelease = prerelease;
+
+        const preReleaseFilePath = path.join(this.location, '.prerelease');
+        if (checkPreReleaseFile && fs.existsSync(preReleaseFilePath)) {
+          preId = fs.readFileSync(preReleaseFilePath).toString().trim();
+          preRelease = true;
+        }
 
         // Check if the last release was a pre-release
         // If it's already a pre-release, we should sometimes bump only the pre-release digit
@@ -166,7 +174,7 @@ class Repository {
         // - packageA@2.0.1-alpha.0
         // - Patch on packageA
         // - packageA@2.0.1-alpha.1
-        if (prerelease && regExpSemverPreRelease.test(this.version)) {
+        if (preRelease && regExpSemverPreRelease.test(this.version)) {
           const matchs = this.version.match(regExpSemverPreRelease);
           // 0: Fullmatch
           // 1: Major digit
@@ -179,26 +187,26 @@ class Repository {
           if (releaseType === 'patch') {
             // Match example: 2.1.1-alpha.0 -> 2.1.1-alpha.1
             // Match example: 2.1.0-alpha.0 -> 2.1.0-alpha.1
-            newVersion = semver.inc(this.version, 'prerelease', preid);
+            newVersion = semver.inc(this.version, 'prerelease', preId);
           } else if (releaseType === 'minor') {
             // Min Minor
             if (minorDigit > 0) {
               // Match example: 2.1.0-alpha.0 -> 2.1.0-alpha.1
-              newVersion = semver.inc(this.version, 'prerelease', preid);
+              newVersion = semver.inc(this.version, 'prerelease', preId);
             } else {
               // Match example: 2.1.1-alpha.0 -> 2.2.0-alpha.0
               // Match example: 2.0.1-alpha.0 -> 2.1.0-alpha.0
-              newVersion = semver.inc(this.version, 'preminor', preid);
+              newVersion = semver.inc(this.version, 'preminor', preId);
             }
           } else {
             // Min major
             // Match example: 3.0.0-alpha.0 -> 3.0.0-alpha.1
             // Match example: 2.1.1-alpha.0 -> 3.0.0-alpha.0
             // Match example: 2.1.0-alpha.0 -> 3.0.0-alpha.0
-            newVersion = semver.inc(this.version, 'prerelease', preid);
+            newVersion = semver.inc(this.version, 'prerelease', preId);
           }
         } else {
-          newVersion = semver.inc(this.version, prerelease ? `pre${releaseType}` : releaseType, preid);
+          newVersion = semver.inc(this.version, preRelease ? `pre${releaseType}` : releaseType, preId);
         }
 
         return this.updatePackageJson({ version: newVersion })
