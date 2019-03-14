@@ -17,7 +17,6 @@ import some from 'lodash/some';
 import sortBy from 'lodash/sortBy';
 import values from 'lodash/values';
 
-
 import deleteController from './delete/controller';
 import deleteTemplate from './delete/template.html';
 
@@ -39,7 +38,6 @@ export default class PrivateNetworkListCtrl {
     OvhApiMe,
     PCI_URLS,
     OvhApiVrack,
-    // VrackSectionSidebarService,
     CucVrackService,
     CucCloudPoll,
     CucControllerHelper,
@@ -97,14 +95,23 @@ export default class PrivateNetworkListCtrl {
     this.$window = $window;
     // get vRacks for current user, shown in left side bar
     this.vRacks = [];
-    // VrackSectionSidebarService.getVracks()
-    //   .then((vRacks) => {
-    //     this.vRacks = vRacks;
-    //   }).finally(() => {
-    //     this.loaders.vracks.get = false;
-    //   });
-    // added and to remove :
-    this.loaders.vracks.get = false;
+
+    this.resources.aapi.query().$promise
+      .then(vRacks => sortBy(
+        map(
+          vRacks,
+          ({ id, name }) => ({
+            displayName: name || id,
+            serviceName: id,
+          }),
+        ),
+        ({ displayName }) => displayName.toLowerCase(),
+      )).then((vRacks) => {
+        this.vRacks = vRacks;
+      })
+      .finally(() => {
+        this.loaders.vracks.get = false;
+      });
   }
 
   $onInit() {
@@ -418,10 +425,10 @@ export default class PrivateNetworkListCtrl {
   }
 
   hasPendingLoaders() {
-    return some(this.loaders, bind('query', true))
-      || some(this.loaders, bind('get', true))
-      || some(this.loaders, bind('link', true))
-      || some(this.loaders, bind('unlink', true))
+    return some(this.loaders, { query: true })
+      || some(this.loaders, { get: true })
+      || some(this.loaders, { link: true })
+      || some(this.loaders, { unlink: true })
       || this.isVrackCreating();
   }
 
