@@ -15,7 +15,8 @@ import 'angular-dynamic-locale';
 import 'angular-translate';
 import 'angular-translate-loader-pluggable';
 
-import '@ovh-ux/ng-ovh-apiv7';
+import '@ovh-ux/ng-ovh-swimming-poll';
+import '@ovh-ux/ng-ovh-api-wrappers';
 import 'ovh-api-services';
 
 import translateServiceProvider from './translate/translate.service';
@@ -29,7 +30,8 @@ const moduleName = 'ovhManagerCore';
 
 angular
   .module(moduleName, [
-    'ngOvhApiv7',
+    'ngOvhSwimmingPoll',
+    'ngOvhApiWrappers',
     'ngSanitize',
     'angular-translate-loader-pluggable',
     'ovh-api-services',
