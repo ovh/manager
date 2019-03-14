@@ -1,0 +1,16 @@
+{
+  "adp_deploy_worker_nodes": "Worker Nodes",
+  "adp_deploy_worker_nodes_help": "Nodes running jobs, providing compute capacity.<br/><br/>Storage capacity is directly related to workers.",
+  "adp_deploy_instance_type": "Instance type",
+  "adp_deploy_flavor_placeholder": "Please select your flavor",
+  "adp_deploy_edge_nodes": "Edge Nodes",
+  "adp_deploy_edge_nodes_help": "Nodes hosting users home for services access",
+  "adp_deploy_master_nodes": "Master Nodes",
+  "adp_deploy_master_nodes_help": "Nodes running the services coordination.<br/><br/>Amount and flavor are defined by OVH.",
+  "adp_deploy_utility_nodes": "Utility Nodes",
+  "adp_deploy_utility_nodes_help": "Utility services : database, identity management, gateway.<br/><br/>Amount and flavor are defined by OVH.",
+  "adp_deploy_bastion_nodes": "Bastion Nodes",
+  "adp_deploy_bastion_nodes_help": "Provides user access to Data Platform from public network.<br/><br/>Amount and flavor are defined by OVH.",
+  "adp_deploy_nodes_quota_msg": "Under your current quota, you can create up to a maximum of 100 simultaneous s1-2 instance(s) for the Beauharnois (BHS3) region.",
+  "adp_deploy_nodes_increase_quota": "View and increase your quota"
+}

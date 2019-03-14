@@ -1,0 +1,109 @@
+<div class="mb-3">
+    <div class="row">
+        <div class="col-sm-3 col-xs-12">
+            <oui-field data-label="{{ 'adp_deploy_worker_nodes' | translate }}"
+                       data-label-popover="{{ 'adp_deploy_worker_nodes_help' | translate }}">
+                <oui-numeric data-model="$ctrl.clusterInfo.workerNodes.count"
+                             data-min="$ctrl.clusterInfo.workerNodes.min"
+                             data-max="$ctrl.clusterInfo.workerNodes.max">
+                </oui-numeric>
+            </oui-field>
+        </div>
+        <div class="col-sm-9 col-xs-12">
+            <oui-field data-label="{{ 'adp_deploy_instance_type' | translate }}">
+                <oui-select data-model="$ctrl.clusterInfo.workerNodes.flavor"
+                            data-placeholder="{{ 'adp_deploy_flavor_placeholder' | translate }}"
+                            data-items="$ctrl.clusterInfo.flavors"
+                            data-group-by="$ctrl.groupByFlavorType"
+                            data-required>
+                </oui-select>
+            </oui-field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3 col-xs-12">
+            <oui-field data-label="{{ 'adp_deploy_edge_nodes' | translate }}"
+                       data-label-popover="{{ 'adp_deploy_edge_nodes_help' | translate }}">
+                <oui-numeric data-model="$ctrl.clusterInfo.edgeNodes.count"
+                             data-min="$ctrl.clusterInfo.edgeNodes.min"
+                             data-max="$ctrl.clusterInfo.edgeNodes.max">
+                </oui-numeric>
+            </oui-field>
+        </div>
+        <div class="col-sm-9 col-xs-12">
+            <oui-field data-label="{{ 'adp_deploy_instance_type' | translate }}">
+                <oui-select data-model="$ctrl.clusterInfo.edgeNodes.flavor"
+                            data-placeholder="{{ 'adp_deploy_flavor_placeholder' | translate }}"
+                            data-items="$ctrl.clusterInfo.flavors"
+                            data-group-by="$ctrl.groupByFlavorType"
+                            data-required>
+                </oui-select>
+            </oui-field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3 col-xs-12">
+            <oui-field data-label="{{ 'adp_deploy_master_nodes' | translate }}"
+                       data-label-popover="{{ 'adp_deploy_master_nodes_help' | translate }}">
+                <oui-numeric data-model="$ctrl.clusterInfo.masterNodes.count"
+                             data-min="$ctrl.clusterInfo.masterNodes.min"
+                             data-max="$ctrl.clusterInfo.masterNodes.max">
+                </oui-numeric>
+            </oui-field>
+        </div>
+        <div class="col-sm-9 col-xs-12">
+            <oui-field data-label="{{ 'adp_deploy_instance_type' | translate }}">
+                <oui-select data-model="$ctrl.clusterInfo.masterNodes.flavor"
+                            data-placeholder="{{ 'adp_deploy_flavor_placeholder' | translate }}"
+                            data-items="$ctrl.clusterInfo.flavors"
+                            data-group-by="$ctrl.groupByFlavorType"
+                            data-required>
+                </oui-select>
+            </oui-field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3 col-xs-12">
+            <oui-field data-label="{{ 'adp_deploy_utility_nodes' | translate }}"
+                       data-label-popover="{{ 'adp_deploy_utility_nodes_help' | translate }}">
+                <oui-numeric data-model="$ctrl.clusterInfo.utilityNodes.count"
+                             data-min="$ctrl.clusterInfo.utilityNodes.min"
+                             data-max="$ctrl.clusterInfo.utilityNodes.max">
+                </oui-numeric>
+            </oui-field>
+        </div>
+        <div class="col-sm-9 col-xs-12">
+            <oui-field data-label="{{ 'adp_deploy_instance_type' | translate }}">
+                <oui-select data-model="$ctrl.clusterInfo.utilityNodes.flavor"
+                            data-placeholder="{{ 'adp_deploy_flavor_placeholder' | translate }}"
+                            data-items="$ctrl.clusterInfo.flavors"
+                            data-group-by="$ctrl.groupByFlavorType"
+                            data-required>
+                </oui-select>
+            </oui-field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3 col-xs-12">
+            <oui-field data-label="{{ 'adp_deploy_bastion_nodes' | translate }}"
+                       data-label-popover="{{ 'adp_deploy_bastion_nodes_help' | translate }}">
+                <oui-numeric data-model="$ctrl.clusterInfo.bastionNodes.count"
+                             data-min="$ctrl.clusterInfo.bastionNodes.min"
+                             data-max="$ctrl.clusterInfo.bastionNodes.max">
+                </oui-numeric>
+            </oui-field>
+        </div>
+        <div class="col-sm-9 col-xs-12">
+            <oui-field data-label="{{ 'adp_deploy_instance_type' | translate }}">
+                <oui-select data-model="$ctrl.clusterInfo.bastionNodes.flavor"
+                            data-placeholder="{{ 'adp_deploy_flavor_placeholder' | translate }}"
+                            data-items="$ctrl.clusterInfo.flavors"
+                            data-group-by="$ctrl.groupByFlavorType"
+                            data-required>
+                </oui-select>
+            </oui-field>
+        </div>
+    </div>
+    <p data-translate="adp_deploy_nodes_quota_msg"></p>
+    <a class="mb-3" href="#" data-translate="adp_deploy_nodes_increase_quota"></a>
+</div>

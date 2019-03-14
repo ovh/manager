@@ -1542,6 +1542,12 @@
     rollup-pluginutils "^2.3.3"
     slash "^2.0.0"
 
+"@ovh-ux/manager-adp@file:packages/manager/modules/adp":
+  version "1.0.0"
+  dependencies:
+    bootstrap4 twbs/bootstrap#v4.0.0
+    lodash "^4.17.11"
+
 "@ovh-ux/manager-webpack-config@^3.0.1":
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-webpack-config/-/manager-webpack-config-3.0.1.tgz#d03713e9c1a7701f693fce217076e38dbe5f9cc3"

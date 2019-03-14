@@ -1,0 +1,33 @@
+<section>
+<oui-page-header
+    heading="Deploy an Analytics Data Platform"
+    description="OVH Analytics Data Platform (ADP) contains all the tools to ingest, clean, process and visualize vast amounts data.
+            We deploy a preconfigured and fully secured Apache Hadoop cluster, on top of OVH Public Cloud compute and storage resources.
+            Then, simply upload your data or add data collector for real-time flows, and follow our documentation to make us of ADP benefits.">
+</oui-page-header>
+<oui-stepper>
+    <oui-step-form header="General configuration" description="This is a description">
+        <div class="row">
+            <div class="col-lg-4 col-md-4">left</div>
+            <div class="col-lg-8 col-md-8">right</div>
+        </div>
+    </oui-step-form>
+
+    <oui-step-form header="Select a region and a datacentre" description="This is another description">
+
+    </oui-step-form>
+
+    <oui-step-form header="Size the nodes">
+        <div data-ng-include="'adp/deploy/nodes.html'"></div>
+    </oui-step-form>
+
+    <oui-step-form header="Size the storage">
+
+    </oui-step-form>
+
+    <oui-step-form header="Infrastructure review">
+
+    </oui-step-form>
+</oui-stepper>
+
+</section>
