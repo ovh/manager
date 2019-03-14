@@ -13,11 +13,12 @@ import 'ovh-api-services';
 import 'ovh-ui-angular';
 import 'ovh-angular-otrs';
 import 'ovh-jquery-ui-draggable-ng';
-import '@ovh-ux/manager-cloud-styles';
 import 'ovh-angular-q-allsettled';
 import 'ovh-angular-pagination-front';
 
+import '@ovh-ux/manager-cloud-styles';
 import 'ovh-ui-kit/dist/oui.css';
+import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
 
 import components from './components';
 import offer from './offer';

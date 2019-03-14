@@ -692,7 +692,7 @@ export default class CloudProjectComputeInfrastructureDiagramCtrl {
     if (vm.monthlyBilling && vm.monthlyBilling.status === 'ok') {
       this.$uibModal.open({
         windowTopClass: 'cui-modal',
-        templateUrl: 'app/cloud/project/compute/infrastructure/virtualMachine/delete/cloud-project-compute-infrastructure-virtual-machine-delete.html',
+        templateUrl: 'pci/project/compute/infrastructure/virtualMachine/delete/template.html',
         controller: 'CloudprojectcomputeinfrastructurevirtualmachinedeleteCtrl',
         controllerAs: '$ctrl',
         resolve: {
@@ -719,7 +719,7 @@ export default class CloudProjectComputeInfrastructureDiagramCtrl {
 
   openVolumeSnapshotWizard(volume) {
     this.$uibModal.open({
-      templateUrl: 'app/cloud/project/compute/volume/snapshot/cloud-project-compute-volume-snapshot-add.html',
+      templateUrl: 'pci/project/compute/volume/snapshot/template.html',
       controller: 'CloudProjectComputeVolumeSnapshotAddCtrl',
       controllerAs: 'CloudProjectComputeVolumeSnapshotAddCtrl',
       resolve: {

@@ -4,8 +4,12 @@ import 'ovh-api-services';
 import '@ovh-ux/ng-ovh-jsplumb';
 
 import diagram from './diagram';
-import iacDeploy from './iac/deploy';
+import iac from './iac';
+import ip from './ip';
 import list from './list';
+import openstackClient from './openstackClient';
+import popover from './popover';
+import privateNetwork from './privateNetwork';
 import virtualMachine from './virtualMachine';
 import volume from './volume';
 
@@ -24,9 +28,13 @@ const moduleName = 'ovhManagerPciProjectComputeInfrastructure';
 angular
   .module(moduleName, [
     diagram,
-    iacDeploy,
+    iac,
+    ip,
     list,
+    openstackClient,
     'ovh-api-services',
+    popover,
+    privateNetwork,
     'ngOvhJsplumb',
     'ui.router',
     virtualMachine,

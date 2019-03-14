@@ -8,7 +8,7 @@ import volumeTemplate from './volume.template.html';
 
 // TODO : import './index.less';
 
-const moduleName = 'ovhManagerPciComponentsProjectBilling';
+const moduleName = 'ovhManagerPciComponentsProjectBillingDetailsPopover';
 
 angular
   .module(moduleName, [])

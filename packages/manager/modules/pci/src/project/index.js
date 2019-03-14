@@ -15,6 +15,9 @@ import openstack from './openstack';
 import rename from './rename';
 import storage from './storage';
 
+import deleteController from './delete/controller';
+import deleteTemplate from './delete/template.html';
+
 import controller from './controller';
 import template from './template.html';
 
@@ -57,6 +60,10 @@ angular
         },
         atInternet: { ignore: true },
       });
+  })
+  .controller('CloudProjectDeleteCtrl', deleteController)
+  .run(/* @ngInject */($templateCache) => {
+    $templateCache.put('pci/project/delete/template.html', deleteTemplate);
   });
 
 export default moduleName;

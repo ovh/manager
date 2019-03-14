@@ -33,14 +33,14 @@ export default class CloudProjectComputeInfrastructureService {
     if (this.TARGET === 'US') {
       return this.$uibModal.open({
         windowTopClass: 'cui-modal',
-        templateUrl: 'app/cloud/project/compute/infrastructure/ip/failover/buy/cloud-project-compute-infrastructure-ip-failover-buy-agora.html',
+        templateUrl: 'pci/project/compute/infrastructure/ip/failover/buy/agora.template.html',
         controller: 'CloudProjectComputeInfrastructureIpFailoverBuyAgoraCtrl',
         controllerAs: '$ctrl',
       }).result;
     }
     return this.$uibModal.open({
       windowTopClass: 'cui-modal',
-      templateUrl: 'app/cloud/project/compute/infrastructure/ip/failover/buy/cloud-project-compute-infrastructure-ip-failover-buy.html',
+      templateUrl: 'pci/project/compute/infrastructure/ip/failover/buy/template.html',
       controller: 'CloudProjectComputeInfrastructureIpFailoverBuyCtrl',
       controllerAs: 'CPCIIpFailoverBuyCtrl',
     }).result;
@@ -49,7 +49,7 @@ export default class CloudProjectComputeInfrastructureService {
   importIpFailOver(pendingImportIps) {
     return this.$uibModal.open({
       windowTopClass: 'cui-modal',
-      templateUrl: 'app/cloud/project/compute/infrastructure/ip/failover/import/cloud-project-compute-infrastructure-ip-failover-import.html',
+      templateUrl: 'pci/project/compute/infrastructure/ip/failover/import/template.html',
       controller: 'CloudProjectComputeInfrastructureIpFailoverImportCtrl',
       controllerAs: 'CPCIIpFailoverImportCtrl',
       resolve: {
@@ -62,7 +62,7 @@ export default class CloudProjectComputeInfrastructureService {
     if (this.TARGET === 'US') {
       return this.$uibModal.open({
         windowTopClass: 'cui-modal',
-        templateUrl: 'app/cloud/project/billing/vouchers/addCredit/cloud-project-billing-vouchers-add-credit-agora.html',
+        templateUrl: 'pci/project/billing/vouchers/addCredit/agora.template.html',
         controller: 'CloudProjectBillingVouchersAddcreditAgoraCtrl',
         controllerAs: '$ctrl',
       }).result;
@@ -72,7 +72,7 @@ export default class CloudProjectComputeInfrastructureService {
 
   openLoginInformations(vm) {
     return this.$uibModal.open({
-      templateUrl: 'app/cloud/project/compute/infrastructure/virtualMachine/loginInformation/cloud-project-compute-infrastructure-virtual-machine-login-information.html',
+      templateUrl: 'pci/project/compute/infrastructure/virtualMachine/loginInformation/template.html',
       controller: 'CloudProjectComputeInfrastructureVirtualMachineLoginInformationCtrl',
       controllerAs: 'VmLoginInformationCtrl',
       size: 'md',
@@ -90,7 +90,7 @@ export default class CloudProjectComputeInfrastructureService {
   openDeleteProjectModal() {
     return this.$uibModal.open({
       windowTopClass: 'cui-modal',
-      templateUrl: 'app/cloud/project/delete/cloud-project-delete.html',
+      templateUrl: 'pci/project/delete/template.html',
       controller: 'CloudProjectDeleteCtrl',
       controllerAs: 'CloudProjectDeleteCtrl',
     }).result;
@@ -99,7 +99,7 @@ export default class CloudProjectComputeInfrastructureService {
   openMonthlyConfirmation(vm) {
     this.$uibModal.open({
       windowTopClass: 'cui-modal',
-      templateUrl: 'app/cloud/project/compute/infrastructure/virtualMachine/monthlyConfirm/cloud-project-compute-infrastructure-virtual-machine-monthlyConfirm.html',
+      templateUrl: 'pci/project/compute/infrastructure/virtualMachine/monthlyConfirm/template.html',
       controller: 'CloudProjectComputeInfrastructureVirtualmachineMonthlyConfirm',
       controllerAs: 'CPCIVirtualmachineMonthlyConfirm',
       resolve: {
@@ -113,7 +113,7 @@ export default class CloudProjectComputeInfrastructureService {
   openSnapshotWizard(vm) {
     return this.$uibModal.open({
       windowTopClass: 'cui-modal',
-      templateUrl: 'app/cloud/project/compute/snapshot/add/cloud-project-compute-snapshot-add.html',
+      templateUrl: 'pci/project/compute/snapshot/add/template.html',
       controller: 'CloudProjectComputeSnapshotAddCtrl',
       controllerAs: 'CloudProjectComputeSnapshotAddCtrl',
       resolve: {
@@ -125,7 +125,7 @@ export default class CloudProjectComputeInfrastructureService {
   openVnc(vm) {
     return this.$uibModal.open({
       windowTopClass: 'cui-modal',
-      templateUrl: 'app/cloud/project/compute/infrastructure/virtualMachine/vnc/cloud-project-compute-infrastructure-virtual-machine-vnc.html',
+      templateUrl: 'pci/project/compute/infrastructure/virtualMachine/vnc/template.html',
       controller: 'CloudProjectComputeInfrastructureVirtualmachineVncCtrl',
       controllerAs: 'VmVncCtrl',
       size: 'lg',
@@ -155,7 +155,7 @@ export default class CloudProjectComputeInfrastructureService {
   deleteVirtualMachine(vm) {
     this.$uibModal.open({
       windowTopClass: 'cui-modal',
-      templateUrl: 'app/cloud/project/compute/infrastructure/virtualMachine/delete/cloud-project-compute-infrastructure-virtual-machine-delete.html',
+      templateUrl: 'pci/project/compute/infrastructure/virtualMachine/delete/template.html',
       controller: 'CloudprojectcomputeinfrastructurevirtualmachinedeleteCtrl',
       controllerAs: '$ctrl',
       resolve: {
@@ -168,7 +168,7 @@ export default class CloudProjectComputeInfrastructureService {
   rescueMode(vm) {
     return this.$uibModal.open({
       windowTopClass: 'cui-modal',
-      templateUrl: 'app/cloud/project/compute/infrastructure/virtualMachine/rescue/cloud-project-compute-infrastructure-virtual-machine-rescue.html',
+      templateUrl: 'pci/project/compute/infrastructure/virtualMachine/rescue/template.html',
       controller: 'CloudProjectComputeInfrastructureVirtualmachineRescueCtrl',
       controllerAs: 'VmRescueCtrl',
       size: 'md',

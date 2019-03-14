@@ -6,6 +6,9 @@ import controller from './controller';
 import template from './template.html';
 import service from './service';
 
+import addController from './add/controller';
+import addTemplate from './add/template.html';
+
 // TODO : import './index.less';
 
 const moduleName = 'ovhManagerPciProjectComputeSnapshot';
@@ -33,6 +36,10 @@ angular
         },
       });
   })
-  .service('CloudProjectComputeSnapshotPriceService', service);;
+  .controller('CloudProjectComputeSnapshotAddCtrl', addController)
+  .service('CloudProjectComputeSnapshotPriceService', service)
+  .run(/* @ngInject */($templateCache) => {
+    $templateCache.put('pci/project/compute/snapshot/add/template.html', addTemplate);
+  });
 
 export default moduleName;

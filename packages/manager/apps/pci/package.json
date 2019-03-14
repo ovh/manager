@@ -11,7 +11,7 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-pci-app' --include-filtered-dependencies -- yarn run dev:watch"
   },
   "dependencies": {
-    "@ovh-ux/manager-cloud-styles": "^0.0.0",
+    "@ovh-ux/manager-cloud-styles": "git+https://github.com/ovh-ux/manager.git#split-manager-cloud-styles/fix-rems",
     "@ovh-ux/manager-core": "^3.0.0",
     "@ovh-ux/manager-pci": "^0.0.0",
     "@ovh-ux/ng-ovh-apiv7": "^2.0.0",
@@ -33,7 +33,8 @@
     "ovh-angular-toaster": "ovh-ux/ovh-angular-toaster#^0.8.0",
     "ovh-jquery-ui-draggable-ng": "ovh-ux/ovh-jquery-ui-draggable-ng#^0.0.5",
     "ovh-ui-angular": "~2.24.0",
-    "ovh-ui-kit": "~2.24.0"
+    "ovh-ui-kit": "~2.24.0",
+    "ovh-ui-kit-bs": "^2.1.1"
   },
   "devDependencies": {
     "@ovh-ux/manager-webpack-config": "^3.0.1",

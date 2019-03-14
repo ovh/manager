@@ -1542,6 +1542,10 @@
     rollup-pluginutils "^2.3.3"
     slash "^2.0.0"
 
+"@ovh-ux/manager-cloud-styles@git+https://github.com/ovh-ux/manager.git#split-manager-cloud-styles/fix-rems":
+  version "0.1.0"
+  resolved "git+https://github.com/ovh-ux/manager.git#1a1fab3beaad904339b21d5739ea3042594f0e1e"
+
 "@ovh-ux/manager-core@^2.0.0":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core/-/manager-core-2.0.0.tgz#24914c831c87d5241bca49cc418aa4dfcdee040c"

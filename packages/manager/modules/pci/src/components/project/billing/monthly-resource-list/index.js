@@ -2,7 +2,7 @@ import angular from 'angular';
 
 import component from './component';
 
-const moduleName = 'ovhManagerPciComponentsProjectBilling';
+const moduleName = 'ovhManagerPciComponentsProjectBillingMonthlyResourceList';
 
 angular
   .module(moduleName, [])

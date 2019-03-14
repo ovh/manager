@@ -2,6 +2,9 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'ovh-api-services';
 
+import snapshotController from './snapshot/controller';
+import snapshotTemplate from './snapshot/template.html';
+
 import controller from './controller';
 import template from './template.html';
 
@@ -30,6 +33,10 @@ angular
         format: 'json',
       },
     });
+  })
+  .controller('CloudProjectComputeVolumeSnapshotAddCtrl', snapshotController)
+  .run(/* @ngInject */($templateCache) => {
+    $templateCache.put('pci/project/compute/volume/snapshot/template.html', snapshotTemplate);
   });
 
 export default moduleName;
