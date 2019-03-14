@@ -15,6 +15,7 @@ export default class CloudProjectComputeSnapshotPriceService {
     return this.OvhCloudPriceHelper.getPrices(serviceName).then((prices) => {
       let snapshotPrice = prices[`snapshot.consumption.${region}`] || prices['snapshot.consumption'];
       if (!snapshotPrice) {
+        // eslint-disable-next-line no-console
         console.warn('price not found for this snapshot');
       }
       snapshotPrice = {

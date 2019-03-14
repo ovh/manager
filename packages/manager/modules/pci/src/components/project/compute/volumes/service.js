@@ -459,6 +459,7 @@ export default /* @ngInject */ function (
       updateVolumesFromPolling(volumes);
     }, (err) => {
       if (err && err.status) {
+        // eslint-disable-next-line no-console
         console.warn('pollVolumes', err);
         // @todo add bugkiller here
       }
@@ -558,4 +559,4 @@ export default /* @ngInject */ function (
     resetDatas();
     return initExistingProject(opts);
   };
-};
+}

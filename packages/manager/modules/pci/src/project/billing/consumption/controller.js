@@ -9,7 +9,7 @@ export default /* @ngInject */ function ($state) {
     $state.go('iaas.pci-project.billing.consumption.current');
   }
 
-  self.getBillingDateInfo = function () {
+  self.getBillingDateInfo = function getBillingDateInfo() {
     return {
       date: self.currentDate.format('LL'),
     };

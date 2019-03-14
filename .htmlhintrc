@@ -1,5 +1,5 @@
 {
-  "alt-require": true,
+  "alt-require": false,
   "attr-lowercase": ["viewBox"],
   "attr-no-duplication": true,
   "attr-unsafe-chars": true,
@@ -11,8 +11,8 @@
   "href-abs-or-rel": false,
   "id-class-ad-disabled": true,
   "id-class-value": false,
-  "id-unique": true,
-  "inline-script-disabled": true,
+  "id-unique": false,
+  "inline-script-disabled": false,
   "inline-style-disabled": false,
   "space-tab-mixed-disabled": "space",
   "spec-char-escape": true,

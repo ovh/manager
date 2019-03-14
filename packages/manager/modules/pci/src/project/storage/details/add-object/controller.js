@@ -34,4 +34,4 @@ export default /* @ngInject */ (
   $scope.cancel = () => {
     $uibModalInstance.dismiss();
   };
-}
+};

@@ -17,7 +17,10 @@ export default /* @ngInject */ function CloudStorageContainers(
    */
   self.list = function list(projectId) {
     function saveNameAndRegion(container) {
-      const data = CloudStorageContainersConfiguration.containerMetaCache.get(projectId, container.id);
+      const data = CloudStorageContainersConfiguration.containerMetaCache.get(
+        projectId,
+        container.id,
+      );
       if (!data) {
         CloudStorageContainersConfiguration.containerMetaCache.set(projectId, container.id, pick(container, ['name', 'region']));
       }

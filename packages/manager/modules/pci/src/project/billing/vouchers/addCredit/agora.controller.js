@@ -2,6 +2,9 @@ import get from 'lodash/get';
 import filter from 'lodash/filter';
 import head from 'lodash/head';
 
+// we should avoid require, but JSURL don't provide an es6 export
+const { stringify } = require('jsurl');
+
 export default class CloudProjectBillingVouchersAddcreditAgoraCtrl {
   /* @ngInject */
   constructor(
@@ -70,7 +73,7 @@ export default class CloudProjectBillingVouchersAddcreditAgoraCtrl {
         value: 'public_cloud',
       }],
     };
-    this.$window.open(`https://us.ovhcloud.com/order/express/#/express/review?products=${JSURL.stringify([order])}`, '_blank');
+    this.$window.open(`https://us.ovhcloud.com/order/express/#/express/review?products=${stringify([order])}`, '_blank');
     this.$uibModalInstance.dismiss();
   }
 

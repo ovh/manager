@@ -41,14 +41,18 @@ export default function BillingArchiveStorageListComponentCtrl(
       }));
   };
 
-  self.getStorageOutgoingBandwidthInfoTooltip = function getStorageOutgoingBandwidthInfoTooltip(storage) {
+  self.getStorageOutgoingBandwidthInfoTooltip = function getStorageOutgoingBandwidthInfoTooltip(
+    storage,
+  ) {
     return $translate.instant('cpbc_archive_storage_output_traffic_info_part1')
       .concat($translate.instant('cpbc_archive_storage_output_traffic_info_part2', {
         amount: (storage.outgoingBandwidth ? storage.outgoingBandwidth.quantity.value : 0),
       }));
   };
 
-  self.getStorageIncomingBandwidthInfoTooltip = function getStorageIncomingBandwidthInfoTooltip(storage) {
+  self.getStorageIncomingBandwidthInfoTooltip = function getStorageIncomingBandwidthInfoTooltip(
+    storage,
+  ) {
     return $translate.instant('cpbc_archive_storage_input_traffic_info_part1')
       .concat($translate.instant('cpbc_archive_storage_input_traffic_info_part2', {
         amount: (storage.incomingBandwidth ? storage.incomingBandwidth.quantity.value : 0),

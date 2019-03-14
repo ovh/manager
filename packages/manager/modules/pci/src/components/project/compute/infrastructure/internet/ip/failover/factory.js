@@ -68,10 +68,10 @@ export default /* @ngInject */ (
       serviceName: this.serviceName,
       id: this.id,
     }, {
-        instanceId: vmId,
-      }).$promise.then((ipOptions) => {
-        self.status = ipOptions.status;
-      });
+      instanceId: vmId,
+    }).$promise.then((ipOptions) => {
+      self.status = ipOptions.status;
+    });
   };
 
   /**

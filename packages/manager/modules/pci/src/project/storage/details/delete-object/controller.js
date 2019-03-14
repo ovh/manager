@@ -14,9 +14,7 @@ export default /* @ngInject */ (
     value: true,
   };
 
-  $scope.names = () => {
-    return map($scope.elem, 'name').join('<br />');
-  };
+  $scope.names = () => map($scope.elem, 'name').join('<br />');
 
   $scope.confirm = () => {
     $uibModalInstance.close($scope.elem);
@@ -25,4 +23,4 @@ export default /* @ngInject */ (
   $scope.cancel = () => {
     $uibModalInstance.dismiss();
   };
-}
+};

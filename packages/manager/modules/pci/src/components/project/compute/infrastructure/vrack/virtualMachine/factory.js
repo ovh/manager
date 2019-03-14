@@ -84,7 +84,7 @@ export default /* @ngInject */ (
   /**
      *  [API] Get the virtual machine from API using its id
      */
-  VirtualMachineFactory.prototype.get = function get() {
+  VirtualMachineFactory.prototype.get = function getFn() {
     const self = this;
 
     return OvhApiCloudProjectInstance.v6().get({
@@ -526,46 +526,48 @@ export default /* @ngInject */ (
     };
   };
 
-  VirtualMachineFactory.prototype.generateMonitoringInference = function generateMonitoringInference() {
-    const self = this;
-    if (self.monitoringData && self.monitoringData.raw) {
-      const rawData = this.monitoringData.raw;
-      let maxPeriod;
+  VirtualMachineFactory
+    .prototype
+    .generateMonitoringInference = function generateMonitoringInference() {
+      const self = this;
+      if (self.monitoringData && self.monitoringData.raw) {
+        const rawData = this.monitoringData.raw;
+        let maxPeriod;
 
-      // ----- CPU -----
-      if (rawData['cpu:used'] && !isEmpty(rawData['cpu:used'].values)) {
-        maxPeriod = maxBy(rawData['cpu:used'].values, v => (angular.isNumber(v.value) ? v.value : Number.NEGATIVE_INFINITY));
-        this.monitoringData.cpu = {
-          now: last(rawData['cpu:used'].values), // current CPU usage
-          // does CPU reach alerting threshold over period?
-          needUpgrade: maxPeriod.value >= CLOUD_MONITORING.vm.upgradeAlertThreshold,
-          maxPeriod, // max CPU usage over given period
-        };
-      }
+        // ----- CPU -----
+        if (rawData['cpu:used'] && !isEmpty(rawData['cpu:used'].values)) {
+          maxPeriod = maxBy(rawData['cpu:used'].values, v => (angular.isNumber(v.value) ? v.value : Number.NEGATIVE_INFINITY));
+          this.monitoringData.cpu = {
+            now: last(rawData['cpu:used'].values), // current CPU usage
+            // does CPU reach alerting threshold over period?
+            needUpgrade: maxPeriod.value >= CLOUD_MONITORING.vm.upgradeAlertThreshold,
+            maxPeriod, // max CPU usage over given period
+          };
+        }
 
-      // ----- RAM -----
-      if (rawData['mem:used'] && rawData['mem:max'] && !isEmpty(rawData['mem:used'].values) && !isEmpty(rawData['mem:max'].values)) {
-        const memTotal = head(rawData['mem:max'].values);
-        maxPeriod = null;
-        if (memTotal && memTotal.value > 0) {
-          maxPeriod = maxBy(rawData['mem:used'].values, v => (angular.isNumber(v.value) ? v.value : Number.NEGATIVE_INFINITY));
-        }
-        this.monitoringData.mem = {
-          now: last(rawData['mem:used'].values), // current RAM usage
-          total: memTotal, // total RAM available
-          // does RAM reach alerting threshold over period ?
-          needUpgrade: maxPeriod.value / memTotal.value * 100.0 >= CLOUD_MONITORING.vm
-            .upgradeAlertThreshold,
-          maxPeriod, // max RAM usage over given period
-          unit: rawData['mem:used'].unit, // RAM units (MB GB ...)
-        };
-        if (this.monitoringData.mem.now && memTotal) {
-          // current RAM usage in percent
-          this.monitoringData.mem.nowPercent = this.monitoringData.mem.now.value / memTotal.value;
+        // ----- RAM -----
+        if (rawData['mem:used'] && rawData['mem:max'] && !isEmpty(rawData['mem:used'].values) && !isEmpty(rawData['mem:max'].values)) {
+          const memTotal = head(rawData['mem:max'].values);
+          maxPeriod = null;
+          if (memTotal && memTotal.value > 0) {
+            maxPeriod = maxBy(rawData['mem:used'].values, v => (angular.isNumber(v.value) ? v.value : Number.NEGATIVE_INFINITY));
+          }
+          this.monitoringData.mem = {
+            now: last(rawData['mem:used'].values), // current RAM usage
+            total: memTotal, // total RAM available
+            // does RAM reach alerting threshold over period ?
+            needUpgrade: maxPeriod.value / memTotal.value * 100.0 >= CLOUD_MONITORING.vm
+              .upgradeAlertThreshold,
+            maxPeriod, // max RAM usage over given period
+            unit: rawData['mem:used'].unit, // RAM units (MB GB ...)
+          };
+          if (this.monitoringData.mem.now && memTotal) {
+            // current RAM usage in percent
+            this.monitoringData.mem.nowPercent = this.monitoringData.mem.now.value / memTotal.value;
+          }
         }
       }
-    }
-  };
+    };
 
   /**
      *  Get vm monitoring informations
@@ -608,4 +610,4 @@ export default /* @ngInject */ (
   };
 
   return VirtualMachineFactory;
-}
+};

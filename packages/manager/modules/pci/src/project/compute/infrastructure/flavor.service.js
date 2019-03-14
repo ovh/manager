@@ -174,7 +174,8 @@ export default class CloudFlavorService {
     const flavorContainsGPUs = includes(['g1', 'g2', 'g3', 't1'], augmentedFlavor.shortType);
     if (flavorContainsGPUs) {
       augmentedFlavor.imageType = flavor.osType === 'windows' ? ['uefi'] : augmentedFlavor.imageType;
-      augmentedFlavor.gpuCardCount = _(this.CLOUD_INSTANCE_NUMBER_OF_GPUS).get(
+      augmentedFlavor.gpuCardCount = get(
+        this.CLOUD_INSTANCE_NUMBER_OF_GPUS,
         numberType,
         this.CLOUD_INSTANCE_NUMBER_OF_GPUS.default,
       );
@@ -187,8 +188,9 @@ export default class CloudFlavorService {
   }
 
   getCategory(flavorType) {
-    return _(this.CLOUD_FLAVORTYPE_CATEGORY).find(
-      currentCategory => _(currentCategory.types).includes(flavorType),
+    return find(
+      this.CLOUD_FLAVORTYPE_CATEGORY,
+      currentCategory => includes(currentCategory.types, flavorType),
     );
   }
 }

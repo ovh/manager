@@ -88,13 +88,15 @@ export default /* @ngInject */ (
   /**
    *  Remove given volume from list
    */
-  VolumesFactory.prototype.removeVolumeFromList =
-    function removeVolumeFromList(volume, targetIdParam) {
-      let targetId = targetIdParam;
-      targetId = targetId || 'unlinked';
-      remove(this.volumes[targetId], { id: volume.id });
-      return volume;
-    };
+  VolumesFactory.prototype.removeVolumeFromList = function removeVolumeFromList(
+    volume,
+    targetIdParam,
+  ) {
+    let targetId = targetIdParam;
+    targetId = targetId || 'unlinked';
+    remove(this.volumes[targetId], { id: volume.id });
+    return volume;
+  };
 
   // ---
 

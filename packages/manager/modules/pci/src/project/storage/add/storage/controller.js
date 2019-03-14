@@ -52,7 +52,7 @@ export default /* @ngInject */ function storageCtrl(
   };
 
   $scope.isValid = function isValidFn() {
-    const isDefined = function (expr) { return !isUndefined(expr); };
+    const isDefined = function isDefinedFn(expr) { return !isUndefined(expr); };
     return isDefined($scope.model.region)
                   && isDefined($scope.model.containerType)
                   && isDefined($scope.model.name);

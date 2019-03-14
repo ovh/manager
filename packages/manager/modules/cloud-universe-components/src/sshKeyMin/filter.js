@@ -51,4 +51,4 @@ export default function () {
       + dots
       + (key.substr((key.length - toLength / 2) + dots.length, key.length));
   };
-};
+}

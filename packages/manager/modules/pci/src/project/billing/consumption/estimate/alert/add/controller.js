@@ -89,7 +89,7 @@ export default /* @ngInject */ function CloudProjectBillingConsumptionEstimateAl
       });
   };
 
-  self.closeModal = function () {
+  self.closeModal = function closeModal() {
     $uibModalInstance.dismiss();
   };
 

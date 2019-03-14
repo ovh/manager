@@ -15,7 +15,6 @@ angular
     'ui.router',
   ])
   .config(/* @ngInject */($stateProvider) => {
-
     $stateProvider.state('iaas.pci-project.billing.history.details', {
       url: '',
       views: {

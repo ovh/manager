@@ -5,6 +5,9 @@ import head from 'lodash/head';
 import find from 'lodash/find';
 import minBy from 'lodash/minBy';
 
+// we should avoid require, but JSURL don't provide an es6 export
+const { stringify } = require('jsurl');
+
 export default /* @ngInject */ function ctrl(
   $http,
   $q,
@@ -111,7 +114,7 @@ export default /* @ngInject */ function ctrl(
         value: self.instance.id,
       }],
     };
-    $window.open(`https://us.ovhcloud.com/order/express/#/express/review?products=${JSURL.stringify([order])}`, '_blank');
+    $window.open(`https://us.ovhcloud.com/order/express/#/express/review?products=${stringify([order])}`, '_blank');
     $uibModalInstance.dismiss();
   };
 

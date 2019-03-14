@@ -1,3 +1,4 @@
+import angular from 'angular';
 import defaults from 'lodash/defaults';
 import filter from 'lodash/filter';
 import find from 'lodash/find';

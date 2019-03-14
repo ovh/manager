@@ -1,9 +1,6 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
 import 'ovh-api-services';
-import find from 'lodash/find';
-import includes from 'lodash/includes';
-import some from 'lodash/some';
 
 import controller from './controller';
 import template from './template.html';

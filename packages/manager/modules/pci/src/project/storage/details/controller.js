@@ -184,7 +184,7 @@ export default /* @ngInject */ function (
           },
         );
         if (index === -1) {
-          return;
+          return undefined;
         }
         return CloudStorageContainer.delete($scope.projectId, $stateParams.storageId, element.name)
           .then((result) => {
@@ -260,7 +260,7 @@ export default /* @ngInject */ function (
     };
 
     if ($scope.storage.shortcut !== 'pca') {
-      return;
+      return undefined;
     }
 
     return OvhApiCloudProjectUser.v6().query(request).$promise

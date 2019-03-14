@@ -135,7 +135,10 @@ export default class CloudProjectVirtualMachineAddService {
           ),
           (ids) => { networkIds = ids; },
         ),
-        networkId => this.OvhApiCloudProjectNetworkPrivateSubnet.v6().query({ serviceName, networkId }).$promise,
+        networkId => this.OvhApiCloudProjectNetworkPrivateSubnet
+          .v6()
+          .query({ serviceName, networkId })
+          .$promise,
       ),
       (promises) => { // .mapKeys on a more recent lodash.
         const collection = {};
@@ -145,8 +148,8 @@ export default class CloudProjectVirtualMachineAddService {
         return this.$q.all(collection);
       },
     )
-    .then(subNets => subNets)
-    .catch(() => []);
+      .then(subNets => subNets)
+      .catch(() => []);
   }
 
   getRegionsByImageType(regions, allImages, imageType) {

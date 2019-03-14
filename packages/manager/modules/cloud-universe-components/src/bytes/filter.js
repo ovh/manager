@@ -1,4 +1,5 @@
 import map from 'lodash/map';
+import indexOf from 'lodash/indexOf';
 
 export default /* @ngInject */ ($translate) => {
   // TODO: Add this filter in UX components
@@ -20,8 +21,8 @@ export default /* @ngInject */ ($translate) => {
     let precision = precisionParam;
 
     if (fromUnit) {
-      const fromKibiUnitIndex = _.indexOf(unitsKibi, fromUnit);
-      const fromUnitIndex = _.indexOf(units, fromUnit);
+      const fromKibiUnitIndex = indexOf(unitsKibi, fromUnit);
+      const fromUnitIndex = indexOf(units, fromUnit);
 
       if (fromKibiUnitIndex !== -1) {
         if (fromKibiUnitIndex > 0) {

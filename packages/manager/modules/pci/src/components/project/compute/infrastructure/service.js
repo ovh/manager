@@ -705,6 +705,7 @@ export default /* @ngInject */ function CloudProjectComputeInfrastructureOrchest
       updateInstancesFromPolling(vms);
     }, (err) => {
       if (err && err.status) {
+        // eslint-disable-next-line no-console
         console.warn('pollVms', err);
         // @todo add bugkiller here
       }
@@ -742,6 +743,7 @@ export default /* @ngInject */ function CloudProjectComputeInfrastructureOrchest
       updateIpsFromPolling(ips, type);
     }, (err) => {
       if (err && err.status) {
+        // eslint-disable-next-line no-console
         console.warn('pollIps', err);
         // @todo add bugkiller here
       }

@@ -43,7 +43,7 @@ angular
     $templateCache.put('pci/project/compute/infrastructure/virtualMachine/monthlyConfirm/template.html', monthlyConfirmTemplate);
     $templateCache.put('pci/project/compute/infrastructure/virtualMachine/rescue/template.html', rescueTemplate);
     $templateCache.put('pci/project/compute/infrastructure/virtualMachine/vnc/template.html', vncConfirmTemplate);
-  })
+  });
 
 
 export default moduleName;

@@ -125,4 +125,4 @@ export default /* @ngInject */ (
   }
 
   return VrackFactory;
-}
+};

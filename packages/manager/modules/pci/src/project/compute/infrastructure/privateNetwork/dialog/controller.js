@@ -1,6 +1,7 @@
 import filter from 'lodash/filter';
 import find from 'lodash/find';
 import indexOf from 'lodash/indexOf';
+import isString from 'lodash/isString';
 import pull from 'lodash/pull';
 import set from 'lodash/set';
 import sortBy from 'lodash/sortBy';
@@ -124,7 +125,7 @@ export default /* @ngInject */ function (
 
     return self.service.fetchRegions(self.projectId).then((regions) => {
       self.collections.regions = regions;
-      self.models.privateNetwork.regions = filter(regions, _.isString);
+      self.models.privateNetwork.regions = filter(regions, isString);
     }).catch(() => {
       self.collections.regions = [];
     });
@@ -165,7 +166,7 @@ export default /* @ngInject */ function (
   };
 
   self.getSubnetsDescription = function getSubnetsDescriptionFn() {
-    return filter(this.models.privateNetwork.regions, _.isString).join(', ');
+    return filter(this.models.privateNetwork.regions, isString).join(', ');
   };
 
   self.toggleEditDescription = function toggleEditDescriptionFn() {
@@ -283,7 +284,7 @@ export default /* @ngInject */ function (
     return self.findVlanWithID(networks, 0);
   };
 
-  self.getNextId = function (networks) {
+  self.getNextId = function getNextId(networks) {
     for (let i = self.constraints.vlanId.min; i < self.constraints.vlanId.max; i += 1) {
       const vlanExists = self.findVlanWithID(networks, i);
       if (!vlanExists) {

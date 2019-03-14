@@ -19,7 +19,6 @@ angular
     'ovhManagerCore',
   ])
   .config(/* @ngInject */($stateProvider) => {
-
     $stateProvider
       .state('iaas.pci-project.compute.storage.add-container', {
         url: '/add',
