@@ -29,10 +29,13 @@
   }
 
   .responsive-dropdown-menu {
-    .dropdown-menu-left;
-    // Hardcode the value because the table is using @screen-sm-min from bootstrap (768px) instead of the overriden one (800px).
+    left: 0;
+    right: auto;
+
+    /* Hardcode the value because the table is using @screen-sm-min from bootstrap (768px) instead of the overriden one (800px). */
     @media (min-width: 768px) {
-      .dropdown-menu-right;
+      left: auto;
+      right: 0;
     }
   }
 

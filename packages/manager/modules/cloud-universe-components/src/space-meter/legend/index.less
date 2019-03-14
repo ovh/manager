@@ -3,9 +3,9 @@
 /* Cloud Space Meter - Legend - Item */
 @cloud-space-meter-legend-item-background-color_used: #64afa0;
 @cloud-space-meter-legend-item-background-color_usedbysnapshot: #ffcd00;
-@cloud-space-meter-legend-item-font-size: 1.2rem;
+@cloud-space-meter-legend-item-font-size: 0.75rem;
 @cloud-space-meter-legend-item-font-weight: 400;
-@cloud-space-meter-legend-item-size: 1.8rem;
+@cloud-space-meter-legend-item-size: 1.125rem;
 
 .cloud-space-meter-legend {
   list-style: none;
@@ -13,8 +13,8 @@
   margin: 0;
 
   &__icon {
-    font-size: 1.6rem;
-    padding-right: 0.3rem;
+    font-size: 1rem;
+    padding-right: 0.1875rem;
   }
 
   &__item {
@@ -40,7 +40,7 @@
 
       background-image: repeating-linear-gradient(-45deg, @color, @color 40%, transparent 25%, transparent 50%, @color 50%);
       background-size: 8px 8px;
-      background-position: -2rem 0;
+      background-position: -1.25rem 0;
       content: "";
       position: absolute;
       top: 0;
@@ -62,18 +62,18 @@
 
     &_row {
       display: block;
-      padding: 0 1rem 0.1rem 2.5rem;
-      margin-bottom: 0.3rem;
+      padding: 0 0.625rem 0.0625rem 1.5625rem;
+      margin-bottom: 0.1875rem;
     }
 
     &_column {
       display: block;
-      margin-bottom: 1rem;
-      padding: 0 0 0.1rem 1.5rem;
+      margin-bottom: 0.625rem;
+      padding: 0 0 0.0625rem 0.9375rem;
       text-align: left;
 
       &::before {
-        width: 0.7rem;
+        width: 0.4375rem;
       }
     }
 
@@ -89,12 +89,12 @@
 
     &_row::before {
       content: '(';
-      margin-right: -0.25rem;
+      margin-right: -0.15625rem;
     }
 
     &_row::after {
       content: ')';
-      margin-left: -0.25rem;
+      margin-left: -0.15625rem;
     }
   }
 
@@ -105,7 +105,7 @@
 
 @media (max-width: @screen-sm-max) {
   .cloud-space-meter-legend {
-    margin: 1rem 0 0.5rem 0;
+    margin: 0.625rem 0 0.3125rem 0;
 
     &_row {
       float: left;
