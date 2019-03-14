@@ -97,6 +97,14 @@
     &::before {
       content: '\f10c'; /* .ovh-font-small-arrow-down */
     }
+
+    > ul.vrack__service-list {
+      display: block;
+    }
+
+    > ul.vrack__service-group-list {
+      display: block;
+    }
   }
 
   &__service-group-list,
@@ -114,11 +122,6 @@
     &_group {
       padding-left: 1.3125rem;
     }
-  }
-
-  &__service-type_expanded &__service-list,
-  &__service-type_expanded &__service-group-list {
-    display: block;
   }
 
   &__service-group {
@@ -151,14 +154,14 @@
     &::before {
       content: '\f10c'; /* .ovh-font-small-arrow-down */
     }
+
+    > ul.vrack__service-list {
+      display: block;
+    }
   }
 
   &__service-group &__service-list {
     display: none;
-  }
-
-  &__service-group_expanded &__service-list {
-    display: block;
   }
 
   &__service {
