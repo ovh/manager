@@ -16,6 +16,7 @@ program
   .option('--draft-release', 'identify the github release as unpublished')
   .option('--pre-release', 'identify the github release as a prerelease')
   .option('--pre-id <preid>', 'preid for prerelease', '')
+  .option('--no-pre-release-file-check', 'do not check .prerelease file inside packages')
   .option('--no-release', 'skip github release')
   .option('--release-type <releasetype>', 'Force a release as patch, minor or major')
   .action(() => {
@@ -30,6 +31,7 @@ program
         program.releaseType || null,
         program.preRelease || false,
         program.preId || null,
+        !program.noPreReleaseFileCheck || true,
       ))
       .then(updateChangelogs)
       .then(repos => getDependenciesToUpdate(repos)
