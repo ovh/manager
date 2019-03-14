@@ -1,0 +1,25 @@
+<div>
+    <div data-ng-if="$ctrl.isLoading" class="d-flex">
+        <span class="mr-3" style="font-size: 0.8rem;">Chargement de la liste de vos&nbsp;projets</span>
+        <oui-spinner class="my-auto ml-auto" size="s"></oui-spinner>
+    </div>
+    <div data-ng-if="!$ctrl.isLoading">
+        <div class="d-flex" data-ng-if="$ctrl.err">
+            <span class="mr-3" style="font-size: 0.8rem;">Une erreur est survenue lors de la récupération de la liste de projets ({{ ::$ctrl.err.statusText }})</span>
+            <button type="button" class="p-0 my-auto">
+                <i class="fas fa-sync"></i>
+            </button>
+        </div>
+        <div data-ng-if="$ctrl.projects && $ctrl.projects.length > 0">
+            <p>Mes projets&nbsp;:</p>
+            <ul>
+                <li data-ng-repeat="project in $ctrl.projects track by $index">
+                    <a href="#" class="d-flex">
+                        <span class="text-truncate" data-ng-bind="project.description"></span>
+                        <span class="ml-auto my-auto oui-icon oui-icon-chevron-right"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
