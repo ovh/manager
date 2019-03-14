@@ -37,6 +37,8 @@
   "peerDependencies": {
     "@ovh-ux/manager-core": "^4.0.0",
     "@ovh-ux/manager-telecom-styles": "^2.0.2",
+    "@ovh-ux/ng-at-internet": "^4.0.0",
+    "@ovh-ux/ng-at-internet-ui-router-plugin": "^2.0.0",
     "@ovh-ux/ng-ovh-contracts": "^3.0.0-beta.3",
     "@ovh-ux/ng-ovh-telecom-universe-components": "^3.0.0",
     "@ovh-ux/ng-pagination-front": "^8.0.0-alpha.0",
@@ -44,9 +46,7 @@
     "angular": "1.7.5",
     "angular-messages": "^1.7.6",
     "angular-ui-validate": "^1.2.3",
-    "at-internet-ui-router-plugin": "^1.0.0",
     "font-awesome": "4.7.0",
-    "ng-at-internet": "^3.1.1",
     "oclazyload": "^1.1.0",
     "ovh-angular-checkbox-table": "^0.1.2",
     "ovh-angular-ui-confirm-modal": "^1.0.2",
