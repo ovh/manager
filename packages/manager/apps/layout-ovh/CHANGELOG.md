@@ -1,3 +1,27 @@
+# [4.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-layout-ovh@3.0.3...@ovh-ux/manager-layout-ovh@4.0.0) (2019-03-13)
+
+
+### Build System
+
+* **deps:** upgrade dependencies ([#252](https://github.com/ovh-ux/manager/issues/252)) ([f87f7b7](https://github.com/ovh-ux/manager/commit/f87f7b7))
+
+
+### BREAKING CHANGES
+
+* **deps:** replace both `@ovh-ux/ng-ovh-apiv7` and `ovh-angular-swimming-poll` by `@ovh-ux/ng-ovh-api-wrappers` and `@ovh-ux/ng-ovh-swimming-poll`
+
+
+
+## [3.0.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-layout-ovh@3.0.2...@ovh-ux/manager-layout-ovh@3.0.3) (2019-03-08)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([6b55189](https://github.com/ovh-ux/manager/commit/6b55189))
+* **i18n:** add missing translations ([168d510](https://github.com/ovh-ux/manager/commit/168d510))
+
+
+
 ## [3.0.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-layout-ovh@3.0.1...@ovh-ux/manager-layout-ovh@3.0.2) (2019-03-01)
 
 
