@@ -1,6 +1,9 @@
-@rem-base: rem-base(10px);
+@oui-path: '../../../ovh-ui-kit';
 
-@import '~bootstrap/less/bootstrap';
+@import '~ovh-ui-kit-bs/src/bootstrap/_variables';
+@import '~bootstrap/less/mixins';
+@import '~bootstrap/less/utilities';
+@import '~bootstrap/less/glyphicons';
 @import "~ovh-ui-kit/packages/oui-responsive/_mixins";
 @import "~ovh-ui-kit/packages/oui-color/_variables";
 @import "~ovh-ui-kit/packages/oui-navbar/_variables";
@@ -59,6 +62,19 @@
         }
       }
     }
+  }
+
+  div.cloud-compute-infra-primary-actions {
+    > button.oui-button_dropdown {
+      > span.oui-icon.oui-icon-chevron-down {
+        line-height: 1.5rem;
+        font-size: 1.5rem;
+      }
+    }
+  }
+
+  i.oui-icon.oui-icon-pen_line.oui-icon_small {
+    font-size: 1.5rem;
   }
 
   @import './cda/cda';
