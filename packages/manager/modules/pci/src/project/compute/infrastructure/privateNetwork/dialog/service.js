@@ -229,7 +229,6 @@ export default class CloudProjectComputeInfrastructurePrivateNetworkDialogServic
     );
     const networkMaskInteger = parseInt(this.constructor.convertIpToByteString(networkMask), 2);
 
-
     const shiftedHostAdressInteger = hostAddressInteger >>> hostBitNumber;
     const shiftedNoetworkMaskInteger = networkMaskInteger >>> hostBitNumber;
 

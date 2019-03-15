@@ -183,7 +183,6 @@ export default class CloudFlavorService {
 
     augmentedFlavor.isOldFlavor = CloudFlavorService.isOldFlavor(flavor.name);
 
-
     return augmentedFlavor;
   }
 

@@ -1,4 +1,4 @@
-export default function CloudProjectRenameController(
+export default /* @ngInject */ function CloudProjectRenameController(
   $rootScope,
   $q,
   $translate,

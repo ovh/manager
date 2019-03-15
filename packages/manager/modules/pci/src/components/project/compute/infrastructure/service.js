@@ -431,7 +431,6 @@ export default /* @ngInject */ function CloudProjectComputeInfrastructureOrchest
 
   /* -----  End of IPs  ------*/
 
-
   /*= ==============================
   =            POLLING            =
   =============================== */
@@ -517,8 +516,6 @@ export default /* @ngInject */ function CloudProjectComputeInfrastructureOrchest
 
     angular.forEach(instancesFromApi, (instanceFromApi) => {
       const instanceFromFactory = self.infra.vrack.getVmById(instanceFromApi.id);
-
-
       const currentEditedVm = self.getEditedVm();
 
       if (!instanceFromFactory) {
@@ -762,7 +759,6 @@ export default /* @ngInject */ function CloudProjectComputeInfrastructureOrchest
   };
 
   /* -----  End of Polling  ------*/
-
 
   /*= ===================================
   =            UserPref            =

@@ -1,4 +1,5 @@
 export default class pciSlideshowCtrl {
+  /* @ngInject */
   constructor(
     $scope,
     $state,

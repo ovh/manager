@@ -344,7 +344,6 @@ export default /* @ngInject */ function (
       });
   }
 
-
   function refreshMessage() {
     $scope.messages = $scope.messageHandler.getMessages();
   }

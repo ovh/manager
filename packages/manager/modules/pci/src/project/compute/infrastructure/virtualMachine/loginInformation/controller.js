@@ -89,7 +89,6 @@ export default class CloudProjectComputeInfrastructureVirtualMachineLoginInforma
     return find(ipAddresses, { version: 4 }) || ipAddresses[0] || null;
   }
 
-
   pollApplicationInfo(serviceName, instanceId) {
     this.poller = true;
     this.Poller.poll(`/cloud/project/${serviceName}/instance/${instanceId}/applicationAccess`,

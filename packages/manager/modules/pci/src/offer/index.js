@@ -2,7 +2,6 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'ovh-api-services';
 
-
 import componentsProjectAdd from '../components/project/add';
 
 import controller from './controller';

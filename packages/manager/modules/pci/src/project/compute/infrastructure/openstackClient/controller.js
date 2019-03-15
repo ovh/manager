@@ -62,7 +62,6 @@ export default class CloudProjectComputeInfrastructureOpenstackClientCtrl {
     this.load();
   }
 
-
   initAndMaximizeWithConfig(config) {
     this.OvhApiCloudProjectOpenstackClient.initWithConfig(config);
     this.OvhApiCloudProjectOpenstackClient.maximize();

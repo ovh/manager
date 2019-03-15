@@ -13,5 +13,4 @@ angular
   .factory('CloudProjectComputeInfraVrackVmFactory', virtualMachineFactory)
   .factory('CloudProjectComputeInfraVrackVlanFactory', vlanFactory);
 
-
 export default moduleName;

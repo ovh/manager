@@ -1,4 +1,5 @@
 export default class CloudprojectcomputeinfrastructureprivatenetworkdeleteCtrl {
+  /* @ngInject */
   constructor($uibModalInstance, $stateParams, params, OvhApiCloudProjectNetworkPrivate,
     CloudProjectComputeInfrastructurePrivateNetworkService) {
     this.service = CloudProjectComputeInfrastructurePrivateNetworkService;

@@ -12,7 +12,7 @@ import moment from 'moment';
 import deleteController from './delete/controller';
 import deleteTemplate from './delete/template.html';
 
-export default function CloudProjectComputeSnapshotCtrl(
+export default /* @ngInject */ function CloudProjectComputeSnapshotCtrl(
   $uibModal,
   OvhCloudPriceHelper,
   OvhApiCloudProjectSnapshot,
@@ -203,7 +203,6 @@ export default function CloudProjectComputeSnapshotCtrl(
         )
         && !snapshot.isInstalledOnVm,
       );
-
 
       if (self.table.snapshotFilter.length) {
         self.orderBy();
@@ -415,7 +414,6 @@ export default function CloudProjectComputeSnapshotCtrl(
           self.table.snapshot,
           snapshot => snapshot.type !== 'volume' && snapshot.status !== 'active',
         );
-
 
         const volumeSnapshotsToPoll = filter(
           self.table.snapshot,

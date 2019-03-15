@@ -3,7 +3,6 @@ import angular from 'angular';
 import add from './add';
 import addEdit from './addEdit';
 
-
 import deleteController from './delete/controller';
 import deleteTemplate from './delete/template.html';
 
@@ -21,7 +20,6 @@ import rescueTemplate from './rescue/template.html';
 
 import vncConfirmController from './vnc/controller';
 import vncConfirmTemplate from './vnc/template.html';
-
 
 const moduleName = 'ovhManagerPciProjectComputeInfrastructureVirtualMachine';
 
@@ -44,6 +42,5 @@ angular
     $templateCache.put('pci/project/compute/infrastructure/virtualMachine/rescue/template.html', rescueTemplate);
     $templateCache.put('pci/project/compute/infrastructure/virtualMachine/vnc/template.html', vncConfirmTemplate);
   });
-
 
 export default moduleName;

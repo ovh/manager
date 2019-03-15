@@ -1,4 +1,4 @@
-export default function BillingArchiveStorageListComponentCtrl(
+export default /* @ngInject */ function BillingArchiveStorageListComponentCtrl(
   $q,
   $filter,
   $translate,
@@ -19,7 +19,6 @@ export default function BillingArchiveStorageListComponentCtrl(
       self.currencySymbol = me.currency.symbol;
     });
   }
-
 
   self.$onInit = () => {
     self.loading = true;

@@ -24,7 +24,6 @@ export default /* @ngInject */ function (
 
   let createInstanceFromSnapshot = null;
 
-
   /**
    *  At next infrastructure init, ask to create a vm via a snapshot.
    */

@@ -273,7 +273,6 @@ export default /* @ngInject */ function (
     resetIpRanges();
   };
 
-
   self.hasPendingLoaders = function hasPendingLoadersFn() {
     return self.service.areRegionsLoading()
       || self.service.arePrivateNetworksLoading()

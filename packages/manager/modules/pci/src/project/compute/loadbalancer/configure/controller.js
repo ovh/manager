@@ -7,6 +7,7 @@ import reduce from 'lodash/reduce';
 import values from 'lodash/values';
 
 export default class CloudProjectComputeLoadbalancerConfigureCtrl {
+  /* @ngInject */
   constructor(
     $anchorScroll,
     $scope,
@@ -83,7 +84,6 @@ export default class CloudProjectComputeLoadbalancerConfigureCtrl {
       successHandler: () => this.startTaskPolling(),
     });
     this.tasks.load();
-
 
     let validatePromise;
     // Terminate validation if params exists

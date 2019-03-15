@@ -56,11 +56,7 @@ export default /* @ngInject */ (
    */
   InfrastructureFactory.prototype.refreshVmsRoutedToFromIp = function refreshVmsRoutedToFromIp(ip) {
     let routedVm;
-
-
     const routedToToRemove = [];
-
-
     const self = this;
 
     angular.forEach(ip.routedTo, (routedVmId) => {

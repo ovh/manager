@@ -130,12 +130,9 @@ export default /* @ngInject */ function CloudProjectComputeInfrastructureIpFailo
     if (!self.loaders.table.importIpsFo) {
       const listPromise = [];
 
-
       const listIpsWithTasks = [];
 
-
       const nbSelected = self.getSelectedCount();
-
 
       let lastIp = '';
 

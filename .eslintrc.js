@@ -10,7 +10,6 @@ module.exports = {
   },
   globals: {
     d3: true,
-    JSURL: true,
   },
   rules: {
     'no-bitwise': ['error', { allow: ['~'] }],

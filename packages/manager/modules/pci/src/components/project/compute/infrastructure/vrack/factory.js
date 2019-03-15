@@ -68,7 +68,6 @@ export default /* @ngInject */ (
     return vm;
   };
 
-
   /**
    *  Remove given Virtual Machine from vrack public cloud list
    */
@@ -76,7 +75,6 @@ export default /* @ngInject */ (
     this.publicCloud.removeItem(vm);
     return vm;
   };
-
 
   /**
    *  Collapse all Vms

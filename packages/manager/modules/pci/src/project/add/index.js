@@ -12,7 +12,7 @@ angular
     'ovh-api-services',
     'ui.router',
   ])
-  .config(($stateProvider) => {
+  .config(/* @ngInject */($stateProvider) => {
     $stateProvider
       /**
        * NEW PROJECT

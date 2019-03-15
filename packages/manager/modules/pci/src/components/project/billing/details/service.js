@@ -2,14 +2,8 @@
 
 export default function () {
   let activeDayInfo = null;
-
-
   let firstDayInfo = null;
-
-
   let lastDayInfo = null;
-
-
   let hoveredDayInfo = null;
 
   /*= =====================================

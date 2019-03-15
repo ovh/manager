@@ -25,6 +25,5 @@ export default /* @ngInject */ function Cloudprojectcomputeinfrastructurevirtual
     self.isMonthlyBilling = self.vmToDelete.monthlyBilling && self.vmToDelete.monthlyBilling.status === 'ok';
   }
 
-
   init();
 }

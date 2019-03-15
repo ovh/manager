@@ -182,7 +182,6 @@ export default /* @ngInject */ (
       .then(() => self.updatePrice());
   };
 
-
   /**
      *   Get type of status.
      */
@@ -196,7 +195,6 @@ export default /* @ngInject */ (
     }
     return this.status;
   };
-
 
   /**
      *  Get ip flagged with private type
@@ -410,7 +408,6 @@ export default /* @ngInject */ (
 
     return self.hasChange('name') || self.hasChange('flavors') || self.hasChange('images') || self.hasChange('monthlyBilling');
   };
-
 
   /*= =========  Additionals actions  ========== */
 

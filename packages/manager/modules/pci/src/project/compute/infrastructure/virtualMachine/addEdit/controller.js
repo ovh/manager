@@ -82,13 +82,11 @@ import uniqBy from 'lodash/uniqBy';
  *  TODO : document snapshot and sshKeys if needed
  */
 
-
 // TODO replace ssh.name_ssh.region by ssh.name with new API
 // TODO fix bug with tooltip. If click on tooltip (quickly), popover quits
 // TODO bug delete ssh key
 // TODO restriction between flavor and image archi (see maxime)
 // TODO default vm configuration
-
 
 // les query sont cached... donc impossible de refresh le table!
 
@@ -98,8 +96,7 @@ import uniqBy from 'lodash/uniqBy';
 // region zone
 // tooltip faite ac quoi ?
 
-
-export default function CloudProjectComputeInfrastructureVirtualMachineAddEditCtrl(
+export default /* @ngInject */ function CloudProjectComputeInfrastructureVirtualMachineAddEditCtrl(
   $filter,
   $q,
   $rootScope,
@@ -239,7 +236,6 @@ export default function CloudProjectComputeInfrastructureVirtualMachineAddEditCt
     flex: false,
   };
 
-
   // States Store.
   self.states = {
     hasVrack: false,
@@ -284,7 +280,6 @@ export default function CloudProjectComputeInfrastructureVirtualMachineAddEditCt
 * - Flavors beginning with "win-" are windows-only, and are a copy of linux equivalent.
 *   We need to show price of linux for windows flavors...
 */
-
 
   /**
  *  To call when region model value change
@@ -474,7 +469,6 @@ export default function CloudProjectComputeInfrastructureVirtualMachineAddEditCt
         );
       }
 
-
       if (self.vmInEdition.flavor) {
         angular.forEach(self.displayData.images[imageType], (image) => {
           set(image, 'disabled', self.vmInEdition.flavor.disk < image.minDisk ? 'NOT_ENOUGH_SPACE' : false);
@@ -656,9 +650,7 @@ export default function CloudProjectComputeInfrastructureVirtualMachineAddEditCt
 
   /* -----  End of Model recalculation section  ------*/
 
-
   // --------- INITIALISATION ---------
-
 
   function init() {
     self.vmInEditionParam = CloudProjectComputeInfrastructureOrchestrator.getEditVmParam();
@@ -1067,7 +1059,6 @@ export default function CloudProjectComputeInfrastructureVirtualMachineAddEditCt
       self.toggle.accordions.regions = {};
       self.toggle.accordions.regions.public = true; // @todo
 
-
       // recalculate display values
       recalculateValues();
       if (oldValue && value !== oldValue) {
@@ -1298,9 +1289,7 @@ export default function CloudProjectComputeInfrastructureVirtualMachineAddEditCt
         // calculate windows licence price
         const windowsFlavors = filter(self.panelsData.flavors, { osType: 'windows' });
 
-
         const windowsLicences = filter(self.panelsData.images, { type: 'windows' }).concat(filter(self.panelsData.snapshots, { type: 'windows' }));
-
 
         let associatedLinuxFlavor; let calculatedPriceValue; let
           calculatedMonthlyPriceValue;
@@ -1391,7 +1380,6 @@ export default function CloudProjectComputeInfrastructureVirtualMachineAddEditCt
     const categoryObject = find(self.displayData.categories, { category });
     categoryObject.flavors = orderBy(categoryObject.flavors, filters, self.order.reverse);
   };
-
 
   self.onMouseEnterFlavor = function onMouseEnterFlavor() {
     // Decorated function at runtime
@@ -1556,7 +1544,6 @@ export default function CloudProjectComputeInfrastructureVirtualMachineAddEditCt
   function checkFlavorCompatibility(fromFlavor, toFlavor) {
     return fromFlavor.diskType === toFlavor.diskType;
   }
-
 
   // --------- CATEGORIES panel ---------
 

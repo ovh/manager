@@ -1,6 +1,5 @@
 import angular from 'angular';
 
-
 import add from './add';
 import billing from './billing';
 import compute from './compute';
@@ -9,7 +8,6 @@ import rights from './rights';
 
 import factory from './factory';
 import service from './service';
-
 
 const moduleName = 'ovhManagerPciComponentsProject';
 
