@@ -8,6 +8,11 @@
     "ovh",
     "sms"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ovh-ux/manager.git",
+    "directory": "packages/manager/modules/sms"
+  },
   "license": "BSD-3-Clause",
   "files": [
     "dist"
