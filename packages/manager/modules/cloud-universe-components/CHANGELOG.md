@@ -1,3 +1,12 @@
+## [1.0.1-alpha.0](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/compare/@ovh-ux/ng-ovh-cloud-universe-components@1.0.0...@ovh-ux/ng-ovh-cloud-universe-components@1.0.1-alpha.0) (2019-03-15)
+
+
+### Bug Fixes
+
+* **cloud-styles:** minor improvements ([#274](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/issues/274)) ([063f80f](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/commit/063f80f))
+
+
+
 # [1.0.0](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/compare/@ovh-ux/ng-ovh-cloud-universe-components@0.3.2...@ovh-ux/ng-ovh-cloud-universe-components@1.0.0) (2019-03-13)
 
 
