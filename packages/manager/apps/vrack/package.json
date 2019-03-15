@@ -2,6 +2,11 @@
   "name": "@ovh-ux/manager-vrack-app",
   "version": "0.0.0",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ovh-ux/manager.git",
+    "directory": "packages/manager/app/vrack"
+  },
   "scripts": {
     "build": "webpack",
     "dev": "webpack-dev-server",

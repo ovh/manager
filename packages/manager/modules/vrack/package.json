@@ -8,6 +8,11 @@
     "ovh",
     "vrack"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ovh-ux/manager.git",
+    "directory": "packages/manager/modules/vrack"
+  },
   "license": "BSD-3-Clause",
   "files": [
     "dist"
