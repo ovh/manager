@@ -11,12 +11,12 @@ yarn add @ovh-ux/manager-core
 ## Usage
 
 ```js
-import 'angular';
-import managerCore from '@ovh-ux/manager-core';
+import angular from 'angular';
+import ovhManagerCore from '@ovh-ux/manager-core';
 
 angular
   .module('myApp', [
-    managerCore,
+    ovhManagerCore,
   ]);
 ```
 

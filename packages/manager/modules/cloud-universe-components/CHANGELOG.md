@@ -1,3 +1,61 @@
+## [1.0.1-alpha.0](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/compare/@ovh-ux/ng-ovh-cloud-universe-components@1.0.0...@ovh-ux/ng-ovh-cloud-universe-components@1.0.1-alpha.0) (2019-03-15)
+
+
+### Bug Fixes
+
+* **cloud-styles:** minor improvements ([#274](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/issues/274)) ([063f80f](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/commit/063f80f))
+
+
+
+# [1.0.0](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/compare/@ovh-ux/ng-ovh-cloud-universe-components@0.3.2...@ovh-ux/ng-ovh-cloud-universe-components@1.0.0) (2019-03-13)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([f70c1a5](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/commit/f70c1a5))
+* **i18n:** add missing translations ([6e26fa4](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/commit/6e26fa4))
+* **i18n:** add missing translations ([9c523af](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/commit/9c523af))
+
+
+### Build System
+
+* **deps:** upgrade dependencies ([#252](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/issues/252)) ([f87f7b7](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/commit/f87f7b7))
+
+
+### BREAKING CHANGES
+
+* **deps:** replace both `@ovh-ux/ng-ovh-apiv7` and `ovh-angular-swimming-poll` by `@ovh-ux/ng-ovh-api-wrappers` and `@ovh-ux/ng-ovh-swimming-poll`
+
+
+
+## [0.3.2](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/compare/@ovh-ux/ng-ovh-cloud-universe-components@0.3.1...@ovh-ux/ng-ovh-cloud-universe-components@0.3.2) (2019-03-13)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([f70c1a5](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/commit/f70c1a5))
+* **i18n:** add missing translations ([6e26fa4](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/commit/6e26fa4))
+* **i18n:** add missing translations ([9c523af](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/commit/9c523af))
+
+
+
+## [0.3.1](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/compare/@ovh-ux/ng-ovh-cloud-universe-components@0.3.0...@ovh-ux/ng-ovh-cloud-universe-components@0.3.1) (2019-03-08)
+
+
+### Bug Fixes
+
+* **cloud-universe-components:** udpate doing message ([1a6f841](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/commit/1a6f841))
+* **i18n:** add missing translations ([b610331](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/commit/b610331))
+* **i18n:** add missing translations ([d09abf4](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/commit/d09abf4))
+* **i18n:** add missing translations ([7235e15](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/commit/7235e15))
+* **i18n:** add missing translations ([b4e7219](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/commit/b4e7219))
+* **i18n:** add missing translations ([33ba61f](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/commit/33ba61f))
+* **i18n:** add missing translations ([3ef0e6f](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/commit/3ef0e6f))
+* **i18n:** add missing translations ([751ddcb](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/commit/751ddcb))
+* **i18n:** update french translation ([b786871](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/commit/b786871))
+
+
+
 # [0.3.0](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/compare/@ovh-ux/ng-ovh-cloud-universe-components@0.2.0...@ovh-ux/ng-ovh-cloud-universe-components@0.3.0) (2019-03-01)
 
 

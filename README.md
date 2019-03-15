@@ -43,6 +43,10 @@ yarn install
 | [@ovh-ux/manager-telecom-dashboard-app](https://github.com/ovh-ux/manager/tree/master/packages/manager/apps/telecom-dashboard) | [:books:](https://github.com/ovh-ux/manager/blob/master/packages/manager/apps/telecom-dashboard/CHANGELOG.md) |
 | [@ovh-ux/manager-telecom-task-app](https://github.com/ovh-ux/manager/tree/master/packages/manager/apps/telecom-task) | [:books:](https://github.com/ovh-ux/manager/blob/master/packages/manager/apps/telecom-task/CHANGELOG.md) |
 
+## Development
+
+See [DEVELOP.md](./DEVELOP.md) for development docs.
+
 ## Contributing
 
 Always feel free to help out! Whether it's [filing bugs and feature requests](https://github.com/ovh-ux/manager/issues/new) or working on some of the [open issues](https://github.com/ovh-ux/manager/issues), our [contributing guide](CONTRIBUTING.md) will help get you started.
