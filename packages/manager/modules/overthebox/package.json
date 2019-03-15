@@ -1,6 +1,11 @@
 {
   "name": "@ovh-ux/manager-overthebox",
   "version": "3.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ovh-ux/manager.git",
+    "directory": "packages/manager/modules/overthebox"
+  },
   "license": "BSD-3-Clause",
   "files": [
     "dist"
@@ -12,10 +17,10 @@
     "build": "rollup -c --environment BUILD:production",
     "dev": "rollup -c --environment BUILD:development",
     "dev:watch": "yarn run dev --watch",
+    "prepare": "yarn run build",
     "start": "lerna --stream --scope='@ovh-ux/manager-overthebox' --include-filtered-dependencies -- yarn run build",
     "start:dev": "lerna --stream --scope='@ovh-ux/manager-overthebox' --include-filtered-dependencies -- yarn run dev",
-    "start:watch": "lerna --stream --parallel --scope='@ovh-ux/manager-overthebox' --include-filtered-dependencies -- yarn run dev:watch",
-    "prepare": "yarn run build"
+    "start:watch": "lerna --stream --parallel --scope='@ovh-ux/manager-overthebox' --include-filtered-dependencies -- yarn run dev:watch"
   },
   "dependencies": {
     "lodash": "4.17.11",

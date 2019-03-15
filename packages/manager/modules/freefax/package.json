@@ -1,6 +1,11 @@
 {
   "name": "@ovh-ux/manager-freefax",
   "version": "4.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ovh-ux/manager.git",
+    "directory": "packages/manager/modules/freefax"
+  },
   "license": "BSD-3-Clause",
   "files": [
     "dist"
@@ -12,10 +17,10 @@
     "build": "rollup -c --environment BUILD:production",
     "dev": "rollup -c --environment BUILD:development",
     "dev:watch": "yarn run dev --watch",
+    "prepare": "yarn run build",
     "start": "lerna exec --stream --scope='@ovh-ux/manager-freefax' --include-filtered-dependencies -- yarn run build",
     "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-freefax' --include-filtered-dependencies -- yarn run dev",
-    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-freefax' --include-filtered-dependencies -- yarn run dev:watch",
-    "prepare": "yarn run build"
+    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-freefax' --include-filtered-dependencies -- yarn run dev:watch"
   },
   "dependencies": {
     "bootstrap4": "twbs/bootstrap#v4.0.0",

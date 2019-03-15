@@ -8,7 +8,11 @@
     "ovh",
     "universe"
   ],
-  "repository": "ovh-ux/ng-ovh-cloud-universe-components",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ovh-ux/manager.git",
+    "directory": "packages/manager/modules/cloud-universe-components"
+  },
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "files": [
