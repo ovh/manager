@@ -12,8 +12,9 @@
   },
   "dependencies": {
     "@ovh-ux/manager-cloud-styles": "^0.1.1-alpha.0",
-    "@ovh-ux/manager-core": "^2.0.0",
+    "@ovh-ux/manager-core": "^4.0.0",
     "@ovh-ux/manager-vrack": "^0.0.0",
+    "@ovh-ux/ng-ovh-api-wrappers": "^3.0.0",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^1.0.1-alpha.0",
     "@ovh-ux/ng-ovh-contracts": "^3.0.0-beta.3",
     "@ovh-ux/ng-ovh-proxy-request": "^1.0.0-beta.0",
