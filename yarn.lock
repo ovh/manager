@@ -1632,17 +1632,6 @@
   dependencies:
     lodash "^4.17.11"
 
-"@ovh-ux/ng-ovh-cloud-universe-components@^0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-cloud-universe-components/-/ng-ovh-cloud-universe-components-0.1.0.tgz#378f0c680514d7e973ad0186d7366f05059de50b"
-  integrity sha512-7GVCM4cvMnVTGIf2rvP0N3tBNo5coWL4WMSZSP0AluDV8a9hJNWNuzPB3rQ6yBmewr+3cWpWNZz/HSo7RVqpVw==
-  dependencies:
-    bootstrap "~3.3.0"
-    jsurl "^0.1.5"
-    lodash "^4.17.11"
-    moment "^2.24.0"
-    ovh-ui-kit "^2.24.2"
-
 "@ovh-ux/ng-ovh-contracts@^3.0.0-beta.3":
   version "3.0.0-beta.3"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-contracts/-/ng-ovh-contracts-3.0.0-beta.3.tgz#1dcd3612160f4c5eebd31a4bc12a2c632b35618f"
