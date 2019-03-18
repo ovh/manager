@@ -22,7 +22,7 @@ export default class CloudOfferCtrl {
     this.User = OvhApiMe;
     this.CucFeatureAvailabilityService = CucFeatureAvailabilityService;
     this.TARGET = TARGET;
-    this.PCI_URLS = PCI_URLS;
+    this.PCI_URLS = PCI_URLS[TARGET];
 
     this.data = {
       defaultPayment: null,

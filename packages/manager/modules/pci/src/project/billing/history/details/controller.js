@@ -16,13 +16,14 @@ export default /* @ngInject */ function CloudProjectBillingHistoryDetailsCtrl(
   OvhApiCloudProject,
   OvhApiMe,
   PCI_REDIRECT_URLS,
+  TARGET,
 ) {
   const self = this;
   self.year = null;
   self.month = null;
   self.data = {};
   self.monthBilling = null;
-  self.billingUrl = PCI_REDIRECT_URLS.billing;
+  self.billingUrl = PCI_REDIRECT_URLS[TARGET].billing;
 
   self.getHourlyBillingDateInfo = function getHourlyBillingDateInfo() {
     const prev = moment(self.monthBilling).subtract(1, 'month');

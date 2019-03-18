@@ -4,9 +4,10 @@ import set from 'lodash/set';
 export default /* @ngInject */ function (
   $scope,
   $translate,
-  PCI_URLS,
   TranslateService,
   OvhApiMe,
+  PCI_URLS,
+  TARGET,
 ) {
   const self = this;
 
@@ -16,7 +17,7 @@ export default /* @ngInject */ function (
     code: 'pcs',
     name: $translate.instant('add_storage_category_pcs'),
     moreInfo: {
-      url: PCI_URLS.website_order.pcs.GB || PCI_URLS.website_order.pcs.WE,
+      url: PCI_URLS[TARGET].website_order.pcs.GB || PCI_URLS[TARGET].website_order.pcs.WE,
     },
     options: [{
       type: 'static',
@@ -43,7 +44,7 @@ export default /* @ngInject */ function (
     code: 'pca',
     name: $translate.instant('add_storage_category_pca'),
     moreInfo: {
-      url: PCI_URLS.website_order.pca.GB || PCI_URLS.website_order.pca.WE,
+      url: PCI_URLS[TARGET].website_order.pca.GB || PCI_URLS[TARGET].website_order.pca.WE,
     },
     options: [{
       type: 'archive',
@@ -62,7 +63,7 @@ export default /* @ngInject */ function (
     OvhApiMe.v6().get().$promise.then((me) => {
       const lang = me.ovhSubsidiary;
       forEach($scope.categories, (category) => {
-        set(category, 'moreInfo.url', PCI_URLS.website_order[category.code][lang]);
+        set(category, 'moreInfo.url', PCI_URLS[TARGET].website_order[category.code][lang]);
       });
     });
   };

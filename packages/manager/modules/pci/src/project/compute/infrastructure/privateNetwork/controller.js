@@ -33,14 +33,15 @@ export default class PrivateNetworkListCtrl {
     CloudProjectComputeInfrastructurePrivateNetworkService,
     OvhApiCloudProjectNetworkPrivate,
     OvhApiCloudProject,
-    PCI_REDIRECT_URLS,
     CucCloudMessage,
     OvhApiMe,
-    PCI_URLS,
     OvhApiVrack,
     CucVrackService,
     CucCloudPoll,
     CucControllerHelper,
+    PCI_URLS,
+    PCI_REDIRECT_URLS,
+    TARGET,
   ) {
     this.resources = {
       privateNetwork: OvhApiCloudProjectNetworkPrivate.v6(),
@@ -57,7 +58,7 @@ export default class PrivateNetworkListCtrl {
     this.$state = $state;
     this.$stateParams = $stateParams;
     this.User = OvhApiMe;
-    this.PCI_URLS = PCI_URLS;
+    this.PCI_URLS = PCI_URLS[TARGET];
     this.CucCloudPoll = CucCloudPoll;
     this.VrackService = CucVrackService;
     this.CucControllerHelper = CucControllerHelper;
@@ -79,7 +80,7 @@ export default class PrivateNetworkListCtrl {
       },
     };
     this.PCI_URLS = {
-      vrack: PCI_REDIRECT_URLS.vRack,
+      vrack: PCI_REDIRECT_URLS[TARGET].vRack,
     };
     this.models = {
       vrack: null,

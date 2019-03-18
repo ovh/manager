@@ -247,7 +247,7 @@ export default /* @ngInject */ function CloudProjectComputeInfrastructureVirtual
   self.PCI_URLS = {
     vlansGuide: null,
     vlansApiGuide: null,
-    vrack: PCI_REDIRECT_URLS.vRack,
+    vrack: PCI_REDIRECT_URLS[TARGET].vRack,
     guidesSshkeyURL: null,
   };
 
@@ -685,7 +685,7 @@ export default /* @ngInject */ function CloudProjectComputeInfrastructureVirtual
       self.model.diskType = self.catalogVersion() === 'new' ? 'ssd' : self.model.diskType;
       self.states.hasVrack = data.hasVrack;
 
-      const guides = PCI_URLS.guides.vlans[data.user.ovhSubsidiary];
+      const guides = PCI_URLS[TARGET].guides.vlans[data.user.ovhSubsidiary];
       if (guides) {
         self.PCI_URLS.vlansGuide = guides.roadmap;
       }
@@ -745,7 +745,7 @@ export default /* @ngInject */ function CloudProjectComputeInfrastructureVirtual
     self.PCI_URLS.vlansApiGuide = ovhDocUrl.getDocUrl('g2162.public_cloud_et_vrack_-_comment_utiliser_le_vrack_et_les_reseaux_prives_avec_les_instances_public_cloud');
 
     if (TARGET === 'US') {
-      self.PCI_URLS.guidesSshkeyURL = PCI_URLS.guides.ssh.create.US;
+      self.PCI_URLS.guidesSshkeyURL = PCI_URLS[TARGET].guides.ssh.create.US;
     } else {
       self.PCI_URLS.guidesSshkeyURL = ovhDocUrl.getDocUrl('g1769.creating_ssh_keys');
     }

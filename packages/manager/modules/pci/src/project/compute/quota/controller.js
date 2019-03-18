@@ -33,8 +33,8 @@ export default /* @ngInject */ function CloudProjectComputeQuotaCtrl(
   };
 
   // PaymentMean URL (v6 dedicated) with sessionv6
-  this.paymentmeanUrl = PCI_REDIRECT_URLS.paymentMeans;
-  this.supportUrl = PCI_REDIRECT_URLS.support;
+  this.paymentmeanUrl = PCI_REDIRECT_URLS[TARGET].paymentMeans;
+  this.supportUrl = PCI_REDIRECT_URLS[TARGET].support;
 
   self.regionService = CucRegionService;
 
