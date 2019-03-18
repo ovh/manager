@@ -2,7 +2,7 @@ import 'script-loader!jquery'; // eslint-disable-line
 import 'script-loader!lodash'; // eslint-disable-line
 
 import angular from 'angular';
-import core from '@ovh-ux/manager-core';
+import ovhManagerCore from '@ovh-ux/manager-core';
 import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
 
 import 'ovh-ui-kit/dist/oui.css';
@@ -18,7 +18,7 @@ import service from './index.service';
 
 angular
   .module('ovhStack', [
-    core,
+    ovhManagerCore,
     navbar,
     ngOvhApiWrappers,
     sidebar,

@@ -1,4 +1,5 @@
-export default /* @ngInject */ class ProjectListController {
+export default class ProjectListController {
+  /* @ngInject */
   constructor(publicCloud, iceberg) {
     this.publicCloud = publicCloud;
     this.iceberg = iceberg;
