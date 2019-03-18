@@ -19,6 +19,7 @@ export default /* @ngInject */ function CloudProjectAddCtrl(
   OvhApiMePaymentMeanCreditCard,
   // CloudProjectSidebar,
   CloudProjectAdd,
+  TARGET,
 ) {
   const self = this;
 
@@ -52,9 +53,9 @@ export default /* @ngInject */ function CloudProjectAddCtrl(
   };
 
   // PaymentMean URL (v6 dedicated) with sessionv6
-  this.paymentmeanUrl = PCI_REDIRECT_URLS.paymentMeans;
+  this.paymentmeanUrl = PCI_REDIRECT_URLS[TARGET].paymentMeans;
   // Add credit card URL
-  this.addCreditCardUrl = PCI_REDIRECT_URLS.addCreditCard;
+  this.addCreditCardUrl = PCI_REDIRECT_URLS[TARGET].addCreditCard;
 
   function updateManager(projectId) {
     // CloudProjectSidebar.addToSection({

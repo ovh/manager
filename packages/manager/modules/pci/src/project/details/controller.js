@@ -13,6 +13,7 @@ export default /* @ngInject */ function CloudProjectDetailsCtrl(
   $translate,
   $filter,
   PCI_REDIRECT_URLS,
+  TARGET,
 ) {
   const self = this;
 
@@ -20,7 +21,7 @@ export default /* @ngInject */ function CloudProjectDetailsCtrl(
   this.project = null;
   this.order = null;
 
-  this.supportUrl = PCI_REDIRECT_URLS.support;
+  this.supportUrl = PCI_REDIRECT_URLS[TARGET].support;
 
   self.loaders = {
     cancelCreation: false,

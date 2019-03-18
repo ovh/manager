@@ -13,6 +13,7 @@ export default /* @ngInject */function OpenstackUsersOpenrcCtrl(
   OvhApiMe,
   CucRegionService,
   PCI_URLS,
+  TARGET,
 ) {
   const self = this;
 
@@ -40,7 +41,7 @@ export default /* @ngInject */function OpenstackUsersOpenrcCtrl(
     self.loaders.guide = true;
     OvhApiMe.v6().get().$promise.then((me) => {
       const lang = me.ovhSubsidiary;
-      self.data.guideURL = PCI_URLS.guides.openstack[lang];
+      self.data.guideURL = PCI_URLS[TARGET].guides.openstack[lang];
     }).finally(() => {
       self.loaders.guide = false;
     });

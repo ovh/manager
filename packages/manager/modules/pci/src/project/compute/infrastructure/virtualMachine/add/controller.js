@@ -63,7 +63,7 @@ export default class CloudProjectComputeInfrastructureVirtualMachineAddCtrl {
     this.VirtualMachineAddService = CloudProjectVirtualMachineAddService;
     this.ovhDocUrl = ovhDocUrl;
     this.TARGET = TARGET;
-    this.PCI_URLS = PCI_URLS;
+    this.PCI_URLS = PCI_URLS[TARGET];
   }
 
   $onInit() {

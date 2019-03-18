@@ -99,7 +99,7 @@ export default class CloudProjectComputeInfrastructureDiagramCtrl {
     this.CLOUD_MONITORING = CLOUD_MONITORING;
     this.PCI_REDIRECT_URLS = PCI_REDIRECT_URLS;
     this.TARGET = TARGET;
-    this.PCI_URLS = PCI_URLS;
+    this.PCI_URLS = PCI_URLS[TARGET];
   }
 
   $onInit() {
