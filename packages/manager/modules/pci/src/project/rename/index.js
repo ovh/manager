@@ -1,13 +1,16 @@
 import angular from 'angular';
-import '@ovh-ux/manager-core';
-import '@uirouter/angularjs';
+import '@ovh-ux/ng-translate-async-loader';
+import 'angular-translate';
 
 import directive from './directive';
 
 const moduleName = 'ovhManagerPciProjectRename';
 
 angular
-  .module(moduleName, [])
+  .module(moduleName, [
+    'ngTranslateAsyncLoader',
+    'pascalprecht.translate',
+  ])
   .directive('cloudProjectRename', directive)
   .run(/* @ngTranslationsInject:json ./translations */);
 

@@ -1,5 +1,7 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
+import '@ovh-ux/ng-translate-async-loader';
+import 'angular-translate';
 
 import users from './users';
 
@@ -12,6 +14,8 @@ const moduleName = 'ovhManagerPciProjectOpenstack';
 
 angular
   .module(moduleName, [
+    'ngTranslateAsyncLoader',
+    'pascalprecht.translate',
     users,
   ])
   .config(/* @ngInject */ ($stateProvider) => {
@@ -26,11 +30,8 @@ angular
           },
         },
         redirectTo: 'iaas.pci-project.compute.openstack.users',
-        translations: {
-          value: ['.'],
-          format: 'json',
-        },
       });
-  });
+  })
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

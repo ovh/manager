@@ -25,7 +25,6 @@ angular
     outgoingTrafic,
     snapshotList,
     volumeList,
-  ])
-  .run(/* @ngTranslationsInject:json ./translations */);
+  ]);
 
 export default moduleName;

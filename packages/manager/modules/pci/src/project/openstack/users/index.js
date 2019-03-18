@@ -1,5 +1,7 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
+import '@ovh-ux/ng-translate-async-loader';
+import 'angular-translate';
 
 import controller from './controller';
 import template from './template.html';
@@ -14,7 +16,10 @@ import tokenService from './token/service';
 const moduleName = 'ovhManagerPciProjectOpenstackUsers';
 
 angular
-  .module(moduleName, [])
+  .module(moduleName, [
+    'ngTranslateAsyncLoader',
+    'pascalprecht.translate',
+  ])
   .config(/* @ngInject */($stateProvider) => {
     $stateProvider
       .state('iaas.pci-project.compute.openstack.users', {
@@ -27,15 +32,6 @@ angular
             controllerAs: 'CloudProjectOpenstackUsersCtrl',
           },
         },
-        translations: {
-          value: [
-            '.',
-            './token',
-            './openrc',
-            './rclone',
-          ],
-          format: 'json',
-        },
       });
 
     $stateProvider
@@ -44,14 +40,11 @@ angular
         template: openrcTemplate,
         controller: openrcController,
         controllerAs: 'OpenstackUsersOpenrcCtrl',
-        translations: {
-          value: ['.'],
-          format: 'json',
-        },
       });
   })
   .service('OpenstackUsersToken', tokenService)
   .service('CloudProjectOpenstackUsersRcloneService', rcloneService)
-  .service('OpenstackUsersPassword', passwordService);
+  .service('OpenstackUsersPassword', passwordService)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

@@ -1,7 +1,7 @@
 import angular from 'angular';
-import '@ovh-ux/manager-core';
 import '@uirouter/angularjs';
-import 'oclazyload';
+import '@ovh-ux/ng-translate-async-loader';
+import 'angular-translate';
 import 'ovh-ui-angular';
 
 import controller from './controller';
@@ -21,6 +21,8 @@ const moduleName = 'ovhManagerPciProjectStorageAddStorage';
 
 angular
   .module(moduleName, [
+    'ngTranslateAsyncLoader',
+    'pascalprecht.translate',
   ])
   .controller('RA.add.storageCtrl', controller)
   .controller('RA.add.storage.stepContainerTypeCtrl', stepContainerTypeController)
@@ -30,5 +32,7 @@ angular
     $templateCache.put('pci/project/storage/add/storage/step_container_type/template.html', stepContainerTypeTemplate);
     $templateCache.put('pci/project/storage/add/storage/step_name/template.html', stepNameTemplate);
     $templateCache.put('pci/project/storage/add/storage/step_region/template.html', stepRegionTemplate);
-  });
+  })
+  .run(/* @ngTranslationsInject:json ./translations */);
+
 export default moduleName;

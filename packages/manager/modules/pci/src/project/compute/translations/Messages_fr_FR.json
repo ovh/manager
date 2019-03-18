@@ -1,9 +1,6 @@
 {
-  "cpc_tab_infra": "Instances",
-  "cpc_tab_snapshot": "Snapshots",
-  "cpc_tab_volume": "Disques supplémentaires",
-  "cpc_tab_ssh": "Clés SSH",
-  "cpc_tab_loadbalancer": "Load Balancer",
-  "cpc_tab_project": "Gestion et conso. du projet",
-  "cpb_tab_quota": "Quota"
+  "cpa_paymentmean_empty_help_link": "Enregistrer un moyen de paiement",
+  "cpa_paymentmean_empty_help_3dsCreditCard_link": "Enregistrer une carte bancaire",
+  "cpbhd_bill_link": "Voir toutes les factures",
+  "cpbhd_bill_pdf_link": "Facture {{month}} {{year}}"
 }

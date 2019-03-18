@@ -1,6 +1,7 @@
 import angular from 'angular';
-// import '@ovh-ux/ng-ovh-user-pref';
+import '@ovh-ux/ng-translate-async-loader';
 import '@uirouter/angularjs';
+import 'angular-translate';
 import 'angular-ui-bootstrap';
 
 import controller from './controller';
@@ -11,7 +12,8 @@ const moduleName = 'ovhManagerPciProjectOnboarding';
 
 angular
   .module(moduleName, [
-    // 'ngOvhUserPref',
+    'ngTranslateAsyncLoader',
+    'pascalprecht.translate',
     'ui.bootstrap',
     'ui.router',
   ])

@@ -1,4 +1,6 @@
 import angular from 'angular';
+import '@ovh-ux/ng-translate-async-loader';
+import 'angular-translate';
 
 import add from './add';
 import addEdit from './addEdit';
@@ -27,6 +29,8 @@ angular
   .module(moduleName, [
     add,
     addEdit,
+    'ngTranslateAsyncLoader',
+    'pascalprecht.translate',
   ])
   .controller('CloudprojectcomputeinfrastructurevirtualmachinedeleteCtrl', deleteController)
   .controller('CloudProjectComputeInfrastructureVirtualMachineLoginInformationCtrl', loginInformationController)
@@ -41,6 +45,7 @@ angular
     $templateCache.put('pci/project/compute/infrastructure/virtualMachine/monthlyConfirm/template.html', monthlyConfirmTemplate);
     $templateCache.put('pci/project/compute/infrastructure/virtualMachine/rescue/template.html', rescueTemplate);
     $templateCache.put('pci/project/compute/infrastructure/virtualMachine/vnc/template.html', vncConfirmTemplate);
-  });
+  })
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

@@ -1,6 +1,0 @@
-{
- "cpcivm_delete_title": "Löschung einer Instanz",
- "cpcivm_delete_info": "Der laufende Monat wurde für diesen Server bereits abgerechnet und verfällt dann.",
- "cpcivm_failover_info": "Folgende Failover-IPs werden endgültig gelöscht:",
- "cpcivm_delete_confirm": "Sind Sie sicher, dass Sie diese Instanz löschen möchten?"
-}

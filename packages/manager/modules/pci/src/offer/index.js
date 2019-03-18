@@ -1,5 +1,7 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
+import '@ovh-ux/ng-translate-async-loader';
+import 'angular-translate';
 import 'ovh-api-services';
 
 import componentsProjectAdd from '../components/project/add';
@@ -13,7 +15,9 @@ const moduleName = 'ovhManagerPciOffer';
 
 angular
   .module(moduleName, [
+    'ngTranslateAsyncLoader',
     'ovh-api-services',
+    'pascalprecht.translate',
     'ui.router',
     componentsProjectAdd,
   ])
@@ -28,11 +32,8 @@ angular
         template,
         controller,
         controllerAs: 'CloudOfferCtrl',
-        translations: {
-          format: 'json',
-          value: ['../project/add', '.'],
-        },
       });
-  });
+  })
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

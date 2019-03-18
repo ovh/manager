@@ -1,5 +1,7 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
+import '@ovh-ux/ng-translate-async-loader';
+import 'angular-translate';
 import 'ovh-api-services';
 
 import addOldController from './add_OLD_/controller';
@@ -20,6 +22,8 @@ const moduleName = 'ovhManagerPciProjectComputeInfrastructureIp';
 
 angular
   .module(moduleName, [
+    'ngTranslateAsyncLoader',
+    'pascalprecht.translate',
   ])
   .component('ipDropdown', dropdownComponent)
   .controller('CloudProjectComputeInfrastructureIpAddCtrl', addOldController)
@@ -31,6 +35,7 @@ angular
     $templateCache.put('pci/project/compute/infrastructure/ip/failover/buy/agora.template.html', failoverBuyAgoraTemplate);
     $templateCache.put('pci/project/compute/infrastructure/ip/failover/buy/template.html', failoverBuyTemplate);
     $templateCache.put('pci/project/compute/infrastructure/ip/failover/import/template.html', failoverImportTemplate);
-  });
+  })
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

@@ -1,5 +1,8 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
+import '@ovh-ux/ng-translate-async-loader';
+import 'angular-translate';
+
 import 'ovh-api-services';
 
 import controller from './controller';
@@ -11,6 +14,8 @@ const moduleName = 'ovhManagerPciProjectComputeQuota';
 
 angular
   .module(moduleName, [
+    'ngTranslateAsyncLoader',
+    'pascalprecht.translate',
     'ovh-api-services',
     'ui.router',
   ])
@@ -24,11 +29,8 @@ angular
           controllerAs: 'CloudProjectComputeQuotaCtrl',
         },
       },
-      translations: {
-        value: ['.'],
-        format: 'json',
-      },
     });
-  });
+  })
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

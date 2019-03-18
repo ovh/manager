@@ -1,8 +1,0 @@
-{
- "cpou_rclone_modal_title": "Download an Rclone configuration file",
- "cpou_rclone_modal_explanation": "Please download a configuration file to access Rclone.",
- "cpou_rclone_modal_explanation_more_info_link_text": "Find out more",
- "cpou_rclone_modal_input_region_label": "Select the region for this file:",
- "cpou_rclone_modal_security_note": "For security reasons, the configuration file doesn't include your password. You must add your password manually by editing the configuration file.",
- "cpou_rclone_modal_loading_error": "An error has occurred loading the data linked to the Rclone file: {{ message }}"
-}

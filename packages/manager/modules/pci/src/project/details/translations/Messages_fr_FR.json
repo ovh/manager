@@ -12,5 +12,7 @@
   "cpd_project_cancel_success": "La création de votre projet a été annulée avec succès.",
   "cpd_project_cancel_error_expired_status": "Votre projet est expiré.",
   "cpd_project_cancel_error_ok_status": "Votre projet est déjà créé.",
-  "cpd_project_cancel_error": "Une erreur est survenue pendant l'annulation."
+  "cpd_project_cancel_error": "Une erreur est survenue pendant l'annulation.",
+  "voucher_warning_title": "Avertissement",
+  "voucher_warning_description": "Vous avez utilisé un voucher qui permet la création d'un projet cloud temporaire. Votre voucher est valide jusqu'au {{expiration}} et les ressources ne vous seront pas facturées avant cette date. Attention, au moment de l'expiration, le projet sera supprimé et les données disparaîtront."
 }

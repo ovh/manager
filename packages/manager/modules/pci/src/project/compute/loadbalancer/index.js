@@ -1,5 +1,7 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
+import '@ovh-ux/ng-translate-async-loader';
+import 'angular-translate';
 import 'ovh-api-services';
 
 import configure from './configure';
@@ -15,7 +17,9 @@ const moduleName = 'ovhManagerPciProjectComputeLoadbalancer';
 angular
   .module(moduleName, [
     configure,
+    'ngTranslateAsyncLoader',
     'ovh-api-services',
+    'pascalprecht.translate',
     'ui.router',
   ])
   .config(/* @ngInject */($stateProvider) => {
@@ -30,12 +34,9 @@ angular
             controllerAs: 'CloudProjectComputeLoadbalancerCtrl',
           },
         },
-        translations: {
-          value: ['.'],
-          format: 'json',
-        },
       });
   })
-  .service('CloudProjectComputeLoadbalancerService', service);
+  .service('CloudProjectComputeLoadbalancerService', service)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

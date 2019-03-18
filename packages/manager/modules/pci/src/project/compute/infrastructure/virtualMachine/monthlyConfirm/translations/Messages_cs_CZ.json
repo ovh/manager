@@ -1,7 +1,0 @@
-{
- "cpcivm_monthly_title": "Přechod na měsíční předplatné",
- "cpcivm_monthly_info": "Snižte si cenu na polovinu převodem tohoto stroje na měsíční předplatné (platba předem).",
- "cpcivm_monthly_prorata_warning": "Okamžitě Vám vystavíme fakturu na poměrnou částku do konce měsíce.",
- "cpcivm_monthly_success": "Tento server bude během několika okamžiků převeden na předplatné.",
- "cpcivm_monthly_fail": "Během převodu na předplatné došlo k chybě."
-}

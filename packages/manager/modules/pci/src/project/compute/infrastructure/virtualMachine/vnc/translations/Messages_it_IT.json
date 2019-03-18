@@ -1,7 +1,0 @@
-{
- "cpcivm_vnc_title": "Console VNC",
- "cpcivm_vnc_tip": "Suggerimento: se l'inserimento da tastiera non funziona, clicca sulla barra blu sottostante",
- "cpcivm_vnc_window": "Aprire in una nuova finestra",
- "cpcivm_vnc_error": "Si è verificato un errore nell'apertura della console VNC",
- "cpcivm_vnc_linuxinfo": "Per utilizzare la console VNC su una macchina Linux, connettiti via SSH e imposta nome utente e password."
-}

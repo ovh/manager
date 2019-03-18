@@ -34,10 +34,6 @@ angular
           controllerAs: 'CloudProjectBillingCtrl',
         },
       },
-      translations: {
-        value: ['../delete', '.'],
-        format: 'json',
-      },
       atInternet: { ignore: true },
     });
   })

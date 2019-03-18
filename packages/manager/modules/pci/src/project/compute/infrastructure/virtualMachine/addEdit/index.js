@@ -1,5 +1,7 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
+import '@ovh-ux/ng-translate-async-loader';
+import 'angular-translate';
 import 'ovh-api-services';
 
 import controller from './controller';
@@ -11,7 +13,9 @@ const moduleName = 'ovhManagerPciProjectComputeInfrastructureVirtualMachineAddEd
 
 angular
   .module(moduleName, [
+    'ngTranslateAsyncLoader',
     'ovh-api-services',
+    'pascalprecht.translate',
     'ui.router',
   ])
   // .config((atInternetControllerDecoratorsProvider) => {
@@ -46,6 +50,7 @@ angular
   .controller('CloudProjectComputeInfrastructureVirtualMachineAddEditCtrl', controller)
   .run(/* @ngInject */($templateCache) => {
     $templateCache.put('pci/project/compute/infrastructure/virtualMachine/addEdit/template.html', template);
-  });
+  })
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

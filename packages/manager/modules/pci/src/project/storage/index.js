@@ -1,6 +1,8 @@
 import angular from 'angular';
 import '@ovh-ux/manager-core';
+import '@ovh-ux/ng-translate-async-loader';
 import '@uirouter/angularjs';
+import 'angular-translate';
 import 'oclazyload';
 import 'ovh-ui-angular';
 
@@ -24,6 +26,8 @@ angular
     'oui',
     'ovhManagerCore',
     services,
+    'ngTranslateAsyncLoader',
+    'pascalprecht.translate',
   ])
   .config(/* @ngInject */($stateProvider) => {
     $stateProvider
@@ -36,11 +40,8 @@ angular
             controllerAs: 'RA.storageCtrl',
           },
         },
-        translations: {
-          value: ['.'],
-          format: 'json',
-        },
       });
-  });
+  })
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

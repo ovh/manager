@@ -1,5 +1,7 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
+import '@ovh-ux/ng-translate-async-loader';
+import 'angular-translate';
 import 'ovh-api-services';
 
 import controller from './controller';
@@ -17,6 +19,8 @@ angular
   .module(moduleName, [
     'ovh-api-services',
     'ui.router',
+    'ngTranslateAsyncLoader',
+    'pascalprecht.translate',
   ])
   .config(/* @ngInject */($stateProvider) => {
     $stateProvider
@@ -30,16 +34,13 @@ angular
             controllerAs: 'CloudProjectComputeSnapshotCtrl',
           },
         },
-        translations: {
-          value: ['.'],
-          format: 'json',
-        },
       });
   })
   .controller('CloudProjectComputeSnapshotAddCtrl', addController)
   .service('CloudProjectComputeSnapshotPriceService', service)
   .run(/* @ngInject */($templateCache) => {
     $templateCache.put('pci/project/compute/snapshot/add/template.html', addTemplate);
-  });
+  })
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

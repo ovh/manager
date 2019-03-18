@@ -1,8 +1,0 @@
-{
- "cpou_rclone_modal_title": "Scarica un file di configurazione rClone",
- "cpou_rclone_modal_explanation": "Stai per scaricare un file di configurazione che ti permetterà di connetterti a Rclone.",
- "cpou_rclone_modal_explanation_more_info_link_text": "Per saperne di più",
- "cpou_rclone_modal_input_region_label": "Seleziona la Region di applicazione del file:",
- "cpou_rclone_modal_security_note": "Per motivi di sicurezza, il file di configurazione non contiene la tua password. Per aggiungerla è necessario modificare il file e inserirla manualmente.",
- "cpou_rclone_modal_loading_error": "Errore durante il caricamento dei datiassociati al file rClone: {{ message }}"
-}

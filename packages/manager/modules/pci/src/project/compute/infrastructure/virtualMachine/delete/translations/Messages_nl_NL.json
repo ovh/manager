@@ -1,6 +1,0 @@
-{
- "cpcivm_delete_title": "Verwijder een instance",
- "cpcivm_delete_info": "Het tarief voor de lopende maand voor deze server is al gefactureerd, als het niet wordt gebruikt, zal het verloren gaan.",
- "cpcivm_failover_info": "De volgende Failover IP's zullen permanent verwijderd worden:",
- "cpcivm_delete_confirm": "Weet u zeker dat u deze instance wilt verwijderen? "
-}

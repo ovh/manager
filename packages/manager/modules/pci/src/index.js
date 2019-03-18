@@ -76,19 +76,11 @@ angular
         url: '/iaas',
         abstract: true,
         template: '<ui-view class="cloud-legacy"/>',
-        translations: {
-          format: 'json',
-          value: ['../common', '.'],
-        },
       })
       .state('paas', {
         url: '/paas',
         abstract: true,
         template: '<ui-view class="cloud-legacy"/>',
-        translations: {
-          value: ['../common', '.'],
-          format: 'json',
-        },
       });
   })
   .run(($transitions, $state, $stateParams) => {

@@ -1,0 +1,8 @@
+{
+  "cpbc_hourly_instance_detail_title": "Serveurs",
+  "cpbc_object_storage_detail_title": "Stockage d'objets",
+  "cpbc_archive_storage_detail_title": "Stockage d'archives",
+  "cpbc_snapshot_detail_title": "Stockage des sauvegardes",
+  "cpbc_volume_detail_title": "Disques supplémentaires",
+  "cpbc_hourly_instance_trafic_title": "Trafic public sortant des instances"
+}

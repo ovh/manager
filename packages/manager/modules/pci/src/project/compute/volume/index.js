@@ -1,5 +1,7 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
+import '@ovh-ux/ng-translate-async-loader';
+import 'angular-translate';
 import 'ovh-api-services';
 
 import snapshotController from './snapshot/controller';
@@ -14,7 +16,9 @@ const moduleName = 'ovhManagerPciProjectComputeVolume';
 
 angular
   .module(moduleName, [
+    'ngTranslateAsyncLoader',
     'ovh-api-services',
+    'pascalprecht.translate',
     'ui.router',
   ])
   .config(/* @ngInject */($stateProvider) => {
@@ -28,15 +32,12 @@ angular
           controllerAs: 'CloudProjectComputeVolumeCtrl',
         },
       },
-      translations: {
-        value: ['.'],
-        format: 'json',
-      },
     });
   })
   .controller('CloudProjectComputeVolumeSnapshotAddCtrl', snapshotController)
   .run(/* @ngInject */($templateCache) => {
     $templateCache.put('pci/project/compute/volume/snapshot/template.html', snapshotTemplate);
-  });
+  })
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

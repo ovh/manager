@@ -1,5 +1,7 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
+import '@ovh-ux/ng-translate-async-loader';
+import 'angular-translate';
 import 'ovh-api-services';
 
 import controller from './controller';
@@ -11,6 +13,8 @@ const moduleName = 'ovhManagerPciProjectBillingRights';
 
 angular
   .module(moduleName, [
+    'ngTranslateAsyncLoader',
+    'pascalprecht.translate',
     'ovh-api-services',
     'ui.router',
   ])
@@ -24,11 +28,8 @@ angular
           controllerAs: 'BillingRightsCtrl',
         },
       },
-      translations: {
-        value: ['.'],
-        format: 'json',
-      },
     });
-  });
+  })
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
