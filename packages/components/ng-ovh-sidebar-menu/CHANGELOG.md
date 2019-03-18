@@ -1,3 +1,12 @@
+# [8.0.0-beta.1](https://github.com/ovh-ux/ng-ovh-sidebar-menu/compare/v8.0.0-beta.0...v8.0.0-beta.1) (2019-03-18)
+
+
+### Bug Fixes
+
+* prefix correctly controller ([d2275cc](https://github.com/ovh-ux/ng-ovh-sidebar-menu/commit/d2275cc))
+
+
+
 # [8.0.0-beta.0](https://github.com/ovh-ux/ng-ovh-sidebar-menu/compare/v8.0.0-alpha.4...v8.0.0-beta.0) (2019-01-24)
 
 
