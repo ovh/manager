@@ -1547,14 +1547,6 @@
     rollup-pluginutils "^2.3.3"
     slash "^2.0.0"
 
-"@ovh-ux/manager-core@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core/-/manager-core-2.0.0.tgz#24914c831c87d5241bca49cc418aa4dfcdee040c"
-  integrity sha512-cor3MH5jX+vvR+rZcsGmBhTNv4wfEcirHft3MwoghXSp6cpHmON5Ujcm1DSwlyRyaeSAY6fzyS5s6zu0PXyHKQ==
-  dependencies:
-    "@ovh-ux/ng-translate-async-loader" "^2.0.0"
-    lodash "^4.17.11"
-
 "@ovh-ux/manager-webpack-config@^3.0.1":
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-webpack-config/-/manager-webpack-config-3.0.1.tgz#d03713e9c1a7701f693fce217076e38dbe5f9cc3"
@@ -1679,6 +1671,11 @@
   version "8.0.0-beta.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-sidebar-menu/-/ng-ovh-sidebar-menu-8.0.0-beta.0.tgz#aee26bd7be31f9052839667d70eaf2129a1df346"
   integrity sha512-j674ddU4c/S3LNABgeHB1GvinYZiQQp4sD4Lr8xamCheKdZ9nHJsplClO3JqdKCSYXKVJa2JPwxDqrHfckPQDg==
+
+"@ovh-ux/ng-ovh-sidebar-menu@^8.0.0-beta.1":
+  version "8.0.0-beta.1"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-sidebar-menu/-/ng-ovh-sidebar-menu-8.0.0-beta.1.tgz#10cc3aee6f3d0f9b96eb8e3c94af366ddba6a2ec"
+  integrity sha512-6xX02CmY1Ua4/09vpeIVN7GzGY9GlNRowAYGpAQaIsBQmCcwi6MUn55Urc3J7xoXBGpEuHtOq13LzxS9PqhC/A==
 
 "@ovh-ux/ng-ovh-sso-auth@^4.0.0-beta.0":
   version "4.0.0-beta.0"
