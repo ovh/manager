@@ -17,7 +17,6 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-pci' --include-filtered-dependencies -- yarn run dev:watch"
   },
   "dependencies": {
-    "@ovh-ux/manager-cloud-styles": "git+https://github.com/ovh-ux/manager.git#split-manager-cloud-styles/fix-rems",
     "URIjs": "medialize/URI.js#~1.15.0",
     "d3": "~3.5.13",
     "flag-icon-css": "~0.8.5",
@@ -31,9 +30,10 @@
     "@ovh-ux/component-rollup-config": "5.0.0-beta.9"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-cloud-styles": "^0.0.0",
+    "@ovh-ux/manager-cloud-styles": "0.1.1-alpha.0",
     "@ovh-ux/manager-core": "^3.0.0",
     "@ovh-ux/manager-telecom-styles": "^2.0.2",
+    "@ovh-ux/ng-ovh-api-wrappers": "^3.0.0",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^0.3.0",
     "@ovh-ux/ng-ovh-doc-url": "^1.0.0",
     "@ovh-ux/ng-ovh-jsplumb": "git+https://github.com/ovh-ux/ng-ovh-jsplumb.git#update-jsplumb",

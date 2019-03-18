@@ -9,6 +9,7 @@ import '@ovh-ux/ng-ovh-swimming-poll';
 import '@ovh-ux/ng-ovh-doc-url';
 import 'ng-at-internet';
 import 'ovh-angular-toaster';
+import '@ovh-ux/ng-ovh-api-wrappers'; // should be a peer dependency of ovh-api-services
 import 'ovh-api-services';
 import 'ovh-ui-angular';
 import 'ovh-angular-otrs';
