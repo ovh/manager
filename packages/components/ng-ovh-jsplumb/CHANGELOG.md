@@ -1,3 +1,7 @@
+# [5.0.0](https://github.com/ovh-ux/ng-ovh-jsplumb/compare/v4.0.0...v5.0.0) (2019-03-18)
+
+
+
 # [4.0.0](https://github.com/ovh-ux/ng-ovh-jsplumb/compare/3.0.5...4.0.0) (2019-03-08)
 
 
