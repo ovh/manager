@@ -1,6 +1,11 @@
 {
   "name": "@ovh-ux/manager-core",
   "version": "4.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ovh-ux/manager.git",
+    "directory": "packages/manager/modules/core"
+  },
   "license": "BSD-3-Clause",
   "files": [
     "dist"
