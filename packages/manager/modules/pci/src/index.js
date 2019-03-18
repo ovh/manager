@@ -18,6 +18,7 @@ import 'ovh-angular-q-allsettled';
 import 'ovh-angular-pagination-front';
 
 import '@ovh-ux/manager-cloud-styles';
+import 'ovh-manager-webfont/dist/css/ovh-font.css';
 import 'ovh-ui-kit/dist/oui.css';
 import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
 
