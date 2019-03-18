@@ -1,6 +1,4 @@
 import angular from 'angular';
-import $ from 'jquery';
-
 import debounce from 'lodash/debounce';
 import filter from 'lodash/filter';
 import find from 'lodash/find';
@@ -9,14 +7,14 @@ import remove from 'lodash/remove';
 export default /* @ngInject */ function ($scope, $timeout, $window) {
   const self = this;
 
-  this.getInstance = function () {
+  this.getInstance = function getInstance() {
     return $scope.instance;
   };
 
   this.connectionForecast = [];
 
   // Make a connection between 2 endpoints
-  this.connectEndpoints = function (sourceId, targetId) {
+  this.connectEndpoints = function connectEndpoints(sourceId, targetId) {
     // If source endpoint is disabled, temporary re-enable it
     let deactiveSourceAfterConnect = false;
     if (!$scope.instance.isSourceEnabled(sourceId)) {
@@ -56,7 +54,7 @@ export default /* @ngInject */ function ($scope, $timeout, $window) {
   };
 
   // Detach connection between 2 endpoints
-  this.disconnectEndpoints = function (sourceIdOrConnection, targetId) {
+  this.disconnectEndpoints = function disconnectEndpoints(sourceIdOrConnection, targetId) {
     let sourceId = sourceIdOrConnection;
     let connection = sourceIdOrConnection;
     if (!targetId) {
@@ -86,7 +84,7 @@ export default /* @ngInject */ function ($scope, $timeout, $window) {
       }
 
       // Let's disconnect!
-      $scope.instance.detach(connection);
+      $scope.instance.deleteConnection(connection);
 
       // Re-disable target endpoint, if it was disabled
       if (deactiveTargetAfterConnect) {
@@ -116,7 +114,7 @@ export default /* @ngInject */ function ($scope, $timeout, $window) {
     return targetList;
   }
 
-  this.connectEndpointsMultiple = function (sourceId, targetListParam) {
+  this.connectEndpointsMultiple = function connectEndpointsMultiple(sourceId, targetListParam) {
     let targetList = targetListParam;
     // forecast this connection
     targetList.forEach((id) => {
@@ -138,25 +136,25 @@ export default /* @ngInject */ function ($scope, $timeout, $window) {
     }
   };
 
-  this.disconnectEndpointsMultiple = function (sourceId, targetList) {
+  this.disconnectEndpointsMultiple = function disconnectEndpointsMultiple(sourceId, targetList) {
     angular.forEach(targetList, (targetId) => {
       // Let's disconnect!
       self.disconnectEndpoints(sourceId, targetId);
     });
   };
 
-  this.getConnection = function (sourceId, targetId) {
+  this.getConnection = function getConnection(sourceId, targetId) {
     const connections = $scope.instance.getAllConnections();
     return find(connections, { sourceId, targetId })
       || find(connections, { sourceId: targetId, targetId: sourceId });
   };
 
-  this.getConnections = function (id) {
+  this.getConnections = function getConnections(id) {
     const connections = $scope.instance.getAllConnections();
     return filter(connections, conn => (conn.sourceId === id) || (conn.targetId === id));
   };
 
-  this.connectionExists = function (sourceId, targetId) {
+  this.connectionExists = function connectionExists(sourceId, targetId) {
     return !!self.getConnection(sourceId, targetId);
   };
 

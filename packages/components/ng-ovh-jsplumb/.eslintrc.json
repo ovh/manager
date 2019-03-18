@@ -4,7 +4,8 @@
     "markdown"
   ],
   "env": {
-    "browser": true
+    "browser": true,
+    "jquery": true
   },
   "globals": {
     "jsPlumb": true

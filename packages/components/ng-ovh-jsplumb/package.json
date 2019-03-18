@@ -46,6 +46,6 @@
   "peerDependencies": {
     "angular": "~1.6",
     "jquery": "~2.1",
-    "jsPlumb": "sporritt/jsPlumb#1.7.4"
+    "jsplumb": "^2.9.0"
   }
 }

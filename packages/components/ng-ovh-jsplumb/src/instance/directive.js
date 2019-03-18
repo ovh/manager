@@ -53,7 +53,6 @@
  */
 
 import angular from 'angular';
-import $ from 'jquery';
 
 import controller from './controller';
 
@@ -84,7 +83,7 @@ export default /* @ngInject */ function ($rootScope, $parse) {
            *  Useful when a connection is deleted and endpoints become empty.
            *  repaintEverything method does not repaint empty endpoints.
            */
-          $scope.instance.revalidateEverything = function () {
+          $scope.instance.revalidateEverything = function revalidateEverything() {
             const self = this;
             $('._jsPlumb_ng_endpoint').each((index, elem) => {
               self.revalidate($(elem).attr('id'));
@@ -94,14 +93,17 @@ export default /* @ngInject */ function ($rootScope, $parse) {
           /**
            *  Make a connection between 2 endpoints
            */
-          $scope.instance.connectEndpoints = function (sourceId, targetId) {
+          $scope.instance.connectEndpoints = function connectEndpoints(sourceId, targetId) {
             return jsplumbInstanceCtrl.connectEndpoints(sourceId, targetId);
           };
 
           /**
            *  Delete a connection (or by give it source and target IDs)
            */
-          $scope.instance.disconnectEndpoints = function (sourceIdOrConnection, targetId) {
+          $scope.instance.disconnectEndpoints = function disconnectEndpoints(
+            sourceIdOrConnection,
+            targetId,
+          ) {
             return jsplumbInstanceCtrl.disconnectEndpoints(sourceIdOrConnection, targetId);
           };
 
@@ -110,9 +112,13 @@ export default /* @ngInject */ function ($rootScope, $parse) {
            *  endpoint id.
            *  This method checks in both direction : from source to target or from target to source.
            */
-          $scope.instance.getConnectionBySourceIdAndTargetId = function (sourceId, targetId) {
-            return jsplumbInstanceCtrl.getConnection(sourceId, targetId);
-          };
+          $scope.instance
+            .getConnectionBySourceIdAndTargetId = function getConnectionBySourceIdAndTargetId(
+              sourceId,
+              targetId,
+            ) {
+              return jsplumbInstanceCtrl.getConnection(sourceId, targetId);
+            };
 
           /* -----  End of Extend jsplumb instance  ------*/
 

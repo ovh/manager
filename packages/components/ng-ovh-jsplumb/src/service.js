@@ -5,9 +5,6 @@
  *
  * Main service
  */
-
-import 'jsPlumb';
-
 export default /* @ngInject */ function ($q) {
   const initDeferred = $q.defer();
 
@@ -20,7 +17,7 @@ export default /* @ngInject */ function ($q) {
    * Initialize jsPlumb
    *
    */
-  this.jsplumbInit = function () {
+  this.jsplumbInit = function jsplumbInit() {
     jsPlumb.ready(() => {
       initDeferred.resolve();
     });
@@ -37,7 +34,7 @@ export default /* @ngInject */ function ($q) {
    * Configure jsPlumb
    *
    */
-  this.importDefaults = function (defaults) {
+  this.importDefaults = function importDefaults(defaults) {
     jsPlumb.importDefaults(defaults);
   };
 }
