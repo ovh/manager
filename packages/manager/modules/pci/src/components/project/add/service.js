@@ -13,7 +13,6 @@ export default class CloudProjectAdd {
     OvhApiCloud,
     OvhApiMe,
     OvhApiVrack,
-    // CloudProjectSidebar,
   ) {
     this.$q = $q;
     this.$translate = $translate;
@@ -24,7 +23,6 @@ export default class CloudProjectAdd {
     this.Cloud = OvhApiCloud;
     this.User = OvhApiMe;
     this.Vrack = OvhApiVrack;
-    // this.CloudProjectSidebar = CloudProjectSidebar;
   }
 
   startProject(voucher, description, catalogVersion) {
@@ -150,10 +148,7 @@ export default class CloudProjectAdd {
   }
 
   updateManager(projectId, description) {
-    // this.CloudProjectSidebar.addToSection({
-    //   project_id: projectId, // jshint ignore:line
-    //   description,
-    // });
+    this.$scope.$emit('pci_addProject', projectId, description);
     this.Vrack.v6().resetCache();
     this.Vrack.CloudProject().v6().resetQueryCache();
   }

@@ -5,7 +5,6 @@ export default /* @ngInject */ function CloudProjectRenameController(
   $uibModal,
   CucCloudMessage,
   OvhApiCloudProject,
-  // SidebarMenu,
 ) {
   const self = this;
 
@@ -45,10 +44,7 @@ export default /* @ngInject */ function CloudProjectRenameController(
       description: self.editing.description || '',
     }).$promise.then(() => {
       self.model.description = self.editing.description;
-      // const menuItem = SidebarMenu.getItemById(self.projectId);
-      // if (menuItem) {
-      //   menuItem.title = self.editing.description;
-      // }
+      this.$scope.$emit('pci_updateName', self.projectId, self.editing.description);
     }).catch((err) => {
       CucCloudMessage.error([$translate.instant('cloud_project_rename_error'), (err.data && err.data.message) || ''].join(' '));
     }).finally(() => {

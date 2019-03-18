@@ -17,7 +17,6 @@ export default /* @ngInject */ function CloudProjectAddCtrl(
   OvhApiVrack,
   $window,
   OvhApiMePaymentMeanCreditCard,
-  // CloudProjectSidebar,
   CloudProjectAdd,
   TARGET,
 ) {
@@ -58,10 +57,7 @@ export default /* @ngInject */ function CloudProjectAddCtrl(
   this.addCreditCardUrl = PCI_REDIRECT_URLS[TARGET].addCreditCard;
 
   function updateManager(projectId) {
-    // CloudProjectSidebar.addToSection({
-    //   project_id: projectId, // jshint ignore:line
-    //   description: self.model.description,
-    // });
+    this.$scope.$emit('pci_addProject', projectId, self.model.description);
     OvhApiVrack.v6().resetCache();
     OvhApiVrack.CloudProject().v6().resetQueryCache();
   }
