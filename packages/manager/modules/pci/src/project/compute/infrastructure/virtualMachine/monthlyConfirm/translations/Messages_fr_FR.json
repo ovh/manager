@@ -1,7 +1,0 @@
-{
-  "cpcivm_monthly_title": "Passage au forfait mensuel",
-  "cpcivm_monthly_info": "Réduisez le prix de 50% en passant cette machine au forfait mensuel (payé par avance).",
-  "cpcivm_monthly_prorata_warning": "Une facture de prorata pour les jours restants du mois va être immédiatement éditée.",
-  "cpcivm_monthly_success": "Ce serveur sera intégré au forfait mensuel dans quelques instants.",
-  "cpcivm_monthly_fail": "Une erreur est survenue lors du passage au forfait mensuel."
-}

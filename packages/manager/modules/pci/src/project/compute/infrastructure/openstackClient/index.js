@@ -1,5 +1,7 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
+import '@ovh-ux/ng-translate-async-loader';
+import 'angular-translate';
 import 'ovh-api-services';
 
 import controller from './controller';
@@ -12,11 +14,14 @@ const moduleName = 'ovhManagerPciProjectComputeInfrastructureOpenstackClient';
 
 angular
   .module(moduleName, [
+    'ngTranslateAsyncLoader',
+    'pascalprecht.translate',
   ])
   .controller('CloudProjectComputeInfrastructureOpenstackClientCtrl', controller)
   .run(/* @ngInject */($templateCache) => {
     $templateCache.put('pci/project/compute/infrastructure/openstackClient/template.html', template);
   })
-  .service('CloudProjectComputeInfrastructureOpenstackClientService', service);
+  .service('CloudProjectComputeInfrastructureOpenstackClientService', service)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

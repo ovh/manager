@@ -1,5 +1,7 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
+import '@ovh-ux/ng-translate-async-loader';
+import 'angular-translate';
 import 'ovh-api-services';
 
 import filter from './filter';
@@ -24,7 +26,10 @@ import vlanTooltipTemplate from './partials/vlan-tooltip.html';
 const moduleName = 'ovhManagerPciProjectComputeInfrastructurePrivateNetworkDialog';
 
 angular
-  .module(moduleName, [])
+  .module(moduleName, [
+    'ngTranslateAsyncLoader',
+    'pascalprecht.translate',
+  ])
   .controller('CloudProjectComputeInfrastructurePrivateNetworkDialogCtrl', controller)
   .filter('CloudProjectComputeInfrastructurePrivateNetworkDialogPrivateNetworkDescription', filter)
   .directive('uniqueVlanId', uniqueVlanIdDirective)
@@ -40,6 +45,7 @@ angular
     $templateCache.put('pci/project/compute/infrastructure/privateNetwork/dialog/partials/subnets-right.html', subnetsRightTemplate);
     $templateCache.put('pci/project/compute/infrastructure/privateNetwork/dialog/partials/vlan-left.html', vlanLeftTemplate);
     $templateCache.put('pci/project/compute/infrastructure/privateNetwork/dialog/partials/vlan-tooltip.html', vlanTooltipTemplate);
-  });
+  })
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

@@ -1,5 +1,7 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
+import '@ovh-ux/ng-translate-async-loader';
+import 'angular-translate';
 import 'ovh-api-services';
 
 import controller from './controller';
@@ -12,7 +14,9 @@ const moduleName = 'ovhManagerPciProjectComputeSsh';
 
 angular
   .module(moduleName, [
+    'ngTranslateAsyncLoader',
     'ovh-api-services',
+    'pascalprecht.translate',
     'ui.router',
   ])
   .config(/* @ngInject */($stateProvider) => {
@@ -27,12 +31,9 @@ angular
             controllerAs: '$ctrl',
           },
         },
-        translations: {
-          value: ['.'],
-          format: 'json',
-        },
       });
   })
-  .service('CloudProjectSSHKeyService', service);
+  .service('CloudProjectSSHKeyService', service)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

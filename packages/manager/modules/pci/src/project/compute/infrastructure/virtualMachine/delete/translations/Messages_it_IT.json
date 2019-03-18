@@ -1,6 +1,0 @@
-{
- "cpcivm_delete_title": "Elimina istanza",
- "cpcivm_delete_info": "L'importo relativo al mese in corso per questo server è già stato saldato: se non lo utilizzi, verrà perso. Non sono previsti rimborsi, né diritti di recesso. ",
- "cpcivm_failover_info": "Questi IP Failover saranno eliminati definitivamente:",
- "cpcivm_delete_confirm": "Vuoi davvero eliminare questa istanza?"
-}

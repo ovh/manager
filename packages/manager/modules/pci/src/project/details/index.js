@@ -1,5 +1,7 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
+import '@ovh-ux/ng-translate-async-loader';
+import 'angular-translate';
 import 'ovh-api-services';
 
 import controller from './controller';
@@ -13,6 +15,8 @@ angular
   .module(moduleName, [
     'ovh-api-services',
     'ui.router',
+    'ngTranslateAsyncLoader',
+    'pascalprecht.translate',
   ])
   .config(/* @ngInject */($stateProvider) => {
     $stateProvider.state('iaas.pci-project.details', {
@@ -31,11 +35,8 @@ angular
         },
         createNewVm: false,
       },
-      translations: {
-        value: ['.'],
-        format: 'json',
-      },
     });
-  });
+  })
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

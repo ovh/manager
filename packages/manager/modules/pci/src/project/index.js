@@ -1,6 +1,8 @@
 import angular from 'angular';
 import '@ovh-ux/manager-core';
 import '@uirouter/angularjs';
+import '@ovh-ux/ng-translate-async-loader';
+import 'angular-translate';
 import 'oclazyload';
 import 'ovh-ui-angular';
 
@@ -40,6 +42,8 @@ angular
     openstack,
     rename,
     storage,
+    'ngTranslateAsyncLoader',
+    'pascalprecht.translate',
   ])
   .config(/* @ngInject */($stateProvider) => {
     $stateProvider
@@ -54,16 +58,13 @@ angular
         template,
         controller,
         controllerAs: 'CloudProjectCtrl',
-        translations: {
-          value: ['.', './billing'],
-          format: 'json',
-        },
         atInternet: { ignore: true },
       });
   })
   .controller('CloudProjectDeleteCtrl', deleteController)
   .run(/* @ngInject */($templateCache) => {
     $templateCache.put('pci/project/delete/template.html', deleteTemplate);
-  });
+  })
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

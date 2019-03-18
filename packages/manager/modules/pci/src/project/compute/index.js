@@ -1,5 +1,7 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
+import '@ovh-ux/ng-translate-async-loader';
+import 'angular-translate';
 import 'ovh-api-services';
 
 import infrastructure from './infrastructure';
@@ -24,7 +26,9 @@ angular
     componentsProject,
     infrastructure,
     loadbalancer,
+    'ngTranslateAsyncLoader',
     'ovh-api-services',
+    'pascalprecht.translate',
     quota,
     regions,
     snapshot,
@@ -44,10 +48,6 @@ angular
             controllerAs: 'CloudProjectComputeCtrl',
           },
         },
-        translations: {
-          value: ['.'],
-          format: 'json',
-        },
         atInternet: { ignore: true },
         params: {
           // Force the small display for large projects
@@ -55,6 +55,7 @@ angular
           createNewVm: false,
         },
       });
-  });
+  })
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

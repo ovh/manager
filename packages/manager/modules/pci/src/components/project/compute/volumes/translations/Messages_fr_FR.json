@@ -1,0 +1,4 @@
+{
+  "cpci_volume_default_name": "Nom du disque dur",
+  "cpci_volume_snapshotting_end": "Volume {{ volume }} sauvegardé."
+}

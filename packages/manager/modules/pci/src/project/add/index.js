@@ -1,5 +1,7 @@
 import angular from 'angular';
+import '@ovh-ux/ng-translate-async-loader';
 import '@uirouter/angularjs';
+import 'angular-translate';
 import 'ovh-api-services';
 
 import controller from './controller';
@@ -9,7 +11,9 @@ const moduleName = 'ovhManagerPciProjectAdd';
 
 angular
   .module(moduleName, [
+    'ngTranslateAsyncLoader',
     'ovh-api-services',
+    'pascalprecht.translate',
     'ui.router',
   ])
   .config(/* @ngInject */($stateProvider) => {
@@ -23,12 +27,9 @@ angular
         template,
         controller,
         controllerAs: 'CloudProjectAddCtrl',
-        translations: {
-          value: ['.'],
-          format: 'json',
-        },
       });
-  });
+  })
+  .run(/* @ngTranslationsInject:json ./translations */);
 // .config(/* @ngInject */(atInternetControllerDecoratorsProvider) => {
 //   atInternetControllerDecoratorsProvider.decorate({
 //     CloudProjectAddCtrl: {

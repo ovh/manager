@@ -1,6 +1,0 @@
-{
- "cpci_volume_type": "Tipo",
- "cpci_volume_gb_price_month": "Prezzo + IVA/GiB/mese",
- "cpci_volume_gb_price_value_month": "{{ price }} + IVA/GiB/mese",
- "cpci_volume_price_per_month": "{{ price }} + IVA/mese"
-}

@@ -1,7 +1,0 @@
-{
- "cpcivm_vnc_title": "Konsola VNC",
- "cpcivm_vnc_tip": "Uwaga: Jeśli wpisywanie nie działa, kliknij na niebieski pasek znajdujący się poniżej.",
- "cpcivm_vnc_window": "Otwórz w nowym oknie",
- "cpcivm_vnc_error": "Wystąpił błąd podczas otwierania konsoli VNC.",
- "cpcivm_vnc_linuxinfo": "Aby korzystać z konsoli VNC na serwerze z systemem Linux, należy najpierw połączyć się z serwerem przez SSH i skonfigurować użytkownika."
-}

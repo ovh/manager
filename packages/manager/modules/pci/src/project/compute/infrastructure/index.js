@@ -1,5 +1,7 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
+import '@ovh-ux/ng-translate-async-loader';
+import 'angular-translate';
 import 'ovh-api-services';
 import '@ovh-ux/ng-ovh-jsplumb';
 
@@ -31,8 +33,10 @@ angular
     iac,
     ip,
     list,
+    'ngTranslateAsyncLoader',
     openstackClient,
     'ovh-api-services',
+    'pascalprecht.translate',
     popover,
     privateNetwork,
     'ngOvhJsplumb',
@@ -64,32 +68,6 @@ angular
           monitorVm: null,
           hTerm: null,
         },
-        translations: {
-          value: [
-            '../snapshot/add',
-            '../volume/snapshot',
-            '.',
-            './ip/failover/import',
-            './ip/failover/buy',
-            './volume',
-            './volume/addEdit',
-            './virtualMachine/addEdit',
-            './virtualMachine/delete',
-            './virtualMachine/vnc',
-            './virtualMachine/rescue',
-            './virtualMachine/monthlyConfirm',
-            './virtualMachine/monitoring',
-            './virtualMachine/loginInformation',
-            './privateNetwork',
-            './privateNetwork/dialog',
-            './privateNetwork/delete',
-            '../../delete',
-            '../../rename',
-            './openstackClient',
-            '../../../../vrack/modals',
-          ],
-          format: 'json',
-        },
       });
   })
   // .config(/* @ngInject */(atInternetControllerDecoratorsProvider) => {
@@ -110,6 +88,7 @@ angular
   .service('CloudFlavorService', flavorService)
   .service('CloudImageService', imageService)
   .service('CloudProjectComputeInfrastructureService', infrastructureService)
-  .service('CloudRegionService', regionService);
+  .service('CloudRegionService', regionService)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

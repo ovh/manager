@@ -1,7 +1,0 @@
-{
- "cpcivm_vnc_title": "Consola VNC",
- "cpcivm_vnc_tip": "Truque: Se a introdução de texto não funcionar, clique na barra azul.",
- "cpcivm_vnc_window": "Abrir numa nova janela",
- "cpcivm_vnc_error": "Ocorreu um erro durante a abertura da consola VNC.",
- "cpcivm_vnc_linuxinfo": "Para utilizar a consola VNC numa máquina com um SO GNU/Linux, deve previamente ligar-se através de SSH e configurar um utilizador com palavra-passe."
-}

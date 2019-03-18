@@ -1,6 +1,8 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
 import 'ovh-api-services';
+import '@ovh-ux/ng-translate-async-loader';
+import 'angular-translate';
 
 import current from './current';
 import estimate from './estimate';
@@ -16,6 +18,8 @@ angular
   .module(moduleName, [
     current,
     estimate,
+    'ngTranslateAsyncLoader',
+    'pascalprecht.translate',
     'ovh-api-services',
     'ui.router',
   ])
@@ -29,11 +33,8 @@ angular
           controllerAs: 'BillingConsumptionCtrl',
         },
       },
-      translations: {
-        value: ['.'],
-        format: 'json',
-      },
     });
-  });
+  })
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

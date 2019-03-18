@@ -1,7 +1,0 @@
-{
- "cpcivm_monthly_title": "Passa al forfait mensile",
- "cpcivm_monthly_info": "Scegli il forfait mensile con fatturazione anticipata per questa macchina: risparmi il 50%!",
- "cpcivm_monthly_prorata_warning": "Ti invieremo subito una fattura del prorata per i  giorni restanti del mese.",
- "cpcivm_monthly_success": "Il forfait mensile sarà applicato a questo server tra pochi minuti.",
- "cpcivm_monthly_fail": "Si è verificato un errore durante il passaggio al forfait mensile."
-}

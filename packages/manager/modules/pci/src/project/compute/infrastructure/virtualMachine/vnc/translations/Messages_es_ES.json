@@ -1,7 +1,0 @@
-{
-  "cpcivm_vnc_title": "Consola VNC",
-  "cpcivm_vnc_tip": "Truco: Si la introducción no funciona correctamente, haga clic en la barra azul de abajo.",
-  "cpcivm_vnc_window": "Abrir en una nueva ventana",
-  "cpcivm_vnc_error": "Se ha producido un error al abrir la consola VNC.",
-  "cpcivm_vnc_linuxinfo": "Para utilizar la consola VNC en una máquina Linux, es necesario conectarse a ella previamente mediante SSH y configurar un usuario con contraseña."
-}

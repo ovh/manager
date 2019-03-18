@@ -1,7 +1,0 @@
-{
- "cpcivm_monthly_title": "Passagem à renovação mensal",
- "cpcivm_monthly_info": "Reduza o preço em 50% ao passar esta máquina para renovação mensal (pagamento efetuado antecipadamente).",
- "cpcivm_monthly_prorata_warning": "Uma fatura de 'pro rata temporis' para os dias restantes será imediatamente criada.",
- "cpcivm_monthly_success": "Este servidor será integrado às renovações mensais dentro de alguns instantes.",
- "cpcivm_monthly_fail": "Ocorreu um erro aquando da passagem para renovação mensal."
-}
