@@ -21,6 +21,7 @@ import '@ovh-ux/manager-cloud-styles';
 import 'ovh-manager-webfont/dist/css/ovh-font.css';
 import 'ovh-ui-kit/dist/oui.css';
 import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
+import 'font-awesome/css/font-awesome.css';
 
 import components from './components';
 import offer from './offer';

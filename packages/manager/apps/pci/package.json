@@ -27,6 +27,7 @@
     "angular": "1.7.5",
     "angular-translate": "^2.18.1",
     "angular-ui-bootstrap": "^1.3.3",
+    "font-awesome": "^4.0.0",
     "jquery-ui": "components/jqueryui#~1.11.2",
     "messenger": "HubSpot/messenger#~1.4.1",
     "ng-at-internet": "ovh-ux/ng-at-internet#^3.0.0",
