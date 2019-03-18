@@ -17,5 +17,6 @@
   "cpb_rights_delete_question": "Voulez-vous vraiment supprimer les droits de {{nickname}}?",
   "common_add": "Ajouter",
   "common_delete": "Supprimer",
-  "delete": "Supprimer"
+  "delete": "Supprimer",
+  "common_cancel": "Annuler"
 }
