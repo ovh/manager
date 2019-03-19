@@ -17,6 +17,7 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-pci' --include-filtered-dependencies -- yarn run dev:watch"
   },
   "dependencies": {
+    "@ovh-ux/ng-ovh-cloud-universe-components": "^1.0.1-alpha.0",
     "URIjs": "medialize/URI.js#~1.15.0",
     "d3": "~3.5.13",
     "flag-icon-css": "~0.8.5",

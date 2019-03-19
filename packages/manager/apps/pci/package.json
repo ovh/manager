@@ -16,7 +16,7 @@
     "@ovh-ux/manager-pci": "^0.0.0",
     "@ovh-ux/ng-ovh-api-wrappers": "^3.0.0",
     "@ovh-ux/ng-ovh-apiv7": "^2.0.0",
-    "@ovh-ux/ng-ovh-cloud-universe-components": "^0.3.0",
+    "@ovh-ux/ng-ovh-cloud-universe-components": "^1.0.1-alpha.0",
     "@ovh-ux/ng-ovh-doc-url": "^1.0.0",
     "@ovh-ux/ng-ovh-jsplumb": "^5.0.0",
     "@ovh-ux/ng-ovh-proxy-request": "^1.0.0-beta.0",
