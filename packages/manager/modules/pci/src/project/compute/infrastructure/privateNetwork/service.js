@@ -12,13 +12,13 @@ export default class CloudProjectComputeInfrastructurePrivateNetworkService {
     OvhApiCloudProjectNetworkPrivate,
     OvhApiCloudProjectNetworkPrivateSubnet,
     PCI_URLS,
-    TARGET,
+    coreConfig,
   ) {
     this.$q = $q;
     this.$timeout = $timeout;
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
-    this.PCI_URLS = PCI_URLS[TARGET];
+    this.PCI_URLS = PCI_URLS[coreConfig.getRegion()];
     this.User = OvhApiMe;
     this.Region = OvhApiCloudProjectRegion;
     this.OvhApiCloudProjectNetworkPrivate = OvhApiCloudProjectNetworkPrivate;

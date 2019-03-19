@@ -20,7 +20,7 @@ export default /* @ngInject */ function CloudProjectDeleteCtrl(
   OvhApiCloudProjectUsageCurrent,
   OvhApiCloudProjectCredit,
   CloudProjectBillingService,
-  TARGET,
+  coreConfig,
 ) {
   const self = this;
   const { projectId } = $stateParams;
@@ -88,7 +88,7 @@ export default /* @ngInject */ function CloudProjectDeleteCtrl(
   }
 
   this.init = function initFn() {
-    if (TARGET !== 'US') {
+    if (coreConfig.getRegion() !== 'US') {
       self.loaders.init = true;
       $q.all([
         getConsumption(),

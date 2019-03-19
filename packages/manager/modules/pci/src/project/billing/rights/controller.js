@@ -13,7 +13,7 @@ export default /* @ngInject */ function (
   $translate,
   PCI_REDIRECT_URLS,
   $window,
-  TARGET,
+  coreConfig,
 ) {
   const self = this;
   const serviceName = $stateParams.projectId;
@@ -92,12 +92,12 @@ export default /* @ngInject */ function (
       */
 
   self.canChangeContacts = function canChangeContacts() {
-    return PCI_REDIRECT_URLS[TARGET].contacts;
+    return PCI_REDIRECT_URLS[coreConfig.getRegion()].contacts;
   };
 
   self.openContacts = function openContacts() {
     if (self.canChangeContacts()) {
-      let redirectUrl = PCI_REDIRECT_URLS[TARGET].contacts;
+      let redirectUrl = PCI_REDIRECT_URLS[coreConfig.getRegion()].contacts;
       redirectUrl = redirectUrl.replace('{serviceName}', serviceName);
       $window.open(redirectUrl, '_blank');
     }

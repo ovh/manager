@@ -12,7 +12,7 @@ export default /* @ngInject */ function CloudProjectComputeQuotaCtrl(
   CucCloudMessage,
   OtrsPopupService,
   CucRegionService,
-  TARGET,
+  coreConfig,
 ) {
   // ---------VARIABLE DECLARATION---------
   const self = this;
@@ -32,13 +32,13 @@ export default /* @ngInject */ function CloudProjectComputeQuotaCtrl(
     isRestrictedQuota: false,
   };
 
+  this.region = coreConfig.getRegion();
+
   // PaymentMean URL (v6 dedicated) with sessionv6
-  this.paymentmeanUrl = PCI_REDIRECT_URLS[TARGET].paymentMeans;
-  this.supportUrl = PCI_REDIRECT_URLS[TARGET].support;
+  this.paymentmeanUrl = PCI_REDIRECT_URLS[this.region].paymentMeans;
+  this.supportUrl = PCI_REDIRECT_URLS[this.region].support;
 
   self.regionService = CucRegionService;
-
-  this.TARGET = TARGET;
 
   // ---------SUPPORT---------
 
@@ -53,7 +53,7 @@ export default /* @ngInject */ function CloudProjectComputeQuotaCtrl(
   // ---------UNLEASH---------
 
   function initPaymentMethods() {
-    if (self.TARGET !== 'US') {
+    if (self.region !== 'US') {
       return OvhApiMe.PaymentMean().v6().getDefaultPaymentMean();
     }
 

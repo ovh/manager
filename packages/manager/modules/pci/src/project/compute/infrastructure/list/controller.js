@@ -21,7 +21,7 @@ export default class CloudProjectComputeInfrastructureListCtrl {
     OvhApiCloudProjectVolume,
     CucRegionService,
     OvhApiCloudProjectFlavor,
-    TARGET,
+    coreConfig,
   ) {
     this.$scope = $scope;
     this.$q = $q;
@@ -36,7 +36,7 @@ export default class CloudProjectComputeInfrastructureListCtrl {
     this.OvhApiCloudProjectVolume = OvhApiCloudProjectVolume;
     this.CucRegionService = CucRegionService;
     this.OvhApiCloudProjectFlavor = OvhApiCloudProjectFlavor;
-    this.TARGET = TARGET;
+    this.region = coreConfig.getRegion();
   }
 
   $onInit() {

@@ -37,7 +37,7 @@ export default class CloudProjectComputeInfrastructureVirtualMachineAddCtrl {
     CucRegionService,
     CucServiceHelper,
     ovhDocUrl,
-    TARGET,
+    coreConfig,
     PCI_URLS,
   ) {
     this.$q = $q;
@@ -62,8 +62,8 @@ export default class CloudProjectComputeInfrastructureVirtualMachineAddCtrl {
     this.CucServiceHelper = CucServiceHelper;
     this.VirtualMachineAddService = CloudProjectVirtualMachineAddService;
     this.ovhDocUrl = ovhDocUrl;
-    this.TARGET = TARGET;
-    this.PCI_URLS = PCI_URLS[TARGET];
+    this.region = coreConfig.getRegion();
+    this.PCI_URLS = PCI_URLS[this.region];
   }
 
   $onInit() {
@@ -108,7 +108,7 @@ export default class CloudProjectComputeInfrastructureVirtualMachineAddCtrl {
     this.promisePublicNetworks = this.OvhApiCloudProjectNetworkPublic.v6()
       .query({ serviceName: this.serviceName }).$promise;
     this.PCI_URLS.vLansApiGuide = this.ovhDocUrl.getDocUrl('g2162.public_cloud_et_vrack_-_comment_utiliser_le_vrack_et_les_reseaux_prives_avec_les_instances_public_cloud');
-    if (this.TARGET === 'US') {
+    if (this.region === 'US') {
       this.PCI_URLS.guidesSshkey = this.PCI_URLS.guides.ssh.create.US;
     } else {
       this.PCI_URLS.guidesSshkey = this.ovhDocUrl.getDocUrl('g1769.creating_ssh_keys');

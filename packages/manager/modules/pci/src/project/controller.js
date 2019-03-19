@@ -9,12 +9,12 @@ export default /* @ngInject */ function CloudProjectCtrl(
   ovhUserPref,
   OvhApiCloud,
   CloudProjectRightService,
-  TARGET,
+  coreConfig,
 ) {
   const self = this;
   const serviceName = $stateParams.projectId;
   const onboardingKey = 'SHOW_PCI_ONBOARDING';
-  $scope.TARGET = TARGET;
+  $scope.region = coreConfig.getRegion();
 
   self.loaders = {
     project: false,

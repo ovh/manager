@@ -1600,14 +1600,6 @@
     rollup-pluginutils "^2.3.3"
     slash "^2.0.0"
 
-"@ovh-ux/manager-core@^3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core/-/manager-core-3.0.0.tgz#225056a2bfa9614b314d4a6a6da910dd11fdc1d9"
-  integrity sha512-BKnqF8aNpZENwXn4lAvrSIq24ky6LfNFaEg/vhayCQezrq3DSx7JXZXbzf1r97LmjOZOaXM+vmNZlQTJ6sKZ2g==
-  dependencies:
-    "@ovh-ux/ng-translate-async-loader" "^2.0.0"
-    lodash "^4.17.11"
-
 "@ovh-ux/manager-core@^4.0.0", "@ovh-ux/manager-core@^4.0.1":
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core/-/manager-core-4.0.1.tgz#ac4411f6093281b929d3a0a46f3be7d20d9f21c1"
