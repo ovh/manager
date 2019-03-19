@@ -1,4 +1,8 @@
-class kubernetesResetModalCtrl {
+import controller from './kubernetes-service-reset.controller';
+import template from './kubernetes-service-reset.html';
+
+export default class kubernetesResetModalCtrl {
+  /* @ngInject */
   constructor($scope, $state, $stateParams, CucControllerHelper) {
     this.$scope = $scope;
     this.$state = $state;
@@ -10,8 +14,8 @@ class kubernetesResetModalCtrl {
   openModal() {
     this.CucControllerHelper.modal.showModal({
       modalConfig: {
-        templateUrl: 'app/kubernetes/service/reset/kubernetes-service-reset.html',
-        controller: 'kubernetesResetCtrl',
+        template,
+        controller,
         controllerAs: 'ctrl',
         backdrop: 'static',
       },
@@ -19,11 +23,9 @@ class kubernetesResetModalCtrl {
   }
 
   onCloseModal() {
-    this.$state.go('paas.kube.service', {
+    this.$state.go('kube.service', {
       serviceName: this.serviceName,
     });
     this.$scope.$broadcast('kube.service.refresh');
   }
 }
-
-angular.module('managerApp').controller('kubernetesResetModalCtrl', kubernetesResetModalCtrl);
