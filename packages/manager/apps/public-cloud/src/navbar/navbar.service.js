@@ -86,7 +86,7 @@ export default class ManagerNavbarService {
     });
 
     // Telephony (External)
-    if (this.coreConfig.getRegion() !== 'US') {
+    if (this.coreConfig.isRegion(['EU', 'CA'])) {
       assistanceMenu.push({
         title: this.$translate.instant('navbar_support_telephony_contact'),
         url: this.URLS.support_contact[locale] || this.URLS.support_contact.FR,
@@ -145,11 +145,11 @@ export default class ManagerNavbarService {
             title: this.$translate.instant('navbar_account_security'),
             url: this.REDIRECT_URLS.userSecurity,
           },
-          (this.coreConfig.getRegion() === 'EU' || this.coreConfig.getRegion() === 'CA') && {
+          this.coreConfig.isRegion(['EU', 'CA']) && {
             title: this.$translate.instant('navbar_account_emails'),
             url: this.REDIRECT_URLS.userEmails,
           },
-          (this.coreConfig.getRegion() === 'EU') && {
+          this.coreConfig.isRegion('EU') && {
             title: this.$translate.instant('navbar_account_subscriptions'),
             url: this.REDIRECT_URLS.userSubscriptions,
           }, {
@@ -176,7 +176,7 @@ export default class ManagerNavbarService {
         },
 
         // Services
-        (this.coreConfig.getRegion() === 'EU' || this.coreConfig.getRegion() === 'CA') && (!currentUser.isEnterprise ? {
+        this.coreConfig.isRegion(['EU', 'CA']) && (!currentUser.isEnterprise ? {
           name: 'user.services',
           title: this.$translate.instant('navbar_renew'),
           url: this.REDIRECT_URLS.services,
@@ -201,18 +201,18 @@ export default class ManagerNavbarService {
             title: this.$translate.instant('navbar_means_mean'),
             url: this.REDIRECT_URLS.paymentMeans,
           },
-          (this.coreConfig.getRegion() === 'EU' || this.coreConfig.getRegion() === 'CA') && {
+          this.coreConfig.isRegion(['EU', 'CA']) && {
             title: this.$translate.instant('navbar_means_ovhaccount'),
             url: this.REDIRECT_URLS.ovhAccount,
           },
-          (this.coreConfig.getRegion() === 'EU' || this.coreConfig.getRegion() === 'CA') && {
+          this.coreConfig.isRegion(['EU', 'CA']) && {
             title: this.$translate.instant('navbar_means_vouchers'),
             url: this.REDIRECT_URLS.billingVouchers,
           }, {
             title: this.$translate.instant('navbar_means_refunds'),
             url: this.REDIRECT_URLS.billingRefunds,
           },
-          (this.coreConfig.getRegion() === 'EU') && {
+          this.coreConfig.isRegion('EU') && {
             title: this.$translate.instant('navbar_means_fidelity'),
             url: this.REDIRECT_URLS.billingFidelity,
           }, {
@@ -222,13 +222,13 @@ export default class ManagerNavbarService {
         },
 
         // Orders
-        (!currentUser.isEnterprise && this.coreConfig.getRegion() === 'EU' && currentUser.ovhSubsidiary === 'FR') && {
+        (!currentUser.isEnterprise && this.coreConfig.isRegion('EU') && currentUser.ovhSubsidiary === 'FR') && {
           title: this.$translate.instant('navbar_orders'),
           url: this.REDIRECT_URLS.orders,
         },
 
         // Contacts
-        (this.coreConfig.getRegion() === 'EU') && {
+        (this.coreConfig.isRegion('EU')) && {
           title: this.$translate.instant('navbar_contacts'),
           url: this.REDIRECT_URLS.contacts,
         },
