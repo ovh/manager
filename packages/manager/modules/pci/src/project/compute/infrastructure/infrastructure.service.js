@@ -15,7 +15,7 @@ export default class CloudProjectComputeInfrastructureService {
     CloudProjectComputeInfrastructureOrchestrator,
     CucControllerHelper,
     CucServiceHelper,
-    TARGET,
+    coreConfig,
   ) {
     this.$rootScope = $rootScope;
     this.$state = $state;
@@ -26,11 +26,11 @@ export default class CloudProjectComputeInfrastructureService {
     this.CloudProjectComputeInfrastructureOrchestrator = CloudProjectComputeInfrastructureOrchestrator; // eslint-disable-line
     this.CucControllerHelper = CucControllerHelper;
     this.CucServiceHelper = CucServiceHelper;
-    this.TARGET = TARGET;
+    this.coreConfig = coreConfig;
   }
 
   buyIpFailOver() {
-    if (this.TARGET === 'US') {
+    if (this.coreConfig.getRegion() === 'US') {
       return this.$uibModal.open({
         windowTopClass: 'cui-modal',
         templateUrl: 'pci/project/compute/infrastructure/ip/failover/buy/agora.template.html',
@@ -59,7 +59,7 @@ export default class CloudProjectComputeInfrastructureService {
   }
 
   orderCredit() {
-    if (this.TARGET === 'US') {
+    if (this.coreConfig.getRegion() === 'US') {
       return this.$uibModal.open({
         windowTopClass: 'cui-modal',
         templateUrl: 'pci/project/billing/vouchers/addCredit/agora.template.html',

@@ -56,7 +56,7 @@ export default class CloudProjectComputeInfrastructureDiagramCtrl {
     CLOUD_UNIT_CONVERSION,
     CLOUD_MONITORING,
     PCI_REDIRECT_URLS,
-    TARGET,
+    coreConfig,
     PCI_URLS,
   ) {
     this.$rootScope = $rootScope;
@@ -98,8 +98,8 @@ export default class CloudProjectComputeInfrastructureDiagramCtrl {
     this.conversion = CLOUD_UNIT_CONVERSION;
     this.CLOUD_MONITORING = CLOUD_MONITORING;
     this.PCI_REDIRECT_URLS = PCI_REDIRECT_URLS;
-    this.TARGET = TARGET;
-    this.PCI_URLS = PCI_URLS[TARGET];
+    this.region = coreConfig.getRegion();
+    this.PCI_URLS = PCI_URLS[this.region];
   }
 
   $onInit() {

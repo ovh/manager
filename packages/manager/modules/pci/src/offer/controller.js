@@ -11,7 +11,7 @@ export default class CloudOfferCtrl {
     CucFeatureAvailabilityService,
     CucCloudMessage,
     OvhApiMe,
-    TARGET,
+    coreConfig,
     PCI_URLS,
   ) {
     this.$q = $q;
@@ -21,8 +21,10 @@ export default class CloudOfferCtrl {
     this.CucCloudMessage = CucCloudMessage;
     this.User = OvhApiMe;
     this.CucFeatureAvailabilityService = CucFeatureAvailabilityService;
-    this.TARGET = TARGET;
-    this.PCI_URLS = PCI_URLS[TARGET];
+    this.coreConfig = coreConfig;
+    this.PCI_URLS = PCI_URLS[coreConfig.getRegion()];
+
+    this.region = coreConfig.getRegion();
 
     this.data = {
       defaultPayment: null,

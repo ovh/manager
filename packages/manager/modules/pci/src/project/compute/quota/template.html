@@ -50,14 +50,14 @@
 
             <button type="button"
                     class="oui-button oui-button_primary"
-                    data-ng-if="CloudProjectComputeQuotaCtrl.TARGET !== 'US'"
+                    data-ng-if="CloudProjectComputeQuotaCtrl.region !== 'US'"
                     data-ng-disabled="!CloudProjectComputeQuotaCtrl.datas.quota || (CloudProjectComputeQuotaCtrl.datas.quota && CloudProjectComputeQuotaCtrl.datas.quota.length === 0)"
                     data-ng-click="CloudProjectComputeQuotaCtrl.openSupport()"
                     write-right-required
                     data-translate="cpb_quota_protect_more_btn">
             </button>
 
-            <div data-ng-if="CloudProjectComputeQuotaCtrl.TARGET === 'US'"
+            <div data-ng-if="CloudProjectComputeQuotaCtrl.region === 'US'"
                  data-write-right-required>
                 <button type="button"
                         class="oui-button oui-button_primary no-transition"
@@ -67,7 +67,7 @@
                 </button>
 
                 <a class="oui-button oui-button_primary no-transition"
-                   data-ng-if="CloudProjectComputeQuotaCtrl.TARGET === 'US' && CloudProjectComputeQuotaCtrl.datas.quota.length"
+                   data-ng-if="CloudProjectComputeQuotaCtrl.region === 'US' && CloudProjectComputeQuotaCtrl.datas.quota.length"
                    data-ng-href="{{ CloudProjectComputeQuotaCtrl.supportUrl }}"
                    data-translate="cpb_quota_protect_more_btn">
                 </a>

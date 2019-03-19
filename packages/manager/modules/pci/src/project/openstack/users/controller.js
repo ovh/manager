@@ -35,7 +35,7 @@ export default /* @ngInject */ function CloudProjectOpenstackUsersCtrl(
   CucControllerHelper,
   $window,
   PCI_REDIRECT_URLS,
-  TARGET,
+  coreConfig,
 ) {
   const self = this;
   const orderByFilter = $filter('orderBy');
@@ -281,7 +281,7 @@ export default /* @ngInject */ function CloudProjectOpenstackUsersCtrl(
 
   // Open Openstack Horizon in a new navigator window, pre-filling the user login
   self.openHorizon = function openHorizon(user) {
-    $window.open(PCI_REDIRECT_URLS[TARGET].horizon.replace('{username}', user.username), '_blank');
+    $window.open(PCI_REDIRECT_URLS[coreConfig.getRegion()].horizon.replace('{username}', user.username), '_blank');
   };
 
   self.getPassword = function getPassword(currentUser) {

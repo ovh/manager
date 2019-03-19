@@ -10,7 +10,7 @@ export default /* @ngInject */ function (
   OvhApiIp,
   CucCloudMessage,
   CLOUD_GEOLOCALISATION,
-  TARGET,
+  coreConfig,
 ) {
   const self = this;
 
@@ -18,7 +18,7 @@ export default /* @ngInject */ function (
     self.onFailoverAttach({ ip });
   };
 
-  const ipActionUrlWithSession = PCI_REDIRECT_URLS[TARGET].ipAction;
+  const ipActionUrlWithSession = PCI_REDIRECT_URLS[coreConfig.getRegion()].ipAction;
   self.ipActionRedirections = {
     firewall: ipActionUrlWithSession.replace('{action}', 'firewall'),
     mitigation: ipActionUrlWithSession.replace('{action}', 'mitigation'),
@@ -27,7 +27,7 @@ export default /* @ngInject */ function (
 
   self.ipActionRedirect = function ipActionRedirectFn(action, ip) {
     let url = null;
-    const ipActionUrlWithSession = PCI_REDIRECT_URLS[TARGET].ipAction; // eslint-disable-line
+    const ipActionUrlWithSession = PCI_REDIRECT_URLS[coreConfig.getRegion()].ipAction; // eslint-disable-line
     switch (action) {
       case 'reverse':
         if (self.isIpUserSameContinent(ip)) {

@@ -45,9 +45,9 @@
                         data-text="{{ ::'cpci_buy_ip_failover' | translate }}"
                         data-on-click="ComputeInfrastructureListCtrl.buyIpFailOver()">
                     </oui-action-menu-item>
-                    <oui-action-menu-divider data-ng-if="ComputeInfrastructureListCtrl.TARGET === 'US'"></oui-action-menu-divider>
+                    <oui-action-menu-divider data-ng-if="ComputeInfrastructureListCtrl.region === 'US'"></oui-action-menu-divider>
                     <oui-action-menu-item
-                        data-ng-if="ComputeInfrastructureListCtrl.TARGET === 'US'"
+                        data-ng-if="ComputeInfrastructureListCtrl.region === 'US'"
                         data-text="{{ ::'cpb_vouchers_add_credit_title' | translate }}"
                         data-on-click="ComputeInfrastructureListCtrl.InfrastructureService.orderCredit()">
                     </oui-action-menu-item>

@@ -48,9 +48,9 @@
                                           data-state="iaas.pci-project.billing.consumption.current"></oui-header-tabs-item>
                     <oui-header-tabs-item data-text="{{ ::'cpb_tab_history' | translate }}"
                                           data-state="iaas.pci-project.billing.history"></oui-header-tabs-item>
-                    <oui-header-tabs-item data-text="{{ ::'cpb_tab_vouchers' | translate }}" data-ng-if="TARGET !== 'US'"
+                    <oui-header-tabs-item data-text="{{ ::'cpb_tab_vouchers' | translate }}" data-ng-if="region !== 'US'"
                                           data-state="iaas.pci-project.billing.vouchers"></oui-header-tabs-item>
-                    <oui-header-tabs-item data-text="{{ ::'cpb_tab_rights' | translate }}" data-ng-if="TARGET !== 'US'"
+                    <oui-header-tabs-item data-text="{{ ::'cpb_tab_rights' | translate }}" data-ng-if="region !== 'US'"
                                           data-state="iaas.pci-project.billing.rights"></oui-header-tabs-item>
                 </oui-header-tabs-dropdown>
             </oui-header-tabs>
