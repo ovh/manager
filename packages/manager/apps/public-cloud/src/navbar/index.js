@@ -12,7 +12,6 @@ import controller from './navbar.controller';
 import navbarService from './navbar.service';
 import notificationService from './navbar-notification.service';
 
-import '@ovh-ux/ng-ovh-apiv7';
 import 'ovh-api-services';
 import 'ovh-ui-angular';
 
