@@ -1,3 +1,26 @@
+# [2.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-welcome@1.0.1...@ovh-ux/manager-welcome@2.0.0) (2019-03-19)
+
+
+### Code Refactoring
+
+* bump all packages to [@ovh-ux](https://github.com/ovh-ux)/manager-core@^5.0.0 ([7cbc70a](https://github.com/ovh-ux/manager/commit/7cbc70a))
+
+
+### BREAKING CHANGES
+
+* Until theses packages has a dependency to @ovh-ux/manager-core@^5.0.0, the host project needs to import @ovh-ux/manager-config
+
+Before:
+
+yarn add @ovh-ux/manager-core
+
+Now:
+
+yarn add @ovh-ux/manager-config
+yarn add @ovh-ux/manager-core
+
+
+
 ## [1.0.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-welcome@1.0.0...@ovh-ux/manager-welcome@1.0.1) (2019-01-10)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-sms",
-  "version": "5.0.0",
+  "version": "6.0.0",
   "description": "OVH SMS product control panel",
   "keywords": [
     "control",
@@ -40,7 +40,7 @@
     "ovh-ui-kit": "^2.23.1"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-core": "^4.0.0 || >= 5.0.0-alpha.0 <= 5.0.0",
+    "@ovh-ux/manager-core": "^5.0.0",
     "@ovh-ux/manager-telecom-styles": "^2.0.2",
     "@ovh-ux/ng-at-internet": "^4.0.0",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^2.0.0",
