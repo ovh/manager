@@ -2,15 +2,15 @@ import find from 'lodash/find';
 import map from 'lodash/map';
 
 export default /* @ngInject */ function BillingInstanceListComponentCtrl(
-  $stateParams,
   $q,
+  $stateParams,
   $translate,
-  OvhApiCloudProjectImage,
   DetailsPopoverService,
+  OvhApiCloudProjectImage,
   OvhApiCloudProjectInstance,
-  Toast,
   OvhApiMe,
   OvhCloudPriceHelper,
+  Toast,
 ) {
   const self = this;
   self.windowsStringPattern = '/^win-/';

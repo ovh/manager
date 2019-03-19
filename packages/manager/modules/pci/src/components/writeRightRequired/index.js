@@ -1,6 +1,7 @@
 import angular from 'angular';
+import '@uirouter/angularjs';
 
-import componentsProjectRights from '../project/rights';
+import projectRights from '../project/rights';
 
 import directive from './directive';
 
@@ -8,7 +9,8 @@ const moduleName = 'ovhManagerPciComponentsWriteRightRequired';
 
 angular
   .module(moduleName, [
-    componentsProjectRights,
+    projectRights,
+    'ui.router',
   ])
   .directive('writeRightRequired', directive);
 

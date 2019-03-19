@@ -20,5 +20,6 @@
   "common_confirm": "Confirmer",
   "common_cancel": "Annuler",
   "common_pagination_page": "page",
-  "common_pagination_display": "Afficher"
+  "common_pagination_display": "Afficher",
+  "storage_title": "Vos conteneurs"
 }

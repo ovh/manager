@@ -1,6 +1,10 @@
 import angular from 'angular';
+import '@ovh-ux/ng-ovh-api-wrappers';
+import '@ovh-ux/ng-ovh-cloud-universe-components';
+import '@ovh-ux/ng-ovh-swimming-poll';
 import '@ovh-ux/ng-translate-async-loader';
 import 'angular-translate';
+import 'ovh-api-services';
 
 import internet from './internet';
 import vrack from './vrack';
@@ -15,7 +19,10 @@ angular
   .module(moduleName, [
     internet,
     vrack,
+    'ngOvhCloudUniverseComponents',
+    'ngOvhSwimmingPoll',
     'ngTranslateAsyncLoader',
+    'ovh-api-services',
     'pascalprecht.translate',
   ])
   .factory('CloudProjectComputeInfrastructureFactory', factory)

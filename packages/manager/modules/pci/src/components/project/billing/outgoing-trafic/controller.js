@@ -6,9 +6,9 @@ export default class OutgoingTraficComponentCtrl {
   constructor(
     $translate,
     CucControllerHelper,
-    OvhApiMe,
     CucRegionService,
     CucServiceHelper,
+    OvhApiMe,
     CLOUD_GEOLOCALISATION,
     CLOUD_UNIT_CONVERSION,
   ) {

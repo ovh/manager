@@ -263,5 +263,11 @@
   "cpci_vm_flavor_category_s1-4": "S1-4",
   "cpci_vm_flavor_category_s1-8": "S1-8",
   "cpb_details_project_delete": "Supprimer ce projet",
-  "common_actions": "Actions"
+  "common_actions": "Actions",
+  "cpci_vm_name": "Nom",
+  "cpci_vm_region": "Localisation",
+  "cpci_vm_flavor_category": "Modèle",
+  "cpci_vm_price": "Prix",
+  "cpci_vm_hdd": "Disque dur attaché",
+  "cpci_vm_status": "Statut"
 }

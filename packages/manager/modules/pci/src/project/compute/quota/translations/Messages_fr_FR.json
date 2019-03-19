@@ -10,5 +10,10 @@
   "cpb_quota_restricted_paymentmean_active": "Votre compte dispose désormais d'un moyen de paiement actif.",
   "cpb_quota_restricted_unlock_button": "Activer le quota standard",
   "cpb_quota_already_unleashed": "Votre quota semble déjà avoir été activé.",
-  "cpb_quota_unleash_error": "Oups, nous n'arrivons pas à activer votre quota."
+  "cpb_quota_unleash_error": "Oups, nous n'arrivons pas à activer votre quota.",
+  "cpb_quota_add_disk": "Disque supplémentaire",
+  "cloud_common_region": "Localisation",
+  "cloud_common_instance": "Serveurs",
+  "cloud_common_core": "vCPU",
+  "cloud_common_ram": "RAM"
 }

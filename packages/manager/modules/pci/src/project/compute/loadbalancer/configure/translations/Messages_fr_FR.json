@@ -19,5 +19,6 @@
   "cpc_loadbalancer_configure_modify": "Appliquer les modifications",
   "cpc_loadbalancer_configure_cancel": "Annuler",
   "cpc_loadbalancer_error": "Erreur Load Balancer",
-  "cpc_server_error": "Erreur des serveurs"
+  "cpc_server_error": "Erreur des serveurs",
+  "cpc_loadbalancer_configure_server_name": "Serveur"
 }

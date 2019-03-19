@@ -1,10 +1,10 @@
 import find from 'lodash/find';
 
 export default /* @ngInject */ function (
+  $q,
   OvhApiCloud,
   OvhApiCloudProjectServiceInfos,
   OvhApiMe,
-  $q,
 ) {
   function getReadWriteAccounts(projectId) {
     return OvhApiCloud.Project().Acl().v6().query({

@@ -1,4 +1,5 @@
 import angular from 'angular';
+import '@ovh-ux/ng-ovh-cloud-universe-components';
 import '@ovh-ux/ng-translate-async-loader';
 import 'angular-translate';
 
@@ -14,6 +15,7 @@ const moduleName = 'ovhManagerPciComponentsProjectBillingDetailsPopover';
 
 angular
   .module(moduleName, [
+    'ngOvhCloudUniverseComponents',
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
   ])
