@@ -7,6 +7,7 @@ import '@ovh-ux/ng-ovh-proxy-request';
 import '@ovh-ux/ng-ovh-user-pref';
 import '@ovh-ux/ng-ovh-swimming-poll';
 import '@ovh-ux/ng-ovh-doc-url';
+import '@ovh-ux/ng-ovh-form-flat';
 import 'ng-at-internet';
 import 'ovh-angular-toaster';
 import '@ovh-ux/ng-ovh-api-wrappers'; // should be a peer dependency of ovh-api-services
@@ -59,6 +60,7 @@ angular
     offer,
     'ui.router',
     'ngOvhCloudUniverseComponents',
+    'ngOvhFormFlat',
     'ngOvhProxyRequest',
     'ngOvhUserPref',
     'ngOvhSwimmingPoll',
