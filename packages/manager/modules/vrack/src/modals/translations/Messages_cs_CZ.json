@@ -1,0 +1,10 @@
+{
+ "private_network_activate": "Aktivovat",
+ "private_network_activate_new_vRack_description": "Za účelem aktivace služby vRack budete přesměrováni do objednávkového rozhraní. Následně budete vRack moci asociovat se svými službami. Konfigurace vstoupí v platnost během několika vteřin.",
+ "private_network_activate_title": "Aktivovat privátní sítě",
+ "private_network_activate_existing": "Existující",
+ "private_network_activate_new": "Nový",
+ "private_network_select_placeholder": "Zvolte",
+ "private_network_deactivate": "Deaktivovat privátní sítě",
+ "private_network_deactivate_confirmation": "Opravdu si přejete deaktivovat privátní sítě pro tuto službu?"
+}
