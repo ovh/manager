@@ -1,3 +1,12 @@
+## [1.0.2](https://github.com/ovh-ux/ng-ovh-toaster/compare/v1.0.1...v1.0.2) (2019-03-19)
+
+
+### Bug Fixes
+
+* add missing ngInject ([b043270](https://github.com/ovh-ux/ng-ovh-toaster/commit/b043270))
+
+
+
 ## [1.0.1](https://github.com/ovh-ux/ng-ovh-toaster/compare/v1.0.0...v1.0.1) (2019-03-19)
 
 
