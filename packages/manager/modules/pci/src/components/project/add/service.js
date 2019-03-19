@@ -9,10 +9,10 @@ export default class CloudProjectAdd {
     $state,
     $window,
     atInternet,
-    Toast,
     OvhApiCloud,
     OvhApiMe,
     OvhApiVrack,
+    Toast,
   ) {
     this.$q = $q;
     this.$translate = $translate;

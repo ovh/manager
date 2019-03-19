@@ -1,6 +1,7 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
 import '@ovh-ux/ng-translate-async-loader';
+import '@ovh-ux/ng-ovh-otrs';
 import 'angular-translate';
 import 'ovh-api-services';
 
@@ -26,6 +27,7 @@ angular
     componentsProject,
     infrastructure,
     loadbalancer,
+    'ngOvhOtrs',
     'ngTranslateAsyncLoader',
     'ovh-api-services',
     'pascalprecht.translate',

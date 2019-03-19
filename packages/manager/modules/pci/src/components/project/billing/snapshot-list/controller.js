@@ -1,10 +1,9 @@
 export default /* @ngInject */ function (
   $q,
   $translate,
-  $filter,
+  CucRegionService,
   OvhApiMe,
   Toast,
-  CucRegionService,
 ) {
   const self = this;
 

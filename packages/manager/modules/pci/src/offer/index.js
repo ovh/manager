@@ -3,6 +3,7 @@ import '@uirouter/angularjs';
 import '@ovh-ux/ng-translate-async-loader';
 import 'angular-translate';
 import 'ovh-api-services';
+import 'ovh-ui-angular';
 
 import componentsProjectAdd from '../components/project/add';
 
@@ -16,6 +17,7 @@ const moduleName = 'ovhManagerPciOffer';
 angular
   .module(moduleName, [
     'ngTranslateAsyncLoader',
+    'oui',
     'ovh-api-services',
     'pascalprecht.translate',
     'ui.router',

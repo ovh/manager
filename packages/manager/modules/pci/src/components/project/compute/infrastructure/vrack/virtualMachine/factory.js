@@ -9,14 +9,14 @@ import maxBy from 'lodash/maxBy';
 import set from 'lodash/set';
 
 export default /* @ngInject */ (
-  $rootScope,
   $q,
+  $rootScope,
   OvhApiCloudProjectInstance,
   OvhApiCloudProjectFlavor,
   OvhApiCloudProjectImage,
-  OvhCloudPriceHelper,
   OvhApiCloudProjectSnapshot,
   OvhApiCloudProjectSshKey,
+  OvhCloudPriceHelper,
   CLOUD_VM_STATE,
   CLOUD_MONITORING,
 ) => {

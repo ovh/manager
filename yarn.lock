@@ -1733,6 +1733,14 @@
     lodash "^4.17.11"
     urijs "^1.19.1"
 
+"@ovh-ux/ng-ovh-otrs@^7.0.0":
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-otrs/-/ng-ovh-otrs-7.0.0.tgz#9de1ed2efcf39618a9c17a4cf8b981c0aa42a3da"
+  integrity sha512-OqUvbVMgM1fSS2o0seL1wU3tokEBhbvYtakerMrFE3ncpKGw57GJ4eY0aO1dzvdr07EURAVJGKgpA7dBGI7RkA==
+  dependencies:
+    draggable "^4.2.0"
+    lodash "^4.17.11"
+
 "@ovh-ux/ng-ovh-otrs@^7.0.0-beta.1":
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-otrs/-/ng-ovh-otrs-7.0.0.tgz#9de1ed2efcf39618a9c17a4cf8b981c0aa42a3da"
@@ -1778,6 +1786,11 @@
   dependencies:
     bootstrap "^3.3.7"
     ovh-ui-kit "^2.22.0"
+
+"@ovh-ux/ng-ovh-toaster@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-toaster/-/ng-ovh-toaster-1.0.1.tgz#cc2d1e6c60066cbea0f90885ed78235826dff513"
+  integrity sha512-wus8Tthcsm12o91YDEe+XRXmQSewcXNtk9gLp3QzGJfTAHEMcocdIUX9ix6oqd15NWdlxnUsFadUqQsIT6FJPw==
 
 "@ovh-ux/ng-ovh-user-pref@^1.0.0":
   version "1.0.0"
@@ -8978,11 +8991,6 @@ ovh-angular-checkbox-table@^0.1.2:
     jquery "~2.1.3"
     lodash "~3.3.0"
 
-ovh-angular-otrs@^6.3.0:
-  version "6.3.0"
-  resolved "https://registry.yarnpkg.com/ovh-angular-otrs/-/ovh-angular-otrs-6.3.0.tgz#3ad3c9626be1917b5f0f557375de3757ad9b08ba"
-  integrity sha512-sXxQUlsC0ucl9UVcnSB9ZQsqTnKmW/zQZM+VH0gNpnJo9v3Klk4lHN3n0Wnd62Ic8Ke3Vjgk74Jk2THjQOHfcg==
-
 ovh-angular-pagination-front@ovh-ux/ovh-angular-pagination-front#^5.1.0:
   version "5.0.0"
   resolved "https://codeload.github.com/ovh-ux/ovh-angular-pagination-front/tar.gz/7b21072dfd25a8b1a5aece207a8e2f27e756b86c"
@@ -8995,10 +9003,6 @@ ovh-angular-responsive-tabs@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/ovh-angular-responsive-tabs/-/ovh-angular-responsive-tabs-4.0.0.tgz#85b66d7032612c3ed1a14cb29f83d1331b50c1df"
   integrity sha1-hbZtcDJhLD7RoUyyn4PRMxtQwd8=
-
-ovh-angular-toaster@ovh-ux/ovh-angular-toaster#^0.8.0:
-  version "0.8.0"
-  resolved "https://codeload.github.com/ovh-ux/ovh-angular-toaster/tar.gz/06d24889e94b8d816afee8e94185697cf68f2338"
 
 ovh-angular-ui-confirm-modal@^1.0.2:
   version "1.0.2"

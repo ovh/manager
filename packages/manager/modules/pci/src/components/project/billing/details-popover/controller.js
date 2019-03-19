@@ -1,8 +1,8 @@
 
 
 export default /* @ngInject */ function (
-  DetailsPopoverService,
   CucRegionService,
+  DetailsPopoverService,
 ) {
   const self = this;
   self.CucRegionService = CucRegionService;

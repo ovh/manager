@@ -1,4 +1,6 @@
 import angular from 'angular';
+import 'angular-translate';
+import 'angular-ui-bootstrap';
 
 import component from './component';
 
@@ -7,7 +9,10 @@ import component from './component';
 const moduleName = 'ovhManagerPciComponentsRunabovePromiseTastState';
 
 angular
-  .module(moduleName, [])
+  .module(moduleName, [
+    'pascalprecht.translate',
+    'ui.bootstrap',
+  ])
   .component('promiseTaskState', component);
 
 export default moduleName;
