@@ -12,5 +12,8 @@
   "cpc_loadbalancer_status_deployed": "Déployé",
   "cpc_loadbalancer_status_available": "Non configuré",
   "cpc_loadbalancer_configure_advanced": "Mode avancé",
-  "cpc_loadbalancer_error": "Erreur Load Balancer"
+  "cpc_loadbalancer_error": "Erreur Load Balancer",
+  "cpc_loadbalancer_name": "Load Balancer",
+  "cpc_loadbalancer_openstack_status": "Openstack",
+  "cpc_loadbalancer_status": "État"
 }

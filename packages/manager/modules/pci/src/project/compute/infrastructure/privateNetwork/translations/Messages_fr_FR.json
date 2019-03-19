@@ -22,5 +22,6 @@
   "common_confirm": "Confirmer",
   "common_cancel": "Annuler",
   "private_network_activate_title": "Activer les réseaux privés",
-  "private_network_deactivate_confirmation": "Êtes-vous sûr de vouloir désactiver les réseaux privés pour ce service?"
+  "private_network_deactivate_confirmation": "Êtes-vous sûr de vouloir désactiver les réseaux privés pour ce service?",
+  "cpci_private_network_delete_title": "Suppression d'un réseau privé"
 }

@@ -16,7 +16,8 @@
   "cpb_rights_delete_title": "Supprimer un contact",
   "cpb_rights_delete_question": "Voulez-vous vraiment supprimer les droits de {{nickname}}?",
   "common_add": "Ajouter",
-  "common_delete": "Supprimer",
   "delete": "Supprimer",
-  "common_cancel": "Annuler"
+  "common_cancel": "Annuler",
+  "cpb_rights_note": "NB : Les contacts en lecture/écriture disposent de droits (modifications de l'infrastructure, utilisation du stockage) pouvant engendrer des coûts supplémentaires. Les contacts en lecture seule ne peuvent mener aucune action sur le projet. Le moyen de paiement par défaut du contact facturation est utilisé pour chacune des factures.",
+  "cpb_rights_table_nichandle": "Nic-Handle"
 }

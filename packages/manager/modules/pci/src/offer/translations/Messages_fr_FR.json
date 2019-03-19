@@ -24,5 +24,6 @@
   "cpa_error": "Une erreur est survenue. Veuillez réessayer plus tard.",
   "payment_type_paypal": "Paypal",
   "payment_type_bankAccount": "Compte bancaire",
-  "payment_type_creditCard": "Carte bancaire"
+  "payment_type_creditCard": "Carte bancaire",
+  "cloud_offer_agreement_accept": "J'accepte les <a href=\"{{ url }}\" target=\"_blank\">{{ name }}<i class=\"fa fa-external-link\" aria-hidden=\"true\"></i></a>"
 }

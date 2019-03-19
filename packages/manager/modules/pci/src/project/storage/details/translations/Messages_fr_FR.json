@@ -41,5 +41,9 @@
   "common_cancel": "Annuler",
   "common_pagination_page": "page",
   "common_pagination_display": "Afficher",
-  "common_back": "Retour"
+  "common_back": "Retour",
+  "storage_file_name": "Nom du fichier",
+  "storage_last_modify": "Dernière modification",
+  "storage_file_type": "Type",
+  "storage_size": "Taille"
 }
