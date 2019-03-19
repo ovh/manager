@@ -2,6 +2,7 @@ import angular from 'angular';
 
 import project from './project';
 import runabove from './runabove';
+import project from './project';
 import writeRightRequired from './writeRightRequired';
 
 // import './index.less';
