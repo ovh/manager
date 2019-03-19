@@ -21,16 +21,15 @@ import values from 'lodash/values';
  */
 export default /* @ngInject */ function (
   $q,
-  $translate,
   $rootScope,
-  $timeout,
+  $translate,
   CLOUD_INSTANCE_DEFAULTS,
-  Poller,
   CucUserPref,
+  OvhApiCloudProjectRegion,
   OvhApiCloudProjectVolume,
   OvhApiCloudProjectVolumeSnapshot,
   CloudProjectComputeVolumesFactory,
-  OvhApiCloudProjectRegion,
+  Poller,
   Toast,
 ) {
   // Warning: all values must be reset at init (see resetDatas())

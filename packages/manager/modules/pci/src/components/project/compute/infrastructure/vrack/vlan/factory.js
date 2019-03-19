@@ -1,11 +1,5 @@
 export default /* @ngInject */ (
   $q,
-  $timeout,
-  ovhUserPref,
-  Poller,
-  OvhApiOrderVrack,
-  OvhApiMeOrder,
-  OvhApiVrack,
   OvhApiCloudProject,
 ) => {
   const VlanFactory = (function vlanFactory() {

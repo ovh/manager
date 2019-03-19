@@ -2,14 +2,13 @@ import find from 'lodash/find';
 import forEach from 'lodash/forEach';
 
 export default /* @ngInject */ function (
-  $filter,
   $q,
   $translate,
   $stateParams,
   DetailsPopoverService,
   OvhApiCloudProjectVolume,
-  Toast,
   OvhApiMe,
+  Toast,
 ) {
   const self = this;
   self.DetailsPopoverService = DetailsPopoverService;

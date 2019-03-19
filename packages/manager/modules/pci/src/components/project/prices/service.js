@@ -5,9 +5,9 @@ export default class OvhCloudPriceHelper {
   /* @ngInject */
   constructor(
     $q,
-    OvhApiOrderCatalogFormatted,
     OvhApiCloudProject,
     OvhApiMe,
+    OvhApiOrderCatalogFormatted,
   ) {
     this.$q = $q;
     this.OvhApiOrderCatalogFormatted = OvhApiOrderCatalogFormatted;

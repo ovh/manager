@@ -1,10 +1,9 @@
 export default /* @ngInject */ function BillingArchiveStorageListComponentCtrl(
   $q,
-  $filter,
   $translate,
+  CucRegionService,
   OvhApiMe,
   Toast,
-  CucRegionService,
 ) {
   const self = this;
 

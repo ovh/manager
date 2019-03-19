@@ -1,4 +1,6 @@
 import angular from 'angular';
+import '@ovh-ux/ng-ovh-api-wrappers';
+import 'ovh-api-services';
 
 import add from './add';
 import billing from './billing';
@@ -16,6 +18,7 @@ angular
     add,
     billing,
     compute,
+    'ovh-api-services',
     prices,
     rights,
   ])

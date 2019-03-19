@@ -1,9 +1,9 @@
 export default /* @ngInject */ function (
   $q,
   $translate,
+  CucRegionService,
   OvhApiMe,
   Toast,
-  CucRegionService,
 ) {
   const self = this;
   self.CucRegionService = CucRegionService;
