@@ -7,12 +7,6 @@
  */
 import angular from 'angular';
 
-/* eslint-disable import/no-webpack-loader-syntax, import/extensions */
-import 'script-loader!messenger/build/js/messenger.js';
-import 'script-loader!messenger/build/js/messenger-theme-future.js';
-import 'script-loader!messenger/build/js/messenger-theme-flat.js';
-/* eslint-enable import/no-webpack-loader-syntax, import/extensions */
-
 export default function () {
   let hideAfter = 7;
 
@@ -72,7 +66,7 @@ export default function () {
     setHideAfter(_hideAfter) {
       hideAfter = _hideAfter;
     },
-    $get($sanitize) {
+    /* @ngInject */ $get($sanitize) {
       /**
        * @ngdoc object
        * @name ng-ovh-toaster.Toast
