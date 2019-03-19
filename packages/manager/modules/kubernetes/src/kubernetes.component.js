@@ -4,6 +4,7 @@ import '@ovh-ux/ng-ovh-cloud-universe-components';
 import '@ovh-ux/ng-ovh-sidebar-menu';
 import 'ovh-api-services';
 import 'ovh-ui-angular';
+import 'angular-ui-bootstrap';
 
 import 'ovh-ui-kit/dist/oui.css';
 
@@ -13,6 +14,7 @@ import service from './kubernetes.service';
 
 import { KUBERNETES } from './kubernetes.constants';
 
+import nodesComponent from './nodes/index';
 import serviceComponent from './service/index';
 
 import './kubernetes.scss';
@@ -24,6 +26,8 @@ angular.module(moduleName, [
   'ngOvhSidebarMenu',
   'oui',
   'ovh-api-services',
+  'ui.bootstrap',
+  nodesComponent,
   serviceComponent,
 ])
   .config(($stateProvider) => {

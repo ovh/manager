@@ -1,4 +1,16 @@
-angular.module('managerApp').controller('KubernetesNodesCtrl', class KubernetesNodesCtrl {
+import find from 'lodash/find';
+import get from 'lodash/get';
+import head from 'lodash/head';
+import set from 'lodash/set';
+
+import addController from './add/kubernetes-nodes-add.controller';
+import addTemplate from './add/kubernetes-nodes-add.html';
+
+import deleteController from './delete/kubernetes-nodes-delete.controller';
+import deleteTemplate from './delete/kubernetes-nodes-delete.html';
+
+export default class KubernetesNodesCtrl {
+  /* @ngInject */
   constructor(
     $q, $state, $stateParams, $timeout, $translate, $uibModal,
     CucCloudMessage, Kubernetes,
@@ -25,8 +37,8 @@ angular.module('managerApp').controller('KubernetesNodesCtrl', class KubernetesN
   }
 
   loadMessages() {
-    this.CucCloudMessage.unSubscribe('paas.kube.nodes');
-    this.messageHandler = this.CucCloudMessage.subscribe('paas.kube.nodes', { onMessage: () => this.refreshMessages() });
+    this.CucCloudMessage.unSubscribe('kube.nodes');
+    this.messageHandler = this.CucCloudMessage.subscribe('kube.nodes', { onMessage: () => this.refreshMessages() });
   }
 
   refreshMessages() {
@@ -38,7 +50,7 @@ angular.module('managerApp').controller('KubernetesNodesCtrl', class KubernetesN
       .then((cluster) => { this.cluster = cluster; })
       .catch((error) => {
         this.cluster = { id: this.serviceName, name: this.serviceName };
-        this.CucCloudMessage.error(this.$translate.instant('kube_error', { message: _.get(error, 'data.message') }));
+        this.CucCloudMessage.error(this.$translate.instant('kube_error', { message: get(error, 'data.message') }));
       });
   }
 
@@ -58,18 +70,18 @@ angular.module('managerApp').controller('KubernetesNodesCtrl', class KubernetesN
   getAssociatedFlavor(node) {
     return this.Kubernetes.getFlavors(node.projectId)
       .then((flavors) => {
-        _.set(node, 'formattedFlavor', this.Kubernetes.formatFlavor(
-          _.find(flavors, { name: node.flavor }),
+        set(node, 'formattedFlavor', this.Kubernetes.formatFlavor(
+          find(flavors, { name: node.flavor }),
         ));
       })
       .catch(() => {
-        _.set(node, 'formattedFlavor', this.$translate.instant('kube_nodes_flavor_error'));
+        set(node, 'formattedFlavor', this.$translate.instant('kube_nodes_flavor_error'));
       });
   }
 
   getPublicCloudProject() {
     return this.Kubernetes.getAssociatedPublicCloudProjects(this.serviceName)
-      .then(projects => this.Kubernetes.getProject(_.first(projects).projectId))
+      .then(projects => this.Kubernetes.getProject(head(projects).projectId))
       .then((project) => {
         this.project = project;
       })
@@ -80,8 +92,8 @@ angular.module('managerApp').controller('KubernetesNodesCtrl', class KubernetesN
 
   confirmNodeDeletion(nodeId) {
     return this.$uibModal.open({
-      templateUrl: 'app/kubernetes/nodes/delete/kubernetes-nodes-delete.html',
-      controller: 'KubernetesNodesDeleteCtrl',
+      template: deleteTemplate,
+      controller: deleteController,
       controllerAs: '$ctrl',
       backdrop: 'static',
       resolve: {
@@ -103,8 +115,8 @@ angular.module('managerApp').controller('KubernetesNodesCtrl', class KubernetesN
 
   openAddNodeForm(projectId) {
     return this.$uibModal.open({
-      templateUrl: 'app/kubernetes/nodes/add/kubernetes-nodes-add.html',
-      controller: 'KubernetesNodesAddCtrl',
+      template: addTemplate,
+      controller: addController,
       controllerAs: '$ctrl',
       backdrop: 'static',
       resolve: {
@@ -136,4 +148,4 @@ angular.module('managerApp').controller('KubernetesNodesCtrl', class KubernetesN
     return this.getInfo()
       .finally(() => { this.loading = false; });
   }
-});
+}
