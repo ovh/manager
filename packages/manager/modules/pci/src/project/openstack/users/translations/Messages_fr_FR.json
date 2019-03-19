@@ -37,5 +37,9 @@
   "common_confirm": "Confirmer",
   "common_close": "Fermer",
   "common_cancel": "Annuler",
-  "common_select": "Sélectionner"
+  "common_select": "Sélectionner",
+  "openstackusers_users_userlist_username_cols": "Identifiant",
+  "openstackusers_users_userlist_description_cols": "Description",
+  "openstackusers_users_userlist_status_cols": "État",
+  "openstackusers_users_userlist_password_cols": "Mot de passe"
 }

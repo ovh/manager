@@ -18,5 +18,12 @@
   "cpb_vouchers_add_error": "Oups, nous n'arrivons pas a ajouter ce voucher. Veuillez réessayer.",
   "cpb_vouchers_credit_comment": "Le crédit cloud n'est pas transférable, ni remboursable. Il n'a aucune valeur monétaire et tout crédit non utilisé dans les 13 mois sera perdu.",
   "common_confirm": "Confirmer",
-  "common_cancel": "Annuler"
+  "common_cancel": "Annuler",
+  "cpb_vouchers_voucher_cell": "Voucher associé",
+  "cpb_vouchers_name_cell": "Nom",
+  "cpb_vouchers_total_credit_cell": "Valeur initiale",
+  "cpb_vouchers_available_credit_cell": "Crédit restant",
+  "cpb_vouchers_validity_from_cell": "Date d'activation",
+  "cpb_vouchers_validity_to_cell": "Date de validité",
+  "cpb_vouchers_products_cell": "Produits éligibles"
 }
