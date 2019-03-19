@@ -66,7 +66,8 @@ export default function () {
     setHideAfter(_hideAfter) {
       hideAfter = _hideAfter;
     },
-    /* @ngInject */ $get($sanitize) {
+
+    $get: /* @ngInject */ function $get($sanitize) {
       /**
        * @ngdoc object
        * @name ng-ovh-toaster.Toast
