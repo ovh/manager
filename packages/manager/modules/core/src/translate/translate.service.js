@@ -83,7 +83,7 @@ export default class TranslateServiceProvider {
 
   preferredCountry(language) {
     if (indexOf(['FR', 'EN'], language.toUpperCase() > -1)) {
-      const customLanguage = get(this.LANGUAGES.preferred, `${language}.${this.TARGET}`);
+      const customLanguage = get(this.LANGUAGES.preferred, `${language}.${this.coreConfigProvider.getRegion()}`);
       if (customLanguage) {
         return customLanguage;
       }
