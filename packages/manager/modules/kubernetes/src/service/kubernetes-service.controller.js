@@ -1,6 +1,9 @@
 import find from 'lodash/find';
 import set from 'lodash/set';
 
+import upgradePolicyController from './upgrade-policy/kubernetes-service-upgrade-policy.controller';
+import upgradePolicyTemplate from './upgrade-policy/kubernetes-service-upgrade-policy.html';
+
 export default class KubernetesServiceCtrl {
   /* @ngInject */
   constructor(
@@ -119,8 +122,8 @@ export default class KubernetesServiceCtrl {
   showUgradePolicy() {
     this.CucControllerHelper.modal.showModal({
       modalConfig: {
-        templateUrl: 'app/kubernetes/service/upgrade-policy/kubernetes-service-upgrade-policy.html',
-        controller: 'kubernetesUpgradePolicyCtrl',
+        template: upgradePolicyTemplate,
+        controller: upgradePolicyController,
         controllerAs: '$ctrl',
         backdrop: 'static',
         resolve: {

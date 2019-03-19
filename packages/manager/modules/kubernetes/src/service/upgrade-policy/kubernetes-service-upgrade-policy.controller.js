@@ -1,4 +1,7 @@
-class kubernetesUpgradePolicyCtrl {
+import get from 'lodash/get';
+
+export default class kubernetesUpgradePolicyCtrl {
+  /* @ngInject */
   constructor($stateParams, $translate, $uibModalInstance, CucCloudMessage,
     CucControllerHelper, Kubernetes, upgradePolicy) {
     this.serviceName = $stateParams.serviceName;
@@ -33,7 +36,7 @@ class kubernetesUpgradePolicyCtrl {
         .then(() => this.CucCloudMessage.success(
           this.$translate.instant('kube_service_upgrade_policy_success'),
         ))
-        .catch(err => this.CucCloudMessage.error(this.$translate.instant('kube_service_upgrade_policy_error', { message: _.get(err, 'data.message', '') })))
+        .catch(err => this.CucCloudMessage.error(this.$translate.instant('kube_service_upgrade_policy_error', { message: get(err, 'data.message', '') })))
         .finally(() => {
           this.CucControllerHelper.scrollPageToTop();
           this.$uibModalInstance.close(this.selectedUpgradePolicy);
@@ -42,5 +45,3 @@ class kubernetesUpgradePolicyCtrl {
     return this.save.load();
   }
 }
-
-angular.module('managerApp').controller('kubernetesUpgradePolicyCtrl', kubernetesUpgradePolicyCtrl);
