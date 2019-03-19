@@ -29,7 +29,7 @@
     "@ovh-ux/component-rollup-config": "5.0.0-beta.5"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-core": "^4.0.0",
+    "@ovh-ux/manager-core": "^4.0.0 || >= 5.0.0-alpha.0 <= 5.0.0",
     "@ovh-ux/manager-telecom-styles": "^2.0.2",
     "@ovh-ux/ng-ovh-telecom-universe-components": "^3.0.0",
     "@ovh-ux/ng-uirouter-title": "^2.0.0-beta.3",
