@@ -8,11 +8,11 @@ export default /* @ngInject */ function (
   CucCloudMessage,
   VrackService,
   OvhApiOrder,
-  TARGET,
+  coreConfig,
 ) {
   const self = this;
 
-  self.TARGET = TARGET;
+  self.region = coreConfig.getRegion();
 
   this.loaders = {
     loading: false,
@@ -58,7 +58,7 @@ export default /* @ngInject */ function (
       vrackOrderUrl: VrackService.getOrderUrl(),
     };
 
-    if (self.TARGET !== 'US') {
+    if (self.region !== 'US') {
       promise.vrackContract = self.getVrackContract();
     }
 
