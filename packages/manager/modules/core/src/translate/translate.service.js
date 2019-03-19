@@ -11,9 +11,9 @@ import map from 'lodash/map';
 export default class TranslateServiceProvider {
   /* @ngInject */
 
-  constructor(CORE_LANGUAGES, TARGET) {
+  constructor(CORE_LANGUAGES, coreConfigProvider) {
     this.LANGUAGES = CORE_LANGUAGES;
-    this.TARGET = TARGET;
+    this.coreConfigProvider = coreConfigProvider;
     this.storageKey = 'univers-selected-language';
     this.localeRegex = /^([a-zA-Z]+)(?:[_-]([a-zA-Z]+))?$/;
     this.availableLangsKeys = map(this.LANGUAGES.available, 'key');

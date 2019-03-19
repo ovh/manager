@@ -1,3 +1,17 @@
+# [3.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom-dashboard@2.0.0...@ovh-ux/manager-telecom-dashboard@3.0.0) (2019-03-14)
+
+
+### Build System
+
+* **deps:** upgrade ng-at-internet to v4.0.0 ([#265](https://github.com/ovh-ux/manager/issues/265)) ([e89e179](https://github.com/ovh-ux/manager/commit/e89e179))
+
+
+### BREAKING CHANGES
+
+* **deps:** replace `ng-at-internet` by `@ovh-ux/ng-at-internet`
+
+
+
 # [2.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom-dashboard@1.0.0...@ovh-ux/manager-telecom-dashboard@2.0.0) (2019-03-13)
 
 
