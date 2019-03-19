@@ -44,7 +44,7 @@
                     <!-- submit -->
                     <div class="row  top-space-m8 bottom-space-m16">
                         <button type="submit" class="col-xs-offset-3 col-xs-6 col-md-4 col-md-offset-4 col-lg-2 col-lg-offset-5 top-space-m16 oui-button oui-button_primary"
-                                data-ng-if="VrackAddCtrl.TARGET !== 'US'"
+                                data-ng-if="VrackAddCtrl.region !== 'US'"
                                 data-ng-click="VrackAddCtrl.addVrack()"
                                 data-ng-disabled="VrackAddCtrl.loaders.loading || VrackAddCtrl.loaders.validationPending || !VrackAddCtrl.model.agreements.length  || (VrackAddCtrl.model.agreements.length && !VrackAddCtrl.model.contractsAccepted)"
                                 data-translate="vrack_order">
@@ -53,7 +53,7 @@
                            target="_blank"
                            rel="noopener"
                            title="{{:: 'vrack_order_install_now_label' | translate }} ({{:: 'vrack_common_new_window' | translate }})"
-                           data-ng-if="VrackAddCtrl.TARGET === 'US'"
+                           data-ng-if="VrackAddCtrl.region === 'US'"
                            data-ng-href="{{:: VrackAddCtrl.vrackOrderUrl }}"
                            data-translate="vrack_order_install_now_label">
                         </a>
