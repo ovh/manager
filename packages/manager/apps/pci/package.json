@@ -44,7 +44,6 @@
   },
   "devDependencies": {
     "@ovh-ux/manager-webpack-config": "^3.0.1",
-    "ovh-manager-webfont": "^1.0.2",
     "webpack-merge": "^4.1.4"
   }
 }
