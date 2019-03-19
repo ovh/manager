@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@ovh-ux/ng-ovh-cloud-universe-components": "^1.0.1-alpha.0",
-    "URIjs": "medialize/URI.js#~1.15.0",
+    "urijs": "^1.19.1",
     "d3": "~3.5.13",
     "flag-icon-css": "~0.8.5",
     "jsplumb": "^2.9.0",
