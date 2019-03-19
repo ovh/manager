@@ -1,7 +1,9 @@
-angular.module('managerApp').controller('KubernetesCtrl', class KubernetesCtrl {
-  constructor($scope, $stateParams, Kubernetes, KUBERNETES) {
+import get from 'lodash/get';
+
+export default class KubernetesCtrl {
+  /* @ngInject */
+  constructor($scope, Kubernetes, KUBERNETES) {
     this.$scope = $scope;
-    this.$stateParams = $stateParams;
     this.Kubernetes = Kubernetes;
     this.KUBERNETES = KUBERNETES;
   }
@@ -21,8 +23,8 @@ angular.module('managerApp').controller('KubernetesCtrl', class KubernetesCtrl {
       .then((cluster) => { this.cluster = cluster; })
       .catch((error) => {
         this.cluster = { id: this.serviceName, name: this.serviceName };
-        this.errorMessage = _.get(error, 'data.message');
+        this.errorMessage = get(error, 'data.message');
       })
       .finally(() => { this.loading = false; });
   }
-});
+}

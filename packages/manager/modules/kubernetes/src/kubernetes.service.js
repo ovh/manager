@@ -1,8 +1,16 @@
-angular.module('managerApp').service('Kubernetes', class Kubernetes {
+import keyBy from 'lodash/keyBy';
+
+export default class Kubernetes {
+  /* @ngInject */
   constructor(
-    $q, $translate,
-    OvhApiCloudProject, OvhApiCloudProjectFlavor, OvhApiCloudProjectInstance,
-    OvhApiKube, OvhApiCloudProjectQuota, SidebarMenu,
+    $q,
+    $translate,
+    OvhApiCloudProject,
+    OvhApiCloudProjectFlavor,
+    OvhApiCloudProjectInstance,
+    OvhApiKube,
+    OvhApiCloudProjectQuota,
+    SidebarMenu,
     KUBERNETES,
   ) {
     this.$q = $q;
@@ -127,7 +135,7 @@ angular.module('managerApp').service('Kubernetes', class Kubernetes {
   }
 
   initializeUpgradePolicies() {
-    const upgradePolicyEnum = _.indexBy(this.KUBERNETES.upgradePolicies);
+    const upgradePolicyEnum = keyBy(this.KUBERNETES.upgradePolicies);
     this.upgradePolicies = [
       {
         value: upgradePolicyEnum.ALWAYS_UPDATE,
@@ -158,4 +166,4 @@ angular.module('managerApp').service('Kubernetes', class Kubernetes {
         return res;
       });
   }
-});
+}

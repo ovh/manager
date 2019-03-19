@@ -25,9 +25,11 @@
   },
   "peerDependencies": {
     "@ovh-ux/manager-core": "^4.0.0",
+    "@ovh-ux/ng-ovh-sidebar-menu": "^8.0.0-beta.1",
     "@uirouter/angularjs": "^1.0.22",
     "angular": "^1.7.8",
-    "oclazyload": "^1.1.0"
+    "oclazyload": "^1.1.0",
+    "ovh-api-services": "^6.2.0"
   },
   "dependencies": {
     "lodash": "^4.17.11"
