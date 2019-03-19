@@ -1,4 +1,6 @@
-class kubernetesUpdateCtrl {
+import get from 'lodash/get';
+
+export default class kubernetesUpdateCtrl {
   /* @ngInject */
   constructor($rootScope, $stateParams, $translate, $uibModalInstance, CucCloudMessage,
     CucControllerHelper, Kubernetes) {
@@ -26,7 +28,7 @@ class kubernetesUpdateCtrl {
       loaderFunction: () => this.Kubernetes
         .updateKubernetesVersion(this.serviceName)
         .then(() => this.CucCloudMessage.success(this.$translate.instant('kube_service_update_success')))
-        .catch(err => this.CucCloudMessage.error(this.$translate.instant('kube_service_update_error', { message: _.get(err, 'data.message', '') })))
+        .catch(err => this.CucCloudMessage.error(this.$translate.instant('kube_service_update_error', { message: get(err, 'data.message', '') })))
         .finally(() => {
           this.loading = false;
           this.CucControllerHelper.scrollPageToTop();
@@ -37,5 +39,3 @@ class kubernetesUpdateCtrl {
     return this.updating.load();
   }
 }
-
-angular.module('managerApp').controller('kubernetesUpdateCtrl', kubernetesUpdateCtrl);

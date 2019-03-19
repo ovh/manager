@@ -1,4 +1,7 @@
-class kubernetesUpdateModalCtrl {
+import controller from './kubernetes-service-update.controller';
+import template from './kubernetes-service-update.html';
+
+export default class kubernetesUpdateModalCtrl {
   /* @ngInject */
   constructor($scope, $state, $stateParams, CucControllerHelper) {
     this.$scope = $scope;
@@ -11,8 +14,8 @@ class kubernetesUpdateModalCtrl {
   openModal() {
     this.CucControllerHelper.modal.showModal({
       modalConfig: {
-        templateUrl: 'app/kubernetes/service/update/kubernetes-service-update.html',
-        controller: 'kubernetesUpdateCtrl',
+        template,
+        controller,
         controllerAs: '$ctrl',
         backdrop: 'static',
       },
@@ -20,11 +23,9 @@ class kubernetesUpdateModalCtrl {
   }
 
   onCloseModal() {
-    this.$state.go('paas.kube.service', {
+    this.$state.go('kube.service', {
       serviceName: this.serviceName,
     });
     this.$scope.$broadcast('kube.service.refresh');
   }
 }
-
-angular.module('managerApp').controller('kubernetesUpdateModalCtrl', kubernetesUpdateModalCtrl);

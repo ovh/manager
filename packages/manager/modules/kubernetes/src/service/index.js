@@ -1,6 +1,7 @@
 import angular from 'angular';
 
 import resetService from './reset/index';
+import updateService from './update/index';
 
 import kubernetesServiceComponent from './kubernetes-service.component';
 
@@ -8,6 +9,7 @@ const moduleName = 'ovhManagerKubernetesService';
 
 angular.module(moduleName, [
   resetService,
+  updateService,
 ])
   .config(($stateProvider) => {
     $stateProvider
