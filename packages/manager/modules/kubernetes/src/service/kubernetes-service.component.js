@@ -1,8 +1,12 @@
-angular.module('managerApp')
-  .component('kubernetesService', {
-    bindings: {
-      serviceName: '@',
-    },
-    templateUrl: 'app/kubernetes/service/kubernetes-service.html',
-    controller: 'KubernetesServiceCtrl',
-  });
+import controller from './kubernetes-service.controller';
+import template from './kubernetes-service.html';
+
+const component = {
+  bindings: {
+    serviceName: '@',
+  },
+  template,
+  controller,
+};
+
+export default component;

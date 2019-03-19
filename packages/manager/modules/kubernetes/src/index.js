@@ -13,7 +13,7 @@ angular
     'oc.lazyLoad',
   ])
   .config(/* @ngInject */($stateProvider) => {
-    $stateProvider.state('kubernetes.**', {
+    $stateProvider.state('kube.**', {
       url: '/kube/:serviceName',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');

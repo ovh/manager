@@ -1,9 +1,19 @@
-angular.module('managerApp').controller('KubernetesServiceCtrl', class KubernetesServiceCtrl {
-  constructor($scope, $state, $stateParams, $translate, CucCloudMessage, CucControllerHelper,
-    Kubernetes, KUBERNETES) {
+import find from 'lodash/find';
+import set from 'lodash/set';
+
+export default class KubernetesServiceCtrl {
+  /* @ngInject */
+  constructor(
+    $scope,
+    $state,
+    $translate,
+    CucCloudMessage,
+    CucControllerHelper,
+    Kubernetes,
+    KUBERNETES,
+  ) {
     this.$scope = $scope;
     this.$state = $state;
-    this.$stateParams = $stateParams;
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.CucControllerHelper = CucControllerHelper;
@@ -44,8 +54,8 @@ angular.module('managerApp').controller('KubernetesServiceCtrl', class Kubernete
   }
 
   loadMessages() {
-    this.CucCloudMessage.unSubscribe('paas.kube.service');
-    this.messageHandler = this.CucCloudMessage.subscribe('paas.kube.service', { onMessage: () => this.refreshMessages() });
+    this.CucCloudMessage.unSubscribe('kube.service');
+    this.messageHandler = this.CucCloudMessage.subscribe('kube.service', { onMessage: () => this.refreshMessages() });
   }
 
   refreshMessages() {
@@ -56,7 +66,7 @@ angular.module('managerApp').controller('KubernetesServiceCtrl', class Kubernete
     return this.Kubernetes.getKubernetesCluster(this.serviceName)
       .then((cluster) => {
         this.cluster = cluster;
-        _.set(this.cluster, 'region', this.KUBERNETES.region);
+        set(this.cluster, 'region', this.KUBERNETES.region);
         this.setUpgradePolicy();
       })
       .catch(() => { this.displayError = true; })
@@ -68,7 +78,7 @@ angular.module('managerApp').controller('KubernetesServiceCtrl', class Kubernete
       .then((serviceInfos) => {
         this.serviceInfos = serviceInfos;
         // Static for now
-        _.set(this.serviceInfos, 'offer', this.$translate.instant('kube_service_offer_beta'));
+        set(this.serviceInfos, 'offer', this.$translate.instant('kube_service_offer_beta'));
       })
       .catch(() => { this.displayError = true; })
       .finally(() => { this.loaders.billing = false; });
@@ -96,13 +106,13 @@ angular.module('managerApp').controller('KubernetesServiceCtrl', class Kubernete
   }
 
   resetCluster() {
-    return this.$state.go('paas.kube.service.reset', {
+    return this.$state.go('kube.service.reset', {
       cluster: this.cluster,
     });
   }
 
   setUpgradePolicy() {
-    this.upgradePolicy = _.find(this.Kubernetes.getUpgradePolicies(),
+    this.upgradePolicy = find(this.Kubernetes.getUpgradePolicies(),
       policy => policy.value === this.cluster.updatePolicy);
   }
 
@@ -125,8 +135,8 @@ angular.module('managerApp').controller('KubernetesServiceCtrl', class Kubernete
   }
 
   updateCluster() {
-    return this.$state.go('paas.kube.service.update', {
+    return this.$state.go('kube.service.update', {
       cluster: this.cluster,
     });
   }
-});
+}
