@@ -1,3 +1,12 @@
+# [5.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@5.0.0-alpha.0...@ovh-ux/manager-core@5.0.0) (2019-03-19)
+
+
+### Bug Fixes
+
+* replace TARGET by coreConfig ([928a6f4](https://github.com/ovh-ux/manager/commit/928a6f4))
+
+
+
 # [5.0.0-alpha.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@4.0.1...@ovh-ux/manager-core@5.0.0-alpha.0) (2019-03-19)
 
 
