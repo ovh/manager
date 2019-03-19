@@ -21,14 +21,13 @@ export default class NavbarNotificationService {
   }
 
   getMessages() {
-    return this.$translate.refresh()
+    return this
+      .$translate
+      .refresh()
       .then(() => this.OvhApiNotificationAapi.query({
         lang: this.$translate.preferredLanguage(),
         target: this.TARGET,
-      }).$promise
-        .catch((error) => {
-          throw error;
-        }));
+      }).$promise);
   }
 
   getSubLinks() {
