@@ -1,0 +1,30 @@
+<!doctype html>
+<html class="h-100">
+    <head>
+        <title>Public Cloud - OVH</title>
+        <meta charset="utf-8" />
+    </head>
+    <body class="h-100">
+        <div data-ng-app="ovhStack" data-ng-strict-di class="h-100 d-flex flex-column overflow-hidden" data-ng-controller="PublicCloudController as $ctrl">
+            <div>
+                <ovh-manager-navbar></ovh-manager-navbar>
+            </div>
+            <div class="w-100 h-100">
+                <div class="container-fluid h-100">
+                    <div class="row h-100">
+                        <div class="col-md-2 p-0 h-100 d-flex flex-column" data-ng-if="$ctrl.shouldDisplaySidebar()">
+                            <cloud-sidebar></cloud-sidebar>
+                        </div>
+                        <div class="h-100 d-flex" data-ng-class="{ 'col-md-10': $ctrl.shouldDisplaySidebar(), 'col-md-12': !$ctrl.shouldDisplaySidebar() }" data-ui-view>
+                            <div class="m-auto text-center">
+                                <span class="oui-icon oui-icon-clock-wait mb-4" style="font-size: 5rem;"></span>
+                                <h1 class="font-weight-bold" data-translate="public_cloud_coming_soon"></h1>
+                                <p data-translate="public_cloud_coming_soon_description"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
