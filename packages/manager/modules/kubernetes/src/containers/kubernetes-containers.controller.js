@@ -1,5 +1,6 @@
-angular.module('managerApp').controller('KubernetesContainersCtrl', class KubernetesContainersCtrl {
+export default class KubernetesContainersCtrl {
+  /* @ngInject */
   constructor(KUBERNETES) {
     this.KUBERNETES = KUBERNETES;
   }
-});
+}

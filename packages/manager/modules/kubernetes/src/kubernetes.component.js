@@ -14,6 +14,7 @@ import service from './kubernetes.service';
 
 import { KUBERNETES } from './kubernetes.constants';
 
+import containersComponent from './containers/index';
 import nodesComponent from './nodes/index';
 import serviceComponent from './service/index';
 
@@ -27,6 +28,7 @@ angular.module(moduleName, [
   'oui',
   'ovh-api-services',
   'ui.bootstrap',
+  containersComponent,
   nodesComponent,
   serviceComponent,
 ])

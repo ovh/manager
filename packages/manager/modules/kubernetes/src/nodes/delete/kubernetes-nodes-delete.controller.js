@@ -1,4 +1,7 @@
-angular.module('managerApp').controller('KubernetesNodesDeleteCtrl', class KubernetesNodesDeleteCtrl {
+import get from 'lodash/get';
+
+export default class KubernetesNodesDeleteCtrl {
+  /* @ngInject */
   constructor(
     $stateParams, $uibModalInstance,
     Kubernetes, nodeId,
@@ -21,11 +24,11 @@ angular.module('managerApp').controller('KubernetesNodesDeleteCtrl', class Kuber
     this.loading = true;
     return this.Kubernetes.deleteNode(this.serviceName, this.nodeId)
       .then(() => this.$uibModalInstance.close())
-      .catch(error => this.dismiss(_.get(error, 'data.message')))
+      .catch(error => this.dismiss(get(error, 'data.message')))
       .finally(() => { this.loading = false; });
   }
 
   dismiss(error) {
     this.$uibModalInstance.dismiss(error);
   }
-});
+}
