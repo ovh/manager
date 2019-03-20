@@ -27,7 +27,7 @@ export default class CloudProjectVirtualMachineAddService {
   constructor(
     $q,
     $translate,
-    CloudFlavorService,
+    CucFlavorService,
     CloudImageService,
     CucControllerModalHelper,
     OvhApiCloudProject,
@@ -36,7 +36,7 @@ export default class CloudProjectVirtualMachineAddService {
   ) {
     this.$q = $q;
     this.$translate = $translate;
-    this.CloudFlavorService = CloudFlavorService;
+    this.CucFlavorService = CucFlavorService;
     this.CloudImageService = CloudImageService;
     this.CucControllerModalHelper = CucControllerModalHelper;
     this.OvhApiCloudProject = OvhApiCloudProject;
@@ -58,7 +58,7 @@ export default class CloudProjectVirtualMachineAddService {
             osType: type,
           },
         ),
-        flavor => this.CloudFlavorService.augmentFlavor(flavor),
+        flavor => this.CucFlavorService.augmentFlavor(flavor),
       ),
       {
         diskType: 'ssd',
@@ -189,7 +189,7 @@ export default class CloudProjectVirtualMachineAddService {
             return previousValues;
           }
 
-          const category = this.CloudFlavorService.getCategory(flavorType, true);
+          const category = this.CucFlavorService.getCategory(flavorType, true);
           const categoryObject = find(previousValues, { category: category.id });
           const matchingFlavors = filter(flavors, { type: flavorType });
 

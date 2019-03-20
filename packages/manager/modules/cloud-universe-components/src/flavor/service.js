@@ -6,19 +6,18 @@ import includes from 'lodash/includes';
 import set from 'lodash/set';
 import uniq from 'lodash/uniq';
 
-export default class CloudFlavorService {
+export default class CucFlavorService {
   /* @ngInject */
   constructor(
     $filter,
-    CLOUD_FLAVORTYPE_CATEGORY,
-    CLOUD_INSTANCE_CPU_FREQUENCY,
-    CLOUD_INSTANCE_NUMBER_OF_GPUS,
+    CUC_FLAVOR_FLAVORTYPE_CATEGORY,
+    CUC_FLAVOR_INSTANCE_CPU_FREQUENCY,
+    CUC_FLAVOR_INSTANCE_NUMBER_OF_GPUS,
   ) {
     this.$filter = $filter;
-
-    this.CLOUD_FLAVORTYPE_CATEGORY = CLOUD_FLAVORTYPE_CATEGORY;
-    this.CLOUD_INSTANCE_CPU_FREQUENCY = CLOUD_INSTANCE_CPU_FREQUENCY;
-    this.CLOUD_INSTANCE_NUMBER_OF_GPUS = CLOUD_INSTANCE_NUMBER_OF_GPUS;
+    this.CUC_FLAVOR_FLAVORTYPE_CATEGORY = CUC_FLAVOR_FLAVORTYPE_CATEGORY;
+    this.CUC_FLAVOR_INSTANCE_CPU_FREQUENCY = CUC_FLAVOR_INSTANCE_CPU_FREQUENCY;
+    this.CUC_FLAVOR_INSTANCE_NUMBER_OF_GPUS = CUC_FLAVOR_INSTANCE_NUMBER_OF_GPUS;
   }
 
   static isOldFlavor(flavorName) {
@@ -135,7 +134,7 @@ export default class CloudFlavorService {
     }
 
     const augmentedFlavor = cloneDeep(flavor);
-    augmentedFlavor.frequency = this.CLOUD_INSTANCE_CPU_FREQUENCY[flavor.type];
+    augmentedFlavor.frequency = this.CUC_FLAVOR_INSTANCE_CPU_FREQUENCY[flavor.type];
 
     if (/vps/.test(flavor.type)) {
       return Object.assign({
@@ -175,20 +174,20 @@ export default class CloudFlavorService {
     if (flavorContainsGPUs) {
       augmentedFlavor.imageType = flavor.osType === 'windows' ? ['uefi'] : augmentedFlavor.imageType;
       augmentedFlavor.gpuCardCount = get(
-        this.CLOUD_INSTANCE_NUMBER_OF_GPUS,
+        this.CUC_FLAVOR_INSTANCE_NUMBER_OF_GPUS,
         numberType,
-        this.CLOUD_INSTANCE_NUMBER_OF_GPUS.default,
+        this.CUC_FLAVOR_INSTANCE_NUMBER_OF_GPUS.default,
       );
     }
 
-    augmentedFlavor.isOldFlavor = CloudFlavorService.isOldFlavor(flavor.name);
+    augmentedFlavor.isOldFlavor = CucFlavorService.isOldFlavor(flavor.name);
 
     return augmentedFlavor;
   }
 
   getCategory(flavorType) {
     return find(
-      this.CLOUD_FLAVORTYPE_CATEGORY,
+      this.CUC_FLAVOR_FLAVORTYPE_CATEGORY,
       currentCategory => includes(currentCategory.types, flavorType),
     );
   }

@@ -1600,6 +1600,11 @@
     rollup-pluginutils "^2.3.3"
     slash "^2.0.0"
 
+"@ovh-ux/manager-cloud-styles@0.1.1-alpha.0":
+  version "0.1.1-alpha.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-cloud-styles/-/manager-cloud-styles-0.1.1-alpha.0.tgz#fcb217f8c3ec67d8e12af2bf4495689768d9bb87"
+  integrity sha512-igkoN3m+62dAXYBXGgTzK5CsGMJT59Q2ubAXTDJ5J+V1ORcEKP5g/NBtPyd2sFFDFFGZEmE/YFq31xcLlt+Hcg==
+
 "@ovh-ux/manager-webpack-config@^3.0.1":
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-webpack-config/-/manager-webpack-config-3.0.4.tgz#e6e4066c9696abd58aded6125e292c7e86e0fd2b"

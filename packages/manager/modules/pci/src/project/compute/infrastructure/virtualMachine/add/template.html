@@ -313,22 +313,22 @@
                                         </oui-button>
                                         <oui-button data-variant="link"
                                                     data-text="{{'cpcivm_add_step3_disabled_QUOTA_RAM' | translate}}"
-                                                    data-on-click="$ctrl.VirtualMachineAddService.openQuotaModal('QUOTA_RAM', { quota: $ctrl.CloudFlavorService.getQuotaRam(flavor, $ctrl.quota) })"
+                                                    data-on-click="$ctrl.VirtualMachineAddService.openQuotaModal('QUOTA_RAM', { quota: $ctrl.CucFlavorService.getQuotaRam(flavor, $ctrl.quota) })"
                                                     data-ng-if="flavor.disabled === 'QUOTA_RAM'">
                                         </oui-button>
                                         <oui-button data-variant="link"
                                                     data-text="{{'cpcivm_add_step3_disabled_QUOTA_VCPUS' | translate}}"
-                                                    data-on-click="$ctrl.VirtualMachineAddService.openQuotaModal('QUOTA_VCPUS', { quota: $ctrl.CloudFlavorService.constructor.getQuotaCore(flavor, $ctrl.quota) })"
+                                                    data-on-click="$ctrl.VirtualMachineAddService.openQuotaModal('QUOTA_VCPUS', { quota: $ctrl.CucFlavorService.constructor.getQuotaCore(flavor, $ctrl.quota) })"
                                                     data-ng-if="flavor.disabled === 'QUOTA_VCPUS'">
                                         </oui-button>
                                         <oui-button data-variant="link"
                                                     data-text="{{'cpcivm_add_step3_disabled_QUOTA_MINDISK' | translate}}"
-                                                    data-on-click="$ctrl.VirtualMachineAddService.openQuotaModal('QUOTA_MINDISK', $ctrl.CloudFlavorService.getRequirements(flavor, $ctrl.model.imageId))"
+                                                    data-on-click="$ctrl.VirtualMachineAddService.openQuotaModal('QUOTA_MINDISK', $ctrl.CucFlavorService.getRequirements(flavor, $ctrl.model.imageId))"
                                                     data-ng-if="flavor.disabled === 'QUOTA_MINDISK'">
                                         </oui-button>
                                         <oui-button data-variant="link"
                                                     data-text="{{'cpcivm_add_step3_disabled_QUOTA_MINRAM' | translate}}"
-                                                    data-on-click="$ctrl.VirtualMachineAddService.openQuotaModal('QUOTA_MINRAM', $ctrl.CloudFlavorService.getRequirements(flavor, $ctrl.model.imageId))"
+                                                    data-on-click="$ctrl.VirtualMachineAddService.openQuotaModal('QUOTA_MINRAM', $ctrl.CucFlavorService.getRequirements(flavor, $ctrl.model.imageId))"
                                                     data-ng-if="flavor.disabled === 'QUOTA_MINRAM'">
                                         </oui-button>
                                     </span>

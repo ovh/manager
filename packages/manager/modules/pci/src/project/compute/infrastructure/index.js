@@ -18,7 +18,6 @@ import volume from './volume';
 import controller from './controller';
 import template from './template.html';
 
-import flavorService from './flavor.service';
 import imageService from './image.service';
 import infrastructureService from './infrastructure.service';
 import regionService from './region.service';
@@ -85,7 +84,6 @@ angular
   //     },
   //   });
   // })
-  .service('CloudFlavorService', flavorService)
   .service('CloudImageService', imageService)
   .service('CloudProjectComputeInfrastructureService', infrastructureService)
   .service('CloudRegionService', regionService)

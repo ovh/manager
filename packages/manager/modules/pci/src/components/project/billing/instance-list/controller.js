@@ -9,7 +9,7 @@ export default /* @ngInject */ function BillingInstanceListComponentCtrl(
   OvhApiCloudProjectImage,
   OvhApiCloudProjectInstance,
   OvhApiMe,
-  OvhCloudPriceHelper,
+  CucPriceHelper,
   Toast,
 ) {
   const self = this;
@@ -125,7 +125,7 @@ export default /* @ngInject */ function BillingInstanceListComponentCtrl(
     self.data.instanceToMonthlyPrice = null;
     self.loaders.monthlyBilling = true;
 
-    OvhCloudPriceHelper.getPrices($stateParams.projectId).then((prices) => {
+    CucPriceHelper.getPrices($stateParams.projectId).then((prices) => {
       const monthlyPrice = prices[instance.planCode && instance.planCode.replace('consumption', 'monthly')];
       if (!monthlyPrice) {
         self.endInstanceToMonthlyConversion();

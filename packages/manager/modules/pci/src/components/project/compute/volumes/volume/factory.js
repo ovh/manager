@@ -5,7 +5,7 @@ import moment from 'moment';
 export default /* @ngInject */ (
   $q,
   OvhApiCloudProjectVolume,
-  OvhCloudPriceHelper,
+  CucPriceHelper,
 ) => {
   /**
    *  Defines a cloud project compute volume
@@ -85,7 +85,7 @@ export default /* @ngInject */ (
    */
   VolumeFactory.prototype.getFullInformations = function getFullInformations() {
     const self = this;
-    return OvhCloudPriceHelper.getPrices(this.serviceName).then((response) => {
+    return CucPriceHelper.getPrices(this.serviceName).then((response) => {
       self.volumePricesMap = response;
     });
   };

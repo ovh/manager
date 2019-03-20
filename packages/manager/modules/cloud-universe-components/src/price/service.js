@@ -18,7 +18,10 @@ export default class OvhCloudPriceHelper {
   getPrices(serviceName) {
     return this.$q.all({
       catalog: this.OvhApiMe.v6().get().$promise
-        .then(me => this.OvhApiOrderCatalogFormatted.v6().get({ catalogName: 'cloud', ovhSubsidiary: me.ovhSubsidiary }).$promise),
+        .then(me => this.OvhApiOrderCatalogFormatted
+          .v6()
+          .get({ catalogName: 'cloud', ovhSubsidiary: me.ovhSubsidiary })
+          .$promise),
       project: this.OvhApiCloudProject.v6().get({ serviceName }).$promise,
     })
       .then(({ catalog, project }) => {

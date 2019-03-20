@@ -1,15 +1,14 @@
 import angular from 'angular';
-import '@ovh-ux/ng-ovh-api-wrappers';
 import 'ovh-api-services';
 
 import service from './service';
 
-const moduleName = 'ovhManagerPciComponentsProjectPrices';
+const moduleName = 'cucPrice';
 
 angular
   .module(moduleName, [
     'ovh-api-services',
   ])
-  .service('OvhCloudPriceHelper', service);
+  .service('CucPriceHelper', service);
 
 export default moduleName;
