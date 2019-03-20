@@ -142,4 +142,10 @@ export default class KubernetesServiceCtrl {
       cluster: this.cluster,
     });
   }
+
+  terminate() {
+    return this.$state.go('kube.service.terminate', {
+      cluster: this.cluster,
+    });
+  }
 }

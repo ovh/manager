@@ -166,4 +166,8 @@ export default class Kubernetes {
         return res;
       });
   }
+
+  terminate(serviceName) {
+    return this.OvhApiKube.v6().terminate({ serviceName }).$promise;
+  }
 }
