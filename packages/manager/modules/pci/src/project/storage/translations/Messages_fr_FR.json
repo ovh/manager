@@ -21,5 +21,6 @@
   "common_cancel": "Annuler",
   "common_pagination_page": "page",
   "common_pagination_display": "Afficher",
-  "storage_title": "Vos conteneurs"
+  "storage_title": "Vos conteneurs",
+  "storage_search": "Rechercher"
 }

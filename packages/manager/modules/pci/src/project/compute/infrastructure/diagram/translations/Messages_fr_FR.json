@@ -86,5 +86,14 @@
   "cpci_volume_confirm_move_button": "Détacher",
   "cpci_volume_confirm_remove_button": "Supprimer le disque dur",
   "cpci_volume_confirm_moveCheckbox_button": "Confirmer",
-  "cpb_details_project_delete": "Supprimer ce projet"
+  "cpb_details_project_delete": "Supprimer ce projet",
+  "cpb_details_project_rename_ok": "Enregistrer",
+  "add_ok": "OK",
+  "common_cancel": "Annuler",
+  "common_refresh": "Rafraîchir",
+  "common_actions": "Actions",
+  "common_modal_ok": "OK",
+  "inputs_logs_configure_logstash_grok": "Modèles Grok personnalisés",
+  "dbaasts_ok": "OK",
+  "iplb_ssl_order_ok": "Commander"
 }

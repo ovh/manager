@@ -41,5 +41,11 @@
   "openstackusers_users_userlist_username_cols": "Identifiant",
   "openstackusers_users_userlist_description_cols": "Description",
   "openstackusers_users_userlist_status_cols": "État",
-  "openstackusers_users_userlist_password_cols": "Mot de passe"
+  "openstackusers_users_userlist_password_cols": "Mot de passe",
+  "cpb_details_project_rename_ok": "Enregistrer",
+  "add_ok": "OK",
+  "common_modal_ok": "OK",
+  "inputs_logs_configure_logstash_grok": "Modèles Grok personnalisés",
+  "dbaasts_ok": "OK",
+  "iplb_ssl_order_ok": "Commander"
 }
