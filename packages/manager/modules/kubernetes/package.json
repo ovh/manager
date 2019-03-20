@@ -31,6 +31,7 @@
     "angular": "^1.7.8",
     "angular-ui-bootstrap": "^2.5.6",
     "bootstrap4": "twbs/bootstrap#v4.0.0",
+    "font-awesome": "^4.7.0",
     "oclazyload": "^1.1.0",
     "ovh-api-services": "^6.2.0",
     "ovh-ui-angular": "~2.24.0",

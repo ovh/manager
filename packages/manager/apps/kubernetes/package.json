@@ -21,6 +21,7 @@
     "angular": "^1.7.5",
     "angular-ui-bootstrap": "^2.5.6",
     "bootstrap4": "twbs/bootstrap#v4.0.0",
+    "font-awesome": "^4.7.0",
     "ovh-ui-angular": "~2.24.0",
     "ovh-ui-kit": "~2.24.0"
   },
