@@ -105,13 +105,13 @@ export default /* @ngInject */ function CloudProjectComputeInfrastructureVirtual
   $timeout,
   $translate,
   atInternet,
-  CloudFlavorService,
+  CucFlavorService,
   CloudImageService,
   CucCloudMessage,
   CloudProjectComputeInfrastructureOrchestrator,
   OvhApiCloudProjectSshKey,
   OvhApiCloudProjectFlavor,
-  OvhCloudPriceHelper,
+  CucPriceHelper,
   OvhApiCloudProjectImage,
   OvhApiCloudProjectNetworkPrivate,
   OvhApiCloudProjectNetworkPrivateSubnet,
@@ -123,8 +123,8 @@ export default /* @ngInject */ function CloudProjectComputeInfrastructureVirtual
   ovhDocUrl,
   CucRegionService,
   CLOUD_FLAVOR_SPECIFIC_IMAGE,
-  CLOUD_FLAVORTYPE_CATEGORY,
-  CLOUD_INSTANCE_CPU_FREQUENCY,
+  CLOUD_CUC_FLAVOR_FLAVORTYPE_CATEGORY,
+  CUC_FLAVOR_INSTANCE_CPU_FREQUENCY,
   CLOUD_INSTANCE_DEFAULT_FALLBACK,
   CLOUD_INSTANCE_HAS_GUARANTEED_RESSOURCES,
   PCI_REDIRECT_URLS,
@@ -557,7 +557,7 @@ export default /* @ngInject */ function CloudProjectComputeInfrastructureVirtual
       self.vmInEdition.flavor = mainAssociatedFlavor;
     }
 
-    angular.forEach(CLOUD_FLAVORTYPE_CATEGORY, (category) => {
+    angular.forEach(CLOUD_CUC_FLAVOR_FLAVORTYPE_CATEGORY, (category) => {
       self.categoriesVmInEditionFlavor[category.id] = self.getRealFlavor(
         self.categoriesVmInEditionFlavor[category.id],
         category.id,
@@ -753,7 +753,7 @@ export default /* @ngInject */ function CloudProjectComputeInfrastructureVirtual
 
   function getCategoryFromFlavor(flavor, details) {
     let cat = null;
-    angular.forEach(CLOUD_FLAVORTYPE_CATEGORY, (category) => {
+    angular.forEach(CLOUD_CUC_FLAVOR_FLAVORTYPE_CATEGORY, (category) => {
       if (includes(category.types, flavor)) {
         if (details) {
           cat = category;
@@ -1154,7 +1154,7 @@ export default /* @ngInject */ function CloudProjectComputeInfrastructureVirtual
           serviceName,
         }).$promise.then((flavorsList) => {
           const modifiedFlavorsList = flavorsList
-            .map(flavor => CloudFlavorService.augmentFlavor(flavor));
+            .map(flavor => CucFlavorService.augmentFlavor(flavor));
 
           // Flavor types (ovh.ram, ovh.cpu, ...)
           self.enums.flavorsTypes = uniq(map(modifiedFlavorsList, 'type'));
@@ -1181,7 +1181,7 @@ export default /* @ngInject */ function CloudProjectComputeInfrastructureVirtual
             recalculateFlavor();
           }
           if (self.vmInEdition.status === 'ACTIVE') {
-            self.currentFlavor = CloudFlavorService.augmentFlavor(self.vmInEdition.flavor);
+            self.currentFlavor = CucFlavorService.augmentFlavor(self.vmInEdition.flavor);
           }
 
           connectFlavorTogether();
@@ -1198,7 +1198,7 @@ export default /* @ngInject */ function CloudProjectComputeInfrastructureVirtual
           self.cancelVm();
           return $q.reject(err);
         }),
-        OvhCloudPriceHelper.getPrices(serviceName).then((flavorsPrices) => {
+        CucPriceHelper.getPrices(serviceName).then((flavorsPrices) => {
           self.panelsData.prices = flavorsPrices;
         }, (err) => {
           CucCloudMessage.error([$translate.instant('cpcivm_addedit_flavor_price_error'), err.data.message || ''].join(' '));
@@ -1210,7 +1210,7 @@ export default /* @ngInject */ function CloudProjectComputeInfrastructureVirtual
         // Operations on flavors:
         angular.forEach(self.panelsData.flavors, (flavor) => {
           // add frequency
-          set(flavor, 'frequency', CLOUD_INSTANCE_CPU_FREQUENCY[flavor.type]);
+          set(flavor, 'frequency', CUC_FLAVOR_INSTANCE_CPU_FREQUENCY[flavor.type]);
 
           // add price infos
           const price = { price: { value: 0 }, monthlyPrice: { value: 0 } };
@@ -1428,7 +1428,7 @@ export default /* @ngInject */ function CloudProjectComputeInfrastructureVirtual
     // check disk compatibility
     if (diskType) {
       if (self.vmInEdition.status === 'ACTIVE') {
-        const augmentedFlavor = CloudFlavorService.augmentFlavor(self.originalVm.flavor);
+        const augmentedFlavor = CucFlavorService.augmentFlavor(self.originalVm.flavor);
         // It should always be impossible to switch from an existing SSD instance
         // to a ceph instance.
         if (augmentedFlavor.diskType === 'ssd' && diskType === 'ceph') {

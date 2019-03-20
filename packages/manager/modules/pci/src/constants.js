@@ -10,92 +10,12 @@ export const CLOUD_INSTANCE_DEFAULT_FALLBACK = {
   flavor: 's1-2',
 };
 
-export const CLOUD_FLAVORTYPE_CATEGORY = [
-  {
-    id: 'balanced',
-    types: [
-      'ovh.ceph.eg',
-      'ovh.ssd.eg',
-    ],
-    migrationNotAllowed: [
-      'vps',
-    ],
-    order: 1,
-  },
-  {
-    id: 'cpu',
-    types: [
-      'ovh.cpu',
-      'ovh.ssd.cpu',
-      'ovh.ceph.hg',
-    ],
-    migrationNotAllowed: [
-      'vps',
-    ],
-    order: 2,
-  },
-  {
-    id: 'ram',
-    types: [
-      'ovh.ram',
-      'ovh.ssd.ram',
-    ],
-    migrationNotAllowed: [
-      'vps',
-    ],
-    order: 3,
-  },
-  {
-    id: 'accelerated',
-    types: [
-      'ovh.ssd.gpu',
-      'ovh.ssd.gpu2',
-      'ovh.ssd.gpu3',
-      'ovh.ssd.fpga2',
-      'ovh.raid-nvme.t1',
-    ],
-    migrationNotAllowed: [
-      'vps',
-    ],
-    order: 4,
-  },
-  {
-    id: 'vps',
-    types: [
-      'ovh.vps-ssd',
-    ],
-    migrationNotAllowed: [],
-    order: 5,
-  },
-];
-
 export const CLOUD_FLAVOR_SPECIFIC_IMAGE = [
   'g1',
   'g2',
   'g3',
   't1',
 ];
-
-export const CLOUD_INSTANCE_CPU_FREQUENCY = {
-  'ovh.vps-ssd': 2.4,
-  'ovh.cpu': 3.1,
-  'ovh.ram': 2.4,
-  'ovh.ceph.eg': 2.3,
-  'ovh.ssd.ram': 2.4,
-  'ovh.ssd.cpu': 3.1,
-  'ovh.ssd.eg': 2.3,
-  'ovh.ssd.gpu': 3.1,
-  'ovh.ssd.gpu2': 3.1,
-  'ovh.ssd.gpu3': 3.1,
-  'ovh.raid-nvme.t1': 2.1,
-};
-
-export const CLOUD_INSTANCE_NUMBER_OF_GPUS = {
-  default: 1,
-  120: 3,
-  45: 1,
-  90: 2,
-};
 
 export const CLOUD_INSTANCE_HAS_GUARANTEED_RESSOURCES = [
   'balanced',
@@ -644,10 +564,7 @@ export const PCI_URLS = {
 export default {
   CLOUD_INSTANCE_DEFAULTS,
   CLOUD_INSTANCE_DEFAULT_FALLBACK,
-  CLOUD_FLAVORTYPE_CATEGORY,
   CLOUD_FLAVOR_SPECIFIC_IMAGE,
-  CLOUD_INSTANCE_CPU_FREQUENCY,
-  CLOUD_INSTANCE_NUMBER_OF_GPUS,
   CLOUD_INSTANCE_HAS_GUARANTEED_RESSOURCES,
   CLOUD_VOLUME_TYPES,
   CLOUD_IPFO_ORDER_LIMIT,

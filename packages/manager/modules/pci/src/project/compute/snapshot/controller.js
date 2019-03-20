@@ -14,7 +14,7 @@ import deleteTemplate from './delete/template.html';
 
 export default /* @ngInject */ function CloudProjectComputeSnapshotCtrl(
   $uibModal,
-  OvhCloudPriceHelper,
+  CucPriceHelper,
   OvhApiCloudProjectSnapshot,
   OvhApiCloudProjectInstance,
   OvhApiCloudProjectVolume,
@@ -375,7 +375,7 @@ export default /* @ngInject */ function CloudProjectComputeSnapshotCtrl(
   }
 
   function getPricesPromise() {
-    return OvhCloudPriceHelper.getPrices(serviceName);
+    return CucPriceHelper.getPrices(serviceName);
   }
 
   function getVolumeSnapshotPromise() {

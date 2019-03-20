@@ -16,7 +16,7 @@ export default /* @ngInject */ (
   OvhApiCloudProjectImage,
   OvhApiCloudProjectSnapshot,
   OvhApiCloudProjectSshKey,
-  OvhCloudPriceHelper,
+  CucPriceHelper,
   CLOUD_VM_STATE,
   CLOUD_MONITORING,
 ) => {
@@ -98,7 +98,7 @@ export default /* @ngInject */ (
      */
   VirtualMachineFactory.prototype.updatePrice = function updatePrice() {
     const self = this;
-    return OvhCloudPriceHelper.getPrices(self.serviceName).then((prices) => {
+    return CucPriceHelper.getPrices(self.serviceName).then((prices) => {
       self.price = prices[self.planCode];
       // Set 3 digits for hourly price
       if (!self.monthlyBillingBoolean) {

@@ -19,11 +19,11 @@ export default class CloudProjectComputeInfrastructureVirtualMachineAddCtrl {
     $state,
     $stateParams,
     atInternet,
-    CloudFlavorService,
+    CucFlavorService,
     CloudImageService,
     CloudProjectVirtualMachineAddService,
     CloudRegionService,
-    OvhCloudPriceHelper,
+    CucPriceHelper,
     OvhApiCloudProjectFlavor,
     OvhApiCloudProjectImage,
     OvhApiCloudProjectInstance,
@@ -44,9 +44,9 @@ export default class CloudProjectComputeInfrastructureVirtualMachineAddCtrl {
     this.$state = $state;
     this.$stateParams = $stateParams;
     this.atInternet = atInternet;
-    this.CloudFlavorService = CloudFlavorService;
+    this.CucFlavorService = CucFlavorService;
     this.CloudImageService = CloudImageService;
-    this.OvhCloudPriceHelper = OvhCloudPriceHelper;
+    this.CucPriceHelper = CucPriceHelper;
     this.CloudRegionService = CloudRegionService;
     this.OvhApiCloudProjectFlavor = OvhApiCloudProjectFlavor;
     this.OvhApiCloudProjectImage = OvhApiCloudProjectImage;
@@ -330,7 +330,7 @@ export default class CloudProjectComputeInfrastructureVirtualMachineAddCtrl {
           flavors,
           this.model.imageType.type,
         );
-        this.enums.flavorsTypes = this.CloudFlavorService.constructor
+        this.enums.flavorsTypes = this.CucFlavorService.constructor
           .getFlavorTypes(augmentedFlavors);
         return augmentedFlavors;
       });
@@ -344,7 +344,7 @@ export default class CloudProjectComputeInfrastructureVirtualMachineAddCtrl {
     return this.$q.all({
       flavors: this.fetchingAugmentedFlavors(),
       hasVRack: this.VirtualMachineAddService.hasVRack(this.serviceName),
-      prices: this.OvhCloudPriceHelper.getPrices(this.serviceName),
+      prices: this.CucPriceHelper.getPrices(this.serviceName),
     })
       .then(({ flavors, hasVRack, prices }) => {
         this.prices = prices;
@@ -357,8 +357,8 @@ export default class CloudProjectComputeInfrastructureVirtualMachineAddCtrl {
 
         // Add price and quota info to each instance type
         forEach(flavors, (flavor) => {
-          this.CloudFlavorService.constructor.addPriceInfos(flavor, this.prices);
-          this.CloudFlavorService.constructor.addOverQuotaInfos(flavor, this.quota, get(this.model, 'imageId.minDisk', 0), get(this.model, 'imageId.minRam', 0));
+          this.CucFlavorService.constructor.addPriceInfos(flavor, this.prices);
+          this.CucFlavorService.constructor.addOverQuotaInfos(flavor, this.quota, get(this.model, 'imageId.minDisk', 0), get(this.model, 'imageId.minRam', 0));
         });
 
         // Remove flavor without price (not in the catalog)

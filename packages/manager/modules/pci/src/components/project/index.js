@@ -5,7 +5,6 @@ import 'ovh-api-services';
 import add from './add';
 import billing from './billing';
 import compute from './compute';
-import prices from './prices';
 import rights from './rights';
 
 import factory from './factory';
@@ -19,7 +18,6 @@ angular
     billing,
     compute,
     'ovh-api-services',
-    prices,
     rights,
   ])
   .factory('CloudProjectFactory', factory)

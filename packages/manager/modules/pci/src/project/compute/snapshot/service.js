@@ -6,13 +6,13 @@ import moment from 'moment';
 export default class CloudProjectComputeSnapshotPriceService {
   /* @ngInject */
   constructor(
-    OvhCloudPriceHelper,
+    CucPriceHelper,
   ) {
-    this.OvhCloudPriceHelper = OvhCloudPriceHelper;
+    this.CucPriceHelper = CucPriceHelper;
   }
 
   getSnapshotPrice({ size, serviceName, region }) {
-    return this.OvhCloudPriceHelper.getPrices(serviceName).then((prices) => {
+    return this.CucPriceHelper.getPrices(serviceName).then((prices) => {
       let snapshotPrice = prices[`snapshot.consumption.${region}`] || prices['snapshot.consumption'];
       if (!snapshotPrice) {
         // eslint-disable-next-line no-console
