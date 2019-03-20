@@ -5,7 +5,7 @@ import controller from './kubernetes-service-update.modal.controller';
 const moduleName = 'ovhManagerKubernetesServiceUpdate';
 
 angular.module(moduleName, [])
-  .config(($stateProvider) => {
+  .config(/* @ngInject */ ($stateProvider) => {
     $stateProvider
       .state('kube.service.update', {
         url: '/update',

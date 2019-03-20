@@ -5,7 +5,7 @@ import nodeComponents from './kubernetes-nodes.component';
 const moduleName = 'ovhManagerKubernetesNodes';
 
 angular.module(moduleName, [])
-  .config(($stateProvider) => {
+  .config(/* @ngInject */ ($stateProvider) => {
     $stateProvider
       .state('kube.nodes', {
         url: '/nodes',

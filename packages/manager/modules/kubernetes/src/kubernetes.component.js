@@ -32,7 +32,7 @@ angular.module(moduleName, [
   nodesComponent,
   serviceComponent,
 ])
-  .config(($stateProvider) => {
+  .config(/* @ngInject */ ($stateProvider) => {
     $stateProvider
       .state('kube', {
         url: '/kube/:serviceName',

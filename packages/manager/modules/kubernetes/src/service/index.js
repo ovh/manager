@@ -11,7 +11,7 @@ angular.module(moduleName, [
   resetService,
   updateService,
 ])
-  .config(($stateProvider) => {
+  .config(/* @ngInject */ ($stateProvider) => {
     $stateProvider
       .state('kube.service', {
         url: '/service',
