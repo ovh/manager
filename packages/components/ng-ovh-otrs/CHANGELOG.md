@@ -1,3 +1,12 @@
+## [7.0.1](https://github.com/ovh-ux/ng-ovh-otrs/compare/v7.0.0...v7.0.1) (2019-03-20)
+
+
+### Bug Fixes
+
+* **i18n:** retrieve ([608e9c9](https://github.com/ovh-ux/ng-ovh-otrs/commit/608e9c9))
+
+
+
 # [7.0.0](https://github.com/ovh-ux/ng-ovh-otrs/compare/v7.0.0-beta.1...v7.0.0) (2019-03-11)
 
 
