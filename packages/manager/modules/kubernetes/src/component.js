@@ -6,7 +6,9 @@ import 'ovh-api-services';
 import 'ovh-ui-angular';
 import 'angular-ui-bootstrap';
 
+import '@ovh-ux/manager-cloud-styles';
 import 'ovh-ui-kit/dist/oui.css';
+import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
 import 'font-awesome/css/font-awesome.css';
 
 import kubernetesComponent from './kubernetes.component';
