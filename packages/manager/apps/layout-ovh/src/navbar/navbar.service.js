@@ -16,7 +16,7 @@ export default class ManagerNavbarService {
     CORE_REDIRECT_URLS,
     SessionService,
     ssoAuthentication,
-    TARGET,
+    coreConfig,
     TranslateService,
     CORE_URLS,
   ) {
@@ -31,7 +31,7 @@ export default class ManagerNavbarService {
 
     this.sessionService = SessionService;
     this.ssoAuthentication = ssoAuthentication;
-    this.TARGET = TARGET;
+    this.coreConfig = coreConfig;
     this.translateService = TranslateService;
     this.URLS = CORE_URLS;
   }
@@ -86,7 +86,7 @@ export default class ManagerNavbarService {
     });
 
     // Telephony (External)
-    if (this.TARGET !== 'US') {
+    if (this.coreConfig.getRegion() !== 'US') {
       assistanceMenu.push({
         title: this.$translate.instant('navbar_support_telephony_contact'),
         url: this.URLS.support_contact[locale] || this.URLS.support_contact.FR,
@@ -145,11 +145,11 @@ export default class ManagerNavbarService {
             title: this.$translate.instant('navbar_account_security'),
             url: this.REDIRECT_URLS.userSecurity,
           },
-          (this.TARGET === 'EU' || this.TARGET === 'CA') && {
+          (this.coreConfig.getRegion() === 'EU' || this.coreConfig.getRegion() === 'CA') && {
             title: this.$translate.instant('navbar_account_emails'),
             url: this.REDIRECT_URLS.userEmails,
           },
-          (this.TARGET === 'EU') && {
+          (this.coreConfig.getRegion() === 'EU') && {
             title: this.$translate.instant('navbar_account_subscriptions'),
             url: this.REDIRECT_URLS.userSubscriptions,
           }, {
@@ -176,7 +176,7 @@ export default class ManagerNavbarService {
         },
 
         // Services
-        (this.TARGET === 'EU' || this.TARGET === 'CA') && (!currentUser.isEnterprise ? {
+        (this.coreConfig.getRegion() === 'EU' || this.coreConfig.getRegion() === 'CA') && (!currentUser.isEnterprise ? {
           name: 'user.services',
           title: this.$translate.instant('navbar_renew'),
           url: this.REDIRECT_URLS.services,
@@ -201,18 +201,18 @@ export default class ManagerNavbarService {
             title: this.$translate.instant('navbar_means_mean'),
             url: this.REDIRECT_URLS.paymentMeans,
           },
-          (this.TARGET === 'EU' || this.TARGET === 'CA') && {
+          (this.coreConfig.getRegion() === 'EU' || this.coreConfig.getRegion() === 'CA') && {
             title: this.$translate.instant('navbar_means_ovhaccount'),
             url: this.REDIRECT_URLS.ovhAccount,
           },
-          (this.TARGET === 'EU' || this.TARGET === 'CA') && {
+          (this.coreConfig.getRegion() === 'EU' || this.coreConfig.getRegion() === 'CA') && {
             title: this.$translate.instant('navbar_means_vouchers'),
             url: this.REDIRECT_URLS.billingVouchers,
           }, {
             title: this.$translate.instant('navbar_means_refunds'),
             url: this.REDIRECT_URLS.billingRefunds,
           },
-          (this.TARGET === 'EU') && {
+          (this.coreConfig.getRegion() === 'EU') && {
             title: this.$translate.instant('navbar_means_fidelity'),
             url: this.REDIRECT_URLS.billingFidelity,
           }, {
@@ -222,13 +222,13 @@ export default class ManagerNavbarService {
         },
 
         // Orders
-        (!currentUser.isEnterprise && this.TARGET === 'EU' && currentUser.ovhSubsidiary === 'FR') && {
+        (!currentUser.isEnterprise && this.coreConfig.getRegion() === 'EU' && currentUser.ovhSubsidiary === 'FR') && {
           title: this.$translate.instant('navbar_orders'),
           url: this.REDIRECT_URLS.orders,
         },
 
         // Contacts
-        (this.TARGET === 'EU') && {
+        (this.coreConfig.getRegion() === 'EU') && {
           title: this.$translate.instant('navbar_contacts'),
           url: this.REDIRECT_URLS.contacts,
         },
@@ -277,7 +277,7 @@ export default class ManagerNavbarService {
   }
 
   getManagersNames() {
-    switch (this.TARGET) {
+    switch (this.coreConfig.getRegion()) {
       case 'EU': {
         if (this.locale === 'FR') {
           return ['portal', 'gamma', 'partners'];

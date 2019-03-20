@@ -1,3 +1,12 @@
+# [0.2.0-alpha.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-cloud-styles@0.1.1-alpha.0...@ovh-ux/manager-cloud-styles@0.2.0-alpha.0) (2019-03-19)
+
+
+### Features
+
+* **vrack:** add vrack module & app ([da0f424](https://github.com/ovh-ux/manager/commit/da0f424))
+
+
+
 ## [0.1.1-alpha.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-cloud-styles@0.1.0...@ovh-ux/manager-cloud-styles@0.1.1-alpha.0) (2019-03-15)
 
 

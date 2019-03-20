@@ -891,6 +891,11 @@
     debug "^3.1.0"
     lodash.once "^4.1.1"
 
+"@fortawesome/fontawesome-free@^5.7.2":
+  version "5.7.2"
+  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-free/-/fontawesome-free-5.7.2.tgz#1498c3eb78ee7c78c5488418707de90aaf58d5d7"
+  integrity sha512-Ha4HshKdCVKgu4TVCtG8XyPPYdzTzNW4/fvPnn+LT7AosRABryhlRv4cc4+o84dgpvVJN9reN7jo/c+nYujFug==
+
 "@lerna/add@^3.6.0":
   version "3.6.0"
   resolved "https://registry.yarnpkg.com/@lerna/add/-/add-3.6.0.tgz#eea53efff0b3237774ddac6eaa84957140e89238"
@@ -1542,24 +1547,6 @@
     rollup-pluginutils "^2.3.3"
     slash "^2.0.0"
 
-"@ovh-ux/manager-cloud-styles@^0.2.0-alpha.0":
-  version "0.2.0-alpha.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-cloud-styles/-/manager-cloud-styles-0.2.0-alpha.0.tgz#fb1846c9414060d1d13281ad905c7ebe48e2389f"
-  integrity sha512-gQgjAGUrMxnqclQEZSLBimuY1Xt+YUUVZUInFeE2UlHNjYHApPEhEvPS4OJ2I48SnJg30IudFjn0A0ewL0augw==
-
-"@ovh-ux/manager-config@^0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-config/-/manager-config-0.1.0.tgz#aea676f88a4f0447211f93351ca55c4fc0d758d0"
-  integrity sha512-FC+aRA0nYmd3EDwbJnBGXZoEXeeI3k8/+N2I31rlzmwalPA4FvWAL0F+sM6eaHDTk1lwQcfbxYCcZAiaCd9r1g==
-
-"@ovh-ux/manager-core@^5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core/-/manager-core-5.0.0.tgz#b88db32788ea7e479ec68b5461321099046ece21"
-  integrity sha512-bnkl4y9U7LXcefSfD2QUn1Pb/1vhBgSegGwKgeYnFnq7RVqbyRNon7kugnVGd8GVhKoKhcCcx2dqHbOS4huJTw==
-  dependencies:
-    "@ovh-ux/ng-translate-async-loader" "^2.0.0"
-    lodash "^4.17.11"
-
 "@ovh-ux/manager-webpack-config@^3.0.1":
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-webpack-config/-/manager-webpack-config-3.0.1.tgz#d03713e9c1a7701f693fce217076e38dbe5f9cc3"
@@ -1885,10 +1872,22 @@
   dependencies:
     "@uirouter/core" "5.0.22"
 
+"@uirouter/angularjs@^1.0.22":
+  version "1.0.22"
+  resolved "https://registry.yarnpkg.com/@uirouter/angularjs/-/angularjs-1.0.22.tgz#581ab38794a2d7c2790851087072c4066b2b6c46"
+  integrity sha512-d0SvdbXAav+Z6gCJd7gmn2eXEUtO3RvYcSLwtPaE8+7QiWHpSKNfGdD4D3noXhO2yUTz/AwaxsiRFMCwgVI0UQ==
+  dependencies:
+    "@uirouter/core" "5.0.23"
+
 "@uirouter/core@5.0.22":
   version "5.0.22"
   resolved "https://registry.yarnpkg.com/@uirouter/core/-/core-5.0.22.tgz#4d36280b8d7871f7bd3e5f695a0f83ce6e559e48"
   integrity sha512-J0BVWRDfAmRWKJAesszU6lvu8ApJQ+6gd6OI0v+02hUEgl3a8K2fQ6oP4La3xPbVnl8W4iH7ouvWOc8cJPZPag==
+
+"@uirouter/core@5.0.23":
+  version "5.0.23"
+  resolved "https://registry.yarnpkg.com/@uirouter/core/-/core-5.0.23.tgz#363b4bea635a1b48900dc7e65793a65a3b58a79e"
+  integrity sha512-rwFOH++z/KY8y+h0IOpQ5uC8Nim6E0EBCQrIjhVCr+XKYXgpK+VdtuOLFdogvbJ3AAi5Z7ei00qdEr7Did5CAg==
 
 "@webassemblyjs/ast@1.7.11":
   version "1.7.11"
@@ -2226,7 +2225,7 @@ angular-translate-loader-pluggable@^1.3.1:
   resolved "https://registry.yarnpkg.com/angular-translate-loader-pluggable/-/angular-translate-loader-pluggable-1.3.1.tgz#6f85fe5554546c686d40170a2d0f775fb838dac5"
   integrity sha1-b4X+VVRUbGhtQBcKLQ93X7g42sU=
 
-angular-translate@^2.18.1:
+angular-translate@^2.11.0, angular-translate@^2.18.1:
   version "2.18.1"
   resolved "https://registry.yarnpkg.com/angular-translate/-/angular-translate-2.18.1.tgz#b29ed0d2f9bac44075e7aad3284166c59e150791"
   integrity sha512-Mw0kFBqsv5j8ItL9IhRZunIlVmIRW6iFsiTmRs9wGr2QTt8z4rehYlWyHos8qnXc/kyOYJiW50iH50CSNHGB9A==
@@ -4512,6 +4511,11 @@ d3@^5.9.2:
     d3-transition "1"
     d3-voronoi "1"
     d3-zoom "1"
+
+d3@~3.5.13:
+  version "3.5.17"
+  resolved "https://registry.yarnpkg.com/d3/-/d3-3.5.17.tgz#bc46748004378b21a360c9fc7cf5231790762fb8"
+  integrity sha1-vEZ0gAQ3iyGjYMn8fPUjF5B2L7g=
 
 d@1:
   version "1.0.0"
@@ -9820,6 +9824,13 @@ ovh-angular-ui-confirm-modal@^1.0.2:
   resolved "https://registry.yarnpkg.com/ovh-angular-ui-confirm-modal/-/ovh-angular-ui-confirm-modal-1.0.2.tgz#92e6736588a4fb1de6353f1a17ab1962679a698d"
   integrity sha512-3V17DbzWjUjl9sKCd25Oycn+7eqg6iW+DpizwVmixHFzDNDMnpKSGmxRLrOq+q9YNE7IepoAKWjoSiy2+zOEEg==
 
+ovh-api-services@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-4.2.0.tgz#6b85f990aefae1fbf5233718f856aa051dab98c5"
+  integrity sha512-IippIziLZplEJe6kX8SCZaaR7lLYm+iFbleL/G8x7zMkQeHDIwmKAiHWgAubXXoMyj/GgigBGlrYHiK8eNRAqg==
+  dependencies:
+    lodash "^3.10.1"
+
 ovh-api-services@^6.1.2:
   version "6.1.2"
   resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-6.1.2.tgz#b442f306fc77e01aaa2a3b515e1f3c32e3e73c4b"
@@ -9837,6 +9848,11 @@ ovh-manager-webfont@^1.0.2:
   resolved "https://registry.yarnpkg.com/ovh-manager-webfont/-/ovh-manager-webfont-1.0.2.tgz#8f9d358d138c2650a557bdac7a2d1908e962418d"
   integrity sha1-j501jROMJlClV72sei0ZCOliQY0=
 
+ovh-manager-webfont@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/ovh-manager-webfont/-/ovh-manager-webfont-1.1.0.tgz#447bcdaca8075ce5919f7b1f71fc9612f2fe3f20"
+  integrity sha512-60j+iFk/inmj4FM3rJ/wCdoPay1dclMcw7x7rSpDCKCaB3/KT8G308gRkX/PQfkCnOIcDYw/AzkQ7QYeGAeWrw==
+
 ovh-ngstrap@^4.0.2:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/ovh-ngstrap/-/ovh-ngstrap-4.0.2.tgz#059291bfb9f59b78df991e476dd2ede0507cb3c9"
@@ -9846,6 +9862,18 @@ ovh-ui-angular@^2.21.4, ovh-ui-angular@^2.23.0:
   version "2.23.0"
   resolved "https://registry.yarnpkg.com/ovh-ui-angular/-/ovh-ui-angular-2.23.0.tgz#5171a8ffa191dde62eca9b6a2ebd6d8cdcb41da9"
   integrity sha512-vbUQ4XWRrUvz9OHjEYin2gkHg8zw4yRXziq1jccxtp8qSPb8+8h2cjKrLdQ6YCmDFJnEiGSwJ7NTz9QpFHcqHA==
+  dependencies:
+    bloodhound-js "^1.2.3"
+    clipboard "^2.0.1"
+    escape-string-regexp "^1.0.5"
+    flatpickr "^4.5.2"
+    popper.js "^1.14.4"
+    ui-select "^0.19.8"
+
+ovh-ui-angular@^2.24.2:
+  version "2.25.1"
+  resolved "https://registry.yarnpkg.com/ovh-ui-angular/-/ovh-ui-angular-2.25.1.tgz#aecc51aef883fb08fc82ec4a4f79a59a88b7b635"
+  integrity sha512-RHhe3L1Hk8tNvQGXO37lX2EOmAR6gnrrt/qM+jKBP8XcPyMWFZxB9L3hPc4BtWaWrNKfIPY/q7esXPoxq1qj6Q==
   dependencies:
     bloodhound-js "^1.2.3"
     clipboard "^2.0.1"

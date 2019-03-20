@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-telecom-dashboard-app",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "private": true,
   "scripts": {
     "build": "webpack",
@@ -11,8 +11,9 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-telecom-dashboard-app' --include-filtered-dependencies -- yarn run dev:watch"
   },
   "dependencies": {
-    "@ovh-ux/manager-core": "^4.0.1",
-    "@ovh-ux/manager-telecom-dashboard": "^3.0.0",
+    "@ovh-ux/manager-config": "^0.1.0",
+    "@ovh-ux/manager-core": "^5.0.0",
+    "@ovh-ux/manager-telecom-dashboard": "^4.0.0",
     "@ovh-ux/manager-telecom-styles": "^2.0.2",
     "@ovh-ux/ng-at-internet": "^4.0.0",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^2.0.0",
