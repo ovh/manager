@@ -3,9 +3,9 @@
        data-ng-submit="kubeClusterReset.$valid && ctrl.reset()"
        novalidate>
     <oui-modal data-title="{{ ::'kube_service_reset_title' | translate }}"
-               data-primary-label="{{ ::'common_confirm' | translate }}"
+               data-primary-label="{{ ::'kube_service_reset_common_confirm' | translate }}"
                data-secondary-action="ctrl.cancel()"
-               data-secondary-label="{{ ::'common_cancel' | translate }}"
+               data-secondary-label="{{ ::'kube_service_reset_common_cancel' | translate }}"
                data-on-dismiss="ctrl.cancel()"
                data-loading="ctrl.loading.init || ctrl.loading.reset"
                data-type="warning">
@@ -21,10 +21,10 @@
         <oui-field data-label="{{ ::'kube_service_reset_nodes' | translate }}">
             <oui-radio-group data-model="ctrl.workerNodesPolicy">
                 <oui-radio data-value="ctrl.KUBERNETES.workerNodesPolicyDelete">
-                    <span data-translate="common_delete"></span>
+                    <span data-translate="kube_service_reset_common_delete"></span>
                 </oui-radio>
                 <oui-radio data-value="ctrl.KUBERNETES.workerNodesPolicyReinstall">
-                    <span data-translate="common_reinstall"></span>
+                    <span data-translate="kube_service_reset_common_reinstall"></span>
                 </oui-radio>
             </oui-radio-group>
         </oui-field>

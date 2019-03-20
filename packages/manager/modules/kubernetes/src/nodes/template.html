@@ -9,7 +9,7 @@
             <span data-translate="kube_nodes_description_project_2"></span>
         </p>
         <oui-datagrid data-rows="$ctrl.nodes" data-row-loader="$ctrl.getAssociatedFlavor($row)">
-            <oui-column data-title=":: 'cloud_common_name' | translate"
+            <oui-column data-title=":: 'kube_nodes_name' | translate"
                         data-property="name"
                         data-type="string"
                         data-searchable
@@ -37,7 +37,7 @@
                 </span>
             </oui-column>
             <oui-action-menu data-disabled="$ctrl.Kubernetes.isProcessing($row.status) || $ctrl.Kubernetes.isProcessing($ctrl.cluster.status)" data-align="end" data-compact>
-                <oui-action-menu-item data-text="{{:: 'common_delete' | translate }}" data-on-click="$ctrl.confirmNodeDeletion($row.id)"></oui-action-menu-item>
+                <oui-action-menu-item data-text="{{:: 'kube_nodes_common_delete' | translate }}" data-on-click="$ctrl.confirmNodeDeletion($row.id)"></oui-action-menu-item>
             </oui-action-menu>
             <extra-top>
                 <oui-button data-ng-if="$ctrl.project"

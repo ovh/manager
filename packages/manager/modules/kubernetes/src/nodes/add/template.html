@@ -3,8 +3,8 @@
       data-ng-submit="kubeNodesAdd.$valid && $ctrl.instanceIsValid() && $ctrl.addNode()"
       novalidate>
     <oui-modal data-heading="{{:: 'kube_nodes_add' | translate }}"
-               data-primary-label="{{:: 'common_add' | translate }}"
-               data-secondary-label="{{:: 'common_cancel' | translate }}"
+               data-primary-label="{{:: 'kube_nodes_common_add' | translate }}"
+               data-secondary-label="{{:: 'kube_nodes_common_cancel' | translate }}"
                data-secondary-action="$ctrl.dismiss()"
                data-on-dismiss="$ctrl.dismiss()"
                data-loading="$ctrl.loading">
@@ -39,7 +39,7 @@
             </div>
             <div class="oui-field__error" role="alert">
                 <span class="oui-icon oui-icon-error" aria-hidden="true"></span>
-                <span data-translate="common_field_error_required"></span>
+                <span data-translate="kube_nodes_common_field_error_required"></span>
             </div>
         </div>
         <div class="oui-field"
@@ -67,7 +67,7 @@
                 </div>
                 <div role="alert" class="oui-field__error" data-ng-if="!$ctrl.selectedFlavor">
                     <span class="oui-icon oui-icon-error" aria-hidden="true"></span>
-                    <span data-translate="common_field_error_required"></span>
+                    <span data-translate="kube_nodes_common_field_error_required"></span>
                 </div>
             </div>
         </div>

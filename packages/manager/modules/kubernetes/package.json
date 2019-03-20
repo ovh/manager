@@ -27,6 +27,7 @@
     "@ovh-ux/manager-core": "^4.0.0",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^1.0.1-alpha.0",
     "@ovh-ux/ng-ovh-sidebar-menu": "^8.0.0-beta.1",
+    "@ovh-ux/ng-translate-async-loader": "^2.0.0",
     "@uirouter/angularjs": "^1.0.22",
     "angular": "^1.7.8",
     "angular-ui-bootstrap": "^2.5.6",

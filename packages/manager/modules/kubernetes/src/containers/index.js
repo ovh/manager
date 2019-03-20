@@ -15,12 +15,9 @@ angular.module(moduleName, [])
         resolve: {
           serviceName: $stateParams => $stateParams.serviceName,
         },
-        translations: {
-          value: ['..'],
-          format: 'json',
-        },
       });
   })
+  .run(/* @ngTranslationsInject:json ./translations */)
   .component('ovhManagerKubernetesContainersComponent', kubernetesContainersComponent);
 
 export default moduleName;

@@ -3,7 +3,7 @@
 </div>
 <div data-ng-if="!$ctrl.loaders.cluster">
     <oui-message data-ng-if="$ctrl.displayError" data-type="error">
-        <span data-translate="kube_error"></span>
+        <span data-translate="kube_service_error"></span>
     </oui-message>
     <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
     <p class="oui-paragraph" data-translate="kube_service_description_information" data-translate-values="{ url: $ctrl.KUBERNETES.urls.kubectl }"></p>
@@ -15,9 +15,9 @@
                 <oui-tile-definition data-term="{{:: 'kube_service_name' | translate }}">
                     <oui-tile-description data-ng-bind="$ctrl.cluster.name"></oui-tile-description>
                     <oui-action-menu data-compact data-align="end">
-                        <oui-action-menu-item aria-label="{{::'common_edit'|translate}}"
+                        <oui-action-menu-item aria-label="{{::'kube_service_common_edit'|translate}}"
                             data-on-click="$ctrl.changeClusterName()">
-                            {{::'common_edit'|translate}}
+                            {{::'kube_service_common_edit'|translate}}
                         </oui-action-menu-item>
                     </oui-action-menu>
                 </oui-tile-definition>
@@ -35,10 +35,10 @@
                     </oui-tile-description>
                     <oui-action-menu data-compact data-align="end" data-disabled="$ctrl.Kubernetes.isProcessing($ctrl.cluster.status)">
                         <oui-action-menu-item on-click="$ctrl.resetCluster()">
-                            <span data-translate="kube_service_reset_title"></span>
+                            <span data-translate="kube_service_reset"></span>
                         </oui-action-menu-item>
                         <oui-action-menu-item on-click="$ctrl.terminate()">
-                            <span data-translate="kube_service_terminate_title"></span>
+                            <span data-translate="kube_service_terminate"></span>
                         </oui-action-menu-item>
                     </oui-action-menu>
                 </oui-tile-definition>
@@ -51,7 +51,7 @@
                     </oui-tile-description>
                     <oui-action-menu data-compact data-align="end" data-ng-if="!$ctrl.cluster.isUpToDate" data-disabled="$ctrl.cluster.status !== $ctrl.KUBERNETES.status.READY">
                         <oui-action-menu-item data-on-click="$ctrl.updateCluster()">
-                            <span data-translate="common_update"></span>
+                            <span data-translate="kube_service_common_update"></span>
                         </oui-action-menu-item>
                     </oui-action-menu>
                 </oui-tile-definition>
@@ -62,7 +62,7 @@
                     </oui-tile-description>
                     <oui-action-menu data-compact data-align="end">
                         <oui-action-menu-item on-click="$ctrl.showUgradePolicy()">
-                            <span data-translate="common_edit"></span>
+                            <span data-translate="kube_service_common_edit"></span>
                         </oui-action-menu-item>
                     </oui-action-menu>
                 </oui-tile-definition>

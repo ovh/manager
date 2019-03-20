@@ -15,11 +15,8 @@ angular.module(moduleName, [])
             controllerAs: 'ctrl',
           },
         },
-        translations: {
-          value: ['..'],
-          format: 'json',
-        },
       });
-  });
+  })
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

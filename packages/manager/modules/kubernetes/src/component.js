@@ -12,8 +12,6 @@ import 'font-awesome/css/font-awesome.css';
 import kubernetesComponent from './kubernetes.component';
 import service from './service';
 
-// console.log(kubernetesComponent);
-
 import { KUBERNETES } from './constants';
 
 import containersComponent from './containers/index';
@@ -22,7 +20,7 @@ import serviceComponent from './service/index';
 
 import './index.scss';
 
-const moduleName = 'OvhManagerKubernetes';
+const moduleName = 'ovhManagerKubernetesComponent';
 
 angular.module(moduleName, [
   'ngOvhCloudUniverseComponents',
@@ -43,16 +41,13 @@ angular.module(moduleName, [
         resolve: {
           serviceName: /* @ngInject */ $stateParams => $stateParams.serviceName,
         },
-        // redirectTo: 'kube.service',
-        translations: {
-          value: ['.'],
-          format: 'json',
-        },
+        redirectTo: 'kube.service',
       });
   })
+  .run(/* @ngTranslationsInject:json ./translations */)
   .component('ovhManagerKubernetesComponent', kubernetesComponent)
   .constant('KUBERNETES', KUBERNETES)
   .service('Kubernetes', service);
 
 
-// export default moduleName;
+export default moduleName;
