@@ -41,7 +41,7 @@
     "@ovh-ux/ng-ovh-telecom-universe-components": "^3.0.0",
     "@ovh-ux/ng-uirouter-title": "^2.0.0-beta.3",
     "@uirouter/angularjs": "^1.0.15",
-    "angular": "1.7.5",
+    "angular": "^1.7.5",
     "bootstrap4": "twbs/bootstrap#v4.0.0",
     "lodash": "^3.10.1",
     "ovh-manager-webfont": "^1.0.2",
