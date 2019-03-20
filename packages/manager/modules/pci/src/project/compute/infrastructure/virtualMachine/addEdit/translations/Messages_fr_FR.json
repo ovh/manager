@@ -400,5 +400,11 @@
   "cpcivm_addedit_table_gpu_g3": "{{ cardCount }} x Nvidia GTX 1080 Ti 11GB",
   "cpcivm_addedit_table_gpu_t1": "{{ cardCount }} x Nvidia Tesla V100",
   "cpcivm_addedit_table_disk_details_ha_with_size": "Bloc HA<br/>{{ size }}<br/>Replication 3x",
-  "cpcivm_addedit_table_disk_details_ssd_with_size": "SSD Local<br/>{{ size }}<br/>Pas de RAID"
+  "cpcivm_addedit_table_disk_details_ssd_with_size": "SSD Local<br/>{{ size }}<br/>Pas de RAID",
+  "cpci_openstack_client_regions": "Regions :",
+  "cpc_loadbalancer_configure_advanced": "Mode avancé",
+  "cpc_header_tab_regions": "Les régions",
+  "common_menu_account_advanced": "Paramètres avancés",
+  "vps_configuration_reinstall_step2_sshKeys": "Clé(s) SSH pré-intallée(s) :",
+  "cloud_sidebar_pci_regions": "Les régions"
 }
