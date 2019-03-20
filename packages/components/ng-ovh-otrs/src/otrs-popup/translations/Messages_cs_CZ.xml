@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <translations>
-   <translation id="otrs_detail_title">Assistance - Fil de discussion</translation>
+   <translation id="otrs_detail_title" qtlid="260866">Assistance - diskusní vlákno</translation>
    <translation id="otrs_detail_title2" qtlid="228774">- ticket {0}</translation>
    <translation id="otrs_detail_title3_open" qtlid="228787">- (Zpracovává se)</translation>
    <translation id="otrs_detail_title3_closed" qtlid="228800">- (Uzavřený)</translation>
