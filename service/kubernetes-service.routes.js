@@ -41,5 +41,18 @@ angular.module('managerApp')
           value: ['..'],
           format: 'json',
         },
+      })
+      .state('paas.kube.service.terminate', {
+        url: '/terminate',
+        views: {
+          kubernetesPopUpView: {
+            controller: 'kubernetesTerminateModalCtrl',
+            controllerAs: '$ctrl',
+          },
+        },
+        translations: {
+          value: ['..'],
+          format: 'json',
+        },
       });
   });

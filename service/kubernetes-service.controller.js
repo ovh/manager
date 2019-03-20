@@ -129,4 +129,10 @@ angular.module('managerApp').controller('KubernetesServiceCtrl', class Kubernete
       cluster: this.cluster,
     });
   }
+
+  terminate() {
+    return this.$state.go('paas.kube.service.terminate', {
+      cluster: this.cluster,
+    });
+  }
 });

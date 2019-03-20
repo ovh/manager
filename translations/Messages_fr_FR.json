@@ -98,5 +98,10 @@
   "kube_service_upgrade_policy_description_ALWAYS_UPDATE": "Mettre à jour les composants versions mineures de mon service Kubernetes, pour garantir la sécurité et stabilité du service. La mise à jour entrainera possiblement une indisponibilité de quelques minutes lors de la mise à jour roulante de vos nœuds.",
   "kube_service_upgrade_policy_model_title": "Modifier la politique de mise à niveau",
   "kube_service_upgrade_policy_success": "La 'politique de mise à niveau' a été modifiée",
-  "kube_service_upgrade_policy_error": "Échec de la modification de la 'politique de mise à niveau': {{ message }}"
+  "kube_service_upgrade_policy_error": "Échec de la modification de la 'politique de mise à niveau': {{ message }}",
+  "kube_service_terminate_title": "Supprimer mon service",
+  "kube_service_terminate_warning": "La suppression de cet élément entraînera l'effacement définitif de toutes les données correspondantes. L'action de suppression n'octroie aucun remboursement.",
+  "kube_service_terminate_enter": "Entrez \"TERMINATE\" dans le champ ci-dessous pour confirmer",
+  "kube_service_terminate_success": "Votre demande de suppression du cluster Kubernetes a bien été prise en compte. Un email vous permettant de valider votre demande de suppression vous a été envoyé",
+  "kube_service_terminate_error": "Une erreur est survenue lors de la suppression de votre cluster : {{ message }}"
 }

@@ -38,6 +38,9 @@
                         <oui-action-menu-item on-click="$ctrl.resetCluster()">
                             <span data-translate="kube_service_reset_title"></span>
                         </oui-action-menu-item>
+                        <oui-action-menu-item on-click="$ctrl.terminate()">
+                            <span data-translate="kube_service_terminate_title"></span>
+                        </oui-action-menu-item>
                     </oui-action-menu>
                 </oui-tile-definition>
                 <oui-tile-definition data-term="{{:: 'kube_service_cluster_version' | translate }}">

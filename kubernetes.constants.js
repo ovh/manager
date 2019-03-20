@@ -4,6 +4,7 @@ angular.module('managerApp')
     region: 'GRA5',
     deleteConfirmationInput: /^DELETE$/,
     resetConfirmationInput: /^RESET$/,
+    terminateInput: /^TERMINATE$/,
     kubeconfigFileName: 'kubeconfig',
     processingStatus: ['INSTALLING', 'DELETING', 'UPDATING', 'RESETTING'],
     status: {
