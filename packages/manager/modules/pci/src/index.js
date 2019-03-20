@@ -27,6 +27,8 @@ import components from './components';
 import offer from './offer';
 import project from './project';
 
+import './index.scss';
+
 import {
   CLOUD_INSTANCE_DEFAULTS,
   CLOUD_INSTANCE_DEFAULT_FALLBACK,
