@@ -1,4 +1,5 @@
 import angular from 'angular';
+import 'angular-animate';
 import '@ovh-ux/manager-core';
 import '@uirouter/angularjs';
 import 'oclazyload';
@@ -16,6 +17,7 @@ import 'ovh-ui-angular';
 import 'ovh-jquery-ui-draggable-ng';
 import 'ovh-angular-q-allsettled';
 import 'ovh-angular-pagination-front';
+import 'ovh-angular-responsive-page-switcher';
 
 import '@ovh-ux/manager-cloud-styles';
 import 'ovh-manager-webfont/dist/css/ovh-font.css';
@@ -72,6 +74,7 @@ angular
     'ovh-jquery-ui-draggable-ng',
     'ovh-angular-q-allSettled',
     'ovh-angular-pagination-front',
+    'ovh-angular-responsive-page-switcher',
     'oui',
   ])
   .config(/* @ngInject */($stateProvider) => {
