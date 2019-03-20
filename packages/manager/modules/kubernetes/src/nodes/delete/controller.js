@@ -5,13 +5,13 @@ export default class KubernetesNodesDeleteCtrl {
   constructor(
     $stateParams, $uibModalInstance,
     Kubernetes, nodeId,
-    CLOUD_FLAVORTYPE_CATEGORY, KUBERNETES,
+    CUC_FLAVOR_FLAVORTYPE_CATEGORY, KUBERNETES,
   ) {
     this.$stateParams = $stateParams;
     this.$uibModalInstance = $uibModalInstance;
     this.Kubernetes = Kubernetes;
     this.nodeId = nodeId;
-    this.CLOUD_FLAVORTYPE_CATEGORY = CLOUD_FLAVORTYPE_CATEGORY;
+    this.CUC_FLAVOR_FLAVORTYPE_CATEGORY = CUC_FLAVOR_FLAVORTYPE_CATEGORY;
     this.KUBERNETES = KUBERNETES;
   }
 

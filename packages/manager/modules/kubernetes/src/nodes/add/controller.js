@@ -8,20 +8,20 @@ export default class KubernetesNodesAddCtrl {
   /* @ngInject */
   constructor(
     $q, $state, $stateParams, $translate, $uibModalInstance,
-    CloudFlavorService, Kubernetes, OvhApiMe, OvhCloudPriceHelper, projectId,
-    CLOUD_FLAVORTYPE_CATEGORY, KUBERNETES,
+    CucFlavorService, Kubernetes, OvhApiMe, CucPriceHelper, projectId,
+    CUC_FLAVOR_FLAVORTYPE_CATEGORY, KUBERNETES,
   ) {
     this.$q = $q;
     this.$state = $state;
     this.$stateParams = $stateParams;
     this.$translate = $translate;
     this.$uibModalInstance = $uibModalInstance;
-    this.CloudFlavorService = CloudFlavorService;
+    this.CucFlavorService = CucFlavorService;
     this.Kubernetes = Kubernetes;
     this.OvhApiMe = OvhApiMe;
-    this.OvhCloudPriceHelper = OvhCloudPriceHelper;
+    this.CucPriceHelper = CucPriceHelper;
     this.projectId = projectId;
-    this.CLOUD_FLAVORTYPE_CATEGORY = CLOUD_FLAVORTYPE_CATEGORY;
+    this.CUC_FLAVOR_FLAVORTYPE_CATEGORY = CUC_FLAVOR_FLAVORTYPE_CATEGORY;
     this.KUBERNETES = KUBERNETES;
   }
 
@@ -54,7 +54,7 @@ export default class KubernetesNodesAddCtrl {
         /**
         * @type {{id: string, familyName: string, flavors: Object[]}}
         */
-        this.flavorFamilies = this.CLOUD_FLAVORTYPE_CATEGORY
+        this.flavorFamilies = this.CUC_FLAVOR_FLAVORTYPE_CATEGORY
           .filter(type => includes(this.KUBERNETES.flavorTypes, type.id))
           .map(category => (
             {
@@ -78,13 +78,13 @@ export default class KubernetesNodesAddCtrl {
   }
 
   getPrices() {
-    return this.OvhCloudPriceHelper.getPrices(this.project.projectId);
+    return this.CucPriceHelper.getPrices(this.project.projectId);
   }
 
   getQuotaOverflow(flavor, quotas) {
     // addOverQuotaInfos adds 'disabled' key to flavor parameter
     const testedFlavor = clone(flavor);
-    this.CloudFlavorService.constructor.addOverQuotaInfos(testedFlavor, quotas);
+    this.CucFlavorService.constructor.addOverQuotaInfos(testedFlavor, quotas);
     return get(testedFlavor, 'disabled');
   }
 
