@@ -123,7 +123,7 @@ export default /* @ngInject */ function CloudProjectComputeInfrastructureVirtual
   ovhDocUrl,
   CucRegionService,
   CLOUD_FLAVOR_SPECIFIC_IMAGE,
-  CLOUD_CUC_FLAVOR_FLAVORTYPE_CATEGORY,
+  CUC_FLAVOR_FLAVORTYPE_CATEGORY,
   CUC_FLAVOR_INSTANCE_CPU_FREQUENCY,
   CLOUD_INSTANCE_DEFAULT_FALLBACK,
   CLOUD_INSTANCE_HAS_GUARANTEED_RESSOURCES,
@@ -557,7 +557,7 @@ export default /* @ngInject */ function CloudProjectComputeInfrastructureVirtual
       self.vmInEdition.flavor = mainAssociatedFlavor;
     }
 
-    angular.forEach(CLOUD_CUC_FLAVOR_FLAVORTYPE_CATEGORY, (category) => {
+    angular.forEach(CUC_FLAVOR_FLAVORTYPE_CATEGORY, (category) => {
       self.categoriesVmInEditionFlavor[category.id] = self.getRealFlavor(
         self.categoriesVmInEditionFlavor[category.id],
         category.id,
@@ -753,7 +753,7 @@ export default /* @ngInject */ function CloudProjectComputeInfrastructureVirtual
 
   function getCategoryFromFlavor(flavor, details) {
     let cat = null;
-    angular.forEach(CLOUD_CUC_FLAVOR_FLAVORTYPE_CATEGORY, (category) => {
+    angular.forEach(CUC_FLAVOR_FLAVORTYPE_CATEGORY, (category) => {
       if (includes(category.types, flavor)) {
         if (details) {
           cat = category;
