@@ -20,6 +20,7 @@ angular
     'ovh-api-services',
     'pascalprecht.translate',
     'ui.router',
+    'ui.validate',
   ])
   .config(/* @ngInject */($stateProvider) => {
     $stateProvider.state('iaas.pci-project.compute.volume', {

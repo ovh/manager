@@ -21,6 +21,7 @@ angular
     'ui.router',
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
+    'ui.validate',
   ])
   .config(/* @ngInject */($stateProvider) => {
     $stateProvider
