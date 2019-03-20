@@ -8,11 +8,11 @@ import 'angular-ui-bootstrap';
 
 import 'ovh-ui-kit/dist/oui.css';
 
-import controller from './kubernetes.controller';
-import template from './kubernetes.html';
-import service from './kubernetes.service';
+import controller from './controller';
+import template from './template.html';
+import service from './service';
 
-import { KUBERNETES } from './kubernetes.constants';
+import { KUBERNETES } from './constants';
 
 import containersComponent from './containers/index';
 import nodesComponent from './nodes/index';

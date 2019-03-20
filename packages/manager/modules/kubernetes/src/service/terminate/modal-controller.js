@@ -1,7 +1,7 @@
-import controller from './kubernetes-service-reset.controller';
-import template from './kubernetes-service-reset.html';
+import controller from './controller';
+import template from './template.html';
 
-export default class kubernetesResetModalCtrl {
+export default class kubernetesTerminateModalCtrl {
   /* @ngInject */
   constructor($scope, $state, $stateParams, CucControllerHelper) {
     this.$scope = $scope;
@@ -16,7 +16,7 @@ export default class kubernetesResetModalCtrl {
       modalConfig: {
         template,
         controller,
-        controllerAs: 'ctrl',
+        controllerAs: '$ctrl',
         backdrop: 'static',
       },
     }).finally(() => this.onCloseModal());

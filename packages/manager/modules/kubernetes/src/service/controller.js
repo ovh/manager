@@ -1,8 +1,8 @@
 import find from 'lodash/find';
 import set from 'lodash/set';
 
-import upgradePolicyController from './upgrade-policy/kubernetes-service-upgrade-policy.controller';
-import upgradePolicyTemplate from './upgrade-policy/kubernetes-service-upgrade-policy.html';
+import upgradePolicyController from './upgrade-policy/controller';
+import upgradePolicyTemplate from './upgrade-policy/template.html';
 
 export default class KubernetesServiceCtrl {
   /* @ngInject */

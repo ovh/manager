@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-import controller from './kubernetes-service-terminate.modal.controller';
+import controller from './modal-controller';
 
 const moduleName = 'ovhManagerKubernetesServiceTerminate';
 

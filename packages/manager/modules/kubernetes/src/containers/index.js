@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-import kubernetesContainersComponent from './kubernetes-containers.component';
+import kubernetesContainersComponent from './component';
 
 const moduleName = 'ovhManagerKubernetesContainers';
 

@@ -4,7 +4,7 @@ import resetService from './reset/index';
 import terminateService from './terminate/index';
 import updateService from './update/index';
 
-import kubernetesServiceComponent from './kubernetes-service.component';
+import kubernetesServiceComponent from './component';
 
 const moduleName = 'ovhManagerKubernetesService';
 

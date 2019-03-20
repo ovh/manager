@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-import controller from './kubernetes-service-update.modal.controller';
+import controller from './modal-controller';
 
 const moduleName = 'ovhManagerKubernetesServiceUpdate';
 

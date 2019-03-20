@@ -18,7 +18,7 @@ angular
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-        return import('./kubernetes.component')
+        return import('./component')
           .then(mod => $ocLazyLoad.inject(mod.default || mod));
       },
     });

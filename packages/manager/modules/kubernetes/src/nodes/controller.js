@@ -3,11 +3,11 @@ import get from 'lodash/get';
 import head from 'lodash/head';
 import set from 'lodash/set';
 
-import addController from './add/kubernetes-nodes-add.controller';
-import addTemplate from './add/kubernetes-nodes-add.html';
+import addController from './add/controller';
+import addTemplate from './add/template.html';
 
-import deleteController from './delete/kubernetes-nodes-delete.controller';
-import deleteTemplate from './delete/kubernetes-nodes-delete.html';
+import deleteController from './delete/controller';
+import deleteTemplate from './delete/template.html';
 
 export default class KubernetesNodesCtrl {
   /* @ngInject */

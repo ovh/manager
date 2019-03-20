@@ -1,5 +1,5 @@
-import controller from './kubernetes-service-update.controller';
-import template from './kubernetes-service-update.html';
+import controller from './controller';
+import template from './template.html';
 
 export default class kubernetesUpdateModalCtrl {
   /* @ngInject */

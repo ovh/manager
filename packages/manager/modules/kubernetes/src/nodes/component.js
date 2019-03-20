@@ -1,5 +1,5 @@
-import controller from './kubernetes-service.controller';
-import template from './kubernetes-service.html';
+import controller from './controller';
+import template from './template.html';
 
 const component = {
   bindings: {
