@@ -3,9 +3,9 @@
        data-ng-submit="kubeClusterUpgradePolicy.$valid && $ctrl.updateUpgradePolicy()"
        novalidate>
     <oui-modal data-title="{{ ::'kube_service_upgrade_policy_model_title' | translate }}"
-               data-primary-label="{{ ::'common_confirm' | translate }}"
+               data-primary-label="{{ ::'kube_service_common_confirm' | translate }}"
                data-secondary-action="$ctrl.cancel()"
-               data-secondary-label="{{ ::'common_cancel' | translate }}"
+               data-secondary-label="{{ ::'kube_service_common_cancel' | translate }}"
                data-on-dismiss="$ctrl.cancel()"
                data-loading="$ctrl.save.loading">
         <oui-field>
