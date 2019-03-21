@@ -23,7 +23,7 @@
         <tbody data-ng-if="!$ctrl.loading" class="oui-datagrid__body">
              <tr data-ng-repeat="snapshot in $ctrl.snapshots | orderBy: 'region' track by snapshot.region" class="oui-datagrid__row">
                 <td data-title="{{ :: 'cpbc_snapshot_col_location' | translate }}" class="oui-datagrid__cell">
-                    <span data-ng-bind=":: $ctrl.RegionService.getTranslatedMicroRegion(snapshot.region)"></span>
+                    <span data-ng-bind=":: $ctrl.CucRegionService.getTranslatedMicroRegion(snapshot.region)"></span>
                 </td>
                 <td data-title="{{ :: 'cpbc_snapshot_col_type' | translate }}" class="oui-datagrid__cell">
                     <span data-translate="cpbc_snapshot_type_instance"></span>

@@ -561,6 +561,21 @@ export const PCI_URLS = {
   },
 };
 
+export const TRACKING_CLOUD = {
+  pci_menu_header_instances: 'cloud::pci::menu::instances',
+  pci_menu_header_ssh_keys: 'cloud::pci::menu::ssh_keys',
+  pci_menu_header_snapshots: 'cloud::pci::menu::snapshots',
+  pci_menu_header_volume: 'cloud::pci::menu::additional_drives',
+  pci_menu_header_storage: 'cloud::pci::menu::storage',
+  pci_menu_header_openstack_users: 'cloud::pci::menu::openstack_users',
+  pci_menu_header_quota: 'cloud::pci::menu::quota',
+  pci_menu_header_regions: 'cloud::pci::menu::add_localisations',
+  pci_menu_header_consumption: 'cloud::pci::menu::consumption',
+  pci_menu_header_billing_history: 'cloud::pci::menu::billing_history',
+  pci_menu_header_credits: 'cloud::pci::menu::credits_and_vouchers',
+  pci_menu_header_contracts: 'cloud::pci::menu::contracts',
+};
+
 export default {
   CLOUD_INSTANCE_DEFAULTS,
   CLOUD_INSTANCE_DEFAULT_FALLBACK,
@@ -577,4 +592,5 @@ export default {
   CLOUD_PCA_FILE_STATE,
   PCI_REDIRECT_URLS,
   PCI_URLS,
+  TRACKING_CLOUD,
 };

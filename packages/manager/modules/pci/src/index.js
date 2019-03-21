@@ -48,6 +48,7 @@ import {
   CLOUD_PCA_FILE_STATE,
   PCI_REDIRECT_URLS,
   PCI_URLS,
+  TRACKING_CLOUD,
 } from './constants';
 
 const moduleName = 'ovhManagerPci';
@@ -118,6 +119,7 @@ angular
   .constant('CLOUD_PROJECT_STATE', CLOUD_PROJECT_STATE)
   .constant('CLOUD_PCA_FILE_STATE', CLOUD_PCA_FILE_STATE)
   .constant('PCI_REDIRECT_URLS', PCI_REDIRECT_URLS)
-  .constant('PCI_URLS', PCI_URLS);
+  .constant('PCI_URLS', PCI_URLS)
+  .constant('TRACKING_CLOUD', TRACKING_CLOUD);
 
 export default moduleName;

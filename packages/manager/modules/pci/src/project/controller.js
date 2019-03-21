@@ -5,16 +5,19 @@ export default /* @ngInject */ function CloudProjectCtrl(
   $state,
   $stateParams,
   $transitions,
+  atInternet,
   CucControllerHelper,
   ovhUserPref,
   OvhApiCloud,
   CloudProjectRightService,
   coreConfig,
+  TRACKING_CLOUD,
 ) {
   const self = this;
   const serviceName = $stateParams.projectId;
   const onboardingKey = 'SHOW_PCI_ONBOARDING';
   $scope.region = coreConfig.getRegion();
+  self.TRACKING_CLOUD = TRACKING_CLOUD;
 
   self.loaders = {
     project: false,
@@ -27,6 +30,13 @@ export default /* @ngInject */ function CloudProjectCtrl(
 
   self.includes = function includes(stateName) {
     return $state.includes(stateName);
+  };
+
+  self.trackTab = function trackTab(name) {
+    atInternet.trackClick({
+      name,
+      type: 'action',
+    });
   };
 
   // reference to our rootScope state change listener

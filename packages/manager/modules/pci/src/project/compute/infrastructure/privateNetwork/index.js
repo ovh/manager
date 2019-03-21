@@ -9,9 +9,6 @@ import dialog from './dialog';
 import directive from './directive';
 import service from './service';
 
-// import './private-network.less';
-// import './private-networks.less';
-
 const moduleName = 'ovhManagerPciProjectComputeInfrastructurePrivateNetwork';
 
 angular
