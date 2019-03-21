@@ -31,7 +31,8 @@
                 <p class="oui-modal__text" data-ng-if="sizeForm.$invalid" data-translate="cpciif_buy_limit_info" data-translate-values="{ ips : CPCIIpFailoverBuyCtrl.form.maxIp}"></p>
 
                 <div class="oui-field">
-                    <label for="instance" class="oui-field__label oui-label">{{ 'cpciif_buy_instance_select' + (CPCIIpFailoverBuyCtrl.form.quantity > 1 ? '_plural' : '') | translate }}</label>
+                    <label for="instance" class="oui-field__label oui-label"
+                        data-translate="{{ 'cpciif_buy_instance_select' + (CPCIIpFailoverBuyCtrl.form.quantity > 1 ? '_plural' : '') }}"></label>
                     <div class="oui-field__content">
                         <div class="oui-field-control">
                             <label class="oui-select">
@@ -54,7 +55,8 @@
                 </div>
 
                 <div class="oui-field" data-ng-if="CPCIIpFailoverBuyCtrl.form.instance">
-                    <label for="country" class="oui-field__label oui-label">{{ 'cpciif_buy_country_select' + (CPCIIpFailoverBuyCtrl.form.quantity > 1 ? '_plural' : '') | translate}}</label>
+                    <label for="country" class="oui-field__label oui-label"
+                        data-translate="{{ 'cpciif_buy_country_select' + (CPCIIpFailoverBuyCtrl.form.quantity > 1 ? '_plural' : '') }}"></label>
                     <div class="oui-field__content">
                         <div class="oui-field-control">
                             <label class="oui-select">

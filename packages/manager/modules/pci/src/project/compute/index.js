@@ -18,8 +18,6 @@ import componentsProject from '../../components/project';
 import controller from './controller';
 import template from './template.html';
 
-// TODO : import './index.less';
-
 const moduleName = 'ovhManagerPciProjectCompute';
 
 angular

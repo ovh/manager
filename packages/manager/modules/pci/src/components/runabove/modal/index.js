@@ -3,8 +3,6 @@ import angular from 'angular';
 import directive from './directive';
 import service from './service';
 
-// TODO : import './index.less';
-
 const moduleName = 'ovhManagerPciComponentsRunaboveModal';
 
 angular

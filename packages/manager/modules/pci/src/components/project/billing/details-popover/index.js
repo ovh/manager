@@ -9,8 +9,6 @@ import service from './service';
 import instanceTemplate from './instance.template.html';
 import volumeTemplate from './volume.template.html';
 
-// TODO : import './index.less';
-
 const moduleName = 'ovhManagerPciComponentsProjectBillingDetailsPopover';
 
 angular

@@ -219,7 +219,7 @@
                                      data-ng-if="snapshot.isInstalledOnVm"
                                      data-uib-tooltip="{{ snapshot.installedVmNames.join(', ') }}">
                                    <i class="fa fa-exclamation-circle right-space-m4"></i>
-                                   <strong>{{ (snapshot.installedVm.length > 1 ? 'cpc_snapshot_installed_info_plural' : 'cpc_snapshot_installed_info') | translate:{nbVms: snapshot.installedVm.length} }}</strong>
+                                   <strong data-ng-bind-html="{{ (snapshot.installedVm.length > 1 ? 'cpc_snapshot_installed_info_plural' : 'cpc_snapshot_installed_info') | translate:{nbVms: snapshot.installedVm.length} }}"></strong>
                                </span>
                         </label>
                     </td>

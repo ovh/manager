@@ -11,8 +11,6 @@ import controller from './controller';
 import template from './template.html';
 import service from './service';
 
-// TODO : import './index.less';
-
 const moduleName = 'ovhManagerPciProjectBilling';
 
 angular

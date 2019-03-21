@@ -8,8 +8,6 @@ import cpuRamTemplate from './cpu-ram.html';
 import cpuTemplate from './cpu.html';
 import ramTemplate from './ram.html';
 
-// TODO: import './index.less';
-
 const moduleName = 'ovhManagerPciProjectComputeInfrastructurePopover';
 
 angular

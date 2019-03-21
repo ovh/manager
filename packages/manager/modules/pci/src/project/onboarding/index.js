@@ -6,8 +6,6 @@ import 'angular-ui-bootstrap';
 
 import controller from './controller';
 
-// TODO : import './index.less';
-
 const moduleName = 'ovhManagerPciProjectOnboarding';
 
 angular

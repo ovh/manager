@@ -16,8 +16,6 @@ import failoverBuyTemplate from './failover/buy/template.html';
 import failoverImportController from './failover/import/controller';
 import failoverImportTemplate from './failover/import/template.html';
 
-// TODO : import './add_OLD_/index.less';
-
 const moduleName = 'ovhManagerPciProjectComputeInfrastructureIp';
 
 angular

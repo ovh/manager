@@ -4,7 +4,6 @@ import set from 'lodash/set';
 export default /* @ngInject */ function (
   $scope,
   $translate,
-  TranslateService,
   OvhApiMe,
   PCI_URLS,
   coreConfig,
@@ -17,7 +16,8 @@ export default /* @ngInject */ function (
     code: 'pcs',
     name: $translate.instant('add_storage_category_pcs'),
     moreInfo: {
-      url: PCI_URLS[coreConfig.getRegion()].website_order.pcs.GB || PCI_URLS[coreConfig.getRegion()].website_order.pcs.WE,
+      url: PCI_URLS[coreConfig.getRegion()].website_order.pcs.GB
+        || PCI_URLS[coreConfig.getRegion()].website_order.pcs.WE,
     },
     options: [{
       type: 'static',
@@ -44,7 +44,8 @@ export default /* @ngInject */ function (
     code: 'pca',
     name: $translate.instant('add_storage_category_pca'),
     moreInfo: {
-      url: PCI_URLS[coreConfig.getRegion()].website_order.pca.GB || PCI_URLS[coreConfig.getRegion()].website_order.pca.WE,
+      url: PCI_URLS[coreConfig.getRegion()].website_order.pca.GB
+        || PCI_URLS[coreConfig.getRegion()].website_order.pca.WE,
     },
     options: [{
       type: 'archive',

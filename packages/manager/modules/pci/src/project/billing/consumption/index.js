@@ -10,8 +10,6 @@ import estimate from './estimate';
 import controller from './controller';
 import template from './template.html';
 
-// TODO : import './index.less';
-
 const moduleName = 'ovhManagerPciProjectBillingConsumption';
 
 angular
