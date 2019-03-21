@@ -13,7 +13,7 @@
  "cpbc_hourly_instance_pass_to_monthly_error": "Oops, we could not add this instance to monthly billing. ",
  "cpbc_hourly_instance_pass_to_monthly_price_error": "Oops. We were unable to retrieve the amount for the monthly fixed rate.",
  "cpbc_hourly_instance_pass_to_monthly_info": "You will be charged right away, on a pro-rata basis, for the days remaining in the current month.",
- "cpbc_hourly_instance_pass_to_monthly_button": "Switch to monthly billing ({{price}} exc. VAT/month)",
+ "cpbc_hourly_instance_pass_to_monthly_button": "Switch to monthly billing ({{price}} ex. VAT/month)",
  "cpbc_hourly_instance_deleted": "Instance deleted",
  "cpbc_hourly_instance_pass_to_monthly": "Switch the instance to monthly billing",
  "cpbc_object_storage_detail_title": "Object storage",

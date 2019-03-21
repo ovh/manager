@@ -170,7 +170,7 @@
                                     <li class="volume-detail-region"
                                         data-ng-repeat="listedRegion in ComputeInfrastructureDiagramCtrl.getUnlinkedVolumesRegions() | orderBy:'toString()'">
                                         <span class="region-label"
-                                              data-ng-bind="::ComputeInfrastructureDiagramCtrl.regionService.getTranslatedMicroRegion(listedRegion)"></span>
+                                              data-ng-bind="::ComputeInfrastructureDiagramCtrl.CucRegionService.getTranslatedMicroRegion(listedRegion)"></span>
 
                                         <!-- Loop over volumes in current listed region -->
                                         <ul class="volume-content-unlinked-items clearfix">

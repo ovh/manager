@@ -26,7 +26,7 @@
         <tbody data-ng-if="!$ctrl.loading" class="oui-datagrid__body">
             <tr class="oui-datagrid__row" data-ng-repeat="storage in $ctrl.storages | orderBy: 'region' track by storage.region">
                 <td class="oui-datagrid__cell" data-title="{{ :: 'cpbc_archive_storage_col_location' | translate }}">
-                    <span data-ng-bind=":: $ctrl.RegionService.getTranslatedMicroRegion(storage.region)"></span>
+                    <span data-ng-bind=":: $ctrl.CucRegionService.getTranslatedMicroRegion(storage.region)"></span>
                 </td>
                 <td class="oui-datagrid__cell text-right" data-title="{{ :: 'cpbc_archive_storage_col_consumption' | translate }}">
                     <span>{{(storage.stored ? storage.stored.totalPrice : 0).toFixed(2) + ' ' + $ctrl.currencySymbol }}</span>

@@ -7,7 +7,7 @@
  "cpci_add_regions_get_regions_error": "Nie można pobrać informacji o regionie: {{message}}",
  "cpci_add_regions_get_available_regions_error": "Błąd pobierania dostępnych regionów: {{message}}",
  "cpci_add_regions_add_region_error": "Nie można dodać regionu: {{message}}",
- "cpci_add_regions_add_region_success": "The activation of your new region {{ code }} is in progress, it could take up to 60 minutes. You'll be notified by mail once the region is available.",
+ "cpci_add_regions_add_region_success": "Aktywacja regionu {{ code }} w toku, może to potrwać do 60 minut. Zostaniesz powiadomiony e-mailem, kiedy region będzie dostępny.",
  "cpci_add_regions_all_added": "Wszystkie dodane regiony",
  "cpci_add_regions_info_message": "Dodanie nowych regionów może zająć kilka minut. Po dodaniu regionu będziesz mógł dodać serwer lub kontener."
 }

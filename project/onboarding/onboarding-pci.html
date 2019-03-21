@@ -1,4 +1,4 @@
-<oui-slideshow data-on-dismiss="$ctrl.dismiss()" data-theme="pci">
+<oui-slideshow data-on-dismiss="$ctrl.dismiss()" data-theme="pci" data-on-panel-change="$ctrl.onPanelChange(direction, index)">
     <oui-slideshow-panel class="oui-slideshow-panel__center" data-heading="{{ ::'pci_slideshow_heading1' | translate }}">
         <span data-translate="pci_slideshow_description_generic"></span>
     </oui-slideshow-panel>
@@ -34,7 +34,7 @@
     <oui-slideshow-panel
         data-heading="{{ ::'pci_slideshow_heading5' | translate }}"
         data-picture="assets/images/onboarding/openstack.jpg"
-        data-on-click="$ctrl.dismiss()"
+        data-on-click="$ctrl.dismiss(true)"
         data-label="{{ ::'pci_slideshow_button_discover' | translate }}">
         <span data-translate="pci_slideshow_description_openstack"></span>
     </oui-slideshow-panel>
