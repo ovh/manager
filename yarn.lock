@@ -2850,6 +2850,11 @@ bootstrap4@twbs/bootstrap#v4.0.0:
   version "4.0.0"
   resolved "https://codeload.github.com/twbs/bootstrap/tar.gz/8a628b943cf31ca0a002c08af661a95772480225"
 
+bootstrap@3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-3.3.0.tgz#27d83ec81c51b3f86d20cf610ded3724e4b7ace3"
+  integrity sha1-J9g+yBxRs/htIM9hDe03JOS3rOM=
+
 bootstrap@^3.3.7:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-3.4.0.tgz#f8d77540dd3062283d2ae7687e21c1e691961640"
@@ -9905,6 +9910,13 @@ ovh-ui-kit@^2.24.2, ovh-ui-kit@~2.24.0:
   version "2.24.2"
   resolved "https://registry.yarnpkg.com/ovh-ui-kit/-/ovh-ui-kit-2.24.2.tgz#27e7c945c81f22745657d4eeb8b6a96022a87828"
   integrity sha512-yLdyZskNlDUnx29XCYY5SppcJYaVBrNOpa682D+rw1s79Y9/dwAlF6qWD47NWDRK2XzgJR8U7xTjvbersuGBwg==
+  dependencies:
+    less-plugin-remcalc "^0.1.0"
+
+ovh-ui-kit@^2.25.0:
+  version "2.25.0"
+  resolved "https://registry.yarnpkg.com/ovh-ui-kit/-/ovh-ui-kit-2.25.0.tgz#cf49d929dc9c4dde9478cb70c35246000bd49563"
+  integrity sha512-SapAsTK38S4YmyBJG7tclcCSnVlP3xY3mB1mS6xhtQ+/qBliGvPDxzlM5rCBP4+W77qqitRIwHpY8GpcFN7TLg==
   dependencies:
     less-plugin-remcalc "^0.1.0"
 

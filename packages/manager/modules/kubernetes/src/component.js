@@ -1,5 +1,7 @@
 import angular from 'angular';
 
+// import 'script-loader!bootstrap/dist/js/bootstrap.js'; // eslint-disable-line
+
 import '@ovh-ux/ng-ovh-cloud-universe-components';
 import '@ovh-ux/ng-ovh-sidebar-menu';
 import 'ovh-api-services';
@@ -8,7 +10,6 @@ import 'angular-ui-bootstrap';
 
 import '@ovh-ux/manager-cloud-styles';
 import 'ovh-ui-kit/dist/oui.css';
-import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
 import 'font-awesome/css/font-awesome.css';
 
 import kubernetesComponent from './kubernetes.component';
@@ -18,6 +19,7 @@ import containersComponent from './containers/index';
 import nodesComponent from './nodes/index';
 import serviceComponent from './service/index';
 
+import './index.less';
 import './index.scss';
 
 const moduleName = 'ovhManagerKubernetesComponent';

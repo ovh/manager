@@ -17,6 +17,7 @@ export default class kubernetesResetModalCtrl {
         template,
         controller,
         controllerAs: 'ctrl',
+        openedClass: 'kubernetes',
         backdrop: 'static',
       },
     }).finally(() => this.onCloseModal());

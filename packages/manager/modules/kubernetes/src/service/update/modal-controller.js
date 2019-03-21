@@ -18,6 +18,7 @@ export default class kubernetesUpdateModalCtrl {
         controller,
         controllerAs: '$ctrl',
         backdrop: 'static',
+        openedClass: 'kubernetes',
       },
     }).finally(() => this.onCloseModal());
   }

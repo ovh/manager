@@ -130,6 +130,7 @@ export default class KubernetesServiceCtrl {
         template: upgradePolicyTemplate,
         controller: upgradePolicyController,
         controllerAs: '$ctrl',
+        openedClass: 'kubernetes',
         backdrop: 'static',
         resolve: {
           upgradePolicy: () => this.cluster.updatePolicy,

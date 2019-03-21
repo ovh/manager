@@ -18,6 +18,7 @@ export default class kubernetesTerminateModalCtrl {
         controller,
         controllerAs: '$ctrl',
         backdrop: 'static',
+        openedClass: 'kubernetes',
       },
     }).finally(() => this.onCloseModal());
   }

@@ -97,6 +97,7 @@ export default class KubernetesNodesCtrl {
       controller: deleteController,
       controllerAs: '$ctrl',
       backdrop: 'static',
+      openedClass: 'kubernetes',
       resolve: {
         nodeId() {
           return nodeId;
@@ -120,6 +121,7 @@ export default class KubernetesNodesCtrl {
       controller: addController,
       controllerAs: '$ctrl',
       backdrop: 'static',
+      openedClass: 'kubernetes',
       resolve: {
         projectId() {
           return projectId;
