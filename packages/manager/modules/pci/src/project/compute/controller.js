@@ -41,7 +41,6 @@ export default class CloudProjectComputeCtrl {
 
   $onInit() {
     this.serviceName = this.$stateParams.projectId;
-    this.loading = true;
     this.infoMessageDismissed = true;
 
     this.loadMessage();
@@ -66,37 +65,10 @@ export default class CloudProjectComputeCtrl {
 
   init() {
     this.loading = true;
-
     this.OvhApiMe.v6().get().$promise.then((me) => {
       this.loadAnnouncements(me.ovhSubsidiary);
-    });
-
-    return this.shouldRedirectToProjectListView()
-      .then((redirect) => {
-        this.$scope.redirectToListView = redirect;
-      })
-      .finally(() => {
-        this.loading = false;
-      });
-  }
-
-  shouldRedirectToProjectListView() {
-    if (this.$stateParams.forceLargeProjectDisplay) {
-      return this.$q.when(false);
-    }
-
-    const hasTooMany = this.$q.all({
-      hasTooManyInstances: this.CloudProjectOrchestrator.hasTooManyInstances(
-        this.$stateParams.projectId,
-      ),
-      hasTooManyIps: this.CloudProjectOrchestrator.hasTooManyIps(this.$stateParams.projectId),
-    }).then(result => result.hasTooManyInstances || result.hasTooManyIps);
-
-    return this.CucUserPref.get(`cloud_project_${this.serviceName}_overview`).then((params) => {
-      if (params && params.hide) {
-        return false;
-      }
-      return hasTooMany;
+    }).finally(() => {
+      this.loading = false;
     });
   }
 
