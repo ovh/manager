@@ -1,32 +1,33 @@
-export const KUBERNETES = {
-  // For now only one region is available
-  region: 'GRA5',
-  deleteConfirmationInput: /^DELETE$/,
-  resetConfirmationInput: /^RESET$/,
-  terminateInput: /^TERMINATE$/,
-  kubeconfigFileName: 'kubeconfig',
-  processingStatus: ['INSTALLING', 'DELETING', 'UPDATING', 'RESETTING'],
-  status: {
-    READY: 'READY',
-    INSTALLING: 'INSTALLING',
-    DELETING: 'DELETING',
-    UPDATING: 'UPDATING',
-    RESETTING: 'RESETTING',
-    ERROR: 'ERROR',
-  },
-  flavorTypes: ['balanced', 'cpu', 'ram'],
-  displayNameMaxLength: 255,
-  workerNodesPolicyDelete: 'delete',
-  workerNodesPolicyReinstall: 'reinstall',
-  urls: {
-    kubectl: 'https://kubernetes.io/docs/reference/kubectl/overview/',
-    kubeconfig: 'https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig',
-    kubernetesDoc: 'https://labs.ovh.com/kubernetes-k8s/documentation',
-    kubernetesDashboard: 'https://labs.ovh.com/kubernetes-k8s/documentation/dashboard-installation',
-  },
-  upgradePolicies: ['NEVER_UPDATE', 'MINIMAL_DOWNTIME', 'ALWAYS_UPDATE'],
+export const DOC_URL = 'https://labs.ovh.com/kubernetes-k8s/documentation';
+
+export const PROCESSING_STATUS = [
+  'INSTALLING',
+  'DELETING',
+  'UPDATING',
+  'RESETTING',
+];
+
+export const REGION = 'GRA5';
+
+export const STATUS = {
+  READY: 'READY',
+  INSTALLING: 'INSTALLING',
+  DELETING: 'DELETING',
+  UPDATING: 'UPDATING',
+  RESETTING: 'RESETTING',
+  ERROR: 'ERROR',
 };
 
+export const UPGRADE_POLICIES = [
+  'NEVER_UPDATE',
+  'MINIMAL_DOWNTIME',
+  'ALWAYS_UPDATE',
+];
+
 export default {
-  KUBERNETES,
+  DOC_URL,
+  PROCESSING_STATUS,
+  REGION,
+  STATUS,
+  UPGRADE_POLICIES,
 };

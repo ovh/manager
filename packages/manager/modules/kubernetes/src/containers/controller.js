@@ -1,6 +1,7 @@
+import { DASHBOARD_URL } from './constants';
+
 export default class KubernetesContainersCtrl {
-  /* @ngInject */
-  constructor(KUBERNETES) {
-    this.KUBERNETES = KUBERNETES;
+  constructor() {
+    this.DASHBOARD_URL = DASHBOARD_URL;
   }
 }

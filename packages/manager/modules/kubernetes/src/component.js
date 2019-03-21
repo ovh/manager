@@ -14,8 +14,6 @@ import 'font-awesome/css/font-awesome.css';
 import kubernetesComponent from './kubernetes.component';
 import service from './service';
 
-import { KUBERNETES } from './constants';
-
 import containersComponent from './containers/index';
 import nodesComponent from './nodes/index';
 import serviceComponent from './service/index';
@@ -48,7 +46,6 @@ angular.module(moduleName, [
   })
   .run(/* @ngTranslationsInject:json ./translations */)
   .component('ovhManagerKubernetesComponent', kubernetesComponent)
-  .constant('KUBERNETES', KUBERNETES)
   .service('Kubernetes', service);
 
 

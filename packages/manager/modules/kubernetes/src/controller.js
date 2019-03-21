@@ -1,15 +1,18 @@
 import get from 'lodash/get';
 
+import { DOC_URL } from './constants';
+
 export default class KubernetesCtrl {
   /* @ngInject */
-  constructor($scope, Kubernetes, KUBERNETES) {
+  constructor($scope, Kubernetes) {
     this.$scope = $scope;
     this.Kubernetes = Kubernetes;
-    this.KUBERNETES = KUBERNETES;
   }
 
   $onInit() {
     this.loading = true;
+
+    this.DOC_URL = DOC_URL;
 
     this.$scope.$on('changeKubernetesName', (event, displayName) => {
       this.cluster.name = displayName;

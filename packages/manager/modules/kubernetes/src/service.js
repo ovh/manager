@@ -1,5 +1,7 @@
 import keyBy from 'lodash/keyBy';
 
+import { PROCESSING_STATUS, REGION, UPGRADE_POLICIES } from './constants';
+
 export default class Kubernetes {
   /* @ngInject */
   constructor(
@@ -11,7 +13,6 @@ export default class Kubernetes {
     OvhApiKube,
     OvhApiCloudProjectQuota,
     SidebarMenu,
-    KUBERNETES,
   ) {
     this.$q = $q;
     this.$translate = $translate;
@@ -21,7 +22,6 @@ export default class Kubernetes {
     this.OvhApiKube = OvhApiKube;
     this.OvhApiCloudProjectQuota = OvhApiCloudProjectQuota;
     this.SidebarMenu = SidebarMenu;
-    this.KUBERNETES = KUBERNETES;
     this.initializeUpgradePolicies();
   }
 
@@ -74,8 +74,8 @@ export default class Kubernetes {
     return this.OvhApiKube.PublicCloud().Node().v6().delete({ serviceName, nodeId }).$promise;
   }
 
-  isProcessing(status) {
-    return this.KUBERNETES.processingStatus.includes(status);
+  static isProcessing(status) {
+    return PROCESSING_STATUS.includes(status);
   }
 
   resetNodesCache() {
@@ -87,7 +87,7 @@ export default class Kubernetes {
     // Region is constant for now
     return this.OvhApiCloudProjectFlavor
       .v6()
-      .query({ serviceName, region: this.KUBERNETES.region })
+      .query({ serviceName, region: REGION })
       .$promise;
   }
 
@@ -135,7 +135,7 @@ export default class Kubernetes {
   }
 
   initializeUpgradePolicies() {
-    const upgradePolicyEnum = keyBy(this.KUBERNETES.upgradePolicies);
+    const upgradePolicyEnum = keyBy(UPGRADE_POLICIES);
     this.upgradePolicies = [
       {
         value: upgradePolicyEnum.ALWAYS_UPDATE,

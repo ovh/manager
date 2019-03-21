@@ -15,15 +15,15 @@
                    type="text"
                    name="kubeClusterResetConfirm"
                    data-ng-model="ctrl.deleteConfirmation"
-                   data-ng-pattern="ctrl.KUBERNETES.resetConfirmationInput"
+                   data-ng-pattern="ctrl.RESET_CONFIRMATION_INPUT"
                    required>
         </oui-field>
         <oui-field data-label="{{ ::'kube_service_reset_nodes' | translate }}">
             <oui-radio-group data-model="ctrl.workerNodesPolicy">
-                <oui-radio data-value="ctrl.KUBERNETES.workerNodesPolicyDelete">
+                <oui-radio data-value="ctrl.WORKER_NODE_POLICIES.DELETE">
                     <span data-translate="kube_service_reset_common_delete"></span>
                 </oui-radio>
-                <oui-radio data-value="ctrl.KUBERNETES.workerNodesPolicyReinstall">
+                <oui-radio data-value="ctrl.WORKER_NODE_POLICIES.REINSTALL">
                     <span data-translate="kube_service_reset_common_reinstall"></span>
                 </oui-radio>
             </oui-radio-group>

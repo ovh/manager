@@ -1,9 +1,11 @@
 import get from 'lodash/get';
 
+import { TERMINATE_INPUT } from './constants';
+
 export default class kubernetesTerminateCtrl {
   /* @ngInject */
   constructor($rootScope, $stateParams, $translate, $uibModalInstance, CucCloudMessage,
-    CucControllerHelper, Kubernetes, KUBERNETES) {
+    CucControllerHelper, Kubernetes) {
     // dependencies injections
     this.$rootScope = $rootScope;
     this.serviceName = $stateParams.serviceName;
@@ -12,7 +14,7 @@ export default class kubernetesTerminateCtrl {
     this.CucCloudMessage = CucCloudMessage;
     this.CucControllerHelper = CucControllerHelper;
     this.Kubernetes = Kubernetes;
-    this.KUBERNETES = KUBERNETES;
+    this.TERMINATE_INPUT = TERMINATE_INPUT;
   }
 
   $onInit() {

@@ -3,6 +3,8 @@ import get from 'lodash/get';
 import head from 'lodash/head';
 import set from 'lodash/set';
 
+import { STATUS } from '../constants';
+
 import addController from './add/controller';
 import addTemplate from './add/template.html';
 
@@ -14,7 +16,6 @@ export default class KubernetesNodesCtrl {
   constructor(
     $q, $state, $stateParams, $timeout, $translate, $uibModal,
     CucCloudMessage, Kubernetes,
-    KUBERNETES,
   ) {
     this.$q = $q;
     this.$state = $state;
@@ -24,7 +25,7 @@ export default class KubernetesNodesCtrl {
     this.$uibModal = $uibModal;
     this.CucCloudMessage = CucCloudMessage;
     this.Kubernetes = Kubernetes;
-    this.KUBERNETES = KUBERNETES;
+    this.STATUS = STATUS;
   }
 
   $onInit() {

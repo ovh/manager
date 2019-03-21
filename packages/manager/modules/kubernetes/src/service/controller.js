@@ -1,6 +1,9 @@
 import find from 'lodash/find';
 import set from 'lodash/set';
 
+import { CONFIG_FILENAME, KUBECONFIG_URL, KUBECTL_URL } from './constants';
+import { REGION, STATUS } from '../constants';
+
 import upgradePolicyController from './upgrade-policy/controller';
 import upgradePolicyTemplate from './upgrade-policy/template.html';
 
@@ -13,7 +16,6 @@ export default class KubernetesServiceCtrl {
     CucCloudMessage,
     CucControllerHelper,
     Kubernetes,
-    KUBERNETES,
   ) {
     this.$scope = $scope;
     this.$state = $state;
@@ -21,7 +23,6 @@ export default class KubernetesServiceCtrl {
     this.CucCloudMessage = CucCloudMessage;
     this.CucControllerHelper = CucControllerHelper;
     this.Kubernetes = Kubernetes;
-    this.KUBERNETES = KUBERNETES;
     this.upgradePolicy = null;
   }
 
@@ -31,6 +32,10 @@ export default class KubernetesServiceCtrl {
       billing: true,
       config: true,
     };
+
+    this.KUBECONFIG_URL = KUBECONFIG_URL;
+    this.KUBECTL_URL = KUBECTL_URL;
+    this.STATUS = STATUS;
 
     this.$scope.$on('kube.service.refresh', () => this.getClusterInfos());
 
@@ -69,7 +74,7 @@ export default class KubernetesServiceCtrl {
     return this.Kubernetes.getKubernetesCluster(this.serviceName)
       .then((cluster) => {
         this.cluster = cluster;
-        set(this.cluster, 'region', this.KUBERNETES.region);
+        set(this.cluster, 'region', REGION);
         this.setUpgradePolicy();
       })
       .catch(() => { this.displayError = true; })
@@ -92,7 +97,7 @@ export default class KubernetesServiceCtrl {
       .then((fileConfig) => {
         this.kubernetesConfig = {
           content: fileConfig.content,
-          fileName: this.KUBERNETES.kubeconfigFileName,
+          fileName: CONFIG_FILENAME,
         };
       })
       .catch(() => {

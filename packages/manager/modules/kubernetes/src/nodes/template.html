@@ -29,14 +29,14 @@
                         data-property="status">
                 <span class="oui-status"
                       data-ng-class="{
-                        'oui-status_success' : $row.status === $ctrl.KUBERNETES.status.READY,
-                        'oui-status_warning' : $ctrl.Kubernetes.isProcessing($row.status),
-                        'oui-status_error' : $row.status === $ctrl.KUBERNETES.status.ERROR
+                        'oui-status_success' : $row.status === $ctrl.STATUS.READY,
+                        'oui-status_warning' : $ctrl.Kubernetes.constructor.isProcessing($row.status),
+                        'oui-status_error' : $row.status === $ctrl.STATUS.ERROR
                         }"
                       data-translate="{{:: 'kube_service_cluster_status_' + $row.status }}">
                 </span>
             </oui-column>
-            <oui-action-menu data-disabled="$ctrl.Kubernetes.isProcessing($row.status) || $ctrl.Kubernetes.isProcessing($ctrl.cluster.status)" data-align="end" data-compact>
+            <oui-action-menu data-disabled="$ctrl.Kubernetes.constructor.isProcessing($row.status) || $ctrl.Kubernetes.constructor.isProcessing($ctrl.cluster.status)" data-align="end" data-compact>
                 <oui-action-menu-item data-text="{{:: 'kube_nodes_common_delete' | translate }}" data-on-click="$ctrl.confirmNodeDeletion($row.id)"></oui-action-menu-item>
             </oui-action-menu>
             <extra-top>

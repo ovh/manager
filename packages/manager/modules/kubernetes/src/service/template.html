@@ -6,7 +6,7 @@
         <span data-translate="kube_service_error"></span>
     </oui-message>
     <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
-    <p class="oui-paragraph" data-translate="kube_service_description_information" data-translate-values="{ url: $ctrl.KUBERNETES.urls.kubectl }"></p>
+    <p class="oui-paragraph" data-translate="kube_service_description_information" data-translate-values="{ url: $ctrl.KUBECTL_URL }"></p>
     <p class="oui-paragraph" data-translate="kube_service_description_reset"></p>
     <div class="row d-lg-flex">
         <!--Cluster Information-->
@@ -26,14 +26,14 @@
                     <oui-tile-description>
                         <span class="oui-status"
                               data-ng-class="{
-                                     'oui-status_success' : $ctrl.cluster.status === $ctrl.KUBERNETES.status.READY,
-                                     'oui-status_warning' : $ctrl.Kubernetes.isProcessing($ctrl.cluster.status),
-                                     'oui-status_error' : $ctrl.cluster.status === $ctrl.KUBERNETES.status.ERROR
+                                     'oui-status_success' : $ctrl.cluster.status === $ctrl.STATUS.READY,
+                                     'oui-status_warning' : $ctrl.Kubernetes.constructor.isProcessing($ctrl.cluster.status),
+                                     'oui-status_error' : $ctrl.cluster.status === $ctrl.STATUS.ERROR
                                      }"
                               data-translate="{{ 'kube_service_cluster_status_' + $ctrl.cluster.status }}">
                         </span>
                     </oui-tile-description>
-                    <oui-action-menu data-compact data-align="end" data-disabled="$ctrl.Kubernetes.isProcessing($ctrl.cluster.status)">
+                    <oui-action-menu data-compact data-align="end" data-disabled="$ctrl.Kubernetes.constructor.isProcessing($ctrl.cluster.status)">
                         <oui-action-menu-item on-click="$ctrl.resetCluster()">
                             <span data-translate="kube_service_reset"></span>
                         </oui-action-menu-item>
@@ -49,7 +49,7 @@
                               data-ng-if="!$ctrl.cluster.isUpToDate"
                               data-translate="kube_service_cluster_update_available"></span>
                     </oui-tile-description>
-                    <oui-action-menu data-compact data-align="end" data-ng-if="!$ctrl.cluster.isUpToDate" data-disabled="$ctrl.cluster.status !== $ctrl.KUBERNETES.status.READY">
+                    <oui-action-menu data-compact data-align="end" data-ng-if="!$ctrl.cluster.isUpToDate" data-disabled="$ctrl.cluster.status !== $ctrl.STATUS.READY">
                         <oui-action-menu-item data-on-click="$ctrl.updateCluster()">
                             <span data-translate="kube_service_common_update"></span>
                         </oui-action-menu-item>
@@ -87,7 +87,7 @@
                                 <oui-popover-content>
                                     <span data-translate="kube_service_file_help"></span>
                                     <a class="oui-link oui-link_icon"
-                                       href="{{:: $ctrl.KUBERNETES.urls.kubeconfig }}"
+                                       href="{{:: $ctrl.KUBECONFIG_URL}}"
                                        target="_blank" rel="noopener">
                                         <span data-translate="kube_service_file_more_information"></span>
                                         <span class="oui-icon oui-icon-external_link" aria-hidden="true"></span>

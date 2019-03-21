@@ -4,12 +4,14 @@ import get from 'lodash/get';
 import head from 'lodash/head';
 import includes from 'lodash/includes';
 
+import { FLAVOR_TYPES } from './constants';
+
 export default class KubernetesNodesAddCtrl {
   /* @ngInject */
   constructor(
     $q, $state, $stateParams, $translate, $uibModalInstance,
     CucFlavorService, Kubernetes, OvhApiMe, CucPriceHelper, projectId,
-    CUC_FLAVOR_FLAVORTYPE_CATEGORY, KUBERNETES,
+    CUC_FLAVOR_FLAVORTYPE_CATEGORY,
   ) {
     this.$q = $q;
     this.$state = $state;
@@ -22,7 +24,6 @@ export default class KubernetesNodesAddCtrl {
     this.CucPriceHelper = CucPriceHelper;
     this.projectId = projectId;
     this.CUC_FLAVOR_FLAVORTYPE_CATEGORY = CUC_FLAVOR_FLAVORTYPE_CATEGORY;
-    this.KUBERNETES = KUBERNETES;
   }
 
   $onInit() {
@@ -55,7 +56,7 @@ export default class KubernetesNodesAddCtrl {
         * @type {{id: string, familyName: string, flavors: Object[]}}
         */
         this.flavorFamilies = this.CUC_FLAVOR_FLAVORTYPE_CATEGORY
-          .filter(type => includes(this.KUBERNETES.flavorTypes, type.id))
+          .filter(type => includes(FLAVOR_TYPES, type.id))
           .map(category => (
             {
               id: category.id,
