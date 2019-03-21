@@ -1,0 +1,19 @@
+{
+  "cpc_loadbalancer_discover_title": "Découvrez nos Load Balancers",
+  "cpc_loadbalancer_discover_body": "Compatible Public Cloud, Private Cloud, VPS et serveurs sédiés, l'OVH Load Balancer répartit la charge entre vos différents services dans nos datacenters. Il vous assure la mise à l'échelle de votre infrastructure face à un trafic important, une tolérance aux pannes et des temps de réponse optimisés. Le tout avec un niveau de service ayant comme objectif le Zero Downtime. Pour une gestion simplifiée, l'OVH Load Balancer est également compatible API OVH et Openstack (sur les régions Varsovie, Francfort et Londres).",
+  "cpc_loadbalancer_order": "Commander un Load Balancer",
+  "cpc_loadbalancer_openstack_status_validated": "Oui",
+  "cpc_loadbalancer_openstack_status_expired": "Expiré",
+  "cpc_loadbalancer_openstack_status_created": "Non configuré",
+  "cpc_loadbalancer_openstack_status_not_imported": "Non configuré",
+  "cpc_loadbalancer_actions_configure": "Configurer",
+  "cpc_loadbalancer_status_custom": "Configuration avancée",
+  "cpc_loadbalancer_status_unavailable": "Indisponible",
+  "cpc_loadbalancer_status_deployed": "Déployé",
+  "cpc_loadbalancer_status_available": "Non configuré",
+  "cpc_loadbalancer_configure_advanced": "Mode avancé",
+  "cpc_loadbalancer_error": "Erreur Load Balancer",
+  "cpc_loadbalancer_name": "Load Balancer",
+  "cpc_loadbalancer_openstack_status": "Openstack",
+  "cpc_loadbalancer_status": "État"
+}

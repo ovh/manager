@@ -21,6 +21,7 @@ import cucRegion from './region';
 import cucProducts from './products';
 import cucSmoothScrollHere from './smoothScrollHere';
 import cucSpaceMeter from './space-meter';
+import cucSshKeyMin from './sshKeyMin';
 import cucUserPref from './user-pref';
 import cucVrack from './vrack';
 import cui from './cui';
@@ -51,6 +52,7 @@ angular
     cucProducts,
     cucSmoothScrollHere,
     cucSpaceMeter,
+    cucSshKeyMin,
     cucUserPref,
     cucVrack,
     cui,

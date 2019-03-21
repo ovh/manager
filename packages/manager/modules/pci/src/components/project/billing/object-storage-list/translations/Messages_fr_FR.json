@@ -1,0 +1,11 @@
+{
+  "cpbc_no_consumption_data": "Pas de consommation pour la période sélectionnée.",
+  "cpbc_object_storage_col_location": "Localisation",
+  "cpbc_object_storage_col_consumption": "Conso. espace",
+  "cpbc_object_storage_col_output_traffic": "Conso. trafic sortant",
+  "cpbc_object_storage_consumption_info_part1": "Vous êtes facturé en fonction de l'espace de stockage réel, mesuré chaque heure, à l'heure près.",
+  "cpbc_object_storage_consumption_info_part2": "Votre consommation correspond exactement à {{amount}} GioHeures.",
+  "cpbc_object_storage_output_traffic_info_part1": "Chaque gigaoctet sortant (quelque soit la destination) est facturé",
+  "cpbc_object_storage_output_traffic_info_part2": ". Vous avez consommé {{amount}} Gio sur la période. Le traffic entrant n'est jamais facturé.",
+  "cpb_error_message": "Oups, nous n'arrivons pas à récupérer toutes les informations."
+}

@@ -1,0 +1,17 @@
+{
+ "cpc_tab_infra": "Infrastructure.",
+ "cpc_tab_snapshot": "Backups",
+ "cpc_tab_volume": "Additional drives",
+ "cpc_tab_ssh": "SSH keys",
+ "cpc_tab_loadbalancer": "Load Balancing IP",
+ "cpc_tab_project": "Project management and consolidation",
+ "cpb_tab_quota": "Quota",
+ "cpc_message": "OVH Cloud has arrived in Germany! <a href=\"http://superlienverslapage\">Find out more about our Limburg data center.</a>",
+ "cloud_message_pci_uk1": "Our new UK1 area is opening in London, UK!",
+ "cloud_message_pci_uk1_link": "Find out how this could benefit you",
+ "cloud_message_pci_de1": "We've opened a new DE1 area in Frankfurt, Germany!",
+ "cloud_message_pci_de1_link": "Find out how this could benefit you",
+ "cloud_message_pci_g3": "New: launch of our GPU G3-30 and G3-120 instances, for your data science or machine learning projects.",
+ "cloud_message_pci_no_link": "Find out more...",
+ "cloud_message_pci_bandwitdh_xmas": "From December 19, 2017, until January 8, 2018 inclusively, get up to 10 GBits/s of network bandwidth (overall) for C2-120, B2-120, R2-240 and G3-120 instances."
+}

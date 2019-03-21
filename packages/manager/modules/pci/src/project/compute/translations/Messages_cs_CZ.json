@@ -1,0 +1,17 @@
+{
+ "cpc_tab_infra": "Infrastruktura",
+ "cpc_tab_snapshot": "Snapshots",
+ "cpc_tab_volume": "Přídavné disky",
+ "cpc_tab_ssh": "SSH klíče",
+ "cpc_tab_loadbalancer": "IP Load Balancer",
+ "cpc_tab_project": "Řízení a spotřeba projektu",
+ "cpb_tab_quota": "Limit",
+ "cpc_message": "OVH Cloud v Německu! <a href=\"http://superlienverslapage\">Seznamte se s naším datacentrem v Limburgu.</a>",
+ "cloud_message_pci_uk1": "Otevření nového datacentra UK1 v Londýně (Spojené království)!",
+ "cloud_message_pci_uk1_link": "Zjistěte, co to pro Vás znamená",
+ "cloud_message_pci_de1": "Otevření nového německého datacentra DE1 ve Frankfurtu! ",
+ "cloud_message_pci_de1_link": "Zjistěte, co to pro Vás znamená",
+ "cloud_message_pci_g3": "Novinka: instance GPU G3-30 a G3-120 pro Vaše data science a machine learning projekty.",
+ "cloud_message_pci_no_link": "Více informací",
+ "cloud_message_pci_bandwitdh_xmas": "Od 19.12.2017 do 08.01.2017 (včetně) dojde v případě instancí C2-120 / B2-120 / R2-240 / G3-120 k navýšení dostupné šířky pásma na 10 Gbps (globálně)."
+}

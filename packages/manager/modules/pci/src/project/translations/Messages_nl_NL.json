@@ -1,0 +1,11 @@
+{
+ "cpc_tab_billing": "Verbruik",
+ "cpc_tab_openstack_users": "Openstack",
+ "cpb_details_compute_error_message": "We kunnen geen informatie over de infrastructuren ophalen.",
+ "cpb_read_only_access_alert": "U heeft enkel een alleen-lezen account, bepaalde functies zijn niet toegankelijk. Voor schrijfrechten dient u contact op te nemen met uw administrator. ",
+ "cpc_header_tab_compute": "Compute",
+ "cpc_header_tab_tech_mgmt": "Techniek beheer",
+ "cpb_header_tab_admin_mgmt": "Administratief beheer",
+ "cpc_header_tab_regions": "De regio's",
+ "cpc_header_tab_openstack": "OpenStack users"
+}
