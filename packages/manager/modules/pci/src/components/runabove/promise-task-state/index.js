@@ -5,8 +5,6 @@ import 'angular-ui-bootstrap';
 
 import component from './component';
 
-// TODO : import './index.less';
-
 const moduleName = 'ovhManagerPciComponentsRunabovePromiseTastState';
 
 angular

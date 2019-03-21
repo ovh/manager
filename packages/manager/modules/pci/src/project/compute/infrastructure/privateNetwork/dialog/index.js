@@ -19,10 +19,6 @@ import subnetsRightTemplate from './partials/subnets-right.html';
 import vlanLeftTemplate from './partials/vlan-left.html';
 import vlanTooltipTemplate from './partials/vlan-tooltip.html';
 
-// import './index.less';
-// import './region.less';
-// import './menu-item.less';
-
 const moduleName = 'ovhManagerPciProjectComputeInfrastructurePrivateNetworkDialog';
 
 angular

@@ -734,14 +734,14 @@
                                                                     && ComputeInfrastructureDiagramCtrl.volumeEdit.srcVm.id != vm.id
                                                                     && ComputeInfrastructureDiagramCtrl.volumeEdit.volume.region === vm.region)
                                                             )">
-                                                            <input type="radio" id="vm-connection-check-{{ vm.id }}" name="myInputName"
+                                                            <input type="radio" data-ng-attr-id="vm-connection-check-{{ vm.id }}" name="myInputName"
                                                                    data-ng-change="ComputeInfrastructureDiagramCtrl.ipEdit.attach.changeRadioConnection(vm)"
                                                                    data-ng-disabled="ComputeInfrastructureDiagramCtrl.loaders.linkActionConfirm"
                                                                    data-ng-model="ComputeInfrastructureDiagramCtrl.model.currentLinkEdit.connectionVmId"
                                                                    data-ng-if="ComputeInfrastructureDiagramCtrl.model.currentLinkEdit.isManual"
                                                                    data-ng-value="vm.id"/>
 
-                                                            <input type="radio" id="vm-connection-check-{{ vm.id }}" name="myInputName"
+                                                            <input type="radio" data-ng-attr-id="vm-connection-check-{{ vm.id }}" name="myInputName"
                                                                    data-ng-disabled="ComputeInfrastructureDiagramCtrl.loaders.volumeActionConfirm"
                                                                    data-ng-if="ComputeInfrastructureDiagramCtrl.volumeEdit.action === 'moveCheckbox'"
                                                                    data-ng-model="ComputeInfrastructureDiagramCtrl.volumeEdit.targetVm"

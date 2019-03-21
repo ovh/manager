@@ -15,8 +15,6 @@ import stepNameTemplate from './step_name/template.html';
 import stepRegionController from './step_region/controller';
 import stepRegionTemplate from './step_region/template.html';
 
-// TODO : import './index.less';
-
 const moduleName = 'ovhManagerPciProjectStorageAddStorage';
 
 angular

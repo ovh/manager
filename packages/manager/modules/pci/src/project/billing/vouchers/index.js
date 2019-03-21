@@ -11,8 +11,6 @@ import service from './service';
 import addCreditAgoraController from './addCredit/agora.controller';
 import addCreditAgoraTemplate from './addCredit/agora.template.html';
 
-// TODO : import './index.less';
-
 const moduleName = 'ovhManagerPciProjectBillingVouchers';
 
 angular

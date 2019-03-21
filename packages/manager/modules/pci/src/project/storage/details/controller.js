@@ -390,8 +390,9 @@ export default /* @ngInject */ function (
   };
 
   $scope.fileDownload = function fileDownload(file) {
+    let index = 0;
     if (file.retrievalState === CLOUD_PCA_FILE_STATE.SEALED) {
-      const index = locationOf(file.name, $scope.objects);
+      index = locationOf(file.name, $scope.objects);
       if (index > -1) {
         $scope.objects[index] = assign(file, { sealingStateLoading: true });
       }

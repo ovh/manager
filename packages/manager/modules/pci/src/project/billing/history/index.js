@@ -10,8 +10,6 @@ import details from './details';
 import controller from './controller';
 import template from './template.html';
 
-// TODO : import './index.less';
-
 const moduleName = 'ovhManagerPciProjectBillingHistory';
 angular
   .module(moduleName, [

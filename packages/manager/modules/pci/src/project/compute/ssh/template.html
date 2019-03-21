@@ -194,7 +194,7 @@
                                 <textarea class="no-space no-style vertical-resize full-width no-outline"
                                     id="sshkey_{{ssh.id}}"
                                     readonly="true"
-                                    onclick="this.select();"
+                                    data-ng-click="$event.target.select();"
                                     data-ng-bind="::ssh.publicKey"></textarea>
                             </div>
                         </div>

@@ -155,7 +155,6 @@
                                              alt="{{ VmAddEditCtrl.vmInEdition.image.name }}" />
                                         <img class="img-circle img-circle-bordered" width="50" height="50"
                                              data-ng-src="assets/images/cloud/apps/{{VmAddEditCtrl.vmInEdition.image.applications[0]}}.png"
-                                             onerror="this.src='assets/images/cloud/apps/unknown.png'"
                                              data-ng-if="VmAddEditCtrl.model.imageType === 'IMAGE' && VmAddEditCtrl.vmInEdition.image.apps && VmAddEditCtrl.vmInEdition.image.applications.length > 0"
                                              alt="{{ VmAddEditCtrl.vmInEdition.image.applications[0] }}" />
                                         <img class="img-circle img-circle-bordered" width="50" height="50"
@@ -322,8 +321,8 @@
                                         {{:: 'cpcivm_addedit_sshkey_key_choose' | translate}}
                                         <span data-ng-if="VmAddEditCtrl.sshKeyRequired" class="red">*</span>
                                     </h3>
-                                    <h3 class="no-space" data-ng-if="VmAddEditCtrl.model.sshKeyId">
-                                        {{ (VmAddEditCtrl.vmInEdition.sshKey.name | limitTo:20) + ((VmAddEditCtrl.vmInEdition.sshKey.name.length > 20) ? '...' : '') }}
+                                    <h3 class="m-0 p-0 text-truncate" data-ng-if="VmAddEditCtrl.model.sshKeyId"
+                                        data-ng-bind="VmAddEditCtrl.vmInEdition.sshKey.name">
                                     </h3>
                                 </div>
                             </div>
@@ -595,11 +594,17 @@
                                  data-uib-tooltip="{{::'cpcivm_addedit_flavor_quota_ram'|translate}}"
                                  data-tooltip-placement="bottom">
                                 <i class="ovh-font ovh-font-cloudram inline-block vertical-middle"></i>
-                                <span data-ng-if="VmAddEditCtrl.displayData.quota.instance.maxRam === -1" class="vertical-middle fs10">
-                                    {{ :: VmAddEditCtrl.displayData.quota.instance.usedRAM > 0 ? ((VmAddEditCtrl.displayData.quota.instance.usedRAM * 1000000) | cucBytes:2) : VmAddEditCtrl.displayData.quota.instance.usedRAM }} / {{ :: 'cloud_common_unlimited' | translate }}
-                                </span>
-                                <span data-ng-if="VmAddEditCtrl.displayData.quota.instance.maxRam > -1" class="vertical-middle fs10">
-                                    {{ :: VmAddEditCtrl.displayData.quota.instance.usedRAM > 0 ? ((VmAddEditCtrl.displayData.quota.instance.usedRAM * 1000000) | cucBytes:2) : VmAddEditCtrl.displayData.quota.instance.usedRAM }} / {{ :: (VmAddEditCtrl.displayData.quota.instance.maxRam * 1000000) | cucBytes:2 }}
+                                <span class="vertical-middle fs10">
+                                    <span data-ng-if="VmAddEditCtrl.displayData.quota.instance.usedRAM > 0"
+                                        data-ng-bind="(VmAddEditCtrl.displayData.quota.instance.usedRAM * 1000000) | cucBytes:2"></span>
+                                    <span data-ng-if="VmAddEditCtrl.displayData.quota.instance.usedRAM <= 0">
+                                        <span data-ng-bind="VmAddEditCtrl.displayData.quota.instance.usedRAM"></span>
+                                        <span class="mx-1">/</span>
+                                        <span data-ng-if="VmAddEditCtrl.displayData.quota.instance.maxRam === -1"
+                                            data-translate="cloud_common_unlimited"></span>
+                                        <span data-ng-if="VmAddEditCtrl.displayData.quota.instance.maxRam > -1"
+                                            data-ng-bind="(VmAddEditCtrl.displayData.quota.instance.maxRam * 1000000) | cucBytes:2"></span>
+                                    </span>
                                 </span>
                             </div>
                         </div>
@@ -1050,7 +1055,6 @@
                                             <td class="no-space top-space-p8 bottom-space-p8" style="width: 50px;">
                                                 <img class="img-circle img-circle-bordered" width="50" height="50"
                                                      data-ng-src="assets/images/cloud/apps/{{:: app.applications[0] }}.png"
-                                                     onerror="this.src='assets/images/cloud/apps/unknown.png'"
                                                      alt="{{:: app.applications[0] }}" />
                                             </td>
                                             <td>
@@ -1529,8 +1533,8 @@
                                 <tr ng-show="VmAddEditCtrl.displayData.sshKeyUnavailables">
                                     <td colspan="3" class="text-center well well-sm low-padding">
                                         <p class="text-center text-muted fs11 no-space"
-                                           data-ng-init="translateValues = {count : VmAddEditCtrl.displayData.sshKeyUnavailables, region : VmAddEditCtrl.regionService.getTranslatedMicroRegion(VmAddEditCtrl.vmInEdition.region)}">
-                                           {{ :: VmAddEditCtrl.displayData.sshKeys.outRegion.length > 1 ? ('cpcivm_add_ssh_key_out_region_plural' | translate:translateValues) : ('cpcivm_add_ssh_key_out_region' | translate:translateValues) }}
+                                            data-translate="{{ 'cpcivm_add_ssh_key_out_region' + (VmAddEditCtrl.displayData.sshKeys.outRegion.length > 1 ? '_plural' : '') }}"
+                                            data-translate-values="{count : VmAddEditCtrl.displayData.sshKeyUnavailables, region : VmAddEditCtrl.regionService.getTranslatedMicroRegion(VmAddEditCtrl.vmInEdition.region)}">
                                         </p>
                                     </td>
                                 </tr>

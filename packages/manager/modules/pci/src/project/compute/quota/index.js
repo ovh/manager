@@ -8,8 +8,6 @@ import 'ovh-api-services';
 import controller from './controller';
 import template from './template.html';
 
-// TODO : import './index.less';
-
 const moduleName = 'ovhManagerPciProjectComputeQuota';
 
 angular

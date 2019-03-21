@@ -50,8 +50,6 @@ import {
   PCI_URLS,
 } from './constants';
 
-// TODO : import './index.less';
-
 const moduleName = 'ovhManagerPci';
 
 angular

@@ -23,8 +23,6 @@ import deleteTemplate from './delete/template.html';
 import controller from './controller';
 import template from './template.html';
 
-// TODO : import './index.less';
-
 const moduleName = 'ovhManagerPciProject';
 
 angular
