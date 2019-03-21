@@ -58,6 +58,8 @@ export default class KubernetesServiceCtrl {
       onSave: newDisplayName => this.rename(newDisplayName)
         .then(() => this.$scope.$emit('changeKubernetesName', newDisplayName))
         .then(() => this.getClusterInfos()),
+    }, {
+      openedClass: 'kubernetes',
     });
   }
 
