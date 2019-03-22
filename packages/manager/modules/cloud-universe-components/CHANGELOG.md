@@ -1,3 +1,14 @@
+# [1.1.0-alpha.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@1.0.1-alpha.0...@ovh-ux/ng-ovh-cloud-universe-components@1.1.0-alpha.0) (2019-03-22)
+
+
+### Features
+
+* **cloud-univer-components:** add services and filter ([1e343b9](https://github.com/ovh-ux/manager/commit/1e343b9))
+* **kubernetes:** init module ([#319](https://github.com/ovh-ux/manager/issues/319)) ([5281031](https://github.com/ovh-ux/manager/commit/5281031))
+* **pci:** add @ovh-ux/manager-pci package ([#230](https://github.com/ovh-ux/manager/issues/230)) ([9c36a75](https://github.com/ovh-ux/manager/commit/9c36a75))
+
+
+
 ## [1.0.1-alpha.0](https://github.com/ovh-ux/ng-ovh-cloud-universe-components/compare/@ovh-ux/ng-ovh-cloud-universe-components@1.0.0...@ovh-ux/ng-ovh-cloud-universe-components@1.0.1-alpha.0) (2019-03-15)
 
 

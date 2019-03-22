@@ -1,7 +1,7 @@
 {
   "name": "@ovh-ux/manager-kubernetes",
   "description": "OVH Kubernetes product control panel",
-  "version": "0.0.0",
+  "version": "0.1.0-alpha.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ovh-ux/manager.git",
@@ -31,9 +31,9 @@
     "ovh-ui-kit-bs": "^2.1.1"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-cloud-styles": "^0.2.0-alpha.0",
-    "@ovh-ux/manager-core": "^4.0.0",
-    "@ovh-ux/ng-ovh-cloud-universe-components": "^1.0.1-alpha.0",
+    "@ovh-ux/manager-cloud-styles": "^0.3.0-alpha.0",
+    "@ovh-ux/manager-core": "^5.0.0",
+    "@ovh-ux/ng-ovh-cloud-universe-components": "^1.1.0-alpha.0",
     "@ovh-ux/ng-translate-async-loader": "^2.0.0",
     "@uirouter/angularjs": "^1.0.22",
     "angular": "^1.7.8",
