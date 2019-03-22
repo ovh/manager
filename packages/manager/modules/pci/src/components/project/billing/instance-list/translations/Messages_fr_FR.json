@@ -1,0 +1,13 @@
+{
+  "cpbc_no_consumption_data": "Pas de consommation pour la période sélectionnée.",
+  "cpbc_hourly_instance_monthly_billing_since": "Intégré au forfait mensuel le {{since}}",
+  "cpbc_hourly_instance_monthly_billing_activationPending": "Intégration au forfait mensuel en cours",
+  "cpbc_hourly_instance_pass_to_monthly_error": "Oups, nous n'arrivons pas à intégrer cette instance au forfait mensuel.",
+  "cpbc_hourly_instance_pass_to_monthly_price_error": "Oups, nous n'arrivons pas à récupérer le prix du forfait mansuel.",
+  "cpbc_hourly_instance_pass_to_monthly_info": "Un prorata sera immédiatement calculé pour le mois en cours",
+  "cpbc_hourly_instance_pass_to_monthly_button": "Passer au forfait mensuel ({{price}} HT/mois)",
+  "cpbc_hourly_instance_deleted": "Instance supprimée",
+  "cpbc_hourly_instance_pass_to_monthly": "Intégrer au forfait mensuel",
+  "cpb_error_message": "Oups, nous n'arrivons pas à récupérer toutes les informations.",
+  "common_cancel": "Annuler"
+}

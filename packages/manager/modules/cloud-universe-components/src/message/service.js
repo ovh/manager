@@ -59,6 +59,7 @@ export default class CucCloudMessage {
       }, messageHash));
       messageHandler.onMessage();
     } else {
+      // eslint-disable-next-line no-console
       console.log(`Unhandled message ${messageHash.text}`);
     }
   }

@@ -1,0 +1,22 @@
+{
+  "add_already_instancied_title": "Quota !",
+  "add_storage_region_step_title": "Choisissez le datacenter",
+  "add_storage_container_type_step_title": "Choisissez le type de conteneur",
+  "add_storage_name_step_title": "Donnez un nom à votre conteneur",
+  "add_build_you_own_warehouse": "Créer le conteneur",
+  "add_storage_storage_added": "Stockage créé",
+  "add_storage_storage_added_error": "Une error est survenue lors de la création du container.",
+  "add_already_instancied": "Vous ne pouvez pas avoir plus d'instance dans ce datacenter",
+  "add_storage_categories_more_info": "En savoir plus",
+  "add_storage_category_pcs": "Public Cloud Storage",
+  "add_storage_category_pca": "Public Cloud Archive",
+  "add_storage_type_static_hosting": "Hébergement statique",
+  "add_storage_type_static_hosting_description": "Accès rapide et performant pour vos sites. Liez vos domaines et déposez vos fichiers.",
+  "add_storage_type_private": "Privé",
+  "add_storage_type_private_description": "Facturation, informations légales, logs. Archivez simplement et selon vos usages.",
+  "add_storage_type_public": "Public",
+  "add_storage_type_public_description": "Multimédia, binaires, e-commerce. Stockez une infinité de données.",
+  "add_storage_type_cold": "Stockage à froid, à bas prix",
+  "add_storage_type_cold_description": "Archiver et sécuriser tout type de données sur de multiples passerelles.",
+  "common_loading": "Chargement"
+}

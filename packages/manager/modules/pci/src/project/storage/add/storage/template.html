@@ -1,0 +1,23 @@
+<div data-ng-controller="RA.add.storageCtrl"
+     id="add_storage_panel">
+
+    <div data-ng-show="!loaders.storages">
+
+        <div class="step"
+             data-ng-include="'pci/project/storage/add/storage/step_region/template.html'">
+        </div>
+
+        <div class="step"
+             data-ng-include="'pci/project/storage/add/storage/step_container_type/template.html'">
+        </div>
+
+        <div class="step"
+             data-ng-include="'pci/project/storage/add/storage/step_name/template.html'">
+        </div>
+
+        <div class="callout callout-warning" data-ng-show="loaders.storages">
+            <h3 data-translate="common_loading"></h3>
+        </div>
+    </div>
+
+</div>
