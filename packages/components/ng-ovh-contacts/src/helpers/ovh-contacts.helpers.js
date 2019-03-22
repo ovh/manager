@@ -105,13 +105,6 @@ export default class OvhContactsHelper {
           nicVal = get(nic, getMappedKey(addressPropKey, 'address'), null);
           set(contact, `address.${addressPropKey}`, nicVal);
         });
-      } else if (propKey === 'birthDay') {
-        if (new RegExp(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/).test(nic.birthDay)) {
-          const splittedDate = nic[propKey].split('/');
-          set(contact, propKey, splittedDate.reverse().join('-'));
-        } else {
-          set(contact, propKey, null);
-        }
       } else {
         nicVal = get(
           nic,
@@ -211,8 +204,16 @@ export default class OvhContactsHelper {
         set(contactProps, `${contactProp}.enum`, rule.in);
       }
 
+      // override required with creation rule value
+      set(contactProps, `${contactProp}.required`, rule.mandatory);
+
       // set default value if provided by rule
-      set(contactProps, `${contactProp}.defaultValue`, rule.defaultValue);
+      if (!rule.mandatory) {
+        set(contactProps, `${contactProp}.defaultValue`, '');
+      } else {
+        set(contactProps, `${contactProp}.defaultValue`, rule.defaultValue);
+      }
+
       set(
         contactProps,
         `${contactProp}.initialValue`,

@@ -32,7 +32,7 @@ export default class OvhContact {
         line2: options.address.line2 || null,
         line3: options.address.line3 || null,
         otherDetails: options.address.otherDetails || null,
-        zip: options.address.zip || null,
+        zip: options.address.zip || '',
         city: options.address.city || null,
         province: options.address.province || null,
       };

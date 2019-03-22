@@ -225,7 +225,7 @@ export default class OvhContactsService {
    *  @param  {Array}  contactList A contact list to search into.
    *                               If none provided, will fetch all existing contact from API.
    *
-   *  @return {Promisr}            That returns an Object representing the most ressembling contact
+   *  @return {Promise}            That returns an Object representing the most ressembling contact
    *                               of given nic.
    */
   findMatchingContactFromNic(fromNic = null, contactList = null) {
