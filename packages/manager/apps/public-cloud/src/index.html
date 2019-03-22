@@ -15,7 +15,7 @@
                         <div class="col-md-2 p-0 h-100 d-flex flex-column" data-ng-if="$ctrl.shouldDisplaySidebar()">
                             <cloud-sidebar></cloud-sidebar>
                         </div>
-                        <div class="h-100 d-flex" data-ng-class="{ 'col-md-10': $ctrl.shouldDisplaySidebar(), 'col-md-12': !$ctrl.shouldDisplaySidebar() }" data-ui-view>
+                        <div class="h-100 d-flex" data-ng-class="{ 'col-md-10 p-0': $ctrl.shouldDisplaySidebar(), 'col-md-12': !$ctrl.shouldDisplaySidebar() }" data-ui-view>
                             <div class="m-auto text-center">
                                 <span class="oui-icon oui-icon-clock-wait mb-4" style="font-size: 5rem;"></span>
                                 <h1 class="font-weight-bold" data-translate="public_cloud_coming_soon"></h1>
