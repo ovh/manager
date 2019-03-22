@@ -29,8 +29,10 @@ import 'ovh-common-style/dist/ovh-common-style.css';
 import components from './components';
 import offer from './offer';
 import project from './project';
+import template from './cloud.html';
 
 import './index.scss';
+
 
 import {
   CLOUD_INSTANCE_DEFAULTS,
@@ -79,12 +81,12 @@ angular
       .state('iaas', {
         url: '/iaas',
         abstract: true,
-        template: '<ui-view class="cloud-legacy"/>',
+        template,
       })
       .state('paas', {
         url: '/paas',
         abstract: true,
-        template: '<ui-view class="cloud-legacy"/>',
+        template,
       });
   })
   .run(($transitions, $state, $stateParams) => {
