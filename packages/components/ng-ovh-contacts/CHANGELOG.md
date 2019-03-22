@@ -1,3 +1,12 @@
+## [1.0.1](https://github.com/ovh-ux/ng-ovh-contacts/compare/v1.0.0...v1.0.1) (2019-03-22)
+
+
+### Bug Fixes
+
+* contact creation ([12f5081](https://github.com/ovh-ux/ng-ovh-contacts/commit/12f5081))
+
+
+
 # [1.0.0](https://github.com/ovh-ux/ng-ovh-contacts/compare/v1.0.0-alpha.2...v1.0.0) (2019-01-16)
 
 

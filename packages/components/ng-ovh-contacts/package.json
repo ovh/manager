@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-contacts",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Helpers for managing OVH Contacts",
   "keywords": [
     "contacts",
