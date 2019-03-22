@@ -1,0 +1,123 @@
+<section class="cui-page__content">
+
+    <cui-message-container data-messages="messages"></cui-message-container>
+
+    <cui-page-content-title data-text="'storage_title' | translate">
+        <oui-spinner data-ng-show="loaders.storages"></oui-spinner>
+    </cui-page-content-title>
+
+    <div data-ng-if="storages !== null">
+        <a class="oui-button oui-button_secondary"
+           data-ui-sref="iaas.pci-project.compute.storage.add-container"
+           write-right-required>
+            {{ 'storage_add_button'|translate }}
+        </a>
+        <div class="pull-right" data-ng-if="storages.length > 0">
+            <input type="search"
+            class="oui-input"
+            data-ng-model="filter.name"
+            data-ng-model-options="{ debounce: 200 }"
+            data-translate-attr="{ placeholder: 'storage_search' }"/>
+        </div>
+    </div>
+
+    <promise-task-state></promise-task-state>
+
+    <!-- error -->
+    <div class="row" data-ng-if="!loaders.storages && storages === null">
+        <div class="col-xs-12">
+            <div class="alert alert-danger text-center">
+                <p class="bold"><i class="fa fa-bug"></i> <span data-translate="storage_load_error"></span></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="callout callout-warning"
+         data-ng-if="!loaders.storages && storages.length === 0">
+
+        <h3>
+            <i class="icn-ra-storage-add"></i><span class="main-color" data-translate="storage_no_storage_title"></span>
+        </h3>
+
+        <p data-translate="storage_no_storage"></p>
+    </div>
+
+    <div data-ng-if="!loaders.storages &&  storages.length > 0">
+        <table class="oui-datagrid">
+            <thead class="oui-datagrid__headers">
+                <tr>
+                    <th class="oui-datagrid__header oui-datagrid__cell_sortable"
+                        data-ng-click="orderStorages('type')"
+                        data-ng-class="{'oui-datagrid__cell_sortable-asc oui-datagrid__cell_sorted' : order.by === 'type' && order.reverse, 'oui-datagrid__cell_sortable-desc oui-datagrid__cell_sorted' : order.by === 'type' && order.reverse}">
+                        <span data-translate="storage_type"></span>
+                    </th>
+                    <th class="oui-datagrid__header oui-datagrid__cell_sortable"
+                        data-ng-click="orderStorages('name')"
+                        data-ng-class="{'oui-datagrid__cell_sortable-asc oui-datagrid__cell_sorted' : order.by === 'name' && order.reverse, 'oui-datagrid__cell_sortable-desc oui-datagrid__cell_sorted' : order.by === 'name' && order.reverse}">
+                        <span data-translate="storage_name"></span>
+                    </th>
+                    <th class="oui-datagrid__header oui-datagrid__cell_sortable" data-translate="storage_nb_files"></th>
+                    <th class="oui-datagrid__header oui-datagrid__cell_sortable"
+                        data-ng-click="orderStorages('region')"
+                        data-ng-class="{'oui-datagrid__cell_sortable-asc oui-datagrid__cell_sorted' : order.by === 'region' && order.reverse, 'oui-datagrid__cell_sortable-desc oui-datagrid__cell_sorted' : order.by === 'region' && order.reverse}">
+                        <span data-translate="storage_region"></span>
+                    </th>
+                    <th class="oui-datagrid__header" data-translate="storage_size"></th>
+                    <th class="oui-datagrid__header oui-datagrid__cell_action" write-right-required>&#160;</th>
+                </tr>
+            </thead>
+            <tbody class="oui-datagrid__body" data-ng-if="storagesPaginated.length === 0 && filter.enabled">
+                <tr>
+                    <td colspan="6">
+                        <span data-translate="storage_search_not_found" />
+                    </td>
+                </tr>
+            </tbody>
+            <tbody data-ng-if="storagesPaginated.length > 0" class="oui-datagrid__body">
+                <tr data-ng-repeat="storage in storagesPaginated | filter:filter.name track by storage.id" class="oui-datagrid__row" tabindex="0">
+                    <td class="oui-datagrid__cell" data-title="{{ 'storage_type' | translate }}">
+                      <cloud-project-compute-storage-icon
+                        data-type="storage.shortcut">
+                      </cloud-project-compute-storage-icon>
+                    </td>
+                    <td class="oui-datagrid__cell max-width-400" data-title="{{ 'storage_name' | translate }}">
+                        <div class="text-truncate">
+                            <a class="oui-link" data-ui-sref="iaas.pci-project.compute.storage.detail-container({ storageId: storage.id})">
+                                {{ storage.name  }}
+                            </a>
+                        </div>
+                    </td>
+                    <td class="oui-datagrid__cell" data-title="{{ 'storage_nb_files' | translate }}">
+                        {{storage.storedObjects}}
+                    </td>
+                    <td class="oui-datagrid__cell" data-title="{{ 'storage_region' | translate }}">
+                        {{ regionService.getTranslatedMicroRegion(storage.region) }}
+                    </td>
+                    <td class="oui-datagrid__cell" data-title="{{ 'storage_size' | translate }}">
+                        {{storage.storedBytes | RAUnitsBits}}
+                    </td>
+                    <td class="oui-datagrid__cell oui-datagrid__cell_action" data-title="{{ 'storage_actions' | translate }}" write-right-required>
+                        <button type="button" class="no-style pull-right" data-ng-show="storage.status != 'deleting'" data-ng-click="delete(storage)">
+                            <i class="glyphicon glyphicon-trash"></i>
+                        </button>
+                        <oui-spinner size="s" class="pull-right" data-ng-if="storage.status === 'deleting'"></oui-spinner>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+    <div class="table-pretty-pagination bottom-space-m20"
+         data-ng-show="!loaders.storagesFiltered && storagesFiltered.length > 5"
+         data-pagination-front
+         data-items="storagesFiltered"
+         data-paginated-items="storagesPaginated"
+         data-current-page="currentPage"
+         data-nb-pages="nbPages"
+         data-items-per-page="filesPerPage"
+         data-page-placeholder="{{ 'common_pagination_page' | translate:{currentPage: currentPage, nbPages : nbPages} }}"
+         data-item-per-page-placeholder="{{ 'common_pagination_display' | translate }}">
+    </div>
+
+</section>

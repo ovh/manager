@@ -9,9 +9,15 @@ export default class CoreConfig {
     return this.region;
   }
 
+  isRegion(region) {
+    const regions = Array.isArray(region) ? region : [region];
+    return regions.indexOf(this.region) >= 0;
+  }
+
   $get() {
     return {
-      getRegion: () => this.region,
+      getRegion: () => this.getRegion(),
+      isRegion: region => this.isRegion(region),
     };
   }
 }

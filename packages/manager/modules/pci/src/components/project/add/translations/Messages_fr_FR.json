@@ -1,0 +1,8 @@
+{
+  "cpa_success": "Le projet est en cours de création. Veuillez payer ce <a href=\"{{url}}\" target=\"blank\">bon de commande</a> afin de pouvoir l'utiliser.",
+  "cpa_error": "Une erreur est survenue. Veuillez réessayer plus tard.",
+  "cpa_error_invalid_paymentmean": "Vous devez renseigner un moyen de paiement valide (actif).",
+  "cpa_error_invalid_voucher": "Le voucher est invalide (erroné ou expiré).",
+  "cpa_error_contracts_tosign": "Il y a un ou plusieurs contrats à valider.",
+  "cpa_error_over_quota": "Vous avez atteint le nombre maximum de projets Cloud. Veuillez <a href=\"#/support?state=new\" target=\"_blank\">contacter le support</a> pour débloquer cette limite."
+}
