@@ -48,7 +48,8 @@ export default class KubernetesServiceCtrl {
   rename(displayName) {
     delete this.cluster.region;
     this.cluster.name = displayName;
-    return this.Kubernetes.updateKubernetes(this.serviceName, this.cluster);
+    return this.Kubernetes.updateKubernetes(this.serviceName, this.cluster)
+      .then(() => this.$scope.$emit('sidebar.kubernetes.name.update', { serviceName: this.serviceInfos, title: displayName }));
   }
 
   changeClusterName() {

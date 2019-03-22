@@ -9819,11 +9819,6 @@ ovh-angular-responsive-tabs@^4.0.0:
   resolved "https://registry.yarnpkg.com/ovh-angular-responsive-tabs/-/ovh-angular-responsive-tabs-4.0.0.tgz#85b66d7032612c3ed1a14cb29f83d1331b50c1df"
   integrity sha1-hbZtcDJhLD7RoUyyn4PRMxtQwd8=
 
-ovh-angular-sidebar-menu@^7.2.0:
-  version "7.2.2"
-  resolved "https://registry.yarnpkg.com/ovh-angular-sidebar-menu/-/ovh-angular-sidebar-menu-7.2.2.tgz#c9bca2c6c525bad5ad5640d1a0c97e1750bf39d4"
-  integrity sha512-1psM35uO29uv6Hri04OSLkehl+TcSl57SxPVOkVLDRocnTMxBPkJuZSW61VsKcVL4m5QgWp3ybJhyyEnZBBvhQ==
-
 ovh-angular-ui-confirm-modal@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/ovh-angular-ui-confirm-modal/-/ovh-angular-ui-confirm-modal-1.0.2.tgz#92e6736588a4fb1de6353f1a17ab1962679a698d"

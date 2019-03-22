@@ -12,7 +12,6 @@ export default class Kubernetes {
     OvhApiCloudProjectInstance,
     OvhApiKube,
     OvhApiCloudProjectQuota,
-    SidebarMenu,
   ) {
     this.$q = $q;
     this.$translate = $translate;
@@ -21,7 +20,6 @@ export default class Kubernetes {
     this.OvhApiCloudProjectInstance = OvhApiCloudProjectInstance;
     this.OvhApiKube = OvhApiKube;
     this.OvhApiCloudProjectQuota = OvhApiCloudProjectQuota;
-    this.SidebarMenu = SidebarMenu;
     this.initializeUpgradePolicies();
   }
 
@@ -61,13 +59,6 @@ export default class Kubernetes {
       { serviceName },
       { name, flavorName },
     ).$promise;
-  }
-
-  changeMenuTitle(serviceName, name) {
-    const menuItem = this.SidebarMenu.getItemById(serviceName);
-    if (menuItem) {
-      menuItem.title = name;
-    }
   }
 
   deleteNode(serviceName, nodeId) {
@@ -116,11 +107,7 @@ export default class Kubernetes {
   }
 
   updateKubernetes(serviceName, kubernetes) {
-    return this.OvhApiKube.v6().update({ serviceName }, { name: kubernetes.name }).$promise
-      .then((res) => {
-        this.changeMenuTitle(serviceName, kubernetes.name);
-        return res;
-      });
+    return this.OvhApiKube.v6().update({ serviceName }, { name: kubernetes.name }).$promise;
   }
 
   updateKubernetesUpgradePolicy(serviceName, upgradePolicy) {

@@ -19,7 +19,6 @@
     "@ovh-ux/manager-kubernetes": "0.0.0",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^1.0.1-alpha.0",
     "@ovh-ux/ng-ovh-proxy-request": "^1.0.0-beta.0",
-    "@ovh-ux/ng-ovh-sidebar-menu": "^8.0.0-beta.1",
     "@ovh-ux/ng-ovh-user-pref": "^1.0.0",
     "@ovh-ux/ng-translate-async-loader": "^2.0.0",
     "angular": "^1.7.5",
