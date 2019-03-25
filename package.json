@@ -5,6 +5,7 @@
   "description": "OVH Control Panel also known as Manager",
   "license": "BSD-3-Clause",
   "workspaces": [
+    "packages/components/*",
     "packages/manager/apps/*",
     "packages/manager/modules/*"
   ],
