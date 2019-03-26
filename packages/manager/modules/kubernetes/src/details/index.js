@@ -9,15 +9,12 @@ import '@ovh-ux/manager-cloud-styles';
 import 'font-awesome/css/font-awesome.css';
 import 'ovh-ui-kit/dist/oui.css';
 
-import kubernetesComponent from './kubernetes.component';
+import kubernetesComponent from './component';
 import service from './service';
 
 import containersComponent from './containers/index';
 import nodesComponent from './nodes/index';
 import serviceComponent from './service/index';
-
-import './index.less';
-import './index.scss';
 
 const moduleName = 'ovhManagerKubernetesComponent';
 
