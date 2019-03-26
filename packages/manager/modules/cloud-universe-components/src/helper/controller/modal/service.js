@@ -93,16 +93,16 @@ export default class CucControllerModalHelper {
     });
   }
 
-  showNameChangeModal(config = {}) {
+  showNameChangeModal(config = {}, modalConfig = {}) {
     return this.showModal({
-      modalConfig: {
+      modalConfig: assign({}, modalConfig, {
         template: nameChangeTemplate,
         controller: nameChangeController,
         controllerAs: '$ctrl',
         resolve: {
           params: () => config,
         },
-      },
+      }),
     });
   }
 

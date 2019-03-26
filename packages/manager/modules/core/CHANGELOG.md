@@ -1,3 +1,37 @@
+# [5.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@5.0.0-alpha.0...@ovh-ux/manager-core@5.0.0) (2019-03-19)
+
+
+### Bug Fixes
+
+* replace TARGET by coreConfig ([928a6f4](https://github.com/ovh-ux/manager/commit/928a6f4))
+
+
+
+# [5.0.0-alpha.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@4.0.1...@ovh-ux/manager-core@5.0.0-alpha.0) (2019-03-19)
+
+
+### Features
+
+* replace TARGET by [@ovh-ux](https://github.com/ovh-ux)/manager-config environment service ([355cede](https://github.com/ovh-ux/manager/commit/355cede))
+
+
+### BREAKING CHANGES
+
+* host project should import @ovh-ux/manager-config
+
+Until this package uses @ovh-ux/manager-config, the host project should import @ovh-ux/manager-config, as following:
+
+Before:
+
+yarn add @ovh-ux/manager-core
+
+After:
+
+yarn add @ovh-ux/manager-config
+yarn add @ovh-ux/manager-core
+
+
+
 ## [4.0.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@4.0.0...@ovh-ux/manager-core@4.0.1) (2019-03-13)
 
 

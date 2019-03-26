@@ -1,3 +1,49 @@
+# [4.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom-dashboard@4.0.0...@ovh-ux/manager-telecom-dashboard@4.1.0) (2019-03-22)
+
+
+### Features
+
+* **pci:** add @ovh-ux/manager-pci package ([#230](https://github.com/ovh-ux/manager/issues/230)) ([9c36a75](https://github.com/ovh-ux/manager/commit/9c36a75))
+
+
+
+# [4.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom-dashboard@3.0.0...@ovh-ux/manager-telecom-dashboard@4.0.0) (2019-03-19)
+
+
+### Code Refactoring
+
+* bump all packages to [@ovh-ux](https://github.com/ovh-ux)/manager-core@^5.0.0 ([7cbc70a](https://github.com/ovh-ux/manager/commit/7cbc70a))
+
+
+### BREAKING CHANGES
+
+* Until theses packages has a dependency to @ovh-ux/manager-core@^5.0.0, the host project needs to import @ovh-ux/manager-config
+
+Before:
+
+yarn add @ovh-ux/manager-core
+
+Now:
+
+yarn add @ovh-ux/manager-config
+yarn add @ovh-ux/manager-core
+
+
+
+# [3.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom-dashboard@2.0.0...@ovh-ux/manager-telecom-dashboard@3.0.0) (2019-03-14)
+
+
+### Build System
+
+* **deps:** upgrade ng-at-internet to v4.0.0 ([#265](https://github.com/ovh-ux/manager/issues/265)) ([e89e179](https://github.com/ovh-ux/manager/commit/e89e179))
+
+
+### BREAKING CHANGES
+
+* **deps:** replace `ng-at-internet` by `@ovh-ux/ng-at-internet`
+
+
+
 # [2.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom-dashboard@1.0.0...@ovh-ux/manager-telecom-dashboard@2.0.0) (2019-03-13)
 
 

@@ -48,7 +48,7 @@ yarn start:watch
 
 ## Documentation
 
-* Documentation OVH ADP — [https://docs.ovh.com/fr/adp/](https://docs.ovh.com/fr/adp/)
+-   Documentation OVH ADP — <https://docs.ovh.com/fr/adp/>
 
 ## Contributing
 

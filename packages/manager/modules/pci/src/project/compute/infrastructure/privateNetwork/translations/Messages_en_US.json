@@ -1,0 +1,16 @@
+{
+ "cpci_private_network_list_header_title": "Private Networks",
+ "cpci_private_network_list_header_disabled_notice": "Disabled",
+ "cpci_private_network_list_vrack_unnamed": "No name",
+ "cpci_private_network_list_untagged_vlan": "No VLAN",
+ "cpci_private_network_activateVrack_description": "Once your project is connected to the vRack, you can link your Dedicated Servers, Public Cloud and Private Cloud instances, across all OVH datacentres. You can create close to 4,000 vLANs!",
+ "cpci_private_network_activateVrack_activate": "Enable vRack",
+ "cpci_private_network_creating": "New private network creation in progress",
+ "cpci_private_network_creating_description": "This may take a few minutes",
+ "cpci_private_network_list_private_network_query_error": "There was an error when getting private networks ",
+ "cpci_private_network_add_vrack_error": "An error has occurred while enabling private networks.",
+ "cpci_private_network_remove_vrack_error": "An error has occurred while disabling private networks.",
+ "cpci_private_network_add_vrack_success": "The private networks have been enabled successfully.",
+ "cpci_private_network_remove_vrack_success": "The private networks have been disabled successfully.",
+ "private_network_deactivate_confirmation_vlans": "All vLANs will be deleted."
+}

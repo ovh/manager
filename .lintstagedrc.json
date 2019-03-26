@@ -11,6 +11,6 @@
     "git add"
   ],
   "*.md": [
-    "remark -qf ."
+    "remark -q ."
   ]
 }

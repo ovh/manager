@@ -48,7 +48,7 @@ yarn start:watch
 
 ## Documentation
 
-* Documentation OVH SMS — [https://docs.ovh.com/fr/sms/](https://docs.ovh.com/fr/sms/)
+-   Documentation OVH SMS — <https://docs.ovh.com/fr/sms/>
 
 ## Contributing
 

@@ -1,6 +1,11 @@
 {
   "name": "@ovh-ux/manager-overthebox",
-  "version": "3.0.0",
+  "version": "4.1.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ovh-ux/manager.git",
+    "directory": "packages/manager/modules/overthebox"
+  },
   "license": "BSD-3-Clause",
   "files": [
     "dist"
@@ -12,10 +17,10 @@
     "build": "rollup -c --environment BUILD:production",
     "dev": "rollup -c --environment BUILD:development",
     "dev:watch": "yarn run dev --watch",
+    "prepare": "yarn run build",
     "start": "lerna --stream --scope='@ovh-ux/manager-overthebox' --include-filtered-dependencies -- yarn run build",
     "start:dev": "lerna --stream --scope='@ovh-ux/manager-overthebox' --include-filtered-dependencies -- yarn run dev",
-    "start:watch": "lerna --stream --parallel --scope='@ovh-ux/manager-overthebox' --include-filtered-dependencies -- yarn run dev:watch",
-    "prepare": "yarn run build"
+    "start:watch": "lerna --stream --parallel --scope='@ovh-ux/manager-overthebox' --include-filtered-dependencies -- yarn run dev:watch"
   },
   "dependencies": {
     "lodash": "4.17.11",
@@ -25,7 +30,7 @@
     "@ovh-ux/component-rollup-config": "5.0.0-beta.5"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-core": "^4.0.0",
+    "@ovh-ux/manager-core": "^5.0.0",
     "@ovh-ux/manager-telecom-styles": "^2.0.2",
     "@ovh-ux/ng-ovh-contracts": "^3.0.0-beta.3",
     "@ovh-ux/ng-ovh-telecom-universe-components": "^3.0.0",
@@ -33,7 +38,7 @@
     "@ovh-ux/ng-translate-async-loader": "^2.0.0",
     "@ovh-ux/ng-uirouter-title": "^2.0.0-beta.3",
     "@uirouter/angularjs": "^1.0.15",
-    "angular": "1.7.5",
+    "angular": "^1.7.5",
     "angularjs-scroll-glue": "^2.2.0",
     "bootstrap4": "twbs/bootstrap#v4.0.0",
     "oclazyload": "^1.1.0",

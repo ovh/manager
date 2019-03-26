@@ -9,13 +9,13 @@ export default class NavbarNotificationService {
     $q,
     $translate,
     OvhApiNotificationAapi,
-    TARGET,
+    coreConfig,
   ) {
     this.$interval = $interval;
     this.$q = $q;
     this.$translate = $translate;
     this.OvhApiNotificationAapi = OvhApiNotificationAapi;
-    this.TARGET = TARGET;
+    this.coreConfig = coreConfig;
 
     this.NOTIFICATION_REFRESH_TIME = 60000;
   }
@@ -24,7 +24,7 @@ export default class NavbarNotificationService {
     return this.$translate.refresh()
       .then(() => this.OvhApiNotificationAapi.query({
         lang: this.$translate.preferredLanguage(),
-        target: this.TARGET,
+        target: this.coreConfig.getRegion(),
       }).$promise
         .catch((error) => {
           throw error;

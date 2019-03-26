@@ -48,7 +48,7 @@ yarn start:watch
 
 ## Documentation
 
-* Documentation OVH OverTheBox — [https://docs.ovh.com/fr/overthebox/](https://docs.ovh.com/fr/overthebox/)
+-   Documentation OVH OverTheBox — <https://docs.ovh.com/fr/overthebox/>
 
 ## Contributing
 

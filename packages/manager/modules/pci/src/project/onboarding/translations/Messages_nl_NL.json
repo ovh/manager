@@ -1,0 +1,19 @@
+{
+ "pci_slideshow_heading1": "Welkom bij uw Public Cloud Control Panel",
+ "pci_slideshow_heading2": "Beheer uw volledige infrastructuur op één uniek locatie",
+ "pci_slideshow_heading3": "Uw project in de hand houden",
+ "pci_slideshow_heading4": "Pay As You Go",
+ "pci_slideshow_heading5": "Verdergaan met Openstack",
+ "pci_slideshow_description_generic": "Ontdek de nieuwe organisatie van uw projecten",
+ "pci_slideshow_description_title_compute": "Compute:",
+ "pci_slideshow_description_title_storage": "Opslag: ",
+ "pci_slideshow_description_infra1": "Beheer van instanties en aanvullende schijven",
+ "pci_slideshow_description_infra2": "Beheer van object en archive",
+ "pci_slideshow_description_payGo": "De flexibiliteit van de cloud maakt het mogelijk om een factuur te hebben die aan uw behoeften voldoet dankzij uurlijkse facturering",
+ "pci_slideshow_description_title_tech": "Techniek beheer: ",
+ "pci_slideshow_description_title_admin": "Administratief beheer: ",
+ "pci_slideshow_description_management1": "Beheer uw Openstack-gebruikers en bronquota",
+ "pci_slideshow_description_management2": "Vind hier uw verbruik en facturen",
+ "pci_slideshow_description_openstack": "Vind alle compatibele automatiserings- en orkestratietools om uw implementaties te industrialiseren",
+ "pci_slideshow_button_discover": "Meer info"
+}

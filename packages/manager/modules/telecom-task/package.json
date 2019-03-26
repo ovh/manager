@@ -1,6 +1,11 @@
 {
   "name": "@ovh-ux/manager-telecom-task",
-  "version": "3.0.0",
+  "version": "4.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ovh-ux/manager.git",
+    "directory": "packages/manager/modules/telecom-task"
+  },
   "license": "BSD-3-Clause",
   "files": [
     "dist"
@@ -12,10 +17,10 @@
     "build": "rollup -c --environment BUILD:production",
     "dev": "rollup -c --environment BUILD:development",
     "dev:watch": "yarn run dev --watch",
+    "prepare": "yarn run build",
     "start": "lerna exec --stream --scope='@ovh-ux/manager-telecom-task' --include-filtered-dependencies -- yarn run build",
     "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-telecom-task' --include-filtered-dependencies -- yarn run dev",
-    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-telecom-task' --include-filtered-dependencies -- yarn run dev:watch",
-    "prepare": "yarn run build"
+    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-telecom-task' --include-filtered-dependencies -- yarn run dev:watch"
   },
   "dependencies": {
     "lodash": "^4.17.11"
@@ -24,7 +29,7 @@
     "@ovh-ux/component-rollup-config": "5.0.0-beta.5"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-core": "^4.0.0",
+    "@ovh-ux/manager-core": "^5.0.0",
     "@ovh-ux/manager-telecom-styles": "^2.0.2",
     "@ovh-ux/ng-ovh-telecom-universe-components": "^3.0.0",
     "@ovh-ux/ng-uirouter-title": "^2.0.0-beta.3",

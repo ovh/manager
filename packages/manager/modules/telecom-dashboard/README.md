@@ -22,7 +22,7 @@ angular
 
 ## Documentation
 
-* Documentation OVH Telecom — [https://docs.ovh.com/fr/telecom/](https://docs.ovh.com/fr/telecom/)
+-   Documentation OVH Telecom — <https://docs.ovh.com/fr/telecom/>
 
 ## Contributing
 

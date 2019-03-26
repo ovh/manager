@@ -10,7 +10,7 @@ Run `yarn install` to install the npm dependencies.
 
 Our [`package.json`](package.json) houses a collection of [run-scripts](https://docs.npmjs.com/cli/run-script) that we use to maintain, test, build, and publish the OVH Manager, notably:
 
-* `split` runs `scripts/split.js`, which generate a subtree branch (from the current one) for the specified package.
+-   `split` runs `scripts/split.js`, which generate a subtree branch (from the current one) for the specified package.
 
 ### Split a module
 

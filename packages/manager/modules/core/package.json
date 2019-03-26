@@ -1,6 +1,11 @@
 {
   "name": "@ovh-ux/manager-core",
-  "version": "4.0.1",
+  "version": "5.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ovh-ux/manager.git",
+    "directory": "packages/manager/modules/core"
+  },
   "license": "BSD-3-Clause",
   "files": [
     "dist"
@@ -25,6 +30,7 @@
     "@ovh-ux/component-rollup-config": "5.0.0-beta.5"
   },
   "peerDependencies": {
+    "@ovh-ux/manager-config": "^0.1.0",
     "@ovh-ux/ng-ovh-api-wrappers": "^3.0.0",
     "@ovh-ux/ng-ovh-http": "^4.0.1-beta.0",
     "@ovh-ux/ng-ovh-sso-auth": "^4.0.0-beta.0",

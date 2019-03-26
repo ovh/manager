@@ -1,0 +1,40 @@
+<div class="px-3 py-4 w-100">
+    <div class="d-flex">
+        <div class="w-100 text-truncate mr-3">
+            <h2 class="mb-0 d-inline-block" style="font-weight: 400;">Projet 1</h2>
+        </div>
+        <div class="ml-auto my-auto">
+            <oui-dropdown align="end" arrow>
+                <button class="btn btn-primary rounded-circle" style="padding: 6px 13px; background-color: rgb(40, 89, 192);" oui-dropdown-trigger>
+                    <span class="oui-icon oui-icon-chevron-down text-white"></span>
+                </button>
+                <oui-dropdown-content style="z-index: 1021;" class="p-3">
+                    <button class="btn btn-primary py-1 px-2" style="background-color: rgb(40, 89, 192); color: #fff;">Create new project</button>
+                    <div class="mt-3">
+                        <cloud-sidebar-project-list></cloud-sidebar-project-list>
+                    </div>
+                </oui-dropdown-content>
+            </oui-dropdown>
+        </div>
+    </div>
+    <button class="project-copy w-100 d-flex">
+        <span class="my-auto oui-icon oui-icon-copy-normal mr-1"></span>
+        <span class="w-100 text-truncate">b88343092d5d3cb7e4cdb88343092d5d3cb7e4cd</span>
+    </button>
+</div>
+<div class="h-100 position-relative">
+    <div class="position-absolute w-100"
+        data-ng-class="{
+            'hidden-xs': !$ctrl.isOpen,
+            'hidden-sm': !$ctrl.isOpen
+        }"
+        data-sidebar-menu>
+    </div>
+
+    <div class="oui-navbar-backdrop"
+        aria-hidden="true"
+        tabindex="-1"
+        ng-class="{ 'oui-navbar-backdrop_active': !!$ctrl.isOpen }"
+        ng-click="$ctrl.toggle()"
+        role="button"> </div>
+</div>

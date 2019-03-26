@@ -1,0 +1,4 @@
+{
+  "cpci_vm_alert_cpu": "Votre cpu a atteint plus de {{percentage}} de la puissance allouée au cours des 7 derniers jours.",
+  "cpci_vm_alert_ram": "Votre ram a atteint plus de {{percentage}} de l'espace utilisé au cours des 7 derniers jours."
+}

@@ -1,0 +1,8 @@
+{
+  "cpci_vm_reinstall_warn": "Toutes les données seront supprimées !",
+  "cpci_vm_resume_submit_error": "Une erreur est survenue lors de l'activation de ce serveur.",
+  "cpci_vm_action_reinstall": "Réinstaller",
+  "cpci_vm_action_reboot": "Redémarrer à chaud (soft)",
+  "cpci_vm_action_reboot_hard": "Redémarrer à froid (hard)",
+  "cpci_vm_confirm_reboot": "Vous allez redémarrer votre instance <strong>{{name}}</strong>."
+}
