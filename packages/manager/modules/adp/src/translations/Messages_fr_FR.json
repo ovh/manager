@@ -1,0 +1,11 @@
+{
+ "adp_common_unit_gb": "GB",
+ "adp_common_close": "Close",
+ "adp_title": "Analytics Data Platform",
+ "adp_get_ssh_keys_error": "Failed to get SSH keys: {{message}}",
+ "adp_get_vracks_error": "Failed to get vRacks: {{message}}",
+ "adp_get_clouds_error": "Failed to get public cloud projects: {{message}}",
+ "adp_get_capabilities_error": "Failed to get supported Analytic Data Platform software versions: {{message}}",
+ "adp_get_flavors_error": "Failed to get available flavors: {{message}}",
+ "adp_get_quota_error": "Failed to get the quota details of the public cloud project: {{message}}"
+}

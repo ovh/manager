@@ -1,0 +1,138 @@
+<div class="mb-3">
+    <oui-message data-aria-close-button-label="Close" data-type="info">
+        <h6 data-translate="adp_deploy_review_info_header"></h6>
+        <p data-translate="adp_deploy_review_info_details"></p>
+    </oui-message>
+
+    <!-- cloud project -->
+    <section class="mb-3">
+        <h6 data-translate="adp_deploy_review_cloud_project_title"></h6>
+        <div class="border-top">
+            <form>
+                <div class="form-group row">
+                    <label for="adp_version"
+                        class="col-sm-3 col-form-label col-form-label-sm"
+                        data-translate="adp_deploy_review_cloud_project_version">
+                    </label>
+                    <div class="col-sm-9 mb-1">
+                        <span class="form-control-plaintext border-0" id="adp_version" data-ng-bind="$ctrl.adp.cluster_type"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="public_cloud"
+                        class="col-sm-3 col-form-label col-form-label-sm"
+                        data-translate="adp_deploy_review_cloud_project_name">
+                    </label>
+                    <div class="col-sm-9 mb-1">
+                        <span class="form-control-plaintext border-0" id="public_cloud" data-ng-bind="$ctrl.selectedPublicCloud.description"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="shh_key"
+                        class="col-sm-3 col-form-label col-form-label-sm"
+                        data-translate="adp_deploy_review_cloud_project_shh_key">
+                    </label>
+                    <div class="col-sm-9 mb-1">
+                        <span class="form-control-plaintext border-0" id="shh_key">
+                            {{ ::$ctrl.selectedSshKey.name ? $ctrl.selectedSshKey.name : $ctrl.selectedSshKey.id }}
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="private_network"
+                        class="col-sm-3 col-form-label col-form-label-sm"
+                        data-translate="adp_deploy_review_cloud_project_private_network">
+                    </label>
+                    <div class="col-sm-9 mb-1">
+                        <span class="form-control-plaintext border-0" id="private_network">
+                            {{ ::$ctrl.vRack.data.name ? $ctrl.vRack.data.name : $ctrl.vRack.data.id }}
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="region"
+                        class="col-sm-3 col-form-label col-form-label-sm"
+                        data-translate="adp_deploy_review_cloud_project_region">
+                    </label>
+                    <div class="col-sm-9 mb-1">
+                        <span class="form-control-plaintext border-0" id="region" data-ng-bind="$ctrl.adp.os_region"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="admin_mail"
+                        class="col-sm-3 col-form-label col-form-label-sm"
+                        data-translate="adp_deploy_review_cloud_project_email">
+                    </label>
+                    <div class="col-sm-9 mb-1">
+                        <span class="form-control-plaintext border-0" id="admin_mail" data-ng-bind="$ctrl.adp.admin_mail"></span>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+    <!-- nodes config -->
+    <section class="mb-3">
+        <h6 data-translate="adp_deploy_review_nodes_title"></h6>
+        <div class="border-top">
+            <form>
+                <div class="form-group row" data-ng-repeat="(nodeType, node) in $ctrl.nodesConfig track by nodeType">
+                    <label for="{{ ::nodeType }}_nodes"
+                        class="col-sm-3 col-form-label col-form-label-sm"
+                        data-translate="adp_deploy_review_nodes_{{ ::nodeType }}">
+                    </label>
+                    <div class="col-sm-9 mb-1">
+                        <span class="form-control-plaintext border-0" id="{{ ::nodeType }}_nodes">
+                            {{ ::node.count }} x {{ node.selectedFlavor.displayName }}
+                        </span>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+    <!-- storage config -->
+    <section class="mb-3">
+        <h6 data-translate="adp_deploy_review_storage_title"></h6>
+        <div class="border-top">
+            <form>
+                <div class="form-group row">
+                    <label for="raw_storage"
+                        class="col-sm-3 col-form-label col-form-label-sm"
+                        data-translate="adp_deploy_review_storage_raw">
+                    </label>
+                    <div class="col-sm-9 mb-1">
+                        <span class="form-control-plaintext border-0" id="raw_storage" data-ng-bind="$ctrl.adp.hdfs_effective_storage"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="usable_storage"
+                        class="col-sm-3 col-form-label col-form-label-sm"
+                        data-translate="adp_deploy_review_storage_usable">
+                    </label>
+                    <div class="col-sm-9 mb-1">
+                        <span class="form-control-plaintext border-0" id="usable_storage" data-ng-bind="$ctrl.adp.edge_node_storage"></span>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+    <!-- price details -->
+    <div class="mb-4">
+        <div class="row border rounded border-secondary bg-light">
+            <div class="col-xs-12 col-sm-5 m-2">
+                <section>
+                    <h6 data-translate="adp_deploy_review_hourly_price"></h6>
+                    <p data-translate="adp_common_review_hourly_price_format"
+                        data-translate-values="{price: $ctrl.price.hourlyPrice, currency: '€'}"></p>
+                </section>
+            </div>
+            <div class="col-xs-12 col-sm-5 border-left border-secondary m-2">
+                <section>
+                    <h6 data-translate="adp_deploy_review_monthly_price"></h6>
+                    <p data-translate="adp_common_review_monthly_price_format"
+                        data-translate-values="{price: $ctrl.price.monthlyPrice, currency: '€'}"></p>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+

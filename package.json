@@ -61,5 +61,8 @@
   "engines": {
     "node": ">=8.11",
     "yarn": ">=1.12.3"
+  },
+  "dependencies": {
+    "ovh-ui-angular": "^2.25.1"
   }
 }

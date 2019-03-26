@@ -1,0 +1,63 @@
+<div>
+    <!-- Basic Settings Section -->
+    <div class="mb-3">
+        <!-- cluster name -->
+        <oui-field data-label="{{ ::'adp_deploy_cluster_name' | translate }}"
+                data-error-messages="{ pattern: ('adp_deploy_cluster_name_help' | translate) }">
+            <input class="oui-input"
+                type="text"
+                id="cluster_name"
+                name="cluster_name"
+                required
+                placeholder="{{ ::'adp_deploy_cluster_name_placeholder' | translate }}"
+                data-ng-model="$ctrl.adp.cluster_name"
+                data-ng-pattern="/^[a-zA-Z]{3,15}$/">
+        </oui-field>
+        <!-- admin email -->
+        <oui-field data-label="{{ ::'adp_deploy_admin_email' | translate }}"
+            data-help-text="{{ ::'adp_deploy_admin_email_help' | translate }}">
+            <input class="oui-input"
+                type="email"
+                name="admin_mail"
+                placeholder="{{ ::'adp_deploy_admin_email_placeholder' | translate }}"
+                data-ng-model="$ctrl.adp.admin_mail"
+                required>
+        </oui-field>
+        <!-- platform version -->
+        <oui-field data-label="{{ ::'adp_deploy_platform_version' | translate }}">
+            <oui-select data-name="platformVersion"
+                        data-model="$ctrl.selectedCapability"
+                        data-items="$ctrl.capabilities.data"
+                        data-match="version"
+                        data-on-change="$ctrl.onCapabilitySelect()"
+                        data-placeholder="{{ ::'adp_deploy_platform_version_placeholder' | translate }}"
+                        data-disabled="$ctrl.capabilities.loading"
+                        data-required>
+            </oui-select>
+        </oui-field>
+        <!-- public cloud projects -->
+        <div>
+            <div data-ng-if="$ctrl.publicClouds.loading">
+                <span data-translate="adp_deploy_public_cloud_project"></span>
+                <oui-spinner class="ml-2" data-size="s"></oui-spinner>
+            </div>
+            <oui-field data-label="{{ ::'adp_deploy_public_cloud_project' | translate }}"
+                       data-ng-if="!$ctrl.publicClouds.loading">
+                <oui-select data-name="publicCloudProject"
+                            data-model="$ctrl.selectedPublicCloud"
+                            data-items="$ctrl.publicClouds.data"
+                            data-match="description"
+                            data-placeholder="{{ ::'adp_deploy_public_cloud_project_placeholder' | translate }}"
+                            data-on-change="$ctrl.setPublicCloud()"
+                            data-disabled="!$ctrl.publicClouds.data.length"
+                            data-required
+                            data-searchable>
+                </oui-select>
+                <div data-ng-if="!$ctrl.publicClouds.data.length">
+                    <span class="text-danger" data-translate="adp_deploy_public_cloud_project_help"></span>
+                    <a data-ui-sref="iaas.pci-project-new" data-translate="adp_deploy_public_cloud_create_project"></a>
+                </div>
+            </oui-field>
+        </div>
+    </div>
+</div>

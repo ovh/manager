@@ -1,0 +1,45 @@
+<oui-tabs class="mb-xs-2 mb-4">
+    <!-- all regions -->
+    <oui-tabs-item data-heading="{{ ::'adp_deploy_all_regions' | translate }}">
+        <div class="d-flex d-sm-flex mx-3" style="flex-wrap: wrap;">
+            <div class="p-2 w-xs-100 w-sm-50 w-25"
+                    data-ng-repeat="region in $ctrl.regionsByDatacenter.data track by region.macroRegion.code">
+                <oui-select-picker data-id="all_regions_{{region.macroRegion.code}}"
+                                    data-disabled="region.dataCenters.length === 1 ? region.dataCenters[0].disabled : $ctrl.model.region.disabled"
+                                    data-match="microRegion.text"
+                                    data-model="$ctrl.selectedRegion"
+                                    data-name="all_regions"
+                                    data-on-change="$ctrl.setImageId()"
+                                    data-picture="flag-icon flag-icon-{{ ::region.macroRegion.code | lowercase }} flag"
+                                    data-placeholder="{{ ::'adp_deploy_select_regions' | translate }}"
+                                    data-label="{{ ::region.macroRegion.text }}"
+                                    data-values="region.dataCenters"
+                                    data-required="true"
+                                    data-variant="light">
+                </oui-select-picker>
+            </div>
+        </div>
+    </oui-tabs-item>
+    <!-- regions by continent -->
+    <oui-tabs-item data-ng-repeat="(continent, regions) in $ctrl.regionsByContinent.data track by $index"
+                data-index="($index + 1)" data-heading="{{continent}}">
+        <div class="d-flex d-sm-flex mx-3" style="flex-wrap: wrap;">
+            <div class="p-2 w-xs-100 w-sm-50 w-25"
+                    data-ng-repeat="region in regions track by region.macroRegion.code">
+                <oui-select-picker data-id="region_{{ region.macroRegion.code }}"
+                                    data-disabled="region.dataCenters.length === 1 ? region.dataCenters[0].disabled : $ctrl.model.region.disabled"
+                                    data-match="microRegion.text"
+                                    data-model="$ctrl.selectedRegion"
+                                    data-name="region"
+                                    data-on-change="$ctrl.setImageId()"
+                                    data-picture="flag-icon flag-icon-{{ ::region.macroRegion.code | lowercase }} flag"
+                                    data-placeholder="{{ ::'adp_deploy_select_regions' | translate }}"
+                                    data-label="{{ ::region.macroRegion.text }}"
+                                    data-values="region.dataCenters"
+                                    data-required="true"
+                                    data-variant="light">
+                </oui-select-picker>
+            </div>
+        </div>
+    </oui-tabs-item>
+</oui-tabs>

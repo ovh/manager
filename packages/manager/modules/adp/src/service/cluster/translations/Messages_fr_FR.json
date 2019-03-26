@@ -1,0 +1,20 @@
+{
+  "adp_service_cluster_desc1": "Your big data cluster needs multiple nodes and storage disks to be up and running.",
+  "adp_service_cluster_desc2": "These nodes are deployed in your related Public Cloud project {{public_cloud_project_serviceName}}, with standard hourly billing.",
+  "adp_service_cluster_desc3": "You can find details on your bill and switch to a monthly plan in your Public Cloud project.",
+  "adp_service_cluster_total_cores": "Total vCores",
+  "adp_service_cluster_total_ram": "Total RAM",
+  "adp_service_cluster_total_storage": "Total effective storage",
+  "adp_service_cluster_table_node": "Node",
+  "adp_service_cluster_role": "Role",
+  "adp_service_cluster_region": "Region",
+  "adp_service_cluster_table_flavor": "Flavor",
+  "adp_service_cluster_table_vcores": "vCores",
+  "adp_service_cluster_table_ram": "RAM",
+  "adp_service_cluster_table_storage": "Storage",
+  "adp_service_cluster_table_ip": "IP Address",
+  "adp_service_cluster_table_status": "Status",
+  "adp_common_gb": "GB",
+  "adp_common_tb": "TB",
+  "adp_service_cluster_select": "Select"
+}

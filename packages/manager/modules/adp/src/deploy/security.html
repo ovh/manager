@@ -1,0 +1,74 @@
+<!-- Security Section -->
+<!-- vrack -->
+<div data-ng-if="!$ctrl.publicClouds.loading && $ctrl.vRack">
+    <div data-ng-if="$ctrl.vRack.loading">
+        <span data-translate="adp_deploy_private_network"></span>
+        <oui-spinner class="ml-2" data-size="s"></oui-spinner>
+    </div>
+    <div data-ng-if="!$ctrl.vRack.loading">
+        <p data-translate="adp_deploy_private_network"></p>
+        <p class="font-weight-bold"
+        data-ng-bind="$ctrl.vRack.data.id
+            ? ($ctrl.vRack.data.name
+                ? ($ctrl.vRack.data.id + ' (' + $ctrl.vRack.data.name + ')')
+                : $ctrl.vRack.data.id)
+            : ('adp_deploy_private_network_noname' | translate)"></p>
+        <div class="mb-3" data-ng-if="!$ctrl.vRack.data.id">
+            <span class="text-danger"
+                data-translate="adp_deploy_private_network_help"
+                data-translate-values="{project_name: $ctrl.selectedPublicCloud.description}">
+            </span>
+            <a data-ui-sref="iaas.pci-project.compute.infrastructure.diagram({ serviceName: $ctrl.adp.os_project_id })"
+               data-translate="adp_deploy_private_network_create_or_link"></a>
+        </div>
+    </div>
+</div>
+<!-- ssh keys -->
+<div data-ng-if="!$ctrl.publicClouds.loading && $ctrl.sshKeys">
+    <div data-ng-if="$ctrl.sshKeys.loading">
+        <span data-translate="adp_deploy_ssh_key"></span>
+        <oui-spinner class="ml-2" data-size="s"></oui-spinner>
+    </div>
+    <oui-field data-label="{{ ::'adp_deploy_ssh_key' | translate }}"
+                data-ng-if="!$ctrl.sshKeys.loading">
+        <oui-select data-name="sshKey"
+                    data-model="$ctrl.selectedSshKey"
+                    data-items="$ctrl.sshKeys.data"
+                    data-match="name"
+                    data-placeholder="{{ ::'adp_deploy_ssh_key_placeholder' | translate }}"
+                    data-disabled="!$ctrl.sshKeys.data.length"
+                    data-required>
+        </oui-select>
+        <div class="mb-3" data-ng-if="!$ctrl.sshKeys.data.length">
+            <span class="text-danger" data-translate="adp_deploy_ssh_key_help"></span>
+            <a data-ui-sref="iaas.pci-project.compute.ssh({ serviceName: $ctrl.adp.os_project_id })"
+               data-translate="adp_deploy_ssh_key_create"></a>
+        </div>
+    </oui-field>
+</div>
+<!-- password -->
+<div data-ng-if="$ctrl.isFieldRequired('masterPassword')">
+    <oui-message data-type="warning">
+        <span data-translate="adp_deploy_password_warning"></span>
+    </oui-message>
+    <oui-field data-label="{{ ::'adp_deploy_master_password' | translate }}"
+                data-error-messages="{ pattern: ('adp_deploy_master_password_help' | translate) }">
+        <oui-password data-name="masterPassword"
+                        data-model="$ctrl.adp.master_password"
+                        data-placeholder="{{ ::'adp_deploy_master_password' | translate }}"
+                        data-pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{12,}$"
+                        data-required>
+        </oui-password>
+    </oui-field>
+    <oui-field data-label="{{ ::'adp_deploy_master_password_confirm' | translate }}"
+                data-error-messages="{ password: ('adp_deploy_master_password_must_match' | translate) }">
+        <oui-password data-name="masterPasswordConfirm"
+                        data-model="$ctrl.masterPasswordConfirm"
+                        data-placeholder="{{ ::'adp_deploy_master_password_confirm_placeholder' | translate }}"
+                        data-required>
+            <oui-password-rule data-validator="$ctrl.checkPasswordMatch()">
+                <span data-translate="adp_deploy_master_password_must_match"></span>
+            </oui-password-rule>
+        </oui-password>
+    </oui-field>
+</div>

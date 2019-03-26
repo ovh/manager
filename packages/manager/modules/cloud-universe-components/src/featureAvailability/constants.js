@@ -180,6 +180,16 @@ export const FEATURE_AVAILABILITY = {
       CA: ['CA', 'QC'],
     },
   },
+  ANALYTICS_DATA_PLATFORM: {
+    sidebarMenu: {
+      EU: ALL_EUROPEAN_SUBSIDIARIES,
+      CA: ALL_CANADIAN_SUBSIDIARIES,
+    },
+    sidebarOrder: {
+      EU: ALL_EUROPEAN_SUBSIDIARIES,
+      CA: ALL_CANADIAN_SUBSIDIARIES,
+    },
+  },
 };
 
 export default {

@@ -1,0 +1,48 @@
+<section class="adp-service" data-ng-if="!$ctrl.platformDetail.loading">
+    <oui-page-header
+        data-heading="{{ $ctrl.details.cluster_name }}"
+        data-description="{{ $ctrl.details.project_id }}">
+        <!-- guide menu -->
+        <oui-guide-menu data-text="{{ ::'adp_header_guides' | translate }}">
+            <oui-guide-menu-item data-text="{{ ::'adp_header_guides_adp' | translate }}"
+                                 data-href="{{ ::$ctrl.guideLinks.general_link }}"
+                                 data-external></oui-guide-menu-item>
+        </oui-guide-menu>
+        <!-- header tabs -->
+        <oui-header-tabs>
+            <oui-header-tabs-item
+                data-text="{{ ::'adp_header_nav_service_info' | translate }}"
+                data-state="adp.service.details"
+                data-state-params="{ serviceName: $ctrl.serviceName }">
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                data-text="{{ ::'adp_header_nav_cluster_size' | translate }}"
+                data-state="adp.service.cluster"
+                data-state-params="{ serviceName: $ctrl.serviceName }">
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                data-text="{{ ::'adp_header_nav_credential' | translate }}"
+                data-state="adp.service.credentials"
+                data-state-params="{ serviceName: $ctrl.serviceName }">
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                data-text="{{ ::'adp_header_nav_activity' | translate }}"
+                data-state="adp.service.log"
+                data-state-params="{ serviceName: $ctrl.serviceName }">
+            </oui-header-tabs-item>
+        </oui-header-tabs>
+    </oui-page-header>
+    <!-- page content -->
+    <div class="mt-1 mx-1 mt-sm-2 mx-sm-2">
+        <!-- error messages -->
+        <div data-ng-if="$ctrl.messages.length > 0">
+            <oui-message
+                data-ng-repeat="message in $ctrl.messages track by $index"
+                data-ng-if="message.origin === 'adp.deploy'"
+                data-type="{{ message.type }}">
+                <span data-ng-bind="message.text"></span>
+            </oui-message>
+        </div>
+        <div data-ui-view></div>
+    </div>
+</section>

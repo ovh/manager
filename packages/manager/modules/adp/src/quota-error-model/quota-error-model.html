@@ -1,0 +1,62 @@
+<oui-modal data-title="{{ ::'adp_deploy_quota_error_model_title' | translate }}"
+    data-primary-action="$ctrl.closeModal()"
+    data-primary-label="{{ ::'adp_deploy_quota_error_model_button_increase_quota' | translate }}"
+    data-secondary-action="$ctrl.dismissModal()"
+    data-on-dismiss="$ctrl.dismissModal()"
+    data-secondary-label="{{ ::'adp_common_close' | translate }}"
+    data-type="error">
+    <p data-translate="adp_deploy_quota_error_model_description"
+        data-translate-values="{cloud_name: $ctrl.publicCloudName}">
+    </p>
+    <div class="oui-datagrid-responsive-container
+        oui-datagrid-responsive-container_sticky-checkbox
+        adp-quota-info">
+        <div
+            class="oui-datagrid-responsive-container__sticky-container
+                oui-datagrid-responsive-container__sticky-container_scroll-end
+                adp-quota-info-container">
+            <div class="oui-datagrid-responsive-container__overflow-container">
+                <table class="oui-datagrid">
+                    <thead class="oui-datagrid__headers">
+                        <tr>
+                            <th class="oui-datagrid__header oui-datagrid__cell-sticky text-center"></th>
+                            <th class="oui-datagrid__header text-center" tabindex="0" data-translate="adp_deploy_quota_used"></th>
+                            <th class="oui-datagrid__header text-center" tabindex="0" data-translate="adp_deploy_quota_required_for_cluster"></th>
+                            <th class="oui-datagrid__header text-center" tabindex="0" data-translate="adp_deploy_quota_available"></th>
+                            <th class="oui-datagrid__header text-center" tabindex="0" data-translate="adp_deploy_quota_total_required"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="oui-datagrid__row" data-ng-repeat="compute in $ctrl.quotas track by compute.computeName">
+                            <td class="oui-datagrid__cell oui-datagrid__cell-sticky text-center">
+                                <span data-translate="{{ ::'adp_deploy_quota_virtual_'+compute.computeName }}"></span>
+                            </td>
+                            <td class="oui-datagrid__cell text-center">
+                                <span data-ng-bind="compute.currentlyUsed">&nbsp;</span>
+                                <span data-ng-if="compute.unit" data-translate="{{ ::'adp_common_unit_'+compute.unit }}"></span>
+                            </td>
+                            <td class="oui-datagrid__cell text-center">
+                                <span data-ng-bind="compute.requiredForCluster">&nbsp;</span>
+                                <span data-ng-if="compute.unit" data-translate="{{ ::'adp_common_unit_'+compute.unit }}"></span>
+                            </td>
+                            <td class="oui-datagrid__cell text-center">
+                                <span data-ng-bind="compute.maxLimit">&nbsp;</span>
+                                <span data-ng-if="compute.unit" data-translate="{{ ::'adp_common_unit_'+compute.unit }}"></span>
+                            </td>
+                            <td class="oui-datagrid__cell text-center">
+                                <span data-ng-class="['oui-status', {'oui-status_success': compute.maxLimit >= compute.required}, {'oui-status_error': compute.maxLimit < compute.required} ]"
+                                    data-ng-bind="compute.required">
+                                    &nbsp;
+                                </span>
+                                <span data-ng-if="compute.unit" data-translate="{{ ::'adp_common_unit_'+compute.unit }}"></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <p class="pt-2" data-translate="adp_deploy_quota_error_model_info"
+        data-translate-values="{cloud_name: $ctrl.publicCloudName}">
+    </p>
+</oui-modal>

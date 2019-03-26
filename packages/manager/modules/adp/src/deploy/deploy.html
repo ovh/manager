@@ -1,0 +1,71 @@
+<section>
+    <!-- page header -->
+    <oui-page-header
+        data-heading="{{ ::'adp_deploy_title' | translate }}"
+        data-description="{{ ::'adp_deploy_description' | translate }}">
+    </oui-page-header>
+    <!-- page content -->
+    <div class="mx-auto" style="max-width: 1200px;">
+        <!-- error messages -->
+        <div class="mt-1 mt-sm-2" data-ng-if="$ctrl.messages.length > 0">
+            <oui-message
+                data-ng-repeat="message in $ctrl.messages track by $index"
+                data-ng-if="message.origin === 'adp.deploy'"
+                data-type="{{ message.type }}">
+                <span data-ng-bind="message.text"></span>
+            </oui-message>
+        </div>
+        <!-- deploy stepper -->
+        <div class="mt-1 mt-sm-2">
+            <oui-stepper>
+                <!-- general information -->
+                <oui-step-form data-header="{{ ::'adp_deploy_general_configuration_title' | translate }}"
+                               data-loading="$ctrl.capabilities.loading"
+                               data-on-submit="$ctrl.submitGeneralInformation()"
+                               data-valid="$ctrl.isGeneralConfigComplete()">
+                    <div data-ng-include="'adp/deploy/general.html'"></div>
+                </oui-step-form>
+
+                <!-- security -->
+                <oui-step-form data-header="{{ ::'adp_deploy_security' | translate }}"
+                               data-loading="$ctrl.sshKeys.loading || $ctrl.vRack.loading"
+                               data-on-submit="$ctrl.submitSecurityInformation()"
+                               data-valid="$ctrl.isSecurityConfigComplete()">
+                    <div data-ng-include="'adp/deploy/security.html'"></div>
+                </oui-step-form>
+
+                <!-- select regions -->
+                <oui-step-form data-header="{{ ::'adp_deploy_select_region_datacenter' | translate }}"
+                       data-loading="$ctrl.regionsByDatacenter.loading"
+                       data-on-focus="$ctrl.initRegionsAndDatacenters()"
+                       data-on-submit="$ctrl.submitRegionAndDatacenter()">
+                    <div data-ng-include="'adp/deploy/regions.html'"></div>
+                </oui-step-form>
+
+                <!-- nodes config -->
+                <oui-step-form data-header="{{ ::'adp_deploy_nodes_title' | translate }}"
+                               data-loading="$ctrl.supportedFlavors.loading && $ctrl.quota.loading"
+                               data-on-focus="$ctrl.initNodes()"
+                               data-on-submit="$ctrl.submitNodesInformation()">
+                    <div data-ng-include="'adp/deploy/nodes.html'"></div>
+                </oui-step-form>
+
+                <!-- nodes storage -->
+                <oui-step-form data-header="{{ ::'adp_deploy_storage_title' | translate }}"
+                    data-on-focus="$ctrl.initStorage()"
+                    data-on-submit="$ctrl.submitStorageInformation()">
+                    <div data-ng-include="'adp/deploy/storage.html'"></div>
+                </oui-step-form>
+
+                <!-- review -->
+                <oui-step-form data-header="{{ ::'adp_deploy_review_title' | translate }}"
+                    data-loading="$ctrl.priceCatalog.loading"
+                    data-on-submit="$ctrl.deployCluster()"
+                    data-on-focus="$ctrl.initReview()"
+                    data-submit-text="{{ ::'adp_deploy_create_cluster' | translate }}">
+                    <div data-ng-include="'adp/deploy/review.html'"></div>
+                </oui-step-form>
+            </oui-stepper>
+        </div>
+    </div>
+</section>

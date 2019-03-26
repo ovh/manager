@@ -1,0 +1,52 @@
+// override bootstrap map to add custom widths
+// This variable affects the `.h-*` and `.w-*` classes.
+$sizes: () !default;
+// stylelint-disable-next-line scss/dollar-variable-default
+$sizes: map-merge(
+  (
+    10: 10%,
+    15: 15%,
+    20: 20%
+  ),
+  $sizes
+);
+
+@import "~bootstrap4/scss/_functions";
+@import "~bootstrap4/scss/_variables";
+@import "~bootstrap4/scss/_mixins";
+@import '~bootstrap4/scss/_utilities.scss';
+@import "~bootstrap4/scss/_grid.scss";
+@import "~bootstrap4/scss/_type.scss";
+@import "~bootstrap4/scss/_modal.scss";
+
+.storage-list {
+  display: flex;
+  flex-wrap: wrap;
+
+  &__term {
+    width: 50%;
+    text-align: left;
+    font-weight: 400;
+  }
+
+  &__definition {
+    width: 50%;
+    overflow: hidden;
+  }
+
+  &__seperator {
+      width: 56%;
+      margin-left: 0;
+  }
+}
+
+.adp-quota-info-container::after {
+  width: 4.7rem !important;
+}
+
+.adp-quota-info {
+  padding-left: 4.7rem !important;
+}
+.adp-quota-info-container .oui-datagrid__cell-sticky:first-child {
+  width: 4.7rem !important;
+}
