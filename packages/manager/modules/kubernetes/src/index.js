@@ -4,9 +4,6 @@ import 'oclazyload';
 
 import '@ovh-ux/manager-core';
 
-import './index.less';
-import './index.scss';
-
 const moduleName = 'ovhManagerKubernetes';
 
 angular
@@ -21,7 +18,7 @@ angular
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-        return import('./details/index')
+        return import('./component')
           .then(mod => $ocLazyLoad.inject(mod.default || mod));
       },
     });
