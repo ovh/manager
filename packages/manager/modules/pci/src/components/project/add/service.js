@@ -53,7 +53,7 @@ export default class CloudProjectAdd {
                     voucher,
                   },
                 });
-                this.$state.go('iaas.pci-project.details', {
+                this.$state.go('pci.projects.project.legacy.details', {
                   projectId: response.project,
                   fromProjectAdd: true,
                 });
@@ -67,7 +67,7 @@ export default class CloudProjectAdd {
             if (response.project) {
               // Success: go to it
               this.updateManager(response.project, description);
-              this.$state.go('iaas.pci-project.details', {
+              this.$state.go('pci.projects.project.legacy.details', {
                 projectId: response.project,
                 fromProjectAdd: true,
                 createNewVm: true,

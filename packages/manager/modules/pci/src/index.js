@@ -28,11 +28,10 @@ import 'ovh-common-style/dist/ovh-common-style.css';
 
 import components from './components';
 import offer from './offer';
-import project from './project';
-import template from './cloud.html';
+import projects from './projects';
+import template from './template.html';
 
 import './index.scss';
-
 
 import {
   CLOUD_INSTANCE_DEFAULTS,
@@ -58,7 +57,7 @@ const moduleName = 'ovhManagerPci';
 angular
   .module(moduleName, [
     components,
-    project,
+    projects,
     offer,
     'ui.router',
     'ngOvhCloudUniverseComponents',
@@ -78,14 +77,9 @@ angular
   ])
   .config(/* @ngInject */($stateProvider) => {
     $stateProvider
-      .state('iaas', {
-        url: '/iaas',
-        abstract: true,
-        template,
-      })
-      .state('paas', {
-        url: '/paas',
-        abstract: true,
+      .state('pci', {
+        url: '/pci',
+        // abstract: true,
         template,
       });
   })
@@ -93,17 +87,17 @@ angular
     $transitions.onSuccess({}, (transition) => {
       const state = transition.to();
       if (state && state.url === '/compute') {
-        if ($state.includes('iaas.pci-project')) {
+        if ($state.includes('pci.projects.project.legacy')) {
           if ($stateParams.createNewVm) {
-            $state.go('iaas.pci-project.compute.infrastructure', {
+            $state.go('pci.projects.project.legacy.compute.infrastructure', {
               createNewVm: true,
             });
           } else {
-            $state.go('iaas.pci-project.compute.infrastructure');
+            $state.go('pci.projects.project.legacy.compute.infrastructure');
           }
         }
       } else if (state && state.url === '/billing') {
-        $state.go('iaas.pci-project.billing.consumption');
+        $state.go('pci.projects.project.legacy.billing.consumption');
       }
     });
   })
