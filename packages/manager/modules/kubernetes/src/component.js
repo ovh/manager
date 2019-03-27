@@ -10,9 +10,9 @@ import 'font-awesome/css/font-awesome.css';
 import 'ovh-ui-kit/dist/oui.css';
 
 import kubernetesDetail from './details/index';
+import kubernetesList from './list/index';
 
 import './index.less';
-import './index.scss';
 
 const moduleName = 'ovhManagerKubernetesComponent';
 
@@ -21,6 +21,7 @@ angular.module(moduleName, [
   'oui',
   'ovh-api-services',
   'ui.bootstrap',
+  kubernetesList,
   kubernetesDetail,
 ]);
 
