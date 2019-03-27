@@ -11,6 +11,8 @@ import containersComponent from './containers/index';
 import nodesComponent from './nodes/index';
 import serviceComponent from './service/index';
 
+import './index.scss';
+
 const moduleName = 'ovhManagerKubernetesDetailComponent';
 
 angular.module(moduleName, [
