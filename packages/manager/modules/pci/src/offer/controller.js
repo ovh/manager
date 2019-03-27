@@ -115,8 +115,8 @@ export default class CloudOfferCtrl {
   }
 
   loadMessage() {
-    this.CucCloudMessage.unSubscribe('iaas.pci-project-onboarding');
-    this.messageHandler = this.CucCloudMessage.subscribe('iaas.pci-project-onboarding', { onMessage: () => this.refreshMessage() });
+    this.CucCloudMessage.unSubscribe('pci.project-onboarding');
+    this.messageHandler = this.CucCloudMessage.subscribe('pci.project-onboarding', { onMessage: () => this.refreshMessage() });
   }
 
   refreshMessage() {
