@@ -1,4 +1,5 @@
 {
+  "cpb_project_management_credit_vouchers": "Crédits & Vouchers",
   "cpb_vouchers_add_credit_title": "Acheter du crédit cloud",
   "cpb_vouchers_add_credit_info": "Choisissez la somme (hors taxes) à créditer sur ce projet. Une fois le bon de commande réglé, ce crédit sera utilisé pour les forfaits et consommations de ce projet pour les factures éditées au cours des 12 prochains mois.",
   "cpb_vouchers_add_credit_amount": "Somme à créditer ( HT {{ currency }} ) :",
