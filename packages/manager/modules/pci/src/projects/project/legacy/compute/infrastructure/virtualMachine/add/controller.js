@@ -118,7 +118,7 @@ export default class CloudProjectComputeInfrastructureVirtualMachineAddCtrl {
   }
 
   cancel() {
-    this.$state.go('pci.projects.project.legacy.compute.infrastructure.list');
+    this.$state.go('pci.projects.project.instances');
   }
 
   confirm() {
@@ -508,7 +508,7 @@ export default class CloudProjectComputeInfrastructureVirtualMachineAddCtrl {
 
     return this.VirtualMachineAddService.createVirtualMachine(this.serviceName, this.model)
       .then(() => {
-        this.$state.go('pci.projects.project.legacy.compute.infrastructure.list');
+        this.$state.go('pci.projects.project.instances');
       })
       .catch(this.CucServiceHelper.errorHandler('cpcivm_add_launch_ERROR'))
       .catch(() => {
