@@ -2,6 +2,9 @@ const merge = require('webpack-merge');
 const path = require('path');
 const webpackConfig = require('@ovh-ux/manager-webpack-config');
 
+console.log(path.resolve(process.cwd(), './node_modules'));
+console.log(path.resolve(process.cwd(), '../../../../node_modules'));
+
 module.exports = (env = {}) => {
   const { config } = webpackConfig({
     template: './index.html',

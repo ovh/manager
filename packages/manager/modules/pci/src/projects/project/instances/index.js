@@ -4,14 +4,16 @@ import '@ovh-ux/ng-translate-async-loader';
 import 'angular-translate';
 import 'ovh-api-services';
 
+import instance from './instance';
+
 import component from './instances.component';
 import routing from './instances.routing';
 
 const moduleName = 'ovhManagerPciInstances';
 
-console.log('instances');
 angular
   .module(moduleName, [
+    instance,
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
     'ovh-api-services',
