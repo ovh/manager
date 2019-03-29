@@ -3,6 +3,7 @@ import '@uirouter/angularjs';
 import 'oclazyload';
 
 import '@ovh-ux/manager-core';
+import component from './component';
 
 const moduleName = 'ovhManagerKubernetes';
 
@@ -11,6 +12,7 @@ angular
     'ui.router',
     'ovhManagerCore',
     'oc.lazyLoad',
+    component,
   ])
   .config(/* @ngInject */($stateProvider) => {
     $stateProvider.state('kube.**', {

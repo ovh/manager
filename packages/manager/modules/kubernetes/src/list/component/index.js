@@ -18,12 +18,9 @@ angular.module(moduleName, [
         views: {
           kubernetesListView: 'ovhManagerKubernetesListComponent',
         },
-        translations: {
-          value: ['.'],
-          format: 'json',
-        },
       });
   })
+  .run(/* @ngTranslationsInject:json ./translations */)
   .component('ovhManagerKubernetesListComponent', listComponent)
   .service('PublicCloudProjectKubernetes', service);
 
