@@ -5,6 +5,23 @@
 
 /* stylelint-disable at-rule-no-unknown */
 .oui-navbar {
+  background-color: #fff;
+  box-shadow: 0 2pt 4pt rgba(17, 63, 109, 0.15);
+  z-index: 2;
+
+  .oui-navbar__brand {
+    color: rgb(40, 89, 192);
+  }
+
+  .oui-navbar-link {
+    color: rgb(17, 63, 109);
+
+    &.oui-navbar-link_active {
+      background-color: transparent;
+      border-bottom: 3px solid rgb(40, 89, 192) !important;
+    }
+  }
+
   // Languages menu
   &-menu {
     &_language &__item_active {

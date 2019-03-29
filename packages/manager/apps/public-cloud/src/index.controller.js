@@ -1,7 +1,11 @@
 export default class PublicCloudController {
-  /* eslint-disable */
-  shouldDisplaySidebar() {
-    return true;
+  /* @ngInject */
+  constructor($state, $transitions) {
+    this.$state = $state;
+    this.$transitions = $transitions;
+
+    this.$transitions.onSuccess({}, () => {
+      this.shouldDisplaySidebar = $state.includes('pci.projects.project');
+    });
   }
-  /* eslint-enable */
 }

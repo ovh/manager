@@ -8,40 +8,81 @@ export default class SidebarController {
   constructor(
     $translate,
     $rootScope,
+    $stateParams,
+    $transitions,
     OvhApiServices,
+    OvhApiCloudProject,
     SidebarMenu,
   ) {
     this.$translate = $translate;
+    this.$transitions = $transitions;
     this.$rootScope = $rootScope;
+    this.$stateParams = $stateParams;
     this.OvhApiServices = OvhApiServices;
+    this.OvhApiCloudProject = OvhApiCloudProject;
     this.SidebarMenu = SidebarMenu;
 
     this.isOpen = false;
+    this.isLoading = false;
+    this.isDisplayingProjectsList = false;
+  }
+
+  toggleProjectsList() {
+    this.isDisplayingProjectsList = !this.isDisplayingProjectsList;
+  }
+
+  setProject(serviceName) {
+    this.isLoading = true;
+
+    this.SidebarMenu.setInitializationPromise(
+      this.OvhApiCloudProject
+        .v6()
+        .get({
+          serviceName,
+        })
+        .$promise
+        .then((project) => {
+          this.project = project;
+
+          return this
+            .$translate
+            .refresh() // Waiting for translations ./translations
+            .then(() => new Promise((resolve) => {
+              this.SidebarMenu.setShouldToggleMenuItemOpenState(false);
+              this.SidebarMenu.clearMenuItems();
+
+              _.forEach(MENU, ({ options, subitems, translation }) => {
+                const menuItem = this.SidebarMenu.addMenuItem(Object.assign({
+                  title: this.$translate.instant(translation),
+                  allowSubItems: true,
+                  isOpen: true,
+                  stateParams: {
+                    projectId: this.project.project_id,
+                  },
+                }, options));
+
+                _.forEach(subitems, ({ options, translation }) => { // eslint-disable-line no-shadow
+                  this.SidebarMenu.addMenuItem(Object.assign({
+                    title: this.$translate.instant(translation),
+                  }, options), menuItem);
+                });
+              });
+              resolve();
+            }));
+        })
+        .finally(() => {
+          this.isLoading = false;
+        }),
+    );
   }
 
   $onInit() {
+    this.setProject(this.$stateParams.projectId);
+    this.$transitions.onSuccess({}, () => {
+      this.setProject(this.$stateParams.projectId);
+    });
+
     this.$rootScope.$on('navbar:toggle', () => this.toggle());
-
-    this.SidebarMenu.setInitializationPromise(
-      this
-        .$translate
-        .refresh() // Waiting for translations ./translations
-        .then(() => new Promise((resolve) => {
-          _.forEach(MENU, ({ options, subitems, translation }) => {
-            const menuItem = this.SidebarMenu.addMenuItem(Object.assign({
-              title: this.$translate.instant(translation),
-              allowSubItems: true,
-            }, options));
-
-            _.forEach(subitems, ({ options, translation }) => { // eslint-disable-line no-shadow
-              this.SidebarMenu.addMenuItem(Object.assign({
-                title: this.$translate.instant(translation),
-              }, options), menuItem);
-            });
-          });
-          resolve();
-        })),
-    );
   }
 
   buildMenu(services) {

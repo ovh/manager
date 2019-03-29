@@ -1,4 +1,5 @@
 {
+  "openstackusers": "Utilisateurs",
   "cpou_openrc_title": "Télécharger le fichier RC d'OpenStack",
   "cpou_openrc_expl": "Vous allez télécharger un fichier de configuration permettant de vous connecter à Openstack.",
   "cpou_openrc_more": "En savoir plus",
