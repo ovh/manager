@@ -13,7 +13,7 @@
         </div>
         <div class="mt-3" data-ng-if="$ctrl.projects && $ctrl.projects.length > 0">
             <strong class="text-white">Mes projets&nbsp;:</strong>
-            <ul class="list-unstyled mt-2">
+            <ul class="list-unstyled mt-2 mb-5">
                 <li data-ng-repeat="project in $ctrl.projects track by $index">
                     <a ui-sref="pci.projects.project({ projectId: project.project_id })" class="d-flex text-white">
                         <span class="text-truncate" data-ng-bind="project.description"></span>
