@@ -8,7 +8,6 @@ import '@ovh-ux/ng-ovh-jsplumb';
 import diagram from './diagram';
 import iac from './iac';
 import ip from './ip';
-import list from './list';
 import openstackClient from './openstackClient';
 import popover from './popover';
 import privateNetwork from './privateNetwork';
@@ -31,7 +30,6 @@ angular
     diagram,
     iac,
     ip,
-    list,
     'ngTranslateAsyncLoader',
     openstackClient,
     'ovh-api-services',

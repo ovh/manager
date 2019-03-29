@@ -43,7 +43,7 @@ export default class CloudProjectComputeInfrastructureListCtrl {
     this.serviceName = this.$stateParams.projectId;
 
     this.CucCloudNavigation.init({
-      state: 'pci.projects.project.legacy.compute.infrastructure.list',
+      state: 'pci.projects.project.instances',
       stateParams: {
         serviceName: this.serviceName,
       },

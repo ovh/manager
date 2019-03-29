@@ -20,7 +20,7 @@ export default class CloudProjectComputeInfrastructureIacViewCtrl {
   }
 
   cancel() {
-    this.$state.go('pci.projects.project.legacy.compute.infrastructure.list');
+    this.$state.go('pci.projects.project.instances');
   }
 
   getStacks() {
