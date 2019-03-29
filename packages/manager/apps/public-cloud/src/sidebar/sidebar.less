@@ -1,4 +1,4 @@
-@background-color: rgb(244,248,251);
+@background-color: #fff;
 @text-color: rgb(17,63,109);
 
 cloud-sidebar { /* stylelint-disable-line */
@@ -6,36 +6,35 @@ cloud-sidebar { /* stylelint-disable-line */
   color: @text-color;
   width: 100%;
   height: 100%;
+  // box-shadow: 0 2pt 10pt rgba(40, 89, 192, 0.25);
+  z-index: 1;
+  position: relative;
 
-  oui-dropdown-content { /* stylelint-disable-line */
-    color: @text-color;
-    width: 90%;
+  .project-list {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(40, 89, 192);
+    color: #fff;
+    top: 0;
+    left: 0;
+    z-index: 1021;
+    overflow: auto;
+
+    .btn {
+      border: 2px solid #fff;
+      border-radius: 4px;
+
+      &.btn-primary.rounded-circle {
+        background-color: #fff;
+        color: rgb(40, 89, 192);
+      }
+    }
 
     ul {
-      list-style-type: none;
-      padding: 0;
-      margin: 0;
-      max-height: 50vh;
-      overflow: auto;
-
       li {
-        border-bottom: 1px solid rgb(230, 245, 252);
-        padding: 0 0 4pt;
-        margin-bottom: 4pt;
-
-        &:nth-last-child(1) {
-          border-bottom: 0;
-          margin-bottom: 0;
-        }
-
-        a {
-          color: rgb(40, 89, 192);
-
-          .oui-icon {
-            font-size: 0.8rem;
-            color: rgb(40, 89, 192);
-          }
-        }
+        padding: 4px;
+        border-bottom: 1px solid #fff;
       }
     }
   }
@@ -53,15 +52,22 @@ cloud-sidebar { /* stylelint-disable-line */
     margin-bottom: 0;
 
     .oui-sidebar-link {
+      font-weight: bold;
       display: flex;
+
+      &::after {
+        color: rgb(40, 89, 192);
+        top: 55%;
+        right: 0;
+      }
 
       &,
       &:hover,
       &:focus,
       &:active {
-        border-bottom: 1px solid rgb(76, 189, 231);
+        border-bottom: 2px solid rgb(230, 245, 252);
         color: @text-color;
-        padding: 8pt;
+        padding: 8pt 0 4pt;
         min-height: inherit;
       }
 
@@ -97,10 +103,11 @@ cloud-sidebar { /* stylelint-disable-line */
             &:active {
               border-bottom: 0;
               border-left: 2px solid transparent;
-              color: rgb(40, 89, 192);
-              padding: 6pt 24pt;
+              color: rgb(17, 63, 109);
+              padding: 6pt;
               text-indent: 0;
               font-weight: 600;
+              font-weight: normal;
             }
 
             &:hover,

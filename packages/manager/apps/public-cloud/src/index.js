@@ -1,7 +1,6 @@
-import angular from 'angular';
-
 /* eslint-disable import/no-webpack-loader-syntax, import/extensions */
 import 'script-loader!jquery';
+import angular from 'angular';
 import 'script-loader!lodash';
 import 'script-loader!jquery-ui/ui/minified/core.min';
 import 'script-loader!jquery-ui/ui/minified/widget.min';
