@@ -60,7 +60,7 @@ export const MENU = [
     subitems: [
       {
         options: {
-          state: 'pci.projects.project',
+          state: 'pci.projects.project.kubernetes',
         },
         translation: 'cloud_sidebar_orchestration_kubernetes',
       },
