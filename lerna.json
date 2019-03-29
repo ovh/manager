@@ -1,6 +1,7 @@
 {
   "lerna": "3.4.3",
   "packages": [
+    "packages/components/*",
     "packages/manager/apps/*",
     "packages/manager/modules/*"
   ],
