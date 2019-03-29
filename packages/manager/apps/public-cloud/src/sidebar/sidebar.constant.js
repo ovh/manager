@@ -3,7 +3,7 @@ export const MENU = [
     subitems: [
       {
         options: {
-          state: 'pci.projects.project.legacy.compute.infrastructure.list',
+          state: 'pci.projects.project.instances',
         },
         translation: 'cloud_sidebar_compute_instance',
       },
