@@ -2,6 +2,7 @@ import angular from 'angular';
 import 'angular-animate';
 import '@ovh-ux/manager-core';
 import '@uirouter/angularjs';
+import '@ovh-ux/ng-ovh-uirouter-layout';
 import 'oclazyload';
 import '@ovh-ux/ng-ovh-cloud-universe-components';
 import '@ovh-ux/ng-ovh-proxy-request';
@@ -18,6 +19,7 @@ import 'ovh-jquery-ui-draggable-ng';
 import 'ovh-angular-q-allsettled';
 import 'ovh-angular-pagination-front';
 import 'ovh-angular-responsive-page-switcher';
+import 'angular-ui-bootstrap';
 
 import '@ovh-ux/manager-cloud-styles';
 import 'ovh-manager-webfont/dist/css/ovh-font.css';
@@ -56,6 +58,7 @@ const moduleName = 'ovhManagerPci';
 
 angular
   .module(moduleName, [
+    'ngOvhUiRouterLayout',
     components,
     projects,
     offer,
@@ -74,6 +77,7 @@ angular
     'ovh-angular-pagination-front',
     'ovh-angular-responsive-page-switcher',
     'oui',
+    'ui.bootstrap',
   ])
   .config(/* @ngInject */($stateProvider) => {
     $stateProvider
@@ -83,7 +87,7 @@ angular
         template,
       });
   })
-  .run(($transitions, $state, $stateParams) => {
+  .run(/* @ngInject */($transitions, $state, $stateParams) => {
     $transitions.onSuccess({}, (transition) => {
       const state = transition.to();
       if (state && state.url === '/compute') {

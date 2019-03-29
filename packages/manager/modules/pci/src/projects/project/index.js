@@ -7,17 +7,19 @@ import 'ovh-api-services';
 import 'ovh-ui-angular';
 
 import legacy from './legacy';
+import storages from './storages';
 import routing from './project.routing';
 
 const moduleName = 'ovhManagerPciProject';
 
 angular
   .module(moduleName, [
+    legacy,
     'oui',
     'ovhManagerCore',
     'ovh-api-services',
     'pascalprecht.translate',
-    legacy,
+    storages,
   ])
   .config(routing);
 

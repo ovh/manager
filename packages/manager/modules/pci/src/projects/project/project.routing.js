@@ -12,5 +12,8 @@ export default /* @ngInject */ ($stateProvider) => {
         format: 'json',
         value: ['.'],
       },
+      resolve: {
+        projectId: /* @ngInject */ $transition$ => $transition$.params().projectId,
+      },
     });
 };

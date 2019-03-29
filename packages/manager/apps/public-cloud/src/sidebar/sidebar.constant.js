@@ -14,7 +14,7 @@ export const MENU = [
     subitems: [
       {
         options: {
-          state: 'pci.projects.project',
+          state: 'pci.projects.project.storages.blocks',
         },
         translation: 'cloud_sidebar_storage_block_storage',
       },
