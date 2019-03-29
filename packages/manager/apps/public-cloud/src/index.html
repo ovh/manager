@@ -12,7 +12,7 @@
             <div class="w-100 h-100">
                 <div class="container-fluid h-100">
                     <div class="row h-100">
-                        <div class="col-md-2 p-0 h-100 d-flex flex-column" data-ng-if="$ctrl.shouldDisplaySidebar" style="overflow: auto; box-shadow: 0 2pt 10pt rgba(40, 89, 192, 0.25); z-index: 1;">
+                        <div class="col-md-2 p-0 h-100 d-flex flex-column" data-ng-if="$ctrl.shouldDisplaySidebar">
                             <cloud-sidebar></cloud-sidebar>
                         </div>
                         <div class="h-100 position-relative" data-ng-class="{ 'col-md-10 p-0': $ctrl.shouldDisplaySidebar, 'col-md-12': !$ctrl.shouldDisplaySidebar }">
