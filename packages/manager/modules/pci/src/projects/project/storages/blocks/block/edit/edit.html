@@ -1,0 +1,57 @@
+<div data-ng-if="$ctrl.loading" class="text-center">
+    <oui-spinner ></oui-spinner>
+</div>
+<section data-ng-if="!$ctrl.loading">
+    <oui-back-button
+        data-on-click="$ctrl.back()">{{:: 'pci_projects_project_storages_blocks_block_edit_back_label' | translate }}</oui-back-button>
+
+    <h1 data-translate="pci_projects_project_storages_blocks_block_edit_title"></h1>
+
+    <form novalidate name="form" data-ng-submit="form.$valid && $ctrl.edit()">
+
+        <div class="oui-field oui-field_error">
+            <label for="text-3" class="oui-field__label oui-label"
+                data-translate="pci_projects_project_storages_blocks_block_edit_region_label"></label>
+            <div class="oui-field__control" data-ng-bind="$ctrl.editStorage.region"></div>
+        </div>
+
+        <div class="oui-field oui-field_error">
+            <label for="text-3" class="oui-field__label oui-label"
+                data-translate="pci_projects_project_storages_blocks_block_edit_type_label"></label>
+            <div class="oui-field__control"
+                data-ng-bind="'pci_projects_project_storages_blocks_block_edit_type_' + $ctrl.editStorage.type | translate"></div>
+        </div>
+
+        <oui-field
+            data-label="{{:: 'pci_projects_project_storages_blocks_block_edit_name_label' | translate }}"
+            data-size="xl">
+            <input class="oui-input" type="text" name="name"
+                data-ng-model="$ctrl.editStorage.name" required>
+        </oui-field>
+
+        <oui-field
+            data-label="{{:: 'pci_projects_project_storages_blocks_block_edit_size_label' | translate }}"
+            data-help-text="{{:: 'pci_projects_project_storages_blocks_block_edit_size_help' | translate }}"
+            data-size="xl">
+            <oui-numeric
+                data-name="size"
+                data-min="$ctrl.size.min"
+                data-max="$ctrl.size.max"
+                data-model="$ctrl.editStorage.size"
+                data-on-change="$ctrl.estimatePrice(modelValue)"
+                ></oui-numeric>
+        </oui-field>
+
+        <oui-field
+            data-size="xl"
+            data-help-text="Définir un volume comme amorçable permet d'utiliser ce volume au démarrage de votre instance.">
+            <oui-checkbox name="bootable" text="{{:: 'pci_projects_project_storages_blocks_block_edit_bootable_label' | translate }}" model="$ctrl.editStorage.bootable"></oui-checkbox>
+        </oui-field>
+
+        Montant: {{$ctrl.estimatedPrice.monthly.text}} HT/mois
+        <oui-form-actions
+            data-submit-text="{{:: 'pci_projects_project_storages_blocks_block_edit_submit_label' | translate }}"
+            data-cancel-text="{{:: 'pci_projects_project_storages_blocks_block_edit_cancel_label' | translate }}"
+            data-on-cancel="$ctrl.back()"></oui-form-actions>
+    </form>
+</section>
