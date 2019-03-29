@@ -1,4 +1,4 @@
-<div class="cui-page__content">
+<div class="cui-page__content" data-ui-view>
     <div class="text-center" style="margin-top: 200px;"
         data-ng-if="$ctrl.loaders.init">
         <oui-spinner size="l" inline="true"></oui-spinner>
@@ -48,6 +48,7 @@
                 </oui-action-menu>
             </extra-top>
             <oui-column title="'cpci_vm_name' | translate" data-property="name" data-type="string" data-searchable data-filterable data-sortable="asc">
+                <a data-ui-sref="pci.projects.project.instances.instance.dashboard({projectId: $ctrl.serviceName, instanceId: $row.id})" data-ng-bind="$value"></a>
             </oui-column>
             <oui-column data-title="'cpci_vm_region' | translate" data-property="macroRegion" data-type="options" data-type-options="$ctrl.regionOptions" data-filterable>
                 <span data-ng-bind="$ctrl.CucRegionService.getTranslatedMicroRegion($row.region)"></span>
