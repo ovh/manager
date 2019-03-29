@@ -6,6 +6,7 @@ import 'angular-translate';
 import 'ovh-api-services';
 import 'ovh-ui-angular';
 
+import kubernetes from './kubernetes';
 import legacy from './legacy';
 import storages from './storages';
 import routing from './project.routing';
@@ -19,6 +20,8 @@ angular
     'ovhManagerCore',
     'ovh-api-services',
     'pascalprecht.translate',
+    kubernetes,
+    legacy,
     storages,
   ])
   .config(routing);
