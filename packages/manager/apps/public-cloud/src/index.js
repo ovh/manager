@@ -27,6 +27,7 @@ import './index.scss';
 
 import controller from './index.controller';
 import service from './index.service';
+import routing from './index.routes';
 
 angular
   .module('ovhStack', [
@@ -38,4 +39,5 @@ angular
   ])
   .controller('PublicCloudController', controller)
   .service('publicCloud', service)
+  .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);
