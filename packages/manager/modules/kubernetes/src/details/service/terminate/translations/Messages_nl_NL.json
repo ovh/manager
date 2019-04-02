@@ -1,0 +1,9 @@
+{
+ "kube_service_terminate_common_confirm": "Bevestigen",
+ "kube_service_terminate_common_cancel": "Annuleren",
+ "kube_service_terminate_title": "Mijn service verwijderen",
+ "kube_service_terminate_warning": "Als dit element wordt verwijderd, zullen ook alle corresponderende gegevens definitief worden verwijderd. Er kan na deze verwijdering geen restitutie plaatsvinden.",
+ "kube_service_terminate_enter": "Voer in het onderstaande veld \"TERMINATE\" in om te bevestigen",
+ "kube_service_terminate_success": "Er is rekening gehouden met uw verzoek om het Kubernetes cluster te verwijderen. Er is u een e-mail gestuurd waarmee u uw verwijderingsverzoek kunt valideren.",
+ "kube_service_terminate_error": "Er is een fout opgetreden tijdens het verwijderen van uw cluster: {{ message }}"
+}
