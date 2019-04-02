@@ -7,45 +7,12 @@
         <h1 data-translate="pci_projects_project_instances"></h1>
         <oui-datagrid data-rows="$ctrl.table.items">
             <extra-top>
-                <oui-action-menu
-                    data-text="{{ ::'common_actions' | translate }}"
-                    data-disabled="ComputeInfrastructureDiagramCtrl.loaders.vRack"
-                    data-write-right-required>
-                    <oui-action-menu-item
-                        data-ui-sref="pci.projects.project.legacy.compute.infrastructure.vm-add()"
-                        data-text="{{ ::'cpci_add_server' | translate }}"
-                        data-write-right-required
-                        data-on-click="$ctrl.trackOnClick('cloud-project::cloud-project-compute::cloud-project-compute-infrastructure-add-virtual-machine')">
-                    </oui-action-menu-item>
-                    <oui-action-menu-item
-                        data-text="{{ ::'cpci_volume_add' | translate }}"
-                        data-write-right-required
-                        data-on-click="$ctrl.addVolume()">
-                    </oui-action-menu-item>
-                    <oui-action-menu-divider></oui-action-menu-divider>
-                    <oui-action-menu-item
-                        data-text="{{ ::'cpci_view_iac' | translate }}"
-                        data-ui-sref="pci.projects.project.legacy.compute.infrastructure.iac-view"
-                        data-on-click="$ctrl.trackOnClick('cloud-project::cloud-project-compute::cloud-project-compute-infrastructure-add-view')">
-                    </oui-action-menu-item>
-                    <oui-action-menu-divider></oui-action-menu-divider>
-                    <oui-action-menu-item
-                        data-text="{{ ::'cpci_buy_ip_failover' | translate }}"
-                        data-on-click="$ctrl.buyIpFailOver()">
-                    </oui-action-menu-item>
-                    <oui-action-menu-divider data-ng-if="$ctrl.region === 'US'"></oui-action-menu-divider>
-                    <oui-action-menu-item
-                        data-ng-if="$ctrl.region === 'US'"
-                        data-text="{{ ::'cpb_vouchers_add_credit_title' | translate }}"
-                        data-on-click="$ctrl.InfrastructureService.orderCredit()">
-                    </oui-action-menu-item>
-                    <oui-action-menu-divider></oui-action-menu-divider>
-                    <oui-action-menu-item
-                        data-text="{{ ::'cpb_details_project_delete' | translate }}"
-                        data-ng-click="$ctrl.openDeleteProjectModal()"
-                        data-write-right-required>
-                    </oui-action-menu-item>
-                </oui-action-menu>
+                <oui-button
+                    data-ui-sref="pci.projects.project.legacy.compute.infrastructure.vm-add()"
+                >
+                    <i class="oui-icon oui-icon-add pr-1" aria-hidden="true"></i>
+                    <span data-translate="cpci_add_instance"></span>
+                </oui-button>
             </extra-top>
             <oui-column title="'cpci_vm_name' | translate" data-property="name" data-type="string" data-searchable data-filterable data-sortable="asc">
                 <a data-ui-sref="pci.projects.project.instances.instance.dashboard({projectId: $ctrl.serviceName, instanceId: $row.id})" data-ng-bind="$value"></a>

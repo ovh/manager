@@ -1,7 +1,7 @@
 {
   "pci_projects_project_instances": "Instances",
   "cpb_vouchers_add_credit_title": "Acheter du crédit cloud",
-  "cpci_add_server": "Ajouter un serveur",
+  "cpci_add_instance": "Ajouter une instance",
   "cpci_view_iac": "Déployer une infrastructure pas-à-pas",
   "cpci_buy_ip_failover": "Acheter des IPs Failover Cloud",
   "cpci_menu_view_label": "Vue",
