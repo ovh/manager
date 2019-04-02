@@ -13,7 +13,6 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-public-cloud' --include-filtered-dependencies -- yarn run dev:watch"
   },
   "dependencies": {
-    "@ovh-ux/ng-ovh-uirouter-layout": "^0.0.0",
     "@fortawesome/fontawesome-free": "^5.8.1",
     "@ovh-ux/manager-cloud-styles": "^0.3.0-alpha.0",
     "@ovh-ux/manager-config": "^0.2.0",
@@ -32,6 +31,7 @@
     "@ovh-ux/ng-ovh-sidebar-menu": "git+https://github.com/ovh-ux/ng-ovh-sidebar-menu.git#feat/always-open",
     "@ovh-ux/ng-ovh-swimming-poll": "^4.0.0",
     "@ovh-ux/ng-ovh-toaster": "^1.0.2",
+    "@ovh-ux/ng-ovh-uirouter-layout": "^0.0.0",
     "@ovh-ux/ng-ovh-user-pref": "^1.0.0",
     "@ovh-ux/ng-translate-async-loader": "^2.0.0",
     "@uirouter/angularjs": "^1.0.20",

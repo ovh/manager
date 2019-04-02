@@ -1753,7 +1753,7 @@
 
 "@ovh-ux/ng-ovh-sidebar-menu@git+https://github.com/ovh-ux/ng-ovh-sidebar-menu.git#feat/always-open":
   version "8.0.0-beta.1"
-  resolved "git+https://github.com/ovh-ux/ng-ovh-sidebar-menu.git#cb4ede31ce4953edd6968534c6098a0b1f9ac334"
+  resolved "git+https://github.com/ovh-ux/ng-ovh-sidebar-menu.git#76db3c9cda614bb35a2c4a85e34f1068528bfd1e"
 
 "@ovh-ux/ng-ovh-sso-auth@^4.0.0-beta.0":
   version "4.0.0"
@@ -9327,7 +9327,7 @@ ovh-api-services@^4.2.0:
   dependencies:
     lodash "^3.10.1"
 
-ovh-api-services@^6.7.0:
+ovh-api-services@^6.4.0, ovh-api-services@^6.7.0:
   version "6.7.0"
   resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-6.7.0.tgz#b65fa6c22e2d4e37100f5747e57f96d929cee446"
   integrity sha512-r7LBjFBIJvpPQrI+r95nUsW57wGfLt+b9yhnLRE6/iuC5ga0g+0CJuIuD7m5U5vjMbfL+EyyQkF/MsKSVn2fAA==

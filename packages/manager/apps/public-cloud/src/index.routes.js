@@ -1,3 +1,3 @@
 export default /* @ngInject */ ($urlRouterProvider) => {
-  $urlRouterProvider.otherwise('/');
+  $urlRouterProvider.otherwise('/#!/pci/projects');
 };
