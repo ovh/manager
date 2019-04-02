@@ -1,0 +1,27 @@
+<div class="text-center" data-ng-if="$ctrl.loading.init">
+  <oui-spinner size="l"></oui-spinner>
+ </div>
+<div data-ng-if="!$ctrl.loading.init">
+    <form novalidate name="inputForm" data-ng-submit="$ctrl.submit()">
+        <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
+        <oui-field label="{{ ::'pci_projects_project_edit_project_name' | translate }}" size="xl">
+            <input class="oui-input" type="text" name="description" ng-model="$ctrl.project.description" required>
+        </oui-field>
+        <oui-field>
+            <oui-checkbox
+                name="isDefault"
+                text="{{ ::'pci_projects_project_edit_default_project' | translate }}"
+                description="{{ ::'pci_projects_project_edit_default_project_description' | translate }}"
+                model="$ctrl.isDefault">
+            </oui-checkbox>
+        </oui-field>
+        <oui-button variant="primary" type="submit" disabled="$ctrl.loading.submit">
+            {{ ::'pci_projects_project_edit_update' | translate }}
+        </oui-button>
+    </form>
+    <div class="mt-4 pt-4 border-top">
+        <h2 data-translate="pci_projects_project_edit_remove"></h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sit amet consequat turpis, at accumsan metus. Curabitur pellentesque condimentum mauris id iaculis. Sed id ex tristique, ornare tortor quis, bibendum lacus. Sed ornare elit eu malesuada auctor. Integer tempor nunc non tincidunt suscipit. Aenean faucibus, felis nec aliquet condimentum, est risus dapibus nibh, vel cursus massa mi sed nibh. Vivamus pulvinar arcu arcu, at consequat dui fermentum sed.</p>
+        <oui-button variant="secondary" text="{{ ::'pci_projects_project_edit_remove' | translate }}" disabled="$ctrl.loading.submit"></oui-button>
+    </div>
+</div>
