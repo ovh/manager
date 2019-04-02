@@ -10,6 +10,7 @@ export default class ProjectEditController {
     this.CucCloudMessage = CucCloudMessage;
     this.ovhUserPref = ovhUserPref;
     this.OvhApiCloudProject = OvhApiCloudProject;
+    this.serviceName = this.$stateParams.projectId;
 
     this.loading = {
       init: false,
@@ -28,7 +29,7 @@ export default class ProjectEditController {
     return this.OvhApiCloudProject
       .v6()
       .get({
-        serviceName: this.$stateParams.projectId,
+        serviceName: this.serviceName,
       })
       .$promise
       .then((project) => {
@@ -37,7 +38,7 @@ export default class ProjectEditController {
       .then(() => this.ovhUserPref.getValue(DEFAULT_PROJECT_KEY))
       .then((defaultProject) => {
         this.defaultProject = defaultProject;
-        this.isDefault = this.$stateParams.projectId === defaultProject.projectId;
+        this.isDefault = this.serviceName === defaultProject.projectId;
       })
       .catch((err) => {
         if (err.status === 404) {
@@ -61,7 +62,7 @@ export default class ProjectEditController {
       .v6()
       .put(
         {
-          serviceName: this.$stateParams.projectId,
+          serviceName: this.serviceName,
         },
         pick(this.project, 'description'),
       )
@@ -71,11 +72,11 @@ export default class ProjectEditController {
         if (this.isDefault) {
           return this.ovhUserPref.create(
             DEFAULT_PROJECT_KEY,
-            { projectId: this.$stateParams.projectId },
+            { projectId: this.serviceName },
           );
         }
         // isDefault is false, if the default project is this one, we should remove the key
-        if (this.defaultProject.projectId === this.$stateParams.projectId) {
+        if (this.defaultProject.projectId === this.serviceName) {
           return this.ovhUserPref.remove(DEFAULT_PROJECT_KEY);
         }
         return null;

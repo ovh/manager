@@ -15,7 +15,9 @@
                 model="$ctrl.isDefault">
             </oui-checkbox>
         </oui-field>
-        <oui-button variant="primary" type="submit" text="{{ ::'pci_projects_project_edit_update' | translate }}" disabled="$ctrl.loading.submit"></oui-button>
+        <oui-button variant="primary" type="submit" disabled="$ctrl.loading.submit">
+            {{ ::'pci_projects_project_edit_update' | translate }}
+        </oui-button>
     </form>
     <div class="mt-4 pt-4 border-top">
         <h2 data-translate="pci_projects_project_edit_remove"></h2>
