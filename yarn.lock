@@ -1572,7 +1572,45 @@
     rollup-pluginutils "^2.3.3"
     slash "^2.0.0"
 
-"@ovh-ux/manager-webpack-config@^3.0.5":
+"@ovh-ux/component-rollup-config@5.0.0-beta.9":
+  version "5.0.0-beta.9"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/component-rollup-config/-/component-rollup-config-5.0.0-beta.9.tgz#14b9e329a39f57a56c783ddf50d25f3089849508"
+  integrity sha512-vntsgUf7HUJOvv4w29mdTD5K3RkqZvYFpvRJJu9ofOwv/uL754x84ry3IU+7wmDIoS+74JBSkiBn49PTy9F8cA==
+  dependencies:
+    "@babel/core" "^7.1.2"
+    "@babel/plugin-syntax-dynamic-import" "^7.0.0"
+    "@babel/preset-env" "^7.1.6"
+    "@ovh-ux/rollup-plugin-less-tilde-importer" "^1.0.0-beta.0"
+    babel-plugin-angularjs-annotate "^0.10.0"
+    camelcase "^5.0.0"
+    estree-walker "^0.6.0"
+    less "^3.8.1"
+    less-plugin-remcalc "^0.1.0"
+    lodash "^4.17.11"
+    magic-string "^0.25.1"
+    node-sass "^4.10.0"
+    rollup "^1.1.2"
+    rollup-plugin-babel "^4.3.2"
+    rollup-plugin-commonjs "^9.2.0"
+    rollup-plugin-html "^0.2.1"
+    rollup-plugin-img "^1.1.0"
+    rollup-plugin-json "^3.1.0"
+    rollup-plugin-less "^0.1.5"
+    rollup-plugin-node-resolve "^4.0.0"
+    rollup-plugin-peer-deps-external "^2.2.0"
+    rollup-plugin-sass "^1.1.0"
+    rollup-pluginutils "^2.3.3"
+    slash "^2.0.0"
+
+"@ovh-ux/manager-core@^4.0.0":
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core/-/manager-core-4.0.1.tgz#ac4411f6093281b929d3a0a46f3be7d20d9f21c1"
+  integrity sha512-gLOdb/cs6GPZKtCXssppWBgPNxpD+Bc/wbCwMrHG16MS5qS8mk9l9AqjBEDZdwltIbwl85K4cjUbv1XSoAoj2w==
+  dependencies:
+    "@ovh-ux/ng-translate-async-loader" "^2.0.0"
+    lodash "^4.17.11"
+
+"@ovh-ux/manager-webpack-config@^3.0.1", "@ovh-ux/manager-webpack-config@^3.0.5":
   version "3.0.5"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-webpack-config/-/manager-webpack-config-3.0.5.tgz#f274f4de8238bbeb553bb023317e7f502f981a84"
   integrity sha512-qWb87wk0XMvQaSgAAGold3E5/ckhnmiu5Y18iYKi/eeqYI5fBKX5p96VbIQa1LblTbYAezmUyXFN2GUgVJ9JCg==
@@ -1660,6 +1698,17 @@
   integrity sha512-EnJEEmoNCTjnCv/501GDZjxYt17YgGbVBr6BfqF6kD4FSf+TQpsP2sOKEXDLIj0oJUYRhU4z5d97AjX9zFSrFg==
   dependencies:
     lodash "^4.17.11"
+
+"@ovh-ux/ng-ovh-cloud-universe-components@^0.3.0":
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-cloud-universe-components/-/ng-ovh-cloud-universe-components-0.3.2.tgz#8498515ee95231f0dc5e19c40daad30c65dc14c0"
+  integrity sha512-KiEVb5aVMYC1vB6+totbpbXJDUE1EWc8Ag8BZasyIkEFeRZZ/4FTbLHPe8DahW4c4AmQKtTZsauww5ONiG1f0w==
+  dependencies:
+    bootstrap "~3.3.0"
+    jsurl "^0.1.5"
+    lodash "^4.17.11"
+    moment "^2.24.0"
+    ovh-ui-kit "^2.24.2"
 
 "@ovh-ux/ng-ovh-contracts@^3.0.0-beta.3":
   version "3.0.0-beta.3"
@@ -2552,6 +2601,11 @@ asynckit@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/asynckit/-/asynckit-0.4.0.tgz#c79ed97f7f34cb8f2ba1bc9790bcc366474b4b79"
   integrity sha1-x57Zf380y48robyXkLzDZkdLS3k=
+
+at-internet-ui-router-plugin@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/at-internet-ui-router-plugin/-/at-internet-ui-router-plugin-1.0.0.tgz#a45c14948cfc22253979b28255c5f8a40e054f71"
+  integrity sha1-pFwUlIz8IiU5ebKCVcX4pA4FT3E=
 
 atob@^2.1.1:
   version "2.1.2"
@@ -5473,6 +5527,11 @@ fast-levenshtein@~2.0.4:
   resolved "https://registry.yarnpkg.com/fast-levenshtein/-/fast-levenshtein-2.0.6.tgz#3d8a5c66883a16a30ca8643e851f19baa7797917"
   integrity sha1-PYpcZog6FqMMqGQ+hR8Zuqd5eRc=
 
+fast-sha256@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/fast-sha256/-/fast-sha256-1.1.0.tgz#b640189403c7ff0d796d1251a1c1f6954c40e7b4"
+  integrity sha1-tkAYlAPH/w15bRJRocH2lUxA57Q=
+
 fastparse@^1.1.1:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/fastparse/-/fastparse-1.1.2.tgz#91728c5a5942eced8531283c79441ee4122c35a9"
@@ -5663,6 +5722,11 @@ findup-sync@^2.0.0:
     is-glob "^3.1.0"
     micromatch "^3.0.4"
     resolve-dir "^1.0.1"
+
+flag-icon-css@^3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/flag-icon-css/-/flag-icon-css-3.3.0.tgz#7772461e4480d3d86da5962f02120a2825688433"
+  integrity sha512-u5lCGVExrJJRykNGd//ZrBU5Bkt0LTZJFSuG+Az/pwcHgzDeFwomwFbsgVtI1aJd6ysyHsx+5UGrA+nhSGd4yw==
 
 flag-icon-css@~0.8.5:
   version "0.8.6"
@@ -8734,7 +8798,7 @@ next-tick@^1.0.0:
   resolved "https://registry.yarnpkg.com/next-tick/-/next-tick-1.0.0.tgz#ca86d1fe8828169b0120208e3dc8424b9db8342c"
   integrity sha1-yobR/ogoFpsBICCOPchCS524NCw=
 
-ng-at-internet@ovh-ux/ng-at-internet#^3.0.0:
+ng-at-internet@^3.1.1, ng-at-internet@ovh-ux/ng-at-internet#^3.0.0:
   version "3.1.1"
   resolved "https://codeload.github.com/ovh-ux/ng-at-internet/tar.gz/066b669c81c00f120bbffe00f74a245ac35dc3d5"
 
@@ -9353,6 +9417,13 @@ ovh-api-services@^6.11.0:
   dependencies:
     lodash "^3.10.1"
 
+ovh-api-services@^6.7.0:
+  version "6.11.1"
+  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-6.11.1.tgz#a68722012da5ff22f2042cb0c0836dc6539f1705"
+  integrity sha512-z4TdwTaK6ilRamld+OwjEnqPSmXrzGdT75S1C+8AiImPc7OahEBR2fvrsiT5EJqeHnUZa8uwzVCxygOHM4NrCQ==
+  dependencies:
+    lodash "^3.10.1"
+
 ovh-common-style@^3.2.2:
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/ovh-common-style/-/ovh-common-style-3.2.2.tgz#66f4637c7393d1bd5118b05b63b034f26120a41f"
@@ -9376,6 +9447,18 @@ ovh-ngstrap@^4.0.2:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/ovh-ngstrap/-/ovh-ngstrap-4.0.2.tgz#059291bfb9f59b78df991e476dd2ede0507cb3c9"
   integrity sha1-BZKRv7n1m3jfmR5HbdLt4FB8s8k=
+
+ovh-ui-angular@^2.25.1:
+  version "2.29.1"
+  resolved "https://registry.yarnpkg.com/ovh-ui-angular/-/ovh-ui-angular-2.29.1.tgz#a1413c1ef6f23ce2c4e0dc3068beccbad54d2d02"
+  integrity sha512-DaRj5B6+Ok15NH5J94SgzB7WtQe0d6Sr1DKyHv0/dD6QDR/aq3pmwDn+7/hE49MyhY4xy2gBfnwhFYy3ezQC7w==
+  dependencies:
+    bloodhound-js "^1.2.3"
+    clipboard "^2.0.1"
+    escape-string-regexp "^1.0.5"
+    flatpickr "^4.5.2"
+    popper.js "^1.14.4"
+    ui-select "^0.19.8"
 
 ovh-ui-angular@^2.29.0:
   version "2.29.0"
@@ -9401,7 +9484,7 @@ ovh-ui-kit@^2.22.0:
   dependencies:
     less-plugin-remcalc "^0.1.0"
 
-ovh-ui-kit@^2.29.1:
+ovh-ui-kit@^2.23.1, ovh-ui-kit@^2.24.2, ovh-ui-kit@^2.29.1:
   version "2.29.1"
   resolved "https://registry.yarnpkg.com/ovh-ui-kit/-/ovh-ui-kit-2.29.1.tgz#63e4fa2b769d98d9c20282a4f60d01eccc5282f2"
   integrity sha512-hdC9cdKju6iNOLCbRMK9dsU9efm1VVUKcE1o3SqxK61WiGl0KfJW2pHYenAGTHZ2ohHY2XE3Nak8i2QOeGIgeA==
@@ -12519,6 +12602,11 @@ tunnel-agent@^0.6.0:
   integrity sha1-J6XeoGs2sEoKmWZ3SykIaPD8QP0=
   dependencies:
     safe-buffer "^5.0.1"
+
+tweetnacl-util@^0.15.0:
+  version "0.15.0"
+  resolved "https://registry.yarnpkg.com/tweetnacl-util/-/tweetnacl-util-0.15.0.tgz#4576c1cee5e2d63d207fee52f1ba02819480bc75"
+  integrity sha1-RXbBzuXi1j0gf+5S8boCgZSAvHU=
 
 tweetnacl@^0.14.3, tweetnacl@~0.14.0:
   version "0.14.5"

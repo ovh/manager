@@ -1,0 +1,52 @@
+{
+  "name": "@ovh-ux/manager-adp",
+  "version": "0.0.0",
+  "description": "OVH Analytics Data Platform control panel",
+  "keywords": [
+    "control",
+    "manager",
+    "ovh",
+    "adp"
+  ],
+  "license": "BSD-3-Clause",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "browser": "./dist/umd/adp.js",
+  "scripts": {
+    "build": "rollup -c --environment BUILD:production",
+    "dev": "rollup -c --environment BUILD:development",
+    "dev:watch": "yarn run dev --watch",
+    "start": "lerna exec --stream --scope='@ovh-ux/manager-adp' --include-filtered-dependencies -- yarn run build",
+    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-adp' --include-filtered-dependencies -- yarn run dev",
+    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-adp' --include-filtered-dependencies -- yarn run dev:watch",
+    "prepare": "yarn run build"
+  },
+  "dependencies": {
+    "bootstrap4": "twbs/bootstrap#v4.0.0",
+    "lodash": "^4.17.11",
+    "fast-sha256": "^1.1.0",
+    "tweetnacl-util": "^0.15.0"
+  },
+  "devDependencies": {
+    "@ovh-ux/component-rollup-config": "5.0.0-beta.9",
+    "ovh-ui-kit": "^2.23.1"
+  },
+  "peerDependencies": {
+    "@ovh-ux/manager-core": "^5.0.0",
+    "@ovh-ux/ng-ovh-cloud-universe-components": "^0.3.0",
+    "@ovh-ux/ng-ovh-proxy-request": "^1.0.0-beta.0",
+    "@ovh-ux/ng-ovh-user-pref": "^1.0.0",
+    "@uirouter/angularjs": "^1.0.15",
+    "angular": "^1.7.5",
+    "angular-messages": "^1.7.6",
+    "angular-ui-validate": "^1.2.3",
+    "at-internet-ui-router-plugin": "^1.0.0",
+    "ng-at-internet": "^3.1.1",
+    "oclazyload": "^1.1.0",
+    "ovh-api-services": "^6.7.0",
+    "ovh-ui-kit": "^2.23.1"
+  }
+}

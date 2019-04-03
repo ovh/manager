@@ -1,0 +1,37 @@
+deploy-component {
+  .storage-list {
+    display: flex;
+    flex-wrap: wrap;
+
+    &__term {
+      width: 50%;
+      text-align: left;
+      font-weight: 400;
+    }
+
+    &__definition {
+      width: 50%;
+      overflow: hidden;
+    }
+
+    &__seperator {
+        width: 56%;
+        margin-left: 0;
+    }
+  }
+}
+
+oui-modal {
+  .adp-quota-info {
+    padding-left: 4.7rem !important;
+
+    .adp-quota-info-container {
+      &::after {
+        width: 4.7rem !important;
+      }
+      .oui-datagrid__cell-sticky:first-child {
+        width: 4.7rem !important;
+      }
+    }
+  }
+}
