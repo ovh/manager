@@ -1600,6 +1600,14 @@
     rollup-pluginutils "^2.3.3"
     slash "^2.0.0"
 
+"@ovh-ux/manager-core@^4.0.0":
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core/-/manager-core-4.0.1.tgz#ac4411f6093281b929d3a0a46f3be7d20d9f21c1"
+  integrity sha512-gLOdb/cs6GPZKtCXssppWBgPNxpD+Bc/wbCwMrHG16MS5qS8mk9l9AqjBEDZdwltIbwl85K4cjUbv1XSoAoj2w==
+  dependencies:
+    "@ovh-ux/ng-translate-async-loader" "^2.0.0"
+    lodash "^4.17.11"
+
 "@ovh-ux/manager-webpack-config@^3.0.1":
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-webpack-config/-/manager-webpack-config-3.0.4.tgz#e6e4066c9696abd58aded6125e292c7e86e0fd2b"
@@ -1688,6 +1696,17 @@
   integrity sha512-EnJEEmoNCTjnCv/501GDZjxYt17YgGbVBr6BfqF6kD4FSf+TQpsP2sOKEXDLIj0oJUYRhU4z5d97AjX9zFSrFg==
   dependencies:
     lodash "^4.17.11"
+
+"@ovh-ux/ng-ovh-cloud-universe-components@^0.3.0":
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-cloud-universe-components/-/ng-ovh-cloud-universe-components-0.3.2.tgz#8498515ee95231f0dc5e19c40daad30c65dc14c0"
+  integrity sha512-KiEVb5aVMYC1vB6+totbpbXJDUE1EWc8Ag8BZasyIkEFeRZZ/4FTbLHPe8DahW4c4AmQKtTZsauww5ONiG1f0w==
+  dependencies:
+    bootstrap "~3.3.0"
+    jsurl "^0.1.5"
+    lodash "^4.17.11"
+    moment "^2.24.0"
+    ovh-ui-kit "^2.24.2"
 
 "@ovh-ux/ng-ovh-contracts@^3.0.0-beta.3":
   version "3.0.0-beta.3"
@@ -2580,6 +2599,11 @@ asynckit@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/asynckit/-/asynckit-0.4.0.tgz#c79ed97f7f34cb8f2ba1bc9790bcc366474b4b79"
   integrity sha1-x57Zf380y48robyXkLzDZkdLS3k=
+
+at-internet-ui-router-plugin@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/at-internet-ui-router-plugin/-/at-internet-ui-router-plugin-1.0.0.tgz#a45c14948cfc22253979b28255c5f8a40e054f71"
+  integrity sha1-pFwUlIz8IiU5ebKCVcX4pA4FT3E=
 
 atob@^2.1.1:
   version "2.1.2"
@@ -5456,6 +5480,11 @@ fast-levenshtein@~2.0.4:
   resolved "https://registry.yarnpkg.com/fast-levenshtein/-/fast-levenshtein-2.0.6.tgz#3d8a5c66883a16a30ca8643e851f19baa7797917"
   integrity sha1-PYpcZog6FqMMqGQ+hR8Zuqd5eRc=
 
+fast-sha256@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/fast-sha256/-/fast-sha256-1.1.0.tgz#b640189403c7ff0d796d1251a1c1f6954c40e7b4"
+  integrity sha1-tkAYlAPH/w15bRJRocH2lUxA57Q=
+
 fastparse@^1.1.1:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/fastparse/-/fastparse-1.1.2.tgz#91728c5a5942eced8531283c79441ee4122c35a9"
@@ -5646,6 +5675,11 @@ findup-sync@^2.0.0:
     is-glob "^3.1.0"
     micromatch "^3.0.4"
     resolve-dir "^1.0.1"
+
+flag-icon-css@^3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/flag-icon-css/-/flag-icon-css-3.3.0.tgz#7772461e4480d3d86da5962f02120a2825688433"
+  integrity sha512-u5lCGVExrJJRykNGd//ZrBU5Bkt0LTZJFSuG+Az/pwcHgzDeFwomwFbsgVtI1aJd6ysyHsx+5UGrA+nhSGd4yw==
 
 flag-icon-css@~0.8.5:
   version "0.8.6"
@@ -8704,7 +8738,7 @@ next-tick@^1.0.0:
   resolved "https://registry.yarnpkg.com/next-tick/-/next-tick-1.0.0.tgz#ca86d1fe8828169b0120208e3dc8424b9db8342c"
   integrity sha1-yobR/ogoFpsBICCOPchCS524NCw=
 
-ng-at-internet@ovh-ux/ng-at-internet#^3.0.0:
+ng-at-internet@^3.1.1, ng-at-internet@ovh-ux/ng-at-internet#^3.0.0:
   version "3.1.1"
   resolved "https://codeload.github.com/ovh-ux/ng-at-internet/tar.gz/066b669c81c00f120bbffe00f74a245ac35dc3d5"
 
@@ -12473,6 +12507,11 @@ tunnel-agent@^0.6.0:
   integrity sha1-J6XeoGs2sEoKmWZ3SykIaPD8QP0=
   dependencies:
     safe-buffer "^5.0.1"
+
+tweetnacl-util@^0.15.0:
+  version "0.15.0"
+  resolved "https://registry.yarnpkg.com/tweetnacl-util/-/tweetnacl-util-0.15.0.tgz#4576c1cee5e2d63d207fee52f1ba02819480bc75"
+  integrity sha1-RXbBzuXi1j0gf+5S8boCgZSAvHU=
 
 tweetnacl@^0.14.3, tweetnacl@~0.14.0:
   version "0.14.5"

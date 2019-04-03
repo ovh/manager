@@ -1,0 +1,80 @@
+<oui-spinner class="text-center" data-size="m" data-ng-if="$ctrl.serviceInfoDetails.loading && $ctrl.platformDetails.loading"></oui-spinner>
+<div class="row m-3" data-ng-if="!$ctrl.serviceInfoDetails.loading && !$ctrl.platformDetails.loading">
+    <!-- service information tile -->
+    <div class="col-md-4">
+        <oui-tile class="h-100" data-heading="{{ ::'adp_tile_heading_cluster_info' | translate }}"
+                  data-loading="$ctrl.serviceInfoDetails.loading">
+            <oui-tile-definition data-term="{{ ::'adp_tile_desc_status' | translate }}">
+                <oui-tile-description>
+                    <span class="oui-status" data-ng-class="{
+                                 'oui-status_success' : true,
+                                 'oui-status_warning' : false,
+                                 'oui-status_error' : faslse
+                                 }"
+                          data-ng-bind="$ctrl.platformDetails.data.status"></span>
+                </oui-tile-description>
+                <oui-action-menu data-compact data-align="end" data-disabled="true">
+                    <oui-action-menu-item>
+                        <span data-translate="adp_tile_menu_delete_cluster"></span>
+                    </oui-action-menu-item>
+                </oui-action-menu>
+            </oui-tile-definition>
+            <oui-tile-definition data-term="{{ ::'adp_tile_desc_version' | translate }}">
+                <oui-tile-description>
+                    <span data-ng-bind="$ctrl.platformDetails.data.cluster_type"></span>
+                </oui-tile-description>
+            </oui-tile-definition>
+            <oui-tile-definition data-term="{{ ::'adp_tile_desc_datacenter' | translate }}">
+                <oui-tile-description>
+                    <span class="flag-icon flag-icon-{{ ::$ctrl.platformDetails.data.os_region | lowercase }} flag"></span>
+                    <span data-ng-bind="::$ctrl.platformDetails.data.os_region"></span>
+                </oui-tile-description>
+            </oui-tile-definition>
+            <oui-tile-button aria-label="access to public cloud" data-href="{{ ::$ctrl.getCloudProjectUrl() }}">
+                <span data-translate="adp_tile_desc_public_cloud"></span>
+            </oui-tile-button>
+            <oui-tile-button aria-label="access to private network" data-href="{{ ::$ctrl.getVrackUrl() }}">
+                <span data-translate="adp_tile_desc_private_network"></span>
+            </oui-tile-button>
+        </oui-tile>
+    </div>
+    <!-- billing tile -->
+    <div class="col-md-4">
+        <oui-tile class="h-100" data-heading="{{ ::'adp_tile_heading_billing' | translate }}">
+            <oui-tile-definition data-term="{{ ::'adp_tile_desc_solution' | translate }}"
+                                 data-description="{{ ::'adp_title' | translate }}"></oui-tile-definition>
+            <oui-tile-definition data-term="{{ ::'adp_tile_desc_creation_date' | translate }}">
+                <oui-tile-description>
+                    <span data-ng-bind="$ctrl.platformDetails.data.deployment_end_date | date: 'dd/MM/yyyy'"></span>
+                </oui-tile-description>
+            </oui-tile-definition>
+            <oui-tile-definition data-term="{{ ::'adp_tile_desc_billing_nic' | translate }}">
+                <oui-tile-description>
+                    <span data-ng-bind="::$ctrl.serviceInfoDetails.data.contactBilling"></span>
+                </oui-tile-description>
+                <oui-action-menu data-compact data-align="end" data-disabled="false">
+                    <oui-action-menu-item>
+                        <span data-translate="adp_tile_menu_billing_console"></span>
+                    </oui-action-menu-item>
+                </oui-action-menu>
+            </oui-tile-definition>
+        </oui-tile>
+    </div>
+    <!-- cluster management tile -->
+    <div class="col-md-4">
+        <oui-tile class="h-100" data-heading="{{ ::'adp_tile_heading_cluster_mgmt' | translate }}">
+            <oui-tile-button aria-label="{{ ::'adp_tile_link_manage_cluster' | translate }}"
+                             data-href="{{ ::$ctrl.adpService.getClusterManagementUrl($ctrl.clusterManage.AMBARI, $ctrl.serviceName)}}" data-external>
+                <span data-translate="adp_tile_link_manage_cluster"></span>
+            </oui-tile-button>
+            <oui-tile-button aria-label="{{ ::'adp_tile_link_manage_users' | translate }}"
+                             data-href="{{ ::$ctrl.adpService.getClusterManagementUrl($ctrl.clusterManage.FREEIPA, $ctrl.serviceName)}}" data-external>
+                <span data-translate="adp_tile_link_manage_users"></span>
+            </oui-tile-button>
+            <oui-tile-button aria-label="{{ ::'adp_tile_link_manage_security' | translate }}"
+                             data-href="{{ ::$ctrl.adpService.getClusterManagementUrl($ctrl.clusterManage.RANGER, $ctrl.serviceName)}}" data-external>
+                <span data-translate="adp_tile_link_manage_security"></span>
+            </oui-tile-button>
+        </oui-tile>
+    </div>
+</div>

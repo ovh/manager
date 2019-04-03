@@ -1,0 +1,35 @@
+{
+  "name": "@ovh-ux/manager-adp-app",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "webpack",
+    "dev": "webpack-dev-server",
+    "dev:watch": "yarn run dev",
+    "start": "lerna exec --stream --scope='@ovh-ux/manager-adp-app' --include-filtered-dependencies -- yarn run build",
+    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-adp-app' --include-filtered-dependencies -- yarn run dev",
+    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-adp-app' --include-filtered-dependencies -- yarn run dev:watch"
+  },
+  "dependencies": {
+    "@ovh-ux/manager-adp": "^0.0.0",
+    "@ovh-ux/manager-core": "^4.0.0",
+    "@ovh-ux/ng-ovh-cloud-universe-components": "^0.3.0",
+    "@ovh-ux/ng-ovh-proxy-request": "^1.0.0-beta.0",
+    "@ovh-ux/ng-ovh-user-pref": "^1.0.0",
+    "@uirouter/angularjs": "^1.0.15",
+    "angular": "^1.7.5",
+    "angular-messages": "^1.7.6",
+    "angular-ui-validate": "^1.2.3",
+    "at-internet-ui-router-plugin": "^1.0.0",
+    "flag-icon-css": "^3.3.0",
+    "lodash": "^3.10.1",
+    "ng-at-internet": "^3.1.1",
+    "oclazyload": "^1.1.0",
+    "ovh-api-services": "^6.7.0",
+    "ovh-ui-angular": "^2.25.1"
+  },
+  "devDependencies": {
+    "@ovh-ux/manager-webpack-config": "^3.0.1",
+    "webpack-merge": "^4.1.4"
+  }
+}
