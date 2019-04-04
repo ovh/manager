@@ -1,12 +1,12 @@
-import controller from './edit.controller';
-import template from './edit.html';
+import controller from './add.controller';
+import template from './add.html';
 
 export default {
   controller,
   template,
   bindings: {
     projectId: '<',
-    storageId: '<',
     goBack: '<',
+    cancelLink: '<',
   },
 };

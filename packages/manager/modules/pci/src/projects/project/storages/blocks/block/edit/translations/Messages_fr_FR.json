@@ -9,6 +9,8 @@
   "pci_projects_project_storages_blocks_block_edit_name_label": "Nom du volume",
   "pci_projects_project_storages_blocks_block_edit_size_label": "Capacité du volume",
   "pci_projects_project_storages_blocks_block_edit_size_help": "La taille maximale dépend de votre quota disponible.",
+  "pci_projects_project_storages_blocks_edit_size_unit": "Go",
+  "pci_projects_project_storages_blocks_block_edit_price_text": "Montant estimé : {{ price }} HT/mois",
   "pci_projects_project_storages_blocks_block_edit_bootable_label": "Amorçable",
 
   "pci_projects_project_storages_blocks_block_edit_submit_label": "Modifier le volume",
@@ -16,6 +18,6 @@
 
   "pci_projects_project_storages_blocks_block_edit_success_message": "Le volume {{ volume }} a été mis à jour.",
   "pci_projects_project_storages_blocks_block_edit_error_put": "Une erreur est survenue lors de la mise à jour du volume {{ volume }} : {{ message }}",
-  "pci_projects_project_storages_blocks_block_edit_error_upsize": "Une erreur est survenue lors de la mise de la capacité du volume {{volume}} : {{ message }}",
+  "pci_projects_project_storages_blocks_block_edit_error_upsize": "Une erreur est survenue lors du changement de la capacité du volume {{ volume }} : {{ message }}",
   "pci_projects_project_storages_blocks_block_edit_error_load": "Une erreur est survenue lors du chargement du volume : {{ message }}"
 }

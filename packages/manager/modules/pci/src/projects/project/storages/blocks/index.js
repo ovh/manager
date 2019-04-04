@@ -8,7 +8,7 @@ import 'ovh-ui-angular';
 import 'ovh-api-services';
 import 'angular-ui-bootstrap';
 
-// import add from './add';
+import add from './add';
 import block from './block';
 
 import component from './blocks.component';
@@ -20,7 +20,7 @@ const moduleName = 'ovhManagerPciStoragesBlocks';
 
 angular
   .module(moduleName, [
-    // add,
+    add,
     block,
     'ngTranslateAsyncLoader',
     'oui',
