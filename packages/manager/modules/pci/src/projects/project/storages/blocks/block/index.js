@@ -11,6 +11,7 @@ import blockAttach from './attach';
 import blockDetach from './detach';
 import blockDelete from './delete';
 import blockEdit from './edit';
+import blockSnapshot from './snapshot';
 
 import routing from './block.routing';
 
@@ -22,6 +23,7 @@ angular
     blockDetach,
     blockDelete,
     blockEdit,
+    blockSnapshot,
     'ui.router',
     'oc.lazyLoad',
     'oui',

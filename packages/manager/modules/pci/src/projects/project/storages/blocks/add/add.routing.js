@@ -1,8 +1,8 @@
-export default /* @ngInject */($stateProvider) => {
+export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
-    .state('pci.projects.project.storages.blocks.block.edit', {
-      url: '/edit',
-      component: 'pciProjectStorageBlocksBlockEdit',
+    .state('pci.projects.project.storages.blocks.add', {
+      url: '/new',
+      component: 'pciProjectStorageBlocksAdd',
       resolve: {
         goBack: /* @ngInject */ ($rootScope, $state, projectId) => (reload = false) => {
           if (reload) {
@@ -12,6 +12,9 @@ export default /* @ngInject */($stateProvider) => {
             projectId,
           });
         },
+        cancelLink: /* @ngInject */ ($state, projectId) => $state.href('pci.projects.project.storages.blocks', {
+          projectId,
+        }),
       },
     });
 };

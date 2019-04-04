@@ -1,7 +1,10 @@
 import includes from 'lodash/includes';
+import { VOLUME_MIN_SIZE } from './block.constants';
 
 export default class BlockStorage {
   constructor(resource) {
+    this.bootable = false;
+    this.size = VOLUME_MIN_SIZE;
     Object.assign(this, resource);
   }
 
@@ -19,7 +22,7 @@ export default class BlockStorage {
   }
 
   isDeletable() {
-    return this.attachedTo.length === 0;
+    return this.isAttachable() && !this.hasSnapshots();
   }
 
   isAttachable() {
@@ -28,5 +31,9 @@ export default class BlockStorage {
 
   isDetachable() {
     return this.attachedTo.length > 0;
+  }
+
+  hasSnapshots() {
+    return this.snapshots.length > 0;
   }
 }

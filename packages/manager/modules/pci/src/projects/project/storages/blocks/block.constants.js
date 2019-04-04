@@ -6,9 +6,12 @@ export const VOLUME_TYPES = [
   'high-speed',
 ];
 
+export const VOLUME_SNAPSHOT_CONSUMPTION = 'volume.snapshot.consumption';
+
 export default {
   VOLUME_MAX_SIZE,
   VOLUME_MIN_SIZE,
   VOLUME_UNLIMITED_QUOTA,
   VOLUME_TYPES,
+  VOLUME_SNAPSHOT_CONSUMPTION,
 };

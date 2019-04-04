@@ -15,17 +15,31 @@ export default class PciBlockStorageDetailsAttachController {
   }
 
   $onInit() {
-    this.initLoaders();
+    this.loadings = {
+      init: false,
+      save: false,
+    };
+
+    return this.initLoaders();
   }
 
   initLoaders() {
-    this.loading = true;
-    this.PciProjectStorageBlockService
-      .get(this.projectId, this.storageId)
+    this.loadings.init = true;
+    return this.$translate.refresh()
+      .then(() => this.loadMessages())
+      .then(() => this.PciProjectStorageBlockService.get(this.projectId, this.storageId))
       .then((storage) => {
         this.storage = storage;
         return this.PciProjectStorageBlockService
           .getCompatiblesInstances(this.projectId, this.storage);
+      })
+      .catch((err) => {
+        this.CucCloudMessage.error(
+          this.$translate.instant(
+            'pci_projects_project_storages_blocks_block_attach_error_load',
+            { message: get(err, 'data.message', '') },
+          ),
+        );
       })
       .then((instances) => {
         this.instances = instances;
@@ -35,16 +49,58 @@ export default class PciBlockStorageDetailsAttachController {
         );
       })
       .finally(() => {
-        this.loading = false;
+        this.loadings.init = false;
       });
   }
 
-  attachStorage({ id }) {
+  loadMessages() {
+    return new Promise((resolve) => {
+      this.CucCloudMessage.unSubscribe('pci.projects.project.storages.blocks.attach');
+      this.messageHandler = this.CucCloudMessage.subscribe(
+        'pci.projects.project.storages.blocks.attach',
+        {
+          onMessage: () => this.refreshMessages(),
+        },
+      );
+      resolve();
+    });
+  }
+
+  refreshMessages() {
+    this.messages = this.messageHandler.getMessages();
+  }
+
+  attachStorage({ id, name: instanceName }) {
+    this.loadings.save = true;
     const instance = find(this.instances, { id });
-    this.PciProjectStorageBlockService
+
+    return this.PciProjectStorageBlockService
       .attachTo(this.projectId, this.storage, instance)
-      .then(() => this.CucCloudMessage.success(this.$translate.instant('success_message')))
-      .catch(err => this.CucCloudMessage.error(this.$translate.instant('error_message', { message: get(err, 'data.message', '') })))
-      .then(this.close());
+      .then(() => {
+        this.CucCloudMessage.success(
+          this.$translate.instant(
+            'pci_projects_project_storages_blocks_block_attach_success_message',
+            {
+              volume: this.storage.name,
+              instance: instanceName,
+            },
+          ),
+          'pci.projects.project.storages.blocks',
+        );
+        return this.goBack(true);
+      })
+      .catch((err) => {
+        this.CucCloudMessage.error(
+          this.$translate.instant(
+            'pci_projects_project_storages_blocks_block_attach_error_attach',
+            {
+              message: get(err, 'data.message', null),
+            },
+          ),
+        );
+      })
+      .finally(() => {
+        this.loadings.save = false;
+      });
   }
 }

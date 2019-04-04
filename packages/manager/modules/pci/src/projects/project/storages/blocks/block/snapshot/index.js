@@ -5,10 +5,10 @@ import 'angular-translate';
 import 'ovh-ui-angular';
 import 'ovh-api-services';
 
-import component from './edit.component';
-import routing from './edit.routing';
+import component from './snapshot.component';
+import routing from './snapshot.routing';
 
-const moduleName = 'ovhManagerPciStoragesBlocksBlockEdit';
+const moduleName = 'ovhManagerPciStoragesBlocksBlockSnapshot';
 
 angular
   .module(moduleName, [
@@ -19,7 +19,7 @@ angular
     'pascalprecht.translate',
   ])
   .config(routing)
-  .component('pciProjectStorageBlocksBlockEdit', component)
+  .component('pciProjectStorageBlocksBlockSnapshot', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

@@ -11,19 +11,19 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
           storageId: storage.id,
         }),
-        attachStorage: /* @ngInject */ ($state, projectId) => storage => $state.go('pci.projects.project.storages.blocks.block.attach', {
+        attachStorage: /* @ngInject */ ($state, projectId) => storage => $state.go('pci.projects.project.storages.blocks.attach', {
           projectId,
           storageId: storage.id,
         }),
-        detachStorage: /* @ngInject */ ($state, projectId) => storage => $state.go('pci.projects.project.storages.blocks.block.detach', {
+        detachStorage: /* @ngInject */ ($state, projectId) => storage => $state.go('pci.projects.project.storages.blocks.detach', {
           projectId,
           storageId: storage.id,
         }),
-        createSnapshot: /* @ngInject */ ($state, projectId) => storage => $state.go('pci.projects.project.storages.blocks.block.detach', {
+        createSnapshot: /* @ngInject */ ($state, projectId) => storage => $state.go('pci.projects.project.storages.blocks.snapshot', {
           projectId,
           storageId: storage.id,
         }),
-        deleteStorage: /* @ngInject */($state, projectId) => ({ id: storageId }) => $state.go('pci.projects.project.storages.blocks.block.delete', {
+        deleteStorage: /* @ngInject */($state, projectId) => ({ id: storageId }) => $state.go('pci.projects.project.storages.blocks.delete', {
           projectId,
           storageId,
         }),

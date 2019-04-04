@@ -1,7 +1,7 @@
 export default /* @ngInject */($stateProvider) => {
   $stateProvider
-    .state('pci.projects.project.storages.blocks.block.delete', {
-      url: '/delete',
+    .state('pci.projects.project.storages.blocks.delete', {
+      url: '/delete?storageId',
       views: {
         modal: {
           component: 'pciProjectStorageBlocksBlockDelete',
@@ -9,9 +9,15 @@ export default /* @ngInject */($stateProvider) => {
       },
       layout: 'modal',
       resolve: {
-        close: /* @ngInject */ ($state, projectId) => () => $state.go('pci.projects.project.storages.blocks', {
-          projectId,
-        }),
+        storageId: /* @ngInject */$transition$ => $transition$.params().storageId,
+        goBack: /* @ngInject */ ($rootScope, $state, projectId) => (reload = false) => {
+          if (reload) {
+            $rootScope.$emit('pci_storages_blocks_refresh');
+          }
+          return $state.go('pci.projects.project.storages.blocks', {
+            projectId,
+          });
+        },
       },
     });
 };

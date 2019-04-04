@@ -1,10 +1,10 @@
 export default /* @ngInject */($stateProvider) => {
   $stateProvider
-    .state('pci.projects.project.storages.blocks.detach', {
-      url: '/detach?storageId',
+    .state('pci.projects.project.storages.blocks.snapshot', {
+      url: '/snapshot?storageId',
       views: {
         modal: {
-          component: 'pciProjectStorageBlocksBlockDetach',
+          component: 'pciProjectStorageBlocksBlockSnapshot',
         },
       },
       layout: 'modal',

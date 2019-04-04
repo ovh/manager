@@ -1,3 +1,5 @@
+import angular from 'angular';
+
 import get from 'lodash/get';
 import pick from 'lodash/pick';
 import BlockStorage from '../../block.class';
@@ -5,7 +7,7 @@ import BlockStorage from '../../block.class';
 import {
   VOLUME_MAX_SIZE,
   VOLUME_MIN_SIZE,
-} from '../../constants';
+} from '../../block.constants';
 
 export default class PciBlockStorageDetailsEditController {
   /* @ngInject */
@@ -35,6 +37,7 @@ export default class PciBlockStorageDetailsEditController {
     this.loading = true;
 
     this.$translate.refresh()
+      .then(() => this.loadMessages())
       .then(() => this.getStorage())
       .then(() => this.getAvailableQuota())
       .then(() => this.estimatePrice())
@@ -45,11 +48,24 @@ export default class PciBlockStorageDetailsEditController {
             { message: get(err, 'data.message', '') },
           ),
         );
-        this.back();
       })
       .finally(() => {
         this.loading = false;
       });
+  }
+
+  loadMessages() {
+    this.CucCloudMessage.unSubscribe('pci.projects.project.storages.blocks.block.edit');
+    this.messageHandler = this.CucCloudMessage.subscribe(
+      'pci.projects.project.storages.blocks.block.edit',
+      {
+        onMessage: () => this.refreshMessages(),
+      },
+    );
+  }
+
+  refreshMessages() {
+    this.messages = this.messageHandler.getMessages();
   }
 
   getStorage() {
@@ -87,9 +103,7 @@ export default class PciBlockStorageDetailsEditController {
 
   estimatePrice() {
     // Wait the next digest because oui-numeric use the viewValue when calling on-change callback
-    return new Promise((resolve) => {
-      this.$timeout(() => resolve(), 0);
-    })
+    return this.$timeout(angular.noop, 0)
       .then(() => this.PciProjectStorageBlockService
         .getVolumePriceEstimation(this.projectId, this.editStorage))
       .then((estimatedPrice) => {
@@ -98,22 +112,27 @@ export default class PciBlockStorageDetailsEditController {
   }
 
   edit() {
-    this.CucCloudMessage.flushChildMessage();
-
-    this.PciProjectStorageBlockService
+    return this.PciProjectStorageBlockService
       .update(this.projectId, this.editStorage, this.storage)
-      .then(() => this.CucCloudMessage.success(
-        this.$translate.instant(
-          'pci_projects_project_storages_blocks_block_edit_success_message',
-          { volume: this.editStorage.name },
-        ),
-      ))
-      .then(this.back)
-      .catch(err => this.CucCloudMessage.error(
-        this.$translate.instant(
-          'kube_service_reset_error',
-          { message: get(err, 'data.message', ''), volume: this.editStorage.name },
-        ),
-      ));
+      .then(() => {
+        this.CucCloudMessage.success(
+          this.$translate.instant(
+            'pci_projects_project_storages_blocks_block_edit_success_message',
+            { volume: this.editStorage.name },
+          ),
+          'pci.projects.project.storages.blocks',
+        );
+
+        return this.goBack(true);
+      })
+      .catch((err) => {
+        this.CucCloudMessage.error(
+          this.$translate.instant(
+            'pci_projects_project_storages_blocks_block_edit_error_put',
+            { message: get(err, 'data.message', null), volume: this.editStorage.name },
+          ),
+          'pci.projects.project.storages.blocks.block.edit',
+        );
+      });
   }
 }

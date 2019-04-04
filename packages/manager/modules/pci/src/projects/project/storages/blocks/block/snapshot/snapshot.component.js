@@ -1,5 +1,5 @@
-import controller from './attach.controller';
-import template from './attach.html';
+import controller from './snapshot.controller';
+import template from './snapshot.html';
 
 export default {
   controller,

@@ -1,19 +1,25 @@
 <oui-modal
-    data-heading="{{:: 'pci_projects_project_storages_blocks_block_title' | translate }}"
+    data-heading="{{:: 'pci_projects_project_storages_blocks_block_detach_title' | translate }}"
     data-primary-action="$ctrl.detachStorage()"
-    data-primary-label="{{:: 'pci_projects_project_storages_blocks_block_submit_label' | translate }}"
-    data-primary-disabled="$ctrl.loading && !$ctrl.storage.isDeletable()"
-    data-secondary-action="$ctrl.close()"
-    data-secondary-label="{{:: 'pci_project_storage_blocks_block_attach_cancel_label' | translate }}"
-    data-on-dismiss="$ctrl.close()"
-    data-loading="$ctrl.loading">
+    data-primary-label="{{:: 'pci_projects_project_storages_blocks_block_detach_submit_label' | translate }}"
+    data-primary-disabled="$ctrl.loadings.init || $ctrl.loadings.save || !$ctrl.storage.isDetachable()"
+    data-secondary-action="$ctrl.goBack()"
+    data-secondary-label="{{:: 'pci_projects_project_storages_blocks_block_detach_cancel_label' | translate }}"
+    data-on-dismiss="$ctrl.goBack()"
+    data-loading="$ctrl.loadings.init">
 
-    <div data-ng-if="!$ctrl.loading"
-        data-translate="pci_projects_project_storages_blocks_block_detachvolume"
+    <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
+
+    <div data-ng-if="!$ctrl.loadings.init"
+        data-translate="pci_projects_project_storages_blocks_block_detach_detachvolume"
         data-translate-values="{
-            voulme: $ctrl.storage.name,
+            volume: $ctrl.storage.name,
             instance: $ctrl.storage.attachedTo[0].name
         }">
+    </div>
+
+    <div data-ng-if="$ctrl.loadings.save" class="text-center">
+        <oui-spinner></oui-spinner>
     </div>
 
 </oui-modal>
