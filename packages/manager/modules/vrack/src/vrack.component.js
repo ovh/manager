@@ -1,6 +1,8 @@
 import angular from 'angular';
 import '@ovh-ux/ng-ovh-contracts';
 
+import 'ovh-api-services';
+
 import controller from './vrack.controller';
 import template from './vrack.html';
 import vrackService from './vrack.service';
@@ -21,6 +23,7 @@ const moduleName = 'OvhManagerVrackComponent';
 
 angular
   .module(moduleName, [
+    'ovh-api-services',
     'ui.router',
     'ngOvhContracts',
   ])
