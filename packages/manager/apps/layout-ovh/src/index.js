@@ -16,9 +16,10 @@ import freefax from '@ovh-ux/manager-freefax';
 import sms from '@ovh-ux/manager-sms';
 import welcome from '@ovh-ux/manager-welcome';
 
+import navbar from '@ovh-ux/manager-navbar';
+
 import routing from './manager-layout-ovh.routes';
 import sidebar from './sidebar';
-import navbar from './navbar';
 
 import '@ovh-ux/ng-ovh-api-wrappers';
 import 'angular-ui-bootstrap';
