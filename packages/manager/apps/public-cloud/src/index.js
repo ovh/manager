@@ -13,6 +13,7 @@ import 'script-loader!jsplumb';
 import 'script-loader!angular-ui-validate/dist/validate.js';
 /* eslint-enable import/no-webpack-loader-syntax, import/extensions */
 
+import navbar from '@ovh-ux/manager-navbar';
 import ovhManagerCore from '@ovh-ux/manager-core';
 import ovhManagerPci from '@ovh-ux/manager-pci';
 import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
@@ -21,7 +22,6 @@ import 'ovh-ui-kit/dist/oui.css';
 import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
 
 import preload from './components/manager-preload';
-import navbar from './navbar';
 import sidebar from './sidebar';
 
 import './assets/theme/index.less';
@@ -35,8 +35,8 @@ angular
   .module('ovhStack', [
     ovhManagerCore,
     ovhManagerPci,
-    navbar,
     ngOvhApiWrappers,
+    navbar,
     preload,
     sidebar,
   ])
