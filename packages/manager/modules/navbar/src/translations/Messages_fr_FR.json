@@ -3,7 +3,8 @@
   "navbar_universe_dedicated": "Dédié",
   "navbar_universe_gamma": "Sunrise",
   "navbar_universe_partners": "Partenaires",
-  "navbar_universe_stack": "Public cloud",
+  "navbar_universe_public-cloud": "Public cloud",
+  "navbar_universe_server": "Server",
   "navbar_universe_telecom": "Télécom",
   "navbar_universe_web": "Web"
 }
