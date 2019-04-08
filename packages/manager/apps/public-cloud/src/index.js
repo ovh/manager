@@ -23,6 +23,7 @@ import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
 import navbar from './navbar';
 import sidebar from './sidebar';
 
+import './assets/theme/index.less';
 import './index.scss';
 
 import controller from './index.controller';

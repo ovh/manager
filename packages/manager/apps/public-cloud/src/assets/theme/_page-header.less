@@ -1,0 +1,13 @@
+@import './_variables.less';
+
+.oui-page-header {
+  background: @background-color;
+
+  .oui-header-tabs__container {
+    border-bottom: 1px solid rgb(230, 245, 252);
+  }
+
+  :not(.oui-header-tabs__dropdown-container) > .oui-header-tabs__item_active > a {
+    border-color: @primary-color;
+  }
+}
