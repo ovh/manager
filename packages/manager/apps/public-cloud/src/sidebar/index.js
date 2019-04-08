@@ -8,8 +8,6 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 
 import cloudSidebarProjectList from './project-list/project-list.component';
 
-import './sidebar.less';
-
 const moduleName = 'ovh-manager-sidebar';
 
 angular

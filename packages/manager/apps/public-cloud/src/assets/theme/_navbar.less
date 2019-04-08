@@ -1,0 +1,47 @@
+@import "~ovh-ui-kit/packages/oui-color/_variables";
+@import "~ovh-ui-kit/packages/oui-icons/_icons";
+@import "~ovh-ui-kit/packages/oui-navbar/_variables";
+@import "~ovh-ui-kit/packages/oui-typography/_variables";
+
+/* stylelint-disable at-rule-no-unknown */
+.oui-navbar {
+  background-color: #fff;
+  box-shadow: 0 2pt 4pt rgba(17, 63, 109, 0.15);
+  z-index: 2;
+
+  .oui-navbar__brand {
+    color: rgb(40, 89, 192);
+  }
+
+  .oui-navbar-link {
+    color: rgb(17, 63, 109);
+
+    &.oui-navbar-link_active {
+      background-color: transparent;
+      border-bottom: 3px solid @primary-color !important;
+    }
+  }
+
+  // Languages menu
+  &-menu {
+    &_language &__item_active {
+      &,
+      &:hover,
+      &:active {
+        background-color: @oui-navbar-menu-background-color_hover;
+      }
+
+      .oui-navbar-link::after {
+        content: @oui-icon-index-check_line;
+        display: inline-block;
+        margin-left: rem-calc(20);
+        margin-top: -0.3rem;
+        vertical-align: middle;
+        font-family: "Oui Icons", sans-serif;
+        font-size: @oui-navbar-external-size;
+        color: inherit;
+      }
+    }
+  }
+}
+/* stylelint-enable at-rule-no-unknown */
