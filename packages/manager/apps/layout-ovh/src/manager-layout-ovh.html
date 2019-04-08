@@ -7,7 +7,7 @@
     <body class="h-100">
         <div data-ng-app="ovhManager" class="h-100 d-flex flex-column overflow-hidden">
             <div>
-                <ovh-manager-navbar></ovh-manager-navbar>
+                <ovh-manager-navbar data-navbar-options="{ toggle: { event: 'sidebar:loaded' } }"></ovh-manager-navbar>
             </div>
             <div class="container-fluid h-100 w-100" data-ui-view="app">
                 <div class="row h-100 d-flex">
