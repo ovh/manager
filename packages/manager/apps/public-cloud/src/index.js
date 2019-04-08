@@ -20,6 +20,7 @@ import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
 import 'ovh-ui-kit/dist/oui.css';
 import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
 
+import preload from './components/manager-preload';
 import navbar from './navbar';
 import sidebar from './sidebar';
 
@@ -36,6 +37,7 @@ angular
     ovhManagerPci,
     navbar,
     ngOvhApiWrappers,
+    preload,
     sidebar,
   ])
   .controller('PublicCloudController', controller)
