@@ -15,7 +15,8 @@
                 data-navigation="$ctrl.storage.region"
                 data-submit-text="{{:: 'pci_projects_project_storages_blocks_add_submit_label' | translate }}"
                 data-on-focus="$ctrl.onRegionsFocus()"
-                data-on-submit="$ctrl.onRegionChange()">
+                data-on-submit="$ctrl.onRegionChange()"
+                data-editable="!$ctrl.loadings.save">
                 <pci-project-regions-list
                     data-regions="$ctrl.regions"
                     data-selected-region="$ctrl.storage.region"
@@ -25,7 +26,8 @@
             <oui-step-form data-header="{{:: 'pci_projects_project_storages_blocks_add_type_title' | translate }}"
                 data-on-focus="$ctrl.onTypesFocus()"
                 data-on-submit="$ctrl.onTypeChange()"
-                data-navigation="$ctrl.selectedType">
+                data-navigation="$ctrl.selectedType"
+                data-editable="!$ctrl.loadings.save">
                 <div class="container-fluid px-0"
                     data-ng-if="$ctrl.typeRegionPrices">
                     <div class="row">
@@ -48,7 +50,8 @@
             </oui-step-form>
 
             <oui-step-form data-header="{{:: 'pci_projects_project_storages_blocks_add_size_title' | translate }}"
-                data-loading="$ctrl.loadings.size">
+                data-loading="$ctrl.loadings.size"
+                data-editable="!$ctrl.loadings.save">
                 <oui-field data-size="xl" data-help-text="{{:: 'pci_projects_project_storages_blocks_add_size_help' | translate }}">
                     <div class="d-inline-block">
                         <oui-numeric
@@ -67,7 +70,8 @@
 
             </oui-step-form>
 
-            <oui-step-form data-header="{{:: 'pci_projects_project_storages_blocks_add_name_title' | translate }}">
+            <oui-step-form data-header="{{:: 'pci_projects_project_storages_blocks_add_name_title' | translate }}"
+                data-editable="!$ctrl.loadings.save">
                 <oui-field data-size="xl">
                     <input class="oui-input" type="text" name="name"
                         data-ng-model="$ctrl.storage.name"
@@ -79,7 +83,7 @@
                 data-submit-text="{{:: 'pci_projects_project_storages_blocks_add_submit_label' | translate }}"
                 data-cancel-text="{{:: 'pci_projects_project_storages_blocks_add_submit_cancel_label' | translate }}"
                 data-cancel-href="{{$ctrl.cancelLink}}"
-                >
+                data-editable="!$ctrl.loadings.save">
                 <div class="mb-3"
                     data-translate="pci_projects_project_storages_blocks_add_submit_price_text"
                     data-translate-values="{ price: $ctrl.estimatedPrice.monthly.text }"></div>
