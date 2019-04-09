@@ -9358,10 +9358,10 @@ ovh-ngstrap@^4.0.2:
   resolved "https://registry.yarnpkg.com/ovh-ngstrap/-/ovh-ngstrap-4.0.2.tgz#059291bfb9f59b78df991e476dd2ede0507cb3c9"
   integrity sha1-BZKRv7n1m3jfmR5HbdLt4FB8s8k=
 
-ovh-ui-angular@^2.28.0:
-  version "2.28.0"
-  resolved "https://registry.yarnpkg.com/ovh-ui-angular/-/ovh-ui-angular-2.28.0.tgz#3c65758b96ccd8583f6dd087d33b445b0a605207"
-  integrity sha512-g5tIVDe+bGW4yt6vCAOIS/IT0hY0scmW7nKaLToYueBcF/tsxuxhcz0MdRko4FmGVj9giXsAQe4arMkhlZLcfQ==
+ovh-ui-angular@^2.29.0:
+  version "2.29.0"
+  resolved "https://registry.yarnpkg.com/ovh-ui-angular/-/ovh-ui-angular-2.29.0.tgz#eef482155b1a125bc481e9c2044daf7f25c514e2"
+  integrity sha512-3BEMFY7MDszVuEANaZzGvdXvfw/Hshd+EPgkFRNbcoLfdSiereBhNfwpLHohBUnYdAxpHrkEV7jnoGwm0TeI8w==
   dependencies:
     bloodhound-js "^1.2.3"
     clipboard "^2.0.1"
@@ -9382,10 +9382,10 @@ ovh-ui-kit@^2.22.0:
   dependencies:
     less-plugin-remcalc "^0.1.0"
 
-ovh-ui-kit@^2.28.0:
-  version "2.28.0"
-  resolved "https://registry.yarnpkg.com/ovh-ui-kit/-/ovh-ui-kit-2.28.0.tgz#169ed73dfbe13bc52065cd4b52f5f7147350e944"
-  integrity sha512-f9ajRA3dZ393Ayqmx1arMel7OwCTRe0+n01+8Qw0b2DR3g4O24Ejj0IeRUnuqNaLM6ZmdgsGGiGZkCh0fr+tRA==
+ovh-ui-kit@^2.29.0:
+  version "2.29.0"
+  resolved "https://registry.yarnpkg.com/ovh-ui-kit/-/ovh-ui-kit-2.29.0.tgz#e19d04eb2c59e5067a3450bc416ab547deb1dc5f"
+  integrity sha512-PdNRZ4Ru3RdebqatfSLVVOUX6wT4BJnu5kip5L1odvuVckElh2XcvWzy97K/D9YKw/rVk1SfLtVE5rLzwd1axg==
   dependencies:
     less-plugin-remcalc "^0.1.0"
 
