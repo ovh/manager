@@ -133,6 +133,12 @@ angular
       .then(() => injectAngularLocale(angularLocale))
       .then(() => tmhDynamicLocale.set(angularLocale));
   })
+  .run(/* @ngInject */ ($rootScope, TranslateService) => {
+    $rootScope.$on('lang.onChange', (event, { lang }) => {
+      TranslateService.setUserLocale(lang);
+      window.location.reload();
+    });
+  })
   .run((ssoAuthentication/* , User */) => {
     ssoAuthentication.login(); // .then(() => User.getUser());
   })

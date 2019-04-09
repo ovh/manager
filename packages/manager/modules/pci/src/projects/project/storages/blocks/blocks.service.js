@@ -1,19 +1,23 @@
 import find from 'lodash/find';
+import filter from 'lodash/filter';
 import get from 'lodash/get';
 import map from 'lodash/map';
 import reduce from 'lodash/reduce';
+import round from 'lodash/round';
 import uniq from 'lodash/uniq';
 
 import moment from 'moment';
 
 import BlockStorage from './block.class';
+import Region from './region.class';
 
 import {
   VOLUME_MAX_SIZE,
   VOLUME_MIN_SIZE,
   VOLUME_UNLIMITED_QUOTA,
   VOLUME_TYPES,
-} from './constants';
+  VOLUME_SNAPSHOT_CONSUMPTION,
+} from './block.constants';
 
 export default class PciProjectStorageBlockService {
   /* @ngInject */
@@ -22,11 +26,13 @@ export default class PciProjectStorageBlockService {
     CucPriceHelper,
     OvhApiCloudProject,
     OvhApiCloudProjectQuota,
+    OvhApiCloudProjectVolumeSnapshot,
   ) {
     this.$q = $q;
     this.CucPriceHelper = CucPriceHelper;
     this.OvhApiCloudProject = OvhApiCloudProject;
     this.OvhApiCloudProjectQuota = OvhApiCloudProjectQuota;
+    this.OvhApiCloudProjectVolumeSnapshot = OvhApiCloudProjectVolumeSnapshot;
   }
 
   getAll(projectId) {
@@ -79,7 +85,6 @@ export default class PciProjectStorageBlockService {
   }
 
   get(projectId, storageId) {
-    let volume;
     return this.OvhApiCloudProject
       .Volume()
       .v6()
@@ -88,29 +93,33 @@ export default class PciProjectStorageBlockService {
         volumeId: storageId,
       })
       .$promise
-      .then((result) => {
-        volume = result;
-        return this.$q.all(
-          map(
-            volume.attachedTo,
-            instanceId => this.OvhApiCloudProject
-              .Instance()
-              .v6()
-              .get({
-                serviceName: projectId,
-                instanceId,
-              })
-              .$promise,
-          ),
-        );
-      })
-      .then((instances) => {
-        volume.attachedTo = map(
+      .then(volume => this.$q.all({
+        volume,
+        instances: this.$q.all(map(
+          volume.attachedTo,
+          instanceId => this.OvhApiCloudProject
+            .Instance()
+            .v6()
+            .get({
+              serviceName: projectId,
+              instanceId,
+            })
+            .$promise,
+        )),
+      }))
+      .then(({ instances, volume }) => this.$q.all({
+        volume,
+        attachedTo: map(
           volume.attachedTo,
           instanceId => find(instances, { id: instanceId }),
-        );
-        return new BlockStorage(volume);
-      });
+        ),
+        snapshots: this.getVolumeSnapshots(projectId, volume),
+      }))
+      .then(({ attachedTo, volume, snapshots }) => new BlockStorage({
+        ...volume,
+        attachedTo,
+        snapshots,
+      }));
   }
 
   attachTo(projectId, storage, instance) {
@@ -155,20 +164,25 @@ export default class PciProjectStorageBlockService {
       .$promise;
   }
 
-  getAvailableQuota(projectId, storage) {
-    return this.getProjectQuotaForRegion(projectId, storage.region)
+  getVolumeSnapshots(projectId, { id }) {
+    return this.OvhApiCloudProjectVolumeSnapshot.v6()
+      .query({
+        serviceName: projectId,
+      })
+      .$promise
+      .then(snapshots => filter(snapshots, snapshot => snapshot.volumeId === id));
+  }
+
+  getAvailableQuota(projectId, { region }) {
+    return this.getProjectQuota(projectId, region)
       .then((quota) => {
         if (quota && quota.volume) {
-          // this.hasEnoughQuota = true;
           let availableGigabytes = VOLUME_MAX_SIZE;
           if (quota.volume.maxGigabytes !== VOLUME_UNLIMITED_QUOTA) {
             availableGigabytes = Math.min(
               VOLUME_MAX_SIZE,
               quota.volume.maxGigabytes - quota.volume.usedGigabytes,
             );
-            if (availableGigabytes < VOLUME_MIN_SIZE) {
-              // this.hasEnoughQuota = false;
-            }
           }
           return availableGigabytes;
         }
@@ -176,14 +190,20 @@ export default class PciProjectStorageBlockService {
       });
   }
 
-  getProjectQuotaForRegion(projectId, region) {
+
+  getProjectQuota(projectId, region = null) {
     return this.OvhApiCloudProjectQuota
       .v6()
       .query({
         serviceName: projectId,
       })
       .$promise
-      .then(results => find(results, { region }));
+      .then((results) => {
+        if (region) {
+          return find(results, { region });
+        }
+        return results;
+      });
   }
 
   add(
@@ -209,7 +229,7 @@ export default class PciProjectStorageBlockService {
           description,
           imageId,
           name,
-          region,
+          region: region.name,
           size,
           snapshotId,
           type,
@@ -248,47 +268,84 @@ export default class PciProjectStorageBlockService {
     return this.$q.all(promises);
   }
 
+  delete(projectId, { id }) {
+    return this.OvhApiCloudProject
+      .Volume()
+      .v6()
+      .delete({
+        serviceName: projectId,
+        volumeId: id,
+      })
+      .$promise;
+  }
+
+  static getVolumePriceEstimationFromCatalog(catalog, storage) {
+    const relatedCatalog = get(
+      catalog,
+      storage.planCode,
+      get(
+        catalog,
+        `volume.${storage.type}.consumption.${storage.region}`,
+        get(
+          catalog,
+          `volume.${storage.type}.consumption`,
+        ),
+      ),
+    );
+
+    if (relatedCatalog) {
+      const pricesEstimation = {
+        hourly: storage.size * relatedCatalog.priceInUcents / 100000000,
+      };
+      pricesEstimation.monthly = pricesEstimation.hourly * moment.duration(1, 'months').asHours();
+
+      return reduce(
+        pricesEstimation,
+        (result, value, key) => ({
+          ...result,
+          [key]: {
+            currencyCode: relatedCatalog.price.currencyCode,
+            text: relatedCatalog.price.text.replace(/\d+(?:[.,]\d+)?/, `${value.toFixed(2)}`),
+            value,
+          },
+        }),
+        {},
+      );
+    }
+
+    return {
+      price: {},
+      monthlyPrice: {},
+    };
+  }
+
   getVolumePriceEstimation(projectId, storage) {
     return this.CucPriceHelper.getPrices(projectId)
-      .then((fomattedCatalog) => {
-        const catalog = get(
-          fomattedCatalog,
-          storage.planCode,
-          get(
-            fomattedCatalog,
-            `volume.${storage.type}.consumption.${storage.region}`,
-            get(
-              fomattedCatalog,
-              `volume.${storage.type}.consumption`,
-            ),
-          ),
-        );
+      .then(catalog => PciProjectStorageBlockService.getVolumePriceEstimationFromCatalog(
+        catalog,
+        storage,
+      ));
+  }
 
-        if (catalog) {
-          const pricesEstimation = {
-            hourly: storage.size * catalog.priceInUcents / 100000000,
-          };
-          pricesEstimation.monthly = pricesEstimation.hourly * moment.duration(1, 'months').asHours();
-
-          return reduce(
-            pricesEstimation,
-            (result, value, key) => ({
-              ...result,
-              [key]: {
-                currencyCode: catalog.price.currencyCode,
-                text: catalog.price.text.replace(/\d+(?:[.,]\d+)?/, `${value.toFixed(2)}`),
-                value,
-              },
+  getPricesEstimations(projectId, regions, size = VOLUME_MIN_SIZE) {
+    return this.CucPriceHelper.getPrices(projectId)
+      .then(catalog => reduce(
+        VOLUME_TYPES, (typeResult, type) => ({
+          ...typeResult,
+          [type]: reduce(
+            regions,
+            (regionResult, region) => ({
+              ...regionResult,
+              [region.name]: PciProjectStorageBlockService.getVolumePriceEstimationFromCatalog(
+                catalog,
+                { region, type, size },
+              ),
             }),
             {},
-          );
-        }
-
-        return {
-          price: {},
-          monthlyPrice: {},
-        };
-      });
+          ),
+        }),
+        {},
+      ));
   }
 
   getAvailablesRegions(projectId) {
@@ -311,10 +368,49 @@ export default class PciProjectStorageBlockService {
             })
             .$promise,
         ),
-      ));
+      ))
+      .then(regions => this.$q.all({
+        quotas: this.getProjectQuota(projectId),
+        regions,
+      }))
+      .then(({ quotas, regions }) => map(regions, region => new Region({
+        ...region,
+        quota: find(quotas, { region: region.name }),
+      })));
   }
 
   getAvailablesTypes() {
     return this.$q.when(VOLUME_TYPES);
+  }
+
+  getSnapshotPriceEstimation(projectId, storage) {
+    return this.CucPriceHelper.getPrices(projectId)
+      .then((catalog) => {
+        const price = get(
+          catalog,
+          `${VOLUME_SNAPSHOT_CONSUMPTION}.${storage.region}`,
+          get(catalog, VOLUME_SNAPSHOT_CONSUMPTION, false),
+        );
+        if (price) {
+          const snapshotPrice = price.priceInUcents * storage.size * moment.duration(1, 'months').asHours() / 100000000;
+          return {
+            price: snapshotPrice,
+            priceText: price.price.text.replace(/\d+(?:[.,]\d+)?/, round(snapshotPrice.toString(), 2)),
+          };
+        }
+        return Promise.reject();
+      });
+  }
+
+  createSnapshot(projectId, { id }, { name }) {
+    return this.OvhApiCloudProjectVolumeSnapshot
+      .v6()
+      .create({
+        serviceName: projectId,
+        volumeId: id,
+      }, {
+        name,
+      })
+      .$promise;
   }
 }

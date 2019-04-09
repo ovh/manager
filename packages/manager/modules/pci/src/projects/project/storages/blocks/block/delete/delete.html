@@ -2,11 +2,13 @@
     data-heading="{{ 'pci_projects_project_storages_blocks_block_delete_title' | translate }}"
     data-primary-action="$ctrl.deleteStorage()"
     data-primary-label="{{:: 'pci_projects_project_storages_blocks_block_delete_submit_label' | translate }}"
-    data-primary-disabled="$ctrl.loading && !$ctrl.storage.isDeletable()"
-    data-secondary-action="$ctrl.close()"
+    data-primary-disabled="$ctrl.loadings.init || $ctrl.loadings.save || !$ctrl.storage.isDeletable()"
+    data-secondary-action="$ctrl.goBack()"
     data-secondary-label="{{:: 'pci_projects_project_storages_blocks_block_delete_cancel_label' | translate }}"
-    data-on-dismiss="$ctrl.close()"
-    data-loading="$ctrl.loading">
+    data-on-dismiss="$ctrl.goBack()"
+    data-loading="$ctrl.loadings.init">
+
+    <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
 
     <div data-ng-if="$ctrl.storage.isDeletable()">
         <p data-translate="pci_projects_project_storages_blocks_block_delete_content"
@@ -17,7 +19,18 @@
     </div>
     <div data-ng-if="!$ctrl.storage.isDeletable()">
         <oui-message data-type="warning">
-            <span data-translate="pci_projects_project_storages_blocks_block_delete_error_detach_before_delete"></span>
+            <p data-translate="pci_projects_project_storages_blocks_block_delete_error_should"></p>
+            <ul>
+                <li data-ng-if="!$ctrl.storage.isAttachable()"
+                    data-translate="pci_projects_project_storages_blocks_block_delete_error_detach"></li>
+                <li data-ng-if="$ctrl.storage.hasSnapshots()"
+                    data-translate="pci_projects_project_storages_blocks_block_delete_error_delete_snapshots"></li>
+            </ul>
         </oui-message>
     </div>
+
+    <div data-ng-if="$ctrl.loadings.save" class="text-center">
+        <oui-spinner></oui-spinner>
+    </div>
+
 </oui-modal>

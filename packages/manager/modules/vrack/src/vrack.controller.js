@@ -23,8 +23,8 @@ import keys from 'lodash/keys';
 
 import angular from 'angular';
 
-import selectVrackCtrl from './modals/selectVrack.controller';
-import selectVrackTpl from './modals/selectVrack.html';
+import moveDialogCtrl from './move-dialog/vrack-move-dialog.controller';
+import moveDialogTpl from './move-dialog/vrack-move-dialog.html';
 import constant from './vrack.constant';
 import arrowIcon from '../assets/icon_vrack-mapper-arrows.svg';
 
@@ -650,8 +650,8 @@ export default /* @ngInject */ function VrackCtrl($scope, $q, $stateParams,
   self.moveSelectedService = function moveSelectedService() {
     self.modals.move = $uibModal.open({
       windowTopClass: 'cui-modal',
-      template: selectVrackTpl,
-      controller: selectVrackCtrl,
+      template: moveDialogTpl,
+      controller: moveDialogCtrl,
       controllerAs: 'ctrl',
       resolve: {
         service() {

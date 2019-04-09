@@ -4,9 +4,14 @@ export default /* @ngInject */($stateProvider) => {
       url: '/edit',
       component: 'pciProjectStorageBlocksBlockEdit',
       resolve: {
-        back: /* @ngInject */ ($state, projectId) => () => $state.go('pci.projects.project.storages.blocks', {
-          projectId,
-        }),
+        goBack: /* @ngInject */ ($rootScope, $state, projectId) => (reload = false) => {
+          if (reload) {
+            $rootScope.$emit('pci_storages_blocks_refresh');
+          }
+          return $state.go('pci.projects.project.storages.blocks', {
+            projectId,
+          });
+        },
       },
     });
 };

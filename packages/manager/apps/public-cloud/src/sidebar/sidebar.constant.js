@@ -70,18 +70,6 @@ export const MENU = [
         },
         translation: 'cloud_sidebar_orchestration_kubernetes',
       },
-      {
-        options: {
-          state: 'pci.projects.project2',
-        },
-        translation: 'cloud_sidebar_orchestration_private_registry',
-      },
-      {
-        options: {
-          state: 'pci.projects.project2',
-        },
-        translation: 'cloud_sidebar_orchestration_image_catalog',
-      },
     ],
     translation: 'cloud_sidebar_orchestration',
   },
@@ -104,12 +92,6 @@ export const MENU = [
           state: 'pci.projects.project2',
         },
         translation: 'cloud_sidebar_management_interface_horizon',
-      },
-      {
-        options: {
-          state: 'pci.projects.project2',
-        },
-        translation: 'cloud_sidebar_management_interface_cloud_shell',
       },
     ],
   },

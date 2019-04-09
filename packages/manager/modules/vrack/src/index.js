@@ -8,6 +8,8 @@ import '@ovh-ux/ng-ovh-cloud-universe-components';
 import 'ovh-ui-kit/dist/oui.css';
 import 'ovh-manager-webfont/dist/css/ovh-font.css';
 import '@ovh-ux/manager-cloud-styles';
+import '@ovh-ux/ng-ovh-toaster';
+
 
 import vrackAdd from './add';
 
@@ -19,6 +21,7 @@ angular.module(moduleName, [
   'oc.lazyLoad',
   'ovhManagerCore',
   'ngOvhCloudUniverseComponents',
+  'ngOvhToaster',
   vrackAdd,
 ]).config(/* @ngInject */($stateProvider) => {
   $stateProvider.state('vrack.**', {

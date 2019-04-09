@@ -9325,17 +9325,17 @@ ovh-angular-ui-confirm-modal@^1.0.2:
   resolved "https://registry.yarnpkg.com/ovh-angular-ui-confirm-modal/-/ovh-angular-ui-confirm-modal-1.0.2.tgz#92e6736588a4fb1de6353f1a17ab1962679a698d"
   integrity sha512-3V17DbzWjUjl9sKCd25Oycn+7eqg6iW+DpizwVmixHFzDNDMnpKSGmxRLrOq+q9YNE7IepoAKWjoSiy2+zOEEg==
 
-ovh-api-services@^4.2.0:
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-4.2.0.tgz#6b85f990aefae1fbf5233718f856aa051dab98c5"
-  integrity sha512-IippIziLZplEJe6kX8SCZaaR7lLYm+iFbleL/G8x7zMkQeHDIwmKAiHWgAubXXoMyj/GgigBGlrYHiK8eNRAqg==
+ovh-api-services@^6.4.0:
+  version "6.9.0"
+  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-6.9.0.tgz#842c8d4a3a0322fd2777144914de16510d03d8c2"
+  integrity sha512-th4gojJ13/Z2XNtylkX9ZO3o82WsKCFBiHFyc1OZeEJy7E32w3wNi8cN7USlyXuP3j/NsKrSEWKD1ZOddGBcMg==
   dependencies:
     lodash "^3.10.1"
 
-ovh-api-services@^6.4.0, ovh-api-services@^6.7.0:
-  version "6.7.0"
-  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-6.7.0.tgz#b65fa6c22e2d4e37100f5747e57f96d929cee446"
-  integrity sha512-r7LBjFBIJvpPQrI+r95nUsW57wGfLt+b9yhnLRE6/iuC5ga0g+0CJuIuD7m5U5vjMbfL+EyyQkF/MsKSVn2fAA==
+ovh-api-services@^6.8.0:
+  version "6.8.0"
+  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-6.8.0.tgz#9c1d533a906bac9130b5750c875b86a6cc8469a7"
+  integrity sha512-RluVliGpb5lQdXqaHQTHd86eFv7yxutcntPiJsOQ7WwMsGojZuUvwpCvHIN18J71VoTGjP+yxbY6EdMI5lOLVw==
   dependencies:
     lodash "^3.10.1"
 
@@ -9363,10 +9363,10 @@ ovh-ngstrap@^4.0.2:
   resolved "https://registry.yarnpkg.com/ovh-ngstrap/-/ovh-ngstrap-4.0.2.tgz#059291bfb9f59b78df991e476dd2ede0507cb3c9"
   integrity sha1-BZKRv7n1m3jfmR5HbdLt4FB8s8k=
 
-ovh-ui-angular@^2.21.4, ovh-ui-angular@^2.23.0, ovh-ui-angular@^2.24.2, ovh-ui-angular@~2.25.1:
-  version "2.25.1"
-  resolved "https://registry.yarnpkg.com/ovh-ui-angular/-/ovh-ui-angular-2.25.1.tgz#aecc51aef883fb08fc82ec4a4f79a59a88b7b635"
-  integrity sha512-RHhe3L1Hk8tNvQGXO37lX2EOmAR6gnrrt/qM+jKBP8XcPyMWFZxB9L3hPc4BtWaWrNKfIPY/q7esXPoxq1qj6Q==
+ovh-ui-angular@^2.28.0:
+  version "2.28.0"
+  resolved "https://registry.yarnpkg.com/ovh-ui-angular/-/ovh-ui-angular-2.28.0.tgz#3c65758b96ccd8583f6dd087d33b445b0a605207"
+  integrity sha512-g5tIVDe+bGW4yt6vCAOIS/IT0hY0scmW7nKaLToYueBcF/tsxuxhcz0MdRko4FmGVj9giXsAQe4arMkhlZLcfQ==
   dependencies:
     bloodhound-js "^1.2.3"
     clipboard "^2.0.1"
@@ -9380,10 +9380,17 @@ ovh-ui-kit-bs@^2.1.1:
   resolved "https://registry.yarnpkg.com/ovh-ui-kit-bs/-/ovh-ui-kit-bs-2.1.1.tgz#bf9c5b035041797091b1a4c50f759bef7501dcef"
   integrity sha512-gjWYjnGmS75nrEpYoYIvJ/wh7K8zzm4k5x2+mICOCmEOKbU7iWy642iXxvDI1TYR+61TDTRjtshnXsGVtUtu7g==
 
-ovh-ui-kit@^2.22.0, ovh-ui-kit@^2.23.1, ovh-ui-kit@^2.24.2, ovh-ui-kit@~2.25.0:
+ovh-ui-kit@^2.22.0:
   version "2.25.0"
   resolved "https://registry.yarnpkg.com/ovh-ui-kit/-/ovh-ui-kit-2.25.0.tgz#cf49d929dc9c4dde9478cb70c35246000bd49563"
   integrity sha512-SapAsTK38S4YmyBJG7tclcCSnVlP3xY3mB1mS6xhtQ+/qBliGvPDxzlM5rCBP4+W77qqitRIwHpY8GpcFN7TLg==
+  dependencies:
+    less-plugin-remcalc "^0.1.0"
+
+ovh-ui-kit@^2.28.0:
+  version "2.28.0"
+  resolved "https://registry.yarnpkg.com/ovh-ui-kit/-/ovh-ui-kit-2.28.0.tgz#169ed73dfbe13bc52065cd4b52f5f7147350e944"
+  integrity sha512-f9ajRA3dZ393Ayqmx1arMel7OwCTRe0+n01+8Qw0b2DR3g4O24Ejj0IeRUnuqNaLM6ZmdgsGGiGZkCh0fr+tRA==
   dependencies:
     less-plugin-remcalc "^0.1.0"
 

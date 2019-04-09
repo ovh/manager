@@ -2,24 +2,34 @@
     <div data-ng-if="$ctrl.project">
         <oui-page-header heading="{{ ::$ctrl.project.description }}">
             <oui-header-tabs class="mt-3">
-                <oui-header-tabs-item text="{{ ::'pci_projects_project_home' | translate }}" ui-sref="pci.projects.project({ serviceName: $ctrl.project.project_id })" active></oui-header-tabs-item>
-                <oui-header-tabs-item text="{{ ::'pci_projects_project_parameters' | translate }}" ui-sref="pci.projects.project({ serviceName: $ctrl.project.project_id })" disabled></oui-header-tabs-item>
+                <oui-header-tabs-item
+                    text="{{ ::'pci_projects_project_home' | translate }}"
+                    ui-sref="pci.projects.project({ serviceName: $ctrl.project.project_id })"
+                    active="$ctrl.$state.is('pci.projects.project')">
+                </oui-header-tabs-item>
+                <oui-header-tabs-item
+                    text="{{ ::'pci_projects_project_parameters' | translate }}"
+                    ui-sref="pci.projects.project.edit({ serviceName: $ctrl.project.project_id })"
+                    active="$ctrl.$state.is('pci.projects.project.edit', { serviceName: $ctrl.project.project_id })">
+                </oui-header-tabs-item>
             </oui-header-tabs>
         </oui-page-header>
-        <div class="p-5" data-ui-view>
+        <div class="p-5" data-ui-view="contentTab">
             <div class="container-fluid px-0">
                 <div class="row">
-                    <div class="col-sm-6 col-lg-4 col-xl mb-4 mb-xl-0" data-ng-repeat="action in $ctrl.actions track by $index">
+                    <div class="col-sm-6 col-lg-4 col-xl mb-4" data-ng-repeat="action in $ctrl.actions track by $index">
                         <a class="text-center w-100 d-block oui-tile py-4" href="#">
-                            <span class="oui-icon oui-icon-add fa-2x" aria-hidden="true"></span>
+                            <span class="oui-icon oui-icon-add" aria-hidden="true"></span>
                             <div class="mt-3 w-100 text-truncate" data-ng-bind=":: action.translation | translate"></div>
                         </a>
                     </div>
                 </div>
                 <h2 data-translate="pci_projects_project_documentation"></h2>
-                <oui-tile class="mt-xl-4" heading="{{ ::'' | translate }}">
-                    <oui-tile-button external data-ng-repeat="link in $ctrl.links track by $index" href="link.href">{{ ::link.translation | translate }}</oui-tile-button>
-                </oui-tile>
+                <ul>
+                    <li data-ng-repeat="link in $ctrl.links track by $index">
+                        <a data-ng-href="{{ ::link.href }}">{{ ::link.translation | translate }}</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>

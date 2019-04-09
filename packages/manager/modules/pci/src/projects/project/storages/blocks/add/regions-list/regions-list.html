@@ -1,0 +1,42 @@
+<oui-tabs class="mb-4" data-ng-if="!$ctrl.displaySelectedRegion">
+    <oui-tabs-item data-heading="{{ continent }}"
+        data-ng-repeat="continent in $ctrl.continents track by continent">
+        <div class="container-fluid px-0">
+            <div class="row">
+                <oui-select-picker
+                    class="d-inline-block col-md-6 col-lg-4 my-3"
+                    data-name="{{continent}}_regions"
+                    data-ng-repeat="region in $ctrl.regionsByContinents[continent] track by $index"
+                    data-ng-if="$ctrl.regionsByContinents[continent]"
+                    data-match="microRegion.text"
+                    data-model="$ctrl.region"
+                    data-label="{{region[0].macroRegion.text}}"
+                    data-values="region"
+                    data-variant="light"
+                    data-on-change="$ctrl.onRegionChange(modelValue)"
+                    data-required>
+                </oui-select-picker>
+
+                <p data-ng-if="!$ctrl.regionsByContinents[continent].length"
+                    data-translate="pci_project_regions_list_empty"></p>
+            </div>
+        </div>
+    </oui-tabs-item>
+</oui-tabs>
+
+<div data-ng-if="$ctrl.displaySelectedRegion"
+    class="container-fluid px-0">
+    <div class="row">
+        <oui-select-picker
+            class="d-inline-block col-md-6 col-lg-4 my-3"
+            data-name="selected"
+            data-match="microRegion.text"
+            data-model="$ctrl.region"
+            data-label="{{$ctrl.region.macroRegion.text}}"
+            data-values="[$ctrl.region]"
+            data-variant="light"
+            data-required>
+            {{$ctrl.region.macroRegion.text}}
+        </oui-select-picker>
+    </div>
+</div>
