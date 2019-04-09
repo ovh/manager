@@ -1,5 +1,9 @@
 <div>
-    <button class="btn btn-primary py-1 px-2" style="background-color: rgb(40, 89, 192); color: #fff;">Create new project</button>
+    <a class="btn btn-primary py-1 px-2"
+       data-ui-sref="pci.projects.new"
+       style="background-color: rgb(40, 89, 192); color: #fff;">
+        Create new project
+    </a>
     <div data-ng-if="$ctrl.isLoading" class="d-flex mt-4">
         <span class="mr-3" style="font-size: 0.8rem;">Chargement de la liste de vos&nbsp;projets</span>
         <oui-spinner class="my-auto ml-auto" size="s"></oui-spinner>

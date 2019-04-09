@@ -1,0 +1,27 @@
+<div class="pci-projects-new row justify-content-md-center">
+    <div class="col-md-6">
+        <!-- progress -->
+        <div class="oui-progress-tracker">
+            <ol class="oui-progress-tracker__steps">
+                <li class="oui-progress-tracker__step"
+                    data-ng-repeat="step in $ctrl.steps track by $index"
+                    data-ng-class="{
+                        'oui-progress-tracker__step_active': $ctrl.getCurrentStep() === step,
+                        'oui-progress-tracker__step_complete': $ctrl.getCurrentStep() !== step && $ctrl.steps.indexOf(step) < $ctrl.steps.indexOf($ctrl.getCurrentStep()),
+                    }">
+                    <span class="oui-progress-tracker__status"></span>
+                </li>
+            </ol>
+        </div>
+
+        <!-- title -->
+        <h4 data-translate="pci_projects_new_title"></h4>
+
+        <div data-ui-view>
+            <pci-project-new-description
+                data-model="$ctrl.newProjectModel"
+                data-get-state-link="$ctrl.getStateLink">
+            </pci-project-new-description>
+        </div>
+    </div>
+</div>

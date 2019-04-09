@@ -1,0 +1,36 @@
+<div class="pci-projects-new-credits">
+    <h5 class="oui-heading_underline"
+        data-translate="pci_projects_new_credits_title">
+    </h5>
+
+    <p>
+        <span class="d-block"
+              data-translate="pci_projects_new_credits_explain1">
+        </span>
+        <span data-translate="pci_projects_new_credits_explain2"></span>
+    </p>
+
+    <oui-field
+        data-label="{{ :: 'pci_projects_new_credits_amount' | translate }}"
+        data-help-text="{{ :: 'pci_projects_new_credits_amount_min' | translate }}"
+        data-size="m">
+        <input
+            class="oui-input"
+            type="number"
+            id="creditAmount"
+            name="creditAmount"
+            data-ng-model="model"
+            required
+            min="10">
+    </oui-field>
+
+    <p>
+        <small>
+            <em class="d-block"
+                data-translate="pci_projects_new_credits_condition1">
+            </em>
+            <em data-translate="pci_projects_new_credits_condition2"></em>
+        </small>
+    </p>
+
+</div>

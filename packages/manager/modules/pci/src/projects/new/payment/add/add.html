@@ -1,0 +1,36 @@
+<div class="pci-projects-new-payment-add">
+    <h5 class="oui-heading_underline"
+        data-translate="pci_projects_new_payment_default_title">
+    </h5>
+
+    <p>
+        <span class="d-block"
+              data-translate="pci_projects_new_payment_add_explain1">
+        </span>
+        <span data-translate="pci_projects_new_payment_add_explain2"></span>
+    </p>
+
+    <div class="row"
+         data-ng-repeat="paymentTypeChunk in $ctrl.paymentTypesChunk.chunks track by $index">
+        <div class="mb-3"
+             data-ng-class="['col-md-' + (12 / $ctrl.paymentTypesChunk.size)]"
+             data-ng-repeat="paymentMethodType in paymentTypeChunk track by $index">
+            <oui-radio
+                class="h-100"
+                data-thumbnail
+                data-value="paymentMethodType"
+                data-model="$ctrl.model.selectedPaymentMethodType"
+                data-on-change="$ctrl.onPaymentMethodChange()"
+                data-variant="light"
+                data-required="true">
+                <span class="d-block"
+                      data-ng-bind="paymentMethodType.paymentType.text">
+                </span>
+                <img data-ng-if="paymentMethodType.icon.data"
+                     data-ng-src="{{ paymentMethodType.icon.data }}"
+                     data-ng-attr-alt="{{ :: paymentMethodType.paymentType.text }}"
+                     alt="" />
+            </oui-radio>
+        </div>
+    </div>
+</div>

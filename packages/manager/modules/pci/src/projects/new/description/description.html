@@ -1,0 +1,45 @@
+<form class="pci-projects-new-description"
+      name="projectDescriptionForm">
+
+    <oui-field
+        data-label="{{ :: 'pci_project_new_description_project_name' | translate }}">
+        <input
+            class="oui-input"
+            type="text"
+            id="newProjectName"
+            name="newProjectName"
+            data-ng-model="$ctrl.model.name"
+            maxlength="255">
+    </oui-field>
+
+    <oui-checkbox data-model="$ctrl.model.agreements"
+                  data-name="agreements"
+                  data-required>
+        <span data-translate="pci_project_new_description_project_contracts"></span>
+    </oui-checkbox>
+
+    <div class="d-flex flex-row-reverse justify-content-between align-items-center">
+        <oui-button
+            data-ng-if="projectDescriptionForm.$invalid"
+            data-variant="primary"
+            data-type="submit"
+            data-disabled="true"
+            data-variant-nav="next">
+            <span data-translate="pci_project_new_description_project_continue"></span>
+        </oui-button>
+
+        <a class="oui-button oui-button_primary oui-button_icon-right"
+           data-ng-href="{{ $ctrl.getStateLink('next') }}"
+           data-ng-if="projectDescriptionForm.$valid">
+            <span data-translate="pci_project_new_description_project_continue"></span>
+            <span class="oui-icon oui-icon_circle oui-icon-chevron-right"
+                  aria-hidden="true">
+            </span>
+        </a>
+
+        <a data-ng-href="{{ $ctrl.getStateLink('cancel') }}"
+           data-translate="pci_project_new_description_project_cancel">
+        </a>
+    </div>
+
+</form>

@@ -1733,6 +1733,11 @@
     draggable "^4.2.0"
     lodash "^4.17.11"
 
+"@ovh-ux/ng-ovh-payment-method@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-payment-method/-/ng-ovh-payment-method-2.0.0.tgz#32a5b53f2b3c4a45568a12e6c71350b68e294792"
+  integrity sha512-PNH3ykt9TdSMV3Myxx/LUIBuGkzdzv2SfgqAXMTeTxD29F6FqfnwxGUVVjeotnpl/jNNRpLIVUhTUjAR9VnNZg==
+
 "@ovh-ux/ng-ovh-proxy-request@^1.0.0-beta.0":
   version "1.0.0-beta.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-proxy-request/-/ng-ovh-proxy-request-1.0.0-beta.0.tgz#45e2397515326f6c43f99221f746401509b7db1d"

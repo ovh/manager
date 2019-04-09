@@ -6,6 +6,7 @@ import 'angular-translate';
 import 'ovh-api-services';
 import 'ovh-ui-angular';
 
+import newProject from './new';
 import project from './project';
 
 import routing from './projects.routing';
@@ -18,6 +19,7 @@ angular
     'ovhManagerCore',
     'ovh-api-services',
     'pascalprecht.translate',
+    newProject,
     project,
   ])
   .config(routing);
