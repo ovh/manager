@@ -7,9 +7,11 @@ import 'oclazyload';
 import 'ovh-ui-angular';
 import 'ovh-api-services';
 import 'angular-ui-bootstrap';
+import '@ovh-ux/ng-ovh-user-pref';
 
 import add from './add';
 import block from './block';
+import help from './help';
 
 import component from './blocks.component';
 import service from './blocks.service';
@@ -22,6 +24,8 @@ angular
   .module(moduleName, [
     add,
     block,
+    help,
+    'ngOvhUserPref',
     'ngTranslateAsyncLoader',
     'oui',
     'ovh-api-services',

@@ -5,11 +5,10 @@ import 'angular-translate';
 import 'ovh-ui-angular';
 import 'ovh-api-services';
 
-import volumeEdit from './volume-edit';
-import component from './edit.component';
-import routing from './edit.routing';
+import component from './create-volume.component';
+import routing from './create-volume.routing';
 
-const moduleName = 'ovhManagerPciStoragesBlocksBlockEdit';
+const moduleName = 'ovhManagerPciStoragesSnapshotsCreateVolume';
 
 angular
   .module(moduleName, [
@@ -18,10 +17,9 @@ angular
     'ovh-api-services',
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
-    volumeEdit,
   ])
   .config(routing)
-  .component('pciProjectStorageBlocksBlockEdit', component)
+  .component('pciProjectStoragesSnapshotsCreateVolume', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
