@@ -7,7 +7,7 @@
   "pci_projects_project_storages_blocks_add_type_classic_description": "",
   "pci_projects_project_storages_blocks_add_type_high-speed_label": "Haute performance",
   "pci_projects_project_storages_blocks_add_type_high-speed_description": "",
-  "pci_projects_project_storages_blocks_add_type_price": "{{price}} HT/mois",
+  "pci_projects_project_storages_blocks_add_type_price": "{{price}}Go HT/mois",
   "pci_projects_project_storages_blocks_add_size_title": "Capacité du volume",
   "pci_projects_project_storages_blocks_add_size_help": "La taille maximale dépend de votre quota disponible.",
   "pci_projects_project_storages_blocks_add_size_unit": "Go",
