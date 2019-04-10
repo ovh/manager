@@ -36,11 +36,11 @@ export default class PciProjectNewPaymentCtrl {
 
     return this.ovhPaymentMethod.getDefaultPaymentMethod()
       .then((defaultPaymentMethod) => {
-        let paymentInitPromise = this.ovhPaymentMethod.getAllAvailablePaymentMethodTypes();
+        let paymentInitPromise = this.$q.when([]);
 
         if (defaultPaymentMethod) {
-          // this.defaultPaymentMethod = defaultPaymentMethod;
-          this.defaultPaymentMethod = null;
+          this.defaultPaymentMethod = defaultPaymentMethod;
+          // this.defaultPaymentMethod = null;
         } else {
           paymentInitPromise = this.ovhPaymentMethod.getAllAvailablePaymentMethodTypes();
         }

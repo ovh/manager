@@ -19,6 +19,7 @@
   "dependencies": {
     "@ovh-ux/manager-config": "^0.2.0",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^1.1.0-alpha.0",
+    "@ovh-ux/ng-ovh-user-pref": "^1.0.0",
     "@ovh-ux/ng-ovh-payment-method": "^2.0.0",
     "d3": "~3.5.13",
     "flag-icon-css": "~0.8.5",
