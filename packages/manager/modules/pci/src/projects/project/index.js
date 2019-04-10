@@ -8,6 +8,7 @@ import 'ovh-ui-angular';
 
 
 import edit from './edit';
+import failoverIps from './failover-ips';
 import instances from './instances';
 import kubernetes from './kubernetes';
 import legacy from './legacy';
@@ -19,6 +20,7 @@ const moduleName = 'ovhManagerPciProject';
 angular
   .module(moduleName, [
     edit,
+    failoverIps,
     instances,
     kubernetes,
     legacy,

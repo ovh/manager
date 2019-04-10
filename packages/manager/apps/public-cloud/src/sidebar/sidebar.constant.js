@@ -55,7 +55,7 @@ export const MENU = [
       },
       {
         options: {
-          state: 'pci.projects.project2',
+          state: 'pci.projects.project.failover-ips',
         },
         translation: 'cloud_sidebar_failover_ip',
       },

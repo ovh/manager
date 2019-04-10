@@ -17,10 +17,10 @@ export default class ProjectEditController {
       submit: false,
     };
 
-    this.$ngInit();
+    this.$onInit();
   }
 
-  $ngInit() {
+  $onInit() {
     this.loading.init = true;
     this.messageHandler = this.CucCloudMessage.subscribe(MESSAGES_CONTAINER_NAME, {
       onMessage: () => this.refreshMessage(),
