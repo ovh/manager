@@ -74,17 +74,6 @@ export const MENU = [
     translation: 'cloud_sidebar_orchestration',
   },
   {
-    translation: 'cloud_sidebar_data_analytics',
-    subitems: [
-      {
-        options: {
-          state: 'pci.projects.project2',
-        },
-        translation: 'cloud_sidebar_data_analytics_adp',
-      },
-    ],
-  },
-  {
     translation: 'cloud_sidebar_management_interface',
     subitems: [
       {
