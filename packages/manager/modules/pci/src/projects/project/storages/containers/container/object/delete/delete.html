@@ -1,0 +1,24 @@
+<oui-modal
+    data-heading="{{ 'pci_projects_project_storages_containers_container_object_delete_'+ ($ctrl.archive ? 'archive' : 'object') + '_title' | translate }}"
+    data-primary-action="$ctrl.deleteObject()"
+    data-primary-label="{{:: 'pci_projects_project_storages_containers_container_object_delete_submit_label' | translate }}"
+    data-primary-disabled="$ctrl.loadings.init || $ctrl.loadings.save"
+    data-secondary-action="$ctrl.goBack()"
+    data-secondary-label="{{:: 'pci_projects_project_storages_containers_container_object_delete_cancel_label' | translate }}"
+    data-on-dismiss="$ctrl.goBack()"
+    data-loading="$ctrl.loadings.init">
+
+    <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
+
+    <p data-translate="pci_projects_project_storages_containers_container_object_delete_content"
+        data-translate-values="{ object: $ctrl.object.name }"></p>
+
+    <div data-ng-if="$ctrl.loadings.save" class="text-center">
+        <oui-spinner></oui-spinner>
+    </div>
+</oui-modal>
+
+
+
+
+
