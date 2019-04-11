@@ -80,6 +80,7 @@ export default class SidebarController {
     this.setProject(this.$stateParams.projectId);
     this.$transitions.onSuccess({}, () => {
       this.setProject(this.$stateParams.projectId);
+      this.isDisplayingProjectsList = false;
     });
 
     this.$rootScope.$on('navbar:toggle', () => this.toggle());
