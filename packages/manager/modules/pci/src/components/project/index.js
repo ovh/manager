@@ -5,6 +5,7 @@ import 'ovh-api-services';
 import add from './add';
 import billing from './billing';
 import compute from './compute';
+import empty from './empty';
 import rights from './rights';
 
 import factory from './factory';
@@ -17,6 +18,7 @@ angular
     add,
     billing,
     compute,
+    empty,
     'ovh-api-services',
     rights,
   ])
