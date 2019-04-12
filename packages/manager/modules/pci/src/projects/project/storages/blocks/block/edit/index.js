@@ -5,6 +5,7 @@ import 'angular-translate';
 import 'ovh-ui-angular';
 import 'ovh-api-services';
 
+import volumeEdit from './volume-edit';
 import component from './edit.component';
 import routing from './edit.routing';
 
@@ -17,6 +18,7 @@ angular
     'ovh-api-services',
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
+    volumeEdit,
   ])
   .config(routing)
   .component('pciProjectStorageBlocksBlockEdit', component)

@@ -12,5 +12,7 @@ export default {
     detachStorage: '<',
     createSnapshot: '<',
     deleteStorage: '<',
+    instanceLink: '<',
+    help: '<',
   },
 };

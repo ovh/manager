@@ -1,0 +1,22 @@
+<div class="p-5">
+    <div data-ng-if="$ctrl.loading" class="text-center">
+        <oui-spinner></oui-spinner>
+    </div>
+    <section data-ng-if="!$ctrl.loading">
+        <oui-back-button
+            data-on-click="$ctrl.goBack()">{{:: 'pci_projects_project_storages_snapshots_snapshot_create-volume_back_label' | translate }}</oui-back-button>
+
+        <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
+
+        <pci-project-storage-volume-edit
+            data-ng-if="$ctrl.storage"
+            data-storage="$ctrl.storage"
+            data-project-id="$ctrl.projectId"
+            data-title="'pci_projects_project_storages_snapshots_snapshot_create-volume_title' | translate"
+            data-submit-label="'pci_projects_project_storages_snapshots_snapshot_create-volume_submit_label' | translate"
+            data-on-cancel="$ctrl.goBack()"
+            data-on-submit="$ctrl.save()"
+            data-show-loading="$ctrl.loadings.save">
+        </pci-project-storage-volume-edit>
+    </section>
+</div>
