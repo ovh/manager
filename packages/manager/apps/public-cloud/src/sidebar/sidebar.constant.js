@@ -104,7 +104,7 @@ export const MENU = [
       },
       {
         options: {
-          state: 'pci.projects.project.legacy.compute.ssh',
+          state: 'pci.projects.project.sshKeys',
         },
         translation: 'cloud_sidebar_project_management_ssh_keys',
       },
