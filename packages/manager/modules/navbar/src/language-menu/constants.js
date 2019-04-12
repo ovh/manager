@@ -14,7 +14,6 @@ export const LANGUAGES = [
   { value: 'nl_NL', name: 'Nederlands' },
   { value: 'pl_PL', name: 'Polski' },
   { value: 'pt_PT', name: 'Português' },
-  { value: 'sk_SK', name: 'Slovakian' },
   { value: 'fi_FI', name: 'Suomi' },
   { value: 'cs_CZ', name: 'Česky' },
 ];
