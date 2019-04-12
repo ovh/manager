@@ -130,7 +130,7 @@ export default class PciStoragesContainersService {
     }
 
     return this.OvhApiCloudProjectStorage
-      .aapi()
+      .Aapi()
       .query(queryParams)
       .$promise
       .then(containers => map(containers, container => new Container(container)));
