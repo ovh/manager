@@ -19,12 +19,12 @@ export default class PciStoragesContainersController {
 
     this.containers = null;
 
-    this.loading = true;
+    this.isLoading = true;
     return this.$translate.refresh()
       .then(() => this.loadMessages())
       .then(() => this.getContainers())
       .finally(() => {
-        this.loading = false;
+        this.isLoading = false;
       });
   }
 
@@ -42,10 +42,10 @@ export default class PciStoragesContainersController {
   }
 
   refreshContainers() {
-    this.loading = true;
+    this.isLoading = true;
     return this.getContainers()
       .finally(() => {
-        this.loading = false;
+        this.isLoading = false;
       });
   }
 

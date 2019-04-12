@@ -169,8 +169,6 @@ export default class PciStoragesContainersService {
 
   requestContainer(projectId, container, optsParam = {}) {
     const opts = pickBy(optsParam, (value, key) => key !== 'file');
-    // const url = this.getContainerUrl(projectId, container, optsParam.file);
-
     return this.getAccessAndToken(projectId)
       .then(accessToken => this.$q.all({
         accessToken,

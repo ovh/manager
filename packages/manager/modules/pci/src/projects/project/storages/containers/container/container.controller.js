@@ -32,7 +32,7 @@ export default class PciStoragesContainersContainerController {
 
     this.containers = null;
 
-    this.loading = true;
+    this.isLoading = true;
     return this.$translate.refresh()
       .then(() => this.loadMessages())
       .then(() => this.getContainer())
@@ -45,7 +45,7 @@ export default class PciStoragesContainersContainerController {
         'pci.projects.project.storages.containers.container',
       ))
       .finally(() => {
-        this.loading = false;
+        this.isLoading = false;
       });
   }
 
@@ -69,7 +69,7 @@ export default class PciStoragesContainersContainerController {
   }
 
   refreshContainer() {
-    this.loading = true;
+    this.isLoading = true;
     return this.getContainer()
       .catch(err => this.CucCloudMessage.error(
         this.$translate.instant(
@@ -79,7 +79,7 @@ export default class PciStoragesContainersContainerController {
         'pci.projects.project.storages.containers.container',
       ))
       .finally(() => {
-        this.loading = false;
+        this.isLoading = false;
       });
   }
 

@@ -6,7 +6,6 @@ import 'angular-translate';
 import 'oclazyload';
 import 'ovh-ui-angular';
 import 'ovh-api-services';
-import 'angular-ui-bootstrap';
 
 import containers from '../containers';
 

@@ -1,4 +1,3 @@
-
 export default class Container {
   constructor(resource) {
     this.publicUrl = null;

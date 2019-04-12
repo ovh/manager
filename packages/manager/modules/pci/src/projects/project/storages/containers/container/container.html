@@ -6,15 +6,15 @@
             data-on-click="$ctrl.goBack()">{{:: 'pci_projects_project_storages_containers_container_back_label' | translate }}</oui-back-button>
 
         <h1 class="text-truncate"
-            data-ng-if="!$ctrl.loading && $ctrl.container"
+            data-ng-if="!$ctrl.isLoading && $ctrl.container"
             data-ng-bind="$ctrl.container.name"></h1>
 
         <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
 
-        <oui-spinner data-size="m" data-ng-if="$ctrl.loading"></oui-spinner>
+        <oui-spinner data-size="m" data-ng-if="$ctrl.isLoading"></oui-spinner>
 
-        <div data-ng-if="!$ctrl.loading && $ctrl.container">
-            <div class="oui-box" >
+        <div data-ng-if="!$ctrl.isLoading && $ctrl.container">
+            <div class="oui-box">
                 <p data-translate="pci_projects_project_storages_containers_container_archive_info_storedObjects"
                     data-translate-value-count="{{ $ctrl.container.storedObjects }}"
                     data-ng-if="$ctrl.archive"></p>
@@ -31,7 +31,7 @@
                     <button type="button" class="oui-popover-button"
                         data-oui-popover="{{ 'pci_projects_project_storages_containers_container_info_publicUrl_help' | translate }}">
                     </button>
-                    <oui-clipboard model="$ctrl.container.publicUrl"></oui-clipboard>
+                    <oui-clipboard data-model="$ctrl.container.publicUrl"></oui-clipboard>
                 </div>
 
                 <div>
@@ -39,7 +39,7 @@
                         data-ng-if="$ctrl.archive"></span>
                     <span data-translate="pci_projects_project_storages_containers_container_object_info_staticUrl"
                         data-ng-if="!$ctrl.archive"></span>
-                    <oui-clipboard model="$ctrl.container.staticUrl"></oui-clipboard>
+                    <oui-clipboard data-model="$ctrl.container.staticUrl"></oui-clipboard>
                 </div>
 
                 <div data-ng-if="$ctrl.archive">
@@ -121,7 +121,7 @@
                 <extra-top>
                     <oui-button
                         data-on-click="$ctrl.addObject()" >
-                        <i class="oui-icon oui-icon-add pr-1" aria-hidden="true"></i>
+                        <span class="oui-icon oui-icon-add pr-1" aria-hidden="true"></span>
                         <span data-ng-bind=":: 'pci_projects_project_storages_containers_container_add_' + ($ctrl.archive ? 'archive' : 'object') + '_label' | translate"></span>
                     </oui-button>
                 </extra-top>

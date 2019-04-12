@@ -10,15 +10,11 @@ import {
 export default class PciStoragesContainersAddController {
   /* @ngInject */
   constructor(
-    $q,
-    $timeout,
     $translate,
     CucCloudMessage,
     PciProjectStorageBlockService,
     PciProjectStorageContainersService,
   ) {
-    this.$q = $q;
-    this.$timeout = $timeout;
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.PciProjectStorageBlockService = PciProjectStorageBlockService;
@@ -39,7 +35,7 @@ export default class PciStoragesContainersAddController {
     );
 
     this.loadings = {
-      regions: false,
+      regions: true,
       types: false,
       save: false,
     };
@@ -48,21 +44,21 @@ export default class PciStoragesContainersAddController {
       archive: this.archive,
     });
 
-    this.loadings.regions = true;
-
-    this.$translate.refresh()
+    return this.$translate.refresh()
       .then(() => this.loadMessages())
       .then(() => this.PciProjectStorageBlockService.getAvailablesRegions(this.projectId))
       .then((regions) => {
         this.regions = regions;
       })
-      .catch(err => this.CucCloudMessage.error(
-        this.$translate.instant(
-          'pci_projects_project_storages_containers_add_error_query',
-          { message: get(err, 'data.message', '') },
-        ),
-        'pci.projects.project.storages.containers.add',
-      ))
+      .catch((err) => {
+        this.CucCloudMessage.error(
+          this.$translate.instant(
+            'pci_projects_project_storages_containers_add_error_query',
+            { message: get(err, 'data.message', '') },
+          ),
+          'pci.projects.project.storages.containers.add',
+        );
+      })
       .finally(() => {
         this.loadings.regions = false;
       });

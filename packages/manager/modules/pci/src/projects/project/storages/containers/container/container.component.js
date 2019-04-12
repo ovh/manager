@@ -11,6 +11,5 @@ export default {
     goBack: '<',
     addObject: '<',
     deleteObject: '<',
-    // downloadObject: '<',
   },
 };
