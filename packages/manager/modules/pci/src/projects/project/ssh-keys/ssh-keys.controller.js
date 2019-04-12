@@ -18,7 +18,7 @@ export default class ProjectSshKeysController {
   }
 
   $onInit() {
-    this.OvhApiCloudProjectSshKey
+    return this.OvhApiCloudProjectSshKey
       .v6()
       .query({
         serviceName: this.projectId,
