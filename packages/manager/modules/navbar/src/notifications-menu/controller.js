@@ -1,4 +1,6 @@
 import isEmpty from 'lodash/isEmpty';
+import filter from 'lodash/filter';
+import some from 'lodash/some';
 
 import { Environment } from '@ovh-ux/manager-config';
 import { ANIMATED_STATUS } from './constants';
@@ -47,7 +49,7 @@ export default class NotificationsCtrl {
   }
 
   static shouldAnimateIcon(sublinks) {
-    return sublinks.some(({ isActive, level }) => ANIMATED_STATUS.includes(level) && isActive);
+    return some(sublinks, ({ isActive, level }) => ANIMATED_STATUS.includes(level) && isActive);
   }
 
 
@@ -67,8 +69,10 @@ export default class NotificationsCtrl {
       type: 'action',
     });
 
-    const notificationsToAcknowledge = this.sublinks
-      .filter(({ acknowledged, isActive }) => !acknowledged && isActive);
+    const notificationsToAcknowledge = filter(
+      this.sublinks,
+      ({ acknowledged, isActive }) => !acknowledged && isActive,
+    );
 
     if (!isEmpty(notificationsToAcknowledge)) {
       return this.NavbarNotifications.updateNotifications({
