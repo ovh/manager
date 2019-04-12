@@ -9461,13 +9461,6 @@ ovh-api-services@^6.4.0:
   dependencies:
     lodash "^3.10.1"
 
-ovh-api-services@^6.4.0:
-  version "6.9.0"
-  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-6.9.0.tgz#842c8d4a3a0322fd2777144914de16510d03d8c2"
-  integrity sha512-th4gojJ13/Z2XNtylkX9ZO3o82WsKCFBiHFyc1OZeEJy7E32w3wNi8cN7USlyXuP3j/NsKrSEWKD1ZOddGBcMg==
-  dependencies:
-    lodash "^3.10.1"
-
 ovh-common-style@^3.2.2:
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/ovh-common-style/-/ovh-common-style-3.2.2.tgz#66f4637c7393d1bd5118b05b63b034f26120a41f"

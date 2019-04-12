@@ -1,10 +1,10 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
     .state('pci.projects.project.storages.blocks', {
-      url: '/blocks',
+      url: '/blocks?help',
       component: 'pciProjectStorageBlocks',
       resolve: {
-        addStorage: ($state, projectId) => () => $state.go('pci.projects.project.storages.blocks.add', {
+        addStorage: /* @ngInject */($state, projectId) => () => $state.go('pci.projects.project.storages.blocks.add', {
           projectId,
         }),
         editStorage: /* @ngInject */ ($state, projectId) => storage => $state.go('pci.projects.project.storages.blocks.block.edit', {
@@ -26,6 +26,11 @@ export default /* @ngInject */ ($stateProvider) => {
         deleteStorage: /* @ngInject */($state, projectId) => ({ id: storageId }) => $state.go('pci.projects.project.storages.blocks.delete', {
           projectId,
           storageId,
+        }),
+        help: /* @ngInject */ $transition$ => $transition$.params().help,
+        instanceLink: /* @ngInject */ ($state, projectId) => instanceId => $state.href('pci.projects.project.instances.instance.dashboard', {
+          projectId,
+          instanceId,
         }),
       },
     });

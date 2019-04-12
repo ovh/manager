@@ -9,10 +9,6 @@
 
   "pci_projects_project_storages_blocks_size_label": "Capacité",
 
-  "pci_projects_project_storages_blocks_bootable_label": "Amorçable",
-  "pci_projects_project_storages_blocks_bootable_yes": "Oui",
-  "pci_projects_project_storages_blocks_bootable_no": "Non",
-
   "pci_projects_project_storages_blocks_attachedTo_label": "Instance attachée",
 
   "pci_projects_project_storages_blocks_status_label": "Statut",

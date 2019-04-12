@@ -32,8 +32,8 @@
     "angular": "^1.7.8",
     "angular-translate": "^2.18.1",
     "ovh-api-services": "^6.8.0",
-    "ovh-ui-angular": "^2.28.0",
-    "ovh-ui-kit": "^2.28.0"
+    "ovh-ui-angular": "^2.29.0",
+    "ovh-ui-kit": "^2.29.0"
   },
   "dependencies": {
     "lodash": "^4.17.11",
