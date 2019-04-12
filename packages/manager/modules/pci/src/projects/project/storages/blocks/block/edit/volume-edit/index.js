@@ -13,7 +13,9 @@ angular
   .module(moduleName, [
     'oui',
     'ngTranslateAsyncLoader',
+    'ovh-api-services',
     'pascalprecht.translate',
+    'ui.router',
   ])
   .component('pciProjectStorageVolumeEdit', component)
   .run(/* @ngTranslationsInject:json ./translations */);

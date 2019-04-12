@@ -10,6 +10,7 @@ const moduleName = 'ovhManagerPciStorages';
 angular
   .module(moduleName, [
     blocks,
+    'oui',
     snapshots,
     'ui.router',
   ])
