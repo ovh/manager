@@ -20,19 +20,19 @@ export const MENU = [
       },
       {
         options: {
-          state: 'pci.projects.project2',
+          state: 'pci.projects.project.storages.objects',
         },
         translation: 'cloud_sidebar_storage_object_storage',
       },
       {
         options: {
-          state: 'pci.projects.project2',
+          state: 'pci.projects.project.storages.archives',
         },
         translation: 'cloud_sidebar_storage_cold_storage',
       },
       {
         options: {
-          state: 'pci.projects.project2',
+          state: 'pci.projects.project.storages.snapshots',
         },
         translation: 'cloud_sidebar_storage_volume_storage',
       },
@@ -55,7 +55,7 @@ export const MENU = [
       },
       {
         options: {
-          state: 'pci.projects.project2',
+          state: 'pci.projects.project.failover-ips',
         },
         translation: 'cloud_sidebar_failover_ip',
       },
@@ -72,17 +72,6 @@ export const MENU = [
       },
     ],
     translation: 'cloud_sidebar_orchestration',
-  },
-  {
-    translation: 'cloud_sidebar_data_analytics',
-    subitems: [
-      {
-        options: {
-          state: 'pci.projects.project2',
-        },
-        translation: 'cloud_sidebar_data_analytics_adp',
-      },
-    ],
   },
   {
     translation: 'cloud_sidebar_management_interface',
@@ -115,7 +104,7 @@ export const MENU = [
       },
       {
         options: {
-          state: 'pci.projects.project.legacy.compute.ssh',
+          state: 'pci.projects.project.sshKeys',
         },
         translation: 'cloud_sidebar_project_management_ssh_keys',
       },

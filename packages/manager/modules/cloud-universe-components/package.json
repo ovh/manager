@@ -35,10 +35,10 @@
     "jsurl": "^0.1.5",
     "lodash": "^4.17.11",
     "moment": "^2.24.0",
-    "ovh-ui-kit": "^2.29.0"
+    "ovh-ui-kit": "^2.29.1"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^5.0.0-beta.9"
+    "@ovh-ux/component-rollup-config": "^5.0.0"
   },
   "peerDependencies": {
     "@ovh-ux/ng-ovh-user-pref": "^1.0.0",

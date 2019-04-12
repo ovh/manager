@@ -31,13 +31,13 @@
     "lodash": "^3.10.1",
     "messenger": "HubSpot/messenger#~1.4.1",
     "oclazyload": "^1.1.0",
-    "ovh-api-services": "^6.8.0",
-    "ovh-manager-webfont": "^1.1.0",
+    "ovh-api-services": "^6.11.0",
+    "ovh-manager-webfont": "^1.2.0",
     "ovh-ui-angular": "^2.29.0",
-    "ovh-ui-kit": "^2.29.0"
+    "ovh-ui-kit": "^2.29.1"
   },
   "devDependencies": {
-    "@ovh-ux/manager-webpack-config": "^3.0.1",
+    "@ovh-ux/manager-webpack-config": "^3.0.5",
     "webpack-merge": "^4.1.4"
   }
 }
