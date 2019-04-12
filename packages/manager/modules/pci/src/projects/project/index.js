@@ -12,6 +12,7 @@ import instances from './instances';
 import kubernetes from './kubernetes';
 import legacy from './legacy';
 import sshKeys from './ssh-keys';
+import privateNetworks from './private-networks';
 import storages from './storages';
 import routing from './project.routing';
 
@@ -24,6 +25,7 @@ angular
     instances,
     kubernetes,
     legacy,
+    privateNetworks,
     'oui',
     'ovhManagerCore',
     'ovh-api-services',

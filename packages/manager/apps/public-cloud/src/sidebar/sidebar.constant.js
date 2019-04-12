@@ -49,7 +49,7 @@ export const MENU = [
     subitems: [
       {
         options: {
-          state: 'pci.projects.project2',
+          state: 'pci.projects.project.privateNetwork',
         },
         translation: 'cloud_sidebar_private_network',
       },

@@ -1,0 +1,7 @@
+{
+  "pci_projects_project_network_private": "Réseaux privés",
+  "pci_projects_project_network_private_vrack_empty": "Vous n'avez pas encore créé de réseau privé.",
+  "pci_projects_project_network_private_vrack_deploy": "Déployez des réseaux privés portés par le vRack d’OVH pour raccorder vos instances, où qu'elles se trouvent.",
+  "pci_projects_project_network_private_vrack_explanation_1": "Les réseaux privés sont créés à la demande et de manière instantanée. Ils garantissent une isolation de niveau 2 et peuvent accueillir un service DHCP pour fournir automatiquement l'adressage IP à vos instances. Chacun de ces réseaux peut être réduit à un emplacement ou s’étendre à l'ensemble des localisations de votre projet.",
+  "pci_projects_project_network_private_vrack_explanation_2": "Vos réseaux privés sont encapsulés dans votre vRack. Ils peuvent ainsi être connectés à d'autres solutions d’OVH attachées à ce même vRack, en utilisant un VLAN ID commun."
+}
