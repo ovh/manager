@@ -28,7 +28,7 @@
     "xterm": "^3.4.1"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "5.0.0-beta.9"
+    "@ovh-ux/component-rollup-config": "5.0.0"
   },
   "peerDependencies": {
     "@ovh-ux/manager-cloud-styles": "^0.3.0-alpha.0",
