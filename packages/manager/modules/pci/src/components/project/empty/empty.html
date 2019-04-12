@@ -1,0 +1,36 @@
+<div class="container-fluid px-0 pci-project-empty">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="p-5" data-ng-class="{ 'placeholder' : !$ctrl.imageSource }">
+                <img
+                    data-ng-src="{{:: $ctrl.imageSource || $ctrl.placeholder }}"
+                    data-ng-attr-alt="{{:: $ctrl.imageAlt }}"
+                    alt=""
+                    class="w-100">
+            </div>
+        </div>
+        <div class="col-md-9" data-ng-transclude></div>
+    </div>
+
+    <aside class="row pt-5">
+        <div class="col-sm-6 col-md-4 mb-4" data-ng-repeat="guide in $ctrl.guides track by $index">
+            <div class="py-2 oui-tile d-flex align-items-start">
+                <span class="d-block oui-icon oui-icon-guides" aria-hidden="true"></span>
+                <div class="ml-2">
+                    <h2 class="oui-tile__title oui-heading_4"  data-ng-bind=":: guide.title"></h2>
+                    <div class="oui-tile__body mt-3">
+                        <p class="oui-tile__description" data-ng-bind=":: guide.description"></p>
+                        <a class="oui-link_icon"
+                            data-ng-href="{{:: guide.link }}"
+                            target="_blank"
+                            rel="noopener">
+                            <span data-translate="pci_project_empty_more"></span>
+                            <span class="oui-icon oui-icon-external_link" aria-hidden="true"></span>
+                            <span class="sr-only" data-translate="pci_project_empty_new_tab"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </aside>
+</div>
