@@ -20,19 +20,19 @@ export const MENU = [
       },
       {
         options: {
-          state: 'pci.projects.project2',
+          state: 'pci.projects.project.storages.objects',
         },
         translation: 'cloud_sidebar_storage_object_storage',
       },
       {
         options: {
-          state: 'pci.projects.project2',
+          state: 'pci.projects.project.storages.archives',
         },
         translation: 'cloud_sidebar_storage_cold_storage',
       },
       {
         options: {
-          state: 'pci.projects.project2',
+          state: 'pci.projects.project.storages.snapshots',
         },
         translation: 'cloud_sidebar_storage_volume_storage',
       },
