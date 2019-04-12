@@ -6,28 +6,21 @@ import 'angular-translate';
 import 'ovh-api-services';
 import 'ovh-ui-angular';
 
-import edit from './edit';
-import instances from './instances';
-import kubernetes from './kubernetes';
-import legacy from './legacy';
-import sshKeys from './ssh-keys';
-import storages from './storages';
-import routing from './project.routing';
+import add from './add';
+import remove from './remove';
 
-const moduleName = 'ovhManagerPciProject';
+import routing from './ssh-keys.routing';
+
+const moduleName = 'ovhManagerPciProjectSshKeys';
 
 angular
   .module(moduleName, [
-    edit,
-    instances,
-    kubernetes,
-    legacy,
     'oui',
     'ovhManagerCore',
     'ovh-api-services',
     'pascalprecht.translate',
-    sshKeys,
-    storages,
+    add,
+    remove,
   ])
   .config(routing);
 
