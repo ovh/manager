@@ -1,11 +1,11 @@
 {
- "adp_common_unit_gb": "GB",
- "adp_common_close": "Close",
- "adp_title": "Analytics Data Platform",
- "adp_get_ssh_keys_error": "Failed to get SSH keys: {{message}}",
- "adp_get_vracks_error": "Failed to get vRacks: {{message}}",
- "adp_get_clouds_error": "Failed to get public cloud projects: {{message}}",
- "adp_get_capabilities_error": "Failed to get supported Analytic Data Platform software versions: {{message}}",
- "adp_get_flavors_error": "Failed to get available flavors: {{message}}",
- "adp_get_quota_error": "Failed to get the quota details of the public cloud project: {{message}}"
+  "adp_common_unit_gb": "GO",
+  "adp_common_close": "Fermer",
+  "adp_title": "Plate-forme de données d'analyse",
+  "adp_get_ssh_keys_error": "Impossible d'obtenir les clés SSH: {{message}}",
+  "adp_get_vracks_error": "Échec de l'obtention des vRacks: {{message}}",
+  "adp_get_clouds_error": "Échec de l'obtention des projets cloud publics : {{message}}",
+  "adp_get_capabilities_error": "Impossible d'obtenir les versions du logiciel Analytic Data Platform prises en charge: {{message}}",
+  "adp_get_flavors_error": "Impossible d'obtenir les saveurs disponibles: {{message}}",
+  "adp_get_quota_error": "Impossible d'obtenir les détails du quota du projet cloud public : {{message}}"
 }
