@@ -22,7 +22,6 @@ module.exports = (env = {}) => {
         path.resolve(__dirname, '../../../node_modules'),
       ],
       mainFields: ['module', 'browser', 'main'],
-      symlinks: false,
     },
     optimization: {
       splitChunks: {
