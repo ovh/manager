@@ -12,6 +12,7 @@
    <translation id="ovh_payment_status_proposed_by_customer" qtlid="90205">Pendiente de validación</translation>
    <translation id="ovh_payment_status_too_many_failures" qtlid="316034">No válido (demasiados errores en los intentos de validación)</translation>
    <translation id="ovh_payment_status_blocked" qtlid="108901">Bloqué</translation>
+   <translation id="ovh_payment_status_blocked_for_incidents" qtlid="108901">Bloqué</translation>
    <translation id="ovh_payment_status_broken" qtlid="436367">Roto</translation>
    <translation id="ovh_payment_status_canceled" qtlid="27631">Annulé</translation>
    <translation id="ovh_payment_status_canceling" qtlid="409792">Cancelando...</translation>
