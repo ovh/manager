@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <translations>
    <translation id="ovh_payment_type_bank_account" qtlid="176911">Bankovní účet</translation>
-   <translation id="ovh_payment_type_paypal" qtlid="98228">Paypal</translation>
+   <translation id="ovh_payment_type_paypal" qtlid="98228">PayPal</translation>
    <translation id="ovh_payment_type_credit_card" qtlid="89809">Platební karta</translation>
    <translation id="ovh_payment_type_deferred_payment_account" qtlid="406931">Odložený platební účet</translation>
    <translation id="ovh_payment_type_internal_trusted_account" qtlid="406931">Odložený platební účet</translation>
@@ -12,6 +12,7 @@
    <translation id="ovh_payment_status_proposed_by_customer" qtlid="90205">Čeká na schválení</translation>
    <translation id="ovh_payment_status_too_many_failures" qtlid="316034">Neplatné (příliš mnoho neúspěšných pokusů o ověření)</translation>
    <translation id="ovh_payment_status_blocked" qtlid="108901">Blokován</translation>
+   <translation id="ovh_payment_status_blocked_for_incidents" qtlid="108901">Blokován</translation>
    <translation id="ovh_payment_status_broken" qtlid="436367">Nefunkční</translation>
    <translation id="ovh_payment_status_canceled" qtlid="27631">Zrušit</translation>
    <translation id="ovh_payment_status_canceling" qtlid="409792">Stornování</translation>

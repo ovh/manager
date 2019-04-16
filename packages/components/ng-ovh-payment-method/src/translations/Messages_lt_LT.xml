@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <translations>
    <translation id="ovh_payment_type_bank_account" qtlid="176911">Banko sąskaita</translation>
-   <translation id="ovh_payment_type_paypal" qtlid="98228">Paypal</translation>
+   <translation id="ovh_payment_type_paypal" qtlid="98228">PayPal</translation>
    <translation id="ovh_payment_type_credit_card" qtlid="89809">Banko kortelė</translation>
    <translation id="ovh_payment_type_deferred_payment_account" qtlid="406931">Atidėto mokėjimo paskyra</translation>
    <translation id="ovh_payment_type_internal_trusted_account" qtlid="406931">Atidėto mokėjimo paskyra</translation>
@@ -12,6 +12,7 @@
    <translation id="ovh_payment_status_proposed_by_customer" qtlid="90205">Laukiama patvirtinimo</translation>
    <translation id="ovh_payment_status_too_many_failures" qtlid="316034">Klaida (pernelyg daug nesėkmingų bandymų patvirtinti)</translation>
    <translation id="ovh_payment_status_blocked" qtlid="108901">Užblokuotas</translation>
+   <translation id="ovh_payment_status_blocked_for_incidents" qtlid="108901">Užblokuotas</translation>
    <translation id="ovh_payment_status_broken" qtlid="436367">Sugadinta</translation>
    <translation id="ovh_payment_status_canceled" qtlid="27631">Atšaukta</translation>
    <translation id="ovh_payment_status_canceling" qtlid="409792">Atšaukiamas</translation>
