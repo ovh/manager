@@ -1,3 +1,13 @@
+## [2.0.1](https://github.com/ovh-ux/ng-ovh-payment-method/compare/v2.0.0...v2.0.1) (2019-04-16)
+
+
+### Bug Fixes
+
+* add blocked for incidents translation ([8906ba4](https://github.com/ovh-ux/ng-ovh-payment-method/commit/8906ba4))
+* **i18n:** retrieve ([b13c557](https://github.com/ovh-ux/ng-ovh-payment-method/commit/b13c557))
+
+
+
 # [2.0.0](https://github.com/ovh-ux/ng-ovh-payment-method/compare/v1.1.4...v2.0.0) (2019-03-05)
 
 
