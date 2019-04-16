@@ -38,7 +38,7 @@ export const MENU = [
       },
       {
         options: {
-          state: 'pci.projects.project2',
+          state: 'pci.projects.project.storages.instance-backups',
         },
         translation: 'cloud_sidebar_storage_instance_storage',
       },

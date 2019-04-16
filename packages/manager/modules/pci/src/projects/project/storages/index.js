@@ -3,6 +3,7 @@ import 'ovh-ui-angular';
 
 import blocks from './blocks';
 import cloudArchive from './cloud-archives';
+import instanceBackups from './instance-backups';
 import objects from './objects';
 import snapshots from './snapshots';
 import routing from './storages.routing';
@@ -13,6 +14,7 @@ angular
   .module(moduleName, [
     blocks,
     cloudArchive,
+    instanceBackups,
     'oui',
     objects,
     snapshots,
