@@ -4,8 +4,6 @@ import '@ovh-ux/ng-translate-async-loader';
 import 'angular-translate';
 import 'ovh-api-services';
 
-import openstackClient from '../openstackClient';
-
 import controller from './controller';
 import template from './template.html';
 
@@ -17,7 +15,6 @@ angular
     'pascalprecht.translate',
     'ovh-api-services',
     'ui.router',
-    openstackClient,
   ])
   .config(/* @ngInject */($stateProvider) => {
     $stateProvider.state('pci.projects.project.legacy.compute.infrastructure.diagram', {

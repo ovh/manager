@@ -8490,10 +8490,6 @@ next-tick@^1.0.0:
   resolved "https://registry.yarnpkg.com/next-tick/-/next-tick-1.0.0.tgz#ca86d1fe8828169b0120208e3dc8424b9db8342c"
   integrity sha1-yobR/ogoFpsBICCOPchCS524NCw=
 
-ng-at-internet@ovh-ux/ng-at-internet#^3.0.0:
-  version "3.1.1"
-  resolved "https://codeload.github.com/ovh-ux/ng-at-internet/tar.gz/066b669c81c00f120bbffe00f74a245ac35dc3d5"
-
 ng-csv@^0.3.6:
   version "0.3.6"
   resolved "https://registry.yarnpkg.com/ng-csv/-/ng-csv-0.3.6.tgz#a89cf02e4c3fa2a5b24d5c19984443dda7f275d8"

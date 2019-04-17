@@ -1,9 +1,0 @@
-{
- "cloud_project_rename_loading_error": "Ocorreu um erro aquando do carregamento da descrição.",
- "cloud_project_rename_error": "Ocorreu um erro aquando do carregamento da descrição.",
- "cpb_details_project_delete": "Eliminar este projeto",
- "cpb_details_project_rename_reset": "Anular",
- "cpb_details_project_rename_ok": "Guardar ",
- "cpb_details_project_rename": "Renomear",
- "cpb_details_project_description": "Descrição do projeto"
-}

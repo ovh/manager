@@ -12,10 +12,7 @@ import add from './add';
 import billing from './billing';
 import compute from './compute';
 import details from './details';
-import onboarding from './onboarding';
 import openstack from './openstack';
-import rename from './rename';
-import storage from './storage';
 
 import deleteController from './delete/controller';
 import deleteTemplate from './delete/template.html';
@@ -36,10 +33,7 @@ angular
     'oc.lazyLoad',
     'oui',
     'ovhManagerCore',
-    onboarding,
     openstack,
-    rename,
-    storage,
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
   ])

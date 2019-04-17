@@ -48,7 +48,7 @@
     "lodash": "^3.10.1",
     "messenger": "HubSpot/messenger#~1.4.1",
     "moment": "^2.22.2",
-    "ng-at-internet": "ovh-ux/ng-at-internet#^3.0.0",
+    "@ovh-ux/ng-at-internet": "^4.0.0",
     "oclazyload": "^1.1.0",
     "ovh-angular-pagination-front": "ovh-ux/ovh-angular-pagination-front#^5.1.0",
     "ovh-angular-q-allsettled": "ovh-ux/ovh-angular-q-allSettled#^0.3.1",

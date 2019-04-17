@@ -4,13 +4,13 @@ import '@ovh-ux/manager-core';
 import '@uirouter/angularjs';
 import '@ovh-ux/ng-ovh-uirouter-layout';
 import 'oclazyload';
+import '@ovh-ux/ng-at-internet';
 import '@ovh-ux/ng-ovh-cloud-universe-components';
 import '@ovh-ux/ng-ovh-proxy-request';
 import '@ovh-ux/ng-ovh-user-pref';
 import '@ovh-ux/ng-ovh-swimming-poll';
 import '@ovh-ux/ng-ovh-doc-url';
 import '@ovh-ux/ng-ovh-form-flat';
-import 'ng-at-internet';
 import '@ovh-ux/ng-ovh-toaster';
 import '@ovh-ux/ng-ovh-api-wrappers'; // should be a peer dependency of ovh-api-services
 import 'ovh-api-services';
@@ -69,7 +69,7 @@ angular
     'ngOvhUserPref',
     'ngOvhSwimmingPoll',
     'ngOvhDocUrl',
-    'ng-at-internet',
+    'ngAtInternet',
     'ovh-api-services',
     'ngOvhToaster',
     'ovh-jquery-ui-draggable-ng',

@@ -1,9 +1,0 @@
-{
- "cloud_project_rename_loading_error": "Beim Laden der Beschreibung ist ein Fehler aufgetreten.",
- "cloud_project_rename_error": "Bei der Änderung der Beschreibung ist ein Fehler aufgetreten.",
- "cpb_details_project_delete": "Dieses Projekt löschen",
- "cpb_details_project_rename_reset": "Abbrechen",
- "cpb_details_project_rename_ok": "Speichern",
- "cpb_details_project_rename": "Umbenennen",
- "cpb_details_project_description": "Projektbeschreibung "
-}
