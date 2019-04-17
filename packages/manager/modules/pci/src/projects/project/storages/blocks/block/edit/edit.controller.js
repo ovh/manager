@@ -1,13 +1,6 @@
-import angular from 'angular';
-
 import get from 'lodash/get';
 import pick from 'lodash/pick';
 import BlockStorage from '../../block.class';
-
-import {
-  VOLUME_MAX_SIZE,
-  VOLUME_MIN_SIZE,
-} from '../../block.constants';
 
 export default class PciBlockStorageDetailsEditController {
   /* @ngInject */
@@ -26,10 +19,6 @@ export default class PciBlockStorageDetailsEditController {
   }
 
   $onInit() {
-    this.size = {
-      min: VOLUME_MIN_SIZE,
-      max: VOLUME_MAX_SIZE,
-    };
     this.initLoaders();
   }
 
@@ -39,8 +28,6 @@ export default class PciBlockStorageDetailsEditController {
     this.$translate.refresh()
       .then(() => this.loadMessages())
       .then(() => this.getStorage())
-      .then(() => this.getAvailableQuota())
-      .then(() => this.estimatePrice())
       .catch((err) => {
         this.CucCloudMessage.error(
           this.$translate.instant(
@@ -89,25 +76,6 @@ export default class PciBlockStorageDetailsEditController {
           ),
         );
         return this.editStorage;
-      });
-  }
-
-  getAvailableQuota() {
-    return this.PciProjectStorageBlockService
-      .getAvailableQuota(this.projectId, this.storage)
-      .then((availableQuota) => {
-        this.size.min = this.storage.size;
-        this.size.max = availableQuota;
-      });
-  }
-
-  estimatePrice() {
-    // Wait the next digest because oui-numeric use the viewValue when calling on-change callback
-    return this.$timeout(angular.noop, 0)
-      .then(() => this.PciProjectStorageBlockService
-        .getVolumePriceEstimation(this.projectId, this.editStorage))
-      .then((estimatedPrice) => {
-        this.estimatedPrice = estimatedPrice;
       });
   }
 

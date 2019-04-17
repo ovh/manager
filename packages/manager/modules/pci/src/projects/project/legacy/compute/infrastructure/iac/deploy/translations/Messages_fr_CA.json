@@ -1,8 +1,0 @@
-{
- "cpciiac_deploy_title": "Déployer une infrastructure-service via Terraform",
- "cpciiac_deploy_intro": "Déployez rapidement et simplement une infrastructure-code non gérée dans votre projet Cloud, et ce en quelques clics grâce à nos scripts de déploiement d'infrastructure.",
- "cpciiac_deploy_guide": "Quickstart",
- "cpciiac_deploy_configure": "Configurer",
- "cpciiac_deploy_copy_paste": "Copier/Coller",
- "cpciiac_view_deployment_ERROR": "Une erreur s'est produite lors de la demande de déploiement : {{message}}"
-}

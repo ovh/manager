@@ -31,11 +31,11 @@
     "oclazyload": "^1.1.0",
     "ovh-angular-checkbox-table": "^0.1.2",
     "ovh-angular-ui-confirm-modal": "^1.0.2",
-    "ovh-api-services": "^6.8.0"
+    "ovh-api-services": "^6.11.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-webpack-config": "^3.0.1",
-    "ovh-manager-webfont": "^1.0.2",
+    "@ovh-ux/manager-webpack-config": "^3.0.5",
+    "ovh-manager-webfont": "^1.2.0",
     "webpack-merge": "^4.1.4"
   }
 }

@@ -6,12 +6,13 @@ import 'angular-translate';
 import 'ovh-api-services';
 import 'ovh-ui-angular';
 
-
-import creating from './creating';
 import edit from './edit';
+import failoverIps from './failover-ips';
 import instances from './instances';
 import kubernetes from './kubernetes';
-// import legacy from './legacy';
+import legacy from './legacy';
+import sshKeys from './ssh-keys';
+import privateNetworks from './private-networks';
 import storages from './storages';
 import routing from './project.routing';
 
@@ -19,15 +20,17 @@ const moduleName = 'ovhManagerPciProject';
 
 angular
   .module(moduleName, [
-    creating,
     edit,
+    failoverIps,
     instances,
     kubernetes,
-    // legacy,
+    legacy,
+    privateNetworks,
     'oui',
     'ovhManagerCore',
     'ovh-api-services',
     'pascalprecht.translate',
+    sshKeys,
     storages,
   ])
   .config(routing);

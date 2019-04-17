@@ -1,8 +1,0 @@
-{
- "cpciiac_deploy_title": "Crea una \"Infrastructure as code\" con Terraform",
- "cpciiac_deploy_intro": "Crea in modo facile e veloce una \"Infrastructure as code\" (IaC) non gestita nel tuo progetto Cloud. Bastano pochi click grazie ai nostri script per la creazione di infrastrutture.",
- "cpciiac_deploy_guide": "Quickstart",
- "cpciiac_deploy_configure": "Configura",
- "cpciiac_deploy_copy_paste": "Copia e incolla",
- "cpciiac_view_deployment_ERROR": "Si è verificato un errore durante la richiesta di creazione dell'infrastruttura: {{message}}"
-}

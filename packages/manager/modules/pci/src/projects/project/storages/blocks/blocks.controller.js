@@ -1,16 +1,20 @@
 import get from 'lodash/get';
 
+import { VOLUME_HELP_PREFERENCE_KEY } from './block.constants';
+
 export default class PciBlockStorageController {
   /* @ngInject */
   constructor(
     $rootScope,
     $translate,
     CucCloudMessage,
+    ovhUserPref,
     PciProjectStorageBlockService,
   ) {
     this.$rootScope = $rootScope;
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
+    this.ovhUserPref = ovhUserPref;
     this.PciProjectStorageBlockService = PciProjectStorageBlockService;
   }
 
@@ -30,6 +34,7 @@ export default class PciBlockStorageController {
           { message: get(err, 'data.message', '') },
         ),
       ))
+      .then(() => this.checkHelpDisplay())
       .finally(() => {
         this.loading = false;
       });
@@ -70,5 +75,44 @@ export default class PciBlockStorageController {
 
   refreshMessages() {
     this.messages = this.messageHandler.getMessages();
+  }
+
+  checkHelpDisplay() {
+    return new Promise((resolve) => {
+      if (this.help) {
+        return this.ovhUserPref.getValue(this.getHelpPreferenceKey())
+          .then((value) => {
+            this.displayHelp = value && this.help;
+          })
+          .catch(() => {
+            this.displayHelp = this.help;
+          })
+          .finally(() => resolve());
+      }
+      return resolve();
+    });
+  }
+
+  getHelpPreferenceKey() {
+    return `${VOLUME_HELP_PREFERENCE_KEY}${this.help.toUpperCase()}`;
+  }
+
+  onHelpClosed(type) {
+    if (type === this.displayHelp) {
+      this.displayHelp = null;
+    }
+  }
+
+  hideHelp(type) {
+    if (type === this.displayHelp) {
+      this.updateHelp = true;
+
+      this.ovhUserPref.assign(this.getHelpPreferenceKey(), false)
+        .then()
+        .finally(() => {
+          this.updateHelp = false;
+          this.displayHelp = null;
+        });
+    }
   }
 }

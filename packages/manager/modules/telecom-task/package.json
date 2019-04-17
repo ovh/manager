@@ -26,7 +26,7 @@
     "lodash": "^4.17.11"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "5.0.0-beta.5"
+    "@ovh-ux/component-rollup-config": "5.0.0"
   },
   "peerDependencies": {
     "@ovh-ux/manager-core": "^5.0.0",
@@ -40,8 +40,8 @@
     "oclazyload": "^1.1.0",
     "ovh-api-services": "^6.8.0",
     "ovh-manager-webfont": "^1.0.2",
-    "ovh-ui-angular": "^2.28.0",
-    "ovh-ui-kit": "^2.28.0",
+    "ovh-ui-angular": "^2.29.0",
+    "ovh-ui-kit": "^2.29.0",
     "ovh-ui-kit-bs": "^2.1.1"
   }
 }
