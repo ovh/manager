@@ -1,21 +1,8 @@
 {
-  "adp_service_cluster_desc1": "Votre cluster de données volumineuses a besoin de plusieurs noeuds et disques de stockage pour être opérationnel.",
-  "adp_service_cluster_desc2": "Ces noeuds sont déployés dans votre projet cloud public associé {{public_cloud_project_serviceName}}, avec facturation horaire standard.",
-  "adp_service_cluster_desc3": "Vous pouvez trouver des détails sur votre facture et passer à un plan mensuel dans votre projet Cloud public.",
   "adp_service_cluster_total_cores": "Nombre total de coeurs virtuels",
   "adp_service_cluster_total_ram": "RAM totale",
   "adp_service_cluster_total_storage": "Stockage efficace total",
   "adp_service_cluster_table_node": "Noeud",
-  "adp_service_cluster_role": "Rôle",
-  "adp_service_cluster_region": "Région",
   "adp_service_cluster_table_flavor": "Saveur",
-  "adp_service_cluster_table_vcores": "Coeurs virtuels",
-  "adp_service_cluster_table_ram": "RAM",
-  "adp_service_cluster_table_storage": "Stockage",
-  "adp_service_cluster_table_ip": "Adresse IP",
-  "adp_service_cluster_table_status": "État",
-  "adp_common_gb": "GO",
-  "adp_common_tb": "TO",
-  "adp_common_filter": "Filtrer par",
-  "adp_service_cluster_select": "Sélectionner"
+  "adp_service_cluster_table_ip": "Adresse IP"
 }

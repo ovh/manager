@@ -13,27 +13,31 @@
             <oui-header-tabs-item
                 data-text="{{ ::'adp_header_nav_service_info' | translate }}"
                 data-state="adp.service.details"
-                data-state-params="{ serviceName: $ctrl.serviceName }">
+                data-state-params="{ serviceName: $ctrl.serviceName }"
+                data-disabled="$ctrl.adpService.isDeploymentInProgress($ctrl.details)">
             </oui-header-tabs-item>
             <oui-header-tabs-item
                 data-text="{{ ::'adp_header_nav_cluster_size' | translate }}"
                 data-state="adp.service.cluster"
-                data-state-params="{ serviceName: $ctrl.serviceName }">
+                data-state-params="{ serviceName: $ctrl.serviceName }"
+                data-disabled="$ctrl.adpService.isDeploymentInProgress($ctrl.details)">
             </oui-header-tabs-item>
             <oui-header-tabs-item
                 data-text="{{ ::'adp_header_nav_credential' | translate }}"
                 data-state="adp.service.credentials"
-                data-state-params="{ serviceName: $ctrl.serviceName }">
+                data-state-params="{ serviceName: $ctrl.serviceName }"
+                data-disabled="$ctrl.adpService.isDeploymentInProgress($ctrl.details)">
             </oui-header-tabs-item>
             <oui-header-tabs-item
                 data-text="{{ ::'adp_header_nav_activity' | translate }}"
                 data-state="adp.service.log"
-                data-state-params="{ serviceName: $ctrl.serviceName }">
+                data-state-params="{ serviceName: $ctrl.serviceName }"
+                data-disabled="$ctrl.adpService.isDeploymentInProgress($ctrl.details)">
             </oui-header-tabs-item>
         </oui-header-tabs>
     </oui-page-header>
     <!-- page content -->
-    <div class="mt-1 mx-1 mt-sm-2 mx-sm-2">
+    <div class="cui-page__content">
         <!-- error messages -->
         <div data-ng-if="$ctrl.messages.length > 0">
             <oui-message

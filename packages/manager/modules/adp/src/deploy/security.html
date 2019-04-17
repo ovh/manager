@@ -3,24 +3,25 @@
     <!-- vrack -->
     <div data-ng-if="!$ctrl.publicClouds.loading && $ctrl.vRack">
         <div data-ng-if="$ctrl.vRack.loading">
-            <span data-translate="adp_deploy_private_network"></span>
+            <span data-translate="adp_common_private_network"></span>
             <oui-spinner class="ml-2" data-size="s"></oui-spinner>
         </div>
         <div data-ng-if="!$ctrl.vRack.loading">
-            <p data-translate="adp_deploy_private_network"></p>
+            <p data-translate="adp_common_private_network"></p>
             <p class="font-weight-bold"
-            data-ng-bind="$ctrl.vRack.data.id
+               data-ng-bind="$ctrl.vRack.data.id
                 ? ($ctrl.vRack.data.name
                     ? ($ctrl.vRack.data.id + ' (' + $ctrl.vRack.data.name + ')')
                     : $ctrl.vRack.data.id)
                 : ('adp_deploy_private_network_noname' | translate)"></p>
             <div class="mb-3" data-ng-if="!$ctrl.vRack.data.id">
                 <span class="text-danger"
-                    data-translate="adp_deploy_private_network_help"
-                    data-translate-values="{project_name: $ctrl.selectedPublicCloud.description}">
+                      data-translate="adp_deploy_private_network_help"
+                      data-translate-values="{project_name: $ctrl.selectedPublicCloud.description}">
                 </span>
-                <a data-ui-sref="iaas.pci-project.compute.infrastructure.diagram({ serviceName: $ctrl.adp.os_project_id })"
-                data-translate="adp_deploy_private_network_create_or_link"></a>
+                <a class="text-primary"
+                   data-ui-sref="iaas.pci-project.compute.infrastructure.diagram({ projectId: $ctrl.adp.os_project_id })"
+                   data-translate="adp_deploy_private_network_create_or_link"></a>
             </div>
         </div>
     </div>
@@ -42,8 +43,9 @@
             </oui-select>
             <div class="mb-3" data-ng-if="!$ctrl.sshKeys.data.length">
                 <span class="text-danger" data-translate="adp_deploy_ssh_key_help"></span>
-                <a data-ui-sref="iaas.pci-project.compute.ssh({ serviceName: $ctrl.adp.os_project_id })"
-                data-translate="adp_deploy_ssh_key_create"></a>
+                <a class="text-primary"
+                   data-ui-sref="iaas.pci-project.compute.ssh({ projectId: $ctrl.adp.os_project_id })"
+                   data-translate="adp_deploy_ssh_key_create"></a>
             </div>
         </oui-field>
     </div>
@@ -52,21 +54,33 @@
         <oui-message data-type="warning">
             <span data-translate="adp_deploy_password_warning"></span>
         </oui-message>
-        <oui-field data-label="{{ ::'adp_deploy_master_password' | translate }}"
-                data-error-messages="{ pattern: ('adp_deploy_master_password_help' | translate) }">
+        <oui-field data-label="{{ ::'adp_common_master_password' | translate }}"
+                   data-error-messages="{ password: ('adp_deploy_master_password_help' | translate) }">
             <oui-password data-name="masterPassword"
-                        data-model="$ctrl.adp.master_password"
-                        data-placeholder="{{ ::'adp_deploy_master_password' | translate }}"
-                        data-pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{12,}$"
-                        data-required>
+                          data-model="$ctrl.adp.master_password"
+                          data-placeholder="{{ ::'adp_deploy_master_password_placeholder' | translate }}"
+                          data-required>
+                <oui-password-rule data-pattern="[0-9]+">
+                    <span data-translate="adp_deploy_master_password_help_number"></span>
+                </oui-password-rule>
+                <oui-password-rule data-pattern="[@$!%*?&#]+">
+                    <span data-translate="adp_deploy_master_password_help_special_character"></span>
+                </oui-password-rule>
+                <oui-password-rule data-pattern="[A-Z]+">
+                    <span data-translate="adp_deploy_master_password_help_uppercase"></span>
+                </oui-password-rule>
+                <oui-password-rule data-validator="$ctrl.checkPasswordLength(modelValue)">
+                    <span data-translate="adp_deploy_master_password_help_length"></span>
+                </oui-password-rule>
             </oui-password>
         </oui-field>
         <oui-field data-label="{{ ::'adp_deploy_master_password_confirm' | translate }}"
-                data-error-messages="{ password: ('adp_deploy_master_password_must_match' | translate) }">
+                   data-error-messages="{ password: ('adp_deploy_master_password_must_match' | translate) }">
             <oui-password data-name="masterPasswordConfirm"
-                        data-model="$ctrl.masterPasswordConfirm"
-                        data-placeholder="{{ ::'adp_deploy_master_password_confirm_placeholder' | translate }}"
-                        data-required>
+                          data-model="$ctrl.masterPasswordConfirm"
+                          data-placeholder="{{ ::'adp_deploy_master_password_confirm_placeholder' | translate }}"
+                          data-validation-trigger="$ctrl.adp.master_password"
+                          data-required>
                 <oui-password-rule data-validator="$ctrl.checkPasswordMatch()">
                     <span data-translate="adp_deploy_master_password_must_match"></span>
                 </oui-password-rule>

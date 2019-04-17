@@ -1,18 +1,12 @@
 {
-  "adp_tile_heading_cluster_info": "Cluster information",
-  "adp_tile_heading_billing": "Billing",
-  "adp_tile_heading_cluster_mgmt": "Cluster management",
-  "adp_tile_desc_status": "Status",
-  "adp_tile_menu_delete_cluster": "Delete cluster",
-  "adp_tile_desc_version": "Version",
-  "adp_tile_desc_datacenter": "Datacenter",
-  "adp_tile_desc_public_cloud": "Public cloud project",
-  "adp_tile_desc_private_network": "Private network",
-  "adp_tile_desc_solution": "Solution",
-  "adp_tile_desc_creation_date": "Creation date",
-  "adp_tile_desc_billing_nic": "Billing NIC handle",
-  "adp_tile_menu_billing_console": "Billing console",
-  "adp_tile_link_manage_users": "Manage users (Free IPA)",
-  "adp_tile_link_manage_cluster": "Manage cluster (Ambari)",
-  "adp_tile_link_manage_security": "Manage data security (Ranger)"
+ "adp_tile_heading_cluster_info": "Cluster information",
+ "adp_tile_heading_billing": "Billing",
+ "adp_tile_heading_cluster_mgmt": "Cluster management",
+ "adp_tile_desc_datacenter": "Datacenter",
+ "adp_tile_desc_solution": "Solution",
+ "adp_tile_desc_creation_date": "Creation date",
+ "adp_tile_menu_billing_console": "Billing console",
+ "adp_tile_link_manage_users": "Manage users (Free IPA)",
+ "adp_tile_link_manage_cluster": "Manage cluster (Ambari)",
+ "adp_tile_link_manage_security": "Manage data security (Ranger)"
 }

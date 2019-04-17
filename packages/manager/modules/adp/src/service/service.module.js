@@ -6,6 +6,7 @@ import cluster from './cluster';
 import credentials from './credentials';
 import serviceInformation from './service-information';
 import serviceComponent from './service.component';
+import progressComponent from './tracking-progress';
 
 const moduleName = 'ovhManagerAdpServiceComponent';
 
@@ -15,6 +16,7 @@ angular
     activityLog,
     cluster,
     credentials,
+    progressComponent,
     serviceInformation,
   ])
   .config(/* @ngInject */($stateProvider) => {

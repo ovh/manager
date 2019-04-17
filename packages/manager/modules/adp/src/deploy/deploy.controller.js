@@ -1,5 +1,7 @@
 import cloneDeep from 'lodash/cloneDeep';
+import ceil from 'lodash/ceil';
 import find from 'lodash/find';
+import floor from 'lodash/floor';
 import forEach from 'lodash/forEach';
 import get from 'lodash/get';
 import has from 'lodash/has';
@@ -9,9 +11,10 @@ import includes from 'lodash/includes';
 import isEmpty from 'lodash/isEmpty';
 import isEqual from 'lodash/isEqual';
 import map from 'lodash/map';
-import reduce from 'lodash/reduce';
+import round from 'lodash/round';
 import set from 'lodash/set';
 import sortBy from 'lodash/sortBy';
+import some from 'lodash/some';
 import sumBy from 'lodash/sumBy';
 import times from 'lodash/times';
 import values from 'lodash/values';
@@ -21,9 +24,11 @@ import errorModelController from '../quota-error-model/quota-error-model.control
 
 export default class {
   /* @ngInject */
-  constructor($translate, ADP_FLAVOR_TYPES, ADP_NODE_NAMES, ADP_NODE_TYPES,
-    adpService, CucControllerHelper, CucCloudMessage, CucServiceHelper) {
+  constructor($translate, adpService, CucControllerHelper, CucCloudMessage, CucServiceHelper,
+    ADP_COMPUTE, ADP_CREDENTIALS_INFO, ADP_FLAVOR_TYPES, ADP_NODE_NAMES, ADP_NODE_TYPES) {
     this.$translate = $translate;
+    this.ADP_COMPUTE = ADP_COMPUTE;
+    this.ADP_CREDENTIALS_INFO = ADP_CREDENTIALS_INFO;
     this.ADP_FLAVOR_TYPES = ADP_FLAVOR_TYPES;
     this.ADP_NODE_NAMES = ADP_NODE_NAMES;
     this.ADP_NODE_TYPES = ADP_NODE_TYPES;
@@ -37,11 +42,10 @@ export default class {
     this.selectedCapability = null;
     this.selectedSshKey = null;
     this.nodesConfig = null;
-    this.adpFlavours = null;
     this.minimumNodesRequired = 0;
+    // adp request payload
     this.adp = {
       os_project_id: null,
-      admin_mail: null,
       cluster_name: null,
       cluster_type: null,
       edge_node_storage: 0,
@@ -58,14 +62,11 @@ export default class {
     };
     this.storage = {
       initialized: false,
-      cluster_storage: 0,
-      edge_node_storage: 0,
       min_cluster_storage: 0,
       max_cluster_storage: 0,
       min_edge_node_storage: 0,
       max_edge_node_storage: 0,
-      clstr_strg_per_node: 0,
-      edge_storage_per_node: 0,
+      hdfs_effective_storage: 0,
     };
     this.price = {
       hourlyPrice: 0,
@@ -115,8 +116,8 @@ export default class {
     if (!isEmpty(this.selectedPublicCloud)) {
       const publicCloudServiceName = get(this.selectedPublicCloud, 'project_id');
       // load SSH keys
-      this.selectedSshKey = null;
-      this.nodesConfig = null;
+      this.resetSecurityConfiguration();
+      this.resetQuota();
       this.fetchSshKeys(publicCloudServiceName);
       // load vRack
       this.fetchVRack(publicCloudServiceName);
@@ -200,6 +201,9 @@ export default class {
    * @returns the minimum number of nodes required
    */
   onCapabilitySelect() {
+    this.resetRegionConfiguration();
+    this.resetNodesConfiguration();
+    this.resetStorageConfiguration();
     this.minimumNodesRequired = get(this.selectedCapability, ['bastion_node', 'instance_min'], 0)
       + get(this.selectedCapability, ['edge_node', 'instance_min'], 0)
       + get(this.selectedCapability, ['master_node', 'instance_min'], 0)
@@ -236,9 +240,22 @@ export default class {
     return this.masterPasswordConfirm === this.adp.master_password;
   }
 
+  /**
+   * Checks if the master password and the confirm password matches
+   *
+   * @returns a boolean indicating whether the passwords match
+   */
+  checkPasswordLength(password) {
+    return password && (password.length >= this.ADP_CREDENTIALS_INFO.minMasterPasswordLength);
+  }
+
   /** #####################################################################
       SECURITY INFORMATION
    * ##################################################################### */
+
+  resetSecurityConfiguration() {
+    this.selectedSshKey = null;
+  }
 
   /**
    * Saves the required data before the step is finalized
@@ -259,6 +276,14 @@ export default class {
   /** #####################################################################
       REGIONS AND DATACENTER
    * ##################################################################### */
+
+  resetRegionConfiguration() {
+    this.selectedRegion = null;
+  }
+
+  onRegionChange() {
+    this.resetQuota();
+  }
 
   /**
    * fetch all ADP supported regions
@@ -335,6 +360,14 @@ export default class {
       NODES
    * ##################################################################### */
 
+  resetNodesConfiguration() {
+    this.nodesConfig = null;
+  }
+
+  resetQuota() {
+    this.quota = null;
+  }
+
   /**
    * fetch the flavors for a given public cloud
    *
@@ -366,20 +399,9 @@ export default class {
     return this.quota.load();
   }
 
-  /**
-   * checks if the node instances quota for the cloud project
-   * has been exceeded based on the current nodes settings
-   *
-   * @returns boolean indicating whether the quota has been exceeded
-   */
-  isNodesQuotaExceeded() {
-    if (this.quota && !this.quota.loading) {
-      const nodes = values(this.nodesConfig);
-      return reduce(nodes,
-        (instancesCount, nodeConfig) => instancesCount + nodeConfig.count, 0)
-        > this.quota.data.instance.maxInstances;
-    }
-    return true;
+  static onInstanceSelect(instance, node) {
+    const isValid = instance.disk >= node.raw_storage_min_gb;
+    set(node, 'isValid', isValid);
   }
 
   /**
@@ -403,7 +425,9 @@ export default class {
           this.nodesConfig = this.getNodesConfiguration(this.selectedCapability, flavors);
         });
     }
-    this.fetchQuota(this.adp.os_project_id, this.adp.os_region);
+    if (isEmpty(this.quota)) {
+      this.fetchQuota(this.adp.os_project_id, this.adp.os_region);
+    }
   }
 
   /**
@@ -430,9 +454,14 @@ export default class {
           return flavor;
         },
       );
-      nodeConfig.selectedFlavor = (nodeConfig.instance_type.length > 1)
-        ? undefined
-        : head(nodeConfig.instance_type);
+      if (nodeConfig.instance_type.length === 1) {
+        nodeConfig.selectedFlavor = head(nodeConfig.instance_type);
+        const isValid = nodeConfig.selectedFlavor.disk >= nodeConfig.raw_storage_min_gb;
+        set(nodeConfig, 'isValid', isValid);
+      } else {
+        nodeConfig.selectedFlavor = null;
+        set(nodeConfig, 'isValid', true);
+      }
       set(nodesConfig, nodeType, nodeConfig);
     });
     return nodesConfig;
@@ -441,9 +470,10 @@ export default class {
   /**
    * Creates the node structure that is required to be submitted
    */
-  submitNodesInformation() {
+  submitNodesInformation(form) {
     if (!this.validateClusterSize()) {
-      return false;
+      set(form, '$valid', false);
+      return;
     }
     const nodes = values(this.nodesConfig);
     this.adp.nodes = [];
@@ -455,7 +485,6 @@ export default class {
         });
       });
     });
-    return true;
   }
 
   /**
@@ -469,9 +498,14 @@ export default class {
     if (isEmpty(this.quota) || isEmpty(nodes)) {
       return false;
     }
+    // validate storage
+    const isStorageInValid = some(nodes, node => !node.isValid);
+    if (isStorageInValid) {
+      return false;
+    }
     const quota = this.quota.data;
     // RAM
-    const totalRamRequired = sumBy(nodes, node => get(node, ['selectedFlavor', 'ram'], 0));
+    const totalRamRequired = sumBy(nodes, node => get(node, ['selectedFlavor', 'ram'], 0) * get(node, 'count', 0));
     const pciUsedRam = get(quota, ['instance', 'usedRAM'], 0);
     const pciTotalRam = get(quota, ['instance', 'maxRam'], 0);
     const pciAvailableRam = pciTotalRam - pciUsedRam;
@@ -485,38 +519,53 @@ export default class {
     const isInstancesValid = pciAvailableInstances - totalInstancesRequired >= 0;
 
     // CPU
-    const totalCpuRequired = sumBy(nodes, node => get(node, ['selectedFlavor', 'vcpus'], 0));
+    const totalCpuRequired = sumBy(nodes, node => get(node, ['selectedFlavor', 'vcpus'], 0) * get(node, 'count', 0));
     const pciUsedCpu = get(quota, ['instance', 'usedCores'], 0);
     const pciTotalCpu = get(quota, ['instance', 'maxCores'], 0);
     const pciAvailableCpu = pciTotalCpu - pciUsedCpu;
     const isCpuValid = pciAvailableCpu - totalCpuRequired >= 0;
 
-    const isClusterValid = isRamValid && isInstancesValid && isCpuValid;
+    // Storage
+    const totalStorageRequired = sumBy(nodes, node => get(node, ['selectedFlavor', 'disk'], 0) * get(node, 'count', 0));
+    const pciStorageUsed = get(quota, ['volume', 'usedGigabytes'], 0);
+    const pciMaxStorage = get(quota, ['volume', 'maxGigabytes'], 0);
+    const pciAvailableStorage = pciMaxStorage - pciStorageUsed;
+    const isStorageValid = pciAvailableStorage - totalStorageRequired >= 0;
+
+    const isClusterValid = isRamValid && isInstancesValid && isCpuValid && isStorageValid;
     if (!isClusterValid) {
       const currentlyUsed = pciUsedRam / 1000;
       const requiredForCluster = totalRamRequired / 1000;
       const quotas = [
         {
-          computeName: 'ram',
+          computeName: this.ADP_COMPUTE.RAM,
           currentlyUsed,
           requiredForCluster,
           maxLimit: pciTotalRam / 1000,
           required: currentlyUsed + requiredForCluster,
-          unit: 'gb',
+          unit: true,
         },
         {
-          computeName: 'cpu',
+          computeName: this.ADP_COMPUTE.CORS,
           currentlyUsed: pciUsedCpu,
           requiredForCluster: totalCpuRequired,
           maxLimit: pciTotalCpu,
           required: pciUsedCpu + totalCpuRequired,
         },
         {
-          computeName: 'nodes',
+          computeName: this.$translate.instant('adp_deploy_quota_virtual_nodes'),
           currentlyUsed: pciUsedInstances,
           requiredForCluster: totalInstancesRequired,
           maxLimit: pciTotalInstances,
           required: pciUsedInstances + totalInstancesRequired,
+        },
+        {
+          computeName: this.$translate.instant('adp_common_storage'),
+          currentlyUsed: pciStorageUsed,
+          requiredForCluster: totalStorageRequired,
+          maxLimit: pciMaxStorage,
+          required: pciStorageUsed + totalStorageRequired,
+          unit: true,
         },
       ];
       this.showQuotaInsufficientErrorModel(
@@ -558,30 +607,41 @@ export default class {
       STORAGE
    * ##################################################################### */
 
+  resetStorageConfiguration() {
+    this.adp.edge_node_storage = 0;
+    this.storage.hdfs_effective_storage = 0;
+  }
+
   initStorage() {
     this.storage.initialized = true;
-    this.storage.hdfsEffectiveStorage = this.nodesConfig.worker.raw_storage_min_gb;
-    this.adp.edge_node_storage = this.nodesConfig.edge.raw_storage_min_gb;
-    this.storage.min_cluster_storage = this.nodesConfig.worker.raw_storage_min_gb;
-    this.storage.max_cluster_storage = this.nodesConfig.worker.raw_storage_max_gb;
+    // calculate min and max storage for cluster and edge node storage
+    this.storage.min_cluster_storage = ceil((
+      this.nodesConfig.worker.raw_storage_min_gb
+      * this.nodesConfig.worker.count
+    ) / this.adp.hdfs_replication_factor);
+    this.storage.max_cluster_storage = floor((
+      this.nodesConfig.worker.raw_storage_max_gb
+      * this.nodesConfig.worker.count
+    ) / this.adp.hdfs_replication_factor);
     this.storage.min_edge_node_storage = this.nodesConfig.edge.raw_storage_min_gb;
     this.storage.max_edge_node_storage = this.nodesConfig.edge.raw_storage_max_gb;
+    // set default storage to average values
+    if (this.adp.edge_node_storage === 0) {
+      this.adp.edge_node_storage = round((
+        this.storage.min_edge_node_storage
+        + this.storage.max_edge_node_storage
+      ) / 2);
+    }
+    if (this.storage.hdfs_effective_storage === 0) {
+      this.storage.hdfs_effective_storage = round((
+        this.storage.min_cluster_storage
+        + this.storage.max_cluster_storage
+      ) / 2);
+    }
   }
 
   submitStorageInformation() {
-    this.adp.hdfs_effective_storage = this.storage.hdfsEffectiveStorage
-      * this.selectedCapability.hdfs_replication_factor;
-  }
-
-  calculateEdgenodeStorage() {
-    this.adp.edge_node_storage = this.storage.edge_nodes_count * this.storage.edge_node_storage;
-    this.storage.edge_storage_per_node = this.adp.edge_node_storage / this.storage.edge_nodes_count;
-  }
-
-  calculateClusterStorage() {
-    const replicationFactor = this.selectedCapability.hdfs_replication_factor;
-    this.adp.hdfs_effective_storage = this.storage.cluster_storage * replicationFactor;
-    this.storage.clstr_strg_per_node = this.adp.hdfs_effective_storage / this.storage.wkr_nodes_cnt;
+    this.adp.hdfs_effective_storage = this.storage.hdfs_effective_storage;
   }
 
   /** #####################################################################
@@ -591,8 +651,20 @@ export default class {
   initReview() {
     this.getPriceCatalog(this.selectedPublicCloud.planCode)
       .then(() => {
-        this.price.hourlyPrice = this.getHourlyTotalPrice(this.priceCatalog.data);
-        this.price.monthlyPrice = this.getMonthlyTotalPrice(this.priceCatalog.data);
+        const priceMap = this.priceCatalog.data.pricesMap;
+        const computePrice = this.getComputePrice(priceMap);
+        const storagePrice = this.constructor.getStoragePrice(
+          priceMap,
+          (this.adp.hdfs_effective_storage * this.adp.hdfs_replication_factor)
+          + (this.adp.edge_node_storage * this.nodesConfig.edge.count),
+        );
+        // add 20% on compute price
+        const totalHourlyPrice = this.constructor.getAdpPrice(computePrice.hourlyPrice)
+          + storagePrice.hourlyPrice;
+        const totalMonthlyPrice = this.constructor.getAdpPrice(computePrice.monthlyPrice)
+          + storagePrice.monthlyPrice;
+        this.price.hourlyPrice = round(totalHourlyPrice, 2);
+        this.price.monthlyPrice = round(totalMonthlyPrice, 2);
       });
   }
 
@@ -611,33 +683,41 @@ export default class {
   }
 
   /**
-   * calculate hourly total price based on price catalog and nodes configuration
+   * calculate total hourly and monthly price for computation selected in nodes configuration
    *
-   * @param {*} catalog
-   * @returns hourly ADP price
+   * @param {*} catalog cloud price catalog
+   * @returns object of hourlyPrice and monthlyPrice
    */
-  getHourlyTotalPrice(catalog) {
+  getComputePrice(catalog) {
     const nodes = values(this.nodesConfig);
-    const price = sumBy(nodes, (node) => {
-      const flavourConsumption = get(node, ['selectedFlavor', 'planCodes', 'hourly']);
-      return get(catalog, [flavourConsumption, 'price', 'value'], 0) * get(node, 'count', 0);
-    });
-    return this.constructor.getAdpPrice(price);
-  }
-
-  /**
-   * calculate monthly total price based on price catalog and nodes configuration
-   *
-   * @param {*} catalog
-   * @returns monthly ADP price
-   */
-  getMonthlyTotalPrice(catalog) {
-    const nodes = values(this.nodesConfig);
-    const price = sumBy(nodes, (node) => {
+    const monthlyPrice = sumBy(nodes, (node) => {
       const flavourMonthly = get(node, ['selectedFlavor', 'planCodes', 'monthly']);
       return get(catalog, [flavourMonthly, 'price', 'value'], 0) * get(node, 'count', 0);
     });
-    return this.constructor.getAdpPrice(price);
+    const hourlyPrice = sumBy(nodes, (node) => {
+      const flavourConsumption = get(node, ['selectedFlavor', 'planCodes', 'hourly']);
+      return get(catalog, [flavourConsumption, 'price', 'value'], 0) * get(node, 'count', 0);
+    });
+    return {
+      hourlyPrice,
+      monthlyPrice,
+    };
+  }
+
+  /**
+   * calculate total hourly and monthly price for storage selected in storage configuration
+   *
+   * @param {*} catalog cloud price catalog
+   * @returns object of hourlyPrice and monthlyPrice
+   */
+  static getStoragePrice(catalog, size, type = 'high-speed') {
+    const storagePriceCatalog = get(catalog, `volume.${type}.consumption`);
+    const hourlyPrice = size * get(storagePriceCatalog, ['price', 'value'], 0);
+    const monthlyPrice = hourlyPrice * 24 * 30;
+    return {
+      hourlyPrice,
+      monthlyPrice,
+    };
   }
 
   /**

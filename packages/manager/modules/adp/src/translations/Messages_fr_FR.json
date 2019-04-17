@@ -7,5 +7,15 @@
   "adp_get_clouds_error": "Échec de l'obtention des projets cloud publics : {{message}}",
   "adp_get_capabilities_error": "Impossible d'obtenir les versions du logiciel Analytic Data Platform prises en charge: {{message}}",
   "adp_get_flavors_error": "Impossible d'obtenir les saveurs disponibles: {{message}}",
-  "adp_get_quota_error": "Impossible d'obtenir les détails du quota du projet cloud public : {{message}}"
+  "adp_get_quota_error": "Impossible d'obtenir les détails du quota du projet cloud public : {{message}}",
+  "adp_common_status": "État",
+  "adp_common_region": "Région",
+  "adp_common_filter": "Filtrer par",
+  "adp_common_select": "Sélectionner",
+  "adp_common_storage": "Stockage",
+  "adp_common_master_password": "Mot de passe maître",
+  "adp_common_version": "Version",
+  "adp_common_public_cloud_project": "Projet cloud public",
+  "adp_common_private_network": "Réseau privé (vRack)",
+  "adp_common_cluster_name": "Nom du cluster"
 }

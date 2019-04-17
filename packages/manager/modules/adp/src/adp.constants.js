@@ -14,6 +14,11 @@ export const ADP_NODE_TYPES = Object.freeze({
   BASTION: 'BASTION',
 });
 
+export const ADP_COMPUTE = Object.freeze({
+  RAM: 'RAM',
+  CORS: 'vCores',
+});
+
 export const ADP_GUIDE_LINKS = Object.freeze({
   general_link: 'https://docs.ovh.com/gb/en/analytics/',
 });
@@ -115,340 +120,47 @@ export const ADP_CREDENTIALS_INFO = Object.freeze({
   rounds: 100000,
   dkLen: 32,
   passwordLength: 18,
+  minMasterPasswordLength: 12,
 });
 
-// TODO - remove this when API support is available
-export const ADP_CAPABILITIES = [{
-  components: [{
-    name: 'Apache Accumulo',
-    version: '1.7.0',
-  }, {
-    name: 'Apache Atlas',
-    version: '0.8.0',
-  }, {
-    name: 'Apache Calcite',
-    version: '1.2.0',
-  }, {
-    name: 'Apache DataFu',
-    version: '1.3.0',
-  }, {
-    name: 'Apache Falcon',
-    version: '0.10.0',
-  }, {
-    name: 'Apache Flume',
-    version: '1.5.2',
-  }, {
-    name: 'Apache Hadoop',
-    version: '2.7.3',
-  }, {
-    name: 'Apache HBase',
-    version: '1.1.2',
-  }, {
-    name: 'Apache Hive',
-    version: '1.2.1',
-  }, {
-    name: 'Apache Hive',
-    version: '2.1.0',
-  }, {
-    name: 'Apache Kafka',
-    version: '1.0.0',
-  }, {
-    name: 'Apache Knox',
-    version: '0.12.0',
-  }, {
-    name: 'Apache Livy',
-    version: '0.4',
-  }, {
-    name: 'Apache Mahout',
-    version: '0.9.0+',
-  }, {
-    name: 'Apache Oozie',
-    version: '4.2.0',
-  }, {
-    name: 'Apache Phoenix',
-    version: '4.7.0',
-  }, {
-    name: 'Apache Pig',
-    version: '0.16.0',
-  }, {
-    name: 'Apache Ranger',
-    version: '0.7.0',
-  }, {
-    name: 'Apache Slider',
-    version: '0.92.0',
-  }, {
-    name: 'Apache Spark',
-    version: '1.6.3',
-  }, {
-    name: 'Apache Spark',
-    version: '2.3.0',
-  }, {
-    name: 'Apache Sqoop',
-    version: '1.4.6',
-  }, {
-    name: 'Apache Storm',
-    version: '1.1.0',
-  }, {
-    name: 'Apache TEZ',
-    version: '0.7.0',
-  }, {
-    name: 'Apache Zeppelin',
-    version: '0.7.3',
-  }, {
-    name: 'Apache ZooKeeper',
-    version: '3.4.6',
-  }],
-  available_region: ['GRA5', 'SBG5'],
-  bastion_node: {
-    instance_type: ['b2-7', 'b2-15'],
-    instance_min: 1,
-    instance_max: 1,
-    raw_storage_min_gb: 0,
-    raw_storage_max_gb: 0,
-  },
-  edge_node: {
-    instance_type: ['b2-15', 'b2-30', 'b2-60', 'b2-120'],
-    instance_min: 4,
-    instance_max: 10,
-    raw_storage_min_gb: 100,
-    raw_storage_max_gb: 4000,
-  },
-  master_node: {
-    instance_type: ['b2-15', 'b2-30', 'b2-60', 'b2-120'],
-    instance_min: 3,
-    instance_max: 3,
-    raw_storage_min_gb: 100,
-    raw_storage_max_gb: 1000,
-  },
-  worker_node: {
-    instance_type: ['b2-15'],
-    instance_min: 3,
-    instance_max: 3,
-    raw_storage_min_gb: 100,
-    raw_storage_max_gb: 1000,
-  },
-  utility_node: {
-    instance_type: ['b2-15'],
-    instance_min: 3,
-    instance_max: 3,
-    raw_storage_min_gb: 0,
-    raw_storage_max_gb: 0,
-  },
-  hdfs_replication_factor: 3,
-  requirements: { masterPassword: false },
-  version: 'ADP V1.X',
-  version_description: "OVH ADP is Based on HDP 2.6 and improve it's security with Kerberos while deploying on OVH's public cloud infrastructure",
-}, {
-  components: [{
-    name: 'Apache Accumulo',
-    version: '1.7.0',
-  }, {
-    name: 'Apache Atlas',
-    version: '0.8.0',
-  }, {
-    name: 'Apache Calcite',
-    version: '1.2.0',
-  }, {
-    name: 'Apache DataFu',
-    version: '1.3.0',
-  }, {
-    name: 'Apache Falcon',
-    version: '0.10.0',
-  }, {
-    name: 'Apache Flume',
-    version: '1.5.2',
-  }, {
-    name: 'Apache Hadoop',
-    version: '2.7.3',
-  }, {
-    name: 'Apache HBase',
-    version: '1.1.2',
-  }, {
-    name: 'Apache Hive',
-    version: '1.2.1',
-  }, {
-    name: 'Apache Hive',
-    version: '2.1.0',
-  }, {
-    name: 'Apache Kafka',
-    version: '1.0.0',
-  }, {
-    name: 'Apache Knox',
-    version: '0.12.0',
-  }, {
-    name: 'Apache Livy',
-    version: '0.4',
-  }, {
-    name: 'Apache Mahout',
-    version: '0.9.0+',
-  }, {
-    name: 'Apache Oozie',
-    version: '4.2.0',
-  }, {
-    name: 'Apache Phoenix',
-    version: '4.7.0',
-  }, {
-    name: 'Apache Pig',
-    version: '0.16.0',
-  }, {
-    name: 'Apache Ranger',
-    version: '0.7.0',
-  }, {
-    name: 'Apache Slider',
-    version: '0.92.0',
-  }, {
-    name: 'Apache Spark',
-    version: '1.6.3',
-  }, {
-    name: 'Apache Spark',
-    version: '2.3.0',
-  }, {
-    name: 'Apache Sqoop',
-    version: '1.4.6',
-  }, {
-    name: 'Apache Storm',
-    version: '1.1.0',
-  }, {
-    name: 'Apache TEZ',
-    version: '0.7.0',
-  }, {
-    name: 'Apache Zeppelin',
-    version: '0.7.3',
-  }, {
-    name: 'Apache ZooKeeper',
-    version: '3.4.6',
-  }],
-  available_region: ['GRA5', 'SBG5'],
-  bastion_node: {
-    instance_type: ['b2-7'],
-    instance_min: 1,
-    instance_max: 1,
-    raw_storage_min_gb: 0,
-    raw_storage_max_gb: 0,
-  },
-  edge_node: {
-    instance_type: ['b2-15', 'b2-30', 'b2-60', 'b2-120'],
-    instance_min: 1,
-    instance_max: 50,
-    raw_storage_min_gb: 4000,
-    raw_storage_max_gb: 100,
-  },
-  master_node: {
-    instance_type: ['b2-30', 'b2-60', 'b2-120'],
-    instance_min: 3,
-    instance_max: 3,
-    raw_storage_min_gb: 100,
-    raw_storage_max_gb: 100,
-  },
-  worker_node: {
-    instance_type: ['b2-15'],
-    instance_min: 3,
-    instance_max: 3,
-    raw_storage_min_gb: 0,
-    raw_storage_max_gb: 0,
-  },
-  utility_node: {
-    instance_type: ['b2-15'],
-    instance_min: 3,
-    instance_max: 3,
-    raw_storage_min_gb: 0,
-    raw_storage_max_gb: 0,
-  },
-  hdfs_replication_factor: 3,
-  requirements: null,
-  version: 'Managed ADP V1.X',
-  version_description: 'Managed ADP (for testing purpose only)',
-}];
-
-// TODO - remove this when API support is available
-export const ADP_PLATFORMS_GET_LIST = [
-  '5b7a7fd3-4d0a-4eed-879c-167cd4658f89',
+export const ADP_NODE_FILTERS = [
+  'Node type',
+  'Region',
 ];
 
-// TODO - remove this when API support is available
-export const ADP_PLATFORMS_GET_DETAILS = {
-  serviceName: '5b7a7fd3-4d0a-4eed-879c-167cd4658f89',
-  admin_mail: 'mocked.mail@cluster.com',
-  cluster_name: 'MockedClusterName::mockedProjectId::5b7a7fd3-4d0a-4eed-879c-167cd4658f89',
-  cluster_type: 'ADP V1.X',
-  deployment_start_date: 1553231333926,
-  deployment_end_date: 1553231333926,
-  domain: 'mockedDomain.datalake.ovh.com',
-  nodes: [
-    {
-      node_id: 'c1a86407-d2d4-4f05-8c74-dd3fad085a00',
-      hostname: 'mnode0.5b7a7fd3-4d0a-4eed-879c-167cd4658f89.datalake.ovh.com',
-      node_type: 'MASTER',
-      deployment_start_date: 1553231333926,
-      deployment_end_date: 1553231333926,
-      ip: '0.0.0.0',
-      storage: 0,
-      status: 'DEPLOYED',
-    },
-    {
-      node_id: 'c1a86407-d2d4-4f05-8c74-dd3fad085a01',
-      hostname: 'mnode1.5b7a7fd3-4d0a-4eed-879c-167cd4658f89.datalake.ovh.com',
-      node_type: 'MASTER',
-      deployment_start_date: 1553231333926,
-      deployment_end_date: 1553231333926,
-      ip: '1.1.1.1',
-      storage: 0,
-      status: 'DEPLOYED',
-    },
-    {
-      node_id: '00097d50-da2c-4e64-8319-2af8254a0830',
-      hostname: 'cnode0.5b7a7fd3-4d0a-4eed-879c-167cd4658f89.datalake.ovh.com',
-      node_type: 'SLAVE',
-      deployment_start_date: 1553231333926,
-      deployment_end_date: 1553231333926,
-      ip: '0.00.00.00',
-      storage: 2000,
-      status: 'DEPLOYED',
-    },
-    {
-      node_id: '00097d50-da2c-4e64-8319-2af8254a0830',
-      hostname: 'enode0.5b7a7fd3-4d0a-4eed-879c-167cd4658f89.datalake.ovh.com',
-      node_type: 'EDGE',
-      deployment_start_date: 1553231333926,
-      deployment_end_date: 1553231333926,
-      ip: '0.00.00.00',
-      storage: 0,
-      status: 'DEPLOYED',
-    },
-    {
-      node_id: '00097d50-da2c-4e64-8319-2af8254a0830',
-      hostname: 'unode0.5b7a7fd3-4d0a-4eed-879c-167cd4658f89.datalake.ovh.com',
-      node_type: 'UTILITY',
-      deployment_start_date: 1553231333926,
-      deployment_end_date: 1553231333926,
-      ip: '0.00.00.00',
-      storage: 0,
-      status: 'DEPLOYED',
-    },
-  ],
-  os_region: 'GRA5',
-  project_id: 'mockedProjectId',
-  vrack_id: 'mockedVrackId',
-  status: 'DEPLOYED',
+export const ADP_STATUS_MAP = {
+  PENDING: 'info',
+  IN_PROGRESS: 'warning',
+  SUCCEEDED: 'success',
+  FAILED: 'error',
+  DONE: 'success',
+  ERROR: 'error',
+  UNKNOWN: 'warning',
+  OK: 'success',
+  TO_DEPLOY: 'info',
+  DEPLOYING: 'warning',
+  DEPLOYED: 'success',
+  TO_DESTROY: 'info',
+  DESTROYED: 'error',
 };
 
-// TODO - remove this when API support is available
-export const ADP_GET_ACTIVITIES = [
-  {
-    timestamp: 1553491021320,
-    description: 'Cluster deployment',
-    user: 'Admin',
-    status: 'DONE',
-  },
-  {
-    timestamp: 1553491021320,
-    description: 'Cluster scale up',
-    user: 'Admin',
-    status: 'DONE',
-  },
-];
+export const ADP_STATUS = {
+  PENDING: 'PENDING',
+  IN_PROGRESS: 'IN_PROGRESS',
+  SUCCEEDED: 'SUCCEEDED',
+  FAILED: 'FAILED',
+  DONE: 'DONE',
+  ERROR: 'ERROR',
+  UNKNOWN: 'UNKNOWN',
+  OK: 'OK',
+  TO_DEPLOY: 'TO_DEPLOY',
+  DEPLOYING: 'DEPLOYING',
+  DEPLOYED: 'DEPLOYED',
+  TO_DESTROY: 'TO_DESTROY',
+  DESTROYED: 'DESTROYED',
+};
 
-export const ADP_URL_NAME = Object.freeze({
+export const ADP_SERVICES = Object.freeze({
   AMBARI: 'AMBARI',
   FREEIPA: 'FREEIPA',
   RANGER: 'RANGER',
@@ -456,16 +168,16 @@ export const ADP_URL_NAME = Object.freeze({
 
 export default {
   ADP_PUBLIC_CLOUD_STATUS,
-  ADP_CAPABILITIES,
   ADP_CLOUD_CATALOG_NAME,
   ADP_CLUSTER_MANAGE,
   ADP_CREDENTIALS_INFO,
   ADP_FLAVOR_TYPES,
-  ADP_GET_ACTIVITIES,
+  ADP_STATUS_MAP,
   ADP_GUIDE_LINKS,
   ADP_NODE_NAMES,
   ADP_NODE_TYPES,
-  ADP_PLATFORMS_GET_DETAILS,
-  ADP_PLATFORMS_GET_LIST,
-  ADP_URL_NAME,
+  ADP_SERVICES,
+  ADP_STATUS,
+  ADP_COMPUTE,
+  ADP_NODE_FILTERS,
 };

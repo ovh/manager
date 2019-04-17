@@ -3,5 +3,5 @@
   "adp_service_activity_table_timestamp": "Timestamp",
   "adp_service_activity_table_desc": "Description",
   "adp_service_activity_table_user": "User",
-  "adp_service_activity_table_status": "Status"
+  "adp_service_activity_refresh": "Refresh activity logs"
 }

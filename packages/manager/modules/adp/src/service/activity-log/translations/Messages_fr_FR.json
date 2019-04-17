@@ -1,7 +1,3 @@
 {
-  "adp_service_activity_desc": "Vous trouverez ici vos activités récentes",
-  "adp_service_activity_table_timestamp": "Horodatage",
-  "adp_service_activity_table_desc": "Description",
-  "adp_service_activity_table_user": "Utilisateur",
-  "adp_service_activity_table_status": "État"
+  "adp_service_activity_table_user": "Utilisateur"
 }

@@ -23,14 +23,14 @@ deploy-component {
 
 oui-modal {
   .adp-quota-info {
-    padding-left: 4.7rem !important;
+    padding-left: 6.7rem !important;
 
     .adp-quota-info-container {
       &::after {
-        width: 4.7rem !important;
+        width: 6.7rem !important;
       }
       .oui-datagrid__cell-sticky:first-child {
-        width: 4.7rem !important;
+        width: 6.7rem !important;
       }
     }
   }

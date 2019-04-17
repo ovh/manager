@@ -1,3 +1,4 @@
+import './cluster.scss';
 import template from './cluster.html';
 import controller from './cluster.controller';
 

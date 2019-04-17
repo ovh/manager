@@ -1,26 +1,16 @@
 <!-- Basic Settings Section -->
 <div class="mb-3">
     <!-- cluster name -->
-    <oui-field data-label="{{ ::'adp_deploy_cluster_name' | translate }}"
-                data-error-messages="{ pattern: ('adp_deploy_cluster_name_help' | translate) }">
+    <oui-field data-label="{{ ::'adp_common_cluster_name' | translate }}"
+               data-error-messages="{ pattern: ('adp_deploy_cluster_name_help' | translate) }">
         <input class="oui-input"
-                type="text"
-                id="cluster_name"
-                name="cluster_name"
-                required
-                placeholder="{{ ::'adp_deploy_cluster_name_placeholder' | translate }}"
-                data-ng-model="$ctrl.adp.cluster_name"
-                data-ng-pattern="/^[a-zA-Z]{3,15}$/">
-    </oui-field>
-    <!-- admin email -->
-    <oui-field data-label="{{ ::'adp_deploy_admin_email' | translate }}"
-                data-help-text="{{ ::'adp_deploy_admin_email_help' | translate }}">
-        <input class="oui-input"
-                type="email"
-                name="admin_mail"
-                placeholder="{{ ::'adp_deploy_admin_email_placeholder' | translate }}"
-                data-ng-model="$ctrl.adp.admin_mail"
-                required>
+               type="text"
+               id="cluster_name"
+               name="cluster_name"
+               required
+               placeholder="{{ ::'adp_deploy_cluster_name_placeholder' | translate }}"
+               data-ng-model="$ctrl.adp.cluster_name"
+               data-ng-pattern="/^[a-zA-Z][a-zA-Z ]{1,13}[a-zA-Z]$/">
     </oui-field>
     <!-- platform version -->
     <oui-field data-label="{{ ::'adp_deploy_platform_version' | translate }}">
@@ -37,11 +27,13 @@
     <!-- public cloud projects -->
     <div>
         <div data-ng-if="$ctrl.publicClouds.loading">
-            <span data-translate="adp_deploy_public_cloud_project"></span>
-            <oui-spinner class="ml-2" data-size="s"></oui-spinner>
+            <span data-translate="adp_common_public_cloud_project"></span>
+            <div class="mt-1">
+                <oui-spinner data-size="s"></oui-spinner>
+            </div>
         </div>
-        <oui-field data-label="{{ ::'adp_deploy_public_cloud_project' | translate }}"
-                    data-ng-if="!$ctrl.publicClouds.loading">
+        <oui-field data-label="{{ ::'adp_common_public_cloud_project' | translate }}"
+                   data-ng-if="!$ctrl.publicClouds.loading">
             <oui-select data-name="publicCloudProject"
                         data-model="$ctrl.selectedPublicCloud"
                         data-items="$ctrl.publicClouds.data"
@@ -54,7 +46,7 @@
             </oui-select>
             <div data-ng-if="!$ctrl.publicClouds.data.length">
                 <span class="text-danger" data-translate="adp_deploy_public_cloud_project_help"></span>
-                <a data-ui-sref="iaas.pci-project-new" data-translate="adp_deploy_public_cloud_create_project"></a>
+                <a class="text-primary" data-ui-sref="iaas.pci-project-new" data-translate="adp_deploy_public_cloud_create_project"></a>
             </div>
         </oui-field>
     </div>

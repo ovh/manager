@@ -1,12 +1,9 @@
-<section>
+<section data-ng-init="localizedStorageUnit = ('adp_common_unit_gb' | translate)">
     <!-- page header -->
-    <oui-page-header
-        data-heading="{{ ::'adp_deploy_title' | translate }}"
-        data-description="{{ ::'adp_deploy_description' | translate }}">
-    </oui-page-header>
+    <oui-page-header data-heading="{{ ::'adp_deploy_title' | translate }}"></oui-page-header>
     <!-- page content -->
-    <div class="row">
-        <div class="mx-auto offset-md-2 col-md-8">
+    <div class="row cui-page__content">
+        <div class="mx-auto offset-md-1 col-md-10">
             <!-- error messages -->
             <div class="mt-1 mt-sm-2" data-ng-if="$ctrl.messages.length > 0">
                 <oui-message
@@ -16,6 +13,7 @@
                     <span data-ng-bind="message.text"></span>
                 </oui-message>
             </div>
+            <p data-translate="adp_deploy_description"></p>
             <!-- deploy stepper -->
             <div class="mt-1 mt-sm-2">
                 <oui-stepper>
@@ -36,7 +34,7 @@
                     </oui-step-form>
 
                     <!-- select regions -->
-                    <oui-step-form data-header="{{ ::'adp_deploy_select_region_datacenter' | translate }}"
+                    <oui-step-form data-header="{{ ::'adp_deploy_regions_select_datacenter' | translate }}"
                                    data-loading="$ctrl.regionsByDatacenter.loading"
                                    data-on-focus="$ctrl.initRegionsAndDatacenters()"
                                    data-on-submit="$ctrl.submitRegionAndDatacenter()">
@@ -45,9 +43,9 @@
 
                     <!-- nodes config -->
                     <oui-step-form data-header="{{ ::'adp_deploy_nodes_title' | translate }}"
-                                   data-loading="$ctrl.supportedFlavors.loading && $ctrl.quota.loading"
+                                   data-loading="$ctrl.supportedFlavors.loading || $ctrl.quota.loading"
                                    data-on-focus="$ctrl.initNodes()"
-                                   data-on-submit="$ctrl.submitNodesInformation()">
+                                   data-on-submit="$ctrl.submitNodesInformation(form)">
                         <div data-ng-include="'adp/deploy/nodes.html'"></div>
                     </oui-step-form>
 

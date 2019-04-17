@@ -1,0 +1,10 @@
+{
+ "adp_tracking_progress_desc": "Your ADP cluster is in deployment process. Once every step is done, you will be able to manage your entire cluster.",
+ "adp_tracking_progress_title": "Deployment progress",
+ "adp_tracking_progress_completed_tasks": "Tasks",
+ "adp_tracking_progress_task": "Task",
+ "adp_tracking_progress_get_status_error": "Failed to get deployment progress details for analytics data platform",
+ "adp_tracking_progress_deploy_error" : "Failed to deploy the project",
+ "adp_tracking_progress_complete": "Complete",
+ "adp_tracking_progress_email_notification": "Once the cluster is deployed, you will receive an e-mail notification to {{email}}"
+}

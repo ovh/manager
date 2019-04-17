@@ -1,0 +1,55 @@
+<div>
+    <oui-page-header
+        data-heading="{{ ::'adp_title' | translate }}">
+    </oui-page-header>
+    <div class="cui-page__content">
+        <oui-datagrid class="mt-3" data-rows="$ctrl.clusters.data">
+            <oui-column data-title="::'adp_common_cluster_name' | translate"
+                        data-property="cluster_name"
+                        data-sortable="asc"
+                        data-type="string"
+                        data-searchable data-filterable>
+                        <a class="oui-button oui-button_link"
+                           data-ng-if="$ctrl.adpService.isDeploymentInProgress($row)"
+                           data-ui-sref="adp.service.progress({serviceName: $row.serviceName})">
+                            <span data-ng-bind="::$row.cluster_name"></span>
+                        </a>
+                        <a class="oui-button oui-button_link"
+                           data-ng-if="!$ctrl.adpService.isDeploymentInProgress($row)"
+                           data-ui-sref="adp.service.details({serviceName: $row.serviceName})">
+                            <span data-ng-bind="::$row.cluster_name"></span>
+                        </a>
+            </oui-column>
+            <oui-column data-title="::'adp_common_status' | translate"
+                        data-property="status"
+                        data-type="string"
+                        data-sortable data-searchable data-filterable>
+                <span class="oui-status"
+                      data-ng-class="'oui-status_' + $ctrl.ADP_STATUS_MAP[$row.status]"
+                      data-ng-bind=":: ('adp_common_status_' + $row.status) | translate">
+                </span>
+            </oui-column>
+            <oui-column data-title="::'adp_common_region' | translate"
+                        data-property="os_region" data-sortable>
+                        <span class="flag-icon flag-icon-{{ ::$row.os_region | lowercase }} flag"></span>
+                        <span data-ng-bind="::$row.os_region"></span>
+            </oui-column>
+            <oui-column data-title="::'adp_common_version' | translate" data-property="cluster_type" data-sortable></oui-column>
+            <oui-action-menu data-align="end" data-compact>
+                <oui-action-menu-item data-disabled="$row.status === $ctrl.ADP_STATUS.IN_PROGRESS" data-on-click="$ctrl.goToManageAdpCluster($row.serviceName)">
+                    <span data-translate="adp_list_table_button_manage_cluster"></span>
+                </oui-action-menu-item>
+            </oui-action-menu>
+            <extra-top>
+                <oui-button data-on-click="$ctrl.goToDeployAdpPage()">
+                    <span data-translate="adp_list_create_button_label"></span>
+                </oui-button>
+                <button class="float-right oui-button oui-button_secondary oui-button_icon-only oui-button_small-width"
+                        title="{{:: 'adp_list_table_refresh' | translate }}"
+                        data-ng-click="$ctrl.refresh()">
+                    <span class="fa fa-refresh" aria-hidden="true"></span>
+                </button>
+            </extra-top>
+        </oui-datagrid>
+    </div>
+</div>

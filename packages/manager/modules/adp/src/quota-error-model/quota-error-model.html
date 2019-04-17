@@ -4,7 +4,8 @@
            data-secondary-action="$ctrl.dismissModal()"
            data-on-dismiss="$ctrl.dismissModal()"
            data-secondary-label="{{ ::'adp_common_close' | translate }}"
-           data-type="error">
+           data-type="error"
+           data-ng-init="localizedStorageUnit = ('adp_common_unit_gb' | translate)">
     <p data-translate="adp_deploy_quota_error_model_description"
        data-translate-values="{cloud_name: $ctrl.publicCloudName}">
     </p>
@@ -29,26 +30,21 @@
                     <tbody>
                         <tr class="oui-datagrid__row" data-ng-repeat="compute in $ctrl.quotas track by compute.computeName">
                             <td class="oui-datagrid__cell oui-datagrid__cell-sticky text-center">
-                                <span data-translate="{{ ::'adp_deploy_quota_virtual_'+compute.computeName }}"></span>
+                                <span data-ng-bind="compute.computeName"></span>
                             </td>
                             <td class="oui-datagrid__cell text-center">
-                                <span data-ng-bind="compute.currentlyUsed">&nbsp;</span>
-                                <span data-ng-if="compute.unit" data-translate="{{ ::'adp_common_unit_'+compute.unit }}"></span>
+                                <span data-ng-bind="compute.unit ? compute.currentlyUsed + ' ' + localizedStorageUnit : compute.currentlyUsed"></span>
                             </td>
                             <td class="oui-datagrid__cell text-center">
-                                <span data-ng-bind="compute.requiredForCluster">&nbsp;</span>
-                                <span data-ng-if="compute.unit" data-translate="{{ ::'adp_common_unit_'+compute.unit }}"></span>
+                                <span data-ng-bind="compute.unit ? compute.requiredForCluster + ' ' + localizedStorageUnit : compute.requiredForCluster"></span>
                             </td>
                             <td class="oui-datagrid__cell text-center">
-                                <span data-ng-bind="compute.maxLimit">&nbsp;</span>
-                                <span data-ng-if="compute.unit" data-translate="{{ ::'adp_common_unit_'+compute.unit }}"></span>
+                                <span data-ng-bind="compute.unit ? compute.maxLimit + ' ' + localizedStorageUnit : compute.maxLimit"></span>
                             </td>
                             <td class="oui-datagrid__cell text-center">
                                 <span data-ng-class="['oui-status', {'oui-status_success': compute.maxLimit >= compute.required}, {'oui-status_error': compute.maxLimit < compute.required} ]"
-                                      data-ng-bind="compute.required">
-                                    &nbsp;
+                                      data-ng-bind="compute.unit ? compute.required + ' ' + localizedStorageUnit : compute.required">
                                 </span>
-                                <span data-ng-if="compute.unit" data-translate="{{ ::'adp_common_unit_'+compute.unit }}"></span>
                             </td>
                         </tr>
                     </tbody>

@@ -26,7 +26,9 @@
     "ng-at-internet": "^3.1.1",
     "oclazyload": "^1.1.0",
     "ovh-api-services": "^6.7.0",
-    "ovh-ui-angular": "^2.25.1"
+    "ovh-ui-angular": "^2.27.0",
+    "ovh-ui-kit": "~2.24.2",
+    "font-awesome": "^4.7.0"
   },
   "devDependencies": {
     "@ovh-ux/manager-webpack-config": "^3.0.1",

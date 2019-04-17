@@ -1,5 +1,7 @@
 <div class="mb-3">
-    <oui-message data-ng-if="$ctrl.minimumNodesRequired > $ctrl.quota.data.instance.maxInstances" data-type="error">
+    <oui-message data-ng-if="$ctrl.minimumNodesRequired > $ctrl.quota.data.instance.maxInstances"
+        data-type="error"
+        data-dismissable="false">
         <span data-translate="adp_deploy_quota_min_servers_error"
               data-translate-values="{
                 numberOfServers: $ctrl.minimumNodesRequired,
@@ -7,11 +9,14 @@
                 region: $ctrl.selectedRegion.macroRegion.text + ' (' + $ctrl.selectedRegion.macroRegion.code + ')',
               }">
         </span>&nbsp;
-        <a data-ui-sref="iaas.pci-project.compute.quota"
+        <a class="text-primary"
+           data-ui-sref="iaas.pci-project.compute.quota({ projectId: $ctrl.adp.os_project_id })"
            data-translate="adp_deploy_nodes_quota_increase">
         </a>
     </oui-message>
-    <oui-message data-ng-if="$ctrl.minimumNodesRequired <= $ctrl.quota.data.instance.maxInstances" data-type="info">
+    <oui-message data-ng-if="$ctrl.minimumNodesRequired <= $ctrl.quota.data.instance.maxInstances"
+        data-type="info"
+        data-dismissable="false">
         <span data-translate="adp_deploy_nodes_quota_msg"
               data-translate-values="{ instances: $ctrl.quota.data.instance.maxInstances, region: $ctrl.selectedRegion.macroRegion.text + ' (' + $ctrl.selectedRegion.macroRegion.code + ')' }"></span>
     </oui-message>
@@ -50,8 +55,24 @@
                             data-placeholder="{{ ::'adp_deploy_flavor_placeholder' | translate }}"
                             data-match="displayName"
                             data-disabled="node.instance_type.length === 1"
-                            data-required>
+                            data-disable-items="!$item.available"
+                            data-required
+                            data-on-change="$ctrl.constructor.onInstanceSelect(modelValue, node)">
                 </oui-select>
+                <div data-ng-if="!node.isValid">
+                    <span class="text-danger"
+                          data-translate="adp_deploy_nodes_invalid_storage_error"
+                          data-translate-values="{
+                            instanceStorage: node.selectedFlavor.disk,
+                            minStorage: node.raw_storage_min_gb,
+                            unit: localizedStorageUnit,
+                          }">
+                    </span>
+                </div>
+                <div data-ng-if="node.isValid">
+                    <span data-translate="adp_deploy_nodes_min_storage_message"
+                          data-translate-values="{minStorage: node.raw_storage_min_gb, unit: localizedStorageUnit }"></span>
+                </div>
             </oui-field>
         </div>
     </div>
