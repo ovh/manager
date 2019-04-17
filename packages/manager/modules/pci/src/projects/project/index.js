@@ -7,10 +7,11 @@ import 'ovh-api-services';
 import 'ovh-ui-angular';
 
 
+import creating from './creating';
 import edit from './edit';
 import instances from './instances';
 import kubernetes from './kubernetes';
-import legacy from './legacy';
+// import legacy from './legacy';
 import storages from './storages';
 import routing from './project.routing';
 
@@ -18,10 +19,11 @@ const moduleName = 'ovhManagerPciProject';
 
 angular
   .module(moduleName, [
+    creating,
     edit,
     instances,
     kubernetes,
-    legacy,
+    // legacy,
     'oui',
     'ovhManagerCore',
     'ovh-api-services',

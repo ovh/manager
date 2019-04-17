@@ -1,4 +1,4 @@
-<div class="pci-projects-new row justify-content-md-center">
+<div class="pci-projects-new row justify-content-md-center mb-5">
     <div class="col-md-6">
         <!-- progress -->
         <div class="oui-progress-tracker">
@@ -6,8 +6,8 @@
                 <li class="oui-progress-tracker__step"
                     data-ng-repeat="step in $ctrl.steps track by $index"
                     data-ng-class="{
-                        'oui-progress-tracker__step_active': $ctrl.getCurrentStep() === step,
-                        'oui-progress-tracker__step_complete': $ctrl.getCurrentStep() !== step && $ctrl.steps.indexOf(step) < $ctrl.steps.indexOf($ctrl.getCurrentStep()),
+                        'oui-progress-tracker__step_active': $ctrl.getCurrentStep().name === step.name,
+                        'oui-progress-tracker__step_complete': $ctrl.getCurrentStep().name !== step.name && $ctrl.isStepComplete(step),
                     }">
                     <span class="oui-progress-tracker__status"></span>
                 </li>
@@ -15,13 +15,76 @@
         </div>
 
         <!-- title -->
-        <h4 data-translate="pci_projects_new_title"></h4>
+        <h1 class="oui-heading_4"
+            data-translate="pci_projects_new_title">
+        </h1>
 
-        <div data-ui-view>
+        <cui-message-container data-messages="$ctrl.messages.list"></cui-message-container>
+
+        <div data-ui-view
+             data-ng-if="!$ctrl.loading.creating && !$ctrl.loading.addPayment">
             <pci-project-new-description
-                data-model="$ctrl.newProjectModel"
-                data-get-state-link="$ctrl.getStateLink">
+                data-description-model="$ctrl.getCurrentStep().model"
+                data-new-project-info="$ctrl.newProjectInfo"
+                data-get-current-step="$ctrl.getCurrentStep">
             </pci-project-new-description>
+        </div>
+
+        <div class="text-center"
+             data-ng-if="$ctrl.loading.creating || $ctrl.loading.addPayment">
+            <oui-spinner data-size="l"></oui-spinner>
+        </div>
+
+        <div class="d-flex flex-row-reverse justify-content-between align-items-center my-3">
+            <oui-button
+                data-ng-if="$ctrl.isNextButtonVisible()"
+                data-variant="primary"
+                data-type="submit"
+                data-disabled="$ctrl.isNextButtonDisabled()"
+                data-variant-nav="next"
+                data-on-click="$ctrl.onNextBtnClick()">
+                <span data-ng-bind="$ctrl.getNextButtonText()"></span>
+            </oui-button>
+
+            <a class="oui-button oui-button_primary oui-button_icon-right"
+               data-ng-href="{{ $ctrl.getNextLinkHref() }}"
+               data-ng-if="!$ctrl.isNextButtonVisible()">
+                <span data-ng-bind="$ctrl.getNextButtonText()"></span>
+                <span class="oui-icon oui-icon_circle oui-icon-chevron-right"
+                      aria-hidden="true">
+                </span>
+            </a>
+
+            <a data-ng-href="{{ $ctrl.getStateLink('cancel') }}"
+               data-translate="pci_projects_new_cancel">
+            </a>
         </div>
     </div>
 </div>
+
+
+
+<!--
+
+<div class="d-flex flex-row-reverse justify-content-between align-items-center my-3">
+            <oui-button
+                data-variant="primary"
+                data-type="button"
+                data-on-click="$ctrl.onCreateProjectBtnClick()"
+                data-variant-nav="next"
+                data-disabled="$ctrl.loading.init || $ctrl.loading.addInit"
+                data-ng-if="$ctrl.newProjectModel.payment.paymentType.paymentType.value !== 'BANK_ACCOUNT'">
+                <span data-translate="{{ $ctrl.paymentModel.mode !== 'credits' ? 'pci_project_new_description_project_payment_create' : 'pci_project_new_description_project_payment_credit_and_create' }}"></span>
+            </oui-button>
+
+            <a data-ng-href=""
+               data-ng-if="$ctrl.newProjectModel.payment.paymentType.paymentType.value === 'BANK_ACCOUNT'"
+               data-translate="pci_project_new_description_project_payment_add">
+            </a>
+
+            <a data-ng-href="{{ $ctrl.getStateLink('cancel') }}"
+               data-translate="pci_project_new_description_project_payment_cancel">
+            </a>
+        </div>
+
+ -->

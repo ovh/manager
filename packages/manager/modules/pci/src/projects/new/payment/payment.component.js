@@ -6,8 +6,8 @@ export default {
   controller,
   controllerAs: '$ctrl',
   bindings: {
-    newProjectModel: '<',
-    paymentType: '<',
+    paymentMethodUrl: '<',
+    getStepByName: '<',
     getStateLink: '<',
   },
 };

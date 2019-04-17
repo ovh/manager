@@ -1,36 +1,40 @@
 <div class="pci-projects-new-payment">
 
     <div class="text-center"
-         data-ng-if="$ctrl.loading.init">
+         data-ng-if="$ctrl.step.loading.init">
         <oui-spinner></oui-spinner>
     </div>
 
-    <div data-ng-if="!$ctrl.loading.init"
-         data-ng-switch="$ctrl.paymentType">
+    <div data-ng-if="!$ctrl.step.loading.init"
+         data-ng-switch="$ctrl.step.model.mode">
 
         <div data-ng-switch-when="paymentMethod">
             <pci-project-new-payment-default
-                data-ng-if="$ctrl.defaultPaymentMethod"
-                data-default-payment-method="$ctrl.defaultPaymentMethod">
+                data-ng-if="$ctrl.step.model.defaultPaymentMethod"
+                data-default-payment-method="$ctrl.step.model.defaultPaymentMethod"
+                data-payment-method-url="$ctrl.paymentMethodUrl">
             </pci-project-new-payment-default>
 
             <pci-project-new-payment-add
-                data-ng-if="!$ctrl.defaultPaymentMethod"
-                data-payment-types="$ctrl.paymentTypes">
+                data-ng-if="!$ctrl.step.model.defaultPaymentMethod"
+                data-on-loaded="$ctrl.step.loading.paymentTypes = false"
+                data-on-selected-payment-type-change="$ctrl.onPaymentAddTypeChange.bind($ctrl)">
             </pci-project-new-payment-add>
         </div>
 
         <div data-ng-switch-when="credits">
-            <pci-project-new-payment-credits></pci-project-new-payment-credits>
+            <pci-project-new-payment-credits
+                data-creadit-model="$ctrl.step.model.credit">
+            </pci-project-new-payment-credits>
         </div>
 
         <div class="row">
-            <div class="col-md"
-                 data-ng-switch="$ctrl.paymentType">
+            <div class="col-md-6"
+                 data-ng-switch="$ctrl.step.model.mode">
                 <div data-ng-switch-when="credits">
-                    <h5 class="oui-heading_underline"
+                    <h2 class="oui-heading_5 oui-heading_underline"
                         data-translate="pci_project_new_description_project_payment_classic">
-                    </h5>
+                    </h2>
 
                     <a class="oui-button oui-button_secondary"
                        data-ng-href="{{ $ctrl.getStateLink('payment') }}"
@@ -39,15 +43,16 @@
                 </div>
 
                 <div data-ng-switch-default>
-                    <h5 class="oui-heading_underline"
+                    <h2 class="oui-heading_5 oui-heading_underline"
                         data-translate="pci_project_new_description_project_payment_no_payment_method">
-                    </h5>
+                    </h2>
                     <span data-translate="pci_project_new_description_project_payment_use_credits"
                           data-translate-values="{ href: $ctrl.getStateLink('credits') }">
                     </span>
                 </div>
             </div>
-            <div class="col-md border-left">
+            <div class="col-md-6 border-left"
+                 data-ng-if="$ctrl.step.model.paymentType.paymentType.value !== 'BANK_ACCOUNT'">
                 <button type="button" class="oui-button oui-button_secondary oui-button_icon-right h-100 w-100 mw-100 d-flex justify-content-between align-items-center"
                         data-ng-click="$ctrl.onToggleVoucherBtnClick()"
                         data-ng-if="!$ctrl.displayVoucher">
@@ -67,10 +72,10 @@
                             type="text"
                             id="voucher"
                             name="voucher"
-                            data-ng-model="$ctrl.newProjectModel.voucher" />
+                            data-ng-model="$ctrl.step.model.voucher" />
                     </oui-field>
                     <button type="submit" class="oui-button oui-button_link oui-button_icon-right"
-                            data-ng-disabled="!$ctrl.newProjectModel.voucher">
+                            data-ng-disabled="!$ctrl.step.model.voucher">
                         <span data-translate="pci_project_new_description_project_payment_add_voucher"></span>
                         <span class="oui-icon oui-icon-add"
                             aria-hidden="true">
@@ -78,19 +83,6 @@
                     </button>
                 </form>
             </div>
-        </div>
-
-        <div class="d-flex flex-row-reverse justify-content-between align-items-center my-3">
-            <oui-button
-                data-variant="primary"
-                data-type="submit"
-                data-variant-nav="next">
-                <span data-translate="{{ $ctrl.paymentType !== 'credits' ? 'pci_project_new_description_project_payment_create' : 'pci_project_new_description_project_payment_credit_and_create' }}"></span>
-            </oui-button>
-
-            <a data-ng-href="{{ $ctrl.getStateLink('cancel') }}"
-               data-translate="pci_project_new_description_project_payment_cancel">
-            </a>
         </div>
 
     </div>

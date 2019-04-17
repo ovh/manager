@@ -4,12 +4,9 @@
   "pci_project_new_description_project_payment_explain2": "Tant que vous ne consommez rien vous ne serez pas débité ou prélevé.",
   "pci_project_new_description_project_payment_classic": "Utiliser un moyen de paiement classique",
   "pci_project_new_description_project_payment_add_payment_method": "Enregistrer un moyen de paiement",
-  "pci_project_new_description_project_payment_no_payment_method": "Aucun moyen de paiement ?",
+  "pci_project_new_description_project_payment_no_payment_method": "Autre mode de paiement",
   "pci_project_new_description_project_payment_use_credits": "Vous pouvez également <a href=\"{{ href }}\">utiliser des crédits</a>.",
   "pci_project_new_description_project_payment_use_voucher": "Bon d'achat ?",
   "pci_project_new_description_project_payment_enter_voucher": "Entrer le bon d'achat",
-  "pci_project_new_description_project_payment_add_voucher": "Ajouter",
-  "pci_project_new_description_project_payment_cancel": "Annuler",
-  "pci_project_new_description_project_payment_create": "Créer mon projet",
-  "pci_project_new_description_project_payment_credit_and_create": "Créditer et créer mon projet"
+  "pci_project_new_description_project_payment_add_voucher": "Ajouter"
 }

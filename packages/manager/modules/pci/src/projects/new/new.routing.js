@@ -1,50 +1,76 @@
-import template from './new.html';
-import controller from './new.controller';
+import find from 'lodash/find';
+import get from 'lodash/get';
+import EnvironmentService from '@ovh-ux/manager-config';
+
+import { PCI_REDIRECT_URLS } from '../../constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
     .state('pci.projects.new', {
-      url: '/new',
-      template,
-      controller,
-      controllerAs: '$ctrl',
-      translations: {
-        format: 'json',
-        value: ['.'],
-      },
+      url: '/new?description',
+      component: 'pciProjectNew',
       resolve: {
-        getCurrentStep: /* @ngInject */ $state => () => {
+        paymentStatus: /* @ngInject */ $transition$ => get($transition$.params(), 'hiPayStatus')
+            || get($transition$.params(), 'paypalAgreementStatus'),
+        getCurrentStep: /* @ngInject */ ($state, getStepByName) => () => {
           if ($state.current.name === 'pci.projects.new') {
-            return 'description';
+            return getStepByName('description');
           }
 
-          return 'payment';
+          return getStepByName('payment');
         },
+        getStepByName: /* @ngInject */ steps => stepName => find(steps, {
+          name: stepName,
+        }),
         getStateLink: /* ngInject */ ($state, getCurrentStep) => (action) => {
           switch (action) {
             case 'cancel':
               return $state.href('pci.projects');
             case 'credits':
               return $state.href('pci.projects.new.payment', {
-                type: action,
+                mode: action,
               });
             case 'payment':
               return $state.href('pci.projects.new.payment', {
-                type: null,
+                mode: null,
               });
             default:
-              if (getCurrentStep() === 'description') {
+              if (getCurrentStep().name === 'description') {
                 return $state.href('pci.projects.new.payment');
               }
 
               return $state.href('pci.projects');
           }
         },
-        newProjectModel: () => ({ // Resolve that share the info between sub states
-          name: null,
-          agreements: true,
-          voucher: null,
-        }),
+        paymentMethodUrl: () => get(
+          PCI_REDIRECT_URLS,
+          `${EnvironmentService.Environment.region}.paymentMethods`,
+        ),
+        newProjectInfo: /* @ngInject */ PciProjectNewService => PciProjectNewService
+          .getNewProjectInfo(),
+        onProjectCreated: /* @ngInject */ $state => projectId => $state.go(
+          'pci.projects.project.creating', {
+            projectId,
+          },
+        ),
+        steps: () => [{
+          name: 'description',
+          loading: {},
+          model: {
+            name: null,
+            agreements: false,
+          },
+        }, {
+          name: 'payment',
+          loading: {},
+          model: {
+            voucher: null,
+            defaultPaymentMethod: null,
+            paymentType: null,
+            mode: null,
+            credit: null,
+          },
+        }],
       },
     });
 };

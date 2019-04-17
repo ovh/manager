@@ -1,5 +1,4 @@
-import chunk from 'lodash/chunk';
-import sortBy from 'lodash/sortBy';
+import isFunction from 'lodash/isFunction';
 
 export default class PciProjectsNewPaymentAddCtrl {
   /* @ngInject */
@@ -13,29 +12,31 @@ export default class PciProjectsNewPaymentAddCtrl {
       chunks: null,
     };
 
-    this.model = {
-      selectedPaymentMethodType: null,
-    };
+    this.selectedPaymentType = null;
   }
 
   /* =============================
   =            Events            =
   ============================== */
 
-  onPaymentMethodChange() {
-    console.log(this.model.selectedPaymentMethodType);
+  onAvailablePaymentTypesLoadError(error) {
+    // @TOTO: remove console.log and manage error
+    console.log(this, error);
+  }
+
+  onPaymentTypeChange(paymentType) {
+    this.selectedPaymentType = paymentType;
+
+    // if it's a function reference ...
+    // otherwise the call will be made passing an Object Literal
+    // when testing if the callback function is a function ref or not
+    if (isFunction(this.onSelectedPaymentTypeChange({
+      paymentType,
+    }))) {
+      // ... invoke it
+      this.onSelectedPaymentTypeChange()(this.selectedPaymentType);
+    }
   }
 
   /* -----  End of Events  ------ */
-
-  /* =====================================
-  =            Initialization            =
-  ====================================== */
-
-  $onInit() {
-    const paymentTypes = sortBy(this.paymentTypes, 'paymentType.text');
-    this.paymentTypesChunk.chunks = chunk(paymentTypes, this.paymentTypesChunk.size);
-  }
-
-  /* -----  End of Initialization  ------ */
 }

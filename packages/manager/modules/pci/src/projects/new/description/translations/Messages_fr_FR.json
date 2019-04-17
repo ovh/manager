@@ -1,6 +1,4 @@
 {
   "pci_project_new_description_project_name": "Nom du projet",
-  "pci_project_new_description_project_contracts": "J’ai lu et j’accepte les conditions générales de vente d’OVH.",
-  "pci_project_new_description_project_continue": "Continuer",
-  "pci_project_new_description_project_cancel": "Annuler"
+  "pci_project_new_description_project_contracts": "J’ai lu et j’accepte les contrats : {{ contractsLinks }}."
 }

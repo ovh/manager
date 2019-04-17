@@ -1,14 +1,12 @@
-<div class="pci-projects-new-credits">
-    <h5 class="oui-heading_underline"
+<form class="pci-projects-new-credits">
+    <h2 class="oui-heading_5 oui-heading_underline"
         data-translate="pci_projects_new_credits_title">
-    </h5>
+    </h2>
 
-    <p>
-        <span class="d-block"
-              data-translate="pci_projects_new_credits_explain1">
-        </span>
-        <span data-translate="pci_projects_new_credits_explain2"></span>
+    <p class="mb-0"
+       data-translate="pci_projects_new_credits_explain1">
     </p>
+    <p data-translate="pci_projects_new_credits_explain2"></p>
 
     <oui-field
         data-label="{{ :: 'pci_projects_new_credits_amount' | translate }}"
@@ -19,18 +17,16 @@
             type="number"
             id="creditAmount"
             name="creditAmount"
-            data-ng-model="model"
+            data-ng-model="$ctrl.creditModel"
             required
             min="10">
     </oui-field>
 
-    <p>
-        <small>
-            <em class="d-block"
-                data-translate="pci_projects_new_credits_condition1">
-            </em>
-            <em data-translate="pci_projects_new_credits_condition2"></em>
-        </small>
+    <p class="mb-0 font-italic">
+        <small data-translate="pci_projects_new_credits_condition1"></small>
+    </p>
+    <p class="font-italic">
+        <small data-translate="pci_projects_new_credits_condition2"></small>
     </p>
 
-</div>
+</form>

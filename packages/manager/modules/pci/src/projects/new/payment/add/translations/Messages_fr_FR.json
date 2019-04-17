@@ -1,5 +1,9 @@
 {
   "pci_projects_new_payment_add_title": "Enregistrer un moyen de paiement",
-  "pci_projects_new_payment_add_explain1": "L'enregistrement d'un moyen de paiement est nécessaire afin de valider votre identité.",
-  "pci_projects_new_payment_add_explain2": "Tant que vous ne consommez rien vous ne serez pas débité ou prélevé."
+  "pci_projects_new_payment_add_explain1": "L’enregistrement d’un moyen de paiement est nécessaire afin d’utiliser ce service.",
+  "pci_projects_new_payment_add_explain2": "Aucun débit ou prélèvement n’est effectué tant que vous ne consommez pas de ressources.",
+  "pci_projects_new_payment_add_credit_card_selected": "En cliquant sur « Créer mon projet », vous allez être redirigé vers l’interface sécurisée de notre prestataire pour enregistrer votre nouvelle carte bancaire. Une empreinte financière est effectuée auprès de votre organisme bancaire afin de valider cette saisie, ainsi que la validité de votre carte.",
+  "pci_projects_new_payment_add_paypal_selected": "En cliquant sur « Créer mon projet », vous allez être redirigé vers l’interface sécurisée de PayPal pour enregistrer votre compte.",
+  "pci_projects_new_payment_add_bank_account_selected": "En cliquant sur « Ajouter » vous allez être redirigé vers la partie Mes moyens de paiement de l'espace client.",
+  "pci_projects_new_payment_add_bank_account_info": "Votre compte bancaire sera approuvé dans les 24 à 48 heures suivant la réception de votre autorisation de prélèvement, qui est à renvoyer par voie postale. Suite à cette validation, vous pourrez créer un projet Public Cloud."
 }

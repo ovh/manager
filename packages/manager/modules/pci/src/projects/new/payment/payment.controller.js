@@ -1,16 +1,12 @@
 export default class PciProjectNewPaymentCtrl {
   /* @ngInject */
-  constructor($q, ovhPaymentMethod) {
+  constructor(ovhPaymentMethod) {
     // dependencies injections
-    this.$q = $q;
     this.ovhPaymentMethod = ovhPaymentMethod;
 
     // other attributes used in view
-    this.loading = {
-      init: false,
-    };
+    this.step = null;
 
-    this.defaultPaymentMethod = null;
     this.paymentTypes = null;
     this.displayVoucher = false;
   }
@@ -18,6 +14,14 @@ export default class PciProjectNewPaymentCtrl {
   /* =============================
   =            Events            =
   ============================== */
+
+  onPaymentAddLoaded() {
+    this.step.loading.paymentTypes = false;
+  }
+
+  onPaymentAddTypeChange(paymentType) {
+    this.step.model.paymentType = paymentType;
+  }
 
   onToggleVoucherBtnClick() {
     this.displayVoucher = !this.displayVoucher;
@@ -30,29 +34,21 @@ export default class PciProjectNewPaymentCtrl {
   ====================================== */
 
   $onInit() {
-    this.loading.init = true;
+    this.step = this.getStepByName('payment');
 
+    this.step.loading.init = true;
     this.displayVoucher = false;
 
     return this.ovhPaymentMethod.getDefaultPaymentMethod()
       .then((defaultPaymentMethod) => {
-        let paymentInitPromise = this.$q.when([]);
+        this.step.model.defaultPaymentMethod = defaultPaymentMethod;
 
-        if (defaultPaymentMethod) {
-          this.defaultPaymentMethod = defaultPaymentMethod;
-          // this.defaultPaymentMethod = null;
-        } else {
-          paymentInitPromise = this.ovhPaymentMethod.getAllAvailablePaymentMethodTypes();
+        if (!this.step.model.defaultPaymentMethod) {
+          this.step.loading.paymentTypes = true;
         }
-
-        return paymentInitPromise;
-      })
-      .then((paymentTypes) => {
-        this.paymentTypes = paymentTypes;
-        console.log(this.paymentTypes);
       })
       .finally(() => {
-        this.loading.init = false;
+        this.step.loading.init = false;
       });
   }
 

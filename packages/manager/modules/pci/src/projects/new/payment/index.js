@@ -5,16 +5,21 @@ import '@ovh-ux/ng-translate-async-loader';
 import 'angular-translate';
 import '@ovh-ux/ng-ovh-payment-method';
 
+// deps
+import paymentAdd from './add';
+import paymentCredits from './credits';
+import paymentDefault from './default';
+
 import routing from './payment.routing';
 import component from './payment.component';
-import defaultComponent from './default/default.component';
-import addComponent from './add/add.component';
-import creditsComponent from './credits/credits.component';
 
 const moduleName = 'ovhManagerPciProjectsNewPayment';
 
 angular
   .module(moduleName, [
+    paymentAdd,
+    paymentCredits,
+    paymentDefault,
     'ui.router',
     'oui',
     'ngTranslateAsyncLoader',
@@ -23,12 +28,6 @@ angular
   ])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */)
-  .run(/* @ngTranslationsInject:json ./add/translations */)
-  .run(/* @ngTranslationsInject:json ./credits/translations */)
-  .run(/* @ngTranslationsInject:json ./default/translations */)
-  .component('pciProjectNewPayment', component)
-  .component('pciProjectNewPaymentAdd', addComponent)
-  .component('pciProjectNewPaymentCredits', creditsComponent)
-  .component('pciProjectNewPaymentDefault', defaultComponent);
+  .component('pciProjectNewPayment', component);
 
 export default moduleName;
