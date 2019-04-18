@@ -12,6 +12,9 @@ export default /* @ngInject */($stateProvider) => {
             projectId,
           });
         },
+        breadcrumb: /* @ngInject */ $translate => $translate
+          .refresh()
+          .then(() => $translate.instant('pci_projects_project_storages_blocks_block_edit_title')),
       },
     });
 };

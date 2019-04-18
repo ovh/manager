@@ -16,6 +16,9 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
           containerId: container.id,
         }),
+        breadcrumb: /* @ngInject */ $translate => $translate
+          .refresh()
+          .then(() => $translate.instant('pci_projects_project_storages_containers_archive_title')),
       },
     });
 };

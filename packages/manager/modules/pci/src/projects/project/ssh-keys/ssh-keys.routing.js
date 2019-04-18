@@ -12,5 +12,10 @@ export default /* @ngInject */ ($stateProvider) => {
         format: 'json',
         value: ['.'],
       },
+      resolve: {
+        breadcrumb: $translate => $translate
+          .refresh()
+          .then(() => $translate.instant('pci_projects_project_sshKeys_title')),
+      },
     });
 };
