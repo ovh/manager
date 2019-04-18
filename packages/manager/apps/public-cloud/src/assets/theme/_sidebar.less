@@ -16,9 +16,20 @@ cloud-sidebar { /* stylelint-disable-line */
     background-color: @primary-color;
     color: @light-color;
     top: 0;
-    left: 0;
+    right: 0;
     z-index: 1021;
     overflow: auto;
+    transition: right ease-in-out 500ms;
+
+    &.ng-enter,
+    &.ng-leave.ng-leave-active {
+      right: 100%;
+    }
+
+    &.ng-leave,
+    &.ng-enter.ng-enter-active {
+      right: 0;
+    }
 
     .btn {
       border: 2px solid @light-color;
