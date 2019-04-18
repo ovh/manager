@@ -1,0 +1,6 @@
+<ul>
+    <li data-ng-repeat="el in $ctrl.breadcrumb track by el.url">
+        <a data-ng-if="el.url && !el.active" data-ng-href="{{ el.url }}" data-ng-bind="el.name"></a>
+        <span data-ng-if="!(el.url && !el.active)" data-ng-bind="el.name"></span>
+    </li>
+</ul>
