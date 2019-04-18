@@ -1,6 +1,5 @@
 # ng-ovh-uirouter-breadcrumb
 
-> Support layout:modal when using ui-router
 
 [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-uirouter-breadcrumb)](https://npmjs.com/package/@ovh-ux/ng-ovh-uirouter-breadcrumb) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/manager/modules/ng-ovh-uirouter-breadcrumb)](https://npmjs.com/package/@ovh-ux/ng-ovh-uirouter-breadcrumb?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/manager/modules/ng-ovh-uirouter-breadcrumb)](https://npmjs.com/package/@ovh-ux/ng-ovh-uirouter-breadcrumb?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
 
