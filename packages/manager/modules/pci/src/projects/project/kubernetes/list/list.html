@@ -1,9 +1,6 @@
 <div data-ui-view>
-    <oui-page-header
-        data-heading="Kubernetes">
-    </oui-page-header>
-
-    <div class="container-fluid">
+    <h1 data-translate="kube_list_title"></h1>
+    <div class="container-fluid px-0">
         <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
 
         <oui-datagrid data-rows="$ctrl.kubes" data-row-loader="$ctrl.getKubernetes($row)">

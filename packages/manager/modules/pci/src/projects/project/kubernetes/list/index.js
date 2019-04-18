@@ -21,6 +21,11 @@ angular.module(moduleName, [
       .state('pci.projects.project.kubernetes', {
         url: '/kubernetes',
         component: 'ovhManagerPciProjectKubernetesList',
+        resolve: {
+          breadcrumb: $translate => $translate
+            .refresh()
+            .then(() => $translate.instant('kube_list_title')),
+        },
       });
   })
   .component('ovhManagerPciProjectKubernetesList', component)

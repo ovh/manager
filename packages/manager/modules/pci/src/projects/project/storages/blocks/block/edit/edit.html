@@ -1,22 +1,20 @@
-<div class="p-5">
-    <div data-ng-if="$ctrl.loading" class="text-center">
-        <oui-spinner></oui-spinner>
-    </div>
-    <section data-ng-if="!$ctrl.loading">
-        <oui-back-button
-            data-on-click="$ctrl.goBack()">{{:: 'pci_projects_project_storages_blocks_block_edit_back_label' | translate }}</oui-back-button>
-
-        <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
-
-        <pci-project-storage-volume-edit
-            data-storage="$ctrl.editStorage"
-            data-project-id="$ctrl.projectId"
-            data-size-editable="true"
-            data-title=":: 'pci_projects_project_storages_blocks_block_edit_title' | translate"
-            data-submit-label=":: 'pci_projects_project_storages_blocks_block_edit_submit_label' | translate"
-            data-on-cancel="$ctrl.goBack()"
-            data-on-submit="$ctrl.edit()">
-        </pci-project-storage-volume-edit>
-
-    </section>
+<div data-ng-if="$ctrl.loading" class="text-center">
+    <oui-spinner></oui-spinner>
 </div>
+<section data-ng-if="!$ctrl.loading">
+    <oui-back-button
+        data-on-click="$ctrl.goBack()">{{:: 'pci_projects_project_storages_blocks_block_edit_back_label' | translate }}</oui-back-button>
+
+    <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
+
+    <pci-project-storage-volume-edit
+        data-storage="$ctrl.editStorage"
+        data-project-id="$ctrl.projectId"
+        data-size-editable="true"
+        data-title=":: 'pci_projects_project_storages_blocks_block_edit_title' | translate"
+        data-submit-label=":: 'pci_projects_project_storages_blocks_block_edit_submit_label' | translate"
+        data-on-cancel="$ctrl.goBack()"
+        data-on-submit="$ctrl.edit()">
+    </pci-project-storage-volume-edit>
+
+</section>
