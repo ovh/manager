@@ -7,6 +7,7 @@
     </head>
     <body class="ovhstack h-100" style="overflow: hidden;">
         <div data-ng-app="ovhStack" data-ng-strict-di class="h-100 d-flex flex-column overflow-hidden" data-ng-controller="PublicCloudController as $ctrl">
+            <ng-uirouter-loading></ng-uirouter-loading>
             <div>
                 <ovh-manager-navbar></ovh-manager-navbar>
             </div>
@@ -17,7 +18,10 @@
                             <cloud-sidebar></cloud-sidebar>
                         </div>
                         <div class="h-100 position-relative" data-ng-class="{ 'col-md-10 p-0': $ctrl.shouldDisplaySidebar, 'col-md-12': !$ctrl.shouldDisplaySidebar }">
-                            <div data-ui-view class="position-absolute w-100 h-100" style="overflow: auto;"></div>
+                            <div class="position-absolute w-100 h-100 py-4 px-5" style="overflow: auto;">
+                                <ng-ovh-uirouter-breadcrumb></ng-ovh-uirouter-breadcrumb>
+                                <div class="mt-3" data-ui-view></div>
+                            </div>
                         </div>
                     </div>
                 </div>
