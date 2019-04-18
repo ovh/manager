@@ -1,4 +1,4 @@
-export default class ngUirouterbreadcrumbController {
+export default class ngUirouterBreadcrumbController {
   /* @ngInject */
   constructor($injector, $location, $q, $state, $transitions) {
     this.$injector = $injector;
@@ -19,7 +19,7 @@ export default class ngUirouterbreadcrumbController {
         while (state.parent) {
           const breadcrumbResolvable = state.resolvables.find(resolvable => resolvable.token === 'breadcrumb');
 
-          if (!(state.self.abstract && !breadcrumbResolvable)) {
+          if (!state.self.abstract || breadcrumbResolvable) {
             const entry = {
               name: state.name,
               promise: breadcrumbResolvable

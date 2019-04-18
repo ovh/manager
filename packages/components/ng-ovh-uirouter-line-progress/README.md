@@ -1,6 +1,5 @@
 # ng-ovh-uirouter-line-progress
 
-> Support layout:modal when using ui-router
 
 [![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-ovh-uirouter-line-progress)](https://npmjs.com/package/@ovh-ux/ng-ovh-uirouter-line-progress) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/manager/modules/ng-ovh-uirouter-line-progress)](https://npmjs.com/package/@ovh-ux/ng-ovh-uirouter-line-progress?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/manager/modules/ng-ovh-uirouter-line-progress)](https://npmjs.com/package/@ovh-ux/ng-ovh-uirouter-line-progress?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
 
