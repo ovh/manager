@@ -83,7 +83,7 @@ angular
     $stateProvider
       .state('pci', {
         url: '/pci',
-        // abstract: true,
+        abstract: true,
         template,
       });
   })

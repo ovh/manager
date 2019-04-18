@@ -13,7 +13,14 @@ export default /* @ngInject */ ($stateProvider) => {
         value: ['.'],
       },
       resolve: {
-        projectId: /* @ngInject */ $transition$ => $transition$.params().projectId,
+        projectId: /* @ngInject */  $transition$ => $transition$.params().projectId,
+        project: /* @ngInject */ (OvhApiCloudProject, $transition$) => OvhApiCloudProject
+          .v6()
+          .get({
+            serviceName: $transition$.params().projectId,
+          })
+          .$promise,
+        breadcrumb: /* @ngInject */ project => project.description,
       },
     });
 };

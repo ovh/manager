@@ -17,6 +17,9 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
           snapshotId: snapshot.id,
         }),
+        breadcrumb: /* @ngInject */ $translate => $translate
+          .refresh()
+          .then(() => $translate.instant('pci_projects_project_storages_snapshots_title')),
       },
     });
 };

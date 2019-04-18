@@ -32,6 +32,9 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
           instanceId,
         }),
+        breadcrumb: /* @ngInject */ $translate => $translate
+          .refresh()
+          .then(() => $translate.instant('pci_projects_project_storages_blocks_title')),
       },
     });
 };

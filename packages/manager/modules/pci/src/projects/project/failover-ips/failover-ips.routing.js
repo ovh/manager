@@ -12,5 +12,10 @@ export default /* @ngInject */ ($stateProvider) => {
         format: 'json',
         value: ['.'],
       },
+      resolve: {
+        breadcrumb: /* @ngInject */ $translate => $translate
+          .refresh()
+          .then(() => $translate.instant('pci_projects_project_failoverip_title')),
+      },
     });
 };
