@@ -1,0 +1,51 @@
+export const ACTIVE_STATUS = ['active'];
+
+export const APPLICATION_TAG = 'application';
+
+export const APPLICATION_LIST = [
+  'docker',
+  'plesk',
+  'kubernetes',
+  'swarm',
+  'cozycloud',
+  'wordpress',
+  'prestashop',
+  'lamp',
+  'cassandra',
+  'hadoop',
+  'mongodb',
+  'elasticsearch',
+  'gitlab',
+  'cpanel',
+  'spark',
+  'postgre',
+  'owncloud',
+  'sqlserver',
+  'ansible',
+  'rancheros',
+  'routeros',
+  'joomla',
+  'drupal',
+  'mariadb',
+  'kafka',
+  'hbase',
+  'marathon',
+  'mesos',
+  'pfsense',
+  'opensuse',
+  'dcos',
+  'openvpn',
+  'vestacp',
+  'virtualmin',
+  'datascience',
+  'deeplearning',
+  'rstudio',
+  'minikube',
+  'nvidia_ngc',
+];
+
+export default {
+  ACTIVE_STATUS,
+  APPLICATION_TAG,
+  APPLICATION_LIST,
+};
