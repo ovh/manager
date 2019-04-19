@@ -25,7 +25,7 @@
     "lodash": "^4.17.11",
     "moment": "^2.19",
     "urijs": "^1.19.1",
-    "xterm": "^3.4.1"
+    "xterm": "^3.12.2"
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "5.0.0"
