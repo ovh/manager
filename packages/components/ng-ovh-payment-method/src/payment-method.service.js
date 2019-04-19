@@ -1,4 +1,9 @@
-import _ from 'lodash';
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import map from 'lodash/map';
+import remove from 'lodash/remove';
+import snakeCase from 'lodash/snakeCase';
+import some from 'lodash/some';
 
 import {
   DEFAULT_OPTIONS,
@@ -41,7 +46,7 @@ export default class OvhPaymentMethodService {
     return this.getAllPaymentMethods({
       onlyValid: true,
       transform: true,
-    }).then(paymentMethods => _.find(paymentMethods, {
+    }).then(paymentMethods => find(paymentMethods, {
       default: true,
     }) || null);
   }
@@ -51,15 +56,15 @@ export default class OvhPaymentMethodService {
   getAvailablePaymentMethodTypes() {
     return this.OvhApiMe.Payment().Method().v6().availableMethods().$promise
       .then((paymentTypes) => {
-        const registerablePaymentTypes = _.filter(paymentTypes, {
+        const registerablePaymentTypes = filter(paymentTypes, {
           registerable: true,
         });
 
-        return _.map(registerablePaymentTypes, (paymentTypeParam) => {
+        return map(registerablePaymentTypes, (paymentTypeParam) => {
           const paymentType = paymentTypeParam;
           paymentType.paymentType = {
             value: paymentType.paymentType,
-            text: this.$translate.instant(`ovh_payment_type_${_.snakeCase(paymentType.paymentType)}`),
+            text: this.$translate.instant(`ovh_payment_type_${snakeCase(paymentType.paymentType)}`),
           };
           return paymentType;
         });
@@ -76,8 +81,8 @@ export default class OvhPaymentMethodService {
       legacyTypes: this.ovhPaymentMethodLegacy.getAvailablePaymentMethodTypes(),
       paymentMethodTypes: this.getAvailablePaymentMethodTypes(),
     }).then(({ legacyTypes, paymentMethodTypes }) => {
-      _.remove(legacyTypes, ({ paymentType }) => {
-        const hasIdentical = _.some(paymentMethodTypes, (paymentMethodType) => {
+      remove(legacyTypes, ({ paymentType }) => {
+        const hasIdentical = some(paymentMethodTypes, (paymentMethodType) => {
           const isSameValue = paymentMethodType.paymentType.value === paymentType.value;
           return isSameValue;
         });
@@ -174,7 +179,7 @@ export default class OvhPaymentMethodService {
         status: 'VALID',
       } : {}).$promise
       .then(paymentMethodIds => this.$q
-        .all(_.map(paymentMethodIds, paymentMethodId => this.OvhApiMe.Payment().Method().v6()
+        .all(map(paymentMethodIds, paymentMethodId => this.OvhApiMe.Payment().Method().v6()
           .get({
             paymentMethodId,
           }).$promise.then((paymentMethodParam) => {
@@ -183,13 +188,13 @@ export default class OvhPaymentMethodService {
             // set status object
             paymentMethod.status = {
               value: paymentMethod.status,
-              text: this.$translate.instant(`ovh_payment_status_${_.snakeCase(paymentMethod.status)}`),
+              text: this.$translate.instant(`ovh_payment_status_${snakeCase(paymentMethod.status)}`),
             };
 
             // set paymentType object
             paymentMethod.paymentType = {
               value: paymentMethod.paymentType,
-              text: this.$translate.instant(`ovh_payment_type_${_.snakeCase(paymentMethod.paymentType)}`),
+              text: this.$translate.instant(`ovh_payment_type_${snakeCase(paymentMethod.paymentType)}`),
             };
 
             return paymentMethod;
@@ -212,7 +217,7 @@ export default class OvhPaymentMethodService {
       legacies: this.ovhPaymentMethodLegacy.getPaymentMethods(options),
       paymentMethods: this.getPaymentMethods(),
     }).then(({ legacies, paymentMethods }) => {
-      _.remove(legacies, ({ paymentMethodId }) => _.some(paymentMethods, {
+      remove(legacies, ({ paymentMethodId }) => some(paymentMethods, {
         paymentMeanId: paymentMethodId,
       }));
 
