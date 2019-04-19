@@ -5,6 +5,13 @@ export default /* @ngInject */ ($stateProvider) => {
     abstract: true,
     resolve: {
       instanceId: /* @ngInject */$transition$ => $transition$.params().instanceId,
+      instance: /* @ngInject */ (
+        PciProjectsProjectInstanceService,
+        projectId,
+        instanceId,
+      ) => PciProjectsProjectInstanceService
+        .get(projectId, instanceId),
+      breadcrumb: /* @ngInject */ instance => instance.name,
     },
   });
 };
