@@ -1,3 +1,12 @@
+# [2.1.0](https://github.com/ovh-ux/ng-ovh-payment-method/compare/v2.0.1...v2.1.0) (2019-04-19)
+
+
+### Features
+
+* available payment method types ([#50](https://github.com/ovh-ux/ng-ovh-payment-method/issues/50)) ([8024966](https://github.com/ovh-ux/ng-ovh-payment-method/commit/8024966))
+
+
+
 ## [2.0.1](https://github.com/ovh-ux/ng-ovh-payment-method/compare/v2.0.0...v2.0.1) (2019-04-16)
 
 
