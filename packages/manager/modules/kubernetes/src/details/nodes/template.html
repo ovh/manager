@@ -8,7 +8,7 @@
             <span data-translate="kube_nodes_description_project_1" data-translate-values="{ description: $ctrl.project.description, url: $ctrl.$state.href('iaas.pci-project.compute', { projectId: $ctrl.project.project_id }) }"></span>
             <span data-translate="kube_nodes_description_project_2"></span>
         </p>
-        <oui-datagrid data-rows="$ctrl.nodes" data-row-loader="$ctrl.getAssociatedFlavor($row)">
+        <oui-datagrid data-rows="$ctrl.nodes" data-row-loader="$ctrl.loadRowData($row)">
             <oui-column data-title=":: 'kube_nodes_name' | translate"
                         data-property="name"
                         data-type="string"
@@ -25,6 +25,13 @@
                         data-searchable
                         data-filterable>
             </oui-column>
+            <oui-column data-title=":: 'kube_nodes_billing_type' | translate"
+                        data-property="billingType"
+                        data-type="string"
+                        data-searchable
+                        data-filterable>
+                <span data-ng-if="$row.billingType" data-translate="{{ :: 'kube_nodes_billing_' + $row.billingType }}"></span>
+            </oui-column>
             <oui-column data-title=":: 'kube_service_cluster_status' | translate"
                         data-property="status">
                 <span class="oui-status"
@@ -38,6 +45,11 @@
             </oui-column>
             <oui-action-menu data-disabled="$ctrl.Kubernetes.constructor.isProcessing($row.status) || $ctrl.Kubernetes.constructor.isProcessing($ctrl.cluster.status)" data-align="end" data-compact>
                 <oui-action-menu-item data-text="{{:: 'kube_nodes_common_delete' | translate }}" data-on-click="$ctrl.confirmNodeDeletion($row.id)"></oui-action-menu-item>
+                <oui-action-menu-item
+                    data-ng-if="$row.billingType === 'hourly'"
+                    data-text="{{ ::'kube_nodes_switch_to_monthly_billing_title' | translate }}"
+                    data-on-click="$ctrl.confirmSwitchBillingType($row)">
+                </oui-action-menu-item>
             </oui-action-menu>
             <extra-top>
                 <oui-button data-ng-if="$ctrl.project"

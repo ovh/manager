@@ -20,6 +20,7 @@ export default class Kubernetes {
     this.OvhApiCloudProjectInstance = OvhApiCloudProjectInstance;
     this.OvhApiKube = OvhApiKube;
     this.OvhApiCloudProjectQuota = OvhApiCloudProjectQuota;
+    this.OvhApiCloudProjectInstance = OvhApiCloudProject.Instance();
     this.initializeUpgradePolicies();
   }
 
@@ -156,5 +157,18 @@ export default class Kubernetes {
 
   terminate(serviceName) {
     return this.OvhApiKube.v6().terminate({ serviceName }).$promise;
+  }
+
+  getProjectInstances(projectId) {
+    return this.OvhApiCloudProjectInstance.v6().query({ serviceName: projectId }).$promise;
+  }
+
+  switchToMonthlyBilling(serviceName, nodeId) {
+    return this.OvhApiCloudProjectInstance.v6()
+      .activeMonthlyBilling({ serviceName, instanceId: nodeId }).$promise;
+  }
+
+  resetInstancesCache() {
+    this.OvhApiCloudProjectInstance.v6().resetCache();
   }
 }

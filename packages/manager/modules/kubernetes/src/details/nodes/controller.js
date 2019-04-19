@@ -1,3 +1,4 @@
+import isEmpty from 'lodash/isEmpty';
 import find from 'lodash/find';
 import get from 'lodash/get';
 import head from 'lodash/head';
@@ -10,6 +11,8 @@ import addTemplate from './add/template.html';
 
 import deleteController from './delete/controller';
 import deleteTemplate from './delete/template.html';
+import switchBillingTypeController from './billing-type/controller';
+import switchBillingTypeTemplate from './billing-type/template.html';
 
 export default class KubernetesNodesCtrl {
   /* @ngInject */
@@ -68,6 +71,31 @@ export default class KubernetesNodesCtrl {
       .catch(() => this.CucCloudMessage.error(this.$translate.instant('kube_nodes_error')));
   }
 
+  loadRowData(node) {
+    return this.$q.all([
+      this.getAssociatedFlavor(node),
+      this.getBillingType(node),
+    ]);
+  }
+
+  getBillingType(node) {
+    return this.Kubernetes.getProjectInstances(node.projectId)
+      .then((instances) => {
+        const instance = find(instances, item => item.id === node.instanceId);
+        const monthlyBilling = get(instance, 'monthlyBilling');
+        if (isEmpty(monthlyBilling)) {
+          set(node, 'billingType', 'hourly');
+        } else if (monthlyBilling.status === 'ok') {
+          set(node, 'billingType', 'monthly');
+        } else {
+          set(node, 'billingType', 'monthly_pending');
+        }
+      })
+      .catch(() => {
+          this.CucCloudMessage.error(this.$translate.instant('kube_nodes_instances_error'));
+      });
+  }
+
   getAssociatedFlavor(node) {
     return this.Kubernetes.getFlavors(node.projectId)
       .then((flavors) => {
@@ -115,6 +143,36 @@ export default class KubernetesNodesCtrl {
       });
   }
 
+  confirmSwitchBillingType(node) {
+    return this.$uibModal.open({
+      template: switchBillingTypeTemplate,
+      controller: switchBillingTypeController,
+      controllerAs: '$ctrl',
+      backdrop: 'static',
+      openedClass: 'kubernetes',
+      resolve: {
+        nodeName() {
+          return node.name;
+        },
+        instanceId() {
+          return node.instanceId;
+        },
+        projectId() {
+          return node.projectId;
+        },
+      },
+    }).result
+      .then(() => {
+        this.displaySuccessMessage('kube_nodes_switch_billing_type_success');
+        return this.refreshNodes();
+      })
+      .catch((error) => {
+        if (error) {
+          this.CucCloudMessage.error(this.$translate.instant('kube_nodes_switch_billing_type_error', { message: error }));
+        }
+      });
+  }
+
   openAddNodeForm(projectId) {
     return this.$uibModal.open({
       template: addTemplate,
@@ -148,6 +206,7 @@ export default class KubernetesNodesCtrl {
     this.loading = true;
     this.Kubernetes.resetClusterCache();
     this.Kubernetes.resetNodesCache();
+    this.Kubernetes.resetInstancesCache();
     return this.getInfo()
       .finally(() => { this.loading = false; });
   }
