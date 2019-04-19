@@ -13,5 +13,6 @@ export default {
     paymentStatus: '<',
     paymentMethodUrl: '<',
     steps: '<',
+    dlpStatus: '<',
   },
 };

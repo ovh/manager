@@ -52,7 +52,7 @@ export default class PciProjectNewCtrl {
     const currentStep = this.getCurrentStep();
 
     if (currentStep.name === 'description') {
-      return this.getStateLink('newt');
+      return this.getStateLink('next');
     }
 
     return this.paymentMethodUrl;
@@ -65,7 +65,11 @@ export default class PciProjectNewCtrl {
       return true;
     }
 
-    return this.loading.creating || currentStep.loading.init || currentStep.loading.availableSteps;
+    return this.loading.creating
+      || currentStep.loading.init
+      || currentStep.loading.availableSteps
+      || currentStep.loading.voucher
+      || (currentStep.model.mode === 'credits' && !currentStep.model.credit.value);
   }
 
   isNextButtonVisible() {
@@ -187,8 +191,9 @@ export default class PciProjectNewCtrl {
   onNextBtnClick() {
     const paymentModel = this.getStepByName('payment').model;
 
-    // if default payment - create project
-    if (paymentModel.defaultPaymentMethod) {
+    // if default payment or credit amount - create project
+    if (paymentModel.defaultPaymentMethod
+      || (paymentModel.mode === 'credits' && paymentModel.credit.value)) {
       return this.createProject();
     }
 

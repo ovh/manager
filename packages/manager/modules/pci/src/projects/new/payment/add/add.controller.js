@@ -2,15 +2,11 @@ import isFunction from 'lodash/isFunction';
 
 export default class PciProjectsNewPaymentAddCtrl {
   /* @ngInject */
-  constructor(ovhPaymentMethod) {
+  constructor($translate, CucCloudMessage, ovhPaymentMethod) {
     // dependencies injections
+    this.$translate = $translate;
+    this.CucCloudMessage = CucCloudMessage;
     this.ovhPaymentMethod = ovhPaymentMethod;
-
-    // other attributes used in view
-    this.paymentTypesChunk = {
-      size: 3,
-      chunks: null,
-    };
 
     this.selectedPaymentType = null;
   }
@@ -19,9 +15,9 @@ export default class PciProjectsNewPaymentAddCtrl {
   =            Events            =
   ============================== */
 
-  onAvailablePaymentTypesLoadError(error) {
-    // @TOTO: remove console.log and manage error
-    console.log(this, error);
+  onAvailablePaymentTypesLoadError() {
+    return this.CucCloudMessage
+      .error(this.$translate.instant('pci_projects_new_payment_add_load_error'));
   }
 
   onPaymentTypeChange(paymentType) {

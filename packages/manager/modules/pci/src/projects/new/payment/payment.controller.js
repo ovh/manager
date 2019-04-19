@@ -1,8 +1,11 @@
 export default class PciProjectNewPaymentCtrl {
   /* @ngInject */
-  constructor(ovhPaymentMethod) {
+  constructor($translate, CucCloudMessage, ovhPaymentMethod, PciProjectNewService) {
     // dependencies injections
+    this.$translate = $translate;
+    this.CucCloudMessage = CucCloudMessage;
     this.ovhPaymentMethod = ovhPaymentMethod;
+    this.PciProjectNewService = PciProjectNewService;
 
     // other attributes used in view
     this.step = null;
@@ -25,6 +28,26 @@ export default class PciProjectNewPaymentCtrl {
 
   onToggleVoucherBtnClick() {
     this.displayVoucher = !this.displayVoucher;
+  }
+
+  onVoucherFormSubmit() {
+    this.step.loading.voucher = true;
+
+    return this.PciProjectNewService
+      .getNewProjectInfo({
+        voucher: this.step.model.voucher,
+      })
+      .then(() => {
+        this.voucherForm.voucher.$setValidity('voucher', true);
+        this.step.model.voucher.valid = true;
+      })
+      .catch(() => {
+        this.voucherForm.voucher.$setValidity('voucher', false);
+        this.step.model.voucher.valid = false;
+      })
+      .finally(() => {
+        this.step.loading.voucher = false;
+      });
   }
 
   /* -----  End of Events  ------ */

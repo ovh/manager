@@ -42,6 +42,14 @@ export default /* @ngInject */ ($stateProvider) => {
               return $state.href('pci.projects');
           }
         },
+        dlpStatus: /* @ngInject */ ($q, PciProjectNewService) => PciProjectNewService
+          .getDlpStatus()
+          .catch((error) => {
+            if (error.status === 404) {
+              return null;
+            }
+            return $q.reject(error);
+          }),
         paymentMethodUrl: () => get(
           PCI_REDIRECT_URLS,
           `${EnvironmentService.Environment.region}.paymentMethods`,
@@ -64,11 +72,16 @@ export default /* @ngInject */ ($stateProvider) => {
           name: 'payment',
           loading: {},
           model: {
-            voucher: null,
+            voucher: {
+              valid: false,
+              value: null,
+            },
             defaultPaymentMethod: null,
             paymentType: null,
             mode: null,
-            credit: null,
+            credit: {
+              value: null,
+            },
           },
         }],
       },

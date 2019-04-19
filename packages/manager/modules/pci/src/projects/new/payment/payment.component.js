@@ -9,5 +9,6 @@ export default {
     paymentMethodUrl: '<',
     getStepByName: '<',
     getStateLink: '<',
+    dlpStatus: '<',
   },
 };
