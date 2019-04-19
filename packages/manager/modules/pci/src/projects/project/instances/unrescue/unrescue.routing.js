@@ -1,0 +1,26 @@
+export default /* @ngInject */($stateProvider) => {
+  $stateProvider
+    .state('pci.projects.project.instances.unrescue', {
+      url: '/rescue/end?instanceId',
+      views: {
+        modal: {
+          component: 'pciInstancesInstanceUnrescue',
+        },
+      },
+      layout: 'modal',
+      resolve: {
+        instanceId: /* @ngInject */$transition$ => $transition$.params().instanceId,
+        instance: /* @ngInject */ (
+          PciProjectsProjectInstanceService,
+          projectId,
+          instanceId,
+        ) => PciProjectsProjectInstanceService
+          .get(projectId, instanceId),
+
+        goBack: /* @ngInject */ ($state, projectId, instanceId) => () => $state.go('pci.projects.project.instances', {
+          projectId,
+          instanceId,
+        }),
+      },
+    });
+};
