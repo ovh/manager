@@ -1,0 +1,44 @@
+<oui-page-header heading="{{ ::'cpbc_billing_control' | translate }}">
+    <oui-header-tabs>
+        <oui-header-tabs-item
+            text="{{ 'cpbc_tab_consumption' | translate }}"
+            state="pci.projects.project.billing"
+            active="$ctrl.$state.is('pci.projects.project.billing', { serviceName: $ctrl.projectId })"
+        >
+        </oui-header-tabs-item>
+        <oui-header-tabs-item
+            text="{{ 'cpbc_tab_forecast' | translate }}"
+            state="pci.projects.project.billing.estimate"
+            active="$ctrl.$state.is('pci.projects.project.billing.estimate', { serviceName: $ctrl.projectId })"
+        >
+        </oui-header-tabs-item>
+    </oui-header-tabs>
+</oui-page-header>
+<div class="py-4" data-ui-view>
+    <h2 data-translate="cpbc_tab_consumption"></h2>
+    <div class="text-center" data-ng-if="$ctrl.loading">
+        <oui-spinner></oui-spinner>
+    </div>
+    <div data-ng-if="!$ctrl.loading">
+        <div class="row">
+            <div class="col-lg-6">
+                <oui-tile heading="{{ ::'cpbc_monthly_header' | translate }}">
+                    <p class="oui-tile__legend">
+                        <span data-translate="cpbc_monthly_header_description"></span>
+                        &nbsp;(<span data-ng-bind="$ctrl.data.totals.monthly.total.toFixed(2) + ' ' + $ctrl.data.totals.currencySymbol"></span>)
+                    </p>
+                    <monthly-resource-list resources="$ctrl.data"></monthly-resource-list>
+                </oui-tile>
+            </div>
+            <div class="col-lg-6">
+                <oui-tile heading="{{ ::'cpbc_hourly_header' | translate }}">
+                    <p class="oui-tile__legend">
+                        <span data-translate="cpbc_hourly_header_description"></span>
+                        &nbsp;(<span data-ng-bind="$ctrl.data.totals.hourly.total.toFixed(2) + ' ' + $ctrl.data.totals.currencySymbol"></span>)
+                    </p>
+                    <hourly-resource-list resources="$ctrl.data" show-switch-to-monthly-billing-option="true"></hourly-resource-list>
+                </oui-tile>
+            </div>
+        </div>
+    </div>
+</div>
