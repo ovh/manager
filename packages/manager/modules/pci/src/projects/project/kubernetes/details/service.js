@@ -7,7 +7,6 @@ export default class Kubernetes {
     $translate,
     OvhApiCloudProject,
     OvhApiCloudProjectFlavor,
-    OvhApiCloudProjectInstance,
     OvhApiCloudProjectKube,
     OvhApiKube,
     OvhApiCloudProjectQuota,
@@ -16,7 +15,7 @@ export default class Kubernetes {
     this.$translate = $translate;
     this.OvhApiCloudProject = OvhApiCloudProject;
     this.OvhApiCloudProjectFlavor = OvhApiCloudProjectFlavor;
-    this.OvhApiCloudProjectInstance = OvhApiCloudProjectInstance;
+    this.OvhApiCloudProjectInstance = OvhApiCloudProject.Instance();
     this.OvhApiCloudProjectKube = OvhApiCloudProjectKube;
     this.OvhApiKube = OvhApiKube;
     this.OvhApiCloudProjectQuota = OvhApiCloudProjectQuota;
@@ -55,5 +54,18 @@ export default class Kubernetes {
         fileName: CONFIG_FILENAME,
       }))
       .catch(error => (error.status === 400 ? false : Promise.reject(error)));
+  }
+
+  getProjectInstances(projectId) {
+    return this.OvhApiCloudProjectInstance.v6().query({ serviceName: projectId }).$promise;
+  }
+
+  switchToMonthlyBilling(serviceName, nodeId) {
+    return this.OvhApiCloudProjectInstance.v6()
+      .activeMonthlyBilling({ serviceName, instanceId: nodeId }).$promise;
+  }
+
+  resetInstancesCache() {
+    this.OvhApiCloudProjectInstance.v6().resetCache();
   }
 }
