@@ -1,4 +1,11 @@
-import _ from 'lodash';
+import filter from 'lodash/filter';
+import flatten from 'lodash/flatten';
+import get from 'lodash/get';
+import has from 'lodash/has';
+import map from 'lodash/map';
+import merge from 'lodash/merge';
+import snakeCase from 'lodash/snakeCase';
+import startCase from 'lodash/startCase';
 
 import {
   AVAILABLE_PAYMENT_MEANS,
@@ -41,7 +48,7 @@ export default class OvhPaymentMethodLegacy {
       return this.addPaymentMean(paymentMethodType, paymentMethodParams);
     }
 
-    return this.addUSPaymentMethod(_.merge({
+    return this.addUSPaymentMethod(merge({
       paymentType: paymentMethodType,
     }, paymentMethodParams));
   }
@@ -94,14 +101,14 @@ export default class OvhPaymentMethodLegacy {
    *                    transformed to payment method types.
    */
   getAvailablePaymentMethodTypes() {
-    const availablePromise = this.$q.when(_.get(AVAILABLE_PAYMENT_MEANS, this.target));
+    const availablePromise = this.$q.when(get(AVAILABLE_PAYMENT_MEANS, this.target));
 
     return this.$q.all({
       infos: availablePromise,
       availableMeans: this.OvhApiMe.AvailableAutomaticPaymentMeans().v6().get().$promise,
     }).then(({ infos, availableMeans }) => {
-      const registerablePaymentMeans = _.filter(infos, (paymentMeanInfos) => {
-        if (!_.get(availableMeans, paymentMeanInfos.value)) {
+      const registerablePaymentMeans = filter(infos, (paymentMeanInfos) => {
+        if (!get(availableMeans, paymentMeanInfos.value)) {
           return false;
         }
 
@@ -112,7 +119,7 @@ export default class OvhPaymentMethodLegacy {
         return true;
       });
 
-      return _.map(
+      return map(
         registerablePaymentMeans,
         this.transformLegacyPaymentMethodTypeToPaymentMethodType.bind(this),
       );
@@ -131,7 +138,7 @@ export default class OvhPaymentMethodLegacy {
    *  @return {ngResource}
    */
   getPaymentMeanResource(paymentMeanType) {
-    return this.OvhApiMe.PaymentMean()[_.startCase(paymentMeanType).split(' ').join('')]().v6();
+    return this.OvhApiMe.PaymentMean()[startCase(paymentMeanType).split(' ').join('')]().v6();
   }
 
   /**
@@ -149,14 +156,14 @@ export default class OvhPaymentMethodLegacy {
       });
     }
 
-    const availablePaymentMeans = _.get(AVAILABLE_PAYMENT_MEANS, this.target);
+    const availablePaymentMeans = get(AVAILABLE_PAYMENT_MEANS, this.target);
 
     return this.$q
-      .all(_.map(
+      .all(map(
         availablePaymentMeans,
         type => this.getPaymentMeansOfType(type.value, options),
       ))
-      .then(paymentsOfType => _.flatten(paymentsOfType));
+      .then(paymentsOfType => flatten(paymentsOfType));
   }
 
   /**
@@ -181,7 +188,7 @@ export default class OvhPaymentMethodLegacy {
       .query(paymentMeanType === 'bankAccount' && options.onlyValid ? {
         state: 'valid',
       } : {}).$promise
-      .then(paymentMeanIds => this.$q.all(_.map(
+      .then(paymentMeanIds => this.$q.all(map(
         paymentMeanIds,
         paymentMeanId => resource.get({
           id: paymentMeanId,
@@ -198,7 +205,7 @@ export default class OvhPaymentMethodLegacy {
   addPaymentMean(paymentMeanType, params = {}) {
     const addParams = params;
 
-    if (_.has(addParams, 'default')) {
+    if (has(addParams, 'default')) {
       addParams.setDefault = addParams.default;
       delete addParams.default;
     }
@@ -207,7 +214,11 @@ export default class OvhPaymentMethodLegacy {
       .save({}, addParams)
       .$promise.then((result) => {
         if (result.url && paymentMeanType !== 'bankAccount') {
-          this.$window.open(result.url, '_blank');
+          if (!params.returnUrl) {
+            this.$window.open(result.url, '_blank');
+          } else {
+            this.$window.location = result.url;
+          }
         }
 
         return result;
@@ -274,7 +285,7 @@ export default class OvhPaymentMethodLegacy {
         status: 'VALID',
       } : {}).$promise
       .then(usPaymentMethodIds => this.$q
-        .all(_.map(usPaymentMethodIds, usPaymentMethodId => this.OvhApiMe.PaymentMethod().v6()
+        .all(map(usPaymentMethodIds, usPaymentMethodId => this.OvhApiMe.PaymentMethod().v6()
           .get({
             id: usPaymentMethodId,
           }).$promise.then(usPaymentMethod => (options.transform
@@ -284,7 +295,7 @@ export default class OvhPaymentMethodLegacy {
 
   addUSPaymentMethod(params) {
     const addParams = params;
-    addParams.paymentType = _.snakeCase(addParams.paymentType).toUpperCase();
+    addParams.paymentType = snakeCase(addParams.paymentType).toUpperCase();
 
     return this.OvhApiMe.PaymentMethod().v6().save({}, addParams).$promise;
   }
@@ -320,17 +331,17 @@ export default class OvhPaymentMethodLegacy {
 
   getFullPaymentType(paymentType) {
     return {
-      value: _.snakeCase(paymentType).toUpperCase(),
-      text: this.$translate.instant(`ovh_payment_type_${_.snakeCase(paymentType)}`),
+      value: snakeCase(paymentType).toUpperCase(),
+      text: this.$translate.instant(`ovh_payment_type_${snakeCase(paymentType)}`),
     };
   }
 
   getFullPaymentStatus(paymentStatus, paymentType) {
     return {
-      value: _.snakeCase(paymentStatus).toUpperCase(),
+      value: snakeCase(paymentStatus).toUpperCase(),
       text: paymentType === 'bankAccount' && paymentStatus === 'pendingValidation'
         ? this.$translate.instant('ovh_payment_status_waiting_for_documents')
-        : this.$translate.instant(`ovh_payment_status_${_.snakeCase(paymentStatus)}`),
+        : this.$translate.instant(`ovh_payment_status_${snakeCase(paymentStatus)}`),
     };
   }
 
@@ -340,31 +351,31 @@ export default class OvhPaymentMethodLegacy {
    *  (/me/payment/method and /me/paymentMean/*)
    */
   transformUSPaymentMethodToPaymentMethod(usPaymentMethod) {
-    const paymentType = _.get(usPaymentMethod, 'paymentType', null);
-    const paymentStatus = _.get(usPaymentMethod, 'status', null);
+    const paymentType = get(usPaymentMethod, 'paymentType', null);
+    const paymentStatus = get(usPaymentMethod, 'status', null);
 
     return {
-      paymentSubType: _.get(usPaymentMethod, 'paymentSubType', null),
+      paymentSubType: get(usPaymentMethod, 'paymentSubType', null),
       icon: {
         name: null,
         data: null,
       },
       status: this.getFullPaymentStatus(paymentStatus, paymentType),
       paymentMethodId: usPaymentMethod.id,
-      default: _.get(usPaymentMethod, 'default', false),
-      description: _.get(usPaymentMethod, 'description', null),
+      default: get(usPaymentMethod, 'default', false),
+      description: get(usPaymentMethod, 'description', null),
       paymentType: this.getFullPaymentType(paymentType),
-      billingContactId: _.get(usPaymentMethod, 'billingContactId', null),
-      creationDate: _.get(usPaymentMethod, 'creationDate', null),
+      billingContactId: get(usPaymentMethod, 'billingContactId', null),
+      creationDate: get(usPaymentMethod, 'creationDate', null),
       lastUpdate: null,
-      label: _.get(usPaymentMethod, 'publicLabel', null),
+      label: get(usPaymentMethod, 'publicLabel', null),
       original: usPaymentMethod,
     };
   }
 
   transformPaymentMeanToPaymentMethod(paymentMean) {
-    const paymentType = _.get(paymentMean, 'paymentType', null);
-    const paymentStatus = _.get(paymentMean, 'state', null);
+    const paymentType = get(paymentMean, 'paymentType', null);
+    const paymentStatus = get(paymentMean, 'state', null);
     let paymentLabel;
 
     switch (paymentType) {
@@ -383,21 +394,21 @@ export default class OvhPaymentMethodLegacy {
     }
 
     return {
-      paymentSubType: _.get(paymentMean, 'type', null),
+      paymentSubType: get(paymentMean, 'type', null),
       icon: {
         name: null,
         data: null,
       },
       status: this.getFullPaymentStatus(paymentStatus, paymentType),
       paymentMethodId: paymentMean.id,
-      default: _.get(paymentMean, 'defaultPaymentMean', false),
-      description: _.get(paymentMean, 'description', null),
+      default: get(paymentMean, 'defaultPaymentMean', false),
+      description: get(paymentMean, 'description', null),
       paymentType: this.getFullPaymentType(paymentType),
       billingContactId: null,
-      creationDate: _.get(paymentMean, 'creationDate', null),
+      creationDate: get(paymentMean, 'creationDate', null),
       lastUpdate: null,
       label: paymentLabel,
-      expirationDate: _.get(paymentMean, 'expirationDate', null),
+      expirationDate: get(paymentMean, 'expirationDate', null),
       original: paymentMean,
     };
   }

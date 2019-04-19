@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import get from 'lodash/get';
 
 import { IBAN_BIC_RULES } from './payment-method.constant';
 
@@ -37,7 +37,7 @@ export default class OvhPaymentMethodHelperService {
       return false;
     }
 
-    const baseRegExp = _.get(countryBaseRegExp, ibanHash.country);
+    const baseRegExp = get(countryBaseRegExp, ibanHash.country);
     if (!baseRegExp.test(ibanHash.remaining)) {
       return false;
     }

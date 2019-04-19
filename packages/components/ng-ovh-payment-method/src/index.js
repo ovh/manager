@@ -6,6 +6,7 @@ import 'ovh-api-services';
 
 import paymentMethodProvider from './payment-method.provider';
 import paymentMethodHelperService from './payment-method-helper.service';
+import availableComponent from './availableTypes/availableTypes.component';
 
 const moduleName = 'ngOvhPaymentMethod';
 
@@ -17,6 +18,7 @@ angular
   ])
   .run(/* @ngTranslationsInject ./translations */)
   .provider('ovhPaymentMethod', paymentMethodProvider)
-  .service('ovhPaymentMethodHelper', paymentMethodHelperService);
+  .service('ovhPaymentMethodHelper', paymentMethodHelperService)
+  .component('ovhPaymentMethodAvailableTypes', availableComponent);
 
 export default moduleName;

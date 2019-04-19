@@ -1,0 +1,32 @@
+<div class="ovh-payment-method-available-types">
+
+    <div class="text-center"
+         data-ng-if="$ctrl.loading.init">
+        <oui-spinner></oui-spinner>
+    </div>
+
+    <div class="row"
+         data-ng-if="!$ctrl.loading.init"
+         data-ng-repeat="paymentTypeChunk in $ctrl.paymentMethodTypes.chunks track by $index">
+        <div class="mb-3 col-md"
+             data-ng-repeat="paymentMethodType in paymentTypeChunk track by $index">
+            <oui-radio
+                class="h-100"
+                data-thumbnail
+                data-value="paymentMethodType.paymentType.value"
+                data-model="$ctrl.model.selectedPaymentMethodType"
+                data-on-change="$ctrl.onPaymentMethodChange()"
+                data-variant="light"
+                data-required="true">
+                <span class="d-block"
+                      data-ng-bind="paymentMethodType.paymentType.text">
+                </span>
+                <img data-ng-if="paymentMethodType.icon.data"
+                     data-ng-src="{{ paymentMethodType.icon.data }}"
+                     data-ng-attr-alt="{{ :: paymentMethodType.paymentType.text }}"
+                     alt="" />
+            </oui-radio>
+        </div>
+    </div>
+
+</div>

@@ -38,7 +38,12 @@
     "@ovh-ux/ng-translate-async-loader": "^2.0.0",
     "angular": "^1.5.0",
     "angular-translate": "^2.17.0",
-    "lodash": "~3.10.1",
-    "ovh-api-services": "^3.21.1"
+    "bootstrap4": "twbs/bootstrap#v4.0.0",
+    "ovh-api-services": "^3.21.1",
+    "ovh-ui-angular": "^2.23.x",
+    "ovh-ui-kit": "^2.23.x"
+  },
+  "dependencies": {
+    "lodash": "^4.17.11"
   }
 }
