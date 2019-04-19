@@ -1691,6 +1691,13 @@
   dependencies:
     lodash "^4.17.11"
 
+"@ovh-ux/ng-ovh-contacts@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-contacts/-/ng-ovh-contacts-1.0.1.tgz#c0262e57aecf47ae269615ecefbc5e72dea76297"
+  integrity sha512-tbmn2tBgBk6FC1cgB6WlTSw1Z4p3fN9Jvg7Mfx4krbDBshTqlWnzD3r+6Hb/quoukTvePqRfbLRmdRx6x/E7bg==
+  dependencies:
+    lodash "^4.17.11"
+
 "@ovh-ux/ng-ovh-contracts@^3.0.0-beta.3":
   version "3.0.0-beta.3"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-contracts/-/ng-ovh-contracts-3.0.0-beta.3.tgz#1dcd3612160f4c5eebd31a4bc12a2c632b35618f"
@@ -1733,6 +1740,13 @@
   integrity sha512-e5p+Yfelnvfy1XdxBaAuF1USn9PuuZE8JcKEusbO30jOvx8PamQS1ha7b4tlG98jN3Hjr6lTxGMOR+0Rc2qzrg==
   dependencies:
     draggable "^4.2.0"
+    lodash "^4.17.11"
+
+"@ovh-ux/ng-ovh-payment-method@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-payment-method/-/ng-ovh-payment-method-2.1.0.tgz#744e1018f5b0e118ee9fc6ff2953290141c73495"
+  integrity sha512-EYtxpkZuE/RiJi0zmhFJnSqCDM/9DchZe9wG33YQcTQfEl5lBWaXbkPWXd9OpgAVgcWUCLwi64yV4t7DCrwa0A==
+  dependencies:
     lodash "^4.17.11"
 
 "@ovh-ux/ng-ovh-proxy-request@^1.0.0-beta.0":
@@ -9211,6 +9225,13 @@ ovh-api-services@^6.4.0:
   version "6.7.0"
   resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-6.7.0.tgz#b65fa6c22e2d4e37100f5747e57f96d929cee446"
   integrity sha512-r7LBjFBIJvpPQrI+r95nUsW57wGfLt+b9yhnLRE6/iuC5ga0g+0CJuIuD7m5U5vjMbfL+EyyQkF/MsKSVn2fAA==
+  dependencies:
+    lodash "^3.10.1"
+
+ovh-api-services@^6.12.0:
+  version "6.12.0"
+  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-6.12.0.tgz#ce275f0d6d4080f38b1b63e92816a628d7476bc5"
+  integrity sha512-gTXR6xPkwqeYQg/rx60so4LHD6lmIo2KL0lJqq95hc3wQFwV9xyY0pKc6vkY5j51YYn38i34gajcVLjcU5XKPA==
   dependencies:
     lodash "^3.10.1"
 
