@@ -46,7 +46,7 @@ angular
     // View project by project id
       .state('pci.projects.project.legacy', {
         url: '/legacy',
-        // abstract: true, // [don't touch] empty url goes to cloud-project.cloud-project-details
+        abstract: true,
         template,
         controller,
         controllerAs: 'CloudProjectCtrl',

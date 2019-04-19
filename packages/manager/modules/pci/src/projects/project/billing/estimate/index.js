@@ -17,14 +17,15 @@ angular
     'ui.router',
   ])
   .config(/* @ngInject */($stateProvider) => {
-    $stateProvider.state('pci.projects.project.legacy.billing.consumption.estimate', {
+    $stateProvider.state('pci.projects.project.billing.estimate', {
       url: '/estimate',
-      views: {
-        cloudProjectBillingConsumption: {
-          template,
-          controller,
-          controllerAs: 'BillingConsumptionEstimateCtrl',
-        },
+      template,
+      controller,
+      controllerAs: 'BillingConsumptionEstimateCtrl',
+      resolve: {
+        breadcrumb: $translate => $translate
+          .refresh()
+          .then(() => $translate.instant('cpbc_tab_forecast')),
       },
     });
   })

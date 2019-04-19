@@ -6,6 +6,7 @@ import 'angular-translate';
 import 'ovh-api-services';
 import 'ovh-ui-angular';
 
+import billing from './billing';
 import edit from './edit';
 import failoverIps from './failover-ips';
 import instances from './instances';
@@ -20,6 +21,7 @@ const moduleName = 'ovhManagerPciProject';
 
 angular
   .module(moduleName, [
+    billing,
     edit,
     failoverIps,
     instances,
