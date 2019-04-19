@@ -110,7 +110,7 @@ export const MENU = [
       },
       {
         options: {
-          state: 'pci.projects.project.legacy.billing.consumption.current',
+          state: 'pci.projects.project.billing',
         },
         translation: 'cloud_sidebar_project_management_billing_control',
       },

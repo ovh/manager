@@ -2,7 +2,6 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'ovh-api-services';
 
-import consumption from './consumption';
 import history from './history';
 import rights from './rights';
 import vouchers from './vouchers';
@@ -15,7 +14,6 @@ const moduleName = 'ovhManagerPciProjectBilling';
 
 angular
   .module(moduleName, [
-    consumption,
     history,
     'ovh-api-services',
     rights,
@@ -24,6 +22,7 @@ angular
   ])
   .config(/* @ngInject */($stateProvider) => {
     $stateProvider.state('pci.projects.project.legacy.billing', {
+      abstract: true,
       url: '/billing',
       views: {
         cloudProject: {
