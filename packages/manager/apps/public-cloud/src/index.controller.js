@@ -5,7 +5,8 @@ export default class PublicCloudController {
     this.$transitions = $transitions;
 
     this.$transitions.onSuccess({}, () => {
-      this.shouldDisplaySidebar = $state.includes('pci.projects.project');
+      this.shouldDisplaySidebar = $state.includes('pci.projects.project')
+        && !$state.is('pci.projects.project.creating');
     });
   }
 }
