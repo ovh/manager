@@ -1,0 +1,8 @@
+{
+  "pci_project_instance_ssh_key": "Clé SSH",
+  "pci_project_instance_ssh_pick": "Sélectionner",
+  "pci_project_instance_ssh_add": "Ajouter une clé",
+  "pci_project_instance_ssh_cancel": "Annuler",
+
+  "pci_project_instance_ssh_key_name": "Nom de la clé SSH"
+}
