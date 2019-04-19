@@ -7,7 +7,7 @@ import { PCI_REDIRECT_URLS } from '../../constants';
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
     .state('pci.projects.new', {
-      url: '/new?description',
+      url: '/new?description&projectId',
       component: 'pciProjectNew',
       resolve: {
         paymentStatus: /* @ngInject */ $transition$ => get($transition$.params(), 'hiPayStatus')
@@ -42,14 +42,15 @@ export default /* @ngInject */ ($stateProvider) => {
               return $state.href('pci.projects');
           }
         },
-        dlpStatus: /* @ngInject */ ($q, PciProjectNewService) => PciProjectNewService
-          .getDlpStatus()
-          .catch((error) => {
-            if (error.status === 404) {
-              return null;
-            }
-            return $q.reject(error);
-          }),
+        dlpStatus: () => null,
+        // dlpStatus: /* @ngInject */ ($q, PciProjectNewService) => PciProjectNewService
+        //   .getDlpStatus()
+        //   .catch((error) => {
+        //     if (error.status === 404) {
+        //       return null;
+        //     }
+        //     return $q.reject(error);
+        //   }),
         paymentMethodUrl: () => get(
           PCI_REDIRECT_URLS,
           `${EnvironmentService.Environment.region}.paymentMethods`,
@@ -82,6 +83,7 @@ export default /* @ngInject */ ($stateProvider) => {
             credit: {
               value: null,
             },
+            projectId: null,
           },
         }],
       },

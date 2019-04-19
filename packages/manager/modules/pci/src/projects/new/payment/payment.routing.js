@@ -38,7 +38,8 @@ export default /* @ngInject */ ($stateProvider) => {
               value: stateParams.voucher,
             };
           }
-          paymentModel.credit = stateParams.credit;
+          paymentModel.credit.value = parseInt(stateParams.credit, 10);
+          paymentModel.projectId = stateParams.projectId;
 
           return true;
         }

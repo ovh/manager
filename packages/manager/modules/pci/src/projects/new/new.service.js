@@ -1,9 +1,10 @@
 export default class PciProjectNewService {
   /* @ngInject */
-  constructor(OvhApiCloud, OvhApiMeAgreements, OvhApiMeVoucherAccount) {
+  constructor(OvhApiCloud, OvhApiMeAgreements, OvhApiMeVoucherAccount, ovhContacts) {
     this.OvhApiCloud = OvhApiCloud;
     this.OvhApiMeAgreements = OvhApiMeAgreements;
     this.OvhApiMeVoucherAccount = OvhApiMeVoucherAccount;
+    this.ovhContacts = ovhContacts;
   }
 
   createNewProject(params = {}) {
@@ -11,6 +12,19 @@ export default class PciProjectNewService {
       .v6()
       .createProject({}, params)
       .$promise;
+  }
+
+  getBillingContact() {
+    return this.ovhContacts
+      .findMatchingContactFromNic()
+      .then((contact) => {
+        if (!contact.id) {
+          return this.ovhContacts
+            .createContact(contact);
+        }
+
+        return contact;
+      });
   }
 
   getDlpStatus() {
