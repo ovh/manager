@@ -1,27 +1,24 @@
 import angular from 'angular';
-import '@ovh-ux/ng-translate-async-loader';
 import '@uirouter/angularjs';
-import 'angular-translate';
-import 'ovh-ui-angular';
-import 'ovh-api-services';
+import 'oclazyload';
 
-import volumeEdit from './volume-edit';
-import component from './edit.component';
-import routing from './edit.routing';
-
-const moduleName = 'ovhManagerPciStoragesBlocksBlockEdit';
+const moduleName = 'ovhManagerPciStoragesBlocksBlockEditLazyLoading';
 
 angular
   .module(moduleName, [
     'ui.router',
-    'oui',
-    'ovh-api-services',
-    'ngTranslateAsyncLoader',
-    'pascalprecht.translate',
-    volumeEdit,
+    'oc.lazyLoad',
   ])
-  .config(routing)
-  .component('pciProjectStorageBlocksBlockEdit', component)
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .config(($stateProvider) => {
+    $stateProvider.state('pci.projects.project.storages.blocks.block.edit.**', {
+      url: '/edit',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+        return import('./edit.module')
+          .then(mod => $ocLazyLoad.inject(mod.default || mod));
+      },
+    });
+  });
 
 export default moduleName;

@@ -1,18 +1,24 @@
 import angular from 'angular';
-import 'angular-translate';
 import '@uirouter/angularjs';
+import 'oclazyload';
 
-import importIp from './import';
-import routing from './imports.routing';
-
-const moduleName = 'ovhManagerPciProjectFailoverIpsImports';
+const moduleName = 'ovhManagerPciProjectFailoverIpsImportsLazyLoading';
 
 angular
   .module(moduleName, [
-    importIp,
     'ui.router',
-    'pascalprecht.translate',
+    'oc.lazyLoad',
   ])
-  .config(routing);
+  .config(($stateProvider) => {
+    $stateProvider.state('pci.projects.project.failover-ips.imports.**', {
+      url: '/imports',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+        return import('./imports.module')
+          .then(mod => $ocLazyLoad.inject(mod.default || mod));
+      },
+    });
+  });
 
 export default moduleName;

@@ -1,23 +1,24 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
-import 'ovh-api-services';
-import '@ovh-ux/ng-translate-async-loader';
-import 'angular-translate';
+import 'oclazyload';
 
-import estimate from './estimate';
-import routing from './billing.routing';
-
-const moduleName = 'ovhManagerPciProjectBillingConsumption';
+const moduleName = 'ovhManagerPciProjectBillingLazyLoading';
 
 angular
   .module(moduleName, [
-    estimate,
-    'ngTranslateAsyncLoader',
-    'pascalprecht.translate',
-    'ovh-api-services',
     'ui.router',
+    'oc.lazyLoad',
   ])
-  .config(routing)
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .config(($stateProvider) => {
+    $stateProvider.state('pci.projects.project.billing.**', {
+      url: '/billing',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+        return import('./billing.module')
+          .then(mod => $ocLazyLoad.inject(mod.default || mod));
+      },
+    });
+  });
 
 export default moduleName;

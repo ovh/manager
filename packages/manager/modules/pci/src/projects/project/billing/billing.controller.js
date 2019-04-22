@@ -5,7 +5,7 @@ export default class CloudProjectBillingConsumptionCurrentCtrl {
     $translate,
     $state,
     CucCloudMessage,
-    CloudProjectBillingService,
+    CloudProjectBilling,
     OvhApiCloudProjectUsageCurrent,
     projectId,
   ) {
@@ -19,7 +19,7 @@ export default class CloudProjectBillingConsumptionCurrentCtrl {
       .v6()
       .get({ serviceName: projectId })
       .$promise
-      .then(billingInfo => CloudProjectBillingService.getConsumptionDetails(
+      .then(billingInfo => CloudProjectBilling.getConsumptionDetails(
         billingInfo,
         billingInfo,
       ))

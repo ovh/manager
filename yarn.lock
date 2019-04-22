@@ -9126,14 +9126,7 @@ ovh-angular-ui-confirm-modal@^1.0.2:
   resolved "https://registry.yarnpkg.com/ovh-angular-ui-confirm-modal/-/ovh-angular-ui-confirm-modal-1.0.2.tgz#92e6736588a4fb1de6353f1a17ab1962679a698d"
   integrity sha512-3V17DbzWjUjl9sKCd25Oycn+7eqg6iW+DpizwVmixHFzDNDMnpKSGmxRLrOq+q9YNE7IepoAKWjoSiy2+zOEEg==
 
-ovh-api-services@^6.12.0:
-  version "6.12.0"
-  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-6.12.0.tgz#ce275f0d6d4080f38b1b63e92816a628d7476bc5"
-  integrity sha512-gTXR6xPkwqeYQg/rx60so4LHD6lmIo2KL0lJqq95hc3wQFwV9xyY0pKc6vkY5j51YYn38i34gajcVLjcU5XKPA==
-  dependencies:
-    lodash "^3.10.1"
-
-ovh-api-services@^6.12.0:
+ovh-api-services@^6.11.0, ovh-api-services@^6.12.0:
   version "6.12.0"
   resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-6.12.0.tgz#ce275f0d6d4080f38b1b63e92816a628d7476bc5"
   integrity sha512-gTXR6xPkwqeYQg/rx60so4LHD6lmIo2KL0lJqq95hc3wQFwV9xyY0pKc6vkY5j51YYn38i34gajcVLjcU5XKPA==
@@ -13161,7 +13154,7 @@ xregexp@4.0.0:
   resolved "https://registry.yarnpkg.com/xtend/-/xtend-4.0.1.tgz#a5c6d532be656e23db820efb943a1f04998d63af"
   integrity sha1-pcbVMr5lbiPbgg77lDofBJmNY68=
 
-xterm@^3.12.2:
+xterm@^3.4.1:
   version "3.12.2"
   resolved "https://registry.yarnpkg.com/xterm/-/xterm-3.12.2.tgz#ec8563857c7b098973bab4dbf537f1a7c6a790c8"
   integrity sha512-FSXovDdsqIKqoayC6+zFzhaHi+A3NSceM5rgTW88DH7sS96HdwMToB2p1rW+FyNsSqfAgFwlXDRQk+fh/aHvPQ==

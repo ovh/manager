@@ -1,25 +1,24 @@
 import angular from 'angular';
-import 'ovh-ui-angular';
+import '@uirouter/angularjs';
+import 'oclazyload';
 
-import blocks from './blocks';
-import cloudArchive from './cloud-archives';
-import instanceBackups from './instance-backups';
-import objects from './objects';
-import snapshots from './snapshots';
-import routing from './storages.routing';
-
-const moduleName = 'ovhManagerPciStorages';
+const moduleName = 'ovhManagerPciStoragesLazyLoading';
 
 angular
   .module(moduleName, [
-    blocks,
-    cloudArchive,
-    instanceBackups,
-    'oui',
-    objects,
-    snapshots,
     'ui.router',
+    'oc.lazyLoad',
   ])
-  .config(routing);
+  .config(($stateProvider) => {
+    $stateProvider.state('pci.projects.project.storages.**', {
+      url: '/storages',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+        return import('./storages.module')
+          .then(mod => $ocLazyLoad.inject(mod.default || mod));
+      },
+    });
+  });
 
 export default moduleName;

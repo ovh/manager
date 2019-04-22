@@ -1,16 +1,24 @@
 import angular from 'angular';
-import 'angular-translate';
 import '@uirouter/angularjs';
+import 'oclazyload';
 
-import routing from './edit.routing';
-
-const moduleName = 'ovhManagerPciProjectFailoverIpEdit';
+const moduleName = 'ovhManagerPciProjectFailoverIpEditLazyLoading';
 
 angular
   .module(moduleName, [
     'ui.router',
-    'pascalprecht.translate',
+    'oc.lazyLoad',
   ])
-  .config(routing);
+  .config(($stateProvider) => {
+    $stateProvider.state('pci.projects.project.failover-ips.edit.**', {
+      url: '/:serviceName/edit',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+        return import('./edit.module')
+          .then(mod => $ocLazyLoad.inject(mod.default || mod));
+      },
+    });
+  });
 
 export default moduleName;

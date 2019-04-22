@@ -1,35 +1,24 @@
 import angular from 'angular';
-import '@ovh-ux/ng-translate-async-loader';
 import '@uirouter/angularjs';
-import 'angular-translate';
-import 'ovh-ui-angular';
-import '@ovh-ux/ng-ovh-payment-method';
-import '@ovh-ux/ng-ovh-contacts';
+import 'oclazyload';
 
-// deps
-import newProjectDescription from './description';
-import newProjectPayment from './payment';
-
-import routing from './new.routing';
-import service from './new.service';
-import component from './new.component';
-
-const moduleName = 'ovhManagerPciProjectsNew';
+const moduleName = 'ovhManagerPciProjectsNewLazyLoading';
 
 angular
   .module(moduleName, [
-    newProjectDescription,
-    newProjectPayment,
     'ui.router',
-    'oui',
-    'ngTranslateAsyncLoader',
-    'pascalprecht.translate',
-    'ngOvhPaymentMethod',
-    'ngOvhContacts',
+    'oc.lazyLoad',
   ])
-  .config(routing)
-  .run(/* @ngTranslationsInject:json ./translations */)
-  .service('PciProjectNewService', service)
-  .component('pciProjectNew', component);
+  .config(($stateProvider) => {
+    $stateProvider.state('pci.projects.new.**', {
+      url: '/new?description&projectId',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+        return import('./new.module')
+          .then(mod => $ocLazyLoad.inject(mod.default || mod));
+      },
+    });
+  });
 
 export default moduleName;
