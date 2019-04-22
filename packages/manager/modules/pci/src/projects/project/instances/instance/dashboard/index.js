@@ -1,21 +1,24 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
-import '@ovh-ux/ng-translate-async-loader';
+import 'oclazyload';
 
-import component from './dashboard.component';
-import instanceStatusComponent from './instance-status.component';
-import routing from './dashboard.routing';
-
-const moduleName = 'ovhManagerPciProjectInstanceDashboard';
+const moduleName = 'ovhManagerPciProjectInstanceDashboardLazyLoading';
 
 angular
   .module(moduleName, [
-    'ngOvhOtrs',
     'ui.router',
+    'oc.lazyLoad',
   ])
-  .component('ovhManagerPciProjectInstanceDashboardComponent', component)
-  .component('ovhManagerPciProjectInstanceDashboardInstanceStatusComponent', instanceStatusComponent)
-  .config(routing)
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .config(($stateProvider) => {
+    $stateProvider.state('pci.projects.project.instances.instance.dashboard.**', {
+      url: '/dashboard',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+        return import('./dashboard.module')
+          .then(mod => $ocLazyLoad.inject(mod.default || mod));
+      },
+    });
+  });
 
 export default moduleName;

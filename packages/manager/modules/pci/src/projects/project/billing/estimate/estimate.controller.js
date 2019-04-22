@@ -16,7 +16,7 @@ export default /* @ngInject */ function CloudProjectBillingConsumptionEstimateCt
   CucCloudMessage,
   OvhApiCloudProjectUsageForecast,
   OvhApiCloudProjectUsageCurrent,
-  CloudProjectBillingService,
+  CloudProjectBilling,
 ) {
   const self = this;
   self.loading = false;
@@ -48,7 +48,7 @@ export default /* @ngInject */ function CloudProjectBillingConsumptionEstimateCt
       .get({
         serviceName: $stateParams.projectId,
       }).$promise
-      .then(billingInfo => CloudProjectBillingService
+      .then(billingInfo => CloudProjectBilling
         .getConsumptionDetails(billingInfo, billingInfo)
         .then((data) => {
           self.data.estimateTotals = data.totals;
@@ -65,7 +65,7 @@ export default /* @ngInject */ function CloudProjectBillingConsumptionEstimateCt
       .get({
         serviceName: $stateParams.projectId,
       }).$promise
-      .then(billingInfo => CloudProjectBillingService.getConsumptionDetails(
+      .then(billingInfo => CloudProjectBilling.getConsumptionDetails(
         billingInfo,
         billingInfo,
       ))

@@ -1,25 +1,24 @@
 import angular from 'angular';
-import '@ovh-ux/ng-translate-async-loader';
 import '@uirouter/angularjs';
-import 'angular-translate';
-import 'ovh-ui-angular';
-import 'ovh-api-services';
+import 'oclazyload';
 
-import component from './detach.component';
-import routing from './detach.routing';
-
-const moduleName = 'ovhManagerPciStoragesBlocksBlockDetach';
+const moduleName = 'ovhManagerPciStoragesBlocksBlockDetachLazyLoading';
 
 angular
   .module(moduleName, [
     'ui.router',
-    'oui',
-    'ovh-api-services',
-    'ngTranslateAsyncLoader',
-    'pascalprecht.translate',
+    'oc.lazyLoad',
   ])
-  .config(routing)
-  .component('pciProjectStorageBlocksBlockDetach', component)
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .config(($stateProvider) => {
+    $stateProvider.state('pci.projects.project.storages.blocks.detach.**', {
+      url: '/detach?storageId',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+        return import('./detach.module')
+          .then(mod => $ocLazyLoad.inject(mod.default || mod));
+      },
+    });
+  });
 
 export default moduleName;

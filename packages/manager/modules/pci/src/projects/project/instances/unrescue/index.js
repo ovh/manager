@@ -1,24 +1,24 @@
 import angular from 'angular';
-import '@ovh-ux/ng-translate-async-loader';
 import '@uirouter/angularjs';
-import 'angular-translate';
-import 'ovh-ui-angular';
-import 'ovh-api-services';
+import 'oclazyload';
 
-import unrescue from '../instance/unrescue';
-import routing from './unrescue.routing';
-
-const moduleName = 'ovhManagerPciInstancesUnrescue';
+const moduleName = 'ovhManagerPciInstancesUnrescueLazyLoading';
 
 angular
   .module(moduleName, [
-    unrescue,
     'ui.router',
-    'oui',
-    'ovh-api-services',
-    'ngTranslateAsyncLoader',
-    'pascalprecht.translate',
+    'oc.lazyLoad',
   ])
-  .config(routing);
+  .config(($stateProvider) => {
+    $stateProvider.state('pci.projects.project.instances.unrescue.**', {
+      url: '/rescue/end?instanceId',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+        return import('./unrescue.module')
+          .then(mod => $ocLazyLoad.inject(mod.default || mod));
+      },
+    });
+  });
 
 export default moduleName;

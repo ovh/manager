@@ -1,6 +1,6 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.instances.instance', {
-    url: '/{instanceId}',
+    url: '/:instanceId',
     atInternet: { ignore: true },
     abstract: true,
     resolve: {

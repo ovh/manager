@@ -1,24 +1,24 @@
 import angular from 'angular';
-import '@ovh-ux/ng-translate-async-loader';
 import '@uirouter/angularjs';
-import 'angular-translate';
-import 'ovh-ui-angular';
-import 'ovh-api-services';
+import 'oclazyload';
 
-import backupInstance from '../instance/backup';
-import routing from './backup.routing';
-
-const moduleName = 'ovhManagerPciInstancesBackup';
+const moduleName = 'ovhManagerPciInstancesBackupLazyLoading';
 
 angular
   .module(moduleName, [
-    backupInstance,
     'ui.router',
-    'oui',
-    'ovh-api-services',
-    'ngTranslateAsyncLoader',
-    'pascalprecht.translate',
+    'oc.lazyLoad',
   ])
-  .config(routing);
+  .config(($stateProvider) => {
+    $stateProvider.state('pci.projects.project.instances.backup.**', {
+      url: '/backup?instanceId',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+        return import('./backup.module')
+          .then(mod => $ocLazyLoad.inject(mod.default || mod));
+      },
+    });
+  });
 
 export default moduleName;

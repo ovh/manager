@@ -1,33 +1,24 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
-import 'ovh-ui-angular';
-import '@ovh-ux/ng-translate-async-loader';
-import 'angular-translate';
-import '@ovh-ux/ng-ovh-payment-method';
+import 'oclazyload';
 
-// deps
-import paymentAdd from './add';
-import paymentCredits from './credits';
-import paymentDefault from './default';
-
-import routing from './payment.routing';
-import component from './payment.component';
-
-const moduleName = 'ovhManagerPciProjectsNewPayment';
+const moduleName = 'ovhManagerPciProjectsNewPaymentLazyLoading';
 
 angular
   .module(moduleName, [
-    paymentAdd,
-    paymentCredits,
-    paymentDefault,
     'ui.router',
-    'oui',
-    'ngTranslateAsyncLoader',
-    'pascalprecht.translate',
-    'ngOvhPaymentMethod',
+    'oc.lazyLoad',
   ])
-  .config(routing)
-  .run(/* @ngTranslationsInject:json ./translations */)
-  .component('pciProjectNewPayment', component);
+  .config(($stateProvider) => {
+    $stateProvider.state('pci.projects.new.payment.**', {
+      url: '/payment?mode&credit&voucher&hiPayStatus&paypalAgreementStatus',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+        return import('./payment.module')
+          .then(mod => $ocLazyLoad.inject(mod.default || mod));
+      },
+    });
+  });
 
 export default moduleName;

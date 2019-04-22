@@ -1,24 +1,24 @@
 import angular from 'angular';
-import '@ovh-ux/ng-translate-async-loader';
 import '@uirouter/angularjs';
-import 'angular-translate';
-import 'ovh-ui-angular';
-import 'ovh-api-services';
+import 'oclazyload';
 
-import reboot from '../instance/reboot';
-import routing from './soft-reboot.routing';
-
-const moduleName = 'ovhManagerPciInstancesSoftReboot';
+const moduleName = 'ovhManagerPciInstancesSoftRebootLazyLoading';
 
 angular
   .module(moduleName, [
-    reboot,
     'ui.router',
-    'oui',
-    'ovh-api-services',
-    'ngTranslateAsyncLoader',
-    'pascalprecht.translate',
+    'oc.lazyLoad',
   ])
-  .config(routing);
+  .config(($stateProvider) => {
+    $stateProvider.state('pci.projects.project.instances.soft-reboot.**', {
+      url: '/soft-reboot?instanceId',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+        return import('./soft-reboot.module')
+          .then(mod => $ocLazyLoad.inject(mod.default || mod));
+      },
+    });
+  });
 
 export default moduleName;

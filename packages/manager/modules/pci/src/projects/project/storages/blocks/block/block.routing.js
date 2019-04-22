@@ -1,7 +1,7 @@
 export default /* @ngInject */($stateProvider) => {
   $stateProvider
     .state('pci.projects.project.storages.blocks.block', {
-      url: '/{storageId}',
+      url: '/:storageId',
       abstract: true,
       resolve: {
         storageId: /* @ngInject */$transition$ => $transition$.params().storageId,

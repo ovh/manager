@@ -1,37 +1,24 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
-import '@ovh-ux/ng-translate-async-loader';
+import 'oclazyload';
 
-import activeMonthlyBilling from './active-monthly-billing';
-import backup from './backup';
-import deleteInstance from './delete';
-import hardReboot from './hard-reboot';
-import reinstall from './reinstall';
-import rescue from './rescue';
-import resume from './resume';
-import softReboot from './soft-reboot';
-import unrescue from './unrescue';
-
-import dashboard from './dashboard';
-import routing from './instance.routing';
-
-const moduleName = 'ovhManagerPciInstance';
+const moduleName = 'ovhManagerPciInstanceLazyLoading';
 
 angular
   .module(moduleName, [
-    'ngOvhOtrs',
     'ui.router',
-    dashboard,
-    activeMonthlyBilling,
-    backup,
-    deleteInstance,
-    hardReboot,
-    reinstall,
-    rescue,
-    resume,
-    softReboot,
-    unrescue,
+    'oc.lazyLoad',
   ])
-  .config(routing);
+  .config(($stateProvider) => {
+    $stateProvider.state('pci.projects.project.instances.instance.**', {
+      url: '/:instanceId',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+        return import('./instance.module')
+          .then(mod => $ocLazyLoad.inject(mod.default || mod));
+      },
+    });
+  });
 
 export default moduleName;

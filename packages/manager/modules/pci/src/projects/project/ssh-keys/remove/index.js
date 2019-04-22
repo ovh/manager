@@ -1,22 +1,24 @@
 import angular from 'angular';
+import '@uirouter/angularjs';
+import 'oclazyload';
 
-import '@ovh-ux/manager-core';
-import '@ovh-ux/ng-ovh-api-wrappers'; // should be a peer dependency of ovh-api-services
-import 'angular-translate';
-import 'ovh-api-services';
-import 'ovh-ui-angular';
-
-import routing from './remove.routing';
-
-const moduleName = 'ovhManagerPciProjectSshKeysRemove';
+const moduleName = 'ovhManagerPciProjectSshKeysRemoveLazyLoading';
 
 angular
   .module(moduleName, [
-    'oui',
-    'ovhManagerCore',
-    'ovh-api-services',
-    'pascalprecht.translate',
+    'ui.router',
+    'oc.lazyLoad',
   ])
-  .config(routing);
+  .config(($stateProvider) => {
+    $stateProvider.state('pci.projects.project.sshKeys.remove.**', {
+      url: '/:keyId/remove',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+        return import('./remove.module')
+          .then(mod => $ocLazyLoad.inject(mod.default || mod));
+      },
+    });
+  });
 
 export default moduleName;

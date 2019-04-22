@@ -1,41 +1,24 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
-import '@ovh-ux/manager-core';
-import 'angular-translate';
-import '@ovh-ux/ng-translate-async-loader';
-import 'ovh-api-services';
+import 'oclazyload';
 
-import component from './private-networks.component';
-import routing from './private-networks.routing';
-import service from './private-networks.service';
-
-import add from './add';
-import deletePrivateNetwork from './delete';
-import list from './list';
-import vrack from './vrack';
-
-import empty from './empty';
-import header from './header';
-
-const moduleName = 'ovhManagerPciPrivateNetworks';
+const moduleName = 'ovhManagerPciPrivateNetworksLazyLoading';
 
 angular
   .module(moduleName, [
-    'ovhManagerCore',
-    'ngTranslateAsyncLoader',
-    'pascalprecht.translate',
-    'ovh-api-services',
     'ui.router',
-    empty,
-    header,
-    add,
-    deletePrivateNetwork,
-    list,
-    vrack,
+    'oc.lazyLoad',
   ])
-  .config(routing)
-  .component('pciProjectPrivateNetworks', component)
-  .service('PciPrivateNetworks', service)
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .config(($stateProvider) => {
+    $stateProvider.state('pci.projects.project.privateNetwork.**', {
+      url: '/network/private',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+        return import('./private-networks.module')
+          .then(mod => $ocLazyLoad.inject(mod.default || mod));
+      },
+    });
+  });
 
 export default moduleName;

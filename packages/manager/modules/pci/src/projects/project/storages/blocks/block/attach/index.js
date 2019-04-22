@@ -1,26 +1,24 @@
 import angular from 'angular';
-import '@ovh-ux/ng-translate-async-loader';
 import '@uirouter/angularjs';
-import 'angular-translate';
-import 'ovh-ui-angular';
-import 'ovh-api-services';
+import 'oclazyload';
 
-import component from './attach.component';
-import routing from './attach.routing';
-
-const moduleName = 'ovhManagerPciStoragesBlocksBlockAttach';
+const moduleName = 'ovhManagerPciStoragesBlocksBlockAttachLazyLoading';
 
 angular
   .module(moduleName, [
     'ui.router',
-    'oui',
-    'ovh-api-services',
-    'ngTranslateAsyncLoader',
-    'pascalprecht.translate',
+    'oc.lazyLoad',
   ])
-  .config(routing)
-  .component('pciProjectStorageBlocksBlockAttach', component)
+  .config(($stateProvider) => {
+    $stateProvider.state('pci.projects.project.storages.blocks.attach.**', {
+      url: '/attach?storageId',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-  .run(/* @ngTranslationsInject:json ./translations */);
+        return import('./attach.module')
+          .then(mod => $ocLazyLoad.inject(mod.default || mod));
+      },
+    });
+  });
 
 export default moduleName;

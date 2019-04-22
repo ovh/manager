@@ -1,19 +1,24 @@
 import angular from 'angular';
-import '@ovh-ux/ng-translate-async-loader';
 import '@uirouter/angularjs';
-import 'angular-translate';
+import 'oclazyload';
 
-import routing from './creating.routing';
-
-const moduleName = 'ovhManagerPciProjectsNewCreating';
+const moduleName = 'ovhManagerPciProjectsNewCreatingLazyLoading';
 
 angular
   .module(moduleName, [
     'ui.router',
-    'ngTranslateAsyncLoader',
-    'pascalprecht.translate',
+    'oc.lazyLoad',
   ])
-  .config(routing)
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .config(($stateProvider) => {
+    $stateProvider.state('pci.projects.project.creating.**', {
+      url: '/creating',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+        return import('./creating.module')
+          .then(mod => $ocLazyLoad.inject(mod.default || mod));
+      },
+    });
+  });
 
 export default moduleName;

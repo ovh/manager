@@ -1,25 +1,24 @@
 import angular from 'angular';
-import '@ovh-ux/ng-translate-async-loader';
 import '@uirouter/angularjs';
-import 'angular-translate';
-import 'ovh-ui-angular';
-import 'ovh-api-services';
+import 'oclazyload';
 
-import component from './active-monthly-billing.component';
-import routing from './active-monthly-billing.routing';
-
-const moduleName = 'ovhManagerPciInstancesInstanceActiveMonthlyBilling';
+const moduleName = 'ovhManagerPciInstancesInstanceActiveMonthlyBillingLazyLoading';
 
 angular
   .module(moduleName, [
     'ui.router',
-    'oui',
-    'ovh-api-services',
-    'ngTranslateAsyncLoader',
-    'pascalprecht.translate',
+    'oc.lazyLoad',
   ])
-  .config(routing)
-  .component('pciInstancesInstanceActiveMonthlyBilling', component)
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .config(($stateProvider) => {
+    $stateProvider.state('pci.projects.project.instances.instance.active-monthly-billing.**', {
+      url: '/billing/monthly/activate',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+        return import('./active-monthly-billing.module')
+          .then(mod => $ocLazyLoad.inject(mod.default || mod));
+      },
+    });
+  });
 
 export default moduleName;

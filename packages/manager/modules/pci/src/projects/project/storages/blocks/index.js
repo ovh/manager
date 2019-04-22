@@ -1,42 +1,24 @@
 import angular from 'angular';
-import '@ovh-ux/manager-core';
-import '@ovh-ux/ng-translate-async-loader';
 import '@uirouter/angularjs';
-import 'angular-translate';
 import 'oclazyload';
-import 'ovh-ui-angular';
-import 'ovh-api-services';
-import 'angular-ui-bootstrap';
-import '@ovh-ux/ng-ovh-user-pref';
 
-import add from './add';
-import block from './block';
-import help from './help';
-
-import component from './blocks.component';
-import service from './blocks.service';
-
-import routing from './blocks.routing';
-
-const moduleName = 'ovhManagerPciStoragesBlocks';
+const moduleName = 'ovhManagerPciStoragesBlocksLazyLoading';
 
 angular
   .module(moduleName, [
-    add,
-    block,
-    help,
-    'ngOvhUserPref',
-    'ngTranslateAsyncLoader',
-    'oui',
-    'ovh-api-services',
-    'ovhManagerCore',
-    'pascalprecht.translate',
     'ui.router',
-    'ui.bootstrap',
+    'oc.lazyLoad',
   ])
-  .config(routing)
-  .component('pciProjectStorageBlocks', component)
-  .service('PciProjectStorageBlockService', service)
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .config(($stateProvider) => {
+    $stateProvider.state('pci.projects.project.storages.blocks.**', {
+      url: '/blocks?help',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+        return import('./blocks.module')
+          .then(mod => $ocLazyLoad.inject(mod.default || mod));
+      },
+    });
+  });
 
 export default moduleName;
