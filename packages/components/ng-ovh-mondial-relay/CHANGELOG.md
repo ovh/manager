@@ -1,3 +1,35 @@
+# [6.0.0](https://github.com/ovh-ux/ng-ovh-mondial-relay/compare/v5.0.0...v6.0.0) (2019-04-23)
+
+
+### Bug Fixes
+
+* remove form action when submit search ([039eddb](https://github.com/ovh-ux/ng-ovh-mondial-relay/commit/039eddb))
+
+
+### Code Refactoring
+
+* rename component and direct use of constants ([cb45577](https://github.com/ovh-ux/ng-ovh-mondial-relay/commit/cb45577))
+
+
+### BREAKING CHANGES
+
+* component is now named as `ovhMondialRelay`
+  Before:
+
+  ```html
+  <div data-mondial-relay
+       data-ng-model="$ctrl.selectedRelay">
+  </div>
+  ```
+
+  After:
+
+  ```html
+  <ovh-mondial-relay data-ng-model="$ctrl.selectedRelay"></ovh-mondial-relay>
+  ```
+
+
+
 # [5.0.0](https://github.com/ovh-ux/ng-ovh-mondial-relay/compare/v4.1.1...v5.0.0) (2019-02-19)
 
 
