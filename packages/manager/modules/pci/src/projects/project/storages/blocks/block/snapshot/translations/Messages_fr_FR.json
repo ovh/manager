@@ -2,7 +2,7 @@
   "pci_projects_project_storages_blocks_block_snapshot_title": "Création d'un snapshot de volume",
   "pci_projects_project_storages_blocks_block_snapshot_name_label": "Saisissez le nom de votre snapshot :",
   "pci_projects_project_storages_blocks_block_snapshot_warning_attached": "Votre volume est actuellement attaché à une instance. Pour garantir l'intégrité de vos données, nous vous conseillons de détacher ce disque avant d'effectuer un snapshot.",
-  "pci_projects_project_storages_blocks_block_snapshot_monthly_price":  "({{ size }} x {{ price }} HT/Gio/mois)",
+  "pci_projects_project_storages_blocks_block_snapshot_monthly_price": "({{ size }} x {{ price }} HT/Gio/mois)",
   "pci_projects_project_storages_blocks_block_snapshot_submit_label": "Créer le snapshot",
   "pci_projects_project_storages_blocks_block_snapshot_cancel_label": "Annuler",
 
