@@ -63,7 +63,10 @@ export const MONDIAL_RELAY = {
   metroFrZipValidator: /^((0[1-9])|([1-8][0-9])|(9[0-8])|(2A)|(2B))[0-9]{3}$/,
 };
 
+export const MONDIAL_RELAY_ELEMENT = 'ovh-mondial-relay';
+
 export default {
   MONDIAL_RELAY,
+  MONDIAL_RELAY_ELEMENT,
   PICTURES,
 };

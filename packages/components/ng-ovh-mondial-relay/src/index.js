@@ -5,9 +5,7 @@ import 'angular-translate';
 import 'angular-leaflet-directive';
 import 'ovh-api-services';
 
-import { PICTURES, MONDIAL_RELAY } from './constants';
-
-import directive from './directive';
+import component from './component';
 
 import './index.less';
 
@@ -19,9 +17,7 @@ angular
     'ovh-api-services',
     'pascalprecht.translate',
   ])
-  .constant('MONDIAL_RELAY', MONDIAL_RELAY)
-  .constant('MONDIAL_RELAY_PICS', PICTURES)
-  .directive('mondialRelay', directive)
+  .component('ovhMondialRelay', component)
   .run(/* @ngTranslationsInject ./translations */);
 
 export default moduleName;
