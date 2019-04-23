@@ -1,3 +1,12 @@
+## [6.0.1](https://github.com/ovh-ux/ng-ovh-mondial-relay/compare/v6.0.0...v6.0.1) (2019-04-23)
+
+
+### Bug Fixes
+
+* **controller:** set loading init to false correctly ([#26](https://github.com/ovh-ux/ng-ovh-mondial-relay/issues/26)) ([cfe6060](https://github.com/ovh-ux/ng-ovh-mondial-relay/commit/cfe6060))
+
+
+
 # [6.0.0](https://github.com/ovh-ux/ng-ovh-mondial-relay/compare/v5.0.0...v6.0.0) (2019-04-23)
 
 
