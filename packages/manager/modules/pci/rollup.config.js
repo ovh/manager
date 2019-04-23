@@ -1,5 +1,5 @@
-import path from 'path';
-import rollupConfig from '@ovh-ux/component-rollup-config';
+const path = require('path');
+const rollupConfig = require('@ovh-ux/component-rollup-config');
 
 const config = rollupConfig({
   input: 'src/index.js',
@@ -12,7 +12,11 @@ const config = rollupConfig({
   },
 });
 
-const outputs = [config.es()];
+const outputs = [config.es({
+  output: {
+    sourcemap: false,
+  },
+})];
 
 if (process.env.BUILD === 'production') {
   outputs.push(config.cjs());
@@ -27,4 +31,4 @@ if (process.env.BUILD === 'production') {
   );
 }
 
-export default outputs;
+module.exports = outputs;
