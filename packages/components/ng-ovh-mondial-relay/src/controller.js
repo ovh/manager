@@ -66,6 +66,7 @@ export default class {
       country: MONDIAL_RELAY.defaultCountry,
     };
 
+    this.loading.init = false;
     return this.$q.all([
       // workaround to fix display bug on the map
       this.leafletData.getMap(this.mapId).then((leafletMap) => {
@@ -77,10 +78,7 @@ export default class {
       }),
 
       this.gotoUserLoc(),
-    ])
-      .finally(() => {
-        this.loading.init = false;
-      });
+    ]);
   }
 
   /**
