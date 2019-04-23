@@ -1,0 +1,16 @@
+{
+ "cpbe_estimate_summary_header": "Als uw verbruik hetzelfde blijft, dan moet u op de eerste van de {{ month }} het volgende betalen:",
+ "cpbe_estimate_summary_renew_monthly_sub_label": "Verlenging van uw maandelijkse abonnementen: <strong>{{ total }}</strong>",
+ "cpbe_estimate_summary_hourly_consumption_label": "On demand verbruik in {{ month }}: <strong>{{ total }}</strong>",
+ "cpbe_estimate_alert_header_title": "On demand verbruikswaarschuwing",
+ "cpbe_estimate_alert_header_description": "Deze waarschuwing is gebaseerd op de projectie aan het einde van deze maand",
+ "cpbe_estimate_alert_create": "Waarschuwing creëren",
+ "cpbe_estimate_alert_edit": "Wijzigingswaarschuwing",
+ "cpbe_estimate_alert_delete": "Alert verwijderen",
+ "cpbe_estimate_alert_delete_success": "Verbruiksalert verwijderd",
+ "cpbe_estimate_alert_delete_error": "Er is een fout opgetreden tijdens het verwijderen van uw alert. ",
+ "cpbe_estimate_alert_chart_label_now": "Vandaag",
+ "cpbe_estimate_alert_chart_label_future": "Einde van de maand",
+ "cpbe_estimate_alert_chart_label_limit": "Limiet",
+ "cpbe_estimate_price_error_message": "Oeps, het is niet mogelijk informatie over de prijs te achterhalen. "
+}

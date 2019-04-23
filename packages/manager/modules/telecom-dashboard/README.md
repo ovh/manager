@@ -1,5 +1,7 @@
 # telecom-dashboard
 
+[![npm version](https://badgen.net/npm/v/@ovh-ux/manager-telecom-dashboard)](https://www.npmjs.com/package/@ovh-ux/manager-telecom-dashboard) [![Downloads](https://badgen.net/npm/dt/@ovh-ux/manager-telecom-dashboard)](https://npmjs.com/package/@ovh-ux/manager-telecom-dashboard) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/manager/modules/sms)](https://npmjs.com/package/@ovh-ux/manager-telecom-dashboard?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/manager/modules/sms)](https://npmjs.com/package/@ovh-ux/manager-telecom-dashboard?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+
 ## Install
 
 ```sh
@@ -9,7 +11,7 @@ yarn add @ovh-ux/manager-telecom-dashboard
 ## Usage
 
 ```js
-import 'angular';
+import angular from 'angular';
 import ovhManagerTelecomDashboard from '@ovh-ux/manager-telecom-dashboard';
 
 angular

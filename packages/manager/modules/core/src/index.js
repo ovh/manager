@@ -15,9 +15,11 @@ import 'angular-dynamic-locale';
 import 'angular-translate';
 import 'angular-translate-loader-pluggable';
 
-import '@ovh-ux/ng-ovh-apiv7';
+import '@ovh-ux/ng-ovh-swimming-poll';
+import '@ovh-ux/ng-ovh-api-wrappers';
 import 'ovh-api-services';
 
+import coreConfig from './config';
 import translateServiceProvider from './translate/translate.service';
 import sessionService from './session/session.service';
 
@@ -29,12 +31,14 @@ const moduleName = 'ovhManagerCore';
 
 angular
   .module(moduleName, [
-    'ngOvhApiv7',
+    'ngOvhSwimmingPoll',
+    'ngOvhApiWrappers',
     'ngSanitize',
     'angular-translate-loader-pluggable',
     'ovh-api-services',
     'pascalprecht.translate',
     'tmh.dynamicLocale',
+    coreConfig,
     ngTranslateAsyncLoader,
     ovhOuiAngularTranslations,
     ngOvhHttp,
@@ -44,9 +48,6 @@ angular
   .constant('CORE_LANGUAGES', LANGUAGES)
 
   .constant('CORE_REDIRECT_URLS', REDIRECT_URLS)
-  // TODO : remove TARGET constant
-  // We have to deliver a SPA without any reference to the TARGET, should be managed by the API
-  .constant('TARGET', 'EU')
   .constant('CORE_URLS', URLS)
   .provider('TranslateService', translateServiceProvider)
   .config(($translateProvider, translatePluggableLoaderProvider, TranslateServiceProvider) => {
@@ -132,6 +133,12 @@ angular
       .then(() => injectAngularLocale(angularLocale))
       .then(() => tmhDynamicLocale.set(angularLocale));
   })
+  .run(/* @ngInject */ ($rootScope, TranslateService) => {
+    $rootScope.$on('lang.onChange', (event, { lang }) => {
+      TranslateService.setUserLocale(lang);
+      window.location.reload();
+    });
+  })
   .run((ssoAuthentication/* , User */) => {
     ssoAuthentication.login(); // .then(() => User.getUser());
   })
@@ -193,6 +200,5 @@ angular
     set(OvhHttpProvider, 'returnSuccessKey', 'data'); // By default, request return response.data
     set(OvhHttpProvider, 'returnErrorKey', 'data'); // By default, request return error.data
   });
-
 
 export default moduleName;

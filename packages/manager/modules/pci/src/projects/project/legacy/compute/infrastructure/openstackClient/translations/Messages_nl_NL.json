@@ -1,0 +1,10 @@
+{
+ "cpci_openstack_client_session_error": "Laden van de terminal was niet mogelijk:  {{message}}",
+ "cpci_openstack_client_regions_error": "Laden van de regio's was niet mogelijk: {{message}}",
+ "cpci_openstack_client_session_closed": "De sessie werd onderbroken. ",
+ "cpci_openstack_client": "OpenStack Client",
+ "cpci_openstack_client_regions": "Regio's:",
+ "cpci_openstack_client_commands": "Commando's:",
+ "cpci_openstack_client_select_region": "Kiezen",
+ "cpci_openstack_client_remaining_time": "Resterende tijd: <b>{{time}}</b>"
+}

@@ -1,0 +1,12 @@
+{
+  "vrack_title": "Contratar un vRack",
+  "vrack_subtitle": "Este servicio es gratis. Le entregaremos su vRack en los próximos minutos. ",
+  "vrack_validationPending": "Por favor, complete su <a href=\"{{url}}\" target='_blank'>orden de pedido</a>.",
+  "vrack_order_delay": "Su vRack estará disponible unos minutos después de validada la orden de pedido.",
+  "vrack_order": "Contratar",
+  "vrack_order_install_now_label": "Instalar ahora",
+  "vrack_contract_empty": "Usted ha aceptado los contratos asociados a este producto.",
+  "vrack_error": "Se ha producido un error.",
+  "vrack_error_reason": "Se ha producido un error: {{message}}",
+  "vrack_adding_success": "La solicitud de activación de su vRack se ha registrado correctamente y se hará efectiva en los próximos minutos, una vez que la orden de pedido <a href=\"{{data.url}}\" target='_blank'>{{data.orderId}}</a> sea validada."
+}

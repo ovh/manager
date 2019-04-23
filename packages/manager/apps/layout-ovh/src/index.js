@@ -16,14 +16,15 @@ import freefax from '@ovh-ux/manager-freefax';
 import sms from '@ovh-ux/manager-sms';
 import welcome from '@ovh-ux/manager-welcome';
 
+import navbar from '@ovh-ux/manager-navbar';
+
 import routing from './manager-layout-ovh.routes';
 import sidebar from './sidebar';
-import navbar from './navbar';
 
-import '@ovh-ux/ng-ovh-apiv7';
+import '@ovh-ux/ng-ovh-api-wrappers';
 import 'angular-ui-bootstrap';
-import 'at-internet-ui-router-plugin';
-import 'ng-at-internet';
+import '@ovh-ux/ng-at-internet';
+import '@ovh-ux/ng-at-internet-ui-router-plugin';
 import 'ovh-ui-angular';
 
 import 'ovh-ui-kit/dist/oui.css';
@@ -35,12 +36,12 @@ import './manager-layout-ovh.less';
 
 angular
   .module('ovhManager', [
-    'atInternetUiRouterPlugin',
     core,
     freefax,
     navbar,
-    'ng-at-internet',
     ngAria,
+    'ngAtInternet',
+    'ngAtInternetUiRouterPlugin',
     ngMessages,
     ngSanitize,
     'oui',

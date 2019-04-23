@@ -1,0 +1,8 @@
+{
+ "pci_projects": "Projetos",
+ "pci_projects_description": "Descrição ",
+ "pci_projects_status": "Estado",
+ "pci_projects_status_ok": "Ativado",
+ "pci_projects_status_deleting": "Eliminação em curso",
+ "pci_projects_project_show": "Visualizar"
+}

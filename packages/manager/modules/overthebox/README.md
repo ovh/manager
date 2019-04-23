@@ -11,12 +11,12 @@ yarn add @ovh-ux/manager-overthebox
 ## Usage
 
 ```js
-import 'angular';
-import managerOverthebox from '@ovh-ux/manager-overthebox';
+import angular from 'angular';
+import ovhManagerOverthebox from '@ovh-ux/manager-overthebox';
 
 angular
   .module('myApp', [
-    managerOverthebox,
+    ovhManagerOverthebox,
   ]);
 ```
 
