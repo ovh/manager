@@ -11,7 +11,7 @@
   "scripts": {
     "build": "rollup -c --environment BUILD:production",
     "dev": "rollup -c --environment BUILD:development",
-    "dev:watch": "yarn run dev --watch",
+    "dev:watch": "node ../../../../scripts/rollup-dev-builder",
     "prepare": "yarn run build",
     "start": "lerna exec --stream --scope='@ovh-ux/manager-pci' --include-filtered-dependencies -- yarn run build",
     "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-pci' --include-filtered-dependencies -- yarn run dev",
