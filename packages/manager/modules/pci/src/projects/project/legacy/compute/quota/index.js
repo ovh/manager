@@ -27,6 +27,11 @@ angular
           controllerAs: 'CloudProjectComputeQuotaCtrl',
         },
       },
+      resolve: {
+        breadcrumb: $translate => $translate
+          .refresh()
+          .then(() => $translate.instant('cpb_quota_protect_title')),
+      },
     });
   })
   .run(/* @ngTranslationsInject:json ./translations */);

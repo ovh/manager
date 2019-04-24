@@ -32,6 +32,11 @@ angular
             controllerAs: 'CloudProjectOpenstackUsersCtrl',
           },
         },
+        resolve: {
+          breadcrumb: $translate => $translate
+            .refresh()
+            .then(() => $translate.instant('openstackusers')),
+        },
       });
 
     $stateProvider

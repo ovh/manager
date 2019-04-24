@@ -1,7 +1,0 @@
-{
- "cpbhd_monthly_header": "Forfait mensili del mese di {{month}} {{year}}",
- "cpbhd_hourly_header": "Consumi on demand del mese di {{month}} {{year}}",
- "cpbhd_bill_link": "Visualizza tutte le fatture",
- "cpbhd_bill_pdf_tooltip": "Visualizza la fattura in PDF",
- "cpbhd_bill_pdf_link": "Fattura {{month}} {{year}}"
-}

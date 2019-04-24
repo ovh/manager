@@ -7,6 +7,7 @@ import 'ovh-api-services';
 import 'ovh-ui-angular';
 
 import billing from './billing';
+import contacts from './contacts';
 import edit from './edit';
 import failoverIps from './failover-ips';
 import instances from './instances';
@@ -15,6 +16,7 @@ import legacy from './legacy';
 import sshKeys from './ssh-keys';
 import privateNetworks from './private-networks';
 import storages from './storages';
+import vouchers from './vouchers';
 import routing from './project.routing';
 
 const moduleName = 'ovhManagerPciProject';
@@ -22,6 +24,7 @@ const moduleName = 'ovhManagerPciProject';
 angular
   .module(moduleName, [
     billing,
+    contacts,
     edit,
     failoverIps,
     instances,
@@ -34,6 +37,7 @@ angular
     'pascalprecht.translate',
     sshKeys,
     storages,
+    vouchers,
   ])
   .config(routing);
 

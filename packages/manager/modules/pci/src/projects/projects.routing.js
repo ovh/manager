@@ -8,10 +8,6 @@ export default /* @ngInject */ ($stateProvider) => {
       controller,
       controllerAs: '$ctrl',
       template,
-      translations: {
-        format: 'json',
-        value: ['.'],
-      },
       resolve: {
         breadcrumb: /* @ngInject */ $translate => $translate
           .refresh()

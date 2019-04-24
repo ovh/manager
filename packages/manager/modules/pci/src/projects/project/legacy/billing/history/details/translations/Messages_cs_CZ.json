@@ -1,7 +1,0 @@
-{
- "cpbhd_monthly_header": "Měsíční paušály za {{month}} {{year}}",
- "cpbhd_hourly_header": "Spotřeba zdrojů na vyžádání za {{month}} {{year}}",
- "cpbhd_bill_link": "Zobrazit všechna vyúčtování",
- "cpbhd_bill_pdf_tooltip": "Zobrazit vyúčtování v PDF",
- "cpbhd_bill_pdf_link": "Vyúčtování za {{month}} {{year}}"
-}

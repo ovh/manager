@@ -5,8 +5,12 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.billing', {
     url: '/billing',
     controller,
-    controllerAs: '$ctrl',
+    controllerAs: 'BillingCtrl',
     template,
+    translations: {
+      format: 'json',
+      value: ['.'],
+    },
     resolve: {
       breadcrumb: $translate => $translate
         .refresh()
