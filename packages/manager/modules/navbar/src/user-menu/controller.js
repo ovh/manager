@@ -145,13 +145,6 @@ export default class {
       click: () => this.trackUserMenuSection('my_contacts', 'contacts'),
     },
 
-    // Tickets
-    {
-      title: this.$translate.instant('navbar_user_list_ticket'),
-      url: URLS.listTicket,
-      click: () => this.trackUserMenuSection('my_otrs_tickets', 'otrs'),
-    },
-
     // Logout
     {
       title: this.$translate.instant('navbar_user_logout'),
