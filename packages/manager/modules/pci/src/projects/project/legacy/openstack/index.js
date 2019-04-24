@@ -19,6 +19,7 @@ angular
   .config(/* @ngInject */ ($stateProvider) => {
     $stateProvider
       .state('pci.projects.project.legacy.compute.openstack', {
+        abstract: true,
         url: '/openstack',
         views: {
           cloudProjectCompute: {

@@ -116,13 +116,13 @@ export const MENU = [
       },
       {
         options: {
-          state: 'pci.projects.project.legacy.billing.vouchers',
+          state: 'pci.projects.project.vouchers',
         },
         translation: 'cloud_sidebar_project_management_credit_vouchers',
       },
       {
         options: {
-          state: 'pci.projects.project.legacy.billing.rights',
+          state: 'pci.projects.project.contacts',
         },
         translation: 'cloud_sidebar_project_management_contact_rights',
       },

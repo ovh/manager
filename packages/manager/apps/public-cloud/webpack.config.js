@@ -23,10 +23,5 @@ module.exports = (env = {}) => {
       ],
       mainFields: ['module', 'browser', 'main'],
     },
-    optimization: {
-      splitChunks: {
-        chunks: 'all',
-      },
-    },
   });
 };

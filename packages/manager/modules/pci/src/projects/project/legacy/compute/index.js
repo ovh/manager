@@ -32,7 +32,7 @@ angular
     $stateProvider
       .state('pci.projects.project.legacy.compute', {
         url: '/compute',
-        // abstract : true,
+        abstract: true,
         views: {
           cloudProject: { //= cloudProject@cloud-project.cloud-project-compute
             template,
