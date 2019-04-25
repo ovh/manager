@@ -5,7 +5,7 @@ import 'angular-translate';
 import 'ovh-ui-angular';
 import 'ovh-api-services';
 
-import backupInstance from '../instance/backup';
+import backupInstance from '../instance/backup/backup.module';
 import routing from './backup.routing';
 
 const moduleName = 'ovhManagerPciInstancesBackup';
