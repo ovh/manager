@@ -1,3 +1,5 @@
+import find from 'lodash/find';
+import filter from 'lodash/filter';
 import get from 'lodash/get';
 import has from 'lodash/has';
 import map from 'lodash/map';
@@ -17,6 +19,7 @@ export default class CloudProjectComputeInfrastructureVirtualMachineAddCtrl {
     OvhApiCloudProjectInstance,
     OvhApiCloudProjectRegion,
     PciProjectRegions,
+    PciProjectsProjectInstanceService,
   ) {
     this.$q = $q;
     this.$translate = $translate;
@@ -25,10 +28,13 @@ export default class CloudProjectComputeInfrastructureVirtualMachineAddCtrl {
     this.OvhApiCloudProjectInstance = OvhApiCloudProjectInstance;
     this.OvhApiCloudProjectRegion = OvhApiCloudProjectRegion;
     this.PciProjectRegions = PciProjectRegions;
+    this.PciProjectsProjectInstanceService = PciProjectsProjectInstanceService;
   }
 
   $onInit() {
-    this.instance = new Instance({});
+    this.instance = new Instance({
+      monthlyBilling: true,
+    });
 
     this.loaders = {
       areRegionsLoading: false,
@@ -45,7 +51,6 @@ export default class CloudProjectComputeInfrastructureVirtualMachineAddCtrl {
     this.model = {
       flavorGroup: null,
       image: null,
-      monthlyBilling: true,
       number: 1,
       location: null,
       datacenter: null,
@@ -59,7 +64,7 @@ export default class CloudProjectComputeInfrastructureVirtualMachineAddCtrl {
       name: this.$translate.instant('pci_projects_project_instances_add_privateNetwork_none'),
     };
     this.selectedPrivateNetwork = this.defaultPrivateNetwork;
-    this.privateNetworks = [this.defaultPrivateNetwork];
+    this.availablePrivateNetworks = [this.defaultPrivateNetwork];
   }
 
   loadMessages() {
@@ -87,6 +92,20 @@ export default class CloudProjectComputeInfrastructureVirtualMachineAddCtrl {
   onRegionChange() {
     this.displaySelectedRegion = true;
     this.instance.region = this.model.datacenter.name;
+
+    this.availablePrivateNetworks = [
+      this.defaultPrivateNetwork,
+      ...filter(
+        this.privateNetworks,
+        network => find(
+          network.regions,
+          {
+            region: this.instance.region,
+            status: 'ACTIVE',
+          },
+        ),
+      ),
+    ];
   }
 
   onImageFocus() {
@@ -98,12 +117,18 @@ export default class CloudProjectComputeInfrastructureVirtualMachineAddCtrl {
     this.instance.imageId = this.model.image.getIdByRegion(this.instance.region);
     this.flavor = this.model.flavorGroup.getFlavorByOsType(this.model.image.type);
     this.instance.flavorId = get(this.flavor, 'id');
+
+    this.instance.sshKeyId = get(this.model.sshKey, 'id');
+  }
+
+  showImageNavigation() {
+    return this.model.image && (this.model.image.type !== 'linux' || this.model.sshKey);
   }
 
   onInstanceFocus() {
     this.quota = new Quota(this.model.datacenter.quota.instance);
 
-    if (!this.instance.name) {
+    if (!has(this.instance, 'name')) {
       this.instance.name = `${this.selectedFlavor.name}-${this.instance.region}`.toLowerCase();
     }
   }

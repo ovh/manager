@@ -5,6 +5,7 @@
 <oui-stepper
     data-on-init="$ctrl.getRegions()"
     data-on-finish="$ctrl.create()">
+
     <oui-step-form
         id="flavor"
         data-header="{{:: 'pci_projects_project_instances_add_flavor_title' | translate }}"
@@ -19,6 +20,7 @@
             data-display-selected-flavor="$ctrl.displaySelectedFlavor">
         </pci-project-flavors-list>
     </oui-step-form>
+
     <oui-step-form
         data-header="{{:: 'pci_projects_project_instances_add_region_title' | translate }}"
         data-valid="$ctrl.model.datacenter"
@@ -41,20 +43,21 @@
                             data-label="{{ location }}"
                             data-values="[location]"
                             data-variant="light"
-                            data-on-change="$ctrl.onContinentChange(continent)"
                             data-required>
                         </oui-select-picker>
                     </div>
 
                     <div data-ng-if="datacentersLocation[$ctrl.model.location]">
                         <p data-translate="pci_projects_project_instances_add_region_datacenter_title"></p>
-                        <div data-ng-repeat="datacenter in datacentersLocation[$ctrl.model.location] track by datacenter.name" class="row">
+                        <div class="row">
                             <oui-select-picker
+                                data-ng-repeat="datacenter in datacentersLocation[$ctrl.model.location] track by datacenter.name"
                                 class="d-inline-block col-md-6 col-lg-4 my-3"
                                 data-name="{{ continent + '-' + datacenter.name }}"
                                 data-model="$ctrl.model.datacenter"
                                 data-label="{{:: datacenter.name }}"
                                 data-values="[datacenter]"
+                                data-variant="light"
                                 data-disabled="!$ctrl.isRegionAvailable(datacenter)">
                                 <oui-select-picker-section data-ng-if="!$ctrl.isRegionAvailable(datacenter)">
                                     <a href="#flavor" class="oui-link">Pas dispo</a>
@@ -76,12 +79,14 @@
             </oui-select-picker>
         </div>
     </oui-step-form>
+
     <oui-step-form
         data-header="{{:: 'pci_projects_project_instances_add_image_title' | translate }}"
         data-valid="$ctrl.model.image"
         data-editable="!$ctrl.loaders.isSubmitting"
         data-on-focus="$ctrl.onImageFocus()"
-        data-on-submit="$ctrl.onImageChange()">
+        data-on-submit="$ctrl.onImageChange()"
+        data-navigation="$ctrl.showImageNavigation()">
         <pci-project-images-list
             data-display-selected-image="$ctrl.displaySelectedImage"
             data-flavor-type="$ctrl.model.flavorGroup.name"
@@ -98,6 +103,7 @@
             data-service-name="{{:: $ctrl.projectId }}">
         </pci-project-instance-ssh-keys>
     </oui-step-form>
+
     <oui-step-form
         data-header="{{ :: 'pci_projects_project_instances_add_instance_title' | translate }}"
         data-on-focus="$ctrl.onInstanceFocus()"
@@ -156,7 +162,7 @@
                     data-id="userData"
                     data-name="userData_value"
                     data-rows="5"
-                    data-model="$ctrl.model.userData">
+                    data-model="$ctrl.instance.userData">
                 </oui-textarea>
             </oui-field>
         </div>
@@ -167,7 +173,7 @@
             <oui-select
                 data-name="privateNetwork"
                 data-model="$ctrl.selectedPrivateNetwork"
-                data-items="$ctrl.privateNetworks"
+                data-items="$ctrl.availablePrivateNetworks"
                 data-match="name"
                 data-on-change="$ctrl.onPrivateNetworkChange()"
                 data-searchable>
@@ -175,6 +181,7 @@
         </oui-field>
 
     </oui-step-form>
+
     <oui-step-form
         data-header="{{ :: 'pci_projects_project_instances_add_billing_title' | translate }}"
         data-editable="!$ctrl.loaders.isSubmitting">
@@ -186,7 +193,7 @@
         <pci-project-flavor-billing
             data-flavor="$ctrl.flavor"
             data-number="$ctrl.model.number"
-            data-monthly-billing="$ctrl.model.monthlyBilling">
+            data-monthly-billing="$ctrl.instance.monthlyBilling">
         </pci-project-flavor-billing>
     </oui-step-form>
 </oui-stepper>
