@@ -66,6 +66,8 @@
   fill: @primary-color;
 }
 
+.oui-action-button[aria-expanded="true"],
+.oui-action-menu-button[aria-expanded="true"],
 .oui-action-button:hover,
 .oui-action-button:focus,
 .oui-action-menu-button:hover,
@@ -86,7 +88,8 @@
 .oui-file-selector__button.oui-button_action-menu:focus,
 .oui-autocomplete__option:hover,
 .oui-autocomplete__option:focus {
-  background-color: rgb(230, 245, 252);
+  background-color: @primary-color;
+  color: #fff;
 }
 
 .oui-button-group {
