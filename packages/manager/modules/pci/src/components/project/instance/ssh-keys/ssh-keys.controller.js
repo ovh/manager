@@ -19,7 +19,7 @@ export default class SshKeysController {
 
     this.model = {
       name: null,
-      key: null,
+      publicKey: null,
     };
 
     return this.getSshKeys()

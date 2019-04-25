@@ -39,7 +39,7 @@
                 data-name="newSshKey_value"
                 data-rows="5"
                 data-disabled="$ctrl.loaders.isAdding"
-                data-model="$ctrl.model.key"
+                data-model="$ctrl.model.publicKey"
                 data-required="true">
             </oui-textarea>
         </oui-field>
@@ -48,7 +48,7 @@
         <div data-ng-if="!$ctrl.loaders.isAdding">
             <oui-button
                 data-variant="secondary"
-                data-type="submit"
+                data-type="button"
                 data-text="{{ 'pci_project_instance_ssh_add' | translate }}"
                 data-on-click="$ctrl.addKey()"
                 data-disabled="$ctrl.loaders.isAdding">
