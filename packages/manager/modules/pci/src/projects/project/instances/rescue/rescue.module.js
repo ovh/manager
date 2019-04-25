@@ -5,7 +5,7 @@ import 'angular-translate';
 import 'ovh-ui-angular';
 import 'ovh-api-services';
 
-import rescue from '../instance/rescue';
+import rescue from '../instance/rescue/rescue.module';
 import routing from './rescue.routing';
 
 const moduleName = 'ovhManagerPciInstancesStartRescue';

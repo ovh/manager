@@ -7,7 +7,7 @@ export default /* @ngInject */($stateProvider) => {
       addInstance: /* @ngInject */ ($state, projectId) => () => $state.go('pci.projects.project.instances.add', {
         projectId,
       }),
-      viewInstance: /* @ngInject */ ($state, projectId) => instance => $state.go('pci.projects.project.instances.instance.dashboard', {
+      viewInstance: /* @ngInject */ ($state, projectId) => instance => $state.go('pci.projects.project.instances.instance', {
         projectId,
         instanceId: instance.id,
       }),
@@ -51,7 +51,7 @@ export default /* @ngInject */($stateProvider) => {
         projectId,
         instanceId: instance.id,
       }),
-      instanceLink: /* @ngInject */ ($state, projectId) => instance => $state.href('pci.projects.project.instances.instance.dashboard', {
+      instanceLink: /* @ngInject */ ($state, projectId) => instance => $state.href('pci.projects.project.instances.instance', {
         projectId,
         instanceId: instance.id,
       }),

@@ -5,7 +5,7 @@ import 'angular-translate';
 import 'ovh-ui-angular';
 import 'ovh-api-services';
 
-import deleteInstance from '../instance/delete';
+import deleteInstance from '../instance/delete/delete.module';
 import routing from './delete.routing';
 
 const moduleName = 'ovhManagerPciInstancesDelete';

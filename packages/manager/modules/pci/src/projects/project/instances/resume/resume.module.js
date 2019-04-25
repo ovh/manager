@@ -5,7 +5,7 @@ import 'angular-translate';
 import 'ovh-ui-angular';
 import 'ovh-api-services';
 
-import resumeInstance from '../instance/resume';
+import resumeInstance from '../instance/resume/resume.module';
 import routing from './resume.routing';
 
 const moduleName = 'ovhManagerPciInstancesResume';

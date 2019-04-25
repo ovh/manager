@@ -28,7 +28,7 @@ export default /* @ngInject */ ($stateProvider) => {
           storageId,
         }),
         help: /* @ngInject */ $transition$ => $transition$.params().help,
-        instanceLink: /* @ngInject */ ($state, projectId) => instanceId => $state.href('pci.projects.project.instances.instance.dashboard', {
+        instanceLink: /* @ngInject */ ($state, projectId) => instanceId => $state.href('pci.projects.project.instances.instance', {
           projectId,
           instanceId,
         }),
