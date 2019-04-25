@@ -1,38 +1,24 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
-// import '@ovh-ux/ng-at-internet';
-import '@ovh-ux/ng-translate-async-loader';
-import '@ovh-ux/ng-ovh-cloud-universe-components';
-import 'angular-translate';
-import 'ovh-api-services';
+import 'oclazyload';
 
-import flavorBilling from '../../../../components/project/flavor-billing';
-import flavorsList from '../../../../components/project/flavors-list';
-import imagesList from '../../../../components/project/images-list';
-import regionsList from './regions-list';
-import sshKeys from '../../../../components/project/instance/ssh-keys';
-
-import component from './add.component';
-import routing from './add.routing';
-
-const moduleName = 'ovhManagerPciInstancesAdd';
+const moduleName = 'ovhManagerPciInstancesAddLazyLoading';
 
 angular
   .module(moduleName, [
-    // 'ngAtInternet',
-    'ngTranslateAsyncLoader',
-    'ngOvhCloudUniverseComponents',
-    'pascalprecht.translate',
-    'ovh-api-services',
     'ui.router',
-    flavorBilling,
-    flavorsList,
-    imagesList,
-    regionsList,
-    sshKeys,
+    'oc.lazyLoad',
   ])
-  .config(routing)
-  .component('ovhManagerPciInstancesAdd', component)
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .config(($stateProvider) => {
+    $stateProvider.state('pci.projects.project.instances.new.**', {
+      url: '/new',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+        return import('./add.module')
+          .then(mod => $ocLazyLoad.inject(mod.default || mod));
+      },
+    });
+  });
 
 export default moduleName;
