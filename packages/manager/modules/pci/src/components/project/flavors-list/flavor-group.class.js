@@ -17,4 +17,8 @@ export default class FlavorGroup {
   isAvailableInRegion(region) {
     return this.availableRegions.includes(region);
   }
+
+  getFlavorByOsType(osType) {
+    return find(this.flavors, { osType });
+  }
 }

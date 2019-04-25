@@ -5,6 +5,7 @@
   "pci_projects_project_instances_add_flavor_title": "Sélectionnez un modèle",
 
   "pci_projects_project_instances_add_region_title": "Sélectionnez une localisation",
+  "pci_projects_project_instances_add_region_datacenter_title": "Datacentre",
 
   "pci_projects_project_instances_add_image_title": "Sélectionnez une image",
 
@@ -16,7 +17,8 @@
   "pci_projects_project_instances_add_name_help": "Doit uniquement contenir des nombres, lettres, underscores, tirets ou points.",
   "pci_projects_project_instances_add_name_multiple_help": "Le nom des instances supplémentaires sera préfixé et incrémenté à partir du terme saisi.",
   "pci_projects_project_instances_add_script_label": "Script de post-installation",
-  "pci_projects_project_instances_add_script_content": "Saisissez votre script post-installation",
+  "pci_projects_project_instances_add_script_help": "Saisissez votre script post-installation",
+  "pci_projects_project_instances_add_script_add_label": "Ajouter",
   "pci_projects_project_instances_add_privateNetwork_label": "Réseau privé attaché",
   "pci_projects_project_instances_add_privateNetwork_none": "Aucun",
 
