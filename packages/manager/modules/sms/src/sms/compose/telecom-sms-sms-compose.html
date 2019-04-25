@@ -298,7 +298,7 @@
                         </div>
 
                         <div class="form-group" data-ng-hide="$ctrl.isVirtualNumber()">
-                            <div data-ng-hide="$ctrl.advice">
+                            <div data-ng-if="$ctrl.canHaveSTOPAnswer">
                                 <p>
                                     <span data-translate="sms_sms_compose_message_stop_info_start"></span>
                                     <i class="ovh-font ovh-font-question"
@@ -307,8 +307,17 @@
                                     <span data-translate="sms_sms_compose_message_stop_info_end"></span>
                                 </p>
                                 <p data-translate="sms_sms_compose_message_stop_description"></p>
+                                <label>
+                                    <input
+                                        type="checkbox"
+                                        name="noStopClause"
+                                        id="noStopClause"
+                                        data-ng-model="$ctrl.sms.noStopClause"
+                                        data-ng-change="$ctrl.computeRemainingChar()" />
+                                    <span data-translate="sms_sms_compose_no_stop_clause_label"></span>
+                                </label>
                             </div>
-                            <div data-ng-show="$ctrl.advice">
+                            <div data-ng-if="$ctrl.displaySenderCustomizationAdvice">
                                 <strong class="text-uppercase" data-translate="sms_sms_compose_message_advice_title"></strong>
                                 <p data-translate="sms_sms_compose_message_advice_info"></p>
                                 <p>
@@ -319,18 +328,6 @@
                                     </a>
                                     <span data-translate="sms_sms_compose_message_advice_description_3"></span>
                                 </p>
-                            </div>
-                            <div class="checkbox"
-                                 data-ng-if="!$ctrl.advice">
-                                <label>
-                                    <input
-                                        type="checkbox"
-                                        name="noStopClause"
-                                        id="noStopClause"
-                                        data-ng-model="$ctrl.sms.noStopClause"
-                                        data-ng-change="$ctrl.computeRemainingChar()" />
-                                    <span data-translate="sms_sms_compose_no_stop_clause_label"></span>
-                                </label>
                             </div>
                         </div>
                     </section>
