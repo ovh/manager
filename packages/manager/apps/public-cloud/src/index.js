@@ -1,6 +1,7 @@
 /* eslint-disable import/no-webpack-loader-syntax, import/extensions */
 import 'script-loader!jquery';
 import angular from 'angular';
+import '@uirouter/angularjs';
 import 'script-loader!lodash';
 import 'script-loader!jquery-ui/ui/minified/core.min';
 import 'script-loader!jquery-ui/ui/minified/widget.min';
@@ -24,6 +25,7 @@ import 'ovh-ui-kit/dist/oui.css';
 import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
 
 import preload from './components/manager-preload';
+import redirectTo from './components/redirectTo';
 import sidebar from './sidebar';
 
 import './assets/theme/index.less';
@@ -35,6 +37,7 @@ import routing from './index.routes';
 
 angular
   .module('ovhStack', [
+    'ui.router',
     ngUiRouterBreadcrumb,
     ngUiRouterLineProgress,
     ovhManagerCore,
@@ -42,6 +45,7 @@ angular
     ngOvhApiWrappers,
     navbar,
     preload,
+    redirectTo,
     sidebar,
   ])
   .controller('PublicCloudController', controller)
