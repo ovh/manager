@@ -5,10 +5,14 @@ import 'angular-translate';
 import 'ovh-ui-angular';
 import 'ovh-api-services';
 
-import component from './rescue.component';
-import routing from './rescue.routing';
+import {
+  URL_WHITELIST,
+} from './vnc.constants';
 
-const moduleName = 'ovhManagerPciInstancesInstanceRescue';
+import component from './vnc.component';
+import routing from './vnc.routing';
+
+const moduleName = 'ovhManagerPciInstancesInstanceVNC';
 
 angular
   .module(moduleName, [
@@ -19,7 +23,11 @@ angular
     'pascalprecht.translate',
   ])
   .config(routing)
-  .component('pciInstancesInstanceRescue', component)
+  .config(/* @ngInject */ $sceDelegateProvider => $sceDelegateProvider.resourceUrlWhitelist([
+    ...$sceDelegateProvider.resourceUrlWhitelist(),
+    ...URL_WHITELIST,
+  ]))
+  .component('pciInstancesInstanceVNC', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

@@ -5,7 +5,7 @@ import 'angular-translate';
 import 'ovh-ui-angular';
 import 'ovh-api-services';
 
-import reinstallInstance from '../instance/reinstall';
+import reinstallInstance from '../instance/reinstall/reinstall.module';
 import routing from './reinstall.routing';
 
 const moduleName = 'ovhManagerPciInstancesReinstall';

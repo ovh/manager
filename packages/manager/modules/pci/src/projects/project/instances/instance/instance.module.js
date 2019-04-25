@@ -1,8 +1,10 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
 import '@ovh-ux/ng-translate-async-loader';
+import 'angular-translate';
 
 import activeMonthlyBilling from './active-monthly-billing';
+import attachVolume from './attach-volume';
 import backup from './backup';
 import deleteInstance from './delete';
 import hardReboot from './hard-reboot';
@@ -11,8 +13,9 @@ import rescue from './rescue';
 import resume from './resume';
 import softReboot from './soft-reboot';
 import unrescue from './unrescue';
+import vnc from './vnc';
 
-import dashboard from './dashboard';
+import component from './instance.component';
 import routing from './instance.routing';
 
 const moduleName = 'ovhManagerPciInstance';
@@ -21,8 +24,10 @@ angular
   .module(moduleName, [
     'ngOvhOtrs',
     'ui.router',
-    dashboard,
+    'ngTranslateAsyncLoader',
+    'pascalprecht.translate',
     activeMonthlyBilling,
+    attachVolume,
     backup,
     deleteInstance,
     hardReboot,
@@ -31,7 +36,10 @@ angular
     resume,
     softReboot,
     unrescue,
+    vnc,
   ])
-  .config(routing);
+  .config(routing)
+  .component('pciProjectsProjectInstancesInstance', component)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
