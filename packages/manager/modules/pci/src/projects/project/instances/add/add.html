@@ -1,7 +1,7 @@
 <!-- <div class="container-fluid"> -->
-    <oui-back-button data-on-click="$ctrl.goBack()">
-        <span data-translate="pci_project_instances_new"></span>
-    </oui-back-button>
+
+    <pre>{{ $ctrl.model | json}}</pre>
+    <h1 data-translate="pci_projects_project_instances_add_title"></h1>
 
     <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
 
@@ -10,9 +10,10 @@
         data-on-finish="$ctrl.create()">
         <oui-step-form
             id="flavor"
-            data-header="{{:: 'pci_project_instances_new_instances' | translate }}"
+            data-header="{{:: 'pci_projects_project_instances_add_flavor_title' | translate }}"
             data-valid="$ctrl.model.flavorGroup"
             data-editable="!$ctrl.loaders.isSubmitting"
+            data-navigation="$ctrl.model.flavorGroup"
             data-on-focus="$ctrl.submitted.flavor = false"
             data-on-submit="$ctrl.submitted.flavor = true">
             <pci-project-flavors-list
@@ -22,9 +23,10 @@
             </pci-project-flavors-list>
         </oui-step-form>
         <oui-step-form
-            data-header="{{:: 'pci_project_instances_new_regions' | translate }}"
+            data-header="{{:: 'pci_projects_project_instances_add_region_title' | translate }}"
             data-valid="$ctrl.model.datacenter"
             data-loading="$ctrl.loaders.areRegionsLoading"
+            data-navigation="$ctrl.model.datacenter"
             data-on-focus="$ctrl.submitted.region = false "
             data-on-submit="$ctrl.submitted.region = true"
             data-editable="!$ctrl.loaders.isSubmitting">
@@ -78,7 +80,7 @@
             </div>
         </oui-step-form>
         <oui-step-form
-            data-header="{{:: 'pci_project_instances_new_instances' | translate }}"
+            data-header="{{:: 'pci_projects_project_instances_add_image_title' | translate }}"
             data-valid="$ctrl.model.image"
             data-editable="!$ctrl.loaders.isSubmitting"
             data-on-focus="$ctrl.submitted.image = false"
@@ -89,34 +91,93 @@
                 data-region="$ctrl.model.datacenter.name"
                 data-service-name="{{:: $ctrl.projectId }}"
                 data-selected-image="$ctrl.model.image">
+                <a href="#region" class="oui-link">Pas dispo</a>
             </pci-project-images-list>
 
             <pci-project-instance-ssh-keys
+                data-ng-if="$ctrl.model.image.type === 'linux'"
                 data-region="$ctrl.model.datacenter.name"
                 data-selected-key="$ctrl.model.sshKey"
                 data-service-name="{{:: $ctrl.projectId }}">
             </pci-project-instance-ssh-keys>
         </oui-step-form>
         <oui-step-form
-            data-on-focus="$ctrl.createQuota()">
-            <oui-field data-label="{{ 'cpcivm_add_step3_quantity_label' | translate }}"
+            data-header="{{ :: 'pci_projects_project_instances_add_instance_title' | translate }}"
+            data-on-focus="$ctrl.createQuota()"
+            data-editable="!$ctrl.loaders.isSubmitting">
+            <oui-field data-label="{{ 'pci_projects_project_instances_add_numInstances_label' | translate }}"
                 data-label-popover="{{ 'cpcivm_add_step3_quantity_info' | translate }}">
                 <oui-numeric id="modelNumber"
-                            data-name="number"
-                            data-min="1"
-                            data-max="$ctrl.quota.getMaxNumberOfInstances($ctrl.flavor)"
-                            data-model="$ctrl.model.number">
+                    data-name="number"
+                    data-min="1"
+                    data-max="$ctrl.quota.getMaxNumberOfInstances($ctrl.flavor)"
+                    data-model="$ctrl.model.number">
                 </oui-numeric>
-                <div class="oui-field__helper mt-2"
-                    data-ng-if="$ctrl.quota.getMaxNumberOfInstances($ctrl.flavor) > 0">
-                    <span data-translate="cpcivm_add_step3_quantity_help"
-                        data-translate-values="{ max: $ctrl.quota.getMaxNumberOfInstances($ctrl.flavor), type: $ctrl.flavor.name, region: $ctrl.model.region.microRegion.text }"></span>
-                    <a ui-sref="iaas.pci-project.compute.quota" target="_blank"
-                        data-translate="cpcivm_add_step3_quota_link_text"></a>.
+
+                <div class="oui-field__helper">
+                    <span data-translate="pci_projects_project_instances_add_numInstances_help"
+                        data-translate-values="{
+                            num: $ctrl.quota.getMaxNumberOfInstances($ctrl.flavor),
+                            flavor: $ctrl.flavor.name,
+                            region: $ctrl.model.region.microRegion.text,
+                        }"></span>
+                    <a href="#" data-translate="pci_projects_project_instances_add_numInstances_quotaLink_label"></a>
+                </div>
+
+            </oui-field>
+
+            <oui-field
+                data-label="{{ :: 'pci_projects_project_instances_add_name_label' | translate }}"
+                data-size="xl">
+                <input class="oui-input" type="text" id="name" name="name"
+                    ng-model="$ctrl.model.name"
+                    ng-pattern="$ctrl.instanceNamePattern"
+                    required >
+
+                <div class="oui-field__helper">
+                    <span data-translate="pci_projects_project_instances_add_name_help"></span>
+                    <span class="d-inline-block"
+                        data-ng-if="$ctrl.model.number > 1"
+                        data-translate="pci_projects_project_instances_add_name_multiple_help"></span>
                 </div>
             </oui-field>
+
+            <div data-ng-if="$ctrl.model.image.type === 'linux'">
+                <p data-translate="pci_projects_project_instances_add_script_content"></p>
+                <oui-field
+                    data-label="{{ 'pci_projects_project_instances_add_script_label' | translate }}"
+                    data-size="xl">
+                <oui-textarea
+                    data-id="userData"
+                    data-name="userData_value"
+                    data-rows="5"
+                    data-model="$ctrl.model.userData">
+                </oui-textarea>
+            </oui-field>
+        </div>
+
+            <oui-field
+                data-label="{{ :: 'pci_projects_project_instances_add_privateNetwork_label' | translate }}"
+                data-size="xl">
+                <oui-select
+                    data-name="privateNetwork"
+                    data-model="$ctrl.selectedPrivateNetwork"
+                    data-items="$ctrl.privateNetworks"
+                    data-match="name"
+                    data-on-change="$ctrl.onPrivateNetworkChange()"
+                    data-searchable>
+                </oui-select>
+            </oui-field>
+
         </oui-step-form>
-        <oui-step-form>
+        <oui-step-form
+            data-header="{{ :: 'pci_projects_project_instances_add_billing_title' | translate }}"
+            data-editable="!$ctrl.loaders.isSubmitting">
+            <p>
+                <span data-translate="pci_projects_project_instances_add_billing_montly_discount_message"></span>
+                <span class="d-inline-block"
+                    data-translate="pci_projects_project_instances_add_billing_short_period_message"></span>
+            </p>
             <pci-project-flavor-billing
                 data-flavor="$ctrl.flavor"
                 data-number="$ctrl.model.number"
@@ -124,3 +185,13 @@
             </pci-project-flavor-billing>
         </oui-step-form>
     </oui-stepper>
+
+    <div data-ng-if="$ctrl.loaders.isSubmitting">
+        <oui-spinner></oui-spinner>
+        <p
+            data-ng-if="$ctrl.model.number === 1"
+            data-translate="pci_projects_project_instances_add_save_form"></p>
+        <p
+            data-ng-if="$ctrl.model.number > 1"
+            data-translate="pci_projects_project_instances_add_save_multiple_form"></p>
+    </div>

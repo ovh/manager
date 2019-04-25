@@ -4,6 +4,7 @@ import map from 'lodash/map';
 
 import Quota from '../../../../components/project/instance/quota/quota.class';
 import Datacenter from './regions-list/datacenter.class';
+import { PATTERN } from '../../../../components/project/instance/name/constants';
 
 export default class CloudProjectComputeInfrastructureVirtualMachineAddCtrl {
   /* @ngInject */
@@ -96,6 +97,8 @@ export default class CloudProjectComputeInfrastructureVirtualMachineAddCtrl {
       flavor: false,
       region: false,
     };
+
+    this.instanceNamePattern = PATTERN;
     // this.enums = {
     //   billingPeriods: ['monthly', 'hourly'],
     //   flavorsTypes: [],
