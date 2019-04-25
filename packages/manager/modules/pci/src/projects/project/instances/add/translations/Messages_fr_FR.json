@@ -1,0 +1,66 @@
+{
+  "pci_project_instances_new": "Créer une instance",
+
+  "pci_project_instances_new_regions": "Sélectionnez une localisation",
+  "pci_project_instances_new_regions_error": "Une erreur est survenue lors de la récupération des régions disponibles",
+
+  "pci_project_instances_new_instances": "Sélectionnez un modèle",
+
+  "pci_project_instances_new_button_completed_text": "Lancer maintenant",
+  "pci_project_instances_new_step1_title": "Sélectionnez un OS ou un Snapshot",
+
+  "pci_project_instances_new_step1_distribution_choose": "Choisir votre version",
+  "pci_project_instances_new_step1_windows_message": "Les coûts associés aux licences Windows seront ajoutés automatiquement au prix de l'instance sélectionnée.",
+  "pci_project_instances_new_step1_sshKey_label": "Clé SSH",
+  "pci_project_instances_new_step1_sshKey_add": "Ajouter une clé",
+  "pci_project_instances_new_step1_sshKey_adding": "Ajouter cette clé",
+  "pci_project_instances_new_step1_sshKey_name_label": "Nom de la clé SSH",
+  "pci_project_instances_new_step1_sshKey_publicKey_label": "Clé existante",
+  "pci_project_instances_new_step1_sshKey_message": "Les clés SSH sont obligatoires pour se connecter à votre service.<br/><a href=\"{{url}}\" target=\"_blank\">En savoir plus sur les clés SSH</a>.",
+  "pci_project_instances_new_step1_sshKey_regions_title": "Déploiement de la clé SSH",
+  "pci_project_instances_new_step1_sshKey_regions_message": "Votre clé SSH sera disponible sur l'ensemble des régions et des data centers OVH.",
+
+
+
+  "pci_project_instances_new_step2_tab_all": "Toutes les régions",
+  "pci_project_instances_new_step2_disabled_QUOTA_INSTANCE": "Quota d'instances atteint",
+  "pci_project_instances_new_step2_disabled_QUOTA_RAM": "Quota de RAM atteint",
+  "pci_project_instances_new_step2_disabled_QUOTA_VCPUS": "Quota de Core atteint",
+  "pci_project_instances_new_step2_disabled_SSH_KEY": "Clé SSH non disponible",
+  "pci_project_instances_new_step2_datacenter_choose": "Choisir votre data center",
+
+
+
+  "pci_project_instances_new_step3_disabled_NOT_AVAILABLE": "Non disponible dans cette région",
+  "pci_project_instances_new_step3_disabled_QUOTA_RAM": "Dépasse le quota (RAM)",
+  "pci_project_instances_new_step3_disabled_QUOTA_VCPUS": "Dépasse le quota (Core)",
+  "pci_project_instances_new_step3_disabled_QUOTA_MINDISK": "Espace disque insuffisant",
+  "pci_project_instances_new_step3_disabled_QUOTA_MINRAM": "Mémoire vive (RAM) insuffisante",
+  "pci_project_instances_new_step3_disabled_message_NOT_AVAILABLE": "Région(s) où cette instance est disponible : {{regions}}",
+  "pci_project_instances_new_step3_disabled_message_QUOTA_RAM": "Votre quota de RAM est actuellement de {{quota.remaining}} pour la région sélectionnée. L'instance sélectionnée nécessite {{quota.required}}.",
+  "pci_project_instances_new_step3_disabled_message_QUOTA_VCPUS": "Votre quota est actuellement de {{quota.remaining}} core(s) pour la région sélectionnée. L'instance sélectionnée nécessite {{quota.required}} core(s).",
+  "pci_project_instances_new_step3_disabled_message_QUOTA_MINDISK": "L'image {{name}} requiert un minimum de {{requiredDisk}} d'espace disque pour être installée. L'instance sélectionnée ne dispose que de {{currentDisk}}.",
+  "pci_project_instances_new_step3_disabled_message_QUOTA_MINRAM": "L'image {{name}} requiert un minimum de {{requiredRam}} de mémoire vive (RAM) pour fonctionner correctement. L'instance sélectionnée ne dispose que de {{currentRam}}.",
+  "pci_project_instances_new_step3_quantity_label": "Nombre d'instances à créer",
+  "pci_project_instances_new_step3_quantity_info": "Toutes vos instances seront configurées de la même manière et déployées dans la même région.",
+  "pci_project_instances_new_step3_quantity_help": "Votre quota actuel vous permet de créer simultanéement jusqu'à {{max}} instance(s) de type {{type}} pour la region de {{region}}.",
+  "pci_project_instances_new_step3_quota_link_text": "Consultez votre quota",
+  "pci_project_instances_new_step3_name_label": "Nom de votre instance",
+  "pci_project_instances_new_step3_name_help": "Doit uniquement contenir des nombres, lettres, underscores, tirets, ou points.",
+  "pci_project_instances_new_step3_name_additional": "Le nom des instances supplémentaires sera préfixé et incrémenté à partir du terme saisi.",
+  "pci_project_instances_new_step3_postscript_label": "Script de post-installation",
+  "pci_project_instances_new_step3_postscript_info": "Saisissez votre script post-installation",
+  "pci_project_instances_new_step3_network_label": "Associer au réseau privé",
+  "pci_project_instances_new_step3_network_info": "Protégez vos données grâce à un réseau privé. Il ne boostera pas seulement la connexion entre vos services, il vous permettra aussi de sécuriser les échanges de données entre les différents serveurs. <a href=\"{{url}}\" target=\"_blank\">Plus de détails sur les réseaux privés</a>.",
+  "pci_project_instances_new_step3_network_none": "Aucun",
+  "pci_project_instances_new_step3_hide_unavailable": "Masquer les options non disponibles",
+  "pci_project_instances_new_step4_title": "Configurer votre instance",
+  "pci_project_instances_new_step5_title": "Sélectionnez une période de facturation",
+  "pci_project_instances_new_step5_message": "Le forfait mensuel est facturé dès le démarrage de l'instance et permet d'économiser 50% sur le prix des serveurs. Pour une utilisation sur de courtes périodes, il est recommandé de choisir la facturation à l'heure et de basculer au forfait mensuel par la suite.",
+  "pci_project_instances_new_step5_billing_period_hourly": "Horaire",
+  "pci_project_instances_new_step5_billing_period_monthly": "Mensuel",
+
+  "common_cancel": "Annuler",
+  "common_select": "Sélectionner",
+  "common_add": "Ajouter"
+}

@@ -6,6 +6,7 @@ import 'ovh-api-services';
 
 import instance from './instance';
 import activeMonthlyBilling from './active-monthly-billing';
+import add from './add';
 import backup from './backup';
 import instancesDelete from './delete';
 import reinstall from './reinstall';
@@ -25,6 +26,7 @@ angular
   .module(moduleName, [
     instance,
     activeMonthlyBilling,
+    add,
     backup,
     instancesDelete,
     reinstall,

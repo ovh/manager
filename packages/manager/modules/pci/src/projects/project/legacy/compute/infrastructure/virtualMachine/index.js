@@ -2,7 +2,7 @@ import angular from 'angular';
 import '@ovh-ux/ng-translate-async-loader';
 import 'angular-translate';
 
-import add from './add';
+// import add from './add';
 import addEdit from './addEdit';
 
 import deleteController from './delete/controller';
@@ -27,7 +27,7 @@ const moduleName = 'ovhManagerPciProjectComputeInfrastructureVirtualMachine';
 
 angular
   .module(moduleName, [
-    add,
+    // add,
     addEdit,
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',

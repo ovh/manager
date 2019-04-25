@@ -1,0 +1,126 @@
+<!-- <div class="container-fluid"> -->
+    <oui-back-button data-on-click="$ctrl.goBack()">
+        <span data-translate="pci_project_instances_new"></span>
+    </oui-back-button>
+
+    <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
+
+    <oui-stepper
+        data-on-init="$ctrl.getRegions()"
+        data-on-finish="$ctrl.create()">
+        <oui-step-form
+            id="flavor"
+            data-header="{{:: 'pci_project_instances_new_instances' | translate }}"
+            data-valid="$ctrl.model.flavorGroup"
+            data-editable="!$ctrl.loaders.isSubmitting"
+            data-on-focus="$ctrl.submitted.flavor = false"
+            data-on-submit="$ctrl.submitted.flavor = true">
+            <pci-project-flavors-list
+                data-service-name="{{:: $ctrl.projectId }}"
+                data-selected-flavor="$ctrl.model.flavorGroup"
+                data-display-selected-flavor="$ctrl.submitted.flavor">
+            </pci-project-flavors-list>
+        </oui-step-form>
+        <oui-step-form
+            data-header="{{:: 'pci_project_instances_new_regions' | translate }}"
+            data-valid="$ctrl.model.datacenter"
+            data-loading="$ctrl.loaders.areRegionsLoading"
+            data-on-focus="$ctrl.submitted.region = false "
+            data-on-submit="$ctrl.submitted.region = true"
+            data-editable="!$ctrl.loaders.isSubmitting">
+            <oui-tabs class="mb-4" data-ng-if="!$ctrl.submitted.region">
+                <oui-tabs-item
+                    data-ng-repeat="(continent, datacentersLocation) in $ctrl.regions"
+                    data-heading="{{:: continent }}">
+                    <div class="container-fluid px-0">
+                        <div class="row">
+                            <oui-select-picker
+                                class="d-inline-block col-md-6 col-lg-4 my-3"
+                                data-name="{{ continent + '-' + location }}"
+                                data-ng-repeat="(location, datacenter) in datacentersLocation"
+                                data-model="$ctrl.model.location"
+                                data-label="{{ location }}"
+                                data-values="[location]"
+                                data-variant="light"
+                                data-on-change="$ctrl.onContinentChange(continent)"
+                                data-required>
+                            </oui-select-picker>
+                        </div>
+
+                        <div data-ng-if="datacentersLocation[$ctrl.model.location]">
+                            <p>Datacentre</p>
+                            <div data-ng-repeat="datacenter in datacentersLocation[$ctrl.model.location] track by datacenter.name" class="row">
+                                <oui-select-picker
+                                    class="d-inline-block col-md-6 col-lg-4 my-3"
+                                    data-name="{{ continent + '-' + datacenter.name }}"
+                                    data-model="$ctrl.model.datacenter"
+                                    data-label="{{:: datacenter.name }}"
+                                    data-values="[datacenter]"
+                                    data-disabled="!$ctrl.isRegionAvailable(datacenter)">
+                                    <oui-select-picker-section data-ng-if="!$ctrl.isRegionAvailable(datacenter)">
+                                        <a href="#flavor" class="oui-link">Pas dispo</a>
+                                    </oui-select-picker-section>
+                                </oui-select-picker>
+                            </div>
+                        </div>
+                    </div>
+                </oui-tabs-item>
+            </oui-tabs>
+            <div class="row">
+                <oui-select-picker
+                    class="d-inline-block col-md-6 col-lg-4 my-3"
+                    data-ng-if="$ctrl.submitted.region"
+                    data-name="{{ $ctrl.model.datacenter.name }}"
+                    data-model="$ctrl.model.datacenter"
+                    data-label="{{:: $ctrl.model.datacenter.name }}"
+                    data-values="[$ctrl.model.datacenter]">
+                </oui-select-picker>
+            </div>
+        </oui-step-form>
+        <oui-step-form
+            data-header="{{:: 'pci_project_instances_new_instances' | translate }}"
+            data-valid="$ctrl.model.image"
+            data-editable="!$ctrl.loaders.isSubmitting"
+            data-on-focus="$ctrl.submitted.image = false"
+            data-on-submit="$ctrl.submitted.image = true && $ctrl.setFlavor()">
+            <pci-project-images-list
+                data-display-selected-image="$ctrl.submitted.image"
+                data-flavor-type="$ctrl.model.flavorGroup.name"
+                data-region="$ctrl.model.datacenter.name"
+                data-service-name="{{:: $ctrl.projectId }}"
+                data-selected-image="$ctrl.model.image">
+            </pci-project-images-list>
+
+            <pci-project-instance-ssh-keys
+                data-region="$ctrl.model.datacenter.name"
+                data-selected-key="$ctrl.model.sshKey"
+                data-service-name="{{:: $ctrl.projectId }}">
+            </pci-project-instance-ssh-keys>
+        </oui-step-form>
+        <oui-step-form
+            data-on-focus="$ctrl.createQuota()">
+            <oui-field data-label="{{ 'cpcivm_add_step3_quantity_label' | translate }}"
+                data-label-popover="{{ 'cpcivm_add_step3_quantity_info' | translate }}">
+                <oui-numeric id="modelNumber"
+                            data-name="number"
+                            data-min="1"
+                            data-max="$ctrl.quota.getMaxNumberOfInstances($ctrl.flavor)"
+                            data-model="$ctrl.model.number">
+                </oui-numeric>
+                <div class="oui-field__helper mt-2"
+                    data-ng-if="$ctrl.quota.getMaxNumberOfInstances($ctrl.flavor) > 0">
+                    <span data-translate="cpcivm_add_step3_quantity_help"
+                        data-translate-values="{ max: $ctrl.quota.getMaxNumberOfInstances($ctrl.flavor), type: $ctrl.flavor.name, region: $ctrl.model.region.microRegion.text }"></span>
+                    <a ui-sref="iaas.pci-project.compute.quota" target="_blank"
+                        data-translate="cpcivm_add_step3_quota_link_text"></a>.
+                </div>
+            </oui-field>
+        </oui-step-form>
+        <oui-step-form>
+            <pci-project-flavor-billing
+                data-flavor="$ctrl.flavor"
+                data-number="$ctrl.model.number"
+                data-monthly-billing="$ctrl.model.monthlyBilling">
+            </pci-project-flavor-billing>
+        </oui-step-form>
+    </oui-stepper>
