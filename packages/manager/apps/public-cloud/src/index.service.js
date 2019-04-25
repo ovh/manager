@@ -7,16 +7,17 @@ export default class PublicCloud {
   }
 
   getProjects(filters = []) {
-    let promise = this
-      .iceberg('/cloud/project')
-      .query()
-      .expand('CachedObjectList-Cursor');
-
-    filters.forEach(({ field, comparator, reference }) => {
-      promise = promise.addFilter(field, comparator, reference);
-    });
-
-    return promise
+    return filters.reduce(
+      (promise, {
+        field,
+        comparator,
+        reference,
+      }) => promise.addFilter(field, comparator, reference),
+      this
+        .iceberg('/cloud/project')
+        .query()
+        .expand('CachedObjectList-Cursor'),
+    )
       .sort('description') // Doesn't work as long as cache is not enabled
       .execute()
       .$promise
