@@ -1,0 +1,39 @@
+<div class="p-4" data-ng-if="!$ctrl.isHidden">
+    <h1 class="d-flex logo">
+        <i class="oui-icon oui-icon-ovh" style="font-size: 5rem;"></i>
+        <span class="ml-3 my-auto">OVH</span>
+    </h1>
+    <div class="container-fluid">
+        <div class="row d-flex justify-content-center">
+            <div class="col-xs-10 col-md-6 col-lg-5">
+                <div class="text-center mb-4">
+                    <img class="mb-4" data-ng-src="{{ $ctrl.illustration }}" alt="" style="width: 8vw;" />
+                    <h1 data-translate="public_cloud_beta_warning_welcome"></h1>
+                </div>
+                <h2 data-translate="public_cloud_beta_warning_subtitle"></h2>
+                <ul>
+                    <li>
+                        <h3 data-translate="public_cloud_beta_warning_test_new_feature"></h3>
+                        <p data-translate="public_cloud_beta_warning_test_new_feature_desc"></p>
+                    </li>
+                    <li>
+                        <h3 data-translate="public_cloud_beta_warning_help_develop"></h3>
+                        <p data-translate="public_cloud_beta_warning_help_develop_desc"></p>
+                    </li>
+                </ul>
+                <p class="my-4" data-translate="public_cloud_beta_warning_comment"></p>
+                <oui-checkbox model="$ctrl.checked">
+                    <span data-translate="public_cloud_beta_warning_dont_show_again"></span>
+                </oui-checkbox>
+                <div class="text-center mt-4">
+                    <oui-button
+                        variant="primary"
+                        data-ng-click="$ctrl.hide()"
+                    >
+                        <span data-translate="public_cloud_beta_warning_lets_go"></span>
+                    </oui-button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

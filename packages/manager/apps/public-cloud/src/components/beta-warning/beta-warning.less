@@ -1,0 +1,45 @@
+@import '../../assets/theme/_variables.less';
+
+beta-warning { /* stylelint-disable-line */
+  > div {
+    background-color: #fff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 9998;
+
+    .logo {
+      &,
+      .oui-icon {
+        color: @primary-color;
+      }
+    }
+
+    &.ng-leave {
+      -webkit-transition: opacity ease-in-out 200ms;
+      -moz-transition: opacity ease-in-out 200ms;
+      -ms-transition: opacity ease-in-out 200ms;
+      -o-transition: opacity ease-in-out 200ms;
+      transition: opacity ease-in-out 200ms;
+    }
+
+    &.ng-leave.ng-leave-active {
+      opacity: 0;
+    }
+
+    &.ng-leave,
+    &.ng-enter.ng-enter-active {
+      opacity: 1;
+    }
+
+    .container-fluid {
+      z-index: 1;
+
+      ul {
+        padding-left: 1.2rem;
+      }
+    }
+  }
+}
