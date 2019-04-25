@@ -13,7 +13,11 @@ export default class ProjectListController {
     this.isLoading = true;
     this
       .publicCloud
-      .getProjects()
+      .getProjects([{
+        field: 'status',
+        comparator: 'in',
+        reference: ['creating', 'ok'],
+      }])
       .then((projects) => {
         this.projects = projects;
       })
