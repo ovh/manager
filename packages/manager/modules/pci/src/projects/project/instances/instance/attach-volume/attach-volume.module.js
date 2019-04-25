@@ -5,20 +5,22 @@ import 'angular-translate';
 import 'ovh-ui-angular';
 import 'ovh-api-services';
 
-import unrescue from '../instance/unrescue/unrescue.module';
-import routing from './unrescue.routing';
+import component from './attach-volume.component';
+import routing from './attach-volume.routing';
 
-const moduleName = 'ovhManagerPciInstancesUnrescue';
+const moduleName = 'ovhManagerPciInstancesInstanceAttachVolume';
 
 angular
   .module(moduleName, [
-    unrescue,
     'ui.router',
     'oui',
     'ovh-api-services',
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
   ])
-  .config(routing);
+  .config(routing)
+  .component('pciInstancesInstanceAttachVolume', component)
+
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

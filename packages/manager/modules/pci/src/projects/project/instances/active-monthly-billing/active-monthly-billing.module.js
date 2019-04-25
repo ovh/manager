@@ -5,7 +5,7 @@ import 'angular-translate';
 import 'ovh-ui-angular';
 import 'ovh-api-services';
 
-import deleteInstance from '../instance/active-monthly-billing';
+import deleteInstance from '../instance/active-monthly-billing/active-monthly-billing.module';
 import routing from './active-monthly-billing.routing';
 
 const moduleName = 'ovhManagerPciInstancesActiveMonthlyBilling';

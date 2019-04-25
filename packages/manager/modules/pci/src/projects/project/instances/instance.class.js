@@ -1,4 +1,5 @@
 import filter from 'lodash/filter';
+import first from 'lodash/first';
 import get from 'lodash/get';
 import includes from 'lodash/includes';
 import isObject from 'lodash/isObject';
@@ -101,12 +102,24 @@ export default class Instance {
     );
   }
 
+  hasPublicIpV4() {
+    return this.publicIpV4.length > 0;
+  }
+
   get publicIpV4() {
     return filter(this.ipAddresses, ipAddress => ipAddress.type === 'public' && ipAddress.version === 4);
   }
 
   get privateIpV4() {
     return filter(this.ipAddresses, ipAddress => ipAddress.type === 'private' && ipAddress.version === 4);
+  }
+
+  hasPublicIpV6() {
+    return this.publicIpV6.length > 0;
+  }
+
+  get publicIpV6() {
+    return filter(this.ipAddresses, ipAddress => ipAddress.type === 'public' && ipAddress.version === 6);
   }
 
   isMonthlyBillingEnabled() {
@@ -119,5 +132,21 @@ export default class Instance {
 
   isRescuableWithDefaultImage() {
     return !includes(['freebsd', 'windows'], this.image.distribution);
+  }
+
+  get connectionInfos() {
+    const user = get(this, 'image.user') || 'user';
+    const ip = this.getDefaultIp();
+    return get(this, 'image.type') === 'windows' ? `rdekstop ${ip}` : `ssh ${user}@${ip}`;
+  }
+
+  getDefaultIp() {
+    if (this.hasPublicIpV4()) {
+      return first(this.publicIpV4).ip;
+    }
+    if (this.hasPublicIpV6()) {
+      return first(this.publicIpV6).ip;
+    }
+    return 'X.X.X.X';
   }
 }
