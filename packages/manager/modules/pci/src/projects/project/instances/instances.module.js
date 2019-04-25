@@ -4,6 +4,7 @@ import '@ovh-ux/ng-translate-async-loader';
 import 'angular-translate';
 import 'ovh-api-services';
 
+import regionsList from './add/regions-list';
 import instance from './instance';
 import activeMonthlyBilling from './active-monthly-billing';
 import add from './add';
@@ -24,6 +25,7 @@ const moduleName = 'ovhManagerPciInstances';
 
 angular
   .module(moduleName, [
+    regionsList,
     instance,
     activeMonthlyBilling,
     add,

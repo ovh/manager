@@ -3,7 +3,6 @@ import has from 'lodash/has';
 import includes from 'lodash/includes';
 import filter from 'lodash/filter';
 import find from 'lodash/find';
-import first from 'lodash/first';
 import map from 'lodash/map';
 import round from 'lodash/round';
 import moment from 'moment';
@@ -270,16 +269,6 @@ export default class PciProjectInstanceService {
       .then(networks => filter(networks, network => find(network.regions, { region, status: 'ACTIVE' })));
   }
 
-  getPublicNetworks(projectId) {
-    return this.OvhApiCloudProjectNetwork
-      .Public()
-      .v6()
-      .query({
-        serviceName: projectId,
-      })
-      .$promise;
-  }
-
   getCompatiblesVolumes(projectId, { region }) {
     return this.OvhApiCloudProjectVolume
       .v6()
@@ -372,16 +361,58 @@ export default class PciProjectInstanceService {
         ));
   }
 
-  save(projectId, instance, privateNetwork, numInstances = 1) {
-    const promise = this.getPublicNetworks(projectId)
-      .then(publicNetworks => first(publicNetworks));
-
-    if (numInstances > 1) {
-      // bulk
-    } else {
-      // post
+  save(
+    projectId,
+    {
+      flavorId,
+      imageId,
+      monthlyBilling,
+      name,
+      networks,
+      region,
+      sshKeyId,
+      userData,
+    },
+    number = 1,
+  ) {
+    if (number > 1) {
+      return this.OvhApiCloudProjectInstance
+        .v6()
+        .bulk(
+          {
+            serviceName: projectId,
+          },
+          {
+            flavorId,
+            imageId,
+            monthlyBilling,
+            name,
+            networks,
+            region,
+            sshKeyId,
+            userData,
+            number,
+          },
+        )
+        .$promise;
     }
-
-    return promise;
+    return this.OvhApiCloudProjectInstance
+      .v6()
+      .save(
+        {
+          serviceName: projectId,
+        },
+        {
+          flavorId,
+          imageId,
+          monthlyBilling,
+          name,
+          networks,
+          region,
+          sshKeyId,
+          userData,
+        },
+      )
+      .$promise;
   }
 }
