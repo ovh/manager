@@ -77,9 +77,13 @@ export default class SidebarController {
   }
 
   $onInit() {
+    let currentProjectId = this.$stateParams.projectId;
     this.setProject(this.$stateParams.projectId);
     this.$transitions.onSuccess({}, () => {
-      this.setProject(this.$stateParams.projectId);
+      if (currentProjectId !== this.$stateParams.projectId) {
+        this.setProject(this.$stateParams.projectId);
+        currentProjectId = this.$stateParams.projectId;
+      }
       this.isDisplayingProjectsList = false;
     });
 
