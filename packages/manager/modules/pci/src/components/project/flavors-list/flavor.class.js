@@ -1,3 +1,6 @@
+import find from 'lodash/find';
+import get from 'lodash/get';
+
 import { FLEX_TYPE, LEGACY_FLAVORS, SSD_DISK_TYPES } from './flavors-list.constants';
 
 export default class Flavors {
@@ -25,5 +28,9 @@ export default class Flavors {
 
   hasSsdDisk() {
     return this.diskType === 'ssd';
+  }
+
+  getIdByRegion(region) {
+    return get(find(this.regions, { region }), 'id');
   }
 }

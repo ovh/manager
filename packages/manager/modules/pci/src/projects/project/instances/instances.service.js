@@ -1,8 +1,8 @@
 import get from 'lodash/get';
+import has from 'lodash/has';
 import includes from 'lodash/includes';
 import filter from 'lodash/filter';
 import find from 'lodash/find';
-import first from 'lodash/first';
 import map from 'lodash/map';
 import round from 'lodash/round';
 import moment from 'moment';
@@ -10,7 +10,7 @@ import moment from 'moment';
 import Instance from './instance.class';
 import InstanceQuota from '../../../components/project/instance/quota/quota.class';
 import BlockStorage from '../storages/blocks/block.class';
-import Region from '../storages/blocks/region.class';
+import Datacenter from './add/regions-list/datacenter.class';
 
 import {
   INSTANCE_BACKUP_CONSUMPTION,
@@ -21,6 +21,7 @@ export default class PciProjectInstanceService {
   constructor(
     $q,
     CucPriceHelper,
+    CucRegionService,
     OvhApiCloudProject,
     OvhApiCloudProjectFlavor,
     OvhApiCloudProjectImage,
@@ -28,9 +29,11 @@ export default class PciProjectInstanceService {
     OvhApiCloudProjectNetwork,
     OvhApiCloudProjectQuota,
     OvhApiCloudProjectVolume,
+    PciProjectRegions,
   ) {
     this.$q = $q;
     this.CucPriceHelper = CucPriceHelper;
+    this.CucRegionService = CucRegionService;
     this.OvhApiCloudProject = OvhApiCloudProject;
     this.OvhApiCloudProjectFlavor = OvhApiCloudProjectFlavor;
     this.OvhApiCloudProjectImage = OvhApiCloudProjectImage;
@@ -38,6 +41,7 @@ export default class PciProjectInstanceService {
     this.OvhApiCloudProjectNetwork = OvhApiCloudProjectNetwork;
     this.OvhApiCloudProjectQuota = OvhApiCloudProjectQuota;
     this.OvhApiCloudProjectVolume = OvhApiCloudProjectVolume;
+    this.PciProjectRegions = PciProjectRegions;
   }
 
   getAll(projectId) {
@@ -265,16 +269,6 @@ export default class PciProjectInstanceService {
       .then(networks => filter(networks, network => find(network.regions, { region, status: 'ACTIVE' })));
   }
 
-  getPublicNetworks(projectId) {
-    return this.OvhApiCloudProjectNetwork
-      .Public()
-      .v6()
-      .query({
-        serviceName: projectId,
-      })
-      .$promise;
-  }
-
   getCompatiblesVolumes(projectId, { region }) {
     return this.OvhApiCloudProjectVolume
       .v6()
@@ -346,46 +340,79 @@ export default class PciProjectInstanceService {
   }
 
   getAvailablesRegions(projectId) {
-    return this.OvhApiCloudProject
-      .Region()
-      .v6()
-      .query({
-        serviceName: projectId,
-      })
-      .$promise
-      .then(regions => this.$q.all(
-        map(
-          regions,
-          region => this.OvhApiCloudProject
-            .Region()
-            .v6()
-            .get({
-              serviceName: projectId,
-              id: region,
-            })
-            .$promise,
-        ),
-      ))
-      .then(regions => this.$q.all({
-        quotas: this.getProjectQuota(projectId),
-        regions,
-      }))
-      .then(({ quotas, regions }) => map(regions, region => new Region({
-        ...region,
-        quota: find(quotas, { region: region.name }),
-      })));
+    return this.$q.all({
+      availableRegions: this.OvhApiCloudProject
+        .Region()
+        .AvailableRegions()
+        .v6()
+        .query({
+          serviceName: projectId,
+        }).$promise,
+      regions: this.PciProjectRegions
+        .getRegions(projectId),
+    })
+      .then(({ availableRegions, regions }) => this.PciProjectRegions
+        .groupByContinentAndDatacenterLocation(
+          map([...regions, ...availableRegions], region => new Datacenter({
+            ...region,
+            ...this.CucRegionService.getRegion(region.name),
+            available: has(region, 'status'),
+          })),
+        ));
   }
 
-  save(projectId, instance, privateNetwork, numInstances = 1) {
-    const promise = this.getPublicNetworks(projectId)
-      .then(publicNetworks => first(publicNetworks));
-
-    if (numInstances > 1) {
-      // bulk
-    } else {
-      // post
+  save(
+    projectId,
+    {
+      flavorId,
+      imageId,
+      monthlyBilling,
+      name,
+      networks,
+      region,
+      sshKeyId,
+      userData,
+    },
+    number = 1,
+  ) {
+    if (number > 1) {
+      return this.OvhApiCloudProjectInstance
+        .v6()
+        .bulk(
+          {
+            serviceName: projectId,
+          },
+          {
+            flavorId,
+            imageId,
+            monthlyBilling,
+            name,
+            networks,
+            region,
+            sshKeyId,
+            userData,
+            number,
+          },
+        )
+        .$promise;
     }
-
-    return promise;
+    return this.OvhApiCloudProjectInstance
+      .v6()
+      .save(
+        {
+          serviceName: projectId,
+        },
+        {
+          flavorId,
+          imageId,
+          monthlyBilling,
+          name,
+          networks,
+          region,
+          sshKeyId,
+          userData,
+        },
+      )
+      .$promise;
   }
 }

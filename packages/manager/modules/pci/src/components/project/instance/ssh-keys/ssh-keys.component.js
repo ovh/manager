@@ -5,7 +5,7 @@ export default {
   controller,
   template,
   bindings: {
-    region: '<?',
+    region: '<',
     selectedKey: '=',
     serviceName: '@',
   },
