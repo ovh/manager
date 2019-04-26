@@ -24,7 +24,7 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-kubernetes' --include-filtered-dependencies -- yarn run dev:watch"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^5.0.0",
+    "@ovh-ux/component-rollup-config": "^5.0.1",
     "bootstrap": "^3.3.0",
     "bootstrap4": "twbs/bootstrap#v4.0.0",
     "ovh-ui-kit": "^2.30.0",

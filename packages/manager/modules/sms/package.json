@@ -35,7 +35,7 @@
     "moment": "^2.22.2"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "5.0.0",
+    "@ovh-ux/component-rollup-config": "5.0.1",
     "bootstrap": "~3.3.7",
     "ovh-ui-kit": "^2.30.0"
   },
