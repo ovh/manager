@@ -13,9 +13,27 @@
     color: rgb(40, 89, 192);
   }
 
+  .oui-navbar-menu__item a {
+    color: rgb(17, 63, 109);
+
+    &:hover,
+    &:focus {
+      text-decoration: none;
+    }
+
+    .oui-navbar-notification__time {
+      font-weight: 300;
+    }
+
+    .oui-navbar-notification__description {
+      font-weight: normal;
+    }
+  }
+
   .oui-navbar-link {
     color: rgb(17, 63, 109);
 
+    &[aria-expanded="true"],
     &:hover,
     &:focus {
       background-color: transparent;
@@ -25,6 +43,15 @@
       background-color: transparent;
       border-bottom: 3px solid @primary-color !important;
     }
+  }
+
+  .navbar-oui-icon {
+    color: rgb(89, 105, 125);
+  }
+
+  .oui-icon.oui-icon-chevron-down,
+  .oui-icon.oui-icon-chevron-up {
+    display: none;
   }
 
   // Languages menu
