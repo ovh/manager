@@ -7,6 +7,7 @@ export default {
     projectId: '@',
     privateNetworks: '<',
     regions: '<',
+    cancelLink: '<',
   },
   controller,
   template,

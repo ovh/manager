@@ -17,6 +17,10 @@ export default /* @ngInject */($stateProvider) => {
         projectId,
       ) => PciProjectsProjectInstanceService.getAvailablesRegions(projectId),
 
+      cancelLink: /* @ngInject */ ($state, projectId) => $state.href('pci.projects.project.instances', {
+        projectId,
+      }),
+
       goBack: ($state, projectId) => () => $state.go('pci.projects.project.instances', { projectId }),
     },
   });

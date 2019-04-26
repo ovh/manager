@@ -118,7 +118,7 @@
             data-region="$ctrl.model.datacenter.name"
             data-service-name="{{:: $ctrl.projectId }}"
             data-selected-image="$ctrl.model.image">
-            <a href="#region" class="oui-link">Pas dispo</a>
+            <a href="#region" class="oui-link" data-translate="pci_projects_project_instances_add_image_not_available"></a>
         </pci-project-images-list>
 
         <pci-project-instance-ssh-keys
@@ -210,6 +210,9 @@
 
     <oui-step-form
         data-header="{{ :: 'pci_projects_project_instances_add_billing_title' | translate }}"
+        data-submit-text="{{ :: 'pci_projects_project_instances_add_submit_label' | translate }}"
+        data-cancel-text="{{ :: 'pci_projects_project_instances_add_cancel_label' | translate }}"
+        data-cancel-href="{{$ctrl.cancelLink}}"
         data-editable="!$ctrl.isLoading">
         <p>
             <span data-translate="pci_projects_project_instances_add_billing_montly_discount_message"></span>
