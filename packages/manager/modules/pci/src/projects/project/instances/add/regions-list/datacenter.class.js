@@ -5,11 +5,11 @@ export default class Datacenter {
     Object.assign(this, region);
   }
 
-  hasEnoughQuota() {
+  hasEnoughQuotaForFlavor(flavor) {
     if (has(this.quota, 'instance')) {
       return this.checkInstancesNumber()
-      && this.checkRamQuota()
-      && this.checkCoresQuota();
+      && this.checkRamQuota(flavor)
+      && this.checkCoresQuota(flavor);
     }
 
     return false;
@@ -20,14 +20,14 @@ export default class Datacenter {
     && this.quota.instance.usedInstances < this.quota.instance.maxInstances;
   }
 
-  checkRamQuota() {
+  checkRamQuota(flavor) {
     return this.quota.instance.maxRam !== -1
-    && this.quota.instance.maxRam > this.quota.instance.usedRAM;
+    && flavor.ram < this.quota.instance.maxRam - this.quota.instance.usedRAM;
   }
 
-  checkCoresQuota() {
+  checkCoresQuota(flavor) {
     return this.quota.instance.maxCores !== -1
-    && this.quota.instance.usedCores < this.quota.instance.maxCores;
+    && flavor.vcpus < this.quota.instance.maxCores - this.quota.instance.usedCores;
   }
 
   isAvailable() {

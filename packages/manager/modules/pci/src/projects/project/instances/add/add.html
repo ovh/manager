@@ -28,45 +28,72 @@
         data-on-focus="$ctrl.onRegionFocus()"
         data-on-submit="$ctrl.onRegionChange()"
         data-editable="!$ctrl.loaders.isSubmitting">
-        <oui-tabs class="mb-4" data-ng-if="!$ctrl.displaySelectedRegion">
-            <oui-tabs-item
-                data-ng-repeat="(continent, datacentersLocation) in $ctrl.regions"
-                data-heading="{{:: continent }}">
-                <div class="container-fluid px-0">
-                    <div class="row">
-                        <oui-select-picker
-                            class="d-inline-block col-md-6 col-lg-4 my-3"
-                            data-name="{{ continent + '-' + location }}"
-                            data-ng-repeat="(location, datacenter) in datacentersLocation"
-                            data-model="$ctrl.model.location"
-                            data-label="{{ location }}"
-                            data-values="[location]"
-                            data-variant="light"
-                            data-required>
-                        </oui-select-picker>
-                    </div>
 
-                    <div data-ng-if="datacentersLocation[$ctrl.model.location]">
-                        <p data-translate="pci_projects_project_instances_add_region_datacenter_title"></p>
+        <div data-ng-if="!$ctrl.displaySelectedRegion">
+            <oui-checkbox data-model="$ctrl.showOnlyAvailableRegions">
+                <span data-translate="pci_project_instances_available_only"></span>
+            </oui-checkbox>
+
+            <oui-tabs class="mb-4">
+                <oui-tabs-item
+                    data-ng-repeat="(continent, datacentersLocation) in $ctrl.regions"
+                    data-heading="{{:: continent }}">
+                    <div class="container-fluid px-0">
                         <div class="row">
                             <oui-select-picker
-                                data-ng-repeat="datacenter in datacentersLocation[$ctrl.model.location] track by datacenter.name"
                                 class="d-inline-block col-md-6 col-lg-4 my-3"
-                                data-name="{{ continent + '-' + datacenter.name }}"
-                                data-model="$ctrl.model.datacenter"
-                                data-label="{{:: datacenter.name }}"
-                                data-values="[datacenter]"
+                                data-name="{{ continent + '-' + location }}"
+                                data-ng-repeat="(location, datacenter) in datacentersLocation"
+                                data-model="$ctrl.model.location"
+                                data-label="{{ location }}"
+                                data-values="[location]"
                                 data-variant="light"
-                                data-disabled="!$ctrl.isRegionAvailable(datacenter)">
-                                <oui-select-picker-section data-ng-if="!$ctrl.isRegionAvailable(datacenter)">
-                                    <a href="#flavor" class="oui-link">Pas dispo</a>
-                                </oui-select-picker-section>
+                                data-ng-if="!$ctrl.showOnlyAvailableRegions || $ctrl.isLocationAvailable(datacenter)"
+                                data-required>
                             </oui-select-picker>
                         </div>
+
+                        <div data-ng-if="datacentersLocation[$ctrl.model.location]">
+                            <p data-translate="pci_projects_project_instances_add_region_datacenter_title"></p>
+                            <div class="row">
+                                <oui-select-picker
+                                    data-ng-repeat="datacenter in datacentersLocation[$ctrl.model.location] track by datacenter.name"
+                                    class="d-inline-block col-md-6 col-lg-4 my-3"
+                                    data-name="{{ continent + '-' + datacenter.name }}"
+                                    data-model="$ctrl.model.datacenter"
+                                    data-label="{{:: datacenter.name }}"
+                                    data-values="[datacenter]"
+                                    data-variant="light"
+                                    data-disabled="!$ctrl.isRegionAvailable(datacenter)"
+                                    data-ng-if="!$ctrl.showOnlyAvailableRegions || $ctrl.isRegionAvailable(datacenter)">
+                                    <oui-select-picker-section
+                                        data-ng-if="!$ctrl.isRegionAvailable(datacenter)"
+                                        data-ng-switch="$ctrl.getUnavailabilityReason(datacenter)">
+                                        <button type="button"
+                                            class="oui-button oui-button_link"
+                                            data-ng-switch-when="UNAVAILABLE"
+                                            data-ng-click="$ctrl.currentStep = 0">
+                                            <span data-translate="pci_project_instances_instance_add_region_unavailable"></span>
+                                        </button>
+                                        <a class="oui-button oui-button_link"
+                                            data-ng-switch-when="INACTIVE"
+                                            data-ui-sref="iaas.pci-project.compute.regions">
+                                            <span data-translate="pci_project_instances_instance_add_region_activate"></span>
+                                        </a>
+                                        <a class="oui-button oui-button_link"
+                                            data-ng-switch-default
+                                            data-ui-sref="iaas.pci-project.compute.quota">
+                                            <span data-translate="pci_project_instances_instance_add_region_quota">
+                                            </span>
+                                        </a>
+                                    </oui-select-picker-section>
+                                </oui-select-picker>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </oui-tabs-item>
-        </oui-tabs>
+                </oui-tabs-item>
+            </oui-tabs>
+        </div>
         <div class="row">
             <oui-select-picker
                 class="d-inline-block col-md-6 col-lg-4 my-3"

@@ -14,6 +14,8 @@ export default class Image {
     if (this.isApp()) {
       this.appName = this.getAppName();
     }
+
+    this.imagePath = null;
   }
 
   getAppName() {

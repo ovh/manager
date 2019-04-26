@@ -2,6 +2,7 @@ import find from 'lodash/find';
 import filter from 'lodash/filter';
 import get from 'lodash/get';
 import has from 'lodash/has';
+import some from 'lodash/some';
 
 import Quota from '../../../../components/project/instance/quota/quota.class';
 import { PATTERN } from '../../../../components/project/instance/name/constants';
@@ -14,14 +15,12 @@ export default class CloudProjectComputeInfrastructureVirtualMachineAddCtrl {
     $translate,
     CucCloudMessage,
     OvhApiCloudProjectInstance,
-    PciProjectRegions,
     PciProjectsProjectInstanceService,
   ) {
     this.$q = $q;
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.OvhApiCloudProjectInstance = OvhApiCloudProjectInstance;
-    this.PciProjectRegions = PciProjectRegions;
     this.PciProjectsProjectInstanceService = PciProjectsProjectInstanceService;
   }
 
@@ -36,6 +35,8 @@ export default class CloudProjectComputeInfrastructureVirtualMachineAddCtrl {
     };
 
     this.showUserData = false;
+    this.showOnlyAvailableRegions = false;
+
     this.quota = null;
     this.flavor = null;
 
@@ -129,7 +130,45 @@ export default class CloudProjectComputeInfrastructureVirtualMachineAddCtrl {
   isRegionAvailable(datacenter) {
     return this.model.flavorGroup.isAvailableInRegion(datacenter.name)
       && datacenter.isAvailable()
-      && datacenter.hasEnoughQuota();
+      && datacenter.hasEnoughQuotaForFlavor(this.model.flavorGroup);
+  }
+
+  isLocationAvailable(datacenters) {
+    return some(datacenters, datacenter => this.isRegionAvailable(datacenter));
+  }
+
+  isRegionActive(datacenter) {
+    return this.availableRegions.includes(datacenter.name);
+  }
+
+  createQuota() {
+    this.quota = new Quota(this.model.datacenter.quota.instance);
+  }
+
+  getUnavailabilityReason(datacenter) {
+    if (!this.model.flavorGroup.isAvailableInRegion(datacenter.name)) {
+      return 'UNAVAILABLE';
+    }
+
+    if (!datacenter.isAvailable()) {
+      return 'INACTIVE';
+    }
+
+    if (has(datacenter, 'quota.instance')) {
+      if (!datacenter.checkInstancesNumber()) {
+        return 'INSTANCE';
+      }
+
+      if (!datacenter.checkRamQuotaForFlavor(this.model.flavorGroup)) {
+        return 'RAM';
+      }
+
+      if (!datacenter.checkCoresQuota(this.model.flavorGroup)) {
+        return 'VCPUS';
+      }
+    }
+
+    return 'UNKWOWN';
   }
 
   create() {
