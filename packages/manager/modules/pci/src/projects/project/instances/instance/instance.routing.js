@@ -19,10 +19,6 @@ export default /* @ngInject */ ($stateProvider) => {
       ) => PciProjectsProjectInstanceService
         .getInstancePrice(projectId, instance),
 
-      privateNetworks: /* @ngInject */ (
-        PciProjectsProjectInstanceService,
-        projectId,
-      ) => PciProjectsProjectInstanceService.getPrivateNetworks(projectId),
       breadcrumb: /* @ngInject */ instance => instance.name,
 
       instanceLink: /* @ngInject */ ($state, instance, projectId) => $state.href('pci.projects.project.instances.instance', {
@@ -86,9 +82,10 @@ export default /* @ngInject */ ($stateProvider) => {
       gotToNetworks: /* @ngInject */ ($state, projectId) => () => $state.go('pci.projects.project.privateNetwork', {
         projectId,
       }),
-      attachNetwork: () => {
-
-      },
+      attachPrivateNetwork: /* @ngInject */($state, instance, projectId) => () => $state.go('pci.projects.project.instances.instance.attachPrivateNetwork', {
+        projectId,
+        instanceId: instance.id,
+      }),
     },
   });
 };
