@@ -33,6 +33,7 @@ export default class PciInstancesAddController {
     });
 
     this.isLoading = false;
+    this.defaultInstanceName = '';
 
     this.showUserData = false;
     this.showOnlyAvailableRegions = false;
@@ -143,8 +144,9 @@ export default class PciInstancesAddController {
   onInstanceFocus() {
     this.quota = new Quota(this.model.datacenter.quota.instance);
 
-    if (!has(this.instance, 'name')) {
-      this.instance.name = `${this.flavor.name}-${this.instance.region}`.toLowerCase();
+    if (!has(this.instance, 'name') || get(this.instance, 'name') === this.defaultInstanceName) {
+      this.defaultInstanceName = `${this.flavor.name}-${this.instance.region}`.toLowerCase();
+      this.instance.name = this.defaultInstanceName;
     }
   }
 
