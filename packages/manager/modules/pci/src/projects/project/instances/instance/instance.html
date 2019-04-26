@@ -191,12 +191,12 @@
                 <oui-tile-definition
                     data-term="{{:: 'pci_projects_project_instances_instance_private_networks_label' | translate }}">
                     <oui-tile-description
-                        data-ng-if="$ctrl.privateNetworks.length === 0">
+                        data-ng-if="$ctrl.instance.privateNetworks.length === 0">
                         <span>-</span>
                     </oui-tile-description>
                     <oui-tile-description
-                        data-ng-if="$ctrl.privateNetworks.length > 0"
-                        data-ng-repeat="network in $ctrl.privateNetworks track by network.id">
+                        data-ng-if="$ctrl.instance.privateNetworks.length > 0"
+                        data-ng-repeat="network in $ctrl.instance.privateNetworks track by network.id">
                         <span data-ng-bind="network.name"></span>
                     </oui-tile-description>
                 <oui-action-menu data-compact data-align="end">
@@ -204,7 +204,7 @@
                         data-on-click="$ctrl.gotToNetworks()">
                     </oui-action-menu-item>
                     <oui-action-menu-item text="{{:: 'pci_projects_project_instances_instance_private_networks_action_attach_label' | translate }}"
-                        data-on-click="$ctrl.onClickNetworkAttach({ instance: $ctrl.instance })">
+                        data-on-click="$ctrl.attachPrivateNetwork()">
                     </oui-action-menu-item>
                 </oui-action-menu>
                 </oui-tile-definition>
