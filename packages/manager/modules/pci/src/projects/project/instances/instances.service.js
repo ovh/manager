@@ -5,6 +5,7 @@ import filter from 'lodash/filter';
 import find from 'lodash/find';
 import map from 'lodash/map';
 import round from 'lodash/round';
+import reduce from 'lodash/reduce';
 import moment from 'moment';
 
 import Instance from './instance.class';
@@ -106,10 +107,15 @@ export default class PciProjectInstanceService {
           })
           .$promise
           .catch(() => []),
+        privateNetworks: this.getPrivateNetworks(projectId),
       }))
-      .then(({ instance, volumes }) => new Instance({
+      .then(({ instance, volumes, privateNetworks }) => new Instance({
         ...instance,
         volumes: filter(volumes, volume => includes(volume.attachedTo, instance.id)),
+        privateNetworks: filter(privateNetworks, privateNetwork => includes(
+          map(filter(instance.ipAddresses, { type: 'private' }), 'networkId'),
+          privateNetwork.id,
+        )),
       }));
   }
 
@@ -264,6 +270,14 @@ export default class PciProjectInstanceService {
       ));
   }
 
+  getCompatiblesPrivateNetworks(projectId, instance) {
+    return this.getAvailablesPrivateNetworks(projectId, instance.region)
+      .then(networks => filter(
+        networks,
+        network => !includes(map(instance.privateNetworks, 'id'), network.id),
+      ));
+  }
+
   getAvailablesPrivateNetworks(projectId, region) {
     return this.getPrivateNetworks(projectId)
       .then(networks => filter(networks, network => find(network.regions, { region, status: 'ACTIVE' })));
@@ -414,5 +428,35 @@ export default class PciProjectInstanceService {
         },
       )
       .$promise;
+  }
+
+  attachPrivateNetworks(
+    projectId,
+    {
+      id: instanceId,
+    },
+    privateNetworks,
+  ) {
+    const promises = reduce(
+      privateNetworks,
+      (results, privateNetwork) => [
+        ...results,
+        this.OvhApiCloudProjectInstance
+          .Interface()
+          .v6()
+          .save(
+            {
+              serviceName: projectId,
+              instanceId,
+            },
+            {
+              networkId: privateNetwork.id,
+            },
+          )
+          .$promise,
+      ],
+      [],
+    );
+    return this.$q.all(promises);
   }
 }
