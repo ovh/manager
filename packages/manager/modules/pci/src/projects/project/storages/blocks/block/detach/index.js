@@ -9,7 +9,7 @@ angular
     'ui.router',
     'oc.lazyLoad',
   ])
-  .config(($stateProvider) => {
+  .config(/* @ngInject */($stateProvider) => {
     $stateProvider.state('pci.projects.project.storages.blocks.detach.**', {
       url: '/detach?storageId',
       lazyLoad: ($transition$) => {

@@ -9,7 +9,7 @@ angular
     'ui.router',
     'oc.lazyLoad',
   ])
-  .config(($stateProvider) => {
+  .config(/* @ngInject */($stateProvider) => {
     $stateProvider.state('pci.projects.project.sshKeys.remove.**', {
       url: '/:keyId/remove',
       lazyLoad: ($transition$) => {
