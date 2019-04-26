@@ -1,6 +1,7 @@
 const merge = require('webpack-merge');
 const path = require('path');
 const webpackConfig = require('@ovh-ux/manager-webpack-config');
+const webpack = require('webpack');
 
 module.exports = (env = {}) => {
   const { config } = webpackConfig({
@@ -20,6 +21,11 @@ module.exports = (env = {}) => {
       path: path.join(__dirname, 'dist'),
       filename: '[name].[chunkhash].bundle.js',
     },
+    plugins: [
+      new webpack.DefinePlugin({
+        __FEEDBACK_URL__: process.env.FEEDBACK_URL ? `'${process.env.FEEDBACK_URL}'` : 'null',
+      }),
+    ],
     resolve: {
       modules: [
         './node_modules',
