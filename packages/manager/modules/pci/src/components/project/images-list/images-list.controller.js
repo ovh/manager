@@ -3,6 +3,8 @@ import partition from 'lodash/partition';
 import reduce from 'lodash/reduce';
 import some from 'lodash/some';
 
+import { IMAGE_ASSETS } from './images.constants';
+
 export default class ImagesListController {
   /* @ngInject */
   constructor(
@@ -15,6 +17,8 @@ export default class ImagesListController {
     this.OvhApiCloudProjectImage = OvhApiCloudProjectImage;
     this.OvhApiCloudProjectSnapshot = OvhApiCloudProjectSnapshot;
     this.PciProjectImages = PciProjectImages;
+
+    this.IMAGE_ASSETS = IMAGE_ASSETS;
   }
 
   $onInit() {

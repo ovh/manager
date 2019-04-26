@@ -28,7 +28,7 @@
                                 data-on-change="$ctrl.changeDistribution(modelValue, images)"
                                 data-ng-if="!$ctrl.showOnlyAvailable || $ctrl.isDistributionCompatible(images)"
                                 data-disabled="!$ctrl.isDistributionCompatible(images)"
-                                data-picture="{{:: images[0].image }}">
+                                data-picture="{{$ctrl.IMAGE_ASSETS.os[distribution]}}">
                                 <oui-select-picker-section data-ng-if="!$ctrl.isDistributionCompatible(images)" data-ng-transclude></oui-select-picker-section>
                             </oui-select-picker>
                         </div>
@@ -49,7 +49,8 @@
                                 data-variant="light"
                                 data-on-change="$ctrl.onImageChange(modelValue)"
                                 data-disabled="!$ctrl.isCompatible(image)"
-                                data-ng-if="!$ctrl.showOnlyAvailable || $ctrl.isCompatible(image)">
+                                data-ng-if="!$ctrl.showOnlyAvailable || $ctrl.isCompatible(image)"
+                                data-picture="{{$ctrl.IMAGE_ASSETS.os[$ctrl.distribution]}}">
                                 <oui-select-picker-section data-ng-if="!$ctrl.isCompatible(image)" data-ng-transclude></oui-select-picker-section>
                             </oui-select-picker>
                         </div>
@@ -74,7 +75,7 @@
                             data-on-change="$ctrl.onImageChange(modelValue)"
                             data-disabled="!$ctrl.isCompatible(app)"
                             data-ng-if="!$ctrl.showOnlyAvailable || $ctrl.isCompatible(app)"
-                            data-picture="{{:: app.image}}">
+                            data-picture="{{$ctrl.IMAGE_ASSETS.apps[app.getApplications()[0]]}}">
                             <oui-select-picker-section data-ng-if="!$ctrl.isCompatible(app)" data-ng-transclude></oui-select-picker-section>
                         </oui-select-picker>
                     </div>
