@@ -4,5 +4,10 @@
   "pci_project_instance_ssh_add": "Ajouter une clé",
   "pci_project_instance_ssh_cancel": "Annuler",
 
-  "pci_project_instance_ssh_key_name": "Nom de la clé SSH"
+  "pci_project_instance_ssh_key_name": "Nom de la clé SSH",
+  "pci_project_instance_ssh_key_query_error": "Une erreur est survenue lors de la récupération de vos clés SSH : {{message}}.",
+  "pci_project_instance_ssh_key_add_error": "Une erreur est survenue lors de l'ajout de la clé SSH : {{message}}.",
+
+  "pci_project_instance_ssh_key_help_required": "Les clés SSH sont obligatoires pour se connecter à votre service.",
+  "pci_project_instance_ssh_key_help_availability": "Votre clé SSH sera disponible sur l'ensemble des régions et des data centers OVH."
 }
