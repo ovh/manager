@@ -4,7 +4,7 @@
   "public_cloud_beta_warning_test_new_feature": "Testez les nouvelles fonctionnalités",
   "public_cloud_beta_warning_test_new_feature_desc": "Vous bénéficiez d’un accès anticipé à notre future interface de gestion de vos projets Public Cloud.",
   "public_cloud_beta_warning_help_develop": "Aidez-nous à développer Public Cloud",
-  "public_cloud_beta_warning_help_develop_desc": "En utilisant la version Preview de Public Cloud et en partageant vos commentaires (à l’aide du bouton situé en bas à droite de votre manager), vous pourrez nous aider à améliorer les fonctionnalités.",
+  "public_cloud_beta_warning_help_develop_desc": "En utilisant la version Preview de Public Cloud et en partageant vos commentaires (à l’aide du bouton situé en bas à droite de votre espace client), vous pourrez nous aider à améliorer les fonctionnalités.",
   "public_cloud_beta_warning_comment": "Tout n’est pas encore parfait, nous sommes au courant de l’existence de certains «&nbsp;bugs&nbsp;» mais faites-vous plaisir, testez et partagez :)",
   "public_cloud_beta_warning_dont_show_again": "Ne plus afficher",
   "public_cloud_beta_warning_lets_go": "C'est parti"
