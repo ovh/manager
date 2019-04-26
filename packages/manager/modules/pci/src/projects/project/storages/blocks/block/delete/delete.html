@@ -2,13 +2,11 @@
     data-heading="{{ 'pci_projects_project_storages_blocks_block_delete_title' | translate }}"
     data-primary-action="$ctrl.deleteStorage()"
     data-primary-label="{{:: 'pci_projects_project_storages_blocks_block_delete_submit_label' | translate }}"
-    data-primary-disabled="$ctrl.loadings.init || $ctrl.loadings.save || !$ctrl.storage.isDeletable()"
+    data-primary-disabled="$ctrl.isLoading || !$ctrl.storage.isDeletable()"
     data-secondary-action="$ctrl.goBack()"
     data-secondary-label="{{:: 'pci_projects_project_storages_blocks_block_delete_cancel_label' | translate }}"
     data-on-dismiss="$ctrl.goBack()"
-    data-loading="$ctrl.loadings.init">
-
-    <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
+    data-loading="$ctrl.isLoading">
 
     <div data-ng-if="$ctrl.storage.isDeletable()">
         <p data-translate="pci_projects_project_storages_blocks_block_delete_content"
@@ -19,18 +17,18 @@
     </div>
     <div data-ng-if="!$ctrl.storage.isDeletable()">
         <oui-message data-type="warning">
-            <p data-translate="pci_projects_project_storages_blocks_block_delete_error_should"></p>
-            <ul>
-                <li data-ng-if="!$ctrl.storage.isAttachable()"
-                    data-translate="pci_projects_project_storages_blocks_block_delete_error_detach"></li>
-                <li data-ng-if="$ctrl.storage.hasSnapshots()"
-                    data-translate="pci_projects_project_storages_blocks_block_delete_error_delete_snapshots"></li>
-            </ul>
+            <div data-ng-if="!$ctrl.storage.isAttachable() && $ctrl.storage.hasSnapshots()">
+                <span data-translate="pci_projects_project_storages_blocks_block_delete_error_should_multiple"></span>
+                <ul>
+                    <li data-translate="pci_projects_project_storages_blocks_block_delete_error_detach"></li>
+                    <li data-translate="pci_projects_project_storages_blocks_block_delete_error_delete_snapshots"></li>
+                </ul>
+            </div>
+            <span data-translate="pci_projects_project_storages_blocks_block_delete_error_should_detach"
+                data-ng-if="!$ctrl.storage.isAttachable() && !$ctrl.storage.hasSnapshots()"></span>
+            <span data-translate="pci_projects_project_storages_blocks_block_delete_error_should_snapshots"
+                data-ng-if="$ctrl.storage.isAttachable() && $ctrl.storage.hasSnapshots()"></span>
         </oui-message>
-    </div>
-
-    <div data-ng-if="$ctrl.loadings.save" class="text-center">
-        <oui-spinner></oui-spinner>
     </div>
 
 </oui-modal>
