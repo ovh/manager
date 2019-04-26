@@ -57,16 +57,16 @@
     "ovh-angular-pagination-front": "ovh-ux/ovh-angular-pagination-front#^5.1.0",
     "ovh-angular-q-allsettled": "ovh-ux/ovh-angular-q-allSettled#^0.3.1",
     "ovh-angular-responsive-page-switcher": "^1.1.0",
-    "ovh-api-services": "^6.12.0",
+    "ovh-api-services": "^6.14.0",
     "ovh-common-style": "^5.0.0",
     "ovh-jquery-ui-draggable-ng": "ovh-ux/ovh-jquery-ui-draggable-ng#^0.0.5",
     "ovh-manager-webfont": "^1.2.0",
-    "ovh-ui-angular": "^2.29.1",
-    "ovh-ui-kit": "^2.29.1",
+    "ovh-ui-angular": "^2.30.0",
+    "ovh-ui-kit": "^2.30.0",
     "ovh-ui-kit-bs": "^2.1.1"
   },
   "devDependencies": {
-    "@ovh-ux/manager-webpack-config": "^3.0.5",
+    "@ovh-ux/manager-webpack-config": "^3.0.6",
     "webpack-merge": "^4.1.4"
   }
 }

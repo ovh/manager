@@ -900,16 +900,16 @@
     read-package-tree "^5.1.6"
     semver "^5.5.0"
 
-"@lerna/changed@3.13.3":
-  version "3.13.3"
-  resolved "https://registry.yarnpkg.com/@lerna/changed/-/changed-3.13.3.tgz#f2a2e982f4317157345f7abb3f6b12cc69394657"
-  integrity sha512-REMZ/1UvYrizUhN7ktlbfMUa0vhMf1ogAe97WQC4I8r3s973Orfhs3aselo1GwudUwM4tMHBH8A9vnll9or3iA==
+"@lerna/changed@3.13.4":
+  version "3.13.4"
+  resolved "https://registry.yarnpkg.com/@lerna/changed/-/changed-3.13.4.tgz#c69d8a079999e49611dd58987f08437baee81ad4"
+  integrity sha512-9lfOyRVObasw6L/z7yCSfsEl1QKy0Eamb8t2Krg1deIoAt+cE3JXOdGGC1MhOSli+7f/U9LyLXjJzIOs/pc9fw==
   dependencies:
     "@lerna/collect-updates" "3.13.3"
     "@lerna/command" "3.13.3"
     "@lerna/listable" "3.13.0"
     "@lerna/output" "3.13.0"
-    "@lerna/version" "3.13.3"
+    "@lerna/version" "3.13.4"
 
 "@lerna/check-working-tree@3.13.3":
   version "3.13.3"
@@ -1116,10 +1116,10 @@
     "@lerna/child-process" "3.13.3"
     semver "^5.5.0"
 
-"@lerna/import@3.13.3":
-  version "3.13.3"
-  resolved "https://registry.yarnpkg.com/@lerna/import/-/import-3.13.3.tgz#1dc84f2c5644ba874be9552395a3b158688b263c"
-  integrity sha512-gDjLAFVavG/CMvj9leBfiwd7vrXqtdFXPIz1oXmghBMnje7nCTbodbNWFe4VDDWx7reDaZIN+6PxTSvrPcF//A==
+"@lerna/import@3.13.4":
+  version "3.13.4"
+  resolved "https://registry.yarnpkg.com/@lerna/import/-/import-3.13.4.tgz#e9a1831b8fed33f3cbeab3b84c722c9371a2eaf7"
+  integrity sha512-dn6eNuPEljWsifBEzJ9B6NoaLwl/Zvof7PBUPA4hRyRlqG5sXRn6F9DnusMTovvSarbicmTURbOokYuotVWQQA==
   dependencies:
     "@lerna/child-process" "3.13.3"
     "@lerna/command" "3.13.3"
@@ -1300,10 +1300,10 @@
     inquirer "^6.2.0"
     npmlog "^4.1.2"
 
-"@lerna/publish@3.13.3":
-  version "3.13.3"
-  resolved "https://registry.yarnpkg.com/@lerna/publish/-/publish-3.13.3.tgz#9adde543064e85851f02c0c2dbd40d52d1c519a4"
-  integrity sha512-Ni3pZKueIfgJJoL0OXfbAuWhGlJrDNwGx3CYWp2dbNqJmKD6uBZmsDtmeARKDp92oUK60W0drXCMydkIFFHMDQ==
+"@lerna/publish@3.13.4":
+  version "3.13.4"
+  resolved "https://registry.yarnpkg.com/@lerna/publish/-/publish-3.13.4.tgz#25b678c285110897a7fc5198a35bdfa9db7f9cc1"
+  integrity sha512-v03pabiPlqCDwX6cVNis1PDdT6/jBgkVb5Nl4e8wcJXevIhZw3ClvtI94gSZu/wdoVFX0RMfc8QBVmaimSO0qg==
   dependencies:
     "@lerna/batch-packages" "3.13.0"
     "@lerna/check-working-tree" "3.13.3"
@@ -1322,7 +1322,7 @@
     "@lerna/run-lifecycle" "3.13.0"
     "@lerna/run-parallel-batches" "3.13.0"
     "@lerna/validation-error" "3.13.0"
-    "@lerna/version" "3.13.3"
+    "@lerna/version" "3.13.4"
     figgy-pudding "^3.5.1"
     fs-extra "^7.0.0"
     libnpmaccess "^3.0.1"
@@ -1430,10 +1430,10 @@
   dependencies:
     npmlog "^4.1.2"
 
-"@lerna/version@3.13.3":
-  version "3.13.3"
-  resolved "https://registry.yarnpkg.com/@lerna/version/-/version-3.13.3.tgz#3ec1b5aee2fd42353b95452c38cc0b284b93a1f0"
-  integrity sha512-o/yQGAwDHmyu17wTj4Kat1/uDhjYFMeG+H0Y0HC4zJ4a/T6rEiXx7jJrnucPTmTQTDcUBoH/It5LrPYGOPsExA==
+"@lerna/version@3.13.4":
+  version "3.13.4"
+  resolved "https://registry.yarnpkg.com/@lerna/version/-/version-3.13.4.tgz#ea23b264bebda425ccbfcdcd1de13ef45a390e59"
+  integrity sha512-pptWUEgN/lUTQZu34+gfH1g4Uhs7TDKRcdZY9A4T9k6RTOwpKC2ceLGiXdeR+ZgQJAey2C4qiE8fo5Z6Rbc6QA==
   dependencies:
     "@lerna/batch-packages" "3.13.0"
     "@lerna/check-working-tree" "3.13.3"
@@ -1542,7 +1542,37 @@
     shuffle-seed "^1.1.6"
     titleize "^1.0.1"
 
-"@ovh-ux/component-rollup-config@5.0.0", "@ovh-ux/component-rollup-config@^5.0.0":
+"@ovh-ux/component-rollup-config@5.0.1", "@ovh-ux/component-rollup-config@^5.0.1":
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/component-rollup-config/-/component-rollup-config-5.0.1.tgz#968c85be3cd3158eda627ce8dede929685660d54"
+  integrity sha512-CoHyw6aaE14PX/a2oGXAKEbeQNpbyS83FHI3F0b3bJpKAHTfH5jYH6IfgWXLR3onwpztuDxWZauGNIUdB3Nw5g==
+  dependencies:
+    "@babel/core" "^7.1.2"
+    "@babel/plugin-syntax-dynamic-import" "^7.0.0"
+    "@babel/preset-env" "^7.1.6"
+    "@ovh-ux/rollup-plugin-less-tilde-importer" "^1.0.0-beta.0"
+    babel-plugin-angularjs-annotate "^0.10.0"
+    camelcase "^5.0.0"
+    estree-walker "^0.6.0"
+    less "^3.8.1"
+    less-plugin-remcalc "^0.1.0"
+    lodash "^4.17.11"
+    magic-string "^0.25.1"
+    node-sass "^4.10.0"
+    rollup "^1.1.2"
+    rollup-plugin-babel "^4.3.2"
+    rollup-plugin-commonjs "^9.2.0"
+    rollup-plugin-html "^0.2.1"
+    rollup-plugin-img "^1.1.0"
+    rollup-plugin-json "^3.1.0"
+    rollup-plugin-less "^0.1.5"
+    rollup-plugin-node-resolve "^4.0.0"
+    rollup-plugin-peer-deps-external "^2.2.0"
+    rollup-plugin-sass "^1.1.0"
+    rollup-pluginutils "^2.3.3"
+    slash "^2.0.0"
+
+"@ovh-ux/component-rollup-config@^5.0.0":
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/component-rollup-config/-/component-rollup-config-5.0.0.tgz#4a3fe1f8462d96fdc7e98f64e917d6c534c6d4f9"
   integrity sha512-c1rygLGj5BGXhS32NbpL2p12Xfoi4Y/Rlb6UVTdn2XNg3tkmthPf25UoV+jcQWapU39fvnb0bjf902lBijq28w==
@@ -1572,10 +1602,10 @@
     rollup-pluginutils "^2.3.3"
     slash "^2.0.0"
 
-"@ovh-ux/manager-webpack-config@^3.0.5":
-  version "3.0.5"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-webpack-config/-/manager-webpack-config-3.0.5.tgz#f274f4de8238bbeb553bb023317e7f502f981a84"
-  integrity sha512-qWb87wk0XMvQaSgAAGold3E5/ckhnmiu5Y18iYKi/eeqYI5fBKX5p96VbIQa1LblTbYAezmUyXFN2GUgVJ9JCg==
+"@ovh-ux/manager-webpack-config@^3.0.6":
+  version "3.0.6"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-webpack-config/-/manager-webpack-config-3.0.6.tgz#530f21269c2ee7ad94b9f0a80152437b55f91732"
+  integrity sha512-qtUb3MDC8qEI9S0FfE6uTn/RQKCEJlIp+p5l1DEn7Cx6+yMoS7shnvDV//28QvrS7hUNhM53cUmRyViZvJ2DTA==
   dependencies:
     "@babel/core" "^7.2.2"
     "@babel/generator" "^7.2.2"
@@ -1583,7 +1613,7 @@
     "@babel/plugin-syntax-dynamic-import" "^7.2.0"
     "@babel/preset-env" "^7.2.3"
     "@ovh-ux/component-rollup-config" "^5.0.0"
-    "@ovh-ux/manager-webpack-dev-server" "^2.0.4"
+    "@ovh-ux/manager-webpack-dev-server" "^2.1.0"
     acorn "^6.0.5"
     acorn-dynamic-import "^4.0.0"
     babel-eslint "^8.2.6"
@@ -1614,7 +1644,7 @@
     webpack-merge "^4.2.1"
     webpackbar "^3.1.5"
 
-"@ovh-ux/manager-webpack-dev-server@^2.0.4":
+"@ovh-ux/manager-webpack-dev-server@^2.1.0":
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-webpack-dev-server/-/manager-webpack-dev-server-2.1.0.tgz#62ce46f5820d55bb39d1c908e5547afd4103206a"
   integrity sha512-N+E/HHQrZ2afd1yWuw2J7nGtb9oLv7A6mQWJMQlxN0wgdtlRpVb92MsysTlPpok93/0YBnrwaVkJaZohwvEjzQ==
@@ -1753,10 +1783,10 @@
   dependencies:
     lodash "^4.17.11"
 
-"@ovh-ux/ng-ovh-telecom-universe-components@^3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-telecom-universe-components/-/ng-ovh-telecom-universe-components-3.0.0.tgz#e9ce9ec834ee6d5da7ca27ae3e6bc2d1693b1154"
-  integrity sha512-7XSMQO4fZSZaqn7coBGJKN9LFSyWyS1wb3yvYDVORHoEVYspieL79FgQAbYL47oIb4duFp1BSOelVZl1ZLipdA==
+"@ovh-ux/ng-ovh-telecom-universe-components@^3.0.2":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-telecom-universe-components/-/ng-ovh-telecom-universe-components-3.0.2.tgz#1550458ce6d8099447faec44f73396413eeaf088"
+  integrity sha512-GVpcfKFCTb3bGhorSncErZtdqnOAB2BydUGiQiZhYwh+80Xldx8fQ/QPQwnSdZJduKVIdP5EetjfA94HYiSs1w==
   dependencies:
     bootstrap "^3.3.7"
     ovh-ui-kit "^2.22.0"
@@ -3724,13 +3754,13 @@ conventional-changelog-atom@^2.0.1:
   dependencies:
     q "^1.5.1"
 
-conventional-changelog-cli@^2.0.11:
-  version "2.0.12"
-  resolved "https://registry.yarnpkg.com/conventional-changelog-cli/-/conventional-changelog-cli-2.0.12.tgz#ffe04f5430fbc339dc7fa28634c2e0de5dd76e2e"
-  integrity sha512-6wh9W5Gpr9DM40E8cFi0qa6JotVm4Jq+suksuqgKnm544H8ZXsRhgGNXShDASOteY9brv9fX8/+fE/QL1wHqbA==
+conventional-changelog-cli@^2.0.17:
+  version "2.0.17"
+  resolved "https://registry.yarnpkg.com/conventional-changelog-cli/-/conventional-changelog-cli-2.0.17.tgz#ec3f149dfc918903ae925b7a375d5b638fb45741"
+  integrity sha512-IQUS08TTrLxAd0Le3THPz8xFFe1kVmSBOcnfe8RGpi+io3ALnMT4uw0snmP3Cb9lgnHXg0NcjQyVsE+jJmHtrw==
   dependencies:
     add-stream "^1.0.0"
-    conventional-changelog "^3.0.6"
+    conventional-changelog "^3.1.4"
     lodash "^4.2.1"
     meow "^4.0.0"
     tempfile "^1.1.1"
@@ -3740,6 +3770,14 @@ conventional-changelog-codemirror@^2.0.1:
   resolved "https://registry.yarnpkg.com/conventional-changelog-codemirror/-/conventional-changelog-codemirror-2.0.1.tgz#acc046bc0971460939a0cc2d390e5eafc5eb30da"
   integrity sha512-23kT5IZWa+oNoUaDUzVXMYn60MCdOygTA2I+UjnOMiYVhZgmVwNd6ri/yDlmQGXHqbKhNR5NoXdBzSOSGxsgIQ==
   dependencies:
+    q "^1.5.1"
+
+conventional-changelog-conventionalcommits@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/conventional-changelog-conventionalcommits/-/conventional-changelog-conventionalcommits-1.1.2.tgz#bb30c8d40dbd13ba9ec4e9bc6a025578b31b17bd"
+  integrity sha512-t8VyibJHGrtsDwSHjgpW9v7oBbqDGQooCMo/a2rc0z5cousV5O11palcSPpyshEVWVijxPtzBNG02EQkMDJ8CA==
+  dependencies:
+    compare-func "^1.3.1"
     q "^1.5.1"
 
 conventional-changelog-core@^3.1.6:
@@ -3761,6 +3799,25 @@ conventional-changelog-core@^3.1.6:
     read-pkg-up "^3.0.0"
     through2 "^2.0.0"
 
+conventional-changelog-core@^3.2.2:
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/conventional-changelog-core/-/conventional-changelog-core-3.2.2.tgz#de41e6b4a71011a18bcee58e744f6f8f0e7c29c0"
+  integrity sha512-cssjAKajxaOX5LNAJLB+UOcoWjAIBvXtDMedv/58G+YEmAXMNfC16mmPl0JDOuVJVfIqM0nqQiZ8UCm8IXbE0g==
+  dependencies:
+    conventional-changelog-writer "^4.0.5"
+    conventional-commits-parser "^3.0.2"
+    dateformat "^3.0.0"
+    get-pkg-repo "^1.0.0"
+    git-raw-commits "2.0.0"
+    git-remote-origin-url "^2.0.0"
+    git-semver-tags "^2.0.2"
+    lodash "^4.2.1"
+    normalize-package-data "^2.3.5"
+    q "^1.5.1"
+    read-pkg "^3.0.0"
+    read-pkg-up "^3.0.0"
+    through2 "^3.0.0"
+
 conventional-changelog-ember@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/conventional-changelog-ember/-/conventional-changelog-ember-2.0.2.tgz#284ffdea8c83ea8c210b65c5b4eb3e5cc0f4f51a"
@@ -3768,10 +3825,10 @@ conventional-changelog-ember@^2.0.2:
   dependencies:
     q "^1.5.1"
 
-conventional-changelog-eslint@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/conventional-changelog-eslint/-/conventional-changelog-eslint-3.0.1.tgz#f65e0e7f63dc09c044244b8785313a602e628002"
-  integrity sha512-yH3+bYrtvgKxSFChUBQnKNh9/U9kN2JElYBm253VpYs5wXhPHVc9ENcuVGWijh24nnOkei7wEJmnmUzgZ4ok+A==
+conventional-changelog-eslint@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/conventional-changelog-eslint/-/conventional-changelog-eslint-3.0.2.tgz#e9eb088cda6be3e58b2de6a5aac63df0277f3cbe"
+  integrity sha512-Yi7tOnxjZLXlCYBHArbIAm8vZ68QUSygFS7PgumPRiEk+9NPUeucy5Wg9AAyKoBprSV3o6P7Oghh4IZSLtKCvQ==
   dependencies:
     q "^1.5.1"
 
@@ -3823,21 +3880,38 @@ conventional-changelog-writer@^4.0.3:
     split "^1.0.0"
     through2 "^2.0.0"
 
-conventional-changelog@^3.0.6:
-  version "3.0.6"
-  resolved "https://registry.yarnpkg.com/conventional-changelog/-/conventional-changelog-3.0.6.tgz#a0bd3b51a0549ec03eb6ef90af7f9fa8c358b15f"
-  integrity sha512-1b96x3G67lDKakRvMm+VvYGwgRk+C8aapHKL5iZ/TJzzD/RuyGA2diHNEsR+uPHmQ7/A4Ts7j6N+VNqUoOfksg==
+conventional-changelog-writer@^4.0.5:
+  version "4.0.5"
+  resolved "https://registry.yarnpkg.com/conventional-changelog-writer/-/conventional-changelog-writer-4.0.5.tgz#fb9e384bb294e8e8a9f2568a3f4d1e11953d8641"
+  integrity sha512-g/Myp4MaJ1A+f7Ai+SnVhkcWtaHk6flw0SYN7A+vQ+MTu0+gSovQWs4Pg4NtcNUcIztYQ9YHsoxHP+GGQplI7Q==
+  dependencies:
+    compare-func "^1.3.1"
+    conventional-commits-filter "^2.0.2"
+    dateformat "^3.0.0"
+    handlebars "^4.1.0"
+    json-stringify-safe "^5.0.1"
+    lodash "^4.2.1"
+    meow "^4.0.0"
+    semver "^5.5.0"
+    split "^1.0.0"
+    through2 "^3.0.0"
+
+conventional-changelog@^3.1.4:
+  version "3.1.4"
+  resolved "https://registry.yarnpkg.com/conventional-changelog/-/conventional-changelog-3.1.4.tgz#66db29830a799be9afcbfd67a366c1e2cbc21417"
+  integrity sha512-uMeTSzEb2oKFlL00Oh9j3+00PFq1MNneLzyy0TBftxo4PFrs7OiaRJXmXtEgSvJDdkc0RSd6ch2N+yTxPagZ0A==
   dependencies:
     conventional-changelog-angular "^5.0.3"
     conventional-changelog-atom "^2.0.1"
     conventional-changelog-codemirror "^2.0.1"
-    conventional-changelog-core "^3.1.6"
+    conventional-changelog-conventionalcommits "^1.1.2"
+    conventional-changelog-core "^3.2.2"
     conventional-changelog-ember "^2.0.2"
-    conventional-changelog-eslint "^3.0.1"
+    conventional-changelog-eslint "^3.0.2"
     conventional-changelog-express "^2.0.1"
     conventional-changelog-jquery "^3.0.4"
     conventional-changelog-jshint "^2.0.1"
-    conventional-changelog-preset-loader "^2.0.2"
+    conventional-changelog-preset-loader "^2.1.1"
 
 conventional-commits-filter@^2.0.1:
   version "2.0.1"
@@ -7317,10 +7391,10 @@ jsonparse@^1.2.0:
   resolved "https://registry.yarnpkg.com/jsonparse/-/jsonparse-1.3.1.tgz#3f4dae4a91fac315f71062f8521cc239f1366280"
   integrity sha1-P02uSpH6wxX3EGL4UhzCOfE2YoA=
 
-jsplumb@^2.9.0, jsplumb@~2.9.0:
-  version "2.9.0"
-  resolved "https://registry.yarnpkg.com/jsplumb/-/jsplumb-2.9.0.tgz#4e79cbb06f3657e1515e7d2beb6e226afe050956"
-  integrity sha512-oq0vBcANpeMa3F7ABzm8uZe5rx2BJjMdEl2fI686tVwMfGKB5ZoStKClZCWu0UHIm73Iyt2Fg+hrv/eP1Qf/iw==
+jsplumb@^2.9.2, jsplumb@~2.9.2:
+  version "2.9.2"
+  resolved "https://registry.yarnpkg.com/jsplumb/-/jsplumb-2.9.2.tgz#18930d6538f33418a7498c19a470f7c368613d08"
+  integrity sha512-tB8rUcBvCFI64Jp15DA9pU6JpjJLLYt7+PCOqdiX7sbMZ2X71LMPOHrl5PcnTYTDMAkx0AJ5arEkXanJA/jlEA==
 
 jsprim@^1.2.2:
   version "1.4.1"
@@ -7412,26 +7486,26 @@ lcid@^2.0.0:
   dependencies:
     invert-kv "^2.0.0"
 
-lerna@^3.13.3:
-  version "3.13.3"
-  resolved "https://registry.yarnpkg.com/lerna/-/lerna-3.13.3.tgz#bfd64e99466eaaf35b5d27994973b9f694796181"
-  integrity sha512-0TkG40F02A4wjKraJBztPtj87BjUezFmaZKAha8eLdtngZkSpAdrSANa5K7jnnA8mywmpQwrKJuBmjdNpm9cBw==
+lerna@^3.13.4:
+  version "3.13.4"
+  resolved "https://registry.yarnpkg.com/lerna/-/lerna-3.13.4.tgz#03026c11c5643f341fda42e4fb1882e2df35e6cb"
+  integrity sha512-qTp22nlpcgVrJGZuD7oHnFbTk72j2USFimc2Pj4kC0/rXmcU2xPtCiyuxLl8y6/6Lj5g9kwEuvKDZtSXujjX/A==
   dependencies:
     "@lerna/add" "3.13.3"
     "@lerna/bootstrap" "3.13.3"
-    "@lerna/changed" "3.13.3"
+    "@lerna/changed" "3.13.4"
     "@lerna/clean" "3.13.3"
     "@lerna/cli" "3.13.0"
     "@lerna/create" "3.13.3"
     "@lerna/diff" "3.13.3"
     "@lerna/exec" "3.13.3"
-    "@lerna/import" "3.13.3"
+    "@lerna/import" "3.13.4"
     "@lerna/init" "3.13.3"
     "@lerna/link" "3.13.3"
     "@lerna/list" "3.13.3"
-    "@lerna/publish" "3.13.3"
+    "@lerna/publish" "3.13.4"
     "@lerna/run" "3.13.3"
-    "@lerna/version" "3.13.3"
+    "@lerna/version" "3.13.4"
     import-local "^1.0.0"
     npmlog "^4.1.2"
 
@@ -7467,6 +7541,17 @@ less@^3.8.1:
   version "3.9.0"
   resolved "https://registry.yarnpkg.com/less/-/less-3.9.0.tgz#b7511c43f37cf57dc87dffd9883ec121289b1474"
   integrity sha512-31CmtPEZraNUtuUREYjSqRkeETFdyEHSEPAGq4erDlUXtda7pzNmctdljdIagSb589d/qXGWiiP31R5JVf+v0w==
+  dependencies:
+    clone "^2.1.2"
+  optionalDependencies:
+    errno "^0.1.1"
+    graceful-fs "^4.1.2"
+    image-size "~0.5.0"
+    mime "^1.4.1"
+    mkdirp "^0.5.0"
+    promise "^7.1.1"
+    request "^2.83.0"
+    source-map "~0.6.0"
 
 leven@^2.1.0:
   version "2.1.0"
@@ -9120,10 +9205,17 @@ ovh-angular-ui-confirm-modal@^1.0.2:
   resolved "https://registry.yarnpkg.com/ovh-angular-ui-confirm-modal/-/ovh-angular-ui-confirm-modal-1.0.2.tgz#92e6736588a4fb1de6353f1a17ab1962679a698d"
   integrity sha512-3V17DbzWjUjl9sKCd25Oycn+7eqg6iW+DpizwVmixHFzDNDMnpKSGmxRLrOq+q9YNE7IepoAKWjoSiy2+zOEEg==
 
-ovh-api-services@^6.11.0, ovh-api-services@^6.12.0:
+ovh-api-services@^6.11.0:
   version "6.12.0"
   resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-6.12.0.tgz#ce275f0d6d4080f38b1b63e92816a628d7476bc5"
   integrity sha512-gTXR6xPkwqeYQg/rx60so4LHD6lmIo2KL0lJqq95hc3wQFwV9xyY0pKc6vkY5j51YYn38i34gajcVLjcU5XKPA==
+  dependencies:
+    lodash "^3.10.1"
+
+ovh-api-services@^6.14.0:
+  version "6.14.0"
+  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-6.14.0.tgz#c06d8b34eb72e7d82967cc47670be674ec6f836a"
+  integrity sha512-e/IkMxC3wYNgutvh85gZ6xTIVtajmDRPOvKrjmQQ6f/HQF7ZbDzlTdveFd1mukvWL2UAoNW8fo4NX1Jnq32I2A==
   dependencies:
     lodash "^3.10.1"
 
@@ -9151,10 +9243,10 @@ ovh-ngstrap@^4.0.2:
   resolved "https://registry.yarnpkg.com/ovh-ngstrap/-/ovh-ngstrap-4.0.2.tgz#059291bfb9f59b78df991e476dd2ede0507cb3c9"
   integrity sha1-BZKRv7n1m3jfmR5HbdLt4FB8s8k=
 
-ovh-ui-angular@^2.29.1:
-  version "2.29.1"
-  resolved "https://registry.yarnpkg.com/ovh-ui-angular/-/ovh-ui-angular-2.29.1.tgz#a1413c1ef6f23ce2c4e0dc3068beccbad54d2d02"
-  integrity sha512-DaRj5B6+Ok15NH5J94SgzB7WtQe0d6Sr1DKyHv0/dD6QDR/aq3pmwDn+7/hE49MyhY4xy2gBfnwhFYy3ezQC7w==
+ovh-ui-angular@^2.30.0:
+  version "2.30.0"
+  resolved "https://registry.yarnpkg.com/ovh-ui-angular/-/ovh-ui-angular-2.30.0.tgz#bd682bdf47ec6574ccb61fefee5557608cd42d0e"
+  integrity sha512-rXDPMhjRUQscPsf+u1rHYBMLPb5kjnlpLbatnUgmKGFjM0EZ53QdYNgdUFjJvZtW1SMuulH1IGkaS8y27oiyDw==
   dependencies:
     bloodhound-js "^1.2.3"
     clipboard "^2.0.1"
@@ -9175,10 +9267,10 @@ ovh-ui-kit@^2.22.0:
   dependencies:
     less-plugin-remcalc "^0.1.0"
 
-ovh-ui-kit@^2.29.1:
-  version "2.29.1"
-  resolved "https://registry.yarnpkg.com/ovh-ui-kit/-/ovh-ui-kit-2.29.1.tgz#63e4fa2b769d98d9c20282a4f60d01eccc5282f2"
-  integrity sha512-hdC9cdKju6iNOLCbRMK9dsU9efm1VVUKcE1o3SqxK61WiGl0KfJW2pHYenAGTHZ2ohHY2XE3Nak8i2QOeGIgeA==
+ovh-ui-kit@^2.30.0:
+  version "2.30.0"
+  resolved "https://registry.yarnpkg.com/ovh-ui-kit/-/ovh-ui-kit-2.30.0.tgz#2ef4c038f55e667b4d160c6184de2a7b5a287f7b"
+  integrity sha512-gn20E69mwHw2YPecJ4+UApOmvFcNlFLCC5BRadrq5EGMYgh8m1a4U4PwccC7++7JC6mh3KKsuy/faU+lSieYnQ==
   dependencies:
     less-plugin-remcalc "^0.1.0"
 
