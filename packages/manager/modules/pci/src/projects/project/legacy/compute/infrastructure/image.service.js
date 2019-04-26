@@ -6,9 +6,7 @@ import groupBy from 'lodash/groupBy';
 import includes from 'lodash/includes';
 import intersection from 'lodash/intersection';
 import isString from 'lodash/isString';
-import map from 'lodash/map';
 import set from 'lodash/set';
-import uniq from 'lodash/uniq';
 import uniqBy from 'lodash/uniqBy';
 
 import { APPLICATION_LIST } from '../../../../../components/project/images-list/images.constants';
