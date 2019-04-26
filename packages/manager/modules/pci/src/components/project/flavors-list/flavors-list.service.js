@@ -2,6 +2,7 @@ import filter from 'lodash/filter';
 import groupBy from 'lodash/groupBy';
 import map from 'lodash/map';
 import mapValues from 'lodash/mapValues';
+import omit from 'lodash/omit';
 
 import Flavor from './flavor.class';
 import FlavorGroup from './flavor-group.class';
@@ -27,10 +28,10 @@ export default class FlavorsList {
     })
       .then(({ flavors, prices }) => map(
         groupBy(flavors, 'name'),
-        flavor => new Flavor({
-          ...flavor[0],
-          prices: mapValues(flavor[0].planCodes, planCode => prices[planCode].price),
-          regions: map(flavor, 'region'),
+        groupedFlavors => new Flavor({
+          ...omit(groupedFlavors[0], ['id', 'region']),
+          prices: mapValues(groupedFlavors[0].planCodes, planCode => prices[planCode].price),
+          regions: map(groupedFlavors, ({ id, region }) => ({ id, region })),
         }),
       ));
   }

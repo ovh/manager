@@ -1,14 +1,17 @@
 import find from 'lodash/find';
 import filter from 'lodash/filter';
 import get from 'lodash/get';
+import includes from 'lodash/includes';
+import map from 'lodash/map';
 import has from 'lodash/has';
 import some from 'lodash/some';
+import sortBy from 'lodash/sortBy';
 
 import Quota from '../../../../components/project/instance/quota/quota.class';
 import { PATTERN } from '../../../../components/project/instance/name/constants';
 import Instance from '../instance.class';
 
-export default class CloudProjectComputeInfrastructureVirtualMachineAddCtrl {
+export default class PciInstancesAddController {
   /* @ngInject */
   constructor(
     $q,
@@ -29,10 +32,7 @@ export default class CloudProjectComputeInfrastructureVirtualMachineAddCtrl {
       monthlyBilling: true,
     });
 
-    this.loaders = {
-      areRegionsLoading: false,
-      isSubmitting: false,
-    };
+    this.isLoading = false;
 
     this.showUserData = false;
     this.showOnlyAvailableRegions = false;
@@ -62,14 +62,13 @@ export default class CloudProjectComputeInfrastructureVirtualMachineAddCtrl {
   }
 
   loadMessages() {
-    this.CucCloudMessage.unSubscribe('pci.projects.project.instances.new');
-    this.messageHandler = this.CucCloudMessage.subscribe('pci.projects.project.instances.new', { onMessage: () => this.refreshMessages() });
+    this.CucCloudMessage.unSubscribe('pci.projects.project.instances.add');
+    this.messageHandler = this.CucCloudMessage.subscribe('pci.projects.project.instances.add', { onMessage: () => this.refreshMessages() });
   }
 
   refreshMessages() {
     this.messages = this.messageHandler.getMessages();
   }
-
 
   onFlavorFocus() {
     this.displaySelectedFlavor = false;
@@ -89,17 +88,30 @@ export default class CloudProjectComputeInfrastructureVirtualMachineAddCtrl {
 
     this.availablePrivateNetworks = [
       this.defaultPrivateNetwork,
-      ...filter(
-        this.privateNetworks,
-        network => find(
-          network.regions,
-          {
-            region: this.instance.region,
-            status: 'ACTIVE',
-          },
+      ...sortBy(
+        map(
+          filter(
+            this.privateNetworks,
+            network => find(
+              network.regions,
+              {
+                region: this.instance.region,
+                status: 'ACTIVE',
+              },
+            ),
+          ),
+          privateNetwork => ({
+            ...privateNetwork,
+            name: `${privateNetwork.vlanId.toString().padStart(4, '0')} - ${privateNetwork.name}`,
+          }),
         ),
+        ['name'],
       ),
     ];
+
+    if (!includes(this.availablePrivateNetworks, this.selectedPrivateNetwork)) {
+      this.selectedPrivateNetwork = this.defaultPrivateNetwork;
+    }
   }
 
   onImageFocus() {
@@ -110,9 +122,18 @@ export default class CloudProjectComputeInfrastructureVirtualMachineAddCtrl {
     this.displaySelectedImage = true;
     this.instance.imageId = this.model.image.getIdByRegion(this.instance.region);
     this.flavor = this.model.flavorGroup.getFlavorByOsType(this.model.image.type);
-    this.instance.flavorId = get(this.flavor, 'id');
 
-    this.instance.sshKeyId = get(this.model.sshKey, 'id');
+    this.instance.flavorId = this.model.flavorGroup.getFlavorId(
+      this.model.image.type,
+      this.instance.region,
+    );
+
+    if (this.model.image.type !== 'linux') {
+      this.model.sshKey = null;
+      this.instance.sshKeyId = null;
+    } else {
+      this.instance.sshKeyId = get(this.model.sshKey, 'id');
+    }
   }
 
   showImageNavigation() {
@@ -123,7 +144,17 @@ export default class CloudProjectComputeInfrastructureVirtualMachineAddCtrl {
     this.quota = new Quota(this.model.datacenter.quota.instance);
 
     if (!has(this.instance, 'name')) {
-      this.instance.name = `${this.selectedFlavor.name}-${this.instance.region}`.toLowerCase();
+      this.instance.name = `${this.flavor.name}-${this.instance.region}`.toLowerCase();
+    }
+  }
+
+  onInstanceChange() {
+    if (get(this.selectedPrivateNetwork, 'id')) {
+      this.instance.networks = [{
+        networkId: get(this.selectedPrivateNetwork, 'id'),
+      }];
+    } else {
+      this.instance.networks = [];
     }
   }
 
@@ -172,16 +203,55 @@ export default class CloudProjectComputeInfrastructureVirtualMachineAddCtrl {
   }
 
   create() {
-    this.loaders.isSubmitting = true;
+    this.isLoading = true;
+
+    if (this.model.image.type !== 'linux') {
+      this.instance.userData = null;
+    }
 
     return this.PciProjectsProjectInstanceService
       .save(this.projectId, this.instance, this.model.number)
       .then(() => {
-
+        let message;
+        if (this.model.number === 1) {
+          message = this.$translate.instant(
+            'pci_projects_project_instances_add_success_message',
+            {
+              instance: this.instance.name,
+            },
+          );
+        } else {
+          message = this.$translate.instant('pci_projects_project_instances_add_success_multiple_message');
+        }
+        this.CucCloudMessage.success(
+          message,
+          'pci.projects.project.instances',
+        );
+        return this.goBack();
       })
-      .catch(error => console.log(error))
+      .catch((error) => {
+        let message;
+        if (this.model.number === 1) {
+          message = this.$translate.instant(
+            'pci_projects_project_instances_add_error_save',
+            {
+              instance: this.instance.name,
+              message: get(error, 'data.message', null),
+            },
+          );
+        } else {
+          message = this.$translate.instant(
+            'pci_projects_project_instances_add_error_multiple_save',
+            {
+              message: get(error, 'data.message', null),
+            },
+          );
+        }
+
+        this.CucCloudMessage.error(message, 'pci.projects.project.instances.add');
+      })
       .finally(() => {
-        this.loaders.isSubmitting = false;
+        this.isLoading = false;
       });
   }
 }
