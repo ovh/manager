@@ -9,7 +9,7 @@ angular
     'ui.router',
     'oc.lazyLoad',
   ])
-  .config(($stateProvider) => {
+  .config(/* @ngInject */($stateProvider) => {
     $stateProvider.state('pci.projects.new.payment.**', {
       url: '/payment?mode&credit&voucher&hiPayStatus&paypalAgreementStatus',
       lazyLoad: ($transition$) => {

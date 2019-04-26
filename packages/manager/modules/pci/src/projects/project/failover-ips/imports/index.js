@@ -9,7 +9,7 @@ angular
     'ui.router',
     'oc.lazyLoad',
   ])
-  .config(($stateProvider) => {
+  .config(/* @ngInject */($stateProvider) => {
     $stateProvider.state('pci.projects.project.failover-ips.imports.**', {
       url: '/imports',
       lazyLoad: ($transition$) => {

@@ -9,7 +9,7 @@ angular
     'ui.router',
     'oc.lazyLoad',
   ])
-  .config(($stateProvider) => {
+  .config(/* @ngInject */($stateProvider) => {
     $stateProvider.state('pci.projects.project.contacts.add.**', {
       url: '/add',
       lazyLoad: ($transition$) => {
