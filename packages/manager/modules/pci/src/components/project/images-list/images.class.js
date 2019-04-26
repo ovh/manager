@@ -1,4 +1,5 @@
 import find from 'lodash/find';
+import get from 'lodash/get';
 import includes from 'lodash/includes';
 import isEmpty from 'lodash/isEmpty';
 import some from 'lodash/some';
@@ -13,6 +14,8 @@ export default class Image {
     if (this.isApp()) {
       this.appName = this.getAppName();
     }
+
+    this.imagePath = null;
   }
 
   getAppName() {
@@ -44,5 +47,9 @@ export default class Image {
   isCompatibleWithFlavor(flavorType) {
     return isEmpty(this.flavorType)
     || some(this.getFlavorTypes(), type => flavorType.includes(type));
+  }
+
+  getIdByRegion(region) {
+    return get(find(this.regions, { region }), 'id');
   }
 }
