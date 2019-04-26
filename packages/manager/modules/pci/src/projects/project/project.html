@@ -18,7 +18,9 @@
             <div class="container-fluid px-0">
                 <div class="row">
                     <div class="col-sm-6 col-lg-4 col-xl mb-4" data-ng-repeat="action in $ctrl.actions track by $index">
-                        <a class="text-center w-100 d-block oui-tile py-4" href="#">
+                        <a class="text-center w-100 d-block oui-tile py-4"
+                            data-ui-state="action.state"
+                            data-ui-state-params="{projectId: $ctrl.project.project_id}">
                             <span class="oui-icon oui-icon-add" aria-hidden="true"></span>
                             <div class="mt-3 w-100 text-truncate" data-ng-bind=":: action.translation | translate"></div>
                         </a>
