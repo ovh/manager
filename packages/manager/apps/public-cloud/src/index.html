@@ -25,7 +25,7 @@
                     </div>
                 </div>
             </div>
-            <a data-ng-if="$ctrl.feedbackUrl" href="{{ $ctrl.feedbackUrl }}" target="blank" style="position: fixed; right: 2rem; bottom: 2rem;">
+            <a data-ng-if="$ctrl.feedbackUrl" data-ng-href="{{ $ctrl.feedbackUrl }}" rel="noopener" target="_blank" style="position: fixed; right: 2rem; bottom: 2rem;">
                 <img alt="Feedback" data-ng-src="{{ $ctrl.feedback }}" />
             </a>
             <div id="managerPreload"

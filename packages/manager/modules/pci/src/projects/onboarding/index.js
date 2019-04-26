@@ -11,7 +11,7 @@ angular
     'ui.router',
     'oc.lazyLoad',
   ])
-  .config(($stateProvider) => {
+  .config(/* @ngInject */ ($stateProvider) => {
     $stateProvider.state('pci.projects.onboarding.**', {
       url: '/onboarding',
       lazyLoad: ($transition$) => {
