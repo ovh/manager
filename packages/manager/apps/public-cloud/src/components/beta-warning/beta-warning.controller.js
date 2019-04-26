@@ -1,6 +1,6 @@
 import illustration from './beta-warning.png';
 
-const LOCALSTRORAGE_KEY = 'ovhManagerPublicCloud_hideBetaWarning';
+const LOCALSTORAGE_KEY = 'OVH_MANAGER_PUBLIC_CLOUD_HIDE_BETA_WARNING';
 
 export default class {
   /* @ngInject */
@@ -8,12 +8,12 @@ export default class {
   constructor() {
     this.checked = false;
     this.illustration = illustration;
-    this.isHidden = localStorage.getItem(LOCALSTRORAGE_KEY) || false;
+    this.isHidden = localStorage.getItem(LOCALSTORAGE_KEY) || false;
   }
 
   hide() {
     if (this.checked) {
-      localStorage.setItem(LOCALSTRORAGE_KEY, true);
+      localStorage.setItem(LOCALSTORAGE_KEY, true);
     }
     this.isHidden = true;
   }
