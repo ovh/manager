@@ -7,6 +7,11 @@ module.exports = (env = {}) => {
     template: './src/index.html',
     basePath: './src',
     root: path.resolve(__dirname, './src'),
+    assets: {
+      files: [
+        { from: path.resolve(__dirname, '../../../../node_modules/@ovh-ux/manager-pci/dist/assets'), to: 'assets' },
+      ],
+    },
   }, env);
 
   return merge(config, {
