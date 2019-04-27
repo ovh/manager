@@ -10,10 +10,12 @@ export default class PciProjectStorageVolumeEditController {
   constructor(
     $timeout,
     $translate,
+    CucRegionService,
     PciProjectStorageBlockService,
   ) {
     this.$timeout = $timeout;
     this.$translate = $translate;
+    this.CucRegionService = CucRegionService;
     this.PciProjectStorageBlockService = PciProjectStorageBlockService;
   }
 

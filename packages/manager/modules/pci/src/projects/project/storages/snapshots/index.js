@@ -1,31 +1,24 @@
 import angular from 'angular';
-import '@ovh-ux/ng-translate-async-loader';
 import '@uirouter/angularjs';
-import 'angular-translate';
-import 'ovh-ui-angular';
-import 'ovh-api-services';
+import 'oclazyload';
 
-import snapshot from './snapshot';
-
-import component from './snapshots.component';
-import service from './snapshots.service';
-
-import routing from './snapshots.routing';
-
-const moduleName = 'ovhManagerPciStoragesSnapshots';
+const moduleName = 'ovhManagerPciStoragesSnapshotsLazyLoading';
 
 angular
   .module(moduleName, [
-    'ngTranslateAsyncLoader',
-    'oui',
-    'ovh-api-services',
-    'pascalprecht.translate',
     'ui.router',
-    snapshot,
+    'oc.lazyLoad',
   ])
-  .config(routing)
-  .component('pciProjectStoragesSnapshots', component)
-  .service('PciProjectStorageSnapshotsService', service)
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .config(/* @ngInject */($stateProvider) => {
+    $stateProvider.state('pci.projects.project.storages.snapshots.**', {
+      url: '/volume-snapshots',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+        return import('./snapshots.module')
+          .then(mod => $ocLazyLoad.inject(mod.default || mod));
+      },
+    });
+  });
 
 export default moduleName;
