@@ -6,6 +6,7 @@ export default {
   template,
   bindings: {
     projectId: '<',
+    snapshots: '<',
     createVolume: '<',
     createSnapshot: '<',
     deleteSnapshot: '<',

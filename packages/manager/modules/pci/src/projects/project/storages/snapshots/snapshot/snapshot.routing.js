@@ -5,6 +5,11 @@ export default /* @ngInject */($stateProvider) => {
       abstract: true,
       resolve: {
         snapshotId: /* @ngInject */$transition$ => $transition$.params().snapshotId,
+        snapshot: /* @ngInject */ (
+          PciProjectStorageSnapshotsService,
+          projectId,
+          snapshotId,
+        ) => PciProjectStorageSnapshotsService.get(projectId, snapshotId),
       },
     });
 };

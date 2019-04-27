@@ -1,25 +1,24 @@
 import angular from 'angular';
-import '@ovh-ux/ng-translate-async-loader';
 import '@uirouter/angularjs';
-import 'angular-translate';
-import 'ovh-ui-angular';
-import 'ovh-api-services';
+import 'oclazyload';
 
-import component from './create-volume.component';
-import routing from './create-volume.routing';
-
-const moduleName = 'ovhManagerPciStoragesSnapshotsCreateVolume';
+const moduleName = 'ovhManagerPciStoragesSnapshotsCreateVolumeLazyLoading';
 
 angular
   .module(moduleName, [
     'ui.router',
-    'oui',
-    'ovh-api-services',
-    'ngTranslateAsyncLoader',
-    'pascalprecht.translate',
+    'oc.lazyLoad',
   ])
-  .config(routing)
-  .component('pciProjectStoragesSnapshotsCreateVolume', component)
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .config(/* @ngInject */($stateProvider) => {
+    $stateProvider.state('pci.projects.project.storages.snapshots.snapshot.create-volume.**', {
+      url: '/new-volume',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+        return import('./create-volume.module')
+          .then(mod => $ocLazyLoad.inject(mod.default || mod));
+      },
+    });
+  });
 
 export default moduleName;
