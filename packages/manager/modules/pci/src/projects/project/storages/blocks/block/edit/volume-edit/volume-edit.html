@@ -13,7 +13,7 @@
         <div class="oui-field oui-field_error">
             <label for="storage-region" class="oui-field__label oui-label"
                 data-translate="pci_projects_project_storages_blocks_block_volume-edit_region_label"></label>
-            <div class="oui-field__control" data-ng-bind="$ctrl.storage.region"></div>
+            <div class="oui-field__control" data-ng-bind="$ctrl.CucRegionService.getTranslatedMicroRegion($ctrl.storage.region)"></div>
         </div>
 
         <div class="oui-field oui-field_error">

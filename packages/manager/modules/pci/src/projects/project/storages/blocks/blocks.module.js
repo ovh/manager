@@ -14,7 +14,6 @@ import block from './block';
 import help from './help';
 
 import component from './blocks.component';
-import service from './blocks.service';
 
 import routing from './blocks.routing';
 
@@ -36,7 +35,6 @@ angular
   ])
   .config(routing)
   .component('pciProjectStorageBlocks', component)
-  .service('PciProjectStorageBlockService', service)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

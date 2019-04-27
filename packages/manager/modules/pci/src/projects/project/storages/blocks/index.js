@@ -2,6 +2,8 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
+import service from './blocks.service';
+
 const moduleName = 'ovhManagerPciStoragesBlocksLazyLoading';
 
 angular
@@ -19,6 +21,7 @@ angular
           .then(mod => $ocLazyLoad.inject(mod.default || mod));
       },
     });
-  });
+  })
+  .service('PciProjectStorageBlockService', service);
 
 export default moduleName;
