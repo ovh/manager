@@ -20,7 +20,9 @@
                 data-property="region"
                 data-type="string"
                 data-sortable
-                data-filterable></oui-column>
+                data-filterable>
+                <span data-ng-bind="$ctrl.CucRegionService.getTranslatedMicroRegion($row.region)"></span>
+            </oui-column>
             <oui-column
                 data-title="'pci_projects_project_storages_blocks_type_label' | translate"
                 data-property="type"

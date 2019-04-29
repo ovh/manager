@@ -10,14 +10,12 @@ export default /* @ngInject */($stateProvider) => {
       layout: 'modal',
       resolve: {
         storageId: /* @ngInject */$transition$ => $transition$.params().storageId,
-        goBack: /* @ngInject */ ($rootScope, $state, projectId) => (reload = false) => {
-          if (reload) {
-            $rootScope.$emit('pci_storages_blocks_refresh');
-          }
-          return $state.go('pci.projects.project.storages.blocks', {
-            projectId,
-          });
-        },
+        storage: /* @ngInject */ (
+          PciProjectStorageBlockService,
+          projectId,
+          storageId,
+        ) => PciProjectStorageBlockService.get(projectId, storageId),
+        goBack: /* @ngInject */ goToBlockStorage => goToBlockStorage,
       },
     });
 };

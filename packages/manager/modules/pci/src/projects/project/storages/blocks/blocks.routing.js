@@ -32,6 +32,29 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
           instanceId,
         }),
+        storages: /* @ngInject */ (
+          PciProjectStorageBlockService,
+          projectId,
+        ) => PciProjectStorageBlockService
+          .getAll(projectId),
+
+        goToBlockStorage: /* @ngInject */ ($rootScope, CucCloudMessage, $state, projectId) => (message = false, type = 'success') => {
+          const reload = message && type === 'success';
+
+          const promise = $state.go('pci.projects.project.storages.blocks', {
+            projectId,
+          },
+          {
+            reload,
+          });
+
+          if (message) {
+            promise.then(() => CucCloudMessage[type](message, 'pci.projects.project.storages.blocks'));
+          }
+
+          return promise;
+        },
+
         breadcrumb: /* @ngInject */ $translate => $translate
           .refresh()
           .then(() => $translate.instant('pci_projects_project_storages_blocks_title')),

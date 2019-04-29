@@ -142,17 +142,12 @@ export default class PciBlockStorageAddController {
     this.loadings.save = true;
 
     return this.PciProjectStorageBlockService.add(this.projectId, this.storage)
-      .then(() => {
-        this.CucCloudMessage.success(
-          this.$translate.instant(
-            'pci_projects_project_storages_blocks_add_success_message',
-            { volume: this.storage.name },
-          ),
-          'pci.projects.project.storages.blocks',
-        );
-
-        return this.goBack(true);
-      })
+      .then(() => this.goBack(
+        this.$translate.instant(
+          'pci_projects_project_storages_blocks_add_success_message',
+          { volume: this.storage.name },
+        ),
+      ))
       .catch((err) => {
         this.CucCloudMessage.error(
           this.$translate.instant(
