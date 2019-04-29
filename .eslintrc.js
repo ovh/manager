@@ -10,6 +10,7 @@ module.exports = {
   },
   globals: {
     d3: true,
+    Tour: true
   },
   rules: {
     'no-bitwise': ['error', { allow: ['~'] }],

@@ -1,0 +1,70 @@
+@import "~ovh-ui-kit/packages/oui-color/_variables";
+@import '~ovh-ui-kit/packages/oui-responsive/responsive';
+@import '~ovh-ui-kit/packages/oui-typography/_constants.less';
+@import '../../assets/theme/_variables.less';
+
+.tour-public-cloud-walkme {
+  pointer-events: auto;
+  max-width: 305px;
+
+  .oui-icon::before {
+    font-size: 16px;
+  }
+
+  .oui-font-semibold {
+    font-weight: @oui-font-semibold;
+  }
+
+  .walkme-close {
+    right: 0;
+  }
+
+  .walkme-title {
+    .popover-title {
+      background-color: #fff;
+      font-weight: @oui-font-semibold;
+      color: @oui-color-brand;
+    }
+
+    .walkme-bubble {
+      background-color: @secondary-color;
+      border-radius: 12px;
+      top: 5px;
+      width: 30%;
+      z-index: -1;
+      height: 70%;
+    }
+  }
+
+  .walkme-indicator {
+    background-color: @oui-color-iron;
+    border-radius: 50%;
+    height: 8px;
+    width: 8px;
+    padding: 4px 4px 4px 4px;
+    margin: 0 1px;
+  }
+
+  .walkme-indicator_active {
+    background-color: @primary-color;
+  }
+}
+
+@media screen and (min-width: @oui-responsive-breakpoint-tablet) {
+  .tour-public-cloud-walkme {
+    margin-left: 90px;
+  }
+
+  .walkme-highlighted {
+    border: 3px solid @secondary-color;
+  }
+
+  .walkme-line {
+    position: absolute;
+    border-right: 3px solid @secondary-color;
+    height: 25px;
+    top: -11px;
+    z-index: 1103;
+    width: 20%;
+  }
+}
