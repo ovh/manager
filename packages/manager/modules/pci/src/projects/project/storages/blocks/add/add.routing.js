@@ -4,14 +4,7 @@ export default /* @ngInject */ ($stateProvider) => {
       url: '/new',
       component: 'pciProjectStorageBlocksAdd',
       resolve: {
-        goBack: /* @ngInject */ ($rootScope, $state, projectId) => (reload = false) => {
-          if (reload) {
-            $rootScope.$emit('pci_storages_blocks_refresh');
-          }
-          return $state.go('pci.projects.project.storages.blocks', {
-            projectId,
-          });
-        },
+        goBack: /* @ngInject */ goToBlockStorage => goToBlockStorage,
         cancelLink: /* @ngInject */ ($state, projectId) => $state.href('pci.projects.project.storages.blocks', {
           projectId,
         }),

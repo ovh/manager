@@ -7,6 +7,8 @@ export default {
   bindings: {
     projectId: '<',
     storageId: '<',
+    storage: '<',
+    instances: '<',
     goBack: '<',
   },
 };
