@@ -3,11 +3,12 @@ import { MAX_NAME_LENGTH, URLS } from './constants';
 
 export default class {
   /* @ngInject */
-  constructor($q, $translate, atInternet, ovhManagerNavbarMenuHeaderBuilder) {
+  constructor($q, $translate, atInternet, ovhManagerNavbarMenuHeaderBuilder, ssoAuthentication) {
     this.$q = $q;
     this.$translate = $translate;
     this.atInternet = atInternet;
     this.NavbarBuilder = ovhManagerNavbarMenuHeaderBuilder;
+    this.ssoAuthentication = ssoAuthentication;
 
     this.REGION = Environment.getRegion();
   }

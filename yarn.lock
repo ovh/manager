@@ -1771,7 +1771,7 @@
   version "8.0.0-beta.1"
   resolved "git+https://github.com/ovh-ux/ng-ovh-sidebar-menu.git#76db3c9cda614bb35a2c4a85e34f1068528bfd1e"
 
-"@ovh-ux/ng-ovh-sso-auth@^4.0.0-beta.0":
+"@ovh-ux/ng-ovh-sso-auth@^4.0.0", "@ovh-ux/ng-ovh-sso-auth@^4.0.0-beta.0":
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-sso-auth/-/ng-ovh-sso-auth-4.0.0.tgz#f6c1027f5ef827d464ff3b0e702b1692ee279703"
   integrity sha512-exPPBbg2WTXH4/LHu3dsqfHq073+NhBzB69WB97Dd75FKust3h/SUjyQyuFOn7h4Z0OI4/8db+6qpwjEIAAz6Q==
