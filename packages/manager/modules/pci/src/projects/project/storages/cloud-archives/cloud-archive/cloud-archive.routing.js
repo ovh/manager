@@ -14,9 +14,6 @@ export default /* @ngInject */ ($stateProvider) => {
           containerId,
           objectId: object.name,
         }),
-        goBack: /* @ngInject */ ($state, projectId) => () => $state.go('pci.projects.project.storages.archives', {
-          projectId,
-        }),
       },
     });
 };
