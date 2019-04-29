@@ -78,7 +78,8 @@ export const MENU = [
     subitems: [
       {
         options: {
-          state: 'pci.projects.project2',
+          url: 'https://horizon.cloud.ovh.net/auth/login',
+          target: '_blank',
         },
         translation: 'cloud_sidebar_management_interface_horizon',
       },
