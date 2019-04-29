@@ -18,6 +18,7 @@ import navbar from '@ovh-ux/manager-navbar';
 import ovhManagerCore from '@ovh-ux/manager-core';
 import ovhManagerPci from '@ovh-ux/manager-pci';
 import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
+import ngOvhUserPref from '@ovh-ux/ng-ovh-user-pref';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ovh-uirouter-breadcrumb';
 import ngUiRouterLineProgress from '@ovh-ux/ng-ovh-uirouter-line-progress';
 
@@ -28,6 +29,7 @@ import betaWarning from './components/beta-warning';
 import preload from './components/manager-preload';
 import redirectTo from './components/redirectTo';
 import sidebar from './sidebar';
+import walkMe from './components/walkMe';
 
 import './assets/theme/index.less';
 import './index.scss';
@@ -45,10 +47,12 @@ angular
     ovhManagerCore,
     ovhManagerPci,
     ngOvhApiWrappers,
+    ngOvhUserPref,
     navbar,
     preload,
     redirectTo,
     sidebar,
+    walkMe,
   ])
   .controller('PublicCloudController', controller)
   .service('publicCloud', service)

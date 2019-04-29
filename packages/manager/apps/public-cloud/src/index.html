@@ -11,6 +11,7 @@
                 <ovh-manager-navbar data-navbar-options="{ universe: 'public-cloud' }"></ovh-manager-navbar>
             </div>
             <div class="w-100 h-100">
+                <div class="tour-backdrop w-100 h-100" data-ng-if="$ctrl.shouldShowWalkMe" data-ng-click="$ctrl.endWalkMe()"></div>
                 <div class="container-fluid h-100">
                     <div class="row h-100">
                         <div class="col-md-2 p-0 h-100 d-none d-md-flex flex-column" data-ng-if="$ctrl.shouldDisplaySidebar">
