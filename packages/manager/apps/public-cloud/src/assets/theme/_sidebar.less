@@ -1,3 +1,4 @@
+@import '~ovh-ui-kit/packages/oui-responsive/_variables.less';
 @import './_variables.less';
 
 cloud-sidebar { /* stylelint-disable-line */
@@ -6,8 +7,11 @@ cloud-sidebar { /* stylelint-disable-line */
   width: 100%;
   height: 100%;
   z-index: 1;
-  position: relative;
   box-shadow: 0 2pt 10pt rgba(40, 89, 192, 0.25);
+
+  .oui-navbar-backdrop_active {
+    z-index: 1;
+  }
 
   oui-clipboard { /* stylelint-disable-line */
     margin-bottom: 0;
@@ -90,6 +94,11 @@ cloud-sidebar { /* stylelint-disable-line */
     padding: 0 8pt;
     width: 100%;
     box-sizing: inherit;
+
+    .oui-sidebar-link_active,
+    .oui-sidebar-link[aria-expanded="true"] {
+      background-color: #fff;
+    }
   }
 
   .oui-sidebar-list__item {
@@ -172,6 +181,17 @@ cloud-sidebar { /* stylelint-disable-line */
             border-top: 0;
           }
         }
+      }
+
+      &_fixed {
+        opacity: 1;
+        position: relative;
+        transform: none;
+        box-shadow: none;
+      }
+
+      .oui-sidebar-menu__header {
+        display: none;
       }
     }
   }

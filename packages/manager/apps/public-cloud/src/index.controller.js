@@ -3,13 +3,20 @@ import angular from 'angular';
 import feedback from './feedback-icon.svg';
 import { BREAKPOINT, KEY } from './components/walkMe/walkme.constants';
 
+import options from './navbar.config';
+
 export default class PublicCloudController {
   /* @ngInject */
   constructor($scope, $window, ovhUserPref, WalkMe) {
+    this.$scope = $scope;
+    this.$window = $window;
     this.feedbackUrl = __FEEDBACK_URL__;
     this.feedback = feedback;
     this.ovhUserPref = ovhUserPref;
     this.WalkMe = WalkMe;
+
+
+    this.navbarOptions = options;
 
     $scope.$on('navbar.loaded', () => this.ovhUserPref.getValue(KEY)
       .then(({ value }) => {
