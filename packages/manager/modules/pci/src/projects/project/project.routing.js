@@ -4,7 +4,7 @@ import template from './project.html';
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
     .state('pci.projects.project', {
-      url: '/{projectId}',
+      url: '/{projectId:[0-9a-zA-Z]{32}}',
       controller,
       controllerAs: '$ctrl',
       template,

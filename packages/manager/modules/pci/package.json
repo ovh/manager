@@ -41,7 +41,6 @@
     "@ovh-ux/manager-telecom-styles": "^2.0.2",
     "@ovh-ux/ng-ovh-api-wrappers": "^3.0.0",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^1.1.0-alpha.0",
-    "@ovh-ux/ng-ovh-contacts": "^1.0.1",
     "@ovh-ux/ng-ovh-doc-url": "^1.0.0",
     "@ovh-ux/ng-ovh-form-flat": "^4.0.0",
     "@ovh-ux/ng-ovh-jsplumb": "^5.0.0",

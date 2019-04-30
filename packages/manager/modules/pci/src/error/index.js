@@ -2,7 +2,7 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
-const moduleName = 'ovhManagerPciProjectLazyLoading';
+const moduleName = 'ovhManagerPciProjectsNewErrorLazyLoading';
 
 angular
   .module(moduleName, [
@@ -10,12 +10,12 @@ angular
     'oc.lazyLoad',
   ])
   .config(/* @ngInject */($stateProvider) => {
-    $stateProvider.state('pci.projects.project.**', {
-      url: '/{projectId:[0-9a-zA-Z]{32}}',
+    $stateProvider.state('pci.error.**', {
+      url: '/error',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-        return import('./project.module')
+        return import('./error.module')
           .then(mod => $ocLazyLoad.inject(mod.default || mod));
       },
     });
