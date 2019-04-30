@@ -17,7 +17,7 @@ export default /* @ngInject */($stateProvider) => {
         projectId,
         instanceId: instance.id,
       }),
-      editInstance: /* @ngInject */ ($state, projectId) => instance => $state.go('', {
+      editInstance: /* @ngInject */ ($state, projectId) => instance => $state.go('pci.projects.project.instances.instance.edit', {
         projectId,
         instanceId: instance.id,
       }),

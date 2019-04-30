@@ -20,7 +20,8 @@
     <div class="row">
         <div class="col-md-4">
             <oui-tile data-heading="{{ 'pci_projects_project_instances_instance_manage_title' | translate }}">
-                <oui-tile-button data-on-click="$ctrl.editInstance()">
+                <oui-tile-button data-on-click="$ctrl.editInstance()"
+                    data-ng-if="$ctrl.instance.statusGroup === 'ACTIVE'">
                     <span data-translate="pci_projects_project_instances_instance_action_edit_label"></span>
                 </oui-tile-button>
                 <oui-tile-button data-on-click="$ctrl.createBackupInstance()"

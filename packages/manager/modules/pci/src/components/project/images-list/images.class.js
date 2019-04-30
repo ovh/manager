@@ -41,7 +41,7 @@ export default class Image {
   }
 
   isAvailableInRegion(region) {
-    return find(this.regions, { region });
+    return find(this.regions, { region }) || this.region === region;
   }
 
   isCompatibleWithFlavor(flavorType) {

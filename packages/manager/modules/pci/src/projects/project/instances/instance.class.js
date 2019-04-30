@@ -130,6 +130,10 @@ export default class Instance {
     return (isObject(this.monthlyBilling) && get(this.monthlyBilling, 'status') === 'activationPending');
   }
 
+  isMonthlyBillingActivated() {
+    return this.isMonthlyBillingEnabled() || this.isMonthlyBillingPending();
+  }
+
   isRescuableWithDefaultImage() {
     return !includes(['freebsd', 'windows'], this.image.distribution);
   }

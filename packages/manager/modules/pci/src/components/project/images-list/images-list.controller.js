@@ -1,4 +1,5 @@
 import filter from 'lodash/filter';
+import find from 'lodash/find';
 import partition from 'lodash/partition';
 import reduce from 'lodash/reduce';
 import some from 'lodash/some';
@@ -33,6 +34,7 @@ export default class ImagesListController {
       this.getImages(),
       this.getSnapshots(),
     ])
+      .then(() => this.findDefaultImage())
       .finally(() => {
         this.isLoading = false;
       });
@@ -66,9 +68,53 @@ export default class ImagesListController {
       });
   }
 
+  findDefaultImage() {
+    if (this.defaultImageId) {
+      find(this.os, (osList, osType) => {
+        find(osList, (osSubList, osName) => {
+          find(osSubList, (os) => {
+            const region = find(os.regions, { region: this.region, id: this.defaultImageId });
+            if (region) {
+              this.selectedTab = osType;
+              this.distribution = osName;
+              this.image = os;
+
+              this.onImageChange(os);
+            }
+          });
+        });
+      });
+
+      if (!this.image) {
+        find(this.apps, (app) => {
+          const region = find(app.regions, { region: this.region, id: this.defaultImageId });
+          if (region) {
+            this.selectedTab = 'apps';
+            this.image = app;
+
+            this.onImageChange(app);
+          }
+        });
+      }
+
+      if (!this.image) {
+        const snapshot = find(this.snapshots, { region: this.region, id: this.defaultImageId });
+        if (snapshot) {
+          this.selectedTab = 'snapshots';
+          this.image = snapshot;
+
+          this.onImageChange(snapshot);
+        }
+      }
+    }
+  }
+
   changeDistribution(distribution, images) {
     if (images.length === 1) {
       [this.selectedImage] = images;
+      if (this.onChange) {
+        this.onChange({ image: this.selectedImage });
+      }
     }
   }
 
@@ -78,6 +124,9 @@ export default class ImagesListController {
 
   onImageChange(image) {
     this.selectedImage = image;
+    if (this.onChange) {
+      this.onChange({ image: this.selectedImage });
+    }
   }
 
   isCompatible(image) {

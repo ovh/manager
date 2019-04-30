@@ -7,6 +7,8 @@ export default {
   bindings: {
     selectedFlavor: '=?',
     displaySelectedFlavor: '<',
+    defaultFlavorId: '<?',
+    onChange: '&?',
     serviceName: '@',
   },
 };

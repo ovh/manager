@@ -1,4 +1,6 @@
 import filter from 'lodash/filter';
+import find from 'lodash/find';
+import forEach from 'lodash/forEach';
 
 export default class FlavorsListController {
   /* @ngInject */
@@ -27,11 +29,33 @@ export default class FlavorsListController {
             && !flavor.isFlex()),
         );
         this.flavors = this.PciProjectFlavors.constructor.groupByCategory(flavorGroups);
+
+        this.findFlavor();
+
         return flavors;
       });
   }
 
+  findFlavor() {
+    if (this.defaultFlavorId) {
+      forEach(this.flavors, (flavorCategory) => {
+        const flavorGroup = find(
+          flavorCategory.flavors,
+          group => group.getFlavor(this.defaultFlavorId),
+        );
+
+        if (flavorGroup) {
+          this.flavor = flavorGroup;
+          this.onFlavorChange(flavorGroup);
+        }
+      });
+    }
+  }
+
   onFlavorChange(flavor) {
     this.selectedFlavor = flavor;
+    if (this.onChange) {
+      this.onChange({ flavor: this.selectedFlavor });
+    }
   }
 }

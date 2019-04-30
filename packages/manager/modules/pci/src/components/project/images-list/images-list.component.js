@@ -8,6 +8,8 @@ export default {
     displaySelectedImage: '<',
     flavorType: '<?',
     selectedImage: '=?',
+    defaultImageId: '<?',
+    onChange: '&?',
     serviceName: '@',
     region: '<?',
   },
