@@ -36,7 +36,7 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
                   return null;
                 });
             }
-            return $q.when({ state: 'pci.projects.new' });
+            return $q.when({ state: 'pci.projects.onboarding' });
           })),
       },
     });

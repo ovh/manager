@@ -5,9 +5,11 @@
             <p data-translate="pci_projects_onboarding_description1"></p>
             <p data-translate="pci_projects_onboarding_description2"></p>
             <p data-translate="pci_projects_onboarding_description3"></p>
-            <oui-button class="mt-4" data-variant="primary">
-                <span data-translate="pci_projects_onboarding_create_project"></span>
-            </oui-button>
+
+            <a  class="oui-button oui-button_primary"
+                data-ui-sref="pci.projects.new"
+                data-translate="pci_projects_onboarding_create_project">
+            </a>
         </div>
     </div>
     <img data-ng-src="{{ $ctrl.illustration }}" alt="">
