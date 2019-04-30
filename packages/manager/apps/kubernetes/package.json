@@ -26,7 +26,7 @@
     "font-awesome": "^4.7.0",
     "ovh-api-services": "^6.15.0",
     "ovh-ui-angular": "^2.30.0",
-    "ovh-ui-kit": "^2.30.0"
+    "ovh-ui-kit": "^2.31.0"
   },
   "devDependencies": {
     "@ovh-ux/manager-webpack-config": "^3.0.7",
