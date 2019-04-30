@@ -34,6 +34,7 @@ export default class {
       .then(() => this.$translate.refresh())
       .then(() => this.buildMainLinks())
       .finally(() => {
+        this.$scope.$emit('navbar.loaded');
         this.isLoading = false;
       });
   }
