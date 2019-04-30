@@ -9,8 +9,8 @@ export default class InstanceBackup {
     if (includes(['active'], this.status)) {
       return 'ACTIVE';
     }
-    if (includes(['saving'], this.status)) {
-      return 'SAVING';
+    if (includes(['saving', 'deleting', 'queued'], this.status)) {
+      return 'PENDING';
     }
     return this.status.toUpperCase();
   }

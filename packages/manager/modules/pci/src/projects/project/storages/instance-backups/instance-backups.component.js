@@ -7,6 +7,7 @@ export default {
   bindings: {
     projectId: '<',
     addInstanceBackup: '<',
+    instanceBackups: '<',
     createInstance: '<',
     deleteInstanceBackup: '<',
   },
