@@ -1,5 +1,6 @@
 import find from 'lodash/find';
 import get from 'lodash/get';
+import merge from 'lodash/merge';
 import EnvironmentService from '@ovh-ux/manager-config';
 
 import { PCI_REDIRECT_URLS } from '../../constants';
@@ -9,7 +10,24 @@ export default /* @ngInject */ ($stateProvider) => {
     .state('pci.projects.new', {
       url: '/new?description&projectId',
       component: 'pciProjectNew',
+      redirectTo: ($transitions) => {
+        const newProjectInfoPromise = $transitions.injector().getAsync('newProjectInfo');
+        return newProjectInfoPromise
+          .then(({ error }) => {
+            if (error) {
+              return {
+                state: 'pci.error',
+                params: merge({
+                  context: 'projectCreation',
+                }, error),
+              };
+            }
+
+            return null;
+          });
+      },
       resolve: {
+        breadcrumb: () => null,
         paymentStatus: /* @ngInject */ $transition$ => get($transition$.params(), 'hiPayStatus')
             || get($transition$.params(), 'paypalAgreementStatus'),
         getCurrentStep: /* @ngInject */ ($state, getStepByName) => () => {

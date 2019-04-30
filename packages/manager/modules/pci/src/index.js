@@ -29,6 +29,7 @@ import 'font-awesome/css/font-awesome.css';
 import 'ovh-common-style/dist/ovh-common-style.css';
 
 import components from './components';
+import error from './error';
 import offer from './offer';
 import projects from './projects';
 import template from './template.html';
@@ -60,6 +61,7 @@ angular
   .module(moduleName, [
     'ngOvhUiRouterLayout',
     components,
+    error,
     projects,
     offer,
     'ui.router',
