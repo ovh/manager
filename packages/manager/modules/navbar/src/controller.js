@@ -63,6 +63,25 @@ export default class {
           url: url || '#',
           isPrimary: !NON_PRIMARY_ITEMS.includes(name),
         }));
+        this.responsiveLinks = universes.map(({ universe: name, url }) => {
+          const link = ({
+            name,
+            title: this.$translate.instant(`navbar_universe_${name}`),
+            isPrimary: !NON_PRIMARY_ITEMS.includes(name),
+          });
+
+          if (name === this.navbarOptions.universe) {
+            link.click = () => {
+              this.toggleSidebar();
+              this.$scope.$emit('navbar:onUniverseClick');
+            };
+            link.isActive = true;
+          } else {
+            link.url = url || '#';
+          }
+
+          return link;
+        });
       });
   }
 

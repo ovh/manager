@@ -19,21 +19,15 @@
     <div class="h-100 position-relative">
         <div class="position-absolute w-100 h-100" style="overflow: auto;"
             data-ng-class="{
-                'hidden-xs': !$ctrl.isOpen,
-                'hidden-sm': !$ctrl.isOpen
+                'd-none d-sm-block': !$ctrl.isOpen,
+                'd-sm-none d-md-block': !$ctrl.isOpen
             }"
             data-sidebar-menu>
         </div>
-
-        <div class="oui-navbar-backdrop"
-            aria-hidden="true"
-            tabindex="-1"
-            ng-class="{ 'oui-navbar-backdrop_active': !!$ctrl.isOpen }"
-            ng-click="$ctrl.toggle()"
-            role="button"> </div>
     </div>
 </div>
-<div data-ng-if="$ctrl.isDisplayingProjectsList" class="project-list px-3 py-4">
+<div data-ng-if="$ctrl.isDisplayingProjectsList"
+     class="project-list px-3 py-4">
     <div class="d-flex mb-4">
         <div class="my-auto">
             <button type="button" class="btn btn-primary rounded-circle" style="padding: 6px 13px;" data-ng-click="$ctrl.toggleProjectsList()">
