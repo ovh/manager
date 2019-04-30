@@ -4,8 +4,11 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
   $stateProvider
     .state('app', {
       url: '/',
-      resolve: {
-        redirectTo: /* @ngInject */ ($q, ovhUserPref, publicCloud) => publicCloud
+      redirectTo: (trans) => {
+        const ovhUserPref = trans.injector().get('ovhUserPref');
+        const publicCloud = trans.injector().get('publicCloud');
+
+        return publicCloud
           .getProjects([{
             field: 'status',
             comparator: 'in',
@@ -17,7 +20,7 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
                 .getValue(DEFAULT_PROJECT_KEY)
                 .then(({ projectId }) => ({
                   state: 'pci.projects.project',
-                  stateParams: {
+                  params: {
                     projectId,
                   },
                 }))
@@ -27,7 +30,7 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
                     // Go on the first one :)
                     return {
                       state: 'pci.projects.project',
-                      stateParams: {
+                      params: {
                         projectId: projects[0].project_id,
                       },
                     };
@@ -36,8 +39,8 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
                   return null;
                 });
             }
-            return $q.when({ state: 'pci.projects.onboarding' });
-          })),
+            return { state: 'pci.projects.onboarding' };
+          }));
       },
     });
 

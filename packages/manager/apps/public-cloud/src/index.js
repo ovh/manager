@@ -27,7 +27,6 @@ import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
 
 import betaWarning from './components/beta-warning';
 import preload from './components/manager-preload';
-import redirectTo from './components/redirectTo';
 import sidebar from './sidebar';
 import walkMe from './components/walkMe';
 
@@ -50,7 +49,6 @@ angular
     ngOvhUserPref,
     navbar,
     preload,
-    redirectTo,
     sidebar,
     walkMe,
   ])
