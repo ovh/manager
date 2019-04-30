@@ -13,6 +13,7 @@ import '@ovh-ux/ng-ovh-user-pref';
 import add from './add';
 import block from './block';
 import help from './help';
+import onboarding from './onboarding';
 
 import blockAttach from './block/attach';
 import blockDetach from './block/detach';
@@ -33,6 +34,7 @@ angular
     blockDetach,
     blockDelete,
     blockSnapshot,
+    onboarding,
     help,
     'ngOvhUserPref',
     'ngOvhCloudUniverseComponents',

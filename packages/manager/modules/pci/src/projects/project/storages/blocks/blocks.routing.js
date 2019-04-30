@@ -3,6 +3,12 @@ export default /* @ngInject */ ($stateProvider) => {
     .state('pci.projects.project.storages.blocks', {
       url: '/blocks?help',
       component: 'pciProjectStorageBlocks',
+
+      redirectTo: transition => transition
+        .injector()
+        .getAsync('storages')
+        .then(storages => (storages.length === 0 ? { state: 'pci.projects.project.storages.blocks.onboarding' } : false)),
+
       resolve: {
         addStorage: /* @ngInject */($state, projectId) => () => $state.go('pci.projects.project.storages.blocks.add', {
           projectId,

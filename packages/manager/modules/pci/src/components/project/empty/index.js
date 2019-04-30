@@ -1,5 +1,6 @@
 import angular from 'angular';
 import 'angular-translate';
+import '@ovh-ux/ng-translate-async-loader';
 
 import component from './empty.component';
 
@@ -9,8 +10,10 @@ const moduleName = 'ovhManagerPciComponentsProjectEmpty';
 
 angular
   .module(moduleName, [
+    'ngTranslateAsyncLoader',
     'pascalprecht.translate',
   ])
-  .component('pciProjectEmpty', component);
+  .component('pciProjectEmpty', component)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
