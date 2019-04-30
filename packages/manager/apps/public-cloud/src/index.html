@@ -10,17 +10,19 @@
             <div>
                 <ovh-manager-navbar data-navbar-options="{ universe: 'public-cloud' }"></ovh-manager-navbar>
             </div>
-            <div class="w-100 h-100">
-                <div class="tour-backdrop w-100 h-100" data-ng-if="$ctrl.shouldShowWalkMe" data-ng-click="$ctrl.endWalkMe()"></div>
-                <div class="container-fluid h-100">
-                    <div class="row h-100">
-                        <div class="col-md-2 p-0 h-100 d-none d-md-flex flex-column" data-ng-if="$ctrl.shouldDisplaySidebar">
-                            <cloud-sidebar></cloud-sidebar>
-                        </div>
-                        <div class="h-100 position-relative" data-ng-class="{ 'col-md-10 p-0': $ctrl.shouldDisplaySidebar, 'col-md-12': !$ctrl.shouldDisplaySidebar }">
-                            <div class="position-absolute w-100 h-100 py-4 px-5" style="overflow: auto;">
-                                <ng-ovh-uirouter-breadcrumb></ng-ovh-uirouter-breadcrumb>
-                                <div class="mt-3" data-ui-view></div>
+            <div class="d-flex w-100 h-100 position-relative">
+                <div class="w-100 h-100 position-absolute" style="top: 0; left: 0;">
+                    <div class="tour-backdrop w-100 h-100" data-ng-if="$ctrl.shouldShowWalkMe" data-ng-click="$ctrl.endWalkMe()"></div>
+                    <div class="container-fluid h-100">
+                        <div class="row h-100">
+                            <div class="col-md-2 p-0 h-100 d-none d-md-flex flex-column" data-ng-if="$ctrl.shouldDisplaySidebar">
+                                <cloud-sidebar></cloud-sidebar>
+                            </div>
+                            <div class="h-100 position-relative" data-ng-class="{ 'col-md-10 p-0': $ctrl.shouldDisplaySidebar, 'col-md-12': !$ctrl.shouldDisplaySidebar }">
+                                <div class="position-absolute w-100 h-100 py-4 px-5" style="overflow: auto;">
+                                    <ng-ovh-uirouter-breadcrumb></ng-ovh-uirouter-breadcrumb>
+                                    <div class="mt-3" data-ui-view></div>
+                                </div>
                             </div>
                         </div>
                     </div>
