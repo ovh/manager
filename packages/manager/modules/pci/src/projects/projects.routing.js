@@ -8,11 +8,10 @@ export default /* @ngInject */ ($stateProvider) => {
       url: '/projects',
       controller,
       controllerAs: '$ctrl',
+      translations: {
+        value: ['.'],
+        format: 'json',
+      },
       template,
-      // resolve: {
-      //   breadcrumb: /* @ngInject */ $translate => $translate
-      //     .refresh()
-      //     .then(() => $translate.instant('pci_projects')),
-      // },
     });
 };
