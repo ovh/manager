@@ -38,6 +38,7 @@
             data-title="'pci_projects_project_instances_publicIp_label' | translate"
             data-property="ipAddresses">
             <span
+                class="d-block"
                 data-ng-repeat="ipAddress in $row.publicIpV4 track by $index"
                 data-ng-bind="ipAddress.ip"></span>
         </oui-column>
@@ -45,6 +46,7 @@
             data-title="'pci_projects_project_instances_privateIp_label' | translate"
             data-property="ipAddresses">
             <span
+                class="d-block"
                 data-ng-repeat="ipAddress in $row.privateIpV4 track by $index"
                 data-ng-bind="ipAddress.ip"></span>
         </oui-column>
@@ -53,6 +55,7 @@
             data-property="volumes"
             data-type="string">
             <span
+                class="d-block"
                 data-ng-repeat="volume in $row.volumes track by volume.id"
                 data-ng-bind="volume.name"></span>
         </oui-column>
@@ -83,7 +86,7 @@
             <oui-action-menu-item
                 data-text="{{ 'pci_projects_project_instances_activeMonthlyBilling_label' | translate }}"
                 data-on-click="$ctrl.enableMonthlyBillingInstance($row)"
-                data-ng-if="$row.status === 'ACTIVE' && !$row.isMonthlyBillingPending()">
+                data-ng-if="$row.status === 'ACTIVE' && !$row.isMonthlyBillingActivated()">
             </oui-action-menu-item>
             <oui-action-menu-item
                 data-text="{{ 'pci_projects_project_instances_createBackup_label' | translate }}"

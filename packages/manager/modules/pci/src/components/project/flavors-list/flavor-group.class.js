@@ -38,4 +38,8 @@ export default class FlavorGroup {
     }
     return false;
   }
+
+  getFlavor(flavorId) {
+    return find(this.flavors, flavor => flavor.containsFlavor(flavorId));
+  }
 }

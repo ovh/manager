@@ -6,7 +6,8 @@
         data-model="$ctrl.monthly"
         data-values="[true]"
         data-variant="light"
-        data-on-change="$ctrl.selectBilling(modelValue)">
+        data-on-change="$ctrl.selectBilling(modelValue)"
+        data-disabled="$ctrl.disabled && !$ctrl.monthly">
         <oui-select-picker-section data-ng-if="$ctrl.flavor">
             <span
                 data-translate="pci_project_flavors_billing_price_monthly"
@@ -21,7 +22,8 @@
         data-model="$ctrl.monthly"
         data-values="[false]"
         data-variant="light"
-        data-on-change="$ctrl.selectBilling(modelValue)">
+        data-on-change="$ctrl.selectBilling(modelValue)"
+        data-disabled="$ctrl.disabled && $ctrl.monthly">
         <oui-select-picker-section data-ng-if="$ctrl.flavor">
             <span
                 data-translate="pci_project_flavors_billing_price_hourly"

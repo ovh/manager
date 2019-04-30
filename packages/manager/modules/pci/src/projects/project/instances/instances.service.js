@@ -129,14 +129,14 @@ export default class PciProjectInstanceService {
       .$promise;
   }
 
-  reinstall(projectId, { id: instanceId, image }) {
+  reinstall(projectId, { id: instanceId, image, imageId }) {
     return this.OvhApiCloudProjectInstance
       .v6()
       .reinstall({
         serviceName: projectId,
         instanceId,
       }, {
-        imageId: image.id,
+        imageId: imageId || image.id,
       })
       .$promise;
   }
@@ -458,5 +458,35 @@ export default class PciProjectInstanceService {
       [],
     );
     return this.$q.all(promises);
+  }
+
+  update(projectId, { id: instanceId, name: instanceName }) {
+    return this.OvhApiCloudProjectInstance
+      .v6()
+      .put(
+        {
+          serviceName: projectId,
+          instanceId,
+        },
+        {
+          instanceName,
+        },
+      )
+      .$promise;
+  }
+
+  resize(projectId, { id: instanceId, flavorId }) {
+    return this.OvhApiCloudProjectInstance
+      .v6()
+      .resize(
+        {
+          serviceName: projectId,
+          instanceId,
+        },
+        {
+          flavorId,
+        },
+      )
+      .$promise;
   }
 }
