@@ -31,9 +31,8 @@ export default /* @ngInject */ ($stateProvider) => {
         error: /* @ngInject */ ($transition$) => {
           const stateParams = $transition$.params();
           return {
+            ...stateParams,
             code: snakeCase(stateParams.code),
-            context: stateParams.context,
-            message: stateParams.message,
           };
         },
         getActionButtonHref: () => (errorCode) => {
