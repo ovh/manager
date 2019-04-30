@@ -1,4 +1,5 @@
 import ASSET_APPS_DATASCIENCE from './assets/apps/datascience.png';
+import ASSET_APPS_DATAIKU from './assets/apps/dataiku.png';
 import ASSET_APPS_DOCKER from './assets/apps/docker.png';
 import ASSET_APPS_GITLAB from './assets/apps/gitlab.png';
 import ASSET_APPS_MARIADB from './assets/apps/mariadb.png';
@@ -64,6 +65,7 @@ export const APPLICATION_LIST = [
   'vestacp',
   'virtualmin',
   'datascience',
+  'dataiku',
   'deeplearning',
   'rstudio',
   'minikube',
@@ -107,6 +109,7 @@ export const IMAGE_ASSETS = {
     vestacp: ASSET_APPS_VESTACP,
     virtualmin: ASSET_APPS_VIRTUALMIN,
     datascience: ASSET_APPS_DATASCIENCE,
+    dataiku: ASSET_APPS_DATAIKU,
     deeplearning: ASSET_APPS_UNKNOWN,
     rstudio: ASSET_APPS_RSTUDIO,
     minikube: ASSET_APPS_MINIKUBE,
