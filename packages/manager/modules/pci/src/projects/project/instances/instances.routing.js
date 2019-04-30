@@ -2,6 +2,10 @@ export default /* @ngInject */($stateProvider) => {
   $stateProvider.state('pci.projects.project.instances', {
     url: '/instances',
     component: 'pciProjectsProjectInstances',
+    translations: {
+      value: ['.'],
+      format: 'json',
+    },
     resolve: {
       breadcrumb: /* @ngInject */ $translate => $translate.instant('pci_projects_project_instances_title'),
       addInstance: /* @ngInject */ ($state, projectId) => () => $state.go('pci.projects.project.instances.add', {
