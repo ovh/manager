@@ -4,9 +4,11 @@ import '@ovh-ux/ng-translate-async-loader';
 import 'angular-translate';
 
 import activeMonthlyBilling from './active-monthly-billing';
+import attachPrivateNetwork from './attach-private-network';
 import attachVolume from './attach-volume';
 import backup from './backup';
 import deleteInstance from './delete';
+import edit from './edit';
 import hardReboot from './hard-reboot';
 import reinstall from './reinstall';
 import rescue from './rescue';
@@ -27,9 +29,11 @@ angular
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
     activeMonthlyBilling,
+    attachPrivateNetwork,
     attachVolume,
     backup,
     deleteInstance,
+    edit,
     hardReboot,
     reinstall,
     rescue,

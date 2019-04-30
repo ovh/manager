@@ -5,6 +5,7 @@ import filter from 'lodash/filter';
 import find from 'lodash/find';
 import map from 'lodash/map';
 import round from 'lodash/round';
+import reduce from 'lodash/reduce';
 import moment from 'moment';
 
 import Instance from './instance.class';
@@ -106,10 +107,15 @@ export default class PciProjectInstanceService {
           })
           .$promise
           .catch(() => []),
+        privateNetworks: this.getPrivateNetworks(projectId),
       }))
-      .then(({ instance, volumes }) => new Instance({
+      .then(({ instance, volumes, privateNetworks }) => new Instance({
         ...instance,
         volumes: filter(volumes, volume => includes(volume.attachedTo, instance.id)),
+        privateNetworks: filter(privateNetworks, privateNetwork => includes(
+          map(filter(instance.ipAddresses, { type: 'private' }), 'networkId'),
+          privateNetwork.id,
+        )),
       }));
   }
 
@@ -123,14 +129,14 @@ export default class PciProjectInstanceService {
       .$promise;
   }
 
-  reinstall(projectId, { id: instanceId, image }) {
+  reinstall(projectId, { id: instanceId, image, imageId }) {
     return this.OvhApiCloudProjectInstance
       .v6()
       .reinstall({
         serviceName: projectId,
         instanceId,
       }, {
-        imageId: image.id,
+        imageId: imageId || image.id,
       })
       .$promise;
   }
@@ -261,6 +267,14 @@ export default class PciProjectInstanceService {
         networks, {
           type: 'private',
         },
+      ));
+  }
+
+  getCompatiblesPrivateNetworks(projectId, instance) {
+    return this.getAvailablesPrivateNetworks(projectId, instance.region)
+      .then(networks => filter(
+        networks,
+        network => !includes(map(instance.privateNetworks, 'id'), network.id),
       ));
   }
 
@@ -411,6 +425,66 @@ export default class PciProjectInstanceService {
           region,
           sshKeyId,
           userData,
+        },
+      )
+      .$promise;
+  }
+
+  attachPrivateNetworks(
+    projectId,
+    {
+      id: instanceId,
+    },
+    privateNetworks,
+  ) {
+    const promises = reduce(
+      privateNetworks,
+      (results, privateNetwork) => [
+        ...results,
+        this.OvhApiCloudProjectInstance
+          .Interface()
+          .v6()
+          .save(
+            {
+              serviceName: projectId,
+              instanceId,
+            },
+            {
+              networkId: privateNetwork.id,
+            },
+          )
+          .$promise,
+      ],
+      [],
+    );
+    return this.$q.all(promises);
+  }
+
+  update(projectId, { id: instanceId, name: instanceName }) {
+    return this.OvhApiCloudProjectInstance
+      .v6()
+      .put(
+        {
+          serviceName: projectId,
+          instanceId,
+        },
+        {
+          instanceName,
+        },
+      )
+      .$promise;
+  }
+
+  resize(projectId, { id: instanceId, flavorId }) {
+    return this.OvhApiCloudProjectInstance
+      .v6()
+      .resize(
+        {
+          serviceName: projectId,
+          instanceId,
+        },
+        {
+          flavorId,
         },
       )
       .$promise;

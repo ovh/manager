@@ -1,7 +1,9 @@
 export default class FlavorBillingController {
   $onInit() {
-    this.monthly = true;
+    this.monthly = this.monthlyBilling === true;
     this.number = this.number || 1;
+
+    this.disabled = this.disabled || false;
   }
 
   selectBilling(monthlyBilling) {

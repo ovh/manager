@@ -33,4 +33,8 @@ export default class Flavors {
   getIdByRegion(region) {
     return get(find(this.regions, { region }), 'id');
   }
+
+  containsFlavor(flavorId) {
+    return find(this.regions, { id: flavorId });
+  }
 }

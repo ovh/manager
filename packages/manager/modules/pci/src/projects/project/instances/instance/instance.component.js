@@ -9,7 +9,6 @@ export default {
     instanceId: '<',
     instance: '<',
     instancePrice: '<',
-    privateNetworks: '<',
 
     instanceLink: '<',
     consoleLink: '<',
@@ -29,6 +28,6 @@ export default {
     attachVolume: '<',
 
     gotToNetworks: '<',
-    attachNetwork: '<',
+    attachPrivateNetwork: '<',
   },
 };

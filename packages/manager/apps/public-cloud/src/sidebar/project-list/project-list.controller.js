@@ -1,12 +1,26 @@
 export default class ProjectListController {
   /* @ngInject */
-  constructor(publicCloud, iceberg) {
+  constructor($injector, $q, $translate, publicCloud, iceberg) {
+    this.$injector = $injector;
+    this.$q = $q;
+    this.$translate = $translate;
     this.publicCloud = publicCloud;
     this.iceberg = iceberg;
   }
 
   $onInit() {
     this.getProjects();
+    this.getTranslations();
+  }
+
+  getTranslations() {
+    this.isLoadingTranslations = true;
+
+    return this.$injector.invoke(/* @ngTranslationsInject:json ./translations */)
+      .then(() => this.$translate.refresh())
+      .finally(() => {
+        this.isLoadingTranslations = false;
+      });
   }
 
   getProjects() {

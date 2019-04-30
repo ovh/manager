@@ -9289,10 +9289,10 @@ ovh-ui-kit@^2.22.0:
   dependencies:
     less-plugin-remcalc "^0.1.0"
 
-ovh-ui-kit@^2.30.0:
-  version "2.30.0"
-  resolved "https://registry.yarnpkg.com/ovh-ui-kit/-/ovh-ui-kit-2.30.0.tgz#2ef4c038f55e667b4d160c6184de2a7b5a287f7b"
-  integrity sha512-gn20E69mwHw2YPecJ4+UApOmvFcNlFLCC5BRadrq5EGMYgh8m1a4U4PwccC7++7JC6mh3KKsuy/faU+lSieYnQ==
+ovh-ui-kit@^2.31.0:
+  version "2.31.0"
+  resolved "https://registry.yarnpkg.com/ovh-ui-kit/-/ovh-ui-kit-2.31.0.tgz#eb1562f56bbbd9f04ae321009720bb7d73450222"
+  integrity sha512-cP3lF6iAIasve0H4oHIRHnES3teBr7lZA2jB/iIFwnpWfwLkQe7hpWIBiiV1GGOyzoLu0TeBTH262uKaf69D6w==
   dependencies:
     less-plugin-remcalc "^0.1.0"
 

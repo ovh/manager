@@ -77,7 +77,7 @@
     "ovh-manager-webfont": "^1.2.0",
     "ovh-ngstrap": "^4.0.2",
     "ovh-ui-angular": "^2.30.0",
-    "ovh-ui-kit": "^2.30.0",
+    "ovh-ui-kit": "^2.31.0",
     "ovh-ui-kit-bs": "^2.1.1",
     "punycode": "^1.2.4",
     "validator-js": "chriso/validator.js#3.40.1"

@@ -8,5 +8,6 @@ export default {
     flavor: '<',
     number: '<?',
     monthlyBilling: '=?',
+    disabled: '<?',
   },
 };
