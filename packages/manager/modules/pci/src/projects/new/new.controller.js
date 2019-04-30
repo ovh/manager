@@ -170,22 +170,14 @@ export default class PciProjectNewCtrl {
       },
     };
 
-    return this.PciProjectNewService
-      .getBillingContact()
-      .then(({ id }) => {
-        paymentParams.billingContactId = id;
-        return true;
-      })
-      .then(() => {
-        const paymentType = {
-          paymentType: {
-            value: 'CREDIT_CARD',
-          },
-        };
+    const paymentType = {
+      paymentType: {
+        value: 'CREDIT_CARD',
+      },
+    };
 
-        return this.ovhPaymentMethod
-          .addPaymentMethod(paymentType, paymentParams);
-      });
+    return this.ovhPaymentMethod
+      .addPaymentMethod(paymentType, paymentParams);
   }
 
   addPaymentMethod() {
@@ -198,7 +190,6 @@ export default class PciProjectNewCtrl {
     let addPaymentParams = {
       default: true,
     };
-    let billingContactPromise = this.$q.when(true);
 
     if (!this.paymentModel.paymentType.original) {
       addPaymentParams = merge(addPaymentParams, {
@@ -211,21 +202,13 @@ export default class PciProjectNewCtrl {
           success: [callbackUrlBase, 'hiPayStatus=success'].join('&'),
         },
       });
-
-      billingContactPromise = this.PciProjectNewService
-        .getBillingContact()
-        .then(({ id }) => {
-          addPaymentParams.billingContactId = id;
-          return true;
-        });
     } else {
       // if it's an "original", it is paypal
       addPaymentParams.returnUrl = callbackUrlBase;
     }
 
-    return billingContactPromise
-      .then(() => this.ovhPaymentMethod
-        .addPaymentMethod(this.paymentModel.paymentType, addPaymentParams))
+    return this.ovhPaymentMethod
+      .addPaymentMethod(this.paymentModel.paymentType, addPaymentParams)
       .catch(() => {
         this.loading.addPayment = false;
       });

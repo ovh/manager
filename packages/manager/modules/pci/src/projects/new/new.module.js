@@ -4,7 +4,6 @@ import '@uirouter/angularjs';
 import 'angular-translate';
 import 'ovh-ui-angular';
 import '@ovh-ux/ng-ovh-payment-method';
-import '@ovh-ux/ng-ovh-contacts';
 
 // deps
 import newProjectDescription from './description';
@@ -25,7 +24,6 @@ angular
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
     'ngOvhPaymentMethod',
-    'ngOvhContacts',
   ])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */)
