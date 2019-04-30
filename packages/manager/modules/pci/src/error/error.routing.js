@@ -64,18 +64,14 @@ export default /* @ngInject */ ($stateProvider) => {
               return '';
           }
         },
-        getAssets: () => (errorCode, srcset) => {
+        getAssets: () => (errorCode) => {
           const errorCodeAssets = get(IMAGE_ASSETS, errorCode);
 
           if (errorCodeAssets) {
-            return srcset
-              ? `${get(errorCodeAssets, '2x')} 2x, ${get(errorCodeAssets, '3x')} 3x`
-              : get(errorCodeAssets, 'src');
+            return get(errorCodeAssets, 'src');
           }
 
-          return srcset
-            ? `${get(IMAGE_ASSETS, 'oops.2x')} 2x, ${get(IMAGE_ASSETS, 'oops.3x')} 3x`
-            : get(IMAGE_ASSETS, 'oops.src');
+          return get(IMAGE_ASSETS, 'oops.src');
         },
         getCancelHref: /* @ngInject */ $state => () => $state.href('pci'),
         getErrorTranslationValues: () => (errorCode) => {
