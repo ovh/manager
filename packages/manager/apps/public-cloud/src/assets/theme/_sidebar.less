@@ -9,6 +9,33 @@ cloud-sidebar { /* stylelint-disable-line */
   position: relative;
   box-shadow: 0 2pt 10pt rgba(40, 89, 192, 0.25);
 
+  oui-clipboard { /* stylelint-disable-line */
+    margin-bottom: 0;
+
+    .oui-clipboard__control {
+      border-bottom: 0;
+      padding: 0;
+      padding-left: 1.5rem;
+      font-weight: 400;
+      color: @primary-color;
+      background-color: transparent;
+
+      &:hover,
+      &:focus {
+        text-decoration: underline;
+        background-color: transparent;
+      }
+    }
+
+    .oui-clipboard__button {
+      left: 0;
+      right: inherit;
+      padding: 0;
+      min-width: auto;
+      color: @primary-color;
+    }
+  }
+
   .project-list {
     position: absolute;
     width: 100%;
@@ -21,6 +48,13 @@ cloud-sidebar { /* stylelint-disable-line */
     overflow: auto;
     will-change: transform;
     transition: transform ease-in-out 500ms;
+
+    oui-clipboard { /* stylelint-disable-line */
+      .oui-clipboard__control,
+      .oui-clipboard__button {
+        color: #fff;
+      }
+    }
 
     &.ng-enter,
     &.ng-leave.ng-leave-active {
@@ -139,21 +173,6 @@ cloud-sidebar { /* stylelint-disable-line */
           }
         }
       }
-    }
-  }
-
-  .project-copy {
-    border: 0;
-    background-color: transparent;
-    padding: 0;
-
-    &,
-    .oui-icon {
-      color: @primary-color;
-    }
-
-    .oui-icon {
-      font-size: 1rem;
     }
   }
 }
