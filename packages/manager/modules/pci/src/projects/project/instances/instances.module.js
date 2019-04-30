@@ -44,6 +44,7 @@ angular
   ])
   .config(routing)
   .component('pciProjectsProjectInstances', component)
-  .service('PciProjectsProjectInstanceService', service);
+  .service('PciProjectsProjectInstanceService', service)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
