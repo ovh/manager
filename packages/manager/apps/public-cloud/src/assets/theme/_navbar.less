@@ -37,11 +37,29 @@
     &:hover,
     &:focus {
       background-color: transparent;
+
+      span {
+        text-decoration: underline;
+
+        &.oui-icon {
+          text-decoration: none;
+        }
+      }
+    }
+
+    &.oui-navbar-link_primary:hover,
+    &.oui-navbar-link_primary:focus {
+      text-decoration: underline !important;
     }
 
     &.oui-navbar-link_active {
       background-color: transparent;
       border-bottom: 3px solid @primary-color !important;
+
+      &:hover,
+      &:focus {
+        text-decoration: none !important;
+      }
     }
   }
 
