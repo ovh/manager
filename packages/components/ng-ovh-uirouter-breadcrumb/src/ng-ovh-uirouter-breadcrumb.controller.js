@@ -34,7 +34,12 @@ export default class ngUirouterBreadcrumbController {
             this.breadcrumb.unshift(entry);
 
             entry.promise.then((value) => {
-              entry.name = value;
+              if (value) {
+                entry.name = value;
+              } else {
+                this.breadcrumb = this.breadcrumb
+                  .filter(breadcrumbEntry => breadcrumbEntry !== entry);
+              }
             });
           }
 
