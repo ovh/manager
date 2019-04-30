@@ -7,7 +7,9 @@ export default /* @ngInject */($stateProvider) => {
       format: 'json',
     },
     resolve: {
-      breadcrumb: /* @ngInject */ $translate => $translate.instant('pci_projects_project_instances_title'),
+      breadcrumb: /* @ngInject */ $translate => $translate
+        .refresh()
+        .then(() => $translate.instant('pci_projects_project_instances_title')),
       addInstance: /* @ngInject */ ($state, projectId) => () => $state.go('pci.projects.project.instances.add', {
         projectId,
       }),
