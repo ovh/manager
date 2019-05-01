@@ -1,7 +1,35 @@
-.pci-projects-new {
-  .oui-progress-tracker {
-    .oui-progress-tracker__step {
+pci-project-new { /* stylelint-disable-line */
+  .pci-projects-new {
+    background-color: rgb(241, 249, 253);
 
+    .bg-white {
+      background-color: #fff;
+    }
+
+    .oui-progress-tracker {
+      .oui-progress-tracker__step {
+        &::after {
+          height: 2px;
+        }
+
+        .oui-progress-tracker__status {
+          &::before {
+            background-color: transparent;
+            border: 2px solid rgb(155, 155, 155);
+            color: rgb(155, 155, 155);
+          }
+        }
+
+        &.oui-progress-tracker__step_active {
+          .oui-progress-tracker__status {
+            &::before {
+              background-color: transparent;
+              border: 2px solid rgb(40, 89, 192);
+              color: rgb(40, 89, 192);
+            }
+          }
+        }
+      }
     }
   }
 }
