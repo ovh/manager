@@ -3,13 +3,11 @@
         data-heading="{{ 'pci_projects_project_storages_containers_container_object_add_'+ ($ctrl.archive ? 'archive' : 'object') + '_title' | translate }}"
         data-primary-action="$ctrl.addObjects()"
         data-primary-label="{{:: 'pci_projects_project_storages_containers_container_object_add_submit_label' | translate }}"
-        data-primary-disabled="$ctrl.loadings.init || $ctrl.loadings.save"
+        data-primary-disabled="$ctrl.isLoading"
         data-secondary-action="$ctrl.goBack()"
         data-secondary-label="{{:: 'pci_projects_project_storages_containers_container_object_add_cancel_label' | translate }}"
         data-on-dismiss="$ctrl.goBack()"
-        data-loading="$ctrl.loadings.init || $ctrl.loadings.save">
-
-        <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
+        data-loading="$ctrl.isLoading">
 
         <oui-field data-label="{{:: 'pci_projects_project_storages_containers_container_object_add_prefix_label' | translate }}" data-size="xl">
             <input class="oui-input" type="text" id="lastname" name="prefix" data-ng-model="$ctrl.prefix" required minlength="3" maxlength="32">

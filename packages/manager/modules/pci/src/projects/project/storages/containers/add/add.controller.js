@@ -22,6 +22,10 @@ export default class PciStoragesContainersAddController {
   }
 
   $onInit() {
+    this.loadMessages();
+
+    this.isLoading = false;
+
     this.displaySelectedRegion = false;
     this.displaySelectedType = false;
 
@@ -34,38 +38,12 @@ export default class PciStoragesContainersAddController {
       }),
     );
 
-    this.loadings = {
-      regions: true,
-      types: false,
-      save: false,
-    };
-
     this.container = new Container({
       archive: this.archive,
     });
-
-    return this.$translate.refresh()
-      .then(() => this.loadMessages())
-      .then(() => this.PciProjectStorageBlockService.getAvailablesRegions(this.projectId))
-      .then((regions) => {
-        this.regions = regions;
-      })
-      .catch((err) => {
-        this.CucCloudMessage.error(
-          this.$translate.instant(
-            'pci_projects_project_storages_containers_add_error_query',
-            { message: get(err, 'data.message', '') },
-          ),
-          'pci.projects.project.storages.containers.add',
-        );
-      })
-      .finally(() => {
-        this.loadings.regions = false;
-      });
   }
 
   loadMessages() {
-    this.CucCloudMessage.unSubscribe('pci.projects.project.storages.containers.add');
     this.messageHandler = this.CucCloudMessage.subscribe(
       'pci.projects.project.storages.containers.add',
       {
@@ -96,21 +74,15 @@ export default class PciStoragesContainersAddController {
   }
 
   add() {
-    this.loadings.save = true;
-
+    this.isLoading = true;
     return this.PciProjectStorageContainersService
       .addContainer(this.projectId, this.container)
-      .then(() => {
-        this.CucCloudMessage.success(
-          this.$translate.instant(
-            'pci_projects_project_storages_containers_add_success_message',
-            { container: this.container.name },
-          ),
-          'pci.projects.project.storages.containers',
-        );
-
-        return this.goBack(true);
-      })
+      .then(() => this.goBack(this.$translate.instant(
+        'pci_projects_project_storages_containers_add_success_message',
+        {
+          container: this.container.name,
+        },
+      )))
       .catch((err) => {
         this.CucCloudMessage.error(
           this.$translate.instant(
@@ -121,7 +93,7 @@ export default class PciStoragesContainersAddController {
         );
       })
       .finally(() => {
-        this.loadings.save = false;
+        this.isLoading = false;
       });
   }
 }

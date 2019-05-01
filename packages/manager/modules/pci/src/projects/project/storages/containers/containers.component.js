@@ -6,9 +6,12 @@ export default {
   template,
   bindings: {
     projectId: '<',
+    containers: '<',
     addContainer: '<',
     viewContainer: '<',
     deleteContainer: '<',
+    containerLink: '<',
+    goToStorageContainers: '<',
     archive: '<',
   },
 };

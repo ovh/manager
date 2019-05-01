@@ -7,12 +7,14 @@ import 'ovh-ui-angular';
 import 'ovh-api-services';
 import 'angular-ui-bootstrap';
 
+import regionsList from '../../blocks/add/regions-list';
 import component from './add.component';
 
 const moduleName = 'ovhManagerPciStoragesContainersAdd';
 
 angular
   .module(moduleName, [
+    regionsList,
     'ngTranslateAsyncLoader',
     'oui',
     'ovh-api-services',

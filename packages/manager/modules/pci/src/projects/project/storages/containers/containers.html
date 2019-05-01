@@ -15,7 +15,7 @@
                 data-searchable
                 data-sortable="asc"
                 data-filterable>
-                <span data-ng-bind="::$value" class="text-truncate"></span>
+                <a data-ng-href="{{:: $ctrl.containerLink($row) }}" data-ng-bind="::$value" class="text-truncate"></a>
             </oui-column>
             <oui-column
                 data-title="'pci_projects_project_storages_containers_region_label' | translate"
