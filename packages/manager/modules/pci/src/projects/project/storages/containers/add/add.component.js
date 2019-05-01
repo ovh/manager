@@ -7,6 +7,7 @@ export default {
   bindings: {
     projectId: '<',
     archive: '<',
+    regions: '<',
     goBack: '<',
     cancelLink: '<',
   },

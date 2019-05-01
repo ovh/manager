@@ -1,56 +1,18 @@
-import get from 'lodash/get';
-
 export default class PciStoragesContainersController {
   /* @ngInject */
   constructor(
-    $rootScope,
     $translate,
     CucCloudMessage,
-    PciProjectStorageContainersService,
   ) {
-    this.$rootScope = $rootScope;
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
-    this.PciProjectStorageContainersService = PciProjectStorageContainersService;
   }
 
   $onInit() {
-    this.$rootScope.$on('pci_storages_containers_refresh', () => this.refreshContainers());
-
-    this.containers = null;
-
-    this.isLoading = true;
-    return this.$translate.refresh()
-      .then(() => this.loadMessages())
-      .then(() => this.getContainers())
-      .finally(() => {
-        this.isLoading = false;
-      });
-  }
-
-  getContainers() {
-    return this.PciProjectStorageContainersService.getAll(this.projectId, this.archive)
-      .then((containers) => {
-        this.containers = containers;
-      })
-      .catch(err => this.CucCloudMessage.error(
-        this.$translate.instant(
-          'pci_projects_project_storages_containers_error_query',
-          { message: get(err, 'data.message', '') },
-        ),
-      ));
-  }
-
-  refreshContainers() {
-    this.isLoading = true;
-    return this.getContainers()
-      .finally(() => {
-        this.isLoading = false;
-      });
+    this.loadMessages();
   }
 
   loadMessages() {
-    this.CucCloudMessage.unSubscribe('pci.projects.project.storages.containers');
     this.messageHandler = this.CucCloudMessage.subscribe(
       'pci.projects.project.storages.containers',
       {

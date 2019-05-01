@@ -4,17 +4,18 @@ export default /* @ngInject */ ($stateProvider) => {
       url: '/new',
       component: 'pciProjectStorageContainersAdd',
       resolve: {
-        goBack: /* @ngInject */ ($rootScope, $state, projectId) => (reload = false) => {
-          if (reload) {
-            $rootScope.$emit('pci_storages_containers_refresh');
-          }
-          return $state.go('pci.projects.project.storages.archives', {
-            projectId,
-          });
-        },
+        regions: /* @ngInject */ (
+          PciProjectStorageBlockService,
+          projectId,
+        ) => PciProjectStorageBlockService.getAvailablesRegions(projectId),
+        goBack: /* @ngInject */ goToStorageContainers => goToStorageContainers,
         cancelLink: /* @ngInject */ ($state, projectId) => $state.href('pci.projects.project.storages.archives', {
           projectId,
         }),
+
+        breadcrumb: /* @ngInject */ $translate => $translate
+          .refresh()
+          .then(() => $translate.instant('pci_projects_project_storages_containers_add_title')),
       },
     });
 };

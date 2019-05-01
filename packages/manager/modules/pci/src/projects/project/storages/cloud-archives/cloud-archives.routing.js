@@ -5,6 +5,11 @@ export default /* @ngInject */ ($stateProvider) => {
       component: 'pciProjectStorageContainers',
       resolve: {
         archive: () => true,
+        containers: /* @ngInject */ (
+          PciProjectStorageContainersService,
+          archive,
+          projectId,
+        ) => PciProjectStorageContainersService.getAll(projectId, archive),
         addContainer: /* @ngInject */($state, projectId) => () => $state.go('pci.projects.project.storages.archives.add', {
           projectId,
         }),
@@ -16,6 +21,28 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
           containerId: container.id,
         }),
+        containerLink: /* @ngInject */($state, projectId) => container => $state.href('pci.projects.project.storages.archives.archive', {
+          projectId,
+          containerId: container.id,
+        }),
+
+        goToStorageContainers: /* @ngInject */ ($rootScope, CucCloudMessage, $state, projectId) => (message = false, type = 'success') => {
+          const reload = message && type === 'success';
+
+          const promise = $state.go('pci.projects.project.storages.archives', {
+            projectId,
+          },
+          {
+            reload,
+          });
+
+          if (message) {
+            promise.then(() => CucCloudMessage[type](message, 'pci.projects.project.storages.containers'));
+          }
+
+          return promise;
+        },
+
         breadcrumb: /* @ngInject */ $translate => $translate
           .refresh()
           .then(() => $translate.instant('pci_projects_project_storages_containers_archive_title')),

@@ -1,5 +1,4 @@
 import angular from 'angular';
-import find from 'lodash/find';
 import has from 'lodash/has';
 import map from 'lodash/map';
 import pickBy from 'lodash/pickBy';
@@ -246,22 +245,20 @@ export default class PciStoragesContainersService {
       });
   }
 
-  deleteContainer(projectId, { id }) {
-    return this.OvhApiCloudProjectStorage
-      .v6()
-      .delete({
-        projectId,
-        containerId: id,
-      })
-      .$promise;
-  }
+  deleteContainer(projectId, container) {
+    const promises = reduce(container.objects, (result, object) => [
+      ...result,
+      this.deleteObject(projectId, container, object),
+    ], []);
 
-  getObject(projectId, containerId, objectId) {
-    return this.getContainer(projectId, containerId)
-      .then(container => ({
-        container,
-        object: find(container.objects, { name: objectId }),
-      }));
+    return this.$q.all(promises)
+      .then(() => this.OvhApiCloudProjectStorage
+        .v6()
+        .delete({
+          projectId,
+          containerId: container.id,
+        })
+        .$promise);
   }
 
   static getFilePath(filePrefix, file) {

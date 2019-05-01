@@ -8,7 +8,10 @@ export default {
     archive: '<',
     projectId: '<',
     containerId: '<',
+    container: '<',
+    defaultPassword: '<?',
     addObject: '<',
     deleteObject: '<',
+    refresh: '<',
   },
 };

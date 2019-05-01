@@ -8,6 +8,7 @@ export default {
     archive: '<',
     projectId: '<',
     containerId: '<',
+    container: '<',
     goBack: '<',
   },
 };
