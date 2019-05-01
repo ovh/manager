@@ -5,18 +5,11 @@ import { BREAKPOINT, KEY } from './components/walkMe/walkme.constants';
 
 export default class PublicCloudController {
   /* @ngInject */
-  constructor($scope, $state, $transitions, $window, ovhUserPref, WalkMe) {
-    this.$state = $state;
+  constructor($scope, $window, ovhUserPref, WalkMe) {
     this.feedbackUrl = __FEEDBACK_URL__;
     this.feedback = feedback;
-    this.$transitions = $transitions;
     this.ovhUserPref = ovhUserPref;
     this.WalkMe = WalkMe;
-
-    this.$transitions.onSuccess({}, () => {
-      this.shouldDisplaySidebar = $state.includes('pci.projects.project')
-        && !$state.is('pci.projects.project.creating');
-    });
 
     $scope.$on('navbar.loaded', () => this.ovhUserPref.getValue(KEY)
       .then(({ value }) => {
