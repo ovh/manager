@@ -1,12 +1,16 @@
 export default class ProjectCreatingCtrl {
   /* @ngInject */
   constructor(Poller) {
+    // dependencies injections
     this.Poller = Poller;
+
+    // other attributes
+    this.pollingNamespace = 'pci.projects.creating';
   }
 
   startCreationPolling() {
     return this.Poller.poll(`/cloud/project/${this.projectId}`, null, {
-      namespace: 'pci.projects.creating',
+      namespace: this.pollingNamespace,
       successRule(details) {
         return details.status === 'ok';
       },
@@ -14,17 +18,24 @@ export default class ProjectCreatingCtrl {
       .then(() => this.onProjectCreated());
   }
 
-  /* =====================================
-  =            Initialization            =
-  ====================================== */
+  stopCreationPolling() {
+    return this.Poller.kill({
+      namespace: this.pollingNamespace,
+    });
+  }
+
+  /* ============================
+  =            Hooks            =
+  ============================= */
 
   $onInit() {
-    this.Poller.kill({
-      namespace: 'pci.projects.creating',
-    });
-
+    this.stopCreationPolling();
     return this.startCreationPolling();
   }
 
-  /* -----  End of Initialization  ------ */
+  $onDestroy() {
+    return this.stopCreationPolling();
+  }
+
+  /* -----  End of Hooks  ------ */
 }
