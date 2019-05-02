@@ -11,7 +11,7 @@ angular
   ])
   .config(/* @ngInject */($stateProvider) => {
     $stateProvider.state('pci.projects.project.instances.resume.**', {
-      url: '/resume?instanceId',
+      url: '/resume',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 

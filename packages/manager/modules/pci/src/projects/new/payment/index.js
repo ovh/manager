@@ -11,7 +11,7 @@ angular
   ])
   .config(/* @ngInject */($stateProvider) => {
     $stateProvider.state('pci.projects.new.payment.**', {
-      url: '/payment?mode&credit&voucher&hiPayStatus&paypalAgreementStatus',
+      url: '/payment',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 

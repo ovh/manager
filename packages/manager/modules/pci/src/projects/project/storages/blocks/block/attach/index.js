@@ -11,7 +11,7 @@ angular
   ])
   .config(/* @ngInject */($stateProvider) => {
     $stateProvider.state('pci.projects.project.storages.blocks.attach.**', {
-      url: '/attach?storageId',
+      url: '/attach',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 

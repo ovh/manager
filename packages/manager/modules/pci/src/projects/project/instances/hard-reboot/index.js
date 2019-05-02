@@ -11,7 +11,7 @@ angular
   ])
   .config(/* @ngInject */($stateProvider) => {
     $stateProvider.state('pci.projects.project.instances.hard-reboot.**', {
-      url: '/hard-reboot?instanceId',
+      url: '/hard-reboot',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 

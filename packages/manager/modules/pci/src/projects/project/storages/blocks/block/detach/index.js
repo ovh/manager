@@ -11,7 +11,7 @@ angular
   ])
   .config(/* @ngInject */($stateProvider) => {
     $stateProvider.state('pci.projects.project.storages.blocks.detach.**', {
-      url: '/detach?storageId',
+      url: '/detach',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
