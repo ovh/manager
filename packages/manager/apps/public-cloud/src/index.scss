@@ -25,3 +25,13 @@ a.oui-tile {
     box-shadow: 0 5pt 10pt rgba(40, 89, 192, 0.15);
   }
 }
+
+/**
+Fixing bootstrap columns for safari
+ */
+.row {
+  &::before,
+  &::after {
+    display: inline-block !important;
+  }
+}
