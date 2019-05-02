@@ -16,6 +16,7 @@ import softReboot from './soft-reboot';
 import resume from './resume';
 import rescue from './rescue';
 import unrescue from './unrescue';
+import help from './help';
 
 import component from './instances.component';
 import service from './instances.service';
@@ -37,6 +38,7 @@ angular
     resume,
     rescue,
     unrescue,
+    help,
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
     'ovh-api-services',

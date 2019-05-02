@@ -36,6 +36,7 @@ export default /* @ngInject */ ($stateProvider) => {
 
         addInstanceBackup: /* @ngInject */($state, projectId) => () => $state.go('pci.projects.project.instances', {
           projectId,
+          help: 'backup',
         }),
         createInstance: /* @ngInject */ ($state, projectId) => instanceBackup => $state.go('pci.projects.project.storages.instance-backups.create', {
           projectId,

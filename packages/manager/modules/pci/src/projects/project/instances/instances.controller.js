@@ -1,3 +1,5 @@
+import { INSTANCE_HELP_REFERENCE_KEY } from './instances.constants';
+
 export default class CloudProjectComputeInfrastructureListCtrl {
   /* @ngInject */
   constructor(
@@ -5,12 +7,14 @@ export default class CloudProjectComputeInfrastructureListCtrl {
     $translate,
     CucCloudMessage,
     CucRegionService,
+    ovhUserPref,
     PciProjectsProjectInstanceService,
   ) {
     this.$q = $q;
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.CucRegionService = CucRegionService;
+    this.ovhUserPref = ovhUserPref;
     this.PciProjectsProjectInstanceService = PciProjectsProjectInstanceService;
   }
 
@@ -28,6 +32,7 @@ export default class CloudProjectComputeInfrastructureListCtrl {
       .then((instances) => {
         this.instances = instances;
       })
+      .then(() => this.checkHelpDisplay())
       .finally(() => {
         this.isLoading = false;
       });
@@ -52,5 +57,44 @@ export default class CloudProjectComputeInfrastructureListCtrl {
       this.projectId,
       instance,
     );
+  }
+
+  checkHelpDisplay() {
+    return new Promise((resolve) => {
+      if (this.help) {
+        return this.ovhUserPref.getValue(this.getHelpPreferenceKey())
+          .then((value) => {
+            this.displayHelp = value && this.help;
+          })
+          .catch(() => {
+            this.displayHelp = this.help;
+          })
+          .finally(() => resolve());
+      }
+      return resolve();
+    });
+  }
+
+  getHelpPreferenceKey() {
+    return `${INSTANCE_HELP_REFERENCE_KEY}${this.help.toUpperCase()}`;
+  }
+
+  onHelpClosed(type) {
+    if (type === this.displayHelp) {
+      this.displayHelp = null;
+    }
+  }
+
+  hideHelp(type) {
+    if (type === this.displayHelp) {
+      this.updateHelp = true;
+
+      this.ovhUserPref.assign(this.getHelpPreferenceKey(), false)
+        .then()
+        .finally(() => {
+          this.updateHelp = false;
+          this.displayHelp = null;
+        });
+    }
   }
 }
