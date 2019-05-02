@@ -5,7 +5,7 @@ import popoverTemplate from './templates/popover.html';
 import WalkMeTemplate from './template.class';
 
 import {
-  BREAKPOINT, DESKTOP_STEPS, KEY, MOBILE_STEPS,
+  DESKTOP_STEPS, KEY,
 } from './walkme.constants';
 
 export default class WalkMe {
@@ -20,14 +20,16 @@ export default class WalkMe {
   }
 
   initSteps() {
-    this.STEPS = this.$window.matchMedia(`(min-width: ${BREAKPOINT}px)`).matches
-      ? DESKTOP_STEPS : MOBILE_STEPS;
+    this.STEPS = DESKTOP_STEPS;
+    // this.$window.matchMedia(`(min-width: ${BREAKPOINT}px)`).matches
+    //   ? DESKTOP_STEPS : MOBILE_STEPS;
   }
 
   getTour() {
     return new Tour({
       name: 'public-cloud-walkme',
       steps: this.getSteps(),
+      debug: true,
       // AngularJS will not be interpreted within the popover
       template: index => popoverTemplate.replace('{{ navigation }}', WalkMeTemplate.getNavigation(index, this.STEPS)),
       storage: false,
@@ -55,29 +57,16 @@ export default class WalkMe {
     }));
   }
 
-  start(index = 0) {
+  start() {
     const tour = this.getTour();
     tour.init();
     tour.start();
-    tour.goTo(index);
-
-    this.$window.onresize = () => {
-      // save current step before resizing
-      const currentIndex = tour.getCurrentStep();
-      tour.end();
-
-      if (this.$window.matchMedia(`(min-width: ${BREAKPOINT}px)`).matches) {
-        this.initSteps();
-        this.start(currentIndex);
-      }
-    };
-
     return tour;
   }
 
   // eslint-disable-next-line class-methods-use-this
   end() {
+    return localStorage.setItem(KEY, true);
     // return this.ovhUserPref.assign(KEY, true);
-    return localStorage.setItem(KEY, false);
   }
 }
