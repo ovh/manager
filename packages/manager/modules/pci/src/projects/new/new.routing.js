@@ -9,7 +9,11 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
     .state('pci.projects.new', {
       url: '/new?description&projectId',
-      component: 'pciProjectNew',
+      views: {
+        '@pci': {
+          component: 'pciProjectNew',
+        },
+      },
       redirectTo: ($transitions) => {
         const newProjectInfoPromise = $transitions.injector().getAsync('newProjectInfo');
         return newProjectInfoPromise

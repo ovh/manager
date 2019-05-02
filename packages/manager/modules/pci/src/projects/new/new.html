@@ -1,63 +1,68 @@
-<div class="pci-projects-new row justify-content-md-center mb-5">
-    <div class="col-md-6">
-        <!-- progress -->
-        <div class="oui-progress-tracker">
-            <ol class="oui-progress-tracker__steps">
-                <li class="oui-progress-tracker__step"
-                    data-ng-repeat="step in $ctrl.steps track by $index"
-                    data-ng-class="{
-                        'oui-progress-tracker__step_active': $ctrl.getCurrentStep().name === step.name,
-                        'oui-progress-tracker__step_complete': $ctrl.getCurrentStep().name !== step.name && $ctrl.isStepComplete(step),
-                    }">
-                    <span class="oui-progress-tracker__status"></span>
-                </li>
-            </ol>
-        </div>
+<div class="pci-projects-new h-100">
+    <div class="container-fluid h-100">
+        <div class="row h-100 justify-content-md-center">
+            <div class="col-md-7 p-5 bg-white h-100">
+                <div class="p-5">
+                    <!-- progress -->
+                    <div class="oui-progress-tracker w-25 mx-auto">
+                        <ol class="oui-progress-tracker__steps">
+                            <li class="oui-progress-tracker__step"
+                                data-ng-repeat="step in $ctrl.steps track by $index"
+                                data-ng-class="{
+                                    'oui-progress-tracker__step_active': $ctrl.getCurrentStep().name === step.name,
+                                    'oui-progress-tracker__step_complete': $ctrl.getCurrentStep().name !== step.name && $ctrl.isStepComplete(step),
+                                }">
+                                <span class="oui-progress-tracker__status"></span>
+                            </li>
+                        </ol>
+                    </div>
 
-        <!-- title -->
-        <h1 class="oui-heading_4"
-            data-translate="pci_projects_new_title">
-        </h1>
+                    <!-- title -->
+                    <h1 data-translate="pci_projects_new_title">
+                    </h1>
 
-        <cui-message-container data-messages="$ctrl.messages.list"></cui-message-container>
+                    <cui-message-container data-messages="$ctrl.messages.list"></cui-message-container>
 
-        <div data-ui-view
-             data-ng-if="!$ctrl.loading.creating && !$ctrl.loading.addPayment">
-            <pci-project-new-description
-                data-description-model="$ctrl.getCurrentStep().model"
-                data-new-project-info="$ctrl.newProjectInfo"
-                data-get-current-step="$ctrl.getCurrentStep">
-            </pci-project-new-description>
-        </div>
+                    <div data-ui-view
+                        data-ng-if="!$ctrl.loading.creating && !$ctrl.loading.addPayment">
+                        <pci-project-new-description
+                            data-description-model="$ctrl.getCurrentStep().model"
+                            data-new-project-info="$ctrl.newProjectInfo"
+                            data-get-current-step="$ctrl.getCurrentStep">
+                        </pci-project-new-description>
+                    </div>
 
-        <div class="text-center"
-             data-ng-if="$ctrl.loading.creating || $ctrl.loading.addPayment">
-            <oui-spinner data-size="l"></oui-spinner>
-        </div>
+                    <div class="text-center"
+                        data-ng-if="$ctrl.loading.creating || $ctrl.loading.addPayment">
+                        <oui-spinner data-size="l"></oui-spinner>
+                    </div>
 
-        <div class="d-flex flex-row-reverse justify-content-between align-items-center my-3">
-            <oui-button
-                data-ng-if="$ctrl.isNextButtonVisible()"
-                data-variant="primary"
-                data-type="submit"
-                data-disabled="$ctrl.isNextButtonDisabled()"
-                data-variant-nav="next"
-                data-on-click="$ctrl.onNextBtnClick()">
-                <span data-ng-bind="$ctrl.getNextButtonText()"></span>
-            </oui-button>
+                    <div class="d-flex flex-row-reverse justify-content-between align-items-center my-3">
+                        <oui-button
+                            data-ng-if="$ctrl.isNextButtonVisible()"
+                            data-variant="primary"
+                            data-type="submit"
+                            data-disabled="$ctrl.isNextButtonDisabled()"
+                            data-variant-nav="next"
+                            data-on-click="$ctrl.onNextBtnClick()">
+                            <span data-ng-bind="$ctrl.getNextButtonText()"></span>
+                        </oui-button>
 
-            <a class="oui-button oui-button_primary oui-button_icon-right"
-               data-ng-href="{{ $ctrl.getNextLinkHref() }}"
-               data-ng-if="!$ctrl.isNextButtonVisible()">
-                <span data-ng-bind="$ctrl.getNextButtonText()"></span>
-                <span class="oui-icon oui-icon_circle oui-icon-chevron-right"
-                      aria-hidden="true">
-                </span>
-            </a>
+                        <a class="oui-button oui-button_primary oui-button_icon-right"
+                        data-ng-href="{{ $ctrl.getNextLinkHref() }}"
+                        data-ng-if="!$ctrl.isNextButtonVisible()">
+                            <span data-ng-bind="$ctrl.getNextButtonText()"></span>
+                            <span class="oui-icon oui-icon_circle oui-icon-chevron-right"
+                                aria-hidden="true">
+                            </span>
+                        </a>
 
-            <a data-ng-href="{{ $ctrl.getStateLink('cancel') }}"
-               data-translate="pci_projects_new_cancel">
-            </a>
+                        <a data-ng-href="{{ $ctrl.getStateLink('cancel') }}"
+                        data-translate="pci_projects_new_cancel">
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
