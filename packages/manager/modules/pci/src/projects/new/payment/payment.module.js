@@ -7,6 +7,7 @@ import '@ovh-ux/ng-ovh-payment-method';
 
 // deps
 import paymentAdd from './add';
+import paymentCreditInfo from './creditInfo';
 import paymentCredits from './credits';
 import paymentDefault from './default';
 
@@ -18,6 +19,7 @@ const moduleName = 'ovhManagerPciProjectsNewPayment';
 angular
   .module(moduleName, [
     paymentAdd,
+    paymentCreditInfo,
     paymentCredits,
     paymentDefault,
     'ui.router',
