@@ -11,13 +11,14 @@ angular.module(moduleName, [
   'pascalprecht.translate',
   'ui.router',
 ])
-  .run(/* @ngTranslationsInject ./translations */)
+  .run(/* @ngTranslationsInject:json ./translations */)
   .run((
     $transitions,
     $translate,
     ouiCriteriaAdderConfiguration,
     ouiDatagridConfiguration,
     ouiFieldConfiguration,
+    ouiFileConfiguration,
     ouiNavbarConfiguration,
     ouiPaginationConfiguration,
     ouiStepperConfiguration,
@@ -70,6 +71,16 @@ angular.module(moduleName, [
           maxlength: $translate.instant('common_field_error_maxlength', { maxlength: '{{maxlength}}' }),
           pattern: $translate.instant('common_field_error_pattern'),
         },
+      });
+
+      set(ouiFileConfiguration, 'translations', {
+        attachmentsHeading: $translate.instant('common_file_attachmentsHeading'),
+        dropArea: $translate.instant('common_file_dropArea'),
+        dropAreaSelector: $translate.instant('common_file_dropAreaSelector'),
+        fileSelector: $translate.instant('common_file_fileSelector'),
+        filesSelector: $translate.instant('common_file_filesSelector'),
+        maxsizeError: $translate.instant('common_file_maxsizeError'),
+        removeFile: $translate.instant('common_file_removeFile'),
       });
 
       set(ouiNavbarConfiguration, 'translations', {
