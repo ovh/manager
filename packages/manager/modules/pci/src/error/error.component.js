@@ -9,5 +9,7 @@ export default {
     getAssets: '<',
     getCancelHref: '<',
     getErrorTranslationValues: '<',
+    reload: '<',
+    homeLink: '<',
   },
 };
