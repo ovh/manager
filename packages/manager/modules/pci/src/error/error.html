@@ -1,4 +1,4 @@
-<div class="pci-error row justify-content-md-center mb-5">
+<div class="pci-error row justify-content-md-center py-5">
     <div class="col-md-6">
 
         <div class="text-center mb-3">
@@ -16,7 +16,25 @@
                   data-translate-default="{{ 'pci_error_default' | translate }}"
                   data-translate-values="$ctrl.getErrorTranslationValues($ctrl.error.code)">
             </span>
+            <strong class="d-block"
+                data-ng-if="$ctrl.error.detail.message"
+                data-ng-bind="::$ctrl.error.detail.message"></strong>
+            <span class="d-block"
+                data-ng-if="$ctrl.error.detail.code"
+                data-translate="pci_error_detail_code"
+                data-translate-values="$ctrl.error.detail"></span>
         </oui-message>
+        <div class="d-flex flex-row-reverse"
+            data-ng-if="$ctrl.error.detail">
+            <oui-button
+                data-variant="primary"
+                data-on-click="$ctrl.reload()">
+                <span data-translate="pci_error_action_reload_label"></span>
+            </oui-button>
+            <a class="oui-button oui-button_link"
+                data-ng-href="{{$ctrl.homeLink}}"
+                data-translate="pci_error_action_home_label"></a>
+        </div>
 
         <div class="my-3"
              data-ng-class="{ 'd-flex flex-row-reverse justify-content-between align-items-center': ['account_not_eligible', 'unpaid_debts', 'max_projects_limit_reached'].indexOf($ctrl.error.code) > -1 }"

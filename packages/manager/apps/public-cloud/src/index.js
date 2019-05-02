@@ -1,7 +1,7 @@
 /* eslint-disable import/no-webpack-loader-syntax, import/extensions */
 import 'script-loader!jquery';
 import angular from 'angular';
-import '@uirouter/angularjs';
+import '@uirouter/angularjs'; // eslint-disable-line import/no-duplicates
 import 'script-loader!lodash';
 import 'script-loader!jquery-ui/ui/minified/core.min';
 import 'script-loader!jquery-ui/ui/minified/widget.min';
@@ -13,6 +13,10 @@ import 'script-loader!messenger/build/js/messenger-theme-flat.js';
 import 'script-loader!jsplumb';
 import 'script-loader!angular-ui-validate/dist/validate.js';
 /* eslint-enable import/no-webpack-loader-syntax, import/extensions */
+
+import get from 'lodash/get';
+import has from 'lodash/has';
+import { RejectType } from '@uirouter/angularjs'; // eslint-disable-line import/no-duplicates
 
 import navbar from '@ovh-ux/manager-navbar';
 import ovhManagerCore from '@ovh-ux/manager-core';
@@ -53,4 +57,16 @@ angular
   .controller('PublicCloudController', controller)
   .service('publicCloud', service)
   .config(routing)
+  .run(/* @ngInject */ ($state) => {
+    $state.defaultErrorHandler((error) => {
+      if (error.type === RejectType.ERROR) {
+        $state.go('pci.error', {
+          detail: {
+            message: get(error.detail, 'data.message'),
+            code: has(error.detail, 'headers') ? error.detail.headers('x-ovh-queryId') : null,
+          },
+        }, { location: false });
+      }
+    });
+  })
   .run(/* @ngTranslationsInject:json ./translations */);

@@ -127,6 +127,12 @@ export const MENU = [
         },
         translation: 'cloud_sidebar_project_management_contact_rights',
       },
+      {
+        options: {
+          state: 'pci.projects.project.edit',
+        },
+        translation: 'cloud_sidebar_project_management_settings',
+      },
     ],
     translation: 'cloud_sidebar_project_management',
   },
