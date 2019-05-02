@@ -22,6 +22,7 @@ export default /* @ngInject */ ($stateProvider) => {
         context: {
           type: 'any',
         },
+        detail: null,
         message: {
           type: 'any',
         },
@@ -87,6 +88,9 @@ export default /* @ngInject */ ($stateProvider) => {
               return {};
           }
         },
+
+        reload: /* @ngInject */ $window => () => $window.location.reload(),
+        homeLink: /* @ngInject */ $state => $state.href('pci'),
       },
     });
 };
