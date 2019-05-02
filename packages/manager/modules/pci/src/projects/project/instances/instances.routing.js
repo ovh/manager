@@ -1,6 +1,6 @@
 export default /* @ngInject */($stateProvider) => {
   $stateProvider.state('pci.projects.project.instances', {
-    url: '/instances',
+    url: '/instances?help',
     component: 'pciProjectsProjectInstances',
     translations: {
       value: ['.'],
@@ -10,6 +10,7 @@ export default /* @ngInject */($stateProvider) => {
       breadcrumb: /* @ngInject */ $translate => $translate
         .refresh()
         .then(() => $translate.instant('pci_projects_project_instances_title')),
+      help: /* @ngInject */ $transition$ => $transition$.params().help,
       addInstance: /* @ngInject */ ($state, projectId) => () => $state.go('pci.projects.project.instances.add', {
         projectId,
       }),
