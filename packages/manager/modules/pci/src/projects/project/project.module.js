@@ -8,6 +8,7 @@ import 'ovh-ui-angular';
 
 import billing from './billing';
 import contacts from './contacts';
+import creating from './creating';
 import edit from './edit';
 import failoverIps from './failover-ips';
 import instances from './instances';
@@ -26,6 +27,7 @@ angular
   .module(moduleName, [
     billing,
     contacts,
+    creating,
     edit,
     failoverIps,
     instances,

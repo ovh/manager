@@ -16,6 +16,17 @@ export default /* @ngInject */ ($stateProvider) => {
         format: 'json',
         value: ['.'],
       },
+      redirectTo: ($transitions) => {
+        const projectPromise = $transitions.injector().getAsync('project');
+        return projectPromise
+          .then((project) => {
+            if (project.status === 'creating') {
+              return 'pci.projects.project.creating';
+            }
+
+            return null;
+          });
+      },
       resolve: {
         projectId: /* @ngInject */  $transition$ => $transition$.params().projectId,
         project: /* @ngInject */ (OvhApiCloudProject, $transition$) => OvhApiCloudProject
