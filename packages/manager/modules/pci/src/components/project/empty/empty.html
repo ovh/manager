@@ -14,23 +14,20 @@
 
     <aside class="row pt-5">
         <div class="col-sm-6 col-md-4 mb-4" data-ng-repeat="guide in $ctrl.guides track by $index">
-            <div class="py-2 oui-tile d-flex align-items-start">
+            <a class="py-2 oui-tile d-flex align-items-start p-3"
+                target="_blank"
+                rel="noopener"
+                data-ng-href="{{:: guide.link }}">
                 <span class="d-block oui-icon oui-icon-guides" aria-hidden="true"></span>
                 <div class="ml-2">
-                    <h2 class="oui-tile__title oui-heading_4"  data-ng-bind=":: guide.title"></h2>
+                    <strong data-ng-bind=":: guide.title"></strong>
                     <div class="oui-tile__body mt-3">
                         <p class="oui-tile__description" data-ng-bind=":: guide.description"></p>
-                        <a class="oui-link_icon"
-                            data-ng-href="{{:: guide.link }}"
-                            target="_blank"
-                            rel="noopener">
-                            <span data-translate="pci_project_empty_more"></span>
-                            <span class="oui-icon oui-icon-external_link" aria-hidden="true"></span>
-                            <span class="sr-only" data-translate="pci_project_empty_new_tab"></span>
-                        </a>
+                        <span data-translate="pci_project_empty_more"></span>
+                        <span class="oui-icon oui-icon-external_link" aria-hidden="true"></span>
                     </div>
                 </div>
-            </div>
+            </a>
         </div>
     </aside>
 </div>
