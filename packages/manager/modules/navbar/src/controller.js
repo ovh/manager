@@ -55,7 +55,7 @@ export default class {
   }
 
   buildMainLinks() {
-    return this.Navbar.getUniverses()
+    return this.Navbar.getUniverses(this.navbarOptions.version)
       .then((universes) => {
         this.mainLinks = universes.map(({ universe: name, url }) => ({
           name,
