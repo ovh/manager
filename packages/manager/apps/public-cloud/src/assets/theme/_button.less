@@ -59,6 +59,20 @@
       color: rgb(196, 207, 219);
     }
   }
+
+  &:disabled {
+    &,
+    &:hover,
+    &:focus {
+      background-color: #c4cfdb;
+      border: 0;
+      color: #113f6d;
+
+      & .oui-icon::before {
+        color: #113f6d;
+      }
+    }
+  }
 }
 
 .oui-action-button circle,
@@ -93,7 +107,7 @@
 }
 
 .oui-button-group {
-  .oui-button {
+  .oui-button { /* stylelint-disable-line */
     border: 0;
     border-radius: @border-radius-default;
   }
