@@ -73,7 +73,15 @@
             </span>
         </oui-column>
 
-        <oui-action-menu data-align="end" data-compact>
+        <oui-action-menu
+            data-align="end"
+            data-compact
+            data-oui-popover
+            data-oui-popover-open="$rowIndex === 0 && $ctrl.displayHelp === 'backup'"
+            data-oui-popover-on-close="$ctrl.onHelpClosed('backup')"
+            data-oui-popover-placement="top-end"
+            data-oui-popover-template="pci/projects/project/instances/help/backup.html"
+            data-oui-popover-scope="$ctrl">
             <oui-action-menu-item
                 data-text="{{ 'pci_projects_project_instances_view_label' | translate }}"
                 data-on-click="$ctrl.viewInstance($row)">
