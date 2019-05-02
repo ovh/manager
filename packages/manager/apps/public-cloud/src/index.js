@@ -27,7 +27,6 @@ import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
 
 import betaWarning from './components/beta-warning';
 import preload from './components/manager-preload';
-import sidebar from './sidebar';
 import walkMe from './components/walkMe';
 
 import './assets/theme/index.less';
@@ -49,7 +48,6 @@ angular
     ngOvhUserPref,
     navbar,
     preload,
-    sidebar,
     walkMe,
   ])
   .controller('PublicCloudController', controller)

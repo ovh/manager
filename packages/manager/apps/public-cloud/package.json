@@ -13,7 +13,6 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-public-cloud' --include-filtered-dependencies -- yarn run dev:watch"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.8.1",
     "@ovh-ux/manager-cloud-styles": "^0.3.0-alpha.0",
     "@ovh-ux/manager-config": "^0.2.0",
     "@ovh-ux/manager-core": "^5.0.0",

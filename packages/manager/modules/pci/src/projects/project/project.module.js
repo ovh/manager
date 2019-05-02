@@ -15,6 +15,7 @@ import kubernetes from './kubernetes';
 import legacy from './legacy';
 import sshKeys from './ssh-keys';
 import privateNetworks from './private-networks';
+import sidebar from './sidebar';
 import storages from './storages';
 import vouchers from './vouchers';
 import routing from './project.routing';
@@ -36,6 +37,7 @@ angular
     'ovh-api-services',
     'pascalprecht.translate',
     sshKeys,
+    sidebar,
     storages,
     vouchers,
   ])
