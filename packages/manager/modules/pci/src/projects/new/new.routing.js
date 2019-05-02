@@ -80,7 +80,7 @@ export default /* @ngInject */ ($stateProvider) => {
         newProjectInfo: /* @ngInject */ PciProjectNewService => PciProjectNewService
           .getNewProjectInfo(),
         onProjectCreated: /* @ngInject */ $state => projectId => $state.go(
-          'pci.projects.project.creating', {
+          'pci.projects.project', {
             projectId,
           },
         ),
