@@ -75,7 +75,9 @@ export default class WalkMe {
     return tour;
   }
 
+  // eslint-disable-next-line class-methods-use-this
   end() {
-    return this.ovhUserPref.assign(KEY, true);
+    // return this.ovhUserPref.assign(KEY, true);
+    return localStorage.setItem(KEY, false);
   }
 }
