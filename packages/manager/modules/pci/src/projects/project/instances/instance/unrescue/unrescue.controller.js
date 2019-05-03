@@ -18,30 +18,28 @@ export default class PciInstanceUnrescueController {
 
   unrescueInstance() {
     this.isLoading = true;
-    return this.PciProjectsProjectInstanceService.unrescue(this.projectId, this.instance)
-      .then(() => {
-        this.CucCloudMessage.success(
-          this.$translate.instant(
-            'pci_projects_project_instances_instance_unrescue_success_message',
-            {
-              instance: this.instance.name,
-            },
-          ),
-        );
-      })
-      .catch((err) => {
-        this.CucCloudMessage.error(
-          this.$translate.instant(
-            'pci_projects_project_instances_instance_unrescue_error_unrescue',
-            {
-              message: get(err, 'data.message', null),
-            },
-          ),
-        );
-      })
+    return this.PciProjectsProjectInstanceService
+      .unrescue(this.projectId, this.instance)
+      .then(() => this.goBack(
+        this.$translate.instant(
+          'pci_projects_project_instances_instance_unrescue_success_message',
+          {
+            instance: this.instance.name,
+          },
+        ),
+      ))
+      .catch(err => this.goBack(
+        this.$translate.instant(
+          'pci_projects_project_instances_instance_unrescue_error_unrescue',
+          {
+            message: get(err, 'data.message', null),
+            instance: this.instance.name,
+          },
+        ),
+        'error',
+      ))
       .finally(() => {
         this.isLoading = false;
-        return this.goBack();
       });
   }
 }

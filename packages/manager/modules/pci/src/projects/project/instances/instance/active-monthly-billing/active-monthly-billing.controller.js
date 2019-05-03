@@ -20,29 +20,26 @@ export default class PciInstanceActiveMonthlyBillingController {
     this.isLoading = true;
     return this.PciProjectsProjectInstanceService
       .activeMonthlyBilling(this.projectId, this.instance)
-      .then(() => {
-        this.CucCloudMessage.success(
-          this.$translate.instant(
-            'pci_projects_project_instances_instance_active-monthly-billing_success_message',
-            {
-              instance: this.instance.name,
-            },
-          ),
-        );
-      })
-      .catch((err) => {
-        this.CucCloudMessage.error(
-          this.$translate.instant(
-            'pci_projects_project_instances_instance_active-monthly-billing_error_enable',
-            {
-              message: get(err, 'data.message', null),
-            },
-          ),
-        );
-      })
+      .then(() => this.goBack(
+        this.$translate.instant(
+          'pci_projects_project_instances_instance_active-monthly-billing_success_message',
+          {
+            instance: this.instance.name,
+          },
+        ),
+      ))
+      .catch(err => this.goBack(
+        this.$translate.instant(
+          'pci_projects_project_instances_instance_active-monthly-billing_error_enable',
+          {
+            message: get(err, 'data.message', null),
+            instance: this.instance.name,
+          },
+        ),
+        'error',
+      ))
       .finally(() => {
         this.isLoading = false;
-        return this.goBack();
       });
   }
 }

@@ -57,33 +57,29 @@ export default class PciInstanceRescueController {
     this.isLoading = true;
     return this.PciProjectsProjectInstanceService
       .rescue(this.projectId, this.instance, this.selectedImage)
-      .then(({ adminPassword }) => {
-        this.CucCloudMessage.success(
-          this.$translate.instant(
-            'pci_projects_project_instances_instance_rescue_success_message',
-            {
-              instance: this.instance.name,
-            },
-          ),
-        );
-
-        this.CucCloudMessage.info({
+      .then(({ adminPassword }) => this.goBack(
+        this.$translate.instant(
+          'pci_projects_project_instances_instance_rescue_success_message',
+          {
+            instance: this.instance.name,
+          },
+        ),
+      )
+        .then(() => this.CucCloudMessage.info({
           textHtml: this.getInfosMessage(adminPassword),
-        });
-      })
-      .catch((err) => {
-        this.CucCloudMessage.error(
-          this.$translate.instant(
-            'pci_projects_project_instances_instance_rescue_error_rescue',
-            {
-              message: get(err, 'data.message', null),
-            },
-          ),
-        );
-      })
+        })))
+      .catch(err => this.goBack(
+        this.$translate.instant(
+          'pci_projects_project_instances_instance_rescue_error_rescue',
+          {
+            message: get(err, 'data.message', null),
+            instance: this.instance.name,
+          },
+        ),
+        'error',
+      ))
       .finally(() => {
         this.isLoading = false;
-        return this.goBack();
       });
   }
 }

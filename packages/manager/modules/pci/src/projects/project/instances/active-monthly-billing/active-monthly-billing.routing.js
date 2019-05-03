@@ -16,9 +16,7 @@ export default /* @ngInject */($stateProvider) => {
           instanceId,
         ) => PciProjectsProjectInstanceService
           .get(projectId, instanceId),
-        goBack: /* @ngInject */ ($state, projectId) => () => $state.go('pci.projects.project.instances', {
-          projectId,
-        }),
+        goBack: /* @ngInject */ goToInstances => goToInstances,
       },
     });
 };

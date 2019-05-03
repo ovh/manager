@@ -11,6 +11,10 @@ export default /* @ngInject */($stateProvider) => {
         .refresh()
         .then(() => $translate.instant('pci_projects_project_instances_title')),
       help: /* @ngInject */ $transition$ => $transition$.params().help,
+      instances: /* @ngInject */ (
+        PciProjectsProjectInstanceService,
+        projectId,
+      ) => PciProjectsProjectInstanceService.getAll(projectId),
       addInstance: /* @ngInject */ ($state, projectId) => () => $state.go('pci.projects.project.instances.add', {
         projectId,
       }),
@@ -62,6 +66,23 @@ export default /* @ngInject */($stateProvider) => {
         projectId,
         instanceId: instance.id,
       }),
+
+      goToInstances: /* @ngInject */ ($rootScope, CucCloudMessage, $state, projectId) => (message = false, type = 'success') => {
+        const reload = message && type === 'success';
+
+        const promise = $state.go('pci.projects.project.instances', {
+          projectId,
+        },
+        {
+          reload,
+        });
+
+        if (message) {
+          promise.then(() => CucCloudMessage[type](message, 'pci.projects.project.instances'));
+        }
+
+        return promise;
+      },
     },
   });
 };
