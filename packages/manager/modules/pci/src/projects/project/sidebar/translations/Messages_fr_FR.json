@@ -21,7 +21,7 @@
   "cloud_sidebar_management_interface_cloud_shell": "Cloud Shell",
   "cloud_sidebar_project_management": "Project management",
   "cloud_sidebar_project_management_users": "Utilisateurs",
-  "cloud_sidebar_project_management_quota_region": "Quota & Région",
+  "cloud_sidebar_project_management_quota_location": "Quota & Localisation",
   "cloud_sidebar_project_management_ssh_keys": "Clés SSH",
   "cloud_sidebar_project_management_billing_control": "Facturation",
   "cloud_sidebar_project_management_credit_vouchers": "Crédit & Vouchers",
