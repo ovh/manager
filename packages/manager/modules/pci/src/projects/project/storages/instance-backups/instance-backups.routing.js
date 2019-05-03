@@ -7,6 +7,10 @@ export default /* @ngInject */ ($stateProvider) => {
         value: ['.'],
         format: 'json',
       },
+      redirectTo: transition => transition
+        .injector()
+        .getAsync('instanceBackups')
+        .then(instanceBackups => (instanceBackups.length === 0 ? { state: 'pci.projects.project.storages.instance-backups.onboarding' } : false)),
       resolve: {
         instanceBackups: /* @ngInject */ (
           PciProjectStorageInstanceBackupService,
