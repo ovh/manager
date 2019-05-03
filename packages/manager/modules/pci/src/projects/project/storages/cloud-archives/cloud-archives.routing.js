@@ -3,6 +3,10 @@ export default /* @ngInject */ ($stateProvider) => {
     .state('pci.projects.project.storages.archives', {
       url: '/cloud-archives',
       component: 'pciProjectStorageContainers',
+      redirectTo: transition => transition
+        .injector()
+        .getAsync('containers')
+        .then(containers => (containers.length === 0 ? { state: 'pci.projects.project.storages.archives.onboarding' } : false)),
       resolve: {
         archive: () => true,
         containers: /* @ngInject */ (

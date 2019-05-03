@@ -11,6 +11,7 @@ import containers from '../containers';
 
 import addObject from './add';
 import cloudArchive from './cloud-archive';
+import onboarding from './onboarding';
 
 import routing from './cloud-archives.routing';
 
@@ -20,6 +21,7 @@ angular
   .module(moduleName, [
     addObject,
     containers,
+    onboarding,
     cloudArchive,
     'ngTranslateAsyncLoader',
     'oui',
