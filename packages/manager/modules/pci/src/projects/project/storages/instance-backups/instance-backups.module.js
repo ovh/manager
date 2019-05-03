@@ -10,6 +10,7 @@ import '@ovh-ux/ng-ovh-user-pref';
 
 import component from './instance-backups.component';
 import service from './instance-backups.service';
+import onboarding from './onboarding';
 
 import instanceBackupDelete from './instance-backup/delete';
 
@@ -20,6 +21,7 @@ const moduleName = 'ovhManagerPciStoragesInstanceBackups';
 angular
   .module(moduleName, [
     instanceBackupDelete,
+    onboarding,
     'ngOvhUserPref',
     'ngTranslateAsyncLoader',
     'oui',
