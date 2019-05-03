@@ -74,6 +74,16 @@ export default class PciProjectNewCtrl {
       || (currentStep.model.mode === 'credits' && !currentStep.model.credit.value);
   }
 
+  isNextButtonVisible() {
+    const currentStep = this.getCurrentStep();
+
+    if (currentStep.name === 'description') {
+      return true;
+    }
+
+    return get(currentStep.model.paymentType, 'paymentType.value') !== 'BANK_ACCOUNT';
+  }
+
   isStepComplete(step) {
     const stepNames = this.steps.map(({ name }) => name);
 

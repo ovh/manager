@@ -11,6 +11,8 @@ import paymentCreditInfo from './creditInfo';
 import paymentCredits from './credits';
 import paymentDefault from './default';
 
+import './payment.scss';
+
 import routing from './payment.routing';
 import component from './payment.component';
 

@@ -35,7 +35,7 @@ export default class PciProjectNewPaymentCtrl {
 
     return this.PciProjectNewService
       .getNewProjectInfo({
-        voucher: this.step.model.voucher,
+        voucher: this.step.model.voucher.value,
       })
       .then(() => {
         this.voucherForm.voucher.$setValidity('voucher', true);
