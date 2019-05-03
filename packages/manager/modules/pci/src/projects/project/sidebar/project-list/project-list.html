@@ -10,10 +10,11 @@
         <oui-spinner class="my-auto ml-auto" size="s"></oui-spinner>
     </div>
     <div data-ng-if="!$ctrl.isLoading">
-        <div class="d-flex" data-ng-if="$ctrl.err">
+        <div class="d-flex mt-4" data-ng-if="$ctrl.err">
             <span class="mr-3" style="font-size: 0.8rem;" data-translate="cloud_sidebar_projectlist_error" data-translate-params="{ err: $ctrl.err.statusText }"></span>
-            <button type="button" class="p-0 my-auto">
-                <i class="fas fa-sync"></i>
+            <button type="button" class="my-auto border-0" style="background-color: inherit;"
+                data-ng-click="$ctrl.getProjects()">
+                <i class="fa fa-refresh" aria-hidden></i>
             </button>
         </div>
         <div class="mt-3" data-ng-if="$ctrl.projects && $ctrl.projects.length > 0">
