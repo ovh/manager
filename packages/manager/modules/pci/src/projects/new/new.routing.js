@@ -69,7 +69,7 @@ export default /* @ngInject */ ($stateProvider) => {
 
           return newProjectInfo.order
             && ((!paymentStatus && currentStep.model.defaultPaymentMethod)
-            || ['success', 'accepted'].indexOf(paymentStatus) > -1
+            || ['success', 'accepted'].includes(paymentStatus)
             );
         },
         dlpStatus: /* @ngInject */ ($q, PciProjectNewService) => PciProjectNewService

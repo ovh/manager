@@ -147,7 +147,7 @@ export default class PciProjectNewCtrl {
     if (hasCredit) {
       createParams.credit = this.paymentModel.credit.value;
     } else if (this.newProjectInfo.order
-      && (!this.paymentStatus || ['success', 'accepted'].indexOf(this.paymentStatus) > -1)) {
+      && (!this.paymentStatus || ['success', 'accepted'].includes(this.paymentStatus))) {
       createParams.credit = this.newProjectInfo.order.value;
     }
 
