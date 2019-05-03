@@ -4,6 +4,9 @@ import '@uirouter/angularjs';
 
 import failoverIp from './failover-ip';
 import imports from './imports';
+import onboarding from './onboarding';
+
+import component from './failover-ips.component';
 import routing from './failover-ips.routing';
 
 const moduleName = 'ovhManagerPciProjectFailoverIps';
@@ -14,7 +17,9 @@ angular
     'pascalprecht.translate',
     failoverIp,
     imports,
+    onboarding,
   ])
-  .config(routing);
+  .config(routing)
+  .component('pciProjectFailoverIps', component);
 
 export default moduleName;
