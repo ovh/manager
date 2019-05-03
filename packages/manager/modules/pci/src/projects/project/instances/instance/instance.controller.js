@@ -17,7 +17,6 @@ export default class PciInstanceController {
   }
 
   loadMessages() {
-    this.CucCloudMessage.unSubscribe('pci.projects.project.instances.instance');
     this.messageHandler = this.CucCloudMessage.subscribe(
       'pci.projects.project.instances.instance',
       {

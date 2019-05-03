@@ -3,6 +3,10 @@ export default /* @ngInject */($stateProvider) => {
     .state('pci.projects.project.instances.instance.vnc', {
       url: '/vnc',
       component: 'pciInstancesInstanceVNC',
+      translations: {
+        value: ['.'],
+        format: 'json',
+      },
       resolve: {
         vncInfos: /* @ngInject */(
           PciProjectsProjectInstanceService,

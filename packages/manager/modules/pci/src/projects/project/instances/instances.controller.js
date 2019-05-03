@@ -19,27 +19,11 @@ export default class CloudProjectComputeInfrastructureListCtrl {
   }
 
   $onInit() {
-    this.isLoading = false;
-
-    return this.initLoaders();
-  }
-
-  initLoaders() {
-    this.isLoading = true;
-
     this.loadMessages();
-    return this.PciProjectsProjectInstanceService.getAll(this.projectId)
-      .then((instances) => {
-        this.instances = instances;
-      })
-      .then(() => this.checkHelpDisplay())
-      .finally(() => {
-        this.isLoading = false;
-      });
+    this.checkHelpDisplay();
   }
 
   loadMessages() {
-    this.CucCloudMessage.unSubscribe('pci.projects.project.instances');
     this.messageHandler = this.CucCloudMessage.subscribe(
       'pci.projects.project.instances',
       {

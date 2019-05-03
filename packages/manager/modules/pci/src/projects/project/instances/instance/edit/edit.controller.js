@@ -31,9 +31,9 @@ export default class PciInstanceEditController {
 
     this.messageContainers = ['name', 'image', 'flavor', 'billing'];
     this.messages = {};
-    this.loadMessages();
-
     this.model = {};
+
+    this.loadMessages();
   }
 
   loadMessages() {

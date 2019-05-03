@@ -22,9 +22,7 @@ export default /* @ngInject */($stateProvider) => {
           instance,
         ) => PciProjectsProjectInstanceService
           .getBackupPriceEstimation(projectId, instance),
-        goBack: /* @ngInject */ ($state, projectId) => () => $state.go('pci.projects.project.instances', {
-          projectId,
-        }),
+        goBack: /* @ngInject */ goToInstances => goToInstances,
       },
     });
 };

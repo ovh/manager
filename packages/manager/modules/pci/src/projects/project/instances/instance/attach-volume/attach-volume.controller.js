@@ -21,33 +21,27 @@ export default class PciInstanceAttachVolumeController {
 
     return this.PciProjectsProjectInstanceService
       .attachVolume(this.projectId, storage, this.instance)
-      .then(() => {
-        this.CucCloudMessage.success(
-          this.$translate.instant(
-            'pci_projects_project_instances_instance_attach-volume_success_message',
-            {
-              volume: storage.name,
-              instance: this.instance.id,
-            },
-          ),
-          'pci.projects.project.instances.instance',
-        );
-      })
-      .catch((err) => {
-        this.CucCloudMessage.error(
-          this.$translate.instant(
-            'pci_projects_project_instances_instance_attach-volume_error_attach',
-            {
-              message: get(err, 'data.message', null),
-              volume: storage.name,
-            },
-            'pci.projects.project.instances.instance',
-          ),
-        );
-      })
+      .then(() => this.goBack(
+        this.$translate.instant(
+          'pci_projects_project_instances_instance_attach-volume_success_message',
+          {
+            volume: storage.name,
+            instance: this.instance.id,
+          },
+        ),
+      ))
+      .catch(err => this.goBack(
+        this.$translate.instant(
+          'pci_projects_project_instances_instance_attach-volume_error_attach',
+          {
+            message: get(err, 'data.message', null),
+            volume: storage.name,
+          },
+        ),
+        'error',
+      ))
       .finally(() => {
         this.isLoading = false;
-        return this.goBack();
       });
   }
 }

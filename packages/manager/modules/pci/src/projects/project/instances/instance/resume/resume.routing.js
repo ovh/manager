@@ -8,11 +8,12 @@ export default /* @ngInject */($stateProvider) => {
         },
       },
       layout: 'modal',
+      translations: {
+        value: ['.'],
+        format: 'json',
+      },
       resolve: {
-        goBack: /* @ngInject */ ($state, projectId, instanceId) => () => $state.go('pci.projects.project.instances.instance', {
-          projectId,
-          instanceId,
-        }),
+        goBack: /* @ngInject */ goToInstance => goToInstance,
       },
     });
 };
