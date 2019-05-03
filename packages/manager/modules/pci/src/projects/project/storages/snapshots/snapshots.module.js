@@ -7,6 +7,7 @@ import 'ovh-api-services';
 
 import snapshot from './snapshot';
 import snapshotDelete from './snapshot/delete';
+import onboarding from './onboarding';
 
 import component from './snapshots.component';
 import service from './snapshots.service';
@@ -24,6 +25,7 @@ angular
     'ui.router',
     snapshot,
     snapshotDelete,
+    onboarding,
   ])
   .config(routing)
   .component('pciProjectStoragesSnapshots', component)

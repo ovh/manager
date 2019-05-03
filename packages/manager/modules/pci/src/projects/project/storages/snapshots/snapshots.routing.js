@@ -3,6 +3,10 @@ export default /* @ngInject */ ($stateProvider) => {
     .state('pci.projects.project.storages.snapshots', {
       url: '/volume-snapshots',
       component: 'pciProjectStoragesSnapshots',
+      redirectTo: transition => transition
+        .injector()
+        .getAsync('snapshots')
+        .then(snapshots => (snapshots.length === 0 ? { state: 'pci.projects.project.storages.snapshots.onboarding' } : false)),
       resolve: {
         snapshots: /* @ngInject */ (
           PciProjectStorageSnapshotsService,
