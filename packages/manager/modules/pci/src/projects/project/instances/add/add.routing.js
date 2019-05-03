@@ -1,5 +1,5 @@
 export default /* @ngInject */($stateProvider) => {
-  $stateProvider.state('pci.projects.project.instances.new', {
+  $stateProvider.state('pci.projects.project.instances.add', {
     url: '/new',
     component: 'ovhManagerPciInstancesAdd',
     resolve: {
