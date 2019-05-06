@@ -22,7 +22,6 @@ export default class {
     this.brand = this.buildBrand();
 
     if (has(this.navbarOptions, 'toggle')) {
-      this.togglerActive = false;
       this.togglerisLoading = true;
 
       this.$scope.$on(get(this.navbarOptions, 'toggle.event'), () => {
@@ -67,26 +66,17 @@ export default class {
           const link = ({
             name,
             title: this.$translate.instant(`navbar_universe_${name}`),
+            headerTitle: this.$translate.instant(`navbar_universe_${name}`),
             isPrimary: !NON_PRIMARY_ITEMS.includes(name),
           });
 
           if (name === this.navbarOptions.universe) {
-            link.click = () => {
-              this.toggleSidebar();
-              this.$scope.$emit('navbar:onUniverseClick');
-            };
-            link.isActive = true;
+            link.subLinks = this.sidebarLinks;
           } else {
             link.url = url || '#';
           }
-
           return link;
         });
       });
-  }
-
-  toggleSidebar() {
-    this.togglerActive = !this.togglerActive;
-    this.$scope.$emit('navbar:toggle');
   }
 }

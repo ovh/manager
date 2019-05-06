@@ -6,9 +6,13 @@ const component = {
     brandLabel: '@',
     langOptions: '<?',
     navbarOptions: '<?',
+    sidebarLinks: '<?',
   },
   controller,
   template,
+  transclude: {
+    sidebar: '?ovhManagerSidebar',
+  },
 };
 
 export default component;

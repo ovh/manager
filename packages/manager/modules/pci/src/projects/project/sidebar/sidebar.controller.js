@@ -16,7 +16,6 @@ export default class SidebarController {
   constructor(
     $translate,
     $rootScope,
-    $scope,
     $stateParams,
     $transitions,
     OvhApiServices,
@@ -26,7 +25,7 @@ export default class SidebarController {
     this.$translate = $translate;
     this.$transitions = $transitions;
     this.$rootScope = $rootScope;
-    this.$scope = $scope;
+
     this.$stateParams = $stateParams;
     this.OvhApiServices = OvhApiServices;
     this.OvhApiCloudProject = OvhApiCloudProject;
@@ -97,8 +96,6 @@ export default class SidebarController {
       }
       this.isDisplayingProjectsList = false;
     });
-
-    this.$rootScope.$on('navbar:onUniverseClick', () => this.toggle());
   }
 
   buildMenu(services) {
@@ -177,11 +174,6 @@ export default class SidebarController {
         menuItem.onLoad = () => this.loadServices(menuItemConfig.id);
       }
     });
-  }
-
-  toggle() {
-    this.$scope.$emit('sidebar:toggle');
-    this.isOpen = !this.isOpen;
   }
 
   loadServices(serviceName) {

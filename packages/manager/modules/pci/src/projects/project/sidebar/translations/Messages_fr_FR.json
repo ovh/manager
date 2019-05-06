@@ -1,4 +1,5 @@
 {
+  "cloud_sidebar_public_cloud": "Public Cloud",
   "cloud_sidebar_compute": "Compute",
   "cloud_sidebar_compute_instance": "Instances",
   "cloud_sidebar_storage": "Storage",
@@ -26,5 +27,7 @@
   "cloud_sidebar_project_management_billing_control": "Facturation",
   "cloud_sidebar_project_management_credit_vouchers": "Crédit & Vouchers",
   "cloud_sidebar_project_management_contact_rights": "Contacts & Droits",
-  "cloud_sidebar_project_management_settings": "Project settings"
+  "cloud_sidebar_project_management_settings": "Project settings",
+  "cloud_sidebar_public_cloud_project_toggle": "Ouvre la liste des projets",
+  "cloud_sidebar_public_cloud_project_toggle_close": "Retour au menu"
 }
