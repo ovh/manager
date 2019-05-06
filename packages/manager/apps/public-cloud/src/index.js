@@ -22,7 +22,7 @@ import ovhManagerCore from '@ovh-ux/manager-core';
 import ovhManagerPci from '@ovh-ux/manager-pci';
 import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
 import ngOvhUserPref from '@ovh-ux/ng-ovh-user-pref';
-import ngUiRouterBreadcrumb from '@ovh-ux/ng-ovh-uirouter-breadcrumb';
+import ngUiRouterBreadcrumb from '@ovh-ux/ng-uirouter-breadcrumb';
 import ngUiRouterLineProgress from '@ovh-ux/ng-ovh-uirouter-line-progress';
 
 import 'ovh-ui-kit/dist/oui.css';
