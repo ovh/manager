@@ -2,12 +2,13 @@ import { ACTIONS, LINKS } from './project.constants';
 
 export default class ProjectController {
   /* @ngInject */
-  constructor($scope, $state, $stateParams, $transitions, OvhApiCloudProject) {
+  constructor($scope, $state, $stateParams, $transitions, OvhApiCloudProject, sidebarVisible) {
     this.$scope = $scope;
     this.$state = $state;
     this.$stateParams = $stateParams;
     this.$transitions = $transitions;
     this.OvhApiCloudProject = OvhApiCloudProject;
+    this.sidebarVisible = sidebarVisible;
     this.loading = false;
 
     this.actions = ACTIONS;

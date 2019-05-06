@@ -8,6 +8,8 @@ import 'angular-translate';
 import routing from './creating.routing';
 import component from './creating.component';
 
+import './creating.scss';
+
 const moduleName = 'ovhManagerPciProjectsNewCreating';
 
 angular
