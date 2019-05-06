@@ -1,7 +1,7 @@
 /* eslint-disable import/no-webpack-loader-syntax, import/extensions */
 import 'script-loader!jquery';
 import angular from 'angular';
-import '@uirouter/angularjs'; // eslint-disable-line import/no-duplicates
+import uiRouter, { RejectType } from '@uirouter/angularjs';
 import 'script-loader!lodash';
 import 'script-loader!jquery-ui/ui/minified/core.min';
 import 'script-loader!jquery-ui/ui/minified/widget.min';
@@ -16,7 +16,6 @@ import 'script-loader!angular-ui-validate/dist/validate.js';
 
 import get from 'lodash/get';
 import has from 'lodash/has';
-import { RejectType } from '@uirouter/angularjs'; // eslint-disable-line import/no-duplicates
 
 import navbar from '@ovh-ux/manager-navbar';
 import ovhManagerCore from '@ovh-ux/manager-core';
@@ -42,7 +41,7 @@ import routing from './index.routes';
 
 angular
   .module('ovhStack', [
-    'ui.router',
+    uiRouter,
     betaWarning,
     ngUiRouterBreadcrumb,
     ngUiRouterLineProgress,
