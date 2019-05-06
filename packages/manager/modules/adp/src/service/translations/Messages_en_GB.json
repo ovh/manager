@@ -1,8 +1,8 @@
 {
- "adp_header_nav_service_info": "Service information",
- "adp_header_nav_cluster_size": "Cluster size",
- "adp_header_nav_credential": "Credentials",
- "adp_header_nav_activity": "Activity log",
- "adp_header_guides": "Guides",
- "adp_header_guides_adp": "Data analytics"
+  "adp_header_nav_service_info": "Service information",
+  "adp_header_nav_cluster_size": "Cluster size",
+  "adp_header_nav_credential": "Credentials",
+  "adp_header_nav_activity": "Activity log",
+  "adp_header_guides": "Guides",
+  "adp_header_guides_adp": "Data analytics"
 }

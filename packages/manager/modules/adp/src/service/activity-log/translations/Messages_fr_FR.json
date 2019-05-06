@@ -1,3 +1,7 @@
 {
-  "adp_service_activity_table_user": "Utilisateur"
+  "adp_service_activity_desc": "Vous trouverez ici vos activités récentes",
+  "adp_service_activity_table_timestamp": "Horodatage",
+  "adp_service_activity_table_desc": "Description",
+  "adp_service_activity_table_user": "Utilisateur",
+  "adp_service_activity_refresh": "Actualiser les journaux d'activité"
 }

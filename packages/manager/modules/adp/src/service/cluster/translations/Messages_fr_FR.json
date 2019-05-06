@@ -1,8 +1,12 @@
 {
+  "adp_service_cluster_desc": "Votre cluster de données volumineuses a besoin de plusieurs nœuds et disques de stockage pour être opérationnel. Ces nœuds sont déployés dans votre projet cloud public associé {{public_cloud_project_serviceName}}, avec facturation horaire standard. Vous pouvez trouver des détails sur votre facture et passer à un plan mensuel dans votre projet Cloud public.",
   "adp_service_cluster_total_cores": "Nombre total de coeurs virtuels",
   "adp_service_cluster_total_ram": "RAM totale",
   "adp_service_cluster_total_storage": "Stockage efficace total",
-  "adp_service_cluster_table_node": "Noeud",
+  "adp_service_cluster_table_node": "nœud",
+  "adp_service_cluster_node_type": "Type de nœud",
   "adp_service_cluster_table_flavor": "Saveur",
-  "adp_service_cluster_table_ip": "Adresse IP"
+  "adp_service_cluster_table_ip": "Adresse IP",
+  "adp_service_cluster_refresh": "Actualiser la liste des clusters",
+  "adp_service_cluster_option_all": "Tout"
 }
