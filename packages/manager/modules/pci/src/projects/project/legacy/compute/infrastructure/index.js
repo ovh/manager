@@ -6,14 +6,7 @@ import 'ovh-api-services';
 import '@ovh-ux/ng-ovh-jsplumb';
 
 import diagram from './diagram';
-import iac from './iac';
-import ip from './ip';
-import list from './list';
-import openstackClient from './openstackClient';
-import popover from './popover';
-import privateNetwork from './privateNetwork';
 import virtualMachine from './virtualMachine';
-import volume from './volume';
 
 import controller from './controller';
 import template from './template.html';
@@ -22,26 +15,17 @@ import imageService from './image.service';
 import infrastructureService from './infrastructure.service';
 import regionService from './region.service';
 
-import './index.less';
-
 const moduleName = 'ovhManagerPciProjectComputeInfrastructure';
 
 angular
   .module(moduleName, [
     diagram,
-    iac,
-    ip,
-    list,
     'ngTranslateAsyncLoader',
-    openstackClient,
     'ovh-api-services',
     'pascalprecht.translate',
-    popover,
-    privateNetwork,
     'ngOvhJsplumb',
     'ui.router',
     virtualMachine,
-    volume,
   ])
   .config(/* @ngInject */($stateProvider) => {
     $stateProvider

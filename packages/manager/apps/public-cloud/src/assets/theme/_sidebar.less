@@ -1,0 +1,202 @@
+@import '~ovh-ui-kit/packages/oui-responsive/_variables.less';
+@import './_variables.less';
+
+cloud-sidebar { /* stylelint-disable-line */
+  background-color: @background-color;
+  color: @text-color;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  box-shadow: 0 2pt 10pt rgba(40, 89, 192, 0.25);
+
+  .oui-navbar-backdrop_active {
+    z-index: 1;
+  }
+
+  oui-clipboard { /* stylelint-disable-line */
+    margin-bottom: 0;
+
+    .oui-clipboard__control {
+      border-bottom: 0;
+      padding: 0;
+      padding-left: 1.5rem;
+      font-weight: 400;
+      color: @primary-color;
+      background-color: transparent;
+
+      &:hover,
+      &:focus {
+        text-decoration: underline;
+        background-color: transparent;
+      }
+    }
+
+    .oui-clipboard__button {
+      left: 0;
+      right: inherit;
+      padding: 0;
+      min-width: auto;
+      color: @primary-color;
+    }
+  }
+
+  .project-list {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: @primary-color;
+    color: @light-color;
+    top: 0;
+    transform: translateX(0);
+    z-index: 1021;
+    overflow: auto;
+    will-change: transform;
+    transition: transform ease-in-out 500ms;
+
+    oui-clipboard { /* stylelint-disable-line */
+      .oui-clipboard__control,
+      .oui-clipboard__button {
+        color: #fff;
+      }
+    }
+
+    &.ng-enter,
+    &.ng-leave.ng-leave-active {
+      transform: translateX(-100%);
+    }
+
+    &.ng-leave,
+    &.ng-enter.ng-enter-active {
+      transform: translateX(0);
+    }
+
+    .btn {
+      border: 2px solid @light-color;
+      border-radius: 4px;
+
+      &.btn-primary.rounded-circle {
+        background-color: @light-color;
+        color: @primary-color;
+      }
+    }
+
+    ul {
+      li {
+        padding: 4px;
+        border-bottom: 1px solid @light-color;
+      }
+    }
+  }
+
+  .oui-sidebar-menu {
+    background-color: @background-color;
+    color: @text-color;
+    padding: 0 8pt;
+    width: 100%;
+    box-sizing: inherit;
+
+    .oui-sidebar-link_active,
+    .oui-sidebar-link[aria-expanded="true"] {
+      background-color: #fff;
+    }
+  }
+
+  .oui-sidebar-list__item {
+    border: 0;
+    margin-bottom: 0;
+
+    .oui-sidebar-link {
+      font-weight: bold;
+      display: flex;
+
+      &::after {
+        color: @light-color;
+        top: 55%;
+        right: 0;
+      }
+
+      &,
+      &:hover,
+      &:focus,
+      &:active {
+        border-bottom: 2px solid rgb(230, 245, 252);
+        color: @text-color;
+        padding: 8pt 0 4pt;
+        min-height: inherit;
+      }
+
+      &[aria-expanded="true"] {
+        + .oui-sidebar-menu .oui-sidebar-list {
+          padding: 4pt 0;
+        }
+      }
+
+      .item-icon i {
+        margin-right: 0.2rem;
+        font-size: 1rem !important;
+        color: @text-color;
+        line-height: inherit !important;
+        opacity: 1 !important;
+      }
+    }
+
+    .oui-sidebar-menu {
+      background-color: @background-color;
+      padding: 0;
+
+      .oui-sidebar-list { /* stylelint-disable-line */
+        max-height: none;
+
+        .oui-sidebar-list__item {
+          margin-bottom: 0;
+
+          .oui-sidebar-link {
+            &,
+            &:hover,
+            &:focus,
+            &:active {
+              border-bottom: 0;
+              border-left: 3px solid transparent;
+              color: rgb(17, 63, 109);
+              padding: 6pt;
+              text-indent: 0;
+              font-weight: 600;
+              font-weight: normal;
+            }
+
+            &:hover,
+            &:focus {
+              text-decoration: underline;
+            }
+
+            &.oui-sidebar-link_active {
+              border-left-color: @primary-color;
+              font-weight: bold;
+              color: @primary-color;
+              background-color: rgb(230, 245, 252);
+            }
+          }
+
+          + .oui-sidebar-list__item {
+            border-top: 0;
+          }
+        }
+      }
+
+      &_fixed {
+        opacity: 1;
+        position: relative;
+        transform: none;
+        box-shadow: none;
+      }
+
+      .oui-sidebar-menu__header {
+        display: none;
+      }
+    }
+  }
+}
+
+#sidebar-menu .oui-sidebar-menu {
+  width: 100%;
+}

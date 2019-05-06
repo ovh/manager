@@ -3,11 +3,12 @@ import { MAX_NAME_LENGTH, URLS } from './constants';
 
 export default class {
   /* @ngInject */
-  constructor($q, $translate, atInternet, ovhManagerNavbarMenuHeaderBuilder) {
+  constructor($q, $translate, atInternet, ovhManagerNavbarMenuHeaderBuilder, ssoAuthentication) {
     this.$q = $q;
     this.$translate = $translate;
     this.atInternet = atInternet;
     this.NavbarBuilder = ovhManagerNavbarMenuHeaderBuilder;
+    this.ssoAuthentication = ssoAuthentication;
 
     this.REGION = Environment.getRegion();
   }
@@ -143,13 +144,6 @@ export default class {
       title: this.$translate.instant('navbar_user_contacts'),
       url: URLS.contacts,
       click: () => this.trackUserMenuSection('my_contacts', 'contacts'),
-    },
-
-    // Tickets
-    {
-      title: this.$translate.instant('navbar_user_list_ticket'),
-      url: URLS.listTicket,
-      click: () => this.trackUserMenuSection('my_otrs_tickets', 'otrs'),
     },
 
     // Logout

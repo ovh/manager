@@ -1,0 +1,121 @@
+@import "~ovh-ui-kit/packages/oui/_settings";
+@import "~ovh-ui-kit/packages/oui-color/_variables";
+@import "~ovh-ui-kit/packages/oui-icons/_icons";
+@import "~ovh-ui-kit/packages/oui-navbar/_variables";
+@import "~ovh-ui-kit/packages/oui-typography/_variables";
+
+/* stylelint-disable at-rule-no-unknown */
+.oui-navbar {
+  background-color: #fff;
+  box-shadow: 0 2pt 4pt rgba(17, 63, 109, 0.15);
+  z-index: 2;
+
+  .oui-navbar__brand {
+    color: rgb(40, 89, 192);
+
+    &:hover,
+    &:focus {
+      text-decoration: none;
+    }
+  }
+
+  .oui-navbar-menu__item a {
+    color: rgb(17, 63, 109);
+
+    &:hover,
+    &:focus {
+      text-decoration: none;
+    }
+
+    .oui-navbar-notification__time {
+      font-weight: 300;
+    }
+
+    .oui-navbar-notification__description {
+      font-weight: normal;
+    }
+  }
+
+  .oui-navbar-toggler__hamburger span {
+    background: @primary-color;
+  }
+
+  .oui-navbar-link {
+    color: rgb(17, 63, 109);
+
+    &[aria-expanded="true"],
+    &:hover,
+    &:focus {
+      background-color: transparent;
+
+      span {
+        text-decoration: underline;
+
+        &.oui-icon {
+          text-decoration: none;
+        }
+      }
+    }
+
+    &.oui-navbar-link_primary:hover,
+    &.oui-navbar-link_primary:focus {
+      text-decoration: underline !important;
+    }
+
+    &.oui-navbar-link_active {
+      background-color: transparent;
+      border-bottom: 3px solid @primary-color !important;
+
+      &:hover,
+      &:focus {
+        text-decoration: none !important;
+      }
+    }
+  }
+
+  .navbar-oui-icon {
+    color: rgb(89, 105, 125);
+  }
+
+  .oui-icon.oui-icon-chevron-down,
+  .oui-icon.oui-icon-chevron-up {
+    display: none;
+  }
+
+  .oui-navbar-menu_toggle {
+    button.oui-navbar-link::after {
+      content: @oui-icon-index-chevron-right;
+      font-family: @oui-global-base-font-family-icon;
+      font-size: @oui-navbar-arrow-size;
+      color: @oui-navbar-arrow-color;
+      padding: 0;
+      position: absolute;
+      top: 50%;
+      right: @oui-navbar-arrow-spacing;
+      transform: translateY(-50%);
+    }
+  }
+
+  // Languages menu
+  &-menu {
+    &_language &__item_active {
+      &,
+      &:hover,
+      &:active {
+        background-color: @oui-navbar-menu-background-color_hover;
+      }
+
+      .oui-navbar-link::after {
+        content: @oui-icon-index-check_line;
+        display: inline-block;
+        margin-left: rem-calc(20);
+        margin-top: -0.3rem;
+        vertical-align: middle;
+        font-family: "Oui Icons", sans-serif;
+        font-size: @oui-navbar-external-size;
+        color: inherit;
+      }
+    }
+  }
+}
+/* stylelint-enable at-rule-no-unknown */

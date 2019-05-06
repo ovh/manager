@@ -1,0 +1,58 @@
+<div class="pci-error row justify-content-md-center py-5">
+    <div class="col-md-6">
+
+        <div class="text-center mb-3">
+            <img data-ng-src="{{ :: $ctrl.getAssets($ctrl.error.code) }}"
+                 alt="" />
+        </div>
+
+        <h1 class="oui-heading_4"
+            data-translate="pci_error_title">
+        </h1>
+
+        <oui-message
+            data-type="error">
+            <span data-translate="{{ 'pci_error_' + $ctrl.error.code }}"
+                  data-translate-default="{{ 'pci_error_default' | translate }}"
+                  data-translate-values="$ctrl.getErrorTranslationValues($ctrl.error.code)">
+            </span>
+            <strong class="d-block"
+                data-ng-if="$ctrl.error.detail.message"
+                data-ng-bind="::$ctrl.error.detail.message"></strong>
+            <span class="d-block"
+                data-ng-if="$ctrl.error.detail.code"
+                data-translate="pci_error_detail_code"
+                data-translate-values="$ctrl.error.detail"></span>
+        </oui-message>
+        <div class="d-flex flex-row-reverse"
+            data-ng-if="$ctrl.error.detail">
+            <oui-button
+                data-variant="primary"
+                data-on-click="$ctrl.reload()">
+                <span data-translate="pci_error_action_reload_label"></span>
+            </oui-button>
+            <a class="oui-button oui-button_link"
+                data-ng-href="{{$ctrl.homeLink}}"
+                data-translate="pci_error_action_home_label"></a>
+        </div>
+
+        <div class="my-3"
+             data-ng-class="{ 'd-flex flex-row-reverse justify-content-between align-items-center': ['account_not_eligible', 'unpaid_debts', 'max_projects_limit_reached'].indexOf($ctrl.error.code) > -1 }"
+             data-ng-if="$ctrl.error.context === 'projectCreation'">
+
+            <a class="oui-button oui-button_primary oui-button_icon-right"
+               data-ng-if="['account_not_eligible', 'unpaid_debts', 'max_projects_limit_reached'].indexOf($ctrl.error.code) > -1"
+               data-ng-href="{{ :: $ctrl.getActionButtonHref($ctrl.error.code) }}">
+                <span data-ng-bind="$ctrl.getActionButtonText($ctrl.error.code)"></span>
+                <span class="oui-icon oui-icon_circle oui-icon-chevron-right"
+                      aria-hidden="true">
+                </span>
+            </a>
+
+            <a data-ng-href="{{ :: $ctrl.getCancelHref() }}"
+               data-translate="pci_error_button_cancel">
+            </a>
+        </div>
+
+    </div>
+</div>

@@ -6,12 +6,10 @@ import groupBy from 'lodash/groupBy';
 import includes from 'lodash/includes';
 import intersection from 'lodash/intersection';
 import isString from 'lodash/isString';
-import map from 'lodash/map';
 import set from 'lodash/set';
-import uniq from 'lodash/uniq';
 import uniqBy from 'lodash/uniqBy';
 
-import { CLOUD_APPLICATION_LIST } from './constants';
+import { APPLICATION_LIST } from '../../../../../components/project/images-list/images.constants';
 
 export default class CloudImageService {
   static augmentImage(image) {
@@ -22,7 +20,7 @@ export default class CloudImageService {
 
     if (includes(augmentedImage.tags, 'application')) {
       augmentedImage.apps = true;
-      augmentedImage.applications = intersection(augmentedImage.tags, CLOUD_APPLICATION_LIST);
+      augmentedImage.applications = intersection(augmentedImage.tags, APPLICATION_LIST);
     } else {
       augmentedImage.apps = false;
     }
@@ -30,10 +28,6 @@ export default class CloudImageService {
       augmentedImage.flavorType = image.flavorType.split(',');
     }
     return augmentedImage;
-  }
-
-  static getImageTypes(images) {
-    return uniq(map(images, 'type'));
   }
 
   static getImagesByType(images, imagesTypes, region = null) {

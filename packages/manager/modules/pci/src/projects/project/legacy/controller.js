@@ -1,20 +1,15 @@
-import onboardingTemplate from './onboarding/template.html';
-
 export default /* @ngInject */ function CloudProjectCtrl(
   $scope,
   $state,
   $stateParams,
   $transitions,
   atInternet,
-  CucControllerHelper,
-  ovhUserPref,
   OvhApiCloud,
   CloudProjectRightService,
   coreConfig,
 ) {
   const self = this;
   const serviceName = $stateParams.projectId;
-  const onboardingKey = 'SHOW_PCI_ONBOARDING';
   $scope.region = coreConfig.getRegion();
 
   self.loaders = {
@@ -40,32 +35,8 @@ export default /* @ngInject */ function CloudProjectCtrl(
   // reference to our rootScope state change listener
   let stateChangeListener = null;
 
-  function openOnboarding() {
-    CucControllerHelper.modal.showModal({
-      modalConfig: {
-        template: onboardingTemplate,
-        controller: 'pciSlideshowCtrl',
-        controllerAs: '$ctrl',
-        backdrop: 'static',
-      },
-    });
-  }
-
   function init() {
     self.loaders.project = true;
-
-    ovhUserPref.getValue(onboardingKey)
-      .then(({ value }) => {
-        if (value) {
-          openOnboarding();
-        }
-      })
-      .catch((err) => {
-        // Check error status and if key is there in error message
-        if (err.status === 404 && err.data.message.includes(onboardingKey)) {
-          openOnboarding();
-        }
-      });
 
     // get current project
     if (serviceName) {

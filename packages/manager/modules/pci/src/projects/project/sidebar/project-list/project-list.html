@@ -1,0 +1,32 @@
+<div data-ng-if="!$ctrl.isLoadingTranslations">
+    <a class="btn btn-primary py-1 px-2"
+       data-ui-sref="pci.projects.new"
+       style="background-color: rgb(40, 89, 192); color: #fff;"
+       data-translate="cloud_sidebar_projectlist_create_project"
+    >
+    </a>
+    <div data-ng-if="$ctrl.isLoading" class="d-flex mt-4">
+        <span class="mr-3" style="font-size: 0.8rem;" data-translate="cloud_sidebar_projectlist_loading_projects"></span>
+        <oui-spinner class="my-auto ml-auto" size="s"></oui-spinner>
+    </div>
+    <div data-ng-if="!$ctrl.isLoading">
+        <div class="d-flex mt-4" data-ng-if="$ctrl.err">
+            <span class="mr-3" style="font-size: 0.8rem;" data-translate="cloud_sidebar_projectlist_error" data-translate-params="{ err: $ctrl.err.statusText }"></span>
+            <button type="button" class="my-auto border-0" style="background-color: inherit;"
+                data-ng-click="$ctrl.getProjects()">
+                <i class="fa fa-refresh" aria-hidden></i>
+            </button>
+        </div>
+        <div class="mt-3" data-ng-if="$ctrl.projects && $ctrl.projects.length > 0">
+            <strong class="text-white" data-translate="cloud_sidebar_projectlist_title"></strong>
+            <ul class="list-unstyled mt-2 mb-5">
+                <li data-ng-repeat="project in $ctrl.projects track by $index">
+                    <a ui-sref="pci.projects.project({ projectId: project.project_id })" class="d-flex text-white">
+                        <span class="text-truncate" data-ng-bind="project.description"></span>
+                        <span class="text-white ml-auto my-auto oui-icon oui-icon-chevron-right" style="font-size: 0.8rem;"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

@@ -6,12 +6,8 @@ import 'angular-translate';
 import 'ovh-api-services';
 
 import infrastructure from './infrastructure';
-import loadbalancer from './loadbalancer';
 import quota from './quota';
 import regions from './regions';
-import snapshot from './snapshot';
-import ssh from './ssh';
-import volume from './volume';
 
 import componentsProject from '../../../../components/project';
 
@@ -24,23 +20,19 @@ angular
   .module(moduleName, [
     componentsProject,
     infrastructure,
-    loadbalancer,
     'ngOvhOtrs',
     'ngTranslateAsyncLoader',
     'ovh-api-services',
     'pascalprecht.translate',
     quota,
     regions,
-    snapshot,
-    ssh,
     'ui.router',
-    volume,
   ])
   .config(/* @ngInject */($stateProvider) => {
     $stateProvider
       .state('pci.projects.project.legacy.compute', {
         url: '/compute',
-        // abstract : true,
+        abstract: true,
         views: {
           cloudProject: { //= cloudProject@cloud-project.cloud-project-compute
             template,

@@ -1,0 +1,9 @@
+{
+  "pci_projects_project_failoverip_title": "IP Failover",
+  "pci_projects_project_failoverip_block": "IP Failover",
+  "pci_projects_project_failoverip_geoloc": "Pays",
+  "pci_projects_project_failoverip_id": "Service associé",
+  "pci_projects_project_failoverip_routedTo": "Instance associée",
+  "pci_projects_project_failoverip_import": "Importer une IP",
+  "pci_projects_project_failoverip_edit": "Modifier l'instance associée"
+}

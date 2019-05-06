@@ -1,23 +1,23 @@
 export const ACTIONS = [
   {
     translation: 'pci_projects_project_create_an_instance',
-    href: '#',
+    state: 'pci.projects.project.instances.add',
   },
   {
     translation: 'pci_projects_project_create_a_volume',
-    href: '#',
+    state: 'pci.projects.project.storages.blocks.add',
   },
   {
     translation: 'pci_projects_project_create_a_container',
-    href: '#',
+    state: 'pci.projects.project.storages.objects.add',
   },
   {
     translation: 'pci_projects_project_activate_private_networks',
-    href: '#',
+    state: 'pci.projects.project.privateNetwork',
   },
   {
     translation: 'pci_projects_project_create_cluster_kubernetes',
-    href: '#',
+    state: 'pci.projects.project.kubernetes',
   },
 ];
 

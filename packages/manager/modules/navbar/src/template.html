@@ -4,14 +4,19 @@
     data-active-link="{{ :: $ctrl.navbarOptions.universe }}">
     <oui-navbar-main>
         <oui-spinner data-size="s" data-ng-if="$ctrl.isLoading"></oui-spinner>
-        <oui-navbar-link
-            data-ng-if="!$ctrl.isLoading"
+        <div
             data-ng-repeat="link in $ctrl.mainLinks track by link.name"
-            name="{{:: link.name }}"
-            text="{{:: link.title }}"
-            href="{{:: link.url }}"
-            variant="{{:: link.isPrimary ? 'primary' : 'secondary' }}">
-        </oui-navbar-link>
+            class="position-relative walkme-link"
+            data-ng-class="{ 'walkme-active-link': link.name === $ctrl.navbarOptions.universe }">
+            <div class="position-absolute h-100 w-100" id="{{:: link.name }}"></div>
+            <oui-navbar-link
+                data-ng-if="!$ctrl.isLoading"
+                name="{{:: link.name }}"
+                text="{{:: link.title }}"
+                href="{{:: link.url }}"
+                variant="{{:: link.isPrimary ? 'primary' : 'secondary' }}">
+            </oui-navbar-link>
+        </div>
     </oui-navbar-main>
     <oui-navbar-aside data-ng-if="$ctrl.user">
         <ovh-manager-navbar-language-menu data-lang-options="$ctrl.langOptions"></ovh-manager-navbar-language-menu>
@@ -22,7 +27,8 @@
     <oui-navbar-toggler data-ng-if="$ctrl.navbarOptions.toggle"
                         data-on-click="$ctrl.toggleSidebar()"
                         data-active="$ctrl.togglerActive"
-                        data-loading="$ctrl.togglerisLoading">
+                        data-loading="$ctrl.togglerisLoading"
+                        data-links="$ctrl.responsiveLinks">
     </oui-navbar-toggler>
 </oui-navbar>
 

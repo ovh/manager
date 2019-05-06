@@ -1,3 +1,5 @@
+<h1 data-translate="openstackusers"></h1>
+
 <button data-ng-click="CloudProjectOpenstackUsersCtrl.openAddUser()"
         class="oui-button oui-button_secondary mb-3"
         data-ng-disabled="CloudProjectOpenstackUsersCtrl.loaders.table.user ||
@@ -41,13 +43,13 @@
     </oui-column>
 
     <oui-column data-title="'openstackusers_users_userlist_status_cols' | translate" data-property="status" data-sortable>
-        <span class="label"
+        <span class="oui-status"
               data-ng-class="{
               'opacity2-leave'    : CloudProjectOpenstackUsersCtrl.toggle.userDeleteId === $row.id,
               'opacity2-enter'    : CloudProjectOpenstackUsersCtrl.toggle.userDeleteId !== $row.id,
-              'label-danger'      : $row.status === 'deleted' || $row.status === 'deleting' || $row.status === 'disabled',
-              'label-info'        : $row.status === 'creating' || $row.status === 'updating',
-              'label-success'     : $row.status === 'ok'
+              'oui-status_error'      : $row.status === 'deleted' || $row.status === 'deleting' || $row.status === 'disabled',
+              'oui-status_info'        : $row.status === 'creating' || $row.status === 'updating',
+              'oui-status_success'     : $row.status === 'ok'
               }">
             {{ $row.status }}
         </span>

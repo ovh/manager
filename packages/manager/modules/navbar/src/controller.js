@@ -34,6 +34,7 @@ export default class {
       .then(() => this.$translate.refresh())
       .then(() => this.buildMainLinks())
       .finally(() => {
+        this.$scope.$emit('navbar.loaded');
         this.isLoading = false;
       });
   }
@@ -54,7 +55,7 @@ export default class {
   }
 
   buildMainLinks() {
-    return this.Navbar.getUniverses()
+    return this.Navbar.getUniverses(this.navbarOptions.version)
       .then((universes) => {
         this.mainLinks = universes.map(({ universe: name, url }) => ({
           name,
@@ -62,6 +63,25 @@ export default class {
           url: url || '#',
           isPrimary: !NON_PRIMARY_ITEMS.includes(name),
         }));
+        this.responsiveLinks = universes.map(({ universe: name, url }) => {
+          const link = ({
+            name,
+            title: this.$translate.instant(`navbar_universe_${name}`),
+            isPrimary: !NON_PRIMARY_ITEMS.includes(name),
+          });
+
+          if (name === this.navbarOptions.universe) {
+            link.click = () => {
+              this.toggleSidebar();
+              this.$scope.$emit('navbar:onUniverseClick');
+            };
+            link.isActive = true;
+          } else {
+            link.url = url || '#';
+          }
+
+          return link;
+        });
       });
   }
 

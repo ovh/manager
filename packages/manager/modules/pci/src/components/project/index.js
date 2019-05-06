@@ -5,7 +5,12 @@ import 'ovh-api-services';
 import add from './add';
 import billing from './billing';
 import compute from './compute';
+import empty from './empty';
+import flavorBilling from './flavor-billing';
+import flavorsList from './flavors-list';
+import imagesList from './images-list';
 import rights from './rights';
+import sshKeys from './instance/ssh-keys';
 
 import factory from './factory';
 import service from './service';
@@ -17,8 +22,13 @@ angular
     add,
     billing,
     compute,
+    empty,
+    flavorBilling,
+    flavorsList,
+    imagesList,
     'ovh-api-services',
     rights,
+    sshKeys,
   ])
   .factory('CloudProjectFactory', factory)
   .service('CloudProjectOrchestrator', service);

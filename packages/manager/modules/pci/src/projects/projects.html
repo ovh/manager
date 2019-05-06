@@ -1,6 +1,5 @@
 <div class="w-100" data-ui-view>
-    <oui-page-header heading="{{ ::'pci_projects' | translate }}" description="Description">
-    </oui-page-header>
+    <h1 data-translate="pci_projects"></h1>
     <oui-datagrid rows-loader="$ctrl.loadPartialData($config)" row-loader="$ctrl.loadRow($row)" page-size="5">
         <oui-column title=":: 'pci_projects_description' | translate" property="description" type="string">
             <a data-ui-sref="pci.projects.project({ projectId: $row.serviceName })" data-ng-bind="::$value"></a>

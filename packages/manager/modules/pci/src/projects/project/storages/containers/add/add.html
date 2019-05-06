@@ -1,0 +1,62 @@
+<h1 data-translate="pci_projects_project_storages_containers_add_title"></h1>
+
+<cui-message-container data-messages="$ctrl.messages"></cui-message-container>
+
+<oui-stepper
+    data-on-finish="$ctrl.add()">
+    <oui-step-form
+        data-header="{{:: 'pci_projects_project_storages_containers_add_region_title' | translate }}"
+        data-navigation="$ctrl.container.region"
+        data-on-focus="$ctrl.onRegionsFocus()"
+        data-on-submit="$ctrl.onRegionChange()"
+        data-editable="!$ctrl.isLoading">
+        <pci-project-regions-list
+            data-regions="$ctrl.regions"
+            data-selected-region="$ctrl.container.region"
+            data-display-selected-region="$ctrl.displaySelectedRegion"></pci-project-regions-list>
+    </oui-step-form>
+
+    <oui-step-form
+        data-header="{{:: 'pci_projects_project_storages_containers_add_type_title' | translate }}"
+        data-ng-if="!$ctrl.archive"
+        data-position="2"
+        data-on-focus="$ctrl.onTypesFocus()"
+        data-on-submit="$ctrl.onTypeChange()"
+        data-navigation="$ctrl.selectedType"
+        data-editable="!$ctrl.isLoading">
+        <div class="container-fluid px-0">
+            <div class="row">
+                <oui-select-picker
+                    data-ng-if="!$ctrl.displaySelectedType || $ctrl.selectedType === type"
+                    data-ng-repeat="type in $ctrl.typesList track by $index"
+                    class="d-inline-block col-md-6 col-lg-4 my-3"
+                    data-name="type"
+                    data-match="name"
+                    data-model="$ctrl.selectedType"
+                    data-label="{{ 'pci_projects_project_storages_containers_add_type_' + type.id + '_label' | translate }}"
+                    data-values="[type]"
+                    data-variant="light"
+                    data-required>
+                </oui-select-picker>
+            </div>
+        </div>
+    </oui-step-form>
+
+    <oui-step-form data-header="{{:: 'pci_projects_project_storages_containers_add_name_title' | translate }}"
+        data-editable="!$ctrl.isLoading"
+        data-cancel-href="{{$ctrl.cancelLink}}"
+        data-cancel-text="{{:: 'pci_projects_project_storages_containers_add_cancel_label' | translate }}"
+        data-submit-text="{{:: 'pci_projects_project_storages_containers_add_submit_label' | translate }}">
+        <oui-field data-size="xl">
+            <input class="oui-input" type="text" name="name"
+                data-ng-model="$ctrl.container.name"
+                data-ng-required="true">
+        </oui-field>
+    </oui-step-form>
+
+</oui-stepper>
+
+<div data-ng-if="$ctrl.isLoading">
+    <oui-spinner></oui-spinner>
+    <p data-translate="pci_projects_project_storages_containers_add_save_form"></p>
+</div>

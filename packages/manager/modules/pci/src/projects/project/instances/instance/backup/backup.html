@@ -1,0 +1,40 @@
+<form id="createbackup"
+    name="createbackup"
+    data-ng-submit="createbackup.$valid && $ctrl.createBackup()"
+    novalidate>
+
+    <oui-modal
+        data-heading="{{:: 'pci_projects_project_instances_instance_backup_title' | translate }}"
+        data-primary-action="$ctrl.createBackup()"
+        data-primary-label="{{:: 'pci_projects_project_instances_instance_backup_submit_label' | translate }}"
+        data-primary-disabled="$ctrl.isLoading"
+        data-secondary-action="$ctrl.goBack()"
+        data-secondary-label="{{:: 'pci_projects_project_instances_instance_backup_cancel_label' | translate }}"
+        data-on-dismiss="$ctrl.goBack()"
+        data-loading="$ctrl.isLoading">
+
+        <oui-field
+            data-label="{{:: 'pci_projects_project_instances_instance_backup_name_label' | translate }}"
+            data-size="xl">
+            <input
+                class="oui-input"
+                type="text"
+                id="name"
+                name="name"
+                data-ng-model="$ctrl.backup.name"
+                required
+                data-ng-maxlength="255">
+
+            <span data-translate="pci_projects_project_instances_instance_backup_price"
+                data-translate-values="{
+                    size: (($ctrl.instance.flavor.disk * 1000000000 || 0) | cucBytes:2:'true'),
+                    price: $ctrl.priceEstimation.totalPrice.text || '?'
+                }"></span>
+        </oui-field>
+
+        <oui-message type="warning" data-ng-if="!$ctrl.storage.isAttachable()">
+            <span data-translate="pci_projects_project_instances_instance_backup_warning_message"></span>
+        </oui-message>
+
+    </oui-modal>
+</form>

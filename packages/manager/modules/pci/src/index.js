@@ -2,14 +2,15 @@ import angular from 'angular';
 import 'angular-animate';
 import '@ovh-ux/manager-core';
 import '@uirouter/angularjs';
+import '@ovh-ux/ng-ovh-uirouter-layout';
 import 'oclazyload';
+import '@ovh-ux/ng-at-internet';
 import '@ovh-ux/ng-ovh-cloud-universe-components';
 import '@ovh-ux/ng-ovh-proxy-request';
 import '@ovh-ux/ng-ovh-user-pref';
 import '@ovh-ux/ng-ovh-swimming-poll';
 import '@ovh-ux/ng-ovh-doc-url';
 import '@ovh-ux/ng-ovh-form-flat';
-import 'ng-at-internet';
 import '@ovh-ux/ng-ovh-toaster';
 import '@ovh-ux/ng-ovh-api-wrappers'; // should be a peer dependency of ovh-api-services
 import 'ovh-api-services';
@@ -18,6 +19,7 @@ import 'ovh-jquery-ui-draggable-ng';
 import 'ovh-angular-q-allsettled';
 import 'ovh-angular-pagination-front';
 import 'ovh-angular-responsive-page-switcher';
+import 'angular-ui-bootstrap';
 
 import '@ovh-ux/manager-cloud-styles';
 import 'ovh-manager-webfont/dist/css/ovh-font.css';
@@ -27,6 +29,7 @@ import 'font-awesome/css/font-awesome.css';
 import 'ovh-common-style/dist/ovh-common-style.css';
 
 import components from './components';
+import error from './error';
 import offer from './offer';
 import projects from './projects';
 import template from './template.html';
@@ -56,7 +59,9 @@ const moduleName = 'ovhManagerPci';
 
 angular
   .module(moduleName, [
+    'ngOvhUiRouterLayout',
     components,
+    error,
     projects,
     offer,
     'ui.router',
@@ -66,7 +71,7 @@ angular
     'ngOvhUserPref',
     'ngOvhSwimmingPoll',
     'ngOvhDocUrl',
-    'ng-at-internet',
+    'ngAtInternet',
     'ovh-api-services',
     'ngOvhToaster',
     'ovh-jquery-ui-draggable-ng',
@@ -74,16 +79,17 @@ angular
     'ovh-angular-pagination-front',
     'ovh-angular-responsive-page-switcher',
     'oui',
+    'ui.bootstrap',
   ])
   .config(/* @ngInject */($stateProvider) => {
     $stateProvider
       .state('pci', {
         url: '/pci',
-        // abstract: true,
+        abstract: true,
         template,
       });
   })
-  .run(($transitions, $state, $stateParams) => {
+  .run(/* @ngInject */($transitions, $state, $stateParams) => {
     $transitions.onSuccess({}, (transition) => {
       const state = transition.to();
       if (state && state.url === '/compute') {

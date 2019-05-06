@@ -1,25 +1,24 @@
 import angular from 'angular';
+import '@uirouter/angularjs';
+import 'oclazyload';
 
-import '@ovh-ux/manager-core';
-import '@ovh-ux/ng-ovh-api-wrappers'; // should be a peer dependency of ovh-api-services
-import 'angular-translate';
-import 'ovh-api-services';
-import 'ovh-ui-angular';
-
-import project from './project';
-
-import routing from './projects.routing';
-
-const moduleName = 'ovhManagerPciProjects';
+const moduleName = 'ovhManagerPciProjectsLazyLoading';
 
 angular
   .module(moduleName, [
-    'oui',
-    'ovhManagerCore',
-    'ovh-api-services',
-    'pascalprecht.translate',
-    project,
+    'ui.router',
+    'oc.lazyLoad',
   ])
-  .config(routing);
+  .config(/* @ngInject */($stateProvider) => {
+    $stateProvider.state('pci.projects.**', {
+      url: '/projects',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+        return import('./projects.module')
+          .then(mod => $ocLazyLoad.inject(mod.default || mod));
+      },
+    });
+  });
 
 export default moduleName;

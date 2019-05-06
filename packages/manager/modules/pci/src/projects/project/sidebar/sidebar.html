@@ -1,0 +1,43 @@
+<div class="h-100 d-flex flex-column">
+    <div class="p-3 w-100">
+        <div data-ng-if="$ctrl.isLoading">
+            <oui-skeleton size="xs"></oui-skeleton>
+            <oui-skeleton class="mt-2" size="s"></oui-skeleton>
+        </div>
+        <div class="d-flex" data-ng-if="!$ctrl.isLoading && $ctrl.project">
+            <div class="w-100 text-truncate mr-3">
+                <h2 class="mb-0 d-inline-block" style="font-weight: 400;" data-ng-bind="$ctrl.project.description"></h2>
+                <oui-clipboard model="$ctrl.project.project_id"></oui-clipboard>
+            </div>
+            <div class="my-auto">
+                <button type="button" class="btn btn-primary rounded-circle" style="padding: 6px 13px; background-color: rgb(40, 89, 192);" data-ng-click="$ctrl.toggleProjectsList()">
+                    <span class="oui-icon oui-icon-chevron-right text-white"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="h-100 position-relative">
+        <div class="position-absolute w-100 h-100" style="overflow: auto;"
+            data-ng-class="{
+                'd-none d-sm-block': !$ctrl.isOpen,
+                'd-sm-none d-md-block': !$ctrl.isOpen
+            }"
+            data-sidebar-menu>
+        </div>
+    </div>
+</div>
+<div data-ng-if="$ctrl.isDisplayingProjectsList"
+     class="project-list px-3 py-4">
+    <div class="d-flex mb-4">
+        <div class="my-auto">
+            <button type="button" class="btn btn-primary rounded-circle" style="padding: 6px 13px;" data-ng-click="$ctrl.toggleProjectsList()">
+                <span class="oui-icon oui-icon-chevron-left" style="color: rgb(40, 89, 192);"></span>
+            </button>
+        </div>
+        <div class="w-100 text-truncate ml-3">
+            <h2 class="mb-0 d-inline-block text-white" style="font-weight: 400;" data-ng-bind="$ctrl.project.description"></h2>
+            <oui-clipboard model="$ctrl.project.project_id"></oui-clipboard>
+        </div>
+    </div>
+    <cloud-sidebar-project-list></cloud-sidebar-project-list>
+</div>

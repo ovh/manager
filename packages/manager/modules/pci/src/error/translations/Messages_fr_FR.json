@@ -1,0 +1,15 @@
+{
+  "pci_error_title": "Oops …!",
+  "pci_error_button_cancel": "Annuler",
+  "pci_error_button_action_pay_debt": "Régler ma dette",
+  "pci_error_button_action_contact_support": "Contacter le support",
+  "pci_error_detail_code": "Code d'erreur : {{code}}",
+  "pci_error_action_reload_label": "Réessayer",
+  "pci_error_action_home_label": "Retour à la page d'accueil",
+  "pci_error_default": "Une erreur est survenue lors du chargement de la page.",
+  "pci_error_account_not_eligible": "Malheureusement vous ne pouvez pas créer de projet Public Cloud car vous avez eu des projets fermés pour impayés ou pour une mauvaise utilisation du service. Nous vous invitons à contacter le support.",
+  "pci_error_max_projects_limit_reached": "Malheureusement vous ne pouvez pas créer de projet Public Cloud supplémentaire car vous avez atteint le quota maximum de projets. Pour débloquer ces quotas, nous vous invitons à contacter le support.",
+  "pci_error_paypal_account_not_verified": "Malheureusement vous ne pouvez pas créer de projet Public Cloud avec votre compte PayPal car celui-ci n'est pas vérifié. Nous vous invitons à faire les démarches nécessaires auprès de PayPal pour vérifier votre compte, puis de réessayer. Vous pouvez aussi modifier <a href=\"{{ href }}\">votre moyen de paiement par défaut</a>.",
+  "pci_error_unpaid_debts": "Malheureusement vous ne pouvez pas créer de projet Public Cloud car vous avez une dette en cours chez OVH. Nous vous invitons à régler le montant dû, puis de réessayer.",
+  "pci_error_invalid_payment_mean": "Malheureusement vous ne pouvez pas créer de projet Public Cloud car vous n'avez pas de moyen de paiement par défaut valide. Nous vous invitons à modifier <a href=\"{{ href }}\">votre moyen de paiement par défaut</a>."
+}
