@@ -84,8 +84,9 @@ export default /* @ngInject */ ($stateProvider) => {
           PCI_REDIRECT_URLS,
           `${EnvironmentService.Environment.region}.paymentMethods`,
         ),
-        newProjectInfo: /* @ngInject */ PciProjectNewService => PciProjectNewService
-          .getNewProjectInfo(),
+        newProjectInfo: /* @ngInject */ PciProjectNewService => (EnvironmentService.Environment.region !== 'US'
+          ? PciProjectNewService.getNewProjectInfo()
+          : {}),
         onDescriptionStepFormSubmit: /* @ngInject */ $state => () => $state.go('pci.projects.new.payment'),
         onProjectCreated: /* @ngInject */ $state => projectId => $state.go(
           'pci.projects.project', {

@@ -1,6 +1,9 @@
 import get from 'lodash/get';
 import merge from 'lodash/merge';
 
+import EnvironmentService from '@ovh-ux/manager-config';
+import { PCI_URLS } from '../../constants';
+
 export default class PciProjectNewCtrl {
   /* @ngInject */
   constructor($q, $translate, $window, CucCloudMessage,
@@ -27,6 +30,7 @@ export default class PciProjectNewCtrl {
 
     this.descriptionModel = null;
     this.paymentModel = null;
+    this.region = EnvironmentService.Environment.region;
   }
 
   /* ==============================
@@ -37,7 +41,7 @@ export default class PciProjectNewCtrl {
     const currentStep = this.getCurrentStep();
     let translationKey;
 
-    if (currentStep.name === 'description') {
+    if (currentStep.name === 'description' && this.region !== 'US') {
       translationKey = 'pci_projects_new_continue';
     } else if (currentStep.model.mode === 'credits' || this.hasCreditToOrder()) {
       translationKey = 'pci_projects_new_credit_and_create';
@@ -54,7 +58,9 @@ export default class PciProjectNewCtrl {
     const currentStep = this.getCurrentStep();
 
     if (currentStep.name === 'description') {
-      return this.getStateLink('next');
+      return this.region !== 'US'
+        ? this.getStateLink('next')
+        : get(PCI_URLS, 'US.website_order["cloud-resell-eu"].US')(currentStep.model.description || '');
     }
 
     return this.paymentMethodUrl;
@@ -78,7 +84,7 @@ export default class PciProjectNewCtrl {
     const currentStep = this.getCurrentStep();
 
     if (currentStep.name === 'description') {
-      return true;
+      return this.region !== 'US';
     }
 
     return get(currentStep.model.paymentType, 'paymentType.value') !== 'BANK_ACCOUNT';
