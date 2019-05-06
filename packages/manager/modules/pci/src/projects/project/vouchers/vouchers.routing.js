@@ -8,7 +8,7 @@ export default /* @ngInject */ ($stateProvider) => {
     controller,
     controllerAs: '$ctrl',
     resolve: {
-      breadcrumb: $translate => $translate
+      breadcrumb: /* @ngInject */ $translate => $translate
         .refresh()
         .then(() => $translate.instant('cpb_project_management_credit_vouchers')),
     },

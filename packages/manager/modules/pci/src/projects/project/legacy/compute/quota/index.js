@@ -28,7 +28,7 @@ angular
         },
       },
       resolve: {
-        breadcrumb: $translate => $translate
+        breadcrumb: /* @ngInject */ $translate => $translate
           .refresh()
           .then(() => $translate.instant('cpb_quota_protect_title')),
       },

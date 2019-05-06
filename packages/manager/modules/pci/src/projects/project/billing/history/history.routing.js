@@ -44,7 +44,7 @@ export default /* @ngInject */ ($stateProvider) => {
           month,
         };
       },
-      breadcrumb: $translate => $translate
+      breadcrumb: /* @ngInject */ $translate => $translate
         .refresh()
         .then(() => $translate.instant('cpbc_tab_history')),
     },
