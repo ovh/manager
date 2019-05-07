@@ -65,7 +65,7 @@ export default /* @ngInject */($stateProvider) => {
         instanceId: instance.id,
       }),
 
-      goToInstances: /* @ngInject */ ($rootScope, CucCloudMessage, $state, projectId) => (message = false, type = 'success') => {
+      goToInstances: /* @ngInject */ (CucCloudMessage, $state, projectId) => (message = false, type = 'success') => {
         const reload = message && type === 'success';
 
         const promise = $state.go('pci.projects.project.instances', {
