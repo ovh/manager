@@ -8,6 +8,7 @@ import add from './add';
 import deleteUser from './delete';
 import downloadOpenRc from './download-openrc';
 import downloadRclone from './download-rclone';
+import onboarding from './onboarding';
 import openstackToken from './openstack-token';
 
 import component from './users.component';
@@ -24,8 +25,9 @@ angular
     downloadRclone,
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
-    'ovh-api-services',
+    onboarding,
     openstackToken,
+    'ovh-api-services',
     'ui.router',
   ])
   .config(routing)

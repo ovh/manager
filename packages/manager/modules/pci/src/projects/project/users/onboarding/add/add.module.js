@@ -1,14 +1,14 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
 
-import userAdd from './user-add';
+import addUser from '../../add/user-add';
 import routing from './add.routing';
 
-const moduleName = 'ovhManagerPciUsersAdd';
+const moduleName = 'ovhManagerPciUsersOnboardingAdd';
 
 angular
   .module(moduleName, [
-    userAdd,
+    addUser,
     'ui.router',
   ])
   .config(routing);

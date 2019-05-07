@@ -8,6 +8,10 @@ export default /* @ngInject */($stateProvider) => {
       value: ['.'],
       format: 'json',
     },
+    redirectTo: transition => transition
+      .injector()
+      .getAsync('users')
+      .then(users => (users.length === 0 ? { state: 'pci.projects.project.users.onboarding' } : false)),
     resolve: {
       breadcrumb: /* @ngInject */ $translate => $translate
         .refresh()
