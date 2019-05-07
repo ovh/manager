@@ -1,18 +1,20 @@
 {
+ "cpb_quota_protect_title": "Limit & Umístění",
  "cpb_quota_protect_explain": "Abyste měli plnou kontrolou nad spotřebou zdrojů, je objem zdrojů Vašeho cloudového projektu omezen.",
  "cpb_quota_protect_more": "Pokud potřebujete více zdrojů, požádejte o ně náš tým kliknutím na tlačítko níže.",
  "cpb_quota_protect_more_btn": "Navýšení mých limitů",
  "cpb_quota_current_limit": "Současné limity",
- "cpb_quota_add_disk": "Přídavný disk",
  "cpb_quota_instance_unlimited": "Neomezeno",
- "cpb_quota_loading": "Načítání limitů...",
  "cpb_quota_loading_error": "Chyba, nebyli jsme schopní získat seznam limitů.",
- "cpb_quota_no_quota": "Nebyly nalezeny žádné limity",
  "cpb_quota_restricted_account": "Tento limit je omezený, protože aktuálně nemáte platební metodu na Vaše účtu.",
  "cpb_quota_restricted_account_unlock": "Pro navýšení limitů prosím <a href=\"{{url}}\">přidejte platnou platební metodu</a> a následně se vraťte zpět na tuto stránku.",
  "cpb_quota_restricted_paymentmean_active": "Toto je nyní aktivní platební metoda na Vašem účtu.",
  "cpb_quota_restricted_unlock_button": "Aktivovat standardní limit.",
  "cpb_quota_already_unleashed": "Již jste aktivovat svůj limit.",
  "cpb_quota_unleash_error": "Chyba, nebyli jsme schopní aktivovat Váš limit.",
- "cpb_quota_unleash_loading": "Aktivování limitu..."
+ "cpb_quota_add_disk": "Přídavný disk",
+ "cloud_common_region": "Umístění",
+ "cloud_common_instance": "Servery",
+ "cloud_common_core": "vCPU",
+ "cloud_common_ram": "RAM"
 }

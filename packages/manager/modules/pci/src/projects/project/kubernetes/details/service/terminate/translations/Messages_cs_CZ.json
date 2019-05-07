@@ -1,0 +1,9 @@
+{
+ "kube_service_terminate_common_confirm": "Dokončit",
+ "kube_service_terminate_common_cancel": "Zrušit",
+ "kube_service_terminate_title": "Smažte službu",
+ "kube_service_terminate_warning": "Odstranění tohoto prvku trvale vymaže všechna odpovídající data. Odstranění akce neposkytuje žádné náhrady.",
+ "kube_service_terminate_enter": "Do pole níže zadejte \"TERMINATE\" pro potvrzení",
+ "kube_service_terminate_success": "Váš požadavek na odstranění clusteru Kubernetes byl vzat v úvahu. E-mail, který vám umožní ověřit vaši žádost o odstranění, vám byl zaslán",
+ "kube_service_terminate_error": "Při odstraňování clusteru došlo k chybě: {{message}}"
+}
