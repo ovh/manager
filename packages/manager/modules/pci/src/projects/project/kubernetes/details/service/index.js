@@ -21,7 +21,7 @@ angular.module(moduleName, [
           kubernetesView: 'ovhManagerPciProjectKubernetesServiceComponent',
         },
         resolve: {
-          serviceName: $stateParams => $stateParams.serviceName,
+          breadcrumb: () => false,
         },
       });
   })

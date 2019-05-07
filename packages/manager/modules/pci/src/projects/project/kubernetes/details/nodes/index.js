@@ -13,7 +13,7 @@ angular.module(moduleName, [])
           kubernetesView: 'ovhManagerPciProjectKubernetesNodesComponent',
         },
         resolve: {
-          serviceName: $stateParams => $stateParams.serviceName,
+          breadcrumb: /* @ngInject */ $translate => $translate.instant('kube_nodes'),
         },
       });
   })
