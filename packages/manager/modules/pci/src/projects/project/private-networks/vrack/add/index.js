@@ -2,7 +2,7 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'angular-translate';
 import '@ovh-ux/ng-translate-async-loader';
-import '@ovh-ux/ng-ovh-uirouter-layout';
+import '@ovh-ux/ng-uirouter-layout';
 import '@ovh-ux/ng-ovh-swimming-poll';
 
 import component from './add.component';
@@ -17,7 +17,7 @@ angular
     'pascalprecht.translate',
     'ui.router',
     'ngOvhSwimmingPoll',
-    'ngOvhUiRouterLayout',
+    'ngUiRouterLayout',
   ])
   .config(routing)
   .component('pciProjectPrivateNetworksVrackCreate', component)

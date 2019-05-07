@@ -1,16 +1,17 @@
 {
-  "name": "@ovh-ux/ng-ovh-uirouter-layout",
+  "name": "@ovh-ux/ng-uirouter-layout",
   "version": "0.1.0",
   "description": "UiRouter Layout support",
   "keywords": [
-    "uirouter",
+    "angular",
     "layout",
-    "ovh"
+    "ovh",
+    "uirouter"
   ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ovh-ux/manager.git",
-    "directory": "packages/components/ng-ovh-uirouter-layout"
+    "directory": "packages/components/ng-uirouter-layout"
   },
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
@@ -19,15 +20,15 @@
   ],
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
-  "browser": "./dist/umd/ng-ovh-uirouter-layout.js",
+  "browser": "./dist/umd/ng-uirouter-layout.js",
   "scripts": {
     "build": "rollup -c --environment BUILD:production",
     "dev": "rollup -c --environment BUILD:development",
     "dev:watch": "yarn run dev --watch",
     "prepare": "yarn run build",
-    "start": "lerna exec --stream --scope='@ovh-ux/ng-ovh-uirouter-layout' --include-filtered-dependencies -- yarn run build",
-    "start:dev": "lerna exec --stream --scope='@ovh-ux/ng-ovh-uirouter-layout' --include-filtered-dependencies -- yarn run dev",
-    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/ng-ovh-uirouter-layout' --include-filtered-dependencies -- yarn run dev:watch"
+    "start": "lerna exec --stream --scope='@ovh-ux/ng-uirouter-layout' --include-filtered-dependencies -- yarn run build",
+    "start:dev": "lerna exec --stream --scope='@ovh-ux/ng-uirouter-layout' --include-filtered-dependencies -- yarn run dev",
+    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/ng-uirouter-layout' --include-filtered-dependencies -- yarn run dev:watch"
   },
   "dependencies": {
     "lodash": "^4.17.11"

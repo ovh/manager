@@ -2,7 +2,7 @@ import angular from 'angular';
 import 'angular-animate';
 import '@ovh-ux/manager-core';
 import '@uirouter/angularjs';
-import '@ovh-ux/ng-ovh-uirouter-layout';
+import '@ovh-ux/ng-uirouter-layout';
 import 'oclazyload';
 import '@ovh-ux/ng-at-internet';
 import '@ovh-ux/ng-ovh-cloud-universe-components';
@@ -59,7 +59,6 @@ const moduleName = 'ovhManagerPci';
 
 angular
   .module(moduleName, [
-    'ngOvhUiRouterLayout',
     components,
     error,
     projects,
@@ -71,6 +70,7 @@ angular
     'ngOvhUserPref',
     'ngOvhSwimmingPoll',
     'ngOvhDocUrl',
+    'ngUiRouterLayout',
     'ngAtInternet',
     'ovh-api-services',
     'ngOvhToaster',
