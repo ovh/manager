@@ -4,18 +4,12 @@ export default /* @ngInject */($stateProvider) => {
   $stateProvider.state('pci.projects.project.users', {
     url: '/users',
     component: 'pciProjectsProjectUsers',
-    translations: {
-      value: ['.'],
-      format: 'json',
-    },
     redirectTo: transition => transition
       .injector()
       .getAsync('users')
       .then(users => (users.length === 0 ? { state: 'pci.projects.project.users.onboarding' } : false)),
     resolve: {
-      breadcrumb: /* @ngInject */ $translate => $translate
-        .refresh()
-        .then(() => $translate.instant('pci_projects_project_users_title')),
+      breadcrumb: /* @ngInject */ $translate => $translate.instant('pci_projects_project_users_title'),
       users: /* @ngInject */ (
         PciProjectsProjectUsersService,
         projectId,
