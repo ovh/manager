@@ -8,11 +8,8 @@ export default /* @ngInject */($stateProvider) => {
         },
       },
       layout: 'modal',
-      translations: {
-        value: ['.'],
-        format: 'json',
-      },
       resolve: {
+        breadcrumb: () => null, // Hide breadcrumb
         userId: /* @ngInject */$transition$ => $transition$.params().userId,
         user: /* @ngInject */ (
           PciProjectsProjectUsersService,
