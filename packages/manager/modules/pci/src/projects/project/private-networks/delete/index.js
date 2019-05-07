@@ -4,7 +4,7 @@ import 'angular-translate';
 import '@ovh-ux/ng-translate-async-loader';
 import 'ovh-ui-angular';
 import 'ovh-api-services';
-import '@ovh-ux/ng-ovh-uirouter-layout';
+import '@ovh-ux/ng-uirouter-layout';
 
 import component from './delete.component';
 import routing from './delete.routing';
@@ -18,7 +18,7 @@ angular
     'oui',
     'ovh-api-services',
     'ui.router',
-    'ngOvhUiRouterLayout',
+    'ngUiRouterLayout',
   ])
   .config(routing)
   .component('pciProjectPrivateNetworksDelete', component)
