@@ -19,6 +19,7 @@ angular
     'ovh-api-services',
     'pascalprecht.translate',
   ])
-  .config(routing);
+  .config(routing)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

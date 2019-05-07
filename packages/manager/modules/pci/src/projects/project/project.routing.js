@@ -12,10 +12,6 @@ export default /* @ngInject */ ($stateProvider) => {
           template,
         },
       },
-      translations: {
-        format: 'json',
-        value: ['.'],
-      },
       redirectTo: ($transitions) => {
         const projectPromise = $transitions.injector().getAsync('project');
         return projectPromise

@@ -47,9 +47,7 @@ export default /* @ngInject */ ($stateProvider) => {
           return promise;
         },
 
-        breadcrumb: /* @ngInject */ $translate => $translate
-          .refresh()
-          .then(() => $translate.instant('pci_projects_project_storages_containers_archive_title')),
+        breadcrumb: /* @ngInject */ $translate => $translate.instant('pci_projects_project_storages_containers_archive_title'),
       },
     });
 };

@@ -15,6 +15,7 @@ angular
     'ovh-api-services',
     'ui.router',
   ])
-  .config(routing);
+  .config(routing)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

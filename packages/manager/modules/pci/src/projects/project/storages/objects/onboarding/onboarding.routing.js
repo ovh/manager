@@ -9,9 +9,5 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
         }),
       },
-      translations: {
-        value: ['.'],
-        format: 'json',
-      },
     });
 };
