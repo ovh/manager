@@ -2,7 +2,7 @@
   "pci_projects_project_instances_instance_delete_title": "Supprimer une instance",
   "pci_projects_project_instances_instance_delete_submit_label": "Confirmer",
   "pci_projects_project_instances_instance_delete_cancel_label": "Annuler",
-  "pci_projects_project_instances_instance_delete_content": "Ête vous sûr de vouloir supprimer l'instance {{ instance }} ?",
+  "pci_projects_project_instances_instance_delete_content": "Êtes-vous sûr de vouloir supprimer l'instance {{ instance }} ?",
   "pci_projects_project_instances_instance_delete_monthlyBilling_alert": "Le forfait du mois en cours pour ce serveur a déjà été facturé, il sera perdu.",
   "pci_projects_project_instances_instance_delete_success_message": "L'instance {{ instance }} a été supprimée.",
   "pci_projects_project_instances_instance_delete_error_delete": "Une erreur est survenue lors de la suppression de l'instance {{ instance }} : {{ message }}."
