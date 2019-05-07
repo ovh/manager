@@ -3,6 +3,7 @@
 <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
 
 <oui-stepper
+    data-current-index="$ctrl.currentStep"
     data-on-finish="$ctrl.create()">
 
     <oui-step-form
@@ -118,7 +119,11 @@
             data-region="$ctrl.model.datacenter.name"
             data-service-name="{{:: $ctrl.projectId }}"
             data-selected-image="$ctrl.model.image">
-            <a href="#region" class="oui-link" data-translate="pci_projects_project_instances_add_image_not_available"></a>
+            <button type="button"
+                    class="oui-button oui-button_link"
+                    data-ng-click="$ctrl.currentStep = 0">
+                <span data-translate="pci_projects_project_instances_add_image_not_available"></span>
+            </button>
         </pci-project-images-list>
 
         <pci-project-instance-ssh-keys

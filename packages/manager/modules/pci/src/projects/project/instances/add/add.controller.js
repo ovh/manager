@@ -178,12 +178,12 @@ export default class PciInstancesAddController {
   }
 
   getUnavailabilityReason(datacenter) {
-    if (!this.model.flavorGroup.isAvailableInRegion(datacenter.name)) {
-      return 'UNAVAILABLE';
-    }
-
     if (!datacenter.isAvailable()) {
       return 'INACTIVE';
+    }
+
+    if (!this.model.flavorGroup.isAvailableInRegion(datacenter.name)) {
+      return 'UNAVAILABLE';
     }
 
     if (has(datacenter, 'quota.instance')) {
