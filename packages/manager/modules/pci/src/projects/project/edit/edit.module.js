@@ -7,12 +7,15 @@ import 'angular-translate';
 import 'ovh-api-services';
 import 'ovh-ui-angular';
 
+import remove from './remove';
+
 import routing from './edit.routing';
 
 const moduleName = 'ovhManagerPciProjectEdit';
 
 angular
   .module(moduleName, [
+    remove,
     'ngOvhUserPref',
     'oui',
     'ovhManagerCore',
