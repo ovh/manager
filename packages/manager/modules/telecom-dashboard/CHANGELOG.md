@@ -1,3 +1,12 @@
+# [4.2.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom-dashboard@4.1.0...@ovh-ux/manager-telecom-dashboard@4.2.0) (2019-05-07)
+
+
+### Features
+
+* **storages.volume-snapshots:** add volume-snapshots list ([#359](https://github.com/ovh-ux/manager/issues/359)) ([c8a63fd](https://github.com/ovh-ux/manager/commit/c8a63fd))
+
+
+
 # [4.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom-dashboard@4.0.0...@ovh-ux/manager-telecom-dashboard@4.1.0) (2019-03-22)
 
 

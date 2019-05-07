@@ -1,3 +1,17 @@
+# [6.2.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-sms@6.1.0...@ovh-ux/manager-sms@6.2.0) (2019-05-07)
+
+
+### Bug Fixes
+
+* **sms.options:** reset notification sender on change type ([#450](https://github.com/ovh-ux/manager/issues/450)) ([92a2824](https://github.com/ovh-ux/manager/commit/92a2824))
+
+
+### Features
+
+* **storages.volume-snapshots:** add volume-snapshots list ([#359](https://github.com/ovh-ux/manager/issues/359)) ([c8a63fd](https://github.com/ovh-ux/manager/commit/c8a63fd))
+
+
+
 # [6.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-sms@6.0.0...@ovh-ux/manager-sms@6.1.0) (2019-03-22)
 
 
