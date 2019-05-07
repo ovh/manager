@@ -3,13 +3,13 @@
 
     <pci-project-private-networks-empty>
         <oui-button
-            data-ng-if="!$ctrl.operationId"
+            data-ng-if="!$ctrl.operation"
             data-variant="primary"
             data-on-click="$ctrl.createVrack()">
             <span data-translate="pci_projects_project_network_private_vrack_create"></span>
         </oui-button>
 
-        <div data-ng-if="$ctrl.operationId" class="text-center">
+        <div data-ng-if="$ctrl.operation" class="text-center">
             <oui-spinner data-size="m" data-ng-if="$ctrl.isLoading"></oui-spinner>
             <div data-ng-if="!$ctrl.isLoading" class="text-center">
                 <p data-translate="pci_projects_project_network_private_vrack_pending"></p>

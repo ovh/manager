@@ -6,8 +6,8 @@ export default /* @ngInject */($stateProvider) => {
     resolve: {
       goBack: ($state, projectId) => () => $state.go('^', { projectId }),
       messageContainer: () => 'pci.projects.project.privateNetwork.vrack',
-      onCreationSuccess: ($state, projectId) => operationId => $state.go('pci.projects.project.privateNetwork.vrack', { projectId, operationId }),
-      onAssociationSuccess: ($state, projectId) => () => $state.go('pci.projects.project.privateNetwork.list', { projectId }),
+      onCreationSuccess: ($state, projectId) => () => $state.go('pci.projects.project.privateNetwork.vrack', { projectId }),
+      onAssociationSuccess: ($state, projectId) => () => $state.go('pci.projects.project.privateNetwork', { projectId }),
     },
   });
 };
