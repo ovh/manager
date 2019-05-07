@@ -18,30 +18,28 @@ export default class PciInstanceDeleteController {
 
   deleteInstance() {
     this.isLoading = true;
-    return this.PciProjectsProjectInstanceService.delete(this.projectId, this.instance)
-      .then(() => {
-        this.CucCloudMessage.success(
-          this.$translate.instant(
-            'pci_projects_project_instances_instance_delete_success_message',
-            {
-              instance: this.instance.name,
-            },
-          ),
-        );
-      })
-      .catch((err) => {
-        this.CucCloudMessage.error(
-          this.$translate.instant(
-            'pci_projects_project_instances_instance_delete_error_delete',
-            {
-              message: get(err, 'data.message', null),
-            },
-          ),
-        );
-      })
+    return this.PciProjectsProjectInstanceService
+      .delete(this.projectId, this.instance)
+      .then(() => this.goBack(
+        this.$translate.instant(
+          'pci_projects_project_instances_instance_delete_success_message',
+          {
+            instance: this.instance.name,
+          },
+        ),
+      ))
+      .catch(err => this.goBack(
+        this.$translate.instant(
+          'pci_projects_project_instances_instance_delete_error_delete',
+          {
+            message: get(err, 'data.message', null),
+            instance: this.instance.name,
+          },
+        ),
+        'error',
+      ))
       .finally(() => {
         this.isLoading = false;
-        return this.goBack();
       });
   }
 }

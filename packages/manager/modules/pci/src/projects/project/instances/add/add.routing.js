@@ -1,5 +1,5 @@
 export default /* @ngInject */($stateProvider) => {
-  $stateProvider.state('pci.projects.project.instances.new', {
+  $stateProvider.state('pci.projects.project.instances.add', {
     url: '/new',
     component: 'ovhManagerPciInstancesAdd',
     resolve: {
@@ -21,7 +21,7 @@ export default /* @ngInject */($stateProvider) => {
         projectId,
       }),
 
-      goBack: ($state, projectId) => () => $state.go('pci.projects.project.instances', { projectId }),
+      goBack: /* @ngInject */ goToInstances => goToInstances,
     },
   });
 };

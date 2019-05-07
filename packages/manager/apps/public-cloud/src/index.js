@@ -1,7 +1,7 @@
 /* eslint-disable import/no-webpack-loader-syntax, import/extensions */
 import 'script-loader!jquery';
 import angular from 'angular';
-import '@uirouter/angularjs'; // eslint-disable-line import/no-duplicates
+import uiRouter, { RejectType } from '@uirouter/angularjs';
 import 'script-loader!lodash';
 import 'script-loader!jquery-ui/ui/minified/core.min';
 import 'script-loader!jquery-ui/ui/minified/widget.min';
@@ -16,15 +16,14 @@ import 'script-loader!angular-ui-validate/dist/validate.js';
 
 import get from 'lodash/get';
 import has from 'lodash/has';
-import { RejectType } from '@uirouter/angularjs'; // eslint-disable-line import/no-duplicates
 
 import navbar from '@ovh-ux/manager-navbar';
 import ovhManagerCore from '@ovh-ux/manager-core';
 import ovhManagerPci from '@ovh-ux/manager-pci';
 import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
 import ngOvhUserPref from '@ovh-ux/ng-ovh-user-pref';
-import ngUiRouterBreadcrumb from '@ovh-ux/ng-ovh-uirouter-breadcrumb';
-import ngUiRouterLineProgress from '@ovh-ux/ng-ovh-uirouter-line-progress';
+import ngUiRouterBreadcrumb from '@ovh-ux/ng-uirouter-breadcrumb';
+import ngUiRouterLineProgress from '@ovh-ux/ng-uirouter-line-progress';
 
 import 'ovh-ui-kit/dist/oui.css';
 import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
@@ -42,7 +41,7 @@ import routing from './index.routes';
 
 angular
   .module('ovhStack', [
-    'ui.router',
+    uiRouter,
     betaWarning,
     ngUiRouterBreadcrumb,
     ngUiRouterLineProgress,

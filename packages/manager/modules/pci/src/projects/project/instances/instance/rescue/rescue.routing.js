@@ -8,6 +8,10 @@ export default /* @ngInject */($stateProvider) => {
         },
       },
       layout: 'modal',
+      translations: {
+        value: ['.'],
+        format: 'json',
+      },
       resolve: {
         images: /* @ngInject */ (
           PciProjectsProjectInstanceService,
@@ -16,10 +20,7 @@ export default /* @ngInject */($stateProvider) => {
         ) => PciProjectsProjectInstanceService
           .getCompatibleRescueImages(projectId, instance),
 
-        goBack: /* @ngInject */ ($state, projectId, instanceId) => () => $state.go('pci.projects.project.instances.instance', {
-          projectId,
-          instanceId,
-        }),
+        goBack: /* @ngInject */ goToInstance => goToInstance,
       },
     });
 };

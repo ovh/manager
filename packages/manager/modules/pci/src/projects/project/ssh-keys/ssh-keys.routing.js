@@ -13,7 +13,7 @@ export default /* @ngInject */ ($stateProvider) => {
         value: ['.'],
       },
       resolve: {
-        breadcrumb: $translate => $translate
+        breadcrumb: /* @ngInject */ $translate => $translate
           .refresh()
           .then(() => $translate.instant('pci_projects_project_sshKeys_title')),
       },

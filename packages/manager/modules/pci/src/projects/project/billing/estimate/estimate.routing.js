@@ -8,7 +8,7 @@ export default /* @ngInject */ ($stateProvider) => {
     controller,
     controllerAs: 'BillingConsumptionEstimateCtrl',
     resolve: {
-      breadcrumb: $translate => $translate
+      breadcrumb: /* @ngInject */ $translate => $translate
         .refresh()
         .then(() => $translate.instant('cpbc_tab_forecast')),
     },

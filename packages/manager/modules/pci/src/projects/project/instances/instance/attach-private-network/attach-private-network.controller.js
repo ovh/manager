@@ -40,26 +40,19 @@ export default class PciInstanceAttachPrivateNetworkController {
             },
           );
         }
-
-        this.CucCloudMessage.success(
-          message,
-          'pci.projects.project.instances.instance',
-        );
+        return this.goBack(message);
       })
-      .catch((err) => {
-        this.CucCloudMessage.error(
-          this.$translate.instant(
-            'pci_projects_project_instances_instance_attach-private-network_error_attach',
-            {
-              message: get(err, 'data.message', null),
-            },
-            'pci.projects.project.instances.instance',
-          ),
-        );
-      })
+      .catch(err => this.goBack(
+        this.$translate.instant(
+          'pci_projects_project_instances_instance_attach-private-network_error_attach',
+          {
+            message: get(err, 'data.message', null),
+          },
+        ),
+        'error',
+      ))
       .finally(() => {
         this.isLoading = false;
-        return this.goBack();
       });
   }
 }

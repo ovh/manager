@@ -12,7 +12,7 @@ export default /* @ngInject */ ($stateProvider) => {
       value: ['.'],
     },
     resolve: {
-      breadcrumb: $translate => $translate
+      breadcrumb: /* @ngInject */ $translate => $translate
         .refresh()
         .then(() => $translate.instant('cpbc_billing_control')),
     },

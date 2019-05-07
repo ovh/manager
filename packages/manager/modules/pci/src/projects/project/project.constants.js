@@ -1,7 +1,7 @@
 export const ACTIONS = [
   {
     translation: 'pci_projects_project_create_an_instance',
-    state: 'pci.projects.project.instances.new',
+    state: 'pci.projects.project.instances.add',
   },
   {
     translation: 'pci_projects_project_create_a_volume',

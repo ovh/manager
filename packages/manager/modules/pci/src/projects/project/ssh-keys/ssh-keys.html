@@ -1,18 +1,33 @@
 <h1 data-translate="pci_projects_project_sshKeys_title"></h1>
 <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
-<oui-datagrid rows="$ctrl.keys" data-page-size="5">
+<oui-datagrid
+    data-rows="$ctrl.keys"
+    data-page-size="5">
     <extra-top>
         <a class="oui-button oui-button_secondary oui-button_icon-left mb-3" data-ui-sref="pci.projects.project.sshKeys.add">
             <span class="oui-icon oui-icon-add" aria-hidden="true"></span>
             <span data-translate="pci_projects_project_sshKeys_add"></span>
         </a>
     </extra-top>
-    <oui-column data-title=":: 'pci_projects_project_sshKeys_name' | translate" data-property="name" data-type="string">
+    <oui-column
+        data-title=":: 'pci_projects_project_sshKeys_name' | translate"
+        data-property="name"
+        data-type="string"
+        data-searchable>
     </oui-column>
-    <oui-column data-title=":: 'pci_projects_project_sshKeys_public' | translate" data-property="publicKey" data-type="string">
-        <oui-clipboard model="$value" class="mb-0"></oui-clipboard>
+    <oui-column
+        data-title=":: 'pci_projects_project_sshKeys_public' | translate"
+        data-property="publicKey"
+        data-type="string"
+        data-searchable>
+        <oui-clipboard
+            class="mb-0"
+            data-model="$value">
+        </oui-clipboard>
     </oui-column>
-    <oui-action-menu data-align="end" data-compact>
+    <oui-action-menu
+        data-align="end"
+        data-compact>
         <oui-action-menu-item
             data-ui-sref="pci.projects.project.sshKeys.remove({ projectId: $ctrl.projectId, keyId: $row.id })">
             <span data-translate="pci_projects_project_sshKeys_remove"></span>

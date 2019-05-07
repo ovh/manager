@@ -135,7 +135,7 @@ export default class Instance {
   }
 
   isRescuableWithDefaultImage() {
-    return !includes(['freebsd', 'windows'], this.image.distribution);
+    return !includes(['freebsd', 'windows'], get(this.image, 'distribution'));
   }
 
   get connectionInfos() {

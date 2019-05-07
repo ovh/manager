@@ -25,30 +25,26 @@ export default class PciInstanceBackupController {
     this.isLoading = true;
     return this.PciProjectsProjectInstanceService
       .createBackup(this.projectId, this.instance, this.backup)
-      .then(() => {
-        this.CucCloudMessage.success(
-          this.$translate.instant(
-            'pci_projects_project_instances_instance_backup_success_message',
-            {
-              backup: this.backup.name,
-            },
-          ),
-        );
-      })
-      .catch((err) => {
-        this.CucCloudMessage.error(
-          this.$translate.instant(
-            'pci_projects_project_instances_instance_backup_error_backup',
-            {
-              message: get(err, 'data.message', null),
-              backup: this.backup.name,
-            },
-          ),
-        );
-      })
+      .then(() => this.goBack(
+        this.$translate.instant(
+          'pci_projects_project_instances_instance_backup_success_message',
+          {
+            backup: this.backup.name,
+          },
+        ),
+      ))
+      .catch(err => this.goBack(
+        this.$translate.instant(
+          'pci_projects_project_instances_instance_backup_error_backup',
+          {
+            message: get(err, 'data.message', null),
+            backup: this.backup.name,
+          },
+        ),
+        'error',
+      ))
       .finally(() => {
         this.isLoading = false;
-        return this.goBack();
       });
   }
 }

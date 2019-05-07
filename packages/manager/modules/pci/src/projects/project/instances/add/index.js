@@ -10,7 +10,7 @@ angular
     'oc.lazyLoad',
   ])
   .config(/* @ngInject */($stateProvider) => {
-    $stateProvider.state('pci.projects.project.instances.new.**', {
+    $stateProvider.state('pci.projects.project.instances.add.**', {
       url: '/new',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');

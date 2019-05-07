@@ -1,15 +1,31 @@
 <div data-ui-view>
     <h1 data-translate="pci_projects_project_failoverip_imports_title"></h1>
     <div>
-        <oui-datagrid rows="$ctrl.ips" page-size="5">
-            <oui-column title=":: 'pci_projects_project_failoverip_imports_block' | translate" property="ip" type="string">
+        <oui-datagrid
+            data-rows="$ctrl.ips"
+            data-page-size="5">
+            <oui-column
+                data-title=":: 'pci_projects_project_failoverip_imports_block' | translate"
+                data-property="ip"
+                data-type="string"
+                data-searchable>
             </oui-column>
-            <oui-column title=":: 'pci_projects_project_failoverip_imports_geoloc' | translate" property="country" type="string">
+            <oui-column
+                data-title=":: 'pci_projects_project_failoverip_imports_geoloc' | translate"
+                data-property="country"
+                data-type="string"
+                data-searchable>
                 <span class="text-uppercase" data-ng-bind="$value"></span>
             </oui-column>
-            <oui-column title=":: 'pci_projects_project_failoverip_imports_id' | translate" property="routedTo.serviceName" type="string">
+            <oui-column
+                data-title=":: 'pci_projects_project_failoverip_imports_id' | translate"
+                data-property="routedTo.serviceName"
+                data-type="string"
+                data-searchable>
             </oui-column>
-            <oui-action-menu data-align="end" data-compact>
+            <oui-action-menu
+                data-align="end"
+                data-compact>
                 <oui-action-menu-item
                     data-ui-sref="pci.projects.project.failover-ips.imports.import({ projectId: $ctrl.projectId, serviceName: $row.ip })">
                     <span data-translate="pci_projects_project_failoverip_imports_importIp"></span>

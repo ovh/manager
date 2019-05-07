@@ -24,9 +24,11 @@
             <div>
                 <span data-translate="pci_projects_project_storages_containers_container_info_publicUrl"></span>
                 <button type="button" class="oui-popover-button"
-                    data-oui-popover="{{ 'pci_projects_project_storages_containers_container_info_publicUrl_help' | translate }}">
+                    data-oui-popover="{{:: 'pci_projects_project_storages_containers_container_info_publicUrl_help' | translate }}">
                 </button>
-                <oui-clipboard data-model="$ctrl.container.publicUrl"></oui-clipboard>
+                <oui-clipboard class="mt-1"
+                    data-model="$ctrl.container.publicUrl">
+                </oui-clipboard>
             </div>
 
             <div>
@@ -34,7 +36,12 @@
                     data-ng-if="$ctrl.archive"></span>
                 <span data-translate="pci_projects_project_storages_containers_container_object_info_staticUrl"
                     data-ng-if="!$ctrl.archive"></span>
-                <oui-clipboard data-model="$ctrl.container.staticUrl"></oui-clipboard>
+                <button type="button" class="oui-popover-button"
+                    data-oui-popover="{{ 'pci_projects_project_storages_containers_container_object_info_staticUrl_help' | translate }}"
+                    data-ng-if="!$ctrl.archive">
+                </button>
+                <oui-clipboard class="mt-1"
+                    data-model="$ctrl.container.staticUrl"></oui-clipboard>
             </div>
 
             <div data-ng-if="$ctrl.archive">

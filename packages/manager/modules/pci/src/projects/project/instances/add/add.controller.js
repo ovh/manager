@@ -63,7 +63,6 @@ export default class PciInstancesAddController {
   }
 
   loadMessages() {
-    this.CucCloudMessage.unSubscribe('pci.projects.project.instances.add');
     this.messageHandler = this.CucCloudMessage.subscribe('pci.projects.project.instances.add', { onMessage: () => this.refreshMessages() });
   }
 

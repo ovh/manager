@@ -10,6 +10,7 @@ import containers from '../containers';
 
 import addObject from './add';
 import object from './object';
+import onboarding from './onboarding';
 
 import routing from './objects.routing';
 
@@ -20,6 +21,7 @@ angular
     addObject,
     containers,
     object,
+    onboarding,
     'ngTranslateAsyncLoader',
     'oui',
     'ovh-api-services',
