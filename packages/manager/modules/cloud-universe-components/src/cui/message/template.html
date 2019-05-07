@@ -15,6 +15,10 @@
                       <a data-ng-switch-when="state"
                          data-ng-bind="message.link.text"
                          data-ui-sref="{{:: message.link.state}}"></a>
+                      <a data-ng-switch-when="download"
+                         data-ng-bind="message.link.text"
+                         href="{{:: message.link.value}}"
+                         download="{{:: message.link.download }}"></a>
                       <a data-ng-switch-default
                          data-ng-bind="message.link.text"
                          href="{{:: message.link.value}}"
