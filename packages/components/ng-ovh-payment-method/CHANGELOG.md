@@ -1,3 +1,12 @@
+## [2.1.1](https://github.com/ovh-ux/ng-ovh-payment-method/compare/v2.1.0...v2.1.1) (2019-05-07)
+
+
+### Bug Fixes
+
+* fallback to col-md-x for bs3 grid compatibility ([86ec852](https://github.com/ovh-ux/ng-ovh-payment-method/commit/86ec852))
+
+
+
 # [2.1.0](https://github.com/ovh-ux/ng-ovh-payment-method/compare/v2.0.1...v2.1.0) (2019-04-19)
 
 
