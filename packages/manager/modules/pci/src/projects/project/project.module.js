@@ -18,6 +18,7 @@ import sshKeys from './ssh-keys';
 import privateNetworks from './private-networks';
 import sidebar from './sidebar';
 import storages from './storages';
+import users from './users';
 import vouchers from './vouchers';
 import routing from './project.routing';
 
@@ -43,6 +44,7 @@ angular
     sshKeys,
     sidebar,
     storages,
+    users,
     vouchers,
   ])
   .config(routing)
