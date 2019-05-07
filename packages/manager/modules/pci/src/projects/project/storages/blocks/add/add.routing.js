@@ -8,9 +8,7 @@ export default /* @ngInject */ ($stateProvider) => {
         cancelLink: /* @ngInject */ ($state, projectId) => $state.href('pci.projects.project.storages.blocks', {
           projectId,
         }),
-        breadcrumb: /* @ngInject */ $translate => $translate
-          .refresh()
-          .then(() => $translate.instant('pci_projects_project_storages_blocks_add_title')),
+        breadcrumb: /* @ngInject */ $translate => $translate.instant('pci_projects_project_storages_blocks_add_title'),
       },
     });
 };

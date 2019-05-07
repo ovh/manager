@@ -15,8 +15,7 @@ export default /* @ngInject */ ($stateProvider) => {
       ) => PciProjectsProjectInstanceService
         .get(projectId, instanceId),
       goBack: /* @ngInject */ goToInstance => goToInstance,
-      breadcrumb: /* @ngInject */ $translate => $translate.refresh()
-        .then(() => $translate.instant('pci_projects_project_instances_instance_edit_title')),
+      breadcrumb: /* @ngInject */ $translate => $translate.instant('pci_projects_project_instances_instance_edit_title'),
     },
   });
 };

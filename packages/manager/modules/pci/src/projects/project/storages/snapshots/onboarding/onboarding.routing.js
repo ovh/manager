@@ -10,9 +10,5 @@ export default /* @ngInject */ ($stateProvider) => {
           help: 'snapshot',
         }),
       },
-      translations: {
-        value: ['.'],
-        format: 'json',
-      },
     });
 };

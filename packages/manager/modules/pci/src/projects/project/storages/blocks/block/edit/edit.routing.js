@@ -5,9 +5,7 @@ export default /* @ngInject */($stateProvider) => {
       component: 'pciProjectStorageBlocksBlockEdit',
       resolve: {
         goBack: /* @ngInject */ goToBlockStorage => goToBlockStorage,
-        breadcrumb: /* @ngInject */ $translate => $translate
-          .refresh()
-          .then(() => $translate.instant('pci_projects_project_storages_blocks_block_edit_title')),
+        breadcrumb: /* @ngInject */ $translate => $translate.instant('pci_projects_project_storages_blocks_block_edit_title'),
       },
     });
 };

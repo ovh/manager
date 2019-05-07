@@ -7,14 +7,8 @@ export default /* @ngInject */ ($stateProvider) => {
     controller,
     controllerAs: 'BillingCtrl',
     template,
-    translations: {
-      format: 'json',
-      value: ['.'],
-    },
     resolve: {
-      breadcrumb: /* @ngInject */ $translate => $translate
-        .refresh()
-        .then(() => $translate.instant('cpbc_billing_control')),
+      breadcrumb: /* @ngInject */ $translate => $translate.instant('cpbc_billing_control'),
     },
   });
 };
