@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci",
-  "version": "0.1.0-alpha.0",
+  "version": "0.2.0-alpha.0",
   "license": "BSD-3-Clause",
   "files": [
     "dist"
@@ -20,7 +20,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.8.1",
     "@ovh-ux/manager-config": "^0.2.0",
-    "@ovh-ux/ng-ovh-cloud-universe-components": "^1.1.0-alpha.0",
+    "@ovh-ux/ng-ovh-cloud-universe-components": "^1.2.0-alpha.0",
     "@ovh-ux/ng-ovh-user-pref": "^1.0.0",
     "d3": "~3.5.13",
     "flag-icon-css": "~0.8.5",
@@ -38,10 +38,10 @@
   },
   "peerDependencies": {
     "@ovh-ux/manager-cloud-styles": "^0.3.0-alpha.0",
-    "@ovh-ux/manager-core": "^5.0.0",
+    "@ovh-ux/manager-core": "^5.1.0",
     "@ovh-ux/manager-telecom-styles": "^2.0.2",
     "@ovh-ux/ng-ovh-api-wrappers": "^3.0.0",
-    "@ovh-ux/ng-ovh-cloud-universe-components": "^1.1.0-alpha.0",
+    "@ovh-ux/ng-ovh-cloud-universe-components": "^1.2.0-alpha.0",
     "@ovh-ux/ng-ovh-doc-url": "^1.0.0",
     "@ovh-ux/ng-ovh-form-flat": "^4.0.0",
     "@ovh-ux/ng-ovh-jsplumb": "^5.0.0",
@@ -52,7 +52,7 @@
     "@ovh-ux/ng-ovh-swimming-poll": "^4.0.0",
     "@ovh-ux/ng-ovh-sidebar-menu": "git+https://github.com/ovh-ux/ng-ovh-sidebar-menu.git#feat/always-open",
     "@ovh-ux/ng-ovh-toaster": "^1.0.2",
-    "@ovh-ux/ng-ovh-uirouter-layout": "^0.0.0",
+    "@ovh-ux/ng-ovh-uirouter-layout": "^0.1.0",
     "@ovh-ux/ng-ovh-user-pref": "^1.0.0",
     "@ovh-ux/ng-translate-async-loader": "^2.0.0",
     "@uirouter/angularjs": "^1.0.15",
