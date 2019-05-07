@@ -26,6 +26,11 @@ angular.module(moduleName, [
             .refresh()
             .then(() => $translate.instant('kube_list_title')),
         },
+
+        translations: {
+          value: ['.'],
+          format: 'json',
+        },
       });
   })
   .component('ovhManagerPciProjectKubernetesList', component)
