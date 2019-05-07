@@ -93,7 +93,7 @@ export const MENU = [
     subitems: [
       {
         options: {
-          state: 'pci.projects.project.legacy.compute.openstack.users',
+          state: 'pci.projects.project.users',
         },
         translation: 'cloud_sidebar_project_management_users',
       },
