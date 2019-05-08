@@ -30,6 +30,7 @@ import ngUiRouterLineProgress from '@ovh-ux/ng-uirouter-line-progress';
 import 'ovh-ui-kit/dist/oui.css';
 import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
 
+import atInternet from './components/at-internet';
 import betaWarning from './components/beta-warning';
 import preload from './components/manager-preload';
 import walkMe from './components/walkMe';
@@ -46,6 +47,7 @@ Environment.setRegion(__WEBPACK_REGION__);
 angular
   .module('ovhStack', [
     uiRouter,
+    atInternet,
     betaWarning,
     ngUiRouterBreadcrumb,
     ngUiRouterLineProgress,
