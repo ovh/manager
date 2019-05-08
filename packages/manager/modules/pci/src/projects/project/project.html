@@ -1,15 +1,18 @@
-<div class="container-fluid h-100">
+<div class="pci-project container-fluid h-100"
+     data-ng-class="'pci-project-' + $ctrl.project.status">
     <div class="row h-100">
-        <div class="col-md-2 p-0 h-100 d-md-flex flex-column"
+        <div class="p-0 h-100 d-md-flex flex-column"
             data-ng-class="{
-                'd-none': !$ctrl.isSidebarOpen
+                'd-none': !$ctrl.isSidebarOpen,
+                'col-md-2': $ctrl.sidebarVisible
             }">
-            <cloud-sidebar></cloud-sidebar>
+            <cloud-sidebar data-ng-if="$ctrl.sidebarVisible"></cloud-sidebar>
         </div>
-        <div class="h-100 position-relative col-md-10 p-0">
-            <div class="position-absolute w-100 h-100 py-4 px-5" style="overflow: auto;">
-                <uirouter-breadcrumb></uirouter-breadcrumb>
-                <div class="mt-3" data-ui-view>
+        <div class="h-100 position-relative p-0"
+             data-ng-class="$ctrl.sidebarVisible ? 'col-md-10' : 'w-100'">
+            <div class="pci-project-content position-absolute w-100 h-100 py-4 px-5" style="overflow: auto;">
+                <ng-ovh-uirouter-breadcrumb></ng-ovh-uirouter-breadcrumb>
+                <div class="pci-project-view mt-3" data-ui-view>
                     <div data-ng-if="$ctrl.project">
                         <oui-page-header heading="{{ ::$ctrl.project.description }}">
                             <oui-header-tabs class="mt-3">

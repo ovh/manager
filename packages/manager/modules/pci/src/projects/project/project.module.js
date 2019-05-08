@@ -21,6 +21,8 @@ import storages from './storages';
 import vouchers from './vouchers';
 import routing from './project.routing';
 
+import './project.scss';
+
 const moduleName = 'ovhManagerPciProject';
 
 angular

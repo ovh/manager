@@ -3,9 +3,9 @@ import '@ovh-ux/ng-translate-async-loader';
 import 'angular-translate';
 import 'ovh-ui-angular';
 
-import component from './credits.component';
+import component from './creditInfo.component';
 
-const moduleName = 'ovhManagerPciProjectsNewPaymentCredits';
+const moduleName = 'ovhManagerPciProjectsNewPaymentCreditInfo';
 
 angular
   .module(moduleName, [
@@ -14,6 +14,6 @@ angular
     'pascalprecht.translate',
   ])
   .run(/* @ngTranslationsInject:json ./translations */)
-  .component('pciProjectNewPaymentCredits', component);
+  .component('pciProjectNewPaymentCreditInfo', component);
 
 export default moduleName;
