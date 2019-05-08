@@ -13,7 +13,7 @@ module.exports = (env = {}) => {
         { from: path.resolve(__dirname, '../../../../node_modules/@ovh-ux/manager-pci/dist/assets'), to: 'assets' },
       ],
     },
-  }, env);
+  }, process.env.REGION ? Object.assign(env, { region: process.env.REGION }) : env);
 
   return merge(config, {
     entry: './src/index.js',
@@ -24,6 +24,7 @@ module.exports = (env = {}) => {
     plugins: [
       new webpack.DefinePlugin({
         __FEEDBACK_URL__: process.env.FEEDBACK_URL ? `'${process.env.FEEDBACK_URL}'` : 'null',
+        __WEBPACK_REGION__: process.env.REGION ? `'${process.env.REGION.toUpperCase()}'` : 'null',
       }),
     ],
     resolve: {

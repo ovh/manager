@@ -18,6 +18,7 @@ import get from 'lodash/get';
 import has from 'lodash/has';
 
 import navbar from '@ovh-ux/manager-navbar';
+import { Environment } from '@ovh-ux/manager-config';
 import ovhManagerCore from '@ovh-ux/manager-core';
 import ovhManagerPci from '@ovh-ux/manager-pci';
 import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
@@ -38,6 +39,8 @@ import './index.scss';
 import controller from './index.controller';
 import service from './index.service';
 import routing from './index.routes';
+
+Environment.setRegion(__WEBPACK_REGION__);
 
 angular
   .module('ovhStack', [
