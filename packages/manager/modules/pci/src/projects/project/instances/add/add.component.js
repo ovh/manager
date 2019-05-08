@@ -8,6 +8,7 @@ export default {
     privateNetworks: '<',
     regions: '<',
     cancelLink: '<',
+    quotaLink: '<',
   },
   controller,
   template,
