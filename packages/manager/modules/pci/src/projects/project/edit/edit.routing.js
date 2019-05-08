@@ -12,14 +12,8 @@ export default /* @ngInject */ ($stateProvider) => {
           template,
         },
       },
-      translations: {
-        format: 'json',
-        value: ['.'],
-      },
       resolve: {
-        breadcrumb: /* @ngInject */ $translate => $translate
-          .refresh()
-          .then(() => $translate.instant('pci_projects_project_parameters')),
+        breadcrumb: /* @ngInject */ $translate => $translate.instant('pci_projects_project_parameters'),
       },
     });
 };

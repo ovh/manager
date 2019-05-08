@@ -1,3 +1,14 @@
+# [6.2.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-layout-ovh@6.1.0...@ovh-ux/manager-layout-ovh@6.2.0) (2019-05-07)
+
+
+### Features
+
+* **instances:** add instance dashboard ([26b25f7](https://github.com/ovh-ux/manager/commit/26b25f7))
+* **navbar:** add managers navbar ([cb13bfb](https://github.com/ovh-ux/manager/commit/cb13bfb))
+* **storages.volume-snapshots:** add volume-snapshots list ([#359](https://github.com/ovh-ux/manager/issues/359)) ([c8a63fd](https://github.com/ovh-ux/manager/commit/c8a63fd))
+
+
+
 # [6.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-layout-ovh@6.0.0...@ovh-ux/manager-layout-ovh@6.1.0) (2019-03-22)
 
 

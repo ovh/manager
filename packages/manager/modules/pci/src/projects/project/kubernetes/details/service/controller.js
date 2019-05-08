@@ -1,5 +1,6 @@
 import find from 'lodash/find';
 import set from 'lodash/set';
+import some from 'lodash/some';
 
 import { CONFIG_FILENAME, KUBECONFIG_URL, KUBECTL_URL } from './constants';
 import { REGION, STATUS } from '../constants';
@@ -71,6 +72,10 @@ export default class KubernetesServiceCtrl {
 
   refreshMessages() {
     this.messages = this.messageHandler.getMessages();
+
+    if (some(this.messages, { type: 'success' })) {
+      this.$onInit();
+    }
   }
 
   getClusterInfos() {

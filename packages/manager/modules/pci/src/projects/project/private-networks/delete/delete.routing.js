@@ -1,5 +1,5 @@
 export default /* @ngInject */($stateProvider) => {
-  $stateProvider.state('pci.projects.project.privateNetwork.list.delete', {
+  $stateProvider.state('pci.projects.project.privateNetwork.delete', {
     url: '/delete?networkId',
     views: {
       modal: {
@@ -11,7 +11,7 @@ export default /* @ngInject */($stateProvider) => {
     },
     resolve: {
       goBack: ($state, projectId) => () => $state.go('^', { projectId }),
-      messageContainer: () => 'pci.projects.project.privateNetwork.list',
+      messageContainer: () => 'pci.projects.project.privateNetwork',
       networkId: /* @ngInject */ $transition$ => $transition$.params().networkId,
     },
     layout: 'modal',

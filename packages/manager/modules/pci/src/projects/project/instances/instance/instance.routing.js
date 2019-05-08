@@ -2,10 +2,6 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.instances.instance', {
     url: '/:instanceId',
     component: 'pciProjectsProjectInstancesInstance',
-    translations: {
-      value: ['.'],
-      format: 'json',
-    },
     resolve: {
       instanceId: /* @ngInject */ $transition$ => $transition$.params().instanceId,
       instance: /* @ngInject */ (

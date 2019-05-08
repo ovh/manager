@@ -8,10 +8,6 @@ export default /* @ngInject */ ($stateProvider) => {
       url: '/projects',
       controller,
       controllerAs: '$ctrl',
-      translations: {
-        value: ['.'],
-        format: 'json',
-      },
       template,
     });
 };

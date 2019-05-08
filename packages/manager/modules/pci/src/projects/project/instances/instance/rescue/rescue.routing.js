@@ -8,10 +8,6 @@ export default /* @ngInject */($stateProvider) => {
         },
       },
       layout: 'modal',
-      translations: {
-        value: ['.'],
-        format: 'json',
-      },
       resolve: {
         images: /* @ngInject */ (
           PciProjectsProjectInstanceService,

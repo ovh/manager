@@ -2,18 +2,12 @@ export default /* @ngInject */($stateProvider) => {
   $stateProvider.state('pci.projects.project.instances', {
     url: '/instances?help',
     component: 'pciProjectsProjectInstances',
-    translations: {
-      value: ['.'],
-      format: 'json',
-    },
     redirectTo: transition => transition
       .injector()
       .getAsync('instances')
       .then(storages => (storages.length === 0 ? { state: 'pci.projects.project.instances.onboarding' } : false)),
     resolve: {
-      breadcrumb: /* @ngInject */ $translate => $translate
-        .refresh()
-        .then(() => $translate.instant('pci_projects_project_instances_title')),
+      breadcrumb: /* @ngInject */ $translate => $translate.instant('pci_projects_project_instances_title'),
       help: /* @ngInject */ $transition$ => $transition$.params().help,
       instances: /* @ngInject */ (
         PciProjectsProjectInstanceService,
@@ -71,7 +65,7 @@ export default /* @ngInject */($stateProvider) => {
         instanceId: instance.id,
       }),
 
-      goToInstances: /* @ngInject */ ($rootScope, CucCloudMessage, $state, projectId) => (message = false, type = 'success') => {
+      goToInstances: /* @ngInject */ (CucCloudMessage, $state, projectId) => (message = false, type = 'success') => {
         const reload = message && type === 'success';
 
         const promise = $state.go('pci.projects.project.instances', {

@@ -1,3 +1,19 @@
+# [0.2.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci-app@0.1.0...@ovh-ux/manager-pci-app@0.2.0) (2019-05-07)
+
+
+### Bug Fixes
+
+* remove dependencies to @ovh-ux/manager-kubernetes ([fd4b5e8](https://github.com/ovh-ux/manager/commit/fd4b5e8))
+
+
+### Features
+
+* add block storages list ([7f36914](https://github.com/ovh-ux/manager/commit/7f36914))
+* **instances:** add instance dashboard ([26b25f7](https://github.com/ovh-ux/manager/commit/26b25f7))
+* **storages.volume-snapshots:** add volume-snapshots list ([#359](https://github.com/ovh-ux/manager/issues/359)) ([c8a63fd](https://github.com/ovh-ux/manager/commit/c8a63fd))
+
+
+
 # [0.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci-app@0.0.0...@ovh-ux/manager-pci-app@0.1.0) (2019-03-22)
 
 

@@ -73,7 +73,7 @@
             data-header="{{:: 'pci_projects_project_network_private_create_localisation' | translate }}"
             data-editable="!$ctrl.loaders.isSubmitting">
             <div class="row">
-                <div class="oui-select-picker col-md-4 mb-2"
+                <div class="oui-select-picker col-sm-6 col-md-4 mb-2"
                      data-ng-repeat="subnet in $ctrl.subnets | orderBy : 'region' track by subnet.region"
                      data-ng-class="{ 'oui-select-picker_light' : !subnet.selected }">
                     <div class="oui-select-picker__label-container">
@@ -84,16 +84,16 @@
                         <div class="oui-select-picker__value-container oui-select-picker__section">
                             <oui-field
                                 data-label="{{:: 'pci_projects_project_network_private_create_localisation_range' | translate }}">
-                                <div class="d-flex justify-content-around align-items-center">
+                                <div class="d-flex flex-wrap flex-xl-nowrap justify-content-around align-items-center">
                                     <input
-                                    class="oui-input mb-0 mr-2"
+                                    class="oui-input mb-0 mr-xl-2"
                                     type="text"
                                     name="{{:: region + '-range-start' }}"
                                     data-ng-model="subnet.start"
                                     disabled>
                                 <span>-</span>
                                 <input
-                                    class="oui-input mb-0 ml-2"
+                                    class="oui-input mb-0 ml-xl-2"
                                     type="text"
                                     name="{{:: region + '-range-end' }}"
                                     data-ng-model="subnet.end"

@@ -178,12 +178,12 @@ export default class PciInstancesAddController {
   }
 
   getUnavailabilityReason(datacenter) {
-    if (!this.model.flavorGroup.isAvailableInRegion(datacenter.name)) {
-      return 'UNAVAILABLE';
-    }
-
     if (!datacenter.isAvailable()) {
       return 'INACTIVE';
+    }
+
+    if (!this.model.flavorGroup.isAvailableInRegion(datacenter.name)) {
+      return 'UNAVAILABLE';
     }
 
     if (has(datacenter, 'quota.instance')) {
@@ -213,22 +213,13 @@ export default class PciInstancesAddController {
     return this.PciProjectsProjectInstanceService
       .save(this.projectId, this.instance, this.model.number)
       .then(() => {
-        let message;
-        if (this.model.number === 1) {
-          message = this.$translate.instant(
-            'pci_projects_project_instances_add_success_message',
+        const message = (this.model.number === 1)
+          ? this.$translate.instant('pci_projects_project_instances_add_success_message',
             {
               instance: this.instance.name,
-            },
-          );
-        } else {
-          message = this.$translate.instant('pci_projects_project_instances_add_success_multiple_message');
-        }
-        this.CucCloudMessage.success(
-          message,
-          'pci.projects.project.instances',
-        );
-        return this.goBack();
+            })
+          : this.$translate.instant('pci_projects_project_instances_add_success_multiple_message');
+        return this.goBack(message);
       })
       .catch((error) => {
         let message;

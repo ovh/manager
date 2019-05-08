@@ -17,7 +17,7 @@ import size from 'lodash/size';
 import startsWith from 'lodash/startsWith';
 import xor from 'lodash/xor';
 
-const moduleName = 'ngOvhUiRouterLayout';
+const moduleName = 'ngUiRouterLayout';
 
 angular
   .module(moduleName, [

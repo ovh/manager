@@ -1,57 +1,31 @@
 import get from 'lodash/get';
-import isObject from 'lodash/isObject';
-
-import { VRACK_OPERATION_COMPLETED_STATUS } from './private-networks.constants';
+import map from 'lodash/map';
+import some from 'lodash/some';
 
 const CONTAINER_NAME = 'pci.projects.project.privateNetwork';
 
 export default class {
   /* @ngInject */
-  constructor($translate, CucCloudMessage, OvhApiCloudProject, PciPrivateNetworks) {
+  constructor($translate, CucCloudMessage, OvhApiCloudProjectNetworkPrivateSubnet) {
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
-    this.OvhApiCloudProject = OvhApiCloudProject;
-    this.PciPrivateNetworks = PciPrivateNetworks;
+    this.OvhApiCloudProjectNetworkPrivateSubnet = OvhApiCloudProjectNetworkPrivateSubnet;
   }
 
   $onInit() {
     this.loadMessages();
-    this.isLoading = true;
-
-    return this.getVrackCreationOperation()
-      .then((operation) => {
-        if (isObject(operation)) {
-          return (VRACK_OPERATION_COMPLETED_STATUS.includes(operation.status)
-            ? this.redirectToVlans() : this.redirectToVrack(get(operation, 'id')));
-        }
-
-        return this.getVrack()
-          .then(() => this.redirectToVlans());
-      })
-      .catch((error) => {
-        if (error.status === 404) {
-          return this.redirectToVrack();
-        }
-
-        return this.CucCloudMessage.error(
-          this.$translate.instant('pci_projects_project_network_private_error', {
-            message: get(error, 'data.message', ''),
-          }),
-        );
-      })
-      .finally(() => {
-        this.isLoading = false;
-      });
   }
 
-  getVrack() {
-    return this.OvhApiCloudProject.v6().vrack({
+  getCIDR(network) {
+    return this.OvhApiCloudProjectNetworkPrivateSubnet.v6().query({
       serviceName: this.projectId,
-    }).$promise;
-  }
-
-  getVrackCreationOperation() {
-    return this.PciPrivateNetworks.getVrackCreationOperation(this.projectId);
+      networkId: network.id,
+    }).$promise
+      .then(([firstSubnet]) => ({
+        ...network,
+        formattedRegions: map(network.regions, 'region').join(', '),
+        address: get(firstSubnet, 'cidr'),
+      }));
   }
 
   loadMessages() {
@@ -66,5 +40,9 @@ export default class {
 
   refreshMessages() {
     this.messages = this.messageHandler.getMessages();
+
+    if (some(this.messages, { type: 'success' })) {
+      this.$onInit();
+    }
   }
 }

@@ -17,9 +17,5 @@ export default /* @ngInject */ ($stateProvider) => {
         template: Environment.getRegion() === 'US' ? templateAgora : template,
       },
     },
-    translations: {
-      value: ['.'],
-      format: 'json',
-    },
   });
 };

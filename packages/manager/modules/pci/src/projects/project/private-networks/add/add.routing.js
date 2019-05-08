@@ -1,12 +1,12 @@
 export default /* @ngInject */($stateProvider) => {
   $stateProvider.state('pci.projects.project.privateNetwork.add', {
     url: '/new',
-    views: {
-      privateNetworkView: 'pciProjectPrivateNetworksAdd',
-    },
+    component: 'pciProjectPrivateNetworksAdd',
     resolve: {
-      goBack: ($state, projectId) => () => $state.go('pci.projects.project.privateNetwork.list', { projectId }),
-      messageContainer: () => 'pci.projects.project.privateNetwork.list',
+      goBack: ($state, projectId) => () => $state.go('pci.projects.project.privateNetwork', { projectId }),
+      messageContainer: () => 'pci.projects.project.privateNetwork',
+
+      breadcrumb: /* @ngInject */ $translate => $translate.instant('pci_projects_project_network_private_create'),
     },
   });
 };
