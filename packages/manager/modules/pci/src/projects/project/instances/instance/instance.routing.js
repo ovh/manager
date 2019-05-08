@@ -29,7 +29,7 @@ export default /* @ngInject */ ($stateProvider) => {
         instanceId: instance.id,
       }),
       currentActiveLink: /* @ngInject */ ($transition$, $state) => () => $state
-        .href($transition$.$to().name, $transition$.params()),
+        .href($state.current.name, $transition$.params()),
       editInstance: /* @ngInject */ ($state, instance, projectId) => () => $state.go('pci.projects.project.instances.instance.edit', {
         projectId,
         instanceId: instance.id,
