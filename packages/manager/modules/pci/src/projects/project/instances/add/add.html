@@ -49,6 +49,7 @@
                                 data-values="[location]"
                                 data-variant="light"
                                 data-ng-if="!$ctrl.showOnlyAvailableRegions || $ctrl.isLocationAvailable(datacenter)"
+                                data-on-change="$ctrl.model.datacenter = null"
                                 data-required>
                             </oui-select-picker>
                         </div>
