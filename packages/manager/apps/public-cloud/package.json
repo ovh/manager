@@ -20,6 +20,7 @@
     "@ovh-ux/manager-pci": "^0.2.0-alpha.0",
     "@ovh-ux/manager-telecom-styles": "^2.0.2",
     "@ovh-ux/ng-at-internet": "^4.0.0",
+    "@ovh-ux/ng-at-internet-ui-router-plugin": "^2.0.0",
     "@ovh-ux/ng-ovh-actions-menu": "^5.0.0-alpha.0",
     "@ovh-ux/ng-ovh-api-wrappers": "^3.0.0",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^1.2.0-alpha.0",
@@ -70,6 +71,7 @@
   },
   "devDependencies": {
     "@ovh-ux/manager-webpack-config": "^3.0.7",
+    "glob": "^7.1.4",
     "webpack": "^4.30.0",
     "webpack-merge": "^4.1.4"
   }
