@@ -1,5 +1,3 @@
-import moment from 'moment';
-
 import controller from './history.controller';
 import template from './history.html';
 
