@@ -1,3 +1,61 @@
+# [0.2.0-alpha.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.2.0-alpha.0...@ovh-ux/manager-pci@0.2.0-alpha.1) (2019-05-09)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([40ca6e2](https://github.com/ovh-ux/manager/commit/40ca6e2))
+* **i18n:** add missing translations ([0568a65](https://github.com/ovh-ux/manager/commit/0568a65))
+* **i18n:** Fix the sentence to delete an instance ([#460](https://github.com/ovh-ux/manager/issues/460)) ([d274504](https://github.com/ovh-ux/manager/commit/d274504))
+* **i18n:** reworking async requests to manage translations correctly ([7c50071](https://github.com/ovh-ux/manager/commit/7c50071))
+* **pci:** add missing ng-uirouter-breadcrumb peer dependency ([3b3e33b](https://github.com/ovh-ux/manager/commit/3b3e33b)), closes [/github.com/ovh-ux/manager/blob/develop/packages/manager/modules/pci/src/projects/project/project.html#L14](https://github.com//github.com/ovh-ux/manager/blob/develop/packages/manager/modules/pci/src/projects/project/project.html/issues/L14)
+* **pci:** restore breadcrumb ([9933722](https://github.com/ovh-ux/manager/commit/9933722))
+* **pci.instance.add:** prevent console error ([f0ddc70](https://github.com/ovh-ux/manager/commit/f0ddc70))
+* **pci.instance.add:** refresh instances list when instance is created ([dbbb3f6](https://github.com/ovh-ux/manager/commit/dbbb3f6))
+* **pci.instance.add:** replace datacente by région ([e279f0a](https://github.com/ovh-ux/manager/commit/e279f0a))
+* **pci.instances.add:** add missing translation ([f241718](https://github.com/ovh-ux/manager/commit/f241718))
+* **pci.instances.add:** add unavailability reason with redirect to step ([1ad11ac](https://github.com/ovh-ux/manager/commit/1ad11ac))
+* **pci.kubernetes:** reload on success operation ([04bd3a6](https://github.com/ovh-ux/manager/commit/04bd3a6))
+* **pci.private-networks:** refactor routing ([bb3718c](https://github.com/ovh-ux/manager/commit/bb3718c))
+* **pci.private-networks.add:** adapt range display to responsive ([8b1bfcb](https://github.com/ovh-ux/manager/commit/8b1bfcb))
+* **pci.project.billing:** add missing translation ([4a551b4](https://github.com/ovh-ux/manager/commit/4a551b4))
+* **pci.project.billing:** update active header tab ([feac728](https://github.com/ovh-ux/manager/commit/feac728))
+* **pci.project.billing:** update tables display ([c0672b8](https://github.com/ovh-ux/manager/commit/c0672b8))
+* **pci.project.instance:** add VNC breadcrumb ([1de0602](https://github.com/ovh-ux/manager/commit/1de0602))
+* **pci.project.instance:** unset datacenter when region change ([d0c224a](https://github.com/ovh-ux/manager/commit/d0c224a))
+* **pci.project.instance:** update instance active tab ([014ee5b](https://github.com/ovh-ux/manager/commit/014ee5b))
+* **pci.project.instance:** update instance status ([2c44367](https://github.com/ovh-ux/manager/commit/2c44367))
+* **pci.project.instance:** update monthly billing check on dashboard ([3cad284](https://github.com/ovh-ux/manager/commit/3cad284))
+* **pci.project.instance:** update quota link ([24000d4](https://github.com/ovh-ux/manager/commit/24000d4))
+* **pci.project.storage:** update block price translation ([ff62baf](https://github.com/ovh-ux/manager/commit/ff62baf))
+* **pci.project.storage.snapshot:** allow to define volume size ([7c0c830](https://github.com/ovh-ux/manager/commit/7c0c830))
+* **pci.project.users:** update translations loading and breadcrumb ([e80a9c4](https://github.com/ovh-ux/manager/commit/e80a9c4))
+* **pci.sidebar:** reverse conditions for features availability ([a6f66b4](https://github.com/ovh-ux/manager/commit/a6f66b4))
+* **public-cloud:** set moment locale ([627659d](https://github.com/ovh-ux/manager/commit/627659d))
+* **storages.blocks.block.volume.edit:** name of volume is now optional ([b193e34](https://github.com/ovh-ux/manager/commit/b193e34))
+* fix pci responsive sidebar ([#456](https://github.com/ovh-ux/manager/issues/456)) ([9704477](https://github.com/ovh-ux/manager/commit/9704477))
+
+
+### Code Refactoring
+
+* **components.uirouter.layout:** remove ng-ovh prefix ([93244d0](https://github.com/ovh-ux/manager/commit/93244d0))
+
+
+### Features
+
+* **pci.kubernetes:** remove spinner loading and add breadcrumb ([336f9d1](https://github.com/ovh-ux/manager/commit/336f9d1))
+* **pci.onboarding:** redirect onboarding to list ([8c95791](https://github.com/ovh-ux/manager/commit/8c95791))
+* **pci.project.users:** add empty page ([f9205d2](https://github.com/ovh-ux/manager/commit/f9205d2))
+* **pci.projects.users:** add users module ([603f446](https://github.com/ovh-ux/manager/commit/603f446))
+* **project:** add project deletion ([#461](https://github.com/ovh-ux/manager/issues/461)) ([1805f02](https://github.com/ovh-ux/manager/commit/1805f02))
+* **us:** configure us side and remove useless links ([d12639a](https://github.com/ovh-ux/manager/commit/d12639a))
+
+
+### BREAKING CHANGES
+
+* **components.uirouter.layout:** module is now named `ngUiRouterLayout`
+
+
+
 # [0.2.0-alpha.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.1.0-alpha.0...@ovh-ux/manager-pci@0.2.0-alpha.0) (2019-05-07)
 
 
