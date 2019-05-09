@@ -76,9 +76,13 @@ export default class NetworkAddCtrl {
     this.subnets = this.mapSubnetsIpBlocks(this.subnets);
   }
 
+  isVlanAvailable(vlanId) {
+    return !find(this.networks, { vlanId });
+  }
   getVlanIdConfiguration() {
     return this.PciPrivateNetworks.getPrivateNetworks(this.projectId)
       .then((networks) => {
+        this.networks = networks;
         this.configureVlanId = some(networks, ({ vlanId }) => vlanId === DEFAULT_VLAN_ID);
         this.mandatoryVlanId = this.configureVlanId;
         if (this.configureVlanId) {
