@@ -12,11 +12,11 @@ yarn add @ovh-ux/ng-uirouter-breadcrumb
 
 ```js
 import angular from 'angular';
-import ngUiRouterBreadcrumb from '@ovh-ux/ng-uirouter-breadcrumb';
+import ngUirouterBreadcrumb from '@ovh-ux/ng-uirouter-breadcrumb';
 
 angular
   .module('myApp', [
-    ngUiRouterBreadcrumb,
+    ngUirouterBreadcrumb,
   ]);
 ```
 
