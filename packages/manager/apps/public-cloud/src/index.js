@@ -21,6 +21,7 @@ import navbar from '@ovh-ux/manager-navbar';
 import ovhManagerCore from '@ovh-ux/manager-core';
 import ovhManagerPci from '@ovh-ux/manager-pci';
 import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
+import ngOvhOtrs from '@ovh-ux/ng-ovh-otrs';
 import ngOvhUserPref from '@ovh-ux/ng-ovh-user-pref';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-uirouter-breadcrumb';
 import ngUiRouterLineProgress from '@ovh-ux/ng-uirouter-line-progress';
@@ -48,6 +49,7 @@ angular
     ovhManagerCore,
     ovhManagerPci,
     ngOvhApiWrappers,
+    ngOvhOtrs,
     ngOvhUserPref,
     navbar,
     preload,
