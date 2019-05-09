@@ -28,9 +28,7 @@ angular
         },
       },
       resolve: {
-        breadcrumb: /* @ngInject */ $translate => $translate
-          .refresh()
-          .then(() => $translate.instant('cpb_quota_protect_title')),
+        breadcrumb: /* @ngInject */ $translate => $translate.instant('cpb_quota_protect_title'),
       },
     });
   })

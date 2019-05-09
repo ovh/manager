@@ -10,5 +10,8 @@ export default {
     getStepByName: '<',
     getStateLink: '<',
     dlpStatus: '<',
+    paymentStatus: '<',
+    newProjectInfo: '<',
+    hasCreditToOrder: '<',
   },
 };

@@ -1,6 +1,9 @@
 import get from 'lodash/get';
 import merge from 'lodash/merge';
 
+import EnvironmentService from '@ovh-ux/manager-config';
+import { PCI_URLS } from '../../constants';
+
 export default class PciProjectNewCtrl {
   /* @ngInject */
   constructor($q, $translate, $window, CucCloudMessage,
@@ -27,6 +30,7 @@ export default class PciProjectNewCtrl {
 
     this.descriptionModel = null;
     this.paymentModel = null;
+    this.region = EnvironmentService.Environment.region;
   }
 
   /* ==============================
@@ -37,9 +41,9 @@ export default class PciProjectNewCtrl {
     const currentStep = this.getCurrentStep();
     let translationKey;
 
-    if (currentStep.name === 'description') {
+    if (currentStep.name === 'description' && this.region !== 'US') {
       translationKey = 'pci_projects_new_continue';
-    } else if (currentStep.model.mode === 'credits') {
+    } else if (currentStep.model.mode === 'credits' || this.hasCreditToOrder()) {
       translationKey = 'pci_projects_new_credit_and_create';
     } else if (get(currentStep.model.paymentType, 'paymentType.value') === 'BANK_ACCOUNT') {
       translationKey = 'pci_projects_new_add';
@@ -54,7 +58,9 @@ export default class PciProjectNewCtrl {
     const currentStep = this.getCurrentStep();
 
     if (currentStep.name === 'description') {
-      return this.getStateLink('next');
+      return this.region !== 'US'
+        ? this.getStateLink('next')
+        : get(PCI_URLS, 'US.website_order["cloud-resell-eu"].US')(currentStep.model.description || '');
     }
 
     return this.paymentMethodUrl;
@@ -64,7 +70,7 @@ export default class PciProjectNewCtrl {
     const currentStep = this.getCurrentStep();
 
     if (currentStep.name === 'description') {
-      return true;
+      return !currentStep.model.agreements;
     }
 
     return this.loading.creating
@@ -78,8 +84,7 @@ export default class PciProjectNewCtrl {
     const currentStep = this.getCurrentStep();
 
     if (currentStep.name === 'description') {
-      // for description step - next button is visible when agreements is not checked
-      return !currentStep.model.agreements;
+      return this.region !== 'US';
     }
 
     return get(currentStep.model.paymentType, 'paymentType.value') !== 'BANK_ACCOUNT';
@@ -89,6 +94,16 @@ export default class PciProjectNewCtrl {
     const stepNames = this.steps.map(({ name }) => name);
 
     return stepNames.indexOf(step.name) < stepNames.indexOf(this.getCurrentStep().name);
+  }
+
+  isCreditAsteriskVisible() {
+    const currentStep = this.getCurrentStep();
+
+    if (currentStep.name === 'description') {
+      return false;
+    }
+
+    return currentStep.model.mode === 'paymentMethod' && this.hasCreditToOrder();
   }
 
   /* ----------  Some payment helpers  ---------- */
@@ -137,6 +152,9 @@ export default class PciProjectNewCtrl {
 
     if (hasCredit) {
       createParams.credit = this.paymentModel.credit.value;
+    } else if (this.newProjectInfo.order
+      && (!this.paymentStatus || ['success', 'accepted'].includes(this.paymentStatus))) {
+      createParams.credit = this.newProjectInfo.order.value;
     }
 
     return this.PciProjectNewService
@@ -221,6 +239,11 @@ export default class PciProjectNewCtrl {
   ============================== */
 
   onNextBtnClick() {
+    const currentStep = this.getCurrentStep();
+    if (currentStep.name === 'description') {
+      return true;
+    }
+
     // if default payment or credit amount - create project
     if (this.paymentModel.defaultPaymentMethod
       || (this.paymentModel.mode === 'credits' && this.paymentModel.credit.value)) {
@@ -253,10 +276,18 @@ export default class PciProjectNewCtrl {
     if (this.paymentStatus === 'success' || this.paymentStatus === 'accepted') {
       // success => HiPay
       // accepted => PayPal
-      if (!this.paymentModel.projectId) {
-        // if no projectId - this mean that project is not yet created
+      if (!this.paymentModel.projectId && !this.newProjectInfo.order) {
+        // if no projectId and no credit order from newProjectInfo API call
+        // this mean that project is not yet created
         // and that a new payment method has been added
         return this.createProject();
+      }
+
+      if (!this.paymentModel.projectId && this.newProjectInfo.order) {
+        // if no projectId and credit order from newProjectInfo API call
+        // we need to pay credit first before creating project
+        // so return true and let display payment step with informations about credit
+        return true;
       }
 
       // if projectId - this mean that project has been created with credit

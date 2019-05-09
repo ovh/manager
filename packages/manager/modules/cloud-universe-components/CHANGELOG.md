@@ -1,3 +1,12 @@
+# [1.2.0-alpha.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@1.1.0-alpha.0...@ovh-ux/ng-ovh-cloud-universe-components@1.2.0-alpha.0) (2019-05-07)
+
+
+### Features
+
+* **storages.volume-snapshots:** add volume-snapshots list ([#359](https://github.com/ovh-ux/manager/issues/359)) ([c8a63fd](https://github.com/ovh-ux/manager/commit/c8a63fd))
+
+
+
 # [1.1.0-alpha.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@1.0.1-alpha.0...@ovh-ux/ng-ovh-cloud-universe-components@1.1.0-alpha.0) (2019-03-22)
 
 

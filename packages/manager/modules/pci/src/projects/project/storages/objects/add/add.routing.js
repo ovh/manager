@@ -12,10 +12,7 @@ export default /* @ngInject */ ($stateProvider) => {
         cancelLink: /* @ngInject */ ($state, projectId) => $state.href('pci.projects.project.storages.objects', {
           projectId,
         }),
-
-        breadcrumb: /* @ngInject */ $translate => $translate
-          .refresh()
-          .then(() => $translate.instant('pci_projects_project_storages_containers_add_title')),
+        breadcrumb: /* @ngInject */ $translate => $translate.instant('pci_projects_project_storages_containers_add_title'),
       },
     });
 };

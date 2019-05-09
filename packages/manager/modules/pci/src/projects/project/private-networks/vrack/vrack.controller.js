@@ -12,14 +12,14 @@ export default class {
     this.isLoading = true;
     this.loadMessages();
 
-    if (this.operationId) {
+    if (this.operation) {
       this.getOperation();
     }
   }
 
   getOperation() {
     return this.Poller.poll(
-      `/cloud/project/${this.projectId}/operation/${this.operationId}`,
+      `/cloud/project/${this.projectId}/operation/${get(this.operation, 'id')}`,
       {},
       {
         method: 'get',

@@ -5,7 +5,7 @@ export default {
   bindings: {
     projectId: '<',
     createVrack: '<',
-    operationId: '<?',
+    operation: '<?',
     onVrackCreated: '<',
   },
   controller,

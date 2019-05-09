@@ -1,3 +1,12 @@
+# [5.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-freefax@5.0.0...@ovh-ux/manager-freefax@5.1.0) (2019-05-07)
+
+
+### Features
+
+* **storages.volume-snapshots:** add volume-snapshots list ([#359](https://github.com/ovh-ux/manager/issues/359)) ([c8a63fd](https://github.com/ovh-ux/manager/commit/c8a63fd))
+
+
+
 # [5.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-freefax@4.0.0...@ovh-ux/manager-freefax@5.0.0) (2019-03-19)
 
 

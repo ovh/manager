@@ -119,16 +119,16 @@
 
                 <oui-tile-definition data-term="{{:: 'pci_projects_project_instances_instance_price_label' | translate }}">
                     <oui-tile-description>
-                        <span data-ng-if="$ctrl.instance.isMonthlyBillingEnabled()"
+                        <span data-ng-if="$ctrl.instance.isMonthlyBillingActivated()"
                             data-translate="pci_projects_project_instances_instance_price_month_value"
                             data-translate-values="{ price : $ctrl.instancePrice.price.text }"></span>
-                        <span data-ng-if="!$ctrl.instance.isMonthlyBillingEnabled()"
+                        <span data-ng-if="!$ctrl.instance.isMonthlyBillingActivated()"
                             data-translate="pci_projects_project_instances_instance_price_hourly_value"
                             data-translate-values="{ price : $ctrl.instancePrice.price.text }"></span>
                     </oui-tile-description>
 
                     <oui-action-menu data-compact data-align="end"
-                        data-ng-if="!$ctrl.instance.isMonthlyBillingEnabled()">
+                        data-ng-if="!$ctrl.instance.isMonthlyBillingActivated()">
                         <oui-action-menu-item text="{{:: 'pci_projects_project_instances_instance_price_action_activeMonthlyBilling_label' | translate }}"
                             data-on-click="$ctrl.enableMonthlyBillingInstance()">
                         </oui-action-menu-item>

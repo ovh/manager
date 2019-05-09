@@ -21,6 +21,8 @@ import storages from './storages';
 import vouchers from './vouchers';
 import routing from './project.routing';
 
+import './project.scss';
+
 const moduleName = 'ovhManagerPciProject';
 
 angular
@@ -43,6 +45,7 @@ angular
     storages,
     vouchers,
   ])
-  .config(routing);
+  .config(routing)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

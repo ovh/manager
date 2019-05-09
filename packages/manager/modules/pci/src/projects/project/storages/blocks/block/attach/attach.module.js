@@ -20,7 +20,6 @@ angular
   ])
   .config(routing)
   .component('pciProjectStorageBlocksBlockAttach', component)
-
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

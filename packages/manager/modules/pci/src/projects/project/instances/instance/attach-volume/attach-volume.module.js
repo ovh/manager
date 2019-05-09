@@ -20,7 +20,6 @@ angular
   ])
   .config(routing)
   .component('pciInstancesInstanceAttachVolume', component)
-
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

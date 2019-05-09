@@ -31,6 +31,11 @@ angular.module(moduleName, [
         component: 'ovhManagerPciProjectKubernetesDetailComponent',
         resolve: {
           serviceName: /* @ngInject */ $stateParams => $stateParams.serviceName,
+          cluster: /* @ngInject */ (
+            Kubernetes,
+            serviceName,
+          ) => Kubernetes.getKubernetesCluster(serviceName),
+          breadcrumb: /* @ngInject */ cluster => cluster.name,
         },
         redirectTo: 'pci.projects.project.kubernetes.details.service',
       });

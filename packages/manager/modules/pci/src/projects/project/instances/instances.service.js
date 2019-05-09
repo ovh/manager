@@ -325,7 +325,7 @@ export default class PciProjectInstanceService {
       .then((prices) => {
         const price = prices[instance.planCode];
         // Set 3 digits for hourly price
-        if (!instance.isMonthlyBillingEnabled()) {
+        if (!instance.isMonthlyBillingActivated()) {
           price.price.text = price.price.text.replace(/\d+(?:[.,]\d+)?/, `${price.price.value.toFixed(3)}`);
         }
 

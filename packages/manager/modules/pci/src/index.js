@@ -2,7 +2,7 @@ import angular from 'angular';
 import 'angular-animate';
 import '@ovh-ux/manager-core';
 import '@uirouter/angularjs';
-import '@ovh-ux/ng-ovh-uirouter-layout';
+import '@ovh-ux/ng-uirouter-layout';
 import 'oclazyload';
 import '@ovh-ux/ng-at-internet';
 import '@ovh-ux/ng-ovh-cloud-universe-components';
@@ -61,7 +61,6 @@ const moduleName = 'ovhManagerPci';
 
 angular
   .module(moduleName, [
-    'ngOvhUiRouterLayout',
     components,
     error,
     projects,
@@ -74,6 +73,7 @@ angular
     'ngOvhUserPref',
     'ngOvhSwimmingPoll',
     'ngOvhDocUrl',
+    'ngUiRouterLayout',
     'ngAtInternet',
     'ovh-api-services',
     'ngOvhToaster',
@@ -92,23 +92,8 @@ angular
         template,
       });
   })
-  .run(/* @ngInject */($transitions, $state, $stateParams) => {
-    $transitions.onSuccess({}, (transition) => {
-      const state = transition.to();
-      if (state && state.url === '/compute') {
-        if ($state.includes('pci.projects.project.legacy')) {
-          if ($stateParams.createNewVm) {
-            $state.go('pci.projects.project.legacy.compute.infrastructure', {
-              createNewVm: true,
-            });
-          } else {
-            $state.go('pci.projects.project.legacy.compute.infrastructure');
-          }
-        }
-      } else if (state && state.url === '/billing') {
-        $state.go('pci.projects.project.legacy.billing.consumption');
-      }
-    });
+  .run(/* @ngInject */ ($translate, $transitions) => {
+    $transitions.onBefore({ to: 'pci.**' }, () => $translate.refresh());
   })
   .constant('CLOUD_INSTANCE_DEFAULTS', CLOUD_INSTANCE_DEFAULTS)
   .constant('CLOUD_INSTANCE_DEFAULT_FALLBACK', CLOUD_INSTANCE_DEFAULT_FALLBACK)

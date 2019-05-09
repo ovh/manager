@@ -15,5 +15,7 @@
   "pci_project_new_payment_invalid_voucher": "Code invalide",
   "pci_project_new_payment_dlp_title": "Crédits Digital Launch Pad (DLP)",
   "pci_project_new_payment_dlp_explain": "Dans le cadre du programme DLP, vous disposez d’un compte prépayé dédié.",
-  "pci_project_new_payment_dlp_amount": "Montant du compte : {{ amount }}"
+  "pci_project_new_payment_dlp_amount": "Montant du compte : {{ amount }}",
+  "pci_project_new_payment_welcome": "Bienvenue chez Public Cloud",
+  "pci_project_new_payment_almost_done": "Vous y êtes presque…"
 }

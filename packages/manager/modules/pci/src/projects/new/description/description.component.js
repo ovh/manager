@@ -8,5 +8,6 @@ export default {
     descriptionModel: '<',
     getCurrentStep: '<',
     newProjectInfo: '<',
+    onDescriptionStepFormSubmit: '<',
   },
 };

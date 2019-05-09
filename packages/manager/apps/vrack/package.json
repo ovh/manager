@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-vrack-app",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "scripts": {
     "build": "webpack",
@@ -13,10 +13,10 @@
   "dependencies": {
     "@ovh-ux/manager-cloud-styles": "^0.3.0-alpha.0",
     "@ovh-ux/manager-config": "^0.2.0",
-    "@ovh-ux/manager-core": "^5.0.0",
-    "@ovh-ux/manager-vrack": "^0.1.0",
+    "@ovh-ux/manager-core": "^5.1.0",
+    "@ovh-ux/manager-vrack": "^0.2.0",
     "@ovh-ux/ng-ovh-api-wrappers": "^3.0.0",
-    "@ovh-ux/ng-ovh-cloud-universe-components": "^1.1.0-alpha.0",
+    "@ovh-ux/ng-ovh-cloud-universe-components": "^1.2.0-alpha.0",
     "@ovh-ux/ng-ovh-contracts": "^3.0.0-beta.3",
     "@ovh-ux/ng-ovh-proxy-request": "^1.0.0-beta.0",
     "@ovh-ux/ng-ovh-toaster": "^1.0.2",
@@ -33,8 +33,8 @@
     "oclazyload": "^1.1.0",
     "ovh-api-services": "^6.15.0",
     "ovh-manager-webfont": "^1.2.0",
-    "ovh-ui-angular": "^2.30.0",
-    "ovh-ui-kit": "^2.31.0"
+    "ovh-ui-angular": "^3.0.0",
+    "ovh-ui-kit": "^2.32.0"
   },
   "devDependencies": {
     "@ovh-ux/manager-webpack-config": "^3.0.7",

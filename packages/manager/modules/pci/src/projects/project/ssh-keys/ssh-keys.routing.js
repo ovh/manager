@@ -8,14 +8,8 @@ export default /* @ngInject */ ($stateProvider) => {
       controller,
       controllerAs: '$ctrl',
       template,
-      translations: {
-        format: 'json',
-        value: ['.'],
-      },
       resolve: {
-        breadcrumb: /* @ngInject */ $translate => $translate
-          .refresh()
-          .then(() => $translate.instant('pci_projects_project_sshKeys_title')),
+        breadcrumb: /* @ngInject */ $translate => $translate.instant('pci_projects_project_sshKeys_title'),
       },
     });
 };

@@ -1,3 +1,4 @@
+const glob = require('glob');
 const merge = require('webpack-merge');
 const path = require('path');
 const webpackConfig = require('@ovh-ux/manager-webpack-config');
@@ -13,10 +14,15 @@ module.exports = (env = {}) => {
         { from: path.resolve(__dirname, '../../../../node_modules/@ovh-ux/manager-pci/dist/assets'), to: 'assets' },
       ],
     },
-  }, env);
+  }, process.env.REGION ? Object.assign(env, { region: process.env.REGION }) : env);
+
+  // Extra config files
+  const extras = glob.sync('./.extras/**/*.js');
 
   return merge(config, {
-    entry: './src/index.js',
+    entry: Object.assign({
+      main: './src/index.js',
+    }, extras.length > 0 ? { extras } : {}),
     output: {
       path: path.join(__dirname, 'dist'),
       filename: '[name].[chunkhash].bundle.js',
@@ -24,6 +30,8 @@ module.exports = (env = {}) => {
     plugins: [
       new webpack.DefinePlugin({
         __FEEDBACK_URL__: process.env.FEEDBACK_URL ? `'${process.env.FEEDBACK_URL}'` : 'null',
+        __WEBPACK_REGION__: process.env.REGION ? `'${process.env.REGION.toUpperCase()}'` : '"EU"',
+        __NODE_ENV__: process.env.NODE_ENV ? `'${process.env.NODE_ENV}'` : '"development"',
       }),
     ],
     resolve: {

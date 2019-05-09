@@ -10,6 +10,8 @@ export default {
     getStateLink: '<',
     newProjectInfo: '<',
     onProjectCreated: '<',
+    onDescriptionStepFormSubmit: '<',
+    hasCreditToOrder: '<',
     paymentStatus: '<',
     paymentMethodUrl: '<',
     steps: '<',

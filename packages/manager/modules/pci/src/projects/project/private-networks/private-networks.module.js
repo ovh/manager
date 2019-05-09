@@ -11,11 +11,9 @@ import service from './private-networks.service';
 
 import add from './add';
 import deletePrivateNetwork from './delete';
-import list from './list';
 import vrack from './vrack';
 
 import empty from './empty';
-import header from './header';
 
 const moduleName = 'ovhManagerPciPrivateNetworks';
 
@@ -27,10 +25,8 @@ angular
     'ovh-api-services',
     'ui.router',
     empty,
-    header,
     add,
     deletePrivateNetwork,
-    list,
     vrack,
   ])
   .config(routing)

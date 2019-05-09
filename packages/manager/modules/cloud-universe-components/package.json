@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-cloud-universe-components",
-  "version": "1.1.0-alpha.0",
+  "version": "1.2.0-alpha.0",
   "description": "Cloud Universe Components",
   "keywords": [
     "cloud",
@@ -35,7 +35,7 @@
     "jsurl": "^0.1.5",
     "lodash": "^4.17.11",
     "moment": "^2.24.0",
-    "ovh-ui-kit": "^2.31.0"
+    "ovh-ui-kit": "^2.32.0"
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^5.0.1"
