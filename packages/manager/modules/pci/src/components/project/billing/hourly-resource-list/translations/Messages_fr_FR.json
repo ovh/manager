@@ -1,4 +1,7 @@
 {
+  "cpbc_hourly_instance_col_name": "Nom",
+  "cpbc_hourly_instance_col_consumption": "Consommation",
+  "cpbc_hourly_instance_col_consumption_tooltip": "Facturée en début de mois suivant.",
   "cpbc_hourly_instance_detail_title": "Serveurs",
   "cpbc_object_storage_detail_title": "Stockage d'objets",
   "cpbc_archive_storage_detail_title": "Stockage d'archives",
