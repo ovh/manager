@@ -1,3 +1,4 @@
+import debounce from 'lodash/debounce';
 import max from 'lodash/max';
 import values from 'lodash/values';
 import 'd3';
@@ -28,10 +29,12 @@ import 'd3';
  * </div>
  *
  */
-export default () => {
+export default /* @ngInject */($window) => {
+  const defaultWidth = 250;
+  const defaultHeight = 150;
   function Chart() {
-    this.width = 250;
-    this.height = 150;
+    this.width = defaultWidth;
+    this.height = defaultHeight;
     this.textSpacing = 4;
     // default values, can be customized in model parameter
     this.margin = {
@@ -159,22 +162,29 @@ export default () => {
       chart.init($element[0]);
       // initialize new chart
 
-      // fill parent container on resize
-      $scope.$watch(() => {
-        if ($element.parent().width() > 0 && $element.parent().height() > 0) {
-          chart.width = $element.parent().width();
-          chart.height = $element.parent().height();
-        }
-        return chart.width + chart.height;
-      }, () => {
-        if (chart.data) {
-          chart.resize();
-        }
-      });
-
       // update on model change
       $scope.$watch('model', (model) => {
         chart.setModel(model);
+      });
+
+      const resizeChart = () => {
+        const parentWidth = $element.parent().width();
+        if (parentWidth > 0 && $element.parent().height() > 0) {
+          chart.width = parentWidth;
+          chart.height = parentWidth / defaultWidth * defaultHeight;
+          if (chart.data) {
+            chart.resize();
+          }
+        }
+      };
+
+      resizeChart();
+
+      const resizeChartListener = debounce(resizeChart, 150);
+      $window.addEventListener('resize', resizeChartListener);
+
+      $scope.$on('$destroy', () => {
+        $window.removeEventListener('resize', resizeChartListener);
       });
     },
   };
