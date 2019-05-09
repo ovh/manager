@@ -1,5 +1,6 @@
 import find from 'lodash/find';
 import get from 'lodash/get';
+import map from 'lodash/map';
 import merge from 'lodash/merge';
 import EnvironmentService from '@ovh-ux/manager-config';
 
@@ -32,6 +33,17 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       resolve: {
         breadcrumb: () => null,
+        contracts: /* @ngInject */ ($q, newProjectInfo, PciProjectNewService) => {
+          const agreementPromises = map(
+            newProjectInfo.agreements || [],
+            agreementId => PciProjectNewService.getNewProjectAgreementContract(agreementId)
+              .then(contract => Object.assign(contract, {
+                id: agreementId,
+              })),
+          );
+
+          return $q.all(agreementPromises);
+        },
         paymentStatus: /* @ngInject */ $transition$ => get($transition$.params(), 'hiPayStatus')
             || get($transition$.params(), 'paypalAgreementStatus'),
         getCurrentStep: /* @ngInject */ ($state, getStepByName) => () => {

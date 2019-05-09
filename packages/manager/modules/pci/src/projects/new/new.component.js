@@ -5,6 +5,7 @@ export default {
   template,
   controller,
   bindings: {
+    contracts: '<',
     getCurrentStep: '<',
     getStepByName: '<',
     getStateLink: '<',
