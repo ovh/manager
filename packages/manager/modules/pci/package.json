@@ -18,7 +18,7 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-pci' --include-filtered-dependencies -- yarn run dev:watch"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.8.1",
+    "@fortawesome/fontawesome-free": "^5.8.2",
     "@ovh-ux/manager-config": "^0.2.0",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^1.2.0-alpha.0",
     "@ovh-ux/ng-ovh-user-pref": "^1.0.0",
