@@ -5,7 +5,7 @@ export default /* @ngInject */($stateProvider) => {
     redirectTo: transition => transition
       .injector()
       .getAsync('instances')
-      .then(storages => (storages.length === 0 ? { state: 'pci.projects.project.instances.onboarding' } : false)),
+      .then(instances => (instances.length === 0 ? { state: 'pci.projects.project.instances.onboarding' } : false)),
     resolve: {
       breadcrumb: /* @ngInject */ $translate => $translate.instant('pci_projects_project_instances_title'),
       help: /* @ngInject */ $transition$ => $transition$.params().help,
