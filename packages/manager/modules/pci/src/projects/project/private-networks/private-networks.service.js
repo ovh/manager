@@ -18,6 +18,13 @@ export default class {
         .filter(({ status }) => !DELETING_STATUS.includes(status)));
   }
 
+  getVrack(serviceName) {
+    return this.OvhApiCloudProject.v6().vrack({
+      serviceName,
+    }).$promise
+      .catch(error => (error.status === 404 ? {} : Promise.reject(error)));
+  }
+
   getVrackCreationOperation(serviceName) {
     return this.OvhApiCloudProject.v6().operations({
       serviceName,

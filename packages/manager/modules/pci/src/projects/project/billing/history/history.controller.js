@@ -1,6 +1,5 @@
 import find from 'lodash/find';
 import map from 'lodash/map';
-import moment from 'moment';
 
 const MESSAGES_CONTAINER_NAME = 'pci.projects.project.billing.history';
 

@@ -25,7 +25,6 @@ angular
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
   ])
-  .config(routing)
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .config(routing);
 
 export default moduleName;

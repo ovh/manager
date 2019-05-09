@@ -1,4 +1,5 @@
 {
+ "kube_list_title": "Kubernetes",
  "kube_list_name": "Cluster name",
  "kube_list_region": "Region",
  "kube_list_version": "Version",

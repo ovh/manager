@@ -10,6 +10,7 @@ import 'script-loader!jquery-ui/ui/minified/draggable.min';
 import 'script-loader!messenger/build/js/messenger.js';
 import 'script-loader!messenger/build/js/messenger-theme-future.js';
 import 'script-loader!messenger/build/js/messenger-theme-flat.js';
+import 'script-loader!moment/min/moment-with-locales.min.js';
 import 'script-loader!jsplumb';
 import 'script-loader!angular-ui-validate/dist/validate.js';
 /* eslint-enable import/no-webpack-loader-syntax, import/extensions */
@@ -18,16 +19,19 @@ import get from 'lodash/get';
 import has from 'lodash/has';
 
 import navbar from '@ovh-ux/manager-navbar';
+import { Environment } from '@ovh-ux/manager-config';
 import ovhManagerCore from '@ovh-ux/manager-core';
 import ovhManagerPci from '@ovh-ux/manager-pci';
 import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
+import ngOvhOtrs from '@ovh-ux/ng-ovh-otrs';
 import ngOvhUserPref from '@ovh-ux/ng-ovh-user-pref';
-import ngUiRouterBreadcrumb from '@ovh-ux/ng-uirouter-breadcrumb';
+import ngUirouterBreadcrumb from '@ovh-ux/ng-uirouter-breadcrumb';
 import ngUiRouterLineProgress from '@ovh-ux/ng-uirouter-line-progress';
 
 import 'ovh-ui-kit/dist/oui.css';
 import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
 
+import atInternet from './components/at-internet';
 import betaWarning from './components/beta-warning';
 import preload from './components/manager-preload';
 import walkMe from './components/walkMe';
@@ -39,15 +43,19 @@ import controller from './index.controller';
 import service from './index.service';
 import routing from './index.routes';
 
+Environment.setRegion(__WEBPACK_REGION__);
+
 angular
   .module('ovhStack', [
     uiRouter,
+    atInternet,
     betaWarning,
-    ngUiRouterBreadcrumb,
+    ngUirouterBreadcrumb,
     ngUiRouterLineProgress,
     ovhManagerCore,
     ovhManagerPci,
     ngOvhApiWrappers,
+    ngOvhOtrs,
     ngOvhUserPref,
     navbar,
     preload,
@@ -56,6 +64,11 @@ angular
   .controller('PublicCloudController', controller)
   .service('publicCloud', service)
   .config(routing)
+  .config(/* @ngInject */(TranslateServiceProvider) => {
+    const defaultLanguage = TranslateServiceProvider.getUserLocale();
+    // set moment locale
+    moment.locale(defaultLanguage.split('_')[0]);
+  })
   .run(/* @ngInject */ ($state) => {
     $state.defaultErrorHandler((error) => {
       if (error.type === RejectType.ERROR) {

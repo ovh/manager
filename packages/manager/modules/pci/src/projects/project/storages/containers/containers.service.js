@@ -5,7 +5,6 @@ import pickBy from 'lodash/pickBy';
 import reduce from 'lodash/reduce';
 import startsWith from 'lodash/startsWith';
 import endsWith from 'lodash/endsWith';
-import moment from 'moment';
 
 import Container from './container.class';
 import ContainerObject from './container-object.class';

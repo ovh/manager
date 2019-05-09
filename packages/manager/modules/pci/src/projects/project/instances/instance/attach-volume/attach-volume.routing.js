@@ -8,10 +8,6 @@ export default /* @ngInject */($stateProvider) => {
         },
       },
       layout: 'modal',
-      translations: {
-        value: ['.'],
-        format: 'json',
-      },
       resolve: {
         goBack: /* @ngInject */ goToInstance => goToInstance,
         volumes: /* @ngInject */ (

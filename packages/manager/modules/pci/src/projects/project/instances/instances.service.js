@@ -6,7 +6,6 @@ import find from 'lodash/find';
 import map from 'lodash/map';
 import round from 'lodash/round';
 import reduce from 'lodash/reduce';
-import moment from 'moment';
 
 import Instance from './instance.class';
 import InstanceQuota from '../../../components/project/instance/quota/quota.class';
@@ -325,7 +324,7 @@ export default class PciProjectInstanceService {
       .then((prices) => {
         const price = prices[instance.planCode];
         // Set 3 digits for hourly price
-        if (!instance.isMonthlyBillingEnabled()) {
+        if (!instance.isMonthlyBillingActivated()) {
           price.price.text = price.price.text.replace(/\d+(?:[.,]\d+)?/, `${price.price.value.toFixed(3)}`);
         }
 

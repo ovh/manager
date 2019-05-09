@@ -25,7 +25,6 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
           snapshotId: snapshot.id,
         }),
-
         goToSnapshots: /* @ngInject */ ($rootScope, CucCloudMessage, $state, projectId) => (message = false, type = 'success') => {
           const reload = message && type === 'success';
 
@@ -42,11 +41,7 @@ export default /* @ngInject */ ($stateProvider) => {
 
           return promise;
         },
-
-
-        breadcrumb: /* @ngInject */ $translate => $translate
-          .refresh()
-          .then(() => $translate.instant('pci_projects_project_storages_snapshots_title')),
+        breadcrumb: /* @ngInject */ $translate => $translate.instant('pci_projects_project_storages_snapshots_title'),
       },
     });
 };

@@ -1,0 +1,15 @@
+{
+ "pci_projects_project_storages_instance-backups_title": "Instancja backup",
+ "pci_projects_project_storages_instance-backups_name_label": "Nazwa",
+ "pci_projects_project_storages_instance-backups_region_label": "Lokalizacja",
+ "pci_projects_project_storages_instance-backups_size_label": "Rozmiar",
+ "pci_projects_project_storages_containers_container_creationDate_label": "Data utworzenia",
+ "pci_projects_project_storages_instance-backups_status_label": "Status",
+ "pci_projects_project_storages_instance-backups_status_active": "Aktywny",
+ "pci_projects_project_storages_instance-backups_status_saving": "Backup w trakcie",
+ "pci_projects_project_storages_instance-backups_status_queued": "Backup w trakcie",
+ "pci_projects_project_storages_instance-backups_status_deleting": "Usuwanie w trakcie",
+ "pci_projects_project_storages_instance-backups_instance_create_label": "Utwórz instancję",
+ "pci_projects_project_storages_instance-backups_delete_label": "Usuń",
+ "pci_projects_project_storages_instance-backups_add_label": "Utwórz backup instancji"
+}

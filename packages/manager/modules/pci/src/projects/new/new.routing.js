@@ -64,21 +64,30 @@ export default /* @ngInject */ ($stateProvider) => {
               return $state.href('pci.projects');
           }
         },
-        dlpStatus: () => null,
-        // dlpStatus: /* @ngInject */ ($q, PciProjectNewService) => PciProjectNewService
-        //   .getDlpStatus()
-        //   .catch((error) => {
-        //     if (error.status === 404) {
-        //       return null;
-        //     }
-        //     return $q.reject(error);
-        //   }),
+        hasCreditToOrder: /* @ngInject */ (getCurrentStep, newProjectInfo, paymentStatus) => () => {
+          const currentStep = getCurrentStep();
+
+          return newProjectInfo.order
+            && ((!paymentStatus && currentStep.model.defaultPaymentMethod)
+            || ['success', 'accepted'].includes(paymentStatus)
+            );
+        },
+        dlpStatus: /* @ngInject */ ($q, PciProjectNewService) => PciProjectNewService
+          .getDlpStatus()
+          .catch((error) => {
+            if (error.status === 404) {
+              return null;
+            }
+            return $q.reject(error);
+          }),
         paymentMethodUrl: () => get(
           PCI_REDIRECT_URLS,
           `${EnvironmentService.Environment.region}.paymentMethods`,
         ),
-        newProjectInfo: /* @ngInject */ PciProjectNewService => PciProjectNewService
-          .getNewProjectInfo(),
+        newProjectInfo: /* @ngInject */ PciProjectNewService => (EnvironmentService.Environment.region !== 'US'
+          ? PciProjectNewService.getNewProjectInfo()
+          : {}),
+        onDescriptionStepFormSubmit: /* @ngInject */ $state => () => $state.go('pci.projects.new.payment'),
         onProjectCreated: /* @ngInject */ $state => projectId => $state.go(
           'pci.projects.project', {
             projectId,

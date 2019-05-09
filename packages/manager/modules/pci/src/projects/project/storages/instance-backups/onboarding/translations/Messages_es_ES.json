@@ -1,0 +1,10 @@
+{
+ "pci_projects_project_storages_instance-backups_onboarding_content1": "Todavía no ha creado ningún backup de instancia.",
+ "pci_projects_project_storages_instance-backups_onboarding_content2": "Realice copias de seguridad de sus instancias.",
+ "pci_projects_project_storages_instance-backups_onboarding_content3": "Con los backups de instancias, podrá guardar copias de seguridad de sus instancias en cualquier momento. El disco del sistema se copiará y se transferirá a otro espacio de almacenamiento. Más adelante podrá utilizar las copias de seguridad para reiniciar la instancia de origen o iniciar nuevas instancias basadas en ese disco de sistema.",
+ "pci_projects_project_storages_instance-backups_onboarding_content4": "Los backups de instancias aparecerán en el catálogo de imágenes del sistema. Así, entre otras cosas, podrá utilizarlos para despliegue e industrialización.",
+ "pci_projects_project_storages_instance-backups_onboarding_content5": "Para crear un backup de instancia es necesario disponer de al menos una instancia.",
+ "pci_projects_project_storages_instance-backups_onboarding_action_label": "Crear un backup de instancia",
+ "pci_projects_project_storages_instance-backups_onboarding_guides_transfer-instance-backup-datacenter_title": "Transferir la copia de seguridad de una instancia entre datacenters",
+ "pci_projects_project_storages_instance-backups_onboarding_guides_transfer-instance-backup-datacenter_description": "Cómo transferir la copia de seguridad conservando la configuración y el estado de la instancia."
+}

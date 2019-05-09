@@ -1,0 +1,58 @@
+$spinner-size: 350px;
+$colors: #3D86C3, #33BBEE, #2558C3;
+$d: 175;
+
+pci-project-creating { /* stylelint-disable-line */
+  background: red;
+  .pci-projects-creating {
+    .spinner {
+      width: $spinner-size;
+      height: $spinner-size;
+      animation: contanim 2s linear infinite;
+
+      svg {
+        display: block;
+        margin: 0;
+        padding: 0;
+
+        position: absolute;
+        left: 0;
+        top: 0;
+
+        transform: rotate(-90deg);
+
+        @for $i from 1 through 3 {
+          &:nth-child(#{$i}) circle {
+            stroke: nth($colors, $i);
+            stroke-dasharray: 1, 300;
+            stroke-dashoffset: 0;
+
+            animation: strokeanim 3s calc(.2s * (#{$i})) ease infinite;
+            transform-origin: center center;
+          }
+        }
+      }
+    }
+  }
+
+  @keyframes strokeanim {
+    0% {
+      stroke-dasharray: 1, 300;
+      stroke-dashoffset: 0;
+    }
+    50% {
+      stroke-dasharray: 120, 300;
+      stroke-dashoffset: -$d / 3;
+    }
+    100% {
+      stroke-dasharray: 120, 300;
+      stroke-dashoffset: -$d;
+    }
+  }
+
+  @keyframes contanim {
+    100% {
+      transform: rotate(360deg)
+    }
+  }
+}

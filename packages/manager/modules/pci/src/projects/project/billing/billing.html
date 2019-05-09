@@ -1,25 +1,38 @@
-<oui-page-header heading="{{ ::'cpbc_billing_control' | translate }}">
-    <oui-header-tabs>
-        <oui-header-tabs-item
-            text="{{ 'cpbc_tab_consumption' | translate }}"
-            state="pci.projects.project.billing"
-            active="BillingCtrl.$state.is('pci.projects.project.billing', { serviceName: BillingCtrl.projectId })"
-        >
-        </oui-header-tabs-item>
-        <oui-header-tabs-item
-            text="{{ 'cpbc_tab_forecast' | translate }}"
-            state="pci.projects.project.billing.estimate"
-            active="BillingCtrl.$state.is('pci.projects.project.billing.estimate', { serviceName: BillingCtrl.projectId })"
-        >
-        </oui-header-tabs-item>
-        <oui-header-tabs-item
-            text="{{ 'cpbc_tab_history' | translate }}"
-            state="pci.projects.project.billing.history"
-            active="BillingCtrl.$state.is('pci.projects.project.billing.history', { serviceName: BillingCtrl.projectId })"
-        >
-        </oui-header-tabs-item>
-    </oui-header-tabs>
-</oui-page-header>
+<header class="oui-page-header">
+    <div class="oui-page-header__container">
+        <div class="oui-page-header__content">
+            <h1 class="oui-page-header__title" data-translate="cpbc_billing_control"></h1>
+        </div>
+    </div>
+    <div class="oui-page-header__tabs">
+        <nav class="oui-header-tabs">
+            <ul class="oui-header-tabs__container">
+                <li class="oui-header-tabs__item"
+                    data-ng-class="{
+                        'oui-header-tabs__item_active': (BillingCtrl.$state.current.name === 'pci.projects.project.billing')
+                    }">
+                    <a data-ui-sref="pci.projects.project.billing"
+                        data-translate="cpbc_tab_consumption"></a>
+                </li>
+                <li class="oui-header-tabs__item"
+                    data-ng-class="{
+                        'oui-header-tabs__item_active': (BillingCtrl.$state.current.name === 'pci.projects.project.billing.estimate')
+                    }">
+                    <a data-ui-sref="pci.projects.project.billing.estimate"
+                        data-translate="cpbc_tab_forecast"></a>
+                </li>
+                <li class="oui-header-tabs__item"
+                    data-ng-class="{
+                        'oui-header-tabs__item_active': (BillingCtrl.$state.current.name === 'pci.projects.project.billing.history')
+                    }">
+                    <a data-ui-sref="pci.projects.project.billing.history"
+                        data-translate="cpbc_tab_history"></a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
 <div class="py-4" data-ui-view>
     <h2 data-translate="cpbc_tab_consumption"></h2>
     <div class="text-center" data-ng-if="BillingCtrl.loading">
@@ -27,7 +40,7 @@
     </div>
     <div data-ng-if="!BillingCtrl.loading">
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-xl-6 mb-4">
                 <oui-tile heading="{{ ::'cpbc_monthly_header' | translate }}">
                     <p class="oui-tile__legend">
                         <span data-translate="cpbc_monthly_header_description"></span>
@@ -36,7 +49,7 @@
                     <monthly-resource-list resources="BillingCtrl.data"></monthly-resource-list>
                 </oui-tile>
             </div>
-            <div class="col-lg-6">
+            <div class="col-xl-6">
                 <oui-tile heading="{{ ::'cpbc_hourly_header' | translate }}">
                     <p class="oui-tile__legend">
                         <span data-translate="cpbc_hourly_header_description"></span>

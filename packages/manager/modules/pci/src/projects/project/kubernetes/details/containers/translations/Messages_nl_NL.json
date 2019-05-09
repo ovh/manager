@@ -1,0 +1,6 @@
+{
+ "kube_containers_coming_soon": "Binnenkort beschikbaar",
+ "kube_containers_description": "You will see here all containers and services running in your kubernetes cluster.",
+ "kube_containers_description_dashboard": "In the meantime, we invite you to use either the `kubectl` command line interface or setup the \"Kubernetes Dashboard\" in your cluster. Kubernetes Dashboard is a community project consisting in a web UI, that is itself a service exposed in your cluster.",
+ "kube_containers_description_dashboard_link": "Follow <a class=\"oui-link oui-link_icon\" href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">this guide<span class=\"oui-icon oui-icon-external_link\" aria-hidden=\"true\"></span></a> to install Kubernetes Dashboard"
+}

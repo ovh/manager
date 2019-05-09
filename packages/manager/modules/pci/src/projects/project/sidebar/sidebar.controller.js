@@ -16,7 +16,6 @@ export default class SidebarController {
   constructor(
     $translate,
     $rootScope,
-    $scope,
     $stateParams,
     $transitions,
     OvhApiServices,
@@ -26,7 +25,7 @@ export default class SidebarController {
     this.$translate = $translate;
     this.$transitions = $transitions;
     this.$rootScope = $rootScope;
-    this.$scope = $scope;
+
     this.$stateParams = $stateParams;
     this.OvhApiServices = OvhApiServices;
     this.OvhApiCloudProject = OvhApiCloudProject;
@@ -61,7 +60,7 @@ export default class SidebarController {
               this.SidebarMenu.setShouldToggleMenuItemOpenState(false);
               this.SidebarMenu.clearMenuItems();
 
-              forEach(MENU, ({ options, subitems, translation }) => {
+              forEach(MENU.filter(el => el !== null), ({ options, subitems, translation }) => {
                 const menuItem = this.SidebarMenu.addMenuItem(Object.assign({
                   title: this.$translate.instant(translation),
                   allowSubItems: true,
@@ -71,7 +70,8 @@ export default class SidebarController {
                   },
                 }, options));
 
-                forEach(subitems, ({ options, translation }) => { // eslint-disable-line no-shadow
+                // eslint-disable-next-line no-shadow
+                forEach(subitems.filter(el => el !== null), ({ options, translation }) => {
                   this.SidebarMenu.addMenuItem(Object.assign({
                     title: this.$translate.instant(translation),
                   }, options), menuItem);
@@ -97,8 +97,6 @@ export default class SidebarController {
       }
       this.isDisplayingProjectsList = false;
     });
-
-    this.$rootScope.$on('navbar:onUniverseClick', () => this.toggle());
   }
 
   buildMenu(services) {
@@ -177,11 +175,6 @@ export default class SidebarController {
         menuItem.onLoad = () => this.loadServices(menuItemConfig.id);
       }
     });
-  }
-
-  toggle() {
-    this.$scope.$emit('sidebar:toggle');
-    this.isOpen = !this.isOpen;
   }
 
   loadServices(serviceName) {

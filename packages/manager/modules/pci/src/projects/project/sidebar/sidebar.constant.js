@@ -1,3 +1,5 @@
+import { Environment } from '@ovh-ux/manager-config';
+
 export const MENU = [
   {
     subitems: [
@@ -62,17 +64,19 @@ export const MENU = [
     ],
     translation: 'cloud_sidebar_network',
   },
-  {
-    subitems: [
-      {
-        options: {
-          state: 'pci.projects.project.kubernetes',
+  Environment.getRegion() === 'US'
+    ? null
+    : {
+      subitems: [
+        {
+          options: {
+            state: 'pci.projects.project.kubernetes',
+          },
+          translation: 'cloud_sidebar_orchestration_kubernetes',
         },
-        translation: 'cloud_sidebar_orchestration_kubernetes',
-      },
-    ],
-    translation: 'cloud_sidebar_orchestration',
-  },
+      ],
+      translation: 'cloud_sidebar_orchestration',
+    },
   {
     translation: 'cloud_sidebar_management_interface',
     subitems: [
@@ -93,7 +97,7 @@ export const MENU = [
     subitems: [
       {
         options: {
-          state: 'pci.projects.project.legacy.compute.openstack.users',
+          state: 'pci.projects.project.users',
         },
         translation: 'cloud_sidebar_project_management_users',
       },
@@ -109,24 +113,30 @@ export const MENU = [
         },
         translation: 'cloud_sidebar_project_management_ssh_keys',
       },
-      {
-        options: {
-          state: 'pci.projects.project.billing',
+      Environment.getRegion() === 'US'
+        ? null
+        : {
+          options: {
+            state: 'pci.projects.project.billing',
+          },
+          translation: 'cloud_sidebar_project_management_billing_control',
         },
-        translation: 'cloud_sidebar_project_management_billing_control',
-      },
-      {
-        options: {
-          state: 'pci.projects.project.vouchers',
+      Environment.getRegion() === 'US'
+        ? null
+        : {
+          options: {
+            state: 'pci.projects.project.vouchers',
+          },
+          translation: 'cloud_sidebar_project_management_credit_vouchers',
         },
-        translation: 'cloud_sidebar_project_management_credit_vouchers',
-      },
-      {
-        options: {
-          state: 'pci.projects.project.contacts',
+      Environment.getRegion() === 'US'
+        ? null
+        : {
+          options: {
+            state: 'pci.projects.project.contacts',
+          },
+          translation: 'cloud_sidebar_project_management_contact_rights',
         },
-        translation: 'cloud_sidebar_project_management_contact_rights',
-      },
       {
         options: {
           state: 'pci.projects.project.edit',

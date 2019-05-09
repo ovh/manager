@@ -12,7 +12,6 @@ import add from './add';
 import billing from './billing';
 import compute from './compute';
 import details from './details';
-import openstack from './openstack';
 
 import deleteController from './delete/controller';
 import deleteTemplate from './delete/template.html';
@@ -33,7 +32,6 @@ angular
     'oc.lazyLoad',
     'oui',
     'ovhManagerCore',
-    openstack,
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
   ])

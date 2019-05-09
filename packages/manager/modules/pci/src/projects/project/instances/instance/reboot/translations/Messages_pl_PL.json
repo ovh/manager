@@ -1,0 +1,9 @@
+{
+ "pci_projects_project_instances_instance_reboot_soft_title": "Restart programowy (soft)",
+ "pci_projects_project_instances_instance_reboot_hard_title": "Restart sprzętowy (hard)",
+ "pci_projects_project_instances_instance_reboot_submit_label": "Potwierdź",
+ "pci_projects_project_instances_instance_reboot_cancel_label": "Anuluj",
+ "pci_projects_project_instances_instance_reboot_content": "Nastąpi restart Twojej instancji {{ instance }}.",
+ "pci_projects_project_instances_instance_reboot_success_message": "Rozpoczął się restart Twojej instancji {{ instance }}.",
+ "pci_projects_project_instances_instance_reboot_error_reboot": "Wystąpił błąd podczas restartu instancji {{ instance }} : {{ message }}."
+}

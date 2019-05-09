@@ -1,5 +1,3 @@
-import moment from 'moment';
-
 import controller from './history.controller';
 import template from './history.html';
 
@@ -44,9 +42,7 @@ export default /* @ngInject */ ($stateProvider) => {
           month,
         };
       },
-      breadcrumb: /* @ngInject */ $translate => $translate
-        .refresh()
-        .then(() => $translate.instant('cpbc_tab_history')),
+      breadcrumb: /* @ngInject */ $translate => $translate.instant('cpbc_tab_history'),
     },
   });
 };

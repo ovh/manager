@@ -4,7 +4,7 @@
             <div class="col-md-7 p-5 bg-white h-100">
                 <div class="p-5">
                     <!-- progress -->
-                    <div class="oui-progress-tracker w-25 mx-auto">
+                    <div class="oui-progress-tracker mx-auto mb-5">
                         <ol class="oui-progress-tracker__steps">
                             <li class="oui-progress-tracker__step"
                                 data-ng-repeat="step in $ctrl.steps track by $index"
@@ -28,7 +28,8 @@
                         <pci-project-new-description
                             data-description-model="$ctrl.getCurrentStep().model"
                             data-new-project-info="$ctrl.newProjectInfo"
-                            data-get-current-step="$ctrl.getCurrentStep">
+                            data-get-current-step="$ctrl.getCurrentStep"
+                            data-on-description-step-form-submit="$ctrl.onDescriptionStepFormSubmit">
                         </pci-project-new-description>
                     </div>
 
@@ -38,29 +39,34 @@
                     </div>
 
                     <div class="d-flex flex-row-reverse justify-content-between align-items-center my-3">
-                        <oui-button
-                            data-ng-if="$ctrl.isNextButtonVisible()"
-                            data-variant="primary"
-                            data-type="submit"
-                            data-disabled="$ctrl.isNextButtonDisabled()"
-                            data-variant-nav="next"
-                            data-on-click="$ctrl.onNextBtnClick()">
-                            <span data-ng-bind="$ctrl.getNextButtonText()"></span>
-                        </oui-button>
-
-                        <a class="oui-button oui-button_primary oui-button_icon-right"
-                        data-ng-href="{{ $ctrl.getNextLinkHref() }}"
-                        data-ng-if="!$ctrl.isNextButtonVisible()">
+                        <button class="oui-button oui-button_primary oui-button_icon-right no-transition"
+                                type="submit" form="projectDescriptionForm"
+                                data-ng-disabled="$ctrl.isNextButtonDisabled()"
+                                data-ng-click="$ctrl.onNextBtnClick()"
+                                data-ng-if="$ctrl.isNextButtonVisible()">
                             <span data-ng-bind="$ctrl.getNextButtonText()"></span>
                             <span class="oui-icon oui-icon_circle oui-icon-chevron-right"
-                                aria-hidden="true">
+                                  aria-hidden="true">
+                            </span>
+                        </button>
+
+                        <a class="oui-button oui-button_primary oui-button_icon-right no-transition"
+                           data-ng-href="{{ $ctrl.getNextLinkHref() }}"
+                           data-ng-if="!$ctrl.isNextButtonVisible()">
+                            <span data-ng-bind="$ctrl.getNextButtonText()"></span>
+                            <span class="oui-icon oui-icon_circle oui-icon-chevron-right"
+                                  aria-hidden="true">
                             </span>
                         </a>
 
                         <a data-ng-href="{{ $ctrl.getStateLink('cancel') }}"
-                        data-translate="pci_projects_new_cancel">
+                           data-translate="pci_projects_new_cancel">
                         </a>
                     </div>
+
+                    <p data-ng-if="$ctrl.isCreditAsteriskVisible()">
+                        <small data-translate="pci_projects_new_create_credit_asterisk"></small>
+                    </p>
                 </div>
             </div>
         </div>

@@ -12,16 +12,21 @@ export default /* @ngInject */ ($stateProvider) => {
           template,
         },
       },
-      translations: {
-        format: 'json',
-        value: ['.'],
-      },
-      redirectTo: ($transitions) => {
-        const projectPromise = $transitions.injector().getAsync('project');
+      redirectTo: (transition) => {
+        const projectPromise = transition.injector().getAsync('project');
         return projectPromise
           .then((project) => {
             if (project.status === 'creating') {
-              return 'pci.projects.project.creating';
+              // for specifying options of redirectTo attribute
+              // we need to return a TargetState which is accessible
+              // through router.stateService.target of transition object
+              return transition.router.stateService.target(
+                'pci.projects.project.creating',
+                transition.params(),
+                {
+                  location: false,
+                },
+              );
             }
 
             return null;
@@ -35,7 +40,10 @@ export default /* @ngInject */ ($stateProvider) => {
             serviceName: $transition$.params().projectId,
           })
           .$promise,
-        breadcrumb: /* @ngInject */ project => project.description,
+        breadcrumb: /* @ngInject */ project => (project.status !== 'creating'
+          ? project.description
+          : null),
+        sidebarVisible: /* @ngInject */ project => project.status !== 'creating',
       },
     });
 };

@@ -9,9 +9,5 @@ export default /* @ngInject */ ($stateProvider) => {
       controllerAs: '$ctrl',
       template,
       layout: 'modal',
-      translations: {
-        format: 'json',
-        value: ['.'],
-      },
     });
 };

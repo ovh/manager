@@ -1,0 +1,8 @@
+{
+ "pci_projects_project_instances_instance_unrescue_title": "Sair do modo Rescue",
+ "pci_projects_project_instances_instance_unrescue_submit_label": "Reiniciar ",
+ "pci_projects_project_instances_instance_unrescue_cancel_label": "Anular",
+ "pci_projects_project_instances_instance_unrescue_content": "A instância {{ instance }} vai ser reiniciada.",
+ "pci_projects_project_instances_instance_unrescue_success_message": "A reinicialização da instância {{ instance }} foi iniciada.",
+ "pci_projects_project_instances_instance_unrescue_error_unrescue": "Ocorreu um erro ao reiniciar a instância {{ instance }} : {{ message }}."
+}

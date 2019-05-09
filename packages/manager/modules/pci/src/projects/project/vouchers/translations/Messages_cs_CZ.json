@@ -1,0 +1,22 @@
+{
+ "cpb_project_management_credit_vouchers": "Kredity a kupón",
+ "cpb_vouchers_your_voucher": "Váš kupón",
+ "cpb_vouchers_your_voucher_add": "Nahrát můj kupón.",
+ "cpb_vouchers_get_error": "Chyba, není možné zobrazit seznam kupónů.",
+ "cpb_vouchers_bill_ref": "Faktura č. <a href=\"{{url}}\">{{billId}}</a>",
+ "cpb_vouchers_products_all": "Vše",
+ "cpb_vouchers_name_credit_provisionning": "Cloud credit",
+ "cpb_vouchers_credit_comment": "Public Cloud kredit nelze převést nebo vyplatit. Nemá žádnou peněžní hodnotu a jakýkoli kredit, který není použit v rámci 13 měsíců zanikne.",
+ "common_confirm": "Dokončit",
+ "common_cancel": "Zrušit",
+ "cpb_vouchers_voucher_cell": "Připojený kupón",
+ "cpb_vouchers_name_cell": "Název",
+ "cpb_vouchers_total_credit_cell": "Počáteční hodnota",
+ "cpb_vouchers_available_credit_cell": "Zbývající kredit",
+ "cpb_vouchers_validity_from_cell": "Datum aktivace",
+ "cpb_vouchers_validity_to_cell": "Datum platnosti",
+ "cpb_vouchers_products_cell": "Kompatibilní produkty",
+ "cpb_vouchers_add_button": "Použít kupón",
+ "cpb_vouchers_add_credit_button": "Koupit Public Cloud kredit",
+ "cpb_vouchers_add_explain_bis": "Po každém vystavení faktury dojde k odečtení částky z Vašeho cloudového kreditu, potom z účtu DLP (Digital LaunchPad) a poté z Vašeho věrnostního účtu. Nakonec dojde k vyrovnání pomocí zvolené platební metody (podrobnosti o 3 platebních metodách najdete v Manažeru v sekci Fakturace)."
+}

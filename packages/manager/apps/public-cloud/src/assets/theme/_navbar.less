@@ -19,6 +19,34 @@
     }
   }
 
+  &-menu {
+    z-index: 2;
+
+    // Languages menu
+    &_language &__item_active {
+      &,
+      &:hover,
+      &:active {
+        background-color: @oui-navbar-menu-background-color_hover;
+      }
+
+      .oui-navbar-link::after {
+        content: @oui-icon-index-check_line;
+        display: inline-block;
+        margin-left: rem-calc(20);
+        margin-top: -0.3rem;
+        vertical-align: middle;
+        font-family: "Oui Icons", sans-serif;
+        font-size: @oui-navbar-external-size;
+        color: inherit;
+      }
+    }
+  }
+
+  .oui-navbar-backdrop {
+    z-index: 1;
+  }
+
   .oui-navbar-menu__item a {
     color: rgb(17, 63, 109);
 
@@ -83,39 +111,42 @@
   }
 
   .oui-navbar-menu_toggle {
-    button.oui-navbar-link::after {
-      content: @oui-icon-index-chevron-right;
-      font-family: @oui-global-base-font-family-icon;
-      font-size: @oui-navbar-arrow-size;
-      color: @oui-navbar-arrow-color;
-      padding: 0;
-      position: absolute;
-      top: 50%;
-      right: @oui-navbar-arrow-spacing;
-      transform: translateY(-50%);
-    }
-  }
+    max-width: 310px;
 
-  // Languages menu
-  &-menu {
-    &_language &__item_active {
-      &,
-      &:hover,
-      &:active {
-        background-color: @oui-navbar-menu-background-color_hover;
+    .oui-navbar-menu {
+      max-width: 100%;
+    }
+
+    button.oui-navbar-link::after {
+      color: @primary-color;
+    }
+
+    .oui-navbar-menu__header {
+      align-items: center;
+      background-color: #fff;
+      border-bottom: none;
+
+      .oui-navbar-menu__title {
+        color: @primary-color;
+        font-weight: @oui-font-semibold;
+        font-size: 18px;
       }
 
-      .oui-navbar-link::after {
-        content: @oui-icon-index-check_line;
-        display: inline-block;
-        margin-left: rem-calc(20);
-        margin-top: -0.3rem;
-        vertical-align: middle;
-        font-family: "Oui Icons", sans-serif;
-        font-size: @oui-navbar-external-size;
-        color: inherit;
+      .oui-navbar-menu__back {
+        background-color: @info-bg-color;
+        border: 1px solid @info-bg-color;
+        border-radius: 3px;
+
+        .oui-button {
+          padding: 16px;
+        }
+
+        + div {
+          margin-left: 10px;
+        }
       }
     }
   }
 }
+
 /* stylelint-enable at-rule-no-unknown */

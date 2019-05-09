@@ -13,9 +13,5 @@ export default /* @ngInject */ ($stateProvider) => {
         },
       },
       layout: 'modal',
-      translations: {
-        format: 'json',
-        value: ['.'],
-      },
     });
 };

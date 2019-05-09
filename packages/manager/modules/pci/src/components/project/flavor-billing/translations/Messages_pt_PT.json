@@ -1,0 +1,6 @@
+{
+ "pci_project_flavors_billing_hourly": "À hora",
+ "pci_project_flavors_billing_monthly": "Mensal",
+ "pci_project_flavors_billing_price_hourly": "{{price}} s/IVA/h",
+ "pci_project_flavors_billing_price_monthly": "{{price}} s/IVA/mês"
+}

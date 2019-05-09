@@ -1,0 +1,9 @@
+{
+ "pci_projects_project_instances_instance_delete_title": "Eliminar una instancia",
+ "pci_projects_project_instances_instance_delete_submit_label": "Confirmar",
+ "pci_projects_project_instances_instance_delete_cancel_label": "Cancelar",
+ "pci_projects_project_instances_instance_delete_content": "¿Seguro que quiere eliminar la instancia {{ instance }}?",
+ "pci_projects_project_instances_instance_delete_monthlyBilling_alert": "La cuota del mes actual para este servidor ya se ha facturado, por lo que la perderá.",
+ "pci_projects_project_instances_instance_delete_success_message": "La instancia {{ instance }} se ha eliminado.",
+ "pci_projects_project_instances_instance_delete_error_delete": "Se ha producido un error al eliminar la instancia {{ instance }}: {{ message }}"
+}
