@@ -2,6 +2,7 @@ import angular from 'angular';
 import 'angular-animate';
 import '@ovh-ux/manager-core';
 import '@uirouter/angularjs';
+import '@ovh-ux/ng-uirouter-breadcrumb';
 import '@ovh-ux/ng-uirouter-layout';
 import 'oclazyload';
 import '@ovh-ux/ng-at-internet';
@@ -73,6 +74,7 @@ angular
     'ngOvhUserPref',
     'ngOvhSwimmingPoll',
     'ngOvhDocUrl',
+    'ngUirouterBreadcrumb',
     'ngUiRouterLayout',
     'ngAtInternet',
     'ovh-api-services',
