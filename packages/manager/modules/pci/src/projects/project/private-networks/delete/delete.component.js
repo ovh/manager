@@ -6,7 +6,6 @@ export default {
     goBack: '<',
     projectId: '<',
     networkId: '<',
-    messageContainer: '<',
   },
   controller,
   template,

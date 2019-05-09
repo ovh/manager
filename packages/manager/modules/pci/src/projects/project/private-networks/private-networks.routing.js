@@ -31,6 +31,23 @@ export default /* @ngInject */ ($stateProvider) => {
 
         breadcrumb: /* @ngInject */ $translate => $translate.instant('pci_projects_project_network_private'),
 
+        goToPrivateNetworks: /* @ngInject */ ($state, CucCloudMessage, projectId) => (message = false, type = 'success') => {
+          const reload = message && type === 'success';
+
+          const promise = $state.go('pci.projects.project.privateNetwork', {
+            projectId,
+          },
+          {
+            reload,
+          });
+
+          if (message) {
+            promise.then(() => CucCloudMessage[type](message, 'pci.projects.project.privateNetwork'));
+          }
+
+          return promise;
+        },
+
       },
 
       redirectTo: transition => transition
