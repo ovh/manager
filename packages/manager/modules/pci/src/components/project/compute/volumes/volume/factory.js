@@ -1,6 +1,5 @@
 import angular from 'angular';
 import flatten from 'lodash/flatten';
-import moment from 'moment';
 
 export default /* @ngInject */ (
   $q,

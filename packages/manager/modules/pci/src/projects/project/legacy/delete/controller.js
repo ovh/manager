@@ -1,7 +1,5 @@
 import mapValues from 'lodash/mapValues';
 
-import moment from 'moment';
-
 export default /* @ngInject */ function CloudProjectDeleteCtrl(
   $scope,
   $uibModalInstance,

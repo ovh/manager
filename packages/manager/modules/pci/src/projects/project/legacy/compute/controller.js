@@ -3,7 +3,6 @@ import forEach from 'lodash/forEach';
 import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
 import set from 'lodash/set';
-import moment from 'moment';
 
 import { PCI_ANNOUNCEMENTS } from './constants';
 
