@@ -64,7 +64,7 @@ export const MENU = [
     ],
     translation: 'cloud_sidebar_network',
   },
-  Environment.getRegion() !== 'US'
+  Environment.getRegion() === 'US'
     ? null
     : {
       subitems: [
@@ -113,7 +113,7 @@ export const MENU = [
         },
         translation: 'cloud_sidebar_project_management_ssh_keys',
       },
-      Environment.getRegion() !== 'US'
+      Environment.getRegion() === 'US'
         ? null
         : {
           options: {
@@ -121,7 +121,7 @@ export const MENU = [
           },
           translation: 'cloud_sidebar_project_management_billing_control',
         },
-      Environment.getRegion() !== 'US'
+      Environment.getRegion() === 'US'
         ? null
         : {
           options: {
@@ -129,7 +129,7 @@ export const MENU = [
           },
           translation: 'cloud_sidebar_project_management_credit_vouchers',
         },
-      Environment.getRegion() !== 'US'
+      Environment.getRegion() === 'US'
         ? null
         : {
           options: {
