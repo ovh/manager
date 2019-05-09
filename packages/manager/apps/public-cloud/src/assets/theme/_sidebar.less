@@ -53,6 +53,10 @@ cloud-sidebar { /* stylelint-disable-line */
     will-change: transform;
     transition: transform ease-in-out 500ms;
 
+    @media screen and (max-width: @oui-responsive-breakpoint-tablet) {
+      left: 0;
+    }
+
     oui-clipboard { /* stylelint-disable-line */
       .oui-clipboard__control,
       .oui-clipboard__button {

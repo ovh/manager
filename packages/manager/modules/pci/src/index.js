@@ -34,6 +34,8 @@ import offer from './offer';
 import projects from './projects';
 import template from './template.html';
 
+import sidebar from './projects/project/sidebar';
+
 import './index.scss';
 
 import {
@@ -63,6 +65,7 @@ angular
     error,
     projects,
     offer,
+    sidebar,
     'ui.router',
     'ngOvhCloudUniverseComponents',
     'ngOvhFormFlat',
