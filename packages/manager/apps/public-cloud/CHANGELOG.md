@@ -1,3 +1,33 @@
+# [0.3.0-alpha.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.3.0-alpha.0...@ovh-ux/manager-public-cloud@0.3.0-alpha.1) (2019-05-09)
+
+
+### Bug Fixes
+
+* fix pci responsive sidebar ([#456](https://github.com/ovh-ux/manager/issues/456)) ([9704477](https://github.com/ovh-ux/manager/commit/9704477))
+* **apps.public-cloud:** update assigniationfrom uirouter-breadcrumb ([b1f257a](https://github.com/ovh-ux/manager/commit/b1f257a))
+* **i18n:** add missing translations ([0568a65](https://github.com/ovh-ux/manager/commit/0568a65))
+* **public-cloud:** set moment locale ([627659d](https://github.com/ovh-ux/manager/commit/627659d))
+* **public-cloud:** update oui-dropdown link styles ([cd0e39a](https://github.com/ovh-ux/manager/commit/cd0e39a))
+
+
+### Code Refactoring
+
+* **components.uirouter.layout:** remove ng-ovh prefix ([93244d0](https://github.com/ovh-ux/manager/commit/93244d0))
+
+
+### Features
+
+* add otrs module ([7469919](https://github.com/ovh-ux/manager/commit/7469919))
+* **us:** configure us side and remove useless links ([d12639a](https://github.com/ovh-ux/manager/commit/d12639a))
+* add tracking ([ca70212](https://github.com/ovh-ux/manager/commit/ca70212))
+
+
+### BREAKING CHANGES
+
+* **components.uirouter.layout:** module is now named `ngUiRouterLayout`
+
+
+
 # [0.3.0-alpha.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.2.0-alpha.0...@ovh-ux/manager-public-cloud@0.3.0-alpha.0) (2019-05-07)
 
 

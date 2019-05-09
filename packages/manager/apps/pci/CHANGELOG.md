@@ -1,3 +1,22 @@
+# [1.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci-app@0.2.0...@ovh-ux/manager-pci-app@1.0.0) (2019-05-09)
+
+
+### Bug Fixes
+
+* add missing dependency ([831b8be](https://github.com/ovh-ux/manager/commit/831b8be))
+
+
+### Code Refactoring
+
+* **components.uirouter.layout:** remove ng-ovh prefix ([93244d0](https://github.com/ovh-ux/manager/commit/93244d0))
+
+
+### BREAKING CHANGES
+
+* **components.uirouter.layout:** module is now named `ngUiRouterLayout`
+
+
+
 # [0.2.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci-app@0.1.0...@ovh-ux/manager-pci-app@0.2.0) (2019-05-07)
 
 
