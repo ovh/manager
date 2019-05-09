@@ -1,0 +1,15 @@
+{
+ "pci_error_title": "Oops!",
+ "pci_error_button_cancel": "Anular",
+ "pci_error_button_action_pay_debt": "Saldar dívida",
+ "pci_error_button_action_contact_support": "Contactar o Apoio ao Cliente",
+ "pci_error_detail_code": "Código de erro: {{code}}",
+ "pci_error_action_reload_label": "Tente novamente",
+ "pci_error_action_home_label": "Voltar para a página inicial",
+ "pci_error_default": "Ocorreu um erro ao carregar a página.",
+ "pci_error_account_not_eligible": "Infelizmente, não é possível criar projetos Public Cloud, porque já teve projetos interrompidos devido a montantes em dívida ou devido a uma má utilização do serviço. Sugerimos que contacte o apoio ao cliente.",
+ "pci_error_max_projects_limit_reached": "Infelizmente, não é possível criar projetos Public Cloud adicionais, porque atingiu o limite máximo de projetos. Para desbloquear o limite, sugerimos que contacte o apoio ao cliente.",
+ "pci_error_paypal_account_not_verified": "Infelizmente, não é possível criar projetos Public Cloud com a sua conta PayPal, pois esta não foi verificada. Sugerimos que tome as medidas necessárias junto da PayPal para verificar a sua conta, e que tente novamente. Pode também alterar <a href=\"{{ href }}\">o seu método de pagamento predefinido</a>.",
+ "pci_error_unpaid_debts": " Infelizmente, não é possível criar projetos Public Cloud, porque tem um valor em dívida na OVH. Sugerimos que salde a dívida e que tente novamente.",
+ "pci_error_invalid_payment_mean": "Infelizmente, não é possível criar projetos Public Cloud, porque não possui nenhum método de pagamento predefinido válido. Sugerimos que altere <a href=\"{{ href }}\">o seu método de pagamento predefinido</a>."
+}

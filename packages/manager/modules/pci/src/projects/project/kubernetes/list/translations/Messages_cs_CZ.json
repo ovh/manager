@@ -1,0 +1,9 @@
+{
+ "kube_list_title": "Kubernetes",
+ "kube_list_name": "Nom du cluster",
+ "kube_list_region": "Okres",
+ "kube_list_version": "Verze",
+ "kube_list_cluster_manage": "Gérer le cluster",
+ "kube_list_cluster_create": "Créer un cluster Kubernetes",
+ "kube_list_error": "Při načítání Vašeho SSH klíče došlo k chybě."
+}

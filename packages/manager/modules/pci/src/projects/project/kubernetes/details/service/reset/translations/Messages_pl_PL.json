@@ -1,0 +1,14 @@
+{
+ "kube_service_reset_common_confirm": "Potwierdź",
+ "kube_service_reset_common_cancel": "Anuluj",
+ "kube_service_reset_common_delete": "Usuń",
+ "kube_service_reset_common_reinstall": "Reinstalacja",
+ "kube_service_reset_title": "Reset konfiguracji Twojego klastra Kubernetes",
+ "kube_service_reset_message": "Klikając tutaj, przywrócisz pierwotne ustawienia usługi Kubernetes. Operacja ta spowoduje usunięcie wszystkich usług, ich konfiguracji, etc... <strong>Operacja ta jest nieodwracalna</strong>.",
+ "kube_service_reset_success": "Reset klastra Kubernetes w toku...",
+ "kube_service_reset_error": "Wystąpił błąd podczas resetu klastra: {{ message }}",
+ "kube_service_reset_enter": "Wprowadź \"RESET\" w poniższym polu, aby potwierdzić operację.",
+ "kube_service_reset_nodes": "Polityka dotycząca węzłów obliczeniowych",
+ "kube_service_reset_version": "Zainstalowana wersja Kubernetes",
+ "kube_service_reset_load_error": "Wystąpił błąd podczas ładowania dostępnych wersji Kubernetes: {{ message }}"
+}

@@ -1,0 +1,8 @@
+{
+ "pci_projects_project_instances_instance_unrescue_title": "Wyjdź z trybu rescue",
+ "pci_projects_project_instances_instance_unrescue_submit_label": "Restart",
+ "pci_projects_project_instances_instance_unrescue_cancel_label": "Anuluj",
+ "pci_projects_project_instances_instance_unrescue_content": "Nastąpi restart Twojej instancji {{ instance }}.",
+ "pci_projects_project_instances_instance_unrescue_success_message": "Rozpoczął się restart Twojej instancji {{ instance }}.",
+ "pci_projects_project_instances_instance_unrescue_error_unrescue": "Wystąpił błąd podczas restartu instancji {{ instance }} : {{ message }}."
+}

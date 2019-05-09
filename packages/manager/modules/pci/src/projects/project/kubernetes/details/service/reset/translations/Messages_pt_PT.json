@@ -1,0 +1,14 @@
+{
+ "kube_service_reset_common_confirm": "Confirmar",
+ "kube_service_reset_common_cancel": "Anular",
+ "kube_service_reset_common_delete": "Eliminar",
+ "kube_service_reset_common_reinstall": "Reinstalar",
+ "kube_service_reset_title": "Reiniciar a configuração do seu cluster Kubernetes",
+ "kube_service_reset_message": "Ao clicar aqui, restaurará o serviço Kubernetes para o seu estado original. Esta operação irá eliminar todos os seus serviços, configurações, etc. <strong>Esta operação não pode ser anulada</strong>.",
+ "kube_service_reset_success": "O seu cluster Kubernetes está a ser reiniciado.",
+ "kube_service_reset_error": "Ocorreu um erro ao reiniciar o seu cluster: {{ message }}",
+ "kube_service_reset_enter": "Insira \"RESET\" no campo abaixo para confirmar",
+ "kube_service_reset_nodes": "Política de nós de cálculo",
+ "kube_service_reset_version": "Versão de Kubernetes",
+ "kube_service_reset_load_error": "Ocorreu um erro durante o carregamento das versões de Kubernetes disponíveis: {{ message }}"
+}

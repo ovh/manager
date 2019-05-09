@@ -1,0 +1,7 @@
+{
+ "pci_projects_onboarding_title": "Una plataforma abierta y reversible de Public Cloud",
+ "pci_projects_onboarding_description1": "¿Es aficionado a la cultura devops y las prácticas «cloud-ready» y explota su infraestructura utilizando interfaces API y herramientas de orquestación?¿Busca soluciones preinstaladas o «as a service» con facturación por consumo y flexibles, para poder centrarse en su actividad y acelerar la producción?",
+ "pci_projects_onboarding_description2": "En este espacio encontrará una gran variedad de servicios para desarrollar sus proyectos de innovación. Así, gracias al cloud de OVH, podrá centrarse en las tareas de alto valor añadido.",
+ "pci_projects_onboarding_description3": "Estructure sus arquitecturas por proyectos, segmentando sus despliegues en la nube según su ámbito de funcionamiento u operativo. Por ejemplo, puede crear un proyecto para el entorno de desarrollo y otro para el de producción. Otra posible segmentación sería por tipo de aplicación, con un proyecto para el back-office y otro para el e-commerce.",
+ "pci_projects_onboarding_create_project": "Cree su primer proyecto OVH Stack"
+}
