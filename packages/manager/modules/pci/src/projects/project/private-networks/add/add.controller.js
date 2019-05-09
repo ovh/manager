@@ -185,20 +185,18 @@ export default class NetworkAddCtrl {
     return this.PciPrivateNetworksAdd.create(this.projectId, privateNetwork, subnets)
       .then(() => this.goBack())
       .then(() => {
-        this.CucCloudMessage.success(
-          this.$translate.instant(
-            'pci_projects_project_network_private_create_success',
-          ),
-          this.messageContainer,
-        );
-        this.goBack();
+        this.goBack(this.$translate.instant(
+          'pci_projects_project_network_private_create_success',
+        ));
       })
-      .catch(error => this.CucCloudMessage.error(
-        this.$translate.instant(
-          'pci_projects_project_network_private_create_error',
-          { message: get(error, 'data.message', '') },
-        ),
-      ))
+      .catch((error) => {
+        this.CucCloudMessage.error(
+          this.$translate.instant(
+            'pci_projects_project_network_private_create_error',
+            { message: get(error, 'data.message', '') },
+          ),
+        );
+      })
       .finally(() => {
         this.loaders.isSubmitting = false;
       });
