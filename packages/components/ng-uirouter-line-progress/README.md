@@ -12,11 +12,11 @@ yarn add @ovh-ux/ng-uirouter-line-progress
 
 ```js
 import angular from 'angular';
-import ngUiRouterLineProgress from '@ovh-ux/ng-uirouter-line-progress';
+import ngUirouterLineProgress from '@ovh-ux/ng-uirouter-line-progress';
 
 angular
   .module('myApp', [
-    ngUiRouterLineProgress,
+    ngUirouterLineProgress,
   ]);
 ```
 
