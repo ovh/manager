@@ -26,6 +26,7 @@
                     <div data-ui-view
                         data-ng-if="!$ctrl.loading.creating && !$ctrl.loading.addPayment">
                         <pci-project-new-description
+                            data-contracts="$ctrl.contracts"
                             data-description-model="$ctrl.getCurrentStep().model"
                             data-new-project-info="$ctrl.newProjectInfo"
                             data-get-current-step="$ctrl.getCurrentStep"

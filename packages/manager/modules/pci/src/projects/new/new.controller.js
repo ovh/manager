@@ -158,7 +158,8 @@ export default class PciProjectNewCtrl {
     }
 
     return this.PciProjectNewService
-      .createNewProject(createParams)
+      .acceptAgreements(this.contracts)
+      .then(() => this.PciProjectNewService.createNewProject(createParams))
       .then(({ orderId, project }) => {
         if (!hasCredit) {
           return this.onProjectCreated(project);
