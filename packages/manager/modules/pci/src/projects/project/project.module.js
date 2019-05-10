@@ -13,7 +13,6 @@ import edit from './edit';
 import failoverIps from './failover-ips';
 import instances from './instances';
 import kubernetes from './kubernetes';
-import legacy from './legacy';
 import sshKeys from './ssh-keys';
 import privateNetworks from './private-networks';
 import quota from './quota';
@@ -35,7 +34,6 @@ angular
     failoverIps,
     instances,
     kubernetes,
-    legacy,
     privateNetworks,
     quota,
     regions,

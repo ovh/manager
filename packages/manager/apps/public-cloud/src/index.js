@@ -14,7 +14,6 @@ import 'script-loader!messenger/build/js/messenger.js';
 import 'script-loader!messenger/build/js/messenger-theme-future.js';
 import 'script-loader!messenger/build/js/messenger-theme-flat.js';
 import 'script-loader!moment/min/moment-with-locales.min.js';
-import 'script-loader!jsplumb';
 import 'script-loader!angular-ui-validate/dist/validate.js';
 /* eslint-enable import/no-webpack-loader-syntax, import/extensions */
 
