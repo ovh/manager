@@ -1,4 +1,5 @@
 import filter from 'lodash/filter';
+import get from 'lodash/get';
 import groupBy from 'lodash/groupBy';
 import map from 'lodash/map';
 import mapValues from 'lodash/mapValues';
@@ -7,7 +8,7 @@ import omit from 'lodash/omit';
 import Flavor from './flavor.class';
 import FlavorGroup from './flavor-group.class';
 
-import { CATEGORIES, LEGACY_FLAVORS } from './flavors-list.constants';
+import { CPU_FREQUENCY, CATEGORIES, LEGACY_FLAVORS } from './flavors-list.constants';
 
 export default class FlavorsList {
   /* @ngInject */
@@ -32,6 +33,7 @@ export default class FlavorsList {
           ...omit(groupedFlavors[0], ['id', 'region']),
           prices: mapValues(groupedFlavors[0].planCodes, planCode => prices[planCode].price),
           regions: map(groupedFlavors, ({ id, region }) => ({ id, region })),
+          frequency: get(CPU_FREQUENCY, groupedFlavors[0].type),
         }),
       ));
   }
