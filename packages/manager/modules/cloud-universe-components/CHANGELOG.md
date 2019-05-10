@@ -1,3 +1,12 @@
+# [1.3.0-alpha.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@1.3.0-alpha.0...@ovh-ux/ng-ovh-cloud-universe-components@1.3.0-alpha.1) (2019-05-10)
+
+
+### Bug Fixes
+
+* update resize of consumption chart ([d4228cc](https://github.com/ovh-ux/manager/commit/d4228cc))
+
+
+
 # [1.3.0-alpha.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@1.2.0-alpha.0...@ovh-ux/ng-ovh-cloud-universe-components@1.3.0-alpha.0) (2019-05-09)
 
 

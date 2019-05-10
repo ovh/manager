@@ -1,3 +1,15 @@
+# [0.3.0-alpha.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.3.0-alpha.1...@ovh-ux/manager-public-cloud@0.3.0-alpha.2) (2019-05-10)
+
+
+### Bug Fixes
+
+* **apps.public.cloud:** vectorize text part from svg file ([#503](https://github.com/ovh-ux/manager/issues/503)) ([87b48ec](https://github.com/ovh-ux/manager/commit/87b48ec))
+* **apps.public.cloud.theme:** remove text-decoration on button ([e4ff43a](https://github.com/ovh-ux/manager/commit/e4ff43a))
+* **pci.projects.new:** project creation in US ([#505](https://github.com/ovh-ux/manager/issues/505)) ([b28fc92](https://github.com/ovh-ux/manager/commit/b28fc92))
+* **sidebar:** display right link for required targets ([14cb883](https://github.com/ovh-ux/manager/commit/14cb883))
+
+
+
 # [0.3.0-alpha.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.3.0-alpha.0...@ovh-ux/manager-public-cloud@0.3.0-alpha.1) (2019-05-09)
 
 
