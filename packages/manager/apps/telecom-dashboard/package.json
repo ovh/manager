@@ -13,11 +13,11 @@
   "dependencies": {
     "@ovh-ux/manager-config": "^0.2.0",
     "@ovh-ux/manager-core": "^5.0.0",
-    "@ovh-ux/manager-telecom-dashboard": "^4.1.0",
+    "@ovh-ux/manager-telecom-dashboard": "^4.2.0",
     "@ovh-ux/manager-telecom-styles": "^2.0.2",
     "@ovh-ux/ng-at-internet": "^4.0.0",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^2.0.0",
-    "@ovh-ux/ng-ovh-telecom-universe-components": "^3.0.2",
+    "@ovh-ux/ng-ovh-telecom-universe-components": "^3.0.3",
     "@ovh-ux/ng-uirouter-title": "^2.0.0-beta.3",
     "@uirouter/angularjs": "^1.0.15",
     "angular": "^1.7.5",
