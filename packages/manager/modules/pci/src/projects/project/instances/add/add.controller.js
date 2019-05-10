@@ -29,7 +29,7 @@ export default class PciInstancesAddController {
 
   $onInit() {
     this.instance = new Instance({
-      monthlyBilling: true,
+      monthlyBilling: false,
     });
 
     this.isLoading = false;
