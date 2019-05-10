@@ -7,7 +7,7 @@ import 'ovh-ui-angular';
 import 'ovh-api-services';
 import 'angular-ui-bootstrap';
 
-import regionsList from '../../blocks/add/regions-list';
+import regionsList from '../../../../../components/project/regions-list';
 import component from './add.component';
 
 const moduleName = 'ovhManagerPciStoragesContainersAdd';

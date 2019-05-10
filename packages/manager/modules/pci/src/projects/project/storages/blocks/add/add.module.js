@@ -8,7 +8,7 @@ import 'ovh-api-services';
 import component from './add.component';
 import routing from './add.routing';
 
-import regionsList from './regions-list';
+import regionsList from '../../../../../components/project/regions-list';
 
 const moduleName = 'ovhManagerPciStoragesBlocksAdd';
 
