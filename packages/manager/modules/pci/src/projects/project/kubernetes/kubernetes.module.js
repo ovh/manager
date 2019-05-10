@@ -1,15 +1,16 @@
 import angular from 'angular';
-
+import '@uirouter/angularjs';
+import 'angular-translate';
+import '@ovh-ux/ng-translate-async-loader';
 import '@ovh-ux/ng-ovh-cloud-universe-components';
 import 'ovh-api-services';
 import 'ovh-ui-angular';
 
 import add from './add';
-import details from './details';
+import details from './details/details.module';
 
 import component from './kubernetes.component';
 import routing from './kubernetes.routing';
-import service from './service';
 
 import './index.scss';
 
@@ -18,13 +19,15 @@ const moduleName = 'ovhManagerPciProjectKubernetes';
 angular.module(moduleName, [
   add,
   details,
+  'ngTranslateAsyncLoader',
+  'pascalprecht.translate',
   'ngOvhCloudUniverseComponents',
   'oui',
   'ovh-api-services',
+  'ui.router',
 ])
   .config(routing)
   .component('ovhManagerPciProjectKubernetes', component)
-  .service('PublicCloudProjectKubernetes', service)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

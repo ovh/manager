@@ -18,16 +18,9 @@ export const STATUS = {
   ERROR: 'ERROR',
 };
 
-export const UPGRADE_POLICIES = [
-  'NEVER_UPDATE',
-  'MINIMAL_DOWNTIME',
-  'ALWAYS_UPDATE',
-];
-
 export default {
   DOC_URL,
   PROCESSING_STATUS,
   REGION,
   STATUS,
-  UPGRADE_POLICIES,
 };

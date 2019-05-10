@@ -1,14 +1,13 @@
 {
-  "kube_service_reset_common_confirm": "Confirmer",
-  "kube_service_reset_common_cancel": "Annuler",
-  "kube_service_reset_common_delete": "Supprimer",
-  "kube_service_reset_common_reinstall": "Réinstaller",
-  "kube_service_reset_title": "Réinitialiser la configuration de votre cluster Kubernetes",
-  "kube_service_reset_message": "En cliquant ici vous remettrez votre service Kubernetes dans son état original. Cela supprimera l'intégralité de vos services, leur configuration etc… <strong>Cette action est irréversible</strong>.",
-  "kube_service_reset_success": "Votre cluster Kubernetes est en cours de réinitialisation.",
-  "kube_service_reset_error": "Une erreur est survenue lors de la réinitialisation de votre cluster : {{ message }}",
-  "kube_service_reset_enter": "Entrez \"RESET\" dans le champ ci-dessous pour confirmer",
-  "kube_service_reset_nodes": "Politique de nœuds de calcul",
-  "kube_service_reset_version": "Version de Kubernetes",
-  "kube_service_reset_load_error": "Une erreur est survenue lors du chargement des versions de Kubernetes disponibles : {{ message }}"
+  "pci_projects_project_kubernetes_service_reset": "Réinitialiser la configuration de votre cluster kubernetes",
+  "pci_projects_project_kubernetes_service_reset_common_confirm": "Confirmer",
+  "pci_projects_project_kubernetes_service_reset_common_cancel": "Annuler",
+  "pci_projects_project_kubernetes_service_reset_common_delete": "Supprimer",
+  "pci_projects_project_kubernetes_service_reset_common_reinstall": "Réinstaller",
+  "pci_projects_project_kubernetes_service_reset_message": "En cliquant ici vous remettrez votre service kubernetes dans son état original. Cela supprimera l'intégralité de vos services, leur configuration etc… <strong>Cette action est irréversible</strong>.",
+  "pci_projects_project_kubernetes_service_reset_success": "Votre cluster kubernetes est en cours de réinitialisation.",
+  "pci_projects_project_kubernetes_service_reset_error": "Une erreur est survenue lors de la réinitialisation de votre cluster : {{ message }}",
+  "pci_projects_project_kubernetes_service_reset_enter": "Entrez \"RESET\" dans le champ ci-dessous pour confirmer",
+  "pci_projects_project_kubernetes_service_reset_nodes": "Politique de nœuds de calcul",
+  "pci_projects_project_kubernetes_service_reset_version": "Version de kubernetes"
 }

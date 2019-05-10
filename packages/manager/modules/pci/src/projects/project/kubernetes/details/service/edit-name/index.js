@@ -2,7 +2,7 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
-const moduleName = 'ovhManagerPciProjectKubernetesDetailsServiceUpdateLazyloading';
+const moduleName = 'ovhManagerPciProjectKubernetesDetailsServiceNameLazyloading';
 
 angular
   .module(moduleName, [
@@ -10,12 +10,12 @@ angular
     'oc.lazyLoad',
   ])
   .config(/* @ngInject */($stateProvider) => {
-    $stateProvider.state('pci.projects.project.kubernetes.details.service.update.**', {
-      url: '/update',
+    $stateProvider.state('pci.projects.project.kubernetes.details.service.name.**', {
+      url: '/name',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-        return import('./update.module')
+        return import('./edit-name.module')
           .then(mod => $ocLazyLoad.inject(mod.default || mod));
       },
     });

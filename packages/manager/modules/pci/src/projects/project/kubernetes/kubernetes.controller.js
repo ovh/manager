@@ -1,22 +1,18 @@
-import { REGION } from './kubernetes.constants';
-
 export default class {
   /* @ngInject */
   constructor(
     $translate,
     CucCloudMessage,
-    PublicCloudProjectKubernetes,
+    OvhApiCloudProjectKube,
   ) {
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
-    this.PublicCloudProjectKubernetes = PublicCloudProjectKubernetes;
+    this.OvhApiCloudProjectKube = OvhApiCloudProjectKube;
   }
 
   $onInit() {
     this.loadMessages();
-    return this.getProjectKubernetes();
   }
-
 
   loadMessages() {
     this.CucCloudMessage.unSubscribe('kubernetes');
@@ -27,26 +23,14 @@ export default class {
     this.messages = this.messageHandler.getMessages();
   }
 
-
-  getProjectKubernetes() {
-    return this.PublicCloudProjectKubernetes.getProjectKubernetes(this.projectId)
-      .then(({ results, errors }) => {
-        this.kubes = results.map(id => ({ id, region: REGION }));
-
-        if (errors.some(({ code }) => code !== 460)) {
-          this.CucCloudMessage.error(this.$translate.instant('kube_list_error'));
-        }
-      })
-      .catch(() => {
-        this.CucCloudMessage.error(this.$translate.instant('kube_list_error'));
-      });
+  getKubernetes({ id: kubeId }) {
+    return this.OvhApiCloudProjectKube.v6().get({
+      serviceName: this.projectId,
+      kubeId,
+    }).$promise;
   }
 
-  getKubernetes({ id }) {
-    return this.PublicCloudProjectKubernetes.getKubernetes(id);
-  }
-
-  static getDetailsState(id) {
-    return `pci.projects.project.kubernetes.details({ serviceName: '${id}'})`;
+  getDetailsState(id) {
+    return `pci.projects.project.kubernetes.details({ projectId: '${this.projectId}', kubeId: '${id}'})`;
   }
 }

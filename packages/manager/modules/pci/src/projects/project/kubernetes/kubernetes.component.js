@@ -4,7 +4,8 @@ import template from './kubernetes.html';
 export default {
   bindings: {
     addCluster: '<',
-    projectId: '@',
+    kubernetes: '<',
+    projectId: '<',
   },
   controller,
   template,

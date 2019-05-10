@@ -1,31 +1,24 @@
 import angular from 'angular';
+import '@uirouter/angularjs';
+import 'oclazyload';
 
-import resetService from './reset/index';
-import terminateService from './terminate/index';
-import updateService from './update/index';
+const moduleName = 'ovhManagerPciProjectKubernetesDetailsServiceLazyloading';
 
-import kubernetesServiceComponent from './component';
+angular
+  .module(moduleName, [
+    'ui.router',
+    'oc.lazyLoad',
+  ])
+  .config(/* @ngInject */($stateProvider) => {
+    $stateProvider.state('pci.projects.project.kubernetes.details.service.**', {
+      url: '/service',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-const moduleName = 'ovhManagerPciProjectKubernetesService';
-
-angular.module(moduleName, [
-  resetService,
-  terminateService,
-  updateService,
-])
-  .config(/* @ngInject */ ($stateProvider) => {
-    $stateProvider
-      .state('pci.projects.project.kubernetes.details.service', {
-        url: '/service',
-        views: {
-          kubernetesView: 'ovhManagerPciProjectKubernetesServiceComponent',
-        },
-        resolve: {
-          breadcrumb: () => false,
-        },
-      });
-  })
-  .run(/* @ngTranslationsInject:json ./translations */)
-  .component('ovhManagerPciProjectKubernetesServiceComponent', kubernetesServiceComponent);
+        return import('./service.module')
+          .then(mod => $ocLazyLoad.inject(mod.default || mod));
+      },
+    });
+  });
 
 export default moduleName;

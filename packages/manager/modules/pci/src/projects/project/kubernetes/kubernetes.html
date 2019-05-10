@@ -3,10 +3,10 @@
     <div class="container-fluid px-0">
         <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
 
-        <oui-datagrid data-rows="$ctrl.kubes" data-row-loader="$ctrl.getKubernetes($row)">
-            <oui-column data-title="'kube_list_name' | translate" data-property="name">
+        <oui-datagrid data-rows="$ctrl.kubernetes" data-row-loader="$ctrl.getKubernetes($row)">
+            <oui-column data-title=":: 'kube_list_name' | translate" data-property="name">
                 <a class="oui-link"
-                    data-ui-sref="{{ $ctrl.constructor.getDetailsState($row.id) }}"
+                    data-ui-sref="{{ $ctrl.getDetailsState($row.id) }}"
                     data-ng-bind="$row.name">
                 </a>
             </oui-column>
