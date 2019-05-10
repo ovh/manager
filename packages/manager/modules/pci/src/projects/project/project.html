@@ -1,11 +1,9 @@
-<div class="pci-project container-fluid h-100"
-     data-ng-class="'pci-project-' + $ctrl.project.status">
+<div class="pci-project container-fluid h-100">
     <div class="row h-100">
         <div class="h-100 p-0 d-none col-md-2 d-lg-flex flex-column">
             <cloud-sidebar></cloud-sidebar>
         </div>
-        <div class="h-100 position-relative p-0"
-             data-ng-class="$ctrl.sidebarVisible ? 'col-md-10' : 'w-100'">
+        <div class="h-100 position-relative p-0 col-md-10">
             <div class="pci-project-content position-absolute w-100 h-100 py-4 px-5" style="overflow: auto;">
                 <uirouter-breadcrumb></uirouter-breadcrumb>
                 <div class="pci-project-view mt-3" data-ui-view>
