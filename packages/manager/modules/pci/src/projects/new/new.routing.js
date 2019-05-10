@@ -2,7 +2,6 @@ import find from 'lodash/find';
 import get from 'lodash/get';
 import map from 'lodash/map';
 import merge from 'lodash/merge';
-import EnvironmentService from '@ovh-ux/manager-config';
 
 import { PCI_REDIRECT_URLS } from '../../constants';
 
@@ -92,11 +91,11 @@ export default /* @ngInject */ ($stateProvider) => {
             }
             return $q.reject(error);
           }),
-        paymentMethodUrl: () => get(
+        paymentMethodUrl: /* @ngInject */ coreConfig => get(
           PCI_REDIRECT_URLS,
-          `${EnvironmentService.Environment.region}.paymentMethods`,
+          `${coreConfig.getRegion()}.paymentMethods`,
         ),
-        newProjectInfo: /* @ngInject */ PciProjectNewService => (EnvironmentService.Environment.region !== 'US'
+        newProjectInfo: /* @ngInject */ (coreConfig, PciProjectNewService) => (!coreConfig.isRegion('US')
           ? PciProjectNewService.getNewProjectInfo()
           : {}),
         onDescriptionStepFormSubmit: /* @ngInject */ $state => () => $state.go('pci.projects.new.payment'),
