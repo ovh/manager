@@ -10,10 +10,10 @@ export default class PciProjectNewService {
   }
 
   acceptAgreements(contactList = []) {
-    const acceptPromises = map(contactList, contract => this.OvhApiMeAgreements
+    const acceptPromises = map(contactList, ({ id }) => this.OvhApiMeAgreements
       .v6()
       .accept({
-        id: contract.id,
+        id,
       }, {}).$promise);
 
     return this.$q.all(acceptPromises);

@@ -36,9 +36,9 @@ export default /* @ngInject */ ($stateProvider) => {
         contracts: /* @ngInject */ ($q, newProjectInfo, PciProjectNewService) => {
           const agreementPromises = map(
             newProjectInfo.agreements || [],
-            agreementId => PciProjectNewService.getNewProjectAgreementContract(agreementId)
+            id => PciProjectNewService.getNewProjectAgreementContract(id)
               .then(contract => Object.assign(contract, {
-                id: agreementId,
+                id,
               })),
           );
 
