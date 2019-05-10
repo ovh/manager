@@ -3,6 +3,7 @@ import template from './kubernetes.html';
 
 export default {
   bindings: {
+    addCluster: '<',
     projectId: '@',
   },
   controller,
