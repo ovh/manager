@@ -1,3 +1,22 @@
+# [0.2.0-alpha.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.2.0-alpha.1...@ovh-ux/manager-pci@0.2.0-alpha.2) (2019-05-10)
+
+
+### Bug Fixes
+
+* **pci.billing.alert:** replace input by oui-numeric ([#500](https://github.com/ovh-ux/manager/issues/500)) ([72c9388](https://github.com/ovh-ux/manager/commit/72c9388))
+* **pci.flavors-list:** add frequency ([#504](https://github.com/ovh-ux/manager/issues/504)) ([4ee9fe3](https://github.com/ovh-ux/manager/commit/4ee9fe3))
+* **pci.onboarding:** add illustrations ([8642f74](https://github.com/ovh-ux/manager/commit/8642f74))
+* **pci.private-networks:** display success messages and refresh list ([609f3e5](https://github.com/ovh-ux/manager/commit/609f3e5))
+* **pci.private-networks:** prevent adding already used vlan ([b9df1de](https://github.com/ovh-ux/manager/commit/b9df1de))
+* **pci.project.billing:** fix error messages on alert creation form ([dd4bb3f](https://github.com/ovh-ux/manager/commit/dd4bb3f))
+* **pci.project.creation:** display creating view state by overriding pci view ([#508](https://github.com/ovh-ux/manager/issues/508)) ([bfd7456](https://github.com/ovh-ux/manager/commit/bfd7456))
+* **pci.projects.new:** post accept contracts before creating ([#496](https://github.com/ovh-ux/manager/issues/496)) ([a306077](https://github.com/ovh-ux/manager/commit/a306077))
+* **pci.projects.new:** project creation in US ([#505](https://github.com/ovh-ux/manager/issues/505)) ([b28fc92](https://github.com/ovh-ux/manager/commit/b28fc92))
+* **sidebar:** display right link for required targets ([14cb883](https://github.com/ovh-ux/manager/commit/14cb883))
+* **sidebar:** fix scrolling ([15ae149](https://github.com/ovh-ux/manager/commit/15ae149))
+
+
+
 # [0.2.0-alpha.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.2.0-alpha.0...@ovh-ux/manager-pci@0.2.0-alpha.1) (2019-05-09)
 
 
