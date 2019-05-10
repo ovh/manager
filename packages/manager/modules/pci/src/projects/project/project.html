@@ -1,7 +1,8 @@
 <div class="pci-project container-fluid h-100"
      data-ng-class="'pci-project-' + $ctrl.project.status">
     <div class="row h-100">
-        <div class="h-100 p-0 d-none col-md-2 d-lg-flex flex-column">
+        <div class="h-100 p-0 d-none col-md-2 d-lg-flex flex-column"
+             data-ng-if="$ctrl.sidebarVisible">
             <cloud-sidebar></cloud-sidebar>
         </div>
         <div class="h-100 position-relative p-0"
