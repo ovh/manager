@@ -27,16 +27,19 @@
                             </div>
                             <div class="d-flex justify-content-between">
                                 <span data-translate="pci_project_flavors_spec_core"></span>
-                                <span class="ml-auto" data-translate="pci_project_flavors_spec_core_details" data-translate-values="{ vcores: flavor.vcpus, frequency: flavor.frequency }"></span>
+                                <span class="ml-auto" 
+                                    data-translate="pci_project_flavors_spec_core_details" 
+                                    data-translate-values="{ vcores: flavor.vcpus, frequency: flavor.frequency }"></span>
                             </div>
                             <div class="d-flex justify-content-between">
                                 <span data-translate="pci_project_flavors_spec_disk"></span>
                                 <span class="ml-auto" data-ng-bind="(flavor.disk | cucBytes:2:false:'GB') + ' ' + (flavor.diskType | uppercase)"></span>
                             </div>
                             <div class="d-flex justify-content-between">
-                                    <span data-translate="pci_project_flavors_spec_bandwidth"></span>
-                                    <span class="ml-auto" data-ng-bind="(flavor.outboundBandwidth || '?') + 'Mbps'"></span>
-                                </div>
+                                <span data-translate="pci_project_flavors_spec_bandwidth"></span>
+                                <span class="ml-auto" data-ng-bind="flavor.outboundBandwidth + 'Mbps'" data-ng-if="flavor.outboundBandwidth"></span>
+                                <span class="ml-auto" data-ng-if="!flavor.outboundBandwidth">-</span>
+                            </div>
                         </oui-select-picker-section>
                         <oui-select-picker-section>
                             <div class="text-right">
@@ -83,9 +86,10 @@
                             <span class="ml-auto" data-ng-bind="($ctrl.flavor.disk | cucBytes:2:false:'GB') + ' ' + ($ctrl.flavor.diskType | uppercase)"></span>
                         </div>
                         <div class="d-flex justify-content-between">
-                                <span data-translate="pci_project_flavors_spec_bandwidth"></span>
-                                <span class="ml-auto" data-ng-bind="($ctrl.flavor.outboundBandwidth || '?') + 'Mbps'"></span>
-                            </div>
+                            <span data-translate="pci_project_flavors_spec_bandwidth"></span>
+                            <span class="ml-auto" data-ng-bind="$ctrl.flavor.outboundBandwidth + 'Mbps'" data-ng-if="$ctrl.flavor.outboundBandwidth"></span>
+                            <span class="ml-auto" data-ng-if="!$ctrl.flavor.outboundBandwidth">-</span>
+                        </div>
                 </oui-select-picker-section>
                 <oui-select-picker-section>
                     <div class="text-right">
