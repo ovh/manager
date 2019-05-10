@@ -3,7 +3,6 @@
     data-ng-submit="(!$ctrl.authToken && tokenForm.$valid && $ctrl.generateToken()) || ($ctrl.authToken && $ctrl.goBack())">
     <oui-modal
         data-heading="{{ 'pci_projects_project_users_openstack-token_title' | translate }}"
-        data-primary-action="(!$ctrl.authToken && tokenForm.$valid && $ctrl.generateToken()) || ($ctrl.authToken && $ctrl.goBack())"
         data-primary-label="{{ ($ctrl.authToken ? 'pci_projects_project_users_openstack-token_close_label' : 'pci_projects_project_users_openstack-token_submit_label') | translate }}"
         data-primary-disabled="$ctrl.isLoading"
         data-secondary-action="$ctrl.goBack()"
