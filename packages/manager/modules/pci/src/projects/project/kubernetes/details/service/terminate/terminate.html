@@ -4,10 +4,10 @@
        novalidate>
     <oui-modal data-title="{{ ::'kube_service_terminate_title' | translate }}"
                data-primary-label="{{ ::'kube_service_terminate_common_confirm' | translate }}"
-               data-secondary-action="$ctrl.cancel()"
+               data-secondary-action="$ctrl.goBack()"
                data-secondary-label="{{ ::'kube_service_terminate_common_cancel' | translate }}"
-               data-on-dismiss="$ctrl.cancel()"
-               data-loading="$ctrl.loading.init || $ctrl.loading.reset"
+               data-on-dismiss="$ctrl.goBack()"
+               data-loading="$ctrl.isDeleting"
                data-type="warning">
         <p class="oui-paragraph" data-translate="kube_service_terminate_warning"></p>
         <oui-field data-label="{{:: 'kube_service_terminate_enter' | translate }}">
