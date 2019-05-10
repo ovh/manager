@@ -1778,10 +1778,10 @@
   dependencies:
     lodash "^4.17.11"
 
-"@ovh-ux/ng-ovh-telecom-universe-components@^3.0.2":
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-telecom-universe-components/-/ng-ovh-telecom-universe-components-3.0.2.tgz#1550458ce6d8099447faec44f73396413eeaf088"
-  integrity sha512-GVpcfKFCTb3bGhorSncErZtdqnOAB2BydUGiQiZhYwh+80Xldx8fQ/QPQwnSdZJduKVIdP5EetjfA94HYiSs1w==
+"@ovh-ux/ng-ovh-telecom-universe-components@^3.0.3":
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-telecom-universe-components/-/ng-ovh-telecom-universe-components-3.0.3.tgz#77b69d1365cc23ea7f091868813061800e5c8d6f"
+  integrity sha512-wP4WsXfesglJp4PbmMboryKhX/QUbkX/ESUwvKbvERp57AR6rX2jCXcixpOXD8xI9ORtuWSK0A/9vI1lvoySyg==
   dependencies:
     bootstrap "^3.3.7"
     ovh-ui-kit "^2.22.0"
