@@ -1,3 +1,6 @@
+// set environment
+import { Environment } from '@ovh-ux/manager-config';
+
 /* eslint-disable import/no-webpack-loader-syntax, import/extensions */
 import 'script-loader!jquery';
 import angular from 'angular';
@@ -19,7 +22,6 @@ import get from 'lodash/get';
 import has from 'lodash/has';
 
 import navbar from '@ovh-ux/manager-navbar';
-import { Environment } from '@ovh-ux/manager-config';
 import ovhManagerCore from '@ovh-ux/manager-core';
 import ovhManagerPci from '@ovh-ux/manager-pci';
 import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
