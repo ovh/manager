@@ -1,4 +1,6 @@
 import reduce from 'lodash/reduce';
+import illustration from './assets/cloud-archives.png';
+
 import { GUIDES } from './onboarding.constants';
 
 export default class PciStorageCloudArchivesOnboardingController {
@@ -10,6 +12,7 @@ export default class PciStorageCloudArchivesOnboardingController {
   }
 
   $onInit() {
+    this.illustration = illustration;
     this.guides = reduce(
       GUIDES,
       (list, guide) => ([

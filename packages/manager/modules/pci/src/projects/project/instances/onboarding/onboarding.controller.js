@@ -1,4 +1,5 @@
 import reduce from 'lodash/reduce';
+import illustration from './assets/instance.png';
 import { GUIDES } from './onboarding.constants';
 
 export default class PciInstancesOnboardingController {
@@ -10,6 +11,7 @@ export default class PciInstancesOnboardingController {
   }
 
   $onInit() {
+    this.illustration = illustration;
     this.guides = reduce(
       GUIDES,
       (list, guide) => ([

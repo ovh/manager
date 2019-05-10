@@ -1,7 +1,7 @@
 <div class="container-fluid px-0 pci-project-empty">
     <div class="row">
         <div class="col-md-3">
-            <div class="p-5" data-ng-class="{ 'placeholder' : !$ctrl.imageSource }">
+            <div data-ng-class="{ 'placeholder p-5' : !$ctrl.imageSource }">
                 <img
                     data-ng-src="{{:: $ctrl.imageSource || $ctrl.placeholder }}"
                     data-ng-attr-alt="{{:: $ctrl.imageAlt }}"
