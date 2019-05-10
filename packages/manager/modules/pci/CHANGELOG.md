@@ -1,3 +1,13 @@
+# [0.2.0-alpha.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.2.0-alpha.2...@ovh-ux/manager-pci@0.2.0-alpha.3) (2019-05-10)
+
+
+### Bug Fixes
+
+* **pci.empty:** update empty layout ([76b3ad7](https://github.com/ovh-ux/manager/commit/76b3ad7))
+* **pci.project:** avoid to submit form twice ([2c1a098](https://github.com/ovh-ux/manager/commit/2c1a098))
+
+
+
 # [0.2.0-alpha.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.2.0-alpha.1...@ovh-ux/manager-pci@0.2.0-alpha.2) (2019-05-10)
 
 
