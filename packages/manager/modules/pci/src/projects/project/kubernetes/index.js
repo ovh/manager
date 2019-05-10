@@ -4,7 +4,7 @@ import 'oclazyload';
 
 import '@ovh-ux/manager-core';
 
-const moduleName = 'ovhManagerPciProjectKubernetes';
+const moduleName = 'ovhManagerPciProjectKubernetesLazyloading';
 
 angular
   .module(moduleName, [
@@ -18,7 +18,7 @@ angular
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-        return import('./component')
+        return import('./kubernetes.module')
           .then(mod => $ocLazyLoad.inject(mod.default || mod));
       },
     });

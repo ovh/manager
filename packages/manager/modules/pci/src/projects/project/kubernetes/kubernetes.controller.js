@@ -1,4 +1,4 @@
-import { REGION } from './list.constants';
+import { REGION } from './kubernetes.constants';
 
 export default class {
   /* @ngInject */
