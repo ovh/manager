@@ -3,13 +3,13 @@ import template from './template.html';
 
 const component = {
   bindings: {
-    addNode: '<',
-    cluster: '<',
-    deleteNode: '<',
+    flavors: '<',
+    goBack: '<',
+    goToProjectQuota: '<',
     kubeId: '<',
-    nodes: '<',
+    prices: '<',
     projectId: '<',
-    project: '<',
+    quotas: '<',
   },
   template,
   controller,

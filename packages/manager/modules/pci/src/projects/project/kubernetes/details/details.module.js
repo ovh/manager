@@ -11,7 +11,7 @@ import routing from './details.routing';
 import service from './service';
 
 import containersComponent from './containers/index';
-import nodesComponent from './nodes/index';
+import nodesComponent from './nodes';
 import serviceComponent from './service/index';
 
 import './index.scss';

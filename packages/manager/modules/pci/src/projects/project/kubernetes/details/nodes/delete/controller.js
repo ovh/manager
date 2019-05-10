@@ -5,32 +5,32 @@ import { DELETE_CONFIRMATION_INPUT } from './constants';
 export default class KubernetesNodesDeleteCtrl {
   /* @ngInject */
   constructor(
-    $stateParams, $uibModalInstance,
-    Kubernetes, nodeId,
-    CUC_FLAVOR_FLAVORTYPE_CATEGORY,
+    $translate,
+    OvhApiCloudProjectKube,
   ) {
-    this.$stateParams = $stateParams;
-    this.$uibModalInstance = $uibModalInstance;
-    this.Kubernetes = Kubernetes;
-    this.nodeId = nodeId;
-    this.CUC_FLAVOR_FLAVORTYPE_CATEGORY = CUC_FLAVOR_FLAVORTYPE_CATEGORY;
+    this.$translate = $translate;
+    this.OvhApiCloudProjectKube = OvhApiCloudProjectKube;
     this.DELETE_CONFIRMATION_INPUT = DELETE_CONFIRMATION_INPUT;
   }
 
   $onInit() {
-    this.loading = false;
-    this.serviceName = this.$stateParams.serviceName;
+    this.isDeleting = false;
   }
 
   deleteNode() {
-    this.loading = true;
-    return this.Kubernetes.deleteNode(this.serviceName, this.nodeId)
-      .then(() => this.$uibModalInstance.close())
-      .catch(error => this.dismiss(get(error, 'data.message')))
-      .finally(() => { this.loading = false; });
-  }
-
-  dismiss(error) {
-    this.$uibModalInstance.dismiss(error);
+    this.isDeleting = true;
+    return this.OvhApiCloudProjectKube.Node().v6().delete({
+      serviceName: this.projectId,
+      kubeId: this.kubeId,
+      nodeId: this.nodeId,
+    }).$promise
+      .then(() => this.goBack(
+        this.$translate.instant('kube_nodes_delete_success'),
+      ))
+      .catch(error => this.goBack(
+        this.$translate.instant('kube_nodes_delete_error', {
+          message: get(error, 'data.message'),
+        }),
+      ), 'error');
   }
 }

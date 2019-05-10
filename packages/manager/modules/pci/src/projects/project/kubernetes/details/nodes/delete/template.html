@@ -5,9 +5,9 @@
     <oui-modal data-heading="{{:: 'kube_nodes_delete' | translate }}"
                data-primary-label="{{:: 'kube_nodes_common_delete' | translate }}"
                data-secondary-label="{{:: 'kube_nodes_common_cancel' | translate }}"
-               data-secondary-action="$ctrl.dismiss()"
-               data-on-dismiss="$ctrl.dismiss()"
-               data-loading="$ctrl.loading">
+               data-secondary-action="$ctrl.goBack()"
+               data-on-dismiss="$ctrl.goBack()"
+               data-loading="$ctrl.isDeleting">
         <p data-translate="kube_nodes_delete_confirmation" data-translate-values="{ node: $ctrl.nodeId }"></p>
         <p class="oui-font-light" data-translate="kube_nodes_delete_warning"></p>
         <oui-field data-label="{{:: 'kube_nodes_delete_enter' | translate }}">
