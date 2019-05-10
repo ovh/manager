@@ -33,24 +33,10 @@ export default class PciProjectNewDescriptionCtrl {
   $onInit() {
     this.step = this.getCurrentStep();
 
-    if (size(this.newProjectInfo.agreements)) {
-      this.step.loading.init = true;
-
-      const agreementPromises = map(
-        this.newProjectInfo.agreements,
-        agreementId => this.PciProjectNewService.getNewProjectAgreementContract(agreementId),
-      );
-
-      return this.$q.all(agreementPromises)
-        .then((contracts) => {
-          this.contracts = contracts;
-        })
-        .finally(() => {
-          this.step.loading.init = false;
-        });
+    if (!size(this.contracts)) {
+      // if no agreements - consider them as accepted
+      this.step.model.agreements = true;
     }
-    // if no agreements - consider them as accepted
-    this.step.model.agreements = true;
 
     return true;
   }
