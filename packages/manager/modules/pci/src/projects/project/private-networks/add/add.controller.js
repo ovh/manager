@@ -76,9 +76,13 @@ export default class NetworkAddCtrl {
     this.subnets = this.mapSubnetsIpBlocks(this.subnets);
   }
 
+  isVlanAvailable(vlanId) {
+    return !find(this.networks, { vlanId });
+  }
   getVlanIdConfiguration() {
     return this.PciPrivateNetworks.getPrivateNetworks(this.projectId)
       .then((networks) => {
+        this.networks = networks;
         this.configureVlanId = some(networks, ({ vlanId }) => vlanId === DEFAULT_VLAN_ID);
         this.mandatoryVlanId = this.configureVlanId;
         if (this.configureVlanId) {
@@ -181,20 +185,18 @@ export default class NetworkAddCtrl {
     return this.PciPrivateNetworksAdd.create(this.projectId, privateNetwork, subnets)
       .then(() => this.goBack())
       .then(() => {
-        this.CucCloudMessage.success(
-          this.$translate.instant(
-            'pci_projects_project_network_private_create_success',
-          ),
-          this.messageContainer,
-        );
-        this.goBack();
+        this.goBack(this.$translate.instant(
+          'pci_projects_project_network_private_create_success',
+        ));
       })
-      .catch(error => this.CucCloudMessage.error(
-        this.$translate.instant(
-          'pci_projects_project_network_private_create_error',
-          { message: get(error, 'data.message', '') },
-        ),
-      ))
+      .catch((error) => {
+        this.CucCloudMessage.error(
+          this.$translate.instant(
+            'pci_projects_project_network_private_create_error',
+            { message: get(error, 'data.message', '') },
+          ),
+        );
+      })
       .finally(() => {
         this.loaders.isSubmitting = false;
       });

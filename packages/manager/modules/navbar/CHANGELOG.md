@@ -1,3 +1,12 @@
+# [0.1.0-alpha.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-navbar@0.1.0-alpha.0...@ovh-ux/manager-navbar@0.1.0-alpha.1) (2019-05-09)
+
+
+### Bug Fixes
+
+* fix pci responsive sidebar ([#456](https://github.com/ovh-ux/manager/issues/456)) ([9704477](https://github.com/ovh-ux/manager/commit/9704477))
+
+
+
 # [0.1.0-alpha.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-navbar@0.0.0...@ovh-ux/manager-navbar@0.1.0-alpha.0) (2019-05-07)
 
 

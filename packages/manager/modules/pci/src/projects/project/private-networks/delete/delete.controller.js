@@ -33,24 +33,22 @@ export default class {
       networkId: this.networkId,
     }).$promise
       .then(() => {
-        this.CucCloudMessage.success(
+        this.goBack(
           this.$translate.instant('pci_projects_project_network_private_delete_success', {
             name: this.network.name,
           }),
-          this.messageContainer,
         );
       })
       .catch((error) => {
-        this.CucCloudMessage.error(
+        this.goBack(
           this.$translate.instant('pci_projects_project_network_private_delete_error', {
             message: get(error, 'data.message'),
           }),
-          this.messageContainer,
+          'error',
         );
       })
       .finally(() => {
         this.isLoading = false;
-        this.goBack();
       });
   }
 }

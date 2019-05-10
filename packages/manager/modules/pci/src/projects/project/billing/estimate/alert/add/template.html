@@ -1,4 +1,4 @@
-<form id="addAlertForm" name="addAlertForm" class="oui-modal oui-modal_shadow">
+<form id="addAlertForm" name="addAlertForm" class="oui-modal oui-modal_shadow" novalidate>
     <div class="oui-modal__header">
         <button class="oui-icon oui-icon-close_thin oui-modal__close-button" type="button" aria-label="Exit"
                 data-ng-click="CloudProjectBillingConsumptionEstimateAlertAddCtrl.closeModal()"></button>
@@ -15,7 +15,7 @@
                     id="alertMail" name="mail"
                     data-ng-model="CloudProjectBillingConsumptionEstimateAlertAddCtrl.model.email"
                     required >
-                <div class="oui-modal__text" data-ng-messages="addAlertForm.mail.$error" data-ng-if="addAlertForm.mail.$dirty">
+                <div class="oui-modal__text" data-ng-messages="addAlertForm.mail.$error" data-ng-if="addAlertForm.mail.$dirty && addAlertForm.mail.$invalid">
                     <p class="text-danger animate-fadeInLeft-enter animate-fadeOutRight-leave" >
                         <span data-ng-message="required" data-translate="cpbea_estimate_alert_add_mail_required"></span>
                         <span data-ng-message="email" data-translate="cpbea_estimate_alert_add_mail_bad_format"></span>
@@ -24,19 +24,17 @@
             </div>
             <div class="oui-modal__text">
                 <label class="oui-label" for="alertThreshold">
-                    <span data-translate="cpbea_estimate_alert_add_threshold_label"></span>
-                    <span>(</span>
-                    <span data-ng-bind="CloudProjectBillingConsumptionEstimateAlertAddCtrl.alerting.currency"></span>
-                    <span>)</span>
+                    <span data-translate="cpbea_estimate_alert_add_threshold_label"
+                    data-translate-values="{ currency: CloudProjectBillingConsumptionEstimateAlertAddCtrl.alerting.currency}"></span>
                 </label>
-                <input class="oui-input"
-                        id="alertThreshold" name="alertThreshold"
-                        type="number"
-                        data-ng-model="CloudProjectBillingConsumptionEstimateAlertAddCtrl.model.threshold"
-                        min="0"
-                        max="9999999"
-                        required>
-                <div class="oui-modal_text" data-ng-messages="addAlertForm.alertThreshold.$error" data-ng-if="addAlertForm.alertThreshold.$dirty">
+                <oui-numeric
+                    data-id="alertThreshold"
+                    data-name="alertThreshold"
+                    data-model="CloudProjectBillingConsumptionEstimateAlertAddCtrl.model.threshold"
+                    data-min="0"
+                    data-max="9999999">
+                </oui-numeric>
+                <div class="oui-modal_text" data-ng-messages="addAlertForm.alertThreshold.$error" data-ng-if="addAlertForm.alertThreshold.$dirty && addAlertForm.alertThreshold.$invalid">
                     <p class="text-danger animate-fadeInLeft-enter animate-fadeOutRight-leave" data-ng-message="required"><span data-translate="cpbea_estimate_alert_add_threshold_required"></span></p>
                 </div>
             </div>

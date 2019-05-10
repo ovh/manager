@@ -3,7 +3,7 @@
   "cpbea_estimate_alert_add_mail_label": "Email",
   "cpbea_estimate_alert_add_mail_required": "Une adresse email est requise pour envoyer l'alerte.",
   "cpbea_estimate_alert_add_mail_bad_format": "L'adresse email n'est pas valide.",
-  "cpbea_estimate_alert_add_threshold_label": "Seuil de déclenchement",
+  "cpbea_estimate_alert_add_threshold_label": "Seuil de déclenchement ( {{currency}} )",
   "cpbea_estimate_alert_add_threshold_required": "La consommation maximum à ne pas dépasser est requise.",
   "cpbea_estimate_alert_add_cancel_btn": "Annuler",
   "cpbea_estimate_alert_add_submit_btn": "Enregistrer",

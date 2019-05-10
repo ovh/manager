@@ -28,7 +28,7 @@ import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
 import ngOvhOtrs from '@ovh-ux/ng-ovh-otrs';
 import ngOvhUserPref from '@ovh-ux/ng-ovh-user-pref';
 import ngUirouterBreadcrumb from '@ovh-ux/ng-uirouter-breadcrumb';
-import ngUiRouterLineProgress from '@ovh-ux/ng-uirouter-line-progress';
+import ngUirouterLineProgress from '@ovh-ux/ng-uirouter-line-progress';
 
 import 'ovh-ui-kit/dist/oui.css';
 import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
@@ -53,7 +53,7 @@ angular
     atInternet,
     betaWarning,
     ngUirouterBreadcrumb,
-    ngUiRouterLineProgress,
+    ngUirouterLineProgress,
     ovhManagerCore,
     ovhManagerPci,
     ngOvhApiWrappers,

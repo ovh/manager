@@ -3,7 +3,7 @@ export default /* @ngInject */($stateProvider) => {
     url: '/new',
     component: 'pciProjectPrivateNetworksAdd',
     resolve: {
-      goBack: ($state, projectId) => () => $state.go('pci.projects.project.privateNetwork', { projectId }),
+      goBack: /* @ngInject */ goToPrivateNetworks => goToPrivateNetworks,
       messageContainer: () => 'pci.projects.project.privateNetwork',
 
       breadcrumb: /* @ngInject */ $translate => $translate.instant('pci_projects_project_network_private_create'),

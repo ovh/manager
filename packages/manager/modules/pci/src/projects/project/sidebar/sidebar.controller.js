@@ -18,6 +18,7 @@ export default class SidebarController {
     $rootScope,
     $stateParams,
     $transitions,
+    coreConfig,
     OvhApiServices,
     OvhApiCloudProject,
     SidebarMenu,
@@ -27,6 +28,7 @@ export default class SidebarController {
     this.$rootScope = $rootScope;
 
     this.$stateParams = $stateParams;
+    this.coreConfig = coreConfig;
     this.OvhApiServices = OvhApiServices;
     this.OvhApiCloudProject = OvhApiCloudProject;
     this.SidebarMenu = SidebarMenu;
@@ -60,22 +62,42 @@ export default class SidebarController {
               this.SidebarMenu.setShouldToggleMenuItemOpenState(false);
               this.SidebarMenu.clearMenuItems();
 
-              forEach(MENU.filter(el => el !== null), ({ options, subitems, translation }) => {
-                const menuItem = this.SidebarMenu.addMenuItem(Object.assign({
-                  title: this.$translate.instant(translation),
-                  allowSubItems: true,
-                  isOpen: true,
-                  stateParams: {
-                    projectId: this.project.project_id,
-                  },
-                }, options));
-
-                // eslint-disable-next-line no-shadow
-                forEach(subitems.filter(el => el !== null), ({ options, translation }) => {
-                  this.SidebarMenu.addMenuItem(Object.assign({
+              forEach(MENU.filter(el => el !== null), ({
+                options,
+                regions,
+                subitems,
+                translation,
+              }) => {
+                if (
+                  (Array.isArray(regions) && this.coreConfig.isRegion(regions))
+                  || !Array.isArray(regions)
+                ) {
+                  const menuItem = this.SidebarMenu.addMenuItem(Object.assign({
                     title: this.$translate.instant(translation),
-                  }, options), menuItem);
-                });
+                    allowSubItems: true,
+                    isOpen: true,
+                    stateParams: {
+                      projectId: this.project.project_id,
+                    },
+                  }, options));
+
+                  /* eslint-disable no-shadow */
+                  forEach(subitems.filter(el => el !== null), ({
+                    options,
+                    regions,
+                    translation,
+                  }) => {
+                    /* eslint-enable no-shadow */
+                    if (
+                      (Array.isArray(regions) && this.coreConfig.isRegion(regions))
+                      || !Array.isArray(regions)
+                    ) {
+                      this.SidebarMenu.addMenuItem(Object.assign({
+                        title: this.$translate.instant(translation),
+                      }, options), menuItem);
+                    }
+                  });
+                }
               });
               resolve();
             }));

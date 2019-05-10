@@ -5,7 +5,6 @@ export default {
   bindings: {
     goBack: '<',
     projectId: '<',
-    messageContainer: '<',
   },
   controller,
   template,

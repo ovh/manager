@@ -1,3 +1,18 @@
+# [5.2.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@5.1.0...@ovh-ux/manager-core@5.2.0) (2019-05-09)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([0568a65](https://github.com/ovh-ux/manager/commit/0568a65))
+
+
+### Features
+
+* **core.translate:** set oui translations once they are loaded ([104643a](https://github.com/ovh-ux/manager/commit/104643a))
+* add otrs module ([7469919](https://github.com/ovh-ux/manager/commit/7469919))
+
+
+
 # [5.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@5.0.0...@ovh-ux/manager-core@5.1.0) (2019-05-07)
 
 

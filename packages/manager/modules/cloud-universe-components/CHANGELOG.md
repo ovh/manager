@@ -1,3 +1,12 @@
+# [1.3.0-alpha.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@1.2.0-alpha.0...@ovh-ux/ng-ovh-cloud-universe-components@1.3.0-alpha.0) (2019-05-09)
+
+
+### Features
+
+* **cui-message:** support download link ([6cb68b4](https://github.com/ovh-ux/manager/commit/6cb68b4))
+
+
+
 # [1.2.0-alpha.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@1.1.0-alpha.0...@ovh-ux/ng-ovh-cloud-universe-components@1.2.0-alpha.0) (2019-05-07)
 
 
