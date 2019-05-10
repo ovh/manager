@@ -24,8 +24,6 @@ import vouchers from './vouchers';
 import regions from './regions';
 import routing from './project.routing';
 
-import './project.scss';
-
 const moduleName = 'ovhManagerPciProject';
 
 angular

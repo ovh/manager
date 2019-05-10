@@ -3,8 +3,9 @@ $colors: #3D86C3, #33BBEE, #2558C3;
 $d: 175;
 
 pci-project-creating { /* stylelint-disable-line */
-  background: red;
   .pci-projects-creating {
+    background-color: rgb(241, 249, 253);
+
     .spinner {
       width: $spinner-size;
       height: $spinner-size;
