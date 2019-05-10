@@ -1,4 +1,4 @@
-import { PROCESSING_STATUS, REGION } from './constants';
+import { PROCESSING_STATUS } from './constants';
 
 export default class Kubernetes {
   /* @ngInject */
@@ -31,35 +31,6 @@ export default class Kubernetes {
       .catch(error => (error.status === 404 ? false : Promise.reject(error)));
   }
 
-  getAssociatedPublicCloudProjects(serviceName) {
-    return this.OvhApiKube.PublicCloud().Project().v6().query({ serviceName }).$promise;
-  }
-
-  getProject(projectId) {
-    return this.OvhApiCloudProject.v6().get({ serviceName: projectId }).$promise;
-  }
-
-  getProjectQuota(serviceName) {
-    return this.OvhApiCloudProjectQuota
-      .v6()
-      .query({ serviceName })
-      .$promise;
-  }
-
-  getNodes(serviceName) {
-    return this.OvhApiKube.PublicCloud().Node().v6().query({ serviceName }).$promise;
-  }
-
-  addNode(serviceName, name, flavorName) {
-    return this.OvhApiKube.PublicCloud().Node().v6().save(
-      { serviceName },
-      { name, flavorName },
-    ).$promise;
-  }
-
-  deleteNode(serviceName, nodeId) {
-    return this.OvhApiKube.PublicCloud().Node().v6().delete({ serviceName, nodeId }).$promise;
-  }
 
   static isProcessing(status) {
     return PROCESSING_STATUS.includes(status);
@@ -68,18 +39,6 @@ export default class Kubernetes {
   resetNodesCache() {
     this.OvhApiKube.PublicCloud().Node().v6().resetCache();
     this.OvhApiKube.PublicCloud().Node().v6().resetQueryCache();
-  }
-
-  getFlavors(serviceName) {
-    // Region is constant for now
-    return this.OvhApiCloudProjectFlavor
-      .v6()
-      .query({ serviceName, region: REGION })
-      .$promise;
-  }
-
-  getFlavorDetails(serviceName, flavorId) {
-    return this.OvhApiCloudProjectFlavor.get({ serviceName, flavorId }).$promise;
   }
 
   formatFlavor(flavor) {
