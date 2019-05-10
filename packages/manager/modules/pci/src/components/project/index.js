@@ -9,6 +9,7 @@ import empty from './empty';
 import flavorBilling from './flavor-billing';
 import flavorsList from './flavors-list';
 import imagesList from './images-list';
+import quotaRegionHeader from './quota-region-header';
 import rights from './rights';
 import sshKeys from './instance/ssh-keys';
 
@@ -26,6 +27,7 @@ angular
     flavorBilling,
     flavorsList,
     imagesList,
+    quotaRegionHeader,
     'ovh-api-services',
     rights,
     sshKeys,

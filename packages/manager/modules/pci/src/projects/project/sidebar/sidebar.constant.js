@@ -100,7 +100,7 @@ export const MENU = [
       },
       {
         options: {
-          state: 'pci.projects.project.legacy.compute.quota',
+          state: 'pci.projects.project.quota',
         },
         translation: 'cloud_sidebar_project_management_quota_location',
       },

@@ -16,10 +16,12 @@ import kubernetes from './kubernetes';
 import legacy from './legacy';
 import sshKeys from './ssh-keys';
 import privateNetworks from './private-networks';
+import quota from './quota';
 import sidebar from './sidebar';
 import storages from './storages';
 import users from './users';
 import vouchers from './vouchers';
+import regions from './regions';
 import routing from './project.routing';
 
 import './project.scss';
@@ -37,6 +39,8 @@ angular
     kubernetes,
     legacy,
     privateNetworks,
+    quota,
+    regions,
     'oui',
     'ovhManagerCore',
     'ovh-api-services',
