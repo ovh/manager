@@ -1,6 +1,0 @@
-{
-  "cpc_tab_billing": "Consumo",
-  "cpc_tab_openstack_users": "Openstack",
-  "cpb_details_compute_error_message": "Lo sentimos: no se ha recuperado la información asociada a las infraestructuras.",
-  "cpb_read_only_access_alert": "Su cuenta es de solo lectura, por lo que no se pueden efectuar determinadas operaciones. Para obtener un permiso de escritura, debe contactar con su administrador."
-}

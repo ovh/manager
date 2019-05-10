@@ -31,7 +31,6 @@ import 'ovh-common-style/dist/ovh-common-style.css';
 
 import components from './components';
 import error from './error';
-import offer from './offer';
 import projects from './projects';
 import template from './template.html';
 
@@ -65,7 +64,6 @@ angular
     components,
     error,
     projects,
-    offer,
     sidebar,
     'ui.router',
     'ngOvhCloudUniverseComponents',

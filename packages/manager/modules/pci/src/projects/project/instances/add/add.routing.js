@@ -19,7 +19,7 @@ export default /* @ngInject */($stateProvider) => {
         projectId,
       }),
 
-      quotaLink: /* @ngInject */ ($state, projectId) => $state.href('pci.projects.project.legacy.compute.quota', {
+      quotaLink: /* @ngInject */ ($state, projectId) => $state.href('pci.projects.project.quota', {
         projectId,
       }),
 
