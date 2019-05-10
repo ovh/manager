@@ -11,11 +11,9 @@ export default class ProjectController {
 
     this.actions = ACTIONS;
     this.links = LINKS;
-
-    this.$ngInit();
   }
 
-  $ngInit() {
+  $onInit() {
     this.loading = true;
 
     return this.OvhApiCloudProject
