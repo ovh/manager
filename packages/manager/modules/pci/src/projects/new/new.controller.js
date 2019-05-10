@@ -1,12 +1,11 @@
 import get from 'lodash/get';
 import merge from 'lodash/merge';
 
-import EnvironmentService from '@ovh-ux/manager-config';
 import { PCI_URLS } from '../../constants';
 
 export default class PciProjectNewCtrl {
   /* @ngInject */
-  constructor($q, $translate, $window, CucCloudMessage,
+  constructor($q, $translate, $window, coreConfig, CucCloudMessage,
     ovhPaymentMethod, PciProjectNewService) {
     // dependencies injections
     this.$q = $q;
@@ -30,7 +29,7 @@ export default class PciProjectNewCtrl {
 
     this.descriptionModel = null;
     this.paymentModel = null;
-    this.region = EnvironmentService.Environment.region;
+    this.region = coreConfig.getRegion();
   }
 
   /* ==============================
@@ -60,7 +59,7 @@ export default class PciProjectNewCtrl {
     if (currentStep.name === 'description') {
       return this.region !== 'US'
         ? this.getStateLink('next')
-        : get(PCI_URLS, 'US.website_order["cloud-resell-eu"].US')(currentStep.model.description || '');
+        : get(PCI_URLS, 'US.website_order["cloud-resell-eu"].US')(currentStep.model.name || '');
     }
 
     return this.paymentMethodUrl;
