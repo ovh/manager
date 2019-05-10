@@ -13,7 +13,7 @@ export default /* @ngInject */ function CloudProjectBillingConsumptionEstimateAl
 
   self.model = {
     email: '',
-    threshold: null,
+    threshold: 0,
   };
 
   self.alerting = {
@@ -42,7 +42,7 @@ export default /* @ngInject */ function CloudProjectBillingConsumptionEstimateAl
       self.alerting.id = null;
       self.model.email = '';
       self.alerting.email = '';
-      self.model.threshold = null;
+      self.model.threshold = 0;
       self.alerting.threshold = null;
     }
   }
