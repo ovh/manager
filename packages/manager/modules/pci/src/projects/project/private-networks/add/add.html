@@ -9,7 +9,8 @@
         <oui-step-form
             data-header="{{:: 'pci_projects_project_network_private_create_configure' | translate}}"
             data-loading="$ctrl.loaders.isInitiating"
-            data-editable="!$ctrl.loaders.isSubmitting">
+            data-editable="!$ctrl.loaders.isSubmitting"
+            data-valid="$ctrl.isVlanAvailable($ctrl.configuration.vlanId)">
             <div class="d-inline-flex align-items-center">
                 <oui-field
                     data-label="{{:: 'pci_projects_project_network_private_create_configure_address' | translate }}"
@@ -59,7 +60,10 @@
             <oui-field
                 data-ng-if="$ctrl.configureVlanId"
                 data-label="{{:: 'pci_projects_project_network_private_create_configure_vlan' | translate }}"
-                data-help-text="{{:: '(' + ('pci_projects_project_network_private_create_configure_vlan_limits' | translate) + ')' }}">
+                data-help-text="{{:: '(' + ('pci_projects_project_network_private_create_configure_vlan_limits' | translate) + ')' }}"
+                data-ng-class="{
+                    'oui-field_error': !$ctrl.isVlanAvailable($ctrl.configuration.vlanId)
+                }">
                 <oui-numeric
                     name="vlanId"
                     data-min="::$ctrl.VLAN_ID.MIN"
@@ -67,6 +71,12 @@
                     data-model="$ctrl.configuration.vlanId"
                     data-on-change="$ctrl.regenerateNetworkAddress(modelValue)">
                 </oui-numeric>
+                <div class="oui-field__error" data-ng-if="!$ctrl.isVlanAvailable($ctrl.configuration.vlanId)">
+                    <span role="alert">
+                        <span class="oui-icon oui-icon-error" aria-hidden="true"></span>
+                        <span data-translate="pci_projects_project_network_private_create_configure_vlan_taken"></span>
+                    </span>
+                </div>
             </oui-field>
         </oui-step-form>
         <oui-step-form

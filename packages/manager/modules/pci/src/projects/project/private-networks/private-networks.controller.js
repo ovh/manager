@@ -1,6 +1,5 @@
 import get from 'lodash/get';
 import map from 'lodash/map';
-import some from 'lodash/some';
 
 const CONTAINER_NAME = 'pci.projects.project.privateNetwork';
 
@@ -40,9 +39,5 @@ export default class {
 
   refreshMessages() {
     this.messages = this.messageHandler.getMessages();
-
-    if (some(this.messages, { type: 'success' })) {
-      this.$onInit();
-    }
   }
 }

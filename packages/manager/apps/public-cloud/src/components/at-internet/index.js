@@ -18,7 +18,7 @@ angular
   .config(/* @ngInject */ (atInternetProvider, atInternetUiRouterPluginProvider) => {
     const trackingEnabled = __NODE_ENV__ === 'production';
 
-    atInternetProvider.setEnabled(true);
+    atInternetProvider.setEnabled(trackingEnabled);
     atInternetProvider.setDebug(!trackingEnabled);
 
     atInternetUiRouterPluginProvider.setTrackStateChange(true);

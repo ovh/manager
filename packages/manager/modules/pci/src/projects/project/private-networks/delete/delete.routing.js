@@ -10,8 +10,7 @@ export default /* @ngInject */($stateProvider) => {
       networkId: null,
     },
     resolve: {
-      goBack: ($state, projectId) => () => $state.go('^', { projectId }),
-      messageContainer: () => 'pci.projects.project.privateNetwork',
+      goBack: /* @ngInject */ goToPrivateNetworks => goToPrivateNetworks,
       networkId: /* @ngInject */ $transition$ => $transition$.params().networkId,
     },
     layout: 'modal',
