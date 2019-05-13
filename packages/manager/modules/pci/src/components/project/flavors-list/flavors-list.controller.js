@@ -1,5 +1,7 @@
 import filter from 'lodash/filter';
 import find from 'lodash/find';
+import first from 'lodash/first';
+import get from 'lodash/get';
 import forEach from 'lodash/forEach';
 
 export default class FlavorsListController {
@@ -29,7 +31,7 @@ export default class FlavorsListController {
             && !flavor.isFlex()),
         );
         this.flavors = this.PciProjectFlavors.constructor.groupByCategory(flavorGroups);
-
+        this.selectedCategory = get(first(this.flavors), 'category');
         this.findFlavor();
 
         return flavors;
@@ -45,6 +47,7 @@ export default class FlavorsListController {
         );
 
         if (flavorGroup) {
+          this.selectedCategory = get(flavorCategory, 'category');
           this.flavor = flavorGroup;
           this.onFlavorChange(flavorGroup);
         }
