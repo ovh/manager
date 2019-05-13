@@ -3,12 +3,6 @@
 @CLOUD_VM_POPOVER_WIDTH: 450px;
 
 .cloud-vm-popover {
-  .responsive-switch:not(.responsive-switch_mobile) {
-    .responsive-switch-page-wrapper {
-      width: @CLOUD_VM_POPOVER_WIDTH;
-    }
-  }
-
   .status-warning {
     color: @VM_MONITORING_WARNING_COLOR;
 
@@ -202,13 +196,6 @@
     }
   }
 
-  .monthlyBillingChoice {
-    .flat-switch input:checked ~ .flat-switch-container {
-      opacity: 1;
-      background-color: #dfeeeb;
-    }
-  }
-
   // ----- Left panel -----
 
   // div.header > h2 {
@@ -268,77 +255,6 @@
   }
 
   // ----- Right panel -----
-
-  .responsive-switch-page-right {
-    fieldset {
-      margin-top: 8px;
-
-      > legend {
-        font-size: 12px;
-        font-weight: bold;
-        border: none;
-        box-sizing: border-box;
-        color: inherit;
-        display: table;
-        max-width: 100%;
-        padding: 0;
-        white-space: normal;
-      }
-
-      > .form-group {
-        min-height: 28px;
-        margin-bottom: 18px;
-      }
-
-      > .form-group > label { /* stylelint-disable-line */
-        margin: 0;
-        font-weight: normal;
-        margin-bottom: 8px;
-      }
-    }
-
-    .panel {
-      &.disabled {
-        opacity: 0.6;
-      }
-
-      .panel-body {
-        max-height: 390px;
-        border-top: 0;
-        overflow-x: hidden;
-      }
-    }
-
-    .table-flavors {
-      table-layout: fixed;
-
-      th {
-        text-align: center;
-
-        &:first-child {
-          width: 30px;
-        }
-      }
-
-      tr {
-        .bottom-message {
-          padding: 0;
-          text-align: center;
-          font-size: 11px;
-          border-top: none;
-        }
-      }
-
-      .filter {
-        &::after {
-          &:extend(.fa);
-
-          font-family: 'FontAwesome', sans-serif;
-          content: '\f175 '; /* .fa-long-arrow-down */
-        }
-      }
-    }
-  }
 
   .sshkey-help .cloud-classic-tabs .tab-pane {
     background-color: white;

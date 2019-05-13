@@ -1,3 +1,17 @@
+# [0.4.0-alpha.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.3.0-alpha.2...@ovh-ux/manager-public-cloud@0.4.0-alpha.0) (2019-05-13)
+
+
+### Bug Fixes
+
+* **pci.project.billing:** replace Toast by CucCloudMessage ([1a774f0](https://github.com/ovh-ux/manager/commit/1a774f0))
+
+
+### Features
+
+* add chatbot in assistance menu ([f3d64b4](https://github.com/ovh-ux/manager/commit/f3d64b4))
+
+
+
 # [0.3.0-alpha.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.3.0-alpha.1...@ovh-ux/manager-public-cloud@0.3.0-alpha.2) (2019-05-10)
 
 

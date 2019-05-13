@@ -1,7 +1,7 @@
 {
   "name": "@ovh-ux/manager-navbar",
   "description": "OVH control panel navbar",
-  "version": "0.1.0-alpha.1",
+  "version": "0.2.0-alpha.1",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ovh-ux/manager.git",
@@ -27,7 +27,7 @@
     "@ovh-ux/manager-config": "^0.2.0",
     "@ovh-ux/manager-core": "^5.2.0",
     "@ovh-ux/ng-at-internet": "^4.0.0",
-    "@ovh-ux/ng-ovh-chatbot": "^2.0.0",
+    "@ovh-ux/ng-ovh-chatbot": "^2.0.1",
     "@ovh-ux/ng-ovh-otrs": "^7.0.1",
     "@ovh-ux/ng-ovh-sso-auth": "^4.0.0",
     "@ovh-ux/ng-translate-async-loader": "^2.0.0",

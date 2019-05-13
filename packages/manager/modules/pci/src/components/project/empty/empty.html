@@ -1,6 +1,6 @@
-<div class="container mx-auto px-0 pci-project-empty">
+<div class="container px-0 pci-project-empty">
     <div class="row align-items-center">
-        <div class="col-md-3">
+        <div class="col-md-4">
             <div data-ng-class="{ 'placeholder p-5' : !$ctrl.imageSource }">
                 <img
                     data-ng-src="{{:: $ctrl.imageSource || $ctrl.placeholder }}"
@@ -9,7 +9,7 @@
                     class="w-100">
             </div>
         </div>
-        <div class="col-md-9" data-ng-transclude></div>
+        <div class="col-md-8" data-ng-transclude></div>
     </div>
 
     <aside class="row pt-5">

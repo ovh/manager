@@ -1,3 +1,12 @@
+## [6.2.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-layout-ovh@6.2.0...@ovh-ux/manager-layout-ovh@6.2.1) (2019-05-13)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ng-ovh-telecom-universe-components to v3.0.3 ([574ff83](https://github.com/ovh-ux/manager/commit/574ff83))
+
+
+
 # [6.2.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-layout-ovh@6.1.0...@ovh-ux/manager-layout-ovh@6.2.0) (2019-05-07)
 
 

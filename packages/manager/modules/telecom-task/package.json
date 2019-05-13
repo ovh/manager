@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-telecom-task",
-  "version": "4.1.0",
+  "version": "4.1.1",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ovh-ux/manager.git",
@@ -29,7 +29,7 @@
     "@ovh-ux/component-rollup-config": "5.0.1"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-core": "^5.1.0",
+    "@ovh-ux/manager-core": "^5.2.0",
     "@ovh-ux/manager-telecom-styles": "^2.0.2",
     "@ovh-ux/ng-ovh-telecom-universe-components": "^3.0.3",
     "@ovh-ux/ng-uirouter-title": "^2.0.0-beta.3",

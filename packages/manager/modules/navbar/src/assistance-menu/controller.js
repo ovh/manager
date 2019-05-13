@@ -10,6 +10,7 @@ export default class {
   /* @ngInject */
   constructor(
     $q,
+    $rootScope,
     $scope,
     $translate,
     atInternet,
@@ -17,6 +18,7 @@ export default class {
     ovhManagerNavbarMenuHeaderBuilder,
   ) {
     this.$q = $q;
+    this.$rootScope = $rootScope;
     this.$scope = $scope;
     this.$translate = $translate;
     this.atInternet = atInternet;
@@ -150,7 +152,7 @@ export default class {
             name: 'assistance::chatbot',
             type: 'action',
           });
-          this.$scope.$emit('ovh-chatbot:open');
+          this.$rootScope.$emit('ovh-chatbot:open');
         },
       });
     }
