@@ -45,6 +45,7 @@ Environment.setRegion(__WEBPACK_REGION__);
 
 angular
   .module('ovhStack', [
+    __NG_APP_INJECTIONS__,
     uiRouter,
     atInternet,
     betaWarning,
@@ -58,7 +59,7 @@ angular
     navbar,
     preload,
     walkMe,
-  ])
+  ].filter(value => value !== null)) // Remove null because __NG_APP_INJECTIONS__ can be null
   .controller('PublicCloudController', controller)
   .service('publicCloud', service)
   .config(routing)
