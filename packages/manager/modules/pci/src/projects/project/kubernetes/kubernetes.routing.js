@@ -35,7 +35,7 @@ export default /* @ngInject */ ($stateProvider) => {
           .then(kubernetes => map(kubernetes, id => ({ id, region: REGION }))),
 
         versions: /* @ngInject */
-          OvhApiCloudProjectKube => OvhApiCloudProjectKube.v6().getSchema().$promise
+          OvhApiCloud => OvhApiCloud.v6().schema().$promise
             .then(schema => get(schema, VERSION_ENUM_KEY)),
 
         breadcrumb: /* @ngInject */ $translate => $translate.instant('kube_list_title'),
