@@ -29,7 +29,7 @@
                     'oui-status_warning' : $ctrl.Kubernetes.constructor.isProcessing($row.status),
                     'oui-status_error' : $row.status === $ctrl.STATUS.ERROR
                     }"
-                    data-translate="{{:: 'kube_service_cluster_status_' + $row.status }}">
+                    data-translate="{{:: 'kube_nodes_status_' + $row.status }}">
             </span>
         </oui-column>
         <oui-action-menu data-disabled="$ctrl.Kubernetes.constructor.isProcessing($row.status) || $ctrl.Kubernetes.constructor.isProcessing($ctrl.cluster.status)" data-align="end" data-compact>
