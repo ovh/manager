@@ -1,5 +1,7 @@
 import filter from 'lodash/filter';
 import find from 'lodash/find';
+import first from 'lodash/first';
+import keys from 'lodash/keys';
 import partition from 'lodash/partition';
 import reduce from 'lodash/reduce';
 import some from 'lodash/some';
@@ -59,6 +61,8 @@ export default class ImagesListController {
         [type]: this.PciProjectImages.constructor.groupByDistribution(imagesOfType),
       }), {});
     this.apps = appImages;
+
+    this.selectedTab = first(keys(this.os));
   }
 
   getSnapshots() {
