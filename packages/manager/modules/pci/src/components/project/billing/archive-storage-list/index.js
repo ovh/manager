@@ -2,7 +2,6 @@ import angular from 'angular';
 import '@ovh-ux/ng-translate-async-loader';
 import '@ovh-ux/ng-ovh-api-wrappers';
 import '@ovh-ux/ng-ovh-cloud-universe-components';
-import '@ovh-ux/ng-ovh-toaster';
 import 'angular-translate';
 import 'ovh-api-services';
 import 'ovh-ui-angular';
@@ -15,7 +14,6 @@ const moduleName = 'ovhManagerPciComponentsProjectBillingArchiveStorageList';
 angular
   .module(moduleName, [
     'ngOvhCloudUniverseComponents',
-    'ngOvhToaster',
     'ngTranslateAsyncLoader',
     'oui',
     'ovh-api-services',

@@ -1,9 +1,9 @@
 export default /* @ngInject */ function (
   $q,
   $translate,
+  CucCloudMessage,
   CucRegionService,
   OvhApiMe,
-  Toast,
 ) {
   const self = this;
   self.CucRegionService = CucRegionService;
@@ -23,7 +23,7 @@ export default /* @ngInject */ function (
 
     $q.all([initUserCurrency()])
       .catch((err) => {
-        Toast.error([$translate.instant('cpb_error_message'), (err.data && err.data.message) || ''].join(' '));
+        CucCloudMessage.error([$translate.instant('cpb_error_message'), (err.data && err.data.message) || ''].join(' '));
         return $q.reject(err);
       })
       .finally(() => {
