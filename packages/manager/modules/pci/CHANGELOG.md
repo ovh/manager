@@ -1,3 +1,18 @@
+# [0.3.0-alpha.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.2.0-alpha.3...@ovh-ux/manager-pci@0.3.0-alpha.0) (2019-05-13)
+
+
+### Bug Fixes
+
+* **pci.project:** add guides links ([e175552](https://github.com/ovh-ux/manager/commit/e175552))
+* **pci.project.instance:** set default instance billing to hourly ([59cfbab](https://github.com/ovh-ux/manager/commit/59cfbab))
+
+
+### Features
+
+* **pci.kubernetes:** add cluster creation ([3469c75](https://github.com/ovh-ux/manager/commit/3469c75))
+
+
+
 # [0.2.0-alpha.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.2.0-alpha.2...@ovh-ux/manager-pci@0.2.0-alpha.3) (2019-05-10)
 
 
