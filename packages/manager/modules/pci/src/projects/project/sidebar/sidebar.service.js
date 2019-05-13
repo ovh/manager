@@ -1,9 +1,13 @@
+import includes from 'lodash/includes';
+import isUndefined from 'lodash/isUndefined';
 import { MENU } from './sidebar.constant';
 
 export default class Sidebar {
   /* @ngInject */
-  constructor($translate) {
+  constructor($translate, coreConfig) {
     this.$translate = $translate;
+
+    this.REGION = coreConfig.getRegion();
   }
 
   getSidebarLinks(stateParams) {
@@ -15,7 +19,7 @@ export default class Sidebar {
         title: this.$translate.instant(subitem.translation),
         ...subitem.options,
         stateParams,
-      })),
+      })).filter(({ regions }) => includes(regions, this.REGION) || isUndefined(regions)),
     }));
   }
 }

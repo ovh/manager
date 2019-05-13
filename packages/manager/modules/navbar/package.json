@@ -1,7 +1,7 @@
 {
   "name": "@ovh-ux/manager-navbar",
   "description": "OVH control panel navbar",
-  "version": "0.2.0-alpha.0",
+  "version": "0.2.0-alpha.1",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ovh-ux/manager.git",
