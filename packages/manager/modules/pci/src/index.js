@@ -19,7 +19,6 @@ import 'ovh-ui-angular';
 import 'ovh-jquery-ui-draggable-ng';
 import 'ovh-angular-q-allsettled';
 import 'ovh-angular-pagination-front';
-import 'ovh-angular-responsive-page-switcher';
 import 'angular-ui-bootstrap';
 
 import '@ovh-ux/manager-cloud-styles';
@@ -80,7 +79,6 @@ angular
     'ovh-jquery-ui-draggable-ng',
     'ovh-angular-q-allSettled',
     'ovh-angular-pagination-front',
-    'ovh-angular-responsive-page-switcher',
     'oui',
     'ui.bootstrap',
   ])
