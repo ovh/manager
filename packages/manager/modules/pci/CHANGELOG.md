@@ -1,3 +1,19 @@
+# [0.4.0-alpha.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.3.0-alpha.0...@ovh-ux/manager-pci@0.4.0-alpha.0) (2019-05-13)
+
+
+### Bug Fixes
+
+* **pci.kubernetes:** get version from cloud schema instead of kube ([e8ee3f1](https://github.com/ovh-ux/manager/commit/e8ee3f1))
+* **pci.project.billing:** replace Toast by CucCloudMessage ([1a774f0](https://github.com/ovh-ux/manager/commit/1a774f0))
+* **pci.project.instance.vnc:** fix translations ([6eb3797](https://github.com/ovh-ux/manager/commit/6eb3797))
+
+
+### Features
+
+* **pci.components:** update image size ([18402db](https://github.com/ovh-ux/manager/commit/18402db))
+
+
+
 # [0.3.0-alpha.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.2.0-alpha.3...@ovh-ux/manager-pci@0.3.0-alpha.0) (2019-05-13)
 
 

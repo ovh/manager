@@ -1,3 +1,12 @@
+## [1.0.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci-app@1.0.0...@ovh-ux/manager-pci-app@1.0.1) (2019-05-13)
+
+
+### Bug Fixes
+
+* **pci.project.billing:** replace Toast by CucCloudMessage ([1a774f0](https://github.com/ovh-ux/manager/commit/1a774f0))
+
+
+
 # [1.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci-app@0.2.0...@ovh-ux/manager-pci-app@1.0.0) (2019-05-09)
 
 

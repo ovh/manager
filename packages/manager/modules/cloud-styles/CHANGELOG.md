@@ -1,3 +1,12 @@
+# [0.3.0-alpha.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-cloud-styles@0.3.0-alpha.0...@ovh-ux/manager-cloud-styles@0.3.0-alpha.1) (2019-05-13)
+
+
+### Bug Fixes
+
+* **cloud-styles:** remove extra import of less file ([32bce91](https://github.com/ovh-ux/manager/commit/32bce91))
+
+
+
 # [0.3.0-alpha.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-cloud-styles@0.2.0-alpha.0...@ovh-ux/manager-cloud-styles@0.3.0-alpha.0) (2019-03-22)
 
 
