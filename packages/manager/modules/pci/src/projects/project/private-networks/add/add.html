@@ -11,7 +11,7 @@
             data-loading="$ctrl.loaders.isInitiating"
             data-editable="!$ctrl.loaders.isSubmitting"
             data-valid="$ctrl.isVlanAvailable($ctrl.configuration.vlanId)">
-            <div class="d-inline-flex align-items-center">
+            <div class="d-flex flex-wrap flex-md-nowrap align-items-center">
                 <oui-field
                     data-label="{{:: 'pci_projects_project_network_private_create_configure_address' | translate }}"
                     class="mr-2">
@@ -135,7 +135,7 @@
                     placeholder="{{:: 'pci_projects_project_network_private_create_name_placeholder' | translate }}">
             </oui-field>
 
-            <div data-ng-if="$ctrl.loaders.isSubmitting" class="d-flex align-items-center">
+            <div data-ng-if="$ctrl.loaders.isSubmitting" class="d-flex flex-wrap flex-md-nowrap align-items-center">
                 <oui-spinner data-size="m"></oui-spinner>
                 <span data-translate="pci_projects_project_network_private_create_loading"></span>
             </div>
