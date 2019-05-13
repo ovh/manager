@@ -10,6 +10,7 @@ import add from './add';
 import details from './details/details.module';
 
 import component from './kubernetes.component';
+import onboarding from './onboarding';
 import routing from './kubernetes.routing';
 
 import './index.scss';
@@ -19,6 +20,7 @@ const moduleName = 'ovhManagerPciProjectKubernetes';
 angular.module(moduleName, [
   add,
   details,
+  onboarding,
   'ngTranslateAsyncLoader',
   'pascalprecht.translate',
   'ngOvhCloudUniverseComponents',
