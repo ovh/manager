@@ -1599,6 +1599,14 @@
     rollup-pluginutils "^2.3.3"
     slash "^2.0.0"
 
+"@ovh-ux/manager-navbar@^0.1.0-alpha.1":
+  version "0.1.0-alpha.1"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-navbar/-/manager-navbar-0.1.0-alpha.1.tgz#2e6dd40ef1804a832557ad1b751499d7e2f42d05"
+  integrity sha512-hRfiuzHDDG95IFZoqZcOkQODgh3QhRED2VI5oM4a+V9Oqc/tg8Opuz1GM6CCOGplZTXv6pH4zxwt/jsnN3VkJw==
+  dependencies:
+    lodash "^4.17.11"
+    moment "^2.24.0"
+
 "@ovh-ux/manager-webpack-config@^3.0.7":
   version "3.0.7"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-webpack-config/-/manager-webpack-config-3.0.7.tgz#d158154e22c44a225dd923505c62b8a7e6343c1f"
@@ -1728,11 +1736,6 @@
     lodash "~4.17.11"
     urijs "^1.19.1"
 
-"@ovh-ux/ng-ovh-form-flat@^4.0.0":
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-form-flat/-/ng-ovh-form-flat-4.0.0.tgz#d3da130cca543ddc60713e47a3a7c6c74fc97636"
-  integrity sha512-8WXu3DHEih5cqVB9srvvIkMnnpBA7oAIL1sH6v3SQZdhR9VIPTYYMPKnOQe2zQ0zjcQVpbpHQdNv2v7hzd9YRQ==
-
 "@ovh-ux/ng-ovh-http@^4.0.1-beta.0":
   version "4.0.1-beta.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-http/-/ng-ovh-http-4.0.1-beta.0.tgz#ccf793c7d34252952d0bf92d8f3a9ff2ca35e52e"
@@ -1823,13 +1826,6 @@
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-translate-async-loader/-/ng-translate-async-loader-2.0.0.tgz#df0d155c6c2e38b53704ff4ca9b419f0695a88bf"
   integrity sha512-CmAT0/rTYN/Niwtuo1pcY+y46nqGCR2dO6+4twqGiRkqu/ksgklZ4weaqF9Xgl/KYLv+zcCmxZf0J1gfXs7kag==
-
-"@ovh-ux/ng-uirouter-line-progress@^0.0.0":
-  version "0.0.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-uirouter-line-progress/-/ng-uirouter-line-progress-0.0.0.tgz#0f54249e04e80ddd69dc9094c808212f905d8806"
-  integrity sha512-jtfZD3RxWbi+m/j8QwPjHP44dgt2jwgth++91NtEYPkgaNcdkzLVDK1EpQWs0s/ir4X7NhnePWaaXlDabsYygQ==
-  dependencies:
-    nprogress "^0.2.0"
 
 "@ovh-ux/ng-uirouter-title@^2.0.0-beta.3":
   version "2.0.0-beta.3"
