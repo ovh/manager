@@ -4,5 +4,6 @@ export default {
   template,
   bindings: {
     creditModel: '<',
+    creditMinPrice: '<',
   },
 };
