@@ -1,9 +1,11 @@
+import get from 'lodash/get';
+
 export default /* @ngInject */ function (
   $q,
   $translate,
+  CucCloudMessage,
   CucRegionService,
   OvhApiMe,
-  Toast,
 ) {
   const self = this;
 
@@ -24,7 +26,7 @@ export default /* @ngInject */ function (
 
     $q.all([initUserCurrency()])
       .catch((err) => {
-        Toast.error([$translate.instant('cpb_error_message'), (err.data && err.data.message) || ''].join(' '));
+        CucCloudMessage.error([$translate.instant('cpb_error_message'), (err.data && err.data.message) || ''].join(' '));
         return $q.reject(err);
       })
       .finally(() => {
@@ -35,7 +37,7 @@ export default /* @ngInject */ function (
   self.getSnapshotPriceInfoTooltip = function getSnapshotPriceInfoTooltip(snapshot) {
     return $translate.instant('cpbc_snapshot_col_usage_info_part1')
       .concat($translate.instant('cpbc_snapshot_col_usage_info_part2', {
-        amount: snapshot.instance.quantity.value,
+        amount: get(snapshot, 'instance.quantity.value'),
       }));
   };
 }

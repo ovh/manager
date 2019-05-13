@@ -5,10 +5,10 @@ export default /* @ngInject */ function (
   $q,
   $translate,
   $stateParams,
+  CucCloudMessage,
   DetailsPopoverService,
   OvhApiCloudProjectVolume,
   OvhApiMe,
-  Toast,
 ) {
   const self = this;
   self.DetailsPopoverService = DetailsPopoverService;
@@ -65,7 +65,7 @@ export default /* @ngInject */ function (
     initUserCurrency()
       .then(() => initVolumes())
       .catch((err) => {
-        Toast.error([$translate.instant('cpb_error_message'), (err.data && err.data.message) || ''].join(' '));
+        CucCloudMessage.error([$translate.instant('cpb_error_message'), (err.data && err.data.message) || ''].join(' '));
         $q.reject(err);
       })
       .finally(() => {
