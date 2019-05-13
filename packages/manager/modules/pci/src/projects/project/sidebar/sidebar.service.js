@@ -13,7 +13,7 @@ export default class Sidebar {
       subLinks: item.subitems.map(subitem => ({
         name: subitem.translation,
         title: this.$translate.instant(subitem.translation),
-        state: subitem.options.state,
+        ...subitem.options,
         stateParams,
       })),
     }));
