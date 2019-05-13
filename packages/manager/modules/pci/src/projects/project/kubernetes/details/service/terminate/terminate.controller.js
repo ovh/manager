@@ -16,6 +16,7 @@ export default class kubernetesTerminateCtrl {
   }
 
   terminate() {
+    this.isDeleting = true;
     return (
       this.isLegacyCluster
         ? this.OvhApiKube.v6().terminate({
