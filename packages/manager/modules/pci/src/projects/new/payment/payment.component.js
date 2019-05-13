@@ -13,5 +13,6 @@ export default {
     paymentStatus: '<',
     newProjectInfo: '<',
     hasCreditToOrder: '<',
+    creditMinPrice: '<',
   },
 };

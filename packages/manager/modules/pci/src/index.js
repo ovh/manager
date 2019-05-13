@@ -90,6 +90,9 @@ angular
         url: '/pci',
         abstract: true,
         template,
+        resolve: {
+          me: /* @ngInject */ OvhApiMe => OvhApiMe.v6().get().$promise,
+        },
       });
   })
   .run(/* @ngInject */ ($translate, $transitions) => {
