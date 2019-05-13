@@ -1688,6 +1688,13 @@
   dependencies:
     lodash "^4.17.11"
 
+"@ovh-ux/ng-ovh-chatbot@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-chatbot/-/ng-ovh-chatbot-2.0.0.tgz#9894c2e6baab6f244ecc3722c1a9e469c3f26d28"
+  integrity sha512-UdV33Pg3DfpNv5BUQ8zIV32YvF6Atbk0U9QV91wkFz0OceRb3A9i3JB95PtnCKqRrqpbKlq8dYwWm4BwT16ZpQ==
+  dependencies:
+    lodash "^4.17.11"
+
 "@ovh-ux/ng-ovh-cloud-universe-components@^1.2.0-alpha.0":
   version "1.2.0-alpha.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-cloud-universe-components/-/ng-ovh-cloud-universe-components-1.2.0-alpha.0.tgz#b5dd15bc5b2f24f600e6217ef9df6c960e320ad4"

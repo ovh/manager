@@ -4,12 +4,20 @@ import has from 'lodash/has';
 import isFunction from 'lodash/isFunction';
 
 import { Environment } from '@ovh-ux/manager-config';
-import { HELP_CENTER_SUBSIDIARIES, URLS } from './constants';
+import { CHATBOT_SUBSIDIARIES, HELP_CENTER_SUBSIDIARIES, URLS } from './constants';
 
 export default class {
   /* @ngInject */
-  constructor($q, $translate, atInternet, OtrsPopupService, ovhManagerNavbarMenuHeaderBuilder) {
+  constructor(
+    $q,
+    $scope,
+    $translate,
+    atInternet,
+    OtrsPopupService,
+    ovhManagerNavbarMenuHeaderBuilder,
+  ) {
     this.$q = $q;
+    this.$scope = $scope;
     this.$translate = $translate;
     this.atInternet = atInternet;
     this.otrsPopupService = OtrsPopupService;
@@ -131,6 +139,19 @@ export default class {
           name: 'assistance::helpline',
           type: 'action',
         }),
+      });
+    }
+
+    if (CHATBOT_SUBSIDIARIES.includes(this.subsidiary)) {
+      sublinks.push({
+        title: `${this.$translate.instant('navbar_assistance_chatbot')} <sup class="oui-color-california">OVH Chat</sup>`,
+        click: () => {
+          this.atInternet.trackClick({
+            name: 'assistance::chatbot',
+            type: 'action',
+          });
+          this.$scope.$emit('ovh-chatbot:open');
+        },
       });
     }
 

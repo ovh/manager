@@ -124,10 +124,15 @@ export const HELP_CENTER_SUBSIDIARIES = [
   'FR',
 ];
 
+export const CHATBOT_SUBSIDIARIES = [
+  'FR',
+];
+
 export const URLS = ASSISTANCE_URLS[Environment.getRegion()];
 
 
 export default {
+  CHATBOT_SUBSIDIARIES,
   HELP_CENTER_SUBSIDIARIES,
   URLS,
 };

@@ -3,6 +3,7 @@ import 'angular-translate';
 
 import '@ovh-ux/ng-at-internet';
 import '@ovh-ux/ng-ovh-otrs';
+import '@ovh-ux/ng-ovh-chatbot';
 
 import 'ovh-ui-angular';
 
@@ -17,6 +18,7 @@ const moduleName = 'ovhManagerNavbarAssistanceMenu';
 angular
   .module(moduleName, [
     'ngAtInternet',
+    'ngOvhChatbot',
     'ngOvhOtrs',
     'oui',
     'pascalprecht.translate',
