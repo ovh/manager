@@ -1,3 +1,12 @@
+## [4.0.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-freefax-app@4.0.0...@ovh-ux/manager-freefax-app@4.0.1) (2019-05-13)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ng-ovh-telecom-universe-components to v3.0.3 ([574ff83](https://github.com/ovh-ux/manager/commit/574ff83))
+
+
+
 # [4.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-freefax-app@3.0.0...@ovh-ux/manager-freefax-app@4.0.0) (2019-03-19)
 
 
