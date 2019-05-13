@@ -2,7 +2,6 @@ import angular from 'angular';
 import '@ovh-ux/ng-ovh-cloud-universe-components';
 import '@ovh-ux/ng-translate-async-loader';
 import '@ovh-ux/ng-ovh-api-wrappers'; // should be a peer dependency of ovh-api-services
-import '@ovh-ux/ng-ovh-toaster';
 import 'angular-translate';
 import 'ovh-api-services';
 import 'angular-ui-bootstrap';
@@ -16,7 +15,6 @@ const moduleName = 'ovhManagerPciComponentsProjectBillingInstanceList';
 angular
   .module(moduleName, [
     detailsPopover,
-    'ngOvhToaster',
     'ngOvhCloudUniverseComponents',
     'ngTranslateAsyncLoader',
     'ovh-api-services',

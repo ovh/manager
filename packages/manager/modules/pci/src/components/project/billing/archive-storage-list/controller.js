@@ -1,9 +1,9 @@
 export default /* @ngInject */ function BillingArchiveStorageListComponentCtrl(
   $q,
   $translate,
+  CucCloudMessage,
   CucRegionService,
   OvhApiMe,
-  Toast,
 ) {
   const self = this;
 
@@ -24,7 +24,7 @@ export default /* @ngInject */ function BillingArchiveStorageListComponentCtrl(
 
     $q.all([initUserCurrency()])
       .catch((err) => {
-        Toast.error([$translate.instant('cpb_error_message'), (err.data && err.data.message) || ''].join(' '));
+        CucCloudMessage.error([$translate.instant('cpb_error_message'), (err.data && err.data.message) || ''].join(' '));
         return $q.reject(err);
       })
       .finally(() => {

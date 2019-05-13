@@ -12,14 +12,12 @@ import '@ovh-ux/ng-ovh-user-pref';
 import '@ovh-ux/ng-ovh-swimming-poll';
 import '@ovh-ux/ng-ovh-doc-url';
 import '@ovh-ux/ng-ovh-form-flat';
-import '@ovh-ux/ng-ovh-toaster';
 import '@ovh-ux/ng-ovh-api-wrappers'; // should be a peer dependency of ovh-api-services
 import 'ovh-api-services';
 import 'ovh-ui-angular';
 import 'ovh-jquery-ui-draggable-ng';
 import 'ovh-angular-q-allsettled';
 import 'ovh-angular-pagination-front';
-import 'ovh-angular-responsive-page-switcher';
 import 'angular-ui-bootstrap';
 
 import '@ovh-ux/manager-cloud-styles';
@@ -76,11 +74,9 @@ angular
     'ngUiRouterLayout',
     'ngAtInternet',
     'ovh-api-services',
-    'ngOvhToaster',
     'ovh-jquery-ui-draggable-ng',
     'ovh-angular-q-allSettled',
     'ovh-angular-pagination-front',
-    'ovh-angular-responsive-page-switcher',
     'oui',
     'ui.bootstrap',
   ])

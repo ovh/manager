@@ -9,8 +9,8 @@ export default /* @ngInject */ function BillingInstanceListComponentCtrl(
   OvhApiCloudProjectImage,
   OvhApiCloudProjectInstance,
   OvhApiMe,
+  CucCloudMessage,
   CucPriceHelper,
-  Toast,
 ) {
   const self = this;
   self.windowsStringPattern = '/^win-/';
@@ -112,7 +112,7 @@ export default /* @ngInject */ function BillingInstanceListComponentCtrl(
         loadConsumptionDetails();
       })
       .catch((err) => {
-        Toast.error([$translate.instant('cpb_error_message'), (err.data && err.data.message) || ''].join(' '));
+        CucCloudMessage.error([$translate.instant('cpb_error_message'), (err.data && err.data.message) || ''].join(' '));
         return $q.reject(err);
       })
       .finally(() => {
@@ -135,7 +135,7 @@ export default /* @ngInject */ function BillingInstanceListComponentCtrl(
       return $.when();
     }).catch((err) => {
       self.instanceToMonthly = null;
-      Toast.error([$translate.instant('cpbc_hourly_instance_pass_to_monthly_price_error'), (err.data && err.data.message) || ''].join(' '));
+      CucCloudMessage.error([$translate.instant('cpbc_hourly_instance_pass_to_monthly_price_error'), (err.data && err.data.message) || ''].join(' '));
       return $q.reject(err);
     }).finally(() => {
       self.loaders.monthlyBilling = false;
@@ -152,7 +152,7 @@ export default /* @ngInject */ function BillingInstanceListComponentCtrl(
       // reset loaders and instance to activate
       self.endInstanceToMonthlyConversion();
     }).catch((err) => {
-      Toast.error([$translate.instant('cpbc_hourly_instance_pass_to_monthly_error'), (err.data && err.data.message) || ''].join(' '));
+      CucCloudMessage.error([$translate.instant('cpbc_hourly_instance_pass_to_monthly_error'), (err.data && err.data.message) || ''].join(' '));
       return $q.reject(err);
     }).finally(() => {
       self.loaders.monthlyBilling = false;
