@@ -4,4 +4,12 @@
   @import '~bootstrap4/scss/_mixins';
   @import '~bootstrap4/scss/_utilities';
   @import '~bootstrap4/scss/_grid';
+
+  .minh-100 {
+    min-height: 100%;
+  }
+
+  .overflow-auto {
+    overflow: auto !important;
+  }
 }
