@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci",
-  "version": "0.3.0-alpha.0",
+  "version": "0.4.0-alpha.0",
   "license": "BSD-3-Clause",
   "files": [
     "dist"
@@ -35,7 +35,7 @@
     "@ovh-ux/component-rollup-config": "5.0.1"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-cloud-styles": "^0.3.0-alpha.0",
+    "@ovh-ux/manager-cloud-styles": "^0.3.0-alpha.1",
     "@ovh-ux/manager-core": "^5.2.0",
     "@ovh-ux/manager-telecom-styles": "^2.0.2",
     "@ovh-ux/ng-at-internet": "^4.0.0",

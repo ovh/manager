@@ -1,3 +1,17 @@
+# [0.2.0-alpha.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-navbar@0.1.0-alpha.1...@ovh-ux/manager-navbar@0.2.0-alpha.0) (2019-05-13)
+
+
+### Bug Fixes
+
+* remove chatbot (temp) ([f28f914](https://github.com/ovh-ux/manager/commit/f28f914))
+
+
+### Features
+
+* add chatbot in assistance menu ([f3d64b4](https://github.com/ovh-ux/manager/commit/f3d64b4))
+
+
+
 # [0.1.0-alpha.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-navbar@0.1.0-alpha.0...@ovh-ux/manager-navbar@0.1.0-alpha.1) (2019-05-09)
 
 
