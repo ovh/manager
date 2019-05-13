@@ -11,11 +11,9 @@ import '@ovh-ux/ng-ovh-proxy-request';
 import '@ovh-ux/ng-ovh-user-pref';
 import '@ovh-ux/ng-ovh-swimming-poll';
 import '@ovh-ux/ng-ovh-doc-url';
-import '@ovh-ux/ng-ovh-form-flat';
 import '@ovh-ux/ng-ovh-api-wrappers'; // should be a peer dependency of ovh-api-services
 import 'ovh-api-services';
 import 'ovh-ui-angular';
-import 'ovh-jquery-ui-draggable-ng';
 import 'ovh-angular-q-allsettled';
 import 'ovh-angular-pagination-front';
 import 'angular-ui-bootstrap';
@@ -65,7 +63,6 @@ angular
     sidebar,
     'ui.router',
     'ngOvhCloudUniverseComponents',
-    'ngOvhFormFlat',
     'ngOvhProxyRequest',
     'ngOvhUserPref',
     'ngOvhSwimmingPoll',
@@ -74,7 +71,6 @@ angular
     'ngUiRouterLayout',
     'ngAtInternet',
     'ovh-api-services',
-    'ovh-jquery-ui-draggable-ng',
     'ovh-angular-q-allSettled',
     'ovh-angular-pagination-front',
     'oui',
@@ -86,6 +82,9 @@ angular
         url: '/pci',
         abstract: true,
         template,
+        resolve: {
+          me: /* @ngInject */ OvhApiMe => OvhApiMe.v6().get().$promise,
+        },
       });
   })
   .run(/* @ngInject */ ($translate, $transitions) => {

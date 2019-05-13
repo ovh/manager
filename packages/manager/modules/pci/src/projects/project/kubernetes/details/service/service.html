@@ -71,7 +71,7 @@
                     <oui-clipboard data-model="$ctrl.cluster.url"></oui-clipboard>
                 </oui-tile-description>
             </oui-tile-definition>
-            <div class="oui-tile__item">
+            <div class="oui-tile__item" data-ng-if="$ctrl.kubernetesConfig">
                 <dl class="oui-tile__definition">
                     <dt class="oui-tile__term">
                         <span data-translate="kube_service_file"></span>

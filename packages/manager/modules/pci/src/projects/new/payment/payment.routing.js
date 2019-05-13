@@ -60,6 +60,11 @@ export default /* @ngInject */ ($stateProvider) => {
           currentStep.model.mode = get($transition$.params(), 'mode', 'paymentMethod');
           return currentStep.model;
         },
+        creditMinPrice: /* @ngInject */ (me, PciProjectNewService) => PciProjectNewService
+          .getFormattedCatalog(me.ovhSubsidiary)
+          .then(catalog => get(find(catalog.plans, {
+            planCode: 'credit.default',
+          }), 'details.pricings.default[0].price')),
       },
     });
 };

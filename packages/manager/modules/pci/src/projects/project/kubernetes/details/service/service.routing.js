@@ -1,5 +1,3 @@
-import { CONFIG_FILENAME } from './service.constants';
-
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
     .state('pci.projects.project.kubernetes.details.service', {
@@ -9,17 +7,10 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       resolve: {
         kubernetesConfig: /* @ngInject */ (
+          Kubernetes,
           kubeId,
-          OvhApiCloudProjectKube,
           projectId,
-        ) => OvhApiCloudProjectKube.v6().getKubeConfig({
-          serviceName: projectId,
-          kubeId,
-        }, {}).$promise
-          .then(({ content }) => ({
-            content,
-            fileName: CONFIG_FILENAME,
-          })),
+        ) => Kubernetes.getKubeConfig(projectId, kubeId),
 
         changeClusterName: /* @ngInject */ (
           $state,

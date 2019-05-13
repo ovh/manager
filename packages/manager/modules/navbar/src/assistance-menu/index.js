@@ -18,7 +18,7 @@ const moduleName = 'ovhManagerNavbarAssistanceMenu';
 angular
   .module(moduleName, [
     'ngAtInternet',
-    // 'ngOvhChatbot',
+    'ngOvhChatbot',
     'ngOvhOtrs',
     'oui',
     'pascalprecht.translate',

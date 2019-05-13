@@ -10,6 +10,7 @@ import reject from 'lodash/reject';
 import set from 'lodash/set';
 
 export default class CloudProjectBillingService {
+  /* @ngInject */
   constructor($q, OvhApiMe) {
     this.$q = $q;
     this.OvhApiMe = OvhApiMe;

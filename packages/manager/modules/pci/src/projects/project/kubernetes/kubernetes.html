@@ -13,7 +13,7 @@
             <oui-column data-title=":: 'kube_list_region' | translate" data-property="region"></oui-column>
             <oui-column data-title=":: 'kube_list_version' | translate" data-property="version"></oui-column>
             <oui-action-menu data-align="end" data-compact>
-                <oui-action-menu-item data-ui-sref="{{ $ctrl.constructor.getDetailsState($row.id) }}">
+                <oui-action-menu-item data-ui-sref="{{ $ctrl.getDetailsState($row.id) }}">
                     <span data-translate="kube_list_cluster_manage"></span>
                 </oui-action-menu-item>
             </oui-action-menu>
