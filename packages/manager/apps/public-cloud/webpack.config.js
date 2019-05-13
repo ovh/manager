@@ -32,7 +32,7 @@ module.exports = (env = {}) => {
         __FEEDBACK_URL__: process.env.FEEDBACK_URL ? `'${process.env.FEEDBACK_URL}'` : 'null',
         __WEBPACK_REGION__: process.env.REGION ? `'${process.env.REGION.toUpperCase()}'` : '"EU"',
         __NODE_ENV__: process.env.NODE_ENV ? `'${process.env.NODE_ENV}'` : '"development"',
-        __NG_APP_INJECTIONS__: process.env.NODE_ENV ? `'${process.env.NG_APP_INJECTIONS}'` : 'null',
+        __NG_APP_INJECTIONS__: process.env.NG_APP_INJECTIONS ? `'${process.env.NG_APP_INJECTIONS}'` : 'null',
       }),
     ],
     resolve: {
