@@ -1,23 +1,24 @@
 import angular from 'angular';
+import '@uirouter/angularjs';
+import 'oclazyload';
 
-import nodeComponents from './component';
+const moduleName = 'ovhManagerPciProjectKubernetesDetailsNodesLazyloading';
 
-const moduleName = 'ovhManagerPciProjectKubernetesNodes';
+angular
+  .module(moduleName, [
+    'ui.router',
+    'oc.lazyLoad',
+  ])
+  .config(/* @ngInject */($stateProvider) => {
+    $stateProvider.state('pci.projects.project.kubernetes.details.nodes.**', {
+      url: '/nodes',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-angular.module(moduleName, [])
-  .config(/* @ngInject */ ($stateProvider) => {
-    $stateProvider
-      .state('pci.projects.project.kubernetes.details.nodes', {
-        url: '/nodes',
-        views: {
-          kubernetesView: 'ovhManagerPciProjectKubernetesNodesComponent',
-        },
-        resolve: {
-          breadcrumb: /* @ngInject */ $translate => $translate.instant('kube_nodes'),
-        },
-      });
-  })
-  .run(/* @ngTranslationsInject:json ./translations */)
-  .component('ovhManagerPciProjectKubernetesNodesComponent', nodeComponents);
+        return import('./nodes.module')
+          .then(mod => $ocLazyLoad.inject(mod.default || mod));
+      },
+    });
+  });
 
 export default moduleName;

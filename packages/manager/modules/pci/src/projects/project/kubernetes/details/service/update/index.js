@@ -1,22 +1,24 @@
 import angular from 'angular';
+import '@uirouter/angularjs';
+import 'oclazyload';
 
-import controller from './modal-controller';
+const moduleName = 'ovhManagerPciProjectKubernetesDetailsServiceUpdateLazyloading';
 
-const moduleName = 'ovhManagerPciProjectKubernetesServiceUpdate';
+angular
+  .module(moduleName, [
+    'ui.router',
+    'oc.lazyLoad',
+  ])
+  .config(/* @ngInject */($stateProvider) => {
+    $stateProvider.state('pci.projects.project.kubernetes.details.service.update.**', {
+      url: '/update',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-angular.module(moduleName, [])
-  .config(/* @ngInject */ ($stateProvider) => {
-    $stateProvider
-      .state('pci.projects.project.kubernetes.details.service.update', {
-        url: '/update',
-        views: {
-          kubernetesPopUpView: {
-            controller,
-            controllerAs: '$ctrl',
-          },
-        },
-      });
-  })
-  .run(/* @ngTranslationsInject:json ./translations */);
+        return import('./update.module')
+          .then(mod => $ocLazyLoad.inject(mod.default || mod));
+      },
+    });
+  });
 
 export default moduleName;

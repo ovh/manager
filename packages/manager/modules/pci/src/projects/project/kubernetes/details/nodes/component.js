@@ -3,7 +3,13 @@ import template from './template.html';
 
 const component = {
   bindings: {
-    serviceName: '@',
+    addNode: '<',
+    cluster: '<',
+    deleteNode: '<',
+    kubeId: '<',
+    nodes: '<',
+    projectId: '<',
+    project: '<',
   },
   template,
   controller,

@@ -1,22 +1,24 @@
 import angular from 'angular';
+import '@uirouter/angularjs';
+import 'oclazyload';
 
-import controller from './modal-controller';
+const moduleName = 'ovhManagerPciProjectKubernetesDetailsServiceTerminateLazyloading';
 
-const moduleName = 'ovhManagerPciProjectKubernetesServiceTerminate';
+angular
+  .module(moduleName, [
+    'ui.router',
+    'oc.lazyLoad',
+  ])
+  .config(/* @ngInject */($stateProvider) => {
+    $stateProvider.state('pci.projects.project.kubernetes.details.service.terminate.**', {
+      url: '/terminate',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-angular.module(moduleName, [])
-  .config(/* @ngInject */ ($stateProvider) => {
-    $stateProvider
-      .state('pci.projects.project.kubernetes.details.service.terminate', {
-        url: '/terminate',
-        views: {
-          kubernetesPopUpView: {
-            controller,
-            controllerAs: '$ctrl',
-          },
-        },
-      });
-  })
-  .run(/* @ngTranslationsInject:json ./translations */);
+        return import('./terminate.module')
+          .then(mod => $ocLazyLoad.inject(mod.default || mod));
+      },
+    });
+  });
 
 export default moduleName;
