@@ -1,3 +1,12 @@
+## [6.2.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-layout-ovh@6.2.1...@ovh-ux/manager-layout-ovh@6.2.2) (2019-05-14)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([471503c](https://github.com/ovh-ux/manager/commit/471503c))
+
+
+
 ## [6.2.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-layout-ovh@6.2.0...@ovh-ux/manager-layout-ovh@6.2.1) (2019-05-13)
 
 
