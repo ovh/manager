@@ -43,9 +43,13 @@ export default class SidebarController {
   }
 
   setProject(serviceName) {
+    if (isEmpty(serviceName)) {
+      return null;
+    }
+
     this.isLoading = true;
 
-    this.SidebarMenu.setInitializationPromise(
+    return this.SidebarMenu.setInitializationPromise(
       this.OvhApiCloudProject
         .v6()
         .get({
