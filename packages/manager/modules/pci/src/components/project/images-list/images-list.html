@@ -19,7 +19,7 @@
 
                 <div class="container-fluid px-0">
                     <div class="row">
-                        <div data-ng-repeat="(distribution, images) in distributions" class="d-inline-block col-md-6 col-lg-4 my-3">
+                        <div data-ng-repeat="(distribution, images) in distributions" class="d-inline-block col-md-6 col-xl-4 my-3">
                             <oui-select-picker
                                 data-name="{{:: distribution }}"
                                 data-label="{{:: 'pci_project_instances_distribution_' + distribution | translate }}"
@@ -42,7 +42,7 @@
                         <div class="row">
                             <oui-select-picker
                                 data-ng-repeat="image in distributions[$ctrl.distribution] track by image.name"
-                                class="d-inline-block col-md-6 col-lg-4 my-3"
+                                class="d-inline-block col-md-6 col-xl-4 my-3"
                                 data-name="{{:: image.name }}"
                                 data-label="{{:: image.name }}"
                                 data-model="$ctrl.image"
@@ -67,7 +67,7 @@
                     <div class="row">
                         <oui-select-picker
                             data-ng-repeat="app in $ctrl.apps track by app.name"
-                            class="d-inline-block col-md-6 col-lg-4 my-3"
+                            class="d-inline-block col-md-6 col-xl-4 my-3"
                             data-name="{{:: app.name }}"
                             data-match="name"
                             data-label="{{:: app.appName }}"
@@ -92,7 +92,7 @@
                     <div class="row">
                         <oui-select-picker
                             data-ng-repeat="snapshot in $ctrl.snapshots track by snapshot.id"
-                            class="d-inline-block col-md-6 col-lg-4 my-3"
+                            class="d-inline-block col-md-6 col-xl-4 my-3"
                             data-name="{{:: snapshot.id }}"
                             data-label="{{:: snapshot.name }}"
                             data-model="$ctrl.image"
@@ -113,7 +113,7 @@
         class="container-fluid px-0">
         <div class="row">
             <oui-select-picker
-                class="d-inline-block col-md-6 col-lg-4 my-3"
+                class="d-inline-block col-md-6 col-xl-4 my-3"
                 data-name="selected"
                 data-model="$ctrl.image"
                 data-label="{{ $ctrl.selectedImage.appName || $ctrl.selectedImage.name }}"

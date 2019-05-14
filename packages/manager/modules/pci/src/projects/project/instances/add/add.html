@@ -41,7 +41,7 @@
                     <div class="container-fluid px-0">
                         <div class="row">
                             <oui-select-picker
-                                class="d-inline-block col-md-6 col-lg-4 my-3"
+                                class="d-inline-block col-md-6 col-xl-4 my-3"
                                 data-name="{{ continent + '-' + location }}"
                                 data-ng-repeat="(location, datacenter) in datacentersLocation"
                                 data-model="$ctrl.model.location"
@@ -59,7 +59,7 @@
                             <div class="row">
                                 <oui-select-picker
                                     data-ng-repeat="datacenter in datacentersLocation[$ctrl.model.location] track by datacenter.name"
-                                    class="d-inline-block col-md-6 col-lg-4 my-3"
+                                    class="d-inline-block col-md-6 col-xl-4 my-3"
                                     data-name="{{ continent + '-' + datacenter.name }}"
                                     data-model="$ctrl.model.datacenter"
                                     data-label="{{:: datacenter.name }}"
@@ -97,7 +97,7 @@
         </div>
         <div class="row">
             <oui-select-picker
-                class="d-inline-block col-md-6 col-lg-4 my-3"
+                class="d-inline-block col-md-6 col-xl-4 my-3"
                 data-ng-if="$ctrl.displaySelectedRegion"
                 data-name="{{ $ctrl.model.datacenter.name }}"
                 data-model="$ctrl.model.datacenter"

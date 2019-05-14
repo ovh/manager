@@ -1,3 +1,5 @@
+import isEmpty from 'lodash/isEmpty';
+
 import { INSTANCE_HELP_REFERENCE_KEY } from './instances.constants';
 
 export default class CloudProjectComputeInfrastructureListCtrl {
@@ -19,6 +21,7 @@ export default class CloudProjectComputeInfrastructureListCtrl {
   }
 
   $onInit() {
+    this.hasVrack = !isEmpty(this.vrack);
     this.loadMessages();
     this.checkHelpDisplay();
   }

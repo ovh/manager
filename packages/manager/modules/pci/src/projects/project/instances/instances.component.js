@@ -21,5 +21,7 @@ export default {
     resumeInstance: '<',
     deleteInstance: '<',
     instanceLink: '<',
+    vrackLink: '<',
+    vrack: '<',
   },
 };
