@@ -17,9 +17,10 @@
             </div>
         </div>
     </div>
-    <div class="h-100 position-relative d-none d-md-block">
+    <div class="h-100 position-relative d-none d-md-block" data-ng-if="!$ctrl.isLoading">
         <div class="w-100 h-100 position-absolute" style="overflow: auto;" data-sidebar-menu></div>
     </div>
+    <oui-spinner size="s" data-ng-if="$ctrl.isLoading"></oui-spinner>
 </div>
 <div data-ng-if="$ctrl.isDisplayingProjectsList"
      class="project-list px-3 py-md-4">
