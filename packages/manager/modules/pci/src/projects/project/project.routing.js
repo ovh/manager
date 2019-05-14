@@ -34,10 +34,10 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       resolve: {
         projectId: /* @ngInject */  $transition$ => $transition$.params().projectId,
-        project: /* @ngInject */ (OvhApiCloudProject, $transition$) => OvhApiCloudProject
+        project: /* @ngInject */ (OvhApiCloudProject, projectId) => OvhApiCloudProject
           .v6()
           .get({
-            serviceName: $transition$.params().projectId,
+            serviceName: projectId,
           })
           .$promise,
         breadcrumb: /* @ngInject */ project => (project.status !== 'creating'
