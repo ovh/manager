@@ -195,7 +195,7 @@ export default class PciInstancesAddController {
         return 'INSTANCE';
       }
 
-      if (!datacenter.checkRamQuotaForFlavor(this.model.flavorGroup)) {
+      if (!datacenter.checkRamQuota(this.model.flavorGroup)) {
         return 'RAM';
       }
 
