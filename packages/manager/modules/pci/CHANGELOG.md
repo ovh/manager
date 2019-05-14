@@ -1,3 +1,16 @@
+# [0.5.0-alpha.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.5.0-alpha.0...@ovh-ux/manager-pci@0.5.0-alpha.1) (2019-05-14)
+
+
+### Bug Fixes
+
+* **pci:** prevent firefox padding-bottom removal with overflow ([61795df](https://github.com/ovh-ux/manager/commit/61795df))
+* **pci:** update layout size ([8212db3](https://github.com/ovh-ux/manager/commit/8212db3))
+* **pci.kubernetes:** add missing nodes translation status ([4053c74](https://github.com/ovh-ux/manager/commit/4053c74))
+* **pci.private-networks:** fix responsive display for creation ([0e6dda1](https://github.com/ovh-ux/manager/commit/0e6dda1))
+* **pci.sidebar:** add filter on menu depending on region ([48c4584](https://github.com/ovh-ux/manager/commit/48c4584))
+
+
+
 # [0.5.0-alpha.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.4.0-alpha.0...@ovh-ux/manager-pci@0.5.0-alpha.0) (2019-05-13)
 
 

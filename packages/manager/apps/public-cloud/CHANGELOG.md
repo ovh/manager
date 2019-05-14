@@ -1,3 +1,13 @@
+# [0.4.0-alpha.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.4.0-alpha.0...@ovh-ux/manager-public-cloud@0.4.0-alpha.1) (2019-05-14)
+
+
+### Bug Fixes
+
+* **walkme:** the background of header overlaps now all the text ([5fdf25a](https://github.com/ovh-ux/manager/commit/5fdf25a))
+* update tracking id ([7cd991c](https://github.com/ovh-ux/manager/commit/7cd991c))
+
+
+
 # [0.4.0-alpha.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.3.0-alpha.2...@ovh-ux/manager-public-cloud@0.4.0-alpha.0) (2019-05-13)
 
 
