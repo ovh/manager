@@ -5,9 +5,13 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
     .state('pci.projects.onboarding', {
       url: '/onboarding',
-      controller,
-      controllerAs: '$ctrl',
-      template,
+      views: {
+        '@pci': {
+          controller,
+          controllerAs: '$ctrl',
+          template,
+        },
+      },
       resolve: {
         breadcrumb: () => null, // Hide breadcrumb
       },
