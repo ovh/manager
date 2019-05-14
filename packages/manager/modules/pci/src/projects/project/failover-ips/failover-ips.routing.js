@@ -1,3 +1,6 @@
+import map from 'lodash/map';
+import find from 'lodash/find';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
     .state('pci.projects.project.failover-ips', {
@@ -16,14 +19,31 @@ export default /* @ngInject */ ($stateProvider) => {
           .refresh()
           .then(() => $translate.instant('pci_projects_project_failoverip_title')),
         failoverIps: /* @ngInject */ (
+          $q,
+          OvhApiCloudProject,
           OvhApiCloudProjectIpFailover,
           projectId,
-        ) => OvhApiCloudProjectIpFailover
-          .v6()
-          .query({
-            serviceName: projectId,
-          })
-          .$promise,
+        ) => $q.all({
+          failoverIps: OvhApiCloudProjectIpFailover
+            .v6()
+            .query({
+              serviceName: projectId,
+            })
+            .$promise,
+          instances: OvhApiCloudProject
+            .Instance()
+            .v6()
+            .query({
+              serviceName: projectId,
+            })
+            .$promise,
+        }).then(({ failoverIps, instances }) => map(
+          failoverIps,
+          failoverIp => ({
+            ...failoverIp,
+            instance: failoverIp.routedTo ? find(instances, { id: failoverIp.routedTo }) : null,
+          }),
+        )),
       },
     });
 };

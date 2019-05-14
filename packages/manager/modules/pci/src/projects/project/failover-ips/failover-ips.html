@@ -16,7 +16,11 @@
             <oui-column data-title=":: 'pci_projects_project_failoverip_id' | translate" data-property="id" data-type="string">
             </oui-column>
             <oui-column data-title=":: 'pci_projects_project_failoverip_routedTo' | translate" data-property="routedTo" data-type="string">
-            </oui-column>
+                <a
+                    data-ng-if="$row.instance"
+                    data-ui-sref="pci.projects.project.instances.instance({projectId : $ctrl.projectId, instanceId: $row.instance.id})"
+                    data-ng-bind="$row.instance.name"></a>
+                </oui-column>
             <oui-action-menu data-align="end" data-compact>
                 <oui-action-menu-item
                     data-ui-sref="pci.projects.project.failover-ips.edit({ projectId: $ctrl.projectId, serviceName: $row.id })">
