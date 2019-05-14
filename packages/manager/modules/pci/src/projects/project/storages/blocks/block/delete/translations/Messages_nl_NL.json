@@ -1,0 +1,14 @@
+{
+ "pci_projects_project_storages_blocks_block_delete_title": "Een volume verwijderen",
+ "pci_projects_project_storages_blocks_block_delete_submit_label": "Bevestigen",
+ "pci_projects_project_storages_blocks_block_delete_cancel_label": "Annuleren",
+ "pci_projects_project_storages_blocks_block_delete_content": "Het volume permanent verwijderen {{ volume }}",
+ "pci_projects_project_storages_blocks_block_delete_erase_message": "Alle volumegegevens gaan verloren.",
+ "pci_projects_project_storages_blocks_block_delete_error_should_multiple": "Voordat u dit volume kunt verwijderen, moet u eerst:",
+ "pci_projects_project_storages_blocks_block_delete_error_detach": "Het volume van een instantie losmaken,",
+ "pci_projects_project_storages_blocks_block_delete_error_delete_snapshots": "snapshots met betrekking tot dit volume te verwijderen.",
+ "pci_projects_project_storages_blocks_block_delete_error_should_detach": "Voordat u dit volume kunt verwijderen, moet u eerst het volume losmaken van de instantie.",
+ "pci_projects_project_storages_blocks_block_delete_error_should_snapshots": "Voordat u dit volume kunt verwijderen, moet u eerst de snapshots met betrekking tot dit volume verwijderen.",
+ "pci_projects_project_storages_blocks_block_delete_success_message": "Het volume {{volume}} is verwijderd",
+ "pci_projects_project_storages_blocks_block_delete_error_delete": "Er is een fout opgetreden bij het verwijderen van de volume {{ volume }} : {{ message }}"
+}

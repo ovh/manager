@@ -1,0 +1,11 @@
+{
+ "pci_project_instance_ssh_key": "Klucz SSH",
+ "pci_project_instance_ssh_pick": "Wybierz",
+ "pci_project_instance_ssh_add": "Dodaj klucz",
+ "pci_project_instance_ssh_cancel": "Anuluj",
+ "pci_project_instance_ssh_key_name": "Nazwa klucza SSH",
+ "pci_project_instance_ssh_key_query_error": "Wystąpił błąd podczas pobierania kluczy SSH: {{message}}.",
+ "pci_project_instance_ssh_key_add_error": "Wystąpił błąd podczas dodawania klucza SSH: {{message}}",
+ "pci_project_instance_ssh_key_help_required": "Klucze SSH są niezbędne, aby zalogować się do usługi",
+ "pci_project_instance_ssh_key_help_availability": "Twój klucz SSH będzie dostępny we wszystkich strefach geograficznych i centrach danych OVH."
+}

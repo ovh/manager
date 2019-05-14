@@ -1,6 +1,6 @@
 {
  "pci_projects_project_storages_objects_onboarding_title": "Object Storage",
- "pci_projects_project_storages_objects_onboarding_content1": "Todavía no ha creado ningún servicio de Object Storage",
+ "pci_projects_project_storages_objects_onboarding_content1": "Todavía no ha creado ningún servicio de Object Storage.",
  "pci_projects_project_storages_objects_onboarding_content2": "Disfrute de almacenamiento ilimitado bajo demanda, con acceso por API.",
  "pci_projects_project_storages_objects_onboarding_content3": "Object Storage le permite almacenar sus datos en un espacio ilimitado, accesible directamente a través de una API HTTP. De este modo, gracias a las múltiples librerías OpenStack Swift existentes, podrá acceder a esta información desde sus aplicaciones. Además de la administración de los permisos de acceso, Object Storage integra funcionalidades de «almacenamiento inteligente», como la gestión de las versiones y las fechas de expiración, así como la sincronización entre diferentes localizaciones.",
  "pci_projects_project_storages_objects_onboarding_content4": "Sus datos estarán protegidos en tres réplicas para garantizar su vida útil. Asimismo, podrá disfrutar de una facturación por uso desde el primer GB.",

@@ -1,0 +1,10 @@
+{
+ "pci_projects_project_edit_project_name": "Nazwa projektu",
+ "pci_projects_project_edit_default_project": "Projekt domyślny",
+ "pci_projects_project_edit_default_project_description": "Projekt domyślny przy każdym logowaniu do Panelu klienta Public Cloud ",
+ "pci_projects_project_edit_update": "Aktualizuj",
+ "pci_projects_project_edit_update_success": "Projekt został zaktualizowany",
+ "pci_projects_project_edit_update_error": "Wystąpił błąd podczas aktualizacji projektu ({{ error }}).",
+ "pci_projects_project_edit_remove": "Usuń projekt",
+ "pci_projects_project_edit_remove_description": "Usunięcie Twojego projektu spowoduje usunięcie wszystkich istniejących zasobów, takich jak dane, infrastruktury lub usługi. Upewnij się, że pobrałeś ważne dane, zanim uruchomisz tę nieodwracalną operację."
+}

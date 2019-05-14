@@ -1,0 +1,6 @@
+{
+ "pci_projects_project_storages_snapshots_snapshot_create-volume_title": "Creëer een volume van deze snapshot",
+ "pci_projects_project_storages_snapshots_snapshot_create-volume_submit_label": "Volume aanmaken",
+ "pci_projects_project_storages_snapshots_snapshot_create-volume_success_message": "Het volume {{volume}} is toegevoegd",
+ "pci_projects_project_storages_snapshots_snapshot_create-volume_error_post": "Er is een fout opgetreden bij het aanmaken van de volume {{ volume }} : {{ message }}"
+}
