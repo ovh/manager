@@ -120,7 +120,11 @@ export default class PciInstancesAddController {
 
   onImageChange() {
     this.displaySelectedImage = true;
-    this.instance.imageId = this.model.image.getIdByRegion(this.instance.region);
+    if (this.model.image.isBackup()) {
+      this.instance.imageId = this.model.image.id;
+    } else {
+      this.instance.imageId = this.model.image.getIdByRegion(this.instance.region);
+    }
     this.flavor = this.model.flavorGroup.getFlavorByOsType(this.model.image.type);
 
     this.instance.flavorId = this.model.flavorGroup.getFlavorId(
