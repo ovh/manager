@@ -4,7 +4,7 @@
         <div class="container-fluid px-0">
             <div class="row">
                 <oui-select-picker
-                    class="d-inline-block col-md-6 col-lg-4 my-3"
+                    class="d-inline-block col-md-6 col-xl-4 my-3"
                     data-name="{{continent}}_regions"
                     data-ng-repeat="region in $ctrl.regionsByContinents[continent] track by $index"
                     data-ng-if="$ctrl.regionsByContinents[continent]"
@@ -28,7 +28,7 @@
     class="container-fluid px-0">
     <div class="row">
         <oui-select-picker
-            class="d-inline-block col-md-6 col-lg-4 my-3"
+            class="d-inline-block col-md-6 col-xl-4 my-3"
             data-name="selected"
             data-match="microRegion.text"
             data-model="$ctrl.region"

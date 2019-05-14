@@ -11,7 +11,7 @@
             <div class="container-fluid px-0">
                 <div class="row">
                     <oui-select-picker
-                        class="d-inline-block col-md-6 col-lg-4 my-3"
+                        class="d-inline-block col-md-6 col-xl-4 my-3"
                         data-ng-repeat="flavor in flavorByCategory.flavors track by flavor.name"
                         data-name="{{:: flavor.name }}"
                         data-model="$ctrl.flavor"
@@ -27,8 +27,8 @@
                             </div>
                             <div class="d-flex justify-content-between">
                                 <span data-translate="pci_project_flavors_spec_core"></span>
-                                <span class="ml-auto" 
-                                    data-translate="pci_project_flavors_spec_core_details" 
+                                <span class="ml-auto"
+                                    data-translate="pci_project_flavors_spec_core_details"
                                     data-translate-values="{ vcores: flavor.vcpus, frequency: flavor.frequency }"></span>
                             </div>
                             <div class="d-flex justify-content-between">
@@ -65,7 +65,7 @@
          class="container-fluid px-0">
         <div class="row">
             <oui-select-picker
-                class="d-inline-block col-md-6 col-lg-4 my-3"
+                class="d-inline-block col-md-6 col-xl-4 my-3"
                 data-name="selected"
                 data-model="$ctrl.flavor"
                 data-label="{{:: $ctrl.flavor.name | uppercase }}"
