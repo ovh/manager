@@ -1607,24 +1607,6 @@
     lodash "^4.17.11"
     moment "^2.24.0"
 
-"@ovh-ux/manager-pci@^0.5.0-alpha.0":
-  version "0.5.0-alpha.3"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-pci/-/manager-pci-0.5.0-alpha.3.tgz#f958221852eade53f529f2399a1f6074686cf839"
-  integrity sha512-1vvd1m34UhsZ30cowBZTvFTKJ4T3NyXfW4Bbg7hD3UmgxHG98Nk6R28hCBU8NC94Foxt+7LdqySd7SgSPOrb5Q==
-  dependencies:
-    "@fortawesome/fontawesome-free" "^5.8.2"
-    "@ovh-ux/manager-config" "^0.2.0"
-    d3 "~3.5.13"
-    file-saver "^2.0.1"
-    flag-icon-css "~0.8.5"
-    ipaddr.js "^1.9.0"
-    jsurl "^0.1.5"
-    lodash "^4.17.11"
-    moment "^2.19"
-    urijs "^1.19.1"
-    validator "^10.11.0"
-    xterm "^3.12.2"
-
 "@ovh-ux/manager-webpack-config@^3.0.7":
   version "3.0.7"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-webpack-config/-/manager-webpack-config-3.0.7.tgz#d158154e22c44a225dd923505c62b8a7e6343c1f"
