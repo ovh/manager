@@ -5,7 +5,7 @@
     <form novalidate name="inputForm" data-ng-submit="$ctrl.submit()">
         <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
         <oui-field label="{{ ::'pci_projects_project_edit_project_name' | translate }}" size="xl">
-            <input class="oui-input" type="text" name="description" ng-model="$ctrl.project.description" required>
+            <input class="oui-input" type="text" id="description" name="description" ng-model="$ctrl.project.description" required>
         </oui-field>
         <oui-field>
             <oui-checkbox

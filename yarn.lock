@@ -1599,14 +1599,6 @@
     rollup-pluginutils "^2.3.3"
     slash "^2.0.0"
 
-"@ovh-ux/manager-navbar@^0.1.0-alpha.1":
-  version "0.1.0-alpha.1"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-navbar/-/manager-navbar-0.1.0-alpha.1.tgz#2e6dd40ef1804a832557ad1b751499d7e2f42d05"
-  integrity sha512-hRfiuzHDDG95IFZoqZcOkQODgh3QhRED2VI5oM4a+V9Oqc/tg8Opuz1GM6CCOGplZTXv6pH4zxwt/jsnN3VkJw==
-  dependencies:
-    lodash "^4.17.11"
-    moment "^2.24.0"
-
 "@ovh-ux/manager-webpack-config@^3.0.7":
   version "3.0.7"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-webpack-config/-/manager-webpack-config-3.0.7.tgz#d158154e22c44a225dd923505c62b8a7e6343c1f"
