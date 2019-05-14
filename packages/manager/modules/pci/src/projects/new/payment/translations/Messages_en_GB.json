@@ -1,0 +1,21 @@
+{
+ "pci_project_new_payment_title": "Register a payment method",
+ "pci_project_new_payment_explain1": "You need to register a payment method in order to confirm your identity. ",
+ "pci_project_new_payment_explain2": "You will not debited and nothing will be withdrawn until you consume resources. ",
+ "pci_project_new_payment_classic": "Use a standard payment method",
+ "pci_project_new_payment_add_payment_method": "Register a payment method",
+ "pci_project_new_payment_no_payment_method": "Payment method",
+ "pci_project_new_payment_use_credits": "You can also <a href=\"{{ href }}\">use credit</a>.",
+ "pci_project_new_payment_use_voucher": "Purchasing URL",
+ "pci_project_new_payment_enter_voucher": "Enter voucher",
+ "pci_project_new_payment_add_voucher": "Add",
+ "pci_project_new_payment_valid_voucher_explain": "The amount will be used as payment for any Public Cloud project usage. Once this amount is exhausted, the above registered payment method will be used automatically, to ensure that the instances that you have created will not be shut down. ",
+ "pci_project_new_payment_validated_voucher": "The {{ voucher }} voucher has been registered",
+ "pci_project_new_payment_validated_voucher_amount": "Amount credited: {{ amount }}",
+ "pci_project_new_payment_invalid_voucher": "Invalid code",
+ "pci_project_new_payment_dlp_title": "Digital Launch Pad (DLP) Credit ",
+ "pci_project_new_payment_dlp_explain": "As part of the DLP programme, you have a dedicated prepaid account. ",
+ "pci_project_new_payment_dlp_amount": "Account amount: {{ amount }}",
+ "pci_project_new_payment_welcome": "Welcome to Public Cloud",
+ "pci_project_new_payment_almost_done": "You're nearly there!"
+}

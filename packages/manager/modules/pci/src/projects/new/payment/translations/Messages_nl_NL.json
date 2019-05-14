@@ -1,0 +1,21 @@
+{
+ "pci_project_new_payment_title": "Registreer een betaalmethode",
+ "pci_project_new_payment_explain1": "Om uw identiteit te valideren moet een betaalmethode geregistreerd worden.",
+ "pci_project_new_payment_explain2": "Zolang u niets verbruikt, wordt er niets afgeschreven of geïncasseerd.",
+ "pci_project_new_payment_classic": "Een klassieke betalingsmethode gebruiken",
+ "pci_project_new_payment_add_payment_method": "Registreer een betaalmethode",
+ "pci_project_new_payment_no_payment_method": "Andere betalingsmethode",
+ "pci_project_new_payment_use_credits": "U kunt ook <a href=\"{{ href }}\">een tegoed gebruiken</a>.",
+ "pci_project_new_payment_use_voucher": "Tegoedbon?",
+ "pci_project_new_payment_enter_voucher": "Voer de tegoedbon in",
+ "pci_project_new_payment_add_voucher": "Toevoegen",
+ "pci_project_new_payment_valid_voucher_explain": "Dit bedrag zal gebruikt worden om het verbruik van uw Public Cloud-project te betalen. Als dit tegoed op is, zal automatisch de hierboven geregistreerde betalingsmethode gebruikt worden om de continuïteit van uw aangemaakte instances zeker te stellen.",
+ "pci_project_new_payment_validated_voucher": "De {{ voucher }} tegoedbon is correct verwerkt",
+ "pci_project_new_payment_validated_voucher_amount": "Toegevoegd bedrag: {{ amount }}",
+ "pci_project_new_payment_invalid_voucher": "Ongeldige code",
+ "pci_project_new_payment_dlp_title": "Tegoed Digital Launch Pad (DLP)",
+ "pci_project_new_payment_dlp_explain": "Voor het DLP-programma beschikt u over een eigen prepaid account.",
+ "pci_project_new_payment_dlp_amount": "Tegoed van het account: {{amount}}",
+ "pci_project_new_payment_welcome": "Welkom bij Public Cloud",
+ "pci_project_new_payment_almost_done": "Bijna klaar!"
+}

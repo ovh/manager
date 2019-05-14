@@ -1,0 +1,11 @@
+{
+ "public_cloud_beta_warning_welcome": "¡Bienvenido/a!",
+ "public_cloud_beta_warning_subtitle": "Descubra la versión beta del área de cliente de Public Cloud.",
+ "public_cloud_beta_warning_test_new_feature": "Pruebe las nuevas funcionalidades",
+ "public_cloud_beta_warning_test_new_feature_desc": "Acceda en primicia a la nueva área de cliente para gestionar sus proyectos de Public Cloud.",
+ "public_cloud_beta_warning_help_develop": "Ayúdenos a mejorar Public Cloud",
+ "public_cloud_beta_warning_help_develop_desc": "Utilice la versión beta del área de cliente de Public Cloud y comparta con nosotros sus comentarios y sugerencias con el botón situado en la esquina inferior derecha de la pantalla. Así podremos mejorar las funcionalidades.",
+ "public_cloud_beta_warning_comment": "Todavía no hemos terminado. Sabemos que hay algunos bugs, pero ¡que eso no le impida probarlo y compartir su experiencia! :)",
+ "public_cloud_beta_warning_dont_show_again": "No volver a mostrar",
+ "public_cloud_beta_warning_lets_go": "¡Empezar!"
+}

@@ -1,0 +1,12 @@
+{
+ "pci_projects_new_title": "Op weg naar het Public Cloud avontuur",
+ "pci_projects_new_continue": "Doorgaan",
+ "pci_projects_new_cancel": "Annuleren",
+ "pci_projects_new_create": "Mijn project aanmaken",
+ "pci_projects_new_add": "Toevoegen",
+ "pci_projects_new_credit_and_create": "Bijschrijven en mijn project aanmaken",
+ "pci_projects_new_add_payment_error_message": "Er is een fout opgetreden bij de registratie van uw betalingsmethode. Probeer het opnieuw of kies een andere betalingsmethode.",
+ "pci_projects_new_add_credit_payment_error_message": "Er is een fout opgetreden bij de betaling van uw tegoedbestelling.",
+ "pci_projects_new_create_error_message": "Er is een fout opgetreden bij het aanmaken van uw Public Cloud-project. Probeer het nogmaals.",
+ "pci_projects_new_create_credit_asterisk": "* Elk Public Cloud-project heeft een eigen tegoedrekening. Uw facturen worden automatisch hiervan afgeschreven. Als het tegoed onvoldoende is, dan zult u het resterende verschuldigde bedrag zo snel mogelijk met een geregistreerde betaalmethode moeten voldoen."
+}

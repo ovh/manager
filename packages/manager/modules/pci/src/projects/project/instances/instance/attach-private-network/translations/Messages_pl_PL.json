@@ -1,0 +1,10 @@
+{
+ "pci_projects_project_instances_instance_attach-private-network_title": "Przypisz prywatną sieć lub sieci do Twojej instancji",
+ "pci_projects_project_instances_instance_attach-private-network_submit_label": "Przypisz",
+ "pci_projects_project_instances_instance_attach-private-network_cancel_label": "Anuluj",
+ "pci_projects_project_instances_instance_attach-private-network_network_placeholder": "Szukaj",
+ "pci_projects_project_instances_instance_attach-private-network_error_no_compatible_network": "Nie posiadasz aktualnie żadnej kompatybilnej sieci prywatnej, którą mógłbyś przypisać do tej instancji.",
+ "pci_projects_project_instances_instance_attach-private-network_success_message": "Sieć prywatna {{ network }} została przypisana do instancji {{ instance }}.",
+ "pci_projects_project_instances_instance_attach-private-network_success_multiple_message": "Sieci prywatne zostaną przypisane do instancji {{ instance }}.",
+ "pci_projects_project_instances_instance_attach-private-network_error_attach": "Wystąpił błąd podczas aktualizacji instancji: {{ message }}"
+}
