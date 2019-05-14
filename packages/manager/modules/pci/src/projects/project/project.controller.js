@@ -1,15 +1,19 @@
+import isNil from 'lodash/isNil';
+
 import { ACTIONS, LINKS } from './project.constants';
 
 export default class ProjectController {
   /* @ngInject */
-  constructor($state, $stateParams, $transitions, OvhApiCloudProject, sidebarVisible) {
+  constructor($state, $stateParams, $transitions, coreConfig, OvhApiCloudProject, sidebarVisible) {
     this.$state = $state;
     this.$stateParams = $stateParams;
     this.OvhApiCloudProject = OvhApiCloudProject;
     this.sidebarVisible = sidebarVisible;
     this.loading = false;
 
-    this.actions = ACTIONS;
+    this.actions = ACTIONS.filter(
+      ({ regions }) => isNil(regions) || regions.includes(coreConfig.getRegion()),
+    );
     this.links = LINKS;
   }
 
