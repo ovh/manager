@@ -1,3 +1,12 @@
+# [0.5.0-alpha.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.5.0-alpha.1...@ovh-ux/manager-pci@0.5.0-alpha.2) (2019-05-14)
+
+
+### Bug Fixes
+
+* allow user to scroll ([bed9f64](https://github.com/ovh-ux/manager/commit/bed9f64))
+
+
+
 # [0.5.0-alpha.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.5.0-alpha.0...@ovh-ux/manager-pci@0.5.0-alpha.1) (2019-05-13)
 
 
