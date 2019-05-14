@@ -1,6 +1,14 @@
 <div data-ui-view>
     <h1 data-translate="pci_projects_project_instances_title"></h1>
 
+    <oui-message
+        data-ng-if="!$ctrl.hasVrack"
+        data-type="info"
+        data-dismissable>
+        <p data-translate="pci_projects_project_instances_vrack_none"></p>
+        <a data-ng-href="{{:: $ctrl.vrackLink() }}" data-translate="pci_projects_project_instances_vrack_create"></a>
+    </oui-message>
+
     <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
 
     <oui-datagrid data-rows="$ctrl.instances" data-row-loader="$ctrl.loadInstanceDetail($row)">

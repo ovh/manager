@@ -64,6 +64,13 @@ export default /* @ngInject */($stateProvider) => {
         projectId,
         instanceId: instance.id,
       }),
+      vrackLink: /* @ngInject */ ($state, projectId) => () => $state.href('pci.projects.project.privateNetwork.vrack.new', {
+        projectId,
+      }),
+      vrack: /* @ngInject */ (
+        PciPrivateNetworks,
+        projectId,
+      ) => PciPrivateNetworks.getVrack(projectId),
 
       goToInstances: /* @ngInject */ (CucCloudMessage, $state, projectId) => (message = false, type = 'success') => {
         const reload = message && type === 'success';

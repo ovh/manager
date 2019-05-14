@@ -20,6 +20,8 @@ import resume from './resume';
 import softReboot from './soft-reboot';
 import unrescue from './unrescue';
 
+import privateNetworks from '../private-networks/private-networks.module';
+
 import component from './instances.component';
 import routing from './instances.routing';
 import service from './instances.service';
@@ -36,6 +38,7 @@ angular
     instance,
     instancesDelete,
     onboarding,
+    privateNetworks,
     reinstall,
     regionsList,
     rescue,
