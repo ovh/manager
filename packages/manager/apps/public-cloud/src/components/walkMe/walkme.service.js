@@ -5,31 +5,35 @@ import popoverTemplate from './templates/popover.html';
 import WalkMeTemplate from './template.class';
 
 import {
-  DESKTOP_STEPS, KEY,
+  BREAKPOINT, DESKTOP_STEPS, KEY, MOBILE_STEPS,
 } from './walkme.constants';
 
 export default class WalkMe {
   /* @ngInject */
-  constructor($translate, $window, ovhUserPref) {
+  constructor($translate, $window, coreConfig, ovhUserPref) {
     this.$translate = $translate;
     this.$window = $window;
 
     this.ovhUserPref = ovhUserPref;
 
+    this.REGION = coreConfig.getRegion();
+
     this.initSteps();
   }
 
+  isOnSmallScreen() {
+    return this.$window.matchMedia(`(min-width: ${BREAKPOINT}px)`).matches;
+  }
+
   initSteps() {
-    this.STEPS = DESKTOP_STEPS;
-    // this.$window.matchMedia(`(min-width: ${BREAKPOINT}px)`).matches
-    //   ? DESKTOP_STEPS : MOBILE_STEPS;
+    this.STEPS = this.isOnSmallScreen()
+      ? DESKTOP_STEPS : MOBILE_STEPS;
   }
 
   getTour() {
     return new Tour({
       name: 'public-cloud-walkme',
       steps: this.getSteps(),
-      debug: true,
       // AngularJS will not be interpreted within the popover
       template: index => popoverTemplate.replace('{{ navigation }}', WalkMeTemplate.getNavigation(index, this.STEPS)),
       storage: false,
@@ -40,10 +44,16 @@ export default class WalkMe {
     });
   }
 
+  getStepContent(step) {
+    const key = this.isOnSmallScreen() || this.REGION !== 'US' ? step.content
+      : `${step.content}_${this.REGION}`;
+    return this.$translate.instant(key);
+  }
+
   getSteps() {
     return this.STEPS.map(step => ({
       element: step.element,
-      content: this.$translate.instant(step.content),
+      content: this.getStepContent(step),
       placement: 'bottom',
       title: this.$translate.instant('walkme_title'),
       onShown: (tour) => {
