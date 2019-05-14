@@ -1,3 +1,12 @@
+# [1.3.0-alpha.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@1.3.0-alpha.1...@ovh-ux/ng-ovh-cloud-universe-components@1.3.0-alpha.2) (2019-05-14)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([471503c](https://github.com/ovh-ux/manager/commit/471503c))
+
+
+
 # [1.3.0-alpha.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@1.3.0-alpha.0...@ovh-ux/ng-ovh-cloud-universe-components@1.3.0-alpha.1) (2019-05-10)
 
 

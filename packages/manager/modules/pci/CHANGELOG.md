@@ -1,3 +1,18 @@
+# [0.6.0-alpha.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.6.0-alpha.0...@ovh-ux/manager-pci@0.6.0-alpha.1) (2019-05-14)
+
+
+### Bug Fixes
+
+* avoid calling api with empty id of project ([cf0d530](https://github.com/ovh-ux/manager/commit/cf0d530))
+* avoid instantiation of vs-repeat too early ([3fe7bfa](https://github.com/ovh-ux/manager/commit/3fe7bfa))
+* update align on empty page ([05f1fcb](https://github.com/ovh-ux/manager/commit/05f1fcb))
+* **i18n:** add missing translations ([471503c](https://github.com/ovh-ux/manager/commit/471503c))
+* **pci.instances:** allow to create instance from a backup image ([fea8313](https://github.com/ovh-ux/manager/commit/fea8313))
+* **pci.project:** display kubernetes action only for EU region ([54dbfa1](https://github.com/ovh-ux/manager/commit/54dbfa1))
+* **pci.sidebar:** allow Kubernetes in CA region ([62eaf62](https://github.com/ovh-ux/manager/commit/62eaf62))
+
+
+
 # [0.6.0-alpha.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.5.0-alpha.3...@ovh-ux/manager-pci@0.6.0-alpha.0) (2019-05-14)
 
 
