@@ -71,7 +71,7 @@ export const MENU = [
         translation: 'cloud_sidebar_orchestration_kubernetes',
       },
     ],
-    regions: ['EU'],
+    regions: ['EU', 'CA'],
     translation: 'cloud_sidebar_orchestration',
   },
   {
