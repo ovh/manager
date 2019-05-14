@@ -9,9 +9,10 @@
             <span data-translate="pci_project_instances_available_only"></span>
         </oui-checkbox>
 
-        <oui-tabs class="mb-4" >
+        <oui-tabs class="mb-4" data-model="$ctrl.selectedTab">
             <oui-tabs-item
                 data-ng-repeat="(imageType, distributions) in $ctrl.os"
+                data-id="{{imageType}}"
                 data-heading="{{:: 'pci_project_instances_os_' + imageType | translate }}"
                 data-on-active="$ctrl.changeImageType()">
                 <p class="mt-4" data-translate="pci_project_instances_licence"></p>
@@ -59,6 +60,7 @@
             </oui-tabs-item>
 
             <oui-tabs-item
+                data-id="apps"
                 data-ng-if="$ctrl.apps.length > 0"
                 data-heading="{{:: 'pci_project_instances_apps' | translate }}">
                 <div class="container-fluid px-0">
@@ -83,6 +85,7 @@
             </oui-tabs-item>
 
             <oui-tabs-item
+                data-id="snapshots"
                 data-ng-if="$ctrl.snapshots.length > 0"
                 data-heading="{{:: 'pci_project_instances_shapshots' | translate }}">
                 <div class="container-fluid px-0">
