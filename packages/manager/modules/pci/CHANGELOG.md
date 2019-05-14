@@ -1,3 +1,18 @@
+# [0.6.0-alpha.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.5.0-alpha.3...@ovh-ux/manager-pci@0.6.0-alpha.0) (2019-05-14)
+
+
+### Bug Fixes
+
+* improve responsive for creation of projects ([900bc05](https://github.com/ovh-ux/manager/commit/900bc05))
+* **pci:** update responsive layout ([ee82056](https://github.com/ovh-ux/manager/commit/ee82056))
+
+
+### Features
+
+* **pci.instances:** add vrack banner ([3740b30](https://github.com/ovh-ux/manager/commit/3740b30))
+
+
+
 # [0.5.0-alpha.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.5.0-alpha.2...@ovh-ux/manager-pci@0.5.0-alpha.3) (2019-05-14)
 
 

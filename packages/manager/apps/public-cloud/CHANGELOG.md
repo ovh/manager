@@ -1,3 +1,12 @@
+# [0.5.0-alpha.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.5.0-alpha.0...@ovh-ux/manager-public-cloud@0.5.0-alpha.1) (2019-05-14)
+
+
+### Bug Fixes
+
+* **pci:** update responsive layout ([ee82056](https://github.com/ovh-ux/manager/commit/ee82056))
+
+
+
 # [0.5.0-alpha.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.4.0-alpha.1...@ovh-ux/manager-public-cloud@0.5.0-alpha.0) (2019-05-14)
 
 
