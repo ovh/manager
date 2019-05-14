@@ -32,6 +32,10 @@ export default class Image {
     return includes(ACTIVE_STATUS, this.status);
   }
 
+  isBackup() {
+    return this.planCode === 'snapshot.consumption';
+  }
+
   getApplications() {
     return xor(this.tags, [APPLICATION_TAG]);
   }
