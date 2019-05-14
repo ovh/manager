@@ -1,3 +1,14 @@
+# [0.5.0-alpha.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.5.0-alpha.2...@ovh-ux/manager-pci@0.5.0-alpha.3) (2019-05-14)
+
+
+### Bug Fixes
+
+* allow user to scroll in creation of projects ([54e7279](https://github.com/ovh-ux/manager/commit/54e7279))
+* **pci.flavors-list:** select default tab ([db9490e](https://github.com/ovh-ux/manager/commit/db9490e))
+* **pci.images-list:** select default tab ([f2bb9ee](https://github.com/ovh-ux/manager/commit/f2bb9ee))
+
+
+
 # [0.5.0-alpha.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.5.0-alpha.1...@ovh-ux/manager-pci@0.5.0-alpha.2) (2019-05-14)
 
 
