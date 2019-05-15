@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci",
-  "version": "0.6.0-alpha.1",
+  "version": "0.7.0-alpha.0",
   "license": "BSD-3-Clause",
   "files": [
     "dist"
@@ -36,7 +36,7 @@
   },
   "peerDependencies": {
     "@ovh-ux/manager-cloud-styles": "^0.3.0-alpha.1",
-    "@ovh-ux/manager-core": "^5.2.1",
+    "@ovh-ux/manager-core": "^5.2.2",
     "@ovh-ux/manager-telecom-styles": "^2.0.2",
     "@ovh-ux/ng-at-internet": "^4.0.0",
     "@ovh-ux/ng-ovh-api-wrappers": "^3.0.0",
@@ -49,7 +49,7 @@
     "@ovh-ux/ng-ovh-swimming-poll": "^4.0.0",
     "@ovh-ux/ng-ovh-user-pref": "^1.0.0",
     "@ovh-ux/ng-translate-async-loader": "^2.0.0",
-    "@ovh-ux/ng-uirouter-breadcrumb": "^0.0.0",
+    "@ovh-ux/ng-uirouter-breadcrumb": "^0.0.1",
     "@ovh-ux/ng-uirouter-layout": "^1.0.0",
     "@uirouter/angularjs": "^1.0.15",
     "angular": "^1.7.5",
