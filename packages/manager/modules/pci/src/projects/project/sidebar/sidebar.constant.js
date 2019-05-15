@@ -2,6 +2,7 @@ export const MENU = [
   {
     subitems: [
       {
+        id: 'instance',
         options: {
           state: 'pci.projects.project.instances',
         },
@@ -13,30 +14,35 @@ export const MENU = [
   {
     subitems: [
       {
+        id: 'block-storage',
         options: {
           state: 'pci.projects.project.storages.blocks',
         },
         translation: 'cloud_sidebar_storage_block_storage',
       },
       {
+        id: 'object-storage',
         options: {
           state: 'pci.projects.project.storages.objects',
         },
         translation: 'cloud_sidebar_storage_object_storage',
       },
       {
+        id: 'archive',
         options: {
           state: 'pci.projects.project.storages.archives',
         },
         translation: 'cloud_sidebar_storage_cold_storage',
       },
       {
+        id: 'snapshot',
         options: {
           state: 'pci.projects.project.storages.snapshots',
         },
         translation: 'cloud_sidebar_storage_volume_storage',
       },
       {
+        id: 'instance-backup',
         options: {
           state: 'pci.projects.project.storages.instance-backups',
         },
@@ -48,12 +54,14 @@ export const MENU = [
   {
     subitems: [
       {
+        id: 'private-network',
         options: {
           state: 'pci.projects.project.privateNetwork',
         },
         translation: 'cloud_sidebar_private_network',
       },
       {
+        id: 'failover-ip',
         options: {
           state: 'pci.projects.project.failover-ips',
         },
@@ -65,6 +73,7 @@ export const MENU = [
   {
     subitems: [
       {
+        id: 'kubernetes',
         options: {
           state: 'pci.projects.project.kubernetes',
         },
@@ -78,6 +87,7 @@ export const MENU = [
     translation: 'cloud_sidebar_management_interface',
     subitems: [
       {
+        id: 'horizon',
         options: {
           url: 'https://horizon.cloud.ovh.net/auth/login',
           target: '_blank',
@@ -93,24 +103,28 @@ export const MENU = [
     },
     subitems: [
       {
+        id: 'users',
         options: {
           state: 'pci.projects.project.users',
         },
         translation: 'cloud_sidebar_project_management_users',
       },
       {
+        id: 'quota',
         options: {
           state: 'pci.projects.project.quota',
         },
         translation: 'cloud_sidebar_project_management_quota_location',
       },
       {
+        id: 'ssh-keys',
         options: {
           state: 'pci.projects.project.sshKeys',
         },
         translation: 'cloud_sidebar_project_management_ssh_keys',
       },
       {
+        id: 'billing',
         options: {
           state: 'pci.projects.project.billing',
         },
@@ -118,6 +132,7 @@ export const MENU = [
         translation: 'cloud_sidebar_project_management_billing_control',
       },
       {
+        id: 'vouchers',
         options: {
           state: 'pci.projects.project.vouchers',
         },
@@ -125,6 +140,7 @@ export const MENU = [
         translation: 'cloud_sidebar_project_management_credit_vouchers',
       },
       {
+        id: 'contacts',
         options: {
           state: 'pci.projects.project.contacts',
         },
@@ -132,6 +148,7 @@ export const MENU = [
         translation: 'cloud_sidebar_project_management_contact_rights',
       },
       {
+        id: 'management-settings',
         options: {
           state: 'pci.projects.project.edit',
         },
