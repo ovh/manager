@@ -8,7 +8,8 @@
         data-editable="!$ctrl.isAdding"
         data-valid="$ctrl.cluster.region"
         data-on-focus="$ctrl.displaySelectedRegion = false"
-        data-on-submit="$ctrl.displaySelectedRegion = true">
+        data-on-submit="$ctrl.displaySelectedRegion = true"
+        name="kubernetes_add_region">
         <pci-project-regions-list
             data-regions="$ctrl.regions"
             data-selected-region="$ctrl.cluster.region"
@@ -19,7 +20,8 @@
         data-editable="!$ctrl.isAdding"
         data-valid="$ctrl.cluster.version"
         data-on-focus="$ctrl.displaySelectedVersion = false"
-        data-on-submit="$ctrl.displaySelectedVersion = true">
+        data-on-submit="$ctrl.displaySelectedVersion = true"
+        name="kubernetes_add_version">
         <pci-project-versions-list
             data-versions="$ctrl.versions"
             data-selected-version="$ctrl.cluster.version"
@@ -30,7 +32,8 @@
         data-header="{{:: 'kubernetes_add_name_title' | translate }}"
         data-editable="!$ctrl.isAdding"
         data-valid="$ctrl.cluster.name"
-        data-on-submit="$ctrl.create()">
+        data-on-submit="$ctrl.create()"
+        name="kubernetes_add_name">
         <oui-field
             data-size="m"
             data-label="{{:: 'kubernetes_add_name' | translate }}">
