@@ -54,7 +54,7 @@ export default class {
   }
 
   buildMainLinks() {
-    return this.Navbar.getUniverses(this.navbarOptions.version)
+    return this.Navbar.getUniverses(get(this.navbarOptions, 'version'))
       .then((universes) => {
         this.mainLinks = universes.map(({ universe: name, url }) => ({
           name,
@@ -70,7 +70,7 @@ export default class {
             isPrimary: !NON_PRIMARY_ITEMS.includes(name),
           });
 
-          if (name === this.navbarOptions.universe) {
+          if (name === get(this.navbarOptions, 'universe')) {
             link.subLinks = this.sidebarLinks;
           } else {
             link.url = url || '#';
