@@ -4,7 +4,7 @@ import { Environment } from '@ovh-ux/manager-config';
 /* eslint-disable import/no-webpack-loader-syntax, import/extensions */
 import 'script-loader!jquery';
 import angular from 'angular';
-import 'angular-animate';
+import ngAnimate from 'angular-animate';
 import uiRouter, { RejectType } from '@uirouter/angularjs';
 import 'script-loader!lodash';
 import 'script-loader!jquery-ui/ui/minified/core.min';
@@ -60,7 +60,7 @@ angular
     navbar,
     preload,
     walkMe,
-    'ngAnimate',
+    ngAnimate,
   ].filter(value => value !== null)) // Remove null because __NG_APP_INJECTIONS__ can be null
   .controller('PublicCloudController', controller)
   .service('publicCloud', service)
