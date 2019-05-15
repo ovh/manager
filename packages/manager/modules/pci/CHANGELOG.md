@@ -1,3 +1,27 @@
+# [0.7.0-alpha.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.6.0-alpha.1...@ovh-ux/manager-pci@0.7.0-alpha.0) (2019-05-15)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([80eea5b](https://github.com/ovh-ux/manager/commit/80eea5b))
+* **pci:** set datagrid pagination to default (25) ([1619f86](https://github.com/ovh-ux/manager/commit/1619f86))
+* **pci.container.object.add:** associate label with input element ([#592](https://github.com/ovh-ux/manager/issues/592)) ([f78a276](https://github.com/ovh-ux/manager/commit/f78a276)), closes [/github.com/ovh-ux/ovh-ui-angular/blob/v3.0.2/packages/oui-field/src/field.controller.js#L66](https://github.com//github.com/ovh-ux/ovh-ui-angular/blob/v3.0.2/packages/oui-field/src/field.controller.js/issues/L66)
+* **pci.failover-ip:** add link to instance ([b0577f7](https://github.com/ovh-ux/manager/commit/b0577f7))
+* **pci.instance.add:** check datacenter ram quota ([27ce892](https://github.com/ovh-ux/manager/commit/27ce892))
+* **pci.private-networks.delete:** keep loading on deletion ([3e337d3](https://github.com/ovh-ux/manager/commit/3e337d3))
+* **pci.project:** remove kubernetes for CA ([d8aaa63](https://github.com/ovh-ux/manager/commit/d8aaa63))
+* **pci.project.block.edit.volume:** associate label with input element ([#591](https://github.com/ovh-ux/manager/issues/591)) ([b037617](https://github.com/ovh-ux/manager/commit/b037617)), closes [/github.com/ovh-ux/ovh-ui-angular/blob/v3.0.2/packages/oui-field/src/field.controller.js#L66](https://github.com//github.com/ovh-ux/ovh-ui-angular/blob/v3.0.2/packages/oui-field/src/field.controller.js/issues/L66)
+* **pci.project.edit:** associate label with input element ([#588](https://github.com/ovh-ux/manager/issues/588)) ([9cfbefd](https://github.com/ovh-ux/manager/commit/9cfbefd)), closes [/github.com/ovh-ux/ovh-ui-angular/blob/v3.0.2/packages/oui-field/src/field.controller.js#L66](https://github.com//github.com/ovh-ux/ovh-ui-angular/blob/v3.0.2/packages/oui-field/src/field.controller.js/issues/L66)
+* **pci.project.ssh-keys.add:** associate labels with form element ([#589](https://github.com/ovh-ux/manager/issues/589)) ([80671fd](https://github.com/ovh-ux/manager/commit/80671fd)), closes [/github.com/ovh-ux/ovh-ui-angular/blob/v3.0.2/packages/oui-field/src/field.controller.js#L66](https://github.com//github.com/ovh-ux/ovh-ui-angular/blob/v3.0.2/packages/oui-field/src/field.controller.js/issues/L66)
+* **pci.project.vouchers.add:** associate label with input element ([#590](https://github.com/ovh-ux/manager/issues/590)) ([a5e5a8c](https://github.com/ovh-ux/manager/commit/a5e5a8c)), closes [/github.com/ovh-ux/ovh-ui-angular/blob/v3.0.2/packages/oui-field/src/field.controller.js#L66](https://github.com//github.com/ovh-ux/ovh-ui-angular/blob/v3.0.2/packages/oui-field/src/field.controller.js/issues/L66)
+
+
+### Features
+
+* **pci.storages.instances-backup:** create instance from a backup ([065c7a7](https://github.com/ovh-ux/manager/commit/065c7a7))
+
+
+
 # [0.6.0-alpha.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.6.0-alpha.0...@ovh-ux/manager-pci@0.6.0-alpha.1) (2019-05-14)
 
 
