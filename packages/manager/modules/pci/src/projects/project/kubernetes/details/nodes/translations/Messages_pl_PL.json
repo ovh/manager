@@ -44,5 +44,11 @@
  "kube_nodes_common_cancel": "Anuluj",
  "kube_nodes_common_delete": "Usuń",
  "kube_nodes_common_field_error_required": "Wypełnij to pole.",
- "kube_service_cluster_status": "Status"
+ "kube_service_cluster_status": "Status",
+ "kube_nodes_status_READY": "OK",
+ "kube_nodes_status_ERROR": "Błąd",
+ "kube_nodes_status_INSTALLING": "Instalacja w toku",
+ "kube_nodes_status_UPDATING": "Aktualizacja",
+ "kube_nodes_status_DELETING": "W trakcie usuwania",
+ "kube_nodes_status_RESETTING": "Trwa reset"
 }

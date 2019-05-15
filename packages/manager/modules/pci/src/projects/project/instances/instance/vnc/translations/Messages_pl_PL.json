@@ -1,0 +1,6 @@
+{
+ "pci_projects_project_instances_instance_vnc_title": "Konsola VNC",
+ "pci_projects_project_instances_instance_vnc_focus_message": "Uwaga: Jeśli wpisywanie nie działa, kliknij na niebieski pasek znajdujący się poniżej.",
+ "pci_projects_project_instances_instance_vnc_linux_message": "Aby korzystać z konsoli VNC na serwerze z systemem Linux, należy najpierw połączyć się z serwerem przez SSH i skonfigurować użytkownika.",
+ "pci_projects_project_instances_instance_vnc_open_in_new_window": "Otwórz w nowym oknie"
+}

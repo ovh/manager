@@ -1,0 +1,15 @@
+{
+ "pci_error_title": "Oops!",
+ "pci_error_button_cancel": "Cancel",
+ "pci_error_button_action_pay_debt": "Settle outstanding amount",
+ "pci_error_button_action_contact_support": "Contact support",
+ "pci_error_detail_code": "Error code: {{code}}",
+ "pci_error_action_reload_label": "Try again",
+ "pci_error_action_home_label": "Back to homepage",
+ "pci_error_default": "An error has occurred loading the page.",
+ "pci_error_account_not_eligible": "Unfortunately you cannot create a Public Cloud project as you have projects that have been closed due to non-payment, or due to improper use of the service. Please contact our support team.",
+ "pci_error_max_projects_limit_reached": "Unfortunately you cannot create an additional Public Cloud project because you have reached the maximum quota for projects. To unblock these quotas, please contact our support team.",
+ "pci_error_paypal_account_not_verified": "Unfortunately you cannot create a Public Cloud project with your PayPal account as it has not been verified. Please follow the required steps with PayPal to verify your account, then try again. You can also modify <a href=\"{{ href }}\">your default payment method</a>.",
+ "pci_error_unpaid_debts": "Unfortunately you cannot create a Public Cloud project as you currently have an outstanding payment with OVH. Please settle the amount due, then try again.",
+ "pci_error_invalid_payment_mean": "Unfortunately you cannot create a Public Cloud project as you do not have a valid default payment method. Please modify <a href=\"{{ href }}\">your default payment method</a>."
+}

@@ -8,8 +8,8 @@
  "pci_error_action_home_label": "Powrót do strony głównej",
  "pci_error_default": "Wystąpił błąd podczas ładowania strony.",
  "pci_error_account_not_eligible": "Niestety, nie możesz utworzyć projektu Public Cloud, ponieważ niektóre z Twoich projektów zostały zamknięte z powodu braku płatności lub nieodpowiedniego korzystania usługi. Zapraszamy do kontaktu z pomocą techniczną.",
- "pci_error_max_projects_limit_reached": "Niestety, nie możesz utworzyć dodatkowego projektu Public Cloud, ponieważ osiągnąłeś maksymalny limit projektów. Aby odblokować limity, skontaktuj się z pomocą techniczną.",
- "pci_error_paypal_account_not_verified": "Niestety, nie możesz utworzyć projektu Public Cloud, używając Twojego konta PayPal, ponieważ nie zostało ono zatwierdzone. Prosimy o wykonanie kroków niezbędnych do zatwierdzenia konta PayPal i podjęcie nowej próby utworzenia projektu. Możesz również zmienić Twój domyślny sposób płatności <a href=\"{{ href }}\">Twój domyslny</a>.",
+ "pci_error_max_projects_limit_reached": "Niestety, nie możesz utworzyć dodatkowego projektu Public Cloud, ponieważ osiągnąłeś maksymalny limit projektów. Aby zwiększyć limity, skontaktuj się z pomocą techniczną.",
+ "pci_error_paypal_account_not_verified": "Niestety, nie możesz utworzyć projektu Public Cloud, używając Twojego konta PayPal, ponieważ nie zostało ono zweryfikowane. Prosimy o wykonanie kroków niezbędnych do zatwierdzenia konta PayPal i podjęcie nowej próby utworzenia projektu. Możesz również zmienić <a href=\"{{ href }}\">Twój domyślny sposób płatności</a>.",
  "pci_error_unpaid_debts": "Niestety, nie możesz utworzyć projektu Public Cloud, ponieważ masz zadłużenie w OVH. Ureguluj należność i spróbuj ponownie.",
  "pci_error_invalid_payment_mean": "Niestety, nie możesz utworzyć projektu Public Cloud, ponieważ nie masz ważnego domyślnego sposobu płatności. Zmień <a href=\"{{ href }}\">Twój domyślny sposób płatności</a>."
 }

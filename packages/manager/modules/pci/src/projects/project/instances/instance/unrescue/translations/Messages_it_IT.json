@@ -1,0 +1,8 @@
+{
+ "pci_projects_project_instances_instance_unrescue_title": "Esci dalla modalità Rescue",
+ "pci_projects_project_instances_instance_unrescue_submit_label": "Riavvia",
+ "pci_projects_project_instances_instance_unrescue_cancel_label": "Annulla",
+ "pci_projects_project_instances_instance_unrescue_content": "L’istanza {{ instance }} verrà riavviata.",
+ "pci_projects_project_instances_instance_unrescue_success_message": "Il riavvio dell’istanza {{ instance }} è iniziato.",
+ "pci_projects_project_instances_instance_unrescue_error_unrescue": "Si è verificato un errore durante il riavvio dell'istanza {{ instance }}: {{ message }}."
+}

@@ -1,14 +1,13 @@
 {
- "kube_service_reset_common_confirm": "Conferma",
- "kube_service_reset_common_cancel": "Annulla",
- "kube_service_reset_common_delete": "Elimina",
- "kube_service_reset_common_reinstall": "Reinstalla",
- "kube_service_reset_title": "Ripristina la configurazione del cluster Kubernetes",
- "kube_service_reset_message": "Scegliendo questa opzione il tuo Kubernetes sarà ripristinato allo stato iniziale e tutti i servizi e la loro configurazione verranno eliminati. <strong>L’operazione è irreversibile.</strong>.",
- "kube_service_reset_success": "Ripristino del cluster Kubernetes in corso...",
- "kube_service_reset_error": "Si è verificato un errore durante il ripristino del cluster: {{ message }}",
- "kube_service_reset_enter": "Inserisci \"RESET\" in questo campo per confermare l’operazione",
- "kube_service_reset_nodes": "Politica dei nodi di calcolo",
- "kube_service_reset_version": "Versione di Kubernetes",
- "kube_service_reset_load_error": "Si è verificato un errore durante il caricamento delle versioni di Kubernetes disponibili: {{ message }}"
+ "pci_projects_project_kubernetes_service_reset": "Ripristina la configurazione di default del cluster Kubernetes",
+ "pci_projects_project_kubernetes_service_reset_common_confirm": "Conferma",
+ "pci_projects_project_kubernetes_service_reset_common_cancel": "Annulla",
+ "pci_projects_project_kubernetes_service_reset_common_delete": "Elimina",
+ "pci_projects_project_kubernetes_service_reset_common_reinstall": "Reinstalla",
+ "pci_projects_project_kubernetes_service_reset_message": "Scegliendo questa opzione il tuo Kubernetes sarà ripristinato allo stato iniziale e tutti i servizi e la loro configurazione verranno eliminati. <strong>L’operazione è irreversibile.</strong>.",
+ "pci_projects_project_kubernetes_service_reset_success": "Ripristino del cluster Kubernetes in corso...",
+ "pci_projects_project_kubernetes_service_reset_error": "Si è verificato un errore durante il ripristino del cluster: {{ message }}",
+ "pci_projects_project_kubernetes_service_reset_enter": "Inserisci \"RESET\" in questo campo per confermare l’operazione",
+ "pci_projects_project_kubernetes_service_reset_nodes": "Politica dei nodi di calcolo",
+ "pci_projects_project_kubernetes_service_reset_version": "Versione di Kubernetes"
 }
