@@ -1,7 +1,8 @@
 <oui-navbar
     class="flex-nowrap"
     data-brand="$ctrl.brand"
-    data-active-link="{{ :: $ctrl.navbarOptions.universe }}">
+    data-active-link="{{ :: $ctrl.navbarOptions.universe }}"
+    data-fixed="$ctrl.fixed">
     <oui-navbar-main>
         <oui-spinner data-size="s" data-ng-if="$ctrl.isLoading"></oui-spinner>
         <div
