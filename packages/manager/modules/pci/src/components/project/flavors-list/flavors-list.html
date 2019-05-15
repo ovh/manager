@@ -11,7 +11,9 @@
 
             <p data-translate="{{:: 'pci_project_flavors_category_definition_' + flavorByCategory.category }}"></p>
 
-            <div class="container-fluid px-0">
+            <p data-ng-if="flavorByCategory.flavors.length === 0" data-translate="pci_project_flavors_category_definition_none"></p>
+
+            <div class="container-fluid px-0" data-ng-if="flavorByCategory.flavors.length > 0">
                 <div class="row">
                     <oui-select-picker
                         class="d-inline-block col-md-6 col-xl-4 my-3"
@@ -22,6 +24,7 @@
                         data-values="[flavor]"
                         data-variant="light"
                         data-on-change="$ctrl.onFlavorChange(modelValue)"
+                        data-disabled="$ctrl.region && !$ctrl.region.hasEnoughQuotaForFlavor(flavor)"
                         data-required>
                         <oui-select-picker-section>
                             <div class="d-flex justify-content-between">
@@ -57,6 +60,12 @@
                                     data-translate-values="{ price: flavor.prices.hourly.text }">
                                 </span>
                             </div>
+                        </oui-select-picker-section>
+                        <oui-select-picker-section data-ng-if="$ctrl.region && !$ctrl.region.hasEnoughQuotaForFlavor(flavor)">
+                            <a class="oui-button oui-button_link"
+                               data-ui-sref="pci.projects.project.quota"
+                               data-translate="pci_project_flavors_quota">
+                            </a>
                         </oui-select-picker-section>
                     </oui-select-picker>
                 </div>

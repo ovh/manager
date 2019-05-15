@@ -1,7 +1,7 @@
 import get from 'lodash/get';
 import reduce from 'lodash/reduce';
 import { PATTERN } from '../../../../../components/project/instance/name/constants';
-import Instance from '../../instance.class';
+import Instance from '../../../../../components/project/instance/instance.class';
 
 export default class PciInstanceEditController {
   /* @ngInject */

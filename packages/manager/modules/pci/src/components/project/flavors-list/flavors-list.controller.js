@@ -22,13 +22,13 @@ export default class FlavorsListController {
   }
 
   getFlavors() {
-    return this.PciProjectFlavors.getFlavors(this.serviceName)
+    return this.PciProjectFlavors.getFlavors(this.serviceName, get(this.region, 'name'))
       .then((flavors) => {
         const flavorGroups = this.PciProjectFlavors.constructor.mapByFlavorType(
           filter(flavors, flavor => flavor.isAvailable()
-            && !flavor.isLegacy()
             && flavor.hasSsdDisk()
-            && !flavor.isFlex()),
+            && !flavor.isFlex()
+            && (flavor.hasOsType(this.imageType) || !this.imageType)),
         );
         this.flavors = this.PciProjectFlavors.constructor.groupByCategory(flavorGroups);
         this.selectedCategory = get(first(this.flavors), 'category');
