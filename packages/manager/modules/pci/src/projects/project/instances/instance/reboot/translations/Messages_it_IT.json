@@ -1,0 +1,9 @@
+{
+ "pci_projects_project_instances_instance_reboot_soft_title": "Riavvia a caldo (soft)",
+ "pci_projects_project_instances_instance_reboot_hard_title": "Riavvia a freddo (hard)",
+ "pci_projects_project_instances_instance_reboot_submit_label": "Conferma",
+ "pci_projects_project_instances_instance_reboot_cancel_label": "Annulla",
+ "pci_projects_project_instances_instance_reboot_content": "La tua istanza {{ instance }} verrà riavviata.",
+ "pci_projects_project_instances_instance_reboot_success_message": "Il riavvio dell’istanza {{ instance }} è iniziato.",
+ "pci_projects_project_instances_instance_reboot_error_reboot": "Si è verificato un errore durante il riavvio dell'istanza {{ instance }}: {{ message }}."
+}

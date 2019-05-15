@@ -9,7 +9,7 @@ import sortBy from 'lodash/sortBy';
 
 import Quota from '../../../../components/project/instance/quota/quota.class';
 import { PATTERN } from '../../../../components/project/instance/name/constants';
-import Instance from '../instance.class';
+import Instance from '../../../../components/project/instance/instance.class';
 
 export default class PciInstancesAddController {
   /* @ngInject */
@@ -195,7 +195,7 @@ export default class PciInstancesAddController {
         return 'INSTANCE';
       }
 
-      if (!datacenter.checkRamQuotaForFlavor(this.model.flavorGroup)) {
+      if (!datacenter.checkRamQuota(this.model.flavorGroup)) {
         return 'RAM';
       }
 

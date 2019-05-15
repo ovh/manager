@@ -11,7 +11,7 @@
         </oui-button>
     </pci-project-private-networks-empty>
 
-    <oui-datagrid data-rows="$ctrl.privateNetworks" data-row-loader="$ctrl.getCIDR($row)" page-size="5" data-ng-if="$ctrl.privateNetworks.length > 0">
+    <oui-datagrid data-rows="$ctrl.privateNetworks" data-row-loader="$ctrl.getCIDR($row)" data-ng-if="$ctrl.privateNetworks.length > 0">
         <extra-top>
             <button
                 class="oui-button oui-button_secondary oui-button_icon-left mb-2"

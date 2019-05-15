@@ -1,0 +1,11 @@
+{
+ "public_cloud_beta_warning_welcome": "Welcome!",
+ "public_cloud_beta_warning_subtitle": "Explore the preview version of the Public Cloud",
+ "public_cloud_beta_warning_test_new_feature": "Try out the new features",
+ "public_cloud_beta_warning_test_new_feature_desc": "You have early access to our brand-new management interface for managing your Public Cloud projects.",
+ "public_cloud_beta_warning_help_develop": "Help us develop the Public Cloud",
+ "public_cloud_beta_warning_help_develop_desc": "By using the Public Cloud preview version and sharing your feedback with us (using the button in the bottom right-hand corner of the OVH Control Panel), you can help us improve its features.",
+ "public_cloud_beta_warning_comment": "It isn’t perfect yet, and we’re aware that there are a few ‘&nbsp;bugs&nbsp;’ but have fun, test it out, and share your thoughts!",
+ "public_cloud_beta_warning_dont_show_again": "Don’t display this message again",
+ "public_cloud_beta_warning_lets_go": "And we’re off!"
+}

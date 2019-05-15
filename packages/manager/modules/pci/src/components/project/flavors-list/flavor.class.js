@@ -37,4 +37,8 @@ export default class Flavors {
   containsFlavor(flavorId) {
     return find(this.regions, { id: flavorId });
   }
+
+  hasOsType(os) {
+    return this.osType === os;
+  }
 }

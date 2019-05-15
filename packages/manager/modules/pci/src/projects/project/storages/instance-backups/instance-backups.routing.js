@@ -18,7 +18,7 @@ export default /* @ngInject */ ($stateProvider) => {
         ) => PciProjectStorageInstanceBackupService
           .getAll(projectId),
 
-        goToInstanceBackups: /* @ngInject */ ($rootScope, CucCloudMessage, $state, projectId) => (message = false, type = 'success') => {
+        goToInstanceBackups: /* @ngInject */ ($state, CucCloudMessage, projectId) => (message = false, type = 'success') => {
           const reload = message && type === 'success';
 
           const promise = $state.go('pci.projects.project.storages.instance-backups', {
@@ -42,7 +42,7 @@ export default /* @ngInject */ ($stateProvider) => {
           projectId,
           help: 'backup',
         }),
-        createInstance: /* @ngInject */ ($state, projectId) => instanceBackup => $state.go('pci.projects.project.storages.instance-backups.create', {
+        createInstance: /* @ngInject */ ($state, projectId) => instanceBackup => $state.go('pci.projects.project.storages.instance-backups.add', {
           projectId,
           instanceBackupId: instanceBackup.id,
         }),
