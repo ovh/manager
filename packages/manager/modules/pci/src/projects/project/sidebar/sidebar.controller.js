@@ -73,6 +73,7 @@ export default class SidebarController {
   onMenuItemClick({ id }) {
     this.atInternet.trackClick({
       name: `public-cloud_menu_${id}`,
+      type: 'action',
     });
   }
 }

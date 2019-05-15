@@ -10,7 +10,8 @@
             data-header="{{:: 'pci_projects_project_network_private_create_configure' | translate}}"
             data-loading="$ctrl.loaders.isInitiating"
             data-editable="!$ctrl.loaders.isSubmitting"
-            data-valid="$ctrl.isVlanAvailable($ctrl.configuration.vlanId)">
+            data-valid="$ctrl.isVlanAvailable($ctrl.configuration.vlanId)"
+            name="private_network_add_configuration">
             <div class="d-flex flex-wrap flex-md-nowrap align-items-center">
                 <oui-field
                     data-label="{{:: 'pci_projects_project_network_private_create_configure_address' | translate }}"
@@ -81,7 +82,8 @@
         </oui-step-form>
         <oui-step-form
             data-header="{{:: 'pci_projects_project_network_private_create_localisation' | translate }}"
-            data-editable="!$ctrl.loaders.isSubmitting">
+            data-editable="!$ctrl.loaders.isSubmitting"
+            name="private_network_add_region">
             <div class="row">
                 <div class="oui-select-picker col-sm-6 col-md-4 mb-2"
                      data-ng-repeat="subnet in $ctrl.subnets | orderBy : 'region' track by subnet.region"
@@ -122,7 +124,8 @@
         <oui-step-form
             data-header="{{:: 'pci_projects_project_network_private_create_name_step' | translate }}"
             data-editable="!$ctrl.loaders.isSubmitting"
-            data-on-submit="$ctrl.createNetwork()">
+            data-on-submit="$ctrl.createNetwork()"
+            name="private_network_add_name">
             <oui-field
                 data-label="{{:: 'pci_projects_project_network_private_create_name' | translate }}"
                 data-size="xl">
