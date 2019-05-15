@@ -26,7 +26,7 @@
         <ovh-manager-navbar-user-menu data-user="$ctrl.user"></ovh-manager-navbar-user-menu>
     </oui-navbar-aside>
     <oui-navbar-toggler data-ng-if="$ctrl.navbarOptions.toggle"
-                        data-loading="$ctrl.togglerisLoading"
+                        data-loading="$ctrl.togglerisLoading || $ctrl.isLoading"
                         data-links="$ctrl.responsiveLinks">
         <div data-ng-transclude="sidebar"></div>
     </oui-navbar-toggler>
