@@ -22,9 +22,12 @@ export default class FlavorsList {
     this.OvhApiCloudProjectFlavor = OvhApiCloudProjectFlavor;
   }
 
-  getFlavors(serviceName) {
+  getFlavors(serviceName, currentRegion) {
     return this.$q.all({
-      flavors: this.OvhApiCloudProjectFlavor.v6().query({ serviceName }).$promise,
+      flavors: this.OvhApiCloudProjectFlavor.v6().query({
+        serviceName,
+        region: currentRegion,
+      }).$promise,
       prices: this.CucPriceHelper.getPrices(serviceName),
     })
       .then(({ flavors, prices }) => map(

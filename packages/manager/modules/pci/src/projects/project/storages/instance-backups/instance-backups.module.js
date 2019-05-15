@@ -12,6 +12,7 @@ import component from './instance-backups.component';
 import service from './instance-backups.service';
 import onboarding from './onboarding';
 
+import add from './add';
 import instanceBackupDelete from './instance-backup/delete';
 
 import routing from './instance-backups.routing';
@@ -20,6 +21,7 @@ const moduleName = 'ovhManagerPciStoragesInstanceBackups';
 
 angular
   .module(moduleName, [
+    add,
     instanceBackupDelete,
     onboarding,
     'ngOvhUserPref',
