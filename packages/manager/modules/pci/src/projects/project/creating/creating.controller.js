@@ -1,11 +1,23 @@
+import {
+  SLIDE_ANIMATION_INTERVAL,
+  SLIDE_IMAGES,
+} from './creating.constants';
+
 export default class ProjectCreatingCtrl {
   /* @ngInject */
-  constructor(Poller) {
+  constructor($q, $timeout, Poller) {
     // dependencies injections
+    this.$q = $q;
+    this.$timeout = $timeout;
     this.Poller = Poller;
 
     // other attributes
     this.pollingNamespace = 'pci.projects.creating';
+
+    this.imageSlider = {
+      currentIndex: 0,
+      list: SLIDE_IMAGES,
+    };
   }
 
   startCreationPolling() {
@@ -24,11 +36,23 @@ export default class ProjectCreatingCtrl {
     });
   }
 
+  slideImages() {
+    return this.$timeout(() => {
+      if (this.imageSlider.currentIndex >= this.imageSlider.list.length - 1) {
+        this.imageSlider.currentIndex = 0;
+      } else {
+        this.imageSlider.currentIndex += 1;
+      }
+      return this.slideImages();
+    }, SLIDE_ANIMATION_INTERVAL);
+  }
+
   /* ============================
   =            Hooks            =
   ============================= */
 
   $onInit() {
+    this.slideImages();
     this.stopCreationPolling();
     return this.startCreationPolling();
   }
