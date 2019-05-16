@@ -1763,7 +1763,7 @@
     "@ovh-ux/translate-async-loader" "^1.0.0"
     jquery "^2.1.3"
 
-"@ovh-ux/ng-ovh-sidebar-menu@^8.0.0-beta.0", "@ovh-ux/ng-ovh-sidebar-menu@git+https://github.com/ovh-ux/ng-ovh-sidebar-menu.git#feat/always-open":
+"@ovh-ux/ng-ovh-sidebar-menu@^8.0.0-beta.0":
   version "8.0.0-beta.1"
   resolved "git+https://github.com/ovh-ux/ng-ovh-sidebar-menu.git#76db3c9cda614bb35a2c4a85e34f1068528bfd1e"
 
