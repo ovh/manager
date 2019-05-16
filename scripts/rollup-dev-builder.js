@@ -19,6 +19,9 @@ const config = require(configPath)[0]; // eslint-disable-line
 const watcher = rollup.watch({
   ...config,
   cache,
+  watch: {
+    chokidar: true,
+  },
 });
 
 watcher.on('event', (event) => {
