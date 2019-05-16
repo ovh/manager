@@ -1,11 +1,15 @@
 import chunk from 'lodash/chunk';
 import find from 'lodash/find';
+import get from 'lodash/get';
 import isFunction from 'lodash/isFunction';
+import map from 'lodash/map';
+import set from 'lodash/set';
 
 import {
   DEFAULT_DISPLAY_PER_LINE,
   DEFAULT_ORDERED_PAYMENT_METHOD_TYPES,
   DEFAULT_SELECTED_PAYMENT_METHOD_TYPE,
+  FALLBACK_IMAGES,
 } from './availableTypes.constants';
 
 export default class OvhPaymentMethodAvailableTypesCtrl {
@@ -86,6 +90,18 @@ export default class OvhPaymentMethodAvailableTypesCtrl {
           const typeAIndex = this.paymentTypesOrder.indexOf(typeA.paymentType.value);
           const typeBIndex = this.paymentTypesOrder.indexOf(typeB.paymentType.value);
           return typeAIndex > typeBIndex;
+        });
+
+        this.paymentMethodTypes.list = map(this.paymentMethodTypes.list, (paymentTypeParam) => {
+          const paymentType = paymentTypeParam;
+          if (!get(paymentType, 'icon.data')) {
+            set(
+              paymentType,
+              'icon.data',
+              get(FALLBACK_IMAGES, paymentType.paymentType.value),
+            );
+          }
+          return paymentType;
         });
 
         this.paymentMethodTypes.chunks = chunk(
