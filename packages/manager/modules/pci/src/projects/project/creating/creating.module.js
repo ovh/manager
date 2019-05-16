@@ -3,6 +3,7 @@ import '@ovh-ux/ng-translate-async-loader';
 import '@ovh-ux/ng-ovh-swimming-poll';
 import '@uirouter/angularjs';
 import 'angular-translate';
+import 'angular-animate';
 
 
 import routing from './creating.routing';
@@ -18,6 +19,7 @@ angular
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
     'ngOvhSwimmingPoll',
+    'ngAnimate',
   ])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */)
