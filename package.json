@@ -14,6 +14,7 @@
     "clean": "yarn run clean:dist && npx rimraf **/node_modules",
     "clean:dist": "npx rimraf dist packages/**/dist",
     "docs:update-readme": "scripts/update-readme",
+    "install": "export NODE_OPTIONS=--max_old_space_size=4096",
     "lint": "run-p lint:css lint:html lint:js lint:md",
     "lint:css": "stylelint 'packages/**/*.less' --fix",
     "lint:html": "htmlhint 'packages/**/*.html'",
