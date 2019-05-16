@@ -130,6 +130,11 @@ angular
       window.location.reload();
     });
   })
+  .run(/* @ngInject */ ($document) => {
+    let { 'univers-selected-language': lang } = localStorage;
+    [lang] = lang.split('_');
+    $document.querySelectorAll('html')[0].setAttribute('lang', lang);
+  })
   .run((ssoAuthentication/* , User */) => {
     ssoAuthentication.login(); // .then(() => User.getUser());
   })
