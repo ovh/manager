@@ -1,3 +1,12 @@
+# [2.2.0](https://github.com/ovh-ux/ng-ovh-payment-method/compare/v2.1.1...v2.2.0) (2019-05-16)
+
+
+### Features
+
+* add fallback image when none in API ([423e316](https://github.com/ovh-ux/ng-ovh-payment-method/commit/423e316))
+
+
+
 ## [2.1.1](https://github.com/ovh-ux/ng-ovh-payment-method/compare/v2.1.0...v2.1.1) (2019-05-07)
 
 
