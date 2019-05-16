@@ -1,0 +1,14 @@
+{
+ "pci_projects_project_storages_blocks_block_volume-edit_region_label": "Locatie",
+ "pci_projects_project_storages_blocks_block_volume-edit_type_label": "Type Volume",
+ "pci_projects_project_storages_blocks_block_volume-edit_type_high-speed": "High performance",
+ "pci_projects_project_storages_blocks_block_volume-edit_type_classic": "Classic",
+ "pci_projects_project_storages_blocks_block_volume-edit_name_label": "Naam van het volume",
+ "pci_projects_project_storages_blocks_block_volume-edit_size_label": "Volumecapaciteit",
+ "pci_projects_project_storages_blocks_block_volume-edit_size_help": "De maximumgrootte hangt af van uw beschikbare quota.",
+ "pci_projects_project_storages_blocks_block_volume-edit_size_unit": "GB",
+ "pci_projects_project_storages_blocks_block_volume-edit_price_text": "Geschatte {{price}} excl. btw / maand",
+ "pci_projects_project_storages_blocks_block_volume-edit_bootable_label": "Bootable",
+ "pci_projects_project_storages_blocks_block_volume-edit_bootable_help": "Het definiëren van een volume als bootable stelt u in om dit volume te gebruiken wanneer u uw instance start.",
+ "pci_projects_project_storages_blocks_block_volume-edit_cancel_label": "Annuleren"
+}

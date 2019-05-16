@@ -1,0 +1,12 @@
+{
+ "pci_projects_project_users_download-rclone_title": "Download een Rclone-configuratiebestand",
+ "pci_projects_project_users_download-rclone_submit_label": "Downloaden",
+ "pci_projects_project_users_download-rclone_cancel_label": "Annuleren",
+ "pci_projects_project_users_download-rclone_content": "Download een configuratiebestand om toegang te krijgen tot Rclone.",
+ "pci_projects_project_users_download-rclone_more_link": "Meer informatie over",
+ "pci_projects_project_users_download-rclone_region_label": "Selecteer de regio voor dit bestand:",
+ "pci_projects_project_users_download-rclone_region_help": "Om veiligheidsredenen bevat het configuratiebestand niet uw wachtwoord. U moet uw wachtwoord handmatig toevoegen door het configuratiebestand te bewerken.",
+ "pci_projects_project_users_download-rclone_success_message": "Het downloaden van het rClone-configuratiebestand is gestart, zo niet ",
+ "pci_projects_project_users_download-rclone_success_message_link": "klik hier",
+ "pci_projects_project_users_download-rclone_error_rclone": "Er is een fout opgetreden bij het downloaden van het rClone configuratiebestand: {{ message }}."
+}

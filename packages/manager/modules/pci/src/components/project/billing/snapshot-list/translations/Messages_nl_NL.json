@@ -1,0 +1,10 @@
+{
+ "cpbc_no_consumption_data": "Geen verbruik voor de geselecteerde periode. ",
+ "cpbc_snapshot_col_location": "Locatie",
+ "cpbc_snapshot_col_type": "Type",
+ "cpbc_snapshot_col_usage": "Verbruik",
+ "cpbc_snapshot_col_usage_info_part1": "U wordt gefactureerd op basis van de werkelijke opslagruimte, berekend per uur, afgerond op het hele uur.",
+ "cpbc_snapshot_col_usage_info_part2": "Uw verbruik is precies {{amount}} GiB uur.",
+ "cpbc_snapshot_type_instance": "Server afbeelding",
+ "cpb_error_message": "Het is niet mogelijk alle informatie op te halen. "
+}

@@ -1743,6 +1743,13 @@
   dependencies:
     lodash "^4.17.11"
 
+"@ovh-ux/ng-ovh-payment-method@^2.2.0":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-payment-method/-/ng-ovh-payment-method-2.2.0.tgz#2161485afcd5b9b75dfb29bb56c26977a81e1772"
+  integrity sha512-SCTVdGUNeyUXqTMege1IIYrMSod9upc85ZhT8lK4+H2DIfTtZqWtgVgDDf9cxh/CEmY8AGirhSIIV6Wu2jBTBw==
+  dependencies:
+    lodash "^4.17.11"
+
 "@ovh-ux/ng-ovh-proxy-request@^1.0.0-beta.0":
   version "1.0.0-beta.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-proxy-request/-/ng-ovh-proxy-request-1.0.0-beta.0.tgz#45e2397515326f6c43f99221f746401509b7db1d"

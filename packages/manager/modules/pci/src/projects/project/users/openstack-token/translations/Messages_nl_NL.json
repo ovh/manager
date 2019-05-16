@@ -1,0 +1,16 @@
+{
+ "pci_projects_project_users_openstack-token_title": "Een Openstack token beheren",
+ "pci_projects_project_users_openstack-token_submit_label": "Aanmaken",
+ "pci_projects_project_users_openstack-token_close_label": "Sluiten",
+ "pci_projects_project_users_openstack-token_cancel_label": "Annuleren",
+ "pci_projects_project_users_openstack-token_content": "Om een OpenStack token te genereren vult u het gebruikerswachtwoord in {{user}}.",
+ "pci_projects_project_users_openstack-token_password_label": "Wachtwoord",
+ "pci_projects_project_users_openstack-token_token_label": "Het Openstack token, waarmee u uw HTTP-verzoeken (X-Auth-Token) kunt identificeren, is: ",
+ "pci_projects_project_users_openstack-token_token_guide_content": "Vind een gebruiksvoorbeeld in <a href=\"{{ link }}\" target=\"_blank\">deze gids</a>. ",
+ "pci_projects_project_users_openstack-token_token_guide_link": "deze handleiding",
+ "pci_projects_project_users_openstack-token_token_alert_message": "Let op deze identificatoren. Ze zullen niet beschikbaar zijn bij de volgende update.",
+ "pci_projects_project_users_openstack-token_token_catalog_region_label": "Regio",
+ "pci_projects_project_users_openstack-token_token_catalog_type_label": "Dienst",
+ "pci_projects_project_users_openstack-token_token_catalog_endpoint_label": "Endpoint",
+ "pci_projects_project_users_openstack-token_error_save": "Er is een fout opgetreden bij het OpenStack token resetten voor de gebruiker  {{ user }} : {{ message }}."
+}

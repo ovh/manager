@@ -16,11 +16,11 @@
         data-on-selected-payment-type-change="$ctrl.onPaymentTypeChange.bind($ctrl)">
     </ovh-payment-method-available-types>
 
-    <p class="font-italic"
-       data-ng-switch="$ctrl.selectedPaymentType.paymentType.value"
-       data-ng-if="$ctrl.selectedPaymentType">
-        <small data-translate="{{ 'pci_projects_new_payment_add_' + $ctrl.selectedPaymentType.paymentType.value.toLowerCase() + '_selected' }}"></small>
-    </p>
+    <small data-ng-switch="$ctrl.selectedPaymentType.paymentType.value"
+           data-ng-if="$ctrl.selectedPaymentType"
+           data-translate="{{ 'pci_projects_new_payment_add_' + $ctrl.selectedPaymentType.paymentType.value.toLowerCase() + '_selected' }}"
+           class="d-block mb-3">
+    </small>
 
     <oui-message
         data-type="info"

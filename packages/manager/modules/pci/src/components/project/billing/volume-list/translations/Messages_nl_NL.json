@@ -1,0 +1,8 @@
+{
+ "cpbc_no_consumption_data": "Geen verbruik voor de geselecteerde periode. ",
+ "cpbc_volume_col_name": "Naam",
+ "cpbc_volume_col_consumption": "Verbruik",
+ "cpbc_volume_consumption_tooltip_part1": "U wordt gefactureerd op basis van de werkelijke opslagruimte, berekend per uur, afgerond op het hele uur.",
+ "cpbc_volume_consumption_tooltip_part2": "Uw verbruik is precies {{amount}} GiB uur.",
+ "cpb_error_message": "Het is niet mogelijk alle informatie op te halen. "
+}

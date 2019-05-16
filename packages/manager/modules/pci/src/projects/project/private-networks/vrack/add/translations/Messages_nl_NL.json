@@ -1,0 +1,11 @@
+{
+ "pci_projects_project_network_private_vrack_create": "Creëer een vRack",
+ "pci_projects_project_network_private_vrack_create_new": "Nieuw vRack",
+ "pci_projects_project_network_private_vrack_create_existing": "Bestaand vRack",
+ "pci_projects_project_network_private_vrack_create_description": "Klik op \"Aanmaken\" om uw nieuwe vRack te activeren",
+ "pci_projects_project_network_private_vrack_create_choose": "VRack selecteren",
+ "pci_projects_project_network_private_vrack_create_action": "Aanmaken",
+ "pci_projects_project_network_private_vrack_create_cancel": "Annuleren",
+ "pci_projects_project_network_private_vrack_create_init_error": "Er is een fout opgetreden tijdens het downloaden van de gegevens {{ message }}",
+ "pci_projects_project_network_private_vrack_create_error": "Er is een fout opgetreden bij het activatie van het vRack: {{message}}"
+}

@@ -3,7 +3,7 @@
  "cpbea_estimate_alert_add_mail_label": "Correo electrónico",
  "cpbea_estimate_alert_add_mail_required": "Es necesaria una dirección de correo para enviar la alerta.  ",
  "cpbea_estimate_alert_add_mail_bad_format": "La dirección de correo electrónico no es válida.",
- "cpbea_estimate_alert_add_threshold_label": "Umbral de alerta",
+ "cpbea_estimate_alert_add_threshold_label": "Umbral de alerta ( {{currency}} )",
  "cpbea_estimate_alert_add_threshold_required": "Es obligatorio indicar el consumo máximo que no desea superar.",
  "cpbea_estimate_alert_add_cancel_btn": "Cancelar",
  "cpbea_estimate_alert_add_submit_btn": "Guardar",

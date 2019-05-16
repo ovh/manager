@@ -1,14 +1,54 @@
-$spinner-size: 350px;
-$colors: #3D86C3, #33BBEE, #2558C3;
-$d: 175;
-
 pci-project-creating { /* stylelint-disable-line */
+  @import '~bootstrap4/scss/_functions';
+  @import '~bootstrap4/scss/_variables';
+  @import "~bootstrap4/scss/mixins/_breakpoints";
+
+  $spinner-size: 350px;
+  $colors: #3D86C3, #33BBEE, #2558C3;
+  $d: 175;
+
   .pci-projects-creating {
     background-color: rgb(241, 249, 253);
 
+    .img-slide-container {
+      top: 50%;
+      transform: translateY(-50%);
+
+      img {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+
+        &.ng-enter,
+        &.ng-leave {
+          transition: opacity ease-in-out 1s;
+        }
+
+        &.ng-enter,
+        &.ng-leave.ng-leave-active {
+          opacity: 0;
+        }
+
+        &.ng-leave,
+        &.ng-enter.ng-enter-active {
+          opacity: 1;
+        }
+      }
+
+      // @media(min-width: map-get($grid-breakpoints, md)) {
+      @include media-breakpoint-up(md) {
+        img {
+          max-width: $spinner-size;
+        }
+      }
+    }
+
     .spinner {
-      width: $spinner-size;
-      height: $spinner-size;
+      width: 50vw;
+      height: 50vw;
+      max-width: $spinner-size;
+      max-height: $spinner-size;
       animation: contanim 2s linear infinite;
 
       svg {

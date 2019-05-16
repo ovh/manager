@@ -1,7 +1,7 @@
-<div class="pci-projects-new h-100">
+<div class="pci-projects-new h-100 overflow-auto">
     <div class="container-fluid h-100">
-        <div class="row h-100 justify-content-md-center">
-            <div class="col-md-7 p-4 p-md-5 bg-white h-100" style="overflow: auto;">
+        <div class="row minh-100 justify-content-md-center">
+            <div class="col-md-7 p-4 p-md-5 bg-white minh-100">
                 <div class="p-0 p-md-5">
                     <!-- progress -->
                     <div class="oui-progress-tracker mx-auto mb-5">
@@ -65,9 +65,10 @@
                         </a>
                     </div>
 
-                    <p data-ng-if="$ctrl.isCreditAsteriskVisible()">
-                        <small data-translate="pci_projects_new_create_credit_asterisk"></small>
-                    </p>
+                    <small data-translate="pci_projects_new_create_credit_asterisk"
+                           data-ng-if="$ctrl.isCreditAsteriskVisible()"
+                           class="d-block mb-3">
+                    </small>
                 </div>
             </div>
         </div>

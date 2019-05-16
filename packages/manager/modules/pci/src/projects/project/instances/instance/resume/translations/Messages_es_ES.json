@@ -1,0 +1,8 @@
+{
+ "pci_projects_project_instances_instance_resume_title": "Reactivar una instancia",
+ "pci_projects_project_instances_instance_resume_submit_label": "Confirmar",
+ "pci_projects_project_instances_instance_resume_cancel_label": "Cancelar",
+ "pci_projects_project_instances_instance_resume_content": "¿Seguro que quiere reactivar la instancia {{ instance }}?",
+ "pci_projects_project_instances_instance_resume_success_message": "La instancia {{ instance }} se ha reactivado.",
+ "pci_projects_project_instances_instance_resume_error_resume": "Se ha producido un error al reactivar la instancia {{ instance }}: {{ message }}."
+}

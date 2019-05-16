@@ -1,0 +1,6 @@
+{
+ "cloud_sidebar_projectlist_create_project": "Een nieuw project aanmaken",
+ "cloud_sidebar_projectlist_loading_projects": "Het laden van een lijst met uw projecten...",
+ "cloud_sidebar_projectlist_error": "Er is een fout opgetreden tijdens het terugvinden van de back-uplijst ({{ err }})",
+ "cloud_sidebar_projectlist_title": "Mijn projecten:"
+}

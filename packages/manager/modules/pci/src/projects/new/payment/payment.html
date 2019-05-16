@@ -78,7 +78,7 @@
                           data-ng-submit="$ctrl.onVoucherFormSubmit()">
                         <oui-field
                             data-label="{{ :: 'pci_project_new_payment_enter_voucher' | translate }}"
-                            data-size="m"
+                            data-size="s"
                             data-error-messages="{ voucher: ('pci_project_new_payment_invalid_voucher' | translate) }">
                             <input
                                 class="oui-input"
@@ -115,9 +115,9 @@
                                 </strong>
                             </div>
                         </div>
-                        <p>
-                            <small data-translate="pci_project_new_payment_valid_voucher_explain"></small>
-                        </p>
+                        <small class="d-block mb-3"
+                               data-translate="pci_project_new_payment_valid_voucher_explain">
+                        </small>
                     </div>
                 </div>
             </div>

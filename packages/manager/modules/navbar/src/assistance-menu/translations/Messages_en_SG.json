@@ -6,5 +6,6 @@
  "navbar_assistance_new_ticket": "Create a support request",
  "navbar_assistance_list_ticket": "My support requests",
  "navbar_assistance_ask_for_assistance": "Support request",
- "navbar_assistance_telephony_contact": "Phone support"
+ "navbar_assistance_telephony_contact": "Phone support",
+ "navbar_assistance_chatbot": "Start a conversation"
 }
