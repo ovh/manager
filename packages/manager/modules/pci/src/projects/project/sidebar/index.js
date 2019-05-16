@@ -1,5 +1,5 @@
 import angular from 'angular';
-import ngOvhSidebarMenu from '@ovh-ux/ng-ovh-sidebar-menu';
+import '@ovh-ux/ng-at-internet';
 
 import template from './sidebar.html';
 import controller from './sidebar.controller';
@@ -11,7 +11,7 @@ const moduleName = 'ovh-manager-sidebar';
 
 angular
   .module(moduleName, [
-    ngOvhSidebarMenu,
+    'ngAtInternet',
   ])
   .component('cloudSidebar', {
     template,

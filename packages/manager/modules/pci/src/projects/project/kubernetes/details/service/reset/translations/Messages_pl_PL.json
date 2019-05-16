@@ -1,14 +1,13 @@
 {
- "kube_service_reset_common_confirm": "Potwierdź",
- "kube_service_reset_common_cancel": "Anuluj",
- "kube_service_reset_common_delete": "Usuń",
- "kube_service_reset_common_reinstall": "Reinstalacja",
- "kube_service_reset_title": "Reset konfiguracji Twojego klastra Kubernetes",
- "kube_service_reset_message": "Klikając tutaj, przywrócisz pierwotne ustawienia usługi Kubernetes. Operacja ta spowoduje usunięcie wszystkich usług, ich konfiguracji, etc... <strong>Operacja ta jest nieodwracalna</strong>.",
- "kube_service_reset_success": "Reset klastra Kubernetes w toku...",
- "kube_service_reset_error": "Wystąpił błąd podczas resetu klastra: {{ message }}",
- "kube_service_reset_enter": "Wprowadź \"RESET\" w poniższym polu, aby potwierdzić operację.",
- "kube_service_reset_nodes": "Polityka dotycząca węzłów obliczeniowych",
- "kube_service_reset_version": "Zainstalowana wersja Kubernetes",
- "kube_service_reset_load_error": "Wystąpił błąd podczas ładowania dostępnych wersji Kubernetes: {{ message }}"
+ "pci_projects_project_kubernetes_service_reset": "Zresetuj konfigurację Twojego klastra Kubernetes",
+ "pci_projects_project_kubernetes_service_reset_common_confirm": "Potwierdź",
+ "pci_projects_project_kubernetes_service_reset_common_cancel": "Anuluj",
+ "pci_projects_project_kubernetes_service_reset_common_delete": "Usuń",
+ "pci_projects_project_kubernetes_service_reset_common_reinstall": "Reinstaluj",
+ "pci_projects_project_kubernetes_service_reset_message": "Klikając tutaj, przywrócisz pierwotne ustawienia usługi Kubernetes. Operacja ta spowoduje usunięcie wszystkich Twoich usług, ich konfiguracji, etc... <strong>Operacja ta jest nieodwracalna</strong>.",
+ "pci_projects_project_kubernetes_service_reset_success": "Reset klastra Kubernetes w trakcie...",
+ "pci_projects_project_kubernetes_service_reset_error": "Wystąpił błąd podczas resetu klastra: {{ message }}.",
+ "pci_projects_project_kubernetes_service_reset_enter": "Wprowadź \"RESET\" w poniższym polu, aby potwierdzić operację.",
+ "pci_projects_project_kubernetes_service_reset_nodes": "Wybierz operację dotyczącą węzłów obliczeniowych:",
+ "pci_projects_project_kubernetes_service_reset_version": "Wersja Kubernetesa"
 }
