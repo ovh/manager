@@ -34,6 +34,7 @@ import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
 import atInternet from './components/at-internet';
 import betaWarning from './components/beta-warning';
 import preload from './components/manager-preload';
+import otrs from './components/otrs';
 
 import 'bootstrap-tour/build/css/bootstrap-tour.min.css';
 import './assets/theme/index.less';
@@ -60,6 +61,7 @@ angular
     ngOvhUserPref,
     navbar,
     preload,
+    otrs,
     ngAnimate,
     'oui',
   ].filter(value => value !== null)) // Remove null because __NG_APP_INJECTIONS__ can be null

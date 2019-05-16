@@ -10,7 +10,6 @@ import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import ngOvhHttp from '@ovh-ux/ng-ovh-http';
 import ngOvhSsoAuth from '@ovh-ux/ng-ovh-sso-auth';
 import ovhOuiAngularTranslations from './translate/ovh-ui-angular';
-import ovhManagerCoreOtrs from './otrs';
 
 import 'angular-dynamic-locale';
 import 'angular-translate';
@@ -41,7 +40,6 @@ angular
     'tmh.dynamicLocale',
     coreConfig,
     ngTranslateAsyncLoader,
-    ovhManagerCoreOtrs,
     ovhOuiAngularTranslations,
     ngOvhHttp,
     ngOvhSsoAuth,
