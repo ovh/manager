@@ -6,7 +6,7 @@ export default class {
     $q,
     $translate,
     atInternet,
-    coreconfig,
+    coreConfig,
     ovhManagerNavbarMenuHeaderBuilder,
     ssoAuthentication,
   ) {
@@ -16,7 +16,7 @@ export default class {
     this.NavbarBuilder = ovhManagerNavbarMenuHeaderBuilder;
     this.ssoAuthentication = ssoAuthentication;
 
-    this.REGION = coreconfig.getRegion();
+    this.REGION = coreConfig.getRegion();
     this.URLS = USER_MENU_URLS[this.REGION];
   }
 
