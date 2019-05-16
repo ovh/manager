@@ -1,3 +1,17 @@
+# [0.7.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.7.0-alpha.0...@ovh-ux/manager-pci@0.7.0) (2019-05-16)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([638e7cf](https://github.com/ovh-ux/manager/commit/638e7cf))
+
+
+### Features
+
+* **pci:** add tracking in sidebar and on step form submission ([68537ed](https://github.com/ovh-ux/manager/commit/68537ed))
+
+
+
 # [0.7.0-alpha.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.6.0-alpha.1...@ovh-ux/manager-pci@0.7.0-alpha.0) (2019-05-15)
 
 
