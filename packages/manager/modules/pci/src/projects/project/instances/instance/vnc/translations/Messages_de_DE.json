@@ -1,0 +1,6 @@
+{
+ "pci_projects_project_instances_instance_vnc_title": "VNC Konsole",
+ "pci_projects_project_instances_instance_vnc_focus_message": "Hinweis: Falls die Eingabe nicht funktioniert, klicken Sie unten auf den blauen Balken.",
+ "pci_projects_project_instances_instance_vnc_linux_message": "Um die VNC Konsole auf einer Linux Maschine nutzen zu können, müssen Sie sich zuerst per SSH mit dieser verbinden und einen Benutzer mit Passwort konfigurieren.",
+ "pci_projects_project_instances_instance_vnc_open_in_new_window": "In einem neuen Fenster öffnen"
+}

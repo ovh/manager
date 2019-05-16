@@ -1,14 +1,13 @@
 {
- "kube_service_reset_common_confirm": "Confirm",
- "kube_service_reset_common_cancel": "Cancel",
- "kube_service_reset_common_delete": "Delete",
- "kube_service_reset_common_reinstall": "Reinstall",
- "kube_service_reset_title": "Reset the configuration for your Kubernetes cluster",
- "kube_service_reset_message": "You are about to put your service in the original state it was delivered on. This will delete all your services, their configuration... <strong>This action cannot be undone</strong>.",
- "kube_service_reset_success": "Your Kubernetes cluster is resetting.",
- "kube_service_reset_error": "An error has occurred resetting your cluster: {{ message }}",
- "kube_service_reset_enter": "Type \"RESET\" in the following field to confirm your action.",
- "kube_service_reset_nodes": "Compute node policy",
- "kube_service_reset_version": "Version of Kubernetes",
- "kube_service_reset_load_error": "An error has occurred loading the available Kubernetes versions: {{ message }}"
+ "pci_projects_project_kubernetes_service_reset": "Reset the configuration for your Kubernetes cluster",
+ "pci_projects_project_kubernetes_service_reset_common_confirm": "Confirm",
+ "pci_projects_project_kubernetes_service_reset_common_cancel": "Cancel",
+ "pci_projects_project_kubernetes_service_reset_common_delete": "Delete",
+ "pci_projects_project_kubernetes_service_reset_common_reinstall": "Reinstall",
+ "pci_projects_project_kubernetes_service_reset_message": "You are about to put your service in the original state it was delivered on. This will delete all your services, their configuration... <strong>This action cannot be undone</strong>.",
+ "pci_projects_project_kubernetes_service_reset_success": "Your Kubernetes cluster is resetting.",
+ "pci_projects_project_kubernetes_service_reset_error": "An error has occurred resetting your cluster: {{ message }}",
+ "pci_projects_project_kubernetes_service_reset_enter": "Type \"RESET\" in the following field to confirm your action.",
+ "pci_projects_project_kubernetes_service_reset_nodes": "Compute node policy",
+ "pci_projects_project_kubernetes_service_reset_version": "Version of Kubernetes"
 }

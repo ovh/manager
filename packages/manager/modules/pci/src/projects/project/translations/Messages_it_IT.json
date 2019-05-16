@@ -7,7 +7,6 @@
  "pci_projects_project_activate_private_networks": "Attiva le reti private",
  "pci_projects_project_create_cluster_kubernetes": "Crea un cluster Kubernetes",
  "pci_projects_project_documentation": "Documentazione",
- "pci_projects_project_documentation_getting_started_with_public_cloud_logging_in_and_creating_a_project": "Crea il tuo primo progetto Public Cloud",
  "pci_projects_project_documentation_create_user_access_to_horizon": "Creare un accesso utente Horizon",
  "pci_projects_project_documentation_boot_your_first_cloud_server_in_3_minutes": "Avviare il primo server Cloud in 3 minuti",
  "pci_projects_project_documentation_prepare_the_environment_for_using_the_open_stack_api": "Preparare l’ambiente di sviluppo per utilizzare l’API OpenStack",

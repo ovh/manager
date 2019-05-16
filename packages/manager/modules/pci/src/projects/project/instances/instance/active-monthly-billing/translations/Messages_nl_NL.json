@@ -1,0 +1,9 @@
+{
+ "pci_projects_project_instances_instance_active-monthly-billing_title": "Maandelijks abonnement instellen ",
+ "pci_projects_project_instances_instance_active-monthly-billing_submit_label": "Bevestigen",
+ "pci_projects_project_instances_instance_active-monthly-billing_cancel_label": "Annuleren",
+ "pci_projects_project_instances_instance_active-monthly-billing_content": "Betaal 50% minder voor deze instance wanneer u overschakelt op een maandelijks (prepaid)pakket!",
+ "pci_projects_project_instances_instance_active-monthly-billing_invoice_alert": "Voor de resterende dagen van de maand zal automatisch een pro rata rekening gegenereerd worden.",
+ "pci_projects_project_instances_instance_active-monthly-billing_success_message": "De {{ instance }} instance is overgeschakeld naar het maandelijkse tarief.",
+ "pci_projects_project_instances_instance_active-monthly-billing_error_enable": "Er is een fout opgetreden bij het overschakelen naar het maandelijkse tarief voor de {{ instance }} instance: {{ message }}."
+}

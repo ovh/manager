@@ -1,0 +1,6 @@
+{
+ "pci_projects_project_instances_instance_vnc_title": "VNC console",
+ "pci_projects_project_instances_instance_vnc_focus_message": "Tip: als u niet kunt typen in het venster, klikt u op de blauwe balk er onder.",
+ "pci_projects_project_instances_instance_vnc_linux_message": "Om de VNC console op de Linux machine te gebruiken, moet u eerst inloggen via SSH en een gebruiker met een wachtwoord configureren.",
+ "pci_projects_project_instances_instance_vnc_open_in_new_window": "Openen in een nieuw venster"
+}

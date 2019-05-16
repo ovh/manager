@@ -44,5 +44,11 @@
  "kube_nodes_common_cancel": "Annulla",
  "kube_nodes_common_delete": "Elimina",
  "kube_nodes_common_field_error_required": "Completa questo campo.",
- "kube_service_cluster_status": "Stato"
+ "kube_service_cluster_status": "Stato",
+ "kube_nodes_status_READY": "OK",
+ "kube_nodes_status_ERROR": "Errore",
+ "kube_nodes_status_INSTALLING": "Installazione in corso...",
+ "kube_nodes_status_UPDATING": "Aggiornamento",
+ "kube_nodes_status_DELETING": "Eliminazione in corso...",
+ "kube_nodes_status_RESETTING": "Ripristino in corso..."
 }

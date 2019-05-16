@@ -1,0 +1,20 @@
+{
+ "pci_projects_project_storages_blocks_title": "Block storage",
+ "pci_projects_project_storages_blocks_name_label": "Naam",
+ "pci_projects_project_storages_blocks_region_label": "Locatie",
+ "pci_projects_project_storages_blocks_type_label": "Type",
+ "pci_projects_project_storages_blocks_type_high-speed": "High performance",
+ "pci_projects_project_storages_blocks_type_classic": "Classic",
+ "pci_projects_project_storages_blocks_size_label": "Capaciteit",
+ "pci_projects_project_storages_blocks_attachedTo_label": "Bijgevoegde instantie",
+ "pci_projects_project_storages_blocks_status_label": "Status",
+ "pci_projects_project_storages_blocks_status_ACTIVE": "OK",
+ "pci_projects_project_storages_blocks_status_PENDING": "PENDING",
+ "pci_projects_project_storages_blocks_status_ERROR": "Error",
+ "pci_projects_project_storages_blocks_edit_label": "Bewerken",
+ "pci_projects_project_storages_blocks_instance_detach_label": "Instance ontkoppelen",
+ "pci_projects_project_storages_blocks_instance_attach_label": "Verbinden met de instance",
+ "pci_projects_project_storages_blocks_snapshot_create_label": "Maak een snapshot aan",
+ "pci_projects_project_storages_blocks_delete_label": "Verwijderen",
+ "pci_projects_project_storages_blocks_add_label": "Een volume aanmaken"
+}

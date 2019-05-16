@@ -1,0 +1,15 @@
+{
+ "pci_projects_project_home": "Home",
+ "pci_projects_project_parameters": "Parameters",
+ "pci_projects_project_create_an_instance": "Maak een instance aan",
+ "pci_projects_project_create_a_volume": "Een volume aanmaken",
+ "pci_projects_project_create_a_container": "Objectcontainer aanmaken",
+ "pci_projects_project_activate_private_networks": "Privénetwerken inschakelen",
+ "pci_projects_project_create_cluster_kubernetes": "Een kubernetes Cluster aanmaken",
+ "pci_projects_project_documentation": "Documentatie",
+ "pci_projects_project_documentation_create_user_access_to_horizon": "Een Horizon user aanmaken",
+ "pci_projects_project_documentation_boot_your_first_cloud_server_in_3_minutes": "Start uw eerste cloudserver in 3 minuten",
+ "pci_projects_project_documentation_prepare_the_environment_for_using_the_open_stack_api": "Bereid de omgeving voor op het gebruik van de OpenStack API",
+ "pci_projects_project_documentation_create_and_configure_and_additional_disk_on_an_instance": "Creëer en configureer een extra schijf op een instantie",
+ "pci_projects_project_documentation_see_all_public_cloud_guides": "Bekijk alle Public Cloud documentatie"
+}
