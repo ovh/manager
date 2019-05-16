@@ -1,3 +1,12 @@
+## [1.0.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci-app@1.0.1...@ovh-ux/manager-pci-app@1.0.2) (2019-05-16)
+
+
+### Bug Fixes
+
+* bump ovh-payment-method to display images ([2f9286b](https://github.com/ovh-ux/manager/commit/2f9286b))
+
+
+
 ## [1.0.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci-app@1.0.0...@ovh-ux/manager-pci-app@1.0.1) (2019-05-13)
 
 

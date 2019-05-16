@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-vrack",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "OVH vRack product control panel",
   "keywords": [
     "control",
@@ -39,9 +39,9 @@
     "bootstrap": "~3.3.7"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-cloud-styles": "^0.3.0-alpha.0",
-    "@ovh-ux/manager-core": "^5.1.0",
-    "@ovh-ux/ng-ovh-cloud-universe-components": "^1.2.0-alpha.0",
+    "@ovh-ux/manager-cloud-styles": "^0.3.0-alpha.1",
+    "@ovh-ux/manager-core": "^5.2.2",
+    "@ovh-ux/ng-ovh-cloud-universe-components": "^1.3.0-alpha.3",
     "@ovh-ux/ng-ovh-contracts": "^3.0.0-beta.3",
     "@ovh-ux/ng-ovh-toaster": "^1.0.2",
     "@uirouter/angularjs": "^1.0.15",

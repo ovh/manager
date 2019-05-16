@@ -1,3 +1,24 @@
+# [0.8.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.7.0...@ovh-ux/manager-pci@0.8.0) (2019-05-16)
+
+
+### Bug Fixes
+
+* bump ovh-payment-method to display images ([2f9286b](https://github.com/ovh-ux/manager/commit/2f9286b))
+* fix overflow ([83bdeab](https://github.com/ovh-ux/manager/commit/83bdeab))
+* styles ([d201a17](https://github.com/ovh-ux/manager/commit/d201a17))
+* **i18n:** add missing translations ([7f2e835](https://github.com/ovh-ux/manager/commit/7f2e835))
+* **i18n:** add missing translations ([5ba0cfd](https://github.com/ovh-ux/manager/commit/5ba0cfd))
+* **i18n:** add missing translations ([a71cd36](https://github.com/ovh-ux/manager/commit/a71cd36))
+* **i18n:** add missing translations ([decfde2](https://github.com/ovh-ux/manager/commit/decfde2))
+* **pci.projects.creation:** replace p small styles ([8692321](https://github.com/ovh-ux/manager/commit/8692321))
+
+
+### Features
+
+* **pci.projects.project.creating:** display images into loader ([2ebf83d](https://github.com/ovh-ux/manager/commit/2ebf83d))
+
+
+
 # [0.7.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.7.0-alpha.0...@ovh-ux/manager-pci@0.7.0) (2019-05-16)
 
 
