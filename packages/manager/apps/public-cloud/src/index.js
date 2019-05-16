@@ -43,6 +43,11 @@ import routing from './index.routes';
 
 Environment.setRegion(__WEBPACK_REGION__);
 
+const setLangAttribute = /* @ngInject */ ($document) => {
+  const { 'univers-selected-language': lang } = localStorage;
+  $document.querySelectorAll('html')[0].setAttribute('lang', lang);
+};
+
 angular
   .module('ovhStack', [
     __NG_APP_INJECTIONS__,
@@ -80,4 +85,5 @@ angular
       }
     });
   })
+  .run(setLangAttribute)
   .run(/* @ngTranslationsInject:json ./translations */);
