@@ -31,10 +31,7 @@ import ngUirouterLineProgress from '@ovh-ux/ng-uirouter-line-progress';
 import 'ovh-ui-kit/dist/oui.css';
 import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
 
-import atInternet from './components/at-internet';
-import betaWarning from './components/beta-warning';
-import preload from './components/manager-preload';
-import otrs from './components/otrs';
+import components from './components';
 
 import 'bootstrap-tour/build/css/bootstrap-tour.min.css';
 import './assets/theme/index.less';
@@ -49,20 +46,17 @@ Environment.setRegion(__WEBPACK_REGION__);
 angular
   .module('ovhStack', [
     __NG_APP_INJECTIONS__,
+    components,
     uiRouter,
-    atInternet,
-    betaWarning,
     ngUirouterBreadcrumb,
     ngUirouterLineProgress,
+    ngAnimate,
     ovhManagerCore,
     ovhManagerPci,
     ngOvhApiWrappers,
     ngOvhOtrs,
     ngOvhUserPref,
     navbar,
-    preload,
-    otrs,
-    ngAnimate,
     'oui',
   ].filter(value => value !== null)) // Remove null because __NG_APP_INJECTIONS__ can be null
   .controller('PublicCloudController', controller)
