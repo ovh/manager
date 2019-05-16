@@ -1,3 +1,15 @@
+# [0.3.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-navbar@0.3.0-alpha.0...@ovh-ux/manager-navbar@0.3.0) (2019-05-16)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([5ba0cfd](https://github.com/ovh-ux/manager/commit/5ba0cfd))
+* **i18n:** add missing translations ([decfde2](https://github.com/ovh-ux/manager/commit/decfde2))
+* **navbar:** get links according to region ([8213f22](https://github.com/ovh-ux/manager/commit/8213f22))
+* use right variable for assistance item ([f35176a](https://github.com/ovh-ux/manager/commit/f35176a))
+
+
+
 # [0.3.0-alpha.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-navbar@0.2.0-alpha.3...@ovh-ux/manager-navbar@0.3.0-alpha.0) (2019-05-16)
 
 
