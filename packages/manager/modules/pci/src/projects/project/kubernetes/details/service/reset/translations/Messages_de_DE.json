@@ -1,14 +1,13 @@
 {
- "kube_service_reset_common_confirm": "Bestätigen",
- "kube_service_reset_common_cancel": "Abbrechen",
- "kube_service_reset_common_delete": "Löschen",
- "kube_service_reset_common_reinstall": "Reinstallieren",
- "kube_service_reset_title": "Konfiguration Ihres Kubernetes-Clusters zurücksetzen",
- "kube_service_reset_message": "Wenn Sie hier klicken, wird Ihr Kubernetes-Dienst in seinen Ausgangszustand zurückversetzt. Hierbei werden alle Ihre zugehörigen Dienste und Konfigurationen etc. gelöscht. <strong>Diese Aktion kann nicht rückgängig gemacht werden</strong>.",
- "kube_service_reset_success": "Ihr Kubernetes-Cluster wird zurückgesetzt.",
- "kube_service_reset_error": "Beim Zurücksetzen Ihres Clusters ist ein Fehler aufgetreten: {{ message }}",
- "kube_service_reset_enter": "Geben Sie „RESET\" im untenstehenden Feld ein, um zu bestätigen",
- "kube_service_reset_nodes": "Compute-Node-Policy",
- "kube_service_reset_version": "Kubernetes-Version",
- "kube_service_reset_load_error": "Beim Laden der verfügbaren Kubernetes-Versionen ist ein Fehler aufgetreten: {{ message }}"
+ "pci_projects_project_kubernetes_service_reset": "Konfiguration Ihres Kubernetes-Clusters zurücksetzen",
+ "pci_projects_project_kubernetes_service_reset_common_confirm": "Bestätigen",
+ "pci_projects_project_kubernetes_service_reset_common_cancel": "Abbrechen",
+ "pci_projects_project_kubernetes_service_reset_common_delete": "Löschen",
+ "pci_projects_project_kubernetes_service_reset_common_reinstall": "Reinstallieren",
+ "pci_projects_project_kubernetes_service_reset_message": "Wenn Sie hier klicken, wird Ihr Kubernetes-Dienst in seinen Ausgangszustand zurückversetzt. Hierbei werden alle Ihre zugehörigen Dienste und Konfigurationen etc. gelöscht. <strong>Diese Aktion kann nicht rückgängig gemacht werden</strong>.",
+ "pci_projects_project_kubernetes_service_reset_success": "Ihr Kubernetes-Cluster wird zurückgesetzt.",
+ "pci_projects_project_kubernetes_service_reset_error": "Beim Zurücksetzen Ihres Clusters ist ein Fehler aufgetreten: {{ message }}",
+ "pci_projects_project_kubernetes_service_reset_enter": "Geben Sie „RESET\" im untenstehenden Feld ein, um zu bestätigen",
+ "pci_projects_project_kubernetes_service_reset_nodes": "Compute-Node-Policy",
+ "pci_projects_project_kubernetes_service_reset_version": "Kubernetes-Version"
 }

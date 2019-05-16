@@ -1,0 +1,12 @@
+{
+ "pci_projects_project_users_download-openrc_title": "Download configuratiegegevens voor Openstack",
+ "pci_projects_project_users_download-openrc_submit_label": "Downloaden",
+ "pci_projects_project_users_download-openrc_cancel_label": "Annuleren",
+ "pci_projects_project_users_download-openrc_content": "U gaat configuratiegegevens downloaden waardoor u met OpenStack verbinding zult kunnen maken.",
+ "pci_projects_project_users_download-openrc_more_link": "Meer informatie over",
+ "pci_projects_project_users_download-openrc_region_label": "Selecteer de regio voor dit bestand:",
+ "pci_projects_project_users_download-openrc_v3_label": "Gebruik OpenRC v3-configuratie file",
+ "pci_projects_project_users_download-openrc_success_message": "Het downloaden van het OpenStack-configuratiebestand is gestart, zo niet ",
+ "pci_projects_project_users_download-openrc_success_message_link": "klik hier",
+ "pci_projects_project_users_download-openrc_error_openrc": "Er is een fout opgetreden bij het downloaden van het OpenStack configuratiebestand: {{ message }}."
+}

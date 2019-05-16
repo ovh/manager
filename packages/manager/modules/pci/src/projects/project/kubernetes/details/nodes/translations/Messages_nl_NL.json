@@ -44,5 +44,11 @@
  "kube_nodes_common_cancel": "Annuleren",
  "kube_nodes_common_delete": "Verwijderen",
  "kube_nodes_common_field_error_required": "Vul alstublieft dit veld in.",
- "kube_service_cluster_status": "Status"
+ "kube_service_cluster_status": "Status",
+ "kube_nodes_status_READY": "OK",
+ "kube_nodes_status_ERROR": "Error",
+ "kube_nodes_status_INSTALLING": "Installing",
+ "kube_nodes_status_UPDATING": "Update",
+ "kube_nodes_status_DELETING": "Wordt verwijderd",
+ "kube_nodes_status_RESETTING": "Reset wordt uitgevoerd"
 }
