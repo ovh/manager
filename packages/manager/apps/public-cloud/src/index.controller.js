@@ -13,6 +13,7 @@ export default class PublicCloudController {
     $timeout,
     $translate,
     $window,
+    atInternet,
     CloudSidebar,
     ovhUserPref,
     WalkMe,
@@ -22,6 +23,7 @@ export default class PublicCloudController {
     this.$timeout = $timeout;
     this.$translate = $translate;
     this.$window = $window;
+    this.atInternet = atInternet;
     this.CloudSidebar = CloudSidebar;
     this.feedbackUrl = __FEEDBACK_URL__;
     this.feedback = feedback;
@@ -33,6 +35,13 @@ export default class PublicCloudController {
     $scope.$on('navbar.loaded', () => $timeout(() => {
       this.startWalkMe();
     }));
+
+    $scope.$on('oui-step-form.submit', (event, { form }) => {
+      this.atInternet.trackClick({
+        name: form.$name,
+        type: 'action',
+      });
+    });
 
     // this.ovhUserPref.getValue(KEY)
     //   .then(({ value }) => {

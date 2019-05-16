@@ -1818,6 +1818,11 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-translate-async-loader/-/ng-translate-async-loader-2.0.0.tgz#df0d155c6c2e38b53704ff4ca9b419f0695a88bf"
   integrity sha512-CmAT0/rTYN/Niwtuo1pcY+y46nqGCR2dO6+4twqGiRkqu/ksgklZ4weaqF9Xgl/KYLv+zcCmxZf0J1gfXs7kag==
 
+"@ovh-ux/ng-uirouter-breadcrumb@^0.0.0":
+  version "0.0.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-uirouter-breadcrumb/-/ng-uirouter-breadcrumb-0.0.0.tgz#b080bcf6f763e0faae8caf1b2afcef34ec5bc1d3"
+  integrity sha512-GyDnU/Xb1NofJRXJ/5B9/isYJT6IB32x+ROCvvUhyTncrCOrthP8sHlszLmnGGV+SzPegJpZIXcI3Dq0Gdz0eQ==
+
 "@ovh-ux/ng-uirouter-title@^2.0.0-beta.3":
   version "2.0.0-beta.3"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-uirouter-title/-/ng-uirouter-title-2.0.0-beta.3.tgz#ac1b4e2fc55e34e8a0d9643f85d65912d32bf4d2"
@@ -9112,10 +9117,10 @@ ovh-angular-ui-confirm-modal@^1.0.2:
   resolved "https://registry.yarnpkg.com/ovh-angular-ui-confirm-modal/-/ovh-angular-ui-confirm-modal-1.0.2.tgz#92e6736588a4fb1de6353f1a17ab1962679a698d"
   integrity sha512-3V17DbzWjUjl9sKCd25Oycn+7eqg6iW+DpizwVmixHFzDNDMnpKSGmxRLrOq+q9YNE7IepoAKWjoSiy2+zOEEg==
 
-ovh-api-services@^6.17.0:
-  version "6.17.0"
-  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-6.17.0.tgz#2bd0698c350f7c787e28819ceb287cf831b3c420"
-  integrity sha512-EQ2O5byFLjZAfgpTiFqem9v+coYof9snOeo+AUZ+JJA3HlKC6l9ZKPju2gCZkeQL8AuQMmZLEnxp3ZIqEqQu2A==
+ovh-api-services@^6.17.1:
+  version "6.17.1"
+  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-6.17.1.tgz#f89d92f5102b812ff6a6cc940560c5002692da9a"
+  integrity sha512-Su5P6w2hWDAmo2ctedLIs2rljRwyHZhH9nn1hGlvnnw2w1lV7RrAQxhIkkZqqVCriXNij5MxpkRDsoORVKPAoQ==
   dependencies:
     lodash "^3.10.1"
 
@@ -9139,10 +9144,10 @@ ovh-ngstrap@^4.0.2:
   resolved "https://registry.yarnpkg.com/ovh-ngstrap/-/ovh-ngstrap-4.0.2.tgz#059291bfb9f59b78df991e476dd2ede0507cb3c9"
   integrity sha1-BZKRv7n1m3jfmR5HbdLt4FB8s8k=
 
-ovh-ui-angular@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/ovh-ui-angular/-/ovh-ui-angular-3.0.1.tgz#6503467021713411496d35e817ca980351918d3d"
-  integrity sha512-ua6VmRuAgTnW7MlgTIiYsZxiyyVDz7jGVwpq9OrM0La7fS65YIoONSO4bMkfvyba/xmePSKFwTJi3kGOmNgdrQ==
+ovh-ui-angular@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/ovh-ui-angular/-/ovh-ui-angular-3.1.0.tgz#e9894c892235c68a2ad090752e2ed75ab9fd2f8e"
+  integrity sha512-Mefd/+QzUO0+6AM1jYufONVT0AUUjhGMhfOwW5iN9b+6Evm1nx3I0DgVMJgsHpqzI/BUshw9LSHCUHzZsEZJ+A==
   dependencies:
     bloodhound-js "^1.2.3"
     clipboard "^2.0.1"

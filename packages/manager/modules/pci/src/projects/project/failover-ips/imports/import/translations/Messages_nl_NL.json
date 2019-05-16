@@ -1,0 +1,8 @@
+{
+ "pci_projects_project_failoverip_imports_import_title": "Bevestiging",
+ "pci_projects_project_failoverip_imports_import_submit_label": "Importeren",
+ "pci_projects_project_failoverip_imports_import_cancel_label": "Annuleren",
+ "pci_projects_project_failoverip_imports_import_description": "Bent u zeker dat u deze IP Failover wilt importeren?",
+ "pci_projects_project_imports_import_success": "Het Failover IP {{ip}} zal in enkele ogenblikken in uw project worden geïmporteerd.",
+ "pci_projects_project_imports_import_error": "Er is een fout opgetreden bij de poging om uw IP  {{ ip }} te importeren ({{ error }})."
+}

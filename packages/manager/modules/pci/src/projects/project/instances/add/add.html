@@ -8,6 +8,7 @@
 
     <oui-step-form
         id="flavor"
+        name="instances_add_flavor"
         data-header="{{:: 'pci_projects_project_instances_add_flavor_title' | translate }}"
         data-valid="$ctrl.model.flavorGroup"
         data-editable="!$ctrl.isLoading"
@@ -22,6 +23,7 @@
     </oui-step-form>
 
     <oui-step-form
+        name="instances_add_region"
         data-header="{{:: 'pci_projects_project_instances_add_region_title' | translate }}"
         data-valid="$ctrl.model.datacenter"
         data-navigation="$ctrl.model.datacenter"
@@ -108,12 +110,14 @@
     </oui-step-form>
 
     <oui-step-form
+        name="instances_add_image"
         data-header="{{:: 'pci_projects_project_instances_add_image_title' | translate }}"
         data-valid="$ctrl.model.image"
         data-editable="!$ctrl.isLoading"
         data-on-focus="$ctrl.onImageFocus()"
         data-on-submit="$ctrl.onImageChange()"
-        data-navigation="$ctrl.showImageNavigation()">
+        data-navigation="$ctrl.showImageNavigation()"
+        >
         <pci-project-images-list
             data-display-selected-image="$ctrl.displaySelectedImage"
             data-flavor-type="$ctrl.model.flavorGroup.name"
@@ -139,7 +143,8 @@
         data-header="{{ :: 'pci_projects_project_instances_add_instance_title' | translate }}"
         data-on-focus="$ctrl.onInstanceFocus()"
         data-on-submit="$ctrl.onInstanceChange()"
-        data-editable="!$ctrl.isLoading">
+        data-editable="!$ctrl.isLoading"
+        name="instances_add_configuration">
         <oui-field data-label="{{ 'pci_projects_project_instances_add_numInstances_label' | translate }}"
             data-label-popover="{{ 'pci_projects_project_instances_add_same_numInstances_configuration' | translate }}">
             <oui-numeric id="modelNumber"
@@ -220,7 +225,8 @@
         data-submit-text="{{ :: 'pci_projects_project_instances_add_submit_label' | translate }}"
         data-cancel-text="{{ :: 'pci_projects_project_instances_add_cancel_label' | translate }}"
         data-cancel-href="{{$ctrl.cancelLink}}"
-        data-editable="!$ctrl.isLoading">
+        data-editable="!$ctrl.isLoading"
+        name="instances_add_billing">
         <p>
             <span data-translate="pci_projects_project_instances_add_billing_montly_discount_message"></span>
             <span class="d-inline-block"

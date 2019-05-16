@@ -1,14 +1,13 @@
 {
- "kube_service_reset_common_confirm": "Confirmar",
- "kube_service_reset_common_cancel": "Cancelar",
- "kube_service_reset_common_delete": "Eliminar",
- "kube_service_reset_common_reinstall": "Reinstalar",
- "kube_service_reset_title": "Restaurar la configuración del cluster Kubernetes",
- "kube_service_reset_message": "Al hacer clic aquí, restaurará el servicio Kubernetes a su estado original. Esta operación eliminará todos los nodos de cálculo, servicios, configuración, etc. <strong>Esta acción es irreversible</strong>.",
- "kube_service_reset_success": "Restaurando el cluster Kubernetes...",
- "kube_service_reset_error": "Se ha producido un error al restaurar el cluster: {{ message }}.",
- "kube_service_reset_enter": "Introduzca «RESET» en el siguiente campo para confirmar la operación:",
- "kube_service_reset_nodes": "Política de los nodos de cálculo",
- "kube_service_reset_version": "Versión de Kubernetes",
- "kube_service_reset_load_error": "Se ha producido un error al cargar las versiones de Kubernetes disponibles: {{ message }}."
+ "pci_projects_project_kubernetes_service_reset": "Restaurar la configuración del cluster Kubernetes",
+ "pci_projects_project_kubernetes_service_reset_common_confirm": "Confirmar",
+ "pci_projects_project_kubernetes_service_reset_common_cancel": "Cancelar",
+ "pci_projects_project_kubernetes_service_reset_common_delete": "Eliminar",
+ "pci_projects_project_kubernetes_service_reset_common_reinstall": "Reinstalar",
+ "pci_projects_project_kubernetes_service_reset_message": "Al hacer clic aquí, restaurará el servicio Kubernetes a su estado original. Esta operación eliminará todos los nodos de cálculo, servicios, configuración, etc. <strong>Esta acción es irreversible</strong>.",
+ "pci_projects_project_kubernetes_service_reset_success": "Restaurando el cluster Kubernetes...",
+ "pci_projects_project_kubernetes_service_reset_error": "Se ha producido un error al restaurar el cluster: {{ message }}.",
+ "pci_projects_project_kubernetes_service_reset_enter": "Introduzca «RESET» en el siguiente campo para confirmar la operación:",
+ "pci_projects_project_kubernetes_service_reset_nodes": "Política de los nodos de cálculo",
+ "pci_projects_project_kubernetes_service_reset_version": "Versión de Kubernetes"
 }

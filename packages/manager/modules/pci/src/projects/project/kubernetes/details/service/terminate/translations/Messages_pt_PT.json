@@ -1,0 +1,9 @@
+{
+ "kube_service_terminate_common_confirm": "Confirmar",
+ "kube_service_terminate_common_cancel": "Anular",
+ "kube_service_terminate_title": "Eliminar o meu serviço",
+ "kube_service_terminate_warning": "A eliminação deste elemento levará à eliminação definitiva de todos os dados correspondentes. A ação de eliminação não dá direito a um reembolso.",
+ "kube_service_terminate_enter": "Introduza “TERMINATE” no seguinte campo para confirmar.",
+ "kube_service_terminate_success": "O seu pedido de eliminação do cluster Kubernetes foi recebida com êxito. Receberá um e-mail que lhe permitirá validar o seu pedido de eliminação.",
+ "kube_service_terminate_error": "Ocorreu um erro ao eliminar o seu cluster: {{ message }}"
+}

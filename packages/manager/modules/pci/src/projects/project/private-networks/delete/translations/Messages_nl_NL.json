@@ -1,0 +1,8 @@
+{
+ "pci_projects_project_network_private_delete": "Privénetwerk verwijderen",
+ "pci_projects_project_network_private_delete_confirm": "Bevestigen",
+ "pci_projects_project_network_private_delete_cancel": "Annuleren",
+ "pci_projects_project_network_private_delete_confirmation": "Weet u zeker dat u het privénetwerk wilt verwijderen  {{ name }}?",
+ "pci_projects_project_network_private_delete_success": "Het privénetwerk {{ name }} wordt verwijderd",
+ "pci_projects_project_network_private_delete_error": "Er is een fout opgetreden bij het verwijderen van het privénetwerk: {{message}}"
+}

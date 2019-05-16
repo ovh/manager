@@ -1,0 +1,6 @@
+{
+ "pci_projects_project_instances_instance_vnc_title": "Console VNC",
+ "pci_projects_project_instances_instance_vnc_focus_message": "Suggerimento: se l'inserimento da tastiera non funziona, clicca sulla barra blu qui sotto.",
+ "pci_projects_project_instances_instance_vnc_linux_message": "Per utilizzare la console VNC su una macchina Linux, accedi via SSH e configura nome utente e password.",
+ "pci_projects_project_instances_instance_vnc_open_in_new_window": "Apri in una nuova finestra"
+}

@@ -1,0 +1,8 @@
+{
+ "pci_projects_project_storages_blocks_block_edit_title": "Volume bewerken",
+ "pci_projects_project_storages_blocks_block_edit_submit_label": "Volume wijzigen",
+ "pci_projects_project_storages_blocks_block_edit_success_message": "Het volume {{volume}} is update",
+ "pci_projects_project_storages_blocks_block_edit_error_put": "Er is een fout opgetreden tijdens het updaten van de volume {{ volume }} : {{ message }}",
+ "pci_projects_project_storages_blocks_block_edit_error_upsize": "Er is een fout opgetreden tijdens het updaten van de volume {{ volume }} : {{ message }}",
+ "pci_projects_project_storages_blocks_block_edit_error_load": "Er is een fout opgetreden bij het laden van de volume: {{message}}"
+}

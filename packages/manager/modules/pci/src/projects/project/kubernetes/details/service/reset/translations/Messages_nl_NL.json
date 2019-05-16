@@ -1,14 +1,13 @@
 {
- "kube_service_reset_common_confirm": "Bevestigen",
- "kube_service_reset_common_cancel": "Annuleren",
- "kube_service_reset_common_delete": "Verwijderen",
- "kube_service_reset_common_reinstall": "Herinstalleren",
- "kube_service_reset_title": "De configuratie van uw Kubernetes cluster reïnitialiseren",
- "kube_service_reset_message": "Als u hier klikt, zal uw Kubernetes dienst in zijn oorspronkelijke staat worden hersteld. Dit wist al uw rekenknopen, uw diensten, de configuratie ervan, enz… <strong>Deze handeling is onomkeerbaar</strong>.",
- "kube_service_reset_success": "Uw Kubernetes cluster is bezig te reïnitialiseren.",
- "kube_service_reset_error": "Er is een fout opgetreden tijdens de reïnitialisatie van uw cluster: {{ message }}",
- "kube_service_reset_enter": "Type \"RESET\" in het veld hieronder om te bevestigen",
- "kube_service_reset_nodes": "Computing nodes beleid",
- "kube_service_reset_version": "Version de Kubernetes",
- "kube_service_reset_load_error": "Er is een fout opgetreden tijdens het laden van de beschikbare Kubernetes-versies: {{ message }}"
+ "pci_projects_project_kubernetes_service_reset": "De configuratie van uw Kubernetes cluster reïnitialiseren",
+ "pci_projects_project_kubernetes_service_reset_common_confirm": "Bevestigen",
+ "pci_projects_project_kubernetes_service_reset_common_cancel": "Annuleren",
+ "pci_projects_project_kubernetes_service_reset_common_delete": "Verwijderen",
+ "pci_projects_project_kubernetes_service_reset_common_reinstall": "Herinstalleren",
+ "pci_projects_project_kubernetes_service_reset_message": "Als u hier klikt, zal uw Kubernetes dienst in zijn oorspronkelijke staat worden hersteld. Dit wist al uw rekenknopen, uw diensten, de configuratie ervan, enz… <strong>Deze handeling is onomkeerbaar</strong>.",
+ "pci_projects_project_kubernetes_service_reset_success": "Uw Kubernetes cluster is bezig te reïnitialiseren.",
+ "pci_projects_project_kubernetes_service_reset_error": "Er is een fout opgetreden tijdens de reïnitialisatie van uw cluster: {{ message }}",
+ "pci_projects_project_kubernetes_service_reset_enter": "Type \"RESET\" in het veld hieronder om te bevestigen",
+ "pci_projects_project_kubernetes_service_reset_nodes": "Computing nodes beleid",
+ "pci_projects_project_kubernetes_service_reset_version": "Version de Kubernetes"
 }

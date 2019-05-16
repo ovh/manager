@@ -1,3 +1,21 @@
+# [0.6.0-alpha.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.5.0-alpha.3...@ovh-ux/manager-public-cloud@0.6.0-alpha.0) (2019-05-16)
+
+
+### Features
+
+* **pci:** add tracking in sidebar and on step form submission ([68537ed](https://github.com/ovh-ux/manager/commit/68537ed))
+
+
+
+# [0.5.0-alpha.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.5.0-alpha.2...@ovh-ux/manager-public-cloud@0.5.0-alpha.3) (2019-05-15)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([80eea5b](https://github.com/ovh-ux/manager/commit/80eea5b))
+
+
+
 # [0.5.0-alpha.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.5.0-alpha.1...@ovh-ux/manager-public-cloud@0.5.0-alpha.2) (2019-05-14)
 
 

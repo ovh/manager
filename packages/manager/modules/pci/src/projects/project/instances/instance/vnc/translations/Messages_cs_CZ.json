@@ -1,0 +1,6 @@
+{
+ "pci_projects_project_instances_instance_vnc_title": "VNC konzole",
+ "pci_projects_project_instances_instance_vnc_focus_message": "Tip: jestliže nejste schopní psát v oknu, klikněte na modrou lištu níže.",
+ "pci_projects_project_instances_instance_vnc_linux_message": "Pro použití VNC konzole na Linuxovém serveru se musíte nejdříve přihlásit pomocí SSH a nastavit uživatele a heslo.",
+ "pci_projects_project_instances_instance_vnc_open_in_new_window": "Otevřít v novém okně"
+}

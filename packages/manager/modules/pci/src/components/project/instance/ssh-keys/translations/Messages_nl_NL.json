@@ -1,0 +1,11 @@
+{
+ "pci_project_instance_ssh_key": "SSH-keys",
+ "pci_project_instance_ssh_pick": "Selecteren",
+ "pci_project_instance_ssh_add": "Een key toevoegen",
+ "pci_project_instance_ssh_cancel": "Annuleren",
+ "pci_project_instance_ssh_key_name": "Naam van de SSH-key",
+ "pci_project_instance_ssh_key_query_error": "Er is een fout opgetreden bij het ophalen van uw SSH-key : {{message}}.",
+ "pci_project_instance_ssh_key_add_error": "Er is een fout opgetreden tijdens het toevoegen van SSH-KEY : {{message}}",
+ "pci_project_instance_ssh_key_help_required": "SSH-key zijn nodig om verbinding te maken met uw dienst.",
+ "pci_project_instance_ssh_key_help_availability": "Uw SSH-key is beschikbaar voor alle regio's en OVH-datacenters."
+}

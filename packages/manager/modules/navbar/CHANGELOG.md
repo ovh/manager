@@ -1,3 +1,29 @@
+# [0.3.0-alpha.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-navbar@0.2.0-alpha.3...@ovh-ux/manager-navbar@0.3.0-alpha.0) (2019-05-16)
+
+
+### Bug Fixes
+
+* **navbar:** add missing dev dependency to ovh-ui-kit ([8f1134d](https://github.com/ovh-ux/manager/commit/8f1134d))
+* **navbar:** handle concurrency between universes and sidebar loading ([970584a](https://github.com/ovh-ux/manager/commit/970584a))
+* **navbar:** prevent error if no navbar options is given ([eb4e0a8](https://github.com/ovh-ux/manager/commit/eb4e0a8))
+* **navbar.language:** fix lang option ([7ca1c55](https://github.com/ovh-ux/manager/commit/7ca1c55))
+
+
+### Features
+
+* **navbar:** add optional fixed parameter ([238fa2b](https://github.com/ovh-ux/manager/commit/238fa2b))
+
+
+
+# [0.2.0-alpha.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-navbar@0.2.0-alpha.2...@ovh-ux/manager-navbar@0.2.0-alpha.3) (2019-05-15)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([80eea5b](https://github.com/ovh-ux/manager/commit/80eea5b))
+
+
+
 # [0.2.0-alpha.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-navbar@0.2.0-alpha.1...@ovh-ux/manager-navbar@0.2.0-alpha.2) (2019-05-14)
 
 

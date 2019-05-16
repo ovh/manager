@@ -1,0 +1,10 @@
+{
+ "pci_projects_project_sshKeys_add_title": "Een SSH key toevoegen",
+ "pci_projects_project_sshKeys_add_submit_label": "Toevoegen",
+ "pci_projects_project_sshKeys_add_cancel_label": "Annuleren",
+ "pci_projects_project_sshKeys_add_success": "De SSH-key is toegevoegd.",
+ "pci_projects_project_sshKeys_add_error": "Er is een fout opgetreden tijdens het toevoegen van de SSH-key: {{error}}",
+ "pci_projects_project_sshKeys_add_name": "Naam",
+ "pci_projects_project_sshKeys_add_key": "Key",
+ "pci_projects_project_sshKeys_add_key_description": "Voer uw 4096 byte key in"
+}

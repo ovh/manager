@@ -1,5 +1,6 @@
 import get from 'lodash/get';
 import has from 'lodash/has';
+import omit from 'lodash/omit';
 
 import { BRAND, NON_PRIMARY_ITEMS } from './constants';
 
@@ -26,12 +27,19 @@ export default class {
 
       this.$scope.$on(get(this.navbarOptions, 'toggle.event'), () => {
         this.togglerisLoading = false;
+
+        if (this.mainLinks) {
+          this.buildResponsiveLinks();
+        }
       });
     }
+
+    this.fixed = get(this.navbarOptions, 'fixed', false);
 
     return this.getUser()
       .then(() => this.$translate.refresh())
       .then(() => this.buildMainLinks())
+      .then(() => this.buildResponsiveLinks())
       .finally(() => {
         this.$scope.$emit('navbar.loaded');
         this.isLoading = false;
@@ -54,7 +62,7 @@ export default class {
   }
 
   buildMainLinks() {
-    return this.Navbar.getUniverses(this.navbarOptions.version)
+    return this.Navbar.getUniverses(get(this.navbarOptions, 'version'))
       .then((universes) => {
         this.mainLinks = universes.map(({ universe: name, url }) => ({
           name,
@@ -62,21 +70,21 @@ export default class {
           url: url || '#',
           isPrimary: !NON_PRIMARY_ITEMS.includes(name),
         }));
-        this.responsiveLinks = universes.map(({ universe: name, url }) => {
-          const link = ({
-            name,
-            title: this.$translate.instant(`navbar_universe_${name}`),
-            headerTitle: this.$translate.instant(`navbar_universe_${name}`),
-            isPrimary: !NON_PRIMARY_ITEMS.includes(name),
-          });
-
-          if (name === this.navbarOptions.universe) {
-            link.subLinks = this.sidebarLinks;
-          } else {
-            link.url = url || '#';
-          }
-          return link;
-        });
       });
+  }
+
+  buildResponsiveLinks() {
+    if (this.sidebarLinks && !this.responsiveLinks) {
+      this.responsiveLinks = this.mainLinks.map((link) => {
+        if (link.name === get(this.navbarOptions, 'universe')) {
+          return ({
+            ...omit(link, 'url'),
+            subLinks: this.sidebarLinks,
+          });
+        }
+
+        return link;
+      });
+    }
   }
 }

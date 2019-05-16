@@ -1,0 +1,9 @@
+{
+ "pci_projects_project_instances_instance_reboot_soft_title": "Warme herstart (soft)",
+ "pci_projects_project_instances_instance_reboot_hard_title": "Koude herstart (hard)",
+ "pci_projects_project_instances_instance_reboot_submit_label": "Bevestigen",
+ "pci_projects_project_instances_instance_reboot_cancel_label": "Annuleren",
+ "pci_projects_project_instances_instance_reboot_content": "U staat op het punt om uw instance {{ instance }} opnieuw op te starten.",
+ "pci_projects_project_instances_instance_reboot_success_message": "De reboot van de {{ instance }} instance is gestart.",
+ "pci_projects_project_instances_instance_reboot_error_reboot": "Er is een fout opgetreden tijdens het herstarten van de {{ instance }} instance: {{ message }}"
+}
