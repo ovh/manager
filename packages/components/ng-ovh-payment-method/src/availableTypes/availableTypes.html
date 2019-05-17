@@ -9,7 +9,7 @@
          data-ng-if="!$ctrl.loading.init"
          data-ng-repeat="paymentTypeChunk in $ctrl.paymentMethodTypes.chunks track by $index">
         <div class="mb-3"
-             data-ng-class="'col-md-' + (12 / $ctrl.paymentTypesPerLine)"
+             data-ng-class="'col-md-6 col-lg-' + (12 / $ctrl.paymentTypesPerLine)"
              data-ng-repeat="paymentMethodType in paymentTypeChunk track by $index">
             <oui-radio
                 class="h-100"
