@@ -1,6 +1,7 @@
 import filter from 'lodash/filter';
 import get from 'lodash/get';
 import groupBy from 'lodash/groupBy';
+import isNil from 'lodash/isNil';
 import map from 'lodash/map';
 import mapValues from 'lodash/mapValues';
 import omit from 'lodash/omit';
@@ -31,7 +32,7 @@ export default class FlavorsList {
       prices: this.CucPriceHelper.getPrices(serviceName),
     })
       .then(({ flavors, prices }) => map(
-        groupBy(flavors, 'name'),
+        groupBy(flavors.filter(({ planCodes }) => !isNil(planCodes.hourly)), 'name'),
         groupedFlavors => new Flavor({
           ...omit(groupedFlavors[0], ['id', 'region']),
           prices: mapValues(groupedFlavors[0].planCodes, planCode => prices[planCode].price),
