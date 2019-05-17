@@ -145,14 +145,17 @@ export default class PciProjectNewCtrl {
     this.loading.creating = true;
 
     const hasCredit = this.paymentModel.mode === 'credits' && this.paymentModel.credit.value;
+    const hasVoucher = this.paymentModel.voucher.valid && this.paymentModel.voucher.value;
     const createParams = {
       description: this.descriptionModel.name,
     };
 
-    if (hasCredit) {
+    if (hasVoucher) {
+      createParams.voucher = this.paymentModel.voucher.value;
+    } else if (hasCredit) {
       createParams.credit = this.paymentModel.credit.value;
     } else if (this.newProjectInfo.order
-      && (!this.paymentStatus || ['success', 'accepted'].includes(this.paymentStatus))) {
+        && (!this.paymentStatus || ['success', 'accepted'].includes(this.paymentStatus))) {
       createParams.credit = this.newProjectInfo.order.value;
     }
 
@@ -246,7 +249,10 @@ export default class PciProjectNewCtrl {
 
     // if default payment or credit amount - create project
     if (this.paymentModel.defaultPaymentMethod
-      || (this.paymentModel.mode === 'credits' && this.paymentModel.credit.value)) {
+      || (this.paymentModel.mode === 'credits' && this.paymentModel.credit.value)
+      || (this.paymentModel.voucher.valid
+        && this.paymentModel.voucher.paymentMeanRequired === false)
+    ) {
       return this.createProject();
     }
 

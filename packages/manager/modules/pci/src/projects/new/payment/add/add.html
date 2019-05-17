@@ -13,7 +13,7 @@
     <ovh-payment-method-available-types
         data-on-loaded="$ctrl.onLoaded()"
         data-on-load-error="$ctrl.onAvailablePaymentTypesLoadError.bind($ctrl)"
-        data-on-selected-payment-type-change="$ctrl.onPaymentTypeChange.bind($ctrl)">
+        data-selected-payment-type="$ctrl.selectedPaymentType">
     </ovh-payment-method-available-types>
 
     <small data-ng-switch="$ctrl.selectedPaymentType.paymentType.value"

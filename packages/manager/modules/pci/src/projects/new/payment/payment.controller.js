@@ -40,10 +40,20 @@ export default class PciProjectNewPaymentCtrl {
       .then(() => {
         this.voucherForm.voucher.$setValidity('voucher', true);
         this.step.model.voucher.valid = true;
+        this.step.model.voucher.paymentMeanRequired = false;
+        this.step.model.paymentType = null;
       })
-      .catch(() => {
-        this.voucherForm.voucher.$setValidity('voucher', false);
-        this.step.model.voucher.valid = false;
+      .catch((error) => {
+        // @TODO => remove this test when API will be ready
+        if (error.status === 403 && error.data.message === 'Please register a payment method') { //
+          this.voucherForm.voucher.$setValidity('voucher', true);
+          this.step.model.voucher.valid = true;
+          this.step.model.voucher.paymentMeanRequired = true;
+        } else {
+          this.voucherForm.voucher.$setValidity('voucher', false);
+          this.step.model.voucher.valid = false;
+          this.step.model.voucher.paymentMeanRequired = null;
+        }
       })
       .finally(() => {
         this.step.loading.voucher = false;
