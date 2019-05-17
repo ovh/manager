@@ -2,7 +2,7 @@
 
 > Support layout:modal when using ui-router
 
-[![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-uirouter-layout)](https://npmjs.com/package/@ovh-ux/ng-uirouter-layout) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/manager/modules/ng-uirouter-layout)](https://npmjs.com/package/@ovh-ux/ng-uirouter-layout?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/manager/modules/ng-uirouter-layout)](https://npmjs.com/package/@ovh-ux/ng-uirouter-layout?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-uirouter-layout)](https://npmjs.com/package/@ovh-ux/ng-uirouter-layout) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/components/ng-uirouter-layout)](https://npmjs.com/package/@ovh-ux/ng-uirouter-layout?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/components/ng-uirouter-layout)](https://npmjs.com/package/@ovh-ux/ng-uirouter-layout?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
 
 ## Install
 
