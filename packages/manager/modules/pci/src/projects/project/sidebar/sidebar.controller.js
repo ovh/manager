@@ -1,5 +1,6 @@
 import isEmpty from 'lodash/isEmpty';
 import isNil from 'lodash/isNil';
+import set from 'lodash/set';
 
 import { MENU } from './sidebar.constant';
 
@@ -60,7 +61,14 @@ export default class SidebarController {
   }
 
   $onInit() {
-    this.MENU = MENU.filter(({ regions }) => isNil(regions) || this.coreConfig.isRegion(regions));
+    this.MENU = MENU
+      .filter(({ regions }) => isNil(regions) || this.coreConfig.isRegion(regions))
+      .map((menu) => {
+        set(menu, 'subitems', menu
+          .subitems
+          .filter(({ regions }) => isNil(regions) || this.coreConfig.isRegion(regions)));
+        return menu;
+      });
     let currentProjectId = this.$stateParams.projectId;
     this.setProject(this.$stateParams.projectId);
     this.$transitions.onSuccess({}, () => {
