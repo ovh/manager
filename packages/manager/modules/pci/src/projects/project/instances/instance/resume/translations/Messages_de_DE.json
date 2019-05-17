@@ -1,0 +1,8 @@
+{
+ "pci_projects_project_instances_instance_resume_title": "Instanz reaktivieren",
+ "pci_projects_project_instances_instance_resume_submit_label": "Bestätigen",
+ "pci_projects_project_instances_instance_resume_cancel_label": "Abbrechen",
+ "pci_projects_project_instances_instance_resume_content": "Sind Sie sicher, dass Sie die Instanz {{ instance }} reaktivieren möchten?",
+ "pci_projects_project_instances_instance_resume_success_message": "Die Instanz {{ instance }} wurde reaktiviert.",
+ "pci_projects_project_instances_instance_resume_error_resume": "Bei der Reaktivierung der Instanz {{ instance }} ist ein Fehler aufgetreten: {{message}}."
+}
