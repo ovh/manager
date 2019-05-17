@@ -27,35 +27,7 @@ export default class OvhPaymentMethodAvailableTypesCtrl {
     this.loading = {
       init: false,
     };
-
-    this.model = {
-      selectedPaymentMethodType: null,
-    };
   }
-
-  /* =============================
-  =            Events            =
-  ============================== */
-
-  onPaymentMethodChange() {
-    const paymentType = find(this.paymentMethodTypes.list, {
-      paymentType: {
-        value: this.model.selectedPaymentMethodType,
-      },
-    });
-
-    // if it's a function reference ...
-    // otherwise the call will be made passing an Object Literal
-    // when testing if the callback function is a function ref or not
-    if (isFunction(this.onSelectedPaymentTypeChange({
-      paymentType,
-    }))) {
-      // ... invoke it
-      this.onSelectedPaymentTypeChange()(paymentType);
-    }
-  }
-
-  /* -----  End of Events  ------ */
 
   /* =====================================
   =            Initialization            =
@@ -109,9 +81,11 @@ export default class OvhPaymentMethodAvailableTypesCtrl {
           this.paymentTypesPerLine,
         );
 
-        // set selected payment method type selection
-        this.model.selectedPaymentMethodType = this.defaultPaymentType;
-        this.onPaymentMethodChange();
+        this.selectedPaymentType = find(this.paymentMethodTypes.list, {
+          paymentType: {
+            value: this.defaultPaymentType,
+          },
+        });
 
         // if it's a function reference ...
         // otherwise the call will be made passing an Object Literal

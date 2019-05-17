@@ -14,11 +14,9 @@
             <oui-radio
                 class="h-100"
                 data-thumbnail
-                data-value="paymentMethodType.paymentType.value"
-                data-model="$ctrl.model.selectedPaymentMethodType"
-                data-on-change="$ctrl.onPaymentMethodChange()"
-                data-variant="light"
-                data-required="true">
+                data-value="paymentMethodType"
+                data-model="$ctrl.selectedPaymentType"
+                data-variant="light">
                 <span class="d-block"
                       data-ng-bind="paymentMethodType.paymentType.text">
                 </span>

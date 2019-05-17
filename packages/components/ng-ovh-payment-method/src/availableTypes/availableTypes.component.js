@@ -8,8 +8,8 @@ export default {
     defaultPaymentType: '@',
     paymentTypesOrder: '<',
     paymentTypesPerLine: '<',
+    selectedPaymentType: '=',
     onLoaded: '&',
     onLoadError: '&',
-    onSelectedPaymentTypeChange: '&',
   },
 };
