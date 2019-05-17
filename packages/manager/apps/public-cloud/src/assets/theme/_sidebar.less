@@ -207,4 +207,28 @@ cloud-sidebar { /* stylelint-disable-line */
 
 #sidebar-menu .oui-sidebar-menu {
   width: 100%;
+
+  .sidebar-menu-orphan-item {
+    border-top: #89d7f8 2px solid;
+
+    .oui-sidebar-link {
+      &,
+      &:hover,
+      &:focus,
+      &:active {
+        border-bottom: 0;
+        border-left: 3px solid transparent;
+        color: rgb(17, 63, 109);
+        padding: 6px;
+        text-indent: 0;
+        font-weight: 600;
+        font-weight: normal;
+      }
+
+      &:hover,
+      &:focus {
+        text-decoration: underline;
+      }
+    }
+  }
 }
