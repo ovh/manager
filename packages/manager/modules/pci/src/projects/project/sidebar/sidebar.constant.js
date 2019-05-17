@@ -159,4 +159,6 @@ export const MENU = [
   },
 ];
 
-export default { MENU };
+export default {
+  MENU,
+};
