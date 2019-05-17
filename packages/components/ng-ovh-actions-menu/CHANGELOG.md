@@ -1,3 +1,12 @@
+# [5.0.0](https://github.com/ovh-ux/ng-ovh-actions-menu/compare/v5.0.0-alpha.0...v5.0.0) (2019-05-17)
+
+
+### Bug Fixes
+
+* cache inner template ([#20](https://github.com/ovh-ux/ng-ovh-actions-menu/issues/20)) ([7961775](https://github.com/ovh-ux/ng-ovh-actions-menu/commit/7961775))
+
+
+
 # [5.0.0-alpha.0](https://github.com/ovh-ux/ng-ovh-actions-menu/compare/v4.0.0...v5.0.0-alpha.0) (2019-01-23)
 
 
