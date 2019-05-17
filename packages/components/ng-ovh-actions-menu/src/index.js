@@ -28,6 +28,8 @@ import directive from './directive';
 import factory from './factory';
 import provider from './provider';
 
+import innerTemplate from './template-inner.html';
+
 import './index.less';
 
 const moduleName = 'ngOvhActionsMenu';
@@ -41,6 +43,9 @@ angular
   .directive('actionsMenu', directive)
   .factory('ActionsMenu', factory)
   .provider('actionsMenu', provider)
+  .run(/* @ngInject */($templateCache) => {
+    $templateCache.put('ng-ovh-actions-menu/template-inner.html', innerTemplate);
+  })
   .run(/* @ngTranslationsInject ./translations */);
 
 export default moduleName;
