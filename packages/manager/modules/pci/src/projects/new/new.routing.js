@@ -14,17 +14,19 @@ export default /* @ngInject */ ($stateProvider) => {
           component: 'pciProjectNew',
         },
       },
-      redirectTo: ($transitions) => {
-        const newProjectInfoPromise = $transitions.injector().getAsync('newProjectInfo');
+      redirectTo: (transition) => {
+        const newProjectInfoPromise = transition.injector().getAsync('newProjectInfo');
         return newProjectInfoPromise
           .then(({ error }) => {
             if (error) {
-              return {
-                state: 'pci.error',
-                params: merge({
+              return transition.router.stateService.target(
+                'pci.error',
+                merge({
                   context: 'projectCreation',
-                }, error),
-              };
+                }, error), {
+                  location: false,
+                },
+              );
             }
 
             return null;
