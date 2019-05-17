@@ -1,3 +1,12 @@
+## [5.2.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@5.2.2...@ovh-ux/manager-core@5.2.3) (2019-05-17)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([78a4159](https://github.com/ovh-ux/manager/commit/78a4159))
+
+
+
 ## [5.2.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@5.2.1...@ovh-ux/manager-core@5.2.2) (2019-05-15)
 
 
