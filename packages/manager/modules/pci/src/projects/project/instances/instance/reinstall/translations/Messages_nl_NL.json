@@ -1,0 +1,9 @@
+{
+ "pci_projects_project_instances_instance_reinstall_title": "Een instance herinstalleren",
+ "pci_projects_project_instances_instance_reinstall_submit_label": "Bevestigen",
+ "pci_projects_project_instances_instance_reinstall_cancel_label": "Annuleren",
+ "pci_projects_project_instances_instance_reinstall_content": "Weet u zeker dat u de {{ instance }}  instance wilt herstarten?",
+ "pci_projects_project_instances_instance_reinstall_erase_message": "Alle gegevens worden verwijderd.",
+ "pci_projects_project_instances_instance_reinstall_success_message": "De reboot van de {{ instance }} instance is gestart.",
+ "pci_projects_project_instances_instance_reinstall_error_reinstall": "Er is een fout opgetreden tijdens het bijwerken van de {{ instance }} instance: {{ message }}"
+}

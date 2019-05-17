@@ -9,11 +9,13 @@
  "pci_project_flavors_category_definition_ram": "Las instancias con memoria optimizada son recomendables para bases de datos, análisis y cálculo en memoria, u otras aplicaciones que consuman mucha RAM.",
  "pci_project_flavors_category_definition_accelerated": "Las instancias de cálculo acelerado (GPU, FPGA) son hasta mil veces más rápidas que una CPU en determinadas aplicaciones (renderizado, transcodificación de vídeo, bioinformática, big data, deep learning...).",
  "pci_project_flavors_category_definition_vps": "Las instancias con recursos compartidos (Sandbox) son adecuadas para pruebas y entornos de desarrollo y preproducción. Su rendimiento puede variar ligeramente a lo largo del tiempo.",
+ "pci_project_flavors_category_definition_none": "No hay ningún modelo disponible en esta categoría.",
  "pci_project_flavors_spec_ram": "Memoria:",
  "pci_project_flavors_spec_core": "Procesador:",
- "pci_project_flavors_spec_core_details": "{{vcores}} vCores ({{frequency}} GHz)",
+ "pci_project_flavors_spec_core_details": "{{vcores}} vCores ({{frequency}} GHz)",
  "pci_project_flavors_spec_disk": "Almacenamiento:",
  "pci_project_flavors_spec_bandwidth": "Ancho de banda:",
- "pci_project_flavors_price_hourly": "{{price}}/hora + IVA",
- "pci_project_flavors_price_monthly": "Desde {{price}}/mes + IVA"
+ "pci_project_flavors_price_hourly": "{{price}}/hora + IVA",
+ "pci_project_flavors_price_monthly": "Desde {{price}}/mes + IVA",
+ "pci_project_flavors_quota": "Aumentar los límites de mi cuota"
 }

@@ -1,11 +1,11 @@
 {
  "public_cloud_beta_warning_welcome": "Witamy!",
- "public_cloud_beta_warning_subtitle": "Poznaj wersję Preview Public Cloud",
+ "public_cloud_beta_warning_subtitle": "Poznaj nową wersję panelu Public Cloud",
  "public_cloud_beta_warning_test_new_feature": "Przetestuj nowe funkcje",
  "public_cloud_beta_warning_test_new_feature_desc": "Korzystasz z dostępu do wersji próbnej naszego przyszłego interfejsu do zarządzania projektami Public Cloud.",
  "public_cloud_beta_warning_help_develop": "Pomóż nam rozwijać Public Cloud",
- "public_cloud_beta_warning_help_develop_desc": "Korzystając z wersji Preview Public Cloud i wpisując Twoje komentarze (przycisk w Panelu klienta na dole po prawej stronie), pomagasz nam ulepszać funkcje interfejsu. ",
- "public_cloud_beta_warning_comment": "Nie wszystko jest jeszcze doskonałe, mamy świadomość występowania „«&nbsp;błędów&nbsp;”. Prosimy o testowanie i dzielenie się uwagami :)",
+ "public_cloud_beta_warning_help_develop_desc": "Korzystając z nowej wersji interfejsu Public Cloud i dzieląc się z nami swoimi sugestiami (przycisk Feedback w Panelu klienta na dole po prawej stronie), pomagasz nam ulepszać funkcje interfejsu. ",
+ "public_cloud_beta_warning_comment": "Nie wszystko jest jeszcze doskonałe. Mamy świadomość, że możesz jeszcze napotkać drobne błędy. Prosimy o testowanie i dzielenie się uwagami :)",
  "public_cloud_beta_warning_dont_show_again": "Nie wyświetlaj więcej tego komunikatu",
- "public_cloud_beta_warning_lets_go": "Rozpocznij test!"
+ "public_cloud_beta_warning_lets_go": "Zaczynamy!"
 }

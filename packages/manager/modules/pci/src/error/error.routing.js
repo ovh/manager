@@ -14,7 +14,7 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
     .state('pci.error', {
       url: '/error',
-      component: 'pciProjectError',
+      component: 'pciError',
       params: {
         code: {
           type: 'any',

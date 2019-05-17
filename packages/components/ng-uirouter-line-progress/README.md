@@ -1,7 +1,7 @@
 # ng-uirouter-line-progress
 
 
-[![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-uirouter-line-progress)](https://npmjs.com/package/@ovh-ux/ng-uirouter-line-progress) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/manager/modules/ng-uirouter-line-progress)](https://npmjs.com/package/@ovh-ux/ng-uirouter-line-progress?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/manager/modules/ng-uirouter-line-progress)](https://npmjs.com/package/@ovh-ux/ng-uirouter-line-progress?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![Downloads](https://badgen.net/npm/dt/@ovh-ux/ng-uirouter-line-progress)](https://npmjs.com/package/@ovh-ux/ng-uirouter-line-progress) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/components/ng-uirouter-line-progress)](https://npmjs.com/package/@ovh-ux/ng-uirouter-line-progress?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/components/ng-uirouter-line-progress)](https://npmjs.com/package/@ovh-ux/ng-uirouter-line-progress?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
 
 ## Install
 

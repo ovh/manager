@@ -1736,17 +1736,17 @@
     draggable "^4.2.0"
     lodash "^4.17.11"
 
-"@ovh-ux/ng-ovh-payment-method@^2.1.1":
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-payment-method/-/ng-ovh-payment-method-2.1.1.tgz#e9f79be4779acc5c77b3dea28d773089fc80cebb"
-  integrity sha512-wmCTO9nMJDa3fwOWrU3VS969M0TAXUi2FYk4cRx46nTgtuMIlBKldEcWfXI4YtZb6/97nv7a0UW9Gmzmx7JsMA==
-  dependencies:
-    lodash "^4.17.11"
-
 "@ovh-ux/ng-ovh-payment-method@^2.2.0":
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-payment-method/-/ng-ovh-payment-method-2.2.0.tgz#2161485afcd5b9b75dfb29bb56c26977a81e1772"
   integrity sha512-SCTVdGUNeyUXqTMege1IIYrMSod9upc85ZhT8lK4+H2DIfTtZqWtgVgDDf9cxh/CEmY8AGirhSIIV6Wu2jBTBw==
+  dependencies:
+    lodash "^4.17.11"
+
+"@ovh-ux/ng-ovh-payment-method@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-payment-method/-/ng-ovh-payment-method-3.0.0.tgz#7fd51fa7696abe12b2afdaf5443d957b9378cafc"
+  integrity sha512-6WEtPE1IOztC2Y58uxa3CEJUuejJXr492gYo51XS2JVhBEl1B3Vd3T3/hQHNjH/4n7b+s24et8GWnW/hIymcnA==
   dependencies:
     lodash "^4.17.11"
 
@@ -1817,11 +1817,6 @@
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-translate-async-loader/-/ng-translate-async-loader-2.0.0.tgz#df0d155c6c2e38b53704ff4ca9b419f0695a88bf"
   integrity sha512-CmAT0/rTYN/Niwtuo1pcY+y46nqGCR2dO6+4twqGiRkqu/ksgklZ4weaqF9Xgl/KYLv+zcCmxZf0J1gfXs7kag==
-
-"@ovh-ux/ng-uirouter-breadcrumb@^0.0.0":
-  version "0.0.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-uirouter-breadcrumb/-/ng-uirouter-breadcrumb-0.0.0.tgz#b080bcf6f763e0faae8caf1b2afcef34ec5bc1d3"
-  integrity sha512-GyDnU/Xb1NofJRXJ/5B9/isYJT6IB32x+ROCvvUhyTncrCOrthP8sHlszLmnGGV+SzPegJpZIXcI3Dq0Gdz0eQ==
 
 "@ovh-ux/ng-uirouter-title@^2.0.0-beta.3":
   version "2.0.0-beta.3"
@@ -7477,17 +7472,6 @@ less@^3.8.1:
   version "3.9.0"
   resolved "https://registry.yarnpkg.com/less/-/less-3.9.0.tgz#b7511c43f37cf57dc87dffd9883ec121289b1474"
   integrity sha512-31CmtPEZraNUtuUREYjSqRkeETFdyEHSEPAGq4erDlUXtda7pzNmctdljdIagSb589d/qXGWiiP31R5JVf+v0w==
-  dependencies:
-    clone "^2.1.2"
-  optionalDependencies:
-    errno "^0.1.1"
-    graceful-fs "^4.1.2"
-    image-size "~0.5.0"
-    mime "^1.4.1"
-    mkdirp "^0.5.0"
-    promise "^7.1.1"
-    request "^2.83.0"
-    source-map "~0.6.0"
 
 leven@^2.1.0:
   version "2.1.0"

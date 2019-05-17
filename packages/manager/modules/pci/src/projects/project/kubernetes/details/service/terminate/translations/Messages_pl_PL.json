@@ -1,0 +1,9 @@
+{
+ "kube_service_terminate_common_confirm": "Potwierdź",
+ "kube_service_terminate_common_cancel": "Anuluj",
+ "kube_service_terminate_title": "Usuń usługę",
+ "kube_service_terminate_warning": "Usunięcie tego elementu spowoduje definitywne usunięcie wszystkich danych związanych z tą usługą. Usunięcie usługi nie wiąże się ze zwrotem płatności.",
+ "kube_service_terminate_enter": "Aby potwierdzić, wprowadź \"TERMINATE\" w poniższym polu",
+ "kube_service_terminate_success": "Twoje zlecenie usunięcia klastra Kubernetes jest przetwarzane. Potwierdź zlecenie usunięcia klastra, klikając w link w e-mailu, który do Ciebie wysłaliśmy. ",
+ "kube_service_terminate_error": "Wystąpił błąd podczas usuwania klastra: {{ message }}"
+}

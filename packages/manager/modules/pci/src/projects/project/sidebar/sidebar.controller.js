@@ -12,6 +12,7 @@ export default class SidebarController {
     $stateParams,
     $transitions,
     atInternet,
+    CloudSidebar,
     coreConfig,
     OvhApiServices,
     OvhApiCloudProject,
@@ -25,6 +26,7 @@ export default class SidebarController {
     this.coreConfig = coreConfig;
     this.OvhApiServices = OvhApiServices;
     this.OvhApiCloudProject = OvhApiCloudProject;
+    this.CloudSidebar = CloudSidebar;
 
     this.isOpen = false;
     this.isLoading = false;
