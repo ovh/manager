@@ -6,6 +6,6 @@ export default {
   controller,
   bindings: {
     onLoaded: '&',
-    onSelectedPaymentTypeChange: '&',
+    selectedPaymentType: '=',
   },
 };

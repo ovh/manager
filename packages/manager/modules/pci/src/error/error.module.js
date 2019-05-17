@@ -7,6 +7,8 @@ import 'ovh-ui-angular';
 import routing from './error.routing';
 import component from './error.component';
 
+import './error.scss';
+
 const moduleName = 'ovhManagerPciProjectsNewError';
 
 angular
@@ -18,6 +20,6 @@ angular
   ])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */)
-  .component('pciProjectError', component);
+  .component('pciError', component);
 
 export default moduleName;

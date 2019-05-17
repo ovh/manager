@@ -25,7 +25,7 @@
                 <pci-project-new-payment-add
                     data-ng-if="!$ctrl.step.model.defaultPaymentMethod"
                     data-on-loaded="$ctrl.step.loading.paymentTypes = false"
-                    data-on-selected-payment-type-change="$ctrl.onPaymentAddTypeChange.bind($ctrl)">
+                    data-selected-payment-type="$ctrl.step.model.paymentType">
                 </pci-project-new-payment-add>
             </div>
 
@@ -76,17 +76,28 @@
                           name="$ctrl.voucherForm"
                           data-ng-if="$ctrl.displayVoucher && !$ctrl.step.model.voucher.valid"
                           data-ng-submit="$ctrl.onVoucherFormSubmit()">
-                        <oui-field
-                            data-label="{{ :: 'pci_project_new_payment_enter_voucher' | translate }}"
-                            data-size="s"
-                            data-error-messages="{ voucher: ('pci_project_new_payment_invalid_voucher' | translate) }">
-                            <input
-                                class="oui-input"
-                                type="text"
-                                id="voucher"
-                                name="voucher"
-                                data-ng-model="$ctrl.step.model.voucher.value" />
-                        </oui-field>
+                        <div class="oui-field"
+                             data-ng-class="{ 'oui-field_error': !$ctrl.voucherForm.voucher.$pristine && $ctrl.voucherForm.voucher.$invalid && !$ctrl.step.loading.voucher }">
+                            <label for="text-5" class="oui-field__label oui-label"
+                                   data-translate="pci_project_new_payment_enter_voucher">
+                            </label>
+                            <div class="oui-field__control oui-field__control_s">
+                                <input
+                                    class="oui-input"
+                                    type="text"
+                                    id="voucher"
+                                    name="voucher"
+                                    data-ng-model="$ctrl.step.model.voucher.value" />
+                            </div>
+                            <div class="oui-field__error"
+                                 data-ng-if="!$ctrl.voucherForm.voucher.$pristine && $ctrl.voucherForm.voucher.$invalid && !$ctrl.step.loading.voucher">
+                                <span role="alert"
+                                      data-ng-if="$ctrl.voucherForm.voucher.$error.voucher">
+                                    <span class="oui-icon oui-icon-error" aria-hidden="true"></span>
+                                    <span data-translate="pci_project_new_payment_invalid_voucher"></span>
+                                </span>
+                            </div>
+                        </div>
                         <button type="submit" class="oui-button oui-button_link oui-button_icon-right"
                                 data-ng-disabled="!$ctrl.step.model.voucher.value || $ctrl.step.loading.voucher">
                             <span data-translate="pci_project_new_payment_add_voucher"></span>
