@@ -1,3 +1,22 @@
+# [3.0.0](https://github.com/ovh-ux/ng-ovh-payment-method/compare/v2.2.0...v3.0.0) (2019-05-17)
+
+
+### Bug Fixes
+
+* **component:** improve responsive ([e06b05b](https://github.com/ovh-ux/ng-ovh-payment-method/commit/e06b05b))
+
+
+### Features
+
+* **component:** allow control of selected type outside of component ([8cedadf](https://github.com/ovh-ux/ng-ovh-payment-method/commit/8cedadf))
+
+
+### BREAKING CHANGES
+
+* **component:** remove onSelectedPaymentTypeChange callback of ovhPaymentMethodAvailableTypes component
+
+
+
 # [2.2.0](https://github.com/ovh-ux/ng-ovh-payment-method/compare/v2.1.1...v2.2.0) (2019-05-16)
 
 
