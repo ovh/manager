@@ -1,3 +1,20 @@
+# [0.7.0-alpha.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.6.0-alpha.1...@ovh-ux/manager-public-cloud@0.7.0-alpha.0) (2019-05-17)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([17222a0](https://github.com/ovh-ux/manager/commit/17222a0))
+* **i18n:** add missing translations ([78a4159](https://github.com/ovh-ux/manager/commit/78a4159))
+* **pci.projects.new:** take consideration vouchers ([c211c50](https://github.com/ovh-ux/manager/commit/c211c50))
+* **sidebar:** rework overflow / styles ([ab8bf1c](https://github.com/ovh-ux/manager/commit/ab8bf1c))
+
+
+### Features
+
+* **pci.sidebar:** add link to legacy manager ([95ca31f](https://github.com/ovh-ux/manager/commit/95ca31f))
+
+
+
 # [0.6.0-alpha.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.6.0-alpha.0...@ovh-ux/manager-public-cloud@0.6.0-alpha.1) (2019-05-16)
 
 

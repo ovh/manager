@@ -1,3 +1,30 @@
+# [0.9.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.8.0...@ovh-ux/manager-pci@0.9.0) (2019-05-17)
+
+
+### Bug Fixes
+
+* **sidebar:** rework overflow / styles ([ab8bf1c](https://github.com/ovh-ux/manager/commit/ab8bf1c))
+* remove unecessary comments ([bce1cac](https://github.com/ovh-ux/manager/commit/bce1cac))
+* **i18n:** add missing translations ([6c67cf9](https://github.com/ovh-ux/manager/commit/6c67cf9))
+* **i18n:** add missing translations ([78a4159](https://github.com/ovh-ux/manager/commit/78a4159))
+* **i18n:** add missing translations ([17222a0](https://github.com/ovh-ux/manager/commit/17222a0))
+* **i18n:** product entries are now in english ([51fed9d](https://github.com/ovh-ux/manager/commit/51fed9d))
+* **pci.instance:** add correct redirection state for unavailable region ([459add7](https://github.com/ovh-ux/manager/commit/459add7))
+* responsive and error redirection ([4d2e475](https://github.com/ovh-ux/manager/commit/4d2e475))
+* styles on error page ([0934e40](https://github.com/ovh-ux/manager/commit/0934e40))
+* **pci.instance:** remove flavors with no planCodes ([fca7a96](https://github.com/ovh-ux/manager/commit/fca7a96))
+* **pci.projects.new:** fix creation error message ([c5ba230](https://github.com/ovh-ux/manager/commit/c5ba230))
+* **pci.projects.new:** take consideration vouchers ([c211c50](https://github.com/ovh-ux/manager/commit/c211c50))
+* **sidebar:** display right link for target US ([361f181](https://github.com/ovh-ux/manager/commit/361f181))
+
+
+### Features
+
+* **pci.projects.new:** display the right min credit amount ([848cd4d](https://github.com/ovh-ux/manager/commit/848cd4d))
+* **pci.sidebar:** add link to legacy manager ([95ca31f](https://github.com/ovh-ux/manager/commit/95ca31f))
+
+
+
 # [0.8.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.7.0...@ovh-ux/manager-pci@0.8.0) (2019-05-16)
 
 
