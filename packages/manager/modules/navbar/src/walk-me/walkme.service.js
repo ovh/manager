@@ -14,20 +14,19 @@ export default class WalkMe {
     this.$translate = $translate;
     this.$window = $window;
 
+    this.coreConfig = coreConfig;
     this.ovhUserPref = ovhUserPref;
-
-    this.REGION = coreConfig.getRegion();
 
     this.initSteps();
   }
 
   isOnSmallScreen() {
-    return this.$window.matchMedia(`(min-width: ${BREAKPOINT}px)`).matches;
+    return this.$window.matchMedia(`(max-width: ${BREAKPOINT}px)`).matches;
   }
 
   initSteps() {
     this.STEPS = this.isOnSmallScreen()
-      ? DESKTOP_STEPS : MOBILE_STEPS;
+      ? MOBILE_STEPS : DESKTOP_STEPS;
   }
 
   getTour() {
@@ -45,8 +44,8 @@ export default class WalkMe {
   }
 
   getStepContent(step) {
-    const key = this.isOnSmallScreen() || this.REGION !== 'US' ? step.content
-      : `${step.content}_${this.REGION}`;
+    const key = (this.isOnSmallScreen() || !this.coreConfig.isRegion('US')) ? step.content
+      : `${step.content}_${this.coreConfig.getRegion()}`;
     return this.$translate.instant(key);
   }
 
@@ -74,9 +73,7 @@ export default class WalkMe {
     return tour;
   }
 
-  // eslint-disable-next-line class-methods-use-this
   end() {
-    return localStorage.setItem(KEY, true);
-    // return this.ovhUserPref.assign(KEY, true);
+    return this.ovhUserPref.assign(KEY, true);
   }
 }
