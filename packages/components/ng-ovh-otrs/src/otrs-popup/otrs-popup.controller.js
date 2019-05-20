@@ -99,6 +99,11 @@ export default /* @ngInject */ function (
 
     // hide alert
     manageAlert();
+
+    if (!OtrsPopupService.isOpen()) {
+      return $q.when([]);
+    }
+
     return OvhApiProductsAapi.get({
       includeInactives: true,
       universe: self.selectedUniverse === 'CLOUD_DEDICATED' ? 'DEDICATED' : self.selectedUniverse,
