@@ -87,6 +87,7 @@ export default class SshKeysController {
       .v6().save({ serviceName: this.serviceName }, this.model).$promise
       .then((sshKey) => {
         this.key = sshKey;
+        this.selectKey(sshKey);
         this.loaders.keys = true;
         this.OvhApiCloudProjectSshKey.v6().resetQueryCache();
         this.addKeyMode = false;
