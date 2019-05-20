@@ -1655,24 +1655,6 @@
     rollup-pluginutils "^2.3.3"
     slash "^2.0.0"
 
-"@ovh-ux/manager-pci@^0.8.0":
-  version "0.8.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-pci/-/manager-pci-0.8.0.tgz#e8e57d49c925d6c35aa37b35e40afdd7c8475f12"
-  integrity sha512-8rSYpebUmFYgMEu71nq96oEg3RQqKQZIayVmANpd5SY0iJxDSuHFCe/TdB43V7Xwy8o1TeJ9ZDQ4t28tQoXEZQ==
-  dependencies:
-    "@fortawesome/fontawesome-free" "^5.8.2"
-    "@ovh-ux/manager-config" "^0.2.0"
-    d3 "~3.5.13"
-    file-saver "^2.0.1"
-    flag-icon-css "~0.8.5"
-    ipaddr.js "^1.9.0"
-    jsurl "^0.1.5"
-    lodash "^4.17.11"
-    moment "^2.19"
-    urijs "^1.19.1"
-    validator "^10.11.0"
-    xterm "^3.12.2"
-
 "@ovh-ux/manager-webpack-config@^3.0.7":
   version "3.0.7"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-webpack-config/-/manager-webpack-config-3.0.7.tgz#d158154e22c44a225dd923505c62b8a7e6343c1f"
@@ -1808,13 +1790,6 @@
   integrity sha512-e5p+Yfelnvfy1XdxBaAuF1USn9PuuZE8JcKEusbO30jOvx8PamQS1ha7b4tlG98jN3Hjr6lTxGMOR+0Rc2qzrg==
   dependencies:
     draggable "^4.2.0"
-    lodash "^4.17.11"
-
-"@ovh-ux/ng-ovh-payment-method@^2.2.0":
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-payment-method/-/ng-ovh-payment-method-2.2.0.tgz#2161485afcd5b9b75dfb29bb56c26977a81e1772"
-  integrity sha512-SCTVdGUNeyUXqTMege1IIYrMSod9upc85ZhT8lK4+H2DIfTtZqWtgVgDDf9cxh/CEmY8AGirhSIIV6Wu2jBTBw==
-  dependencies:
     lodash "^4.17.11"
 
 "@ovh-ux/ng-ovh-payment-method@^3.0.0":
