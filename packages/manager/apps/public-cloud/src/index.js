@@ -32,7 +32,6 @@ import 'ovh-ui-kit/dist/oui.css';
 import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
 
 import atInternet from './components/at-internet';
-import betaWarning from './components/beta-warning';
 import preload from './components/manager-preload';
 
 import 'bootstrap-tour/build/css/bootstrap-tour.min.css';
@@ -50,7 +49,6 @@ angular
     __NG_APP_INJECTIONS__,
     uiRouter,
     atInternet,
-    betaWarning,
     ngUirouterBreadcrumb,
     ngUirouterLineProgress,
     ovhManagerCore,
