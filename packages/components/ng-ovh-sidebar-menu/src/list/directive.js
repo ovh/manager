@@ -22,6 +22,7 @@ export default function () {
     scope: {
       items: '=sidebarMenuListItems',
       namespace: '=sidebarMenuListNamespace',
+      level: '=sidebarMenuListLevel',
     },
     require: ['^sidebarMenu', '^?sidebarMenuListItem'],
     bindToController: true,

@@ -30,12 +30,14 @@ export default /* @ngInject */ function ($compile) {
 
       if (sidebarMenuListItemCtrl.item.allowSubItems) {
         // get nav element - where to append sub menu element
-        navElement = $element.find('div.menu-sub-items');
+        navElement = $element.find('nav.menu-sub-items');
 
         if (!navElement.find('> .sub-menu').length) {
           $compile(`<sidebar-menu-list
-                        data-sidebar-menu-list-items='ItemMenuCtrl.item.subItems' class='sub-menu'>
-                    </sidebar-menu-list>`)($scope, (cloned) => {
+                      data-sidebar-menu-list-items='ItemMenuCtrl.item.subItems'
+                      data-sidebar-menu-list-level='ItemMenuCtrl.item.level + 1'
+                      class='sub-menu'>
+                  </sidebar-menu-list>`)($scope, (cloned) => {
             navElement.append(cloned);
           });
         }
@@ -124,7 +126,7 @@ export default /* @ngInject */ function ($compile) {
         };
       });
 
-      self.addMoreItems = function () {
+      self.addMoreItems = function addMoreItems() {
         self.item.appendPendingListItemsAsync();
       };
 
@@ -134,25 +136,25 @@ export default /* @ngInject */ function ($compile) {
             =            ACTIONS            =
             =============================== */
 
-      self.toggleItemOpenState = function () {
+      self.toggleItemOpenState = function toggleItemOpenState() {
         self.errorVisible = false;
 
         // load sub items
         self.item.loadSubItems().then(() => {
           // let SidebarMenu manage toggle states
           SidebarMenu.toggleMenuItemOpenState(self.item);
+
         }).catch(() => {
           self.errorVisible = true;
         });
-
         return true;
       };
 
-      self.launchSearch = function () {
+      self.launchSearch = function launchSearch() {
         self.item.filterSubItems(self.model.search);
       };
 
-      self.viewMore = function () {
+      self.viewMore = function viewMore() {
         if (!self.item.viewMore || !angular.isFunction(self.item.viewMore.action)) {
           return;
         }
