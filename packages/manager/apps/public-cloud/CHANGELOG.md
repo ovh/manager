@@ -1,3 +1,13 @@
+# [0.7.0-alpha.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.7.0-alpha.0...@ovh-ux/manager-public-cloud@0.7.0-alpha.1) (2019-05-20)
+
+
+### Bug Fixes
+
+* add missing dependency ([3c7547d](https://github.com/ovh-ux/manager/commit/3c7547d))
+* redirect user and avoid block him on root page ([#643](https://github.com/ovh-ux/manager/issues/643)) ([7a93924](https://github.com/ovh-ux/manager/commit/7a93924))
+
+
+
 # [0.7.0-alpha.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.6.0-alpha.1...@ovh-ux/manager-public-cloud@0.7.0-alpha.0) (2019-05-17)
 
 

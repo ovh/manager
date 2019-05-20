@@ -1,3 +1,12 @@
+## [0.3.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-navbar@0.3.1...@ovh-ux/manager-navbar@0.3.2) (2019-05-20)
+
+
+### Bug Fixes
+
+* walkme is now working ([c6fc5e1](https://github.com/ovh-ux/manager/commit/c6fc5e1))
+
+
+
 ## [0.3.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-navbar@0.3.0...@ovh-ux/manager-navbar@0.3.1) (2019-05-17)
 
 
