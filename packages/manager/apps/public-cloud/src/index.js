@@ -13,6 +13,7 @@ import 'script-loader!jquery-ui/ui/minified/mouse.min';
 import 'script-loader!jquery-ui/ui/minified/draggable.min';
 import 'script-loader!moment/min/moment-with-locales.min.js';
 import 'script-loader!angular-ui-validate/dist/validate.js';
+import 'script-loader!bootstrap-tour/build/js/bootstrap-tour-standalone.min.js';
 /* eslint-enable import/no-webpack-loader-syntax, import/extensions */
 
 import get from 'lodash/get';
@@ -33,8 +34,8 @@ import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
 import atInternet from './components/at-internet';
 import betaWarning from './components/beta-warning';
 import preload from './components/manager-preload';
-import walkMe from './components/walkMe';
 
+import 'bootstrap-tour/build/css/bootstrap-tour.min.css';
 import './assets/theme/index.less';
 import './index.scss';
 
@@ -59,7 +60,6 @@ angular
     ngOvhUserPref,
     navbar,
     preload,
-    walkMe,
     ngAnimate,
   ].filter(value => value !== null)) // Remove null because __NG_APP_INJECTIONS__ can be null
   .controller('PublicCloudController', controller)
