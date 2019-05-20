@@ -6,7 +6,7 @@
   "server_sidebar_item_ip_title": "IP",
   "server_sidebar_item_microsoft_title": "Microsoft",
   "server_sidebar_item_exchange_title": "Exchange",
-  "server_sidebar_item_iaas_title": "Serveurs",
+  "server_sidebar_item_vps_title": "VPS",
   "server_sidebar_item_paas_title": "Plateformes et services",
   "server_sidebar_item_metrics_title": "Metrics",
   "server_sidebar_item_logs_title": "Logs Data Platform",

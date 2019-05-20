@@ -277,7 +277,6 @@ export const SIDEBAR_ORDER_CONFIG = [
     regions: ['EU'],
     app: [DEDICATED],
   },
-
   {
     id: 'order-dedicated-server',
     title: 'dedicated_server',
@@ -310,11 +309,11 @@ export const SIDEBAR_ORDER_CONFIG = [
     icon: 'ovh-font ovh-font-certificate',
     state: 'app.license.order', // TODO: SHOULD BE A LINK DEDICATED #/configuration/license?landingTo=licences
     linkId: 'dedicated',
-    linkPart: '#/configuration/license?landingTo=licences',
+    linkPart: '#/configuration/license/order',
     app: [DEDICATED],
   },
 
-  // for nexts : CucFeatureAvailabilityService.hasFeature(product.type, 'sidebarOrder', locale)
+  // CLOUD
   {
     id: 'order-kube',
     title: 'kube',

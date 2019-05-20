@@ -7,7 +7,7 @@ export const MANAGER_URLS = {
       FR: 'https://www.ovh.com/manager/dedicated/',
     },
     CLOUD: {
-      FR: 'https://www.ovh.com/manager/cloud/',
+      FR: 'https://www.ovh.com/manager/cloud/repsac/',
     },
   },
   CA: {
@@ -15,7 +15,7 @@ export const MANAGER_URLS = {
       FR: 'https://ca.ovh.com/manager/dedicated/',
     },
     CLOUD: {
-      FR: 'https://ca.ovh.com/manager/cloud/',
+      FR: 'https://ca.ovh.com/manager/cloud/repsac/',
     },
   },
   US: {
@@ -23,7 +23,7 @@ export const MANAGER_URLS = {
       FR: 'https://us.ovhcloud.com/manager/dedicated/',
     },
     CLOUD: {
-      FR: 'https://us.ovhcloud.com/manager/cloud/',
+      FR: 'https://us.ovhcloud.com/manager/cloud/repsac/',
     },
   },
 };

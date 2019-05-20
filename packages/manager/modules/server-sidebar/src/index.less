@@ -15,6 +15,14 @@
             }
           }
 
+          &.active {
+            > .item-content {
+              > .menu-item {
+                background-color: @active_color;
+              }
+            }
+          }
+
           .menu-level-2 {
             > li {
               &.item-container {
@@ -32,6 +40,46 @@
                       > .item-content {
                         > .menu-item {
                           background-color: @active_color;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .ovh-angular-actions-menu {
+    .popover-content {
+      .actions-menu-inner {
+        .actions-menu-pages {
+          .actions-menu-page {
+            &.main-page {
+              ul {
+                &.actions-list {
+                  > li {
+                    &.actions-list-item {
+                      .actions-menu-item-link {
+                        &:hover {
+                          .item-icon {
+                            background-color: @active_color;
+                          }
+                        }
+
+                        &:focus {
+                          .item-icon {
+                            background-color: @active_color;
+                          }
+                        }
+
+                        &:active {
+                          .item-icon {
+                            background-color: @active_color;
+                          }
                         }
                       }
                     }

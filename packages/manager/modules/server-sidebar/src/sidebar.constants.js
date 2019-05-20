@@ -5,16 +5,16 @@ export const DEDICATED_SERVER_CONFIG = {
   loadOnState: 'app.dedicated',
   types: [
     {
-      path: '/dedicated/server',
-      category: 'SERVER',
-      state: 'app.dedicated.server',
+      path: '/dedicated/housing',
+      category: 'HOUSING',
+      state: 'app.dedicated.housing',
       stateParams: ['productId'],
       app: [DEDICATED],
     },
     {
-      path: '/dedicated/housing',
-      category: 'HOUSING',
-      state: 'app.dedicated.housing',
+      path: '/dedicated/server',
+      category: 'SERVER',
+      state: 'app.dedicated.server',
       stateParams: ['productId'],
       app: [DEDICATED],
     },
@@ -73,17 +73,24 @@ export const NETWORKS_CONFIG = {
     },
     {
       path: '/dedicated/nas',
-      state: 'app.networks.cdn.dedicated',
-      stateParams: ['productId'],
+      state: 'app.networks.nas.details',
+      stateParams: ['nasId'],
       icon: 'ovh-font ovh-font-cloudnas',
       app: [DEDICATED],
+      regions: ['EU', 'CA'],
     },
     {
       path: '/dedicated/nasha',
-      state: 'paas.nasha.nasha-partitions',
-      stateParams: ['nashaId'],
+      state: 'app.networks.nas.details',
+      stateParams: ['nasId'],
+      stateParamsTransformer: params => ({
+        ...params,
+        nasType: 'nas',
+        nasId: `nasha_${params.nasId}`,
+      }),
       icon: 'ovh-font ovh-font-cloudnas',
-      app: [CLOUD],
+      app: [DEDICATED],
+      regions: ['EU', 'CA'],
     },
   ],
   loadOnState: 'app.networks',
@@ -101,8 +108,17 @@ export const MICROSOFT_CONFIG = {
           path: '/email/exchange',
           icon: 'ms-Icon ms-Icon--ExchangeLogo',
           state: 'app.microsoft.exchange',
-          stateParams: [],
+          stateParams: ['organization'],
           app: [DEDICATED],
+          types: [
+            {
+              path: '/email/exchange/:organization/service',
+              icon: 'ms-Icon ms-Icon--ExchangeLogo',
+              state: 'app.microsoft.exchange',
+              stateParams: [],
+              app: [DEDICATED],
+            },
+          ],
         },
       ],
       loadOnState: 'app.microsoft.exchange',
@@ -113,27 +129,27 @@ export const MICROSOFT_CONFIG = {
   loadOnState: 'app.microsoft',
   icon: 'ms-Icon ms-Icon--WindowsLogo',
   app: [DEDICATED],
-  // regions: ['CA'],
+  regions: ['CA'],
 };
 
 export const LICENCE_CONFIG = {
   id: 'licences',
-  state: 'app.license.dashboard', // TODO : should be a link : CLOUD #/configuration/license?landingTo=licences
+  state: 'app.license.dashboard',
   icon: 'ovh-font ovh-font-certificate',
-  url: '#/configuration/license?landingTo=licences',
+  stateUrl: '#/configuration/license?landingTo=licences',
   app: [DEDICATED],
 };
 
 export const IP_CONFIG = {
   id: 'ip',
-  state: 'app.ip', // TODO : should be a link DEDICATED #/configuration/ip?landingTo=ip
-  url: '#/configuration/ip?landingTo=ip',
+  state: 'app.ip',
+  stateUrl: '#/configuration/ip?landingTo=ip',
   icon: 'ovh-font ovh-font-ip',
   app: [DEDICATED],
 };
 
 export const IAAS_CONFIG = {
-  id: 'iaas',
+  id: 'vps',
   loadOnState: 'iaas',
   types: [
     {
@@ -158,13 +174,6 @@ export const PAAS_CONFIG = {
       state: 'paas.cda.cda-details.cda-details-home',
       stateParams: ['serviceName'],
       icon: 'ovh-font ovh-font-cloud-disk-array',
-      app: [CLOUD],
-    },
-    {
-      path: '/dedicated/nasha',
-      state: 'paas.nasha.nasha-partitions',
-      stateParams: ['nashaId'],
-      icon: 'ovh-font ovh-font-cloudnas',
       app: [CLOUD],
     },
     {
@@ -217,8 +226,8 @@ export const LOGS_CONFIG = {
   children: [
     {
       id: 'logs_all_accounts',
-      state: 'dbaas.logs', // TODO : should be a link
-      url: '#/dbaas/logs',
+      state: 'dbaas.logs',
+      stateUrl: '#/dbaas/logs/list',
       app: [CLOUD],
     },
   ],

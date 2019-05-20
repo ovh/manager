@@ -1,18 +1,23 @@
 import compact from 'lodash/compact';
 import each from 'lodash/each';
 import filter from 'lodash/filter';
+import find from 'lodash/find';
 import get from 'lodash/get';
 import has from 'lodash/has';
 import includes from 'lodash/includes';
 import isArray from 'lodash/isArray';
+import isFunction from 'lodash/isFunction';
 import isString from 'lodash/isString';
 import map from 'lodash/map';
 import orderBy from 'lodash/orderBy';
 import reduce from 'lodash/reduce';
 import zipObject from 'lodash/zipObject';
 
+import { MANAGER_URLS } from './constants';
 import { SIDEBAR_CONFIG } from './sidebar.constants';
 import { ORDER_URLS, SIDEBAR_ORDER_CONFIG } from './order.constants';
+import { DEDICATED_SIDEBAR_CONFIG, DEDICATED_ORDER_SIDEBAR_CONFIG } from './dedicated.constants';
+import { CLOUD_SIDEBAR_CONFIG, CLOUD_ORDER_SIDEBAR_CONFIG } from './cloud.constants';
 
 // we should avoid require, but JSURL don't provide an es6 export
 const { stringify } = require('jsurl');
@@ -25,6 +30,7 @@ export default class OvhManagerServerSidebarController {
     coreConfig,
     CucFeatureAvailabilityService,
     OvhApiService,
+    OvhApiUniverses,
     SessionService,
     SidebarMenu,
   ) {
@@ -33,6 +39,7 @@ export default class OvhManagerServerSidebarController {
     this.coreConfig = coreConfig;
     this.CucFeatureAvailabilityService = CucFeatureAvailabilityService;
     this.OvhApiService = OvhApiService;
+    this.OvhApiUniverses = OvhApiUniverses;
     this.SessionService = SessionService;
     this.SidebarMenu = SidebarMenu;
   }
@@ -40,7 +47,16 @@ export default class OvhManagerServerSidebarController {
   $onInit() {
     this.SidebarMenu.setInitializationPromise(
       this.$translate.refresh()
-        .then(() => {
+        .then(() => this.OvhApiUniverses.Aapi().query().$promise)
+        .then((universes) => {
+          this.SIDEBAR_CONFIG = SIDEBAR_CONFIG;
+          this.SIDEBAR_ORDER_CONFIG = SIDEBAR_ORDER_CONFIG;
+
+          if (find(universes, { universe: this.universe.toLowerCase() })) {
+            this.SIDEBAR_CONFIG = this.universe === 'DEDICATED' ? DEDICATED_SIDEBAR_CONFIG : CLOUD_SIDEBAR_CONFIG;
+            this.SIDEBAR_ORDER_CONFIG = this.universe === 'DEDICATED' ? DEDICATED_ORDER_SIDEBAR_CONFIG : CLOUD_ORDER_SIDEBAR_CONFIG;
+          }
+
           this.buildFirstLevelMenu();
           return this.buildOrderMenu();
         }),
@@ -48,7 +64,7 @@ export default class OvhManagerServerSidebarController {
   }
 
   buildFirstLevelMenu() {
-    this.addItems(this.filterRegions(SIDEBAR_CONFIG));
+    this.addItems(this.filterRegions(this.SIDEBAR_CONFIG));
   }
 
   filterRegions(items) {
@@ -89,15 +105,16 @@ export default class OvhManagerServerSidebarController {
     return this.SessionService.getUser()
       .then(({ ovhSubsidiary }) => {
         const actionsMenuOptions = map(
-          this.filterRegions(SIDEBAR_ORDER_CONFIG),
+          this.filterRegions(this.SIDEBAR_ORDER_CONFIG),
           (orderItemConfig) => {
             if (!has(orderItemConfig, 'featureTupe')
               || this.CucFeatureAvailabilityService.hasFeature(orderItemConfig.featureTupe, 'sidebarOrder', ovhSubsidiary)
             ) {
-              const isExternal = has(orderItemConfig, 'linkId') || has(orderItemConfig, 'linkPart');
+              const isExternal = !includes(orderItemConfig.app, this.universe);
 
               let link = null;
-              if (isExternal) {
+              if ((isExternal || !has(orderItemConfig, 'state'))
+                && (has(orderItemConfig, 'linkId') || has(orderItemConfig, 'linkPart'))) {
                 link = this.buildUrl(orderItemConfig, ovhSubsidiary);
               }
 
@@ -108,8 +125,8 @@ export default class OvhManagerServerSidebarController {
                   icon: orderItemConfig.icon,
                   href: link,
                   state: isExternal ? null : orderItemConfig.state,
-                  target: isExternal ? '_blank' : 'null,',
-                  external: get(orderItemConfig, 'external'),
+                  target: isExternal ? '_blank' : null,
+                  external: get(orderItemConfig, 'external', false),
                 };
               }
             }
@@ -126,10 +143,14 @@ export default class OvhManagerServerSidebarController {
     each(services, (service) => {
       if (!this.SidebarMenu.getItemById(service.id)) {
         const hasSubItems = has(service, 'types') || has(service, 'children');
+        const isExternal = !includes(service.app, this.universe);
 
         let link = null;
         if (hasSubItems || has(service, 'link')) {
           link = get(service, 'link');
+        } else if (has(service, 'stateUrl') && isExternal) {
+          link = get(MANAGER_URLS, [this.coreConfig.getRegion(), service.app[0], 'FR']);
+          link += service.stateUrl;
         }
 
         const menuItem = this.SidebarMenu.addMenuItem({
@@ -140,10 +161,10 @@ export default class OvhManagerServerSidebarController {
           allowSubItems: hasSubItems,
           allowSearch: hasSubItems,
 
-          state: get(service, 'state'),
+          state: isExternal ? null : get(service, 'state'),
           loadOnState: get(service, 'loadOnState'),
-          url: link ? null : link,
-          target: link ? null : '_self',
+          url: link,
+          target: link ? '_self' : null,
         }, parent);
 
         if (has(service, 'types')) {
@@ -167,12 +188,20 @@ export default class OvhManagerServerSidebarController {
           each(orderBy(typeServices.items, 'displayName'), (service) => {
             const isExternal = !includes(typeServices.type.app, this.universe);
 
+            let stateParams = null;
+            if (!isExternal) {
+              stateParams = zipObject(get(typeServices.type, 'stateParams'), service.stateParams);
+              if (has(typeServices.type, 'stateParamsTransformer') && isFunction(typeServices.type.stateParamsTransformer)) {
+                stateParams = typeServices.type.stateParamsTransformer(stateParams);
+              }
+            }
+
             const menuItem = this.SidebarMenu.addMenuItem({
               title: service.displayName,
               allowSubItems: hasSubItems,
               allowSearch: false,
               state: isExternal ? null : get(typeServices.type, 'state'),
-              stateParams: isExternal ? null : zipObject(get(typeServices.type, 'stateParams'), service.stateParams),
+              stateParams,
               url: isExternal ? service.url : null,
               target: isExternal ? '_self' : null,
               icon: get(typeServices.type, 'icon'),
