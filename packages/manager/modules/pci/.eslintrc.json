@@ -1,0 +1,7 @@
+{
+  "extends": "../../../../.eslintrc.js",
+  "globals": {
+    "__FEEDBACK_URL__": true,
+    "moment": true
+  }
+}
