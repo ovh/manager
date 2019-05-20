@@ -1,3 +1,14 @@
+## [0.9.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.9.0...@ovh-ux/manager-pci@0.9.1) (2019-05-20)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([ee69d82](https://github.com/ovh-ux/manager/commit/ee69d82))
+* **i18n:** add missing translations ([fd721f6](https://github.com/ovh-ux/manager/commit/fd721f6))
+* **pci.instance:** select newly added ssh key on instance creation ([927735c](https://github.com/ovh-ux/manager/commit/927735c))
+
+
+
 # [0.9.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.8.0...@ovh-ux/manager-pci@0.9.0) (2019-05-17)
 
 
