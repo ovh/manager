@@ -11,7 +11,7 @@ export const DESKTOP_STEPS = [
   },
 ];
 
-export const KEY = 'PUBLIC_CLOUD_WALKME';
+export const KEY = 'NAVBAR_SERVER_PUBLIC_CLOUD_WALKME';
 
 export const MOBILE_STEPS = [
   {

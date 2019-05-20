@@ -1,8 +1,12 @@
+import angular from 'angular';
+
+import find from 'lodash/find';
 import get from 'lodash/get';
 import has from 'lodash/has';
 import omit from 'lodash/omit';
 
 import { BRAND, NON_PRIMARY_ITEMS } from './constants';
+import { KEY } from './walk-me/walkme.constants';
 
 export default class {
   /* @ngInject */
@@ -11,11 +15,15 @@ export default class {
     $translate,
     $window,
     Navbar,
+    ovhUserPref,
+    WalkMe,
   ) {
     this.$scope = $scope;
     this.$translate = $translate;
     this.$window = $window;
     this.Navbar = Navbar;
+    this.ovhUserPref = ovhUserPref;
+    this.WalkMe = WalkMe;
   }
 
   $onInit() {
@@ -40,6 +48,13 @@ export default class {
       .then(() => this.$translate.refresh())
       .then(() => this.buildMainLinks())
       .then(() => this.buildResponsiveLinks())
+      .then(() => {
+        if (find(this.mainLinks, {
+          name: 'server',
+        })) {
+          this.startWalkMe();
+        }
+      })
       .finally(() => {
         this.$scope.$emit('navbar.loaded');
         this.isLoading = false;
@@ -86,5 +101,29 @@ export default class {
         return link;
       });
     }
+  }
+
+  startWalkMe() {
+    return this.ovhUserPref.getValue(KEY)
+      .then(({ value }) => {
+        this.shouldShowWalkMe = value;
+      })
+      .catch(({ status }) => {
+        if (status === 404) {
+          this.shouldShowWalkMe = true;
+        }
+      })
+      .finally(() => {
+        if (this.shouldShowWalkMe) {
+          this.tour = this.WalkMe.start();
+          angular.element('oui-navbar').on('click', () => this.endWalkMe());
+        }
+      });
+  }
+
+  endWalkMe() {
+    this.tour.end();
+    this.WalkMe.end();
+    this.shouldShowWalkMe = false;
   }
 }
