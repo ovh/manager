@@ -7,12 +7,12 @@
 @SIDEBAR_MENU_OFFSET_TOP: 44px;                // for new topnav integration
 @SIDEBAR_MENU_Z_INDEX: 1020;
 @SIDEBAR_MENU_OPACITY: 0.6;
-@SIDEBAR_MENU_ACTIVE_COLOR: #ffffff;  //By default
-@SIDEBAR_MENU_TEXT_ACTIVE_COLOR: #17273B;
+@SIDEBAR_MENU_ACTIVE_COLOR: #fff;  //By default
+@SIDEBAR_MENU_TEXT_ACTIVE_COLOR: #17273b;
 @SIDEBAR_MENU_ITEM_HEIGHT: 36px;
 
 // COLORS
-@SIDEBAR_MENU_COLOR: #ffffff;
+@SIDEBAR_MENU_COLOR: #fff;
 @SIDEBAR_MENU_BG_COLOR_LVL1: #273b54;
 @SIDEBAR_MENU_BG_COLOR_LVL2: #3f5167;
 @SIDEBAR_MENU_BG_COLOR_LVL3: #59697d;
@@ -217,14 +217,6 @@
 
     &.menu-level-1 {
       > li.item-container {
-        &.active {
-          > .item-content > .menu-item {
-            background-color: @SIDEBAR_MENU_ACTIVE_ITEM_BG_COLOR;
-            color: @SIDEBAR_MENU_TEXT_ACTIVE_COLOR;
-            font-weight: bold;
-          }
-        }
-
         > .item-content > .group-content-wrapper {
           border-left: 3px solid transparent;
         }
@@ -279,14 +271,7 @@
           }
         }
 
-        &.open {
-          > .item-content > .group-content-wrapper {
-            border-left-color: @SIDEBAR_MENU_LVL1_ACTIVE_BORDER_COLOR;
-          }
-        }
-
         > .item-content {
-
           > .menu-item {
             font-size: @SIDEBAR_MENU_LVL1_FONT_SIZE;
             letter-spacing: 0.01em;
@@ -323,6 +308,20 @@
           }
         }
 
+        &.active {
+          > .item-content > .menu-item {
+            background-color: @SIDEBAR_MENU_ACTIVE_ITEM_BG_COLOR;
+            color: @SIDEBAR_MENU_TEXT_ACTIVE_COLOR;
+            font-weight: bold;
+          }
+        }
+
+        &.open {
+          > .item-content > .group-content-wrapper {
+            border-left-color: @SIDEBAR_MENU_LVL1_ACTIVE_BORDER_COLOR;
+          }
+        }
+
         .menu-level-2 {
           background-color: @SIDEBAR_MENU_BG_COLOR_LVL2;
           // FOR LVL2 & LVL3
@@ -343,17 +342,17 @@
           }
 
           > li.item-container {
+            > .item-content > .menu-item {
+              padding: 0 10px 0 26px;
+              width: 100%;
+            }
+
             &.active {
               > .item-content > .menu-item {
                 background-color: @SIDEBAR_MENU_ACTIVE_ITEM_BG_COLOR;
                 color: @SIDEBAR_MENU_TEXT_ACTIVE_COLOR;
                 font-weight: bold;
               }
-            }
-
-            > .item-content > .menu-item {
-              padding: 0 10px 0 26px;
-              width: 100%;
             }
 
             .menu-level-3 {
@@ -429,7 +428,6 @@
     top: 0;
     width: 75%;
     max-width: 320px;
-
     -webkit-transition: left 2s; /* For Safari 3.1 to 6.0 */
     transition: left 0.15s linear;
 
