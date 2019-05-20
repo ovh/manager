@@ -69,8 +69,8 @@ export default class PublicCloudController {
                   projectId: projects[0].project_id,
                 });
               }
-              // [TODO] Go to error page
-              return null;
+              // Go to error page
+              return this.$state.go('pci.error');
             });
         }
         return this.$state.go('pci.projects.onboarding');
