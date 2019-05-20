@@ -1,5 +1,5 @@
 {
- "pci_error_title": "Oops!",
+ "pci_error_title": "Ops!",
  "pci_error_button_cancel": "Annulla",
  "pci_error_button_action_pay_debt": "Salda il debito",
  "pci_error_button_action_contact_support": "Contatta il supporto",
@@ -7,9 +7,9 @@
  "pci_error_action_reload_label": "Riprova",
  "pci_error_action_home_label": "Torna alla home page",
  "pci_error_default": "Si è verificato un errore durante il caricamento della pagina.",
- "pci_error_account_not_eligible": "Purtroppo non puoi creare progetti Public Cloud, in quanto uno o più progetti creati precedentemente sono stati chiusi per mancato pagamento o utilizzo improprio del servizio. In caso di necessità, contatta il nostro supporto.",
- "pci_error_max_projects_limit_reached": "Purtroppo non puoi creare altri progetti Public Cloud, in quanto hai raggiunto il numero massimo di progetti autorizzati. Per sbloccare questo limite, contatta il nostro supporto.",
- "pci_error_paypal_account_not_verified": "Purtroppo non puoi creare progetti Public Cloud con PayPal, in quanto il tuo account non risulta verificato. Accedi all’interfaccia PayPal per effettuare le operazioni necessarie alla convalida oppure modifica <a href=\"{{ href }}\">il tuo metodo di pagamento predefinito</a>.",
- "pci_error_unpaid_debts": "Purtroppo non puoi creare progetti Public Cloud, in quanto alcuni importi non risultano ancora saldati. Ti invitiamo a effettuare il pagamento delle somme dovute e riprovare.",
- "pci_error_invalid_payment_mean": "Purtroppo non puoi creare progetti Public Cloud, in quanto la modalità di pagamento impostato di default non risulta valida. Ti invitiamo a modificare <a href=\"{{ href }}\">il tuo metodo di pagamento predefinito</a>."
+ "pci_error_account_not_eligible": "Non è possibile creare un nuovo progetto Public Cloud con questo account. Per maggiori informazioni, contatta il nostro supporto.",
+ "pci_error_max_projects_limit_reached": "Purtroppo non è possibile creare altri progetti Public Cloud, in quanto hai raggiunto il numero massimo di progetti autorizzati. Per sbloccare questo limite, contatta il nostro supporto.",
+ "pci_error_paypal_account_not_verified": "Purtroppo non è possibile creare progetti Public Cloud con PayPal, in quanto il tuo account non risulta verificato. Accedi all’interfaccia PayPal per effettuare le operazioni necessarie alla convalida oppure modifica <a href=\"{{ href }}\">il tuo metodo di pagamento predefinito</a>.",
+ "pci_error_unpaid_debts": "Purtroppo non è possibile creare progetti Public Cloud, in quanto alcuni importi non risultano ancora saldati. Ti invitiamo a effettuare il pagamento delle somme dovute e riprovare.",
+ "pci_error_invalid_payment_mean": "Non è possibile creare un nuovo progetto Public Cloud con questo account. Ti preghiamo di modificare <a href=\"{{ href }}\">il tuo metodo di pagamento predefinito</a>."
 }

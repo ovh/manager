@@ -7,9 +7,9 @@
  "pci_error_action_reload_label": "Volver a intentarlo",
  "pci_error_action_home_label": "Volver a la página de inicio",
  "pci_error_default": "Se ha producido un error al cargar la página.",
- "pci_error_account_not_eligible": "Lamentamos informarle de que no puede crear proyectos de Public Cloud debido a que anteriormente hemos tenido que proceder al cierre de algún proyecto por impago o por uso inadecuado del servicio. Le invitamos a contactar con el soporte.",
- "pci_error_max_projects_limit_reached": "Lamentamos informarle de que no puede crear más proyectos de Public Cloud debido a que ha alcanzado el límite de proyectos. Para desbloquear dicho límite, contacte con el soporte.",
- "pci_error_paypal_account_not_verified": "Lamentamos informarle de que no puede crear proyectos de Public Cloud con su cuenta de PayPal debido a que esta no está verificada. Le rogamos que realice los trámites pertinentes con PayPal para verificar su cuenta. Posteriormente podrá volver a intentarlo. También puede cambiar su <a href=\"{{ href }}\">forma de pago por defecto</a>.",
- "pci_error_unpaid_debts": "Lamentamos informarle de que no puede crear proyectos de Public Cloud debido a que tiene una deuda pendiente con OVH. Vuelva a intentarlo una vez abonado el importe adeudado.",
- "pci_error_invalid_payment_mean": "Lamentamos informarle de que no puede crear proyectos de Public Cloud debido a que no dispone de una forma de pago por defecto válida. Le rogamos que cambie su <a href=\"{{ href }}\">forma de pago por defecto</a>."
+ "pci_error_account_not_eligible": "No es posible crear un nuevo proyecto de Public Cloud con su cuenta. Para más información, puede ponerse en contacto con el soporte. ",
+ "pci_error_max_projects_limit_reached": "No puede crear más proyectos de Public Cloud debido a que ha alcanzado el límite de proyectos. Para desbloquear dicho límite, contacte con el soporte.",
+ "pci_error_paypal_account_not_verified": "No puede crear proyectos de Public Cloud con su cuenta de PayPal debido a que esta no está verificada. Le rogamos que realice los trámites pertinentes con PayPal para verificar su cuenta. Posteriormente podrá volver a intentarlo. También puede modificar su <a href=\"{{ href }}\">forma de pago por defecto</a>.",
+ "pci_error_unpaid_debts": "Le informamos de que no puede crear proyectos de Public Cloud debido a que tiene una deuda pendiente con OVH. Vuelva a intentarlo una vez abonado el importe adeudado.",
+ "pci_error_invalid_payment_mean": "No es posible crear un nuevo proyecto de Public Cloud con su cuenta. Para ello, debe modificar su <a href=\"{{ href }}\">forma de pago por defecto</a>."
 }
