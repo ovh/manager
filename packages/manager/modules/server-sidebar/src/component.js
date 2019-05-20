@@ -3,6 +3,8 @@ import template from './template.html';
 
 const component = {
   bindings: {
+    onClick: '&',
+    isOpen: '<',
     universe: '<',
   },
   controller,

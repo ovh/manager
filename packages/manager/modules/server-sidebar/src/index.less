@@ -1,7 +1,35 @@
+@import '~ovh-ui-kit/packages/oui-color/_constants';
+@import '~ovh-ui-kit/packages/oui-navbar/_variables';
+@import '~ovh-ui-kit/packages/oui-responsive/responsive';
+@import '~ovh-ui-kit/packages/oui-typography/_variables';
+
 @active_color: #59d2ef;
 
+.sidebar-menu {
+  z-index: 1031;
+  width: 320px;
+
+  .sidebar-menu_header {
+    background-color: @oui-color-rhino;
+    color: #fff;
+
+    .oui-icon {
+      color: #fff;
+    }
+  }
+}
+
 #sidebar-menu {
-  width: inherit;
+  @media screen and (max-width: @oui-responsive-breakpoint-tablet) {
+    top: auto;
+    bottom: auto;
+    padding-top: 0;
+    z-index: 1031;
+
+    .sidebar-menu-title {
+      display: none;
+    }
+  }
 
   .ms-Icon {
     line-height: 1;

@@ -7,6 +7,7 @@ const component = {
     langOptions: '<?',
     navbarOptions: '<?',
     sidebarLinks: '<?',
+    universeClick: '&?',
   },
   controller,
   template,

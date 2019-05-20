@@ -26,6 +26,7 @@ export default class OvhManagerServerSidebarController {
   /* @ngInject */
   constructor(
     $q,
+    $rootScope,
     $translate,
     coreConfig,
     CucFeatureAvailabilityService,
@@ -35,6 +36,7 @@ export default class OvhManagerServerSidebarController {
     SidebarMenu,
   ) {
     this.$q = $q;
+    this.$rootScope = $rootScope;
     this.$translate = $translate;
     this.coreConfig = coreConfig;
     this.CucFeatureAvailabilityService = CucFeatureAvailabilityService;
@@ -60,7 +62,8 @@ export default class OvhManagerServerSidebarController {
 
           this.buildFirstLevelMenu();
           return this.buildOrderMenu();
-        }),
+        })
+        .finally(() => this.$rootScope.$broadcast('sidebar:loaded')),
     );
   }
 
@@ -165,6 +168,7 @@ export default class OvhManagerServerSidebarController {
           loadOnState: get(service, 'loadOnState'),
           url: link,
           target: link ? '_self' : null,
+          click: () => this.onClick(),
         }, parent);
 
         if (has(service, 'types')) {
