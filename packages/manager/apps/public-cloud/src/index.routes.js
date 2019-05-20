@@ -1,4 +1,4 @@
-const DEFAULT_PROJECT_KEY = 'PUBLIC_CLOUD_DEFAULT_PROJECT';
+import { DEFAULT_PROJECT_KEY } from './index.constants';
 
 export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
   $stateProvider
