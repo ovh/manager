@@ -1,4 +1,0 @@
-export const CLOUD_SIDEBAR_CONFIG = [];
-export const CLOUD_ORDER_SIDEBAR_CONFIG = [];
-
-export default { CLOUD_SIDEBAR_CONFIG, CLOUD_ORDER_SIDEBAR_CONFIG };

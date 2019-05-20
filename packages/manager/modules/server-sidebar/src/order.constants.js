@@ -141,6 +141,9 @@ export const ORDER_URLS = {
     cloudProjectOrder: {
       FR: 'https://www.ovh.com/manager/cloud/#/iaas/pci/project/new',
     },
+    publicCloudProjectOrder: {
+      FR: 'https://www.ovh.com/manager/public-cloud/#!/pci/projects/new',
+    },
     orderSql: {
       FR: 'https://www.ovh.com/manager/web/#/configuration/sql_order?orderType=dbaas',
     },
@@ -201,6 +204,15 @@ export const ORDER_URLS = {
       WE: 'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
       WS: 'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
     },
+    publicCloudProjectOrder: {
+      ASIA: 'https://ca.ovh.com/manager/public-cloud/#!/pci/projects/new',
+      AU: 'https://ca.ovh.com/manager/public-cloud/#!/pci/projects/new',
+      CA: 'https://ca.ovh.com/manager/public-cloud/#!/pci/projects/new',
+      QC: 'https://ca.ovh.com/manager/public-cloud/#!/pci/projects/new',
+      SG: 'https://ca.ovh.com/manager/public-cloud/#!/pci/projects/new',
+      WE: 'https://ca.ovh.com/manager/public-cloud/#!/pci/projects/new',
+      WS: 'https://ca.ovh.com/manager/public-cloud/#!/pci/projects/new',
+    },
     express_review_base: {
       ASIA: 'https://ca.ovh.com/asia/order/express/#/express/review',
       AU: 'https://ca.ovh.com/au/order/express/#/express/review',
@@ -252,19 +264,21 @@ export const ORDER_URLS = {
     cloudProjectOrder: {
       US: 'https://us.ovhcloud.com/manager/cloud/#/iaas/pci/offer',
     },
+    publicCloudProjectOrder: {
+      FR: 'https://us.ovhcloud.com/manager/public-cloud/#!/pci/projects/new',
+    },
     express_review_base: {
       US: 'https://us.ovhcloud.com/order/express/#/express/review',
     },
   },
 };
 
-
 export const SIDEBAR_ORDER_CONFIG = [
   {
     id: 'order-pci-project-new',
     title: 'cloud_project',
     icon: 'ovh-font ovh-font-public-cloud',
-    linkId: 'cloudProjectOrder',
+    linkId: 'publicCloudProjectOrder',
     app: [DEDICATED],
   },
   {
@@ -298,9 +312,10 @@ export const SIDEBAR_ORDER_CONFIG = [
     id: 'order-additional-ip',
     title: 'ip',
     icon: 'ovh-font ovh-font-ip',
-    state: 'app.ip.agora-order', // TODO: SHOULD BE A LINK
+    state: 'app.ip.agora-order',
     linkId: 'DEDICATED',
-    regions: ['US'],
+    linkPart: '#/configuration/ip?landingTo=ip&tab=ip',
+    regions: ['EU', 'CA'],
     app: [DEDICATED],
   },
   {
@@ -308,7 +323,7 @@ export const SIDEBAR_ORDER_CONFIG = [
     title: 'licence',
     icon: 'ovh-font ovh-font-certificate',
     state: 'app.license.order', // TODO: SHOULD BE A LINK DEDICATED #/configuration/license?landingTo=licences
-    linkId: 'dedicated',
+    linkId: 'DEDICATED',
     linkPart: '#/configuration/license/order',
     app: [DEDICATED],
   },
@@ -373,7 +388,7 @@ export const SIDEBAR_ORDER_CONFIG = [
     id: 'order-nasha',
     title: 'NASHA',
     icon: 'ovh-font ovh-font-cloudnas',
-    state: 'paas.nasha-add', // TODO : Should be external (CLOUD #/paas/nasha/new)
+    state: 'paas.nasha-add',
     linkId: 'CLOUD',
     linkPart: '#/paas/nasha/new',
     featureType: 'NASHA',
@@ -453,7 +468,7 @@ export const SIDEBAR_ORDER_CONFIG = [
     id: 'order-logs',
     title: 'logs',
     icon: 'fa fa-bar-chart',
-    state: 'dbaas.logs.welcome', // TODO : Should be a link CLOUD #/dbaas/logs/welcome
+    state: 'dbaas.logs.welcome',
     linkId: 'CLOUD',
     linkPart: '#/dbaas/logs/welcome',
     featureType: 'DBAAS_LOGS',

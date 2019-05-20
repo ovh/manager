@@ -107,15 +107,15 @@ export const MICROSOFT_CONFIG = {
         {
           path: '/email/exchange',
           icon: 'ms-Icon ms-Icon--ExchangeLogo',
-          state: 'app.microsoft.exchange',
-          stateParams: ['organization'],
+          loadOnState: 'app.microsoft.exchange',
+          stateParams: ['organizationId'],
           app: [DEDICATED],
           types: [
             {
-              path: '/email/exchange/:organization/service',
+              path: '/email/exchange/:organizationId/service',
               icon: 'ms-Icon ms-Icon--ExchangeLogo',
               state: 'app.microsoft.exchange',
-              stateParams: [],
+              stateParams: ['organizationId', 'productId'], // TODO: state
               app: [DEDICATED],
             },
           ],

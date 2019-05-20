@@ -6,6 +6,7 @@ import get from 'lodash/get';
 import has from 'lodash/has';
 import includes from 'lodash/includes';
 import isArray from 'lodash/isArray';
+import isEmpty from 'lodash/isEmpty';
 import isFunction from 'lodash/isFunction';
 import isString from 'lodash/isString';
 import map from 'lodash/map';
@@ -17,7 +18,6 @@ import { MANAGER_URLS } from './constants';
 import { SIDEBAR_CONFIG } from './sidebar.constants';
 import { ORDER_URLS, SIDEBAR_ORDER_CONFIG } from './order.constants';
 import { DEDICATED_SIDEBAR_CONFIG, DEDICATED_ORDER_SIDEBAR_CONFIG } from './dedicated.constants';
-import { CLOUD_SIDEBAR_CONFIG, CLOUD_ORDER_SIDEBAR_CONFIG } from './cloud.constants';
 
 // we should avoid require, but JSURL don't provide an es6 export
 const { stringify } = require('jsurl');
@@ -52,9 +52,10 @@ export default class OvhManagerServerSidebarController {
           this.SIDEBAR_CONFIG = SIDEBAR_CONFIG;
           this.SIDEBAR_ORDER_CONFIG = SIDEBAR_ORDER_CONFIG;
 
-          if (find(universes, { universe: this.universe.toLowerCase() })) {
-            this.SIDEBAR_CONFIG = this.universe === 'DEDICATED' ? DEDICATED_SIDEBAR_CONFIG : CLOUD_SIDEBAR_CONFIG;
-            this.SIDEBAR_ORDER_CONFIG = this.universe === 'DEDICATED' ? DEDICATED_ORDER_SIDEBAR_CONFIG : CLOUD_ORDER_SIDEBAR_CONFIG;
+
+          if (this.universe === 'DEDICATED' && find(universes, { universe: this.universe.toLowerCase() })) {
+            this.SIDEBAR_CONFIG = DEDICATED_SIDEBAR_CONFIG;
+            this.SIDEBAR_ORDER_CONFIG = DEDICATED_ORDER_SIDEBAR_CONFIG;
           }
 
           this.buildFirstLevelMenu();
@@ -144,7 +145,6 @@ export default class OvhManagerServerSidebarController {
       if (!this.SidebarMenu.getItemById(service.id)) {
         const hasSubItems = has(service, 'types') || has(service, 'children');
         const isExternal = !includes(service.app, this.universe);
-
         let link = null;
         if (hasSubItems || has(service, 'link')) {
           link = get(service, 'link');
@@ -176,29 +176,29 @@ export default class OvhManagerServerSidebarController {
     });
   }
 
-  loadServices(types, parent) {
+  loadServices(types, parent, params = {}) {
     const promises = [];
     each(types, (typeDefinition) => {
-      promises.push(this.getTypeItems(typeDefinition, get(parent, 'stateParams')));
+      const parentParams = get(parent, 'stateParams', {});
+      promises.push(this.getTypeItems(typeDefinition, { ...params, ...parentParams }));
     });
     return this.$q.all(promises)
       .then((typesServices) => {
         each(typesServices, (typeServices) => {
           const hasSubItems = has(typeServices.type, 'types');
           each(orderBy(typeServices.items, 'displayName'), (service) => {
-            const isExternal = !includes(typeServices.type.app, this.universe);
-
+            const isExternal = !includes(typeServices.type.app, this.universe)
+              && !isEmpty(service.url);
             let stateParams = null;
-            if (!isExternal) {
-              stateParams = zipObject(get(typeServices.type, 'stateParams'), service.stateParams);
-              if (has(typeServices.type, 'stateParamsTransformer') && isFunction(typeServices.type.stateParamsTransformer)) {
-                stateParams = typeServices.type.stateParamsTransformer(stateParams);
-              }
+
+            stateParams = zipObject(get(typeServices.type, 'stateParams', []), get(service, 'stateParams', []));
+            if (has(typeServices.type, 'stateParamsTransformer') && isFunction(typeServices.type.stateParamsTransformer)) {
+              stateParams = typeServices.type.stateParamsTransformer(stateParams);
             }
 
             const menuItem = this.SidebarMenu.addMenuItem({
               title: service.displayName,
-              allowSubItems: hasSubItems,
+              allowSubItems: hasSubItems && !isExternal,
               allowSearch: false,
               state: isExternal ? null : get(typeServices.type, 'state'),
               stateParams,
@@ -208,8 +208,12 @@ export default class OvhManagerServerSidebarController {
               loadOnState: get(typeServices.type, 'loadOnState'),
             }, parent);
 
-            if (hasSubItems) {
-              menuItem.onLoad = () => this.loadServices(typeServices.type.types, menuItem);
+            if (hasSubItems && !isExternal) {
+              menuItem.onLoad = () => this.loadServices(
+                typeServices.type.types,
+                menuItem,
+                stateParams,
+              );
             }
           });
         });
