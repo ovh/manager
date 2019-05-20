@@ -1,6 +1,10 @@
 $step-dimension: 40px;
 
 pci-project-new { /* stylelint-disable-line */
+  @import '~bootstrap4/scss/_functions';
+  @import '~bootstrap4/scss/_variables';
+  @import "~bootstrap4/scss/mixins/_breakpoints";
+
   .pci-projects-new {
     background-color: rgb(241, 249, 253);
 
@@ -14,8 +18,11 @@ pci-project-new { /* stylelint-disable-line */
       line-height: 16px;
     }
 
-    .bg-white {
-      background-color: #fff;
+    .validate-voucher-info {
+      font-size: 14px;
+      max-width: 200px;
+      text-align: right;
+      margin-right: $spacer * .5;
     }
 
     .oui-progress-tracker {
@@ -58,6 +65,33 @@ pci-project-new { /* stylelint-disable-line */
         &.oui-progress-tracker__step_complete .oui-progress-tracker__status::before {
           content: counter(oui-progress-tracker);
           font-family: inherit;
+        }
+      }
+    }
+
+    @include media-breakpoint-down(sm) {
+      .oui-field .oui-field__control {
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .actions-container {
+        text-align: center;
+
+        .validate-voucher-info {
+          text-align: left;
+          max-width: 100%;
+          display: block;
+          margin-right: 0;
+          margin-bottom: $spacer;
+        }
+
+        a,
+        .oui-button {
+          max-width: 100%;
+          display: block;
+          width: 100%;
+          margin-bottom: $spacer;
         }
       }
     }

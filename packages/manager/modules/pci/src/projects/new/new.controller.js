@@ -76,6 +76,7 @@ export default class PciProjectNewCtrl {
       || currentStep.loading.init
       || currentStep.loading.availableSteps
       || currentStep.loading.voucher
+      || (currentStep.model.voucher.value && !currentStep.model.voucher.submitted)
       || (currentStep.model.mode === 'credits' && !currentStep.model.credit.value);
   }
 

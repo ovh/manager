@@ -121,6 +121,7 @@ export default /* @ngInject */ ($stateProvider) => {
               valid: false,
               value: null,
               paymentMeanRequired: null,
+              submitted: false,
             },
             defaultPaymentMethod: null,
             paymentType: null,
