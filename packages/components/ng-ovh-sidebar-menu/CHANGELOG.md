@@ -1,3 +1,12 @@
+## [8.0.1](https://github.com/ovh-ux/ng-ovh-sidebar-menu/compare/v8.0.0...v8.0.1) (2019-05-20)
+
+
+### Bug Fixes
+
+* set group scroll content max height ([f84a07b](https://github.com/ovh-ux/ng-ovh-sidebar-menu/commit/f84a07b))
+
+
+
 # [8.0.0](https://github.com/ovh-ux/ng-ovh-sidebar-menu/compare/v8.0.0-beta.1...v8.0.0) (2019-05-20)
 
 
