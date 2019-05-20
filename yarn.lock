@@ -1792,13 +1792,6 @@
     draggable "^4.2.0"
     lodash "^4.17.11"
 
-"@ovh-ux/ng-ovh-payment-method@^2.2.0":
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-payment-method/-/ng-ovh-payment-method-2.2.0.tgz#2161485afcd5b9b75dfb29bb56c26977a81e1772"
-  integrity sha512-SCTVdGUNeyUXqTMege1IIYrMSod9upc85ZhT8lK4+H2DIfTtZqWtgVgDDf9cxh/CEmY8AGirhSIIV6Wu2jBTBw==
-  dependencies:
-    lodash "^4.17.11"
-
 "@ovh-ux/ng-ovh-payment-method@^3.0.0":
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-payment-method/-/ng-ovh-payment-method-3.0.0.tgz#7fd51fa7696abe12b2afdaf5443d957b9378cafc"
