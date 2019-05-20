@@ -1,3 +1,13 @@
+# [8.0.0](https://github.com/ovh-ux/ng-ovh-sidebar-menu/compare/v8.0.0-beta.1...v8.0.0) (2019-05-20)
+
+
+### Bug Fixes
+
+* remove vs-repeat ([5331ae4](https://github.com/ovh-ux/ng-ovh-sidebar-menu/commit/5331ae4))
+* revert old style ([edccc72](https://github.com/ovh-ux/ng-ovh-sidebar-menu/commit/edccc72))
+
+
+
 # [8.0.0-beta.1](https://github.com/ovh-ux/ng-ovh-sidebar-menu/compare/v8.0.0-beta.0...v8.0.0-beta.1) (2019-03-18)
 
 
