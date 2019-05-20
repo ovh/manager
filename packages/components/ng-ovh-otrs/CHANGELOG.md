@@ -1,3 +1,12 @@
+## [7.0.2](https://github.com/ovh-ux/ng-ovh-otrs/compare/v7.0.1...v7.0.2) (2019-05-20)
+
+
+### Bug Fixes
+
+* **popup:** retrieve services only when popup is open ([87a28fe](https://github.com/ovh-ux/ng-ovh-otrs/commit/87a28fe))
+
+
+
 ## [7.0.1](https://github.com/ovh-ux/ng-ovh-otrs/compare/v7.0.0...v7.0.1) (2019-03-20)
 
 
