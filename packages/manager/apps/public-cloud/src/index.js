@@ -13,6 +13,7 @@ import 'script-loader!jquery-ui/ui/minified/mouse.min';
 import 'script-loader!jquery-ui/ui/minified/draggable.min';
 import 'script-loader!moment/min/moment-with-locales.min.js';
 import 'script-loader!angular-ui-validate/dist/validate.js';
+import 'ovh-ui-angular';
 /* eslint-enable import/no-webpack-loader-syntax, import/extensions */
 
 import get from 'lodash/get';
@@ -61,6 +62,7 @@ angular
     preload,
     walkMe,
     ngAnimate,
+    'oui',
   ].filter(value => value !== null)) // Remove null because __NG_APP_INJECTIONS__ can be null
   .controller('PublicCloudController', controller)
   .service('publicCloud', service)

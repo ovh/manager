@@ -18,7 +18,11 @@
                 <div class="w-100 h-100 position-absolute" style="top: 0; left: 0;">
                     <div class="tour-backdrop w-100 h-100 d-none d-lg-block" data-ng-if="$ctrl.shouldShowWalkMe" data-ng-click="$ctrl.endWalkMe()"></div>
                     <div class="tour-backdrop w-100 h-100 d-block d-lg-none bg-transparent" data-ng-if="$ctrl.shouldShowWalkMe" data-ng-click="$ctrl.endWalkMe()"></div>
-                    <div class="h-100 w-100" ui-view></div>
+                    <div class="h-100 w-100" data-ui-view>
+                        <div class="h-100 d-flex" data-ng-init="$ctrl.initRedirect()">
+                            <oui-spinner size="l" class="m-auto"></oui-spinner>
+                        </div>
+                    </div>
                 </div>
             </div>
             <a data-ng-if="$ctrl.feedbackUrl" data-ng-href="{{ $ctrl.feedbackUrl }}" rel="noopener" target="_blank" style="position: fixed; right: 2rem; bottom: 2rem;">
