@@ -1,3 +1,12 @@
+## [0.3.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-navbar@0.3.2...@ovh-ux/manager-navbar@0.3.3) (2019-05-20)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([85c83ca](https://github.com/ovh-ux/manager/commit/85c83ca))
+
+
+
 ## [0.3.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-navbar@0.3.1...@ovh-ux/manager-navbar@0.3.2) (2019-05-20)
 
 

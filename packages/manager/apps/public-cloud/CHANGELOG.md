@@ -1,3 +1,12 @@
+# [0.7.0-alpha.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.7.0-alpha.1...@ovh-ux/manager-public-cloud@0.7.0-alpha.2) (2019-05-20)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([7ef3b3f](https://github.com/ovh-ux/manager/commit/7ef3b3f))
+
+
+
 # [0.7.0-alpha.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.7.0-alpha.0...@ovh-ux/manager-public-cloud@0.7.0-alpha.1) (2019-05-20)
 
 
