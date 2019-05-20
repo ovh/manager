@@ -36,7 +36,6 @@ pci-project-creating { /* stylelint-disable-line */
         }
       }
 
-      // @media(min-width: map-get($grid-breakpoints, md)) {
       @include media-breakpoint-up(md) {
         img {
           max-width: $spinner-size;

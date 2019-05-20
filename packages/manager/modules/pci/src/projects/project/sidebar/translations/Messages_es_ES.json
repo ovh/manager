@@ -29,5 +29,10 @@
  "cloud_sidebar_project_management_contact_rights": "Contactos y permisos",
  "cloud_sidebar_project_management_settings": "Ajustes del proyecto",
  "cloud_sidebar_public_cloud_project_toggle": "Abrir la lista de proyectos",
- "cloud_sidebar_public_cloud_project_toggle_close": "Volver al menú"
+ "cloud_sidebar_public_cloud_project_toggle_close": "Volver al menú",
+ "cloud_sidebar_public_cloud_project_forward_legacy": "Volver a la antigua interfaz",
+ "pci_projects_project_forward": "Vamos a restablecer la antigua interfaz del área de cliente Cloud",
+ "pci_projects_project_forward_feedback": "Dar mi opinión",
+ "pci_projects_project_forward_legacy": "Ir a la antigua interfaz",
+ "pci_projects_project_forward_content": "Gracias por haber probado la nueva versión del área de cliente de Public Cloud. ¿Le ha gustado? ¿Qué cambiaría? Sus comentarios nos ayudarán a mejorarla."
 }
