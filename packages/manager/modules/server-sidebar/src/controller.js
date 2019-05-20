@@ -160,7 +160,7 @@ export default class OvhManagerServerSidebarController {
           title: this.$translate.instant(`server_sidebar_item_${service.id}_title`),
           allowSubItems: hasSubItems,
           allowSearch: hasSubItems,
-
+          infiniteScroll: hasSubItems,
           state: isExternal ? null : get(service, 'state'),
           loadOnState: get(service, 'loadOnState'),
           url: link,
@@ -199,6 +199,7 @@ export default class OvhManagerServerSidebarController {
             const menuItem = this.SidebarMenu.addMenuItem({
               title: service.displayName,
               allowSubItems: hasSubItems && !isExternal,
+              infiniteScroll: hasSubItems && !isExternal,
               allowSearch: false,
               state: isExternal ? null : get(typeServices.type, 'state'),
               stateParams,

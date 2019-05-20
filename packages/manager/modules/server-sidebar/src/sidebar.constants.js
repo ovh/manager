@@ -98,7 +98,7 @@ export const NETWORKS_CONFIG = {
   app: [DEDICATED],
 };
 
-export const MICROSOFT_CONFIG = {
+export const OLD_MICROSOFT_CONFIG = {
   id: 'microsoft',
   children: [
     {
@@ -128,6 +128,32 @@ export const MICROSOFT_CONFIG = {
   ],
   loadOnState: 'app.microsoft',
   icon: 'ms-Icon ms-Icon--WindowsLogo',
+  app: [DEDICATED],
+  regions: ['CA'],
+};
+
+export const MICROSOFT_CONFIG = {
+  id: 'microsoft_exchange',
+  types: [
+    {
+      path: '/email/exchange',
+      icon: 'ms-Icon ms-Icon--ExchangeLogo',
+      loadOnState: 'app.microsoft.exchange',
+      stateParams: ['organizationId'],
+      app: [DEDICATED],
+      types: [
+        {
+          path: '/email/exchange/:organizationId/service',
+          icon: 'ms-Icon ms-Icon--ExchangeLogo',
+          state: 'app.microsoft.exchange',
+          stateParams: ['organizationId', 'productId'], // TODO: state
+          app: [DEDICATED],
+        },
+      ],
+    },
+  ],
+  loadOnState: 'app.microsoft.exchange',
+  icon: 'ms-Icon ms-Icon--ExchangeLogo',
   app: [DEDICATED],
   regions: ['CA'],
 };

@@ -144,6 +144,9 @@ export const ORDER_URLS = {
     publicCloudProjectOrder: {
       FR: 'https://www.ovh.com/manager/public-cloud/#!/pci/projects/new',
     },
+    publicCloudKubernetes: {
+      FR: 'https://www.ovh.com/manager/public-cloud/#!/pci/projects/default/kubernetes/new',
+    },
     orderSql: {
       FR: 'https://www.ovh.com/manager/web/#/configuration/sql_order?orderType=dbaas',
     },
@@ -213,6 +216,8 @@ export const ORDER_URLS = {
       WE: 'https://ca.ovh.com/manager/public-cloud/#!/pci/projects/new',
       WS: 'https://ca.ovh.com/manager/public-cloud/#!/pci/projects/new',
     },
+    publicCloudKubernetes: {
+    },
     express_review_base: {
       ASIA: 'https://ca.ovh.com/asia/order/express/#/express/review',
       AU: 'https://ca.ovh.com/au/order/express/#/express/review',
@@ -266,6 +271,8 @@ export const ORDER_URLS = {
     },
     publicCloudProjectOrder: {
       FR: 'https://us.ovhcloud.com/manager/public-cloud/#!/pci/projects/new',
+    },
+    publicCloudKubernetes: {
     },
     express_review_base: {
       US: 'https://us.ovhcloud.com/order/express/#/express/review',
@@ -333,26 +340,12 @@ export const SIDEBAR_ORDER_CONFIG = [
     id: 'order-kube',
     title: 'kube',
     icon: 'ovh-font ovh-font-kubernetes',
-    linkId: 'express_review_base',
-    linkPart: [{
-      productId: 'cloud',
-      planCode: 'project.2018',
-      configuration: [{
-        label: 'description',
-        values: ['Kubernetes project'],
-      }],
-    }, {
-      productId: 'kubernetes',
-      planCode: 'kubernetes-managed-cluster',
-      configuration: [{
-        label: 'name',
-        values: ['Kubernetes cluster+'],
-      }],
-    }],
+    linkId: 'publicCloudKubernetes',
     target: '_blank',
     external: true,
     featureType: 'KUBE',
     app: [CLOUD],
+    regions: ['EU'],
   },
   {
     id: 'order-vps',
