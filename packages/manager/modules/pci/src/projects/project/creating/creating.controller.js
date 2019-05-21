@@ -1,3 +1,8 @@
+import EnvironmentService from '@ovh-ux/manager-config';
+import get from 'lodash/get';
+
+import { PCI_REDIRECT_URLS } from '../../../constants';
+
 import {
   SLIDE_ANIMATION_INTERVAL,
   SLIDE_IMAGES,
@@ -18,6 +23,11 @@ export default class ProjectCreatingCtrl {
       currentIndex: 0,
       list: SLIDE_IMAGES,
     };
+
+    this.supportUrl = get(
+      PCI_REDIRECT_URLS,
+      `${EnvironmentService.Environment.region}.support`,
+    );
   }
 
   startCreationPolling() {
