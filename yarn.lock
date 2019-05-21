@@ -1655,24 +1655,6 @@
     rollup-pluginutils "^2.3.3"
     slash "^2.0.0"
 
-"@ovh-ux/manager-pci@^0.9.0":
-  version "0.9.1"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-pci/-/manager-pci-0.9.1.tgz#afa2e590565f48854f65c71021bbecb74594acb9"
-  integrity sha512-+3GTHssQcjghKvxlUrR3PXpQ0ze3qUzpiwqRkSlFH7qANG9AyC9opgbwsHDI1Lb6YPORCpbv4FkfnLSlwEXIdw==
-  dependencies:
-    "@fortawesome/fontawesome-free" "^5.8.2"
-    "@ovh-ux/manager-config" "^0.2.0"
-    d3 "~3.5.13"
-    file-saver "^2.0.1"
-    flag-icon-css "~0.8.5"
-    ipaddr.js "^1.9.0"
-    jsurl "^0.1.5"
-    lodash "^4.17.11"
-    moment "^2.19"
-    urijs "^1.19.1"
-    validator "^10.11.0"
-    xterm "^3.12.2"
-
 "@ovh-ux/manager-webpack-config@^3.0.7":
   version "3.0.7"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-webpack-config/-/manager-webpack-config-3.0.7.tgz#d158154e22c44a225dd923505c62b8a7e6343c1f"
