@@ -1,3 +1,12 @@
+# [0.4.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-navbar@0.3.3...@ovh-ux/manager-navbar@0.4.0) (2019-05-21)
+
+
+### Features
+
+* add server-sidebar module ([#639](https://github.com/ovh-ux/manager/issues/639)) ([06be278](https://github.com/ovh-ux/manager/commit/06be278))
+
+
+
 ## [0.3.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-navbar@0.3.2...@ovh-ux/manager-navbar@0.3.3) (2019-05-20)
 
 

@@ -1,3 +1,19 @@
+# [0.8.0-alpha.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.7.0-alpha.2...@ovh-ux/manager-public-cloud@0.8.0-alpha.0) (2019-05-21)
+
+
+### Bug Fixes
+
+* **pci.projects.new:** detect redirect from hipay/paypal before redirect ([bf622f0](https://github.com/ovh-ux/manager/commit/bf622f0))
+* **public-cloud:** remove unused directive ([dd83fbe](https://github.com/ovh-ux/manager/commit/dd83fbe))
+
+
+### Features
+
+* **public-cloud:** display survey only for FR ([#652](https://github.com/ovh-ux/manager/issues/652)) ([767dc00](https://github.com/ovh-ux/manager/commit/767dc00))
+* **public-cloud:** remove beta page ([5a10ffe](https://github.com/ovh-ux/manager/commit/5a10ffe))
+
+
+
 # [0.7.0-alpha.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.7.0-alpha.1...@ovh-ux/manager-public-cloud@0.7.0-alpha.2) (2019-05-20)
 
 

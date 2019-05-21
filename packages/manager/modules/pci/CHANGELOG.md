@@ -1,3 +1,12 @@
+# [0.11.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.10.0...@ovh-ux/manager-pci@0.11.0) (2019-05-21)
+
+
+### Features
+
+* **public-cloud:** display survey only for FR ([#652](https://github.com/ovh-ux/manager/issues/652)) ([767dc00](https://github.com/ovh-ux/manager/commit/767dc00))
+
+
+
 # [0.10.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.9.1...@ovh-ux/manager-pci@0.10.0) (2019-05-20)
 
 
