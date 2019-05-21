@@ -74,7 +74,7 @@ export default class OvhManagerServerSidebarController {
   filterRegions(items) {
     return filter(items, (item) => {
       if (has(item, 'regions')) {
-        return includes(item.regions, this.coreConfig.getRegion());
+        return this.coreConfig.isRegion(item.regions);
       }
       return true;
     });
@@ -111,8 +111,8 @@ export default class OvhManagerServerSidebarController {
         const actionsMenuOptions = map(
           this.filterRegions(this.SIDEBAR_ORDER_CONFIG),
           (orderItemConfig) => {
-            if (!has(orderItemConfig, 'featureTupe')
-              || this.CucFeatureAvailabilityService.hasFeature(orderItemConfig.featureTupe, 'sidebarOrder', ovhSubsidiary)
+            if (!has(orderItemConfig, 'featureType')
+              || this.CucFeatureAvailabilityService.hasFeature(orderItemConfig.featureType, 'sidebarOrder', ovhSubsidiary)
             ) {
               const isExternal = !includes(orderItemConfig.app, this.universe);
 
@@ -182,7 +182,7 @@ export default class OvhManagerServerSidebarController {
 
   loadServices(types, parent, params = {}) {
     const promises = [];
-    each(types, (typeDefinition) => {
+    each(this.filterRegions(types), (typeDefinition) => {
       const parentParams = get(parent, 'stateParams', {});
       promises.push(this.getTypeItems(typeDefinition, { ...params, ...parentParams }));
     });
@@ -193,9 +193,8 @@ export default class OvhManagerServerSidebarController {
           each(orderBy(typeServices.items, 'displayName'), (service) => {
             const isExternal = !includes(typeServices.type.app, this.universe)
               && !isEmpty(service.url);
-            let stateParams = null;
 
-            stateParams = zipObject(get(typeServices.type, 'stateParams', []), get(service, 'stateParams', []));
+            let stateParams = zipObject(get(typeServices.type, 'stateParams', []), get(service, 'stateParams', []));
             if (has(typeServices.type, 'stateParamsTransformer') && isFunction(typeServices.type.stateParamsTransformer)) {
               stateParams = typeServices.type.stateParamsTransformer(stateParams);
             }
