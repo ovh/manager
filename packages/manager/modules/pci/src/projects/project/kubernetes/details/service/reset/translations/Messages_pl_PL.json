@@ -5,7 +5,7 @@
  "pci_projects_project_kubernetes_service_reset_common_delete": "Usuń",
  "pci_projects_project_kubernetes_service_reset_common_reinstall": "Reinstaluj",
  "pci_projects_project_kubernetes_service_reset_message": "Klikając tutaj, przywrócisz pierwotne ustawienia usługi Kubernetes. Operacja ta spowoduje usunięcie wszystkich Twoich usług, ich konfiguracji, etc... <strong>Operacja ta jest nieodwracalna</strong>.",
- "pci_projects_project_kubernetes_service_reset_success": "Reset klastra Kubernetes w trakcie...",
+ "pci_projects_project_kubernetes_service_reset_success": "Trwa reset klastra Kubernetes.",
  "pci_projects_project_kubernetes_service_reset_error": "Wystąpił błąd podczas resetu klastra: {{ message }}.",
  "pci_projects_project_kubernetes_service_reset_enter": "Wprowadź \"RESET\" w poniższym polu, aby potwierdzić operację.",
  "pci_projects_project_kubernetes_service_reset_nodes": "Wybierz operację dotyczącą węzłów obliczeniowych:",

@@ -5,7 +5,7 @@
  "cpbc_hourly_instance_detail_title": "Serwery",
  "cpbc_object_storage_detail_title": "Object Storage",
  "cpbc_archive_storage_detail_title": "Cloud Archive",
- "cpbc_snapshot_detail_title": "Przestrzeń na kopie zapasowe",
+ "cpbc_snapshot_detail_title": "Przechowywanie kopii zapasowe",
  "cpbc_volume_detail_title": "Dodatkowe dyski",
  "cpbc_hourly_instance_trafic_title": "Ruch wychodzący z instancji do Internetu"
 }

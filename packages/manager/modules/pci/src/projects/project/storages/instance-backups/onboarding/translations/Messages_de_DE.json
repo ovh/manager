@@ -1,0 +1,10 @@
+{
+ "pci_projects_project_storages_instance-backups_onboarding_content1": "Sie haben noch kein Backup Ihrer Instanz erstellt.",
+ "pci_projects_project_storages_instance-backups_onboarding_content2": "Nutzen Sie einen Backup-Dienst zur Sicherung Ihrer Instanzen.",
+ "pci_projects_project_storages_instance-backups_onboarding_content3": "Mithilfe von Instanz-Backups können Sie Ihre Instanzen jederzeit sichern. Das Systemlaufwerk wird kopiert und auf einen separaten Speicherplatz übertragen. Anschließend können Sie Ihre Backups nutzen, um eine frühere Version Ihrer Instanz neu zu starten oder um neue Instanzen auf Basis dieses Systemlaufwerks zu starten.",
+ "pci_projects_project_storages_instance-backups_onboarding_content4": "Die Instanz-Backups werden in den Katalog der Systemabbilder aufgenommen. Sie sind besonders nützlich bei Deployment und Industrialisierung.",
+ "pci_projects_project_storages_instance-backups_onboarding_content5": "Für die Erstellung eines Instanz-Backups müssen Sie unbedingt mindestens eine Instanz erstellt haben.",
+ "pci_projects_project_storages_instance-backups_onboarding_action_label": "Instanz-Backup erstellen",
+ "pci_projects_project_storages_instance-backups_onboarding_guides_transfer-instance-backup-datacenter_title": "Backup einer Instanz von einem Rechenzentrum in ein anderes übertragen",
+ "pci_projects_project_storages_instance-backups_onboarding_guides_transfer-instance-backup-datacenter_description": "Hier erfahren Sie, wie Sie das Backup einer Instanz transferieren und dabei Zustand und Status der Instanz beibehalten."
+}
