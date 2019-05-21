@@ -54,7 +54,6 @@ export default class OvhManagerServerSidebarController {
           this.SIDEBAR_CONFIG = SIDEBAR_CONFIG;
           this.SIDEBAR_ORDER_CONFIG = SIDEBAR_ORDER_CONFIG;
 
-
           if (this.universe === 'DEDICATED' && find(universes, { universe: this.universe.toLowerCase() })) {
             this.SIDEBAR_CONFIG = DEDICATED_SIDEBAR_CONFIG;
             this.SIDEBAR_ORDER_CONFIG = DEDICATED_ORDER_SIDEBAR_CONFIG;
@@ -144,7 +143,7 @@ export default class OvhManagerServerSidebarController {
   }
 
   addItems(services, parent = null) {
-    each(services, (service) => {
+    each(this.filterRegions(services), (service) => {
       if (!this.SidebarMenu.getItemById(service.id)) {
         const hasSubItems = has(service, 'types') || has(service, 'children');
         const isExternal = !includes(service.app, this.universe);
@@ -155,7 +154,6 @@ export default class OvhManagerServerSidebarController {
           link = get(MANAGER_URLS, [this.coreConfig.getRegion(), service.app[0], 'FR']);
           link += service.stateUrl;
         }
-
         const menuItem = this.SidebarMenu.addMenuItem({
           id: service.id,
           name: service.id,
@@ -199,14 +197,25 @@ export default class OvhManagerServerSidebarController {
               stateParams = typeServices.type.stateParamsTransformer(stateParams);
             }
 
+            let link = null;
+            let state = null;
+            if (isExternal) {
+              link = service.url;
+            } else {
+              state = get(typeServices.type, 'state');
+              if (has(typeServices.type, 'getState') && isFunction(typeServices.type.getState)) {
+                state = typeServices.type.getState(service.extraParams);
+              }
+            }
+
             const menuItem = this.SidebarMenu.addMenuItem({
               title: service.displayName,
               allowSubItems: hasSubItems && !isExternal,
               infiniteScroll: hasSubItems && !isExternal,
               allowSearch: false,
-              state: isExternal ? null : get(typeServices.type, 'state'),
+              state,
               stateParams,
-              url: isExternal ? service.url : null,
+              url: link,
               target: isExternal ? '_self' : null,
               icon: get(typeServices.type, 'icon'),
               loadOnState: get(typeServices.type, 'loadOnState'),

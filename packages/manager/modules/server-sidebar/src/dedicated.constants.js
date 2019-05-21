@@ -21,6 +21,7 @@ export const DEDICATED_SERVER_CONFIG = {
   ],
   icon: 'ovh-font ovh-font-server',
   app: [DEDICATED],
+  regions: ['EU', 'CA', 'US'],
 };
 
 export const DEDICATED_CLOUD_CONFIG = {
@@ -48,6 +49,7 @@ export const DEDICATED_CLOUD_CONFIG = {
   loadOnState: 'app.dedicatedClouds',
   icon: 'ovh-font ovh-font-dedicatedCloud',
   app: [DEDICATED],
+  regions: ['EU', 'CA', 'US'],
 };
 
 export const NETWORKS_CONFIG = {
@@ -64,6 +66,7 @@ export const NETWORKS_CONFIG = {
             'domain',
           ],
           app: [DEDICATED],
+          regions: ['EU'],
         },
       ],
       state: 'app.networks.cdn.dedicated',
@@ -78,7 +81,7 @@ export const NETWORKS_CONFIG = {
       stateParams: ['nasId'],
       icon: 'ovh-font ovh-font-cloudnas',
       app: [DEDICATED],
-      regions: ['EU'],
+      regions: ['EU', 'CA'],
     },
     {
       path: '/dedicated/nasha',
@@ -91,11 +94,13 @@ export const NETWORKS_CONFIG = {
       }),
       icon: 'ovh-font ovh-font-cloudnas',
       app: [DEDICATED],
+      regions: ['EU', 'CA'],
     },
   ],
   loadOnState: 'app.networks',
   icon: 'ovh-font ovh-font-network',
   app: [DEDICATED],
+  regions: ['EU', 'CA'],
 };
 
 export const OLD_MICROSOFT_CONFIG = {
@@ -188,6 +193,7 @@ export const DEDICATED_ORDER_SIDEBAR_CONFIG = [
     icon: 'ovh-font ovh-font-public-cloud',
     linkId: 'cloudProjectOrder',
     app: [DEDICATED],
+    regions: ['EU', 'CA', 'US'],
   },
   {
     id: 'order-nas',
@@ -205,6 +211,7 @@ export const DEDICATED_ORDER_SIDEBAR_CONFIG = [
     linkId: 'dedicatedOrder',
     target: '_blank',
     app: [DEDICATED],
+    regions: ['EU', 'CA', 'US'],
   },
   {
     id: 'order-vrack',
@@ -212,15 +219,15 @@ export const DEDICATED_ORDER_SIDEBAR_CONFIG = [
     icon: 'ovh-font ovh-font-vRack',
     linkId: 'vrackOrder',
     target: '_blank',
-    regions: ['US'],
     app: [DEDICATED],
+    regions: ['EU', 'CA', 'US'],
   },
   {
     id: 'order-additional-ip',
     title: 'ip',
     icon: 'ovh-font ovh-font-ip',
     state: 'app.ip.agora-order',
-    regions: ['US'],
+    regions: ['EU', 'CA', 'US'],
     app: [DEDICATED],
   },
   {
@@ -229,6 +236,7 @@ export const DEDICATED_ORDER_SIDEBAR_CONFIG = [
     icon: 'ovh-font ovh-font-certificate',
     state: 'app.license.order',
     app: [DEDICATED],
+    regions: ['EU', 'CA', 'US'],
   },
 ];
 
