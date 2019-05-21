@@ -12,7 +12,7 @@ export const MANAGER_URLS = {
   },
   CA: {
     DEDICATED: {
-      FR: 'https://ca.ovh.com/manager/dedicated/',
+      FR: 'https://ca.ovh.com/manager/',
     },
     CLOUD: {
       FR: 'https://ca.ovh.com/manager/cloud/repsac/',
