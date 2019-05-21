@@ -1655,6 +1655,24 @@
     rollup-pluginutils "^2.3.3"
     slash "^2.0.0"
 
+"@ovh-ux/manager-pci@^0.8.0":
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-pci/-/manager-pci-0.8.0.tgz#e8e57d49c925d6c35aa37b35e40afdd7c8475f12"
+  integrity sha512-8rSYpebUmFYgMEu71nq96oEg3RQqKQZIayVmANpd5SY0iJxDSuHFCe/TdB43V7Xwy8o1TeJ9ZDQ4t28tQoXEZQ==
+  dependencies:
+    "@fortawesome/fontawesome-free" "^5.8.2"
+    "@ovh-ux/manager-config" "^0.2.0"
+    d3 "~3.5.13"
+    file-saver "^2.0.1"
+    flag-icon-css "~0.8.5"
+    ipaddr.js "^1.9.0"
+    jsurl "^0.1.5"
+    lodash "^4.17.11"
+    moment "^2.19"
+    urijs "^1.19.1"
+    validator "^10.11.0"
+    xterm "^3.12.2"
+
 "@ovh-ux/manager-webpack-config@^3.0.7":
   version "3.0.7"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-webpack-config/-/manager-webpack-config-3.0.7.tgz#d158154e22c44a225dd923505c62b8a7e6343c1f"
@@ -1816,6 +1834,11 @@
   version "8.0.0-beta.1"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-sidebar-menu/-/ng-ovh-sidebar-menu-8.0.0-beta.1.tgz#10cc3aee6f3d0f9b96eb8e3c94af366ddba6a2ec"
   integrity sha512-6xX02CmY1Ua4/09vpeIVN7GzGY9GlNRowAYGpAQaIsBQmCcwi6MUn55Urc3J7xoXBGpEuHtOq13LzxS9PqhC/A==
+
+"@ovh-ux/ng-ovh-sidebar-menu@^8.0.1":
+  version "8.0.1"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-sidebar-menu/-/ng-ovh-sidebar-menu-8.0.1.tgz#54a4de9a815d05f05a582fe7c86769e87f421cd8"
+  integrity sha512-7kIBBBTxX4W5mHADbdyMTTI+j4fQKYTukf8fziKfmGuFITHyq595V54/5EXssiGcT/BKajzNs5B+F7LqZlBx8A==
 
 "@ovh-ux/ng-ovh-sso-auth@^4.0.0", "@ovh-ux/ng-ovh-sso-auth@^4.0.0-beta.0":
   version "4.0.0"
