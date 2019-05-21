@@ -1,3 +1,12 @@
+## [0.2.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-vrack@0.2.2...@ovh-ux/manager-vrack@0.2.3) (2019-05-21)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([2326761](https://github.com/ovh-ux/manager/commit/2326761))
+
+
+
 ## [0.2.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-vrack@0.2.1...@ovh-ux/manager-vrack@0.2.2) (2019-05-20)
 
 
