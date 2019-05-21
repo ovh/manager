@@ -20,6 +20,7 @@ angular
     onboarding,
   ])
   .config(routing)
-  .component('pciProjectFailoverIps', component);
+  .component('pciProjectFailoverIps', component)
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
