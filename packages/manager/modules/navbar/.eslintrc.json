@@ -1,0 +1,6 @@
+{
+  "extends": "../../../../.eslintrc.js",
+  "globals": {
+    "Tour": true
+  }
+}
