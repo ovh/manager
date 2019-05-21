@@ -74,7 +74,7 @@ export default class OvhManagerServerSidebarController {
   filterRegions(items) {
     return filter(items, (item) => {
       if (has(item, 'regions')) {
-        return this.coreConfig.isRegion(item.regions);
+        return includes(item.regions, this.coreConfig.getRegion());
       }
       return true;
     });
