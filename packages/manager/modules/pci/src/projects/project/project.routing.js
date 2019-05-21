@@ -44,6 +44,7 @@ export default /* @ngInject */ ($stateProvider) => {
           ? project.description
           : null),
         sidebarVisible: /* @ngInject */ project => project.status !== 'creating',
+        user: /* @ngInject */ SessionService => SessionService.getUser(),
       },
     });
 };

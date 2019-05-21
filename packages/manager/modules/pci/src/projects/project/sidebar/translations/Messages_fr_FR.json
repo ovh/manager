@@ -29,11 +29,5 @@
   "cloud_sidebar_project_management_contact_rights": "Contacts and Rights",
   "cloud_sidebar_project_management_settings": "Project settings",
   "cloud_sidebar_public_cloud_project_toggle": "Ouvre la liste des projets",
-  "cloud_sidebar_public_cloud_project_toggle_close": "Retour au menu",
-  "cloud_sidebar_public_cloud_project_forward_legacy": "Revenir à l'ancienne interface",
-
-  "pci_projects_project_forward": "Nous allons basculer sur l'ancienne interface Cloud",
-  "pci_projects_project_forward_feedback": "Donnez nous votre avis",
-  "pci_projects_project_forward_legacy": "Continuer vers l'ancienne interface",
-  "pci_projects_project_forward_content": "Merci d'avoir essayé la nouvelle version Public Cloud. Dites-nous ce que vous avez aimé et ce qui ne vous a pas plu. Vos commentaires permettront de l'améliorer."
+  "cloud_sidebar_public_cloud_project_toggle_close": "Retour au menu"
 }
