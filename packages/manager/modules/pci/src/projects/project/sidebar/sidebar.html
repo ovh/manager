@@ -48,23 +48,6 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="oui-sidebar-list__item sidebar-menu-orphan-item">
-                        <button class="oui-sidebar-link"
-                            data-ng-if="$ctrl.user.ovhSubsidiary === 'FR'"
-                            type="button"
-                            data-ng-click="$ctrl.CloudSidebar.goToLegacy()"
-                            data-translate="cloud_sidebar_public_cloud_project_forward_legacy">
-                        </button>
-
-                        <a class="oui-sidebar-link"
-                            data-ng-if="$ctrl.user.ovhSubsidiary !== 'FR'"
-                            data-track-on="click"
-                            data-track-name="public-cloud_menu_back-to-cloud"
-                            data-track-type="action"
-                            data-ng-href="{{$ctrl.legacyUrl}}">
-                          <span data-translate="cloud_sidebar_public_cloud_project_forward_legacy"></span>
-                        </a>
-                    </li>
                 </ul>
             </div>
         </nav>
