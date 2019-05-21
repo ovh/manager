@@ -14,7 +14,6 @@ export default class PciBlockStorageDetailchsSnapshotController {
 
   $onInit() {
     this.snapshot = {};
-    this.priceEstimation = null;
     this.isLoading = false;
 
     this.snapshot.name = `${this.storage.name} ${this.$filter('date')(new Date(), 'short')}`;
