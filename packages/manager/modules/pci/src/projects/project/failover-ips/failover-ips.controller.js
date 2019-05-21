@@ -1,11 +1,15 @@
+import { DEDICATED_IPS_URL } from './failover-ips.constants';
+
 const MESSAGES_CONTAINER_NAME = 'pci.projects.project.failover-ips';
 
 export default class FailoverIpController {
   /* @ngInject */
-  constructor($translate, CucCloudMessage, OvhApiCloudProjectIpFailover) {
+  constructor($translate, coreConfig, CucCloudMessage, OvhApiCloudProjectIpFailover) {
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.OvhApiCloudProjectIpFailover = OvhApiCloudProjectIpFailover;
+
+    this.DEDICATED_IPS_URL = DEDICATED_IPS_URL[coreConfig.getRegion()];
   }
 
   $onInit() {
