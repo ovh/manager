@@ -205,7 +205,7 @@ export const IAAS_CONFIG = {
   ],
   icon: 'ovh-font ovh-font-cloud-root',
   app: [CLOUD],
-  regions: ['EU', 'CA', 'US'],
+  regions: ['EU', 'CA'],
 };
 
 export const PAAS_CONFIG = {
