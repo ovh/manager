@@ -8,6 +8,7 @@ import 'angular-animate';
 
 import routing from './creating.routing';
 import component from './creating.component';
+import service from './creating.service';
 
 import './creating.scss';
 
@@ -23,6 +24,7 @@ angular
   ])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */)
-  .component('pciProjectCreating', component);
+  .component('pciProjectCreating', component)
+  .service('projectCreating', service);
 
 export default moduleName;

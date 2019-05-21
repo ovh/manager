@@ -10,6 +10,12 @@ export default /* @ngInject */ ($stateProvider) => {
       resolve: {
         breadcrumb: () => null,
         onProjectCreated: /* @ngInject */ $state => () => $state.go('^'),
+        projectOrder: /* @ngInject */ (project, projectCreating) => {
+          if (project.orderId) {
+            return projectCreating.getOrderDetails(project.orderId);
+          }
+          return null;
+        },
       },
     });
 };
