@@ -12,15 +12,28 @@ const config = rollupConfig({
   },
 });
 
-const outputs = [config.es()];
+const outputs = [config.es({
+  output: {
+    globals: {
+      Tour: 'Tour',
+    },
+  },
+})];
 
 if (process.env.BUILD === 'production') {
-  outputs.push(config.cjs());
+  outputs.push(config.cjs({
+    output: {
+      globals: {
+        Tour: 'Tour',
+      },
+    },
+  }));
   outputs.push(
     config.umd({
       output: {
         globals: {
           angular: 'angular',
+          Tour: 'Tour',
         },
       },
     }),

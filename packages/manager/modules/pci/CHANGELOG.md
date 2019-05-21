@@ -1,3 +1,29 @@
+# [0.10.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.9.1...@ovh-ux/manager-pci@0.10.0) (2019-05-20)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([85c83ca](https://github.com/ovh-ux/manager/commit/85c83ca))
+* **i18n:** add missing translations ([7ef3b3f](https://github.com/ovh-ux/manager/commit/7ef3b3f))
+
+
+### Features
+
+* **pci.projects.new:** improve responsive and add voucher details ([c95c52d](https://github.com/ovh-ux/manager/commit/c95c52d))
+
+
+
+## [0.9.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.9.0...@ovh-ux/manager-pci@0.9.1) (2019-05-20)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([ee69d82](https://github.com/ovh-ux/manager/commit/ee69d82))
+* **i18n:** add missing translations ([fd721f6](https://github.com/ovh-ux/manager/commit/fd721f6))
+* **pci.instance:** select newly added ssh key on instance creation ([927735c](https://github.com/ovh-ux/manager/commit/927735c))
+
+
+
 # [0.9.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.8.0...@ovh-ux/manager-pci@0.9.0) (2019-05-17)
 
 

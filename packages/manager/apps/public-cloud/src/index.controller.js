@@ -60,6 +60,24 @@ export default class PublicCloudController {
         reference: ['creating', 'ok'],
       }])
       .then(((projects) => {
+        // if in project creation and redirected from hipay or paypal
+        // we don't necessary have any project so do not redirect to onboarding state
+        // $transition is not injected and stateParams not setted
+        // so use hash and parse it to detect if hipay/paypal param is present
+        const hashes = this.$window.location.hash.slice(
+          this.$window.location.hash.indexOf('?') + 1,
+        ).split('&');
+        const params = {};
+        hashes.map((hash) => {
+          const [key, val] = hash.split('=');
+          params[key] = decodeURIComponent(val);
+          return true;
+        });
+
+        if (params.hiPayStatus || params.paypalAgreementStatus) {
+          return true;
+        }
+
         if (projects.length > 0) {
           return this.ovhUserPref
             .getValue(DEFAULT_PROJECT_KEY)
@@ -78,6 +96,7 @@ export default class PublicCloudController {
               return this.$state.go('pci.error');
             });
         }
+
         return this.$state.go('pci.projects.onboarding');
       }));
   }
