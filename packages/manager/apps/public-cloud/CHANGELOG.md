@@ -1,3 +1,12 @@
+# [0.8.0-alpha.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.8.0-alpha.0...@ovh-ux/manager-public-cloud@0.8.0-alpha.1) (2019-05-21)
+
+
+### Bug Fixes
+
+* bad redirect to onboarding for paypal returns ([13d972a](https://github.com/ovh-ux/manager/commit/13d972a))
+
+
+
 # [0.8.0-alpha.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.7.0-alpha.2...@ovh-ux/manager-public-cloud@0.8.0-alpha.0) (2019-05-21)
 
 

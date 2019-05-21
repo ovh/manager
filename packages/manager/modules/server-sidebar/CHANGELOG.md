@@ -1,3 +1,13 @@
+## [0.1.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.1.1...@ovh-ux/manager-server-sidebar@0.1.2) (2019-05-21)
+
+
+### Bug Fixes
+
+* **server-sidebar:** update dedicated manager url ([838c84b](https://github.com/ovh-ux/manager/commit/838c84b))
+* **server-sidebar:** update vps regions ([5cbb8e1](https://github.com/ovh-ux/manager/commit/5cbb8e1))
+
+
+
 ## [0.1.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.1.0...@ovh-ux/manager-server-sidebar@0.1.1) (2019-05-21)
 
 
