@@ -67,8 +67,18 @@ export default class PublicCloudController {
         const hashes = this.$window.location.hash.slice(
           this.$window.location.hash.indexOf('?') + 1,
         ).split('&');
+        // as paypal redirect to search query
+        // search also in location search
+        const searchHashes = this.$window.location.search.slice(
+          this.$window.location.search.indexOf('?') + 1,
+        ).split('&');
         const params = {};
         hashes.map((hash) => {
+          const [key, val] = hash.split('=');
+          params[key] = decodeURIComponent(val);
+          return true;
+        });
+        searchHashes.map((hash) => {
           const [key, val] = hash.split('=');
           params[key] = decodeURIComponent(val);
           return true;
