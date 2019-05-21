@@ -16,7 +16,6 @@ export default class PublicCloudController {
     CloudSidebar,
     ovhUserPref,
     publicCloud,
-    OvhApiMe,
     SessionService,
   ) {
     this.$scope = $scope;
@@ -31,7 +30,6 @@ export default class PublicCloudController {
     this.feedback = feedback;
     this.ovhUserPref = ovhUserPref;
     this.publicCloud = publicCloud;
-    this.OvhApiMe = OvhApiMe;
     this.sessionService = SessionService;
     this.navbarOptions = options;
 
