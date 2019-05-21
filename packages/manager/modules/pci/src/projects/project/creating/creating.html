@@ -1,7 +1,7 @@
 <div class="pci-projects-creating h-100 overflow-auto">
-    <div class="container-fluid h-100">
+    <div class="container h-100">
         <div class="row minh-100 justify-content-md-center text-center">
-            <div class="col-md-7 p-5 bg-white minh-100 d-md-flex align-items-md-center">
+            <div class="col-lg-10 p-5 bg-white minh-100 d-md-flex align-items-md-center">
                 <div class="p-5 mx-auto">
                     <h1 class="oui-heading_4"
                         data-translate="pci_projects_project_creating_main_title">
@@ -10,6 +10,16 @@
                     <h2 class="oui-heading_5"
                         data-translate="pci_projects_project_creating_secondary_title">
                     </h2>
+
+                    <div data-ng-if="$ctrl.projectOrder">
+                        <small class="d-block"
+                               data-translate="pci_projects_project_creating_explain1"
+                               data-translate-values="{ orderId: $ctrl.projectOrder.orderId, href: $ctrl.projectOrder.url }">
+                        </small>
+
+                        <small data-translate="pci_projects_project_creating_explain2"
+                               data-translate-values="{ href: $ctrl.supportUrl }"></small>
+                    </div>
 
                     <div class="position-relative">
                         <div class="img-slide-container position-absolute w-100">
