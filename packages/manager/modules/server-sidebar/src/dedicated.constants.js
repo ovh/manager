@@ -144,14 +144,23 @@ export const MICROSOFT_CONFIG = {
       path: '/email/exchange',
       icon: 'ms-Icon ms-Icon--ExchangeLogo',
       loadOnState: 'app.microsoft.exchange',
-      stateParams: ['organizationId'],
+      stateParams: ['organization'],
       app: [DEDICATED],
       types: [
         {
-          path: '/email/exchange/:organizationId/service',
+          path: '/email/exchange/:organization/service',
           icon: 'ms-Icon ms-Icon--ExchangeLogo',
-          state: 'app.microsoft.exchange',
-          stateParams: ['organizationId', 'productId'], // TODO: state
+          getState: ({ offer }) => {
+            const states = {
+              provider: 'app.microsoft.exchange.provider',
+              dedicated: 'app.microsoft.exchange.dedicated',
+              dedicatedCluster: 'app.microsoft.exchange.dedicatedCluster',
+              hosted: 'app.microsoft.exchange.hosted',
+            };
+
+            return states[offer];
+          },
+          stateParams: ['organization', 'productId'],
           app: [DEDICATED],
         },
       ],
