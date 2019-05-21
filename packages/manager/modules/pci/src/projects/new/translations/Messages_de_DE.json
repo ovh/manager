@@ -8,5 +8,6 @@
  "pci_projects_new_add_payment_error_message": "Beim Hinterlegen Ihres Zahlungsmittels ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut oder wählen Sie ein anderes Zahlungsmittel.",
  "pci_projects_new_add_credit_payment_error_message": "Bei der Zahlung Ihrer Guthabenbestellung ist ein Fehler aufgetreten.",
  "pci_projects_new_create_error_message": "Bei der Erstellung Ihres Public Cloud Projekts ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
- "pci_projects_new_create_credit_asterisk": "* Jedes Public Cloud Projekt verfügt über ein eigenes Guthabenkonto. Alle Rechnungen werden automatisch von diesem Konto abgebucht. Wenn das Guthaben nicht ausreicht, begleichen Sie den ausstehenden Betrag so schnell wie möglich mit einem eingetragenen Zahlungsmittel."
+ "pci_projects_new_create_credit_asterisk": "* Jedes Public Cloud Projekt verfügt über ein eigenes Guthabenkonto. Alle Rechnungen werden automatisch von diesem Konto abgebucht. Wenn das Guthaben nicht ausreicht, begleichen Sie den ausstehenden Betrag so schnell wie möglich mit einem eingetragenen Zahlungsmittel.",
+ "pci_projects_new_create_voucher_not_submitted": "Bevor Sie fortfahren, überprüfen Sie bitte Ihren Promo-Code"
 }

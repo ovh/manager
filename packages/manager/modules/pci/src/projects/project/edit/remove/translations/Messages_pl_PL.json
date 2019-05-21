@@ -6,7 +6,7 @@
  "pci_projects_project_edit_remove_object_containers": "Twoje kontenery obiektów",
  "pci_projects_project_edit_remove_object_archives": "Twoje archiwa obiektów",
  "pci_projects_project_edit_remove_object_snapshots": "Twoje snapshoty wolumenów",
- "pci_projects_project_edit_remove_object_backups": "Twoje backupy instancji",
+ "pci_projects_project_edit_remove_object_backups": "Twoje kopie instancji",
  "pci_projects_project_edit_remove_object_private_network": "Twoje sieci prywatne",
  "pci_projects_project_edit_remove_object_kubernetes": "Twoje klastry Kubernetes",
  "pci_projects_project_edit_remove_object_ip": "Twoje adresy Failover IP zostaną zaparkowane",
