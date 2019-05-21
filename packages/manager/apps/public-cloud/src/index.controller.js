@@ -16,6 +16,7 @@ export default class PublicCloudController {
     CloudSidebar,
     ovhUserPref,
     publicCloud,
+    SessionService,
   ) {
     this.$scope = $scope;
     this.$state = $state;
@@ -29,8 +30,7 @@ export default class PublicCloudController {
     this.feedback = feedback;
     this.ovhUserPref = ovhUserPref;
     this.publicCloud = publicCloud;
-
-
+    this.sessionService = SessionService;
     this.navbarOptions = options;
 
     $scope.$on('oui-step-form.submit', (event, { form }) => {
@@ -45,6 +45,10 @@ export default class PublicCloudController {
     this.$translate.refresh()
       .then(() => {
         this.sidebarLinks = this.CloudSidebar.getSidebarLinks(this.$stateParams);
+        this.sessionService.getUser()
+          .then((user) => {
+            this.user = user;
+          });
       });
   }
 

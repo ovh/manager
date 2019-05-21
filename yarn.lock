@@ -1655,10 +1655,10 @@
     rollup-pluginutils "^2.3.3"
     slash "^2.0.0"
 
-"@ovh-ux/manager-pci@^0.8.0":
-  version "0.8.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-pci/-/manager-pci-0.8.0.tgz#e8e57d49c925d6c35aa37b35e40afdd7c8475f12"
-  integrity sha512-8rSYpebUmFYgMEu71nq96oEg3RQqKQZIayVmANpd5SY0iJxDSuHFCe/TdB43V7Xwy8o1TeJ9ZDQ4t28tQoXEZQ==
+"@ovh-ux/manager-pci@^0.9.0":
+  version "0.9.1"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-pci/-/manager-pci-0.9.1.tgz#afa2e590565f48854f65c71021bbecb74594acb9"
+  integrity sha512-+3GTHssQcjghKvxlUrR3PXpQ0ze3qUzpiwqRkSlFH7qANG9AyC9opgbwsHDI1Lb6YPORCpbv4FkfnLSlwEXIdw==
   dependencies:
     "@fortawesome/fontawesome-free" "^5.8.2"
     "@ovh-ux/manager-config" "^0.2.0"

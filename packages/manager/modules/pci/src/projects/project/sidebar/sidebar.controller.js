@@ -1,8 +1,10 @@
 import isEmpty from 'lodash/isEmpty';
 import isNil from 'lodash/isNil';
 import set from 'lodash/set';
+import get from 'lodash/get';
 
 import { MENU } from './sidebar.constant';
+import { LEGACY_URLS } from './legacy-forward/forward.constants';
 
 export default class SidebarController {
   /* @ngInject */
@@ -17,6 +19,7 @@ export default class SidebarController {
     coreConfig,
     OvhApiServices,
     OvhApiCloudProject,
+    SessionService,
   ) {
     this.$translate = $translate;
     this.$transitions = $transitions;
@@ -28,6 +31,7 @@ export default class SidebarController {
     this.OvhApiServices = OvhApiServices;
     this.OvhApiCloudProject = OvhApiCloudProject;
     this.CloudSidebar = CloudSidebar;
+    this.sessionService = SessionService;
 
     this.isOpen = false;
     this.isLoading = false;
@@ -78,6 +82,12 @@ export default class SidebarController {
       }
       this.isDisplayingProjectsList = false;
     });
+
+    this.sessionService.getUser()
+      .then((user) => {
+        this.user = user;
+        this.legacyUrl = get(LEGACY_URLS, this.coreConfig.getRegion());
+      });
   }
 
   onMenuItemClick({ id }) {
