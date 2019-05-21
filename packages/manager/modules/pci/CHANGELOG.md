@@ -1,3 +1,14 @@
+## [0.12.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.12.1...@ovh-ux/manager-pci@0.12.2) (2019-05-21)
+
+
+### Bug Fixes
+
+* **pci.blocks.snapshot:** display estimated price ([8b0b086](https://github.com/ovh-ux/manager/commit/8b0b086))
+* **pci.failover-ips:** add redirections to dedicated ip ([237843f](https://github.com/ovh-ux/manager/commit/237843f))
+* **pci.project.failover-ip:** inject translations ([3c1a06f](https://github.com/ovh-ux/manager/commit/3c1a06f))
+
+
+
 ## [0.12.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.12.0...@ovh-ux/manager-pci@0.12.1) (2019-05-21)
 
 
