@@ -10,9 +10,11 @@ import values from 'lodash/values';
 export default class RegionsListController {
   /* @ngInject */
   constructor(
+    $state,
     $translate,
     CucRegionService,
   ) {
+    this.$state = $state;
     this.$translate = $translate;
     this.CucRegionService = CucRegionService;
   }

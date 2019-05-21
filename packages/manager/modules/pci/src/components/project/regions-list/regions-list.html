@@ -17,8 +17,15 @@
                     data-required>
                 </oui-select-picker>
 
-                <p data-ng-if="!$ctrl.regionsByContinents[continent].length"
-                    data-translate="pci_project_regions_list_empty"></p>
+                <p data-ng-if="!$ctrl.regionsByContinents[continent].length">
+                    <span data-translate="pci_project_regions_list_empty"></span>
+                    <span
+                        data-translate="pci_project_regions_list_add"
+                        data-translate-values="{
+                            url: $ctrl.$state.href('pci.projects.project.regions')
+                        }">
+                    </span>
+                </p>
             </div>
         </div>
     </oui-tabs-item>
