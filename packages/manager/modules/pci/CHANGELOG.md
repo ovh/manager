@@ -1,3 +1,17 @@
+# [0.12.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.11.0...@ovh-ux/manager-pci@0.12.0) (2019-05-21)
+
+
+### Bug Fixes
+
+* **pci.projects.new:** typo in translation values ([c45dc35](https://github.com/ovh-ux/manager/commit/c45dc35))
+
+
+### Features
+
+* **pci.projects.project.crating:** improve explanation and responsivity ([3bff9fa](https://github.com/ovh-ux/manager/commit/3bff9fa))
+
+
+
 # [0.11.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.10.0...@ovh-ux/manager-pci@0.11.0) (2019-05-21)
 
 

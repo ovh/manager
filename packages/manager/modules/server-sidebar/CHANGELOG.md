@@ -1,3 +1,12 @@
+## [0.1.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.1.0...@ovh-ux/manager-server-sidebar@0.1.1) (2019-05-21)
+
+
+### Bug Fixes
+
+* **server-sidebar:** update dedicated exchange config ([7eb6f75](https://github.com/ovh-ux/manager/commit/7eb6f75))
+
+
+
 # [0.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.0.0...@ovh-ux/manager-server-sidebar@0.1.0) (2019-05-21)
 
 
