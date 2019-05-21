@@ -1,3 +1,12 @@
+# [0.8.0-alpha.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.8.0-alpha.1...@ovh-ux/manager-public-cloud@0.8.0-alpha.2) (2019-05-21)
+
+
+### Bug Fixes
+
+* redirect only /default/kubernetes ([6b0cb98](https://github.com/ovh-ux/manager/commit/6b0cb98))
+
+
+
 # [0.8.0-alpha.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.8.0-alpha.0...@ovh-ux/manager-public-cloud@0.8.0-alpha.1) (2019-05-21)
 
 
