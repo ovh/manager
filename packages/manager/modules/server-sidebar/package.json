@@ -1,7 +1,7 @@
 {
   "name": "@ovh-ux/manager-server-sidebar",
   "description": "OVH control panel sidebar",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ovh-ux/manager.git",
@@ -25,8 +25,8 @@
   },
   "peerDependencies": {
     "@ovh-ux/manager-config": "^0.2.0",
-    "@ovh-ux/manager-core": "^5.2.1",
-    "@ovh-ux/ng-ovh-cloud-universe-components": "^1.3.0-alpha.2",
+    "@ovh-ux/manager-core": "^5.2.4",
+    "@ovh-ux/ng-ovh-cloud-universe-components": "^1.3.0-alpha.4",
     "@ovh-ux/ng-ovh-sidebar-menu": "git+https://github.com/ovh-ux/ng-ovh-sidebar-menu.git#fix/revert-old-style",
     "@ovh-ux/ng-translate-async-loader": "^2.0.0",
     "angular": "^1.7.8",
