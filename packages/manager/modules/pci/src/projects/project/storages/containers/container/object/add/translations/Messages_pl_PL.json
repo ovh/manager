@@ -8,5 +8,5 @@
  "pci_projects_project_storages_containers_container_object_add_archive_success_message": "Pliki zostały zaimportowane.",
  "pci_projects_project_storages_containers_container_object_add_object_success_message": "Obiekty zostały zaimportowane.",
  "pci_projects_project_storages_containers_container_object_add_archive_error_delete": "Wystąpił błąd podczas importu archiwów: {{message}}.",
- "pci_projects_project_storages_containers_container_object_add_object_error_delete": "Wystąpił błąd podczas importu obiektów {{ object }}: {{ message }}."
+ "pci_projects_project_storages_containers_container_object_add_object_error_delete": "Wystąpił błąd podczas importu obiektów {{object}}: {{message}}."
 }

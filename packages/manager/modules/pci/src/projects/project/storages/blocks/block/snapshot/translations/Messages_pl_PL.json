@@ -5,7 +5,7 @@
  "pci_projects_project_storages_blocks_block_snapshot_monthly_price": "({{ size }} x {{ price }} netto/GiB/m-c)",
  "pci_projects_project_storages_blocks_block_snapshot_submit_label": "Utwórz snapshot",
  "pci_projects_project_storages_blocks_block_snapshot_cancel_label": "Anuluj",
- "pci_projects_project_storages_blocks_block_snapshot_error_load": "Wystąpił błąd podczas ładowania wolumenu: {{message}}",
- "pci_projects_project_storages_blocks_block_snapshot_success_message": "Trwa tworzenie snapshota {{ snapshot }} ",
- "pci_projects_project_storages_blocks_block_snapshot_error_delete": "Wystąpił błąd podczas tworzenia snapshota {{ snapshot }}: {{ message }}"
+ "pci_projects_project_storages_blocks_block_snapshot_error_load": "Wystąpił błąd podczas ładowania wolumenu: {{message}}.",
+ "pci_projects_project_storages_blocks_block_snapshot_success_message": "Trwa tworzenie snapshota {{ snapshot }}",
+ "pci_projects_project_storages_blocks_block_snapshot_error_delete": "Wystąpił błąd podczas tworzenia snapshota {{snapshot}}: {{message}}."
 }

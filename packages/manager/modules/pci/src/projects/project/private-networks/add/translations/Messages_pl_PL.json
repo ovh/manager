@@ -18,7 +18,7 @@
  "pci_projects_project_network_private_create_name_step": "Nadaj nazwę Twojej prywatnej sieci.",
  "pci_projects_project_network_private_create_name": "Nazwa sieci prywatnej:",
  "pci_projects_project_network_private_create_name_placeholder": "Wprowadź nazwę prywatnej sieci.",
- "pci_projects_project_network_private_create_loading": "Tworzenie prywatnej sieci w trakcie. Może to potrwać kilka minut.",
+ "pci_projects_project_network_private_create_loading": "Trwa tworzenie prywatnej sieci. Może to zająć kilka minut.",
  "pci_projects_project_network_private_create_success": "Prywatna sieć została utworzona.",
  "pci_projects_project_network_private_create_error": "Wystąpił błąd podczas tworzenia projektu: {{ message }}"
 }

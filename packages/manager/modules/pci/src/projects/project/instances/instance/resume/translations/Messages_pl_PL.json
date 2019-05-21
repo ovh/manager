@@ -2,7 +2,7 @@
  "pci_projects_project_instances_instance_resume_title": "Włącz ponownie instancję",
  "pci_projects_project_instances_instance_resume_submit_label": "Potwierdź",
  "pci_projects_project_instances_instance_resume_cancel_label": "Anuluj",
- "pci_projects_project_instances_instance_resume_content": "Czy na pewno chcesz włączyć ponownie instancję {{ instance }}?",
+ "pci_projects_project_instances_instance_resume_content": "Czy na pewno chcesz włączyć ponownie instancję {{instance}}?",
  "pci_projects_project_instances_instance_resume_success_message": "Instancja {{ instance }} została ponownie włączona.",
- "pci_projects_project_instances_instance_resume_error_resume": "Wystąpił błąd podczas ponownego włączania instancji  {{ instance }} : {{ message }}."
+ "pci_projects_project_instances_instance_resume_error_resume": "Wystąpił błąd podczas ponownego włączania instancji {{instance}}: {{message}}."
 }
