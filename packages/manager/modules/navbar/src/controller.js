@@ -89,12 +89,13 @@ export default class {
   }
 
   buildResponsiveLinks() {
-    if (this.sidebarLinks && !this.responsiveLinks) {
+    if ((this.sidebarLinks || this.universeClick) && !this.responsiveLinks) {
       this.responsiveLinks = this.mainLinks.map((link) => {
         if (link.name === get(this.navbarOptions, 'universe')) {
           return ({
             ...omit(link, 'url'),
             subLinks: this.sidebarLinks,
+            click: () => this.universeClick(),
           });
         }
 

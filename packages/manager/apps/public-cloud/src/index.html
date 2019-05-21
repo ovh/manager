@@ -23,7 +23,7 @@
                     </div>
                 </div>
             </div>
-            <a data-ng-if="$ctrl.feedbackUrl" data-ng-href="{{ $ctrl.feedbackUrl }}" rel="noopener" target="_blank" style="position: fixed; right: 2rem; bottom: 2rem;">
+            <a data-ng-if="$ctrl.feedbackUrl && $ctrl.user.ovhSubsidiary === 'FR'" data-ng-href="{{ $ctrl.feedbackUrl }}" rel="noopener" target="_blank" style="position: fixed; right: 2rem; bottom: 2rem;">
                 <img alt="Feedback" data-ng-src="{{ $ctrl.feedback }}" />
             </a>
             <div id="managerPreload"
@@ -38,7 +38,6 @@
                     </div>
                 </div>
             </div>
-            <public-cloud-beta-warning></public-cloud-beta-warning>
             <div data-otrs-popup></div>
             <ovh-chatbot></ovh-chatbot>
         </div>

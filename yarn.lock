@@ -1817,6 +1817,11 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-sidebar-menu/-/ng-ovh-sidebar-menu-8.0.0-beta.1.tgz#10cc3aee6f3d0f9b96eb8e3c94af366ddba6a2ec"
   integrity sha512-6xX02CmY1Ua4/09vpeIVN7GzGY9GlNRowAYGpAQaIsBQmCcwi6MUn55Urc3J7xoXBGpEuHtOq13LzxS9PqhC/A==
 
+"@ovh-ux/ng-ovh-sidebar-menu@^8.0.1":
+  version "8.0.1"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-sidebar-menu/-/ng-ovh-sidebar-menu-8.0.1.tgz#54a4de9a815d05f05a582fe7c86769e87f421cd8"
+  integrity sha512-7kIBBBTxX4W5mHADbdyMTTI+j4fQKYTukf8fziKfmGuFITHyq595V54/5EXssiGcT/BKajzNs5B+F7LqZlBx8A==
+
 "@ovh-ux/ng-ovh-sso-auth@^4.0.0", "@ovh-ux/ng-ovh-sso-auth@^4.0.0-beta.0":
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-sso-auth/-/ng-ovh-sso-auth-4.0.0.tgz#f6c1027f5ef827d464ff3b0e702b1692ee279703"

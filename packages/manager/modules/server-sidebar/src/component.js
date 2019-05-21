@@ -3,17 +3,12 @@ import template from './template.html';
 
 const component = {
   bindings: {
-    brandLabel: '@',
-    langOptions: '<?',
-    navbarOptions: '<?',
-    sidebarLinks: '<?',
-    universeClick: '&?',
+    onClick: '&',
+    isOpen: '<',
+    universe: '<',
   },
   controller,
   template,
-  transclude: {
-    sidebar: '?ovhManagerSidebar',
-  },
 };
 
 export default component;
