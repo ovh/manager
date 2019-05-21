@@ -263,9 +263,6 @@ export const ORDER_URLS = {
     dedicatedOrder: {
       US: 'https://us.ovhcloud.com/order/dedicated/#/dedicated/select',
     },
-    vrackOrder: {
-      US: 'https://us.ovhcloud.com/order/express/#/express/review?products=~(~(planCode~\'vrack~quantity~1~productId~\'vrack))',
-    },
     cloudProjectOrder: {
       US: 'https://us.ovhcloud.com/manager/cloud/#/iaas/pci/offer',
     },
@@ -287,6 +284,7 @@ export const SIDEBAR_ORDER_CONFIG = [
     icon: 'ovh-font ovh-font-public-cloud',
     linkId: 'publicCloudProjectOrder',
     app: [DEDICATED],
+    regions: ['EU', 'CA', 'US'],
   },
   {
     id: 'order-nas',
@@ -295,8 +293,8 @@ export const SIDEBAR_ORDER_CONFIG = [
     state: 'app.networks.nas.order', // TODO: SHOULD BE A LINK    DEDICATED #/configuration/nas
     linkId: 'DEDICATED',
     linkPart: '#/configuration/nas',
-    regions: ['EU'],
     app: [DEDICATED],
+    regions: ['EU'],
   },
   {
     id: 'order-dedicated-server',
@@ -304,16 +302,9 @@ export const SIDEBAR_ORDER_CONFIG = [
     icon: 'ovh-font ovh-font-server',
     linkId: 'dedicatedOrder',
     target: '_blank',
+    external: true,
     app: [DEDICATED],
-  },
-  {
-    id: 'order-vrack',
-    title: 'vrack',
-    icon: 'ovh-font ovh-font-vRack',
-    linkId: 'vrackOrder',
-    target: '_blank',
-    regions: ['US'],
-    app: [DEDICATED],
+    regions: ['EU', 'CA', 'US'],
   },
   {
     id: 'order-additional-ip',
@@ -322,8 +313,8 @@ export const SIDEBAR_ORDER_CONFIG = [
     state: 'app.ip.agora-order',
     linkId: 'DEDICATED',
     linkPart: '#/configuration/ip?landingTo=ip&tab=ip',
-    regions: ['EU', 'CA'],
     app: [DEDICATED],
+    regions: ['EU', 'CA', 'US'],
   },
   {
     id: 'order-license',
@@ -333,6 +324,7 @@ export const SIDEBAR_ORDER_CONFIG = [
     linkId: 'DEDICATED',
     linkPart: '#/configuration/license/order',
     app: [DEDICATED],
+    regions: ['EU', 'CA', 'US'],
   },
 
   // CLOUD
@@ -343,7 +335,6 @@ export const SIDEBAR_ORDER_CONFIG = [
     linkId: 'publicCloudKubernetes',
     target: '_blank',
     external: true,
-    featureType: 'KUBE',
     app: [CLOUD],
     regions: ['EU'],
   },
@@ -354,8 +345,8 @@ export const SIDEBAR_ORDER_CONFIG = [
     linkId: 'vps',
     target: '_blank',
     external: true,
-    featureTupe: 'VPS',
     app: [CLOUD],
+    regions: ['EU', 'CA'],
   },
   {
     id: 'order-private-cloud',
@@ -364,8 +355,8 @@ export const SIDEBAR_ORDER_CONFIG = [
     linkId: 'dedicated_cloud',
     target: '_blank',
     external: true,
-    featureType: 'DEDICATED_CLOUD',
     app: [CLOUD],
+    regions: ['EU', 'CA'],
   },
   {
     id: 'order-cda',
@@ -374,8 +365,8 @@ export const SIDEBAR_ORDER_CONFIG = [
     linkId: 'cloud_disk_array',
     target: '_blank',
     external: true,
-    featureType: 'CEPH',
     app: [CLOUD],
+    regions: ['EU', 'CA'],
   },
   {
     id: 'order-nasha',
@@ -384,8 +375,8 @@ export const SIDEBAR_ORDER_CONFIG = [
     state: 'paas.nasha-add',
     linkId: 'CLOUD',
     linkPart: '#/paas/nasha/new',
-    featureType: 'NASHA',
     app: [CLOUD],
+    regions: ['EU', 'CA'],
   },
   {
     id: 'order-veeam',
@@ -394,8 +385,8 @@ export const SIDEBAR_ORDER_CONFIG = [
     linkId: 'veeam',
     target: '_blank',
     external: true,
-    featureType: 'VEEAM',
     app: [CLOUD],
+    regions: ['EU'],
   },
   {
     id: 'order-veeam-enterprise',
@@ -404,8 +395,8 @@ export const SIDEBAR_ORDER_CONFIG = [
     linkId: 'veeam_enterprise',
     target: '_blank',
     external: true,
-    featureType: 'VEEAM_ENTERPRISE',
     app: [CLOUD],
+    regions: ['EU', 'CA'],
   },
   {
     id: 'order-metrics',
@@ -414,8 +405,8 @@ export const SIDEBAR_ORDER_CONFIG = [
     linkId: 'dbaas',
     target: '_blank',
     external: true,
-    featureType: 'METRICS',
     app: [CLOUD],
+    regions: ['EU'],
   },
   {
     id: 'order-vrack',
@@ -424,8 +415,8 @@ export const SIDEBAR_ORDER_CONFIG = [
     linkId: 'vrack',
     target: '_blank',
     external: true,
-    featureType: 'VRACK',
-    app: [CLOUD],
+    app: [DEDICATED],
+    regions: ['EU', 'CA', 'US'],
   },
   {
     id: 'order-cloud-desktop',
@@ -434,8 +425,8 @@ export const SIDEBAR_ORDER_CONFIG = [
     linkId: 'cloud_desktop',
     target: '_blank',
     external: true,
-    featureType: 'CLOUD_DESKTOP',
     app: [CLOUD],
+    regions: ['EU', 'CA'],
   },
   {
     id: 'order-loadbalancer',
@@ -444,8 +435,8 @@ export const SIDEBAR_ORDER_CONFIG = [
     linkId: 'load_balancer',
     target: '_blank',
     external: true,
-    featureType: 'LOAD_BALANCER',
     app: [CLOUD],
+    regions: ['EU'],
   },
   {
     id: 'order-clouddb',
@@ -454,8 +445,8 @@ export const SIDEBAR_ORDER_CONFIG = [
     linkId: 'orderSql',
     target: '_blank',
     external: true,
-    featureType: 'CLOUD_DB',
     app: [CLOUD],
+    regions: [],
   },
   {
     id: 'order-logs',
@@ -464,8 +455,8 @@ export const SIDEBAR_ORDER_CONFIG = [
     state: 'dbaas.logs.welcome',
     linkId: 'CLOUD',
     linkPart: '#/dbaas/logs/welcome',
-    featureType: 'DBAAS_LOGS',
     app: [CLOUD],
+    regions: ['EU', 'CA'],
   },
 ];
 

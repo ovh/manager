@@ -21,6 +21,7 @@ export const DEDICATED_SERVER_CONFIG = {
   ],
   icon: 'ovh-font ovh-font-server',
   app: [DEDICATED],
+  regions: ['EU', 'CA', 'US'],
 };
 
 export const DEDICATED_CLOUD_CONFIG = {
@@ -48,6 +49,7 @@ export const DEDICATED_CLOUD_CONFIG = {
   loadOnState: 'app.dedicatedClouds',
   icon: 'ovh-font ovh-font-dedicatedCloud',
   app: [DEDICATED],
+  regions: ['EU', 'CA', 'US'],
 };
 
 export const NETWORKS_CONFIG = {
@@ -64,12 +66,14 @@ export const NETWORKS_CONFIG = {
             'domain',
           ],
           app: [DEDICATED],
+          regions: ['EU'],
         },
       ],
       state: 'app.networks.cdn.dedicated',
       stateParams: ['productId'],
       icon: 'ovh-font ovh-font-cdn',
       app: [DEDICATED],
+      regions: ['EU'],
     },
     {
       path: '/dedicated/nas',
@@ -96,6 +100,7 @@ export const NETWORKS_CONFIG = {
   loadOnState: 'app.networks',
   icon: 'ovh-font ovh-font-network',
   app: [DEDICATED],
+  regions: ['EU', 'CA'],
 };
 
 export const OLD_MICROSOFT_CONFIG = {
@@ -139,14 +144,23 @@ export const MICROSOFT_CONFIG = {
       path: '/email/exchange',
       icon: 'ms-Icon ms-Icon--ExchangeLogo',
       loadOnState: 'app.microsoft.exchange',
-      stateParams: ['organizationId'],
+      stateParams: ['organization'],
       app: [DEDICATED],
       types: [
         {
-          path: '/email/exchange/:organizationId/service',
+          path: '/email/exchange/:organization/service',
           icon: 'ms-Icon ms-Icon--ExchangeLogo',
-          state: 'app.microsoft.exchange',
-          stateParams: ['organizationId', 'productId'], // TODO: state
+          getState: ({ offer }) => {
+            const states = {
+              provider: 'app.microsoft.exchange.provider',
+              dedicated: 'app.microsoft.exchange.dedicated',
+              dedicatedCluster: 'app.microsoft.exchange.dedicatedCluster',
+              hosted: 'app.microsoft.exchange.hosted',
+            };
+
+            return states[offer];
+          },
+          stateParams: ['organization', 'productId'],
           app: [DEDICATED],
         },
       ],
@@ -164,6 +178,7 @@ export const LICENCE_CONFIG = {
   icon: 'ovh-font ovh-font-certificate',
   stateUrl: '#/configuration/license?landingTo=licences',
   app: [DEDICATED],
+  regions: ['EU', 'CA', 'US'],
 };
 
 export const IP_CONFIG = {
@@ -172,6 +187,7 @@ export const IP_CONFIG = {
   stateUrl: '#/configuration/ip?landingTo=ip',
   icon: 'ovh-font ovh-font-ip',
   app: [DEDICATED],
+  regions: ['EU', 'CA', 'US'],
 };
 
 export const IAAS_CONFIG = {
@@ -189,6 +205,7 @@ export const IAAS_CONFIG = {
   ],
   icon: 'ovh-font ovh-font-cloud-root',
   app: [CLOUD],
+  regions: ['EU', 'CA', 'US'],
 };
 
 export const PAAS_CONFIG = {
@@ -201,6 +218,7 @@ export const PAAS_CONFIG = {
       stateParams: ['serviceName'],
       icon: 'ovh-font ovh-font-cloud-disk-array',
       app: [CLOUD],
+      regions: ['EU', 'CA'],
     },
     {
       path: '/veeamCloudConnect',
@@ -209,6 +227,7 @@ export const PAAS_CONFIG = {
       loadOnState: 'paas.veeam.detail',
       icon: 'ovh-font ovh-font-veeam',
       app: [CLOUD],
+      regions: ['EU', 'CA'],
     },
     {
       path: '/veeam/veeamEnterprise',
@@ -216,10 +235,12 @@ export const PAAS_CONFIG = {
       stateParams: ['serviceName'],
       icon: 'ovh-font ovh-font-veeam',
       app: [CLOUD],
+      regions: ['EU'],
     },
   ],
   icon: 'ovh-font ovh-font-cloud-package',
   app: [CLOUD],
+  regions: ['EU', 'CA'],
 };
 
 export const METRICS_CONFIG = {
@@ -236,6 +257,7 @@ export const METRICS_CONFIG = {
   ],
   icon: 'ovh-font ovh-font-graph',
   app: [CLOUD],
+  regions: ['EU'],
 };
 
 export const LOGS_CONFIG = {
@@ -259,6 +281,7 @@ export const LOGS_CONFIG = {
   ],
   icon: 'fa fa-bar-chart',
   app: [CLOUD],
+  regions: ['EU'],
 };
 
 export const IPLB_CONFIG = {
@@ -275,6 +298,7 @@ export const IPLB_CONFIG = {
   ],
   icon: 'ovh-font ovh-font-iplb',
   app: [CLOUD],
+  regions: ['EU', 'CA'],
 };
 
 export const VRACK_CONFIG = {
@@ -290,6 +314,7 @@ export const VRACK_CONFIG = {
   ],
   icon: 'ovh-font ovh-font-vRack',
   app: [CLOUD],
+  regions: ['EU', 'CA', 'US'],
 };
 
 export const CLOUD_DESKTOP_CONFIG = {
@@ -306,6 +331,7 @@ export const CLOUD_DESKTOP_CONFIG = {
   ],
   icon: 'ovh-font ovh-font-cloud-desktop',
   app: [CLOUD],
+  regions: ['EU'],
 };
 
 export const SIDEBAR_CONFIG = [
