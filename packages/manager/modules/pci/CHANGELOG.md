@@ -1,3 +1,13 @@
+## [0.12.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.12.0...@ovh-ux/manager-pci@0.12.1) (2019-05-21)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([2326761](https://github.com/ovh-ux/manager/commit/2326761))
+* **pci.kubernetes:** disable navigation when step is not valid ([5ee9719](https://github.com/ovh-ux/manager/commit/5ee9719))
+
+
+
 # [0.12.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.11.0...@ovh-ux/manager-pci@0.12.0) (2019-05-21)
 
 
