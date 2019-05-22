@@ -7,6 +7,5 @@ export default {
   bindings: {
     projectId: '<',
     onProjectCreated: '<',
-    projectOrder: '<',
   },
 };
