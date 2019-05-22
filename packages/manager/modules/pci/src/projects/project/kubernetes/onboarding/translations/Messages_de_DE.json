@@ -15,5 +15,7 @@
  "pci_projects_project_kubernetes_onboarding_guides_helm_title": "Installing Helm on OVH Managed Kubernetes",
  "pci_projects_project_kubernetes_onboarding_guides_helm_description": "",
  "pci_projects_project_kubernetes_onboarding_guides_istio_title": "Installing Istio on OVH Managed Kubernetes",
- "pci_projects_project_kubernetes_onboarding_guides_istio_description": ""
+ "pci_projects_project_kubernetes_onboarding_guides_istio_description": "",
+ "pci_projects_project_kubernetes_onboarding_regions_unavailable": "Ihr aktuelles Public Cloud-Projekt ist in einer Region konfiguriert, in der Kubernetes nicht verfügbar ist, es ist notwendig, ein neues Projekt zu erstellen, um einen Kubernetes-Cluster einzusetzen, wir arbeiten daran, das Angebot von Kubernetes auf andere Regionen auszudehnen.",
+ "pci_projects_project_kubernetes_onboarding_regions_create": "Ein neues Public Cloud Projekt erstellen."
 }

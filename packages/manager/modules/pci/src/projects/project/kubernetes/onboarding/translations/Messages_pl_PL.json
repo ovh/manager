@@ -15,5 +15,7 @@
  "pci_projects_project_kubernetes_onboarding_guides_helm_title": "Instalacja Helm w Managed Kubernetes",
  "pci_projects_project_kubernetes_onboarding_guides_helm_description": "",
  "pci_projects_project_kubernetes_onboarding_guides_istio_title": "Instalacja Istio w Managed Kubernetes",
- "pci_projects_project_kubernetes_onboarding_guides_istio_description": ""
+ "pci_projects_project_kubernetes_onboarding_guides_istio_description": "",
+ "pci_projects_project_kubernetes_onboarding_regions_unavailable": "Twój obecny projekt Public Cloud jest skonfigurowany w regionie, gdzie Kubernetes nie jest dostępny, konieczne jest stworzenie nowego projektu w celu wdrożenia klastra Kubernetes, pracujemy nad rozszerzeniem oferty Kubernetes na inne regiony.",
+ "pci_projects_project_kubernetes_onboarding_regions_create": "Dodaj nowy projekt Public Cloud."
 }
