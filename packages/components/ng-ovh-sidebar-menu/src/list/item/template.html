@@ -151,6 +151,19 @@
         </span>
     </a>
 
+    <p class="menu-item menu-item-text"
+        data-ng-if="!ItemMenuCtrl.item.state && !ItemMenuCtrl.item.url && !ItemMenuCtrl.item.allowSubItems">
+        <!-- ITEM PREFIX -->
+        <span class="item-prefix"
+            data-ng-bind="ItemMenuCtrl.item.prefix">
+        </span>
+
+        <!-- ITEM TITLE -->
+        <span class="item-title"
+            data-ng-bind="ItemMenuCtrl.item.title">
+        </span>
+    </p>
+
     <!-- SLIDING CONTENT -->
     <div class="group-content-wrapper"
          data-ng-slide-down="ItemMenuCtrl.item.isOpen"
