@@ -12,6 +12,7 @@ import isString from 'lodash/isString';
 import map from 'lodash/map';
 import orderBy from 'lodash/orderBy';
 import reduce from 'lodash/reduce';
+import sumBy from 'lodash/sumBy';
 import zipObject from 'lodash/zipObject';
 
 import { MANAGER_URLS } from './constants';
@@ -170,66 +171,81 @@ export default class OvhManagerServerSidebarController {
         }, parent);
 
         if (has(service, 'types')) {
-          menuItem.onLoad = () => this.loadServices(service.types, menuItem);
+          menuItem.onLoad = () => this.loadServices(service, menuItem);
+        } else {
+          this.addItems(get(service, 'children'), menuItem);
         }
-
-        this.addItems(get(service, 'children'), menuItem);
       }
     });
   }
 
-  loadServices(types, parent, params = {}) {
+  loadServices(parentService, parent, params = {}) {
     const promises = [];
-    each(this.filterRegions(types), (typeDefinition) => {
+
+    each(this.filterRegions(parentService.types), (typeDefinition) => {
       const parentParams = get(parent, 'stateParams', {});
       promises.push(this.getTypeItems(typeDefinition, { ...params, ...parentParams }));
     });
-    return this.$q.all(promises)
+
+    return this.$q
+      .all(promises)
       .then((typesServices) => {
-        each(typesServices, (typeServices) => {
-          const hasSubItems = has(typeServices.type, 'types');
-          each(orderBy(typeServices.items, 'displayName'), (service) => {
-            const isExternal = !includes(typeServices.type.app, this.universe)
-              && !isEmpty(service.url);
+        if (sumBy(typesServices, typeServices => typeServices.items.length) === 0) {
+          this.SidebarMenu.addMenuItem({
+            title: this.$translate.instant('server_sidebar_item_empty_title'),
+            allowSubItems: false,
+            infiniteScroll: false,
+            allowSearch: false,
+          }, parent);
+        } else {
+          each(typesServices, (typeServices) => {
+            this.addItems(get(parentService, 'children'), parent);
 
-            let stateParams = zipObject(get(typeServices.type, 'stateParams', []), get(service, 'stateParams', []));
-            if (has(typeServices.type, 'stateParamsTransformer') && isFunction(typeServices.type.stateParamsTransformer)) {
-              stateParams = typeServices.type.stateParamsTransformer(stateParams);
-            }
+            const hasSubItems = has(typeServices.type, 'types');
 
-            let link = null;
-            let state = null;
-            if (isExternal) {
-              link = service.url;
-            } else {
-              state = get(typeServices.type, 'state');
-              if (has(typeServices.type, 'getState') && isFunction(typeServices.type.getState)) {
-                state = typeServices.type.getState(service.extraParams);
+            each(orderBy(typeServices.items, 'displayName'), (service) => {
+              const isExternal = !includes(typeServices.type.app, this.universe)
+                && !isEmpty(service.url);
+
+              let stateParams = zipObject(get(typeServices.type, 'stateParams', []), get(service, 'stateParams', []));
+              if (has(typeServices.type, 'stateParamsTransformer') && isFunction(typeServices.type.stateParamsTransformer)) {
+                stateParams = typeServices.type.stateParamsTransformer(stateParams);
               }
-            }
 
-            const menuItem = this.SidebarMenu.addMenuItem({
-              title: service.displayName,
-              allowSubItems: hasSubItems && !isExternal,
-              infiniteScroll: hasSubItems && !isExternal,
-              allowSearch: false,
-              state,
-              stateParams,
-              url: link,
-              target: isExternal ? '_self' : null,
-              icon: get(typeServices.type, 'icon'),
-              loadOnState: get(typeServices.type, 'loadOnState'),
-            }, parent);
+              let link = null;
+              let state = null;
+              if (isExternal) {
+                link = service.url;
+              } else {
+                state = get(typeServices.type, 'state');
+                if (has(typeServices.type, 'getState') && isFunction(typeServices.type.getState)) {
+                  state = typeServices.type.getState(service.extraParams);
+                }
+              }
 
-            if (hasSubItems && !isExternal) {
-              menuItem.onLoad = () => this.loadServices(
-                typeServices.type.types,
-                menuItem,
+              const menuItem = this.SidebarMenu.addMenuItem({
+                title: service.displayName,
+                allowSubItems: hasSubItems && !isExternal,
+                infiniteScroll: hasSubItems && !isExternal,
+                allowSearch: false,
+                state,
                 stateParams,
-              );
-            }
+                url: link,
+                target: isExternal ? '_self' : null,
+                icon: get(typeServices.type, 'icon'),
+                loadOnState: get(typeServices.type, 'loadOnState'),
+              }, parent);
+
+              if (hasSubItems && !isExternal) {
+                menuItem.onLoad = () => this.loadServices(
+                  typeServices.type,
+                  menuItem,
+                  stateParams,
+                );
+              }
+            });
           });
-        });
+        }
       });
   }
 
