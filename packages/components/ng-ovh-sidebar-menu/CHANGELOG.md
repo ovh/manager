@@ -1,3 +1,12 @@
+# [8.1.0](https://github.com/ovh-ux/ng-ovh-sidebar-menu/compare/v8.0.1...v8.1.0) (2019-05-22)
+
+
+### Features
+
+* support text item ([9f73898](https://github.com/ovh-ux/ng-ovh-sidebar-menu/commit/9f73898))
+
+
+
 ## [8.0.1](https://github.com/ovh-ux/ng-ovh-sidebar-menu/compare/v8.0.0...v8.0.1) (2019-05-20)
 
 
