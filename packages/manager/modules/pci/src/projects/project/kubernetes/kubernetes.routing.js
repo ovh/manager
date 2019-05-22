@@ -42,6 +42,18 @@ export default /* @ngInject */ ($stateProvider) => {
           OvhApiCloud => OvhApiCloud.v6().schema().$promise
             .then(schema => get(schema, VERSION_ENUM_KEY)),
 
+        regions: /* @ngInject */ (
+          OvhApiCloudProjectKube,
+          projectId,
+        ) => OvhApiCloudProjectKube.v6()
+          .getRegions({
+            serviceName: projectId,
+          }).$promise
+          .then(regions => map(regions, region => ({
+            name: region,
+            hasEnoughQuota: () => true,
+          }))),
+
         breadcrumb: /* @ngInject */ $translate => $translate.instant('kube_list_title'),
       },
     });
