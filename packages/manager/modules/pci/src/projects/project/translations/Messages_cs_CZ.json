@@ -1,0 +1,21 @@
+{
+ "pci_projects_project_home": " vítejte",
+ "pci_projects_project_parameters": "nastavení",
+ "pci_projects_project_create_an_instance": "Vytvořit instanci",
+ "pci_projects_project_create_a_volume": "Vytvořte svazek",
+ "pci_projects_project_create_a_container": "Vytvořit kontejner objektu",
+ "pci_projects_project_activate_private_networks": "Povolit privátní sítě",
+ "pci_projects_project_create_cluster_kubernetes": "Vytvořte Kubernetes cluster",
+ "pci_projects_project_documentation": "Dokumentace",
+ "pci_projects_project_documentation_create_user_access_to_horizon": "Vytvořte uživatelský přístup k programu Horizont",
+ "pci_projects_project_documentation_boot_your_first_cloud_server_in_3_minutes": "Spusťte svůj první cloud server za 3 minuty",
+ "pci_projects_project_documentation_prepare_the_environment_for_using_the_open_stack_api": "Připravte si prostředí pro použití OpenStack API",
+ "pci_projects_project_documentation_create_and_configure_and_additional_disk_on_an_instance": "Vytvořit a konfigurovat a další disk v instanci",
+ "pci_projects_project_documentation_see_all_public_cloud_guides": "Zobrazit všechny příručky veřejného cloudu",
+ "pci_projects_project_welcome": "Vítejte v novém rozhraní Public Cloud",
+ "pci_projects_project_welcome_legacy": "Vraťte se do starého rozhraní",
+ "pci_projects_project_forward": "Nous allons basculer sur l'ancienne interface Cloud",
+ "pci_projects_project_forward_feedback": "Donnez nous votre avis",
+ "pci_projects_project_forward_legacy": "Continuer vers l'ancienne interface",
+ "pci_projects_project_forward_content": "Merci d'avoir essayé la nouvelle version Public Cloud. Dites-nous ce que vous avez aimé et ce qui ne vous a pas plu. Vos commentaires permettront de l'améliorer."
+}
