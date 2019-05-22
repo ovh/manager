@@ -1,8 +1,10 @@
 import NProgress from 'nprogress';
 
 export default /* @ngInject */ ($transitions) => {
-  $transitions.onBefore({}, () => {
-    NProgress.start();
+  $transitions.onBefore({}, (transition) => {
+    if (!transition.ignored()) {
+      NProgress.start();
+    }
   });
 
   $transitions.onFinish({}, () => {
