@@ -1,3 +1,4 @@
+import isEmpty from 'lodash/isEmpty';
 import reduce from 'lodash/reduce';
 import illustration from './assets/kubernetes.png';
 import { GUIDES } from './onboarding.constants';
@@ -11,6 +12,7 @@ export default class {
   }
 
   $onInit() {
+    this.canCreateCluster = !isEmpty(this.regions);
     this.illustration = illustration;
     this.guides = reduce(
       GUIDES,
