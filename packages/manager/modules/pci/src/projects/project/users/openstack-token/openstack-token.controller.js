@@ -12,7 +12,10 @@ export default class PciUsersOpenstackTokenController {
 
   $onInit() {
     this.isLoading = false;
-    this.user.password = 'brJ8zFZUrFMKHPdMd2fp7KSCpdanuHuS';
+    this.user = {
+      id: this.userId,
+      password: null,
+    };
     this.token = null;
   }
 
