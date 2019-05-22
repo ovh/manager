@@ -1,6 +1,7 @@
 {
  "server_sidebar_item_title_DEDICATED": "Server",
  "server_sidebar_item_title_CLOUD": "Server",
+ "server_sidebar_item_empty_title": "Keine Dienstleistungen",
  "server_sidebar_item_dedicatedServers_title": "Dedicated Server",
  "server_sidebar_item_dedicatedClouds_title": "Private Cloud",
  "server_sidebar_item_networks_title": "NAS und CDN",
