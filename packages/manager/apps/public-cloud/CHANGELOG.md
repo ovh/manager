@@ -1,3 +1,12 @@
+# [0.8.0-alpha.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.8.0-alpha.2...@ovh-ux/manager-public-cloud@0.8.0-alpha.3) (2019-05-22)
+
+
+### Bug Fixes
+
+* **public-cloud:** remove cache on project fetching ([6c13bb8](https://github.com/ovh-ux/manager/commit/6c13bb8))
+
+
+
 # [0.8.0-alpha.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.8.0-alpha.1...@ovh-ux/manager-public-cloud@0.8.0-alpha.2) (2019-05-21)
 
 

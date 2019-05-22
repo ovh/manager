@@ -1,3 +1,14 @@
+## [0.1.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.1.3...@ovh-ux/manager-server-sidebar@0.1.4) (2019-05-22)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([45c18bd](https://github.com/ovh-ux/manager/commit/45c18bd))
+* **server-sidebar:** add empty item if no services ([#702](https://github.com/ovh-ux/manager/issues/702)) ([5eadcb1](https://github.com/ovh-ux/manager/commit/5eadcb1))
+* **server-sidebar:** update iplb state ([fc95cac](https://github.com/ovh-ux/manager/commit/fc95cac))
+
+
+
 ## [0.1.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.1.2...@ovh-ux/manager-server-sidebar@0.1.3) (2019-05-22)
 
 
