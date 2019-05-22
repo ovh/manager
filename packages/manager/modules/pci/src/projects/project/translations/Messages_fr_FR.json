@@ -11,5 +11,12 @@
   "pci_projects_project_documentation_boot_your_first_cloud_server_in_3_minutes": "Boot your first cloud server in 3 minutes",
   "pci_projects_project_documentation_prepare_the_environment_for_using_the_open_stack_api": "Prepare the environment for using the OpenStack API",
   "pci_projects_project_documentation_create_and_configure_and_additional_disk_on_an_instance": "Create and configure and additional disk on an instance",
-  "pci_projects_project_documentation_see_all_public_cloud_guides": "See all Public Cloud guides"
+  "pci_projects_project_documentation_see_all_public_cloud_guides": "See all Public Cloud guides",
+
+  "pci_projects_project_welcome": "Bienvenue sur la nouvelle interface Public Cloud",
+  "pci_projects_project_welcome_legacy": "Retourner vers l'ancienne interface",
+  "pci_projects_project_forward": "Nous allons basculer sur l'ancienne interface Cloud",
+  "pci_projects_project_forward_feedback": "Donnez nous votre avis",
+  "pci_projects_project_forward_legacy": "Continuer vers l'ancienne interface",
+  "pci_projects_project_forward_content": "Merci d'avoir essayé la nouvelle version Public Cloud. Dites-nous ce que vous avez aimé et ce qui ne vous a pas plu. Vos commentaires permettront de l'améliorer."
 }

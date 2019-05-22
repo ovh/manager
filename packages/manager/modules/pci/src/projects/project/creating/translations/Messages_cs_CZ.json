@@ -1,4 +1,16 @@
 {
  "pci_projects_project_creating_main_title": "Jste na cestě k dobrodružství Public Cloud",
- "pci_projects_project_creating_secondary_title": "Vytvoření projektu probíhá"
+ "pci_projects_project_creating_secondary_title": "Vytvoření projektu probíhá",
+ "pci_projects_project_creating_explain1": "Chcete-li dokončit vytvoření svého projektu, zaplatte prosím objednávku <a href=\"{{ href }}\">{{ orderId }}</a>.",
+ "pci_projects_project_creating_explain2": "Pokud je tato stránka stále ještě několik minut po zaplacení objednávky, kontaktujte prosím <a href=\"{{ href }}\"> náš zákaznický servis </a>.",
+ "pci_projects_project_creating_not_paid_title": "Jste na cestě k dobrodružství Public Cloud",
+ "pci_projects_project_creating_not_paid": "Vypadá to, že máte objednávku na {{suma}} čekajících kreditů. Zveme vás, abyste za to zaplatili kliknutím na tlačítko \"Dokončit objednávku\" a zahájíte tak vytváření projektu.",
+ "pci_projects_project_creating_not_paid_explain1": "Kliknutím na tlačítko \"Dokončit objednávku\" budete přesměrováni na objednávku, kterou musíte zaplatit zvoleným způsobem platby.",
+ "pci_projects_project_creating_not_paid_explain2": "Chcete-li svůj účet najít, přejděte na „Můj účet“ a poté <a href=\"{{ href }}\"> „Moje objednávky“ </a>.",
+ "pci_projects_project_creating_finalize": "Dokončete objednávku",
+ "pci_projects_project_creating_finalize_title": "{{orderId}}: dokončete objednávku",
+ "pci_projects_project_creating_cancel": "Dokončete objednávku",
+ "pci_projects_project_creating_cancel_title": "{{orderId}}: zrušit objednávku",
+ "pci_projects_project_creating_welcome": "Vítejte ve veřejném cloudu",
+ "pci_projects_project_creating_almost_done": "Jste skoro tam ..."
 }
