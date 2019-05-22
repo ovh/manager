@@ -34,12 +34,12 @@
     "ovh-api-services": "^6.18.0"
   },
   "dependencies": {
-    "@ovh-ux/ng-ovh-sidebar-menu": "^8.0.1",
     "jsurl": "^0.1.5",
     "lodash": "^4.17.11"
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^5.0.1",
+    "@ovh-ux/ng-ovh-sidebar-menu": "^8.1.0",
     "ovh-ui-kit": "^2.32.0"
   }
 }
