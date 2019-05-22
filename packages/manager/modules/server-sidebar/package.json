@@ -34,7 +34,7 @@
     "ovh-api-services": "^6.18.1"
   },
   "dependencies": {
-    "@ovh-ux/ng-ovh-sidebar-menu": "^8.0.1",
+    "@ovh-ux/ng-ovh-sidebar-menu": "^8.1.0",
     "jsurl": "^0.1.5",
     "lodash": "^4.17.11"
   },
