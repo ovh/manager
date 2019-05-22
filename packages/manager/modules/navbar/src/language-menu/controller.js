@@ -79,7 +79,7 @@ export default class {
 
   changeLang(lang) {
     this.currentLanguage = lang;
-    return this.$scope.$emit('lang.onChange', { lang: lang.lang });
+    return this.$scope.$emit('lang.onChange', { lang: lang.value });
   }
 
   getSublinks() {
@@ -87,6 +87,7 @@ export default class {
       title: lang.name,
       isActive: lang.value === this.currentLanguage.value,
       lang: head(words(lang.value)),
+      value: lang.value,
     }));
   }
 }

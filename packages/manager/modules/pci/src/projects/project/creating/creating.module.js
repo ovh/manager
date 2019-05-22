@@ -5,6 +5,7 @@ import '@uirouter/angularjs';
 import 'angular-translate';
 import 'angular-animate';
 
+import notPaid from './notPaid';
 
 import routing from './creating.routing';
 import component from './creating.component';
@@ -21,6 +22,7 @@ angular
     'pascalprecht.translate',
     'ngOvhSwimmingPoll',
     'ngAnimate',
+    notPaid,
   ])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */)
