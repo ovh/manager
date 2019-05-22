@@ -16,6 +16,7 @@ import kubernetes from './kubernetes';
 import sshKeys from './ssh-keys';
 import privateNetworks from './private-networks';
 import quota from './quota';
+import privateRegistry from './private-registry';
 import sidebar from './sidebar';
 import storages from './storages';
 import users from './users';
@@ -39,6 +40,7 @@ angular
     privateNetworks,
     quota,
     regions,
+    privateRegistry,
     'oui',
     'ovhManagerCore',
     'ovh-api-services',

@@ -1,0 +1,17 @@
+<pci-project-empty data-guides="$ctrl.guides" data-image-source="$ctrl.privateRegistryImage">
+    <h1 data-translate="private_registry_title"></h1>
+    <p data-translate="private_registry_onboarding_content1"></p>
+    <strong data-translate="private_registry_onboarding_content2"></strong>
+    <p data-translate="private_registry_onboarding_content3"></p>
+
+    <cui-message-container data-messages="$ctrl.messages" class="mb-2 mt-2"></cui-message-container>
+    <oui-button data-variant="primary"
+                data-on-click="$ctrl.createRegistry()" data-ng-if="!$ctrl.registryId">
+        <span data-translate="private_registry_onboarding_action_label"></span>
+    </oui-button>
+    <oui-button data-variant="primary"
+                data-on-click="$ctrl.generateCredentials()"
+                data-ng-if="$ctrl.registryId">
+        <span data-translate="private_registry_onboarding_generate"></span>
+    </oui-button>
+</pci-project-empty>

@@ -1,0 +1,22 @@
+<form  id="createRegistry"
+       name="createRegistry"
+       data-ng-submit="createRegistry.$valid && $ctrl.createRegistry()"
+       novalidate>
+    <oui-modal data-title="{{ ::'private_registry_create_modal_title' | translate }}"
+               data-primary-label="{{ ::'private_registry_common_create' | translate }}"
+               data-secondary-label="{{ ::'common_cancel' | translate }}"
+               data-secondary-action="$ctrl.back()"
+               data-on-dismiss="$ctrl.back()"
+               data-loading="$ctrl.create.loading">
+        <oui-field label="{{ ::'private_registry_create_name_label' | translate }}" size="xl">
+            <input class="oui-input"
+                   data-type="text"
+                   id="registryName"
+                   name="registryName"
+                   data-ng-model="$ctrl.registry.name"
+                   data-required
+                   data-minlength="1"
+                   autofocus>
+        </oui-field>
+   </oui-modal>
+</form>
