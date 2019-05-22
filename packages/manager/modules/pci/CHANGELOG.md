@@ -1,3 +1,25 @@
+# [0.13.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.12.3...@ovh-ux/manager-pci@0.13.0) (2019-05-22)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([c1b064e](https://github.com/ovh-ux/manager/commit/c1b064e))
+* **i18n:** add missing translations ([0a04f71](https://github.com/ovh-ux/manager/commit/0a04f71))
+* **pci.error:** fix img max width ([55cf701](https://github.com/ovh-ux/manager/commit/55cf701))
+* **pci.kube:** display message if no regions is available ([b25b3d1](https://github.com/ovh-ux/manager/commit/b25b3d1))
+* **pci.kube:** redirect to onboarding if no region ([2383b35](https://github.com/ovh-ux/manager/commit/2383b35))
+* sort instance-backups list by date ([31e3c18](https://github.com/ovh-ux/manager/commit/31e3c18))
+* **pci.users:** pass userid and password to api ([265b8ce](https://github.com/ovh-ux/manager/commit/265b8ce))
+
+
+### Features
+
+* add new translations ([#695](https://github.com/ovh-ux/manager/issues/695)) ([1f4fa7f](https://github.com/ovh-ux/manager/commit/1f4fa7f))
+* **pci:** change link to legacy manager display ([bcd932a](https://github.com/ovh-ux/manager/commit/bcd932a))
+* **pci.projects.creating:** manage unpaid order project ([85a2499](https://github.com/ovh-ux/manager/commit/85a2499))
+
+
+
 ## [0.12.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.12.2...@ovh-ux/manager-pci@0.12.3) (2019-05-22)
 
 

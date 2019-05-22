@@ -1,3 +1,12 @@
+## [0.4.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-navbar@0.4.1...@ovh-ux/manager-navbar@0.4.2) (2019-05-22)
+
+
+### Bug Fixes
+
+* set the right language ([9e9d5e1](https://github.com/ovh-ux/manager/commit/9e9d5e1))
+
+
+
 ## [0.4.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-navbar@0.4.0...@ovh-ux/manager-navbar@0.4.1) (2019-05-21)
 
 
