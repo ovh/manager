@@ -11,6 +11,7 @@ export default class PublicCloud {
   getProjects(filters = []) {
     // Don't have Iceberg in US -> Fallback by ovh-api-services
     if (this.coreConfig.isRegion('US')) {
+      this.OvhApiCloudProject.v6().resetAllCache();
       return this.OvhApiCloudProject
         .v6()
         .queryDetails()
@@ -30,7 +31,7 @@ export default class PublicCloud {
         .expand('CachedObjectList-Cursor'),
     )
       .sort('description') // Doesn't work as long as cache is not enabled
-      .execute()
+      .execute(null, true)
       .$promise;
   }
 }
