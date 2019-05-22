@@ -290,7 +290,7 @@ export const IPLB_CONFIG = {
   types: [
     {
       path: '/ipLoadbalancing',
-      state: 'network.iplb.detail',
+      state: 'network.iplb.detail.home',
       stateParams: ['serviceName'],
       icon: 'ovh-font ovh-font-iplb',
       app: [CLOUD],
