@@ -69,6 +69,7 @@
     "matchmedia-ng": "^1.0.8",
     "moment": "^2.22.2",
     "ng-csv": "^0.3.6",
+    "ng-slide-down": "^0.4.2",
     "oclazyload": "^1.1.0",
     "ovh-angular-checkbox-table": "^0.1.2",
     "ovh-angular-responsive-tabs": "^4.0.0",

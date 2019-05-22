@@ -8564,6 +8564,11 @@ ng-csv@^0.3.6:
   resolved "https://registry.yarnpkg.com/ng-csv/-/ng-csv-0.3.6.tgz#a89cf02e4c3fa2a5b24d5c19984443dda7f275d8"
   integrity sha1-qJzwLkw/oqWyTVwZmERD3afyddg=
 
+ng-slide-down@^0.4.2:
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/ng-slide-down/-/ng-slide-down-0.4.2.tgz#d734d823b3369f3ef651d708556a9647cf49d8cb"
+  integrity sha1-1zTYI7M2nz72UdcIVWqWR89J2Ms=
+
 nice-try@^1.0.4:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/nice-try/-/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"
