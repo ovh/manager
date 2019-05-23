@@ -1,5 +1,6 @@
 export const DEDICATED = 'DEDICATED';
 export const CLOUD = 'CLOUD';
+export const WEB = 'WEB';
 
 export const MANAGER_URLS = {
   EU: {
@@ -8,6 +9,9 @@ export const MANAGER_URLS = {
     },
     CLOUD: {
       FR: 'https://www.ovh.com/manager/cloud/repsac/',
+    },
+    WEB: {
+      FR: 'https://www.ovh.com/manager/web/',
     },
   },
   CA: {
@@ -28,4 +32,6 @@ export const MANAGER_URLS = {
   },
 };
 
-export default { DEDICATED, CLOUD, MANAGER_URLS };
+export default {
+  DEDICATED, CLOUD, WEB, MANAGER_URLS,
+};
