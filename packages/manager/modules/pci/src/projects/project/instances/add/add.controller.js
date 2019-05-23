@@ -157,6 +157,8 @@ export default class PciInstancesAddController {
     if (get(this.selectedPrivateNetwork, 'id')) {
       this.instance.networks = [{
         networkId: get(this.selectedPrivateNetwork, 'id'),
+      }, {
+        networkId: get(this.publicNetwork, 'id'),
       }];
     } else {
       this.instance.networks = [];
