@@ -1,5 +1,6 @@
 import filter from 'lodash/filter';
 import find from 'lodash/find';
+import has from 'lodash/has';
 import map from 'lodash/map';
 import remove from 'lodash/remove';
 import snakeCase from 'lodash/snakeCase';
@@ -107,6 +108,27 @@ export default class OvhPaymentMethodService {
     const addParams = params;
     addParams.paymentType = paymentMethodType.paymentType.value;
     return this.OvhApiMe.Payment().Method().v6().save({}, addParams).$promise
+      .then((response) => {
+        if (has(params, 'orderId') && has(response, 'paymentMethodId')) {
+          return this.OvhApiMe
+            .Order()
+            .v6()
+            .pay(
+              {
+                orderId: params.orderId,
+              },
+              {
+                paymentMethod: {
+                  id: response.paymentMethodId,
+                },
+              },
+            )
+            .$promise
+            .then(() => response);
+        }
+
+        return this.$q.when(response);
+      })
       .then((response) => {
         this.$window.location = response.url;
         return response;
