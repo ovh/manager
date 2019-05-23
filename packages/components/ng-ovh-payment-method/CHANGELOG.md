@@ -1,3 +1,12 @@
+## [3.0.1](https://github.com/ovh-ux/ng-ovh-payment-method/compare/v3.0.0...v3.0.1) (2019-05-23)
+
+
+### Bug Fixes
+
+* pay order when adding payment method ([42e9a33](https://github.com/ovh-ux/ng-ovh-payment-method/commit/42e9a33))
+
+
+
 # [3.0.0](https://github.com/ovh-ux/ng-ovh-payment-method/compare/v2.2.0...v3.0.0) (2019-05-17)
 
 
