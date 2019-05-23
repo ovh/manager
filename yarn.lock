@@ -1810,10 +1810,10 @@
     draggable "^4.2.0"
     lodash "^4.17.11"
 
-"@ovh-ux/ng-ovh-payment-method@^3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-payment-method/-/ng-ovh-payment-method-3.0.0.tgz#7fd51fa7696abe12b2afdaf5443d957b9378cafc"
-  integrity sha512-6WEtPE1IOztC2Y58uxa3CEJUuejJXr492gYo51XS2JVhBEl1B3Vd3T3/hQHNjH/4n7b+s24et8GWnW/hIymcnA==
+"@ovh-ux/ng-ovh-payment-method@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-payment-method/-/ng-ovh-payment-method-3.0.1.tgz#bb5552706ebdffb24114192f92fb05a811ae6c15"
+  integrity sha512-G+N93HurjYJcOo1itlBnZchXjyXiMBHwLo5vZePCm52uFHFAWDYecRcneqvfz1HZ6qSHmjO2B7REAfaJmALoZw==
   dependencies:
     lodash "^4.17.11"
 
@@ -9190,10 +9190,10 @@ ovh-angular-ui-confirm-modal@^1.0.2:
   resolved "https://registry.yarnpkg.com/ovh-angular-ui-confirm-modal/-/ovh-angular-ui-confirm-modal-1.0.2.tgz#92e6736588a4fb1de6353f1a17ab1962679a698d"
   integrity sha512-3V17DbzWjUjl9sKCd25Oycn+7eqg6iW+DpizwVmixHFzDNDMnpKSGmxRLrOq+q9YNE7IepoAKWjoSiy2+zOEEg==
 
-ovh-api-services@^6.18.1:
-  version "6.18.1"
-  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-6.18.1.tgz#be08dafa5e8438ada21bc5999d10d4e884a5f808"
-  integrity sha512-aEnsKl+7eCPsvvRS076icjz4t250IFHstH49W+ZxXR93NoAX4yDlLWaFJtFWKR+XVSEJ29WosiHdUh/r/WH+rg==
+ovh-api-services@^6.19.0:
+  version "6.19.0"
+  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-6.19.0.tgz#30f6e816ac83f27b4497ab0f1d655957303b39b0"
+  integrity sha512-NKNQyWeosnzjifJvXrWZcrGtGFSdKS++c2yt2lkMXj3O8bnFve3645lgY+9k9WyvY6Eo7m+iIYPoVMnmND3JBQ==
   dependencies:
     lodash "^3.10.1"
 
