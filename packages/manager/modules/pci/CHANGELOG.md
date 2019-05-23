@@ -1,3 +1,12 @@
+## [0.13.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.13.0...@ovh-ux/manager-pci@0.13.1) (2019-05-23)
+
+
+### Bug Fixes
+
+* **pci.instance.add:** add public network when adding a network ([#714](https://github.com/ovh-ux/manager/issues/714)) ([bc0cccd](https://github.com/ovh-ux/manager/commit/bc0cccd))
+
+
+
 # [0.13.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.12.3...@ovh-ux/manager-pci@0.13.0) (2019-05-22)
 
 
