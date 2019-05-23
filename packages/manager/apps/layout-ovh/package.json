@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-layout-ovh",
-  "version": "6.2.2",
+  "version": "6.2.3",
   "private": true,
   "license": "BSD-3-Clause",
   "main": "./src/index.js",
@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@ovh-ux/manager-config": "^0.2.0",
-    "@ovh-ux/manager-core": "^5.2.1",
+    "@ovh-ux/manager-core": "^5.2.5",
     "@ovh-ux/manager-freefax": "^5.1.2",
     "@ovh-ux/manager-navbar": "^0.4.2",
     "@ovh-ux/manager-overthebox": "^4.2.2",
