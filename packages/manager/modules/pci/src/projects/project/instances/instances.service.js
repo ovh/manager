@@ -269,6 +269,17 @@ export default class PciProjectInstanceService {
       ));
   }
 
+  getPublicNetwork(projectId) {
+    return this.OvhApiCloudProjectNetwork
+      .Public()
+      .v6()
+      .query({
+        serviceName: projectId,
+      })
+      .$promise
+      .then(([publicNetwork]) => publicNetwork);
+  }
+
   getCompatiblesPrivateNetworks(projectId, instance) {
     return this.getAvailablesPrivateNetworks(projectId, instance.region)
       .then(networks => filter(
