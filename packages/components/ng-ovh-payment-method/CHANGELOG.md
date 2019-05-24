@@ -1,3 +1,12 @@
+# [3.1.0](https://github.com/ovh-ux/ng-ovh-payment-method/compare/v3.0.1...v3.1.0) (2019-05-24)
+
+
+### Features
+
+* **component:** add onSelect callback ([7b749cd](https://github.com/ovh-ux/ng-ovh-payment-method/commit/7b749cd))
+
+
+
 ## [3.0.1](https://github.com/ovh-ux/ng-ovh-payment-method/compare/v3.0.0...v3.0.1) (2019-05-23)
 
 
