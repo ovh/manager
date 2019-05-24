@@ -16,6 +16,7 @@
                 data-thumbnail
                 data-value="paymentMethodType"
                 data-model="$ctrl.selectedPaymentType"
+                data-on-change="$ctrl.onPaymentMethodChange()"
                 data-variant="light">
                 <span class="d-block"
                       data-ng-bind="paymentMethodType.paymentType.text">

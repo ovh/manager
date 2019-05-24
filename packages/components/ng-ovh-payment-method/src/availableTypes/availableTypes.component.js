@@ -11,5 +11,6 @@ export default {
     selectedPaymentType: '=',
     onLoaded: '&',
     onLoadError: '&',
+    onSelectedPaymentTypeChange: '&',
   },
 };

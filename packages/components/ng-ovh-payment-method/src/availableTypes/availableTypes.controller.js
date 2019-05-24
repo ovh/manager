@@ -29,6 +29,24 @@ export default class OvhPaymentMethodAvailableTypesCtrl {
     };
   }
 
+  /* =============================
+  =            Events            =
+  ============================== */
+
+  onPaymentMethodChange() {
+    // if it's a function reference ...
+    // otherwise the call will be made passing an Object Literal
+    // when testing if the callback function is a function ref or not
+    if (isFunction(this.onSelectedPaymentTypeChange({
+      paymentType: this.selectedPaymentType,
+    }))) {
+      // ... invoke it
+      this.onSelectedPaymentTypeChange()(this.selectedPaymentType);
+    }
+  }
+
+  /* -----  End of Events  ------ */
+
   /* =====================================
   =            Initialization            =
   ====================================== */
