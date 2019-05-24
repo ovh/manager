@@ -1,0 +1,13 @@
+{
+  "ticket_header": "Mes demandes d'assistance",
+
+  "ticket_sender_customer": "Vous",
+  "ticket_sender_support": "Support OVH",
+
+  "ticket_state_closed": "Clos",
+  "ticket_state_open": "En cours",
+  "ticket_state_unknown": "Inconnu",
+
+  "ticket_type_criticalIntervention": "Intervention critique",
+  "ticket_type_genericRequest": "Requête générique"
+}

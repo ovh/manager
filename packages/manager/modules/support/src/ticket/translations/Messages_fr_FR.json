@@ -1,0 +1,12 @@
+{
+  "support_ticket_generalInformation_header": "Informations générales",
+  "support_ticket_generalInformation_creationDate": "Ouvert depuis le :",
+  "support_ticket_generalInformation_state": "État :",
+  "support_ticket_generalInformation_subject": "Service :",
+  "support_ticket_generalInformation_type": "Type :",
+  "support_ticket_generalInformation_updateDate": "Dernière mise à jour le :",
+
+  "support_ticket_messages_header": "Communication",
+  "support_ticket_messages_sender": "De :",
+  "support_ticket_messages_dateOfReceipt": "Reçu le :"
+}

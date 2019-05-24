@@ -1,0 +1,84 @@
+<header>
+    <oui-back-button data-on-click=":: $ctrl.goToTickets($ctrl.tickets)">
+        <span data-ng-bind=":: $ctrl.ticket.subject"></span>
+    </oui-back-button>
+</header>
+
+<div class="container-fluid">
+    <section>
+        <h3 data-translate="support_ticket_generalInformation_header"></h3>
+
+        <dl class="row">
+            <dt
+                class="col-sm-2 text-right"
+                data-translate="support_ticket_generalInformation_subject"></dt>
+            <dd
+                class="col-sm-10 col-md-4"
+                data-ng-bind=":: $ctrl.ticket.serviceName"></dd>
+            <dt
+                class="col-sm-2 col-md-2 text-right"
+                data-translate="support_ticket_generalInformation_state"></dt>
+            <dd
+                class="col-sm-10 col-md-4"
+                data-ng-bind=":: $ctrl.translateTicketState($ctrl.ticket.state)"></dd>
+            <dt
+                class="col-sm-2 text-right"
+                data-translate="support_ticket_generalInformation_type"></dt>
+            <dd
+                class="col-sm-10 col-md-4"
+                data-ng-bind=":: 'ticket_type_' + $ctrl.ticket.type | translate"></dd>
+            <dt
+                class="col-sm-2 col-md-2 text-right"
+                data-translate="support_ticket_generalInformation_creationDate"></dt>
+            <dd class="col-sm-10 col-md-4">
+                <time
+                    data-ng-bind=":: $ctrl.ticket.creationDate | date: 'short'"
+                    datetime="{{:: $ctrl.ticket.creationDate }}"></time>
+            </dd>
+            <dt
+                class="col-sm-2 text-right"
+                data-translate="support_ticket_generalInformation_updateDate">:</dt>
+            <dd class="col-sm-10">
+                <time
+                    data-ng-bind=":: $ctrl.ticket.updateDate | date: 'short'"
+                    datetime="{{:: $ctrl.ticket.updateDate }}"></time>
+            </dd>
+        </dl>
+    </section>
+
+
+    <section class="row">
+        <div class="col-md-10">
+            <h3 data-translate="support_ticket_messages_header"></h3>
+
+            <div
+                class="oui-box"
+                data-ng-class="{
+                    'oui-box_light': $ctrl.isMessageFromCustomer(message.from),
+                }"
+                data-ng-repeat="message in ::$ctrl.messages | orderBy:'creationDate':true track by message.messageId">
+                <dl class="row">
+                    <dt
+                        class="col-sm-2 text-right"
+                        data-translate="support_ticket_messages_sender"></dt>
+                    <dd
+                        class="col-sm-10 col-md-4"
+                        data-ng-bind=":: $ctrl.translateTicketSender(message.from)"></dd>
+                    <dt
+                        class="col-sm-2 col-md-2 text-right"
+                        data-translate="support_ticket_messages_dateOfReceipt"></dt>
+                    <dd class="col-sm-10 col-md-4">
+                        <time
+                            data-ng-bind=":: message.updateDate | date: 'short'"
+                            datetime="{{:: message.updateDate }}"></time>
+                    </dd>
+                </dl>
+
+                <pre
+                    class="message"
+                    data-ng-bind-html="message.body | htmlStringLinky:'_blank'"></pre>
+            </div>
+        </div>
+    </section>
+</div>
+

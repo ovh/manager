@@ -4,9 +4,9 @@ import '@ovh-ux/manager-core';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
-import { state } from './support.routing';
+import { state } from './tickets.routing';
 
-const moduleName = 'ovhManagerSupportLazyLoading';
+const moduleName = 'ovhManagerSupportTicketsLazyLoading';
 
 angular
   .module(moduleName, [
@@ -20,14 +20,10 @@ angular
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
 
-        return import('./support.module')
+        return import('./tickets.module')
           .then(mod => $ocLazyLoad.inject(mod.default || mod));
       },
     });
-  })
-  .run(/* @ngTranslationsInject:json ./translations */)
-  .run(/* @ngInject */ ($transitions, $translate) => {
-    $transitions.onBefore({ to: `${state.name}.**` }, () => $translate.refresh());
   });
 
 export default moduleName;
