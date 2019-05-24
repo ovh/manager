@@ -1,3 +1,12 @@
+## [0.13.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.13.1...@ovh-ux/manager-pci@0.13.2) (2019-05-24)
+
+
+### Bug Fixes
+
+* implement retry after hipay payment redirect ([b69ddaf](https://github.com/ovh-ux/manager/commit/b69ddaf))
+
+
+
 ## [0.13.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.13.0...@ovh-ux/manager-pci@0.13.1) (2019-05-23)
 
 
