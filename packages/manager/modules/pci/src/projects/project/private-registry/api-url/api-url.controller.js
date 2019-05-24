@@ -5,7 +5,7 @@ export default class PrivateRegistryApiUrlCtrl {
     $stateParams,
   ) {
     this.$state = $state;
-    this.harborApiUrl = $stateParams.url;
+    this.harborApiUrl = $stateParams.url.replace(/^https?:\/\//, '');
   }
 
   goBack() {

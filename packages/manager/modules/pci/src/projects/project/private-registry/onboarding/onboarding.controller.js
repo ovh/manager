@@ -1,5 +1,6 @@
 import reduce from 'lodash/reduce';
 import privateRegistryImage from '../assets/private-registry.png';
+import { GUIDES } from '../private-registry.constants';
 
 export default class {
   /* @ngInject */
@@ -8,7 +9,6 @@ export default class {
     $stateParams,
     $translate,
     CucCloudMessage,
-    GUIDES,
   ) {
     this.$state = $state;
     this.$translate = $translate;

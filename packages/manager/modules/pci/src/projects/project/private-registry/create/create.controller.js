@@ -1,39 +1,34 @@
 import get from 'lodash/get';
+import { REGION } from '../private-registry.constants';
 
 export default class {
   /* @ngInject */
-  constructor($stateParams, $translate, CucControllerHelper, privateRegistryService) {
+  constructor($stateParams, $translate, privateRegistryService) {
     this.$translate = $translate;
-    this.cucControllerHelper = CucControllerHelper;
     this.privateRegistryService = privateRegistryService;
     this.fromState = $stateParams.fromState;
-
-    this.projectId = $stateParams.projectId;
+    this.isLoading = false;
+    this.REGION = REGION;
     this.registry = {};
   }
 
   createRegistry() {
-    this.registry.region = 'GRA7'; // only GRA7 supported as of now
-    this.create = this.cucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.privateRegistryService.createRegistry(
-        this.projectId,
-        this.registry,
-      )
-        .then(res => this.goBack(
-          this.$translate.instant('private_registry_onboarding_success', { registryName: this.registry.name }),
-          'success',
-          this.fromState,
-          res.id,
-        ))
-        .catch(error => this.goBack(
-          this.$translate.instant('private_registry_onboarding_error', {
-            message: get(error, 'data.message'),
-          }),
-          'error',
-          this.fromState,
-        )),
-    });
-    return this.create.load();
+    this.isLoading = true;
+    this.registry.region = this.REGION; // only GRA7 supported as of now
+    return this.privateRegistryService.createRegistry(this.projectId, this.registry)
+      .then(res => this.goBack(
+        this.$translate.instant('private_registry_onboarding_success', { registryName: this.registry.name }),
+        'success',
+        this.fromState,
+        res.id,
+      ))
+      .catch(error => this.goBack(
+        this.$translate.instant('private_registry_onboarding_error', {
+          message: get(error, 'data.message'),
+        }),
+        'error',
+        this.fromState,
+      ));
   }
 
   back() {

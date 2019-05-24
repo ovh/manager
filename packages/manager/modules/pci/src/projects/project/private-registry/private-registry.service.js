@@ -4,7 +4,7 @@ export default class privateRegistryService {
     OvhApiCloudProject,
   ) {
     this.OvhApiPrivateRegistry = OvhApiCloudProject.ContainerRegistry().v6();
-    this.OvhApiPrivateRegistryUser = OvhApiCloudProject.ContainerRegistry().users().v6();
+    this.OvhApiPrivateRegistryUser = OvhApiCloudProject.ContainerRegistry().Users().v6();
   }
 
   /**

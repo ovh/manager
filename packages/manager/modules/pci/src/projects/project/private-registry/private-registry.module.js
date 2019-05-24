@@ -11,26 +11,17 @@ import routing from './private-registry.routing';
 import privateRegistryComponent from './private-registry.component';
 import privateRegistryService from './private-registry.service';
 
-import {
-  PRIVATE_REGISTRY_STATUS_MAP,
-  PRIVATE_REGISTRY_STATUS,
-  DELETE_CONFIRMATION_INPUT,
-  GUIDES,
-} from './private-registry.constants';
-
 import create from './create';
-import list from './list';
 import deleteRegistry from './delete';
 import onboarding from './onboarding';
 import updateRegistry from './update';
 import credentials from './credentials';
 import apiUrl from './api-url';
 
-const moduleName = 'ovhManagerPciProjectPrivateRegistryModule';
+const moduleName = 'ovhManagerPciProjectPrivateRegistry';
 
 angular
   .module(moduleName, [
-    list,
     create,
     deleteRegistry,
     onboarding,
@@ -47,10 +38,6 @@ angular
   .config(routing)
   .component('privateRegistryComponent', privateRegistryComponent)
   .service('privateRegistryService', privateRegistryService)
-  .constant('PRIVATE_REGISTRY_STATUS', PRIVATE_REGISTRY_STATUS)
-  .constant('PRIVATE_REGISTRY_STATUS_MAP', PRIVATE_REGISTRY_STATUS_MAP)
-  .constant('DELETE_CONFIRMATION_INPUT', DELETE_CONFIRMATION_INPUT)
-  .constant('GUIDES', GUIDES)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

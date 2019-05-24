@@ -3,7 +3,7 @@ import '@ovh-ux/manager-core';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
-const moduleName = 'ovhManagerPciProjectPrivateRegistry';
+const moduleName = 'ovhManagerPciProjectPrivateRegistryLazyloading';
 
 angular.module(moduleName, [
   'ui.router',

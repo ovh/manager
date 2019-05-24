@@ -1,10 +1,11 @@
 import angular from 'angular';
-import createComponent from './create.component';
+import component from './create.component';
+import routing from './create.routing';
 
 const moduleName = 'pciProjectPrivateRegistryCreateComponent';
 
 angular.module(moduleName, [])
-  .run(/* @ngTranslationsInject:json ./translations */)
-  .component('pciProjectPrivateRegistryCreateComponent', createComponent);
+  .config(routing)
+  .component('pciProjectPrivateRegistryCreate', component);
 
 export default moduleName;

@@ -6,7 +6,6 @@ export default class PrivateRegistryDeleteCtrl {
     $stateParams,
     $translate,
     $window,
-    CucControllerHelper,
     privateRegistryService,
   ) {
     this.projectId = $stateParams.projectId;
@@ -17,33 +16,33 @@ export default class PrivateRegistryDeleteCtrl {
     this.fromState = $stateParams.fromState;
     this.$translate = $translate;
     this.$window = $window;
-    this.cucControllerHelper = CucControllerHelper;
     this.privateRegistryService = privateRegistryService;
     this.confirmed = false;
     this.registryId = $stateParams.registryId;
+    this.isLoading = false;
   }
 
   $onInit() {
     if (!this.confirmationRequired) {
-      this.getRegistryDetails().then((details) => {
-        this.harborURL = details.url;
-        this.registryName = details.name;
-        return this.confirmRegeneration();
-      });
+      this.getRegistryDetails()
+        .then(() => this.confirmRegeneration());
     }
   }
 
   getRegistryDetails() {
-    this.registryDetails = this.cucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.privateRegistryService.getRegistry(this.projectId, this.registryId)
-        .catch(error => this.goBack(
-          this.$translate.instant('private_registry_generate_credentials_error', {
-            message: get(error, 'data.message'),
-            registryName: this.registryName,
-          }), 'error', this.fromState,
-        )),
-    });
-    return this.registryDetails.load();
+    this.isLoading = true;
+    return this.privateRegistryService.getRegistry(this.projectId, this.registryId)
+      .then((details) => {
+        this.harborURL = details.url;
+        this.registryName = details.name;
+        this.isLoading = false;
+      })
+      .catch(error => this.goBack(
+        this.$translate.instant('private_registry_generate_credentials_error', {
+          message: get(error, 'data.message'),
+          registryName: this.registryName,
+        }), 'error', this.fromState, this.registryId,
+      ));
   }
 
   confirmRegeneration() {
@@ -52,20 +51,18 @@ export default class PrivateRegistryDeleteCtrl {
   }
 
   generateCredentials() {
-    this.credentials = this.cucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.privateRegistryService.generateCredentials(
-        this.projectId,
-        this.registryId,
-      )
-        .then(credentials => credentials)
-        .catch(error => this.goBack(
-          this.$translate.instant('private_registry_generate_credentials_error', {
-            message: get(error, 'data.message'),
-            registryName: this.registryName,
-          }), 'error', this.fromState,
-        )),
-    });
-    return this.credentials.load();
+    this.isLoading = true;
+    return this.privateRegistryService.generateCredentials(this.projectId, this.registryId)
+      .then((credentials) => {
+        this.isLoading = false;
+        this.credentials = credentials;
+      })
+      .catch(error => this.goBack(
+        this.$translate.instant('private_registry_generate_credentials_error', {
+          message: get(error, 'data.message'),
+          registryName: this.registryName,
+        }), 'error', this.fromState, this.registryId,
+      ));
   }
 
   goToHarborUI() {

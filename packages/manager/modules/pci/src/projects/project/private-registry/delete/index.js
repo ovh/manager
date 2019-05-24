@@ -9,25 +9,20 @@ angular
     'ui.router',
   ])
   .config(/* @ngInject */($stateProvider) => {
-    $stateProvider.state('pci.projects.project.private-registry.list.delete', {
+    $stateProvider.state('pci.projects.project.private-registry.delete', {
       url: '/delete?registryId',
       params: {
         registryName: null,
       },
-      layout: 'modal',
-      component: 'deleteComponent',
-      translations: {
-        value: [
-          './..',
-          '.',
-        ],
-        format: 'json',
+      views: {
+        modal: {
+          component: 'deleteComponent',
+        },
       },
+      layout: 'modal',
       resolve: {
         goBack: /* @ngInject */  goBackToState => goBackToState,
-        breadcrumb: /* @ngInject */ $translate => $translate
-          .refresh()
-          .then(() => $translate.instant('private_registry_delete')),
+        breadcrumb: /* @ngInject */ $translate => $translate.instant('private_registry_delete'),
       },
     });
   })
