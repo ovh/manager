@@ -35,7 +35,7 @@
     "angular": "^1.7.8",
     "angular-translate": "^2.18.1",
     "bootstrap-tour": "^0.12.0",
-    "ovh-api-services": "^6.18.1",
+    "ovh-api-services": "^6.21.0",
     "ovh-ui-angular": "^2.29.0",
     "ovh-ui-kit": "^2.29.0"
   },
