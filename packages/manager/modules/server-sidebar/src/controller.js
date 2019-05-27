@@ -236,6 +236,16 @@ export default class OvhManagerServerSidebarController {
                 loadOnState: get(typeServices.type, 'loadOnState'),
               }, parent);
 
+              // add serviceName in item searchKeys
+              if (has(service, 'serviceName')) {
+                menuItem.addSearchKey(service.serviceName);
+              }
+
+              // add searchKeys from type definition in item searchKeys
+              if (has(typeServices.type, 'searchKeys') && isArray(typeServices.type.searchKeys)) {
+                each(typeServices.type.searchKeys, key => menuItem.addSearchKey(key));
+              }
+
               if (hasSubItems && !isExternal) {
                 menuItem.onLoad = () => this.loadServices(
                   typeServices.type,
