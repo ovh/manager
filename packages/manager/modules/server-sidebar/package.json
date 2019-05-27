@@ -31,7 +31,7 @@
     "@ovh-ux/ng-translate-async-loader": "^2.0.0",
     "angular": "^1.7.8",
     "angular-translate": "^2.18.1",
-    "ovh-api-services": "^6.18.1"
+    "ovh-api-services": "^6.21.0"
   },
   "dependencies": {
     "jsurl": "^0.1.5",
