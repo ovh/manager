@@ -36,6 +36,7 @@ import atInternet from './components/at-internet';
 import preload from './components/manager-preload';
 
 import 'bootstrap-tour/build/css/bootstrap-tour.min.css';
+import 'flatpickr/dist/flatpickr.min.css';
 import './assets/theme/index.less';
 import './index.scss';
 
