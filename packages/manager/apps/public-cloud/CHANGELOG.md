@@ -1,3 +1,12 @@
+# [0.8.0-alpha.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.8.0-alpha.3...@ovh-ux/manager-public-cloud@0.8.0-alpha.4) (2019-05-27)
+
+
+### Bug Fixes
+
+* **apps.public.cloud:** remove default location prefix ([#683](https://github.com/ovh-ux/manager/issues/683)) ([cc0e70a](https://github.com/ovh-ux/manager/commit/cc0e70a)), closes [#682](https://github.com/ovh-ux/manager/issues/682)
+
+
+
 # [0.8.0-alpha.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.8.0-alpha.2...@ovh-ux/manager-public-cloud@0.8.0-alpha.3) (2019-05-22)
 
 
