@@ -6,6 +6,8 @@ const component = {
   controller,
   bindings: {
     goBack: '<',
+    getRegistry: '<',
+    projectId: '<',
   },
 };
 

@@ -1,27 +1,7 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
-    .state('pci.projects.project.private-registry.onboarding.credentials', {
-      url: '/credentials?registryId',
-      layout: 'modal',
-      params: {
-        registryId: null,
-        registryName: null,
-        harborURL: null,
-        fromState: null,
-        confirmationRequired: null,
-      },
-      views: {
-        modal: {
-          component: 'pciPrivateRegistryCredentials',
-        },
-      },
-      resolve: {
-        goBack: /* @ngInject */  goBackToState => goBackToState,
-        breadcrumb: /* @ngInject */ $translate => $translate.instant('private_registry_generate_credentials'),
-      },
-    })
     .state('pci.projects.project.private-registry.credentials', {
-      url: '/credentials?registryId',
+      url: '/credentials',
       layout: 'modal',
       views: {
         modal: {
@@ -38,6 +18,11 @@ export default /* @ngInject */ ($stateProvider) => {
       resolve: {
         goBack: /* @ngInject */  goBackToState => goBackToState,
         breadcrumb: /* @ngInject */ $translate => $translate.instant('private_registry_generate_credentials'),
+        getRegistry: /* @ngInject */ (
+          projectId,
+          privateRegistryService,
+          $stateParams,
+        ) => privateRegistryService.getRegistry(projectId, $stateParams.registryId),
       },
     });
 };

@@ -14,21 +14,5 @@ export default /* @ngInject */ ($stateProvider) => {
       resolve: {
         goBack: /* @ngInject */  goBackToState => goBackToState,
       },
-    })
-    .state('pci.projects.project.private-registry.onboarding.create', {
-      url: '/create',
-      views: {
-        modal: {
-          component: 'pciProjectPrivateRegistryCreate',
-        },
-      },
-      params: {
-        fromState: null,
-      },
-      layout: 'modal',
-      backdrop: 'static',
-      resolve: {
-        goBack: /* @ngInject */  goBackToState => goBackToState,
-      },
     });
 };

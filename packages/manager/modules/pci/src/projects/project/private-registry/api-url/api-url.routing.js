@@ -1,9 +1,10 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
     .state('pci.projects.project.private-registry.api-url', {
-      url: '/api-url?registryId',
+      url: '/api-url',
       params: {
         url: null,
+        registryId: null,
       },
       views: {
         modal: {

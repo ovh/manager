@@ -1,5 +1,7 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
+import create from './create';
+import credentials from './credentials';
 
 import pciProjectPrivateRegistryOnboarding from './onboarding.component';
 
@@ -8,6 +10,8 @@ const moduleName = 'ovhManagerPciPrivateRegistryOnboardingLazyLoading';
 angular
   .module(moduleName, [
     'ui.router',
+    create,
+    credentials,
   ])
   .config(/* @ngInject */ ($stateProvider) => {
     $stateProvider
