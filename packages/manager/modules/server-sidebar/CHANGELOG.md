@@ -1,3 +1,15 @@
+## [0.1.5](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.1.4...@ovh-ux/manager-server-sidebar@0.1.5) (2019-05-27)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([69bdc08](https://github.com/ovh-ux/manager/commit/69bdc08))
+* **i18n:** add missing translations ([07fc37d](https://github.com/ovh-ux/manager/commit/07fc37d))
+* **server-sidebar:** add search keys in menu item ([bf16806](https://github.com/ovh-ux/manager/commit/bf16806))
+* **server.sidebar:** replace url prefix from constants ([a428f88](https://github.com/ovh-ux/manager/commit/a428f88)), closes [#683](https://github.com/ovh-ux/manager/issues/683)
+
+
+
 ## [0.1.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.1.3...@ovh-ux/manager-server-sidebar@0.1.4) (2019-05-22)
 
 

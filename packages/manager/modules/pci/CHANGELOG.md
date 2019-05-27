@@ -1,3 +1,14 @@
+## [0.13.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.13.2...@ovh-ux/manager-pci@0.13.3) (2019-05-27)
+
+
+### Bug Fixes
+
+* implement retry after hipay payment redirect ([4e463bd](https://github.com/ovh-ux/manager/commit/4e463bd))
+* **i18n:** add missing translations ([07fc37d](https://github.com/ovh-ux/manager/commit/07fc37d))
+* **pci:** enable kubernetes from CA region ([#715](https://github.com/ovh-ux/manager/issues/715)) ([7880cce](https://github.com/ovh-ux/manager/commit/7880cce))
+
+
+
 ## [0.13.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.13.1...@ovh-ux/manager-pci@0.13.2) (2019-05-24)
 
 
