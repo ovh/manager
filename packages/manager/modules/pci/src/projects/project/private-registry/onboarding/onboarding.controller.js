@@ -46,7 +46,6 @@ export default class {
 
   generateCredentials() {
     return this.$state.go('pci.projects.project.private-registry.onboarding.credentials', {
-      fromState: 'onboarding',
       confirmationRequired: false,
       registryId: this.registryId,
     });

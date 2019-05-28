@@ -12,17 +12,16 @@ export default /* @ngInject */ ($stateProvider) => {
         registryId: null,
         registryName: null,
         harborURL: null,
-        fromState: null,
         confirmationRequired: null,
       },
       resolve: {
-        goBack: /* @ngInject */  goBackToState => goBackToState,
+        goBack: /* @ngInject */  goBackToList => goBackToList,
         breadcrumb: /* @ngInject */ $translate => $translate.instant('private_registry_generate_credentials'),
         getRegistry: /* @ngInject */ (
           projectId,
-          privateRegistryService,
+          pciPrivateRegistryService,
           $stateParams,
-        ) => privateRegistryService.getRegistry(projectId, $stateParams.registryId),
+        ) => pciPrivateRegistryService.getRegistry(projectId, $stateParams.registryId),
       },
     });
 };

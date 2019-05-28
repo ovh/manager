@@ -3,10 +3,9 @@ import { REGION } from '../private-registry.constants';
 
 export default class {
   /* @ngInject */
-  constructor($stateParams, $translate, privateRegistryService) {
+  constructor($translate, pciPrivateRegistryService) {
     this.$translate = $translate;
-    this.privateRegistryService = privateRegistryService;
-    this.fromState = $stateParams.fromState;
+    this.privateRegistryService = pciPrivateRegistryService;
     this.isLoading = false;
     this.REGION = REGION;
     this.registry = {};
@@ -19,7 +18,6 @@ export default class {
       .then(res => this.goBack(
         this.$translate.instant('private_registry_onboarding_success', { registryName: this.registry.name }),
         'success',
-        this.fromState,
         res.id,
       ))
       .catch(error => this.goBack(
@@ -27,11 +25,10 @@ export default class {
           message: get(error, 'data.message'),
         }),
         'error',
-        this.fromState,
       ));
   }
 
   back() {
-    this.goBack(null, null, this.fromState);
+    this.goBack(null, null);
   }
 }

@@ -6,14 +6,14 @@ export default class PrivateRegistryDeleteCtrl {
   constructor(
     $stateParams,
     $translate,
-    privateRegistryService,
+    pciPrivateRegistryService,
   ) {
     this.projectId = $stateParams.projectId;
     this.registryId = $stateParams.registryId;
     this.registryName = $stateParams.registryName;
     this.$translate = $translate;
     this.DELETE_CONFIRMATION_INPUT = DELETE_CONFIRMATION_INPUT;
-    this.privateRegistryService = privateRegistryService;
+    this.privateRegistryService = pciPrivateRegistryService;
     this.isLoading = false;
   }
 

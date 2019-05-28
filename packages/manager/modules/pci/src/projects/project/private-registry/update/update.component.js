@@ -6,7 +6,6 @@ const component = {
   controller,
   bindings: {
     goBack: '<',
-    fromState: '@',
     projectId: '<',
   },
 };

@@ -7,12 +7,9 @@ export default /* @ngInject */ ($stateProvider) => {
           component: 'pciProjectPrivateRegistryCreate',
         },
       },
-      params: {
-        fromState: null,
-      },
       layout: 'modal',
       resolve: {
-        goBack: /* @ngInject */  goBackToState => goBackToState,
+        goBack: /* @ngInject */  goBackToList => goBackToList,
       },
     });
 };

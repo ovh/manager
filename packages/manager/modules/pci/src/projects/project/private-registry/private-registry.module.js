@@ -8,8 +8,8 @@ import 'ovh-ui-angular';
 
 
 import routing from './private-registry.routing';
-import privateRegistryComponent from './private-registry.component';
-import privateRegistryService from './private-registry.service';
+import pciPrivateRegistryComponent from './private-registry.component';
+import pciPrivateRegistryService from './private-registry.service';
 
 import create from './create';
 import deleteRegistry from './delete';
@@ -36,8 +36,8 @@ angular
     'ui.router',
   ])
   .config(routing)
-  .component('privateRegistryComponent', privateRegistryComponent)
-  .service('privateRegistryService', privateRegistryService)
+  .component('pciPrivateRegistryComponent', pciPrivateRegistryComponent)
+  .service('pciPrivateRegistryService', pciPrivateRegistryService)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

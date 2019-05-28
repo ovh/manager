@@ -6,5 +6,6 @@ export default {
   controller,
   bindings: {
     projectId: '<',
+    registries: '<',
   },
 };

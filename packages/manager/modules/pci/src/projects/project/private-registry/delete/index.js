@@ -21,7 +21,7 @@ angular
       },
       layout: 'modal',
       resolve: {
-        goBack: /* @ngInject */  goBackToState => goBackToState,
+        goBack: /* @ngInject */  goBackToList => goBackToList,
         breadcrumb: /* @ngInject */ $translate => $translate.instant('private_registry_delete'),
       },
     });

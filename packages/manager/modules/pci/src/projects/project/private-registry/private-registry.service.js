@@ -1,4 +1,4 @@
-export default class privateRegistryService {
+export default class pciPrivateRegistryService {
   /* @ngInject */
   constructor(
     OvhApiCloudProject,
@@ -11,7 +11,7 @@ export default class privateRegistryService {
    * create a new registry
    * @accepts registry name
    * @returns new registry
-   * @memberof privateRegistryService
+   * @memberof pciPrivateRegistryService
    */
   createRegistry(projectId, registry) {
     return this.OvhApiPrivateRegistry.create({ serviceName: projectId }, registry).$promise;

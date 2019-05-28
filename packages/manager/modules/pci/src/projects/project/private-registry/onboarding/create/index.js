@@ -13,13 +13,10 @@ angular.module(moduleName, [component])
             component: 'pciProjectPrivateRegistryCreate',
           },
         },
-        params: {
-          fromState: null,
-        },
         layout: 'modal',
         backdrop: 'static',
         resolve: {
-          goBack: /* @ngInject */  goBackToState => goBackToState,
+          goBack: /* @ngInject */  goBackToOnboarding => goBackToOnboarding,
         },
       });
   });

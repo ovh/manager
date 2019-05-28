@@ -13,7 +13,6 @@ angular.module(moduleName, [component])
           registryId: null,
           registryName: null,
           harborURL: null,
-          fromState: null,
           confirmationRequired: null,
         },
         views: {
@@ -22,7 +21,7 @@ angular.module(moduleName, [component])
           },
         },
         resolve: {
-          goBack: /* @ngInject */  goBackToState => goBackToState,
+          goBack: /* @ngInject */  goBackToOnboarding => goBackToOnboarding,
           breadcrumb: /* @ngInject */ $translate => $translate.instant('private_registry_generate_credentials'),
         },
       });

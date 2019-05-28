@@ -7,13 +7,13 @@ export default class {
     $state,
     $stateParams,
     CucCloudMessage,
-    privateRegistryService,
+    pciPrivateRegistryService,
   ) {
     this.$state = $state;
     this.$stateParams = $stateParams;
     this.projectId = $stateParams.projectId;
     this.CucCloudMessage = CucCloudMessage;
-    this.privateRegistryService = privateRegistryService;
+    this.privateRegistryService = pciPrivateRegistryService;
     this.guideLink = GUIDELINK;
     this.PRIVATE_REGISTRY_STATUS = PRIVATE_REGISTRY_STATUS;
     this.PRIVATE_REGISTRY_STATUS_MAP = PRIVATE_REGISTRY_STATUS_MAP;
@@ -22,7 +22,9 @@ export default class {
 
   $onInit() {
     this.loadMessages();
-    this.getRegistryList(false);
+    if (this.registries) {
+      this.registryList = this.registries;
+    }
   }
 
   loadMessages() {
@@ -47,7 +49,7 @@ export default class {
   }
 
   createRegistry() {
-    return this.$state.go('pci.projects.project.private-registry.create', { fromState: 'list' });
+    return this.$state.go('pci.projects.project.private-registry.create');
   }
 
   deleteRegistry(registryId, registryName) {
@@ -75,7 +77,6 @@ export default class {
       registryName,
       harborURL,
       confirmationRequired: true,
-      fromState: 'list',
     });
     return promise;
   }

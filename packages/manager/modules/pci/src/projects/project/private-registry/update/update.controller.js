@@ -5,13 +5,13 @@ export default class {
   constructor(
     $stateParams,
     $translate,
-    privateRegistryService,
+    pciPrivateRegistryService,
   ) {
     this.projectId = $stateParams.projectId;
     this.registryId = $stateParams.registryId;
     this.registryName = $stateParams.registryName;
     this.$translate = $translate;
-    this.privateRegistryService = privateRegistryService;
+    this.privateRegistryService = pciPrivateRegistryService;
     this.isLoading = false;
   }
 

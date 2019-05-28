@@ -6,22 +6,25 @@ export default class PrivateRegistryDeleteCtrl {
     $stateParams,
     $translate,
     $window,
-    privateRegistryService,
+    pciPrivateRegistryService,
   ) {
     this.registryId = $stateParams.registryId;
     this.registryName = $stateParams.registryName;
     this.harborURL = $stateParams.harborURL;
     this.confirmationRequired = $stateParams.confirmationRequired;
-    this.fromState = $stateParams.fromState;
     this.$translate = $translate;
     this.$window = $window;
-    this.privateRegistryService = privateRegistryService;
+    this.privateRegistryService = pciPrivateRegistryService;
     this.confirmed = false;
     this.registryId = $stateParams.registryId;
     this.isLoading = false;
   }
 
   $onInit() {
+    if (this.getRegistry) {
+      this.harborURL = this.getRegistry.url;
+      this.registryName = this.getRegistry.name;
+    }
     if (!this.confirmationRequired) {
       this.confirmRegeneration();
     }
@@ -43,7 +46,7 @@ export default class PrivateRegistryDeleteCtrl {
         this.$translate.instant('private_registry_generate_credentials_error', {
           message: get(error, 'data.message'),
           registryName: this.registryName,
-        }), 'error', this.fromState, this.registryId,
+        }), 'error', this.registryId,
       ));
   }
 
