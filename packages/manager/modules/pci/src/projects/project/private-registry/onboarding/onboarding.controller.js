@@ -40,10 +40,6 @@ export default class {
     this.messageHandler = this.CucCloudMessage.subscribe('pci.projects.project.private-registry.onboarding', { onMessage: () => this.refreshMessages() });
   }
 
-  createRegistry() {
-    return this.$state.go('pci.projects.project.private-registry.onboarding.create', { fromState: 'onboarding' });
-  }
-
   refreshMessages() {
     this.messages = this.messageHandler.getMessages();
   }
