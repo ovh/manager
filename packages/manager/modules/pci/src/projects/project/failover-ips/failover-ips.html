@@ -9,13 +9,28 @@
                     <span data-translate="pci_projects_project_failoverip_import"></span>
                 </a>
             </extra-top>
-            <oui-column data-title=":: 'pci_projects_project_failoverip_block' | translate" data-property="block" data-type="string">
+            <oui-column
+                data-title=":: 'pci_projects_project_failoverip_block' | translate"
+                data-property="block"
+                data-type="string"
+                data-searchable
+                data-filterable>
             </oui-column>
-            <oui-column data-title=":: 'pci_projects_project_failoverip_geoloc' | translate" data-property="geoloc" data-type="string">
+            <oui-column
+                data-title=":: 'pci_projects_project_failoverip_geoloc' | translate"
+                data-property="geoloc"
+                data-type="string"
+                data-searchable
+                data-filterable>
             </oui-column>
             <oui-column data-title=":: 'pci_projects_project_failoverip_id' | translate" data-property="id" data-type="string">
             </oui-column>
-            <oui-column data-title=":: 'pci_projects_project_failoverip_routedTo' | translate" data-property="routedTo" data-type="string">
+            <oui-column
+                data-title=":: 'pci_projects_project_failoverip_routedTo' | translate"
+                data-property="routedTo"
+                data-type="string"
+                data-searchable
+                data-filterable>
                 <a
                     data-ng-if="$row.instance"
                     data-ui-sref="pci.projects.project.instances.instance({projectId : $ctrl.projectId, instanceId: $row.instance.id})"
