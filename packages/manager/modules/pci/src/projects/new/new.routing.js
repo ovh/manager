@@ -97,8 +97,23 @@ export default /* @ngInject */ ($stateProvider) => {
           PCI_REDIRECT_URLS,
           `${coreConfig.getRegion()}.paymentMethods`,
         ),
-        newProjectInfo: /* @ngInject */ ($timeout, coreConfig, ovhPaymentMethod,
+        newProjectInfo: /* @ngInject */ ($timeout, $transition$, coreConfig, ovhPaymentMethod,
           paymentStatus, PciProjectNewService) => {
+          const newProjectInfoThen = (response) => {
+            const transformedResponse = response;
+            // if there is an error when returning from HiPay
+            // and that a projectId is present in the URL (meaning that a credit has been paid)
+            // force error to null to avoid too many project error display
+            if (transformedResponse.error
+              && paymentStatus
+              && get($transition$.params(), 'projectId')) {
+              transformedResponse.error = null;
+            }
+            return transformedResponse;
+          };
+
+          // if region is US return an empty object as API call does not exist in US
+          // and project creation is redirected to express order
           if (coreConfig.isRegion('US')) {
             return {};
           }
@@ -112,11 +127,13 @@ export default /* @ngInject */ ($stateProvider) => {
                 if (!hasDefaultPaymentMethod && iteration < 10) {
                   return checkValidPaymentMethod(iteration + 1);
                 }
-                return PciProjectNewService.getNewProjectInfo();
+                return PciProjectNewService.getNewProjectInfo()
+                  .then(newProjectInfoThen);
               });
             return checkValidPaymentMethod();
           }
-          return PciProjectNewService.getNewProjectInfo();
+          return PciProjectNewService.getNewProjectInfo()
+            .then(newProjectInfoThen);
         },
         onDescriptionStepFormSubmit: /* @ngInject */ $state => () => $state.go('pci.projects.new.payment'),
         onProjectCreated: /* @ngInject */ $state => projectId => $state.go(
