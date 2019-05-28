@@ -122,14 +122,17 @@ export default class {
       this.receivers.raw = result.receivers;
       this.phonebooks.raw = result.phonebooks;
       this.phonebooks.current = head(this.phonebooks.raw);
+
+      console.log('fetch senders', this.senders.raw);
       return this.senders.raw;
     }).then(senders => each(senders, (sender) => {
+      console.log('check sender type');
       if (sender.type === 'virtual') {
         this.senders.virtual.push(sender);
-      } else if (/\d+/.test(sender.sender)) {
-        this.senders.other.push(sender);
-      } else {
+      } else if (sender.type === 'alpha') {
         this.senders.alphanumeric.push(sender);
+      } else {
+        this.senders.other.push(sender);
       }
     })).then(() => {
       this.service = this.TucSmsMediator.getCurrentSmsService();
