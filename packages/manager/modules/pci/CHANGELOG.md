@@ -1,3 +1,22 @@
+# [0.14.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.13.3...@ovh-ux/manager-pci@0.14.0) (2019-05-28)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([e288fe8](https://github.com/ovh-ux/manager/commit/e288fe8))
+* **pci:** add missing filters ([#729](https://github.com/ovh-ux/manager/issues/729)) ([593d956](https://github.com/ovh-ux/manager/commit/593d956))
+* **pci:** clean image when user select a distribution ([#747](https://github.com/ovh-ux/manager/issues/747)) ([10e5b84](https://github.com/ovh-ux/manager/commit/10e5b84))
+* **pci.project:** allow to scroll all content ([#740](https://github.com/ovh-ux/manager/issues/740)) ([9c5d172](https://github.com/ovh-ux/manager/commit/9c5d172))
+* **pci.project.private-network:** prevent inputs from overlaping ([#738](https://github.com/ovh-ux/manager/issues/738)) ([92c06cd](https://github.com/ovh-ux/manager/commit/92c06cd))
+* **pci.storage.snapshots:** sort by creation date ([6096a4e](https://github.com/ovh-ux/manager/commit/6096a4e))
+
+
+### Features
+
+* allow to search project ([#737](https://github.com/ovh-ux/manager/issues/737)) ([51bbb3c](https://github.com/ovh-ux/manager/commit/51bbb3c))
+
+
+
 ## [0.13.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.13.2...@ovh-ux/manager-pci@0.13.3) (2019-05-27)
 
 
