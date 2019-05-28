@@ -1,3 +1,12 @@
+# [0.9.0-alpha.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.8.0-alpha.4...@ovh-ux/manager-public-cloud@0.9.0-alpha.0) (2019-05-28)
+
+
+### Features
+
+* allow to search project ([#737](https://github.com/ovh-ux/manager/issues/737)) ([51bbb3c](https://github.com/ovh-ux/manager/commit/51bbb3c))
+
+
+
 # [0.8.0-alpha.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.8.0-alpha.3...@ovh-ux/manager-public-cloud@0.8.0-alpha.4) (2019-05-27)
 
 
