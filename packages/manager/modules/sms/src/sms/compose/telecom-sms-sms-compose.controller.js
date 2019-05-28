@@ -126,10 +126,10 @@ export default class {
     }).then(senders => each(senders, (sender) => {
       if (sender.type === 'virtual') {
         this.senders.virtual.push(sender);
-      } else if (/\d+/.test(sender.sender)) {
-        this.senders.other.push(sender);
-      } else {
+      } else if (sender.type === 'alpha') {
         this.senders.alphanumeric.push(sender);
+      } else {
+        this.senders.other.push(sender);
       }
     })).then(() => {
       this.service = this.TucSmsMediator.getCurrentSmsService();
