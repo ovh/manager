@@ -69,6 +69,8 @@ export default class PciInstanceEditController {
         this.defaultImage = image;
       }
       this.editInstance.imageId = image.getIdByRegion(this.instance.region);
+    } else {
+      this.editInstance.imageId = null;
     }
   }
 
