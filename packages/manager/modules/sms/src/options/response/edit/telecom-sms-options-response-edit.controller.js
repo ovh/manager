@@ -86,6 +86,7 @@ export default class {
    * Reset tracking options.
    */
   resetTrackingOptions() {
+    this.trackingSender.sender = null;
     this.model.option.sender = '';
     this.model.option.target = '';
   }

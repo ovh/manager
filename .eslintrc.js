@@ -9,7 +9,7 @@ module.exports = {
     jquery: true,
   },
   globals: {
-    d3: true,
+    d3: true
   },
   rules: {
     'no-bitwise': ['error', { allow: ['~'] }],

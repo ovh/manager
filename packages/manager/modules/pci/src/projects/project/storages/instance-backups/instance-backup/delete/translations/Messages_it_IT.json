@@ -1,0 +1,11 @@
+{
+ "pci_projects_project_storages_volume-instances_volume-instance_delete_title": "Elimina un backup",
+ "pci_projects_project_storages_volume-instances_volume-instance_delete_submit_label": "Conferma",
+ "pci_projects_project_storages_volume-instances_volume-instance_delete_cancel_label": "Annulla",
+ "pci_projects_project_storages_volume-instances_volume-instance_delete_content": "Elimina definitivamente {{ backup }}",
+ "pci_projects_project_storages_volume-instances_volume-instance_delete_erase_message": "Tutti i dati presenti sul backup dell’istanza verranno perduti.",
+ "pci_projects_project_storages_volume-instances_volume-instance_delete_error_not_deletable": "Al momenti non è possibile eliminare questo backup.",
+ "pci_projects_project_storages_volume-instances_volume-instance_delete_error_load": "Si è verificato un errore durante il caricamento del backup dell’istanza: {{ message }}.",
+ "pci_projects_project_storages_volume-instances_volume-instance_delete_success_message": "Il backup dell’istanza {{ backup }} è stato eliminato.",
+ "pci_projects_project_storages_volume-instances_volume-instance_delete_error_delete": "Si è verificato un errore durante l'eliminazione del backup dell’istanza  {{ backup }}: {{ message }}."
+}

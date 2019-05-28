@@ -1,0 +1,22 @@
+{
+ "pci_projects_project_storages_blocks_add_title": "Een volume aanmaken",
+ "pci_projects_project_storages_blocks_add_region_title": "Selecteer een localisatie",
+ "pci_projects_project_storages_blocks_add_type_title": "Type Volume",
+ "pci_projects_project_storages_blocks_add_type_classic_label": "Classic",
+ "pci_projects_project_storages_blocks_add_type_classic_description": "",
+ "pci_projects_project_storages_blocks_add_type_high-speed_label": "High performance",
+ "pci_projects_project_storages_blocks_add_type_high-speed_description": "",
+ "pci_projects_project_storages_blocks_add_type_price": "{{Price}} GB excl. BTW / maand",
+ "pci_projects_project_storages_blocks_add_size_title": "Volumecapaciteit",
+ "pci_projects_project_storages_blocks_add_size_help": "De maximumgrootte hangt af van uw beschikbare quota.",
+ "pci_projects_project_storages_blocks_add_size_unit": "GB",
+ "pci_projects_project_storages_blocks_add_name_title": "Naam van het volume",
+ "pci_projects_project_storages_blocks_add_submit_title": "Validatie",
+ "pci_projects_project_storages_blocks_add_submit_label": "Volume aanmaken",
+ "pci_projects_project_storages_blocks_add_submit_cancel_label": "Annuleren",
+ "pci_projects_project_storages_blocks_add_submit_price_text": "Geschatte {{price}} excl. btw / maand",
+ "pci_projects_project_storages_blocks_add_save_form": "Bezig met het aanmaken van het volume.",
+ "pci_projects_project_storages_blocks_add_error_query": "Er is een fout opgetreden bij het ophalen van de regio‘s: {{ message }}",
+ "pci_projects_project_storages_blocks_add_success_message": "Het volume {{volume}} is toegevoegd",
+ "pci_projects_project_storages_blocks_add_error_post": "Er is een fout opgetreden tijdens het toevoegen van het volume {{ volume }} : {{ message }}"
+}

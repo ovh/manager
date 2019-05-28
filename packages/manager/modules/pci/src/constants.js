@@ -194,7 +194,8 @@ export const PCI_REDIRECT_URLS = {
     contacts: 'https://www.ovh.com/manager/dedicated/index.html#/useraccount/contacts?tab=SERVICES&serviceName={serviceName}',
     horizon: 'https://horizon.cloud.ovh.net/openstackdashboard?username={username}',
     ipAction: 'https://www.ovh.com/manager/dedicated/index.html#/configuration/ip?action={action}&ip={ip}&ipBlock={ipBlock}',
-    paymentMeans: 'https://www.ovh.com/manager/dedicated/index.html#/billing/mean',
+    paymentMeans: 'https://www.ovh.com/manager/dedicated/index.html#/billing/mean', // should not be used anymore
+    paymentMethods: 'https://www.ovh.com/manager/dedicated/index.html#/billing/payment/method',
     support: 'https://www.ovh.com/manager/dedicated/index.html#/ticket',
     vRack: 'https://www.ovh.com/manager/dedicated/index.html#/configuration/vrack?landingTo=networks',
   },
@@ -204,7 +205,8 @@ export const PCI_REDIRECT_URLS = {
     contacts: null, // not yet available to CA users
     horizon: 'https://horizon.cloud.ovh.net/openstackdashboard?username={username}',
     ipAction: 'https://ca.ovh.com/manager/index.html#/configuration/ip?action={action}&ip={ip}&ipBlock={ipBlock}',
-    paymentMeans: 'https://ca.ovh.com/manager/index.html#/billing/mean',
+    paymentMeans: 'https://ca.ovh.com/manager/index.html#/billing/mean', // should not be used anymore
+    paymentMethods: 'https://ca.ovh.com/manager/index.html#/billing/payment/method',
     support: 'https://ca.ovh.com/manager/index.html#/ticket',
     vRack: 'https://ca.ovh.com/manager/index.html#/configuration/vrack?landingTo=networks',
   },
@@ -214,7 +216,8 @@ export const PCI_REDIRECT_URLS = {
     contacts: null, // not yet available to US users
     horizon: 'https://horizon.cloud.ovh.us/openstackdashboard?username={username}',
     ipAction: 'https://us.ovhcloud.com/manager/dedicated/index.html#/configuration/ip?action={action}&ip={ip}&ipBlock={ipBlock}',
-    paymentMeans: 'https://us.ovhcloud.com/manager/dedicated/index.html#/billing/mean',
+    paymentMeans: 'https://us.ovhcloud.com/manager/dedicated/index.html#/billing/mean', // should not be used anymore
+    paymentMethods: 'https://us.ovhcloud.com/manager/dedicated/index.html#/billing/payment/method',
     support: 'https://us.ovhcloud.com/manager/dedicated/index.html#/ticket',
     vRack: 'https://us.ovhcloud.com/manager/dedicated/index.html#/configuration/vrack?landingTo=networks',
   },

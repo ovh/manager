@@ -6,9 +6,14 @@ const component = {
     brandLabel: '@',
     langOptions: '<?',
     navbarOptions: '<?',
+    sidebarLinks: '<?',
+    universeClick: '&?',
   },
   controller,
   template,
+  transclude: {
+    sidebar: '?ovhManagerSidebar',
+  },
 };
 
 export default component;

@@ -1,0 +1,21 @@
+{
+ "pci_project_flavors_category_balanced": "Obecné použití",
+ "pci_project_flavors_category_cpu": "Optimalizovaný výpočetní výkon",
+ "pci_project_flavors_category_ram": "Optimalizovaná paměť",
+ "pci_project_flavors_category_accelerated": "Vysoký výpočetní výkon",
+ "pci_project_flavors_category_vps": "Sdílené zdroje",
+ "pci_project_flavors_category_definition_balanced": "General Purpose instance nabízejí vyvážený poměr mezi RAM a CPU.",
+ "pci_project_flavors_category_definition_cpu": "CPU instance jsou ideální volbou pro aplikace náročné na výpočetní frekvence a paralelizaci úkolů.",
+ "pci_project_flavors_category_definition_ram": "RAM instance jsou obecně doporučovány pro databáze, analýzy, \"in-memory computing\" a aplikace náročné na operační paměť.",
+ "pci_project_flavors_category_definition_accelerated": "GPU/FPGA instance dosahují v určitých případech až 1 000x vyšších rychlostí než běžné CPU. Vhodné zejména pro zpracování videa (rendering, transcoding), bioinformatiku, Big data, deep learning apod.",
+ "pci_project_flavors_category_definition_vps": "Sandbox instance jsou adaptovány na Vaše testy a vývojářská prostředí. Jejich výkon se může v průběhu času nepatrně měnit.",
+ "pci_project_flavors_category_definition_none": "Pas de modèle disponible pour cette catégorie",
+ "pci_project_flavors_spec_ram": "Operační paměť:",
+ "pci_project_flavors_spec_core": "Procesor:",
+ "pci_project_flavors_spec_core_details": "{{vcores}} vCores ({{frequency}} GHz)",
+ "pci_project_flavors_spec_disk": "Úložiště:",
+ "pci_project_flavors_spec_bandwidth": "Přenost dat:",
+ "pci_project_flavors_price_hourly": "{{price}} bez DPH/h",
+ "pci_project_flavors_price_monthly": "À partir de {{price}} HT/mois",
+ "pci_project_flavors_quota": "Augmenter mon quota"
+}

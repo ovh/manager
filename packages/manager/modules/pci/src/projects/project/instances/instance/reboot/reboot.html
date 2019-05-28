@@ -1,0 +1,14 @@
+<oui-modal
+    data-heading="{{ 'pci_projects_project_instances_instance_reboot_' + $ctrl.rebootType+ '_title' | translate }}"
+    data-primary-action="$ctrl.rebootInstance()"
+    data-primary-label="{{:: 'pci_projects_project_instances_instance_reboot_submit_label' | translate }}"
+    data-primary-disabled="$ctrl.isLoading"
+    data-secondary-action="$ctrl.goBack()"
+    data-secondary-label="{{:: 'pci_projects_project_instances_instance_reboot_cancel_label' | translate }}"
+    data-on-dismiss="$ctrl.goBack()"
+    data-loading="$ctrl.isLoading">
+
+    <p data-translate="pci_projects_project_instances_instance_reboot_content"
+        data-translate-values="{ instance: $ctrl.instance.name }"></p>
+
+</oui-modal>

@@ -1,0 +1,16 @@
+{
+ "pci_projects_project_storages_objects_onboarding_title": "Object Storage",
+ "pci_projects_project_storages_objects_onboarding_content1": "U heeft nog geen Object Storage service aangemaakt.",
+ "pci_projects_project_storages_objects_onboarding_content2": "Beschik over onbeperkte on-demand opslagruimte die via een API toegankelijk is.",
+ "pci_projects_project_storages_objects_onboarding_content3": "Object Storage bestaat uit uw gegevens opslaan in een onbeperkte ruimte met een directe toegang via een HTTP API. U kunt zo de toegang tot deze informatie vanuit uw applicaties integreren middels talrijke bestaande OpenStack Swift libraries. Naast het management van toegangsrechten beschikt Object Storage over „intelligente opslag“ functies als versiemanagement, expiratiedata en synchronisatie tussen verschillende locaties.",
+ "pci_projects_project_storages_objects_onboarding_content4": "Uw gegevens zijn over drie replica‘s beveiligd om hun integriteit te garanderen. U beschikt over een facturatie volgens verbruik vanaf de eerste GB.",
+ "pci_projects_project_storages_objects_onboarding_action_label": "Objectcontainer aanmaken",
+ "pci_projects_project_storages_objects_onboarding_guides_object-storage-domain_title": "Plaats een Object Storage container achter een domeinnaam",
+ "pci_projects_project_storages_objects_onboarding_guides_object-storage-domain_description": "",
+ "pci_projects_project_storages_objects_onboarding_guides_auto-delete-object_title": "Automatische verwijdering van objecten configureren",
+ "pci_projects_project_storages_objects_onboarding_guides_auto-delete-object_description": "",
+ "pci_projects_project_storages_objects_onboarding_guides_share-object-temporary-url_title": "Deel een object met een tijdelijk adres",
+ "pci_projects_project_storages_objects_onboarding_guides_share-object-temporary-url_description": "Bekijk hoe u een object kunt delen zonder persoonlijke gegevens te verstrekken",
+ "pci_projects_project_storages_objects_onboarding_guides_sync-object-containers_title": "Objectcontainers synchroniseren",
+ "pci_projects_project_storages_objects_onboarding_guides_sync-object-containers_description": ""
+}

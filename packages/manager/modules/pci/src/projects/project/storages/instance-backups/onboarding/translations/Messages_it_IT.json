@@ -1,0 +1,10 @@
+{
+ "pci_projects_project_storages_instance-backups_onboarding_content1": "Non hai ancora creato istanze Backup.",
+ "pci_projects_project_storages_instance-backups_onboarding_content2": "Approfitta di un servizio di backup per le tue istanze.",
+ "pci_projects_project_storages_instance-backups_onboarding_content3": "Grazie alle istanze Backup, puoi effettuare copie delle tue istanze in qualsiasi momento. Il disco di sistema viene copiato e trasferito su uno spazio di storage separato. I backup possono essere utilizzati in un secondo momento per riavviare l’istanza di origine o attivare nuove istanze basate su questo disco di sistema.",
+ "pci_projects_project_storages_instance-backups_onboarding_content4": "Le istanze Backup faranno parte del catalogo delle immagini di sistema. Potranno essere utilizzate, ad esempio, nelle fasi di implementazione e industrializzazione.",
+ "pci_projects_project_storages_instance-backups_onboarding_content5": "Per creare  il backup di un’istanza è necessario aver creato almeno un’istanza.",
+ "pci_projects_project_storages_instance-backups_onboarding_action_label": "Crea il backup di un’istanza",
+ "pci_projects_project_storages_instance-backups_onboarding_guides_transfer-instance-backup-datacenter_title": "Trasferire il backup di un’istanza tra datacenter",
+ "pci_projects_project_storages_instance-backups_onboarding_guides_transfer-instance-backup-datacenter_description": "Come migrare il backup di un’istanza conservandone la configurazione e lo stato"
+}

@@ -1,3 +1,35 @@
+## [6.2.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-sms@6.2.1...@ovh-ux/manager-sms@6.2.2) (2019-05-23)
+
+
+### Bug Fixes
+
+* **sms.sms.compose:** display STOP option only when needed ([#389](https://github.com/ovh-ux/manager/issues/389)) ([4c1d855](https://github.com/ovh-ux/manager/commit/4c1d855))
+
+
+
+## [6.2.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-sms@6.2.0...@ovh-ux/manager-sms@6.2.1) (2019-05-13)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ng-ovh-telecom-universe-components to v3.0.3 ([574ff83](https://github.com/ovh-ux/manager/commit/574ff83))
+
+
+
+# [6.2.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-sms@6.1.0...@ovh-ux/manager-sms@6.2.0) (2019-05-07)
+
+
+### Bug Fixes
+
+* **sms.options:** reset notification sender on change type ([#450](https://github.com/ovh-ux/manager/issues/450)) ([92a2824](https://github.com/ovh-ux/manager/commit/92a2824))
+
+
+### Features
+
+* **storages.volume-snapshots:** add volume-snapshots list ([#359](https://github.com/ovh-ux/manager/issues/359)) ([c8a63fd](https://github.com/ovh-ux/manager/commit/c8a63fd))
+
+
+
 # [6.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-sms@6.0.0...@ovh-ux/manager-sms@6.1.0) (2019-03-22)
 
 

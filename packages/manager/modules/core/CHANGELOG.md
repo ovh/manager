@@ -1,3 +1,74 @@
+## [5.2.5](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@5.2.4...@ovh-ux/manager-core@5.2.5) (2019-05-21)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([2326761](https://github.com/ovh-ux/manager/commit/2326761))
+
+
+
+## [5.2.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@5.2.3...@ovh-ux/manager-core@5.2.4) (2019-05-20)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([7ef3b3f](https://github.com/ovh-ux/manager/commit/7ef3b3f))
+
+
+
+## [5.2.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@5.2.2...@ovh-ux/manager-core@5.2.3) (2019-05-17)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([78a4159](https://github.com/ovh-ux/manager/commit/78a4159))
+
+
+
+## [5.2.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@5.2.1...@ovh-ux/manager-core@5.2.2) (2019-05-15)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([80eea5b](https://github.com/ovh-ux/manager/commit/80eea5b))
+
+
+
+## [5.2.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@5.2.0...@ovh-ux/manager-core@5.2.1) (2019-05-14)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([471503c](https://github.com/ovh-ux/manager/commit/471503c))
+
+
+
+# [5.2.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@5.1.0...@ovh-ux/manager-core@5.2.0) (2019-05-09)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([0568a65](https://github.com/ovh-ux/manager/commit/0568a65))
+
+
+### Features
+
+* **core.translate:** set oui translations once they are loaded ([104643a](https://github.com/ovh-ux/manager/commit/104643a))
+* add otrs module ([7469919](https://github.com/ovh-ux/manager/commit/7469919))
+
+
+
+# [5.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@5.0.0...@ovh-ux/manager-core@5.1.0) (2019-05-07)
+
+
+### Features
+
+* **core:** add oui-file translations ([#432](https://github.com/ovh-ux/manager/issues/432)) ([d821dc8](https://github.com/ovh-ux/manager/commit/d821dc8))
+* **navbar:** add managers navbar ([cb13bfb](https://github.com/ovh-ux/manager/commit/cb13bfb))
+* **storages.volume-snapshots:** add volume-snapshots list ([#359](https://github.com/ovh-ux/manager/issues/359)) ([c8a63fd](https://github.com/ovh-ux/manager/commit/c8a63fd))
+
+
+
 # [5.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@5.0.0-alpha.0...@ovh-ux/manager-core@5.0.0) (2019-03-19)
 
 

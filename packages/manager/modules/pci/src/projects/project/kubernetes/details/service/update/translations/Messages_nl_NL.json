@@ -1,0 +1,8 @@
+{
+ "kube_service_update_common_confirm": "Bevestigen",
+ "kube_service_update_common_cancel": "Annuleren",
+ "kube_service_update_title": "Nu updaten",
+ "kube_service_update_message": "De update kan leiden tot een onbeschikbaarheid van één tot twee minuten voor elk van uw knooppunten. Wij gebruiken een rollende upgrade met node drain om de impact op uw blootgestelde diensten minimaal of transparant te maken.",
+ "kube_service_update_success": "Uw Kubernetes cluster wordt geüpdate.",
+ "kube_service_update_error": "Er is een fout opgetreden bij het bijwerken van uw cluster: {{bericht}}"
+}

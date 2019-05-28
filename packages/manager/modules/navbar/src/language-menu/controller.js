@@ -2,6 +2,7 @@ import clone from 'lodash/clone';
 import get from 'lodash/get';
 import head from 'lodash/head';
 import isEmpty from 'lodash/isEmpty';
+import map from 'lodash/map';
 import union from 'lodash/union';
 import words from 'lodash/words';
 
@@ -53,10 +54,11 @@ export default class {
 
   getAvailableLangs() {
     let langs = clone(LANGUAGES);
+    const AVAILABLE_LANGS = map(LANGUAGES, 'value');
     const excluded = get(this.langOptions, 'exclude', []);
     const included = get(this.langOptions, 'include', []);
 
-    if (union(LANGUAGES, excluded).length > LANGUAGES.length) {
+    if (union(AVAILABLE_LANGS, excluded).length > AVAILABLE_LANGS.length) {
       throw new Error('Trying to exclude unsupported lang');
     }
 
@@ -64,7 +66,7 @@ export default class {
       langs = langs.filter(({ value }) => !excluded.includes(value));
     }
 
-    if (union(LANGUAGES, included).length > LANGUAGES.length) {
+    if (union(AVAILABLE_LANGS, included).length > AVAILABLE_LANGS.length) {
       throw new Error('Trying to include unsupported lang');
     }
 
@@ -85,6 +87,7 @@ export default class {
       title: lang.name,
       isActive: lang.value === this.currentLanguage.value,
       lang: head(words(lang.value)),
+      value: lang.value,
     }));
   }
 }

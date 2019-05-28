@@ -1,0 +1,126 @@
+<oui-spinner data-size="s" data-ng-if="$ctrl.isLoading"></oui-spinner>
+
+<div data-ng-if="!$ctrl.isLoading">
+
+    <div data-ng-if="!$ctrl.displaySelectedImage">
+
+        <oui-checkbox
+            data-model="$ctrl.showOnlyAvailable">
+            <span data-translate="pci_project_instances_available_only"></span>
+        </oui-checkbox>
+
+        <oui-tabs class="mb-4" data-model="$ctrl.selectedTab">
+            <oui-tabs-item
+                data-ng-repeat="(imageType, distributions) in $ctrl.os"
+                data-id="{{imageType}}"
+                data-heading="{{:: 'pci_project_instances_os_' + imageType | translate }}"
+                data-on-active="$ctrl.changeImageType()">
+                <p class="mt-4" data-translate="pci_project_instances_licence"></p>
+
+                <div class="container-fluid px-0">
+                    <div class="row">
+                        <div data-ng-repeat="(distribution, images) in distributions" class="d-inline-block col-md-6 col-xl-4 my-3">
+                            <oui-select-picker
+                                data-name="{{:: distribution }}"
+                                data-label="{{:: 'pci_project_instances_distribution_' + distribution | translate }}"
+                                data-model="$ctrl.distribution"
+                                data-values="[distribution]"
+                                data-variant="light"
+                                data-on-change="$ctrl.changeDistribution(modelValue, images)"
+                                data-ng-if="!$ctrl.showOnlyAvailable || $ctrl.isDistributionCompatible(images)"
+                                data-disabled="!$ctrl.isDistributionCompatible(images)"
+                                data-picture="{{$ctrl.IMAGE_ASSETS.os[distribution]}}">
+                                <oui-select-picker-section data-ng-if="!$ctrl.isDistributionCompatible(images)" data-ng-transclude></oui-select-picker-section>
+                            </oui-select-picker>
+                        </div>
+                    </div>
+
+                    <div data-ng-if="distributions[$ctrl.distribution].length > 1">
+
+                        <p data-translate="pci_project_instances_distribution_version"></p>
+
+                        <div class="row">
+                            <oui-select-picker
+                                data-ng-repeat="image in distributions[$ctrl.distribution] track by image.name"
+                                class="d-inline-block col-md-6 col-xl-4 my-3"
+                                data-name="{{:: image.name }}"
+                                data-label="{{:: image.name }}"
+                                data-model="$ctrl.image"
+                                data-values="[image]"
+                                data-variant="light"
+                                data-on-change="$ctrl.onImageChange(modelValue)"
+                                data-disabled="!$ctrl.isCompatible(image)"
+                                data-ng-if="!$ctrl.showOnlyAvailable || $ctrl.isCompatible(image)"
+                                data-picture="{{$ctrl.IMAGE_ASSETS.os[$ctrl.distribution]}}">
+                                <oui-select-picker-section data-ng-if="!$ctrl.isCompatible(image)" data-ng-transclude></oui-select-picker-section>
+                            </oui-select-picker>
+                        </div>
+                    </div>
+                </div>
+            </oui-tabs-item>
+
+            <oui-tabs-item
+                data-id="apps"
+                data-ng-if="$ctrl.apps.length > 0"
+                data-heading="{{:: 'pci_project_instances_apps' | translate }}">
+                <div class="container-fluid px-0">
+                    <div class="row">
+                        <oui-select-picker
+                            data-ng-repeat="app in $ctrl.apps track by app.name"
+                            class="d-inline-block col-md-6 col-xl-4 my-3"
+                            data-name="{{:: app.name }}"
+                            data-match="name"
+                            data-label="{{:: app.appName }}"
+                            data-model="$ctrl.image"
+                            data-values="[app]"
+                            data-variant="light"
+                            data-on-change="$ctrl.onImageChange(modelValue)"
+                            data-disabled="!$ctrl.isCompatible(app)"
+                            data-ng-if="!$ctrl.showOnlyAvailable || $ctrl.isCompatible(app)"
+                            data-picture="{{$ctrl.IMAGE_ASSETS.apps[app.getApplications()[0]]}}">
+                            <oui-select-picker-section data-ng-if="!$ctrl.isCompatible(app)" data-ng-transclude></oui-select-picker-section>
+                        </oui-select-picker>
+                    </div>
+                </div>
+            </oui-tabs-item>
+
+            <oui-tabs-item
+                data-id="snapshots"
+                data-ng-if="$ctrl.snapshots.length > 0"
+                data-heading="{{:: 'pci_project_instances_shapshots' | translate }}">
+                <div class="container-fluid px-0">
+                    <div class="row">
+                        <oui-select-picker
+                            data-ng-repeat="snapshot in $ctrl.snapshots track by snapshot.id"
+                            class="d-inline-block col-md-6 col-xl-4 my-3"
+                            data-name="{{:: snapshot.id }}"
+                            data-label="{{:: snapshot.name }}"
+                            data-model="$ctrl.image"
+                            data-values="[snapshot]"
+                            data-variant="light"
+                            data-on-change="$ctrl.onImageChange(modelValue)"
+                            data-disabled="!$ctrl.isCompatible(snapshot)"
+                            data-ng-if="!$ctrl.showOnlyAvailable || $ctrl.isCompatible(snapshot)">
+                            <oui-select-picker-section data-ng-if="!$ctrl.isCompatible(snapshot)" data-ng-transclude></oui-select-picker-section>
+                        </oui-select-picker>
+                    </div>
+                </div>
+            </oui-tabs-item>
+        </oui-tabs>
+    </div>
+
+    <div data-ng-if="$ctrl.displaySelectedImage"
+        class="container-fluid px-0">
+        <div class="row">
+            <oui-select-picker
+                class="d-inline-block col-md-6 col-xl-4 my-3"
+                data-name="selected"
+                data-model="$ctrl.image"
+                data-label="{{ $ctrl.selectedImage.appName || $ctrl.selectedImage.name }}"
+                data-values="[$ctrl.image]"
+                data-variant="light"
+                data-required>
+            </oui-select-picker>
+        </div>
+    </div>
+</div>

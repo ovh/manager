@@ -1,4 +1,37 @@
-@import '~bootstrap4/scss/_functions';
-@import '~bootstrap4/scss/_variables';
-@import '~bootstrap4/scss/_mixins';
-@import '~bootstrap4/scss/_utilities';
+@import "~bootstrap4/scss/_functions";
+@import "~bootstrap4/scss/_variables";
+@import "~bootstrap4/scss/_mixins";
+@import '~bootstrap4/scss/_utilities.scss';
+
+.oui-page-header {
+  background: #fff;
+}
+
+a.oui-tile,
+.oui-link,
+.oui-button_link {
+  color: rgb(40, 89, 192);
+}
+
+a.oui-tile {
+  background-color: rgb(244, 248, 251);
+  box-shadow: none;
+  border: 0;
+  transition: all ease-in 200ms;
+
+  &:hover,
+  &:focus {
+    background-color: rgb(230, 245, 252);
+    box-shadow: 0 5pt 10pt rgba(40, 89, 192, 0.15);
+  }
+}
+
+/**
+Fixing bootstrap columns for safari
+ */
+.row {
+  &::before,
+  &::after {
+    display: inline-block !important;
+  }
+}

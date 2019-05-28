@@ -1,3 +1,56 @@
+## [1.0.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci-app@1.0.1...@ovh-ux/manager-pci-app@1.0.2) (2019-05-16)
+
+
+### Bug Fixes
+
+* bump ovh-payment-method to display images ([2f9286b](https://github.com/ovh-ux/manager/commit/2f9286b))
+
+
+
+## [1.0.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci-app@1.0.0...@ovh-ux/manager-pci-app@1.0.1) (2019-05-13)
+
+
+### Bug Fixes
+
+* **pci.project.billing:** replace Toast by CucCloudMessage ([1a774f0](https://github.com/ovh-ux/manager/commit/1a774f0))
+
+
+
+# [1.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci-app@0.2.0...@ovh-ux/manager-pci-app@1.0.0) (2019-05-09)
+
+
+### Bug Fixes
+
+* add missing dependency ([831b8be](https://github.com/ovh-ux/manager/commit/831b8be))
+
+
+### Code Refactoring
+
+* **components.uirouter.layout:** remove ng-ovh prefix ([93244d0](https://github.com/ovh-ux/manager/commit/93244d0))
+
+
+### BREAKING CHANGES
+
+* **components.uirouter.layout:** module is now named `ngUiRouterLayout`
+
+
+
+# [0.2.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci-app@0.1.0...@ovh-ux/manager-pci-app@0.2.0) (2019-05-07)
+
+
+### Bug Fixes
+
+* remove dependencies to @ovh-ux/manager-kubernetes ([fd4b5e8](https://github.com/ovh-ux/manager/commit/fd4b5e8))
+
+
+### Features
+
+* add block storages list ([7f36914](https://github.com/ovh-ux/manager/commit/7f36914))
+* **instances:** add instance dashboard ([26b25f7](https://github.com/ovh-ux/manager/commit/26b25f7))
+* **storages.volume-snapshots:** add volume-snapshots list ([#359](https://github.com/ovh-ux/manager/issues/359)) ([c8a63fd](https://github.com/ovh-ux/manager/commit/c8a63fd))
+
+
+
 # [0.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci-app@0.0.0...@ovh-ux/manager-pci-app@0.1.0) (2019-03-22)
 
 

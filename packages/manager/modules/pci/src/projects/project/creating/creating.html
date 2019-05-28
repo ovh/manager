@@ -1,0 +1,38 @@
+<div class="pci-projects-creating h-100 overflow-auto">
+    <div class="container h-100">
+        <div class="row minh-100 justify-content-md-center text-center">
+            <div class="col-lg-10 p-5 bg-white minh-100 d-md-flex align-items-md-center">
+                <div class="p-5 mx-auto">
+                    <h1 class="oui-heading_4"
+                        data-translate="pci_projects_project_creating_main_title">
+                    </h1>
+
+                    <h2 class="oui-heading_5"
+                        data-translate="pci_projects_project_creating_secondary_title">
+                    </h2>
+
+                    <div class="position-relative">
+                        <div class="img-slide-container position-absolute w-100">
+                            <img class="img-responsive mx-auto"
+                                 data-ng-repeat="image in $ctrl.imageSlider.list track by $index"
+                                 data-ng-src="{{ image }}"
+                                 data-ng-if="$index === $ctrl.imageSlider.currentIndex"
+                                 alt="" />
+                        </div>
+                        <div class="spinner mx-auto">
+                            <svg viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                                <circle fill="none" stroke-width="2" stroke-linecap="round" cx="33" cy="33" r="28"></circle>
+                            </svg>
+                            <svg viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                                <circle fill="none" stroke-width="2" stroke-linecap="round" cx="33" cy="33" r="28"></circle>
+                            </svg>
+                            <svg viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                                <circle fill="none" stroke-width="2" stroke-linecap="round" cx="33" cy="33" r="28"></circle>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

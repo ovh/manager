@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-sms-app",
-  "version": "6.1.0",
+  "version": "6.1.1",
   "private": true,
   "scripts": {
     "build": "webpack",
@@ -12,14 +12,14 @@
   },
   "dependencies": {
     "@ovh-ux/manager-config": "^0.2.0",
-    "@ovh-ux/manager-core": "^5.0.0",
-    "@ovh-ux/manager-sms": "^6.1.0",
+    "@ovh-ux/manager-core": "^5.2.0",
+    "@ovh-ux/manager-sms": "^6.2.1",
     "@ovh-ux/manager-telecom-styles": "^2.0.2",
     "@ovh-ux/ng-at-internet": "^4.0.0",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^2.0.0",
     "@ovh-ux/ng-ovh-api-wrappers": "^3.0.0",
     "@ovh-ux/ng-ovh-contracts": "^3.0.0-beta.3",
-    "@ovh-ux/ng-ovh-telecom-universe-components": "^3.0.0",
+    "@ovh-ux/ng-ovh-telecom-universe-components": "^3.0.3",
     "@ovh-ux/ng-pagination-front": "^8.0.0-alpha.0",
     "@uirouter/angularjs": "^1.0.15",
     "angular": "^1.7.5",
@@ -31,10 +31,10 @@
     "oclazyload": "^1.1.0",
     "ovh-angular-checkbox-table": "^0.1.2",
     "ovh-angular-ui-confirm-modal": "^1.0.2",
-    "ovh-api-services": "^6.12.0"
+    "ovh-api-services": "^6.21.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-webpack-config": "^3.0.5",
+    "@ovh-ux/manager-webpack-config": "^3.0.7",
     "ovh-manager-webfont": "^1.2.0",
     "webpack-merge": "^4.1.4"
   }

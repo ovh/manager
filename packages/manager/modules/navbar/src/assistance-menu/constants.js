@@ -1,5 +1,3 @@
-import { Environment } from '@ovh-ux/manager-config';
-
 const CA = {
   ticket: 'https://ca.ovh.com/manager/index.html#/ticket',
   support: {
@@ -114,7 +112,7 @@ const US = {
   },
 };
 
-const ASSISTANCE_URLS = {
+export const ASSISTANCE_URLS = {
   CA,
   EU,
   US,
@@ -124,10 +122,12 @@ export const HELP_CENTER_SUBSIDIARIES = [
   'FR',
 ];
 
-export const URLS = ASSISTANCE_URLS[Environment.getRegion()];
-
+export const CHATBOT_SUBSIDIARIES = [
+  'FR',
+];
 
 export default {
+  CHATBOT_SUBSIDIARIES,
   HELP_CENTER_SUBSIDIARIES,
-  URLS,
+  ASSISTANCE_URLS,
 };

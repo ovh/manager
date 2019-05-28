@@ -1,0 +1,15 @@
+{
+ "pci_error_title": "Oeps...!",
+ "pci_error_button_cancel": "Annuleren",
+ "pci_error_button_action_pay_debt": "Mijn schuld betalen",
+ "pci_error_button_action_contact_support": "Neem contact op met het support team",
+ "pci_error_detail_code": "Foutcode: {{code}}",
+ "pci_error_action_reload_label": "Probeer het opnieuw",
+ "pci_error_action_home_label": "Terug naar de homepage",
+ "pci_error_default": "Er is een fout opgetreden tijdens het laden van de pagina. ",
+ "pci_error_account_not_eligible": "Het aanmaken van een nieuw Public Cloud project is niet mogelijk met uw account. Wij vragen u  om contact op te nemen met onze support voor meer informatie.",
+ "pci_error_max_projects_limit_reached": "U kunt helaas geen extra Public Cloud-project aanmaken omdat u het maximale aantal projecten bereikt heeft. We vragen u om het supportteam te contacteren om deze quota te deblokkeren.",
+ "pci_error_paypal_account_not_verified": "U kunt helaas geen Public Cloud-project aanmaken met uw PayPal-account want dit is niet geverifieerd. We vragen u om de noodzakelijke stappen richting PayPal te nemen om uw account te verifiëren en het dan opnieuw te proberen. U kunt ook <a href=\"{{ href }}\">uw standaard betalingsmethode</a> wijzigen.",
+ "pci_error_unpaid_debts": "U kunt helaas geen Public Cloud-project aanmaken want u heeft een schuld uitstaan bij OVH. We vragen u het verschuldigde bedrag te betalen en het dan opnieuw te proberen.",
+ "pci_error_invalid_payment_mean": "Het aanmaken van een nieuw Public Cloud project is niet mogelijk met uw account. Wij nodigen u uit om <a href=\"{{ href }}\">uw standaard betalingsmethode</a> wijzigen."
+}

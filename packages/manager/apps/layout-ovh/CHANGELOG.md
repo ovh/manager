@@ -1,3 +1,41 @@
+## [6.2.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-layout-ovh@6.2.2...@ovh-ux/manager-layout-ovh@6.2.3) (2019-05-23)
+
+
+### Bug Fixes
+
+* **apps.layout-ovh:** upgrade manager-navbar to v0.4.2 ([#713](https://github.com/ovh-ux/manager/issues/713)) ([e6b62b9](https://github.com/ovh-ux/manager/commit/e6b62b9)), closes [#690](https://github.com/ovh-ux/manager/issues/690)
+
+
+
+## [6.2.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-layout-ovh@6.2.1...@ovh-ux/manager-layout-ovh@6.2.2) (2019-05-14)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([471503c](https://github.com/ovh-ux/manager/commit/471503c))
+
+
+
+## [6.2.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-layout-ovh@6.2.0...@ovh-ux/manager-layout-ovh@6.2.1) (2019-05-13)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ng-ovh-telecom-universe-components to v3.0.3 ([574ff83](https://github.com/ovh-ux/manager/commit/574ff83))
+
+
+
+# [6.2.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-layout-ovh@6.1.0...@ovh-ux/manager-layout-ovh@6.2.0) (2019-05-07)
+
+
+### Features
+
+* **instances:** add instance dashboard ([26b25f7](https://github.com/ovh-ux/manager/commit/26b25f7))
+* **navbar:** add managers navbar ([cb13bfb](https://github.com/ovh-ux/manager/commit/cb13bfb))
+* **storages.volume-snapshots:** add volume-snapshots list ([#359](https://github.com/ovh-ux/manager/issues/359)) ([c8a63fd](https://github.com/ovh-ux/manager/commit/c8a63fd))
+
+
+
 # [6.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-layout-ovh@6.0.0...@ovh-ux/manager-layout-ovh@6.1.0) (2019-03-22)
 
 

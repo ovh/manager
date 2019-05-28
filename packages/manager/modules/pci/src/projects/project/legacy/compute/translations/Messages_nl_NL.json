@@ -1,9 +1,0 @@
-{
- "cpc_tab_infra": "Instances",
- "cpc_tab_snapshot": "Backups",
- "cpc_tab_volume": "Aanvullende disks",
- "cpc_tab_ssh": "SSH-key",
- "cpc_tab_loadbalancer": "Load Balancing IP",
- "cpc_tab_project": "Beheer en gebruik van het project",
- "cpb_tab_quota": "Quota!"
-}

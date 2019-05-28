@@ -1,0 +1,21 @@
+{
+ "pci_projects_project_kubernetes_title": "Kubernetes",
+ "pci_projects_project_kubernetes_onboarding_content1": "Ještě jste nevytvořili službu Managed Kubernetes.",
+ "pci_projects_project_kubernetes_onboarding_content2": "Uspořádejte své kontejnerové aplikace s klastrem Kubernetes s certifikací CNCF.",
+ "pci_projects_project_kubernetes_onboarding_content3": "S Managed Kubernetes spusťte jeden nebo více klastrů Kubernetes, abyste mohli organizovat své kontejnerové aplikace v cloudu OVH. Hlavní služba je poskytována bezplatně, pouze instance a svazky používané vašimi pracovními uzly budou účtovány za normální cenu.",
+ "pci_projects_project_kubernetes_onboarding_action_label": "Vybrat cluster",
+ "pci_projects_project_kubernetes_onboarding_guides_configure_title": "Konfigurace kubectlu v clusteru OVH Managed Kubernetes",
+ "pci_projects_project_kubernetes_onboarding_guides_configure_description": "",
+ "pci_projects_project_kubernetes_onboarding_guides_nodes_title": "Přidání uzlů do clusteru OVH Managed Kubernetes",
+ "pci_projects_project_kubernetes_onboarding_guides_nodes_description": "",
+ "pci_projects_project_kubernetes_onboarding_guides_deploy-app_title": "Zavedení aplikace",
+ "pci_projects_project_kubernetes_onboarding_guides_deploy-app_description": "",
+ "pci_projects_project_kubernetes_onboarding_guides_load-balancer_title": "Použití OVH Managed Kubernetes LoadBalancer",
+ "pci_projects_project_kubernetes_onboarding_guides_load-balancer_description": "",
+ "pci_projects_project_kubernetes_onboarding_guides_helm_title": "Instalace Helm na OVH Managed Kubernetes",
+ "pci_projects_project_kubernetes_onboarding_guides_helm_description": "",
+ "pci_projects_project_kubernetes_onboarding_guides_istio_title": "Instalace Istio na OVH Managed Kubernetes",
+ "pci_projects_project_kubernetes_onboarding_guides_istio_description": "",
+ "pci_projects_project_kubernetes_onboarding_regions_unavailable": "Váš současný projekt Public Cloud je nakonfigurován v oblasti, kde Kubernetes není k dispozici. Pro nasazení clusteru Kubernetes je nutné vytvořit nový projekt. Pracujeme na rozšíření nabídky Kubernetes v dalších regionech.",
+ "pci_projects_project_kubernetes_onboarding_regions_create": "Vytvořte nový projekt Public Cloud"
+}

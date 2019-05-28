@@ -1,0 +1,6 @@
+{
+ "pci_project_flavors_billing_hourly": "Hodinově",
+ "pci_project_flavors_billing_monthly": "Měsíc",
+ "pci_project_flavors_billing_price_hourly": "{{price}} bez DPH/h",
+ "pci_project_flavors_billing_price_monthly": "{{price}} bez DPH/měs."
+}

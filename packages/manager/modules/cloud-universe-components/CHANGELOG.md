@@ -1,3 +1,59 @@
+# [1.3.0-alpha.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@1.3.0-alpha.3...@ovh-ux/ng-ovh-cloud-universe-components@1.3.0-alpha.4) (2019-05-17)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([17222a0](https://github.com/ovh-ux/manager/commit/17222a0))
+* **i18n:** add missing translations ([78a4159](https://github.com/ovh-ux/manager/commit/78a4159))
+
+
+
+# [1.3.0-alpha.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@1.3.0-alpha.2...@ovh-ux/ng-ovh-cloud-universe-components@1.3.0-alpha.3) (2019-05-16)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([5ba0cfd](https://github.com/ovh-ux/manager/commit/5ba0cfd))
+* **i18n:** add missing translations ([decfde2](https://github.com/ovh-ux/manager/commit/decfde2))
+
+
+
+# [1.3.0-alpha.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@1.3.0-alpha.1...@ovh-ux/ng-ovh-cloud-universe-components@1.3.0-alpha.2) (2019-05-14)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([471503c](https://github.com/ovh-ux/manager/commit/471503c))
+
+
+
+# [1.3.0-alpha.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@1.3.0-alpha.0...@ovh-ux/ng-ovh-cloud-universe-components@1.3.0-alpha.1) (2019-05-10)
+
+
+### Bug Fixes
+
+* update resize of consumption chart ([d4228cc](https://github.com/ovh-ux/manager/commit/d4228cc))
+
+
+
+# [1.3.0-alpha.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@1.2.0-alpha.0...@ovh-ux/ng-ovh-cloud-universe-components@1.3.0-alpha.0) (2019-05-09)
+
+
+### Features
+
+* **cui-message:** support download link ([6cb68b4](https://github.com/ovh-ux/manager/commit/6cb68b4))
+
+
+
+# [1.2.0-alpha.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@1.1.0-alpha.0...@ovh-ux/ng-ovh-cloud-universe-components@1.2.0-alpha.0) (2019-05-07)
+
+
+### Features
+
+* **storages.volume-snapshots:** add volume-snapshots list ([#359](https://github.com/ovh-ux/manager/issues/359)) ([c8a63fd](https://github.com/ovh-ux/manager/commit/c8a63fd))
+
+
+
 # [1.1.0-alpha.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@1.0.1-alpha.0...@ovh-ux/ng-ovh-cloud-universe-components@1.1.0-alpha.0) (2019-03-22)
 
 

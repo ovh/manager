@@ -1,0 +1,6 @@
+{
+ "pci_project_flavors_billing_hourly": "Harmonogram",
+ "pci_project_flavors_billing_monthly": "Co miesiÄ…c ",
+ "pci_project_flavors_billing_price_hourly": "{{price}} netto/godz.",
+ "pci_project_flavors_billing_price_monthly": "{{price}} netto/m-c"
+}

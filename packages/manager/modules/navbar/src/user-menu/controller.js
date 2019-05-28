@@ -1,15 +1,23 @@
-import { Environment } from '@ovh-ux/manager-config';
-import { MAX_NAME_LENGTH, URLS } from './constants';
+import { MAX_NAME_LENGTH, USER_MENU_URLS } from './constants';
 
 export default class {
   /* @ngInject */
-  constructor($q, $translate, atInternet, ovhManagerNavbarMenuHeaderBuilder) {
+  constructor(
+    $q,
+    $translate,
+    atInternet,
+    coreConfig,
+    ovhManagerNavbarMenuHeaderBuilder,
+    ssoAuthentication,
+  ) {
     this.$q = $q;
     this.$translate = $translate;
     this.atInternet = atInternet;
     this.NavbarBuilder = ovhManagerNavbarMenuHeaderBuilder;
+    this.ssoAuthentication = ssoAuthentication;
 
-    this.REGION = Environment.getRegion();
+    this.REGION = coreConfig.getRegion();
+    this.URLS = USER_MENU_URLS[this.REGION];
   }
 
   $onInit() {
@@ -48,26 +56,26 @@ export default class {
     return [{
       name: 'user.account',
       title: this.$translate.instant('navbar_user_account'),
-      url: URLS.userInfos,
+      url: this.URLS.userInfos,
       click: () => this.trackUserMenuSection('my_account', 'account'),
       subLinks: [{
         title: this.$translate.instant('navbar_user_account_infos'),
-        url: URLS.userInfos,
+        url: this.URLS.userInfos,
       }, {
         title: this.$translate.instant('navbar_user_account_security'),
-        url: URLS.userSecurity,
+        url: this.URLS.userSecurity,
       }, (this.REGION === 'EU' || this.REGION === 'CA') && {
         title: this.$translate.instant('navbar_user_account_emails'),
-        url: URLS.userEmails,
+        url: this.URLS.userEmails,
       }, (this.REGION === 'EU') && {
         title: this.$translate.instant('navbar_user_account_subscriptions'),
-        url: URLS.userSubscriptions,
+        url: this.URLS.userSubscriptions,
       }, {
         title: this.$translate.instant('navbar_user_account_ssh'),
-        url: URLS.userSSH,
+        url: this.URLS.userSSH,
       }, {
         title: this.$translate.instant('navbar_user_account_advanced'),
-        url: URLS.userAdvanced,
+        url: this.URLS.userAdvanced,
       }],
     },
 
@@ -75,14 +83,14 @@ export default class {
     !this.user.isEnterprise && {
       name: 'user.billing',
       title: this.$translate.instant('navbar_user_billing'),
-      url: URLS.billing,
+      url: this.URLS.billing,
       click: () => this.trackUserMenuSection('my_facturation', 'billing'),
       subLinks: [{
         title: this.$translate.instant('navbar_user_billing_history'),
-        url: URLS.billing,
+        url: this.URLS.billing,
       }, {
         title: this.$translate.instant('navbar_user_billing_payments'),
-        url: URLS.billingPayments,
+        url: this.URLS.billingPayments,
       }],
     },
 
@@ -90,66 +98,59 @@ export default class {
     (this.REGION === 'EU' || this.REGION === 'CA') && (!this.user.isEnterprise ? {
       name: 'user.services',
       title: this.$translate.instant('navbar_user_renew'),
-      url: URLS.services,
+      url: this.URLS.services,
       click: () => this.trackUserMenuSection('my_services', 'services'),
       subLinks: [{
         title: this.$translate.instant('navbar_user_renew_management'),
-        url: URLS.services,
+        url: this.URLS.services,
       }, {
         title: this.$translate.instant('navbar_user_renew_agreements'),
-        url: URLS.servicesAgreements,
+        url: this.URLS.servicesAgreements,
       }],
     } : {
       title: this.$translate.instant('navbar_user_renew_agreements'),
-      url: URLS.servicesAgreements,
+      url: this.URLS.servicesAgreements,
     }),
 
     // Payment
     !this.user.isEnterprise && {
       name: 'user.payment',
       title: this.$translate.instant('navbar_user_means'),
-      url: URLS.paymentMeans,
+      url: this.URLS.paymentMeans,
       click: () => this.trackUserMenuSection('my_payment_types', 'payment_types'),
       subLinks: [{
         title: this.$translate.instant('navbar_user_means_mean'),
-        url: URLS.paymentMeans,
+        url: this.URLS.paymentMeans,
       }, (this.REGION === 'EU' || this.REGION === 'CA') && {
         title: this.$translate.instant('navbar_user_means_ovhaccount'),
-        url: URLS.ovhAccount,
+        url: this.URLS.ovhAccount,
       }, (this.REGION === 'EU' || this.REGION === 'CA') && {
         title: this.$translate.instant('navbar_user_means_vouchers'),
-        url: URLS.billingVouchers,
+        url: this.URLS.billingVouchers,
       }, {
         title: this.$translate.instant('navbar_user_means_refunds'),
-        url: URLS.billingRefunds,
+        url: this.URLS.billingRefunds,
       }, (this.REGION === 'EU') && {
         title: this.$translate.instant('navbar_user_means_fidelity'),
-        url: URLS.billingFidelity,
+        url: this.URLS.billingFidelity,
       }, {
         title: this.$translate.instant('navbar_user_means_credits'),
-        url: URLS.billingCredits,
+        url: this.URLS.billingCredits,
       }],
     },
 
     // Orders
     (!this.user.isEnterprise && this.REGION === 'EU' && this.user.ovhSubsidiary === 'FR') && {
       title: this.$translate.instant('navbar_user_orders_all'),
-      url: URLS.orders,
+      url: this.URLS.orders,
       click: () => this.trackUserMenuSection('my_orders', 'orders'),
     },
 
     // Contacts
     (this.REGION === 'EU') && {
       title: this.$translate.instant('navbar_user_contacts'),
-      url: URLS.contacts,
+      url: this.URLS.contacts,
       click: () => this.trackUserMenuSection('my_contacts', 'contacts'),
-    },
-
-    // Tickets
-    {
-      title: this.$translate.instant('navbar_user_list_ticket'),
-      url: URLS.listTicket,
-      click: () => this.trackUserMenuSection('my_otrs_tickets', 'otrs'),
     },
 
     // Logout

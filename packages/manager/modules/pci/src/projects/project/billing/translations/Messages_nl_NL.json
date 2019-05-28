@@ -1,0 +1,11 @@
+{
+ "cpbc_billing_control": "Facturatie",
+ "cpbc_tab_consumption": "Huidig verbruik:",
+ "cpbc_tab_forecast": "Te verwachten factuurbedrag (schatting)",
+ "cpbc_tab_history": "Geschiedenis",
+ "cpbc_monthly_header": "Al gefactureerd.",
+ "cpbc_monthly_header_description": "Pakketten en proratas",
+ "cpbc_hourly_header": "Komende facturatie",
+ "cpbc_hourly_header_description": "On-demand verbruik voor de huidige maand",
+ "cpb_error_message": "Het is niet mogelijk alle informatie op te halen. "
+}

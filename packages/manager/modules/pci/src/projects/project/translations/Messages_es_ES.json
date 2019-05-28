@@ -1,16 +1,21 @@
 {
  "pci_projects_project_home": "Inicio",
- "pci_projects_project_parameters": "Parámetros",
+ "pci_projects_project_parameters": "Ajustes",
  "pci_projects_project_create_an_instance": "Crear una instancia",
  "pci_projects_project_create_a_volume": "Crear un volumen",
  "pci_projects_project_create_a_container": "Crear un contenedor de objetos",
  "pci_projects_project_activate_private_networks": "Activar las redes privadas",
  "pci_projects_project_create_cluster_kubernetes": "Crear un cluster Kubernetes",
  "pci_projects_project_documentation": "Documentación",
- "pci_projects_project_documentation_getting_started_with_public_cloud_logging_in_and_creating_a_project": "Empezar con Public Cloud: identificarse y crear un proyecto",
  "pci_projects_project_documentation_create_user_access_to_horizon": "Conectarse a Horizon",
  "pci_projects_project_documentation_boot_your_first_cloud_server_in_3_minutes": "Crear una instancia desde el área de cliente de OVH",
  "pci_projects_project_documentation_prepare_the_environment_for_using_the_open_stack_api": "Preparar el entorno para utilizar la API de OpenStack",
- "pci_projects_project_documentation_create_and_configure_and_additional_disk_on_an_instance": "Crear y configurar un disco adicional en una instancia",
- "pci_projects_project_documentation_see_all_public_cloud_guides": "Ver todas las guías de Public Cloud"
+ "pci_projects_project_documentation_create_and_configure_and_additional_disk_on_an_instance": "Crear un volumen adicional y asociarlo a una instancia",
+ "pci_projects_project_documentation_see_all_public_cloud_guides": "Ver todas las guías de Public Cloud",
+ "pci_projects_project_welcome": "Bienvenido a la nueva interfaz de Public Cloud",
+ "pci_projects_project_welcome_legacy": "Ir a la antigua interfaz",
+ "pci_projects_project_forward": "Vamos a restablecer la antigua interfaz del área de cliente Cloud",
+ "pci_projects_project_forward_feedback": "Dar mi opinión",
+ "pci_projects_project_forward_legacy": "Ir a la antigua interfaz",
+ "pci_projects_project_forward_content": "Gracias por haber probado la nueva versión del área de cliente de Public Cloud. ¿Le ha gustado? ¿Qué cambiaría? Sus comentarios nos ayudarán a mejorarla."
 }

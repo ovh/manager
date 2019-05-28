@@ -128,6 +128,17 @@ Indicate current universe
 }
 ```
 
+#### fixed position 
+
+Indicate if fixed position should be applied to component
+
+```js
+{
+  fixed: true
+}
+```
+
+
 ## Build
 
 ```sh

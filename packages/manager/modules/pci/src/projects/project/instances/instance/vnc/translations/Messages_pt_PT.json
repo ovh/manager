@@ -1,0 +1,6 @@
+{
+ "pci_projects_project_instances_instance_vnc_title": "Consola VNC",
+ "pci_projects_project_instances_instance_vnc_focus_message": "Dica: se a introdução de texto não funcionar, clique na barra azul.",
+ "pci_projects_project_instances_instance_vnc_linux_message": "Para utilizar a consola VNC numa máquina Linux, deve ligar-se com antecedência através de SSH e configurar um utilizador com palavra-passe.",
+ "pci_projects_project_instances_instance_vnc_open_in_new_window": "Abrir numa nova janela"
+}

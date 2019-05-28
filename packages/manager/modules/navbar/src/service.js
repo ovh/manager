@@ -9,7 +9,9 @@ export default class {
     return this.OvhApiMe.v6().get().$promise;
   }
 
-  getUniverses() {
-    return this.OvhApiUniverses.Aapi().query().$promise;
+  getUniverses(version) {
+    return this.OvhApiUniverses.Aapi().query({
+      version,
+    }).$promise;
   }
 }

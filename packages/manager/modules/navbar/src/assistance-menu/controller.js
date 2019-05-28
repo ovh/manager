@@ -3,19 +3,31 @@ import get from 'lodash/get';
 import has from 'lodash/has';
 import isFunction from 'lodash/isFunction';
 
-import { Environment } from '@ovh-ux/manager-config';
-import { HELP_CENTER_SUBSIDIARIES, URLS } from './constants';
+import { CHATBOT_SUBSIDIARIES, HELP_CENTER_SUBSIDIARIES, ASSISTANCE_URLS } from './constants';
 
 export default class {
   /* @ngInject */
-  constructor($q, $translate, atInternet, OtrsPopupService, ovhManagerNavbarMenuHeaderBuilder) {
+  constructor(
+    $q,
+    $rootScope,
+    $scope,
+    $translate,
+    atInternet,
+    coreConfig,
+    OtrsPopupService,
+    ovhManagerNavbarMenuHeaderBuilder,
+  ) {
     this.$q = $q;
+    this.$rootScope = $rootScope;
+    this.$scope = $scope;
     this.$translate = $translate;
     this.atInternet = atInternet;
+    this.coreConfig = coreConfig;
     this.otrsPopupService = OtrsPopupService;
     this.NavbarBuilder = ovhManagerNavbarMenuHeaderBuilder;
 
-    this.REGION = Environment.getRegion();
+    this.REGION = this.coreConfig.getRegion();
+    this.URLS = ASSISTANCE_URLS[this.REGION];
   }
 
   $onInit() {
@@ -52,43 +64,43 @@ export default class {
     if (useHelpCenterMenu) {
       sublinks.push({
         title: this.$translate.instant('navbar_assistance_help_center'),
-        url: get(URLS, `support.${this.subsidiary}`),
+        url: get(this.URLS, `support.${this.subsidiary}`),
         isExternal: true,
         click: () => this.atInternet.trackClick({
           name: 'assistance::all_guides',
           type: 'action',
         }),
-        mustBeKept: has(URLS, `support.${this.subsidiary}`),
+        mustBeKept: has(this.URLS, `support.${this.subsidiary}`),
       },
       {
         title: this.$translate.instant('navbar_assistance_ask_for_assistance'),
-        url: URLS.ticket,
+        url: this.URLS.ticket,
         click: () => this.atInternet.trackClick({
           name: 'assistance::assistance_requests_created',
           type: 'action',
         }),
-        mustBeKept: has(URLS, 'ticket'),
+        mustBeKept: has(this.URLS, 'ticket'),
       });
     } else {
       sublinks.push({
         title: this.$translate.instant('navbar_assistance_guide'),
-        url: get(URLS, `guides.${this.universe}.${this.subsidiary}`),
+        url: get(this.HELP_CENTER_SUBSIDIARIESURLS, `guides.${this.universe}.${this.subsidiary}`),
         isExternal: true,
         click: () => this.atInternet.trackClick({
           name: `assistance::all_guides::${this.universe}`,
           type: 'action',
         }),
-        mustBeKept: has(URLS, `guides.${this.universe}.${this.subsidiary}`),
+        mustBeKept: has(this.URLS, `guides.${this.universe}.${this.subsidiary}`),
       },
       {
         title: this.$translate.instant('navbar_assistance_all_guides'),
-        url: get(URLS, `guides.home.${this.subsidiary}`),
+        url: get(this.URLS, `guides.home.${this.subsidiary}`),
         isExternal: true,
         click: () => this.atInternet.trackClick({
           name: 'assistance::all_guides',
           type: 'action',
         }),
-        mustBeKept: !has(URLS, `guides.${this.universe}.${this.subsidiary}`) && has(URLS, `guides.home.${this.subsidiary}`),
+        mustBeKept: !has(this.URLS, `guides.${this.universe}.${this.subsidiary}`) && has(this.URLS, `guides.home.${this.subsidiary}`),
       }, {
         title: this.$translate.instant('navbar_assistance_new_ticket'),
         click: (callback) => {
@@ -111,12 +123,12 @@ export default class {
       },
       {
         title: this.$translate.instant('navbar_assistance_list_ticket'),
-        url: URLS.ticket,
+        url: this.URLS.ticket,
         click: () => this.atInternet.trackClick({
           name: 'assistance::assistance_requests_created',
           type: 'action',
         }),
-        mustBeKept: has(URLS, 'ticket'),
+        mustBeKept: has(this.URLS, 'ticket'),
       });
     }
 
@@ -125,12 +137,25 @@ export default class {
     if (!['US'].includes(this.REGION)) {
       sublinks.push({
         title: this.$translate.instant('navbar_assistance_telephony_contact'),
-        url: get(URLS, 'support_contact', {})[this.subsidiary] || get(URLS, 'support_contact.FR'),
+        url: get(this.URLS, 'support_contact', {})[this.subsidiary] || get(this.URLS, 'support_contact.FR'),
         isExternal: true,
         click: () => this.atInternet.trackClick({
           name: 'assistance::helpline',
           type: 'action',
         }),
+      });
+    }
+
+    if (CHATBOT_SUBSIDIARIES.includes(this.subsidiary)) {
+      sublinks.push({
+        title: `${this.$translate.instant('navbar_assistance_chatbot')} <sup class="oui-color-california">OVH Chat</sup>`,
+        click: () => {
+          this.atInternet.trackClick({
+            name: 'assistance::chatbot',
+            type: 'action',
+          });
+          this.$rootScope.$emit('ovh-chatbot:open');
+        },
       });
     }
 

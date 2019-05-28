@@ -1,0 +1,6 @@
+{
+ "kube_containers_coming_soon": "Demnächst verfügbar",
+ "kube_containers_description": "Hier können Sie später alle Container und Dienste sehen, die in Ihrem Kubernetes-Cluster gehostet sind.",
+ "kube_containers_description_dashboard": "Bis dahin können Sie die Befehlszeilenschnittstelle „kubectl\" verwenden oder das „Kubernetes Dashboard\" installieren. Kubernetes Dashboard ist ein Web User Interface, das von der Kubernetes-Community bereitgestellt und als Dienst in Ihrem Cluster angezeigt wird.",
+ "kube_containers_description_dashboard_link": "Folgen Sie <a class=\"oui-link oui-link_icon\" href=\"{{ url }}\" target=\"_blank\" rel=\"noopener\">dieser Anleitung<span class=\"oui-icon oui-icon-external_link\" aria-hidden=\"true\"></span></a>, um das Kubernetes Dashboard zu installieren."
+}

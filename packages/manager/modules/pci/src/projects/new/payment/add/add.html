@@ -1,0 +1,32 @@
+<div class="pci-projects-new-payment-add">
+    <h2 class="oui-heading_underline"
+        data-translate="pci_projects_new_payment_default_title">
+    </h2>
+
+    <p>
+        <span class="d-block"
+              data-translate="pci_projects_new_payment_add_explain1">
+        </span>
+        <span data-translate="pci_projects_new_payment_add_explain2"></span>
+    </p>
+
+    <ovh-payment-method-available-types
+        data-on-loaded="$ctrl.onLoaded()"
+        data-on-load-error="$ctrl.onAvailablePaymentTypesLoadError.bind($ctrl)"
+        data-selected-payment-type="$ctrl.selectedPaymentType">
+    </ovh-payment-method-available-types>
+
+    <small data-ng-switch="$ctrl.selectedPaymentType.paymentType.value"
+           data-ng-if="$ctrl.selectedPaymentType"
+           data-translate="{{ 'pci_projects_new_payment_add_' + $ctrl.selectedPaymentType.paymentType.value.toLowerCase() + '_selected' }}"
+           class="d-block mb-3">
+    </small>
+
+    <oui-message
+        data-type="info"
+        data-dismissable="false"
+        data-ng-if="$ctrl.selectedPaymentType.paymentType.value === 'BANK_ACCOUNT'">
+        <span data-translate="pci_projects_new_payment_add_bank_account_info"></span>
+    </oui-message>
+
+</div>

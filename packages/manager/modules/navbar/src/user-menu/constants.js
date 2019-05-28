@@ -1,5 +1,3 @@
-import { Environment } from '@ovh-ux/manager-config';
-
 const CA = {
   billing: 'https://ca.ovh.com/manager/index.html#/billing/history',
   billingCredits: 'https://ca.ovh.com/manager/index.html#/billing/credits',
@@ -63,17 +61,15 @@ const US = {
   userSSH: 'https://us.ovhcloud.com/manager/dedicated/index.html#/useraccount/ssh',
 };
 
-const USER_MENU_URLS = {
+export const USER_MENU_URLS = {
   CA,
   EU,
   US,
 };
 
-export const URLS = USER_MENU_URLS[Environment.getRegion()];
-
 export const MAX_NAME_LENGTH = 10;
 
 export default {
   MAX_NAME_LENGTH,
-  URLS,
+  USER_MENU_URLS,
 };

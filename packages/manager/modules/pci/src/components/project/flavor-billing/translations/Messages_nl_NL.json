@@ -1,0 +1,6 @@
+{
+ "pci_project_flavors_billing_hourly": "Per uur",
+ "pci_project_flavors_billing_monthly": "Maandelijks",
+ "pci_project_flavors_billing_price_hourly": "{{price}} excl. BTW/uur",
+ "pci_project_flavors_billing_price_monthly": "{{price}} excl. BTW/maand"
+}

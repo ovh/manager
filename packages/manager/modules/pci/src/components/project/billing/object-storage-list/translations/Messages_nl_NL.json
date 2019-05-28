@@ -1,0 +1,11 @@
+{
+ "cpbc_no_consumption_data": "Geen verbruik voor de geselecteerde periode. ",
+ "cpbc_object_storage_col_location": "Locatie",
+ "cpbc_object_storage_col_consumption": "Verbruik ruimte",
+ "cpbc_object_storage_col_output_traffic": "Verbruik uitgaande trafiek",
+ "cpbc_object_storage_consumption_info_part1": "U wordt gefactureerd op basis van de werkelijke opslagruimte, berekend per uur, afgerond op het hele uur.",
+ "cpbc_object_storage_consumption_info_part2": "Uw verbruik is precies {{amount}} GiB uur.",
+ "cpbc_object_storage_output_traffic_info_part1": "Elke uitgaande gigabyte wordt gefactureerd (ongeacht de bestemming)",
+ "cpbc_object_storage_output_traffic_info_part2": ". U heeft {{amount}} GiB verbruikt tijdens deze periode. Ingaand verkeerd wordt nooit gefactureerd.  ",
+ "cpb_error_message": "Het is niet mogelijk alle informatie op te halen. "
+}
