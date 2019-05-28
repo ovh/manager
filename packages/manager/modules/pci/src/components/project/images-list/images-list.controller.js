@@ -115,10 +115,13 @@ export default class ImagesListController {
 
   changeDistribution(distribution, images) {
     if (images.length === 1) {
-      [this.selectedImage] = images;
-      if (this.onChange) {
-        this.onChange({ image: this.selectedImage });
-      }
+      [this.image] = images;
+    } else {
+      this.image = null;
+    }
+    this.selectedImage = this.image;
+    if (this.onChange) {
+      this.onChange({ image: this.selectedImage });
     }
   }
 
@@ -127,6 +130,9 @@ export default class ImagesListController {
   }
 
   onImageChange(image) {
+    if (image.isApp() || image.isBackup()) {
+      this.distribution = null;
+    }
     this.selectedImage = image;
     if (this.onChange) {
       this.onChange({ image: this.selectedImage });
