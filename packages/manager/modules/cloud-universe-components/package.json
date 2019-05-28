@@ -35,7 +35,7 @@
     "jsurl": "^0.1.5",
     "lodash": "^4.17.11",
     "moment": "^2.24.0",
-    "ovh-ui-kit": "^2.32.0"
+    "ovh-ui-kit": "^2.33.0"
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^5.0.1"
