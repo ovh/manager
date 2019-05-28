@@ -12,7 +12,6 @@
                 data-property="name"
                 data-type="string"
                 data-searchable
-                data-sortable="asc"
                 data-filterable></oui-column>
             <oui-column
                 data-title="'pci_projects_project_storages_snapshots_region_label' | translate"
@@ -40,7 +39,7 @@
             <oui-column
                 data-title="'pci_projects_project_storages_snapshots_creationDate_label' | translate"
                 data-property="creationDate"
-                data-sortable>
+                data-sortable="desc">
                 <span>{{ $value | date:'short' }}</span>
             </oui-column>
             <oui-column
