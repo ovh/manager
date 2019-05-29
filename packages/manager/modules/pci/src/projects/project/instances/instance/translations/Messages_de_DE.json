@@ -59,6 +59,7 @@
  "pci_projects_project_instances_instance_volumes_action_attach_label": "Volume hinzufügen",
  "pci_projects_project_instances_instance_openstack_id_label": "OpenStack-Nova-ID",
  "pci_projects_project_instances_instance_image_label": "Image",
+ "pci_projects_project_instances_instance_image_action_application_access_label": "Verbindungsinformationen",
  "pci_projects_project_instances_instance_networks_title": "Netzwerke",
  "pci_projects_project_instances_instance_ipv4_label": "IPv4",
  "pci_projects_project_instances_instance_ipv6_label": "IPv6",
