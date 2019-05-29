@@ -1,19 +1,29 @@
-import controller from './edit.controller';
-import template from './edit.html';
+import { MESSAGES_CONTAINER_NAME } from './edit.constant';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
     .state('pci.projects.project.edit', {
       url: '/edit',
       views: {
-        contentTab: {
-          controller,
-          controllerAs: '$ctrl',
-          template,
-        },
+        contentTab: 'pciProjectEdit',
       },
       resolve: {
         breadcrumb: /* @ngInject */ $translate => $translate.instant('pci_projects_project_parameters'),
+
+        defaultProject: /* @ngInject */
+          pciProjectEditService => pciProjectEditService.getDefaultProject(),
+
+        onUpdate: /* @ngInject */ (
+          $state,
+          $timeout,
+          $translate,
+          CucCloudMessage,
+        ) => () => $state.reload()
+          // We need a digest so message can be displayed
+          .then(() => $timeout(() => CucCloudMessage.success(
+            $translate.instant('pci_projects_project_edit_update_success'),
+            MESSAGES_CONTAINER_NAME,
+          ))),
       },
     });
 };
