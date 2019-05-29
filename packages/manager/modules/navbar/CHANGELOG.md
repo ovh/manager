@@ -1,3 +1,12 @@
+# [0.5.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-navbar@0.4.4...@ovh-ux/manager-navbar@0.5.0) (2019-05-29)
+
+
+### Features
+
+* **oui-navbar:** prevent walk-me display ([#756](https://github.com/ovh-ux/manager/issues/756)) ([d8a0c16](https://github.com/ovh-ux/manager/commit/d8a0c16))
+
+
+
 ## [0.4.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-navbar@0.4.3...@ovh-ux/manager-navbar@0.4.4) (2019-05-27)
 
 

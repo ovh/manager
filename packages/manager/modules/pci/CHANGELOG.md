@@ -1,3 +1,14 @@
+## [0.14.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.14.1...@ovh-ux/manager-pci@0.14.2) (2019-05-29)
+
+
+### Bug Fixes
+
+* **pci.private-network:** reload states when redirecting ([#726](https://github.com/ovh-ux/manager/issues/726)) ([6bf6d7b](https://github.com/ovh-ux/manager/commit/6bf6d7b))
+* **pci.project.instance-backup:** allow submit when form is valid ([#755](https://github.com/ovh-ux/manager/issues/755)) ([81941ef](https://github.com/ovh-ux/manager/commit/81941ef))
+* **pci.projects.edit:** refresh when project is edited ([#750](https://github.com/ovh-ux/manager/issues/750)) ([6c2e972](https://github.com/ovh-ux/manager/commit/6c2e972))
+
+
+
 ## [0.14.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.14.0...@ovh-ux/manager-pci@0.14.1) (2019-05-29)
 
 
