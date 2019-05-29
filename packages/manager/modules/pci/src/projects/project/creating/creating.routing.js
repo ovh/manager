@@ -10,7 +10,9 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       resolve: {
         breadcrumb: () => null,
-        onProjectCreated: /* @ngInject */ $state => () => $state.go('^'),
+        onProjectCreated: /* @ngInject */ $state => () => $state.go('^', {}, {
+          reload: true,
+        }),
         projectOrder: /* @ngInject */ (project, projectCreating, projectOrderStatus) => {
           if (project.orderId && projectOrderStatus === 'notPaid') {
             return projectCreating
