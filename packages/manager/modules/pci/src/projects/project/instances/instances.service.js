@@ -499,4 +499,14 @@ export default class PciProjectInstanceService {
       )
       .$promise;
   }
+
+  getApplicationAccess(projectId, { id: instanceId }) {
+    return this.OvhApiCloudProjectInstance
+      .v6()
+      .applicationAccess({
+        serviceName: projectId,
+        instanceId,
+      })
+      .$promise;
+  }
 }
