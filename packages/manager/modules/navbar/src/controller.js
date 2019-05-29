@@ -1,6 +1,5 @@
 import angular from 'angular';
 
-import find from 'lodash/find';
 import get from 'lodash/get';
 import has from 'lodash/has';
 import omit from 'lodash/omit';
@@ -48,13 +47,6 @@ export default class {
       .then(() => this.$translate.refresh())
       .then(() => this.buildMainLinks())
       .then(() => this.buildResponsiveLinks())
-      .then(() => {
-        if (find(this.mainLinks, {
-          name: 'server',
-        })) {
-          this.startWalkMe();
-        }
-      })
       .finally(() => {
         this.$scope.$emit('navbar.loaded');
         this.isLoading = false;
