@@ -4,7 +4,7 @@
     <h1 data-translate="pci_projects_project_instances_backup_add_title"></h1>
 
     <form novalidate name="addBackupInstanceForm"
-        data-ng-submit="addBackupInstanceForm.$valid && $ctrl.renameInstance()">
+        data-ng-submit="addBackupInstanceForm.$valid && $ctrl.create()">
         <div class="oui-field oui-field_error">
             <label for="backup-region" class="oui-field__label oui-label"
                 data-translate="pci_projects_project_instances_backup_add_region_label"></label>
@@ -106,8 +106,8 @@
 
         <oui-form-actions
             data-ng-if="!$ctrl.isLoading"
-            data-on-submit="$ctrl.create()"
             data-on-cancel="$ctrl.goBack()"
+            data-disabled="!addBackupInstanceForm.$valid"
             data-submit-text="{{:: 'pci_projects_project_instances_backup_add' | translate }}"
             data-cancel-text="{{:: 'pci_projects_project_instances_backup_add_cancel' | translate }}">
         </oui-form-actions>
