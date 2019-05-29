@@ -234,6 +234,7 @@ export default class OvhManagerServerSidebarController {
                 target: isExternal ? '_self' : null,
                 icon: get(typeServices.type, 'icon'),
                 loadOnState: get(typeServices.type, 'loadOnState'),
+                loadOnStateParams: stateParams,
               }, parent);
 
               // add serviceName in item searchKeys
