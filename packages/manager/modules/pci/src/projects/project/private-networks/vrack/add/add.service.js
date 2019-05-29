@@ -24,6 +24,16 @@ export default class {
           status: 'done',
         },
       },
-    );
+    )
+      .then(
+        () => true,
+        (error) => {
+          if (error.status === 404) {
+            return true;
+          }
+
+          return Promise.reject(error);
+        },
+      );
   }
 }
