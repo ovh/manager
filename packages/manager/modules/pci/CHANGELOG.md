@@ -1,3 +1,12 @@
+## [0.14.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.14.3...@ovh-ux/manager-pci@0.14.4) (2019-05-29)
+
+
+### Bug Fixes
+
+* **pci:** enable kubernetes from CA region ([#767](https://github.com/ovh-ux/manager/issues/767)) ([7336921](https://github.com/ovh-ux/manager/commit/7336921))
+
+
+
 ## [0.14.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.14.2...@ovh-ux/manager-pci@0.14.3) (2019-05-29)
 
 
