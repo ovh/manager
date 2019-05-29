@@ -44,6 +44,23 @@ export default /* @ngInject */ ($stateProvider) => {
             instance: failoverIp.routedTo ? find(instances, { id: failoverIp.routedTo }) : null,
           }),
         )),
+
+        goToFailoverIps: ($state, CucCloudMessage, projectId) => (message = false, type = 'success') => {
+          const reload = message && type === 'success';
+
+          const promise = $state.go('pci.projects.project.failover-ips', {
+            projectId,
+          },
+          {
+            reload,
+          });
+
+          if (message) {
+            promise.then(() => CucCloudMessage[type](message, 'pci.projects.project.failover-ips'));
+          }
+
+          return promise;
+        },
       },
     });
 };

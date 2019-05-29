@@ -7,5 +7,7 @@
   "pci_projects_project_failoverip_import": "Importer une IP",
   "pci_projects_project_failoverip_edit": "Modifier l'instance associée",
   "pci_projects_project_failoverip_mitigation": "Activer/Désactiver la mitigation",
-  "pci_projects_project_failoverip_firewall": "Configurer le pare-feu"
+  "pci_projects_project_failoverip_firewall": "Configurer le pare-feu",
+  "pci_projects_project_failoverip_actions": "Actions",
+  "pci_projects_project_failoverip_order": "Acheter des IP Failover"
 }

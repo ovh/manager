@@ -5,6 +5,7 @@ import '@uirouter/angularjs';
 import failoverIp from './failover-ip';
 import imports from './imports';
 import onboarding from './onboarding';
+import order from './order';
 
 import component from './failover-ips.component';
 import routing from './failover-ips.routing';
@@ -18,6 +19,7 @@ angular
     failoverIp,
     imports,
     onboarding,
+    order,
   ])
   .config(routing)
   .component('pciProjectFailoverIps', component)
