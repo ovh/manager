@@ -235,7 +235,7 @@ export default class {
    * @return {Object}
    */
   showAdvice() {
-    const isRealNumber = /[0-9+]/.test(this.sms.sender)
+    const isRealNumber = /^[0-9+]*$/.test(this.sms.sender)
       && !this.isVirtualNumber();
 
     this.displaySenderCustomizationAdvice = isRealNumber
