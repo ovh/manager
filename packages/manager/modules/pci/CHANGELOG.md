@@ -1,3 +1,13 @@
+## [0.14.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.14.2...@ovh-ux/manager-pci@0.14.3) (2019-05-29)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([#763](https://github.com/ovh-ux/manager/issues/763)) ([827947e](https://github.com/ovh-ux/manager/commit/827947e))
+* **pci.project.kubernetes.details.nodes:** remove deprecated link ([#761](https://github.com/ovh-ux/manager/issues/761)) ([062bdb4](https://github.com/ovh-ux/manager/commit/062bdb4))
+
+
+
 ## [0.14.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.14.1...@ovh-ux/manager-pci@0.14.2) (2019-05-29)
 
 
