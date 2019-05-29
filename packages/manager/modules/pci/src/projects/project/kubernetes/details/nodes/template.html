@@ -1,7 +1,11 @@
 <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
 <div>
     <p class="mb-3">
-        <span data-translate="kube_nodes_description_project_1" data-translate-values="{ description: $ctrl.project.description, url: $ctrl.$state.href('iaas.pci-project.compute', { projectId: $ctrl.project.project_id }) }"></span>
+        <span data-translate="kube_nodes_description_project_1"
+              data-translate-values="{
+                  description: $ctrl.project.description
+              }">
+        </span>
         <span data-translate="kube_nodes_description_project_2"></span>
     </p>
     <oui-datagrid data-rows="$ctrl.nodes" data-row-loader="$ctrl.getAssociatedFlavor($row)">
