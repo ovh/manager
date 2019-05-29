@@ -32,7 +32,7 @@
   "kube_nodes_flavor": "Modèle d'instance",
   "kube_nodes_flavor_error": "Une erreur est survenue lors du chargement du type d'instance associé",
   "kube_nodes_project_error": "Une erreur s'est produite lors du chargement du projet associé",
-  "kube_nodes_description_project_1": "Votre cluster Kubernetes utilise des nœuds pour héberger vos conteneurs et services. Tous vos nœuds seront lancés dans le projet public cloud <a class=\"oui-link\" href=\"{{ url }}\">{{ description }}</a> (nous permettrons de changer cela dans le futur).",
+  "kube_nodes_description_project_1": "Votre cluster Kubernetes utilise des nœuds pour héberger vos conteneurs et services. Tous vos nœuds seront lancés dans le projet public cloud {{ description }} (nous permettrons de changer cela dans le futur).",
   "kube_nodes_description_project_2": "Ces instances sont lancées en facturation standard à l'heure. Vous pouvez retrouver les détails sur la facturation et les basculer en forfait mensuel dans votre projet Public Cloud.",
   "kube_nodes_quota_description": "Pour maîtriser votre consommation Cloud, votre projet est limité en ressources.",
   "kube_nodes_quota_more": "Si vous avez besoin de plus de ressources, vous pouvez les demander à notre équipe en cliquant sur le bouton ci-dessous.",
