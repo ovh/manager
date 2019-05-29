@@ -9,15 +9,23 @@ export default class {
     $stateParams,
     $translate,
     CucCloudMessage,
+    Poller,
   ) {
     this.$state = $state;
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
+    this.Poller = Poller;
     this.registryId = $stateParams.registryId;
     this.GUIDES = GUIDES;
+    this.pollingNamespace = 'pci.private.project.creating';
+    this.registryCreated = false;
   }
 
   $onInit() {
+    this.stopCreationPolling();
+    if (this.registryId) {
+      this.startCreationPolling();
+    }
     this.loadMessages();
     this.privateRegistryImage = privateRegistryImage;
     this.guides = reduce(
@@ -33,6 +41,29 @@ export default class {
       ]),
       [],
     );
+  }
+
+  startCreationPolling() {
+    return this.Poller.poll(
+      `/cloud/project/${this.projectId}/containerRegistry/${this.registryId}`,
+      null, {
+        namespace: this.pollingNamespace,
+        successRule(details) {
+          return details.status === 'READY';
+        },
+      },
+    )
+      .then(() => this.onProjectCreated());
+  }
+
+  stopCreationPolling() {
+    return this.Poller.kill({
+      namespace: this.pollingNamespace,
+    });
+  }
+
+  onProjectCreated() {
+    this.registryCreated = true;
   }
 
   loadMessages() {

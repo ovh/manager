@@ -44,7 +44,7 @@
   "private_registry_update_name_label": "Choose a name for the private registry",
   "private_registry_update_success": "Successfully renamed private registry name to {{ newRegistryName }}",
   "private_registry_update_error": "An error has occurred while renaming private registry {{ registryName }}: {{ message }}",
-  "private_registry_onboarding_success": "Your private registry {{ registryName }} has been created. Please generate credentials in order to access your registry",
+  "private_registry_onboarding_success": "Your private registry {{ registryName }} is being created. Please generate credentials in order to access your registry",
   "private_registry_onboarding_error": "Failed to create private registry: {{ message }}",
   "private_registry_harbor_api_title": "Private Registry API",
   "private_registry_harbor_api_url": "API URL of your private registry",

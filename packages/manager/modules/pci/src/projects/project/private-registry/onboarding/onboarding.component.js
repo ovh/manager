@@ -4,4 +4,7 @@ import template from './onboarding.html';
 export default {
   controller,
   template,
+  bindings: {
+    projectId: '<',
+  },
 };

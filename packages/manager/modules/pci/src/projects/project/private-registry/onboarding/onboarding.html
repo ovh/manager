@@ -9,9 +9,10 @@
        data-ui-sref="pci.projects.project.private-registry.onboarding.create"
        data-ng-if="!$ctrl.registryId"><span data-translate="private_registry_onboarding_action_label"></span>
     </a>
+    <oui-spinner data-ng-if="!$ctrl.registryCreated && $ctrl.registryId"></oui-spinner>
     <oui-button data-variant="primary"
                 data-on-click="$ctrl.generateCredentials()"
-                data-ng-if="$ctrl.registryId">
+                data-ng-if="$ctrl.registryCreated">
         <span data-translate="private_registry_onboarding_generate"></span>
     </oui-button>
 </pci-project-empty>
