@@ -1,3 +1,6 @@
+import isEmpty from 'lodash/isEmpty';
+import find from 'lodash/find';
+import get from 'lodash/get';
 import { WEB } from './constants';
 
 export const DOMAIN_CONFIG = {
@@ -35,6 +38,10 @@ export const DOMAIN_CONFIG = {
           loadOnState: 'app.domain.alldom',
           app: [WEB],
           icon: 'ovh-font ovh-font-domain',
+          filter: {
+            category: 'DOMAIN', // eslint-disable-next-line max-len
+            fn: (items, compareTo) => items.filter(it => isEmpty(find(get(compareTo, 'items', []), { serviceName: it.serviceName }))),
+          },
         },
       ],
     },
@@ -49,10 +56,14 @@ export const DOMAIN_CONFIG = {
     {
       path: '/domain/zone',
       category: 'ZONE',
-      state: 'app.domain.zone',
+      state: 'app.domain.dns-zone',
       stateParams: ['productId'],
-      icon: 'oui-icon oui-icon-domain-dns',
+      icon: 'oui-icon icon-white-background oui-icon-domain-dns',
       app: [WEB],
+      filter: {
+        category: 'DOMAIN', // eslint-disable-next-line max-len
+        fn: (items, compareTo) => items.filter(it => isEmpty(find(get(compareTo, 'items', []), { serviceName: it.serviceName }))),
+      },
     },
   ],
   icon: 'ovh-font ovh-font-domain',
