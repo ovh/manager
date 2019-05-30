@@ -65,15 +65,6 @@ export default class OvhManagerServerSidebarController {
             this.SIDEBAR_CONFIG = WEB_SIDEBAR_CONFIG;
             this.SIDEBAR_ORDER_CONFIG = WEB_ORDER_SIDEBAR_CONFIG;
           }
-          this.SidebarMenu.addMenuItem({
-            id: 'service.id',
-            name: 'service.id',
-            icon: 'service.icon',
-            title: 'title',
-            allowSubItems: false,
-            allowSearch: true,
-            state: 'app.domain',
-          }, null);
           this.buildFirstLevelMenu();
           return this.buildOrderMenu();
         })
@@ -191,7 +182,6 @@ export default class OvhManagerServerSidebarController {
         }
       }
     });
-    console.log(this.SidebarMenu);
   }
 
   loadServices(parentService, parent, params = {}) {
