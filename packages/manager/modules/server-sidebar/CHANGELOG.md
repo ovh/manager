@@ -1,3 +1,12 @@
+## [0.1.6](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.1.5...@ovh-ux/manager-server-sidebar@0.1.6) (2019-05-31)
+
+
+### Bug Fixes
+
+* **server-sidebar:** select current active item ([#769](https://github.com/ovh-ux/manager/issues/769)) ([1a968d0](https://github.com/ovh-ux/manager/commit/1a968d0))
+
+
+
 ## [0.1.5](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.1.4...@ovh-ux/manager-server-sidebar@0.1.5) (2019-05-27)
 
 

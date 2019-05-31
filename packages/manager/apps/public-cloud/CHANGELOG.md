@@ -1,3 +1,12 @@
+# [0.10.0-alpha.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.9.0-alpha.0...@ovh-ux/manager-public-cloud@0.10.0-alpha.0) (2019-05-31)
+
+
+### Features
+
+* **pci.failover-ip:** add ipfo order ([#722](https://github.com/ovh-ux/manager/issues/722)) ([36182d9](https://github.com/ovh-ux/manager/commit/36182d9))
+
+
+
 # [0.9.0-alpha.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.8.0-alpha.4...@ovh-ux/manager-public-cloud@0.9.0-alpha.0) (2019-05-28)
 
 
