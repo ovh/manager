@@ -209,8 +209,13 @@ export default class OvhManagerServerSidebarController {
             const hasSubItems = has(typeServices.type, 'types');
 
             if (!isEmpty(typeServices.type.filter)) {
-              // eslint-disable-next-line max-len
-              items = typeServices.type.filter.fn(items, find(typesServices, service => get(service, 'type.category') === get(typeServices, 'type.filter.category')));
+              items = typeServices.type.filter.fn(
+                items,
+                find(
+                  typesServices,
+                  service => get(service, 'type.category') === get(typeServices, 'type.filter.category'),
+                ),
+              );
             }
 
             each(orderBy(items, 'displayName'), (service) => {
