@@ -5,6 +5,20 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
     .state('pci.projects.new.payment', {
       url: '/payment?mode&credit&voucher&hiPayStatus&paypalAgreementStatus',
+      redirectTo: (transition) => {
+        const { hiPayStatus, mode, projectId } = transition.params();
+
+        if (hiPayStatus === 'success' && mode === 'credits' && projectId) {
+          return {
+            state: 'pci.projects.project',
+            params: {
+              projectId,
+            },
+          };
+        }
+
+        return null;
+      },
       onEnter: /* @ngInject */ ($transition$, $window, getStepByName) => {
         // check for paypal response in query string
         if ($window.location.search.indexOf('paypalAgreementStatus') > -1) {
