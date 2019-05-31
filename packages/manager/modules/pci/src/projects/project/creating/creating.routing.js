@@ -10,9 +10,12 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       resolve: {
         breadcrumb: () => null,
-        onProjectCreated: /* @ngInject */ $state => () => $state.go('^', {}, {
-          reload: true,
-        }),
+        onProjectCreated: /* @ngInject */ ($state, $window, projectId) => () => {
+          $window.location.replace($state.href('pci.projects.project', {
+            projectId,
+          }));
+          $window.location.reload();
+        },
         projectOrder: /* @ngInject */ (project, projectCreating, projectOrderStatus) => {
           if (project.orderId && projectOrderStatus === 'notPaid') {
             return projectCreating
