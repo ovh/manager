@@ -114,6 +114,20 @@
                         data-display-selected-flavor="false">
                         <span data-translate="pci_projects_project_instances_instance_edit_flavor_not_available"></span>
                     </pci-project-flavors-list>
+
+                    <div
+                        class="d-flex align-items-center"
+                        data-ng-if="$ctrl.canSwitchToFlex()">
+                        <oui-checkbox
+                            class="position-relative"
+                            id="instance-flex"
+                            name="instance-flex"
+                            data-model="$ctrl.model.isInstanceFlex"
+                            data-on-change="$ctrl.onFlexChange(modelValue)">
+                            <span data-translate="pci_projects_project_instances_instance_edit_flex"></span>
+                        </oui-checkbox>
+                        <button type="button" class="oui-popover-button mb-1" oui-popover="{{:: 'pci_projects_project_instances_instance_edit_flex_help' | translate }}"></button>
+                    </div>
                 </oui-field>
 
                 <oui-message data-type="warning"

@@ -50,6 +50,7 @@ export default class PciInstancesAddController {
       location: null,
       datacenter: null,
       sshKey: null,
+      isInstanceFlex: false,
     };
 
     this.instanceNamePattern = PATTERN;
@@ -125,12 +126,8 @@ export default class PciInstancesAddController {
     } else {
       this.instance.imageId = this.model.image.getIdByRegion(this.instance.region);
     }
-    this.flavor = this.model.flavorGroup.getFlavorByOsType(this.model.image.type);
 
-    this.instance.flavorId = this.model.flavorGroup.getFlavorId(
-      this.model.image.type,
-      this.instance.region,
-    );
+    this.onFlexChange(false);
 
     if (this.model.image.type !== 'linux') {
       this.model.sshKey = null;
@@ -147,10 +144,7 @@ export default class PciInstancesAddController {
   onInstanceFocus() {
     this.quota = new Quota(this.model.datacenter.quota.instance);
 
-    if (!has(this.instance, 'name') || get(this.instance, 'name') === this.defaultInstanceName) {
-      this.defaultInstanceName = `${this.flavor.name}-${this.instance.region}`.toLowerCase();
-      this.instance.name = this.defaultInstanceName;
-    }
+    this.generateInstanceName();
   }
 
   onInstanceChange() {
@@ -163,6 +157,24 @@ export default class PciInstancesAddController {
     } else {
       this.instance.networks = [];
     }
+  }
+
+  generateInstanceName() {
+    if (!has(this.instance, 'name') || get(this.instance, 'name') === this.defaultInstanceName) {
+      this.defaultInstanceName = `${this.flavor.name}-${this.instance.region}`.toLowerCase();
+      this.instance.name = this.defaultInstanceName;
+    }
+  }
+
+  onFlexChange(isFlex) {
+    this.flavor = this.model.flavorGroup.getFlavorByOsType(this.model.image.type, isFlex);
+
+    this.instance.flavorId = this.model.flavorGroup.getFlavorId(
+      this.model.image.type,
+      this.instance.region,
+      isFlex,
+    );
+    this.generateInstanceName();
   }
 
   isRegionAvailable(datacenter) {

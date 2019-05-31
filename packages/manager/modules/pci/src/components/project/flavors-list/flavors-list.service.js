@@ -38,6 +38,7 @@ export default class FlavorsList {
           prices: mapValues(groupedFlavors[0].planCodes, planCode => prices[planCode].price),
           regions: map(groupedFlavors, ({ id, region }) => ({ id, region })),
           frequency: get(CPU_FREQUENCY, groupedFlavors[0].type),
+          groupName: groupedFlavors[0].groupName.replace(/-flex/, ''),
         }),
       ));
   }
