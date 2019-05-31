@@ -1,3 +1,40 @@
+# [0.5.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-navbar@0.4.4...@ovh-ux/manager-navbar@0.5.0) (2019-05-29)
+
+
+### Features
+
+* **oui-navbar:** prevent walk-me display ([#756](https://github.com/ovh-ux/manager/issues/756)) ([d8a0c16](https://github.com/ovh-ux/manager/commit/d8a0c16))
+
+
+
+## [0.4.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-navbar@0.4.3...@ovh-ux/manager-navbar@0.4.4) (2019-05-27)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([51a0386](https://github.com/ovh-ux/manager/commit/51a0386))
+* **i18n:** add missing translations ([07fc37d](https://github.com/ovh-ux/manager/commit/07fc37d))
+
+
+
+## [0.4.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-navbar@0.4.2...@ovh-ux/manager-navbar@0.4.3) (2019-05-23)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([75e436c](https://github.com/ovh-ux/manager/commit/75e436c))
+
+
+
+## [0.4.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-navbar@0.4.1...@ovh-ux/manager-navbar@0.4.2) (2019-05-22)
+
+
+### Bug Fixes
+
+* set the right language ([9e9d5e1](https://github.com/ovh-ux/manager/commit/9e9d5e1))
+
+
+
 ## [0.4.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-navbar@0.4.0...@ovh-ux/manager-navbar@0.4.1) (2019-05-21)
 
 

@@ -4,7 +4,7 @@
 
    <translation id="sms_sms_compose_title" qtlid="288145">Envoyer un SMS</translation>
 
-   <translation id="sms_sms_compose_section_configure" qtlid="395024">Configurer l’éxpéditeur et le destinataire</translation>
+   <translation id="sms_sms_compose_section_configure">Configurer l’expéditeur et le destinataire</translation>
    <translation id="sms_sms_compose_section_compose" qtlid="395037">Composer un message</translation>
 
    <translation id="sms_sms_compose_alert_not_enough_credits" qtlid="341329">Votre crédit est insuffisant pour permettre l’envoi de SMS.</translation>

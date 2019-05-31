@@ -142,10 +142,10 @@ export const ORDER_URLS = {
       FR: 'https://www.ovh.com/manager/cloud/#/iaas/pci/project/new',
     },
     publicCloudProjectOrder: {
-      FR: 'https://www.ovh.com/manager/public-cloud/#!/pci/projects/new',
+      FR: 'https://www.ovh.com/manager/public-cloud/#/pci/projects/new',
     },
     publicCloudKubernetes: {
-      FR: 'https://www.ovh.com/manager/public-cloud/#!/pci/projects/default/kubernetes/new',
+      FR: 'https://www.ovh.com/manager/public-cloud/#/pci/projects/default/kubernetes/new',
     },
     orderSql: {
       FR: 'https://www.ovh.com/manager/web/#/configuration/sql_order?orderType=dbaas',
@@ -301,13 +301,13 @@ export const ORDER_URLS = {
       WS: 'https://ca.ovh.com/manager/cloud/index.html#/iaas/pci/project/new',
     },
     publicCloudProjectOrder: {
-      ASIA: 'https://ca.ovh.com/manager/public-cloud/#!/pci/projects/new',
-      AU: 'https://ca.ovh.com/manager/public-cloud/#!/pci/projects/new',
-      CA: 'https://ca.ovh.com/manager/public-cloud/#!/pci/projects/new',
-      QC: 'https://ca.ovh.com/manager/public-cloud/#!/pci/projects/new',
-      SG: 'https://ca.ovh.com/manager/public-cloud/#!/pci/projects/new',
-      WE: 'https://ca.ovh.com/manager/public-cloud/#!/pci/projects/new',
-      WS: 'https://ca.ovh.com/manager/public-cloud/#!/pci/projects/new',
+      ASIA: 'https://ca.ovh.com/manager/public-cloud/#/pci/projects/new',
+      AU: 'https://ca.ovh.com/manager/public-cloud/#/pci/projects/new',
+      CA: 'https://ca.ovh.com/manager/public-cloud/#/pci/projects/new',
+      QC: 'https://ca.ovh.com/manager/public-cloud/#/pci/projects/new',
+      SG: 'https://ca.ovh.com/manager/public-cloud/#/pci/projects/new',
+      WE: 'https://ca.ovh.com/manager/public-cloud/#/pci/projects/new',
+      WS: 'https://ca.ovh.com/manager/public-cloud/#/pci/projects/new',
     },
     publicCloudKubernetes: {
     },

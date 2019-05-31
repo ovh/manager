@@ -97,9 +97,27 @@ export default /* @ngInject */ ($stateProvider) => {
           PCI_REDIRECT_URLS,
           `${coreConfig.getRegion()}.paymentMethods`,
         ),
-        newProjectInfo: /* @ngInject */ (coreConfig, PciProjectNewService) => (!coreConfig.isRegion('US')
-          ? PciProjectNewService.getNewProjectInfo()
-          : {}),
+        newProjectInfo: /* @ngInject */ ($timeout, coreConfig, ovhPaymentMethod,
+          paymentStatus, PciProjectNewService) => {
+          if (coreConfig.isRegion('US')) {
+            return {};
+          }
+          if (['success', 'accepted'].includes(paymentStatus)) {
+            // wait for new payment method validation
+            const checkValidPaymentMethod = (iteration = 0) => $timeout(
+              () => ovhPaymentMethod.hasDefaultPaymentMethod(),
+              iteration * 1000,
+            )
+              .then((hasDefaultPaymentMethod) => {
+                if (!hasDefaultPaymentMethod && iteration < 10) {
+                  return checkValidPaymentMethod(iteration + 1);
+                }
+                return PciProjectNewService.getNewProjectInfo();
+              });
+            return checkValidPaymentMethod();
+          }
+          return PciProjectNewService.getNewProjectInfo();
+        },
         onDescriptionStepFormSubmit: /* @ngInject */ $state => () => $state.go('pci.projects.new.payment'),
         onProjectCreated: /* @ngInject */ $state => projectId => $state.go(
           'pci.projects.project', {

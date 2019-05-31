@@ -4,18 +4,37 @@
         <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
         <oui-datagrid data-rows="$ctrl.failoverIps">
             <extra-top>
-                <a class="oui-button oui-button_secondary oui-button_icon-left mb-3" data-ui-sref="pci.projects.project.failover-ips.imports">
-                    <span class="oui-icon oui-icon-add" aria-hidden="true"></span>
-                    <span data-translate="pci_projects_project_failoverip_import"></span>
-                </a>
+                <oui-action-menu data-text="{{:: 'pci_projects_project_failoverip_actions' | translate }}">
+                    <oui-action-menu-item state="pci.projects.project.failover-ips.imports">
+                        <span data-translate="pci_projects_project_failoverip_import"></span>
+                    </oui-action-menu-item>
+                    <oui-action-menu-item state="pci.projects.project.failover-ips.order">
+                        <span data-translate="pci_projects_project_failoverip_order"></span>
+                    </oui-action-menu-item>
+                </oui-action-menu>
             </extra-top>
-            <oui-column data-title=":: 'pci_projects_project_failoverip_block' | translate" data-property="block" data-type="string">
+            <oui-column
+                data-title=":: 'pci_projects_project_failoverip_block' | translate"
+                data-property="block"
+                data-type="string"
+                data-searchable
+                data-filterable>
             </oui-column>
-            <oui-column data-title=":: 'pci_projects_project_failoverip_geoloc' | translate" data-property="geoloc" data-type="string">
+            <oui-column
+                data-title=":: 'pci_projects_project_failoverip_geoloc' | translate"
+                data-property="geoloc"
+                data-type="string"
+                data-searchable
+                data-filterable>
             </oui-column>
             <oui-column data-title=":: 'pci_projects_project_failoverip_id' | translate" data-property="id" data-type="string">
             </oui-column>
-            <oui-column data-title=":: 'pci_projects_project_failoverip_routedTo' | translate" data-property="routedTo" data-type="string">
+            <oui-column
+                data-title=":: 'pci_projects_project_failoverip_routedTo' | translate"
+                data-property="routedTo"
+                data-type="string"
+                data-searchable
+                data-filterable>
                 <a
                     data-ng-if="$row.instance"
                     data-ui-sref="pci.projects.project.instances.instance({projectId : $ctrl.projectId, instanceId: $row.instance.id})"

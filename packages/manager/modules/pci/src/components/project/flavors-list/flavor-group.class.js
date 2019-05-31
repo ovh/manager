@@ -3,6 +3,7 @@ import map from 'lodash/map';
 import omit from 'lodash/omit';
 import union from 'lodash/union';
 import uniq from 'lodash/uniq';
+import some from 'lodash/some';
 
 import { DEFAULT_OS } from './flavors-list.constants';
 
@@ -27,12 +28,12 @@ export default class FlavorGroup {
     return this.availableRegions.includes(region);
   }
 
-  getFlavorByOsType(osType) {
-    return find(this.flavors, { osType });
+  getFlavorByOsType(osType, isFlex = false) {
+    return find(this.flavors, flavor => flavor.osType === osType && flavor.isFlex() === isFlex);
   }
 
-  getFlavorId(osType, region) {
-    const flavor = this.getFlavorByOsType(osType);
+  getFlavorId(osType, region, isFlex = false) {
+    const flavor = this.getFlavorByOsType(osType, isFlex);
     if (flavor) {
       return flavor.getIdByRegion(region);
     }
@@ -41,5 +42,9 @@ export default class FlavorGroup {
 
   getFlavor(flavorId) {
     return find(this.flavors, flavor => flavor.containsFlavor(flavorId));
+  }
+
+  hasFlexOption() {
+    return some(this.flavors, flavor => flavor.isFlex());
   }
 }

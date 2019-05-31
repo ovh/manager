@@ -39,7 +39,7 @@
                                     <a
                                         data-ng-if="subitem.options.url"
                                         class="oui-sidebar-link"
-                                        data-ng-href="{{:: subitem.options.url }}"
+                                        data-ng-href="{{:: subitem.options.url[$ctrl.REGION] }}"
                                         data-ng-click="$ctrl.onMenuItemClick(subitem)"
                                         target="{{:: subitem.options.target }}">
                                         <span class="item-title" data-translate="{{:: subitem.translation }}"></span>

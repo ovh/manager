@@ -5,5 +5,7 @@
  "pci_projects_project_failoverip_id": "Servicio asociado",
  "pci_projects_project_failoverip_routedTo": "Instancia asociada",
  "pci_projects_project_failoverip_import": "Importar una IP",
- "pci_projects_project_failoverip_edit": "Modificar la instancia asociada"
+ "pci_projects_project_failoverip_edit": "Modificar la instancia asociada",
+ "pci_projects_project_failoverip_mitigation": "Activar/Desactivar la mitigación",
+ "pci_projects_project_failoverip_firewall": "Configurar el firewall "
 }

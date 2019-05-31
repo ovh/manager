@@ -5,6 +5,7 @@ export default {
   bindings: {
     goBack: '<',
     messageContainer: '<',
+    onAssociationSuccess: '<',
     onCreationSuccess: '<',
     projectId: '<',
   },

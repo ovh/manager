@@ -4,7 +4,7 @@
     <h1 data-translate="pci_projects_project_instances_backup_add_title"></h1>
 
     <form novalidate name="addBackupInstanceForm"
-        data-ng-submit="addBackupInstanceForm.$valid && $ctrl.renameInstance()">
+        data-ng-submit="addBackupInstanceForm.$valid && $ctrl.create()">
         <div class="oui-field oui-field_error">
             <label for="backup-region" class="oui-field__label oui-label"
                 data-translate="pci_projects_project_instances_backup_add_region_label"></label>
@@ -26,7 +26,7 @@
                 data-service-name="{{:: $ctrl.projectId }}"
                 data-selected-flavor="$ctrl.model.flavorGroup"
                 data-region="$ctrl.region"
-                data-image-type="{{:: $ctrl.backup.type }}"
+                data-image="$ctrl.backup"
                 data-on-change="$ctrl.onFlavorChange(flavor)">
             </pci-project-flavors-list>
         </oui-field>
@@ -52,6 +52,20 @@
             </div>
         </oui-field>
 
+        <div
+            class="d-flex align-items-center"
+            data-ng-if="$ctrl.canSwitchToFlex()">
+            <oui-checkbox
+                class="position-relative"
+                id="instance-flex"
+                name="instance-flex"
+                data-model="$ctrl.model.isInstanceFlex"
+                data-on-change="$ctrl.onFlexChange(modelValue)">
+                <span data-translate="pci_projects_project_instances_backup_add_flex"></span>
+            </oui-checkbox>
+            <button type="button" class="oui-popover-button mb-1" oui-popover="{{:: 'pci_projects_project_instances_backup_add_flex_help' | translate }}"></button>
+        </div>
+
         <oui-field
             data-label="{{ :: 'pci_projects_project_instances_backup_add_name_label' | translate }}"
             data-size="xl">
@@ -60,9 +74,7 @@
                 ng-pattern="$ctrl.instanceNamePattern"
                 required>
 
-            <div class="oui-field__helper" data-translate="pci_projects_project_instances_backup_add_name_help">
-                <!-- <span data-translate="pci_projects_project_instances_backup_add_name_help"></span> -->
-            </div>
+            <div class="oui-field__helper" data-translate="pci_projects_project_instances_backup_add_name_help"></div>
         </oui-field>
 
         <pci-project-instance-ssh-keys
@@ -106,8 +118,8 @@
 
         <oui-form-actions
             data-ng-if="!$ctrl.isLoading"
-            data-on-submit="$ctrl.create()"
             data-on-cancel="$ctrl.goBack()"
+            data-disabled="!addBackupInstanceForm.$valid"
             data-submit-text="{{:: 'pci_projects_project_instances_backup_add' | translate }}"
             data-cancel-text="{{:: 'pci_projects_project_instances_backup_add_cancel' | translate }}">
         </oui-form-actions>

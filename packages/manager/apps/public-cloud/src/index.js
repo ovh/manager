@@ -64,6 +64,7 @@ angular
   ].filter(value => value !== null)) // Remove null because __NG_APP_INJECTIONS__ can be null
   .controller('PublicCloudController', controller)
   .service('publicCloud', service)
+  .config(/* @ngInject */ $locationProvider => $locationProvider.hashPrefix(''))
   .config(routing)
   .config(/* @ngInject */(TranslateServiceProvider) => {
     const defaultLanguage = TranslateServiceProvider.getUserLocale();
