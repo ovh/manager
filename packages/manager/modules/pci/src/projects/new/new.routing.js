@@ -57,7 +57,7 @@ export default /* @ngInject */ ($stateProvider) => {
         getStepByName: /* @ngInject */ steps => stepName => find(steps, {
           name: stepName,
         }),
-        getStateLink: /* ngInject */ ($state, getCurrentStep) => (action) => {
+        getStateLink: /* ngInject */ ($state, getCurrentStep) => (action, inherit = true) => {
           switch (action) {
             case 'cancel':
               return $state.href('pci.projects');
@@ -68,6 +68,8 @@ export default /* @ngInject */ ($stateProvider) => {
             case 'payment':
               return $state.href('pci.projects.new.payment', {
                 mode: null,
+              }, {
+                inherit,
               });
             default:
               if (getCurrentStep().name === 'description') {
@@ -97,8 +99,23 @@ export default /* @ngInject */ ($stateProvider) => {
           PCI_REDIRECT_URLS,
           `${coreConfig.getRegion()}.paymentMethods`,
         ),
-        newProjectInfo: /* @ngInject */ ($timeout, coreConfig, ovhPaymentMethod,
+        newProjectInfo: /* @ngInject */ ($timeout, $transition$, coreConfig, ovhPaymentMethod,
           paymentStatus, PciProjectNewService) => {
+          const newProjectInfoThen = (response) => {
+            const transformedResponse = response;
+            // if there is an error when returning from HiPay
+            // and that a projectId is present in the URL (meaning that a credit has been paid)
+            // force error to null to avoid too many project error display
+            if (transformedResponse.error
+              && paymentStatus
+              && get($transition$.params(), 'projectId')) {
+              transformedResponse.error = null;
+            }
+            return transformedResponse;
+          };
+
+          // if region is US return an empty object as API call does not exist in US
+          // and project creation is redirected to express order
           if (coreConfig.isRegion('US')) {
             return {};
           }
@@ -112,11 +129,13 @@ export default /* @ngInject */ ($stateProvider) => {
                 if (!hasDefaultPaymentMethod && iteration < 10) {
                   return checkValidPaymentMethod(iteration + 1);
                 }
-                return PciProjectNewService.getNewProjectInfo();
+                return PciProjectNewService.getNewProjectInfo()
+                  .then(newProjectInfoThen);
               });
             return checkValidPaymentMethod();
           }
-          return PciProjectNewService.getNewProjectInfo();
+          return PciProjectNewService.getNewProjectInfo()
+            .then(newProjectInfoThen);
         },
         onDescriptionStepFormSubmit: /* @ngInject */ $state => () => $state.go('pci.projects.new.payment'),
         onProjectCreated: /* @ngInject */ $state => projectId => $state.go(

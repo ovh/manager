@@ -5,7 +5,6 @@ export default /* @ngInject */ ($stateProvider) => {
       views: {
         '@pci': {
           componentProvider: /* @ngInject */ projectOrder => (projectOrder ? 'pciProjectCreatingNotPaid' : 'pciProjectCreating'),
-          // component: 'pciProjectCreating',
         },
       },
       resolve: {

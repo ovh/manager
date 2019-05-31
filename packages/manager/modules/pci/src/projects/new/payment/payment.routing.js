@@ -42,7 +42,7 @@ export default /* @ngInject */ ($stateProvider) => {
           const paymentModel = getStepByName('payment').model;
 
           // set description step model
-          descriptionModel.description = stateParams.description;
+          descriptionModel.name = stateParams.description;
           descriptionModel.agreements = true;
 
           // set payment step model
