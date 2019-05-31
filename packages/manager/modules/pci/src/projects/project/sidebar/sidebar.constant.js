@@ -1,3 +1,9 @@
+export const HORIZON = {
+  CA: 'https://horizon.cloud.ovh.net/auth/login/',
+  EU: 'https://horizon.cloud.ovh.net/auth/login/',
+  US: 'https://horizon.cloud.ovh.us/auth/login/',
+};
+
 export const MENU = [
   {
     subitems: [
@@ -89,7 +95,7 @@ export const MENU = [
       {
         id: 'horizon',
         options: {
-          url: 'https://horizon.cloud.ovh.net/auth/login',
+          url: HORIZON,
           target: '_blank',
         },
         translation: 'cloud_sidebar_management_interface_horizon',
@@ -160,5 +166,6 @@ export const MENU = [
 ];
 
 export default {
+  HORIZON,
   MENU,
 };

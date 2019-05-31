@@ -25,6 +25,7 @@ export default {
     resumeInstance: '<',
     deleteInstance: '<',
     goToBlockStorages: '<',
+    applicationAccess: '<',
     attachVolume: '<',
 
     gotToNetworks: '<',

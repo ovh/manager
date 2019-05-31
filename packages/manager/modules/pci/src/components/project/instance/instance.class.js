@@ -144,6 +144,10 @@ export default class Instance {
     return get(this, 'image.type') === 'windows' ? `rdekstop ${ip}` : `ssh ${user}@${ip}`;
   }
 
+  isApplicationImage() {
+    return includes(get(this, 'image.tags', []), 'application');
+  }
+
   getDefaultIp() {
     if (this.hasPublicIpV4()) {
       return first(this.publicIpV4).ip;

@@ -42,6 +42,6 @@ export default class {
   }
 
   static generateNetworkAddress(vlanId) {
-    return DEFAULT_IP.replace('{vlanId}', vlanId);
+    return DEFAULT_IP.replace('{vlanId}', vlanId % 255);
   }
 }
