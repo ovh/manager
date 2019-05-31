@@ -1,3 +1,25 @@
+# [0.15.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.14.4...@ovh-ux/manager-pci@0.15.0) (2019-05-31)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([637137f](https://github.com/ovh-ux/manager/commit/637137f))
+* **i18n:** add missing translations ([b252598](https://github.com/ovh-ux/manager/commit/b252598))
+* **i18n:** add missing translations ([bb470bb](https://github.com/ovh-ux/manager/commit/bb470bb))
+* **pci.project.billing.history:** add missing translate values ([#773](https://github.com/ovh-ux/manager/issues/773)) ([c88cfa3](https://github.com/ovh-ux/manager/commit/c88cfa3))
+* **pci.project.private-network:** generate valid default IP ([#771](https://github.com/ovh-ux/manager/issues/771)) ([3fb1ab4](https://github.com/ovh-ux/manager/commit/3fb1ab4))
+* **pci.project.sidebar:** redirect to correct horizon region url ([#774](https://github.com/ovh-ux/manager/issues/774)) ([15529f4](https://github.com/ovh-ux/manager/commit/15529f4))
+* **pci.projects.project.creating:** force reload at end of polling ([#766](https://github.com/ovh-ux/manager/issues/766)) ([91b0015](https://github.com/ovh-ux/manager/commit/91b0015))
+* **pci.projects.vouchers:** display clickable link instead of text ([#777](https://github.com/ovh-ux/manager/issues/777)) ([7b2d1c4](https://github.com/ovh-ux/manager/commit/7b2d1c4))
+
+
+### Features
+
+* **pci.failover-ip:** add ipfo order ([#722](https://github.com/ovh-ux/manager/issues/722)) ([36182d9](https://github.com/ovh-ux/manager/commit/36182d9))
+* **pci.instance:** add application access ([#730](https://github.com/ovh-ux/manager/issues/730)) ([b3e0aa8](https://github.com/ovh-ux/manager/commit/b3e0aa8))
+
+
+
 ## [0.14.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.14.3...@ovh-ux/manager-pci@0.14.4) (2019-05-29)
 
 
