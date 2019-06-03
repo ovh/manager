@@ -2,9 +2,11 @@ export default class pciPrivateRegistryService {
   /* @ngInject */
   constructor(
     OvhApiCloudProject,
+    OvhApiMe,
   ) {
     this.OvhApiPrivateRegistry = OvhApiCloudProject.ContainerRegistry().v6();
     this.OvhApiPrivateRegistryUser = OvhApiCloudProject.ContainerRegistry().Users().v6();
+    this.User = OvhApiMe;
   }
 
   /**
@@ -53,5 +55,21 @@ export default class pciPrivateRegistryService {
       serviceName: projectId,
       registryID,
     }).$promise;
+  }
+
+  getContractInfo(contractId) {
+    return this.User.Agreements().v6().contract({
+      id: contractId,
+    })
+      .$promise
+      .then(contract => contract);
+  }
+
+  acceptContract(contractId) {
+    return this.User.Agreements().v6().accept({
+      id: contractId,
+    }, {})
+      .$promise
+      .then(contract => contract);
   }
 }

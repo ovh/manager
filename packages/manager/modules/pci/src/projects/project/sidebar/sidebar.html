@@ -37,6 +37,7 @@
                                         data-ui-sref="{{:: subitem.options.state }}"
                                         data-ui-sref-active="oui-sidebar-link_active">
                                         <span class="item-title" data-translate="{{:: subitem.translation }}"></span>
+                                        <span data-ng-if="subitem.beta" class="oui-status oui-status_warning ml-2 small" data-translate="cloud_sidebar_beta_project"></span>
                                     </a>
                                     <a
                                         data-ng-if="subitem.options.url"

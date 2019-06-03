@@ -52,6 +52,7 @@ export default /* @ngInject */ ($stateProvider) => {
         ) => () => $state.go('pci.projects.project.private-registry', {
           projectId,
         }),
+        contractInfo: /* @ngInject */ pciPrivateRegistryService => pciPrivateRegistryService.getContractInfo('9830912'),
 
         breadcrumb: /* @ngInject */ $translate => $translate.instant('private_registry_title'),
       },

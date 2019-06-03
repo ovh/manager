@@ -60,5 +60,8 @@
   "private_registry_onboarding_guides_registry_title": "Manage registry",
   "private_registry_onboarding_guides_deploy_title": "Quick start",
 
-  "private_registry_onboarding_generate": "Generate credentials"
+  "private_registry_onboarding_generate": "Generate credentials",
+  "private_registry_beta_warning": "This product is currently in beta, you must accept the beta terms to continue.",
+  "private_registry_accept": "I accept",
+  "private_registry_accept_beta_terms": "beta terms"
 }

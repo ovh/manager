@@ -91,6 +91,7 @@ export const MENU = [
           state: 'pci.projects.project.private-registry',
         },
         translation: 'cloud_sidebar_orchestration_private_registry',
+        beta: true,
       },
     ],
     regions: ['CA', 'EU'],

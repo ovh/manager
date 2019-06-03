@@ -75,6 +75,10 @@ export default class {
     this.messages = this.messageHandler.getMessages();
   }
 
+  createRegistry() {
+    return this.$state.go('pci.projects.project.private-registry.onboarding.create');
+  }
+
   generateCredentials() {
     return this.$state.go('pci.projects.project.private-registry.onboarding.credentials', {
       confirmationRequired: false,

@@ -37,6 +37,7 @@ export const GUIDES = [
   },
 ];
 export const REGION = 'GRA7';
+export const CONTRACTID = '9830912';
 export const GUIDELINK = 'https://docs.ovh.com/';
 export const DELETE_CONFIRMATION_INPUT = /^DELETE$/;
 
@@ -47,4 +48,5 @@ export default {
   GUIDELINK,
   DELETE_CONFIRMATION_INPUT,
   REGION,
+  CONTRACTID,
 };

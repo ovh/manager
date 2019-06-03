@@ -18,5 +18,16 @@
                    data-minlength="1"
                    autofocus>
         </oui-field>
+        <div data-ng-if="$ctrl.showAcceptOption">
+            <p data-translate="private_registry_beta_warning"></p>
+            <oui-field>
+                <oui-checkbox data-model="$ctrl.agreements" data-name="agreements" data-required>
+                    <span data-translate="private_registry_accept"></span>
+                    <a target="_blank" rel="noopener" href="{{::$ctrl.contractInfo.pdf}}">
+                        <span data-translate="private_registry_accept_beta_terms"></span>
+                    </a>
+                </oui-checkbox>
+            </oui-field>
+        </div>
    </oui-modal>
 </form>
