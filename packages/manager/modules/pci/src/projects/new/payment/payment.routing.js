@@ -19,7 +19,8 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return null;
       },
-      onEnter: /* @ngInject */ ($transition$, $window, getStepByName) => {
+      onEnter: /* @ngInject */ ($transition$, $window, getStepByName, newProjectInfo,
+        PciProjectNewService) => {
         // check for paypal response in query string
         if ($window.location.search.indexOf('paypalAgreementStatus') > -1) {
           // in that case we will redirect to pci.projects.new.payment
@@ -54,6 +55,16 @@ export default /* @ngInject */ ($stateProvider) => {
           }
           paymentModel.credit.value = parseInt(stateParams.credit, 10);
           paymentModel.projectId = stateParams.projectId;
+
+          // if there is an error from HiPay and a projectId is setted
+          // (in other words: if credit payment in error)
+          // cancel project creation and redirect refresh page
+          const { hiPayStatus, projectId } = $transition$.params();
+          if (hiPayStatus !== 'success' && !newProjectInfo.order && projectId) {
+            return PciProjectNewService
+              .cancelProjectCreation(projectId)
+              .then(() => $window.location.reload());
+          }
 
           return true;
         }

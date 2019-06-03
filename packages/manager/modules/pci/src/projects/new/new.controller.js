@@ -42,7 +42,8 @@ export default class PciProjectNewCtrl {
 
     if (currentStep.name === 'description' && this.region !== 'US') {
       translationKey = 'pci_projects_new_continue';
-    } else if (currentStep.model.mode === 'credits' || this.hasCreditToOrder()) {
+    } else if (currentStep.model.mode === 'credits' || this.hasCreditToOrder()
+      || (this.paymentStatus && currentStep.model.projectId && this.newProjectInfo.order)) {
       translationKey = 'pci_projects_new_credit_and_create';
     } else if (get(currentStep.model.paymentType, 'paymentType.value') === 'BANK_ACCOUNT') {
       translationKey = 'pci_projects_new_add';
@@ -147,7 +148,9 @@ export default class PciProjectNewCtrl {
 
     const hasCredit = this.paymentModel.mode === 'credits' && this.paymentModel.credit.value;
     const hasOrderCredit = this.newProjectInfo.order
-        && (!this.paymentStatus || ['success', 'accepted'].includes(this.paymentStatus));
+        && (!this.paymentStatus
+          || ['success', 'accepted'].includes(this.paymentStatus)
+          || (this.paymentStatus && this.paymentModel.projectId && this.newProjectInfo.order));
     const hasVoucher = this.paymentModel.voucher.valid && this.paymentModel.voucher.value;
     const createParams = {
       description: this.descriptionModel.name,
@@ -253,6 +256,7 @@ export default class PciProjectNewCtrl {
     if (this.paymentModel.defaultPaymentMethod
       || (this.paymentModel.mode === 'credits' && this.paymentModel.credit.value)
       || (this.newProjectInfo.order && ['success', 'accepted'].includes(this.paymentStatus))
+      || (this.paymentStatus && currentStep.model.projectId && this.newProjectInfo.order)
       || (this.paymentModel.voucher.valid
         && this.paymentModel.voucher.paymentMeanRequired === false)
     ) {
