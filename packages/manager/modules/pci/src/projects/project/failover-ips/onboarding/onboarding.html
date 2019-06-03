@@ -5,10 +5,19 @@
     <p data-translate="pci_projects_project_failoverip_onboarding_content3"></p>
     <p data-translate="pci_projects_project_failoverip_onboarding_content4"></p>
 
-    <oui-button
-        data-variant="primary"
-        data-on-click="$ctrl.addFailoverIp()">
-        <span data-translate="pci_projects_project_failoverip_onboarding_action_label"></span>
-    </oui-button>
+    <div class="d-flex align-items-center">
+        <oui-button
+            data-variant="primary"
+            data-on-click="$ctrl.addFailoverIp()">
+            <span data-translate="pci_projects_project_failoverip_onboarding_action_label"></span>
+        </oui-button>
+
+        <oui-button
+            class="ml-2"
+            data-variant="secondary"
+            data-on-click="$ctrl.buyFailoverIp()">
+            <span data-translate="pci_projects_project_failoverip_onboarding_action_buy"></span>
+        </oui-button>
+    </div>
 
 </pci-project-empty>

@@ -7,6 +7,8 @@ import 'ovh-ui-angular';
 import component from './onboarding.component';
 import routing from './onboarding.routing';
 
+import order from './order';
+
 import empty from '../../../../components/project/empty';
 
 const moduleName = 'ovhManagerPciFailoverIpsOnboarding';
@@ -18,6 +20,7 @@ angular
     'oui',
     'ngTranslateAsyncLoader',
     'pascalprecht.translate',
+    order,
   ])
   .config(routing)
   .component('pciProjectFailoverIpsOnboarding', component)

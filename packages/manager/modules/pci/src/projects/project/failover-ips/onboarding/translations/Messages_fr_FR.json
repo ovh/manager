@@ -4,6 +4,7 @@
   "pci_projects_project_failoverip_onboarding_content3": "Grâce aux IP fail-over, vous pouvez faire pointer une adresse IP publique sur une instance puis la faire basculer vers une autre instance de votre projet à tout instant. Ce service est particulièrement utile pour gérer des opérations de maintenance ou de mise à jour.",
   "pci_projects_project_failoverip_onboarding_content4": "À noter qu’une configuration système est nécessaire pour utiliser une IP fail-over.",
   "pci_projects_project_failoverip_onboarding_action_label": "Importer une IP Failover",
+  "pci_projects_project_failoverip_onboarding_action_buy": "Acheter des IP Failover",
 
   "pci_projects_project_failoverip_onboarding_guides_persistent-failover-ip-configuration_title": "Rendre la configuration IP Fail Over persistante",
   "pci_projects_project_failoverip_onboarding_guides_persistent-failover-ip-configuration_description": "",
