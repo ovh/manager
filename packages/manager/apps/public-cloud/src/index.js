@@ -73,7 +73,6 @@ angular
   })
   .run(/* @ngInject */ ($state) => {
     $state.defaultErrorHandler((error) => {
-      console.log(error);
       if (error.type === RejectType.ERROR) {
         $state.go('pci.error', {
           detail: {
