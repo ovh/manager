@@ -57,7 +57,7 @@ export default /* @ngInject */ ($stateProvider) => {
         getStepByName: /* @ngInject */ steps => stepName => find(steps, {
           name: stepName,
         }),
-        getStateLink: /* ngInject */ ($state, getCurrentStep) => (action, inherit = true) => {
+        getStateLink: /* @ngInject */ ($state, getCurrentStep) => (action, inherit = true) => {
           switch (action) {
             case 'cancel':
               return $state.href('pci.projects');
