@@ -14,6 +14,7 @@ export default /* @ngInject */($stateProvider) => {
       },
       resolve: {
         goBack: /* @ngInject */ goToInstance => goToInstance,
+        breadcrumb: () => null,
       },
     });
 };

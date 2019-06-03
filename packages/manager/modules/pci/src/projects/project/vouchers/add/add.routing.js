@@ -12,5 +12,8 @@ export default /* @ngInject */ ($stateProvider) => {
         template,
       },
     },
+    resolve: {
+      breadcrumb: () => null,
+    },
   });
 };

@@ -15,6 +15,7 @@ export default /* @ngInject */($stateProvider) => {
           instance,
           projectId,
         ) => PciProjectsProjectInstanceService.getCompatiblesPrivateNetworks(projectId, instance),
+        breadcrumb: () => null,
       },
     });
 };

@@ -16,6 +16,7 @@ export default /* @ngInject */ ($stateProvider) => {
           containerId,
         ) => PciProjectStorageContainersService.getContainer(projectId, containerId),
         goBack: /* @ngInject */ goToStorageContainers => goToStorageContainers,
+        breadcrumb: () => null,
       },
     });
 };

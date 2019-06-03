@@ -25,6 +25,7 @@ export default /* @ngInject */($stateProvider) => {
           .getCompatibleRescueImages(projectId, instance),
 
         goBack: /* @ngInject */ goToInstances => goToInstances,
+        breadcrumb: () => null,
       },
     });
 };

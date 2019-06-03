@@ -15,6 +15,7 @@ export default /* @ngInject */($stateProvider) => {
           }
           return goToInstance(message, type);
         },
+        breadcrumb: () => null,
       },
     });
 };

@@ -18,6 +18,7 @@ export default /* @ngInject */($stateProvider) => {
           .get(projectId, instanceId),
 
         goBack: /* @ngInject */ goToInstances => goToInstances,
+        breadcrumb: () => null,
       },
     });
 };

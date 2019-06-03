@@ -11,6 +11,7 @@ export default /* @ngInject */ ($stateProvider) => {
       resolve: {
         archive: () => true,
         goBack: /* @ngInject */ goToStorageContainer => goToStorageContainer,
+        breadcrumb: () => null,
       },
     });
 };

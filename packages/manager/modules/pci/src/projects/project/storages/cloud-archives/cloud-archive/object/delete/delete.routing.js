@@ -16,6 +16,7 @@ export default /* @ngInject */ ($stateProvider) => {
         ) => container.getObjectById(objectId),
 
         goBack: /* @ngInject */ goToStorageContainer => goToStorageContainer,
+        breadcrumb: () => null,
       },
     });
 };
