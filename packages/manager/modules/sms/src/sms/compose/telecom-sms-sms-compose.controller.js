@@ -479,8 +479,22 @@ export default class {
           validReceivers: size(validReceivers),
         },
       });
+
       this.resetForm(form);
-      this.TucToast.success(this.$translate.instant('sms_sms_compose_status_success'));
+      if (invalidReceivers.length > 0 && validReceivers.length === 0) {
+        // error message
+        this.TucToast.error(this.$translate.instant('sms_sms_compose_status_invalid_receivers', {
+          invalidReceivers: invalidReceivers.toString(),
+        }));
+      } else if (invalidReceivers.length > 0 && validReceivers.length > 0) {
+        // partial error message
+        this.TucToast.error(this.$translate.instant('sms_sms_compose_status_invalid_receivers_partial', {
+          validReceivers: validReceivers.toString(),
+          invalidReceivers: invalidReceivers.toString(),
+        }));
+      } else {
+        this.TucToast.success(this.$translate.instant('sms_sms_compose_status_success'));
+      }
     }).catch((err) => {
       this.TucToast.error(this.$translate.instant('sms_sms_compose_status_failed'));
       return this.$q.reject(err);
