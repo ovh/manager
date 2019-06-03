@@ -1,20 +1,22 @@
+export default class {
+  /* @ngInject */
+  constructor(DetailsPopoverService) {
+    this.DetailsPopoverService = DetailsPopoverService;
+  }
 
-export default /* @ngInject */ function (
-  DetailsPopoverService,
-) {
-  const self = this;
+  $onInit() {
+    this.toggle = {
+      accordions: {
+        instance: false,
+        objectStorage: false,
+        archiveStorage: false,
+        snapshot: false,
+        volume: false,
+      },
+    };
+  }
 
-  self.toggle = {
-    accordions: {
-      instance: false,
-      objectStorage: false,
-      archiveStorage: false,
-      snapshot: false,
-      volume: false,
-    },
-  };
-
-  self.toggleAccordion = function toggleAccordion() {
-    DetailsPopoverService.reset();
-  };
+  toggleAccordion() {
+    this.DetailsPopoverService.reset();
+  }
 }
