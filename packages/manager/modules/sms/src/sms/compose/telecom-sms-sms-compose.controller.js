@@ -126,10 +126,10 @@ export default class {
     }).then(senders => each(senders, (sender) => {
       if (sender.type === 'virtual') {
         this.senders.virtual.push(sender);
-      } else if (/\d+/.test(sender.sender)) {
-        this.senders.other.push(sender);
-      } else {
+      } else if (sender.type === 'alpha') {
         this.senders.alphanumeric.push(sender);
+      } else {
+        this.senders.other.push(sender);
       }
     })).then(() => {
       this.service = this.TucSmsMediator.getCurrentSmsService();
@@ -235,7 +235,7 @@ export default class {
    * @return {Object}
    */
   showAdvice() {
-    const isRealNumber = /[0-9+]/.test(this.sms.sender)
+    const isRealNumber = /^[0-9+]*$/.test(this.sms.sender)
       && !this.isVirtualNumber();
 
     this.displaySenderCustomizationAdvice = isRealNumber
