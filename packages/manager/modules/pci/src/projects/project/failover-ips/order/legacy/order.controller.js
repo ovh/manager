@@ -1,8 +1,6 @@
 import get from 'lodash/get';
 import find from 'lodash/find';
 
-import { INVALID_COUNTRY_ERROR, REGIONS } from './order.constants';
-
 export default class FailoverIpController {
   /* @ngInject */
   constructor(
@@ -25,28 +23,28 @@ export default class FailoverIpController {
 
 
   onInstanceChange(instance) {
-    if (this.ip.region) {
-      this.checkCompatibility(instance, this.ip.region);
-    }
-
-    const continent = find(this.regions, { name: instance.region }).continentCode;
-
-    this.REGIONS = REGIONS[continent].map(region => ({
+    const { ipCountries: countries } = find(this.regions, { name: instance.region });
+    this.REGIONS = countries.map(region => ({
       id: region,
-      name: this.$translate.instant(`pci_projects_project_failoverip_order_legacy_country_${region}`),
+      name: this.$translate.instant(`pci_projects_project_failoverip_order_legacy_country_${region.toUpperCase()}`),
     }));
+
+    if (this.ip.region && countries.includes(this.ip.region.id)) {
+      this.getContracts(instance, this.ip.region);
+    } else {
+      this.ip.region = null;
+    }
   }
 
   onRegionChange(region) {
     if (this.ip.instance) {
-      this.checkCompatibility(this.ip.instance, region);
+      this.getContracts(this.ip.instance, region);
     }
   }
 
-  checkCompatibility(instance, region) {
-    this.isCompatibilityLoading = true;
+  getContracts(instance, region) {
+    this.isContractLoading = true;
     this.contracts = null;
-    this.regionIsInvalid = false;
     return this.OvhApiOrderCloudProjectIp.v6()
       .get({
         serviceName: this.projectId,
@@ -59,18 +57,13 @@ export default class FailoverIpController {
         this.prices = prices;
       })
       .catch((error) => {
-        const message = get(error, 'data.message', '');
-        if (error.status === 403 && message.includes(INVALID_COUNTRY_ERROR)) {
-          this.regionIsInvalid = true;
-        } else {
-          this.goBack(
-            this.$translate.instant('pci_projects_project_failoverip_order_legacy_check_error', { message }),
-            'error',
-          );
-        }
+        this.goBack(
+          this.$translate.instant('pci_projects_project_failoverip_order_legacy_check_error', { message: get(error, 'data.message', '') }),
+          'error',
+        );
       })
       .finally(() => {
-        this.isCompatibilityLoading = false;
+        this.isContractLoading = false;
       });
   }
 

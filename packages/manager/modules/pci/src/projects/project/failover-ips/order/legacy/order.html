@@ -26,7 +26,7 @@
             required>
             <span data-ng-bind="$item.name"></span>
         </oui-select>
-        <div>
+        <div data-ng-if="$ctrl.ip.instance">
             <label for="region" class="oui-label" data-translate="pci_projects_project_failoverip_order_legacy_region"></label>
             <oui-select
                 name="region"
@@ -37,19 +37,11 @@
                 data-on-change="$ctrl.onRegionChange(modelValue)">
                 <span data-ng-bind="$item.name"></span>
             </oui-select>
-            <div class="oui-field__error" data-ng-class="{
-                'd-block': $ctrl.regionIsInvalid
-            }">
-                <span role="alert">
-                    <span class="oui-icon oui-icon-error" aria-hidden="true"></span>
-                    <span data-translate="pci_projects_project_failoverip_order_legacy_region_invalid"></span>
-                </span>
-            </div>
         </div>
 
-        <oui-spinner data-size="m" data-ng-if="$ctrl.isCompatibilityLoading"></oui-spinner>
+        <oui-spinner data-size="m" data-ng-if="$ctrl.isContractLoading"></oui-spinner>
 
-        <div data-ng-if="$ctrl.contracts && !$ctrl.isCompatibilityLoading">
+        <div data-ng-if="$ctrl.contracts && !$ctrl.isContractLoading">
             <a data-ng-repeat="contract in $ctrl.contracts track by contract.name"
             data-ng-href="{{ contract.url }}"
             class="oui-link_icon d-block">
