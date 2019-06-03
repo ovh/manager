@@ -9,5 +9,8 @@ export default /* @ngInject */ ($stateProvider) => {
       controllerAs: '$ctrl',
       template,
       layout: 'modal',
+      resolve: {
+        breadcrumb: () => null,
+      },
     });
 };

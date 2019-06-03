@@ -15,6 +15,7 @@ export default /* @ngInject */($stateProvider) => {
           projectId,
           instance,
         ) => PciProjectsProjectInstanceService.getApplicationAccess(projectId, instance),
+        breadcrumb: () => null,
       },
     });
 };

@@ -33,6 +33,7 @@ export default /* @ngInject */ ($stateProvider) => {
           $state,
           projectId,
         ) => () => $state.go('pci.projects.project.quota', { projectId }),
+        breadcrumb: () => null,
       },
     });
 };
