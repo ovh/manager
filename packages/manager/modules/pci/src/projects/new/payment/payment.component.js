@@ -14,5 +14,6 @@ export default {
     newProjectInfo: '<',
     hasCreditToOrder: '<',
     creditMinPrice: '<',
+    project: '<',
   },
 };

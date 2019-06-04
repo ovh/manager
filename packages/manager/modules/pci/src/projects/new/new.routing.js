@@ -99,6 +99,13 @@ export default /* @ngInject */ ($stateProvider) => {
           PCI_REDIRECT_URLS,
           `${coreConfig.getRegion()}.paymentMethods`,
         ),
+        project: /* @ngInject */ ($transition$, PciProjectNewService) => {
+          if ($transition$.params().projectId) {
+            return PciProjectNewService
+              .getProject($transition$.params().projectId);
+          }
+          return null;
+        },
         newProjectInfo: /* @ngInject */ ($timeout, $transition$, coreConfig, ovhPaymentMethod,
           paymentStatus, PciProjectNewService) => {
           const newProjectInfoThen = (response) => {

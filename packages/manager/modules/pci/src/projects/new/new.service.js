@@ -71,4 +71,13 @@ export default class PciProjectNewService {
       .createProjectInfo(params)
       .$promise;
   }
+
+  getProject(serviceName) {
+    return this.OvhApiCloud.Project()
+      .v6()
+      .get({
+        serviceName,
+      })
+      .$promise;
+  }
 }
