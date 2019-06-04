@@ -1,5 +1,6 @@
-import map from 'lodash/map';
+import filter from 'lodash/filter';
 import find from 'lodash/find';
+import map from 'lodash/map';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
@@ -61,6 +62,21 @@ export default /* @ngInject */ ($stateProvider) => {
 
           return promise;
         },
+
+        instances: /* @ngInject */ (
+          OvhApiCloudProject,
+          projectId,
+        ) => OvhApiCloudProject
+          .Instance()
+          .v6()
+          .query({
+            serviceName: projectId,
+          })
+          .$promise
+          .then(instances => filter(
+            instances,
+            ({ ipAddresses }) => find(ipAddresses, { type: 'public' }),
+          )),
       },
     });
 };

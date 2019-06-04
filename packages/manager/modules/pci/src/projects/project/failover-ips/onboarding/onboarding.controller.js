@@ -5,8 +5,10 @@ export default class PciFailoverIpsOnboardingController {
   /* @ngInject */
   constructor(
     $translate,
+    CucCloudMessage,
   ) {
     this.$translate = $translate;
+    this.CucCloudMessage = CucCloudMessage;
   }
 
   $onInit() {
@@ -22,5 +24,20 @@ export default class PciFailoverIpsOnboardingController {
       ]),
       [],
     );
+    this.loadMessages();
+  }
+
+  loadMessages() {
+    this.CucCloudMessage.unSubscribe('pci.projects.project.failover-ips.onboarding');
+    this.messageHandler = this.CucCloudMessage.subscribe(
+      'pci.projects.project.failover-ips.onboarding',
+      {
+        onMessage: () => this.refreshMessages(),
+      },
+    );
+  }
+
+  refreshMessages() {
+    this.messages = this.messageHandler.getMessages();
   }
 }

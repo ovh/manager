@@ -7,5 +7,6 @@ export default {
   bindings: {
     addFailoverIp: '<',
     buyFailoverIp: '<',
+    instances: '<',
   },
 };
