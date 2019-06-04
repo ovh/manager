@@ -16,6 +16,7 @@ export default /* @ngInject */($stateProvider) => {
           projectId,
         ) => PciProjectsProjectInstanceService
           .getCompatiblesVolumes(projectId, instance),
+        breadcrumb: () => null,
       },
     });
 };

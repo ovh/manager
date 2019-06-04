@@ -4,51 +4,24 @@ import { DEFAULT_PROJECT_KEY, MESSAGES_CONTAINER_NAME } from './edit.constant';
 
 export default class ProjectEditController {
   /* @ngInject */
-  constructor($stateParams, $translate, CucCloudMessage, ovhUserPref, OvhApiCloudProject) {
+  constructor($stateParams, $translate, CucCloudMessage, OvhApiCloudProject, ovhUserPref) {
     this.$stateParams = $stateParams;
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
-    this.ovhUserPref = ovhUserPref;
     this.OvhApiCloudProject = OvhApiCloudProject;
-    this.serviceName = this.$stateParams.projectId;
+    this.ovhUserPref = ovhUserPref;
 
     this.loading = {
-      init: false,
       submit: false,
     };
-
-    this.$onInit();
   }
 
   $onInit() {
-    this.loading.init = true;
+    this.serviceName = this.project.project_id;
+
     this.messageHandler = this.CucCloudMessage.subscribe(MESSAGES_CONTAINER_NAME, {
       onMessage: () => this.refreshMessage(),
     });
-
-    return this.OvhApiCloudProject
-      .v6()
-      .get({
-        serviceName: this.serviceName,
-      })
-      .$promise
-      .then((project) => {
-        this.project = project;
-      })
-      .then(() => this.ovhUserPref.getValue(DEFAULT_PROJECT_KEY))
-      .then((defaultProject) => {
-        this.defaultProject = defaultProject;
-        this.isDefault = this.serviceName === defaultProject.projectId;
-      })
-      .catch((err) => {
-        if (err.status === 404) {
-          return null;
-        }
-        throw err;
-      })
-      .finally(() => {
-        this.loading.init = false;
-      });
   }
 
   refreshMessage() {
@@ -81,12 +54,7 @@ export default class ProjectEditController {
         }
         return null;
       })
-      .then(() => {
-        this.CucCloudMessage.success(
-          this.$translate.instant('pci_projects_project_edit_update_success'),
-          MESSAGES_CONTAINER_NAME,
-        );
-      })
+      .then(() => this.onUpdate())
       .catch(({ data }) => {
         this.CucCloudMessage.error(
           this.$translate.instant('pci_projects_project_edit_update_error', { error: data.message }),

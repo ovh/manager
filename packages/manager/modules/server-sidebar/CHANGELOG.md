@@ -1,3 +1,35 @@
+## [0.1.6](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.1.5...@ovh-ux/manager-server-sidebar@0.1.6) (2019-05-31)
+
+
+### Bug Fixes
+
+* **server-sidebar:** select current active item ([#769](https://github.com/ovh-ux/manager/issues/769)) ([1a968d0](https://github.com/ovh-ux/manager/commit/1a968d0))
+
+
+
+## [0.1.5](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.1.4...@ovh-ux/manager-server-sidebar@0.1.5) (2019-05-27)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([69bdc08](https://github.com/ovh-ux/manager/commit/69bdc08))
+* **i18n:** add missing translations ([07fc37d](https://github.com/ovh-ux/manager/commit/07fc37d))
+* **server-sidebar:** add search keys in menu item ([bf16806](https://github.com/ovh-ux/manager/commit/bf16806))
+* **server.sidebar:** replace url prefix from constants ([a428f88](https://github.com/ovh-ux/manager/commit/a428f88)), closes [#683](https://github.com/ovh-ux/manager/issues/683)
+
+
+
+## [0.1.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.1.3...@ovh-ux/manager-server-sidebar@0.1.4) (2019-05-22)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([45c18bd](https://github.com/ovh-ux/manager/commit/45c18bd))
+* **server-sidebar:** add empty item if no services ([#702](https://github.com/ovh-ux/manager/issues/702)) ([5eadcb1](https://github.com/ovh-ux/manager/commit/5eadcb1))
+* **server-sidebar:** update iplb state ([fc95cac](https://github.com/ovh-ux/manager/commit/fc95cac))
+
+
+
 ## [0.1.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.1.2...@ovh-ux/manager-server-sidebar@0.1.3) (2019-05-22)
 
 

@@ -30,6 +30,8 @@ export default class SidebarController {
     this.isOpen = false;
     this.isLoading = false;
     this.isDisplayingProjectsList = false;
+
+    this.REGION = coreConfig.getRegion();
   }
 
   toggleProjectsList() {

@@ -12,10 +12,9 @@ angular
     uiRouter,
   ])
   .run(/* @ngTranslationsInject:json ./translations */)
-  .run(($rootScope, $transitions) => {
-    $transitions.onSuccess({}, () => {
-      $rootScope.managerPreloadHide = ' manager-preload-hide'; // eslint-disable-line no-param-reassign
-    });
-  });
+  .run(/* @ngInject */ ($rootScope, $transitions) => $transitions.onSuccess(
+    {},
+    () => Object.assign($rootScope, { managerPreloadHide: 'manager-preload-hide' }),
+  ));
 
 export default moduleName;

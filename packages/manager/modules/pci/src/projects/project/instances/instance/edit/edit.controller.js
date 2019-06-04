@@ -1,6 +1,7 @@
 import get from 'lodash/get';
 import reduce from 'lodash/reduce';
 import { PATTERN } from '../../../../../components/project/instance/name/constants';
+import Flavor from '../../../../../components/project/flavors-list/flavor.class';
 import Instance from '../../../../../components/project/instance/instance.class';
 
 export default class PciInstanceEditController {
@@ -27,11 +28,13 @@ export default class PciInstanceEditController {
     });
 
     this.defaultImage = null;
-    this.defaultFlavor = null;
+    this.defaultFlavor = new Flavor(this.instance.flavor);
 
     this.messageContainers = ['name', 'image', 'flavor', 'billing'];
     this.messages = {};
-    this.model = {};
+    this.model = {
+      isInstanceFlex: false,
+    };
 
     this.loadMessages();
   }
@@ -69,6 +72,8 @@ export default class PciInstanceEditController {
         this.defaultImage = image;
       }
       this.editInstance.imageId = image.getIdByRegion(this.instance.region);
+    } else {
+      this.editInstance.imageId = null;
     }
   }
 
@@ -77,12 +82,27 @@ export default class PciInstanceEditController {
       this.editInstance.flavorId = flavorGroup.getFlavorId(
         this.instance.image.type,
         this.instance.region,
+        this.defaultFlavor.isFlex(),
       );
-
-      if (!this.defaultFlavor) {
-        this.defaultFlavor = flavorGroup.getFlavorByOsType(this.instance.image.type);
-      }
     }
+  }
+
+  canSwitchToFlex() {
+    if (this.model.flavorGroup) {
+      return this.defaultFlavor.disk <= this.model.flavorGroup
+        .getFlavorByOsType(this.instance.image.type, true).disk
+          && this.model.flavorGroup.hasFlexOption();
+    }
+
+    return false;
+  }
+
+  onFlexChange(isFlex) {
+    this.editInstance.flavorId = this.model.flavorGroup.getFlavorId(
+      this.instance.image.type,
+      this.instance.region,
+      isFlex,
+    );
   }
 
   renameInstance() {

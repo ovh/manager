@@ -20,5 +20,7 @@
   "pci_projects_project_instances_backup_add_success_message": "L'instance {{ instance }} a été ajoutée.",
   "pci_projects_project_instances_backup_add_success_multiple_message": "Les instances ont été ajoutées.",
   "pci_projects_project_instances_backup_add_error_save": "Une erreur est survenue lors de l'ajout de l'instance {{ instance }} : {{ message }}",
-  "pci_projects_project_instances_backup_add_error_multiple_save": "Une erreur est survenue lors de l'ajout des instances : {{ message }}"
+  "pci_projects_project_instances_backup_add_error_multiple_save": "Une erreur est survenue lors de l'ajout des instances : {{ message }}",
+  "pci_projects_project_instances_backup_add_flex": "Instance flexible",
+  "pci_projects_project_instances_backup_add_flex_help": "Cette option Flex force un stockage de 50 Go, offrant des snapshots plus rapides et la possibilité de downgrader ultérieurement"
 }

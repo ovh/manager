@@ -1,3 +1,39 @@
+# [0.10.0-alpha.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.9.0-alpha.0...@ovh-ux/manager-public-cloud@0.10.0-alpha.0) (2019-05-31)
+
+
+### Features
+
+* **pci.failover-ip:** add ipfo order ([#722](https://github.com/ovh-ux/manager/issues/722)) ([36182d9](https://github.com/ovh-ux/manager/commit/36182d9))
+
+
+
+# [0.9.0-alpha.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.8.0-alpha.4...@ovh-ux/manager-public-cloud@0.9.0-alpha.0) (2019-05-28)
+
+
+### Features
+
+* allow to search project ([#737](https://github.com/ovh-ux/manager/issues/737)) ([51bbb3c](https://github.com/ovh-ux/manager/commit/51bbb3c))
+
+
+
+# [0.8.0-alpha.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.8.0-alpha.3...@ovh-ux/manager-public-cloud@0.8.0-alpha.4) (2019-05-27)
+
+
+### Bug Fixes
+
+* **apps.public.cloud:** remove default location prefix ([#683](https://github.com/ovh-ux/manager/issues/683)) ([cc0e70a](https://github.com/ovh-ux/manager/commit/cc0e70a)), closes [#682](https://github.com/ovh-ux/manager/issues/682)
+
+
+
+# [0.8.0-alpha.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.8.0-alpha.2...@ovh-ux/manager-public-cloud@0.8.0-alpha.3) (2019-05-22)
+
+
+### Bug Fixes
+
+* **public-cloud:** remove cache on project fetching ([6c13bb8](https://github.com/ovh-ux/manager/commit/6c13bb8))
+
+
+
 # [0.8.0-alpha.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.8.0-alpha.1...@ovh-ux/manager-public-cloud@0.8.0-alpha.2) (2019-05-21)
 
 

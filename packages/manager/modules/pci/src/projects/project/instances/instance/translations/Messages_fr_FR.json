@@ -68,6 +68,7 @@
   "pci_projects_project_instances_instance_openstack_id_label": "ID Openstack Nova",
 
   "pci_projects_project_instances_instance_image_label": "Image",
+  "pci_projects_project_instances_instance_image_action_application_access_label": "Informations de connexion",
 
   "pci_projects_project_instances_instance_networks_title": "Réseaux",
   "pci_projects_project_instances_instance_ipv4_label": "IPv4",

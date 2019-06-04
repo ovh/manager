@@ -70,7 +70,10 @@ export default /* @ngInject */ ($stateProvider) => {
         projectId,
         instanceId: instance.id,
       }),
-
+      applicationAccess: /* @ngInject */ ($state, instance, projectId) => () => $state.go('pci.projects.project.instances.instance.application-access', {
+        projectId,
+        instanceId: instance.id,
+      }),
       goToBlockStorages: /* @ngInject */ ($state, projectId) => () => $state.go('pci.projects.project.storages.blocks', {
         projectId,
       }),

@@ -49,6 +49,7 @@ export default class PciInstancesAddController {
       number: 1,
       sshKey: null,
       privateNetwork: defaultPrivateNetwork,
+      isInstanceFlex: false,
     };
 
     this.instanceNamePattern = PATTERN;
@@ -67,10 +68,35 @@ export default class PciInstancesAddController {
 
     this.maxQuota = this.instanceQuota.getMaxNumberOfInstances(this.flavor);
 
+    this.generateInstanceName();
+  }
+
+  generateInstanceName() {
     if (!has(this.instance, 'name') || get(this.instance, 'name') === this.defaultInstanceName) {
-      this.defaultInstanceName = `${this.flavor.name}-${this.backup.region}`.toLowerCase();
+      this.defaultInstanceName = `${this.flavor.name}-${this.instance.region}`.toLowerCase();
       this.instance.name = this.defaultInstanceName;
     }
+  }
+
+  onFlexChange(isFlex) {
+    this.flavor = this.model.flavorGroup.getFlavorByOsType(this.backup.type, isFlex);
+
+    this.instance.flavorId = this.model.flavorGroup.getFlavorId(
+      this.backup.type,
+      this.instance.region,
+      isFlex,
+    );
+    this.generateInstanceName();
+  }
+
+  canSwitchToFlex() {
+    if (this.model.flavorGroup) {
+      return this.model.flavorGroup.hasFlexOption()
+       && this.backup.minDisk <= this.model.flavorGroup
+         .getFlavorByOsType(this.backup.type, true).disk;
+    }
+
+    return false;
   }
 
   loadMessages() {

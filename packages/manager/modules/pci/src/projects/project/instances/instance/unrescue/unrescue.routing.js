@@ -10,6 +10,7 @@ export default /* @ngInject */($stateProvider) => {
       layout: 'modal',
       resolve: {
         goBack: /* @ngInject */ goToInstance => goToInstance,
+        breadcrumb: () => null,
       },
     });
 };

@@ -1,3 +1,134 @@
+# [0.15.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.14.4...@ovh-ux/manager-pci@0.15.0) (2019-05-31)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([637137f](https://github.com/ovh-ux/manager/commit/637137f))
+* **i18n:** add missing translations ([b252598](https://github.com/ovh-ux/manager/commit/b252598))
+* **i18n:** add missing translations ([bb470bb](https://github.com/ovh-ux/manager/commit/bb470bb))
+* **pci.project.billing.history:** add missing translate values ([#773](https://github.com/ovh-ux/manager/issues/773)) ([c88cfa3](https://github.com/ovh-ux/manager/commit/c88cfa3))
+* **pci.project.private-network:** generate valid default IP ([#771](https://github.com/ovh-ux/manager/issues/771)) ([3fb1ab4](https://github.com/ovh-ux/manager/commit/3fb1ab4))
+* **pci.project.sidebar:** redirect to correct horizon region url ([#774](https://github.com/ovh-ux/manager/issues/774)) ([15529f4](https://github.com/ovh-ux/manager/commit/15529f4))
+* **pci.projects.project.creating:** force reload at end of polling ([#766](https://github.com/ovh-ux/manager/issues/766)) ([91b0015](https://github.com/ovh-ux/manager/commit/91b0015))
+* **pci.projects.vouchers:** display clickable link instead of text ([#777](https://github.com/ovh-ux/manager/issues/777)) ([7b2d1c4](https://github.com/ovh-ux/manager/commit/7b2d1c4))
+
+
+### Features
+
+* **pci.failover-ip:** add ipfo order ([#722](https://github.com/ovh-ux/manager/issues/722)) ([36182d9](https://github.com/ovh-ux/manager/commit/36182d9))
+* **pci.instance:** add application access ([#730](https://github.com/ovh-ux/manager/issues/730)) ([b3e0aa8](https://github.com/ovh-ux/manager/commit/b3e0aa8))
+
+
+
+## [0.14.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.14.3...@ovh-ux/manager-pci@0.14.4) (2019-05-29)
+
+
+### Bug Fixes
+
+* **pci:** enable kubernetes from CA region ([#767](https://github.com/ovh-ux/manager/issues/767)) ([7336921](https://github.com/ovh-ux/manager/commit/7336921))
+
+
+
+## [0.14.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.14.2...@ovh-ux/manager-pci@0.14.3) (2019-05-29)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([#763](https://github.com/ovh-ux/manager/issues/763)) ([827947e](https://github.com/ovh-ux/manager/commit/827947e))
+* **pci.project.kubernetes.details.nodes:** remove deprecated link ([#761](https://github.com/ovh-ux/manager/issues/761)) ([062bdb4](https://github.com/ovh-ux/manager/commit/062bdb4))
+
+
+
+## [0.14.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.14.1...@ovh-ux/manager-pci@0.14.2) (2019-05-29)
+
+
+### Bug Fixes
+
+* **pci.private-network:** reload states when redirecting ([#726](https://github.com/ovh-ux/manager/issues/726)) ([6bf6d7b](https://github.com/ovh-ux/manager/commit/6bf6d7b))
+* **pci.project.instance-backup:** allow submit when form is valid ([#755](https://github.com/ovh-ux/manager/issues/755)) ([81941ef](https://github.com/ovh-ux/manager/commit/81941ef))
+* **pci.projects.edit:** refresh when project is edited ([#750](https://github.com/ovh-ux/manager/issues/750)) ([6c2e972](https://github.com/ovh-ux/manager/commit/6c2e972))
+
+
+
+## [0.14.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.14.0...@ovh-ux/manager-pci@0.14.1) (2019-05-29)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([#751](https://github.com/ovh-ux/manager/issues/751)) ([93817ba](https://github.com/ovh-ux/manager/commit/93817ba))
+
+
+
+# [0.14.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.13.3...@ovh-ux/manager-pci@0.14.0) (2019-05-28)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([e288fe8](https://github.com/ovh-ux/manager/commit/e288fe8))
+* **pci:** add missing filters ([#729](https://github.com/ovh-ux/manager/issues/729)) ([593d956](https://github.com/ovh-ux/manager/commit/593d956))
+* **pci:** clean image when user select a distribution ([#747](https://github.com/ovh-ux/manager/issues/747)) ([10e5b84](https://github.com/ovh-ux/manager/commit/10e5b84))
+* **pci.project:** allow to scroll all content ([#740](https://github.com/ovh-ux/manager/issues/740)) ([9c5d172](https://github.com/ovh-ux/manager/commit/9c5d172))
+* **pci.project.private-network:** prevent inputs from overlaping ([#738](https://github.com/ovh-ux/manager/issues/738)) ([92c06cd](https://github.com/ovh-ux/manager/commit/92c06cd))
+* **pci.storage.snapshots:** sort by creation date ([6096a4e](https://github.com/ovh-ux/manager/commit/6096a4e))
+
+
+### Features
+
+* allow to search project ([#737](https://github.com/ovh-ux/manager/issues/737)) ([51bbb3c](https://github.com/ovh-ux/manager/commit/51bbb3c))
+
+
+
+## [0.13.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.13.2...@ovh-ux/manager-pci@0.13.3) (2019-05-27)
+
+
+### Bug Fixes
+
+* implement retry after hipay payment redirect ([4e463bd](https://github.com/ovh-ux/manager/commit/4e463bd))
+* **i18n:** add missing translations ([07fc37d](https://github.com/ovh-ux/manager/commit/07fc37d))
+* **pci:** enable kubernetes from CA region ([#715](https://github.com/ovh-ux/manager/issues/715)) ([7880cce](https://github.com/ovh-ux/manager/commit/7880cce))
+
+
+
+## [0.13.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.13.1...@ovh-ux/manager-pci@0.13.2) (2019-05-24)
+
+
+### Bug Fixes
+
+* implement retry after hipay payment redirect ([b69ddaf](https://github.com/ovh-ux/manager/commit/b69ddaf))
+
+
+
+## [0.13.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.13.0...@ovh-ux/manager-pci@0.13.1) (2019-05-23)
+
+
+### Bug Fixes
+
+* **pci.instance.add:** add public network when adding a network ([#714](https://github.com/ovh-ux/manager/issues/714)) ([bc0cccd](https://github.com/ovh-ux/manager/commit/bc0cccd))
+
+
+
+# [0.13.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.12.3...@ovh-ux/manager-pci@0.13.0) (2019-05-22)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([c1b064e](https://github.com/ovh-ux/manager/commit/c1b064e))
+* **i18n:** add missing translations ([0a04f71](https://github.com/ovh-ux/manager/commit/0a04f71))
+* **pci.error:** fix img max width ([55cf701](https://github.com/ovh-ux/manager/commit/55cf701))
+* **pci.kube:** display message if no regions is available ([b25b3d1](https://github.com/ovh-ux/manager/commit/b25b3d1))
+* **pci.kube:** redirect to onboarding if no region ([2383b35](https://github.com/ovh-ux/manager/commit/2383b35))
+* sort instance-backups list by date ([31e3c18](https://github.com/ovh-ux/manager/commit/31e3c18))
+* **pci.users:** pass userid and password to api ([265b8ce](https://github.com/ovh-ux/manager/commit/265b8ce))
+
+
+### Features
+
+* add new translations ([#695](https://github.com/ovh-ux/manager/issues/695)) ([1f4fa7f](https://github.com/ovh-ux/manager/commit/1f4fa7f))
+* **pci:** change link to legacy manager display ([bcd932a](https://github.com/ovh-ux/manager/commit/bcd932a))
+* **pci.projects.creating:** manage unpaid order project ([85a2499](https://github.com/ovh-ux/manager/commit/85a2499))
+
+
+
 ## [0.12.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.12.2...@ovh-ux/manager-pci@0.12.3) (2019-05-22)
 
 

@@ -4,10 +4,11 @@ export default /* @ngInject */($stateProvider) => {
     component: 'pciProjectPrivateNetworksVrackCreate',
     layout: 'modal',
     resolve: {
-      goBack: ($state, projectId) => () => $state.go('^', { projectId }),
+      goBack: /* @ngInject */($state, projectId) => () => $state.go('^', { projectId }),
       messageContainer: () => 'pci.projects.project.privateNetwork.vrack',
-      onCreationSuccess: ($state, projectId) => () => $state.go('pci.projects.project.privateNetwork.vrack', { projectId }),
-      onAssociationSuccess: ($state, projectId) => () => $state.go('pci.projects.project.privateNetwork', { projectId }),
+      onCreationSuccess: /* @ngInject */($state, projectId) => () => $state.go('pci.projects.project.privateNetwork.vrack', { projectId }, { reload: true }),
+      onAssociationSuccess: /* @ngInject */($state, projectId) => () => $state.go('pci.projects.project.privateNetwork', { projectId }, { reload: true }),
+      breadcrumb: () => null,
     },
   });
 };

@@ -1,3 +1,12 @@
+## [6.2.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-sms@6.2.1...@ovh-ux/manager-sms@6.2.2) (2019-05-23)
+
+
+### Bug Fixes
+
+* **sms.sms.compose:** display STOP option only when needed ([#389](https://github.com/ovh-ux/manager/issues/389)) ([4c1d855](https://github.com/ovh-ux/manager/commit/4c1d855))
+
+
+
 ## [6.2.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-sms@6.2.0...@ovh-ux/manager-sms@6.2.1) (2019-05-13)
 
 

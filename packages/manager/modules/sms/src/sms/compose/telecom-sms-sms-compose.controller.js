@@ -95,7 +95,6 @@ export default class {
       sender: 'shortNumber',
       senderForResponse: false,
     };
-    this.advice = false;
     this.moreOptions = false;
     this.picker = {
       date: null,
@@ -127,14 +126,14 @@ export default class {
     }).then(senders => each(senders, (sender) => {
       if (sender.type === 'virtual') {
         this.senders.virtual.push(sender);
-      } else if (/\d+/.test(sender.sender)) {
-        this.senders.other.push(sender);
-      } else {
+      } else if (sender.type === 'alpha') {
         this.senders.alphanumeric.push(sender);
+      } else {
+        this.senders.other.push(sender);
       }
     })).then(() => {
       this.service = this.TucSmsMediator.getCurrentSmsService();
-      this.computeRemainingChar();
+      this.showAdvice();
     })).catch((err) => {
       this.TucToastError(err);
     }).finally(() => {
@@ -236,13 +235,15 @@ export default class {
    * @return {Object}
    */
   showAdvice() {
-    if (this.sms.sender && /[0-9+]/.test(this.sms.sender) && !this.isVirtualNumber()) {
-      this.advice = true;
-      this.sms.noStopClause = true;
-    } else {
-      this.advice = false;
-      this.sms.noStopClause = false;
-    }
+    const isRealNumber = /^[0-9+]*$/.test(this.sms.sender)
+      && !this.isVirtualNumber();
+
+    this.displaySenderCustomizationAdvice = isRealNumber
+      || this.sms.sender === 'shortNumber';
+    this.canHaveSTOPAnswer = !isRealNumber
+      && this.sms.sender !== 'shortNumber';
+    this.sms.noStopClause = isRealNumber;
+
     return this.computeRemainingChar();
   }
 

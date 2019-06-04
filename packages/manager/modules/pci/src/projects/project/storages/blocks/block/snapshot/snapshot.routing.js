@@ -23,6 +23,7 @@ export default /* @ngInject */($stateProvider) => {
         ) => PciProjectStorageBlockService.getSnapshotPriceEstimation(projectId, storage),
 
         goBack: /* @ngInject */ goToBlockStorage => goToBlockStorage,
+        breadcrumb: () => null,
       },
     });
 };

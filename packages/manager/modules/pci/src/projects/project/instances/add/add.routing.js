@@ -10,6 +10,11 @@ export default /* @ngInject */($stateProvider) => {
         projectId,
       ) => PciProjectsProjectInstanceService.getPrivateNetworks(projectId),
 
+      publicNetwork: /* @ngInject */ (
+        PciProjectsProjectInstanceService,
+        projectId,
+      ) => PciProjectsProjectInstanceService.getPublicNetwork(projectId),
+
       regions: /* @ngInject */ (
         PciProjectsProjectInstanceService,
         projectId,
