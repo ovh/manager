@@ -1,3 +1,12 @@
+## [6.2.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-layout-ovh@6.2.3...@ovh-ux/manager-layout-ovh@6.2.4) (2019-05-31)
+
+
+### Bug Fixes
+
+* **apps.layout-ovh:** upgrade manager-navbar to v0.5.0 ([#784](https://github.com/ovh-ux/manager/issues/784)) ([29fd9ce](https://github.com/ovh-ux/manager/commit/29fd9ce)), closes [#775](https://github.com/ovh-ux/manager/issues/775)
+
+
+
 ## [6.2.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-layout-ovh@6.2.2...@ovh-ux/manager-layout-ovh@6.2.3) (2019-05-23)
 
 
