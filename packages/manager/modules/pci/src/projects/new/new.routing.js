@@ -164,7 +164,7 @@ export default /* @ngInject */ ($stateProvider) => {
             voucher: {
               valid: false,
               value: null,
-              paymentMeanRequired: null,
+              paymentMethodRequired: null,
               submitted: false,
             },
             defaultPaymentMethod: null,

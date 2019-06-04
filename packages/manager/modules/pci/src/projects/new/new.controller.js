@@ -168,7 +168,7 @@ export default class PciProjectNewCtrl {
       .acceptAgreements(this.contracts)
       .then(() => this.PciProjectNewService.createNewProject(createParams))
       .then(({ orderId, project }) => {
-        if (hasCredit || hasOrderCredit) {
+        if (!hasVoucher && (hasCredit || hasOrderCredit)) {
           return this.payCredit({ orderId, project });
         }
 
@@ -258,7 +258,7 @@ export default class PciProjectNewCtrl {
       || (this.newProjectInfo.order && ['success', 'accepted'].includes(this.paymentStatus))
       || (this.paymentStatus && currentStep.model.projectId && this.newProjectInfo.order)
       || (this.paymentModel.voucher.valid
-        && this.paymentModel.voucher.paymentMeanRequired === false)
+        && this.paymentModel.voucher.paymentMethodRequired === false)
     ) {
       return this.createProject();
     }
