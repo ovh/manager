@@ -277,12 +277,14 @@ export default class OvhManagerServerSidebarController {
   getTypeItems(typeDefinition, params = null) {
     const external = !includes(typeDefinition.app, this.universe);
     const type = reduce(params, (result, value, paramId) => result.replace(`:${paramId}`, value), typeDefinition.path);
+    const exclude = get(typeDefinition, 'exclude', null);
 
     return new this.OvhApiService
       .Aapi()
       .query({
         type,
         external,
+        exclude,
       })
       .$promise
       .then(items => ({
