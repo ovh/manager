@@ -7,8 +7,8 @@
  "pci_projects_project_instances_backup_add_name_help": "Solo debe contener números, letras, guiones, guiones bajos o puntos.",
  "pci_projects_project_instances_backup_add_ssh_key_label": "Llave SSH",
  "pci_projects_project_instances_backup_add_numInstances_label": "Número de instancias que quiere crear",
- "pci_projects_project_instances_backup_add_numInstances_help": "Su límite actual le permite crear simultáneamente hasta {{ num }} instancia(s) de tipo {{ flavor }} en la región {{ region }}.",
- "pci_projects_project_instances_backup_add_numInstances_quotaLink_label": "Consulte su límite actual.",
+ "pci_projects_project_instances_backup_add_numInstances_help": "Su cuota actual le permite crear simultáneamente hasta {{ num }} instancia(s) de tipo {{ flavor }} en la región {{ region }}.",
+ "pci_projects_project_instances_backup_add_numInstances_quotaLink_label": "Consulte su cuota.",
  "pci_projects_project_instances_backup_add_same_numInstances_configuration": "Todas las instancias se configurarán de la misma forma y se desplegarán en la misma región.",
  "pci_projects_project_instances_backup_add_private_network_label": "Red privada asociada",
  "pci_projects_project_instances_backup_add_private_network_none": "Ninguna",
@@ -20,5 +20,7 @@
  "pci_projects_project_instances_backup_add_success_message": "Se ha añadido la instancia {{ instance }}.",
  "pci_projects_project_instances_backup_add_success_multiple_message": "Se han añadido las instancias.",
  "pci_projects_project_instances_backup_add_error_save": "Se ha producido un error al añadir la instancia {{ instance }}: {{ message }}.",
- "pci_projects_project_instances_backup_add_error_multiple_save": "Se ha producido un error al añadir las instancias: {{message}}."
+ "pci_projects_project_instances_backup_add_error_multiple_save": "Se ha producido un error al añadir las instancias: {{ message }}.",
+ "pci_projects_project_instances_backup_add_flex": "Instancia flexible",
+ "pci_projects_project_instances_backup_add_flex_help": "La opción Flex fuerza un almacenamiento de 50 GB. Así podrá realizar snapshots más rápidos y reducir el tamaño posteriormente."
 }

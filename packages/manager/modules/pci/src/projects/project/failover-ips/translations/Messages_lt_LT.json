@@ -7,5 +7,7 @@
  "pci_projects_project_failoverip_import": "Import an IP",
  "pci_projects_project_failoverip_edit": "Modify attached instance ",
  "pci_projects_project_failoverip_mitigation": "Enable/Disable mitigation ",
- "pci_projects_project_failoverip_firewall": "Configure the firewall "
+ "pci_projects_project_failoverip_firewall": "Configure the firewall ",
+ "pci_projects_project_failoverip_actions": "Actions",
+ "pci_projects_project_failoverip_order": "Buy Failover IPs"
 }
