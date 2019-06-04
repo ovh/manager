@@ -16,6 +16,7 @@ export default /* @ngInject */($stateProvider) => {
           storageId,
         ) => PciProjectStorageBlockService.get(projectId, storageId),
         goBack: /* @ngInject */ goToBlockStorage => goToBlockStorage,
+        breadcrumb: () => null,
       },
     });
 };

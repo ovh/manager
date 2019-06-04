@@ -17,5 +17,8 @@ export default /* @ngInject */ ($stateProvider) => {
         template: Environment.getRegion() === 'US' ? templateAgora : template,
       },
     },
+    resolve: {
+      breadcrumb: () => null,
+    },
   });
 };

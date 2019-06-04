@@ -17,5 +17,8 @@ export default /* @ngInject */ ($stateProvider) => {
         format: 'json',
         value: ['.'],
       },
+      resolve: {
+        breadcrumb: () => null,
+      },
     });
 };

@@ -22,7 +22,7 @@ angular
     'pascalprecht.translate',
   ])
   .config(routing)
-  .component('pciProjectInstancesOnboarding', component)
+  .component('pciProjectUsersOnboarding', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

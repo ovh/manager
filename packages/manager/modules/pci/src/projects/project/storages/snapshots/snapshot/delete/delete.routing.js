@@ -16,6 +16,7 @@ export default /* @ngInject */($stateProvider) => {
           snapshotId,
         ) => PciProjectStorageSnapshotsService.get(projectId, snapshotId),
         goBack: /* @ngInject */goToSnapshots => goToSnapshots,
+        breadcrumb: () => null,
       },
     });
 };

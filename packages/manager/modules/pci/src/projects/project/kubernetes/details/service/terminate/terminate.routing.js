@@ -15,6 +15,7 @@ export default /* @ngInject */ ($stateProvider) => {
           Kubernetes,
           projectId,
         ) => Kubernetes.isLegacyCluster(projectId, kubeId),
+        breadcrumb: () => null,
       },
     });
 };

@@ -15,6 +15,7 @@ export default /* @ngInject */($stateProvider) => {
       resolve: {
         rebootType: () => 'soft',
         goBack: /* @ngInject */ goToInstance => goToInstance,
+        breadcrumb: () => null,
       },
     });
 };

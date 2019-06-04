@@ -29,10 +29,5 @@
  "cloud_sidebar_project_management_contact_rights": "Kontakty i uprawnienia ",
  "cloud_sidebar_project_management_settings": "Ustawienia projektu",
  "cloud_sidebar_public_cloud_project_toggle": "Otwórz listę projektów",
- "cloud_sidebar_public_cloud_project_toggle_close": "Powrót do menu",
- "cloud_sidebar_public_cloud_project_forward_legacy": "Wróć do poprzedniej wersji interfejsu.",
- "pci_projects_project_forward": "Przywrócimy poprzednią wersję interfejsu Panelu klienta Cloud",
- "pci_projects_project_forward_feedback": "Prześlij nam Twoją opinię!",
- "pci_projects_project_forward_legacy": "Przejdź do poprzedniej wersji interfejsu",
- "pci_projects_project_forward_content": "Dziękujemy za wypróbowanie nowej wersji Panelu klienta Public Cloud. Podziel się z nami Twoimi uwagami. Pomogą nam one ulepszyć interfejs."
+ "cloud_sidebar_public_cloud_project_toggle_close": "Powrót do menu"
 }
