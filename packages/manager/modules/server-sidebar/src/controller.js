@@ -65,15 +65,6 @@ export default class OvhManagerServerSidebarController {
             this.SIDEBAR_CONFIG = WEB_SIDEBAR_CONFIG;
             this.SIDEBAR_ORDER_CONFIG = WEB_ORDER_SIDEBAR_CONFIG;
           }
-          this.SidebarMenu.addMenuItem({
-            id: 'service.id',
-            name: 'service.id',
-            icon: 'service.icon',
-            title: 'title',
-            allowSubItems: false,
-            allowSearch: true,
-            state: 'app.domain',
-          }, null);
           this.buildFirstLevelMenu();
           return this.buildOrderMenu();
         })
@@ -191,7 +182,6 @@ export default class OvhManagerServerSidebarController {
         }
       }
     });
-    console.log(this.SidebarMenu);
   }
 
   loadServices(parentService, parent, params = {}) {
@@ -215,10 +205,20 @@ export default class OvhManagerServerSidebarController {
         } else {
           each(typesServices, (typeServices) => {
             this.addItems(get(parentService, 'children'), parent);
-
+            let items = get(typeServices, 'items');
             const hasSubItems = has(typeServices.type, 'types');
 
-            each(orderBy(typeServices.items, 'displayName'), (service) => {
+            if (!isEmpty(typeServices.type.filter)) {
+              items = typeServices.type.filter.fn(
+                items,
+                find(
+                  typesServices,
+                  service => get(service, 'type.category') === get(typeServices, 'type.filter.category'),
+                ),
+              );
+            }
+
+            each(orderBy(items, 'displayName'), (service) => {
               const isExternal = !includes(typeServices.type.app, this.universe)
                 && !isEmpty(service.url);
 
@@ -237,7 +237,6 @@ export default class OvhManagerServerSidebarController {
                   state = typeServices.type.getState(service.extraParams);
                 }
               }
-
               const menuItem = this.SidebarMenu.addMenuItem({
                 title: service.displayName,
                 allowSubItems: hasSubItems && !isExternal,
