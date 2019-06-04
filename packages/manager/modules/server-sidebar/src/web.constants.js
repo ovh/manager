@@ -38,10 +38,6 @@ export const DOMAIN_CONFIG = {
           loadOnState: 'app.domain.alldom',
           app: [WEB],
           icon: 'ovh-font ovh-font-domain',
-          filter: {
-            category: 'DOMAIN', // eslint-disable-next-line max-len
-            fn: (items, compareTo) => items.filter(it => isEmpty(find(get(compareTo, 'items', []), { serviceName: it.serviceName }))),
-          },
         },
       ],
     },
@@ -52,6 +48,7 @@ export const DOMAIN_CONFIG = {
       stateParams: ['productId'],
       icon: 'ovh-font ovh-font-domain',
       app: [WEB],
+      exclude: 'parentService.type:eq=/allDom',
     },
     {
       path: '/domain/zone',
