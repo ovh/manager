@@ -8,7 +8,9 @@
                     <oui-action-menu-item state="pci.projects.project.failover-ips.imports">
                         <span data-translate="pci_projects_project_failoverip_import"></span>
                     </oui-action-menu-item>
-                    <oui-action-menu-item state="pci.projects.project.failover-ips.order">
+                    <oui-action-menu-item
+                        state="pci.projects.project.failover-ips.order"
+                        disabled="$ctrl.instances.length === 0">
                         <span data-translate="pci_projects_project_failoverip_order"></span>
                     </oui-action-menu-item>
                 </oui-action-menu>
