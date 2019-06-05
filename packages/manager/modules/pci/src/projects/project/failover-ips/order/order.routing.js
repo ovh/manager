@@ -36,7 +36,7 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
         layout: 'modal',
         views: {
           modal: {
-            component: 'pciProjectFailoverIpsAgoraOrder',
+            component: 'pciProjectFailoverIpsOrderOrder',
           },
         },
         resolve: {
