@@ -21,6 +21,15 @@ export default class PciProjectNewService {
     return this.$q.all(acceptPromises);
   }
 
+  cancelProjectCreation(projectId) {
+    return this.OvhApiCloud.Project()
+      .v6()
+      .cancelCreation({
+        serviceName: projectId,
+      }, {})
+      .$promise;
+  }
+
   createNewProject(params = {}) {
     return this.OvhApiCloud
       .v6()
@@ -60,6 +69,15 @@ export default class PciProjectNewService {
     return this.OvhApiCloud
       .v6()
       .createProjectInfo(params)
+      .$promise;
+  }
+
+  getProject(serviceName) {
+    return this.OvhApiCloud.Project()
+      .v6()
+      .get({
+        serviceName,
+      })
       .$promise;
   }
 }

@@ -42,7 +42,8 @@ export default class PciProjectNewCtrl {
 
     if (currentStep.name === 'description' && this.region !== 'US') {
       translationKey = 'pci_projects_new_continue';
-    } else if (currentStep.model.mode === 'credits' || this.hasCreditToOrder()) {
+    } else if (currentStep.model.mode === 'credits' || this.hasCreditToOrder()
+      || (this.paymentStatus && currentStep.model.projectId && this.newProjectInfo.order)) {
       translationKey = 'pci_projects_new_credit_and_create';
     } else if (get(currentStep.model.paymentType, 'paymentType.value') === 'BANK_ACCOUNT') {
       translationKey = 'pci_projects_new_add';
@@ -113,7 +114,7 @@ export default class PciProjectNewCtrl {
     // build from scratch to be sure that old query parameters
     // are reset (in case of previous payment error)
     const { location } = this.$window;
-    let callbackUrlBase = `${location.protocol}//${location.host}${location.pathname}${this.getStateLink('payment')}?`;
+    let callbackUrlBase = `${location.protocol}//${location.host}${location.pathname}${this.getStateLink('payment', false)}?`;
     const callbackParams = [];
 
     if (this.descriptionModel.name) {
@@ -146,6 +147,10 @@ export default class PciProjectNewCtrl {
     this.loading.creating = true;
 
     const hasCredit = this.paymentModel.mode === 'credits' && this.paymentModel.credit.value;
+    const hasOrderCredit = this.newProjectInfo.order
+        && (!this.paymentStatus
+          || ['success', 'accepted'].includes(this.paymentStatus)
+          || (this.paymentStatus && this.paymentModel.projectId && this.newProjectInfo.order));
     const hasVoucher = this.paymentModel.voucher.valid && this.paymentModel.voucher.value;
     const createParams = {
       description: this.descriptionModel.name,
@@ -155,8 +160,7 @@ export default class PciProjectNewCtrl {
       createParams.voucher = this.paymentModel.voucher.value;
     } else if (hasCredit) {
       createParams.credit = this.paymentModel.credit.value;
-    } else if (this.newProjectInfo.order
-        && (!this.paymentStatus || ['success', 'accepted'].includes(this.paymentStatus))) {
+    } else if (hasOrderCredit) {
       createParams.credit = this.newProjectInfo.order.value;
     }
 
@@ -164,11 +168,11 @@ export default class PciProjectNewCtrl {
       .acceptAgreements(this.contracts)
       .then(() => this.PciProjectNewService.createNewProject(createParams))
       .then(({ orderId, project }) => {
-        if (!hasCredit) {
-          return this.onProjectCreated(project);
+        if (!hasVoucher && (hasCredit || hasOrderCredit)) {
+          return this.payCredit({ orderId, project });
         }
 
-        return this.payCredit({ orderId, project });
+        return this.onProjectCreated(project);
       })
       .catch(() => {
         this.loading.creating = false;
@@ -251,8 +255,10 @@ export default class PciProjectNewCtrl {
     // if default payment or credit amount - create project
     if (this.paymentModel.defaultPaymentMethod
       || (this.paymentModel.mode === 'credits' && this.paymentModel.credit.value)
+      || (this.newProjectInfo.order && ['success', 'accepted'].includes(this.paymentStatus))
+      || (this.paymentStatus && currentStep.model.projectId && this.newProjectInfo.order)
       || (this.paymentModel.voucher.valid
-        && this.paymentModel.voucher.paymentMeanRequired === false)
+        && this.paymentModel.voucher.paymentMethodRequired === false)
     ) {
       return this.createProject();
     }
@@ -280,7 +286,7 @@ export default class PciProjectNewCtrl {
       },
     });
 
-    if (this.paymentStatus === 'success' || this.paymentStatus === 'accepted') {
+    if (['success', 'accepted'].includes(this.paymentStatus)) {
       // success => HiPay
       // accepted => PayPal
       if (!this.paymentModel.projectId && !this.newProjectInfo.order) {

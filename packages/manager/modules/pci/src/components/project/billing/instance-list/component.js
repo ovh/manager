@@ -9,7 +9,7 @@ export default {
     instanceColName: '<',
     instanceColTotal: '<',
     instanceColTotalTooltip: '<',
-    showSwitchToMonthlyBillingOption: '<',
+    switchToMonthlyBilling: '&',
     showAdditionalInstanceDetails: '<',
   },
 };
