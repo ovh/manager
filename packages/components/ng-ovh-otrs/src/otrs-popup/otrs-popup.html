@@ -65,22 +65,21 @@
                   data-ng-hide="OtrsPopupCtrl.formDetails === 'replacement-disk'"
                   data-ng-submit="OtrsPopupCtrl.sendTicket()">
 
-                <!-- SELECTED UNIVERSE -->
-                <div class="form-group"
-                     data-ng-if="OtrsPopupCtrl.universes.length > 1">
-                    <label for="select-universe"
+                <!-- SELECTED SERVICE TYPE -->
+                <div class="form-group">
+                    <label for="select-service-type"
                            class="control-label"
-                           data-translate="otrs_universe_choice">
+                           data-translate="otrs_service_type_choice">
                     </label>
-                    <select class="form-control"
-                            id="select-universe"
-                            name="select-universe"
-                            required
-                            data-ng-model="OtrsPopupCtrl.selectedUniverse"
-                            data-ng-options="universe as ( 'otrs_universe_'+ universe | translate ) for universe in OtrsPopupCtrl.universes"
-                            data-ng-change="OtrsPopupCtrl.getServices()">
-                    </select>
-                </div> <!-- END OF SELECTED UNIVERSE -->
+                    <oui-select items="OtrsPopupCtrl.serviceTypes"
+                                match="name"
+                                model="OtrsPopupCtrl.selectedServiceType"
+                                name="select-service-type"
+                                on-change="OtrsPopupCtrl.getServices()"
+                                searchable>
+                    </oui-select>
+                </div>
+                <!-- END OF SELECTED SERVICE TYPE -->
 
                 <!-- SERVICENAME -->
                 <div class="form-group">
@@ -91,23 +90,13 @@
                                      data-size="s">
                         </oui-spinner>
                     </label>
-
-                    <select class="form-control"
-                            id="select-services"
-                            name="select-services"
-                            required
-                            data-ng-model="OtrsPopupCtrl.ticket.serviceName"
-                            data-ng-disabled="OtrsPopupCtrl.loaders.services">
-                        <optgroup label="{{ category.translatedName }}"
-                                  data-ng-repeat="category in OtrsPopupCtrl.services track by $index">
-
-                            <option data-ng-value="service.serviceName"
-                                    data-ng-repeat="service in category.services track by $index"
-                                    data-ng-bind="::service.displayName">
-                            </option>
-
-                        </optgroup>
-                    </select>
+                    <oui-select disabled="OtrsPopupCtrl.loaders.services || OtrsPopupCtrl.services.length === 0"
+                                items="OtrsPopupCtrl.services"
+                                match="displayName"
+                                model="OtrsPopupCtrl.ticket.serviceName"
+                                name="select-services"
+                                searchable>
+                    </oui-select>
 
                     <small data-ng-show="OtrsPopupCtrl.productHasFaq()"
                            data-translate="otrs_popup_see_faq"
@@ -115,7 +104,8 @@
                                url: OtrsPopupCtrl.faq.url
                            }">
                     </small>
-                </div> <!-- END OF SERVICENAME -->
+                </div>
+                <!-- END OF SERVICENAME -->
 
                 <!-- TYPE -->
                 <div class="form-group"

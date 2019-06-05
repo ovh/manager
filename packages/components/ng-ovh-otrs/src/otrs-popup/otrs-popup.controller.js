@@ -6,11 +6,12 @@ import includes from 'lodash/includes';
 import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
 import remove from 'lodash/remove';
-import set from 'lodash/set';
 import times from 'lodash/times';
 import values from 'lodash/values';
+import snakeCase from 'lodash/snakeCase';
 
 export default /* @ngInject */ function (
+  $http,
   $injector,
   $q,
   $rootScope,
@@ -19,11 +20,14 @@ export default /* @ngInject */ function (
   $translate,
   OvhApiMe,
   OvhApiMeVipStatus,
-  OvhApiProductsAapi,
+  OvhApiService,
   OvhApiSupport,
   OtrsPopup,
   OtrsPopupInterventionService,
   OtrsPopupService,
+  OTRS_POPUP_API_EXCLUDED,
+  OTRS_POPUP_API_EXTRAS_ENDPOINTS,
+  OTRS_POPUP_API_ALIASES,
   OTRS_POPUP_ASSISTANCE_ENUM,
   OTRS_POPUP_BILLING_ENUM,
   OTRS_POPUP_CATEGORIES,
@@ -95,43 +99,27 @@ export default /* @ngInject */ function (
   }
 
   self.getServices = () => {
-    self.loaders.services = true;
-
     // hide alert
     manageAlert();
 
-    if (!OtrsPopupService.isOpen()) {
+    if (!OtrsPopupService.isOpen() || !this.selectedServiceType) {
       return $q.when([]);
     }
 
-    return OvhApiProductsAapi.get({
-      includeInactives: true,
-      universe: self.selectedUniverse === 'CLOUD_DEDICATED' ? 'DEDICATED' : self.selectedUniverse,
-    }).$promise
-      .then((services) => {
-        const translationPromises = services.results.map(s => $translate(`otrs_service_category_${s.name}`, null, null, s.name)
-          .then((value) => {
-            set(s, 'translatedName', value);
-            return s;
-          }));
-
-        return $q.all(translationPromises).then((servicesTranslations) => {
-          const sortedServicesTranslations = servicesTranslations.sort(
-            (a, b) => a.translatedName.localeCompare(b.translatedName),
-          );
-          const translatedName = $translate.instant('otrs_service_category_other');
-          sortedServicesTranslations.push({
-            translatedName,
-            services: [
-              {
-                serviceName: OTHER_SERVICE,
-                displayName: translatedName,
-              },
-            ],
-          });
-          self.services = sortedServicesTranslations;
-
-          return sortedServicesTranslations;
+    self.loaders.services = true;
+    return new OvhApiService
+      .Aapi()
+      .query({
+        type: get(this.selectedServiceType, 'route'),
+        external: false,
+      })
+      .$promise
+      .then((items) => {
+        self.ticket.serviceName = null;
+        this.services = items;
+        this.services.push({
+          displayName: $translate.instant('otrs_service_type_other'),
+          serviceName: null,
         });
       })
       .catch((err) => {
@@ -153,6 +141,7 @@ export default /* @ngInject */ function (
     if (!self.loaders.send && self.ticket.body) {
       self.loaders.send = true;
 
+      self.ticket.serviceName = get(self.ticket, 'serviceName.serviceName');
       if (self.ticket.serviceName === OTHER_SERVICE) {
         self.ticket.serviceName = '';
         self.ticket.category = TICKET_CATEGORIES.DEFAULT;
@@ -330,6 +319,7 @@ export default /* @ngInject */ function (
       me: OvhApiMe.v6().get().$promise,
       meVipStatus: OvhApiMeVipStatus.v6().get().$promise,
       supportSchema: OvhApiSupport.v6().schema().$promise,
+      apiSchema: $http.get('/'),
     }).then((results) => {
       self.currentUser = results.me;
 
@@ -393,6 +383,19 @@ export default /* @ngInject */ function (
       $scope.$on('otrs.popup.opened', self.getServices);
       $scope.$on('otrs.popup.closed', () => {
         self.services = [];
+      });
+
+      this.serviceTypes = get(results, 'apiSchema.data.apis')
+        .concat(OTRS_POPUP_API_EXTRAS_ENDPOINTS)
+        .filter(api => !includes(OTRS_POPUP_API_EXCLUDED, api.path))
+        .map(api => ({
+          route: get(OTRS_POPUP_API_ALIASES, api.path, api.path),
+          name: $translate.instant(`otrs_service_type_${snakeCase(api.path)}`),
+        }));
+
+      this.serviceTypes.push({
+        name: $translate.instant('otrs_service_type_other'),
+        route: null,
       });
     })
       .catch((err) => { manageAlert([($translate.instant('otrs_err_get_infos'), err.data && err.data.message) || ''].join(' '), 'danger'); })

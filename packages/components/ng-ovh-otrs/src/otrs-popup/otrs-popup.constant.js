@@ -48,8 +48,65 @@ export const UNIVERSES = {
   CA: ['CLOUD_DEDICATED', 'SUNRISE'],
   US: ['CLOUD_DEDICATED'],
 };
+// @todo : expose an API
+export const API_EXCLUDED = [
+  '/abuse',
+  '/analytics',
+  '/auth',
+  '/connectivity',
+  '/contact',
+  '/coworking',
+  '/dedicated/installationTemplate',
+  '/distribution/image',
+  '/freefax',
+  '/me',
+  '/msServices',
+  '/newAccount',
+  '/order',
+  '/pack/siptrunk',
+  '/partner',
+  '/partners',
+  '/price',
+  '/search',
+  '/secret',
+  '/service',
+  '/services',
+  '/session',
+  '/status',
+  '/store',
+  '/supply/mondialRelay',
+  '/support',
+  '/telephony',
+  '/vip',
+  '/vpn',
+];
+export const API_ALIASES = {
+  '/cloud': '/cloud/project',
+};
+export const API_EXTRAS_ENDPOINTS = [
+  {
+    path: '/domain/zone',
+  },
+  {
+    path: '/ip/service',
+  },
+  {
+    path: '/msServices/sharepoint',
+  },
+  {
+    path: '/telephony/*/fax',
+  },
+  {
+    path: '/telephony/*/line',
+  },
+  {
+    path: '/telephony/*/number',
+  },
+];
 
 export default {
+  API_EXCLUDED,
+  API_EXTRAS_ENDPOINTS,
   ASSISTANCE_ENUM,
   BILLING_ENUM,
   INCIDENT_ENUM,
@@ -57,4 +114,5 @@ export default {
   CATEGORIES,
   SERVICES,
   UNIVERSES,
+  API_ALIASES,
 };
