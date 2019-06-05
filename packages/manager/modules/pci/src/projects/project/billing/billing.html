@@ -59,7 +59,10 @@
                         <span data-translate="cpbc_hourly_header_description"></span>
                         &nbsp;(<span data-ng-bind="BillingCtrl.data.totals.hourly.total.toFixed(2) + ' ' + BillingCtrl.data.totals.currencySymbol"></span>)
                     </p>
-                    <hourly-resource-list resources="BillingCtrl.data" show-switch-to-monthly-billing-option="true"></hourly-resource-list>
+                    <hourly-resource-list
+                        data-resources="BillingCtrl.data"
+                        data-switch-to-monthly-billing="BillingCtrl.switchToMonthly(instance)">
+                    </hourly-resource-list>
                 </oui-tile>
             </div>
         </div>

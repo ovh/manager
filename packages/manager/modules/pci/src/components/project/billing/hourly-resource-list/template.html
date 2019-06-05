@@ -3,7 +3,7 @@
                 instance-col-name="'cpbc_hourly_instance_col_name'"
                 instance-col-total="'cpbc_hourly_instance_col_consumption'"
                 instance-col-total-tooltip="'cpbc_hourly_instance_col_consumption_tooltip'"
-                show-switch-to-monthly-billing-option="$ctrl.showSwitchToMonthlyBillingOption"
+                switch-to-monthly-billing="$ctrl.switchToMonthlyBilling({ instance: instance })"
                 show-additional-instance-details="$ctrl.showAdditionalInstanceDetails"></instance-list>
 </oui-collapsible>
 <oui-collapsible class="mx-0" heading="{{ ::'cpbc_snapshot_detail_title' | translate }} ({{ $ctrl.resources.totals.hourly.snapshot.toFixed(2) + ' ' + $ctrl.resources.totals.currencySymbol }})">

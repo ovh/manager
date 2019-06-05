@@ -10,7 +10,6 @@ export default /* @ngInject */ function BillingInstanceListComponentCtrl(
   OvhApiCloudProjectInstance,
   OvhApiMe,
   CucCloudMessage,
-  CucPriceHelper,
 ) {
   const self = this;
   self.windowsStringPattern = '/^win-/';
@@ -118,48 +117,5 @@ export default /* @ngInject */ function BillingInstanceListComponentCtrl(
       .finally(() => {
         self.loaders.instanceList = false;
       });
-  };
-
-  self.prepareMonthlyPaymentActivation = function prepareMonthlyPaymentActivation(instance) {
-    self.instanceToMonthly = instance.instanceId;
-    self.data.instanceToMonthlyPrice = null;
-    self.loaders.monthlyBilling = true;
-
-    CucPriceHelper.getPrices($stateParams.projectId).then((prices) => {
-      const monthlyPrice = prices[instance.planCode && instance.planCode.replace('consumption', 'monthly')];
-      if (!monthlyPrice) {
-        self.endInstanceToMonthlyConversion();
-        return $q.reject({ data: { message: 'No monthly price for this instance' } });
-      }
-      self.data.instanceToMonthlyPrice = monthlyPrice;
-      return $.when();
-    }).catch((err) => {
-      self.instanceToMonthly = null;
-      CucCloudMessage.error([$translate.instant('cpbc_hourly_instance_pass_to_monthly_price_error'), (err.data && err.data.message) || ''].join(' '));
-      return $q.reject(err);
-    }).finally(() => {
-      self.loaders.monthlyBilling = false;
-    });
-  };
-
-  self.confirmMonthlyPaymentActivation = function confirmMonthlyPaymentActivation() {
-    self.loaders.monthlyBilling = true;
-
-    OvhApiCloudProjectInstance.v6().activeMonthlyBilling({
-      serviceName: $stateParams.projectId,
-      instanceId: self.instanceToMonthly,
-    }, {}).$promise.then(() => {
-      // reset loaders and instance to activate
-      self.endInstanceToMonthlyConversion();
-    }).catch((err) => {
-      CucCloudMessage.error([$translate.instant('cpbc_hourly_instance_pass_to_monthly_error'), (err.data && err.data.message) || ''].join(' '));
-      return $q.reject(err);
-    }).finally(() => {
-      self.loaders.monthlyBilling = false;
-    });
-  };
-
-  self.endInstanceToMonthlyConversion = function endInstanceToMonthlyConversion() {
-    self.instanceToMonthly = null;
   };
 }

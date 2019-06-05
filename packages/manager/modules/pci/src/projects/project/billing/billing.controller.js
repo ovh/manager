@@ -50,4 +50,11 @@ export default class CloudProjectBillingConsumptionCurrentCtrl {
   refreshMessages() {
     this.messages = this.messageHandler.getMessages();
   }
+
+  switchToMonthly({ instanceId }) {
+    return this.$state.go('pci.projects.project.billing.monthly', {
+      projectId: this.projectId,
+      instanceId,
+    });
+  }
 }

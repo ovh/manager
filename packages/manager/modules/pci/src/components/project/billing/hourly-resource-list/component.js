@@ -6,7 +6,7 @@ export default {
   controller,
   bindings: {
     resources: '<',
-    showSwitchToMonthlyBillingOption: '<',
+    switchToMonthlyBilling: '&',
     showAdditionalInstanceDetails: '<',
   },
 };

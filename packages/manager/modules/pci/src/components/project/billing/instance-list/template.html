@@ -1,5 +1,4 @@
 <span  data-ng-if="$ctrl.instanceConsumptionDetails.length === 0" data-translate="cpbc_no_consumption_data" class="cloud-billing-resource-no-data"></span>
-
 <div data-ng-if="$ctrl.instanceConsumptionDetails.length > 0" class="instanceList overflow-scroll">
     <div class="oui-datagrid-responsive-container">
         <div class="oui-datagrid-responsive-container__sticky-container">
@@ -37,7 +36,7 @@
                             <td class="oui-datagrid__cell" data-title="{{ :: $ctrl.instanceColTotal | translate }}">
                                 <span data-ng-bind=" :: instanceConsumption.total"></span>
                             </td>
-                            <td data-ng-if="$ctrl.showSwitchToMonthlyBillingOption || $ctrl.showAdditionalInstanceDetails" class="oui-datagrid__cell text-right no-space vertical-middle right-space-p4">
+                            <td data-ng-if="$ctrl.switchToMonthlyBilling || $ctrl.showAdditionalInstanceDetails" class="oui-datagrid__cell text-right no-space vertical-middle right-space-p4">
                                 <span data-ng-if="instanceConsumption.monthlyBilling && instanceConsumption.monthlyBilling.status === 'ok'"
                                         data-translate="cpbc_hourly_instance_monthly_billing_since"
                                         data-translate-values="{ since : (instanceConsumption.monthlyBilling.since | date:'shortDate') }">
@@ -48,48 +47,14 @@
                                 </span>
                                 <span class="opacity6" data-ng-if="!instanceConsumption.monthlyBilling && instanceConsumption.isDeleted" data-translate="cpbc_hourly_instance_deleted"></span>
 
-                                <!-- CONFIRM PASSING TO MONTHLY PAYMENT -->
-                                <div data-ng-show="instanceConsumption.instanceId === $ctrl.instanceToMonthly"
-                                        class="text-right animate-fadeInRight-enter animate-fadeOutLeft-leave full-width cell-confirm">
-
-                                    <button class="btn btn-default"
-                                            type="reset"
-                                            data-ng-click="$ctrl.endInstanceToMonthlyConversion()"
-                                            data-ng-disabled="$ctrl.loaders.monthlyBilling">
-                                        <i class="glyphicon glyphicon-remove right-space-m8"></i>
-                                        <span data-translate="common_cancel"></span>
-                                    </button>
-
-                                    <button class="btn btn-primary"
-                                            data-uib-tooltip="{{ :: 'cpbc_hourly_instance_pass_to_monthly_info' | translate }}"
-                                            type="submit"
-                                            data-ng-click="$ctrl.confirmMonthlyPaymentActivation()"
-                                            data-ng-disabled="$ctrl.loaders.monthlyBilling">
-                                        <i class="fa fa-check right-space-m8"></i>
-                                        <span data-translate="cpbc_hourly_instance_pass_to_monthly_button"
-                                            data-translate-values="{ price: $ctrl.data.instanceToMonthlyPrice.price.text }"></span>
-                                        <spinner data-ng-if="$ctrl.loaders.monthlyBilling">
-                                        </spinner>
-                                    </button>
-
-                                </div>
-
                                 <!-- CONFIRM MONTHLY PAYMENT BUTTON -->
-                                <div data-ng-if="$ctrl.showSwitchToMonthlyBillingOption"
-                                    data-ng-class="{
-                                    'opacity2-leave' : instanceConsumption.instanceId === $ctrl.instanceToMonthly,
-                                    'opacity2-enter' : instanceConsumption.instanceId !== $ctrl.instanceToMonthly
-                                }">
-                                    <button type="button"
-                                            data-uib-tooltip="{{ :: 'cpbc_hourly_instance_pass_to_monthly_info' | translate }}"
-                                            data-ng-if="instanceConsumption.monthlyBilling === null && !instanceConsumption.isDeleted"
-                                            class="btn btn-default"
-                                            data-ng-click="$ctrl.prepareMonthlyPaymentActivation(instanceConsumption)"
-                                            data-ng-disabled="$ctrl.loaders.monthlyBilling"
-                                            write-right-required>
-                                        {{ :: 'cpbc_hourly_instance_pass_to_monthly' | translate }}
-                                    </button>
-                                </div>
+                                <button type="button"
+                                        data-ng-if="$ctrl.switchToMonthlyBilling && instanceConsumption.monthlyBilling === null && !instanceConsumption.isDeleted"
+                                        class="oui-button oui-button_secondary"
+                                        data-ng-click="$ctrl.switchToMonthlyBilling({ instance: instanceConsumption })"
+                                        data-write-right-required>
+                                    <span data-translate="cpbc_hourly_instance_pass_to_monthly"></span>
+                                </button>
                             </td>
                         </tr>
                     </tbody>
