@@ -1,3 +1,12 @@
+# [0.10.0-alpha.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.10.0-alpha.0...@ovh-ux/manager-public-cloud@0.10.0-alpha.1) (2019-06-05)
+
+
+### Bug Fixes
+
+* **pci.projects.sidebar:** improve clipboard display ([#803](https://github.com/ovh-ux/manager/issues/803)) ([0fe0441](https://github.com/ovh-ux/manager/commit/0fe0441))
+
+
+
 # [0.10.0-alpha.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.9.0-alpha.0...@ovh-ux/manager-public-cloud@0.10.0-alpha.0) (2019-05-31)
 
 

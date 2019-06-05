@@ -1,3 +1,20 @@
+# [0.16.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.15.1...@ovh-ux/manager-pci@0.16.0) (2019-06-05)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([42fad80](https://github.com/ovh-ux/manager/commit/42fad80))
+* **pci.projects:** improve project creation ([#782](https://github.com/ovh-ux/manager/issues/782)) ([e32d047](https://github.com/ovh-ux/manager/commit/e32d047))
+* **pci.projects.instance:** display currency according to sub not locale ([#783](https://github.com/ovh-ux/manager/issues/783)) ([89f533e](https://github.com/ovh-ux/manager/commit/89f533e))
+* **pci.projects.sidebar:** improve clipboard display ([#803](https://github.com/ovh-ux/manager/issues/803)) ([0fe0441](https://github.com/ovh-ux/manager/commit/0fe0441))
+
+
+### Features
+
+* **pci.project.billing:** open monthly confirmation in a modal ([#787](https://github.com/ovh-ux/manager/issues/787)) ([f280ba7](https://github.com/ovh-ux/manager/commit/f280ba7))
+
+
+
 ## [0.15.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.15.0...@ovh-ux/manager-pci@0.15.1) (2019-06-05)
 
 
