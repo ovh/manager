@@ -5,8 +5,10 @@
             <oui-skeleton class="mt-2" size="s"></oui-skeleton>
         </div>
         <div class="d-flex" data-ng-if="!$ctrl.isLoading && $ctrl.project">
-            <div class="w-100 text-truncate mr-3">
+            <div class="w-100 mr-3">
+                <div class="w-100 text-truncate">
                 <h2 class="mb-0 d-inline-block" style="font-weight: 400;" data-ng-bind="$ctrl.project.description"></h2>
+                </div>
                 <oui-clipboard model="$ctrl.project.project_id"></oui-clipboard>
             </div>
             <div class="my-auto">
@@ -63,8 +65,10 @@
                 <span class="sr-only" data-translate="cloud_sidebar_public_cloud_project_toggle_close"></span>
             </button>
         </div>
-        <div class="w-100 text-truncate ml-3">
+        <div class="w-100 ml-3">
+            <div class="w-100 text-truncate">
             <h2 class="mb-0 d-inline-block text-white" style="font-weight: 400;" data-ng-bind="$ctrl.project.description"></h2>
+            </div>
             <oui-clipboard model="$ctrl.project.project_id"></oui-clipboard>
         </div>
     </div>
