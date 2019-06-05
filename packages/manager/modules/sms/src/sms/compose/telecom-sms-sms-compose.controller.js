@@ -508,7 +508,7 @@ export default class {
           : this.$translate.instant('sms_sms_compose_receiver');
 
         // partial error message
-        this.TucToast.error(this.$translate.instant('sms_sms_compose_status_invalid_receivers_partial', {
+        this.TucToast.warn(this.$translate.instant('sms_sms_compose_status_invalid_receivers_partial', {
           validReceivers: validReceivers.toString(),
           invalidReceivers: invalidReceivers.toString(),
           receiverLabel,
