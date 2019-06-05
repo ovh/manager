@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-public-cloud",
-  "version": "0.10.0-alpha.0",
+  "version": "0.10.0-alpha.1",
   "private": true,
   "license": "BSD-3-Clause",
   "main": "./src/index.js",
@@ -16,8 +16,8 @@
     "@ovh-ux/manager-cloud-styles": "^0.3.0-alpha.1",
     "@ovh-ux/manager-config": "^0.2.0",
     "@ovh-ux/manager-core": "^5.2.5",
-    "@ovh-ux/manager-navbar": "^0.5.0",
-    "@ovh-ux/manager-pci": "^0.15.0",
+    "@ovh-ux/manager-navbar": "^0.5.1",
+    "@ovh-ux/manager-pci": "^0.16.0",
     "@ovh-ux/manager-telecom-styles": "^2.0.2",
     "@ovh-ux/ng-at-internet": "^4.0.0",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^2.0.0",
