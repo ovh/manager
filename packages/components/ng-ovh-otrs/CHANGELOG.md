@@ -1,3 +1,7 @@
+# [7.1.0](https://github.com/ovh-ux/ng-ovh-otrs/compare/v7.0.2...v7.1.0) (2019-06-05)
+
+
+
 ## [7.0.2](https://github.com/ovh-ux/ng-ovh-otrs/compare/v7.0.1...v7.0.2) (2019-05-20)
 
 
