@@ -201,6 +201,13 @@
                 data-label="{{ 'pci_projects_project_instances_add_script_label' | translate }}"
                 data-help-text="{{ 'pci_projects_project_instances_add_script_help' | translate }}"
                 data-size="xl">
+                <oui-textarea
+                    data-ng-show="$ctrl.showUserData"
+                    data-id="userData"
+                    data-name="userData_value"
+                    data-rows="5"
+                    data-model="$ctrl.instance.userData">
+                </oui-textarea>
                 <oui-button
                     data-ng-if="!$ctrl.showUserData"
                     data-variant="secondary"
@@ -208,13 +215,6 @@
                     data-text="{{ 'pci_projects_project_instances_add_script_add_label' | translate }}"
                     data-on-click="$ctrl.showUserData = true">
                 </oui-button>
-                <oui-textarea
-                    data-ng-if="$ctrl.showUserData"
-                    data-id="userData"
-                    data-name="userData_value"
-                    data-rows="5"
-                    data-model="$ctrl.instance.userData">
-                </oui-textarea>
             </oui-field>
         </div>
 
