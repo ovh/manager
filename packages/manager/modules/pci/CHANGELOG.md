@@ -1,3 +1,12 @@
+## [0.16.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.16.0...@ovh-ux/manager-pci@0.16.1) (2019-06-05)
+
+
+### Bug Fixes
+
+* **pci.project.kubernetes.details.nodes:** remove beta sentence ([#810](https://github.com/ovh-ux/manager/issues/810)) ([0e4070f](https://github.com/ovh-ux/manager/commit/0e4070f))
+
+
+
 # [0.16.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.15.1...@ovh-ux/manager-pci@0.16.0) (2019-06-05)
 
 
