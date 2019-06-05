@@ -4,6 +4,8 @@ import 'angular-translate';
 
 import snapshotTemplate from './snapshot.html';
 
+import './snapshot.less';
+
 const moduleName = 'ovhManagerPciStoragesBlocksHelp';
 
 angular
