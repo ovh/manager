@@ -1,3 +1,12 @@
+## [6.2.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-sms@6.2.2...@ovh-ux/manager-sms@6.2.3) (2019-06-05)
+
+
+### Bug Fixes
+
+* **sms.compose.sender:** fix regex to detect alphanum number ([#745](https://github.com/ovh-ux/manager/issues/745)) ([e0e6bb8](https://github.com/ovh-ux/manager/commit/e0e6bb8))
+
+
+
 ## [6.2.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-sms@6.2.1...@ovh-ux/manager-sms@6.2.2) (2019-05-23)
 
 

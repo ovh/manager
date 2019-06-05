@@ -1,3 +1,29 @@
+## [0.15.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.15.0...@ovh-ux/manager-pci@0.15.1) (2019-06-05)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([6099455](https://github.com/ovh-ux/manager/commit/6099455))
+* **i18n:** add missing translations ([31297ad](https://github.com/ovh-ux/manager/commit/31297ad))
+* **i18n:** add missing translations ([0e8e7ba](https://github.com/ovh-ux/manager/commit/0e8e7ba))
+* **i18n:** add missing translations ([4ccf807](https://github.com/ovh-ux/manager/commit/4ccf807))
+* **i18n:** add missing translations ([37f1329](https://github.com/ovh-ux/manager/commit/37f1329))
+* **i18n:** add missing translations ([#800](https://github.com/ovh-ux/manager/issues/800)) ([bc9adac](https://github.com/ovh-ux/manager/commit/bc9adac))
+* **pci:** disable breadcrumb on modals ([a86281e](https://github.com/ovh-ux/manager/commit/a86281e))
+* **pci.components.flavors:** add missing translation ([#790](https://github.com/ovh-ux/manager/issues/790)) ([20571e8](https://github.com/ovh-ux/manager/commit/20571e8))
+* **pci.instances:** avoid menu from being cropped ([#712](https://github.com/ovh-ux/manager/issues/712)) ([50214f8](https://github.com/ovh-ux/manager/commit/50214f8))
+* **pci.project.user:** update onboarding component ([#793](https://github.com/ovh-ux/manager/issues/793)) ([ab7ae53](https://github.com/ovh-ux/manager/commit/ab7ae53))
+* **pci.projects:** allow instances to be flex ([#779](https://github.com/ovh-ux/manager/issues/779)) ([c8a29fc](https://github.com/ovh-ux/manager/commit/c8a29fc))
+* **pci.projects.failover-ips:** allow to order ipfo from onboarding ([#788](https://github.com/ovh-ux/manager/issues/788)) ([1994c05](https://github.com/ovh-ux/manager/commit/1994c05))
+* **pci.projects.failover-ips:** display message on ipfo order ([#796](https://github.com/ovh-ux/manager/issues/796)) ([235c861](https://github.com/ovh-ux/manager/commit/235c861))
+* **pci.projects.instances.new:** display missing input in oui-field ([#794](https://github.com/ovh-ux/manager/issues/794)) ([a7063e3](https://github.com/ovh-ux/manager/commit/a7063e3))
+* **pci.projects.quota:** display button to increase quota ([#799](https://github.com/ovh-ux/manager/issues/799)) ([b9fb237](https://github.com/ovh-ux/manager/commit/b9fb237))
+* **pci.projects.sidebar:** add external icon for horizon ([#802](https://github.com/ovh-ux/manager/issues/802)) ([87d97a3](https://github.com/ovh-ux/manager/commit/87d97a3))
+* **pci.sidebar:** remove unecessary aria attributes ([#795](https://github.com/ovh-ux/manager/issues/795)) ([91a0026](https://github.com/ovh-ux/manager/commit/91a0026))
+* **projects.storages.blocks.snapshot:** help popover size ([#798](https://github.com/ovh-ux/manager/issues/798)) ([dcb417c](https://github.com/ovh-ux/manager/commit/dcb417c))
+
+
+
 # [0.15.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.14.4...@ovh-ux/manager-pci@0.15.0) (2019-05-31)
 
 
