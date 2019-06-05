@@ -43,7 +43,7 @@
                             </div>
                             <div class="d-flex justify-content-between">
                                 <span data-translate="pci_project_flavors_spec_bandwidth"></span>
-                                <span class="ml-auto" data-ng-bind="flavor.outboundBandwidth + 'Mbps'" data-ng-if="flavor.outboundBandwidth"></span>
+                                <span class="ml-auto" data-translate="pci_project_flavors_spec_bandwidth_detail" data-translate-values="{ bandwidth : flavor.outboundBandwidth }" data-ng-if="flavor.outboundBandwidth"></span>
                                 <span class="ml-auto" data-ng-if="!flavor.outboundBandwidth">-</span>
                             </div>
                         </oui-select-picker-section>
