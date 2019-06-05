@@ -24,7 +24,7 @@
                         data-values="[flavor]"
                         data-variant="light"
                         data-on-change="$ctrl.onFlavorChange(modelValue)"
-                        data-disabled="$ctrl.region && !$ctrl.region.hasEnoughQuotaForFlavor(flavor)"
+                        data-disabled="($ctrl.region && !$ctrl.region.hasEnoughQuotaForFlavor(flavor)) || !$ctrl.hasEnoughDisk(flavor)"
                         data-required>
                         <oui-select-picker-section>
                             <div class="d-flex justify-content-between">
@@ -66,6 +66,9 @@
                                data-ui-sref="pci.projects.project.quota"
                                data-translate="pci_project_flavors_quota">
                             </a>
+                        </oui-select-picker-section>
+                        <oui-select-picker-section data-ng-if="!$ctrl.hasEnoughDisk(flavor)">
+                            <span data-translate="pci_project_flavors_disk_size"></span>
                         </oui-select-picker-section>
                     </oui-select-picker>
                 </div>

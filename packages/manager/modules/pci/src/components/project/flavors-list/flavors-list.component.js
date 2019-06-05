@@ -8,7 +8,7 @@ export default {
     selectedFlavor: '=?',
     displaySelectedFlavor: '<',
     defaultFlavorId: '<?',
-    imageType: '@?',
+    image: '<?',
     onChange: '&?',
     region: '<?',
     serviceName: '@',

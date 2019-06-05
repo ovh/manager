@@ -12,6 +12,25 @@ export default /* @ngInject */ ($stateProvider) => {
         addFailoverIp: /* @ngInject */ ($state, projectId) => () => $state.go('pci.projects.project.failover-ips.imports', {
           projectId,
         }),
+        buyFailoverIp: /* @ngInject */ ($state, projectId) => () => $state.go('pci.projects.project.failover-ips.onboarding.order', {
+          projectId,
+        }),
+        goToFailoverIpsOnboarding: /* @ngInject */($state, CucCloudMessage, projectId) => (message = false, type = 'success') => {
+          const reload = message && type === 'success';
+
+          const promise = $state.go('pci.projects.project.failover-ips.onboarding', {
+            projectId,
+          },
+          {
+            reload,
+          });
+
+          if (message) {
+            promise.then(() => CucCloudMessage[type](message, 'pci.projects.project.failover-ips.onboarding'));
+          }
+
+          return promise;
+        },
       },
       translations: {
         value: ['.'],

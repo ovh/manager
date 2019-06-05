@@ -14,6 +14,7 @@ export default /* @ngInject */ ($stateProvider) => {
       resolve: {
         goBack: /* @ngInject */ goToKubernetesNodes => goToKubernetesNodes,
         nodeId: /* @ngInject */ $stateParams => $stateParams.nodeId,
+        breadcrumb: () => null,
       },
     });
 };

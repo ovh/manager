@@ -12,6 +12,7 @@ export default /* @ngInject */($stateProvider) => {
     resolve: {
       goBack: /* @ngInject */ goToPrivateNetworks => goToPrivateNetworks,
       networkId: /* @ngInject */ $transition$ => $transition$.params().networkId,
+      breadcrumb: () => null,
     },
     layout: 'modal',
   });

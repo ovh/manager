@@ -11,6 +11,7 @@
   "pci_project_flavors_category_definition_accelerated": "Les instances de calcul accéléré (GPU, FPGA) sont jusqu'à 1 000 fois plus rapides qu'un CPU sur certaines applications (rendering, transcodage vidéo, bio-informatique, Big Data, deep learning, etc.)",
   "pci_project_flavors_category_definition_vps": "Les instances à ressources partagées (Sandbox) sont adaptées aux tests, recettes et environnements de développement. Leurs performances peuvent légèrement varier au cours du temps.",
   "pci_project_flavors_category_definition_none": "Pas de modèle disponible pour cette catégorie",
+  "pci_project_flavors_disk_size": "L'espace disque est inférieur à celui du modèle actuel",
 
   "pci_project_flavors_spec_ram": "Mémoire vive :",
   "pci_project_flavors_spec_core": "Processeur :",

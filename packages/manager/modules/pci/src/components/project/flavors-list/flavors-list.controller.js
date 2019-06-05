@@ -27,8 +27,7 @@ export default class FlavorsListController {
         const flavorGroups = this.PciProjectFlavors.constructor.mapByFlavorType(
           filter(flavors, flavor => flavor.isAvailable()
             && flavor.hasSsdDisk()
-            && !flavor.isFlex()
-            && (flavor.hasOsType(this.imageType) || !this.imageType)),
+            && (!this.image || flavor.hasOsType(this.image.type))),
         );
         this.flavors = this.PciProjectFlavors.constructor.groupByCategory(flavorGroups);
         this.selectedCategory = get(first(this.flavors), 'category');
@@ -60,5 +59,17 @@ export default class FlavorsListController {
     if (this.onChange) {
       this.onChange({ flavor: this.selectedFlavor });
     }
+  }
+
+  hasEnoughDisk(flavor) {
+    if (this.defaultFlavorId) {
+      return flavor.disk >= this.flavor.disk;
+    }
+
+    if (this.image) {
+      return flavor.disk >= this.image.minDisk;
+    }
+
+    return true;
   }
 }

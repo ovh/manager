@@ -32,7 +32,7 @@
  "kube_nodes_flavor": "Instanz-Typ",
  "kube_nodes_flavor_error": "Beim Laden des Instanz-Typs ist ein Fehler aufgetreten.",
  "kube_nodes_project_error": "Beim Laden des zugehörigen Projekts ist ein Fehler aufgetreten.",
- "kube_nodes_description_project_1": "Ihr Kubernetes-Cluster verwendet Nodes, um Ihre Container und Dienste zu hosten. Alle Ihre Nodes werden in dem Public Cloud Projekt <a class=\"oui-link\" href=\"{{ url }}\">{{ description }}</a> gestartet (dies werden Sie in der Endversion ändern können).",
+ "kube_nodes_description_project_1": "Ihr Kubernetes-Cluster verwendet Nodes, um Ihre Container und Dienste zu hosten. Alle Ihre Nodes werden in dem Public Cloud Projekt {{ description }} gestartet (dies werden Sie in der Endversion ändern können).",
  "kube_nodes_description_project_2": "Diese Instanzen werden standardmäßig über die stündliche Abrechnung berechnet. In Ihrem Public Cloud Projekt finden Sie weitere Abrechnungsinformationen und können Ihre Instanzen auf monatliche Abrechnung umstellen.",
  "kube_nodes_quota_description": "Um den Verbrauch an Cloud-Ressourcen zu begrenzen, wurden diese für Ihr Projekt limitiert.",
  "kube_nodes_quota_more": "Wenn Sie mehr Ressourcen benötigen, können Sie diese bei unserem Team anfordern, indem Sie unten auf den Button klicken.",

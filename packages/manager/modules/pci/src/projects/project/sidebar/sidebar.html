@@ -23,7 +23,7 @@
                 <ul class="oui-sidebar-list">
                     <li class="oui-sidebar-list__item"
                         data-ng-repeat="item in $ctrl.MENU track by item.translation">
-                        <span class="oui-sidebar-link" data-translate="{{:: item.translation }}" aria-expanded="true" aria-haspopup="true"></span>
+                        <span class="oui-sidebar-link" data-translate="{{:: item.translation }}"></span>
                         <div class="oui-sidebar-menu oui-sidebar-menu_fixed menu-sub-items">
                             <ul class="oui-sidebar-list">
                                 <li class="oui-sidebar-list__item"
@@ -38,11 +38,12 @@
                                     </a>
                                     <a
                                         data-ng-if="subitem.options.url"
-                                        class="oui-sidebar-link"
+                                        class="oui-sidebar-link oui-link_icon d-flex align-items-center"
                                         data-ng-href="{{:: subitem.options.url[$ctrl.REGION] }}"
                                         data-ng-click="$ctrl.onMenuItemClick(subitem)"
                                         target="{{:: subitem.options.target }}">
                                         <span class="item-title" data-translate="{{:: subitem.translation }}"></span>
+                                        <span class="oui-icon oui-icon-external_link" aria-hidden="true"></span>
                                     </a>
                                 </li>
                             </ul>

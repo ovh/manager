@@ -159,13 +159,26 @@
                     data-translate-values="{
                         num: $ctrl.quota.getMaxNumberOfInstances($ctrl.flavor),
                         flavor: $ctrl.flavor.name,
-                        region: $ctrl.model.region.microRegion.text,
+                        region: $ctrl.model.datacenter.microRegion.text,
                     }"></span>
                 <a data-ng-href="{{:: $ctrl.quotaLink }}"
                     data-translate="pci_projects_project_instances_add_numInstances_quotaLink_label"></a>
             </div>
-
         </oui-field>
+
+        <div
+            class="d-flex align-items-center"
+            data-ng-if="$ctrl.model.flavorGroup.hasFlexOption()">
+            <oui-checkbox
+                class="position-relative"
+                id="instance-flex"
+                name="instance-flex"
+                data-model="$ctrl.model.isInstanceFlex"
+                data-on-change="$ctrl.onFlexChange(modelValue)">
+                <span data-translate="pci_projects_project_instances_add_instance_flex"></span>
+            </oui-checkbox>
+            <button type="button" class="oui-popover-button mb-1" oui-popover="{{:: 'pci_projects_project_instances_add_instance_flex_help' | translate }}"></button>
+        </div>
 
         <oui-field
             data-label="{{ :: 'pci_projects_project_instances_add_name_label' | translate }}"
@@ -188,6 +201,13 @@
                 data-label="{{ 'pci_projects_project_instances_add_script_label' | translate }}"
                 data-help-text="{{ 'pci_projects_project_instances_add_script_help' | translate }}"
                 data-size="xl">
+                <oui-textarea
+                    data-ng-show="$ctrl.showUserData"
+                    data-id="userData"
+                    data-name="userData_value"
+                    data-rows="5"
+                    data-model="$ctrl.instance.userData">
+                </oui-textarea>
                 <oui-button
                     data-ng-if="!$ctrl.showUserData"
                     data-variant="secondary"
@@ -195,13 +215,6 @@
                     data-text="{{ 'pci_projects_project_instances_add_script_add_label' | translate }}"
                     data-on-click="$ctrl.showUserData = true">
                 </oui-button>
-                <oui-textarea
-                    data-ng-if="$ctrl.showUserData"
-                    data-id="userData"
-                    data-name="userData_value"
-                    data-rows="5"
-                    data-model="$ctrl.instance.userData">
-                </oui-textarea>
             </oui-field>
         </div>
 

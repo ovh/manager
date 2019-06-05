@@ -10,6 +10,7 @@
  "pci_project_flavors_category_definition_accelerated": "Instanzen mit beschleunigter Rechenleistung (GPU, FPGA) sind bis zu 1000 mal schneller als herkömmliche CPU bei bestimmten Anwendungen (Rendering, Video-Transkodierung, Bioinformatik, Big Data, Deep Learning etc.).",
  "pci_project_flavors_category_definition_vps": "Instanzen mit geteilten Ressourcen (Sandbox) sind ideal für Tests, Abnahme und Entwicklungsumgebungen. Die Performance kann im Laufe der Zeit leicht variieren.",
  "pci_project_flavors_category_definition_none": "Es sind keine Modelle in dieser Kategorie verfügbar.",
+ "pci_project_flavors_disk_size": "Der Speicherplatz ist geringer als der des aktuellen Modells.",
  "pci_project_flavors_spec_ram": "Arbeitsspeicher:",
  "pci_project_flavors_spec_core": "Prozessor:",
  "pci_project_flavors_spec_core_details": "{{vcores}} vCores ({{frequency}} GHz)",

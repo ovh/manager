@@ -1,5 +1,4 @@
 import filter from 'lodash/filter';
-import find from 'lodash/find';
 import map from 'lodash/map';
 
 export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
@@ -26,21 +25,6 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
               id,
             }).$promise))),
 
-          instances: /* @ngInject */ (
-            OvhApiCloudProject,
-            projectId,
-          ) => OvhApiCloudProject
-            .Instance()
-            .v6()
-            .query({
-              serviceName: projectId,
-            })
-            .$promise
-            .then(instances => filter(
-              instances,
-              ({ ipAddresses }) => find(ipAddresses, { type: 'public' }),
-            )),
-
           goBack: /* @ngInject */ goToFailoverIps => goToFailoverIps,
         },
 
@@ -63,18 +47,6 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
               ovhSubsidiary: 'US',
             }).$promise
               .then(({ plans }) => filter(plans, offer => /failover/.test(offer.planCode) && /USA/.test(offer.invoiceName))),
-
-
-          instances: /* @ngInject */ (
-            OvhApiCloudProject,
-            projectId,
-          ) => OvhApiCloudProject
-            .Instance()
-            .v6()
-            .query({
-              serviceName: projectId,
-            })
-            .$promise,
 
           goBack: /* @ngInject */ goToFailoverIps => goToFailoverIps,
         },
