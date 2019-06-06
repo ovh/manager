@@ -102,7 +102,8 @@ export default /* @ngInject */ ($stateProvider) => {
         project: /* @ngInject */ ($transition$, PciProjectNewService) => {
           if ($transition$.params().projectId) {
             return PciProjectNewService
-              .getProject($transition$.params().projectId);
+              .getProject($transition$.params().projectId)
+              .catch(() => null);
           }
           return null;
         },
