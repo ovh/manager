@@ -16,6 +16,7 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       resolve: {
         goBack: /* @ngInject */  goBackToList => goBackToList,
+        goToList: /* @ngInject */  goBackToList => goBackToList,
         breadcrumb: /* @ngInject */ $translate => $translate.instant('private_registry_generate_credentials'),
         getRegistry: /* @ngInject */ (
           projectId,

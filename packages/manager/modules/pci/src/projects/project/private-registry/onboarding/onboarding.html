@@ -4,11 +4,10 @@
     <strong data-translate="private_registry_onboarding_content2"></strong>
     <p data-translate="private_registry_onboarding_content3"></p>
 
-    <p data-translate="private_registry_beta_warning"></p>
-
     <cui-message-container data-messages="$ctrl.messages" class="mb-2 mt-2"></cui-message-container>
 
     <div data-ng-if="!$ctrl.registryId">
+        <p data-translate="private_registry_beta_warning"></p>
         <form name="form">
             <oui-checkbox data-model="$ctrl.agreements" data-name="agreements" data-required>
                 <span data-translate="private_registry_accept"></span>

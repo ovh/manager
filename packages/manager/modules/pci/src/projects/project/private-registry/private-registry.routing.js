@@ -1,3 +1,5 @@
+import { BETA_CONTRACT_ID } from './private-registry.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
     .state('pci.projects.project.private-registry', {
@@ -52,7 +54,7 @@ export default /* @ngInject */ ($stateProvider) => {
         ) => () => $state.go('pci.projects.project.private-registry', {
           projectId,
         }),
-        contractInfo: /* @ngInject */ pciPrivateRegistryService => pciPrivateRegistryService.getContractInfo('9830912'),
+        contractInfo: /* @ngInject */ pciPrivateRegistryService => pciPrivateRegistryService.getContractInfo(BETA_CONTRACT_ID),
 
         breadcrumb: /* @ngInject */ $translate => $translate.instant('private_registry_title'),
       },

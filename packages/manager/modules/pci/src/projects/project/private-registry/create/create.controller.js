@@ -1,5 +1,5 @@
 import get from 'lodash/get';
-import { REGION, CONTRACTID } from '../private-registry.constants';
+import { REGION } from '../private-registry.constants';
 
 export default class {
   /* @ngInject */
@@ -9,7 +9,6 @@ export default class {
     this.privateRegistryService = pciPrivateRegistryService;
     this.isLoading = false;
     this.REGION = REGION;
-    this.CONTRACTID = CONTRACTID;
     this.registry = {};
     this.showAcceptOption = false;
   }
@@ -23,7 +22,7 @@ export default class {
   createRegistry() {
     this.isLoading = true;
     this.registry.region = this.REGION; // only GRA7 supported as of now
-    return this.privateRegistryService.acceptContract(this.CONTRACTID)
+    return this.privateRegistryService.acceptContract(this.contractInfo.id)
       .then(() => this.privateRegistryService.createRegistry(this.projectId, this.registry)
         .then(res => this.goBack(
           this.$translate.instant('private_registry_onboarding_success', { registryName: this.registry.name }),

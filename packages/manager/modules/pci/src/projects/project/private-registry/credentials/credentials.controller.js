@@ -52,6 +52,6 @@ export default class PrivateRegistryDeleteCtrl {
 
   goToHarborUI() {
     this.$window.open(this.harborURL, '_blank');
-    this.goBack();
+    this.goToList('', 'success');
   }
 }

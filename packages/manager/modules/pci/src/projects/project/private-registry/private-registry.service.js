@@ -1,3 +1,6 @@
+import head from 'lodash/head';
+import assign from 'lodash/assign';
+
 export default class pciPrivateRegistryService {
   /* @ngInject */
   constructor(
@@ -28,6 +31,7 @@ export default class pciPrivateRegistryService {
 
   getRegistryList(projectId, clearCache = false) {
     if (clearCache) {
+      this.OvhApiPrivateRegistry.resetCache();
       this.OvhApiPrivateRegistry.resetQueryCache();
     }
     return this.OvhApiPrivateRegistry.query({
@@ -58,11 +62,14 @@ export default class pciPrivateRegistryService {
   }
 
   getContractInfo(contractId) {
-    return this.User.Agreements().v6().contract({
-      id: contractId,
-    })
-      .$promise
-      .then(contract => contract);
+    return this.User.Agreements().v6().query({}, {
+      contractId,
+    }).$promise.then(ids => this.User.Agreements().v6().contract({
+      id: head(ids),
+    }).$promise.then((contract) => {
+      assign(contract, { id: head(ids) });
+      return contract;
+    }));
   }
 
   acceptContract(contractId) {

@@ -8,6 +8,7 @@ const component = {
     goBack: '<',
     getRegistry: '<',
     projectId: '<',
+    goToList: '<',
   },
 };
 
