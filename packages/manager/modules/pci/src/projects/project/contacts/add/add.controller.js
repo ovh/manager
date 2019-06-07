@@ -17,9 +17,15 @@ export default class CloudProjectBillingRightsAddCtrl {
     this.CucCloudMessage = CucCloudMessage;
     this.OvhApiCloud = OvhApiCloud;
 
-    this.right = {
+    this.availableRights = [{
       type: 'readOnly',
-    };
+      label: $translate.instant('cpb_rights_table_rights_value_readOnly'),
+    }, {
+      type: 'readWrite',
+      label: $translate.instant('cpb_rights_table_rights_value_readWrite'),
+    }];
+
+    [this.right] = this.availableRights;
   }
 
   validateAddRight() {
