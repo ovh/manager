@@ -22,5 +22,5 @@
  "pci_projects_project_instances_backup_add_error_save": "Se ha producido un error al añadir la instancia {{ instance }}: {{ message }}.",
  "pci_projects_project_instances_backup_add_error_multiple_save": "Se ha producido un error al añadir las instancias: {{ message }}.",
  "pci_projects_project_instances_backup_add_flex": "Instancia flexible",
- "pci_projects_project_instances_backup_add_flex_help": "La opción Flex fuerza un almacenamiento de 50 GB. Así podrá realizar snapshots más rápidos y reducir el tamaño posteriormente."
+ "pci_projects_project_instances_backup_add_flex_help": "Las instancias flexibles fuerzan un almacenamiento de 50 GB. Así podrá realizar snapshots más rápidos y reducir el tamaño posteriormente."
 }
