@@ -12,7 +12,50 @@
             data-editable="!$ctrl.loaders.isSubmitting"
             data-valid="$ctrl.isVlanAvailable($ctrl.configuration.vlanId)"
             name="private_network_add_configuration">
-            <div class="d-flex flex-wrap flex-md-nowrap align-items-center">
+
+            <oui-checkbox data-model="$ctrl.configureVlanId" data-disabled="$ctrl.mandatoryVlanId" data-on-change="$ctrl.setVlanId(modelValue)">
+                <span data-translate="pci_projects_project_network_private_create_configure_choose_vlan"></span>
+            </oui-checkbox>
+
+            <oui-field
+                data-ng-if="$ctrl.configureVlanId"
+                aria-describedby="vlanTakenError"
+                data-label="{{:: 'pci_projects_project_network_private_create_configure_vlan' | translate }}"
+                data-help-text="{{:: '(' + ('pci_projects_project_network_private_create_configure_vlan_limits' | translate) + ')' }}"
+                data-ng-class="{
+                    'oui-field_error': !$ctrl.isVlanAvailable($ctrl.configuration.vlanId)
+                }">
+                <oui-numeric
+                    name="vlanId"
+                    data-min="::$ctrl.VLAN_ID.MIN"
+                    data-max=":: $ctrl.VLAN_ID.MAX"
+                    data-model="$ctrl.configuration.vlanId"
+                    data-on-change="$ctrl.regenerateNetworkAddress(modelValue)">
+                </oui-numeric>
+                <div
+                    class="oui-field__error"
+                    data-ng-if="!$ctrl.isVlanAvailable($ctrl.configuration.vlanId)"
+                    id="vlanTakenError">
+                    <span role="alert">
+                        <span class="oui-icon oui-icon-error" aria-hidden="true"></span>
+                        <span data-translate="pci_projects_project_network_private_create_configure_vlan_taken"></span>
+                    </span>
+                </div>
+            </oui-field>
+
+            <oui-field
+                data-label="{{:: 'pci_projects_project_network_private_create_configure_dhcp' | translate }}">
+                <oui-radio-toggle-group data-model="$ctrl.configuration.dhcp" name="dhcp">
+                    <oui-radio data-value="true">
+                        <span data-translate="pci_projects_project_network_private_create_configure_dhcp_active"></span>
+                    </oui-radio>
+                    <oui-radio data-value="false">
+                        <span data-translate="pci_projects_project_network_private_create_configure_dhcp_inactive"></span>
+                    </oui-radio>
+                </oui-radio-toggle-group>
+            </oui-field>
+
+            <div class="d-flex flex-wrap flex-md-nowrap align-items-center" data-ng-if="$ctrl.configuration.dhcp">
                 <oui-field
                     data-label="{{:: 'pci_projects_project_network_private_create_configure_address' | translate }}"
                     class="mr-2">
@@ -42,43 +85,6 @@
                     oui-popover-placement="right">
                 </button>
             </div>
-            <oui-field
-                    data-label="{{:: 'pci_projects_project_network_private_create_configure_dhcp' | translate }}">
-                <oui-radio-toggle-group data-model="$ctrl.configuration.dhcp" name="dhcp">
-                    <oui-radio data-value="true">
-                        <span data-translate="pci_projects_project_network_private_create_configure_dhcp_active"></span>
-                    </oui-radio>
-                    <oui-radio data-value="false">
-                        <span data-translate="pci_projects_project_network_private_create_configure_dhcp_inactive"></span>
-                    </oui-radio>
-                </oui-radio-toggle-group>
-            </oui-field>
-
-            <oui-checkbox data-model="$ctrl.configureVlanId" data-disabled="$ctrl.mandatoryVlanId" data-on-change="$ctrl.setVlanId(modelValue)">
-                <span data-translate="pci_projects_project_network_private_create_configure_choose_vlan"></span>
-            </oui-checkbox>
-
-            <oui-field
-                data-ng-if="$ctrl.configureVlanId"
-                data-label="{{:: 'pci_projects_project_network_private_create_configure_vlan' | translate }}"
-                data-help-text="{{:: '(' + ('pci_projects_project_network_private_create_configure_vlan_limits' | translate) + ')' }}"
-                data-ng-class="{
-                    'oui-field_error': !$ctrl.isVlanAvailable($ctrl.configuration.vlanId)
-                }">
-                <oui-numeric
-                    name="vlanId"
-                    data-min="::$ctrl.VLAN_ID.MIN"
-                    data-max=":: $ctrl.VLAN_ID.MAX"
-                    data-model="$ctrl.configuration.vlanId"
-                    data-on-change="$ctrl.regenerateNetworkAddress(modelValue)">
-                </oui-numeric>
-                <div class="oui-field__error" data-ng-if="!$ctrl.isVlanAvailable($ctrl.configuration.vlanId)">
-                    <span role="alert">
-                        <span class="oui-icon oui-icon-error" aria-hidden="true"></span>
-                        <span data-translate="pci_projects_project_network_private_create_configure_vlan_taken"></span>
-                    </span>
-                </div>
-            </oui-field>
         </oui-step-form>
         <oui-step-form
             data-header="{{:: 'pci_projects_project_network_private_create_localisation' | translate }}"
@@ -93,7 +99,9 @@
                                       data-on-change="$ctrl.selectRegion(modelValue, subnet)">
                             <span data-ng-bind="subnet.displayedRegion"></span>
                         </oui-checkbox>
-                        <div class="oui-select-picker__value-container oui-select-picker__section">
+                        <div
+                            class="oui-select-picker__value-container oui-select-picker__section"
+                            data-ng-if="$ctrl.configuration.dhcp">
                             <oui-field
                                 data-label="{{:: 'pci_projects_project_network_private_create_localisation_range' | translate }}">
                                 <div class="d-flex flex-wrap flex-xl-nowrap justify-content-around align-items-center">
