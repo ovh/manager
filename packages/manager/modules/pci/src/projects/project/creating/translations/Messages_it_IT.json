@@ -1,16 +1,16 @@
 {
  "pci_projects_project_creating_main_title": "La tua avventura Public Cloud ha inizio!",
  "pci_projects_project_creating_secondary_title": "Creazione del progetto in corso...",
- "pci_projects_project_creating_explain1": "Per completare la creazione del progetto, si prega di effettuare il pagamento del modulo d'ordine  <a href=\"{{ href }}\">{{ orderId }}</a>.",
+ "pci_projects_project_creating_explain1": "Per completare la creazione del progetto è necessario effettuare il pagamento del modulo d'ordine  <a href=\"{{ href }}\">{{ orderId }}</a>.",
  "pci_projects_project_creating_explain2": "Se visualizzi ancora questa pagina qualche minuto dopo aver effettuato il pagamento, contatta il <a href=\"{{ href }}\">supporto</a>.",
  "pci_projects_project_creating_not_paid_title": "La tua avventura Public Cloud ha inizio!",
- "pci_projects_project_creating_not_paid": "Sembra che tu abbia un modulo d'ordine per {{importo}} di crediti in sospeso, ti invitiamo a liquidarlo cliccando su \"Finalizza il mio ordine\" per iniziare a creare il tuo progetto.",
- "pci_projects_project_creating_not_paid_explain1": "Cliccando su \"Finalizza il mio ordine\" verrai reindirizzato ad un modulo d'ordine che dovrai pagare con il metodo di pagamento che hai scelto.",
- "pci_projects_project_creating_not_paid_explain2": "Per trovare la fattura, vai a \"Il mio account\", poi <a href=\"{{ href }}\">\" I miei ordini \"</a>.",
+ "pci_projects_project_creating_not_paid": "Sembra che tu abbia un buono d'ordine di {{importo}} crediti in sospeso. Clicca su \"Completa il tuo ordine\" per eseguire il saldo e iniziare a creare il tuo progetto.",
+ "pci_projects_project_creating_not_paid_explain1": "Cliccando su \"Completa il tuo ordine\" verrai reindirizzato a un buono d'ordine da saldare con il metodo di pagamento scelto.",
+ "pci_projects_project_creating_not_paid_explain2": "Per visualizzare la fattura, clicca su \"Il mio account\" > <a href=\"{{ href }}\">\"I tuoi ordini\"</a>.",
  "pci_projects_project_creating_finalize": "Completa il tuo ordine",
- "pci_projects_project_creating_finalize_title": "{{ orderId }}: finalizzare il mio ordine",
- "pci_projects_project_creating_cancel": "Paga il tuo ordine",
- "pci_projects_project_creating_cancel_title": "{{ orderId }} : annulla il mio ordine",
+ "pci_projects_project_creating_finalize_title": "{{ orderId }}: completare l’ordine",
+ "pci_projects_project_creating_cancel": "Annulla il tuo ordine",
+ "pci_projects_project_creating_cancel_title": "{{ orderId }}: annullare l’ordine",
  "pci_projects_project_creating_welcome": "Benvenuto nel Public Cloud OVH",
  "pci_projects_project_creating_almost_done": "Hai quasi finito!"
 }

@@ -20,5 +20,7 @@
  "pci_projects_project_instances_backup_add_success_message": "A instância {{ instance }} foi adicionada.",
  "pci_projects_project_instances_backup_add_success_multiple_message": "As instâncias foram adicionadas.",
  "pci_projects_project_instances_backup_add_error_save": "Ocorreu um erro ao adicionar a instância {{ instance }}: {{ message }}",
- "pci_projects_project_instances_backup_add_error_multiple_save": "Ocorreu um erro ao adicionar as instâncias: {{message}}"
+ "pci_projects_project_instances_backup_add_error_multiple_save": "Ocorreu um erro ao adicionar as instâncias: {{message}}",
+ "pci_projects_project_instances_backup_add_flex": "Instância flexível",
+ "pci_projects_project_instances_backup_add_flex_help": "A opção Flex força um armazenamento de 50 GB, oferecendo snapshots mais rápidas e a possibilidade de efetuar um downgrade posteriormente."
 }
