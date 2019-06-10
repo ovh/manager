@@ -1,3 +1,12 @@
+# [8.2.0](https://github.com/ovh-ux/ng-ovh-sidebar-menu/compare/v8.1.0...v8.2.0) (2019-06-10)
+
+
+### Features
+
+* **provider:** make it possible to look for item by specific criteria ([#58](https://github.com/ovh-ux/ng-ovh-sidebar-menu/issues/58)) ([1d33c31](https://github.com/ovh-ux/ng-ovh-sidebar-menu/commit/1d33c31))
+
+
+
 # [8.1.0](https://github.com/ovh-ux/ng-ovh-sidebar-menu/compare/v8.0.1...v8.1.0) (2019-05-22)
 
 
