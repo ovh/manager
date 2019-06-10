@@ -1863,6 +1863,11 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-translate-async-loader/-/ng-translate-async-loader-2.0.0.tgz#df0d155c6c2e38b53704ff4ca9b419f0695a88bf"
   integrity sha512-CmAT0/rTYN/Niwtuo1pcY+y46nqGCR2dO6+4twqGiRkqu/ksgklZ4weaqF9Xgl/KYLv+zcCmxZf0J1gfXs7kag==
 
+"@ovh-ux/ng-uirouter-breadcrumb@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-uirouter-breadcrumb/-/ng-uirouter-breadcrumb-0.0.1.tgz#1bcad303871e3af3bf3129613124c1d4323db872"
+  integrity sha512-aWnZxSYcJ0rjrT1SXp2JxTtTJqmr8gsDa0LbmQRhMWXlmEiCvVo0CS95JXkAlvfVCHFNLVbNoiDYEMtZ+sJ+Cg==
+
 "@ovh-ux/ng-uirouter-title@^2.0.0-beta.3":
   version "2.0.0-beta.3"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-uirouter-title/-/ng-uirouter-title-2.0.0-beta.3.tgz#ac1b4e2fc55e34e8a0d9643f85d65912d32bf4d2"
