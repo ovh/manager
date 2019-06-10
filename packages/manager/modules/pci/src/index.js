@@ -3,7 +3,7 @@ import 'angular-animate';
 import '@ovh-ux/manager-core';
 import '@uirouter/angularjs';
 import '@ovh-ux/ng-uirouter-breadcrumb';
-import '@ovh-ux/ng-uirouter-layout';
+import '@ovh-ux/ng-ui-router-layout';
 import 'oclazyload';
 import '@ovh-ux/ng-at-internet';
 import '@ovh-ux/ng-ovh-cloud-universe-components';
