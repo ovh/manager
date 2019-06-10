@@ -262,20 +262,13 @@
                             <span data-translate="otrs_popup_services_refresh"></span>
                         </button>
                     </label>
-                    <select class="form-control"
-                            id="diskReplacementService"
-                            name="diskReplacementService"
-                            required
-                            data-ng-model="OtrsPopupCtrl.intervention.serviceName"
-                            data-ng-disabled="OtrsPopupCtrl.loaders.services">
-                        <optgroup label="{{ category.translatedName }}"
-                                  data-ng-repeat="category in OtrsPopupCtrl.services track by $index">
-                            <option value="{{ service.serviceName }}"
-                                    data-ng-repeat="service in category.services track by $index"
-                                    data-ng-bind="::service.displayName">
-                            </option>
-                        </optgroup>
-                    </select>
+                    <oui-select disabled="OtrsPopupCtrl.loaders.services || OtrsPopupCtrl.services.length === 0"
+                                items="OtrsPopupCtrl.services"
+                                match="displayName"
+                                model="OtrsPopupCtrl.intervention.serviceName"
+                                name="select-services"
+                                searchable>
+                    </oui-select>
                 </div>
                 <div class="text-center"
                      data-ng-show="OtrsPopupCtrl.loaders.intervention">

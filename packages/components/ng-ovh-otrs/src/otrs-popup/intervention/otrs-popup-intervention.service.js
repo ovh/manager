@@ -62,9 +62,9 @@ export default class OtrsPopupInterventionService {
       hardwareInfo: this.getHardwareInfo(serviceName),
     })
       .then(results => ({
-        canHotSwap: this.canHotSwap(results.serverInfo, results.hardwareInfo),
-        hasMegaRaid: this.hasMegaRaidCard(results.hardwareInfo),
-        slotInfo: this.slotInfo(results.serverInfo, results.hardwareInfo),
+        canHotSwap: this.constructor.canHotSwap(results.serverInfo, results.hardwareInfo),
+        hasMegaRaid: this.constructor.hasMegaRaidCard(results.hardwareInfo),
+        slotInfo: this.constructor.slotInfo(results.serverInfo, results.hardwareInfo),
       }));
   }
 }

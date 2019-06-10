@@ -1,10 +1,7 @@
 import get from 'lodash/get';
-import filter from 'lodash/filter';
-import find from 'lodash/find';
 import first from 'lodash/first';
 import includes from 'lodash/includes';
 import isEmpty from 'lodash/isEmpty';
-import map from 'lodash/map';
 import remove from 'lodash/remove';
 import times from 'lodash/times';
 import values from 'lodash/values';
@@ -179,7 +176,7 @@ export default /* @ngInject */ function (
       self.loaders.send = true;
 
       return OtrsPopupInterventionService
-        .sendDiskReplacement(self.intervention.serviceName, self.intervention.disk)
+        .sendDiskReplacement(self.intervention.serviceName.serviceName, self.intervention.disk)
         .then((data) => {
           initFields();
           $rootScope.$broadcast('ticket.otrs.reload');
@@ -212,15 +209,8 @@ export default /* @ngInject */ function (
     return $q.when();
   };
 
-  function getSelectedService() {
-    return filter(
-      self.services,
-      service => find(service.services, { serviceName: self.ticket.serviceName }),
-    );
-  }
-
   function isSelectedChoiceDedicatedServer() {
-    return first(map(getSelectedService(), 'name')) === 'SERVER';
+    return get(self.selectedServiceType, 'route') === '/dedicated/server';
   }
 
   self.refreshRequests = () => {
@@ -247,7 +237,7 @@ export default /* @ngInject */ function (
     self.intervention.slotInfo.canUseSlotId = null;
     self.intervention.slotInfo.slotsCount = 0;
     return OtrsPopupInterventionService
-      .getServerInterventionInfo(self.intervention.serviceName)
+      .getServerInterventionInfo(self.intervention.serviceName.serviceName)
       .then((serverInfo) => {
         self.intervention.canHotSwap = serverInfo.canHotSwap;
         self.intervention.hasMegaRaid = serverInfo.hasMegaRaid;
