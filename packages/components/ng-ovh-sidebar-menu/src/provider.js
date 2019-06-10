@@ -541,25 +541,49 @@ export default function () {
          *
          *  @return {SidebarMenuListItem} The founded SidebarMenuListItem with given id.
          */
-    sidebarMenuService.getItemById = (function () {
+    sidebarMenuService.getItemById = function getItemById(itemId, items) {
+      return this.getItemByCriteria({ id: itemId }, items);
+    };
+
+    /**
+     *  @ngdoc method
+     *  @name sidebarMenu.service:SidebarMenu#getItemByCriteria
+     *  @methodOf sidebarMenu.service:SidebarMenu
+     *
+     *  @description
+     *  Find an item according to specific criteria.
+     *  The search is performed recursively inside the tree of items.
+     *  Complexity for subsequent searches will be O(n), except if the
+     *  criteria contains the id, then the complexity will be O(1).
+     *
+     *  @param {Object} criteria The criteria to find the item.
+     *
+     *  @return {SidebarMenuListItem} The matching SidebarMenuListItem with the given criteria.
+     */
+    sidebarMenuService.getItemByCriteria = (function getItemByCriteria() {
       const itemsMap = {}; // hash of itemId => item
       let found = false;
 
-      function findRecursive(itemList, itemId) {
+      function findRecursive(itemList, criteria) {
         if (!found && itemList && itemList.length) {
-          found = _.find(itemList, { id: itemId });
+          found = _.find(itemList, criteria);
           _.each(itemList, (item) => {
-            findRecursive(item.getSubItems(), itemId);
+            findRecursive(item.getSubItems(), criteria);
           });
         }
       }
 
-      return function (itemId, items) {
-        found = itemsMap[itemId];
-        findRecursive(items || this.items, itemId);
+      return function innerGetItemByCriteria(criteria, items) {
+        found = criteria.id
+          ? itemsMap[criteria.id]
+          : _.find(itemsMap, criteria);
+
+        findRecursive(items || this.items, criteria);
+
         if (found) {
-          itemsMap[itemId] = found; // cache search result
+          itemsMap[found.id] = found; // cache search result
         }
+
         return found;
       };
     }());
@@ -574,23 +598,32 @@ export default function () {
          *  @description
          *  Update the display options of a SidebarMenuListItem.
          *
-         *  @param {Object} displayOptions Display options you want to update.
-         *  @param {String} displayOptions.title The new title.
-         *  @param {String} displayOptions.prefix The new prefix.
-         *  @param {String} displayOptions.icon The new icon.
-         *  @param {String} displayOptions.iconClass The new iconClass.
-         *  @param {String} displayOptions.category The new category.
-         *  @param {String} displayOptions.status The new status.
-         *  @param {Number|String} itemId The unique id of the item you want to update display.
+         *  @param {Object} displayOptionsParam Display options you want to update.
+         *  @param {String} displayOptionsParam.title The new title.
+         *  @param {String} displayOptionsParam.prefix The new prefix.
+         *  @param {String} displayOptionsParam.icon The new icon.
+         *  @param {String} displayOptionsParam.iconClass The new iconClass.
+         *  @param {String} displayOptionsParam.category The new category.
+         *  @param {String} displayOptionsParam.status The new status.
          *
-         *  @return {SidebarMenuListItem} The founded SidebarMenuListItem with given id.
+         *  @param {Number|String|Object} criteriaParam The criteria to find the item to update.
+         *  If it's a Number or a String, then it's considered as an id.
+         *
+         *  @return {SidebarMenuListItem} The matching SidebarMenuListItem with given criteria.
          */
-    sidebarMenuService.updateItemDisplay = function updateItemDisplay(displayOptionsParam, itemId) {
+    sidebarMenuService.updateItemDisplay = function updateItemDisplay(
+      displayOptionsParam,
+      criteriaParam,
+    ) {
       let displayOptions = displayOptionsParam;
 
-      const item = this.getItemById(itemId);
+      const criteria = _.isString(criteriaParam) || _.isNumber(criteriaParam)
+        ? { id: criteriaParam }
+        : criteriaParam;
+
+      const item = this.getItemByCriteria(criteria);
       if (item) {
-        displayOptions = _.pick(displayOptions, _.identity); // remove falsy attributes
+        displayOptions = _.omit(displayOptions, _.isEmpty); // remove falsy attributes
         displayOptions = _.pick(displayOptions, ['title', 'prefix', 'icon', 'iconClass', 'category', 'status']);
         _.assign(item, displayOptions);
       }
