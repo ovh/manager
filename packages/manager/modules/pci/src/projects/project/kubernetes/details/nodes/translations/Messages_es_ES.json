@@ -12,7 +12,7 @@
  "kube_nodes_add_flavor_family_ram": "RAM",
  "kube_nodes_add_flavor_family_accelerated": "GPU",
  "kube_nodes_add_flavor_family_vps": "SANDBOX",
- "kube_nodes_add_flavor": "Seleccione un modelo de instancia del catálogo de Public Cloud",
+ "kube_nodes_add_flavor": "Seleccione un modelo de instancia del catálogo de Public Cloud de OVH",
  "kube_nodes_add_pick_flavor": "Seleccione un modelo de instancia",
  "kube_nodes_add_flavor_QUOTA_VCPUS": "La cuota de su proyecto no permite añadir una máquina con tanta CPU.",
  "kube_nodes_add_flavor_QUOTA_RAM": "La cuota de su proyecto no permite añadir una máquina con tanta RAM.",
