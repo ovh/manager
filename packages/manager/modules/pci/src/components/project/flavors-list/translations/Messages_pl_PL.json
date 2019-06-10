@@ -16,6 +16,7 @@
  "pci_project_flavors_spec_core_details": "{{vcores}} vCores ({{frequency}} GHz)",
  "pci_project_flavors_spec_disk": "Przestrzeń dyskowa:",
  "pci_project_flavors_spec_bandwidth": "Przepustowość:",
+ "pci_project_flavors_spec_bandwidth_detail": "{{bandwidth}} Mbps",
  "pci_project_flavors_price_hourly": "{{price}} netto/godz.",
  "pci_project_flavors_price_monthly": "Od {{price}} netto/m-c",
  "pci_project_flavors_quota": "Zwiększ limity"
