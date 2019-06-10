@@ -1,3 +1,12 @@
+## [7.1.1](https://github.com/ovh-ux/ng-ovh-otrs/compare/v7.1.0...v7.1.1) (2019-06-10)
+
+
+### Bug Fixes
+
+* **popup:** enable disk replacement ([0d935f5](https://github.com/ovh-ux/ng-ovh-otrs/commit/0d935f5))
+
+
+
 # [7.1.0](https://github.com/ovh-ux/ng-ovh-otrs/compare/v7.0.2...v7.1.0) (2019-06-05)
 
 
