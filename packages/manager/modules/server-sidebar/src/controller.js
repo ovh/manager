@@ -227,6 +227,11 @@ export default class OvhManagerServerSidebarController {
                 stateParams = typeServices.type.stateParamsTransformer(stateParams);
               }
 
+              let loadOnStateParams = stateParams;
+              if (has(typeServices.type, 'loadOnStateParams') && has(typeServices.type, 'loadOnState')) {
+                loadOnStateParams = zipObject(get(typeServices.type, 'loadOnStateParams', []), get(service, 'stateParams', []));
+              }
+
               let link = null;
               let state = null;
               if (isExternal) {
@@ -248,7 +253,7 @@ export default class OvhManagerServerSidebarController {
                 target: isExternal ? '_self' : null,
                 icon: get(typeServices.type, 'icon'),
                 loadOnState: get(typeServices.type, 'loadOnState'),
-                loadOnStateParams: stateParams,
+                loadOnStateParams,
               }, parent);
 
               // add serviceName in item searchKeys
@@ -271,6 +276,14 @@ export default class OvhManagerServerSidebarController {
             });
           });
         }
+      })
+      .catch(() => {
+        this.SidebarMenu.addMenuItem({
+          title: this.$translate.instant('server_sidebar_item_empty_title'),
+          allowSubItems: false,
+          infiniteScroll: false,
+          allowSearch: false,
+        }, parent);
       });
   }
 
