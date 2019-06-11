@@ -20,7 +20,6 @@ import ASSET_OS_DOKKU from './assets/os/dokku.png';
 import ASSET_OS_FEDORA from './assets/os/fedora.png';
 import ASSET_OS_FREEBSD from './assets/os/freebsd.png';
 import ASSET_OS_LINUX_OTHER from './assets/os/linux_other.png';
-import ASSET_OS_UBUNTU from './assets/os/ubuntu.png';
 import ASSET_OS_WINDOWS_OTHER from './assets/os/windows_other.png';
 import ASSET_OS_WINDOWS_SERVER_2012 from './assets/os/windows_server_2012.png';
 import ASSET_OS_WINDOWS_SERVER_2016 from './assets/os/windows_server_2016.png';
@@ -123,7 +122,7 @@ export const IMAGE_ASSETS = {
     fedora: ASSET_OS_FEDORA,
     freebsd: ASSET_OS_FREEBSD,
     linux_other: ASSET_OS_LINUX_OTHER,
-    ubuntu: ASSET_OS_UBUNTU,
+    ubuntu: null,
     windows_other: ASSET_OS_WINDOWS_OTHER,
     windows_server_2012: ASSET_OS_WINDOWS_SERVER_2012,
     windows_server_2016: ASSET_OS_WINDOWS_SERVER_2016,
