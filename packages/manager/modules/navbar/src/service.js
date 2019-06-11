@@ -15,6 +15,10 @@ export default class {
     }));
   }
 
+  getSupportLevel() {
+    return this.OvhApiMe.v6().supportLevel().$promise;
+  }
+
   getUniverses(version) {
     return this.OvhApiUniverses.Aapi().query({
       version,

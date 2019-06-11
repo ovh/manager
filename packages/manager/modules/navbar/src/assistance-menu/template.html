@@ -8,6 +8,8 @@
     data-text="{{:: $ctrl.menuTitle }}"
     data-icon-class="oui-icon oui-icon-help">
     <oui-navbar-menu
+        data-header-breadcrumb="{{:: 'navbar_assistance_support_level' | translate }}"
+        data-header-title="{{:: $ctrl.supportLevel.level }}"
         data-links="::$ctrl.sublinks"
         data-align="end"
         data-fixed>

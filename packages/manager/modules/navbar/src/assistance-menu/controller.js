@@ -11,6 +11,7 @@ export default class {
     $translate,
     atInternet,
     coreConfig,
+    Navbar,
     ovhManagerNavbarMenuHeaderBuilder,
   ) {
     this.$q = $q;
@@ -19,6 +20,7 @@ export default class {
     this.$translate = $translate;
     this.atInternet = atInternet;
     this.coreConfig = coreConfig;
+    this.Navbar = Navbar;
     this.NavbarBuilder = ovhManagerNavbarMenuHeaderBuilder;
 
     this.REGION = this.coreConfig.getRegion();
@@ -28,7 +30,13 @@ export default class {
   $onInit() {
     this.isLoading = true;
 
-    return this.$translate.refresh()
+    return this.$q.all({
+      translate: this.$translate.refresh(),
+      supportLevel: this.Navbar.getSupportLevel(),
+    })
+      .then(({ supportLevel }) => {
+        this.supportLevel = supportLevel;
+      })
       .then(() => this.getMenuTitle())
       .then((menuTitle) => {
         this.menuTitle = menuTitle;
