@@ -37,6 +37,15 @@ cloud-sidebar { /* stylelint-disable-line */
       padding: 0;
       min-width: auto;
       color: @primary-color;
+
+      &:hover {
+        min-width: auto;
+      }
+    }
+
+    .oui-tooltip {
+      bottom: 0;
+      margin: 0;
     }
   }
 
@@ -69,6 +78,10 @@ cloud-sidebar { /* stylelint-disable-line */
       .oui-clipboard__control,
       .oui-clipboard__button {
         color: #fff;
+
+        .oui-icon {
+          color: @light-color;
+        }
       }
     }
 
