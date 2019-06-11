@@ -4,7 +4,7 @@ import template from './projects.html';
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
     .state('pci.projects', {
-      abstract: true,
+      // abstract: true,
       url: '/projects',
       controller,
       controllerAs: '$ctrl',
