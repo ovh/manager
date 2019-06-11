@@ -1,3 +1,14 @@
+## [7.1.2](https://github.com/ovh-ux/ng-ovh-otrs/compare/v7.1.1...v7.1.2) (2019-06-11)
+
+
+### Bug Fixes
+
+* **i18n:** retrieve translations ([0adee9c](https://github.com/ovh-ux/ng-ovh-otrs/commit/0adee9c))
+* **i18n:** submit translations ([f58ef17](https://github.com/ovh-ux/ng-ovh-otrs/commit/f58ef17))
+* **popup:** filter service by region ([#59](https://github.com/ovh-ux/ng-ovh-otrs/issues/59)) ([e9f5166](https://github.com/ovh-ux/ng-ovh-otrs/commit/e9f5166))
+
+
+
 ## [7.1.1](https://github.com/ovh-ux/ng-ovh-otrs/compare/v7.1.0...v7.1.1) (2019-06-10)
 
 
