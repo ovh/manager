@@ -15,6 +15,7 @@ export default /* @ngInject */ function (
   $scope,
   $transitions,
   $translate,
+  coreConfig,
   OvhApiMe,
   OvhApiMeVipStatus,
   OvhApiService,
@@ -376,7 +377,10 @@ export default /* @ngInject */ function (
       });
 
       this.serviceTypes = get(results, 'apiSchema.data.apis')
-        .concat(OTRS_POPUP_API_EXTRAS_ENDPOINTS)
+        .concat(OTRS_POPUP_API_EXTRAS_ENDPOINTS.filter(extra => includes(
+          extra.region,
+          coreConfig.getRegion(),
+        )))
         .filter(api => !includes(OTRS_POPUP_API_EXCLUDED, api.path))
         .map(api => ({
           route: get(OTRS_POPUP_API_ALIASES, api.path, api.path),

@@ -85,21 +85,26 @@ export const API_ALIASES = {
 };
 export const API_EXTRAS_ENDPOINTS = [
   {
+    region: ['EU'],
     path: '/domain/zone',
   },
   {
     path: '/ip/service',
   },
   {
+    region: ['EU'],
     path: '/msServices/sharepoint',
   },
   {
+    region: ['EU'],
     path: '/telephony/*/fax',
   },
   {
+    region: ['EU'],
     path: '/telephony/*/line',
   },
   {
+    region: ['EU'],
     path: '/telephony/*/number',
   },
 ];
