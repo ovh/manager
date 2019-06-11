@@ -37,7 +37,7 @@
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "5.0.2",
     "bootstrap": "~3.3.7",
-    "ovh-ui-kit": "^2.33.1"
+    "ovh-ui-kit": "^2.33.2"
   },
   "peerDependencies": {
     "@ovh-ux/manager-core": "^5.2.5",
