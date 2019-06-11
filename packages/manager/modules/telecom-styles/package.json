@@ -25,6 +25,6 @@
     "ovh-ui-kit-bs": "^2.1.1"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "5.0.1"
+    "@ovh-ux/component-rollup-config": "5.0.2"
   }
 }
