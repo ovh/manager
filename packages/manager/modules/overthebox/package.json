@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-overthebox",
-  "version": "4.2.2",
+  "version": "4.2.3",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ovh-ux/manager.git",
@@ -30,7 +30,7 @@
     "@ovh-ux/component-rollup-config": "5.0.2"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-core": "^5.2.1",
+    "@ovh-ux/manager-core": "^5.2.5",
     "@ovh-ux/manager-telecom-styles": "^2.0.2",
     "@ovh-ux/ng-ovh-contracts": "^3.0.0-beta.3",
     "@ovh-ux/ng-ovh-telecom-universe-components": "^3.0.3",
