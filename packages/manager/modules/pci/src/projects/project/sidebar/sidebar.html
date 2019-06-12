@@ -24,8 +24,8 @@
             <div class="oui-sidebar-menu">
                 <ul class="oui-sidebar-list">
                     <li class="oui-sidebar-list__item"
-                        data-ng-repeat="item in $ctrl.MENU track by item.translation">
-                        <span class="oui-sidebar-link" data-translate="{{:: item.translation }}"></span>
+                        data-ng-repeat="item in $ctrl.MENU track by item.title">
+                        <span class="oui-sidebar-link" data-ng-bind=":: item.title"></span>
                         <div class="oui-sidebar-menu oui-sidebar-menu_fixed menu-sub-items">
                             <ul class="oui-sidebar-list">
                                 <li class="oui-sidebar-list__item"
@@ -36,7 +36,7 @@
                                         class="oui-sidebar-link"
                                         data-ui-sref="{{:: subitem.options.state }}"
                                         data-ui-sref-active="oui-sidebar-link_active">
-                                        <span class="item-title" data-translate="{{:: subitem.translation }}"></span>
+                                        <span class="item-title" data-ng-bind=":: subitem.title"></span>
                                     </a>
                                     <a
                                         data-ng-if="subitem.options.url"
@@ -44,7 +44,7 @@
                                         data-ng-href="{{:: subitem.options.url[$ctrl.REGION] }}"
                                         data-ng-click="$ctrl.onMenuItemClick(subitem)"
                                         target="{{:: subitem.options.target }}">
-                                        <span class="item-title" data-translate="{{:: subitem.translation }}"></span>
+                                        <span class="item-title" data-ng-bind=":: subitem.title"></span>
                                         <span class="oui-icon oui-icon-external_link" aria-hidden="true"></span>
                                     </a>
                                 </li>
