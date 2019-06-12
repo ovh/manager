@@ -16,6 +16,7 @@
  "pci_project_flavors_spec_core_details": "{{vcores}} vCores ({{frequency}} GHz)",
  "pci_project_flavors_spec_disk": "Almacenamiento:",
  "pci_project_flavors_spec_bandwidth": "Ancho de banda:",
+ "pci_project_flavors_spec_bandwidth_detail": "{{ bandwidth }} Mbit/s",
  "pci_project_flavors_price_hourly": "{{price}}/hora + IVA",
  "pci_project_flavors_price_monthly": "Desde {{price}}/mes + IVA",
  "pci_project_flavors_quota": "Aumentar los límites de mi cuota"

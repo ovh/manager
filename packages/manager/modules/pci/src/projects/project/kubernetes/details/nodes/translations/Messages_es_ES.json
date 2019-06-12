@@ -2,7 +2,6 @@
  "kube_error": "Se ha producido un error al cargar la información: {{ message }}.",
  "kube_nodes": "Nodos",
  "kube_nodes_add": "Añadir un nodo",
- "kube_nodes_add_region": "Durante la beta, todos los nodos estarán localizados en la región GRA5. Más adelante habilitaremos la posibilidad de elegir otra región.",
  "kube_nodes_add_success": "Instalando el nodo...",
  "kube_nodes_add_flavor_error": "Se ha producido un error al cargar los modelos de instancias: {{message}}.",
  "kube_nodes_add_node_name": "Nombre de la instancia",
@@ -13,7 +12,7 @@
  "kube_nodes_add_flavor_family_ram": "RAM",
  "kube_nodes_add_flavor_family_accelerated": "GPU",
  "kube_nodes_add_flavor_family_vps": "SANDBOX",
- "kube_nodes_add_flavor": "Seleccione un modelo de instancia del catálogo de Public Cloud",
+ "kube_nodes_add_flavor": "Seleccione un modelo de instancia del catálogo de Public Cloud de OVH",
  "kube_nodes_add_pick_flavor": "Seleccione un modelo de instancia",
  "kube_nodes_add_flavor_QUOTA_VCPUS": "La cuota de su proyecto no permite añadir una máquina con tanta CPU.",
  "kube_nodes_add_flavor_QUOTA_RAM": "La cuota de su proyecto no permite añadir una máquina con tanta RAM.",
@@ -50,5 +49,5 @@
  "kube_nodes_status_INSTALLING": "Instalando...",
  "kube_nodes_status_UPDATING": "Actualización",
  "kube_nodes_status_DELETING": "Eliminando...",
- "kube_nodes_status_RESETTING": "Restaurando"
+ "kube_nodes_status_RESETTING": "Restaurando..."
 }

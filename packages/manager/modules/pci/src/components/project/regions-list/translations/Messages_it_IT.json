@@ -1,4 +1,5 @@
 {
- "pci_project_regions_list_continent_all": "Tutte le localizzazioni",
- "pci_project_regions_list_empty": "Nessuna Region disponibile per questa localizzazione"
+ "pci_project_regions_list_continent_all": "Tutte le Region",
+ "pci_project_regions_list_empty": "Nessuna Region disponibile",
+ "pci_project_regions_list_add": "Per attivare le ultime localizzazioni disponibili in ogni zona, accedi alla sezione <a href=\"{{url}}\" class=\"oui-link\">Region</a>"
 }

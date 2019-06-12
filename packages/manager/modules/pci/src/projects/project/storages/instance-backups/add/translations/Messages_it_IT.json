@@ -20,5 +20,7 @@
  "pci_projects_project_instances_backup_add_success_message": "L’istanza {{ instance }} è stata aggiunta.",
  "pci_projects_project_instances_backup_add_success_multiple_message": "Le istanze sono state aggiunte.",
  "pci_projects_project_instances_backup_add_error_save": "Si è verificato un errore durante l’aggiunta dell'istanza {{ instance }}: {{ message }}",
- "pci_projects_project_instances_backup_add_error_multiple_save": "Si è verificato un errore durante l’aggiunta delle istanze: {{message}}"
+ "pci_projects_project_instances_backup_add_error_multiple_save": "Si è verificato un errore durante l’aggiunta delle istanze: {{message}}",
+ "pci_projects_project_instances_backup_add_flex": "Istanza Flexible",
+ "pci_projects_project_instances_backup_add_flex_help": "L’opzione Flex forza uno storage di 50 GB, con Snapshot più rapidi e la possibilità di effettuare un ulteriore downgrade"
 }
