@@ -4,6 +4,8 @@ import 'angular-translate';
 
 import backupTemplate from './backup.html';
 
+import './backup.less';
+
 const moduleName = 'ovhManagerPciInstancesHelp';
 
 angular
