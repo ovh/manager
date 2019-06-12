@@ -37,7 +37,7 @@
     "bootstrap-tour": "^0.12.0",
     "ovh-api-services": "^6.21.0",
     "ovh-ui-angular": "^2.29.0",
-    "ovh-ui-kit": "^2.29.0"
+    "ovh-ui-kit": "^2.33.3"
   },
   "dependencies": {
     "lodash": "^4.17.11",
@@ -45,6 +45,6 @@
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^5.0.2",
-    "ovh-ui-kit": "^2.33.2"
+    "ovh-ui-kit": "^2.33.3"
   }
 }
