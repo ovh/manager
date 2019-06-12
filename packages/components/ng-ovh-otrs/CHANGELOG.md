@@ -1,3 +1,13 @@
+## [7.1.3](https://github.com/ovh-ux/ng-ovh-otrs/compare/v7.1.2...v7.1.3) (2019-06-12)
+
+
+### Bug Fixes
+
+* **i18n:** retrieve translations ([537c9b9](https://github.com/ovh-ux/ng-ovh-otrs/commit/537c9b9))
+* **i18n:** submit translation ([4a905f4](https://github.com/ovh-ux/ng-ovh-otrs/commit/4a905f4))
+
+
+
 ## [7.1.2](https://github.com/ovh-ux/ng-ovh-otrs/compare/v7.1.1...v7.1.2) (2019-06-11)
 
 
