@@ -20,6 +20,8 @@ import '@ovh-ux/ng-ovh-swimming-poll';
 import '@ovh-ux/ng-ovh-api-wrappers';
 import 'ovh-api-services';
 
+import '@uirouter/angularjs';
+
 import coreConfig from './config';
 import translateServiceProvider from './translate/translate.service';
 import sessionService from './session/session.service';
@@ -201,6 +203,9 @@ angular
     set(OvhHttpProvider, 'clearCacheVerb', ['POST', 'PUT', 'DELETE']);
     set(OvhHttpProvider, 'returnSuccessKey', 'data'); // By default, request return response.data
     set(OvhHttpProvider, 'returnErrorKey', 'data'); // By default, request return error.data
+  })
+  .config(/* @ngInject */ ($urlServiceProvider) => {
+    $urlServiceProvider.config.strictMode(false);
   });
 
 export default moduleName;

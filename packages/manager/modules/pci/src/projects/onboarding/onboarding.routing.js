@@ -15,5 +15,7 @@ export default /* @ngInject */ ($stateProvider) => {
       resolve: {
         breadcrumb: () => null, // Hide breadcrumb
       },
+      redirectTo: transition => transition.injector().get('publicCloud')
+        .handleDefaultProject(),
     });
 };
