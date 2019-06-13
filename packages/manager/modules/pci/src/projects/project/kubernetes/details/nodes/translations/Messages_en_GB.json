@@ -2,7 +2,6 @@
  "kube_error": "An error has occurred loading the information: {{ message }}",
  "kube_nodes": "Nodes",
  "kube_nodes_add": "Add node",
- "kube_nodes_add_region": "During the beta stage, your nodes will be based in GRA5. You will be able to change this region in the future.",
  "kube_nodes_add_success": "Installing node",
  "kube_nodes_add_flavor_error": "An error has occurred loading the flavors: {{ message }}",
  "kube_nodes_add_node_name": "Instance name",

@@ -1,5 +1,5 @@
 {
- "pci_project_flavors_billing_hourly": "StÃ¼ndlich",
+ "pci_project_flavors_billing_hourly": "Stündlich",
  "pci_project_flavors_billing_monthly": "Monatlich",
  "pci_project_flavors_billing_price_hourly": "{{price}} zzgl. MwSt. / Stunde",
  "pci_project_flavors_billing_price_monthly": "{{price}} zzgl. MwSt. / Monat"

@@ -7,7 +7,7 @@
  "pci_project_instances_licence": "To use the images, you will need to accept the supplier's user licence agreement.",
  "pci_project_instances_distribution_linux": "Linux",
  "pci_project_instances_distribution_linux_other": "Archlinux",
- "pci_project_instances_distribution_centos": "CentOS 6",
+ "pci_project_instances_distribution_centos": "CentOS",
  "pci_project_instances_distribution_coreos": "CoreOS",
  "pci_project_instances_distribution_debian": "Debian",
  "pci_project_instances_distribution_fedora": "Fedora",

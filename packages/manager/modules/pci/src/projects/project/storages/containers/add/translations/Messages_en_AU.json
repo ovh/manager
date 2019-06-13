@@ -1,7 +1,7 @@
 {
  "pci_projects_project_storages_containers_add_title": "Create an object container ",
  "pci_projects_project_storages_containers_add_region_title": "Select a region",
- "pci_projects_project_storages_containers_add_type_title": "Select a type of DNS record:",
+ "pci_projects_project_storages_containers_add_type_title": "Select a type of container",
  "pci_projects_project_storages_containers_add_type_static_label": "Static hosting",
  "pci_projects_project_storages_containers_add_type_static_description": "Quick access and high performance. Link your domains and transfer your files.",
  "pci_projects_project_storages_containers_add_type_public_label": "Public",

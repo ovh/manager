@@ -1,7 +1,7 @@
 {
   "name": "@ovh-ux/manager-navbar",
   "description": "OVH control panel navbar",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ovh-ux/manager.git",
@@ -37,14 +37,14 @@
     "bootstrap-tour": "^0.12.0",
     "ovh-api-services": "^6.21.0",
     "ovh-ui-angular": "^3.2.0",
-    "ovh-ui-kit": "^2.29.0"
+    "ovh-ui-kit": "^2.33.3"
   },
   "dependencies": {
     "lodash": "^4.17.11",
     "moment": "^2.24.0"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^5.0.1",
-    "ovh-ui-kit": "^2.33.1"
+    "@ovh-ux/component-rollup-config": "^5.0.2",
+    "ovh-ui-kit": "^2.33.3"
   }
 }

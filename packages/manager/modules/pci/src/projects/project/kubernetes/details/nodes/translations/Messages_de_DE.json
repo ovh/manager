@@ -1,10 +1,9 @@
 {
- "kube_error": "Beim Laden der Informationen ist ein Fehler aufgetreten: {{message}}",
+ "kube_error": "Beim Laden der Informationen ist ein Fehler aufgetreten: {{ message }}",
  "kube_nodes": "Nodes",
  "kube_nodes_add": "Node hinzufügen",
- "kube_nodes_add_region": "Während der Beta-Phase befinden sich alle Ihre Nodes in der Region GRA5. Sie können die Region in der Endversion selbst auswählen.",
  "kube_nodes_add_success": "Node wird derzeit installiert",
- "kube_nodes_add_flavor_error": "Beim Laden der Instanz-Typen ist ein Fehler aufgetreten: {{message}}",
+ "kube_nodes_add_flavor_error": "Beim Laden der Instanz-Typen ist ein Fehler aufgetreten: {{ message }}",
  "kube_nodes_add_node_name": "Name der Instanz",
  "kube_nodes_add_node_name_validation_error": "Der Name der Instanz darf nur mit Zahlen oder Kleinbuchstaben beginnen oder enden (von a bis z und 0 bis 9) und kann Satzzeichen wie „ . „ und „ - „ enthalten.",
  "kube_nodes_add_flavor_family": "Instanz-Reihe auswählen",

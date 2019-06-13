@@ -3,7 +3,7 @@ import 'angular-translate';
 import '@uirouter/angularjs';
 import '@ovh-ux/manager-core';
 
-import agoraOrder from './agora';
+import order from './order';
 import legacyOrder from './legacy';
 import routing from './order.routing';
 
@@ -14,7 +14,7 @@ angular
     'ui.router',
     'pascalprecht.translate',
     'ovhManagerCore',
-    agoraOrder,
+    order,
     legacyOrder,
   ])
   .config(routing);

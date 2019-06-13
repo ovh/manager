@@ -7,12 +7,14 @@
     data-on-dismiss="$ctrl.cancel()"
     data-loading="$ctrl.isLoading">
 
-    <oui-field data-label="{{ ::'cpb_vouchers_your_voucher' | translate }}">
-        <input type="text"
-            class="oui-input"
-            id="voucherAddValue"
-            name="voucherAddValue"
-            data-ng-model="$ctrl.model.value"
-            required />
-    </oui-field>
+    <form novalidate>
+        <oui-field data-label="{{ ::'cpb_vouchers_your_voucher' | translate }}">
+            <input type="text"
+                class="oui-input"
+                id="voucherAddValue"
+                name="voucherAddValue"
+                data-ng-model="$ctrl.model.value"
+                required />
+        </oui-field>
+    </form>
 </oui-modal>

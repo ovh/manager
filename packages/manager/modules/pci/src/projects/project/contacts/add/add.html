@@ -19,13 +19,11 @@
         <oui-field data-label="{{ ::'cpb_rights_table_rights' | translate }}">
             <oui-select name="selectRightType"
                     id="selectRightType"
-                    data-model="$ctrl.right.type"
-                    data-title="{{ :: ('cpb_rights_table_rights_value_' + type) | translate }}"
-                    data-placeholder="{{ :: ('cpb_rights_table_rights_value_' + type) | translate }}"
-                    data-items="['readOnly', 'readWrite']"
+                    data-model="$ctrl.right"
+                    data-items="$ctrl.availableRights"
+                    data-match="label"
                     required
                     data-align="start">
-                <span data-ng-bind="$item"></span>
             </oui-select>
         </oui-field>
     </oui-modal>

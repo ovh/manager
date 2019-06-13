@@ -2,7 +2,6 @@
  "kube_error": "Wystąpił błąd podczas pobierania informacji: {{message}}",
  "kube_nodes": "Węzły",
  "kube_nodes_add": "Dodaj węzeł",
- "kube_nodes_add_region": "Na początku wszystkie Twoje węzły będą zlokalizowane w centrum danych GRA5. W przyszłości udostępnimy możliwość wyboru innego regionu.",
  "kube_nodes_add_success": "Trwa instalacja węzła",
  "kube_nodes_add_flavor_error": "Wystąpił błąd podczas pobierania modeli instancji: {{message}}",
  "kube_nodes_add_node_name": "Nazwa instancji",

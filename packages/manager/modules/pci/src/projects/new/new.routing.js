@@ -99,10 +99,16 @@ export default /* @ngInject */ ($stateProvider) => {
           PCI_REDIRECT_URLS,
           `${coreConfig.getRegion()}.paymentMethods`,
         ),
-        project: /* @ngInject */ ($transition$, PciProjectNewService) => {
+        project: /* @ngInject */ ($q, $transition$, PciProjectNewService) => {
           if ($transition$.params().projectId) {
             return PciProjectNewService
-              .getProject($transition$.params().projectId);
+              .getProject($transition$.params().projectId)
+              .catch((error) => {
+                if (error.status === 404) {
+                  return null;
+                }
+                return $q.reject(error);
+              });
           }
           return null;
         },
