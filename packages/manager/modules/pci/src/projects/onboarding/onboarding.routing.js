@@ -16,6 +16,12 @@ export default /* @ngInject */ ($stateProvider) => {
         breadcrumb: () => null, // Hide breadcrumb
       },
       redirectTo: transition => transition.injector().get('publicCloud')
-        .handleDefaultProject(),
+        .getDefaultProject()
+        .then(projectId => (projectId ? ({
+          state: 'pci.projects.project',
+          params: {
+            projectId,
+          },
+        }) : null)),
     });
 };

@@ -5,7 +5,13 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
     .state('app', {
       url: '/',
       redirectTo: trans => trans.injector().get('publicCloud')
-        .handleDefaultProject(),
+        .getDefaultProject()
+        .then(projectId => (projectId ? ({
+          state: 'pci.projects.project',
+          params: {
+            projectId,
+          },
+        }) : ({ state: 'pci.projects.onboarding' }))),
     });
 
   $stateProvider
