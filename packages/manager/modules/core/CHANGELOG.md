@@ -1,3 +1,12 @@
+# [5.3.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@5.2.5...@ovh-ux/manager-core@5.3.0) (2019-06-14)
+
+
+### Features
+
+* allow trailing slashes in url ([#843](https://github.com/ovh-ux/manager/issues/843)) ([d885a22](https://github.com/ovh-ux/manager/commit/d885a22))
+
+
+
 ## [5.2.5](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@5.2.4...@ovh-ux/manager-core@5.2.5) (2019-05-21)
 
 

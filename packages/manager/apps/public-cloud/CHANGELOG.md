@@ -1,3 +1,18 @@
+# [0.11.0-alpha.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.10.0-alpha.2...@ovh-ux/manager-public-cloud@0.11.0-alpha.0) (2019-06-14)
+
+
+### Bug Fixes
+
+* prevent onboarding to loop infinitely ([8c1b120](https://github.com/ovh-ux/manager/commit/8c1b120))
+
+
+### Features
+
+* **public-cloud:** override oui-file style ([#811](https://github.com/ovh-ux/manager/issues/811)) ([24f207e](https://github.com/ovh-ux/manager/commit/24f207e))
+* allow trailing slashes in url ([#843](https://github.com/ovh-ux/manager/issues/843)) ([d885a22](https://github.com/ovh-ux/manager/commit/d885a22))
+
+
+
 # [0.10.0-alpha.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.10.0-alpha.1...@ovh-ux/manager-public-cloud@0.10.0-alpha.2) (2019-06-12)
 
 
