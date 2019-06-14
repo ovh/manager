@@ -1655,6 +1655,14 @@
     rollup-pluginutils "^2.3.3"
     slash "^2.0.0"
 
+"@ovh-ux/manager-navbar@^0.5.0":
+  version "0.5.2"
+  resolved "https://nexus.ovh.net/nexus3/repository/npm-all/@ovh-ux/manager-navbar/-/manager-navbar-0.5.2.tgz#b8eb231b93482771cb1d1c442bd1ce0ed249ec1c"
+  integrity sha512-TcjFdhtB2yZiIWlqQNlkYpIWjQrJ5y00RBBgvfcpJbH7dwd70Ux5aVwrVGMKUkZcu7/3D5ucYU278lsbJkrC7w==
+  dependencies:
+    lodash "^4.17.11"
+    moment "^2.24.0"
+
 "@ovh-ux/manager-pci@^0.12.0":
   version "0.12.3"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-pci/-/manager-pci-0.12.3.tgz#c28a95be238ced10c0f52dd406c73b183732bdaf"

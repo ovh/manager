@@ -1,3 +1,12 @@
+# [0.12.0-alpha.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.11.0-alpha.0...@ovh-ux/manager-public-cloud@0.12.0-alpha.0) (2019-06-14)
+
+
+### Features
+
+* **pci.projects.new:** add payment challenge ([#853](https://github.com/ovh-ux/manager/issues/853)) ([4c98a82](https://github.com/ovh-ux/manager/commit/4c98a82))
+
+
+
 # [0.11.0-alpha.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.10.0-alpha.2...@ovh-ux/manager-public-cloud@0.11.0-alpha.0) (2019-06-14)
 
 

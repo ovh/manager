@@ -1,3 +1,12 @@
+# [1.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci-app@1.0.2...@ovh-ux/manager-pci-app@1.1.0) (2019-06-14)
+
+
+### Features
+
+* **pci.projects.new:** add payment challenge ([#853](https://github.com/ovh-ux/manager/issues/853)) ([4c98a82](https://github.com/ovh-ux/manager/commit/4c98a82))
+
+
+
 ## [1.0.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci-app@1.0.1...@ovh-ux/manager-pci-app@1.0.2) (2019-05-16)
 
 
