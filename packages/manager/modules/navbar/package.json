@@ -28,15 +28,14 @@
     "@ovh-ux/manager-core": "^5.2.5",
     "@ovh-ux/ng-at-internet": "^4.0.0",
     "@ovh-ux/ng-ovh-chatbot": "^2.0.1",
-    "@ovh-ux/ng-ovh-otrs": "^7.0.1",
     "@ovh-ux/ng-ovh-sso-auth": "^4.0.0",
     "@ovh-ux/ng-ovh-user-pref": "^1.0.0",
     "@ovh-ux/ng-translate-async-loader": "^2.0.0",
     "angular": "^1.7.8",
     "angular-translate": "^2.18.1",
     "bootstrap-tour": "^0.12.0",
-    "ovh-api-services": "^6.21.0",
-    "ovh-ui-angular": "^2.29.0",
+    "ovh-api-services": "^6.26.0",
+    "ovh-ui-angular": "^3.2.2",
     "ovh-ui-kit": "^2.33.3"
   },
   "dependencies": {

@@ -85,12 +85,6 @@ const EU = {
       SN: 'https://docs.ovh.com/gb/en/',
       TN: 'https://docs.ovh.com/gb/en/',
     },
-    cloud: {
-      FR: 'https://docs.ovh.com/fr/fr/cloud/',
-      IT: 'https://www.ovh.it/g1785.cloud',
-      ES: 'https://www.ovh.es/g1785.cloud',
-      PL: 'https://www.ovh.pl/g1785.cloud',
-    },
   },
 };
 
@@ -104,10 +98,7 @@ const US = {
   },
   guides: {
     home: {
-      US: 'https://docs.us.ovhcloud.com',
-    },
-    cloud: {
-      US: 'https://support.us.ovhcloud.com/hc/en-us',
+      US: 'https://support.us.ovhcloud.com',
     },
   },
 };

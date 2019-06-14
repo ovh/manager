@@ -16,6 +16,7 @@
  "pci_project_flavors_spec_core_details": "{{vcores}} vCores ({{frequency}} GHz)",
  "pci_project_flavors_spec_disk": "Storage:",
  "pci_project_flavors_spec_bandwidth": "Bandbreite:",
+ "pci_project_flavors_spec_bandwidth_detail": "{{ bandwidth }} Mbit/s",
  "pci_project_flavors_price_hourly": "{{price}} / Stunde (zzgl. MwSt.)",
  "pci_project_flavors_price_monthly": "Ab {{price}} / Monat (zzgl. MwSt.)",
  "pci_project_flavors_quota": "Mein Quota erhöhen"

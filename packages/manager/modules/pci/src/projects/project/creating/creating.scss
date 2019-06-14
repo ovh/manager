@@ -10,6 +10,26 @@ pci-project-creating { /* stylelint-disable-line */
   .pci-projects-creating {
     background-color: rgb(241, 249, 253);
 
+    .action-row {
+      width: 75%;
+
+      a {
+        &:hover {
+          background-color: #EFF9FD;
+          text-decoration: none;
+        }
+
+        .oui-icon {
+          color: inherit;
+          font-size: 1.3rem;
+
+          &::before {
+            font-size: inherit;
+          }
+        }
+      }
+    }
+
     .img-slide-container {
       top: 50%;
       transform: translateY(-50%);
@@ -37,6 +57,14 @@ pci-project-creating { /* stylelint-disable-line */
       }
 
       @include media-breakpoint-up(md) {
+        .action-row {
+          width: 100%;
+
+          .projects-link-container {
+            border: 0;
+          }
+        }
+
         img {
           max-width: $spinner-size;
         }

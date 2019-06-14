@@ -17,7 +17,10 @@ export default class ProjectCreatingCtrl {
     this.Poller = Poller;
 
     // other attributes
-    this.pollingNamespace = 'pci.projects.creating';
+    this.pollingNamespace = {
+      order: 'pci.projects.order',
+      project: 'pci.projects.creating',
+    };
 
     this.imageSlider = {
       currentIndex: 0,
@@ -30,9 +33,25 @@ export default class ProjectCreatingCtrl {
     );
   }
 
+  startOrderPolling() {
+    return this.Poller.poll(`/me/order/${this.project.orderId}/status`, null, {
+      namespace: this.pollingNamespace.order,
+      successRule(status) {
+        return status !== 'checking';
+      },
+    })
+      .then((status) => {
+        if (status === 'notPaid') {
+          return this.onProjectCreated(); // it has to redirect to same page
+        }
+
+        return this.startCreationPolling();
+      });
+  }
+
   startCreationPolling() {
     return this.Poller.poll(`/cloud/project/${this.projectId}`, null, {
-      namespace: this.pollingNamespace,
+      namespace: this.pollingNamespace.project,
       successRule(details) {
         return details.status === 'ok';
       },
@@ -40,9 +59,20 @@ export default class ProjectCreatingCtrl {
       .then(() => this.onProjectCreated());
   }
 
+  stopPollings() {
+    this.stopOrderPolling();
+    this.stopCreationPolling();
+  }
+
+  stopOrderPolling() {
+    return this.Poller.kill({
+      namespace: this.pollingNamespace.order,
+    });
+  }
+
   stopCreationPolling() {
     return this.Poller.kill({
-      namespace: this.pollingNamespace,
+      namespace: this.pollingNamespace.project,
     });
   }
 
@@ -63,12 +93,15 @@ export default class ProjectCreatingCtrl {
 
   $onInit() {
     this.slideImages();
-    this.stopCreationPolling();
+    this.stopPollings();
+    if (this.projectOrderStatus === 'checking') {
+      return this.startOrderPolling();
+    }
     return this.startCreationPolling();
   }
 
   $onDestroy() {
-    return this.stopCreationPolling();
+    return this.stopPollings();
   }
 
   /* -----  End of Hooks  ------ */
