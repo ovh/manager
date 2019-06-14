@@ -11,10 +11,15 @@
              data-ng-switch="$ctrl.step.model.mode">
             <div data-ng-switch-when="paymentMethod">
                 <pci-project-new-payment-default
-                    data-ng-if="$ctrl.step.model.defaultPaymentMethod"
+                    data-ng-if="$ctrl.step.model.defaultPaymentMethod && !$ctrl.shouldProcessChallenge()"
                     data-default-payment-method="$ctrl.step.model.defaultPaymentMethod"
                     data-payment-method-url="$ctrl.paymentMethodUrl">
                 </pci-project-new-payment-default>
+
+                <pci-project-new-payment-challenge
+                    data-ng-if="$ctrl.step.model.defaultPaymentMethod && $ctrl.shouldProcessChallenge()"
+                    data-default-payment-method="$ctrl.step.model.defaultPaymentMethod">
+                </pci-project-new-payment-challenge>
 
                 <pci-project-new-payment-credit-info
                     data-ng-if="$ctrl.hasCreditToOrder()"
@@ -25,7 +30,9 @@
                 <pci-project-new-payment-add
                     data-ng-if="!$ctrl.step.model.defaultPaymentMethod"
                     data-on-loaded="$ctrl.step.loading.paymentTypes = false"
-                    data-selected-payment-type="$ctrl.step.model.paymentType">
+                    data-selected-payment-type="$ctrl.step.model.paymentType"
+                    data-payment-method-url="$ctrl.paymentMethodUrl"
+                    data-has-payment-methods="$ctrl.hasPaymentMethods">
                 </pci-project-new-payment-add>
             </div>
 
@@ -135,7 +142,7 @@
                 </div>
             </div>
 
-            <div data-ng-if="$ctrl.dlpStatus">
+            <div data-ng-if="$ctrl.dlpStatus && !$ctrl.shouldProcessChallenge()">
                 <h2 class="oui-heading_underline"
                     data-translate="pci_project_new_payment_dlp_title">
                 </h2>

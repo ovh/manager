@@ -29,4 +29,9 @@
         <span data-translate="pci_projects_new_payment_add_bank_account_info"></span>
     </oui-message>
 
+    <p
+        data-ng-if="$ctrl.hasPaymentMethods"
+        data-translate="pci_projects_new_payment_add_no_default"
+        data-translate-values="{ 'href': $ctrl.paymentMethodUrl }">
+    </p>
 </div>
