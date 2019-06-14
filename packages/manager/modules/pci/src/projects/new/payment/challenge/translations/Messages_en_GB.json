@@ -1,0 +1,11 @@
+{
+  "pci_projects_new_payment_challenge_title": "Verify payment method",
+  "pci_projects_new_payment_challenge_intro": "For security reasons, please verify your payment method.",
+  "pci_projects_new_payment_challenge_submit_label": "Verify payment method",
+  "pci_projects_new_payment_challenge_cancel_label": "Cancel",
+  "pci_projects_new_payment_challenge_credit_card_label": "Please enter the first 6 digits of your credit card.",
+  "pci_projects_new_payment_challenge_bank_account_label": "Please enter your IBAN.",
+  "pci_projects_new_payment_challenge_bank_account_error": "The given IBAN format is not valid.",
+  "pci_projects_new_payment_challenge_error_retry" : "Your payment method was not verified, please retry.",
+  "pci_projects_new_payment_challenge_error_deactivated" : "We couldn't verify your payment method therefore it has been disabled. Please choose another payment method in order to create a project."
+}
