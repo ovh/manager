@@ -66,6 +66,11 @@ export default class PciProjectNewCtrl {
     return this.paymentMethodUrl;
   }
 
+  isCancelVisible() {
+    const currentStep = this.getCurrentStep();
+    return currentStep.name === 'description' || !this.shouldProcessChallenge();
+  }
+
   isNextButtonDisabled() {
     const currentStep = this.getCurrentStep();
 
@@ -88,7 +93,7 @@ export default class PciProjectNewCtrl {
       return this.region !== 'US';
     }
 
-    return get(currentStep.model.paymentType, 'paymentType.value') !== 'BANK_ACCOUNT';
+    return get(currentStep.model.paymentType, 'paymentType.value') !== 'BANK_ACCOUNT' && !this.shouldProcessChallenge();
   }
 
   isStepComplete(step) {
@@ -129,7 +134,11 @@ export default class PciProjectNewCtrl {
         `mode=${this.paymentModel.mode}`,
       );
     }
-    // TODO: manage voucher
+
+    if (this.paymentModel.voucher.valid) {
+      callbackParams.push(`voucher=${this.paymentModel.voucher.value}`);
+    }
+
     if (callbackParams.length) {
       callbackUrlBase = `${callbackUrlBase}${callbackParams.join('&')}`;
     }
@@ -263,7 +272,7 @@ export default class PciProjectNewCtrl {
       return this.createProject();
     }
 
-    // if no default payment mehtod - add new one before creating project
+    // if no default payment method - add new one before creating project
     return this.addPaymentMethod();
   }
 

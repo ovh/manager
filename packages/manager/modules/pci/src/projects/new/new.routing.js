@@ -1,9 +1,12 @@
 import find from 'lodash/find';
 import get from 'lodash/get';
+import has from 'lodash/has';
+import includes from 'lodash/includes';
 import map from 'lodash/map';
 import merge from 'lodash/merge';
 
 import { PCI_REDIRECT_URLS } from '../../constants';
+import { CHALLENGE_PAYMENT_TYPE_SUPPORTED } from './payment/challenge/challenge.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
@@ -18,7 +21,7 @@ export default /* @ngInject */ ($stateProvider) => {
         const newProjectInfoPromise = transition.injector().getAsync('newProjectInfo');
         return newProjectInfoPromise
           .then(({ error }) => {
-            if (error) {
+            if (error && error.code !== 'challengePaymentMethodRequested') {
               return transition.router.stateService.target(
                 'pci.error',
                 merge({
@@ -46,7 +49,7 @@ export default /* @ngInject */ ($stateProvider) => {
           return $q.all(agreementPromises);
         },
         paymentStatus: /* @ngInject */ $transition$ => get($transition$.params(), 'hiPayStatus')
-            || get($transition$.params(), 'paypalAgreementStatus'),
+          || get($transition$.params(), 'paypalAgreementStatus'),
         getCurrentStep: /* @ngInject */ ($state, getStepByName) => () => {
           if ($state.current.name === 'pci.projects.new') {
             return getStepByName('description');
@@ -78,6 +81,15 @@ export default /* @ngInject */ ($stateProvider) => {
 
               return $state.href('pci.projects');
           }
+        },
+        shouldProcessChallenge: /* @ngInject */ (getCurrentStep, newProjectInfo) => () => {
+          const currentStep = getCurrentStep();
+
+          const isValidDefaultPaymentMethod = has(currentStep.model, 'defaultPaymentMethod') && includes(
+            CHALLENGE_PAYMENT_TYPE_SUPPORTED,
+            get(currentStep.model, 'defaultPaymentMethod.paymentType.value'),
+          );
+          return get(newProjectInfo, 'error.code') === 'challengePaymentMethodRequested' && isValidDefaultPaymentMethod;
         },
         hasCreditToOrder: /* @ngInject */ (getCurrentStep, newProjectInfo, paymentStatus) => () => {
           const currentStep = getCurrentStep();
