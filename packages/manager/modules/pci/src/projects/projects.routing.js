@@ -11,6 +11,7 @@ export default /* @ngInject */ ($stateProvider) => {
       controllerAs: '$ctrl',
       template,
       resolve: {
+        breadcrumb: /* @ngInject */ () => null,
         projects: /* @ngInject */ OvhApiCloudProject => OvhApiCloudProject
           .v6()
           .query()
