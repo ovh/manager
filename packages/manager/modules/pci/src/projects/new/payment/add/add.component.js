@@ -7,5 +7,7 @@ export default {
   bindings: {
     onLoaded: '&',
     selectedPaymentType: '=',
+    paymentMethodUrl: '<',
+    hasPaymentMethods: '<',
   },
 };

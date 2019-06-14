@@ -15,6 +15,7 @@ export default {
     hasCreditToOrder: '<',
     paymentStatus: '<',
     paymentMethodUrl: '<',
+    shouldProcessChallenge: '<',
     steps: '<',
     dlpStatus: '<',
   },
