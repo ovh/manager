@@ -1,3 +1,25 @@
+# [0.17.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.16.2...@ovh-ux/manager-pci@0.17.0) (2019-06-14)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([04bce0b](https://github.com/ovh-ux/manager/commit/04bce0b))
+* **i18n:** add missing translations ([c34a2d1](https://github.com/ovh-ux/manager/commit/c34a2d1))
+* **i18n:** add missing translations ([#838](https://github.com/ovh-ux/manager/issues/838)) ([4dd5eea](https://github.com/ovh-ux/manager/commit/4dd5eea))
+* **pci.project.sidebar:** display static menu item ([#842](https://github.com/ovh-ux/manager/issues/842)) ([52502a3](https://github.com/ovh-ux/manager/commit/52502a3))
+* prevent onboarding to loop infinitely ([8c1b120](https://github.com/ovh-ux/manager/commit/8c1b120))
+* **pci.projects.failover-ips-edit:** refresh list after edit ([#818](https://github.com/ovh-ux/manager/issues/818)) ([764342b](https://github.com/ovh-ux/manager/commit/764342b))
+* **pci.projects.private-network:** add correct label for creation ([#833](https://github.com/ovh-ux/manager/issues/833)) ([cef428b](https://github.com/ovh-ux/manager/commit/cef428b))
+* **pci.sidebar:** prevent div from overlapping ([9bff07c](https://github.com/ovh-ux/manager/commit/9bff07c))
+
+
+### Features
+
+* **pci.projects.project.creating:** display waiting message ([#820](https://github.com/ovh-ux/manager/issues/820)) ([6891e0d](https://github.com/ovh-ux/manager/commit/6891e0d))
+* allow trailing slashes in url ([#843](https://github.com/ovh-ux/manager/issues/843)) ([d885a22](https://github.com/ovh-ux/manager/commit/d885a22))
+
+
+
 ## [0.16.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.16.1...@ovh-ux/manager-pci@0.16.2) (2019-06-12)
 
 
