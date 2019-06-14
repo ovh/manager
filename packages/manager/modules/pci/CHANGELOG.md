@@ -1,3 +1,19 @@
+# [0.18.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.17.0...@ovh-ux/manager-pci@0.18.0) (2019-06-14)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([4b19782](https://github.com/ovh-ux/manager/commit/4b19782))
+* **pci.projects:** disable breadcrumb ([#852](https://github.com/ovh-ux/manager/issues/852)) ([d8adbc1](https://github.com/ovh-ux/manager/commit/d8adbc1))
+
+
+### Features
+
+* **pci.new:** add en_GB translations ([#854](https://github.com/ovh-ux/manager/issues/854)) ([d092e58](https://github.com/ovh-ux/manager/commit/d092e58))
+* **pci.projects.new:** add payment challenge ([#853](https://github.com/ovh-ux/manager/issues/853)) ([4c98a82](https://github.com/ovh-ux/manager/commit/4c98a82))
+
+
+
 # [0.17.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.16.2...@ovh-ux/manager-pci@0.17.0) (2019-06-14)
 
 
