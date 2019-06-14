@@ -117,7 +117,7 @@
    <translation id="otrs_service_type_cloud" qtlid="251655">Public Cloud</translation>
    <translation id="otrs_service_type_metrics" qtlid="383525">Metriky</translation>
    <translation id="otrs_service_type_dedicated_ceph" qtlid="406442">CDA</translation>
-   <translation id="otrs_service_type_veeam_veeam_enterprise">VEEAM Enterprise</translation>
+   <translation id="otrs_service_type_veeam_veeam_enterprise" qtlid="524911">VEEAM Enterprise</translation>
    <translation id="otrs_service_type_veeam_cloud_connect" qtlid="524738">VEEAM Cloud Connect</translation>
    <translation id="otrs_service_type_caas_containers" qtlid="524751">CAAS Containers</translation>
    <translation id="otrs_service_type_caas_registry" qtlid="524764">CAAS Registry</translation>
