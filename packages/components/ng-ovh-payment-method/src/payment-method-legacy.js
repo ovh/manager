@@ -82,6 +82,22 @@ export default class OvhPaymentMethodLegacy {
   }
 
   /**
+   *  Challenge a legacy payment method. Check the target to call the right API.
+   *  @param  {Object} legacyPaymentMethod The legacy payment method to set as default
+   *  @param  {Object} challenge The challenge value
+   *  @return {Promise}
+   */
+  challengePaymentMethod(legacyPaymentMethod, challenge) {
+    if (this.target === 'US') {
+      return this.$q.reject({
+        status: 403,
+        message: 'challengePaymentMean is not available for US world part',
+      });
+    }
+    return this.challengePaymentMean(legacyPaymentMethod, challenge);
+  }
+
+  /**
    *  Delete a legacy payment method. Check the target to call the right API.
    *  @param  {Object} legacyPaymentMethod The legacy payment method to delete
    *  @return {Promise}
@@ -259,6 +275,19 @@ export default class OvhPaymentMethodLegacy {
       .delete({
         id: paymentMean.id,
       }).$promise;
+  }
+
+  /**
+   *  Challenge the given payment mean
+   *  @param  {Object} paymentMean The paymentMean object to delete
+   *  @param  {Object} challenge The challenge value
+   *  @return {Promise}
+   */
+  challengePaymentMean(paymentMean, challenge) {
+    return this.getPaymentMeanResource(paymentMean.paymentType)
+      .challenge({
+        id: paymentMean.id,
+      }, { challenge }).$promise;
   }
 
   /* =====  End of Payment Means  ====== */

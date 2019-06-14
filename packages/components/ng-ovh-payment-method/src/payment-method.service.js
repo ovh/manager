@@ -171,6 +171,24 @@ export default class OvhPaymentMethodService {
   }
 
   /**
+   *  Challenge given payment method
+   *  @param  {Object} paymentMethod The payment method to edit
+   *  @param  {Object} challenge     The challenge value
+   *  @return {Promise}
+   */
+  challengePaymentMethod(paymentMethod, challenge) {
+    // if original attribute is present, it means that it's an legacy payment method
+    if (paymentMethod.original) {
+      return this.ovhPaymentMethodLegacy
+        .challengePaymentMethod(paymentMethod.original, challenge);
+    }
+
+    return this.OvhApiMe.Payment().Method().v6().challenge({
+      paymentMethodId: paymentMethod.paymentMethodId,
+    }, { challenge }).$promise;
+  }
+
+  /**
    *  Delete given payment method
    *  @param  {Object} paymentMethod The paymentMethod to delete
    *  @return {Promise}
