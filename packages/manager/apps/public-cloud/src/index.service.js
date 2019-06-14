@@ -38,7 +38,7 @@ export default class PublicCloud {
       .$promise;
   }
 
-  handleDefaultProject() {
+  getDefaultProject() {
     return this.getProjects([{
       field: 'status',
       comparator: 'in',
@@ -48,27 +48,17 @@ export default class PublicCloud {
         if (projects.length > 0) {
           return this.ovhUserPref
             .getValue(DEFAULT_PROJECT_KEY)
-            .then(({ projectId }) => ({
-              state: 'pci.projects.project',
-              params: {
-                projectId,
-              },
-            }))
+            .then(project => project.projectId)
             .catch((error) => {
               if (error.status === 404) {
               // No project is defined as favorite
               // Go on the first one :)
-                return {
-                  state: 'pci.projects.project',
-                  params: {
-                    projectId: projects[0].project_id,
-                  },
-                };
+                return projects[0].project_id;
               }
               return Promise.reject(error);
             });
         }
-        return { state: 'pci.projects.onboarding' };
+        return null;
       });
   }
 }
