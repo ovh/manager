@@ -1,3 +1,12 @@
+# [3.2.0](https://github.com/ovh-ux/ng-ovh-payment-method/compare/v3.1.0...v3.2.0) (2019-06-14)
+
+
+### Features
+
+* add payment challenge ([#76](https://github.com/ovh-ux/ng-ovh-payment-method/issues/76)) ([5f46362](https://github.com/ovh-ux/ng-ovh-payment-method/commit/5f46362))
+
+
+
 # [3.1.0](https://github.com/ovh-ux/ng-ovh-payment-method/compare/v3.0.1...v3.1.0) (2019-05-24)
 
 
