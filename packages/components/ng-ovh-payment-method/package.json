@@ -20,6 +20,7 @@
     "build": "rollup -c",
     "dev": "rollup -c --watch",
     "lint": "eslint --quiet --fix --format=pretty src",
+    "lint:md": "eslint --quiet --fix --format=pretty --ext .md .",
     "prepare": "rollup -c",
     "test": "eslint --quiet src",
     "version": "npx conventional-changelog-cli -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
@@ -36,6 +37,7 @@
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-formatter-pretty": "^2.1.1",
     "eslint-plugin-import": "^2.17.3",
+    "eslint-plugin-markdown": "^1.0.0",
     "husky": "^2.4.1",
     "lint-staged": "^8.2.1"
   },

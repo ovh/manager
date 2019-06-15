@@ -13,6 +13,7 @@ yarn add @ovh-ux/ng-ovh-payment-method
 ## Usage
 
 ```js
+import angular from 'angular';
 import ngOvhPaymentMethod from '@ovh-ux/ng-ovh-payment-method';
 
 // add the ngOvhPaymentMethod module as dependency of your angular project
