@@ -3,9 +3,12 @@
   "version": "3.2.0",
   "description": "OVH Payment Methods wrapper for AngularJS",
   "keywords": [
-    "method",
+    "angularjs",
+    "bank-account",
+    "credit-card",
     "ovh",
-    "payment"
+    "payment-methods",
+    "paypal"
   ],
   "repository": "ovh-ux/ng-ovh-payment-method",
   "license": "BSD-3-Clause",
