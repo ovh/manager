@@ -15,6 +15,7 @@ angular.module(moduleName, [
   .run((
     $transitions,
     $translate,
+    ouiClipboardConfiguration,
     ouiCriteriaAdderConfiguration,
     ouiDatagridConfiguration,
     ouiFieldConfiguration,
@@ -25,6 +26,12 @@ angular.module(moduleName, [
   ) => {
     $translate.refresh()
       .then(() => {
+        set(ouiClipboardConfiguration, 'translations', {
+          copyToClipboardLabel: $translate.instant('common_clipboard_copy_to_clipboard'),
+          copiedLabel: $translate.instant('common_clipboard_copied'),
+          notSupported: $translate.instant('common_clipboard_not_supported'),
+        });
+
         set(ouiCriteriaAdderConfiguration, 'translations', {
           column_label: $translate.instant('common_criteria_adder_column_label'),
           operator_label: $translate.instant('common_criteria_adder_operator_label'),
