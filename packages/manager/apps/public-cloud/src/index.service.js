@@ -1,3 +1,5 @@
+import isEmpty from 'lodash/isEmpty';
+import map from 'lodash/map';
 import sortBy from 'lodash/sortBy';
 
 import { DEFAULT_PROJECT_KEY } from './index.constants';
@@ -45,15 +47,25 @@ export default class PublicCloud {
       reference: ['creating', 'ok'],
     }])
       .then((projects) => {
-        if (projects.length > 0) {
+        if (Array.isArray(projects) && !isEmpty(projects)) {
+          const [firstProject] = projects;
+          const { project_id: firstProjectId } = firstProject;
+          const projectsIds = map(projects, 'project_id');
+
           return this.ovhUserPref
             .getValue(DEFAULT_PROJECT_KEY)
-            .then(project => project.projectId)
+            .then((project) => {
+              if (!projectsIds.includes(project)) {
+                this.ovhUserPref.remove(DEFAULT_PROJECT_KEY);
+                return null;
+              }
+              return project.projectId;
+            })
             .catch((error) => {
               if (error.status === 404) {
-              // No project is defined as favorite
-              // Go on the first one :)
-                return projects[0].project_id;
+                // No project is defined as favorite
+                // Go on the first one :)
+                return firstProjectId;
               }
               return Promise.reject(error);
             });
