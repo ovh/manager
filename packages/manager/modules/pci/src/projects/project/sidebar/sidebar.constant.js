@@ -87,6 +87,14 @@ export const MENU = [
         },
         title: 'Managed Kubernetes Service',
       },
+      {
+        id: 'private-registry',
+        options: {
+          state: 'pci.projects.project.private-registry',
+        },
+        title: 'Managed Private Registry',
+        beta: true,
+      },
     ],
     regions: ['CA', 'EU'],
     title: 'Orchestration / Industrialization',

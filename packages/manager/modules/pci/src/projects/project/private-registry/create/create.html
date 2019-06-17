@@ -1,0 +1,34 @@
+<form  id="createRegistry"
+       name="createRegistry"
+       data-ng-submit="createRegistry.$valid && $ctrl.create()"
+       novalidate>
+    <oui-modal data-title="{{ ::'private_registry_create_modal_title' | translate }}"
+               data-primary-label="{{ ::'private_registry_common_create' | translate }}"
+               data-secondary-label="{{ ::'common_cancel' | translate }}"
+               data-secondary-action="$ctrl.back()"
+               data-on-dismiss="$ctrl.back()"
+               data-loading="$ctrl.isLoading">
+        <oui-field label="{{ ::'private_registry_create_name_label' | translate }}" size="xl">
+            <input class="oui-input"
+                   data-type="text"
+                   id="registryName"
+                   name="registryName"
+                   data-ng-model="$ctrl.registry.name"
+                   data-required
+                   data-minlength="1">
+        </oui-field>
+        <div data-ng-if="$ctrl.acceptTermsAndConditions">
+            <p data-translate="private_registry_beta_warning"></p>
+            <oui-field>
+                <oui-checkbox
+                    data-model="$ctrl.agreementsAccepted"
+                    data-name="agreements"
+                    data-required>
+                    <span data-translate="pci_project_new_description_project_contracts"
+                        data-translate-values="{ contractsLinks: $ctrl.getCompiledLinks('<a href=\'<%= pdf %>\' target=\'_blank\' rel=\'noopener\'><%= name %></a>') }">
+                    </span>
+                </oui-checkbox>
+            </oui-field>
+        </div>
+   </oui-modal>
+</form>
