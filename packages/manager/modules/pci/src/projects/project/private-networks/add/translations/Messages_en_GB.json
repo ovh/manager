@@ -18,6 +18,7 @@
  "pci_projects_project_network_private_create_name_step": "Name your private network",
  "pci_projects_project_network_private_create_name": "Private Network Name",
  "pci_projects_project_network_private_create_name_placeholder": "Enter a private network name",
+ "pci_projects_project_network_private_create_submit": "Create",
  "pci_projects_project_network_private_create_loading": "Your private network is being created. This may take a few minutes.",
  "pci_projects_project_network_private_create_success": "Private network created.",
  "pci_projects_project_network_private_create_error": "An error has occurred modifying the private network: {{ message }}"
