@@ -11,7 +11,15 @@ export default class PciBlockStorageDetailsDeleteController {
   }
 
   $onInit() {
-    this.isLoading = false;
+    this.isLoading = true;
+    return this.PciProjectStorageInstanceBackupService
+      .getAssociatedInstance(this.projectId, this.instanceBackup)
+      .then((installed) => {
+        this.associatedInstance = installed;
+      })
+      .finally(() => {
+        this.isLoading = false;
+      });
   }
 
   deleteStorage() {

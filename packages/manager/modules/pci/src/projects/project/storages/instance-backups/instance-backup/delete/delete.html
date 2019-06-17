@@ -2,13 +2,13 @@
     data-heading="{{ 'pci_projects_project_storages_volume-instances_volume-instance_delete_title' | translate }}"
     data-primary-action="$ctrl.deleteStorage()"
     data-primary-label="{{:: 'pci_projects_project_storages_volume-instances_volume-instance_delete_submit_label' | translate }}"
-    data-primary-disabled="$ctrl.isLoading || !$ctrl.instanceBackup.isDeletable()"
+    data-primary-disabled="$ctrl.isLoading || !$ctrl.instanceBackup.isDeletable() || $ctrl.associatedInstance"
     data-secondary-action="$ctrl.goBack()"
     data-secondary-label="{{:: 'pci_projects_project_storages_volume-instances_volume-instance_delete_cancel_label' | translate }}"
     data-on-dismiss="$ctrl.goBack()"
     data-loading="$ctrl.isLoading">
 
-    <div data-ng-if="$ctrl.instanceBackup.isDeletable()">
+    <div data-ng-if="$ctrl.instanceBackup.isDeletable() && !$ctrl.associatedInstance">
         <p data-translate="pci_projects_project_storages_volume-instances_volume-instance_delete_content"
             data-translate-values="{ backup: $ctrl.instanceBackup.name }"></p>
         <oui-message data-type="warning">
@@ -18,6 +18,13 @@
     <div data-ng-if="!$ctrl.instanceBackup.isDeletable()">
         <oui-message data-type="warning">
             <span data-translate="pci_projects_project_storages_volume-instances_volume-instance_delete_error_not_deletable"></span>
+        </oui-message>
+    </div>
+    <div data-ng-if="$ctrl.associatedInstance">
+        <oui-message data-type="warning">
+            <span data-translate="pci_projects_project_storages_volume-instances_volume-instance_delete_error_installed"
+                  data-translate-values="{ instance: $ctrl.associatedInstance.name }">
+            </span>
         </oui-message>
     </div>
 </oui-modal>
