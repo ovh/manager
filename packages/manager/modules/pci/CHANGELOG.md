@@ -1,3 +1,13 @@
+## [0.18.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.18.2...@ovh-ux/manager-pci@0.18.3) (2019-06-17)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([faea2bd](https://github.com/ovh-ux/manager/commit/faea2bd))
+* **pci.new:** prevent creation if challenge is needed ([#870](https://github.com/ovh-ux/manager/issues/870)) ([5c3ecd3](https://github.com/ovh-ux/manager/commit/5c3ecd3))
+
+
+
 ## [0.18.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.18.1...@ovh-ux/manager-pci@0.18.2) (2019-06-17)
 
 
