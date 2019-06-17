@@ -185,8 +185,7 @@ export default class PciProjectNewCtrl {
       })
       .catch(() => {
         this.loading.creating = false;
-        this.CucCloudMessage
-          .error(this.$translate.instant('pci_projects_new_create_error_message'));
+        this.CucCloudMessage.error(this.$translate.instant('pci_projects_new_create_error_message'));
       });
   }
 
@@ -294,6 +293,10 @@ export default class PciProjectNewCtrl {
         this.messages.list = this.messages.handler.getMessages();
       },
     });
+
+    if (this.shouldProcessChallenge()) {
+      return true;
+    }
 
     if (['success', 'accepted'].includes(this.paymentStatus)) {
       // success => HiPay
