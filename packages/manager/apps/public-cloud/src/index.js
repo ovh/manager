@@ -28,6 +28,7 @@ import ngOvhOtrs from '@ovh-ux/ng-ovh-otrs';
 import ngOvhUserPref from '@ovh-ux/ng-ovh-user-pref';
 import ngUirouterBreadcrumb from '@ovh-ux/ng-uirouter-breadcrumb';
 import ngUirouterLineProgress from '@ovh-ux/ng-uirouter-line-progress';
+import { OTRS_URLS } from './index.constants';
 
 import 'ovh-ui-kit/dist/oui.css';
 import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
@@ -70,6 +71,9 @@ angular
     const defaultLanguage = TranslateServiceProvider.getUserLocale();
     // set moment locale
     moment.locale(defaultLanguage.split('_')[0]);
+  })
+  .config((coreConfigProvider, OtrsPopupProvider) => {
+    OtrsPopupProvider.setBaseUrlTickets(OTRS_URLS[coreConfigProvider.region]);
   })
   .run(/* @ngInject */ ($state) => {
     $state.defaultErrorHandler((error) => {
