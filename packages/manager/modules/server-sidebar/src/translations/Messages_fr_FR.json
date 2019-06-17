@@ -1,9 +1,8 @@
 {
   "server_sidebar_item_title_DEDICATED": "Server",
   "server_sidebar_item_title_CLOUD": "Server",
-
+  "server_sidebar_item_title_WEB": "Web",
   "server_sidebar_item_empty_title": "Aucun service",
-
   "server_sidebar_item_dedicatedServers_title": "Serveurs Dédiés",
   "server_sidebar_item_dedicatedClouds_title": "Private Cloud",
   "server_sidebar_item_networks_title": "NAS et CDN",
@@ -21,7 +20,15 @@
   "server_sidebar_item_load_balancer_title": "Load Balancer",
   "server_sidebar_item_vrack_title": "vRack",
   "server_sidebar_item_cloud_desktop_title": "Cloud Desktop",
-
+  "server_sidebar_item_domains_title": "Domaines",
+  "server_sidebar_item_hostings_title": "Hébergements",
+  "server_sidebar_item_privateDatabases_title": "Bases de données",
+  "server_sidebar_item_emailPros_title": "E-mail Pro",
+  "server_sidebar_item_emails_title": "Emails",
+  "server_sidebar_item_office_title": "Office",
+  "server_sidebar_item_sharepoint_title": "Sharepoint",
+  "server_sidebar_item_domain_all_title": "Tous mes domaines",
+  "server_sidebar_item_domain_operations_title": "Opérations en cours",
   "server_sidebar_order_item_vps_title": "VPS",
   "server_sidebar_order_item_dedicated_server_title": "Serveur Dédié",
   "server_sidebar_order_item_cloud_project_title": "Projet Cloud",
@@ -39,5 +46,16 @@
   "server_sidebar_order_item_clouddb_title": "CloudDB",
   "server_sidebar_order_item_clouddesktop_title": "Cloud Desktop",
   "server_sidebar_order_item_kube_title": "Kubernetes ®",
-  "server_sidebar_order_item_logs_title": "Logs Data Platform"
+  "server_sidebar_order_item_logs_title": "Logs Data Platform",
+  "server_sidebar_order_item_domain_title": "Domaines",
+  "server_sidebar_order_item_privateDatabase_title": "Base de données",
+  "server_sidebar_order_item_hosting_title": "Hébergements",
+  "server_sidebar_order_item_cloudWeb_title": "Cloud Web",
+  "server_sidebar_order_item_emailPro_title": "E-mail Pro",
+  "server_sidebar_order_item_mxplan_title": "MX Plan",
+  "server_sidebar_order_item_exchange_title": "Exchange",
+  "server_sidebar_order_item_csp2_title": "Office revendeur",
+  "server_sidebar_order_item_office_title": "O365",
+  "server_sidebar_order_item_sharepoint_title": "Sharepoint",
+  "server_sidebar_order_item_zone_title": "Zone DNS"
 }
