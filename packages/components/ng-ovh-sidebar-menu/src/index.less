@@ -387,6 +387,18 @@
                     font-weight: bold;
                   }
                 }
+
+                .menu-level-4 {
+                  > li.item-container {
+                    &.active {
+                      > .item-content > .menu-item {
+                        background-color: @SIDEBAR_MENU_ACTIVE_ITEM_BG_COLOR;
+                        color: @SIDEBAR_MENU_TEXT_ACTIVE_COLOR;
+                        font-weight: bold;
+                      }
+                    }
+                  }
+                }
               }
             }
 
@@ -402,7 +414,7 @@
                 }
 
                 .menu-level-3 {
-                  li.item-container {
+                  .item-container {
                     position: relative;
                     overflow-y: hidden;
 

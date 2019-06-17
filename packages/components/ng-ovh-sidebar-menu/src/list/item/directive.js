@@ -143,7 +143,6 @@ export default /* @ngInject */ function ($compile) {
         self.item.loadSubItems().then(() => {
           // let SidebarMenu manage toggle states
           SidebarMenu.toggleMenuItemOpenState(self.item);
-
         }).catch(() => {
           self.errorVisible = true;
         });
