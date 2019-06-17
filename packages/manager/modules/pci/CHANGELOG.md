@@ -1,3 +1,12 @@
+## [0.18.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.18.0...@ovh-ux/manager-pci@0.18.1) (2019-06-17)
+
+
+### Bug Fixes
+
+* **project.edit.remove:** remove preference attached to default project ([90be107](https://github.com/ovh-ux/manager/commit/90be107))
+
+
+
 # [0.18.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.17.0...@ovh-ux/manager-pci@0.18.0) (2019-06-14)
 
 

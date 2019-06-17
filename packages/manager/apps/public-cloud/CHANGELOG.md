@@ -1,3 +1,12 @@
+# [0.12.0-alpha.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.12.0-alpha.0...@ovh-ux/manager-public-cloud@0.12.0-alpha.1) (2019-06-17)
+
+
+### Bug Fixes
+
+* **apps.public.cloud:** remove preference attached to default project ([96d813a](https://github.com/ovh-ux/manager/commit/96d813a))
+
+
+
 # [0.12.0-alpha.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.11.0-alpha.0...@ovh-ux/manager-public-cloud@0.12.0-alpha.0) (2019-06-14)
 
 
