@@ -1,3 +1,12 @@
+## [5.3.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@5.3.0...@ovh-ux/manager-core@5.3.1) (2019-06-17)
+
+
+### Bug Fixes
+
+* **core:** add missing clipboard component translations ([#861](https://github.com/ovh-ux/manager/issues/861)) ([3013eb2](https://github.com/ovh-ux/manager/commit/3013eb2))
+
+
+
 # [5.3.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@5.2.5...@ovh-ux/manager-core@5.3.0) (2019-06-14)
 
 
