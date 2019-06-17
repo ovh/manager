@@ -1,3 +1,12 @@
+# [8.3.0](https://github.com/ovh-ux/ng-ovh-sidebar-menu/compare/v8.2.0...v8.3.0) (2019-06-17)
+
+
+### Features
+
+* add style for level 4 active items ([#62](https://github.com/ovh-ux/ng-ovh-sidebar-menu/issues/62)) ([e7cda07](https://github.com/ovh-ux/ng-ovh-sidebar-menu/commit/e7cda07))
+
+
+
 # [8.2.0](https://github.com/ovh-ux/ng-ovh-sidebar-menu/compare/v8.1.0...v8.2.0) (2019-06-10)
 
 
