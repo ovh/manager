@@ -16,7 +16,7 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
 
   $stateProvider
     .state('redirect-kube', {
-      url: '/pci/projects/default/kubernetes',
+      url: '/pci/projects/default/kubernetes/new',
       redirectTo: (trans) => {
         const ovhUserPref = trans.injector().get('ovhUserPref');
         const publicCloud = trans.injector().get('publicCloud');
@@ -32,7 +32,7 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
               return ovhUserPref
                 .getValue(DEFAULT_PROJECT_KEY)
                 .then(({ projectId }) => ({
-                  state: 'pci.projects.project',
+                  state: 'pci.projects.project.kubernetes.add',
                   params: {
                     projectId,
                   },
@@ -42,7 +42,7 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
                     // No project is defined as favorite
                     // Go on the first one :)
                     return {
-                      state: 'pci.projects.project',
+                      state: 'pci.projects.project.kubernetes.add',
                       params: {
                         projectId: projects[0].project_id,
                       },
