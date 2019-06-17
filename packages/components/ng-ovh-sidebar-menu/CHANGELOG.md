@@ -1,3 +1,12 @@
+## [8.3.1](https://github.com/ovh-ux/ng-ovh-sidebar-menu/compare/v8.3.0...v8.3.1) (2019-06-17)
+
+
+### Bug Fixes
+
+* set overflow hidden to level 3 ([c968864](https://github.com/ovh-ux/ng-ovh-sidebar-menu/commit/c968864))
+
+
+
 # [8.3.0](https://github.com/ovh-ux/ng-ovh-sidebar-menu/compare/v8.2.0...v8.3.0) (2019-06-17)
 
 
