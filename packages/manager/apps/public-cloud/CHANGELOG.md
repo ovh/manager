@@ -1,3 +1,12 @@
+# [0.12.0-alpha.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.12.0-alpha.1...@ovh-ux/manager-public-cloud@0.12.0-alpha.2) (2019-06-17)
+
+
+### Bug Fixes
+
+* **public-cloud:** redirect to kube cluster creation ([#876](https://github.com/ovh-ux/manager/issues/876)) ([fab7a00](https://github.com/ovh-ux/manager/commit/fab7a00))
+
+
+
 # [0.12.0-alpha.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.12.0-alpha.0...@ovh-ux/manager-public-cloud@0.12.0-alpha.1) (2019-06-17)
 
 
