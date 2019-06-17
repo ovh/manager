@@ -11,6 +11,7 @@ export default class {
     $translate,
     atInternet,
     coreConfig,
+    OtrsPopupService,
     ovhManagerNavbarMenuHeaderBuilder,
   ) {
     this.$q = $q;
@@ -19,6 +20,7 @@ export default class {
     this.$translate = $translate;
     this.atInternet = atInternet;
     this.coreConfig = coreConfig;
+    this.otrsPopupService = OtrsPopupService;
     this.NavbarBuilder = ovhManagerNavbarMenuHeaderBuilder;
 
     this.REGION = this.coreConfig.getRegion();
