@@ -1,3 +1,17 @@
+# [0.12.0-alpha.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.12.0-alpha.2...@ovh-ux/manager-public-cloud@0.12.0-alpha.3) (2019-06-18)
+
+
+### Code Refactoring
+
+* remove otrs configuration from core ([#871](https://github.com/ovh-ux/manager/issues/871)) ([5ccf535](https://github.com/ovh-ux/manager/commit/5ccf535))
+
+
+### BREAKING CHANGES
+
+* Remove OTRS dependency in @ovh-ux/manager-core
+
+
+
 # [0.12.0-alpha.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.12.0-alpha.1...@ovh-ux/manager-public-cloud@0.12.0-alpha.2) (2019-06-17)
 
 
