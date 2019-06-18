@@ -2,8 +2,11 @@
     <a class="btn btn-primary py-1 px-2"
        data-ui-sref="pci.projects.new"
        style="background-color: rgb(40, 89, 192); color: #fff;"
-       data-translate="cloud_sidebar_projectlist_create_project"
+       data-track-on="click"
+       data-track-name="PCI_PROJECTS_SIDEBAR_NEW_PROJECT"
+       data-track-type="navigation"
     >
+        <span data-translate="cloud_sidebar_projectlist_create_project"></span>
     </a>
     <div data-ng-if="$ctrl.isLoading" class="d-flex mt-4">
         <span class="mr-3" style="font-size: 0.8rem;" data-translate="cloud_sidebar_projectlist_loading_projects"></span>
