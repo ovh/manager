@@ -4,5 +4,6 @@
  "pci_projects_status": "Stato",
  "pci_projects_status_ok": "Attivo",
  "pci_projects_status_deleting": "Eliminazione in corso...",
+ "pci_projects_status_creating": "Creazione in corso...",
  "pci_projects_project_show": "Visualizza"
 }

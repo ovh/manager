@@ -19,6 +19,7 @@ import { MANAGER_URLS } from './constants';
 import { SIDEBAR_CONFIG } from './sidebar.constants';
 import { ORDER_URLS, SIDEBAR_ORDER_CONFIG } from './order.constants';
 import { DEDICATED_SIDEBAR_CONFIG, DEDICATED_ORDER_SIDEBAR_CONFIG } from './dedicated.constants';
+import { WEB_SIDEBAR_CONFIG, WEB_ORDER_SIDEBAR_CONFIG } from './web.constants';
 
 // we should avoid require, but JSURL don't provide an es6 export
 const { stringify } = require('jsurl');
@@ -60,6 +61,10 @@ export default class OvhManagerServerSidebarController {
             this.SIDEBAR_ORDER_CONFIG = DEDICATED_ORDER_SIDEBAR_CONFIG;
           }
 
+          if (this.universe === 'WEB' && find(universes, { universe: this.universe.toLowerCase() })) {
+            this.SIDEBAR_CONFIG = WEB_SIDEBAR_CONFIG;
+            this.SIDEBAR_ORDER_CONFIG = WEB_ORDER_SIDEBAR_CONFIG;
+          }
           this.buildFirstLevelMenu();
           return this.buildOrderMenu();
         })
@@ -200,16 +205,31 @@ export default class OvhManagerServerSidebarController {
         } else {
           each(typesServices, (typeServices) => {
             this.addItems(get(parentService, 'children'), parent);
-
+            let items = get(typeServices, 'items');
             const hasSubItems = has(typeServices.type, 'types');
 
-            each(orderBy(typeServices.items, 'displayName'), (service) => {
+            if (!isEmpty(typeServices.type.filter)) {
+              items = typeServices.type.filter.fn(
+                items,
+                find(
+                  typesServices,
+                  service => get(service, 'type.category') === get(typeServices, 'type.filter.category'),
+                ),
+              );
+            }
+
+            each(orderBy(items, 'displayName'), (service) => {
               const isExternal = !includes(typeServices.type.app, this.universe)
                 && !isEmpty(service.url);
 
               let stateParams = zipObject(get(typeServices.type, 'stateParams', []), get(service, 'stateParams', []));
               if (has(typeServices.type, 'stateParamsTransformer') && isFunction(typeServices.type.stateParamsTransformer)) {
                 stateParams = typeServices.type.stateParamsTransformer(stateParams);
+              }
+
+              let loadOnStateParams = stateParams;
+              if (has(typeServices.type, 'loadOnStateParams') && has(typeServices.type, 'loadOnState')) {
+                loadOnStateParams = zipObject(get(typeServices.type, 'loadOnStateParams', []), get(service, 'stateParams', []));
               }
 
               let link = null;
@@ -222,7 +242,6 @@ export default class OvhManagerServerSidebarController {
                   state = typeServices.type.getState(service.extraParams);
                 }
               }
-
               const menuItem = this.SidebarMenu.addMenuItem({
                 title: service.displayName,
                 allowSubItems: hasSubItems && !isExternal,
@@ -234,7 +253,7 @@ export default class OvhManagerServerSidebarController {
                 target: isExternal ? '_self' : null,
                 icon: get(typeServices.type, 'icon'),
                 loadOnState: get(typeServices.type, 'loadOnState'),
-                loadOnStateParams: stateParams,
+                loadOnStateParams,
               }, parent);
 
               // add serviceName in item searchKeys
@@ -257,18 +276,28 @@ export default class OvhManagerServerSidebarController {
             });
           });
         }
+      })
+      .catch(() => {
+        this.SidebarMenu.addMenuItem({
+          title: this.$translate.instant('server_sidebar_item_empty_title'),
+          allowSubItems: false,
+          infiniteScroll: false,
+          allowSearch: false,
+        }, parent);
       });
   }
 
   getTypeItems(typeDefinition, params = null) {
     const external = !includes(typeDefinition.app, this.universe);
     const type = reduce(params, (result, value, paramId) => result.replace(`:${paramId}`, value), typeDefinition.path);
+    const exclude = get(typeDefinition, 'exclude', null);
 
     return new this.OvhApiService
       .Aapi()
       .query({
         type,
         external,
+        exclude,
       })
       .$promise
       .then(items => ({

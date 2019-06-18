@@ -10,6 +10,7 @@ import paymentAdd from './add';
 import paymentCreditInfo from './creditInfo';
 import paymentCredits from './credits';
 import paymentDefault from './default';
+import paymentChallenge from './challenge';
 
 import './payment.scss';
 
@@ -21,6 +22,7 @@ const moduleName = 'ovhManagerPciProjectsNewPayment';
 angular
   .module(moduleName, [
     paymentAdd,
+    paymentChallenge,
     paymentCreditInfo,
     paymentCredits,
     paymentDefault,

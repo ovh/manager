@@ -10,7 +10,6 @@ import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import ngOvhHttp from '@ovh-ux/ng-ovh-http';
 import ngOvhSsoAuth from '@ovh-ux/ng-ovh-sso-auth';
 import ovhOuiAngularTranslations from './translate/ovh-ui-angular';
-import ovhManagerCoreOtrs from './otrs';
 
 import 'angular-dynamic-locale';
 import 'angular-translate';
@@ -19,6 +18,8 @@ import 'angular-translate-loader-pluggable';
 import '@ovh-ux/ng-ovh-swimming-poll';
 import '@ovh-ux/ng-ovh-api-wrappers';
 import 'ovh-api-services';
+
+import '@uirouter/angularjs';
 
 import coreConfig from './config';
 import translateServiceProvider from './translate/translate.service';
@@ -41,7 +42,6 @@ angular
     'tmh.dynamicLocale',
     coreConfig,
     ngTranslateAsyncLoader,
-    ovhManagerCoreOtrs,
     ovhOuiAngularTranslations,
     ngOvhHttp,
     ngOvhSsoAuth,
@@ -201,6 +201,9 @@ angular
     set(OvhHttpProvider, 'clearCacheVerb', ['POST', 'PUT', 'DELETE']);
     set(OvhHttpProvider, 'returnSuccessKey', 'data'); // By default, request return response.data
     set(OvhHttpProvider, 'returnErrorKey', 'data'); // By default, request return error.data
+  })
+  .config(/* @ngInject */ ($urlServiceProvider) => {
+    $urlServiceProvider.config.strictMode(false);
   });
 
 export default moduleName;

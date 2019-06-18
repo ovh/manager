@@ -12,10 +12,10 @@ export const MENU = [
         options: {
           state: 'pci.projects.project.instances',
         },
-        translation: 'cloud_sidebar_compute_instance',
+        title: 'Instances',
       },
     ],
-    translation: 'cloud_sidebar_compute',
+    title: 'Compute',
   },
   {
     subitems: [
@@ -24,38 +24,38 @@ export const MENU = [
         options: {
           state: 'pci.projects.project.storages.blocks',
         },
-        translation: 'cloud_sidebar_storage_block_storage',
+        title: 'Block Storage',
       },
       {
         id: 'object-storage',
         options: {
           state: 'pci.projects.project.storages.objects',
         },
-        translation: 'cloud_sidebar_storage_object_storage',
+        title: 'Object Storage',
       },
       {
         id: 'archive',
         options: {
           state: 'pci.projects.project.storages.archives',
         },
-        translation: 'cloud_sidebar_storage_cold_storage',
+        title: 'Cloud Archive',
       },
       {
         id: 'snapshot',
         options: {
           state: 'pci.projects.project.storages.snapshots',
         },
-        translation: 'cloud_sidebar_storage_volume_storage',
+        title: 'Volume Snapshot',
       },
       {
         id: 'instance-backup',
         options: {
           state: 'pci.projects.project.storages.instance-backups',
         },
-        translation: 'cloud_sidebar_storage_instance_storage',
+        title: 'Instance Backup',
       },
     ],
-    translation: 'cloud_sidebar_storage',
+    title: 'Storage',
   },
   {
     subitems: [
@@ -64,17 +64,17 @@ export const MENU = [
         options: {
           state: 'pci.projects.project.privateNetwork',
         },
-        translation: 'cloud_sidebar_private_network',
+        title: 'Private Network',
       },
       {
         id: 'failover-ip',
         options: {
           state: 'pci.projects.project.failover-ips',
         },
-        translation: 'cloud_sidebar_failover_ip',
+        title: 'Failover IP',
       },
     ],
-    translation: 'cloud_sidebar_network',
+    title: 'Network',
   },
   {
     subitems: [
@@ -83,14 +83,14 @@ export const MENU = [
         options: {
           state: 'pci.projects.project.kubernetes',
         },
-        translation: 'cloud_sidebar_orchestration_kubernetes',
+        title: 'Managed Kubernetes Service',
       },
     ],
     regions: ['CA', 'EU'],
-    translation: 'cloud_sidebar_orchestration',
+    title: 'Orchestration / Industrialization',
   },
   {
-    translation: 'cloud_sidebar_management_interface',
+    title: 'Management Interfaces',
     subitems: [
       {
         id: 'horizon',
@@ -98,7 +98,7 @@ export const MENU = [
           url: HORIZON,
           target: '_blank',
         },
-        translation: 'cloud_sidebar_management_interface_horizon',
+        title: 'Horizon',
       },
     ],
   },
@@ -113,21 +113,21 @@ export const MENU = [
         options: {
           state: 'pci.projects.project.users',
         },
-        translation: 'cloud_sidebar_project_management_users',
+        title: 'Users',
       },
       {
         id: 'quota',
         options: {
           state: 'pci.projects.project.quota',
         },
-        translation: 'cloud_sidebar_project_management_quota_location',
+        title: 'Quota and Localisation',
       },
       {
         id: 'ssh-keys',
         options: {
           state: 'pci.projects.project.sshKeys',
         },
-        translation: 'cloud_sidebar_project_management_ssh_keys',
+        title: 'SSH Keys',
       },
       {
         id: 'billing',
@@ -135,7 +135,7 @@ export const MENU = [
           state: 'pci.projects.project.billing',
         },
         regions: ['EU', 'CA'],
-        translation: 'cloud_sidebar_project_management_billing_control',
+        title: 'Billing Control',
       },
       {
         id: 'vouchers',
@@ -143,7 +143,7 @@ export const MENU = [
           state: 'pci.projects.project.vouchers',
         },
         regions: ['EU', 'CA'],
-        translation: 'cloud_sidebar_project_management_credit_vouchers',
+        title: 'Credit and Vouchers',
       },
       {
         id: 'contacts',
@@ -151,17 +151,17 @@ export const MENU = [
           state: 'pci.projects.project.contacts',
         },
         regions: ['EU', 'CA'],
-        translation: 'cloud_sidebar_project_management_contact_rights',
+        title: 'Contacts and Rights',
       },
       {
         id: 'management-settings',
         options: {
           state: 'pci.projects.project.edit',
         },
-        translation: 'cloud_sidebar_project_management_settings',
+        title: 'Project settings',
       },
     ],
-    translation: 'cloud_sidebar_project_management',
+    title: 'Project Management',
   },
 ];
 

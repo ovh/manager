@@ -4,7 +4,7 @@ import get from 'lodash/get';
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
     .state('pci.projects.new.payment', {
-      url: '/payment?mode&credit&voucher&hiPayStatus&paypalAgreementStatus',
+      url: '/payment?mode&credit&voucher&hiPayStatus&paypalAgreementStatus&challengeStatus',
       redirectTo: (transition) => {
         const { hiPayStatus, mode, projectId } = transition.params();
 
@@ -38,7 +38,7 @@ export default /* @ngInject */ ($stateProvider) => {
         // check for payment response in state params
         const stateParams = $transition$.params();
         const descriptionModel = getStepByName('description').model;
-        if (stateParams.hiPayStatus || stateParams.paypalAgreementStatus) {
+        if (stateParams.hiPayStatus || stateParams.paypalAgreementStatus || stateParams.challengeStatus === 'done') {
           // set model from state params
           const paymentModel = getStepByName('payment').model;
 
@@ -51,6 +51,7 @@ export default /* @ngInject */ ($stateProvider) => {
             paymentModel.voucher = {
               valid: true,
               value: stateParams.voucher,
+              submitted: true,
             };
           }
           paymentModel.credit.value = parseInt(stateParams.credit, 10);

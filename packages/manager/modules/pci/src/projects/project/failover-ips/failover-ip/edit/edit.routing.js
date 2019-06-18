@@ -1,5 +1,4 @@
-import controller from './edit.controller';
-import template from './edit.html';
+import find from 'lodash/find';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
@@ -7,9 +6,7 @@ export default /* @ngInject */ ($stateProvider) => {
       url: '/:serviceName/edit',
       views: {
         modal: {
-          controller,
-          controllerAs: '$ctrl',
-          template,
+          component: 'pciProjectFailoverIpsEdit',
         },
       },
       layout: 'modal',
@@ -19,6 +16,10 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       resolve: {
         breadcrumb: () => null,
+        serviceName: /* @ngInject */ $transition$ => $transition$.params().serviceName,
+        ip: /* @ngInject */ (serviceName, failoverIps) => find(failoverIps, {
+          id: serviceName,
+        }),
       },
     });
 };
