@@ -26,6 +26,7 @@ export default /* @ngInject */ ($stateProvider) => {
         getStepByName,
         PciProjectNewService,
         project,
+        trackingPage,
       ) => {
         // check for paypal response in query string
         if ($window.location.search.indexOf('paypalAgreementStatus') > -1) {
@@ -68,10 +69,8 @@ export default /* @ngInject */ ($stateProvider) => {
           // cancel project creation and redirect refresh page
           const { hiPayStatus, projectId } = $transition$.params();
           if (hiPayStatus !== 'success' && get(project, 'status') === 'creating' && projectId) {
-            const page = `public-cloud::${$transition$.to().name.replace(/\./g, '::')}`;
-
             atInternet.trackEvent({
-              page,
+              page: trackingPage,
               event: projectId ? 'PCI_ERROR_REFUSED_PAYMENT_CREDIT' : 'PCI_ERROR_REFUSED_PAYMENT',
             });
 
