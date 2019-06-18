@@ -84,7 +84,7 @@
     "validator-js": "chriso/validator.js#3.40.1"
   },
   "devDependencies": {
-    "@ovh-ux/manager-webpack-config": "^3.0.7",
+    "@ovh-ux/manager-webpack-config": "^3.0.8",
     "webpack-merge": "^4.1.4"
   }
 }
