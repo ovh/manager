@@ -125,7 +125,7 @@ export const EMAIL_PRO_CONFIG = {
 
 export const EMAIL_CONFIG = {
   id: 'emails',
-  loadOnState: 'app.email.domain',
+  loadOnState: 'app.email.*',
   types: [
     {
       path: '/email/domain',
