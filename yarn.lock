@@ -1655,6 +1655,31 @@
     rollup-pluginutils "^2.3.3"
     slash "^2.0.0"
 
+"@ovh-ux/manager-core@^5.1.0", "@ovh-ux/manager-core@^5.2.0", "@ovh-ux/manager-core@^5.3.0":
+  version "5.3.1"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core/-/manager-core-5.3.1.tgz#1c8d6f57c7f1785fa74357349cd37f6c3ba75126"
+  integrity sha512-O6E1M05jAR2gRvPew5idiVIpOv3A+Q+hDAwjClUAb8jy5iv6Khw85UlXO4+vZJDNhup/t4wKkTtTkaMC1xTHIw==
+  dependencies:
+    "@ovh-ux/ng-translate-async-loader" "^2.0.0"
+    lodash "^4.17.11"
+
+"@ovh-ux/manager-navbar@^0.6.0":
+  version "0.6.2"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-navbar/-/manager-navbar-0.6.2.tgz#1a80989a3e0669cff62f81bce62e182ea9801539"
+  integrity sha512-o11pyjhLWlILnZ3fswDKNlaVb63ForWTOFCBo4GLMutLaEJwIpYQoKQCCZJAM1ygAFN36g69hI0MFHqvtv6deQ==
+  dependencies:
+    lodash "^4.17.11"
+    moment "^2.24.0"
+
+"@ovh-ux/manager-telecom-styles@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-telecom-styles/-/manager-telecom-styles-2.0.2.tgz#23256c8356f3c483a28c72e5d5f23d0999f24f13"
+  integrity sha512-+5/YPd0vraoawasaJQfq2x9P5PTF0lZwOUojjLyB0zMUm3SIVO4EPpLByStanmbA2IXkznKAadvSYLh+IkIutw==
+  dependencies:
+    bootstrap "~3.3.7"
+    ovh-ui-kit "^2.23.1"
+    ovh-ui-kit-bs "^2.1.1"
+
 "@ovh-ux/manager-webpack-config@^3.0.7":
   version "3.0.7"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-webpack-config/-/manager-webpack-config-3.0.7.tgz#d158154e22c44a225dd923505c62b8a7e6343c1f"
@@ -9251,7 +9276,7 @@ ovh-ui-kit@^2.22.0, ovh-ui-kit@^2.31.0:
   dependencies:
     less-plugin-remcalc "^0.1.0"
 
-ovh-ui-kit@^2.33.3:
+ovh-ui-kit@^2.23.1, ovh-ui-kit@^2.33.3:
   version "2.33.3"
   resolved "https://registry.yarnpkg.com/ovh-ui-kit/-/ovh-ui-kit-2.33.3.tgz#e15490f763ea22008535284d468f8e1c3ba6ce17"
   integrity sha512-fNQIK3Ko7f00LOunM3X5EoBiUbMxVIsJgbbPUb7szfu+IK6laZIIKWmOvVtrWqoHjUxSieEFRNTv7CgUd/NPgw==
@@ -13087,13 +13112,13 @@ webpackbar@^3.2.0:
     wrap-ansi "^5.1.0"
 
 websocket-driver@>=0.5.1:
-  version "0.7.2"
-  resolved "https://registry.yarnpkg.com/websocket-driver/-/websocket-driver-0.7.2.tgz#373303067d1dbefa3fddfa228a32b2a098957fa6"
-  integrity sha512-RRTAkzsGiOP8PwGwLfd/H0NbotLXyS5zxg4EbuQ2K3aNqgUOVbOzBKKvTXzUsKiwVs+pBpBtqBYHj6PS6JVXDQ==
+  version "0.7.3"
+  resolved "https://registry.yarnpkg.com/websocket-driver/-/websocket-driver-0.7.3.tgz#a2d4e0d4f4f116f1e6297eba58b05d430100e9f9"
+  integrity sha512-bpxWlvbbB459Mlipc5GBzzZwhoZgGEZLuqPaR0INBGnPAY1vdBX6hPnoFXiw+3yWxDuHyQjO2oXTMyS8A5haFg==
   dependencies:
-    http-parser-js ">= 0.4.0, < 0.4.11"
-    safe-buffer ">= 5.1.0"
-    websocket-extensions ">= 0.1.1"
+    http-parser-js ">=0.4.0 <0.4.11"
+    safe-buffer ">=5.1.0"
+    websocket-extensions ">=0.1.1"
 
 "websocket-extensions@>= 0.1.1":
   version "0.1.3"
