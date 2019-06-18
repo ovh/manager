@@ -1,3 +1,17 @@
+# [3.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom-styles@2.0.2...@ovh-ux/manager-telecom-styles@3.0.0) (2019-06-18)
+
+
+### Code Refactoring
+
+* remove otrs configuration from core ([#871](https://github.com/ovh-ux/manager/issues/871)) ([5ccf535](https://github.com/ovh-ux/manager/commit/5ccf535))
+
+
+### BREAKING CHANGES
+
+* Remove OTRS dependency in @ovh-ux/manager-core
+
+
+
 ## [2.0.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom-styles@2.0.1...@ovh-ux/manager-telecom-styles@2.0.2) (2019-01-21)
 
 
