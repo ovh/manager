@@ -16,5 +16,6 @@ export default {
     shouldProcessChallenge: '<',
     creditMinPrice: '<',
     project: '<',
+    trackingPage: '<',
   },
 };
