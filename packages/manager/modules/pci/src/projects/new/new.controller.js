@@ -258,7 +258,7 @@ export default class PciProjectNewCtrl {
   onNextBtnClick() {
     const currentStep = this.getCurrentStep();
 
-    if ((this.paymentModel.mode === 'credits' && this.paymentModel.credit.value)) {
+    if (this.paymentModel.mode === 'credits' && this.paymentModel.credit.value) {
       this.atInternet.trackEvent({
         page: this.trackingPage,
         event: 'PCI_PAYMENT_MODE_CREDIT',
