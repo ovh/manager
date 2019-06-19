@@ -1,3 +1,12 @@
+## [0.2.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.2.0...@ovh-ux/manager-server-sidebar@0.2.1) (2019-06-19)
+
+
+### Bug Fixes
+
+* **server.sidebar:** update web constant for email section ([c25cfc1](https://github.com/ovh-ux/manager/commit/c25cfc1))
+
+
+
 # [0.2.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.1.7...@ovh-ux/manager-server-sidebar@0.2.0) (2019-06-17)
 
 
