@@ -59,7 +59,7 @@ export default class PciUsersDownloadRcloneController {
           }));
       })
       .catch(err => this.goBack(this.$translate.instant(
-        'pci_projects_project_users_download-rclone_error_save',
+        'pci_projects_project_users_download-rclone_error_rclone',
         {
           message: get(err, 'data.message', null),
         },
