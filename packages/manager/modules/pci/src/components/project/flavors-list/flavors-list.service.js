@@ -52,8 +52,9 @@ export default class FlavorsList {
   }
 
   static groupByCategory(flavors) {
-    return CATEGORIES.map(({ category, pattern }) => ({
+    return CATEGORIES.map(({ category, title, pattern }) => ({
       category,
+      title,
       flavors: filter(flavors, flavor => pattern.test(flavor.type)),
     }));
   }
