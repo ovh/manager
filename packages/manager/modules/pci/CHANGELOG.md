@@ -1,3 +1,14 @@
+## [0.18.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.18.3...@ovh-ux/manager-pci@0.18.4) (2019-06-19)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([ca446ea](https://github.com/ovh-ux/manager/commit/ca446ea))
+* **pci.project.user:** update error translation keys ([#892](https://github.com/ovh-ux/manager/issues/892)) ([47eef22](https://github.com/ovh-ux/manager/commit/47eef22))
+* **pci.project.user:** update username label ([#883](https://github.com/ovh-ux/manager/issues/883)) ([c0d7e36](https://github.com/ovh-ux/manager/commit/c0d7e36))
+
+
+
 ## [0.18.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.18.2...@ovh-ux/manager-pci@0.18.3) (2019-06-17)
 
 
