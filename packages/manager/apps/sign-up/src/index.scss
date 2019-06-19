@@ -1,0 +1,25 @@
+@import "~bootstrap4/scss/_functions";
+@import "~bootstrap4/scss/_variables";
+@import "~bootstrap4/scss/_mixins";
+@import '~bootstrap4/scss/_utilities.scss';
+@import '~bootstrap4/scss/_grid.scss';
+
+.app-content {
+  position: relative;
+  min-height: 500px;
+  box-shadow: 0 0 6px 0 rgba(40, 89, 192, 0.2);
+}
+
+#appPreload {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: #FFF;
+  z-index: 10;
+
+  &.app-preload-hide {
+    transition: opacity 800ms 1s, visibility 1800ms;
+    opacity: 0;
+    visibility: hidden !important;
+  }
+}

@@ -1,0 +1,26 @@
+.sign-up-form-details {
+  .phone-number-field {
+    position: relative;
+
+    .oui-ui-select {
+        margin-bottom: 0;
+        width: 130px;
+        position: initial;
+
+        .ui-select-match {
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+          box-shadow: inset 2px 2px 1px 0 rgba(18, 40, 68, 0.07);
+        }
+        // label.oui-select {
+        //     width: 130px;
+        // }
+    }
+
+    .oui-input_phone {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        border-left: 0;
+    }
+  }
+}

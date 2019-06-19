@@ -1625,6 +1625,36 @@
     shuffle-seed "^1.1.6"
     titleize "^1.0.1"
 
+"@ovh-ux/component-rollup-config@5.0.1", "@ovh-ux/component-rollup-config@^5.0.0":
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/component-rollup-config/-/component-rollup-config-5.0.1.tgz#968c85be3cd3158eda627ce8dede929685660d54"
+  integrity sha512-CoHyw6aaE14PX/a2oGXAKEbeQNpbyS83FHI3F0b3bJpKAHTfH5jYH6IfgWXLR3onwpztuDxWZauGNIUdB3Nw5g==
+  dependencies:
+    "@babel/core" "^7.1.2"
+    "@babel/plugin-syntax-dynamic-import" "^7.0.0"
+    "@babel/preset-env" "^7.1.6"
+    "@ovh-ux/rollup-plugin-less-tilde-importer" "^1.0.0-beta.0"
+    babel-plugin-angularjs-annotate "^0.10.0"
+    camelcase "^5.0.0"
+    estree-walker "^0.6.0"
+    less "^3.8.1"
+    less-plugin-remcalc "^0.1.0"
+    lodash "^4.17.11"
+    magic-string "^0.25.1"
+    node-sass "^4.10.0"
+    rollup "^1.1.2"
+    rollup-plugin-babel "^4.3.2"
+    rollup-plugin-commonjs "^9.2.0"
+    rollup-plugin-html "^0.2.1"
+    rollup-plugin-img "^1.1.0"
+    rollup-plugin-json "^3.1.0"
+    rollup-plugin-less "^0.1.5"
+    rollup-plugin-node-resolve "^4.0.0"
+    rollup-plugin-peer-deps-external "^2.2.0"
+    rollup-plugin-sass "^1.1.0"
+    rollup-pluginutils "^2.3.3"
+    slash "^2.0.0"
+
 "@ovh-ux/component-rollup-config@5.0.2", "@ovh-ux/component-rollup-config@^5.0.2":
   version "5.0.2"
   resolved "https://registry.yarnpkg.com/@ovh-ux/component-rollup-config/-/component-rollup-config-5.0.2.tgz#da43f0d672ccd69c415eb0aa0049effecce810d9"
@@ -1643,36 +1673,6 @@
     magic-string "^0.25.1"
     node-sass "^4.10.0"
     rollup "^1.14.6"
-    rollup-plugin-babel "^4.3.2"
-    rollup-plugin-commonjs "^9.2.0"
-    rollup-plugin-html "^0.2.1"
-    rollup-plugin-img "^1.1.0"
-    rollup-plugin-json "^3.1.0"
-    rollup-plugin-less "^0.1.5"
-    rollup-plugin-node-resolve "^4.0.0"
-    rollup-plugin-peer-deps-external "^2.2.0"
-    rollup-plugin-sass "^1.1.0"
-    rollup-pluginutils "^2.3.3"
-    slash "^2.0.0"
-
-"@ovh-ux/component-rollup-config@^5.0.0":
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/component-rollup-config/-/component-rollup-config-5.0.1.tgz#968c85be3cd3158eda627ce8dede929685660d54"
-  integrity sha512-CoHyw6aaE14PX/a2oGXAKEbeQNpbyS83FHI3F0b3bJpKAHTfH5jYH6IfgWXLR3onwpztuDxWZauGNIUdB3Nw5g==
-  dependencies:
-    "@babel/core" "^7.1.2"
-    "@babel/plugin-syntax-dynamic-import" "^7.0.0"
-    "@babel/preset-env" "^7.1.6"
-    "@ovh-ux/rollup-plugin-less-tilde-importer" "^1.0.0-beta.0"
-    babel-plugin-angularjs-annotate "^0.10.0"
-    camelcase "^5.0.0"
-    estree-walker "^0.6.0"
-    less "^3.8.1"
-    less-plugin-remcalc "^0.1.0"
-    lodash "^4.17.11"
-    magic-string "^0.25.1"
-    node-sass "^4.10.0"
-    rollup "^1.1.2"
     rollup-plugin-babel "^4.3.2"
     rollup-plugin-commonjs "^9.2.0"
     rollup-plugin-html "^0.2.1"
@@ -2383,7 +2383,7 @@ angular@1.3.x:
   resolved "https://registry.yarnpkg.com/angular/-/angular-1.3.20.tgz#b23a3d7c5e7f99f7d95b9b4d49b9ac355269baee"
   integrity sha1-sjo9fF5/mffZW5tNSbmsNVJpuu4=
 
-"angular@>=1.2.26 <=1.7", "angular@>=1.3.0 <2.0.0", angular@^1.7.5:
+"angular@>=1.2.26 <=1.7", "angular@>=1.3.0 <2.0.0", angular@^1.7.5, angular@^1.7.8:
   version "1.7.8"
   resolved "https://registry.yarnpkg.com/angular/-/angular-1.7.8.tgz#b77ede272ce1b261e3be30c1451a0b346905a3c9"
   integrity sha512-wtef/y4COxM7ZVhddd7JtAAhyYObq9YXKar9tsW7558BImeVYteJiTxCKeJOL45lJ/+7B4wrAC49j8gTFYEthg==
@@ -5578,6 +5578,11 @@ findup-sync@^2.0.0:
     is-glob "^3.1.0"
     micromatch "^3.0.4"
     resolve-dir "^1.0.1"
+
+flag-icon-css@^3.2.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/flag-icon-css/-/flag-icon-css-3.3.0.tgz#7772461e4480d3d86da5962f02120a2825688433"
+  integrity sha512-u5lCGVExrJJRykNGd//ZrBU5Bkt0LTZJFSuG+Az/pwcHgzDeFwomwFbsgVtI1aJd6ysyHsx+5UGrA+nhSGd4yw==
 
 flag-icon-css@~0.8.5:
   version "0.8.6"
@@ -9256,6 +9261,18 @@ ovh-ui-angular@^3.2.1:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/ovh-ui-angular/-/ovh-ui-angular-3.2.1.tgz#7359f10a6d41ab52d0e140beefe109d0d11a161e"
   integrity sha512-erIkLWqotLVumSmDT4v+kmqDWpYdc/LnmhuGw8ZAy7XztSdbJI18V/GDbP6JuL1N8urE5rG7uHWxo3nk+vOkhA==
+  dependencies:
+    bloodhound-js "^1.2.3"
+    clipboard "^2.0.1"
+    escape-string-regexp "^1.0.5"
+    flatpickr "^4.5.2"
+    popper.js "^1.14.4"
+    ui-select "^0.19.8"
+
+ovh-ui-angular@^3.2.4:
+  version "3.2.4"
+  resolved "https://registry.yarnpkg.com/ovh-ui-angular/-/ovh-ui-angular-3.2.4.tgz#c5c45b811a81e5f900433e16c305110601bf691a"
+  integrity sha512-Kxq/fWhKG7JqXmoJaOxG9uUU0HED3Q8kK7S+yi74mShSrXUankP+x8+OJnc3HeMTbFq0bK6hUnZUJ8ksHbFXCA==
   dependencies:
     bloodhound-js "^1.2.3"
     clipboard "^2.0.1"
