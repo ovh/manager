@@ -1680,10 +1680,10 @@
     ovh-ui-kit "^2.23.1"
     ovh-ui-kit-bs "^2.1.1"
 
-"@ovh-ux/manager-webpack-config@^3.0.7":
-  version "3.0.7"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-webpack-config/-/manager-webpack-config-3.0.7.tgz#d158154e22c44a225dd923505c62b8a7e6343c1f"
-  integrity sha512-e8lOKIlR3GX9LnA4jlcWFfoWREGMfr6FyVwXaYZqMlugs8f+lfr4wzaxl0Po9Xg7RYkaABtlzBQcRYG5yzcPNw==
+"@ovh-ux/manager-webpack-config@^3.0.8":
+  version "3.0.8"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-webpack-config/-/manager-webpack-config-3.0.8.tgz#2efc008be2ac15ca6fdee5bc776e25e1003fce30"
+  integrity sha512-+Oplv0udK3L+6BR4ttCLZZ+Y9YZwVofbxBvA92U+R7f0wjG4QhqwO5jE4nSBKA2ymX/1uGtg/CqM41pdXS0d8A==
   dependencies:
     "@babel/core" "^7.2.2"
     "@babel/generator" "^7.2.2"

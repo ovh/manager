@@ -1,4 +1,7 @@
 {
+ "common_clipboard_copy_to_clipboard": "In die Zwischenablage kopieren",
+ "common_clipboard_copied": "Kopiert",
+ "common_clipboard_not_supported": "Kann nicht in die Zwischenablage kopiert werden. Bitte kopieren Sie den Text manuell",
  "common_criteria_adder_column_label": "Spalte",
  "common_criteria_adder_operator_label": "Bedingung",
  "common_criteria_adder_operator_boolean_is": "ist",
