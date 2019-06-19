@@ -1,4 +1,5 @@
 import get from 'lodash/get';
+import map from 'lodash/map';
 
 export default class PciBlockStorageDetailsDeleteController {
   /* @ngInject */
@@ -13,9 +14,9 @@ export default class PciBlockStorageDetailsDeleteController {
   $onInit() {
     this.isLoading = true;
     return this.PciProjectStorageInstanceBackupService
-      .getAssociatedInstance(this.projectId, this.instanceBackup)
-      .then((installed) => {
-        this.associatedInstance = installed;
+      .getAssociatedInstances(this.projectId, this.instanceBackup)
+      .then((instances) => {
+        this.namesOfAssociatedInstances = map(instances, 'name');
       })
       .finally(() => {
         this.isLoading = false;

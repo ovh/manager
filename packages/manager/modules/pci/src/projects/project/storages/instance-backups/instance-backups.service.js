@@ -1,4 +1,4 @@
-import find from 'lodash/find';
+import filter from 'lodash/filter';
 import map from 'lodash/map';
 import InstanceBackup from './instance-backup.class';
 
@@ -51,13 +51,13 @@ export default class PciProjectStorageInstanceBackupService {
       .$promise;
   }
 
-  getAssociatedInstance(projectId, { id }) {
+  getAssociatedInstances(projectId, { id }) {
     return this.OvhApiCloudProjectInstance
       .v6()
       .query({
         serviceName: projectId,
       })
       .$promise
-      .then(instances => find(instances, { imageId: id }));
+      .then(instances => filter(instances, { imageId: id }));
   }
 }
