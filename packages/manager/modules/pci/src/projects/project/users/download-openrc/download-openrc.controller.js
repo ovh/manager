@@ -58,7 +58,7 @@ export default class PciUsersDownloadOpenRcController {
           }));
       })
       .catch(err => this.goBack(this.$translate.instant(
-        'pci_projects_project_users_download-openrc_error_save',
+        'pci_projects_project_users_download-openrc_error_openrc',
         {
           message: get(err, 'data.message', null),
         },

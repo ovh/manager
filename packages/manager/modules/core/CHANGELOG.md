@@ -1,3 +1,14 @@
+## [6.0.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@6.0.0...@ovh-ux/manager-core@6.0.1) (2019-06-19)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([a218f7d](https://github.com/ovh-ux/manager/commit/a218f7d))
+* **i18n:** add missing translations ([32c2e9e](https://github.com/ovh-ux/manager/commit/32c2e9e))
+* **i18n:** add missing translations ([8f4cad5](https://github.com/ovh-ux/manager/commit/8f4cad5))
+
+
+
 # [6.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@5.3.1...@ovh-ux/manager-core@6.0.0) (2019-06-18)
 
 
