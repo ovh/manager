@@ -3,7 +3,7 @@
 <p data-translate="pci_projects_new_payment_challenge_intro"></p>
 
 <form novalidate
-    data-ng-submit="$ctrl.processChallenge()">
+    data-ng-submit="$ctrl.challenge && $ctrl.processChallenge()">
 
     <oui-spinner
         class="ml-3 align-middle"
