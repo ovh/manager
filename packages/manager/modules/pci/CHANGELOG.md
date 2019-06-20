@@ -1,3 +1,12 @@
+## [0.18.6](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.18.5...@ovh-ux/manager-pci@0.18.6) (2019-06-20)
+
+
+### Bug Fixes
+
+* fix pci mobile sidebar ([#906](https://github.com/ovh-ux/manager/issues/906)) ([fc85f63](https://github.com/ovh-ux/manager/commit/fc85f63))
+
+
+
 ## [0.18.5](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.18.4...@ovh-ux/manager-pci@0.18.5) (2019-06-19)
 
 
