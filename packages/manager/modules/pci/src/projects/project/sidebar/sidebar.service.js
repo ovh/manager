@@ -15,9 +15,9 @@ export default class Sidebar {
     return [
       ...MENU.map(item => ({
         name: item.translation,
-        title: this.$translate.instant(item.translation),
+        title: item.title,
         subLinks: item.subitems.map(subitem => ({
-          name: subitem.translation,
+          name: subitem.title,
           title: this.$translate.instant(subitem.translation),
           ...subitem.options,
           stateParams,
