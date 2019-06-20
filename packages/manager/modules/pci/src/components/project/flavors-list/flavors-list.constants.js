@@ -3,22 +3,27 @@ export const DEFAULT_OS = 'linux';
 export const CATEGORIES = [
   {
     category: 'balanced',
+    title: 'General Purpose',
     pattern: /eg/,
   },
   {
     category: 'cpu',
+    title: 'CPU',
     pattern: /cpu|hg/,
   },
   {
     category: 'ram',
+    title: 'RAM',
     pattern: /ram/,
   },
   {
     category: 'accelerated',
+    title: 'GPU',
     pattern: /gpu|nvme/,
   },
   {
     category: 'vps',
+    title: 'Sandbox',
     pattern: /vps/,
   },
 ];
