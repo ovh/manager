@@ -1,3 +1,12 @@
+## [0.18.7](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.18.6...@ovh-ux/manager-pci@0.18.7) (2019-06-20)
+
+
+### Bug Fixes
+
+* **pci.project.sidebar.service:** display correctly item title ([#910](https://github.com/ovh-ux/manager/issues/910)) ([bbb63ac](https://github.com/ovh-ux/manager/commit/bbb63ac))
+
+
+
 ## [0.18.6](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.18.5...@ovh-ux/manager-pci@0.18.6) (2019-06-20)
 
 
