@@ -14,11 +14,11 @@ export default class Sidebar {
   getSidebarLinks(stateParams) {
     return [
       ...MENU.map(item => ({
-        name: item.translation,
+        name: item.title,
         title: item.title,
         subLinks: item.subitems.map(subitem => ({
           name: subitem.title,
-          title: this.$translate.instant(subitem.translation),
+          title: subitem.title,
           ...subitem.options,
           stateParams,
         })).filter(({ regions }) => includes(regions, this.REGION) || isUndefined(regions)),
