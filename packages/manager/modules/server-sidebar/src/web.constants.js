@@ -210,6 +210,7 @@ export const MICROSOFT_CONFIG = {
   ],
   loadOnState: 'app.microsoft',
   icon: 'ms-Icon ms-Icon--WindowsLogo',
+  forceDisplaySearch: true,
   app: [WEB],
   regions: ['EU'],
 };

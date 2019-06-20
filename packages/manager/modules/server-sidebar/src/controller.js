@@ -167,6 +167,7 @@ export default class OvhManagerServerSidebarController {
           title: this.$translate.instant(`server_sidebar_item_${service.id}_title`),
           allowSubItems: hasSubItems,
           allowSearch: hasSubItems,
+          forceDisplaySearch: hasSubItems && get(service, 'forceDisplaySearch'),
           infiniteScroll: hasSubItems,
           state: isExternal ? null : get(service, 'state'),
           loadOnState: get(service, 'loadOnState'),
