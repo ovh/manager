@@ -7,8 +7,33 @@
 
 // Generic Inputs
 
+.oui-ui-select {
+  .ui-select-match {
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .ui-select-search {
+    border-radius: 0;
+  }
+
+  .ui-select-match,
+  .ui-select-search {
+    &:focus,
+    &:hover {
+      background-color: #f5fcfd;
+    }
+  }
+
+  .ui-select-dropdown {
+    margin-top: 2px;
+  }
+}
+
 .oui-input,
-.oui-select select {
+.oui-select select,
+.oui-ui-select {
   border: 0;
   border-radius: 0;
   border-bottom: 2px solid @border-color;
@@ -41,30 +66,6 @@
     &::before {
       color: @border-color-active;
     }
-  }
-}
-
-.oui-ui-select {
-  .ui-select-match {
-    border: 0;
-    border-radius: 0;
-    box-shadow: none;
-  }
-
-  .ui-select-search {
-    border-radius: 0;
-  }
-
-  .ui-select-match,
-  .ui-select-search {
-    &:focus,
-    &:hover {
-      background-color: #f5fcfd;
-    }
-  }
-
-  .ui-select-dropdown {
-    margin-top: 2px;
   }
 }
 
