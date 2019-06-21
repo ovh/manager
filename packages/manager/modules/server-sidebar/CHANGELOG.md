@@ -1,3 +1,12 @@
+## [0.2.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.2.2...@ovh-ux/manager-server-sidebar@0.2.3) (2019-06-21)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([dd3098c](https://github.com/ovh-ux/manager/commit/dd3098c))
+
+
+
 ## [0.2.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.2.1...@ovh-ux/manager-server-sidebar@0.2.2) (2019-06-19)
 
 
