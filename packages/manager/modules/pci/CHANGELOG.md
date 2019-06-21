@@ -1,3 +1,12 @@
+## [0.18.9](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.18.8...@ovh-ux/manager-pci@0.18.9) (2019-06-21)
+
+
+### Bug Fixes
+
+* **pci.project.sidebar:** get horizon url in responsive mode ([#914](https://github.com/ovh-ux/manager/issues/914)) ([a244850](https://github.com/ovh-ux/manager/commit/a244850))
+
+
+
 ## [0.18.8](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.18.7...@ovh-ux/manager-pci@0.18.8) (2019-06-21)
 
 
