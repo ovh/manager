@@ -1,3 +1,13 @@
+## [0.18.8](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.18.7...@ovh-ux/manager-pci@0.18.8) (2019-06-21)
+
+
+### Bug Fixes
+
+* **pci.project.challenge:** update credit card suffix ([4a8e231](https://github.com/ovh-ux/manager/commit/4a8e231))
+* **pci.project.challenge:** update form validation ([73fdb95](https://github.com/ovh-ux/manager/commit/73fdb95))
+
+
+
 ## [0.18.7](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.18.6...@ovh-ux/manager-pci@0.18.7) (2019-06-20)
 
 
