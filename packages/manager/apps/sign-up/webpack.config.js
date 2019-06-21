@@ -10,6 +10,7 @@ module.exports = (env = {}) => {
     assets: {
       files: [
         { from: path.resolve(__dirname, '../../../../node_modules/flag-icon-css/flags/4x3'), to: 'flag-icon-css/flags/4x3' },
+        { from: path.resolve(__dirname, 'src/assets/img'), to: 'assets/img' },
       ],
     },
   }, env);
