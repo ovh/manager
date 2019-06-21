@@ -76,10 +76,22 @@
 
                 .menu-level-3 {
                   > li {
-                    &.item-container.active {
-                      > .item-content {
-                        > .menu-item {
-                          background-color: @active_color;
+                    &.item-container {
+                      &.active {
+                        > .item-content {
+                          > .menu-item {
+                            background-color: @active_color;
+                          }
+                        }
+                      }
+
+                      .menu-level-4 {
+                        > li.item-container.active {
+                          > .item-content {
+                            > .menu-item {
+                              background-color: @active_color;
+                            }
+                          }
                         }
                       }
                     }

@@ -1,3 +1,12 @@
+## [4.2.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom-dashboard@4.2.1...@ovh-ux/manager-telecom-dashboard@4.2.2) (2019-06-12)
+
+
+### Bug Fixes
+
+* **telecom.dashboard:** correct reference to the vip status ([d328547](https://github.com/ovh-ux/manager/commit/d328547))
+
+
+
 ## [4.2.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom-dashboard@4.2.0...@ovh-ux/manager-telecom-dashboard@4.2.1) (2019-05-13)
 
 

@@ -1,11 +1,16 @@
+import isEmpty from 'lodash/isEmpty';
+import map from 'lodash/map';
 import sortBy from 'lodash/sortBy';
+
+import { DEFAULT_PROJECT_KEY } from './index.constants';
 
 export default class PublicCloud {
   /* @ngInject */
-  constructor(coreConfig, iceberg, OvhApiCloudProject) {
+  constructor(coreConfig, iceberg, OvhApiCloudProject, ovhUserPref) {
     this.coreConfig = coreConfig;
     this.iceberg = iceberg;
     this.OvhApiCloudProject = OvhApiCloudProject;
+    this.ovhUserPref = ovhUserPref;
   }
 
   getProjects(filters = []) {
@@ -33,5 +38,39 @@ export default class PublicCloud {
       .sort('description') // Doesn't work as long as cache is not enabled
       .execute(null, true)
       .$promise;
+  }
+
+  getDefaultProject() {
+    return this.getProjects([{
+      field: 'status',
+      comparator: 'in',
+      reference: ['creating', 'ok'],
+    }])
+      .then((projects) => {
+        if (Array.isArray(projects) && !isEmpty(projects)) {
+          const [firstProject] = projects;
+          const { project_id: firstProjectId } = firstProject;
+          const projectsIds = map(projects, 'project_id');
+
+          return this.ovhUserPref
+            .getValue(DEFAULT_PROJECT_KEY)
+            .then((project) => {
+              if (!projectsIds.includes(project)) {
+                this.ovhUserPref.remove(DEFAULT_PROJECT_KEY);
+                return null;
+              }
+              return project.projectId;
+            })
+            .catch((error) => {
+              if (error.status === 404) {
+                // No project is defined as favorite
+                // Go on the first one :)
+                return firstProjectId;
+              }
+              return Promise.reject(error);
+            });
+        }
+        return null;
+      });
   }
 }

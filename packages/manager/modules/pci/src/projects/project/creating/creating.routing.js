@@ -1,3 +1,7 @@
+import get from 'lodash/get';
+
+import { GUIDE_URLS } from './creating.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
     .state('pci.projects.project.creating', {
@@ -9,6 +13,10 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       resolve: {
         breadcrumb: () => null,
+        guideUrl: /* @ngInject */ me => get(
+          GUIDE_URLS,
+          me.ovhSubsidiary,
+        ),
         onProjectCreated: /* @ngInject */ ($state, $window, projectId) => () => {
           $window.location.replace($state.href('pci.projects.project', {
             projectId,

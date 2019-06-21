@@ -1,7 +1,4 @@
-import filter from 'lodash/filter';
 import get from 'lodash/get';
-import has from 'lodash/has';
-import isFunction from 'lodash/isFunction';
 
 import { CHATBOT_SUBSIDIARIES, HELP_CENTER_SUBSIDIARIES, ASSISTANCE_URLS } from './constants';
 
@@ -14,7 +11,6 @@ export default class {
     $translate,
     atInternet,
     coreConfig,
-    OtrsPopupService,
     ovhManagerNavbarMenuHeaderBuilder,
   ) {
     this.$q = $q;
@@ -23,7 +19,6 @@ export default class {
     this.$translate = $translate;
     this.atInternet = atInternet;
     this.coreConfig = coreConfig;
-    this.otrsPopupService = OtrsPopupService;
     this.NavbarBuilder = ovhManagerNavbarMenuHeaderBuilder;
 
     this.REGION = this.coreConfig.getRegion();
@@ -58,7 +53,7 @@ export default class {
   }
 
   getSublinks() {
-    let sublinks = [];
+    const sublinks = [];
     const useHelpCenterMenu = HELP_CENTER_SUBSIDIARIES.includes(this.subsidiary);
 
     if (useHelpCenterMenu) {
@@ -70,8 +65,20 @@ export default class {
           name: 'assistance::all_guides',
           type: 'action',
         }),
-        mustBeKept: has(this.URLS, `support.${this.subsidiary}`),
-      },
+      });
+    } else {
+      sublinks.push({
+        title: this.$translate.instant('navbar_assistance_guide'),
+        url: get(this.URLS, `guides.home.${this.subsidiary}`),
+        isExternal: true,
+        click: () => this.atInternet.trackClick({
+          name: 'assistance::all_guides',
+          type: 'action',
+        }),
+      });
+    }
+
+    sublinks.push(
       {
         title: this.$translate.instant('navbar_assistance_ask_for_assistance'),
         url: this.URLS.ticket,
@@ -79,60 +86,8 @@ export default class {
           name: 'assistance::assistance_requests_created',
           type: 'action',
         }),
-        mustBeKept: has(this.URLS, 'ticket'),
-      });
-    } else {
-      sublinks.push({
-        title: this.$translate.instant('navbar_assistance_guide'),
-        url: get(this.HELP_CENTER_SUBSIDIARIESURLS, `guides.${this.universe}.${this.subsidiary}`),
-        isExternal: true,
-        click: () => this.atInternet.trackClick({
-          name: `assistance::all_guides::${this.universe}`,
-          type: 'action',
-        }),
-        mustBeKept: has(this.URLS, `guides.${this.universe}.${this.subsidiary}`),
       },
-      {
-        title: this.$translate.instant('navbar_assistance_all_guides'),
-        url: get(this.URLS, `guides.home.${this.subsidiary}`),
-        isExternal: true,
-        click: () => this.atInternet.trackClick({
-          name: 'assistance::all_guides',
-          type: 'action',
-        }),
-        mustBeKept: !has(this.URLS, `guides.${this.universe}.${this.subsidiary}`) && has(this.URLS, `guides.home.${this.subsidiary}`),
-      }, {
-        title: this.$translate.instant('navbar_assistance_new_ticket'),
-        click: (callback) => {
-          if (!this.otrsPopupService.isLoaded()) {
-            this.otrsPopupService.init();
-          } else {
-            this.otrsPopupService.toggle();
-          }
-
-          this.atInternet.trackClick({
-            name: 'assistance::create_assistance_request',
-            type: 'action',
-          });
-
-          if (isFunction(callback)) {
-            callback();
-          }
-        },
-        mustBeKept: true,
-      },
-      {
-        title: this.$translate.instant('navbar_assistance_list_ticket'),
-        url: this.URLS.ticket,
-        click: () => this.atInternet.trackClick({
-          name: 'assistance::assistance_requests_created',
-          type: 'action',
-        }),
-        mustBeKept: has(this.URLS, 'ticket'),
-      });
-    }
-
-    sublinks = filter(sublinks, 'mustBeKept');
+    );
 
     if (!['US'].includes(this.REGION)) {
       sublinks.push({

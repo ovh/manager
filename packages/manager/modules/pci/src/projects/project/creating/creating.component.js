@@ -5,7 +5,11 @@ export default {
   template,
   controller,
   bindings: {
+    guideUrl: '<',
     projectId: '<',
+    project: '<',
+    projects: '<',
+    projectOrderStatus: '<',
     onProjectCreated: '<',
   },
 };

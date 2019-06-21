@@ -1,3 +1,77 @@
+# [0.12.0-alpha.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.12.0-alpha.3...@ovh-ux/manager-public-cloud@0.12.0-alpha.4) (2019-06-20)
+
+
+### Bug Fixes
+
+* fix pci mobile sidebar ([#906](https://github.com/ovh-ux/manager/issues/906)) ([fc85f63](https://github.com/ovh-ux/manager/commit/fc85f63))
+
+
+
+# [0.12.0-alpha.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.12.0-alpha.2...@ovh-ux/manager-public-cloud@0.12.0-alpha.3) (2019-06-18)
+
+
+### Code Refactoring
+
+* remove otrs configuration from core ([#871](https://github.com/ovh-ux/manager/issues/871)) ([5ccf535](https://github.com/ovh-ux/manager/commit/5ccf535))
+
+
+### BREAKING CHANGES
+
+* Remove OTRS dependency in @ovh-ux/manager-core
+
+
+
+# [0.12.0-alpha.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.12.0-alpha.1...@ovh-ux/manager-public-cloud@0.12.0-alpha.2) (2019-06-17)
+
+
+### Bug Fixes
+
+* **public-cloud:** redirect to kube cluster creation ([#876](https://github.com/ovh-ux/manager/issues/876)) ([fab7a00](https://github.com/ovh-ux/manager/commit/fab7a00))
+
+
+
+# [0.12.0-alpha.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.12.0-alpha.0...@ovh-ux/manager-public-cloud@0.12.0-alpha.1) (2019-06-17)
+
+
+### Bug Fixes
+
+* **apps.public.cloud:** remove preference attached to default project ([96d813a](https://github.com/ovh-ux/manager/commit/96d813a))
+
+
+
+# [0.12.0-alpha.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.11.0-alpha.0...@ovh-ux/manager-public-cloud@0.12.0-alpha.0) (2019-06-14)
+
+
+### Features
+
+* **pci.projects.new:** add payment challenge ([#853](https://github.com/ovh-ux/manager/issues/853)) ([4c98a82](https://github.com/ovh-ux/manager/commit/4c98a82))
+
+
+
+# [0.11.0-alpha.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.10.0-alpha.2...@ovh-ux/manager-public-cloud@0.11.0-alpha.0) (2019-06-14)
+
+
+### Bug Fixes
+
+* prevent onboarding to loop infinitely ([8c1b120](https://github.com/ovh-ux/manager/commit/8c1b120))
+
+
+### Features
+
+* **public-cloud:** override oui-file style ([#811](https://github.com/ovh-ux/manager/issues/811)) ([24f207e](https://github.com/ovh-ux/manager/commit/24f207e))
+* allow trailing slashes in url ([#843](https://github.com/ovh-ux/manager/issues/843)) ([d885a22](https://github.com/ovh-ux/manager/commit/d885a22))
+
+
+
+# [0.10.0-alpha.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.10.0-alpha.1...@ovh-ux/manager-public-cloud@0.10.0-alpha.2) (2019-06-12)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([674cabc](https://github.com/ovh-ux/manager/commit/674cabc))
+
+
+
 # [0.10.0-alpha.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.10.0-alpha.0...@ovh-ux/manager-public-cloud@0.10.0-alpha.1) (2019-06-05)
 
 

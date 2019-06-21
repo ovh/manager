@@ -1,3 +1,64 @@
+## [1.0.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-navbar@1.0.0...@ovh-ux/manager-navbar@1.0.1) (2019-06-19)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([32c2e9e](https://github.com/ovh-ux/manager/commit/32c2e9e))
+* **i18n:** add missing translations ([8f4cad5](https://github.com/ovh-ux/manager/commit/8f4cad5))
+
+
+
+# [1.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-navbar@0.6.2...@ovh-ux/manager-navbar@1.0.0) (2019-06-18)
+
+
+### Code Refactoring
+
+* remove otrs configuration from core ([#871](https://github.com/ovh-ux/manager/issues/871)) ([5ccf535](https://github.com/ovh-ux/manager/commit/5ccf535))
+
+
+### BREAKING CHANGES
+
+* Remove OTRS dependency in @ovh-ux/manager-core
+
+
+
+## [0.6.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-navbar@0.6.1...@ovh-ux/manager-navbar@0.6.2) (2019-06-17)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([faea2bd](https://github.com/ovh-ux/manager/commit/faea2bd))
+
+
+
+## [0.6.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-navbar@0.6.0...@ovh-ux/manager-navbar@0.6.1) (2019-06-17)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([c90c741](https://github.com/ovh-ux/manager/commit/c90c741))
+
+
+
+# [0.6.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-navbar@0.5.2...@ovh-ux/manager-navbar@0.6.0) (2019-06-14)
+
+
+### Features
+
+* **navbar:** uniformize assistance request between all subs ([#845](https://github.com/ovh-ux/manager/issues/845)) ([8dfccdf](https://github.com/ovh-ux/manager/commit/8dfccdf))
+
+
+
+## [0.5.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-navbar@0.5.1...@ovh-ux/manager-navbar@0.5.2) (2019-06-12)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([674cabc](https://github.com/ovh-ux/manager/commit/674cabc))
+* **i18n:** add missing translations ([1a602c6](https://github.com/ovh-ux/manager/commit/1a602c6))
+
+
+
 ## [0.5.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-navbar@0.5.0...@ovh-ux/manager-navbar@0.5.1) (2019-06-05)
 
 

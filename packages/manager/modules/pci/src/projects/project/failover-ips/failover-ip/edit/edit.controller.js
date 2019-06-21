@@ -7,7 +7,6 @@ export default class FailoverIpEditController {
   constructor(
     $q,
     $state,
-    $stateParams,
     $translate,
     CucCloudMessage,
     OvhApiCloudProject,
@@ -21,44 +20,28 @@ export default class FailoverIpEditController {
     this.OvhApiCloudProjectIpFailover = OvhApiCloudProjectIpFailover;
 
     this.isLoading = false;
-    this.projectId = $stateParams.projectId;
-    this.serviceName = $stateParams.serviceName;
-
-    this.ngInit();
   }
 
-  ngInit() {
+  $onInit() {
     this.isLoading = true;
+    this.instance = this.ip ? this.ip.instance : undefined;
 
-    return this.$q.all([
-      this.OvhApiCloudProject.Instance().v6().query({
-        serviceName: this.projectId,
-      })
-        .$promise,
-      this.OvhApiCloudProjectIpFailover.v6().get({
-        serviceName: this.projectId,
-        id: this.serviceName,
-      })
-        .$promise,
-    ])
-      .then(([instances, ip]) => {
-        this.instances = instances;
-        this.ip = ip;
-      })
-      .catch(({ data }) => {
-        this.CucCloudMessage.error(
-          this.$translate.instant('pci_projects_project_failover-ip_error', { error: data.message }),
-          MESSAGES_CONTAINER_NAME,
-        );
-        this.goBack();
-      })
-      .finally(() => {
-        if (this.ip && this.ip.routedTo) {
-          this.instance = find(this.instances, { id: this.ip.routedTo });
-        }
-
-        this.isLoading = false;
-      });
+    return this.OvhApiCloudProject.Instance().v6().query({
+      serviceName: this.projectId,
+    }).$promise.then((instances) => {
+      this.instances = instances;
+    }).catch(({ data }) => {
+      this.CucCloudMessage.error(
+        this.$translate.instant('pci_projects_project_failover-ip_error', { error: data.message }),
+        MESSAGES_CONTAINER_NAME,
+      );
+      this.goBack();
+    }).finally(() => {
+      if (!this.instance && this.ip && this.ip.routedTo) {
+        this.instance = find(this.instances, { id: this.ip.routedTo });
+      }
+      this.isLoading = false;
+    });
   }
 
   goBack() {
@@ -68,32 +51,26 @@ export default class FailoverIpEditController {
   edit() {
     this.isLoading = true;
 
-    this
-      .OvhApiCloudProjectIpFailover
-      .v6()
-      .attach({
-        serviceName: this.projectId,
-        id: this.ip.id,
-      },
-      {
-        instanceId: this.instance.id,
-      })
-      .$promise
-      .then(() => {
-        this.CucCloudMessage.success(
-          this.$translate.instant('pci_projects_project_failover-ip_edit', { ip: this.ip.ip }),
-          MESSAGES_CONTAINER_NAME,
-        );
-      })
-      .catch(({ data }) => {
-        this.CucCloudMessage.error(
-          this.$translate.instant('pci_projects_project_failover-ip_edit_error', { error: data.message }),
-          MESSAGES_CONTAINER_NAME,
-        );
-      })
-      .finally(() => {
-        this.goBack();
-        this.isLoading = false;
-      });
+    return this.OvhApiCloudProjectIpFailover.v6().attach({
+      serviceName: this.projectId,
+      id: this.ip.id,
+    }, {
+      instanceId: this.instance.id,
+    }).$promise.then(() => {
+      this.ip.routedTo = this.instance.id;
+      this.ip.instance = this.instance;
+      this.CucCloudMessage.success(
+        this.$translate.instant('pci_projects_project_failover-ip_edit', { ip: this.ip.ip }),
+        MESSAGES_CONTAINER_NAME,
+      );
+    }).catch(({ data }) => {
+      this.CucCloudMessage.error(
+        this.$translate.instant('pci_projects_project_failover-ip_edit_error', { error: data.message }),
+        MESSAGES_CONTAINER_NAME,
+      );
+    }).finally(() => {
+      this.goBack();
+      this.isLoading = false;
+    });
   }
 }

@@ -1,3 +1,48 @@
+## [0.2.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.2.1...@ovh-ux/manager-server-sidebar@0.2.2) (2019-06-19)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([442a366](https://github.com/ovh-ux/manager/commit/442a366))
+* **i18n:** add missing translations ([d5da52a](https://github.com/ovh-ux/manager/commit/d5da52a))
+
+
+
+## [0.2.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.2.0...@ovh-ux/manager-server-sidebar@0.2.1) (2019-06-19)
+
+
+### Bug Fixes
+
+* **server.sidebar:** update web constant for email section ([c25cfc1](https://github.com/ovh-ux/manager/commit/c25cfc1))
+
+
+
+# [0.2.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.1.7...@ovh-ux/manager-server-sidebar@0.2.0) (2019-06-17)
+
+
+### Bug Fixes
+
+* **server.sidebar:** add active style for level 4 item ([f969ba8](https://github.com/ovh-ux/manager/commit/f969ba8))
+* **server.sidebar:** handle loadOnStateParams ([462bc16](https://github.com/ovh-ux/manager/commit/462bc16))
+
+
+### Features
+
+* **server.sidebar:** add web universe ([c85264c](https://github.com/ovh-ux/manager/commit/c85264c))
+* **server.sidebar:** implement custom items filter ([c9ea5c8](https://github.com/ovh-ux/manager/commit/c9ea5c8))
+* **server.sidebar:** implement exclude services ([9fb88ee](https://github.com/ovh-ux/manager/commit/9fb88ee))
+
+
+
+## [0.1.7](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.1.6...@ovh-ux/manager-server-sidebar@0.1.7) (2019-06-12)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([1a602c6](https://github.com/ovh-ux/manager/commit/1a602c6))
+
+
+
 ## [0.1.6](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.1.5...@ovh-ux/manager-server-sidebar@0.1.6) (2019-05-31)
 
 

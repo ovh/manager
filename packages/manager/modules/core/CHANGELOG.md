@@ -1,3 +1,46 @@
+## [6.0.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@6.0.0...@ovh-ux/manager-core@6.0.1) (2019-06-19)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([a218f7d](https://github.com/ovh-ux/manager/commit/a218f7d))
+* **i18n:** add missing translations ([32c2e9e](https://github.com/ovh-ux/manager/commit/32c2e9e))
+* **i18n:** add missing translations ([8f4cad5](https://github.com/ovh-ux/manager/commit/8f4cad5))
+
+
+
+# [6.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@5.3.1...@ovh-ux/manager-core@6.0.0) (2019-06-18)
+
+
+### Code Refactoring
+
+* remove otrs configuration from core ([#871](https://github.com/ovh-ux/manager/issues/871)) ([5ccf535](https://github.com/ovh-ux/manager/commit/5ccf535))
+
+
+### BREAKING CHANGES
+
+* Remove OTRS dependency in @ovh-ux/manager-core
+
+
+
+## [5.3.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@5.3.0...@ovh-ux/manager-core@5.3.1) (2019-06-17)
+
+
+### Bug Fixes
+
+* **core:** add missing clipboard component translations ([#861](https://github.com/ovh-ux/manager/issues/861)) ([3013eb2](https://github.com/ovh-ux/manager/commit/3013eb2))
+
+
+
+# [5.3.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@5.2.5...@ovh-ux/manager-core@5.3.0) (2019-06-14)
+
+
+### Features
+
+* allow trailing slashes in url ([#843](https://github.com/ovh-ux/manager/issues/843)) ([d885a22](https://github.com/ovh-ux/manager/commit/d885a22))
+
+
+
 ## [5.2.5](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@5.2.4...@ovh-ux/manager-core@5.2.5) (2019-05-21)
 
 

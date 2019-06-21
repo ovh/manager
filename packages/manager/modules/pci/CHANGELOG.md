@@ -1,3 +1,155 @@
+## [0.18.9](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.18.8...@ovh-ux/manager-pci@0.18.9) (2019-06-21)
+
+
+### Bug Fixes
+
+* **pci.project.sidebar:** get horizon url in responsive mode ([#914](https://github.com/ovh-ux/manager/issues/914)) ([a244850](https://github.com/ovh-ux/manager/commit/a244850))
+
+
+
+## [0.18.8](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.18.7...@ovh-ux/manager-pci@0.18.8) (2019-06-21)
+
+
+### Bug Fixes
+
+* **pci.project.challenge:** update credit card suffix ([4a8e231](https://github.com/ovh-ux/manager/commit/4a8e231))
+* **pci.project.challenge:** update form validation ([73fdb95](https://github.com/ovh-ux/manager/commit/73fdb95))
+
+
+
+## [0.18.7](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.18.6...@ovh-ux/manager-pci@0.18.7) (2019-06-20)
+
+
+### Bug Fixes
+
+* **pci.project.sidebar.service:** display correctly item title ([#910](https://github.com/ovh-ux/manager/issues/910)) ([bbb63ac](https://github.com/ovh-ux/manager/commit/bbb63ac))
+
+
+
+## [0.18.6](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.18.5...@ovh-ux/manager-pci@0.18.6) (2019-06-20)
+
+
+### Bug Fixes
+
+* fix pci mobile sidebar ([#906](https://github.com/ovh-ux/manager/issues/906)) ([fc85f63](https://github.com/ovh-ux/manager/commit/fc85f63))
+
+
+
+## [0.18.5](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.18.4...@ovh-ux/manager-pci@0.18.5) (2019-06-19)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([442a366](https://github.com/ovh-ux/manager/commit/442a366))
+* **i18n:** add missing translations ([d5da52a](https://github.com/ovh-ux/manager/commit/d5da52a))
+* **pci.project.region:** name region correctly in translation ([#899](https://github.com/ovh-ux/manager/issues/899)) ([9a07e06](https://github.com/ovh-ux/manager/commit/9a07e06))
+
+
+
+## [0.18.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.18.3...@ovh-ux/manager-pci@0.18.4) (2019-06-19)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([ca446ea](https://github.com/ovh-ux/manager/commit/ca446ea))
+* **pci.payment.challenge:** avoid submit empty challenge ([a5a3e78](https://github.com/ovh-ux/manager/commit/a5a3e78))
+* **pci.project.user:** update error translation keys ([#892](https://github.com/ovh-ux/manager/issues/892)) ([47eef22](https://github.com/ovh-ux/manager/commit/47eef22))
+* **pci.project.user:** update username label ([#883](https://github.com/ovh-ux/manager/issues/883)) ([c0d7e36](https://github.com/ovh-ux/manager/commit/c0d7e36))
+
+
+
+## [0.18.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.18.2...@ovh-ux/manager-pci@0.18.3) (2019-06-17)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([faea2bd](https://github.com/ovh-ux/manager/commit/faea2bd))
+* **pci.new:** prevent creation if challenge is needed ([#870](https://github.com/ovh-ux/manager/issues/870)) ([5c3ecd3](https://github.com/ovh-ux/manager/commit/5c3ecd3))
+
+
+
+## [0.18.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.18.1...@ovh-ux/manager-pci@0.18.2) (2019-06-17)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([c90c741](https://github.com/ovh-ux/manager/commit/c90c741))
+
+
+
+## [0.18.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.18.0...@ovh-ux/manager-pci@0.18.1) (2019-06-17)
+
+
+### Bug Fixes
+
+* **project.edit.remove:** remove preference attached to default project ([90be107](https://github.com/ovh-ux/manager/commit/90be107))
+
+
+
+# [0.18.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.17.0...@ovh-ux/manager-pci@0.18.0) (2019-06-14)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([4b19782](https://github.com/ovh-ux/manager/commit/4b19782))
+* **pci.projects:** disable breadcrumb ([#852](https://github.com/ovh-ux/manager/issues/852)) ([d8adbc1](https://github.com/ovh-ux/manager/commit/d8adbc1))
+
+
+### Features
+
+* **pci.new:** add en_GB translations ([#854](https://github.com/ovh-ux/manager/issues/854)) ([d092e58](https://github.com/ovh-ux/manager/commit/d092e58))
+* **pci.projects.new:** add payment challenge ([#853](https://github.com/ovh-ux/manager/issues/853)) ([4c98a82](https://github.com/ovh-ux/manager/commit/4c98a82))
+
+
+
+# [0.17.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.16.2...@ovh-ux/manager-pci@0.17.0) (2019-06-14)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([04bce0b](https://github.com/ovh-ux/manager/commit/04bce0b))
+* **i18n:** add missing translations ([c34a2d1](https://github.com/ovh-ux/manager/commit/c34a2d1))
+* **i18n:** add missing translations ([#838](https://github.com/ovh-ux/manager/issues/838)) ([4dd5eea](https://github.com/ovh-ux/manager/commit/4dd5eea))
+* **pci.project.sidebar:** display static menu item ([#842](https://github.com/ovh-ux/manager/issues/842)) ([52502a3](https://github.com/ovh-ux/manager/commit/52502a3))
+* prevent onboarding to loop infinitely ([8c1b120](https://github.com/ovh-ux/manager/commit/8c1b120))
+* **pci.projects.failover-ips-edit:** refresh list after edit ([#818](https://github.com/ovh-ux/manager/issues/818)) ([764342b](https://github.com/ovh-ux/manager/commit/764342b))
+* **pci.projects.private-network:** add correct label for creation ([#833](https://github.com/ovh-ux/manager/issues/833)) ([cef428b](https://github.com/ovh-ux/manager/commit/cef428b))
+* **pci.sidebar:** prevent div from overlapping ([9bff07c](https://github.com/ovh-ux/manager/commit/9bff07c))
+
+
+### Features
+
+* **pci.projects.project.creating:** display waiting message ([#820](https://github.com/ovh-ux/manager/issues/820)) ([6891e0d](https://github.com/ovh-ux/manager/commit/6891e0d))
+* allow trailing slashes in url ([#843](https://github.com/ovh-ux/manager/issues/843)) ([d885a22](https://github.com/ovh-ux/manager/commit/d885a22))
+
+
+
+## [0.16.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.16.1...@ovh-ux/manager-pci@0.16.2) (2019-06-12)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([68de076](https://github.com/ovh-ux/manager/commit/68de076))
+* **i18n:** add missing translations ([fedf250](https://github.com/ovh-ux/manager/commit/fedf250))
+* **i18n:** add missing translations ([934a624](https://github.com/ovh-ux/manager/commit/934a624))
+* **i18n:** add missing translations ([1a602c6](https://github.com/ovh-ux/manager/commit/1a602c6))
+* **i18n:** add missing translations ([674cabc](https://github.com/ovh-ux/manager/commit/674cabc))
+* **i18n:** add missing translations ([e8a02fb](https://github.com/ovh-ux/manager/commit/e8a02fb))
+* **i18n:** add missing translations ([3403970](https://github.com/ovh-ux/manager/commit/3403970))
+* **i18n:** add missing translations ([49e11c7](https://github.com/ovh-ux/manager/commit/49e11c7))
+* **i18n:** add missing translations ([9cdf3a7](https://github.com/ovh-ux/manager/commit/9cdf3a7))
+* **i18n:** add missing translations ([c744987](https://github.com/ovh-ux/manager/commit/c744987))
+* **i18n:** add missing translations ([634efc6](https://github.com/ovh-ux/manager/commit/634efc6))
+* **i18n:** add missing translations ([116f333](https://github.com/ovh-ux/manager/commit/116f333))
+* **pci.components.flavors-list:** allow to translate bandwidth unit ([#814](https://github.com/ovh-ux/manager/issues/814)) ([77d495f](https://github.com/ovh-ux/manager/commit/77d495f))
+* **pci.private-network:** display info depending on dhcp configuration ([#809](https://github.com/ovh-ux/manager/issues/809)) ([cfa8653](https://github.com/ovh-ux/manager/commit/cfa8653))
+* **pci.projects.contacts.add:** translate oui-select items ([#822](https://github.com/ovh-ux/manager/issues/822)) ([bcaa2cf](https://github.com/ovh-ux/manager/commit/bcaa2cf))
+* **pci.projects.instances.help:** set popover size ([#831](https://github.com/ovh-ux/manager/issues/831)) ([3b34b07](https://github.com/ovh-ux/manager/commit/3b34b07)), closes [#798](https://github.com/ovh-ux/manager/issues/798)
+* **pci.projects.onboarding:** correct translation ([#813](https://github.com/ovh-ux/manager/issues/813)) ([daea6e7](https://github.com/ovh-ux/manager/commit/daea6e7))
+* **pci.projects.vouchers.add:** add missing form for oui-field ([#819](https://github.com/ovh-ux/manager/issues/819)) ([6e6c1ca](https://github.com/ovh-ux/manager/commit/6e6c1ca))
+
+
+
 ## [0.16.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.16.0...@ovh-ux/manager-pci@0.16.1) (2019-06-05)
 
 

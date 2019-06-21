@@ -1,23 +1,25 @@
-<div class="w-100" data-ui-view>
-    <h1 data-translate="pci_projects"></h1>
-    <oui-datagrid rows-loader="$ctrl.loadPartialData($config)" row-loader="$ctrl.loadRow($row)">
-        <oui-column title=":: 'pci_projects_description' | translate" property="description" type="string">
-            <a data-ui-sref="pci.projects.project({ projectId: $row.serviceName })" data-ng-bind="::$value"></a>
-        </oui-column>
-        <oui-column title=":: 'pci_projects_status' | translate" property="status" type="string">
-            <span class="oui-status" data-ng-class="{
-                'oui-status_info': $value === 'creating',
-                'oui-status_error': $value === 'deleted' || $value === 'suspended',
-                'oui-status_success': $value === 'ok',
-                'oui-status_warning': $value === 'deleting',
-            }" data-ng-bind=":: ('pci_projects_status_' + $value) | translate">
-            </span>
-        </oui-column>
-        <oui-action-menu data-align="end" data-compact>
-            <oui-action-menu-item
-                data-ui-sref="pci.projects.project({ projectId: $row.serviceName })">
-                <span data-translate="pci_projects_project_show"></span>
-            </oui-action-menu-item>
-        </oui-action-menu>
-    </oui-datagrid>
+<div class="pci-projects w-100 h-100 overflow-auto" data-ui-view>
+    <div class="container px-3 py-5">
+        <h1 data-translate="pci_projects"></h1>
+        <oui-datagrid rows="$ctrl.projects" row-loader="$ctrl.loadRow($row)">
+            <oui-column title=":: 'pci_projects_description' | translate" property="description" type="string">
+                <a data-ui-sref="pci.projects.project({ projectId: $row.serviceName })" data-ng-bind="::$value"></a>
+            </oui-column>
+            <oui-column title=":: 'pci_projects_status' | translate" property="status" type="string">
+                <span class="oui-status" data-ng-class="{
+                    'oui-status_info': $value === 'creating',
+                    'oui-status_error': $value === 'deleted' || $value === 'suspended',
+                    'oui-status_success': $value === 'ok',
+                    'oui-status_warning': $value === 'deleting',
+                }" data-ng-bind=":: ('pci_projects_status_' + $value) | translate">
+                </span>
+            </oui-column>
+            <oui-action-menu data-align="end" data-compact>
+                <oui-action-menu-item
+                    data-ui-sref="pci.projects.project({ projectId: $row.serviceName })">
+                    <span data-translate="pci_projects_project_show"></span>
+                </oui-action-menu-item>
+            </oui-action-menu>
+        </oui-datagrid>
+    </div>
 </div>
