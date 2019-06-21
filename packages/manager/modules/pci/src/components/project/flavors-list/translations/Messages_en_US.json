@@ -1,9 +1,4 @@
 {
- "pci_project_flavors_category_balanced": "General use",
- "pci_project_flavors_category_cpu": "Optimised computing",
- "pci_project_flavors_category_ram": "Optimised memory",
- "pci_project_flavors_category_accelerated": "Accelerated computing",
- "pci_project_flavors_category_vps": "Shared resources",
  "pci_project_flavors_category_definition_balanced": "Instances for general use offer a good balance of RAM and performance.",
  "pci_project_flavors_category_definition_cpu": "Instances with optimised computing are ideally suited to applications that require high processing speeds or parallel task processing.",
  "pci_project_flavors_category_definition_ram": "Instances with optimised memory are recommended for your databases, analyses and in-memory computing, as well as other RAM-intensive applications.",

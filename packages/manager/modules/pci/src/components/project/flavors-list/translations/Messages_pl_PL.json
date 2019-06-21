@@ -1,9 +1,4 @@
 {
- "pci_project_flavors_category_balanced": "Ogólne zastosowanie",
- "pci_project_flavors_category_cpu": "Zoptymalizowane obliczenia",
- "pci_project_flavors_category_ram": "Zoptymalizowana pamięć RAM",
- "pci_project_flavors_category_accelerated": "Akcelerowane obliczenia",
- "pci_project_flavors_category_vps": "Współdzielone zasoby",
  "pci_project_flavors_category_definition_balanced": "W instancjach o ogólnym zastosowaniu zachowana jest równowaga między pamięcią RAM a wydajnością.",
  "pci_project_flavors_category_definition_cpu": "Instancje CPU idealnie nadają się do aplikacji wymagających dużej mocy obliczeniowej lub równoległego przetwarzania zadań.",
  "pci_project_flavors_category_definition_ram": "Instancje RAM są zalecane do baz danych, analiz, przetwarzania w pamięci, a także dla innych aplikacji intensywnie wykorzystujących pamięć RAM.",
