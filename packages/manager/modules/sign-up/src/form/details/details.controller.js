@@ -74,6 +74,9 @@ export default class SignUpDetailsCtrl {
         const viewValue = phoneModel.$viewValue;
         const phoneModelValid = phoneModel.$validators.pattern(modelValue, viewValue);
         phoneModel.$setValidity('pattern', phoneModelValid);
+
+        // set the focus to phone field to fix error display
+        this.setElementFocus('phone');
       });
   }
 

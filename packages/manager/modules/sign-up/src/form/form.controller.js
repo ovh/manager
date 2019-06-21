@@ -4,6 +4,7 @@ import has from 'lodash/has';
 import isFunction from 'lodash/isFunction';
 import keyBy from 'lodash/keyBy';
 import map from 'lodash/map';
+import merge from 'lodash/merge';
 import set from 'lodash/set';
 
 import {
@@ -66,8 +67,12 @@ export default class SignUpFormCtrl {
       this.getRulesCancel = this.$q.defer();
     }
 
+    const ruleParams = merge({
+      action: this.action,
+    }, this.model);
+
     return this.signUp
-      .getCreationRules(this.model, this.getRulesCancel)
+      .getCreationRules(ruleParams, this.getRulesCancel)
       .then((rules) => {
         this.rules = keyBy(this.translateEnumRules(rules), 'fieldName');
         if (isFunction(this.onRulesUpdated())) {
@@ -110,7 +115,7 @@ export default class SignUpFormCtrl {
       });
     });
     // add some informations
-    set(this.model, 'action', this.action);
+    // set(this.model, 'action', this.action);
   }
 
   /* ============================
@@ -119,7 +124,7 @@ export default class SignUpFormCtrl {
 
   $onInit() {
     this.initModel();
-
+    set(this.me, 'model', this.model);
     return this.getRules();
   }
 
