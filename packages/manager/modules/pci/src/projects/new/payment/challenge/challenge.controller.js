@@ -25,7 +25,7 @@ export default class PciProjectsNewPaymentChallengeController {
   $onInit() {
     this.isChallenging = false;
     if (get(this.defaultPaymentMethod, 'paymentType.value') === 'CREDIT_CARD') {
-      this.creditCardSuffix = this.defaultPaymentMethod.label.substring(7);
+      this.creditCardSuffix = this.defaultPaymentMethod.label.substring(6);
     }
     this.paypalUrl = BUILD_PAYPAL_URL(PAYPAL_LOGIN_URL, PAYPAL_LOGIN_PARAMS);
   }
