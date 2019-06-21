@@ -17,4 +17,9 @@ export default class SignUpService {
       })
       .then(({ data }) => data);
   }
+
+  saveNic(nicInfos) {
+    return this.$http
+      .put('/me', nicInfos);
+  }
 }

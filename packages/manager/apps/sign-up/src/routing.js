@@ -1,5 +1,7 @@
 import find from 'lodash/find';
 
+import { SANITIZATION } from './constants';
+
 import signupFormComponent from './form/component';
 
 export const state = {
@@ -7,8 +9,27 @@ export const state = {
   url: '/',
   component: signupFormComponent.name,
   resolve: {
-    // creationRules: /* @ngInject */ (signUp) => signUp.initDeferred.promise,
-    // getCurrentStepIndex: /* @ngInject */ ($state) => () => find()
+    getRedirectLocation: /* @ngInject */ $location => (nic) => {
+      const { callback } = $location.search();
+      if (callback && !SANITIZATION.regex.test(callback)) {
+        return null;
+      }
+
+      const accountParam = encodeURIComponent(nic);
+
+      // use callback for redirection if provided
+      if (callback) {
+        return `${callback}${/\?/.test(callback) ? '&' : '?'}account=${accountParam}`;
+      }
+
+      // redirect to login page on success
+      if ($location.search().onsuccess) {
+        const onsuccess = encodeURIComponent($location.search().onsuccess);
+        return `/auth/?account=${accountParam}&onsuccess=${onsuccess}`;
+      }
+
+      return null;
+    },
     getStepByName: /* @ngInject */ steps => name => find(steps, {
       name,
     }),
@@ -27,8 +48,14 @@ export const state = {
         });
       }
     },
-    onStepSubmit: () => () => {
-    },
+    onStepperFinish: /* @ngInject */ ($window, getRedirectLocation, me, signUp) => () => signUp
+      .saveNic(me.model)
+      .then(() => {
+        const redirectUrl = getRedirectLocation(me.nichandle);
+        if (redirectUrl) {
+          $window.location.assign(redirectUrl);
+        }
+      }),
     steps: () => [{
       name: 'identity',
       state: 'sign-up.identity',

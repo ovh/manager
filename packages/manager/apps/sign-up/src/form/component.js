@@ -9,6 +9,6 @@ export default {
     me: '<',
     isActiveStep: '<',
     onStepFocus: '<',
-    onStepSubmit: '<',
+    onStepperFinish: '<',
   },
 };
