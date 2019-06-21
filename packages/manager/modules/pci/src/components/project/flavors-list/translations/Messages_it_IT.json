@@ -1,9 +1,4 @@
 {
- "pci_project_flavors_category_balanced": "Utilizzo generico",
- "pci_project_flavors_category_cpu": "Calcolo ottimizzato",
- "pci_project_flavors_category_ram": "Memoria ottimizzata",
- "pci_project_flavors_category_accelerated": "Calcolo accelerato",
- "pci_project_flavors_category_vps": "Risorse condivise",
  "pci_project_flavors_category_definition_balanced": "Le istanze per utilizzo generico offrono un buon rapporto RAM/performance.",
  "pci_project_flavors_category_definition_cpu": "Le istanze di calcolo ottimizzato sono ideali per le applicazioni che richiedono frequenze di calcolo elevate o la parallelizzazione dei task.",
  "pci_project_flavors_category_definition_ram": "Le istanze con memoria ottimizzata sono consigliate per database, analisi, calcoli in memoria e altre applicazioni che richiedono grandi quantità di RAM.",

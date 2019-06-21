@@ -4,10 +4,9 @@
     <oui-tabs class="mb-4" data-ng-if="!$ctrl.displaySelectedFlavor"
         data-model="$ctrl.selectedCategory">
         <oui-tabs-item
-
             data-ng-repeat="flavorByCategory in $ctrl.flavors track by flavorByCategory.category"
             data-id="{{flavorByCategory.category}}"
-            data-heading="{{:: 'pci_project_flavors_category_' + flavorByCategory.category | translate }}">
+            data-heading="{{:: flavorByCategory.title }}">
 
             <p data-translate="{{:: 'pci_project_flavors_category_definition_' + flavorByCategory.category }}"></p>
 

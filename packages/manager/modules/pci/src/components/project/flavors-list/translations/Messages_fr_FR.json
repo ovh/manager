@@ -1,10 +1,4 @@
 {
-  "pci_project_flavors_category_balanced": "Usage général",
-  "pci_project_flavors_category_cpu": "Calcul optimisé",
-  "pci_project_flavors_category_ram": "Mémoire optimisée",
-  "pci_project_flavors_category_accelerated": "Calcul accéléré",
-  "pci_project_flavors_category_vps": "Ressources partagées",
-
   "pci_project_flavors_category_definition_balanced": "Les instances à usage général offrent un équilibre entre RAM et performances.",
   "pci_project_flavors_category_definition_cpu": "Les instances de calcul optimisé sont idéales pour les applications nécessitant des fréquences de calculs importantes ou de la parallélisation de tâches.",
   "pci_project_flavors_category_definition_ram": "Les instances à mémoire optimisée sont recommandées pour vos bases de données, analyses et calculs en mémoire, ainsi que d'autres applicatifs gourmands en RAM.",
