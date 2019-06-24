@@ -17,7 +17,14 @@ export default /* @ngInject */ ($stateProvider) => {
           };
         }
 
-        return null;
+        return transition.injector()
+          .getAsync('shouldProcessChallenge')
+          .then((shouldProcessChallenge) => {
+            if (shouldProcessChallenge) {
+              return { state: 'pci.projects.new.payment.challenge' };
+            }
+            return null;
+          });
       },
       onEnter: /* @ngInject */ (
         $transition$,
@@ -103,6 +110,29 @@ export default /* @ngInject */ ($stateProvider) => {
           .then(catalog => get(find(catalog.plans, {
             planCode: 'credit.default',
           }), 'details.pricings.default[0].price')),
+
+        paymentMethods: /* @ngInject */ ovhPaymentMethod => ovhPaymentMethod
+          .getAllPaymentMethods({
+            onlyValid: true,
+            transform: true,
+          }),
+        hasPaymentMethods: /* @ngInject */ paymentMethods => paymentMethods.length > 0,
+        defaultPaymentMethod: /* @ngInject */ paymentMethods => find(
+          paymentMethods,
+          { default: true },
+        ) || null,
+        step: /* @ngInject */(defaultPaymentMethod, getStepByName) => {
+          const step = getStepByName('payment');
+
+          step.model.defaultPaymentMethod = defaultPaymentMethod;
+
+          if (!step.model.defaultPaymentMethod) {
+            step.loading.paymentTypes = true;
+          }
+
+          return step;
+        },
+
       },
     });
 };

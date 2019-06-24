@@ -7,5 +7,11 @@ export default {
   bindings: {
     defaultPaymentMethod: '<',
     getStateLink: '<',
+    saveDescriptionModel: '<',
+    processChallenge: '<',
+    challenge: '<',
+    error: '<',
+    from: '<',
+    displayRetryError: '<',
   },
 };

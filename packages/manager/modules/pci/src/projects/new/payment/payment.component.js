@@ -17,5 +17,7 @@ export default {
     creditMinPrice: '<',
     project: '<',
     trackingPage: '<',
+    hasPaymentMethods: '<',
+    step: '<',
   },
 };

@@ -1,5 +1,3 @@
-import find from 'lodash/find';
-
 export default class PciProjectNewPaymentCtrl {
   /* @ngInject */
   constructor(
@@ -7,7 +5,6 @@ export default class PciProjectNewPaymentCtrl {
     $translate,
     atInternet,
     CucCloudMessage,
-    ovhPaymentMethod,
     PciProjectNewService,
   ) {
     // dependencies injections
@@ -15,7 +12,6 @@ export default class PciProjectNewPaymentCtrl {
     this.$translate = $translate;
     this.atInternet = atInternet;
     this.CucCloudMessage = CucCloudMessage;
-    this.ovhPaymentMethod = ovhPaymentMethod;
     this.PciProjectNewService = PciProjectNewService;
 
     // other attributes used in view
@@ -105,34 +101,7 @@ export default class PciProjectNewPaymentCtrl {
   ====================================== */
 
   $onInit() {
-    this.hasPaymentMethods = false;
-
-    this.step = this.getStepByName('payment');
-
-    this.step.loading.init = true;
     this.displayVoucher = false;
-
-    return this.ovhPaymentMethod
-      .getAllPaymentMethods({
-        onlyValid: true,
-        transform: true,
-      })
-      .then((paymentMethods) => {
-        const defaultPaymentMethod = find(paymentMethods, { default: true }) || null;
-
-        this.step.model.defaultPaymentMethod = defaultPaymentMethod;
-
-        if (!this.step.model.defaultPaymentMethod) {
-          this.step.loading.paymentTypes = true;
-
-          if (paymentMethods.length > 0) {
-            this.hasPaymentMethods = true;
-          }
-        }
-      })
-      .finally(() => {
-        this.step.loading.init = false;
-      });
   }
 
   /* -----  End of Initialization  ------ */

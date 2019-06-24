@@ -1,25 +1,24 @@
 import angular from 'angular';
-import '@ovh-ux/ng-translate-async-loader';
-import 'angular-translate';
-import 'ovh-ui-angular';
-import '@ovh-ux/ng-ovh-payment-method';
-import 'angular-ui-validate';
+import '@uirouter/angularjs';
+import 'oclazyload';
 
-import component from './challenge.component';
-
-import './index.less';
-
-const moduleName = 'ovhManagerPciProjectsNewPaymentChallenge';
+const moduleName = 'ovhManagerPciProjectsNewPaymentChallengeLazyLoading';
 
 angular
   .module(moduleName, [
-    'oui',
-    'ngOvhPaymentMethod',
-    'ngTranslateAsyncLoader',
-    'pascalprecht.translate',
-    'ui.validate',
+    'ui.router',
+    'oc.lazyLoad',
   ])
-  .run(/* @ngTranslationsInject:json ./translations */)
-  .component('pciProjectNewPaymentChallenge', component);
+  .config(/* @ngInject */($stateProvider) => {
+    $stateProvider.state('pci.projects.new.payment.challenge.**', {
+      url: '/challenge',
+      lazyLoad: ($transition$) => {
+        const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
+
+        return import('./challenge.module')
+          .then(mod => $ocLazyLoad.inject(mod.default || mod));
+      },
+    });
+  });
 
 export default moduleName;

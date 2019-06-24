@@ -4,7 +4,7 @@
 
 <form novalidate
     name="challengeForm"
-    data-ng-submit="$ctrl.challenge && $ctrl.processChallenge()">
+    data-ng-submit="$ctrl.challenge && $ctrl.submitChallenge()">
 
     <oui-spinner
         class="ml-3 align-middle"
@@ -19,7 +19,10 @@
                 <label class="oui-field__label oui-label"
                     data-translate="pci_projects_new_payment_challenge_paypal_label"></label>
                 <div class="oui-field__control">
-                    <a data-ng-href="$ctrl.paypalUrl">Login with Paypal</a>
+                    <a class="oui-button oui-button_primary"
+                        data-ng-href="{{ $ctrl.paypalUrl }}"
+                        data-ng-click="$ctrl.saveDescriptionModel()"
+                        data-translate="pci_projects_new_payment_challenge_paypal_buton_label"></a>
                 </div>
             </div>
         </div>
@@ -38,7 +41,7 @@
                     data-ng-pattern="/^[0-9]{6}$/"
                     required>
                 <span data-ng-bind=":: $ctrl.creditCardSuffix"
-                    class="d-inline-block my-2"></span>
+                    class="d-inline-block my-2 creditCardSuffix"></span>
             </oui-field>
         </div>
 
@@ -58,6 +61,7 @@
     <div class="actions-container d-md-flex flex-row-reverse justify-content-between align-items-center my-3">
         <button class="oui-button oui-button_primary oui-button_icon-right no-transition"
             data-ng-disabled="!challengeForm.$valid"
+            data-ng-if="$ctrl.defaultPaymentMethod.paymentType.value !== 'PAYPAL'"
             type="submit">
             <span data-translate="pci_projects_new_payment_challenge_submit_label"></span>
             <span class="oui-icon oui-icon_circle oui-icon-chevron-right"

@@ -1,4 +1,4 @@
-<div class="pci-projects-new-payment">
+<div class="pci-projects-new-payment" data-ui-view>
 
     <div class="text-center"
          data-ng-if="$ctrl.step.loading.init">
@@ -15,11 +15,6 @@
                     data-default-payment-method="$ctrl.step.model.defaultPaymentMethod"
                     data-payment-method-url="$ctrl.paymentMethodUrl">
                 </pci-project-new-payment-default>
-
-                <pci-project-new-payment-challenge
-                    data-ng-if="$ctrl.step.model.defaultPaymentMethod && $ctrl.shouldProcessChallenge()"
-                    data-default-payment-method="$ctrl.step.model.defaultPaymentMethod">
-                </pci-project-new-payment-challenge>
 
                 <pci-project-new-payment-credit-info
                     data-ng-if="$ctrl.hasCreditToOrder()"
