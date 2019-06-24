@@ -1,3 +1,17 @@
+# [0.19.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.18.10...@ovh-ux/manager-pci@0.19.0) (2019-06-24)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([c2b51d6](https://github.com/ovh-ux/manager/commit/c2b51d6))
+
+
+### Features
+
+* **pci.project:** implement private registry ([#698](https://github.com/ovh-ux/manager/issues/698)) ([46b5464](https://github.com/ovh-ux/manager/commit/46b5464))
+
+
+
 ## [0.18.10](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.18.9...@ovh-ux/manager-pci@0.18.10) (2019-06-21)
 
 
