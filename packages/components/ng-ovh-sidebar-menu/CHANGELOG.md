@@ -1,3 +1,12 @@
+## [8.3.2](https://github.com/ovh-ux/ng-ovh-sidebar-menu/compare/v8.3.1...v8.3.2) (2019-06-24)
+
+
+### Bug Fixes
+
+* load subitems on search ([e80de20](https://github.com/ovh-ux/ng-ovh-sidebar-menu/commit/e80de20))
+
+
+
 ## [8.3.1](https://github.com/ovh-ux/ng-ovh-sidebar-menu/compare/v8.3.0...v8.3.1) (2019-06-17)
 
 
