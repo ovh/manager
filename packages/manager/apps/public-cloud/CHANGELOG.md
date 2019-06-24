@@ -1,3 +1,12 @@
+# [0.13.0-alpha.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.12.0-alpha.4...@ovh-ux/manager-public-cloud@0.13.0-alpha.0) (2019-06-24)
+
+
+### Features
+
+* **pci.project:** implement private registry ([#698](https://github.com/ovh-ux/manager/issues/698)) ([46b5464](https://github.com/ovh-ux/manager/commit/46b5464))
+
+
+
 # [0.12.0-alpha.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.12.0-alpha.3...@ovh-ux/manager-public-cloud@0.12.0-alpha.4) (2019-06-20)
 
 

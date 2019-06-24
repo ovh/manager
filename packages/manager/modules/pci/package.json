@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci",
-  "version": "0.18.10",
+  "version": "0.19.0",
   "license": "BSD-3-Clause",
   "files": [
     "dist"
