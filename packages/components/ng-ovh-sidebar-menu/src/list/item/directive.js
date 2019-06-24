@@ -84,7 +84,8 @@ export default /* @ngInject */ function ($compile) {
 
       self.isSearchEnabled = function isSearchEnabled() {
         if (self.item.allowSearch) {
-          if (self.item.subItemsAdded.length > self.getMinItemsForEnablingSearch()) {
+          if (self.item.subItemsAdded.length > self.getMinItemsForEnablingSearch()
+            || self.item.forceDisplaySearch) {
             return true;
           }
 

@@ -104,7 +104,7 @@ export default /* @ngInject */ function ($q, $timeout) {
     this.onLoad = options.onLoad;
     this.loadOnState = options.loadOnState;
     this.loadOnStateParams = options.loadOnStateParams || {};
-    this.isLoaded = false;
+    this.isLoaded = options.isLoaded || false;
     this.loading = false;
 
     // state and url management
@@ -137,6 +137,7 @@ export default /* @ngInject */ function ($q, $timeout) {
     if (this.level === 1) {
       this.allowSearch = options.allowSearch || false;
     }
+    this.forceDisplaySearch = options.forceDisplaySearch || false;
 
     // view more
     this.viewMore = options.viewMore || null;
@@ -207,7 +208,7 @@ export default /* @ngInject */ function ($q, $timeout) {
      *
      *  @returns {String} The full item title.
      */
-  SidebarMenuListItem.prototype.getTitle = function () {
+  SidebarMenuListItem.prototype.getTitle = function getTitle() {
     const self = this;
 
     return self.prefix ? `${self.prefix} ${self.title}` : self.title;
@@ -322,7 +323,7 @@ export default /* @ngInject */ function ($q, $timeout) {
      *
      *  @returns {SidebarMenuListItem} Current instance of menu item.
      */
-  SidebarMenuListItem.prototype.appendPendingListItems = function () {
+  SidebarMenuListItem.prototype.appendPendingListItems = function appendPendingListItems() {
     const self = this;
     self.subItems = self.subItems.concat(self.subItemsPending);
     self.subItemsPending = [];
@@ -341,7 +342,7 @@ export default /* @ngInject */ function ($q, $timeout) {
      *
      *  @returns {SidebarMenuListItem} Current instance of menu item.
      */
-  SidebarMenuListItem.prototype.appendPendingListItemsAsync = function () {
+  SidebarMenuListItem.prototype.appendPendingListItemsAsync = function appendPdgListItemsAsync() {
     const self = this;
 
     // timeout is here to wait for scrollbar being redrawn ...
@@ -455,7 +456,7 @@ export default /* @ngInject */ function ($q, $timeout) {
      *
      *  @returns {SidebarMenuListItem} Current instance of menu item.
      */
-  SidebarMenuListItem.prototype.addSearchKey = function (key) {
+  SidebarMenuListItem.prototype.addSearchKey = function addSearchKey(key) {
     if (angular.isString(key)) {
       this.searchKey += ` ${key.toLowerCase()}`;
     }
@@ -472,7 +473,7 @@ export default /* @ngInject */ function ($q, $timeout) {
      *
      *  @returns {SidebarMenuListItem} Current instance of menu item.
      */
-  SidebarMenuListItem.prototype.displaySearchResults = function (result) {
+  SidebarMenuListItem.prototype.displaySearchResults = function displaySearchResults(result) {
     const self = this;
 
     self.subItems = [];
@@ -525,7 +526,7 @@ export default /* @ngInject */ function ($q, $timeout) {
       return matchingItem.hasSubItems() ? matchingItem : null;
     }
 
-    return function (searchParam) {
+    return function filterSubItemsInner(searchParam) {
       let search = searchParam;
       const self = this;
 
@@ -534,16 +535,26 @@ export default /* @ngInject */ function ($q, $timeout) {
         self.displaySearchResults(angular.copy(self.subItemsAdded));
       } else {
         search = search.toLowerCase(); // ignore case
-        const filteredItems = [];
-        let tmpMatchingItem;
-        angular.forEach(self.subItemsAdded, (item) => {
-          tmpMatchingItem = getMatchingItem(item, search);
 
-          if (tmpMatchingItem) {
-            filteredItems.push(tmpMatchingItem);
-          }
-        });
-        self.displaySearchResults(filteredItems);
+        const promises = _.map(
+          _.filter(
+            self.subItemsAdded,
+            item => item.onLoad && !item.isLoaded,
+          ),
+          item => item.loadSubItems(),
+        );
+
+        $q.all(promises)
+          .then(() => {
+            const filteredItems = _.filter(
+              _.map(
+                self.subItemsAdded,
+                item => getMatchingItem(item, search),
+              ),
+            );
+
+            self.displaySearchResults(filteredItems);
+          });
       }
 
       return self;
