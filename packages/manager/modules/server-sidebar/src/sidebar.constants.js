@@ -136,6 +136,7 @@ export const OLD_MICROSOFT_CONFIG = {
       app: [DEDICATED],
     },
   ],
+  forceDisplaySearch: true,
   loadOnState: 'app.microsoft',
   icon: 'ms-Icon ms-Icon--WindowsLogo',
   app: [DEDICATED],
