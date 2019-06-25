@@ -1,3 +1,12 @@
+## [0.3.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.3.0...@ovh-ux/manager-server-sidebar@0.3.1) (2019-06-25)
+
+
+### Bug Fixes
+
+* **server-sidebar:** add children if no services ([#943](https://github.com/ovh-ux/manager/issues/943)) ([0136819](https://github.com/ovh-ux/manager/commit/0136819))
+
+
+
 # [0.3.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.2.3...@ovh-ux/manager-server-sidebar@0.3.0) (2019-06-25)
 
 
