@@ -1,3 +1,17 @@
+# [0.3.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.2.3...@ovh-ux/manager-server-sidebar@0.3.0) (2019-06-25)
+
+
+### Bug Fixes
+
+* **server-sidebar:** force to display search ([3c647ac](https://github.com/ovh-ux/manager/commit/3c647ac))
+
+
+### Features
+
+* **web.config:** remove third level for exchange & sharepoint ([049c884](https://github.com/ovh-ux/manager/commit/049c884))
+
+
+
 ## [0.2.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.2.2...@ovh-ux/manager-server-sidebar@0.2.3) (2019-06-21)
 
 
