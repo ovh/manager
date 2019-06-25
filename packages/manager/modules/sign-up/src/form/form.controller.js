@@ -11,7 +11,7 @@ import {
   ENUM_TRANSLATION_RULES,
   MODEL_DEBOUNCE_DELAY,
 } from './form.constants';
-import { WatchableModel } from '../class';
+import { WatchableModel } from '../watchableModel.class';
 
 export default class SignUpFormCtrl {
   /* @ngInject */
