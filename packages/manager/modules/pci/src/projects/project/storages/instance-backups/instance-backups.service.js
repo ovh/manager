@@ -1,3 +1,4 @@
+import filter from 'lodash/filter';
 import map from 'lodash/map';
 import InstanceBackup from './instance-backup.class';
 
@@ -6,9 +7,11 @@ export default class PciProjectStorageInstanceBackupService {
   constructor(
     $q,
     OvhApiCloudProject,
+    OvhApiCloudProjectInstance,
   ) {
     this.$q = $q;
     this.OvhApiCloudProject = OvhApiCloudProject;
+    this.OvhApiCloudProjectInstance = OvhApiCloudProjectInstance;
   }
 
   getAll(projectId) {
@@ -46,5 +49,15 @@ export default class PciProjectStorageInstanceBackupService {
         snapshotId: id,
       })
       .$promise;
+  }
+
+  getAssociatedInstances(projectId, { id }) {
+    return this.OvhApiCloudProjectInstance
+      .v6()
+      .query({
+        serviceName: projectId,
+      })
+      .$promise
+      .then(instances => filter(instances, { imageId: id }));
   }
 }
