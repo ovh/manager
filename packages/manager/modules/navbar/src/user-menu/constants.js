@@ -43,6 +43,7 @@ const EU = {
 const US = {
   billing: 'https://us.ovhcloud.com/manager/dedicated/index.html#/billing/history',
   billingCredits: 'https://us.ovhcloud.com/manager/dedicated/index.html#/billing/credits',
+  billingEnterprise: 'https://billing.us.ovhcloud.com/login',
   billingFidelity: 'https://us.ovhcloud.com/manager/dedicated/index.html#/billing/fidelity',
   billingPayments: 'https://us.ovhcloud.com/manager/dedicated/index.html#/billing/payments',
   billingRefunds: 'https://us.ovhcloud.com/manager/dedicated/index.html#/billing/refunds',
