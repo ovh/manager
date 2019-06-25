@@ -94,6 +94,12 @@ export default class {
       }],
     },
 
+    this.user.isEnterprise && this.REGION === 'US' && {
+      name: 'user.billing',
+      title: this.$translate.instant('navbar_user_billing'),
+      url: this.URLS.billingEnterprise,
+    },
+
     // Services
     (this.REGION === 'EU' || this.REGION === 'CA') && (!this.user.isEnterprise ? {
       name: 'user.services',
