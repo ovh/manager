@@ -1,9 +1,4 @@
 {
- "pci_project_flavors_category_balanced": "Uso general",
- "pci_project_flavors_category_cpu": "Cálculo optimizado",
- "pci_project_flavors_category_ram": "Memoria optimizada",
- "pci_project_flavors_category_accelerated": "Cálculo acelerado",
- "pci_project_flavors_category_vps": "Recursos compartidos",
  "pci_project_flavors_category_definition_balanced": "Las instancias de uso general ofrecen un buen equilibrio entre procesador y memoria.",
  "pci_project_flavors_category_definition_cpu": "Las instancias de cálculo optimizado son ideales para aplicaciones que requieren una alta frecuencia de cálculo o procesamiento paralelo de tareas.",
  "pci_project_flavors_category_definition_ram": "Las instancias con memoria optimizada son recomendables para bases de datos, análisis y cálculo en memoria, u otras aplicaciones que consuman mucha RAM.",
