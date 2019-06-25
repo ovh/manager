@@ -1,9 +1,24 @@
 <div class="sign-up-form-activity">
     <div class="row">
-        <div class="col-lg-6">
+        <!-- Should only be visible when country IT and legalform individual -->
+        <div class="col-lg-6"
+             data-ng-if="$ctrl.signUpFormCtrl.rules.nationalIdentificationNumber">
+            <!-- nationalIdentificationNumber -->
+            <oui-field data-label="{{ :: 'sign_up_activity_field_nationalIdentificationNumber' | translate}}">
+                <input type="text"
+                       class="oui-input"
+                       name="nationalIdentificationNumber"
+                       id="nationalIdentificationNumber"
+                       data-ng-model="$ctrl.signUpFormCtrl.model.nationalIdentificationNumber"
+                       data-ng-required="$ctrl.signUpFormCtrl.rules.nationalIdentificationNumber.mandatory"
+                       data-ng-pattern="$ctrl.signUpFormCtrl.rules.nationalIdentificationNumber.regularExpression" />
+            </oui-field> <!-- /input[name="nationalIdentificationNumber"] -->
+        </div>
+
+        <div class="col-lg-6"
+             data-ng-if="$ctrl.signUpFormCtrl.rules.organisation">
             <!-- organisation -->
-            <oui-field data-label="{{ :: 'sign_up_activity_field_organisation' | translate}}"
-                       data-ng-if="$ctrl.signUpFormCtrl.rules.organisation">
+            <oui-field data-label="{{ :: 'sign_up_activity_field_organisation' | translate}}">
                 <input type="text"
                        class="oui-input"
                        name="organisation"
@@ -13,10 +28,10 @@
             </oui-field> <!-- /input[name="organisation"] -->
         </div>
 
-        <div class="col-lg-6">
+        <div class="col-lg-6"
+             data-ng-if="$ctrl.signUpFormCtrl.rules.vat">
             <!-- vat -->
-            <oui-field data-label="{{ :: 'sign_up_activity_field_vat' | translate}}"
-                       data-ng-if="$ctrl.signUpFormCtrl.rules.vat">
+            <oui-field data-label="{{ :: 'sign_up_activity_field_vat' | translate}}">
                 <input type="text"
                        class="oui-input"
                        name="vat"
@@ -26,13 +41,11 @@
                        data-ng-pattern="$ctrl.signUpFormCtrl.rules.vat.regularExpression" />
             </oui-field> <!-- /input[name="vat"] -->
         </div>
-    </div>
 
-    <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-6"
+             data-ng-if="$ctrl.signUpFormCtrl.rules.corporationType">
             <!-- corporationType -->
-            <oui-field data-label="{{ :: 'sign_up_activity_field_corporationType' | translate}}"
-                       data-ng-if="$ctrl.signUpFormCtrl.rules.corporationType">
+            <oui-field data-label="{{ :: 'sign_up_activity_field_corporationType' | translate}}">
                 <label class="oui-select">
                     <select id="corporationType"
                             name="corporationType"
@@ -48,10 +61,10 @@
             </oui-field> <!-- /select[name="corporationType"] -->
         </div>
 
-        <div class="col-lg-6">
+        <div class="col-lg-6"
+             data-ng-if="$ctrl.signUpFormCtrl.rules.companyNationalIdentificationNumber">
             <!-- companyNationalIdentificationNumber -->
-            <oui-field data-label="{{ :: 'sign_up_activity_field_companyNationalIdentificationNumber' | translate}}"
-                       data-ng-if="$ctrl.signUpFormCtrl.rules.companyNationalIdentificationNumber">
+            <oui-field data-label="{{ :: 'sign_up_activity_field_companyNationalIdentificationNumber' | translate}}">
                 <input type="text"
                        class="oui-input"
                        name="companyNationalIdentificationNumber"
@@ -60,6 +73,20 @@
                        data-ng-required="$ctrl.signUpFormCtrl.rules.companyNationalIdentificationNumber.mandatory"
                        data-ng-pattern="$ctrl.signUpFormCtrl.rules.companyNationalIdentificationNumber.regularExpression" />
             </oui-field> <!-- /input[name="companyNationalIdentificationNumber"] -->
+        </div>
+
+        <div class="col-lg-6"
+             data-ng-if="$ctrl.signUpFormCtrl.rules.italianSDI">
+            <!-- italianSDI -->
+            <oui-field data-label="{{ :: 'sign_up_activity_field_italian_sdi' | translate}}">
+                <input type="text"
+                       class="oui-input"
+                       name="italianSDI"
+                       id="italianSDI"
+                       data-ng-model="$ctrl.signUpFormCtrl.model.italianSDI"
+                       data-ng-required="$ctrl.signUpFormCtrl.rules.italianSDI.mandatory"
+                       data-ng-pattern="$ctrl.signUpFormCtrl.rules.italianSDI.regularExpression" />
+            </oui-field> <!-- /input[name="italianSDI"] -->
         </div>
     </div>
 </div>

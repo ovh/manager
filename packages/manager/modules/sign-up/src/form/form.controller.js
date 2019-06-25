@@ -75,15 +75,30 @@ export default class SignUpFormCtrl {
       .getCreationRules(ruleParams, this.getRulesCancel)
       .then((rules) => {
         this.rules = keyBy(this.translateEnumRules(rules), 'fieldName');
+        // set default values to model
+        Object.keys(this.model).forEach((modelKey) => {
+          if (!get(this.model, modelKey) && has(this.rules, `${modelKey}.defaultValue`)) {
+            set(this.model, modelKey, get(this.rules, `${modelKey}.defaultValue`));
+          }
+        });
+
         if (isFunction(this.onRulesUpdated())) {
-          this.onRulesUpdated()(this.rules);
+          this.onRulesUpdated()({
+            rules: this.rules,
+          });
         }
       })
       .catch((error) => {
-        if (error.xhrStatus) {
+        if (error.xhrStatus === 'abort') {
           return false;
         }
-        // @TODO: manage error
+
+        if (isFunction(this.onRulesUpdated())) {
+          this.onRulesUpdated()({
+            error: error.data,
+          });
+        }
+
         return error;
       });
   }

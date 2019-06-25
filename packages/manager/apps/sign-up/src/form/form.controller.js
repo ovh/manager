@@ -6,12 +6,15 @@ export default class SignUpFormAppCtrl {
     this.isActivityStepVisible = false;
   }
 
-  onRulesUpdated(rules) {
-    this.isActivityStepVisible = some([
-      'organisation',
-      'vat',
-      'companyNationalIdentificationNumber',
-      'corporationType',
-    ], fieldName => get(rules, `${fieldName}`) !== undefined);
+  onRulesUpdated({ rules }) {
+    if (rules) {
+      this.isActivityStepVisible = some([
+        'organisation',
+        'vat',
+        'nationalIdentificationNumber',
+        'companyNationalIdentificationNumber',
+        'corporationType',
+      ], fieldName => get(rules, `${fieldName}`) !== undefined);
+    }
   }
 }
