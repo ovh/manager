@@ -15,7 +15,7 @@ import sum from 'lodash/sum';
 import sumBy from 'lodash/sumBy';
 import union from 'lodash/union';
 import moment from 'moment';
-import _ from 'lodash';
+import isEmpty from 'lodash/isEmpty';
 
 import addPhonebookController from './addPhonebookContact/telecom-sms-sms-compose-addPhonebookContact.controller';
 import addPhonebookTemplate from './addPhonebookContact/telecom-sms-sms-compose-addPhonebookContact.html';
@@ -482,39 +482,22 @@ export default class {
       });
 
       this.resetForm(form);
-      if (!_.isEmpty(invalidReceivers) && _.isEmpty(validReceivers)) {
-        const receiverNumber = (invalidReceivers.length > 1)
-          ? this.$translate.instant('sms_sms_compose_receiver_numbers')
-          : this.$translate.instant('sms_sms_compose_receiver_number');
-        const invalidCause = (invalidReceivers.length > 1)
-          ? this.$translate.instant('sms_sms_compose_invalid_receivers')
-          : this.$translate.instant('sms_sms_compose_invalid_receiver');
-
+      if (!isEmpty(invalidReceivers) && isEmpty(validReceivers)) {
         // error message
         this.TucToast.error(this.$translate.instant('sms_sms_compose_status_invalid_receivers', {
+          NUMBER: invalidReceivers.length,
           invalidReceivers: invalidReceivers.toString(),
-          receiverNumber,
-          invalidCause,
-        }));
-      } else if (!_.isEmpty(invalidReceivers) && !_.isEmpty(validReceivers)) {
-        const receiverNumber = (invalidReceivers.length > 1)
-          ? this.$translate.instant('sms_sms_compose_receiver_numbers')
-          : this.$translate.instant('sms_sms_compose_receiver_number');
-        const invalidCause = (invalidReceivers.length > 1)
-          ? this.$translate.instant('sms_sms_compose_invalid_receivers')
-          : this.$translate.instant('sms_sms_compose_invalid_receiver');
-        const receiverLabel = (validReceivers.length > 1)
-          ? this.$translate.instant('sms_sms_compose_receivers')
-          : this.$translate.instant('sms_sms_compose_receiver');
-
+          CAUSE: invalidReceivers.length,
+        }, 'messageFormat'));
+      } else if (!isEmpty(invalidReceivers) && !isEmpty(validReceivers)) {
         // partial error message
         this.TucToast.warn(this.$translate.instant('sms_sms_compose_status_invalid_receivers_partial', {
           validReceivers: validReceivers.toString(),
           invalidReceivers: invalidReceivers.toString(),
-          receiverLabel,
-          receiverNumber,
-          invalidCause,
-        }));
+          VALID: validReceivers.length,
+          NUMBER: invalidReceivers.length,
+          CAUSE: invalidReceivers.length,
+        }, 'messageFormat'));
       } else {
         this.TucToast.success(this.$translate.instant('sms_sms_compose_status_success'));
       }

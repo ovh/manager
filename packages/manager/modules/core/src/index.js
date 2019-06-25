@@ -14,6 +14,7 @@ import ovhOuiAngularTranslations from './translate/ovh-ui-angular';
 import 'angular-dynamic-locale';
 import 'angular-translate';
 import 'angular-translate-loader-pluggable';
+import 'angular-translate-interpolation-messageformat';
 
 import '@ovh-ux/ng-ovh-swimming-poll';
 import '@ovh-ux/ng-ovh-api-wrappers';
@@ -65,7 +66,10 @@ angular
     $translateProvider.useSanitizeValueStrategy('sanitizeParameters');
     $translateProvider.useMissingTranslationHandler('translateMissingTranslationHandler');
 
+    $translateProvider.addInterpolation('$translateMessageFormatInterpolation');
+
     $translateProvider.preferredLanguage(defaultLanguage);
+
     $translateProvider.use(defaultLanguage);
     $translateProvider.fallbackLanguage(LANGUAGES.fallback);
   })

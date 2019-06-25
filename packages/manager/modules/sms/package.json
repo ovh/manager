@@ -34,6 +34,7 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-sms' --include-filtered-dependencies -- yarn run dev"
   },
   "dependencies": {
+    "angular-translate-interpolation-messageformat": "^2.18.1",
     "bootstrap4": "twbs/bootstrap#v4.0.0",
     "lodash": "^4.17.11",
     "moment": "^2.22.2"
