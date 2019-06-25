@@ -1,3 +1,17 @@
+## [0.19.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.19.1...@ovh-ux/manager-pci@0.19.2) (2019-06-25)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([b33583e](https://github.com/ovh-ux/manager/commit/b33583e))
+* **pci.instances:** add hard reboot action for shutoff instances ([#897](https://github.com/ovh-ux/manager/issues/897)) ([4aba459](https://github.com/ovh-ux/manager/commit/4aba459))
+* **pci.project.failover.ips:** display ip address of failover ip block ([#936](https://github.com/ovh-ux/manager/issues/936)) ([35edbb2](https://github.com/ovh-ux/manager/commit/35edbb2))
+* **pci.project.private-registry:** update onboarding text ([c323a6e](https://github.com/ovh-ux/manager/commit/c323a6e))
+* **pci.projects.storage:** check if backup is installed before deletion ([#878](https://github.com/ovh-ux/manager/issues/878)) ([1e1d1f5](https://github.com/ovh-ux/manager/commit/1e1d1f5))
+* **pci.storages.blocks:** display unitary price instead of total ([#935](https://github.com/ovh-ux/manager/issues/935)) ([6d1f550](https://github.com/ovh-ux/manager/commit/6d1f550))
+
+
+
 ## [0.19.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.19.0...@ovh-ux/manager-pci@0.19.1) (2019-06-25)
 
 
