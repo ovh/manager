@@ -390,7 +390,7 @@ export default class PciProjectStorageBlockService {
           get(catalog, VOLUME_SNAPSHOT_CONSUMPTION, false),
         );
         if (price) {
-          const snapshotPrice = price.priceInUcents * storage.size * moment.duration(1, 'months').asHours() / 100000000;
+          const snapshotPrice = price.priceInUcents * moment.duration(1, 'months').asHours() / 100000000;
           return {
             price: snapshotPrice,
             priceText: price.price.text.replace(/\d+(?:[.,]\d+)?/, round(snapshotPrice.toString(), 2)),
