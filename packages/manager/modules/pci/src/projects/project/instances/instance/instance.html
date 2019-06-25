@@ -31,7 +31,7 @@
                     <span data-translate="pci_projects_project_instances_instance_action_createBackup_label"></span>
                 </oui-tile-button>
                 <oui-tile-button data-on-click="$ctrl.startRescueInstance()"
-                    data-ng-if="$ctrl.instance.statusGroup === 'ACTIVE'">
+                    data-ng-if="$ctrl.instance.canBeHardRebooted()">
                     <span data-translate="pci_projects_project_instances_instance_action_rescue_label"></span>
                 </oui-tile-button>
                 <oui-tile-button data-on-click="$ctrl.endRescueInstance()"
@@ -71,7 +71,7 @@
                                 'oui-status_error': ($ctrl.instance.statusGroup === 'ERROR'),
                                 'oui-status_info': ($ctrl.instance.statusGroup === $ctrl.instance.status),
                             }">
-                            <span data-ng-bind="'pci_projects_project_instances_instance_status_' + $ctrl.instance.status | translate"></span>
+                            <span data-ng-bind="'pci_projects_project_instances_status_' + $ctrl.instance.status | translate"></span>
                         </span>
                     </oui-tile-description>
                 </oui-tile-definition>

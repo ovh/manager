@@ -157,4 +157,8 @@ export default class Instance {
     }
     return 'X.X.X.X';
   }
+
+  canBeHardRebooted() {
+    return ['ACTIVE', 'SHUTOFF'].includes(this.status);
+  }
 }
