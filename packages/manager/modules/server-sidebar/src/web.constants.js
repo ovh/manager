@@ -158,30 +158,19 @@ export const MICROSOFT_CONFIG = {
       id: 'exchange',
       types: [
         {
-          path: '/email/exchange',
+          path: '/email/exchange/*/service',
           icon: 'ms-Icon ms-Icon--ExchangeLogo',
-          loadOnState: 'app.microsoft.exchange.*',
-          loadOnStateParams: ['organization'],
-          stateParams: ['organizationId'],
+          getState: ({ offer }) => {
+            const states = {
+              provider: 'app.microsoft.exchange.provider',
+              dedicated: 'app.microsoft.exchange.dedicated',
+              dedicatedCluster: 'app.microsoft.exchange.dedicatedCluster',
+              hosted: 'app.microsoft.exchange.hosted',
+            };
+            return get(states, offer);
+          },
+          stateParams: ['organization', 'productId'],
           app: [WEB],
-          types: [
-            {
-              path: '/email/exchange/:organizationId/service',
-              icon: 'ms-Icon ms-Icon--ExchangeLogo',
-              getState: ({ offer }) => {
-                const states = {
-                  provider: 'app.microsoft.exchange.provider',
-                  dedicated: 'app.microsoft.exchange.dedicated',
-                  dedicatedCluster: 'app.microsoft.exchange.dedicatedCluster',
-                  hosted: 'app.microsoft.exchange.hosted',
-                };
-
-                return states[offer];
-              },
-              stateParams: ['organization', 'productId'],
-              app: [WEB],
-            },
-          ],
         },
       ],
       loadOnState: 'app.microsoft.exchange',
@@ -207,21 +196,11 @@ export const MICROSOFT_CONFIG = {
       id: 'sharepoint',
       types: [
         {
-          path: '/msServices',
+          path: '/msServices/*/sharepoint',
           icon: 'ms-Icon ms-Icon--SharepointLogo',
-          loadOnState: 'app.microsoft.sharepoint.product',
-          loadOnStateParams: ['exchangeId'],
-          stateParams: ['organizationId'],
+          state: 'app.microsoft.sharepoint.product',
+          stateParams: ['exchangeId', 'productId'],
           app: [WEB],
-          types: [
-            {
-              path: '/msServices/:organizationId/sharepoint',
-              icon: 'ms-Icon ms-Icon--SharepointLogo',
-              state: 'app.microsoft.sharepoint.product',
-              stateParams: ['exchangeId', 'productId'],
-              app: [WEB],
-            },
-          ],
         },
       ],
       loadOnState: 'app.microsoft.sharepoint',
@@ -231,6 +210,7 @@ export const MICROSOFT_CONFIG = {
   ],
   loadOnState: 'app.microsoft',
   icon: 'ms-Icon ms-Icon--WindowsLogo',
+  forceDisplaySearch: true,
   app: [WEB],
   regions: ['EU'],
 };
