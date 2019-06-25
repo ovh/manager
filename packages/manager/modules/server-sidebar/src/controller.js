@@ -196,6 +196,7 @@ export default class OvhManagerServerSidebarController {
     return this.$q
       .all(promises)
       .then((typesServices) => {
+        this.addItems(get(parentService, 'children'), parent);
         if (sumBy(typesServices, typeServices => typeServices.items.length) === 0) {
           this.SidebarMenu.addMenuItem({
             title: this.$translate.instant('server_sidebar_item_empty_title'),
@@ -205,7 +206,6 @@ export default class OvhManagerServerSidebarController {
           }, parent);
         } else {
           each(typesServices, (typeServices) => {
-            this.addItems(get(parentService, 'children'), parent);
             let items = get(typeServices, 'items');
             const hasSubItems = has(typeServices.type, 'types');
 
