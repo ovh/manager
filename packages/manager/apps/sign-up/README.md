@@ -1,4 +1,4 @@
-# manager-hello
+# sign-up
 
 ## Installation
 
@@ -28,9 +28,9 @@ yarn install
 Then you just have to start the project in development mode. For this, two choices are possible according to your needs:
 
 ```sh
-# Build the `manager-hello` workspace and all the nested workspaces in development mode and watch only `manager-hello` workspace
+# Build the `sign-up` workspace and all the nested workspaces in development mode and watch only `sign-up` workspace
 yarn start:dev
-# Build and watch the `manager-hello` workspace and all the nested workspaces in development mode
+# Build and watch the `sign-up` workspace and all the nested workspaces in development mode
 yarn start:watch
 ```
 
