@@ -1,3 +1,12 @@
+# [1.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-navbar@1.0.1...@ovh-ux/manager-navbar@1.1.0) (2019-06-25)
+
+
+### Features
+
+* **navbar:** add billing for US enterprise customers ([#939](https://github.com/ovh-ux/manager/issues/939)) ([ccbfe90](https://github.com/ovh-ux/manager/commit/ccbfe90))
+
+
+
 ## [1.0.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-navbar@1.0.0...@ovh-ux/manager-navbar@1.0.1) (2019-06-19)
 
 
