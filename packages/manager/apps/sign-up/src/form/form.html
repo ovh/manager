@@ -1,8 +1,7 @@
 <div class="sign-up-form-view">
     <sign-up-form data-action="update"
                   data-me="$ctrl.me"
-                  data-on-rules-updated="$ctrl.onRulesUpdated.bind($ctrl)"
-                  data-model="$ctrl.testModel">
+                  data-on-rules-updated="$ctrl.onRulesUpdated.bind($ctrl)">
         <oui-stepper data-current-index="1"
                      data-on-finish="$ctrl.onStepperFinish()">
             <oui-step-form data-header="{{ :: 'sign_up_form_identity_step_title' | translate }}"
@@ -11,13 +10,15 @@
             </oui-step-form>
             <oui-step-form data-header="{{ :: 'sign_up_form_details_step_title' | translate }}"
                            data-on-focus="$ctrl.onStepFocus('details')"
-                           data-ng-class="{ 'oui-stepper__step_form_active': $ctrl.isActiveStep('details') }">
+                           data-ng-class="{ 'oui-stepper__step_form_active': $ctrl.isActiveStep('details') }"
+                           data-prevent-next="true">
                 <div data-ui-view="details"></div>
             </oui-step-form>
-            <oui-step-form data-header="{{ :: 'sign_up_form_activity_step_title' | translate }}"
+            <oui-step-form data-header="{{ $ctrl.me.model.legalform !== 'individual' ? 'sign_up_form_activity_step_title' : 'sign_up_form_other_informations_step_title' | translate }}"
                            data-on-focus="$ctrl.onStepFocus('activity')"
                            data-ng-class="{ 'oui-stepper__step_form_active': $ctrl.isActiveStep('activity') }"
-                           data-ng-if="$ctrl.isActivityStepVisible">
+                           data-ng-if="$ctrl.isActivityStepVisible"
+                           data-prevent-next="true">
                 <div data-ui-view="activity"></div>
             </oui-step-form>
         </oui-stepper>
