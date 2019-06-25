@@ -9,6 +9,10 @@
     "progress",
     "uirouter"
   ],
+  "homepage": "https://github.com/ovh-ux/manager/tree/master/packages/components/ng-uirouter-line-progress#readme",
+  "bugs": {
+    "url": "https://github.com/ovh-ux/manager/issues"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ovh-ux/manager.git",

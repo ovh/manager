@@ -1,6 +1,10 @@
 {
   "name": "@ovh-ux/manager-freefax",
   "version": "5.1.2",
+  "homepage": "https://github.com/ovh-ux/manager/tree/master/packages/manager/modules/freefax#readme",
+  "bugs": {
+    "url": "https://github.com/ovh-ux/manager/issues"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ovh-ux/manager.git",
