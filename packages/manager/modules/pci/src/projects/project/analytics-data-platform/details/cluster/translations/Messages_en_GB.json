@@ -1,0 +1,12 @@
+{
+  "analytics_data_platform_service_cluster_desc": "Your big data cluster needs multiple nodes and storage disks to be up and running. These nodes are deployed in your related Public Cloud project <a href=\"{{public_cloud_instances_url}}\">{{public_cloud_project_serviceName}}</a>, with standard hourly billing. You can find details on your bill and switch to a monthly plan in <a href=\"{{public_cloud_billing_console_url}}\">Billing Console</a>.",
+  "analytics_data_platform_service_cluster_total_cores": "Total vCores",
+  "analytics_data_platform_service_cluster_total_ram": "Total RAM",
+  "analytics_data_platform_service_cluster_total_storage": "Total effective storage",
+  "analytics_data_platform_service_cluster_table_node": "Node",
+  "analytics_data_platform_service_cluster_node_type": "Node type",
+  "analytics_data_platform_service_cluster_table_flavor": "Flavor",
+  "analytics_data_platform_service_cluster_table_ip": "IP Address",
+  "analytics_data_platform_service_cluster_refresh": "Refresh cluster list",
+  "analytics_data_platform_service_cluster_option_all": "All"
+}
