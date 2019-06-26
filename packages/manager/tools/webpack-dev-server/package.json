@@ -14,10 +14,12 @@
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "files": [
-    "src"
+    "dist"
   ],
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "scripts": {
+    "build": "cp -R src dist",
+    "dev": "yarn run build",
     "lint": "eslint --quiet --fix src",
     "test": "eslint --quiet src",
     "version": "npx conventional-changelog-cli -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
