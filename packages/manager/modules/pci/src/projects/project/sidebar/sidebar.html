@@ -1,26 +1,42 @@
 <div class="h-100 d-flex flex-column">
-    <div class="px-md-3 py-md-3 pt-3 w-100">
-        <div data-ng-if="$ctrl.isLoading">
-            <oui-skeleton size="xs"></oui-skeleton>
-            <oui-skeleton class="mt-2" size="s"></oui-skeleton>
-        </div>
-        <div class="d-flex" data-ng-if="!$ctrl.isLoading && $ctrl.project">
-            <div class="w-100 mr-3 minw-0">
-                <div class="w-100 text-truncate">
-                    <h2 class="mb-0 d-inline-block font-weight-normal" data-ng-bind="$ctrl.project.description"></h2>
-                </div>
-                <oui-clipboard model="$ctrl.project.project_id"></oui-clipboard>
-            </div>
-            <div class="my-auto">
-                <button type="button" class="btn btn-primary rounded-circle" style="padding: 6px 13px; background-color: rgb(40, 89, 192);" data-ng-click="$ctrl.toggleProjectsList()">
-                    <span class="oui-icon oui-icon-chevron-right text-white"></span>
-                    <span class="sr-only" data-translate="cloud_sidebar_public_cloud_project_toggle"></span>
+    <div class="oui-navbar-menu__header bg-white px-3">
+        <div class="oui-navbar-menu__header-container" data-ng-if="$ctrl.isOpen">
+            <div class="oui-navbar-menu__back h-100">
+                <button type="button"
+                        class="oui-button oui-button_link oui-button_icon-left"
+                        data-ng-click="$ctrl.onClick()">
+                    <span class="oui-icon oui-icon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only" data-translate="cloud_sidebar_public_cloud_project_toggle_close"></span>
                 </button>
+            </div>
+            <div class="w-100 text-truncate">
+                <h3 class="oui-navbar-menu__title" data-ng-bind="$ctrl.UNIVERSE"></h3>
+            </div>
+        </div>
+        <div class="w-100">
+            <div data-ng-if="$ctrl.isLoading">
+                <oui-skeleton data-size="xs"></oui-skeleton>
+                <oui-skeleton class="mt-2" data-size="s"></oui-skeleton>
+            </div>
+            <div class="d-flex" data-ng-if="!$ctrl.isLoading && $ctrl.project">
+                <div class="w-100 mr-3 minw-0">
+                    <div class="w-100 text-truncate">
+                        <h2 class="mb-0 d-inline-block font-weight-normal" data-ng-bind="$ctrl.project.description"></h2>
+                    </div>
+                    <oui-clipboard data-model="$ctrl.project.project_id"></oui-clipboard>
+                </div>
+                <div class="my-auto">
+                    <button type="button" class="oui-button oui-button_primary oui-button_small-width rounded-circle project-list-toggle" data-ng-click="$ctrl.toggleProjectsList()">
+                        <span class="oui-icon oui-icon-chevron-right text-white" aria-hidden="true"></span>
+                        <span class="sr-only" data-translate="cloud_sidebar_public_cloud_project_toggle"></span>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
-    <div class="h-100 position-relative d-none d-md-block" data-ng-if="!$ctrl.isLoading">
-        <nav id="sidebar-menu" class="position-absolute h-100 w-100 oui-sidebar" style="overflow: auto;">
+    <div class="h-100 position-relative d-md-block"
+         data-ng-if="!$ctrl.isLoading">
+        <nav id="sidebar-menu" class="position-absolute h-100 w-100 oui-sidebar">
             <div class="oui-sidebar-menu">
                 <ul class="oui-sidebar-list">
                     <li class="oui-sidebar-list__item"
@@ -55,14 +71,14 @@
             </div>
         </nav>
     </div>
-    <oui-spinner size="s" data-ng-if="$ctrl.isLoading"></oui-spinner>
+    <oui-spinner data-size="s" data-ng-if="$ctrl.isLoading"></oui-spinner>
 </div>
 <div data-ng-if="$ctrl.isDisplayingProjectsList"
      class="project-list px-3 py-md-4">
     <div class="d-md-flex mb-4 d-none">
         <div class="my-auto">
-            <button type="button" class="btn btn-primary rounded-circle" style="padding: 6px 13px;" data-ng-click="$ctrl.toggleProjectsList()">
-                <span class="oui-icon oui-icon-chevron-left" style="color: rgb(40, 89, 192);"></span>
+            <button type="button" class="oui-button oui-button_secondary oui-button_small-width rounded-circle project-list-toggle" data-ng-click="$ctrl.toggleProjectsList()">
+                <span class="oui-icon oui-icon-chevron-left" aria-hidden="true"></span>
                 <span class="sr-only" data-translate="cloud_sidebar_public_cloud_project_toggle_close"></span>
             </button>
         </div>
@@ -70,7 +86,7 @@
             <div class="w-100 text-truncate">
                 <h2 class="mb-0 d-inline-block text-white font-weight-normal" data-ng-bind="$ctrl.project.description"></h2>
             </div>
-            <oui-clipboard model="$ctrl.project.project_id"></oui-clipboard>
+            <oui-clipboard data-model="$ctrl.project.project_id"></oui-clipboard>
         </div>
     </div>
     <div class="d-md-none d-flex py-3">
@@ -89,3 +105,18 @@
     </div>
     <cloud-sidebar-project-list></cloud-sidebar-project-list>
 </div>
+<div class="oui-navbar-backdrop"
+     aria-hidden="true"
+     tabindex="-1"
+     data-ng-class="{ 'oui-navbar-backdrop_active': $ctrl.isOpen }"
+     data-ng-click="$ctrl.onClick()"
+     role="button">
+</div>
+<button
+    type="button"
+    class="position-fixed bg-transparent d-none sidebar-toggler"
+    data-ng-class="{
+        'd-block': $ctrl.isOpen
+    }"
+    data-ng-click="$ctrl.onClick()">
+</button>

@@ -167,7 +167,10 @@ export const MENU = [
   },
 ];
 
+export const UNIVERSE = 'Public Cloud';
+
 export default {
   HORIZON,
   MENU,
+  UNIVERSE,
 };
