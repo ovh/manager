@@ -3,7 +3,8 @@
   "packages": [
     "packages/components/*",
     "packages/manager/apps/*",
-    "packages/manager/modules/*"
+    "packages/manager/modules/*",
+    "packages/manager/tools/*"
   ],
   "npmClient": "yarn",
   "useWorkspaces": true,
