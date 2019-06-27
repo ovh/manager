@@ -1,3 +1,12 @@
+## [0.3.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.3.1...@ovh-ux/manager-server-sidebar@0.3.2) (2019-06-27)
+
+
+### Bug Fixes
+
+* **server-sidebar:** add email domain delegated account ([fa5eccf](https://github.com/ovh-ux/manager/commit/fa5eccf))
+
+
+
 ## [0.3.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.3.0...@ovh-ux/manager-server-sidebar@0.3.1) (2019-06-25)
 
 

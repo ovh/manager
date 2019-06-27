@@ -1,3 +1,12 @@
+## [1.1.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-navbar@1.1.0...@ovh-ux/manager-navbar@1.1.1) (2019-06-27)
+
+
+### Bug Fixes
+
+* **navbar:** fix enterprise detection ([#949](https://github.com/ovh-ux/manager/issues/949)) ([34c2960](https://github.com/ovh-ux/manager/commit/34c2960))
+
+
+
 # [1.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-navbar@1.0.1...@ovh-ux/manager-navbar@1.1.0) (2019-06-25)
 
 
