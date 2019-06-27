@@ -2,7 +2,7 @@
 
 > OVH manager webpack development server configuration.
 
-[![Downloads](https://badgen.net/npm/dt/@ovh-ux/manager-webpack-dev-server)](https://npmjs.com/package/@ovh-ux/manager-webpack-dev-server) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/managers/tools/webpack-dev-server)](https://npmjs.com/package/@ovh-ux/manager-webpack-dev-server?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/managers/tools/webpack-dev-server)](https://npmjs.com/package/@ovh-ux/manager-webpack-dev-server?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![Downloads](https://badgen.net/npm/dt/@ovh-ux/manager-webpack-dev-server)](https://npmjs.com/package/@ovh-ux/manager-webpack-dev-server) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager-webpack-dev-server)](https://npmjs.com/package/@ovh-ux/manager-webpack-dev-server?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager-webpack-dev-server)](https://npmjs.com/package/@ovh-ux/manager-webpack-dev-server?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
 
 ## Install
 
@@ -45,11 +45,11 @@ const env = {
 
 ## Related
 
-* [manager-webpack-config](https://github.com/ovh-ux/manager/packages/manager/tools/webpack-config) - OVH manager shared webpack configuration
+* [manager-webpack-config](https://github.com/ovh-ux/manager-webpack-config) - OVH manager shared webpack configuration
 
 ## Contributing
 
-Always feel free to help out! Whether it's [filing bugs and feature requests](https://github.com/ovh-ux/manager/issues/new) or working on some of the [open issues](https://github.com/ovh-ux/manager/issues), our [contributing guide](CONTRIBUTING.md) will help get you started.
+Always feel free to help out! Whether it's [filing bugs and feature requests](https://github.com/ovh-ux/manager-webpack-dev-server/issues/new) or working on some of the [open issues](https://github.com/ovh-ux/manager-webpack-dev-server/issues), our [contributing guide](CONTRIBUTING.md) will help get you started.
 
 ## License
 
