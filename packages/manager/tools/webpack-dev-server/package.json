@@ -21,7 +21,6 @@
     "build": "cp -R src dist",
     "dev": "yarn run build",
     "lint": "eslint --quiet --fix src",
-    "prepare": "yarn run build",
     "test": "eslint --quiet src",
     "version": "npx conventional-changelog-cli -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
     "postversion": "git push && git push --tags"
