@@ -1743,6 +1743,36 @@
     rollup-pluginutils "^2.3.3"
     slash "^2.0.0"
 
+"@ovh-ux/component-rollup-config@^5.0.0", "@ovh-ux/component-rollup-config@^5.0.2", "@ovh-ux/component-rollup-config@^5.1.0":
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/component-rollup-config/-/component-rollup-config-5.1.0.tgz#38b41dc47b78f057aa59a945b0e9ed708fbcf63b"
+  integrity sha512-pFZzz+z4ODRUGXDVnKn+7fWpYw5VeXdbjIrgyYRvS5qzyec1DqW5/6TT9xZmZAsr8cKPGTFGRWKJ37cONA8xIQ==
+  dependencies:
+    "@babel/core" "^7.1.2"
+    "@babel/plugin-syntax-dynamic-import" "^7.0.0"
+    "@babel/preset-env" "^7.1.6"
+    "@ovh-ux/rollup-plugin-less-tilde-importer" "^1.0.0-beta.0"
+    babel-plugin-angularjs-annotate "^0.10.0"
+    camelcase "^5.0.0"
+    estree-walker "^0.6.0"
+    less "^3.8.1"
+    less-plugin-remcalc "^0.1.0"
+    lodash "^4.17.11"
+    magic-string "^0.25.1"
+    node-sass "^4.10.0"
+    rollup "^1.15.6"
+    rollup-plugin-babel "^4.3.2"
+    rollup-plugin-commonjs "^9.2.0"
+    rollup-plugin-html "^0.2.1"
+    rollup-plugin-img "^1.1.0"
+    rollup-plugin-json "^3.1.0"
+    rollup-plugin-less "^0.1.5"
+    rollup-plugin-node-resolve "^4.0.0"
+    rollup-plugin-peer-deps-external "^2.2.0"
+    rollup-plugin-sass "^1.1.0"
+    rollup-pluginutils "^2.3.3"
+    slash "^2.0.0"
+
 "@ovh-ux/manager-core@^5.1.0", "@ovh-ux/manager-core@^5.2.0", "@ovh-ux/manager-core@^5.3.0":
   version "5.3.1"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core/-/manager-core-5.3.1.tgz#1c8d6f57c7f1785fa74357349cd37f6c3ba75126"
