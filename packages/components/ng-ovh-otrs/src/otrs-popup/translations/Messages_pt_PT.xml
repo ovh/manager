@@ -61,7 +61,7 @@
 
    <translation id="otrs_service_type_DEDICATED" qtlid="31738">Serviços Dedicados</translation>
    <translation id="otrs_service_type_email_exchange" qtlid="80430">Exchange</translation>
-   <translation id="otrs_service_type_email_mxplan" qtlid="524647">Email MXPlan</translation>
+   <translation id="otrs_service_type_email_mxplan" qtlid="524647">E-mail MXPlan</translation>
    <translation id="otrs_service_type_email_pro" qtlid="374893">E-mail Pro</translation>
    <translation id="otrs_service_type_hosting_web" qtlid="167457">Alojamento Web</translation>
    <translation id="otrs_service_type_hubic" qtlid="111546">hubiC</translation>
@@ -70,8 +70,8 @@
    <translation id="otrs_service_type_cloud" qtlid="251655">Public Cloud</translation>
    <translation id="otrs_service_type_telephony" qtlid="29299">Serviço Telefónico</translation>
    <translation id="otrs_service_type_telephony_fax" qtlid="32926">Fax</translation>
-   <translation id="otrs_service_type_telephony_line" qtlid="524660">Téléphonie (ligne)</translation>
-   <translation id="otrs_service_type_telephony_number" qtlid="524673">Téléphonie (numéro)</translation>
+   <translation id="otrs_service_type_telephony_line" qtlid="524660">Telefonia (linha)</translation>
+   <translation id="otrs_service_type_telephony_number" qtlid="524673">Telefonia (número)</translation>
    <translation id="otrs_service_type_sms" qtlid="28243">SMS</translation>
    <translation id="otrs_service_type_vps" qtlid="23083">VPS</translation>
    <translation id="otrs_service_type_xdsl" qtlid="104614">xDSL</translation>
@@ -101,7 +101,7 @@
    <translation id="otrs_service_type_hosting_web" qtlid="219979">Alojamento Web</translation>
    <translation id="otrs_service_type_ipLoadbalancing" qtlid="219992">Ip LoadBalancer</translation>
    <translation id="otrs_service_type_license_cloud_linux" qtlid="220005">Licença CloudLinux</translation>
-   <translation id="otrs_service_type_license_cpanel" qtlid="524712">Licence cPanel</translation>
+   <translation id="otrs_service_type_license_cpanel" qtlid="524712">Licença cPanel</translation>
    <translation id="otrs_service_type_license_directadmin" qtlid="220031">Licença DirectAdmin</translation>
    <translation id="otrs_service_type_license_plesk" qtlid="220044">Licença Plesk</translation>
    <translation id="otrs_service_type_license_sqlserver" qtlid="398943">Licença SQL Server</translation>
@@ -120,23 +120,23 @@
    <translation id="otrs_service_type_dedicated_ceph" qtlid="406442">CDA</translation>
    <translation id="otrs_service_type_veeam_veeam_enterprise" qtlid="524911">VEEAM Enterprise</translation>
    <translation id="otrs_service_type_veeam_cloud_connect" qtlid="524738">VEEAM Cloud Connect</translation>
-   <translation id="otrs_service_type_caas_containers" qtlid="524751">CAAS Containers</translation>
-   <translation id="otrs_service_type_caas_registry" qtlid="524764">CAAS Registry</translation>
+   <translation id="otrs_service_type_caas_containers" qtlid="524751">CaaS Containers</translation>
+   <translation id="otrs_service_type_caas_registry" qtlid="524764">CaaS Registry</translation>
    <translation id="otrs_service_type_cloud_db" qtlid="524777">Cloud Databases</translation>
    <translation id="otrs_service_type_dbaas_logs" qtlid="62064">Logs (registos)</translation>
    <translation id="otrs_service_type_dbaas_queue" qtlid="524790">Queues</translation>
    <translation id="otrs_service_type_dbaas_timeseries" qtlid="524803">Time series</translation>
-   <translation id="otrs_service_type_deskaas" qtlid="524816">Bureau virtuel à distance</translation>
+   <translation id="otrs_service_type_deskaas" qtlid="524816">Desktop virtual remoto</translation>
    <translation id="otrs_service_type_ssl" qtlid="84921">SSL</translation>
    <translation id="otrs_service_type_ssl_gateway" qtlid="400105">SSL Gateway</translation>
-   <translation id="otrs_service_type_paas_timeseries" qtlid="524829">PAAS Time series</translation>
+   <translation id="otrs_service_type_paas_timeseries" qtlid="524829">PaaS Time series</translation>
    <translation id="otrs_service_type_hpcspot" qtlid="524842">HPC Spot</translation>
-   <translation id="otrs_service_type_saas_csp_2" qtlid="524855">SAAS CSP2</translation>
+   <translation id="otrs_service_type_saas_csp_2" qtlid="524855">SaaS CSP2</translation>
    <translation id="otrs_service_type_horizon_view" qtlid="524868">Horizon View</translation>
    <translation id="otrs_service_type_other" qtlid="316047">Outra questão</translation>
 
-   <translation id="otrs_service_type_choice" qtlid="524881">Type de service :</translation>
-   <translation id="otrs_service_type_dedicated_server" qtlid="524894">Serveur dédié</translation>
+   <translation id="otrs_service_type_choice" qtlid="524881">Tipo de serviço:</translation>
+   <translation id="otrs_service_type_dedicated_server" qtlid="524894">Servidor dedicado</translation>
    <translation id="otrs_service_type_vps" qtlid="23083">VPS</translation>
 
 
@@ -196,7 +196,7 @@
    <translation id="otrs_subCategory_billing_inProgress" qtlid="487977">Acompanhar um pedido atual</translation>
    <translation id="otrs_subCategory_billing_new" qtlid="291240">Pretendo efetuar uma encomenda</translation>
    <translation id="otrs_subCategory_billing_bill" qtlid="487990">Informação sobre uma factura</translation>
-   <translation id="otrs_subCategory_billing_autorenew" qtlid="503202">Information sur le renouvellement automatique</translation>
+   <translation id="otrs_subCategory_billing_autorenew" qtlid="503202">Informações sobre a renovação automática</translation>
    <translation id="otrs_subCategory_billing_other" qtlid="19963">Outro</translation>
 
    <translation id="otrs_subCategory_incident_perfs" qtlid="291266">Serviço avariado / danificado</translation>
