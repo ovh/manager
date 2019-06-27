@@ -1,8 +1,14 @@
 <div class="pci-project container-fluid h-100">
     <div class="row h-100">
-        <div class="h-100 p-0 d-none col-md-2 d-lg-flex flex-column">
-            <cloud-sidebar></cloud-sidebar>
-        </div>
+        <cloud-sidebar
+            class="h-100 p-0 col-lg-2 d-lg-flex flex-column"
+            data-ng-class="{
+                'cloud-sidebar_hidden': !$ctrl.isSidebarOpen,
+                'cloud-sidebar_open': $ctrl.isSidebarOpen
+            }"
+            data-is-open="$ctrl.isSidebarOpen"
+            data-on-click="$ctrl.closeSidebar()">
+        </cloud-sidebar>
         <div class="h-100 position-relative p-0 col-lg-10 d-flex flex-column">
             <div class="pci-project-banner d-flex justify-content-between p-3">
                 <span data-translate="pci_projects_project_welcome" class="font-weight-bold oui-color-sapphire"></span>

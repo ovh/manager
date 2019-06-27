@@ -1,7 +1,25 @@
+@import "~ovh-ui-kit/packages/oui/_settings";
+@import "~ovh-ui-kit/packages/oui-color/_variables";
 @import '~ovh-ui-kit/packages/oui-icons/_icons';
+@import '~ovh-ui-kit/packages/oui-navbar/_variables';
+@import "~ovh-ui-kit/packages/oui-typography/_variables";
 
 .oui-navbar-link_active {
   .oui-navbar-link::after {
     content: @oui-icon-index-chevron-left;
+  }
+}
+
+.oui-navbar-menu_toggle {
+  button.oui-navbar-link::after {
+    content: @oui-icon-index-chevron-right;
+    font-family: @oui-global-base-font-family-icon;
+    font-size: @oui-navbar-arrow-size;
+    color: @oui-navbar-arrow-color;
+    padding: 0;
+    position: absolute;
+    top: 50%;
+    right: @oui-navbar-arrow-size;
+    transform: translateY(-50%);
   }
 }

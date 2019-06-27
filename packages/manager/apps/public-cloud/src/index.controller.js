@@ -7,24 +7,20 @@ export default class PublicCloudController {
   constructor(
     $scope,
     $state,
-    $stateParams,
     $timeout,
     $translate,
     $window,
     atInternet,
-    CloudSidebar,
     ovhUserPref,
     publicCloud,
     SessionService,
   ) {
     this.$scope = $scope;
     this.$state = $state;
-    this.$stateParams = $stateParams;
     this.$timeout = $timeout;
     this.$translate = $translate;
     this.$window = $window;
     this.atInternet = atInternet;
-    this.CloudSidebar = CloudSidebar;
     this.feedbackUrl = __FEEDBACK_URL__;
     this.feedback = feedback;
     this.ovhUserPref = ovhUserPref;
@@ -43,11 +39,14 @@ export default class PublicCloudController {
   $onInit() {
     this.$translate.refresh()
       .then(() => {
-        this.sidebarLinks = this.CloudSidebar.getSidebarLinks(this.$stateParams);
         this.sessionService.getUser()
           .then((user) => {
             this.user = user;
           });
       });
+  }
+
+  openSidebar() {
+    this.$scope.$broadcast('sidebar:open');
   }
 }

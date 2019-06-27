@@ -2,7 +2,7 @@ import isEmpty from 'lodash/isEmpty';
 import isNil from 'lodash/isNil';
 import set from 'lodash/set';
 
-import { MENU } from './sidebar.constant';
+import { MENU, UNIVERSE } from './sidebar.constant';
 
 export default class SidebarController {
   /* @ngInject */
@@ -10,6 +10,7 @@ export default class SidebarController {
   constructor(
     $translate,
     $rootScope,
+    $scope,
     $stateParams,
     $transitions,
     atInternet,
@@ -20,6 +21,7 @@ export default class SidebarController {
     this.$translate = $translate;
     this.$transitions = $transitions;
     this.$rootScope = $rootScope;
+    this.$scope = $scope;
 
     this.$stateParams = $stateParams;
     this.atInternet = atInternet;
@@ -32,6 +34,7 @@ export default class SidebarController {
     this.isDisplayingProjectsList = false;
 
     this.REGION = coreConfig.getRegion();
+    this.UNIVERSE = UNIVERSE;
   }
 
   toggleProjectsList() {
@@ -85,5 +88,6 @@ export default class SidebarController {
       name: `public-cloud_menu_${id}`,
       type: 'action',
     });
+    this.onClick();
   }
 }
