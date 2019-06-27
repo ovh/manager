@@ -28,6 +28,9 @@ export default {
     applicationAccess: '<',
     attachVolume: '<',
 
+    reverseDnsLink: '<',
+    firewallLink: '<',
+    ipMitigationLink: '<',
     gotToNetworks: '<',
     attachPrivateNetwork: '<',
   },

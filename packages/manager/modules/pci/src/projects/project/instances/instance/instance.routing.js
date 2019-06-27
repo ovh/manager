@@ -1,3 +1,8 @@
+import get from 'lodash/get';
+import head from 'lodash/head';
+
+import { DEDICATED_IPS_URL, FIREWALL_URL, MITIGATION_URL } from './instance.constants';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('pci.projects.project.instances.instance', {
     url: '/:instanceId',
@@ -17,6 +22,18 @@ export default /* @ngInject */ ($stateProvider) => {
         instance,
       ) => PciProjectsProjectInstanceService
         .getInstancePrice(projectId, instance),
+
+      reverseDnsLink: /* @ngInject */ coreConfig => DEDICATED_IPS_URL[coreConfig.getRegion()],
+
+      ipMitigationLink: /* @ngInject */ (
+        coreConfig,
+        instance,
+      ) => MITIGATION_URL(get(head(instance.publicIpV4), 'ip'), coreConfig.getRegion()),
+
+      firewallLink: /* @ngInject */ (
+        coreConfig,
+        instance,
+      ) => FIREWALL_URL(get(head(instance.publicIpV4), 'ip'), coreConfig.getRegion()),
 
       breadcrumb: /* @ngInject */ instance => instance.name,
 
