@@ -1,3 +1,12 @@
+## [8.3.3](https://github.com/ovh-ux/ng-ovh-sidebar-menu/compare/v8.3.2...v8.3.3) (2019-06-28)
+
+
+### Bug Fixes
+
+* **i18n:** retrieve translations ([#74](https://github.com/ovh-ux/ng-ovh-sidebar-menu/issues/74)) ([0acb7bc](https://github.com/ovh-ux/ng-ovh-sidebar-menu/commit/0acb7bc))
+
+
+
 ## [8.3.2](https://github.com/ovh-ux/ng-ovh-sidebar-menu/compare/v8.3.1...v8.3.2) (2019-06-24)
 
 
