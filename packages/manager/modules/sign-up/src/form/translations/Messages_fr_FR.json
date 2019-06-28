@@ -1,7 +1,7 @@
 {
   "sign_up_form_enum_legalform_association": "Association",
   "sign_up_form_enum_legalform_corporation": "Entreprise",
-  "sign_up_form_enum_legalform_personalcorporation": "Ditta individuale",
+  "sign_up_form_enum_legalform_personalcorporation": "Entreprise individuelle",
   "sign_up_form_enum_legalform_individual": "Particulier",
   "sign_up_form_enum_legalform_administration": "Administration",
   "sign_up_form_enum_legalform_other": "Autre",
