@@ -44,6 +44,7 @@
             <oui-field data-label="{{ :: 'sign_up_details_field_phone' | translate }}">
                 <div class="oui-input-group phone-number-field">
                     <ui-select data-ng-model="$ctrl.signUpFormCtrl.model.phoneCountry"
+                               data-on-select="$ctrl.onPhoneCountrySelect()"
                                theme="ui-select-oui-kit">
                         <ui-select-match>
                             <country-flag data-country="$select.selected.value"></country-flag>

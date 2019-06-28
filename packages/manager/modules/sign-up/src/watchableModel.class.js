@@ -13,6 +13,10 @@ export class WatchableModel {
         writable: true,
         value: callback,
       },
+      $debounceFn: {
+        enumerable: false,
+        writable: true,
+      },
       $debounceDelay: {
         enumerable: false,
         value: debounceDelay,
@@ -28,7 +32,11 @@ export class WatchableModel {
     const hasChanged = this.$value !== newValue;
     this.$value = newValue;
     if (hasChanged && this.$value && this.$callback) {
-      debounce(this.$callback, this.$debounceDelay)();
+      if (this.$debounceFn) {
+        this.$debounceFn.cancel();
+      }
+      this.$debounceFn = debounce(this.$callback, this.$debounceDelay);
+      this.$debounceFn();
     }
   }
 

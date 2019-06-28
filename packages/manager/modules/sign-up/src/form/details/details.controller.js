@@ -4,7 +4,12 @@ import startsWith from 'lodash/startsWith';
 import { PHONE_PREFIX } from './details.constants';
 
 export default class SignUpDetailsCtrl {
-  constructor() {
+  /* @ngInject */
+  constructor($timeout) {
+    // dependencies injections
+    this.$timeout = $timeout;
+
+    // other attributes used in view
     this.phoneModel = {
       value: null,
       model: (...args) => {
@@ -62,6 +67,33 @@ export default class SignUpDetailsCtrl {
   =            Events            =
   ============================== */
 
+  onPhoneCountrySelect() {
+    this.$timeout(() => {
+      // set the focus to phone field to fix error display
+      this.setElementFocus('phone');
+    });
+  }
+
+  /* -----  End of Events  ------ */
+
+  /* ================================
+  =            Callbacks            =
+  ================================= */
+
+  onCountryChange() {
+    return this.signUpFormCtrl
+      .getRules()
+      .then(() => {
+        const changePhoneCountry = (!this.signUpFormCtrl.model.phoneCountry
+          || this.signUpFormCtrl.model.phoneCountry === 'UNKNOWN')
+          && this.signUpFormCtrl.model.country;
+
+        if (changePhoneCountry) {
+          this.signUpFormCtrl.model.phoneCountry = this.signUpFormCtrl.model.country;
+        }
+      });
+  }
+
   onPhoneCountryChange() {
     return this.signUpFormCtrl
       .getRules()
@@ -74,13 +106,10 @@ export default class SignUpDetailsCtrl {
         const viewValue = phoneModel.$viewValue;
         const phoneModelValid = phoneModel.$validators.pattern(modelValue, viewValue);
         phoneModel.$setValidity('pattern', phoneModelValid);
-
-        // set the focus to phone field to fix error display
-        this.setElementFocus('phone');
       });
   }
 
-  /* -----  End of Events  ------ */
+  /* -----  End of Callbacks  ------ */
 
   /* ============================
   =            Hooks            =
@@ -97,6 +126,7 @@ export default class SignUpDetailsCtrl {
     ));
 
     // set specific model callbacks
+    this.signUpFormCtrl.model.$country.setCallback(this.onCountryChange.bind(this));
     this.signUpFormCtrl.model.$phoneCountry.setCallback(this.onPhoneCountryChange.bind(this));
   }
 
