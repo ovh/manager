@@ -33,5 +33,6 @@ export default {
     ipMitigationLink: '<',
     gotToNetworks: '<',
     attachPrivateNetwork: '<',
+    scheduleAutoBackup: '<',
   },
 };

@@ -1,0 +1,16 @@
+<div class="container-fluid px-0">
+    <p data-translate="pci_workflow_create_type_description"></p>
+    <div class="row">
+        <oui-select-picker
+            class="d-inline-block col-md-6 my-3"
+            data-ng-repeat="type in $ctrl.WORKFLOW_TYPE_ENUM"
+            data-name="{{ type }}"
+            data-description="{{ ::'pci_workflow_create_type_' + type + '_description' | translate }}"
+            data-model="$ctrl.selectedType"
+            data-label="{{ ::'pci_workflow_type_' + type + '_title' | translate }}"
+            data-values="[type]"
+            data-variant="light"
+            data-required>
+        </oui-select-picker>
+    </div>
+</div>
