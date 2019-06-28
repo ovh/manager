@@ -28,7 +28,7 @@ export const state = {
         return `/auth/?account=${accountParam}&onsuccess=${onsuccess}`;
       }
 
-      return null;
+      return '/auth/?action=gotomanager';
     },
     getStepByName: /* @ngInject */ steps => name => find(steps, {
       name,
@@ -48,7 +48,7 @@ export const state = {
         });
       }
     },
-    onStepperFinish: /* @ngInject */ ($window, getRedirectLocation, me, signUp) => () => signUp
+    finishSignUp: /* @ngInject */ ($window, getRedirectLocation, me, signUp) => () => signUp
       .saveNic(me.model)
       .then(() => {
         const redirectUrl = getRedirectLocation(me.nichandle);
