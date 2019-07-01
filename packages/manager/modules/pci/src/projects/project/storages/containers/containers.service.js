@@ -116,9 +116,10 @@ export default class PciStoragesContainersService {
       });
   }
 
-  getAll(projectId, isArchive = null) {
+  getAll(projectId, isArchive = null, withObjects = false) {
     const queryParams = {
       serviceName: projectId,
+      withObjects,
     };
 
     if (isArchive === true) {

@@ -1,3 +1,5 @@
+import map from 'lodash/map';
+
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
     .state('pci.projects.project.storages.objects.add', {
@@ -5,9 +7,13 @@ export default /* @ngInject */ ($stateProvider) => {
       component: 'pciProjectStorageContainersAdd',
       resolve: {
         regions: /* @ngInject */ (
-          PciProjectStorageBlockService,
+          PciProjectRegions,
           projectId,
-        ) => PciProjectStorageBlockService.getAvailablesRegions(projectId),
+        ) => PciProjectRegions
+          .getAvailableRegions(projectId).then(regions => map(regions, region => ({
+            ...region,
+            hasEnoughQuota: () => true,
+          }))),
         goBack: /* @ngInject */ goToStorageContainers => goToStorageContainers,
         cancelLink: /* @ngInject */ ($state, projectId) => $state.href('pci.projects.project.storages.objects', {
           projectId,

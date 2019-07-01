@@ -1,0 +1,20 @@
+{
+  "analytics_data_platform_deploy_nodes_quota_min_servers_error": "Un minimum de {{numberOfServers}} noeuds sont requis pour déployer Analytics Data Platform. Sous votre quota actuel, vous pouvez créer un maximum de {{instances}} noeuds pour la région {{region}}.",
+  "analytics_data_platform_deploy_nodes_quota_increase": "Afficher et augmenter votre quota",
+  "analytics_data_platform_deploy_nodes_quota_msg": "Sous votre quota actuel, vous pouvez créer un maximum de {{ instances }} nœuds pour la région {{ region }}.",
+  "analytics_data_platform_deploy_nodes_worker_nodes": "Nœuds de collaborateur",
+  "analytics_data_platform_deploy_nodes_worker_nodes_help": "Nœuds exécutant des travaux, fournissant une capacité de calcul.<br/><br/>La capacité de stockage est directement liée aux collaborateurs.",
+  "analytics_data_platform_deploy_nodes_edge_nodes": "Nœuds Edge",
+  "analytics_data_platform_deploy_nodes_edge_nodes_help": "Nœuds hébergeant le domicile des utilisateurs pour l'accès aux services",
+  "analytics_data_platform_deploy_nodes_master_nodes": "Nœuds maîtres",
+  "analytics_data_platform_deploy_nodes_master_nodes_help": "Nœuds exécutant la coordination des services.<br/><br/>La quantité et la saveur sont définies par OVH.",
+  "analytics_data_platform_deploy_nodes_utility_nodes": "Nœuds d'utilitaires",
+  "analytics_data_platform_deploy_nodes_utility_nodes_help": "Services d'utilitaires : base de données, gestion des identités, passerelle.<br/><br/>La quantité et la saveur sont définies par OVH.",
+  "analytics_data_platform_deploy_nodes_bastion_nodes": "Nœuds de bastion",
+  "analytics_data_platform_deploy_nodes_bastion_nodes_help": "Permet à l'utilisateur d'accéder à la plate-forme de données à partir du réseau public.<br/><br/>La quantité et la saveur sont définies par OVH.",
+  "analytics_data_platform_deploy_nodes_min_max": "<br/><br/>{{version}} prend en charge un minimum de {{minNodes}} nœud(s) et un maximum de {{maxNodes}} nœud(s)",
+  "analytics_data_platform_deploy_nodes_instance_type": "Type d'instance",
+  "analytics_data_platform_deploy_nodes_flavor_placeholder": "Sélectionnez votre saveur",
+  "analytics_data_platform_deploy_nodes_invalid_storage_error": "Cette instance a {{instanceStorage}}Go, le stockage minimum requis est {{ minStorage }} {{unit}}",
+  "analytics_data_platform_deploy_nodes_min_storage_message": "Le stockage minimum requis par nœud est {{ minStorage }} {{unit}}"
+}

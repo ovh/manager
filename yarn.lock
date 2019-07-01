@@ -1701,6 +1701,24 @@
     lodash "^4.17.11"
     moment "^2.24.0"
 
+"@ovh-ux/manager-pci@^0.19.0":
+  version "0.19.3"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-pci/-/manager-pci-0.19.3.tgz#188a57b25b6072a5055216f4b03c68f31e29b8e5"
+  integrity sha512-wKYaGK2Pot35uPDSOJq4qaWGT/CH2E68UVSH3XlXMJl0nV4lkg+0mamP9A3KxvAsX+zboKj8X6l7LwCw7ivA2A==
+  dependencies:
+    "@fortawesome/fontawesome-free" "^5.8.2"
+    "@ovh-ux/manager-config" "^0.2.0"
+    d3 "~3.5.13"
+    file-saver "^2.0.1"
+    flag-icon-css "~0.8.5"
+    ipaddr.js "^1.9.0"
+    jsurl "^0.1.5"
+    lodash "^4.17.11"
+    moment "^2.19"
+    urijs "^1.19.1"
+    validator "^10.11.0"
+    xterm "^3.12.2"
+
 "@ovh-ux/manager-telecom-styles@^2.0.2":
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-telecom-styles/-/manager-telecom-styles-2.0.2.tgz#23256c8356f3c483a28c72e5d5f23d0999f24f13"
@@ -5424,6 +5442,11 @@ fast-levenshtein@~2.0.4:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/fast-levenshtein/-/fast-levenshtein-2.0.6.tgz#3d8a5c66883a16a30ca8643e851f19baa7797917"
   integrity sha1-PYpcZog6FqMMqGQ+hR8Zuqd5eRc=
+
+fast-sha256@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/fast-sha256/-/fast-sha256-1.1.0.tgz#b640189403c7ff0d796d1251a1c1f6954c40e7b4"
+  integrity sha1-tkAYlAPH/w15bRJRocH2lUxA57Q=
 
 fastparse@^1.1.1:
   version "1.1.2"
@@ -9325,18 +9348,6 @@ ovh-ngstrap@^4.0.2:
   resolved "https://registry.yarnpkg.com/ovh-ngstrap/-/ovh-ngstrap-4.0.2.tgz#059291bfb9f59b78df991e476dd2ede0507cb3c9"
   integrity sha1-BZKRv7n1m3jfmR5HbdLt4FB8s8k=
 
-ovh-ui-angular@^3.2.2:
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/ovh-ui-angular/-/ovh-ui-angular-3.3.0.tgz#15f4a37640a4f5be7c38c7f159f27643bfe38813"
-  integrity sha512-XwtLTOfOT1ajR9X3P3Dc+7zGZuGkP70DWZNSUb2W3uwL2YRvMV2CpThlHTR66kCPFFVBEsyq2MGIucQzDhz0zQ==
-  dependencies:
-    bloodhound-js "^1.2.3"
-    clipboard "^2.0.1"
-    escape-string-regexp "^1.0.5"
-    flatpickr "^4.5.2"
-    popper.js "^1.14.4"
-    ui-select "^0.19.8"
-
 ovh-ui-angular@^3.3.2:
   version "3.3.2"
   resolved "https://registry.yarnpkg.com/ovh-ui-angular/-/ovh-ui-angular-3.3.2.tgz#c2940948dc0ec6d5d1a82e53d316872ccb9ec30c"
@@ -12475,6 +12486,11 @@ tunnel-agent@^0.6.0:
   integrity sha1-J6XeoGs2sEoKmWZ3SykIaPD8QP0=
   dependencies:
     safe-buffer "^5.0.1"
+
+tweetnacl-util@^0.15.0:
+  version "0.15.0"
+  resolved "https://registry.yarnpkg.com/tweetnacl-util/-/tweetnacl-util-0.15.0.tgz#4576c1cee5e2d63d207fee52f1ba02819480bc75"
+  integrity sha1-RXbBzuXi1j0gf+5S8boCgZSAvHU=
 
 tweetnacl@^0.14.3, tweetnacl@~0.14.0:
   version "0.14.5"

@@ -4,6 +4,7 @@ import 'angular-translate';
 import 'ovh-ui-angular';
 
 import component from './regions-list.component';
+import service from './regions.service';
 
 const moduleName = 'ovhManagerPciRegionsList';
 
@@ -14,6 +15,7 @@ angular
     'pascalprecht.translate',
   ])
   .component('pciProjectRegionsList', component)
+  .service('PciProjectRegions', service)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

@@ -1,0 +1,10 @@
+{
+  "analytics_data_platform_list_onboarding_button_label": "Create an Analytics Data Platform cluster",
+  "analytics_data_platform_list_table_button_manage_cluster": "Manage cluster",
+  "analytics_data_platform_list_table_refresh": "Reload clusters",
+  "analytics_data_platform_get_cluster_error": "Failed to get analytics data platforms: {{message}}",
+  "analytics_data_platform_onboarding_guides_overview_title": "Overview",
+  "analytics_data_platform_onboarding_guides_retrieve_credentials_title": "Retrieve credentials",
+  "analytics_data_platform_onboarding_guides_setup_data_pipeline_title": "Setup data pipeline",
+  "analytics_data_platform_onboarding_guides_manage_users_title": "Manage users"
+}
