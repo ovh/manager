@@ -5,7 +5,7 @@ import 'angular-translate';
 
 import component from './activity.component';
 
-const moduleName = 'signUpActivity';
+const moduleName = 'ovhSignUpActivity';
 
 angular
   .module(moduleName, [

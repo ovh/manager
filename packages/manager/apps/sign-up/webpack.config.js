@@ -27,7 +27,6 @@ module.exports = (env = {}) => {
         'browser',
         'main',
       ],
-      symlinks: false,
     },
   });
 };

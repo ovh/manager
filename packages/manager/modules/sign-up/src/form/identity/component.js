@@ -1,6 +1,6 @@
 import template from './identity.html';
 
 export default {
-  name: 'signUpIdentity',
+  name: 'ovhSignUpIdentity',
   template,
 };

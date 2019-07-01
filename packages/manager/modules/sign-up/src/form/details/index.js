@@ -13,7 +13,7 @@ import component from './details.component';
 
 import './details.scss';
 
-const moduleName = 'signUpDetails';
+const moduleName = 'ovhSignUpDetails';
 
 angular
   .module(moduleName, [

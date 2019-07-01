@@ -2,7 +2,7 @@ import controller from './details.controller';
 import template from './details.html';
 
 export default {
-  name: 'signUpDetails',
+  name: 'ovhSignUpDetails',
   restrict: 'E',
   controller,
   controllerAs: '$ctrl',
@@ -10,8 +10,8 @@ export default {
   template,
   require: {
     formCtrl: '^form',
-    signUpFormCtrl: '^signUpForm',
-    signUpDetailsCtrl: 'signUpDetails',
+    signUpFormCtrl: '^ovhSignUpForm',
+    signUpDetailsCtrl: 'ovhSignUpDetails',
   },
   link: (scope, element, attributes, ctrls) => {
     const controllers = ctrls;

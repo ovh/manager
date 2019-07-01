@@ -3,7 +3,7 @@ export const state = {
   url: 'activity',
   views: {
     activity: {
-      component: 'signUpActivity',
+      component: 'ovhSignUpActivity',
     },
   },
 };

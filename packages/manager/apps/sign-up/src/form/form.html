@@ -8,7 +8,7 @@
         <small data-ng-bind-html="$ctrl.saveError.data.message"></small>
     </oui-message>
 
-    <sign-up-form data-action="update"
+    <ovh-sign-up-form data-action="update"
                   data-me="$ctrl.me"
                   data-on-rules-updated="$ctrl.onRulesUpdated.bind($ctrl)">
         <oui-stepper data-current-index="1"
@@ -31,5 +31,5 @@
                 <div data-ui-view="activity"></div>
             </oui-step-form>
         </oui-stepper>
-    </sign-up-form>
+    </ovh-sign-up-form>
 </div>

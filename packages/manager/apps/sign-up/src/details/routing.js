@@ -3,7 +3,7 @@ export const state = {
   url: 'details',
   views: {
     details: {
-      component: 'signUpDetails',
+      component: 'ovhSignUpDetails',
     },
   },
 };

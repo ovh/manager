@@ -7,7 +7,7 @@ import component from './component';
 import details from './details';
 import identity from './identity';
 
-const moduleName = 'signUpForm';
+const moduleName = 'ovhSignUpForm';
 
 angular
   .module(moduleName, [

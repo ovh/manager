@@ -12,7 +12,7 @@ angular
     'oui',
   ])
   .run(/* @ngTranslationsInject:json ./translations */)
-  .run(($translate, ouiStepperConfiguration) => {
+  .run(/* @ngInject */ ($translate, ouiStepperConfiguration) => {
     // set some translations for oui-kit
     $translate.refresh()
       .then(() => {

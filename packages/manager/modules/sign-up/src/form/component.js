@@ -1,7 +1,7 @@
 import controller from './form.controller';
 
 export default {
-  name: 'signUpForm',
+  name: 'ovhSignUpForm',
   controller,
   bindings: {
     action: '@',

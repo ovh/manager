@@ -1,10 +1,10 @@
 import template from './activity.html';
 
 export default {
-  name: 'signUpActivity',
+  name: 'ovhSignUpActivity',
   template,
   require: {
     formCtrl: '^form',
-    signUpFormCtrl: '^signUpForm',
+    signUpFormCtrl: '^ovhSignUpForm',
   },
 };
