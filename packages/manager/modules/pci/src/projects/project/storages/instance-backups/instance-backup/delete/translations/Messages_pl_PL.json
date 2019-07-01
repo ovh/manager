@@ -5,6 +5,7 @@
  "pci_projects_project_storages_volume-instances_volume-instance_delete_content": "Usuń definitywnie {{ backup }}",
  "pci_projects_project_storages_volume-instances_volume-instance_delete_erase_message": "Wszystkie dane przechowywane w kopii instancji zostaną utracone.",
  "pci_projects_project_storages_volume-instances_volume-instance_delete_error_not_deletable": "Nie można w tej chwili usunąć kopii instancji.",
+ "pci_projects_project_storages_volume-instances_volume-instance_delete_error_installed": "Nie można w tej chwili usunąć kopii instancji, ponieważ jest zainstalowana na następujących instancjach: {{ instances }}.",
  "pci_projects_project_storages_volume-instances_volume-instance_delete_error_load": "Wystąpił błąd podczas pobierania kopii instancji: {{message}}.",
  "pci_projects_project_storages_volume-instances_volume-instance_delete_success_message": "Kopia zapasowa instancji {{ backup }} została usunięta.",
  "pci_projects_project_storages_volume-instances_volume-instance_delete_error_delete": "Wystąpił błąd podczas usuwania kopii instancji {{backup}}: {{message}}."

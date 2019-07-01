@@ -29,6 +29,7 @@ export default class PciProjectInstanceService {
     OvhApiCloudProjectNetwork,
     OvhApiCloudProjectQuota,
     OvhApiCloudProjectVolume,
+    OvhApiIp,
     PciProjectRegions,
   ) {
     this.$q = $q;
@@ -41,6 +42,7 @@ export default class PciProjectInstanceService {
     this.OvhApiCloudProjectNetwork = OvhApiCloudProjectNetwork;
     this.OvhApiCloudProjectQuota = OvhApiCloudProjectQuota;
     this.OvhApiCloudProjectVolume = OvhApiCloudProjectVolume;
+    this.OvhApiIp = OvhApiIp;
     this.PciProjectRegions = PciProjectRegions;
   }
 
@@ -107,14 +109,18 @@ export default class PciProjectInstanceService {
           .$promise
           .catch(() => []),
         privateNetworks: this.getPrivateNetworks(projectId),
+        ipReverse: this.getReverseIp(instance),
       }))
-      .then(({ instance, volumes, privateNetworks }) => new Instance({
+      .then(({
+        instance, ipReverse, volumes, privateNetworks,
+      }) => new Instance({
         ...instance,
         volumes: filter(volumes, volume => includes(volume.attachedTo, instance.id)),
         privateNetworks: filter(privateNetworks, privateNetwork => includes(
           map(filter(instance.ipAddresses, { type: 'private' }), 'networkId'),
           privateNetwork.id,
         )),
+        ipReverse,
       }));
   }
 
@@ -508,5 +514,16 @@ export default class PciProjectInstanceService {
         instanceId,
       })
       .$promise;
+  }
+
+  getReverseIp({ ipAddresses }) {
+    const { ip } = find(ipAddresses, { type: 'public', version: 4 });
+    if (ip) {
+      return this.OvhApiIp.Reverse().v6().query({ ip }).$promise
+        .then(([ipReverse]) => (ipReverse
+          ? this.OvhApiIp.Reverse().v6().get({ ip, ipReverse }).$promise
+          : null));
+    }
+    return null;
   }
 }

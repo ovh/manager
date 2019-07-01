@@ -1,3 +1,4 @@
+@import '~ovh-ui-kit/packages/oui-sidebar/_variables.less';
 @import '~ovh-ui-kit/packages/oui-responsive/_variables.less';
 @import './_variables.less';
 
@@ -9,12 +10,57 @@ cloud-sidebar { /* stylelint-disable-line */
   z-index: 1;
   box-shadow: 0 2pt 10pt rgba(40, 89, 192, 0.25);
 
-  .minw-0 {
-    min-width: 0;
+  @media screen and (max-width: @oui-responsive-breakpoint-tablet) {
+    position: absolute;
+    width: @oui-navbar-menu-width;
+    z-index: 2;
+
+    &.cloud-sidebar_open {
+      left: 0;
+    }
+
+    &.cloud-sidebar_hidden {
+      left: -@oui-navbar-menu-width;
+    }
+  }
+
+  .oui-navbar-menu__header {
+    align-items: center;
+    background-color: #fff;
+    border-bottom: none;
+    z-index: 2;
+
+    .oui-navbar-menu__title {
+      color: @primary-color;
+      font-weight: @oui-font-semibold;
+      font-size: 18px;
+    }
+
+    .oui-navbar-menu__back {
+      background-color: @info-bg-color;
+      border: 1px solid @info-bg-color;
+      border-radius: 3px;
+
+      .oui-button {
+        padding: 16px;
+      }
+
+      + div {
+        margin-left: 10px;
+      }
+    }
   }
 
   .oui-navbar-backdrop_active {
     z-index: 1;
+  }
+
+  .sidebar-toggler {
+    z-index: 3;
+    top: 0;
+    left: 0;
+    height: 44px;
+    width: 50px;
   }
 
   oui-clipboard { /* stylelint-disable-line */
@@ -51,6 +97,10 @@ cloud-sidebar { /* stylelint-disable-line */
       bottom: 0;
       margin: 0;
     }
+  }
+
+  .project-list-toggle {
+    padding: 6px 13px;
   }
 
   .project-list {
@@ -232,6 +282,7 @@ cloud-sidebar { /* stylelint-disable-line */
 
 #sidebar-menu .oui-sidebar-menu {
   width: 100%;
+  overflow: auto;
 
   .sidebar-menu-orphan-item {
     border-top: #89d7f8 2px solid;

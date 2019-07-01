@@ -15,7 +15,7 @@
  "cloud_sidebar_orchestration_kubernetes": "Managed Kubernetes Service",
  "cloud_sidebar_orchestration_private_registry": "Managed Private Registry",
  "cloud_sidebar_orchestration_image_catalog": "Managed Image Catalog",
- "cloud_sidebar_data_analytics_adp": "Analytics Data Platform",
+ "cloud_sidebar_data_analytics_adp": "Data Analytics Platform",
  "cloud_sidebar_data_analytics": "Data & Analytics",
  "cloud_sidebar_management_interface": "Verwaltungsinterfaces",
  "cloud_sidebar_management_interface_horizon": "Horizon",
@@ -29,5 +29,6 @@
  "cloud_sidebar_project_management_contact_rights": "Kontakte und Rechte",
  "cloud_sidebar_project_management_settings": "Projekteinstellungen",
  "cloud_sidebar_public_cloud_project_toggle": "Projektliste öffnen",
- "cloud_sidebar_public_cloud_project_toggle_close": "Zurück zum Menü"
+ "cloud_sidebar_public_cloud_project_toggle_close": "Zurück zum Menü",
+ "cloud_sidebar_beta_project": "Beta"
 }

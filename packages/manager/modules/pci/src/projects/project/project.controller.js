@@ -9,6 +9,7 @@ import template from './legacy-forward/forward.html';
 export default class ProjectController {
   /* @ngInject */
   constructor(
+    $scope,
     $state,
     $stateParams,
     $uibModal,
@@ -18,6 +19,7 @@ export default class ProjectController {
     sidebarVisible,
     user,
   ) {
+    this.$scope = $scope;
     this.$state = $state;
     this.$stateParams = $stateParams;
     this.$uibModal = $uibModal;
@@ -35,7 +37,12 @@ export default class ProjectController {
   }
 
   $onInit() {
+    this.isSidebarOpen = false;
     this.loading = true;
+
+    this.$scope.$on('sidebar:open', () => {
+      this.isSidebarOpen = true;
+    });
 
     return this.OvhApiCloudProject
       .v6()
@@ -61,5 +68,9 @@ export default class ProjectController {
       controller,
       controllerAs: '$ctrl',
     });
+  }
+
+  closeSidebar() {
+    this.isSidebarOpen = false;
   }
 }

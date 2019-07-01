@@ -3,5 +3,4 @@ export default {
     event: 'sidebar:loaded',
   },
   universe: 'public-cloud',
-  version: 'beta',
 };
