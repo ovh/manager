@@ -1,3 +1,23 @@
+# [0.20.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.19.3...@ovh-ux/manager-pci@0.20.0) (2019-07-01)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([eebbd32](https://github.com/ovh-ux/manager/commit/eebbd32))
+* **i18n:** add missing translations ([c9599c5](https://github.com/ovh-ux/manager/commit/c9599c5))
+* **i18n:** add missing translations ([#967](https://github.com/ovh-ux/manager/issues/967)) ([c6dcdbc](https://github.com/ovh-ux/manager/commit/c6dcdbc))
+* **pci:** provide transparency to some png files ([#952](https://github.com/ovh-ux/manager/issues/952)) ([85b6aaf](https://github.com/ovh-ux/manager/commit/85b6aaf))
+* **pci.project.onboarding:** replace deprecated illustration ([2937551](https://github.com/ovh-ux/manager/commit/2937551))
+* **pci.projects.storages:** improve performance of containers list ([#973](https://github.com/ovh-ux/manager/issues/973)) ([593e3f8](https://github.com/ovh-ux/manager/commit/593e3f8))
+* **pci.projects.storages:** prevent quota check on containers ([#961](https://github.com/ovh-ux/manager/issues/961)) ([0ca0df4](https://github.com/ovh-ux/manager/commit/0ca0df4))
+
+
+### Features
+
+* **pci.instance:** display reverse DNS information ([#903](https://github.com/ovh-ux/manager/issues/903)) ([baaa9a9](https://github.com/ovh-ux/manager/commit/baaa9a9))
+
+
+
 ## [0.19.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.19.2...@ovh-ux/manager-pci@0.19.3) (2019-06-27)
 
 
