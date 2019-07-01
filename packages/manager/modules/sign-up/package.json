@@ -1,6 +1,7 @@
 {
   "name": "@ovh-ux/sign-up",
   "version": "0.0.0",
+  "private": true,
   "license": "BSD-3-Clause",
   "files": [
     "dist"

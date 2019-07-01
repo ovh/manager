@@ -77,10 +77,14 @@ export default class SignUpFormCtrl {
         this.rules = keyBy(this.translateEnumRules(rules), 'fieldName');
         // set default values to model
         Object.keys(this.model).forEach((modelKey) => {
-          const defaultValue = get(this.rules, `${modelKey}.defaultValue`);
           const modelValue = get(this.model, modelKey);
-          if ((!modelValue || modelValue === 'UNKNOWN') && defaultValue) {
-            set(this.model, modelKey, defaultValue);
+          if (!modelValue || modelValue === 'UNKNOWN') {
+            const defaultValue = get(this.rules, `${modelKey}.defaultValue`);
+            if (defaultValue) {
+              set(this.model, modelKey, defaultValue);
+            } else if (get(this.rules, `${modelKey}.in`, []).length) {
+              set(this.model, modelKey, get(this.rules, `${modelKey}.in[0]`));
+            }
           }
         });
 
