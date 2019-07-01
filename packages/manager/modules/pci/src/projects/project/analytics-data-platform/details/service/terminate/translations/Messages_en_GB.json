@@ -1,0 +1,6 @@
+{
+ "analytics_data_platform_coming_soon": "Coming soon",
+ "analytics_data_platform_description": "Soon, you will be able to terminate your service and delete cluster from here.",
+ "analytics_data_platform_description_dashboard": "In the meantime, you can terminate your service and delete cluster by manually deleting all instances and storages from Public Cloud.",
+ "analytics_data_platform_go_to_public_cloud": "Go to Public Cloud"
+}
