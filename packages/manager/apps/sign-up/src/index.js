@@ -21,7 +21,7 @@ import 'ovh-ui-kit/dist/oui.css';
 import './index.scss';
 
 angular
-  .module('signUpApp', [
+  .module('ovhSignUpApp', [
     'ui.router',
     ovhManagerCore,
     ngOvhSsoAuth,

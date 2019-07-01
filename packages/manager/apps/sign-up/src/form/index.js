@@ -5,7 +5,7 @@ import 'ovh-ui-angular';
 
 import component from './component';
 
-const moduleName = 'signUpFormView';
+const moduleName = 'ovhSignUpFormView';
 
 angular
   .module(moduleName, [

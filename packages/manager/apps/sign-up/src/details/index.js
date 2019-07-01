@@ -3,7 +3,7 @@ import '@ovh-ux/sign-up';
 
 import { registerState } from './routing';
 
-const moduleName = 'signUpDetailsState';
+const moduleName = 'ovhSignUpDetailsState';
 
 angular
   .module(moduleName, [

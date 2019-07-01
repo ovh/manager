@@ -126,8 +126,12 @@ export default class SignUpDetailsCtrl {
     ));
 
     // set specific model callbacks
-    this.signUpFormCtrl.model.$country.setCallback(this.onCountryChange.bind(this));
-    this.signUpFormCtrl.model.$phoneCountry.setCallback(this.onPhoneCountryChange.bind(this));
+    if (this.signUpFormCtrl.model.$country) {
+      this.signUpFormCtrl.model.$country.setCallback(this.onCountryChange.bind(this));
+    }
+    if (this.signUpFormCtrl.model.$phoneCountry) {
+      this.signUpFormCtrl.model.$phoneCountry.setCallback(this.onPhoneCountryChange.bind(this));
+    }
   }
 
   /* -----  End of Hooks  ------ */
