@@ -1,3 +1,19 @@
+# [0.22.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.21.0...@ovh-ux/manager-pci@0.22.0) (2019-07-02)
+
+
+### Bug Fixes
+
+* **cloud.bloc.storage:** replace region by localisation ([8d98741](https://github.com/ovh-ux/manager/commit/8d98741))
+* tracking on buttons works now correctly ([d98e00d](https://github.com/ovh-ux/manager/commit/d98e00d))
+* **i18n:** add missing translations ([35a76c4](https://github.com/ovh-ux/manager/commit/35a76c4))
+
+
+### Features
+
+* **tracking:** add tracking using at-internet library ([200602d](https://github.com/ovh-ux/manager/commit/200602d))
+
+
+
 # [0.21.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.20.0...@ovh-ux/manager-pci@0.21.0) (2019-07-02)
 
 
