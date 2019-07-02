@@ -35,7 +35,7 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-telecom-dashboard' --include-filtered-dependencies -- yarn run dev"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "5.0.2"
+    "@ovh-ux/component-rollup-config": "^5.1.0"
   },
   "peerDependencies": {
     "@ovh-ux/manager-core": "^6.0.1",

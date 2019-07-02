@@ -37,7 +37,7 @@
     "tweetnacl-util": "^0.15.0"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "5.0.2"
+    "@ovh-ux/component-rollup-config": "^5.1.0"
   },
   "peerDependencies": {
     "@ovh-ux/manager-cloud-styles": "^0.3.0-alpha.1",
