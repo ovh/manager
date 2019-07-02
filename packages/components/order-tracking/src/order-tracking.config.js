@@ -1,0 +1,4 @@
+export const ORDER_DETAILS_POLLING_INTERVAL = 60;
+export default {
+  ORDER_DETAILS_POLLING_INTERVAL: 60,
+};

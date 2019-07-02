@@ -1,0 +1,13 @@
+{
+  "order_tracking_title": "Suivi de la commande N° {{ orderId }}",
+  "order_tracking_step_0": "Votre commande est prise en compte",
+  "order_tracking_step_1": "Votre commande est validée",
+  "order_tracking_step_2": "Votre produit a été attribué",
+  "order_tracking_step_3": "Votre produit est livré et disponible",
+  "order_tracking_estimated_delivery_time": "Délai de livraison estimé",
+  "order_tracking_estimated_delivery_time_info": "Ce délai est fourni à titre indicatif. Certains facteurs peuvent parfois ralentir l'exécution de la commande",
+  "order_tracking_details": "Résumé de la commande",
+  "order_tracking_status": "En cours",
+  "order_tracking_error": "Une erreur est survenue lors de la récupération de votre commande.",
+  "order_tracking_try_again": "Réessayer"
+}

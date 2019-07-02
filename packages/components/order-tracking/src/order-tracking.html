@@ -1,0 +1,79 @@
+<div style="margin: 3rem">
+
+  <oui-back-button on-click="$ctrl.onBackButtonClick()">
+    <span data-translate="order_tracking_title"
+          data-translate-values="{ orderId: $ctrl.orderId }"></span>
+  </oui-back-button>
+
+  <oui-spinner data-ng-if="$ctrl.isLoading" size="l">
+  </oui-spinner>
+
+  <oui-message type="error" data-ng-if="$ctrl.error">
+    <p>
+      <strong data-translate="order_tracking_error"></strong>
+    </p>
+    <p>
+      <span data-ng-bind="$ctrl.error.message"></span>
+      <br />
+      <small data-ng-bind="$ctrl.error.queryId"></small>
+    </p>
+    <oui-button variant="secondary"
+                text="{{ 'order_tracking_try_again' | translate }}"
+                on-click="$ctrl.refresh()">
+    </oui-button>
+  </oui-message>
+
+  <div data-ng-if="$ctrl.order">
+    <div class="oui-progress-tracker">
+      <ol class="oui-progress-tracker__steps">
+        <li class="oui-progress-tracker__step oui-progress-tracker__step_complete">
+          <a class="oui-progress-tracker__status" href="#">
+            <span class="oui-progress-tracker__label" data-translate="order_tracking_step_0"></span>
+          </a>
+        </li>
+        <li class="oui-progress-tracker__step oui-progress-tracker__step_complete">
+          <a class="oui-progress-tracker__status" href="#">
+            <span class="oui-progress-tracker__label" data-translate="order_tracking_step_1"></span>
+          </a>
+        </li>
+        <li class="oui-progress-tracker__step oui-progress-tracker__step_active">
+          <a class="oui-progress-tracker__status" href="#">
+            <span class="oui-progress-tracker__label" data-translate="order_tracking_step_2"></span>
+          </a>
+        </li>
+        <li class="oui-progress-tracker__step">
+          <span class="oui-progress-tracker__status">
+            <span class="oui-progress-tracker__label" data-translate="order_tracking_step_3"></span>
+          </span>
+        </li>
+      </ol>
+    </div>
+
+    <p class="mt-4">
+      <span data-translate="order_tracking_estimated_delivery_time"></span>
+      * : 
+      <span class="oui-status oui-status_success">12Os</span>
+      <br/>
+      *<small data-translate="order_tracking_estimated_delivery_time_info"></small>
+    </p>
+
+    <div class="oui-tile mt-4">
+      <h4 class="oui-heading_4 oui-tile__title" data-translate="order_tracking_details"></h4>
+      <oui-spinner data-ng-if="!$ctrl.orderDetails" size="m">
+      </oui-spinner>
+      <ul class="list-unstyled"
+          data-ng-if="$ctrl.orderDetails">
+        <li data-ng-repeat="detail in $ctrl.orderDetails track by detail.orderDetailId">
+          <span data-ng-bind="detail.quantity"></span>
+           × 
+          <span data-ng-bind="detail.description"></span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="oui-tile mt-4">
+      <h4 class="oui-heading_4 oui-tile__title" data-translate="order_tracking_status"></h4>
+    </div>
+  </div>
+
+</div>
