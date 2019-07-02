@@ -84,7 +84,7 @@ export default class SignUpFormCtrl {
             if (defaultValue) {
               set(this.model, modelKey, defaultValue);
             } else if (enumValues && enumValues.length === 1) {
-              set(this.model, modelKey, get(this.rules, `${modelKey}.in[0]`));
+              set(this.model, modelKey, get(this.rules, `${modelKey}.in[0].value`));
             }
           }
         });
