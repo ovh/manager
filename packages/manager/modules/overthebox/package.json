@@ -31,7 +31,7 @@
     "moment": "^2.22.2"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "5.0.2"
+    "@ovh-ux/component-rollup-config": "^5.1.0"
   },
   "peerDependencies": {
     "@ovh-ux/manager-core": "^6.0.1",

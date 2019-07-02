@@ -22,6 +22,7 @@ module.exports = {
         packages: [
           path.resolve(__dirname, 'packages/manager/apps'),
           path.resolve(__dirname, 'packages/manager/modules'),
+          path.resolve(__dirname, 'packages/manager/tools'),
         ]
       }
     }
