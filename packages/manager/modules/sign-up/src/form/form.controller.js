@@ -80,9 +80,10 @@ export default class SignUpFormCtrl {
           const modelValue = get(this.model, modelKey);
           if (!modelValue || modelValue === 'UNKNOWN') {
             const defaultValue = get(this.rules, `${modelKey}.defaultValue`);
+            const enumValues = get(this.rules, `${modelKey}.in`);
             if (defaultValue) {
               set(this.model, modelKey, defaultValue);
-            } else if (get(this.rules, `${modelKey}.in`, []).length) {
+            } else if (enumValues && enumValues.length === 1) {
               set(this.model, modelKey, get(this.rules, `${modelKey}.in[0]`));
             }
           }

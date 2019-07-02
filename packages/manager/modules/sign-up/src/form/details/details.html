@@ -28,7 +28,8 @@
                             class="oui-select__input"
                             data-ng-options="country.value as country.label for country in $ctrl.signUpFormCtrl.rules.country.in"
                             data-ng-model="$ctrl.signUpFormCtrl.model.country"
-                            data-ng-required="$ctrl.signUpFormCtrl.rules.country.mandatory">
+                            data-ng-required="$ctrl.signUpFormCtrl.rules.country.mandatory"
+                            data-ng-disabled="$ctrl.signUpFormCtrl.rules.country.in.length === 1">
                     </select>
                     <span class="oui-icon oui-icon-chevron-down bg-transparent"
                           aria-hidden="true">

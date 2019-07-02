@@ -1,3 +1,6 @@
+// set environment
+import { Environment } from '@ovh-ux/manager-config';
+
 /* eslint-disable import/no-webpack-loader-syntax, import/extensions */
 import 'script-loader!jquery';
 import 'script-loader!lodash';
@@ -19,6 +22,8 @@ import { registerState } from './routing';
 import './assets/theme/index.less';
 import 'ovh-ui-kit/dist/oui.css';
 import './index.scss';
+
+Environment.setRegion(__WEBPACK_REGION__);
 
 angular
   .module('ovhSignUpApp', [

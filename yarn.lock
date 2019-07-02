@@ -1701,24 +1701,6 @@
     lodash "^4.17.11"
     moment "^2.24.0"
 
-"@ovh-ux/manager-pci@^0.19.0":
-  version "0.19.3"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-pci/-/manager-pci-0.19.3.tgz#188a57b25b6072a5055216f4b03c68f31e29b8e5"
-  integrity sha512-wKYaGK2Pot35uPDSOJq4qaWGT/CH2E68UVSH3XlXMJl0nV4lkg+0mamP9A3KxvAsX+zboKj8X6l7LwCw7ivA2A==
-  dependencies:
-    "@fortawesome/fontawesome-free" "^5.8.2"
-    "@ovh-ux/manager-config" "^0.2.0"
-    d3 "~3.5.13"
-    file-saver "^2.0.1"
-    flag-icon-css "~0.8.5"
-    ipaddr.js "^1.9.0"
-    jsurl "^0.1.5"
-    lodash "^4.17.11"
-    moment "^2.19"
-    urijs "^1.19.1"
-    validator "^10.11.0"
-    xterm "^3.12.2"
-
 "@ovh-ux/manager-telecom-styles@^2.0.2":
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-telecom-styles/-/manager-telecom-styles-2.0.2.tgz#23256c8356f3c483a28c72e5d5f23d0999f24f13"
