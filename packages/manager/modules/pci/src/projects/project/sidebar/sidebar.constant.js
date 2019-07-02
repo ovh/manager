@@ -100,6 +100,19 @@ export const MENU = [
     title: 'Orchestration / Industrialization',
   },
   {
+    subitems: [
+      {
+        id: 'analytics-data-platform',
+        options: {
+          state: 'pci.projects.project.analytics-data-platform',
+        },
+        title: 'Analytics Data Platform',
+      },
+    ],
+    regions: ['EU', 'CA'],
+    title: 'Data & Analytics',
+  },
+  {
     title: 'Management Interfaces',
     subitems: [
       {

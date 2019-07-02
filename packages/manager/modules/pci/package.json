@@ -32,7 +32,9 @@
     "moment": "^2.19",
     "urijs": "^1.19.1",
     "validator": "^10.11.0",
-    "xterm": "^3.12.2"
+    "xterm": "^3.12.2",
+    "fast-sha256": "^1.1.0",
+    "tweetnacl-util": "^0.15.0"
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "5.0.2"

@@ -5367,6 +5367,11 @@ fast-levenshtein@~2.0.4:
   resolved "https://registry.yarnpkg.com/fast-levenshtein/-/fast-levenshtein-2.0.6.tgz#3d8a5c66883a16a30ca8643e851f19baa7797917"
   integrity sha1-PYpcZog6FqMMqGQ+hR8Zuqd5eRc=
 
+fast-sha256@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/fast-sha256/-/fast-sha256-1.1.0.tgz#b640189403c7ff0d796d1251a1c1f6954c40e7b4"
+  integrity sha1-tkAYlAPH/w15bRJRocH2lUxA57Q=
+
 fastparse@^1.1.1:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/fastparse/-/fastparse-1.1.2.tgz#91728c5a5942eced8531283c79441ee4122c35a9"
@@ -9252,10 +9257,10 @@ ovh-ngstrap@^4.0.2:
   resolved "https://registry.yarnpkg.com/ovh-ngstrap/-/ovh-ngstrap-4.0.2.tgz#059291bfb9f59b78df991e476dd2ede0507cb3c9"
   integrity sha1-BZKRv7n1m3jfmR5HbdLt4FB8s8k=
 
-ovh-ui-angular@^3.2.2:
-  version "3.2.4"
-  resolved "https://registry.yarnpkg.com/ovh-ui-angular/-/ovh-ui-angular-3.2.4.tgz#c5c45b811a81e5f900433e16c305110601bf691a"
-  integrity sha512-Kxq/fWhKG7JqXmoJaOxG9uUU0HED3Q8kK7S+yi74mShSrXUankP+x8+OJnc3HeMTbFq0bK6hUnZUJ8ksHbFXCA==
+ovh-ui-angular@^3.3.2:
+  version "3.3.2"
+  resolved "https://registry.yarnpkg.com/ovh-ui-angular/-/ovh-ui-angular-3.3.2.tgz#c2940948dc0ec6d5d1a82e53d316872ccb9ec30c"
+  integrity sha512-R/EBXzF7fAUW4BlWdJpyWD0qpMl1bybj4dPIy0dliS17js2wygZY5HtCxgVXX5T9pydHGJPHEFZ36mQ0umECLA==
   dependencies:
     bloodhound-js "^1.2.3"
     clipboard "^2.0.1"
@@ -12428,6 +12433,11 @@ tunnel-agent@^0.6.0:
   integrity sha1-J6XeoGs2sEoKmWZ3SykIaPD8QP0=
   dependencies:
     safe-buffer "^5.0.1"
+
+tweetnacl-util@^0.15.0:
+  version "0.15.0"
+  resolved "https://registry.yarnpkg.com/tweetnacl-util/-/tweetnacl-util-0.15.0.tgz#4576c1cee5e2d63d207fee52f1ba02819480bc75"
+  integrity sha1-RXbBzuXi1j0gf+5S8boCgZSAvHU=
 
 tweetnacl@^0.14.3, tweetnacl@~0.14.0:
   version "0.14.5"

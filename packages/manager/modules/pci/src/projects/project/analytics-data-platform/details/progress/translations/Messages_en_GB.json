@@ -1,0 +1,10 @@
+{
+  "analytics_data_platform_tracking_progress_desc": "Analytics Data Platform cluster is beeing deployed. Once every step is done, you will be able to manage your entire cluster.",
+  "analytics_data_platform_tracking_progress_title": "Deployment progress",
+  "analytics_data_platform_tracking_progress_completed_tasks": "Tasks",
+  "analytics_data_platform_tracking_progress_task": "Task",
+  "analytics_data_platform_tracking_progress_get_status_error": "Failed to get deployment progress details for Analytics Data Platform",
+  "analytics_data_platform_tracking_progress_deploy_error" : "Failed to deploy Analytics Data Platfrom cluster",
+  "analytics_data_platform_tracking_progress_complete": "Complete",
+  "analytics_data_platform_tracking_progress_email_notification": "Once the cluster is deployed, you will receive an e-mail notification to {{email}}"
+}
