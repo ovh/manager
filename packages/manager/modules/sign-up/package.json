@@ -27,7 +27,7 @@
     "@ovh-ux/component-rollup-config": "5.0.1"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-core": "^5.2.0",
+    "@ovh-ux/manager-core": "^6.0.1",
     "@ovh-ux/ng-translate-async-loader": "^2.0.0",
     "@uirouter/angularjs": "^1.0.20",
     "angular": "^1.7.8",
