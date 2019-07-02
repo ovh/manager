@@ -5,7 +5,7 @@
   "license": "BSD-3-Clause",
   "main": "./src/index.js",
   "scripts": {
-    "build": "webpack",
+    "build": "webpack --env.production",
     "dev": "webpack-dev-server",
     "dev:watch": "yarn run dev",
     "start": "lerna exec --stream --scope='@ovh-ux/sign-up-app' --include-filtered-dependencies -- yarn run build",
