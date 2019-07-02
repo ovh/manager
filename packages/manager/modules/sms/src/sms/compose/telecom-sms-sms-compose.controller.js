@@ -482,22 +482,11 @@ export default class {
       });
 
       this.resetForm(form);
-      if (!isEmpty(invalidReceivers) && isEmpty(validReceivers)) {
+      if (!isEmpty(invalidReceivers)) {
         // error message
-        this.TucToast.error(this.$translate.instant('sms_sms_compose_status_invalid_receivers', {
-          NUMBER: invalidReceivers.length,
+        this.TucToast.error(this.$translate.instant('sms_sms_compose_status_invalid_receiver', {
           invalidReceivers: invalidReceivers.toString(),
-          CAUSE: invalidReceivers.length,
-        }, 'messageFormat'));
-      } else if (!isEmpty(invalidReceivers) && !isEmpty(validReceivers)) {
-        // partial error message
-        this.TucToast.warn(this.$translate.instant('sms_sms_compose_status_invalid_receivers_partial', {
-          validReceivers: validReceivers.toString(),
-          invalidReceivers: invalidReceivers.toString(),
-          VALID: validReceivers.length,
-          NUMBER: invalidReceivers.length,
-          CAUSE: invalidReceivers.length,
-        }, 'messageFormat'));
+        }));
       } else {
         this.TucToast.success(this.$translate.instant('sms_sms_compose_status_success'));
       }

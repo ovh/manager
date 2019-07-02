@@ -28,7 +28,6 @@
   },
   "dependencies": {
     "@ovh-ux/ng-translate-async-loader": "^2.0.0",
-    "angular-translate-interpolation-messageformat": "^2.18.1",
     "lodash": "^4.17.11"
   },
   "devDependencies": {

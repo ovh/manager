@@ -76,8 +76,7 @@
 
    <translation id="sms_sms_compose_status_success" qtlid="341732">Votre SMS a bien été envoyé</translation>
    <translation id="sms_sms_compose_status_failed" qtlid="341745">Une erreur est survenue lors de l’envoi de votre SMS</translation>
-   <translation id="sms_sms_compose_status_invalid_receivers">Votre SMS n’a pu être envoyé {NUMBER, plural, one {au numéro suivant} other {aux numéros suivants}} : {{invalidReceivers}} ({CAUSE, plural, one {destinataire invalide} other {destinataires invalides}})</translation>
-   <translation id="sms_sms_compose_status_invalid_receivers_partial">Votre SMS a bien été envoyé {VALID, plural, one {au destinataire} other {aux destinataires}} : {{validReceivers}}, mais il n’a pu être envoyé {NUMBER, plural, one {au numéro suivant} other {aux numéros suivants}} : {{invalidReceivers}} ({CAUSE, plural, one {destinataire invalide} other {destinataires invalides}})</translation>
+   <translation id="sms_sms_compose_status_invalid_receiver">Votre SMS n’a pu être envoyé au numéro suivant : {{invalidReceivers}} (destinataire invalide)</translation>
 
    <translation id="sms_sms_compose_open_new_tab" qtlid="222176">Nouvelle fenêtre</translation>
 
