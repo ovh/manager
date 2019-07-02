@@ -47,7 +47,7 @@ import routing from './index.routes';
 Environment.setRegion(__WEBPACK_REGION__);
 
 angular
-  .module('ovhStack', [
+  .module('ovhPublicCloudApp', [
     __NG_APP_INJECTIONS__,
     uiRouter,
     atInternet,
