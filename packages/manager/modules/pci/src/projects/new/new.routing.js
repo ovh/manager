@@ -60,10 +60,16 @@ export default /* @ngInject */ ($stateProvider) => {
         getStepByName: /* @ngInject */ steps => stepName => find(steps, {
           name: stepName,
         }),
-        getStateLink: /* @ngInject */ ($state, getCurrentStep) => (action, inherit = true) => {
+        getStateLink: /* @ngInject */ (
+          $state,
+          getCurrentStep,
+          projects,
+        ) => (action, inherit = true) => {
           switch (action) {
             case 'cancel':
-              return $state.href('pci.projects');
+              return $state.href(projects.length
+                ? 'pci.projects'
+                : 'pci.projects.onboarding');
             case 'credits':
               return $state.href('pci.projects.new.payment', {
                 mode: action,
