@@ -5,12 +5,13 @@ import { PCI_URLS } from '../../constants';
 
 export default class PciProjectNewCtrl {
   /* @ngInject */
-  constructor($q, $translate, $window, coreConfig, CucCloudMessage,
+  constructor($q, $translate, $window, atInternet, coreConfig, CucCloudMessage,
     ovhPaymentMethod, PciProjectNewService) {
     // dependencies injections
     this.$q = $q;
     this.$translate = $translate;
     this.$window = $window;
+    this.atInternet = atInternet;
     this.CucCloudMessage = CucCloudMessage;
     this.ovhPaymentMethod = ovhPaymentMethod;
     this.PciProjectNewService = PciProjectNewService;
@@ -256,6 +257,14 @@ export default class PciProjectNewCtrl {
 
   onNextBtnClick() {
     const currentStep = this.getCurrentStep();
+
+    if (this.paymentModel.mode === 'credits' && this.paymentModel.credit.value) {
+      this.atInternet.trackEvent({
+        page: this.trackingPage,
+        event: 'PCI_PAYMENT_MODE_CREDIT',
+      });
+    }
+
     if (currentStep.name === 'description') {
       return true;
     }

@@ -1,4 +1,5 @@
 import get from 'lodash/get';
+import isEmpty from 'lodash/isEmpty';
 import snakeCase from 'lodash/snakeCase';
 
 import EnvironmentService from '@ovh-ux/manager-config';
@@ -29,12 +30,20 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       resolve: {
         breadcrumb: () => null,
-        error: /* @ngInject */ ($transition$) => {
+        error: /* @ngInject */ ($transition$, atInternet) => {
+          const page = `public-cloud::${$transition$.to().name.replace(/\./g, '::')}`;
           const stateParams = $transition$.params();
-          return {
+          const error = {
             ...stateParams,
             code: snakeCase(stateParams.code),
           };
+
+          atInternet.trackEvent({
+            page,
+            event: `PCI_ERROR_${!isEmpty(error.code) ? error.code.toUpperCase() : 'UNKNOWN'}`,
+          });
+
+          return error;
         },
         getActionButtonHref: () => (errorCode) => {
           switch (errorCode) {

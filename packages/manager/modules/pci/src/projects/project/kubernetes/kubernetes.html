@@ -23,7 +23,11 @@
                 </oui-action-menu-item>
             </oui-action-menu>
             <extra-top>
-                <button data-ng-click="$ctrl.addCluster()" class="oui-button oui-button_secondary oui-button_icon-left mb-2">
+                <button data-ng-click="$ctrl.addCluster()"
+                        class="oui-button oui-button_secondary oui-button_icon-left mb-2"
+                        data-track-on="click"
+                        data-track-name="PCI_PROJECTS_KUBERNETES_ADD"
+                        data-track-type="navigation">
                     <span class="oui-icon oui-icon-add" aria-hidden="true"></span>
                     <span data-translate="kube_list_cluster_create"></span>
                 </button>

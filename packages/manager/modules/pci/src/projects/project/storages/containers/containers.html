@@ -55,11 +55,15 @@
             </oui-action-menu>
 
             <extra-top>
-                <oui-button
-                    data-on-click="$ctrl.addContainer()" >
+                <button
+                    class="oui-button oui-button_secondary"
+                    data-ng-click="$ctrl.addContainer()"
+                    data-track-on="click"
+                    data-track-name="PCI_PROJECTS_CONTAINERS_ADD"
+                    data-track-type="navigation">
                     <i class="oui-icon oui-icon-add pr-1" aria-hidden="true"></i>
                     <span data-ng-bind="'pci_projects_project_storages_blocks_add_' + ($ctrl.archive ? 'archive' : 'object') + '_label' | translate"></span>
-                </oui-button>
+                </button>
             </extra-top>
         </oui-datagrid>
     </div>

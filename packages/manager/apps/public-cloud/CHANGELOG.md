@@ -1,3 +1,12 @@
+# [0.14.0-alpha.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.13.0-alpha.0...@ovh-ux/manager-public-cloud@0.14.0-alpha.0) (2019-07-02)
+
+
+### Features
+
+* **pci:** implement ui for analytics data platform ([#753](https://github.com/ovh-ux/manager/issues/753)) ([1c16e14](https://github.com/ovh-ux/manager/commit/1c16e14))
+
+
+
 # [0.13.0-alpha.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.12.0-alpha.4...@ovh-ux/manager-public-cloud@0.13.0-alpha.0) (2019-06-24)
 
 
