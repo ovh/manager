@@ -1,3 +1,12 @@
+# [0.21.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.20.0...@ovh-ux/manager-pci@0.21.0) (2019-07-02)
+
+
+### Features
+
+* **pci:** implement ui for analytics data platform ([#753](https://github.com/ovh-ux/manager/issues/753)) ([1c16e14](https://github.com/ovh-ux/manager/commit/1c16e14))
+
+
+
 # [0.20.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.19.3...@ovh-ux/manager-pci@0.20.0) (2019-07-01)
 
 
