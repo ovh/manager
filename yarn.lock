@@ -1685,7 +1685,7 @@
     rollup-pluginutils "^2.3.3"
     slash "^2.0.0"
 
-"@ovh-ux/manager-core@^5.1.0", "@ovh-ux/manager-core@^5.2.0", "@ovh-ux/manager-core@^5.2.5", "@ovh-ux/manager-core@^5.3.0":
+"@ovh-ux/manager-core@^5.1.0", "@ovh-ux/manager-core@^5.2.0", "@ovh-ux/manager-core@^5.3.0":
   version "5.3.1"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core/-/manager-core-5.3.1.tgz#1c8d6f57c7f1785fa74357349cd37f6c3ba75126"
   integrity sha512-O6E1M05jAR2gRvPew5idiVIpOv3A+Q+hDAwjClUAb8jy5iv6Khw85UlXO4+vZJDNhup/t4wKkTtTkaMC1xTHIw==
