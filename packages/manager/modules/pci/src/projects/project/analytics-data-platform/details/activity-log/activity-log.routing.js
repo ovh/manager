@@ -1,9 +1,9 @@
 export default /* @ngInject */($stateProvider) => {
   $stateProvider.state('pci.projects.project.analytics-data-platform.details.log', {
     url: '/log',
-    component: 'activityLogComponent',
+    component: 'analyticsDataPlatformDetailsActivityLogComponent',
     resolve: {
-      serviceName: /* @ngInject */ $stateParams => $stateParams.serviceName,
+      serviceName: /* @ngInject */ $transition$ => $transition$.params().serviceName,
 
       activities: /* @ngInject */ (
         analyticsDataPlatformService,

@@ -2,7 +2,8 @@
     <span data-translate="analytics_data_platform_service_activity_desc"></span>
     <oui-datagrid data-rows="$ctrl.activities" class="mt-3">
         <extra-top>
-            <button class="float-right oui-button oui-button_secondary oui-button_icon-only oui-button_small-width"
+            <button type="button"
+                    class="float-right oui-button oui-button_secondary oui-button_icon-only oui-button_small-width"
                     title="{{:: 'analytics_data_platform_service_activity_refresh' | translate }}"
                     data-ng-click="$ctrl.refresh()">
                 <span class="fa fa-refresh" aria-hidden="true"></span>

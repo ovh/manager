@@ -4,7 +4,7 @@ import { PCI_REDIRECT_URLS } from '../../../../constants';
 export default /* @ngInject */($stateProvider) => {
   $stateProvider.state('pci.projects.project.analytics-data-platform.deploy', {
     url: '/deploy',
-    component: 'deployComponent',
+    component: 'analyticsDataPlatformDeployComponent',
     resolve: {
       breadcrumb: /* @ngInject */ $translate => $translate.instant('analytics_data_platform_deploy_breadcrumb'),
       capabilities: /* @ngInject */

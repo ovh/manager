@@ -4,6 +4,7 @@ import {
 } from './analytics-data-platform.constants';
 
 export default class {
+  /* @ngInject */
   constructor($state, CucCloudMessage, analyticsDataPlatformService, CucRegionService) {
     this.$state = $state;
     this.cucCloudMessage = CucCloudMessage;

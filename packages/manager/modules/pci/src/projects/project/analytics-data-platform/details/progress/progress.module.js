@@ -11,7 +11,7 @@ angular
     'ui.router',
   ])
   .config(routing)
-  .component('progressComponent', progressComponent)
+  .component('analyticsDataPlatformDetailsProgressComponent', progressComponent)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

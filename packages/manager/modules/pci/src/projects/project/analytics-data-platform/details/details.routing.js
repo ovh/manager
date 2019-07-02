@@ -1,7 +1,7 @@
 export default /* @ngInject */($stateProvider) => {
   $stateProvider.state('pci.projects.project.analytics-data-platform.details', {
     url: '/:serviceName',
-    component: 'detailsComponent',
+    component: 'analyticsDataPlatformDetailsComponent',
     redirectTo: transition => transition
       .injector()
       .getAsync('serviceName')
@@ -15,7 +15,7 @@ export default /* @ngInject */($stateProvider) => {
       }),
 
     resolve: {
-      serviceName: /* @ngInject */ $stateParams => $stateParams.serviceName,
+      serviceName: /* @ngInject */ $transition$ => $transition$.params().serviceName,
       platformDetails: /* @ngInject */ (
         analyticsDataPlatformService,
         serviceName,
