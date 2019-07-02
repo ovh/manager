@@ -4,14 +4,19 @@ const config = rollupConfig({
   input: './src/index.js',
 });
 
-export default [
-  config.cjs(),
+const outputs = [
   config.es(),
-  config.umd({
+];
+
+if (process.env.BUILD === 'production') {
+  outputs.push(config.cjs());
+  outputs.push(config.umd({
     output: {
       globals: {
         angular: 'angular',
       },
     },
-  }),
-];
+  }));
+}
+
+export default outputs;
