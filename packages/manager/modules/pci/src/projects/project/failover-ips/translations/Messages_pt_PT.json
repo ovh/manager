@@ -1,6 +1,7 @@
 {
  "pci_projects_project_failoverip_title": "IP Failover",
- "pci_projects_project_failoverip_block": "IP Failover",
+ "pci_projects_project_failoverip_ip": "IP Failover",
+ "pci_projects_project_failoverip_block": "Bloco de endereços IP",
  "pci_projects_project_failoverip_geoloc": "País",
  "pci_projects_project_failoverip_id": "Serviço associado",
  "pci_projects_project_failoverip_routedTo": "Instância associada",
