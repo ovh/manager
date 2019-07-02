@@ -1,0 +1,6 @@
+{
+  "extends": "../../../../.eslintrc.js",
+  "globals": {
+    "d3": true
+  }
+}
