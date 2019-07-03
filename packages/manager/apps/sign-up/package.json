@@ -13,7 +13,7 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/sign-up-app' --include-filtered-dependencies -- yarn run dev:watch"
   },
   "dependencies": {
-    "@ovh-ux/manager-core": "^5.2.5",
+    "@ovh-ux/manager-core": "6.0.0",
     "@ovh-ux/ng-ovh-sso-auth": "^4.0.0",
     "@ovh-ux/sign-up": "^0.0.0",
     "@uirouter/angularjs": "^1.0.20",
@@ -25,6 +25,7 @@
   },
   "devDependencies": {
     "@ovh-ux/manager-webpack-config": "^3.0.7",
+    "glob": "^7.1.4",
     "webpack": "^4.30.0",
     "webpack-merge": "^4.1.4"
   }

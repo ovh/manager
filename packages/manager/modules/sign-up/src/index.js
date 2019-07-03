@@ -1,4 +1,5 @@
 import angular from 'angular';
+import '@ovh-ux/manager-core';
 
 import form from './form';
 import service from './service';
