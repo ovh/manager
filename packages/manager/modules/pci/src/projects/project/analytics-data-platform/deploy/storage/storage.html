@@ -3,7 +3,7 @@
     <h4><strong>{{ ::'analytics_data_platform_deploy_storage_cluster_title' | translate }}</strong></h4>
     <p data-translate="analytics_data_platform_deploy_storage_cluster_info"></p>
     <div class="row">
-        <div class="col-sm-6 col-xs-12">
+        <div class="col-sm-6">
             <oui-field data-label="{{ ::'analytics_data_platform_deploy_storage_cluster_label' | translate }}"
                        data-help-text="{{ ::'analytics_data_platform_deploy_storage_cluster_storage_helptext' | translate: {
                         min_storage: $ctrl.storage.min_cluster_storage,
@@ -32,7 +32,7 @@
                 </div>
             </oui-field>
         </div>
-        <div class="col-sm-6 col-xs-12">
+        <div class="col-sm-6">
             <dl class="storage-list">
                 <dt class="storage-list__term"><span data-translate="analytics_data_platform_deploy_storage_worker_nodes_count"></span> : </dt>
                 <dd class="storage-list__definition"><span data-ng-bind="::$ctrl.nodesConfig.worker.count"></span></dd>
@@ -68,10 +68,10 @@
     </div>
     <!-- edge node storage -->
     <hr class="storage-list__separator w-100"/>
-    <h4><strong>{{ ::'analytics_data_platform_deploy_storage_edge_node_title' | translate }}</strong> </h4>
+    <h4><strong data-translate="analytics_data_platform_deploy_storage_edge_node_title"></strong></h4>
     <p data-translate="analytics_data_platform_deploy_storage_edge_node_info"></p>
     <div class="row">
-        <div class="col-sm-6 col-xs-12">
+        <div class="col-sm-6">
             <oui-field data-label="{{ ::'analytics_data_platform_deploy_storage_per_edge_node' | translate }}"
                        data-help-text="{{ ::'analytics_data_platform_deploy_storage_cluster_storage_helptext' | translate: {
                         min_storage: $ctrl.storage.min_edge_node_storage,
@@ -100,7 +100,7 @@
                 </div>
             </oui-field>
         </div>
-        <div class="col-sm-6 col-xs-12">
+        <div class="col-sm-6">
             <dl class="storage-list">
                 <dt class="storage-list__term"><span data-translate="analytics_data_platform_deploy_storage_edge_nodes_count"></span> : </dt>
                 <dd class="storage-list__definition"><span data-ng-bind="::$ctrl.nodesConfig.edge.count"></span></dd>

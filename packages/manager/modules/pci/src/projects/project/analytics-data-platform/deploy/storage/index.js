@@ -8,7 +8,7 @@ angular
   .module(moduleName, [
     'ui.router',
   ])
-  .component('storageComponent', storageComponent)
+  .component('analyticsDataPlatformDeployStorageComponent', storageComponent)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
