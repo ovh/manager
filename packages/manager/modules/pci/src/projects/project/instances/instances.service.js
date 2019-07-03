@@ -517,7 +517,7 @@ export default class PciProjectInstanceService {
   }
 
   getReverseIp({ ipAddresses }) {
-    const { ip } = find(ipAddresses, { type: 'public', version: 4 });
+    const ip = get(find(ipAddresses, { type: 'public', version: 4 }), 'ip');
     if (ip) {
       return this.OvhApiIp.Reverse().v6().query({ ip }).$promise
         .then(([ipReverse]) => (ipReverse
