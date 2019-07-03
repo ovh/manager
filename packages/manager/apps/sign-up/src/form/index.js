@@ -2,6 +2,8 @@ import set from 'lodash/set';
 
 import angular from 'angular';
 import 'ovh-ui-angular';
+import '@ovh-ux/ng-translate-async-loader';
+import 'angular-translate';
 
 import component from './component';
 
@@ -10,6 +12,8 @@ const moduleName = 'ovhSignUpFormView';
 angular
   .module(moduleName, [
     'oui',
+    'ngTranslateAsyncLoader',
+    'pascalprecht.translate',
   ])
   .run(/* @ngTranslationsInject:json ./translations */)
   .run(/* @ngInject */ ($translate, ouiStepperConfiguration) => {
@@ -28,6 +32,7 @@ angular
         );
       });
   })
+  .run(/* @ngTranslationsInject:json ./translations */)
   .component(component.name, component);
 
 export default moduleName;

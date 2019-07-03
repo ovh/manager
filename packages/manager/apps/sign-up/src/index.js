@@ -8,6 +8,7 @@ import 'script-loader!lodash';
 
 // deps
 import angular from 'angular';
+import 'angular-translate';
 import '@uirouter/angularjs';
 import ovhManagerCore from '@ovh-ux/manager-core';
 import ngOvhSsoAuth from '@ovh-ux/ng-ovh-sso-auth'; // peerDep of manager-core
@@ -29,6 +30,7 @@ angular
   .module('ovhSignUpApp', [
     __NG_APP_INJECTIONS__,
     'ui.router',
+    'pascalprecht.translate',
     ovhManagerCore,
     ngOvhSsoAuth,
     signUpFormView,
@@ -40,7 +42,38 @@ angular
     $locationProvider.hashPrefix('');
     $urlRouterProvider.otherwise('/');
   })
+  .config(/* @ngInject */ ($translateProvider, TranslateServiceProvider) => {
+    const getQueryVariable = (variable) => {
+      const { hash } = window.location;
+      const query = hash.substring(hash.indexOf('?') + 1);
+      const vars = query.split('&');
+      for (let i = 0; i < vars.length; i = +1) {
+        const pair = vars[i].split('=');
+        if (decodeURIComponent(pair[0]) === variable) {
+          return decodeURIComponent(pair[1]);
+        }
+      }
+      return '';
+    };
+    const urlLanguage = getQueryVariable('lang');
+    const userLocale = TranslateServiceProvider.findLanguage(urlLanguage, urlLanguage);
+    TranslateServiceProvider.setUserLocale(userLocale);
+    $translateProvider.use(userLocale);
+  })
   .config(registerState)
+  .run(/* @ngInject */ ($transitions, TranslateService) => {
+    $transitions.onBefore({}, (transition) => {
+      if (transition.params().lang
+        && TranslateService.getUserLocale().indexOf(transition.params().lang) === -1) {
+        return window.location.reload();
+      } if (!transition.params().lang) {
+        return transition.router.stateService.target(transition.to(), {
+          lang: 'fr',
+        });
+      }
+      return true;
+    });
+  })
   .run(/* @ngInject */ ($rootScope, $transitions) => $transitions.onSuccess(
     {},
     () => Object.assign($rootScope, { appPreloadHide: 'app-preload-hide' }),

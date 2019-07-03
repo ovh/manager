@@ -6,7 +6,7 @@ import signupFormComponent from './form/component';
 
 export const state = {
   name: 'sign-up',
-  url: '/',
+  url: '/?lang',
   component: signupFormComponent.name,
   resolve: {
     getRedirectLocation: /* @ngInject */ $location => (nic) => {
@@ -43,7 +43,7 @@ export const state = {
     onStepFocus: /* @ngInject */ ($state, getStepByName) => (stepName) => {
       const focusedStep = getStepByName(stepName);
       if ($state.current.name !== focusedStep.state) {
-        $state.transitionTo(focusedStep.state, {}, {
+        $state.transitionTo(focusedStep.state, $state.params, {
           location: false,
         });
       }

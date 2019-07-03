@@ -119,6 +119,7 @@ export default class SignUpFormCtrl {
     delete meCopy.currency;
     delete meCopy.customerCode;
     delete meCopy.nichandle;
+    delete meCopy.model;
     // define model properties
     Object.keys(meCopy).forEach((key) => {
       Object.defineProperty(this.model, `$${key}`, {
