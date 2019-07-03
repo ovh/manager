@@ -10,5 +10,9 @@ $flag-icon-css-path: "flag-icon-css/flags";
       height: 23px;
       border-radius: 3px;
       margin-right: .5rem;
+
+      &:before {
+        content: '' !important;
+      }
   }
 }
