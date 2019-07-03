@@ -109,7 +109,7 @@ export const MENU = [
         title: 'Analytics Data Platform',
       },
     ],
-    regions: ['EU', 'CA'],
+    regions: ['EU'],
     title: 'Data & Analytics',
   },
   {
