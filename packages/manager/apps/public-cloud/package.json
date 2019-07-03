@@ -17,7 +17,7 @@
     "@ovh-ux/manager-config": "^0.2.0",
     "@ovh-ux/manager-core": "^6.0.1",
     "@ovh-ux/manager-navbar": "^1.1.2",
-    "@ovh-ux/manager-pci": "^0.21.0",
+    "@ovh-ux/manager-pci": "^0.22.0",
     "@ovh-ux/manager-telecom-styles": "^3.0.0",
     "@ovh-ux/ng-at-internet": "^4.0.0",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^2.0.0",
