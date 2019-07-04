@@ -1,3 +1,12 @@
+## [0.22.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.22.1...@ovh-ux/manager-pci@0.22.2) (2019-07-04)
+
+
+### Bug Fixes
+
+* **pci.new:** fix tracking injection ([#1008](https://github.com/ovh-ux/manager/issues/1008)) ([6e1a1b0](https://github.com/ovh-ux/manager/commit/6e1a1b0))
+
+
+
 ## [0.22.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.22.0...@ovh-ux/manager-pci@0.22.1) (2019-07-03)
 
 
