@@ -10,7 +10,7 @@ angular
     'ui.router',
   ])
   .config(routing)
-  .component('onboardingComponent', onboardingComponent)
+  .component('analyticsDataPlatformOnboardingComponent', onboardingComponent)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

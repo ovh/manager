@@ -19,8 +19,15 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return null;
       },
-      onEnter: /* @ngInject */ ($transition$, $window, getStepByName, newProjectInfo,
-        PciProjectNewService, project) => {
+      onEnter: /* @ngInject */ (
+        $transition$,
+        $window,
+        atInternet,
+        getStepByName,
+        PciProjectNewService,
+        project,
+        trackingPage,
+      ) => {
         // check for paypal response in query string
         if ($window.location.search.indexOf('paypalAgreementStatus') > -1) {
           // in that case we will redirect to pci.projects.new.payment
@@ -62,6 +69,11 @@ export default /* @ngInject */ ($stateProvider) => {
           // cancel project creation and redirect refresh page
           const { hiPayStatus, projectId } = $transition$.params();
           if (hiPayStatus !== 'success' && get(project, 'status') === 'creating' && projectId) {
+            atInternet.trackEvent({
+              page: trackingPage,
+              event: projectId ? 'PCI_ERROR_REFUSED_PAYMENT_CREDIT' : 'PCI_ERROR_REFUSED_PAYMENT',
+            });
+
             return PciProjectNewService
               .cancelProjectCreation(projectId)
               .then(() => $window.location.reload());

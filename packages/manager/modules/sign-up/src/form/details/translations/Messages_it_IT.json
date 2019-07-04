@@ -1,0 +1,12 @@
+{
+ "sign_up_details_field_legalform": "Ragione sociale",
+ "sign_up_details_field_country": "Paese di residenza",
+ "sign_up_details_field_phone": "Telefono",
+ "sign_up_details_field_language": "Lingua parlata",
+ "sign_up_details_field_zip": "Codice postale",
+ "sign_up_details_field_city": "Città",
+ "sign_up_details_field_address": "Indirizzo",
+ "sign_up_details_field_area": "Regione",
+ "sign_up_details_field_state": "Stato",
+ "sign_up_details_field_province": "Provincia"
+}

@@ -1,9 +1,9 @@
 export default /* @ngInject */($stateProvider) => {
   $stateProvider.state('pci.projects.project.analytics-data-platform.details.credentials', {
     url: '/credentials',
-    component: 'credentialsComponent',
+    component: 'analyticsDataPlatformDetailsCredentialsComponent',
     resolve: {
-      serviceName: /* @ngInject */ $stateParams => $stateParams.serviceName,
+      serviceName: /* @ngInject */ $transition$ => $transition$.params().serviceName,
       platformDetails: /* @ngInject */ (
         analyticsDataPlatformService,
         serviceName,

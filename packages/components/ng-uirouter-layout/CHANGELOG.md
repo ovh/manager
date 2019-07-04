@@ -1,3 +1,12 @@
+# [1.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/ng-uirouter-layout@1.0.0...@ovh-ux/ng-uirouter-layout@1.1.0) (2019-07-02)
+
+
+### Features
+
+* **ng-uirouter-layout:** add support for componentProvider ([9838eed](https://github.com/ovh-ux/manager/commit/9838eed))
+
+
+
 # [1.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/ng-uirouter-layout@0.1.0...@ovh-ux/ng-uirouter-layout@1.0.0) (2019-05-09)
 
 

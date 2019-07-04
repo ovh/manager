@@ -7,7 +7,7 @@ const moduleName = 'adpDeployInsufficientQuota';
 
 angular.module(moduleName, [])
   .config(routing)
-  .component('adpDeployInsufficientQuota', component)
+  .component('analyticsDataPlatformDeployInsufficientQuota', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

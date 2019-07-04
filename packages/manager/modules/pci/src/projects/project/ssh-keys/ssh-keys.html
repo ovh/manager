@@ -3,7 +3,12 @@
 <oui-datagrid
     data-rows="$ctrl.keys">
     <extra-top>
-        <a class="oui-button oui-button_secondary oui-button_icon-left mb-3" data-ui-sref="pci.projects.project.sshKeys.add">
+        <a
+            class="oui-button oui-button_secondary oui-button_icon-left mb-3"
+            data-ui-sref="pci.projects.project.sshKeys.add"
+            data-track-on="click"
+            data-track-name="PCI_PROJECTS_SSH_KEYS_ADD"
+            data-track-type="navigation">
             <span class="oui-icon oui-icon-add" aria-hidden="true"></span>
             <span data-translate="pci_projects_project_sshKeys_add"></span>
         </a>

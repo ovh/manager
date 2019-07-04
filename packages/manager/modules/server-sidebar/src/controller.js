@@ -18,7 +18,6 @@ import zipObject from 'lodash/zipObject';
 import { MANAGER_URLS } from './constants';
 import { SIDEBAR_CONFIG } from './sidebar.constants';
 import { ORDER_URLS, SIDEBAR_ORDER_CONFIG } from './order.constants';
-import { DEDICATED_SIDEBAR_CONFIG, DEDICATED_ORDER_SIDEBAR_CONFIG } from './dedicated.constants';
 import { WEB_SIDEBAR_CONFIG, WEB_ORDER_SIDEBAR_CONFIG } from './web.constants';
 
 // we should avoid require, but JSURL don't provide an es6 export
@@ -55,11 +54,6 @@ export default class OvhManagerServerSidebarController {
         .then((universes) => {
           this.SIDEBAR_CONFIG = SIDEBAR_CONFIG;
           this.SIDEBAR_ORDER_CONFIG = SIDEBAR_ORDER_CONFIG;
-
-          if (this.universe === 'DEDICATED' && find(universes, { universe: this.universe.toLowerCase() })) {
-            this.SIDEBAR_CONFIG = DEDICATED_SIDEBAR_CONFIG;
-            this.SIDEBAR_ORDER_CONFIG = DEDICATED_ORDER_SIDEBAR_CONFIG;
-          }
 
           if (this.universe === 'WEB' && find(universes, { universe: this.universe.toLowerCase() })) {
             this.SIDEBAR_CONFIG = WEB_SIDEBAR_CONFIG;

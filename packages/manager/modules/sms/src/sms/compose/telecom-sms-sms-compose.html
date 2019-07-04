@@ -159,8 +159,9 @@
                                         class="form-control"
                                         data-ng-required="!$ctrl.receivers.records && !$ctrl.phonebooks.lists.length"
                                         data-ng-model="$ctrl.sms.receivers"
-                                        data-ng-pattern="/^(00|\+)/"
-                                        data-translate-attr="{ placeholder: 'sms_sms_compose_recipient_placeholder' }" />
+                                        data-ng-pattern="/^(00|\+)[0-9]{7,15}$/"
+                                        data-ng-maxlength="16"
+                                        data-translate-attr="{ placeholder: 'sms_sms_compose_recipient_placeholder' }"/>
                                     <span class="help-block"
                                           role="alert"
                                           data-ng-if="sendSmsForm.recipient.$touched"

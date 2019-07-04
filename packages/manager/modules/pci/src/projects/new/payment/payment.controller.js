@@ -2,10 +2,18 @@ import find from 'lodash/find';
 
 export default class PciProjectNewPaymentCtrl {
   /* @ngInject */
-  constructor($q, $translate, CucCloudMessage, ovhPaymentMethod, PciProjectNewService) {
+  constructor(
+    $q,
+    $translate,
+    atInternet,
+    CucCloudMessage,
+    ovhPaymentMethod,
+    PciProjectNewService,
+  ) {
     // dependencies injections
     this.$q = $q;
     this.$translate = $translate;
+    this.atInternet = atInternet;
     this.CucCloudMessage = CucCloudMessage;
     this.ovhPaymentMethod = ovhPaymentMethod;
     this.PciProjectNewService = PciProjectNewService;
@@ -43,6 +51,11 @@ export default class PciProjectNewPaymentCtrl {
   onVoucherFormSubmit() {
     this.step.loading.voucher = true;
 
+    this.atInternet.trackEvent({
+      page: this.trackingPage,
+      event: 'PCI_VOUCHER_SUBMIT',
+    });
+
     return this.PciProjectNewService
       .getNewProjectInfo({
         voucher: this.step.model.voucher.value,
@@ -55,6 +68,11 @@ export default class PciProjectNewPaymentCtrl {
         if (!this.step.model.voucher.paymentMethodRequired) {
           this.step.model.paymentType = null;
         }
+
+        this.atInternet.trackEvent({
+          page: this.trackingPage,
+          event: 'PCI_VOUCHER_VALID',
+        });
       })
       .catch((error) => {
         this.step.model.voucher.credit = null;
@@ -68,6 +86,11 @@ export default class PciProjectNewPaymentCtrl {
           this.step.model.voucher.valid = false;
           this.step.model.voucher.paymentMethodRequired = null;
         }
+
+        this.atInternet.trackEvent({
+          page: this.trackingPage,
+          event: 'PCI_VOUCHER_INVALID',
+        });
       })
       .finally(() => {
         this.step.loading.voucher = false;
