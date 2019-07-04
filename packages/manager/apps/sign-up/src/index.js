@@ -19,6 +19,8 @@ import detailsState from './details';
 import activityState from './activity';
 import { registerState } from './routing';
 
+import controller from './index.controller';
+
 // styles
 import './assets/theme/index.less';
 import 'ovh-ui-kit/dist/oui.css';
@@ -77,4 +79,5 @@ angular
   .run(/* @ngInject */ ($rootScope, $transitions) => $transitions.onSuccess(
     {},
     () => Object.assign($rootScope, { appPreloadHide: 'app-preload-hide' }),
-  ));
+  ))
+  .controller('SignUpCtrl', controller);
