@@ -38,7 +38,7 @@
     "@ovh-ux/component-rollup-config": "5.0.2"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-core": "^5.2.5",
+    "@ovh-ux/manager-core": "^6.0.1",
     "@ovh-ux/manager-telecom-styles": "^2.0.2",
     "@ovh-ux/ng-at-internet": "^4.0.0",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^2.0.0",
