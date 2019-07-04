@@ -22,7 +22,8 @@
   "main": "./dist/index.js",
   "scripts": {
     "build": "tsc",
-    "dev": "tsc -w",
+    "dev": "yarn run build",
+    "dev:watch": "tsc -w",
     "lint": "run-p lint:ts lint:md",
     "lint:md": "eslint --quiet --fix --format=pretty --ext .md .",
     "lint:ts": "eslint --quiet --fix --format=pretty ./src/**/*.ts",
