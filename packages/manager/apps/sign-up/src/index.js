@@ -49,7 +49,7 @@ angular
       const { hash } = window.location;
       const query = hash.substring(hash.indexOf('?') + 1);
       const vars = query.split('&');
-      for (let i = 0; i < vars.length; i = +1) {
+      for (let i = 0; i < vars.length; i += 1) {
         const pair = vars[i].split('=');
         if (decodeURIComponent(pair[0]) === variable) {
           return decodeURIComponent(pair[1]);
@@ -57,7 +57,7 @@ angular
       }
       return '';
     };
-    const urlLanguage = getQueryVariable('lang');
+    const urlLanguage = getQueryVariable('lang') || 'fr';
     const userLocale = TranslateServiceProvider.findLanguage(urlLanguage, urlLanguage);
     TranslateServiceProvider.setUserLocale(userLocale);
     $translateProvider.use(userLocale);
@@ -68,10 +68,6 @@ angular
       if (transition.params().lang
         && TranslateService.getUserLocale().indexOf(transition.params().lang) === -1) {
         return window.location.reload();
-      } if (!transition.params().lang) {
-        return transition.router.stateService.target(transition.to(), {
-          lang: 'fr',
-        });
       }
       return true;
     });
