@@ -89,9 +89,9 @@ export default class PciInstanceEditController {
 
   canSwitchToFlex() {
     if (this.model.flavorGroup) {
-      return this.defaultFlavor.disk <= this.model.flavorGroup
-        .getFlavorByOsType(this.instance.image.type, true).disk
-          && this.model.flavorGroup.hasFlexOption();
+      return this.model.flavorGroup.hasFlexOption()
+      && this.defaultFlavor.disk <= get(this.model.flavorGroup
+        .getFlavorByOsType(this.instance.image.type, true), 'disk', 0);
     }
 
     return false;
