@@ -1,3 +1,12 @@
+## [0.22.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.22.2...@ovh-ux/manager-pci@0.22.3) (2019-07-04)
+
+
+### Bug Fixes
+
+* **pci.instances.edit:** remove billing edition ([#1013](https://github.com/ovh-ux/manager/issues/1013)) ([5c8ad75](https://github.com/ovh-ux/manager/commit/5c8ad75))
+
+
+
 ## [0.22.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.22.1...@ovh-ux/manager-pci@0.22.2) (2019-07-04)
 
 
