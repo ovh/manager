@@ -10,6 +10,17 @@ export default /* @ngInject */ ($stateProvider) => {
       controller,
       controllerAs: '$ctrl',
       template,
+      redirectTo: (transition) => {
+        const projectsPromise = transition.injector().getAsync('projects');
+        return projectsPromise
+          .then((projects) => {
+            if (!projects.length) {
+              return 'pci.projects.onboarding';
+            }
+
+            return true;
+          });
+      },
       resolve: {
         breadcrumb: /* @ngInject */ () => null,
         projects: /* @ngInject */ OvhApiCloudProject => OvhApiCloudProject
