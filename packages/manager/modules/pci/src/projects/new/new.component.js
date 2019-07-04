@@ -18,5 +18,6 @@ export default {
     shouldProcessChallenge: '<',
     steps: '<',
     dlpStatus: '<',
+    trackingPage: '<',
   },
 };

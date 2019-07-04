@@ -225,7 +225,7 @@ export default /* @ngInject */ ($stateProvider) => {
             projectId: null,
           },
         }],
+        trackingPage: /* @ngInject */ $transition$ => `public-cloud::${$transition$.to().name.replace(/\./g, '::')}`,
       },
-      trackingPage: /* @ngInject */ $transition$ => `public-cloud::${$transition$.to().name.replace(/\./g, '::')}`,
     });
 };
