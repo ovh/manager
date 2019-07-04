@@ -66,6 +66,7 @@ angular
     $translateProvider.useMissingTranslationHandler('translateMissingTranslationHandler');
 
     $translateProvider.preferredLanguage(defaultLanguage);
+
     $translateProvider.use(defaultLanguage);
     $translateProvider.fallbackLanguage(LANGUAGES.fallback);
   })

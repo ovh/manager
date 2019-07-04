@@ -10,7 +10,7 @@ angular
     'ui.router',
   ])
   .config(routing)
-  .component('credentialsComponent', credentialsComponent)
+  .component('analyticsDataPlatformDetailsCredentialsComponent', credentialsComponent)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

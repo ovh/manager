@@ -11,7 +11,7 @@ angular
     'ui.router',
   ])
   .config(routing)
-  .component('activityLogComponent', activityLogComponent)
+  .component('analyticsDataPlatformDetailsActivityLogComponent', activityLogComponent)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

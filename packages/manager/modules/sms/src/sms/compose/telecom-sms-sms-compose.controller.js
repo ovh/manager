@@ -15,6 +15,7 @@ import sum from 'lodash/sum';
 import sumBy from 'lodash/sumBy';
 import union from 'lodash/union';
 import moment from 'moment';
+import isEmpty from 'lodash/isEmpty';
 
 import addPhonebookController from './addPhonebookContact/telecom-sms-sms-compose-addPhonebookContact.controller';
 import addPhonebookTemplate from './addPhonebookContact/telecom-sms-sms-compose-addPhonebookContact.html';
@@ -479,8 +480,16 @@ export default class {
           validReceivers: size(validReceivers),
         },
       });
+
       this.resetForm(form);
-      this.TucToast.success(this.$translate.instant('sms_sms_compose_status_success'));
+      if (!isEmpty(invalidReceivers)) {
+        // error message
+        this.TucToast.error(this.$translate.instant('sms_sms_compose_status_invalid_receiver', {
+          invalidReceivers: invalidReceivers.toString(),
+        }));
+      } else {
+        this.TucToast.success(this.$translate.instant('sms_sms_compose_status_success'));
+      }
     }).catch((err) => {
       this.TucToast.error(this.$translate.instant('sms_sms_compose_status_failed'));
       return this.$q.reject(err);

@@ -11,7 +11,7 @@ angular
     'ui.router',
   ])
   .config(routing)
-  .component('clusterComponent', clusterComponent)
+  .component('analyticsDataPlatformDetailsClusterComponent', clusterComponent)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

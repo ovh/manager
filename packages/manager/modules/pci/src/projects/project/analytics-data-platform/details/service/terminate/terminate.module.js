@@ -7,7 +7,7 @@ const moduleName = 'adpServiceTerminate';
 
 angular.module(moduleName, [])
   .config(routing)
-  .component('adpServiceTerminate', component)
+  .component('analyticsDataPlatformDetailsServiceTerminate', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

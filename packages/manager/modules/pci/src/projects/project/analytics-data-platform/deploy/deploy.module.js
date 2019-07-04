@@ -28,7 +28,7 @@ angular
     reviewComponent,
   ])
   .config(routing)
-  .component('deployComponent', deployComponent)
+  .component('analyticsDataPlatformDeployComponent', deployComponent)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
