@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@ovh-ux/manager-config": "^0.2.0",
-    "@ovh-ux/manager-core": "^5.2.0",
+    "@ovh-ux/manager-core": "^6.0.1",
     "@ovh-ux/manager-telecom-dashboard": "^4.2.1",
     "@ovh-ux/manager-telecom-styles": "^2.0.2",
     "@ovh-ux/ng-at-internet": "^4.0.0",

@@ -1655,14 +1655,6 @@
     rollup-pluginutils "^2.3.3"
     slash "^2.0.0"
 
-"@ovh-ux/manager-core@^5.1.0", "@ovh-ux/manager-core@^5.2.0", "@ovh-ux/manager-core@^5.3.0":
-  version "5.3.1"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core/-/manager-core-5.3.1.tgz#1c8d6f57c7f1785fa74357349cd37f6c3ba75126"
-  integrity sha512-O6E1M05jAR2gRvPew5idiVIpOv3A+Q+hDAwjClUAb8jy5iv6Khw85UlXO4+vZJDNhup/t4wKkTtTkaMC1xTHIw==
-  dependencies:
-    "@ovh-ux/ng-translate-async-loader" "^2.0.0"
-    lodash "^4.17.11"
-
 "@ovh-ux/manager-navbar@^0.6.0":
   version "0.6.2"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-navbar/-/manager-navbar-0.6.2.tgz#1a80989a3e0669cff62f81bce62e182ea9801539"
@@ -1842,10 +1834,10 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-sidebar-menu/-/ng-ovh-sidebar-menu-8.3.2.tgz#e5b6451418ec7eb70660cf755a6f72d64bd7ac75"
   integrity sha512-dJHMLgbHVVOL9vNbdfgMNpL/4W9g0jkfRSpWXeeMQVawIeLi181MMZu3FvTsS7RDjIcdzEF46jCmsk0X5Aq7dg==
 
-"@ovh-ux/ng-ovh-sso-auth@^4.0.0", "@ovh-ux/ng-ovh-sso-auth@^4.0.0-beta.0":
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-sso-auth/-/ng-ovh-sso-auth-4.0.0.tgz#f6c1027f5ef827d464ff3b0e702b1692ee279703"
-  integrity sha512-exPPBbg2WTXH4/LHu3dsqfHq073+NhBzB69WB97Dd75FKust3h/SUjyQyuFOn7h4Z0OI4/8db+6qpwjEIAAz6Q==
+"@ovh-ux/ng-ovh-sso-auth@^4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-sso-auth/-/ng-ovh-sso-auth-4.1.0.tgz#658c6eba11e8a4ab8162fe4242a93680230e48e9"
+  integrity sha512-dZm2ZGbhW3IhyTOWcCZ/0NJ5ZayoWEgGHRkDzN3LQH6nlwVv5mkatlaXzOc7HvcAop2W+S2LnOXJtbrqCucM9w==
 
 "@ovh-ux/ng-ovh-swimming-poll@^4.0.0":
   version "4.0.0"
