@@ -522,7 +522,8 @@ export default class PciProjectInstanceService {
       return this.OvhApiIp.Reverse().v6().query({ ip }).$promise
         .then(([ipReverse]) => (ipReverse
           ? this.OvhApiIp.Reverse().v6().get({ ip, ipReverse }).$promise
-          : null));
+          : null))
+        .catch(error => (error.status === 404 ? null : Promise.reject(error)));
     }
     return null;
   }
