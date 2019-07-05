@@ -1,0 +1,38 @@
+{
+  "name": "@ovh-ux/sign-up",
+  "version": "0.0.0",
+  "private": true,
+  "license": "BSD-3-Clause",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "browser": "./dist/umd/sign-up.js",
+  "scripts": {
+    "build": "rollup -c --environment BUILD:production",
+    "dev": "rollup -c --environment BUILD:development",
+    "dev:watch": "yarn run dev --watch",
+    "prepare": "yarn run build",
+    "start": "lerna exec --stream --scope='@ovh-ux/sign-up' --include-filtered-dependencies -- yarn run build",
+    "start:dev": "lerna exec --stream --scope='@ovh-ux/sign-up' --include-filtered-dependencies -- yarn run dev",
+    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/sign-up' --include-filtered-dependencies -- yarn run dev:watch"
+  },
+  "dependencies": {
+    "@ovh-ux/manager-config": "^0.2.0",
+    "flag-icon-css": "^3.2.0",
+    "lodash": "^4.17.11"
+  },
+  "devDependencies": {
+    "@ovh-ux/component-rollup-config": "^5.1.0"
+  },
+  "peerDependencies": {
+    "@ovh-ux/manager-core": "^6.0.1",
+    "@ovh-ux/ng-translate-async-loader": "^2.0.0",
+    "@uirouter/angularjs": "^1.0.20",
+    "angular": "^1.7.8",
+    "angular-translate": "^2.18.1",
+    "ovh-ui-angular": "^3.3.3",
+    "ovh-ui-kit": "^2.33.1"
+  }
+}
