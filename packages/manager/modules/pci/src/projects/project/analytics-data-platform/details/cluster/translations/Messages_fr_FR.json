@@ -1,12 +1,12 @@
 {
-  "analytics_data_platform_service_cluster_desc": "Votre cluster de données volumineuses a besoin de plusieurs nœuds et disques de stockage pour être opérationnel. Ces nœuds sont déployés dans votre projet cloud public associé <a href=\"{{public_cloud_instances_url}}\">{{public_cloud_project_serviceName}}</a>, avec facturation horaire standard. Vous pouvez trouver des détails sur votre facture et passer à un plan mensuel dans <a href=\"{{public_cloud_billing_console_url}}\">Billing Console</a>.",
-  "analytics_data_platform_service_cluster_total_cores": "Nombre total de coeurs virtuels",
-  "analytics_data_platform_service_cluster_total_ram": "RAM totale",
-  "analytics_data_platform_service_cluster_total_storage": "Stockage efficace total",
-  "analytics_data_platform_service_cluster_table_node": "nœud",
-  "analytics_data_platform_service_cluster_node_type": "Type de nœud",
-  "analytics_data_platform_service_cluster_table_flavor": "Saveur",
+  "analytics_data_platform_service_cluster_desc": "Votre cluster big data nécessite du stockage et des nodes (instances public cloud) pour son fonctionnement. Ces nodes sont déployés dans le projet public cloud {{public_cloud_project_serviceName}}, en paiement à l'heure. Vous pouvez passer au paiement mensuel directement après la création, dans ce même projet public cloud.",
+  "analytics_data_platform_service_cluster_total_cores": "Total de vCores",
+  "analytics_data_platform_service_cluster_total_ram": "Total de RAM",
+  "analytics_data_platform_service_cluster_total_storage": "Stockage effectif total",
+  "analytics_data_platform_service_cluster_table_node": "Node",
+  "analytics_data_platform_service_cluster_node_type": "Type de node",
+  "analytics_data_platform_service_cluster_table_flavor": "Instance",
   "analytics_data_platform_service_cluster_table_ip": "Adresse IP",
-  "analytics_data_platform_service_cluster_refresh": "Actualiser la liste des clusters",
+  "analytics_data_platform_service_cluster_refresh": "Rafraichir la liste",
   "analytics_data_platform_service_cluster_option_all": "Tout"
 }

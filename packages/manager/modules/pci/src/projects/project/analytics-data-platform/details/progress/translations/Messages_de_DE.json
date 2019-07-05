@@ -1,0 +1,10 @@
+{
+ "analytics_data_platform_tracking_progress_desc": "Ihr Data Analytics Platform Cluster wird deployt. Sobald dieser Schritt abgeschlossen ist, können Sie Ihr gesamtes Cluster verwalten.",
+ "analytics_data_platform_tracking_progress_title": "Deployment-Fortschritt",
+ "analytics_data_platform_tracking_progress_completed_tasks": "Tasks",
+ "analytics_data_platform_tracking_progress_task": "Task",
+ "analytics_data_platform_tracking_progress_get_status_error": "Die Informationen zum Deployment-Fortschritt für die Data Analytics Platform konnten nicht abgerufen werden",
+ "analytics_data_platform_tracking_progress_deploy_error": "Projekt-Deployment fehlgeschlagen",
+ "analytics_data_platform_tracking_progress_complete": "Beendet",
+ "analytics_data_platform_tracking_progress_email_notification": "Sobald das Cluster deployt wurde, erhalten Sie eine entsprechende E-Mail-Benachrichtigung an {{email}}"
+}

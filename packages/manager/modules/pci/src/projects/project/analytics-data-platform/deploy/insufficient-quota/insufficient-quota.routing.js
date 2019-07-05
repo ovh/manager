@@ -4,7 +4,7 @@ export default /* @ngInject */ ($stateProvider) => {
       url: '/insufficient-quota',
       views: {
         modal: {
-          component: 'adpDeployInsufficientQuota',
+          component: 'analyticsDataPlatformDeployInsufficientQuota',
         },
       },
       layout: 'modal',
@@ -13,8 +13,8 @@ export default /* @ngInject */ ($stateProvider) => {
         quotas: null,
       },
       resolve: {
-        publicCloudName: $stateParams => $stateParams.publicCloudName,
-        quotas: $stateParams => $stateParams.quotas,
+        publicCloudName: $transition$ => $transition$.params().publicCloudName,
+        quotas: $transition$ => $transition$.params().quotas,
         goBack: /* @ngInject */ goToDeploy => goToDeploy,
       },
     });

@@ -23,7 +23,7 @@
                 region: $ctrl.selectedRegion.macroRegion.text + ' (' + $ctrl.selectedRegion.macroRegion.code + ')' }"></span>
     </oui-message>
     <div class="row" data-ng-repeat="(nodeType, node) in $ctrl.nodesConfig track by nodeType">
-        <div class="col-sm-3 col-xs-12">
+        <div class="col-sm-3">
             <oui-field data-label="{{ ::'analytics_data_platform_deploy_nodes_' + node.type + '_nodes' | translate }}"
                        data-label-popover="{{ ('analytics_data_platform_deploy_nodes_' + node.type + '_nodes_help' | translate)
                         + (node.instanceMin !== node.instanceMax
@@ -48,7 +48,7 @@
                        data-ng-model="node.countText">
             </oui-field>
         </div>
-        <div class="col-sm-9 col-xs-12">
+        <div class="col-sm-9">
             <oui-field data-label="{{ ::'analytics_data_platform_deploy_nodes_instance_type' | translate }}">
                 <oui-select data-name="{{ node.type + 'NodesInstanceType' }}"
                             data-items="node.instanceType"

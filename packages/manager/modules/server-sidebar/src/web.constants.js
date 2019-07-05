@@ -167,7 +167,7 @@ export const MICROSOFT_CONFIG = {
       id: 'exchange',
       types: [
         {
-          path: '/email/exchange/*/service',
+          path: '/email/exchange',
           icon: 'ms-Icon ms-Icon--ExchangeLogo',
           getState: ({ offer }) => {
             const states = {
@@ -224,41 +224,6 @@ export const MICROSOFT_CONFIG = {
   regions: ['EU'],
 };
 
-/* export const MICROSOFT_CONFIG = {
-  id: 'microsoft_exchange',
-  types: [
-    {
-      path: '/email/exchange',
-      icon: 'ms-Icon ms-Icon--ExchangeLogo',
-      loadOnState: 'app.microsoft.exchange',
-      stateParams: ['organization'],
-      app: [WEB],
-      types: [
-        {
-          path: '/email/exchange/:organization/service',
-          icon: 'ms-Icon ms-Icon--ExchangeLogo',
-          getState: ({ offer }) => {
-            const states = {
-              provider: 'app.microsoft.exchange.provider',
-              dedicated: 'app.microsoft.exchange.dedicated',
-              dedicatedCluster: 'app.microsoft.exchange.dedicatedCluster',
-              hosted: 'app.microsoft.exchange.hosted',
-            };
-
-            return states[offer];
-          },
-          stateParams: ['organization', 'productId'],
-          app: [WEB],
-        },
-      ],
-    },
-  ],
-  loadOnState: 'app.microsoft.exchange',
-  icon: 'ms-Icon ms-Icon--ExchangeLogo',
-  app: [WEB],
-  regions: ['CA'],
-};
-*/
 export const WEB_SIDEBAR_CONFIG = [
   DOMAIN_CONFIG,
   HOSTING_CONFIG,

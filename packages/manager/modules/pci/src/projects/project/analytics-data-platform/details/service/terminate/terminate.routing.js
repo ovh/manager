@@ -4,12 +4,12 @@ export default /* @ngInject */ ($stateProvider) => {
       url: '/terminate',
       views: {
         modal: {
-          component: 'adpServiceTerminate',
+          component: 'analyticsDataPlatformDetailsServiceTerminate',
         },
       },
       layout: 'modal',
       resolve: {
-        serviceName: /* @ngInject */ $stateParams => $stateParams.serviceName,
+        serviceName: /* @ngInject */ $transition$ => $transition$.params().serviceName,
         goBack: /* @ngInject */ goToDetailsPage => goToDetailsPage,
         goToPublicCloud: /* @ngInject */ goToPublicCloudPage => goToPublicCloudPage,
       },

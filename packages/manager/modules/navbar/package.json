@@ -32,7 +32,7 @@
     "moment": "^2.24.0"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^5.0.2",
+    "@ovh-ux/component-rollup-config": "^5.1.0",
     "ovh-ui-kit": "^2.33.3"
   },
   "peerDependencies": {
@@ -40,14 +40,14 @@
     "@ovh-ux/manager-core": "^6.0.1",
     "@ovh-ux/ng-at-internet": "^4.0.0",
     "@ovh-ux/ng-ovh-chatbot": "^2.0.1",
-    "@ovh-ux/ng-ovh-sso-auth": "^4.0.0",
+    "@ovh-ux/ng-ovh-sso-auth": "^4.1.0",
     "@ovh-ux/ng-ovh-user-pref": "^1.0.0",
     "@ovh-ux/ng-translate-async-loader": "^2.0.0",
     "angular": "^1.7.8",
     "angular-translate": "^2.18.1",
     "bootstrap-tour": "^0.12.0",
     "ovh-api-services": "^6.32.0",
-    "ovh-ui-angular": "^3.3.2",
+    "ovh-ui-angular": "^3.3.3",
     "ovh-ui-kit": "^2.33.3"
   }
 }

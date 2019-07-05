@@ -5,9 +5,9 @@ import set from 'lodash/set';
 export default /* @ngInject */($stateProvider) => {
   $stateProvider.state('pci.projects.project.analytics-data-platform.details.cluster', {
     url: '/cluster',
-    component: 'clusterComponent',
+    component: 'analyticsDataPlatformDetailsClusterComponent',
     resolve: {
-      serviceName: /* @ngInject */ $stateParams => $stateParams.serviceName,
+      serviceName: /* @ngInject */ $transition$ => $transition$.params().serviceName,
 
       platformDetails: /* @ngInject */ (
         analyticsDataPlatformService,
