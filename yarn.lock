@@ -9321,10 +9321,10 @@ ovh-angular-ui-confirm-modal@^1.0.2:
   resolved "https://registry.yarnpkg.com/ovh-angular-ui-confirm-modal/-/ovh-angular-ui-confirm-modal-1.0.2.tgz#92e6736588a4fb1de6353f1a17ab1962679a698d"
   integrity sha512-3V17DbzWjUjl9sKCd25Oycn+7eqg6iW+DpizwVmixHFzDNDMnpKSGmxRLrOq+q9YNE7IepoAKWjoSiy2+zOEEg==
 
-ovh-api-services@^6.32.0:
-  version "6.32.0"
-  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-6.32.0.tgz#b3f9abe947224bfdf644586a52147d75971583b6"
-  integrity sha512-QFFTsOM6mjzUMIur96gXLm5IPw5OzL/DaQuEq03n7Y+zqP+rNvnvDZC65c1NMSKZfvkfJVigA/wcNxx6vk9jNg==
+ovh-api-services@^7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-7.0.0.tgz#240ced6f8930eed94b4484aa558ad8f432af537f"
+  integrity sha512-aC2NDo9Rf7iwJvfnoPJ2E9Rtrv7Yy7tNXFJv4PifBqyUefjbTAUCfDNRrxgVnpOmPJ1h5SWjx19t3T/6w8qVDw==
   dependencies:
     lodash "^3.10.1"
 
