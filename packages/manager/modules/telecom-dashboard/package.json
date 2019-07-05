@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-telecom-dashboard",
-  "version": "4.2.2",
+  "version": "4.3.0",
   "description": "OVH Telecom dashboard",
   "keywords": [
     "control",
@@ -38,8 +38,8 @@
     "@ovh-ux/component-rollup-config": "^5.1.0"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-core": "^6.0.1",
-    "@ovh-ux/manager-telecom-styles": "^2.0.2",
+    "@ovh-ux/manager-core": "^6.1.0",
+    "@ovh-ux/manager-telecom-styles": "^3.1.0",
     "@ovh-ux/ng-at-internet": "^4.0.0",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^2.0.0",
     "@ovh-ux/ng-ovh-telecom-universe-components": "^3.0.3",

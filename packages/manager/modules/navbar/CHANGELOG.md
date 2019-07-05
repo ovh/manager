@@ -1,3 +1,12 @@
+# [1.2.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-navbar@1.1.2...@ovh-ux/manager-navbar@1.2.0) (2019-07-05)
+
+
+### Features
+
+* add new packages ([09b5158](https://github.com/ovh-ux/manager/commit/09b5158))
+
+
+
 ## [1.1.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-navbar@1.1.1...@ovh-ux/manager-navbar@1.1.2) (2019-07-01)
 
 

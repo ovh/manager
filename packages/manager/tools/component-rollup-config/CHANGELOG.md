@@ -1,3 +1,12 @@
+# [5.2.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/component-rollup-config@5.1.0...@ovh-ux/component-rollup-config@5.2.0) (2019-07-05)
+
+
+### Features
+
+* add new packages ([09b5158](https://github.com/ovh-ux/manager/commit/09b5158))
+
+
+
 # [5.1.0](https://github.com/ovh-ux/component-rollup-config/compare/v5.0.3...v5.1.0) (2019-06-25)
 
 

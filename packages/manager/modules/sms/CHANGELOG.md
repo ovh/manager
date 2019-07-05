@@ -1,3 +1,13 @@
+# [6.3.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-sms@6.2.3...@ovh-ux/manager-sms@6.3.0) (2019-07-05)
+
+
+### Features
+
+* **sms.compose.receivers:** if invalid receivers, display error message ([#792](https://github.com/ovh-ux/manager/issues/792)) ([6f6a8f6](https://github.com/ovh-ux/manager/commit/6f6a8f6))
+* add new packages ([09b5158](https://github.com/ovh-ux/manager/commit/09b5158))
+
+
+
 ## [6.2.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-sms@6.2.2...@ovh-ux/manager-sms@6.2.3) (2019-06-05)
 
 

@@ -1,3 +1,12 @@
+# [3.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-webpack-config@3.0.8...@ovh-ux/manager-webpack-config@3.1.0) (2019-07-05)
+
+
+### Features
+
+* add new packages ([09b5158](https://github.com/ovh-ux/manager/commit/09b5158))
+
+
+
 ## [3.0.8](https://github.com/ovh-ux/manager-webpack-config/compare/v3.0.7...v3.0.8) (2019-06-18)
 
 

@@ -1,3 +1,12 @@
+# [1.2.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/ng-uirouter-layout@1.1.0...@ovh-ux/ng-uirouter-layout@1.2.0) (2019-07-05)
+
+
+### Features
+
+* add new packages ([09b5158](https://github.com/ovh-ux/manager/commit/09b5158))
+
+
+
 # [1.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/ng-uirouter-layout@1.0.0...@ovh-ux/ng-uirouter-layout@1.1.0) (2019-07-02)
 
 

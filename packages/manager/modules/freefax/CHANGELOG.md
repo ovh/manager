@@ -1,3 +1,12 @@
+# [5.2.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-freefax@5.1.2...@ovh-ux/manager-freefax@5.2.0) (2019-07-05)
+
+
+### Features
+
+* add new packages ([09b5158](https://github.com/ovh-ux/manager/commit/09b5158))
+
+
+
 ## [5.1.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-freefax@5.1.1...@ovh-ux/manager-freefax@5.1.2) (2019-05-14)
 
 

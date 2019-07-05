@@ -1,3 +1,12 @@
+# [0.3.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-vrack@0.2.4...@ovh-ux/manager-vrack@0.3.0) (2019-07-05)
+
+
+### Features
+
+* add new packages ([09b5158](https://github.com/ovh-ux/manager/commit/09b5158))
+
+
+
 ## [0.2.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-vrack@0.2.3...@ovh-ux/manager-vrack@0.2.4) (2019-05-22)
 
 

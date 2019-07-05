@@ -1,3 +1,12 @@
+# [4.2.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom-task@4.1.1...@ovh-ux/manager-telecom-task@4.2.0) (2019-07-05)
+
+
+### Features
+
+* add new packages ([09b5158](https://github.com/ovh-ux/manager/commit/09b5158))
+
+
+
 ## [4.1.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom-task@4.1.0...@ovh-ux/manager-telecom-task@4.1.1) (2019-05-13)
 
 
