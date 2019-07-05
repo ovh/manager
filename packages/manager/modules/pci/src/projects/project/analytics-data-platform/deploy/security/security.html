@@ -19,7 +19,8 @@
         </div>
     </div>
     <!-- ssh keys -->
-    <oui-field data-label="{{ ::'analytics_data_platform_deploy_ssh_key' | translate }}">
+    <oui-field data-label="{{ ::'analytics_data_platform_deploy_ssh_key' | translate }}"
+               data-size="xl">
         <oui-select data-name="sshKey"
                     data-model="$ctrl.data.selectedSshKey"
                     data-items="$ctrl.sshKeys"
@@ -42,6 +43,7 @@
             <span data-translate="analytics_data_platform_deploy_security_password_warning"></span>
         </oui-message>
         <oui-field data-label="{{ ::'analytics_data_platform_common_master_password' | translate }}"
+                   data-size="xl"
                    data-error-messages="{ password: ('analytics_data_platform_deploy_security_master_password_help' | translate) }">
             <oui-password data-name="masterPassword"
                           data-model="$ctrl.data.masterPassword"
@@ -63,6 +65,7 @@
             </oui-password>
         </oui-field>
         <oui-field data-label="{{ ::'analytics_data_platform_deploy_security_master_password_confirm' | translate }}"
+                   data-size="xl"
                    data-error-messages="{ password: ('analytics_data_platform_deploy_security_master_password_must_match' | translate) }">
             <oui-password data-name="masterPasswordConfirm"
                           data-model="$ctrl.data.masterPasswordConfirm"
