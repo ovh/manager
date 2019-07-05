@@ -28,7 +28,7 @@ export default class PciInstanceEditController {
     });
 
     this.defaultImage = null;
-    this.defaultFlavor = new Flavor(this.instance.flavor);
+    this.defaultFlavor = null;
 
     this.messageContainers = ['name', 'image', 'flavor', 'billing'];
     this.messages = {};
@@ -79,6 +79,12 @@ export default class PciInstanceEditController {
 
   onFlavorChange(flavorGroup) {
     if (flavorGroup && this.instance.image) {
+      if (!this.defaultFlavor) {
+        const flavor = new Flavor(this.instance.flavor);
+        this.defaultFlavor = flavorGroup
+          .getFlavorByOsType(this.instance.image.type, flavor.isFlex());
+      }
+
       this.editInstance.flavorId = flavorGroup.getFlavorId(
         this.instance.image.type,
         this.instance.region,
