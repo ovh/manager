@@ -1,3 +1,17 @@
+# [0.4.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.3.2...@ovh-ux/manager-server-sidebar@0.4.0) (2019-07-05)
+
+
+### Bug Fixes
+
+* **server.sidebar:** change exchange config ([#1020](https://github.com/ovh-ux/manager/issues/1020)) ([4934237](https://github.com/ovh-ux/manager/commit/4934237))
+
+
+### Features
+
+* add new packages ([09b5158](https://github.com/ovh-ux/manager/commit/09b5158))
+
+
+
 ## [0.3.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.3.1...@ovh-ux/manager-server-sidebar@0.3.2) (2019-06-27)
 
 

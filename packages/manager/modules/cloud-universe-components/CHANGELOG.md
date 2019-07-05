@@ -1,3 +1,12 @@
+# [1.3.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@1.3.0-alpha.4...@ovh-ux/ng-ovh-cloud-universe-components@1.3.0) (2019-07-05)
+
+
+### Features
+
+* add new packages ([09b5158](https://github.com/ovh-ux/manager/commit/09b5158))
+
+
+
 # [1.3.0-alpha.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@1.3.0-alpha.3...@ovh-ux/ng-ovh-cloud-universe-components@1.3.0-alpha.4) (2019-05-17)
 
 

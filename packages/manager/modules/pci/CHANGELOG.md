@@ -1,3 +1,20 @@
+# [0.23.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.22.3...@ovh-ux/manager-pci@0.23.0) (2019-07-05)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([c5596d2](https://github.com/ovh-ux/manager/commit/c5596d2))
+* **pci-adp:** translation changes ([aa9ce24](https://github.com/ovh-ux/manager/commit/aa9ce24))
+* **pci.project:** keep focus on sidebar ([#970](https://github.com/ovh-ux/manager/issues/970)) ([009bb62](https://github.com/ovh-ux/manager/commit/009bb62))
+* **pci.project.analytics.data.platform:** add missing components prefix ([#988](https://github.com/ovh-ux/manager/issues/988)) ([1fbca65](https://github.com/ovh-ux/manager/commit/1fbca65))
+
+
+### Features
+
+* add new packages ([09b5158](https://github.com/ovh-ux/manager/commit/09b5158))
+
+
+
 ## [0.22.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.22.2...@ovh-ux/manager-pci@0.22.3) (2019-07-04)
 
 

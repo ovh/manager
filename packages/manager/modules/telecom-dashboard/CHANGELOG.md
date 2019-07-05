@@ -1,3 +1,12 @@
+# [4.3.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom-dashboard@4.2.2...@ovh-ux/manager-telecom-dashboard@4.3.0) (2019-07-05)
+
+
+### Features
+
+* add new packages ([09b5158](https://github.com/ovh-ux/manager/commit/09b5158))
+
+
+
 ## [4.2.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom-dashboard@4.2.1...@ovh-ux/manager-telecom-dashboard@4.2.2) (2019-06-12)
 
 
