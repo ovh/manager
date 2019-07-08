@@ -1665,15 +1665,6 @@
     validator "^10.11.0"
     xterm "^3.12.2"
 
-"@ovh-ux/manager-telecom-styles@^2.0.2":
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-telecom-styles/-/manager-telecom-styles-2.0.2.tgz#23256c8356f3c483a28c72e5d5f23d0999f24f13"
-  integrity sha512-+5/YPd0vraoawasaJQfq2x9P5PTF0lZwOUojjLyB0zMUm3SIVO4EPpLByStanmbA2IXkznKAadvSYLh+IkIutw==
-  dependencies:
-    bootstrap "~3.3.7"
-    ovh-ui-kit "^2.23.1"
-    ovh-ui-kit-bs "^2.1.1"
-
 "@ovh-ux/manager-vrack@^0.2.0":
   version "0.2.4"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-vrack/-/manager-vrack-0.2.4.tgz#800550dfc752b7fadddd80b4171ae7df12a3c0d6"
@@ -9367,7 +9358,7 @@ ovh-ui-kit@^2.22.0:
   dependencies:
     less-plugin-remcalc "^0.1.0"
 
-ovh-ui-kit@^2.23.1, ovh-ui-kit@^2.33.3:
+ovh-ui-kit@^2.33.3:
   version "2.33.3"
   resolved "https://registry.yarnpkg.com/ovh-ui-kit/-/ovh-ui-kit-2.33.3.tgz#e15490f763ea22008535284d468f8e1c3ba6ce17"
   integrity sha512-fNQIK3Ko7f00LOunM3X5EoBiUbMxVIsJgbbPUb7szfu+IK6laZIIKWmOvVtrWqoHjUxSieEFRNTv7CgUd/NPgw==
