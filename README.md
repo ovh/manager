@@ -50,6 +50,7 @@ yarn install
 | [@ovh-ux/manager-overthebox-app](https://github.com/ovh-ux/manager/tree/master/packages/manager/apps/overthebox) | [:books:](https://github.com/ovh-ux/manager/blob/master/packages/manager/apps/overthebox/CHANGELOG.md) |
 | [@ovh-ux/manager-pci-app](https://github.com/ovh-ux/manager/tree/master/packages/manager/apps/pci) | [:books:](https://github.com/ovh-ux/manager/blob/master/packages/manager/apps/pci/CHANGELOG.md) |
 | [@ovh-ux/manager-public-cloud](https://github.com/ovh-ux/manager/tree/master/packages/manager/apps/public-cloud) | [:books:](https://github.com/ovh-ux/manager/blob/master/packages/manager/apps/public-cloud/CHANGELOG.md) |
+| [@ovh-ux/sign-up-app](https://github.com/ovh-ux/manager/tree/master/packages/manager/apps/sign-up) | [:books:](https://github.com/ovh-ux/manager/blob/master/packages/manager/apps/sign-up/CHANGELOG.md) |
 | [@ovh-ux/manager-sms-app](https://github.com/ovh-ux/manager/tree/master/packages/manager/apps/sms) | [:books:](https://github.com/ovh-ux/manager/blob/master/packages/manager/apps/sms/CHANGELOG.md) |
 | [@ovh-ux/manager-telecom-dashboard-app](https://github.com/ovh-ux/manager/tree/master/packages/manager/apps/telecom-dashboard) | [:books:](https://github.com/ovh-ux/manager/blob/master/packages/manager/apps/telecom-dashboard/CHANGELOG.md) |
 | [@ovh-ux/manager-telecom-task-app](https://github.com/ovh-ux/manager/tree/master/packages/manager/apps/telecom-task) | [:books:](https://github.com/ovh-ux/manager/blob/master/packages/manager/apps/telecom-task/CHANGELOG.md) |
