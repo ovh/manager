@@ -1645,26 +1645,6 @@
     lodash "^4.17.11"
     moment "^2.24.0"
 
-"@ovh-ux/manager-pci@^0.22.0":
-  version "0.22.3"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-pci/-/manager-pci-0.22.3.tgz#6da906ab18c904706a0b330a8827df2760478a6b"
-  integrity sha512-X7mMsGv5xw058mjuGhV9n00KDqwhvrzT6hDciU7GsmcF7XqRjOt7IjoK5zS9g3FMxYQ95iDzzvqL5JvxM7dbsA==
-  dependencies:
-    "@fortawesome/fontawesome-free" "^5.8.2"
-    "@ovh-ux/manager-config" "^0.2.0"
-    d3 "~3.5.13"
-    fast-sha256 "^1.1.0"
-    file-saver "^2.0.1"
-    flag-icon-css "~0.8.5"
-    ipaddr.js "^1.9.0"
-    jsurl "^0.1.5"
-    lodash "^4.17.11"
-    moment "^2.19"
-    tweetnacl-util "^0.15.0"
-    urijs "^1.19.1"
-    validator "^10.11.0"
-    xterm "^3.12.2"
-
 "@ovh-ux/manager-vrack@^0.2.0":
   version "0.2.4"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-vrack/-/manager-vrack-0.2.4.tgz#800550dfc752b7fadddd80b4171ae7df12a3c0d6"
