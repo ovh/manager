@@ -34,7 +34,7 @@ export default angular
       url: '/task',
       translations: {
         value: ['.'],
-        format: 'xml',
+        format: 'json',
       },
       resolve: {
         $title(translations, $translate) {
