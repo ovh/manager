@@ -29,7 +29,7 @@ export const state = {
       '.',
     ],
   },
-  url: '/tickets',
+  url: '',
   views: {
     'support@support': component.name,
   },
