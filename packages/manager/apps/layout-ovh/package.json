@@ -19,7 +19,7 @@
     "@ovh-ux/manager-navbar": "^0.6.0",
     "@ovh-ux/manager-overthebox": "^4.2.3",
     "@ovh-ux/manager-sms": "^6.2.3",
-    "@ovh-ux/manager-telecom-styles": "^2.0.2",
+    "@ovh-ux/manager-telecom-styles": "^3.0.0",
     "@ovh-ux/manager-welcome": "^2.0.0",
     "@ovh-ux/ng-at-internet": "^4.0.0",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^2.0.0",
