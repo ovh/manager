@@ -1,0 +1,16 @@
+{
+  "sms_section_back_link": "Paluu lähettäjälistaan",
+  "sms_senders_blacklisted_manage_title": "Hallitse estettyjä lähettäjiä ",
+  "sms_senders_blacklisted_information_title": "Tiedot",
+  "sms_senders_blacklisted_information_text_1": "Lista vastaanottajista, jotka ovat estäneet tekstiviestit joltakin lähettäjältäsi.",
+  "sms_senders_blacklisted_information_text_2": "Jos poistat numeron tältä listalta, lähettäjiesi tekstiviestejä voidaan taas lähettää tälle vastaanottajalle. ",
+  "sms_senders_blacklisted_delete_list": "Poista valittu numero",
+  "sms_senders_blacklisted_delete_lists": "Poista {{ count }} valittua numeroa",
+  "sms_senders_blacklisted_delete_list_success": "Suppression en cours…",
+  "sms_senders_blacklisted_label_date": "Päivämäärä",
+  "sms_senders_blacklisted_label_number": "Numero",
+  "sms_senders_blacklisted_empty": "Ei yhtään estettyä lähettäjää.",
+  "sms_senders_blacklisted_title": "Poista estetty lähettäjä",
+  "sms_senders_blacklisted_confirm": "Haluatko varmasti poistaa estetyn lähettäjän <b>\"{{ sender }}\"</b> ?",
+  "sms_senders_blacklisted_sender_ko": "Estettyä lähettäjää ei voida poistaa.<br/>{{error}}"
+}

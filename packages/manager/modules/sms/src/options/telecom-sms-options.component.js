@@ -25,7 +25,7 @@ angular.module(moduleName, [
         controllerAs: 'TelecomSmsOptionsCtrl',
       },
     },
-    translations: ['.'],
+    translations: { value: ['.'], format: 'json' },
   });
 });
 

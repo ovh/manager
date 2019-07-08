@@ -1,0 +1,20 @@
+{
+  "sms_section_back_link": "Paluu lisävalintoihin",
+  "sms_options_manage_title": "Yleiset valinnat",
+  "sms_options_manage_information_title": "Tiedot",
+  "sms_options_manage_information_text": "OVH suosittelee callback URL:ien määrittämistä, jotta saat tekstiviestiilmoituksia tapahtumista",
+  "sms_options_manage_information_types_available": "Saatavilla on kaksi callback-palvelua:",
+  "sms_options_manage_information_type_callback": "<b>Tilanmuutos callback</b>: Kun lähetetyn tekstiviestin tila muuttuu (esim. \"lähetetty\" -tilasta tilaan \"vastaanotettu\").",
+  "sms_options_manage_information_type_stop_callback": "<b>STOP callback</b>: Kun jokin vastaanottajistasi vastaa tekstiviestiisi \"STOP\" siirtääksesi numerosi mustalle listalle.",
+  "sms_options_manage_configure_title": "Konfiguroi",
+  "sms_options_manage_configure_callback_label": "Tilanmuutos callback -palvelun URL:",
+  "sms_options_manage_configure_stop_callback_label": "STOP callback URL:",
+  "sms_options_manage_configure_callback_empty": "Yhtään URL:ia ei ole konfiguroitu.",
+  "sms_options_manage_update_title": "URL:ien konfigurointi",
+  "sms_options_manage_update_callback_label": "Tilanmuutos callback URL",
+  "sms_options_manage_update_stopcallback_label": "STOP callback URL",
+  "sms_options_manage_update_callbacks_error_pattern": "Linkin on alettava muodossa http:// tai https://.",
+  "sms_options_manage_update_callbacks_error_url": "Annettu URL ei kelpaa.",
+  "sms_options_manage_updating": "Konfiguroidaan URL:eja…",
+  "sms_options_manage_updated": "URL:ien konfigurointi suoritettu"
+}

@@ -1,0 +1,22 @@
+{
+  "sms_section_back_link": "Paluu tekstiviesteihin",
+  "sms_sms_incoming_title": "Saapuneet tekstiviestit",
+  "sms_sms_incoming_label_date": "Päivämäärä",
+  "sms_sms_incoming_label_sender": "Lähettäjä",
+  "sms_sms_incoming_label_message": "Viesti",
+  "sms_sms_incoming_empty": "Ei vastaanotettuja tekstiviestejä",
+  "sms_sms_incoming_read_title": "Tarkastele",
+  "sms_sms_incoming_read_label_sms_size": "Tekstiviestin koko",
+  "sms_sms_incoming_read_label_sms_size_text": "{{ numberOfSms }} SMS (tai {{ credits | number: 2 }} krediittiä)",
+  "sms_sms_incoming_read_label_message": "Message complet",
+  "sms_sms_incoming_remove_title": "Vahvista",
+  "sms_sms_incoming_remove_confirm": "Haluatko varmasti poistaa alla näkyvän tekstiviestin?",
+  "sms_sms_incoming_removing": "Poistetaan tekstiviestiä...",
+  "sms_sms_incoming_removed": "Tekstiviesti poistettu",
+  "sms_sms_incoming_remove_ko": "Tekstiviestin poistaminen ei onnistu.<br/>{{error}}",
+  "sms_sms_incoming_download_history": "Lataa historiatiedot",
+  "sms_sms_incoming_download_history_ko": "Hups! Historiatietojen latausta ei voitu tehdä.",
+  "sms_sms_incoming_remove": "Poista valittu tekstiviesti",
+  "sms_sms_incoming_remove_plural": "Poista {{ count }} valittua tekstiviestiä",
+  "sms_sms_incoming_remove_success": "Suppression en cours…"
+}

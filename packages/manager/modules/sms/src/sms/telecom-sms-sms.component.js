@@ -35,7 +35,7 @@ angular
           controllerAs: 'TelecomSmsSmsCtrl',
         },
       },
-      translations: ['.'],
+      translations: { value: ['.'], format: 'json' },
     });
   });
 

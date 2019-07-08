@@ -20,6 +20,6 @@ angular
   ])
   .component(componentName, component)
   .config(routing)
-  .run(/* @ngTranslationsInject ./translations */);
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

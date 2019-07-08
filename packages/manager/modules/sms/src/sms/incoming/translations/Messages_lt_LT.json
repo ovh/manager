@@ -1,0 +1,22 @@
+{
+  "sms_section_back_link": "Grįžti prie SMS",
+  "sms_sms_incoming_title": "Gauti SMS",
+  "sms_sms_incoming_label_date": "Data",
+  "sms_sms_incoming_label_sender": "Siuntėjas",
+  "sms_sms_incoming_label_message": "Pranešimas",
+  "sms_sms_incoming_empty": "Negauta jokių SMS",
+  "sms_sms_incoming_read_title": "Tikrinti",
+  "sms_sms_incoming_read_label_sms_size": "SMS dydis",
+  "sms_sms_incoming_read_label_sms_size_text": "{{ numberOfSms }} SMS (viso kreditų: {{ credits | number: 2 }})",
+  "sms_sms_incoming_read_label_message": "Visas pranešimas",
+  "sms_sms_incoming_remove_title": "Patvirtinimas",
+  "sms_sms_incoming_remove_confirm": "Ar tikrai norite ištrinti aukščiau matomus pranešimus?",
+  "sms_sms_incoming_removing": "SMS trinama...",
+  "sms_sms_incoming_removed": "SMS ištrinti",
+  "sms_sms_incoming_remove_ko": "Negalima ištrinti SMS.<br/>{{error}}",
+  "sms_sms_incoming_download_history": "Įkelti istoriją",
+  "sms_sms_incoming_download_history_ko": "Istorijos įkėlimas negali būti atliktas.",
+  "sms_sms_incoming_remove": "Ištrinti pažymėtus SMS",
+  "sms_sms_incoming_remove_plural": "Ištrinti {{ count }} pažymėtas SMS ",
+  "sms_sms_incoming_remove_success": "Trinama"
+}

@@ -25,7 +25,10 @@ angular
           controllerAs: 'SmsSendersCtrl',
         },
       },
-      translations: ['.', './add'],
+      translations: {
+        value: ['.', './add'],
+        format: 'json',
+      },
     });
   });
 

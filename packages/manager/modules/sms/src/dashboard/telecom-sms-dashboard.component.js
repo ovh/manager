@@ -20,7 +20,10 @@ angular
           controllerAs: 'SmsDashboardCtrl',
         },
       },
-      translations: ['.', '../sms/compose'],
+      translations: {
+        value: ['.', '../sms/compose'],
+        format: 'json',
+      },
     });
   });
 

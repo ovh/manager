@@ -71,7 +71,6 @@ angular
             .setCurrentSmsService(smsDetails[$stateParams.serviceName]));
           return $q.when({ init: true });
         },
-
         $title: (translations, $translate, OvhApiSms, $stateParams) => OvhApiSms.v6()
           .get({
             serviceName: $stateParams.serviceName,
@@ -79,9 +78,10 @@ angular
           .then(data => $translate.instant('sms_page_title', { name: data.description || $stateParams.serviceName }, null, null, 'escape'))
           .catch(() => $translate('sms_page_title', { name: $stateParams.serviceName })),
       },
-      translations: [
-        '.',
-      ],
+      translations: {
+        value: ['.'],
+        format: 'json',
+      },
     });
   });
 

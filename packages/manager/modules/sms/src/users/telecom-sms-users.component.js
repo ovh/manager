@@ -20,9 +20,10 @@ angular
           controllerAs: 'SmsUsersCtrl',
         },
       },
-      translations: [
-        '.',
-      ],
+      translations: {
+        value: ['.'],
+        format: 'json',
+      },
     });
   });
 

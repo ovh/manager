@@ -15,7 +15,7 @@ angular.module(moduleName, []).config(($stateProvider) => {
         controllerAs: 'SmsIncomingCtrl',
       },
     },
-    translations: ['.'],
+    translations: { value: ['.'], format: 'json' },
   });
 });
 

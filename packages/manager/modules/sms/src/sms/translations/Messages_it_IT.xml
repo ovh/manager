@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<translations>
-   <translation id="sms_sms_compose" qtlid="288145">Invia un SMS</translation>
-   <translation id="sms_sms_history" qtlid="342018">Storico invii</translation>
-   <translation id="sms_sms_received" qtlid="341199">SMS ricevuti</translation>
-   <translation id="sms_sms_pending" qtlid="342031">SMS pianificati</translation>
-   <translation id="sms_sms_manage_hlrs" qtlid="342044">HLR</translation>
-   <translation id="sms_sms_manage_templates" qtlid="342057">Gestisci i modelli</translation>
-</translations>

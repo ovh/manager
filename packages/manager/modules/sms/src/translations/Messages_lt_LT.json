@@ -1,0 +1,14 @@
+{
+  "sms_page_title": "SMS \"{{name}}\"",
+  "sms_tabs_dashboard": "Valdymo skydelis",
+  "sms_tabs_sms": "SMS",
+  "sms_tabs_contacts": "Kontaktai",
+  "sms_tabs_phonebooks": "Adresų knygelė",
+  "sms_tabs_senders": "Siuntėjai",
+  "sms_tabs_api_users": "API vartotojai",
+  "sms_tabs_options": "Parinktys",
+  "sms_tabs_guides": "Gidai",
+  "sms_rename_error": "Negalima pervadinti paketo {{serviceName}}.",
+  "sms_loading_error": "Une erreur est survenue lors du chargement de SMS",
+  "sms_feature_soon_available": "Ši funkcija netrukus taps prieinama."
+}

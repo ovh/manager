@@ -1,0 +1,20 @@
+{
+  "sms_order_title": "Užsakyti SMS",
+  "sms_order_new_account": "Nauja paskyra",
+  "sms_order_account_label": "SMS paskyra: ",
+  "sms_order_credit_label": "Kreditų skaičius: ",
+  "sms_order_credit_custom_label": "Norimas kiekis: ",
+  "sms_order_credit_custom": "Kita",
+  "sms_order_order": "Kurti užsakymą",
+  "sms_order_ko": "Negalima sugeneruoti užsakymo",
+  "sms_order_order_url": "užsakymas",
+  "sms_order_order_site": "Užsakyti svetainėje",
+  "sms_order_price_quantity": "Kaina (be PVM): ",
+  "sms_order_price_gift": "Sumažinimas: ",
+  "sms_order_price_total": "Viso (su PVM): ",
+  "sms_order_price_total_vat": "PVM: ",
+  "sms_order_retract": "Sutinkate, kad paslauga bus vykdoma nedelsiant ir visa apimtimi,<br/> taip pat prarasite teisę atsisakyti, kaip tai numatyt Prancūzijos Vartotojų Kodekso L.121-21-5 straipsnyje.",
+  "sms_order_bc": "Užsakymo baigimui patvirtinkite",
+  "sms_order_more_info": "Daugiau informacijos",
+  "sms_order_retract_info": "Galite išsaugoti atsisakymo teisę ir atšaukti paslaugą be jokios priežasties per keturiolika (14) dienų nuo sutarties sudarymo, pranešdami apie tai paštu arba per valdymo sąsają kreipdamiesi į OVH pagalbos tarnybą."
+}

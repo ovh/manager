@@ -20,7 +20,7 @@ angular
           controllerAs: 'SmsGuidesCtrl',
         },
       },
-      translations: ['.'],
+      translations: { value: ['.'], format: 'json' },
     });
   });
 

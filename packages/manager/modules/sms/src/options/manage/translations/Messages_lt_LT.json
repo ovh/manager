@@ -1,0 +1,20 @@
+{
+  "sms_section_back_link": "Grįžti prie parinkčių",
+  "sms_options_manage_title": "Pagrindiniai nustatymai",
+  "sms_options_manage_information_title": "Informacija",
+  "sms_options_manage_information_text": "OVH jums siūlo keisti \"callback\" URL, kuris bus siunčiamas SMS žinute.",
+  "sms_options_manage_information_types_available": "Galimi du callback tipai:",
+  "sms_options_manage_information_type_callback": "<b>Būsenos pasikeitimo callback</b>: SMS siunčiama pasikeitus būsenai (pvz.: iš \"išsiųsta\" į \"gauta\").",
+  "sms_options_manage_information_type_stop_callback": "<b>STOP callback</b>: Kai gavėjas atsako \"STOP\" į vieną jūsų SMS, kad užblokuotų siuntimą.",
+  "sms_options_manage_configure_title": "Konfigūruoti",
+  "sms_options_manage_configure_callback_label": "Būsenos pakeitimo callback URL:",
+  "sms_options_manage_configure_stop_callback_label": "callback STOP URL:",
+  "sms_options_manage_configure_callback_empty": "Nesukonfigūruotas joks URL.",
+  "sms_options_manage_update_title": "URL konfigūravimas",
+  "sms_options_manage_update_callback_label": "Būsenos pakeitimo callback URL",
+  "sms_options_manage_update_stopcallback_label": "callback STOP URL",
+  "sms_options_manage_update_callbacks_error_pattern": "Nuoroda turi prasidėti http:// arba https://.",
+  "sms_options_manage_update_callbacks_error_url": "Nurodytas neteisingas URL.",
+  "sms_options_manage_updating": "URL konfigūravimas…",
+  "sms_options_manage_updated": "URL konfigūravimas baigtas"
+}
