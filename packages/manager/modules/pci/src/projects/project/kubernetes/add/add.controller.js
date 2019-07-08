@@ -63,6 +63,7 @@ export default class {
       {},
       {
         method: 'get',
+        retryMaxAttempts: 6,
         successRule: {
           status: READY_STATUS,
         },
