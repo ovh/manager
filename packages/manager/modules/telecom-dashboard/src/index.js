@@ -53,7 +53,10 @@ angular
           controllerAs: 'GuidesCtrl',
         },
       },
-      translations: ['.'],
+      translations: {
+        value: ['.'],
+        format: 'json',
+      },
       resolve: {
         $title(translations, $translate) {
           return $translate('telecom_dashboard_page_title');
