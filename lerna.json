@@ -1,5 +1,5 @@
 {
-  "lerna": "3.4.3",
+  "lerna": "3.15.0",
   "packages": [
     "packages/components/*",
     "packages/manager/apps/*",
