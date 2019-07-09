@@ -140,7 +140,8 @@ export default /* @ngInject */ function (
       self.loaders.send = true;
 
       self.ticket.serviceName = get(self.ticket, 'serviceName.serviceName');
-      if (self.ticket.serviceName === OTHER_SERVICE) {
+      if (self.ticket.serviceName === OTHER_SERVICE
+          || self.ticket.serviceName === null) {
         self.ticket.serviceName = '';
         self.ticket.category = TICKET_CATEGORIES.DEFAULT;
       }
