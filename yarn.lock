@@ -1713,28 +1713,6 @@
     shuffle-seed "^1.1.6"
     titleize "^1.0.1"
 
-"@ovh-ux/manager-config@^0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-config/-/manager-config-0.2.0.tgz#0c2cce370c372993ed4ed25783191fe9112db839"
-  integrity sha512-FEGIRGEaNQcHlHienK0Egf+JEB9FUK9PyJgkMP575pPDVTy67JRRD7uZ5FXCUfRtVgYLD4VYjwOzeucr3WtvFg==
-
-"@ovh-ux/manager-navbar@^0.6.0":
-  version "0.6.2"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-navbar/-/manager-navbar-0.6.2.tgz#1a80989a3e0669cff62f81bce62e182ea9801539"
-  integrity sha512-o11pyjhLWlILnZ3fswDKNlaVb63ForWTOFCBo4GLMutLaEJwIpYQoKQCCZJAM1ygAFN36g69hI0MFHqvtv6deQ==
-  dependencies:
-    lodash "^4.17.11"
-    moment "^2.24.0"
-
-"@ovh-ux/manager-vrack@^0.2.0":
-  version "0.2.4"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-vrack/-/manager-vrack-0.2.4.tgz#800550dfc752b7fadddd80b4171ae7df12a3c0d6"
-  integrity sha512-OebthjmK/0yV9yG3fkMYeV+GHK9hRqVJZUpc7iOgJUgax831C2IOLrmO9EEG/o+wrcI4jrv4fdVGUdeDvqxEPg==
-  dependencies:
-    bootstrap4 twbs/bootstrap#v4.0.0
-    lodash "^4.17.11"
-    moment "^2.22.2"
-
 "@ovh-ux/ng-at-internet-ui-router-plugin@^2.0.0":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-at-internet-ui-router-plugin/-/ng-at-internet-ui-router-plugin-2.0.0.tgz#ca1d5ee1cd9c513e63abcc1470b47114495714dc"
@@ -1882,18 +1860,6 @@
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-translate-async-loader/-/ng-translate-async-loader-2.0.0.tgz#df0d155c6c2e38b53704ff4ca9b419f0695a88bf"
   integrity sha512-CmAT0/rTYN/Niwtuo1pcY+y46nqGCR2dO6+4twqGiRkqu/ksgklZ4weaqF9Xgl/KYLv+zcCmxZf0J1gfXs7kag==
-
-"@ovh-ux/ng-uirouter-breadcrumb@^0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-uirouter-breadcrumb/-/ng-uirouter-breadcrumb-0.0.1.tgz#1bcad303871e3af3bf3129613124c1d4323db872"
-  integrity sha512-aWnZxSYcJ0rjrT1SXp2JxTtTJqmr8gsDa0LbmQRhMWXlmEiCvVo0CS95JXkAlvfVCHFNLVbNoiDYEMtZ+sJ+Cg==
-
-"@ovh-ux/ng-uirouter-line-progress@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-uirouter-line-progress/-/ng-uirouter-line-progress-0.0.2.tgz#6ac7373a5641f4c7b31b7b487de4572ebfaafa67"
-  integrity sha512-W461T1rJ0KOV3gmThKdN6kegCYGsxrH+m7obN0o2/y4XNiWgFS2wwVCmtI82Jnrn+//U6VPtwDKqD4Wpe9ycgw==
-  dependencies:
-    nprogress "^0.2.0"
 
 "@ovh-ux/ng-uirouter-title@^2.0.0-beta.3":
   version "2.0.0-beta.3"
