@@ -1,6 +1,6 @@
 const execa = require('execa');
 
-execa.shell('lerna ls -pl --json')
+execa.shell('lerna ls -pl --json --toposort')
   .then(({ stdout }) => {
     const packages = JSON.parse(stdout);
 
