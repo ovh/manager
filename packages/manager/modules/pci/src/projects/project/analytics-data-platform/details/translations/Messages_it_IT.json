@@ -1,8 +1,8 @@
 {
  "analytics_data_platform_header_nav_service_info": "Informazioni sul servizio",
  "analytics_data_platform_header_nav_cluster_size": "Dimensione del cluster",
- "analytics_data_platform_header_nav_credential": "Informazioni di identificazione ",
- "analytics_data_platform_header_nav_activity": "Lista delle attività",
+ "analytics_data_platform_header_nav_credential": "Identificativi",
+ "analytics_data_platform_header_nav_activity": "Log delle attività",
  "analytics_data_platform_header_guides": "Guide",
- "analytics_data_platform_header_guides_analytics_data_platform": "Analizza i dati"
+ "analytics_data_platform_header_guides_analytics_data_platform": "Data Analytics"
 }
