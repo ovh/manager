@@ -32,7 +32,7 @@ execa.shell('lerna ls -pl --json --toposort')
           ]);
         };
       }
-      console.log(`Not publishing package ${pkg.name}, it's already done`);
+      console.log(`Package ${pkg.name} has been skipped (already published)`);
       return null;
     }).filter(p => p !== null),
   ));
