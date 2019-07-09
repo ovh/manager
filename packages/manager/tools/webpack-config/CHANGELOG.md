@@ -1,3 +1,12 @@
+## [3.1.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-webpack-config@3.1.0...@ovh-ux/manager-webpack-config@3.1.1) (2019-07-09)
+
+
+### Bug Fixes
+
+* **dependencies:** require right dependencies instead of devDependencies ([dbbe244](https://github.com/ovh-ux/manager/commit/dbbe244))
+
+
+
 # [3.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-webpack-config@3.0.8...@ovh-ux/manager-webpack-config@3.1.0) (2019-07-05)
 
 

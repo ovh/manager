@@ -1,3 +1,12 @@
+## [5.2.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/component-rollup-config@5.2.0...@ovh-ux/component-rollup-config@5.2.1) (2019-07-09)
+
+
+### Bug Fixes
+
+* **dependencies:** require right dependencies instead of devDependencies ([dbbe244](https://github.com/ovh-ux/manager/commit/dbbe244))
+
+
+
 # [5.2.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/component-rollup-config@5.1.0...@ovh-ux/component-rollup-config@5.2.0) (2019-07-05)
 
 
