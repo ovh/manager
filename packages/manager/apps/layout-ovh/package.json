@@ -13,10 +13,10 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-layout-ovh' --include-filtered-dependencies -- yarn run dev:watch"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^0.2.0",
+    "@ovh-ux/manager-config": "^0.3.0",
     "@ovh-ux/manager-core": "^6.0.1",
     "@ovh-ux/manager-freefax": "^5.1.2",
-    "@ovh-ux/manager-navbar": "^0.6.0",
+    "@ovh-ux/manager-navbar": "^1.2.0",
     "@ovh-ux/manager-overthebox": "^4.2.3",
     "@ovh-ux/manager-sms": "^6.2.3",
     "@ovh-ux/manager-telecom-styles": "^3.0.0",
