@@ -1,11 +1,6 @@
 export const LANGUAGES = [
   { value: 'de_DE', name: 'Deutsch' },
   { value: 'en_GB', name: 'English' },
-  { value: 'en_CA', name: 'English (Canadian)' },
-  { value: 'en_US', name: 'English (United States)' },
-  { value: 'en_AU', name: 'English (Australia)' },
-  { value: 'en_ASIA', name: 'English (Asia)' },
-  { value: 'en_SG', name: 'English (Singapore)' },
   { value: 'es_ES', name: 'Español' },
   { value: 'fr_FR', name: 'Français' },
   { value: 'fr_CA', name: 'Français (Canadien)' },
