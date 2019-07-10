@@ -1,0 +1,16 @@
+{
+  "domain_optin_back_button": "Anzeige im WHOIS konfigurieren",
+  "domain_optin_contact_tech": "Techkontakt",
+  "domain_optin_contact_owner": "Inhaber-Kontakt",
+  "domain_optin_contact_admin": "Administrator-Kontakt",
+  "domain_optin_contact_domain": "Alle Kontakte (Inhaber, Administrator, technischer Kontakt)",
+  "domain_optin_field_mail": "der persönlichen E-Mail-Adresse des Kontakts",
+  "domain_optin_field_others": "der anderen Kontaktinformationen",
+  "domain_optin_edit_individually": "Anzeige für jedes Feld einzeln verwalten",
+  "domain_optin_display_false": "Verbergen",
+  "domain_optin_display_true": "Anzeigen",
+  "domain_optin_save": "Änderungen speichern",
+  "domain_optin_save_success": "Die WHOIS-Anzeige wurde erfolgreich aktualisiert.",
+  "domain_optin_save_error": "Beim Speichern der Änderungen ist ein Fehler aufgetreten.",
+  "domain_optin_init_error": "Beim Laden der Informationen ist ein Fehler aufgetreten."
+}

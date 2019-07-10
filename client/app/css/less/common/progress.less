@@ -1,0 +1,133 @@
+@ovh-progress-bar-height: 30;
+@ovh-progress-bar-gutter: 3%;
+
+.ovh-progress {
+  color: @oui-color-primary;
+  position: relative;
+
+  .progress {
+    border-radius: unit(@ovh-progress-bar-height / 2, px);
+    min-height: unit(@ovh-progress-bar-height, px);
+
+    .progress-bar {
+      background-color: @oui-color-jungle;
+      border-right: 1px solid lighten(@oui-color-jungle, 3%);
+      box-shadow: none;
+      min-height: unit(@ovh-progress-bar-height, px);
+
+      &::after {
+        border-bottom:
+          unit(@ovh-progress-bar-height / 2, px) solid
+          transparent;
+        border-left:
+          unit(@ovh-progress-bar-height / 2, px) solid
+          @oui-color-jungle;
+        border-top:
+          unit(@ovh-progress-bar-height / 2, px) solid
+          transparent;
+        content: "";
+        display: block;
+        height: 0;
+        margin-left: ~"calc(100% + 1px)";
+        width: 0;
+      }
+
+      &:last-child {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+    }
+
+    & + ul,
+    & + ol {
+      height: unit(@ovh-progress-bar-height, px);
+      left: @ovh-progress-bar-gutter;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      position: absolute;
+      right: @ovh-progress-bar-gutter;
+      top: 0;
+
+      li {
+        margin-left: -10px;
+        padding-top: unit(@ovh-progress-bar-height + 5, px);
+        position: absolute;
+
+        &::before {
+          box-sizing: content-box;
+          background-color: #fff;
+          border-radius: 50%;
+          content: "";
+          display: block;
+          height: unit(@ovh-progress-bar-height / 2, px);
+          position: absolute;
+          top: unit(@ovh-progress-bar-height / 4, px);
+          width: unit(@ovh-progress-bar-height / 2, px);
+        }
+
+        &:first-child,
+        &.active {
+          &::after {
+            border-left:
+              unit(@ovh-progress-bar-height / 10, px)
+              solid transparent;
+            border-right:
+              unit(@ovh-progress-bar-height / 10, px)
+              solid transparent;
+            border-top:
+              unit(@ovh-progress-bar-height / 10, px)
+              solid @oui-color-jungle;
+            content: "";
+            display: block;
+            height: 0;
+            left:
+              unit(
+                (@ovh-progress-bar-height / 4) -
+                (@ovh-progress-bar-height / 10),
+                px
+              );
+            position: absolute;
+            top: unit(@ovh-progress-bar-height, px);
+            width: 0;
+          }
+        }
+
+        &.active {
+          &::after {
+            left:
+              unit(
+                (@ovh-progress-bar-height / 4) -
+                (@ovh-progress-bar-height / 10) + 2,
+                px
+              );
+          }
+
+          &::before {
+            border: 2px solid @oui-color-primary;
+            top: unit((@ovh-progress-bar-height / 4) - 2, px);
+          }
+
+          & ~ li::before {
+            background-color: @oui-color-silver;
+          }
+        }
+
+        * {
+          display: block;
+        }
+
+        &:last-child {
+          left: 100%;
+
+          & > * {
+            left: -200px;
+            position: absolute;
+            right: unit(-(@ovh-progress-bar-height / 2), px);
+            text-align: right;
+          }
+        }
+      }
+    }
+  }
+}

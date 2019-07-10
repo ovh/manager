@@ -1,0 +1,296 @@
+<div class="container-fluid px-0" data-ng-controller="DomainTabGeneralInformationsCtrl as $ctrl">
+    <div data-ovh-alert="{{alerts.main}}"></div>
+    <div class="row d-lg-flex">
+        <div class="col-xm-12 col-md-4 mb-5">
+            <oui-tile
+                data-heading="{{ ::'domain_dashboard_general_informations' | translate }}"
+                class="h-100"
+                data-loading="$ctrl.loading.dnsStatus || $ctrl.loading.hosting || $ctrl.loading.associatedHosting">
+                <oui-tile-definition
+                    data-ng-if="$ctrl.isAllDom && $ctrl.allDom"
+                    data-term="{{ ::'domain_dashboard_type_alldom_' + $ctrl.constructor.parseType($ctrl.allDom.type) | translate }}">
+                    <oui-tile-description>
+                        <ul class="list-unstyled">
+                            <li data-ng-repeat="allDomDomain in $ctrl.allDomDomains track by $index"
+                                data-ng-class="{ 'disabled': !allDomDomain.isIncluded }">
+                                <span data-ng-bind="::allDomDomain.name"></span>
+                            </li>
+                        </ul>
+                    </oui-tile-description>
+                    <oui-action-menu
+                        data-compact
+                        data-align="end">
+                        <oui-action-menu-item data-href="{{ ::$ctrl.actions.manageAlldom.href }}">
+                            <span data-translate="status_action_renew_management"></span>
+                        </oui-action-menu-item>
+                    </oui-action-menu>
+                </oui-tile-definition>
+                <!-- DNS -->
+                <oui-tile-definition
+                    data-term-popover="{{ ::'domain_dashboard_tooltip_dns' | translate }}"
+                    data-term="{{ ::'domain_dashboard_dns_management' | translate }}">
+                    <oui-tile-description>
+                        <span class="oui-status oui-status_success"
+                              data-translate="domain_dashboard_dns_management_dnsHostedOK"
+                              data-ng-if="$ctrl.dnsStatus.isOk && $ctrl.dnsStatus.isHosted"></span>
+                        <span class="oui-status oui-status_info"
+                              data-translate="domain_dashboard_dns_management_dnsExternalOK"
+                              data-ng-if="$ctrl.dnsStatus.isOk && !$ctrl.dnsStatus.isHosted"></span>
+                        <span class="oui-status oui-status_error"
+                              data-translate="domain_dashboard_dns_management_dnsKO"
+                              data-ng-if="!$ctrl.dnsStatus.isOk"></span>
+                        <small class="ml-3"
+                               data-ng-if="$ctrl.dnsStatus.refreshAlert"
+                               data-oui-tooltip="{{ ::'domain_dashboard_tooltip_dns_updating' | translate }}">
+                            <span class="fa fa-hourglass-half" aria-hidden="true"></span>
+                            <span data-translate="domain_dashboard_dns_refresh"></span>
+                        </small>
+                    </oui-tile-description>
+                    <oui-action-menu data-compact data-align="end">
+                        <oui-action-menu-item
+                            data-text="{{ ::'domain_dashboard_dns_management_dns_details' | translate }}"
+                            data-on-click="$ctrl.goToDnsManagement()"></oui-action-menu-item>
+                    </oui-action-menu>
+                </oui-tile-definition>
+                <!-- DNS ANYCAST -->
+                <oui-tile-definition
+                    data-term-popover="{{ ::'domain_dashboard_dns_anycast_info' | translate }}"
+                    data-term="{{ ::'domain_dashboard_dns_anycast' | translate }}">
+                    <oui-tile-description>
+                        <span data-ng-bind="'domain_dashboard_dns_management_anycast_' + $ctrl.domain.hasDnsAnycast.toString() | translate"
+                              data-ng-if="$ctrl.domain.hasDnsAnycast != null"></span>
+                        <span data-ng-if="$ctrl.domain.hasDnsAnycast == null">
+                            <span data-translate="domain_dashboard_dns_management_anycast_null"></span>
+                            (<span data-translate="domain_configuration_dnsanycast_how_to_activate_1"></span>
+                            <button
+                                class="btn btn-link p-0" type="button"
+                                data-translate="domain_configuration_dnsanycast_how_to_activate_2"
+                                data-ng-click="setAction('zone/activate/domain-zone-activate', $ctrl.domain)">
+                            </button>)
+                        </span>
+                    </oui-tile-description>
+                    <oui-action-menu
+                        data-compact data-align="end"
+                        data-ng-if="!$ctrl.domain.hasDnsAnycast">
+                        <oui-action-menu-item
+                            data-text="{{ ::'domain_configuration_dnsanycast_title_button' | translate }}"
+                            data-on-click="setAction('anycast/domain-dns-anycast')">
+                        </oui-action-menu-item>
+                    </oui-action-menu>
+                </oui-tile-definition>
+                <!-- Free Hosting & email -->
+                <oui-tile-definition
+                    data-term-popover="{{ ::'domain_configuration_web_hosting_offer_START_explain' | translate }}"
+                    data-term="{{ ::'domain_dashboard_enable_web_hosting' | translate }}">
+                    <oui-tile-description>
+                        <a target="_blank"
+                           title="{{ 'common_newtab' | translate }}"
+                           data-ng-href="{{$ctrl.start10MarketUrl}}"
+                           data-ng-if="ctrlDomain.canOrderHosting && ctrlDomain.isAdmin && !$ctrl.hasStart10mOffer">
+                           <span data-translate="domain_dashboard_web_hosting_more_infos"></span>
+                           <i class="fa fa-external-link" aria-hidden="true"></i>
+                         </a>
+                        <span class="oui-status"
+                              data-ng-class="{ 'oui-status_error': !$ctrl.hasStart10mOffer, 'oui-status_success': $ctrl.hasStart10mOffer }"
+                              data-ng-bind="::($ctrl.hasStart10mOffer ? 'common_activated' : 'common_desactivated') | translate"
+                              data-ng-if="!(ctrlDomain.canOrderHosting && ctrlDomain.isAdmin && !$ctrl.hasStart10mOffer)">
+                        </span>
+                    </oui-tile-description>
+                    <oui-action-menu
+                        data-compact data-align="end"
+                        data-ng-if="ctrlDomain.canOrderHosting && ctrlDomain.isAdmin && !$ctrl.hasStart10mOffer">
+                        <oui-action-menu-item
+                            data-text="{{ ::'domain_configuration_action_enable' | translate }}"
+                            data-on-click="$ctrl.showWebHostingOrderWithStartOffer()">
+                        </oui-action-menu-item>
+                    </oui-action-menu>
+                </oui-tile-definition>
+                <!-- Hosting -->
+                <oui-tile-definition
+                    data-term-popover="{{ ::'domain_configuration_web_hosting_associated_explain' | translate }}"
+                    data-term="{{ ::'domain_dashboard_web_hosting_associated' | translate }}">
+                    <oui-tile-description>
+                        <ul class="list-unstyled"
+                            data-ng-if="!$ctrl.loading.associatedHosting && $ctrl.hasHostingAssociate">
+                            <li data-ng-repeat="hosting in $ctrl.hostingAssociated track by $index">
+                                <a data-ng-bind="::hosting.name"
+                                   data-ng-href="{{hosting.url}}"></a>
+                            </li>
+                        </ul>
+                        <span data-translate="domain_dashboard_web_hosting_associated_upsell"
+                              data-ng-if="!$ctrl.loading.associatedHosting && !$ctrl.hasHostingAssociate"></span>
+                    </oui-tile-description>
+                    <oui-action-menu
+                        data-compact data-align="end"
+                        data-ng-if="!$ctrl.loading.associatedHosting && !$ctrl.hasHostingAssociate && ctrlDomain.canOrderHosting && ctrlDomain.isAdmin">
+                        <oui-action-menu-item
+                            data-text="{{ ::'domain_configuration_enable_web_hosting' | translate }}"
+                            data-on-click="setAction('webhosting-enable/domain-enable-web-hosting', $ctrl.domain)"></oui-action-menu-item>
+                    </oui-action-menu>
+                </oui-tile-definition>
+            </oui-tile>
+        </div>
+        <div class="col-xm-12 col-md-4 mb-5">
+            <oui-tile
+                data-heading="{{ ::'domain_dashboard_security' | translate }}"
+                class="h-100"
+                data-loading="$ctrl.loading.whoIs">
+                <!-- PROTECTION  -->
+                <oui-tile-definition
+                    data-ng-class="{'alert alert-warning': $ctrl.domainUnlockRegistry}"
+                    data-term-popover="{{:: 'domain_dashboard_tooltip_protection' | translate}}"
+                    data-term="{{ ::'domain_dashboard_protection_transfert' | translate }}">
+                    <oui-tile-description>
+                        <span class="align-middle mt-2"
+                              data-wuc-v6-ui-switch
+                              data-ng-change="$ctrl.switchTheStateOfProtection()"
+                              data-ng-model="$ctrl.vm.protection.uiSwitch"
+                              data-uib-tooltip="{{($ctrl.domain.protection === 'unlocking' ||
+                              $ctrl.domain.protection === 'locking' ||
+                              $ctrl.domain.protection === 'unavailable') ? ('domain_dashboard_protection_' + $ctrl.domain.protection | translate) : ''}}"
+                              data-tooltip-append-to-body="true"></span>
+                        <button class="btn btn-link ml-3 p-0" type="button"
+                                data-translate="domain_dashboard_show_authinfo"
+                                data-ng-click="setAction('authinfo/domain-authinfo', $ctrl.domain)"
+                                data-ng-if="!$ctrl.domain.isExpired && $ctrl.domain.protection === 'unlocked'"
+                                data-uib-tooltip="{{ ::'domain_dashboard_show_authinfo_title' | translate }}">
+                        </button>
+                        <button class="btn btn-link ml-3 p-0" type="button"
+                                data-translate="domain_dashboard_add_uk_tags"
+                                data-ng-click="setAction('uk-transfert-tag/domain-uk-transfert-tag', $ctrl.domain)"
+                                data-ng-if="$ctrl.isUK">
+                        </button>
+                        <small class="d-block mt-4" role="alert" data-ng-if="$ctrl.domainUnlockRegistry">
+                            <span class="fa fa-exclamation-triangle mr-2" aria-hidden="true"></span>
+                            <em data-ng-bind-html="::'domain_configuration_protection_auth_info_registry' | translate: { t0: $ctrl.domainUnlockRegistry }"></em>
+                        </small>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <!-- DNSSEC -->
+                <oui-tile-definition
+                    data-term-popover="{{:: 'domain_dashboard_tooltip_dnssec' | translate}}"
+                    data-term="{{ ::'domain_dashboard_dnssec' | translate }}">
+                    <oui-tile-description>
+                        <span
+                            class="align-middle mt-2"
+                            data-wuc-v6-ui-switch
+                            data-ng-change="setAction('dns/sec/domain-dns-sec', $ctrl.domain)"
+                            data-ng-disabled="!$ctrl.domain.zoneDnssecSupported"
+                            data-ng-model="$ctrl.vm.dnssec.uiSwitch"
+                            data-uib-tooltip="{{($ctrl.domain.dnssecStatus === 'ENABLE_IN_PROGRESS' ||
+                              $ctrl.domain.dnssecStatus === 'DISABLE_IN_PROGRESS') ? ('domain_configuration_dnssec_' + $ctrl.domain.dnssecStatus | translate) : ''}}"
+                            data-uib-tooltip-append-to-body="true"></span>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <!-- WHOIS configuration  -->
+                <oui-tile-definition data-term="{{ ::'domain_dashboard_whois' | translate }}">
+                    <oui-tile-description>
+                        <oui-button data-ng-if="$ctrl.isWhoisOptinAllowed"
+                                    data-on-click="$ctrl.$state.go('^.optin', $ctrl.$stateParams)">
+                            <span data-translate="domain_dashboard_whois_button"></span>
+                        </oui-button>
+                        <span data-ng-if="!$ctrl.isWhoisOptinAllowed" class="oui-paragraph" data-translate="domain_dashboard_whois_not_allowed"></span>
+                    </oui-tile-description>
+                </oui-tile-definition>
+                <!-- Obfuscated Email regeneration -->
+                <oui-tile-definition data-term="{{ ::'domain_dashboard_obfuscated_email' | translate }}" data-ng-if="$ctrl.canObfuscateEmails">
+                    <oui-tile-description>
+                        <oui-button data-on-click="$ctrl.$state.go('^.emailObfuscation', $ctrl.$stateParams)">
+                            <span data-translate="domain_dashboard_obfuscated_email_regenerate_button"></span>
+                        </oui-button>
+                    </oui-tile-description>
+                </oui-tile-definition>
+            </oui-tile>
+        </div>
+        <div class="col-xm-12 col-md-4 mb-5">
+            <div class="mb-5" data-ng-if="$ctrl.screenshot">
+                <oui-spinner data-ng-if="$ctrl.loading.screenshot"></oui-spinner>
+                <a data-ng-href="http://{{$ctrl.domain.name}}"
+                   class="oui-box oui-box_light d-block p-0 text-truncate mb-0" target="_blank"
+                   title="{{$ctrl.domain.name}} ({{ 'common_newtab' | translate }})"
+                   data-ng-if="!$ctrl.loading.screenshot && $ctrl.screenshot">
+                   <img class="h-100 mw-100" width="600" alt="{{$ctrl.domain.name}}"
+                        data-ng-src="data:image/png;base64,{{$ctrl.screenshot}}">
+                </a>
+            </div>
+            <oui-tile
+                data-heading="{{ ::'common_plan' | translate }}"
+                class="{'h-100': !$ctrl.screenshot}"
+                data-loading="$ctrl.loading.domainInfos">
+                 <!-- OFFER -->
+                 <oui-tile-definition
+                    data-term="{{ ::'domain_dashboard_offer' | translate }}"
+                    data-description="{{ ::$ctrl.domain.offer }}">
+                </oui-tile-definition>
+                <!-- RENEWAL -->
+                <wuc-service-status-action
+                    data-ng-if="!$ctrl.isAllDom && $ctrl.domain.name && $ctrl.domainInfos"
+                    data-service-name="$ctrl.domain.name"
+                    data-service-type="'DOMAIN'"
+                    data-service-infos="$ctrl.domainInfos">
+                </wuc-service-status-action>
+                <wuc-service-status-action
+                    data-ng-if="$ctrl.isAllDom && $ctrl.allDom && $ctrl.allDomInfos"
+                    data-service-name="$ctrl.domain.name"
+                    data-service-type="'DOMAIN'"
+                    data-service-infos="$ctrl.allDomInfos">
+                </wuc-service-status-action>
+                <!-- CONTACTS -->
+                <oui-tile-definition data-term="{{ ::'contacts_management' | translate }}">
+                    <oui-tile-description>
+                        <ul class="list-unstyled">
+                            <p class="mb-0">
+                                <span data-ng-bind="::$ctrl.domainInfos.contactAdmin"></span>:
+                                <span class="small" data-translate="global_admin"></span>
+                            </p>
+                            <p class="mb-0">
+                                <span data-ng-bind="::$ctrl.domainInfos.contactTech"></span>:
+                                <span class="small" data-translate="global_technical"></span>
+                            </p>
+                            <p class="mb-0">
+                                <span data-ng-bind="::$ctrl.domainInfos.contactBilling"></span>:
+                                <span class="small" data-translate="global_billing"></span>
+                            </p>
+                        </ul>
+                    </oui-tile-description>
+                    <oui-action-menu data-compact data-align="end">
+                        <oui-action-menu-item
+                            data-text="{{ ::$ctrl.actions.manageContact.text }}"
+                            aria-label="{{ ::$ctrl.actions.manageContact.text }}"
+                            data-href="{{ ::$ctrl.actions.manageContact.href }}">
+                        </oui-action-menu-item>
+                        <oui-spinner size="s" class="ml-4" data-ng-if="$ctrl.loading.changeOwner"></oui-spinner>
+                        <oui-action-menu-item
+                            data-text="{{ ::$ctrl.actions.changeOwner.text }}"
+                            aria-label="{{ ::$ctrl.actions.changeOwner.text }}"
+                            data-href="{{ ::$ctrl.actions.changeOwner.href }}"
+                            data-ng-if="$ctrl.actions.changeOwner.isAvailable && !$ctrl.loading.changeOwner" data-external>
+                        </oui-action-menu-item>
+                        <oui-action-menu-item
+                            aria-label="domain_configuration_update_owner"
+                            data-href="{{ ::$ctrl.updateOwnerUrl.target }}"
+                            data-ng-if="$ctrl.updateOwnerUrl.target">
+                            <span data-translate="domain_configuration_update_owner"></span>
+                        </oui-action-menu-item>
+                    </oui-action-menu>
+                </oui-tile-definition>
+                <!-- CREATION DATE -->
+                <oui-tile-definition
+                    data-term="{{ ::'common_creation_date' | translate }}"
+                    data-description="{{ ::$ctrl.domain.creation | date:'mediumDate' }}">
+                </oui-tile-definition>
+            </oui-tile>
+        </div>
+    </div>
+    <div class="row d-lg-flex" data-ng-if="!$ctrl.domain.isExpired">
+        <div class="col-xm-12 col-md-4 mb-5">
+            <div class="d-flex flex-column-reverse flex-lg-column">
+                <div data-wuc-guides
+                     data-wuc-guides-list="'generalInformations'"
+                     data-wuc-guides-title="'guide_domain_subtitle' | translate"
+                     data-tr="tr">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

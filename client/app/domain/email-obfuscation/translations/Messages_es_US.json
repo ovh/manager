@@ -1,0 +1,15 @@
+{
+  "domain_email_obfuscation_back_button": "Régénérer les adresses e-mail de substitution",
+  "domain_email_obfuscation_label": "Sélectionner les contacts pour lesquels vous souhaitez régénérer les adresses e-mail de substitution :",
+  "domain_email_obfuscation_regenerate": "Enregistrer les modifications",
+  "domain_email_obfuscation_contact_admin": "Contacto administrador",
+  "domain_email_obfuscation_contact_owner": "Contact propriétaire",
+  "domain_email_obfuscation_contact_tech": "Contact technique",
+  "domain_email_obfuscation_active": "Obfusquer",
+  "domain_email_obfuscation_inactive": "Afficher en clair",
+  "domain_email_obfuscation_mail": "l'adresse e-mail personnelle du contact",
+  "domain_email_obfuscation_refresh": "Regénérer l'e-mail d'obfuscation",
+  "domain_email_obfuscation_refresh_success": "Les adresses e-mails ont été regénérées.",
+  "domain_email_obfuscation_refresh_error": "Une erreur est survenue lors de la regénération de vos adresses e-mails. {{ message }}",
+  "domain_email_obfuscation_error": "Se ha producido un error al cargar la información."
+}

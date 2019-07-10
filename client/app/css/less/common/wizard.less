@@ -1,0 +1,46 @@
+.helpTrigger {
+  animation: flash 1s 3;
+  background-color: @oui-color-jungle;
+  cursor: pointer;
+  display: block;
+  height: 73px;
+  left: ~"calc(100% + 1px)";
+  position: absolute;
+  top: 20px;
+  transition: transform 0.35s;
+  width: 30px;
+
+  &.open {
+    transform: translate(232px, 0);
+  }
+}
+
+.help4wizards {
+  background-color: @oui-color-concrete;
+  border: 1px solid @oui-color-silver;
+  border-top-right-radius: 6px;
+  font-size: 90%;
+  left: 100%;
+  margin-top: 1px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 5px 20px 5px 10px;
+  position: absolute;
+  top: 0;
+  width: 235px;
+  z-index: -1;
+  transform: translate(-236px, 0);
+  transition: transform 0.35s, height 0.35s;
+
+  &.open {
+    transform: translate(-4px, 0);
+  }
+
+  h3 {
+    font-size: 1.8rem;
+  }
+
+  h4 {
+    font-size: 1.6rem;
+  }
+}
