@@ -1,3 +1,12 @@
+import clone from 'lodash/clone';
+import filter from 'lodash/filter';
+import has from 'lodash/has';
+import indexOf from 'lodash/indexOf';
+import isUndefined from 'lodash/isUndefined';
+import map from 'lodash/map';
+import remove from 'lodash/remove';
+import sortBy from 'lodash/sortBy';
+
 angular
   .module('Module.sharepoint.controllers')
   .controller('SharepointAddDomainController', class SharepointAddDomainController {
@@ -40,7 +49,7 @@ angular
       return this.OvhApiDomain.v6()
         .query()
         .$promise
-        .then(domains => _.sortBy(_.map(domains, domain => ({
+        .then(domains => sortBy(map(domains, domain => ({
           name: domain,
           displayName: this.punycode.toUnicode(domain),
           type: 'DOMAIN',
@@ -51,26 +60,26 @@ angular
     }
 
     prepareData(data) {
-      const domains = _.filter(data, item => item.type === 'DOMAIN');
+      const domains = filter(data, item => item.type === 'DOMAIN');
 
       return this.sharepointService.getUsedUpnSuffixes()
         .then((upnSuffixes) => {
-          _.remove(domains, domain => _.indexOf(upnSuffixes, domain.name) >= 0);
+          remove(domains, domain => indexOf(upnSuffixes, domain.name) >= 0);
         })
         .finally(() => {
           this.availableDomains = domains;
-          this.availableDomainsBuffer = _.clone(this.availableDomains);
+          this.availableDomainsBuffer = clone(this.availableDomains);
         });
     }
 
     resetSearchValue() {
       this.search.value = null;
-      this.availableDomains = _.clone(this.availableDomainsBuffer);
+      this.availableDomains = clone(this.availableDomainsBuffer);
     }
 
     resetName() {
-      if (!_.isUndefined(this.search) && _.has(this.search, 'value')) {
-        this.availableDomains = _.filter(
+      if (!isUndefined(this.search) && has(this.search, 'value')) {
+        this.availableDomains = filter(
           this.availableDomainsBuffer,
           n => n.displayName.search(this.search.value) > -1,
         );

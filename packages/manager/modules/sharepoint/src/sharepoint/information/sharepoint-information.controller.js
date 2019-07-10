@@ -1,3 +1,5 @@
+import set from 'lodash/set';
+
 angular
   .module('Module.sharepoint.controllers')
   .controller('SharepointInformationsCtrl', class SharepointInformationsCtrl {
@@ -44,7 +46,7 @@ angular
           }
         })
         .catch((err) => {
-          _.set(err, 'type', err.type || 'ERROR');
+          set(err, 'type', err.type || 'ERROR');
           this.alerter.alertFromSWS(this.$translate.instant('sharepoint_dashboard_error'), err, this.$scope.alerts.main);
         })
         .finally(() => {
@@ -54,7 +56,7 @@ angular
 
     calculateQuotas(sharepoint) {
       if (sharepoint.quota && sharepoint.currentUsage) {
-        _.set(sharepoint, 'left', sharepoint.quota - sharepoint.currentUsage);
+        set(sharepoint, 'left', sharepoint.quota - sharepoint.currentUsage);
       }
       this.sharepoint = sharepoint;
     }

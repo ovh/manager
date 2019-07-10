@@ -1,3 +1,13 @@
+import compact from 'lodash/compact';
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import flatten from 'lodash/flatten';
+import get from 'lodash/get';
+import has from 'lodash/has';
+import isEmpty from 'lodash/isEmpty';
+import map from 'lodash/map';
+import startsWith from 'lodash/startsWith';
+
 {
   const URL_DEFAULT_SUFFIX = '.sp.ovh.net';
   const DEFAULT_SUBSIDIARY = 'GB';
@@ -117,7 +127,7 @@
        * @param {array} emails
        */
       getSharepointOrderUrl(exchangeName, emails) {
-        if (_.isEmpty(this.orderBaseUrl)) {
+        if (isEmpty(this.orderBaseUrl)) {
           return null;
         }
 
@@ -149,7 +159,7 @@
        * @param {string} primaryEmailAddress
        */
       getSharepointAccountOrderUrl(serviceName, primaryEmailAddress) {
-        if (_.isEmpty(this.orderBaseUrl)) {
+        if (isEmpty(this.orderBaseUrl)) {
           return null;
         }
 
@@ -173,7 +183,7 @@
        * @param {number} number
        */
       getSharepointStandaloneNewAccountOrderLegacyUrl(serviceName, number) {
-        if (_.isEmpty(this.orderBaseUrl)) {
+        if (isEmpty(this.orderBaseUrl)) {
           return null;
         }
 
@@ -193,7 +203,7 @@
        * @param {number} quantity
        */
       getSharepointStandaloneNewAccountOrderUrl(serviceName, quantity) {
-        if (_.isEmpty(this.orderBaseUrl)) {
+        if (isEmpty(this.orderBaseUrl)) {
           return null;
         }
 
@@ -219,7 +229,7 @@
        * @param {number} quantity
        */
       getSharepointProviderNewAccountOrderUrl(serviceName, quantity) {
-        if (_.isEmpty(this.orderBaseUrl)) {
+        if (isEmpty(this.orderBaseUrl)) {
           return null;
         }
 
@@ -244,7 +254,7 @@
        * @param {number} quantity
        */
       getSharepointStandaloneOrderUrl(quantity) {
-        if (_.isEmpty(this.orderBaseUrl)) {
+        if (isEmpty(this.orderBaseUrl)) {
           return null;
         }
 
@@ -267,7 +277,7 @@
        * @param {number} quantity
        */
       getSharepointProviderOrderUrl(quantity = 1) {
-        if (_.isEmpty(this.orderBaseUrl)) {
+        if (isEmpty(this.orderBaseUrl)) {
           return null;
         }
 
@@ -315,7 +325,7 @@
       getAccounts(serviceName, userPrincipalName) {
         const queryParam = {};
 
-        if (!_.isEmpty(userPrincipalName)) {
+        if (!isEmpty(userPrincipalName)) {
           queryParam.userPrincipalName = `%${userPrincipalName}%`;
         }
 
@@ -465,7 +475,7 @@
             },
           })
           .then((sharepoint) => {
-            const separator = _.startsWith(sharepoint.farmUrl, '.') ? '' : '.';
+            const separator = startsWith(sharepoint.farmUrl, '.') ? '' : '.';
 
             return `${separator}${sharepoint.farmUrl}`;
           })
@@ -490,7 +500,7 @@
               .then(suffixes => suffixes)
               .catch(() => null));
 
-            return this.$q.all(queue).then(data => _.flatten(_.compact(data)));
+            return this.$q.all(queue).then(data => flatten(compact(data)));
           })
           .catch(() => []);
       }
@@ -572,18 +582,18 @@
           .aggregate('displayName')
           .execute({ organizationName: '*' })
           .$promise
-          .then(services => _.filter(services, service => _.has(service, 'value.displayName') && _.has(service, 'value.offer')))
-          .then(services => _.map(services, service => ({
+          .then(services => filter(services, service => has(service, 'value.displayName') && has(service, 'value.offer')))
+          .then(services => map(services, service => ({
             name: service.key,
             displayName: service.value.displayName,
-            organization: _.get(service.path.split('/'), '[3]'),
+            organization: get(service.path.split('/'), '[3]'),
             type: `EXCHANGE_${service.value.offer.toUpperCase()}`,
           })));
       }
 
       getAssociatedExchangeService(exchangeId) {
         return this.getExchangeServices()
-          .then(services => _.find(services, {
+          .then(services => find(services, {
             name: exchangeId,
           }))
           .then((exchangeService) => {

@@ -1,3 +1,6 @@
+import get from 'lodash/get';
+import round from 'lodash/round';
+
 angular
   .module('Module.sharepoint.controllers')
   .controller('SharepointAccountAddCtrl', class SharepointAccountAddCtrl {
@@ -35,7 +38,7 @@ angular
           `sharepoint-account-${this.isProvider ? 'provider' : 'hosted'}-2016`,
         ))
         .then((prices) => {
-          this.price = _.get(prices, 'P1M');
+          this.price = get(prices, 'P1M');
         })
         .catch((err) => {
           this.$scope.resetAction();
@@ -47,11 +50,11 @@ angular
     }
 
     getTotalPrice() {
-      return _.round(_.get(this.price, 'value', 0) * this.quantity, 2);
+      return round(get(this.price, 'value', 0) * this.quantity, 2);
     }
 
     getCurrency() {
-      return _.get(this.price, 'currencyCode') === 'EUR' ? '&#0128;' : _.get(this.price, 'currencyCode');
+      return get(this.price, 'currencyCode') === 'EUR' ? '&#0128;' : get(this.price, 'currencyCode');
     }
 
     submit() {

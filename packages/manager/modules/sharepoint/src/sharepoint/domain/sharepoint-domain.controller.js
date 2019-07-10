@@ -1,3 +1,6 @@
+import get from 'lodash/get';
+import set from 'lodash/set';
+
 angular
   .module('Module.sharepoint.controllers')
   .controller('SharepointDomainsCtrl', class SharepointDomainsCtrl {
@@ -33,9 +36,9 @@ angular
       return this.sharepointService.getSharepointUpnSuffixeDetails(this.exchangeId, suffix)
         .then((suffix) => { // eslint-disable-line
           if (!suffix.ownershipValidated) {
-            _.set(suffix, 'cnameTooltip', this.$translate.instant('sharepoint_domains_cname_check_tooltip', { t0: suffix.cnameToCheck ? `${suffix.cnameToCheck}.${suffix.suffix}` : ' ' }));
+            set(suffix, 'cnameTooltip', this.$translate.instant('sharepoint_domains_cname_check_tooltip', { t0: suffix.cnameToCheck ? `${suffix.cnameToCheck}.${suffix.suffix}` : ' ' }));
           }
-          _.get(suffix, 'displayName', this.punycode.toUnicode(suffix.suffix));
+          get(suffix, 'displayName', this.punycode.toUnicode(suffix.suffix));
           return suffix;
         })
         .catch(() => ({

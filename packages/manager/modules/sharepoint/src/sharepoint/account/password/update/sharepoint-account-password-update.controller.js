@@ -1,3 +1,6 @@
+import set from 'lodash/set';
+import some from 'lodash/some';
+
 angular
   .module('Module.sharepoint.controllers')
   .controller('SharepointUpdatePasswordCtrl', class SharepointUpdatePasswordCtrl {
@@ -62,8 +65,8 @@ angular
       this.containsNameFlag = false;
       this.containsSameAccountNameFlag = false;
 
-      _.set(selectedAccount, 'password', selectedAccount.password || '');
-      _.set(selectedAccount, 'passwordConfirmation', selectedAccount.passwordConfirmation || '');
+      set(selectedAccount, 'password', selectedAccount.password || '');
+      set(selectedAccount, 'passwordConfirmation', selectedAccount.passwordConfirmation || '');
 
       if (selectedAccount.password !== selectedAccount.passwordConfirmation) {
         this.differentPasswordFlag = true;
@@ -90,13 +93,13 @@ angular
           }
 
           if (!this.containsNameFlag && selectedAccount.login) {
-            if (_.some(selectedAccount.password, selectedAccount.login)) {
+            if (some(selectedAccount.password, selectedAccount.login)) {
               this.containsNameFlag = true;
             }
           }
 
           if (selectedAccount.samaccountName
-            && _.some(selectedAccount.password, selectedAccount.samaccountName)) {
+            && some(selectedAccount.password, selectedAccount.samaccountName)) {
             if (!this.containsSamAccountNameLabel) {
               this.containsSamAccountNameLabel = this.$translate.instant('exchange_ACTION_update_account_step1_password_contains_samaccount_name', { t0: selectedAccount.samaccountName });
             }

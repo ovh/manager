@@ -1,3 +1,8 @@
+import isEmpty from 'lodash/isEmpty';
+import isNull from 'lodash/isNull';
+import some from 'lodash/some';
+import kebabCase from 'lodash/kebabCase';
+
 angular
   .module('Module.sharepoint.controllers')
   .controller('SharepointTabsCtrl', class SharepointTabsCtrl {
@@ -11,12 +16,12 @@ angular
     $onInit() {
       this.defaultTab = 'INFORMATION';
 
-      this.$scope.toKebabCase = _.kebabCase;
+      this.$scope.toKebabCase = kebabCase;
       this.$scope.tabs = ['INFORMATION', 'ACCOUNT', 'TASK'];
 
 
       this.$scope.setSelectedTab = (tab) => {
-        if (!_.isEmpty(tab)) {
+        if (!isEmpty(tab)) {
           this.$scope.selectedTab = tab;
         } else {
           this.$scope.selectedTab = this.defaultTab;
@@ -27,12 +32,12 @@ angular
       this.sharepointService.getAssociatedExchangeService(this.$stateParams.exchangeId)
         .catch(() => this.$scope.tabs.splice(1, 0, 'DOMAIN'))
         .finally(() => {
-          if (!_.isNull(this.$stateParams.tab)
-            && _.some(
+          if (!isNull(this.$stateParams.tab)
+            && some(
               this.$scope.tabs,
-              item => item === angular.uppercase(this.$stateParams.tab),
+              item => item === this.$stateParams.tab.toUpperCase(),
             )) {
-            this.$scope.setSelectedTab(angular.uppercase(this.$stateParams.tab));
+            this.$scope.setSelectedTab(this.$stateParams.tab.toUpperCase());
           } else {
             this.$scope.setSelectedTab(this.defaultTab);
           }

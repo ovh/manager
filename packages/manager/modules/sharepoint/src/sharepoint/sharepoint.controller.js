@@ -1,3 +1,5 @@
+import set from 'lodash/set';
+
 angular
   .module('Module.sharepoint.controllers')
   .controller('SharepointCtrl', class SharepointCtrl {
@@ -83,7 +85,7 @@ angular
           this.$rootScope.$broadcast('change.displayName', [this.sharepointDomain, this.displayName]);
         })
         .catch((err) => {
-          _.set(err, 'type', err.type || 'ERROR');
+          set(err, 'type', err.type || 'ERROR');
           this.alerter.alertFromSWS(this.$translate.instant('sharepoint_dashboard_display_name_error'), err, this.$scope.alerts.tabs);
         })
         .finally(() => {
@@ -101,7 +103,7 @@ angular
           this.sharepoint = sharepoint;
         })
         .catch((err) => {
-          _.set(err, 'type', err.type || 'ERROR');
+          set(err, 'type', err.type || 'ERROR');
           this.alerter.alertFromSWS(this.$translate.instant('sharepoint_dashboard_error'), err, this.$scope.alerts.page);
         })
         .finally(() => {

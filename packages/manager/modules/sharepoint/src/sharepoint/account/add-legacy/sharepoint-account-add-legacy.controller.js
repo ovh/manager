@@ -1,3 +1,6 @@
+import get from 'lodash/get';
+import round from 'lodash/round';
+
 angular
   .module('Module.sharepoint.controllers')
   .controller('SharepointAccountAddLegacyCtrl', class SharepointAccountAddLegacyCtrl {
@@ -32,11 +35,11 @@ angular
     }
 
     static getPrice(option) {
-      return _.round(_.get(option, 'prices[0].price.value', 0) * _.get(option, 'prices[0].quantity', 0), 2);
+      return round(get(option, 'prices[0].price.value', 0) * get(option, 'prices[0].quantity', 0), 2);
     }
 
     static getCurrency(option) {
-      return _.get(option, 'prices[0].price.currencyCode') === 'EUR' ? '&#0128;' : _.get(option, 'prices[0].price.currencyCode');
+      return get(option, 'prices[0].price.currencyCode') === 'EUR' ? '&#0128;' : get(option, 'prices[0].price.currencyCode');
     }
 
     submit() {

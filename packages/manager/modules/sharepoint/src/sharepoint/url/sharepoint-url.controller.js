@@ -1,3 +1,5 @@
+import set from 'lodash/set';
+
 angular
   .module('Module.sharepoint.controllers')
   .controller('SharepointUrlCtrl', class SharepointUrlCtrl {
@@ -57,7 +59,7 @@ angular
           }, 3000);
         })
         .catch((err) => {
-          _.set(err, 'type', err.type || 'ERROR');
+          set(err, 'type', err.type || 'ERROR');
           this.alerter.alertFromSWS(this.$translate.instant('sharepoint_set_url_failure_message_text'), err, this.alerts.main);
         });
     }

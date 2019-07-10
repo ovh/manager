@@ -1,3 +1,8 @@
+import assign from 'lodash/assign';
+import filter from 'lodash/filter';
+import pick from 'lodash/pick';
+import union from 'lodash/union';
+
 angular
   .module('Module.sharepoint.controllers')
   .controller('SharepointUpdateAccountCtrl', class SharepointUpdateAccountCtrl {
@@ -36,25 +41,25 @@ angular
 
     getAccountDetails() {
       this.sharepointService.getAccountDetails(this.exchangeId, this.account.userPrincipalName)
-        .then(accountDetails => _.assign(this.account, accountDetails));
+        .then(accountDetails => assign(this.account, accountDetails));
     }
 
     getSharepointUpnSuffixes() {
       this.sharepointService
         .getSharepointUpnSuffixes(this.exchangeId)
         .then(upnSuffixes => this.$q.all(
-          _.filter(upnSuffixes, suffix => this.sharepointService
+          filter(upnSuffixes, suffix => this.sharepointService
             .getSharepointUpnSuffixeDetails(this.exchangeId, suffix)
             .then(suffixDetails => suffixDetails.ownershipValidated)),
         ))
         .then((availableDomains) => {
-          this.availableDomains = _.union([this.account.domain], availableDomains);
+          this.availableDomains = union([this.account.domain], availableDomains);
         });
     }
 
     updateMsAccount() {
       this.account.userPrincipalName = `${this.account.login}@${this.account.domain}`;
-      return this.sharepointService.updateSharepoint(this.exchangeId, this.originalValue.userPrincipalName, _.pick(this.account, ['userPrincipalName', 'firstName', 'lastName', 'initials', 'displayName']))
+      return this.sharepointService.updateSharepoint(this.exchangeId, this.originalValue.userPrincipalName, pick(this.account, ['userPrincipalName', 'firstName', 'lastName', 'initials', 'displayName']))
         .then(() => {
           this.alerter.success(this.$translate.instant('sharepoint_account_update_configuration_confirm_message_text', { t0: this.account.userPrincipalName }), this.$scope.alerts.main);
         })

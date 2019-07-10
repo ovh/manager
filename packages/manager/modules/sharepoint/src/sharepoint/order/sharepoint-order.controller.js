@@ -1,3 +1,11 @@
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import get from 'lodash/get';
+import has from 'lodash/has';
+import head from 'lodash/head';
+import map from 'lodash/map';
+import thru from 'lodash/thru';
+
 angular
   .module('Module.sharepoint.controllers')
   .controller('SharepointOrderCtrl', class SharepointOrderCtrl {
@@ -61,7 +69,7 @@ angular
         })
         .finally(() => {
           this.loaders.init = false;
-          this.associatedExchange = this.associatedExchange || _.head(this.exchanges);
+          this.associatedExchange = this.associatedExchange || head(this.exchanges);
           this.getAccounts();
         });
     }
@@ -75,12 +83,12 @@ angular
     }
 
     checkReseller() {
-      return this.OvhApiMeVipStatus.v6().get().$promise.then(status => _.get(status, 'web', false));
+      return this.OvhApiMeVipStatus.v6().get().$promise.then(status => get(status, 'web', false));
     }
 
     getExchanges() {
       return this.Sharepoint.getExchangeServices()
-        .then(exchanges => _.map(exchanges, (exchange) => {
+        .then(exchanges => map(exchanges, (exchange) => {
           const newExchange = angular.copy(exchange);
           newExchange.domain = newExchange.name;
           return newExchange;
@@ -97,11 +105,16 @@ angular
     }
 
     filterSupportedExchanges(exchanges) {
-      return _(exchanges)
-        .filter(exchange => this.constructor.isSupportedExchangeType(exchange))
-        .filter(exchange => this.isSupportedExchangeAdditionalCondition(exchange))
-        .thru(exchanges => this.filterExchangesThatAlreadyHaveSharepoint(exchanges)) // eslint-disable-line
-        .value();
+      return thru(
+        filter(
+          filter(
+            exchanges,
+            exchange => this.constructor.isSupportedExchangeType(exchange),
+          ),
+          exchange => this.isSupportedExchangeAdditionalCondition(exchange),
+        ),
+        exchangesList => this.filterExchangesThatAlreadyHaveSharepoint(exchangesList),
+      );
     }
 
     static isSupportedExchangeType(exchange) {
@@ -115,11 +128,11 @@ angular
 
     filterExchangesThatAlreadyHaveSharepoint(exchanges) {
       return this.buildSharepointChecklist(exchanges)
-        .then(checklist => _.filter(exchanges, (exchange, index) => !checklist[index]));
+        .then(checklist => filter(exchanges, (exchange, index) => !checklist[index]));
     }
 
     selectAssociatedExchangeFromRouteParams(exchanges) {
-      this.associatedExchange = _.find(
+      this.associatedExchange = find(
         exchanges,
         exchange => exchange.organization === this.organizationId
           && exchange.name === this.exchangeId,
@@ -131,7 +144,7 @@ angular
 
     buildSharepointChecklist(exchanges) {
       return this.$q.all(
-        _.map(exchanges, exchange => this.hasSharepoint(exchange)),
+        map(exchanges, exchange => this.hasSharepoint(exchange)),
       );
     }
 
@@ -146,7 +159,7 @@ angular
         organizationName: this.associatedExchange.organization,
         exchangeService: this.associatedExchange.domain,
       }).then(accountEmails => ({
-        data: _.map(accountEmails, email => ({ email })),
+        data: map(accountEmails, email => ({ email })),
         meta: {
           totalCount: accountEmails.length,
         },
@@ -189,7 +202,7 @@ angular
 
     getSharepointOrderUrl() {
       if (this.associateExchange) {
-        if (_.has(this.associatedExchange, 'name') && this.accountsToAssociate.length >= 1) {
+        if (has(this.associatedExchange, 'name') && this.accountsToAssociate.length >= 1) {
           return this.Sharepoint.getSharepointOrderUrl(
             this.associatedExchange.name,
             this.accountsToAssociate,

@@ -1,3 +1,8 @@
+import findIndex from 'lodash/findIndex';
+import isEmpty from 'lodash/isEmpty';
+import isNull from 'lodash/isNull';
+import set from 'lodash/set';
+
 angular
   .module('Module.sharepoint.controllers')
   .controller('SharepointAccountsCtrl', class SharepointAccountsCtrl {
@@ -53,11 +58,11 @@ angular
     }
 
     static setAccountProperties(account, userPrincipalName) {
-      _.set(account, 'userPrincipalName', userPrincipalName);
-      _.set(account, 'activated', true);
-      _.set(account, 'usedQuota', filesize(account.currentUsage, { standard: 'iec', output: 'object' }));
-      _.set(account, 'totalQuota', filesize(account.quota, { standard: 'iec', output: 'object' }));
-      _.set(account, 'percentUse', Math.round((account.currentUsage / account.quota) * 100));
+      set(account, 'userPrincipalName', userPrincipalName);
+      set(account, 'activated', true);
+      set(account, 'usedQuota', filesize(account.currentUsage, { standard: 'iec', output: 'object' }));
+      set(account, 'totalQuota', filesize(account.quota, { standard: 'iec', output: 'object' }));
+      set(account, 'percentUse', Math.round((account.currentUsage / account.quota) * 100));
     }
 
     updateSearch() {
@@ -74,12 +79,12 @@ angular
         .getSharepoint(this.$stateParams.exchangeId)
         .then((sharepoint) => {
           this.sharepoint = sharepoint;
-          if (_.isNull(this.sharepoint.url)) {
+          if (isNull(this.sharepoint.url)) {
             this.$location.path(`/configuration/sharepoint/${this.$stateParams.exchangeId}/${this.sharepoint.domain}/setUrl`);
           }
         })
         .catch((err) => {
-          _.set(err, 'type', err.type || 'ERROR');
+          set(err, 'type', err.type || 'ERROR');
           this.alerter.alertFromSWS(this.$translate.instant('sharepoint_dashboard_error'), err, this.$scope.alerts.main);
         });
     }
@@ -99,10 +104,10 @@ angular
         })
         .then((sharepoint) => {
           if (sharepoint.taskPendingId > 0) {
-            _.set(account, 'taskPendingId', sharepoint.taskPendingId);
+            set(account, 'taskPendingId', sharepoint.taskPendingId);
             this.startPoller(account.userPrincipalName);
           } else {
-            const index = _.findIndex(this.accounts, {
+            const index = findIndex(this.accounts, {
               userPrincipalName: account.userPrincipalName,
             });
             if (index > -1) {
@@ -122,7 +127,7 @@ angular
         successRule: { state: account => account.taskPendingId === 0 },
         namespace: 'sharepoint.accounts.poll',
       }).then((account) => {
-        const index = _.findIndex(this.accounts, { userPrincipalName });
+        const index = findIndex(this.accounts, { userPrincipalName });
         if (index > -1) {
           this.constructor.setAccountProperties(account, userPrincipalName);
           this.accounts[index] = account;
@@ -204,10 +209,10 @@ angular
         .then((ids) => {
           this.accountIds = ids.map(accountId => ({ accountId }));
         }).catch((err) => {
-          _.set(err, 'type', err.type || 'ERROR');
+          set(err, 'type', err.type || 'ERROR');
           this.alerter.alertFromSWS(this.$translate.instant('sharepoint_accounts_err'), err, this.$scope.alerts.main);
         }).finally(() => {
-          if (_.isEmpty(this.accountIds)) {
+          if (isEmpty(this.accountIds)) {
             this.loaders.search = false;
           } else {
             this.hasResult = true;

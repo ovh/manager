@@ -1,3 +1,12 @@
+import clone from 'lodash/clone';
+import cloneDeep from 'lodash/cloneDeep';
+import delay from 'lodash/delay';
+import find from 'lodash/find';
+import isEmpty from 'lodash/isEmpty';
+import map from 'lodash/map';
+import remove from 'lodash/remove';
+import set from 'lodash/set';
+
 angular
   .module('Module.sharepoint.controllers')
   .controller('SharepointUpdateRenewCtrl', class SharepointUpdateRenewCtrl {
@@ -28,7 +37,7 @@ angular
 
       this.$scope.submit = () => {
         this.$q.all(
-          _.map(this.buffer.changes, sharepoint => this.sharepointService.updateSharepointAccount(
+          map(this.buffer.changes, sharepoint => this.sharepointService.updateSharepointAccount(
             this.$stateParams.exchangeId,
             sharepoint.userPrincipalName,
             {
@@ -40,7 +49,7 @@ angular
             this.alerter.success(this.$translate.instant('sharepoint_exchange_update_billing_periode_success'), this.$scope.alerts.main);
           })
           .catch((err) => {
-            _.set(err, 'type', err.type || 'ERROR');
+            set(err, 'type', err.type || 'ERROR');
             this.alerter.alertFromSWS(this.$translate.instant('sharepoint_exchange_update_billing_periode_failure'), err, this.$scope.alerts.main);
           })
           .finally(() => {
@@ -72,11 +81,11 @@ angular
         .then((accountIds) => {
           this.accountIds = accountIds;
         }).catch((err) => {
-          _.set(err, 'type', err.type || 'ERROR');
+          set(err, 'type', err.type || 'ERROR');
           this.alerter.alertFromSWS(this.$translate.instant('sharepoint_accounts_err'), err, this.$scope.alerts.main);
           this.$scope.resetAction();
         }).finally(() => {
-          if (_.isEmpty(this.accountIds)) {
+          if (isEmpty(this.accountIds)) {
             this.loaders.init = false;
           }
         });
@@ -86,9 +95,9 @@ angular
       return this.sharepointService
         .getAccountSharepoint(this.$stateParams.exchangeId, userPrincipalName)
         .then((sharepoint) => {
-          _.set(sharepoint, 'userPrincipalName', userPrincipalName);
-          _.set(sharepoint, 'activated', true);
-          this.bufferedAccounts.push(_.clone(sharepoint));
+          set(sharepoint, 'userPrincipalName', userPrincipalName);
+          set(sharepoint, 'activated', true);
+          this.bufferedAccounts.push(clone(sharepoint));
           return sharepoint;
         })
         .catch(() => ({
@@ -102,25 +111,25 @@ angular
     }
 
     changeRenew(account, newValue) {
-      const buffered = _.find(this.bufferedAccounts, {
+      const buffered = find(this.bufferedAccounts, {
         userPrincipalName: account.userPrincipalName,
       });
 
       if (buffered && buffered.deleteAtExpiration !== newValue) {
         this.buffer.changes.push(account);
       } else {
-        _.remove(this.buffer.changes, account);
+        remove(this.buffer.changes, account);
       }
       this.buffer.hasChanged = !!this.buffer.changes.length;
     }
 
     checkBuffer() {
       if (!this.accountIdsResume) {
-        this.accountIdsResume = _.clone(this.accountIds, true);
+        this.accountIdsResume = cloneDeep(this.accountIds);
       } else {
         this.accountIdsResume = [];
-        _.delay(() => {
-          this.accountIdsResume = _.clone(this.accountIds, true);
+        delay(() => {
+          this.accountIdsResume = cloneDeep(this.accountIds);
         }, 50);
       }
     }
@@ -129,13 +138,13 @@ angular
       return this.sharepointService
         .getAccountSharepoint(this.$stateParams.exchangeId, userPrincipalName)
         .then((sharepoint) => {
-          _.set(sharepoint, 'userPrincipalName', userPrincipalName);
-          const buffered = _.find(this.buffer.changes, {
+          set(sharepoint, 'userPrincipalName', userPrincipalName);
+          const buffered = find(this.buffer.changes, {
             userPrincipalName: sharepoint.userPrincipalName,
           });
 
           if (buffered) {
-            _.set(sharepoint, 'deleteAtExpiration', buffered.deleteAtExpiration);
+            set(sharepoint, 'deleteAtExpiration', buffered.deleteAtExpiration);
           }
           return sharepoint;
         })

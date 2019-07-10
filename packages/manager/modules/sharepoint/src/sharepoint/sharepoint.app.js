@@ -1,3 +1,5 @@
+import set from 'lodash/set';
+
 angular.module('Module.sharepoint', [
   'ovh-utils-angular',
   'ngRoute',
@@ -10,7 +12,7 @@ angular.module('Module.sharepoint', [
   '$stateProvider', ($stateProvider) => {
     const resolve = {
       navigationInformations: /* @ngInject */['Navigator', '$rootScope', (Navigator, $rootScope) => {
-        _.set($rootScope, 'currentSectionInformation', 'sharepoint');
+        set($rootScope, 'currentSectionInformation', 'sharepoint');
         return Navigator.setNavigationInformation({
           leftMenuVisible: true,
           configurationSelected: true,
