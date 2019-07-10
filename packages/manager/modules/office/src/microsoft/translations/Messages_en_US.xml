@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+
+   <translation id="microsoft_office_license_office-business-pp" qtlid="253218">Office Business</translation>
+   <translation id="microsoft_office_license_office-proplus-pp" qtlid="253231">Office ProPlus</translation>
+   <translation id="microsoft_office_license_officeBusiness" qtlid="253218">Office Business</translation>
+   <translation id="microsoft_office_license_officeProPlus" qtlid="253231">Office ProPlus</translation>
+
+   <translation id="microsoft_office_license_detail_firstname" qtlid="23323">First name</translation>
+   <translation id="microsoft_office_license_detail_lastname" qtlid="3818">Name</translation>
+   <translation id="microsoft_office_license_detail_zipcode" qtlid="236268">Zip code</translation>
+   <translation id="microsoft_office_license_detail_city" qtlid="33310">City</translation>
+   <translation id="microsoft_office_license_detail_address" qtlid="30430">Address</translation>
+   <translation id="microsoft_office_license_detail_phone" qtlid="34174">Phone</translation>
+   <translation id="microsoft_office_license_detail_status" qtlid="26443">Status</translation>
+   <translation id="microsoft_office_license_detail_displayName" qtlid="264771">Display name</translation>
+   <translation id="microsoft_office_license_generals_informations_title" qtlid="27115">General information</translation>
+   <translation id="microsoft_office_license_generals_informations_domain_title" qtlid="32590">Domains</translation>
+   <translation id="microsoft_office_license_edit" qtlid="6766">Edit</translation>
+
+   <translation id="microsoftOfficeLicense_tab_STATE" qtlid="215702">General information</translation>
+   <translation id="microsoftOfficeLicense_tab_USER" qtlid="113658">Licenses</translation>
+   <translation id="microsoftOfficeLicense_tab_CONSUMPTION" qtlid="25639">Usage</translation>
+
+   <translation id="microsoft_office_license_officeBusiness_serie_name" qtlid="253569">Office Business licences</translation>
+   <translation id="microsoft_office_license_officeProPlus_serie_name" qtlid="264784">Office ProPlus licences </translation>
+   <translation id="microsoft_office_license_usage_stats" qtlid="253543">Monthly usage </translation>
+   <translation id="microsoft_office_license_peakcount" qtlid="253556">Daily licence allowance</translation>
+
+   <translation id="microsoft_office_license_detail_user_firstname" qtlid="23323">First name</translation>
+   <translation id="microsoft_office_license_detail_user_lastname" qtlid="3818">Name</translation>
+   <translation id="microsoft_office_license_detail_user_status" qtlid="26443">Status</translation>
+   <translation id="microsoft_office_license_detail_user_error" qtlid="226423">An error has occurred:</translation>
+   <translation id="microsoft_office_license_detail_user_activationEmail" qtlid="264797">Activation email</translation>
+   <translation id="microsoft_office_license_detail_user_licenses" qtlid="113658">Licenses</translation>
+   <translation id="microsoft_office_license_detail_user_refresh" qtlid="413284">Reload data</translation>
+   <translation id="microsoft_office_license_detail_user_no_users" qtlid="215741">No user</translation>
+   <translation id="microsoft_office_license_detail_user_delete_error" qtlid="147824">An error has occurred deleting the <b>{0}</b> user</translation>
+   <translation id="microsoft_office_license_detail_user_delete_success" qtlid="264810">User is being deleted</translation>
+   <translation id="microsoft_office_license_detail_user_delete_confirm" qtlid="264823">Are you sure you want to delete user <strong>{0}</strong> ?</translation>
+   <translation id="microsoft_office_license_detail_user_delete_title" qtlid="49130">Delete user</translation>
+   <translation id="microsoft_office_license_detail_user_delete_info1" qtlid="404486">The user will be deleted automatically after confirmation</translation>
+   <translation id="microsoft_office_license_detail_user_delete_info2" qtlid="404499">As our Office 365 products are billed at the end of the month. For services used during the previous month, you will receive one last invoice for this account </translation>
+   <translation id="microsoft_office_license_detail_user_not_configure" qtlid="124952">Not configured</translation>
+
+   <translation id="microsoft_office_license_user_add" qtlid="7150">Add user</translation>
+   <translation id="microsoft_office_license_user_order" qtlid="446598">Order more licences</translation>
+
+   <translation id="microsoft_office_license_detail_state_domainName" qtlid="264836">Domain name</translation>
+   <translation id="microsoft_office_license_detail_state_txtEntry" qtlid="264849">Between txt</translation>
+   <translation id="microsoft_office_license_detail_state_status" qtlid="26443">Status</translation>
+   <translation id="microsoft_office_license_user_status_creating" qtlid="26227">Creating</translation>
+   <translation id="microsoft_office_license_user_status_updating" qtlid="26863">Update</translation>
+   <translation id="microsoft_office_license_user_status_deleting" qtlid="133929">Deleting</translation>
+   <translation id="microsoft_office_license_user_status_ok" qtlid="264862">Created </translation>
+   <translation id="microsoft_office_license_user_status_error" qtlid="26407">Error</translation>
+   <translation id="microsoft_office_license_user_change_password" qtlid="80394">Change password</translation>
+   <translation id="microsoft_office_license_user_update" qtlid="404512">Edit the account </translation>
+   <translation id="microsoft_office_license_user_delete" qtlid="150294">Delete the account</translation>
+   <translation id="microsoft_office_license_user_edit_password" qtlid="8434">Modify password</translation>
+   <translation id="microsoft_office_license_user_edit_password_info" qtlid="91129">Password:</translation>
+   <translation id="microsoft_office_license_user_edit_password_confirm" qtlid="197063">Confirmation:</translation>
+   <translation id="microsoft_office_license_user_edit_password_email_field" qtlid="89028">Email address:</translation>
+   <translation id="microsoft_office_license_user_edit_password_heading" qtlid="275545"><strong>You are about to modify your account password.</strong><p> Do you wish to continue?</p></translation>
+   <translation id="microsoft_office_license_user_edit_password_conditions" qtlid="275558">Warning - the password must meet the following requirements: <ul><li>Minimum of 8 characters</li><li>Maximum of 16 characters</li><li>At least 1 lower case letter, 1 uppercase letter, 1 number or 1 special character </li></ul></translation>
+   <translation id="microsoft_office_license_user_edit_password_empty" qtlid="275571">If you don't enter a password, one will be randomly generated and sent by email.</translation>
+   <translation id="microsoft_office_license_user_edit_password_error" qtlid="211867">Invalid password</translation>
+   <translation id="microsoft_office_license_user_edit_confirm_error" qtlid="275584">The passwords must be identical</translation>
+   <translation id="microsoft_office_license_user_edit_password_email" qtlid="275597">I wish to receive the password by email:</translation>
+   <translation id="microsoft_office_license_user_edit_password_email_details" qtlid="275610">By default, the password will be sent to:</translation>
+   <translation id="microsoft_office_license_user_edit_password_email_notify" qtlid="404525">If you do not enter a password, one will be randomly generated for you, and sent via email to the specified address </translation>
+   <translation id="microsoft_office_license_user_edit_password_email_details_change" qtlid="275623">You can customize this recipient here above. </translation>
+   <translation id="microsoft_office_license_get_error" qtlid="275636">An error occurred while retrieving the information.</translation>
+   <translation id="microsoft_office_license_edit_password_success" qtlid="275649">Your password modification has been registered.</translation>
+   <translation id="microsoft_office_license_edit_password_error" qtlid="157447">An error occurred on changing the password.</translation>
+   <translation id="microsoft_office_license_user_edit_password_nic_admin" qtlid="275662">the email address for the admin contact</translation>
+   <translation id="microsoft_office_license_user_edit_password_default_email" qtlid="404538">Use email by default </translation>
+   <translation id="microsoft_office_license_user_edit_password_email" qtlid="404551">Edit email </translation>
+
+   <translation id="microsoft_office_license_detail_user_add_success" qtlid="264875">User being added </translation>
+   <translation id="microsoft_office_license_add_user_price_warning" qtlid="363388">You will be charged based on the number of licences activated in the current month. </translation>
+   <translation id="microsoft_office_license_add_user_domain_label" qtlid="264888">Office Domain</translation>
+   <translation id="microsoft_office_license_add_user_firstName_label" qtlid="23323">First name</translation>
+   <translation id="microsoft_office_license_add_user_lastName_label" qtlid="3818">Name</translation>
+   <translation id="microsoft_office_license_add_user_license_label" qtlid="264901">Licence usage</translation>
+   <translation id="microsoft_office_license_add_user_login_label" qtlid="41062">Login</translation>
+   <translation id="microsoft_office_license_add_user_required" qtlid="237096">This field is mandatory</translation>
+   <translation id="microsoft_office_license_add_user_confirm" qtlid="264914">The following user will be added</translation>
+   <translation id="microsoft_office_license_add_user_license_none" qtlid="446611">Select a licence</translation>
+   <translation id="microsoft_office_license_detail_user_add_error" qtlid="264940">An error has occurred when adding a user</translation>
+   <translation id="microsoft_office_license_add_user_login_conditions" qtlid="492799">Your login must contain between 3 and 20 characters. It may contain numbers, letters and the following special characters:&#160;- _ ! # $ % & ' ^ ` { }</translation>
+   <translation id="microsoft_office_license_add_user_login_condition_exception" qtlid="492708">It can also contain full stops, if they come after an authorised character and are not followed by another full stop.</translation>
+   <translation id="microsoft_office_license_add_user_login_invalid_pattern" qtlid="492721">Username contains non-authorised characters</translation>
+   <translation id="microsoft_office_license_add_user_login_minlength" qtlid="492734">Username must contain at least {0} characters</translation>
+   <translation id="microsoft_office_license_add_user_login_maxlength" qtlid="492747">Username must contain a maximum of {0} characters</translation>
+   <translation id="microsoft_office_license_add_user_field_required" qtlid="404590">Fields marked with a {0} are mandatory. </translation>
+   <translation id="microsoft_office_license_add_user_license_price_error" qtlid="492760">Unable to retrieve price</translation>
+   <translation id="microsoft_office_license_add_user_price_per_user" qtlid="492773">Price by user</translation>
+   <translation id="microsoft_office_license_add_user_price" qtlid="492786">{0} ex. VAT/month</translation>
+
+   <translation id="microsoft_office_license_order_user_price_warning" qtlid="446624">When you click confirm, you will be redirected to the purchase order. Go back to this page once you have completed the payment, to configure your new services.</translation>
+   <translation id="microsoft_office_license_order_user_license_label" qtlid="83721">Type of licence</translation>
+   <translation id="microsoft_office_license_order_user_number_label" qtlid="325445">Number of licences </translation>
+   <translation id="microsoft_office_license_order_user_license_none" qtlid="209658">Select a type</translation>
+
+   <translation id="microsoft_office_license_usage_period_label" qtlid="156875">Period:</translation>
+   <translation id="microsoft_office_license_usage_period_current" qtlid="325198">The current month </translation>
+   <translation id="microsoft_office_license_usage_period_last" qtlid="325211">The last month </translation>
+   <translation id="microsoft_office_license_usage_period_last3" qtlid="193163">The last 3 months</translation>
+   <translation id="microsoft_office_license_usage_period_last12" qtlid="169706">The last 12 months</translation>
+   <translation id="microsoft_office_license_usage_error" qtlid="15389">An error has occurred retrieving the data</translation>
+   <translation id="microsoft_office_license_empty_usage" qtlid="363761">No usage data is available </translation>
+
+   <translation id="microsoft_office_license_group_name" qtlid="253127">Licence Groups</translation>
+   <translation id="microsoft_office_license_edit" qtlid="265122">Edit the licence group</translation>
+   <translation id="microsoft_office_license_edit_save" qtlid="8506">Save</translation>
+   <translation id="microsoft_office_license_edit_success" qtlid="265148">Licence group successfully changed </translation>
+   <translation id="microsoft_office_license_edit_error" qtlid="265161">An error has occurred changing the licence group</translation>
+
+   <translation id="license_office_users_download_text" qtlid="265239">Installation programs for PC and MAC are available on the Microsoft Office <a href="https://portal.office.com/" target="_blank">website</a>.</translation>
+   <translation id="license_office_users_download_info" qtlid="265252">For smartphones and tablets, go straight to the App Store.</translation>
+   <translation id="license_office_users_download_id" qtlid="253465">You will receive your connection and installation login details when you add a new licence.</translation>
+
+   <translation id="license_office_guide" qtlid="285069">Need help with Office 365?</translation>
+   <translation id="license_office_guide_help" qtlid="156732">Read our online guides.</translation>
+
+   <translation id="microsoft_office_license_user_edit" qtlid="294529">Edit a user </translation>
+   <translation id="microsoft_office_license_edit_user_confirm" qtlid="404603">The following user will be modified: </translation>
+   <translation id="microsoft_office_license_detail_user_edit_success" qtlid="404616">The user has been modified. </translation>
+   <translation id="microsoft_office_license_detail_user_edit_error" qtlid="404629">An error has occurred modifying the user. </translation>
+</translations>

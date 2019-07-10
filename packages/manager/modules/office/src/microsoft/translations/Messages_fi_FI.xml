@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+
+   <translation id="microsoft_office_license_office-business-pp" qtlid="253218">Office Business</translation>
+   <translation id="microsoft_office_license_office-proplus-pp" qtlid="253231">Office Pro Plus</translation>
+   <translation id="microsoft_office_license_officeBusiness" qtlid="253218">Office Business</translation>
+   <translation id="microsoft_office_license_officeProPlus" qtlid="253231">Office Pro Plus</translation>
+
+   <translation id="microsoft_office_license_detail_firstname" qtlid="23323">Etunimi</translation>
+   <translation id="microsoft_office_license_detail_lastname" qtlid="3818">Nimi</translation>
+   <translation id="microsoft_office_license_detail_zipcode" qtlid="236268">Postinumero</translation>
+   <translation id="microsoft_office_license_detail_city" qtlid="33310">Postitoimipaikka</translation>
+   <translation id="microsoft_office_license_detail_address" qtlid="30430">Osoite</translation>
+   <translation id="microsoft_office_license_detail_phone" qtlid="34174">Puhelin</translation>
+   <translation id="microsoft_office_license_detail_status" qtlid="26443">Tila</translation>
+   <translation id="microsoft_office_license_detail_displayName" qtlid="264771">Näyttönimi</translation>
+   <translation id="microsoft_office_license_generals_informations_title" qtlid="27115">Yleiset tiedot</translation>
+   <translation id="microsoft_office_license_generals_informations_domain_title" qtlid="32590">Verkkotunnukset</translation>
+   <translation id="microsoft_office_license_edit" qtlid="6766">Muokkaa</translation>
+
+   <translation id="microsoftOfficeLicense_tab_STATE" qtlid="215702">Yleistä tietoa</translation>
+   <translation id="microsoftOfficeLicense_tab_USER" qtlid="113658">Lisenssit</translation>
+   <translation id="microsoftOfficeLicense_tab_CONSUMPTION" qtlid="25639">Käyttö</translation>
+
+   <translation id="microsoft_office_license_officeBusiness_serie_name" qtlid="253569">Office Business -lisenssit</translation>
+   <translation id="microsoft_office_license_officeProPlus_serie_name" qtlid="264784">Office Pro Plus -lisenssit</translation>
+   <translation id="microsoft_office_license_usage_stats" qtlid="253543">Kuukauden kulutus</translation>
+   <translation id="microsoft_office_license_peakcount" qtlid="253556">Lisenssien päivittäinen enimmäismäärä</translation>
+
+   <translation id="microsoft_office_license_detail_user_firstname" qtlid="23323">Etunimi</translation>
+   <translation id="microsoft_office_license_detail_user_lastname" qtlid="3818">Nimi</translation>
+   <translation id="microsoft_office_license_detail_user_status" qtlid="26443">Tila</translation>
+   <translation id="microsoft_office_license_detail_user_error" qtlid="226423">Tapahtui virhe:</translation>
+   <translation id="microsoft_office_license_detail_user_activationEmail" qtlid="264797">Aktivointisähköposti</translation>
+   <translation id="microsoft_office_license_detail_user_licenses" qtlid="113658">Lisenssit</translation>
+   <translation id="microsoft_office_license_detail_user_refresh" qtlid="413284">Lataa tiedot uudestaan</translation>
+   <translation id="microsoft_office_license_detail_user_no_users" qtlid="215741">Ei käyttäjiä</translation>
+   <translation id="microsoft_office_license_detail_user_delete_error" qtlid="147824">Tapahtui virhe käyttäjää <b>{0}</b> poistettaessa</translation>
+   <translation id="microsoft_office_license_detail_user_delete_success" qtlid="264810">Käyttäjä poistetaan</translation>
+   <translation id="microsoft_office_license_detail_user_delete_confirm" qtlid="264823">Haluatko varmasti poistaa käyttäjän <strong>{0}</strong>?</translation>
+   <translation id="microsoft_office_license_detail_user_delete_title" qtlid="49130">Poista käyttäjä</translation>
+   <translation id="microsoft_office_license_detail_user_delete_info1" qtlid="404486">Käyttäjä poistetaan heti vahvistuksen jälkeen.</translation>
+   <translation id="microsoft_office_license_detail_user_delete_info2" qtlid="404499">Koska Office 365 -tuotteidemme laskutus perustuu edellisen kuukauden kulutukseen, saat tätä tiliä koskevan viimeisen laskun</translation>
+   <translation id="microsoft_office_license_detail_user_not_configure" qtlid="124952">Ei konfiguroitu</translation>
+
+   <translation id="microsoft_office_license_user_add" qtlid="7150">Lisää käyttäjä</translation>
+   <translation id="microsoft_office_license_user_order" qtlid="446598">Tilaa lisää lisenssejä</translation>
+
+   <translation id="microsoft_office_license_detail_state_domainName" qtlid="264836">Verkkotunnuksen nimi</translation>
+   <translation id="microsoft_office_license_detail_state_txtEntry" qtlid="264849">TXT-tietue</translation>
+   <translation id="microsoft_office_license_detail_state_status" qtlid="26443">Tila</translation>
+   <translation id="microsoft_office_license_user_status_creating" qtlid="26227">Luodaan</translation>
+   <translation id="microsoft_office_license_user_status_updating" qtlid="26863">Päivitys</translation>
+   <translation id="microsoft_office_license_user_status_deleting" qtlid="133929">Poistetaan</translation>
+   <translation id="microsoft_office_license_user_status_ok" qtlid="264862">Luo</translation>
+   <translation id="microsoft_office_license_user_status_error" qtlid="26407">Virhe</translation>
+   <translation id="microsoft_office_license_user_change_password" qtlid="80394">Salasanamuutos</translation>
+   <translation id="microsoft_office_license_user_update" qtlid="404512">Muokkaa tiliä</translation>
+   <translation id="microsoft_office_license_user_delete" qtlid="150294">Poista tili</translation>
+   <translation id="microsoft_office_license_user_edit_password" qtlid="8434">Salasanan muokkaus</translation>
+   <translation id="microsoft_office_license_user_edit_password_info" qtlid="91129">Salasana:</translation>
+   <translation id="microsoft_office_license_user_edit_password_confirm" qtlid="197063">Varmistus:</translation>
+   <translation id="microsoft_office_license_user_edit_password_email_field" qtlid="89028">Sähköposti:</translation>
+   <translation id="microsoft_office_license_user_edit_password_heading" qtlid="275545"><strong>Olet muokkaamassa tilisi salasanaa</strong><p>Haluatko jatkaa?</p></translation>
+   <translation id="microsoft_office_license_user_edit_password_conditions" qtlid="275558">Huom, salasanan täytyy olla seuraavien ehtojen mukainen: <ul><li>Vähintään 8 merkkiä</li><li>Enintään 16 merkkiä</li><li> Vähintään 1 pieni kirjain, 1 iso kirjain, 1 numero tai 1 erikoismerkki</li></ul></translation>
+   <translation id="microsoft_office_license_user_edit_password_empty" qtlid="275571">Jos et syötä salasanaa, sinulle lähetetään sähköpostitse sattumanvaraisesti luotu salasana.</translation>
+   <translation id="microsoft_office_license_user_edit_password_error" qtlid="211867">Salasana on virheellinen</translation>
+   <translation id="microsoft_office_license_user_edit_confirm_error" qtlid="275584">Salasanojen on oltava identtisiä</translation>
+   <translation id="microsoft_office_license_user_edit_password_email" qtlid="275597">Haluan vastaanottaa salasanan sähköpostitse:</translation>
+   <translation id="microsoft_office_license_user_edit_password_email_details" qtlid="275610">Salasana lähetetään oletuksena olevaan osoitteeseen:</translation>
+   <translation id="microsoft_office_license_user_edit_password_email_notify" qtlid="404525">Jos et anna salasanaa, sellainen generoidaan sattumanvaraisesti ja lähetetään ilmoitettuun sähköpostiosoitteeseen</translation>
+   <translation id="microsoft_office_license_user_edit_password_email_details_change" qtlid="275623">Voit muokata vastaanottajaa alla.</translation>
+   <translation id="microsoft_office_license_get_error" qtlid="275636">Tapahtui virhe tietojen hakemisessa.</translation>
+   <translation id="microsoft_office_license_edit_password_success" qtlid="275649">Salasanan vaihto onnistui.</translation>
+   <translation id="microsoft_office_license_edit_password_error" qtlid="157447">Tapahtui virhe salasanavaihdoksen aikana.</translation>
+   <translation id="microsoft_office_license_user_edit_password_nic_admin" qtlid="275662">admin-yhteyshenkilön sähköpostiosoite</translation>
+   <translation id="microsoft_office_license_user_edit_password_default_email" qtlid="404538">Käytä oletussähköpostia</translation>
+   <translation id="microsoft_office_license_user_edit_password_email" qtlid="404551">Muokkaa sähköpostia</translation>
+
+   <translation id="microsoft_office_license_detail_user_add_success" qtlid="264875">Käyttäjä lisätään</translation>
+   <translation id="microsoft_office_license_add_user_price_warning" qtlid="363388">Laskutus tapahtuu kuluvan kuukauden aikana aktivoitujen lisenssien määrän mukaan</translation>
+   <translation id="microsoft_office_license_add_user_domain_label" qtlid="264888">Domain Office</translation>
+   <translation id="microsoft_office_license_add_user_firstName_label" qtlid="23323">Etunimi</translation>
+   <translation id="microsoft_office_license_add_user_lastName_label" qtlid="3818">Nimi</translation>
+   <translation id="microsoft_office_license_add_user_license_label" qtlid="264901">Käytetyt lisenssit</translation>
+   <translation id="microsoft_office_license_add_user_login_label" qtlid="41062">Käyttäjätunnus</translation>
+   <translation id="microsoft_office_license_add_user_required" qtlid="237096">Kenttä on pakollinen</translation>
+   <translation id="microsoft_office_license_add_user_confirm" qtlid="264914">Seuraava käyttäjä lisätään</translation>
+   <translation id="microsoft_office_license_add_user_license_none" qtlid="446611">Valitse lisenssi</translation>
+   <translation id="microsoft_office_license_detail_user_add_error" qtlid="264940">Tapahtui virhe käyttäjän lisäyksen aikana</translation>
+   <translation id="microsoft_office_license_add_user_login_conditions" qtlid="492799">Käyttäjätunnuksessa on oltava 3 - 20 merkkiä. Se voi sisältää:&#160;- _ ! # $ % & ' ^ ` { }</translation>
+   <translation id="microsoft_office_license_add_user_login_condition_exception" qtlid="492708">Se voi sisältää lisäksi pisteitä kunhan sitä edeltää hyväksytty merkki eikä sitä seuraa toinen piste.</translation>
+   <translation id="microsoft_office_license_add_user_login_invalid_pattern" qtlid="492721">Käyttäjätunnus sisältää kiellettyjä merkkejä</translation>
+   <translation id="microsoft_office_license_add_user_login_minlength" qtlid="492734">Käyttäjätunnuksen täytyy sisältää vähintään {0} merkkiä</translation>
+   <translation id="microsoft_office_license_add_user_login_maxlength" qtlid="492747">Käyttäjätunnuksessa voi olla enintään {0} merkkiä</translation>
+   <translation id="microsoft_office_license_add_user_field_required" qtlid="404590">Symbolilla {0} merkityt kentät ovat pakollisia.</translation>
+   <translation id="microsoft_office_license_add_user_license_price_error" qtlid="492760">Hinnan hakeminen ei onnistu</translation>
+   <translation id="microsoft_office_license_add_user_price_per_user" qtlid="492773">Hinta käyttäjää kohti</translation>
+   <translation id="microsoft_office_license_add_user_price" qtlid="492786">{0} ALV0 / kk</translation>
+
+   <translation id="microsoft_office_license_order_user_price_warning" qtlid="446624">Vahvistamalla tämän sinut uudelleenohjataan tilauslomakkeeseen. Kun olet maksanut tilaksesi, palaa tänne uusien käyttäjien konfiguroimista varten.</translation>
+   <translation id="microsoft_office_license_order_user_license_label" qtlid="83721">Lisenssin tyyppi</translation>
+   <translation id="microsoft_office_license_order_user_number_label" qtlid="325445">Lisenssien määrä</translation>
+   <translation id="microsoft_office_license_order_user_license_none" qtlid="209658">Valitse tyyppi</translation>
+
+   <translation id="microsoft_office_license_usage_period_label" qtlid="156875">Kesto:</translation>
+   <translation id="microsoft_office_license_usage_period_current" qtlid="325198">Kuluva kuukausi</translation>
+   <translation id="microsoft_office_license_usage_period_last" qtlid="325211">Edellinen kuukausi</translation>
+   <translation id="microsoft_office_license_usage_period_last3" qtlid="193163">Viimeiset 3 kk</translation>
+   <translation id="microsoft_office_license_usage_period_last12" qtlid="169706">Viimeiset 12 kuukautta</translation>
+   <translation id="microsoft_office_license_usage_error" qtlid="15389">Virhe haettaessa tietoa</translation>
+   <translation id="microsoft_office_license_empty_usage" qtlid="363761">Kulutustietoja ei ole saatavilla</translation>
+
+   <translation id="microsoft_office_license_group_name" qtlid="253127">Lisenssiryhmät</translation>
+   <translation id="microsoft_office_license_edit" qtlid="265122">Muokkaa lisenssiryhmää</translation>
+   <translation id="microsoft_office_license_edit_save" qtlid="8506">Tallenna</translation>
+   <translation id="microsoft_office_license_edit_success" qtlid="265148">Lisenssiryhmä muokattu onnistuneesti</translation>
+   <translation id="microsoft_office_license_edit_error" qtlid="265161">Lisenssiryhmän muokkauksen aikana tapahtui virhe</translation>
+
+   <translation id="license_office_users_download_text" qtlid="265239">Asennusohjelmat PC- ja Mac-koneille ovat saatavilla Microsoftin <a href="https://portal.office.com" target="_blank">Office-sivustolla</a>.</translation>
+   <translation id="license_office_users_download_info" qtlid="265252">Käytä App Store -kauppaa älypuhelinten ja tablettien tapauksessa.</translation>
+   <translation id="license_office_users_download_id" qtlid="253465">Lisättyäsi uuden lisenssin, kirjautumis- ja asennuskäyttäjätunnukset lähetetään sähköpostitse.</translation>
+
+   <translation id="license_office_guide" qtlid="285069">Tarvitsetko apua office 365 -lisenssien kanssa?</translation>
+   <translation id="license_office_guide_help" qtlid="156732">Katso ohjeemme</translation>
+
+   <translation id="microsoft_office_license_user_edit" qtlid="294529">Muokkaa käyttäjää</translation>
+   <translation id="microsoft_office_license_edit_user_confirm" qtlid="404603">Seuraavaa käyttäjää muokataan:</translation>
+   <translation id="microsoft_office_license_detail_user_edit_success" qtlid="404616">Muutokset käyttäjään rekisteröitiin. </translation>
+   <translation id="microsoft_office_license_detail_user_edit_error" qtlid="404629">Tapahtui virhe käyttäjän muokkauksessa.</translation>
+</translations>

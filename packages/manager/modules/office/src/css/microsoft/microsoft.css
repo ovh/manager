@@ -1,0 +1,14 @@
+.office-product-list {
+    margin: 10px 0px 10px 0px;
+}
+.office-product-list li {
+    list-style: none;
+    display: inline-block;
+    margin :0 5px;
+    transition: all 0.5s;
+}
+.office-product-list li.more {
+    font-weight: bolder;
+    font-size: 20px;
+    margin: 0 10px;
+}
