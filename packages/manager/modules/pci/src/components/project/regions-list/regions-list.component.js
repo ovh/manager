@@ -9,5 +9,6 @@ export default {
     selectedRegion: '=?',
     onChange: '&?',
     displaySelectedRegion: '<',
+    quotaUrl: '<?',
   },
 };

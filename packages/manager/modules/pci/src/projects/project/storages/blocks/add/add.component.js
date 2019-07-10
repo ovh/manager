@@ -8,5 +8,6 @@ export default {
     projectId: '<',
     goBack: '<',
     cancelLink: '<',
+    quotaUrl: '<',
   },
 };
