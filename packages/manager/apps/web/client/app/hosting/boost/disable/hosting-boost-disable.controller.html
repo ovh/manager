@@ -1,0 +1,24 @@
+<div data-ng-controller="HostingBoostOfferDisableCtrl">
+    <div data-wizard
+         data-wizard-on-cancel="resetAction"
+         data-wizard-on-finish="disableBoost"
+         data-wizard-title="'hosting_tab_BOOST_disable_offer' | translate">
+
+        <div data-wizard-step
+             data-wizard-step-valid="isStepValid()">
+
+            <div class="text-center" data-ng-if="loaders.disable">
+                <oui-spinner></oui-spinner>
+            </div>
+
+            <div data-ng-if="!loaders.disable">
+                <p data-translate="hosting_tab_BOOST_disable_title"></p>
+                <p data-translate="hosting_tab_BOOST_disable_description"></p>
+                <oui-checkbox id="acceptCGV"
+                    data-model="acceptCGV.value"
+                    data-text="{{:: 'hosting_tab_BOOST_accept_cgv' | translate }}">
+                </oui-checkbox>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+<div data-ng-controller="EmailsDeleteRedirectionCtrl as ctrl">
+    <div data-wizard
+         data-wizard-on-cancel="resetAction"
+         data-wizard-on-finish="deleteRedirection"
+         data-wizard-title="'email_tab_modal_delete_redirection_title' | translate">
+
+        <div data-wizard-step>
+            <p data-translate="email_tab_modal_delete_redirection_heading"></p>
+            <p class="text-center" data-ng-bind-html="'email_tab_modal_delete_redirection_accounts' | translate: { t0: ctrl.redirection.from, t1: ctrl.redirection.to }"></p>
+            <p class="font-weight-bold mt-5" data-translate="emails_common_continue_question"></p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,172 @@
+html {
+  font-size: 10px;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.wizard-title {
+  line-height: rem-calc(22.4);
+  margin-top: 0;
+  margin-bottom: 0;
+  color: @oui-color-zodiac;
+  font-size: rem-calc(21);
+  font-weight: @oui-font-semibold;
+  letter-spacing: 0.01em;
+}
+
+select,
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+.uneditable-input {
+  margin-bottom: 0;
+}
+
+select:focus,
+input:focus,
+.wizard-container:focus {
+  outline: none;
+  -moz-outline: none;
+}
+
+code {
+  color: @grey7;
+}
+
+.pricing {
+  font-weight: bold;
+  color: @grey7;
+}
+
+.debt-account-banner {
+  .module-billing-container,
+  .module-useraccount-container {
+    margin-top: -33px;
+  }
+}
+
+//
+// MAIN CONTAINER
+// --------------------------------------------------
+
+.alert-account {
+  padding: 5px 10px;
+  font-size: 12px;
+  color: #b94a48;
+  background-color: #f2dede;
+  border-bottom: 1px solid #eed3d7;
+  margin: 0;
+
+  p {
+    margin: 0;
+  }
+}
+
+.warning-account {
+  position: absolute;
+  top: 28px;
+  left: 261px;
+  right: 0;
+  padding: 5px 10px;
+  font-size: 12px;
+  color: #c09853;
+  background-color: #fcf8e3;
+  border-bottom: 1px solid #fbeed5;
+
+  p {
+    margin: 0;
+  }
+}
+
+.alert.me-alerts {
+  display: block;
+  position: relative;
+  margin: 4px 0 0 0;
+  padding: 4px 15px;
+  border-radius: 0;
+  z-index: 1;
+  font-size: 12px;
+
+  ul {
+    padding-left: 18px;
+    margin: 0;
+  }
+
+  .close {
+    display: none;
+  }
+}
+
+.module-billing-sections-container,
+.module-useraccount-sections-container {
+  padding-top: 50px !important;
+}
+// ---
+
+.full-height {
+  height: 100%;
+}
+
+.col-container,
+.row-container {
+  display: flex;
+  overflow: hidden;
+}
+
+.col-container {
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+
+  .col-item {
+    display: flex;
+    height: 100%;
+    position: relative;
+  }
+}
+
+.title-underlined {
+  border-bottom: 1px solid @navbar-bg;
+}
+
+.styleless {
+  color: @navbar-bg;
+  border-bottom: initial;
+}
+
+.small-blockquote {
+  color: @grey4;
+  font-size: @font-size-mini;
+}
+
+.small {
+  font-size: 14px;
+}
+
+.table > tbody > tr {
+  > td,
+  > th {
+    white-space: normal;
+  }
+}

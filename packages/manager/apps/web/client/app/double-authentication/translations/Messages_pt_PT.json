@@ -1,0 +1,7 @@
+{
+  "doubleauth_modal_alert_title": "Código de segurança",
+  "doubleauth_modal_alert_message": "Atenção, não dispõe de um código de segurança de utilização única.",
+  "doubleauth_modal_alert_message_1": "Atenção, atualmente dispõe penas de um código de segurança de utilização única.",
+  "doubleauth_modal_alert_message_other": "Atenção, atualmente apenas dispõe de <strong>{{t0}}</strong> códigos de segurança de utilização única.",
+  "doubleauth_modal_alert_message_regenerate": "Deseja gerar um novo conjunto de códigos de segurança?"
+}

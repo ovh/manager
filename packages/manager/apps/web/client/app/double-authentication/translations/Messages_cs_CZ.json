@@ -1,0 +1,7 @@
+{
+  "doubleauth_modal_alert_title": "Nouzový kód",
+  "doubleauth_modal_alert_message": "Pozor: nemáte jednorázový nouzový kód.",
+  "doubleauth_modal_alert_message_1": "Pozor: máte pouze jeden jednorázový nouzový kód.",
+  "doubleauth_modal_alert_message_other": "Pozor: máte pouze <strong>{{t0}}</strong> jednorázových nouzových kódů.",
+  "doubleauth_modal_alert_message_regenerate": "Přejete si vygenerovat nový set nouzových kódů?"
+}

@@ -1,0 +1,34 @@
+.module-thumbnail {
+  opacity: 0.4;
+  display: inline-block;
+  height: auto;
+  max-width: 100%;
+  padding: 4px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  position: relative;
+  .rounded(4px);
+
+  margin: 5px;
+  .transition(0.2s, ease-in-out);
+
+  &:hover,
+  &:focus,
+  &:active {
+    .scale(1.02);
+    .box-shadow(#bcbcbc 0 0 5px);
+
+    opacity: 1 !important;
+  }
+
+  &.selected {
+    opacity: 1 !important;
+  }
+
+  .delete {
+    position: absolute;
+    top: @xs-spacing;
+    right: @xs-spacing;
+    opacity: 1;
+  }
+}
