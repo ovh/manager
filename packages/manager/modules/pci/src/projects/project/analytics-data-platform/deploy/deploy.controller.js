@@ -5,7 +5,6 @@ import floor from 'lodash/floor';
 import forEach from 'lodash/forEach';
 import get from 'lodash/get';
 import has from 'lodash/has';
-import groupBy from 'lodash/groupBy';
 import head from 'lodash/head';
 import includes from 'lodash/includes';
 import isEmpty from 'lodash/isEmpty';
@@ -39,6 +38,7 @@ export default class {
     this.cucCloudMessage = CucCloudMessage;
     this.cucServiceHelper = CucServiceHelper;
 
+    this.displaySelectedRegion = true;
     this.selectedRegion = null;
     this.selectedCapability = null;
     this.selectedSshKey = null;
@@ -182,73 +182,16 @@ export default class {
   }
 
   /**
-   * fetch all Analytics Data Platform supported regions
-   *
-   * @param {*} publicCloudServiceName public cloud service name
-   * @returns array of region objects
-   */
-  fetchRegionDetails(regionCodes) {
-    this.regions = this.cucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.analyticsDataPlatformService.getRegionDetails(
-        regionCodes,
-      )
-        .catch(error => this.cucServiceHelper.errorHandler('analytics_data_platform_get_regions_error')(error)),
-    });
-    return this.regions.load();
-  }
-
-  /**
    * fetch region details and group by them datacenter and continent
    *
    */
-  initRegionsAndDatacenters() {
+  initRegions() {
     // fetch regions
-    this.fetchRegionDetails(get(this.selectedCapability, 'availableRegion'));
-    this.initRegionsByDatacenter();
-    this.initRegionsByContinent();
-  }
-
-  /**
-   * group regions by datacenter
-   *
-   */
-  initRegionsByDatacenter() {
-    this.regionsByDatacenter = this.cucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.regions
-        .promise
-        .then((regions) => {
-          const regionsByDatacenter = groupBy(regions, 'macroRegion.code');
-          const groupedRegions = map(regionsByDatacenter, (microRegions) => {
-            const region = cloneDeep(microRegions[0]);
-            region.dataCenters = microRegions;
-            delete region.microRegion;
-            delete region.disabled;
-            return region;
-          });
-          // select region by default if only one exists
-          if (groupedRegions && groupedRegions.length === 1) {
-            const datacenters = head(groupedRegions).dataCenters;
-            if (datacenters.length === 1) {
-              this.selectedRegion = head(datacenters);
-            }
-          }
-          return groupedRegions;
-        }),
-    });
-    return this.regionsByDatacenter.load();
-  }
-
-  /**
-   * group regions by continent
-   *
-   */
-  initRegionsByContinent() {
-    this.regionsByContinent = this.cucControllerHelper.request.getHashLoader({
-      loaderFunction: () => this.regionsByDatacenter
-        .promise
-        .then(regions => groupBy(regions, 'continent')),
-    });
-    return this.regionsByContinent.load();
+    this.displaySelectedRegion = false;
+    this.regions = map(get(this.selectedCapability, 'availableRegion'), region => ({
+      name: region,
+      hasEnoughQuota: () => true,
+    }));
   }
 
   /**
@@ -257,7 +200,8 @@ export default class {
    */
   submitRegionAndDatacenter() {
     if (this.selectedRegion) {
-      this.analyticsDataPlatform.osRegion = this.selectedRegion.microRegion.code;
+      this.analyticsDataPlatform.osRegion = this.selectedRegion.name;
+      this.displaySelectedRegion = true;
     }
   }
 

@@ -5,8 +5,8 @@ export default {
   template,
   controller,
   bindings: {
-    regionsByDatacenter: '<',
-    regionsByContinent: '<',
+    regions: '<',
+    displaySelectedRegion: '<',
     onDataChange: '&',
   },
 };

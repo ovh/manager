@@ -9,6 +9,7 @@
             <span data-ng-bind-html="'analytics_data_platform_no_default_payment_method' | translate: { href: $ctrl.paymentMethodUrl }"></span>
         </oui-message>
         <p data-translate="analytics_data_platform_deploy_description"></p>
+
         <!-- deploy stepper -->
         <div class="mt-1 mt-sm-2">
             <oui-stepper>
@@ -35,12 +36,11 @@
 
                 <!-- select regions -->
                 <oui-step-form data-header="{{ ::'analytics_data_platform_deploy_regions_select_datacenter' | translate }}"
-                               data-loading="$ctrl.regionsByDatacenter.loading"
-                               data-on-focus="$ctrl.initRegionsAndDatacenters()"
+                               data-on-focus="$ctrl.initRegions()"
                                data-on-submit="$ctrl.submitRegionAndDatacenter()">
                     <analytics-data-platform-deploy-regions-component
-                        data-regions-by-datacenter="$ctrl.regionsByDatacenter"
-                        data-regions-by-continent="$ctrl.regionsByContinent"
+                        data-regions="$ctrl.regions"
+                        data-display-selected-region="$ctrl.displaySelectedRegion"
                         data-on-data-change="$ctrl.onRegionsInformationChange(data)"></analytics-data-platform-deploy-regions-component>
                 </oui-step-form>
 
