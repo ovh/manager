@@ -1,5 +1,5 @@
 {
- "analytics_data_platform_service_cluster_desc": "Su cluster de big data necesita almacenamiento y nodos (instancias de Public Cloud) para poder funcionar. Estos nodos se despliegan en el proyecto de Public Cloud {{public_cloud_project_serviceName}, con pago por hora. Puede pasar a la opción de facturación mensual directamente tras su creación, dentro del mismo proyecto de Public Cloud.",
+ "analytics_data_platform_service_cluster_desc": "Su cluster de big data necesita almacenamiento y nodos (instancias de Public Cloud) para poder funcionar. Estos nodos se despliegan en el proyecto de Public Cloud {{public_cloud_project_serviceName}}, con pago por hora. Puede pasar a la opción de facturación mensual directamente tras su creación, dentro del mismo proyecto de Public Cloud.",
  "analytics_data_platform_service_cluster_total_cores": "vCores totales",
  "analytics_data_platform_service_cluster_total_ram": "Memoria RAM total",
  "analytics_data_platform_service_cluster_total_storage": "Almacenamiento efectivo total",

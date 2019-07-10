@@ -4,7 +4,7 @@
  "analytics_data_platform_onboarding_content3": "Wykorzystuj OVH Data Analytics Platform do realizacji wielu zadań, takich jak: analiza rynków, Business Intelligence, Internet rzeczy lub konserwacja predykcyjna. Nie zwlekaj!",
  "analytics_data_platform_onboarding_action_label": "Utwórz klaster Data Analytics Platform",
  "analytics_data_platform_onboarding_guides_overview_title": "Informacje ogólne",
- "analytics_data_platform_onboarding_guides_retrieve_credentials_title": "Wygeneruj dane identyfikacyjne",
- "analytics_data_platform_onboarding_guides_setup_data_pipeline_title": "Utwórz pierwszy potok danych",
+ "analytics_data_platform_onboarding_guides_retrieve_credentials_title": "Wygeneruj dane dostępowe",
+ "analytics_data_platform_onboarding_guides_setup_data_pipeline_title": "Utwórz pierwszy data pipeline",
  "analytics_data_platform_onboarding_guides_manage_users_title": "Zarządzanie użytkownikami"
 }
