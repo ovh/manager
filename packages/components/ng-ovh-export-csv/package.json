@@ -1,6 +1,6 @@
 {
   "name": "ovh-angular-export-csv",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Export data as CSV file.",
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
