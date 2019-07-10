@@ -1,0 +1,18 @@
+{
+  "root": true,
+  "extends": "airbnb-base",
+  "parser": "babel-eslint",
+  "plugins": ["angular"],
+  "env": {
+    "browser": true,
+    "jasmine": true,
+    "mocha": true,
+    "jquery": true,
+    "angular/mocks": true
+  },
+  "globals": {
+    "_": true,
+    "filesize": true,
+    "JSURL": true
+  }
+}

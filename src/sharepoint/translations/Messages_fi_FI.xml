@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="sharepoint_license_common_or" qtlid="366267">Tai</translation>
+   <translation id="sharepoint_common_open_new_tab" qtlid="509586">Ouvre une nouvelle fenêtre</translation>
+   <translation id="sharepoint_license_foundation" qtlid="297059">Säätiö</translation>
+   <translation id="sharepoint_license_standard" qtlid="48998">Standard</translation>
+   <translation id="sharepoint_dashboard_offer_type" qtlid="297072">SharePoint</translation>
+   <translation id="sharepoint_dashboard_offer_type_standalone" qtlid="347340">Standalone</translation>
+   <translation id="sharepoint_dashboard_guides_help_label" qtlid="297085">Tarvitsetko apua SharePointin konfiguroinnissa?</translation>
+   <translation id="sharepoint_dashboard_associated_exchange" qtlid="299663">Liitetty Exchange-palvelu</translation>
+   <translation id="sharepoint_dashboard_offer_account" qtlid="519142">Compte SharePoint</translation>
+
+   <translation id="sharepoint_dashboard_address" qtlid="258938">Palvelimen osoite</translation>
+   <translation id="sharepoint_dashboard_type" qtlid="297111">Palvelimen tyyppi</translation>
+   <translation id="sharepoint_dashboard_organization" qtlid="32278">Organisaatio</translation>
+   <translation id="sharepoint_dashboard_state" qtlid="297124">Palvelun tila</translation>
+   <translation id="sharepoint_dashboard_state_ok" qtlid="31522">OK</translation>
+   <translation id="sharepoint_dashboard_state_suspended" qtlid="136100">Vanhentunut</translation>
+   <translation id="sharepoint_dashboard_accounts" qtlid="297137">Aktiivisten tilien lukumäärä</translation>
+   <translation id="sharepoint_dashboard_quota" qtlid="297150">Jaettu tila</translation>
+   <translation id="sharepoint_dashboard_access" qtlid="82449">Pääsy</translation>
+   <translation id="sharepoint_dashboard_url_label" qtlid="297163">URL konsultointi:</translation>
+   <translation id="sharepoint_dashboard_guides_url" qtlid="519155">Activation et gestion de votre SharePoint</translation>
+   <translation id="sharepoint_dashboard_creating_url_label" qtlid="154949">Aktivoidaan...</translation>
+   <translation id="sharepoint_dashboard_linked_exchange_label" qtlid="297189">Yhdistetty Exchange-palvelin:</translation>
+   <translation id="sharepoint_dashboard_quota" qtlid="297202">Kiintiöt</translation>
+   <translation id="sharepoint_dashboard_quota_total_label" qtlid="297215">Kokonaislevytila</translation>
+   <translation id="sharepoint_dashboard_quota_used_label" qtlid="15365">Käytetty levytila</translation>
+   <translation id="sharepoint_dashboard_quota_free_label" qtlid="297228">Käytettävissä oleva levytila</translation>
+   <translation id="sharepoint_dashboard_unit_size_giga" qtlid="48890">GB</translation>
+   <translation id="sharepoint_dashboard_display_name_edit" qtlid="37875">Muokkaa</translation>
+   <translation id="sharepoint_dashboard_display_name_save" qtlid="49754">Tallenna</translation>
+   <translation id="sharepoint_dashboard_display_name_error" qtlid="447560">Tapahtui virhe tietojen päivityksessä.</translation>
+   <translation id="sharepoint_tab_INFORMATION" qtlid="27115">Yleiset tiedot</translation>
+   <translation id="sharepoint_tab_ACCOUNT" qtlid="7738">Käyttäjät</translation>
+   <translation id="sharepoint_tab_DOMAIN" qtlid="32590">Verkkotunnukset</translation>
+   <translation id="sharepoint_tab_TASK" qtlid="136217">Viimeaikaiset tehtävät</translation>
+
+   <translation id="sharepoint_tabs_tasks_function" qtlid="85509">Toiminto</translation>
+   <translation id="sharepoint_tabs_tasks_status" qtlid="26443">Tila</translation>
+   <translation id="sharepoint_tabs_tasks_status_doing" qtlid="26383">Käynnissä</translation>
+   <translation id="sharepoint_tabs_tasks_status_todo" qtlid="305356">Suunnitellut</translation>
+   <translation id="sharepoint_tabs_tasks_status_done" qtlid="26395">Päättynyt</translation>
+   <translation id="sharepoint_tabs_tasks_status_error" qtlid="26407">Virhe</translation>
+   <translation id="sharepoint_tabs_tasks_status_cancelled" qtlid="164623">Peruutettu</translation>
+   <translation id="sharepoint_tabs_tasks_todoDate" qtlid="159176">Alkuajankohta</translation>
+   <translation id="sharepoint_tabs_tasks_finishDate" qtlid="299858">Loppumispäivä</translation>
+   <translation id="sharepoint_tabs_tasks_null" qtlid="159163">Ei viimeaikaisia huoltotöitä</translation>
+   <translation id="sharepoint_tabs_tasks_error" qtlid="447573">Tapahtui virhe viimeaikaisten tehtävien haussa.</translation>
+
+   <translation id="sharepoint_dashboard_error" qtlid="243832">Tapahtui virhe tietoja haettaessa:</translation>
+   <translation id="sharepoint_tab_ACCOUNTS_menu_account_tooltip" qtlid="19075">Lisää toimintoja</translation>
+
+   <translation id="sharepoint_domains_cname_check_label" qtlid="129847">CNAME</translation>
+   <translation id="sharepoint_domains_cname_check_tooltip" qtlid="349127">Jotta voit vahvistaa verkkotunnuksen omistajuuden, luo CNAME-rekisteröinti: <br /><br /><span class="bold">{0}</span> kohti osoitetta <span class="bold">ovh.com</span>.<br /><br /> Sinulla on 48 tuntia toimenpiteen suorittamiseen. </translation>
+   <translation id="sharepoint_domains_cname_check_title" qtlid="139273">Omistajan varmennus</translation>
+   <translation id="sharepoint_domains_cname_check_info1" qtlid="136646">Verkkotunnuksen hyväksyntä kesken</translation>
+   <translation id="sharepoint_domains_cname_check_info2" qtlid="347366">Ole hyvä ja luo rekisteröinti</translation>
+   <translation id="sharepoint_domains_empty_list" qtlid="126344">Ei verkkotunnusta</translation>
+   <translation id="sharepoint_domains_state_creating" qtlid="26791">Luonti</translation>
+   <translation id="sharepoint_domains_state_validation" qtlid="33802">Vahvistus</translation>
+   <translation id="sharepoint_domains_state_deleting" qtlid="59699">Poisto</translation>
+   <translation id="sharepoint_domains_delete_tooltips" qtlid="8470">Poista verkkotunnus</translation>
+   <translation id="sharepoint_domains_more_details" qtlid="91645">Katso lisätiedot</translation>
+
+   <translation id="sharepoint_add_domains_intro_label" qtlid="347379">Valitse SharePoint-palveluun lisättävä verkkotunnus.</translation>
+   <translation id="sharepoint_add_domain_confirm_message_text" qtlid="347392">Verkkotunnuksen {0} lisäys on voimassa muutamassa minuutissa. </translation>
+   <translation id="sharepoint_add_domain_error_message_text" qtlid="347405">Verkkotunnuksen lisäyspyyntö epäonnistui.</translation>
+   <translation id="sharepoint_delete_domains_intro_label" qtlid="376258">Olet tekemässä pyyntöä seuraavan verkkotunnuksen poistamiseksi:</translation>
+   <translation id="sharepoint_delete_domain_confirm_message_text" qtlid="347418">Verkkotunnuksen {0} poisto astuu voimaan muutamassa minuutissa.</translation>
+   <translation id="sharepoint_delete_domain_error_message_text" qtlid="347431">Verkkotunnuksen poistopyyntö epäonnistui.</translation>
+
+   <translation id="sharepoint_accounts_err" qtlid="297241">Tapahtui virhe tilien hakemisessa:</translation>
+   <translation id="sharepoint_accounts_userPrincipalName" qtlid="7738">Käyttäjät</translation>
+   <translation id="sharepoint_accounts_one_drive_space" qtlid="297254">OneDrive-paneeli</translation>
+   <translation id="sharepoint_accounts_user" qtlid="297267">Aktiivinen tili</translation>
+   <translation id="sharepoint_accounts_administrator" qtlid="43948">Admin</translation>
+   <translation id="sharepoint_accounts_license_office" qtlid="297280">Office-lisenssi</translation>
+   <translation id="sharepoint_accounts_version" qtlid="34210">Versio</translation>
+   <translation id="sharepoint_accounts_state" qtlid="33790">Tila</translation>
+
+   <translation id="sharepoint_accounts_action_reset_admin" qtlid="297293">Uudelleenmääritä administraattorin oikeudet</translation>
+   <translation id="sharepoint_accounts_action_reset_admin_short_title" qtlid="297306">Administraattorin oikeudet</translation>
+   <translation id="sharepoint_accounts_action_reset_admin_question" qtlid="519168">Voulez-vous réellement rétablir les droits administrateur de votre service SharePoint ?</translation>
+   <translation id="sharepoint_accounts_action_reset_admin_tooltip" qtlid="519181">Rétablir les droits administrateur à leurs valeurs par défaut. Utile en cas de modifications accidentelles des droits via l'interface SharePoint</translation>
+   <translation id="sharepoint_accounts_action_reset_admin_error" qtlid="297345">Administraattorin oikeuksien palautuspyyntö epäonnistui.</translation>
+   <translation id="sharepoint_accounts_action_reset_admin_success" qtlid="297358">SharePointin administraattorin oikeuksien palautus käynnistyi onnistuneesti. </translation>
+   <translation id="sharepoint_accounts_action_admin_add" qtlid="297371">Aktivoi adminsitraattorin oikeudet</translation>
+   <translation id="sharepoint_accounts_action_admin_remove" qtlid="297384">Poista administraattorin oikeudet</translation>
+   <translation id="sharepoint_accounts_action_office_licence" qtlid="364485">Lisää Office-lisenssi</translation>
+   <translation id="sharepoint_accounts_action_success" qtlid="447586">SharePoint-tilin {0} konfiguraation muokkaus käynnistettiin onnistuneesti.</translation>
+   <translation id="sharepoint_accounts_action_error" qtlid="447599">Tapahtui virhe SharePoint-tilin {0} konfiguraation muokkauksessa.</translation>
+   <translation id="sharepoint_accounts_action_sharepoint_activate" qtlid="297397">Aktivoi SharePoint</translation>
+   <translation id="sharepoint_accounts_action_sharepoint_remove" qtlid="297410">Poista tili</translation>
+   <translation id="sharepoint_accounts_action_sharepoint_remove_intro" qtlid="519194">Voulez-vous réellement supprimer le compte suivant de votre service SharePoint ?</translation>
+   <translation id="sharepoint_accounts_action_sharepoint_remove_warning" qtlid="349036">Varoitus! Tämä valinta poistaa palvelun kuluvan kuukauden lopussa ja kaikki tiedot menetetään. Tilin tietoja on tämän jälkeen mahdotonta hakea. </translation>
+   <translation id="sharepoint_account_action_sharepoint_remove_success_message" qtlid="349049">Tilin {0} poisto astuu voimaan kuun lopussa.</translation>
+   <translation id="sharepoint_account_action_sharepoint_remove_error_message" qtlid="349062">Tilin poistamispyyntö epäonnistui.</translation>
+   <translation id="sharepoint_accounts_action_sharepoint_add_title" qtlid="353654">Lisää SharePoint-tili</translation>
+   <translation id="sharepoint_accounts_action_sharepoint_add_intro" qtlid="353667">Lisää ylimääräisiä SharePoint-tilejä alustallesi:</translation>
+   <translation id="sharepoint_accounts_action_sharepoint_add_extra_intro" qtlid="353680">Tilaus muodostetaan. Palvelut akitoituvat maksun jälkeen.</translation>
+   <translation id="sharepoint_accounts_action_sharepoint_add_extra_prorata" qtlid="519207">Le tarif affiché ci-dessus représente le montant mensuel fixe pour un compte SharePoint. Il peut varier, au prorata de la date de votre commande.</translation>
+   <translation id="sharepoint_accounts_action_sharepoint_add_monthly" qtlid="312662">/kuukausi</translation>
+   <translation id="sharepoint_account_action_sharepoint_add_success_message" qtlid="353693">Tilauksesi on rekisteröity. Sinut uudelleenohjataan OVH:n laskutuskäyttöliittymään.</translation>
+   <translation id="sharepoint_accounts_action_sharepoint_add_error_message" qtlid="353706">Tilaukseen tarvittavien tietojen haussa tapahtui virhe.</translation>
+   <translation id="sharepoint_accounts_action_sharepoint_add_error_outofbounds" qtlid="376271">Lisättyjen tilien lukumäärän on oltava välillä {0} ja {1}</translation>
+   <translation id="sharepoint_accounts_action_sharepoint_add_product_sharepoint_account" qtlid="519220">Compte Sharepoint</translation>
+
+   <translation id="sharepoint_action_reset_search" qtlid="279158">Poista haku</translation>
+
+   <translation id="sharepoint_accounts_action_licence_upgrade" qtlid="297423">Siirry SharePoint Standard -versioon</translation>
+   <translation id="sharepoint_accounts_action_licence_downgrade" qtlid="297436">Palaa SharePoint säätiöön</translation>
+   <translation id="sharepoint_accounts_action_office_upgrade" qtlid="297449">Lisää Office-lisenssi</translation>
+   <translation id="sharepoint_accounts_action_office_downgrade" qtlid="297462">Poista Office-lisenssi</translation>
+   <translation id="sharepoint_accounts_action_change_password" qtlid="8434">Salasanan muokkaus</translation>
+   <translation id="sharepoint_accounts_action_change_configuration" qtlid="218354">Tilin muuttaminen</translation>
+
+   <translation id="sharepoint_account_update_configuration_title" qtlid="347444">Muokkaa SharePoint-tiliä</translation>
+   <translation id="sharepoint_account_update_configuration_display_name" qtlid="23515">Näyttönimi</translation>
+   <translation id="sharepoint_account_update_configuration_first_name" qtlid="23323">Etunimi</translation>
+   <translation id="sharepoint_account_update_configuration_last_name" qtlid="3818">Nimi</translation>
+   <translation id="sharepoint_account_update_configuration_initials" qtlid="152414">Nimikirjaimet</translation>
+   <translation id="sharepoint_account_update_configuration_user_principal_name" qtlid="347457">user_principal_name</translation>
+   <translation id="sharepoint_account_update_configuration_confirm_message_text" qtlid="347470">Konfiguraation muutos tilille {0} astuu voimaan muutamassa minuutissa.</translation>
+   <translation id="sharepoint_account_update_configuration_error_message_text" qtlid="347483">Konfiguraation muutospyyntö epäonnistui.</translation>
+
+   <translation id="sharepoint_account_state_creating" qtlid="26791">Luonti</translation>
+   <translation id="sharepoint_account_state_deleting" qtlid="59699">Poisto</translation>
+   <translation id="sharepoint_account_state_ok" qtlid="297475">ok</translation>
+   <translation id="sharepoint_account_state_reopening" qtlid="297488">Uudelleenavaus</translation>
+   <translation id="sharepoint_account_state_suspended" qtlid="136100">Vanhentunut</translation>
+   <translation id="sharepoint_account_state_suspending" qtlid="297501">Jäädytys</translation>
+   <translation id="sharepoint_accounts_empty" qtlid="218107">Ei tilejä</translation>
+   <translation id="sharepoint_accounts_upgrade" qtlid="297514">Migraatio Standard-tuotteeseen</translation>
+
+   <translation id="sharepoint_activate_back_to_exchange_label" qtlid="297527">Palaa Exchange-palvelimen{0} tietoihin</translation>
+   <translation id="sharepoint_activate_title_label" qtlid="297540">Aktivoi SharePoint</translation>
+   <translation id="sharepoint_order_title_label" qtlid="297553">Tilaa SharePoint</translation>
+   <translation id="sharepoint_activate_intro_text" qtlid="297566">SharePointin avulla voidaan luoda verkkosivuja tietojen tallentamiseen, organisoimiseen ja jakamiseen yrityksen sisällä. </translation>
+   <translation id="sharepoint_activate_intro_warning_associated" qtlid="349075">Huomio, SharePoint Standalone on mahdollista yhdistää olemassa olevaan hosted-palveluun, tätä toimintoa ei voida tehdä enää tilauksen jälkeen. </translation>
+   <translation id="sharepoint_activate_intro_warning_reseller" qtlid="519233">En tant que revendeur, vous profitez d'une réduction sur l’achat de comptes SharePoint Standalone Provider uniquement. Vous pouvez tout de même choisir d'associer un SharePoint à un service existant, mais vous ne bénéficierez pas de ce tarif préférentiel.</translation>
+   <translation id="sharepoint_activate_mode_associate" qtlid="519246">Associer à un service Exchange existant</translation>
+   <translation id="sharepoint_activate_mode_standalone" qtlid="519259">Commander un compte SharePoint Standalone</translation>
+   <translation id="sharepoint_activate_mode_standalone_provider" qtlid="519272">Commander un compte SharePoint Standalone Provider</translation>
+   <translation id="sharepoint_activate_standalone_accounts_number" qtlid="519285">Nombre de licences SharePoint Standalone</translation>
+
+   <translation id="sharepoint_activate_fields_manadatory_label" qtlid="297579">Kaikki kentät ovat pakollisia</translation>
+   <translation id="sharepoint_activate_which_service_label" qtlid="297592">Liitettävä Exchange-palvelin</translation>
+   <translation id="sharepoint_activate_enter_account_label" qtlid="316853">Syötä Exchange-palvelintilin sähköpostiosoite</translation>
+   <translation id="sharepoint_activate_see_account_list" qtlid="297618">Katso tililista</translation>
+   <translation id="sharepoint_activate_invalid_account" qtlid="297631">Tiliä ei ole olemassa kyseisellä exchange-palvelimella</translation>
+   <translation id="sharepoint_activate_url_placeholder" qtlid="297644">Määritä SharePointin URL</translation>
+   <translation id="sharepoint_activate_button_label" qtlid="297657">Tee aktivointipyyntö</translation>
+   <translation id="sharepoint_order_button_label" qtlid="347496">Tilaa palvelu</translation>
+
+   <translation id="sharepoint_order_button_label_month" qtlid="366280">Tilaa palvelu kuukaudeksi</translation>
+   <translation id="sharepoint_order_button_label_year" qtlid="43558">Tilaa</translation>
+   <translation id="sharepoint_order_button_label_promo" qtlid="366254">3 kuukautta ilmaiseksi 12 kuukauden sitoutumisella</translation>
+
+
+   <translation id="sharepoint_activate_message_failure" qtlid="297670">SharePointin aktivointipyyntö epäonnistui.</translation>
+
+   <translation id="sharepoint_action_activate_office_licence_title" qtlid="364498">Aktivoi Office-lisenssi</translation>
+   <translation id="sharepoint_action_activate_office_licence_intro" qtlid="519298">Pour utiliser les webapp Office incluses dans SharePoint, vous devez disposez d’une licence Office 2013 ou 2016 (Office 365)</translation>
+   <translation id="sharepoint_action_activate_office_licence_option_no" qtlid="364524">Eikö sinulla ole Office-lisenssiä?</translation>
+   <translation id="sharepoint_action_activate_office_licence_option_link" qtlid="364537">Tilaa se parhaaseen hintaan OVH:lta</translation>
+   <translation id="sharepoint_action_activate_office_licence_option_yes" qtlid="519311">Je déclare sur l’honneur posséder les licences Office nécessaires à l’utilisation des webapp de SharePoint</translation>
+   <translation id="sharepoint_action_activate_office_licence_success_message" qtlid="364563">Office-lisenssin aktivointi on käsitelty.</translation>
+   <translation id="sharepoint__action_activate_office_licence_error_message" qtlid="364576">Office-lisenssin aktivointipyyntö epäonnistui.</translation>
+
+   <translation id="sharepoint_set_url_intro_title" qtlid="297683">Melkein valmista!</translation>
+   <translation id="sharepoint_set_url_intro_label" qtlid="519324">Il vous suffit de spécifier une adresse URL pour ce nouveau SharePoint pour pouvoir commencer à l'utiliser.</translation>
+   <translation id="sharepoint_set_url_textfield_label" qtlid="519337">URL du SharePoint</translation>
+   <translation id="sharepoint_set_url_textfield_warn" qtlid="297722">Huomaa, että URL:ää ei voi enää muokata vahvistamisen jälkeen. </translation>
+   <translation id="sharepoint_set_url_button_label" qtlid="297735">Vahvista URL</translation>
+   <translation id="sharepoint_set_url_success_message_title" qtlid="297748">SharePointin konfiguraatio</translation>
+   <translation id="sharepoint_set_url_success_message_text" qtlid="297761">Exchange-palvelimeen {0} yhdistetyn SharePointin konfiguraatiopyyntö onnistui.</translation>
+   <translation id="sharepoint_set_url_failure_message_text" qtlid="297774">SharePointin konfiguraatiopyyntö epäonnistui.</translation>
+
+   <translation id="sharepoint_ACTION_update_password_title" qtlid="347509">Muokkaa salasanaa</translation>
+   <translation id="sharepoint_ACTION_update_password_account_label" qtlid="33862">Tili</translation>
+   <translation id="sharepoint_ACTION_update_password_pass_label" qtlid="2270">Salasana</translation>
+   <translation id="sharepoint_ACTION_update_password_confirm_pass_label" qtlid="9983">Vahvista</translation>
+   <translation id="sharepoint_ACTION_update_password_confirm_message_text" qtlid="325909">Salasanan vaihto tilille {0} astuu voimaan muutaman minuutin kuluessa.</translation>
+   <translation id="sharepoint_ACTION_update_password_error_message_text" qtlid="297800">Salasanan muutospyyntö epäonnistui.</translation>
+   <translation id="sharepoint_ACTION_update_password_complexity_message" qtlid="211867">Salasana on virheellinen</translation>
+   <translation id="sharepoint_ACTION_update_password_complexity_message_length" qtlid="297813">vähintään {0} merkkiä</translation>
+   <translation id="sharepoint_ACTION_update_password_complexity_message_all" qtlid="376284">Vähintään {0} merkkiä, joista vähintään yksi pieni kirjain, yksi iso kirjain ja yksi numero.</translation>
+   <translation id="sharepoint_ACTION_update_password_complexity_message_minuscule" qtlid="297839">vähintään yksi pieni kirjain</translation>
+   <translation id="sharepoint_ACTION_update_password_complexity_message_majuscule" qtlid="297852">vähintään yksi iso kirjain</translation>
+   <translation id="sharepoint_ACTION_update_password_complexity_message_number" qtlid="297865">vähintään yksi numero</translation>
+   <translation id="sharepoint_ACTION_update_password_complexity_message_first" qtlid="297878">ensimmäisen merkin on oltava aakkosnumeerinen</translation>
+   <translation id="sharepoint_ACTION_update_password_shared_password_warning" qtlid="316866">Salasana vaihdetaan myös liitetylle Exchange-palvelulle.</translation>
+   <translation id="sharepoint_exchange_update_billing_action_title" qtlid="98324">Uusinta-ajanjakso</translation>
+   <translation id="sharepoint_exchange_update_billing_periode_intro" qtlid="190966">Valitse haluamasi uudistamisväli automaattista uudistamista varten jokaiselle tilille. <br />Tätä sovelletaan seuraavasta uudistamisesta alkaen.</translation>
+   <translation id="sharepoint_exchange_update_billing_periode_success" qtlid="519350">La période de renouvellement a été mise à jour avec succès.</translation>
+   <translation id="sharepoint_exchange_update_billing_periode_failure" qtlid="519363">La mise à jour de la période de renouvellement a échoué.</translation>
+   <translation id="sharepoint_exchange_update_billing_header_1M" qtlid="60378">Kuukausittainen</translation>
+   <translation id="sharepoint_exchange_update_billing_header_terminate" qtlid="8674">Ei mitään</translation>
+   <translation id="sharepoint_exchange_update_billing_periode_delete_warning" qtlid="211593">Ota huomioon että tämä valinta aiheuttaa palvelun vanhentumisen ja data menetetään pysyvästi. Datan palautus ei ole mahdollista.</translation>
+   <translation id="sharepoint_exchange_update_billing_periode_resume" qtlid="191005">Olet vaihtamassa automaattisen uudistamisen ajanjaksoa seuraaville tileillesi:</translation>
+   <translation id="sharepoint_exchange_update_billing_periode_success" qtlid="516900">Période de facturation mise à jour avec succès</translation>
+   <translation id="sharepoint_exchange_update_billing_periode_failure" qtlid="191044">Tapahtui virhe ladattaessa automaattista uudistamisajanjaksoa.</translation>
+   <translation id="sharepoint_exchange_update_billing_button_title" qtlid="190953">Laskutustapa</translation>
+   <translation id="sharepoint_exchange_ACTION_update_account_step1_password_weak" qtlid="139624">Salasana on liian yksinkertainen</translation>
+   <translation id="sharepoint_exchange_ACTION_update_account_step1_password_contains_name" qtlid="254856">Salasana ei voi sisältää kokonaista tai osittaista tilin näyttönimeä tai Exchange-käyttäjätunnusta.</translation>
+   <translation id="sharepoint_exchange_ACTION_update_account_step1_password_different" qtlid="139637">Salasanat ovat erilaiset</translation>
+   <translation id="sharepoint_exchange_ACTION_add_account_step1_email_label" qtlid="137244">Sähköpostitili</translation>
+   <translation id="sharepoint_exchange_ACTION_order_accounts_button" qtlid="139169">Tilaa tilejä</translation>
+   <translation id="sharepoint_exchange_tab_ACCOUNTS_table_email" qtlid="137244">Sähköpostitili</translation>
+   <translation id="sharepoint_exchange_tab_ALIAS_taken_error_message" qtlid="190849">Adresse email déjà existante.</translation>
+   <translation id="sharepoint_exchange_tab_account_remove_account" qtlid="137725">Poista tili</translation>
+   <translation id="sharepoint_exchange_tab_account_remove_email_label" qtlid="33862">Tili</translation>
+   <translation id="sharepoint_exchange_tab_domain_remove_domain" qtlid="137933">Verkkotunnuksen poisto</translation>
+   <translation id="sharepoint_exchange_tab_domain_domain" qtlid="8458">Verkkotunnus</translation>
+   <translation id="sharepoint_exchange_tab_domain_add_domain" qtlid="8602">Lisää verkkotunnus</translation>
+   <translation id="sharepoint_exchange_tab_domain_add_step1_select_domain_option" qtlid="136971">Valitse verkkotunnus listasta</translation>
+   <translation id="sharepoint_exchange_tab_domain_search" qtlid="136633">Etsi verkkotunnusta</translation>
+   <translation id="sharepoint_exchange_tab_domain_add_step1_domain_none" qtlid="434538">Yhtään tulosta ei löytynyt</translation>
+   <translation id="sharepoint_exchange_tab_domain_add_step1_user_owned_option" qtlid="397533">Syötä verkkotunnus, joka ei ole OVH:n hallinnoima</translation>
+   <translation id="sharepoint_exchange_tab_TASKS_ADD_DOMAIN" qtlid="137335">Verkkotunnuksen lisäys</translation>
+   <translation id="sharepoint_exchange_tab_domain_step1_helpwizard_subdomain_title" qtlid="137881">Ali-verkkotunnuksen käyttö</translation>
+   <translation id="sharepoint_exchange_tab_domain_step1_helpwizard_subdomain" qtlid="397559">Lisätäksesi aliverkkotunnuksen johonkin OVH:n verkkotunnuksistasi ruksaa "Syötä verkkotunnus, joka ei ole OVH:n hallinoima" ja syötä se sille kuuluvaan kohtaan.</translation>
+   <translation id="sharepoint_exchange_tab_domain_diagnostic" qtlid="95059">Ongelmankartoitus</translation>
+   <translation id="sharepoint_exchange_tab_domain_status" qtlid="26443">Tila</translation>
+   <translation id="sharepoint_exchange_tab_domain_add_domain" qtlid="8602">Lisää verkkotunnus</translation>
+   <translation id="sharepoint_exchange_dashboard_guides_url" qtlid="156732">Katso ohjeemme</translation>
+</translations>
