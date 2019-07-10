@@ -5,7 +5,6 @@ import has from 'lodash/has';
 import map from 'lodash/map';
 import reduce from 'lodash/reduce';
 import uniq from 'lodash/uniq';
-import values from 'lodash/values';
 
 export default class RegionsListController {
   /* @ngInject */
@@ -36,14 +35,12 @@ export default class RegionsListController {
 
   updateRegions() {
     const formattedRegions = map(
-      filter(
-        this.regions,
-        region => region.hasEnoughQuota(),
-      ),
+      this.regions,
       region => ({
         ...this.CucRegionService.getRegion(region.name),
         name: region.name,
         continentCode: region.continentCode,
+        hasEnoughQuota: region.hasEnoughQuota(),
       }),
     );
 
@@ -63,7 +60,7 @@ export default class RegionsListController {
 
       return {
         ...result,
-        [continent]: values(groupBy(continentRegions, 'macroRegion.text')),
+        [continent]: groupBy(continentRegions, 'macroRegion.text'),
       };
     }, {});
 
@@ -72,6 +69,16 @@ export default class RegionsListController {
         formattedRegions,
         region => region.microRegion.code === this.selectedRegion.name,
       );
+    }
+  }
+
+  static isRegionDisabled(region) {
+    return region.length === 1 && !region[0].hasEnoughQuota;
+  }
+
+  onMacroChange(macro, regions) {
+    if (regions.length === 1) {
+      this.onRegionChange(regions[0]);
     }
   }
 

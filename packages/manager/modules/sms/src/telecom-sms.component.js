@@ -3,7 +3,7 @@ import angular from 'angular';
 import '@ovh-ux/ng-ovh-telecom-universe-components';
 import '@ovh-ux/manager-telecom-styles';
 import 'angular-messages';
-import 'ovh-angular-checkbox-table';
+import ngOvhCheckboxTable from '@ovh-ux/ng-ovh-checkbox-table';
 import '@ovh-ux/ng-pagination-front';
 import 'ovh-api-services';
 
@@ -36,7 +36,7 @@ angular
   .module(moduleName, [
     'ngOvhTelecomUniverseComponents',
     'ngPaginationFront',
-    'ovh-angular-checkbox-table',
+    ngOvhCheckboxTable,
     'ovh-api-services',
     'ngMessages',
     dashboard,
