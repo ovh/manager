@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="sharepoint_license_common_or" qtlid="366267">Or</translation>
+   <translation id="sharepoint_common_open_new_tab" qtlid="509586">Open a new window</translation>
+   <translation id="sharepoint_license_foundation" qtlid="297059">Foundation</translation>
+   <translation id="sharepoint_license_standard" qtlid="48998">Standard</translation>
+   <translation id="sharepoint_dashboard_offer_type" qtlid="297072">SharePoint</translation>
+   <translation id="sharepoint_dashboard_offer_type_standalone" qtlid="347340">Standalone</translation>
+   <translation id="sharepoint_dashboard_guides_help_label" qtlid="297085">Need help configuring your SharePoint?</translation>
+   <translation id="sharepoint_dashboard_associated_exchange" qtlid="299663">Associated Exchange service </translation>
+   <translation id="sharepoint_dashboard_offer_account" qtlid="519142">SharePoint account</translation>
+
+   <translation id="sharepoint_dashboard_address" qtlid="258938">Server address</translation>
+   <translation id="sharepoint_dashboard_type" qtlid="297111">Server type</translation>
+   <translation id="sharepoint_dashboard_organization" qtlid="32278">Organization</translation>
+   <translation id="sharepoint_dashboard_state" qtlid="297124">Service status</translation>
+   <translation id="sharepoint_dashboard_state_ok" qtlid="31522">OK</translation>
+   <translation id="sharepoint_dashboard_state_suspended" qtlid="136100">Suspended</translation>
+   <translation id="sharepoint_dashboard_accounts" qtlid="297137">Nb. of active accounts </translation>
+   <translation id="sharepoint_dashboard_quota" qtlid="297150">Shared storage space </translation>
+   <translation id="sharepoint_dashboard_access" qtlid="82449">Access</translation>
+   <translation id="sharepoint_dashboard_url_label" qtlid="297163">Checking URL: </translation>
+   <translation id="sharepoint_dashboard_guides_url" qtlid="519155">SharePoint activation and management</translation>
+   <translation id="sharepoint_dashboard_creating_url_label" qtlid="154949">Activating...</translation>
+   <translation id="sharepoint_dashboard_linked_exchange_label" qtlid="297189">Associated Exchange server:</translation>
+   <translation id="sharepoint_dashboard_quota" qtlid="297202">Quotas</translation>
+   <translation id="sharepoint_dashboard_quota_total_label" qtlid="297215">Total disk space</translation>
+   <translation id="sharepoint_dashboard_quota_used_label" qtlid="15365">Used disk space</translation>
+   <translation id="sharepoint_dashboard_quota_free_label" qtlid="297228">Available disk space </translation>
+   <translation id="sharepoint_dashboard_unit_size_giga" qtlid="48890">GB</translation>
+   <translation id="sharepoint_dashboard_display_name_edit" qtlid="37875">Modify</translation>
+   <translation id="sharepoint_dashboard_display_name_save" qtlid="49754">Save</translation>
+   <translation id="sharepoint_dashboard_display_name_error" qtlid="447560">An error has occurred updating information.</translation>
+   <translation id="sharepoint_tab_INFORMATION" qtlid="27115">General information</translation>
+   <translation id="sharepoint_tab_ACCOUNT" qtlid="7738">Users</translation>
+   <translation id="sharepoint_tab_DOMAIN" qtlid="32590">Domains</translation>
+   <translation id="sharepoint_tab_TASK" qtlid="136217">Recent tasks</translation>
+
+   <translation id="sharepoint_tabs_tasks_function" qtlid="85509">Function</translation>
+   <translation id="sharepoint_tabs_tasks_status" qtlid="26443">Status</translation>
+   <translation id="sharepoint_tabs_tasks_status_doing" qtlid="26383">In progress</translation>
+   <translation id="sharepoint_tabs_tasks_status_todo" qtlid="305356">Scheduled</translation>
+   <translation id="sharepoint_tabs_tasks_status_done" qtlid="26395">Terminated</translation>
+   <translation id="sharepoint_tabs_tasks_status_error" qtlid="26407">Error</translation>
+   <translation id="sharepoint_tabs_tasks_status_cancelled" qtlid="164623">Cancelled</translation>
+   <translation id="sharepoint_tabs_tasks_todoDate" qtlid="159176">Start date</translation>
+   <translation id="sharepoint_tabs_tasks_finishDate" qtlid="299858">End date </translation>
+   <translation id="sharepoint_tabs_tasks_null" qtlid="159163">No recent tasks</translation>
+   <translation id="sharepoint_tabs_tasks_error" qtlid="447573">An error has occurred retrieving recent tasks.</translation>
+
+   <translation id="sharepoint_dashboard_error" qtlid="243832">An error occurred while retrieving the details:</translation>
+   <translation id="sharepoint_tab_ACCOUNTS_menu_account_tooltip" qtlid="19075">More actions</translation>
+
+   <translation id="sharepoint_domains_cname_check_label" qtlid="129847">CNAME</translation>
+   <translation id="sharepoint_domains_cname_check_tooltip" qtlid="349127">To confirm that you own this domain, please create a CNAME record: <br /><br /><span class="bold">{0}</span> to <span class="bold">ovh.com</span>.<br /><br /> You have 48 hours to do this. </translation>
+   <translation id="sharepoint_domains_cname_check_title" qtlid="139273">Owner verification.</translation>
+   <translation id="sharepoint_domains_cname_check_info1" qtlid="136646">Domain validation in progress</translation>
+   <translation id="sharepoint_domains_cname_check_info2" qtlid="347366">Please create a record </translation>
+   <translation id="sharepoint_domains_empty_list" qtlid="126344">No domain</translation>
+   <translation id="sharepoint_domains_state_creating" qtlid="26791">Creation</translation>
+   <translation id="sharepoint_domains_state_validation" qtlid="33802">Validation</translation>
+   <translation id="sharepoint_domains_state_deleting" qtlid="59699">Delete</translation>
+   <translation id="sharepoint_domains_delete_tooltips" qtlid="8470">Delete the domain</translation>
+   <translation id="sharepoint_domains_more_details" qtlid="91645">Display details </translation>
+
+   <translation id="sharepoint_add_domains_intro_label" qtlid="347379">Select the domain that you want to add to your SharePoint solution.</translation>
+   <translation id="sharepoint_add_domain_confirm_message_text" qtlid="347392">The {0} domain will be added in a few minutes.  </translation>
+   <translation id="sharepoint_add_domain_error_message_text" qtlid="347405">Request to add the domain failed.</translation>
+   <translation id="sharepoint_delete_domains_intro_label" qtlid="376258">You are about to submit a deletion request for the following domain: </translation>
+   <translation id="sharepoint_delete_domain_confirm_message_text" qtlid="347418">The {0} domain will be deleted in a few minutes.  </translation>
+   <translation id="sharepoint_delete_domain_error_message_text" qtlid="347431">Request to delete domain failed.</translation>
+
+   <translation id="sharepoint_accounts_err" qtlid="297241">An error has occurred retrieving accounts: </translation>
+   <translation id="sharepoint_accounts_userPrincipalName" qtlid="7738">Users</translation>
+   <translation id="sharepoint_accounts_one_drive_space" qtlid="297254">OneDrive space </translation>
+   <translation id="sharepoint_accounts_user" qtlid="297267">Active account </translation>
+   <translation id="sharepoint_accounts_administrator" qtlid="43948">Administrator</translation>
+   <translation id="sharepoint_accounts_license_office" qtlid="297280">Office licence </translation>
+   <translation id="sharepoint_accounts_version" qtlid="34210">Version</translation>
+   <translation id="sharepoint_accounts_state" qtlid="33790">State</translation>
+
+   <translation id="sharepoint_accounts_action_reset_admin" qtlid="297293">Restore administrator rights </translation>
+   <translation id="sharepoint_accounts_action_reset_admin_short_title" qtlid="297306">Administrator rights </translation>
+   <translation id="sharepoint_accounts_action_reset_admin_question" qtlid="519168">Are you sure you want to restore administrator rights for your SharePoint service?</translation>
+   <translation id="sharepoint_accounts_action_reset_admin_tooltip" qtlid="519181">Restore administrator rights to their default values. Useful if any accidental changes have been made to rights via the SharePoint interface</translation>
+   <translation id="sharepoint_accounts_action_reset_admin_error" qtlid="297345">The request to reset SharePoint administrator rights has failed.  </translation>
+   <translation id="sharepoint_accounts_action_reset_admin_success" qtlid="297358">The request to reset SharePoint administrator rights has been successful.  </translation>
+   <translation id="sharepoint_accounts_action_admin_add" qtlid="297371">Enable administrator rights </translation>
+   <translation id="sharepoint_accounts_action_admin_remove" qtlid="297384">Remove administrator rights </translation>
+   <translation id="sharepoint_accounts_action_office_licence" qtlid="364485">Add an Office licence </translation>
+   <translation id="sharepoint_accounts_action_success" qtlid="447586">The configuration changes to your {0} SharePoint account have been launched.</translation>
+   <translation id="sharepoint_accounts_action_error" qtlid="447599">An error has occurred modifying the configuration for your {0} SharePoint account.</translation>
+   <translation id="sharepoint_accounts_action_sharepoint_activate" qtlid="297397">Enable SharePoint</translation>
+   <translation id="sharepoint_accounts_action_sharepoint_remove" qtlid="297410">Disable SharePoint </translation>
+   <translation id="sharepoint_accounts_action_sharepoint_remove_intro" qtlid="519194">Are you sure you want to delete the following account from your SharePoint interface?</translation>
+   <translation id="sharepoint_accounts_action_sharepoint_remove_warning" qtlid="349036">Warning! If you choose this option, your solution will be deleted at the end of the current month, and the data will be lost. You will no longer be able to retrieve the account's data.</translation>
+   <translation id="sharepoint_account_action_sharepoint_remove_success_message" qtlid="349049">The {0} account will deleted at the end of the month. </translation>
+   <translation id="sharepoint_account_action_sharepoint_remove_error_message" qtlid="349062">Request to delete the account failed. </translation>
+   <translation id="sharepoint_accounts_action_sharepoint_add_title" qtlid="353654">Add a SharePoint account</translation>
+   <translation id="sharepoint_accounts_action_sharepoint_add_intro" qtlid="353667">Add extra SharePoint accounts to your platform: </translation>
+   <translation id="sharepoint_accounts_action_sharepoint_add_extra_intro" qtlid="353680">A purchase order has been generated. The solutions will be activated following payment. </translation>
+   <translation id="sharepoint_accounts_action_sharepoint_add_extra_prorata" qtlid="519207">The price displayed above is the monthly fixed price for a SharePoint account. It may vary on a pro rata basis, depending on your order date.</translation>
+   <translation id="sharepoint_accounts_action_sharepoint_add_monthly" qtlid="312662">/month</translation>
+   <translation id="sharepoint_account_action_sharepoint_add_success_message" qtlid="353693">Votre demande a été prise en compte. Vous allez être redirigé vers l'interface de paiement OVH.</translation>
+   <translation id="sharepoint_accounts_action_sharepoint_add_error_message" qtlid="353706">Une erreur est survenue lors de la récupération des informations nécessaires à la commande.</translation>
+   <translation id="sharepoint_accounts_action_sharepoint_add_error_outofbounds" qtlid="376271">The number of accounts added must be between {0} and {1}</translation>
+   <translation id="sharepoint_accounts_action_sharepoint_add_product_sharepoint_account" qtlid="519220">SharePoint account</translation>
+
+   <translation id="sharepoint_action_reset_search" qtlid="279158">Delete search </translation>
+
+   <translation id="sharepoint_accounts_action_licence_upgrade" qtlid="297423">Switch to SharePoint Standard</translation>
+   <translation id="sharepoint_accounts_action_licence_downgrade" qtlid="297436">Go back to SharePoint Foundation</translation>
+   <translation id="sharepoint_accounts_action_office_upgrade" qtlid="297449">Add an Office licence </translation>
+   <translation id="sharepoint_accounts_action_office_downgrade" qtlid="297462">Remove the Office licence </translation>
+   <translation id="sharepoint_accounts_action_change_password" qtlid="8434">Modify password</translation>
+   <translation id="sharepoint_accounts_action_change_configuration" qtlid="218354">Modify the account</translation>
+
+   <translation id="sharepoint_account_update_configuration_title" qtlid="347444">Modify the SharePoint account </translation>
+   <translation id="sharepoint_account_update_configuration_display_name" qtlid="23515">Display name</translation>
+   <translation id="sharepoint_account_update_configuration_first_name" qtlid="23323">First name</translation>
+   <translation id="sharepoint_account_update_configuration_last_name" qtlid="3818">Name</translation>
+   <translation id="sharepoint_account_update_configuration_initials" qtlid="152414">Initials</translation>
+   <translation id="sharepoint_account_update_configuration_user_principal_name" qtlid="347457">user_principal_name</translation>
+   <translation id="sharepoint_account_update_configuration_confirm_message_text" qtlid="347470">The {0} account configuration will be changed in a few minutes.  </translation>
+   <translation id="sharepoint_account_update_configuration_error_message_text" qtlid="347483">The configuration change request has failed. </translation>
+
+   <translation id="sharepoint_account_state_creating" qtlid="26791">Creation</translation>
+   <translation id="sharepoint_account_state_deleting" qtlid="59699">Delete</translation>
+   <translation id="sharepoint_account_state_ok" qtlid="297475">OK</translation>
+   <translation id="sharepoint_account_state_reopening" qtlid="297488">Reopening </translation>
+   <translation id="sharepoint_account_state_suspended" qtlid="136100">Suspended</translation>
+   <translation id="sharepoint_account_state_suspending" qtlid="297501">Deletion </translation>
+   <translation id="sharepoint_accounts_empty" qtlid="218107">No account</translation>
+   <translation id="sharepoint_accounts_upgrade" qtlid="297514">Migrate to the Standard service </translation>
+
+   <translation id="sharepoint_activate_back_to_exchange_label" qtlid="297527">Look at the {0} Exchange server in detail </translation>
+   <translation id="sharepoint_activate_title_label" qtlid="297540">Enable a SharePoint</translation>
+   <translation id="sharepoint_order_title_label" qtlid="297553">Order a SharePoint</translation>
+   <translation id="sharepoint_activate_intro_text" qtlid="297566">SharePoint lets you create websites where you can store, organise and share information within your organisation. </translation>
+   <translation id="sharepoint_activate_intro_warning_associated" qtlid="349075">Please note, you can attach your SharePoint Standalone solution to an existing hosted service. You will not be able to do this once the order has been placed. </translation>
+   <translation id="sharepoint_activate_intro_warning_reseller" qtlid="519233">As a provider, you can purchase SharePoint Standalone Provider accounts at a reduced price. You can still associate a SharePoint with an existing service, but if you choose to do so, you will not benefit from this discounted price.</translation>
+   <translation id="sharepoint_activate_mode_associate" qtlid="519246">Associate with an existing Exchange service</translation>
+   <translation id="sharepoint_activate_mode_standalone" qtlid="519259">Order a SharePoint Standalone account</translation>
+   <translation id="sharepoint_activate_mode_standalone_provider" qtlid="519272">Order a SharePoint Standalone Provider account</translation>
+   <translation id="sharepoint_activate_standalone_accounts_number" qtlid="519285">Number of SharePoint Standalone licences</translation>
+
+   <translation id="sharepoint_activate_fields_manadatory_label" qtlid="297579">All fields are mandatory </translation>
+   <translation id="sharepoint_activate_which_service_label" qtlid="297592">Exchange server to link to </translation>
+   <translation id="sharepoint_activate_enter_account_label" qtlid="316853">Enter the email address of an Exchange server account.</translation>
+   <translation id="sharepoint_activate_see_account_list" qtlid="297618">View the list of accounts </translation>
+   <translation id="sharepoint_activate_invalid_account" qtlid="297631">This account does not exist on the associated Exchange server </translation>
+   <translation id="sharepoint_activate_url_placeholder" qtlid="297644">Enter the SharePoint URL </translation>
+   <translation id="sharepoint_activate_button_label" qtlid="297657">Send activation request </translation>
+   <translation id="sharepoint_order_button_label" qtlid="347496">Order your solution </translation>
+
+   <translation id="sharepoint_order_button_label_month" qtlid="366280">Order your solution for one month</translation>
+   <translation id="sharepoint_order_button_label_year" qtlid="43558">Order</translation>
+   <translation id="sharepoint_order_button_label_promo" qtlid="366254">3 months for free for a 12-month subscription</translation>
+
+
+   <translation id="sharepoint_activate_message_failure" qtlid="297670">The request to activate SharePoint has failed. </translation>
+
+   <translation id="sharepoint_action_activate_office_licence_title" qtlid="364498">Activate the Office licence </translation>
+   <translation id="sharepoint_action_activate_office_licence_intro" qtlid="519298">To use the Office web apps included in SharePoint, you must have an Office 2013 or 2016 (Office 365) licence.</translation>
+   <translation id="sharepoint_action_activate_office_licence_option_no" qtlid="364524">Don't have an Office licence?</translation>
+   <translation id="sharepoint_action_activate_office_licence_option_link" qtlid="364537">Sign up for the best price at OVH</translation>
+   <translation id="sharepoint_action_activate_office_licence_option_yes" qtlid="519311">I confirm that I have the Office licences required to use the SharePoint web apps</translation>
+   <translation id="sharepoint_action_activate_office_licence_success_message" qtlid="364563">Office licence activation has been processed</translation>
+   <translation id="sharepoint__action_activate_office_licence_error_message" qtlid="364576">Request to activate Office licence has failed. </translation>
+
+   <translation id="sharepoint_set_url_intro_title" qtlid="297683">You're nearly there!</translation>
+   <translation id="sharepoint_set_url_intro_label" qtlid="519324">Simply enter a URL address for this new SharePoint, and you can then start to use it.</translation>
+   <translation id="sharepoint_set_url_textfield_label" qtlid="519337">SharePoint URL</translation>
+   <translation id="sharepoint_set_url_textfield_warn" qtlid="297722">Please note, once this URL is confirmed it cannot be changed.</translation>
+   <translation id="sharepoint_set_url_button_label" qtlid="297735">Confirm URL</translation>
+   <translation id="sharepoint_set_url_success_message_title" qtlid="297748">SharePoint configuration </translation>
+   <translation id="sharepoint_set_url_success_message_text" qtlid="297761">The request to configure the SharePoint associated with the {0} Exchange Server has been processed successfully.</translation>
+   <translation id="sharepoint_set_url_failure_message_text" qtlid="297774">The request to configure SharePoint has failed.</translation>
+
+   <translation id="sharepoint_ACTION_update_password_title" qtlid="347509">Change password</translation>
+   <translation id="sharepoint_ACTION_update_password_account_label" qtlid="33862">Account</translation>
+   <translation id="sharepoint_ACTION_update_password_pass_label" qtlid="2270">Password</translation>
+   <translation id="sharepoint_ACTION_update_password_confirm_pass_label" qtlid="9983">Order confirmation </translation>
+   <translation id="sharepoint_ACTION_update_password_confirm_message_text" qtlid="325909">The password for the {0} account will change in a few minutes. </translation>
+   <translation id="sharepoint_ACTION_update_password_error_message_text" qtlid="297800">The password change request has failed.</translation>
+   <translation id="sharepoint_ACTION_update_password_complexity_message" qtlid="211867">Invalid password</translation>
+   <translation id="sharepoint_ACTION_update_password_complexity_message_length" qtlid="297813">at least {0} characters</translation>
+   <translation id="sharepoint_ACTION_update_password_complexity_message_all" qtlid="376284">Minimum {0} characters with at least one lower-case letter, one upper-case letter and one number. </translation>
+   <translation id="sharepoint_ACTION_update_password_complexity_message_minuscule" qtlid="297839">at least one lowercase letter</translation>
+   <translation id="sharepoint_ACTION_update_password_complexity_message_majuscule" qtlid="297852">at least one capital letter</translation>
+   <translation id="sharepoint_ACTION_update_password_complexity_message_number" qtlid="297865">at least one number</translation>
+   <translation id="sharepoint_ACTION_update_password_complexity_message_first" qtlid="297878">first character must be alphanumeric</translation>
+   <translation id="sharepoint_ACTION_update_password_shared_password_warning" qtlid="316866">The password for the associated Exchange service will also be changed.</translation>
+   <translation id="sharepoint_exchange_update_billing_action_title" qtlid="98324">Renewal period</translation>
+   <translation id="sharepoint_exchange_update_billing_periode_intro" qtlid="190966">Select the desired frequency for automatic renewal of each account. <br />This will be applied from the next renewal.</translation>
+   <translation id="sharepoint_exchange_update_billing_periode_success" qtlid="519350">The renewal period has been updated.</translation>
+   <translation id="sharepoint_exchange_update_billing_periode_failure" qtlid="519363">An error has occurred updating the renewal period.</translation>
+   <translation id="sharepoint_exchange_update_billing_header_1M" qtlid="60378">Monthly</translation>
+   <translation id="sharepoint_exchange_update_billing_header_terminate" qtlid="8674">None</translation>
+   <translation id="sharepoint_exchange_update_billing_periode_delete_warning" qtlid="211593">Please note that this choice implies that the service will expire on the expiry date and the data will be lost. It will be then impossible to recover the account data.</translation>
+   <translation id="sharepoint_exchange_update_billing_periode_resume" qtlid="191005">You are about to change the renewal period of your accounts:</translation>
+   <translation id="sharepoint_exchange_update_billing_periode_success" qtlid="516900">Billing period updated</translation>
+   <translation id="sharepoint_exchange_update_billing_periode_failure" qtlid="191044">An error occurred when loading the automatic renewal period.</translation>
+   <translation id="sharepoint_exchange_update_billing_button_title" qtlid="190953">Billing mode</translation>
+   <translation id="sharepoint_exchange_ACTION_update_account_step1_password_weak" qtlid="139624">Password is too simple</translation>
+   <translation id="sharepoint_exchange_ACTION_update_account_step1_password_contains_name" qtlid="254856">The password cannot contain all or part of your Exchange login.</translation>
+   <translation id="sharepoint_exchange_ACTION_update_account_step1_password_different" qtlid="139637">Passwords are different</translation>
+   <translation id="sharepoint_exchange_ACTION_add_account_step1_email_label" qtlid="137244">E-mail account</translation>
+   <translation id="sharepoint_exchange_ACTION_order_accounts_button" qtlid="139169">Order accounts</translation>
+   <translation id="sharepoint_exchange_tab_ACCOUNTS_table_email" qtlid="137244">E-mail account</translation>
+   <translation id="sharepoint_exchange_tab_ALIAS_taken_error_message" qtlid="190849">The email address already exists.</translation>
+   <translation id="sharepoint_exchange_tab_account_remove_account" qtlid="137725">Delete an account </translation>
+   <translation id="sharepoint_exchange_tab_account_remove_email_label" qtlid="33862">Account</translation>
+   <translation id="sharepoint_exchange_tab_domain_remove_domain" qtlid="137933">Delete a domain</translation>
+   <translation id="sharepoint_exchange_tab_domain_domain" qtlid="8458">Domain</translation>
+   <translation id="sharepoint_exchange_tab_domain_add_domain" qtlid="8602">Add a domain</translation>
+   <translation id="sharepoint_exchange_tab_domain_add_step1_select_domain_option" qtlid="136971">Choose a domain from the list</translation>
+   <translation id="sharepoint_exchange_tab_domain_search" qtlid="136633">Search for a domain</translation>
+   <translation id="sharepoint_exchange_tab_domain_add_step1_domain_none" qtlid="434538">No results found</translation>
+   <translation id="sharepoint_exchange_tab_domain_add_step1_user_owned_option" qtlid="397533">Enter a domain name which is not managed by your OVH account </translation>
+   <translation id="sharepoint_exchange_tab_TASKS_ADD_DOMAIN" qtlid="137335">Adding a domain</translation>
+   <translation id="sharepoint_exchange_tab_domain_step1_helpwizard_subdomain_title" qtlid="137881">Use a sub-domain</translation>
+   <translation id="sharepoint_exchange_tab_domain_step1_helpwizard_subdomain" qtlid="397559">To add one of your OVH domain's sub-domains, tick &#13;
+"Enter a domain name which is not managed by your OVH account" and enter it in the corresponding field. </translation>
+   <translation id="sharepoint_exchange_tab_domain_diagnostic" qtlid="95059">Diagnosis</translation>
+   <translation id="sharepoint_exchange_tab_domain_status" qtlid="26443">Status</translation>
+   <translation id="sharepoint_exchange_tab_domain_add_domain" qtlid="8602">Add a domain</translation>
+   <translation id="sharepoint_exchange_dashboard_guides_url" qtlid="156732">Read our online guides.</translation>
+</translations>
