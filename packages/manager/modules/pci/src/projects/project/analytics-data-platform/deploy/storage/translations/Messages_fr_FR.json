@@ -1,7 +1,7 @@
 {
   "analytics_data_platform_deploy_storage_cluster_title": "Stockage du cluster",
   "analytics_data_platform_deploy_storage_cluster_info": "Définissez l'espace de stockage HDFS effectif que vous souhaitez pour votre cluster. Ce stockage sera situé dans plusieurs volumes et répliqué.",
-  "analytics_data_platform_deploy_storage_cluster_label": "Sotckage effectif du cluster (HDFS)",
+  "analytics_data_platform_deploy_storage_cluster_label": "Stockage effectif du cluster (HDFS)",
   "analytics_data_platform_deploy_storage_cluster_storage_helptext": "Le minimum est {{min_storage}} {{unit}} et le maximum est {{max_storage}} {{unit}}",
   "analytics_data_platform_deploy_storage_invalid_entry": "Les décimales ne sont pas autorisées",
   "analytics_data_platform_deploy_storage_set_quantity": "Indiquer la quantité de stockage",

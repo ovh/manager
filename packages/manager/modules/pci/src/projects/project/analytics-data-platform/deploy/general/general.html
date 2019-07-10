@@ -1,6 +1,7 @@
 <div class="mb-3">
     <!-- cluster name -->
     <oui-field data-label="{{ ::'analytics_data_platform_common_cluster_name' | translate }}"
+               data-size="xl"
                data-error-messages="{ pattern: ('analytics_data_platform_deploy_general_cluster_name_help' | translate) }">
         <input class="oui-input"
                type="text"
@@ -13,7 +14,8 @@
                data-ng-pattern="$ctrl.CLUSTER_NAME_PATTERN">
     </oui-field>
     <!-- platform version -->
-    <oui-field data-label="{{ ::'analytics_data_platform_deploy_platform_version' | translate }}">
+    <oui-field data-label="{{ ::'analytics_data_platform_deploy_platform_version' | translate }}"
+               data-size="xl">
         <oui-select data-name="platformVersion"
                     data-model="$ctrl.data.selectedCapability"
                     data-items="$ctrl.capabilities"

@@ -6,7 +6,7 @@
               data-translate-values="{
                 numberOfServers: $ctrl.minimumNodesRequired,
                 instances: $ctrl.quota.instance.maxInstances,
-                region: $ctrl.selectedRegion.macroRegion.text + ' (' + $ctrl.selectedRegion.macroRegion.code + ')',
+                region: $ctrl.selectedRegion.name,
               }">
         </span>
         <a class="text-primary pl-1"
@@ -20,7 +20,7 @@
         <span data-translate="analytics_data_platform_deploy_nodes_quota_msg"
               data-translate-values="{
                 instances: (($ctrl.maximumNodesRequired < $ctrl.quota.instance.maxInstances) ? $ctrl.maximumNodesRequired : $ctrl.quota.instance.maxInstances),
-                region: $ctrl.selectedRegion.macroRegion.text + ' (' + $ctrl.selectedRegion.macroRegion.code + ')' }"></span>
+                region: $ctrl.selectedRegion.name }"></span>
     </oui-message>
     <div class="row" data-ng-repeat="(nodeType, node) in $ctrl.nodesConfig track by nodeType">
         <div class="col-sm-3">
