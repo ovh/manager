@@ -16,8 +16,6 @@
     "csv"
   ],
   "dependencies": {
-    "angular": "~1.3.0",
-    "angular-sanitize": "~1.3.0",
     "jquery": "~2.1.4",
     "lodash": "~3.10.0"
   },
@@ -40,5 +38,9 @@
     "karma-jasmine": "~0.3.0",
     "karma-phantomjs-launcher": "~0.2.0",
     "matchdep": "^0.3.0"
+  },
+  "peerDependencies": {
+    "angular": "^1.3.0",
+    "angular-sanitize": "^1.3.0"
   }
 }
