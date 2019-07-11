@@ -11,6 +11,10 @@ export default /* @ngInject */($stateProvider) => {
       resolve: {
         breadcrumb: () => null, // Hide breadcrumb
         goBack: /* @ngInject */ goToUsers => goToUsers,
+        goToNextStep: /* @ngInject */ (
+          $state,
+          projectId,
+        ) => description => $state.go('pci.projects.project.users.add.roles', { projectId, description }),
       },
     });
 };
