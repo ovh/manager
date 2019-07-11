@@ -1,8 +1,25 @@
 import angular from 'angular';
 
 import routing from './sharepoint.routes';
+import accountCtrl from './account/sharepoint-account.controller';
+import accountAddCtrl from './account/add/sharepoint-account-add.controller';
+import accountAddLegacyCtrl from './account/add-legacy/sharepoint-account-add-legacy.controller';
+import accountDeleteCtrl from './account/delete/sharepoint-account-delete.controller';
+import updatePasswordCtrl from './account/password/update/sharepoint-account-password-update.controller';
+import updateAccountCtrl from './account/update/sharepoint-account-update.controller';
+import activateOfficeCtrl from './activate/sharepoint-activate.controller';
+import adminRightsCtrl from './admin-rights/reset/sharepoint-admin-rights-reset.controller';
+import domainsCtrl from './domain/sharepoint-domain.controller';
+import domainAddCtrl from './domain/add/sharepoint-domain-add.controller';
+import domainDeleteCtrl from './domain/delete/sharepoint-domain-delete.controller';
+import informationsCtrl from './information/sharepoint-information.controller';
+import orderCtrl from './order/sharepoint-order.controller';
+import updateRenewCtrl from './renew/update/sharepoint-renew-update.controller';
+import tasksCtrl from './task/sharepoint-task.controller';
+import urlCtrl from './url/sharepoint-url.controller';
 import sharepointCtrl from './sharepoint.controller';
 import tabsCtrl from './sharepoint-tabs.controller';
+
 import licenseService from './sharepoint.service';
 import orderService from './sharepoint-order.service';
 
@@ -29,7 +46,23 @@ const moduleName = 'Module.sharepoint';
 
 angular.module('Module.sharepoint.controllers', [])
   .controller('SharepointCtrl', sharepointCtrl)
-  .controller('SharepointTabsCtrl', tabsCtrl);
+  .controller('SharepointTabsCtrl', tabsCtrl)
+  .controller('SharepointAccountsCtrl', accountCtrl)
+  .controller('SharepointAccountAddCtrl', accountAddCtrl)
+  .controller('SharepointAccountAddLegacyCtrl', accountAddLegacyCtrl)
+  .controller('SharepointAccountDeleteCtrl', accountDeleteCtrl)
+  .controller('SharepointUpdatePasswordCtrl', updatePasswordCtrl)
+  .controller('SharepointUpdateAccountCtrl', updateAccountCtrl)
+  .controller('SharepointActivateOfficeCtrl', activateOfficeCtrl)
+  .controller('SharepointResetAdminRightsCtrl', adminRightsCtrl)
+  .controller('SharepointDomainsCtrl', domainsCtrl)
+  .controller('SharepointAddDomainController', domainAddCtrl)
+  .controller('SharepointDeleteDomainController', domainDeleteCtrl)
+  .controller('SharepointInformationsCtrl', informationsCtrl)
+  .controller('SharepointOrderCtrl', orderCtrl)
+  .controller('SharepointUpdateRenewCtrl', updateRenewCtrl)
+  .controller('SharepointTasksCtrl', tasksCtrl)
+  .controller('SharepointUrlCtrl', urlCtrl);
 
 angular.module('Module.sharepoint.services', [])
   .service('MicrosoftSharepointLicenseService', licenseService)
