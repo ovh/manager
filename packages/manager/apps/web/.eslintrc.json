@@ -1,14 +1,9 @@
 {
-  "root": true,
-  "extends": "airbnb-base",
-  "parser": "babel-eslint",
+  "extends": "../../../../.eslintrc.js",
   "plugins": ["angular"],
   "env": {
     "browser": true,
-    "jasmine": true,
-    "mocha": true,
-    "jquery": true,
-    "angular/mocks": true
+    "jquery": true
   },
   "globals": {
     "_": true,

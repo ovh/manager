@@ -25,7 +25,7 @@ angular.module('App').controller(
       this.tabMenu = null;
 
       this.setSelectedTab = this.setSelectedTab.bind(this);
-      this.setSelectedTab(angular.uppercase(this.$stateParams.tab));
+      this.setSelectedTab(_.isString(this.$stateParams.tab) && this.$stateParams.tab.toUppercase());
 
       this.$scope.$on('emails.canTerminate', () => {
         this.tabMenu = {

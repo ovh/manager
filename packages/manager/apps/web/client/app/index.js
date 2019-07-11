@@ -64,6 +64,7 @@ import 'script-loader!bootstrap-tour/build/js/bootstrap-tour-standalone.min.js';
 // Ckeditor 4.x
 import 'script-loader!ng-ckeditor/dist/ng-ckeditor';
 
+import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
 import 'bootstrap-tour/build/css/bootstrap-tour.min.css';
 
 import './app.js';
