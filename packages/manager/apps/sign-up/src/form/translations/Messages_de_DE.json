@@ -2,7 +2,8 @@
  "sign_up_form_identity_step_title": "Identität",
  "sign_up_form_details_step_title": "Kontakt",
  "sign_up_form_activity_step_title": "Aktivität",
- "sign_up_form_other_informations_step_title": "Weitere Informationen",
+ "sign_up_form_other_informations_step_title": "Zusätzliche Informationen",
  "sign_up_form_next_button": "Weiter",
- "sign_up_form_submit_button": "Account erstellen"
+ "sign_up_form_submit_button": "Account erstellen",
+ "sign_up_form_submit_error": "Bei der Erstellung des Accounts ist ein Fehler aufgetreten."
 }

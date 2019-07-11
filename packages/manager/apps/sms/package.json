@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-sms-app",
-  "version": "6.2.0",
+  "version": "7.0.0",
   "private": true,
   "scripts": {
     "build": "webpack",
@@ -13,7 +13,7 @@
   "dependencies": {
     "@ovh-ux/manager-config": "^0.3.0",
     "@ovh-ux/manager-core": "^6.1.0",
-    "@ovh-ux/manager-sms": "^6.3.0",
+    "@ovh-ux/manager-sms": "^7.0.0",
     "@ovh-ux/manager-telecom-styles": "^3.1.0",
     "@ovh-ux/ng-at-internet": "^4.0.0",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^2.0.0",
@@ -23,15 +23,24 @@
     "@ovh-ux/ng-ovh-telecom-universe-components": "^3.0.3",
     "@ovh-ux/ng-pagination-front": "^8.0.0-alpha.0",
     "@uirouter/angularjs": "^1.0.15",
+    "CSV-JS": "^1.2.0",
     "angular": "^1.7.5",
+    "angular-cookies": "^1.7.8",
     "angular-messages": "^1.7.6",
     "angular-ui-validate": "^1.2.3",
+    "angular-validation-match": "^1.9.0",
+    "chart.js": "^2.8.0",
     "font-awesome": "4.7.0",
+    "ip-address": "^5.9.2",
     "jquery": "^2.1.3",
+    "jsplumb": "^2.10.2",
     "lodash": "^4.17.11",
+    "ng-csv": "^0.3.6",
     "oclazyload": "^1.1.0",
     "ovh-angular-ui-confirm-modal": "^1.0.2",
-    "ovh-api-services": "^7.0.0"
+    "ovh-api-services": "^7.0.0",
+    "ovh-ngstrap": "^4.0.2",
+    "validator-js": "^0.2.1"
   },
   "devDependencies": {
     "@ovh-ux/manager-webpack-config": "^3.0.8",
