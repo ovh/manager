@@ -86,6 +86,7 @@ export const MENU = [
           state: 'pci.projects.project.kubernetes',
         },
         title: 'Managed Kubernetes Service',
+        regions: ['CA', 'EU'],
       },
       {
         id: 'private-registry',
@@ -94,9 +95,9 @@ export const MENU = [
         },
         title: 'Managed Private Registry',
         beta: true,
+        regions: ['EU'],
       },
     ],
-    regions: ['CA', 'EU'],
     title: 'Orchestration / Industrialization',
   },
   {
