@@ -1,3 +1,4 @@
+import angular from 'angular';
 import get from 'lodash/get';
 import round from 'lodash/round';
 

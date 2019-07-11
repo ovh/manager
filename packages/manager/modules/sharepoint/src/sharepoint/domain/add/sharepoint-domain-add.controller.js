@@ -1,3 +1,5 @@
+import angular from 'angular';
+
 import clone from 'lodash/clone';
 import filter from 'lodash/filter';
 import has from 'lodash/has';

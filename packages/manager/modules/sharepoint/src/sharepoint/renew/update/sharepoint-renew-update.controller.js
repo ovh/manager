@@ -1,3 +1,4 @@
+import angular from 'angular';
 import clone from 'lodash/clone';
 import cloneDeep from 'lodash/cloneDeep';
 import delay from 'lodash/delay';

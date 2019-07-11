@@ -1,3 +1,4 @@
+import angular from 'angular';
 import assign from 'lodash/assign';
 import filter from 'lodash/filter';
 import pick from 'lodash/pick';

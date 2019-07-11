@@ -1,3 +1,4 @@
+import angular from 'angular';
 import isEmpty from 'lodash/isEmpty';
 import isNull from 'lodash/isNull';
 import some from 'lodash/some';

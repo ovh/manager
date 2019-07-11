@@ -1,3 +1,4 @@
+import angular from 'angular';
 import get from 'lodash/get';
 import set from 'lodash/set';
 

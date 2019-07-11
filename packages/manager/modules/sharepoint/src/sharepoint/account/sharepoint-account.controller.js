@@ -1,3 +1,4 @@
+import angular from 'angular';
 import findIndex from 'lodash/findIndex';
 import isEmpty from 'lodash/isEmpty';
 import isNull from 'lodash/isNull';
