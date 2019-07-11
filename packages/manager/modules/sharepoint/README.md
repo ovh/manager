@@ -1,35 +1,29 @@
-# ovh-module-sharepoint
+# @ovh-ux/module-sharepoint
 
-> Sharepoint module.
-
-[![Downloads](https://badgen.net/npm/dt/ovh-module-sharepoint)](https://npmjs.com/package/ovh-module-sharepoint) [![Dependencies](https://badgen.net/david/dep/ovh-ux/ovh-module-sharepoint)](https://npmjs.com/package/ovh-module-sharepoint?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/ovh-module-sharepoint)](https://npmjs.com/package/ovh-module-sharepoint?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+> OVH Sharepoint module.
 
 ## Install
 
 ```sh
-yarn add ovh-module-sharepoint
+yarn add @ovh-ux/module-sharepoint
 ```
 
 ## Usage
 
 ```js
+import sharepoint from '@ovh-ux/module-sharepoint';
+
 angular.module('App', [
   '…',
-  'Module.sharepoint',
+  sharepoint,
   '…',
 ])
 ```
 
-## Related
-
-* [ovh-manager-web](https://github.com/ovh-ux/ovh-manager-web) - OVH Control Panel Web UI
-* [ovh-module-emailpro](https://github.com/ovh-ux/ovh-module-emailpro) - Web Module Emailpro
-* [ovh-module-exchange](https://github.com/ovh-ux/ovh-module-exchange) - Web Module Exchange
-* [ovh-module-office](https://github.com/ovh-ux/ovh-module-office) - Web Module Office
 
 ## Contributing
 
-Always feel free to help out! Whether it's [filing bugs and feature requests](https://github.com/ovh-ux/ovh-module-sharepoint/issues/new) or working on some of the [open issues](https://github.com/ovh-ux/ovh-module-sharepoint/issues), our [contributing guide](CONTRIBUTING.md) will help get you started.
+Always feel free to help out! Whether it's [filing bugs and feature requests](https://github.com/ovh-ux/manager/issues/new) or working on some of the [open issues](https://github.com/ovh-ux/manager/issues), our [contributing guide](CONTRIBUTING.md) will help get you started.
 
 ## License
 
