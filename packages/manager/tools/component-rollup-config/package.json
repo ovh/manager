@@ -42,6 +42,7 @@
     "camelcase": "^5.0.0",
     "estree-walker": "^0.6.0",
     "less": "^3.9.0",
+    "less-plugin-inline-svg": "https://github.com/atlassian/less-plugin-inline-svg#57ef58a5b2839571220f2bd651237ad8a56a2d51",
     "less-plugin-remcalc": "^0.1.0",
     "lodash": "^4.17.11",
     "magic-string": "^0.25.1",

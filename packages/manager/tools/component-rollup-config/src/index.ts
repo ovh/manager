@@ -6,6 +6,7 @@ import html from 'rollup-plugin-html';
 import image from 'rollup-plugin-img';
 import json from 'rollup-plugin-json';
 import lessInject from '@ovh-ux/rollup-plugin-less-inject';
+import LessPluginInlineSvg from 'less-plugin-inline-svg';
 import lessPluginRemcalc from 'less-plugin-remcalc';
 import lessTildeImporter from '@ovh-ux/rollup-plugin-less-tilde-importer';
 import path from 'path';
@@ -40,6 +41,9 @@ const generateConfig = (opts, pluginsOpts) => Object.assign({
       option: {
         plugins: [
           lessPluginRemcalc,
+          new LessPluginInlineSvg({
+            base64: true,
+          }),
         ],
       },
     }),
