@@ -1,5 +1,13 @@
 import set from 'lodash/set';
 
+import sharepointCtrl from './sharepoint.controller';
+import orderCtrl from './order/sharepoint-order.controller';
+import urlCtrl from './url/sharepoint-url.controller';
+
+import sharepointTpl from './sharepoint.html';
+import sharepointOrderTpl from './order/sharepoint-order.html';
+import sharepointUrlTpl from './url/sharepoint-url.html';
+
 const routeBase = 'app.microsoft.sharepoint';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -21,15 +29,15 @@ export default /* @ngInject */ ($stateProvider) => {
 
   $stateProvider.state(`${routeBase}.order`, {
     url: '/configuration/microsoft/sharepoint/order',
-    templateUrl: 'sharepoint/order/sharepoint-order.html',
+    template: sharepointOrderTpl,
     reloadOnSearch: false,
     resolve,
   });
 
   $stateProvider.state(`${routeBase}.config`, {
     url: '/configuration/sharepoint/activate/:organizationId/:exchangeId',
-    templateUrl: 'sharepoint/order/sharepoint-order.html',
-    controller: 'SharepointOrderCtrl',
+    template: sharepointOrderTpl,
+    controller: orderCtrl,
     controllerAs: 'SharepointOrderCtrl',
     reloadOnSearch: false,
     resolve,
@@ -37,8 +45,8 @@ export default /* @ngInject */ ($stateProvider) => {
 
   $stateProvider.state(`${routeBase}.product`, {
     url: '/configuration/sharepoint/:exchangeId/:productId?tab',
-    templateUrl: 'sharepoint/sharepoint.html',
-    controller: 'SharepointCtrl',
+    template: sharepointTpl,
+    controller: sharepointCtrl,
     controllerAs: 'SharepointCtrl',
     reloadOnSearch: false,
     params: {
@@ -49,8 +57,8 @@ export default /* @ngInject */ ($stateProvider) => {
 
   $stateProvider.state(`${routeBase}.setUrl`, {
     url: '/configuration/sharepoint/:exchangeId/:productId/setUrl',
-    templateUrl: 'sharepoint/url/sharepoint-url.html',
-    controller: 'SharepointUrlCtrl',
+    template: sharepointUrlTpl,
+    controller: urlCtrl,
     controllerAs: 'SharepointUrlCtrl',
     reloadOnSearch: false,
     resolve,
