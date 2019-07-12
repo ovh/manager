@@ -1,17 +1,17 @@
-# @ovh-ux/module-sharepoint
+# @ovh-ux/manager-sharepoint
 
 > OVH Sharepoint module.
 
 ## Install
 
 ```sh
-yarn add @ovh-ux/module-sharepoint
+yarn add @ovh-ux/manager-sharepoint
 ```
 
 ## Usage
 
 ```js
-import sharepoint from '@ovh-ux/module-sharepoint';
+import sharepoint from '@ovh-ux/manager-sharepoint';
 
 angular.module('App', [
   '…',
