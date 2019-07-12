@@ -24,7 +24,10 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(routeBase, {
     abstract: true,
     template: '<div ui-view></div>',
-    translations: ['.'],
+    translations: {
+      value: '.',
+      format: 'json',
+    },
   });
 
   $stateProvider.state(`${routeBase}.order`, {
