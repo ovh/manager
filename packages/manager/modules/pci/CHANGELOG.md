@@ -1,3 +1,12 @@
+## [0.24.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.24.0...@ovh-ux/manager-pci@0.24.1) (2019-07-12)
+
+
+### Bug Fixes
+
+* **pci.storage.container:** display gateway url for archive storage ([#1044](https://github.com/ovh-ux/manager/issues/1044)) ([f02076d](https://github.com/ovh-ux/manager/commit/f02076d))
+
+
+
 # [0.24.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.23.1...@ovh-ux/manager-pci@0.24.0) (2019-07-10)
 
 
