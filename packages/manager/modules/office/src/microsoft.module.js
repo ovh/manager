@@ -1,6 +1,7 @@
 import angular from 'angular';
 
 import routing from './microsoft.routes';
+
 import licenseCtrl from './office/license/microsoft-office-license.controller';
 import licenseConsumptionConstant from './office/license/consumption/microsoft-office-license-consumption.constants';
 import licenseConsumptionCtrl from './office/license/consumption/microsoft-office-license-consumption.controller';
@@ -23,6 +24,8 @@ import userAddTpl from './office/license/user/add/microsoft-office-license-user-
 import passwordEditTpl from './office/license/edit/password/microsoft-office-edit-password.html';
 import licenseEditTpl from './office/license/edit/microsoft-office-license-edit.html';
 import licenseTpl from './office/license/microsoft-office-license.html';
+
+import './microsoft.less';
 
 const moduleName = 'Module.microsoft';
 

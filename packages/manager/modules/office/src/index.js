@@ -1,4 +1,3 @@
-import './css/microsoft/microsoft.css';
-import module from './microsoft';
+import module from './microsoft.module';
 
 export default module;
