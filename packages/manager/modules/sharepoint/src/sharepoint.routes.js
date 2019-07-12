@@ -25,7 +25,7 @@ export default /* @ngInject */ ($stateProvider) => {
     abstract: true,
     template: '<div ui-view></div>',
     translations: {
-      value: '.',
+      value: ['.'],
       format: 'json',
     },
   });
