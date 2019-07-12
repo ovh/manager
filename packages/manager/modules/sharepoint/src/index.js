@@ -1,3 +1,3 @@
-import module from './sharepoint/sharepoint.module';
+import module from './sharepoint.module';
 
 export default module;
