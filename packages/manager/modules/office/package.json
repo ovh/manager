@@ -1,6 +1,7 @@
 {
   "name": "@ovh-ux/manager-office",
   "version": "1.0.0",
+  "private": "true",
   "description": "OVH Microsoft Office module",
   "keywords": [
     "angular",
