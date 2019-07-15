@@ -13,7 +13,7 @@
   "dependencies": {
     "filesize": "^3.5.11",
     "jsurl": "^0.1.5",
-    "lodash": "^4.17.11"
+    "lodash": "^4.17.14"
   },
   "peerDependencies": {
     "@ovh-ux/web-universe-components": "^4.0.1",
