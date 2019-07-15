@@ -98,6 +98,7 @@ export const MENU = [
         regions: ['EU'],
       },
     ],
+    regions: ['CA', 'EU'],
     title: 'Orchestration / Industrialization',
   },
   {
