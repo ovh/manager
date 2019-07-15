@@ -1,3 +1,13 @@
+## [7.0.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-sms@7.0.0...@ovh-ux/manager-sms@7.0.1) (2019-07-15)
+
+
+### Bug Fixes
+
+* bump lodash to version >= 4.17.14 ([#1072](https://github.com/ovh-ux/manager/issues/1072)) ([1a32ddc](https://github.com/ovh-ux/manager/commit/1a32ddc))
+* **i18n:** add missing translations ([7ef1ec1](https://github.com/ovh-ux/manager/commit/7ef1ec1))
+
+
+
 # [7.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-sms@6.3.0...@ovh-ux/manager-sms@7.0.0) (2019-07-10)
 
 

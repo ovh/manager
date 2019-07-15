@@ -1,3 +1,12 @@
+## [5.2.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-freefax@5.2.0...@ovh-ux/manager-freefax@5.2.1) (2019-07-15)
+
+
+### Bug Fixes
+
+* bump lodash to version >= 4.17.14 ([#1072](https://github.com/ovh-ux/manager/issues/1072)) ([1a32ddc](https://github.com/ovh-ux/manager/commit/1a32ddc))
+
+
+
 # [5.2.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-freefax@5.1.2...@ovh-ux/manager-freefax@5.2.0) (2019-07-05)
 
 

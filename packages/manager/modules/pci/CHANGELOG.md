@@ -1,3 +1,15 @@
+## [0.24.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.24.1...@ovh-ux/manager-pci@0.24.2) (2019-07-15)
+
+
+### Bug Fixes
+
+* bump lodash to version >= 4.17.14 ([#1072](https://github.com/ovh-ux/manager/issues/1072)) ([1a32ddc](https://github.com/ovh-ux/manager/commit/1a32ddc))
+* **i18n:** add missing translations ([7ef1ec1](https://github.com/ovh-ux/manager/commit/7ef1ec1))
+* **pci.project.kubernetes.add:** increase retryMaxAttempts to 6 ([#1052](https://github.com/ovh-ux/manager/issues/1052)) ([4986d8c](https://github.com/ovh-ux/manager/commit/4986d8c))
+* **pci.users:** add roles translations ([#1060](https://github.com/ovh-ux/manager/issues/1060)) ([d44cb75](https://github.com/ovh-ux/manager/commit/d44cb75))
+
+
+
 ## [0.24.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.24.0...@ovh-ux/manager-pci@0.24.1) (2019-07-12)
 
 

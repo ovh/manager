@@ -1,3 +1,12 @@
+## [0.14.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.14.0...@ovh-ux/manager-public-cloud@0.14.1) (2019-07-15)
+
+
+### Bug Fixes
+
+* bump lodash to version >= 4.17.14 ([#1072](https://github.com/ovh-ux/manager/issues/1072)) ([1a32ddc](https://github.com/ovh-ux/manager/commit/1a32ddc))
+
+
+
 # [0.14.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.14.0-alpha.0...@ovh-ux/manager-public-cloud@0.14.0) (2019-07-09)
 
 
