@@ -1,3 +1,17 @@
+# [7.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-sms@6.3.0...@ovh-ux/manager-sms@7.0.0) (2019-07-10)
+
+
+### Code Refactoring
+
+* use @ovh-ux/ng-ovh-checkbox-table ([#1054](https://github.com/ovh-ux/manager/issues/1054)) ([a7cd76f](https://github.com/ovh-ux/manager/commit/a7cd76f))
+
+
+### BREAKING CHANGES
+
+* replace ovh-angular-checkbox-table by @ovh-ux/ng-ovh-checkbox-table
+
+
+
 # [6.3.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-sms@6.2.3...@ovh-ux/manager-sms@6.3.0) (2019-07-05)
 
 

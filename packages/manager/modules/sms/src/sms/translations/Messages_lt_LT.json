@@ -1,8 +1,9 @@
 {
-  "sms_sms_compose": "Siųsti SMS",
-  "sms_sms_history": "Siuntimų istorija",
-  "sms_sms_received": "Gauti SMS",
-  "sms_sms_pending": "Suplanuotos SMS",
-  "sms_sms_manage_hlrs": "HLR",
-  "sms_sms_manage_templates": "Modelių valdymas"
+ "sms_sms_compose": "Send an SMS",
+ "sms_sms_history": "Sending log",
+ "sms_sms_received": "SMS received",
+ "sms_sms_pending": "Scheduled SMS",
+ "sms_sms_manage_hlrs": "HLR",
+ "sms_sms_manage_templates": "Manage templates",
+ "sms_actions_credit_account": "Add credit to my account"
 }
