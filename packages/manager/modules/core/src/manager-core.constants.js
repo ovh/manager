@@ -6,21 +6,6 @@ export const LANGUAGES = {
     name: 'English',
     key: 'en_GB',
   }, {
-    name: 'English (Canadian)',
-    key: 'en_CA',
-  }, {
-    name: 'English (United States)',
-    key: 'en_US',
-  }, {
-    name: 'English (Asia)',
-    key: 'en_ASIA',
-  }, {
-    name: 'English (Australia)',
-    key: 'en_AU',
-  }, {
-    name: 'English (Singapore)',
-    key: 'en_SG',
-  }, {
     name: 'Español',
     key: 'es_ES',
   }, {
@@ -55,8 +40,8 @@ export const LANGUAGES = {
   fallback: 'fr_FR',
   preferred: {
     en: {
-      US: 'US',
-      CA: 'CA',
+      US: 'GB',
+      CA: 'GB',
       EU: 'GB',
     },
     fr: {
