@@ -7,7 +7,7 @@ export default {
   bindings: {
     selectedFlavor: '=?',
     displaySelectedFlavor: '<',
-    defaultFlavorId: '<?',
+    defaultFlavor: '<?',
     image: '<?',
     onChange: '&?',
     region: '<?',

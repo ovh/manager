@@ -37,7 +37,7 @@
   "dependencies": {
     "bootstrap": "~3.3.0",
     "jsurl": "^0.1.5",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.14",
     "moment": "^2.24.0",
     "ovh-ui-kit": "^2.33.3"
   },

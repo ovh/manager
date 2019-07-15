@@ -9,9 +9,12 @@ import { DEFAULT_OS } from './flavors-list.constants';
 
 export default class FlavorGroup {
   constructor(flavors) {
-    Object.assign(this, omit(find(flavors, { osType: DEFAULT_OS }), [
-      'regions', 'id', 'osType', 'planCodes',
-    ]));
+    Object.assign(
+      this,
+      omit(find(flavors, flavor => flavor.osType === DEFAULT_OS && !flavor.isFlex()), [
+        'regions', 'id', 'osType', 'planCodes',
+      ]),
+    );
 
     this.availableRegions = uniq(
       map(
