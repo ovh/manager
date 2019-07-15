@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "jsurl": "^0.1.4",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.14",
     "moment": "^2.16.0"
   },
   "devDependencies": {
