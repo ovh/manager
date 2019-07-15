@@ -1,3 +1,14 @@
+## [4.2.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom-task@4.2.0...@ovh-ux/manager-telecom-task@4.2.1) (2019-07-15)
+
+
+### Bug Fixes
+
+* bump lodash to version >= 4.17.14 ([#1072](https://github.com/ovh-ux/manager/issues/1072)) ([1a32ddc](https://github.com/ovh-ux/manager/commit/1a32ddc))
+* **i18n:** add missing translations ([7ef1ec1](https://github.com/ovh-ux/manager/commit/7ef1ec1))
+* **i18n:** add missing translations ([c1ad6af](https://github.com/ovh-ux/manager/commit/c1ad6af))
+
+
+
 # [4.2.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom-task@4.1.1...@ovh-ux/manager-telecom-task@4.2.0) (2019-07-05)
 
 
