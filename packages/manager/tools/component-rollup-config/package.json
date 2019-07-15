@@ -43,7 +43,7 @@
     "estree-walker": "^0.6.0",
     "less": "^3.9.0",
     "less-plugin-remcalc": "^0.1.0",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.14",
     "magic-string": "^0.25.1",
     "node-sass": "^4.10.0",
     "rollup": "^1.15.6",
