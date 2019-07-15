@@ -1,8 +1,9 @@
 {
-  "sms_sms_compose": "Lähetä tekstiviesti",
-  "sms_sms_history": "Lähetysten historiatiedot",
-  "sms_sms_received": "Saapuneet tekstiviestit",
-  "sms_sms_pending": "Suunnitellut tekstiviestit",
-  "sms_sms_manage_hlrs": "HLR",
-  "sms_sms_manage_templates": "Hallitse malleja"
+ "sms_sms_compose": "Send an SMS",
+ "sms_sms_history": "Sending log",
+ "sms_sms_received": "SMS received",
+ "sms_sms_pending": "Scheduled SMS",
+ "sms_sms_manage_hlrs": "HLR",
+ "sms_sms_manage_templates": "Manage templates",
+ "sms_actions_credit_account": "Add credit to my account"
 }

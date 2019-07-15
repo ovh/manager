@@ -1,3 +1,12 @@
+## [1.1.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/sign-up-app@1.1.0...@ovh-ux/sign-up-app@1.1.1) (2019-07-10)
+
+
+### Bug Fixes
+
+* **apps.sign.up:** fix firefox css issue ([#1053](https://github.com/ovh-ux/manager/issues/1053)) ([bb46fa6](https://github.com/ovh-ux/manager/commit/bb46fa6))
+
+
+
 # [1.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/sign-up-app@1.0.0...@ovh-ux/sign-up-app@1.1.0) (2019-07-09)
 
 

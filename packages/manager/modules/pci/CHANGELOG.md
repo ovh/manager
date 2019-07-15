@@ -1,3 +1,27 @@
+## [0.24.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.24.0...@ovh-ux/manager-pci@0.24.1) (2019-07-12)
+
+
+### Bug Fixes
+
+* **pci.storage.container:** display gateway url for archive storage ([#1044](https://github.com/ovh-ux/manager/issues/1044)) ([f02076d](https://github.com/ovh-ux/manager/commit/f02076d))
+
+
+
+# [0.24.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.23.1...@ovh-ux/manager-pci@0.24.0) (2019-07-10)
+
+
+### Bug Fixes
+
+* **analytics.data.platform.deploy:** fix typo in storage section ([#1049](https://github.com/ovh-ux/manager/issues/1049)) ([84656b8](https://github.com/ovh-ux/manager/commit/84656b8))
+* **i18n:** add missing translations ([5ca4030](https://github.com/ovh-ux/manager/commit/5ca4030))
+
+
+### Features
+
+* **pci:** display region with quota overflow disabled ([#1007](https://github.com/ovh-ux/manager/issues/1007)) ([5b7603a](https://github.com/ovh-ux/manager/commit/5b7603a))
+
+
+
 ## [0.23.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.23.0...@ovh-ux/manager-pci@0.23.1) (2019-07-09)
 
 

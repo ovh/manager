@@ -38,11 +38,11 @@ export default class FlavorsListController {
   }
 
   findFlavor() {
-    if (this.defaultFlavorId) {
+    if (this.defaultFlavor) {
       forEach(this.flavors, (flavorCategory) => {
         const flavorGroup = find(
           flavorCategory.flavors,
-          group => group.getFlavor(this.defaultFlavorId),
+          group => group.getFlavor(this.defaultFlavor.id),
         );
 
         if (flavorGroup) {
@@ -62,8 +62,8 @@ export default class FlavorsListController {
   }
 
   hasEnoughDisk(flavor) {
-    if (this.defaultFlavorId) {
-      return flavor.disk >= this.flavor.disk;
+    if (this.defaultFlavor) {
+      return flavor.disk >= this.defaultFlavor.disk;
     }
 
     if (this.image) {
