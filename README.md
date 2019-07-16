@@ -46,7 +46,6 @@ yarn install
 | Package | Changelog |
 | ------- | :-------: |
 | [@ovh-ux/manager-freefax-app](https://github.com/ovh-ux/manager/tree/master/packages/manager/apps/freefax) | [:books:](https://github.com/ovh-ux/manager/blob/master/packages/manager/apps/freefax/CHANGELOG.md) |
-| [@ovh-ux/manager-layout-ovh](https://github.com/ovh-ux/manager/tree/master/packages/manager/apps/layout-ovh) | [:books:](https://github.com/ovh-ux/manager/blob/master/packages/manager/apps/layout-ovh/CHANGELOG.md) |
 | [@ovh-ux/manager-overthebox-app](https://github.com/ovh-ux/manager/tree/master/packages/manager/apps/overthebox) | [:books:](https://github.com/ovh-ux/manager/blob/master/packages/manager/apps/overthebox/CHANGELOG.md) |
 | [@ovh-ux/manager-pci-app](https://github.com/ovh-ux/manager/tree/master/packages/manager/apps/pci) | [:books:](https://github.com/ovh-ux/manager/blob/master/packages/manager/apps/pci/CHANGELOG.md) |
 | [@ovh-ux/manager-public-cloud](https://github.com/ovh-ux/manager/tree/master/packages/manager/apps/public-cloud) | [:books:](https://github.com/ovh-ux/manager/blob/master/packages/manager/apps/public-cloud/CHANGELOG.md) |
