@@ -1,11 +1,11 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
 
-import config from './ng-uirouter-line-progress.config';
+import config from './ng-ui-router-line-progress.config';
 
-import './ng-uirouter-line-progress.less';
+import './ng-ui-router-line-progress.less';
 
-const moduleName = 'ngUirouterLineProgress';
+const moduleName = 'ngUiRouterLineProgress';
 
 angular
   .module(moduleName, [
