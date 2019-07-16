@@ -9786,26 +9786,6 @@ ovh-module-exchange@^9.4.5:
     filesize "^3.6.1"
     lodash "~3.9.3"
 
-ovh-module-office@^7.0.8:
-  version "7.0.8"
-  resolved "https://registry.yarnpkg.com/ovh-module-office/-/ovh-module-office-7.0.8.tgz#93f12270ece6e606d5430e5e31613716bf2b6e05"
-  integrity sha512-qT6yUzwUC49R0b7pGCrgR40lc+Ki9bUn3xFsFCaSYiSXKJ0MYc3KjjqjdZNdxgp2h4KRKAyi5dFniZOiR5pJnw==
-  dependencies:
-    angular "~1.6.10"
-    jsurl "^0.1.4"
-    lodash "~3.9.3"
-    moment "^2.16.0"
-
-ovh-module-sharepoint@^7.1.7:
-  version "7.1.7"
-  resolved "https://registry.yarnpkg.com/ovh-module-sharepoint/-/ovh-module-sharepoint-7.1.7.tgz#1bfcecf2d6ce529451a2454b115ed2ef18032b6c"
-  integrity sha512-ZQ4Gmh00iZ1hpcmLlrI8cww+R3sKFWwVJp4ov6V8frbRkOG6QmAgW+FiWlgMnSG9vTT6BfQf8RANtynOZHlbJw==
-  dependencies:
-    angular "~1.6.10"
-    filesize "^3.5.10"
-    jsurl "^0.1.4"
-    lodash "~2.4.1"
-
 ovh-ngstrap@^4.0.2:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/ovh-ngstrap/-/ovh-ngstrap-4.0.2.tgz#059291bfb9f59b78df991e476dd2ede0507cb3c9"

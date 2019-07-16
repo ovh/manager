@@ -34,7 +34,7 @@ fs.readdirSync(folder).forEach((file) => {
 });
 
 const depPaths = {};
-const a = ['@ovh-ux/ovh-utils-angular', 'ovh-module-exchange', 'ovh-module-office', 'ovh-module-sharepoint', 'ovh-module-emailpro'];
+const a = ['@ovh-ux/ovh-utils-angular', 'ovh-module-exchange', 'ovh-module-emailpro'];
 a.forEach((dep) => {
   depPaths[dep] = foundNodeModulesFolder(dep);
 });
@@ -55,8 +55,6 @@ module.exports = (env = {}) => {
         { from: foundNodeModulesFolder('ckeditor'), to: 'ckeditor' },
         { from: path.resolve(depPaths['@ovh-ux/ovh-utils-angular'], './src/**/*.html'), context: `${depPaths['@ovh-ux/ovh-utils-angular']}/src`, to: 'components/ovh-utils-angular' },
         { from: path.resolve(depPaths['ovh-module-exchange'], './src/exchange/**/*.html'), context: `${depPaths['ovh-module-exchange']}/src` },
-        { from: path.resolve(depPaths['ovh-module-office'], './src/microsoft/**/*.html'), context: `${depPaths['ovh-module-office']}/src` },
-        { from: path.resolve(depPaths['ovh-module-sharepoint'], './src/sharepoint/**/*.html'), context: `${depPaths['ovh-module-sharepoint']}/src` },
         { from: path.resolve(depPaths['ovh-module-emailpro'], './src/emailpro/**/*.html'), context: `${depPaths['ovh-module-emailpro']}/src` },
       ],
     },
@@ -68,15 +66,6 @@ module.exports = (env = {}) => {
       `${depPaths['ovh-module-exchange']}/src/exchange/**/*.module.js`,
     ),
     glob.sync(`${depPaths['ovh-module-exchange']}/src/exchange/**/!(*.module).js`),
-  );
-
-  // Module office
-  bundles.office = glob.sync(`${depPaths['ovh-module-office']}/src/microsoft/**/*.js`);
-
-  // Module sharepoint
-  bundles.sharepoint = [].concat(
-    glob.sync(`${depPaths['ovh-module-sharepoint']}/src/sharepoint/**/*.module.js`),
-    glob.sync(`${depPaths['ovh-module-sharepoint']}/src/sharepoint/**/!(*.module).js`),
   );
 
   // Module emailpro

@@ -16,6 +16,9 @@ import ovhManagerNavbar from '@ovh-ux/manager-navbar';
 import uiRouter from '@uirouter/angularjs';
 import ngOvhOtrs from '@ovh-ux/ng-ovh-otrs';
 import ovhManagerServerSidebar from '@ovh-ux/manager-server-sidebar';
+import office from '@ovh-ux/manager-office';
+import sharepoint from '@ovh-ux/manager-sharepoint';
+
 import domainEmailObfuscation from './domain/email-obfuscation/index';
 import domainOptin from './domain/optin/index';
 import config from './config/config';
@@ -69,8 +72,8 @@ angular
     'moment-picker',
     'oui',
     'Module.exchange',
-    'Module.microsoft',
-    'Module.sharepoint',
+    office,
+    sharepoint,
     'Module.emailpro',
     domainEmailObfuscation,
     domainOptin,
