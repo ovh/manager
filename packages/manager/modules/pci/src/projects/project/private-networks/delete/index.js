@@ -4,7 +4,7 @@ import 'angular-translate';
 import '@ovh-ux/ng-translate-async-loader';
 import 'ovh-ui-angular';
 import 'ovh-api-services';
-import '@ovh-ux/ng-uirouter-layout';
+import '@ovh-ux/ng-ui-router-layout';
 
 import component from './delete.component';
 import routing from './delete.routing';

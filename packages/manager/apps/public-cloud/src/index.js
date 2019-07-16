@@ -26,8 +26,8 @@ import ovhManagerPci from '@ovh-ux/manager-pci';
 import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
 import ngOvhOtrs from '@ovh-ux/ng-ovh-otrs';
 import ngOvhUserPref from '@ovh-ux/ng-ovh-user-pref';
-import ngUirouterBreadcrumb from '@ovh-ux/ng-uirouter-breadcrumb';
-import ngUirouterLineProgress from '@ovh-ux/ng-uirouter-line-progress';
+import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
+import ngUiRouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
 import { OTRS_URLS } from './index.constants';
 
 import 'ovh-ui-kit/dist/oui.css';
@@ -51,8 +51,8 @@ angular
     __NG_APP_INJECTIONS__,
     uiRouter,
     atInternet,
-    ngUirouterBreadcrumb,
-    ngUirouterLineProgress,
+    ngUiRouterBreadcrumb,
+    ngUiRouterLineProgress,
     ovhManagerCore,
     ovhManagerPci,
     ngOvhApiWrappers,

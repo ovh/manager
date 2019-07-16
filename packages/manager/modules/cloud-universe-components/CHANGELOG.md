@@ -1,3 +1,12 @@
+## [1.3.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@1.3.0...@ovh-ux/ng-ovh-cloud-universe-components@1.3.1) (2019-07-15)
+
+
+### Bug Fixes
+
+* bump lodash to version >= 4.17.14 ([#1072](https://github.com/ovh-ux/manager/issues/1072)) ([1a32ddc](https://github.com/ovh-ux/manager/commit/1a32ddc))
+
+
+
 # [1.3.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@1.3.0-alpha.4...@ovh-ux/ng-ovh-cloud-universe-components@1.3.0) (2019-07-05)
 
 
