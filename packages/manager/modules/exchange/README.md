@@ -1,13 +1,11 @@
 # ovh-module-exchange
 
-> Exchange module.
-
-[![Downloads](https://badgen.net/npm/dt/ovh-module-exchange)](https://npmjs.com/package/ovh-module-exchange) [![Dependencies](https://badgen.net/david/dep/ovh-ux/ovh-module-exchange)](https://npmjs.com/package/ovh-module-exchange?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/ovh-module-exchange)](https://npmjs.com/package/ovh-module-exchange?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+> OVH Exchange module.
 
 ## Install
 
 ```sh
-yarn add ovh-module-exchange
+yarn add @ovh-ux/manager-exchange
 ```
 
 ## Usage
@@ -19,13 +17,6 @@ angular.module('App', [
   '…',
 ])
 ```
-
-## Related
-
-* [ovh-manager-web](https://github.com/ovh-ux/ovh-manager-web) - OVH Control Panel Web UI
-* [ovh-module-emailpro](https://github.com/ovh-ux/ovh-module-emailpro) - Web Module Emailpro
-* [ovh-module-office](https://github.com/ovh-ux/ovh-module-office) - Web Module Office
-* [ovh-module-sharepoint](https://github.com/ovh-ux/ovh-module-sharepoint) - Web Module Sharepoint
 
 ## Contributing
 

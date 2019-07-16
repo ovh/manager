@@ -1,5 +1,0 @@
-angular
-  .module('Module.exchange.components')
-  .constant('EXCHANGE_ACCOUNT_HOME', {
-    DATAGRID_COLUMN_PARAMETERS_PREFERENCE_NAME: 'EXCHANGE_ACCOUNT_HOME_DATAGRID_COLUMN_PARAMETERS',
-  });
