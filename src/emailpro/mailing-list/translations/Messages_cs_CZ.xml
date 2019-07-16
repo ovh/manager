@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="mailing_list_common_from" qtlid="69077">Od</translation>
+   <translation id="mailing_list_common_back" qtlid="4118">Zpět</translation>
+   <translation id="mailing_list_common_required_fields" qtlid="222111">Pole označená hvězdičkou jsou povinná</translation>
+   <translation id="mailing_list_common_continue_question" qtlid="351909">Chcete pokračovat?</translation>
+   <translation id="mailing_list_common_invalid_email" qtlid="212036">Neplatný e-mail</translation>
+   <translation id="mailing_list_common_no_email" qtlid="261747">Toto není emailová adresa spjatá s mailing listem</translation>
+
+   <translation id="mailing_list_common_select" qtlid="261760">Zvolit ...</translation>
+   <translation id="mailing_list_common_select_all" qtlid="159059">Vybrat vše</translation>
+   <translation id="mailing_list_common_select_page" qtlid="261773">Zvolte stránku</translation>
+   <translation id="mailing_list_common_select_file" qtlid="261786">Zvolte soubor</translation>
+   <translation id="mailing_list_common_select_unselect" qtlid="261799">Zrušit označení</translation>
+   <translation id="mailing_list_common_add_email_addr" qtlid="282575">Přidat e-mailovou adresu</translation>
+   <translation id="mailing_list_common_addr_delete_all" qtlid="159891">Vymazat vše</translation>
+   <translation id="mailing_list_common_addr_go_to_next_err" qtlid="282562">Přechod na další chybu</translation>
+
+   <translation id="mailing_list_tab_table_no_quota" qtlid="222813">Nemůžete vytvářet mailing listy.</translation>
+   <translation id="mailing_list_tab_table_quota_excedeed" qtlid="222826">Nemůžete vytvářet mailing listy.</translation>
+   <translation id="mailing_list_tab_table_quota_excedeed_1" qtlid="222839">Nemůžete již vytvářet mailing listy. Již máte vytvořený 1 mailing list, což je maximum.</translation>
+   <translation id="mailing_list_tab_table_quota_excedeed_other" qtlid="222852">Nemůžete již vytvářet mailing listy. {0} mailing listů z {1} možných je již vytvořeno.</translation>
+
+   <translation id="mailing_list_tab_table_header_list_name" qtlid="3818">Název</translation>
+   <translation id="mailing_list_tab_table_header_list_owner_email" qtlid="30634">Vlastník</translation>
+   <translation id="mailing_list_tab_table_header_list_language" qtlid="30598">Jazyk</translation>
+   <translation id="mailing_list_tab_table_header_list_reply_to" qtlid="219459">Odpověď na</translation>
+   <translation id="mailing_list_tab_table_header_list_nb_subscribers" qtlid="219472">Počet příjemců</translation>
+   <translation id="mailing_list_tab_table_header_list_moderators" qtlid="54725">Moderátoři</translation>
+   <translation id="mailing_list_tab_table_header_list_subscribers" qtlid="56069">Účastníci</translation>
+   <translation id="mailing_list_tab_table_header_list_reply_to_mailinglist" qtlid="222865">List</translation>
+   <translation id="mailing_list_tab_table_header_list_reply_to_lastuser" qtlid="222878">Odesílatel e-mailu</translation>
+
+   <translation id="mailing_list_tab_table_header_refresh" qtlid="218081">Obnovit tabulku</translation>
+   <translation id="mailing_list_tab_table_empty" qtlid="219485">Žádný mailing list</translation>
+   <translation id="mailing_list_tab_modal_get_lists_error" qtlid="219498">Při získávání informací došlo k chybě.</translation>
+   <translation id="mailing_list_tab_button_mailing_list_create_list" qtlid="219511">Přidat mailing list</translation>
+   <translation id="mailing_list_tab_modal_create_list_success" qtlid="222891">Mailing list byl úspěšně vytvořen. Změna bude viditelná za několik minut.</translation>
+   <translation id="mailing_list_tab_modal_create_list_error" qtlid="370005">Při vytváření mailing listu došlo k chybě</translation>
+
+
+   <translation id="mailing_list_tab_subscribers_management_heading" qtlid="222917">Správa příjemců mailing listu</translation>
+   <translation id="mailing_list_tab_table_subscribers_empty" qtlid="222930">Žádní příjemci</translation>
+   <translation id="mailing_list_tab_table_subscribers_adding" qtlid="282614">Přidávání odběratelů</translation>
+   <translation id="mailing_list_tab_table_subscribers_deleting" qtlid="282627">Odstraňování odběratelů</translation>
+   <translation id="mailing_list_tab_table_subscribers_updating" qtlid="282640">Aktualizace seznamu odběratelů</translation>
+   <translation id="email_tab_subscribers_management_heading" qtlid="222943">Správa příjemců</translation>
+   <translation id="mailing_list_tab_table_header_subscriber_email" qtlid="222956">E-maily příjemců</translation>
+   <translation id="mailing_list_tab_export_csv_success" qtlid="372230">Soubor byl úspěšně vytvořen. Pokud nedojde k automatickému stažení, klikněte prosím <a target="_blank" href="{0}" download>zde</a>.</translation>
+   <translation id="mailing_list_tab_create_subscriber" qtlid="222969">Přidat příjemce</translation>
+   <translation id="mailing_list_tab_create_subscribers" qtlid="261812">Přidat účastníky</translation>
+
+   <translation id="mailing_list_tab_create_subscribers" qtlid="261812">Přidat účastníky</translation>
+   <translation id="mailing_list_tab_create_subscribers_title" qtlid="364761">Chystáte se přidat odběratele do mailing listu <strong>{0}</strong> (maximální počet odběratelů: {1})</translation>
+   <translation id="mailing_list_tab_create_subscribers_max" qtlid="366683">Maximální počet odběratelů v mailing listu: <strong>{0}</strong></translation>
+
+   <translation id="mailing_list_tab_create_subscribers_quota_exceeded" qtlid="364774">Do mailing listu nelze přidat více než <strong>{0}</strong> odběratelů.</translation>
+   <translation id="mailing_list_tab_create_subscribers_list" qtlid="261838">Seznam účastníků pro přidání</translation>
+   <translation id="mailing_list_tab_create_subscribers_file" qtlid="261851">Nahrát soubor s jednou emailovou adresou na každém řádku (bez oddělovačů, např. čárek apod.)</translation>
+   <translation id="mailing_list_tab_subscribers_send_list" qtlid="268056">Odeslat e-mailem</translation>
+   <translation id="mailing_list_tab_send_list_by_email" qtlid="268069">Chcete odeslat seznam uživatelů a moderátorů mailinglistu <strong>{0}</strong> e-mailem.</translation>
+   <translation id="mailing_list_tab_send_list_by_email_addr" qtlid="254726">E-mailová adresa:</translation>
+   <translation id="mailing_list_tab_modal_sendListByEmail_success" qtlid="268082">Seznam uživatelů a moderátorů bude odeslán na adresu {0}.</translation>
+   <translation id="mailing_list_tab_modal_sendListByEmail_sent_success" qtlid="268095">Seznam uživatelů a moderátorů byl úspěšně odeslán e-mailem.</translation>
+   <translation id="mailing_list_tab_modal_sendListByEmail_error" qtlid="268108">Během odesílání seznamu uživatelů a moderátorů došlo k chybě:</translation>
+
+   <translation id="mailing_list_tab_popover_subscribers_delete" qtlid="222982">vymazat příjemce</translation>
+   <translation id="mailing_list_tab_subscribers_delete" qtlid="261864">Odebrat účastníky</translation>
+   <translation id="mailing_list_tab_subscribers_heading" qtlid="261877">Chystáte se odebrat <strong>{0} účastníků</strong> z mailing listu <strong>{1}</strong>.</translation>
+
+   <translation id="mailing_list_tab_modal_delete_subscriber_heading" qtlid="261890">Chystáte se odebrat účastníka <strong>{0} </strong> z mailing listu <strong>{1}</strong>.</translation>
+   <translation id="mailing_list_tab_modal_subscriber_delete_success" qtlid="261903">Účastníci se odebírají. To potrvá několik minut.</translation>
+   <translation id="mailing_list_tab_modal_subscribers_delete_success" qtlid="261916">Účastníci se odebírají. To zabere několik minut.</translation>
+   <translation id="mailing_list_tab_modal_subscriber_delete_error" qtlid="223021">Při mazání příjemce došlo k chybě:</translation>
+   <translation id="mailing_list_tab_modal_subscribers_delete_error" qtlid="261929">Při odstraňování účastníků došlo k chybě.</translation>
+
+   <translation id="mailing_list_tab_suscribers_import_file" qtlid="261942">Nahrát soubor</translation>
+
+   <translation id="mailing_list_tab_moderators_management_heading" qtlid="223034">Správa moderátorů mailing listu</translation>
+   <translation id="mailing_list_tab_moderators_management_title" qtlid="261955">Správa moderátorů mailing listu <strong>{0}</strong></translation>
+   <translation id="mailing_list_tab_moderators_management_title_1" qtlid="261968">Správa moderátorů mailing listu <strong>{0}</strong> : {1} moderátorů</translation>
+   <translation id="mailing_list_tab_moderators_management_title_other" qtlid="261981">Správa mailing listu moderátorů <strong>{0}</strong>: {1} moderátorů</translation>
+
+   <translation id="mailing_list_tab_subscribers_management_title" qtlid="364787">Správa odběratelů mailing listu <strong>{0}</strong> (maximální počet: {2})</translation>
+   <translation id="mailing_list_tab_subscribers_management_title_1" qtlid="364800">Správa odběratelů mailing listu <strong>{0}</strong>: {1} odběratel/é z {2}</translation>
+   <translation id="mailing_list_tab_subscribers_management_title_other" qtlid="364813">Správa odběratelů mailing listu <strong>{0}</strong>: {1} odběratel/é z {2}</translation>
+   <translation id="mailing_list_tab_subscribers_limit_excedeed" qtlid="364826">Dosáhli jste maximální počtu odběratelů mailing listu</translation>
+
+   <translation id="mailing_list_tab_table_moderators_empty" qtlid="223047">Žádný moderátor</translation>
+   <translation id="mailing_list_tab_table_moderators_adding" qtlid="282653">Přidávání moderátorů</translation>
+   <translation id="mailing_list_tab_table_moderators_deleting" qtlid="282666">Odstraňování moderátorů</translation>
+   <translation id="mailing_list_tab_table_moderators_updating" qtlid="282679">Aktualizace seznamu moderátorů</translation>
+
+   <translation id="email_tab_moderators_management_heading" qtlid="223060">Správa moderátorů</translation>
+   <translation id="mailing_list_tab_table_header_moderators_email" qtlid="56177">E-mailový moderátor</translation>
+   <translation id="mailing_list_tab_create_moderator" qtlid="223073">Přidat moderátora</translation>
+
+   <translation id="mailing_list_tab_create_moderators" qtlid="262033">Přidat moderátory</translation>
+
+   <translation id="mailing_list_tab_popover_moderators_delete" qtlid="223086">Vymazat moderátora</translation>
+   <translation id="mailing_list_tab_moderators_delete" qtlid="262046">Odebrat moderátory</translation>
+   <translation id="mailing_list_tab_moderators_delete_file" qtlid="282692">Smazat pomocí souboru</translation>
+
+   <translation id="mailing_list_tab_modal_delete_moderator_heading" qtlid="262059">Chystáte se odebrat moderátora <strong>{0}</strong> z mailing listu <strong>{1}</strong></translation>
+
+   <translation id="mailing_list_tab_moderators_heading" qtlid="262072">Chystáte se odebrat moderátora <strong>{0} modérateurs</strong> z mailing listu <strong>{1}</strong>.</translation>
+
+   <translation id="mailing_list_tab_modal_list_create" qtlid="219524">Vytvořit mailing list</translation>
+   <translation id="mailing_list_tab_modal_create_list_title" qtlid="219537">Chystáte se vytvořit mailing list</translation>
+   <translation id="mailing_list_tab_modal_create_list_heading" qtlid="218562">Zadejte prosím následující informace:</translation>
+   <translation id="mailing_list_tab_modal_create_list_name" qtlid="100328">Název</translation>
+   <translation id="mailing_list_tab_modal_create_list_owner" qtlid="219550">Vlastník:</translation>
+   <translation id="mailing_list_tab_modal_create_list_reply_to" qtlid="219563">Odpovědět na:</translation>
+   <translation id="mailing_list_tab_modal_create_list_moderator_all_messages" qtlid="283903">Moderovat všechny zprávy</translation>
+   <translation id="mailing_list_tab_modal_create_list_moderator_message" qtlid="223112">Moderování zpráv</translation>
+   <translation id="mailing_list_tab_modal_create_list_only_subscribers_moderator" qtlid="219589">Moderování příjemců</translation>
+   <translation id="mailing_list_tab_modal_create_list_users_post_only" qtlid="55169">Posílat mohou pouze účastníci</translation>
+   <translation id="mailing_list_tab_modal_create_list_no_moderation" qtlid="283916">Otevřeno pro všechny (nemoderováno)</translation>
+   <translation id="mailing_list_tab_modal_create_list_language" qtlid="168874">Jazyk:</translation>
+   <translation id="mailing_list_tab_modal_create_list_validate_title" qtlid="296791">Potvrzení vytvoření mailing listu</translation>
+   <translation id="mailing_list_tab_modal_create_list_validate_name" qtlid="100328">Název</translation>
+   <translation id="mailing_list_tab_modal_create_list_validate_options_selected" qtlid="296804">Vybrané možnosti:</translation>
+   <translation id="mailing_list_tab_modal_create_list_validate_help" qtlid="296817">Potřebujete pomoci s konfigurací mailing listu?</translation>
+   <translation id="mailing_list_tab_modal_create_list_validate_help_link" qtlid="156732">Podívejte se na naše příručky.</translation>
+   <translation id="mailing_list_tab_modal_create_list_validate_help_link_title" qtlid="296830">E-mail na webhostingu: příručka použití mailing listů</translation>
+   <translation id="email_tab_modal_redirection_create_email_error" qtlid="212036">Neplatný e-mail</translation>
+   <translation id="mailing_list_tab_modal_create_list_lareay_exists" qtlid="223125">Mailing list s tímto názvem již existuje</translation>
+   <translation id="mailing_list_tab_popover_update" qtlid="219602">Aktualizace mailing listu</translation>
+   <translation id="mailing_list_tab_popover_delete" qtlid="219615">Mazání mailing listu</translation>
+
+   <translation id="mailing_list_tab_modal_list_delete_title" qtlid="223138">Vymazat mailing list</translation>
+   <translation id="mailing_list_tab_modal_list_delete_heading" qtlid="219628">Chystáte se vymazat mailing list <strong>{0}</strong></translation>
+   <translation id="mailing_list_tab_modal_list_delete_warning" qtlid="212270">Pozor: tuto akci nelze vrátit. Pokud budete pokračovat, dojde ke kompletní ztrátě dat.</translation>
+   <translation id="mailing_list_tab_modal_list_delete_error" qtlid="219641">Při mazání mailing listu došlo k chybě:</translation>
+   <translation id="mailing_list_tab_modal_list_delete_success" qtlid="219654">Probíhá mazání mailing listu</translation>
+
+   <translation id="mailing_list_tab_modal_change_options_list_title" qtlid="219667">Chystáte se aktualizovat možnosti mailing listu {0}</translation>
+   <translation id="mailing_list_tab_modal_change_options_list_heading" qtlid="218562">Zadejte prosím následující informace:</translation>
+
+   <translation id="mailing_list_tab_modal_list_update" qtlid="223151">aktualizovat mailing list</translation>
+   <translation id="mailing_list_tab_modal_update_list_title" qtlid="223164">Chystáte se aktualizovat mailing list {0}.</translation>
+   <translation id="mailing_list_tab_modal_update_list_heading" qtlid="218562">Zadejte prosím následující informace:</translation>
+   <translation id="mailing_list_tab_modal_update_list_options" qtlid="213518">Možnosti:</translation>
+   <translation id="mailing_list_tab_modal_update_list_reply_to_list" qtlid="223177">Na list</translation>
+   <translation id="mailing_list_tab_modal_update_list_reply_to_last_user" qtlid="223190">Na e-mail odesílatele</translation>
+   <translation id="mailing_list_tab_modal_update_list_reply_to_email" qtlid="223203">Na e-mailovou adresu</translation>
+
+   <translation id="mailing_list_tab_modal_subscriber_create" qtlid="222969">Přidat příjemce</translation>
+   <translation id="mailing_list_tab_modal_create_subscriber_title" qtlid="223216">Chystáte se přidat příjemce na mailing list {0}</translation>
+   <translation id="mailing_list_tab_modal_create_subscriber_email" qtlid="223229">E-mailová adresa příjemce:</translation>
+   <translation id="mailing_list_tab_modal_create_subscriber_email_exists" qtlid="223242">Tato e-mailová adresa je již mezi příjemci mailing listu.</translation>
+   <translation id="mailing_list_tab_modal_create_subscriber_success" qtlid="262085">Účastník se přidává. To potrvá několik minut.</translation>
+   <translation id="mailing_list_tab_modal_create_subscribers_success" qtlid="262098">Účastník se přidává. To potrvá několik minut.</translation>
+   <translation id="mailing_list_tab_modal_create_subscriber_error" qtlid="223268">Během přidávání příjemce došlo k chybě:</translation>
+   <translation id="mailing_list_tab_modal_create_subscribers_error" qtlid="262111">Při přidávání účastníka došlo k chybě:</translation>
+
+   <translation id="mailing_list_tab_modal_update_list_success" qtlid="223281">Mailing list byl úspěšně aktualizovaný.</translation>
+   <translation id="mailing_list_tab_modal_update_list_error" qtlid="223294">Při aktualizaci mailing listu došlo k chybě:</translation>
+
+   <translation id="mailing_list_tab_popover_moderators_delete" qtlid="223086">Vymazat moderátora</translation>
+   <translation id="mailing_list_tab_modal_moderator_delete_success" qtlid="262124">Moderátor se odebírá. To bude trvat několik minut.</translation>
+   <translation id="mailing_list_tab_modal_moderator_delete_error" qtlid="223320">Při mazání moderátora došlo k chybě:</translation>
+   <translation id="mailing_list_tab_modal_moderator_delete_title" qtlid="223333">Vymazat moderátora</translation>
+   <translation id="mailing_list_tab_modal_moderator_delete_heading" qtlid="223346">Chystáte se vymazat moderátora {0} z mailing listu {1}</translation>
+
+   <translation id="mailing_list_tab_modal_moderator_create" qtlid="223073">Přidat moderátora</translation>
+   <translation id="mailing_list_tab_modal_create_moderator_title" qtlid="223359">Chystáte se přidat moderátora na mailing list {0}</translation>
+   <translation id="mailing_list_tab_modal_create_moderator_email" qtlid="223372">E-mail moderátora:</translation>
+   <translation id="mailing_list_tab_modal_create_moderator_email_exists" qtlid="223385">Tento e-mail je již registrovaný jako e-mail moderátora.</translation>
+   <translation id="mailing_list_tab_modal_create_moderator_success" qtlid="262137">Moderátor se přidává. To potrvá několik minut.</translation>
+   <translation id="mailing_list_tab_modal_create_moderators_success" qtlid="262150">Moderátoři se přidávají. To potrvá několik minut.</translation>
+   <translation id="mailing_list_tab_modal_create_moderator_error" qtlid="223411">Při přidávání moderátora došlo k chybě:</translation>
+   <translation id="mailing_list_tab_modal_create_moderators_error" qtlid="262163">Při přidávání moderátorů došlo k chybě:</translation>
+
+   <translation id="mailing_list_tab_suscribers_csv_export" qtlid="224854">Export účastníků v CSV</translation>
+   <translation id="mailing_list_tab_quotas" qtlid="224867">Limit mailing listu</translation>
+
+   <translation id="mailing_list_tab_modal_moderators_delete_success" qtlid="262176">Moderátoři jsou odebíráni. To potrvá několik minut.</translation>
+   <translation id="mailing_list_tab_modal_moderators_delete_error" qtlid="262189">Při odebírání moderátorů došlo k chybě:</translation>
+
+   <translation id="mailing_list_tab_create_moderators" qtlid="262033">Přidat moderátory</translation>
+   <translation id="mailing_list_tab_create_moderators_title" qtlid="262202">Chystáte se přidat moderátory do mailing listu <strong>{0}</strong></translation>
+   <translation id="mailing_list_tab_create_moderators_list" qtlid="262215">Seznam moderátorů k přidání</translation>
+   <translation id="mailing_list_tab_create_moderators_file" qtlid="261851">Nahrát soubor s jednou emailovou adresou na každém řádku (bez oddělovačů, např. čárek apod.)</translation>
+
+   <translation id="mailing_list_tab_delete_subscribers_title" qtlid="262228">Odebrat účastníky z mailing listu <strong>{0}</strong></translation>
+   <translation id="mailing_list_tab_delete_subscribers_list" qtlid="262241">Seznam účastníků k odebrání</translation>
+
+   <translation id="mailing_list_tab_delete_moderators_title" qtlid="262254">Odebrat účastníky z mailing listu <strong>{0}</strong></translation>
+   <translation id="mailing_list_tab_delete_moderators_list" qtlid="262267">Seznam moderátorů k odebrání</translation>
+</translations>

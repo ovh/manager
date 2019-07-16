@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="mailing_list_common_from" qtlid="69077">Nuo</translation>
+   <translation id="mailing_list_common_back" qtlid="4118">Atgal</translation>
+   <translation id="mailing_list_common_required_fields" qtlid="222111">Žvaigždute pažymėti laukai yra privalomi</translation>
+   <translation id="mailing_list_common_continue_question" qtlid="351909">Ar norite tęsti?</translation>
+   <translation id="mailing_list_common_invalid_email" qtlid="212036">El. pašto adresas negaliojantis</translation>
+   <translation id="mailing_list_common_no_email" qtlid="261747">Adresatų sąraše nėra nei vieno adreso</translation>
+
+   <translation id="mailing_list_common_select" qtlid="261760">Pasirinkite...</translation>
+   <translation id="mailing_list_common_select_all" qtlid="159059">Pasirinkti viską</translation>
+   <translation id="mailing_list_common_select_page" qtlid="261773">Pasirinkite puslapį</translation>
+   <translation id="mailing_list_common_select_file" qtlid="261786">Pasirinkite failą</translation>
+   <translation id="mailing_list_common_select_unselect" qtlid="261799">Atžymėti</translation>
+   <translation id="mailing_list_common_add_email_addr" qtlid="282575">Pridėti el. pašto adresą</translation>
+   <translation id="mailing_list_common_addr_delete_all" qtlid="159891">Pašalinti viską</translation>
+   <translation id="mailing_list_common_addr_go_to_next_err" qtlid="282562">Pereiti prie kitos klaidos</translation>
+
+   <translation id="mailing_list_tab_table_no_quota" qtlid="222813">Negalite kurti el. pašto konferencijos</translation>
+   <translation id="mailing_list_tab_table_quota_excedeed" qtlid="222826">Negalite kurti el. pašto konferencijos</translation>
+   <translation id="mailing_list_tab_table_quota_excedeed_1" qtlid="222839">Negalite kurti el. pašto konferencijos. Jau turite 1 konferenciją iš 1 galimos.</translation>
+   <translation id="mailing_list_tab_table_quota_excedeed_other" qtlid="222852">Negalite kurti el. pašto konferencijos. Jau turite {0} konferencijas(-ų) iš {1} galimų.</translation>
+
+   <translation id="mailing_list_tab_table_header_list_name" qtlid="3818">Pavadinimas</translation>
+   <translation id="mailing_list_tab_table_header_list_owner_email" qtlid="30634">Savininkas</translation>
+   <translation id="mailing_list_tab_table_header_list_language" qtlid="30598">Kalba</translation>
+   <translation id="mailing_list_tab_table_header_list_reply_to" qtlid="219459">Atsakyti</translation>
+   <translation id="mailing_list_tab_table_header_list_nb_subscribers" qtlid="219472">Registruotų sk.</translation>
+   <translation id="mailing_list_tab_table_header_list_moderators" qtlid="54725">Moderatoriai</translation>
+   <translation id="mailing_list_tab_table_header_list_subscribers" qtlid="56069">Abonementai</translation>
+   <translation id="mailing_list_tab_table_header_list_reply_to_mailinglist" qtlid="222865">Sąrašas</translation>
+   <translation id="mailing_list_tab_table_header_list_reply_to_lastuser" qtlid="222878">Laiško siuntėjas</translation>
+
+   <translation id="mailing_list_tab_table_header_refresh" qtlid="218081">Perkrauti lentelę</translation>
+   <translation id="mailing_list_tab_table_empty" qtlid="219485">Nėra el. pašto konferencijos</translation>
+   <translation id="mailing_list_tab_modal_get_lists_error" qtlid="219498">Klaida nuskaitant informaciją.</translation>
+   <translation id="mailing_list_tab_button_mailing_list_create_list" qtlid="219511">Pridėti el. pašto konferenciją</translation>
+   <translation id="mailing_list_tab_modal_create_list_success" qtlid="222891">el. pašto konferencija sukurta sėkmingai. Operacija dar truks kelias minutes.</translation>
+   <translation id="mailing_list_tab_modal_create_list_error" qtlid="370005">Įvyko klaida kuriant el. pašto konferenciją</translation>
+
+
+   <translation id="mailing_list_tab_subscribers_management_heading" qtlid="222917">El. pašto konferencijos abonentų valdymas</translation>
+   <translation id="mailing_list_tab_table_subscribers_empty" qtlid="222930">Nėra abonentų</translation>
+   <translation id="mailing_list_tab_table_subscribers_adding" qtlid="282614">Gavėjai pridedami</translation>
+   <translation id="mailing_list_tab_table_subscribers_deleting" qtlid="282627">Gavėjai trinami</translation>
+   <translation id="mailing_list_tab_table_subscribers_updating" qtlid="282640">Gavėjų sąrašas atnaujinamas</translation>
+   <translation id="email_tab_subscribers_management_heading" qtlid="222943">Abonentų valdymas</translation>
+   <translation id="mailing_list_tab_table_header_subscriber_email" qtlid="222956">Abonento el. paštas</translation>
+   <translation id="mailing_list_tab_export_csv_success" qtlid="372230">Failas sukurtas teisingai. Jei atsisiuntimas nevyksta, jūs galite jį <a target="_blank" href="{0}">atsisiųsti rankiniu būdu</a>.</translation>
+   <translation id="mailing_list_tab_create_subscriber" qtlid="222969">Pridėti abonentą</translation>
+   <translation id="mailing_list_tab_create_subscribers" qtlid="261812">Pridėti abonentus</translation>
+
+   <translation id="mailing_list_tab_create_subscribers" qtlid="261812">Pridėti abonentus</translation>
+   <translation id="mailing_list_tab_create_subscribers_title" qtlid="364761">Jūs pridėsite abonentus į el. pašto konferenciją<strong>{0}</strong> (iki {1} abonentų)</translation>
+   <translation id="mailing_list_tab_create_subscribers_max" qtlid="366683">Didžiausias leistinas el. pašto konferencijos dalyvių skaičius: <strong>{0}</strong></translation>
+
+   <translation id="mailing_list_tab_create_subscribers_quota_exceeded" qtlid="364774">Jūs negalite pridėti daugiau nei <strong>{0}</strong> abonentų į šią el. pašto konferenciją.</translation>
+   <translation id="mailing_list_tab_create_subscribers_list" qtlid="261838">Adresų, kuriuos pridėti, sąrašas</translation>
+   <translation id="mailing_list_tab_create_subscribers_file" qtlid="261851">Importuoti failą su el. pašto adresu kiekvienoje eilutėje (be atskyrimo kableliu ir t.t.)</translation>
+   <translation id="mailing_list_tab_subscribers_send_list" qtlid="268056">Išsiųsti el. paštu</translation>
+   <translation id="mailing_list_tab_send_list_by_email" qtlid="268069">Jūs norite išsiųsti el. pašto konferencijos abonentų ir moderatorių sąrašą <strong>{0}</strong> el. paštu.</translation>
+   <translation id="mailing_list_tab_send_list_by_email_addr" qtlid="254726">El. pašto adresas:</translation>
+   <translation id="mailing_list_tab_modal_sendListByEmail_success" qtlid="268082">Abonentų ir moderatorių sąrašas bus išsiųstas adresu {0}.</translation>
+   <translation id="mailing_list_tab_modal_sendListByEmail_sent_success" qtlid="268095">Abonentų ir moderatorių sąrašas buvo sėkmingai išsiųstas el. paštu.</translation>
+   <translation id="mailing_list_tab_modal_sendListByEmail_error" qtlid="268108">Įvyko klaida siunčiant abonentų ir moderatorių sąrašą:</translation>
+
+   <translation id="mailing_list_tab_popover_subscribers_delete" qtlid="222982">Ištrinti abonentą</translation>
+   <translation id="mailing_list_tab_subscribers_delete" qtlid="261864">Ištrinti abonentus</translation>
+   <translation id="mailing_list_tab_subscribers_heading" qtlid="261877">Abonentai <strong>{0}</strong> bus pašalinti iš el. pašto konferencijos <strong>{1}</strong>.</translation>
+
+   <translation id="mailing_list_tab_modal_delete_subscriber_heading" qtlid="261890">Abonentas <strong>{0}</strong> bus pašalintas iš el. pašto konferencijos <strong>{1}</strong>.</translation>
+   <translation id="mailing_list_tab_modal_subscriber_delete_success" qtlid="261903">Abonentas trinamas. Operacija užtruks kelias minutes.</translation>
+   <translation id="mailing_list_tab_modal_subscribers_delete_success" qtlid="261916">Abonentai trinami. Operacija užtruks kelias minutes.</translation>
+   <translation id="mailing_list_tab_modal_subscriber_delete_error" qtlid="223021">Klaida trinant abonentą:</translation>
+   <translation id="mailing_list_tab_modal_subscribers_delete_error" qtlid="261929">Klaida trinant abonentus:</translation>
+
+   <translation id="mailing_list_tab_suscribers_import_file" qtlid="261942">Importuoti failą</translation>
+
+   <translation id="mailing_list_tab_moderators_management_heading" qtlid="223034">El. pašto konferencijos moderatorių valdymas</translation>
+   <translation id="mailing_list_tab_moderators_management_title" qtlid="261955">El. pašto konferencijos <strong>{0}</strong> moderatorių valdymas</translation>
+   <translation id="mailing_list_tab_moderators_management_title_1" qtlid="261968">El. pašto konferencijos <strong>{0}</strong> moderatorių valdymas: {1} moderatorius</translation>
+   <translation id="mailing_list_tab_moderators_management_title_other" qtlid="261981">El. pašto konferencijos <strong>{0}</strong> moderatorių valdymas: moderatorių kiekis: {1}</translation>
+
+   <translation id="mailing_list_tab_subscribers_management_title" qtlid="364787">El. pašto konferencijos abonentų valdymas <strong>{0}</strong> (daugiausiai {2})</translation>
+   <translation id="mailing_list_tab_subscribers_management_title_1" qtlid="364800">El. pašto konferencijos abonentų valdymas <strong>{0}</strong>: {1} abonentas iš {2}</translation>
+   <translation id="mailing_list_tab_subscribers_management_title_other" qtlid="364813">El. pašto konferencijos abonentų valdymas <strong>{0}</strong>: {1} abonentai(-ų) iš {2}</translation>
+   <translation id="mailing_list_tab_subscribers_limit_excedeed" qtlid="364826">Jūs pasiekėte galimų el. pašto abonentų limitą.</translation>
+
+   <translation id="mailing_list_tab_table_moderators_empty" qtlid="223047">Nėra moderatoriaus</translation>
+   <translation id="mailing_list_tab_table_moderators_adding" qtlid="282653">Moderatoriai pridedami</translation>
+   <translation id="mailing_list_tab_table_moderators_deleting" qtlid="282666">Moderatoriai trinami</translation>
+   <translation id="mailing_list_tab_table_moderators_updating" qtlid="282679">Moderatorių sąrašas atnaujinamas</translation>
+
+   <translation id="email_tab_moderators_management_heading" qtlid="223060">Moderatorių valdymas</translation>
+   <translation id="mailing_list_tab_table_header_moderators_email" qtlid="56177">Moderatoriaus el. paštas</translation>
+   <translation id="mailing_list_tab_create_moderator" qtlid="223073">Pridėti moderatorių</translation>
+
+   <translation id="mailing_list_tab_create_moderators" qtlid="262033">Pridėti moderatorius</translation>
+
+   <translation id="mailing_list_tab_popover_moderators_delete" qtlid="223086">Ištrinti moderatorių</translation>
+   <translation id="mailing_list_tab_moderators_delete" qtlid="262046">Trinti moderatorius</translation>
+   <translation id="mailing_list_tab_moderators_delete_file" qtlid="282692">Ištrinti per failą</translation>
+
+   <translation id="mailing_list_tab_modal_delete_moderator_heading" qtlid="262059">Ištrinsite moderatorių <strong>{0}</strong> iš konferencijos <strong>{1}</strong></translation>
+
+   <translation id="mailing_list_tab_moderators_heading" qtlid="262072">Ištrinsite <strong>{0} moderatorius</strong> iš konferencijos <strong>{1}</strong>.</translation>
+
+   <translation id="mailing_list_tab_modal_list_create" qtlid="219524">Sukurti el. pašto konferenciją</translation>
+   <translation id="mailing_list_tab_modal_create_list_title" qtlid="219537">Sukursite el. pašto konferenciją</translation>
+   <translation id="mailing_list_tab_modal_create_list_heading" qtlid="218562">Prašome įvesti šią informaciją:</translation>
+   <translation id="mailing_list_tab_modal_create_list_name" qtlid="100328">Vardas</translation>
+   <translation id="mailing_list_tab_modal_create_list_owner" qtlid="219550">Savininkas:</translation>
+   <translation id="mailing_list_tab_modal_create_list_reply_to" qtlid="219563">Atsakyti (kam):</translation>
+   <translation id="mailing_list_tab_modal_create_list_moderator_all_messages" qtlid="283903">Moderuoti visus pranešimus</translation>
+   <translation id="mailing_list_tab_modal_create_list_moderator_message" qtlid="223112">Pranešimų moderavimas</translation>
+   <translation id="mailing_list_tab_modal_create_list_only_subscribers_moderator" qtlid="219589">Registratorių moderavimas</translation>
+   <translation id="mailing_list_tab_modal_create_list_users_post_only" qtlid="55169">Rašyti gali tik prenumeratoriai</translation>
+   <translation id="mailing_list_tab_modal_create_list_no_moderation" qtlid="283916">Visi gali siųsti pranešimus (jokio moderavimo)</translation>
+   <translation id="mailing_list_tab_modal_create_list_language" qtlid="168874">Kalba:</translation>
+   <translation id="mailing_list_tab_modal_create_list_validate_title" qtlid="296791">El. pašto konferencijos sukūrimo patvirtinimas</translation>
+   <translation id="mailing_list_tab_modal_create_list_validate_name" qtlid="100328">Vardas</translation>
+   <translation id="mailing_list_tab_modal_create_list_validate_options_selected" qtlid="296804">Pasirinktos parinktys:</translation>
+   <translation id="mailing_list_tab_modal_create_list_validate_help" qtlid="296817">Reikia pagalbos konfigūruojant jūsų el. pašto konferenciją?</translation>
+   <translation id="mailing_list_tab_modal_create_list_validate_help_link" qtlid="156732">Skaityti gidus internete.</translation>
+   <translation id="mailing_list_tab_modal_create_list_validate_help_link_title" qtlid="296830">OVH svetainių talpinimas: el. pašto konferencijos naudojimo gidas</translation>
+   <translation id="email_tab_modal_redirection_create_email_error" qtlid="212036">El. pašto adresas negaliojantis</translation>
+   <translation id="mailing_list_tab_modal_create_list_lareay_exists" qtlid="223125">El. pašto konferencija su tokiu pavadinimu jau yra</translation>
+   <translation id="mailing_list_tab_popover_update" qtlid="219602">Redaguoti el. pašto konferenciją</translation>
+   <translation id="mailing_list_tab_popover_delete" qtlid="219615">Ištrinti el. pašto konferenciją</translation>
+
+   <translation id="mailing_list_tab_modal_list_delete_title" qtlid="223138">Ištrinti el. pašto konferenciją</translation>
+   <translation id="mailing_list_tab_modal_list_delete_heading" qtlid="219628">Tuojau ištrinsite el. pašto konferenciją <strong>{0}</strong></translation>
+   <translation id="mailing_list_tab_modal_list_delete_warning" qtlid="212270">Dėmesio: šis veiksmas neatkuriamas, todėl jį atlikus duomenys bus prarasti.  </translation>
+   <translation id="mailing_list_tab_modal_list_delete_error" qtlid="219641">Klaida trinant el. pašto konferenciją:</translation>
+   <translation id="mailing_list_tab_modal_list_delete_success" qtlid="219654">El. pašto konferencija trinama</translation>
+
+   <translation id="mailing_list_tab_modal_change_options_list_title" qtlid="219667">Pakeisite el. pašto konferencijos {0} nustatymus</translation>
+   <translation id="mailing_list_tab_modal_change_options_list_heading" qtlid="218562">Prašome įvesti šią informaciją:</translation>
+
+   <translation id="mailing_list_tab_modal_list_update" qtlid="223151">Redaguoti el. pašto konferenciją</translation>
+   <translation id="mailing_list_tab_modal_update_list_title" qtlid="223164">Tuojau redaguosite el. pašto konferenciją {0}.</translation>
+   <translation id="mailing_list_tab_modal_update_list_heading" qtlid="218562">Prašome įvesti šią informaciją:</translation>
+   <translation id="mailing_list_tab_modal_update_list_options" qtlid="213518">Parinktys:</translation>
+   <translation id="mailing_list_tab_modal_update_list_reply_to_list" qtlid="223177">Konferencijai</translation>
+   <translation id="mailing_list_tab_modal_update_list_reply_to_last_user" qtlid="223190">Laiško siuntėjui</translation>
+   <translation id="mailing_list_tab_modal_update_list_reply_to_email" qtlid="223203">Pagal el. pašto adresą</translation>
+
+   <translation id="mailing_list_tab_modal_subscriber_create" qtlid="222969">Pridėti abonentą</translation>
+   <translation id="mailing_list_tab_modal_create_subscriber_title" qtlid="223216">Į el. pašto konferenciją {0} įtrauksite abonentą</translation>
+   <translation id="mailing_list_tab_modal_create_subscriber_email" qtlid="223229">Abonento el. paštas:</translation>
+   <translation id="mailing_list_tab_modal_create_subscriber_email_exists" qtlid="223242">Toks el. paštas jau yra.</translation>
+   <translation id="mailing_list_tab_modal_create_subscriber_success" qtlid="262085">Adresas pridedamas. Operacija truks kelias minutes.</translation>
+   <translation id="mailing_list_tab_modal_create_subscribers_success" qtlid="262098">Adresai pridedami. Operacija truks kelias minutes.</translation>
+   <translation id="mailing_list_tab_modal_create_subscriber_error" qtlid="223268">Klaida įtraukiant abonentą:</translation>
+   <translation id="mailing_list_tab_modal_create_subscribers_error" qtlid="262111">Klaida pridedant abonentus:</translation>
+
+   <translation id="mailing_list_tab_modal_update_list_success" qtlid="223281">El. pašto konferencija sėkmingai atnaujinta.</translation>
+   <translation id="mailing_list_tab_modal_update_list_error" qtlid="223294">Klaida redaguojant el. pašto konferenciją:</translation>
+
+   <translation id="mailing_list_tab_popover_moderators_delete" qtlid="223086">Ištrinti moderatorių</translation>
+   <translation id="mailing_list_tab_modal_moderator_delete_success" qtlid="262124">Moderatorius trinamas. Operacija truks kelias minutes.</translation>
+   <translation id="mailing_list_tab_modal_moderator_delete_error" qtlid="223320">Klaida trinant moderatorių:</translation>
+   <translation id="mailing_list_tab_modal_moderator_delete_title" qtlid="223333">Trinti moderatorių</translation>
+   <translation id="mailing_list_tab_modal_moderator_delete_heading" qtlid="223346">Tuojau ištrinsite moderatorių {0} iš el. pašto konferencijos {1}</translation>
+
+   <translation id="mailing_list_tab_modal_moderator_create" qtlid="223073">Pridėti moderatorių</translation>
+   <translation id="mailing_list_tab_modal_create_moderator_title" qtlid="223359">Į el. pašto konferenciją {0} įtrauksite moderatorių</translation>
+   <translation id="mailing_list_tab_modal_create_moderator_email" qtlid="223372">Moderatoriaus el. paštas:</translation>
+   <translation id="mailing_list_tab_modal_create_moderator_email_exists" qtlid="223385">Šis el. paštas jau yra moderatorius.</translation>
+   <translation id="mailing_list_tab_modal_create_moderator_success" qtlid="262137">Moderatorius pridedamas. Operacija truks kelias minutes.</translation>
+   <translation id="mailing_list_tab_modal_create_moderators_success" qtlid="262150">Moderatoriai pridedami. Operacija truks kelias minutes.</translation>
+   <translation id="mailing_list_tab_modal_create_moderator_error" qtlid="223411">Klaida įtraukiant moderatorių:</translation>
+   <translation id="mailing_list_tab_modal_create_moderators_error" qtlid="262163">Klaida pridedant moderatorius:</translation>
+
+   <translation id="mailing_list_tab_suscribers_csv_export" qtlid="224854">Eksportuoti abonentų sąrašą CSV</translation>
+   <translation id="mailing_list_tab_quotas" qtlid="224867">El. pašto konferencijų kvota</translation>
+
+   <translation id="mailing_list_tab_modal_moderators_delete_success" qtlid="262176">Moderatoriai trinami. Operacija užtruks kelias minutes.</translation>
+   <translation id="mailing_list_tab_modal_moderators_delete_error" qtlid="262189">Klaida trinant moderatorius:</translation>
+
+   <translation id="mailing_list_tab_create_moderators" qtlid="262033">Pridėti moderatorius</translation>
+   <translation id="mailing_list_tab_create_moderators_title" qtlid="262202">Moderatoriai bus priskirti konferencijai <strong>{0}</strong></translation>
+   <translation id="mailing_list_tab_create_moderators_list" qtlid="262215">Moderatorių, kuriuos pridėti, sąrašas</translation>
+   <translation id="mailing_list_tab_create_moderators_file" qtlid="261851">Importuoti failą su el. pašto adresu kiekvienoje eilutėje (be atskyrimo kableliu ir t.t.)</translation>
+
+   <translation id="mailing_list_tab_delete_subscribers_title" qtlid="262228">Trinti el. pašto konferencijos <strong>{0}</strong> abonentus</translation>
+   <translation id="mailing_list_tab_delete_subscribers_list" qtlid="262241">Adresų, kuriuos trinti, sąrašas</translation>
+
+   <translation id="mailing_list_tab_delete_moderators_title" qtlid="262254">Trinti el. pašto konferencijos <strong>{0}</strong> moderatorius</translation>
+   <translation id="mailing_list_tab_delete_moderators_list" qtlid="262267">Moderatorių, kuriuos trinti, sąrašas</translation>
+</translations>

@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="mailing_list_common_from" qtlid="69077">From</translation>
+   <translation id="mailing_list_common_back" qtlid="4118">Back</translation>
+   <translation id="mailing_list_common_required_fields" qtlid="222111">The fields marked with a star are mandatory</translation>
+   <translation id="mailing_list_common_continue_question" qtlid="351909">Do you want to continue?</translation>
+   <translation id="mailing_list_common_invalid_email" qtlid="212036">Invalid email address</translation>
+   <translation id="mailing_list_common_no_email" qtlid="261747">There is no email address associated with the mailing list</translation>
+
+   <translation id="mailing_list_common_select" qtlid="261760">Select...</translation>
+   <translation id="mailing_list_common_select_all" qtlid="159059">Select all</translation>
+   <translation id="mailing_list_common_select_page" qtlid="261773">Select the page</translation>
+   <translation id="mailing_list_common_select_file" qtlid="261786">Select a file</translation>
+   <translation id="mailing_list_common_select_unselect" qtlid="261799">Deselect</translation>
+   <translation id="mailing_list_common_add_email_addr" qtlid="282575">Add an email address </translation>
+   <translation id="mailing_list_common_addr_delete_all" qtlid="159891">Delete all</translation>
+   <translation id="mailing_list_common_addr_go_to_next_err" qtlid="282562">Go to the next error </translation>
+
+   <translation id="mailing_list_tab_table_no_quota" qtlid="222813">You cannot create mailing lists.</translation>
+   <translation id="mailing_list_tab_table_quota_excedeed" qtlid="222826">You cannot create mailing lists</translation>
+   <translation id="mailing_list_tab_table_quota_excedeed_1" qtlid="222839">You can no longer create mailing lists. 1/1 available mailing lists have been set up.</translation>
+   <translation id="mailing_list_tab_table_quota_excedeed_other" qtlid="222852">You can no longer create mailing lists. {0} lists out of the {1} available lists have been set up.</translation>
+
+   <translation id="mailing_list_tab_table_header_list_name" qtlid="3818">Name</translation>
+   <translation id="mailing_list_tab_table_header_list_owner_email" qtlid="30634">Owner</translation>
+   <translation id="mailing_list_tab_table_header_list_language" qtlid="30598">Language</translation>
+   <translation id="mailing_list_tab_table_header_list_reply_to" qtlid="219459">Reply to</translation>
+   <translation id="mailing_list_tab_table_header_list_nb_subscribers" qtlid="219472">No. of recipients</translation>
+   <translation id="mailing_list_tab_table_header_list_moderators" qtlid="54725">Moderators</translation>
+   <translation id="mailing_list_tab_table_header_list_subscribers" qtlid="56069">Subscribers</translation>
+   <translation id="mailing_list_tab_table_header_list_reply_to_mailinglist" qtlid="222865">The list</translation>
+   <translation id="mailing_list_tab_table_header_list_reply_to_lastuser" qtlid="222878">Email sender</translation>
+
+   <translation id="mailing_list_tab_table_header_refresh" qtlid="218081">Reload the table</translation>
+   <translation id="mailing_list_tab_table_empty" qtlid="219485">No mailing list</translation>
+   <translation id="mailing_list_tab_modal_get_lists_error" qtlid="219498">An error has occurred retrieving information.</translation>
+   <translation id="mailing_list_tab_button_mailing_list_create_list" qtlid="219511">Add a mailing list</translation>
+   <translation id="mailing_list_tab_modal_create_list_success" qtlid="222891">The mailing list has been successfully created. The operation will take effect in a few minutes.</translation>
+   <translation id="mailing_list_tab_modal_create_list_error" qtlid="370005">An error has occurred creating the mailing list </translation>
+
+
+   <translation id="mailing_list_tab_subscribers_management_heading" qtlid="222917">Manage mailing list subscribers</translation>
+   <translation id="mailing_list_tab_table_subscribers_empty" qtlid="222930">No subscribers</translation>
+   <translation id="mailing_list_tab_table_subscribers_adding" qtlid="282614">Adding subscribers</translation>
+   <translation id="mailing_list_tab_table_subscribers_deleting" qtlid="282627">Deleting subscribers</translation>
+   <translation id="mailing_list_tab_table_subscribers_updating" qtlid="282640">Updating subscriber list</translation>
+   <translation id="email_tab_subscribers_management_heading" qtlid="222943">Manage subscribers</translation>
+   <translation id="mailing_list_tab_table_header_subscriber_email" qtlid="222956">Subscriber's email address</translation>
+   <translation id="mailing_list_tab_export_csv_success" qtlid="372230">The file has been correctly created. If the download doesn't start automatically, you can <a target="_blank" href="{0}">download it manually</a>.</translation>
+   <translation id="mailing_list_tab_create_subscriber" qtlid="222969">Add a subscriber</translation>
+   <translation id="mailing_list_tab_create_subscribers" qtlid="261812">Add subscribers</translation>
+
+   <translation id="mailing_list_tab_create_subscribers" qtlid="261812">Add subscribers</translation>
+   <translation id="mailing_list_tab_create_subscribers_title" qtlid="364761">You are going to add subscribers to the <strong>{0}</strong> mailing list (maximum {1} subscribers)</translation>
+   <translation id="mailing_list_tab_create_subscribers_max" qtlid="366683">Maximum number of mailing list subscribers: <strong>{0}</strong></translation>
+
+   <translation id="mailing_list_tab_create_subscribers_quota_exceeded" qtlid="364774">You cannot add more than <strong>{0}</strong> subscribers to the mailing list.</translation>
+   <translation id="mailing_list_tab_create_subscribers_list" qtlid="261838">List of subscribers to add</translation>
+   <translation id="mailing_list_tab_create_subscribers_file" qtlid="261851">Upload a file with one email address per line (not separated by commas, etc.)</translation>
+   <translation id="mailing_list_tab_subscribers_send_list" qtlid="268056">Send by email</translation>
+   <translation id="mailing_list_tab_send_list_by_email" qtlid="268069">You wish to send the list of subscribers and moderators of the <strong>{0}</strong> mailing list by email.</translation>
+   <translation id="mailing_list_tab_send_list_by_email_addr" qtlid="254726">Email address:</translation>
+   <translation id="mailing_list_tab_modal_sendListByEmail_success" qtlid="268082">The list of subscribers and moderators will be sent to this address: {0}.</translation>
+   <translation id="mailing_list_tab_modal_sendListByEmail_sent_success" qtlid="268095">The list of subscribers and moderators was successfully sent by email.</translation>
+   <translation id="mailing_list_tab_modal_sendListByEmail_error" qtlid="268108">An error has occurred while sending the   list of subscribers and moderators:</translation>
+
+   <translation id="mailing_list_tab_popover_subscribers_delete" qtlid="222982">Delete the subscriber </translation>
+   <translation id="mailing_list_tab_subscribers_delete" qtlid="261864">Remove subscribers</translation>
+   <translation id="mailing_list_tab_subscribers_heading" qtlid="261877">You are about to remove <strong>{0} subscribers</strong> from the <strong>{1}</strong> mailing list.</translation>
+
+   <translation id="mailing_list_tab_modal_delete_subscriber_heading" qtlid="261890">You are about to remove <strong>{0}</strong> subscriber from the <strong>{1}</strong> mailing list.</translation>
+   <translation id="mailing_list_tab_modal_subscriber_delete_success" qtlid="261903">The subscriber is being removed. The will take a few minutes. </translation>
+   <translation id="mailing_list_tab_modal_subscribers_delete_success" qtlid="261916">Subscribers are being removed. This will take a few minutes. </translation>
+   <translation id="mailing_list_tab_modal_subscriber_delete_error" qtlid="223021">An error has occurred deleting the subscriber: </translation>
+   <translation id="mailing_list_tab_modal_subscribers_delete_error" qtlid="261929">An error has occurred deleting subscribers:</translation>
+
+   <translation id="mailing_list_tab_suscribers_import_file" qtlid="261942">Upload a file</translation>
+
+   <translation id="mailing_list_tab_moderators_management_heading" qtlid="223034">Manage mailing list moderators</translation>
+   <translation id="mailing_list_tab_moderators_management_title" qtlid="261955">Manage <strong>{0}</strong> mailing list moderators </translation>
+   <translation id="mailing_list_tab_moderators_management_title_1" qtlid="261968">Manage <strong>{0}</strong> mailing list moderators: {1} moderator </translation>
+   <translation id="mailing_list_tab_moderators_management_title_other" qtlid="261981">Manage <strong>{0}</strong> mailing list moderators: {1} moderators</translation>
+
+   <translation id="mailing_list_tab_subscribers_management_title" qtlid="364787">Manage <strong>{0}</strong> mailing list subscribers (maximum {2})</translation>
+   <translation id="mailing_list_tab_subscribers_management_title_1" qtlid="364800">Manage <strong>{0}</strong> mailing list subscribers: {1} of {2} subscribers</translation>
+   <translation id="mailing_list_tab_subscribers_management_title_other" qtlid="364813">Manage <strong>{0}</strong> mailing list subscribers: {1} of {2} subscribers</translation>
+   <translation id="mailing_list_tab_subscribers_limit_excedeed" qtlid="364826">You have reached the mailing list subscriber limit</translation>
+
+   <translation id="mailing_list_tab_table_moderators_empty" qtlid="223047">No moderator</translation>
+   <translation id="mailing_list_tab_table_moderators_adding" qtlid="282653">Moderators being added </translation>
+   <translation id="mailing_list_tab_table_moderators_deleting" qtlid="282666">Deleting moderators</translation>
+   <translation id="mailing_list_tab_table_moderators_updating" qtlid="282679">List of moderators being updated </translation>
+
+   <translation id="email_tab_moderators_management_heading" qtlid="223060">Manage moderators</translation>
+   <translation id="mailing_list_tab_table_header_moderators_email" qtlid="56177">Moderator email</translation>
+   <translation id="mailing_list_tab_create_moderator" qtlid="223073">Add a moderator</translation>
+
+   <translation id="mailing_list_tab_create_moderators" qtlid="262033">Add moderators</translation>
+
+   <translation id="mailing_list_tab_popover_moderators_delete" qtlid="223086">Delete moderator</translation>
+   <translation id="mailing_list_tab_moderators_delete" qtlid="262046">Remove moderators</translation>
+   <translation id="mailing_list_tab_moderators_delete_file" qtlid="282692">Delete via a file </translation>
+
+   <translation id="mailing_list_tab_modal_delete_moderator_heading" qtlid="262059">You are about to remove the <strong>{0}</strong> moderator from the <strong>{1}</strong> mailing list</translation>
+
+   <translation id="mailing_list_tab_moderators_heading" qtlid="262072">You are about to remove <strong>{0}</strong> moderators from the <strong>{1}</strong> mailing list</translation>
+
+   <translation id="mailing_list_tab_modal_list_create" qtlid="219524">Create a mailing list</translation>
+   <translation id="mailing_list_tab_modal_create_list_title" qtlid="219537">You are about to create a mailing list</translation>
+   <translation id="mailing_list_tab_modal_create_list_heading" qtlid="218562">Please enter the following information:</translation>
+   <translation id="mailing_list_tab_modal_create_list_name" qtlid="100328">Name</translation>
+   <translation id="mailing_list_tab_modal_create_list_owner" qtlid="219550">Owner:</translation>
+   <translation id="mailing_list_tab_modal_create_list_reply_to" qtlid="219563">Respond to:</translation>
+   <translation id="mailing_list_tab_modal_create_list_moderator_all_messages" qtlid="283903">Moderate all messages </translation>
+   <translation id="mailing_list_tab_modal_create_list_moderator_message" qtlid="223112">Message moderation</translation>
+   <translation id="mailing_list_tab_modal_create_list_only_subscribers_moderator" qtlid="219589">Moderate the recipients</translation>
+   <translation id="mailing_list_tab_modal_create_list_users_post_only" qtlid="55169">Only subscribers can post</translation>
+   <translation id="mailing_list_tab_modal_create_list_no_moderation" qtlid="283916">Everyone can post (unmoderated)</translation>
+   <translation id="mailing_list_tab_modal_create_list_language" qtlid="168874">Language:</translation>
+   <translation id="mailing_list_tab_modal_create_list_validate_title" qtlid="296791">Mailing list creation validation </translation>
+   <translation id="mailing_list_tab_modal_create_list_validate_name" qtlid="100328">Name</translation>
+   <translation id="mailing_list_tab_modal_create_list_validate_options_selected" qtlid="296804">Chosen options:</translation>
+   <translation id="mailing_list_tab_modal_create_list_validate_help" qtlid="296817">Need help configuring your mailing list?</translation>
+   <translation id="mailing_list_tab_modal_create_list_validate_help_link" qtlid="156732">Read our online guides.</translation>
+   <translation id="mailing_list_tab_modal_create_list_validate_help_link_title" qtlid="296830">Mail: mailing list user guide </translation>
+   <translation id="email_tab_modal_redirection_create_email_error" qtlid="212036">Invalid email address</translation>
+   <translation id="mailing_list_tab_modal_create_list_lareay_exists" qtlid="223125">A mailing list with this name already exists.</translation>
+   <translation id="mailing_list_tab_popover_update" qtlid="219602">Update mailing list</translation>
+   <translation id="mailing_list_tab_popover_delete" qtlid="219615">Delete mailing list</translation>
+
+   <translation id="mailing_list_tab_modal_list_delete_title" qtlid="223138">Delete a mailing list</translation>
+   <translation id="mailing_list_tab_modal_list_delete_heading" qtlid="219628">You're about to delete the <strong>{0}</strong> mailing list</translation>
+   <translation id="mailing_list_tab_modal_list_delete_warning" qtlid="212270">Please note that this action cannot be reversed, and will result in the loss of all data.</translation>
+   <translation id="mailing_list_tab_modal_list_delete_error" qtlid="219641">An error has occurred deleting your mailing list:</translation>
+   <translation id="mailing_list_tab_modal_list_delete_success" qtlid="219654">Deleting your mailing list</translation>
+
+   <translation id="mailing_list_tab_modal_change_options_list_title" qtlid="219667">You are about to update the {0} mailing list options</translation>
+   <translation id="mailing_list_tab_modal_change_options_list_heading" qtlid="218562">Please enter the following information:</translation>
+
+   <translation id="mailing_list_tab_modal_list_update" qtlid="223151">Update a mailing list</translation>
+   <translation id="mailing_list_tab_modal_update_list_title" qtlid="223164">You are about to update your {0} mailing list.</translation>
+   <translation id="mailing_list_tab_modal_update_list_heading" qtlid="218562">Please enter the following information:</translation>
+   <translation id="mailing_list_tab_modal_update_list_options" qtlid="213518">Options:</translation>
+   <translation id="mailing_list_tab_modal_update_list_reply_to_list" qtlid="223177">To the list</translation>
+   <translation id="mailing_list_tab_modal_update_list_reply_to_last_user" qtlid="223190">To an email sender</translation>
+   <translation id="mailing_list_tab_modal_update_list_reply_to_email" qtlid="223203">To an email address</translation>
+
+   <translation id="mailing_list_tab_modal_subscriber_create" qtlid="222969">Add a subscriber</translation>
+   <translation id="mailing_list_tab_modal_create_subscriber_title" qtlid="223216">You are about to add a subscriber to the {0} mailing list</translation>
+   <translation id="mailing_list_tab_modal_create_subscriber_email" qtlid="223229">Subscriber email address:</translation>
+   <translation id="mailing_list_tab_modal_create_subscriber_email_exists" qtlid="223242">This email address is already subscribed to the list. </translation>
+   <translation id="mailing_list_tab_modal_create_subscriber_success" qtlid="262085">Adding subscriber. This will take a few minutes.</translation>
+   <translation id="mailing_list_tab_modal_create_subscribers_success" qtlid="262098">Adding subscribers. This will take a few minutes. </translation>
+   <translation id="mailing_list_tab_modal_create_subscriber_error" qtlid="223268">An error has occurred adding the subscriber:</translation>
+   <translation id="mailing_list_tab_modal_create_subscribers_error" qtlid="262111">An error has occurred adding the subscribers:</translation>
+
+   <translation id="mailing_list_tab_modal_update_list_success" qtlid="223281">Mailing list successfully updated.</translation>
+   <translation id="mailing_list_tab_modal_update_list_error" qtlid="223294">An error has occurred modifying the mailing list:</translation>
+
+   <translation id="mailing_list_tab_popover_moderators_delete" qtlid="223086">Delete moderator</translation>
+   <translation id="mailing_list_tab_modal_moderator_delete_success" qtlid="262124">Removing moderator. This will take a few minutes. </translation>
+   <translation id="mailing_list_tab_modal_moderator_delete_error" qtlid="223320">An error has occurred deleting the moderator:</translation>
+   <translation id="mailing_list_tab_modal_moderator_delete_title" qtlid="223333">Delete a moderator</translation>
+   <translation id="mailing_list_tab_modal_moderator_delete_heading" qtlid="223346">You're about to delete the {0} moderator from the {1} mailing list</translation>
+
+   <translation id="mailing_list_tab_modal_moderator_create" qtlid="223073">Add a moderator</translation>
+   <translation id="mailing_list_tab_modal_create_moderator_title" qtlid="223359">You are about to add a moderator to the {0} mailing list</translation>
+   <translation id="mailing_list_tab_modal_create_moderator_email" qtlid="223372">Moderator's email address:</translation>
+   <translation id="mailing_list_tab_modal_create_moderator_email_exists" qtlid="223385">This email address is already registered a moderator.</translation>
+   <translation id="mailing_list_tab_modal_create_moderator_success" qtlid="262137">Adding moderator. This will take a few minutes. </translation>
+   <translation id="mailing_list_tab_modal_create_moderators_success" qtlid="262150">Moderators are being added. This will take a few minutes.</translation>
+   <translation id="mailing_list_tab_modal_create_moderator_error" qtlid="223411">An error has occurred adding the moderator:</translation>
+   <translation id="mailing_list_tab_modal_create_moderators_error" qtlid="262163">An error has occurred adding the moderators:</translation>
+
+   <translation id="mailing_list_tab_suscribers_csv_export" qtlid="224854">Export subscribers in CSV</translation>
+   <translation id="mailing_list_tab_quotas" qtlid="224867">Mailing list quota</translation>
+
+   <translation id="mailing_list_tab_modal_moderators_delete_success" qtlid="262176">Removing moderators. This will take a few minutes.</translation>
+   <translation id="mailing_list_tab_modal_moderators_delete_error" qtlid="262189">An error has occurred removing moderators:</translation>
+
+   <translation id="mailing_list_tab_create_moderators" qtlid="262033">Add moderators</translation>
+   <translation id="mailing_list_tab_create_moderators_title" qtlid="262202">You are about to add moderators to the <strong>{0}</strong> mailing list</translation>
+   <translation id="mailing_list_tab_create_moderators_list" qtlid="262215">List of moderators to be added</translation>
+   <translation id="mailing_list_tab_create_moderators_file" qtlid="261851">Upload a file with one email address per line (not separated by commas, etc.)</translation>
+
+   <translation id="mailing_list_tab_delete_subscribers_title" qtlid="262228">Remove subscribers from the <strong>{0}</strong> mailing list</translation>
+   <translation id="mailing_list_tab_delete_subscribers_list" qtlid="262241">List of subscribers to remove</translation>
+
+   <translation id="mailing_list_tab_delete_moderators_title" qtlid="262254">Remove subscribers from the <strong>{0}</strong> mailing list</translation>
+   <translation id="mailing_list_tab_delete_moderators_list" qtlid="262267">List of moderators to remove</translation>
+</translations>

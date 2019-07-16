@@ -1,0 +1,984 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="emailpro_common_yes" qtlid="34776">Kyllä</translation>
+   <translation id="emailpro_common_no" qtlid="34788">Ei</translation>
+
+   <translation id="emailpro_tab_INFORMATION" qtlid="27115">Yleiset tiedot</translation>
+   <translation id="emailpro_tab_INFORMATION" qtlid="27115">Yleiset tiedot</translation>
+   <translation id="emailpro_displayName_maxlength" qtlid="260208">Nimen pituus ei saa ylittää 250 merkkiä.</translation>
+   <translation id="emailpro_displayName_required" qtlid="88293">Nimi-kenttä ei voi olla tyhjä.</translation>
+
+   <translation id="emailpro_dashboard_service_expired" qtlid="433706">Tapahtui virhe E-mail Pro -tilisi lataamisessa.</translation>
+   <translation id="emailpro-mxplan_dashboard_service_expired" qtlid="518076">Une erreur est survenue lors du chargement de votre compte MX Plan.</translation>
+   <translation id="emailpro_dashboard_accounts" qtlid="374984">E-mail Pro -tilit</translation>
+   <translation id="emailpro_dashboard_redirections" qtlid="46204">Uudelleenohjaukset</translation>
+   <translation id="emailpro_dashboard_mailingLists" qtlid="50182">Postituslistat</translation>
+   <translation id="emailpro_dashboard_accounts_upgrade_mxPlan" qtlid="25783">Päivitys</translation>
+   <translation id="emailpro_dashboard_guides" qtlid="374997">Tarvitsetko apua E-mail Pro -palvelun konfiguroinnissa?</translation>
+   <translation id="emailpro-mxplan_dashboard_guides" qtlid="518089">Besoin d'aide pour configurer votre service E-mail MX Plan ?</translation>
+   <translation id="emailpro_tab_domain_no_domain_attached" qtlid="375010">E-mail Pro -palvelusi on melkein valmis. Palveluusi on lisättävä verkkotunnus. Mikäli et omista sellaista voit ostaa sellaisen <a href="https://www.ovh-hosting.fi/cgi-bin/newOrder/order.cgi" target="_blank">klikkaamalla tästä</a>.</translation>
+   <translation id="emailpro-mxplan_tab_domain_no_domain_attached" qtlid="518102">Votre service E-mail MX Plan est presque prêt. Vous devez attacher un domaine à votre service. Si vous n'en avez pas, <a href="https://www.ovh.com/fr/cgi-bin/newOrder/order.cgi" target="_blank">cliquez ici</a> pour en acheter un.</translation>
+
+   <translation id="emailpro_tab_ALIAS_remove_alias_intro" qtlid="375023">Haluatko varmasti poistaa seuraavan aliaksen E-mail Pro -palvelustasi? </translation>
+   <translation id="emailpro-mxplan_tab_ALIAS_remove_alias_intro" qtlid="518115">Voulez-vous réellement supprimer l’alias suivant de votre service E-mail MX Plan ?</translation>
+   <translation id="emailpro_tab_ALIAS_add_no_domains" qtlid="375036">Et ole lisännyt vielä verkkotunnusta tai sitä ei ole vielä vahvistettu. <br/>Lisää ensin verkkotunnus ja odota sen vahvistamista, jotta voit luoda aliaksen E-mail Pro -tilillesi.</translation>
+   <translation id="emailpro_tab_ALIAS_add_alias_limit_tooltip" qtlid="375049">Olet saavuttanut aliaksien sallitun maksimimäärän eli 1000 aliasta E-mail Pro -tiliä kohti.</translation>
+   <translation id="emailpro-mxplan_tab_ALIAS_add_alias_limit_tooltip" qtlid="518128">Vous avez atteint la limite de 1000 alias par compte E-mail MX Plan.</translation>
+
+   <translation id="emailpro_resilitation_action_title" qtlid="375062">E-mail Pro -palvelun irtisanominen</translation>
+   <translation id="emailpro-mxplan_resilitation_action_title" qtlid="518141">Résiliation de votre service E-mail MX Plan</translation>
+   <translation id="emailpro_resilitation_action_intro" qtlid="375075">Haluatko varmasti irtisanoa E-mail Pro -palvelun "{0}" ? <br />Tämä toiminto poistaa automaattisen uusinnan vanhenemisjakson lopussa sekä estää palvelun.<br /><br /> Voit käyttää palvelua normaalisti tähän päivämäärään asti.</translation>
+   <translation id="emailpro-mxplan_resilitation_action_intro" qtlid="518154">Etes-vous sûr(e) de vouloir résilier le service E-mail MX Plan "{0}" ? <br />Cette action annulera le renouvellement automatique à la fin de la période d'expiration, entrainant le blocage du service.<br /><br /> Vous pouvez utiliser normalement le service jusqu'à cette date.</translation>
+
+   <translation id="emailpro_resilitation_action_confirmation" qtlid="375088">Huom, olet irtisanomassa koko palvelua "{0}" sekä siihen liittyviä {1} E-mail Pro -tilejä. <br />Haluatko varmasti jatkaa toimintoa?</translation>
+   <translation id="emailpro-mxplan_resilitation_action_confirmation" qtlid="518167">Attention, vous êtes sur le point de résilier intégralement le service "{0}" ainsi que les {1} comptes E-mail MX Plan qui y sont associés. <br />Souhaitez-vous réellement procéder à cette opération ?</translation>
+
+   <translation id="emailpro_resilitation_action_success" qtlid="375101">E-mail Pro -palvelu poistetaan vanhenemispäivänä.</translation>
+   <translation id="emailpro-mxplan_resilitation_action_success" qtlid="518180">Le service E-mail MX Plan va être supprimé à la date d'expiration.</translation>
+
+   <translation id="emailpro_resilitation_action_failure" qtlid="375114">Tapahtui virhe E-mail Pro -palvelusi poistamisessa.</translation>
+   <translation id="emailpro-mxplan_resilitation_action_failure" qtlid="518193">Une erreur est survenue lors de la suppression de votre service E-mail MX Plan.</translation>
+
+   <translation id="emailpro_resilitation_cancel_action_success" qtlid="375127">E-mail Pro -palvelu uusitaan vanhenemispäivänä.</translation>
+   <translation id="emailpro-mxplan_resilitation_cancel_action_success" qtlid="518206">Le service E-mail MX Plan va être renouvelé à la date d'expiration.</translation>
+
+   <translation id="emailpro_resilitation_cancel_action_intro" qtlid="375140">E-mail Pro -palvelun "{0}" irtisanominen tulee tapahtumaan vanhenemispäivänä. <br /><br />Haluatko varmasti perua tämän irtisanomisen? Palvelu siirtyy siten automaattiseen uusintaan.</translation>
+   <translation id="emailpro-mxplan_resilitation_cancel_action_intro" qtlid="518219">La résiliation du service E-mail MX Plan "{0}" est programmée à la date d'expiration. <br /><br />Etes-vous sûr(e) de vouloir annuler cette résiliation ? Le service passera alors en renouvellement automatique.</translation>
+
+   <translation id="emailpro_tab_domain_no_domains_1" qtlid="375153">Lisää verkkotunnus luodaksesi E-mail Pro -tilejä. Klikkaa </translation>
+   <translation id="emailpro-mxplan_tab_domain_no_domains_1" qtlid="518232">Ajoutez un domaine afin de créer des comptes MX Plan. Cliquez</translation>
+   <translation id="emailpro_tab_domain_diagnostic_mx_no_antispam" qtlid="375166">Jos käytät ei-autoritatiivista tilaa(E-mail Pro + jokin toinen sähköpostipalvelu) jonkin muun kuin OVH:n ylläpitämän sähköpostipalvelun kanssa: </translation>
+   <translation id="emailpro-mxplan_tab_domain_diagnostic_mx_no_antispam" qtlid="518245">Si vous utilisez le mode non autoritatif (E-mail MX Plan + autre système de messagerie) avec un système de messagerie non hébergé par OVH :</translation>
+
+   <translation id="emailpro_tab_domain_diagnostic_mx_antispam" qtlid="375179">Jos käytät autoritatiivista tilaa (Vain E-mail Pro) tai ei-autoritatiivista tilaa OVH:n sähköpostijärjestelmän kanssa (ryhmäviestiratkaisu):</translation>
+   <translation id="emailpro-mxplan_tab_domain_diagnostic_mx_antispam" qtlid="518258">Si vous utilisez le mode autoritatif (E-mail MX Plan uniquement) ou non autoritatif avec un système de messagerie hébergé (e-mail mutualisé) par OVH :</translation>
+
+   <translation id="emailpro_tab_domain_diagnostic_mx_no_ovh" qtlid="375192">Jos verkkotunnusta ei hallita samalla asiakastunnuksella kuin E-mail Pro -palvelua tai jos verkkotunnuksesi ylläpito tapahtuu OVH:n ulkopuolella, ei automaattinen konfiguraatio ole mahdollinen. Ole hyvä ja luo MX-kenttä verkkotunnnukselle käsin syöttämällä samat tiedot kuin alla.</translation>
+   <translation id="emailpro-mxplan_tab_domain_diagnostic_mx_no_ovh" qtlid="518271">Si le domaine n'est pas géré par le même identifiant client que le service E-mail MX Plan ou si votre domaine n'est pas hébergé chez OVH, la configuration automatique n'est pas possible. Veuillez créer le champ MX sur ce domaine manuellement en donnant les mêmes informations que ci-dessous.</translation>
+
+   <translation id="emailpro_tab_domain_diagnostic_srv_no_ovh" qtlid="375205">Jos verkkotunnusta ei hallita samalla asiakastunnuksella kuin E-mail Pro -palvelua tai jos verkkotunnuksesi ylläpito tapahtuu OVH:n ulkopuolella, ei automaattinen konfiguraatio ole mahdollinen. Ole hyvä ja luo SRV-kenttä verkkotunnnukselle käsin syöttämällä samat tiedot kuin alla.</translation>
+   <translation id="emailpro-mxplan_tab_domain_diagnostic_srv_no_ovh" qtlid="518284">Si le domaine n'est pas géré par le même identifiant client que le service E-mail MX Plan ou si votre domaine n'est pas hébergé chez OVH, la configuration automatique n'est pas possible. Veuillez créer le champ SRV sur ce domaine manuellement en donnant les mêmes informations que ci-dessous.</translation>
+
+   <translation id="emailpro_tab_domain_delete_domain" qtlid="375218">Poista tämä verkkotunnus E-mail Pro -palvelusta </translation>
+   <translation id="emailpro-mxplan_tab_domain_delete_domain" qtlid="518297">Retirer ce domaine des services E-mail MX Plan</translation>
+
+   <translation id="emailpro_tab_domain_delete_domain_accounts_warning" qtlid="375231">Verkkotunnusta ei voida poistaa, sillä yksi tai useampi E-mail Pro -tili käyttää sitä edelleen.</translation>
+   <translation id="emailpro-mxplan_tab_domain_delete_domain_accounts_warning" qtlid="518310">Ce domaine ne peut pas être supprimé car il est encore utilisé par un ou plusieurs compte E-mail MX Plan</translation>
+
+   <translation id="emailpro_ACTION_order_accounts_title" qtlid="375244">Tilaa E-mail Pro -tilejä</translation>
+   <translation id="emailpro-mxplan_ACTION_order_accounts_title" qtlid="518323">Commander des comptes E-mail MX Plan</translation>
+
+   <translation id="emailpro_ACTION_order_accounts_step1_intro" qtlid="375257">Valitse maksun tyyppi sekä tilattavien E-mail Pro -tilien lukumäärä.</translation>
+   <translation id="emailpro-mxplan_ACTION_order_accounts_step1_intro" qtlid="518336">Veuillez choisir le type de paiement puis le nombre de comptes E-mail MX Plan à commander.</translation>
+
+   <translation id="emailpro_ACTION_order_accounts_step2_doing_message" qtlid="375270">Tilataan E-mail Pro -tilejä... </translation>
+   <translation id="emailpro-mxplan_ACTION_order_accounts_step2_doing_message" qtlid="518349">Commande de comptes E-mail MX Plan en cours...</translation>
+   <translation id="emailpro_ACTION_order_accounts_per_account" qtlid="375283">per tili</translation>
+
+   <translation id="emailpro_ACTION_add_account_title" qtlid="375296">Lisää E-mail Pro -tili</translation>
+   <translation id="emailpro-mxplan_ACTION_add_account_title" qtlid="518362">Ajouter un compte E-mail MX Plan</translation>
+
+   <translation id="emailpro_ACTION_add_account_step1_option_fail" qtlid="375309">Tapahtui virhe E-mail Pro -tilien valintojen lataamisessa.</translation>
+   <translation id="emailpro-mxplan_ACTION_add_account_step1_option_fail" qtlid="518375">Une erreur est survenue lors du chargement des options du compte E-mail MX Plan.</translation>
+
+   <translation id="emailpro_ACTION_add_account_helpwizard_title" qtlid="375322">E-mail Pro -tilin luominen</translation>
+   <translation id="emailpro-mxplan_ACTION_add_account_helpwizard_title" qtlid="518388">Création compte E-mail MX Plan</translation>
+
+   <translation id="emailpro_ACTION_add_no_domains" qtlid="375335">Et ole lisännyt vielä verkkotunnusta tai sitä ei ole vielä vahvistettu. <br/>Lisää ensin verkkotunnus ja odota sen vahvistamista, jotta voit luoda E-mail Pro -tilin.</translation>
+   <translation id="emailpro-mxplan_ACTION_add_no_domains" qtlid="518401">Vous n'avez pas encore ajouté de domaine ou il n'a pas encore été validé. <br/>Vous devez d'abord ajouter un domaine et attendre qu'il soit validé pour créer un compte E-mail MX Plan.</translation>
+
+   <translation id="emailpro_ACTION_add_account_error_message" qtlid="375348">Tapahtui virhe E-mail Pro -tilin luomisessa.</translation>
+   <translation id="emailpro-mxplan_ACTION_add_account_error_message" qtlid="518414">Une erreur est survenue lors de la création du compte E-mail MX Plan.</translation>
+
+   <translation id="emailpro_ACTION_update_account_step1_password_contains_name" qtlid="375361">Salasana ei voi sisältää koko näyttönimeä, sen osaa tai E-mail Pro:n käyttäjätunnusta.</translation>
+   <translation id="emailpro-mxplan_ACTION_update_account_step1_password_contains_name" qtlid="518427">Le mot de passe ne peut pas contenir tout ou une partie du nom à afficher ou du login E-mail MX Plan.</translation>
+   <translation id="emailpro-mxplan_ACTION_update_account_step1_password_contains_name" qtlid="518440">Le mot de passe ne peut pas contenir tout ou une partie du nom à afficher ou du login Mx Plan.</translation>
+
+   <translation id="emailpro_ACTION_update_account_step1_exchange_guid_label" qtlid="375374">E-mail Pro GUID</translation>
+   <translation id="emailpro-mxplan_ACTION_update_account_step1_exchange_guid_label" qtlid="518453">E-mail MX Plan GUID</translation>
+
+   <translation id="emailpro_ACTION_update_account_helpwizard_title" qtlid="375387">Muokkaa E-mail Pro -tiliä</translation>
+   <translation id="emailpro-mxplan_ACTION_update_account_helpwizard_title" qtlid="518466">Modifier le compte E-mail MX Plan</translation>
+
+   <translation id="emailpro_ACTION_update_account_helpwizard_intro" qtlid="375400">E-mail Pro -tilin suojauspolitiikkaa voi muuttaa esimerkiksi vaatimalla salasanoille tiettyä vähimmäisvahvuustasoa. <br/>Muuttaaksesi suojausta, klikkaa <strong>"Turvapolitiikan hallinnointi"</strong> palvelun ohjauspaneelissa.</translation>
+   <translation id="emailpro-mxplan_ACTION_update_account_helpwizard_intro" qtlid="518479">Vous pouvez modifier la politique de sécurité des comptes E-mail MX Plan en imposant, par exemple, un niveau de compléxité minimal pour les mots de passe. <br/>Pour ce faire, cliquez sur le bouton <strong>"Gérer la politique de sécurité"</strong> sur le tableau de bord de votre service.</translation>
+
+   <translation id="emailpro_ACTION_update_account_helpwizard_guid_title" qtlid="375374">E-mail Pro GUID</translation>
+   <translation id="emailpro-mxplan_ACTION_update_account_helpwizard_guid_title" qtlid="518453">E-mail MX Plan GUID</translation>
+
+   <translation id="emailpro_ACTION_update_account_helpwizard_guid" qtlid="375413">E-mail Pro GUID on sähköpostilaatikkosi ainutlaatuiden sisäinen tunniste</translation>
+   <translation id="emailpro-mxplan_ACTION_update_account_helpwizard_guid" qtlid="518492">L'E-mail MX Plan GUID est l'identifiant unique interne de votre boîte aux lettres</translation>
+
+   <translation id="emailpro_ACTION_update_account_success_message" qtlid="375426">E-mail Pro -palvelun konfiguraatiota muokataan.</translation>
+   <translation id="emailpro-mxplan_ACTION_update_account_success_message" qtlid="518505">La configuration du compte E-mail MX Plan va être modifiée.</translation>
+
+   <translation id="emailpro_ACTION_update_account_error_message" qtlid="375439">E-mail Pro -osoitetta ei voitu personoida. On mahdollista, että samalla nimellä on olemassa jaetun sähköpostipalvelun (posti, uudelleenohjaus, vastaaja) konfigurointi. </translation>
+   <translation id="emailpro-mxplan_ACTION_update_account_error_message" qtlid="518518">L'adresse e-mail E-mail MX Plan n'a pas pu être personnalisée. Il est possible qu'une configuration mutualisée (mail, redirection, répondeur) existe avec le même nom.</translation>
+
+   <translation id="emailpro_ACTION_change_password_account_success_message" qtlid="375452">E-mail Pro -palvelun salasanaa muokataan.</translation>
+   <translation id="emailpro-mxplan_ACTION_change_password_account_success_message" qtlid="518531">Le mot de passe du compte E-mail MX Plan va être modifié.</translation>
+
+   <translation id="emailpro_ACTION_update_account_title" qtlid="375387">Muokkaa E-mail Pro -tiliä</translation>
+   <translation id="emailpro-mxplan_ACTION_update_account_title" qtlid="518466">Modifier le compte E-mail MX Plan</translation>
+
+   <translation id="emailpro_ACTION_update_account_timeout" qtlid="518544">Le mot du passe du compte {{accountEmailAddress}} n'a pas été modifié. Merci de réessayer ultérieusement.</translation>
+
+   <translation id="emailpro_ACTION_account_error_pattern" qtlid="447872">Tili sisältää virheellisiä merkkejä</translation>
+   <translation id="emailpro_ACTION_account_error_required" qtlid="447885">Tili on pakollinen</translation>
+   <translation id="emailpro_tab_account_state_CREATING" qtlid="26791">Luonti</translation>
+   <translation id="emailpro_tab_account_state_DELETING" qtlid="447898">Nollaus</translation>
+   <translation id="emailpro_tab_account_state_REOPENING" qtlid="171188">Avataan</translation>
+   <translation id="emailpro_tab_account_state_SUSPENDED" qtlid="136100">Vanhentunut</translation>
+   <translation id="emailpro_tab_account_state_SUSPENDING" qtlid="171201">Keskeytetään</translation>
+   <translation id="emailpro_tab_account_state_SPAM" qtlid="70409">Roskaposti</translation>
+   <translation id="emailpro_tab_account_popover_reset" qtlid="376011">Nollaa tämä tili</translation>
+   <translation id="emailpro_tab_account_reset_account" qtlid="376024">Nollaa tili</translation>
+   <translation id="emailpro_tab_account_reset_title" qtlid="447911">Haluatko todella nollata seuraavan E-mail Pro -palveluasi koskevan tilin?</translation>
+   <translation id="emailpro-mxplan_tab_account_reset_title" qtlid="518557">Voulez-vous réellement réinitialiser le compte suivant de votre service E-mail MX Plan ?</translation>
+
+   <translation id="emailpro_tab_account_reset_account_label" qtlid="33862">Tili</translation>
+   <translation id="emailpro_tab_account_reset_account_info" qtlid="376037">Tilin nollaus poistaa kaikki tiliin liittyvät tiedot sekä nimen, mutta sinua laskutetaan kuitenkin edelleen tältä tililtä. Jos haluat, ettei tiliä enää laskuteta, klikkaa "laskutusmoodi", rastita "Ei mitään" kyseisen tilin kohdalla ja vahvista.</translation>
+   <translation id="emailpro-mxplan_tab_account_reset_account_info" qtlid="518570">La réinitialisation d'un compte consiste à supprimer les données et le nom associé, il pourra ensuite être de nouveau configuré.</translation>
+   <translation id="emailpro_tab_account_reset_success" qtlid="447924">E-mail Pro -palvelusi tili nollataan.</translation>
+   <translation id="emailpro-mxplan_tab_account_reset_success" qtlid="518583">Le compte de votre service E-mail MX Plan va être réinitialisé.</translation>
+
+   <translation id="emailpro_tab_account_reset_failure" qtlid="447937">Tapahtui virhe E-mail Pro -palvelun nollauksessa.</translation>
+   <translation id="emailpro-mxplan_tab_account_reset_failure" qtlid="518596">Une erreur est survenue lors de la réinitialisation du compte de votre service E-mail MX Plan.</translation>
+
+   <translation id="emailpro_tab_domain_modify_domain_tooltip" qtlid="447950">Vade Secure -roskapostintorjunta on yhteensopiva ei-autoritatiivisen tilan kanssa ainoastaan, jos pop/imap-tilit ovat OVH:n ylläpitämiä (mxplan tai jaettu sähköposti). Tässä tapauksessa on suositeltavaa käyttää näitä: <strong>{0}</strong>, <strong>{1}</strong>, <strong>{2}</strong> ja <strong>{3}</strong><br/><br/> Jos käytät ei-autoritatiivista tilaa toisen palveluntarjoajan ylläpitämän sähköpostitiin kanssa, käytä: <strong>{4}</strong> (ks. liitetyt verkkotunnukset)</translation>
+   <translation id="emailpro_tab_domain_manage" qtlid="404395">: hallinnoi</translation>
+
+   <translation id="emailpro_configuration_action_title" qtlid="136243">Turvapolitiikan hallinnointi</translation>
+
+   <translation id="emailpro_tab_domain_mode_AUTHORITATIVE" qtlid="375491">Autoritatiivinen (Vain E-mail Pro)</translation>
+   <translation id="emailpro-mxplan_tab_domain_mode_AUTHORITATIVE" qtlid="518609">Autoritatif (E-mail MX Plan uniquement)</translation>
+
+   <translation id="emailpro_tab_domain_mode_NON_AUTHORITATIVE" qtlid="375504">Ei-autoritatiivinen (E-mail Pro + muu sähköpostipalvelu)</translation>
+   <translation id="emailpro-mxplan_tab_domain_mode_NON_AUTHORITATIVE" qtlid="518622">Non-autoritatif (E-mail MX Plan + autre service de messagerie)</translation>
+
+   <translation id="emailpro_tab_domain_AUTHORITATIVE_info" qtlid="375517">Autoritatiivinen tila ei salli toisen sähköpostipalvelun käyttöä E-mail Pro -tilien kanssa. Tässä tilassa on mahdollista aktivoida Vade Secure -roskapostintorjunta.</translation>
+   <translation id="emailpro-mxplan_tab_domain_AUTHORITATIVE_info" qtlid="518635">Le mode autoritatif ne permet pas l'usage d'un autre système de messagerie avec des comptes E-mail MX Plan. Ce mode permet l'activation de l'antispam Vade Secure.</translation>
+
+   <translation id="emailpro_tab_domain_NON_AUTHORITATIVE_info" qtlid="375530">Ei-autoritatiivinen tila sallii E-mail Pro:n sekä toisen sähköpostipalvelun saman aikasen käytön. Vade Secure -roskapostintorjunta on yhteensopiva, jos pop/imap-tilit ovat OVH:n ylläpitämiä (mxplan tai jaettu sähköposti). Tässä tapauksessa juurisähköpostipalvelimeksi on ilmoitettava mx1.mail.ovh.net.</translation>
+   <translation id="emailpro-mxplan_tab_domain_NON_AUTHORITATIVE_info" qtlid="518648">Le mode non-autoritatif permet une cohabitation entre E-mail MX Plan et un autre service de messagerie. L'antispam Vade Secure est compatible si les comptes pop/imap sont hébergés chez OVH (mxplan ou offre mutualisée), il faut indiquer dans ce cas mx1.mail.ovh.net en serveur e-mail cible.</translation>
+
+   <translation id="emailpro_tab_domain_modify_title" qtlid="375543">Haluatko varmasti muokata seuraavaa E-mail Pro -palvelusi verkkotunnusta?</translation>
+   <translation id="emailpro-mxplan_tab_domain_modify_title" qtlid="518661">Etes-vous sûr de vouloir modifier le domaine suivant de votre service E-mail MX Plan ?</translation>
+
+   <translation id="emailpro_tab_domain_modify_wizard_text" qtlid="375556">Verkkotunnus on oletuksen autoritatiivisessa tilassa, kun liität sen E-mail Pro -palveluun. Toisin sanoen, kun lähetät viestin palvelimen hallinnoimaan sähköpostiosoitteeseen, etsii tämä osoitetta ensisijaisesti E-mail Pro -palvelimelta. <br /><br /> Jos sitä vastoin siirryt ei-autoritatiiviseen tilaan, tarkistetaan osoitteen sijainti ensin E-mail Pro -palvelimelta. Mikäli osoitetta ei löydy sieltä, yhdistää palvelin viestin määrittämääsi MX-palvelimeen.<br /><br />Ei-autoritatiivista verkkotunnusta voidaan käyttää, kun haluat hallinoida osaa sähköpostiesta E-mail Pro -palvelussa ja osaa ulkopuolisella palvelimella.<br /><br />Huom, jos haluat käyttää E-mail Pro -palvelua sekä OVH:n sähköpostipalvelua täytyy vasemmanpuoleisen kaavakkeen kenttään "Juurisähköpostipalvelin" syöttää arvo: <strong>mx1.ovh.net.</strong></translation>
+   <translation id="emailpro-mxplan_tab_domain_modify_wizard_text" qtlid="518674">Par défaut, lorsque vous ajoutez votre domaine sur le serveur E-mail MX Plan, il se trouve en mode autoritatif. C'est-à-dire que lorsque vous envoyez un e-mail à l'adresse du domaine géré sur le serveur, ce dernier va regarder exclusivement sur le serveur E-mail MX Plan si l'adresse est présente. <br /><br /> En revanche, si vous basculez le domaine en mode non-autoritatif, lors de l'envoi du e-mail, nous allons vérifier dans un premier temps si l'adresse e-mail est présente sur le serveur E-mail MX Plan, et si ce n'est pas le cas, ce dernier relayera votre message sur le serveur MX que vous avez défini. <br /><br />Le domaine en mode non-autoritatif peut être utilisé si vous souhaitez, par exemple, gérer une partie de vos e-mails sur E-mail MX Plan et une autre partie sur un serveur externe. <br /><br />Attention, si vous souhaitez utiliser le service E-mail MX Plan et le service e-mail mutualisé OVH, vous devez dans le champ "Serveur e-mail cible" du formulaire de gauche renseigner cette valeur : <strong>mx1.ovh.net.</strong></translation>
+
+
+   <translation id="emailpro_tab_domain_remove_title" qtlid="375569">Haluatko varmasti poistaa seuraavan verkkotunnuksen E-mail Pro -palvelustasi?</translation>
+   <translation id="emailpro-mxplan_tab_domain_remove_title" qtlid="518687">Etes-vous sûr de vouloir réellement supprimer le domaine suivant de votre service E-mail MX Plan ?</translation>
+
+   <translation id="emailpro_tab_domain_remove_success" qtlid="375582">Verkkotunnus poistetaan E-mail Pro -palvelustasi.</translation>
+   <translation id="emailpro-mxplan_tab_domain_remove_success" qtlid="518700">Le domaine va être supprimé de votre service E-mail MX Plan.</translation>
+
+   <translation id="emailpro_tab_domain_remove_failure" qtlid="375595">Tapahtui virhe poistettaessa verkkotunnusta E-mail Pro -palvelustasi.</translation>
+   <translation id="emailpro-mxplan_tab_domain_remove_failure" qtlid="518713">Une erreur est survenue lors de la suppression du domaine de votre service E-mail MX Plan.</translation>
+
+   <translation id="emailpro_ACTION_delegation_step1_intro" qtlid="375608">Oikeuksien jakaminen antaa toisille E-mail Pro -tileille tiettyjä oikeuksia tiliin {0}</translation>
+   <translation id="emailpro-mxplan_ACTION_delegation_step1_intro" qtlid="518726">Une délégation permet à d'autres comptes E-mail MX Plan d'avoir certains droits sur le compte {0}</translation>
+
+   <translation id="emailpro_ACTION_add_disclaimer_helpwizard_details1" qtlid="468291">Voit luoda yhden allekirjoituksen vahvistettua verkkotunnusta kohti.</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_helpwizard_details2" qtlid="468304">Käytä saatavilla olevia työkaluja allekirjoituksen personointiin sekä muotoiluun.</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_helpwizard_details3" qtlid="468317">Tämä allekirjoitus lisätään automaattisesti jokaiseen viestiin, joka on lähetetty E-mail Pro -verkkotunnukseesi liitetystä sähköpostiosoitteesta.</translation>
+   <translation id="emailpro-mxplan_ACTION_add_disclaimer_helpwizard_details3" qtlid="518739">Cette signature sera intégrée automatiquement au bas de chaque message envoyé depuis les adresses associées à votre domaine E-mail MX Plan.</translation>
+
+   <translation id="emailpro_ACTION_add_disclaimer_helpwizard_details4" qtlid="468330">Lisäksi saatavilla on muuttujia yleisen allekirjoituksen personointiin eri kollegoiden yhteystiedoilla.</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_helpwizard_details5" qtlid="468343">Voit lisätä kuvan tai logon klikkaamalla ensin painiketta "image" ja liittämällä sitten kuvan/logon URL.</translation>
+   <translation id="emailpro_ACTION_delete_disclaimer_question" qtlid="375634">Haluatko varmasti poistaa seuraavan allekirjoituksen E-mail Pro -palvelustasi?</translation>
+   <translation id="emailpro-mxplan_ACTION_delete_disclaimer_question" qtlid="518752">Etes-vous sûr de vouloir supprimer la signature suivante de votre service E-mail MX Plan ?</translation>
+
+   <translation id="emailpro_tab_RESOURCES_add_resource_step2_title" qtlid="375647">Haluatko varmasti lisätä alla olevan resurssitilin E-mail Pro -palvelimelle?</translation>
+   <translation id="emailpro-mxplan_tab_RESOURCES_add_resource_step2_title" qtlid="518765">Etes-vous sûr de vouloir ajouter le compte de ressource ci-dessous au serveur E-mail MX Plan ?</translation>
+
+   <translation id="emailpro_tab_RESOURCES_no_domain_warning" qtlid="375335">Et ole lisännyt vielä verkkotunnusta tai sitä ei ole vielä vahvistettu. <br/>Lisää ensin verkkotunnus ja odota sen vahvistamista, jotta voit luoda E-mail Pro -tilin.</translation>
+   <translation id="emailpro-mxplan_tab_RESOURCES_no_domain_warning" qtlid="518401">Vous n'avez pas encore ajouté de domaine ou il n'a pas encore été validé. <br/>Vous devez d'abord ajouter un domaine et attendre qu'il soit validé pour créer un compte E-mail MX Plan.</translation>
+
+   <translation id="emailpro_tab_RESOURCES_remove_resource_title" qtlid="375660">Haluatko varmasti poistaa seuraavan resurssitilin E-mail Pro -palvelustasi?</translation>
+   <translation id="emailpro-mxplan_tab_RESOURCES_remove_resource_title" qtlid="518778">Voulez-vous supprimer le compte de ressource suivant de votre service E-mail MX Plan ?</translation>
+
+   <translation id="emailpro_tab_RESOURCES_remove_resource_success" qtlid="375673">Resurssitili poistetaan E-mail Pro -palvelustasi.</translation>
+   <translation id="emailpro-mxplan_tab_RESOURCES_remove_resource_success" qtlid="518791">Le compte de ressource va être supprimé de votre service E-mail MX Plan.</translation>
+
+   <translation id="emailpro_RESOURCES_delegation_step1_intro" qtlid="520689">Une délégation permet à d'autres comptes E-mail Pro d'avoir certains droits sur la ressource {0}</translation>
+   <translation id="emailpro-mxplan_RESOURCES_delegation_step1_intro" qtlid="520702">Une délégation permet à d'autres comptes E-mail MX Plan d'avoir certains droits sur la ressource {0}</translation>
+
+   <translation id="emailpro_DIAGNOSTICS_status_isSpammer_help2" qtlid="375699">Sähköpostiviestejä voidaan vastaanottaa normaalisti. Kun tilisi on jäädytetty roskapostin vuoksi, tämä näkyy E-mail Pro -palvelussasi osiossa sähköpostitili. Sieltä löytyy merkintä SPAM. Voit klikata sitä, niin pääset jäädyttämisen johdosta sinulle lähetettyyn viestiin.</translation>
+   <translation id="emailpro-mxplan_DIAGNOSTICS_status_isSpammer_help2" qtlid="518817">La réception n'est pas impactée. Lorsque votre compte est bloqué pour spam, celui-ci est visible depuis votre service E-mail MX Plan section compte e-mail. Un tag SPAM est indiqué. Vous pouvez cliquer dessus afin d'être redirigé vers l'e-mail reçu suite au blocage.</translation>
+
+   <translation id="emailpro_DIAGNOSTICS_status_isSuspended_help" qtlid="375712">Tässä tapauksessa tilauksesi ei ole enää aktiviinen ja sähköpostien vastaanotto on keskeytetty. Ota yhteyttä E-mail Pro -tukeemme <strong>(09) 477 8910</strong> palvelusi uudelleen aktivoimiseksi.</translation>
+   <translation id="emailpro-mxplan_DIAGNOSTICS_status_isSuspended_help" qtlid="518830">Dans ce cas votre abonnement n'est plus actif, la réception et l'envoi sont désactivés. Il est nécessaire de contacter notre support E-mail MX Plan au <strong>1007</strong> afin de réactiver votre service.</translation>
+
+   <translation id="emailpro_DIAGNOSTICS_status_isLocked_help1" qtlid="375725">E-mail Pro -palvelussa on mahdollista määritellä suojauspolitiikka. Tämä voi johtaa siihen, että tili on suojauspolitiikan määrittämisen aikana tietyn ajan estetty.</translation>
+   <translation id="emailpro-mxplan_DIAGNOSTICS_status_isLocked_help1" qtlid="518843">Depuis votre service E-mail MX Plan, il est possible de définir une politique de sécurité. Cela peut entrainer un blocage du compte pendant un délai déterminé lors de la configuration de cette politique.</translation>
+
+   <translation id="emailpro_DIAGNOSTICS_status_isLocked_help3" qtlid="375738">Mikäli törmäät estoon tässä kohtaa, voit joko odottaa ilmoitetun ajan loppumista, jolloin esto poistuu, tai ottaa yhteyttä E-mail Pro -tukeemme luomalla toimenpidepyynnön.</translation>
+   <translation id="emailpro-mxplan_DIAGNOSTICS_status_isLocked_help3" qtlid="518856">Si vous rencontrez un blocage à ce niveau, vous pouvez soit patienter que le délai indiqué soit écoulé afin que le compte se débloque ou contacter notre support E-mail MX Plan en créant une demande d’assistance.</translation>
+
+   <translation id="emailpro_DIAGNOSTICS_status_connectiveOWA_help2" qtlid="375751">Voit myös päivittää salasanasi E-mail Pro -palvelussa, kuvakkeessa sähköpostitili, ja käynnistää sitten diagnostiikan uudelleen. Mikäli ongelma jatkuu edelleen, voit luoda toimenpidepyynnön.</translation>
+   <translation id="emailpro-mxplan_DIAGNOSTICS_status_connectiveOWA_help2" qtlid="518869">Vous pouvez aussi mettre à jour le mot de passe depuis votre service E-mail MX Plan, onglet compte e-mail puis relancer votre diagnostic et si le souci persiste vous pouvez créer une demande d’assistance.</translation>
+
+   <translation id="emailpro_DIAGNOSTICS_status_isMxValid_help2" qtlid="375764">Tässä E-mail Pro -tuotteelle hyväksytyt MX-palvelimet:</translation>
+   <translation id="emailpro-mxplan_DIAGNOSTICS_status_isMxValid_help2" qtlid="518882">Voici les serveurs MX valides pour l'offre E-mail MX Plan :</translation>
+
+   <translation id="emailpro_DIAGNOSTICS_status_isMxValid_help_li1" qtlid="375777">Pelkkä E-mail Pro: mx1.mail.ovh.net</translation>
+   <translation id="emailpro-mxplan_DIAGNOSTICS_status_isMxValid_help_li1" qtlid="518895">E-mail MX Plan seul : mx1.mail.ovh.net</translation>
+
+   <translation id="emailpro_DIAGNOSTICS_status_isMxValid_help_li2" qtlid="375790">E-mail Pro + OVH:n isännöimä E-mail pop/imap: mx1.mail.ovh.net</translation>
+   <translation id="emailpro-mxplan_DIAGNOSTICS_status_isMxValid_help_li2" qtlid="518908">E-mail MX Plan + E-mail pop/imap hébergé par OVH : mx1.mail.ovh.net</translation>
+
+   <translation id="emailpro_DIAGNOSTICS_status_isMxValid_help_li3" qtlid="375803">E-mail Pro + Jonkun muun kuin OVH:n isännöimä E-mail pop/imap: ex.mail.ovh.net tai ex2.mail.ovh.net</translation>
+   <translation id="emailpro-mxplan_DIAGNOSTICS_status_isMxValid_help_li3" qtlid="518921">E-mail MX Plan + E-mail pop/imap non hébergé par OVH : ex.mail.ovh.net ou ex2.mail.ovh.net</translation>
+
+   <translation id="emailpro_DIAGNOSTICS_status_canReceiveEmail_help2" qtlid="375764">Tässä E-mail Pro -tuotteelle hyväksytyt MX-palvelimet:</translation>
+   <translation id="emailpro-mxplan_DIAGNOSTICS_status_canReceiveEmail_help2" qtlid="518882">Voici les serveurs MX valides pour l'offre E-mail MX Plan :</translation>
+
+   <translation id="emailpro_DIAGNOSTICS_status_canReceiveEmail_help_li1" qtlid="375777">Pelkkä E-mail Pro: mx1.mail.ovh.net</translation>
+   <translation id="emailpro-mxplan_DIAGNOSTICS_status_canReceiveEmail_help_li1" qtlid="518895">E-mail MX Plan seul : mx1.mail.ovh.net</translation>
+
+   <translation id="emailpro_DIAGNOSTICS_status_canReceiveEmail_help_li2" qtlid="375790">E-mail Pro + OVH:n isännöimä E-mail pop/imap: mx1.mail.ovh.net</translation>
+   <translation id="emailpro-mxplan_DIAGNOSTICS_status_canReceiveEmail_help_li2" qtlid="518908">E-mail MX Plan + E-mail pop/imap hébergé par OVH : mx1.mail.ovh.net</translation>
+
+   <translation id="emailpro_DIAGNOSTICS_status_canReceiveEmail_help_li3" qtlid="375803">E-mail Pro + Jonkun muun kuin OVH:n isännöimä E-mail pop/imap: ex.mail.ovh.net tai ex2.mail.ovh.net</translation>
+   <translation id="emailpro-mxplan_DIAGNOSTICS_status_canReceiveEmail_help_li3" qtlid="518921">E-mail MX Plan + E-mail pop/imap non hébergé par OVH : ex.mail.ovh.net ou ex2.mail.ovh.net</translation>
+
+   <translation id="emailpro_DIAGNOSTICS_status_isSrvValid_help1" qtlid="375816">SRV-rekisteröinti tarvitaan E-mail Pro -tilin automaattiseen konfigurointiin yhteensopivan sähköpostiohjelmiston kanssa  </translation>
+   <translation id="emailpro-mxplan_DIAGNOSTICS_status_isSrvValid_help1" qtlid="518934">L'enregistrement SRV est nécessaire pour la configuration automatique de votre compte E-mail MX Plan sur un logiciel de messagerie compatible</translation>
+
+   <translation id="emailpro_DIAGNOSTICS_status_isSrvValid_help3" qtlid="375829">Tässä E-mail Pro palvelua varten vaadittu SRV-kenttä:</translation>
+   <translation id="emailpro-mxplan_DIAGNOSTICS_status_isSrvValid_help3" qtlid="518947">Voici le champ SRV requis pour une offre E-mail MX Plan :</translation>
+
+   <translation id="emailpro_DIAGNOSTICS_status_canSendEmail_help_li4" qtlid="375842">Ongelma E-mail Pro -infrastruktuurissa</translation>
+   <translation id="emailpro-mxplan_DIAGNOSTICS_status_canSendEmail_help_li4" qtlid="518960">Un incident sur l'infrastructure E-mail MX Plan</translation>
+
+   <translation id="emailpro_DIAGNOSTICS_status_support_ticket_subject" qtlid="375855">E-mail Pro Diagnostiikka</translation>
+   <translation id="emailpro-mxplan_DIAGNOSTICS_status_support_ticket_subject" qtlid="518973">Diagnostic E-mail MX Plan</translation>
+
+   <translation id="emailpro_GROUPS_delegation_step1_intro" qtlid="375868">Oikeuksien jakaminen antaa toisille E-mail Pro -tileille tiettyjä oikeuksia ryhmään {0}</translation>
+   <translation id="emailpro-mxplan_GROUPS_delegation_step1_intro" qtlid="518986">Une délégation permet à d'autres comptes E-mail MX Plan d'avoir certains droits sur le groupe {0}</translation>
+
+   <translation id="emailpro_GROUPS_add_group_help_intro" qtlid="375881">Ryhmän avulla useat E-mail Pro:n käyttäjät voivat vastaanottaa yhteen sähköpostiin, ryhmäosoitteeseen, lähetetyt sähköpostit. Osoitteen on oltava ainutlaatuinen ja siihen lähetetyt viestit menevät kaikille ryhmän jäsenille.</translation>
+   <translation id="emailpro-mxplan_GROUPS_add_group_help_intro" qtlid="518999">Le groupe permet à plusieurs utilisateurs E-mail MX Plan de recevoir les e-mails envoyés à&#160; une adresse unique : l’adresse du groupe. Cette adresse doit être unique et les messages qui y seront envoyés seront transférés à tous les membres du groupe.</translation>
+
+   <translation id="emailpro_ACTION_configure_step2_intro" qtlid="375894">Yhteenveto E-mail Pro -palvelusi {0} konfiguraatiosta</translation>
+   <translation id="emailpro-mxplan_ACTION_configure_step2_intro" qtlid="519012">Récapitulatif de configuration pour votre service E-mail MX Plan {0}</translation>
+
+   <translation id="emailpro_ACTION_configure_help_title" qtlid="375907">E-mail Pro -palvelun konfiguraatio</translation>
+   <translation id="emailpro-mxplan_ACTION_configure_help_title" qtlid="519025">Configuration service E-mail MX Plan</translation>
+
+   <translation id="emailpro_action_order_space_disk_tooltip" qtlid="375920">Ilmoitettu kiintiö sisältää varmuuskopiot sekä E-mail Pro -järjestelmän toiminnan kannalta tärkeät tiedosot.</translation>
+   <translation id="emailpro-mxplan_action_order_space_disk_tooltip" qtlid="519038">Le quota indiqué prend en compte les sauvegardes et les fichiers nécessaires au fonctionnement du système E-mail MX Plan.</translation>
+
+   <translation id="emailpro_tab_RESOURCES_wizard_intro" qtlid="375933">Resurssitilitoiminto mahdollistaa kollegoidesi tarpeiden suunnittelun. <br /> Voit tietenkin luoda niin monta resurssitiliä kuin haluat.</translation>
+   <translation id="emailpro_ACTION_order_accounts_title" qtlid="375244">Tilaa E-mail Pro -tilejä</translation>
+   <translation id="emailpro-mxplan_ACTION_order_accounts_title" qtlid="518323">Commander des comptes E-mail MX Plan</translation>
+
+   <translation id="emailpro_tab_domain_add_step3_confirmation" qtlid="375946">Haluatko varmasti lisätä alla olevan verkkotunnuksen E-mail Pro -palvelimelle?</translation>
+   <translation id="emailpro-mxplan_tab_domain_add_step3_confirmation" qtlid="519051">Etes-vous sûr de vouloir ajouter le domaine ci-dessous au serveur E-mail MX Plan ?</translation>
+
+   <translation id="emailpro_tab_domain_add_success" qtlid="375959">Verkkotunnus lisätään E-mail Pro -palvelimellesi.</translation>
+   <translation id="emailpro-mxplan_tab_domain_add_success" qtlid="519064">L'ajout du domaine à votre serveur E-mail MX Plan va être effectué.</translation>
+
+   <translation id="emailpro_tab_domain_add_failure" qtlid="375972">Tapahtui virhe verkkotunnuksen lisäämisessä E-mail Pro -palvelimellesi.</translation>
+   <translation id="emailpro-mxplan_tab_domain_add_failure" qtlid="519077">Une erreur est survenue lors de l'ajout du domaine à votre serveur E-mail MX Plan.</translation>
+
+   <translation id="emailpro_tab_domain_diagnostic_mx_no_antispam_config" qtlid="375985">pro1.mail.ovh.net</translation>
+   <translation id="emailpro_ACTION_add_domain_invalid_domain" qtlid="375998">Annettu verkkotunnus ei kelpaa.</translation>
+   <translation id="emailpro_ACTION_order_accounts_step1_price" qtlid="139416">{1}</translation>
+   <translation id="emailpro_ACTION_order_accounts_step1_price_with_tax_only" qtlid="499930">{0} ({0} sis.ALV)</translation>
+   <translation id="emailpro_ACTION_order_accounts_step1_user_error" qtlid="499943">Virhe käyttäjän tietoja haettaessa</translation>
+
+
+   <translation id="emailpro_ACTION_add_account_button" qtlid="21487">Lisää tili</translation>
+   <translation id="emailpro_ACTION_add_account_legal_warning" qtlid="209099">Hyväksyn, että OVH laittaa palvelun pystyyn välittömästi hyväksyttyään tilaukseni, ja täten yksiselitteisesti luovun oikeudestani perumiseen Kuluttajansuojalain 6:16. §:n mukaisesti, Asiakkaalla ei ole oikeutta peruuttaa Palvelun tilausta tai uusintaa.</translation>
+   <translation id="emailpro_ACTION_add_account_option_fail" qtlid="144045">Tapahtui virhe ladattaessa verkkotunnuksiasi</translation>
+   <translation id="emailpro_ACTION_add_account_step1_display_name_label" qtlid="23515">Näyttönimi</translation>
+   <translation id="emailpro_ACTION_add_account_step1_email_label" qtlid="137244">Sähköpostitili</translation>
+   <translation id="emailpro_ACTION_add_account_step1_first_name_label" qtlid="23323">Etunimi</translation>
+   <translation id="emailpro_ACTION_add_account_step1_last_name_label" qtlid="3818">Nimi</translation>
+   <translation id="emailpro_ACTION_add_account_step2_confirmation_intro" qtlid="136841">Tili:</translation>
+   <translation id="emailpro_ACTION_add_account_step2_display_name_label" qtlid="23515">Näyttönimi</translation>
+   <translation id="emailpro_ACTION_add_account_step2_email_label" qtlid="137244">Sähköpostitili</translation>
+   <translation id="emailpro_ACTION_add_account_step2_first_name_label" qtlid="23323">Etunimi</translation>
+   <translation id="emailpro_ACTION_add_account_step2_last_name_label" qtlid="3818">Nimi</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_content" qtlid="152271">Sisältö</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_error_message" qtlid="152375">Tapahtui virhe allekirjoituksen luomisen aikana</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_helpwizard_title" qtlid="152531">Allekirjoitus</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_no_domains" qtlid="155274">Et voi luoda allekirjoitusta per vahvistettu verkkotunnus. Kaikilla verkkotunnuksillasi on jo allekirjoitus.</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_City" qtlid="33310">Postitoimipaikka</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_Company" qtlid="49022">Yritys</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_Country" qtlid="25171">Laskutusmaa</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_Department" qtlid="30706">Osasto</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_DisplayName" qtlid="80922">Näyttönimi</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_Email" qtlid="69509">Sähköposti</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_FaxNumber" qtlid="152388">Faksinumero</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_FirstName" qtlid="23323">Etunimi</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_HomePhoneNumber" qtlid="152401">Lankanumero</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_Initials" qtlid="152414">Nimikirjaimet</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_LastName" qtlid="3818">Nimi</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_Manager" qtlid="152427">Vastuuhenkilö</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_MobileNumber" qtlid="152440">GSM-numero</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_Name" qtlid="109614">Koko nimi</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_Notes" qtlid="69389">Muistiot</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_Office" qtlid="59555">Toimisto</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_OtherFaxNumber" qtlid="152453">Faksi 2</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_OtherHomePhoneNumber" qtlid="152466">Asunto 2</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_OtherPhoneNumber" qtlid="152479">Puhelinnumero 2</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_PagerNumber" qtlid="152492">Hakulaitenumero</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_PhoneNumber" qtlid="152505">Puhelinnumero</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_State" qtlid="32434">Alue</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_Street" qtlid="152518">Katu</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_Title" qtlid="16469">Otsikko</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_UserLogonName" qtlid="46792">Käyttäjätunnus</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_ZipCode" qtlid="30346">Postinumero</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_outside" qtlid="152349">Aktivoi allekirjoitus vain ulos lähtevälle sähköpostille</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_success_message" qtlid="152362">Allekirjoitus luodaan muutamassa minuutissa</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_title" qtlid="152206">Lisää allekirjoitus</translation>
+   <translation id="emailpro_ACTION_change_password_account_error_message_linked" qtlid="148279">Salasanamuutoksen aikana tapahtui kuitenkin virhe</translation>
+   <translation id="emailpro_ACTION_configure_error" qtlid="178276">Virhe kyselyn aikana, muutoksia ei tehdä</translation>
+   <translation id="emailpro_ACTION_configure_help_complexityEnabled_text" qtlid="178692">Tämä suojausasetus määrittelee onko salasanojen noudatettava vaatimuksia niiden monimutkaisuuden suhteen. <br/>Jos tätä politiikkaa noudatetaan, salasanojen on noudatettava seuraavia vähimmäisvaatimuksia: <ul><li>Ei saa sisältää tilin käyttäjän koko nimeä tai osaa siitä</li> <li>Pituus vähintään 6 merkkiä</li> <li>Sisältää merkkejä kolmesta seuraavasta neljästä kategoriasta:&#13;
+<ol><li>Isoja kirjaimia englantilaisista aakkosista (A-Z)</li> <li>Pieniä kirjaimia englantilaisista aakkosista (a-z)</li> <li>Lukuja (0-9)</li> <li>Erikoismerkkejä (kuten !, $, #, %)</li></ol></li> </ul>Monimutkaisuusvaatimukset sovelletaan salasanoihin niitä luotaessa ja muutettaessa.</translation>
+   <translation id="emailpro_ACTION_configure_help_complexityEnabled_title" qtlid="178003">Salasanan monimutkaisuuden vaatimukset</translation>
+   <translation id="emailpro_ACTION_configure_help_lockoutDuration_text" qtlid="178653">Tämä suojausasetus määrittelee minuuttimäärän, jonka ajan tili on lukittu ennen lukituksen poistumista automaattisesti. Aikaraja on 1-90 minuuttia. <br/>Jos yhden tilin lukityskynnys on määritelty, tilien lukitusajan on oltava suurempi tai yhtä suuri kuin nollausajan.</translation>
+   <translation id="emailpro_ACTION_configure_help_lockoutDuration_title" qtlid="178640">Tilien lukitusaika</translation>
+   <translation id="emailpro_ACTION_configure_help_lockoutObservationWindow_text" qtlid="178679">Tämä suojausasetus määrittelee minuuttien määrän, jonka on kuluttava epäonnistuneen istunnon avausyrityksestä, jotta istunnon avauksen lukituslaskuri nollataan. Aikaväli voi olla 1-90 minuuttia.<br/>Jos yhden tilin lukituskynnys on määritelty, nollausviiveen on oltava pienempi tai yhtä suuri kuin tilien lukitusaika.</translation>
+   <translation id="emailpro_ACTION_configure_help_lockoutObservationWindow_title" qtlid="178666">Lukituslaskurin nollausviive</translation>
+   <translation id="emailpro_ACTION_configure_help_lockoutThreshold_text" qtlid="178627">Tämä suojausasetus määrittää epäonnistuneiden istunnon avausyritysten lukumäärän käyttäjätilin lukitsemiseksi. Lukittua tiliä ei voi käyttää ennen kuin administraattori nollaa tilin tai kun tilin lukitusaika päättyy. Voit määritellä arvoksi 1-14 epäonnistunutta istunnon avausyritystä. Jos määrittelet arvoksi 0, tiliä ei lukita koskaan.</translation>
+   <translation id="emailpro_ACTION_configure_help_lockoutThreshold_title" qtlid="177990">Tilin lukituskynnys</translation>
+   <translation id="emailpro_ACTION_configure_help_maxPasswordAge_text" qtlid="181578">Tällä turva-asetuksella määritellään ajanjakso (päivinä), jolloin käyttäjä voi salasanaansa käyttää ennen kuin järjestelmä pyytää häntä muuttamaan sitä. Asetuksen voi määritellä niin, että salasanat vanhenevat 0–90 päivän kuluttua tai salasanan ei tarvitse vanheta koskaan määrittelemällä arvoksi 0. Jos salasanan enimmäiselinikä on 1–90 päivän välillä, salasanan vähimmäiseliniän on oltava valittua lukua pienempi. Jos salasanan enimmäiselinikä on 0, vähimmäiselinikä voi olla mikä tahansa luku 0 ja 90 päivän väliltä.</translation>
+   <translation id="emailpro_ACTION_configure_help_maxPasswordAge_title" qtlid="178731">Salasanojen enimmäiselinikä</translation>
+   <translation id="emailpro_ACTION_configure_help_minPasswordAge_text" qtlid="178718">Tämä suojausasetus määrittelee ajan (päivinä), jonka ajan käyttäjän on salasanaa käytettävä ennen kuin voi sen muuttaa. Voit määritellä arvon 1-90 päivän välillä tai määrittelemällä 0 salasanan voi muuttaa heti.</translation>
+   <translation id="emailpro_ACTION_configure_help_minPasswordAge_title" qtlid="178705">Salasanojen vähimmäiselinikä</translation>
+   <translation id="emailpro_ACTION_configure_help_minPasswordLength_text" qtlid="178757">Tämä suojausasetus määrittelee käyttäjätilin salasanan merkkien vähimmäismäärän. Voit määritellä arvon 3-14 väliltä tai määrittelemällä 0, salasanaa ei vaadita ollenkaan.</translation>
+   <translation id="emailpro_ACTION_configure_help_minPasswordLength_title" qtlid="174828">Salasanan vähimmäispituus</translation>
+   <translation id="emailpro_ACTION_configure_services_help_lockoutThreshold" qtlid="178549">Jos syötät "0", tiliä ei lukita koskaan.</translation>
+   <translation id="emailpro_ACTION_configure_services_help_maxPasswordAge" qtlid="178588">Jos syötät "0", salasana kelpaa aina.</translation>
+   <translation id="emailpro_ACTION_configure_services_help_minPasswordAge" qtlid="178575">Jos syötät "0", hyväksyt salasanan muutoksen heti.</translation>
+   <translation id="emailpro_ACTION_configure_services_help_minPasswordLength" qtlid="178601">Jos syötät "0", salasanaa ei vaadita.</translation>
+   <translation id="emailpro_ACTION_configure_services_label_complexityEnabled" qtlid="178003">Salasanan monimutkaisuuden vaatimukset</translation>
+   <translation id="emailpro_ACTION_configure_services_label_lockoutDuration" qtlid="179706">Tilin lukitusajan kesto</translation>
+   <translation id="emailpro_ACTION_configure_services_label_lockoutObservationWindow" qtlid="179719">Lukitusajan nollausviive</translation>
+   <translation id="emailpro_ACTION_configure_services_label_lockoutThreshold" qtlid="179732">Tilin lukituksen raja</translation>
+   <translation id="emailpro_ACTION_configure_services_label_maxPasswordAge" qtlid="179745">Salasanan eliniän enimmäiskesto</translation>
+   <translation id="emailpro_ACTION_configure_services_label_minPasswordAge" qtlid="376089">Estä salasanan vaihtaminen</translation>
+   <translation id="emailpro_ACTION_configure_services_label_minPasswordLength" qtlid="174828">Salasanan vähimmäispituus</translation>
+   <translation id="emailpro_ACTION_configure_services_tooltip_days" qtlid="179771">Päivinä</translation>
+   <translation id="emailpro_ACTION_configure_services_tooltip_minutes" qtlid="179784">Minuutteina</translation>
+   <translation id="emailpro_ACTION_configure_step2_label_complexityEnabled" qtlid="178393">Vaatimuksen salasanan monimutkaisuudesta:</translation>
+   <translation id="emailpro_ACTION_configure_step2_label_lockoutDuration" qtlid="178302">Tilin lukituksen kesto:</translation>
+   <translation id="emailpro_ACTION_configure_step2_label_lockoutObservationWindow" qtlid="178341">Tilien lukituksen tarkkailuikkuna:</translation>
+   <translation id="emailpro_ACTION_configure_step2_label_lockoutThreshold" qtlid="178328">Tilin lukituskynnys:</translation>
+   <translation id="emailpro_ACTION_configure_step2_label_maxPasswordAge" qtlid="178354">Salasanan enimmäisikä:</translation>
+   <translation id="emailpro_ACTION_configure_step2_label_minPasswordAge" qtlid="178367">Estä salasanan vaihtaminen:</translation>
+   <translation id="emailpro_ACTION_configure_step2_label_minPasswordLength" qtlid="178380">Salasanan pituus vähintään:</translation>
+   <translation id="emailpro_ACTION_configure_success" qtlid="176700">Muutokset otetaan huomioon</translation>
+   <translation id="emailpro_ACTION_delegation_behalf_tooltip" qtlid="181513">Poista ensin lähetysoikeus käytöstä.</translation>
+   <translation id="emailpro_ACTION_delegation_doing_message" qtlid="144266">Oikeuksien päivitys suoritetaan</translation>
+   <translation id="emailpro_ACTION_delegation_error_message" qtlid="144279">Tapahtui virhe päivitettäessä oikeuksia</translation>
+   <translation id="emailpro_ACTION_delegation_partial_message" qtlid="156758">Tapahtui virhe päivitettäessä delegaatio-oikeuksia.</translation>
+   <translation id="emailpro_ACTION_delegation_sendas_tooltip" qtlid="181539">Poista ensin send as -lähetysoikeus.</translation>
+   <translation id="emailpro_ACTION_delegation_step1_email_header" qtlid="137244">Sähköpostitili</translation>
+   <translation id="emailpro_ACTION_delegation_step1_full_header" qtlid="181500">Pääsyoikeudet</translation>
+   <translation id="emailpro_ACTION_delegation_step1_sendOnBehalfTo_header" qtlid="181487">Send as -oikeudet</translation>
+   <translation id="emailpro_ACTION_delegation_step1_send_header" qtlid="181474">Lähetysoikeudet</translation>
+   <translation id="emailpro_ACTION_delegation_step1_task_on_doing" qtlid="201458">Työtehtävä käynnissä</translation>
+   <translation id="emailpro_ACTION_delegation_step2_email_header" qtlid="137244">Sähköpostitili</translation>
+   <translation id="emailpro_ACTION_delegation_step2_full_header" qtlid="144253">Pääsyoikeudet</translation>
+   <translation id="emailpro_ACTION_delegation_step2_intro" qtlid="434564">Valtuutusoikeudet koskevat tiliä <strong>{0}</strong> :</translation>
+   <translation id="emailpro_ACTION_delegation_step2_right_true" qtlid="34776">Kyllä</translation>
+   <translation id="emailpro_ACTION_delegation_step2_sendOnBehalfTo_header" qtlid="181487">Send as -oikeudet</translation>
+   <translation id="emailpro_ACTION_delegation_step2_send_header" qtlid="143798">Lähetysoikus</translation>
+   <translation id="emailpro_ACTION_delegation_success_message" qtlid="144266">Oikeuksien päivitys suoritetaan</translation>
+   <translation id="emailpro_ACTION_delegation_title" qtlid="143733">Delegointikonfigurointi</translation>
+   <translation id="emailpro_ACTION_delegation_wait_behalf_tooltip" qtlid="181526">Odota, että lähetysoikeus poistetaan käytöstä.</translation>
+   <translation id="emailpro_ACTION_delegation_wait_sendas_tooltip" qtlid="181552">Odota, että ”Send on behalf” -lähetysoikeus poistetaan käytöstä.</translation>
+   <translation id="emailpro_ACTION_delete_disclaimer_failure" qtlid="152583">Tapahtui virhe poistettaessa allekirjoitusta</translation>
+   <translation id="emailpro_ACTION_delete_disclaimer_success" qtlid="152570">Allekirjoitus poistetaan</translation>
+   <translation id="emailpro_ACTION_delete_disclaimer_title" qtlid="152219">Allekirjoituksen poisto</translation>
+   <translation id="emailpro_ACTION_disclaimer_associated_domains" qtlid="133110">Liitettävä verkkotunnus</translation>
+   <translation id="emailpro_ACTION_disclaimer_insert" qtlid="152336">Syötä yksi muuttuja</translation>
+   <translation id="emailpro_ACTION_loading" qtlid="75954">Ladataan...</translation>
+   <translation id="emailpro_ACTION_order_accounts_button" qtlid="139169">Tilaa tilejä</translation>
+   <translation id="emailpro_ACTION_order_accounts_step1_loading_error" qtlid="135294">Tapahtui virhe tietoja ladattaessa.</translation>
+   <translation id="emailpro_ACTION_order_accounts_step1_number" qtlid="139338">Tilien lukumäärä:</translation>
+   <translation id="emailpro_ACTION_order_accounts_step1_number_tooltip" qtlid="144110">Syötä numero 1 ja 100 väliltä</translation>
+   <translation id="emailpro_ACTION_order_accounts_step1_number_not_valid" qtlid="144123">Syötä kelvollinen numero</translation>
+   <translation id="emailpro_ACTION_order_accounts_step1_pay_type" qtlid="139325">Maksutapa:</translation>
+   <translation id="emailpro_ACTION_order_accounts_step1_pay_type_01" qtlid="79530">kuukausittain</translation>
+   <translation id="emailpro_ACTION_order_accounts_step1_pay_type_12" qtlid="79542">vuosittain</translation>
+   <translation id="emailpro_ACTION_order_accounts_step2_error_message" qtlid="139468">Tapahtui virhe tilauksen käsittelyssä.</translation>
+   <translation id="emailpro_ACTION_order_accounts_step2_intro" qtlid="139403">Jatka tilaustasi</translation>
+   <translation id="emailpro_ACTION_order_accounts_step2_loader" qtlid="139377">Tilauksen yksityiskohtien vahvistus on käynnissä.</translation>
+   <translation id="emailpro_ACTION_order_accounts_step2_number" qtlid="139338">Tilien lukumäärä:</translation>
+   <translation id="emailpro_ACTION_order_accounts_step2_pay_type" qtlid="139325">Maksutapa:</translation>
+   <translation id="emailpro_ACTION_order_accounts_step2_pay_type_monthly" qtlid="79530">kuukausittain</translation>
+   <translation id="emailpro_ACTION_order_accounts_step2_pay_type_yearly" qtlid="79542">vuosittain</translation>
+   <translation id="emailpro_ACTION_order_accounts_step2_price" qtlid="139416">{1}</translation>
+   <translation id="emailpro_ACTION_order_accounts_step2_total" qtlid="139429">Veloitettava määrä:</translation>
+   <translation id="emailpro_ACTION_order_accounts_step3_bc" qtlid="169524">Tilaus on luotu onnistuneesti.</translation>
+   <translation id="emailpro_ACTION_order_accounts_step3_continue" qtlid="169537">Vahvistaaksesi tilauksesi, klikkaa alla olevaa ”Maksa”-nappia.</translation>
+   <translation id="emailpro_ACTION_order_accounts_step3_explication" qtlid="139481">Ota huomioon että tilauksen hyväksymisen ja käsittelyn jälkeen tilin luomiseen vaaditaan noin 10 minuuttia.</translation>
+   <translation id="emailpro_ACTION_order_accounts_step3_explication2" qtlid="144175">Sinut ohjataan OVH:n maksusivustolle automaattisesti selaimen uuden välilehden kautta.</translation>
+   <translation id="emailpro_ACTION_order_accounts_step3_generation_bc" qtlid="169511">Tilausta luodaan…</translation>
+   <translation id="emailpro_ACTION_sending" qtlid="71009">Lähetetään...</translation>
+   <translation id="emailpro_ACTION_update_account_error_message_linked" qtlid="157421">Muiden tilien asetuksien määrittelyssä tapahtui kuitenkin virhe.</translation>
+   <translation id="emailpro_ACTION_update_account_helpwizard_password_title" qtlid="2270">Salasana</translation>
+   <translation id="emailpro_ACTION_update_account_helpwizard_password" qtlid="171240">Salasanojen on noudatettava seuraavia vähimmäisvaatimuksia:<br/><br/>- Ei saa sisältää käyttäjän koko tilin nimeä tai osaa siitä<br/>- Pituus vähintään 8 merkkiä<br/>- Sisältää merkkejä kolmesta seuraavasta neljästä kategoriasta:<br/><ul><li>Pieniä kirjaimia(a-z)<br/></li><li>Lukuja (0-9)<br/></li><li>ERikoismerkkijä (kuten !, $, #, %)<br/></li></ul></translation>
+   <translation id="emailpro_ACTION_update_account_helpwizard_password_simple" qtlid="195139">Salasanan täytyy sisältää vähintään {0} merkkiä</translation>
+   <translation id="emailpro_ACTION_update_account_step1_complex_password_tooltip" qtlid="178822">Vähintään {0} alfanumeerista kirjainta, lukua ja erikoismerkkiä.</translation>
+   <translation id="emailpro_ACTION_update_account_step1_display_name_label" qtlid="23515">Näyttönimi</translation>
+   <translation id="emailpro_ACTION_update_account_step1_first_name_label" qtlid="23323">Etunimi</translation>
+   <translation id="emailpro_ACTION_update_account_step1_last_name_label" qtlid="3818">Nimi</translation>
+   <translation id="emailpro_ACTION_update_account_step1_password_confirmation_label" qtlid="9983">Vahvista</translation>
+   <translation id="emailpro_ACTION_update_account_step1_password_contains_samaccount_name" qtlid="254869">Salasana ei voi sisältää seuraavia arvoja: ”{0}”, samaccountName, sisäinen tunniste.</translation>
+   <translation id="emailpro_ACTION_update_account_step1_password_different" qtlid="139637">Salasanat ovat erilaiset</translation>
+   <translation id="emailpro_ACTION_update_account_step1_password_label" qtlid="2270">Salasana</translation>
+   <translation id="emailpro_ACTION_update_account_step1_password_placeholder" qtlid="156745">Säilytä vanha</translation>
+   <translation id="emailpro_ACTION_update_account_step1_password_weak" qtlid="139624">Salasana on liian yksinkertainen</translation>
+   <translation id="emailpro_ACTION_update_account_step1_quota_label" qtlid="6874">Kiintiö</translation>
+   <translation id="emailpro_ACTION_update_account_step1_simple_password_tooltip" qtlid="137595">Vähintään {0} merkkiä.</translation>
+   <translation id="emailpro_ACTION_update_account_step1_type_label" qtlid="191057">Tilin tyyppi</translation>
+   <translation id="emailpro_ACTION_update_account_step1_type_STANDARD" qtlid="48998">Standard</translation>
+   <translation id="emailpro_ACTION_update_account_step1_type_BASIC" qtlid="48986">Basic</translation>
+   <translation id="emailpro_ACTION_update_account_step1_type_ENTERPRISE" qtlid="49022">Yritys</translation>
+   <translation id="emailpro_ACTION_update_account_step1_type_cant_change" qtlid="486243">Tilin tyyppiä ei voida muuttaa, niin kauan kuin Outlook-lisenssi on liitettynä tiliin.</translation>
+   <translation id="emailpro_ACTION_update_account_step1_exchange_guid_label" qtlid="174633">Exchange GUID</translation>
+   <translation id="emailpro_ACTION_update_account_step2_confirmation_intro" qtlid="136841">Tili:</translation>
+   <translation id="emailpro_ACTION_update_account_step2_display_name_label" qtlid="23515">Näyttönimi</translation>
+   <translation id="emailpro_ACTION_update_account_step2_email_label" qtlid="137244">Sähköpostitili</translation>
+   <translation id="emailpro_ACTION_update_account_step2_first_name_label" qtlid="23323">Etunimi</translation>
+   <translation id="emailpro_ACTION_update_account_step2_last_name_label" qtlid="3818">Nimi</translation>
+   <translation id="emailpro_ACTION_update_account_step2_password_label" qtlid="139650">Salasana</translation>
+   <translation id="emailpro_ACTION_update_disclaimer_error_message" qtlid="152635">Tapahtui virhe allekirjoituksen muokkauksen aikana</translation>
+   <translation id="emailpro_ACTION_update_disclaimer_info" qtlid="152609">Verkkotunnukselle {0} määritellyn allekirjoituksen muokkaus</translation>
+   <translation id="emailpro_ACTION_update_disclaimer_length_warning" qtlid="152648">Allekirjoituksen koko ei tule ylittää 5000 merkkiä tai sisältää paikallisia kuvia.</translation>
+   <translation id="emailpro_ACTION_update_disclaimer_success_message" qtlid="152622">Allekirjoitus muokataan</translation>
+   <translation id="emailpro_ACTION_update_disclaimer_title" qtlid="152596">Määrittele allekirjoitus</translation>
+   <translation id="emailpro_GROUPS_delegation_doing_message" qtlid="144266">Oikeuksien päivitys suoritetaan</translation>
+   <translation id="emailpro_GROUPS_delegation_error_message" qtlid="144279">Tapahtui virhe päivitettäessä oikeuksia</translation>
+   <translation id="emailpro_GROUPS_delegation_success_message" qtlid="144266">Oikeuksien päivitys suoritetaan</translation>
+   <translation id="emailpro_GROUPS_partial_account" qtlid="191161">Tapahtui virhe {0} latauksen aikana</translation>
+
+   <translation id="emailpro_action_license_history_fail" qtlid="169641">Tapahtui virhe ladattaessa seurantatietoja.</translation>
+   <translation id="emailpro_action_license_history_type_outlook" qtlid="193111">Outlook-lisenssit</translation>
+   <translation id="emailpro_action_order_space_disk" qtlid="191668">Lisälevytilan tilaus</translation>
+
+   <translation id="emailpro_dashboard_2016_migration" qtlid="287072">Katso Exchange 2016 migraatioaikataulu </translation>
+   <translation id="emailpro_dashboard_action_doing" qtlid="149787">Operaatio meneillään…</translation>
+   <translation id="emailpro_dashboard_diag" qtlid="136230">Palvelimen ongelmankartoitus</translation>
+   <translation id="emailpro_dashboard_diag_a_label" qtlid="23803">A</translation>
+   <translation id="emailpro_dashboard_diag_a_tooltip_error" qtlid="209151">Jos berkkotunnuksesi on OVH:n ylläpitämä, ole hyvä ja luo A-tietue valitsemalla verkkotunnus ja "advanced mode" -> "DNS-alue" -> "Lisää kenttä".&#13;
+&#13;
+Valitse: <br /> Tyyppi: <span class="bold">A</span> <br /> Aliverkkotunnus: <span class="bold">{0}</span> <br /> Kohde: <span class="bold">{1}</span> <br /><br /> Jos verkkotunnusta ylläpidetään muualla, luo sinne A-kenttä samaan tapaan.</translation>
+   <translation id="emailpro_dashboard_diag_a_tooltip_ok" qtlid="137491">Automaattinen konfiguraatio suoritettu</translation>
+   <translation id="emailpro_dashboard_diag_a_tooltip_title" qtlid="143251">A-tietue (IPv4)</translation>
+   <translation id="emailpro_dashboard_diag_aaaa_label" qtlid="129823">AAAA</translation>
+   <translation id="emailpro_dashboard_diag_aaaa_tooltip_error" qtlid="209164">Jos verkkotunnuksesi on OVH:n ylläpitämä, ole hyvä ja luo AAAA-kenttä valitsemalla verkkotunnuksesi, "advanced mode" -> "DNS-alue" -> "Lisää kenttä". Laita <br /> Tyyppi: <span class="bold">AAAA</span> <br /> Aliverkkotunnus: <span class="bold">{0}</span> <br /> Kohde: <span class="bold">{1}</span> <br /><br />. Jos verkkotunnusta ylläpidetään muualla, luo sinne AAAA-kenttä samaan tapaan.</translation>
+   <translation id="emailpro_dashboard_diag_aaaa_tooltip_ok" qtlid="137491">Automaattinen konfiguraatio suoritettu</translation>
+   <translation id="emailpro_dashboard_diag_aaaa_tooltip_title" qtlid="143277">AAAA-tietue (IPv6)</translation>
+   <translation id="emailpro_dashboard_diag_ptr_label" qtlid="143303">PTR v4</translation>
+   <translation id="emailpro_dashboard_diag_ptr_tooltip_error" qtlid="143316">IPv4-osoitteesi reverseosoitteessa on virhe. Ota yhteys tekniseen tukeemme.</translation>
+   <translation id="emailpro_dashboard_diag_ptr_tooltip_ok" qtlid="137491">Automaattinen konfiguraatio suoritettu</translation>
+   <translation id="emailpro_dashboard_diag_ptr_tooltip_title" qtlid="143303">PTR v4</translation>
+   <translation id="emailpro_dashboard_diag_ptrv6_label" qtlid="143329">PTR v6</translation>
+   <translation id="emailpro_dashboard_diag_ptrv6_tooltip_error" qtlid="143342">IPv6-osoitteesi reverseosoitteessa on virhe. Ota yhteys tekniseen tukeemme</translation>
+   <translation id="emailpro_dashboard_diag_ptrv6_tooltip_ok" qtlid="137491">Automaattinen konfiguraatio suoritettu</translation>
+   <translation id="emailpro_dashboard_diag_ptrv6_tooltip_title" qtlid="143329">PTR v6</translation>
+   <translation id="emailpro_dashboard_display_name_min" qtlid="177925">Operaatio peruutettu. Vähintään 5 merkkiä vaaditaan.</translation>
+   <translation id="emailpro_dashboard_domains" qtlid="276298">Liitetyt verkkotunnukset</translation>
+   <translation id="emailpro_dashboard_domain_forMXPlan" qtlid="133110">Liitettävä verkkotunnus</translation>
+   <translation id="emailpro_dashboard_domain_offer" qtlid="38217">Palvelu</translation>
+   <translation id="emailpro_dashboard_domain_filer" qtlid="222761">Tiedostopalvelin</translation>
+   <translation id="emailpro_dashboard_expiration" qtlid="168172">Uusinta</translation>
+   <translation id="emailpro_dashboard_guides_url" qtlid="519090">Consultez nos guides en ligne</translation>
+   <translation id="emailpro_dashboard_loading_error" qtlid="168120">Tapahtui virhe ladattaessa tietoja.</translation>
+   <translation id="emailpro_dashboard_message_see_more" qtlid="91645">Katso lisätiedot</translation>
+   <translation id="emailpro_dashboard_name" qtlid="136165">Palvelimen referenssi</translation>
+   <translation id="emailpro_dashboard_new_window" qtlid="222176">Uusi ikkuna</translation>
+   <translation id="emailpro_dashboard_ssl_expiration" qtlid="190797">SSL:n erääntyminen</translation>
+   <translation id="emailpro_dashboard_tasks" qtlid="136217">Viimeaikaiset tehtävät</translation>
+
+   <translation id="emailpro_delete_action_button" qtlid="519103">Supprimer ce MX plan</translation>
+
+   <translation id="emailpro_resilitation_action_button" qtlid="48646">Irtisano</translation>
+   <translation id="emailpro_resilitation_action_button_cancel" qtlid="211567">Peruuta poisto</translation>
+   <translation id="emailpro_resilitation_action_hosted_warning" qtlid="209073">Tilisi eräätyvät pian.</translation>
+   <translation id="emailpro_resilitation_action_partial" qtlid="191031">Jotkut uudistamisajanjaksomuutokset ovat virhetilassa.</translation>
+   <translation id="emailpro_resilitation_cancel_action_button" qtlid="4070">Jatka</translation>
+   <translation id="emailpro_resilitation_cancel_action_confirmation" qtlid="201380">Olet perumassa palvelun "{0}" irtisanomista. <br />Oletko varma, että haluat jatkaa operaatiota? <br /> Palvelu siirtyy sen seurauksena automaattiseen uusintaan.</translation>
+   <translation id="emailpro_resilitation_cancel_action_failure" qtlid="211580">Tapahtui virhe peruutettaessa palvelun poistonpyyntöä.</translation>
+   <translation id="emailpro_resilitation_cancel_action_partial" qtlid="191031">Jotkut uudistamisajanjaksomuutokset ovat virhetilassa.</translation>
+   <translation id="emailpro_tab_ACCOUNTS_error_message" qtlid="143915">Tapahtui virhe ladattaessa tilejä</translation>
+
+   <translation id="emailpro_tab_ACCOUNTS_webmails" qtlid="485697">Selainposti:</translation>
+   <translation id="emailpro_tab_ACCOUNTS_menu_account_tooltip" qtlid="19075">Lisää toimintoja</translation>
+   <translation id="emailpro_tab_ACCOUNTS_partial" qtlid="143889">Jotkut tilit eivät latautuneet kunnolla. Virkistä tämä sivu selvittääksesi ongelman.</translation>
+   <translation id="emailpro_tab_ACCOUNTS_partial_account" qtlid="139208">Tämä tili ei latautunut oikein.</translation>
+   <translation id="emailpro_tab_ACCOUNTS_popover_alias" qtlid="21499">Aliaksien hallinta</translation>
+   <translation id="emailpro_tab_ACCOUNTS_popover_delegation" qtlid="143434">Delegaatioiden hallinta</translation>
+   <translation id="emailpro_tab_ACCOUNTS_popover_span_text" qtlid="277689">Sähköpostitili on tilapäisesti lukittu ROSKAPOSTIN lähettämisen vuoksi<br />Lukituksen poistamiseksi vastaa odottavaan tikettiin.<br /><br /><a href="{0}" class="link pull-right">Vastaa tikettiin</a><br /></translation>
+   <translation id="emailpro_tab_ACCOUNTS_popover_span_title" qtlid="277676">ROSKAPOSTI lukittu tili</translation>
+   <translation id="emailpro_tab_ACCOUNTS_pwderror" qtlid="137296">Vahvistus väärin</translation>
+   <translation id="emailpro_tab_ACCOUNTS_state_CREATING" qtlid="146632">Luodaan…</translation>
+   <translation id="emailpro_tab_ACCOUNTS_state_DELETING" qtlid="146645">Poistetaan…</translation>
+   <translation id="emailpro_tab_ACCOUNTS_state_TASK_ON_DOING" qtlid="485632">Suunniteltu tai meneillään oleva tehtävä</translation>
+   <translation id="emailpro_tab_ACCOUNTS_state_TASK_ON_ERROR" qtlid="485788">Virheellinen tehtävä</translation>
+   <translation id="emailpro_tab_ACCOUNTS_table_alias" qtlid="9466">Alias</translation>
+   <translation id="emailpro_tab_ACCOUNTS_table_email" qtlid="137244">Sähköpostitili</translation>
+   <translation id="emailpro_tab_ACCOUNTS_table_empty" qtlid="149800">Ei tilejä</translation>
+   <translation id="emailpro_tab_ACCOUNTS_table_empty_type_BASIC" qtlid="190810">Ei Basic-tilejä.</translation>
+   <translation id="emailpro_tab_ACCOUNTS_table_empty_type_STANDARD" qtlid="190823">Ei Standard-tilejä.</translation>
+   <translation id="emailpro_tab_ACCOUNTS_table_empty_type_ENTERPRISE" qtlid="190836">Ei Enterprise-tilejä.</translation>
+   <translation id="emailpro_tab_ACCOUNTS_table_empty_search" qtlid="149813">Ei hakuehtoja vastaavia tilejä</translation>
+   <translation id="emailpro_tab_ACCOUNTS_table_size" qtlid="7726">Koko</translation>
+   <translation id="emailpro_tab_ACCOUNTS_table_status" qtlid="26443">Tila</translation>
+   <translation id="emailpro_tab_ACCOUNTS_table_type" qtlid="2642">Tyyppi</translation>
+   <translation id="emailpro_tab_ACCOUNTS_type_ALL" qtlid="69173">Kaikki</translation>
+   <translation id="emailpro_tab_ACCOUNTS_type_BASIC" qtlid="48986">Basic</translation>
+   <translation id="emailpro_tab_ACCOUNTS_type_STANDARD" qtlid="48998">Standard</translation>
+   <translation id="emailpro_tab_ACCOUNTS_type_ENTERPRISE" qtlid="49022">Yritys</translation>
+   <translation id="emailpro_tab_ACCOUNTS_warning" qtlid="108456">HUOMIO!</translation>
+
+   <translation id="emailpro_tab_ALIAS_add_alias_error_message" qtlid="143681">Tapahtui virhe aliasta luotaessa.</translation>
+   <translation id="emailpro_tab_ALIAS_add_alias_intro" qtlid="416579">Tee alias tilille <span class="bold">{0}</span></translation>
+   <translation id="emailpro_tab_ALIAS_add_alias_placeholder" qtlid="9466">Alias</translation>
+   <translation id="emailpro_tab_ALIAS_add_alias_step2_account_label" qtlid="143603">Kyseessä oleva tili</translation>
+   <translation id="emailpro_tab_ALIAS_add_alias_step2_alias_label" qtlid="9466">Alias</translation>
+   <translation id="emailpro_tab_ALIAS_add_alias_step2_intro" qtlid="144006">Haluatko varmasti lisätä alla olevan aliaksen?</translation>
+   <translation id="emailpro_tab_ALIAS_add_alias_success_message" qtlid="144032">Alias lisätään</translation>
+   <translation id="emailpro_tab_ALIAS_add_alias_title" qtlid="143616">Luo alias</translation>
+   <translation id="emailpro_tab_ALIAS_add_alias_valid" qtlid="171747">Huomio, eräitä erikoismerkkejä ei hyväksytä aliaksessa kuten + ? / () [] ;</translation>
+   <translation id="emailpro_tab_ALIAS_add_button" qtlid="143538">Lisää alias</translation>
+   <translation id="emailpro_tab_ALIAS_delete_error_message" qtlid="143577">Tapahtui virhe poistettaessa aliaksiasi</translation>
+   <translation id="emailpro_tab_ALIAS_delete_success_message" qtlid="143564">Aliaksesi poistetaan</translation>
+   <translation id="emailpro_tab_ALIAS_delete_tooltip" qtlid="178848">Poista alias</translation>
+   <translation id="emailpro_tab_ALIAS_domain_loading_failure" qtlid="144045">Tapahtui virhe ladattaessa verkkotunnuksiasi</translation>
+   <translation id="emailpro_tab_ALIAS_error_message" qtlid="143980">Tapahtui virhe ladattaessa aliastasi</translation>
+   <translation id="emailpro_tab_ALIAS_header" qtlid="9466">Alias</translation>
+   <translation id="emailpro_tab_ALIAS_remove_account_label" qtlid="143603">Kyseessä oleva tili</translation>
+   <translation id="emailpro_tab_ALIAS_remove_alias_label" qtlid="9466">Alias</translation>
+   <translation id="emailpro_tab_ALIAS_remove_alias_title" qtlid="9550">Poista alias</translation>
+   <translation id="emailpro_tab_ALIAS_state_TASK_ON_DOING" qtlid="26383">Käynnissä</translation>
+   <translation id="emailpro_tab_ALIAS_state_TASK_ON_DOING_tooltip" qtlid="143967">Tälle aliakselle liittyvä tehtävä on meneillään tai ajastettu</translation>
+   <translation id="emailpro_tab_ALIAS_state_TASK_ON_DOING_tooltip" qtlid="143967">Tälle aliakselle liittyvä tehtävä on meneillään tai ajastettu</translation>
+   <translation id="emailpro_tab_ALIAS_taken_error_message" qtlid="190849">Adresse email déjà existante.</translation>
+
+   <translation id="emailpro_tab_DISCLAIMER" qtlid="276324">Alatunnisteet</translation>
+   <translation id="emailpro_tab_DISCLAIMER_table_empty" qtlid="152258">Ei allekirjoitusta</translation>
+   <translation id="emailpro_tab_DISCLAIMER_associated_domains" qtlid="133110">Liitettävä verkkotunnus</translation>
+   <translation id="emailpro_tab_DISCLAIMER_disclaimer_content" qtlid="152271">Sisältö</translation>
+   <translation id="emailpro_tab_DISCLAIMER_disclaimer_outside_only" qtlid="152284">Vain ulkoinen</translation>
+   <translation id="emailpro_tab_DISCLAIMER_disclaimer_outside_only_false" qtlid="34788">Ei</translation>
+   <translation id="emailpro_tab_DISCLAIMER_disclaimer_outside_only_tooltip" qtlid="152297">Ulos lähtevän sähköpostin allekirjoitus</translation>
+   <translation id="emailpro_tab_DISCLAIMER_disclaimer_outside_only_true" qtlid="34776">Kyllä</translation>
+   <translation id="emailpro_tab_DISCLAIMER_error_message" qtlid="152245">Tapahtui virhe ladattaessa allekirjoituksia</translation>
+   <translation id="emailpro_tab_DISCLAIMER_menu_delete" qtlid="2414">Poista</translation>
+   <translation id="emailpro_tab_DISCLAIMER_menu_settings" qtlid="37875">Muokkaa</translation>
+   <translation id="emailpro_tab_DISCLAIMER_state_doing_tooltip" qtlid="143863">Tehtävä on ajastettu tai jo käynnissä</translation>
+   <translation id="emailpro_tab_DISCLAIMER_state_header" qtlid="26443">Tila</translation>
+   <translation id="emailpro_tab_DISCLAIMER_table_no_domain" qtlid="152310">Lisää verkkotunnus ja odota vahvistusta luodaksesi allekirjoituksen.</translation>
+
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_add_fail" qtlid="171461">Virhe esiintyi pyydettäessä ulkopuolisen yhteystiedon lisäämistä.</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_add_step1_display_name_label" qtlid="23515">Näyttönimi</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_add_step1_email_invalid" qtlid="171370">Syötetty sähköpostiosoite ei kelpaa</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_add_step1_email_label" qtlid="137244">Sähköpostitili</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_add_step1_first_name_label" qtlid="23323">Etunimi</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_add_step1_last_name_label" qtlid="3818">Nimi</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_add_step1_organization2010_label" qtlid="32278">Organisaatio</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_add_step1_question" qtlid="171357">Olet luomassa ulkopuolista yhteystietoa</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_add_step1_wizardhelp_requirements_content" qtlid="174659">Ulkoisten yhteystietojen on noudatettava muotoa:<br/><br/>- Etu- ja sukunimessä voi olla enintään 64 merkkiä.<br/>- Näyttönimessä voi olla enintään 255 merkkiä.</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_add_step1_wizardhelp_requirements_title" qtlid="171383">Ehdot ulkopuolisille yhteystiedoille</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_add_step2_display_name_label" qtlid="23515">Näyttönimi</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_add_step2_email_label" qtlid="137244">Sähköpostitili</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_add_step2_first_name_label" qtlid="23323">Etunimi</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_add_step2_last_name_label" qtlid="3818">Nimi</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_add_step2_question" qtlid="171435">Oletko varma, että haluat lisätä seuraavan ulkopuolisen yhteystiedon?</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_add_success" qtlid="171448">Ulkopuolisen yhteystiedon lisäyspyyntö on rekisteröity. Pyyntö suoritetaan muutamassa minuutissa.</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_add_title" qtlid="136334">Lisää ulkopuolinen kontakti</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_add_title_button" qtlid="136334">Lisää ulkopuolinen kontakti</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_delete_fail" qtlid="171591">Virhe esiintyi pyydettäessa poistamaan ulkopuolista yhteystietoa.</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_delete_step1_contact" qtlid="171565">Ulkopuolinen yhteystieto:</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_delete_step1_question" qtlid="171552">Oletko varma, että haluat poistaa seuraavan ulkopuolisen yhteystiedon?</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_delete_success" qtlid="171578">Pyyntö ulkopuolisen yhteystiedon poistamiseksi on rekisteröity. Muutos astuu voimaan muutamassa minuutissa.</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_delete_title" qtlid="171539">Poista ulkopuolinen yhteystieto</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_fail" qtlid="171526">Virhe esiintyi muutettaessa ulkopuolista yhteystietoa.</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step1_display_name_label" qtlid="23515">Näyttönimi</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step1_email_invalid" qtlid="171370">Syötetty sähköpostiosoite ei kelpaa</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step1_email_label" qtlid="137244">Sähköpostitili</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step1_first_name_label" qtlid="23323">Etunimi</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step1_last_name_label" qtlid="3818">Nimi</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step1_question" qtlid="171487">Olet muuttamassa ulkopuolista yhteystietoa</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step1_wizardhelp_requirements_content" qtlid="174659">Ulkoisten yhteystietojen on noudatettava muotoa:<br/><br/>- Etu- ja sukunimessä voi olla enintään 64 merkkiä.<br/>- Näyttönimessä voi olla enintään 255 merkkiä.</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step1_wizardhelp_requirements_title" qtlid="171383">Ehdot ulkopuolisille yhteystiedoille</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step2_display_name_label" qtlid="23515">Näyttönimi</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step2_email_label" qtlid="137244">Sähköpostitili</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step2_first_name_label" qtlid="23323">Etunimi</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step2_last_name_label" qtlid="3818">Nimi</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step2_question" qtlid="171500">Oletko varma, että haluat muuttaa seuraavaa ulkopuolista yhteystietoa?</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_success" qtlid="171513">Pyyntö ulkopuolisen yhteystiedon muuttamiseksi on rekisteröity. Muutos astuu voimaan muutamassa minuutissa.</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_title" qtlid="171474">Muuta ulkopuolista yhteystietoa</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_search_placeholder" qtlid="171344">Etsi yhteystietoja</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_table_actions_menu_delete" qtlid="2414">Poista</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_table_actions_menu_modify" qtlid="37875">Muokkaa</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_table_empty" qtlid="171331">Ulkopuolisia yhteystietoja ei ole konfiguroitu</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_table_headers_creationDate" qtlid="4358">Luotu</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_table_headers_displayName" qtlid="80922">Näyttönimi</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_table_headers_externalEmailAddress" qtlid="30430">Osoite</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_table_headers_hiddenFromGAL" qtlid="28483">Hakemisto</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_table_headers_state" qtlid="26443">Tila</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_table_headers_state_CREATING" qtlid="26227">Luodaan</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_table_headers_state_DELETING" qtlid="133929">Poistetaan</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_table_headers_state_REOPENING" qtlid="171279">Avataan uudelleen</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_table_headers_state_SUSPENDED" qtlid="136100">Vanhentunut</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_table_headers_state_SUSPENDING" qtlid="171292">Keskeytetty</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_table_headers_state_MODIFYING" qtlid="174646">Muutetaan</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_table_headers_state_OK" qtlid="433745">Ok</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_table_headers_state_MODIFYING" qtlid="174646">Muutetaan</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_table_tooltip_GAL_false" qtlid="184906">Osoite näkyy Outlookissa</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_table_tooltip_GAL_true" qtlid="184919">Osoite ei näy Outlookissa</translation>
+
+   <translation id="emailpro_tab_GROUPS_error_message" qtlid="150138">Tapahtui virhe ryhmien lataamisen aikana</translation>
+
+   <translation id="emailpro_tab_INFORMATIONS_connexion" qtlid="55925">Kirjaudu</translation>
+   <translation id="emailpro_tab_INFORMATIONS_messaging" qtlid="276363">Sähköpostiohjelma</translation>
+   <translation id="emailpro_tab_INFORMATIONS_service_url" qtlid="319414">Katso liitetyn SharePoint-palvelun tiedot</translation>
+   <translation id="emailpro_tab_INFORMATIONS_sharepoint" qtlid="319401">Liitetty SharePoint</translation>
+   <translation id="emailpro_tab_INFORMATIONS_sharepoint_url" qtlid="297930">URL konsultointi</translation>
+   <translation id="emailpro_tab_INFORMATIONS_stats" qtlid="26671">Tilastot</translation>
+   <translation id="emailpro_tab_INFORMATIONS_summary" qtlid="4082">Yhteenveto</translation>
+   <translation id="emailpro_tab_INFORMATIONS_wait_activation" qtlid="297943">Odottaa aktivointia</translation>
+   <translation id="emailpro_tab_INFORMATIONS_webmail" qtlid="15473">Webmail</translation>
+
+   <translation id="emailpro_tab_TASKS" qtlid="136217">Viimeaikaiset tehtävät</translation>
+   <translation id="emailpro_tab_TASKS_table_empty" qtlid="144058">Ei tehtäviä</translation>
+   <translation id="emailpro_tab_TASKS_table_function" qtlid="61872">Tehtävä</translation>
+   <translation id="emailpro_tab_TASKS_table_state" qtlid="167912">Tila</translation>
+   <translation id="emailpro_tab_TASKS_DOING" qtlid="26383">Käynnissä</translation>
+   <translation id="emailpro_tab_TASKS_CANCELLED" qtlid="27631">Peruttu</translation>
+   <translation id="emailpro_tab_TASKS_DONE" qtlid="8662">Valmis</translation>
+   <translation id="emailpro_tab_TASKS_ERROR" qtlid="45508">Virhe</translation>
+   <translation id="emailpro_tab_TASKS_TODO" qtlid="37455">Ajoitettu</translation>
+   <translation id="emailpro_tab_TASKS_ADD_ACCOUNT" qtlid="137309">Tilin lisäys</translation>
+   <translation id="emailpro_tab_TASKS_ADD_ALIAS" qtlid="144071">Lisää alias</translation>
+   <translation id="emailpro_tab_TASKS_ADD_DOMAIN" qtlid="137335">Verkkotunnuksen lisäys</translation>
+   <translation id="emailpro_tab_TASKS_ADD_DOMAIN_DISCLAIMER" qtlid="152206">Lisää allekirjoitus</translation>
+   <translation id="emailpro_tab_TASKS_ADD_EXTERNAL_CONTACT" qtlid="137348">Ulkopuolisen kontaktin lisäys</translation>
+   <translation id="emailpro_tab_TASKS_ADD_FULL_ACCESS" qtlid="137361">Pääsyoikeuksien lisäys</translation>
+   <translation id="emailpro_tab_TASKS_addFullAccess" qtlid="137361">Pääsyoikeuksien lisäys</translation>
+   <translation id="emailpro_tab_TASKS_ADD_SEND_AS" qtlid="181370">Lähetysoikeuden lisääminen tilille</translation>
+   <translation id="emailpro_tab_TASKS_CHANGE_PASSWORD" qtlid="16721">Salasanan muuttaminen</translation>
+   <translation id="emailpro_tab_TASKS_DELETE_ACCOUNT" qtlid="136516">Tilin poisto</translation>
+   <translation id="emailpro_tab_TASKS_DELETE_ALIAS" qtlid="136529">Aliaksen poisto</translation>
+   <translation id="emailpro_tab_TASKS_DELETE_DOMAIN" qtlid="136542">Verkkotunnuksen poisto</translation>
+   <translation id="emailpro_tab_TASKS_DELETE_EXTERNAL_CONTACT" qtlid="137387">Ulkopuolisen kontaktin poisto</translation>
+   <translation id="emailpro_tab_TASKS_DELETE_FULL_ACCESS" qtlid="137400">Pääsyoikeuden poisto</translation>
+   <translation id="emailpro_tab_TASKS_deleteFullAccess" qtlid="137400">Pääsyoikeuden poisto</translation>
+   <translation id="emailpro_tab_TASKS_DELETE_SEND_AS" qtlid="181383">Lähetysoikeuden lisääminen tilille</translation>
+   <translation id="emailpro_tab_TASKS_UPDATE_ACCOUNT" qtlid="136594">Tilin muutos</translation>
+   <translation id="emailpro_tab_TASKS_SET_ACCOUNT" qtlid="136594">Tilin muutos</translation>
+   <translation id="emailpro_tab_TASKS_SET_DNS" qtlid="149826">DNS-muokkaus</translation>
+   <translation id="emailpro_tab_TASKS_INSTALL_SSL" qtlid="149839">SSL-sertifikaattiasennus</translation>
+   <translation id="emailpro_tab_TASKS_CONFIGURE_EXCHANGE_CUSTOMER" qtlid="143355">Palvelimen konfiguraatio</translation>
+   <translation id="emailpro_tab_TASKS_ADD_DISTRIBUTION_GROUP" qtlid="149865">Lisää ryhmä</translation>
+   <translation id="emailpro_tab_TASKS_addDistributionGroup" qtlid="149865">Lisää ryhmä</translation>
+   <translation id="emailpro_tab_TASKS_ADD_DISTRIBUTION_GROUP_MANAGER" qtlid="149878">Lisää ryhmäadministraattori</translation>
+   <translation id="emailpro_tab_TASKS_addDistributionGroupManager" qtlid="149878">Lisää ryhmäadministraattori</translation>
+   <translation id="emailpro_tab_TASKS_ADD_DISTRIBUTION_GROUP_MEMBER" qtlid="149891">Lisää ryhmäkontakti</translation>
+   <translation id="emailpro_tab_TASKS_addDistributionGroupMember" qtlid="149891">Lisää ryhmäkontakti</translation>
+   <translation id="emailpro_tab_TASKS_DELETE_DISTRIBUTION_GROUP" qtlid="149904">Poista ryhmä</translation>
+   <translation id="emailpro_tab_TASKS_deleteDistributionGroup" qtlid="149904">Poista ryhmä</translation>
+   <translation id="emailpro_tab_TASKS_DELETE_DISTRIBUTION_GROUP_MANAGER" qtlid="149917">Poista ryhmäadministraattori</translation>
+   <translation id="emailpro_tab_TASKS_deleteDistributionGroupManager" qtlid="149930">Poista ryhmäadministraattori</translation>
+   <translation id="emailpro_tab_TASKS_DELETE_DISTRIBUTION_GROUP_MEMBER" qtlid="149943">Poista ryhmäkontakti</translation>
+   <translation id="emailpro_tab_TASKS_deleteDistributionGroupMember" qtlid="149956">Poista ryhmäkontakti</translation>
+   <translation id="emailpro_tab_TASKS_DELETE_DISTRIBUTION_GROUP_SEND_ON_BEHALF_TO" qtlid="180226">Lähetyksen käyttöoikeuksien poisto</translation>
+   <translation id="emailpro_tab_TASKS_SET_DISTRIBUTION_GROUP" qtlid="149969">Ryhmän muokkaus</translation>
+   <translation id="emailpro_tab_TASKS_setDistributionGroup" qtlid="149969">Ryhmän muokkaus</translation>
+   <translation id="emailpro_tab_TASKS_DELETE_DOMAIN_DISCLAIMER" qtlid="152219">Allekirjoituksen poisto</translation>
+   <translation id="emailpro_tab_TASKS_SET_DOMAIN_DISCLAIMER" qtlid="152232">Allekirjoituksen muokkaus</translation>
+   <translation id="emailpro_tab_TASKS_GENERATE_OUTLOOK_URL" qtlid="150021">Outlook-linkin generointi</translation>
+   <translation id="emailpro_tab_TASKS_SET_DOMAIN" qtlid="136607">Verkkotunnuksen muutos</translation>
+   <translation id="emailpro_tab_TASKS_SET_ALIAS" qtlid="148214">Aliaksen muokkaus</translation>
+   <translation id="emailpro_tab_TASKS_ADD_RESOURCE_ACCOUNT" qtlid="156134">Resurssitilin lisäys</translation>
+   <translation id="emailpro_tab_TASKS_ADD_RESOURCE_DELEGATE" qtlid="195126">Oikeudet lisätään resurssille</translation>
+   <translation id="emailpro_tab_TASKS_SET_RESOURCE_ACCOUNT" qtlid="156147">Resurssitilin muokkaus</translation>
+   <translation id="emailpro_tab_TASKS_DELETE_RESOURCE_DELEGATE" qtlid="209086">Tuhoa käyttöoikeudet jokaiseen resurssiin</translation>
+   <translation id="emailpro_tab_TASKS_DELETE_RESOURCE_ACCOUNT" qtlid="156160">Resurssitilin poisto</translation>
+   <translation id="emailpro_tab_TASKS_SET_EXTERNAL_CONTACT" qtlid="177938">Ulkoisen yhteystiedon muutos</translation>
+   <translation id="emailpro_tab_TASKS_ADD_SEND_ON_BEHALF_TO" qtlid="181396">Oikeuden lähettää jonkun puolesta lisääminen tilille </translation>
+   <translation id="emailpro_tab_TASKS_DELETE_SEND_ON_BEHALF_TO" qtlid="181409">Oikeuden lähettää jonkun puolesta poistaminen tililtä</translation>
+   <translation id="emailpro_tab_TASKS_ADD_DISTRIBUTION_GROUP_SEND_ON_BEHALF_TO" qtlid="181422">Send as -oikeuden lisääminen ryhmälle</translation>
+   <translation id="emailpro_tab_TASKS_DELETE_DISTRIBUTION_GROUP_SEND_ON_BEHALF_TO" qtlid="181435">Send as -oikeuksien poisto ryhmältä</translation>
+   <translation id="emailpro_tab_TASKS_ADD_DISTRIBUTION_GROUP_SEND_AS" qtlid="181448">Lähetysoikeuden lisääminen ryhmälle</translation>
+   <translation id="emailpro_tab_TASKS_DELETE_DISTRIBUTION_GROUP_SEND_AS" qtlid="181461">Lähetysoikeuden poistaminen ryhmältä</translation>
+   <translation id="emailpro_tab_TASKS_ADD_EXPORT_PST_REQUEST" qtlid="190862">Vérification fichier .pst</translation>
+   <translation id="emailpro_tab_TASKS_GENERATE_PST_URL" qtlid="190875">Génération fichier .pst</translation>
+   <translation id="emailpro_tab_TASKS_SET_PUBLIC_FOLDER_PERMISSION" qtlid="201250">Oikeuksien muutos jaolle</translation>
+   <translation id="emailpro_tab_TASKS_ADD_PUBLIC_FOLDER_PERMISSION" qtlid="201263">Oikeuksien lisäys jaolle</translation>
+   <translation id="emailpro_tab_TASKS_DELETE_PUBLIC_FOLDER_PERMISSION" qtlid="201276">Oikeuksien poisto jaolle</translation>
+   <translation id="emailpro_tab_TASKS_ADD_PUBLIC_FOLDER" qtlid="201289">Jaon lisääminen</translation>
+   <translation id="emailpro_tab_TASKS_DELETE_PUBLIC_FOLDER" qtlid="201302">Jaon poisto</translation>
+   <translation id="emailpro_tab_TASKS_SET_PUBLIC_FOLDER" qtlid="201315">Jaon muuttaminen</translation>
+   <translation id="emailpro_tab_TASKS_EXPAND_DRIVE" qtlid="191759">Levytilan lisäys</translation>
+   <translation id="emailpro_tab_TASKS_ADD_SHARED_ACCOUNT" qtlid="215208">Lisää jaettu tili</translation>
+   <translation id="emailpro_tab_TASKS_DELETE_SHARED_ACCOUNT" qtlid="215221">Poista jaettu tili</translation>
+   <translation id="emailpro_tab_TASKS_SET_SHARED_ACCOUNT" qtlid="215234">Muokkaa jaettua tiliä</translation>
+   <translation id="emailpro_tab_TASKS_ADD_SHARED_ACCOUNT_FULL_ACCESS" qtlid="215247">Lisää täydet oikeudet jaetulle tilille</translation>
+   <translation id="emailpro_tab_TASKS_ADD_SHARED_ACCOUNT_SEND_AS" qtlid="215260">Lisää ”send as”-oikeudet jaetulle tilille</translation>
+   <translation id="emailpro_tab_TASKS_ADD_SHARED_ACCOUNT_SEND_ON_BEHALF_TO" qtlid="215273">Lisää ”Send on behalf”-oikeudet jaetulle tilille</translation>
+   <translation id="emailpro_tab_TASKS_DELETE_SHARED_ACCOUNT_FULL_ACCESS" qtlid="215286">Poista täydet oikeudet jaetulta tililtä</translation>
+   <translation id="emailpro_tab_TASKS_DELETE_SHARED_ACCOUNT_SEND_AS" qtlid="215299">Poista ”send as”-oikeudet jaetulta tililtä</translation>
+   <translation id="emailpro_tab_TASKS_DELETE_SHARED_ACCOUNT_SEND_ON_BEHALF_TO" qtlid="215312">Poista ”Send on behalf”-oikeudet jaetulta tililtä</translation>
+   <translation id="emailpro_tab_TASKS_table_start_date" qtlid="201328">Alku</translation>
+   <translation id="emailpro_tab_TASKS_table_finish_date" qtlid="201341">Päättyy</translation>
+   <translation id="emailpro_tab_TASKS_warning" qtlid="136347">Huomio!</translation>
+   <translation id="emailpro_tab_TASKS_partial" qtlid="137426">Näytetty lista ei ole kokonainen, eräitä tehtäviä ei ladattu oikein.</translation>
+   <translation id="emailpro_tab_TASKS_error_message" qtlid="144097">Tapahtui virhe ladattaessa tehtäviä</translation>
+   <translation id="emailpro_tab_TASKS_SET_SERVICE" qtlid="174841">Tilien turvapolitiikka</translation>
+   <translation id="emailpro_tab_TASKS_mailinglist" qtlid="525184">Modification mailing-list</translation>
+   <translation id="emailpro_tab_TASKS_redirection" qtlid="525197">Modification redirection</translation>
+
+   <translation id="emailpro_tab_domain_no_domains_2" qtlid="137452">tästä</translation>
+   <translation id="emailpro_tab_domain_no_domains_3" qtlid="137465">lisätäksesi uuden verkkotunnuksen</translation>
+   <translation id="emailpro_tab_domain_table_empty_search" qtlid="150034">Ei hakuehtoja vastaavia verkkotunnuksia</translation>
+   <translation id="emailpro_tab_domain_search" qtlid="136633">Etsi verkkotunnusta</translation>
+   <translation id="emailpro_tab_domain_domain" qtlid="170434">Verkkotunnus</translation>
+   <translation id="emailpro_tab_domain_type" qtlid="15713">Tila</translation>
+   <translation id="emailpro_tab_domain_accounts_count" qtlid="28363">Tilit</translation>
+   <translation id="emailpro_tab_domain_popover_delete" qtlid="210267">Poista verkkotunnus</translation>
+   <translation id="emailpro_tab_domain_popover_update" qtlid="4406">Konfiguraatio</translation>
+   <translation id="emailpro_tab_domain_diagnostic" qtlid="95059">Ongelmankartoitus</translation>
+   <translation id="emailpro_tab_domain_diagnostic_mx" qtlid="23779">MX</translation>
+   <translation id="emailpro_tab_domain_diagnostic_mx_title" qtlid="137478">MX-ongelmankartoitus</translation>
+   <translation id="emailpro_tab_domain_diagnostic_mx_toolbox_ok" qtlid="137491">Automaattinen konfiguraatio suoritettu</translation>
+   <translation id="emailpro_tab_domain_diagnostic_mx_intro_ovh" qtlid="192890">Verkkotunnustasi isännöidään OVH:lla. Voit määritellä MX-tietueet verkkotunnuksellesi {0} seuraavasti</translation>
+   <translation id="emailpro_tab_domain_diagnostic_mx_label_champ" qtlid="192903">MX-kenttä</translation>
+   <translation id="emailpro_tab_domain_diagnostic_mx_label_champs" qtlid="46780">MX-kentät</translation>
+   <translation id="emailpro_tab_domain_diagnostic_mx_no_antispam" qtlid="447664">Jos käytät ei-autoritatiivista tilaa (Exchange + jokin muu sähköpostijärjestelmä) OVH:lla ylläpidetyn sähkköpostijärjestelmän kanssa:</translation>
+   <translation id="emailpro_tab_domain_diagnostic_mx_no_antispam_config" qtlid="192929">Prioriteetti: <strong>{0}</strong>; kohde: <strong>{1}</strong></translation>
+   <translation id="emailpro_tab_domain_diagnostic_mx_antispam" qtlid="447677">Jos käytät autoritatiivista tilaa (ainoastaan Exchange) tai ei-autoritatiivista tilaa OVH:n ylläpitämä sähköpostijärjestelmän (jaettu sähköposti) kanssa:</translation>
+   <translation id="emailpro_tab_domain_diagnostic_mx_antispam_config" qtlid="192955">Prioriteetti: <strong>{0}</strong>; kohde: <strong>{1}</strong><br /> Prioriteetti: <strong>{2}</strong>; kohde : <strong>{3}</strong><br /> Prioriteetti: <strong>{4}</strong>; kohde: <strong>{5}</strong><br /> Prioriteetti: <strong>{6}</strong>; kohde: <strong>{7}</strong><br /></translation>
+   <translation id="emailpro_tab_domain_diagnostic_mx_no_ovh" qtlid="349101">Jos verkkotunnusta ei hallinnoida samalla asiakastunnuksella kuin Exchange-palvelua tai jos verkkotunnuksesi ei ole OVH:n ylläpitämä, ei automaattinen konfigurointi ole mahdollista. Luo MX-kenttä verkkotunnukselle käsin antamalla samat tiedot kuin alla.&#13;
+</translation>
+   <translation id="emailpro_tab_domain_diagnostic_mx_recap" qtlid="192981">Verkkotunnuksesi DNS-alueeseen lisätään MX-tietue. Olemassa olevat MX-tietueet poistetaan.</translation>
+   <translation id="emailpro_tab_domain_diagnostic_add_field_success" qtlid="316905">DNS-alueen muokkaus on suoritettu. Tiedon propagaatio ja diagnostiikan päivittäminen voi kestää useita tunteja.</translation>
+   <translation id="emailpro_tab_domain_diagnostic_add_field_failure" qtlid="193007">Tapahtui virhe DNS-aluetta muokattaessa.</translation>
+   <translation id="emailpro_tab_domain_diagnostic_srv_intro_ovh" qtlid="193020">Verkkotunnus on isännöitynä OVH:lla. Voit konfiguroida SRV-tietueet verkkotunnukselle {0} seuraavasti</translation>
+   <translation id="emailpro_tab_domain_diagnostic_srv_label_champ" qtlid="193033">SRV-kenttä</translation>
+   <translation id="emailpro_tab_domain_diagnostic_srv_config" qtlid="193046">Aliverkkotunnus: <strong>{0}</strong><br /> Prioriteetti: <strong>{1}</strong><br /> Paino: <strong>{2}</strong><br /> Portti: <strong>{3}</strong><br /> Kohde: <strong>{4}</strong></translation>
+   <translation id="emailpro_tab_domain_diagnostic_srv_no_ovh" qtlid="349114">Jos verkkotunnusta ei hallinnoida samalla asiakastunnuksella kuin Exchange-palvelua tai jos verkkotunnuksesi ei ole OVH:n ylläpitämä, ei automaattinen konfigurointi ole mahdollista. Luo SRV-kenttä verkkotunnukselle käsin antamalla samat tiedot kuin alla.</translation>
+   <translation id="emailpro_tab_domain_diagnostic_srv_recap" qtlid="256191">SRV-kenttä lisätään verkkotunnuksen DNS-tietoihin. Huomio, aliverkkorunnuksella "{0}" olemassaolevat SRV-kentät poistetaan.</translation>
+   <translation id="emailpro_tab_domain_diagnostic_srv" qtlid="130003">SRV</translation>
+   <translation id="emailpro_tab_domain_diagnostic_srv_title" qtlid="137517">SRV-ongelmankartoitus</translation>
+   <translation id="emailpro_tab_domain_diagnostic_srv_toolbox_ok" qtlid="137491">Automaattinen konfiguraatio suoritettu</translation>
+   <translation id="emailpro_tab_domain_error_message" qtlid="144045">Tapahtui virhe ladattaessa verkkotunnuksiasi</translation>
+   <translation id="emailpro_tab_domain_diagnostic_cname" qtlid="129847">CNAME</translation>
+   <translation id="emailpro_tab_domain_status" qtlid="26443">Tila</translation>
+   <translation id="emailpro_tab_domain_task_in_progress" qtlid="2690">Nykyinen tehtävä</translation>
+   <translation id="emailpro_tab_domain_validation" qtlid="33802">Vahvistus</translation>
+   <translation id="emailpro_tab_domain_validation_doing" qtlid="136646">Verkkotunnuksen hyväksyntä kesken</translation>
+   <translation id="emailpro_tab_domain_validation_cname" qtlid="139260">Ole hyvä ja luo CNAME-tietue.</translation>
+   <translation id="emailpro_tab_domain_validation_cname_title" qtlid="139273">Omistajan varmennus</translation>
+   <translation id="emailpro_tab_domain_validation_cname_details" qtlid="363401">Vahvistaaksesi verkkotunnuksen omistajuus, luo CNAME-tietue: <br /><br /><span class="bold">{0}.{1}</span> > <span class="bold">{2}</span>.<br /><br /> Tee toimenpide 48 tunnin kuluessa.</translation>
+   <translation id="emailpro_tab_domain_add_domain" qtlid="8602">Lisää verkkotunnus</translation>
+   <translation id="emailpro_tab_domain_delete_domain" qtlid="137556">Poista tämä verkkotunnus Exchange-palveluista</translation>
+   <translation id="emailpro_tab_domain_creating" qtlid="26791">Luonti</translation>
+   <translation id="emailpro_tab_domain_NON_AUTHORITATIVE" qtlid="447703">Ei-autoritatiivinen</translation>
+   <translation id="emailpro_tab_domain_AUTHORITATIVE" qtlid="58807">Vaikuttava</translation>
+   <translation id="emailpro_tab_domain_warning" qtlid="136347">Huomio!</translation>
+   <translation id="emailpro_tab_domain_partial" qtlid="137569">Kaikkia verkkotunnuksia ei ladattu oikein. Päivitä sivu korjataksesi ongelma.</translation>
+   <translation id="emailpro_tab_domain_add_step1_select_domain_option" qtlid="136971">Valitse verkkotunnus listasta</translation>
+   <translation id="emailpro_tab_domain_add_step1_user_owned_option" qtlid="397533">Syötä verkkotunnus, joka ei ole OVH:n hallinnoima</translation>
+   <translation id="emailpro_tab_domain_add_step1_user_owned_info" qtlid="397546">Huom: varmista, että valitun verkkotunnuksen administraattori voi muokata sen DNS-aluetta</translation>
+   <translation id="emailpro_tab_domain_add_step1_order_domain_option" qtlid="136997">Tilaa verkkotunnus</translation>
+   <translation id="emailpro_tab_domain_add_step1_domain_none" qtlid="434538">Yhtään tulosta ei löytynyt</translation>
+   <translation id="emailpro_tab_domain_add_step3_cover_guide" qtlid="139572">Opasvideon esikatselukuva</translation>
+   <translation id="emailpro_tab_domain_add_step1_main_domain" qtlid="191070">Organisaation pääverkkotunnus</translation>
+   <translation id="emailpro_tab_domain_add_step1_main_domain_tooltip" qtlid="191083">Domaine principal de l'organisation</translation>
+   <translation id="emailpro_tab_domain_add_step1_new_organization_intro" qtlid="447716">Organisaatiosi tuleva verkkotunnus on <strong>{0}</strong></translation>
+   <translation id="emailpro_tab_domain_add_step1_new_organization_placeholder" qtlid="191109">Organisaation nimi:</translation>
+   <translation id="emailpro_tab_domain_add_step2_main_domain" qtlid="191122">Pääverkkotunnus</translation>
+   <translation id="emailpro_tab_domain_add_step2_organization" qtlid="32278">Organisaatio</translation>
+   <translation id="emailpro_tab_domain_add_step2_main_domain_true" qtlid="34776">Kyllä</translation>
+   <translation id="emailpro_tab_domain_add_step2_main_domain_false" qtlid="34788">Ei</translation>
+   <translation id="emailpro_tab_domain_add_step2_mx_replay" qtlid="316931">Kohde sähköpostipalvelin</translation>
+   <translation id="emailpro_tab_domain_add_step2_mx_replay_tooltip" qtlid="210293">Sähköpostit, joiden vastaanottajaa ei löydy, ohjataan tälle palvelimelle</translation>
+   <translation id="emailpro_tab_domain_add_step1_attach_organization_intro" qtlid="191135">Verkkotunnus sisältyy seuraaviin organisaatioihin:</translation>
+   <translation id="emailpro_tab_domain_add_set_auto_display" qtlid="416488">Rastita ruutu, jolloin ikkuna ei enää avaudu uudelleen.</translation>
+   <translation id="emailpro_tab_domain_add_goToWizardButton" qtlid="449388">Haluan käyttää <br />konfiguroinnin avustajaa</translation>
+   <translation id="emailpro_tab_domain_add_step1_order_domain_desc1" qtlid="167873">Vahvistaaksesi pyyntösi, klikkaa alla olevaa ”Tilaus”-nappia.</translation>
+   <translation id="emailpro_tab_domain_add_step1_order_domain_desc2" qtlid="144175">Sinut ohjataan OVH:n maksusivustolle automaattisesti selaimen uuden välilehden kautta.</translation>
+   <translation id="emailpro_tab_domain_step1_helpwizard_subdomain_title" qtlid="137881">Ali-verkkotunnuksen käyttö</translation>
+   <translation id="emailpro_tab_domain_step1_helpwizard_subdomain" qtlid="397559">Lisätäksesi aliverkkotunnuksen johonkin OVH:n verkkotunnuksistasi ruksaa "Syötä verkkotunnus, joka ei ole OVH:n hallinoima" ja syötä se sille kuuluvaan kohtaan.</translation>
+   <translation id="emailpro_tab_domain_add_step2_which_domain_type" qtlid="137998">Minkä tyyppisestä verkkotunnuksesta <span class="italic">{0}</span> on kyse?</translation>
+   <translation id="emailpro_tab_domain_add_step2_auth_intro" qtlid="140859">Verkkotunnuksesi <span class="italic">{0}</span> konfiguroidaan autoritääriseksi.</translation>
+   <translation id="emailpro_tab_domain_add_step2_non_auth_intro" qtlid="447729">Verkkotunnuksesi <span class="italic">{0}</span> konfiguroidaan ei-autoritatiivisessa tilassa.</translation>
+   <translation id="emailpro_tab_domain_add_step2bis_intro" qtlid="316944">Valitse verkkotunnuksesi tila:</translation>
+   <translation id="emailpro_tab_domain_add_step2_srv_checkbox" qtlid="138011">Konfiguroi SRV automaattisesti (autodiscover)</translation>
+   <translation id="emailpro_tab_domain_add_step2_mx_checkbox" qtlid="139585">MX-asetukset määritetään automaattisesti (sähköpostien vastaanotto)</translation>
+   <translation id="emailpro_tab_domain_add_step2_mx_tooltip" qtlid="140209">Huomioi että MX:n automaattinen konfigurointi voi vaikuttaa sähköpostien vastaanottoon sillä se tekee muutoksen tämän verkkotunnuksen aiempaan konfiguraatioon.</translation>
+   <translation id="emailpro_tab_domain_add_step2_srv_tooltip" qtlid="447742">Tämän lisävalinnan avulla sähköpostiohjelmasi kuten Outlook tai Mail voi löytää automaattisesti yhteysasetuksesi.</translation>
+   <translation id="emailpro_tab_domain_add_step3_srv_confirmation" qtlid="137816">SRV-konfiguraatio</translation>
+   <translation id="emailpro_tab_domain_add_step3_mx_confirmation" qtlid="137829">MX-konfiguraatio</translation>
+   <translation id="emailpro_tab_domain_add_step3_mx_replay" qtlid="316957">Kohde sähköpostipalvelin</translation>
+   <translation id="emailpro_tab_domain_add_step3_configuration_true" qtlid="137842">Automaattisesti</translation>
+   <translation id="emailpro_tab_domain_add_step3_configuration_false" qtlid="34788">Ei</translation>
+   <translation id="emailpro_tab_domain_add_success" qtlid="137868">Verkkotunnus lisätään Exchange-palvelimelle.</translation>
+   <translation id="emailpro_tab_domain_add_failure" qtlid="137049">Esiintyi virhe verkkotunnusta Exchange-palvelimelle lisättäessä.</translation>
+   <translation id="emailpro_tab_domain_modify_success" qtlid="137907">Verkkotunnuksen päivitys suoritetaan.</translation>
+   <translation id="emailpro_tab_domain_modify_failure" qtlid="519116">Une erreur est survenue lors de la mise à jour du domaine</translation>
+   <translation id="emailpro_tab_domain_modify_in_progress" qtlid="137088">Siirto kohteeseen {0} meneillään</translation>
+   <translation id="emailpro_tab_domain_inverse_NON_AUTHORITATIVE" qtlid="58807">Vaikuttava</translation>
+   <translation id="emailpro_tab_domain_inverse_AUTHORITATIVE" qtlid="447755">Ei-autoritatiivinen</translation>
+   <translation id="emailpro_tab_domain_target_mail_server_label" qtlid="316957">Kohde sähköpostipalvelin</translation>
+   <translation id="emailpro_tab_domain_noovh_mx_info" qtlid="317126">MX- ja SRV-muokkaukset toteutetaan manuaalisesti DNS alueellasi. Löydät tarvittavat tiedot osiosta liitetyt verkkotunnukset, kun CNAMEn vahvistus on tapahtunut.</translation>
+   <translation id="emailpro_tab_domain_modify_domain" qtlid="137101">Verkkotunnuksen konfigurointi</translation>
+   <translation id="emailpro_tab_domain_modify_domain_tooltip" qtlid="444667">Vade Secure -roskapostintorjunta on yhteensopiva ei-autoritatiivisen tilan kanssa (ainoastaan jos POP/IMAP-tilisi ovat OVH:n ylläpitämiä). Tässä tapauksessa on suositeltavaa käyttää:  <strong>{0}</strong>, <strong>{1}</strong>, <strong>{2}</strong> ja <strong>{3}</strong><br/><br/> Jos käytät ei-autoritatiivista tilaa OVH:n ulkopuolisten sähköpostitilien kanssa, sinun on käytettävä: <strong>{4}</strong> (ks. osio liitetyt verkkotunnukset)</translation>
+   <translation id="emailpro_tab_domain_modify_title" qtlid="375543">Haluatko varmasti muokata seuraavaa E-mail Pro -palvelusi verkkotunnusta?</translation>
+   <translation id="emailpro-mxplan_tab_domain_modify_title" qtlid="519129">Etes-vous sûr de vouloir modifier le domaine suivant de votre service MX Plan ?</translation>
+   <translation id="emailpro_tab_domain_modify_loop_warning" qtlid="210319">Varoitus, päättymätön silmukka!</translation>
+   <translation id="emailpro_tab_domain_modify_domain_warning" qtlid="210332">Verkkotunnus ei kelpaa.</translation>
+   <translation id="emailpro_tab_domain_modify_length_warning" qtlid="210345">Huomio, enintään 255 merkkiä!</translation>
+   <translation id="emailpro_tab_domain_modify_wizard_subtitle" qtlid="210358">Autoritatiivinen/Ei-autoritatiivinen: Kumpi valita?</translation>
+   <translation id="emailpro_tab_domain_remove_domain" qtlid="137933">Verkkotunnuksen poisto</translation>
+   <translation id="emailpro_tab_domain_remove_success" qtlid="137959">Verkkotunnus poistetaan Exchange-palvelusta.</translation>
+   <translation id="emailpro_tab_domain_remove_failure" qtlid="137972">Virhe esiintyi poistettaessa verkkotunnusta Exchange-palvelusta.</translation>
+   <translation id="emailpro_update_billing_action_title" qtlid="98324">Uusinta-ajanjakso</translation>
+   <translation id="emailpro_update_billing_button_title" qtlid="190953">Laskutustapa</translation>
+   <translation id="emailpro_update_billing_expiration_date_label" qtlid="30406">Vanhenee</translation>
+   <translation id="emailpro_update_billing_header_1M" qtlid="60378">Kuukausittainen</translation>
+   <translation id="emailpro_update_billing_header_1Y" qtlid="60390">Vuosittainen</translation>
+   <translation id="emailpro_update_billing_header_new_periode" qtlid="190992">Uusi ajanjakso</translation>
+   <translation id="emailpro_update_billing_header_terminate" qtlid="209177">Ei</translation>
+   <translation id="emailpro_update_billing_periode_delete_warning" qtlid="211593">Ota huomioon että tämä valinta aiheuttaa palvelun vanhentumisen ja data menetetään pysyvästi. Datan palautus ei ole mahdollista.</translation>
+   <translation id="emailpro_update_billing_periode_failure" qtlid="191044">Tapahtui virhe ladattaessa automaattista uudistamisajanjaksoa.</translation>
+   <translation id="emailpro_update_billing_periode_intro" qtlid="190966">Valitse haluamasi uudistamisväli automaattista uudistamista varten jokaiselle tilille. <br />Tätä sovelletaan seuraavasta uudistamisesta alkaen.</translation>
+   <translation id="emailpro_update_billing_periode_label" qtlid="168172">Uusinta</translation>
+   <translation id="emailpro_update_billing_periode_partial" qtlid="191031">Jotkut uudistamisajanjaksomuutokset ovat virhetilassa.</translation>
+   <translation id="emailpro_update_billing_periode_resume" qtlid="191005">Olet vaihtamassa automaattisen uudistamisen ajanjaksoa seuraaville tileillesi:</translation>
+   <translation id="emailpro_update_billing_periode_success" qtlid="191018">Automaattisen uudistamisen ajanjakso on suoritettu.</translation>
+   <translation id="emailpro_update_billing_periode_value_YEARLY" qtlid="79542">vuosittain</translation>
+   <translation id="emailpro_update_billing_periode_value_MONTHLY" qtlid="79530">kuukausittain</translation>
+   <translation id="emailpro_update_billing_periode_value_DELETE_AT_EXPIRATION" qtlid="201406">Erääntyy tilausjakson päätyttyä</translation>
+   <translation id="lockoutThreshold_unit_value_0" qtlid="176713">Tiliä ei lukita koskaan</translation>
+   <translation id="lockoutThreshold_unit_value_1" qtlid="178432">1 yritys</translation>
+   <translation id="lockoutThreshold_unit_value_many" qtlid="178445">{0} yritystä</translation>
+   <translation id="lockoutThreshold_min_error" qtlid="178185">Lukituskynnys ei voi olla pienempi kuin 1 yritys</translation>
+   <translation id="lockoutThreshold_max_error" qtlid="176635">Lukituksen raja-arvon ei voi olla enemmän kuin 14 yrityskerta</translation>
+   <translation id="lockoutThreshold_mustBeInteger_error" qtlid="178198">Lukituskynnyksen on oltava kokonainen luku</translation>
+   <translation id="lockoutThreshold_number_error" qtlid="178198">Lukituskynnyksen on oltava kokonainen luku</translation>
+   <translation id="lockoutThreshold_required_error" qtlid="192019">Kentät ovat pakollisia</translation>
+   <translation id="lockoutThreshold_pattern_error" qtlid="178198">Lukituskynnyksen on oltava kokonainen luku</translation>
+   <translation id="lockoutDuration_min_error" qtlid="178211">Lukitusaika ei voi olla pienempi kuin lukituslaskurin nollausaika</translation>
+   <translation id="lockoutDuration_max_error" qtlid="178224">Lukituksen kesto ei voi olla pidempi kuin 90 minuuttia</translation>
+   <translation id="maxPasswordAge_unit_value_0" qtlid="178497">Salasanat eivät vanhene koskaan.</translation>
+   <translation id="maxPasswordAge_unit_value_1" qtlid="28807">1 päivä</translation>
+   <translation id="maxPasswordAge_unit_value_many" qtlid="178484">{0} päivää</translation>
+   <translation id="maxPasswordAge_min_error" qtlid="178107">Salasanan enimmäiselinikä ei voi olla pienempi kuin 0 päivää</translation>
+   <translation id="maxPasswordAge_max_error" qtlid="176596">Salasanan enimmäisikä ei voi olla yli 90 päivää</translation>
+   <translation id="maxPasswordAge_mustBeInteger_error" qtlid="178120">Salasanan enimmäiseliniän on oltava kokonainen luku</translation>
+   <translation id="maxPasswordAge_maxToSmallForMin_error" qtlid="176609">Salasanan enimmäisiän on oltava suurempi kuin sen vähimmäisikä</translation>
+   <translation id="maxPasswordAge_pattern_error" qtlid="178120">Salasanan enimmäiseliniän on oltava kokonainen luku</translation>
+   <translation id="maxPasswordAge_number_error" qtlid="178120">Salasanan enimmäiseliniän on oltava kokonainen luku</translation>
+   <translation id="maxPasswordAge_required_error" qtlid="178120">Salasanan enimmäiseliniän on oltava kokonainen luku</translation>
+   <translation id="minPasswordAge_min_error" qtlid="433992">L'âge minimal du mot de passe ne peut pas être inférieur à 0 jour</translation>
+   <translation id="minPasswordAge_max_error" qtlid="434005">L'âge minimal du mot de passe ne peut pas être supérieur à 90 jours</translation>
+   <translation id="minPasswordAge_mustBeInteger_error" qtlid="434018">Salasanan vähimmäisiän on oltava kokonaisluku</translation>
+   <translation id="minPasswordAge_minToBigForMax_error" qtlid="178094">Salasanan vähimmäiseliniän on oltava pienempi kuin sen enimmäiselinikä</translation>
+   <translation id="minPasswordAge_pattern_error" qtlid="434018">Salasanan vähimmäisiän on oltava kokonaisluku</translation>
+   <translation id="minPasswordAge_number_error" qtlid="434018">Salasanan vähimmäisiän on oltava kokonaisluku</translation>
+   <translation id="minPasswordAge_required_error" qtlid="434018">Salasanan vähimmäisiän on oltava kokonaisluku</translation>
+   <translation id="minPasswordAge_unit_value_0" qtlid="178471">Muutokset hyväksytään heti.</translation>
+   <translation id="minPasswordAge_unit_value_1" qtlid="28807">1 päivä</translation>
+   <translation id="minPasswordAge_unit_value_many" qtlid="178484">{0} päivää</translation>
+   <translation id="lockoutObservationWindow_min_error" qtlid="178133">Pienin arvo on 1</translation>
+   <translation id="lockoutObservationWindow_max_error" qtlid="178146">Suurin arvo on 90</translation>
+   <translation id="lockoutObservationWindow_mustBeInteger_error" qtlid="263871">Nollausviiveen on oltava kokonainen luku</translation>
+   <translation id="lockoutObservationWindow_number_error" qtlid="263871">Nollausviiveen on oltava kokonainen luku</translation>
+   <translation id="lockoutObservationWindow_required_error" qtlid="192019">Kentät ovat pakollisia</translation>
+   <translation id="lockoutObservationWindow_pattern_error" qtlid="263871">Nollausviiveen on oltava kokonainen luku</translation>
+   <translation id="lockoutObservationWindow_toBigForDuration_error" qtlid="178172">Arvon on oltava pienempi kuin tilien lukitusaika</translation>
+   <translation id="lockoutObservationWindow_unit_value_1" qtlid="32326">1 minuutti</translation>
+   <translation id="lockoutObservationWindow_unit_value_many" qtlid="146814">{0} minuuttia</translation>
+   <translation id="lockoutDuration_min_error" qtlid="178211">Lukitusaika ei voi olla pienempi kuin lukituslaskurin nollausaika</translation>
+   <translation id="lockoutDuration_max_error" qtlid="178224">Lukituksen kesto ei voi olla pidempi kuin 90 minuuttia</translation>
+   <translation id="lockoutDuration_mustBeInteger_error" qtlid="178042">Pakollinen kenttä</translation>
+   <translation id="lockoutDuration_number_error" qtlid="178250">Lukituksen keston on oltava luku.</translation>
+   <translation id="lockoutDuration_required_error" qtlid="192019">Kentät ovat pakollisia</translation>
+   <translation id="lockoutDuration_pattern_error" qtlid="178042">Pakollinen kenttä</translation>
+   <translation id="lockoutDuration_unit_value_0" qtlid="178458">Tili lukitaan kunnes admin avaa lukituksen erikseen.</translation>
+   <translation id="lockoutDuration_unit_value_1" qtlid="32326">1 minuutti</translation>
+   <translation id="lockoutDuration_unit_value_many" qtlid="146814">{0} minuuttia</translation>
+   <translation id="complexityEnabled_value_true" qtlid="178406">Aktivoitu</translation>
+   <translation id="complexityEnabled_value_false" qtlid="178419">Deaktivoitu</translation>
+   <translation id="minPasswordLength_unit_value_0" qtlid="178510">Salasanaa ei vaadita.</translation>
+   <translation id="minPasswordLength_unit_value_1" qtlid="178523">1 merkki</translation>
+   <translation id="minPasswordLength_unit_value_many" qtlid="178536">{0} merkkiä</translation>
+   <translation id="minPasswordLength_min_error" qtlid="178029">Salasanan vähimmäispituus ei voi olla pienempi kuin 3</translation>
+   <translation id="minPasswordLength_max_error" qtlid="176531">Salasanan vähimmäispituus ei voi olla yli 14</translation>
+   <translation id="minPasswordLength_required_error" qtlid="192019">Kentät ovat pakollisia</translation>
+   <translation id="minPasswordLength_mustBeInteger_error" qtlid="178055">Salasanan vähimmäispituuden on oltava kokonainen luku</translation>
+   <translation id="minPasswordLength_number_error" qtlid="178055">Salasanan vähimmäispituuden on oltava kokonainen luku</translation>
+   <translation id="minPasswordLength_pattern_error" qtlid="178055">Salasanan vähimmäispituuden on oltava kokonainen luku</translation>
+   <translation id="exchange_tab_INFORMATION" qtlid="27115">Yleiset tiedot</translation>
+   <translation id="exchange_tab_DOMAIN" qtlid="270306">Liittyvät verkkotunnukset</translation>
+   <translation id="exchange_tab_ACCOUNT" qtlid="74273">Sähköpostitilit</translation>
+   <translation id="exchange_tab_MAILING_LIST" qtlid="50182">Postituslistat</translation>
+   <translation id="exchange_tab_SHARED_ACCOUNT" qtlid="215195">Jaetut tilit</translation>
+   <translation id="exchange_tab_GROUP" qtlid="32962">Ryhmät</translation>
+   <translation id="exchange_tab_RESOURCES" qtlid="20227">Resurssit</translation>
+   <translation id="exchange_tab_SHARED" qtlid="136269">Jakaminen</translation>
+   <translation id="exchange_tab_DISCLAIMER" qtlid="276324">Alatunnisteet</translation>
+   <translation id="exchange_tab_TASKS" qtlid="136217">Viimeaikaiset tehtävät</translation>
+   <translation id="exchange_tab_EXTERNAL_CONTACT" qtlid="82015">Ulkoiset yhteyshenkilöt</translation>
+   <translation id="exchange_tab_DIAGNOSTIC" qtlid="36351">Diagnostiikka</translation>
+   <translation id="exchange_tab_REDIRECTION" qtlid="46204">Uudelleenohjaukset</translation>
+
+   <translation id="emails_common_from" qtlid="69077">Mistä</translation>
+   <translation id="emails_common_to" qtlid="175972">Kohti</translation>
+   <translation id="email_tab_redirections_quota" qtlid="224828">Uudelleenohjausten kiintiö</translation>
+   <translation id="email_tab_button_emails_create_redirection" qtlid="213713">Lisää ohjaus</translation>
+   <translation id="email_tab_button_emails_export_CSV" qtlid="231773">CSV-vienti</translation>
+   <translation id="email_tab_popover_redirection_update" qtlid="99224">Muokkaa uudelleenohjauksia</translation>
+   <translation id="email_tab_popover_redirection_delete" qtlid="219108">Poista uudelleenohjaus</translation>
+   <translation id="email_tab_table_redirections_empty" qtlid="219017">Ei uudelleenohjauksia</translation>
+   <translation id="email_tab_modal_update_redirection_title" qtlid="269799">Uudelleenohjauksen muokkaus</translation>
+   <translation id="email_tab_modal_update_redirection_heading" qtlid="269812">Muokkaat tätä uudelleenohjausta</translation>
+   <translation id="email_tab_modal_update_redirection_success" qtlid="269825">Uudelleenohjaus on muokattu. Muutos astuu voimaan muutamassa minuutissa.</translation>
+   <translation id="email_tab_modal_update_redirection_error" qtlid="269838">Uudelleenohjauksen muokkauksessa tapahtui virhe:</translation>
+   <translation id="email_tab_redirections_management_title" qtlid="98948">Hallitse ohjauksia</translation>
+   <translation id="email_tab_redirections_management_heading" qtlid="219004">Tilin uudelleenohjauksien hallinta</translation>
+   <translation id="email_tab_button_emails_create_redirection" qtlid="213713">Lisää ohjaus</translation>
+   <translation id="email_tab_table_redirections_empty" qtlid="219017">Ei uudelleenohjauksia</translation>
+   <translation id="email_tab_redirections_management_heading" qtlid="219004">Tilin uudelleenohjauksien hallinta</translation>
+   <translation id="email_tab_modal_create_redirection_title" qtlid="219030">Luo uudelleenohjaus</translation>
+   <translation id="email_tab_modal_create_redirection_heading" qtlid="219043">Olet luomassa uudelleenohjausta tilille {0}</translation>
+   <translation id="email_tab_modal_create_redirection_type" qtlid="220304">Uudelleenohjauksen tyyppi:</translation>
+   <translation id="email_tab_modal_create_redirection_type_classic" qtlid="221318">Normaali uudelleenohjaus</translation>
+   <translation id="email_tab_modal_create_redirection_type_sub_domain" qtlid="221331">Aliverkkotunnuksen uudelleenohjaus</translation>
+   <translation id="email_tab_modal_redirection_create_from" qtlid="219056">Osoitteesta:</translation>
+   <translation id="email_tab_modal_redirection_create_subdomain_optional" qtlid="272825">aliverkkotunnus (valinnainen)</translation>
+   <translation id="email_tab_modal_redirection_create_to" qtlid="219069">Osoitteeseen:</translation>
+   <translation id="email_tab_modal_create_redirection_info" qtlid="219082">Syötä uudelleenohjauksen tiedot</translation>
+   <translation id="email_tab_modal_redirection_create_keep_copy_title" qtlid="302067">Valitse kopioimisen tila:</translation>
+   <translation id="email_tab_modal_redirection_create_email_error" qtlid="212036">Sähköpostiosoite on virheellinen</translation>
+   <translation id="email_tab_modal_redirection_create_copy_local" qtlid="302080">Säilytä viestin kopio OVH:lla</translation>
+   <translation id="email_tab_modal_redirection_create_copy_none" qtlid="302093">Älä säilytä viestin kopiota</translation>
+   <translation id="email_tab_modal_redirection_create_copy_select" qtlid="302106">Valitse yksi vaihtoehto</translation>
+   <translation id="email_tab_popover_redirection_delete" qtlid="219108">Poista uudelleenohjaus</translation>
+   <translation id="email_tab_modal_create_redirection_success" qtlid="262960">Uudelleenohjausta luodaan. Toimenpide on valmis muutamassa minuutissa.</translation>
+   <translation id="email_tab_modal_create_redirection_error" qtlid="219134">Virhe luotaessa uudelleenohjausta.</translation>
+   <translation id="email_tab_modal_delete_redirection_success" qtlid="262973">Uudelleenohjausta poistetaan. Toimenpide on valmis muutamassa minuutissa.</translation>
+   <translation id="email_tab_modal_delete_redirection_error" qtlid="213466">Virhe poistettaessa uudelleenohjausta.</translation>
+   <translation id="email_tab_table_redirections_error" qtlid="219160">Virhe uudelleenohjauksia haettaessa:</translation>
+   <translation id="email_tab_modal_delete_redirection_title" qtlid="221344">Uudelleenohjauksen poisto</translation>
+   <translation id="email_tab_modal_delete_redirection_heading" qtlid="221357">Olet poistamassa uudelleenohjausta:</translation>
+   <translation id="email_tab_modal_delete_redirection_accounts" qtlid="221370"><strong>{0}</strong> kohteeseen <strong>{1}</strong></translation>
+   <translation id="email_tab_popover_redirection_update" qtlid="99224">Muokkaa uudelleenohjauksia</translation>
+   <translation id="emails_common_continue_question" qtlid="351844">Haluatko jatkaa?</translation>
+   <translation id="emails_common_account_name_conditions" qtlid="222787">Huomio, tilin nimen on noudatettava seuraavia ehtoja: <br/>- Vähintään {0} merkkiä<br/>- Enintään {1} merkkiä<br/>- Ei välilyöntejä<br/>- Ei ääkkösiä tai aksentteja<br/>- Ei erikoismerkkejä paitsi . , - ja _.</translation>
+
+</translations>
