@@ -1,0 +1,981 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="emailpro_common_yes" qtlid="34776">Ja</translation>
+   <translation id="emailpro_common_no" qtlid="34788">Nee</translation>
+
+   <translation id="emailpro_tab_INFORMATION" qtlid="27115">Algemene informatie</translation>
+   <translation id="emailpro_tab_INFORMATION" qtlid="27115">Algemene informatie</translation>
+   <translation id="emailpro_displayName_maxlength" qtlid="260208">De naam kan niet uit meer dan 250 tekens bestaan.</translation>
+   <translation id="emailpro_displayName_required" qtlid="88293">De achternaam dient ingevuld te worden</translation>
+
+   <translation id="emailpro_dashboard_service_expired" qtlid="433706">Er is een fout opgetreden tijdens het laden van uw E-mail Pro account.</translation>
+   <translation id="emailpro-mxplan_dashboard_service_expired" qtlid="518076">Une erreur est survenue lors du chargement de votre compte MX Plan.</translation>
+   <translation id="emailpro_dashboard_accounts" qtlid="374984">E-mail Pro accounts</translation>
+   <translation id="emailpro_dashboard_redirections" qtlid="46204">Redirections</translation>
+   <translation id="emailpro_dashboard_mailingLists" qtlid="50182">Mailing-lijsten</translation>
+   <translation id="emailpro_dashboard_accounts_upgrade_mxPlan" qtlid="25783">Upgraden</translation>
+   <translation id="emailpro_dashboard_guides" qtlid="374997">Heeft u hulp nodig bij het configureren van uw E-mail Pro? </translation>
+   <translation id="emailpro-mxplan_dashboard_guides" qtlid="518089">Besoin d'aide pour configurer votre service E-mail MX Plan ?</translation>
+   <translation id="emailpro_tab_domain_no_domain_attached" qtlid="375010">Uw E-mail Pro is bijna klaar. U moet een domein aan uw oplossing toevoegen. Als u er geen hebt, <a href="https://www.ovh.com:51043/fr/cgi-bin/newOrder/order.cgi" target="_blank">dan kunt u hier klikken</a> om er een te bestellen.</translation>
+   <translation id="emailpro-mxplan_tab_domain_no_domain_attached" qtlid="518102">Votre service E-mail MX Plan est presque prêt. Vous devez attacher un domaine à votre service. Si vous n'en avez pas, <a href="https://www.ovh.com/fr/cgi-bin/newOrder/order.cgi" target="_blank">cliquez ici</a> pour en acheter un.</translation>
+
+   <translation id="emailpro_tab_ALIAS_remove_alias_intro" qtlid="375023">Weet u zeker dat u de volgende alias voor uw E-mail Pro wilt verwijderen? </translation>
+   <translation id="emailpro-mxplan_tab_ALIAS_remove_alias_intro" qtlid="518115">Voulez-vous réellement supprimer l’alias suivant de votre service E-mail MX Plan ?</translation>
+   <translation id="emailpro_tab_ALIAS_add_no_domains" qtlid="375036">U heeft nog geen domein toegevoegd of het is nog niet gevalideerd. <br/>U moet eerst een domein toevoegen en wachten tot het is gevalideerd om een alias voor uw E-mail Pro account te maken.</translation>
+   <translation id="emailpro_tab_ALIAS_add_alias_limit_tooltip" qtlid="375049">U heeft de 1000 alias limiet per E-mail Pro bereikt.</translation>
+   <translation id="emailpro-mxplan_tab_ALIAS_add_alias_limit_tooltip" qtlid="518128">Vous avez atteint la limite de 1000 alias par compte E-mail MX Plan.</translation>
+
+   <translation id="emailpro_resilitation_action_title" qtlid="375062">Annulatie van uw E-mail Pro</translation>
+   <translation id="emailpro-mxplan_resilitation_action_title" qtlid="518141">Résiliation de votre service E-mail MX Plan</translation>
+   <translation id="emailpro_resilitation_action_intro" qtlid="375075">Weet u zeker dat u de "{0}"E-mail Pro wilt verwijderen? <br /> Als u dit doet dan wordt de automatische vernieuwing geannuleerd aan het eind van de vervaldatum, wat betekent dat de oplossing wordt geblokkeerd. <br /><br /> U kunt deze service gewoon blijven gebruiken tot en met deze vervaldatum.</translation>
+   <translation id="emailpro-mxplan_resilitation_action_intro" qtlid="518154">Etes-vous sûr(e) de vouloir résilier le service E-mail MX Plan "{0}" ? <br />Cette action annulera le renouvellement automatique à la fin de la période d'expiration, entrainant le blocage du service.<br /><br /> Vous pouvez utiliser normalement le service jusqu'à cette date.</translation>
+
+   <translation id="emailpro_resilitation_action_confirmation" qtlid="375088">Let op, u staat op het punt uw '{0}' dienst en daarbij de gekoppelde {1} E-mail Pro accounts te annuleren. <br />Weet u zeker dat u ze wilt annuleren? </translation>
+   <translation id="emailpro-mxplan_resilitation_action_confirmation" qtlid="518167">Attention, vous êtes sur le point de résilier intégralement le service "{0}" ainsi que les {1} comptes E-mail MX Plan qui y sont associés. <br />Souhaitez-vous réellement procéder à cette opération ?</translation>
+
+   <translation id="emailpro_resilitation_action_success" qtlid="375101">E-mail Pro zal worden verwijderd op de vervaldatum. </translation>
+   <translation id="emailpro-mxplan_resilitation_action_success" qtlid="518180">Le service E-mail MX Plan va être supprimé à la date d'expiration.</translation>
+
+   <translation id="emailpro_resilitation_action_failure" qtlid="375114">Er is een fout opgetreden tijdens het verwijderen van uw E-mail Pro. </translation>
+   <translation id="emailpro-mxplan_resilitation_action_failure" qtlid="518193">Une erreur est survenue lors de la suppression de votre service E-mail MX Plan.</translation>
+
+   <translation id="emailpro_resilitation_cancel_action_success" qtlid="375127">E-mail Pro zal worden verlengd op de vervaldatum. </translation>
+   <translation id="emailpro-mxplan_resilitation_cancel_action_success" qtlid="518206">Le service E-mail MX Plan va être renouvelé à la date d'expiration.</translation>
+
+   <translation id="emailpro_resilitation_cancel_action_intro" qtlid="375140">Annulatie van de "{0}" E-mail Pro is gepland op de vervaldatum. <br /><br /> Weet u zeker dat u niet wilt annuleren? De dienst zal dan automatisch verlengd worden.</translation>
+   <translation id="emailpro-mxplan_resilitation_cancel_action_intro" qtlid="518219">La résiliation du service E-mail MX Plan "{0}" est programmée à la date d'expiration. <br /><br />Etes-vous sûr(e) de vouloir annuler cette résiliation ? Le service passera alors en renouvellement automatique.</translation>
+
+   <translation id="emailpro_tab_domain_no_domains_1" qtlid="375153">Voeg een domein toe om E-mail Pro accounts te creëren. Klik</translation>
+   <translation id="emailpro-mxplan_tab_domain_no_domains_1" qtlid="518232">Ajoutez un domaine afin de créer des comptes MX Plan. Cliquez</translation>
+   <translation id="emailpro_tab_domain_diagnostic_mx_no_antispam" qtlid="375166">Als u een non-authoritative modus gebruikt (E-mail Pro + een ander e-mailsysteem) met een ander e-mailsysteem dat niet door OVH gehost wordt:</translation>
+   <translation id="emailpro-mxplan_tab_domain_diagnostic_mx_no_antispam" qtlid="518245">Si vous utilisez le mode non autoritatif (E-mail MX Plan + autre système de messagerie) avec un système de messagerie non hébergé par OVH :</translation>
+
+   <translation id="emailpro_tab_domain_diagnostic_mx_antispam" qtlid="375179">Als u een authoritative modus (alleen E-mail Pro) of non-authoritative gebruikt met een hosted e-mailsysteem (gedeelde email) van OVH:</translation>
+   <translation id="emailpro-mxplan_tab_domain_diagnostic_mx_antispam" qtlid="518258">Si vous utilisez le mode autoritatif (E-mail MX Plan uniquement) ou non autoritatif avec un système de messagerie hébergé (e-mail mutualisé) par OVH :</translation>
+
+   <translation id="emailpro_tab_domain_diagnostic_mx_no_ovh" qtlid="375192">Als het domein wordt beheerd door een ander NIC-handvat dan de E-mail Pro oplossing, of als uw domein niet op OVH wordt gehost dan kunt u het niet automatisch configureren. Maak het MX record voor dit domein handmatig door gebruik te maken van onderstaande gegevens.</translation>
+   <translation id="emailpro-mxplan_tab_domain_diagnostic_mx_no_ovh" qtlid="518271">Si le domaine n'est pas géré par le même identifiant client que le service E-mail MX Plan ou si votre domaine n'est pas hébergé chez OVH, la configuration automatique n'est pas possible. Veuillez créer le champ MX sur ce domaine manuellement en donnant les mêmes informations que ci-dessous.</translation>
+
+   <translation id="emailpro_tab_domain_diagnostic_srv_no_ovh" qtlid="375205">Als het domein wordt beheerd door een ander NIC-handvat dan de E-mail Pro oplossing, of als uw domein niet op OVH wordt gehost dan kunt u het niet automatisch configureren. Maak het SRV record voor dit domein handmatig door gebruik te maken van onderstaande gegevens.</translation>
+   <translation id="emailpro-mxplan_tab_domain_diagnostic_srv_no_ovh" qtlid="518284">Si le domaine n'est pas géré par le même identifiant client que le service E-mail MX Plan ou si votre domaine n'est pas hébergé chez OVH, la configuration automatique n'est pas possible. Veuillez créer le champ SRV sur ce domaine manuellement en donnant les mêmes informations que ci-dessous.</translation>
+
+   <translation id="emailpro_tab_domain_delete_domain" qtlid="375218">Verwijder dit domein uit E-mail Pro diensten</translation>
+   <translation id="emailpro-mxplan_tab_domain_delete_domain" qtlid="518297">Retirer ce domaine des services E-mail MX Plan</translation>
+
+   <translation id="emailpro_tab_domain_delete_domain_accounts_warning" qtlid="375231">Dit domein kan niet worden weggehaald omdat het nog gebruikt wordt door één of meerdere E-mail Pro accounts</translation>
+   <translation id="emailpro-mxplan_tab_domain_delete_domain_accounts_warning" qtlid="518310">Ce domaine ne peut pas être supprimé car il est encore utilisé par un ou plusieurs compte E-mail MX Plan</translation>
+
+   <translation id="emailpro_ACTION_order_accounts_title" qtlid="375244">E-mail Pro bestellen</translation>
+   <translation id="emailpro-mxplan_ACTION_order_accounts_title" qtlid="518323">Commander des comptes E-mail MX Plan</translation>
+
+   <translation id="emailpro_ACTION_order_accounts_step1_intro" qtlid="375257">Kies aub uw betaalmethode in en het aantal E-mail Pro accounts dat u wilt bestellen.</translation>
+   <translation id="emailpro-mxplan_ACTION_order_accounts_step1_intro" qtlid="518336">Veuillez choisir le type de paiement puis le nombre de comptes E-mail MX Plan à commander.</translation>
+
+   <translation id="emailpro_ACTION_order_accounts_step2_doing_message" qtlid="375270">E-mail Pro accounts worden besteld...</translation>
+   <translation id="emailpro-mxplan_ACTION_order_accounts_step2_doing_message" qtlid="518349">Commande de comptes E-mail MX Plan en cours...</translation>
+   <translation id="emailpro_ACTION_order_accounts_per_account" qtlid="375283">per account </translation>
+
+   <translation id="emailpro_ACTION_add_account_title" qtlid="375296">E-mail Pro account toevoegen</translation>
+   <translation id="emailpro-mxplan_ACTION_add_account_title" qtlid="518362">Ajouter un compte E-mail MX Plan</translation>
+
+   <translation id="emailpro_ACTION_add_account_step1_option_fail" qtlid="375309">Er is een fout opgetreden bij het laden van de E-mail Pro opties.</translation>
+   <translation id="emailpro-mxplan_ACTION_add_account_step1_option_fail" qtlid="518375">Une erreur est survenue lors du chargement des options du compte E-mail MX Plan.</translation>
+
+   <translation id="emailpro_ACTION_add_account_helpwizard_title" qtlid="375322">E-mail Pro account wordt aangemaakt..</translation>
+   <translation id="emailpro-mxplan_ACTION_add_account_helpwizard_title" qtlid="518388">Création compte E-mail MX Plan</translation>
+
+   <translation id="emailpro_ACTION_add_no_domains" qtlid="375335">U heeft nog geen domein toegevoegd of het is nog niet gevalideerd. <br/>U moet eerst een domein toevoegen en wachten tot het gevalideerd is om een E-mail Pro account te maken.</translation>
+   <translation id="emailpro-mxplan_ACTION_add_no_domains" qtlid="518401">Vous n'avez pas encore ajouté de domaine ou il n'a pas encore été validé. <br/>Vous devez d'abord ajouter un domaine et attendre qu'il soit validé pour créer un compte E-mail MX Plan.</translation>
+
+   <translation id="emailpro_ACTION_add_account_error_message" qtlid="375348">Er is een fout opgetreden tijdens het aanmaken van het E-mail Pro account.</translation>
+   <translation id="emailpro-mxplan_ACTION_add_account_error_message" qtlid="518414">Une erreur est survenue lors de la création du compte E-mail MX Plan.</translation>
+
+   <translation id="emailpro_ACTION_update_account_step1_password_contains_name" qtlid="375361">Het wachtwoord kan niet (geheel of een deel van) de E-mail Pro gebruikersnaam bevatten.</translation>
+   <translation id="emailpro-mxplan_ACTION_update_account_step1_password_contains_name" qtlid="518427">Le mot de passe ne peut pas contenir tout ou une partie du nom à afficher ou du login E-mail MX Plan.</translation>
+   <translation id="emailpro-mxplan_ACTION_update_account_step1_password_contains_name" qtlid="518440">Le mot de passe ne peut pas contenir tout ou une partie du nom à afficher ou du login Mx Plan.</translation>
+
+   <translation id="emailpro_ACTION_update_account_step1_exchange_guid_label" qtlid="375374">E-mail Pro GUID</translation>
+   <translation id="emailpro-mxplan_ACTION_update_account_step1_exchange_guid_label" qtlid="518453">E-mail MX Plan GUID</translation>
+
+   <translation id="emailpro_ACTION_update_account_helpwizard_title" qtlid="375387">E-mail Pro account wijzigen</translation>
+   <translation id="emailpro-mxplan_ACTION_update_account_helpwizard_title" qtlid="518466">Modifier le compte E-mail MX Plan</translation>
+
+   <translation id="emailpro_ACTION_update_account_helpwizard_intro" qtlid="375400">U kunt het beveiligingsbeleid van het e-mailaccount wijzigen door een minimumniveau van complexiteit voor wachtwoorden op te leggen. <br/>Klik hiervoor op de knop<strong>Beheer beveiligingsbeleid</strong> op het dashboard van uw dienst.</translation>
+   <translation id="emailpro-mxplan_ACTION_update_account_helpwizard_intro" qtlid="518479">Vous pouvez modifier la politique de sécurité des comptes E-mail MX Plan en imposant, par exemple, un niveau de compléxité minimal pour les mots de passe. <br/>Pour ce faire, cliquez sur le bouton <strong>"Gérer la politique de sécurité"</strong> sur le tableau de bord de votre service.</translation>
+
+   <translation id="emailpro_ACTION_update_account_helpwizard_guid_title" qtlid="375374">E-mail Pro GUID</translation>
+   <translation id="emailpro-mxplan_ACTION_update_account_helpwizard_guid_title" qtlid="518453">E-mail MX Plan GUID</translation>
+
+   <translation id="emailpro_ACTION_update_account_helpwizard_guid" qtlid="375413">De E-mail Pro GUID is het unieke interne ID voor uw mailbox</translation>
+   <translation id="emailpro-mxplan_ACTION_update_account_helpwizard_guid" qtlid="518492">L'E-mail MX Plan GUID est l'identifiant unique interne de votre boîte aux lettres</translation>
+
+   <translation id="emailpro_ACTION_update_account_success_message" qtlid="375426">De E-mail Pro configuratie zal worden gewijzigd. </translation>
+   <translation id="emailpro-mxplan_ACTION_update_account_success_message" qtlid="518505">La configuration du compte E-mail MX Plan va être modifiée.</translation>
+
+   <translation id="emailpro_ACTION_update_account_error_message" qtlid="375439">We kunnen het E-mail Pro e-mailadres niet aanpassen. Mogelijk is er een andere configuratie (e-mail, omleiding, antwoordapparaat) met dezelfde naam.</translation>
+   <translation id="emailpro-mxplan_ACTION_update_account_error_message" qtlid="518518">L'adresse e-mail E-mail MX Plan n'a pas pu être personnalisée. Il est possible qu'une configuration mutualisée (mail, redirection, répondeur) existe avec le même nom.</translation>
+
+   <translation id="emailpro_ACTION_change_password_account_success_message" qtlid="375452">Het wachtwoord voor het E-mail Pro account zal gewijzigd worden. </translation>
+   <translation id="emailpro-mxplan_ACTION_change_password_account_success_message" qtlid="518531">Le mot de passe du compte E-mail MX Plan va être modifié.</translation>
+
+   <translation id="emailpro_ACTION_update_account_title" qtlid="375387">E-mail Pro account wijzigen</translation>
+   <translation id="emailpro-mxplan_ACTION_update_account_title" qtlid="518466">Modifier le compte E-mail MX Plan</translation>
+
+   <translation id="emailpro_ACTION_update_account_timeout" qtlid="518544">Le mot du passe du compte {{accountEmailAddress}} n'a pas été modifié. Merci de réessayer ultérieusement.</translation>
+
+   <translation id="emailpro_ACTION_account_error_pattern" qtlid="447872">Het account bevat ongeldige tekens</translation>
+   <translation id="emailpro_ACTION_account_error_required" qtlid="447885">Het account is verplicht</translation>
+   <translation id="emailpro_tab_account_state_CREATING" qtlid="26791">Creatie</translation>
+   <translation id="emailpro_tab_account_state_DELETING" qtlid="447898">Reset</translation>
+   <translation id="emailpro_tab_account_state_REOPENING" qtlid="171188">Opening wordt uitgevoerd</translation>
+   <translation id="emailpro_tab_account_state_SUSPENDED" qtlid="136100">Vervallen</translation>
+   <translation id="emailpro_tab_account_state_SUSPENDING" qtlid="171201">Schorsing wordt uitgevoerd</translation>
+   <translation id="emailpro_tab_account_state_SPAM" qtlid="70409">Spam</translation>
+   <translation id="emailpro_tab_account_popover_reset" qtlid="376011">Dit account resetten</translation>
+   <translation id="emailpro_tab_account_reset_account" qtlid="376024">Een account resetten</translation>
+   <translation id="emailpro_tab_account_reset_title" qtlid="447911">Weet u zeker dat u het volgende account op uw Email Pro dienst wilt resetten?</translation>
+   <translation id="emailpro-mxplan_tab_account_reset_title" qtlid="518557">Voulez-vous réellement réinitialiser le compte suivant de votre service E-mail MX Plan ?</translation>
+
+   <translation id="emailpro_tab_account_reset_account_label" qtlid="33862">Account</translation>
+   <translation id="emailpro_tab_account_reset_account_info" qtlid="376037">Het resetten van een account verwijdert de data en bijbehorende naam maar u zult wel voor dit account gefactureerd worden. </translation>
+   <translation id="emailpro-mxplan_tab_account_reset_account_info" qtlid="518570">La réinitialisation d'un compte consiste à supprimer les données et le nom associé, il pourra ensuite être de nouveau configuré.</translation>
+   <translation id="emailpro_tab_account_reset_success" qtlid="447924">Het account op uw Email Pro zal worden gereset.</translation>
+   <translation id="emailpro-mxplan_tab_account_reset_success" qtlid="518583">Le compte de votre service E-mail MX Plan va être réinitialisé.</translation>
+
+   <translation id="emailpro_tab_account_reset_failure" qtlid="447937">Er is een fout opgetreden bij het opnieuw instellen van het account op uw Email Pro.</translation>
+   <translation id="emailpro-mxplan_tab_account_reset_failure" qtlid="518596">Une erreur est survenue lors de la réinitialisation du compte de votre service E-mail MX Plan.</translation>
+
+   <translation id="emailpro_tab_domain_modify_domain_tooltip" qtlid="447950">Vade Secure anti-spam is compatibel met de niet-autoritieve modus (alleen als uw POP/IMAP-accounts worden gehost bij OVH). Als dit het geval is, raden we u aan: <strong>{0}</strong>, <strong>{1}</strong>, <strong>{2}</strong> en <strong>{3}</strong> <br/><br/>Als u de niet-autoritieve modus gebruikt met e-mailaccounts die niet worden gehost bij OVH, moet u het volgende gebruiken: <strong>{4}</strong> (zie het gedeelte over bijbehorende domeinen)</translation>
+   <translation id="emailpro_tab_domain_manage" qtlid="404395">: beheer</translation>
+
+   <translation id="emailpro_configuration_action_title" qtlid="136243">Uw Exchange diensten configureren</translation>
+
+   <translation id="emailpro_tab_domain_mode_AUTHORITATIVE" qtlid="375491">Authoritative (enkel E-mail Pro)</translation>
+   <translation id="emailpro-mxplan_tab_domain_mode_AUTHORITATIVE" qtlid="518609">Autoritatif (E-mail MX Plan uniquement)</translation>
+
+   <translation id="emailpro_tab_domain_mode_NON_AUTHORITATIVE" qtlid="375504">Niet-autoritief (E-mail Pro + andere e-maildienst)</translation>
+   <translation id="emailpro-mxplan_tab_domain_mode_NON_AUTHORITATIVE" qtlid="518622">Non-autoritatif (E-mail MX Plan + autre service de messagerie)</translation>
+
+   <translation id="emailpro_tab_domain_AUTHORITATIVE_info" qtlid="375517">Authoritative modus houdt in dat u geen ander e-mailsysteem met E-mail Pro accounts kunt gebruiken. Deze modus schakelt anti-spam Vade Secure activatie in. </translation>
+   <translation id="emailpro-mxplan_tab_domain_AUTHORITATIVE_info" qtlid="518635">Le mode autoritatif ne permet pas l'usage d'un autre système de messagerie avec des comptes E-mail MX Plan. Ce mode permet l'activation de l'antispam Vade Secure.</translation>
+
+   <translation id="emailpro_tab_domain_NON_AUTHORITATIVE_info" qtlid="375530">Met de niet-autoritieve modus kan E-mail Pro met een andere e-maildienst gelijktijdige gebruikt worden. De anti-spam oplossing Vade Secure verenigbaar indien aan de POP / IMAP-accounts worden gehost bij OVH (MX plan of een gedeelde e-mail). In dit geval moet u mx1.mail.ovh.net invoeren als de target server.</translation>
+   <translation id="emailpro-mxplan_tab_domain_NON_AUTHORITATIVE_info" qtlid="518648">Le mode non-autoritatif permet une cohabitation entre E-mail MX Plan et un autre service de messagerie. L'antispam Vade Secure est compatible si les comptes pop/imap sont hébergés chez OVH (mxplan ou offre mutualisée), il faut indiquer dans ce cas mx1.mail.ovh.net en serveur e-mail cible.</translation>
+
+   <translation id="emailpro_tab_domain_modify_title" qtlid="375543">Weet u zeker dat u het volgende domein wilt wijzigen voor uw E-mail Pro? </translation>
+   <translation id="emailpro-mxplan_tab_domain_modify_title" qtlid="518661">Etes-vous sûr de vouloir modifier le domaine suivant de votre service E-mail MX Plan ?</translation>
+
+   <translation id="emailpro_tab_domain_modify_wizard_text" qtlid="375556">Als u een domein toevoegt aan de E-mail Pro server dan wordt deze standaard ingesteld in de authoritative modus. Dit betekent dat wanneer u een e-mail stuurt naar het adres van het domein dat op de server wordt beheerd, de server alleen zal controleren of het adres op de E-mail Pro server is. <br /><br /> Aan de andere kant, als u het domein omleidt naar een non-authoritative modus, zullen we eerst controleren of het adres op de E-mail Pro server is en wanneer dit niet het geval is dan zal de E-mail Pro server het bericht doorsturen naar de MX server die u hebt geconfigureerd. <br /><br /> U kunt het domein gebruiken in de non-authoritative modus als u bijvoorbeeld een deel van uw e-mail wilt beheren op de E-mail Pro dienst en een ander onderdeel op een externe server. <br /><br /> Let op, als u de E-mail Pro dienst en de OVH e-mail hosting dienst wilt gebruiken, moet u de waarde <strong> mx1.ovh.net invoeren. </strong> in het "Target email server" veld "in het vak aan de linkerkant van dit bericht.</translation>
+   <translation id="emailpro-mxplan_tab_domain_modify_wizard_text" qtlid="518674">Par défaut, lorsque vous ajoutez votre domaine sur le serveur E-mail MX Plan, il se trouve en mode autoritatif. C'est-à-dire que lorsque vous envoyez un e-mail à l'adresse du domaine géré sur le serveur, ce dernier va regarder exclusivement sur le serveur E-mail MX Plan si l'adresse est présente. <br /><br /> En revanche, si vous basculez le domaine en mode non-autoritatif, lors de l'envoi du e-mail, nous allons vérifier dans un premier temps si l'adresse e-mail est présente sur le serveur E-mail MX Plan, et si ce n'est pas le cas, ce dernier relayera votre message sur le serveur MX que vous avez défini. <br /><br />Le domaine en mode non-autoritatif peut être utilisé si vous souhaitez, par exemple, gérer une partie de vos e-mails sur E-mail MX Plan et une autre partie sur un serveur externe. <br /><br />Attention, si vous souhaitez utiliser le service E-mail MX Plan et le service e-mail mutualisé OVH, vous devez dans le champ "Serveur e-mail cible" du formulaire de gauche renseigner cette valeur : <strong>mx1.ovh.net.</strong></translation>
+
+
+   <translation id="emailpro_tab_domain_remove_title" qtlid="375569">Weet u zeker dat u het volgende domein wilt verwijderen van uw E-mail Pro?</translation>
+   <translation id="emailpro-mxplan_tab_domain_remove_title" qtlid="518687">Etes-vous sûr de vouloir réellement supprimer le domaine suivant de votre service E-mail MX Plan ?</translation>
+
+   <translation id="emailpro_tab_domain_remove_success" qtlid="375582">Het domein zal worden verwijderd van uw E-mail Pro.</translation>
+   <translation id="emailpro-mxplan_tab_domain_remove_success" qtlid="518700">Le domaine va être supprimé de votre service E-mail MX Plan.</translation>
+
+   <translation id="emailpro_tab_domain_remove_failure" qtlid="375595">Er is een fout opgetreden tijdens het verwijderen van het domein van uw E-mail Pro.</translation>
+   <translation id="emailpro-mxplan_tab_domain_remove_failure" qtlid="518713">Une erreur est survenue lors de la suppression du domaine de votre service E-mail MX Plan.</translation>
+
+   <translation id="emailpro_ACTION_delegation_step1_intro" qtlid="375608">Delegatie verstrekt andere E-mail Pro accounts bepaalde rechten op het {0} account </translation>
+   <translation id="emailpro-mxplan_ACTION_delegation_step1_intro" qtlid="518726">Une délégation permet à d'autres comptes E-mail MX Plan d'avoir certains droits sur le compte {0}</translation>
+
+   <translation id="emailpro_ACTION_add_disclaimer_helpwizard_details1" qtlid="468291">U kunt één handtekening per gevalideerd domein maken.</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_helpwizard_details2" qtlid="468304">Gebruik beschikbare resources om de handtekening en opmaak te personaliseren.</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_helpwizard_details3" qtlid="468317">Deze handtekening wordt automatisch toegevoegd aan de onderkant van het bericht dat u wordt toegestuurd vanaf het e-mailadres dat u hebt toegevoegd aan uw E-mail Pro domein.</translation>
+   <translation id="emailpro-mxplan_ACTION_add_disclaimer_helpwizard_details3" qtlid="518739">Cette signature sera intégrée automatiquement au bas de chaque message envoyé depuis les adresses associées à votre domaine E-mail MX Plan.</translation>
+
+   <translation id="emailpro_ACTION_add_disclaimer_helpwizard_details4" qtlid="468330">Daarnaast zijn er variabelen beschikbaar voor het aanpassen van een algemene handtekening en contactgegevens voor verschillende collega's.</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_helpwizard_details5" qtlid="468343">U kunt een afbeelding of logo toevoegen door eerst op de knop "afbeelding" te klikken en vervolgens de URL van de afbeelding of het logo toe te voegen.</translation>
+   <translation id="emailpro_ACTION_delete_disclaimer_question" qtlid="375634">Weet u zeker dat u de E-mail Pro handtekening wilt verwijderen?</translation>
+   <translation id="emailpro-mxplan_ACTION_delete_disclaimer_question" qtlid="518752">Etes-vous sûr de vouloir supprimer la signature suivante de votre service E-mail MX Plan ?</translation>
+
+   <translation id="emailpro_tab_RESOURCES_add_resource_step2_title" qtlid="375647">Weet u zeker dat u het onderstaande resource account wilt toevoegen aan de E-mail Pro server? </translation>
+   <translation id="emailpro-mxplan_tab_RESOURCES_add_resource_step2_title" qtlid="518765">Etes-vous sûr de vouloir ajouter le compte de ressource ci-dessous au serveur E-mail MX Plan ?</translation>
+
+   <translation id="emailpro_tab_RESOURCES_no_domain_warning" qtlid="375335">U heeft nog geen domein toegevoegd of het is nog niet gevalideerd. <br/>U moet eerst een domein toevoegen en wachten tot het gevalideerd is om een E-mail Pro account te maken.</translation>
+   <translation id="emailpro-mxplan_tab_RESOURCES_no_domain_warning" qtlid="518401">Vous n'avez pas encore ajouté de domaine ou il n'a pas encore été validé. <br/>Vous devez d'abord ajouter un domaine et attendre qu'il soit validé pour créer un compte E-mail MX Plan.</translation>
+
+   <translation id="emailpro_tab_RESOURCES_remove_resource_title" qtlid="375660">Weet u zeker dat u het resource account van uw E-mail Pro wilt verwijderen?</translation>
+   <translation id="emailpro-mxplan_tab_RESOURCES_remove_resource_title" qtlid="518778">Voulez-vous supprimer le compte de ressource suivant de votre service E-mail MX Plan ?</translation>
+
+   <translation id="emailpro_tab_RESOURCES_remove_resource_success" qtlid="375673">Het resource account zal worden verwijderd van uw E-mail Pro. </translation>
+   <translation id="emailpro-mxplan_tab_RESOURCES_remove_resource_success" qtlid="518791">Le compte de ressource va être supprimé de votre service E-mail MX Plan.</translation>
+
+   <translation id="emailpro_RESOURCES_delegation_step1_intro" qtlid="520689">Een delegatie staat toe dat andere Pro E-mail accounts bepaalde rechten hebben op de resource {0}</translation>
+   <translation id="emailpro-mxplan_RESOURCES_delegation_step1_intro" qtlid="520702">Een delegatie staat andere MX Plan E-mail accounts toe om bepaalde rechten te hebben op de resource {0}</translation>
+
+   <translation id="emailpro_DIAGNOSTICS_status_isSpammer_help2" qtlid="375699">E-mailontvangst is niet beïnvloed. Als uw account door spam geblokkeerd is dan is dit zichtbaar in het e-mailaccount onderdeel van uw E-mail Pro. Er zal een SPAM tag te zien zijn. Klik erop om doorgestuurd te worden naar de e-mail die is ontvangen na de blokkade. </translation>
+   <translation id="emailpro-mxplan_DIAGNOSTICS_status_isSpammer_help2" qtlid="518817">La réception n'est pas impactée. Lorsque votre compte est bloqué pour spam, celui-ci est visible depuis votre service E-mail MX Plan section compte e-mail. Un tag SPAM est indiqué. Vous pouvez cliquer dessus afin d'être redirigé vers l'e-mail reçu suite au blocage.</translation>
+
+   <translation id="emailpro_DIAGNOSTICS_status_isSuspended_help" qtlid="375712">In dit geval is uw abonnement niet meer actief, e-mailverzending en ontvangst is uitgeschakeld. Neem contact op met onze E-mail Pro support <strong>078 808 0120</strong> om uw dienst te reactiveren.</translation>
+   <translation id="emailpro-mxplan_DIAGNOSTICS_status_isSuspended_help" qtlid="518830">Dans ce cas votre abonnement n'est plus actif, la réception et l'envoi sont désactivés. Il est nécessaire de contacter notre support E-mail MX Plan au <strong>1007</strong> afin de réactiver votre service.</translation>
+
+   <translation id="emailpro_DIAGNOSTICS_status_isLocked_help1" qtlid="375725">U kunt een veiligheidsbeleid instellen vanaf uw E-mail Pro. Mogelijk wordt uw account tijdelijk geblokkeerd tijdens de configuratie van dit beleid. </translation>
+   <translation id="emailpro-mxplan_DIAGNOSTICS_status_isLocked_help1" qtlid="518843">Depuis votre service E-mail MX Plan, il est possible de définir une politique de sécurité. Cela peut entrainer un blocage du compte pendant un délai déterminé lors de la configuration de cette politique.</translation>
+
+   <translation id="emailpro_DIAGNOSTICS_status_isLocked_help3" qtlid="375738">Als uw account tijdens deze procedure geblokkeerd is dan kunt u ofwel wachten totdat deze voltooid is, ofwel contact opnemen met onze support door een support verzoek in te dienen. </translation>
+   <translation id="emailpro-mxplan_DIAGNOSTICS_status_isLocked_help3" qtlid="518856">Si vous rencontrez un blocage à ce niveau, vous pouvez soit patienter que le délai indiqué soit écoulé afin que le compte se débloque ou contacter notre support E-mail MX Plan en créant une demande d’assistance.</translation>
+
+   <translation id="emailpro_DIAGNOSTICS_status_connectiveOWA_help2" qtlid="375751">Ook kunt u uw E-mail Pro wachtwoord updaten > e-mailaccount tab > herstart uw diagnostic. ALs het probleem zich blijft voordoen kunt u een support ticket aanmaken. </translation>
+   <translation id="emailpro-mxplan_DIAGNOSTICS_status_connectiveOWA_help2" qtlid="518869">Vous pouvez aussi mettre à jour le mot de passe depuis votre service E-mail MX Plan, onglet compte e-mail puis relancer votre diagnostic et si le souci persiste vous pouvez créer une demande d’assistance.</translation>
+
+   <translation id="emailpro_DIAGNOSTICS_status_isMxValid_help2" qtlid="375764">Hier zijn de juiste MX diensten voor E-mail Pro: </translation>
+   <translation id="emailpro-mxplan_DIAGNOSTICS_status_isMxValid_help2" qtlid="518882">Voici les serveurs MX valides pour l'offre E-mail MX Plan :</translation>
+
+   <translation id="emailpro_DIAGNOSTICS_status_isMxValid_help_li1" qtlid="375777">E-mail Pro: mx1.mail.ovh.net</translation>
+   <translation id="emailpro-mxplan_DIAGNOSTICS_status_isMxValid_help_li1" qtlid="518895">E-mail MX Plan seul : mx1.mail.ovh.net</translation>
+
+   <translation id="emailpro_DIAGNOSTICS_status_isMxValid_help_li2" qtlid="375790">E-mail + pop/imap e-mail gehost door OVH: mx1.mail.ovh.net</translation>
+   <translation id="emailpro-mxplan_DIAGNOSTICS_status_isMxValid_help_li2" qtlid="518908">E-mail MX Plan + E-mail pop/imap hébergé par OVH : mx1.mail.ovh.net</translation>
+
+   <translation id="emailpro_DIAGNOSTICS_status_isMxValid_help_li3" qtlid="375803">E-mail + pop/imap e-mail gehost door OVH: ex.mail.ovh.net of ex2.mail.ovh.net</translation>
+   <translation id="emailpro-mxplan_DIAGNOSTICS_status_isMxValid_help_li3" qtlid="518921">E-mail MX Plan + E-mail pop/imap non hébergé par OVH : ex.mail.ovh.net ou ex2.mail.ovh.net</translation>
+
+   <translation id="emailpro_DIAGNOSTICS_status_canReceiveEmail_help2" qtlid="375764">Hier zijn de juiste MX diensten voor E-mail Pro: </translation>
+   <translation id="emailpro-mxplan_DIAGNOSTICS_status_canReceiveEmail_help2" qtlid="518882">Voici les serveurs MX valides pour l'offre E-mail MX Plan :</translation>
+
+   <translation id="emailpro_DIAGNOSTICS_status_canReceiveEmail_help_li1" qtlid="375777">E-mail Pro: mx1.mail.ovh.net</translation>
+   <translation id="emailpro-mxplan_DIAGNOSTICS_status_canReceiveEmail_help_li1" qtlid="518895">E-mail MX Plan seul : mx1.mail.ovh.net</translation>
+
+   <translation id="emailpro_DIAGNOSTICS_status_canReceiveEmail_help_li2" qtlid="375790">E-mail + pop/imap e-mail gehost door OVH: mx1.mail.ovh.net</translation>
+   <translation id="emailpro-mxplan_DIAGNOSTICS_status_canReceiveEmail_help_li2" qtlid="518908">E-mail MX Plan + E-mail pop/imap hébergé par OVH : mx1.mail.ovh.net</translation>
+
+   <translation id="emailpro_DIAGNOSTICS_status_canReceiveEmail_help_li3" qtlid="375803">E-mail + pop/imap e-mail gehost door OVH: ex.mail.ovh.net of ex2.mail.ovh.net</translation>
+   <translation id="emailpro-mxplan_DIAGNOSTICS_status_canReceiveEmail_help_li3" qtlid="518921">E-mail MX Plan + E-mail pop/imap non hébergé par OVH : ex.mail.ovh.net ou ex2.mail.ovh.net</translation>
+
+   <translation id="emailpro_DIAGNOSTICS_status_isSrvValid_help1" qtlid="375816">Een SRV record is vereist om uw E-mail Pro account automatisch op een compatibele e-mailclient te configureren</translation>
+   <translation id="emailpro-mxplan_DIAGNOSTICS_status_isSrvValid_help1" qtlid="518934">L'enregistrement SRV est nécessaire pour la configuration automatique de votre compte E-mail MX Plan sur un logiciel de messagerie compatible</translation>
+
+   <translation id="emailpro_DIAGNOSTICS_status_isSrvValid_help3" qtlid="375829">Het SRV record voor E-mail Pro :</translation>
+   <translation id="emailpro-mxplan_DIAGNOSTICS_status_isSrvValid_help3" qtlid="518947">Voici le champ SRV requis pour une offre E-mail MX Plan :</translation>
+
+   <translation id="emailpro_DIAGNOSTICS_status_canSendEmail_help_li4" qtlid="375842">E-mail Pro infrastructuur incident</translation>
+   <translation id="emailpro-mxplan_DIAGNOSTICS_status_canSendEmail_help_li4" qtlid="518960">Un incident sur l'infrastructure E-mail MX Plan</translation>
+
+   <translation id="emailpro_DIAGNOSTICS_status_support_ticket_subject" qtlid="375855">E-mail Pro diagnose</translation>
+   <translation id="emailpro-mxplan_DIAGNOSTICS_status_support_ticket_subject" qtlid="518973">Diagnostic E-mail MX Plan</translation>
+
+   <translation id="emailpro_GROUPS_delegation_step1_intro" qtlid="375868">Delegatie geeft andere E-mail Pro accounts bepaalde toegangsrechten tot de {0} groep</translation>
+   <translation id="emailpro-mxplan_GROUPS_delegation_step1_intro" qtlid="518986">Une délégation permet à d'autres comptes E-mail MX Plan d'avoir certains droits sur le groupe {0}</translation>
+
+   <translation id="emailpro_GROUPS_add_group_help_intro" qtlid="375881">De groep stelt meerdere E-mail Pro gebruikers in staat om e-mails te verzenden naar een enkel adres: het groepsadres. Het adres moet uniek zijn en verzonden e-mails moeten worden overgedragen aan alle leden van de groep.</translation>
+   <translation id="emailpro-mxplan_GROUPS_add_group_help_intro" qtlid="518999">Le groupe permet à plusieurs utilisateurs E-mail MX Plan de recevoir les e-mails envoyés à&#160; une adresse unique : l’adresse du groupe. Cette adresse doit être unique et les messages qui y seront envoyés seront transférés à tous les membres du groupe.</translation>
+
+   <translation id="emailpro_ACTION_configure_step2_intro" qtlid="375894">Samenvatting van uw {0} E-mail Pro configuratie</translation>
+   <translation id="emailpro-mxplan_ACTION_configure_step2_intro" qtlid="519012">Récapitulatif de configuration pour votre service E-mail MX Plan {0}</translation>
+
+   <translation id="emailpro_ACTION_configure_help_title" qtlid="375907"> E-mail Pro configuratie</translation>
+   <translation id="emailpro-mxplan_ACTION_configure_help_title" qtlid="519025">Configuration service E-mail MX Plan</translation>
+
+   <translation id="emailpro_action_order_space_disk_tooltip" qtlid="375920">De aangegeven quota houdt rekening met de benodigde backups en bestanden die nodig zijn voor het functioneren van E-mail Pro.</translation>
+   <translation id="emailpro-mxplan_action_order_space_disk_tooltip" qtlid="519038">Le quota indiqué prend en compte les sauvegardes et les fichiers nécessaires au fonctionnement du système E-mail MX Plan.</translation>
+
+   <translation id="emailpro_tab_RESOURCES_wizard_intro" qtlid="375933">Met de resource accounts functie kunt u de behoeften van uw medewerkers plannen. <br /> U kunt zo veel resource accounts maken als u nodig hebt.</translation>
+   <translation id="emailpro_ACTION_order_accounts_title" qtlid="375244">E-mail Pro bestellen</translation>
+   <translation id="emailpro-mxplan_ACTION_order_accounts_title" qtlid="518323">Commander des comptes E-mail MX Plan</translation>
+
+   <translation id="emailpro_tab_domain_add_step3_confirmation" qtlid="375946">Weet u zeker dat u het onderstaande domein wilt toevoegen aan E-mail Pro server?</translation>
+   <translation id="emailpro-mxplan_tab_domain_add_step3_confirmation" qtlid="519051">Etes-vous sûr de vouloir ajouter le domaine ci-dessous au serveur E-mail MX Plan ?</translation>
+
+   <translation id="emailpro_tab_domain_add_success" qtlid="375959">Het domein zal worden toegevoegd aan uw E-mail Pro server. </translation>
+   <translation id="emailpro-mxplan_tab_domain_add_success" qtlid="519064">L'ajout du domaine à votre serveur E-mail MX Plan va être effectué.</translation>
+
+   <translation id="emailpro_tab_domain_add_failure" qtlid="375972">Er is een fout opgetreden tijdens het toevoegen van het domein aan uw E-mail Pro server. </translation>
+   <translation id="emailpro-mxplan_tab_domain_add_failure" qtlid="519077">Une erreur est survenue lors de l'ajout du domaine à votre serveur E-mail MX Plan.</translation>
+
+   <translation id="emailpro_tab_domain_diagnostic_mx_no_antispam_config" qtlid="375985">pro1.mail.ovh.net</translation>
+   <translation id="emailpro_ACTION_add_domain_invalid_domain" qtlid="375998">Het ingevoerde domein is niet geldig</translation>
+   <translation id="emailpro_ACTION_order_accounts_step1_price" qtlid="139416">{0} excl. btw ({1} incl. btw)</translation>
+   <translation id="emailpro_ACTION_order_accounts_step1_price_with_tax_only" qtlid="499930">{0} ({0} incl. btw)</translation>
+   <translation id="emailpro_ACTION_order_accounts_step1_user_error" qtlid="499943">Fout bij het ophalen van gebruikersinformatie</translation>
+
+
+   <translation id="emailpro_ACTION_add_account_button" qtlid="21487">Een account toevoegen</translation>
+   <translation id="emailpro_ACTION_add_account_legal_warning" qtlid="209099">Ik erken dat OVH overgaat tot onmiddellijke uitvoering van de dienst, na de validatie van mijn bestelling, en derhalve bevestig ik dat ik uitdrukkelijk afstand doe van mijn herroepingsrecht.</translation>
+   <translation id="emailpro_ACTION_add_account_option_fail" qtlid="144045">Er is een fout opgetreden tijdens het laden van uw domeinen.</translation>
+   <translation id="emailpro_ACTION_add_account_step1_display_name_label" qtlid="23515">Weergavenaam</translation>
+   <translation id="emailpro_ACTION_add_account_step1_email_label" qtlid="137244">E-mailaccount</translation>
+   <translation id="emailpro_ACTION_add_account_step1_first_name_label" qtlid="23323">Voornaam</translation>
+   <translation id="emailpro_ACTION_add_account_step1_last_name_label" qtlid="3818">Naam</translation>
+   <translation id="emailpro_ACTION_add_account_step2_confirmation_intro" qtlid="136841">Uw account:</translation>
+   <translation id="emailpro_ACTION_add_account_step2_display_name_label" qtlid="23515">Weergavenaam</translation>
+   <translation id="emailpro_ACTION_add_account_step2_email_label" qtlid="137244">E-mailaccount</translation>
+   <translation id="emailpro_ACTION_add_account_step2_first_name_label" qtlid="23323">Voornaam</translation>
+   <translation id="emailpro_ACTION_add_account_step2_last_name_label" qtlid="3818">Naam</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_content" qtlid="152271">Inhoud</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_error_message" qtlid="152375">Er is een fout opgetreden tijdens het creëren van de signature.</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_helpwizard_title" qtlid="152531">De signature</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_no_domains" qtlid="155274">U kunt alleen een signature per gevalideerd domein aanmaken. Momenteel hebben al uw gevalideerde domeinen reeds een signature.</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_City" qtlid="33310">Stad</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_Company" qtlid="49022">Bedrijf</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_Country" qtlid="25171">Land</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_Department" qtlid="30706">Afdeling</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_DisplayName" qtlid="80922">Weergavenaam</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_Email" qtlid="69509">E-mail</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_FaxNumber" qtlid="152388">Faxnummer</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_FirstName" qtlid="23323">Voornaam</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_HomePhoneNumber" qtlid="152401">Vast telefoonnummer </translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_Initials" qtlid="152414">Initialen</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_LastName" qtlid="3818">Naam</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_Manager" qtlid="152427">Verantwoordelijk</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_MobileNumber" qtlid="152440">Mobielnummer</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_Name" qtlid="109614">Volledige naam</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_Notes" qtlid="69389">Notities</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_Office" qtlid="59555">Bureau</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_OtherFaxNumber" qtlid="152453">Fax 2</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_OtherHomePhoneNumber" qtlid="152466">Woonplaats 2</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_OtherPhoneNumber" qtlid="152479">Telefoon 2</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_PagerNumber" qtlid="152492">Pagernummer</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_PhoneNumber" qtlid="152505">Telefoonnummer</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_State" qtlid="32434">Regio</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_Street" qtlid="152518">Straat</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_Title" qtlid="16469">Titel</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_UserLogonName" qtlid="46792">Gebruikersnaam</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_ZipCode" qtlid="30346">Postcode</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_outside" qtlid="152349">De signature slechts voor het externe verzenden activeren</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_success_message" qtlid="152362">Het creëren van de signature zal worden uitgevoerd.</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_title" qtlid="152206">Een signature toevoegen</translation>
+   <translation id="emailpro_ACTION_change_password_account_error_message_linked" qtlid="148279">Echter, er is een fout opgetreden bij het wijzigen van het wachtwoord.</translation>
+   <translation id="emailpro_ACTION_configure_error" qtlid="178276">Er is een fout opgetreden tijdens het verzoek, de wijzigingen worden niet toegepast.</translation>
+   <translation id="emailpro_ACTION_configure_help_complexityEnabled_text" qtlid="178692">Deze beveiligingsinstelling bepaalt of wachtwoorden moeten voldoen aan complexiteitsvereisten<br/>Indien deze instelling is ingeschakeld, moeten wachtwoorden voldoen aan de volgende eisen, wanneer ze worden gewijzigd of gecreëerd: <ul><li>Bevat niet de gehele of gedeeltelijke accountnaam van de gebruiker</li> <li>Moet minstens 6 tekens lang zijn</li> <li>Bevat tekens uit drie van de volgende vier categorieën: <ol><li>Hoofdletters uit het Engels alfabet (A tot Z)</li> <li>Kleine letters uit het Engels alfabet (a tot z)</li> <li>Cijfers (0 tot 9)</li> <li>Niet-alfanumerieke tekens (bijvoorbeeld, !, $, #, %)</li></ol></li> </ul>Complexiteitsvereisten worden toegepast, wanneer wachtwoorden worden gewijzigd of gecreëerd.</translation>
+   <translation id="emailpro_ACTION_configure_help_complexityEnabled_title" qtlid="178003">Complexiteitsvereisten</translation>
+   <translation id="emailpro_ACTION_configure_help_lockoutDuration_text" qtlid="178653">Deze beveiligingsinstelling bepaalt het aantal minuten dat een locked-out account vergrendeld blijft, voordat deze automatisch wordt ontgrendeld. Het beschikbare bereik is 1 minuut tot 90 minuten<br/>Indien een account lockout drempel is bepaald, moet de account lockout duur groter dan of gelijk zijn aan de reset tijd.</translation>
+   <translation id="emailpro_ACTION_configure_help_lockoutDuration_title" qtlid="178640">Account lockout duur</translation>
+   <translation id="emailpro_ACTION_configure_help_lockoutObservationWindow_text" qtlid="178679">Deze beveiligingsinstelling bepaalt het aantal minuten dat moet verstrijken na een mislukte inlogpoging voordat de teller wordt gereset naar 0. Het beschikbare bereik is 1 minuut tot 90 minuten.<br/> Indien een account lockout drempel is bepaald, moet deze reset tijd minder dan of gelijk zijn aan de account lockout duur.</translation>
+   <translation id="emailpro_ACTION_configure_help_lockoutObservationWindow_title" qtlid="178666">Lockout teller reset tijd</translation>
+   <translation id="emailpro_ACTION_configure_help_lockoutThreshold_text" qtlid="178627">Deze beveiligingsinstelling bepaalt het aantal mislukte inlogpogingen waardoor een gebruikers account wordt vergrendeld. Een geblokkeerde account kan niet worden gebruikt totdat het wordt gereset door een beheerder of totdat de lockout duur voor de account is verlopen. U kunt een waarde instellen tussen 1 en 14 mislukte inlogpogingen. Als u de waarde instelt op 0, zal de rekening nooit geblokkeerd worden.</translation>
+   <translation id="emailpro_ACTION_configure_help_lockoutThreshold_title" qtlid="177990">Account locking limiet</translation>
+   <translation id="emailpro_ACTION_configure_help_maxPasswordAge_text" qtlid="181578">Deze beveiligingsinstelling bepaalt de tijd (in dagen), gedurende welke een wachtwoord kan worden gebruikt, alvorens het systeem de gebruiker vraagt, om dit te wijzigen. U kunt een waarde opgeven tussen 1 en 90 dagen. Als u 0 opgeeft als waarde, zullen de wachtwoorden nooit vervallen. Wanneer de maximale levensduur van wachtwoorden tussen 1 en 90 dagen ligt, moet uw minimale levensduur kleiner dan deze waarde zijn. Wanneer de maximale levensduur van het wachtwoord is ingesteld op 0, kan elke waarde tussen 0 en 90 worden geselecteerd voor de minimale levensduur.</translation>
+   <translation id="emailpro_ACTION_configure_help_maxPasswordAge_title" qtlid="178731">Maximum wachtwoord duur</translation>
+   <translation id="emailpro_ACTION_configure_help_minPasswordAge_text" qtlid="178718">Deze beveiligingsinstelling bepaalt de duur in tijd (dagen) dat een wachtwoord kan worden gebruikt, voordat de gebruiker het kan wijzigen. U kunt wachtwoorden instellen om te vervallen na een aantal dagen tussen 1 en 90, of u kunt wijzigingen onmiddellijk toestaan ​​door het instellen van het aantal dagen op 0.</translation>
+   <translation id="emailpro_ACTION_configure_help_minPasswordAge_title" qtlid="178705">Minimum wachtwoord duur</translation>
+   <translation id="emailpro_ACTION_configure_help_minPasswordLength_text" qtlid="178757">Deze beveiligingsinstelling bepaalt het minimum aantal tekens dat een gebruikers account wachtwoord kan bevatten. U kunt een waarde bepalen van tussen de 3 en 14 tekens, of u kunt opgeven dat er geen wachtwoord vereist is, door het aantal tekens op 0 te zetten.</translation>
+   <translation id="emailpro_ACTION_configure_help_minPasswordLength_title" qtlid="174828">Minimale lengte van het wachtwoord</translation>
+   <translation id="emailpro_ACTION_configure_services_help_lockoutThreshold" qtlid="178549">Als u "0" invoert, zal de account nooit worden geblokkeerd.</translation>
+   <translation id="emailpro_ACTION_configure_services_help_maxPasswordAge" qtlid="178588">Als u "0" invoert, zal het wachtwoord altijd geldig zijn.</translation>
+   <translation id="emailpro_ACTION_configure_services_help_minPasswordAge" qtlid="178575">Als u "0" invoert, staat u meteen wachtwoordwijzigingen toe.</translation>
+   <translation id="emailpro_ACTION_configure_services_help_minPasswordLength" qtlid="178601">Als u "0" invoert, is er geen wachtwoord vereist</translation>
+   <translation id="emailpro_ACTION_configure_services_label_complexityEnabled" qtlid="178003">Complexiteitsvereisten</translation>
+   <translation id="emailpro_ACTION_configure_services_label_lockoutDuration" qtlid="179706">Lockout duur</translation>
+   <translation id="emailpro_ACTION_configure_services_label_lockoutObservationWindow" qtlid="179719">De tijd resetten</translation>
+   <translation id="emailpro_ACTION_configure_services_label_lockoutThreshold" qtlid="179732">Lockout drempel</translation>
+   <translation id="emailpro_ACTION_configure_services_label_maxPasswordAge" qtlid="179745">Maximale levensduur van het wachtwoord</translation>
+   <translation id="emailpro_ACTION_configure_services_label_minPasswordAge" qtlid="376089">Wachtwoordwijziging voorkomen</translation>
+   <translation id="emailpro_ACTION_configure_services_label_minPasswordLength" qtlid="174828">Minimale lengte van het wachtwoord</translation>
+   <translation id="emailpro_ACTION_configure_services_tooltip_days" qtlid="179771">Uitgedrukt in dagen</translation>
+   <translation id="emailpro_ACTION_configure_services_tooltip_minutes" qtlid="179784">Uitgedrukt in minuten</translation>
+   <translation id="emailpro_ACTION_configure_step2_label_complexityEnabled" qtlid="178393">Wachtwoord complexiteit eisen:</translation>
+   <translation id="emailpro_ACTION_configure_step2_label_lockoutDuration" qtlid="178302">Account lockout duur:</translation>
+   <translation id="emailpro_ACTION_configure_step2_label_lockoutObservationWindow" qtlid="178341">Lockout observation window voor de accounts:</translation>
+   <translation id="emailpro_ACTION_configure_step2_label_lockoutThreshold" qtlid="178328">Account lockout drempel:</translation>
+   <translation id="emailpro_ACTION_configure_step2_label_maxPasswordAge" qtlid="178354">Maximale wachtwoord levensduur:</translation>
+   <translation id="emailpro_ACTION_configure_step2_label_minPasswordAge" qtlid="178367">Minimale wachtwoord levensduur:</translation>
+   <translation id="emailpro_ACTION_configure_step2_label_minPasswordLength" qtlid="178380">Minimale lengte van het wachtwoord:</translation>
+   <translation id="emailpro_ACTION_configure_success" qtlid="176700">De wijzigingen worden uitgevoerd</translation>
+   <translation id="emailpro_ACTION_delegation_behalf_tooltip" qtlid="181513">Deactiveer eerst de verzendrechten.</translation>
+   <translation id="emailpro_ACTION_delegation_doing_message" qtlid="144266">De update van de gedelegeerde rechten wordt uitgevoerd.</translation>
+   <translation id="emailpro_ACTION_delegation_error_message" qtlid="144279">Er is een fout opgetreden tijdens het updaten van de gedelegeerde rechten.</translation>
+   <translation id="emailpro_ACTION_delegation_partial_message" qtlid="156758">Bij een update van de rechten zijn er fouten opgetreden.</translation>
+   <translation id="emailpro_ACTION_delegation_sendas_tooltip" qtlid="181539">Deactiveer eerst het 'verzenden namens'-recht.</translation>
+   <translation id="emailpro_ACTION_delegation_step1_email_header" qtlid="137244">E-mailaccount</translation>
+   <translation id="emailpro_ACTION_delegation_step1_full_header" qtlid="181500">Toegangsrecht</translation>
+   <translation id="emailpro_ACTION_delegation_step1_sendOnBehalfTo_header" qtlid="181487">'Verzenden namens'-recht </translation>
+   <translation id="emailpro_ACTION_delegation_step1_send_header" qtlid="181474">Verzendrecht</translation>
+   <translation id="emailpro_ACTION_delegation_step1_task_on_doing" qtlid="201458">Taak wordt uitgevoerd</translation>
+   <translation id="emailpro_ACTION_delegation_step2_email_header" qtlid="137244">E-mailaccount</translation>
+   <translation id="emailpro_ACTION_delegation_step2_full_header" qtlid="144253">Toegangsrechten</translation>
+   <translation id="emailpro_ACTION_delegation_step2_intro" qtlid="434564">Delegatierechten voor het <strong>{0}</strong> account:</translation>
+   <translation id="emailpro_ACTION_delegation_step2_right_true" qtlid="34776">Ja</translation>
+   <translation id="emailpro_ACTION_delegation_step2_sendOnBehalfTo_header" qtlid="181487">'Verzenden namens'-recht </translation>
+   <translation id="emailpro_ACTION_delegation_step2_send_header" qtlid="143798">Verzendingsrechten</translation>
+   <translation id="emailpro_ACTION_delegation_success_message" qtlid="144266">De update van de gedelegeerde rechten wordt uitgevoerd.</translation>
+   <translation id="emailpro_ACTION_delegation_title" qtlid="143733">Delegatie (van rechten) configuratie</translation>
+   <translation id="emailpro_ACTION_delegation_wait_behalf_tooltip" qtlid="181526">Wacht tot het deactiveren van de verzendrechten beëindigd is.</translation>
+   <translation id="emailpro_ACTION_delegation_wait_sendas_tooltip" qtlid="181552">Wacht svp tot het deactiveren van de 'verzenden namens'-rechten beëindigd is.</translation>
+   <translation id="emailpro_ACTION_delete_disclaimer_failure" qtlid="152583">Er is een fout opgetreden tijdens het verwijderen van de signature.</translation>
+   <translation id="emailpro_ACTION_delete_disclaimer_success" qtlid="152570">De signature zal worden verwijderd. </translation>
+   <translation id="emailpro_ACTION_delete_disclaimer_title" qtlid="152219">Verwijderen van een signature </translation>
+   <translation id="emailpro_ACTION_disclaimer_associated_domains" qtlid="133110">Bijbehorend domein</translation>
+   <translation id="emailpro_ACTION_disclaimer_insert" qtlid="152336">Een variabele invoegen</translation>
+   <translation id="emailpro_ACTION_loading" qtlid="75954">Aan het laden...</translation>
+   <translation id="emailpro_ACTION_order_accounts_button" qtlid="139169">Accounts bestellen</translation>
+   <translation id="emailpro_ACTION_order_accounts_step1_loading_error" qtlid="135294">Er is een fout opgetreden tijdens het laden van de gegevens.</translation>
+   <translation id="emailpro_ACTION_order_accounts_step1_number" qtlid="139338">Aantal accounts:</translation>
+   <translation id="emailpro_ACTION_order_accounts_step1_number_tooltip" qtlid="144110">Voer een getal tussen 1 en 100 in</translation>
+   <translation id="emailpro_ACTION_order_accounts_step1_number_not_valid" qtlid="144123">Voer een geldig nummer in</translation>
+   <translation id="emailpro_ACTION_order_accounts_step1_pay_type" qtlid="139325">Betalingsmethode:</translation>
+   <translation id="emailpro_ACTION_order_accounts_step1_pay_type_01" qtlid="79530">maandelijks</translation>
+   <translation id="emailpro_ACTION_order_accounts_step1_pay_type_12" qtlid="79542">jaarlijks</translation>
+   <translation id="emailpro_ACTION_order_accounts_step2_error_message" qtlid="139468">Er is een fout opgetreden bij het plaatsen van uw bestelling.</translation>
+   <translation id="emailpro_ACTION_order_accounts_step2_intro" qtlid="139403">Overzicht van uw bestelling</translation>
+   <translation id="emailpro_ACTION_order_accounts_step2_loader" qtlid="139377">Bezig met het controleren van de gegevens van uw bestelling.</translation>
+   <translation id="emailpro_ACTION_order_accounts_step2_number" qtlid="139338">Aantal accounts:</translation>
+   <translation id="emailpro_ACTION_order_accounts_step2_pay_type" qtlid="139325">Betalingsmethode:</translation>
+   <translation id="emailpro_ACTION_order_accounts_step2_pay_type_monthly" qtlid="79530">maandelijks</translation>
+   <translation id="emailpro_ACTION_order_accounts_step2_pay_type_yearly" qtlid="79542">jaarlijks</translation>
+   <translation id="emailpro_ACTION_order_accounts_step2_price" qtlid="139416">{0} excl. btw ({1} incl. btw)</translation>
+   <translation id="emailpro_ACTION_order_accounts_step2_total" qtlid="139429">Totaal gefactureerd:</translation>
+   <translation id="emailpro_ACTION_order_accounts_step3_bc" qtlid="169524">De bestelbon werd aangemaakt</translation>
+   <translation id="emailpro_ACTION_order_accounts_step3_continue" qtlid="169537">Klik hieronder op "Betalen", om uw bestelling te bevestigen.</translation>
+   <translation id="emailpro_ACTION_order_accounts_step3_explication" qtlid="139481">Hou er rekening mee dat het ongeveer 10 minuten kan duren, na de aanvaarding van uw betaling, voordat het account wordt aangemaakt.</translation>
+   <translation id="emailpro_ACTION_order_accounts_step3_explication2" qtlid="144175">Een nieuwe tab wordt geopend en u wordt automatisch doorgestuurd naar de betalingsinterface van OVH.</translation>
+   <translation id="emailpro_ACTION_order_accounts_step3_generation_bc" qtlid="169511">Bestelbon wordt aangemaakt...</translation>
+   <translation id="emailpro_ACTION_sending" qtlid="71009">Bezig met versturen...</translation>
+   <translation id="emailpro_ACTION_update_account_error_message_linked" qtlid="157421">Echter, is een fout opgetreden bij het instellen van de andere accountinstellingen.</translation>
+   <translation id="emailpro_ACTION_update_account_helpwizard_password_title" qtlid="2270">Wachtwoord</translation>
+   <translation id="emailpro_ACTION_update_account_helpwizard_password" qtlid="171240">De wachtwoorden moeten voldoen aan de volgende eisen:<br/><br/>- Deze mogen niet de gehele of gedeeltelijke accountnaam van de gebruiker bevatten<br/>- Een lengte van minstens 8 tekens<br/>- Bevat tekens uit drie van de volgende vier categorieën:<br/><ul><li>Kleine letters van het alfabet (a tot z)<br/></li><li>Cijfers (0 tot 9)<br/></li><li>Niet-alfabetische tekens (bijvoorbeeld: !, $, #, %)<br/></li></ul></translation>
+   <translation id="emailpro_ACTION_update_account_helpwizard_password_simple" qtlid="195139">De wachtwoorden moeten een lengte hebben van ten minste {0} tekens </translation>
+   <translation id="emailpro_ACTION_update_account_step1_complex_password_tooltip" qtlid="178822">Minimaal {0} alfanumerieke tekens, cijfers en speciale tekens.</translation>
+   <translation id="emailpro_ACTION_update_account_step1_display_name_label" qtlid="23515">Weergavenaam</translation>
+   <translation id="emailpro_ACTION_update_account_step1_first_name_label" qtlid="23323">Voornaam</translation>
+   <translation id="emailpro_ACTION_update_account_step1_last_name_label" qtlid="3818">Naam</translation>
+   <translation id="emailpro_ACTION_update_account_step1_password_confirmation_label" qtlid="9983">Bevestiging</translation>
+   <translation id="emailpro_ACTION_update_account_step1_password_contains_samaccount_name" qtlid="254869">Het wachtwoord mag niet bestaan uit "{0}", de samaccountName, een interne gebruikersnaam.</translation>
+   <translation id="emailpro_ACTION_update_account_step1_password_different" qtlid="139637">Verschillende wachtwoorden</translation>
+   <translation id="emailpro_ACTION_update_account_step1_password_label" qtlid="2270">Wachtwoord</translation>
+   <translation id="emailpro_ACTION_update_account_step1_password_placeholder" qtlid="156745">De oude versie behouden</translation>
+   <translation id="emailpro_ACTION_update_account_step1_password_weak" qtlid="139624">Erg eenvoudig wachtwoord</translation>
+   <translation id="emailpro_ACTION_update_account_step1_quota_label" qtlid="6874">Quota</translation>
+   <translation id="emailpro_ACTION_update_account_step1_simple_password_tooltip" qtlid="137595">Minimaal {0} tekens.</translation>
+   <translation id="emailpro_ACTION_update_account_step1_type_label" qtlid="191057">Account type</translation>
+   <translation id="emailpro_ACTION_update_account_step1_type_STANDARD" qtlid="48998">Standard</translation>
+   <translation id="emailpro_ACTION_update_account_step1_type_BASIC" qtlid="48986">Basis</translation>
+   <translation id="emailpro_ACTION_update_account_step1_type_ENTERPRISE" qtlid="49022">Bedrijf</translation>
+   <translation id="emailpro_ACTION_update_account_step1_type_cant_change" qtlid="486243">Het type account kan niet worden gewijzigd als er  een Outlook-licentie aan dit account is gekoppeld.</translation>
+   <translation id="emailpro_ACTION_update_account_step1_exchange_guid_label" qtlid="174633">Exchange GUID</translation>
+   <translation id="emailpro_ACTION_update_account_step2_confirmation_intro" qtlid="136841">Uw account:</translation>
+   <translation id="emailpro_ACTION_update_account_step2_display_name_label" qtlid="23515">Weergavenaam</translation>
+   <translation id="emailpro_ACTION_update_account_step2_email_label" qtlid="137244">E-mailaccount</translation>
+   <translation id="emailpro_ACTION_update_account_step2_first_name_label" qtlid="23323">Voornaam</translation>
+   <translation id="emailpro_ACTION_update_account_step2_last_name_label" qtlid="3818">Naam</translation>
+   <translation id="emailpro_ACTION_update_account_step2_password_label" qtlid="139650">Wachtwoord</translation>
+   <translation id="emailpro_ACTION_update_disclaimer_error_message" qtlid="152635">Er is een fout opgetreden tijdens het wijzigen van de signature.</translation>
+   <translation id="emailpro_ACTION_update_disclaimer_info" qtlid="152609">De signature behorend tot het domein {0} wijzigen </translation>
+   <translation id="emailpro_ACTION_update_disclaimer_length_warning" qtlid="152648">De inhoud van de signature mag niet meer dan 5.000 tekens en geen lokale lettertekens bevatten.</translation>
+   <translation id="emailpro_ACTION_update_disclaimer_success_message" qtlid="152622">De signature wordt gewijzigd</translation>
+   <translation id="emailpro_ACTION_update_disclaimer_title" qtlid="152596">Een signature configureren</translation>
+   <translation id="emailpro_GROUPS_delegation_doing_message" qtlid="144266">De update van de gedelegeerde rechten wordt uitgevoerd.</translation>
+   <translation id="emailpro_GROUPS_delegation_error_message" qtlid="144279">Er is een fout opgetreden tijdens het updaten van de gedelegeerde rechten.</translation>
+   <translation id="emailpro_GROUPS_delegation_success_message" qtlid="144266">De update van de gedelegeerde rechten wordt uitgevoerd.</translation>
+   <translation id="emailpro_GROUPS_partial_account" qtlid="191161">Er is een fout opgetreden tijdens het laden: {0}</translation>
+
+   <translation id="emailpro_action_license_history_fail" qtlid="169641">Er is een fout opgetreden tijdens het uploaden van de monitoring-gegevens.</translation>
+   <translation id="emailpro_action_license_history_type_outlook" qtlid="193111">Outlook licenties </translation>
+   <translation id="emailpro_action_order_space_disk" qtlid="191668">Extra ruimte bestellen</translation>
+
+   <translation id="emailpro_dashboard_2016_migration" qtlid="287072">Bekijk het programma over migratie naar Exchange 2016.</translation>
+   <translation id="emailpro_dashboard_action_doing" qtlid="149787">Bewerking wordt uitgevoerd</translation>
+   <translation id="emailpro_dashboard_diag" qtlid="136230">Diagnose-server </translation>
+   <translation id="emailpro_dashboard_diag_a_label" qtlid="23803">A</translation>
+   <translation id="emailpro_dashboard_diag_a_tooltip_error" qtlid="209151">Indien uw domein wordt gehost door OVH, maak dan A records aan, door het selecteren van de betreffende domeinnaam, vervolgens "Expert Mode" -> "DNS Zone" -> "Add Entry". Voer svp in: <br /> Record Type: <span class="bold">A</span> <br /> Subdomein: <span class="bold"> {0}</span> <br /> Doel: <span class="bold"> {1}</span> <br /><br /> Indien uw domein elders is geregistreerd, maak dan het A record op dit domein via de manager van uw domein registrar, en voer de bovenstaande gegevens in.</translation>
+   <translation id="emailpro_dashboard_diag_a_tooltip_ok" qtlid="137491">Automatische configuratie voltooid</translation>
+   <translation id="emailpro_dashboard_diag_a_tooltip_title" qtlid="143251">A record</translation>
+   <translation id="emailpro_dashboard_diag_aaaa_label" qtlid="129823">AAAA</translation>
+   <translation id="emailpro_dashboard_diag_aaaa_tooltip_error" qtlid="209164">Indien uw domein wordt gehost door OVH, maak dan AAAA records aan, door het selecteren van de betreffende domeinnaam, vervolgens "Expert Mode" -> "DNS Zone" -> "Add Entry". Voer svp in: <br /> Record Type: <span class="bold">AAAA</span> <br /> Subdomein: <span class="bold"> {0}</span> <br /> Doel: <span class="bold"> {1}</span> <br /><br /> Indien uw domein elders is geregistreerd, maak dan het AAAA record op dit domein via de manager van uw domein registrar, en voer de bovenstaande gegevens in.</translation>
+   <translation id="emailpro_dashboard_diag_aaaa_tooltip_ok" qtlid="137491">Automatische configuratie voltooid</translation>
+   <translation id="emailpro_dashboard_diag_aaaa_tooltip_title" qtlid="143277">IPv6 AAAA record</translation>
+   <translation id="emailpro_dashboard_diag_ptr_label" qtlid="143303">PTR</translation>
+   <translation id="emailpro_dashboard_diag_ptr_tooltip_error" qtlid="143316">Er is een probleem met de inverse resolution van uw IP-adres. Neem aub contact op met het support team.</translation>
+   <translation id="emailpro_dashboard_diag_ptr_tooltip_ok" qtlid="137491">Automatische configuratie voltooid</translation>
+   <translation id="emailpro_dashboard_diag_ptr_tooltip_title" qtlid="143303">PTR</translation>
+   <translation id="emailpro_dashboard_diag_ptrv6_label" qtlid="143329">PTR v6</translation>
+   <translation id="emailpro_dashboard_diag_ptrv6_tooltip_error" qtlid="143342">Bij de inverse resolution van uw IPv6-adres is een probleem opgetreden. Neem aub contact op met het support team.</translation>
+   <translation id="emailpro_dashboard_diag_ptrv6_tooltip_ok" qtlid="137491">Automatische configuratie voltooid</translation>
+   <translation id="emailpro_dashboard_diag_ptrv6_tooltip_title" qtlid="143329">PTR v6</translation>
+   <translation id="emailpro_dashboard_display_name_min" qtlid="177925">Bewerking geannuleerd. Minimaal 5 tekens vereist.</translation>
+   <translation id="emailpro_dashboard_domains" qtlid="276298">Geassocieerde domeinen</translation>
+   <translation id="emailpro_dashboard_domain_forMXPlan" qtlid="133110">Bijbehorend domein</translation>
+   <translation id="emailpro_dashboard_domain_offer" qtlid="38217">Aanbod</translation>
+   <translation id="emailpro_dashboard_domain_filer" qtlid="222761">Filer</translation>
+   <translation id="emailpro_dashboard_expiration" qtlid="168172">Verlenging</translation>
+   <translation id="emailpro_dashboard_guides_url" qtlid="519090">Bekijk onze online gidsen</translation>
+   <translation id="emailpro_dashboard_loading_error" qtlid="168120">Er is een fout opgetreden tijdens het uploaden van de gegevens. </translation>
+   <translation id="emailpro_dashboard_message_see_more" qtlid="91645">De details bekijken</translation>
+   <translation id="emailpro_dashboard_name" qtlid="136165">Serververwijzing</translation>
+   <translation id="emailpro_dashboard_new_window" qtlid="222176">Nieuw scherm</translation>
+   <translation id="emailpro_dashboard_ssl_expiration" qtlid="190797">SSL vervaldatum</translation>
+   <translation id="emailpro_dashboard_tasks" qtlid="136217">Recente taken</translation>
+
+   <translation id="emailpro_delete_action_button" qtlid="519103">Supprimer ce MX plan</translation>
+
+   <translation id="emailpro_resilitation_action_button" qtlid="48646">Annuleren</translation>
+   <translation id="emailpro_resilitation_action_button_cancel" qtlid="211567">De annulering intrekken</translation>
+   <translation id="emailpro_resilitation_action_hosted_warning" qtlid="209073">Uw accounts zullen worden gesloten op de vervaldatum. </translation>
+   <translation id="emailpro_resilitation_action_partial" qtlid="191031">Sommige van de verlengingsperiode wijzigingen zijn mislukt.</translation>
+   <translation id="emailpro_resilitation_cancel_action_button" qtlid="4070">Doorgaan</translation>
+   <translation id="emailpro_resilitation_cancel_action_confirmation" qtlid="201380">U staat op het punt om de beëindiging van de dienst "{0}" te annuleren. <br />Wilt u doorgaan met deze bewerking? <br /> De dienst zal dan automatisch worden verlengd.</translation>
+   <translation id="emailpro_resilitation_cancel_action_failure" qtlid="211580">Er is een fout opgetreden bij het intrekken van de annulering van uw dienst.</translation>
+   <translation id="emailpro_resilitation_cancel_action_partial" qtlid="191031">Sommige van de verlengingsperiode wijzigingen zijn mislukt.</translation>
+   <translation id="emailpro_tab_ACCOUNTS_error_message" qtlid="143915">Er is een fout opgetreden tijdens het laden van uw accounts.</translation>
+
+   <translation id="emailpro_tab_ACCOUNTS_webmails" qtlid="485697">Webmail:</translation>
+   <translation id="emailpro_tab_ACCOUNTS_menu_account_tooltip" qtlid="19075">Meer acties</translation>
+   <translation id="emailpro_tab_ACCOUNTS_partial" qtlid="143889">Sommige accounts konden niet correct geladen worden. Vernieuw de pagina om het probleem op te lossen.</translation>
+   <translation id="emailpro_tab_ACCOUNTS_partial_account" qtlid="139208">Dit account is niet correct geladen</translation>
+   <translation id="emailpro_tab_ACCOUNTS_popover_alias" qtlid="21499">Beheren van de aliassen</translation>
+   <translation id="emailpro_tab_ACCOUNTS_popover_delegation" qtlid="143434">De delegaties beheren</translation>
+   <translation id="emailpro_tab_ACCOUNTS_popover_span_text" qtlid="277689">Er werd spam verzonden vanaf dit account waardoor het nu tijdelijk geblokkeerd is. <br />Om het account weer te activeren moet u het open ticket beantwoorden.<br /><br /><a href="{0}" class="link pull-right">Ticket beantwoorden</a><br /></translation>
+   <translation id="emailpro_tab_ACCOUNTS_popover_span_title" qtlid="277676">SPAM-geblokkeerd account. </translation>
+   <translation id="emailpro_tab_ACCOUNTS_pwderror" qtlid="137296">Onjuiste bevestiging</translation>
+   <translation id="emailpro_tab_ACCOUNTS_state_CREATING" qtlid="146632">Wordt aangemaakt...</translation>
+   <translation id="emailpro_tab_ACCOUNTS_state_DELETING" qtlid="146645">Verwijdering wordt uitgevoerd</translation>
+   <translation id="emailpro_tab_ACCOUNTS_state_TASK_ON_DOING" qtlid="485632">Taak gepland of bezig</translation>
+   <translation id="emailpro_tab_ACCOUNTS_state_TASK_ON_ERROR" qtlid="485788">Taak error</translation>
+   <translation id="emailpro_tab_ACCOUNTS_table_alias" qtlid="9466">Alias</translation>
+   <translation id="emailpro_tab_ACCOUNTS_table_email" qtlid="137244">E-mailaccount</translation>
+   <translation id="emailpro_tab_ACCOUNTS_table_empty" qtlid="149800">U heeft geen accounts</translation>
+   <translation id="emailpro_tab_ACCOUNTS_table_empty_type_BASIC" qtlid="190810">U heeft geen Basic account.</translation>
+   <translation id="emailpro_tab_ACCOUNTS_table_empty_type_STANDARD" qtlid="190823">U heeft geen Standard account.</translation>
+   <translation id="emailpro_tab_ACCOUNTS_table_empty_type_ENTERPRISE" qtlid="190836">U beschikt niet over een account van het type Entreprise</translation>
+   <translation id="emailpro_tab_ACCOUNTS_table_empty_search" qtlid="149813">U heeft geen accounts die overeenkomen met de zoekterm</translation>
+   <translation id="emailpro_tab_ACCOUNTS_table_size" qtlid="7726">Grootte</translation>
+   <translation id="emailpro_tab_ACCOUNTS_table_status" qtlid="26443">Status</translation>
+   <translation id="emailpro_tab_ACCOUNTS_table_type" qtlid="2642">Type</translation>
+   <translation id="emailpro_tab_ACCOUNTS_type_ALL" qtlid="69173">Alle</translation>
+   <translation id="emailpro_tab_ACCOUNTS_type_BASIC" qtlid="48986">Basis</translation>
+   <translation id="emailpro_tab_ACCOUNTS_type_STANDARD" qtlid="48998">Standard</translation>
+   <translation id="emailpro_tab_ACCOUNTS_type_ENTERPRISE" qtlid="49022">Bedrijf</translation>
+   <translation id="emailpro_tab_ACCOUNTS_warning" qtlid="108456">Opgelet!</translation>
+
+   <translation id="emailpro_tab_ALIAS_add_alias_error_message" qtlid="143681">Er is een fout opgetreden tijdens het creëren van uw alias.</translation>
+   <translation id="emailpro_tab_ALIAS_add_alias_intro" qtlid="416579">Creëer een alias voor het <span class="bold">{0}</span> account</translation>
+   <translation id="emailpro_tab_ALIAS_add_alias_placeholder" qtlid="9466">Alias</translation>
+   <translation id="emailpro_tab_ALIAS_add_alias_step2_account_label" qtlid="143603">Account bevestigd</translation>
+   <translation id="emailpro_tab_ALIAS_add_alias_step2_alias_label" qtlid="9466">Alias</translation>
+   <translation id="emailpro_tab_ALIAS_add_alias_step2_intro" qtlid="144006">Weet u zeker dat u de alias hieronder toe wilt voegen?</translation>
+   <translation id="emailpro_tab_ALIAS_add_alias_success_message" qtlid="144032">De alias wordt toegevoegd.</translation>
+   <translation id="emailpro_tab_ALIAS_add_alias_title" qtlid="143616">Creëer een alias </translation>
+   <translation id="emailpro_tab_ALIAS_add_alias_valid" qtlid="171747">Hou er rekening mee dat sommige speciale tekens niet zijn toegestaan ​​in de naam van een alias, bijvoorbeeld + ? / () [] ;</translation>
+   <translation id="emailpro_tab_ALIAS_add_button" qtlid="143538">Een alias toevoegen</translation>
+   <translation id="emailpro_tab_ALIAS_delete_error_message" qtlid="143577">Er is een fout opgetreden tijdens het verwijderen van uw alias.</translation>
+   <translation id="emailpro_tab_ALIAS_delete_success_message" qtlid="143564">Uw alias wordt verwijderd.</translation>
+   <translation id="emailpro_tab_ALIAS_delete_tooltip" qtlid="178848">Deze alias verwijderen</translation>
+   <translation id="emailpro_tab_ALIAS_domain_loading_failure" qtlid="144045">Er is een fout opgetreden tijdens het laden van uw domeinen.</translation>
+   <translation id="emailpro_tab_ALIAS_error_message" qtlid="143980">Er is een fout opgetreden tijdens het laden van uw alias.</translation>
+   <translation id="emailpro_tab_ALIAS_header" qtlid="9466">Alias</translation>
+   <translation id="emailpro_tab_ALIAS_remove_account_label" qtlid="143603">Account bevestigd</translation>
+   <translation id="emailpro_tab_ALIAS_remove_alias_label" qtlid="9466">Alias</translation>
+   <translation id="emailpro_tab_ALIAS_remove_alias_title" qtlid="9550">Een alias verwijderen</translation>
+   <translation id="emailpro_tab_ALIAS_state_TASK_ON_DOING" qtlid="26383">Wordt uitgevoerd</translation>
+   <translation id="emailpro_tab_ALIAS_state_TASK_ON_DOING_tooltip" qtlid="143967">Een taak voor deze alias is gepland of in uitvoering</translation>
+   <translation id="emailpro_tab_ALIAS_state_TASK_ON_DOING_tooltip" qtlid="143967">Een taak voor deze alias is gepland of in uitvoering</translation>
+   <translation id="emailpro_tab_ALIAS_taken_error_message" qtlid="190849">Het e-mailadres bestaat al.</translation>
+
+   <translation id="emailpro_tab_DISCLAIMER" qtlid="276324">Footers</translation>
+   <translation id="emailpro_tab_DISCLAIMER_table_empty" qtlid="152258">U heeft geen signature.</translation>
+   <translation id="emailpro_tab_DISCLAIMER_associated_domains" qtlid="133110">Bijbehorend domein</translation>
+   <translation id="emailpro_tab_DISCLAIMER_disclaimer_content" qtlid="152271">Inhoud</translation>
+   <translation id="emailpro_tab_DISCLAIMER_disclaimer_outside_only" qtlid="152284">Slechts voor externe verzendingen</translation>
+   <translation id="emailpro_tab_DISCLAIMER_disclaimer_outside_only_false" qtlid="34788">Nee</translation>
+   <translation id="emailpro_tab_DISCLAIMER_disclaimer_outside_only_tooltip" qtlid="152297">Signature die slechts gebruikt wordt voor verzendingen naar buiten</translation>
+   <translation id="emailpro_tab_DISCLAIMER_disclaimer_outside_only_true" qtlid="34776">Ja</translation>
+   <translation id="emailpro_tab_DISCLAIMER_error_message" qtlid="152245">Er is een fout opgetreden tijdens het laden van de signatures.</translation>
+   <translation id="emailpro_tab_DISCLAIMER_menu_delete" qtlid="2414">Verwijderen</translation>
+   <translation id="emailpro_tab_DISCLAIMER_menu_settings" qtlid="37875">Wijzigen</translation>
+   <translation id="emailpro_tab_DISCLAIMER_state_doing_tooltip" qtlid="143863">Een taak is gepland of wordt uitgevoerd</translation>
+   <translation id="emailpro_tab_DISCLAIMER_state_header" qtlid="26443">Status</translation>
+   <translation id="emailpro_tab_DISCLAIMER_table_no_domain" qtlid="152310">Een domein toevoegen en wachten tot hij wordt gevalideerd om een signature te creëren.</translation>
+
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_add_fail" qtlid="171461">Er is een fout opgetreden tijdens het verzoek om de externe contactpersoon toe te voegen.</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_add_step1_display_name_label" qtlid="23515">Weergavenaam</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_add_step1_email_invalid" qtlid="171370">Het aangegeven e-mailadres is ongeldig</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_add_step1_email_label" qtlid="137244">E-mailaccount</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_add_step1_first_name_label" qtlid="23323">Voornaam</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_add_step1_last_name_label" qtlid="3818">Naam</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_add_step1_organization2010_label" qtlid="32278">Organisatie</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_add_step1_question" qtlid="171357">U gaat een extern contactpersoon instellen</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_add_step1_wizardhelp_requirements_content" qtlid="174659">Externe contactpersonen moeten voldoen aan de volgende eisen:<br/><br/>- De voor-en achternaam mogen niet langer dan 64 tekens zijn.<br/>- De weergavenaam mag niet langer zijn dan 255 tekens.</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_add_step1_wizardhelp_requirements_title" qtlid="171383">Voorwaarden voor de externe contactpersonen</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_add_step2_display_name_label" qtlid="23515">Weergavenaam</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_add_step2_email_label" qtlid="137244">E-mailaccount</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_add_step2_first_name_label" qtlid="23323">Voornaam</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_add_step2_last_name_label" qtlid="3818">Naam</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_add_step2_question" qtlid="171435">Weet u zeker dat u de volgende externe contactpersoon wilt toevoegen?</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_add_success" qtlid="171448">Het verzoek om een extern contactpersoon toe te voegen, wordt uitgevoerd. Het zal effectief zijn binnen een paar minuten.</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_add_title" qtlid="136334">Een extern contactpersoon toevoegen</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_add_title_button" qtlid="136334">Een extern contactpersoon toevoegen</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_delete_fail" qtlid="171591">Er is een fout opgetreden tijdens het verzoek om de externe contactpersoon te verwijderen.</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_delete_step1_contact" qtlid="171565">Extern contactpersoon:</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_delete_step1_question" qtlid="171552">Weet u zeker dat u de volgende externe contactpersoon wilt verwijderen?</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_delete_success" qtlid="171578">Het verzoek voor het verwijderen van de externe contactpersoon was succesvol en zal effectief worden in een paar minuten.</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_delete_title" qtlid="171539">Een extern contactpersoon verwijderen</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_fail" qtlid="171526">Er is een fout opgetreden tijdens het verzoek om de externe contactpersoon te wijzigen.</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step1_display_name_label" qtlid="23515">Weergavenaam</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step1_email_invalid" qtlid="171370">Het aangegeven e-mailadres is ongeldig</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step1_email_label" qtlid="137244">E-mailaccount</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step1_first_name_label" qtlid="23323">Voornaam</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step1_last_name_label" qtlid="3818">Naam</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step1_question" qtlid="171487">U gaat een extern contactpersoon wijzigen</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step1_wizardhelp_requirements_content" qtlid="174659">Externe contactpersonen moeten voldoen aan de volgende eisen:<br/><br/>- De voor-en achternaam mogen niet langer dan 64 tekens zijn.<br/>- De weergavenaam mag niet langer zijn dan 255 tekens.</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step1_wizardhelp_requirements_title" qtlid="171383">Voorwaarden voor de externe contactpersonen</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step2_display_name_label" qtlid="23515">Weergavenaam</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step2_email_label" qtlid="137244">E-mailaccount</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step2_first_name_label" qtlid="23323">Voornaam</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step2_last_name_label" qtlid="3818">Naam</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step2_question" qtlid="171500">Weet u zeker dat u de volgende externe contactpersoon wilt wijzigen?</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_success" qtlid="171513">Het verzoek tot wijziging van een extern contactpersoon wordt uitgevoerd. Het zal effectief zijn binnen een paar minuten.</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_title" qtlid="171474">Een extern contactpersoon wijzigen</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_search_placeholder" qtlid="171344">Contactpersonen zoeken</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_table_actions_menu_delete" qtlid="2414">Verwijderen</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_table_actions_menu_modify" qtlid="37875">Wijzigen</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_table_empty" qtlid="171331">U heeft geen extern contactpersoon ingesteld</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_table_headers_creationDate" qtlid="4358">Gemaakt op</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_table_headers_displayName" qtlid="80922">Weergavenaam</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_table_headers_externalEmailAddress" qtlid="30430">Adres</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_table_headers_hiddenFromGAL" qtlid="28483">Telefoonboek</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_table_headers_state" qtlid="26443">Status</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_table_headers_state_CREATING" qtlid="26227">Wordt gecreëerd</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_table_headers_state_DELETING" qtlid="133929">Wordt verwijderd</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_table_headers_state_REOPENING" qtlid="171279">Wordt heropend</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_table_headers_state_SUSPENDED" qtlid="136100">Vervallen</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_table_headers_state_SUSPENDING" qtlid="171292">Wordt opgeschort</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_table_headers_state_MODIFYING" qtlid="174646">Wijziging in</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_table_headers_state_OK" qtlid="433745">Ok</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_table_headers_state_MODIFYING" qtlid="174646">Wijziging in</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_table_tooltip_GAL_false" qtlid="184906">Het adres wordt weergegeven in Outlook</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_table_tooltip_GAL_true" qtlid="184919">Het adres wordt niet weergegeven in Outlook</translation>
+
+   <translation id="emailpro_tab_GROUPS_error_message" qtlid="150138">Er is een fout opgetreden tijdens het uploaden van uw groepen.</translation>
+
+   <translation id="emailpro_tab_INFORMATIONS_connexion" qtlid="55925">Connectie</translation>
+   <translation id="emailpro_tab_INFORMATIONS_messaging" qtlid="276363">E-mailprogramma</translation>
+   <translation id="emailpro_tab_INFORMATIONS_service_url" qtlid="319414">Meer informatie over de geassocieerde SharePoint service</translation>
+   <translation id="emailpro_tab_INFORMATIONS_sharepoint" qtlid="319401">Geassocieerde SharePoint service</translation>
+   <translation id="emailpro_tab_INFORMATIONS_sharepoint_url" qtlid="297930">URL consultatie</translation>
+   <translation id="emailpro_tab_INFORMATIONS_stats" qtlid="26671">Statistieken</translation>
+   <translation id="emailpro_tab_INFORMATIONS_summary" qtlid="4082">Overzicht</translation>
+   <translation id="emailpro_tab_INFORMATIONS_wait_activation" qtlid="297943">In afwachting van activatie</translation>
+   <translation id="emailpro_tab_INFORMATIONS_webmail" qtlid="15473">Webmail</translation>
+
+   <translation id="emailpro_tab_TASKS" qtlid="136217">Recente taken</translation>
+   <translation id="emailpro_tab_TASKS_table_empty" qtlid="144058">U heeft geen taken</translation>
+   <translation id="emailpro_tab_TASKS_table_function" qtlid="61872">Taak</translation>
+   <translation id="emailpro_tab_TASKS_table_state" qtlid="167912">Status</translation>
+   <translation id="emailpro_tab_TASKS_DOING" qtlid="26383">Wordt uitgevoerd</translation>
+   <translation id="emailpro_tab_TASKS_CANCELLED" qtlid="27631">Geannuleerd</translation>
+   <translation id="emailpro_tab_TASKS_DONE" qtlid="8662">Voltooid</translation>
+   <translation id="emailpro_tab_TASKS_ERROR" qtlid="45508">Fout</translation>
+   <translation id="emailpro_tab_TASKS_TODO" qtlid="37455">Gepland</translation>
+   <translation id="emailpro_tab_TASKS_ADD_ACCOUNT" qtlid="137309">Het toevoegen van een account</translation>
+   <translation id="emailpro_tab_TASKS_ADD_ALIAS" qtlid="144071">Een alias toevoegen</translation>
+   <translation id="emailpro_tab_TASKS_ADD_DOMAIN" qtlid="137335">Een domein toevoegen </translation>
+   <translation id="emailpro_tab_TASKS_ADD_DOMAIN_DISCLAIMER" qtlid="152206">Een signature toevoegen</translation>
+   <translation id="emailpro_tab_TASKS_ADD_EXTERNAL_CONTACT" qtlid="137348">Een extern contactpersoon toevoegen</translation>
+   <translation id="emailpro_tab_TASKS_ADD_FULL_ACCESS" qtlid="137361">Het toevoegen van toegangsrechten</translation>
+   <translation id="emailpro_tab_TASKS_addFullAccess" qtlid="137361">Het toevoegen van toegangsrechten</translation>
+   <translation id="emailpro_tab_TASKS_ADD_SEND_AS" qtlid="181370">Het toevoegen van 'verzendings'-rechten voor accounts</translation>
+   <translation id="emailpro_tab_TASKS_CHANGE_PASSWORD" qtlid="16721">Wijziging van het wachtwoord</translation>
+   <translation id="emailpro_tab_TASKS_DELETE_ACCOUNT" qtlid="136516">Verwijdering van de account</translation>
+   <translation id="emailpro_tab_TASKS_DELETE_ALIAS" qtlid="136529">Verwijdering van de alias</translation>
+   <translation id="emailpro_tab_TASKS_DELETE_DOMAIN" qtlid="136542">Verwijdering van het domein</translation>
+   <translation id="emailpro_tab_TASKS_DELETE_EXTERNAL_CONTACT" qtlid="137387">Verwijdering van een extern contactpersoon </translation>
+   <translation id="emailpro_tab_TASKS_DELETE_FULL_ACCESS" qtlid="137400">Verwijdering van de toegangsrechten</translation>
+   <translation id="emailpro_tab_TASKS_deleteFullAccess" qtlid="137400">Verwijdering van de toegangsrechten</translation>
+   <translation id="emailpro_tab_TASKS_DELETE_SEND_AS" qtlid="181383">Het verwijderen van 'verzendings'-rechten voor accounts</translation>
+   <translation id="emailpro_tab_TASKS_UPDATE_ACCOUNT" qtlid="136594">Bewerking van de account </translation>
+   <translation id="emailpro_tab_TASKS_SET_ACCOUNT" qtlid="136594">Bewerking van de account </translation>
+   <translation id="emailpro_tab_TASKS_SET_DNS" qtlid="149826">Wijziging van de DNS-instellingen</translation>
+   <translation id="emailpro_tab_TASKS_INSTALL_SSL" qtlid="149839">Installatie van het SSL-certificaat </translation>
+   <translation id="emailpro_tab_TASKS_CONFIGURE_EXCHANGE_CUSTOMER" qtlid="143355">Serverconfiguratie</translation>
+   <translation id="emailpro_tab_TASKS_ADD_DISTRIBUTION_GROUP" qtlid="149865">Een groep toevoegen</translation>
+   <translation id="emailpro_tab_TASKS_addDistributionGroup" qtlid="149865">Een groep toevoegen</translation>
+   <translation id="emailpro_tab_TASKS_ADD_DISTRIBUTION_GROUP_MANAGER" qtlid="149878">Een beheerder aan de groep toevoegen</translation>
+   <translation id="emailpro_tab_TASKS_addDistributionGroupManager" qtlid="149878">Een beheerder aan de groep toevoegen</translation>
+   <translation id="emailpro_tab_TASKS_ADD_DISTRIBUTION_GROUP_MEMBER" qtlid="149891">Een contactgroep toevoegen</translation>
+   <translation id="emailpro_tab_TASKS_addDistributionGroupMember" qtlid="149891">Een contactgroep toevoegen</translation>
+   <translation id="emailpro_tab_TASKS_DELETE_DISTRIBUTION_GROUP" qtlid="149904">De groep verwijderen</translation>
+   <translation id="emailpro_tab_TASKS_deleteDistributionGroup" qtlid="149904">De groep verwijderen</translation>
+   <translation id="emailpro_tab_TASKS_DELETE_DISTRIBUTION_GROUP_MANAGER" qtlid="149917">Verwijdering van een beheerder van de groep </translation>
+   <translation id="emailpro_tab_TASKS_deleteDistributionGroupManager" qtlid="149930">Verwijdering van een beheerder van een groep </translation>
+   <translation id="emailpro_tab_TASKS_DELETE_DISTRIBUTION_GROUP_MEMBER" qtlid="149943">Verwijdering van een contactpersoon van een groep</translation>
+   <translation id="emailpro_tab_TASKS_deleteDistributionGroupMember" qtlid="149956">Verwijdering van een contactgroep </translation>
+   <translation id="emailpro_tab_TASKS_DELETE_DISTRIBUTION_GROUP_SEND_ON_BEHALF_TO" qtlid="180226">Het verwijderen van 'verzendings'-rechten voor </translation>
+   <translation id="emailpro_tab_TASKS_SET_DISTRIBUTION_GROUP" qtlid="149969">Wijziging van de groep</translation>
+   <translation id="emailpro_tab_TASKS_setDistributionGroup" qtlid="149969">Wijziging van de groep</translation>
+   <translation id="emailpro_tab_TASKS_DELETE_DOMAIN_DISCLAIMER" qtlid="152219">Verwijderen van een signature </translation>
+   <translation id="emailpro_tab_TASKS_SET_DOMAIN_DISCLAIMER" qtlid="152232">Een signature wijzigen</translation>
+   <translation id="emailpro_tab_TASKS_GENERATE_OUTLOOK_URL" qtlid="150021">Het genereren van een Outlook link</translation>
+   <translation id="emailpro_tab_TASKS_SET_DOMAIN" qtlid="136607">Domein wijziging</translation>
+   <translation id="emailpro_tab_TASKS_SET_ALIAS" qtlid="148214">Alias wijziging</translation>
+   <translation id="emailpro_tab_TASKS_ADD_RESOURCE_ACCOUNT" qtlid="156134">Een resource account toevoegen</translation>
+   <translation id="emailpro_tab_TASKS_ADD_RESOURCE_DELEGATE" qtlid="195126">Het toevoegen van rechten per resource</translation>
+   <translation id="emailpro_tab_TASKS_SET_RESOURCE_ACCOUNT" qtlid="156147">Wijziging van een resource account</translation>
+   <translation id="emailpro_tab_TASKS_DELETE_RESOURCE_DELEGATE" qtlid="209086">Verwijdering van de rechten voor elke resource</translation>
+   <translation id="emailpro_tab_TASKS_DELETE_RESOURCE_ACCOUNT" qtlid="156160">Verwijdering van een resource account </translation>
+   <translation id="emailpro_tab_TASKS_SET_EXTERNAL_CONTACT" qtlid="177938">Wijziging van externe contactpersonen </translation>
+   <translation id="emailpro_tab_TASKS_ADD_SEND_ON_BEHALF_TO" qtlid="181396">Het toevoegen van 'verzenden namens'-rechten voor accounts</translation>
+   <translation id="emailpro_tab_TASKS_DELETE_SEND_ON_BEHALF_TO" qtlid="181409">Het verwijderen van 'verzenden namens'-rechten voor accounts</translation>
+   <translation id="emailpro_tab_TASKS_ADD_DISTRIBUTION_GROUP_SEND_ON_BEHALF_TO" qtlid="181422">Het toevoegen van 'verzenden namens'-rechten voor groepen</translation>
+   <translation id="emailpro_tab_TASKS_DELETE_DISTRIBUTION_GROUP_SEND_ON_BEHALF_TO" qtlid="181435">Het verwijderen van 'verzenden namens'-rechten voor groepen</translation>
+   <translation id="emailpro_tab_TASKS_ADD_DISTRIBUTION_GROUP_SEND_AS" qtlid="181448">Het toevoegen van verzendrechten voor groepen</translation>
+   <translation id="emailpro_tab_TASKS_DELETE_DISTRIBUTION_GROUP_SEND_AS" qtlid="181461">Verwijdering van de verzendrechten voor groepen</translation>
+   <translation id="emailpro_tab_TASKS_ADD_EXPORT_PST_REQUEST" qtlid="190862">Het verifiëren van een .pst-bestand</translation>
+   <translation id="emailpro_tab_TASKS_GENERATE_PST_URL" qtlid="190875">Het genereren van een .pst-bestand</translation>
+   <translation id="emailpro_tab_TASKS_SET_PUBLIC_FOLDER_PERMISSION" qtlid="201250">Het wijzigen van de rechten op het delen van data</translation>
+   <translation id="emailpro_tab_TASKS_ADD_PUBLIC_FOLDER_PERMISSION" qtlid="201263">Het toevoegen van de rechten op het delen van data </translation>
+   <translation id="emailpro_tab_TASKS_DELETE_PUBLIC_FOLDER_PERMISSION" qtlid="201276">Het verwijderen van de rechten op het delen van data </translation>
+   <translation id="emailpro_tab_TASKS_ADD_PUBLIC_FOLDER" qtlid="201289">Het delen van data toevoegen</translation>
+   <translation id="emailpro_tab_TASKS_DELETE_PUBLIC_FOLDER" qtlid="201302">Het delen van data verwijderen</translation>
+   <translation id="emailpro_tab_TASKS_SET_PUBLIC_FOLDER" qtlid="201315">Het delen van data wijzigen</translation>
+   <translation id="emailpro_tab_TASKS_EXPAND_DRIVE" qtlid="191759">Het toevoegen van schijfruimte</translation>
+   <translation id="emailpro_tab_TASKS_ADD_SHARED_ACCOUNT" qtlid="215208">Een gedeelde account toevoegen</translation>
+   <translation id="emailpro_tab_TASKS_DELETE_SHARED_ACCOUNT" qtlid="215221">Een gedeelde account verwijderen</translation>
+   <translation id="emailpro_tab_TASKS_SET_SHARED_ACCOUNT" qtlid="215234">Een gedeelde account wijzigen</translation>
+   <translation id="emailpro_tab_TASKS_ADD_SHARED_ACCOUNT_FULL_ACCESS" qtlid="215247">Toegangsrechten toevoegen aan een gedeelde account</translation>
+   <translation id="emailpro_tab_TASKS_ADD_SHARED_ACCOUNT_SEND_AS" qtlid="215260">"send as" rechten aan een gedeelde account toevoegen</translation>
+   <translation id="emailpro_tab_TASKS_ADD_SHARED_ACCOUNT_SEND_ON_BEHALF_TO" qtlid="215273">"send on behalf" rechten aan een gedeelde account toevoegen</translation>
+   <translation id="emailpro_tab_TASKS_DELETE_SHARED_ACCOUNT_FULL_ACCESS" qtlid="215286">Toegangsrechten van de gedeelde account verwijderen</translation>
+   <translation id="emailpro_tab_TASKS_DELETE_SHARED_ACCOUNT_SEND_AS" qtlid="215299">Verzendingsrechten van de gedeelde account verwijderen</translation>
+   <translation id="emailpro_tab_TASKS_DELETE_SHARED_ACCOUNT_SEND_ON_BEHALF_TO" qtlid="215312">"Send on behalf" rechten van de gedeelde account verwijderen</translation>
+   <translation id="emailpro_tab_TASKS_table_start_date" qtlid="201328">Begin</translation>
+   <translation id="emailpro_tab_TASKS_table_finish_date" qtlid="201341">Einde</translation>
+   <translation id="emailpro_tab_TASKS_warning" qtlid="136347">Let op!</translation>
+   <translation id="emailpro_tab_TASKS_partial" qtlid="137426">De getoonde lijst is niet compleet, sommige taken konden niet juist worden geladen.</translation>
+   <translation id="emailpro_tab_TASKS_error_message" qtlid="144097">Er is een fout opgetreden tijdens het laden van de taken.</translation>
+   <translation id="emailpro_tab_TASKS_SET_SERVICE" qtlid="174841">Het beveiligingsbeleid van de account</translation>
+   <translation id="emailpro_tab_TASKS_mailinglist" qtlid="525184">Modification mailing-list</translation>
+   <translation id="emailpro_tab_TASKS_redirection" qtlid="525197">Modification redirection</translation>
+
+   <translation id="emailpro_tab_domain_no_domains_2" qtlid="137452">hier</translation>
+   <translation id="emailpro_tab_domain_no_domains_3" qtlid="137465">om een ​​nieuw domein toe te voegen.</translation>
+   <translation id="emailpro_tab_domain_table_empty_search" qtlid="150034">U heeft geen domeinen die overeenkomen met deze zoekopdracht</translation>
+   <translation id="emailpro_tab_domain_search" qtlid="136633">Een domein zoeken</translation>
+   <translation id="emailpro_tab_domain_domain" qtlid="170434">Domein</translation>
+   <translation id="emailpro_tab_domain_type" qtlid="15713">Modus</translation>
+   <translation id="emailpro_tab_domain_accounts_count" qtlid="28363">Accounts</translation>
+   <translation id="emailpro_tab_domain_popover_delete" qtlid="210267">Dit domein verwijderen</translation>
+   <translation id="emailpro_tab_domain_popover_update" qtlid="4406">Configuratie</translation>
+   <translation id="emailpro_tab_domain_diagnostic" qtlid="95059">Diagnostisch</translation>
+   <translation id="emailpro_tab_domain_diagnostic_mx" qtlid="23779">MX</translation>
+   <translation id="emailpro_tab_domain_diagnostic_mx_title" qtlid="137478">MX-diagnose</translation>
+   <translation id="emailpro_tab_domain_diagnostic_mx_toolbox_ok" qtlid="137491">Automatische configuratie voltooid</translation>
+   <translation id="emailpro_tab_domain_diagnostic_mx_intro_ovh" qtlid="192890">Uw domein wordt gehost door OVH, u kunt het MX-record van uw domein {0} op de volgende manier configureren</translation>
+   <translation id="emailpro_tab_domain_diagnostic_mx_label_champ" qtlid="192903">MX-record</translation>
+   <translation id="emailpro_tab_domain_diagnostic_mx_label_champs" qtlid="46780">MX velden</translation>
+   <translation id="emailpro_tab_domain_diagnostic_mx_no_antispam" qtlid="447664">Als u de niet-autoritieve modus gebruikt (Exchange + een ander berichtensysteem) met een berichtensysteem dat niet wordt gehost door OVH:</translation>
+   <translation id="emailpro_tab_domain_diagnostic_mx_no_antispam_config" qtlid="192929">Prioriteit: <strong>{0}</strong>; target: <strong>{1}</strong></translation>
+   <translation id="emailpro_tab_domain_diagnostic_mx_antispam" qtlid="447677">Als u de autoritieve modus (alleen Exchange) of de niet-autoritieve modus gebruikt met een berichtensysteem (gedeelde e-mailservice) gehost door OVH:</translation>
+   <translation id="emailpro_tab_domain_diagnostic_mx_antispam_config" qtlid="192955">Prioriteit: <strong>{0}</strong>; target: <strong>{1}</strong><br /> Prioriteit: <strong>{2}</strong>; target: <strong>{3}</strong><br /> Prioriteit: <strong>{4}</strong>; target: <strong>{5}</strong><br /> Prioriteit: <strong>{6}</strong>; target: <strong>{7}</strong><br /></translation>
+   <translation id="emailpro_tab_domain_diagnostic_mx_no_ovh" qtlid="349101">Als het domein niet onder hetzelfde klant ID als de Exchange oplossing wordt beheerd, of als uw domein elders is geregistreerd, is automatische configuratie niet mogelijk. Maak aub handmatig een MX-record aan op dit domein met dezelfde informatie die u hierboven heeft ingevoerd. </translation>
+   <translation id="emailpro_tab_domain_diagnostic_mx_recap" qtlid="192981">Een MX-record zal worden toegevoegd aan de DNS-zone van uw domein. Let op, de reeds bestaande MX-records zullen worden verwijderd.</translation>
+   <translation id="emailpro_tab_domain_diagnostic_add_field_success" qtlid="316905">De DNS-zone is gewijzigd. Propagatie en de diagnostische update kunnen enkele uren in beslag nemen. </translation>
+   <translation id="emailpro_tab_domain_diagnostic_add_field_failure" qtlid="193007">Er is een fout opgetreden bij het wijzigen van uw DNS-zone.</translation>
+   <translation id="emailpro_tab_domain_diagnostic_srv_intro_ovh" qtlid="193020">Uw domein wordt gehost door OVH, u kunt het SRV-record van uw domein {0} configureren op de volgende wijze</translation>
+   <translation id="emailpro_tab_domain_diagnostic_srv_label_champ" qtlid="193033">SRV-record</translation>
+   <translation id="emailpro_tab_domain_diagnostic_srv_config" qtlid="193046">Onder domein: <strong>{0}</strong><br /> Prioriteit: <strong>{1}</strong><br /> Gewicht: <strong>{2}</strong><br /> Port: <strong>{3}</strong><br /> Target: <strong>{4}</strong></translation>
+   <translation id="emailpro_tab_domain_diagnostic_srv_no_ovh" qtlid="349114">Als het domein niet onder hetzelfde klant ID als de Exchange oplossing wordt beheerd, of als uw domein elders is geregistreerd, is automatische configuratie niet mogelijk. Maak aub handmatig een SRV-record aan op dit domein met dezelfde informatie die u hierboven heeft ingevoerd. </translation>
+   <translation id="emailpro_tab_domain_diagnostic_srv_recap" qtlid="256191">Een SRV veld zal in de DNS zone van uw domein worden toegevoegd. Let op, de bestaande SRV velden  met het subdomein "{0}" zullen worden verwijderd.</translation>
+   <translation id="emailpro_tab_domain_diagnostic_srv" qtlid="130003">SRV</translation>
+   <translation id="emailpro_tab_domain_diagnostic_srv_title" qtlid="137517">Diagnostische SRV</translation>
+   <translation id="emailpro_tab_domain_diagnostic_srv_toolbox_ok" qtlid="137491">Automatische configuratie voltooid</translation>
+   <translation id="emailpro_tab_domain_error_message" qtlid="144045">Er is een fout opgetreden tijdens het laden van uw domeinen.</translation>
+   <translation id="emailpro_tab_domain_diagnostic_cname" qtlid="129847">CNAME</translation>
+   <translation id="emailpro_tab_domain_status" qtlid="26443">Status</translation>
+   <translation id="emailpro_tab_domain_task_in_progress" qtlid="2690">De taak wordt uitgevoerd</translation>
+   <translation id="emailpro_tab_domain_validation" qtlid="33802">Validatie</translation>
+   <translation id="emailpro_tab_domain_validation_doing" qtlid="136646">Validatie van het domein wordt uitgevoerd</translation>
+   <translation id="emailpro_tab_domain_validation_cname" qtlid="139260">Creëer svp een CNAME record.</translation>
+   <translation id="emailpro_tab_domain_validation_cname_title" qtlid="139273">Verificatie van de eigenaar</translation>
+   <translation id="emailpro_tab_domain_validation_cname_details" qtlid="363401">Om te bevestigen dat u de eigenaar bent van dit domein, maakt u een CNAME-record aan: <br /><br /><span class="bold">{0}.{1}</span> naar <span class="bold">{2}</span>.<br /><br /> U heeft 48 uur de tijd om dit te doen.</translation>
+   <translation id="emailpro_tab_domain_add_domain" qtlid="8602">Een domein toevoegen</translation>
+   <translation id="emailpro_tab_domain_delete_domain" qtlid="137556">Verwijder dit domein van de Exchange diensten</translation>
+   <translation id="emailpro_tab_domain_creating" qtlid="26791">Creatie</translation>
+   <translation id="emailpro_tab_domain_NON_AUTHORITATIVE" qtlid="447703">Niet-autoritief</translation>
+   <translation id="emailpro_tab_domain_AUTHORITATIVE" qtlid="58807">autoritatief</translation>
+   <translation id="emailpro_tab_domain_warning" qtlid="136347">Let op!</translation>
+   <translation id="emailpro_tab_domain_partial" qtlid="137569">Sommige domeinen konden niet juist worden geladen. Vernieuw svp de pagina om het probleem op te lossen.</translation>
+   <translation id="emailpro_tab_domain_add_step1_select_domain_option" qtlid="136971">Selecteer een domein uit de lijst</translation>
+   <translation id="emailpro_tab_domain_add_step1_user_owned_option" qtlid="397533">Voer een domeinnaam in die niet beheerd wordt door uw OVH account</translation>
+   <translation id="emailpro_tab_domain_add_step1_user_owned_info" qtlid="397546">Let op: zorg ervoor dat uw gekozen DNS zone van uw domein bewerkt kan worden door diens administrator</translation>
+   <translation id="emailpro_tab_domain_add_step1_order_domain_option" qtlid="136997">Een domeinnaam bestellen</translation>
+   <translation id="emailpro_tab_domain_add_step1_domain_none" qtlid="434538">Geen resultaten gevonden</translation>
+   <translation id="emailpro_tab_domain_add_step3_cover_guide" qtlid="139572">Preview video-handleiding </translation>
+   <translation id="emailpro_tab_domain_add_step1_main_domain" qtlid="191070">Hoofddomein van een organisatie</translation>
+   <translation id="emailpro_tab_domain_add_step1_main_domain_tooltip" qtlid="191083">Hoofddomein van de organisatie</translation>
+   <translation id="emailpro_tab_domain_add_step1_new_organization_intro" qtlid="447716">Uw bedrijfsdomein zal <strong>{0}</strong> zijn</translation>
+   <translation id="emailpro_tab_domain_add_step1_new_organization_placeholder" qtlid="191109">Bedrijfsnaam</translation>
+   <translation id="emailpro_tab_domain_add_step2_main_domain" qtlid="191122">Hoofddomein</translation>
+   <translation id="emailpro_tab_domain_add_step2_organization" qtlid="32278">Organisatie</translation>
+   <translation id="emailpro_tab_domain_add_step2_main_domain_true" qtlid="34776">Ja</translation>
+   <translation id="emailpro_tab_domain_add_step2_main_domain_false" qtlid="34788">Nee</translation>
+   <translation id="emailpro_tab_domain_add_step2_mx_replay" qtlid="316931">Bestemming e-mail server</translation>
+   <translation id="emailpro_tab_domain_add_step2_mx_replay_tooltip" qtlid="210293">De e-mails met niet gevonden bestemmingen worden doorgestuurd naar deze server.</translation>
+   <translation id="emailpro_tab_domain_add_step1_attach_organization_intro" qtlid="191135">De domeinnaam zal worden opgenomen in de volgende organisatie:</translation>
+   <translation id="emailpro_tab_domain_add_set_auto_display" qtlid="416488">Vink dit vakje aan om te voorkomen dat dit venster opnieuw wordt geopend.</translation>
+   <translation id="emailpro_tab_domain_add_goToWizardButton" qtlid="449388">Ik gebruik bij voorkeur de <br />configuratie-assistent</translation>
+   <translation id="emailpro_tab_domain_add_step1_order_domain_desc1" qtlid="167873">Om uw bestelling te bevestigen, ga svp naar betalen door op de knop "Bestellen" te klikken.</translation>
+   <translation id="emailpro_tab_domain_add_step1_order_domain_desc2" qtlid="144175">Een nieuwe tab wordt geopend en u wordt automatisch doorgestuurd naar de betalingsinterface van OVH.</translation>
+   <translation id="emailpro_tab_domain_step1_helpwizard_subdomain_title" qtlid="137881">Gebruik een subdomein</translation>
+   <translation id="emailpro_tab_domain_step1_helpwizard_subdomain" qtlid="397559">Om een van de subdomeinen van uw OVH domein toe te voegen, vinkt u 'Voeg een domeinnaam toe die niet beheerd is door uw OVH account' aan en voer het in in het bijbehorende veld. </translation>
+   <translation id="emailpro_tab_domain_add_step2_which_domain_type" qtlid="137998">Wat voor type domein <span class="italic">{0}</span> is het?</translation>
+   <translation id="emailpro_tab_domain_add_step2_auth_intro" qtlid="140859">Uw domein <span class="italic"> {0} </span> zal worden geconfigureerd in autoritatieve modus.</translation>
+   <translation id="emailpro_tab_domain_add_step2_non_auth_intro" qtlid="447729">Uw domein <span class="italic">{0}</span> zal worden geconfigureerd in de niet-autoritieve modus</translation>
+   <translation id="emailpro_tab_domain_add_step2bis_intro" qtlid="316944">Selecteer uw domeinformulier: </translation>
+   <translation id="emailpro_tab_domain_add_step2_srv_checkbox" qtlid="138011">Automatisch configureren van de SRV (autodiscover)</translation>
+   <translation id="emailpro_tab_domain_add_step2_mx_checkbox" qtlid="139585">De MX automatisch configureren (ontvangst van de e-mails)</translation>
+   <translation id="emailpro_tab_domain_add_step2_mx_tooltip" qtlid="140209">Let op: het automatisch configureren van de MX kan invloed hebben op de ontvangst van e-mails die vooraf zijn geconfigureerd op deze domeinnaam.</translation>
+   <translation id="emailpro_tab_domain_add_step2_srv_tooltip" qtlid="447742">Met deze optie kan uw e-mailclient (bijvoorbeeld Outlook of Mail) automatisch uw aanmeldingsinstellingen detecteren.</translation>
+   <translation id="emailpro_tab_domain_add_step3_srv_confirmation" qtlid="137816">SRV-configuratie</translation>
+   <translation id="emailpro_tab_domain_add_step3_mx_confirmation" qtlid="137829">MX-configuratie</translation>
+   <translation id="emailpro_tab_domain_add_step3_mx_replay" qtlid="316957">Bestemming e-mail server</translation>
+   <translation id="emailpro_tab_domain_add_step3_configuration_true" qtlid="137842">Automatisch</translation>
+   <translation id="emailpro_tab_domain_add_step3_configuration_false" qtlid="34788">Nee</translation>
+   <translation id="emailpro_tab_domain_add_success" qtlid="137868">Het domein zal worden toegevoegd aan uw exchange server.</translation>
+   <translation id="emailpro_tab_domain_add_failure" qtlid="137049">Er is een fout opgetreden bij het toevoegen van het domein op uw exchange server.</translation>
+   <translation id="emailpro_tab_domain_modify_success" qtlid="137907">Het domein wordt geüpdatet</translation>
+   <translation id="emailpro_tab_domain_modify_failure" qtlid="519116">Une erreur est survenue lors de la mise à jour du domaine</translation>
+   <translation id="emailpro_tab_domain_modify_in_progress" qtlid="137088">Conversie naar {0} wordt uitgevoerd</translation>
+   <translation id="emailpro_tab_domain_inverse_NON_AUTHORITATIVE" qtlid="58807">autoritatief</translation>
+   <translation id="emailpro_tab_domain_inverse_AUTHORITATIVE" qtlid="447755">Niet-autoritief</translation>
+   <translation id="emailpro_tab_domain_target_mail_server_label" qtlid="316957">Bestemming e-mail server</translation>
+   <translation id="emailpro_tab_domain_noovh_mx_info" qtlid="317126">MX en SRV wijzigingen dienen handmatig uitgevoerd te worden in uw DNS-zone. U kunt de benodigde informatie vinden in het bijbehorende domeinonderdeel, zodra de CNAME gevalideerd is. </translation>
+   <translation id="emailpro_tab_domain_modify_domain" qtlid="137101">Een domein bewerken</translation>
+   <translation id="emailpro_tab_domain_modify_domain_tooltip" qtlid="444667">Vade Secure anti-spam is compatibel met de non-authoritative modus (alleen als uw POP/IMAP-accounts worden gehost door OVH). Als dit het geval is dan raden we u aan om <strong>{0}</strong>, <strong>{1}</strong>, <strong>{2}</strong>, en <strong>{3}</strong><br/><br/> Als u de niet-exclusieve modus gebruikt met e-mailaccounts die niet worden gehost door OVH, moet u <strong>{4}</strong> gebruiken (zie het gedeelte 'Verwante domeinen') </translation>
+   <translation id="emailpro_tab_domain_modify_title" qtlid="375543">Weet u zeker dat u het volgende domein wilt wijzigen voor uw E-mail Pro? </translation>
+   <translation id="emailpro-mxplan_tab_domain_modify_title" qtlid="519129">Etes-vous sûr de vouloir modifier le domaine suivant de votre service MX Plan ?</translation>
+   <translation id="emailpro_tab_domain_modify_loop_warning" qtlid="210319">Let op, oneindige loop!</translation>
+   <translation id="emailpro_tab_domain_modify_domain_warning" qtlid="210332">Ongeldig domein.</translation>
+   <translation id="emailpro_tab_domain_modify_length_warning" qtlid="210345">Let op, maximaal 255 tekens!</translation>
+   <translation id="emailpro_tab_domain_modify_wizard_subtitle" qtlid="210358">Autoritatif/Non-autoritatif: wat zal ik kiezen?</translation>
+   <translation id="emailpro_tab_domain_remove_domain" qtlid="137933">Een domein verwijderen</translation>
+   <translation id="emailpro_tab_domain_remove_success" qtlid="137959">Het domein zal worden verwijderd van uw Exchange dienst.</translation>
+   <translation id="emailpro_tab_domain_remove_failure" qtlid="137972">Er is een fout opgetreden bij het verwijderen van het domein van uw Exchange dienst.</translation>
+   <translation id="emailpro_update_billing_action_title" qtlid="98324">Verlengingsperiode</translation>
+   <translation id="emailpro_update_billing_button_title" qtlid="190953">Facturatie status</translation>
+   <translation id="emailpro_update_billing_expiration_date_label" qtlid="30406">Vervaldatum</translation>
+   <translation id="emailpro_update_billing_header_1M" qtlid="60378">Maandelijks</translation>
+   <translation id="emailpro_update_billing_header_1Y" qtlid="60390">Jaarlijks</translation>
+   <translation id="emailpro_update_billing_header_new_periode" qtlid="190992">Nieuwe periode</translation>
+   <translation id="emailpro_update_billing_header_terminate" qtlid="209177">Geen</translation>
+   <translation id="emailpro_update_billing_periode_delete_warning" qtlid="211593">Let op! Deze keuze houdt in dat de dienst uiteindelijk zal vervallen en de gegevens verloren zullen gaan. Het is dan niet meer mogelijk om de gegevens van de account te herstellen.</translation>
+   <translation id="emailpro_update_billing_periode_failure" qtlid="191044">Er is een fout opgetreden tijdens het laden van de automatische verlengingsperiode.</translation>
+   <translation id="emailpro_update_billing_periode_intro" qtlid="190966">Selecteer de gewenste periode voor de automatische verlenging van elk account. <br /> Dit gaat in vanaf de volgende verlenging.</translation>
+   <translation id="emailpro_update_billing_periode_label" qtlid="168172">Verlenging</translation>
+   <translation id="emailpro_update_billing_periode_partial" qtlid="191031">Sommige van de verlengingsperiode wijzigingen zijn mislukt.</translation>
+   <translation id="emailpro_update_billing_periode_resume" qtlid="191005">U gaat de verlengingsperiode van uw rekeningen wijzigen:</translation>
+   <translation id="emailpro_update_billing_periode_success" qtlid="191018">De wijziging van de automatische verlengingsperiode werd uitgevoerd.</translation>
+   <translation id="emailpro_update_billing_periode_value_YEARLY" qtlid="79542">jaarlijks</translation>
+   <translation id="emailpro_update_billing_periode_value_MONTHLY" qtlid="79530">maandelijks</translation>
+   <translation id="emailpro_update_billing_periode_value_DELETE_AT_EXPIRATION" qtlid="201406">Vervalt op de einddatum</translation>
+   <translation id="lockoutThreshold_unit_value_0" qtlid="176713">De account zal nooit worden afgesloten</translation>
+   <translation id="lockoutThreshold_unit_value_1" qtlid="178432">1 poging</translation>
+   <translation id="lockoutThreshold_unit_value_many" qtlid="178445">{0} pogingen</translation>
+   <translation id="lockoutThreshold_min_error" qtlid="178185">De lockout drempel kan niet minder dan 1 poging zijn.</translation>
+   <translation id="lockoutThreshold_max_error" qtlid="176635">De lockout drempel mag niet groter zijn dan 14 pogingen.</translation>
+   <translation id="lockoutThreshold_mustBeInteger_error" qtlid="178198">De lock-out drempel moet een heel nummer zijn.</translation>
+   <translation id="lockoutThreshold_number_error" qtlid="178198">De lock-out drempel moet een heel nummer zijn.</translation>
+   <translation id="lockoutThreshold_required_error" qtlid="192019">Verplichte velden  </translation>
+   <translation id="lockoutThreshold_pattern_error" qtlid="178198">De lock-out drempel moet een heel nummer zijn.</translation>
+   <translation id="lockoutDuration_min_error" qtlid="178211">De lockout duur moet lager zijn dan de lockout teller reset duur.</translation>
+   <translation id="lockoutDuration_max_error" qtlid="178224">De lockout duur kan niet groter zijn dan 90 minuten.</translation>
+   <translation id="maxPasswordAge_unit_value_0" qtlid="178497">De wachtwoorden vervallen nooit</translation>
+   <translation id="maxPasswordAge_unit_value_1" qtlid="28807">1 dag</translation>
+   <translation id="maxPasswordAge_unit_value_many" qtlid="178484">{0} dagen</translation>
+   <translation id="maxPasswordAge_min_error" qtlid="178107">De maximum wachtwoord levensduur mag niet minder zijn dan 0 dagen.</translation>
+   <translation id="maxPasswordAge_max_error" qtlid="176596">De maximum wachtwoord levensduur mag niet groter zijn dan 90 dagen.</translation>
+   <translation id="maxPasswordAge_mustBeInteger_error" qtlid="178120">De maximum wachtwoord levensduur moet een heel nummer zijn.</translation>
+   <translation id="maxPasswordAge_maxToSmallForMin_error" qtlid="176609">De maximum wachtwoord levensduur mag niet groter zijn dan de minimum levensduur.</translation>
+   <translation id="maxPasswordAge_pattern_error" qtlid="178120">De maximum wachtwoord levensduur moet een heel nummer zijn.</translation>
+   <translation id="maxPasswordAge_number_error" qtlid="178120">De maximum wachtwoord levensduur moet een heel nummer zijn.</translation>
+   <translation id="maxPasswordAge_required_error" qtlid="178120">De maximum wachtwoord levensduur moet een heel nummer zijn.</translation>
+   <translation id="minPasswordAge_min_error" qtlid="433992">Het wachtwoord kan niet jonger zijn dan 0 dagen</translation>
+   <translation id="minPasswordAge_max_error" qtlid="434005">Het wachtwoord kan niet ouder zijn dan 90 dagen</translation>
+   <translation id="minPasswordAge_mustBeInteger_error" qtlid="434018">De leeftijd van het wachtwoord moet een heel getal vormen</translation>
+   <translation id="minPasswordAge_minToBigForMax_error" qtlid="178094">De minimum wachtwoord levensduur moet minder zijn dan de maximum levensduur.</translation>
+   <translation id="minPasswordAge_pattern_error" qtlid="434018">De leeftijd van het wachtwoord moet een heel getal vormen</translation>
+   <translation id="minPasswordAge_number_error" qtlid="434018">De leeftijd van het wachtwoord moet een heel getal vormen</translation>
+   <translation id="minPasswordAge_required_error" qtlid="434018">De leeftijd van het wachtwoord moet een heel getal vormen</translation>
+   <translation id="minPasswordAge_unit_value_0" qtlid="178471">De wijzigingen worden direct toegelaten.</translation>
+   <translation id="minPasswordAge_unit_value_1" qtlid="28807">1 dag</translation>
+   <translation id="minPasswordAge_unit_value_many" qtlid="178484">{0} dagen</translation>
+   <translation id="lockoutObservationWindow_min_error" qtlid="178133">De minimumwaarde is 1</translation>
+   <translation id="lockoutObservationWindow_max_error" qtlid="178146">De maximumwaarde is 90</translation>
+   <translation id="lockoutObservationWindow_mustBeInteger_error" qtlid="263871">Het uitstel van de herinstallatie moet een geheel getal zijn</translation>
+   <translation id="lockoutObservationWindow_number_error" qtlid="263871">Het uitstel van de herinstallatie moet een geheel getal zijn</translation>
+   <translation id="lockoutObservationWindow_required_error" qtlid="192019">Verplichte velden  </translation>
+   <translation id="lockoutObservationWindow_pattern_error" qtlid="263871">Het uitstel van de herinstallatie moet een geheel getal zijn</translation>
+   <translation id="lockoutObservationWindow_toBigForDuration_error" qtlid="178172">De waarde moet minder zijn dan de account lockout duur.</translation>
+   <translation id="lockoutObservationWindow_unit_value_1" qtlid="32326">1 minuut</translation>
+   <translation id="lockoutObservationWindow_unit_value_many" qtlid="146814">{0} minuten</translation>
+   <translation id="lockoutDuration_min_error" qtlid="178211">De lockout duur moet lager zijn dan de lockout teller reset duur.</translation>
+   <translation id="lockoutDuration_max_error" qtlid="178224">De lockout duur kan niet groter zijn dan 90 minuten.</translation>
+   <translation id="lockoutDuration_mustBeInteger_error" qtlid="178042">De duur van de blokkering moet een geheel getal zijn.</translation>
+   <translation id="lockoutDuration_number_error" qtlid="178250">De lockout duur moet een getal zijn.</translation>
+   <translation id="lockoutDuration_required_error" qtlid="192019">Verplichte velden  </translation>
+   <translation id="lockoutDuration_pattern_error" qtlid="178042">De duur van de blokkering moet een geheel getal zijn.</translation>
+   <translation id="lockoutDuration_unit_value_0" qtlid="178458">De account wordt geblokkeerd totdat een beheerder het expliciet ontgrendelt.</translation>
+   <translation id="lockoutDuration_unit_value_1" qtlid="32326">1 minuut</translation>
+   <translation id="lockoutDuration_unit_value_many" qtlid="146814">{0} minuten</translation>
+   <translation id="complexityEnabled_value_true" qtlid="178406">Geactiveerd</translation>
+   <translation id="complexityEnabled_value_false" qtlid="178419">Gedeactiveerd</translation>
+   <translation id="minPasswordLength_unit_value_0" qtlid="178510">Geen wachtwoord nodig</translation>
+   <translation id="minPasswordLength_unit_value_1" qtlid="178523">1 teken</translation>
+   <translation id="minPasswordLength_unit_value_many" qtlid="178536">{0} tekens</translation>
+   <translation id="minPasswordLength_min_error" qtlid="178029">De minimale lengte van het wachtwoord mag niet kleiner dan 3 zijn.</translation>
+   <translation id="minPasswordLength_max_error" qtlid="176531">De minimum wachtwoord lengte mag niet groter zijn dan 14.</translation>
+   <translation id="minPasswordLength_required_error" qtlid="192019">Verplichte velden  </translation>
+   <translation id="minPasswordLength_mustBeInteger_error" qtlid="178055">De minimale lengte van het wachtwoord moet een geheel getal zijn</translation>
+   <translation id="minPasswordLength_number_error" qtlid="178055">De minimale lengte van het wachtwoord moet een geheel getal zijn</translation>
+   <translation id="minPasswordLength_pattern_error" qtlid="178055">De minimale lengte van het wachtwoord moet een geheel getal zijn</translation>
+   <translation id="exchange_tab_INFORMATION" qtlid="27115">Algemene informatie</translation>
+   <translation id="exchange_tab_DOMAIN" qtlid="270306">Geassocieerde domeinen</translation>
+   <translation id="exchange_tab_ACCOUNT" qtlid="74273">E-mail accounts</translation>
+   <translation id="exchange_tab_MAILING_LIST" qtlid="50182">Mailing-lijsten</translation>
+   <translation id="exchange_tab_SHARED_ACCOUNT" qtlid="215195">Gedeelde accounts</translation>
+   <translation id="exchange_tab_GROUP" qtlid="32962">Groepen</translation>
+   <translation id="exchange_tab_RESOURCES" qtlid="20227">Resources</translation>
+   <translation id="exchange_tab_SHARED" qtlid="136269">Delen van data</translation>
+   <translation id="exchange_tab_DISCLAIMER" qtlid="276324">Footers</translation>
+   <translation id="exchange_tab_TASKS" qtlid="136217">Recente taken</translation>
+   <translation id="exchange_tab_EXTERNAL_CONTACT" qtlid="82015">Externe contacten</translation>
+   <translation id="exchange_tab_DIAGNOSTIC" qtlid="36351">Diagnoses</translation>
+   <translation id="exchange_tab_REDIRECTION" qtlid="46204">Redirections</translation>
+
+   <translation id="emails_common_from" qtlid="69077">Van</translation>
+   <translation id="emails_common_to" qtlid="175972">Naar</translation>
+   <translation id="email_tab_redirections_quota" qtlid="224828">Omleidingen quota</translation>
+   <translation id="email_tab_button_emails_create_redirection" qtlid="213713">Een redirection toevoegen</translation>
+   <translation id="email_tab_button_emails_export_CSV" qtlid="231773">Exporteren in CSV</translation>
+   <translation id="email_tab_popover_redirection_update" qtlid="99224">Wijziging van de redirection</translation>
+   <translation id="email_tab_popover_redirection_delete" qtlid="219108">De redirection verwijderen</translation>
+   <translation id="email_tab_table_redirections_empty" qtlid="219017">Geen redirection</translation>
+   <translation id="email_tab_modal_update_redirection_title" qtlid="269799">Bewerk een omleiding</translation>
+   <translation id="email_tab_modal_update_redirection_heading" qtlid="269812">U staat op het punt om deze omleiding te bewerken</translation>
+   <translation id="email_tab_modal_update_redirection_success" qtlid="269825">De omleiding is met succes gewijzigd. &#13;
+De operatie zal binnen een paar minuten in werking treden. </translation>
+   <translation id="email_tab_modal_update_redirection_error" qtlid="269838">Er is een fout opgetreden tijdens het bewerken van de omleiding. </translation>
+   <translation id="email_tab_redirections_management_title" qtlid="98948">Beheer van redirections</translation>
+   <translation id="email_tab_redirections_management_heading" qtlid="219004">Beheer van de redirections van het account</translation>
+   <translation id="email_tab_button_emails_create_redirection" qtlid="213713">Een redirection toevoegen</translation>
+   <translation id="email_tab_table_redirections_empty" qtlid="219017">Geen redirection</translation>
+   <translation id="email_tab_redirections_management_heading" qtlid="219004">Beheer van de redirections van het account</translation>
+   <translation id="email_tab_modal_create_redirection_title" qtlid="219030">Een redirection aanmaken</translation>
+   <translation id="email_tab_modal_create_redirection_heading" qtlid="219043">U gaat een redirection aanmaken voor het account {0}</translation>
+   <translation id="email_tab_modal_create_redirection_type" qtlid="220304">Redirection type:</translation>
+   <translation id="email_tab_modal_create_redirection_type_classic" qtlid="221318">Standaard redirection </translation>
+   <translation id="email_tab_modal_create_redirection_type_sub_domain" qtlid="221331">Redirection van een subdomein</translation>
+   <translation id="email_tab_modal_redirection_create_from" qtlid="219056">Het adres:</translation>
+   <translation id="email_tab_modal_redirection_create_subdomain_optional" qtlid="272825">subdomein (optioneel)</translation>
+   <translation id="email_tab_modal_redirection_create_to" qtlid="219069">Naar het adres:</translation>
+   <translation id="email_tab_modal_create_redirection_info" qtlid="219082">Voer svp de gegevens van de redirection in</translation>
+   <translation id="email_tab_modal_redirection_create_keep_copy_title" qtlid="302067">Kies een kopieermethode: </translation>
+   <translation id="email_tab_modal_redirection_create_email_error" qtlid="212036">Het e-mailadres is niet geldig</translation>
+   <translation id="email_tab_modal_redirection_create_copy_local" qtlid="302080">Bewaar een kopie van de e-mail bij OVH</translation>
+   <translation id="email_tab_modal_redirection_create_copy_none" qtlid="302093">Geen kopie van de e-mail bewaren</translation>
+   <translation id="email_tab_modal_redirection_create_copy_select" qtlid="302106">Selecteer aub een optie</translation>
+   <translation id="email_tab_popover_redirection_delete" qtlid="219108">De redirection verwijderen</translation>
+   <translation id="email_tab_modal_create_redirection_success" qtlid="262960">De omleiding wordt aangemaakt. De uitvoering zal over een paar ogenblikken voltooid zijn.</translation>
+   <translation id="email_tab_modal_create_redirection_error" qtlid="219134">Er is een fout opgetreden tijdens het maken van de redirection.</translation>
+   <translation id="email_tab_modal_delete_redirection_success" qtlid="262973">De omleiding wordt verwijderd. De uitvoering zal over een paar ogenblikken voltooid zijn.</translation>
+   <translation id="email_tab_modal_delete_redirection_error" qtlid="213466">Er is een fout opgetreden tijdens het verwijderen van de redirection.</translation>
+   <translation id="email_tab_table_redirections_error" qtlid="219160">Er is een fout opgetreden tijdens het ophalen van de redirections:</translation>
+   <translation id="email_tab_modal_delete_redirection_title" qtlid="221344">Een redirection verwijderen</translation>
+   <translation id="email_tab_modal_delete_redirection_heading" qtlid="221357">U gaat de volgende redirection verwijderen:</translation>
+   <translation id="email_tab_modal_delete_redirection_accounts" qtlid="221370"><strong>{0}</strong> naar <strong>{1}</strong></translation>
+   <translation id="email_tab_popover_redirection_update" qtlid="99224">Wijziging van de redirection</translation>
+   <translation id="emails_common_continue_question" qtlid="351844">Wilt u verdergaan? </translation>
+   <translation id="emails_common_account_name_conditions" qtlid="222787">Let op, de naam van het account moet aan de volgende voorwaarden voldoen: <br/>- Minimaal {0} tekens<br/>- Maximaal {1} tekens<br/>- Geen spatie<br/>- Geen letters met accenten<br/>- Geen speciale tekens, met uitzondering van ., - en _.</translation>
+
+</translations>

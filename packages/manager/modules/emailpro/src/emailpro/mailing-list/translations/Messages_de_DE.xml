@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="mailing_list_common_from" qtlid="69077">Von</translation>
+   <translation id="mailing_list_common_back" qtlid="4118">Zurück</translation>
+   <translation id="mailing_list_common_required_fields" qtlid="222111">Mit einem Sternchen markierte Felder sind Pflichtangaben</translation>
+   <translation id="mailing_list_common_continue_question" qtlid="351909">Möchten Sie fortfahren? </translation>
+   <translation id="mailing_list_common_invalid_email" qtlid="212036">Ungültige E-Mail-Adresse</translation>
+   <translation id="mailing_list_common_no_email" qtlid="261747">Es gehört keine E-Mail-Adresse zu dieser Mailingliste</translation>
+
+   <translation id="mailing_list_common_select" qtlid="261760">Auswahl...</translation>
+   <translation id="mailing_list_common_select_all" qtlid="159059">Alles auswählen</translation>
+   <translation id="mailing_list_common_select_page" qtlid="261773">Die Seite auswählen</translation>
+   <translation id="mailing_list_common_select_file" qtlid="261786">Eine Datei auswählen</translation>
+   <translation id="mailing_list_common_select_unselect" qtlid="261799">Abwählen</translation>
+   <translation id="mailing_list_common_add_email_addr" qtlid="282575">Eine E-Mail-Adresse hinzufügen</translation>
+   <translation id="mailing_list_common_addr_delete_all" qtlid="159891">Alles löschen</translation>
+   <translation id="mailing_list_common_addr_go_to_next_err" qtlid="282562">Weiter zum nächsten Fehler</translation>
+
+   <translation id="mailing_list_tab_table_no_quota" qtlid="222813">Sie können keine Mailinglisten erstellen.</translation>
+   <translation id="mailing_list_tab_table_quota_excedeed" qtlid="222826">Sie können keine Mailinglisten mehr erstellen.</translation>
+   <translation id="mailing_list_tab_table_quota_excedeed_1" qtlid="222839">Sie können keine Mailinglisten mehr erstellen, es wurde 1 von 1 verfügbaren Mailinglisten konfiguriert.</translation>
+   <translation id="mailing_list_tab_table_quota_excedeed_other" qtlid="222852">Sie können keine Mailinglisten mehr erstellen, es wurden {0} von {1} verfügbaren Mailinglisten konfiguriert.</translation>
+
+   <translation id="mailing_list_tab_table_header_list_name" qtlid="3818">Name</translation>
+   <translation id="mailing_list_tab_table_header_list_owner_email" qtlid="30634">Inhaber</translation>
+   <translation id="mailing_list_tab_table_header_list_language" qtlid="30598">Sprache</translation>
+   <translation id="mailing_list_tab_table_header_list_reply_to" qtlid="219459">Antwort an</translation>
+   <translation id="mailing_list_tab_table_header_list_nb_subscribers" qtlid="219472">Eingetragene Nutzer</translation>
+   <translation id="mailing_list_tab_table_header_list_moderators" qtlid="54725">Moderatoren</translation>
+   <translation id="mailing_list_tab_table_header_list_subscribers" qtlid="56069">Abonnenten</translation>
+   <translation id="mailing_list_tab_table_header_list_reply_to_mailinglist" qtlid="222865">Die Mailingliste</translation>
+   <translation id="mailing_list_tab_table_header_list_reply_to_lastuser" qtlid="222878">Der Absender der E-Mail</translation>
+
+   <translation id="mailing_list_tab_table_header_refresh" qtlid="218081">Tabelle neu laden</translation>
+   <translation id="mailing_list_tab_table_empty" qtlid="219485">Keine Mailinglisten</translation>
+   <translation id="mailing_list_tab_modal_get_lists_error" qtlid="219498">Beim Abruf der Informationen ist ein Fehler aufgetreten.</translation>
+   <translation id="mailing_list_tab_button_mailing_list_create_list" qtlid="219511">Mailingliste hinzufügen</translation>
+   <translation id="mailing_list_tab_modal_create_list_success" qtlid="222891">Die Mailingliste wurde erfolgreich erstellt. Die Operation wird in einigen Minuten abgeschlossen.</translation>
+   <translation id="mailing_list_tab_modal_create_list_error" qtlid="370005">Bei der Erstellung der Mailing-Liste ist ein Fehler aufgetreten</translation>
+
+
+   <translation id="mailing_list_tab_subscribers_management_heading" qtlid="222917">Verwaltung der Abonnenten der Mailingliste</translation>
+   <translation id="mailing_list_tab_table_subscribers_empty" qtlid="222930">Keine Abonnenten</translation>
+   <translation id="mailing_list_tab_table_subscribers_adding" qtlid="282614">Abonnenten werden hinzugefügt</translation>
+   <translation id="mailing_list_tab_table_subscribers_deleting" qtlid="282627">Abonnenten werden gelöscht</translation>
+   <translation id="mailing_list_tab_table_subscribers_updating" qtlid="282640">Liste der Abonnenten wird aktualisiert</translation>
+   <translation id="email_tab_subscribers_management_heading" qtlid="222943">Verwaltung der Abonnenten</translation>
+   <translation id="mailing_list_tab_table_header_subscriber_email" qtlid="222956">E-Mail des Abonnenten</translation>
+   <translation id="mailing_list_tab_export_csv_success" qtlid="372230">Die Datei wurde erfolgreich erstellt. Falls der Download nicht automatisch startet, können Sie die Datei auch <a target="_blank" href="{0}" download>manuell herunterladen</a>.</translation>
+   <translation id="mailing_list_tab_create_subscriber" qtlid="222969">Einen Abonnenten hinzufügen</translation>
+   <translation id="mailing_list_tab_create_subscribers" qtlid="261812">Abonnenten hinzufügen</translation>
+
+   <translation id="mailing_list_tab_create_subscribers" qtlid="261812">Abonnenten hinzufügen</translation>
+   <translation id="mailing_list_tab_create_subscribers_title" qtlid="364761">Sie möchten der Mailing-Liste <strong>{0}</strong> Abonnenten hinzufügen (max. {1} Abonnenten) </translation>
+   <translation id="mailing_list_tab_create_subscribers_max" qtlid="366683">Maximale Abonnentenzahl für die Mailingliste: <strong>{0}</strong> </translation>
+
+   <translation id="mailing_list_tab_create_subscribers_quota_exceeded" qtlid="364774">Sie können der Mailing-Liste nicht mehr als <strong>{0}</strong> Abonnenten hinzufügen. </translation>
+   <translation id="mailing_list_tab_create_subscribers_list" qtlid="261838">Liste der hinzuzufügenden Abonnenten</translation>
+   <translation id="mailing_list_tab_create_subscribers_file" qtlid="261851">Eine Datei mit einer E-Mail-Adresse pro Zeile importieren (ohne Trennzeichen wie Komma, usw.)</translation>
+   <translation id="mailing_list_tab_subscribers_send_list" qtlid="268056">Per E-Mail versenden</translation>
+   <translation id="mailing_list_tab_send_list_by_email" qtlid="268069">Sie möchten die Liste der Abonnenten und Moderatoren der Mailingliste <strong>{0}</strong> per E-Mail versenden.</translation>
+   <translation id="mailing_list_tab_send_list_by_email_addr" qtlid="254726">E-Mail-Adresse:</translation>
+   <translation id="mailing_list_tab_modal_sendListByEmail_success" qtlid="268082">Die Liste der Abonnenten und Moderatoren wird an die Adresse {0} versandt.</translation>
+   <translation id="mailing_list_tab_modal_sendListByEmail_sent_success" qtlid="268095">Die Liste der Abonnenten und Moderatoren wurde erfolgreich per E-Mail versandt.</translation>
+   <translation id="mailing_list_tab_modal_sendListByEmail_error" qtlid="268108">Beim Versand der Liste der Abonnenten und Moderatoren ist ein Fehler aufgetreten:</translation>
+
+   <translation id="mailing_list_tab_popover_subscribers_delete" qtlid="222982">Den Abonnenten löschen</translation>
+   <translation id="mailing_list_tab_subscribers_delete" qtlid="261864">Abonnenten löschen</translation>
+   <translation id="mailing_list_tab_subscribers_heading" qtlid="261877">Sie sind im Begriff, <strong>{0} Abonnenten</strong> von der Mailingliste <strong>{1}</strong> zu löschen.</translation>
+
+   <translation id="mailing_list_tab_modal_delete_subscriber_heading" qtlid="261890">Sie sind im Begriff, den Abonnenten <strong>{0}</strong> von der Mailingliste <strong>{1}</strong> zu löschen.</translation>
+   <translation id="mailing_list_tab_modal_subscriber_delete_success" qtlid="261903">Der Abonnent wird gelöscht, es dauert einige Minuten, bis diese Operation abgeschlossen ist.</translation>
+   <translation id="mailing_list_tab_modal_subscribers_delete_success" qtlid="261916">Die Abonnenten werden gelöscht, es dauert einige Minuten, bis diese Operation abgeschlossen ist.</translation>
+   <translation id="mailing_list_tab_modal_subscriber_delete_error" qtlid="223021">Bei der Löschung des Abonnenten ist ein Fehler aufgetreten.</translation>
+   <translation id="mailing_list_tab_modal_subscribers_delete_error" qtlid="261929">Bei der Löschung der Abonnenten ist ein Fehler aufgetreten:</translation>
+
+   <translation id="mailing_list_tab_suscribers_import_file" qtlid="261942">Datei importieren</translation>
+
+   <translation id="mailing_list_tab_moderators_management_heading" qtlid="223034">Verwaltung der Moderatoren der Mailingliste</translation>
+   <translation id="mailing_list_tab_moderators_management_title" qtlid="261955">Verwaltung der Moderatoren der Mailingliste <strong>{0}</strong></translation>
+   <translation id="mailing_list_tab_moderators_management_title_1" qtlid="261968">Verwaltung der Moderatoren der Mailingliste <strong>{0}</strong> : {1} Moderator</translation>
+   <translation id="mailing_list_tab_moderators_management_title_other" qtlid="261981">Verwaltung der Moderatoren der Mailingliste <strong>{0}</strong>: {1} Moderatoren</translation>
+
+   <translation id="mailing_list_tab_subscribers_management_title" qtlid="364787">Verwaltung der Abonnenten der Mailing-Liste <strong>{0}</strong> (max. {2}) </translation>
+   <translation id="mailing_list_tab_subscribers_management_title_1" qtlid="364800">Verwaltung der Abonnenten der Mailing-Liste <strong>{0}</strong>: {1} Abonnenten von {2} </translation>
+   <translation id="mailing_list_tab_subscribers_management_title_other" qtlid="364813">Verwaltung der Abonnenten der Mailing-Liste <strong>{0}</strong>: {1} Abonnenten von {2} </translation>
+   <translation id="mailing_list_tab_subscribers_limit_excedeed" qtlid="364826">Sie haben die maximale Anzahl von Abonnenten für Ihre Mailing-Liste erreicht </translation>
+
+   <translation id="mailing_list_tab_table_moderators_empty" qtlid="223047">Keine Moderatoren</translation>
+   <translation id="mailing_list_tab_table_moderators_adding" qtlid="282653">Moderatoren werden hinzugefügt</translation>
+   <translation id="mailing_list_tab_table_moderators_deleting" qtlid="282666">Moderatoren werden gelöscht</translation>
+   <translation id="mailing_list_tab_table_moderators_updating" qtlid="282679">Liste der Moderatoren wird aktualisiert</translation>
+
+   <translation id="email_tab_moderators_management_heading" qtlid="223060">Verwaltung der Moderatoren</translation>
+   <translation id="mailing_list_tab_table_header_moderators_email" qtlid="56177">E-Mail des Moderators</translation>
+   <translation id="mailing_list_tab_create_moderator" qtlid="223073">Einen Moderator hinzufügen</translation>
+
+   <translation id="mailing_list_tab_create_moderators" qtlid="262033">Moderatoren hinzufügen</translation>
+
+   <translation id="mailing_list_tab_popover_moderators_delete" qtlid="223086">Den Moderator löschen</translation>
+   <translation id="mailing_list_tab_moderators_delete" qtlid="262046">Moderatoren löschen</translation>
+   <translation id="mailing_list_tab_moderators_delete_file" qtlid="282692">Über eine Datei löschen</translation>
+
+   <translation id="mailing_list_tab_modal_delete_moderator_heading" qtlid="262059">Sie sind im Begriff, den Moderator <strong>{0}</strong> von der Mailingliste <strong>{1}</strong> zu löschen.</translation>
+
+   <translation id="mailing_list_tab_moderators_heading" qtlid="262072">Sie sind im Begriff, <strong>{0} Moderatoren</strong> von der Mailingliste <strong>{1}</strong> zu löschen.</translation>
+
+   <translation id="mailing_list_tab_modal_list_create" qtlid="219524">Mailingliste erstellen</translation>
+   <translation id="mailing_list_tab_modal_create_list_title" qtlid="219537">Sie sind im Begriff, eine Mailingliste zu erstellen</translation>
+   <translation id="mailing_list_tab_modal_create_list_heading" qtlid="218562">Bitte tragen Sie folgende Angaben ein:</translation>
+   <translation id="mailing_list_tab_modal_create_list_name" qtlid="100328">Name:</translation>
+   <translation id="mailing_list_tab_modal_create_list_owner" qtlid="219550">Inhaber:</translation>
+   <translation id="mailing_list_tab_modal_create_list_reply_to" qtlid="219563">Antwort an:</translation>
+   <translation id="mailing_list_tab_modal_create_list_moderator_all_messages" qtlid="283903">Alle Nachrichten moderieren</translation>
+   <translation id="mailing_list_tab_modal_create_list_moderator_message" qtlid="223112">Moderation der Nachrichten</translation>
+   <translation id="mailing_list_tab_modal_create_list_only_subscribers_moderator" qtlid="219589">Moderation der Abonnenten</translation>
+   <translation id="mailing_list_tab_modal_create_list_users_post_only" qtlid="55169">Nur Abonnenten können posten</translation>
+   <translation id="mailing_list_tab_modal_create_list_no_moderation" qtlid="283916">Jeder kann posten (keine Moderation)</translation>
+   <translation id="mailing_list_tab_modal_create_list_language" qtlid="168874">Sprache:</translation>
+   <translation id="mailing_list_tab_modal_create_list_validate_title" qtlid="296791">Bestätigung der Erstellung einer Mailingliste</translation>
+   <translation id="mailing_list_tab_modal_create_list_validate_name" qtlid="100328">Name:</translation>
+   <translation id="mailing_list_tab_modal_create_list_validate_options_selected" qtlid="296804">Gewählte Optionen:</translation>
+   <translation id="mailing_list_tab_modal_create_list_validate_help" qtlid="296817">Sie benötigen Hilfe bei der Konfiguration Ihrer Mailingliste?</translation>
+   <translation id="mailing_list_tab_modal_create_list_validate_help_link" qtlid="156732">Ziehen Sie unsere Online-Hilfen zu Rate.</translation>
+   <translation id="mailing_list_tab_modal_create_list_validate_help_link_title" qtlid="296830">Webhosting E-Mail: Verwendung einer Mailingliste</translation>
+   <translation id="email_tab_modal_redirection_create_email_error" qtlid="212036">Ungültige E-Mail-Adresse</translation>
+   <translation id="mailing_list_tab_modal_create_list_lareay_exists" qtlid="223125">Es existiert bereits eine Mailingliste mit diesem Namen.</translation>
+   <translation id="mailing_list_tab_popover_update" qtlid="219602">Mailingliste bearbeiten</translation>
+   <translation id="mailing_list_tab_popover_delete" qtlid="219615">Mailingliste löschen</translation>
+
+   <translation id="mailing_list_tab_modal_list_delete_title" qtlid="223138">Eine Mailingliste löschen</translation>
+   <translation id="mailing_list_tab_modal_list_delete_heading" qtlid="219628">Sie sind im Begriff, die Mailingliste <strong>{0}</strong> zu löschen</translation>
+   <translation id="mailing_list_tab_modal_list_delete_warning" qtlid="212270">Achtung, diese Aktion kann nicht rückgängig gemacht werden und zieht die un­wi­der­ruf­liche Löschung sämtlicher Daten nach sich.</translation>
+   <translation id="mailing_list_tab_modal_list_delete_error" qtlid="219641">Bei der Löschung Ihrer Mailingliste ist ein Fehler aufgetreten:</translation>
+   <translation id="mailing_list_tab_modal_list_delete_success" qtlid="219654">Ihre Mailingliste wird gelöscht</translation>
+
+   <translation id="mailing_list_tab_modal_change_options_list_title" qtlid="219667">Sie sind im Begriff, die Optionen der Mailingliste {0} zu ändern</translation>
+   <translation id="mailing_list_tab_modal_change_options_list_heading" qtlid="218562">Bitte tragen Sie folgende Angaben ein:</translation>
+
+   <translation id="mailing_list_tab_modal_list_update" qtlid="223151">Eine Mailingliste ändern</translation>
+   <translation id="mailing_list_tab_modal_update_list_title" qtlid="223164">Sie sind im Begriff, Ihre Mailingliste {0} zu ändern.</translation>
+   <translation id="mailing_list_tab_modal_update_list_heading" qtlid="218562">Bitte tragen Sie folgende Angaben ein:</translation>
+   <translation id="mailing_list_tab_modal_update_list_options" qtlid="213518">Optionen:</translation>
+   <translation id="mailing_list_tab_modal_update_list_reply_to_list" qtlid="223177">An die Liste</translation>
+   <translation id="mailing_list_tab_modal_update_list_reply_to_last_user" qtlid="223190">An den Absender der E-Mail</translation>
+   <translation id="mailing_list_tab_modal_update_list_reply_to_email" qtlid="223203">An eine E-Mail-Adresse</translation>
+
+   <translation id="mailing_list_tab_modal_subscriber_create" qtlid="222969">Einen Abonnenten hinzufügen</translation>
+   <translation id="mailing_list_tab_modal_create_subscriber_title" qtlid="223216">Sie sind im Begriff, einen Abonnenten zur Mailingliste {0} hinzuzufügen</translation>
+   <translation id="mailing_list_tab_modal_create_subscriber_email" qtlid="223229">E-Mail des Abonnenten:</translation>
+   <translation id="mailing_list_tab_modal_create_subscriber_email_exists" qtlid="223242">Diese E-Mail ist bereits abonniert.</translation>
+   <translation id="mailing_list_tab_modal_create_subscriber_success" qtlid="262085">Der Abonnent wird hinzugefügt, es dauert einige Minuten, bis diese Operation abgeschlossen ist.</translation>
+   <translation id="mailing_list_tab_modal_create_subscribers_success" qtlid="262098">Die Abonnenten werden hinzugefügt, es dauert einige Minuten, bis diese Operation abgeschlossen ist.</translation>
+   <translation id="mailing_list_tab_modal_create_subscriber_error" qtlid="223268">Beim Hinzufügen des Abonnenten ist ein Fehler aufgetreten:</translation>
+   <translation id="mailing_list_tab_modal_create_subscribers_error" qtlid="262111">Beim Hinzufügen der Abonnenten ist ein Fehler aufgetreten:</translation>
+
+   <translation id="mailing_list_tab_modal_update_list_success" qtlid="223281">Die Mailingliste wurde erfolgreich geupdatet.</translation>
+   <translation id="mailing_list_tab_modal_update_list_error" qtlid="223294">Bei der Änderung der Mailingliste ist ein Fehler aufgetreten:</translation>
+
+   <translation id="mailing_list_tab_popover_moderators_delete" qtlid="223086">Den Moderator löschen</translation>
+   <translation id="mailing_list_tab_modal_moderator_delete_success" qtlid="262124">Der Moderator wird gelöscht, es dauert einige Minuten, bis diese Operation abgeschlossen ist.</translation>
+   <translation id="mailing_list_tab_modal_moderator_delete_error" qtlid="223320">Bei der Löschung des Moderators ist ein Fehler aufgetreten:</translation>
+   <translation id="mailing_list_tab_modal_moderator_delete_title" qtlid="223333">Einen Moderator löschen</translation>
+   <translation id="mailing_list_tab_modal_moderator_delete_heading" qtlid="223346">Sie sind im Begriff, den Moderator {0} der Mailingliste {1} zu löschen</translation>
+
+   <translation id="mailing_list_tab_modal_moderator_create" qtlid="223073">Einen Moderator hinzufügen</translation>
+   <translation id="mailing_list_tab_modal_create_moderator_title" qtlid="223359">Sie sind im Begriff, einen Moderator zur Mailingliste {0} hinzuzufügen</translation>
+   <translation id="mailing_list_tab_modal_create_moderator_email" qtlid="223372">E-Mail des Moderators:</translation>
+   <translation id="mailing_list_tab_modal_create_moderator_email_exists" qtlid="223385">Diese E-Mail ist bereits als Moderator eingetragen.</translation>
+   <translation id="mailing_list_tab_modal_create_moderator_success" qtlid="262137">Der Moderator wird hinzugefügt, es dauert einige Minuten, bis diese Operation abgeschlossen ist.</translation>
+   <translation id="mailing_list_tab_modal_create_moderators_success" qtlid="262150">Die Moderatoren werden hinzugefügt, es dauert einige Minuten, bis diese Operation abgeschlossen ist.</translation>
+   <translation id="mailing_list_tab_modal_create_moderator_error" qtlid="223411">Beim Hinzufügen des Moderators ist ein Fehler aufgetreten:</translation>
+   <translation id="mailing_list_tab_modal_create_moderators_error" qtlid="262163">Beim Hinzufügen der Moderatoren ist ein Fehler aufgetreten:</translation>
+
+   <translation id="mailing_list_tab_suscribers_csv_export" qtlid="224854">Export der Abonnenten im CSV Format</translation>
+   <translation id="mailing_list_tab_quotas" qtlid="224867">Quota der Mailinglisten</translation>
+
+   <translation id="mailing_list_tab_modal_moderators_delete_success" qtlid="262176">Die Moderatoren werden gelöscht, es dauert einige Minuten, bis diese Operation abgeschlossen ist.</translation>
+   <translation id="mailing_list_tab_modal_moderators_delete_error" qtlid="262189">Bei der Löschung der Moderatoren ist ein Fehler aufgetreten:</translation>
+
+   <translation id="mailing_list_tab_create_moderators" qtlid="262033">Moderatoren hinzufügen</translation>
+   <translation id="mailing_list_tab_create_moderators_title" qtlid="262202">Sie sind im Begriff, Moderatoren zur Mailingliste <strong>{0}</strong> hinzuzufügen</translation>
+   <translation id="mailing_list_tab_create_moderators_list" qtlid="262215">Liste der hinzuzufügenden Moderatoren</translation>
+   <translation id="mailing_list_tab_create_moderators_file" qtlid="261851">Eine Datei mit einer E-Mail-Adresse pro Zeile importieren (ohne Trennzeichen wie Komma, usw.)</translation>
+
+   <translation id="mailing_list_tab_delete_subscribers_title" qtlid="262228">Löschung von Abonnenten der Mailingliste <strong>{0}</strong></translation>
+   <translation id="mailing_list_tab_delete_subscribers_list" qtlid="262241">Liste der zu löschenden Abonnenten</translation>
+
+   <translation id="mailing_list_tab_delete_moderators_title" qtlid="262254">Löschung von Moderatoren der Mailingliste <strong>{0}</strong></translation>
+   <translation id="mailing_list_tab_delete_moderators_list" qtlid="262267">Liste der zu löschenden Moderatoren</translation>
+</translations>

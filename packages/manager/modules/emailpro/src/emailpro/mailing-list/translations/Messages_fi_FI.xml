@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="mailing_list_common_from" qtlid="69077">Mistä</translation>
+   <translation id="mailing_list_common_back" qtlid="4118">Takaisin</translation>
+   <translation id="mailing_list_common_required_fields" qtlid="222111">Tähdellä merkityt kentät ovat pakollisia.</translation>
+   <translation id="mailing_list_common_continue_question" qtlid="351909">Haluatko jatkaa?</translation>
+   <translation id="mailing_list_common_invalid_email" qtlid="212036">Sähköpostiosoite on virheellinen</translation>
+   <translation id="mailing_list_common_no_email" qtlid="261747">Postituslistalle ei kuulu yhtään sähköpostiosoitetta</translation>
+
+   <translation id="mailing_list_common_select" qtlid="261760">Valitse ...</translation>
+   <translation id="mailing_list_common_select_all" qtlid="159059">Valitse kaikki</translation>
+   <translation id="mailing_list_common_select_page" qtlid="261773">Valitse sivu</translation>
+   <translation id="mailing_list_common_select_file" qtlid="261786">Valitse tiedosto</translation>
+   <translation id="mailing_list_common_select_unselect" qtlid="261799">Poista valinta</translation>
+   <translation id="mailing_list_common_add_email_addr" qtlid="282575">Lisää sähköpostiosoite</translation>
+   <translation id="mailing_list_common_addr_delete_all" qtlid="159891">Poista kaikki</translation>
+   <translation id="mailing_list_common_addr_go_to_next_err" qtlid="282562">Mene seuraavaan virheeseen</translation>
+
+   <translation id="mailing_list_tab_table_no_quota" qtlid="222813">Et voi luoda postituslistoja.</translation>
+   <translation id="mailing_list_tab_table_quota_excedeed" qtlid="222826">Et voi luoda postituslistoja.</translation>
+   <translation id="mailing_list_tab_table_quota_excedeed_1" qtlid="222839">Et voi enää luoda postituslistoja. 1 postituslista 1 listan kokonaismäärästä on juo luotu.</translation>
+   <translation id="mailing_list_tab_table_quota_excedeed_other" qtlid="222852">Et voi enää luoda postituslistoja. {0} lista {1} listan kokonaismäärästä on jo luotu.</translation>
+
+   <translation id="mailing_list_tab_table_header_list_name" qtlid="3818">Nimi</translation>
+   <translation id="mailing_list_tab_table_header_list_owner_email" qtlid="30634">Omistaja</translation>
+   <translation id="mailing_list_tab_table_header_list_language" qtlid="30598">Kieli</translation>
+   <translation id="mailing_list_tab_table_header_list_reply_to" qtlid="219459">Vastaus</translation>
+   <translation id="mailing_list_tab_table_header_list_nb_subscribers" qtlid="219472">Rekisteröityneiden määrä</translation>
+   <translation id="mailing_list_tab_table_header_list_moderators" qtlid="54725">Moderaattorit</translation>
+   <translation id="mailing_list_tab_table_header_list_subscribers" qtlid="56069">Tilaajat</translation>
+   <translation id="mailing_list_tab_table_header_list_reply_to_mailinglist" qtlid="222865">Lista</translation>
+   <translation id="mailing_list_tab_table_header_list_reply_to_lastuser" qtlid="222878">Sähköpostin lähettäjä</translation>
+
+   <translation id="mailing_list_tab_table_header_refresh" qtlid="218081">Virkistä taulukko</translation>
+   <translation id="mailing_list_tab_table_empty" qtlid="219485">Ei postituslistaa</translation>
+   <translation id="mailing_list_tab_modal_get_lists_error" qtlid="219498">Tapahtui virhe haettaessa tietoja.</translation>
+   <translation id="mailing_list_tab_button_mailing_list_create_list" qtlid="219511">Lisää postituslista</translation>
+   <translation id="mailing_list_tab_modal_create_list_success" qtlid="222891">Listan luonti onnistui. Operaatio valmistuu muutamassa minuutissa.</translation>
+   <translation id="mailing_list_tab_modal_create_list_error" qtlid="370005">Tapahtui virhe sähköpostilistan luomisessa. </translation>
+
+
+   <translation id="mailing_list_tab_subscribers_management_heading" qtlid="222917">Postituslistan tilaajien hallinta</translation>
+   <translation id="mailing_list_tab_table_subscribers_empty" qtlid="222930">Ei tilaajia</translation>
+   <translation id="mailing_list_tab_table_subscribers_adding" qtlid="282614">Tilaajia lisätään</translation>
+   <translation id="mailing_list_tab_table_subscribers_deleting" qtlid="282627">Tilaajia poistetaan</translation>
+   <translation id="mailing_list_tab_table_subscribers_updating" qtlid="282640">Tilaajalistaa päivitetään</translation>
+   <translation id="email_tab_subscribers_management_heading" qtlid="222943">Tilaajien hallinta</translation>
+   <translation id="mailing_list_tab_table_header_subscriber_email" qtlid="222956">Tilaajan sähköposti</translation>
+   <translation id="mailing_list_tab_export_csv_success" qtlid="372230">Tiedoston luominen onnistui. Jos lataus ei käynnisty, voit <a target="_blank" href="{0}">tehdä latauksen käsin</a>.</translation>
+   <translation id="mailing_list_tab_create_subscriber" qtlid="222969">Lisää tilaaja</translation>
+   <translation id="mailing_list_tab_create_subscribers" qtlid="261812">Lisää tilaajia</translation>
+
+   <translation id="mailing_list_tab_create_subscribers" qtlid="261812">Lisää tilaajia</translation>
+   <translation id="mailing_list_tab_create_subscribers_title" qtlid="364761">Olet lisäämässä jäseniä postituslistalle <strong>{0}</strong> (enintään{1} jäsentä)</translation>
+   <translation id="mailing_list_tab_create_subscribers_max" qtlid="366683">Postituslistan tilaajien suurin sallittu määrä: <strong>{0}</strong></translation>
+
+   <translation id="mailing_list_tab_create_subscribers_quota_exceeded" qtlid="364774">Et voi lisätä enempää <strong>{0}</strong> jäseniä postituslistalle.</translation>
+   <translation id="mailing_list_tab_create_subscribers_list" qtlid="261838">Lisättävien tilaajien lista</translation>
+   <translation id="mailing_list_tab_create_subscribers_file" qtlid="261851">Tuo tiedosto, jossa jokainen sähköpostiosoite on omalla rivillä (ilman erottavaa pilkkua jne.)</translation>
+   <translation id="mailing_list_tab_subscribers_send_list" qtlid="268056">Lähetä sähköpostilla</translation>
+   <translation id="mailing_list_tab_send_list_by_email" qtlid="268069">Haluat lähettää <strong>{0}</strong>-postituslistan tilaaja- ja moderaattorilistan sähköpostilla.</translation>
+   <translation id="mailing_list_tab_send_list_by_email_addr" qtlid="254726">Sähköpostiosoite:</translation>
+   <translation id="mailing_list_tab_modal_sendListByEmail_success" qtlid="268082">Tilaaja- ja moderaattorilista lähetetään osoitteeseen {0}.</translation>
+   <translation id="mailing_list_tab_modal_sendListByEmail_sent_success" qtlid="268095">Tilaaja- ja moderaattorilista on lähetetty sähköpostilla.</translation>
+   <translation id="mailing_list_tab_modal_sendListByEmail_error" qtlid="268108">Tilaaja- ja moderaattorilistan lähetyksessä tapahtui virhe:</translation>
+
+   <translation id="mailing_list_tab_popover_subscribers_delete" qtlid="222982">Poista tilaaja</translation>
+   <translation id="mailing_list_tab_subscribers_delete" qtlid="261864">Poista tilaajia</translation>
+   <translation id="mailing_list_tab_subscribers_heading" qtlid="261877">Olet poistamassa <strong>{0} tilaajaa</strong> <strong>{1}</strong>-postituslistalta.</translation>
+
+   <translation id="mailing_list_tab_modal_delete_subscriber_heading" qtlid="261890">Olet poistamassa tilaajan <strong>{0}</strong> tilausta <strong>{1}</strong>-postituslistalta.</translation>
+   <translation id="mailing_list_tab_modal_subscriber_delete_success" qtlid="261903">Tilaajaa poistetaan. Toimenpide valmistuu muutamassa minuutissa.</translation>
+   <translation id="mailing_list_tab_modal_subscribers_delete_success" qtlid="261916">Tilaajia poistetaan. Toimenpide valmistuu muutamassa minuutissa.</translation>
+   <translation id="mailing_list_tab_modal_subscriber_delete_error" qtlid="223021">Tapahtui virhe poistettaessa tilaajaa:</translation>
+   <translation id="mailing_list_tab_modal_subscribers_delete_error" qtlid="261929">Tilaajia poistettaessa tapahtui virhe:</translation>
+
+   <translation id="mailing_list_tab_suscribers_import_file" qtlid="261942">Tuo tiedosto</translation>
+
+   <translation id="mailing_list_tab_moderators_management_heading" qtlid="223034">Postituslistan ylläpitäjien hallinta</translation>
+   <translation id="mailing_list_tab_moderators_management_title" qtlid="261955"><strong>{0}</strong>-postituslistan moderaattoreiden hallinta</translation>
+   <translation id="mailing_list_tab_moderators_management_title_1" qtlid="261968"><strong>{0}</strong>-postituslistan moderaattoreiden hallinta: {1} moderaattori</translation>
+   <translation id="mailing_list_tab_moderators_management_title_other" qtlid="261981"><strong>{0}</strong>-postituslistan moderaattoreiden hallinta: {1} moderaattoria</translation>
+
+   <translation id="mailing_list_tab_subscribers_management_title" qtlid="364787">Postituslistan jäsenten hallinta <strong>{0}</strong> (enintään{2})</translation>
+   <translation id="mailing_list_tab_subscribers_management_title_1" qtlid="364800">Postituslistan jäsenten hallinta <strong>{0}</strong> : {1} jäsen kahdesta{2}</translation>
+   <translation id="mailing_list_tab_subscribers_management_title_other" qtlid="364813">Postituslistan jäsenten hallinta  <strong>{0}</strong> : {1} jäsen kahdesta{2}</translation>
+   <translation id="mailing_list_tab_subscribers_limit_excedeed" qtlid="364826">Olet saavuttanut postituslistan jäsenten sallitun enimmäismäärän.</translation>
+
+   <translation id="mailing_list_tab_table_moderators_empty" qtlid="223047">Ei yhtään ylläpitäjää</translation>
+   <translation id="mailing_list_tab_table_moderators_adding" qtlid="282653">Moderaattoreita lisätään</translation>
+   <translation id="mailing_list_tab_table_moderators_deleting" qtlid="282666">Moderaattoreita poistetaan</translation>
+   <translation id="mailing_list_tab_table_moderators_updating" qtlid="282679">Moderaattorilistaa päivitetään</translation>
+
+   <translation id="email_tab_moderators_management_heading" qtlid="223060">Ylläpitäjien hallinta</translation>
+   <translation id="mailing_list_tab_table_header_moderators_email" qtlid="56177">Moderaattorin sähköposti</translation>
+   <translation id="mailing_list_tab_create_moderator" qtlid="223073">Lisää ylläpitäjä</translation>
+
+   <translation id="mailing_list_tab_create_moderators" qtlid="262033">Lisää moderaattoreita</translation>
+
+   <translation id="mailing_list_tab_popover_moderators_delete" qtlid="223086">Poista ylläpitäjä</translation>
+   <translation id="mailing_list_tab_moderators_delete" qtlid="262046">Poista moderaattoreita</translation>
+   <translation id="mailing_list_tab_moderators_delete_file" qtlid="282692">Poista tiedoston kautta</translation>
+
+   <translation id="mailing_list_tab_modal_delete_moderator_heading" qtlid="262059">Olet poistamassa moderaattoria <strong>{0}</strong> <strong>{1}</strong>-postituslistalta</translation>
+
+   <translation id="mailing_list_tab_moderators_heading" qtlid="262072">Olet poistamassa <strong>{0} moderaattoria </strong> <strong>{1}</strong>-postituslistalta.</translation>
+
+   <translation id="mailing_list_tab_modal_list_create" qtlid="219524">Luo postituslista</translation>
+   <translation id="mailing_list_tab_modal_create_list_title" qtlid="219537">Olet luomassa postituslistaa</translation>
+   <translation id="mailing_list_tab_modal_create_list_heading" qtlid="218562">Täytä seuraavat tiedot:</translation>
+   <translation id="mailing_list_tab_modal_create_list_name" qtlid="100328">Nimi</translation>
+   <translation id="mailing_list_tab_modal_create_list_owner" qtlid="219550">Omistaja:</translation>
+   <translation id="mailing_list_tab_modal_create_list_reply_to" qtlid="219563">Vastaus:</translation>
+   <translation id="mailing_list_tab_modal_create_list_moderator_all_messages" qtlid="283903">Muokkaa kaikkia viestejä</translation>
+   <translation id="mailing_list_tab_modal_create_list_moderator_message" qtlid="223112">Viestien moderointi</translation>
+   <translation id="mailing_list_tab_modal_create_list_only_subscribers_moderator" qtlid="219589">Tilaajien moderointi</translation>
+   <translation id="mailing_list_tab_modal_create_list_users_post_only" qtlid="55169">Vain tilaajat voivat lähettää viestejä</translation>
+   <translation id="mailing_list_tab_modal_create_list_no_moderation" qtlid="283916">Kaikki voivat lähettää viestejä (ei muokattu)</translation>
+   <translation id="mailing_list_tab_modal_create_list_language" qtlid="168874">Kieli:</translation>
+   <translation id="mailing_list_tab_modal_create_list_validate_title" qtlid="296791">Vahvistus postituslistan luomisesta</translation>
+   <translation id="mailing_list_tab_modal_create_list_validate_name" qtlid="100328">Nimi</translation>
+   <translation id="mailing_list_tab_modal_create_list_validate_options_selected" qtlid="296804">Valitut vaihtoehdot:</translation>
+   <translation id="mailing_list_tab_modal_create_list_validate_help" qtlid="296817">Tarvitsetko apua postituslistan konfiguroinnissa?</translation>
+   <translation id="mailing_list_tab_modal_create_list_validate_help_link" qtlid="156732">Katso ohjeemme</translation>
+   <translation id="mailing_list_tab_modal_create_list_validate_help_link_title" qtlid="296830">Jaettu sähköposti: postituslistan käyttöohje</translation>
+   <translation id="email_tab_modal_redirection_create_email_error" qtlid="212036">Sähköpostiosoite on virheellinen</translation>
+   <translation id="mailing_list_tab_modal_create_list_lareay_exists" qtlid="223125">Tämän niminen postituslista on jo olemassa</translation>
+   <translation id="mailing_list_tab_popover_update" qtlid="219602">Muokkaa postituslistaa</translation>
+   <translation id="mailing_list_tab_popover_delete" qtlid="219615">Poista postituslista</translation>
+
+   <translation id="mailing_list_tab_modal_list_delete_title" qtlid="223138">Poista postituslista</translation>
+   <translation id="mailing_list_tab_modal_list_delete_heading" qtlid="219628">Olet poistamassa postituslistan <strong>{0}</strong></translation>
+   <translation id="mailing_list_tab_modal_list_delete_warning" qtlid="212270">Ole hyvä ja ota huomioon että tämä toiminto on peruuttamaton ja johtaa <b>kaiken datan</b> menetykseen.</translation>
+   <translation id="mailing_list_tab_modal_list_delete_error" qtlid="219641">Tapahtui virhe poistettaessa postituslista</translation>
+   <translation id="mailing_list_tab_modal_list_delete_success" qtlid="219654">Postituslista poistetaan</translation>
+
+   <translation id="mailing_list_tab_modal_change_options_list_title" qtlid="219667">Olet muuttamassa postituslistan {0} asetuksia</translation>
+   <translation id="mailing_list_tab_modal_change_options_list_heading" qtlid="218562">Täytä seuraavat tiedot:</translation>
+
+   <translation id="mailing_list_tab_modal_list_update" qtlid="223151">Muokkaa postituslistaa</translation>
+   <translation id="mailing_list_tab_modal_update_list_title" qtlid="223164">Olet muokkaamassa postituslistaa {0}.</translation>
+   <translation id="mailing_list_tab_modal_update_list_heading" qtlid="218562">Täytä seuraavat tiedot:</translation>
+   <translation id="mailing_list_tab_modal_update_list_options" qtlid="213518">Optiot:</translation>
+   <translation id="mailing_list_tab_modal_update_list_reply_to_list" qtlid="223177">Listalle</translation>
+   <translation id="mailing_list_tab_modal_update_list_reply_to_last_user" qtlid="223190">Sähköpostin lähettäjälle</translation>
+   <translation id="mailing_list_tab_modal_update_list_reply_to_email" qtlid="223203">Sähköpostiosoitteeseen</translation>
+
+   <translation id="mailing_list_tab_modal_subscriber_create" qtlid="222969">Lisää tilaaja</translation>
+   <translation id="mailing_list_tab_modal_create_subscriber_title" qtlid="223216">Olet lisäämässä tilaajaa postituslistalle {0}</translation>
+   <translation id="mailing_list_tab_modal_create_subscriber_email" qtlid="223229">Sähköpostin tilaaja:</translation>
+   <translation id="mailing_list_tab_modal_create_subscriber_email_exists" qtlid="223242">Tämä postiosoite on jo tilaaja.</translation>
+   <translation id="mailing_list_tab_modal_create_subscriber_success" qtlid="262085">Tilaajaa lisätään. Toimenpide valmistuu muutamassa minuutissa.</translation>
+   <translation id="mailing_list_tab_modal_create_subscribers_success" qtlid="262098">Tilaajia lisätään. Toimenpide valmistuu muutamassa minuutissa.</translation>
+   <translation id="mailing_list_tab_modal_create_subscriber_error" qtlid="223268">Tapahtui virhe lisättäessä tilaajaa:</translation>
+   <translation id="mailing_list_tab_modal_create_subscribers_error" qtlid="262111">Tilaajia lisättäessä tapahtui virhe:</translation>
+
+   <translation id="mailing_list_tab_modal_update_list_success" qtlid="223281">Postituslista on päivitetty onnistuneesti.</translation>
+   <translation id="mailing_list_tab_modal_update_list_error" qtlid="223294">Tapahtui virhe muokattaessa postituslistaa:</translation>
+
+   <translation id="mailing_list_tab_popover_moderators_delete" qtlid="223086">Poista ylläpitäjä</translation>
+   <translation id="mailing_list_tab_modal_moderator_delete_success" qtlid="262124">Moderaattoria poistetaan. Toimenpide valmistuu muutamassa minuutissa.</translation>
+   <translation id="mailing_list_tab_modal_moderator_delete_error" qtlid="223320">Tapahtui virhe poistettaessa ylläpitäjää:</translation>
+   <translation id="mailing_list_tab_modal_moderator_delete_title" qtlid="223333">Poista ylläpitäjä</translation>
+   <translation id="mailing_list_tab_modal_moderator_delete_heading" qtlid="223346">Olet poistamassa ylläpitäjää {0} postituslistalta {1}</translation>
+
+   <translation id="mailing_list_tab_modal_moderator_create" qtlid="223073">Lisää ylläpitäjä</translation>
+   <translation id="mailing_list_tab_modal_create_moderator_title" qtlid="223359">Olet lisäämässä ylläpitäjää postituslistalle {0}</translation>
+   <translation id="mailing_list_tab_modal_create_moderator_email" qtlid="223372">Ylläpitäjän sähköposti:</translation>
+   <translation id="mailing_list_tab_modal_create_moderator_email_exists" qtlid="223385">Osoite on jo ylläpitäjänä.</translation>
+   <translation id="mailing_list_tab_modal_create_moderator_success" qtlid="262137">Moderaattoria lisätään. Toimenpide valmistuu muutamassa minuutissa.</translation>
+   <translation id="mailing_list_tab_modal_create_moderators_success" qtlid="262150">Moderaattoreita lisätään. Toimenpide valmistuu muutamassa minuutissa.</translation>
+   <translation id="mailing_list_tab_modal_create_moderator_error" qtlid="223411">Tapahtui virhe lisättäessä ylläpitäjää:</translation>
+   <translation id="mailing_list_tab_modal_create_moderators_error" qtlid="262163">Moderaattoreita lisättäessä tapahtui virhe:</translation>
+
+   <translation id="mailing_list_tab_suscribers_csv_export" qtlid="224854">Vie tilaajat CSV-tiedostona</translation>
+   <translation id="mailing_list_tab_quotas" qtlid="224867">Sähköpostilistojen kiintiö</translation>
+
+   <translation id="mailing_list_tab_modal_moderators_delete_success" qtlid="262176">Moderaattoreita poistetaan. Toimenpide valmistuu muutamassa minuutissa.</translation>
+   <translation id="mailing_list_tab_modal_moderators_delete_error" qtlid="262189">Moderaattoreita poistettaessa tapahtui virhe:</translation>
+
+   <translation id="mailing_list_tab_create_moderators" qtlid="262033">Lisää moderaattoreita</translation>
+   <translation id="mailing_list_tab_create_moderators_title" qtlid="262202">Olet lisäämässä moderaattoreita <strong>{0}</strong>-postituslistalle</translation>
+   <translation id="mailing_list_tab_create_moderators_list" qtlid="262215">Lisättävien moderaattoreiden lista</translation>
+   <translation id="mailing_list_tab_create_moderators_file" qtlid="261851">Tuo tiedosto, jossa jokainen sähköpostiosoite on omalla rivillä (ilman erottavaa pilkkua jne.)</translation>
+
+   <translation id="mailing_list_tab_delete_subscribers_title" qtlid="262228">Tilaajien poisto <strong>{0}</strong>-postituslistalta</translation>
+   <translation id="mailing_list_tab_delete_subscribers_list" qtlid="262241">Poistettavien tilaajien lista</translation>
+
+   <translation id="mailing_list_tab_delete_moderators_title" qtlid="262254">Moderaattorien poisto <strong>{0}</strong>-postituslistalta</translation>
+   <translation id="mailing_list_tab_delete_moderators_list" qtlid="262267">Poistettavien moderaattoreiden lista</translation>
+</translations>

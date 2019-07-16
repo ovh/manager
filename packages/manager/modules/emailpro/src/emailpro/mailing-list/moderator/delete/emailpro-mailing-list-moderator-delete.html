@@ -1,0 +1,17 @@
+<div data-ng-controller="EmailProMXPlanMailingListsDeleteModeratorCtrl as ctrl">
+    <div data-wizard
+         data-wizard-on-cancel="resetAction"
+         data-wizard-on-finish="deleteModerators"
+         data-wizard-title="'mailing_list_tab_moderators_delete' | translate">
+
+        <div data-wizard-step>
+            <p data-ng-bind-html="'mailing_list_tab_moderators_heading' | translate: { t0: ctrl.moderators.length, t1: ctrl.mailingList.name }"
+               data-ng-if="ctrl.moderators.length > 1"></p>
+            <p data-ng-bind-html="'mailing_list_tab_modal_delete_moderator_heading' | translate: { t0: ctrl.moderators[0], t1: ctrl.mailingList.name }"
+               data-ng-if="ctrl.moderators.length === 1"></p>
+
+            <p data-translate="mailing_list_common_continue_question"></p>
+            <oui-spinner data-ng-if="ctrl.loading"></oui-spinner>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="mailing_list_common_from" qtlid="69077">Van</translation>
+   <translation id="mailing_list_common_back" qtlid="4118">Terug</translation>
+   <translation id="mailing_list_common_required_fields" qtlid="222111">De velden gemarkeerd met een ster moeten verplicht ingevuld worden</translation>
+   <translation id="mailing_list_common_continue_question" qtlid="351909">Wilt u doorgaan? </translation>
+   <translation id="mailing_list_common_invalid_email" qtlid="212036">Het e-mailadres is niet geldig</translation>
+   <translation id="mailing_list_common_no_email" qtlid="261747">Er zijn geen met de mailingslijst verbonden e-mailadressen</translation>
+
+   <translation id="mailing_list_common_select" qtlid="261760">Selecteren...</translation>
+   <translation id="mailing_list_common_select_all" qtlid="159059">Selecteer alle</translation>
+   <translation id="mailing_list_common_select_page" qtlid="261773">Selecteer de pagina</translation>
+   <translation id="mailing_list_common_select_file" qtlid="261786">Een bestand selecteren</translation>
+   <translation id="mailing_list_common_select_unselect" qtlid="261799">Niet selecteren</translation>
+   <translation id="mailing_list_common_add_email_addr" qtlid="282575">Voeg een e-mailadres toe</translation>
+   <translation id="mailing_list_common_addr_delete_all" qtlid="159891">Verwijder alles</translation>
+   <translation id="mailing_list_common_addr_go_to_next_err" qtlid="282562">Ga naar de volgende foutmelding</translation>
+
+   <translation id="mailing_list_tab_table_no_quota" qtlid="222813">U heeft niet de mogelijkheid om mailinglijsten aan te maken.</translation>
+   <translation id="mailing_list_tab_table_quota_excedeed" qtlid="222826">U heeft niet de mogelijkheid om mailinglijsten aan te maken.</translation>
+   <translation id="mailing_list_tab_table_quota_excedeed_1" qtlid="222839">U kunt niet langer mailing-lijsten aanmaken. De enige beschikbare lijst is al ingesteld.</translation>
+   <translation id="mailing_list_tab_table_quota_excedeed_other" qtlid="222852">U heeft niet langer de mogelijkheid om een mailinglist aan te maken. {0} lijsten uit de {1} beschikbare lijsten zijn ingesteld.</translation>
+
+   <translation id="mailing_list_tab_table_header_list_name" qtlid="3818">Naam</translation>
+   <translation id="mailing_list_tab_table_header_list_owner_email" qtlid="30634">Eigenaar</translation>
+   <translation id="mailing_list_tab_table_header_list_language" qtlid="30598">Taal</translation>
+   <translation id="mailing_list_tab_table_header_list_reply_to" qtlid="219459">Reactie op</translation>
+   <translation id="mailing_list_tab_table_header_list_nb_subscribers" qtlid="219472">Geregistreerde gebruikers</translation>
+   <translation id="mailing_list_tab_table_header_list_moderators" qtlid="54725">Moderators</translation>
+   <translation id="mailing_list_tab_table_header_list_subscribers" qtlid="56069">Abonnees</translation>
+   <translation id="mailing_list_tab_table_header_list_reply_to_mailinglist" qtlid="222865">De lijst</translation>
+   <translation id="mailing_list_tab_table_header_list_reply_to_lastuser" qtlid="222878">De afzender van de e-mail</translation>
+
+   <translation id="mailing_list_tab_table_header_refresh" qtlid="218081">Het herladen van de tabel</translation>
+   <translation id="mailing_list_tab_table_empty" qtlid="219485">Geen mailinglijsten</translation>
+   <translation id="mailing_list_tab_modal_get_lists_error" qtlid="219498">Er is een fout opgetreden bij het ophalen van de gegevens.</translation>
+   <translation id="mailing_list_tab_button_mailing_list_create_list" qtlid="219511">Een mailinglijst toevoegen</translation>
+   <translation id="mailing_list_tab_modal_create_list_success" qtlid="222891">De mailinglijst werd succesvol aangemaakt. Dit kan enkele minuten duren. </translation>
+   <translation id="mailing_list_tab_modal_create_list_error" qtlid="370005">Er is een fout opgetreden tijdens het aanmaken van de mailinglijst</translation>
+
+
+   <translation id="mailing_list_tab_subscribers_management_heading" qtlid="222917">Beheer van de abonnementen van de mailinglijst</translation>
+   <translation id="mailing_list_tab_table_subscribers_empty" qtlid="222930">Geen abonnees</translation>
+   <translation id="mailing_list_tab_table_subscribers_adding" qtlid="282614">Geabonneerden worden toegevoegd</translation>
+   <translation id="mailing_list_tab_table_subscribers_deleting" qtlid="282627">Geabonneerden worden verwijderd</translation>
+   <translation id="mailing_list_tab_table_subscribers_updating" qtlid="282640">Lijst met geabonneerden wordt geüpdatet. </translation>
+   <translation id="email_tab_subscribers_management_heading" qtlid="222943">Beheer van de abonnees</translation>
+   <translation id="mailing_list_tab_table_header_subscriber_email" qtlid="222956">E-mail van de abonnees</translation>
+   <translation id="mailing_list_tab_export_csv_success" qtlid="372230">Het bestand is correct aangemaakt. Als de download niet automatisch start dan kunt u <a target="_blank" href="{0}">het handmatig downloaden </a>.</translation>
+   <translation id="mailing_list_tab_create_subscriber" qtlid="222969">Een abonnee toevoegen</translation>
+   <translation id="mailing_list_tab_create_subscribers" qtlid="261812">Geabonneerden toevoegen</translation>
+
+   <translation id="mailing_list_tab_create_subscribers" qtlid="261812">Geabonneerden toevoegen</translation>
+   <translation id="mailing_list_tab_create_subscribers_title" qtlid="364761">U staat op het punt om abonnees aan de mailinglijst toe te voegen <strong>{0}</strong> (maximaal {1} geabonneerden)</translation>
+   <translation id="mailing_list_tab_create_subscribers_max" qtlid="366683">Maximale aantal mailing-list abbonees: <strong>{0}</strong></translation>
+
+   <translation id="mailing_list_tab_create_subscribers_quota_exceeded" qtlid="364774">Het is niet mogelijk om meer dan <strong>{0}</strong> abonnees aan de mailinglijst toe te voegen. </translation>
+   <translation id="mailing_list_tab_create_subscribers_list" qtlid="261838">Lijst van de te toevoegen geabonneerden</translation>
+   <translation id="mailing_list_tab_create_subscribers_file" qtlid="261851">Importeer een bestand met een e-mailadres online</translation>
+   <translation id="mailing_list_tab_subscribers_send_list" qtlid="268056">Verzenden per e-mail</translation>
+   <translation id="mailing_list_tab_send_list_by_email" qtlid="268069">U wilt de lijst met geabonneerden en moderators van de   <strong>{0}</strong> mailing list per e-mail verzenden.</translation>
+   <translation id="mailing_list_tab_send_list_by_email_addr" qtlid="254726">E-mailadres:</translation>
+   <translation id="mailing_list_tab_modal_sendListByEmail_success" qtlid="268082">De lijst met geabonneerden en moderators zal verzonden worden aan dit adres: {0}.</translation>
+   <translation id="mailing_list_tab_modal_sendListByEmail_sent_success" qtlid="268095">De lijst met geabonneerden en moderators is met succes per e-mail verzonden. </translation>
+   <translation id="mailing_list_tab_modal_sendListByEmail_error" qtlid="268108">Er is een fout opgetreden tijdens het verzenden van de lijst met geabonneerden en moderators:</translation>
+
+   <translation id="mailing_list_tab_popover_subscribers_delete" qtlid="222982">De abonnee verwijderen</translation>
+   <translation id="mailing_list_tab_subscribers_delete" qtlid="261864">Verwijder de geabonneerden.</translation>
+   <translation id="mailing_list_tab_subscribers_heading" qtlid="261877">U staat op het punt <strong>{0} geabonneerden</strong> van de mailingslijst <strong>{1}</strong> te verwijderen.</translation>
+
+   <translation id="mailing_list_tab_modal_delete_subscriber_heading" qtlid="261890">U staat op het punt de inschrijving van de geabonneerde <strong>{0}</strong> van de mailingslijst <strong>{1}</strong> te verwijderen.</translation>
+   <translation id="mailing_list_tab_modal_subscriber_delete_success" qtlid="261903">De geabonneerde wordt verwijderd. De uitvoering wordt over een paar minuten voltooid.</translation>
+   <translation id="mailing_list_tab_modal_subscribers_delete_success" qtlid="261916">De geabonneerden worden verwijderd. De uitvoering wordt over een paar minuten voltooid.</translation>
+   <translation id="mailing_list_tab_modal_subscriber_delete_error" qtlid="223021">Er is een fout opgetreden tijdens het verwijderen van de abonnee:</translation>
+   <translation id="mailing_list_tab_modal_subscribers_delete_error" qtlid="261929">Er is een fout opgetreden tijdens de verwijdering van de geabonneerden:</translation>
+
+   <translation id="mailing_list_tab_suscribers_import_file" qtlid="261942">Een bestand importeren</translation>
+
+   <translation id="mailing_list_tab_moderators_management_heading" qtlid="223034">Beheer van de moderators van de mailinglijst</translation>
+   <translation id="mailing_list_tab_moderators_management_title" qtlid="261955">Beheer van de moderators van de mailingslijst <strong>{0}</strong></translation>
+   <translation id="mailing_list_tab_moderators_management_title_1" qtlid="261968">Beheer van de moderators van de mailingslijst  <strong>{0}</strong> : {1} moderator</translation>
+   <translation id="mailing_list_tab_moderators_management_title_other" qtlid="261981">Beheer van de moderators van de mailingslijst <strong>{0}</strong> : {1} moderators</translation>
+
+   <translation id="mailing_list_tab_subscribers_management_title" qtlid="364787">Het beheer van de abonnees op de mailinglijst <strong>{0}</strong> (maximaal {2})</translation>
+   <translation id="mailing_list_tab_subscribers_management_title_1" qtlid="364800">Het beheer van de abonnees op de mailinglijst <strong>{0}</strong> : {1} abonnees vanaf {2}</translation>
+   <translation id="mailing_list_tab_subscribers_management_title_other" qtlid="364813">Het beheer van de abonnees op de mailinglijst <strong>{0}</strong> : {1} abonnees vanaf {2}</translation>
+   <translation id="mailing_list_tab_subscribers_limit_excedeed" qtlid="364826">U heeft het maximale aantal abonnees bereikt op de mailinglijst</translation>
+
+   <translation id="mailing_list_tab_table_moderators_empty" qtlid="223047">Geen moderator</translation>
+   <translation id="mailing_list_tab_table_moderators_adding" qtlid="282653">Moderators worden toegevoegd. </translation>
+   <translation id="mailing_list_tab_table_moderators_deleting" qtlid="282666">Moderators worden verwijderd</translation>
+   <translation id="mailing_list_tab_table_moderators_updating" qtlid="282679">Lijst met moderators wordt geüpdatet</translation>
+
+   <translation id="email_tab_moderators_management_heading" qtlid="223060">Beheer van de moderators</translation>
+   <translation id="mailing_list_tab_table_header_moderators_email" qtlid="56177">Email moderator</translation>
+   <translation id="mailing_list_tab_create_moderator" qtlid="223073">Een moderator toevoegen</translation>
+
+   <translation id="mailing_list_tab_create_moderators" qtlid="262033">Moderators toevoegen</translation>
+
+   <translation id="mailing_list_tab_popover_moderators_delete" qtlid="223086">De moderator verwijderen</translation>
+   <translation id="mailing_list_tab_moderators_delete" qtlid="262046">Moderators verwijderen</translation>
+   <translation id="mailing_list_tab_moderators_delete_file" qtlid="282692">Verwijder een bestand</translation>
+
+   <translation id="mailing_list_tab_modal_delete_moderator_heading" qtlid="262059">U staat op het punt de moderator <strong>{0}</strong> van de mailingslijst <strong>{1}</strong> te verwijderen</translation>
+
+   <translation id="mailing_list_tab_moderators_heading" qtlid="262072">U staat op het punt <strong>{0} moderators</strong> van de mailingslijst <strong>{1}</strong> te verwijderen.</translation>
+
+   <translation id="mailing_list_tab_modal_list_create" qtlid="219524">Een mailinglijst aanmaken</translation>
+   <translation id="mailing_list_tab_modal_create_list_title" qtlid="219537">U staat op het punt om een mailinglijst te maken</translation>
+   <translation id="mailing_list_tab_modal_create_list_heading" qtlid="218562">Voer de volgende gegevens in:</translation>
+   <translation id="mailing_list_tab_modal_create_list_name" qtlid="100328">Achternaam</translation>
+   <translation id="mailing_list_tab_modal_create_list_owner" qtlid="219550">Eigenaar:</translation>
+   <translation id="mailing_list_tab_modal_create_list_reply_to" qtlid="219563">Antwoord:</translation>
+   <translation id="mailing_list_tab_modal_create_list_moderator_all_messages" qtlid="283903">Alle berichten beheren</translation>
+   <translation id="mailing_list_tab_modal_create_list_moderator_message" qtlid="223112">Modereren van berichten</translation>
+   <translation id="mailing_list_tab_modal_create_list_only_subscribers_moderator" qtlid="219589">Moderatie van de deelnemers</translation>
+   <translation id="mailing_list_tab_modal_create_list_users_post_only" qtlid="55169">Alleen abonnees mogen plaatsen</translation>
+   <translation id="mailing_list_tab_modal_create_list_no_moderation" qtlid="283916">Iedereen kan berichten plaatsen (onbeheerd)</translation>
+   <translation id="mailing_list_tab_modal_create_list_language" qtlid="168874">Taal:</translation>
+   <translation id="mailing_list_tab_modal_create_list_validate_title" qtlid="296791">Creatie mailinglijst validatie</translation>
+   <translation id="mailing_list_tab_modal_create_list_validate_name" qtlid="100328">Achternaam</translation>
+   <translation id="mailing_list_tab_modal_create_list_validate_options_selected" qtlid="296804">Gekozen opties: </translation>
+   <translation id="mailing_list_tab_modal_create_list_validate_help" qtlid="296817">Heeft u hulp nodig bij het configureren van uw mailinglijst? </translation>
+   <translation id="mailing_list_tab_modal_create_list_validate_help_link" qtlid="156732">Raadpleeg onze online handleidingen.</translation>
+   <translation id="mailing_list_tab_modal_create_list_validate_help_link_title" qtlid="296830">Mail: handleiding mailinglijst </translation>
+   <translation id="email_tab_modal_redirection_create_email_error" qtlid="212036">Het e-mailadres is niet geldig</translation>
+   <translation id="mailing_list_tab_modal_create_list_lareay_exists" qtlid="223125">Een mailinglijst met deze naam bestaat reeds.</translation>
+   <translation id="mailing_list_tab_popover_update" qtlid="219602">De mailinglijst wijzigen</translation>
+   <translation id="mailing_list_tab_popover_delete" qtlid="219615">De mailinglijst verwijderen</translation>
+
+   <translation id="mailing_list_tab_modal_list_delete_title" qtlid="223138">Een mailinglijst verwijderen</translation>
+   <translation id="mailing_list_tab_modal_list_delete_heading" qtlid="219628">U staat op het punt om de mailinglijst <strong>{0}</strong> te verwijderen</translation>
+   <translation id="mailing_list_tab_modal_list_delete_warning" qtlid="212270">Let op: deze actie is niet omkeerbaar en resulteert in het verlies van alle gegevens.</translation>
+   <translation id="mailing_list_tab_modal_list_delete_error" qtlid="219641">Er is een fout opgetreden tijdens het verwijderen van uw mailinglijst:</translation>
+   <translation id="mailing_list_tab_modal_list_delete_success" qtlid="219654">Uw mailinglijst wordt verwijderd</translation>
+
+   <translation id="mailing_list_tab_modal_change_options_list_title" qtlid="219667">U staat op het punt om de opties in de mailinglijst te wijzigen {0}</translation>
+   <translation id="mailing_list_tab_modal_change_options_list_heading" qtlid="218562">Voer de volgende gegevens in:</translation>
+
+   <translation id="mailing_list_tab_modal_list_update" qtlid="223151">Een mailinglijst wijzigen</translation>
+   <translation id="mailing_list_tab_modal_update_list_title" qtlid="223164">U zult uw mailinglijst {0} wijzigen.</translation>
+   <translation id="mailing_list_tab_modal_update_list_heading" qtlid="218562">Voer de volgende gegevens in:</translation>
+   <translation id="mailing_list_tab_modal_update_list_options" qtlid="213518">Opties:</translation>
+   <translation id="mailing_list_tab_modal_update_list_reply_to_list" qtlid="223177">Op de lijst</translation>
+   <translation id="mailing_list_tab_modal_update_list_reply_to_last_user" qtlid="223190">Aan de afzender van de e-mail</translation>
+   <translation id="mailing_list_tab_modal_update_list_reply_to_email" qtlid="223203">E-mailadres</translation>
+
+   <translation id="mailing_list_tab_modal_subscriber_create" qtlid="222969">Een abonnee toevoegen</translation>
+   <translation id="mailing_list_tab_modal_create_subscriber_title" qtlid="223216">U staat op het punt om een abonnee toe te voegen aan de mailinglijst {0}</translation>
+   <translation id="mailing_list_tab_modal_create_subscriber_email" qtlid="223229">E-mail van de abonnee:</translation>
+   <translation id="mailing_list_tab_modal_create_subscriber_email_exists" qtlid="223242">Dit e-mailadres maakt al deel uit van de mailing-list.</translation>
+   <translation id="mailing_list_tab_modal_create_subscriber_success" qtlid="262085">Het geabonneerde wordt toegevoegd. De uitvoering zal over een paar minuten voltooid zijn.</translation>
+   <translation id="mailing_list_tab_modal_create_subscribers_success" qtlid="262098">De geabonneerden worden toegevoegd. De uitvoering zal over een paar minuten voltooid zijn.</translation>
+   <translation id="mailing_list_tab_modal_create_subscriber_error" qtlid="223268">Er is een fout opgetreden bij het toevoegen van het aangemelde adres: </translation>
+   <translation id="mailing_list_tab_modal_create_subscribers_error" qtlid="262111">Er is een fout opgetreden tijdens de toevoeging van de geabonneerden:</translation>
+
+   <translation id="mailing_list_tab_modal_update_list_success" qtlid="223281">De mailing-list is bijgewerkt.</translation>
+   <translation id="mailing_list_tab_modal_update_list_error" qtlid="223294">Er is een fout opgetreden bij het wijzigen van de mailing-list:</translation>
+
+   <translation id="mailing_list_tab_popover_moderators_delete" qtlid="223086">De moderator verwijderen</translation>
+   <translation id="mailing_list_tab_modal_moderator_delete_success" qtlid="262124">De moderator wordt verwijderd. De uitvoering zal over een paar minuten voltooid zijn.</translation>
+   <translation id="mailing_list_tab_modal_moderator_delete_error" qtlid="223320">Er is een fout opgetreden tijdens het verwijderen van de moderator:</translation>
+   <translation id="mailing_list_tab_modal_moderator_delete_title" qtlid="223333">Een moderator verwijderen</translation>
+   <translation id="mailing_list_tab_modal_moderator_delete_heading" qtlid="223346">U staat op het punt om de moderator {0} van de mailinglijst te verwijderen {1}</translation>
+
+   <translation id="mailing_list_tab_modal_moderator_create" qtlid="223073">Een moderator toevoegen</translation>
+   <translation id="mailing_list_tab_modal_create_moderator_title" qtlid="223359">U gaat een moderator aan de mailinglijst {0} toevoegen</translation>
+   <translation id="mailing_list_tab_modal_create_moderator_email" qtlid="223372">De moderator's e-mail:</translation>
+   <translation id="mailing_list_tab_modal_create_moderator_email_exists" qtlid="223385">Dit e-mailadres is al geregistreerd als het emailadres van de moderator.</translation>
+   <translation id="mailing_list_tab_modal_create_moderator_success" qtlid="262137">De moderator wordt toegevoegd. De uitvoering zal over een paar minuten voltooid zijn.</translation>
+   <translation id="mailing_list_tab_modal_create_moderators_success" qtlid="262150">De moderators worden toegevoegd. De uitvoering zal over een paar minuten voltooid zijn.</translation>
+   <translation id="mailing_list_tab_modal_create_moderator_error" qtlid="223411">Er is een fout opgetreden bij het toevoegen van de moderator:</translation>
+   <translation id="mailing_list_tab_modal_create_moderators_error" qtlid="262163">Er is een fout opgetreden tijdens de toevoeging van de moderators:</translation>
+
+   <translation id="mailing_list_tab_suscribers_csv_export" qtlid="224854">Exporteer de abonnees in CSV-format</translation>
+   <translation id="mailing_list_tab_quotas" qtlid="224867">Mailinglijst quota</translation>
+
+   <translation id="mailing_list_tab_modal_moderators_delete_success" qtlid="262176">De moderators worden verwijderd. De uitvoering wordt over een paar minuten voltooid.</translation>
+   <translation id="mailing_list_tab_modal_moderators_delete_error" qtlid="262189">Er is een fout opgetreden tijdens de verwijdering van de moderators:</translation>
+
+   <translation id="mailing_list_tab_create_moderators" qtlid="262033">Moderators toevoegen</translation>
+   <translation id="mailing_list_tab_create_moderators_title" qtlid="262202">U gaat moderators toevoegen aan de mailingslijst <strong>{0}</strong></translation>
+   <translation id="mailing_list_tab_create_moderators_list" qtlid="262215">Lijst van de te toevoegen moderators</translation>
+   <translation id="mailing_list_tab_create_moderators_file" qtlid="261851">Importeer een bestand met een e-mailadres online</translation>
+
+   <translation id="mailing_list_tab_delete_subscribers_title" qtlid="262228">Verwijder geabonneerden van de mailingslijst <strong>{0}</strong></translation>
+   <translation id="mailing_list_tab_delete_subscribers_list" qtlid="262241">Lijst van de te verwijderen geabonneerden</translation>
+
+   <translation id="mailing_list_tab_delete_moderators_title" qtlid="262254">Verwijder de moderators van de mailingslijst <strong>{0}</strong></translation>
+   <translation id="mailing_list_tab_delete_moderators_list" qtlid="262267">Lijst van de te verwijderen moderators</translation>
+</translations>

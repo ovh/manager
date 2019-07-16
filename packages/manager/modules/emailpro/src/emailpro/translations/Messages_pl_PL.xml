@@ -1,0 +1,983 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="emailpro_common_yes" qtlid="34776">Tak</translation>
+   <translation id="emailpro_common_no" qtlid="34788">Nie</translation>
+
+   <translation id="emailpro_tab_INFORMATION" qtlid="27115">Informacje ogólne</translation>
+   <translation id="emailpro_tab_INFORMATION" qtlid="27115">Informacje ogólne</translation>
+   <translation id="emailpro_displayName_maxlength" qtlid="260208">Nazwa nie może zawierać więcej niż 250 znaków.</translation>
+   <translation id="emailpro_displayName_required" qtlid="88293">Nazwa nie może być pusta.</translation>
+
+   <translation id="emailpro_dashboard_service_expired" qtlid="433706">Wystąpił błąd podczas pobierania konta E-mail Pro.</translation>
+   <translation id="emailpro-mxplan_dashboard_service_expired" qtlid="518076">Wystąpił błąd podczas ładowania Twojego konta MX Plan.</translation>
+   <translation id="emailpro_dashboard_accounts" qtlid="374984">Konta E-mail Pro</translation>
+   <translation id="emailpro_dashboard_redirections" qtlid="46204">Przekierowania</translation>
+   <translation id="emailpro_dashboard_mailingLists" qtlid="50182">Listy mailingowe</translation>
+   <translation id="emailpro_dashboard_accounts_upgrade_mxPlan" qtlid="25783">Zmień ofertę</translation>
+   <translation id="emailpro_dashboard_guides" qtlid="374997">Potrzebujesz pomocy w skonfigurowaniu usługi E-mail Pro?</translation>
+   <translation id="emailpro-mxplan_dashboard_guides" qtlid="518089">Potrzebujesz pomocy w procesie konfiguracji Twojej usługi E-mail MX Plan?</translation>
+   <translation id="emailpro_tab_domain_no_domain_attached" qtlid="375010">Twoja usługa E-mail Pro jest prawie gotowa. Musisz przypisać domenę do swojej usługi. Jeśli nie masz domeny, możesz ją zamówić <a href="https://www.ovh.pl:51043/cgi-bin/newOrder/order.cgi" target="_blank">tutaj</a>.</translation>
+   <translation id="emailpro-mxplan_tab_domain_no_domain_attached" qtlid="518102">Twoja usługa E-mail MX Plan jest prawie gotowa. Powiąż z nią Twoją domenę. Jeśli nie posiadasz domeny, <a href="https://www.ovh.pl/domeny/">kliknij tutaj</a> i złóż zamówienie.</translation>
+
+   <translation id="emailpro_tab_ALIAS_remove_alias_intro" qtlid="375023">Czy chcesz usunąć ten alias z usługi E-mail Pro?</translation>
+   <translation id="emailpro-mxplan_tab_ALIAS_remove_alias_intro" qtlid="518115">Czy na pewno chcesz usunąć następujący alias z Twojej usługi E-mail MX Plan?</translation>
+   <translation id="emailpro_tab_ALIAS_add_no_domains" qtlid="375036">Nie dodałeś jeszcze domeny lub nie została ona potwierdzona. <br/> Najpierw należy dodać domenę i poczekać na jej potwierdzenie, aby móc utworzyć alias do konta E-mail Pro.</translation>
+   <translation id="emailpro_tab_ALIAS_add_alias_limit_tooltip" qtlid="375049">Osiągnąłeś limit 1000 aliasów na konto E-mail Pro.</translation>
+   <translation id="emailpro-mxplan_tab_ALIAS_add_alias_limit_tooltip" qtlid="518128">Osiągnąłeś limit 1000 aliasów na jedno konto E-mail MX Plan.</translation>
+
+   <translation id="emailpro_resilitation_action_title" qtlid="375062">Rezygnacja z usługi E-mail Pro</translation>
+   <translation id="emailpro-mxplan_resilitation_action_title" qtlid="518141">Zakończenie świadczenia Twojej usługi E-mail MX Plan</translation>
+   <translation id="emailpro_resilitation_action_intro" qtlid="375075">Czy chcesz zrezygnować z usługi E-mail Pro "{0}"? <br />Operacja ta spowoduje anulowanie automatycznego odnowienia wraz z zakończeniem abonamentu, powodując zablokowanie usługi.<br /><br /> Będziesz mógł korzystać z usługi aż do tej daty.&#13;
+</translation>
+   <translation id="emailpro-mxplan_resilitation_action_intro" qtlid="518154">Czy na pewno chcesz zakończyć usługę E-mail MX Plan "{0}"? <br />Czynność ta anuluje automatyczne odnawianie usługi na koniec okresu wygaśnięcia umowy i spowoduje jej zablokowanie.<br /><br /> Do tego dnia możesz korzystać z usługi. </translation>
+
+   <translation id="emailpro_resilitation_action_confirmation" qtlid="375088">Uwaga: Jesteś na etapie rezygnowania z całej usługi "{0}" jak również z {1} kont E-mail Pro, które są do niej przypisane. <br />Czy chcesz kontynuować tę operację?</translation>
+   <translation id="emailpro-mxplan_resilitation_action_confirmation" qtlid="518167">Uwaga: za chwilę zakończysz usługę "{0}" wraz z powiązanymi z nią {1} kontami E-mail MX Plan. <br />Czy na pewno chcesz wykonać tę operację?</translation>
+
+   <translation id="emailpro_resilitation_action_success" qtlid="375101">Usługa E-mail Pro zostanie usunięta zgodnie z datą wygaśnięcia.</translation>
+   <translation id="emailpro-mxplan_resilitation_action_success" qtlid="518180">Usługa E-mail MX Plan zostanie usunięta w dniu wygaśnięcia umowy.</translation>
+
+   <translation id="emailpro_resilitation_action_failure" qtlid="375114">Wystąpił błąd podczas usuwania usługi E-mail Pro.</translation>
+   <translation id="emailpro-mxplan_resilitation_action_failure" qtlid="518193">Wystąpił błąd podczas usuwania usługi E-mail MX Plan.</translation>
+
+   <translation id="emailpro_resilitation_cancel_action_success" qtlid="375127">Usługa E-mail Pro zostanie odnowiona w dniu wygasania.</translation>
+   <translation id="emailpro-mxplan_resilitation_cancel_action_success" qtlid="518206">Usługa E-mail MX Plan zostanie odnowiona w dniu wygaśnięcia umowy.</translation>
+
+   <translation id="emailpro_resilitation_cancel_action_intro" qtlid="375140">Rezygnacja z usługi E-mail Pro "{0}" jest zaplanowana na dzień wygaśnięcia. <br /><br />Czy chcesz anulować rezygnację? Usługa będzie odnawiana automatycznie.</translation>
+   <translation id="emailpro-mxplan_resilitation_cancel_action_intro" qtlid="518219">Zakończenie świadczenia usługi E-mail MX Plan "{0}" zaplanowane jest na dzień wygaśnięcia umowy. <br /><br />Czy na pewno chcesz anulować zakończenie świadczenia usługi? Włączone zostanie wówczas automatyczne odnawianie usługi.</translation>
+
+   <translation id="emailpro_tab_domain_no_domains_1" qtlid="375153">Dodaj domenę, aby móc tworzyć konta E-mail Pro. Kliknij</translation>
+   <translation id="emailpro-mxplan_tab_domain_no_domains_1" qtlid="518232">Dodaj domenę, aby utworzyć konta MX Plan. Kliknij</translation>
+   <translation id="emailpro_tab_domain_diagnostic_mx_no_antispam" qtlid="375166">Jeśli używasz trybu nieautorytatywnego (E-mail Pro + inny system poczty elektronicznej) z systemem poczty elektronicznej nie obsługiwanym w OVH:</translation>
+   <translation id="emailpro-mxplan_tab_domain_diagnostic_mx_no_antispam" qtlid="518245">Jeśli używasz trybu autorytatywnego (E-mail MX Plan + inny system poczty elektronicznej) z systemem poczty elektronicznej nie hostowanym przez OVH:</translation>
+
+   <translation id="emailpro_tab_domain_diagnostic_mx_antispam" qtlid="375179">Jeśli używasz trybu autorytatywnego (wyłącznie E-mail Pro) lub nieautorytatywnego z systemem poczty elektronicznej obsługiwanym w OVH (e-mail na hostingu):</translation>
+   <translation id="emailpro-mxplan_tab_domain_diagnostic_mx_antispam" qtlid="518258">Jeśli używasz trybu autorytatywnego (wyłącznie E-mail MX Plan) lub nieautorytatywnego z systemem poczty elektronicznej hostowanym (e-mail w ramach oferty hostingowej) przez OVH:</translation>
+
+   <translation id="emailpro_tab_domain_diagnostic_mx_no_ovh" qtlid="375192">Jeśli domena nie jest zarządzana przez ten sam identyfikator klienta, który zarządza usługą  E-mail Pro lub jeśli domena nie jest obsługiwana w OVH, automatyczna konfiguracja nie będzie możliwa. Utwórz ręcznie pole MX dla tej domeny podając poniższe informacje.</translation>
+   <translation id="emailpro-mxplan_tab_domain_diagnostic_mx_no_ovh" qtlid="518271">Jeśli domena nie jest zarządzana przez ten sam identyfikator klienta, co usługa E-mail MX Plan lub jeśli Twoja domena nie jest hostowana w OVH, automatyczna konfiguracja nie jest możliwa. Utwórz ręcznie rekord MX w tej domenie, wprowadzając te same informacje, co poniżej.</translation>
+
+   <translation id="emailpro_tab_domain_diagnostic_srv_no_ovh" qtlid="375205">Jeśli domena nie jest zarządzana przez ten sam identyfikator klienta, który zarządza usługą  E-mail Pro lub jeśli domena nie jest obsługiwana w OVH, automatyczna konfiguracja nie będzie możliwa. Utwórz ręcznie pole SRV dla tej domeny podając poniższe informacje.</translation>
+   <translation id="emailpro-mxplan_tab_domain_diagnostic_srv_no_ovh" qtlid="518284">Jeśli domena nie jest zarządzana przez ten sam identyfikator klienta, co usługa E-mail MX Plan lub jeśli Twoja domena nie jest hostowana w OVH, automatyczna konfiguracja nie jest możliwa. Utwórz ręcznie rekord SRV w tej domenie, wprowadzając te same informacje, co poniżej.</translation>
+
+   <translation id="emailpro_tab_domain_delete_domain" qtlid="375218">Usuń tę domenę z usług E-mail Pro</translation>
+   <translation id="emailpro-mxplan_tab_domain_delete_domain" qtlid="518297">Usuń tę domenę z usług E-mail MX Plan.</translation>
+
+   <translation id="emailpro_tab_domain_delete_domain_accounts_warning" qtlid="375231">Ta domena nie może zostać usunięta, ponieważ jest ona używana przez jedno lub kilka kont E-mail Pro.</translation>
+   <translation id="emailpro-mxplan_tab_domain_delete_domain_accounts_warning" qtlid="518310">Nie można usunąć tej domeny, ponieważ jest jeszcze używana przez jedno lub kilka kont E-mail MX Plan.</translation>
+
+   <translation id="emailpro_ACTION_order_accounts_title" qtlid="375244">Zamów konta E-mail Pro</translation>
+   <translation id="emailpro-mxplan_ACTION_order_accounts_title" qtlid="518323">Zamów konta E-mail MX Plan.</translation>
+
+   <translation id="emailpro_ACTION_order_accounts_step1_intro" qtlid="375257">Wybierz rodzaj płatności oraz liczbę kont E-mail Pro do zamówienia.</translation>
+   <translation id="emailpro-mxplan_ACTION_order_accounts_step1_intro" qtlid="518336">Wybierz metodę płatności, a następnie liczbę kont E-mail MX Plan, którą chcesz zamówić.</translation>
+
+   <translation id="emailpro_ACTION_order_accounts_step2_doing_message" qtlid="375270">Zamówienie kont E-mail Pro w trakcie...</translation>
+   <translation id="emailpro-mxplan_ACTION_order_accounts_step2_doing_message" qtlid="518349">Zamówienie kont E-mail MX Plan w toku...</translation>
+   <translation id="emailpro_ACTION_order_accounts_per_account" qtlid="375283">na konto</translation>
+
+   <translation id="emailpro_ACTION_add_account_title" qtlid="375296">Dodaj konto E-mail Pro</translation>
+   <translation id="emailpro-mxplan_ACTION_add_account_title" qtlid="518362">Dodaj konto E-mail MX Plan</translation>
+
+   <translation id="emailpro_ACTION_add_account_step1_option_fail" qtlid="375309">Wystąpił błąd podczas pobierania opcji dla konta E-mail Pro.</translation>
+   <translation id="emailpro-mxplan_ACTION_add_account_step1_option_fail" qtlid="518375">Wystąpił błąd podczas ładowania opcji konta E-mail MX Plan.</translation>
+
+   <translation id="emailpro_ACTION_add_account_helpwizard_title" qtlid="375322">Zakładanie konta E-mail Pro</translation>
+   <translation id="emailpro-mxplan_ACTION_add_account_helpwizard_title" qtlid="518388">Utworzenie konta E-mail MX Plan</translation>
+
+   <translation id="emailpro_ACTION_add_no_domains" qtlid="375335">Nie dodałeś jeszcze domeny lub nie została ona jeszcze potwierdzona. <br/>Musisz najpierw dodać domenę i poczekać na jej potwierdzenie, aby móc utworzyć konto E-mail Pro.</translation>
+   <translation id="emailpro-mxplan_ACTION_add_no_domains" qtlid="518401">Nie dodałeś jeszcze domeny lub nie została ona jeszcze zatwierdzona. <br/>Dodaj najpierw domenę i zaczekaj, aż zostanie zatwierdzona, aby utworzyć konto E-mail MX Plan.</translation>
+
+   <translation id="emailpro_ACTION_add_account_error_message" qtlid="375348">Wystąpił błąd podczas zakładania konta E-mail Pro.</translation>
+   <translation id="emailpro-mxplan_ACTION_add_account_error_message" qtlid="518414">Wystąpił błąd podczas tworzenia konta E-mail MX Plan.</translation>
+
+   <translation id="emailpro_ACTION_update_account_step1_password_contains_name" qtlid="375361">Hasło nie może zawierać części lub całości nazwy do wyświetlenia lub loginu E-mail Pro.</translation>
+   <translation id="emailpro-mxplan_ACTION_update_account_step1_password_contains_name" qtlid="518427">Hasło nie może zawierać całości lub części wyświetlanej nazwy ani loginu do konta E-mail MX Plan.</translation>
+   <translation id="emailpro-mxplan_ACTION_update_account_step1_password_contains_name" qtlid="518440">Hasło nie może zawierać całości lub części wyświetlanej nazwy ani loginu do konta MX Plan.</translation>
+
+   <translation id="emailpro_ACTION_update_account_step1_exchange_guid_label" qtlid="375374">E-mail Pro GUID</translation>
+   <translation id="emailpro-mxplan_ACTION_update_account_step1_exchange_guid_label" qtlid="518453">E-mail MX Plan GUID</translation>
+
+   <translation id="emailpro_ACTION_update_account_helpwizard_title" qtlid="375387">Zmodyfikuj konto E-mail Pro</translation>
+   <translation id="emailpro-mxplan_ACTION_update_account_helpwizard_title" qtlid="518466">Zmień konto E-mail MX Plan</translation>
+
+   <translation id="emailpro_ACTION_update_account_helpwizard_intro" qtlid="375400">Możesz zmodyfikować politykę bezpieczeństwa kont E-mail Pro wprowadzając na przykład minimalny poziom złożoności dla haseł. <br/>Aby to zrobić, kliknij na przycisk <strong>"Zarządzaj polityką bezpieczeństwa"</strong> w panelu swojej usługi.&#13;
+&#13;
+</translation>
+   <translation id="emailpro-mxplan_ACTION_update_account_helpwizard_intro" qtlid="518479">Możesz zmienić politykę bezpieczeństwa kont E-mail MX Plan wprowadzając na przykład minimalny poziom złożoności hasła. <br/>W tym celu kliknij przycisk <strong>"Zarządzaj polityką bezpieczeństwa"</strong> na dashboardzie Twojej usługi.</translation>
+
+   <translation id="emailpro_ACTION_update_account_helpwizard_guid_title" qtlid="375374">E-mail Pro GUID</translation>
+   <translation id="emailpro-mxplan_ACTION_update_account_helpwizard_guid_title" qtlid="518453">E-mail MX Plan GUID</translation>
+
+   <translation id="emailpro_ACTION_update_account_helpwizard_guid" qtlid="375413">E-mail Pro GUID to unikalny wewnętrzny identyfikator przypisany do skrzynki e-mail.</translation>
+   <translation id="emailpro-mxplan_ACTION_update_account_helpwizard_guid" qtlid="518492">E-mail MX Plan GUID jest unikalnym wewnętrznym identyfikatorem Twojej skrzynki pocztowej.</translation>
+
+   <translation id="emailpro_ACTION_update_account_success_message" qtlid="375426">Konfiguracja konta E-mail Pro zostanie zmodyfikowana.</translation>
+   <translation id="emailpro-mxplan_ACTION_update_account_success_message" qtlid="518505">Konfiguracja konta E-mail MX Plan zostanie zmieniona.</translation>
+
+   <translation id="emailpro_ACTION_update_account_error_message" qtlid="375439">Adres e-mail E-mail Pro nie mógł zostać spersonalizowany. Możliwe, że dla tej samej nazwy istnieje konfiguracja na hostingu (e-mail, przekierowanie, autoresponder).</translation>
+   <translation id="emailpro-mxplan_ACTION_update_account_error_message" qtlid="518518">Nie udało się spersonalizować adresu e-mail usługi E-mail MX Plan. Możliwe, że istnieje wspólna konfiguracja (poczta, przekierowanie, autoresponder) o tej samej nazwie.</translation>
+
+   <translation id="emailpro_ACTION_change_password_account_success_message" qtlid="375452">Hasło do konta E-mail Pro zostanie zmienione.</translation>
+   <translation id="emailpro-mxplan_ACTION_change_password_account_success_message" qtlid="518531">Hasła do konta E-mail MX Plan zostanie zmodyfikowane.</translation>
+
+   <translation id="emailpro_ACTION_update_account_title" qtlid="375387">Zmodyfikuj konto E-mail Pro</translation>
+   <translation id="emailpro-mxplan_ACTION_update_account_title" qtlid="518466">Zmień konto E-mail MX Plan</translation>
+
+   <translation id="emailpro_ACTION_update_account_timeout" qtlid="518544">Hasło do konta {{accountEmailAddress}} nie zostało zmodyfikowane. Spróbuj później.</translation>
+
+   <translation id="emailpro_ACTION_account_error_pattern" qtlid="447872">Konto zawiera niedozwolone znaki</translation>
+   <translation id="emailpro_ACTION_account_error_required" qtlid="447885">Wymagane jest konto</translation>
+   <translation id="emailpro_tab_account_state_CREATING" qtlid="26791">Utworzenie</translation>
+   <translation id="emailpro_tab_account_state_DELETING" qtlid="447898">Reset</translation>
+   <translation id="emailpro_tab_account_state_REOPENING" qtlid="171188">Trwa otwieranie</translation>
+   <translation id="emailpro_tab_account_state_SUSPENDED" qtlid="136100">Zawieszone</translation>
+   <translation id="emailpro_tab_account_state_SUSPENDING" qtlid="171201">Trwa zawieszanie</translation>
+   <translation id="emailpro_tab_account_state_SPAM" qtlid="70409">Spam</translation>
+   <translation id="emailpro_tab_account_popover_reset" qtlid="376011">Zresetuj to konto</translation>
+   <translation id="emailpro_tab_account_reset_account" qtlid="376024">Zresetuj konto</translation>
+   <translation id="emailpro_tab_account_reset_title" qtlid="447911">Czy na pewno chcesz zresetować następujące konto usługi E-mail Pro?</translation>
+   <translation id="emailpro-mxplan_tab_account_reset_title" qtlid="518557">Czy na pewno chcesz zresetować następujące konto w Twojej usłudze E-mail MX Plan ?</translation>
+
+   <translation id="emailpro_tab_account_reset_account_label" qtlid="33862">Konto</translation>
+   <translation id="emailpro_tab_account_reset_account_info" qtlid="376037">Reset konta polega na usunięciu danych i przypisanej nazwy. Konto pozostaje odpłatne. Jeśli nie chcesz ponosić kosztów, kliknij na "tryb płatności" i zaznacz "Brak" dla wybranego konta oraz zatwierdź.</translation>
+   <translation id="emailpro-mxplan_tab_account_reset_account_info" qtlid="518570">Reset konta polega na usunięciu danych i powiązanej z kontem nazwy. Konto może być później ponownie skonfigurowane.</translation>
+   <translation id="emailpro_tab_account_reset_success" qtlid="447924">Twoje konto przypisane do usługi E-mail Pro zostanie zresetowane.</translation>
+   <translation id="emailpro-mxplan_tab_account_reset_success" qtlid="518583">Konto w Twojej usłudze E-mail MX Plan zostanie zresetowane.</translation>
+
+   <translation id="emailpro_tab_account_reset_failure" qtlid="447937">Wystąpił błąd podczas resetowania konta przypisanego do usługi E-mail Pro.</translation>
+   <translation id="emailpro-mxplan_tab_account_reset_failure" qtlid="518596">Wystąpił błąd podczas resetu konta w Twojej usłudze E-mail MX Plan.</translation>
+
+   <translation id="emailpro_tab_domain_modify_domain_tooltip" qtlid="447950">Ochrona antyspamowa Vade Secure jest kompatybilna z trybem nieautorytatywnym (wyłącznie jeśli Twoje konta pop/imap są zainstalowane w OVH). W tym przypadku zalecane jest użycie: <strong>{0}</strong>, <strong>{1}</strong>, <strong>{2}</strong> i <strong>{3}</strong><br/><br/>. Jeśli stosujesz tryb nieautorytatywny dla kont nieobsługiwanych przez OVH, powinieneś użyć: <strong>{4}</strong> (patrz sekcja powiązane domeny)</translation>
+   <translation id="emailpro_tab_domain_manage" qtlid="404395">: zarządzaj</translation>
+
+   <translation id="emailpro_configuration_action_title" qtlid="136243">Zarządzaj polityką bezpieczeństwa</translation>
+
+   <translation id="emailpro_tab_domain_mode_AUTHORITATIVE" qtlid="375491">Autorytatywny (tylko E-mail Pro)</translation>
+   <translation id="emailpro-mxplan_tab_domain_mode_AUTHORITATIVE" qtlid="518609">Autorytatywny (wyłącznie E-mail MX Plan)</translation>
+
+   <translation id="emailpro_tab_domain_mode_NON_AUTHORITATIVE" qtlid="375504">Nieautorytatywny (E-mail Pro + inna usługa poczty elektronicznej)</translation>
+   <translation id="emailpro-mxplan_tab_domain_mode_NON_AUTHORITATIVE" qtlid="518622">Nieautorytatywny (E-mail MX Plan + inna usługa poczty elektronicznej)</translation>
+
+   <translation id="emailpro_tab_domain_AUTHORITATIVE_info" qtlid="375517">Tryb autorytatywny nie pozwala na korzystanie z innego systemu poczty elektronicznej z kontami E-mail Pro. Tryb ten pozwala na aktywację systemu antyspamowego Vade Secure.</translation>
+   <translation id="emailpro-mxplan_tab_domain_AUTHORITATIVE_info" qtlid="518635">Tryb autorytatywny nie pozwala na użycie innego systemu poczty elektronicznej w powiązaniu z kontami E-mail MX Plan. Tryb ten umożliwia aktywację filtra antyspamowego Vade Secure.</translation>
+
+   <translation id="emailpro_tab_domain_NON_AUTHORITATIVE_info" qtlid="375530">Tryb nieautorytatywny pozwala na równoczesne korzystanie z usługi E-mail Pro i innej usługi poczty elektronicznej. Ochrona antyspamowa Vade Secure jest kompatybilna, jeśli konta pop/imap są zainstalowane w OVH (mxplan lub oferta hostingu). W tym przypadku należy wskazać mx1.mail.ovh.net, jako docelowy serwer e-mail.</translation>
+   <translation id="emailpro-mxplan_tab_domain_NON_AUTHORITATIVE_info" qtlid="518648">Tryb nieautorytatywny zezwala na współistnienie E-mail MX Plan i innej usługi poczty elektronicznej. Filtr antyspam Vade Secure jest kompatybilny, jeśli konta pop/imap są hostowane w OVH (mxplan lub e-mail w ramach oferty hostingowej). W tym przypadku należy wskazać mx1.mail.ovh.net jako docelowy serwer e-mail.</translation>
+
+   <translation id="emailpro_tab_domain_modify_title" qtlid="375543">Czy chcesz zmodyfikować tę domenę w usłudze  E-mail Pro?</translation>
+   <translation id="emailpro-mxplan_tab_domain_modify_title" qtlid="518661">Czy na pewno chcesz zmodyfikować następującą domenę w Twojej usłudze E-mail MX Plan?</translation>
+
+   <translation id="emailpro_tab_domain_modify_wizard_text" qtlid="375556">Domyślnie domena dodawana na serwer E-mail Pro znajduje się w trybie autorytatywnym. Oznacza to, że jeśli wysyłasz e-mail na adres domeny zarządzanej na serwerze, serwer ten będzie sprawdzał tylko serwer E-mail Pro, jeśli adres istnieje. <br /><br /> Jeśli przełączysz domenę w tryb nie autorytatywny, podczas wysyłania e-maila w pierwszej kolejności będziemy sprawdzać, czy adres e-mail istnieje na serwerze E-mail Pro i jeśli tak nie będzie, serwer przekieruje wiadomość na serwer MX, który zdefiniowałeś. <br /><br />Domena w trybie nie autorytatywnym może być używana w ten sposób, że część e-maili jest zarządzana na serwerze E-mail Pro a pozostała część na serwerze zewnętrznym. <br /><br />Uwaga: Jeśli chcesz korzystać z usługi E-mail pro i z usługi e-mail na hostingu OVH, w polu "Docelowy serwer mail" wpisz tę wartość: <strong>mx1.ovh.net.</strong></translation>
+   <translation id="emailpro-mxplan_tab_domain_modify_wizard_text" qtlid="518674">Twoja domena, po dodaniu jej do serwera E-mail MX Plan, działa domyślnie w trybie autorytatywnym. Oznacza to, że po wysłaniu wiadomości e-mail na adres domeny zarządzanej na serwerze serwer będzie widział wyłącznie serwer E-mail MX Plan, o ile obecny jest adres. <br /><br /> Jeśli jednak zmienisz tryb działania domeny na nieautorytatywny, podczas wysyłania wiadomości e-mail najpierw sprawdzimy, czy adres e-mail jest obecny na serwerze E-mail MX Plan. Jeśli tak nie jest, serwer ten przekaże wiadomość do wskazanego przez Ciebie serwera MX. <br /><br />Możesz używać domeny w trybie nieautorytatywnym, jeśli chcesz na przykład zarządzać częścią wiadomości e-mail na koncie E-mail MX Plan, a inną częścią na serwerze zewnętrznym. <br /><br />Uwaga: jeśli chcesz korzystać z usługi E-mail MX Plan oraz z e-maila w ramach oferty hostingowej OVH, w polu "Docelowy serwer pocztowy" w formularzu po lewej stronie wprowadź następującą wartość: <strong>mx1.ovh.net.</strong></translation>
+
+
+   <translation id="emailpro_tab_domain_remove_title" qtlid="375569">Czy chcesz usunąć tę domenę z usługi E-mail Pro?</translation>
+   <translation id="emailpro-mxplan_tab_domain_remove_title" qtlid="518687">Czy na pewno chcesz usunąć następującą domenę z Twojej usługi E-mail MX Plan?</translation>
+
+   <translation id="emailpro_tab_domain_remove_success" qtlid="375582">Domena zostanie usunięta z usługi E-mail Pro.</translation>
+   <translation id="emailpro-mxplan_tab_domain_remove_success" qtlid="518700">Domena zostanie usunięta z Twojej usługi E-mail MX Plan.</translation>
+
+   <translation id="emailpro_tab_domain_remove_failure" qtlid="375595">Wystąpił błąd podczas usuwania domeny z usługi E-mail Pro.</translation>
+   <translation id="emailpro-mxplan_tab_domain_remove_failure" qtlid="518713">Wystąpił błąd podczas usuwania domeny z Twojej usługi E-mail MX Plan.</translation>
+
+   <translation id="emailpro_ACTION_delegation_step1_intro" qtlid="375608">Delegacja pozwala innym kontom E-mail Pro na posiadanie pewnych uprawnień do konta {0}.</translation>
+   <translation id="emailpro-mxplan_ACTION_delegation_step1_intro" qtlid="518726">Delegacja pozwala innym kontom E-mail MX Plan na posiadanie pewnych uprawnień do konta {0}</translation>
+
+   <translation id="emailpro_ACTION_add_disclaimer_helpwizard_details1" qtlid="468291">Możesz utworzyć podpis dla każdej zatwierdzonej domeny.</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_helpwizard_details2" qtlid="468304">Użyj dostępnych narzędzi, aby dostosować i sformatować Twój podpis.</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_helpwizard_details3" qtlid="468317">Podpis będzie automatycznie dodawany na końcu wszystkich wiadomości e-mail wysyłanych z kont e-mail powiązanych z Twoją domeną E-mail Pro.</translation>
+   <translation id="emailpro-mxplan_ACTION_add_disclaimer_helpwizard_details3" qtlid="518739">Podpis ten będzie automatycznie umieszczany pod każdą wiadomością wysyłaną z adresów powiązanych z Twoją domeną E-mail MX Plan.</translation>
+
+   <translation id="emailpro_ACTION_add_disclaimer_helpwizard_details4" qtlid="468330">Możesz także użyć zmiennych, aby spersonalizować ogólny podpis i wstawić dane poszczególnych pracowników.</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_helpwizard_details5" qtlid="468343">Aby dodać obraz lub logo, kliknij ikonkę "obraz" i wprowadź odpowiedni adres URL.</translation>
+   <translation id="emailpro_ACTION_delete_disclaimer_question" qtlid="375634">Czy chcesz usunąć ten podpis z usługi E-mail Pro?</translation>
+   <translation id="emailpro-mxplan_ACTION_delete_disclaimer_question" qtlid="518752">Czy na pewno chcesz usunąć następujący podpis z Twojej usługi E-mail MX Plan?</translation>
+
+   <translation id="emailpro_tab_RESOURCES_add_resource_step2_title" qtlid="375647">Czy chcesz dodać konto zasobów do serwera E-mail Pro?</translation>
+   <translation id="emailpro-mxplan_tab_RESOURCES_add_resource_step2_title" qtlid="518765">Czy na pewno chcesz dodać poniższe konto zasobów do serwera E-mail MX Plan?</translation>
+
+   <translation id="emailpro_tab_RESOURCES_no_domain_warning" qtlid="375335">Nie dodałeś jeszcze domeny lub nie została ona jeszcze potwierdzona. <br/>Musisz najpierw dodać domenę i poczekać na jej potwierdzenie, aby móc utworzyć konto E-mail Pro.</translation>
+   <translation id="emailpro-mxplan_tab_RESOURCES_no_domain_warning" qtlid="518401">Nie dodałeś jeszcze domeny lub nie została ona jeszcze zatwierdzona. <br/>Dodaj najpierw domenę i zaczekaj, aż zostanie zatwierdzona, aby utworzyć konto E-mail MX Plan.</translation>
+
+   <translation id="emailpro_tab_RESOURCES_remove_resource_title" qtlid="375660">Czy chcesz usunąć to konto zasobów z usługi E-mail Pro?</translation>
+   <translation id="emailpro-mxplan_tab_RESOURCES_remove_resource_title" qtlid="518778">Czy na pewno chcesz usunąć następujące konto zasobów z Twojej usługi E-mail MX Plan?</translation>
+
+   <translation id="emailpro_tab_RESOURCES_remove_resource_success" qtlid="375673">Konto zasobów zostanie usunięte z usługi E-mail Pro.</translation>
+   <translation id="emailpro-mxplan_tab_RESOURCES_remove_resource_success" qtlid="518791">Konto zasobów zostanie usunięte z Twojej usługi E-mail MX Plan.</translation>
+
+   <translation id="emailpro_RESOURCES_delegation_step1_intro" qtlid="520689">Delegacja pozwala innym kontom E-mail Pro na posiadanie pewnych uprawnień do zasobu {0}.</translation>
+   <translation id="emailpro-mxplan_RESOURCES_delegation_step1_intro" qtlid="520702">Delegacja pozwala innym kontom E-mail MX Plan na posiadanie pewnych uprawnień do zasobu {0}.</translation>
+
+   <translation id="emailpro_DIAGNOSTICS_status_isSpammer_help2" qtlid="375699">Nie dotyczy to odbierania wiadomości. Gdy Twoje konto jest zablokowane z powodu spamu, jest ono widoczne z poziomu usługi E-mail Pro w sekcji Konto e-mail. Wskazany jest tag SPAM. Możesz kliknąć na to oznaczenie, aby zobaczyć e-mail otrzymany po zablokowaniu konta.</translation>
+   <translation id="emailpro-mxplan_DIAGNOSTICS_status_isSpammer_help2" qtlid="518817">Odbiór e-maili nie zostaje zakłócony. Kiedy Twoje konto jest zablokowane z powodu spamu, pozostaje widoczne w sekcji konto e-mail w Twojej usłudze E-mail MX Plan. Pojawia się tag SPAM. Możesz kliknąć tag, aby zostać przekierowanym do wiadomości e-mail otrzymanej po zablokowaniu konta.</translation>
+
+   <translation id="emailpro_DIAGNOSTICS_status_isSuspended_help" qtlid="375712">W tym przypadku Twój abonament nie jest aktywny, odbieranie i wysyłanie jest wyłączone. Skontaktuj się z Biurem Obsługi Klienta, w celu odblokowania usługi.</translation>
+   <translation id="emailpro-mxplan_DIAGNOSTICS_status_isSuspended_help" qtlid="518830">W tym przypadku Twój abonament nie jest już aktywny, odbiór i wysyłka e-maili są wyłączone. Aby ponownie włączyć usługę, skontaktuj się z Pomocą techniczną OVH ds. usługi E-mail MX Plan <strong>+48 71 750 02 00</strong>.</translation>
+
+   <translation id="emailpro_DIAGNOSTICS_status_isLocked_help1" qtlid="375725">W przypadku usługi E-mail Pro możesz zdefiniować politykę bezpieczeństwa. Wiąże się to z blokowaniem konta na czas określony podczas konfigurowania tych zasad.</translation>
+   <translation id="emailpro-mxplan_DIAGNOSTICS_status_isLocked_help1" qtlid="518843">Możesz określić politykę bezpieczeństwa dla Twojej usługi E-mail MX Plan. Może to spowodować blokadę konta na czas potrzebny do konfiguracji polityki bezpieczeństwa.</translation>
+
+   <translation id="emailpro_DIAGNOSTICS_status_isLocked_help3" qtlid="375738">Jeśli pojawi się blokada na tym poziomie, możesz poczekać na upłynięcie tego czasu, aby konto się odblokowało lub skontaktować się z naszym Biurem Obsługi Klienta dodając zgłoszenie w panelu klienta.</translation>
+   <translation id="emailpro-mxplan_DIAGNOSTICS_status_isLocked_help3" qtlid="518856">Jeśli wystąpi blokada na tym poziomie, możesz poczekać, aż upłynie określony czas, po którym konto powinno się odblokować lub skontaktować się z Pomocą techniczną OVH ds. usługi E-mail MX Plan i utworzyć zgłoszenie z prośbą o wsparcie.</translation>
+
+   <translation id="emailpro_DIAGNOSTICS_status_connectiveOWA_help2" qtlid="375751">Możesz również zaktualizować hasło z poziomu usługi E-mail Pro, w zakładce Konto e-mail i wznowić diagnostykę. Jeśli problem będzie się powtarzał, możesz utworzyć zgłoszenie w panelu klienta.</translation>
+   <translation id="emailpro-mxplan_DIAGNOSTICS_status_connectiveOWA_help2" qtlid="518869">Możesz również zaktualizować hasło do konta E-mail MX Plan w zakładce konto e-mail, a następnie uruchomić diagnostykę. Jeśli problem nadal występuje, możesz utworzyć zgłoszenie z prośbą o wsparcie techniczne.</translation>
+
+   <translation id="emailpro_DIAGNOSTICS_status_isMxValid_help2" qtlid="375764">Oto poprawne serwery MX dla oferty E-mail Pro:</translation>
+   <translation id="emailpro-mxplan_DIAGNOSTICS_status_isMxValid_help2" qtlid="518882">Prawidłowe serwery MX dla oferty E-mail MX Plan:</translation>
+
+   <translation id="emailpro_DIAGNOSTICS_status_isMxValid_help_li1" qtlid="375777">Tylko E-mail Pro: mx1.mail.ovh.net</translation>
+   <translation id="emailpro-mxplan_DIAGNOSTICS_status_isMxValid_help_li1" qtlid="518895">Tylko E-mail MX Plan: mx1.mail.ovh.net</translation>
+
+   <translation id="emailpro_DIAGNOSTICS_status_isMxValid_help_li2" qtlid="375790">E-mail Pro + E-mail pop/imap zainstalowane w OVH: mx1.mail.ovh.net</translation>
+   <translation id="emailpro-mxplan_DIAGNOSTICS_status_isMxValid_help_li2" qtlid="518908">E-mail MX Plan + E-mail pop/imap hostowany przez OVH: mx1.mail.ovh.net</translation>
+
+   <translation id="emailpro_DIAGNOSTICS_status_isMxValid_help_li3" qtlid="375803">E-mail Pro + E-mail pop/imap niezainstalowane w OVH: ex.mail.ovh.net lub ex2.mail.ovh.net</translation>
+   <translation id="emailpro-mxplan_DIAGNOSTICS_status_isMxValid_help_li3" qtlid="518921">E-mail MX Plan + E-mail pop/imap niehostowany przez OVH: ex.mail.ovh.net ou ex2.mail.ovh.net</translation>
+
+   <translation id="emailpro_DIAGNOSTICS_status_canReceiveEmail_help2" qtlid="375764">Oto poprawne serwery MX dla oferty E-mail Pro:</translation>
+   <translation id="emailpro-mxplan_DIAGNOSTICS_status_canReceiveEmail_help2" qtlid="518882">Prawidłowe serwery MX dla oferty E-mail MX Plan:</translation>
+
+   <translation id="emailpro_DIAGNOSTICS_status_canReceiveEmail_help_li1" qtlid="375777">Tylko E-mail Pro: mx1.mail.ovh.net</translation>
+   <translation id="emailpro-mxplan_DIAGNOSTICS_status_canReceiveEmail_help_li1" qtlid="518895">Tylko E-mail MX Plan: mx1.mail.ovh.net</translation>
+
+   <translation id="emailpro_DIAGNOSTICS_status_canReceiveEmail_help_li2" qtlid="375790">E-mail Pro + E-mail pop/imap zainstalowane w OVH: mx1.mail.ovh.net</translation>
+   <translation id="emailpro-mxplan_DIAGNOSTICS_status_canReceiveEmail_help_li2" qtlid="518908">E-mail MX Plan + E-mail pop/imap hostowany przez OVH: mx1.mail.ovh.net</translation>
+
+   <translation id="emailpro_DIAGNOSTICS_status_canReceiveEmail_help_li3" qtlid="375803">E-mail Pro + E-mail pop/imap niezainstalowane w OVH: ex.mail.ovh.net lub ex2.mail.ovh.net</translation>
+   <translation id="emailpro-mxplan_DIAGNOSTICS_status_canReceiveEmail_help_li3" qtlid="518921">E-mail MX Plan + E-mail pop/imap niehostowany przez OVH: ex.mail.ovh.net ou ex2.mail.ovh.net</translation>
+
+   <translation id="emailpro_DIAGNOSTICS_status_isSrvValid_help1" qtlid="375816">Wpis SRV jest niezbędny do automatycznej konfiguracji Twojego konta E-mail Pro w kompatybilnym programie pocztowym.</translation>
+   <translation id="emailpro-mxplan_DIAGNOSTICS_status_isSrvValid_help1" qtlid="518934">Rekord SRV jest niezbędny do automatycznej konfiguracji Twojego konta E-mail MX Plan w kompatybilnym programie poczty elektronicznej.</translation>
+
+   <translation id="emailpro_DIAGNOSTICS_status_isSrvValid_help3" qtlid="375829">Oto pole SRV wymagane dla oferty E-mail Pro:</translation>
+   <translation id="emailpro-mxplan_DIAGNOSTICS_status_isSrvValid_help3" qtlid="518947">Rekord SRV wymagany w przypadku oferty E-mail MX Plan:</translation>
+
+   <translation id="emailpro_DIAGNOSTICS_status_canSendEmail_help_li4" qtlid="375842">Problem z infrastrukturą E-mail Pro</translation>
+   <translation id="emailpro-mxplan_DIAGNOSTICS_status_canSendEmail_help_li4" qtlid="518960">Awaria w infrastrukturze E-mail MX Plan</translation>
+
+   <translation id="emailpro_DIAGNOSTICS_status_support_ticket_subject" qtlid="375855">Diagnostyka E-mail Pro</translation>
+   <translation id="emailpro-mxplan_DIAGNOSTICS_status_support_ticket_subject" qtlid="518973">Diagnostyka E-mail MX Plan</translation>
+
+   <translation id="emailpro_GROUPS_delegation_step1_intro" qtlid="375868">Delegacja pozwala innym kontom E-mail Pro na posiadanie pewnich uprawnień do grupy {0}</translation>
+   <translation id="emailpro-mxplan_GROUPS_delegation_step1_intro" qtlid="518986">Delegacja pozwala innym kontom E-mail MX Plan na posiadanie pewnych uprawnień do grupy {0}</translation>
+
+   <translation id="emailpro_GROUPS_add_group_help_intro" qtlid="375881">Grupa pozwala kilku użytkownikom E-mail Pro na otrzymywanie e-maili wysłanych na unikalny adres e-mail: adres grupy. Adres ten musi być unikalny a wysłane na ten adres wiadomości są przesyłane do wczystkich użytkowników grupy.</translation>
+   <translation id="emailpro-mxplan_GROUPS_add_group_help_intro" qtlid="518999">Grupa umożliwia wielu użytkownikom usługi E-mail MX Plan odbieranie wiadomości e-mail wysyłanych na jeden wspólny adres grupy. Wiadomości, które trafią do skrzynki, zostaną przesłane do wszystkich członków grupy.</translation>
+
+   <translation id="emailpro_ACTION_configure_step2_intro" qtlid="375894">Podsumowanie konfiguracji dla usługi E-mail Pro {0}</translation>
+   <translation id="emailpro-mxplan_ACTION_configure_step2_intro" qtlid="519012">Podsumowanie konfiguracji Twojej usługi E-mail MX Plan {0}</translation>
+
+   <translation id="emailpro_ACTION_configure_help_title" qtlid="375907">Konfiguracja usługi E-mail Pro</translation>
+   <translation id="emailpro-mxplan_ACTION_configure_help_title" qtlid="519025">Konfiguracja usługi E-mail MX Plan</translation>
+
+   <translation id="emailpro_action_order_space_disk_tooltip" qtlid="375920">Wskazany rozmiar zawiera kopie zapasowe i pliki potrzebne do działania systemu E-mail Pro.</translation>
+   <translation id="emailpro-mxplan_action_order_space_disk_tooltip" qtlid="519038">Podany limit uwzględnia kopie zapasowe i pliki niezbędne, aby system E-mail MX Plan działał.</translation>
+
+   <translation id="emailpro_tab_RESOURCES_wizard_intro" qtlid="375933">Funkcja kont zasobów pozwala na zaplanowanie potrzeb Twoich pracowników. <br /> Możesz utworzyć wybraną liczbę kont zasobów.</translation>
+   <translation id="emailpro_ACTION_order_accounts_title" qtlid="375244">Zamów konta E-mail Pro</translation>
+   <translation id="emailpro-mxplan_ACTION_order_accounts_title" qtlid="518323">Zamów konta E-mail MX Plan.</translation>
+
+   <translation id="emailpro_tab_domain_add_step3_confirmation" qtlid="375946">Czy chcesz dodać tę domenę do serwera E-mail Pro?</translation>
+   <translation id="emailpro-mxplan_tab_domain_add_step3_confirmation" qtlid="519051">Czy na pewno chcesz dodać poniższą domenę do serwera E-mail MX Plan?</translation>
+
+   <translation id="emailpro_tab_domain_add_success" qtlid="375959">Do serwera E-mail Pro zostanie dodana domena.</translation>
+   <translation id="emailpro-mxplan_tab_domain_add_success" qtlid="519064">Dodanie domeny do Twojego serwera E-mail MX Plan zostanie zrealizowane.</translation>
+
+   <translation id="emailpro_tab_domain_add_failure" qtlid="375972">Wystąpił błąd podczas dodawania domeny do serwera E-mail Pro.</translation>
+   <translation id="emailpro-mxplan_tab_domain_add_failure" qtlid="519077">Wystąpił błąd podczas dodawania domeny do Twojego serwera E-mail MX Plan.</translation>
+
+   <translation id="emailpro_tab_domain_diagnostic_mx_no_antispam_config" qtlid="375985">pro1.mail.ovh.net</translation>
+   <translation id="emailpro_ACTION_add_domain_invalid_domain" qtlid="375998">Podana domena jest nieprawidłowa.</translation>
+   <translation id="emailpro_ACTION_order_accounts_step1_price" qtlid="139416">{0} netto ({1} brutto)</translation>
+   <translation id="emailpro_ACTION_order_accounts_step1_price_with_tax_only" qtlid="499930">{0} ({0} brutto)</translation>
+   <translation id="emailpro_ACTION_order_accounts_step1_user_error" qtlid="499943">Wystąpił błąd podczas pobierania informacji o użytkowniku</translation>
+
+
+   <translation id="emailpro_ACTION_add_account_button" qtlid="21487">Dodaj konto</translation>
+   <translation id="emailpro_ACTION_add_account_legal_warning" qtlid="209099">Przyjmuję do wiadomości, że OVH przystąpi do świadczenia usługi natychmiast po zatwierdzeniu mojego zamówienia i w związku z tym świadomie rezygnuję z mojego prawa do odstąpienia od umowy zgodnie z postanowieniami artykułu 27 Ustawy o prawach konsumenta.</translation>
+   <translation id="emailpro_ACTION_add_account_option_fail" qtlid="144045">Wystąpił błąd podczas wyświetlania domen.</translation>
+   <translation id="emailpro_ACTION_add_account_step1_display_name_label" qtlid="23515">Nazwa do wyświetlenia</translation>
+   <translation id="emailpro_ACTION_add_account_step1_email_label" qtlid="137244">Konto e-mail</translation>
+   <translation id="emailpro_ACTION_add_account_step1_first_name_label" qtlid="23323">Imię</translation>
+   <translation id="emailpro_ACTION_add_account_step1_last_name_label" qtlid="3818">Nazwa</translation>
+   <translation id="emailpro_ACTION_add_account_step2_confirmation_intro" qtlid="136841">Twoje konto:</translation>
+   <translation id="emailpro_ACTION_add_account_step2_display_name_label" qtlid="23515">Nazwa do wyświetlenia</translation>
+   <translation id="emailpro_ACTION_add_account_step2_email_label" qtlid="137244">Konto e-mail</translation>
+   <translation id="emailpro_ACTION_add_account_step2_first_name_label" qtlid="23323">Imię</translation>
+   <translation id="emailpro_ACTION_add_account_step2_last_name_label" qtlid="3818">Nazwa</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_content" qtlid="152271">Treść</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_error_message" qtlid="152375">Wystąpił błąd podczas tworzenia podpisu.</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_helpwizard_title" qtlid="152531">Podpis</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_no_domains" qtlid="155274">Możesz utworzyć tylko jeden podpis dla zatwierdzonej domeny. Aktualnie wszystkie twoje domeny posiadają podpis.</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_City" qtlid="33310">Miasto</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_Company" qtlid="49022">Firma</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_Country" qtlid="25171">Kraj</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_Department" qtlid="30706">Departament</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_DisplayName" qtlid="80922">Nazwa wyświetlana</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_Email" qtlid="69509">E-mail</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_FaxNumber" qtlid="152388">Numer faksu</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_FirstName" qtlid="23323">Imię</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_HomePhoneNumber" qtlid="152401">Numer telefonu domowego</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_Initials" qtlid="152414">Inicjały</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_LastName" qtlid="3818">Nazwa</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_Manager" qtlid="152427">Osoba odpowiedzialna</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_MobileNumber" qtlid="152440">Numer telefonu komórkowego</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_Name" qtlid="109614">Pełna nazwa</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_Notes" qtlid="69389">Notatki</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_Office" qtlid="59555">Biuro</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_OtherFaxNumber" qtlid="152453">Faks 2</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_OtherHomePhoneNumber" qtlid="152466">Miejsce zamieszkania 2</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_OtherPhoneNumber" qtlid="152479">Telefon 2</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_PagerNumber" qtlid="152492">Numer pagera</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_PhoneNumber" qtlid="152505">Numer telefonu</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_State" qtlid="32434">Województwo</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_Street" qtlid="152518">Ulica</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_Title" qtlid="16469">Tytuł</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_UserLogonName" qtlid="46792">Identyfikator</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_option_ZipCode" qtlid="30346">Kod pocztowy</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_outside" qtlid="152349">Włącz podpis tylko dla wysyłki na zewnątrz.</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_success_message" qtlid="152362">Podpis zostanie wykonany.</translation>
+   <translation id="emailpro_ACTION_add_disclaimer_title" qtlid="152206">Dodaj podpis</translation>
+   <translation id="emailpro_ACTION_change_password_account_error_message_linked" qtlid="148279">Wystąpił błąd podczas zmiany hasła.</translation>
+   <translation id="emailpro_ACTION_configure_error" qtlid="178276">Błąd podczas zapytania. Zmiany nie zostaną zastosowane.</translation>
+   <translation id="emailpro_ACTION_configure_help_complexityEnabled_text" qtlid="178692">Ten parametr bezpieczeństwa określa, czy hasła mają spełniać wymagania dotyczące trudności.<br/>Jeśli ta opcja jest aktywna, hasła muszą spełniać następujące wymagania: <ul><li>Nie może zawierać części lub całej nazwy konta użytkownika</li> <li>Muszą składać się z minumum 6 znaków</li> <li>Zawierać znaki z przynajmniej trzech z czterech następujących kategorii: <ol><li>Wielkie litery z alfabetu angielskiego (A do Z)</li> <li>Małe litery z alfabetu (a do z)</li><li>Cyfry do 10 (0 do 9)</li> <li>Znaki niealfabetyczne (na przykład: !, $, #, %)</li></ol></li> </ul>Wymagania te są stosowane podczas modyfikowania i tworzenia haseł. </translation>
+   <translation id="emailpro_ACTION_configure_help_complexityEnabled_title" qtlid="178003">Wymagania dotyczące trudności</translation>
+   <translation id="emailpro_ACTION_configure_help_lockoutDuration_text" qtlid="178653">Ten parametr bezpieczeństwa określa liczbę minut, w trakcie których konto będzie zablokowane przed automatycznym odblokowaniem. Dostępny zakres to od 1 do 90 minut. <br/>Jeśli zostanie określony próg blokowania konta, czas blokady kont będzie musiał być dłuższy lub równy czasowi resetu.</translation>
+   <translation id="emailpro_ACTION_configure_help_lockoutDuration_title" qtlid="178640">Czas blokady kont</translation>
+   <translation id="emailpro_ACTION_configure_help_lockoutObservationWindow_text" qtlid="178679">Ten parametr bezpieczeństwa określa liczbę minut, które muszą minąć po nieudanej próbie rozpoczęcia sesji, aby licznik nieudanych prób rozpoczęcia sesji został wyzerowany. Dostępny zakres to od 1 do 90 minut. <br/>Jeśli próg blokady kont został określony, czas przed zresetowaniem musi być krótszy lub równy okresowi blokady kont.</translation>
+   <translation id="emailpro_ACTION_configure_help_lockoutObservationWindow_title" qtlid="178666">Czas resetowania licznika blokad</translation>
+   <translation id="emailpro_ACTION_configure_help_lockoutThreshold_text" qtlid="178627">Ten parametr bezpieczeństwa określa liczbę nieudanych prób rozpoczęcia sesji, które spowodują zablokowanie konta użytkownika. Z zablokowanego konta można korzystać po wykonaniu resetu przez administratora lub po upłynięciu czasu blokady konta. Możesz wskazać wartość od 1 do 14 dla nieudanych prób rozpoczęcia sesji. Jeśli wskażesz wartość 0, konto nigdy nie zostanie zablokowane.</translation>
+   <translation id="emailpro_ACTION_configure_help_lockoutThreshold_title" qtlid="177990">Próg blokowania konta</translation>
+   <translation id="emailpro_ACTION_configure_help_maxPasswordAge_text" qtlid="181578">Ten parametr bezpieczeństwa określa czas (w dniach), w którym można używać hasła przed jego zmianą. Możesz zdefiniować ten parametr tak, aby hasła wygasały po liczbie dni zawartej między 1 i 90. Możesz również określić, że hasło nie będzie nigdy wygasać definiując liczbę dni na 0. Jeśli maksymalna ważność hasła jest zawarta między 1 i 90 dni, minimalna ważność hasła musi być mniejsza od tej liczby. Jeśli maksymalna ważność hasła jest określona na 0, minimalna ważność hasła może być określona na wybraną wartość między 0 i 90. </translation>
+   <translation id="emailpro_ACTION_configure_help_maxPasswordAge_title" qtlid="178731">Maksymalna ważność haseł</translation>
+   <translation id="emailpro_ACTION_configure_help_minPasswordAge_text" qtlid="178718">Ten parametr określa okres (w dniach), trakcie którego należy używać hasła zanim użytkownik będzie mógł je zmienić. Możesz określić wartość między 1 i 90 dniami lub możesz zezwolić na natychmiastową zmianę definiując liczbę dni na 0.</translation>
+   <translation id="emailpro_ACTION_configure_help_minPasswordAge_title" qtlid="178705">Minimalna ważność hasła</translation>
+   <translation id="emailpro_ACTION_configure_help_minPasswordLength_text" qtlid="178757">Ten parametr bezpieczeństwa określa minimalną liczbę znaków, z których ma się składać hasło do konta użytkownika. Możesz podać wartość między 3 i 14 lub podać 0, jeśli chcesz, żeby hasło nie było wymagane.</translation>
+   <translation id="emailpro_ACTION_configure_help_minPasswordLength_title" qtlid="174828">Minimalna długość hasła</translation>
+   <translation id="emailpro_ACTION_configure_services_help_lockoutThreshold" qtlid="178549">Jeśli wpiszesz "0", konto nigdy nie zostanie zablokowane.</translation>
+   <translation id="emailpro_ACTION_configure_services_help_maxPasswordAge" qtlid="178588">Jeśli wpiszesz "0", hasło będzie zawsze ważne.</translation>
+   <translation id="emailpro_ACTION_configure_services_help_minPasswordAge" qtlid="178575">Jeśli wpiszesz "0", zezwolisz na natychmiastową zmianę hasła.</translation>
+   <translation id="emailpro_ACTION_configure_services_help_minPasswordLength" qtlid="178601">Jeśli wpiszesz "0", hasło nie będzie wymagane.</translation>
+   <translation id="emailpro_ACTION_configure_services_label_complexityEnabled" qtlid="178003">Wymagania dotyczące trudności</translation>
+   <translation id="emailpro_ACTION_configure_services_label_lockoutDuration" qtlid="179706">Czas blokowania</translation>
+   <translation id="emailpro_ACTION_configure_services_label_lockoutObservationWindow" qtlid="179719">Czas resetowania</translation>
+   <translation id="emailpro_ACTION_configure_services_label_lockoutThreshold" qtlid="179732">Próg blokady</translation>
+   <translation id="emailpro_ACTION_configure_services_label_maxPasswordAge" qtlid="179745">Maksymalna ważność hasła</translation>
+   <translation id="emailpro_ACTION_configure_services_label_minPasswordAge" qtlid="376089">Zablokuj zmianę hasła</translation>
+   <translation id="emailpro_ACTION_configure_services_label_minPasswordLength" qtlid="174828">Minimalna długość hasła</translation>
+   <translation id="emailpro_ACTION_configure_services_tooltip_days" qtlid="179771">W dniach</translation>
+   <translation id="emailpro_ACTION_configure_services_tooltip_minutes" qtlid="179784">W minutach</translation>
+   <translation id="emailpro_ACTION_configure_step2_label_complexityEnabled" qtlid="178393">Wymagania dotyczące trudności hasła:</translation>
+   <translation id="emailpro_ACTION_configure_step2_label_lockoutDuration" qtlid="178302">Czas blokady konta:</translation>
+   <translation id="emailpro_ACTION_configure_step2_label_lockoutObservationWindow" qtlid="178341">Okno obserwacyjne dla blokady kont:</translation>
+   <translation id="emailpro_ACTION_configure_step2_label_lockoutThreshold" qtlid="178328">Próg blokowania konta:</translation>
+   <translation id="emailpro_ACTION_configure_step2_label_maxPasswordAge" qtlid="178354">Maksymalna ważność hasła:</translation>
+   <translation id="emailpro_ACTION_configure_step2_label_minPasswordAge" qtlid="178367">Zablokuj zmianę hasła:</translation>
+   <translation id="emailpro_ACTION_configure_step2_label_minPasswordLength" qtlid="178380">Minimalna długość hasła:</translation>
+   <translation id="emailpro_ACTION_configure_success" qtlid="176700">Zmiany zostaną zarejestrowane</translation>
+   <translation id="emailpro_ACTION_delegation_behalf_tooltip" qtlid="181513">Wyłącz najpierw uprawnienia do wysyłki.</translation>
+   <translation id="emailpro_ACTION_delegation_doing_message" qtlid="144266">Aktualizacja uprawnień delegacji zostanie wykonana.</translation>
+   <translation id="emailpro_ACTION_delegation_error_message" qtlid="144279">Wystąpił błąd podczas aktualizacji uprawnień delegacji.</translation>
+   <translation id="emailpro_ACTION_delegation_partial_message" qtlid="156758">Wystąpił bład podczas zmiany uprawnień.</translation>
+   <translation id="emailpro_ACTION_delegation_sendas_tooltip" qtlid="181539">Najpierw wyłącz uprawnienia do wysyłki.</translation>
+   <translation id="emailpro_ACTION_delegation_step1_email_header" qtlid="137244">Konto e-mail</translation>
+   <translation id="emailpro_ACTION_delegation_step1_full_header" qtlid="181500">Pełne prawa dostępu</translation>
+   <translation id="emailpro_ACTION_delegation_step1_sendOnBehalfTo_header" qtlid="181487">Uprawnienia do wysyłki jako (Send as)</translation>
+   <translation id="emailpro_ACTION_delegation_step1_send_header" qtlid="181474">Uprawnienia do wysyłki</translation>
+   <translation id="emailpro_ACTION_delegation_step1_task_on_doing" qtlid="201458">Zadanie w trakcie</translation>
+   <translation id="emailpro_ACTION_delegation_step2_email_header" qtlid="137244">Konto e-mail</translation>
+   <translation id="emailpro_ACTION_delegation_step2_full_header" qtlid="144253">Uprawnienie dostępowe</translation>
+   <translation id="emailpro_ACTION_delegation_step2_intro" qtlid="434564">Uprawnienia delegacji przypisane do konta <strong>{0}</strong>:</translation>
+   <translation id="emailpro_ACTION_delegation_step2_right_true" qtlid="34776">Tak</translation>
+   <translation id="emailpro_ACTION_delegation_step2_sendOnBehalfTo_header" qtlid="181487">Uprawnienia do wysyłki jako (Send as)</translation>
+   <translation id="emailpro_ACTION_delegation_step2_send_header" qtlid="143798">Uprawnienia do wysyłki</translation>
+   <translation id="emailpro_ACTION_delegation_success_message" qtlid="144266">Aktualizacja uprawnień delegacji zostanie wykonana.</translation>
+   <translation id="emailpro_ACTION_delegation_title" qtlid="143733">Konfiguracja delegacji</translation>
+   <translation id="emailpro_ACTION_delegation_wait_behalf_tooltip" qtlid="181526">Poczekaj na wyłączenie uprawnień do wysyłki.</translation>
+   <translation id="emailpro_ACTION_delegation_wait_sendas_tooltip" qtlid="181552">Poczekaj na wyłączenie uprawnień do wysyłki.</translation>
+   <translation id="emailpro_ACTION_delete_disclaimer_failure" qtlid="152583">Wystąpił błąd podczas usuwania podpisu.</translation>
+   <translation id="emailpro_ACTION_delete_disclaimer_success" qtlid="152570">Podpis zostanie usunięty.</translation>
+   <translation id="emailpro_ACTION_delete_disclaimer_title" qtlid="152219">Usuń podpis</translation>
+   <translation id="emailpro_ACTION_disclaimer_associated_domains" qtlid="133110">Dotyczy domeny</translation>
+   <translation id="emailpro_ACTION_disclaimer_insert" qtlid="152336">Wprowadź zmienną</translation>
+   <translation id="emailpro_ACTION_loading" qtlid="75954">Ładowanie w trakcie...</translation>
+   <translation id="emailpro_ACTION_order_accounts_button" qtlid="139169">Zamówienie kont</translation>
+   <translation id="emailpro_ACTION_order_accounts_step1_loading_error" qtlid="135294">Wystąpił błąd podczas ładowania informacji.</translation>
+   <translation id="emailpro_ACTION_order_accounts_step1_number" qtlid="139338">Liczba kont:</translation>
+   <translation id="emailpro_ACTION_order_accounts_step1_number_tooltip" qtlid="144110">Wpisz liczbę od 1 do 100.</translation>
+   <translation id="emailpro_ACTION_order_accounts_step1_number_not_valid" qtlid="144123">Wpisz poprawną liczbę.</translation>
+   <translation id="emailpro_ACTION_order_accounts_step1_pay_type" qtlid="139325">Typ płatności:</translation>
+   <translation id="emailpro_ACTION_order_accounts_step1_pay_type_01" qtlid="79530">miesięczny</translation>
+   <translation id="emailpro_ACTION_order_accounts_step1_pay_type_12" qtlid="79542">rocznie</translation>
+   <translation id="emailpro_ACTION_order_accounts_step2_error_message" qtlid="139468">Wystąpił błąd w trakcie realizacji zamówienia.</translation>
+   <translation id="emailpro_ACTION_order_accounts_step2_intro" qtlid="139403">Podsumowanie zamówienia</translation>
+   <translation id="emailpro_ACTION_order_accounts_step2_loader" qtlid="139377">Weryfikacja parametrów usługi w trakcie</translation>
+   <translation id="emailpro_ACTION_order_accounts_step2_number" qtlid="139338">Liczba kont:</translation>
+   <translation id="emailpro_ACTION_order_accounts_step2_pay_type" qtlid="139325">Typ płatności:</translation>
+   <translation id="emailpro_ACTION_order_accounts_step2_pay_type_monthly" qtlid="79530">miesięczny</translation>
+   <translation id="emailpro_ACTION_order_accounts_step2_pay_type_yearly" qtlid="79542">rocznie</translation>
+   <translation id="emailpro_ACTION_order_accounts_step2_price" qtlid="139416">{0} netto ({1} brutto)</translation>
+   <translation id="emailpro_ACTION_order_accounts_step2_total" qtlid="139429">Razem:</translation>
+   <translation id="emailpro_ACTION_order_accounts_step3_bc" qtlid="169524">Zamówienie zostało wygenerowane.</translation>
+   <translation id="emailpro_ACTION_order_accounts_step3_continue" qtlid="169537">Aby potwierdzić zamówienie, kliknij na przycisk "Zamów".</translation>
+   <translation id="emailpro_ACTION_order_accounts_step3_explication" qtlid="139481">Przypominamy, że w zależności od wybranego rodzaju płatności, może wystąpić opóźnienie w weryfikacji i księgowaniu środków przez OVH.</translation>
+   <translation id="emailpro_ACTION_order_accounts_step3_explication2" qtlid="144175">Otworzy się nowa zakładka i zostaniesz automatycznie przekierowany do strony z płatnościami OVH.</translation>
+   <translation id="emailpro_ACTION_order_accounts_step3_generation_bc" qtlid="169511">Generowanie zamówienia ...</translation>
+   <translation id="emailpro_ACTION_sending" qtlid="71009">Wysyłka w trakcie ...</translation>
+   <translation id="emailpro_ACTION_update_account_error_message_linked" qtlid="157421">Wystąpił błąd podczas konfigurowania innych parametrów konta.</translation>
+   <translation id="emailpro_ACTION_update_account_helpwizard_password_title" qtlid="2270">Hasło</translation>
+   <translation id="emailpro_ACTION_update_account_helpwizard_password" qtlid="171240">Hasło musi spełniać następujące wymagania:<br/><br/>-Nie może zawierać części lub całej nazwy konta użytkownika<br/>- Musi się składać z minimum 8 znaków<br/>- Musi zawierać znaki z przynajmniej trzech z czterech następujących kategorii:<br/><ul><li>Małe litery z alfabetu (a do z)<br/></li><li>Cyfry do 10 (0 do 9)<br/></li><li>Znaki niealfabetyczne (na przykład: !, $, #, %)<br/></li></ul></translation>
+   <translation id="emailpro_ACTION_update_account_helpwizard_password_simple" qtlid="195139">Hasło musi zawierać przynajmniej {0} znaków.</translation>
+   <translation id="emailpro_ACTION_update_account_step1_complex_password_tooltip" qtlid="178822">Minimum {0} znaków alfanumerycznych, cyfr i znaków specjalnych.</translation>
+   <translation id="emailpro_ACTION_update_account_step1_display_name_label" qtlid="23515">Nazwa do wyświetlenia</translation>
+   <translation id="emailpro_ACTION_update_account_step1_first_name_label" qtlid="23323">Imię</translation>
+   <translation id="emailpro_ACTION_update_account_step1_last_name_label" qtlid="3818">Nazwa</translation>
+   <translation id="emailpro_ACTION_update_account_step1_password_confirmation_label" qtlid="9983">Potwierdź</translation>
+   <translation id="emailpro_ACTION_update_account_step1_password_contains_samaccount_name" qtlid="254869">Hasło nie może zawierać "{0}", samaccountName, wewnętrznego identyfikatora.</translation>
+   <translation id="emailpro_ACTION_update_account_step1_password_different" qtlid="139637">Różne hasła</translation>
+   <translation id="emailpro_ACTION_update_account_step1_password_label" qtlid="2270">Hasło</translation>
+   <translation id="emailpro_ACTION_update_account_step1_password_placeholder" qtlid="156745">Korzystaj z poprzedniej wersji</translation>
+   <translation id="emailpro_ACTION_update_account_step1_password_weak" qtlid="139624">Zbyt proste hasło</translation>
+   <translation id="emailpro_ACTION_update_account_step1_quota_label" qtlid="6874">Quota</translation>
+   <translation id="emailpro_ACTION_update_account_step1_simple_password_tooltip" qtlid="137595">Minimum {0} znaków</translation>
+   <translation id="emailpro_ACTION_update_account_step1_type_label" qtlid="191057">Typ konta</translation>
+   <translation id="emailpro_ACTION_update_account_step1_type_STANDARD" qtlid="48998">Standardowa</translation>
+   <translation id="emailpro_ACTION_update_account_step1_type_BASIC" qtlid="48986">Basic</translation>
+   <translation id="emailpro_ACTION_update_account_step1_type_ENTERPRISE" qtlid="49022">Firma</translation>
+   <translation id="emailpro_ACTION_update_account_step1_type_cant_change" qtlid="486243">Typ konta nie może zostać zmieniony dopóki przypisana jest do niego licencja Outlook.</translation>
+   <translation id="emailpro_ACTION_update_account_step1_exchange_guid_label" qtlid="174633">Exchange GUID</translation>
+   <translation id="emailpro_ACTION_update_account_step2_confirmation_intro" qtlid="136841">Twoje konto:</translation>
+   <translation id="emailpro_ACTION_update_account_step2_display_name_label" qtlid="23515">Nazwa do wyświetlenia</translation>
+   <translation id="emailpro_ACTION_update_account_step2_email_label" qtlid="137244">Konto e-mail</translation>
+   <translation id="emailpro_ACTION_update_account_step2_first_name_label" qtlid="23323">Imię</translation>
+   <translation id="emailpro_ACTION_update_account_step2_last_name_label" qtlid="3818">Nazwa</translation>
+   <translation id="emailpro_ACTION_update_account_step2_password_label" qtlid="139650">Hasło</translation>
+   <translation id="emailpro_ACTION_update_disclaimer_error_message" qtlid="152635">Wystąpił błąd podczas modyfikowania podpisu.</translation>
+   <translation id="emailpro_ACTION_update_disclaimer_info" qtlid="152609">Zmień podpis przypisany do domeny {0}</translation>
+   <translation id="emailpro_ACTION_update_disclaimer_length_warning" qtlid="152648">Treść podpisu nie może przekroczyć 5000 znaków lub zawierać lokalnego obrazu.</translation>
+   <translation id="emailpro_ACTION_update_disclaimer_success_message" qtlid="152622">Podpis zostanie zmieniony.</translation>
+   <translation id="emailpro_ACTION_update_disclaimer_title" qtlid="152596">Skonfiguruj podpis</translation>
+   <translation id="emailpro_GROUPS_delegation_doing_message" qtlid="144266">Aktualizacja uprawnień delegacji zostanie wykonana.</translation>
+   <translation id="emailpro_GROUPS_delegation_error_message" qtlid="144279">Wystąpił błąd podczas aktualizacji uprawnień delegacji.</translation>
+   <translation id="emailpro_GROUPS_delegation_success_message" qtlid="144266">Aktualizacja uprawnień delegacji zostanie wykonana.</translation>
+   <translation id="emailpro_GROUPS_partial_account" qtlid="191161">Wystąpił błąd podczas pobierania informacji: {0}</translation>
+
+   <translation id="emailpro_action_license_history_fail" qtlid="169641">Wystąpił błąd podczas pobierania informacji z monitoringu.</translation>
+   <translation id="emailpro_action_license_history_type_outlook" qtlid="193111">Licencje Outlook</translation>
+   <translation id="emailpro_action_order_space_disk" qtlid="191668">Zamów dodatkową przestrzeń</translation>
+
+   <translation id="emailpro_dashboard_2016_migration" qtlid="287072">Sprawdź program migracji na Exchange 2016.</translation>
+   <translation id="emailpro_dashboard_action_doing" qtlid="149787">Operacja w trakcie...</translation>
+   <translation id="emailpro_dashboard_diag" qtlid="136230">Diagnostyka serwera</translation>
+   <translation id="emailpro_dashboard_diag_a_label" qtlid="23803">A</translation>
+   <translation id="emailpro_dashboard_diag_a_tooltip_error" qtlid="209151">Jeżeli Twoja domena jest obsługiwana przez OVH, to stwórz pole A dla wybranej nazwy domeny, a następnie przejdź do trybu eksperckiego -> "Strefa DNS" -> "Dodaj wpis". Wpisz : <br /> Rodzaj pola: <span class="bold">A</span> <br /> Subdomena: <span class="bold">{0}</span> <br /> Domena docelowa: <span class="bold">{1}</span> <br /><br /> Jeżeli Twoja domena jest zarządzana przez innego operatora, należy się z nim skontaktować, aby utworzyć pole A.</translation>
+   <translation id="emailpro_dashboard_diag_a_tooltip_ok" qtlid="137491">Automatyczna konfiguracja została wykonana.</translation>
+   <translation id="emailpro_dashboard_diag_a_tooltip_title" qtlid="143251">Pole A</translation>
+   <translation id="emailpro_dashboard_diag_aaaa_label" qtlid="129823">AAAA</translation>
+   <translation id="emailpro_dashboard_diag_aaaa_tooltip_error" qtlid="209164">Jeżeli Twoja domena jest obsługiwana przez OVH, to stwórz pole AAAA dla wybranej nazwy domeny, a następnie przejdź do trybu eksperckiego -> "Strefa DNS" -> "Dodaj wpis". Wpisz : <br /> Rodzaj pola: <span class="bold">AAAA</span> <br /> Subdomena: <span class="bold">{0}</span> <br /> Domena docelowa: <span class="bold">{1}</span> <br /><br /> Jeżeli Twoja domena jest zarządzana przez innego operatora, należy się z nim skontaktować, aby utworzyć pole AAAA.</translation>
+   <translation id="emailpro_dashboard_diag_aaaa_tooltip_ok" qtlid="137491">Automatyczna konfiguracja została wykonana.</translation>
+   <translation id="emailpro_dashboard_diag_aaaa_tooltip_title" qtlid="143277">Pole AAAA IPv6</translation>
+   <translation id="emailpro_dashboard_diag_ptr_label" qtlid="143303">PTR</translation>
+   <translation id="emailpro_dashboard_diag_ptr_tooltip_error" qtlid="143316">Wystąpił problem z rewersem dla adresu IP. Skontaktuj się z pomocą techniczną.</translation>
+   <translation id="emailpro_dashboard_diag_ptr_tooltip_ok" qtlid="137491">Automatyczna konfiguracja została wykonana.</translation>
+   <translation id="emailpro_dashboard_diag_ptr_tooltip_title" qtlid="143303">PTR</translation>
+   <translation id="emailpro_dashboard_diag_ptrv6_label" qtlid="143329">PTR v6</translation>
+   <translation id="emailpro_dashboard_diag_ptrv6_tooltip_error" qtlid="143342">Wystąpił problem z rewersem dla adresu IPv6. Skontaktuj się z pomocą techniczną.</translation>
+   <translation id="emailpro_dashboard_diag_ptrv6_tooltip_ok" qtlid="137491">Automatyczna konfiguracja została wykonana.</translation>
+   <translation id="emailpro_dashboard_diag_ptrv6_tooltip_title" qtlid="143329">PTR v6</translation>
+   <translation id="emailpro_dashboard_display_name_min" qtlid="177925">Operacja anulowana. Wymagane jest minimum 5 znaków</translation>
+   <translation id="emailpro_dashboard_domains" qtlid="276298">Przypisane domeny</translation>
+   <translation id="emailpro_dashboard_domain_forMXPlan" qtlid="133110">Dotyczy domeny</translation>
+   <translation id="emailpro_dashboard_domain_offer" qtlid="38217">Pakiet</translation>
+   <translation id="emailpro_dashboard_domain_filer" qtlid="222761">Filer</translation>
+   <translation id="emailpro_dashboard_expiration" qtlid="168172">Odnowienie</translation>
+   <translation id="emailpro_dashboard_guides_url" qtlid="519090">Zapoznaj się z naszymi przewodnikami online.</translation>
+   <translation id="emailpro_dashboard_loading_error" qtlid="168120">Wystąpił błąd podczas ładowania informacji.</translation>
+   <translation id="emailpro_dashboard_message_see_more" qtlid="91645">Sprawdź szczegóły</translation>
+   <translation id="emailpro_dashboard_name" qtlid="136165">Informacje o serwerze</translation>
+   <translation id="emailpro_dashboard_new_window" qtlid="222176">Nowe okno</translation>
+   <translation id="emailpro_dashboard_ssl_expiration" qtlid="190797">Zakończenie usługi SSL</translation>
+   <translation id="emailpro_dashboard_tasks" qtlid="136217">Ostatnie zadania</translation>
+
+   <translation id="emailpro_delete_action_button" qtlid="519103">Usuń ten MX Plan.</translation>
+
+   <translation id="emailpro_resilitation_action_button" qtlid="48646">Rezygnacja</translation>
+   <translation id="emailpro_resilitation_action_button_cancel" qtlid="211567">Anuluj rezygnację</translation>
+   <translation id="emailpro_resilitation_action_hosted_warning" qtlid="209073">Twoje konta zostaną zawieszone z dniem wygasania usługi.</translation>
+   <translation id="emailpro_resilitation_action_partial" qtlid="191031">Wystąpił błąd dla zmiany okresu odnowienia.</translation>
+   <translation id="emailpro_resilitation_cancel_action_button" qtlid="4070">Kontynuuj</translation>
+   <translation id="emailpro_resilitation_cancel_action_confirmation" qtlid="201380">Chcesz anulować rezygnację z usługi "{0}". <br />Czy chcesz przystąpić do tej operacji? <br /> Usługa będzie odnawiana automatycznie.</translation>
+   <translation id="emailpro_resilitation_cancel_action_failure" qtlid="211580">Wystąpił błąd podczas anulowania operacji usuwania usługi.</translation>
+   <translation id="emailpro_resilitation_cancel_action_partial" qtlid="191031">Wystąpił błąd dla zmiany okresu odnowienia.</translation>
+   <translation id="emailpro_tab_ACCOUNTS_error_message" qtlid="143915">Wystąpił błąd podczas wyświetlania kont.</translation>
+
+   <translation id="emailpro_tab_ACCOUNTS_webmails" qtlid="485697">Webmail:</translation>
+   <translation id="emailpro_tab_ACCOUNTS_menu_account_tooltip" qtlid="19075">Więcej operacji</translation>
+   <translation id="emailpro_tab_ACCOUNTS_partial" qtlid="143889">Niektóre konta nie mogły zostać poprawnie wyświetlone. Odśwież stronę, aby rozwiązać problem.</translation>
+   <translation id="emailpro_tab_ACCOUNTS_partial_account" qtlid="139208">Konto zostało pobrane niepoprawnie.</translation>
+   <translation id="emailpro_tab_ACCOUNTS_popover_alias" qtlid="21499">Zarządzaj aliasami</translation>
+   <translation id="emailpro_tab_ACCOUNTS_popover_delegation" qtlid="143434">Zarządzaj delegacjami</translation>
+   <translation id="emailpro_tab_ACCOUNTS_popover_span_text" qtlid="277689">Wysyłka e-maili z tego konta została zablokowana z powodu SPAM-u. <br />Jeśli chcesz odblokować to konto, odpowiedz na oczekujące zgłoszenie.<br /><br /><a href="{0}" class="link pull-right">Odpowiedz na zgłoszenie</a><br /></translation>
+   <translation id="emailpro_tab_ACCOUNTS_popover_span_title" qtlid="277676">Konto zablokowane z powodu SPAM-u</translation>
+   <translation id="emailpro_tab_ACCOUNTS_pwderror" qtlid="137296">Nieprawidłowe potwierdzenie</translation>
+   <translation id="emailpro_tab_ACCOUNTS_state_CREATING" qtlid="146632">Tworzenie w trakcie</translation>
+   <translation id="emailpro_tab_ACCOUNTS_state_DELETING" qtlid="146645">Usuwania w trakcie</translation>
+   <translation id="emailpro_tab_ACCOUNTS_state_TASK_ON_DOING" qtlid="485632">Zadanie zaplanowane lub w toku</translation>
+   <translation id="emailpro_tab_ACCOUNTS_state_TASK_ON_ERROR" qtlid="485788">Błąd zadania</translation>
+   <translation id="emailpro_tab_ACCOUNTS_table_alias" qtlid="9466">Alias</translation>
+   <translation id="emailpro_tab_ACCOUNTS_table_email" qtlid="137244">Konto e-mail</translation>
+   <translation id="emailpro_tab_ACCOUNTS_table_empty" qtlid="149800">Nie posiadasz kont</translation>
+   <translation id="emailpro_tab_ACCOUNTS_table_empty_type_BASIC" qtlid="190810">Nie posiadasz konta typu Basic.</translation>
+   <translation id="emailpro_tab_ACCOUNTS_table_empty_type_STANDARD" qtlid="190823">Nie posiadasz konta typu Standard.</translation>
+   <translation id="emailpro_tab_ACCOUNTS_table_empty_type_ENTERPRISE" qtlid="190836">Nie posiadasz konta typu Enterprise.</translation>
+   <translation id="emailpro_tab_ACCOUNTS_table_empty_search" qtlid="149813">Nie posiadasz kont odpowiadających kryteriom wyszukiwania.</translation>
+   <translation id="emailpro_tab_ACCOUNTS_table_size" qtlid="7726">Rozmiar</translation>
+   <translation id="emailpro_tab_ACCOUNTS_table_status" qtlid="26443">Status</translation>
+   <translation id="emailpro_tab_ACCOUNTS_table_type" qtlid="2642">Typ</translation>
+   <translation id="emailpro_tab_ACCOUNTS_type_ALL" qtlid="69173">Wszystkie</translation>
+   <translation id="emailpro_tab_ACCOUNTS_type_BASIC" qtlid="48986">Basic</translation>
+   <translation id="emailpro_tab_ACCOUNTS_type_STANDARD" qtlid="48998">Standardowa</translation>
+   <translation id="emailpro_tab_ACCOUNTS_type_ENTERPRISE" qtlid="49022">Firma</translation>
+   <translation id="emailpro_tab_ACCOUNTS_warning" qtlid="108456">Uwaga!</translation>
+
+   <translation id="emailpro_tab_ALIAS_add_alias_error_message" qtlid="143681">Wystąpił błąd podczas tworzenia aliasu.</translation>
+   <translation id="emailpro_tab_ALIAS_add_alias_intro" qtlid="416579">Utwórz alias dla konta <span class="bold">{0}</span></translation>
+   <translation id="emailpro_tab_ALIAS_add_alias_placeholder" qtlid="9466">Alias</translation>
+   <translation id="emailpro_tab_ALIAS_add_alias_step2_account_label" qtlid="143603">Przypisane konto</translation>
+   <translation id="emailpro_tab_ALIAS_add_alias_step2_alias_label" qtlid="9466">Alias</translation>
+   <translation id="emailpro_tab_ALIAS_add_alias_step2_intro" qtlid="144006">Czy na pewno chcesz dodać alias?</translation>
+   <translation id="emailpro_tab_ALIAS_add_alias_success_message" qtlid="144032">Alias zostanie dodany.</translation>
+   <translation id="emailpro_tab_ALIAS_add_alias_title" qtlid="143616">Utwórz alias</translation>
+   <translation id="emailpro_tab_ALIAS_add_alias_valid" qtlid="171747">Uwaga, niektóre znaki specjalne nie są dozwolone w nazwie aliasu, na przykład + ? / () [] ;</translation>
+   <translation id="emailpro_tab_ALIAS_add_button" qtlid="143538">Dodaj alias</translation>
+   <translation id="emailpro_tab_ALIAS_delete_error_message" qtlid="143577">Wystąpił błąd podczas usuwania aliasu.</translation>
+   <translation id="emailpro_tab_ALIAS_delete_success_message" qtlid="143564">Alias zostanie usunięty.</translation>
+   <translation id="emailpro_tab_ALIAS_delete_tooltip" qtlid="178848">Usuń ten alias</translation>
+   <translation id="emailpro_tab_ALIAS_domain_loading_failure" qtlid="144045">Wystąpił błąd podczas wyświetlania domen.</translation>
+   <translation id="emailpro_tab_ALIAS_error_message" qtlid="143980">Wystąpił błąd podczas wyświetlania aliasów.</translation>
+   <translation id="emailpro_tab_ALIAS_header" qtlid="9466">Alias</translation>
+   <translation id="emailpro_tab_ALIAS_remove_account_label" qtlid="143603">Przypisane konto</translation>
+   <translation id="emailpro_tab_ALIAS_remove_alias_label" qtlid="9466">Alias</translation>
+   <translation id="emailpro_tab_ALIAS_remove_alias_title" qtlid="9550">Usuń alias</translation>
+   <translation id="emailpro_tab_ALIAS_state_TASK_ON_DOING" qtlid="26383">W toku</translation>
+   <translation id="emailpro_tab_ALIAS_state_TASK_ON_DOING_tooltip" qtlid="143967">Zadanie dotyczące tego aliasu jest już zaplanowane lub wykonywane.</translation>
+   <translation id="emailpro_tab_ALIAS_state_TASK_ON_DOING_tooltip" qtlid="143967">Zadanie dotyczące tego aliasu jest już zaplanowane lub wykonywane.</translation>
+   <translation id="emailpro_tab_ALIAS_taken_error_message" qtlid="190849">Istniejący adres email</translation>
+
+   <translation id="emailpro_tab_DISCLAIMER" qtlid="276324">Stopka strony</translation>
+   <translation id="emailpro_tab_DISCLAIMER_table_empty" qtlid="152258">Nie posiadasz podpisu.</translation>
+   <translation id="emailpro_tab_DISCLAIMER_associated_domains" qtlid="133110">Dotyczy domeny</translation>
+   <translation id="emailpro_tab_DISCLAIMER_disclaimer_content" qtlid="152271">Treść</translation>
+   <translation id="emailpro_tab_DISCLAIMER_disclaimer_outside_only" qtlid="152284">Tylko zewnętrzne</translation>
+   <translation id="emailpro_tab_DISCLAIMER_disclaimer_outside_only_false" qtlid="34788">Nie</translation>
+   <translation id="emailpro_tab_DISCLAIMER_disclaimer_outside_only_tooltip" qtlid="152297">Podpis używany tylko w przypadku wysyłki na zewnątrz,</translation>
+   <translation id="emailpro_tab_DISCLAIMER_disclaimer_outside_only_true" qtlid="34776">Tak</translation>
+   <translation id="emailpro_tab_DISCLAIMER_error_message" qtlid="152245">Wystąpił błąd podczas pobierania informacji o podpisach.</translation>
+   <translation id="emailpro_tab_DISCLAIMER_menu_delete" qtlid="2414">Usuń</translation>
+   <translation id="emailpro_tab_DISCLAIMER_menu_settings" qtlid="37875">Zmień</translation>
+   <translation id="emailpro_tab_DISCLAIMER_state_doing_tooltip" qtlid="143863">Zadanie jest zaplanowane lub wykonywane.</translation>
+   <translation id="emailpro_tab_DISCLAIMER_state_header" qtlid="26443">Status</translation>
+   <translation id="emailpro_tab_DISCLAIMER_table_no_domain" qtlid="152310">Dodaj domenę i zaczekaj na jej zatwierdzenie, aby dodać podpis.</translation>
+
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_add_fail" qtlid="171461">Wystąpił błąd podczas zlecania dodania kontaktu zewnętrznego.</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_add_step1_display_name_label" qtlid="23515">Nazwa do wyświetlenia</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_add_step1_email_invalid" qtlid="171370">Wprowadzony adres e-mail jest nieprawidłowy</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_add_step1_email_label" qtlid="137244">Konto e-mail</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_add_step1_first_name_label" qtlid="23323">Imię</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_add_step1_last_name_label" qtlid="3818">Nazwa</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_add_step1_organization2010_label" qtlid="32278">Organizacja</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_add_step1_question" qtlid="171357">Utworzysz zewnętrzny kontakt</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_add_step1_wizardhelp_requirements_content" qtlid="174659">Kontakty zewnętrzne muszą spełniać następujące wymagania:<br/><br/>- Imię i nazwisko mogą zawierać maksymalnie 64 znaki.<br/>- Nazwa do wyświetlenia może zawierać maksymalnie 255 znaków.</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_add_step1_wizardhelp_requirements_title" qtlid="171383">Warunki dla kontaktów zewnętrznych</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_add_step2_display_name_label" qtlid="23515">Nazwa do wyświetlenia</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_add_step2_email_label" qtlid="137244">Konto e-mail</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_add_step2_first_name_label" qtlid="23323">Imię</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_add_step2_last_name_label" qtlid="3818">Nazwa</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_add_step2_question" qtlid="171435">Czy chcesz dodać następujący zewnętrzny kontakt?</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_add_success" qtlid="171448">Zlecenie dodania zewnętrznego kontaktu zostało przyjęte. Zostanie ono wykonane w ciągu kilku minut.</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_add_title" qtlid="136334">Dodaj zewnętrzny kontakt</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_add_title_button" qtlid="136334">Dodaj zewnętrzny kontakt</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_delete_fail" qtlid="171591">Wystąpił błąd podczas zlecania usunięcia kontaktu zewnętrznego.</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_delete_step1_contact" qtlid="171565">Kontakt zewnętrzny:</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_delete_step1_question" qtlid="171552">Czy chcesz usunąć ten kontakt zewnętrzny?</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_delete_success" qtlid="171578">Zlecenie usunięcia kontaktu zewnętrznego zostało przyjęte. Zostanie ono wykonane w ciągu kilku minut.</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_delete_title" qtlid="171539">Usuń kontakt zewnętrzny</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_fail" qtlid="171526">Wystąpił błąd podczas zlecania zmiany kontaktu zewnętrznego.</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step1_display_name_label" qtlid="23515">Nazwa do wyświetlenia</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step1_email_invalid" qtlid="171370">Wprowadzony adres e-mail jest nieprawidłowy</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step1_email_label" qtlid="137244">Konto e-mail</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step1_first_name_label" qtlid="23323">Imię</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step1_last_name_label" qtlid="3818">Nazwa</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step1_question" qtlid="171487">Zmienisz kontakt zewnętrzny</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step1_wizardhelp_requirements_content" qtlid="174659">Kontakty zewnętrzne muszą spełniać następujące wymagania:<br/><br/>- Imię i nazwisko mogą zawierać maksymalnie 64 znaki.<br/>- Nazwa do wyświetlenia może zawierać maksymalnie 255 znaków.</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step1_wizardhelp_requirements_title" qtlid="171383">Warunki dla kontaktów zewnętrznych</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step2_display_name_label" qtlid="23515">Nazwa do wyświetlenia</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step2_email_label" qtlid="137244">Konto e-mail</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step2_first_name_label" qtlid="23323">Imię</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step2_last_name_label" qtlid="3818">Nazwa</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step2_question" qtlid="171500">Czy chcesz zmienić ten kontakt zewnętrzny?</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_success" qtlid="171513">Zlecenie zmiany kontaktu zewnętrznego zostało przyjęte. Zostanie ono wykonane w ciągu kilku minut.</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_configuration_contact_modify_title" qtlid="171474">Zmień kontakt zewnętrzny</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_search_placeholder" qtlid="171344">Wyszukaj kontakty</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_table_actions_menu_delete" qtlid="2414">Usuń</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_table_actions_menu_modify" qtlid="37875">Zmień</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_table_empty" qtlid="171331">Nie posiadasz skonfigurowanego zewnętrznego kontaktu</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_table_headers_creationDate" qtlid="4358">Stwórz</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_table_headers_displayName" qtlid="80922">Nazwa wyświetlana</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_table_headers_externalEmailAddress" qtlid="30430">Adres</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_table_headers_hiddenFromGAL" qtlid="28483">Książka adresowa</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_table_headers_state" qtlid="26443">Status</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_table_headers_state_CREATING" qtlid="26227">W trakcie tworzenia</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_table_headers_state_DELETING" qtlid="133929">W trakcie usuwania</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_table_headers_state_REOPENING" qtlid="171279">Ponowne otwieranie</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_table_headers_state_SUSPENDED" qtlid="136100">Zawieszone</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_table_headers_state_SUSPENDING" qtlid="171292">Zawieszanie</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_table_headers_state_MODIFYING" qtlid="174646">W trakcie modyfikacji</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_table_headers_state_OK" qtlid="433745">Ok</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_table_headers_state_MODIFYING" qtlid="174646">W trakcie modyfikacji</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_table_tooltip_GAL_false" qtlid="184906">Adres pojawia się w programie Outlook</translation>
+   <translation id="emailpro_tab_EXTERNAL_CONTACTS_table_tooltip_GAL_true" qtlid="184919">Adres nie pojawia się w programie Outlook</translation>
+
+   <translation id="emailpro_tab_GROUPS_error_message" qtlid="150138">Wystąpił błąd podczas pobierania informacji o grupach.</translation>
+
+   <translation id="emailpro_tab_INFORMATIONS_connexion" qtlid="55925">Logowanie</translation>
+   <translation id="emailpro_tab_INFORMATIONS_messaging" qtlid="276363">Program pocztowy</translation>
+   <translation id="emailpro_tab_INFORMATIONS_service_url" qtlid="319414">Sprawdź informacje na temat przypisanej usługi SharePoint</translation>
+   <translation id="emailpro_tab_INFORMATIONS_sharepoint" qtlid="319401">Przypisana usługa SharePoint</translation>
+   <translation id="emailpro_tab_INFORMATIONS_sharepoint_url" qtlid="297930">URL do weryfikacji</translation>
+   <translation id="emailpro_tab_INFORMATIONS_stats" qtlid="26671">Statystyki</translation>
+   <translation id="emailpro_tab_INFORMATIONS_summary" qtlid="4082">Podsumowanie</translation>
+   <translation id="emailpro_tab_INFORMATIONS_wait_activation" qtlid="297943">W trakcie aktywacji</translation>
+   <translation id="emailpro_tab_INFORMATIONS_webmail" qtlid="15473">Webmail</translation>
+
+   <translation id="emailpro_tab_TASKS" qtlid="136217">Ostatnie zadania</translation>
+   <translation id="emailpro_tab_TASKS_table_empty" qtlid="144058">Brak zadań</translation>
+   <translation id="emailpro_tab_TASKS_table_function" qtlid="61872">Zadanie</translation>
+   <translation id="emailpro_tab_TASKS_table_state" qtlid="167912">Status</translation>
+   <translation id="emailpro_tab_TASKS_DOING" qtlid="26383">W toku</translation>
+   <translation id="emailpro_tab_TASKS_CANCELLED" qtlid="27631">Anulowany</translation>
+   <translation id="emailpro_tab_TASKS_DONE" qtlid="8662">Zakończone</translation>
+   <translation id="emailpro_tab_TASKS_ERROR" qtlid="45508">Błąd</translation>
+   <translation id="emailpro_tab_TASKS_TODO" qtlid="37455">Zaplanowany</translation>
+   <translation id="emailpro_tab_TASKS_ADD_ACCOUNT" qtlid="137309">Dodanie konta</translation>
+   <translation id="emailpro_tab_TASKS_ADD_ALIAS" qtlid="144071">Dodanie aliasu</translation>
+   <translation id="emailpro_tab_TASKS_ADD_DOMAIN" qtlid="137335">Dodawanie domeny</translation>
+   <translation id="emailpro_tab_TASKS_ADD_DOMAIN_DISCLAIMER" qtlid="152206">Dodaj podpis</translation>
+   <translation id="emailpro_tab_TASKS_ADD_EXTERNAL_CONTACT" qtlid="137348">Dodanie zewnętrznego kontaktu</translation>
+   <translation id="emailpro_tab_TASKS_ADD_FULL_ACCESS" qtlid="137361">Dodawanie praw dostępu</translation>
+   <translation id="emailpro_tab_TASKS_addFullAccess" qtlid="137361">Dodawanie praw dostępu</translation>
+   <translation id="emailpro_tab_TASKS_ADD_SEND_AS" qtlid="181370">Dodanie uprawnień do wysyłki dla konta</translation>
+   <translation id="emailpro_tab_TASKS_CHANGE_PASSWORD" qtlid="16721">Zmiana hasła</translation>
+   <translation id="emailpro_tab_TASKS_DELETE_ACCOUNT" qtlid="136516">Usuń konto</translation>
+   <translation id="emailpro_tab_TASKS_DELETE_ALIAS" qtlid="136529">Usuń alias</translation>
+   <translation id="emailpro_tab_TASKS_DELETE_DOMAIN" qtlid="136542">Usuń domenę</translation>
+   <translation id="emailpro_tab_TASKS_DELETE_EXTERNAL_CONTACT" qtlid="137387">Usuwanie zewnętrznego kontaktu</translation>
+   <translation id="emailpro_tab_TASKS_DELETE_FULL_ACCESS" qtlid="137400">Usuwanie praw dostępu</translation>
+   <translation id="emailpro_tab_TASKS_deleteFullAccess" qtlid="137400">Usuwanie praw dostępu</translation>
+   <translation id="emailpro_tab_TASKS_DELETE_SEND_AS" qtlid="181383">Usunięcie uprawnień do wysyłki dla konta</translation>
+   <translation id="emailpro_tab_TASKS_UPDATE_ACCOUNT" qtlid="136594">Modyfikacja konta</translation>
+   <translation id="emailpro_tab_TASKS_SET_ACCOUNT" qtlid="136594">Modyfikacja konta</translation>
+   <translation id="emailpro_tab_TASKS_SET_DNS" qtlid="149826">Zmiana DNS</translation>
+   <translation id="emailpro_tab_TASKS_INSTALL_SSL" qtlid="149839">Instalacja certyfikatu SSL</translation>
+   <translation id="emailpro_tab_TASKS_CONFIGURE_EXCHANGE_CUSTOMER" qtlid="143355">Konfiguracja serwera</translation>
+   <translation id="emailpro_tab_TASKS_ADD_DISTRIBUTION_GROUP" qtlid="149865">Dodanie grupy</translation>
+   <translation id="emailpro_tab_TASKS_addDistributionGroup" qtlid="149865">Dodanie grupy</translation>
+   <translation id="emailpro_tab_TASKS_ADD_DISTRIBUTION_GROUP_MANAGER" qtlid="149878">Dodanie administratora grupy</translation>
+   <translation id="emailpro_tab_TASKS_addDistributionGroupManager" qtlid="149878">Dodanie administratora grupy</translation>
+   <translation id="emailpro_tab_TASKS_ADD_DISTRIBUTION_GROUP_MEMBER" qtlid="149891">Dodanie kontaktu z grupy</translation>
+   <translation id="emailpro_tab_TASKS_addDistributionGroupMember" qtlid="149891">Dodanie kontaktu z grupy</translation>
+   <translation id="emailpro_tab_TASKS_DELETE_DISTRIBUTION_GROUP" qtlid="149904">Usunięcie grupy</translation>
+   <translation id="emailpro_tab_TASKS_deleteDistributionGroup" qtlid="149904">Usunięcie grupy</translation>
+   <translation id="emailpro_tab_TASKS_DELETE_DISTRIBUTION_GROUP_MANAGER" qtlid="149917">Usunięcie administratora grupy</translation>
+   <translation id="emailpro_tab_TASKS_deleteDistributionGroupManager" qtlid="149930">Usunięcie administratora grupy</translation>
+   <translation id="emailpro_tab_TASKS_DELETE_DISTRIBUTION_GROUP_MEMBER" qtlid="149943">Usunięcie kontaktu grupy</translation>
+   <translation id="emailpro_tab_TASKS_deleteDistributionGroupMember" qtlid="149956">Usunięcie kontaktu z grupy</translation>
+   <translation id="emailpro_tab_TASKS_DELETE_DISTRIBUTION_GROUP_SEND_ON_BEHALF_TO" qtlid="180226">Usunięcie uprawnień do wysyłki</translation>
+   <translation id="emailpro_tab_TASKS_SET_DISTRIBUTION_GROUP" qtlid="149969">Modyfikacja grupy</translation>
+   <translation id="emailpro_tab_TASKS_setDistributionGroup" qtlid="149969">Modyfikacja grupy</translation>
+   <translation id="emailpro_tab_TASKS_DELETE_DOMAIN_DISCLAIMER" qtlid="152219">Usuń podpis</translation>
+   <translation id="emailpro_tab_TASKS_SET_DOMAIN_DISCLAIMER" qtlid="152232">Zmień podpis</translation>
+   <translation id="emailpro_tab_TASKS_GENERATE_OUTLOOK_URL" qtlid="150021">Generowanie linku Outlook</translation>
+   <translation id="emailpro_tab_TASKS_SET_DOMAIN" qtlid="136607">Modyfikacja domeny</translation>
+   <translation id="emailpro_tab_TASKS_SET_ALIAS" qtlid="148214">Zmiana aliasu</translation>
+   <translation id="emailpro_tab_TASKS_ADD_RESOURCE_ACCOUNT" qtlid="156134">Dodanie konta zasobów</translation>
+   <translation id="emailpro_tab_TASKS_ADD_RESOURCE_DELEGATE" qtlid="195126">Dodawanie uprawnień dla zasobów</translation>
+   <translation id="emailpro_tab_TASKS_SET_RESOURCE_ACCOUNT" qtlid="156147">Modyfikacja konta zasobów</translation>
+   <translation id="emailpro_tab_TASKS_DELETE_RESOURCE_DELEGATE" qtlid="209086">Usunięcie praw dla zasobu</translation>
+   <translation id="emailpro_tab_TASKS_DELETE_RESOURCE_ACCOUNT" qtlid="156160">Usunięcie konta zasobów</translation>
+   <translation id="emailpro_tab_TASKS_SET_EXTERNAL_CONTACT" qtlid="177938">Zmiana kontaktu zewnętrznego</translation>
+   <translation id="emailpro_tab_TASKS_ADD_SEND_ON_BEHALF_TO" qtlid="181396">Dodanie uprawnień do wysyłki dla konta</translation>
+   <translation id="emailpro_tab_TASKS_DELETE_SEND_ON_BEHALF_TO" qtlid="181409">Usunięcie uprawnień do wysyłki dla konta</translation>
+   <translation id="emailpro_tab_TASKS_ADD_DISTRIBUTION_GROUP_SEND_ON_BEHALF_TO" qtlid="181422">Dodanie uprawnień do wysyłki dla grup</translation>
+   <translation id="emailpro_tab_TASKS_DELETE_DISTRIBUTION_GROUP_SEND_ON_BEHALF_TO" qtlid="181435">Usunięcie uprawnień do wysyłki dla grup</translation>
+   <translation id="emailpro_tab_TASKS_ADD_DISTRIBUTION_GROUP_SEND_AS" qtlid="181448">Dodawanie uprawnień do wysyłki dla grup</translation>
+   <translation id="emailpro_tab_TASKS_DELETE_DISTRIBUTION_GROUP_SEND_AS" qtlid="181461">Usuwanie uprawnień do wysyłki dla grup</translation>
+   <translation id="emailpro_tab_TASKS_ADD_EXPORT_PST_REQUEST" qtlid="190862">Weryfikacja pliku .pst</translation>
+   <translation id="emailpro_tab_TASKS_GENERATE_PST_URL" qtlid="190875">Generowanie pliku .pst</translation>
+   <translation id="emailpro_tab_TASKS_SET_PUBLIC_FOLDER_PERMISSION" qtlid="201250">Zmiana uprawnień do współdzielenia</translation>
+   <translation id="emailpro_tab_TASKS_ADD_PUBLIC_FOLDER_PERMISSION" qtlid="201263">Dodanie uprawnień do współdzielenia</translation>
+   <translation id="emailpro_tab_TASKS_DELETE_PUBLIC_FOLDER_PERMISSION" qtlid="201276">Usunięcie uprawnień do współdzielenia</translation>
+   <translation id="emailpro_tab_TASKS_ADD_PUBLIC_FOLDER" qtlid="201289">Dodanie uprawnień do współdzielenia</translation>
+   <translation id="emailpro_tab_TASKS_DELETE_PUBLIC_FOLDER" qtlid="201302">Usunięcie uprawnień do współdzielenia</translation>
+   <translation id="emailpro_tab_TASKS_SET_PUBLIC_FOLDER" qtlid="201315">Modyfikacja uprawnień do współdzielenia</translation>
+   <translation id="emailpro_tab_TASKS_EXPAND_DRIVE" qtlid="191759">Dodanie przestrzeni dyskowej</translation>
+   <translation id="emailpro_tab_TASKS_ADD_SHARED_ACCOUNT" qtlid="215208">Dodanie konta współdzielonego</translation>
+   <translation id="emailpro_tab_TASKS_DELETE_SHARED_ACCOUNT" qtlid="215221">Usunięcie konta współdzielonego</translation>
+   <translation id="emailpro_tab_TASKS_SET_SHARED_ACCOUNT" qtlid="215234">Modyfikacja konta współdzielonego</translation>
+   <translation id="emailpro_tab_TASKS_ADD_SHARED_ACCOUNT_FULL_ACCESS" qtlid="215247">Dodanie uprawnień dostępowych dla konta współdzielonego</translation>
+   <translation id="emailpro_tab_TASKS_ADD_SHARED_ACCOUNT_SEND_AS" qtlid="215260">Dodanie uprawnień do wysyłki dla konta współdzielonego</translation>
+   <translation id="emailpro_tab_TASKS_ADD_SHARED_ACCOUNT_SEND_ON_BEHALF_TO" qtlid="215273">Dodanie uprawnień do wysyłki dla konta współdzielonego</translation>
+   <translation id="emailpro_tab_TASKS_DELETE_SHARED_ACCOUNT_FULL_ACCESS" qtlid="215286">Usunięcie uprawnień dostępowych dla konta współdzielonego</translation>
+   <translation id="emailpro_tab_TASKS_DELETE_SHARED_ACCOUNT_SEND_AS" qtlid="215299">Usunięcie uprawnień do wysyłki dla konta współdzielonego</translation>
+   <translation id="emailpro_tab_TASKS_DELETE_SHARED_ACCOUNT_SEND_ON_BEHALF_TO" qtlid="215312">Usunięcie uprawnień do wysyłki dla konta współdzielonego</translation>
+   <translation id="emailpro_tab_TASKS_table_start_date" qtlid="201328">Początek</translation>
+   <translation id="emailpro_tab_TASKS_table_finish_date" qtlid="201341">Koniec</translation>
+   <translation id="emailpro_tab_TASKS_warning" qtlid="136347">Uwaga!</translation>
+   <translation id="emailpro_tab_TASKS_partial" qtlid="137426">Lista jest niekompletna. Niektóre zadania nie zostały poprawnie załadowane.</translation>
+   <translation id="emailpro_tab_TASKS_error_message" qtlid="144097">Wystąpił błąd podczas wyświetlania zadań.</translation>
+   <translation id="emailpro_tab_TASKS_SET_SERVICE" qtlid="174841">Polityka bezpieczeństwa kont</translation>
+   <translation id="emailpro_tab_TASKS_mailinglist" qtlid="525184">Zmiana listy mailingowej </translation>
+   <translation id="emailpro_tab_TASKS_redirection" qtlid="525197">Zmiana przekierowania</translation>
+
+   <translation id="emailpro_tab_domain_no_domains_2" qtlid="137452">tutaj</translation>
+   <translation id="emailpro_tab_domain_no_domains_3" qtlid="137465">aby dodać nową domenę.</translation>
+   <translation id="emailpro_tab_domain_table_empty_search" qtlid="150034">Nie posiadasz domen odpowiadających kryteriom wyszukiwania</translation>
+   <translation id="emailpro_tab_domain_search" qtlid="136633">Wyszukiwanie domeny</translation>
+   <translation id="emailpro_tab_domain_domain" qtlid="170434">Domena</translation>
+   <translation id="emailpro_tab_domain_type" qtlid="15713">Tryb</translation>
+   <translation id="emailpro_tab_domain_accounts_count" qtlid="28363">Konta</translation>
+   <translation id="emailpro_tab_domain_popover_delete" qtlid="210267">Usuń tą domenę</translation>
+   <translation id="emailpro_tab_domain_popover_update" qtlid="4406">Konfiguracja</translation>
+   <translation id="emailpro_tab_domain_diagnostic" qtlid="95059">Diagnostyka</translation>
+   <translation id="emailpro_tab_domain_diagnostic_mx" qtlid="23779">MX</translation>
+   <translation id="emailpro_tab_domain_diagnostic_mx_title" qtlid="137478">Diagnostyka MX</translation>
+   <translation id="emailpro_tab_domain_diagnostic_mx_toolbox_ok" qtlid="137491">Automatyczna konfiguracja została wykonana.</translation>
+   <translation id="emailpro_tab_domain_diagnostic_mx_intro_ovh" qtlid="192890">Twoja domena jest zainstalowana w OVH. Możesz skonfigurować pole MX domeny {0} w następujący sposób</translation>
+   <translation id="emailpro_tab_domain_diagnostic_mx_label_champ" qtlid="192903">Pole MX</translation>
+   <translation id="emailpro_tab_domain_diagnostic_mx_label_champs" qtlid="46780">Pole MX</translation>
+   <translation id="emailpro_tab_domain_diagnostic_mx_no_antispam" qtlid="447664">Jeśli korzystasz z trybu nieautorytatywnego (Exchange + inny system poczty elektronicznej) z systemem poczty elektronicznej nieobsługiwanej przez OVH:</translation>
+   <translation id="emailpro_tab_domain_diagnostic_mx_no_antispam_config" qtlid="192929">Priorytet: <strong>{0}</strong>; adres docelowy: <strong>{1}</strong></translation>
+   <translation id="emailpro_tab_domain_diagnostic_mx_antispam" qtlid="447677">Jeśli korzystasz z trybu autorytatywnego (wyłącznie Exchange) lub nieautorytatywnego z systemem poczty elektronicznej obługiwanym przez OVH (e-mail na hostingu):</translation>
+   <translation id="emailpro_tab_domain_diagnostic_mx_antispam_config" qtlid="192955">Priorytet: <strong>{0}</strong>; adres docelowy: <strong>{1}</strong><br /> Priorytet: <strong>{2}</strong>; adres docelowy: <strong>{3}</strong><br /> Priorytet: <strong>{4}</strong>; adres docelowy: <strong>{5}</strong><br /> Priorytet: <strong>{6}</strong>; adres docelowy: <strong>{7}</strong><br /></translation>
+   <translation id="emailpro_tab_domain_diagnostic_mx_no_ovh" qtlid="349101">Jeśli domena nie jest zarządzana z poziomu tego samego konta klienta co usługa Exchange lub jeśli domena nie jest obsługiwana w OVH, automatyczna konfiguracja nie będzie możliwa. Utwórz ręcznie pole MX dla tej domeny podając poniższe informacje.</translation>
+   <translation id="emailpro_tab_domain_diagnostic_mx_recap" qtlid="192981">Pole MX zostanie dodane do strefy DNS domeny. Uwaga, istniejące wcześniej pola MX zostaną usunięte.</translation>
+   <translation id="emailpro_tab_domain_diagnostic_add_field_success" qtlid="316905">Zmiana strefy DNS została wykonana. Propagacja zmian oraz aktualizacja diagnostyki mogą trwać kilka godzin.</translation>
+   <translation id="emailpro_tab_domain_diagnostic_add_field_failure" qtlid="193007">Wystąpił błąd podczas modyfikowania strefy DNS.</translation>
+   <translation id="emailpro_tab_domain_diagnostic_srv_intro_ovh" qtlid="193020">Twoja domena jest zainstalowana w OVH. Możesz skonfigurować pole SRV domeny {0} w następujący sposób</translation>
+   <translation id="emailpro_tab_domain_diagnostic_srv_label_champ" qtlid="193033">Pole SRV</translation>
+   <translation id="emailpro_tab_domain_diagnostic_srv_config" qtlid="193046">Subdomena: <strong>{0}</strong><br /> Priorytet: <strong>{1}</strong><br /> Rozmiar: <strong>{2}</strong><br /> Port: <strong>{3}</strong><br /> Adres docelowy: <strong>{4}</strong></translation>
+   <translation id="emailpro_tab_domain_diagnostic_srv_no_ovh" qtlid="349114">Jeśli domena nie jest zarządzana z poziomu tego samego konta klienta co usługa Exchange lub jeśli domena nie jest obsługiwana w OVH, automatyczna konfiguracja nie będzie możliwa. Utwórz ręcznie pole SRV dla tej domeny podając poniższe informacje.</translation>
+   <translation id="emailpro_tab_domain_diagnostic_srv_recap" qtlid="256191">Pole SRV zostanie dodane do strefy DNS domeny. Uwaga: istniejące wcześniej pola SRV z subdomeną "{0}" zostaną usunięte.</translation>
+   <translation id="emailpro_tab_domain_diagnostic_srv" qtlid="130003">SRV</translation>
+   <translation id="emailpro_tab_domain_diagnostic_srv_title" qtlid="137517">Diagnostyka SRV</translation>
+   <translation id="emailpro_tab_domain_diagnostic_srv_toolbox_ok" qtlid="137491">Automatyczna konfiguracja została wykonana.</translation>
+   <translation id="emailpro_tab_domain_error_message" qtlid="144045">Wystąpił błąd podczas wyświetlania domen.</translation>
+   <translation id="emailpro_tab_domain_diagnostic_cname" qtlid="129847">CNAME</translation>
+   <translation id="emailpro_tab_domain_status" qtlid="26443">Status</translation>
+   <translation id="emailpro_tab_domain_task_in_progress" qtlid="2690">Zadania w trakcie</translation>
+   <translation id="emailpro_tab_domain_validation" qtlid="33802">Zatwierdzenie</translation>
+   <translation id="emailpro_tab_domain_validation_doing" qtlid="136646">Trwa potwierdzanie domeny</translation>
+   <translation id="emailpro_tab_domain_validation_cname" qtlid="139260">Należy stworzyć wpis CNAME.</translation>
+   <translation id="emailpro_tab_domain_validation_cname_title" qtlid="139273">Weryfikacja kontaktu właściciela</translation>
+   <translation id="emailpro_tab_domain_validation_cname_details" qtlid="363401">Aby potwierdzić, że jesteś właścicielem tej domeny, utwórz wpis CNAME: <br /><br /><span class="bold">{0}.{1}</span> wskazujący na <span class="bold">{2}</span>.<br /><br /> Operację tę należy wykonać w ciągu 48 godzin.</translation>
+   <translation id="emailpro_tab_domain_add_domain" qtlid="8602">Dodaj domenę</translation>
+   <translation id="emailpro_tab_domain_delete_domain" qtlid="137556">Usuń tą domenę z usług Exchange</translation>
+   <translation id="emailpro_tab_domain_creating" qtlid="26791">Utworzenie</translation>
+   <translation id="emailpro_tab_domain_NON_AUTHORITATIVE" qtlid="447703">Nieautorytatywny</translation>
+   <translation id="emailpro_tab_domain_AUTHORITATIVE" qtlid="58807">Autorytatywny</translation>
+   <translation id="emailpro_tab_domain_warning" qtlid="136347">Uwaga!</translation>
+   <translation id="emailpro_tab_domain_partial" qtlid="137569">Informacje o niektórych domenach nie zostały poprawnie pobrane. Odśwież stronę, aby rozwiązać problem.</translation>
+   <translation id="emailpro_tab_domain_add_step1_select_domain_option" qtlid="136971">Wybierz domenę z listy</translation>
+   <translation id="emailpro_tab_domain_add_step1_user_owned_option" qtlid="397533">Wpisz domenę, która nie jest zarządzana na Twoim koncie OVH</translation>
+   <translation id="emailpro_tab_domain_add_step1_user_owned_info" qtlid="397546">Uwaga: Upewnij się, że strefa DNS wybranej domeny będzie mogła zostać zmodyfikowana przez jej administratora.</translation>
+   <translation id="emailpro_tab_domain_add_step1_order_domain_option" qtlid="136997">Zamów domenę</translation>
+   <translation id="emailpro_tab_domain_add_step1_domain_none" qtlid="434538">Brak wyników</translation>
+   <translation id="emailpro_tab_domain_add_step3_cover_guide" qtlid="139572">Obraz podglądu przewodnika video</translation>
+   <translation id="emailpro_tab_domain_add_step1_main_domain" qtlid="191070">Domena główna organizacji</translation>
+   <translation id="emailpro_tab_domain_add_step1_main_domain_tooltip" qtlid="191083">Domena główna organizacji</translation>
+   <translation id="emailpro_tab_domain_add_step1_new_organization_intro" qtlid="447716">Domeną organizacji będzie <strong>{0}</strong></translation>
+   <translation id="emailpro_tab_domain_add_step1_new_organization_placeholder" qtlid="191109">Nazwa organizacji</translation>
+   <translation id="emailpro_tab_domain_add_step2_main_domain" qtlid="191122">Domena główna</translation>
+   <translation id="emailpro_tab_domain_add_step2_organization" qtlid="32278">Organizacja</translation>
+   <translation id="emailpro_tab_domain_add_step2_main_domain_true" qtlid="34776">Tak</translation>
+   <translation id="emailpro_tab_domain_add_step2_main_domain_false" qtlid="34788">Nie</translation>
+   <translation id="emailpro_tab_domain_add_step2_mx_replay" qtlid="316931">Docelowy serwer e-mail</translation>
+   <translation id="emailpro_tab_domain_add_step2_mx_replay_tooltip" qtlid="210293">E-maile z nieodnalezionymi adresatami będą przekierowywane na ten serwer.</translation>
+   <translation id="emailpro_tab_domain_add_step1_attach_organization_intro" qtlid="191135">Domena zostanie przypisana do następującej organizacji:</translation>
+   <translation id="emailpro_tab_domain_add_set_auto_display" qtlid="416488">Zaznacz to pole, jeśli chcesz, aby to okno się nie otwierało.</translation>
+   <translation id="emailpro_tab_domain_add_goToWizardButton" qtlid="449388">Chcę użyć <br />asystenta konfiguracji</translation>
+   <translation id="emailpro_tab_domain_add_step1_order_domain_desc1" qtlid="167873">Aby potwierdzić zlecenie, kliknij na przycisk "Zamów".</translation>
+   <translation id="emailpro_tab_domain_add_step1_order_domain_desc2" qtlid="144175">Otworzy się nowa zakładka i zostaniesz automatycznie przekierowany do strony z płatnościami OVH.</translation>
+   <translation id="emailpro_tab_domain_step1_helpwizard_subdomain_title" qtlid="137881">Skorzystaj z subdomeny</translation>
+   <translation id="emailpro_tab_domain_step1_helpwizard_subdomain" qtlid="397559">Aby dodać subdomenę dla jednej z Twoich domen w OVH, możesz zaznaczyć "Wpisz domenę, która nie jest zarządzana na Twoim koncie OVH" i wpisz ją w odpowiednim polu.</translation>
+   <translation id="emailpro_tab_domain_add_step2_which_domain_type" qtlid="137998">O jaki rodzaj domeny <span class="italic">{0}</span> chodzi?</translation>
+   <translation id="emailpro_tab_domain_add_step2_auth_intro" qtlid="140859">Twoja domena <span class="italic">{0}</span> zostanie skonfigurowana w trybie autorytatywnym.</translation>
+   <translation id="emailpro_tab_domain_add_step2_non_auth_intro" qtlid="447729">Twoja domena <span class="italic">{0}</span> zostanie skonfigurowana w trybie nieautorytatywnym.</translation>
+   <translation id="emailpro_tab_domain_add_step2bis_intro" qtlid="316944">Wybierz tryb domeny:</translation>
+   <translation id="emailpro_tab_domain_add_step2_srv_checkbox" qtlid="138011">Skonfiguruj automatycznie SRV (autodiscover)</translation>
+   <translation id="emailpro_tab_domain_add_step2_mx_checkbox" qtlid="139585">Automatyczna konfiguracja pola MX (otrzymywanie wiadomości email)</translation>
+   <translation id="emailpro_tab_domain_add_step2_mx_tooltip" qtlid="140209">Uwaga, automatyczna konfiguracja MX może wpłynąć na otrzymywanie e-maili, dla kont które zostały wcześniej skonfigurowane dla tej nazwy domeny.</translation>
+   <translation id="emailpro_tab_domain_add_step2_srv_tooltip" qtlid="447742">Ta opcja pozwoli programowi pocztowemu (na przykład Outlook lub Mail) na automatyczne pobranie ustawień dotyczących połączenia.</translation>
+   <translation id="emailpro_tab_domain_add_step3_srv_confirmation" qtlid="137816">Konfiguracja SRV</translation>
+   <translation id="emailpro_tab_domain_add_step3_mx_confirmation" qtlid="137829">Konfiguracja MX</translation>
+   <translation id="emailpro_tab_domain_add_step3_mx_replay" qtlid="316957">Docelowy serwer e-mail</translation>
+   <translation id="emailpro_tab_domain_add_step3_configuration_true" qtlid="137842">Automatycznie</translation>
+   <translation id="emailpro_tab_domain_add_step3_configuration_false" qtlid="34788">Nie</translation>
+   <translation id="emailpro_tab_domain_add_success" qtlid="137868">Domena zostanie dodana do serwera exchange.</translation>
+   <translation id="emailpro_tab_domain_add_failure" qtlid="137049">Wystąpił błąd podczas dodawania domeny do serwera exchange.</translation>
+   <translation id="emailpro_tab_domain_modify_success" qtlid="137907">Domena zostanie zaktualizowana.</translation>
+   <translation id="emailpro_tab_domain_modify_failure" qtlid="519116">Wystąpił błąd podczas aktualizacji domeny.</translation>
+   <translation id="emailpro_tab_domain_modify_in_progress" qtlid="137088">Trwa migracja na {0} </translation>
+   <translation id="emailpro_tab_domain_inverse_NON_AUTHORITATIVE" qtlid="58807">Autorytatywny</translation>
+   <translation id="emailpro_tab_domain_inverse_AUTHORITATIVE" qtlid="447755">Nieautorytatywny</translation>
+   <translation id="emailpro_tab_domain_target_mail_server_label" qtlid="316957">Docelowy serwer e-mail</translation>
+   <translation id="emailpro_tab_domain_noovh_mx_info" qtlid="317126">Zmiany dotyczące MX i SRV należy wykonać ręcznie w strefie DNS. Informacje na ten temat będą dostępne w sekcji Domeny przypisane po zaakceptowaniu wpisu  CNAME.</translation>
+   <translation id="emailpro_tab_domain_modify_domain" qtlid="137101">Konfiguracja domeny</translation>
+   <translation id="emailpro_tab_domain_modify_domain_tooltip" qtlid="444667">Antyspam Vade Secure jest kompatybilny z trybem nieautorytatywnym (wyłącznie, jeśli Twoje konta POP/IMAP są hostowane przez OVH). W takim przypadku rekomendujemy użycie: <strong>{0}</strong>, <strong>{1}</strong>, <strong>{2}</strong> i <strong>{3}</strong><br/><br/> Jeśli używasz trybu nieautorytatywnego dla kont e-mail, które nie są hostowane przez OVH, powinieneś użyć: <strong>{4}</strong> (patrz sekcja powiązane domeny).</translation>
+   <translation id="emailpro_tab_domain_modify_title" qtlid="375543">Czy chcesz zmodyfikować tę domenę w usłudze  E-mail Pro?</translation>
+   <translation id="emailpro-mxplan_tab_domain_modify_title" qtlid="519129">Czy na pewno chcesz zmodyfikować następującą domenę w Twojej usłudze MX Plan?</translation>
+   <translation id="emailpro_tab_domain_modify_loop_warning" qtlid="210319">Uwaga: zapętlenie!</translation>
+   <translation id="emailpro_tab_domain_modify_domain_warning" qtlid="210332">Nieprawidłowa domena</translation>
+   <translation id="emailpro_tab_domain_modify_length_warning" qtlid="210345">Uwaga: maksymalnie 255 znaków!</translation>
+   <translation id="emailpro_tab_domain_modify_wizard_subtitle" qtlid="210358">Autorytatywny / Nie autorytatywny: Co powinienem wybrać?</translation>
+   <translation id="emailpro_tab_domain_remove_domain" qtlid="137933">Usuń domenę</translation>
+   <translation id="emailpro_tab_domain_remove_success" qtlid="137959">Domena zostanie usunięta z usługi Exchange.</translation>
+   <translation id="emailpro_tab_domain_remove_failure" qtlid="137972">Wystąpił błąd podczas usuwania domeny z usługi Exchange.</translation>
+   <translation id="emailpro_update_billing_action_title" qtlid="98324">Okres odnowienia</translation>
+   <translation id="emailpro_update_billing_button_title" qtlid="190953">Sposób płatności</translation>
+   <translation id="emailpro_update_billing_expiration_date_label" qtlid="30406">Data wygasania</translation>
+   <translation id="emailpro_update_billing_header_1M" qtlid="60378">Co miesiąc </translation>
+   <translation id="emailpro_update_billing_header_1Y" qtlid="60390">Roczny</translation>
+   <translation id="emailpro_update_billing_header_new_periode" qtlid="190992">Nowy okres</translation>
+   <translation id="emailpro_update_billing_header_terminate" qtlid="209177">Brak</translation>
+   <translation id="emailpro_update_billing_periode_delete_warning" qtlid="211593">Uwaga! Ten wybór sprawi, że usługa wygaśnie a dane zostaną usunięte. Nie będziesz mógł odzyskać danych z konta.</translation>
+   <translation id="emailpro_update_billing_periode_failure" qtlid="191044">Wystąpił błąd podczas pobierania okresu automatycznego odnowienia.</translation>
+   <translation id="emailpro_update_billing_periode_intro" qtlid="190966">Wybierz okres automatycznego odnowienia każdego konta. <br />Zostanie on zastosowany od kolejnego odnowienia.</translation>
+   <translation id="emailpro_update_billing_periode_label" qtlid="168172">Odnowienie</translation>
+   <translation id="emailpro_update_billing_periode_partial" qtlid="191031">Wystąpił błąd dla zmiany okresu odnowienia.</translation>
+   <translation id="emailpro_update_billing_periode_resume" qtlid="191005">Zmienisz okres odnowienia dla kont:</translation>
+   <translation id="emailpro_update_billing_periode_success" qtlid="191018">Zmiana okresu automatycznego odnowienia została wykonana.</translation>
+   <translation id="emailpro_update_billing_periode_value_YEARLY" qtlid="79542">rocznie</translation>
+   <translation id="emailpro_update_billing_periode_value_MONTHLY" qtlid="79530">miesięczny</translation>
+   <translation id="emailpro_update_billing_periode_value_DELETE_AT_EXPIRATION" qtlid="201406">Wygasa z końcem</translation>
+   <translation id="lockoutThreshold_unit_value_0" qtlid="176713">Konto nie zostanie nigdy zablokowane</translation>
+   <translation id="lockoutThreshold_unit_value_1" qtlid="178432">1 próba</translation>
+   <translation id="lockoutThreshold_unit_value_many" qtlid="178445">{0} prób(y)</translation>
+   <translation id="lockoutThreshold_min_error" qtlid="178185">Próg blokowania nie może być niższy niż 1 próba</translation>
+   <translation id="lockoutThreshold_max_error" qtlid="176635">Próg blokady nie może być większy niż 14 prób</translation>
+   <translation id="lockoutThreshold_mustBeInteger_error" qtlid="178198">Prób blokowania musi być określony liczbą całkowitą</translation>
+   <translation id="lockoutThreshold_number_error" qtlid="178198">Prób blokowania musi być określony liczbą całkowitą</translation>
+   <translation id="lockoutThreshold_required_error" qtlid="192019">Pole obowiązkowe</translation>
+   <translation id="lockoutThreshold_pattern_error" qtlid="178198">Prób blokowania musi być określony liczbą całkowitą</translation>
+   <translation id="lockoutDuration_min_error" qtlid="178211">Czas blokady nie może być niższy niż czas resetowania licznika blokowania</translation>
+   <translation id="lockoutDuration_max_error" qtlid="178224">Czas blokady nie może być dłuższy niż 90 minut</translation>
+   <translation id="maxPasswordAge_unit_value_0" qtlid="178497">Hasła nigdy nie wygasają.</translation>
+   <translation id="maxPasswordAge_unit_value_1" qtlid="28807">1 dzień</translation>
+   <translation id="maxPasswordAge_unit_value_many" qtlid="178484">{0} dni</translation>
+   <translation id="maxPasswordAge_min_error" qtlid="178107">Maksymalny okres ważności hasła nie może być krótszy niż 0 dni</translation>
+   <translation id="maxPasswordAge_max_error" qtlid="176596">Maksymalna ważność hasła nie może być dłuższa niż 90 dni</translation>
+   <translation id="maxPasswordAge_mustBeInteger_error" qtlid="178120">Maksymalny okres ważności hasła musi być liczbą całkowitą</translation>
+   <translation id="maxPasswordAge_maxToSmallForMin_error" qtlid="176609">Maksymalna ważność hasła musi być dłuższa niż ważność minimalna.</translation>
+   <translation id="maxPasswordAge_pattern_error" qtlid="178120">Maksymalny okres ważności hasła musi być liczbą całkowitą</translation>
+   <translation id="maxPasswordAge_number_error" qtlid="178120">Maksymalny okres ważności hasła musi być liczbą całkowitą</translation>
+   <translation id="maxPasswordAge_required_error" qtlid="178120">Maksymalny okres ważności hasła musi być liczbą całkowitą</translation>
+   <translation id="minPasswordAge_min_error" qtlid="433992">Minimalna ważność hasła nie może być niższa niż 0 dni.</translation>
+   <translation id="minPasswordAge_max_error" qtlid="434005">Minimalna ważność hasła nie może być wyższa niż 90 dni.</translation>
+   <translation id="minPasswordAge_mustBeInteger_error" qtlid="434018">Minimalna ważność hasła musi być liczbą całkowitą.</translation>
+   <translation id="minPasswordAge_minToBigForMax_error" qtlid="178094">Minimalny okres ważności hasła musi być krótszy niż maksymalna ważność</translation>
+   <translation id="minPasswordAge_pattern_error" qtlid="434018">Minimalna ważność hasła musi być liczbą całkowitą.</translation>
+   <translation id="minPasswordAge_number_error" qtlid="434018">Minimalna ważność hasła musi być liczbą całkowitą.</translation>
+   <translation id="minPasswordAge_required_error" qtlid="434018">Minimalna ważność hasła musi być liczbą całkowitą.</translation>
+   <translation id="minPasswordAge_unit_value_0" qtlid="178471">Zmiany są natychmiast autoryzowane.</translation>
+   <translation id="minPasswordAge_unit_value_1" qtlid="28807">1 dzień</translation>
+   <translation id="minPasswordAge_unit_value_many" qtlid="178484">{0} dni</translation>
+   <translation id="lockoutObservationWindow_min_error" qtlid="178133">Minimalna wartość to 1</translation>
+   <translation id="lockoutObservationWindow_max_error" qtlid="178146">Maksymalna wartość to 90</translation>
+   <translation id="lockoutObservationWindow_mustBeInteger_error" qtlid="263871">Czas resetu musi być liczbą całkowitą.</translation>
+   <translation id="lockoutObservationWindow_number_error" qtlid="263871">Czas resetu musi być liczbą całkowitą.</translation>
+   <translation id="lockoutObservationWindow_required_error" qtlid="192019">Pole obowiązkowe</translation>
+   <translation id="lockoutObservationWindow_pattern_error" qtlid="263871">Czas resetu musi być liczbą całkowitą.</translation>
+   <translation id="lockoutObservationWindow_toBigForDuration_error" qtlid="178172">Wartość musi być niższa niż okres blokowania kont</translation>
+   <translation id="lockoutObservationWindow_unit_value_1" qtlid="32326">1 minuta</translation>
+   <translation id="lockoutObservationWindow_unit_value_many" qtlid="146814">{0} minut</translation>
+   <translation id="lockoutDuration_min_error" qtlid="178211">Czas blokady nie może być niższy niż czas resetowania licznika blokowania</translation>
+   <translation id="lockoutDuration_max_error" qtlid="178224">Czas blokady nie może być dłuższy niż 90 minut</translation>
+   <translation id="lockoutDuration_mustBeInteger_error" qtlid="178042">Czas blokady musi być liczbą całkowitą.</translation>
+   <translation id="lockoutDuration_number_error" qtlid="178250">Czas blokady musi być określony liczbą.</translation>
+   <translation id="lockoutDuration_required_error" qtlid="192019">Pole obowiązkowe</translation>
+   <translation id="lockoutDuration_pattern_error" qtlid="178042">Czas blokady musi być liczbą całkowitą.</translation>
+   <translation id="lockoutDuration_unit_value_0" qtlid="178458">Konto zostanie zablokowane aż do odblokowania przez administratora. </translation>
+   <translation id="lockoutDuration_unit_value_1" qtlid="32326">1 minuta</translation>
+   <translation id="lockoutDuration_unit_value_many" qtlid="146814">{0} minut</translation>
+   <translation id="complexityEnabled_value_true" qtlid="178406">Włączone</translation>
+   <translation id="complexityEnabled_value_false" qtlid="178419">Wyłączone</translation>
+   <translation id="minPasswordLength_unit_value_0" qtlid="178510">Hasło nie jest wymagane.</translation>
+   <translation id="minPasswordLength_unit_value_1" qtlid="178523">1 znak</translation>
+   <translation id="minPasswordLength_unit_value_many" qtlid="178536">{0} znaków</translation>
+   <translation id="minPasswordLength_min_error" qtlid="178029">Minimalna długość hasła nie może być mniejsza niż 3</translation>
+   <translation id="minPasswordLength_max_error" qtlid="176531">Minimalna długość hasła nie może być większa niż 14 </translation>
+   <translation id="minPasswordLength_required_error" qtlid="192019">Pole obowiązkowe</translation>
+   <translation id="minPasswordLength_mustBeInteger_error" qtlid="178055">Minimalna długość hasła musi być liczbą całkowitą</translation>
+   <translation id="minPasswordLength_number_error" qtlid="178055">Minimalna długość hasła musi być liczbą całkowitą</translation>
+   <translation id="minPasswordLength_pattern_error" qtlid="178055">Minimalna długość hasła musi być liczbą całkowitą</translation>
+   <translation id="exchange_tab_INFORMATION" qtlid="27115">Informacje ogólne</translation>
+   <translation id="exchange_tab_DOMAIN" qtlid="270306">Przypisane domeny</translation>
+   <translation id="exchange_tab_ACCOUNT" qtlid="74273">Konta e-mail</translation>
+   <translation id="exchange_tab_MAILING_LIST" qtlid="50182">Listy mailingowe</translation>
+   <translation id="exchange_tab_SHARED_ACCOUNT" qtlid="215195">Konta współdzielone</translation>
+   <translation id="exchange_tab_GROUP" qtlid="32962">Grupy</translation>
+   <translation id="exchange_tab_RESOURCES" qtlid="20227">Zasoby</translation>
+   <translation id="exchange_tab_SHARED" qtlid="136269">Podział</translation>
+   <translation id="exchange_tab_DISCLAIMER" qtlid="276324">Stopka strony</translation>
+   <translation id="exchange_tab_TASKS" qtlid="136217">Ostatnie zadania</translation>
+   <translation id="exchange_tab_EXTERNAL_CONTACT" qtlid="82015">Zewnętrzne kontakty</translation>
+   <translation id="exchange_tab_DIAGNOSTIC" qtlid="36351">Diagnostyka</translation>
+   <translation id="exchange_tab_REDIRECTION" qtlid="46204">Przekierowania</translation>
+
+   <translation id="emails_common_from" qtlid="69077">Od</translation>
+   <translation id="emails_common_to" qtlid="175972">Na</translation>
+   <translation id="email_tab_redirections_quota" qtlid="224828">Liczba przekierowań</translation>
+   <translation id="email_tab_button_emails_create_redirection" qtlid="213713">Dodaj przekierowanie</translation>
+   <translation id="email_tab_button_emails_export_CSV" qtlid="231773">Eksportuj w formacie CSV</translation>
+   <translation id="email_tab_popover_redirection_update" qtlid="99224">Zmień przekierowanie</translation>
+   <translation id="email_tab_popover_redirection_delete" qtlid="219108">Usuń przekierowanie</translation>
+   <translation id="email_tab_table_redirections_empty" qtlid="219017">Brak przekierowań</translation>
+   <translation id="email_tab_modal_update_redirection_title" qtlid="269799">Zmodyfikuj przekierowanie</translation>
+   <translation id="email_tab_modal_update_redirection_heading" qtlid="269812">Chcesz zmodyfikować to przekierowanie.</translation>
+   <translation id="email_tab_modal_update_redirection_success" qtlid="269825">Przekierowanie zostało zmodyfikowane. Operacja może zająć kilka minut.</translation>
+   <translation id="email_tab_modal_update_redirection_error" qtlid="269838">Wystąpił błąd podczas modyfikowania przekierowania:</translation>
+   <translation id="email_tab_redirections_management_title" qtlid="98948">Zarządzaj przekierowaniami</translation>
+   <translation id="email_tab_redirections_management_heading" qtlid="219004">Zarządzanie przekierowaniami konta</translation>
+   <translation id="email_tab_button_emails_create_redirection" qtlid="213713">Dodaj przekierowanie</translation>
+   <translation id="email_tab_table_redirections_empty" qtlid="219017">Brak przekierowań</translation>
+   <translation id="email_tab_redirections_management_heading" qtlid="219004">Zarządzanie przekierowaniami konta</translation>
+   <translation id="email_tab_modal_create_redirection_title" qtlid="219030">Utwórz przekierowanie</translation>
+   <translation id="email_tab_modal_create_redirection_heading" qtlid="219043">Chcesz utworzyć przekierowanie dla konta {0}</translation>
+   <translation id="email_tab_modal_create_redirection_type" qtlid="220304">Typ przekierowania:</translation>
+   <translation id="email_tab_modal_create_redirection_type_classic" qtlid="221318">Normalne przekierowanie</translation>
+   <translation id="email_tab_modal_create_redirection_type_sub_domain" qtlid="221331">Przekierowanie na subdomenę</translation>
+   <translation id="email_tab_modal_redirection_create_from" qtlid="219056">Z adresu:</translation>
+   <translation id="email_tab_modal_redirection_create_subdomain_optional" qtlid="272825">subdomena (opcjonalnie)</translation>
+   <translation id="email_tab_modal_redirection_create_to" qtlid="219069">Na adres:</translation>
+   <translation id="email_tab_modal_create_redirection_info" qtlid="219082">Wpisz informacje dotyczące przekierowania</translation>
+   <translation id="email_tab_modal_redirection_create_keep_copy_title" qtlid="302067">Wybierz tryb kopii:</translation>
+   <translation id="email_tab_modal_redirection_create_email_error" qtlid="212036">Adres e-mail nie jest prawidłowy.</translation>
+   <translation id="email_tab_modal_redirection_create_copy_local" qtlid="302080">Zachowaj kopię e-maila w OVH</translation>
+   <translation id="email_tab_modal_redirection_create_copy_none" qtlid="302093">Nie zachowuj kopii e-maila</translation>
+   <translation id="email_tab_modal_redirection_create_copy_select" qtlid="302106">Wybierz opcję</translation>
+   <translation id="email_tab_popover_redirection_delete" qtlid="219108">Usuń przekierowanie</translation>
+   <translation id="email_tab_modal_create_redirection_success" qtlid="262960">Trwa tworzenie przekierowania. Operacja może trwać kilka minut.</translation>
+   <translation id="email_tab_modal_create_redirection_error" qtlid="219134">Wystąpił błąd podczas tworzenia przekierowania.</translation>
+   <translation id="email_tab_modal_delete_redirection_success" qtlid="262973">Trwa usuwanie przekierowania. Operacja może trwać kilka minut.</translation>
+   <translation id="email_tab_modal_delete_redirection_error" qtlid="213466">Wystąpił błąd podczas usuwania przekierowania.</translation>
+   <translation id="email_tab_table_redirections_error" qtlid="219160">Wystąpił błąd podczas pobierania informacji o przekierowaniach:</translation>
+   <translation id="email_tab_modal_delete_redirection_title" qtlid="221344">Usuń przekierowanie</translation>
+   <translation id="email_tab_modal_delete_redirection_heading" qtlid="221357">Chcesz usunąć przekierowanie:</translation>
+   <translation id="email_tab_modal_delete_redirection_accounts" qtlid="221370"><strong>{0}</strong> na <strong>{1}</strong></translation>
+   <translation id="email_tab_popover_redirection_update" qtlid="99224">Zmień przekierowanie</translation>
+   <translation id="emails_common_continue_question" qtlid="351844">Czy chcesz kontynuować?</translation>
+   <translation id="emails_common_account_name_conditions" qtlid="222787">Uwaga, nazwa konta musi spełniać następujące wymagania: <br/>- Minimum {0} znaki<br/>- Maksimum {1} znaki<br/>- Brak spacji<br/>- Brak znaków akcentowanych<br/>- Brak znaków specjalnych za wyjątkiem ., - i _.</translation>
+
+</translations>
