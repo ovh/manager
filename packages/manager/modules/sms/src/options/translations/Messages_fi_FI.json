@@ -1,5 +1,5 @@
 {
-  "sms_options_manage": "Yleiset valinnat",
-  "sms_options_response": "Vastausvalinnat",
-  "sms_options_recredit": "Automaattinen lataus"
+ "sms_options_manage": "General options",
+ "sms_options_response": "Reply options",
+ "sms_options_recredit": "Automatic re-credit"
 }

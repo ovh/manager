@@ -1,5 +1,5 @@
 {
-  "sms_options_manage": "Pagrindiniai nustatymai",
-  "sms_options_response": "Atsakymų parinktys",
-  "sms_options_recredit": "Automatinis perkrovimas"
+ "sms_options_manage": "General options",
+ "sms_options_response": "Reply options",
+ "sms_options_recredit": "Automatic re-credit"
 }
