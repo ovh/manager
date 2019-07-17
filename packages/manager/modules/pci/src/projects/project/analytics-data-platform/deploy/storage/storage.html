@@ -35,23 +35,13 @@
         <div class="col-sm-6">
             <dl class="storage-list">
                 <dt class="storage-list__term"><span data-translate="analytics_data_platform_deploy_storage_worker_nodes_count"></span> : </dt>
-                <dd class="storage-list__definition"><span data-ng-bind="::$ctrl.nodesConfig.worker.count"></span></dd>
+                <dd class="storage-list__definition" data-ng-bind="::$ctrl.nodesConfig.worker.count"></dd>
                 <dt class="storage-list__term"><span data-translate="analytics_data_platform_deploy_storage_per_node"></span> : </dt>
-                <dd class="storage-list__definition">
-                    <span>
-                        {{ ($ctrl.data.hdfsEffectiveStorage * $ctrl.selectedCapability.hdfsReplicationFactor) / $ctrl.nodesConfig.worker.count }}
-                    </span>
-                    <span data-translate="analytics_data_platform_common_unit_gb"></span>
-                </dd>
+                <dd class="storage-list__definition" data-ng-bind="$ctrl.getStoragePerNode()"></dd>
                 <hr class="storage-list__separator"/>
                 <dt class="storage-list__term"><strong><span data-translate="analytics_data_platform_deploy_storage_total_storage"></span> :</strong></dt>
                 <dd class="storage-list__definition pb-1">
-                    <strong>
-                        <span>
-                            {{ $ctrl.data.hdfsEffectiveStorage * $ctrl.selectedCapability.hdfsReplicationFactor }}
-                        </span>
-                        <span data-translate="analytics_data_platform_common_unit_gb"></span>
-                    </strong>
+                    <strong data-ng-bind="$ctrl.getTotalStorage()"></strong>
                     <button type="button"
                             class="oui-popover-button"
                             data-oui-popover="{{ ::'analytics_data_platform_deploy_storage_replication_factor_popover' | translate: {hdfc_replication_factor: $ctrl.selectedCapability.hdfsReplicationFactor} }}">
@@ -103,15 +93,10 @@
         <div class="col-sm-6">
             <dl class="storage-list">
                 <dt class="storage-list__term"><span data-translate="analytics_data_platform_deploy_storage_edge_nodes_count"></span> : </dt>
-                <dd class="storage-list__definition"><span data-ng-bind="::$ctrl.nodesConfig.edge.count"></span></dd>
+                <dd class="storage-list__definition" data-ng-bind="::$ctrl.nodesConfig.edge.count"></dd>
                 <dt class="storage-list__term"><strong><span data-translate="analytics_data_platform_deploy_storage_total_effective_storage"></span> :</strong></dt>
                 <dd class="storage-list__definition">
-                    <strong>
-                        <span>
-                            {{ $ctrl.data.edgeNodeStorage * $ctrl.nodesConfig.edge.count }}
-                        </span>
-                        <span data-translate="analytics_data_platform_common_unit_gb"></span>
-                    </strong>
+                    <strong data-ng-bind="$ctrl.getTotalEffectiveStorage()"></strong>
                 </dd>
             </dl>
         </div>
