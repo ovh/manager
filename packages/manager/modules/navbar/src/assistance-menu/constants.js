@@ -115,6 +115,7 @@ export const HELP_CENTER_SUBSIDIARIES = [
 
 export const CHATBOT_SUBSIDIARIES = [
   'FR',
+  'PL',
 ];
 
 export default {

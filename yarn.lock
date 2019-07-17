@@ -1748,13 +1748,6 @@
   dependencies:
     lodash "^4.17.11"
 
-"@ovh-ux/ng-ovh-chatbot@^2.0.1":
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-chatbot/-/ng-ovh-chatbot-2.0.1.tgz#94e91326c1e17bcab164e04a1b08ab02f36f9ab8"
-  integrity sha512-JBrXtM/qZzMXEiPB72TpVaG7yAOJx+9oaf73eOwav1X7VfEZrGxwWMXyW+yLnChkvjfoW0ZAejudBL0Z9FoP5g==
-  dependencies:
-    lodash "^4.17.11"
-
 "@ovh-ux/ng-ovh-checkbox-table@^1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-checkbox-table/-/ng-ovh-checkbox-table-1.0.0.tgz#0a431f47fbde05dd48ed8fe38693a4a76079af5d"
@@ -7914,11 +7907,6 @@ lodash@^3.10.1:
   version "3.10.1"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-3.10.1.tgz#5bf45e8e49ba4189e17d482789dfd15bd140b7b6"
   integrity sha1-W/Rejkm6QYnhfUgnid/RW9FAt7Y=
-
-lodash@^4.17.14:
-  version "4.17.14"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.14.tgz#9ce487ae66c96254fe20b599f21b6816028078ba"
-  integrity sha512-mmKYbW3GLuJeX+iGP+Y7Gp1AiGHGbXHCOh/jZmrawMmsE7MS4znI3RL2FsjbqOyMayHInjOeykW7PEajUk1/xw==
 
 log-symbols@2.2.0, log-symbols@^2.0.0, log-symbols@^2.2.0:
   version "2.2.0"

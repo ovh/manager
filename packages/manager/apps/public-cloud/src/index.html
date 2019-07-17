@@ -38,7 +38,14 @@
                 </div>
             </div>
             <div data-otrs-popup></div>
-            <ovh-chatbot></ovh-chatbot>
+            <ovh-chatbot
+                data-can-switch-to-livechat="true"
+                data-config="{
+                    universe: 'CLOUD',
+                    language: $ctrl.currentLanguage,
+                    country: $ctrl.user.ovhSubsidiary,
+                }">
+            </ovh-chatbot>
         </div>
     </body>
 </html>
