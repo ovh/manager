@@ -7,12 +7,7 @@ import startsWith from 'lodash/startsWith';
 const ALL_LANGUAGES = [
   'cs_CZ',
   'de_DE',
-  'en_ASIA',
-  'en_AU',
-  'en_CA',
   'en_GB',
-  'en_SG',
-  'en_US',
   'es_ES',
   'es_US',
   'fi_FI',
