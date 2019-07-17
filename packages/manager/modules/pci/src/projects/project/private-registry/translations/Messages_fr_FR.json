@@ -60,5 +60,6 @@
   "private_registry_onboarding_generate": "Générer des informations d'identification",
   "private_registry_beta_warning": "Ce produit est actuellement en version bêta, vous devez accepter les termes de la version bêta pour continuer.",
   "private_registry_accept": "J'accepte",
-  "private_registry_accept_beta_terms": "les termes de la bêta"
+  "private_registry_accept_beta_terms": "les termes de la bêta",
+  "private_registry_new_project_contracts": "J’ai lu et j’accepte les contrats : {{ contractsLinks }}."
 }
