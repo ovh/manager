@@ -72,10 +72,6 @@ export default class {
     });
   }
 
-  openHarborInterface(url) {
-    this.$window.open(url, '_blank');
-  }
-
   refreshRegistryList() {
     this.$state.reload();
   }

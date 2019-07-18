@@ -1,0 +1,40 @@
+<div data-ng-controller="EmailProMXPlanMailingListsCreateModeratorCtrl as ctrl">
+    <div data-wizard
+         data-wizard-cancel-valid-return-key="true"
+         data-wizard-on-cancel="resetAction"
+         data-wizard-on-finish="createModerator"
+         data-wizard-title="'mailing_list_tab_create_moderators' | translate">
+
+        <div data-wizard-step
+             data-wizard-step-valid="!ctrl.loading && ctrl.selection.length > 0 && ctrl.errors.length === 0">
+
+            <div class="text-center" data-ng-if="ctrl.loading">
+                <oui-spinner></oui-spinner>
+            </div>
+
+            <div data-ng-if="!ctrl.loading">
+                <p data-ng-bind-html="'mailing_list_tab_create_moderators_title' | translate: { t0: ctrl.mailingList.name }"></p>
+
+                <div class="form" name="ctrl.createModeratorForm" role="form">
+                    <div class="form-group" data-ng-class="{ 'has-error': ctrl.errors.length > 0 }">
+                        <label class="control-label required"
+                               data-translate="mailing_list_tab_create_moderators_list"></label>
+                        <div data-wuc-file-editor
+                             data-wuc-file-editor-errors="ctrl.errors"
+                             data-wuc-file-editor-existing-items="ctrl.moderators"
+                             data-wuc-file-editor-item-validator="ctrl.constructor.addressValidator"
+                             data-wuc-file-editor-new-item="'mailing_list_common_add_email_addr' | translate"
+                             data-tr="tr"
+                             data-trpl="trpl"
+                             data-ng-model="ctrl.selection">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="alert alert-info" role="alert"
+                     data-translate="mailing_list_tab_create_moderators_file">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
