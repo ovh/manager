@@ -25,9 +25,10 @@ angular.module('App').controller(
       if (this.$stateParams.tab
         && this.tabs.indexOf(
           _.isString(this.$stateParams.tab)
-          && this.$stateParams.tab.toUppcase(),
+          && this.$stateParams.tab.toUpperCase(),
         ) !== -1) {
-        this.setSelectedTab(_.isString(this.$stateParams.tab) && this.$stateParams.tab.toUppcase());
+        this.setSelectedTab(_.isString(this.$stateParams.tab)
+          && this.$stateParams.tab.toUpperCase());
       } else {
         this.setSelectedTab(this.defaultTab);
       }
