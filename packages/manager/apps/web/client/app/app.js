@@ -16,6 +16,8 @@ import ovhManagerNavbar from '@ovh-ux/manager-navbar';
 import uiRouter from '@uirouter/angularjs';
 import ngOvhOtrs from '@ovh-ux/ng-ovh-otrs';
 import ovhManagerServerSidebar from '@ovh-ux/manager-server-sidebar';
+import emailpro from '@ovh-ux/manager-emailpro';
+import exchange from '@ovh-ux/manager-exchange';
 import office from '@ovh-ux/manager-office';
 import sharepoint from '@ovh-ux/manager-sharepoint';
 
@@ -72,6 +74,8 @@ angular
     'moment-picker',
     'oui',
     'Module.exchange',
+    emailpro,
+    exchange,
     office,
     sharepoint,
     'Module.emailpro',

@@ -2528,11 +2528,6 @@ angular-xeditable@^0.1.10:
   resolved "https://registry.yarnpkg.com/angular/-/angular-1.7.8.tgz#b77ede272ce1b261e3be30c1451a0b346905a3c9"
   integrity sha512-wtef/y4COxM7ZVhddd7JtAAhyYObq9YXKar9tsW7558BImeVYteJiTxCKeJOL45lJ/+7B4wrAC49j8gTFYEthg==
 
-angular@~1.6.10:
-  version "1.6.10"
-  resolved "https://registry.yarnpkg.com/angular/-/angular-1.6.10.tgz#eed3080a34d29d0f681ff119b18ce294e3f74826"
-  integrity sha512-PCZ5/hVdvPQiYyH0VwsPjrErPHRcITnaXxhksceOXgtJeesKHLA7KDu4X/yvcAi+1zdGgGF+9pDxkJvghXI9Wg==
-
 angularjs-scroll-glue@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/angularjs-scroll-glue/-/angularjs-scroll-glue-2.2.0.tgz#07d3399ac16ca874c63b6b5ee2ee30558b37e5d1"
@@ -8322,11 +8317,6 @@ lodash@~2.4.1:
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-2.4.2.tgz#fadd834b9683073da179b3eae6d9c0d15053f73e"
   integrity sha1-+t2DS5aDBz2hebPq5tnA0VBT9z4=
 
-lodash@~3.9.3:
-  version "3.9.3"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-3.9.3.tgz#0159e86832feffc6d61d852b12a953b99496bd32"
-  integrity sha1-AVnoaDL+/8bWHYUrEqlTuZSWvTI=
-
 log-symbols@2.2.0, log-symbols@^2.0.0, log-symbols@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/log-symbols/-/log-symbols-2.2.0.tgz#5740e1c5d6f0dfda4ad9323b5332107ef6b4c40a"
@@ -9766,25 +9756,6 @@ ovh-manager-webfont@^1.2.0:
 ovh-manager-webfont@ovh-ux/ovh-manager-webfont#^1.0.1:
   version "1.2.0"
   resolved "https://codeload.github.com/ovh-ux/ovh-manager-webfont/tar.gz/8aed9c71517188263faf5cf9c90e191aae98e302"
-
-ovh-module-emailpro@^7.2.8:
-  version "7.2.8"
-  resolved "https://registry.yarnpkg.com/ovh-module-emailpro/-/ovh-module-emailpro-7.2.8.tgz#698374c1d5538e2cdce274762d4365bb83531d05"
-  integrity sha512-EF/Wl79mcuvwRnCNMvF4uY7foK3vxbn6PWG59uHx7VFrfp6pf0giNk4K6drdxUuLMDjG/1HujYHKFJDNacFkjw==
-  dependencies:
-    angular "~1.6.10"
-    lodash "~3.9.3"
-    moment "^2.16.0"
-    punycode "^1.2.4"
-    validator "^4.0.0"
-
-ovh-module-exchange@^9.4.5:
-  version "9.4.5"
-  resolved "https://registry.yarnpkg.com/ovh-module-exchange/-/ovh-module-exchange-9.4.5.tgz#c85481316e138a0e58245e9de40b41a262a4072a"
-  integrity sha512-dJOKEc1KbwRgMwfX/72JZe/SpcQGM8h6yVHvb3N8BWXqQMK+2r3ikJK32vouM0oqRuaK1XIwWCoW80EHvGorWg==
-  dependencies:
-    filesize "^3.6.1"
-    lodash "~3.9.3"
 
 ovh-ngstrap@^4.0.2:
   version "4.0.2"

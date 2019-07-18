@@ -34,7 +34,7 @@ fs.readdirSync(folder).forEach((file) => {
 });
 
 const depPaths = {};
-const a = ['@ovh-ux/ovh-utils-angular', 'ovh-module-exchange', 'ovh-module-emailpro'];
+const a = ['@ovh-ux/ovh-utils-angular'];
 a.forEach((dep) => {
   depPaths[dep] = foundNodeModulesFolder(dep);
 });
@@ -54,25 +54,9 @@ module.exports = (env = {}) => {
         { from: foundNodeModulesFolder('angular-i18n'), to: 'resources/angular/i18n' },
         { from: foundNodeModulesFolder('ckeditor'), to: 'ckeditor' },
         { from: path.resolve(depPaths['@ovh-ux/ovh-utils-angular'], './src/**/*.html'), context: `${depPaths['@ovh-ux/ovh-utils-angular']}/src`, to: 'components/ovh-utils-angular' },
-        { from: path.resolve(depPaths['ovh-module-exchange'], './src/exchange/**/*.html'), context: `${depPaths['ovh-module-exchange']}/src` },
-        { from: path.resolve(depPaths['ovh-module-emailpro'], './src/emailpro/**/*.html'), context: `${depPaths['ovh-module-emailpro']}/src` },
       ],
     },
   }, env);
-
-  // Module exchange
-  bundles.exchange = [].concat(
-    glob.sync(
-      `${depPaths['ovh-module-exchange']}/src/exchange/**/*.module.js`,
-    ),
-    glob.sync(`${depPaths['ovh-module-exchange']}/src/exchange/**/!(*.module).js`),
-  );
-
-  // Module emailpro
-  bundles.emailpro = [].concat(
-    glob.sync(`${depPaths['ovh-module-emailpro']}/src/emailpro/**/*.module.js`),
-    glob.sync(`${depPaths['ovh-module-emailpro']}/src/emailpro/**/!(*.module).js`),
-  );
 
   config.plugins.push(new webpack.DefinePlugin({
     WEBPACK_ENV: {
