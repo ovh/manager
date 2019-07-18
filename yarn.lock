@@ -1932,10 +1932,10 @@
   dependencies:
     lodash "^4.17.11"
 
-"@ovh-ux/ng-ovh-web-universe-components@^4.0.1":
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-web-universe-components/-/ng-ovh-web-universe-components-4.0.1.tgz#834b417328d19ac89a99b3ecbc9f50ebceabdbec"
-  integrity sha512-VWggPQTP0pkyUV/8bW1gfMFOPbjjn2jhfJygRffarjnyQuw20cMhWPw0Ip10pb6Yflo4w9cK20gsM8UiS8sGwQ==
+"@ovh-ux/ng-ovh-web-universe-components@^4.0.2":
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-web-universe-components/-/ng-ovh-web-universe-components-4.0.2.tgz#3fabe8cc5b91bcb9f67472867b63f45c149c0d1c"
+  integrity sha512-bQKa5dwTQ3qLq2pZCJ+FrJ51o8DnyTWMQ84ohnbWIEFqTBhmxoQGJrBMFw9WndC9oLo5nZnc1qi9BGHVzgZViw==
 
 "@ovh-ux/ng-pagination-front@^8.0.0-alpha.0":
   version "8.0.0-alpha.0"
