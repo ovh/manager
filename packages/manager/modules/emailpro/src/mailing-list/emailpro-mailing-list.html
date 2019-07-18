@@ -1,0 +1,16 @@
+<div data-ng-controller="EmailProMXPlanMailingListsTabViewController as ctrlTabView">
+    <div data-ng-switch="ctrlTabView.currentView">
+        <div data-ng-switch-when="EmailProMXPlanMailingListsView">
+            <div data-ng-include="'emailpro/mailing-list/emailpro-mailing-list-view.html'"></div>
+        </div>
+        <div data-ng-switch-when="subscribersView">
+            <div data-ng-include="'emailpro/mailing-list/subscribers/emailpro-mailing-list-subscribers-view.html'"></div>
+        </div>
+        <div data-ng-switch-when="moderatorsView">
+            <div data-ng-include="'emailpro/mailing-list/moderators/emailpro-mailing-list-moderators-view.html'"></div>
+        </div>
+        <div ng-switch-default>
+            <div data-ng-include="'emailpro/mailing-list/emailpro-mailing-list-view.html'"></div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+{
+  "name": "@ovh-ux/manager-emailpro",
+  "version": "7.2.8",
+  "description": "OVH E-mail Pro module",
+  "keywords": [
+    "angular",
+    "e-mail pro"
+  ],
+  "license": "BSD-3-Clause",
+  "author": "OVH SAS",
+  "main": "src/index.js",
+  "dependencies": {
+    "lodash": "^4.17.14",
+    "moment": "^2.16.0",
+    "punycode.js": "npm:punycode@^1.2.4",
+    "validator": "^11.1.0"
+  },
+  "peerDependencies": {
+    "angular": "^1.7.5",
+    "ovh-api-services": "^3.22.0"
+  }
+}
