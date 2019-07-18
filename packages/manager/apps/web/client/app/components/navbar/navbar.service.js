@@ -105,7 +105,7 @@ export default class Navbar {
     // Exchange products
     const exchangeProducts = _.sortBy(
       products.exchanges,
-      elt => angular.lowercase(elt.displayName || elt.name),
+      elt => (elt.displayName || elt.name || '').toLowerCase(),
     );
     const exchangeLinks = _.map(exchangeProducts, elt => ({
       name: elt.name,
@@ -120,7 +120,7 @@ export default class Navbar {
     // Office products
     const officeProducts = _.sortBy(
       products.licenseOffice,
-      elt => angular.lowercase(elt.displayName || elt.name),
+      elt => (elt.displayName || elt.name || '').toLowerCase(),
     );
     const officeLinks = _.map(officeProducts, elt => ({
       name: elt.name,
@@ -134,7 +134,7 @@ export default class Navbar {
     // SharePoint products
     const sharepointProducts = _.sortBy(
       products.sharepoints,
-      elt => angular.lowercase(elt.displayName || elt.name),
+      elt => (elt.displayName || elt.name || '').toLowerCase(),
     );
     const sharepointLinks = _.map(sharepointProducts, elt => ({
       name: elt.name,
