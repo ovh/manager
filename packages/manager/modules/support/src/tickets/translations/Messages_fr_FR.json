@@ -1,17 +1,11 @@
 {
   "support_grid_column_creationDate_header": "Date de création",
-
   "support_grid_column_lastMessageFrom_header": "Dernier intervenant",
-
   "support_grid_column_ticketNumber_header": "Numéro de ticket",
-
   "support_grid_column_serviceName_header": "Service",
-
   "support_grid_column_subject_header": "Sujet",
-
   "support_grid_column_state_header": "État",
-
   "support_grid_column_updateDate_header": "Date de mise à jour",
-
+  "support_grid_action_go_to_ticket": "Voir le détail",
   "support_header": "Mes demandes d'assistance"
 }
