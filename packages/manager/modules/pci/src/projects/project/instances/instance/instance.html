@@ -31,8 +31,8 @@
                     <span data-translate="pci_projects_project_instances_instance_action_createBackup_label"></span>
                 </oui-tile-button>
                 <oui-tile-button data-on-click="$ctrl.scheduleAutoBackup($ctrl.instance)"
-                    data-ng-if="$ctrl.instance.statusGroup === 'ACTIVE'">
-                    <span data-translate="pci_projects_project_instances_createWorkflow_label"></span>
+                    data-ng-if="$ctrl.instance.statusGroup === 'ACTIVE' && $ctrl.user.ovhSubsidiary !== 'US'">
+                    <span data-translate="pci_projects_project_instances_autobackup_label"></span>
                 </oui-tile-button>
                 <oui-tile-button data-on-click="$ctrl.startRescueInstance()"
                     data-ng-if="$ctrl.instance.canBeHardRebooted()">
