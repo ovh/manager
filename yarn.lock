@@ -724,10 +724,6 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
-"@bower_components/angular-route@angular/bower-angular-route#^1.6.0":
-  version "1.7.8"
-  resolved "https://codeload.github.com/angular/bower-angular-route/tar.gz/3d3b033f45993827dc587474a18649092391d251"
-
 "@bower_components/ckeditor@ckeditor/ckeditor-releases#^4.7.2":
   version "4.12.1"
   resolved "https://codeload.github.com/ckeditor/ckeditor-releases/tar.gz/b1a25e93ae0b038f45dcba458f4c2c18bd7318e5"
@@ -2427,6 +2423,11 @@ angular-resource@^1.6.6, angular-resource@^1.7.5:
   version "1.7.8"
   resolved "https://registry.yarnpkg.com/angular-resource/-/angular-resource-1.7.8.tgz#9577dbcc02cdbb76398febc5fc7ee103c86c5c50"
   integrity sha512-zuPQ0ZX9Q8WnZ0KMtJlKYUSIXWRQSbFzMkRV9zG8cYYSsMAZlXar5Hqmd5gzxC3O28AGM7BCEJ+iYs3UNL4qdA==
+
+angular-route@^1.6.0:
+  version "1.7.8"
+  resolved "https://registry.yarnpkg.com/angular-route/-/angular-route-1.7.8.tgz#d502aa605dcbb253a93e844c0adf51c9bc36b9fa"
+  integrity sha512-VVk89PH0fsY5kfbx+N7IVX1IwnaPWYhMGY0uA+rjej2v1sjvrTx1SLkxUK4E0UpW1hXeLJhN7ncBcwoBiPtAtA==
 
 angular-sanitize@^1.6.9, angular-sanitize@^1.7.5:
   version "1.7.8"

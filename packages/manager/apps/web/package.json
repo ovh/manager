@@ -27,7 +27,6 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-web' --include-filtered-dependencies -- npm run dev --if-present"
   },
   "dependencies": {
-    "@bower_components/angular-route": "angular/bower-angular-route#^1.6.0",
     "@bower_components/ckeditor": "ckeditor/ckeditor-releases#^4.7.2",
     "@bower_components/messenger": "HubSpot/messenger#^1.4.1",
     "@bower_components/ng-ckeditor": "esvit/ng-ckeditor#^0.2.1",
@@ -69,6 +68,7 @@
     "angular-messages": "^1.6.0",
     "angular-moment-picker": "^0.10.1",
     "angular-resource": "^1.6.6",
+    "angular-route": "^1.6.0",
     "angular-sanitize": "^1.6.9",
     "angular-translate": "^2.18.1",
     "angular-translate-loader-partial": "^2.18.1",

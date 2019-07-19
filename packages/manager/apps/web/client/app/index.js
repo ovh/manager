@@ -12,7 +12,7 @@ import 'jquery-ui/ui/resizable.js';
 import 'lodash';
 import 'angular';
 import 'angular-aria';
-import 'script-loader!@bower_components/angular-route/angular-route.min.js';
+import 'angular-route';
 import 'angular-sanitize';
 import 'angular-cookies';
 import 'angular-messages';
