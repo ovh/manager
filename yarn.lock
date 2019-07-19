@@ -758,13 +758,6 @@
   version "1.5.0"
   resolved "https://codeload.github.com/HubSpot/messenger/tar.gz/8fbf20e5e01070e65d6ca4f2314ab0928e8682fe"
 
-"@bower_components/moment-picker@indrimuska/angular-moment-picker#^0.10.1":
-  version "0.10.2"
-  resolved "https://codeload.github.com/indrimuska/angular-moment-picker/tar.gz/eb4e0f3adb856b916531119151c26950e665c7c8"
-  dependencies:
-    angular "^1.3"
-    moment "^2.16.0"
-
 "@bower_components/ng-ckeditor@esvit/ng-ckeditor#^0.2.1":
   version "0.2.0"
   resolved "https://codeload.github.com/esvit/ng-ckeditor/tar.gz/8b9ece340f7d90bb3167604cc9d317c8041058c3"
@@ -2443,6 +2436,14 @@ angular-messages@^1.6.0, angular-messages@^1.7.6:
   version "1.7.8"
   resolved "https://registry.yarnpkg.com/angular-messages/-/angular-messages-1.7.8.tgz#746da9c955f855ef6ceac34b2a5eb8b1b12e6a78"
   integrity sha512-e7Oq4ugdTcAp4kLP9TNOh6mfSsYO2Uwf7NavLuNWqahDGRHYXilo2gcI/vxmFjPBOwAmreXrhYlpGLlJdzxfQg==
+
+angular-moment-picker@^0.10.1:
+  version "0.10.2"
+  resolved "https://registry.yarnpkg.com/angular-moment-picker/-/angular-moment-picker-0.10.2.tgz#54c8b3c228b33dffa3b7b3d0773a585323815c33"
+  integrity sha512-WvmrQM0zEcFqi50yDELaF34Ilrx4PtL7mWLcpTZCJGQDvMlIsxJrB30LxOkoJv8yrrLxD2s6nnR3t1/SqioWWw==
+  dependencies:
+    angular "^1.3"
+    moment "^2.16.0"
 
 angular-resource@^1.6.6, angular-resource@^1.7.5:
   version "1.7.8"
