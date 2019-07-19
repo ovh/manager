@@ -744,10 +744,6 @@
   version "4.12.1"
   resolved "https://codeload.github.com/ckeditor/ckeditor-releases/tar.gz/b1a25e93ae0b038f45dcba458f4c2c18bd7318e5"
 
-"@bower_components/jquery.ui@jquery/jquery-ui#~1.11.2":
-  version "1.11.4"
-  resolved "https://codeload.github.com/jquery/jquery-ui/tar.gz/d6713024e16de90ea71dc0544ba34e1df01b4d8a"
-
 "@bower_components/messenger@HubSpot/messenger#^1.4.1":
   version "1.5.0"
   resolved "https://codeload.github.com/HubSpot/messenger/tar.gz/8fbf20e5e01070e65d6ca4f2314ab0928e8682fe"
@@ -7631,6 +7627,11 @@ jest-validate@^23.5.0:
     jest-get-type "^22.1.0"
     leven "^2.1.0"
     pretty-format "^23.6.0"
+
+jquery-ui@^1.12.1:
+  version "1.12.1"
+  resolved "https://registry.yarnpkg.com/jquery-ui/-/jquery-ui-1.12.1.tgz#bcb4045c8dd0539c134bc1488cdd3e768a7a9e51"
+  integrity sha1-vLQEXI3QU5wTS8FIjN0+dop6nlE=
 
 jquery-ui@components/jqueryui#~1.11.2:
   version "1.11.4"
