@@ -769,10 +769,6 @@
   version "0.2.0"
   resolved "https://codeload.github.com/esvit/ng-ckeditor/tar.gz/8b9ece340f7d90bb3167604cc9d317c8041058c3"
 
-"@bower_components/ng-file-upload-shim@danialfarid/angular-file-upload-shim-bower#^12.0.4":
-  version "0.0.0"
-  resolved "https://codeload.github.com/danialfarid/angular-file-upload-shim-bower/tar.gz/a19bd0ce6be0f120fa7e3a6595319ea59d46bc16"
-
 "@commitlint/cli@^7.1.2", "@commitlint/cli@^7.5.2", "@commitlint/cli@^7.6.0":
   version "7.6.1"
   resolved "https://registry.yarnpkg.com/@commitlint/cli/-/cli-7.6.1.tgz#a93cf995082831999937f6d5ec1a582c8fc0393a"
@@ -9053,11 +9049,6 @@ ng-csv@^0.3.6:
   version "0.3.6"
   resolved "https://registry.yarnpkg.com/ng-csv/-/ng-csv-0.3.6.tgz#a89cf02e4c3fa2a5b24d5c19984443dda7f275d8"
   integrity sha1-qJzwLkw/oqWyTVwZmERD3afyddg=
-
-ng-file-upload@^12.0.4:
-  version "12.2.13"
-  resolved "https://registry.yarnpkg.com/ng-file-upload/-/ng-file-upload-12.2.13.tgz#01800f3872e526f95310f8477e99e4f12d0d8d14"
-  integrity sha1-AYAPOHLlJvlTEPhHfpnk8S0NjRQ=
 
 ng-slide-down@TheRusskiy/ng-slide-down#^1.0.0:
   version "1.2.0"

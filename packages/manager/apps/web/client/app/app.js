@@ -47,7 +47,6 @@ angular
     'ngFlash',
     'vs-repeat',
     'ovh-angular-export-csv',
-    'ngFileUpload',
     'xeditable',
     ngAtInternet,
     ngAtInternetUiRouterPlugin,

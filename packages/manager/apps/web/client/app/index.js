@@ -40,7 +40,6 @@ import 'ovh-angular-q-allsettled';
 import 'script-loader!validator/validator.min.js';
 import 'ovh-angular-export-csv';
 import 'script-loader!@bower_components/angular-vs-repeat/src/angular-vs-repeat.min.js';
-import 'script-loader!ng-file-upload/dist/ng-file-upload.min.js';
 import 'angular-xeditable';
 import 'script-loader!jsurl/lib/jsurl.js';
 import 'angular-translate';
