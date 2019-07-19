@@ -728,10 +728,6 @@
   version "1.7.8"
   resolved "https://codeload.github.com/angular/bower-angular-route/tar.gz/3d3b033f45993827dc587474a18649092391d251"
 
-"@bower_components/angular-scroll-glue@Luegg/angularjs-scroll-glue#^2.2.0":
-  version "2.2.0"
-  resolved "https://codeload.github.com/Luegg/angularjs-scroll-glue/tar.gz/5990d90cbf84efdf837edcbf26cefe9adb676f5b"
-
 "@bower_components/ckeditor@ckeditor/ckeditor-releases#^4.7.2":
   version "4.12.1"
   resolved "https://codeload.github.com/ckeditor/ckeditor-releases/tar.gz/b1a25e93ae0b038f45dcba458f4c2c18bd7318e5"

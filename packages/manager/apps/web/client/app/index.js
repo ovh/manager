@@ -34,7 +34,7 @@ import 'script-loader!uri.js/src/uri.js';
 import 'script-loader!URIjs/src/URI.min.js';
 import 'script-loader!filesize/lib/filesize.js';
 import 'ovh-angular-pagination-front';
-import 'script-loader!@bower_components/angular-scroll-glue/src/scrollglue.js';
+import 'angularjs-scroll-glue';
 import 'ovh-angular-tail-logs';
 import 'ovh-angular-q-allsettled';
 import 'script-loader!validator/validator.min.js';
