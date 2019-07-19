@@ -4,7 +4,7 @@ import uniq from 'lodash/uniq';
 import validator from 'validator';
 
 export default class EmailProMXPlanMailingListsCreateModeratorsCtrl {
-  /* @nInject */
+  /* @ngInject */
   constructor($scope, $translate, Alerter, EmailProMXPlanMailingLists) {
     this.$scope = $scope;
     this.$translate = $translate;

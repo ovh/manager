@@ -1,4 +1,4 @@
-export default /* @nInject */ (
+export default /* @ngInject */ (
   $scope,
   $stateParams,
   $translate,
