@@ -39,7 +39,7 @@ import 'ovh-angular-tail-logs';
 import 'ovh-angular-q-allsettled';
 import 'script-loader!validator/validator.min.js';
 import 'ovh-angular-export-csv';
-import 'script-loader!@bower_components/angular-vs-repeat/src/angular-vs-repeat.min.js';
+import 'angular-vs-repeat';
 import 'angular-xeditable';
 import 'script-loader!jsurl/lib/jsurl.js';
 import 'angular-translate';
