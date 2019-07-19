@@ -11,6 +11,8 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-support-app' --include-filtered-dependencies -- yarn run dev:watch"
   },
   "dependencies": {
+    "@ovh-ux/manager-config": "^0.3.0",
+    "@ovh-ux/manager-core": "^6.1.1",
     "@ovh-ux/manager-support": "^0.0.0",
     "@ovh-ux/ng-ovh-otrs": "^7.1.6",
     "@uirouter/angularjs": "^1.0.22",
