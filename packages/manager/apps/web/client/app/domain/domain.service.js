@@ -148,7 +148,7 @@ angular.module('services').service(
         rootPath: 'apiv6',
       }).then((originalTasksDetails) => {
         const tasksDetails = _(originalTasksDetails).clone();
-        tasksDetails.status = _.isString(tasksDetails.status) && tasksDetails.status.toUppercase();
+        tasksDetails.status = _.isString(tasksDetails.status) && tasksDetails.status.toUpperCase();
         return tasksDetails;
       });
     }

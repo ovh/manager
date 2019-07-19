@@ -64,7 +64,7 @@ angular.module('App').controller(
         }
       });
 
-      this.setSelectedTab(_.isString(this.$stateParams.tab) && this.$stateParams.tab.toUppercase());
+      this.setSelectedTab(_.isString(this.$stateParams.tab) && this.$stateParams.tab.toUpperCase());
     }
 
     /**
