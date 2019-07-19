@@ -51,7 +51,7 @@ import 'ovh-angular-responsive-popover';
 import 'script-loader!matchmedia-ng/matchmedia-ng.js';
 import 'ovh-angular-responsive-tabs';
 import 'script-loader!@bower_components/ckeditor/ckeditor.js';
-import 'script-loader!@bower_components/ng-ckeditor/ng-ckeditor.js';
+import 'esvit-ng-ckeditor/ng-ckeditor.js';
 import 'ovh-api-services';
 import 'ovh-angular-toaster';
 import 'script-loader!@bower_components/messenger/build/js/messenger.min.js';

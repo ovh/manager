@@ -29,7 +29,6 @@
   "dependencies": {
     "@bower_components/ckeditor": "ckeditor/ckeditor-releases#^4.7.2",
     "@bower_components/messenger": "HubSpot/messenger#^1.4.1",
-    "@bower_components/ng-ckeditor": "esvit/ng-ckeditor#^0.2.1",
     "@ovh-ux/manager-config": "^0.3.0",
     "@ovh-ux/manager-core": "^6.1.0",
     "@ovh-ux/manager-emailpro":  "^1.0.0",
@@ -96,6 +95,7 @@
     "df-tab-menu": "^0.3.0",
     "ejs": "^2.5.5",
     "es5-shim": "^2.1.0",
+    "esvit-ng-ckeditor": "esvit/ng-ckeditor#^0.2.1",
     "express": "^4.16.2",
     "filesize": "^3.5.10",
     "flatpickr": "^4.5.7",

@@ -732,10 +732,6 @@
   version "1.5.0"
   resolved "https://codeload.github.com/HubSpot/messenger/tar.gz/8fbf20e5e01070e65d6ca4f2314ab0928e8682fe"
 
-"@bower_components/ng-ckeditor@esvit/ng-ckeditor#^0.2.1":
-  version "0.2.0"
-  resolved "https://codeload.github.com/esvit/ng-ckeditor/tar.gz/8b9ece340f7d90bb3167604cc9d317c8041058c3"
-
 "@commitlint/cli@^7.1.2", "@commitlint/cli@^7.5.2", "@commitlint/cli@^7.6.0":
   version "7.6.1"
   resolved "https://registry.yarnpkg.com/@commitlint/cli/-/cli-7.6.1.tgz#a93cf995082831999937f6d5ec1a582c8fc0393a"
@@ -5382,6 +5378,10 @@ esutils@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/esutils/-/esutils-2.0.2.tgz#0abf4f1caa5bcb1f7a9d8acc6dea4faaa04bac9b"
   integrity sha1-Cr9PHKpbyx96nYrMbepPqqBLrJs=
+
+esvit-ng-ckeditor@esvit/ng-ckeditor#^0.2.1:
+  version "0.2.0"
+  resolved "https://codeload.github.com/esvit/ng-ckeditor/tar.gz/8b9ece340f7d90bb3167604cc9d317c8041058c3"
 
 etag@~1.8.1:
   version "1.8.1"
