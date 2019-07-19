@@ -1,9 +1,9 @@
 {
-    "pci_workflow_delete_confirmation": "Are you sure you want to delete Workflow schedule '{{ workflowName }}'?",
-    "pci_workflow_delete_warning": "This action cannot be reversed.",
-    "pci_workflow_delete_enter": "Type DELETE in the following field to confirm your action.",
-    "pci_workflow_delete_success": "Workflow schedule '{{ workflowName }}' deleted successfully",
-    "pci_workflow_delete_error": "An error has occurred while deleting: {{ message }}",
-    "pci_workflow_common_delete": "Delete",
-    "pci_workflow_common_cancel": "Cancel"
+  "pci_workflow_delete_confirmation": "Are you sure you want to delete Workflow schedule '{{ workflowName }}'?",
+  "pci_workflow_delete_warning": "This action cannot be reversed.",
+  "pci_workflow_delete_enter": "Type DELETE in the following field to confirm your action.",
+  "pci_workflow_delete_success": "Workflow schedule '{{ workflowName }}' deleted successfully",
+  "pci_workflow_delete_error": "An error has occurred while deleting: {{ message }}",
+  "pci_workflow_common_delete": "Delete",
+  "pci_workflow_common_cancel": "Cancel"
 }
