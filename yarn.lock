@@ -773,13 +773,6 @@
   version "0.0.0"
   resolved "https://codeload.github.com/danialfarid/angular-file-upload-shim-bower/tar.gz/a19bd0ce6be0f120fa7e3a6595319ea59d46bc16"
 
-"@bower_components/randexp@fent/randexp.js#^0.4.0":
-  version "0.4.9"
-  resolved "https://codeload.github.com/fent/randexp.js/tar.gz/8d7f1f99da57c509419b0fc3164e7e8b4d77a58b"
-  dependencies:
-    drange "^1.0.0"
-    ret "^0.2.0"
-
 "@commitlint/cli@^7.1.2", "@commitlint/cli@^7.5.2", "@commitlint/cli@^7.6.0":
   version "7.6.1"
   resolved "https://registry.yarnpkg.com/@commitlint/cli/-/cli-7.6.1.tgz#a93cf995082831999937f6d5ec1a582c8fc0393a"
@@ -4954,11 +4947,6 @@ draggable@^4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/draggable/-/draggable-4.2.0.tgz#149c0ca176df6d8b512048c8e451f499fc047b9a"
   integrity sha1-FJwMoXbfbYtRIEjI5FH0mfwEe5o=
-
-drange@^1.0.0:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/drange/-/drange-1.1.1.tgz#b2aecec2aab82fcef11dbbd7b9e32b83f8f6c0b8"
-  integrity sha512-pYxfDYpued//QpnLIm4Avk7rsNtAtQkUES2cwAYSvD/wd2pKD71gN2Ebj3e7klzXwjocvE8c5vx/1fxwpqmSxA==
 
 duplexer@^0.1.1:
   version "0.1.1"
@@ -11421,11 +11409,6 @@ restore-cursor@^2.0.0:
   dependencies:
     onetime "^2.0.0"
     signal-exit "^3.0.2"
-
-ret@^0.2.0:
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/ret/-/ret-0.2.2.tgz#b6861782a1f4762dce43402a71eb7a283f44573c"
-  integrity sha512-M0b3YWQs7R3Z917WRQy1HHA7Ba7D8hvZg6UE5mLykJxQVE2ju0IXbGlaHPPlkY+WN7wFP+wUMXmBFA0aV6vYGQ==
 
 ret@~0.1.10:
   version "0.1.15"

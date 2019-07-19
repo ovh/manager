@@ -38,7 +38,6 @@
     "@bower_components/moment-picker": "indrimuska/angular-moment-picker#^0.10.1",
     "@bower_components/ng-ckeditor": "esvit/ng-ckeditor#^0.2.1",
     "@bower_components/ng-file-upload-shim": "danialfarid/angular-file-upload-shim-bower#^12.0.4",
-    "@bower_components/randexp": "fent/randexp.js#^0.4.0",
     "@ovh-ux/manager-config": "^0.3.0",
     "@ovh-ux/manager-core": "^6.1.0",
     "@ovh-ux/manager-emailpro":  "^1.0.0",
