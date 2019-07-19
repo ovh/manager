@@ -22,6 +22,7 @@ angular.module(moduleName, [
     ouiFileConfiguration,
     ouiNavbarConfiguration,
     ouiPaginationConfiguration,
+    ouiPasswordConfiguration,
     ouiStepperConfiguration,
   ) => {
     $translate.refresh()
@@ -111,6 +112,19 @@ angular.module(moduleName, [
             .replace('PAGE_COUNT', '{{pageCount}}'),
           previousPage: $translate.instant('common_pagination_previous'),
           nextPage: $translate.instant('common_pagination_next'),
+        });
+
+        set(ouiPasswordConfiguration, 'translations', {
+          allRulesValidLabel: $translate.instant('common_password_all_rules_met'),
+          ariaHidePasswordLabel: $translate.instant('common_password_hide_password'),
+          ariaShowPasswordLabel: $translate.instant('common_password_show_password'),
+          ariaValidRuleLabel: $translate.instant('common_password_valid_rule'),
+          ariaInvalidRuleLabel: $translate.instant('common_password_invalid_rule'),
+          riskyPasswordLabel: $translate.instant('common_password_risky_password'),
+          badPasswordLabel: $translate.instant('common_password_bad_password'),
+          weakPasswordLabel: $translate.instant('common_password_weak_password'),
+          goodPasswordLabel: $translate.instant('common_password_good_password'),
+          strongPasswordLabel: $translate.instant('common_password_strong_password'),
         });
 
         set(ouiStepperConfiguration, 'translations', {
