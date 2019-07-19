@@ -75,7 +75,7 @@ export default /* @ngInject */($stateProvider) => {
         PciPrivateNetworks,
         projectId,
       ) => PciPrivateNetworks.getVrack(projectId),
-
+      user: /* @ngInject */ OvhApiMe => OvhApiMe.v6().get().$promise,
       goToInstances: /* @ngInject */ (CucCloudMessage, $state, projectId) => (message = false, type = 'success') => {
         const reload = message && type === 'success';
 
