@@ -724,10 +724,6 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
-"@bower_components/ckeditor@ckeditor/ckeditor-releases#^4.7.2":
-  version "4.12.1"
-  resolved "https://codeload.github.com/ckeditor/ckeditor-releases/tar.gz/b1a25e93ae0b038f45dcba458f4c2c18bd7318e5"
-
 "@bower_components/messenger@HubSpot/messenger#^1.4.1":
   version "1.5.0"
   resolved "https://codeload.github.com/HubSpot/messenger/tar.gz/8fbf20e5e01070e65d6ca4f2314ab0928e8682fe"
@@ -3633,7 +3629,7 @@ cipher-base@^1.0.0, cipher-base@^1.0.1, cipher-base@^1.0.3:
     inherits "^2.0.1"
     safe-buffer "^5.0.1"
 
-ckeditor@*:
+ckeditor@*, ckeditor@^4.7.2:
   version "4.12.1"
   resolved "https://registry.yarnpkg.com/ckeditor/-/ckeditor-4.12.1.tgz#954a7b028dd611e44ba51cc7c2fe051cf1052186"
   integrity sha512-pH2Su4oi0D4iN/3U8nUcwI7/lXHoOJi0aiN8e2zxnm4Ow5kq8eZP2ZGmpYyuqRyKZ2tHaU8+OyYi7laXcjiq9Q==

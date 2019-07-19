@@ -50,7 +50,7 @@ import 'ovh-angular-actions-menu';
 import 'ovh-angular-responsive-popover';
 import 'script-loader!matchmedia-ng/matchmedia-ng.js';
 import 'ovh-angular-responsive-tabs';
-import 'script-loader!@bower_components/ckeditor/ckeditor.js';
+import 'ckeditor';
 import 'esvit-ng-ckeditor/ng-ckeditor.js';
 import 'ovh-api-services';
 import 'ovh-angular-toaster';
@@ -60,7 +60,7 @@ import 'script-loader!clipboard/dist/clipboard.min.js';
 import 'script-loader!bootstrap-tour/build/js/bootstrap-tour-standalone.min.js';
 
 // Ckeditor 4.x
-import 'script-loader!ng-ckeditor/dist/ng-ckeditor';
+import 'ng-ckeditor';
 
 import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
 import 'bootstrap-tour/build/css/bootstrap-tour.min.css';
