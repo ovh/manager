@@ -26,7 +26,6 @@ import 'script-loader!jquery.cookie/jquery.cookie.js';
 import 'bootstrap';
 import 'angular-ui-bootstrap';
 import 'angular-moment-picker';
-import 'script-loader!raphael/raphael.min.js';
 import 'script-loader!@ovh-ux/ovh-utils-angular/bin/ovh-utils-angular.min.js';
 import 'script-loader!@ovh-ux/ovh-utils-angular/lib/core.js';
 import 'script-loader!punycode/punycode.js';
