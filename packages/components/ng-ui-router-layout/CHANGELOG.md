@@ -1,3 +1,17 @@
+# [2.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/ng-ui-router-layout@1.2.1...@ovh-ux/ng-ui-router-layout@2.0.0) (2019-07-22)
+
+
+### Code Refactoring
+
+* **components.ng-ui-router-layout:** renamed package name ([0e43cc2](https://github.com/ovh-ux/manager/commit/0e43cc2))
+
+
+### BREAKING CHANGES
+
+* **components.ng-ui-router-layout:** package is now named as `@ovh-ux/ng-ui-router-layout`
+
+
+
 ## [1.2.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/ng-uirouter-layout@1.2.0...@ovh-ux/ng-uirouter-layout@1.2.1) (2019-07-15)
 
 

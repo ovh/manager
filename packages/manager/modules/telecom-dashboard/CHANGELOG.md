@@ -1,3 +1,12 @@
+## [4.3.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom-dashboard@4.3.1...@ovh-ux/manager-telecom-dashboard@4.3.2) (2019-07-22)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([7c2c4b3](https://github.com/ovh-ux/manager/commit/7c2c4b3))
+
+
+
 ## [4.3.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom-dashboard@4.3.0...@ovh-ux/manager-telecom-dashboard@4.3.1) (2019-07-15)
 
 

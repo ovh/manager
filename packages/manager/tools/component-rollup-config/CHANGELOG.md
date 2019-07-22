@@ -1,3 +1,30 @@
+# [6.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/component-rollup-config@5.2.2...@ovh-ux/component-rollup-config@6.0.0) (2019-07-22)
+
+
+### Bug Fixes
+
+* **tools.component.rollup.config:** merge array with custom config ([#1088](https://github.com/ovh-ux/manager/issues/1088)) ([b268198](https://github.com/ovh-ux/manager/commit/b268198))
+
+
+### Code Refactoring
+
+* **tools.component.rollup.config:** remove deprecated languages ([#1083](https://github.com/ovh-ux/manager/issues/1083)) ([bbd3267](https://github.com/ovh-ux/manager/commit/bbd3267)), closes [ovh-ux/manager#1042](https://github.com/ovh-ux/manager/issues/1042)
+
+
+### BREAKING CHANGES
+
+* **tools.component.rollup.config:** remove deprecated languages
+  Keep only the `en_GB` from the languages' list
+
+  Removed:
+    - en_ASIA
+    - en_AU
+    - en_CA
+    - en_SG
+    - en_US
+
+
+
 ## [5.2.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/component-rollup-config@5.2.1...@ovh-ux/component-rollup-config@5.2.2) (2019-07-15)
 
 
