@@ -1,3 +1,12 @@
+# [1.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-exchange@1.0.0...@ovh-ux/manager-exchange@1.1.0) (2019-07-22)
+
+
+### Features
+
+* **exchange:** import module ([1867360](https://github.com/ovh-ux/manager/commit/1867360))
+
+
+
 ## [9.4.5](https://github.com/ovh-ux/ovh-module-exchange/compare/v9.4.4...v9.4.5) (2019-05-31)
 
 

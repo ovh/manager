@@ -1,3 +1,23 @@
+# [1.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.14.1...@ovh-ux/manager-public-cloud@1.0.0) (2019-07-22)
+
+
+### Code Refactoring
+
+* **components.ng-ui-router-breadcrumb:** renamed package name ([96fa272](https://github.com/ovh-ux/manager/commit/96fa272))
+* **components.ng-ui-router-layout:** renamed package name ([0e43cc2](https://github.com/ovh-ux/manager/commit/0e43cc2))
+* **components.ng-ui-router-line-progress:** renamed package name ([5d15a9a](https://github.com/ovh-ux/manager/commit/5d15a9a))
+
+
+### BREAKING CHANGES
+
+* **components.ng-ui-router-line-progress:** package and module are now respectively named as
+`@ovh-ux/ng-ui-router-line-progress` and `ngUiRouterLineProgress`
+* **components.ng-ui-router-breadcrumb:** package and module are now respectively named as
+`@ovh-ux/ng-ui-router-breadcrumb` and `ngUiRouterBreadcrumb`
+* **components.ng-ui-router-layout:** package is now named as `@ovh-ux/ng-ui-router-layout`
+
+
+
 ## [0.14.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.14.0...@ovh-ux/manager-public-cloud@0.14.1) (2019-07-15)
 
 

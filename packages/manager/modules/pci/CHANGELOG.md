@@ -1,3 +1,38 @@
+# [1.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.24.2...@ovh-ux/manager-pci@1.0.0) (2019-07-22)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([357dd2a](https://github.com/ovh-ux/manager/commit/357dd2a))
+* **i18n:** add missing translations ([3a0ffdc](https://github.com/ovh-ux/manager/commit/3a0ffdc))
+* **i18n:** add missing translations ([715a84a](https://github.com/ovh-ux/manager/commit/715a84a))
+* **i18n:** add missing translations ([4a2cf6c](https://github.com/ovh-ux/manager/commit/4a2cf6c))
+* **i18n:** add missing translations ([7c2c4b3](https://github.com/ovh-ux/manager/commit/7c2c4b3))
+* **i18n:** add missing translations ([b2e283f](https://github.com/ovh-ux/manager/commit/b2e283f))
+* **i18n:** add missing translations ([a9e7f3b](https://github.com/ovh-ux/manager/commit/a9e7f3b))
+* **i18n:** add missing translations [CDS 8] ([ebb9765](https://github.com/ovh-ux/manager/commit/ebb9765))
+* **i18n:** add missing translations [CDS 9] ([f6b8c59](https://github.com/ovh-ux/manager/commit/f6b8c59))
+* **pci.components.project.regions.list:** set properly the region ([#1077](https://github.com/ovh-ux/manager/issues/1077)) ([c18b72c](https://github.com/ovh-ux/manager/commit/c18b72c))
+* **pci.project.private.registry:** improve external links display ([#980](https://github.com/ovh-ux/manager/issues/980)) ([5864586](https://github.com/ovh-ux/manager/commit/5864586))
+* **pci.project.private.registry:** remove extra oui-field ([#1090](https://github.com/ovh-ux/manager/issues/1090)) ([0d29faa](https://github.com/ovh-ux/manager/commit/0d29faa))
+* **pci.project.private.registry:** update some translations ([#1069](https://github.com/ovh-ux/manager/issues/1069)) ([78341c4](https://github.com/ovh-ux/manager/commit/78341c4))
+* **pci.projects:** improve creation project ([#985](https://github.com/ovh-ux/manager/issues/985)) ([912cfaf](https://github.com/ovh-ux/manager/commit/912cfaf))
+
+
+### Code Refactoring
+
+* **components.ng-ui-router-breadcrumb:** renamed package name ([96fa272](https://github.com/ovh-ux/manager/commit/96fa272))
+* **components.ng-ui-router-layout:** renamed package name ([0e43cc2](https://github.com/ovh-ux/manager/commit/0e43cc2))
+
+
+### BREAKING CHANGES
+
+* **components.ng-ui-router-breadcrumb:** package and module are now respectively named as
+`@ovh-ux/ng-ui-router-breadcrumb` and `ngUiRouterBreadcrumb`
+* **components.ng-ui-router-layout:** package is now named as `@ovh-ux/ng-ui-router-layout`
+
+
+
 ## [0.24.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.24.1...@ovh-ux/manager-pci@0.24.2) (2019-07-15)
 
 

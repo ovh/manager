@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci",
-  "version": "0.24.2",
+  "version": "1.0.0",
   "homepage": "https://github.com/ovh-ux/manager/tree/master/packages/manager/modules/pci#readme",
   "bugs": {
     "url": "https://github.com/ovh-ux/manager/issues"
@@ -41,7 +41,7 @@
   },
   "peerDependencies": {
     "@ovh-ux/manager-cloud-styles": "^0.3.0",
-    "@ovh-ux/manager-core": "^6.1.1",
+    "@ovh-ux/manager-core": "^6.1.2",
     "@ovh-ux/manager-telecom-styles": "^3.1.0",
     "@ovh-ux/ng-at-internet": "^4.0.0",
     "@ovh-ux/ng-ovh-api-wrappers": "^3.0.0",
@@ -53,8 +53,8 @@
     "@ovh-ux/ng-ovh-swimming-poll": "^4.0.0",
     "@ovh-ux/ng-ovh-user-pref": "^1.0.0",
     "@ovh-ux/ng-translate-async-loader": "^2.0.0",
-    "@ovh-ux/ng-ui-router-breadcrumb": "^0.1.0",
-    "@ovh-ux/ng-ui-router-layout": "^1.2.1",
+    "@ovh-ux/ng-ui-router-breadcrumb": "^1.0.0",
+    "@ovh-ux/ng-ui-router-layout": "^2.0.0",
     "@uirouter/angularjs": "^1.0.15",
     "angular": "^1.7.5",
     "angular-animate": "^1.7.5",
