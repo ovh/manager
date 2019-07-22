@@ -6760,10 +6760,6 @@ https-proxy-agent@^2.2.1:
     agent-base "^4.1.0"
     debug "^3.1.0"
 
-hubspot-messenger@HubSpot/messenger#^1.4.1:
-  version "1.5.0"
-  resolved "https://codeload.github.com/HubSpot/messenger/tar.gz/8fbf20e5e01070e65d6ca4f2314ab0928e8682fe"
-
 humanize-ms@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/humanize-ms/-/humanize-ms-1.2.1.tgz#c46e3159a293f6b896da29316d8b6fe8bb79bbed"

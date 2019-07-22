@@ -53,7 +53,6 @@ import 'ckeditor';
 import 'esvit-ng-ckeditor/ng-ckeditor.js';
 import 'ovh-api-services';
 import 'ovh-angular-toaster';
-import 'hubspot-messenger/build/js/messenger.js';
 import 'ovh-jquery-ui-draggable-ng';
 import 'script-loader!clipboard/dist/clipboard.min.js';
 import 'script-loader!bootstrap-tour/build/js/bootstrap-tour-standalone.min.js';
