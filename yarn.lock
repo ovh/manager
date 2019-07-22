@@ -9551,10 +9551,6 @@ ovh-angular-tail-logs@^1.1.1:
   resolved "https://registry.yarnpkg.com/ovh-angular-tail-logs/-/ovh-angular-tail-logs-1.1.1.tgz#6287a577ca5214de0ad1cd9bfb39b34762076b66"
   integrity sha1-Yoeld8pSFN4K0c2b+zmzR2IHa2Y=
 
-ovh-angular-toaster@ovh-ux/ovh-angular-toaster#^0.8.0:
-  version "0.8.0"
-  resolved "https://codeload.github.com/ovh-ux/ovh-angular-toaster/tar.gz/06d24889e94b8d816afee8e94185697cf68f2338"
-
 ovh-angular-ui-confirm-modal@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/ovh-angular-ui-confirm-modal/-/ovh-angular-ui-confirm-modal-1.0.2.tgz#92e6736588a4fb1de6353f1a17ab1962679a698d"

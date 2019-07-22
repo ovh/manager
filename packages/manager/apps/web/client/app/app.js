@@ -67,7 +67,6 @@ angular
     'ovh-angular-tail-logs',
     ngOvhOtrs,
     'ovh-api-services',
-    'ovh-angular-toaster',
     ovhManagerNavbar,
     'ngCkeditor',
     'moment-picker',
