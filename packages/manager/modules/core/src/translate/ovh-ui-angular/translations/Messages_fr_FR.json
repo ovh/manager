@@ -64,5 +64,15 @@
   "common_file_fileSelector": "Sélectionnez un fichier",
   "common_file_filesSelector": "Sélectionner des fichiers…",
   "common_file_maxsizeError": "Le fichier dépasse la taille limite",
-  "common_file_removeFile": "Supprimer le fichier de la sélection"
+  "common_file_removeFile": "Supprimer le fichier de la sélection",
+  "common_password_all_rules_met": "Toutes les règles de mot de passe sont respectées.",
+  "common_password_hide_password": "Masquer le mot de passe",
+  "common_password_show_password": "Afficher le mot de passe",
+  "common_password_valid_rule": "Règle valide.",
+  "common_password_invalid_rule": "Règle invalide.",
+  "common_password_risky_password": "Mot de passe risqué.",
+  "common_password_bad_password": "Mot de passe incorrect.",
+  "common_password_weak_password": "Mot de passe faible.",
+  "common_password_good_password": "Mot de passe correct.",
+  "common_password_strong_password": "Mot de passe fort."
 }

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/sign-up-app",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "private": true,
   "license": "BSD-3-Clause",
   "main": "./src/index.js",
@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@ovh-ux/manager-config": "^0.3.0",
-    "@ovh-ux/manager-core": "^6.1.1",
+    "@ovh-ux/manager-core": "^6.1.2",
     "@ovh-ux/ng-ovh-sso-auth": "^4.1.0",
     "@ovh-ux/ng-translate-async-loader": "^2.0.0",
     "@ovh-ux/sign-up": "^1.0.0",

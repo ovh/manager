@@ -1,3 +1,17 @@
+# [1.2.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/sign-up-app@1.1.2...@ovh-ux/sign-up-app@1.2.0) (2019-07-22)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([b2e283f](https://github.com/ovh-ux/manager/commit/b2e283f))
+
+
+### Features
+
+* **sign-up:** add global message on top of details form ([#1064](https://github.com/ovh-ux/manager/issues/1064)) ([4dd59c5](https://github.com/ovh-ux/manager/commit/4dd59c5))
+
+
+
 ## [1.1.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/sign-up-app@1.1.1...@ovh-ux/sign-up-app@1.1.2) (2019-07-15)
 
 

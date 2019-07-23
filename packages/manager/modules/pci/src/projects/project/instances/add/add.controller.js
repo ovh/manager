@@ -11,6 +11,8 @@ import Quota from '../../../../components/project/instance/quota/quota.class';
 import { PATTERN } from '../../../../components/project/instance/name/constants';
 import Instance from '../../../../components/project/instance/instance.class';
 
+import { BANDWIDTH_OUT } from './add.constants';
+
 export default class PciInstancesAddController {
   /* @ngInject */
   constructor(
@@ -263,5 +265,9 @@ export default class PciInstancesAddController {
       .finally(() => {
         this.isLoading = false;
       });
+  }
+
+  getBandwidthExtraCost(region) {
+    return get(this.prices, `${BANDWIDTH_OUT}.${region.name}`).price.text;
   }
 }

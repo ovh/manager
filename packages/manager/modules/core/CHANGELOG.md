@@ -1,3 +1,12 @@
+## [6.1.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@6.1.1...@ovh-ux/manager-core@6.1.2) (2019-07-22)
+
+
+### Bug Fixes
+
+* **core:** add some missing ovh-ui-angular translations ([#1076](https://github.com/ovh-ux/manager/issues/1076)) ([239ea50](https://github.com/ovh-ux/manager/commit/239ea50))
+
+
+
 ## [6.1.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@6.1.0...@ovh-ux/manager-core@6.1.1) (2019-07-15)
 
 

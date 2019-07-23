@@ -1,3 +1,18 @@
+# [1.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/ng-ui-router-breadcrumb@0.1.0...@ovh-ux/ng-ui-router-breadcrumb@1.0.0) (2019-07-22)
+
+
+### Code Refactoring
+
+* **components.ng-ui-router-breadcrumb:** renamed package name ([96fa272](https://github.com/ovh-ux/manager/commit/96fa272))
+
+
+### BREAKING CHANGES
+
+* **components.ng-ui-router-breadcrumb:** package and module are now respectively named as
+`@ovh-ux/ng-ui-router-breadcrumb` and `ngUiRouterBreadcrumb`
+
+
+
 # [0.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/ng-uirouter-breadcrumb@0.0.1...@ovh-ux/ng-uirouter-breadcrumb@0.1.0) (2019-07-05)
 
 

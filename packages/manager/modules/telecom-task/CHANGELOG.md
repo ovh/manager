@@ -1,3 +1,13 @@
+## [4.2.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom-task@4.2.1...@ovh-ux/manager-telecom-task@4.2.2) (2019-07-22)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([a9e7f3b](https://github.com/ovh-ux/manager/commit/a9e7f3b))
+* **i18n:** add missing translations ([715a84a](https://github.com/ovh-ux/manager/commit/715a84a))
+
+
+
 ## [4.2.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom-task@4.2.0...@ovh-ux/manager-telecom-task@4.2.1) (2019-07-15)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ui-router-breadcrumb",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "UiRouter breadcrumb",
   "keywords": [
     "angular",

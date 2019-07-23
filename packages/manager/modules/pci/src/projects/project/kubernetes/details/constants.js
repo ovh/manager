@@ -9,8 +9,6 @@ export const PROCESSING_STATUS = [
   'RESETTING',
 ];
 
-export const REGION = 'GRA5';
-
 export const STATUS = {
   READY: 'READY',
   INSTALLING: 'INSTALLING',
@@ -24,6 +22,5 @@ export default {
   CONFIG_FILENAME,
   DOC_URL,
   PROCESSING_STATUS,
-  REGION,
   STATUS,
 };

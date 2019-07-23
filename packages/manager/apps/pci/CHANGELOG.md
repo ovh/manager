@@ -1,3 +1,20 @@
+# [2.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci-app@1.2.0...@ovh-ux/manager-pci-app@2.0.0) (2019-07-22)
+
+
+### Code Refactoring
+
+* **components.ng-ui-router-breadcrumb:** renamed package name ([96fa272](https://github.com/ovh-ux/manager/commit/96fa272))
+* **components.ng-ui-router-layout:** renamed package name ([0e43cc2](https://github.com/ovh-ux/manager/commit/0e43cc2))
+
+
+### BREAKING CHANGES
+
+* **components.ng-ui-router-breadcrumb:** package and module are now respectively named as
+`@ovh-ux/ng-ui-router-breadcrumb` and `ngUiRouterBreadcrumb`
+* **components.ng-ui-router-layout:** package is now named as `@ovh-ux/ng-ui-router-layout`
+
+
+
 # [1.2.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci-app@1.1.0...@ovh-ux/manager-pci-app@1.2.0) (2019-07-05)
 
 
