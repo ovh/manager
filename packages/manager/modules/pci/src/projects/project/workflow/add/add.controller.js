@@ -8,29 +8,30 @@ export default class {
     $window,
     CucCloudMessage,
     CucRegionService,
-    PciProjectsProjectInstanceService,
-    OvhApiCloudProjectRegionWorkflowBackup,
     OvhApiCloudProjectRegion,
+    OvhApiCloudProjectRegionWorkflowBackup,
+    PciProjectsProjectInstanceService,
   ) {
     this.$translate = $translate;
     this.$window = $window;
     this.CucCloudMessage = CucCloudMessage;
     this.CucRegionService = CucRegionService;
-    this.PciProjectsProjectInstanceService = PciProjectsProjectInstanceService;
-    this.OvhApiCloudProjectRegionWorkflowBackup = OvhApiCloudProjectRegionWorkflowBackup;
     this.OvhApiCloudProjectRegion = OvhApiCloudProjectRegion;
+    this.OvhApiCloudProjectRegionWorkflowBackup = OvhApiCloudProjectRegionWorkflowBackup;
+    this.PciProjectsProjectInstanceService = PciProjectsProjectInstanceService;
+
+    this.isAdding = false;
+    this.isLoadingPriceEstimate = false;
+    this.isEditingResource = false;
+    this.isEditingSchedule = false;
+    this.price = null;
+    this.showRegionNotSupportedError = false;
     this.workflow = {
       type: null,
       resource: null,
       schedule: null,
       name: null,
     };
-    this.price = null;
-    this.isAdding = false;
-    this.isLoadingPriceEstimate = false;
-    this.isEditingResource = false;
-    this.isEditingSchedule = false;
-    this.showRegionNotSupportedError = false;
   }
 
   $onInit() {
@@ -81,7 +82,7 @@ export default class {
     if (this.workflow.schedule.maxExecutionCount) {
       workflow.maxExecutionCount = this.workflow.schedule.maxExecutionCount;
     }
-    this.createBackupWorkflow(workflow, this.workflow.resource.region)
+    return this.createBackupWorkflow(workflow, this.workflow.resource.region)
       .then(() => this.goToHomePage(
         this.$translate.instant('pci_workflow_add_success', { workflowName: workflow.name }),
       ))

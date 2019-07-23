@@ -12,7 +12,7 @@
   "pci_workflow_create_schedule_custom_description": "Choose by yourself the scheduling (UNIX Cron format), the number of rotations and the max executions you want.",
   "pci_workflow_creating": "Creating Workflow schedule",
   "pci_workflow_create": "Create",
-  "pci_workflow_add_success": "Workflow schedule '{{workflowName}}' created successfully",
+  "pci_workflow_add_success": "Workflow schedule '{{ workflowName }}' created successfully",
   "pci_workflow_add_error": "Workflow schedule creation failed: {{ message }}",
   "pci_workflow_create_general-info_title": "Name your schedule",
   "pci_workflow_create_workflow_name": "Schedule name",
@@ -42,3 +42,4 @@
   "pci_workflow_create_name_help": "May contain numbers, letters, underscores, dashes and full stops only.",
   "pci_workflow_create_region_not_supported": "Workflow schedule is not supported for resources in location {{ regionName }}"
 }
+

@@ -12,7 +12,6 @@ import resources from './resources';
 import schedule from './schedule';
 import generalInfo from './general';
 import PciProjectsProjectInstanceService from '../../instances/instances.service';
-import PciProjectRegions from '../../instances/add/regions-list/regions-list.service';
 
 const moduleName = 'ovhManagerPciProjectWorkflowAddModule';
 
@@ -28,7 +27,6 @@ angular.module(moduleName, [
 ])
   .config(routing)
   .component('ovhManagerPciProjectWorkflowAdd', component)
-  .service('PciProjectRegions', PciProjectRegions)
   .service('PciProjectsProjectInstanceService', PciProjectsProjectInstanceService)
   .run(/* @ngTranslationsInject:json ./translations ../../instances/translations */);
 

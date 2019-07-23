@@ -2,8 +2,8 @@
     <div class="row">
         <oui-select-picker
             class="d-inline-block col-md-6 col-xl-4 my-3"
-            data-ng-repeat="schedule in $ctrl.WORKFLOW_SCHEDULES"
-            data-name="{{ schedule.name }}"
+            data-ng-repeat="schedule in ::$ctrl.WORKFLOW_SCHEDULES"
+            data-name="{{ ::schedule.name }}"
             data-description="{{ ::'pci_workflow_create_schedule_' + schedule.description + '_description' | translate: { numEntries: schedule.rotation } }}"
             data-model="$ctrl.schedule"
             data-label="{{ ::'pci_workflow_create_schedule_' + schedule.name + '_title' | translate }}"
@@ -14,8 +14,8 @@
     </div>
     <div data-ng-if="$ctrl.schedule && $ctrl.schedule.name === 'custom'">
         <span data-translate="pci_workflow_create_cron_title" class="font-weight-bold d-inline-block pr-1"></span>
-        (<span pr-1 data-translate="pci_workflow_create_cron_timezone"></span>)
-        <button type="button" 
+        (<span class="pr-1" data-translate="pci_workflow_create_cron_timezone"></span>)
+        <button type="button"
             class="oui-popover-button"
             data-oui-popover
             data-oui-popover-open="$ctrl.help.openCronHelp"
@@ -42,7 +42,7 @@
                 </div>
                 <div class="oui-field__error pr-2" data-ng-if="$ctrl.minutesInvalid">
                     <span role="alert">
-                    <span class="oui-icon oui-icon-error" aria-hidden="true"></span>
+                        <span class="oui-icon oui-icon-error" aria-hidden="true"></span>
                         <span data-translate="pci_workflow_create_cron_invalid"></span>
                     </span>
                 </div>
@@ -65,7 +65,7 @@
                 </div>
                 <div class="oui-field__error pr-2" data-ng-if="$ctrl.hoursInvalid">
                     <span role="alert">
-                    <span class="oui-icon oui-icon-error" aria-hidden="true"></span>
+                        <span class="oui-icon oui-icon-error" aria-hidden="true"></span>
                         <span data-translate="pci_workflow_create_cron_invalid"></span>
                     </span>
                 </div>
@@ -88,7 +88,7 @@
                 </div>
                 <div class="oui-field__error pr-2" data-ng-if="$ctrl.domInvalid">
                     <span role="alert">
-                    <span class="oui-icon oui-icon-error" aria-hidden="true"></span>
+                        <span class="oui-icon oui-icon-error" aria-hidden="true"></span>
                         <span data-translate="pci_workflow_create_cron_invalid"></span>
                     </span>
                 </div>
@@ -111,7 +111,7 @@
                 </div>
                 <div class="oui-field__error pr-2" data-ng-if="$ctrl.monthInvalid">
                     <span role="alert">
-                    <span class="oui-icon oui-icon-error" aria-hidden="true"></span>
+                        <span class="oui-icon oui-icon-error" aria-hidden="true"></span>
                         <span data-translate="pci_workflow_create_cron_invalid"></span>
                     </span>
                 </div>
@@ -145,7 +145,7 @@
                 </div>
                 <div class="oui-field__error pr-2" data-ng-if="$ctrl.dowInvalid">
                     <span role="alert">
-                    <span class="oui-icon oui-icon-error" aria-hidden="true"></span>
+                        <span class="oui-icon oui-icon-error" aria-hidden="true"></span>
                         <span data-translate="pci_workflow_create_cron_invalid"></span>
                     </span>
                 </div>

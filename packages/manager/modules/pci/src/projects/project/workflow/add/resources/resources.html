@@ -37,10 +37,10 @@
         data-property="status">
         <span class="oui-status"
             data-ng-class="{
-                'oui-status_success': ($row.statusGroup === 'ACTIVE'),
-                'oui-status_warning': ($row.statusGroup === 'PENDING'),
-                'oui-status_error': ($row.statusGroup === 'ERROR'),
-                'oui-status_info': ($row.statusGroup === $row.status),
+                'oui-status_success': $row.statusGroup === 'ACTIVE',
+                'oui-status_warning': $row.statusGroup === 'PENDING',
+                'oui-status_error': $row.statusGroup === 'ERROR',
+                'oui-status_info': $row.statusGroup === $row.status,
             }">
             <span data-ng-bind=":: 'pci_projects_project_instances_status_' + $row.status | translate"></span>
         </span>

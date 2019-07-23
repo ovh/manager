@@ -15,7 +15,7 @@ export default /* @ngInject */ ($stateProvider) => {
           if ($stateParams.workflow) {
             return $stateParams.workflow;
           }
-          return head(filter(workflows, wflow => wflow.id === workflowId));
+          return head(filter(workflows, ({ id }) => id === workflowId));
         },
         workflow: /* @ngInject */ getWorkflow => getWorkflow(),
         executions: /* @ngInject */ (workflow) => {
