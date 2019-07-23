@@ -10,6 +10,7 @@
   "pci_project_instances_instance_add_region_activate": "Activer cette région",
   "pci_project_instances_instance_add_region_quota": "Augmenter mon quota",
   "pci_project_instances_instance_add_region_unavailable": "Disponible pour un autre modèle",
+  "pci_project_instances_instance_add_region_bandwidth_extra": "Le trafic réseau public sortant des instances est inclus dans le prix des instances sur toutes les localisations, excepté la région Asie-Pacifique (Singapour et Sydney). Sur ces deux régions, 1 To/mois de trafic public sortant est inclus pour chaque projet Public Cloud. Au-delà de ce quota, chaque Go de trafic supplémentaire est facturé {{ price }}. Le trafic réseau entrant depuis le réseau public est inclus dans tous les cas et dans toutes les régions.",
 
   "pci_projects_project_instances_add_image_title": "Sélectionnez une image",
   "pci_projects_project_instances_add_image_not_available": "Disponible pour un autre modèle",
