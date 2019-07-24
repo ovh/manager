@@ -1,3 +1,12 @@
+## [1.1.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@1.1.0...@ovh-ux/manager-pci@1.1.1) (2019-07-24)
+
+
+### Bug Fixes
+
+* **pci.project.user:** add roles step on onboarding ([#1112](https://github.com/ovh-ux/manager/issues/1112)) ([53d6376](https://github.com/ovh-ux/manager/commit/53d6376))
+
+
+
 # [1.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@1.0.1...@ovh-ux/manager-pci@1.1.0) (2019-07-24)
 
 
