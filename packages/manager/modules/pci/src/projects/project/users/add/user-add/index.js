@@ -14,6 +14,7 @@ angular
     'pascalprecht.translate',
   ])
   .component('pciProjectUsersAdd', component)
-  .run(/* @ngTranslationsInject:json ./translations */);
+  .run(/* @ngTranslationsInject:json ./translations */)
+  .run(/* @ngTranslationsInject:json ../roles/translations */);
 
 export default moduleName;
