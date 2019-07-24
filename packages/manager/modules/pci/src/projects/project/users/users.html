@@ -3,7 +3,7 @@
 
     <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
 
-    <oui-datagrid data-rows="$ctrl.users" >
+    <oui-datagrid data-rows="$ctrl.users">
         <oui-column
             title=":: 'pci_projects_project_users_username_label' | translate"
             data-property="username"
@@ -15,6 +15,11 @@
         <oui-column
             data-title=":: 'pci_projects_project_users_description_label' | translate"
             data-property="description">
+        </oui-column>
+        <oui-column
+            data-title=":: 'pci_projects_project_users_role_label' | translate"
+            data-property="roles">
+            <span class="d-block" data-ng-repeat="role in $row.roles track by role.id" data-ng-bind="::role.description"></span>
         </oui-column>
         <oui-column
             data-title=":: 'pci_projects_project_users_status_label' | translate"
@@ -49,6 +54,10 @@
                 <span data-translate="pci_projects_project_users_token_label"></span>
             </oui-action-menu-item>
             <oui-action-menu-item
+                data-on-click="$ctrl.editRoles($row)">
+                <span data-translate="pci_projects_project_users_roles_label"></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item
                 data-on-click="$ctrl.generatePassword($row)">
                 <span data-translate="pci_projects_project_users_password_label"></span>
             </oui-action-menu-item>
@@ -66,4 +75,12 @@
             </oui-button>
         </extra-top>
     </oui-datagrid>
+
+    <oui-button
+        data-on-click="$ctrl.showRolesMatrix = !$ctrl.showRolesMatrix"
+        class="mb-2">
+        <span data-ng-bind="($ctrl.showRolesMatrix ? 'pci_projects_project_users_matrix_hide' : 'pci_projects_project_users_matrix_show') | translate"></span>
+    </oui-button>
+
+    <pci-projects-project-users-matrix data-roles="$ctrl.roles" data-ng-if="$ctrl.showRolesMatrix"></pci-projects-project-users-matrix>
 </div>
