@@ -28,6 +28,6 @@ angular.module(moduleName, [
   .config(routing)
   .component('ovhManagerPciProjectWorkflowAdd', component)
   .service('PciProjectsProjectInstanceService', PciProjectsProjectInstanceService)
-  .run(/* @ngTranslationsInject:json ./translations ../../instances/translations */);
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

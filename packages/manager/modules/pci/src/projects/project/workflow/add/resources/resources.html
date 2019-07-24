@@ -11,7 +11,7 @@
                    data-on-change="$ctrl.selectResource($row)"></oui-radio>
     </oui-column>
     <oui-column
-        data-title=":: 'pci_projects_project_instances_name_label' | translate"
+        data-title=":: 'pci_projects_project_workflow_instance_name_label' | translate"
         data-property="name"
         data-type="string"
         data-searchable
@@ -20,12 +20,12 @@
         <span data-ng-bind="$row.name"></span>
     </oui-column>
     <oui-column
-        data-title=":: 'pci_projects_project_instances_region_label' | translate"
+        data-title=":: 'pci_projects_project_workflow_instance_region_label' | translate"
         data-property="region">
         <span data-ng-bind="$ctrl.CucRegionService.getTranslatedMicroRegion($row.region)"></span>
     </oui-column>
     <oui-column
-        data-title=":: 'pci_projects_project_instances_flavor_label' | translate"
+        data-title=":: 'pci_projects_project_workflow_instance_flavor_label' | translate"
         data-property="flavor.name"
         data-type="string"
         data-searchable
@@ -33,7 +33,7 @@
         data-filterable>
     </oui-column>
     <oui-column
-        data-title=":: 'pci_projects_project_instances_status_label' | translate"
+        data-title=":: 'pci_projects_project_workflow_instance_status_label' | translate"
         data-property="status">
         <span class="oui-status"
             data-ng-class="{
@@ -42,7 +42,7 @@
                 'oui-status_error': $row.statusGroup === 'ERROR',
                 'oui-status_info': $row.statusGroup === $row.status,
             }">
-            <span data-ng-bind=":: 'pci_projects_project_instances_status_' + $row.status | translate"></span>
+            <span data-ng-bind=":: 'pci_projects_project_workflow_instance_status_' + $row.status | translate"></span>
         </span>
     </oui-column>
 </oui-datagrid>
