@@ -19,6 +19,7 @@ import emailproUpdateAccountCtrl from './account/update/emailpro-account-update.
 import emailproDisclaimerCtrl from './disclaimer/emailpro-disclaimer.controller';
 import emailproAddDisclaimerCtrl from './disclaimer/add/emailpro-disclaimer-add.controller';
 import emailproRemoveDisclaimerCtrl from './disclaimer/remove/emailpro-disclaimer-remove.controller';
+import emailproUpdateDisclaimerCtrl from './disclaimer/update/emailpro-disclaimer-update.controller';
 import emailproTabDomainCtrl from './domain/emailpro-domain.controller';
 import emailproAddDomainCtrl from './domain/add/emailpro-domain-add.controller';
 import emailproDomainMxAutoconfigCtrl from './domain/mx-autoconfig/emailpro-domain-mx-autoconfig.controller';
@@ -80,6 +81,7 @@ angular.module(moduleName, [])
   .controller('EmailProDisclaimerCtrl', emailproDisclaimerCtrl)
   .controller('EmailProAddDisclaimerCtrl', emailproAddDisclaimerCtrl)
   .controller('EmailProRemoveDisclaimerCtrl', emailproRemoveDisclaimerCtrl)
+  .controller('EmailProUpdateDisclaimerCtrl', emailproUpdateDisclaimerCtrl)
   .controller('EmailProTabDomainsCtrl', emailproTabDomainCtrl)
   .controller('EmailProAddDomainController', emailproAddDomainCtrl)
   .controller('EmailProDomainMxAutoconfigCtrl', emailproDomainMxAutoconfigCtrl)
