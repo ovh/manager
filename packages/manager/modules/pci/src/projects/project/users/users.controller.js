@@ -6,15 +6,19 @@ export default class CloudProjectUsersCtrl {
     $q,
     $translate,
     CucCloudMessage,
+    OvhApiCloudProjectUserRole,
     PciProjectsProjectUsersService,
   ) {
     this.$q = $q;
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
+    this.OvhApiCloudProjectUserRole = OvhApiCloudProjectUserRole;
     this.PciProjectsProjectUsersService = PciProjectsProjectUsersService;
   }
 
   $onInit() {
+    console.log(this.roles);
+    this.showRolesMatrix = false;
     this.loadMessages();
   }
 
