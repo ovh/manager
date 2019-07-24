@@ -1,7 +1,7 @@
 import angular from 'angular';
 
-import routing from './delete.routing';
 import component from './delete.component';
+import routing from './delete.routing';
 
 const moduleName = 'ovhManagerPciProjectWorkflowDelete';
 

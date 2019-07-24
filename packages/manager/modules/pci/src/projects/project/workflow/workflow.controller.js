@@ -25,8 +25,8 @@ export default class {
 
   getInstance(workflow) {
     return this.OvhApiCloudProjectInstance.v6().get({
-      serviceName: this.projectId,
       instanceId: workflow.instanceId,
+      serviceName: this.projectId,
     }).$promise
       .then((instance) => {
         set(workflow, 'instanceName', instance.name);

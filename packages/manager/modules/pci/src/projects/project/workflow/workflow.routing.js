@@ -1,6 +1,7 @@
+import concat from 'lodash/concat';
+import forEach from 'lodash/forEach';
 import map from 'lodash/map';
 import set from 'lodash/set';
-import concat from 'lodash/concat';
 
 import { WORKFLOW_TYPE_ENUM } from './workflow.constants';
 
@@ -8,7 +9,7 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
     .state('pci.projects.project.workflow', {
       url: '/workflow',
-      component: 'ovhManagerPciProjectWorkflow',
+      component: 'ovhManagerPciProjectsProjectWorkflow',
       redirectTo: transition => transition
         .injector()
         .getAsync('workflows')
@@ -16,7 +17,7 @@ export default /* @ngInject */ ($stateProvider) => {
       resolve: {
         add: /* @ngInject */ ($state, projectId) => () => $state.go('pci.projects.project.workflow.new', { projectId }),
 
-        goToHomePage: ($state, CucCloudMessage, projectId) => (message = false, type = 'success') => {
+        goToHomePage: /* @ngInject */ ($state, CucCloudMessage, projectId) => (message = false, type = 'success') => {
           const reload = message && type === 'success';
           const promise = $state.go('pci.projects.project.workflow', {
             projectId,
@@ -46,7 +47,7 @@ export default /* @ngInject */ ($stateProvider) => {
                 regionName: region,
               }).$promise
                 .then((regionWorkflows) => {
-                  map(regionWorkflows, (workflow) => {
+                  forEach(regionWorkflows, (workflow) => {
                     set(workflow, 'type', WORKFLOW_TYPE_ENUM.INSTANCE_BACKUP);
                     return workflow;
                   });
@@ -59,24 +60,24 @@ export default /* @ngInject */ ($stateProvider) => {
 
         goToInstancePage: /* @ngInject */ ($state, projectId) => (instanceId) => {
           $state.go('pci.projects.project.instances.instance', {
-            projectId,
             instanceId,
+            projectId,
           });
         },
 
         goToExecutionsPage: /* @ngInject */ ($state, projectId) => (workflow) => {
           $state.go('pci.projects.project.workflow.executions', {
             projectId,
-            workflowId: workflow.id,
             workflow,
+            workflowId: workflow.id,
           });
         },
 
         goToDeleteWorkflowPage: /* @ngInject */ ($state, projectId) => (workflow) => {
           $state.go('pci.projects.project.workflow.delete', {
             projectId,
-            workflowId: workflow.id,
             workflow,
+            workflowId: workflow.id,
           });
         },
 

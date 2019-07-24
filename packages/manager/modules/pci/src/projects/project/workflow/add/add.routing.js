@@ -1,6 +1,7 @@
 import find from 'lodash/find';
 import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
+
 import Instance from '../../../../components/project/instance/instance.class';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -18,16 +19,16 @@ export default /* @ngInject */ ($stateProvider) => {
       resolve: {
         selectedInstance: /* @ngInject */ $transition$ => $transition$.params().selectedInstance,
         instances: /* @ngInject */ (
-          OvhApiCloudProjectInstance,
           projectId,
+          OvhApiCloudProjectInstance,
         ) => OvhApiCloudProjectInstance.v6().query({
           serviceName: projectId,
         }).$promise
           .then(instances => map(instances, instance => new Instance(instance))),
         regions: /* @ngInject */ (
           $q,
-          OvhApiCloudProjectRegion,
           projectId,
+          OvhApiCloudProjectRegion,
         ) => OvhApiCloudProjectRegion.v6().query({
           serviceName: projectId,
         }).$promise

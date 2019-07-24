@@ -4,13 +4,13 @@ import template from './delete.html';
 const component = {
   bindings: {
     goToHomePage: '<',
-    workflowId: '<',
-    projectId: '<',
     instance: '<',
+    projectId: '<',
     workflow: '<',
+    workflowId: '<',
   },
-  template,
   controller,
+  template,
 };
 
 export default component;

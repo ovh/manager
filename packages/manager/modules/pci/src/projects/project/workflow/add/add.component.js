@@ -3,15 +3,15 @@ import template from './add.html';
 
 export default {
   bindings: {
-    projectId: '<',
-    instances: '<',
+    cancelLink: '<',
     goToHomePage: '<',
-    selectedInstance: '<',
     goToInstancePage: '<',
     initialStep: '<',
-    cancelLink: '<',
-    regions: '<',
+    instances: '<',
     isWorkflowSupportedOnRegion: '<',
+    projectId: '<',
+    regions: '<',
+    selectedInstance: '<',
   },
   controller,
   template,

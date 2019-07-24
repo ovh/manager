@@ -22,10 +22,10 @@
         data-sortable>
         <span class="oui-status"
             data-ng-class="{
-                'oui-status_success': ($row.state === 'SUCCESS'),
-                'oui-status_warning': ($row.state === 'PAUSED'),
-                'oui-status_error': ($row.state === 'ERROR'),
-                'oui-status_info': ($row.state === $row.status),
+                'oui-status_success': $row.state === 'SUCCESS',
+                'oui-status_warning': $row.state === 'PAUSED',
+                'oui-status_error': $row.state === 'ERROR',
+                'oui-status_info': $row.state === $row.status,
             }">
             <span data-ng-bind=":: 'pci_workflow_execution_status_' + $row.state | translate"></span>
         </span>

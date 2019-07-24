@@ -14,7 +14,6 @@ angular
       url: '/onboarding',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
-
         return import('./onboarding.module')
           .then(mod => $ocLazyLoad.inject(mod.default || mod));
       },

@@ -3,13 +3,13 @@ import template from './workflow.html';
 
 export default {
   bindings: {
-    projectId: '<',
     add: '<',
-    project: '<',
-    workflows: '<',
-    goToInstancePage: '<',
-    goToExecutionsPage: '<',
     goToDeleteWorkflowPage: '<',
+    goToExecutionsPage: '<',
+    goToInstancePage: '<',
+    project: '<',
+    projectId: '<',
+    workflows: '<',
   },
   controller,
   template,

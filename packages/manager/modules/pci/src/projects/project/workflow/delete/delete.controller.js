@@ -20,9 +20,9 @@ export default class WorkflowDeleteCtrl {
   delete() {
     this.isDeleting = true;
     return this.OvhApiCloudProjectRegionWorkflowBackup.v6().delete({
-      serviceName: this.projectId,
-      regionName: this.instance.region,
       backupWorkflowId: this.workflowId,
+      regionName: this.instance.region,
+      serviceName: this.projectId,
     }).$promise
       .then(() => this.goToHomePage(
         this.$translate.instant('pci_workflow_delete_success', { workflowName: this.workflow.name }),

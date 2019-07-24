@@ -3,12 +3,12 @@ import template from './resources.html';
 
 export default {
   bindings: {
-    selectedResource: '=?',
+    goToInstancePage: '<',
+    isEditMode: '<',
     instances: '<',
     projectId: '<',
     selectedInstance: '<',
-    goToInstancePage: '<',
-    isEditMode: '<',
+    selectedResource: '=?',
   },
   controller,
   template,

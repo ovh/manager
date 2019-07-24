@@ -5,19 +5,18 @@ import 'angular-translate';
 import 'ovh-ui-angular';
 
 import component from './onboarding.component';
-import routing from './onboarding.routing';
-
 import empty from '../../../../components/project/empty';
+import routing from './onboarding.routing';
 
 const moduleName = 'ovhManagerPciWorkflowOnboardingModule';
 
 angular
   .module(moduleName, [
     empty,
-    'ui.router',
-    'oui',
     'ngTranslateAsyncLoader',
+    'oui',
     'pascalprecht.translate',
+    'ui.router',
   ])
   .config(routing)
   .component('pciProjectWorkflowOnboarding', component)

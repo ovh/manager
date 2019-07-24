@@ -1,11 +1,11 @@
-import template from './general.html';
 import controller from './general.controller';
+import template from './general.html';
 
 export default {
   bindings: {
-    workflowName: '=?',
     price: '<',
+    workflowName: '=?',
   },
-  template,
   controller,
+  template,
 };

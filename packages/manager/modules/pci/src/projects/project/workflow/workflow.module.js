@@ -1,34 +1,35 @@
-import angular from 'angular';
 import '@uirouter/angularjs';
 import 'angular-translate';
+import angular from 'angular';
+
 import '@ovh-ux/ng-translate-async-loader';
 import '@ovh-ux/ng-ovh-cloud-universe-components';
 import 'ovh-api-services';
 import 'ovh-ui-angular';
 
-import component from './workflow.component';
-import routing from './workflow.routing';
-import onboarding from './onboarding';
 import add from './add';
+import component from './workflow.component';
 import deleteWorkflow from './delete';
 import executions from './executions';
+import onboarding from './onboarding';
+import routing from './workflow.routing';
 
-const moduleName = 'ovhManagerPciProjectWorkflowModule';
+const moduleName = 'ovhManagerPciProjectsProjectWorkflowModule';
 
 angular.module(moduleName, [
-  onboarding,
   add,
   deleteWorkflow,
   executions,
+  onboarding,
   'ngTranslateAsyncLoader',
-  'pascalprecht.translate',
   'ngOvhCloudUniverseComponents',
   'oui',
   'ovh-api-services',
+  'pascalprecht.translate',
   'ui.router',
 ])
   .config(routing)
-  .component('ovhManagerPciProjectWorkflow', component)
+  .component('ovhManagerPciProjectsProjectWorkflow', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

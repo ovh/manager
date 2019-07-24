@@ -19,7 +19,13 @@ export default class {
     this.OvhApiCloudProjectRegion = OvhApiCloudProjectRegion;
     this.OvhApiCloudProjectRegionWorkflowBackup = OvhApiCloudProjectRegionWorkflowBackup;
     this.PciProjectsProjectInstanceService = PciProjectsProjectInstanceService;
+  }
 
+  static getCronPattern(schedule) {
+    return `${schedule.cronPattern.minutes} ${schedule.cronPattern.hour} ${schedule.cronPattern.dom} ${schedule.cronPattern.month} ${schedule.cronPattern.dow}`;
+  }
+
+  $onInit() {
     this.isAdding = false;
     this.isLoadingPriceEstimate = false;
     this.isEditingResource = false;
@@ -32,9 +38,6 @@ export default class {
       schedule: null,
       name: null,
     };
-  }
-
-  $onInit() {
     if (this.selectedInstance) {
       this.workflow.resource = this.selectedInstance;
       if (this.initialStep === 1) {
@@ -65,10 +68,6 @@ export default class {
       .finally(() => {
         this.isLoadingPriceEstimate = false;
       });
-  }
-
-  static getCronPattern(schedule) {
-    return `${schedule.cronPattern.minutes} ${schedule.cronPattern.hour} ${schedule.cronPattern.dom} ${schedule.cronPattern.month} ${schedule.cronPattern.dow}`;
   }
 
   add() {

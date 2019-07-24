@@ -1,4 +1,5 @@
 import random from 'lodash/random';
+
 import {
   DEFAULT_CRON_PATTERN_DOM,
   DEFAULT_CRON_PATTERN_MONTH,

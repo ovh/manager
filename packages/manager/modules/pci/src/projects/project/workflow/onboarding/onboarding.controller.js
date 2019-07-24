@@ -1,4 +1,5 @@
 import reduce from 'lodash/reduce';
+
 import illustration from './assets/workflow.png';
 import { GUIDES } from './onboarding.constants';
 
