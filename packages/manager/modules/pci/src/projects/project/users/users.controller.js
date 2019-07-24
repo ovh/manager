@@ -17,7 +17,6 @@ export default class CloudProjectUsersCtrl {
   }
 
   $onInit() {
-    console.log(this.roles);
     this.showRolesMatrix = false;
     this.loadMessages();
   }
