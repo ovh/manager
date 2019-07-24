@@ -34,6 +34,5 @@ export default {
     gotToNetworks: '<',
     attachPrivateNetwork: '<',
     scheduleAutoBackup: '<',
-    user: '<',
   },
 };

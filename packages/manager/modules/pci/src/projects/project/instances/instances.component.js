@@ -24,6 +24,5 @@ export default {
     vrackLink: '<',
     vrack: '<',
     scheduleAutoBackup: '<',
-    user: '<',
   },
 };

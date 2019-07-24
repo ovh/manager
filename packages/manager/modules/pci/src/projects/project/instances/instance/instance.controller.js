@@ -2,11 +2,13 @@ export default class PciInstanceController {
   /* @ngInject */
   constructor(
     $translate,
+    coreConfig,
     CucCloudMessage,
     CucRegionService,
     PciProjectsProjectInstanceService,
   ) {
     this.$translate = $translate;
+    this.coreConfig = coreConfig;
     this.CucCloudMessage = CucCloudMessage;
     this.CucRegionService = CucRegionService;
     this.PciProjectsProjectInstanceService = PciProjectsProjectInstanceService;
