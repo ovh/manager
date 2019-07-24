@@ -1,3 +1,12 @@
+# [1.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@1.0.1...@ovh-ux/manager-pci@1.1.0) (2019-07-24)
+
+
+### Features
+
+* **pci.users:** add role matrix ([#746](https://github.com/ovh-ux/manager/issues/746)) ([86b2f08](https://github.com/ovh-ux/manager/commit/86b2f08))
+
+
+
 ## [1.0.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@1.0.0...@ovh-ux/manager-pci@1.0.1) (2019-07-23)
 
 
