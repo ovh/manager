@@ -1,3 +1,12 @@
+## [7.1.7](https://github.com/ovh-ux/ng-ovh-otrs/compare/v7.1.6...v7.1.7) (2019-07-25)
+
+
+### Bug Fixes
+
+* **popup:** disable categories when no service ([eab6727](https://github.com/ovh-ux/ng-ovh-otrs/commit/eab6727))
+
+
+
 ## [7.1.5](https://github.com/ovh-ux/ng-ovh-otrs/compare/v7.1.4...v7.1.5) (2019-06-27)
 
 
