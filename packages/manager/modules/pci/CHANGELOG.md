@@ -1,3 +1,31 @@
+## [1.1.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@1.1.0...@ovh-ux/manager-pci@1.1.1) (2019-07-24)
+
+
+### Bug Fixes
+
+* **pci.project.user:** add roles step on onboarding ([#1112](https://github.com/ovh-ux/manager/issues/1112)) ([53d6376](https://github.com/ovh-ux/manager/commit/53d6376))
+
+
+
+# [1.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@1.0.1...@ovh-ux/manager-pci@1.1.0) (2019-07-24)
+
+
+### Features
+
+* **pci.users:** add role matrix ([#746](https://github.com/ovh-ux/manager/issues/746)) ([86b2f08](https://github.com/ovh-ux/manager/commit/86b2f08))
+
+
+
+## [1.0.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@1.0.0...@ovh-ux/manager-pci@1.0.1) (2019-07-23)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 14] ([3fa84a5](https://github.com/ovh-ux/manager/commit/3fa84a5))
+* **pci.projects.kube:** use api region ([#1099](https://github.com/ovh-ux/manager/issues/1099)) ([f68938d](https://github.com/ovh-ux/manager/commit/f68938d))
+
+
+
 # [1.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.24.2...@ovh-ux/manager-pci@1.0.0) (2019-07-22)
 
 

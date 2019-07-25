@@ -98,6 +98,7 @@ export default /* @ngInject */ function ($scope) {
     input.$setValidity('mustBeInteger', true);
     input.$setValidity('min', true);
     input.$setValidity('max', true);
+    input.$setValidity('number', true);
 
     if (value != null) {
       try {
@@ -128,6 +129,7 @@ export default /* @ngInject */ function ($scope) {
     input.$setValidity('mustBeInteger', true);
     input.$setValidity('min', true);
     input.$setValidity('max', true);
+    input.$setValidity('number', true);
     input.$setValidity('toBigForDuration', true);
 
     if (value != null) {
@@ -166,6 +168,7 @@ export default /* @ngInject */ function ($scope) {
 
     input.$setValidity('min', true);
     input.$setValidity('max', true);
+    input.$setValidity('number', true);
 
     if (value) {
       try {
@@ -183,8 +186,6 @@ export default /* @ngInject */ function ($scope) {
       } else {
         input.$setValidity('number', true);
       }
-    } else if ($scope.service.lockoutThreshold !== 0) {
-      input.$setValidity('number', false);
     } else {
       input.$setValidity('number', true);
       input.$setValidity('required', true);
