@@ -14,7 +14,7 @@ import merge from 'lodash/merge';
 import startsWith from 'lodash/startsWith';
 import snakeCase from 'lodash/snakeCase';
 import sumBy from 'lodash/sumBy';
-import upperCase from 'lodash/upperCase';
+import toUpper from 'lodash/toUpper';
 
 import { DATAGRID_COLUMN_PARAMETERS_PREFERENCE_NAME } from './account-home.constants';
 
@@ -367,7 +367,7 @@ export default class ExchangeAccountHomeController {
 
       if (this.exchangeStates.isValidState(account.state)) {
         return this.$translate.instant(
-          `exchange_tab_ACCOUNTS_state_${upperCase(snakeCase(account.state))}`,
+          `exchange_tab_ACCOUNTS_state_${toUpper(snakeCase(account.state))}`,
         );
       }
 
