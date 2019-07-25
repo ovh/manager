@@ -1,5 +1,3 @@
-import { Environment } from '@ovh-ux/manager-config';
-
 export const HORIZON = {
   CA: 'https://horizon.cloud.ovh.net/auth/login/',
   EU: 'https://horizon.cloud.ovh.net/auth/login/',
@@ -120,7 +118,7 @@ export const MENU = [
       {
         id: 'horizon',
         options: {
-          url: HORIZON[Environment.getRegion()],
+          url: HORIZON,
           target: '_blank',
         },
         title: 'Horizon',
