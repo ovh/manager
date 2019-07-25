@@ -1,11 +1,14 @@
+import clone from 'lodash/clone';
 import get from 'lodash/get';
 import first from 'lodash/first';
 import includes from 'lodash/includes';
 import isEmpty from 'lodash/isEmpty';
+import isNull from 'lodash/isNull';
 import remove from 'lodash/remove';
 import times from 'lodash/times';
 import values from 'lodash/values';
 import snakeCase from 'lodash/snakeCase';
+import without from 'lodash/without';
 
 export default /* @ngInject */ function (
   $http,
@@ -33,7 +36,6 @@ export default /* @ngInject */ function (
   OTRS_POPUP_INTERVENTION_ENUM,
   OTRS_POPUP_SERVICES,
   OTRS_POPUP_UNIVERSES,
-  TICKET_CATEGORIES,
 ) {
   const self = this;
   const OTHER_SERVICE = 'other';
@@ -100,9 +102,18 @@ export default /* @ngInject */ function (
     // hide alert
     manageAlert();
 
-    if (!OtrsPopupService.isOpen() || !this.selectedServiceType) {
+    if (!OtrsPopupService.isOpen()
+        || !this.selectedServiceType
+        || isNull(this.selectedServiceType.route)) {
+      self.requests = without(self.allRequests,
+        'assistance',
+        'incident',
+        'intervention',
+        'sales');
       return $q.when([]);
     }
+    self.requests = clone(self.allRequests);
+
 
     self.loaders.services = true;
     return new OvhApiService
@@ -143,7 +154,6 @@ export default /* @ngInject */ function (
       if (self.ticket.serviceName === OTHER_SERVICE
           || self.ticket.serviceName === null) {
         self.ticket.serviceName = '';
-        self.ticket.category = TICKET_CATEGORIES.DEFAULT;
       }
 
       return OvhApiSupport.v6()
@@ -325,6 +335,8 @@ export default /* @ngInject */ function (
         self.requests.push(OTRS_POPUP_CATEGORIES.SALES);
       }
 
+      self.allRequests = clone(self.requests);
+
       self.subCategories = {
         assistance: [
           OTRS_POPUP_ASSISTANCE_ENUM.USAGE,
@@ -366,6 +378,15 @@ export default /* @ngInject */ function (
       $scope.$watch('OtrsPopupCtrl.ticket.serviceName', () => {
         self.refreshFormDetails();
         self.refreshRequests();
+        if (isNull(get(self.ticket.serviceName, 'serviceName'))) {
+          self.requests = without(self.allRequests,
+            'assistance',
+            'incident',
+            'intervention',
+            'sales');
+        } else {
+          self.requests = clone(self.allRequests);
+        }
       });
 
       $scope.$watch('OtrsPopupCtrl.ticket.subcategory', () => {
