@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>@ovh-ux/ng-uirouter-line-progress</title>
+        <title>@ovh-ux/ng-ui-router-line-progress</title>
     </head>
     <body ng-app="myApp">
         <nav>
@@ -13,10 +13,10 @@
         <ui-view></ui-view>
         <script src="https://unpkg.com/angular@latest/angular.js"></script>
         <script src="https://unpkg.com/@uirouter/angularjs@latest/release/angular-ui-router.js"></script>
-        <script src="https://unpkg.com/@ovh-ux/ng-uirouter-line-progress@latest"></script>
+        <script src="https://unpkg.com/@ovh-ux/ng-ui-router-line-progress@latest"></script>
         <script>
             var myApp = angular
-                .module('myApp', ['ui.router', 'ngUirouterLineProgress'])
+                .module('myApp', ['ui.router', 'ngUiRouterLineProgress'])
                 .config(function ($stateProvider) {
                     $stateProvider.state('foo', {
                         url: '/foo',
