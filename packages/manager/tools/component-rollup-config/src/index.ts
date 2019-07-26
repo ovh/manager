@@ -17,6 +17,8 @@ import translationInject from './plugins/translation-inject';
 import translationUiRouter from './plugins/translation-ui-router';
 import translationXML from './plugins/translation-xml';
 
+import translationNormalize from './plugins/common';
+
 const defaultName = path.basename(process.cwd());
 
 const mergeConfig = (config, customConfig) => mergeWith(config, customConfig, (obj, src) => (
@@ -126,5 +128,9 @@ config.plugins = {
   translationUiRouter,
   translationXML,
 };
+
+config.common = {
+  translationNormalize,
+}
 
 export = config;
