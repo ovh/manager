@@ -151,6 +151,17 @@ export = opts => {
           ],
         },
 
+        // normalize json translation files
+        {
+          test: /Messages_\w+_\w+\.json$/,
+          use: [
+            cacheLoader,
+            {
+              loader: path.resolve(__dirname, './loaders/translation-json.js'),
+            },
+          ],
+        },
+
         // load JS files
         {
           test: /\.js$/,
