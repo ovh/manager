@@ -28,7 +28,7 @@ angular
       params: {
         bookKey: null,
       },
-      translations: ['.'],
+      translations: { value: ['.'], format: 'json' },
     });
   })
   .factory('TelecomSmsPhoneBooksNumber', () => ({

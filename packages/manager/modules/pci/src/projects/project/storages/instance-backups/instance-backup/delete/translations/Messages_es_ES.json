@@ -5,6 +5,7 @@
  "pci_projects_project_storages_volume-instances_volume-instance_delete_content": "Eliminar {{ backup }} definitivamente",
  "pci_projects_project_storages_volume-instances_volume-instance_delete_erase_message": "Todos los datos que contenga el backup de instancia se perderán.",
  "pci_projects_project_storages_volume-instances_volume-instance_delete_error_not_deletable": "En este momento no es posible eliminar este backup de instancia.",
+ "pci_projects_project_storages_volume-instances_volume-instance_delete_error_installed": "En este momento no es posible eliminar este backup de instancia, ya que está instalado en las siguientes instancias: {{ instances }}.",
  "pci_projects_project_storages_volume-instances_volume-instance_delete_error_load": "Se ha producido un error al cargar el backup de instancia: {{message}}.",
  "pci_projects_project_storages_volume-instances_volume-instance_delete_success_message": "Se ha eliminado el backup de instancia {{ backup }}.",
  "pci_projects_project_storages_volume-instances_volume-instance_delete_error_delete": "Se ha producido un error al eliminar el backup de instancia {{ backup }}: {{ message }}."

@@ -1,3 +1,31 @@
+## [6.1.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@6.1.1...@ovh-ux/manager-core@6.1.2) (2019-07-22)
+
+
+### Bug Fixes
+
+* **core:** add some missing ovh-ui-angular translations ([#1076](https://github.com/ovh-ux/manager/issues/1076)) ([239ea50](https://github.com/ovh-ux/manager/commit/239ea50))
+
+
+
+## [6.1.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@6.1.0...@ovh-ux/manager-core@6.1.1) (2019-07-15)
+
+
+### Bug Fixes
+
+* bump lodash to version >= 4.17.14 ([#1072](https://github.com/ovh-ux/manager/issues/1072)) ([1a32ddc](https://github.com/ovh-ux/manager/commit/1a32ddc))
+
+
+
+# [6.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@6.0.1...@ovh-ux/manager-core@6.1.0) (2019-07-05)
+
+
+### Features
+
+* **sms.compose.receivers:** if invalid receivers, display error message ([#792](https://github.com/ovh-ux/manager/issues/792)) ([6f6a8f6](https://github.com/ovh-ux/manager/commit/6f6a8f6))
+* add new packages ([09b5158](https://github.com/ovh-ux/manager/commit/09b5158))
+
+
+
 ## [6.0.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@6.0.0...@ovh-ux/manager-core@6.0.1) (2019-06-19)
 
 

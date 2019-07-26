@@ -1,3 +1,67 @@
+## [0.4.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.4.0...@ovh-ux/manager-server-sidebar@0.4.1) (2019-07-15)
+
+
+### Bug Fixes
+
+* bump lodash to version >= 4.17.14 ([#1072](https://github.com/ovh-ux/manager/issues/1072)) ([1a32ddc](https://github.com/ovh-ux/manager/commit/1a32ddc))
+
+
+
+# [0.4.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.3.2...@ovh-ux/manager-server-sidebar@0.4.0) (2019-07-05)
+
+
+### Bug Fixes
+
+* **server.sidebar:** change exchange config ([#1020](https://github.com/ovh-ux/manager/issues/1020)) ([4934237](https://github.com/ovh-ux/manager/commit/4934237))
+
+
+### Features
+
+* add new packages ([09b5158](https://github.com/ovh-ux/manager/commit/09b5158))
+
+
+
+## [0.3.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.3.1...@ovh-ux/manager-server-sidebar@0.3.2) (2019-06-27)
+
+
+### Bug Fixes
+
+* **server-sidebar:** add email domain delegated account ([fa5eccf](https://github.com/ovh-ux/manager/commit/fa5eccf))
+
+
+
+## [0.3.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.3.0...@ovh-ux/manager-server-sidebar@0.3.1) (2019-06-25)
+
+
+### Bug Fixes
+
+* **server-sidebar:** add children if no services ([#943](https://github.com/ovh-ux/manager/issues/943)) ([0136819](https://github.com/ovh-ux/manager/commit/0136819))
+
+
+
+# [0.3.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.2.3...@ovh-ux/manager-server-sidebar@0.3.0) (2019-06-25)
+
+
+### Bug Fixes
+
+* **server-sidebar:** force to display search ([3c647ac](https://github.com/ovh-ux/manager/commit/3c647ac))
+
+
+### Features
+
+* **web.config:** remove third level for exchange & sharepoint ([049c884](https://github.com/ovh-ux/manager/commit/049c884))
+
+
+
+## [0.2.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.2.2...@ovh-ux/manager-server-sidebar@0.2.3) (2019-06-21)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([dd3098c](https://github.com/ovh-ux/manager/commit/dd3098c))
+
+
+
 ## [0.2.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.2.1...@ovh-ux/manager-server-sidebar@0.2.2) (2019-06-19)
 
 

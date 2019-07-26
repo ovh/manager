@@ -16,7 +16,10 @@
             <button
                 class="oui-button oui-button_secondary oui-button_icon-left mb-2"
                 data-ng-click="$ctrl.createNetwork()"
-                type="button">
+                type="button"
+                data-track-on="click"
+                data-track-name="PCI_PROJECTS_NETWORK_ADD"
+                data-track-type="navigation">
                 <span class="oui-icon oui-icon-add" aria-hidden="true"></span>
                 <span data-translate="pci_projects_project_network_private_create"></span>
             </button>
@@ -36,7 +39,7 @@
             <span data-ng-bind="$row.regions.length"></span>
             <button
                 class="oui-popover-button"
-                data-oui-popover="{{ $row.formattedRegions }}"
+                data-oui-popover="{{ $row.formattedRegions }}"
                 type="button">
             </button>
         </oui-column>

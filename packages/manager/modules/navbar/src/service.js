@@ -1,12 +1,18 @@
 export default class {
   /* @ngInject */
-  constructor(OvhApiMe, OvhApiUniverses) {
+  constructor($q, OvhApiMe, OvhApiUniverses) {
+    this.$q = $q;
     this.OvhApiMe = OvhApiMe;
     this.OvhApiUniverses = OvhApiUniverses;
   }
 
   getUser() {
-    return this.OvhApiMe.v6().get().$promise;
+    return this.$q.all({
+      user: this.OvhApiMe.v6().get().$promise,
+      certificates: this.OvhApiMe.v6().certificates().$promise,
+    }).then(({ user, certificates }) => Object.assign(user, {
+      isEnterprise: certificates.includes('enterprise'),
+    }));
   }
 
   getUniverses(version) {

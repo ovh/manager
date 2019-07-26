@@ -34,6 +34,15 @@ export default /* @ngInject */($stateProvider) => {
         projectId,
         userId: user.id,
       }),
+      editRoles: /* @ngInject */ ($state, projectId) => user => $state.go('pci.projects.project.users.edit', {
+        projectId,
+        userId: user.id,
+      }),
+
+      roles: /* @ngInject */ (
+        PciProjectsProjectUsersService,
+        projectId,
+      ) => PciProjectsProjectUsersService.getProjectRoles(projectId),
 
       goToUsers: /* @ngInject */ ($rootScope, CucCloudMessage, $state, projectId) => (message = false, type = 'success') => {
         const reload = message && type === 'success';

@@ -1,9 +1,4 @@
 {
- "pci_project_flavors_category_balanced": "Allgemeine Nutzung",
- "pci_project_flavors_category_cpu": "Optimierte Rechenleistung",
- "pci_project_flavors_category_ram": "Optimierter Arbeitsspeicher",
- "pci_project_flavors_category_accelerated": "Beschleunigte Rechenleistung",
- "pci_project_flavors_category_vps": "Geteilte Ressourcen",
  "pci_project_flavors_category_definition_balanced": "Instanzen zur allgemeinen Nutzung bieten Ihnen ein ausgewogenes Verhältnis zwischen RAM und Performance.",
  "pci_project_flavors_category_definition_cpu": "Instanzen mit optimierter Rechenleistung sind ideal für parallele Rechenoperationen und Anwendungen, die eine deutlich höhere CPU-Frequenz benötigen.",
  "pci_project_flavors_category_definition_ram": "Instanzen mit optimiertem Arbeitsspeicher sind perfekt für Ihre Datenbanken, Analysen und Berechnungen im Arbeitsspeicher sowie andere RAM-intensive Anwendungen.",

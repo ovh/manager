@@ -1,0 +1,78 @@
+{
+  "name": "@ovh-ux/component-rollup-config",
+  "version": "6.0.0",
+  "description": "Extensible rollup configuration to build OVH components",
+  "keywords": [
+    "build",
+    "components",
+    "configuration",
+    "ovh",
+    "rollup"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ovh-ux/manager.git",
+    "directory": "packages/manager/tools/component-rollup-config"
+  },
+  "license": "BSD-3-Clause",
+  "author": "OVH SAS",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "yarn run build",
+    "dev:watch": "tsc -w",
+    "lint": "run-p lint:ts lint:md",
+    "lint:md": "eslint --quiet --fix --format=pretty --ext .md .",
+    "lint:ts": "eslint --quiet --fix --format=pretty ./src/**/*.ts",
+    "prepare": "yarn run build",
+    "test": "yarn run build && yarn run lint && mocha",
+    "version": "npx conventional-changelog-cli -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
+    "postversion": "git push && git push --tags"
+  },
+  "dependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/plugin-syntax-dynamic-import": "^7.0.0",
+    "@babel/preset-env": "^7.1.6",
+    "@ovh-ux/rollup-plugin-less-inject": "^1.0.1",
+    "@ovh-ux/rollup-plugin-less-tilde-importer": "^1.0.0-beta.0",
+    "babel-plugin-angularjs-annotate": "^0.10.0",
+    "camelcase": "^5.0.0",
+    "estree-walker": "^0.6.0",
+    "less": "^3.9.0",
+    "less-plugin-remcalc": "^0.1.0",
+    "lodash": "^4.17.14",
+    "magic-string": "^0.25.1",
+    "node-sass": "^4.10.0",
+    "rollup": "^1.15.6",
+    "rollup-plugin-babel": "^4.3.2",
+    "rollup-plugin-commonjs": "^9.2.0",
+    "rollup-plugin-html": "^0.2.1",
+    "rollup-plugin-img": "^1.1.0",
+    "rollup-plugin-json": "^3.1.0",
+    "rollup-plugin-node-resolve": "^4.0.0",
+    "rollup-plugin-peer-deps-external": "^2.2.0",
+    "rollup-plugin-sass": "^1.1.0",
+    "rollup-pluginutils": "^2.3.3",
+    "slash": "^2.0.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^7.5.2",
+    "@commitlint/config-angular": "^7.5.0",
+    "@typescript-eslint/eslint-plugin": "^1.11.0",
+    "@typescript-eslint/parser": "^1.11.0",
+    "eslint": "^5.15.1",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-formatter-pretty": "^2.1.1",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-markdown": "^1.0.0",
+    "husky": "^1.0.0",
+    "lint-staged": "^8.1.5",
+    "mocha": "^6.0.2",
+    "npm-run-all": "^4.1.5",
+    "rollup-plugin-hypothetical": "^2.1.0",
+    "typescript": "^3.5.2"
+  }
+}

@@ -84,10 +84,33 @@ export const MENU = [
           state: 'pci.projects.project.kubernetes',
         },
         title: 'Managed Kubernetes Service',
+        regions: ['CA', 'EU'],
+      },
+      {
+        id: 'private-registry',
+        options: {
+          state: 'pci.projects.project.private-registry',
+        },
+        title: 'Managed Private Registry',
+        beta: true,
+        regions: ['EU'],
       },
     ],
     regions: ['CA', 'EU'],
     title: 'Orchestration / Industrialization',
+  },
+  {
+    subitems: [
+      {
+        id: 'analytics-data-platform',
+        options: {
+          state: 'pci.projects.project.analytics-data-platform',
+        },
+        title: 'Analytics Data Platform',
+      },
+    ],
+    regions: ['EU'],
+    title: 'Data & Analytics',
   },
   {
     title: 'Management Interfaces',
@@ -165,7 +188,10 @@ export const MENU = [
   },
 ];
 
+export const UNIVERSE = 'Public Cloud';
+
 export default {
   HORIZON,
   MENU,
+  UNIVERSE,
 };

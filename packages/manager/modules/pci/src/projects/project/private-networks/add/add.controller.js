@@ -79,6 +79,7 @@ export default class NetworkAddCtrl {
   isVlanAvailable(vlanId) {
     return !find(this.networks, { vlanId });
   }
+
   getVlanIdConfiguration() {
     return this.PciPrivateNetworks.getPrivateNetworks(this.projectId)
       .then((networks) => {

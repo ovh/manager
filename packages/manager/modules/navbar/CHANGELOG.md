@@ -1,3 +1,48 @@
+## [1.2.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-navbar@1.2.0...@ovh-ux/manager-navbar@1.2.1) (2019-07-15)
+
+
+### Bug Fixes
+
+* bump lodash to version >= 4.17.14 ([#1072](https://github.com/ovh-ux/manager/issues/1072)) ([1a32ddc](https://github.com/ovh-ux/manager/commit/1a32ddc))
+
+
+
+# [1.2.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-navbar@1.1.2...@ovh-ux/manager-navbar@1.2.0) (2019-07-05)
+
+
+### Features
+
+* add new packages ([09b5158](https://github.com/ovh-ux/manager/commit/09b5158))
+
+
+
+## [1.1.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-navbar@1.1.1...@ovh-ux/manager-navbar@1.1.2) (2019-07-01)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([c9599c5](https://github.com/ovh-ux/manager/commit/c9599c5))
+
+
+
+## [1.1.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-navbar@1.1.0...@ovh-ux/manager-navbar@1.1.1) (2019-06-27)
+
+
+### Bug Fixes
+
+* **navbar:** fix enterprise detection ([#949](https://github.com/ovh-ux/manager/issues/949)) ([34c2960](https://github.com/ovh-ux/manager/commit/34c2960))
+
+
+
+# [1.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-navbar@1.0.1...@ovh-ux/manager-navbar@1.1.0) (2019-06-25)
+
+
+### Features
+
+* **navbar:** add billing for US enterprise customers ([#939](https://github.com/ovh-ux/manager/issues/939)) ([ccbfe90](https://github.com/ovh-ux/manager/commit/ccbfe90))
+
+
+
 ## [1.0.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-navbar@1.0.0...@ovh-ux/manager-navbar@1.0.1) (2019-06-19)
 
 

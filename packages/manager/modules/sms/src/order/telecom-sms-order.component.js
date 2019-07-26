@@ -41,7 +41,7 @@ angular
           component: 'smsOrderComponent',
         },
       },
-      translations: ['.'],
+      translations: { value: ['.'], format: 'json' },
     });
 
     $stateProvider.state('sms.order', {
@@ -54,7 +54,7 @@ angular
           component: 'smsOrderComponent',
         },
       },
-      translations: ['.'],
+      translations: { value: ['.'], format: 'json' },
     });
   })
   .constant('SMS_ORDER_PREFIELDS_VALUES', [

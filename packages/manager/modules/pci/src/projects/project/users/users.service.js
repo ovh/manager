@@ -1,14 +1,17 @@
 import get from 'lodash/get';
+import map from 'lodash/map';
 import { OPENRC_VERSION } from './download-openrc/download-openrc.constants';
 
 export default class PciProjectsProjectUsersService {
   /* @ngInject */
   constructor(
     $q,
+    OvhApiCloudProject,
     OvhApiCloudProjectRegion,
     OvhApiCloudProjectUser,
   ) {
     this.$q = $q;
+    this.OvhApiCloudProject = OvhApiCloudProject;
     this.OvhApiCloudProjectRegion = OvhApiCloudProjectRegion;
     this.OvhApiCloudProjectUser = OvhApiCloudProjectUser;
   }
@@ -33,7 +36,7 @@ export default class PciProjectsProjectUsersService {
       .$promise;
   }
 
-  add(projectId, { description }) {
+  add(projectId, { description }, roles) {
     return this.OvhApiCloudProjectUser
       .v6()
       .save(
@@ -42,6 +45,7 @@ export default class PciProjectsProjectUsersService {
         },
         {
           description,
+          roles,
         },
       )
       .$promise;
@@ -116,5 +120,38 @@ export default class PciProjectsProjectUsersService {
         },
       )
       .$promise;
+  }
+
+  getProjectRoles(projectId) {
+    return this.OvhApiCloudProject
+      .v6()
+      .role({
+        serviceName: projectId,
+      })
+      .$promise
+      .then((response) => {
+        const roles = map(
+          response.roles,
+          ({ description, name, id }) => ({ id, description, name }),
+        );
+
+        const buildRoles = permissionRoles => map(roles, role => ({
+          ...role,
+          active: [...permissionRoles || []].includes(role.id),
+        }));
+
+        const services = map(response.services, ({ name, permissions }) => ({
+          name,
+          permissions: permissions.map(({ label, roles: permissionRoles }) => ({
+            name: label,
+            roles: buildRoles(permissionRoles),
+          })),
+        }));
+
+        return {
+          roles,
+          services,
+        };
+      });
   }
 }

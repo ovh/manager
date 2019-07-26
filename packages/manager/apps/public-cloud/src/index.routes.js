@@ -3,7 +3,7 @@ import { DEFAULT_PROJECT_KEY } from './index.constants';
 export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
   $stateProvider
     .state('app', {
-      url: '/',
+      url: '/?onboarding',
       redirectTo: trans => trans.injector().get('publicCloud')
         .getDefaultProject()
         .then(projectId => (projectId ? ({
@@ -11,7 +11,7 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
           params: {
             projectId,
           },
-        }) : ({ state: 'pci.projects.onboarding' }))),
+        }) : ({ state: trans.params().onboarding ? 'pci.projects.onboarding' : 'pci.projects.new' }))),
     });
 
   $stateProvider

@@ -6,6 +6,7 @@ import 'angular-translate';
 import 'ovh-api-services';
 import 'ovh-ui-angular';
 
+import analyticsDataPlatform from './analytics-data-platform';
 import billing from './billing';
 import contacts from './contacts';
 import creating from './creating';
@@ -16,6 +17,7 @@ import kubernetes from './kubernetes';
 import sshKeys from './ssh-keys';
 import privateNetworks from './private-networks';
 import quota from './quota';
+import privateRegistry from './private-registry';
 import sidebar from './sidebar';
 import storages from './storages';
 import users from './users';
@@ -29,6 +31,7 @@ const moduleName = 'ovhManagerPciProject';
 
 angular
   .module(moduleName, [
+    analyticsDataPlatform,
     billing,
     contacts,
     creating,
@@ -39,6 +42,7 @@ angular
     privateNetworks,
     quota,
     regions,
+    privateRegistry,
     'oui',
     'ovhManagerCore',
     'ovh-api-services',

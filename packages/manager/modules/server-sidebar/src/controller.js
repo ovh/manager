@@ -18,7 +18,6 @@ import zipObject from 'lodash/zipObject';
 import { MANAGER_URLS } from './constants';
 import { SIDEBAR_CONFIG } from './sidebar.constants';
 import { ORDER_URLS, SIDEBAR_ORDER_CONFIG } from './order.constants';
-import { DEDICATED_SIDEBAR_CONFIG, DEDICATED_ORDER_SIDEBAR_CONFIG } from './dedicated.constants';
 import { WEB_SIDEBAR_CONFIG, WEB_ORDER_SIDEBAR_CONFIG } from './web.constants';
 
 // we should avoid require, but JSURL don't provide an es6 export
@@ -55,11 +54,6 @@ export default class OvhManagerServerSidebarController {
         .then((universes) => {
           this.SIDEBAR_CONFIG = SIDEBAR_CONFIG;
           this.SIDEBAR_ORDER_CONFIG = SIDEBAR_ORDER_CONFIG;
-
-          if (this.universe === 'DEDICATED' && find(universes, { universe: this.universe.toLowerCase() })) {
-            this.SIDEBAR_CONFIG = DEDICATED_SIDEBAR_CONFIG;
-            this.SIDEBAR_ORDER_CONFIG = DEDICATED_ORDER_SIDEBAR_CONFIG;
-          }
 
           if (this.universe === 'WEB' && find(universes, { universe: this.universe.toLowerCase() })) {
             this.SIDEBAR_CONFIG = WEB_SIDEBAR_CONFIG;
@@ -167,6 +161,7 @@ export default class OvhManagerServerSidebarController {
           title: this.$translate.instant(`server_sidebar_item_${service.id}_title`),
           allowSubItems: hasSubItems,
           allowSearch: hasSubItems,
+          forceDisplaySearch: hasSubItems && get(service, 'forceDisplaySearch'),
           infiniteScroll: hasSubItems,
           state: isExternal ? null : get(service, 'state'),
           loadOnState: get(service, 'loadOnState'),
@@ -195,6 +190,7 @@ export default class OvhManagerServerSidebarController {
     return this.$q
       .all(promises)
       .then((typesServices) => {
+        this.addItems(get(parentService, 'children'), parent);
         if (sumBy(typesServices, typeServices => typeServices.items.length) === 0) {
           this.SidebarMenu.addMenuItem({
             title: this.$translate.instant('server_sidebar_item_empty_title'),
@@ -204,7 +200,6 @@ export default class OvhManagerServerSidebarController {
           }, parent);
         } else {
           each(typesServices, (typeServices) => {
-            this.addItems(get(parentService, 'children'), parent);
             let items = get(typeServices, 'items');
             const hasSubItems = has(typeServices.type, 'types');
 

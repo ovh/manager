@@ -1,0 +1,19 @@
+<div data-ng-controller="EmailProMXPlanMailingListsDeleteSubscriberCtrl as ctrl">
+    <div data-wizard
+         data-wizard-on-cancel="resetAction"
+         data-wizard-on-finish="deleteSubscribers"
+         data-wizard-title="'mailing_list_tab_subscribers_delete' | translate">
+
+        <div data-wizard-step>
+            <p data-ng-bind-html="'mailing_list_tab_subscribers_heading' | translate: { t0: ctrl.subscribers.length, t1: ctrl.mailingList.name }"
+               data-ng-if="ctrl.subscribers.length > 1"></p>
+            <p data-ng-bind-html="'mailing_list_tab_modal_delete_subscriber_heading' | translate: { t0: ctrl.subscribers[0], t1: ctrl.mailingList.name }"
+               data-ng-if="ctrl.subscribers.length === 1"></p>
+
+            <p data-translate="mailing_list_common_continue_question"></p>
+            <div class="text-center" data-ng-if="ctrl.loading">
+                <oui-spinner></oui-spinner>
+            </div>
+        </div>
+    </div>
+</div>

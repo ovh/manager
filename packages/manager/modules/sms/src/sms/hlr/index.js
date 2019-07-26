@@ -14,7 +14,10 @@ angular.module(moduleName, []).config(($stateProvider) => {
         controllerAs: 'SmsHlrCtrl',
       },
     },
-    translations: ['../../dashboard', '.'],
+    translations: {
+      value: ['../../dashboard', '.'],
+      format: 'json',
+    },
   });
 });
 

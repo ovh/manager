@@ -11,7 +11,7 @@
     <div data-ng-if="!$ctrl.isLoading && $ctrl.container">
         <div class="oui-box">
             <p data-translate="pci_projects_project_storages_containers_container_archive_info_storedObjects"
-                data-translate-value-count="{{ $ctrl.container.storedObjects }}"
+                data-translate-value-count="{{ $ctrl.container.storedObjects }}"
                 data-ng-if="$ctrl.archive"></p>
 
             <p data-translate="pci_projects_project_storages_containers_container_object_info_storedObjects"
@@ -22,29 +22,30 @@
                 data-translate-value-bytes="{{$ctrl.container.storedBytes  | RAUnitsBits}}"></p>
 
             <div>
-                <span data-translate="pci_projects_project_storages_containers_container_info_publicUrl"></span>
+                <p data-translate="pci_projects_project_storages_containers_container_info_publicUrl"
+                  class="d-inline-block"></p>
                 <button type="button" class="oui-popover-button"
                     data-oui-popover="{{:: 'pci_projects_project_storages_containers_container_info_publicUrl_help' | translate }}">
                 </button>
                 <oui-clipboard class="mt-1"
-                    data-model="$ctrl.container.publicUrl">
-                </oui-clipboard>
+                    data-model="$ctrl.container.publicUrl"></oui-clipboard>
             </div>
 
-            <div>
-                <span data-translate="pci_projects_project_storages_containers_container_archive_info_staticUrl"
-                    data-ng-if="$ctrl.archive"></span>
-                <span data-translate="pci_projects_project_storages_containers_container_object_info_staticUrl"
-                    data-ng-if="!$ctrl.archive"></span>
+            <div data-ng-if="!$ctrl.archive">
+                <p data-translate="pci_projects_project_storages_containers_container_object_info_staticUrl"
+                  class="d-inline-block"></p>
                 <button type="button" class="oui-popover-button"
-                    data-oui-popover="{{ 'pci_projects_project_storages_containers_container_object_info_staticUrl_help' | translate }}"
-                    data-ng-if="!$ctrl.archive">
+                    data-oui-popover="{{ 'pci_projects_project_storages_containers_container_object_info_staticUrl_help' | translate }}">
                 </button>
                 <oui-clipboard class="mt-1"
                     data-model="$ctrl.container.staticUrl"></oui-clipboard>
             </div>
 
             <div data-ng-if="$ctrl.archive">
+                <p data-translate="pci_projects_project_storages_containers_container_archive_info_staticUrl"></p>
+                <oui-clipboard class="mt-1"
+                    data-model="$ctrl.container.storageGateway"></oui-clipboard>
+
                 <p data-translate="pci_projects_project_storages_containers_container_archive_info_user"
                     data-translate-value-user="{{:: $ctrl.defaultUser }}"></p>
                 <p>

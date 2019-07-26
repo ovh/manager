@@ -1,3 +1,12 @@
+# [2.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-welcome@2.0.0...@ovh-ux/manager-welcome@2.1.0) (2019-07-05)
+
+
+### Features
+
+* add new packages ([09b5158](https://github.com/ovh-ux/manager/commit/09b5158))
+
+
+
 # [2.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-welcome@1.0.1...@ovh-ux/manager-welcome@2.0.0) (2019-03-19)
 
 
