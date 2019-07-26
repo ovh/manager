@@ -7,6 +7,10 @@
     "http",
     "provider"
   ],
+  "homepage": "https://github.com/ovh-ux/ng-ovh-http/tree/master#readme",
+  "bugs": {
+    "url": "https://github.com/ovh-ux/ng-ovh-http/issues"
+  },
   "repository": "ovh-ux/ng-ovh-http",
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
