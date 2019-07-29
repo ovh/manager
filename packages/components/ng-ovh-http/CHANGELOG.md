@@ -1,3 +1,7 @@
+## [4.0.2](https://github.com/ovh-ux/ng-ovh-http/compare/v4.0.1...v4.0.2) (2019-07-29)
+
+
+
 ## [4.0.1](https://github.com/ovh-ux/ng-ovh-http/compare/v4.0.1-beta.0...v4.0.1) (2019-07-29)
 
 
