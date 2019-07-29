@@ -50,7 +50,7 @@
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^2.0.0",
     "@ovh-ux/ng-ovh-checkbox-table": "^1.0.0",
     "@ovh-ux/ng-ovh-contracts": "^3.0.0-beta.3",
-    "@ovh-ux/ng-ovh-telecom-universe-components": "^3.0.3",
+    "@ovh-ux/ng-ovh-telecom-universe-components": "^3.0.6",
     "@ovh-ux/ng-pagination-front": "^8.0.0-alpha.0",
     "@uirouter/angularjs": "^1.0.15",
     "angular": "^1.7.5",
@@ -59,7 +59,7 @@
     "font-awesome": "4.7.0",
     "oclazyload": "^1.1.0",
     "ovh-angular-ui-confirm-modal": "^1.0.2",
-    "ovh-api-services": "^7.0.0",
+    "ovh-api-services": "^8.0.0",
     "ovh-manager-webfont": "^1.0.2",
     "ovh-ui-kit": "^2.33.3",
     "ovh-ui-kit-bs": "^2.1.1"
