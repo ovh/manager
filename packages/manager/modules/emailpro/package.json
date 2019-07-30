@@ -18,6 +18,6 @@
   },
   "peerDependencies": {
     "angular": "^1.7.5",
-    "ovh-api-services": "^8.0.0"
+    "ovh-api-services": "^8.0.1"
   }
 }
