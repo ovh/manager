@@ -10,6 +10,7 @@ const component = {
     nodes: '<',
     projectId: '<',
     project: '<',
+    refreshNodes: '<',
   },
   template,
   controller,
