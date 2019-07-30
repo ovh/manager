@@ -10,6 +10,7 @@ import tickets from './tickets';
 import component from './support.component';
 import { registerState } from './support.routing';
 
+import 'font-awesome/css/font-awesome.css';
 import 'ovh-ui-kit/dist/oui.css';
 import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
 

@@ -1,4 +1,5 @@
 import support from '@ovh-ux/manager-support';
+import ngOvhOtrs from '@ovh-ux/ng-ovh-otrs';
 import uiRouter from '@uirouter/angularjs';
 import angular from 'angular';
 
@@ -14,6 +15,7 @@ import {
 
 angular
   .module('supportApp', [
+    ngOvhOtrs,
     support,
     uiRouter,
   ])
@@ -22,4 +24,6 @@ angular
   })
   .config(/* @ngInject */ ($stateProvider) => {
     $stateProvider.state(APP_ACCOUNT_STATE.name, APP_ACCOUNT_STATE);
-  });
+  })
+  .config(/* @ngInject */ OtrsPopupProvider => OtrsPopupProvider
+    .setBaseUrlTickets('/support/ticket'));

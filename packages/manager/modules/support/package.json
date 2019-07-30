@@ -27,11 +27,12 @@
   },
   "peerDependencies": {
     "@ovh-ux/manager-core": "^6.1.2",
-    "@ovh-ux/ng-ovh-otrs": "^7.1.7",
+    "@ovh-ux/ng-ovh-otrs": "^8.0.1",
     "@ovh-ux/ng-translate-async-loader": "^2.0.0",
     "@uirouter/angularjs": "^1.0.22",
     "angular": "^1.7.8",
     "angular-translate": "^2.18.1",
+    "font-awesome": "^4.7.0",
     "oclazyload": "^1.1.0",
     "ovh-api-services": "^8.0.0",
     "ovh-ui-angular": "^3.6.1",

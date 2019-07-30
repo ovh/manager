@@ -69,4 +69,13 @@
             data-text="{{:: 'ovhManagerSupport_tickets_grid_action_goToTicket' | translate }}"
             data-on-click=":: $ctrl.goToTicket($row.ticketId)"></oui-action-menu-item>
     </oui-action-menu>
+
+    <extra-top>
+        <button class="oui-button oui-button_secondary oui-button_icon-left"
+                type="button"
+                data-ng-click="$ctrl.openSupport()">
+            <span class="oui-icon oui-icon-add pr-1" aria-hidden="true"></span>
+            <span data-translate="ovhManagerSupport_tickets_grid_top_createTicket"></span>
+        </button>
+    </extra-top>
 </oui-datagrid>

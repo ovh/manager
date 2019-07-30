@@ -1,5 +1,6 @@
 import angular from 'angular';
 
+import ngOvhOtrs from '@ovh-ux/ng-ovh-otrs';
 import '@ovh-ux/ng-translate-async-loader';
 import '@uirouter/angularjs';
 import 'angular-translate';
@@ -18,6 +19,7 @@ const moduleName = 'ovhManagerSupportTickets';
 
 angular
   .module(moduleName, [
+    ngOvhOtrs,
     'ngTranslateAsyncLoader',
     'oui',
     'pascalprecht.translate',

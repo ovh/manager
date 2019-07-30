@@ -1,3 +1,4 @@
+import controller from './tickets.controller';
 import template from './tickets.html';
 
 export default {
@@ -7,6 +8,7 @@ export default {
     gridColumnStateTypeOptions: '<',
     tickets: '<',
   },
+  controller,
   name: 'tickets',
   template,
 };
