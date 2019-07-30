@@ -5,6 +5,7 @@ import isNil from 'lodash/isNil';
 import map from 'lodash/map';
 import mapValues from 'lodash/mapValues';
 import omit from 'lodash/omit';
+import some from 'lodash/some';
 
 import Flavor from './flavor.class';
 import FlavorGroup from './flavor-group.class';
@@ -34,9 +35,10 @@ export default class FlavorsList {
       .then(({ flavors, prices }) => map(
         groupBy(flavors.filter(({ planCodes }) => !isNil(planCodes.hourly)), 'name'),
         groupedFlavors => new Flavor({
-          ...omit(groupedFlavors[0], ['id', 'region']),
+          ...omit(groupedFlavors[0], ['available', 'id', 'region']),
+          available: some(groupedFlavors, 'available'),
           prices: mapValues(groupedFlavors[0].planCodes, planCode => prices[planCode].price),
-          regions: map(groupedFlavors, ({ id, region }) => ({ id, region })),
+          regions: map(filter(groupedFlavors, 'available'), ({ id, region }) => ({ id, region })),
           frequency: get(CPU_FREQUENCY, groupedFlavors[0].type),
           groupName: groupedFlavors[0].groupName.replace(/-flex/, ''),
         }),
