@@ -1,3 +1,12 @@
+## [1.1.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@1.1.1...@ovh-ux/manager-pci@1.1.2) (2019-07-30)
+
+
+### Bug Fixes
+
+* **pci.project.kube:** disable cache for node refresh ([#1131](https://github.com/ovh-ux/manager/issues/1131)) ([b6f727b](https://github.com/ovh-ux/manager/commit/b6f727b))
+
+
+
 ## [1.1.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@1.1.0...@ovh-ux/manager-pci@1.1.1) (2019-07-24)
 
 
