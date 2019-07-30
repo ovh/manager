@@ -1,0 +1,127 @@
+<header>
+    <oui-back-button data-on-click=":: $ctrl.goBack()">
+        <span data-ng-bind=":: $ctrl.ticket.subject"></span>
+    </oui-back-button>
+</header>
+
+<div class="container-fluid">
+    <section class="row">
+        <div class="col-lg-9">
+            <h3 data-translate="ovhManagerSupport_ticket_generalInformation_header"></h3>
+
+            <dl class="row">
+                <dt
+                    class="col-sm-4 col-md-2 text-sm-right"
+                    data-translate="ovhManagerSupport_ticket_generalInformation_service"></dt>
+                <dd
+                    class="col-sm-8 col-md-4"
+                    data-ng-bind=":: $ctrl.ticket.serviceName.display"></dd>
+                <dt
+                    class="col-sm-4 col-md-2 text-sm-right"
+                    data-translate="ovhManagerSupport_ticket_generalInformation_state"></dt>
+                <dd
+                    class="col-sm-8 col-md-4"
+                    data-ng-bind=":: $ctrl.ticket.state.display"></dd>
+                <dt
+                    class="col-sm-4 col-md-2 text-sm-right"
+                    data-translate="ovhManagerSupport_ticket_generalInformation_type"></dt>
+                <dd
+                    class="col-sm-8 col-md-4"
+                    data-ng-bind=":: $ctrl.ticket.type.display"></dd>
+                <dt
+                    class="col-sm-4 col-md-2 text-sm-right"
+                    data-translate="ovhManagerSupport_ticket_generalInformation_creationDate"></dt>
+                <dd class="col-sm-8 col-md-4">
+                    <time
+                        data-ng-bind=":: $ctrl.ticket.creationDate | date: 'short'"
+                        datetime="{{:: $ctrl.ticket.creationDate }}"></time>
+                </dd>
+                <dt
+                    class="col-sm-4 col-md-2 text-sm-right"
+                    data-translate="ovhManagerSupport_ticket_generalInformation_updateDate"></dt>
+                <dd class="col-sm-8 col-md-4">
+                    <time
+                        data-ng-bind=":: $ctrl.ticket.updateDate | date: 'short'"
+                        datetime="{{:: $ctrl.ticket.updateDate }}"></time>
+                </dd>
+            </dl>
+        </div>
+
+        <div class="col-lg-3">
+            <button
+                class="oui-button oui-button_secondary oui-button_full-width"
+                data-ng-click=":: $ctrl.close()"
+                data-ng-if=":: $ctrl.ticket.isOpened()"
+                data-translate="ovhManagerSupport_ticket_generalInformation_closeTicket"
+                type="button"></button>
+        </div>
+    </section>
+
+    <h3 data-translate="ovhManagerSupport_ticket_reply_header"></h3>
+
+    <section>
+        <form
+            class="row"
+            name="$ctrl.replyForm">
+            <div class="col-lg-9">
+                <textarea
+                    class="form-control mb-3"
+                    data-ng-model="$ctrl.replyMessage"
+                    required
+                    rows="4">
+                </textarea>
+            </div>
+
+            <div class="col-lg-3">
+                <button
+                    class="oui-button oui-button_secondary oui-button_full-width"
+                    data-ng-click=":: $ctrl.reopen()"
+                    data-ng-disabled="!$ctrl.replyForm.$valid"
+                    data-ng-if=":: $ctrl.ticket.isClosed()"
+                    data-translate="ovhManagerSupport_ticket_reply_reopen"
+                    type="submit"></button>
+                <button
+                    class="oui-button oui-button_secondary oui-button_full-width"
+                    data-ng-click=":: $ctrl.reply()"
+                    data-ng-disabled="!$ctrl.replyForm.$valid"
+                    data-ng-if=":: $ctrl.ticket.isOpened()"
+                    data-translate="ovhManagerSupport_ticket_reply_reply"
+                    type="submit"></button>
+            </div>
+        </form>
+    </section>
+
+    <section class="row">
+        <div class="col-lg-9">
+            <h3 data-translate="ovhManagerSupport_ticket_messages_header"></h3>
+
+            <div
+                class="oui-box"
+                data-ng-class="{
+                    'oui-box_light': message.isFromCustomer(),
+                }"
+                data-ng-repeat="message in ::$ctrl.ticket.messages | orderBy:'creationDate':true track by message.messageId">
+                <dl class="row">
+                    <dt
+                        class="col-sm-4 col-md-2 text-sm-right"
+                        data-translate="ovhManagerSupport_ticket_messages_sender"></dt>
+                    <dd
+                        class="col-sm-8 col-md-4"
+                        data-ng-bind=":: message.from.display"></dd>
+                    <dt
+                        class="col-sm-4 col-md-2 text-sm-right"
+                        data-translate="ovhManagerSupport_ticket_messages_dateOfReceipt"></dt>
+                    <dd class="col-sm-8 col-md-4">
+                        <time
+                            data-ng-bind=":: message.creationDate | date: 'short'"
+                            datetime="{{:: message.creationDate }}"></time>
+                    </dd>
+                </dl>
+
+                <pre
+                    class="message"
+                    data-ng-bind-html=":: message.body | htmlStringLinky:'_blank'"></pre>
+            </div>
+        </div>
+    </section>
+</div>

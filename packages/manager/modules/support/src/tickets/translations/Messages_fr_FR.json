@@ -1,0 +1,10 @@
+{
+  "ovhManagerSupport_tickets_grid_column_creationDate_header": "Date de création",
+  "ovhManagerSupport_tickets_grid_column_lastMessageFrom_header": "Dernier intervenant",
+  "ovhManagerSupport_tickets_grid_column_ticketNumber_header": "Numéro de ticket",
+  "ovhManagerSupport_tickets_grid_column_serviceName_header": "Service",
+  "ovhManagerSupport_tickets_grid_column_subject_header": "Sujet",
+  "ovhManagerSupport_tickets_grid_column_state_header": "État",
+  "ovhManagerSupport_tickets_grid_column_updateDate_header": "Date de dernière mise à jour",
+  "ovhManagerSupport_tickets_grid_action_goToTicket": "Voir le détail"
+}

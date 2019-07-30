@@ -1,0 +1,10 @@
+{
+  "ovhManagerSupport_ticket_serviceName_none": "Autre service",
+
+  "ovhManagerSupport_ticket_state_closed": "Clos",
+  "ovhManagerSupport_ticket_state_open": "En cours",
+  "ovhManagerSupport_ticket_state_unknown": "Inconnu",
+
+  "ovhManagerSupport_ticket_type_criticalIntervention": "Intervention critique",
+  "ovhManagerSupport_ticket_type_genericRequest": "Requête générique"
+}
