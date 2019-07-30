@@ -7,7 +7,7 @@
 ## Install
 
 ```sh
-yarn add @ovh-ux/ng-ovh-http
+yarn add @ovh-ux/ng-ovh-jsplumb
 ```
 
 ## Usage
