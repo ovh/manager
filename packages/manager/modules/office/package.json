@@ -13,7 +13,7 @@
   "main": "./src/index.js",
   "dependencies": {
     "jsurl": "^0.1.4",
-    "lodash": "^4.17.14",
+    "lodash": "^4.17.15",
     "moment": "^2.16.0"
   },
   "devDependencies": {

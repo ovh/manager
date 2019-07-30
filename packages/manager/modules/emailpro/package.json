@@ -11,7 +11,7 @@
   "author": "OVH SAS",
   "main": "src/index.js",
   "dependencies": {
-    "lodash": "^4.17.14",
+    "lodash": "^4.17.15",
     "moment": "^2.16.0",
     "punycode.js": "npm:punycode@^1.2.4",
     "validator": "^11.1.0"

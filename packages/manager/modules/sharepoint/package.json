@@ -13,13 +13,13 @@
   "dependencies": {
     "filesize": "^3.5.11",
     "jsurl": "^0.1.5",
-    "lodash": "^4.17.14"
+    "lodash": "^4.17.15"
   },
   "peerDependencies": {
     "@ovh-ux/web-universe-components": "^4.0.1",
     "angular": "^1.7.5",
     "ovh-api-services": "^8.0.0",
-    "ovh-ui-angular": "^3.5.1",
-    "ovh-ui-kit": "^2.33.3"
+    "ovh-ui-angular": "^3.6.1",
+    "ovh-ui-kit": "^2.33.4"
   }
 }
