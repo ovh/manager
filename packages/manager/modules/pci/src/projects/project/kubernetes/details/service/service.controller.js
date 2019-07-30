@@ -9,7 +9,6 @@ export default class KubernetesServiceCtrl {
     $translate,
     CucCloudMessage,
     CucControllerHelper,
-    CucServiceHelper,
     Kubernetes,
   ) {
     this.$scope = $scope;
@@ -17,7 +16,6 @@ export default class KubernetesServiceCtrl {
     this.$translate = $translate;
     this.CucCloudMessage = CucCloudMessage;
     this.CucControllerHelper = CucControllerHelper;
-    this.CucServiceHelper = CucServiceHelper;
     this.Kubernetes = Kubernetes;
   }
 
@@ -47,7 +45,7 @@ export default class KubernetesServiceCtrl {
         this.CucControllerHelper.constructor
           .downloadContent({ fileContent: config.content, fileName: `${config.fileName}.yml` });
       })
-      .catch(error => this.CucServiceHelper.errorHandler('kube_service_file_error')(error))
+      .catch(error => this.CucCloudMessage.error([this.$translate.instant('kube_service_file_error'), (error.data && error.data.message) || ''].join(' ')))
       .finally(() => { this.loadingKubeConfig = false; });
   }
 }

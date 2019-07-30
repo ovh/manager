@@ -33,7 +33,7 @@ export default class kubernetesTerminateCtrl {
       .catch(error => this.goBack(
         this.$translate.instant('kube_service_terminate_error', {
           message: get(error, 'data.message'),
-        }),
-      ), 'error');
+        }), 'error',
+      ));
   }
 }

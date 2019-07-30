@@ -51,7 +51,7 @@
                             data-ng-class="{
                                     'oui-status_success' : $ctrl.cluster.status === $ctrl.STATUS.READY,
                                     'oui-status_warning' : $ctrl.Kubernetes.constructor.isProcessing($ctrl.cluster.status),
-                                    'oui-status_error' : $ctrl.cluster.status === $ctrl.STATUS.ERROR
+                                    'oui-status_error' : $ctrl.Kubernetes.constructor.isError($ctrl.cluster.status) || $ctrl.cluster.status === $ctrl.STATUS.SUSPENDED,
                                     }"
                             data-translate="{{ 'kube_service_cluster_status_' + $ctrl.cluster.status }}">
                     </span>

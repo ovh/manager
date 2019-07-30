@@ -1,4 +1,4 @@
-import { CONFIG_FILENAME, PROCESSING_STATUS } from './constants';
+import { CONFIG_FILENAME, ERROR_STATUS, PROCESSING_STATUS } from './constants';
 
 export default class Kubernetes {
   /* @ngInject */
@@ -32,6 +32,10 @@ export default class Kubernetes {
 
   static isProcessing(status) {
     return PROCESSING_STATUS.includes(status);
+  }
+
+  static isError(status) {
+    return ERROR_STATUS.includes(status);
   }
 
   formatFlavor(flavor) {
