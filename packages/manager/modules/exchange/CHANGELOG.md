@@ -1,3 +1,17 @@
+## [1.1.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-exchange@1.1.0...@ovh-ux/manager-exchange@1.1.1) (2019-07-31)
+
+
+### Bug Fixes
+
+* **exchange:** replace upperCase with toUpper ([#1118](https://github.com/ovh-ux/manager/issues/1118)) ([d062b57](https://github.com/ovh-ux/manager/commit/d062b57))
+* **i18n:** add missing translations [CDS 15] ([eab997d](https://github.com/ovh-ux/manager/commit/eab997d))
+* **i18n:** add missing translations [CDS 16] ([a28734b](https://github.com/ovh-ux/manager/commit/a28734b))
+* **i18n:** add missing translations [CDS 17] ([c52ac93](https://github.com/ovh-ux/manager/commit/c52ac93))
+* **i18n:** add missing translations [CDS 18] ([ef645d9](https://github.com/ovh-ux/manager/commit/ef645d9))
+* **i18n:** add missing translations [CDS 20] ([0e68589](https://github.com/ovh-ux/manager/commit/0e68589))
+
+
+
 # [1.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-exchange@1.0.0...@ovh-ux/manager-exchange@1.1.0) (2019-07-22)
 
 

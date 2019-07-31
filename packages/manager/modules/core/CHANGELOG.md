@@ -1,3 +1,15 @@
+## [6.1.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@6.1.2...@ovh-ux/manager-core@6.1.3) (2019-07-31)
+
+
+### Bug Fixes
+
+* **core:** remove extra cs_CZ language from constant file ([#1137](https://github.com/ovh-ux/manager/issues/1137)) ([4bdc45c](https://github.com/ovh-ux/manager/commit/4bdc45c))
+* **i18n:** add missing translations [CDS 15] ([eab997d](https://github.com/ovh-ux/manager/commit/eab997d))
+* **i18n:** add missing translations [CDS 17] ([c52ac93](https://github.com/ovh-ux/manager/commit/c52ac93))
+* **i18n:** add missing translations [CDS 20] ([0e68589](https://github.com/ovh-ux/manager/commit/0e68589))
+
+
+
 ## [6.1.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@6.1.1...@ovh-ux/manager-core@6.1.2) (2019-07-22)
 
 
