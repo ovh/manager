@@ -29,6 +29,12 @@ export default /* @ngInject */($stateProvider) => {
       }),
 
       goBack: /* @ngInject */ goToInstances => goToInstances,
+
+      prices: /* @ngInject */ (
+        me,
+        PciProjectsProjectInstanceService,
+        project,
+      ) => PciProjectsProjectInstanceService.getExtraBandwidthCost(project, me),
     },
   });
 };

@@ -18,8 +18,8 @@
   "peerDependencies": {
     "@ovh-ux/web-universe-components": "^4.0.1",
     "angular": "^1.7.5",
-    "ovh-api-services": "^7.0.0",
-    "ovh-ui-angular": "^3.3.3",
+    "ovh-api-services": "^8.0.1",
+    "ovh-ui-angular": "^3.5.1",
     "ovh-ui-kit": "^2.33.3"
   }
 }

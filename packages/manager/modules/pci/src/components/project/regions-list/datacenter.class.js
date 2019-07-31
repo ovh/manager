@@ -33,4 +33,8 @@ export default class Datacenter {
   isAvailable() {
     return this.available;
   }
+
+  hasExtraBandwidthCost() {
+    return ['ASIA'].includes(this.continentCode);
+  }
 }

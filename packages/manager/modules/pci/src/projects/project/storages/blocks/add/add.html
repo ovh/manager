@@ -26,6 +26,7 @@
             data-on-submit="$ctrl.onTypeChange()"
             data-navigation="$ctrl.selectedType"
             data-editable="!$ctrl.loadings.save"
+            data-loading="$ctrl.loadings.size"
             name="block_storage_add_type">
             <div class="container-fluid px-0"
                 data-ng-if="$ctrl.typeRegionPrices">
@@ -52,7 +53,9 @@
             data-loading="$ctrl.loadings.size"
             data-editable="!$ctrl.loadings.save"
             name="block_storage_add_size">
-            <oui-field data-size="xl" data-help-text="{{:: 'pci_projects_project_storages_blocks_add_size_help' | translate }}">
+            <oui-field data-size="xl"
+                data-ng-if="$ctrl.storage.type"
+                data-help-text="{{:: 'pci_projects_project_storages_blocks_add_size_help' | translate }}">
                 <div class="d-inline-block">
                     <oui-numeric
                         data-name="size"

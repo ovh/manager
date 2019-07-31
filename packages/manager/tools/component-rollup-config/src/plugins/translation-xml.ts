@@ -2,18 +2,7 @@ import { createFilter } from 'rollup-pluginutils';
 import get from 'lodash/get';
 import mapValues from 'lodash/mapValues';
 import set from 'lodash/set';
-
-const filterText = (text) => {
-  if (text) {
-    const filtered = text
-      .toString()
-      .replace(/&#13;\n/g, ' ') // carriage returns
-      .replace(/&#160;/g, ' ') // spaces
-      .replace(/\{(\s?\d\s?)\}/g, '{{t$1}}'); // {0} => {{t0}}
-    return filtered;
-  }
-  return text;
-};
+import translationNormalize from './common';
 
 export = (opts:any = {}) => {
   const include = opts.include || '**/Messages_*.xml';
@@ -31,7 +20,7 @@ export = (opts:any = {}) => {
         set(translations, get(match, '[1]'), get(match, '[4]', ''));
       }
       return {
-        code: `export default ${JSON.stringify(mapValues(translations, filterText))};`,
+        code: `export default ${JSON.stringify(mapValues(translations, translationNormalize))};`,
         map: null,
       };
     },
