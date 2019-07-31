@@ -7,6 +7,7 @@ export default class CloudProjectComputeInfrastructureListCtrl {
   constructor(
     $q,
     $translate,
+    coreConfig,
     CucCloudMessage,
     CucRegionService,
     ovhUserPref,
@@ -14,6 +15,7 @@ export default class CloudProjectComputeInfrastructureListCtrl {
   ) {
     this.$q = $q;
     this.$translate = $translate;
+    this.coreConfig = coreConfig;
     this.CucCloudMessage = CucCloudMessage;
     this.CucRegionService = CucRegionService;
     this.ovhUserPref = ovhUserPref;
