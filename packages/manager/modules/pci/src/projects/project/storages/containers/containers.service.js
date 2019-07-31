@@ -16,6 +16,7 @@ import {
   OBJECT_CONTAINER_TYPE_STATIC,
   OBJECT_CONTAINER_TYPE_PUBLIC,
   OBJECT_TYPE_SEALED,
+  STORAGE_GATEWAY,
   X_AUTH_TOKEN,
   X_CONTAINER_HEADERS_REGEX,
   X_CONTAINER_READ,
@@ -27,11 +28,13 @@ export default class PciStoragesContainersService {
   constructor(
     $http,
     $q,
+    coreConfig,
     OvhApiCloudProjectStorage,
     OvhApiCloudProjectUser,
   ) {
     this.$http = $http;
     this.$q = $q;
+    this.coreConfig = coreConfig;
     this.OvhApiCloudProjectStorage = OvhApiCloudProjectStorage;
     this.OvhApiCloudProjectUser = OvhApiCloudProjectUser;
   }
@@ -152,6 +155,10 @@ export default class PciStoragesContainersService {
         objects: map(container.objects, object => new ContainerObject(object)),
         id: containerId,
         publicUrl,
+        storageGateway: STORAGE_GATEWAY[this.coreConfig.getRegion()].replace(
+          'REGION',
+          container.region.toLowerCase(),
+        ),
       }));
   }
 
