@@ -20,7 +20,7 @@
     "@ovh-ux/ng-ovh-api-wrappers": "^3.0.0",
     "@ovh-ux/ng-ovh-checkbox-table": "^1.0.0",
     "@ovh-ux/ng-ovh-contracts": "^3.0.0-beta.3",
-    "@ovh-ux/ng-ovh-telecom-universe-components": "^3.0.3",
+    "@ovh-ux/ng-ovh-telecom-universe-components": "^3.0.6",
     "@ovh-ux/ng-pagination-front": "^8.0.0-alpha.0",
     "@uirouter/angularjs": "^1.0.15",
     "CSV-JS": "^1.2.0",
@@ -38,7 +38,7 @@
     "ng-csv": "^0.3.6",
     "oclazyload": "^1.1.0",
     "ovh-angular-ui-confirm-modal": "^1.0.2",
-    "ovh-api-services": "^7.0.0",
+    "ovh-api-services": "^8.0.1",
     "ovh-ngstrap": "^4.0.2",
     "validator-js": "^0.2.1"
   },

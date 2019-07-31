@@ -1,3 +1,12 @@
+## [3.1.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-webpack-config@3.1.2...@ovh-ux/manager-webpack-config@3.1.3) (2019-07-31)
+
+
+### Bug Fixes
+
+* **webpack-config:** normalize json with webpack loader ([e4d66b4](https://github.com/ovh-ux/manager/commit/e4d66b4))
+
+
+
 ## [3.1.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-webpack-config@3.1.1...@ovh-ux/manager-webpack-config@3.1.2) (2019-07-15)
 
 

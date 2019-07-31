@@ -1,3 +1,13 @@
+## [1.1.1](http://@ovh-ux/manager-office/compare/@ovh-ux/manager-office@1.1.0...@ovh-ux/manager-office@1.1.1) (2019-07-31)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 13] ([9a53791](http://@ovh-ux/manager-office/commits/9a53791))
+* **i18n:** add missing translations [CDS 19] ([13cc3e5](http://@ovh-ux/manager-office/commits/13cc3e5))
+
+
+
 # [1.1.0](http://@ovh-ux/manager-office/compare/@ovh-ux/manager-office@1.0.0...@ovh-ux/manager-office@1.1.0) (2019-07-22)
 
 

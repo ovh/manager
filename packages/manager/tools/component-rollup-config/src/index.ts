@@ -16,6 +16,7 @@ import sass from 'rollup-plugin-sass';
 import translationInject from './plugins/translation-inject';
 import translationUiRouter from './plugins/translation-ui-router';
 import translationXML from './plugins/translation-xml';
+import common from './plugins/common';
 
 const defaultName = path.basename(process.cwd());
 
@@ -125,6 +126,10 @@ config.plugins = {
   translationInject,
   translationUiRouter,
   translationXML,
+};
+
+config.common = {
+  translationNormalize: common.translationNormalize,
 };
 
 export = config;
