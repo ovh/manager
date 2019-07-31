@@ -1,3 +1,12 @@
+## [14.0.3](https://github.com/ovh-ux/ng-ovh-utils/compare/v14.0.3-beta.1...v14.0.3) (2019-07-31)
+
+
+### Bug Fixes
+
+* **humanReadableSize:** replace service by a filter ([#35](https://github.com/ovh-ux/ng-ovh-utils/issues/35)) ([83d3a76](https://github.com/ovh-ux/ng-ovh-utils/commit/83d3a76))
+
+
+
 ## [14.0.3-beta.1](https://github.com/ovh-ux/ng-ovh-utils/compare/v14.0.3-beta.0...v14.0.3-beta.1) (2019-01-30)
 
 
