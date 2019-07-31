@@ -15,7 +15,7 @@
     "lodash": "^4.17.11"
   },
   "peerDependencies": {
-    "@ovh-ux/ng-ovh-utils": "^14.0.3-beta.1",
+    "@ovh-ux/ng-ovh-utils": "^14.0.3",
     "angular": "^1.7.5",
     "ovh-api-services": "^8.0.0"
   }

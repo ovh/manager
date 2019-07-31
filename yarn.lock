@@ -1876,10 +1876,10 @@
   dependencies:
     lodash "^4.17.11"
 
-"@ovh-ux/ng-ovh-utils@^14.0.3-beta.1":
-  version "14.0.3-beta.1"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-utils/-/ng-ovh-utils-14.0.3-beta.1.tgz#19a1084133fcaed4d6222428a0b75276633383c4"
-  integrity sha512-fTvVrYm48ZsUNgcO+6zKOYxIY7oOaKvmuaZAfPTBg/vNljFpPOUSOT193/BcfOYenDZa3go3wZ0a/M75xJV+RA==
+"@ovh-ux/ng-ovh-utils@^14.0.3":
+  version "14.0.3"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-utils/-/ng-ovh-utils-14.0.3.tgz#d25404dd212714aa3a521f9313206b5756bbc2b6"
+  integrity sha512-7BjFAtuGjFLs8poAmSK2VxwA9TSDMoghqOz3fFIbpps2klU1SJLzYV04pNw/nv6jgKRoD+tROspe/cW1QrTuGw==
   dependencies:
     filesize "^3.6.1"
     lodash "^4.17.11"
