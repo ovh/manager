@@ -71,6 +71,7 @@
                     <div data-ng-if="$ctrl.isCloudDbOrPrivateDb()">
                         <label class="required" for="orderVersion"
                                data-translate="privateDatabase_order_step1_version"></label>
+                        <br />
                         <div class="oui-select oui-select_inline">
                             <select class="oui-select__input" id="orderVersion" name="orderVersion" required
                                     data-ng-change="$ctrl.getDuration()"
@@ -87,6 +88,7 @@
                     <div data-ng-if="$ctrl.isCloudDbOrPrivateDb()">
                         <label class="required" for="orderRam"
                                data-translate="privateDatabase_order_step1_ram"></label>
+                        <br />
                         <div class="oui-select oui-select_inline">
                             <select class="oui-select__input" id="orderRam" name="orderRam" required
                                     data-ng-change="$ctrl.getDuration()"
@@ -103,6 +105,7 @@
                     <div data-ng-if="!$ctrl.isCloudDb()">
                         <label class="required" for="orderHosting"
                                data-translate="privateDatabase_order_step1_hosting"></label>
+                        <br />
                         <div class="oui-select oui-select_inline">
                             <select class="oui-select__input" id="orderHosting" name="orderHosting" required
                                     data-ng-change="$ctrl.onHostingSelected()"
@@ -123,6 +126,7 @@
                     <div data-ng-if="($ctrl.isPrivateDb() && $ctrl.model.hosting === $ctrl.noHostValue) || $ctrl.isCloudDb()">
                         <label class="required" for="orderDc"
                                data-translate="privateDatabase_order_step1_datacenter"></label>
+                        <br />
                         <div class="oui-select oui-select_inline">
                             <select class="oui-select__input" id="orderDc" name="orderDc" required
                                     data-ng-change="$ctrl.getDuration()"
