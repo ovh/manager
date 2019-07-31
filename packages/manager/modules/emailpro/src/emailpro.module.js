@@ -13,7 +13,7 @@ const moduleName = 'Module.emailpro';
 
 angular
   .module(moduleName, [
-    'ovh-utils-angular',
+    'ngOvhUtils',
     'ngRoute',
     'ui.bootstrap',
     'ngSanitize',

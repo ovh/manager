@@ -1876,10 +1876,18 @@
   dependencies:
     lodash "^4.17.11"
 
-"@ovh-ux/ng-ovh-web-universe-components@^4.0.2":
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-web-universe-components/-/ng-ovh-web-universe-components-4.0.2.tgz#3fabe8cc5b91bcb9f67472867b63f45c149c0d1c"
-  integrity sha512-bQKa5dwTQ3qLq2pZCJ+FrJ51o8DnyTWMQ84ohnbWIEFqTBhmxoQGJrBMFw9WndC9oLo5nZnc1qi9BGHVzgZViw==
+"@ovh-ux/ng-ovh-utils@^14.0.3-beta.1":
+  version "14.0.3-beta.1"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-utils/-/ng-ovh-utils-14.0.3-beta.1.tgz#19a1084133fcaed4d6222428a0b75276633383c4"
+  integrity sha512-fTvVrYm48ZsUNgcO+6zKOYxIY7oOaKvmuaZAfPTBg/vNljFpPOUSOT193/BcfOYenDZa3go3wZ0a/M75xJV+RA==
+  dependencies:
+    filesize "^3.6.1"
+    lodash "^4.17.11"
+
+"@ovh-ux/ng-ovh-web-universe-components@^5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-web-universe-components/-/ng-ovh-web-universe-components-5.0.0.tgz#d5075e7c0f77e4c63d82609884474c6f86db6ebd"
+  integrity sha512-FUh5AG87CB8oW8hzMRanmXM1FqTq8qePQwJBuKVy1V377LfbyyseepaodKmB4cBVpoXvMnkyrr0X7DPiiyc0pQ==
 
 "@ovh-ux/ng-pagination-front@^8.0.0-alpha.0":
   version "8.0.0-alpha.0"
@@ -1906,11 +1914,6 @@
   integrity sha512-ynw1xi7AVI/K7Bg6qFO/ApnrSyrr0g4YduWd9fRRZ4H6eUpJUlu3T/SibTzJ/5nyKyg1BnFH/wlB2SEF0Oplpw==
   dependencies:
     lodash "^4.17.11"
-
-"@ovh-ux/ovh-utils-angular@^13.0.4":
-  version "13.0.4"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ovh-utils-angular/-/ovh-utils-angular-13.0.4.tgz#3acf47e4723ab7292f06bc38bf5b4085e66e7916"
-  integrity sha512-om8qsxySKMlYAIMIX/fp665sVxDRLFFTNFtnp5xcuq9sPKYaF6aGFOmxoNd063DUXiWx2fnUGoUiVCRU+b+txw==
 
 "@ovh-ux/rollup-plugin-less-inject@^1.0.1":
   version "1.0.1"

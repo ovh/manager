@@ -17,6 +17,7 @@
     "validator": "^11.1.0"
   },
   "peerDependencies": {
+    "@ovh-ux/ng-ovh-utils": "^14.0.3-beta.1",
     "angular": "^1.7.5",
     "ovh-api-services": "^8.0.0"
   }

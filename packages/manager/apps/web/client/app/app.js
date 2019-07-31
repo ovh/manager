@@ -32,7 +32,7 @@ angular
   .module('App', [
     ovhManagerCore,
     'ovh-angular-pagination-front',
-    'ovh-utils-angular',
+    'ngOvhUtils',
     'ui.bootstrap',
     'ngAria',
     'ngRoute',
