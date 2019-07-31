@@ -1,3 +1,12 @@
+## [1.2.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-navbar@1.2.1...@ovh-ux/manager-navbar@1.2.2) (2019-07-31)
+
+
+### Bug Fixes
+
+* **navbar:** update public cloud entry into by using title case ([#1138](https://github.com/ovh-ux/manager/issues/1138)) ([d824884](https://github.com/ovh-ux/manager/commit/d824884))
+
+
+
 ## [1.2.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-navbar@1.2.0...@ovh-ux/manager-navbar@1.2.1) (2019-07-15)
 
 

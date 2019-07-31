@@ -1,3 +1,13 @@
+## [6.0.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/component-rollup-config@6.0.0...@ovh-ux/component-rollup-config@6.0.1) (2019-07-31)
+
+
+### Bug Fixes
+
+* **component-rollup-config:** translationNormalize regex ([65aea9e](https://github.com/ovh-ux/manager/commit/65aea9e))
+* **webpack-config:** normalize json with webpack loader ([e4d66b4](https://github.com/ovh-ux/manager/commit/e4d66b4))
+
+
+
 # [6.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/component-rollup-config@5.2.2...@ovh-ux/component-rollup-config@6.0.0) (2019-07-22)
 
 
