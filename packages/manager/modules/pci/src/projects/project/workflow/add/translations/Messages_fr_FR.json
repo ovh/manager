@@ -6,7 +6,7 @@
   "pci_workflow_create_select_instance": "Sélectionner une instance",
   "pci_workflow_create_schedule_title": "Définir l'ordonnancement",
   "pci_workflow_create_schedule_rotate7_title": "Rotation 7",
-  "pci_workflow_create_schedule_rotate_description": "Une sauvegarde est effectuée tous les jours entre 22h00 et 6h00 et la rotation maintient un historique des entrées {{ numEntries }}. Lorsque la nouvelle sauvegarde est terminée, la plus ancienne est supprimée.",
+  "pci_workflow_create_schedule_rotate_description": "Une sauvegarde est effectuée tous les jours entre 22h00 et 6h00 et la rotation maintient un historique des {{ numEntries }} dernières entrées. Lorsque la nouvelle sauvegarde est terminée, la plus ancienne est supprimée.",
   "pci_workflow_create_schedule_rotate14_title": "Rotation 14",
   "pci_workflow_create_schedule_custom_title": "Personnalisé",
   "pci_workflow_create_schedule_custom_description": "Choisissez vous-même l'ordonnancement (format UNIX Cron), le nombre de rotations et les exécutions maximales que vous souhaitez.",
