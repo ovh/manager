@@ -1,3 +1,12 @@
+## [1.3.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@1.3.0...@ovh-ux/manager-pci@1.3.1) (2019-08-01)
+
+
+### Bug Fixes
+
+* **pci.project.workflow.add:** update translation ([#1147](https://github.com/ovh-ux/manager/issues/1147)) ([91c96fe](https://github.com/ovh-ux/manager/commit/91c96fe))
+
+
+
 # [1.3.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@1.2.0...@ovh-ux/manager-pci@1.3.0) (2019-08-01)
 
 
