@@ -23,5 +23,6 @@ export default {
     instanceLink: '<',
     vrackLink: '<',
     vrack: '<',
+    scheduleAutoBackup: '<',
   },
 };

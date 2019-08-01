@@ -1,6 +1,8 @@
 import angular from 'angular';
 import filter from 'lodash/filter';
 import find from 'lodash/find';
+import set from 'lodash/set';
+import punycode from 'punycode.js';
 
 import {
   SIZE_UNIT, STATE_TASK_DOING, STATE_TASK_ERROR, ACCOUNT_TYPES, FILTER_TYPE,
@@ -48,6 +50,7 @@ export default /* @ngInject */ ($scope, EmailPro, $q,
         exchangeService: $stateParams.productId,
       }),
     }).then(({ exchange, newAccountOptions, accounts }) => {
+      $scope.accountIds = accounts;
       if (!$scope.is25g()) {
         $scope.orderOutlookDisabled = exchange.offer === EmailPro.accountTypeDedicated
           || (exchange.serverDiagnostic.version === 14
@@ -187,10 +190,23 @@ export default /* @ngInject */ ($scope, EmailPro, $q,
 
   $scope.addNewConfigureAccount = function addNewConfigureAccount() {
     $scope.loadingNewConfiguredAccount = true;
-    EmailPro.getAccounts().then((accounts) => {
-      const newConfiguredAccount = find(accounts.list.results, account => /.*configureme\.me$/.test(account.domain));
-      $scope.setAction('emailpro/account/update/emailpro-account-update', newConfiguredAccount);
-    }).catch(err => $scope.setMessage($translate.instant('emailpro_tab_ACCOUNTS_error_message'), err))
+    const newConfiguredAccount = find($scope.accountIds, (account) => {
+      const [, domain] = account.split('@');
+      return /.*configureme\.me$/.test(domain);
+    });
+    EmailPro.getAccount({
+      exchangeService: $stateParams.productId,
+      primaryEmailAddress: newConfiguredAccount,
+    })
+      .then((account) => {
+        set(account, 'completeDomain', {
+          name: account.domain,
+          displayName: punycode.toUnicode(account.domain),
+          formattedName: punycode.toASCII(account.domain),
+        });
+        $scope.setAction('emailpro/account/update/emailpro-account-update', account);
+      })
+      .catch(err => $scope.setMessage($translate.instant('emailpro_tab_ACCOUNTS_error_message'), err))
       .finally(() => {
         $scope.loadingNewConfiguredAccount = false;
       });
