@@ -1,3 +1,13 @@
+## [1.1.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-emailpro@1.1.1...@ovh-ux/manager-emailpro@1.1.2) (2019-08-01)
+
+
+### Bug Fixes
+
+* **emailpro.account:** display modal to add account ([#232](https://github.com/ovh-ux/manager/issues/232)) ([#1143](https://github.com/ovh-ux/manager/issues/1143)) ([835c965](https://github.com/ovh-ux/manager/commit/835c965))
+* **i18n:** add missing translations [CDS 21] ([94ec9a2](https://github.com/ovh-ux/manager/commit/94ec9a2))
+
+
+
 ## [1.1.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-emailpro@1.1.0...@ovh-ux/manager-emailpro@1.1.1) (2019-07-31)
 
 

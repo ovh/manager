@@ -1,3 +1,18 @@
+# [1.3.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@1.2.0...@ovh-ux/manager-pci@1.3.0) (2019-08-01)
+
+
+### Bug Fixes
+
+* **pci.project.storages.container:** update gateway url constant ([#1140](https://github.com/ovh-ux/manager/issues/1140)) ([fadab4b](https://github.com/ovh-ux/manager/commit/fadab4b))
+* **pci.project.users.roles.matrix:** prevent displaying scroll ([#1129](https://github.com/ovh-ux/manager/issues/1129)) ([d2cca43](https://github.com/ovh-ux/manager/commit/d2cca43))
+
+
+### Features
+
+* **pci.project:** add auto backup ([#972](https://github.com/ovh-ux/manager/issues/972)) ([a342be4](https://github.com/ovh-ux/manager/commit/a342be4))
+
+
+
 # [1.2.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@1.1.2...@ovh-ux/manager-pci@1.2.0) (2019-07-31)
 
 

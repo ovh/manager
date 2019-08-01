@@ -1,3 +1,12 @@
+## [6.1.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@6.1.3...@ovh-ux/manager-core@6.1.4) (2019-08-01)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 21] ([94ec9a2](https://github.com/ovh-ux/manager/commit/94ec9a2))
+
+
+
 ## [6.1.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@6.1.2...@ovh-ux/manager-core@6.1.3) (2019-07-31)
 
 
