@@ -1,3 +1,46 @@
+# [1.3.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@1.2.0...@ovh-ux/manager-pci@1.3.0) (2019-08-01)
+
+
+### Bug Fixes
+
+* **pci.project.storages.container:** update gateway url constant ([#1140](https://github.com/ovh-ux/manager/issues/1140)) ([fadab4b](https://github.com/ovh-ux/manager/commit/fadab4b))
+* **pci.project.users.roles.matrix:** prevent displaying scroll ([#1129](https://github.com/ovh-ux/manager/issues/1129)) ([d2cca43](https://github.com/ovh-ux/manager/commit/d2cca43))
+
+
+### Features
+
+* **pci.project:** add auto backup ([#972](https://github.com/ovh-ux/manager/issues/972)) ([a342be4](https://github.com/ovh-ux/manager/commit/a342be4))
+
+
+
+# [1.2.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@1.1.2...@ovh-ux/manager-pci@1.2.0) (2019-07-31)
+
+
+### Bug Fixes
+
+* **analytics.data.platform.deploy:** check if inputs are undefined ([#1082](https://github.com/ovh-ux/manager/issues/1082)) ([1f6085c](https://github.com/ovh-ux/manager/commit/1f6085c))
+* **i18n:** add missing translations [CDS 13] ([9a53791](https://github.com/ovh-ux/manager/commit/9a53791))
+* **i18n:** add missing translations [CDS 15] ([eab997d](https://github.com/ovh-ux/manager/commit/eab997d))
+* **i18n:** add missing translations [CDS 17] ([c52ac93](https://github.com/ovh-ux/manager/commit/c52ac93))
+* **i18n:** add missing translations [CDS 20] ([0e68589](https://github.com/ovh-ux/manager/commit/0e68589))
+* **pci.project.storages.blocks.add:** fix error message ([#1122](https://github.com/ovh-ux/manager/issues/1122)) ([25e8125](https://github.com/ovh-ux/manager/commit/25e8125))
+
+
+### Features
+
+* **pci.instances:** warn about extra bandwidth cost ([#1089](https://github.com/ovh-ux/manager/issues/1089)) ([0568199](https://github.com/ovh-ux/manager/commit/0568199))
+
+
+
+## [1.1.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@1.1.1...@ovh-ux/manager-pci@1.1.2) (2019-07-30)
+
+
+### Bug Fixes
+
+* **pci.project.kube:** disable cache for node refresh ([#1131](https://github.com/ovh-ux/manager/issues/1131)) ([b6f727b](https://github.com/ovh-ux/manager/commit/b6f727b))
+
+
+
 ## [1.1.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@1.1.0...@ovh-ux/manager-pci@1.1.1) (2019-07-24)
 
 

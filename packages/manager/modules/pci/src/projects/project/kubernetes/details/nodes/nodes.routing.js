@@ -30,6 +30,12 @@ export default /* @ngInject */ ($stateProvider) => {
           kubeId,
         }).$promise,
 
+        refreshNodes: /* @ngInject */ ($state, OvhApiCloudProjectKube) => () => {
+          OvhApiCloudProjectKube.Node().v6().resetQueryCache();
+          OvhApiCloudProjectKube.Node().v6().resetCache();
+          return $state.reload();
+        },
+
         goToKubernetesNodes: ($state, CucCloudMessage, kubeId, projectId) => (message = false, type = 'success') => {
           const reload = message && type === 'success';
 

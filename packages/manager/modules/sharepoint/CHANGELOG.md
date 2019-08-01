@@ -1,3 +1,15 @@
+## [1.0.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-sharepoint@1.0.1...@ovh-ux/manager-sharepoint@1.0.2) (2019-07-31)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 13] ([9a53791](https://github.com/ovh-ux/manager/commit/9a53791))
+* **i18n:** add missing translations [CDS 20] ([0e68589](https://github.com/ovh-ux/manager/commit/0e68589))
+* **sharepoint:** delete account controller name typo ([#1113](https://github.com/ovh-ux/manager/issues/1113)) ([512ac6c](https://github.com/ovh-ux/manager/commit/512ac6c))
+* **sharepoint.activate:** display alert message correctly ([#1116](https://github.com/ovh-ux/manager/issues/1116)) ([6bb9d91](https://github.com/ovh-ux/manager/commit/6bb9d91))
+
+
+
 ## [1.0.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-sharepoint@1.0.0...@ovh-ux/manager-sharepoint@1.0.1) (2019-07-22)
 
 

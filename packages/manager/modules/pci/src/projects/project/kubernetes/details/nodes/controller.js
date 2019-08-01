@@ -10,11 +10,13 @@ export default class KubernetesNodesCtrl {
     CucCloudMessage,
     Kubernetes,
     OvhApiCloudProjectFlavor,
+    OvhApiCloudProjectKube,
   ) {
     this.$state = $state;
     this.CucCloudMessage = CucCloudMessage;
     this.Kubernetes = Kubernetes;
     this.OvhApiCloudProjectFlavor = OvhApiCloudProjectFlavor;
+    this.OvhApiCloudProjectKube = OvhApiCloudProjectKube;
     this.STATUS = STATUS;
   }
 
@@ -44,10 +46,5 @@ export default class KubernetesNodesCtrl {
       .catch(() => {
         set(node, 'formattedFlavor', this.$translate.instant('kube_nodes_flavor_error'));
       });
-  }
-
-
-  refreshNodes() {
-    this.$state.reload();
   }
 }

@@ -9576,10 +9576,10 @@ ovh-api-services@^7.0.0:
   dependencies:
     lodash "^3.10.1"
 
-ovh-api-services@^8.0.0:
-  version "8.0.0"
-  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-8.0.0.tgz#494d33d5896567e1d944f380931733f8ae4d18f5"
-  integrity sha512-1eO4z2+T4mWalDlSjwC/c4ZiG4YwFfky9jSbtVR4sRXWOowegJ5uhzlIR1tQocOjioNBsYpF17K2zxQRVVmwLw==
+ovh-api-services@^8.0.1:
+  version "8.0.1"
+  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-8.0.1.tgz#c582499b5092f8fcf2dd51da735e33fbbf788886"
+  integrity sha512-y3WeCw/adZpQRFoAhlBKnLiFvvyH/wKv6XRWHmn07QmtoMycZSX6JZBMgXGPeJ1nwhPsacrc0sASa2kmdOkNJg==
   dependencies:
     lodash "^4.17.15"
 
