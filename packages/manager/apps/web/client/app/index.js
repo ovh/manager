@@ -19,7 +19,7 @@ import 'angular-messages';
 import 'angular-resource';
 import 'script-loader!flatpickr/dist/flatpickr.min.js';
 import 'ovh-ui-angular';
-import 'jquery.scrollto';
+import 'script-loader!jquery.scrollto/jquery.scrollTo.min.js';
 import 'script-loader!angular-dynamic-locale/dist/tmhDynamicLocale.js';
 import 'angular-flash-alert';
 import 'script-loader!jquery.cookie/jquery.cookie.js';
