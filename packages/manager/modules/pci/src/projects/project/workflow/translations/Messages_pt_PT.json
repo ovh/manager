@@ -3,7 +3,7 @@
   "pci_workflow_name": "Sobrenome",
   "pci_workflow_type": "Fluxo de trabalho",
   "pci_workflow_resource": "Recursos atribuídos",
-  "pci_workflow_schedule": "Programação (UNIX Cron)",
+  "pci_workflow_schedule": "Planeamento (UNIX Cron)",
   "pci_workflow_last_execution": "Última execução (UTC)",
   "pci_workflow_last_execution_status": "Último estado de execução",
   "pci_workflow_delete": "Eliminar",
