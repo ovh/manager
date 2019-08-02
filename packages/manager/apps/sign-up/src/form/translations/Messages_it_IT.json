@@ -1,9 +1,10 @@
 {
- "sign_up_form_identity_step_title": "Identità",
- "sign_up_form_details_step_title": "Coordinate",
- "sign_up_form_activity_step_title": "Attività",
- "sign_up_form_other_informations_step_title": "Ulteriori informazioni",
- "sign_up_form_next_button": "Step seguente",
- "sign_up_form_submit_button": "Crea un account",
- "sign_up_form_submit_error": "Si è verificato un errore durante la creazione dell'account."
+  "sign_up_form_identity_step_title": "Identità",
+  "sign_up_form_details_step_title": "Coordinate",
+  "sign_up_form_activity_step_title": "Attività",
+  "sign_up_form_other_informations_step_title": "Ulteriori informazioni",
+  "sign_up_form_next_button": "Step successivo",
+  "sign_up_form_submit_button": "Crea un account",
+  "sign_up_form_submit_error": "Ops! Si è verificato un errore durante la creazione dell'account.",
+  "sign_up_form_global_information": "Per effettuare l’ordine è necessario inserire tutte le informazioni richieste."
 }

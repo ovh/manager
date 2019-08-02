@@ -1,9 +1,10 @@
 {
- "sign_up_form_identity_step_title": "Identidade ",
- "sign_up_form_details_step_title": "Coordenadas ",
- "sign_up_form_activity_step_title": "Atividade",
- "sign_up_form_other_informations_step_title": "Informações complementares",
- "sign_up_form_next_button": "Etapa seguinte",
- "sign_up_form_submit_button": "Criar uma conta",
- "sign_up_form_submit_error": "Lamentamos, mas ocorreu um erro ao criar a conta."
+  "sign_up_form_identity_step_title": "Identidade ",
+  "sign_up_form_details_step_title": "Coordenadas ",
+  "sign_up_form_activity_step_title": "Atividade",
+  "sign_up_form_other_informations_step_title": "Informações complementares",
+  "sign_up_form_next_button": "Etapa seguinte",
+  "sign_up_form_submit_button": "Criar uma conta",
+  "sign_up_form_submit_error": "Ups! Ocorreu um erro ao criar a conta.",
+  "sign_up_form_global_information": "Para poder encomendar, não se esqueça de introduzir todas as suas informações."
 }

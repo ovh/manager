@@ -1,0 +1,3 @@
+{
+  "pci_workflow_create_schedule_rotate_description": "Ogni giorno viene effettuato un backup tra le 22:00 e le 6:00, con un sistema di rotazione che conserva lo storico degli ultimi {{ numEntries }} elementi. \n Quando il nuovo backup è completato, il più vecchio viene eliminato."
+}

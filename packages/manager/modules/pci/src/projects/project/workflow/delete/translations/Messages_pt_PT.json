@@ -1,0 +1,9 @@
+{
+  "pci_workflow_delete_confirmation": "Tem a certeza de que quer eliminar o planeamento de fluxos de trabalho '{{ workflowName }}'?",
+  "pci_workflow_delete_warning": "Esta ação não pode ser anulada.",
+  "pci_workflow_delete_enter": "Introduza “DELETE” no seguinte campo para confirmar a sua ação.",
+  "pci_workflow_delete_success": "Planeamento do fluxo de trabalho '{{ workflowName }}' eliminado com êxito",
+  "pci_workflow_delete_error": "Ocorreu um erro durante a eliminação: {{ message }}",
+  "pci_workflow_common_delete": "Eliminar",
+  "pci_workflow_common_cancel": "Anular"
+}
