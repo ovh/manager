@@ -16,6 +16,7 @@
     "moment": "^2.24.0"
   },
   "peerDependencies": {
+    "@ovh-ux/ng-ovh-export-csv": "^1.0.0",
     "@ovh-ux/ng-ovh-http": "^4.0.1-beta.0",
     "@ovh-ux/ng-ovh-swimming-poll": "^4.0.0",
     "@ovh-ux/ng-ovh-user-pref": "^1.0.0",
@@ -24,6 +25,8 @@
     "@uirouter/angularjs": "^1.0.20",
     "angular": "^1.7.5",
     "angular-translate": "^2.18.1",
-    "ovh-api-services": "^8.0.1"
+    "ng-ckeditor": "^2.0.5",
+    "ovh-api-services": "^8.0.1",
+    "ovh-ui-angular": "^3.5.1"
   }
 }
