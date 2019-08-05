@@ -8,6 +8,9 @@
         data-variant="light"
         data-values="[version]"
         data-required>
+        <span class="oui-status oui-status_success"
+              data-ng-if="version === $ctrl.highestVersion"
+              data-translate="pci_project_versions_recommended_version"></span>
     </oui-select-picker>
 </div>
 
