@@ -1,3 +1,54 @@
+## [13.25.8](https://github.com/ovh-ux/ovh-manager-web/compare/v13.25.7...v13.25.8) (2019-08-05)
+
+
+### Bug Fixes
+
+* **domain.anycast:** display domain name instead of id ([#1182](https://github.com/ovh-ux/ovh-manager-web/issues/1182)) ([f4fe7db](https://github.com/ovh-ux/ovh-manager-web/commit/f4fe7db))
+* **i18n:** add missing translations ([85780d7](https://github.com/ovh-ux/ovh-manager-web/commit/85780d7))
+* **i18n:** add missing translations ([70ba80c](https://github.com/ovh-ux/ovh-manager-web/commit/70ba80c))
+* **i18n:** add missing translations ([ee44f3c](https://github.com/ovh-ux/ovh-manager-web/commit/ee44f3c))
+* **i18n:** add missing translations ([66860a8](https://github.com/ovh-ux/ovh-manager-web/commit/66860a8))
+* **i18n:** add missing translations ([fcbc9bc](https://github.com/ovh-ux/ovh-manager-web/commit/fcbc9bc))
+* **i18n:** add missing translations ([09c0d90](https://github.com/ovh-ux/ovh-manager-web/commit/09c0d90))
+
+
+
+## [13.25.7](https://github.com/ovh-ux/ovh-manager-web/compare/v13.25.6...v13.25.7) (2019-07-25)
+
+
+### Bug Fixes
+
+* **hosting.runtimes.add:** ensure form validation ([#1177](https://github.com/ovh-ux/ovh-manager-web/issues/1177)) ([fe0f93c](https://github.com/ovh-ux/ovh-manager-web/commit/fe0f93c))
+
+
+
+## [13.25.6](https://github.com/ovh-ux/ovh-manager-web/compare/v13.25.5...v13.25.6) (2019-07-25)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-module-emailpro to v7.1.8 ([#1173](https://github.com/ovh-ux/ovh-manager-web/issues/1173)) ([11e2bbd](https://github.com/ovh-ux/ovh-manager-web/commit/11e2bbd))
+
+
+
+## [13.25.5](https://github.com/ovh-ux/ovh-manager-web/compare/v13.25.4...v13.25.5) (2019-07-19)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-module-emailpro to ^7.2.10 ([#1169](https://github.com/ovh-ux/ovh-manager-web/issues/1169)) ([c62702f](https://github.com/ovh-ux/ovh-manager-web/commit/c62702f))
+
+
+
+## [13.25.4](https://github.com/ovh-ux/ovh-manager-web/compare/v13.25.3...v13.25.4) (2019-07-16)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ovh-module-emailpro to v7.2.9 ([cbd6cd4](https://github.com/ovh-ux/ovh-manager-web/commit/cbd6cd4))
+
+
+
 ## [13.25.3](https://github.com/ovh-ux/ovh-manager-web/compare/v13.25.2...v13.25.3) (2019-07-09)
 
 

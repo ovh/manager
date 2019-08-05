@@ -48,7 +48,7 @@ angular.module('App').controller(
     isValid() {
       if (
         _.has(this, 'entryToCreate.type')
-        && !this.entryToCreate.type.includes(this.HOSTING_RUNTIME.PHP)
+        && !_.includes(this.entryToCreate.type, this.HOSTING_RUNTIME.PHP)
       ) {
         return (
           this.entryToCreate

@@ -1,9 +1,8 @@
 angular.module('App').controller(
   'DomainDnsAnycastActivateCtrl',
   class DomainDnsAnycastActivateCtrl {
-    constructor($scope, $stateParams, $translate, $window, Alerter, atInternet, Domain) {
+    constructor($scope, $translate, $window, Alerter, atInternet, Domain) {
       this.$scope = $scope;
-      this.$stateParams = $stateParams;
       this.$translate = $translate;
       this.$window = $window;
       this.Alerter = Alerter;
@@ -12,7 +11,9 @@ angular.module('App').controller(
     }
 
     $onInit() {
-      this.domainName = this.$stateParams.productId;
+      this.domain = this.$scope.currentActionData;
+      this.domainName = this.domain.displayName;
+      this.domainId = this.domain.name;
       this.optionName = 'dnsAnycast';
       this.loading = false;
 
@@ -25,7 +26,7 @@ angular.module('App').controller(
     loadOptionDetails() {
       this.loading = true;
       return this.Domain
-        .getOptionDetails(this.domainName, this.optionName)
+        .getOptionDetails(this.domainId, this.optionName)
         .then((data) => {
           this.optionDetails = data;
         })
@@ -43,7 +44,7 @@ angular.module('App').controller(
       this.loading = true;
 
       return this.Domain
-        .orderOption(this.domainName, this.optionName, this.optionDetails.duration.duration)
+        .orderOption(this.domainId, this.optionName, this.optionDetails.duration.duration)
         .then((order) => {
           this.order = order;
           this.url = order.url;
