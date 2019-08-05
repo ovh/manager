@@ -21,6 +21,9 @@ export const LANGUAGES = {
     name: 'Lietuviškai',
     key: 'lt_LT',
   }, {
+    name: 'Nederlands',
+    key: 'nl_NL',
+  }, {
     name: 'Polski',
     key: 'pl_PL',
   }, {
