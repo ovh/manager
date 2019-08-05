@@ -83,7 +83,7 @@
                             type="number"
                             data-ng-if="ctrl.entryToEdit.type === 'integer'"
                             class="form-control"
-                            id="envvarValue"
+                            data-ng-attr-id="{{ :: 'envvarValue' }}"
                             name="envvarValue"
                             required
                             data-ng-model="+ctrl.entryToEdit.value">
@@ -92,7 +92,7 @@
                             type="password"
                             data-ng-if="ctrl.entryToEdit.type === 'password'"
                             class="form-control"
-                            id="envvarValue"
+                            data-ng-attr-id="{{ :: 'envvarValue' }}"
                             name="envvarValue"
                             required
                             data-ng-model="ctrl.entryToEdit.value">
@@ -101,7 +101,7 @@
                             type="text"
                             data-ng-if="ctrl.entryToEdit.type === 'string'"
                             class="form-control"
-                            id="envvarValue"
+                            data-ng-attr-id="{{ :: 'envvarValue' }}"
                             name="envvarValue"
                             required
                             data-ng-model="ctrl.entryToEdit.value">

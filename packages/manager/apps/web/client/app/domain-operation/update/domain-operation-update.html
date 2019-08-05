@@ -30,12 +30,12 @@
                                            data-ng-bind="arg.keyTranslation || arg.description">
                                     </label>
                                     <div class="col-md-7">
-                                        <input type="text" class="oui-input" name="arg-{{$index}}" id="arg-{{$index}}"
+                                        <input type="text" class="oui-input" name="arg-{{$index}}" data-ng-attr-id="{{ 'arg-' + $index }}"
                                                data-ng-if="!arg.acceptedValues"
                                                data-ng-model="arg.value"
                                                data-ng-required>
                                         <div class="oui-select mb-0" data-ng-if="arg.acceptedValues && arg.acceptedValues.length > 1">
-                                            <select class="oui-select__input" name="arg-{{$index}}" id="arg-{{$index}}"
+                                            <select class="oui-select__input" name="arg-{{$index}}" data-ng-attr-id="{{ 'arg-' + $index }}"
                                                     data-ng-model="arg.value"
                                                     data-ng-options="operation for operation in arg.acceptedValues track by operation">
                                             </select>

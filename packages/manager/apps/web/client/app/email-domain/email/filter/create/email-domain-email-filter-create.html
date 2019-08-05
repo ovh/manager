@@ -73,7 +73,7 @@
                                        data-translate="email_tab_modal_filter_create_header"></label>
                                 <div class="oui-select mb-0"
                                      data-ng-if="rule.headerSelect !== 'other'">
-                                    <select class="oui-select__input" id="filter-create-header-{{$index}}"
+                                    <select class="oui-select__input" data-ng-attr-id="{{ 'filter-create-header-' + $index }}"
                                             data-ng-model="rule.headerSelect"
                                             data-ng-options="header as ('email_tab_modal_filter_create_header_' + header | translate) for header in ctrl.headers track by header">
                                         <option value="" disabled
@@ -82,7 +82,7 @@
                                     <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
                                 </div>
                                 <div class="input-group w-100" data-ng-if="rule.headerSelect === 'other'">
-                                    <input type="text" class="form-control" id="filter-create-header-{{$index}}" maxlength="50" placeholder="{{:: 'email_tab_modal_filter_create_header' | translate }}" required
+                                    <input type="text" class="form-control" data-ng-attr-id="{{ 'filter-create-header-' + $index }}" maxlength="50" placeholder="{{:: 'email_tab_modal_filter_create_header' | translate }}" required
                                            data-ng-model="rule.header">
                                     <div class="input-group-btn">
                                         <button class="btn btn-default" type="button"

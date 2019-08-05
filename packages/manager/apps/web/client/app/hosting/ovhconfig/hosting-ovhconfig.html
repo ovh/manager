@@ -99,7 +99,7 @@
                            data-translate="hosting_action_config_edit_engine_version"></label>
                     <div class="col-md-6" data-ng-if="!ctrl.toggle.isRollbackProcess">
                         <div class="oui-select mb-0">
-                            <select class="oui-select__input" id="engineVersion" name="engineVersion"
+                            <select class="oui-select__input" data-ng-attr-id="{{ :: 'engineVersion' }}" name="engineVersion"
                                     data-ng-change="ctrl.updateSelectedConfig()"
                                     data-ng-model="ctrl.model.engineVersion"
                                     data-ng-options="name for name in ctrl.apiStruct.models['hosting.web.ovhConfig.AvailableEngineVersionEnum'].enum track by name">
@@ -112,7 +112,7 @@
                     </div>
                     <div class="col-md-6" data-ng-if="ctrl.toggle.isRollbackProcess">
                         <div class="oui-select mb-0">
-                            <select class="oui-select__input" id="engineVersion" name="engineVersion" disabled
+                            <select class="oui-select__input" data-ng-attr-id="{{ :: 'engineVersion' }}" name="engineVersion" disabled
                                     data-ng-model="ctrl.model.engineVersion"
                                     data-ng-options="name for name in ctrl.apiStruct.models['hosting.web.ovhConfig.EngineVersionEnum'].enum track by name">
                             </select>
