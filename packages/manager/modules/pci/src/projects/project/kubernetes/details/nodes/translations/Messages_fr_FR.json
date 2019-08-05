@@ -53,7 +53,7 @@
   "kube_nodes_status_RESETTING": "En cours de réinitialisation",
   "kube_nodes_instances_error": "Une erreur s'est produite lors du chargement des détails de facturation : {{ message }}",
   "kube_nodes_billing_type": "Type de facturation",
-  "kube_nodes_billing_monthly": "Mensuel",
+  "kube_nodes_billing_monthly": "Mensuelle",
   "kube_nodes_billing_hourly": "Horaire",
   "kube_nodes_billing_monthly_pending": "Passage au mensuel",
   "kube_nodes_switch_to_monthly_billing_title": "Passer à la facturation mensuelle",
