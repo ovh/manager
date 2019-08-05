@@ -11,7 +11,8 @@
         data-loading="$ctrl.isLoading">
 
         <p>
-            <span data-translate="pci_projects_project_users_download-openrc_content"></span>
+            <span data-ng-if="$ctrl.hasGlobalRegions" data-translate="pci_projects_project_users_download-openrc_content_global"></span>
+            <span data-ng-if="!$ctrl.hasGlobalRegions" data-translate="pci_projects_project_users_download-openrc_content"></span>
             <a
                 class="oui-link_icon"
                 data-ng-if="$ctrl.openstackGuide"

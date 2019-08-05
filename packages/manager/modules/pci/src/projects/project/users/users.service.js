@@ -1,6 +1,8 @@
 import get from 'lodash/get';
+import forEach from 'lodash/forEach';
 import map from 'lodash/map';
 import { OPENRC_VERSION } from './download-openrc/download-openrc.constants';
+import { STRING_ONLY_PATTERN } from './users.constants';
 
 export default class PciProjectsProjectUsersService {
   /* @ngInject */
@@ -10,10 +12,21 @@ export default class PciProjectsProjectUsersService {
     OvhApiCloudProjectRegion,
     OvhApiCloudProjectUser,
   ) {
+    this.STRING_ONLY_PATTERN = STRING_ONLY_PATTERN;
     this.$q = $q;
     this.OvhApiCloudProject = OvhApiCloudProject;
     this.OvhApiCloudProjectRegion = OvhApiCloudProjectRegion;
     this.OvhApiCloudProjectUser = OvhApiCloudProjectUser;
+  }
+
+  checkGlobalRegion(regions) {
+    let hasGlobalRegions = false;
+    forEach(regions, (region) => {
+      if (this.STRING_ONLY_PATTERN.test(region.id)) {
+        hasGlobalRegions = true;
+      }
+    });
+    return hasGlobalRegions;
   }
 
   getAll(projectId) {

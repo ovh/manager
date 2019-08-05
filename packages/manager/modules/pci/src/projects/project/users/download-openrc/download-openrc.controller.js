@@ -27,12 +27,13 @@ export default class PciUsersDownloadOpenRcController {
       label: this.CucRegionService.getTranslatedMicroRegion(region),
     }));
     this.region = first(this.regions);
+    this.hasGlobalRegions = this.PciProjectsProjectUsersService.checkGlobalRegion(this.regions);
   }
 
   downloadOpenRc() {
     this.isLoading = true;
     return this.PciProjectsProjectUsersService
-      .downloadOpenRc(this.projectId, this.user, this.region.id, this.useVersion3 ? 3 : 2)
+      .downloadOpenRc(this.projectId, this.user, this.region.id, this.hasGlobalRegions ? 3 : 2)
       .then(({ content }) => {
         const data = new Blob([content], { type: DOWNLOAD_TYPE });
         saveAs(data, DOWNLOAD_FILENAME);
