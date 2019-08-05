@@ -1796,6 +1796,14 @@
     lodash "~4.17.11"
     urijs "^1.19.1"
 
+"@ovh-ux/ng-ovh-http@^4.0.2":
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-http/-/ng-ovh-http-4.0.2.tgz#4f4c38a7c8cca56ab018773d61bd6d83200d6293"
+  integrity sha512-7QKgJDUBGjYf0Ldr1Nk28lMRZc6jY3e7q+g3pZMyAlIp3kkzG8SZIGT+jnAO0YTyb0sb6bJEbiAQJ8TqGlE0ow==
+  dependencies:
+    lodash "~4.17.15"
+    urijs "^1.19.1"
+
 "@ovh-ux/ng-ovh-otrs@^7.1.4":
   version "7.1.4"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-otrs/-/ng-ovh-otrs-7.1.4.tgz#e49c9696dc9a86281ae4bd3f71c43c1fc4a7a36c"
@@ -8194,7 +8202,7 @@ lodash@^3.10.1, lodash@~3.10.0:
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-3.10.1.tgz#5bf45e8e49ba4189e17d482789dfd15bd140b7b6"
   integrity sha1-W/Rejkm6QYnhfUgnid/RW9FAt7Y=
 
-lodash@^4.17.15:
+lodash@^4.17.15, lodash@~4.17.15:
   version "4.17.15"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
   integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
@@ -9564,6 +9572,10 @@ ovh-angular-tail-logs@^1.1.1:
   resolved "https://registry.yarnpkg.com/ovh-angular-tail-logs/-/ovh-angular-tail-logs-1.1.1.tgz#6287a577ca5214de0ad1cd9bfb39b34762076b66"
   integrity sha1-Yoeld8pSFN4K0c2b+zmzR2IHa2Y=
 
+ovh-angular-toaster@ovh-ux/ovh-angular-toaster#^0.8.0:
+  version "0.8.0"
+  resolved "https://codeload.github.com/ovh-ux/ovh-angular-toaster/tar.gz/06d24889e94b8d816afee8e94185697cf68f2338"
+
 ovh-angular-ui-confirm-modal@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/ovh-angular-ui-confirm-modal/-/ovh-angular-ui-confirm-modal-1.0.2.tgz#92e6736588a4fb1de6353f1a17ab1962679a698d"
@@ -9616,6 +9628,18 @@ ovh-ui-angular@^3.5.1:
     popper.js "^1.14.4"
     ui-select "^0.19.8"
 
+ovh-ui-angular@^3.6.1:
+  version "3.7.0"
+  resolved "https://registry.yarnpkg.com/ovh-ui-angular/-/ovh-ui-angular-3.7.0.tgz#c048a682163c304b99510080b125ca98dfe787d0"
+  integrity sha512-SlDRwIeOsS1b+atS3fttvZ2FW4aYvCreQHqcP42437Nb5CZoNFyKVoAYrpxcoU1Qj4kJTV9Uo9HkeaC1JVChGA==
+  dependencies:
+    bloodhound-js "^1.2.3"
+    clipboard "^2.0.1"
+    escape-string-regexp "^1.0.5"
+    flatpickr "^4.5.2"
+    popper.js "^1.14.4"
+    ui-select "^0.19.8"
+
 ovh-ui-kit-bs@^2.1.2:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/ovh-ui-kit-bs/-/ovh-ui-kit-bs-2.1.2.tgz#db57d085858228175fe3bf2a67154f371d2722e7"
@@ -9632,6 +9656,13 @@ ovh-ui-kit@^2.33.3:
   version "2.33.3"
   resolved "https://registry.yarnpkg.com/ovh-ui-kit/-/ovh-ui-kit-2.33.3.tgz#e15490f763ea22008535284d468f8e1c3ba6ce17"
   integrity sha512-fNQIK3Ko7f00LOunM3X5EoBiUbMxVIsJgbbPUb7szfu+IK6laZIIKWmOvVtrWqoHjUxSieEFRNTv7CgUd/NPgw==
+  dependencies:
+    less-plugin-remcalc "^0.1.0"
+
+ovh-ui-kit@^2.33.4:
+  version "2.33.4"
+  resolved "https://registry.yarnpkg.com/ovh-ui-kit/-/ovh-ui-kit-2.33.4.tgz#8b620ed078c1fb9231bafc89e5575895d7b38fbd"
+  integrity sha512-eMQlEoWF3Aopp4IEQOJBKzTHvTd4t0I5BZBrtWGoJpfURQf8EI/FR4B/jry5PJf8KcAuw8EX6ICZKZsZvlQAYw==
   dependencies:
     less-plugin-remcalc "^0.1.0"
 
@@ -10278,6 +10309,11 @@ prop-types@^15.5.10:
     loose-envify "^1.4.0"
     object-assign "^4.1.1"
     react-is "^16.8.1"
+
+properties@latest:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/properties/-/properties-1.2.1.tgz#0ee97a7fc020b1a2a55b8659eda4aa8d869094bd"
+  integrity sha1-Dul6f8AgsaKlW4ZZ7aSqjYaQlL0=
 
 property-expr@^1.5.0:
   version "1.5.1"
