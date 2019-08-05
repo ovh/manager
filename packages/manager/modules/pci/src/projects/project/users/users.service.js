@@ -12,11 +12,11 @@ export default class PciProjectsProjectUsersService {
     OvhApiCloudProjectRegion,
     OvhApiCloudProjectUser,
   ) {
-    this.STRING_ONLY_PATTERN = STRING_ONLY_PATTERN;
     this.$q = $q;
     this.OvhApiCloudProject = OvhApiCloudProject;
     this.OvhApiCloudProjectRegion = OvhApiCloudProjectRegion;
     this.OvhApiCloudProjectUser = OvhApiCloudProjectUser;
+    this.STRING_ONLY_PATTERN = STRING_ONLY_PATTERN;
   }
 
   checkGlobalRegion(regions) {
