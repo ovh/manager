@@ -6,5 +6,6 @@ export default {
     versions: '<',
     selectedVersion: '=',
     displaySelectedVersion: '<',
+    highestVersion: '<',
   },
 };
