@@ -22,10 +22,9 @@ export default class Kubernetes {
     this.OvhApiCloudProjectQuota = OvhApiCloudProjectQuota;
   }
 
-  isLegacyCluster(serviceName, kubeId) {
+  isLegacyCluster(serviceName) {
     return this.OvhApiKube.v6().getServiceInfos({
       serviceName,
-      kubeId,
     }).$promise
       .then(() => true)
       .catch(error => (error.status === 404 ? false : Promise.reject(error)));
