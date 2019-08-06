@@ -1,0 +1,7 @@
+{
+  "extends": "../../../../.eslintrc.js",
+  "globals": {
+    "filesize": true,
+    "JSURL": true
+  }
+}

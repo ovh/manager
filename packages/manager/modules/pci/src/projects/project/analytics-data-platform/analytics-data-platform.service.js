@@ -10,7 +10,7 @@ import {
 
 export default class AnalyticsDataPlatformService {
   /* @ngInject */
-  constructor($q, $translate, CucRegionService, OvhApiAnalytics, OvhApiCloudProject,
+  constructor($q, $translate, OvhApiAnalytics, OvhApiCloudProject,
     OvhApiMe, OvhApiOrder, OvhApiOrderCatalogFormatted, OvhApiVrack, Poller) {
     this.$q = $q;
     this.$translate = $translate;
@@ -30,7 +30,6 @@ export default class AnalyticsDataPlatformService {
     this.OvhApiMeOrder = OvhApiMe.Order().v6();
     this.OvhApiVrack = OvhApiVrack.v6();
     this.OvhApiMe = OvhApiMe;
-    this.CucRegionService = CucRegionService;
     this.Poller = Poller;
     this.CLOUD_CATALOG_NAME = ANALYTICS_DATA_PLATFORM_CLOUD_CATALOG_NAME;
     this.CLOUD_STATUS = ANALYTICS_DATA_PLATFORM_PUBLIC_CLOUD_STATUS;
@@ -280,21 +279,6 @@ export default class AnalyticsDataPlatformService {
    */
   getAnalyticsDataPlatformCapabilities() {
     return this.OvhApiAnalyticsCapabilities.query().$promise;
-  }
-
-  /**
-   * fetch region details for given region codes
-   *
-   * @param {*} regionCodes region names supported by Analytics Data Platform
-   * @returns array of region object details
-   * @memberof AnalyticsDataPlatformService
-   */
-  getRegionDetails(regionCodes) {
-    const regionPromises = map(
-      regionCodes,
-      code => this.CucRegionService.getRegion(code),
-    );
-    return this.$q.all(regionPromises);
   }
 
   /**

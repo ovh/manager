@@ -35,6 +35,12 @@ export const CONTAINER_DEFAULT_PASSWORD = [
   CONTAINER_DEFAULT_PASSWORD_PASSWORD,
 ].join('.');
 
+export const STORAGE_GATEWAY = {
+  CA: 'gateways.storage.REGION.cloud.ovh.net',
+  EU: 'gateways.storage.REGION.cloud.ovh.net',
+  US: 'gateways.storage.REGION.cloud.ovh.us',
+};
+
 export const X_CONTAINER_HEADERS_REGEX = /^(X-Container|X-Storage)/i;
 
 export const X_AUTH_TOKEN = 'X-Auth-Token';
@@ -59,6 +65,8 @@ export default {
   OBJECT_TYPE_UNSEALED,
   OBJECT_TYPE_PCA,
   OBJECT_TYPES,
+
+  STORAGE_GATEWAY,
 
   X_AUTH_TOKEN,
   X_CONTAINER_HEADERS_REGEX,

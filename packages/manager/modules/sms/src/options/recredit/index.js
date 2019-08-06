@@ -14,7 +14,7 @@ angular.module(moduleName, []).config(($stateProvider) => {
         controllerAs: 'TelecomSmsOptionsRecreditCtrl',
       },
     },
-    translations: ['.'],
+    translations: { value: ['.'], format: 'json' },
   });
 });
 

@@ -58,6 +58,13 @@
 
                         <div data-ng-if="datacentersLocation[$ctrl.model.location]">
                             <p data-translate="pci_projects_project_instances_add_region_datacenter_title"></p>
+                            <p
+                                data-ng-if="datacentersLocation[$ctrl.model.location][0].hasExtraBandwidthCost()"
+                                data-translate="pci_project_instances_instance_add_region_bandwidth_extra"
+                                data-translate-values="{
+                                    price: $ctrl.getBandwidthExtraCost(datacentersLocation[$ctrl.model.location][0])
+                                }"
+                                ></p>
                             <div class="row">
                                 <oui-select-picker
                                     data-ng-repeat="datacenter in datacentersLocation[$ctrl.model.location] track by datacenter.name"
@@ -161,7 +168,7 @@
                         flavor: $ctrl.flavor.name,
                         region: $ctrl.model.datacenter.microRegion.text,
                     }"></span>
-                <a data-ng-href="{{:: $ctrl.quotaLink }}"
+                <a data-ng-href="{{:: $ctrl.quotaLink }}"
                     data-translate="pci_projects_project_instances_add_numInstances_quotaLink_label"></a>
             </div>
         </oui-field>

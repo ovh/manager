@@ -1,5 +1,3 @@
-import { REGION } from './constants';
-
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
     .state('pci.projects.project.kubernetes.details', {
@@ -14,11 +12,7 @@ export default /* @ngInject */ ($stateProvider) => {
         ) => OvhApiCloudProjectKube.v6().get({
           serviceName: projectId,
           kubeId,
-        }).$promise
-          .then(cluster => ({
-            ...cluster,
-            region: REGION,
-          })),
+        }).$promise,
 
         goToKubernetesDetails: ($state, CucCloudMessage, kubeId, projectId) => (message = false, type = 'success') => {
           const reload = message && type === 'success';

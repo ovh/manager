@@ -1,4 +1,4 @@
-deploy-component {
+analytics-data-platform-deploy-component {
   .storage-list {
     display: flex;
     flex-wrap: wrap;
@@ -15,8 +15,8 @@ deploy-component {
     }
 
     &__separator {
-        width: 56%;
-        margin-left: 0;
+      width: 56%;
+      margin-left: 0;
     }
   }
   .ovhstack .oui-input.oui-input_number {

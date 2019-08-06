@@ -16,7 +16,7 @@ angular.module(moduleName, [])
           controllerAs: 'PhonebooksCreateCtrl',
         },
       },
-      translations: ['.'],
+      translations: { value: ['.'], format: 'json' },
     });
   });
 

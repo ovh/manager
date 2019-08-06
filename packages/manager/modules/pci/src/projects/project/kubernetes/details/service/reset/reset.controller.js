@@ -18,8 +18,6 @@ export default class kubernetesResetCtrl {
       version: null,
       workerNodesPolicy: WORKER_NODE_POLICIES.DELETE,
     };
-
-    this.deleteConfirmation = null;
   }
 
   /**

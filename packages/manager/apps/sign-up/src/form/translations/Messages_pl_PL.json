@@ -1,0 +1,10 @@
+{
+  "sign_up_form_identity_step_title": "Tożsamość",
+  "sign_up_form_details_step_title": "Dane kontaktowe",
+  "sign_up_form_activity_step_title": "Aktywność",
+  "sign_up_form_other_informations_step_title": "Dodatkowe informacje",
+  "sign_up_form_next_button": "Kolejny etap",
+  "sign_up_form_submit_button": "Stwórz konto",
+  "sign_up_form_submit_error": "Ojej! Wystąpił błąd podczas zakładania konta.",
+  "sign_up_form_global_information": "Złożenie zamówienia możliwe jest po wypełnieniu wszystkich informacji."
+}

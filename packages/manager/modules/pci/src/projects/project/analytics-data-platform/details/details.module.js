@@ -21,7 +21,7 @@ angular
     serviceInformation,
   ])
   .config(routing)
-  .component('detailsComponent', detailsComponent)
+  .component('analyticsDataPlatformDetailsComponent', detailsComponent)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

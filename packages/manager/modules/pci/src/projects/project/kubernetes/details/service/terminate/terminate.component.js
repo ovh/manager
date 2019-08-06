@@ -3,6 +3,7 @@ import template from './terminate.html';
 
 const component = {
   bindings: {
+    cluster: '<',
     kubeId: '<',
     goBack: '<',
     isLegacyCluster: '<',

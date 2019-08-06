@@ -13,6 +13,9 @@ import BlockStorage from '../storages/blocks/block.class';
 import Datacenter from '../../../components/project/regions-list/datacenter.class';
 
 import {
+  BANDWIDTH_CONSUMPTION,
+  BANDWIDTH_LIMIT,
+  BANDWIDTH_OUT_INVOICE,
   INSTANCE_BACKUP_CONSUMPTION,
 } from './instances.constants';
 
@@ -30,6 +33,7 @@ export default class PciProjectInstanceService {
     OvhApiCloudProjectQuota,
     OvhApiCloudProjectVolume,
     OvhApiIp,
+    OvhApiOrderCatalogFormatted,
     PciProjectRegions,
   ) {
     this.$q = $q;
@@ -43,6 +47,7 @@ export default class PciProjectInstanceService {
     this.OvhApiCloudProjectQuota = OvhApiCloudProjectQuota;
     this.OvhApiCloudProjectVolume = OvhApiCloudProjectVolume;
     this.OvhApiIp = OvhApiIp;
+    this.OvhApiOrderCatalogFormatted = OvhApiOrderCatalogFormatted;
     this.PciProjectRegions = PciProjectRegions;
   }
 
@@ -517,13 +522,39 @@ export default class PciProjectInstanceService {
   }
 
   getReverseIp({ ipAddresses }) {
-    const { ip } = find(ipAddresses, { type: 'public', version: 4 });
+    const ip = get(find(ipAddresses, { type: 'public', version: 4 }), 'ip');
     if (ip) {
       return this.OvhApiIp.Reverse().v6().query({ ip }).$promise
         .then(([ipReverse]) => (ipReverse
           ? this.OvhApiIp.Reverse().v6().get({ ip, ipReverse }).$promise
-          : null));
+          : null))
+        .catch(error => (error.status === 404 ? null : Promise.reject(error)));
     }
     return null;
+  }
+
+  getExtraBandwidthCost(project, user) {
+    return this.OvhApiOrderCatalogFormatted.v6().get({
+      catalogName: 'cloud',
+      ovhSubsidiary: user.ovhSubsidiary,
+    }).$promise
+      .then((catalog) => {
+        const projectPlan = find(catalog.plans, { planCode: project.planCode });
+        const bandwidthOut = filter(
+          find(projectPlan.addonsFamily, { family: BANDWIDTH_CONSUMPTION }).addons,
+          { invoiceName: BANDWIDTH_OUT_INVOICE },
+        );
+
+        return bandwidthOut.reduce(
+          (prices, { plan }) => ({
+            ...prices,
+            [plan.planCode]: find(
+              plan.details.pricings.default,
+              { minimumQuantity: BANDWIDTH_LIMIT },
+            ),
+          }),
+          {},
+        );
+      });
   }
 }

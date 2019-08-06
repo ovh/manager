@@ -3,7 +3,7 @@ import angular from 'angular';
 import '@ovh-ux/ng-ovh-telecom-universe-components';
 import '@ovh-ux/manager-telecom-styles';
 import 'angular-messages';
-import 'ovh-angular-checkbox-table';
+import ngOvhCheckboxTable from '@ovh-ux/ng-ovh-checkbox-table';
 import '@ovh-ux/ng-pagination-front';
 import 'ovh-api-services';
 
@@ -36,7 +36,7 @@ angular
   .module(moduleName, [
     'ngOvhTelecomUniverseComponents',
     'ngPaginationFront',
-    'ovh-angular-checkbox-table',
+    ngOvhCheckboxTable,
     'ovh-api-services',
     'ngMessages',
     dashboard,
@@ -71,7 +71,6 @@ angular
             .setCurrentSmsService(smsDetails[$stateParams.serviceName]));
           return $q.when({ init: true });
         },
-
         $title: (translations, $translate, OvhApiSms, $stateParams) => OvhApiSms.v6()
           .get({
             serviceName: $stateParams.serviceName,
@@ -79,9 +78,10 @@ angular
           .then(data => $translate.instant('sms_page_title', { name: data.description || $stateParams.serviceName }, null, null, 'escape'))
           .catch(() => $translate('sms_page_title', { name: $stateParams.serviceName })),
       },
-      translations: [
-        '.',
-      ],
+      translations: {
+        value: ['.'],
+        format: 'json',
+      },
     });
   });
 

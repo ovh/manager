@@ -1,5 +1,3 @@
-import { Environment } from '@ovh-ux/manager-config';
-
 export const HORIZON = {
   CA: 'https://horizon.cloud.ovh.net/auth/login/',
   EU: 'https://horizon.cloud.ovh.net/auth/login/',
@@ -86,14 +84,24 @@ export const MENU = [
           state: 'pci.projects.project.kubernetes',
         },
         title: 'Managed Kubernetes Service',
+        regions: ['CA', 'EU'],
       },
       {
+        beta: true,
         id: 'private-registry',
         options: {
           state: 'pci.projects.project.private-registry',
         },
         title: 'Managed Private Registry',
-        beta: true,
+        regions: ['EU'],
+      },
+      {
+        id: 'workflow-management',
+        options: {
+          state: 'pci.projects.project.workflow',
+        },
+        title: 'Workflow Management',
+        regions: ['CA', 'EU'],
       },
     ],
     regions: ['CA', 'EU'],
@@ -109,7 +117,7 @@ export const MENU = [
         title: 'Analytics Data Platform',
       },
     ],
-    regions: ['EU', 'CA'],
+    regions: ['EU'],
     title: 'Data & Analytics',
   },
   {
@@ -118,7 +126,7 @@ export const MENU = [
       {
         id: 'horizon',
         options: {
-          url: HORIZON[Environment.getRegion()],
+          url: HORIZON,
           target: '_blank',
         },
         title: 'Horizon',

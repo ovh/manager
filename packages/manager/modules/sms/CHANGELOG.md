@@ -1,3 +1,48 @@
+## [7.0.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-sms@7.0.1...@ovh-ux/manager-sms@7.0.2) (2019-07-22)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([a9e7f3b](https://github.com/ovh-ux/manager/commit/a9e7f3b))
+* **i18n:** add missing translations ([b2e283f](https://github.com/ovh-ux/manager/commit/b2e283f))
+* **i18n:** add missing translations ([715a84a](https://github.com/ovh-ux/manager/commit/715a84a))
+
+
+
+## [7.0.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-sms@7.0.0...@ovh-ux/manager-sms@7.0.1) (2019-07-15)
+
+
+### Bug Fixes
+
+* bump lodash to version >= 4.17.14 ([#1072](https://github.com/ovh-ux/manager/issues/1072)) ([1a32ddc](https://github.com/ovh-ux/manager/commit/1a32ddc))
+* **i18n:** add missing translations ([7ef1ec1](https://github.com/ovh-ux/manager/commit/7ef1ec1))
+
+
+
+# [7.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-sms@6.3.0...@ovh-ux/manager-sms@7.0.0) (2019-07-10)
+
+
+### Code Refactoring
+
+* use @ovh-ux/ng-ovh-checkbox-table ([#1054](https://github.com/ovh-ux/manager/issues/1054)) ([a7cd76f](https://github.com/ovh-ux/manager/commit/a7cd76f))
+
+
+### BREAKING CHANGES
+
+* replace ovh-angular-checkbox-table by @ovh-ux/ng-ovh-checkbox-table
+
+
+
+# [6.3.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-sms@6.2.3...@ovh-ux/manager-sms@6.3.0) (2019-07-05)
+
+
+### Features
+
+* **sms.compose.receivers:** if invalid receivers, display error message ([#792](https://github.com/ovh-ux/manager/issues/792)) ([6f6a8f6](https://github.com/ovh-ux/manager/commit/6f6a8f6))
+* add new packages ([09b5158](https://github.com/ovh-ux/manager/commit/09b5158))
+
+
+
 ## [6.2.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-sms@6.2.2...@ovh-ux/manager-sms@6.2.3) (2019-06-05)
 
 

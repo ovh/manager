@@ -20,7 +20,7 @@ angular
           controllerAs: 'SmsReceiversCtrl',
         },
       },
-      translations: ['.'],
+      translations: { value: ['.'], format: 'json' },
     });
   });
 

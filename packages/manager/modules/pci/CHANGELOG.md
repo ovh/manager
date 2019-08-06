@@ -1,3 +1,237 @@
+## [1.3.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@1.3.0...@ovh-ux/manager-pci@1.3.1) (2019-08-01)
+
+
+### Bug Fixes
+
+* **pci.project.workflow.add:** update translation ([#1147](https://github.com/ovh-ux/manager/issues/1147)) ([91c96fe](https://github.com/ovh-ux/manager/commit/91c96fe))
+
+
+
+# [1.3.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@1.2.0...@ovh-ux/manager-pci@1.3.0) (2019-08-01)
+
+
+### Bug Fixes
+
+* **pci.project.storages.container:** update gateway url constant ([#1140](https://github.com/ovh-ux/manager/issues/1140)) ([fadab4b](https://github.com/ovh-ux/manager/commit/fadab4b))
+* **pci.project.users.roles.matrix:** prevent displaying scroll ([#1129](https://github.com/ovh-ux/manager/issues/1129)) ([d2cca43](https://github.com/ovh-ux/manager/commit/d2cca43))
+
+
+### Features
+
+* **pci.project:** add auto backup ([#972](https://github.com/ovh-ux/manager/issues/972)) ([a342be4](https://github.com/ovh-ux/manager/commit/a342be4))
+
+
+
+# [1.2.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@1.1.2...@ovh-ux/manager-pci@1.2.0) (2019-07-31)
+
+
+### Bug Fixes
+
+* **analytics.data.platform.deploy:** check if inputs are undefined ([#1082](https://github.com/ovh-ux/manager/issues/1082)) ([1f6085c](https://github.com/ovh-ux/manager/commit/1f6085c))
+* **i18n:** add missing translations [CDS 13] ([9a53791](https://github.com/ovh-ux/manager/commit/9a53791))
+* **i18n:** add missing translations [CDS 15] ([eab997d](https://github.com/ovh-ux/manager/commit/eab997d))
+* **i18n:** add missing translations [CDS 17] ([c52ac93](https://github.com/ovh-ux/manager/commit/c52ac93))
+* **i18n:** add missing translations [CDS 20] ([0e68589](https://github.com/ovh-ux/manager/commit/0e68589))
+* **pci.project.storages.blocks.add:** fix error message ([#1122](https://github.com/ovh-ux/manager/issues/1122)) ([25e8125](https://github.com/ovh-ux/manager/commit/25e8125))
+
+
+### Features
+
+* **pci.instances:** warn about extra bandwidth cost ([#1089](https://github.com/ovh-ux/manager/issues/1089)) ([0568199](https://github.com/ovh-ux/manager/commit/0568199))
+
+
+
+## [1.1.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@1.1.1...@ovh-ux/manager-pci@1.1.2) (2019-07-30)
+
+
+### Bug Fixes
+
+* **pci.project.kube:** disable cache for node refresh ([#1131](https://github.com/ovh-ux/manager/issues/1131)) ([b6f727b](https://github.com/ovh-ux/manager/commit/b6f727b))
+
+
+
+## [1.1.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@1.1.0...@ovh-ux/manager-pci@1.1.1) (2019-07-24)
+
+
+### Bug Fixes
+
+* **pci.project.user:** add roles step on onboarding ([#1112](https://github.com/ovh-ux/manager/issues/1112)) ([53d6376](https://github.com/ovh-ux/manager/commit/53d6376))
+
+
+
+# [1.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@1.0.1...@ovh-ux/manager-pci@1.1.0) (2019-07-24)
+
+
+### Features
+
+* **pci.users:** add role matrix ([#746](https://github.com/ovh-ux/manager/issues/746)) ([86b2f08](https://github.com/ovh-ux/manager/commit/86b2f08))
+
+
+
+## [1.0.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@1.0.0...@ovh-ux/manager-pci@1.0.1) (2019-07-23)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 14] ([3fa84a5](https://github.com/ovh-ux/manager/commit/3fa84a5))
+* **pci.projects.kube:** use api region ([#1099](https://github.com/ovh-ux/manager/issues/1099)) ([f68938d](https://github.com/ovh-ux/manager/commit/f68938d))
+
+
+
+# [1.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.24.2...@ovh-ux/manager-pci@1.0.0) (2019-07-22)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([357dd2a](https://github.com/ovh-ux/manager/commit/357dd2a))
+* **i18n:** add missing translations ([3a0ffdc](https://github.com/ovh-ux/manager/commit/3a0ffdc))
+* **i18n:** add missing translations ([715a84a](https://github.com/ovh-ux/manager/commit/715a84a))
+* **i18n:** add missing translations ([4a2cf6c](https://github.com/ovh-ux/manager/commit/4a2cf6c))
+* **i18n:** add missing translations ([7c2c4b3](https://github.com/ovh-ux/manager/commit/7c2c4b3))
+* **i18n:** add missing translations ([b2e283f](https://github.com/ovh-ux/manager/commit/b2e283f))
+* **i18n:** add missing translations ([a9e7f3b](https://github.com/ovh-ux/manager/commit/a9e7f3b))
+* **i18n:** add missing translations [CDS 8] ([ebb9765](https://github.com/ovh-ux/manager/commit/ebb9765))
+* **i18n:** add missing translations [CDS 9] ([f6b8c59](https://github.com/ovh-ux/manager/commit/f6b8c59))
+* **pci.components.project.regions.list:** set properly the region ([#1077](https://github.com/ovh-ux/manager/issues/1077)) ([c18b72c](https://github.com/ovh-ux/manager/commit/c18b72c))
+* **pci.project.private.registry:** improve external links display ([#980](https://github.com/ovh-ux/manager/issues/980)) ([5864586](https://github.com/ovh-ux/manager/commit/5864586))
+* **pci.project.private.registry:** remove extra oui-field ([#1090](https://github.com/ovh-ux/manager/issues/1090)) ([0d29faa](https://github.com/ovh-ux/manager/commit/0d29faa))
+* **pci.project.private.registry:** update some translations ([#1069](https://github.com/ovh-ux/manager/issues/1069)) ([78341c4](https://github.com/ovh-ux/manager/commit/78341c4))
+* **pci.projects:** improve creation project ([#985](https://github.com/ovh-ux/manager/issues/985)) ([912cfaf](https://github.com/ovh-ux/manager/commit/912cfaf))
+
+
+### Code Refactoring
+
+* **components.ng-ui-router-breadcrumb:** renamed package name ([96fa272](https://github.com/ovh-ux/manager/commit/96fa272))
+* **components.ng-ui-router-layout:** renamed package name ([0e43cc2](https://github.com/ovh-ux/manager/commit/0e43cc2))
+
+
+### BREAKING CHANGES
+
+* **components.ng-ui-router-breadcrumb:** package and module are now respectively named as
+`@ovh-ux/ng-ui-router-breadcrumb` and `ngUiRouterBreadcrumb`
+* **components.ng-ui-router-layout:** package is now named as `@ovh-ux/ng-ui-router-layout`
+
+
+
+## [0.24.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.24.1...@ovh-ux/manager-pci@0.24.2) (2019-07-15)
+
+
+### Bug Fixes
+
+* bump lodash to version >= 4.17.14 ([#1072](https://github.com/ovh-ux/manager/issues/1072)) ([1a32ddc](https://github.com/ovh-ux/manager/commit/1a32ddc))
+* **i18n:** add missing translations ([7ef1ec1](https://github.com/ovh-ux/manager/commit/7ef1ec1))
+* **pci.project.kubernetes.add:** increase retryMaxAttempts to 6 ([#1052](https://github.com/ovh-ux/manager/issues/1052)) ([4986d8c](https://github.com/ovh-ux/manager/commit/4986d8c))
+* **pci.users:** add roles translations ([#1060](https://github.com/ovh-ux/manager/issues/1060)) ([d44cb75](https://github.com/ovh-ux/manager/commit/d44cb75))
+
+
+
+## [0.24.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.24.0...@ovh-ux/manager-pci@0.24.1) (2019-07-12)
+
+
+### Bug Fixes
+
+* **pci.storage.container:** display gateway url for archive storage ([#1044](https://github.com/ovh-ux/manager/issues/1044)) ([f02076d](https://github.com/ovh-ux/manager/commit/f02076d))
+
+
+
+# [0.24.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.23.1...@ovh-ux/manager-pci@0.24.0) (2019-07-10)
+
+
+### Bug Fixes
+
+* **analytics.data.platform.deploy:** fix typo in storage section ([#1049](https://github.com/ovh-ux/manager/issues/1049)) ([84656b8](https://github.com/ovh-ux/manager/commit/84656b8))
+* **i18n:** add missing translations ([5ca4030](https://github.com/ovh-ux/manager/commit/5ca4030))
+
+
+### Features
+
+* **pci:** display region with quota overflow disabled ([#1007](https://github.com/ovh-ux/manager/issues/1007)) ([5b7603a](https://github.com/ovh-ux/manager/commit/5b7603a))
+
+
+
+## [0.23.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.23.0...@ovh-ux/manager-pci@0.23.1) (2019-07-09)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([7417d21](https://github.com/ovh-ux/manager/commit/7417d21))
+* **i18n:** add missing translations ([b01c211](https://github.com/ovh-ux/manager/commit/b01c211))
+* **i18n:** add missing translations ([d7b677d](https://github.com/ovh-ux/manager/commit/d7b677d))
+* **i18n:** add missing translations ([0f46663](https://github.com/ovh-ux/manager/commit/0f46663))
+
+
+
+# [0.23.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.22.3...@ovh-ux/manager-pci@0.23.0) (2019-07-05)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations ([c5596d2](https://github.com/ovh-ux/manager/commit/c5596d2))
+* **pci-adp:** translation changes ([aa9ce24](https://github.com/ovh-ux/manager/commit/aa9ce24))
+* **pci.project:** keep focus on sidebar ([#970](https://github.com/ovh-ux/manager/issues/970)) ([009bb62](https://github.com/ovh-ux/manager/commit/009bb62))
+* **pci.project.analytics.data.platform:** add missing components prefix ([#988](https://github.com/ovh-ux/manager/issues/988)) ([1fbca65](https://github.com/ovh-ux/manager/commit/1fbca65))
+
+
+### Features
+
+* add new packages ([09b5158](https://github.com/ovh-ux/manager/commit/09b5158))
+
+
+
+## [0.22.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.22.2...@ovh-ux/manager-pci@0.22.3) (2019-07-04)
+
+
+### Bug Fixes
+
+* **pci.instances:** do not display reverse if not found ([#1015](https://github.com/ovh-ux/manager/issues/1015)) ([5edd00f](https://github.com/ovh-ux/manager/commit/5edd00f))
+* **pci.instances.edit:** remove billing edition ([#1013](https://github.com/ovh-ux/manager/issues/1013)) ([5c8ad75](https://github.com/ovh-ux/manager/commit/5c8ad75))
+
+
+
+## [0.22.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.22.1...@ovh-ux/manager-pci@0.22.2) (2019-07-04)
+
+
+### Bug Fixes
+
+* **pci.new:** fix tracking injection ([#1008](https://github.com/ovh-ux/manager/issues/1008)) ([6e1a1b0](https://github.com/ovh-ux/manager/commit/6e1a1b0))
+
+
+
+## [0.22.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.22.0...@ovh-ux/manager-pci@0.22.1) (2019-07-03)
+
+
+### Bug Fixes
+
+* **pci.project.instances:** check if ip is undefined ([62107f0](https://github.com/ovh-ux/manager/commit/62107f0))
+* **pci.project.sidebar:** disable analytics data platform for CA region ([#998](https://github.com/ovh-ux/manager/issues/998)) ([f15ebf9](https://github.com/ovh-ux/manager/commit/f15ebf9))
+
+
+
+# [0.22.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.21.0...@ovh-ux/manager-pci@0.22.0) (2019-07-02)
+
+
+### Bug Fixes
+
+* **cloud.bloc.storage:** replace region by localisation ([8d98741](https://github.com/ovh-ux/manager/commit/8d98741))
+* tracking on buttons works now correctly ([d98e00d](https://github.com/ovh-ux/manager/commit/d98e00d))
+* **i18n:** add missing translations ([35a76c4](https://github.com/ovh-ux/manager/commit/35a76c4))
+
+
+### Features
+
+* **tracking:** add tracking using at-internet library ([200602d](https://github.com/ovh-ux/manager/commit/200602d))
+
+
+
+# [0.21.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.20.0...@ovh-ux/manager-pci@0.21.0) (2019-07-02)
+
+
+### Features
+
+* **pci:** implement ui for analytics data platform ([#753](https://github.com/ovh-ux/manager/issues/753)) ([1c16e14](https://github.com/ovh-ux/manager/commit/1c16e14))
+
+
+
 # [0.20.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@0.19.3...@ovh-ux/manager-pci@0.20.0) (2019-07-01)
 
 

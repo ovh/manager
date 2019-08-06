@@ -1,3 +1,4 @@
+import get from 'lodash/get';
 import { DEDICATED, CLOUD } from './constants';
 
 export const DEDICATED_SERVER_CONFIG = {
@@ -108,41 +109,6 @@ export const NETWORKS_CONFIG = {
   regions: ['EU', 'CA'],
 };
 
-export const OLD_MICROSOFT_CONFIG = {
-  id: 'microsoft',
-  children: [
-    {
-      id: 'exchange',
-      types: [
-        {
-          path: '/email/exchange',
-          icon: 'ms-Icon ms-Icon--ExchangeLogo',
-          loadOnState: 'app.microsoft.exchange',
-          stateParams: ['organizationId'],
-          app: [DEDICATED],
-          types: [
-            {
-              path: '/email/exchange/:organizationId/service',
-              icon: 'ms-Icon ms-Icon--ExchangeLogo',
-              state: 'app.microsoft.exchange',
-              stateParams: ['organizationId', 'productId'], // TODO: state
-              app: [DEDICATED],
-            },
-          ],
-        },
-      ],
-      loadOnState: 'app.microsoft.exchange',
-      icon: 'ms-Icon ms-Icon--ExchangeLogo',
-      app: [DEDICATED],
-    },
-  ],
-  forceDisplaySearch: true,
-  loadOnState: 'app.microsoft',
-  icon: 'ms-Icon ms-Icon--WindowsLogo',
-  app: [DEDICATED],
-  regions: ['CA'],
-};
-
 export const MICROSOFT_CONFIG = {
   id: 'microsoft_exchange',
   types: [
@@ -154,7 +120,7 @@ export const MICROSOFT_CONFIG = {
       app: [DEDICATED],
       types: [
         {
-          path: '/email/exchange/:organization/service',
+          path: '/email/exchange',
           icon: 'ms-Icon ms-Icon--ExchangeLogo',
           getState: ({ offer }) => {
             const states = {
@@ -163,8 +129,7 @@ export const MICROSOFT_CONFIG = {
               dedicatedCluster: 'app.microsoft.exchange.dedicatedCluster',
               hosted: 'app.microsoft.exchange.hosted',
             };
-
-            return states[offer];
+            return get(states, offer);
           },
           stateParams: ['organization', 'productId'],
           app: [DEDICATED],

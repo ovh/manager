@@ -9,6 +9,7 @@ export default {
     publicNetwork: '<',
     regions: '<',
     cancelLink: '<',
+    prices: '<',
     quotaLink: '<',
   },
   controller,

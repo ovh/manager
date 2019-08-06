@@ -10,8 +10,10 @@ export default {
     openStackHorizonLink: '<',
     downloadOpenStackOpenRc: '<',
     downloadOpenStackRclone: '<',
+    editRoles: '<',
     generateOpenStackToken: '<',
     deleteUser: '<',
     addUser: '<',
+    roles: '<',
   },
 };

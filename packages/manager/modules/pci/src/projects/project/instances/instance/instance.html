@@ -1,7 +1,7 @@
 <oui-page-header data-heading="{{ $ctrl.instance.name }}">
     <oui-header-tabs>
         <oui-header-tabs-item
-            data-text="{{ 'pci_projects_project_instances_instance_dashboard_title' | translate }}"
+            data-text="{{ 'pci_projects_project_instances_instance_dashboard_title' | translate }}"
             data-href="{{ $ctrl.instanceLink }}"
             data-active="$ctrl.currentActiveLink() === $ctrl.instanceLink">
         </oui-header-tabs-item>
@@ -29,6 +29,10 @@
                 <oui-tile-button data-on-click="$ctrl.createBackupInstance()"
                     data-ng-if="$ctrl.instance.statusGroup === 'ACTIVE'">
                     <span data-translate="pci_projects_project_instances_instance_action_createBackup_label"></span>
+                </oui-tile-button>
+                <oui-tile-button data-on-click="$ctrl.scheduleAutoBackup($ctrl.instance)"
+                    data-ng-if="$ctrl.instance.statusGroup === 'ACTIVE' && !$ctrl.coreConfig.isRegion('US')">
+                    <span data-translate="pci_projects_project_instances_autobackup_label"></span>
                 </oui-tile-button>
                 <oui-tile-button data-on-click="$ctrl.startRescueInstance()"
                     data-ng-if="$ctrl.instance.canBeHardRebooted()">

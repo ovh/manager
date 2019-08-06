@@ -60,7 +60,10 @@ export default /* @ngInject */ ($stateProvider) => {
         getStepByName: /* @ngInject */ steps => stepName => find(steps, {
           name: stepName,
         }),
-        getStateLink: /* @ngInject */ ($state, getCurrentStep) => (action, inherit = true) => {
+        getStateLink: /* @ngInject */ (
+          $state,
+          getCurrentStep,
+        ) => (action, inherit = true) => {
           switch (action) {
             case 'cancel':
               return $state.href('pci.projects');
@@ -82,22 +85,53 @@ export default /* @ngInject */ ($stateProvider) => {
               return $state.href('pci.projects');
           }
         },
-        shouldProcessChallenge: /* @ngInject */ (getCurrentStep, newProjectInfo) => () => {
+        shouldProcessChallenge: /* @ngInject */ (
+          $state,
+          atInternet,
+          getCurrentStep,
+          newProjectInfo,
+        ) => () => {
+          const page = `public-cloud::${$state.current.name.replace(/\./g, '::')}`;
           const currentStep = getCurrentStep();
 
           const isValidDefaultPaymentMethod = has(currentStep.model, 'defaultPaymentMethod') && includes(
             CHALLENGE_PAYMENT_TYPE_SUPPORTED,
             get(currentStep.model, 'defaultPaymentMethod.paymentType.value'),
           );
-          return get(newProjectInfo, 'error.code') === 'challengePaymentMethodRequested' && isValidDefaultPaymentMethod;
+          const shouldProcessChallenge = get(newProjectInfo, 'error.code') === 'challengePaymentMethodRequested' && isValidDefaultPaymentMethod;
+
+          if (shouldProcessChallenge) {
+            atInternet.trackEvent({
+              page,
+              event: 'PCI_PROJECTS_NEW_CHALLENGE',
+            });
+          }
+
+          return shouldProcessChallenge;
         },
-        hasCreditToOrder: /* @ngInject */ (getCurrentStep, newProjectInfo, paymentStatus) => () => {
+        hasCreditToOrder: /* @ngInject */ (
+          $state,
+          atInternet,
+          getCurrentStep,
+          newProjectInfo,
+          paymentStatus,
+        ) => () => {
+          const page = `public-cloud::${$state.current.name.replace(/\./g, '::')}`;
           const currentStep = getCurrentStep();
 
-          return newProjectInfo.order
+          const hasCreditToOrder = newProjectInfo.order
             && ((!paymentStatus && currentStep.model.defaultPaymentMethod)
             || ['success', 'accepted'].includes(paymentStatus)
             );
+
+          if (hasCreditToOrder) {
+            atInternet.trackEvent({
+              page,
+              event: 'PCI_PROJECTS_NEW_SUSPICIOUS',
+            });
+          }
+
+          return hasCreditToOrder;
         },
         dlpStatus: /* @ngInject */ ($q, PciProjectNewService) => PciProjectNewService
           .getDlpStatus()
@@ -194,6 +228,7 @@ export default /* @ngInject */ ($stateProvider) => {
             projectId: null,
           },
         }],
+        trackingPage: /* @ngInject */ $transition$ => `public-cloud::${$transition$.to().name.replace(/\./g, '::')}`,
       },
     });
 };

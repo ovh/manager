@@ -1,0 +1,31 @@
+.exchange-diagnostic-result-item {
+    border-bottom: solid 1px #DDD;
+    padding: 15px 30px 15px 30px;
+}
+
+.td-crop-long-name {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 1px;
+}
+
+.exchange-diagnostic-result-item-error {
+    background-color: #FAFAFA;
+}
+
+.exchange-diagnostic-icon-success {
+    color: #B0CA67;
+}
+
+.exchange-diagnostic-icon-error {
+    color: #E36947;
+}
+
+.exchange-diagnostic-page-bottom-padding {
+    padding-bottom: 100px;
+}
+
+.exchange-diagnostic-description {
+    max-width: 800px;
+}

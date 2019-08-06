@@ -5,6 +5,8 @@ const component = {
   bindings: {
     changeClusterName: '<',
     cluster: '<',
+    clusterMinorVersion: '<',
+    highestVersion: '<',
     kubernetesConfig: '<',
     kubeId: '<',
     resetCluster: '<',

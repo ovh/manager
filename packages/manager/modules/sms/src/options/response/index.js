@@ -14,7 +14,7 @@ angular.module(moduleName, []).config(($stateProvider) => {
         controllerAs: 'TelecomSmsOptionsResponseCtrl',
       },
     },
-    translations: ['.'],
+    translations: { value: ['.'], format: 'json' },
   });
 });
 

@@ -1,0 +1,205 @@
+<div data-wizard
+    data-wizard-on-cancel="resetAction"
+    data-wizard-on-finish="submit"
+    data-wizard-title="'exchange_update_billing_action_title' | translate">
+
+    <div data-wizard-step data-wizard-step-valid="hasChanged()">
+
+        <p data-ng-bind-html="'exchange_update_billing_periode_intro' | translate"></p>
+
+        <div class="alert alert-warning" role="alert"
+            data-ng-if="!$ctrl.loading && $ctrl.bufferedAccounts && $ctrl.bufferedAccounts.list.messages.length > 0">
+            <strong data-translate="exchange_tab_ACCOUNTS_warning"></strong>
+            <span data-translate="exchange_tab_ACCOUNTS_partial"></span>
+        </div>
+
+        <form class="form-inline d-md-flex justify-content-md-end mb-3" name="searchAccountForm">
+            <label class="sr-only" for="accountSearch" data-translate="common_search"></label>
+            <div class="input-group">
+                <input
+                    type="text"
+                    class="form-control"
+                    id="accountSearch"
+                    maxlength="256"
+                    name="accountSearch"
+                    placeholder="{{::'exchange_tab_ACCOUNTS_table_email' | translate}}"
+                    data-ng-change="$ctrl.onSearchValueChange()"
+                    data-ng-disabled="$ctrl.loading"
+                    data-ng-model="$ctrl.search.value"
+                    data-ng-model-options="{ debounce: 800 }">
+                <div class="input-group-btn" data-ng-if="$ctrl.search.value">
+                    <button
+                        class="btn btn-default"
+                        type="button"
+                        aria-label="{{'common_cancel' | translate}}"
+                        data-ng-click="$ctrl.resetSearch()"
+                        data-ng-disabled="$ctrl.loading">
+                        <span class="fa fa-times" aria-hidden="true"></span>
+                    </button>
+                </div>
+                <span class="input-group-addon" data-ng-if="!$ctrl.search.value">
+                    <span class="fa fa-search" aria-hidden="true"></span>
+                </span>
+            </div>
+        </form>
+
+        <div data-ng-if="!$ctrl.exchange" class="text-center">
+            <oui-spinner></oui-spinner>
+        </div>
+
+        <div data-ng-if="$ctrl.exchange">
+
+            <div class="oui-datagrid-responsive-container">
+                <div class="oui-datagrid-responsive-container__sticky-container">
+                    <div class="oui-datagrid-responsive-container__overflow-container">
+                        <table class="oui-datagrid">
+                            <thead class="oui-datagrid__headers">
+                                <tr>
+                                    <th scope="col" class="oui-datagrid__header" data-translate="exchange_tab_ACCOUNTS_table_email"></th>
+                                    <th scope="col" class="oui-datagrid__header" data-translate="exchange_update_billing_expiration_date_label"></th>
+                                    <th scope="col"
+                                        class="oui-datagrid__header"
+                                        data-ng-if="$ctrl.canHaveMonthlyRenewal()">
+                                        <input
+                                            type="radio"
+                                            class="mr-2"
+                                            value="MONTHLY"
+                                            data-ng-model="$ctrl.buffer.periodSelectedForAll"
+                                            data-ng-change="$ctrl.checkboxStateChange('MONTHLY')">
+                                        <span data-translate="exchange_update_billing_header_1M"></span>
+                                    </th>
+                                    <th scope="col" class="oui-datagrid__header">
+                                        <input
+                                            type="radio"
+                                            class="mr-2"
+                                            value="YEARLY"
+                                            data-ng-model="$ctrl.buffer.periodSelectedForAll"
+                                            data-ng-change="$ctrl.checkboxStateChange('YEARLY')">
+                                        <span data-translate="exchange_update_billing_header_1Y"></span>
+                                    </th>
+                                    <th scope="col"
+                                        class="oui-datagrid__header"
+                                        data-ng-if="$ctrl.canBeDeletedAtExpiration()">
+                                        <input
+                                            type="radio"
+                                            class="mr-2"
+                                            value="DELETE_AT_EXPIRATION"
+                                            data-ng-model="$ctrl.buffer.periodSelectedForAll"
+                                            data-ng-change="$ctrl.checkboxStateChange('DELETE_AT_EXPIRATION')">
+                                        <span data-ng-bind-html="'exchange_update_billing_header_terminate' | translate"></span>
+                                    </th>
+                                </tr>
+                            </thead>
+
+                            <tbody data-ng-if="$ctrl.loading">
+                                <tr class="oui-datagrid__row">
+                                    <td class="text-center oui-datagrid__cell" colspan="5">
+                                        <oui-spinner></oui-spinner>
+                                    </td>
+                                </tr>
+                            </tbody>
+
+                            <tbody data-ng-if="!$ctrl.loading && $ctrl.bufferedAccounts.list.results.length === 0 && $ctrl.bufferedAccounts.list.messages.length === 0">
+                                <tr class="oui-datagrid__row">
+                                    <td class="text-center oui-datagrid__cell" colspan="5">
+                                        <span data-translate="exchange_tab_ACCOUNTS_table_empty" data-ng-if="!$ctrl.search.value"></span>
+                                        <span data-translate="exchange_tab_ACCOUNTS_table_empty_search" data-ng-if="$ctrl.search.value"></span>
+                                    </td>
+                                </tr>
+                            </tbody>
+
+                            <tbody data-ng-if="!$ctrl.loading && ($ctrl.bufferedAccounts.list.results.length > 0 || $ctrl.bufferedAccounts.list.messages.length > 0)">
+                                <tr class="oui-datagrid__row" data-ng-repeat="account in ($ctrl.bufferedAccounts.list.results | orderBy:'primaryEmailAddress':false) track by $index">
+                                    <td class="word-break oui-datagrid__cell" data-ng-bind="account.primaryEmailDisplayName | wucSliceContent: 150"></td>
+                                    <td class="oui-datagrid__cell" data-ng-bind="account.expirationDate | date:'mediumDate'"></td>
+                                    <td class="oui-datagrid__cell" colspan="3" data-ng-if="$ctrl.account.partial"></td>
+                                    <td class="text-center oui-datagrid__cell" data-ng-if="!$ctrl.account.partial && $ctrl.canHaveMonthlyRenewal()">
+                                        <label class="mb-0">
+                                            <input
+                                                type="radio"
+                                                value="MONTHLY"
+                                                data-ng-change="$ctrl.trackSelected(account.primaryEmailAddress, account.renewPeriod)"
+                                                data-ng-model="account.renewPeriod">
+                                        </label>
+                                    </td>
+                                    <td class="text-center oui-datagrid__cell" data-ng-if="!account.partial">
+                                        <label class="mb-0">
+                                            <input
+                                                type="radio"
+                                                value="YEARLY"
+                                                data-ng-change="$ctrl.trackSelected(account.primaryEmailAddress, account.renewPeriod)"
+                                                data-ng-model="account.renewPeriod">
+                                        </label>
+                                    </td>
+                                    <td class="text-center oui-datagrid__cell" data-ng-if="!account.partial && $ctrl.canBeDeletedAtExpiration()">
+                                        <label class="mb-0">
+                                            <input
+                                                type="radio"
+                                                value="DELETE_AT_EXPIRATION"
+                                                data-ng-change="$ctrl.trackSelected(account.primaryEmailAddress, account.renewPeriod);"
+                                                data-ng-model="account.renewPeriod">
+                                        </label>
+                                    </td>
+                                </tr>
+                                <tr class="oui-datagrid__row" data-ng-repeat="account in $ctrl.bufferedAccounts.list.messages | orderBy: 'id':false track by $index">
+                                    <td class="oui-datagrid__cell" colspan="5" data-uib-tooltip="{{'exchange_tab_ACCOUNTS_partial_account' | translate}}">
+                                        <span class="fa fa-exclamation-triangle mr-2" aria-hidden="true"></span>
+                                        <span data-ng-bind="account.id"></span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="clearfix"
+                data-pagination-server-side="accountsTable"
+                data-pagination-server-side-function="retrieveAccounts"
+                data-pagination-server-side-paginated-stuff="getBufferedAccounts()"
+                data-pagination-server-side-table-loading="getLoading()">
+            </div>
+        </div>
+
+        <div class="alert alert-warning mt-5" role="alert"
+            data-translate="exchange_update_billing_periode_delete_warning"
+            data-ng-if="$ctrl.canBeDeletedAtExpiration() && $ctrl.services.exchangeVersion.isAfter(2010, $ctrl.exchange) && !$ctrl.account.partial && $ctrl.model.displayDeleteWarning">
+        </div>
+    </div>
+
+    <div data-wizard-step>
+        <p data-translate="exchange_update_billing_periode_resume"></p>
+
+        <div data-ng-if="$ctrl.submitLoader" class="text-center">
+            <oui-spinner></oui-spinner>
+        </div>
+
+        <div class="oui-datagrid-responsive-container" data-ng-if="!$ctrl.submitLoader">
+            <div class="oui-datagrid-responsive-container__sticky-container">
+                <div class="oui-datagrid-responsive-container__overflow-container">
+                    <table class="oui-datagrid">
+                        <thead class="oui-datagrid__headers">
+                            <tr>
+                                <th scope="col" data-translate="exchange_tab_ACCOUNTS_table_email" class="oui-datagrid__header"></th>
+                                <th class="text-center oui-datagrid__header" scope="col" data-translate="exchange_update_billing_header_new_periode"></th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr class="oui-datagrid__row" data-ng-repeat="account in ($ctrl.bufferedAccounts.list.results | orderBy:'primaryEmailAddress':false) track by $index">
+                                <td data-ng-bind="account.primaryEmailDisplayName" class="oui-datagrid__cell"></td>
+                                <td class="text-center oui-datagrid__cell" data-ng-bind="('exchange_update_billing_periode_value_' + account.renewPeriod) | translate"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="alert alert-warning"
+            role="alert"
+            data-translate="exchange_update_billing_periode_delete_warning"
+            data-ng-if="$ctrl.model.displayDeleteWarning">
+        </div>
+    </div>
+</div>

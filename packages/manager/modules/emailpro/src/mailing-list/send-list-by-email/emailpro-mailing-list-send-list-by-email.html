@@ -1,0 +1,32 @@
+<div data-ng-controller="EmailProMXPlanMailingListsSendListByEmailCtrl as ctrl">
+    <div data-wizard
+         data-wizard-on-cancel="resetAction"
+         data-wizard-on-finish="sendListByEmail"
+         data-wizard-title="'mailing_list_tab_subscribers_send_list' | translate">
+
+        <div data-wizard-step
+             data-wizard-step-valid="!ctrl.loading && ctrl.sendListForm.$valid">
+
+            <div class="text-center" data-ng-if="ctrl.loading">
+                <oui-spinner></oui-spinner>
+            </div>
+
+            <div data-ng-if="!ctrl.loading">
+                <p data-ng-bind-html="'mailing_list_tab_send_list_by_email' | translate: { t0: ctrl.mailingList.name }"></p>
+                <form class="form-horizontal" name="ctrl.sendListForm">
+                    <div class="form-group" data-ng-class="{ 'has-error': ctrl.sendListForm.email.$dirty && ctrl.sendListForm.email.$invalid }">
+                        <label class="control-label col-md-3 required" for="txt-subscribers-list"
+                               data-translate="mailing_list_tab_send_list_by_email_addr"></label>
+                        <div class="col-md-8">
+                            <input type="email" class="form-control" name="email" id="txt-subscribers-list" required
+                                   data-ng-change="ctrl.emailCheck(ctrl.sendListForm.email)"
+                                   data-ng-model="ctrl.email">
+                            <small class="help-block" data-ng-if="ctrl.sendListForm.email.$dirty && ctrl.sendListForm.email.$invalid"
+                                   data-translate="mailing_list_common_invalid_email"></small>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,56 @@
+<div class="row" data-ng-controller="EmailMXPlanEmailRedirectionCtrl as ctrlEmailMXPlanEmailRedirection">
+    <div class="col-md-9">
+        <div data-ovh-alert="{{alerts.main}}"></div>
+
+        <div class="text-center" data-ng-if="ctrlEmailMXPlanEmailRedirection.loading.redirections">
+            <oui-spinner size="l"></oui-spinner>
+        </div>
+
+        <div data-ng-if="!ctrlEmailMXPlanEmailRedirection.loading.redirections">
+            <dl class="dl-horizontal dl-lg" data-ng-if="ctrlEmailMXPlanEmailRedirection.quotas.redirection > 0">
+                <dt data-translate="email_tab_redirections_quota"></dt>
+                <dd class="text-nowrap"
+                    data-ng-bind="ctrlEmailMXPlanEmailRedirection.redirections.length + ' / ' + (ctrlEmailMXPlanEmailRedirection.quotas.redirection || '0')">
+                </dd>
+            </dl>
+
+            <div class="alert alert-info mt-4" role="alert"
+                 data-translate="email_tab_table_redirections_empty"
+                 data-ng-if="!ctrlEmailMXPlanEmailRedirection.loading.redirections && !ctrlEmailMXPlanEmailRedirection.redirections.length">
+            </div>
+
+            <oui-datagrid data-rows="ctrlEmailMXPlanEmailRedirection.redirections"
+                          data-row-loader="ctrlEmailMXPlanEmailRedirection.transformItem($row)">
+                <oui-column data-title="'emails_common_from' | translate" data-property="from"></oui-column>
+                <oui-column data-title="'emails_common_to' | translate" data-property="to"></oui-column>
+                <oui-action-menu data-align="end" data-compact>
+                    <oui-action-menu-item data-text="{{ 'email_tab_popover_redirection_update' | translate }}"
+                                          data-on-click="setAction('emailpro/redirection/update/email-domain-email-redirection-update', { redirection: $row, domain: domain })"></oui-action-menu-item>
+                    <oui-action-menu-item data-text="{{ 'email_tab_popover_redirection_delete' | translate }}"
+                                          data-on-click="setAction('emailpro/redirection/delete/email-domain-email-redirection-delete', { redirection: $row })"></oui-action-menu-item>
+                </oui-action-menu>
+            </oui-datagrid>
+        </div>
+    </div>
+
+    <div class="col-md-3 mt-5 mt-lg-0">
+        <div class="mb-5">
+            <button class="btn btn-block btn-default" type="button"
+                    data-translate="email_tab_button_emails_create_redirection"
+                    data-ng-click="setAction('emailpro/redirection/create/email-domain-email-redirection-create')"
+                    data-ng-if="ctrlEmailMXPlanEmailRedirection.redirections.length < (ctrlEmailMXPlanEmailRedirection.quotas.redirection + ctrlEmailMXPlanEmailRedirection.quotas.alias)">
+            </button>
+            <button class="btn btn-block btn-default" type="button"
+                    data-export-csv="ctrlEmailMXPlanEmailRedirection.getDatasToExport()"
+                    data-export-csv-separator=";"
+                    data-ng-disabled="ctrlEmailMXPlanEmailRedirection.loading.exportCSV || !ctrlEmailMXPlanEmailRedirection.redirections.length">
+                    {{ 'email_tab_button_emails_export_CSV' | translate }}
+            </button>
+        </div>
+        <div data-wuc-guides
+             data-wuc-guides-title="'guide_subtitle' | translate"
+             data-wuc-guides-list="'emailsRedirection'"
+             data-tr="tr">
+        </div>
+    </div>
+</div>

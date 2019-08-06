@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-cloud-styles",
-  "version": "0.3.0-alpha.1",
+  "version": "0.3.0",
   "homepage": "https://github.com/ovh-ux/manager/tree/master/packages/manager/modules/cloud-styles#readme",
   "bugs": {
     "url": "https://github.com/ovh-ux/manager/issues"
@@ -24,7 +24,7 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-cloud-styles' --include-filtered-dependencies -- yarn run dev:watch"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^5.0.2",
+    "@ovh-ux/component-rollup-config": "^6.0.0",
     "bootstrap": "~3.3.7",
     "font-awesome": "^4.0.0",
     "ovh-common-style": "^3.2.2",

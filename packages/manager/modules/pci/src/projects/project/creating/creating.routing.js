@@ -23,11 +23,29 @@ export default /* @ngInject */ ($stateProvider) => {
           }));
           $window.location.reload();
         },
-        projectOrder: /* @ngInject */ (project, projectCreating, projectOrderStatus) => {
+        projectOrder: /* @ngInject */ (
+          $state,
+          atInternet,
+          project,
+          projectCreating,
+          projectOrderStatus,
+        ) => {
+          const page = `public-cloud::${$state.current.name.replace(/\./g, '::')}`;
           if (project.orderId && projectOrderStatus === 'notPaid') {
+            atInternet.trackEvent({
+              page,
+              event: 'PCI_PROJECTS_CREATING_NOT_PAID',
+            });
+
             return projectCreating
               .getOrderDetails(project.orderId);
           }
+
+          atInternet.trackEvent({
+            page,
+            event: 'PCI_PROJECTS_CREATING',
+          });
+
           return null;
         },
         projectOrderStatus: /* @ngInject */ (project, projectCreating) => {

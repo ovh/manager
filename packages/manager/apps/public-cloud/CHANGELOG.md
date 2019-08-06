@@ -1,3 +1,50 @@
+# [1.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.14.1...@ovh-ux/manager-public-cloud@1.0.0) (2019-07-22)
+
+
+### Code Refactoring
+
+* **components.ng-ui-router-breadcrumb:** renamed package name ([96fa272](https://github.com/ovh-ux/manager/commit/96fa272))
+* **components.ng-ui-router-layout:** renamed package name ([0e43cc2](https://github.com/ovh-ux/manager/commit/0e43cc2))
+* **components.ng-ui-router-line-progress:** renamed package name ([5d15a9a](https://github.com/ovh-ux/manager/commit/5d15a9a))
+
+
+### BREAKING CHANGES
+
+* **components.ng-ui-router-line-progress:** package and module are now respectively named as
+`@ovh-ux/ng-ui-router-line-progress` and `ngUiRouterLineProgress`
+* **components.ng-ui-router-breadcrumb:** package and module are now respectively named as
+`@ovh-ux/ng-ui-router-breadcrumb` and `ngUiRouterBreadcrumb`
+* **components.ng-ui-router-layout:** package is now named as `@ovh-ux/ng-ui-router-layout`
+
+
+
+## [0.14.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.14.0...@ovh-ux/manager-public-cloud@0.14.1) (2019-07-15)
+
+
+### Bug Fixes
+
+* bump lodash to version >= 4.17.14 ([#1072](https://github.com/ovh-ux/manager/issues/1072)) ([1a32ddc](https://github.com/ovh-ux/manager/commit/1a32ddc))
+
+
+
+# [0.14.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.14.0-alpha.0...@ovh-ux/manager-public-cloud@0.14.0) (2019-07-09)
+
+
+### Features
+
+* **onboarding:** display onboarding only if required ([a28ce76](https://github.com/ovh-ux/manager/commit/a28ce76))
+
+
+
+# [0.14.0-alpha.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.13.0-alpha.0...@ovh-ux/manager-public-cloud@0.14.0-alpha.0) (2019-07-02)
+
+
+### Features
+
+* **pci:** implement ui for analytics data platform ([#753](https://github.com/ovh-ux/manager/issues/753)) ([1c16e14](https://github.com/ovh-ux/manager/commit/1c16e14))
+
+
+
 # [0.13.0-alpha.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.12.0-alpha.4...@ovh-ux/manager-public-cloud@0.13.0-alpha.0) (2019-06-24)
 
 

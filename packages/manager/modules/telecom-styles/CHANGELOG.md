@@ -1,3 +1,12 @@
+# [3.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom-styles@3.0.0...@ovh-ux/manager-telecom-styles@3.1.0) (2019-07-05)
+
+
+### Features
+
+* add new packages ([09b5158](https://github.com/ovh-ux/manager/commit/09b5158))
+
+
+
 # [3.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom-styles@2.0.2...@ovh-ux/manager-telecom-styles@3.0.0) (2019-06-18)
 
 

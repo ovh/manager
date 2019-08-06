@@ -1,3 +1,21 @@
+## [0.3.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-vrack@0.3.0...@ovh-ux/manager-vrack@0.3.1) (2019-07-15)
+
+
+### Bug Fixes
+
+* bump lodash to version >= 4.17.14 ([#1072](https://github.com/ovh-ux/manager/issues/1072)) ([1a32ddc](https://github.com/ovh-ux/manager/commit/1a32ddc))
+
+
+
+# [0.3.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-vrack@0.2.4...@ovh-ux/manager-vrack@0.3.0) (2019-07-05)
+
+
+### Features
+
+* add new packages ([09b5158](https://github.com/ovh-ux/manager/commit/09b5158))
+
+
+
 ## [0.2.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-vrack@0.2.3...@ovh-ux/manager-vrack@0.2.4) (2019-05-22)
 
 

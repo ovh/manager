@@ -6,7 +6,8 @@
 
     <oui-datagrid class="mt-3" data-rows="$ctrl.clusterList" data-row-loader="$ctrl.loadRowWithFlavorDetails($row)">
         <extra-top>
-            <button class="float-right oui-button oui-button_secondary oui-button_icon-only oui-button_small-width"
+            <button type="button"
+                    class="float-right oui-button oui-button_secondary oui-button_icon-only oui-button_small-width"
                     data-title="{{:: 'analytics_data_platform_service_cluster_refresh' | translate }}"
                     data-ng-click="$ctrl.refresh()">
                 <span class="fa fa-refresh" aria-hidden="true"></span>
