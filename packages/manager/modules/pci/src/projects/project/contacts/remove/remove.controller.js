@@ -1,40 +1,34 @@
+import get from 'lodash/get';
+
 export default class {
   /* @ngInject */
-  constructor($state, $stateParams) {
-    this.$state = $state;
-    this.$stateParams = $stateParams;
+  constructor($translate, OvhApiCloud) {
+    this.$translate = $translate;
+    this.OvhApiCloud = OvhApiCloud;
+  }
+
+  $onInit() {
+    this.isDeleting = false;
   }
 
   remove() {
-    return this
-      .OvhApiCloud
+    this.isDeleting = true;
+    return this.OvhApiCloud
       .Project()
       .Acl()
       .v6()
       .remove({
-        serviceName: this.$stateParams.projectId,
-        accountId: this.$stateParams.accountId,
+        serviceName: this.projectId,
+        accountId: this.contactId,
       })
       .$promise
-      .then(() => {
-        this.CucCloudMessage.success(
-          this.$translate.instant('cpb_rights_table_rights_remove_success'),
-        );
-      })
-      .catch((err) => {
-        this.CucCloudMessage.error(
-          [
-            this.$translate.instant('cpb_rights_remove_error'),
-            (err.data && err.data.message) || '',
-          ].join(' '),
-        );
-      })
-      .finally(() => {
-        this.cancel();
-      });
-  }
-
-  cancel() {
-    return this.$state.go('^');
+      .then(() => this.goToContactsPage(
+        this.$translate.instant('cpb_rights_table_rights_remove_success'),
+      ))
+      .catch(error => this.goToContactsPage(
+        this.$translate.instant('cpb_rights_remove_error', {
+          message: get(error, 'data.message'),
+        }), 'error',
+      ));
   }
 }

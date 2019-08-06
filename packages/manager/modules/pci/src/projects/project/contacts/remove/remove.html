@@ -1,8 +1,10 @@
 <oui-modal
-    data-title="{{:: 'cpb_rights_add_title' | translate}}"
-    data-primary-label="{{ ::'cpb_rights_add' | translate }}"
-    data-secondary-action="$ctrl.cancel()"
-    data-secondary-label="{{ ::'common_cancel' | translate }}"
-    data-on-dismiss="$ctrl.cancel()"
-    data-loading="$ctrl.loader">
+    data-title="{{ ::'cpb_rights_delete_title' | translate }}"
+    data-primary-label="{{ ::'cpb_rights_common_delete' | translate }}"
+    data-primary-action="$ctrl.remove()"
+    data-secondary-action="$ctrl.goToContactsPage()"
+    data-secondary-label="{{ ::'cpb_rights_common_cancel' | translate }}"
+    data-on-dismiss="$ctrl.goToContactsPage()"
+    data-loading="$ctrl.isDeleting">
+    <p data-translate="cpb_rights_delete_question" data-translate-values="{ nickname: $ctrl.contactId }"></p>
 </oui-modal>

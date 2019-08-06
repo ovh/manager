@@ -14,7 +14,6 @@ angular
       url: '/add',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
-
         return import('./add.module')
           .then(mod => $ocLazyLoad.inject(mod.default || mod));
       },

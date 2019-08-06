@@ -28,19 +28,18 @@
     </div>
 </div>
 <p data-translate="cpb_rights_expl2"></p>
-<p data-ng-if="!$ctrl.loader.rights" data-translate="cpb_rights_note" class="mb-4"></p>
+<p data-translate="cpb_rights_note" class="mb-4"></p>
+<cui-message-container data-messages="$ctrl.messages"></cui-message-container>
 <oui-datagrid
-    data-rows="$ctrl.data.rights"
-    data-row-loader="$ctrl.transformItem($row)">
+    data-rows="$ctrl.contacts"
+    data-row-loader="$ctrl.getContact($row)">
     <extra-top>
-        <a
-            data-ui-sref="pci.projects.project.contacts.add"
-            class="oui-button oui-button_secondary mb-3"
-            data-ng-disabled="$ctrl.loader.rights || $ctrl.data.rightIds === null"
+        <oui-button data-aria-label="{{:: 'cpb_rights_common_add' | translate }}"
+            data-text="{{:: 'cpb_rights_common_add' | translate }}"
+            data-on-click="$ctrl.addContact()"
             data-ng-if="$ctrl.model.isAdmin"
-            data-translate="common_add"
-        >
-    </a>
+            class="mb-2">
+        </oui-button>
     </extra-top>
     <oui-column data-property="accountId"
         data-title="'cpb_rights_table_nichandle' | translate"></oui-column>
@@ -49,8 +48,8 @@
         <span data-ng-bind="('cpb_rights_table_rights_value_' + $row.type) | translate"></span>
     </oui-column>
     <oui-action-menu data-align="end" data-compact>
-        <oui-action-menu-item text="{{'delete' | translate}}"
-            data-on-click="$ctrl.removeRight($row)">
+        <oui-action-menu-item text="{{ ::'cpb_rights_common_delete' | translate }}"
+            data-on-click="$ctrl.deleteContact($row.accountId)">
         </oui-action-menu-item>
     </oui-action-menu>
 </oui-datagrid>
