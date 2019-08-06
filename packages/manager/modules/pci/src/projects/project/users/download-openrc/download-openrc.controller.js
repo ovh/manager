@@ -33,7 +33,7 @@ export default class PciUsersDownloadOpenRcController {
   downloadOpenRc() {
     this.isLoading = true;
     return this.PciProjectsProjectUsersService
-      .downloadOpenRc(this.projectId, this.user, this.region.id, this.hasGlobalRegions ? 3 : 2)
+      .downloadOpenRc(this.projectId, this.user, this.region.id, this.getOpenRcApiVersion())
       .then(({ content }) => {
         const data = new Blob([content], { type: DOWNLOAD_TYPE });
         saveAs(data, DOWNLOAD_FILENAME);
@@ -67,5 +67,10 @@ export default class PciUsersDownloadOpenRcController {
       .finally(() => {
         this.isLoading = false;
       });
+  }
+
+  getOpenRcApiVersion() {
+    // Returns v3 if the region list has global regions i.e, GRA, DE, etc
+    return this.hasGlobalRegions ? 3 : 2;
   }
 }
