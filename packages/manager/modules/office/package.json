@@ -20,7 +20,6 @@
     "@ovh-ux/component-rollup-config": "^6.0.0"
   },
   "peerDependencies": {
-    "@ovh-ux/ng-ovh-swimming-poll": "^4.0.0",
     "@ovh-ux/ng-ovh-utils": "^14.0.3",
     "@ovh-ux/ng-ovh-web-universe-components": "^5.0.0",
     "angular": "^1.7.5",
