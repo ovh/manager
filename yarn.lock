@@ -1713,6 +1713,36 @@
     shuffle-seed "^1.1.6"
     titleize "^1.0.1"
 
+"@ovh-ux/component-rollup-config@^5.0.2":
+  version "5.2.2"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/component-rollup-config/-/component-rollup-config-5.2.2.tgz#bce47a5531b180e50b88f8c75ef3e935371b8f32"
+  integrity sha512-d+EjzL6o6/h4l5iyy2Wcg50mDyYl7WDDmNQNf3Rx+x15Ejhvu0DBPgTTtGjSmto/6JpX1wLwTmCZyZoutodo1A==
+  dependencies:
+    "@babel/core" "^7.1.2"
+    "@babel/plugin-syntax-dynamic-import" "^7.0.0"
+    "@babel/preset-env" "^7.1.6"
+    "@ovh-ux/rollup-plugin-less-inject" "^1.0.1"
+    "@ovh-ux/rollup-plugin-less-tilde-importer" "^1.0.0-beta.0"
+    babel-plugin-angularjs-annotate "^0.10.0"
+    camelcase "^5.0.0"
+    estree-walker "^0.6.0"
+    less "^3.9.0"
+    less-plugin-remcalc "^0.1.0"
+    lodash "^4.17.14"
+    magic-string "^0.25.1"
+    node-sass "^4.10.0"
+    rollup "^1.15.6"
+    rollup-plugin-babel "^4.3.2"
+    rollup-plugin-commonjs "^9.2.0"
+    rollup-plugin-html "^0.2.1"
+    rollup-plugin-img "^1.1.0"
+    rollup-plugin-json "^3.1.0"
+    rollup-plugin-node-resolve "^4.0.0"
+    rollup-plugin-peer-deps-external "^2.2.0"
+    rollup-plugin-sass "^1.1.0"
+    rollup-pluginutils "^2.3.3"
+    slash "^2.0.0"
+
 "@ovh-ux/ng-at-internet-ui-router-plugin@^2.0.0":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-at-internet-ui-router-plugin/-/ng-at-internet-ui-router-plugin-2.0.0.tgz#ca1d5ee1cd9c513e63abcc1470b47114495714dc"
