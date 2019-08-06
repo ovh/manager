@@ -1,3 +1,4 @@
+import angular from 'angular';
 import { ORDER_DETAILS_POLLING_INTERVAL } from './order-tracking.config';
 
 export default class OrderTrackingController {
@@ -32,8 +33,10 @@ export default class OrderTrackingController {
     }).catch((error) => {
       this.error = {
         message: (error.data || { message: error.statusText }).message,
-        queryId: error.headers('x-ovh-queryid'),
       };
+      if (angular.isFunction(error.headers)) {
+        this.error.queryId = error.headers('x-ovh-queryid');
+      }
     }).finally(() => {
       this.isLoading = false;
     });
