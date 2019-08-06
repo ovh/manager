@@ -2341,6 +2341,11 @@ angular-dynamic-locale@^0.1.37:
   dependencies:
     "@types/angular" "^1.6.25"
 
+angular-i18n@~1.5.x:
+  version "1.5.11"
+  resolved "https://registry.yarnpkg.com/angular-i18n/-/angular-i18n-1.5.11.tgz#3d0482032d06f1437c6192cd8ef6045e692aa689"
+  integrity sha1-PQSCAy0G8UN8YZLNjvYEXmkqpok=
+
 angular-i18n@~1.7.8:
   version "1.7.8"
   resolved "https://registry.yarnpkg.com/angular-i18n/-/angular-i18n-1.7.8.tgz#b341165dd7027720610fd456ea0d3355616fc0a8"
