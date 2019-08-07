@@ -71,6 +71,6 @@ export default class PciUsersDownloadOpenRcController {
 
   getOpenRcApiVersion() {
     // Returns v3 if the region list has global regions i.e, GRA, DE, etc
-    return this.hasGlobalRegions ? 3 : 2;
+    return this.hasGlobalRegions || this.currentRegion === 'US' ? 3 : 2;
   }
 }
