@@ -11,8 +11,7 @@
         data-loading="$ctrl.isLoading">
 
         <p>
-            <span data-ng-if="$ctrl.hasGlobalRegions" data-translate="pci_projects_project_users_download-openrc_content_global"></span>
-            <span data-ng-if="!$ctrl.hasGlobalRegions" data-translate="pci_projects_project_users_download-openrc_content"></span>
+            <span data-translate="pci_projects_project_users_download-openrc_content"></span>
             <a
                 class="oui-link_icon"
                 data-ng-if="$ctrl.openstackGuide"
@@ -34,5 +33,6 @@
                 data-match="label">
             </oui-select>
         </oui-field>
+        <span data-ng-if="$ctrl.hasGlobalRegions" data-translate="pci_projects_project_users_download-openrc_info_global"></span>
     </oui-modal>
 </form>

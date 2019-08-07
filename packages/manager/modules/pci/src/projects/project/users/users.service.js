@@ -1,6 +1,6 @@
 import get from 'lodash/get';
-import forEach from 'lodash/forEach';
 import map from 'lodash/map';
+import some from 'lodash/some';
 import { OPENRC_VERSION } from './download-openrc/download-openrc.constants';
 import { ALPHA_CHARACTERS_REGEX } from './users.constants';
 
@@ -20,13 +20,7 @@ export default class PciProjectsProjectUsersService {
   }
 
   checkGlobalRegion(regions) {
-    let hasGlobalRegions = false;
-    forEach(regions, (region) => {
-      if (this.ALPHA_CHARACTERS_REGEX.test(region.id)) {
-        hasGlobalRegions = true;
-      }
-    });
-    return hasGlobalRegions;
+    return some(regions, region => this.ALPHA_CHARACTERS_REGEX.test(region.id));
   }
 
   getAll(projectId) {
