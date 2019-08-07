@@ -1,6 +1,0 @@
-{
- "pci_projects_project_storages_snapshots_snapshot_create-volume_title": "Vytvořit svazek z této zálohy",
- "pci_projects_project_storages_snapshots_snapshot_create-volume_submit_label": "Vytvořit Velikost",
- "pci_projects_project_storages_snapshots_snapshot_create-volume_success_message": "Hlasitost {{volume}} byla vytvořena.",
- "pci_projects_project_storages_snapshots_snapshot_create-volume_error_post": "Při vytváření volume {{volume}} došlo k následující chybě: {{message}}"
-}

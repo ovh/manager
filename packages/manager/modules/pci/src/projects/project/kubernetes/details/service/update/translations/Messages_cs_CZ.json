@@ -1,8 +1,0 @@
-{
- "kube_service_update_common_confirm": "Dokončit",
- "kube_service_update_common_cancel": "Zrušit",
- "kube_service_update_title": "Vynutit aktualizaci",
- "kube_service_update_message": "Aktualizace může mít za následek nedostupnost jedné až dvou minut pro každý uzel. Používáme rolovací upgrade s node drain, aby byl dopad na vaše služby vystaven minimálně nebo transparentně.",
- "kube_service_update_success": "Klastr Kubernetes se aktualizuje.",
- "kube_service_update_error": "Při aktualizaci clusteru došlo k chybě: {{message}}"
-}

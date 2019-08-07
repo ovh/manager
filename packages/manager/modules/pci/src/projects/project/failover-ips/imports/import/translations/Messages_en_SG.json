@@ -1,8 +1,0 @@
-{
- "pci_projects_project_failoverip_imports_import_title": "Order confirmation ",
- "pci_projects_project_failoverip_imports_import_submit_label": "Import",
- "pci_projects_project_failoverip_imports_import_cancel_label": "Cancel",
- "pci_projects_project_failoverip_imports_import_description": "Are you sure you want to import this Failover IP?",
- "pci_projects_project_imports_import_success": "Failover IP {{ip}} will be imported into your project in a few moments.",
- "pci_projects_project_imports_import_error": "An error occurred when trying to import your SSL certificate."
-}
