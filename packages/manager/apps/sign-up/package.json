@@ -15,6 +15,7 @@
   "dependencies": {
     "@ovh-ux/manager-config": "^0.3.0",
     "@ovh-ux/manager-core": "^6.1.5",
+    "@ovh-ux/ng-ovh-request-tagger": "^0.0.0",
     "@ovh-ux/ng-ovh-sso-auth": "^4.1.0",
     "@ovh-ux/ng-translate-async-loader": "^2.0.0",
     "@ovh-ux/sign-up": "^1.0.0",
