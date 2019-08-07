@@ -17,6 +17,7 @@ import 'angular-translate-loader-pluggable';
 
 import '@ovh-ux/ng-ovh-swimming-poll';
 import '@ovh-ux/ng-ovh-api-wrappers';
+import '@ovh-ux/ng-ovh-request-tagger';
 import 'ovh-api-services';
 
 import '@uirouter/angularjs';
@@ -37,6 +38,7 @@ angular
     'ngOvhApiWrappers',
     'ngSanitize',
     'angular-translate-loader-pluggable',
+    'ngOvhRequestTagger',
     'ovh-api-services',
     'pascalprecht.translate',
     'tmh.dynamicLocale',
@@ -183,6 +185,7 @@ angular
 
     $httpProvider.interceptors.push('serviceTypeInterceptor');
     $httpProvider.interceptors.push('OvhSsoAuthInterceptor');
+    $httpProvider.interceptors.push('OvhNgRequestTaggerInterceptor');
   })
   .config((OvhHttpProvider) => {
     // OvhHttpProvider.rootPath = constants.swsProxyPath;
