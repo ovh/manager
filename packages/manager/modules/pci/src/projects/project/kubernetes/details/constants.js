@@ -15,6 +15,7 @@ export const ERROR_STATUS = [
   'ERROR',
   'USER_ERROR',
   'USER_QUOTA_ERROR',
+  'SUSPENDED',
 ];
 
 export const STATUS = {

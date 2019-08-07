@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 import { CONFIG_FILENAME, KUBECONFIG_URL, KUBECTL_URL } from './service.constants';
 import { STATUS } from '../constants';
 
@@ -45,7 +47,7 @@ export default class KubernetesServiceCtrl {
         this.CucControllerHelper.constructor
           .downloadContent({ fileContent: config.content, fileName: `${config.fileName}.yml` });
       })
-      .catch(error => this.CucCloudMessage.error(`${this.$translate.instant('kube_service_file_error')} ${_.get(error, 'data.message})
+      .catch(error => this.CucCloudMessage.error(`${this.$translate.instant('kube_service_file_error')} : ${get(error, 'data.message')}`))
       .finally(() => { this.loadingKubeConfig = false; });
   }
 }
