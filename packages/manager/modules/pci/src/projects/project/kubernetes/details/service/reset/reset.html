@@ -9,15 +9,9 @@
                data-on-dismiss="$ctrl.goBack()"
                data-loading="$ctrl.isReseting"
                data-type="warning">
-        <p class="oui-paragraph" data-translate="pci_projects_project_kubernetes_service_reset_message"></p>
-        <oui-field data-label="{{:: 'pci_projects_project_kubernetes_service_reset_enter' | translate }}">
-            <input class="oui-input"
-                   type="text"
-                   name="kubeClusterResetConfirm"
-                   data-ng-model="$ctrl.deleteConfirmation"
-                   data-ng-pattern="$ctrl.RESET_CONFIRMATION_INPUT"
-                   required>
-        </oui-field>
+        <oui-message data-type="warning">
+            <span data-translate="pci_projects_project_kubernetes_service_reset_message"></span>
+        </oui-message>
         <oui-field data-label="{{ ::'pci_projects_project_kubernetes_service_reset_nodes' | translate }}">
             <oui-radio-group data-model="$ctrl.model.workerNodesPolicy">
                 <oui-radio data-value="$ctrl.WORKER_NODE_POLICIES.DELETE">

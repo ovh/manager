@@ -1,9 +1,10 @@
 {
- "sign_up_form_identity_step_title": "Identidad",
- "sign_up_form_details_step_title": "Datos de contacto",
- "sign_up_form_activity_step_title": "Actividad",
- "sign_up_form_other_informations_step_title": "Información complementaria",
- "sign_up_form_next_button": "Paso siguiente",
- "sign_up_form_submit_button": "Crear una cuenta",
- "sign_up_form_submit_error": "¡Vaya! Se ha producido un error al crear la cuenta."
+  "sign_up_form_identity_step_title": "Identidad",
+  "sign_up_form_details_step_title": "Datos de contacto",
+  "sign_up_form_activity_step_title": "Actividad",
+  "sign_up_form_other_informations_step_title": "Información complementaria",
+  "sign_up_form_next_button": "Siguiente paso",
+  "sign_up_form_submit_button": "Crear una cuenta",
+  "sign_up_form_submit_error": "¡Vaya! Se ha producido un error al crear la cuenta.",
+  "sign_up_form_global_information": "Para poder contratar servicios, es necesario introducir todos los datos solicitados."
 }

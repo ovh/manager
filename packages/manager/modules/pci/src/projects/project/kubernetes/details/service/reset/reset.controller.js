@@ -18,8 +18,6 @@ export default class kubernetesResetCtrl {
       version: null,
       workerNodesPolicy: WORKER_NODE_POLICIES.DELETE,
     };
-
-    this.deleteConfirmation = null;
   }
 
   /**
@@ -41,7 +39,7 @@ export default class kubernetesResetCtrl {
       .catch(error => this.goBack(
         this.$translate.instant('pci_projects_project_kubernetes_service_reset_error', {
           message: get(error, 'data.message'),
-        }),
-      ), 'error ');
+        }), 'error',
+      ));
   }
 }
