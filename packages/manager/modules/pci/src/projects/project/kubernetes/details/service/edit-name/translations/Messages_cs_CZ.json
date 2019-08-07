@@ -1,9 +1,0 @@
-{
- "pci_projects_project_kubernetes_details_service_name": "Upravit jméno",
- "pci_projects_project_kubernetes_details_service_name_edit": "Upravit",
- "pci_projects_project_kubernetes_details_service_name_cancel": "Zrušit",
- "pci_projects_project_kubernetes_details_service_name_default": "Výchozí název {{ name }}",
- "pci_projects_project_kubernetes_details_service_name_custom": "Vlastní název",
- "pci_projects_project_kubernetes_details_service_name_success": "Název clusteru byl aktualizován.",
- "pci_projects_project_kubernetes_details_service_name_error": "Při přejmenování clusteru došlo k chybě: {{message}}"
-}
