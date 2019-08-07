@@ -45,7 +45,7 @@ export default class KubernetesServiceCtrl {
         this.CucControllerHelper.constructor
           .downloadContent({ fileContent: config.content, fileName: `${config.fileName}.yml` });
       })
-      .catch(error => this.CucCloudMessage.error([this.$translate.instant('kube_service_file_error'), (error.data && error.data.message) || ''].join(' ')))
+      .catch(error => this.CucCloudMessage.error(`${this.$translate.instant('kube_service_file_error')} ${_.get(error, 'data.message})
       .finally(() => { this.loadingKubeConfig = false; });
   }
 }
