@@ -23,6 +23,7 @@
     "@ovh-ux/ng-ovh-otrs": "^7.1.4",
     "@ovh-ux/ng-ovh-payment-method": "^3.2.0",
     "@ovh-ux/ng-ovh-proxy-request": "^1.0.0-beta.0",
+    "@ovh-ux/ng-ovh-request-tagger": "^0.0.0",
     "@ovh-ux/ng-ovh-responsive-popover": "^5.0.0-beta.0",
     "@ovh-ux/ng-ovh-swimming-poll": "^4.0.0",
     "@ovh-ux/ng-ovh-user-pref": "^1.0.0",
