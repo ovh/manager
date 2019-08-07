@@ -30,7 +30,7 @@ export default class KubernetesNodesDeleteCtrl {
       .catch(error => this.goBack(
         this.$translate.instant('kube_nodes_delete_error', {
           message: get(error, 'data.message'),
-        }),
-      ), 'error');
+        }), 'error',
+      ));
   }
 }

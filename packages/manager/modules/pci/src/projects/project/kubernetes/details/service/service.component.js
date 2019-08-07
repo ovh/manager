@@ -8,6 +8,7 @@ const component = {
     clusterMinorVersion: '<',
     highestVersion: '<',
     kubernetesConfig: '<',
+    getKubeConfig: '<',
     kubeId: '<',
     resetCluster: '<',
     terminate: '<',

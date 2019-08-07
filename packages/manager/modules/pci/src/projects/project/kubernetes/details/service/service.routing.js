@@ -6,11 +6,11 @@ export default /* @ngInject */ ($stateProvider) => {
         kubernetesView: 'ovhManagerPciProjectKubernetesServiceComponent',
       },
       resolve: {
-        kubernetesConfig: /* @ngInject */ (
+        getKubeConfig: /* @ngInject */ (
           Kubernetes,
           kubeId,
           projectId,
-        ) => Kubernetes.getKubeConfig(projectId, kubeId),
+        ) => () => Kubernetes.getKubeConfig(projectId, kubeId),
 
         changeClusterName: /* @ngInject */ (
           $state,
