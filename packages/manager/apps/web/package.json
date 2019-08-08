@@ -51,9 +51,9 @@
     "@ovh-ux/ng-ovh-sso-auth-modal-plugin": "^3.0.1",
     "@ovh-ux/ng-ovh-swimming-poll": "^4.0.0",
     "@ovh-ux/ng-ovh-user-pref": "^1.0.0",
+    "@ovh-ux/ng-ovh-utils": "^14.0.3",
     "@ovh-ux/ng-ovh-web-universe-components": "^5.0.0",
     "@ovh-ux/ng-translate-async-loader": "^2.0.0",
-    "@ovh-ux/ng-ovh-utils": "^14.0.3",
     "@uirouter/angularjs": "^1.0.0",
     "URIjs": "^1.14.0",
     "angular": "^1.6.10",
@@ -126,7 +126,7 @@
   },
   "devDependencies": {
     "@ovh-ux/manager-webpack-config": "^3.1.1",
-    "eslint-plugin-angular": "^3.3.0",
+    "eslint-plugin-angular": "^4.0.1",
     "glob": "^7.1.4",
     "webpack": "^4.36.1",
     "webpack-merge": "^4.2.1"

@@ -5169,10 +5169,10 @@ eslint-module-utils@^2.4.0:
     debug "^2.6.8"
     pkg-dir "^2.0.0"
 
-eslint-plugin-angular@^3.3.0:
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-angular/-/eslint-plugin-angular-3.3.0.tgz#ba841ec018c8bc2d70f901ac41a6e7be5f79882b"
-  integrity sha512-43HsDbJS0hx9xPU4Ox/pkz90ie4DuRao9ovcz4vteO6OOxVdH5lsOlGTmlJbrEiVyphF1sUwRDPuglu21Gg/GQ==
+eslint-plugin-angular@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-angular/-/eslint-plugin-angular-4.0.1.tgz#f6c01d2a1e549d603e29eceb8615b5a989863a5e"
+  integrity sha512-OaW5G461C2lIkOG+/bhnBoXB9UQm/r0Dj2Qf9uiIN0/ncvf2Llp30L0q1tqWkN8/CxyBwQKh1v0hpCLLDjaIKQ==
 
 eslint-plugin-cypress@^2.1.3:
   version "2.2.1"
