@@ -1,3 +1,12 @@
+## [1.0.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@1.0.0...@ovh-ux/manager-public-cloud@1.0.1) (2019-08-07)
+
+
+### Bug Fixes
+
+* **apps.public.cloud:** get default project ([110364b](https://github.com/ovh-ux/manager/commit/110364b))
+
+
+
 # [1.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@0.14.1...@ovh-ux/manager-public-cloud@1.0.0) (2019-07-22)
 
 

@@ -1,3 +1,13 @@
+## [6.1.5](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@6.1.4...@ovh-ux/manager-core@6.1.5) (2019-08-07)
+
+
+### Bug Fixes
+
+* **core:** remove extra nl_NL language from constant file ([#1155](https://github.com/ovh-ux/manager/issues/1155)) ([c6401f1](https://github.com/ovh-ux/manager/commit/c6401f1))
+* **i18n:** add missing translations [CDS 22] ([32b1c7c](https://github.com/ovh-ux/manager/commit/32b1c7c))
+
+
+
 ## [6.1.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@6.1.3...@ovh-ux/manager-core@6.1.4) (2019-08-01)
 
 
