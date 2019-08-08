@@ -9588,6 +9588,13 @@ ovh-api-services@^8.0.1:
   dependencies:
     lodash "^4.17.15"
 
+ovh-api-services@^8.2.0:
+  version "8.2.0"
+  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-8.2.0.tgz#830b66c4e3ca3b0836c258082c616b21d9d3680c"
+  integrity sha512-hAaaEWMMUwUSQIpR7SFtlxXvd1UgWL7t8qWkJvMNeK1or7I0yqUbUNLStlB6jzPuo8npWN6z2D8V3xsKPZOkNQ==
+  dependencies:
+    lodash "^4.17.15"
+
 ovh-common-style@^3.2.2:
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/ovh-common-style/-/ovh-common-style-3.2.2.tgz#66f4637c7393d1bd5118b05b63b034f26120a41f"
@@ -9628,7 +9635,7 @@ ovh-ui-angular@^3.5.1:
     popper.js "^1.14.4"
     ui-select "^0.19.8"
 
-ovh-ui-angular@^3.6.1:
+ovh-ui-angular@^3.7.0:
   version "3.7.0"
   resolved "https://registry.yarnpkg.com/ovh-ui-angular/-/ovh-ui-angular-3.7.0.tgz#c048a682163c304b99510080b125ca98dfe787d0"
   integrity sha512-SlDRwIeOsS1b+atS3fttvZ2FW4aYvCreQHqcP42437Nb5CZoNFyKVoAYrpxcoU1Qj4kJTV9Uo9HkeaC1JVChGA==
