@@ -1,0 +1,26 @@
+<div data-ng-controller="controllers.Hosting.Envvars.delete as ctrl">
+    <div data-wizard
+         data-wizard-on-cancel="resetAction"
+         data-wizard-on-finish="delete"
+         data-wizard-title="'hosting_tab_ENVVARS_delete_title' | translate">
+
+        <div data-wizard-step>
+            <p data-translate="hosting_tab_ENVVARS_delete_step1_question"></p>
+
+            <dl class="dl-horizontal dl-lg">
+                <dt data-translate="hosting_tab_ENVVARS_table_header_key"></dt>
+                <dd data-ng-bind="ctrl.entryToDelete.key"></dd>
+
+                <dt data-translate="hosting_tab_ENVVARS_table_header_type"></dt>
+                <dd data-ng-bind="ctrl.entryToDelete.type"></dd>
+
+                <dt data-translate="hosting_tab_ENVVARS_table_header_value"></dt>
+                <dd data-ng-bind="ctrl.entryToDelete.value"></dd>
+            </dl>
+
+            <oui-message type="warning">
+                <span data-translate="hosting_tab_ENVVARS_delete_information"></span>
+            </oui-message>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,5 @@
+{
+  "common_pagination_page": "Pagina {{currentPage}} / {{nbPages}}",
+  "common_pagination_display": "Weergave",
+  "common_temporary_error": "Er is een tijdelijke fout opgetreden. Probeer het later aub opnieuw."
+}

@@ -1,0 +1,22 @@
+{
+  "extends": "../../../../.eslintrc.js",
+  "plugins": ["angular"],
+  "env": {
+    "browser": true,
+    "jquery": true
+  },
+  "globals": {
+    "_": true,
+    "angular": true,
+    "Chart": true,
+    "filesize": true,
+    "JustGage": true,
+    "moment": true,
+    "punycode": true,
+    "Raven": true,
+    "URI": true,
+    "validator": true,
+    "WEBPACK_ENV": true,
+    "__WEBPACK_REGION__": true
+  }
+}

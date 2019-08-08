@@ -47,7 +47,7 @@ angular.module('Module.microsoft.services', [])
   .service('MicrosoftOfficeLicenseService', licenseService);
 
 angular.module(moduleName, [
-  'ovh-utils-angular',
+  'ngOvhUtils',
   'ngRoute',
   'ui.bootstrap',
   'ngSanitize',

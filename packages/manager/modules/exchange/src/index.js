@@ -15,7 +15,7 @@ const moduleName = 'Module.exchange';
 
 angular
   .module(moduleName, [
-    'ovh-utils-angular',
+    'ngOvhUtils',
     'ngRoute',
     'ui.bootstrap',
     'ngSanitize',

@@ -1,4 +1,3 @@
-import bind from 'lodash/bind';
 import find from 'lodash/find';
 import get from 'lodash/get';
 import head from 'lodash/head';
@@ -57,7 +56,9 @@ export default class ExchangeAddDisclaimerCtrl {
     if (get(this.services.navigation, 'currentActionData.domain.name')) {
       this.data.completeDomain = find(
         this.availableDomains,
-        bind('name', this.services.navigation.currentActionData.domain.name),
+        {
+          name: this.services.navigation.currentActionData.domain.name,
+        },
       );
     }
     if (!this.data.completeDomain) {
