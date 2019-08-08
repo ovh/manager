@@ -209,11 +209,15 @@
                             </textarea>
                         </div> <!-- END OF BODY -->
 
-                        <div class="oui-textarea oui-textarea_readonly">
-                            <textarea class="oui-textarea__textarea"
-                                      rows="5"
-                                      data-translate="otrs_support_agreements"
-                                      readonly></textarea>
+                        <div>
+                            <p data-ng-if="OtrsPopupCtrl.currentUser.ovhSubsidiary !== 'US'"
+                                      data-translate="otrs_support_agreements"></p>
+                            <p data-ng-if="OtrsPopupCtrl.currentUser.ovhSubsidiary === 'US'"
+                                      data-translate="otrs_support_agreements_US"
+                                      data-translate-values="{
+                                        t0: OtrsPopupCtrl.US_TERMS_LINKS.terms,
+                                        t1: OtrsPopupCtrl.US_TERMS_LINKS.privacy_policy
+                                      }"></p>
                         </div>
 
                         <div class="form-group">

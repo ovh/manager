@@ -108,6 +108,10 @@ export const API_EXTRAS_ENDPOINTS = [
     path: '/telephony/*/number',
   },
 ];
+export const US_TERMS_LINKS = {
+  terms: 'https://us.ovhcloud.com/legal/terms-of-service',
+  privacy_policy: 'https://us.ovhcloud.com/legal/privacy-policy',
+};
 
 export default {
   API_EXCLUDED,
@@ -120,4 +124,5 @@ export default {
   SERVICES,
   UNIVERSES,
   API_ALIASES,
+  US_TERMS_LINKS,
 };

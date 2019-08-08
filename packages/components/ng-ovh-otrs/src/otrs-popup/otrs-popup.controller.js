@@ -10,6 +10,8 @@ import values from 'lodash/values';
 import snakeCase from 'lodash/snakeCase';
 import without from 'lodash/without';
 
+import { US_TERMS_LINKS } from './otrs-popup.constant';
+
 export default /* @ngInject */ function (
   $http,
   $injector,
@@ -50,6 +52,7 @@ export default /* @ngInject */ function (
   self.isVIP = false;
   self.baseUrlTickets = null;
   self.services = [];
+  self.US_TERMS_LINKS = US_TERMS_LINKS;
 
   $transitions.onSuccess({}, (transition) => {
     const toParams = transition.params();
