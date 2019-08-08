@@ -6,7 +6,7 @@
   "kube_service_description_reset": "Sie können die Konfiguration Ihres Kubernetes-Clusters jederzeit zurücksetzen.",
   "kube_service_offer_beta": "Managed Kubernetes Service (gratis)",
   "kube_service_file": "kubeconfig-Datei",
-  "kube_service_file_error": "Beim Laden der Konfigurationsdatei ist ein Fehler aufgetreten.",
+  "kube_service_file_error": "Beim Laden der Konfigurationsdatei ist ein Fehler aufgetreten: {{ message }}",
   "kube_service_file_help": "Die kubeconfig-Datei enthält die notwendigen Daten für die Befehlszeilenschnittstelle kubectl, um mit der API Ihres Clusters zu kommunizieren.",
   "kube_service_file_more_information": "Weitere Informationen finden Sie hier",
   "kube_service_cluster_information": "Cluster-Informationen",
@@ -46,5 +46,10 @@
   "kube_service_cluster_minor_update_available": "Es ist ein Minor Update verfügbar",
   "kube_service_manage_title": "Verwaltung",
   "kube_service_common_edit_security_update_policy": "Verwaltung der Sicherheitseinstellungen",
-  "kube_service_minor_version_upgrade": "Auf die nächste Nebenversion upgraden"
+  "kube_service_minor_version_upgrade": "Auf die nächste Nebenversion upgraden",
+  "kube_service_cluster_status_SUSPENDING": "Wird geschlossen",
+  "kube_service_cluster_status_REOPENING": "Wird geöffnet",
+  "kube_service_cluster_status_SUSPENDED": "Geschlossen",
+  "kube_service_cluster_status_USER_ERROR": "Fehler",
+  "kube_service_cluster_status_USER_QUOTA_ERROR": "Quota-Problem:"
 }

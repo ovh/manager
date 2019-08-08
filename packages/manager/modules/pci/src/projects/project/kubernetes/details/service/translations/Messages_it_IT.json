@@ -6,7 +6,7 @@
   "kube_service_description_reset": "È possibile ripristinare la configurazione del tuo cluster Kubernetes in qualsiasi momento.",
   "kube_service_offer_beta": "Servizio Managed Kubernetes (gratuito)",
   "kube_service_file": "File kubeconfig",
-  "kube_service_file_error": "Si è verificato un errore durante il caricamento del file di configurazione",
+  "kube_service_file_error": "Si è verificato un errore durante il caricamento del file di configurazione: {{ message }}",
   "kube_service_file_help": "Il file kubeconfig contiene i dati che consentono allo strumento da riga di comando kubectl di comunicare con l'API del tuo cluster.",
   "kube_service_file_more_information": "Per maggiori informazioni, clicca qui",
   "kube_service_cluster_information": "Informazioni sul cluster",
@@ -46,5 +46,10 @@
   "kube_service_cluster_minor_update_available": "Aggiornamento disponibile",
   "kube_service_manage_title": "Gestisci",
   "kube_service_common_edit_security_update_policy": "Gestisci la politica di sicurezza",
-  "kube_service_minor_version_upgrade": "Passa alla versione minor successiva"
+  "kube_service_minor_version_upgrade": "Passa alla versione minor successiva",
+  "kube_service_cluster_status_SUSPENDING": "Sospensione in corso...",
+  "kube_service_cluster_status_REOPENING": "Apertura in corso...",
+  "kube_service_cluster_status_SUSPENDED": "Sospeso",
+  "kube_service_cluster_status_USER_ERROR": "In errore",
+  "kube_service_cluster_status_USER_QUOTA_ERROR": "Problema relativo alla quota"
 }
