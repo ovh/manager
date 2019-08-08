@@ -18,8 +18,6 @@ import translationUiRouter from './plugins/translation-ui-router';
 import translationXML from './plugins/translation-xml';
 import common from './plugins/common';
 
-import translationNormalize from './plugins/common';
-
 const defaultName = path.basename(process.cwd());
 
 const mergeConfig = (config, customConfig) => mergeWith(config, customConfig, (obj, src) => (
