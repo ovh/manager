@@ -46,7 +46,7 @@
  *  @param {Function} options.viewMore.action Custom pagination callback to be called when viewMore
  *  button is pressed. If this callback returns a promise, the scrollbar will scroll automatically
  *  to the bottom after the promise is resolved (when your paginated items have been added).
- *  @param {String=} options.loadOnState State that will automatically load the menu item.
+ *  @param {String|Array} options.loadOnState State(s) that will automatically load the menu item.
  *  For this to work, states MUST be declared as parent/child
  *  (example of state name : parent.child.subchild).
  *  @param {Object=} [options.loadOnStateParams={}] StateParams that will that defines the state

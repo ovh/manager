@@ -450,8 +450,21 @@ export default function () {
         current: false,
       };
       if (item.loadOnState) {
-        infos.included = $state.includes(item.loadOnState, item.loadOnStateParams);
-        infos.current = $state.is(item.loadOnState, item.loadOnStateParams);
+        if (_.isString(item.loadOnState)) {
+          infos.included = $state.includes(item.loadOnState, item.loadOnStateParams);
+          infos.current = $state.is(item.loadOnState, item.loadOnStateParams);
+        }
+        else if (_.isArray(item.loadOnState)) {
+          infos.included = _.some(
+            item.loadOnState,
+            loadOnState => $state.includes(loadOnState, item.loadOnStateParams),
+          );
+
+          infos.current = _.some(
+            item.loadOnState,
+            loadOnState => $state.is(loadOnState, item.loadOnStateParams),
+          );
+        }
       } else if (item.state) {
         infos.included = $state.includes(item.state, item.stateParams);
         infos.current = $state.is(item.state, item.stateParams);
