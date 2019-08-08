@@ -90,20 +90,18 @@ export const NETWORKS_CONFIG = {
     },
     {
       path: '/dedicated/nasha',
-      state: 'app.networks.nas.details',
-      stateParams: ['nasId'],
-      stateParamsTransformer: params => ({
-        ...params,
-        nasType: 'nas',
-        nasId: `nasha_${params.nasId}`,
-      }),
+      state: 'paas.nasha.nasha-partitions',
+      stateParams: ['nashaId'],
       icon: 'ovh-font ovh-font-cloudnas',
-      app: [DEDICATED],
+      app: [CLOUD],
       regions: ['EU', 'CA'],
       searchKeys: ['NAS', 'NASHA', 'NAS-HA'],
     },
   ],
-  loadOnState: 'app.networks',
+  loadOnState: [
+    'paas.nasha.nasha-partitions',
+    'app.networks',
+  ],
   icon: 'ovh-font ovh-font-network',
   app: [DEDICATED],
   regions: ['EU', 'CA'],
@@ -182,7 +180,11 @@ export const IAAS_CONFIG = {
 
 export const PAAS_CONFIG = {
   id: 'paas',
-  loadOnState: 'paas',
+  loadOnState: [
+    'paas.cda',
+    'paas.veeam.detail',
+    'paas.veeam-enterprise',
+  ],
   types: [
     {
       path: '/dedicated/ceph',
