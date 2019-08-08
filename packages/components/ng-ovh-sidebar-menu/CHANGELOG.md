@@ -1,3 +1,12 @@
+# [8.4.0](https://github.com/ovh-ux/ng-ovh-sidebar-menu/compare/v8.3.3...v8.4.0) (2019-08-08)
+
+
+### Features
+
+* allow array of states in loadOnState ([#78](https://github.com/ovh-ux/ng-ovh-sidebar-menu/issues/78)) ([dd55061](https://github.com/ovh-ux/ng-ovh-sidebar-menu/commit/dd55061))
+
+
+
 ## [8.3.3](https://github.com/ovh-ux/ng-ovh-sidebar-menu/compare/v8.3.2...v8.3.3) (2019-06-28)
 
 
