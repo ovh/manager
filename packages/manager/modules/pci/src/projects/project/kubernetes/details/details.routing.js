@@ -16,7 +16,6 @@ export default /* @ngInject */ ($stateProvider) => {
 
         goToKubernetesDetails: ($state, CucCloudMessage, kubeId, projectId) => (message = false, type = 'success') => {
           const reload = message && type === 'success';
-
           const promise = $state.go('pci.projects.project.kubernetes.details', {
             kubeId,
             projectId,
@@ -24,11 +23,9 @@ export default /* @ngInject */ ($stateProvider) => {
           {
             reload,
           });
-
           if (message) {
-            promise.then(() => CucCloudMessage[type](message, 'pci.projects.project.kubernetes.details'));
+            promise.then(() => CucCloudMessage[type](message, 'pci.projects.project.kubernetes.details.service'));
           }
-
           return promise;
         },
 

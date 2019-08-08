@@ -6,6 +6,7 @@ const component = {
     addNode: '<',
     cluster: '<',
     deleteNode: '<',
+    switchBillingType: '<',
     kubeId: '<',
     nodes: '<',
     projectId: '<',

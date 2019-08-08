@@ -1,0 +1,183 @@
+<div data-ng-controller="HostingDatabaseCreateCtrl">
+    <div data-wizard
+         data-wizard-bread-crumb
+         data-wizard-on-cancel="resetAction"
+         data-wizard-on-finish="createDatabase"
+         data-wizard-title="'hosting_tab_DATABASES_configuration_create_title' | translate">
+
+        <div data-wizard-step
+             data-wizard-step-on-load="load"
+             data-wizard-step-valid="isStep1Valid()">
+
+            <oui-spinner data-ng-if="!model.capabilities"></oui-spinner>
+
+            <form name="hostingCreateDatabaseForm"
+                  data-ng-if="model.capabilities && model.capabilities.availableDatabases.length > 0">
+                <p data-translate="hosting_tab_DATABASES_configuration_create_step1_question"></p>
+
+                <fieldset>
+                    <legend class="oui-label border-0"
+                            data-translate="hosting_tab_DATABASES_configuration_create_step1_select_sgbd"></legend>
+                    <div class="oui-radio" data-ng-repeat="type in availableDatabasesType track by $index">
+                        <input type="radio" class="oui-radio__input" id="{{type}}" name="{{type}}" value="{{type}}"
+                               data-ng-model="model.selected.type">
+                        <label class="oui-radio__label-container" for="{{type}}">
+                            <span class="oui-radio__label"
+                                  data-ng-bind="'hosting_tab_DATABASES_configuration_create_sgbd_' + type | translate"></span>
+                        </label>
+                    </div>
+                </fieldset>
+
+                <fieldset data-ng-if="model.selected.type && model.capabilities.bdVersions">
+                    <legend class="oui-label border-0"
+                            data-translate="hosting_tab_DATABASES_configuration_create_step1_select_version"></legend>
+                    <div class="oui-radio" data-ng-repeat="version in model.capabilities.bdVersions track by $index">
+                        <input type="radio" class="oui-radio__input" id="{{version}}" name="{{version}}" value="{{version}}"
+                               data-ng-model="model.selected.version">
+                        <label class="oui-radio__label-container" for="{{version}}">
+                            <span class="oui-radio__label"
+                                  data-ng-bind="version"></span>
+                        </label>
+                    </div>
+                </fieldset>
+
+                <label class="oui-label" for="databaseType"
+                       data-translate="hosting_tab_DATABASES_configuration_create_step1_select_type"></label>
+                <div class="oui-select">
+                    <select class="oui-select__input" id="databaseType"
+                            data-ng-model="model.selected.capabilitie">
+                        <option data-ng-repeat="capabilitie in model.capabilities.availableDatabases track by $index"
+                                data-ng-bind="'hosting_tab_DATABASES_configuration_create_step1_select_type_' + capabilitie.type | translate: { t0: capabilitie.quota.value, t1: capabilitie.quota.unit, t2: capabilitie.available }"
+                                data-ng-value="capabilitie"></option>
+                    </select>
+                    <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
+                </div>
+            </form>
+
+            <div data-ng-if="model.capabilities && model.capabilities.availableDatabases.length === 0">
+                <p class="text-danger" data-translate="hosting_tab_DATABASES_configuration_create_step1_no_db_left"></p>
+                <!-- NOT SQL PRIV -->
+                <ul class="list-unstyled mt-2" data-ng-if="hosting.sqlPriveInfo.nbDataBaseActive >= hosting.sqlPriveInfo.nbDataBaseInclude">
+                    <!-- MUTU PERSO -->
+                    <li data-ng-if="isPerso()">
+                        <button class="btn btn-link text-left text-wrap p-0" type="button"
+                                data-translate="hosting_tab_DATABASES_configuration_create_upgrade_perso"
+                                data-ui-sref="app.hosting.upgrade({ productId: hosting.serviceName })">
+                        </button>
+                    </li>
+
+                    <!-- MUTU PRO -->
+                    <li data-ng-if="isPro()">
+                        <button class="btn btn-link text-left text-wrap p-0" type="button"
+                                data-translate="hosting_tab_DATABASES_configuration_create_upgrade_pro"
+                                data-ui-sref="app.hosting.upgrade({ productId: hosting.serviceName })">
+                        </button>
+                    </li>
+
+                    <!-- OTHER MUTU -->
+                    <li data-ng-if="!isPerf() && !isStart()">
+                        <button class="btn btn-link text-left text-wrap p-0" type="button"
+                                data-translate="hosting_tab_DATABASES_configuration_create_order_db"
+                                data-ng-click="setAction('database/order/hosting-database-order')">
+                        </button>
+                    </li>
+
+                    <!-- ALL WITHOUT PERF -->
+                    <li data-ng-if="!isPerf()">
+                        <button class="btn btn-link text-left text-wrap p-0" type="button"
+                                data-translate="hosting_tab_DATABASES_configuration_create_order_db_server"
+                                data-ng-click="buyPrivateDb() && !isStart()">
+                        </button>
+                    </li>
+                </ul>
+
+                <ul class="list-unstyled mt-2" data-ng-if="hosting.sqlPriveInfo.nbDataBaseActive < hosting.sqlPriveInfo.nbDataBaseInclude">
+                    <li data-ng-if="!isStart()">
+                        <a data-ng-href="{{guide}}" target="_blank" title="{{:: 'hosting_tab_DATABASES_configuration_create_db_create' | translate }} {{:: 'common_newtab' | translate }}">
+                            <span data-translate="hosting_tab_DATABASES_configuration_create_db_create"></span>
+                            <span class="fa fa-external-link" aria-hidden="true"></span>
+                        </a>
+                    </li>
+
+                    <li data-ng-if="isStart()">
+                        <button class="btn btn-link text-left text-wrap p-0" type="button"
+                                data-translate="hosting_tab_DATABASES_configuration_create_upgrade_start"
+                                data-ui-sref="app.hosting.upgrade({ productId: hosting.serviceName })">
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div data-wizard-step
+             data-wizard-step-valid="isStep2Valid()">
+
+            <p data-translate="hosting_tab_DATABASES_configuration_create_step2_password_question"></p>
+            <form class="form-horizontal" name="hostingCreateDatabaseUserForm">
+                <div class="form-group" data-ng-class="{'has-error': hostingCreateDatabaseUserForm.selectedUser.$dirty && (hostingCreateDatabaseUserForm.selectedUser.$invalid || !isUserValid())}">
+                    <label class="control-label col-md-3 required" for="selectedUser"
+                           data-translate="hosting_tab_DATABASES_configuration_create_step2_password_user"></label>
+                    <div class="col-md-9">
+                        <div class="input-group">
+                            <span class="input-group-addon" data-ng-bind="model.capabilities.primaryLogin"></span>
+                            <input type="text" class="form-control" id="selectedUser" name="selectedUser" required
+                                   data-ng-maxlength="model.selected.maxUserLength"
+                                   data-ng-model="model.selected.user">
+                        </div>
+                        <small class="help-block"
+                               data-translate="hosting_tab_DATABASES_configuration_create_step2_password_user_error"
+                               data-ng-if="hostingCreateDatabaseUserForm.selectedUser.$dirty && (hostingCreateDatabaseUserForm.selectedUser.$invalid || !isUserValid())"></small>
+                        <span class="d-block mt-2"
+                              data-translate="hosting_tab_DATABASES_configuration_create_step2_password_user_condition"
+                              data-translate-values="{ t0: model.maxUserLength }"></span>
+                    </div>
+                </div>
+
+                <div class="form-group" data-ng-class="{'has-error': hostingCreateDatabaseUserForm.password.$dirty && (hostingCreateDatabaseUserForm.password.$invalid || isPasswordInvalid())}">
+                    <label class="control-label col-md-3 required" for="password"
+                           data-translate="hosting_tab_DATABASES_configuration_create_step2_password_password"></label>
+                    <div class="col-md-6">
+                        <input type="password" autocomplete="off" class="form-control" id="password" name="password" maxlength="{{condition.max}}" required
+                               data-ng-minlength="condition.min"
+                               data-ng-maxlength="condition.max"
+                               data-ng-model="model.selected.password.value">
+                    </div>
+                </div>
+
+                <div class="form-group" data-ng-class="{'has-error': hostingCreateDatabaseUserForm.passwordConfirm.$dirty && (hostingCreateDatabaseUserForm.passwordConfirm.$invalid || isPasswordConfirmationInvalid())}">
+                    <label class="control-label col-md-3 required" for="passwordConfirm"
+                           data-translate="hosting_tab_DATABASES_configuration_create_step2_password_confirmation"></label>
+                    <div class="col-md-6">
+                        <input type="password" autocomplete="off" class="form-control" id="passwordConfirm" name="passwordConfirm" required
+                               data-ng-model="model.selected.password.confirmation">
+                        <small class="help-block"
+                               data-translate="hosting_tab_DATABASES_configuration_create_step2_password_error"
+                               data-ng-if="shouldDisplayDifferentPasswordMessage()"></small>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <small class="col-md-9 col-md-offset-3"
+                           data-ng-bind-html="'hosting_common_password_conditions' | translate: { t0: condition.min, t1: condition.max }"></small>
+                </div>
+            </form>
+        </div>
+
+        <div data-wizard-step>
+            <p data-translate="hosting_tab_DATABASES_configuration_create_step3_question"></p>
+            <dl class="dl-horizontal dl-lg">
+                <dt data-translate="hosting_tab_DATABASES_configuration_create_step3_user"></dt>
+                <dd data-ng-bind="model.capabilities.primaryLogin + model.selected.user"></dd>
+
+                <dt data-translate="hosting_tab_DATABASES_configuration_create_step3_sgbd"></dt>
+                <dd>
+                    <span data-ng-bind="(('hosting_tab_DATABASES_configuration_create_sgbd_' + model.selected.type | translate) == 'hosting_tab_DATABASES_configuration_create_sgbd_' + model.selected.type)? model.selected.type: ('hosting_tab_DATABASES_configuration_create_sgbd_' + model.selected.type | translate)"></span>
+                    <span data-ng-if="model.selected.version">&nbsp;v{{model.selected.version}}</span>
+                </dd>
+
+                <dt data-translate="hosting_tab_DATABASES_configuration_create_step3_type"></dt>
+                <dd data-ng-bind="'hosting_tab_DATABASES_configuration_create_step3_type_' + model.selected.capabilitie.type | translate: { t0: model.selected.capabilitie.quota.value, t1: model.selected.capabilitie.quota.unit }"></dd>
+            </dl>
+        </div>
+    </div>
+</div>

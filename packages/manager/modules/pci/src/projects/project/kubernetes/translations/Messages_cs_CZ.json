@@ -1,9 +1,0 @@
-{
- "kube_list_title": "Kubernetes",
- "kube_list_name": "Název cluster",
- "kube_list_region": "Okres",
- "kube_list_version": "Verze",
- "kube_list_cluster_manage": "Správa cluster",
- "kube_list_cluster_create": "Vytvořit Cluster Kubernetes",
- "kube_list_error": "Při načítání Vašeho clusters klíče došlo k chybě."
-}

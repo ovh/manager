@@ -51,7 +51,7 @@
                             data-ng-class="{
                                     'oui-status_success' : $ctrl.cluster.status === $ctrl.STATUS.READY,
                                     'oui-status_warning' : $ctrl.Kubernetes.constructor.isProcessing($ctrl.cluster.status),
-                                    'oui-status_error' : $ctrl.cluster.status === $ctrl.STATUS.ERROR
+                                    'oui-status_error' : $ctrl.Kubernetes.constructor.isError($ctrl.cluster.status),
                                     }"
                             data-translate="{{ 'kube_service_cluster_status_' + $ctrl.cluster.status }}">
                     </span>
@@ -80,7 +80,7 @@
                     <oui-clipboard data-model="$ctrl.cluster.url"></oui-clipboard>
                 </oui-tile-description>
             </oui-tile-definition>
-            <div class="oui-tile__item" data-ng-if="$ctrl.kubernetesConfig">
+            <div class="oui-tile__item">
                 <dl class="oui-tile__definition">
                     <dt class="oui-tile__term">
                         <span data-translate="kube_service_file"></span>
@@ -97,8 +97,13 @@
                             </oui-popover-content>
                         </oui-popover>
                     </dt>
-                    <dd class="oui-tile__description">
-                        <oui-button data-variant="link" data-ng-click="$ctrl.downloadConfigFile()" data-text="{{:: $ctrl.kubernetesConfig.fileName }}"></oui-button>
+                    <dd class="oui-tile__description d-flex align-items-center">
+                        <oui-button data-variant="link"
+                            data-ng-click="$ctrl.downloadConfigFile()"
+                            data-disabled="$ctrl.loadingKubeConfig">
+                            <span data-ng-bind="$ctrl.CONFIG_FILENAME"></span>
+                        </oui-button>
+                        <oui-spinner data-size="s" data-ng-if="$ctrl.loadingKubeConfig" class="pl-3"></oui-spinner>
                     </dd>
                 </dl>
             </div>

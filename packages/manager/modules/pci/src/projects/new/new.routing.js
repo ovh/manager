@@ -196,7 +196,12 @@ export default /* @ngInject */ ($stateProvider) => {
           return PciProjectNewService.getNewProjectInfo()
             .then(newProjectInfoThen);
         },
-        onDescriptionStepFormSubmit: /* @ngInject */ $state => () => $state.go('pci.projects.new.payment'),
+        onDescriptionStepFormSubmit: /* @ngInject */ ($state, $window) => (navigateToUrl, url) => {
+          if (navigateToUrl) {
+            return $window.open(url);
+          }
+          return $state.go('pci.projects.new.payment');
+        },
         onProjectCreated: /* @ngInject */ $state => projectId => $state.go(
           'pci.projects.project', {
             projectId,

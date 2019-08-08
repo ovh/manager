@@ -1,7 +1,7 @@
 <form class="pci-projects-new-description"
       name="projectDescriptionForm"
       id="projectDescriptionForm"
-      data-ng-submit="$ctrl.onDescriptionStepFormSubmit()">
+      data-ng-submit="$ctrl.onDescriptionStepFormSubmit($ctrl.navigateToUrl, $ctrl.url)">
 
     <div class="text-center"
          data-ng-if="$ctrl.step.loading.init">

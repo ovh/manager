@@ -55,7 +55,7 @@ export default class PublicCloud {
           return this.ovhUserPref
             .getValue(DEFAULT_PROJECT_KEY)
             .then((project) => {
-              if (!projectsIds.includes(project)) {
+              if (!projectsIds.includes(project.projectId)) {
                 this.ovhUserPref.remove(DEFAULT_PROJECT_KEY);
                 return null;
               }
