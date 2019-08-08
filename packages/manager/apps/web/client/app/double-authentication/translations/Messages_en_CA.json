@@ -1,7 +1,0 @@
-{
-  "doubleauth_modal_alert_title": "Backup code",
-  "doubleauth_modal_alert_message": "Warning: you do not have a single-use emergency code.",
-  "doubleauth_modal_alert_message_1": "Warning: you have only one single-use emergency code.",
-  "doubleauth_modal_alert_message_other": "Warning: you have only <strong>{{t0}}</strong> single-use emergency codes.",
-  "doubleauth_modal_alert_message_regenerate": "Do you want to generate a new set of backup codes?"
-}
