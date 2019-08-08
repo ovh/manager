@@ -6,17 +6,24 @@ export default /* @ngInject */ ($stateProvider) => {
         kubernetesView: 'ovhManagerPciProjectKubernetesServiceComponent',
       },
       resolve: {
-        kubernetesConfig: /* @ngInject */ (
+        getKubeConfig: /* @ngInject */ (
           Kubernetes,
           kubeId,
           projectId,
-        ) => Kubernetes.getKubeConfig(projectId, kubeId),
+        ) => () => Kubernetes.getKubeConfig(projectId, kubeId),
 
         changeClusterName: /* @ngInject */ (
           $state,
           kubeId,
           projectId,
         ) => () => $state.go('pci.projects.project.kubernetes.details.service.name', { kubeId, projectId }),
+
+        clusterMinorVersion: /* @ngInject */ (
+          cluster,
+        ) => {
+          const [majorVersion, minorVersion] = cluster.version.split('.');
+          return `${majorVersion}.${minorVersion}`;
+        },
 
         resetCluster: /* @ngInject */ (
           $state,
@@ -34,7 +41,7 @@ export default /* @ngInject */ ($stateProvider) => {
           $state,
           kubeId,
           projectId,
-        ) => () => $state.go('pci.projects.project.kubernetes.details.service.update', { kubeId, projectId }),
+        ) => isMinorVersionUpgrade => $state.go('pci.projects.project.kubernetes.details.service.update', { kubeId, projectId, isMinorVersionUpgrade }),
 
         updatePolicy: /* @ngInject */ (
           $state,

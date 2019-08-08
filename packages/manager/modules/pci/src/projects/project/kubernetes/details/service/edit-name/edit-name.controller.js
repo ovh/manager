@@ -27,7 +27,7 @@ export default class {
       .catch(error => this.goBack(
         this.$translate.instant('pci_projects_project_kubernetes_details_service_name_error', {
           message: get(error, 'data.message'),
-        }),
-      ), 'error');
+        }), 'error',
+      ));
   }
 }

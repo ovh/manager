@@ -1,5 +1,6 @@
 import get from 'lodash/get';
 import map from 'lodash/map';
+import max from 'lodash/max';
 import { REGION, VERSION_ENUM_KEY } from './kubernetes.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
@@ -41,6 +42,9 @@ export default /* @ngInject */ ($stateProvider) => {
         versions: /* @ngInject */
           OvhApiCloud => OvhApiCloud.v6().schema().$promise
             .then(schema => get(schema, VERSION_ENUM_KEY)),
+
+        highestVersion: /* @ngInject */
+          versions => max(versions, version => parseFloat(`${version}`)),
 
         regions: /* @ngInject */ (
           OvhApiCloudProjectKube,

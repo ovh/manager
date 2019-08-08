@@ -8,7 +8,9 @@ export default {
     contracts: '<',
     descriptionModel: '<',
     getCurrentStep: '<',
+    navigateToUrl: '<',
     newProjectInfo: '<',
     onDescriptionStepFormSubmit: '<',
+    url: '<',
   },
 };

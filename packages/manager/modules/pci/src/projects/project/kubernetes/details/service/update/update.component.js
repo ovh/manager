@@ -3,8 +3,11 @@ import template from './update.html';
 
 const component = {
   bindings: {
-    kubeId: '<',
+    clusterMinorVersion: '<',
+    isMinorVersionUpgrade: '<',
     goBack: '<',
+    kubeId: '<',
+    nextMinorVersion: '<',
     projectId: '<',
   },
   template,

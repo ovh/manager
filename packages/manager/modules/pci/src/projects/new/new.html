@@ -28,6 +28,8 @@
                         data-description-model="$ctrl.getCurrentStep().model"
                         data-new-project-info="$ctrl.newProjectInfo"
                         data-get-current-step="$ctrl.getCurrentStep"
+                        data-navigate-to-url="!$ctrl.isNextButtonVisible() && !$ctrl.shouldProcessChallenge()"
+                        data-url="$ctrl.getNextLinkHref()"
                         data-on-description-step-form-submit="$ctrl.onDescriptionStepFormSubmit">
                     </pci-project-new-description>
                 </div>

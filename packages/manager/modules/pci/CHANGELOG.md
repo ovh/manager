@@ -1,3 +1,12 @@
+## [1.3.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@1.3.1...@ovh-ux/manager-pci@1.3.2) (2019-08-06)
+
+
+### Bug Fixes
+
+* **pci.project.kubernetes:** send right params for legacy check call ([#1157](https://github.com/ovh-ux/manager/issues/1157)) ([b8e0887](https://github.com/ovh-ux/manager/commit/b8e0887))
+
+
+
 ## [1.3.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@1.3.0...@ovh-ux/manager-pci@1.3.1) (2019-08-01)
 
 
