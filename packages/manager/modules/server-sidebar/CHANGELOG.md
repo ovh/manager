@@ -1,3 +1,12 @@
+## [0.4.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.4.1...@ovh-ux/manager-server-sidebar@0.4.2) (2019-08-08)
+
+
+### Bug Fixes
+
+* **server-sidebar:** redirect nasha to cloud manager ([#1166](https://github.com/ovh-ux/manager/issues/1166)) ([f72e0b6](https://github.com/ovh-ux/manager/commit/f72e0b6))
+
+
+
 ## [0.4.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.4.0...@ovh-ux/manager-server-sidebar@0.4.1) (2019-07-15)
 
 
