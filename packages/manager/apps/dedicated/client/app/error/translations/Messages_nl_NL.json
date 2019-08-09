@@ -1,0 +1,6 @@
+{
+  "page_load_error": "Er is een fout opgetreden tijdens het laden van de pagina. ",
+  "page_load_error_common": "De opgevraagde pagina kon niet worden gevonden. ",
+  "page_load_error_forbidden_billing_access": "Het Facturatie-gedeelte is niet toegankelijk via dit account.",
+  "page_load_error_back_to_home": "Keer terug naar de hoofdpagina van uw Control Panel"
+}

@@ -1,0 +1,107 @@
+/* Installation modal */
+// .mainContainer
+#main-container .installation-server {
+  .pellet {
+    width: 10px;
+    height: 10px;
+    cursor: pointer;
+  }
+
+  .controls {
+    .select-stretch {
+      width: auto;
+    }
+  }
+
+  .control-label-inline {
+    display: inline;
+  }
+
+  .accordion-list {
+    .deprecated {
+      text-decoration: line-through;
+    }
+
+    .accordion-list-container {
+      .category {
+        .background-color-fn(@defaultLineHeadBackground);
+        .color-fn(@defaultLineHeadFont);
+
+        font-weight: bold;
+        padding-left: 10px;
+        display: block;
+        cursor: pointer;
+      }
+
+      .items {
+        margin-bottom: 1px;
+        max-height: 230px;
+        overflow-y: auto;
+
+        .item {
+          padding-left: 20px;
+          cursor: pointer;
+          overflow: hidden;
+
+          &:nth-child(odd) {
+            .background-color-fn(@defaultLineOddBackground);
+            .color-fn(@defaultLineOddFont);
+          }
+
+          &:nth-child(even) {
+            .background-color-fn(@defaultLineEvenBackground);
+            .color-fn(@defaultLineEvenFont);
+          }
+
+          &:hover {
+            .background-color-fn(@defaultLineHoverBackground);
+            .color-fn(@defaultLineHoverFont);
+          }
+
+          &.selected-item,
+          &.selected-item:hover {
+            .background-color-fn(@defaultLineSelectedBackground);
+            .color-fn(@defaultLineSelectedFont);
+          }
+
+          &.selected-delete-item,
+          &.selected-delete-item:hover {
+            opacity: 0.5;
+          }
+
+          .info-distrib {
+            float: right;
+            padding-right: 10px;
+
+            &.warning-distrib {
+              color: red;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.form-horizontal.install .control-group {
+  margin-bottom: 5px;
+
+  .controls.form-info {
+    padding-top: 5px;
+  }
+
+  .control-label {
+    width: 180px;
+    margin-right: 10px;
+  }
+
+  label.checkbox {
+    margin-left: 190px;
+  }
+
+  .errorFormLabel {
+    margin-left: 40px;
+    font-size: 11px;
+    color: @RED_CONST;
+  }
+}

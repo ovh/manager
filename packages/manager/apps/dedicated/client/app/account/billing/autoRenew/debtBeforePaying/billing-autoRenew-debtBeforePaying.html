@@ -1,0 +1,15 @@
+<div data-ng-controller="Billing.controllers.AutoRenew.DebtBeforePaying as $ctrl">
+    <oui-modal data-heading="{{ ::'autorenew_service_debt_before_paying_title' | translate }}"
+        data-primary-action="$ctrl.redirectToBilling()"
+        data-primary-label="{{:: 'common_settle_bill' | translate }}"
+        data-secondary-action="$ctrl.close()"
+        data-secondary-label="{{ 'common_cancel' | translate }}"
+        data-on-dismiss="$ctrl.close()">
+    <p data-translate="autorenew_service_debt_before_paying_1"></p>
+    <p
+        data-translate="autorenew_service_debt_before_paying_2"
+        data-translate-values="{
+            'service': $ctrl.service.domain
+        }"></p>
+    </oui-modal>
+</div>

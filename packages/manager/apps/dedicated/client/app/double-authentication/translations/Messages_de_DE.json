@@ -1,0 +1,7 @@
+{
+  "doubleauth_modal_alert_title": "Notfall-Code",
+  "doubleauth_modal_alert_message": "Achtung, Sie verfügen über keine weiteren einmal nutzbaren Ersatzcodes.",
+  "doubleauth_modal_alert_message_1": "Achtung, Sie verfügen nur noch über einen einzigen einmal nutzbaren Ersatzcode.",
+  "doubleauth_modal_alert_message_other": "Achtung, Sie verfügen nur noch über <strong>{{t0}}</strong> einmal nutzbare Ersatzcodes.",
+  "doubleauth_modal_alert_message_regenerate": "Möchten Sie einen neuen Satz Ersatzcodes erstellen?"
+}

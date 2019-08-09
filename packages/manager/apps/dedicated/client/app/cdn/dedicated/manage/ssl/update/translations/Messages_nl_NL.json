@@ -1,0 +1,9 @@
+{
+  "cdn_dedicated_ssl_update": "Vervang met mijn certificaat",
+  "cdn_dedicated_ssl_update_load_error": "Er is een fout opgetreden bij het laden van informatie over uw SSL-certificaat.",
+  "cdn_dedicated_ssl_update_no_ssl_warning": "U kunt een SSL-certificaat op uw CDN niet vervangen omdat er geen SSL-certificaat aan uw CDN is toegevoegd.",
+  "cdn_dedicated_ssl_update_operation_warning": "U kunt uw SSL-certificaat niet vervangen op uw CDN omdat er een doorlopende SSL-bewerking is.",
+  "cdn_dedicated_ssl_update_explain": "Voer de gegevens van het certificaat in:",
+  "cdn_dedicated_ssl_update_success": "Het SSL-certificaat zal binnenkort worden gewijzigd.",
+  "cdn_dedicated_ssl_update_error": "Er is een fout opgetreden tijdens de wijziging van het SSL-certificaat"
+}

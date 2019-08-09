@@ -1,0 +1,14 @@
+<div data-ng-controller="Billing.controllers.AutoRenew.activate">
+
+    <div data-wizard
+         data-wizard-on-cancel="resetAction"
+         data-wizard-on-finish="activeAutoRenew"
+         data-wizard-title="::'autorenew_service_active_title' | translate"
+         data-wizard-confirm-button-text="::'autorenew_service_confirm' | translate">
+
+        <div data-wizard-step data-wizard-step-valid="true">
+            <p data-translate="autorenew_service_activate_confirm"></p>
+        </div>
+
+    </div>
+</div>

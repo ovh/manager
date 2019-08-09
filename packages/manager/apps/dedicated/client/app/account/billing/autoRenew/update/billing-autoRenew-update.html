@@ -1,0 +1,127 @@
+<div data-ng-controller="Billing.controllers.AutoRenew.update">
+
+    <div data-wizard
+         data-wizard-on-cancel="closeAction"
+         data-wizard-on-finish="updateRenew"
+         data-wizard-title="::'autorenew_service_update_title' | translate">
+        <div data-wizard-step
+             data-wizard-step-valid="hasChanged">
+            <p data-ng-bind-html="'autorenew_service_update_intro' | translate"></p>
+            <div class="oui-datagrid-responsive-container">
+                <div class="oui-datagrid-responsive-container__sticky-container">
+                    <div class="oui-datagrid-responsive-container__overflow-container">
+                        <table class="oui-datagrid">
+                            <thead class="oui-datagrid__headers">
+                                <tr>
+                                    <th class="oui-datagrid__header" tabindex="0" data-translate="autorenew_service_name"></th>
+                                    <th class="oui-datagrid__header" tabindex="0" data-translate="autorenew_service_type"></th>
+                                    <th class="oui-datagrid__header text-nowrap" tabindex="0" data-translate="autorenew_service_frequency"></th>
+                                    <th class="oui-datagrid__header text-nowrap" tabindex="0" data-translate="autorenew_service_renew"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="oui-datagrid__row" data-ng-repeat="service in selectedServices | orderBy:'serviceType':false track by $index">
+                                    <td class="oui-datagrid__cell" data-ng-bind="::service.serviceId | sliceContent:25"></td>
+                                    <td class="oui-datagrid__cell">
+                                        <span data-ng-bind-html="'autorenew_service_type_'+ service.serviceType | translate"></span>
+                                    </td>
+                                    <td class="oui-datagrid__cell">
+                                        <label class="oui-select m-0">
+                                            <select name="renewType"
+                                                    class="oui-select__input"
+                                                    data-ng-disabled="service.renew.automatic && service.renew.forced"
+                                                    data-ng-change="onChange()"
+                                                    data-ng-model="service.newRenewType">
+                                                <option value="auto" data-ng-selected="service.renew.automatic"
+                                                    data-translate="autorenew_service_renew_auto">
+                                                </option>
+                                                <option value="manuel" data-ng-selected="!service.renew.automatic"
+                                                    data-translate="autorenew_service_renew_manuel">
+                                                </option>
+                                            </select>
+                                            <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
+                                        </label>
+                                    </td>
+                                    <td class="oui-datagrid__cell">
+                                        <label class="oui-select m-0"
+                                               data-ng-if="service.newRenewType === 'auto' && service.possibleRenewPeriod.length > 1">
+                                            <select name="renewPeriod"
+                                                    class="oui-select__input"
+                                                    data-ng-change="onChange()"
+                                                    data-ng-options="period as getPeriodTranslation(period) for period in service.possibleRenewPeriod"
+                                                    data-ng-model="service.newRenewPeriod">
+                                            </select>
+                                            <span class="oui-icon oui-icon-chevron-down" aria-hidden="true"></span>
+                                        </label>
+                                        <span data-ng-if="service.newRenewType === 'auto' && service.possibleRenewPeriod.length === 1" data-ng-bind="getPeriodTranslation(service.newRenewPeriod)"></span>
+                                        <span data-ng-if="service.newRenewType === 'manuel'"> - </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div data-wizard-step
+             data-wizard-step-on-load="loadContracts"
+             data-wizard-step-valid="agree.value">
+            <p data-ng-bind-html="'autorenew_service_update_step2_summary' | translate"></p>
+            <div class="oui-datagrid-responsive-container">
+                <div class="oui-datagrid-responsive-container__sticky-container">
+                    <div class="oui-datagrid-responsive-container__overflow-container">
+                        <table class="oui-datagrid">
+                            <thead class="oui-datagrid__headers">
+                                <tr>
+                                    <th class="oui-datagrid__header" tabindex="0" data-translate="autorenew_service_name"></th>
+                                    <th class="oui-datagrid__header" tabindex="0" data-translate="autorenew_service_type"></th>
+                                    <th class="oui-datagrid__header text-nowrap" tabindex="0" data-translate="autorenew_service_update_now"></th>
+                                    <th class="oui-datagrid__header text-nowrap" tabindex="0" data-translate="autorenew_service_update_future"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="oui-datagrid__row" data-ng-repeat="service in selectedServices | orderBy:'serviceType':false track by $index">
+                                    <td class="oui-datagrid__cell" data-ng-bind="service.serviceId | sliceContent:25"></td>
+                                    <td class="oui-datagrid__cell" data-ng-bind="'autorenew_service_type_' + service.serviceType | translate"></td>
+                                    <td class="oui-datagrid__cell">
+                                        <div data-ng-if="service.renew.automatic">
+                                            <span data-translate="autorenew_service_renew_auto"></span>:
+                                            <span data-ng-if="service.renew.period"
+                                                data-ng-bind="getPeriodTranslation(service.renew.period)">
+                                            </span>
+                                        </div>
+                                        <span data-ng-if="!service.renew.automatic"
+                                            data-translate="autorenew_service_renew_manuel">
+                                        </span>
+                                    </td>
+                                    <td class="oui-datagrid__cell"
+                                        data-ng-class="{'font-weight-bold': hasChange(service)}">
+                                        <div data-ng-if="service.newRenewType === 'auto'">
+                                            <span data-translate="autorenew_service_renew_auto"></span>:
+                                            <span data-ng-if="service.newRenewPeriod"
+                                                data-ng-bind="getPeriodTranslation(service.newRenewPeriod)">
+                                            </span>
+                                        </div>
+                                        <span data-ng-if="service.newRenewType === 'manuel'"
+                                            data-translate="autorenew_service_renew_manuel">
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div data-ng-if="loading.contracts"
+                 class="text-center">
+                 <oui-spinner></oui-spinner>
+            </div>
+            <div data-ng-if="!loading.contracts && contracts.length > 0"
+                 data-contracts="contracts"
+                 data-full-text="false"
+                 data-ng-model="agree.value">
+            </div>
+        </div>
+    </div>
+</div>

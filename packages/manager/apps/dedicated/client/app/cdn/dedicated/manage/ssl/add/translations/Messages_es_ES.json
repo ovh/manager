@@ -1,0 +1,14 @@
+{
+  "cdn_dedicated_ssl_add": "Añadir mi certificado",
+  "cdn_dedicated_ssl_add_explain": "Introduzca los datos relativos al certificado:",
+  "cdn_dedicated_ssl_add_name": "Nombre del certificado",
+  "cdn_dedicated_ssl_add_name_pattern": "El nombre del certificado no puede incluir espacios.",
+  "cdn_dedicated_ssl_add_certificate": "Certificado",
+  "cdn_dedicated_ssl_add_key": "Clave",
+  "cdn_dedicated_ssl_add_chain": "Cadena",
+  "cdn_dedicated_ssl_add_lets_encrypt_explain": "Dejar vacío para una generación automática de Let's Encrypt.",
+  "cdn_dedicated_ssl_add_success": "El certificado SSL estará activo enseguida.",
+  "cdn_dedicated_ssl_add_load_error": "Se ha producido un error al cargar la información de su certificado SSL.",
+  "cdn_dedicated_ssl_add_error": "Une erreur est survenue lors de l'ajout du certificat SSL.",
+  "cdn_dedicated_ssl_add_warning": "No es posible añadir el certificado SSL a su CDN, porque ya se ha añadido un certificado."
+}

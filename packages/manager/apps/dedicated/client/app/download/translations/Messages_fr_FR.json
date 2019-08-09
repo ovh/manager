@@ -1,0 +1,6 @@
+{
+  "download_bill_error": "Une erreur est survenue lors de l'obtention de la facture, veuillez nous excuser pour la gêne occasionnée.",
+  "download_bill_title": "Votre téléchargement a débuté.",
+  "download_bill_retry_label": "Si votre téléchargement ne demarre pas automatiquement,",
+  "download_bill_retry_link": "relancer le téléchargement"
+}
