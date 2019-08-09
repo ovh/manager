@@ -6,7 +6,7 @@
   "kube_service_description_reset": "Pode reiniciar a configuração do seu cluster Kubernetes a qualquer momento.",
   "kube_service_offer_beta": "Serviço gerido Kubernetes (grátis)",
   "kube_service_file": "Ficheiro kubeconfig",
-  "kube_service_file_error": "Ocorreu um erro ao carregar o ficheiro de configuração",
+  "kube_service_file_error": "Ocorreu um erro ao carregar o ficheiro de configuração: {{ message }}",
   "kube_service_file_help": "O ficheiro kubeconfig contém os dados que permitem à ferramenta online de comandos \"kubectl\" comunicar com a API do seu cluster.",
   "kube_service_file_more_information": "Mais informações disponíveis aqui",
   "kube_service_cluster_information": "Informações sobre o cluster",
@@ -46,5 +46,10 @@
   "kube_service_cluster_minor_update_available": "Atualização menor disponível",
   "kube_service_manage_title": "Gestão",
   "kube_service_common_edit_security_update_policy": "Alterar a política de segurança",
-  "kube_service_minor_version_upgrade": "Passar para a versão menor seguinte"
+  "kube_service_minor_version_upgrade": "Passar para a versão menor seguinte",
+  "kube_service_cluster_status_SUSPENDING": "Suspensão em curso",
+  "kube_service_cluster_status_REOPENING": "Reabertura em curso",
+  "kube_service_cluster_status_SUSPENDED": "Suspenso",
+  "kube_service_cluster_status_USER_ERROR": "Erro",
+  "kube_service_cluster_status_USER_QUOTA_ERROR": "Problemas de limite"
 }
