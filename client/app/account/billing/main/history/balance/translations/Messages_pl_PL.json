@@ -1,0 +1,17 @@
+{
+  "billing_history_balance_title": "Rozliczenie mojego salda",
+  "billing_history_balance_cancel": "Anuluj",
+  "billing_history_balance_explain": "Twoje saldo wynosi obecnie {{ balance }}.",
+  "billing_history_balance_no_balance": "Nie znaleziono salda dla Twojego konta. <a data-ui-sref=\"{{ backState }}\">Kliknij tutaj</a>, aby wrócić do listy faktur.",
+  "billing_history_balance_choose_payment_method": "Wybierz metodę płatności",
+  "billing_history_balance_add_payment_method": "Dodaj metodę płatności",
+  "billing_history_balance_no_payment_method": "Nie masz ważnych metod płatności. <a data-ui-sref=\"{{ addPaymentMethodState }}\">Dodaj metodę płatności</a>, zanim uregulujesz Twoje saldo.",
+  "billing_history_balance_payment_doing": "Spłata salda jest już w toku. Zaczekaj na zakończenie tej płatności, zanim przystąpisz do kolejnej. ",
+  "billing_history_balance_payment_go_tracking": "Aby uzyskać szczegółowe informacje, przejdź do <a data-ui-sref=\"{{ trackState }}\">na stronie podsumowania płatności</a>.",
+  "billing_history_balance_load_error": "Wystąpił błąd podczas ładowania Twojego salda. ",
+  "billing_history_balance_pay_success": "Spłata Twojego salda jest przetwarzana. Płatność zostanie uznana w ciągu kilku minut. Aby uzyskać szczegółowe informacje, przejdź do <a data-ui-sref=\"{{ trackHref }}\">na stronie podsumowania płatności</a>.",
+  "billing_history_balance_pay_error": "Wystąpił błąd podczas spłaty salda.",
+  "billing_history_balance_payment_method_subtype_american_express": "American Express",
+  "billing_history_balance_payment_method_subtype_mastercard": "Mastercard",
+  "billing_history_balance_payment_method_subtype_visa": "Visa"
+}

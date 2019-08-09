@@ -1,0 +1,6 @@
+{
+  "download_bill_error": "An error has occurred retrieving the invoice. We apologise for any inconvenience this may cause.",
+  "download_bill_title": "Your download has started.",
+  "download_bill_retry_label": "If your download doesn't start automatically,",
+  "download_bill_retry_link": "relaunch the download"
+}

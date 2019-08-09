@@ -1,0 +1,16 @@
+{
+  "billing_main_pay_as_you_go_title": "Huidig Pay As You Go gebruik",
+  "billing_main_pay_as_you_go_load_error": "Er is een fout opgetreden bij het laden van uw Pay As You Go gebruik.",
+  "billing_main_pay_as_you_go_table_project": "Project",
+  "billing_main_pay_as_you_go_table_project_title": "{{ name }}: ga naar de beheerpagina voor dit project.",
+  "billing_main_pay_as_you_go_table_resource": "Resource",
+  "billing_main_pay_as_you_go_table_type": "Type",
+  "billing_main_pay_as_you_go_table_type_instance": "Instance",
+  "billing_main_pay_as_you_go_table_type_volume": "Volume",
+  "billing_main_pay_as_you_go_table_type_snapshot": "Snapshot",
+  "billing_main_pay_as_you_go_table_due_date": "Vervaldatum",
+  "billing_main_pay_as_you_go_table_current": "Huidig saldo",
+  "billing_main_pay_as_you_go_table_current_forecast": "Voorlopige berekening",
+  "billing_main_pay_as_you_go_table_action_manage": "Beheren",
+  "billing_main_pay_as_you_go_table_action_switch_monthly": "Maandelijks abonnement instellen "
+}

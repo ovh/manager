@@ -1,0 +1,5 @@
+{
+  "billing_payment_method_default_title": "Enter a default payment method",
+  "billing_payment_method_default_explain": "You are about to enter the payment method <strong>{{ label }}</strong> as a default payment method.",
+  "billing_payment_method_default_question": "Are you sure you want to continue?"
+}

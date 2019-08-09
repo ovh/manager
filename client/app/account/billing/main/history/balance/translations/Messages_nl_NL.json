@@ -1,0 +1,17 @@
+{
+  "billing_history_balance_title": "Betaal mijn openstaande accountsaldo",
+  "billing_history_balance_cancel": "Annuleren",
+  "billing_history_balance_explain": "Uw openstaande saldo bedraagt momenteel {{ balance }}.",
+  "billing_history_balance_no_balance": "Geen saldo gevonden voor uw account. <a data-ui-sref=\"{{ backState }}\">Klik hier</a> om terug te keren naar de lijst met facturen.",
+  "billing_history_balance_choose_payment_method": "Kies een betaalmethode",
+  "billing_history_balance_add_payment_method": "Voeg een betaalmethode toe",
+  "billing_history_balance_no_payment_method": "U hebt geen geldige betaalmethoden. <a data-ui-sref=\"{{ addPaymentMethodState }}\">Voeg een geldige betaalmethode toe</a> voordat u uw saldo betaalt.",
+  "billing_history_balance_payment_doing": "Er is al een saldo-betaling in uitvoering. Wacht totdat deze betaling is verwerkt voordat u een nieuw saldo betaalt.",
+  "billing_history_balance_payment_go_tracking": "Ga naar de <a data-ui-sref=\"{{ trackState }}\">pagina voor het bijhouden van betalingen</a> voor meer informatie.",
+  "billing_history_balance_load_error": "Er is een fout opgetreden bij het laden van uw saldo.",
+  "billing_history_balance_pay_success": "Uw saldo is verwerkt. De betaling wordt binnenkort van kracht. Ga naar de <a data-ui-sref=\"{{ trackHref }}\">pagina voor het bijhouden van betalingen</a> voor meer informatie.",
+  "billing_history_balance_pay_error": "Er is een fout opgetreden bij het betalen van uw saldo.",
+  "billing_history_balance_payment_method_subtype_american_express": "American Express",
+  "billing_history_balance_payment_method_subtype_mastercard": "Mastercard",
+  "billing_history_balance_payment_method_subtype_visa": "Visa"
+}
