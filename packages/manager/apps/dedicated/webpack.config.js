@@ -6,7 +6,7 @@ const glob = require('glob');
 const _ = require('lodash');
 const webpackConfig = require('@ovh-ux/manager-webpack-config');
 
-const folder = './client/app';
+const folder = './src/app';
 const bundles = {};
 
 fs.readdirSync(folder).forEach((file) => {
@@ -23,17 +23,17 @@ fs.readdirSync(folder).forEach((file) => {
 
 module.exports = (env = {}) => {
   const { config } = webpackConfig({
-    template: './client/app/index.html',
-    basePath: './client/app',
+    template: './src/app/index.html',
+    basePath: './src/app',
     lessPath: [
       './node_modules',
     ],
-    root: path.resolve(__dirname, './client/app'),
+    root: path.resolve(__dirname, './src/app'),
     assets: {
       files: [
         { from: path.resolve(__dirname, './node_modules/angular-i18n'), to: 'resources/angular/i18n' },
-        { from: path.resolve(__dirname, './client/**/*.html'), context: 'client/app' },
-        { from: path.resolve(__dirname, './client/app/images/**/*.*'), context: 'client/app' },
+        { from: path.resolve(__dirname, './src/**/*.html'), context: 'src/app' },
+        { from: path.resolve(__dirname, './src/app/images/**/*.*'), context: 'src/app' },
         { from: path.resolve(__dirname, './node_modules/ckeditor'), to: 'ckeditor' },
         { from: path.resolve(__dirname, './node_modules/@ovh-ux/ovh-utils-angular/src/**/*.html'), context: 'node_modules/@ovh-ux/ovh-utils-angular/src', to: 'components/ovh-utils-angular' },
         { from: path.resolve(__dirname, './node_modules/ovh-module-exchange/src/exchange/**/*.html'), context: 'node_modules/ovh-module-exchange/src' },
@@ -61,12 +61,12 @@ module.exports = (env = {}) => {
   return merge(config, {
     entry: _.assign({
       app: [
-        './client/app/index.js',
-        './client/app/app.js',
-        './client/app/app.routes.js',
+        './src/app/index.js',
+        './src/app/app.js',
+        './src/app/app.routes.js',
       ]
-        .concat(glob.sync('./client/app/**/*.module.js'))
-        .concat(glob.sync('./client/app/components/**/!(*.module).js')),
+        .concat(glob.sync('./src/app/**/*.module.js'))
+        .concat(glob.sync('./src/app/components/**/!(*.module).js')),
     }, bundles, extras.length > 0 ? { extras } : {}),
     output: {
       path: path.resolve(__dirname, 'dist'),
