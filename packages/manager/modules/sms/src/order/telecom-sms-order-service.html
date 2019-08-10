@@ -61,12 +61,12 @@
                                class="control-label"
                                data-translate="sms_order_credit_custom_label">
                         </label>
-                        <input-number-spinner class="float-left"
-                                              data-ng-model="$ctrl.order.customCredit"
-                                              data-input-number-spinner-min="$ctrl.order.min"
-                                              data-input-number-spinner-max="$ctrl.order.max"
-                                              data-input-number-spinner-on-change="$ctrl.getDebouncedPrices()">
-                        </input-number-spinner>
+                        <oui-numeric
+                            data-min="$ctrl.order.min"
+                            data-max="$ctrl.order.max"
+                            data-model="$ctrl.order.customCredit"
+                            data-on-change="$ctrl.getDebouncedPrices()">
+                        </oui-numeric>
                     </div>
 
                     <div data-ng-if="!$ctrl.loading.prices">
