@@ -12,10 +12,10 @@
             <div class="position-absolute h-100 w-100" id="{{:: link.name }}"></div>
             <oui-navbar-link
                 data-ng-if="!$ctrl.isLoading"
-                name="{{:: link.name }}"
-                text="{{:: link.title }}"
-                href="{{:: link.url }}"
-                variant="{{:: link.isPrimary ? 'primary' : 'secondary' }}">
+                data-name="{{:: link.name }}"
+                data-href="{{:: link.url }}"
+                data-variant="{{:: link.isPrimary ? 'primary' : 'secondary' }}">
+                <span data-ng-bind="::link.title"></span>
             </oui-navbar-link>
         </div>
     </oui-navbar-main>

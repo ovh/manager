@@ -4,7 +4,7 @@
                   data-ng-repeat="message in messageCategory.values | orderBy: 'messageOrder' track by $index"
                   data-type="{{ messageCategory.key }}"
                   data-dismissable="message.dismissable"
-                  data-on-dismissed="$ctrl.constructor.onDismiss(message)">
+                  data-on-dismiss="$ctrl.constructor.onDismiss(message)">
                   <span data-ng-bind="message.text" data-ng-if="message.text"></span>
                   <span data-ng-bind-html="message.textHtml" data-ng-if="message.textHtml"></span>
                   <span data-ng-switch="message.link.type">
@@ -28,7 +28,7 @@
             <oui-message data-ng-if="$ctrl.constructor.shouldDisplayGroupedMessages(messageCategory) && $ctrl.hasGroupMessageToDisplay(messageCategory.key)"
                          data-type="{{ messageCategory.key }}"
                          data-dismissable="messageCategory.dismissable"
-                         data-on-dismissed="$ctrl.constructor.onGroupDismiss(messageCategory)">
+                         data-on-dismiss="$ctrl.constructor.onGroupDismiss(messageCategory)">
                   <span data-translate="{{ 'message_container_multiple_' + messageCategory.key }}"></span>
                   <ul>
                         <li data-ng-repeat="message in messageCategory.values | orderBy: 'messageOrder' track by $index"

@@ -77,7 +77,6 @@ angular
     OtrsPopupProvider.setBaseUrlTickets(OTRS_URLS[coreConfigProvider.region]);
   })
   .run(/* @ngInject */ ($state) => {
-    console.log('test');
     $state.defaultErrorHandler((error) => {
       if (error.type === RejectType.ERROR) {
         $state.go('pci.error', {
