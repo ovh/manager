@@ -9,6 +9,18 @@ const webpackConfig = require('@ovh-ux/manager-webpack-config');
 const folder = './src/app';
 const bundles = {};
 
+function foundNodeModulesFolder(checkedDir, cwd = '.') {
+  if (fs.existsSync(`${cwd}/node_modules/${checkedDir}`)) {
+    return path.relative(process.cwd(), `${cwd}/node_modules/${checkedDir}`);
+  }
+
+  if (path.resolve(cwd) !== '/') {
+    return foundNodeModulesFolder(checkedDir, `${cwd}/..`);
+  }
+
+  return null;
+}
+
 fs.readdirSync(folder).forEach((file) => {
   const stats = fs.lstatSync(`${folder}/${file}`);
   if (file === 'components') return;
@@ -31,11 +43,11 @@ module.exports = (env = {}) => {
     root: path.resolve(__dirname, './src/app'),
     assets: {
       files: [
-        { from: path.resolve(__dirname, './node_modules/angular-i18n'), to: 'resources/angular/i18n' },
+        // { from: path.resolve(__dirname, './node_modules/angular-i18n'), to: 'resources/angular/i18n' },
         { from: path.resolve(__dirname, './src/**/*.html'), context: 'src/app' },
         { from: path.resolve(__dirname, './src/app/images/**/*.*'), context: 'src/app' },
-        { from: path.resolve(__dirname, './node_modules/ckeditor'), to: 'ckeditor' },
-        { from: path.resolve(__dirname, './node_modules/@ovh-ux/ovh-utils-angular/src/**/*.html'), context: 'node_modules/@ovh-ux/ovh-utils-angular/src', to: 'components/ovh-utils-angular' },
+        { from: foundNodeModulesFolder('ckeditor'), to: 'ckeditor' },
+        // { from: path.resolve(__dirname, './node_modules/@ovh-ux/ovh-utils-angular/src/**/*.html'), context: 'node_modules/@ovh-ux/ovh-utils-angular/src', to: 'components/ovh-utils-angular' },
       ],
     },
   }, env);

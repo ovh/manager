@@ -13,6 +13,7 @@ import ngOvhSwimmingPoll from '@ovh-ux/ng-ovh-swimming-poll';
 import ngOvhUiRouterLayout from '@ovh-ux/ng-uirouter-layout';
 import ngOvhUiRouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
 import ngOvhUserPref from '@ovh-ux/ng-ovh-user-pref';
+import ngOvhUtils from '@ovh-ux/ng-ovh-utils';
 import ngOvhWebUniverseComponents from '@ovh-ux/ng-ovh-web-universe-components';
 import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import ovhContacts from '@ovh-ux/ng-ovh-contacts';
@@ -30,6 +31,8 @@ import ovhManagerPccDashboard from './dedicatedCloud/dashboard';
 import ovhManagerPccResourceUpgrade from './dedicatedCloud/resource/upgrade';
 import preload from './components/manager-preload/manager-preload.module';
 
+import moduleExchange from '@ovh-ux/manager-exchange';
+
 Environment.setRegion(__WEBPACK_REGION__);
 
 angular
@@ -46,7 +49,8 @@ angular
     'filters',
     'internationalPhoneNumber',
     'Module.download',
-    ['eu', 'ca'].includes(WEBPACK_ENV.region) ? 'Module.exchange' : undefined,
+    // ['eu', 'ca'].includes(WEBPACK_ENV.region) ? 'Module.exchange' : undefined,
+    ['eu', 'ca'].includes(WEBPACK_ENV.region) ? moduleExchange : undefined,
     'Module.ip',
     'Module.license',
     'Module.otrs',
@@ -65,6 +69,7 @@ angular
     ngOvhUiRouterLayout,
     ngOvhUiRouterLineProgress,
     ngOvhUserPref,
+    ngOvhUtils,
     ngOvhWebUniverseComponents,
     'ngRoute',
     'ngSanitize',
