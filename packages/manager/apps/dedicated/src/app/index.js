@@ -86,6 +86,6 @@ import 'script-loader!filesize/lib/filesize.js';
 // Ckeditor 4.x
 import 'script-loader!ng-ckeditor/dist/ng-ckeditor';
 
-// import './app.less';
+import './app.less';
 // import './css/source.scss';
 /* eslint-enable import/no-webpack-loader-syntax, import/no-unresolved, import/extensions */
