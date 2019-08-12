@@ -168,7 +168,7 @@ angular.module('Module.license').service('License', [
       if (type === 'CLOUDLINUX') {
         return 'cloudLinux';
       }
-      return angular.lowercase(type);
+      return (type || '').toLowerCase();
     }
 
     this.getLicenseOrderForDuration = function (data) {
