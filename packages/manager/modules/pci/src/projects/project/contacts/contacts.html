@@ -32,7 +32,7 @@
 <oui-datagrid
     data-rows="$ctrl.data.rights"
     data-row-loader="$ctrl.transformItem($row)">
-    <extra-top>
+    <oui-datagrid-topbar>
         <a
             data-ui-sref="pci.projects.project.contacts.add"
             class="oui-button oui-button_secondary mb-3"
@@ -41,14 +41,14 @@
             data-translate="common_add"
         >
     </a>
-    </extra-top>
-    <oui-column data-property="accountId"
-        data-title="'cpb_rights_table_nichandle' | translate"></oui-column>
-    <oui-column data-property="type"
+    </oui-datagrid-topbar>
+    <oui-datagrid-column data-property="accountId"
+        data-title="'cpb_rights_table_nichandle' | translate"></oui-datagrid-column>
+    <oui-datagrid-column data-property="type"
         data-title="'cpb_rights_table_rights' | translate">
         <span data-ng-bind="('cpb_rights_table_rights_value_' + $row.type) | translate"></span>
-    </oui-column>
-    <oui-action-menu data-align="end" data-compact>
+    </oui-datagrid-column>
+    <oui-action-menu data-placement="end" data-compact>
         <oui-action-menu-item text="{{'delete' | translate}}"
             data-on-click="$ctrl.removeRight($row)">
         </oui-action-menu-item>

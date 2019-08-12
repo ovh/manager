@@ -2,7 +2,7 @@
        name="kubeClusterTerminate"
        data-ng-submit="kubeClusterTerminate.$valid && $ctrl.terminate()"
        novalidate>
-    <oui-modal data-title="{{ ::'kube_service_terminate_title' | translate }}"
+    <oui-modal data-heading="{{ ::'kube_service_terminate_title' | translate }}"
                data-primary-label="{{ ::'kube_service_terminate_common_confirm' | translate }}"
                data-secondary-action="$ctrl.goBack()"
                data-secondary-label="{{ ::'kube_service_terminate_common_cancel' | translate }}"

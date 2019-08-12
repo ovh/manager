@@ -17,7 +17,7 @@
                           data-ng-class="'oui-status_' + $ctrl.ANALYTICS_DATA_PLATFORM_STATUS_MAP[$ctrl.platformDetails.status]"
                           data-ng-bind=":: 'analytics_data_platform_common_status_' +$ctrl.platformDetails.status | translate"></span>
                 </oui-tile-description>
-                <oui-action-menu data-compact data-align="end"> 
+                <oui-action-menu data-compact data-placement="end">
                     <oui-action-menu-item on-click="$ctrl.terminate()">
                         <span data-translate="analytics_data_platform_service_terminate"></span>
                     </oui-action-menu-item>

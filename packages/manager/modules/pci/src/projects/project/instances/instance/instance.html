@@ -1,17 +1,17 @@
-<oui-page-header data-heading="{{ $ctrl.instance.name }}">
+<oui-header data-heading="{{ $ctrl.instance.name }}">
     <oui-header-tabs>
         <oui-header-tabs-item
-            data-text="{{ 'pci_projects_project_instances_instance_dashboard_title' | translate }}"
             data-href="{{ $ctrl.instanceLink }}"
             data-active="$ctrl.currentActiveLink() === $ctrl.instanceLink">
+            <span data-translate="pci_projects_project_instances_instance_dashboard_title"></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
-            data-text="{{ 'pci_projects_project_instances_instance_vnc_title' | translate }}"
             data-href="{{ $ctrl.consoleLink }}"
             data-active="$ctrl.currentActiveLink() === $ctrl.consoleLink">
+            <span data-translate="pci_projects_project_instances_instance_vnc_title"></span>
         </oui-header-tabs-item>
     </oui-header-tabs>
-</oui-page-header>
+</oui-header>
 
 <div class="mt-4">
     <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
@@ -131,7 +131,7 @@
                             data-translate-values="{ price : $ctrl.instancePrice.price.text }"></span>
                     </oui-tile-description>
 
-                    <oui-action-menu data-compact data-align="end"
+                    <oui-action-menu data-compact data-placement="end"
                         data-ng-if="!$ctrl.instance.isMonthlyBillingActivated()">
                         <oui-action-menu-item text="{{:: 'pci_projects_project_instances_instance_price_action_activeMonthlyBilling_label' | translate }}"
                             data-on-click="$ctrl.enableMonthlyBillingInstance()">
@@ -151,12 +151,13 @@
                         <span>-</span>
                     </oui-tile-description>
 
-                    <oui-action-menu data-compact data-align="end">
+                    <oui-action-menu data-compact data-placement="end">
                         <oui-action-menu-item text="{{:: 'pci_projects_project_instances_instance_volumes_action_manage_label' | translate }}"
                             data-on-click="$ctrl.goToBlockStorages()">
                         </oui-action-menu-item>
-                        <oui-action-menu-item data-text="{{:: 'pci_projects_project_instances_instance_volumes_action_attach_label' | translate }}"
+                        <oui-action-menu-item
                             data-on-click="$ctrl.attachVolume()">
+                            <span data-translate="pci_projects_project_instances_instance_volumes_action_attach_label"></span>
                         </oui-action-menu-item>
                     </oui-action-menu>
                 </oui-tile-definition>
@@ -170,7 +171,7 @@
                         <span data-ng-bind="$ctrl.instance.image.name || '-'"></span>
                     </oui-tile-description>
 
-                    <oui-action-menu data-compact data-align="end"
+                    <oui-action-menu data-compact data-placement="end"
                         data-ng-if="$ctrl.instance.isApplicationImage()">
                         <oui-action-menu-item text="{{:: 'pci_projects_project_instances_instance_image_action_application_access_label' | translate }}"
                             data-on-click="$ctrl.applicationAccess()">
@@ -197,7 +198,7 @@
                         </dd>
                     </dl>
                     <div class="oui-tile__actions">
-                        <oui-action-menu data-compact data-align="end">
+                        <oui-action-menu data-compact data-placement="end">
                             <oui-action-menu-item data-href="{{:: $ctrl.reverseDnsLink }}" data-external>
                                 <span data-translate="pci_projects_project_instances_instance_ip_reverse_change_label"></span>
                             </oui-action-menu-item>
@@ -224,7 +225,7 @@
                         </dd>
                     </dl>
                     <div class="oui-tile__actions">
-                        <oui-action-menu data-compact data-align="end">
+                        <oui-action-menu data-compact data-placement="end">
                             <oui-action-menu-item data-href="{{:: $ctrl.reverseDnsLink }}" data-external>
                                 <span data-translate="pci_projects_project_instances_instance_ip_reverse_change_label"></span>
                             </oui-action-menu-item>
@@ -248,7 +249,7 @@
                         data-ng-repeat="network in $ctrl.instance.privateNetworks track by network.id">
                         <span data-ng-bind="network.name"></span>
                     </oui-tile-description>
-                    <oui-action-menu data-compact data-align="end">
+                    <oui-action-menu data-compact data-placement="end">
                         <oui-action-menu-item text="{{:: 'pci_projects_project_instances_instance_private_networks_action_manage_label' | translate }}"
                             data-on-click="$ctrl.gotToNetworks()">
                         </oui-action-menu-item>

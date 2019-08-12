@@ -7,42 +7,42 @@
 
         <oui-datagrid
             data-rows="$ctrl.snapshots">
-            <oui-column
+            <oui-datagrid-column
                 data-title="'pci_projects_project_storages_snapshots_name_label' | translate"
                 data-property="name"
                 data-type="string"
                 data-searchable
-                data-filterable></oui-column>
-            <oui-column
+                data-filterable></oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="'pci_projects_project_storages_snapshots_region_label' | translate"
                 data-property="region"
                 data-type="string"
                 data-sortable
                 data-filterable>
                 <span data-ng-bind="$ctrl.CucRegionService.getTranslatedMicroRegion($row.region)"></span>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="'pci_projects_project_storages_snapshots_volume_label' | translate"
                 data-property="volumeId"
                 data-type="string"
                 data-sortable>
                 <span>{{ $row.volume.name }}</span>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="'pci_projects_project_storages_snapshots_size_label' | translate"
                 data-property="size"
                 data-type="number"
                 data-sortable
                 data-filterable>
                 <span>{{ $value | cucBytes:2:true:'GiB'}}</span>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="'pci_projects_project_storages_snapshots_creationDate_label' | translate"
                 data-property="creationDate"
                 data-sortable="desc">
                 <span>{{ $value | date:'short' }}</span>
-            </oui-column>
-            <oui-column
+            </oui-datagrid-column>
+            <oui-datagrid-column
                 data-title="'pci_projects_project_storages_snapshots_status_label' | translate"
                 data-property="status"
                 data-sortable
@@ -57,9 +57,9 @@
                     data-ng-switch="$row.statusGroup">
                     <span data-ng-bind="'pci_projects_project_storages_snapshots_status_' + $row.statusGroup | translate"></span>
                 </span>
-            </oui-column>
+            </oui-datagrid-column>
 
-            <oui-action-menu data-align="end" data-compact>
+            <oui-action-menu data-placement="end" data-compact>
                 <oui-action-menu-item data-on-click="$ctrl.createVolume($row)">
                     <span data-translate="pci_projects_project_storages_snapshots_create_volume_label"></span>
                 </oui-action-menu-item>
@@ -68,7 +68,7 @@
                 </oui-action-menu-item>
             </oui-action-menu>
 
-            <extra-top>
+            <oui-datagrid-topbar>
                 <button
                     class="oui-button oui-button_secondary"
                     data-ng-click="$ctrl.createSnapshot()"
@@ -78,7 +78,7 @@
                     <i class="oui-icon oui-icon-add pr-1" aria-hidden="true"></i>
                     <span data-translate="pci_projects_project_storages_snapshots_add_label"></span>
                 </button>
-            </extra-top>
+            </oui-datagrid-topbar>
         </oui-datagrid>
     </section>
 </div>

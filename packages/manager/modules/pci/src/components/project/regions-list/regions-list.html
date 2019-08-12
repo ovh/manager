@@ -73,7 +73,9 @@
             data-values="[$ctrl.region]"
             data-variant="light"
             data-required>
-            {{$ctrl.region.macroRegion.text}}
+            <oui-select-picker-section>
+                {{$ctrl.region.macroRegion.text}}
+            </oui-select-picker-section>
         </oui-select-picker>
     </div>
 </div>

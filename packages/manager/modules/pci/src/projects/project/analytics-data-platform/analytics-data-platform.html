@@ -1,13 +1,13 @@
 <div data-ui-view>
-    <oui-page-header
+    <oui-header
         class="mb-2"
         data-heading="{{ ::'analytics_data_platform_title' | translate }}">
-    </oui-page-header>
+    </oui-header>
     <div>
         <!-- error messages -->
         <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
         <oui-datagrid class="mt-3" data-rows="$ctrl.clusters">
-            <oui-column data-title="::'analytics_data_platform_common_cluster_name' | translate"
+            <oui-datagrid-column data-title="::'analytics_data_platform_common_cluster_name' | translate"
                         data-property="clusterName"
                         data-sortable="asc"
                         data-type="string"
@@ -17,8 +17,8 @@
                             data-on-click="$ctrl.manageCluster($row.serviceName)">
                             <span data-ng-bind="::$row.clusterName"></span>
                         </oui-button>
-            </oui-column>
-            <oui-column data-title="::'analytics_data_platform_common_status' | translate"
+            </oui-datagrid-column>
+            <oui-datagrid-column data-title="::'analytics_data_platform_common_status' | translate"
                         data-property="status"
                         data-type="string"
                         data-sortable data-searchable data-filterable>
@@ -26,22 +26,22 @@
                         data-ng-class="'oui-status_' + $ctrl.STATUS_CLASS[$row.status]"
                         data-ng-bind=":: ('analytics_data_platform_common_status_' + $row.status) | translate">
                 </span>
-            </oui-column>
-            <oui-column data-title="::'analytics_data_platform_common_region' | translate"
+            </oui-datagrid-column>
+            <oui-datagrid-column data-title="::'analytics_data_platform_common_region' | translate"
                         data-property="osRegion" data-sortable>
                         <span data-ng-bind="::$ctrl.cucRegionService.getTranslatedMicroRegion($row.osRegion)"></span>
-            </oui-column>
-            <oui-column data-title="::'analytics_data_platform_common_version' | translate"
+            </oui-datagrid-column>
+            <oui-datagrid-column data-title="::'analytics_data_platform_common_version' | translate"
                         data-property="clusterType"
-                        data-sortable></oui-column>
-            <oui-action-menu data-align="end" data-compact>
+                        data-sortable></oui-datagrid-column>
+            <oui-action-menu data-placement="end" data-compact>
                 <oui-action-menu-item
                     data-disabled="$row.status === $ctrl.ADP_STATUS.IN_PROGRESS"
                     data-on-click="$ctrl.manageCluster($row.serviceName)">
                     <span data-translate="analytics_data_platform_list_table_button_manage_cluster"></span>
                 </oui-action-menu-item>
             </oui-action-menu>
-            <extra-top>
+            <oui-datagrid-topbar>
                 <div class="row">
                     <div class="col-auto mr-auto">
                         <oui-button data-on-click="$ctrl.deployCluster()">
@@ -57,7 +57,7 @@
                         </button>
                     </div>
                 </div>
-            </extra-top>
+            </oui-datagrid-topbar>
         </oui-datagrid>
     </div>
 </div>

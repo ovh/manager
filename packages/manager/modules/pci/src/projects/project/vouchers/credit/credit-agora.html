@@ -2,7 +2,7 @@
       name="orderCreditForm"
       data-ng-submit="($ctrl.amount >= $ctrl.orderLimits.min && $ctrl.amount <= $ctrl.orderLimits.max) && $ctrl.order()">
 
-    <oui-modal data-title="{{:: 'cpb_vouchers_add_credit_title' | translate }}"
+    <oui-modal data-heading="{{:: 'cpb_vouchers_add_credit_title' | translate }}"
                data-primary-label="{{:: 'cpb_vouchers_add_credit_valid' | translate }}"
                data-secondary-action="$ctrl.cancel()"
                data-secondary-label="{{:: 'common_cancel' | translate }}"

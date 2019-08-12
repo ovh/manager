@@ -2,10 +2,10 @@
     <div class="container px-3 py-5">
         <h1 data-translate="pci_projects"></h1>
         <oui-datagrid rows="$ctrl.projects" row-loader="$ctrl.loadRow($row)">
-            <oui-column title=":: 'pci_projects_description' | translate" property="description" type="string">
+            <oui-datagrid-column title=":: 'pci_projects_description' | translate" property="description" type="string">
                 <a data-ui-sref="pci.projects.project({ projectId: $row.serviceName })" data-ng-bind="::$value"></a>
-            </oui-column>
-            <oui-column title=":: 'pci_projects_status' | translate" property="status" type="string">
+            </oui-datagrid-column>
+            <oui-datagrid-column title=":: 'pci_projects_status' | translate" property="status" type="string">
                 <span class="oui-status" data-ng-class="{
                     'oui-status_info': $value === 'creating',
                     'oui-status_error': $value === 'deleted' || $value === 'suspended',
@@ -13,8 +13,8 @@
                     'oui-status_warning': $value === 'deleting',
                 }" data-ng-bind=":: ('pci_projects_status_' + $value) | translate">
                 </span>
-            </oui-column>
-            <oui-action-menu data-align="end" data-compact>
+            </oui-datagrid-column>
+            <oui-action-menu data-placement="end" data-compact>
                 <oui-action-menu-item
                     data-ui-sref="pci.projects.project({ projectId: $row.serviceName })">
                     <span data-translate="pci_projects_project_show"></span>

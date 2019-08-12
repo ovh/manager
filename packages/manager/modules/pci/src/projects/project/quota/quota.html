@@ -60,30 +60,30 @@
     <strong data-translate="pci_projects_project_quota_current_limit"></strong>
 
     <oui-datagrid data-rows="$ctrl.quotas">
-        <oui-column data-title=":: 'pci_projects_project_quota_region' | translate" data-property="region" data-sortable="asc">
+        <oui-datagrid-column data-title=":: 'pci_projects_project_quota_region' | translate" data-property="region" data-sortable="asc">
             <span data-ng-bind=":: $ctrl.CucRegionService.getTranslatedMicroRegion($row.region)"></span>
-        </oui-column>
-        <oui-column data-title=":: 'pci_projects_project_quota_instance' | translate" data-property="instance.maxInstances">
+        </oui-datagrid-column>
+        <oui-datagrid-column data-title=":: 'pci_projects_project_quota_instance' | translate" data-property="instance.maxInstances">
             <span> {{ :: $row.instance.usedInstances }} /</span>
             <span data-ng-if="$row.instance.maxInstances === -1" data-translate="pci_projects_project_quota_instance_unlimited"></span>
             <span data-ng-if="$row.instance.maxInstances !== -1" data-ng-bind=" :: $row.instance.maxInstances"></span>
-        </oui-column>
-        <oui-column data-title=":: 'pci_projects_project_quota_core' | translate" data-property="instance.maxCores">
+        </oui-datagrid-column>
+        <oui-datagrid-column data-title=":: 'pci_projects_project_quota_core' | translate" data-property="instance.maxCores">
             <span>{{ :: $row.instance.usedCores }} / </span>
             <span data-ng-if="$row.instance.maxCores === -1" data-translate="pci_projects_project_quota_instance_unlimited"></span>
             <span data-ng-if="quota.instance.maxCores !== -1" data-ng-bind=":: $row.instance.maxCores"></span>
-        </oui-column>
-        <oui-column data-title=":: 'pci_projects_project_quota_ram' | translate" data-property="instance.maxRam">
+        </oui-datagrid-column>
+        <oui-datagrid-column data-title=":: 'pci_projects_project_quota_ram' | translate" data-property="instance.maxRam">
             <span data-ng-bind=":: $row.instance.usedRAM > 0 ? (($row.instance.usedRAM * 1000000) | cucBytes:2) : $row.instance.usedRAM"></span>
             <span class="mx-1">/</span>
             <span data-ng-if="$row.instance.maxRam === -1" data-translate="pci_projects_project_quota_instance_unlimited"></span>
             <span data-ng-if="$row.instance.maxRam !== -1" data-ng-bind=":: ($row.instance.maxRam * 1000000) | cucBytes:2"></span>
-        </oui-column>
-        <oui-column data-title=":: 'pci_projects_project_quota_add_disk' | translate" data-property="volume.maxGigabytes">
+        </oui-datagrid-column>
+        <oui-datagrid-column data-title=":: 'pci_projects_project_quota_add_disk' | translate" data-property="volume.maxGigabytes">
             <span data-ng-bind="$row.volume.usedGigabytes > 0 ? (($row.volume.usedGigabytes * 1000000000) | cucBytes:2) : $row.volume.usedGigabytes"></span>
             <span class="mx-1">/</span>
             <span data-ng-if="$row.volume.maxGigabytes === -1" data-translate="pci_projects_project_quota_instance_unlimited"></span>
             <span data-ng-if="$row.volume.maxGigabytes !== -1" data-ng-bind=":: ($row.volume.maxGigabytes * 1000000000) | cucBytes:2"></span>
-        </oui-column>
+        </oui-datagrid-column>
     </oui-datagrid>
 </div>
