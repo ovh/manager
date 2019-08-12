@@ -43,11 +43,10 @@ module.exports = (env = {}) => {
     root: path.resolve(__dirname, './src/app'),
     assets: {
       files: [
-        // { from: path.resolve(__dirname, './node_modules/angular-i18n'), to: 'resources/angular/i18n' },
         { from: path.resolve(__dirname, './src/**/*.html'), context: 'src/app' },
         { from: path.resolve(__dirname, './src/app/images/**/*.*'), context: 'src/app' },
         { from: foundNodeModulesFolder('ckeditor'), to: 'ckeditor' },
-        // { from: path.resolve(__dirname, './node_modules/@ovh-ux/ovh-utils-angular/src/**/*.html'), context: 'node_modules/@ovh-ux/ovh-utils-angular/src', to: 'components/ovh-utils-angular' },
+        { from: foundNodeModulesFolder('angular-i18n'), to: 'resources/angular/i18n' },
       ],
     },
   }, env);
