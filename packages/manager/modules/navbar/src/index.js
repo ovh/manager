@@ -1,9 +1,9 @@
 import angular from 'angular';
 
-import '@ovh-ux/ng-translate-async-loader';
-import '@ovh-ux/manager-core';
 import 'ovh-api-services';
-import 'ovh-ui-angular';
+import '@ovh-ux/manager-core';
+import '@ovh-ux/ng-translate-async-loader';
+import '@ovh-ux/ui-kit';
 
 import assistanceMenu from './assistance-menu';
 import languageMenu from './language-menu';

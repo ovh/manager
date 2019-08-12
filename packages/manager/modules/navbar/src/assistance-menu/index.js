@@ -3,8 +3,7 @@ import 'angular-translate';
 
 import '@ovh-ux/ng-at-internet';
 import '@ovh-ux/ng-ovh-chatbot';
-
-import 'ovh-ui-angular';
+import '@ovh-ux/ui-kit';
 
 import menuHeader from '../navbar-menu-header';
 

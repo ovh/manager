@@ -6,7 +6,7 @@ import '@ovh-ux/ng-ovh-cloud-universe-components';
 import '@ovh-ux/ng-ovh-api-wrappers'; // should be a peer dependency of ovh-api-services
 import '@ovh-ux/ng-translate-async-loader';
 import 'ovh-api-services';
-import 'ovh-ui-angular';
+import '@ovh-ux/ui-kit';
 
 import header from '../../../components/project/quota-region-header';
 import component from './regions.component';

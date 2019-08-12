@@ -4,7 +4,7 @@ import 'angular-translate';
 import '@ovh-ux/ng-translate-async-loader';
 import '@ovh-ux/ng-ovh-cloud-universe-components';
 import 'ovh-api-services';
-import 'ovh-ui-angular';
+import '@ovh-ux/ui-kit';
 
 import kubernetesComponent from './component';
 import routing from './details.routing';

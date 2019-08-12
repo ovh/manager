@@ -12,7 +12,7 @@ import '@ovh-ux/ng-ovh-user-pref';
 import '@ovh-ux/ng-ovh-swimming-poll';
 import '@ovh-ux/ng-ovh-api-wrappers'; // should be a peer dependency of ovh-api-services
 import 'ovh-api-services';
-import 'ovh-ui-angular';
+import '@ovh-ux/ui-kit';
 import 'ovh-angular-q-allsettled';
 import 'ovh-angular-pagination-front';
 import 'angular-ui-bootstrap';

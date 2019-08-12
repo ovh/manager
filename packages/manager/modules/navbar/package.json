@@ -43,11 +43,12 @@
     "@ovh-ux/ng-ovh-sso-auth": "^4.1.0",
     "@ovh-ux/ng-ovh-user-pref": "^1.0.0",
     "@ovh-ux/ng-translate-async-loader": "^2.0.0",
+    "@ovh-ux/ui-kit": "3.4.0",
     "angular": "^1.7.8",
     "angular-translate": "^2.18.1",
     "bootstrap-tour": "^0.12.0",
     "ovh-api-services": "^8.3.0",
-    "ovh-ui-angular": "^3.5.1",
-    "ovh-ui-kit": "^2.33.3"
+    "ovh-ui-kit": "^2.33.3",
+    "popper.js": "^1.14.7"
   }
 }

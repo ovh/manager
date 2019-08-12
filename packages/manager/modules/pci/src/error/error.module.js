@@ -2,7 +2,7 @@ import angular from 'angular';
 import '@ovh-ux/ng-translate-async-loader';
 import '@uirouter/angularjs';
 import 'angular-translate';
-import 'ovh-ui-angular';
+import '@ovh-ux/ui-kit';
 
 import routing from './error.routing';
 import component from './error.component';

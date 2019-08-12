@@ -13,9 +13,10 @@ import 'script-loader!jquery-ui/ui/widgets/mouse';
 import 'script-loader!jquery-ui/ui/widgets/draggable';
 import 'script-loader!moment/min/moment-with-locales.min.js';
 import 'script-loader!angular-ui-validate/dist/validate.js';
-import 'ovh-ui-angular';
 import 'script-loader!bootstrap-tour/build/js/bootstrap-tour-standalone.min.js';
 /* eslint-enable import/no-webpack-loader-syntax, import/extensions */
+
+import '@ovh-ux/ui-kit';
 
 import get from 'lodash/get';
 import has from 'lodash/has';
@@ -76,6 +77,7 @@ angular
     OtrsPopupProvider.setBaseUrlTickets(OTRS_URLS[coreConfigProvider.region]);
   })
   .run(/* @ngInject */ ($state) => {
+    console.log('test');
     $state.defaultErrorHandler((error) => {
       if (error.type === RejectType.ERROR) {
         $state.go('pci.error', {

@@ -5,7 +5,7 @@ import '@ovh-ux/ng-ovh-api-wrappers'; // should be a peer dependency of ovh-api-
 import '@ovh-ux/ng-ovh-user-pref';
 import 'angular-translate';
 import 'ovh-api-services';
-import 'ovh-ui-angular';
+import '@ovh-ux/ui-kit';
 
 import remove from './remove';
 

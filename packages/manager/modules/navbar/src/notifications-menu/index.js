@@ -1,10 +1,10 @@
 import angular from 'angular';
 import 'angular-translate';
 
-import 'ovh-ui-angular';
 import 'ovh-api-services';
 import '@ovh-ux/manager-core';
 import '@ovh-ux/ng-at-internet';
+import '@ovh-ux/ui-kit';
 
 import menuHeader from '../navbar-menu-header';
 
