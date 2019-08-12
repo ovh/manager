@@ -37,7 +37,7 @@ import 'script-loader!bootstrap-datetimepicker/src/js/locales/bootstrap-datetime
 import 'script-loader!bootstrap-datetimepicker/src/js/locales/bootstrap-datetimepicker.sk.js';
 import 'script-loader!bootstrap-datetimepicker/src/js/locales/bootstrap-datetimepicker.fi.js';
 import 'script-loader!bootstrap-datetimepicker/src/js/locales/bootstrap-datetimepicker.cs.js';
-import 'script-loader!@bower_components/angular-scroll-glue/src/scrollglue.js';
+import 'angularjs-scroll-glue';
 import 'ovh-angular-tail-logs';
 import 'raphael';
 import 'script-loader!angular-dynamic-locale/dist/tmhDynamicLocale.js';

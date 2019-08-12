@@ -724,10 +724,6 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
-"@bower_components/angular-scroll-glue@Luegg/angularjs-scroll-glue#^2.2.0":
-  version "2.2.0"
-  resolved "https://codeload.github.com/Luegg/angularjs-scroll-glue/tar.gz/5990d90cbf84efdf837edcbf26cefe9adb676f5b"
-
 "@bower_components/angular-ui-utils@angular-ui/ui-utils#~0.2.3", ui-utils@angular-ui/ui-utils#~0.2.3:
   version "0.0.0"
   resolved "https://codeload.github.com/angular-ui/ui-utils/tar.gz/125cb72d692f9f116454f338f6a5471f3088f9b9"
