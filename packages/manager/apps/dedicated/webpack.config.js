@@ -36,7 +36,6 @@ module.exports = (env = {}) => {
         { from: path.resolve(__dirname, './src/app/images/**/*.*'), context: 'src/app' },
         { from: path.resolve(__dirname, './node_modules/ckeditor'), to: 'ckeditor' },
         { from: path.resolve(__dirname, './node_modules/@ovh-ux/ovh-utils-angular/src/**/*.html'), context: 'node_modules/@ovh-ux/ovh-utils-angular/src', to: 'components/ovh-utils-angular' },
-        { from: path.resolve(__dirname, './node_modules/ovh-module-exchange/src/exchange/**/*.html'), context: 'node_modules/ovh-module-exchange/src' },
       ],
     },
   }, env);
@@ -47,13 +46,6 @@ module.exports = (env = {}) => {
       production: JSON.stringify(env.production),
     },
   }));
-
-  if (env.region === 'eu' || env.region === 'ca') {
-    bundles.exchange = [].concat(
-      glob.sync('./node_modules/ovh-module-exchange/src/exchange/**/*.module.js'),
-      glob.sync('./node_modules/ovh-module-exchange/src/exchange/**/!(*.module).js'),
-    );
-  }
 
   // Extra config files
   const extras = glob.sync('./.extras/**/*.js');
