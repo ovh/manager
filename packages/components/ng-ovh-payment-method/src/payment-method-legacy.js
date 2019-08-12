@@ -442,16 +442,16 @@ export default class OvhPaymentMethodLegacy {
     };
   }
 
-  transformLegacyPaymentMethodTypeToPaymentMethodType(legacyPaymentMehtod) {
+  transformLegacyPaymentMethodTypeToPaymentMethodType(legacyPaymentMethod) {
     return {
       oneshot: true,
       icon: {
         name: null,
         data: null,
       },
-      registerable: legacyPaymentMehtod.registerable,
-      paymentType: this.getFullPaymentType(legacyPaymentMehtod.value),
-      original: legacyPaymentMehtod,
+      registerable: legacyPaymentMethod.registerable,
+      paymentType: this.getFullPaymentType(legacyPaymentMethod.value),
+      original: legacyPaymentMethod,
     };
   }
 

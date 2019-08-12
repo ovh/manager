@@ -33,7 +33,7 @@ export const AVAILABLE_PAYMENT_MEANS = {
 
 export const DEFAULT_OPTIONS = {
   onlyValid: false,
-  transform: false, // transform legacy payment methods to payment methods
+  transform: true, // transform legacy payment methods to payment methods
 };
 
 export const IBAN_BIC_RULES = {
@@ -81,8 +81,15 @@ export const IBAN_BIC_RULES = {
   IBAN_REGEXP: /^([A-Z]{2})(\d{2})(.*)$/g,
 };
 
+export const TYPE_INTEGRATION_ENUM = {
+  NONE: 'NONE',
+  REDIRECT: 'REDIRECT',
+  IFRAME_VANTIV: 'IFRAME_VANTIV',
+};
+
 export default {
   AVAILABLE_PAYMENT_MEANS,
   DEFAULT_OPTIONS,
   IBAN_BIC_RULES,
+  TYPE_INTEGRATION_ENUM,
 };

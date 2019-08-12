@@ -5,5 +5,11 @@
   ],
   "rules": {
     "import/no-unresolved": 0
+  },
+  "globals": {
+    "EprotectIframeClient": true
+  },
+  "env": {
+    "browser": true
   }
 }

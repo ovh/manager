@@ -8,6 +8,7 @@ import some from 'lodash/some';
 
 import {
   DEFAULT_OPTIONS,
+  TYPE_INTEGRATION_ENUM,
 } from './payment-method.constant';
 
 import OvhPaymentMethodLegacy from './payment-method-legacy';
@@ -20,6 +21,9 @@ export default class OvhPaymentMethodService {
     this.$translate = $translate;
     this.$window = $window;
     this.OvhApiMe = OvhApiMe;
+
+    this.isPaymentMethodTypeRegisterableInContext = OvhPaymentMethodService
+      .isPaymentMethodTypeRegisterableInContext;
 
     this.ovhPaymentMethodLegacy = new OvhPaymentMethodLegacy(
       $q, $translate, $window, OvhApiMe, target,
@@ -94,6 +98,12 @@ export default class OvhPaymentMethodService {
     });
   }
 
+  static isPaymentMethodTypeRegisterableInContext(paymentMethodType) {
+    return paymentMethodType && [
+      TYPE_INTEGRATION_ENUM.IFRAME_VANTIV,
+    ].includes(paymentMethodType.integration);
+  }
+
   /* ----------  Action on paymentMethod  ---------- */
 
   /**
@@ -130,7 +140,9 @@ export default class OvhPaymentMethodService {
         return this.$q.when(response);
       })
       .then((response) => {
-        this.$window.location = response.url;
+        if (paymentMethodType.integration === TYPE_INTEGRATION_ENUM.REDIRECT && response.url) {
+          this.$window.location = response.url;
+        }
         return response;
       });
   }
@@ -186,6 +198,24 @@ export default class OvhPaymentMethodService {
     return this.OvhApiMe.Payment().Method().v6().challenge({
       paymentMethodId: paymentMethod.paymentMethodId,
     }, { challenge }).$promise;
+  }
+
+  /**
+   *  Finalize given payment method registration
+   *  @param  {Object} paymentMethod The payment method to finalize
+   *  @param  {Object} finalizeData  The data needed for finalizing the payment method registration
+   *  @return {Promise}
+   */
+  finalizePaymentMethod(paymentMethod, finalizeData = {}) {
+    // if original attribute is present, it means that it's an legacy payment method
+    // and finalize is not available for legacies payment methods
+    if (paymentMethod.original) {
+      throw new Error('finalize is not available for legacies payment methods.');
+    }
+
+    return this.OvhApiMe.Payment().Method().v6().finalize({
+      paymentMethodId: paymentMethod.paymentMethodId,
+    }, finalizeData).$promise;
   }
 
   /**
