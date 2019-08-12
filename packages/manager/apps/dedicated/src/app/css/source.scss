@@ -1,11 +1,12 @@
 $flag-icon-css-path: "./../../../node_modules/flag-icon-css/flags";
 
 @import "./../../../node_modules/flag-icon-css/sass/flag-icon";
-@import "./../../../node_modules/@bower_components/bootstrap4/scss/functions";
-@import "./../../../node_modules/@bower_components/bootstrap4/scss/variables";
-@import "./../../../node_modules/@bower_components/bootstrap4/scss/mixins";
-@import './../../../node_modules/@bower_components/bootstrap4/scss/_utilities.scss';
-@import './../../../node_modules/@bower_components/bootstrap4/scss/grid.scss';
+
+@import "bs4/scss/_functions.scss";
+@import "bs4/scss/_grid.scss";
+@import "bs4/scss/_variables.scss";
+@import "bs4/scss/_mixins.scss";
+@import "bs4/scss/_utilities.scss";
 
 // Microsoft Icons
 @import './../../../node_modules/office-ui-fabric-react/dist/sass/variables/_Icon.Variables.scss';

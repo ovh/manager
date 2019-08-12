@@ -728,10 +728,6 @@
   version "0.0.0"
   resolved "https://codeload.github.com/angular-ui/ui-utils/tar.gz/125cb72d692f9f116454f338f6a5471f3088f9b9"
 
-"@bower_components/bootstrap4@twbs/bootstrap#v4.0.0", bootstrap4@twbs/bootstrap#v4.0.0:
-  version "4.0.0"
-  resolved "https://codeload.github.com/twbs/bootstrap/tar.gz/8a628b943cf31ca0a002c08af661a95772480225"
-
 "@bower_components/ng-ckeditor@esvit/ng-ckeditor#^0.2.1", esvit-ng-ckeditor@esvit/ng-ckeditor#^0.2.1:
   version "0.2.0"
   resolved "https://codeload.github.com/esvit/ng-ckeditor/tar.gz/8b9ece340f7d90bb3167604cc9d317c8041058c3"
@@ -3166,6 +3162,10 @@ bootstrap-tour@^0.12.0:
   dependencies:
     bootstrap "~3"
     jquery ">=1.8"
+
+bootstrap4@twbs/bootstrap#v4.0.0:
+  version "4.0.0"
+  resolved "https://codeload.github.com/twbs/bootstrap/tar.gz/8a628b943cf31ca0a002c08af661a95772480225"
 
 bootstrap@^3.1.1, bootstrap@^3.3.6, bootstrap@^3.3.7, bootstrap@~3:
   version "3.4.1"
