@@ -21,7 +21,8 @@
                 <span class="d-block"
                       data-ng-bind="paymentMethodType.paymentType.text">
                 </span>
-                <img data-ng-if="paymentMethodType.icon.data"
+                <img class="payment-method-type-icon"
+                     data-ng-if="paymentMethodType.icon.data"
                      data-ng-src="{{ paymentMethodType.icon.data }}"
                      data-ng-attr-alt="{{ :: paymentMethodType.paymentType.text }}"
                      alt="" />
