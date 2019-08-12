@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-app",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "private": true,
   "scripts": {
     "build": "webpack",
@@ -13,8 +13,8 @@
   "dependencies": {
     "@ovh-ux/manager-cloud-styles": "^0.3.0",
     "@ovh-ux/manager-config": "^0.3.0",
-    "@ovh-ux/manager-core": "^6.1.2",
-    "@ovh-ux/manager-pci": "^1.0.0",
+    "@ovh-ux/manager-core": "^7.0.0",
+    "@ovh-ux/manager-pci": "^1.4.1",
     "@ovh-ux/ng-at-internet": "^4.0.0",
     "@ovh-ux/ng-ovh-api-wrappers": "^3.0.0",
     "@ovh-ux/ng-ovh-apiv7": "^2.0.0",
@@ -23,7 +23,7 @@
     "@ovh-ux/ng-ovh-otrs": "^7.1.4",
     "@ovh-ux/ng-ovh-payment-method": "^3.2.0",
     "@ovh-ux/ng-ovh-proxy-request": "^1.0.0-beta.0",
-    "@ovh-ux/ng-ovh-request-tagger": "^0.0.0",
+    "@ovh-ux/ng-ovh-request-tagger": "^1.0.0",
     "@ovh-ux/ng-ovh-responsive-popover": "^5.0.0-beta.0",
     "@ovh-ux/ng-ovh-swimming-poll": "^4.0.0",
     "@ovh-ux/ng-ovh-user-pref": "^1.0.0",

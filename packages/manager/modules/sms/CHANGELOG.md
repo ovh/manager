@@ -1,3 +1,12 @@
+## [7.0.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-sms@7.0.2...@ovh-ux/manager-sms@7.0.3) (2019-08-12)
+
+
+### Bug Fixes
+
+* **sms.order:** display correctly the quantity field ([#1176](https://github.com/ovh-ux/manager/issues/1176)) ([5f8961b](https://github.com/ovh-ux/manager/commit/5f8961b)), closes [#1175](https://github.com/ovh-ux/manager/issues/1175)
+
+
+
 ## [7.0.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-sms@7.0.1...@ovh-ux/manager-sms@7.0.2) (2019-07-22)
 
 

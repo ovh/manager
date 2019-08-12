@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-public-cloud",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "private": true,
   "license": "BSD-3-Clause",
   "main": "./src/index.js",
@@ -15,9 +15,9 @@
   "dependencies": {
     "@ovh-ux/manager-cloud-styles": "^0.3.0",
     "@ovh-ux/manager-config": "^0.3.0",
-    "@ovh-ux/manager-core": "^6.1.5",
+    "@ovh-ux/manager-core": "^7.0.0",
     "@ovh-ux/manager-navbar": "^1.2.3",
-    "@ovh-ux/manager-pci": "^1.4.0",
+    "@ovh-ux/manager-pci": "^1.4.1",
     "@ovh-ux/manager-telecom-styles": "^3.1.0",
     "@ovh-ux/ng-at-internet": "^4.0.0",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^2.0.0",
@@ -31,7 +31,7 @@
     "@ovh-ux/ng-ovh-proxy-request": "^1.0.0-beta.0",
     "@ovh-ux/ng-ovh-responsive-popover": "^5.0.0-beta.0",
     "@ovh-ux/ng-ovh-sso-auth": "^4.1.0",
-    "@ovh-ux/ng-ovh-request-tagger": "^0.0.0",
+    "@ovh-ux/ng-ovh-request-tagger": "^1.0.0",
     "@ovh-ux/ng-ovh-swimming-poll": "^4.0.0",
     "@ovh-ux/ng-ovh-user-pref": "^1.0.0",
     "@ovh-ux/ng-translate-async-loader": "^2.0.0",

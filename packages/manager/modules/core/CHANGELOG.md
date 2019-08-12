@@ -1,3 +1,23 @@
+# [7.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@6.1.5...@ovh-ux/manager-core@7.0.0) (2019-08-12)
+
+
+### Bug Fixes
+
+* **core:** remove extra angular-i18n imports ([e6d29e5](https://github.com/ovh-ux/manager/commit/e6d29e5))
+
+
+### Features
+
+* add request-tagger module ([821ba89](https://github.com/ovh-ux/manager/commit/821ba89))
+
+
+### BREAKING CHANGES
+
+* `@ovh-ux/manager-core` has now a dependency to
+`@ovh-ux/ng-ovh-request-tagger`
+
+
+
 ## [6.1.5](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@6.1.4...@ovh-ux/manager-core@6.1.5) (2019-08-07)
 
 
