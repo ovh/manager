@@ -1,3 +1,17 @@
+# [1.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@1.0.1...@ovh-ux/manager-public-cloud@1.1.0) (2019-08-12)
+
+
+### Bug Fixes
+
+* **apps.public.cloud.theme:** increase navbar z-index ([#1165](https://github.com/ovh-ux/manager/issues/1165)) ([b6962eb](https://github.com/ovh-ux/manager/commit/b6962eb))
+
+
+### Features
+
+* **core:** add request-tagger interceptor ([e797d9d](https://github.com/ovh-ux/manager/commit/e797d9d))
+
+
+
 ## [1.0.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@1.0.0...@ovh-ux/manager-public-cloud@1.0.1) (2019-08-07)
 
 

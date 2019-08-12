@@ -1,3 +1,23 @@
+# [13.26.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-web@13.25.8...@ovh-ux/manager-web@13.26.0) (2019-08-12)
+
+
+### Bug Fixes
+
+* **web:** add missing dev dependencies ([b4f593b](https://github.com/ovh-ux/manager/commit/b4f593b))
+* **web:** add missing moment import ([01ac775](https://github.com/ovh-ux/manager/commit/01ac775))
+* **web:** remove hubspot-messenger css ([a35baae](https://github.com/ovh-ux/manager/commit/a35baae))
+* **web:** script loader jquery.scrollTo ([c9cab7d](https://github.com/ovh-ux/manager/commit/c9cab7d))
+* **web:** sql database order select positioning ([4acf413](https://github.com/ovh-ux/manager/commit/4acf413))
+* **web:** toUpperCase typo ([24d7001](https://github.com/ovh-ux/manager/commit/24d7001))
+* **web:** toUpperCase typo ([0da9bec](https://github.com/ovh-ux/manager/commit/0da9bec))
+
+
+### Features
+
+* add @ovh-ux/manager-web ([09d208c](https://github.com/ovh-ux/manager/commit/09d208c))
+
+
+
 ## [13.25.8](https://github.com/ovh-ux/ovh-manager-web/compare/v13.25.7...v13.25.8) (2019-08-05)
 
 

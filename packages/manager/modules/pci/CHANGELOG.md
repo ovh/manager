@@ -1,3 +1,15 @@
+## [1.4.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@1.4.0...@ovh-ux/manager-pci@1.4.1) (2019-08-12)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 29] ([d86bbc4](https://github.com/ovh-ux/manager/commit/d86bbc4))
+* **i18n:** add missing translations [CDS 30] ([9633e84](https://github.com/ovh-ux/manager/commit/9633e84))
+* **i18n:** add missing translations [CDS 31] ([84d1362](https://github.com/ovh-ux/manager/commit/84d1362))
+* **pci:** rename users & roles sidebar entry ([#1173](https://github.com/ovh-ux/manager/issues/1173)) ([db41cbc](https://github.com/ovh-ux/manager/commit/db41cbc))
+
+
+
 # [1.4.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@1.3.2...@ovh-ux/manager-pci@1.4.0) (2019-08-07)
 
 

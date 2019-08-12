@@ -1,3 +1,12 @@
+# [4.2.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-overthebox-app@4.1.2...@ovh-ux/manager-overthebox-app@4.2.0) (2019-08-12)
+
+
+### Features
+
+* **core:** add request-tagger interceptor ([e797d9d](https://github.com/ovh-ux/manager/commit/e797d9d))
+
+
+
 ## [4.1.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-overthebox-app@4.1.1...@ovh-ux/manager-overthebox-app@4.1.2) (2019-07-15)
 
 
