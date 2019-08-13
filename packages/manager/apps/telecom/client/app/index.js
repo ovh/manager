@@ -38,7 +38,6 @@ import 'script-loader!jquery-ui/ui/widgets/draggable.js';
 import 'angular-ui-sortable';
 import 'script-loader!@bower_components/angular-ui-utils/ui-utils.js';
 import 'angular-validation-match';
-import 'script-loader!async/lib/async.js';
 import 'script-loader!lodash/lodash.min.js';
 import 'bootstrap';
 import 'script-loader!@bower_components/crypto/crypto.min.js';

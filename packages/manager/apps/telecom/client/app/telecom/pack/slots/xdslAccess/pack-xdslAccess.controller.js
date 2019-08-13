@@ -1,5 +1,4 @@
-/* global async */
-angular.module('managerApp').controller('PackAccessCtrl', function ($scope, OvhApiPackXdslAccess, OvhApiXdslLines, $stateParams) {
+angular.module('managerApp').controller('PackAccessCtrl', function PackAccessCtrl($q, $scope, OvhApiPackXdslAccess, OvhApiXdslLines, $stateParams) {
   const self = this;
   const init = function init() {
     self.details = $scope.service;
@@ -14,26 +13,25 @@ angular.module('managerApp').controller('PackAccessCtrl', function ($scope, OvhA
       packId: $stateParams.packName,
     }).$promise.then(
       (services) => {
-        async.map(services, (service, callback) => {
-          OvhApiXdslLines.v6().query({
-            xdslId: service.accessName,
-          }).$promise.then((lines) => {
-            _.set(service, 'lines', lines);
-            callback(null, service);
-          }, (err) => {
-            callback(err);
+        $q
+          .all(
+            _.map(services, service => OvhApiXdslLines.v6().query({
+              xdslId: service.accessName,
+            }).$promise.then((lines) => {
+              _.set(service, 'lines', lines);
+              return {
+                ...service,
+                lines,
+              };
+            })),
+          )
+          .then((results) => {
+            angular.forEach(results, (result) => {
+              self.services.push(result);
+            });
           });
-        }, (err, results) => {
-          if (err) {
-            return;
-          }
 
-          angular.forEach(results, (result) => {
-            self.services.push(result);
-          });
-
-          $scope.loaders.services = false;
-        });
+        $scope.loaders.services = false;
       },
       () => {
         $scope.loaders.services = false;
