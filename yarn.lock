@@ -1725,6 +1725,14 @@
     shuffle-seed "^1.1.6"
     titleize "^1.0.1"
 
+"@ovh-ux/manager-server-sidebar@^0.4.2":
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-server-sidebar/-/manager-server-sidebar-0.4.2.tgz#74923c545e9c1312dc8011f8c20b4edcffa631b4"
+  integrity sha512-hEKPeLHYgQyJissB8ZPb3z9cL4/Txg1Z7ynHNsBExB2aWJg2IVaBcfnGlS9c35Chct1cgs5c29EjiIx5hHgONQ==
+  dependencies:
+    jsurl "^0.1.5"
+    lodash "^4.17.14"
+
 "@ovh-ux/ng-at-internet-ui-router-plugin@^2.0.0":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-at-internet-ui-router-plugin/-/ng-at-internet-ui-router-plugin-2.0.0.tgz#ca1d5ee1cd9c513e63abcc1470b47114495714dc"
