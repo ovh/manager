@@ -33,6 +33,8 @@ fs.readdirSync(folder).forEach((file) => {
   }
 });
 
+const ovhUtilsAngularDir = foundNodeModulesFolder('@ovh-ux/ovh-utils-angular');
+
 module.exports = (env = {}) => {
   const { config } = webpackConfig({
     template: './src/app/index.html',
@@ -47,6 +49,7 @@ module.exports = (env = {}) => {
         { from: path.resolve(__dirname, './src/app/images/**/*.*'), context: 'src/app' },
         { from: foundNodeModulesFolder('ckeditor'), to: 'ckeditor' },
         { from: foundNodeModulesFolder('angular-i18n'), to: 'resources/angular/i18n' },
+        { from: `${ovhUtilsAngularDir}/src/**/*.html`, context: `${ovhUtilsAngularDir}/src`, to: 'components/ovh-utils-angular' },
       ],
     },
   }, env);
