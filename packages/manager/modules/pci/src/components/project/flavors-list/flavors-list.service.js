@@ -45,8 +45,8 @@ export default class FlavorsList {
       ));
   }
 
-  static mapByFlavorType(flavors) {
-    return map(FlavorsList.groupByGroupName(flavors), group => new FlavorGroup(group));
+  static mapByFlavorType(flavors, image) {
+    return map(FlavorsList.groupByGroupName(flavors), group => new FlavorGroup(group, image));
   }
 
   static groupByGroupName(flavors) {
