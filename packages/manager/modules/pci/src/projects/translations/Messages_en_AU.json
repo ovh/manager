@@ -1,9 +1,0 @@
-{
- "pci_projects": "Projects",
- "pci_projects_description": "Description",
- "pci_projects_status": "Status",
- "pci_projects_status_ok": "Active",
- "pci_projects_status_deleting": "Deleting...",
- "pci_projects_status_creating": "Creating...",
- "pci_projects_project_show": "View"
-}

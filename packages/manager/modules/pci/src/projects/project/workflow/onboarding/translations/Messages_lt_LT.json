@@ -1,0 +1,9 @@
+{
+  "pci_workflow_onboarding_content1": "You have not yet created a workflow management service.",
+  "pci_workflow_onboarding_content2": "Automate tasks to manage your cloud resources in accordance with your business logic, so that you can respond to all kinds of situations.",
+  "pci_workflow_onboarding_content3": "You can schedule your workflow executions to execute tasks on your infrastructure. We have pre-configured common workflows to help you out. For example, automatic backups on instances, an automatic snapshot on block storage, and more.",
+  "pci_workflow_onboarding_content4": "You can also use the OpenStack Mistral API to manage advanced workflows.",
+  "pci_workflow_onboarding_content5": "Workflows are free to create, schedule and execute. Only the resources created by the workflows are billed.",
+  "pci_workflow_onboarding_no_instance": "To create a workflow, you will need at least one instance.",
+  "pci_workflow_onboarding_create_instance": "Create an instance"
+}

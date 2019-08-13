@@ -1,0 +1,16 @@
+{
+  "domain_optin_back_button": "Configurar la visualización en el WHOIS",
+  "domain_optin_contact_tech": "Contacto técnico",
+  "domain_optin_contact_owner": "Contacto propietario",
+  "domain_optin_contact_admin": "Contacto administrador",
+  "domain_optin_contact_domain": "Todos los contactos (propietario, administrador y técnico)",
+  "domain_optin_field_mail": "la dirección de correo personal del contacto",
+  "domain_optin_field_others": "el resto de datos del contacto",
+  "domain_optin_edit_individually": "Gestionar la visualización campo por campo",
+  "domain_optin_display_false": "Ocultar",
+  "domain_optin_display_true": "Ver",
+  "domain_optin_save": "Guardar los cambios",
+  "domain_optin_save_success": "La visualización en el WHOIS se ha actualizado correctamente.",
+  "domain_optin_save_error": "Se ha producido un error al guardar los cambios.",
+  "domain_optin_init_error": "Se ha producido un error al cargar la información."
+}

@@ -1,13 +1,13 @@
 {
- "pci_projects_project_kubernetes_service_reset": "Reiniciar a configuração do seu cluster Kubernetes",
- "pci_projects_project_kubernetes_service_reset_common_confirm": "Confirmar",
- "pci_projects_project_kubernetes_service_reset_common_cancel": "Anular",
- "pci_projects_project_kubernetes_service_reset_common_delete": "Eliminar",
- "pci_projects_project_kubernetes_service_reset_common_reinstall": "Reinstalar",
- "pci_projects_project_kubernetes_service_reset_message": "Ao clicar aqui, restaurará o serviço Kubernetes para o seu estado original. Esta operação irá eliminar todos os seus serviços, configurações, etc. <strong>Esta operação não pode ser anulada</strong>.",
- "pci_projects_project_kubernetes_service_reset_success": "O seu cluster Kubernetes está a ser reiniciado.",
- "pci_projects_project_kubernetes_service_reset_error": "Ocorreu um erro ao reiniciar o seu cluster: {{ message }}",
- "pci_projects_project_kubernetes_service_reset_enter": "Insira \"RESET\" no campo abaixo para confirmar",
- "pci_projects_project_kubernetes_service_reset_nodes": "Política de nós de cálculo",
- "pci_projects_project_kubernetes_service_reset_version": "Versão de Kubernetes"
+  "pci_projects_project_kubernetes_service_reset": "Reinicializar a configuração do cluster",
+  "pci_projects_project_kubernetes_service_reset_common_confirm": "Confirmar",
+  "pci_projects_project_kubernetes_service_reset_common_cancel": "Anular",
+  "pci_projects_project_kubernetes_service_reset_common_delete": "Eliminar os nós",
+  "pci_projects_project_kubernetes_service_reset_common_reinstall": "Manter e reinstalar os nós",
+  "pci_projects_project_kubernetes_service_reset_message": "O seu cluster Kubernetes será reiniciado no seu estado original. Isto eliminará todos os seus serviços, respetiva configuração, etc. <i>Esta operação é irreversível</i>.",
+  "pci_projects_project_kubernetes_service_reset_success": "O seu cluster Kubernetes está a ser reiniciado.",
+  "pci_projects_project_kubernetes_service_reset_error": "Ocorreu um erro ao reiniciar o seu cluster: {{ message }}",
+  "pci_projects_project_kubernetes_service_reset_enter": "Insira \"RESET\" no campo abaixo para confirmar",
+  "pci_projects_project_kubernetes_service_reset_nodes": "Nós de cálculo",
+  "pci_projects_project_kubernetes_service_reset_version": "Versão menor de Kubernetes"
 }

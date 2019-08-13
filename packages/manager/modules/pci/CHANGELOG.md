@@ -1,3 +1,71 @@
+## [1.4.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@1.4.0...@ovh-ux/manager-pci@1.4.1) (2019-08-12)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 29] ([d86bbc4](https://github.com/ovh-ux/manager/commit/d86bbc4))
+* **i18n:** add missing translations [CDS 30] ([9633e84](https://github.com/ovh-ux/manager/commit/9633e84))
+* **i18n:** add missing translations [CDS 31] ([84d1362](https://github.com/ovh-ux/manager/commit/84d1362))
+* **pci:** rename users & roles sidebar entry ([#1173](https://github.com/ovh-ux/manager/issues/1173)) ([db41cbc](https://github.com/ovh-ux/manager/commit/db41cbc))
+
+
+
+# [1.4.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@1.3.2...@ovh-ux/manager-pci@1.4.0) (2019-08-07)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 22] ([32b1c7c](https://github.com/ovh-ux/manager/commit/32b1c7c))
+* **i18n:** add missing translations [CDS 23] ([2d9677e](https://github.com/ovh-ux/manager/commit/2d9677e))
+* **i18n:** add missing translations [CDS 24] ([0a07874](https://github.com/ovh-ux/manager/commit/0a07874))
+* **i18n:** add missing translations [CDS 27] ([b1bd7e1](https://github.com/ovh-ux/manager/commit/b1bd7e1))
+* **i18n:** add missing translations [CDS 28] ([7eaf5d3](https://github.com/ovh-ux/manager/commit/7eaf5d3))
+* **pci.components.project.flavors.list:** filter available regions ([#1133](https://github.com/ovh-ux/manager/issues/1133)) ([22284c2](https://github.com/ovh-ux/manager/commit/22284c2))
+* **pci.components.project.images.list:** add missing translation ([#1130](https://github.com/ovh-ux/manager/issues/1130)) ([0810114](https://github.com/ovh-ux/manager/commit/0810114))
+* **pci.project.kubernetes:** read only user cant access service page ([#1135](https://github.com/ovh-ux/manager/issues/1135)) ([f5f0db1](https://github.com/ovh-ux/manager/commit/f5f0db1))
+* **pci.project.kubernetes:** revamp update operation ([#1105](https://github.com/ovh-ux/manager/issues/1105)) ([bafefd3](https://github.com/ovh-ux/manager/commit/bafefd3))
+* **pci.project.new:** redirect to url for US on key press of enter ([27c5f78](https://github.com/ovh-ux/manager/commit/27c5f78))
+
+
+### Features
+
+* **pci.project.kubernetes.details:** switch to monthly billing ([#470](https://github.com/ovh-ux/manager/issues/470)) ([b91a9f8](https://github.com/ovh-ux/manager/commit/b91a9f8))
+
+
+
+## [1.3.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@1.3.1...@ovh-ux/manager-pci@1.3.2) (2019-08-06)
+
+
+### Bug Fixes
+
+* **pci.project.kubernetes:** send right params for legacy check call ([#1157](https://github.com/ovh-ux/manager/issues/1157)) ([b8e0887](https://github.com/ovh-ux/manager/commit/b8e0887))
+
+
+
+## [1.3.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@1.3.0...@ovh-ux/manager-pci@1.3.1) (2019-08-01)
+
+
+### Bug Fixes
+
+* **pci.project.workflow.add:** update translation ([#1147](https://github.com/ovh-ux/manager/issues/1147)) ([91c96fe](https://github.com/ovh-ux/manager/commit/91c96fe))
+
+
+
+# [1.3.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@1.2.0...@ovh-ux/manager-pci@1.3.0) (2019-08-01)
+
+
+### Bug Fixes
+
+* **pci.project.storages.container:** update gateway url constant ([#1140](https://github.com/ovh-ux/manager/issues/1140)) ([fadab4b](https://github.com/ovh-ux/manager/commit/fadab4b))
+* **pci.project.users.roles.matrix:** prevent displaying scroll ([#1129](https://github.com/ovh-ux/manager/issues/1129)) ([d2cca43](https://github.com/ovh-ux/manager/commit/d2cca43))
+
+
+### Features
+
+* **pci.project:** add auto backup ([#972](https://github.com/ovh-ux/manager/issues/972)) ([a342be4](https://github.com/ovh-ux/manager/commit/a342be4))
+
+
+
 # [1.2.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@1.1.2...@ovh-ux/manager-pci@1.2.0) (2019-07-31)
 
 

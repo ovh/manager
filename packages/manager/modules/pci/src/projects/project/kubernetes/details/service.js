@@ -1,4 +1,4 @@
-import { CONFIG_FILENAME, PROCESSING_STATUS } from './constants';
+import { CONFIG_FILENAME, ERROR_STATUS, PROCESSING_STATUS } from './constants';
 
 export default class Kubernetes {
   /* @ngInject */
@@ -7,7 +7,6 @@ export default class Kubernetes {
     $translate,
     OvhApiCloudProject,
     OvhApiCloudProjectFlavor,
-    OvhApiCloudProjectInstance,
     OvhApiCloudProjectKube,
     OvhApiKube,
     OvhApiCloudProjectQuota,
@@ -16,16 +15,15 @@ export default class Kubernetes {
     this.$translate = $translate;
     this.OvhApiCloudProject = OvhApiCloudProject;
     this.OvhApiCloudProjectFlavor = OvhApiCloudProjectFlavor;
-    this.OvhApiCloudProjectInstance = OvhApiCloudProjectInstance;
+    this.OvhApiCloudProjectInstance = OvhApiCloudProject.Instance();
     this.OvhApiCloudProjectKube = OvhApiCloudProjectKube;
     this.OvhApiKube = OvhApiKube;
     this.OvhApiCloudProjectQuota = OvhApiCloudProjectQuota;
   }
 
-  isLegacyCluster(serviceName, kubeId) {
+  isLegacyCluster(serviceName) {
     return this.OvhApiKube.v6().getServiceInfos({
       serviceName,
-      kubeId,
     }).$promise
       .then(() => true)
       .catch(error => (error.status === 404 ? false : Promise.reject(error)));
@@ -34,6 +32,10 @@ export default class Kubernetes {
 
   static isProcessing(status) {
     return PROCESSING_STATUS.includes(status);
+  }
+
+  static isError(status) {
+    return ERROR_STATUS.includes(status);
   }
 
   formatFlavor(flavor) {
@@ -55,5 +57,18 @@ export default class Kubernetes {
         fileName: CONFIG_FILENAME,
       }))
       .catch(error => (error.status === 400 ? false : Promise.reject(error)));
+  }
+
+  getProjectInstances(projectId) {
+    return this.OvhApiCloudProjectInstance.v6().query({ serviceName: projectId }).$promise;
+  }
+
+  switchToMonthlyBilling(serviceName, nodeId) {
+    return this.OvhApiCloudProjectInstance.v6()
+      .activeMonthlyBilling({ serviceName, instanceId: nodeId }).$promise;
+  }
+
+  resetInstancesCache() {
+    this.OvhApiCloudProjectInstance.v6().resetCache();
   }
 }

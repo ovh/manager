@@ -16,9 +16,10 @@
     "lodash": "^4.17.14"
   },
   "peerDependencies": {
-    "@ovh-ux/web-universe-components": "^4.0.1",
+    "@ovh-ux/ng-ovh-utils": "^14.0.3",
+    "@ovh-ux/web-universe-components": "^5.0.0",
     "angular": "^1.7.5",
-    "ovh-api-services": "^8.0.1",
+    "ovh-api-services": "^8.3.0",
     "ovh-ui-angular": "^3.5.1",
     "ovh-ui-kit": "^2.33.3"
   }

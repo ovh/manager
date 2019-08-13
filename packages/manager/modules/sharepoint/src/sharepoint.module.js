@@ -69,7 +69,7 @@ angular.module('Module.sharepoint.services', [])
   .service('MicrosoftSharepointOrderService', orderService);
 
 angular.module(moduleName, [
-  'ovh-utils-angular',
+  'ngOvhUtils',
   'ngRoute',
   'ui.bootstrap',
   'ngSanitize',

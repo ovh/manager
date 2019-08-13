@@ -30,7 +30,7 @@ export default class kubernetesUpgradePolicyCtrl {
       .catch(error => this.goBack(
         this.$translate.instant('kube_service_upgrade_policy_error', {
           message: get(error, 'data.message'),
-        }),
-      ), 'error');
+        }), 'error',
+      ));
   }
 }

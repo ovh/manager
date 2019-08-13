@@ -24,6 +24,7 @@ import users from './users';
 import vouchers from './vouchers';
 import regions from './regions';
 import routing from './project.routing';
+import workflow from './workflow';
 
 import './project.less';
 
@@ -52,6 +53,7 @@ angular
     storages,
     users,
     vouchers,
+    workflow,
   ])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);

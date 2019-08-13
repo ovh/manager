@@ -1,3 +1,42 @@
+# [7.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@6.1.5...@ovh-ux/manager-core@7.0.0) (2019-08-12)
+
+
+### Bug Fixes
+
+* **core:** remove extra angular-i18n imports ([e6d29e5](https://github.com/ovh-ux/manager/commit/e6d29e5))
+
+
+### Features
+
+* add request-tagger module ([821ba89](https://github.com/ovh-ux/manager/commit/821ba89))
+
+
+### BREAKING CHANGES
+
+* `@ovh-ux/manager-core` has now a dependency to
+`@ovh-ux/ng-ovh-request-tagger`
+
+
+
+## [6.1.5](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@6.1.4...@ovh-ux/manager-core@6.1.5) (2019-08-07)
+
+
+### Bug Fixes
+
+* **core:** remove extra nl_NL language from constant file ([#1155](https://github.com/ovh-ux/manager/issues/1155)) ([c6401f1](https://github.com/ovh-ux/manager/commit/c6401f1))
+* **i18n:** add missing translations [CDS 22] ([32b1c7c](https://github.com/ovh-ux/manager/commit/32b1c7c))
+
+
+
+## [6.1.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@6.1.3...@ovh-ux/manager-core@6.1.4) (2019-08-01)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 21] ([94ec9a2](https://github.com/ovh-ux/manager/commit/94ec9a2))
+
+
+
 ## [6.1.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@6.1.2...@ovh-ux/manager-core@6.1.3) (2019-07-31)
 
 

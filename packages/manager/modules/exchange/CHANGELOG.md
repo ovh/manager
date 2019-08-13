@@ -1,3 +1,22 @@
+## [1.1.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-exchange@1.1.2...@ovh-ux/manager-exchange@1.1.3) (2019-08-12)
+
+
+### Bug Fixes
+
+* **exchange:** restore office attach directive ([e8e40f5](https://github.com/ovh-ux/manager/commit/e8e40f5))
+* **web:** exchange domain select ([22bbc0c](https://github.com/ovh-ux/manager/commit/22bbc0c))
+
+
+
+## [1.1.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-exchange@1.1.1...@ovh-ux/manager-exchange@1.1.2) (2019-08-07)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 22] ([32b1c7c](https://github.com/ovh-ux/manager/commit/32b1c7c))
+
+
+
 ## [1.1.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-exchange@1.1.0...@ovh-ux/manager-exchange@1.1.1) (2019-07-31)
 
 

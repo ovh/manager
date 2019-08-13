@@ -1,5 +1,7 @@
 import get from 'lodash/get';
 
+import { UPDATE_STRATEGY } from './update.constants';
+
 export default class kubernetesUpdateCtrl {
   /* @ngInject */
   constructor($translate, OvhApiCloudProjectKube) {
@@ -16,6 +18,8 @@ export default class kubernetesUpdateCtrl {
     return this.OvhApiCloudProjectKube.v6().updateVersion({
       serviceName: this.projectId,
       kubeId: this.kubeId,
+    }, {
+      strategy: this.isMinorVersionUpgrade ? UPDATE_STRATEGY.MINOR : UPDATE_STRATEGY.PATCH,
     }).$promise
       .then(() => this.goBack(
         this.$translate.instant('kube_service_update_success'),

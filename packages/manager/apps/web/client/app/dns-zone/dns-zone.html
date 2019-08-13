@@ -1,0 +1,37 @@
+<div data-ovh-alert="{{ alerts.page }}"></div>
+
+<div class="text-center" data-ng-if="ctrlDomain.loading.domainsInfos">
+    <oui-spinner data-size="l"></oui-spinner>
+</div>
+
+<div data-ng-if="!ctrlDomain.loading.domainsInfos && ctrlDomain.domain">
+    <div class="page-header">
+        <h1 data-translate="domain_tab_ZONE_named" data-translate-values="{ t0: ctrlDomain.domain.displayName }"></h1>
+        <dl data-ng-if="ctrlDomain.domain.nameServers && ctrlDomain.domain.nameServers.length > 0">
+            <dt>Name Servers</dt>
+            <dd data-ng-repeat="serverName in ctrlDomain.domain.nameServers track by $index"
+                data-ng-bind="serverName"></dd>
+        </dl>
+    </div>
+
+    <div data-ng-controller="ZonesTabsCtrl as ctrlZonesTabs"
+         data-ng-if="!ctrlDomain.domain.isExpired">
+        <wuc-ovh-tabs tabs="ctrlZonesTabs.tabs"
+                  selected-tab="ctrlZonesTabs.selectedTab"
+                  product="domain"
+                  change-tab="ctrlZonesTabs.setSelectedTab"
+                  tr="tr"
+                  menu="ctrlZonesTabs.tabMenu"></wuc-ovh-tabs>
+        <div class="tab-content">
+            <div class="tab-pane active domain"
+                 data-ng-include="ctrlZonesTabs.selectedTab && 'domain/' + ctrlZonesTabs.constructor.toKebabCase(ctrlZonesTabs.selectedTab) + '/' + ctrlZonesTabs.selectedTab + '.html'"></div>
+        </div>
+    </div>
+</div>
+
+<div id="currentAction" class="modal fade currentAction" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div id="modal-container" class="modal-content" data-ng-include="ctrlDomain.stepPath"></div>
+        <div id="modal-help" class="help4wizards"></div>
+    </div>
+</div>
