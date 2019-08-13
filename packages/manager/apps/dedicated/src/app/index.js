@@ -21,7 +21,7 @@ import 'angular-sanitize';
 import 'angular-cookies';
 import 'angular-messages';
 import 'script-loader!lodash/lodash.min.js';
-import 'script-loader!../assets/scrollTo.min.js';
+import 'script-loader!jquery.scrollto/jquery.scrollTo.min.js';
 import 'script-loader!jquery.cookie/jquery.cookie.js';
 import 'bootstrap';
 import 'angular-ui-bootstrap';
