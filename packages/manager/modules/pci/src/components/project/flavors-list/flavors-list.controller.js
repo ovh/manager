@@ -28,7 +28,9 @@ export default class FlavorsListController {
           filter(flavors, flavor => flavor.isAvailable()
             && flavor.hasSsdDisk()
             && (!this.image || flavor.hasOsType(this.image.type))),
+          get(this.image, 'type'),
         );
+
         this.flavors = this.PciProjectFlavors.constructor.groupByCategory(flavorGroups);
         this.selectedCategory = get(first(this.flavors), 'category');
         this.findFlavor();
