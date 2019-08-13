@@ -25,6 +25,8 @@ import ngUirouterTitle from '@ovh-ux/ng-uirouter-title';
 
 import navbar from '../components/navbar';
 
+import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
+
 Environment.setRegion('EU');
 
 angular.module('managerApp', [
