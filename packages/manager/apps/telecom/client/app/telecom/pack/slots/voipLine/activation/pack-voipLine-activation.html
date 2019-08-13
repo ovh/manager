@@ -85,7 +85,7 @@
                                      index="$index"
                                      data-ng-repeat="slide in hardware.availableHardwares track by slide.name">
                                     <div class="voipLine-hardware-image">
-                                       <img data-ng-src="{{slide.image}}">
+                                       <img data-ng-src="{{slide.image}}" alt="">
                                     </div>
 
                                     <div class="carousel-caption">
@@ -117,7 +117,7 @@
                             <div data-ng-if="hardware.line.hardware" class="block-emphasis selected-hardware">
                                 <div>
                                     <div class="voipLine-hardware-image">
-                                        <img data-ng-src="{{hardware.line.hardware.image}}">
+                                        <img data-ng-src="{{hardware.line.hardware.image}}" alt="">
                                     </div>
 
                                     <div class="carousel-caption">
