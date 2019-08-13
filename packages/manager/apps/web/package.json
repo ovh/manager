@@ -34,7 +34,7 @@
     "@ovh-ux/manager-navbar": "^1.2.3",
     "@ovh-ux/manager-office": "^1.0.0",
     "@ovh-ux/ng-ovh-request-tagger": "^1.0.0",
-    "@ovh-ux/manager-server-sidebar": "^0.4.2",
+    "@ovh-ux/manager-server-sidebar": "^0.5.0",
     "@ovh-ux/manager-sharepoint": "^1.0.0",
     "@ovh-ux/ng-at-internet": "^4.0.0",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^2.0.0",
