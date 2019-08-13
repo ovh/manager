@@ -1,6 +1,6 @@
-$flag-icon-css-path: "./../../../node_modules/flag-icon-css/flags";
+$flag-icon-css-path: "./../../../../../../../node_modules/flag-icon-css/flags";
 
-// @import "./../../../node_modules/flag-icon-css/sass/flag-icon";
+@import "~flag-icon-css/sass/flag-icon";
 
 @import "bs4/scss/_functions.scss";
 @import "bs4/scss/_variables.scss";
