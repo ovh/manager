@@ -63,6 +63,14 @@ export default class ProjectController {
       });
   }
 
+  get feedbackUrl() {
+    const { language } = this.user;
+
+    return language.includes('fr')
+      ? __FEEDBACK_URL_FR__
+      : __FEEDBACK_URL_EN__;
+  }
+
   goToLegacy() {
     this.atInternet.trackClick({
       name: 'public-cloud_menu_back-to-cloud',
@@ -72,6 +80,9 @@ export default class ProjectController {
       template,
       controller,
       controllerAs: '$ctrl',
+      resolve: {
+        feedbackUrl: () => this.feedbackUrl,
+      },
     });
   }
 
