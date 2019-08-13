@@ -79,6 +79,7 @@ angular
     'ovh-angular-pagination-front',
     'ovh-angular-q-allSettled',
     'ovh-angular-responsive-tabs',
+    'ovh-api-services',
     ovhManagerPccDashboard,
     ovhManagerPccResourceUpgrade,
     ovhManagerServerSidebar,
