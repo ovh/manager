@@ -1,0 +1,10 @@
+{
+  "xdsl_access_profile_tooltip_interleaved": "<b>Interleaved:</b> Perfil auto por defecto.",
+  "xdsl_access_profile_tooltip_fast": "<b>Fast:</b> Perfil auto en fastPath (ping mejorado sin corrección de errores).",
+  "xdsl_access_profile_tooltip_ginp": "<b>G.INP:</b> Esta extensión mejora la corrección de errores sin afectar al rendimiento de la línea. El DSLAM utiliza el modo de protección (INP, Impulse Noise Protection) contra el ruido.",
+  "xdsl_access_profile_tooltip_auto": "<b>AUTO-[valor]M:</b> El DSLAM sincroniza al máximo en el ancho de banda.",
+  "xdsl_access_profile_tooltip_snr": "<b>SNR-[valor]:</b> El DSLAM analiza la calidad de la línea y negocia una relación señal-ruido (SNR) al valor indicado. Cuando mayor es la cifra, mejor es la estabilidad de la línea, pero menor es el ancho de banda. En los perfiles sin SNR forzados, el DSLAM intenta conseguir un SNR de 6.",
+  "xdsl_access_profile_tooltip_time": "El cambio se aplicará en los próximos 1-5 minutos.",
+  "xdsl_access_dslam_an_error_ocurred": "DSLAM: Se ha producido un error.",
+  "xdsl_access_profile_doing": "Cambiando el perfil..."
+}

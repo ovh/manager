@@ -1,0 +1,19 @@
+{
+  "telephony_line_page_title": "Ligne \"{{name}}\"",
+  "telephony_line_tab_manage": "Zarządzanie",
+  "telephony_line_tab_consumption": "Zużycie",
+  "telephony_line_tab_call_management": "Zarządzanie połączeniami",
+  "telephony_line_tab_music_management": "Zarządzanie dzwonkami",
+  "telephony_line_tab_answering_machine": "Autoresponder",
+  "telephony_line_tab_phone": "Numer telefonu",
+  "telephony_line_tab_contact_details": "Współrzędne",
+  "telephony_line_tab_assist": "Pomoc",
+  "telephony_line_tab_fax": "Faks",
+  "telephony_line_rename_error": "Nie można zmienić nazwy linii {{serviceName}}.",
+  "telephony_line_offer_type_individual": "SIP na początek",
+  "telephony_line_offer_type_priceplan": "SIP Enterprise",
+  "telephony_line_expire_date": "Usługa wygasa {{date}}.",
+  "telephony_line_expire_link": "Możesz anulować kilkając tutaj.",
+  "telephony_line_convert_date": "Cette ligne sera convertie en numéro le {{ date }}.",
+  "telephony_line_convert_link": "Vous pourrez annuler dans la section suivante."
+}

@@ -1,0 +1,13 @@
+{
+  "telephony_line_answer_voicemail_directories_main_title": "Odsłuchiwanie i zarządzanie wiadomościami",
+  "telephony_line_answer_voicemail_directories_title": "Zarządzanie wiadomościami z poczty głosowej",
+  "telephony_line_answer_voicemail_directories_delete_message": "Usuń wiadomość",
+  "telephony_line_answer_voicemail_directories_delete_message_plural": "Usuń {{ count }} wiadomości.",
+  "telephony_line_answer_voicemail_directories_listen_message": "Odsłuchaj",
+  "telephony_line_answer_voicemail_directories_download_message": "Pobierz",
+  "telephony_line_answer_voicemail_directories_refresh_message": "Odśwież",
+  "telephony_line_answer_voicemail_directories_empty": "Nie masz żadnej wiadomości.",
+  "telephony_line_answer_voicemail_directories_caller": "Dzwoniący",
+  "telephony_line_answer_voicemail_directories_date": "Data",
+  "telephony_line_answer_voicemail_directories_duration": "Okres"
+}

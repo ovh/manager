@@ -1,0 +1,20 @@
+{
+  "xdsl_access_deconsolidation_title": "Unbundling Totale",
+  "xdsl_access_deconsolidation_validate": "Conferma l'unbundling",
+  "xdsl_access_deconsolidation_legacy_offer": "Sulla tua linea è attiva un'offerta obsoleta. Per abilitare l'unbundling totale, aggiorna il tuo pack con un'offerta più recente.",
+  "xdsl_access_deconsolidation_legacy_offer_upgrade": "Aggiorna della tua offerta",
+  "xdsl_access_deconsolidation_createNeighbour": "Totale",
+  "xdsl_access_deconsolidation_creation": "Totale",
+  "xdsl_access_deconsolidation_partial": "Parziale",
+  "xdsl_access_deconsolidation_total": "Totale",
+  "xdsl_access_deconsolidation_warning_total": "L'unbundling totale è già attivo. Non è possibile ritornare all'unbundling parziale.",
+  "xdsl_access_deconsolidation_warning_partial": "Al momento è attivo l'unbundling parziale, puoi passare all'unbundling totale.",
+  "xdsl_access_deconsolidation_desc_important": "Questa operazione è irreversibile. Potrebbe richiedere fino a 7 giorni lavorativi e comportare un'interruzione di servizio di circa 30 minuti.",
+  "xdsl_access_deconsolidation_success": "Passaggio all'unbundling totale, stai per essere reindirizzato...",
+  "xdsl_access_deconsolidation_really": "Vuoi davvero effettuare il passaggio all'unbundling totale?",
+  "xdsl_access_deconsolidation_number_not_transferred": "Non potrai mantenere il tuo numero",
+  "xdsl_access_deconsolidation_rio": "RIO",
+  "xdsl_access_deconsolidation_rio_title": "Mantieni il tuo numero",
+  "xdsl_access_deconsolidation_rio_warning": "Per non perdere il tuo numero, è necessario includere il codice RIO ad esso associato.",
+  "xdsl_access_deconsolidation_rio_help": "Come ottenere il tuo RIO? Niente di più semplice: prima di eseguire la sottoscrizione, chiama gratuitamente il 3179 dalla tua linea fissa."
+}

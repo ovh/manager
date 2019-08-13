@@ -1,0 +1,5 @@
+{
+  "telephony_abbreviated_numbers_title": "Números abreviados",
+  "telephony_abbreviated_numbers_explaination": "Los números abreviados son números de 3 o 4 cifras que empiezan por 7.",
+  "telephony_abbreviated_numbers_pattern_error": "El campo debe contener un número de 3 o 4 cifras que empiece por 7."
+}

@@ -1,0 +1,18 @@
+{
+  "telephony_group_line_section_back_link": "Volver a la gestión de la línea",
+  "telephony_line_management_actions_line_details_offer": "Información general",
+  "telephony_line_management_actions_line_sip_password": "Contraseña SIP",
+  "telephony_line_management_actions_line_sip_domain_management": "Dominio SIP",
+  "telephony_line_management_actions_line_sip_ips_restrictions": "Restricciones SIP por IP",
+  "telephony_line_management_actions_line_language": "Gestionar el idioma",
+  "telephony_line_management_actions_line_resume_offer": "Cambiar de plan",
+  "telephony_line_management_actions_line_bannMaker": "Generador de cartucho",
+  "telephony_line_management_actions_line_to_number": "Convertir la línea en número",
+  "telephony_line_management_actions_line_delete_line_new": "Baja de la línea",
+  "telephony_line_management_actions_line_mgcp_ip_restriction": "Restricción MGCP por IP",
+  "telephony_line_management_actions_line_password_canchange_error": "No es posible autorizar el cambio de contraseña SIP.",
+  "telephony_line_management_actions_line_password_canchange_SIP_error": "Solo se puede cambiar la contraseña en una línea SIP.",
+  "telephony_line_management_actions_line_password_canchange_plugnphone_error": "No es posible cambiar la contraseña en un Plug'N'Phone.",
+  "telephony_line_management_actions_line_password_canchange_pack_error": "No es posible cambiar la contraseña en una línea xDSL incluida en un pack.",
+  "telephony_line_management_actions_line_cancel_delete_line_new": "Cancelar la baja de la línea"
+}

@@ -1,0 +1,13 @@
+{
+  "telephony_group_billing_bill_title": "Detalle de consumo",
+  "telephony_group_billing_bill_subtitle": "Su detalle de consumo",
+  "telephony_group_billing_bill_empty": "No hay detalles disponibles",
+  "telephony_group_billing_bill_date": "Fecha",
+  "telephony_group_billing_bill_amount": "Importe sin IVA",
+  "telephony_group_billing_bill_paid": "Ya abonado",
+  "telephony_group_billing_bill_download": "Descargar",
+  "telephony_group_billing_bill_download_pdf": "Detalle de consumo en formato PDF",
+  "telephony_group_billing_bill_download_csv_emited": "Listado de llamadas enviadas en formato CSV",
+  "telephony_group_billing_bill_download_csv_received": "Listado de llamadas recibidas en formato CSV",
+  "telephony_group_billing_bill_refresh": "Actualizar"
+}

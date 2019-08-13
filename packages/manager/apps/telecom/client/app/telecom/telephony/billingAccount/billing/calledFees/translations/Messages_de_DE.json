@@ -1,0 +1,15 @@
+{
+  "telephony_group_billing_called_fees_title": "Coûts SVA du groupe",
+  "telephony_group_billing_called_fees_total_title": "Total des coûts SVA",
+  "telephony_group_billing_called_fees_total_price": "{{ totalPrice }} €",
+  "telephony_group_billing_called_fees_detail_title": "Détails des coûts SVA",
+  "telephony_group_billing_called_fees_detail_operator_name": "{{ operator }} :",
+  "telephony_group_billing_called_fees_detail_operator_other": "Autres opérateurs :",
+  "telephony_group_billing_called_fees_detail_total_call_singular": "{{ call }} Appel",
+  "telephony_group_billing_called_fees_detail_total_call_plural": "{{ call }} Appels",
+  "telephony_group_billing_called_fees_detail_total_call_empty": "Aucun Appel",
+  "telephony_group_billing_called_fees_detail_total_duration_price": "({{ totalDuration }}sec.) soit {{ totalPrice }} HT",
+  "telephony_group_billing_called_fees_detail_total_label": "Total :",
+  "telephony_group_billing_called_fees_detail_empty": "Aucune information.",
+  "telephony_group_billing_called_fees_error": "Oups ! Impossible de récupérer les coûts SVA du groupe."
+}

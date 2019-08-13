@@ -1,0 +1,16 @@
+{
+  "telephony_line_assist_orders_title": "Suivi des bons de commande",
+  "telephony_line_assist_orders_column_date": "Date",
+  "telephony_line_assist_orders_column_id": "Numéro de commande",
+  "telephony_line_assist_orders_column_status": "État",
+  "telephony_line_assist_orders_order_status_cancelled": "Annulée",
+  "telephony_line_assist_orders_order_status_cancelling": "Annulation en cours",
+  "telephony_line_assist_orders_order_status_checking": "Validation",
+  "telephony_line_assist_orders_order_status_delivered": "Finalisée",
+  "telephony_line_assist_orders_order_status_delivering": "Livraison en cours",
+  "telephony_line_assist_orders_order_status_documents_requested": "En attente de documents",
+  "telephony_line_assist_orders_order_status_not_paid": "Paiement non reçu",
+  "telephony_line_assist_orders_order_status_unknown": "Inconnu",
+  "telephony_line_assist_orders_order_url_title": "Voir le bon de commande n°{{ id }}",
+  "telephony_line_assist_orders_empty": "Aucun bon de commande."
+}
