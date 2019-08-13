@@ -2,7 +2,7 @@ import angular from 'angular';
 
 import builder from './builder';
 
-import 'ovh-ui-kit/dist/oui.css';
+import '@ovh-ux/ui-kit/dist/css/oui.css';
 import './index.less';
 
 const moduleName = 'ovhManagerNavbarMenuHeader';

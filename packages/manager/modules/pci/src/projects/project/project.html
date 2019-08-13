@@ -40,14 +40,14 @@
                         <oui-header heading="{{ ::$ctrl.project.description }}">
                             <oui-header-tabs class="mt-3">
                                 <oui-header-tabs-item
-                                    text="{{ ::'pci_projects_project_home' | translate }}"
                                     ui-sref="pci.projects.project({ serviceName: $ctrl.project.project_id })"
                                     active="$ctrl.$state.is('pci.projects.project')">
+                                    <span data-translate="pci_projects_project_home"></span>
                                 </oui-header-tabs-item>
                                 <oui-header-tabs-item
-                                    text="{{ ::'pci_projects_project_parameters' | translate }}"
                                     ui-sref="pci.projects.project.edit({ serviceName: $ctrl.project.project_id })"
                                     active="$ctrl.$state.is('pci.projects.project.edit', { serviceName: $ctrl.project.project_id })">
+                                    <span data-translate="pci_projects_project_parameters"></span>
                                 </oui-header-tabs-item>
                             </oui-header-tabs>
                         </oui-header>

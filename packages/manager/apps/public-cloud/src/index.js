@@ -31,7 +31,7 @@ import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 import ngUiRouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
 import { OTRS_URLS } from './index.constants';
 
-import 'ovh-ui-kit/dist/oui.css';
+import '@ovh-ux/ui-kit/dist/css/oui.css';
 import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
 
 import atInternet from './components/at-internet';

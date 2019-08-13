@@ -133,8 +133,9 @@
 
                     <oui-action-menu data-compact data-placement="end"
                         data-ng-if="!$ctrl.instance.isMonthlyBillingActivated()">
-                        <oui-action-menu-item text="{{:: 'pci_projects_project_instances_instance_price_action_activeMonthlyBilling_label' | translate }}"
+                        <oui-action-menu-item
                             data-on-click="$ctrl.enableMonthlyBillingInstance()">
+                            <span data-translate="pci_projects_project_instances_instance_price_action_activeMonthlyBilling_label"></span>
                         </oui-action-menu-item>
                     </oui-action-menu>
                 </oui-tile-definition>
@@ -152,8 +153,9 @@
                     </oui-tile-description>
 
                     <oui-action-menu data-compact data-placement="end">
-                        <oui-action-menu-item text="{{:: 'pci_projects_project_instances_instance_volumes_action_manage_label' | translate }}"
+                        <oui-action-menu-item
                             data-on-click="$ctrl.goToBlockStorages()">
+                            <span data-translate="pci_projects_project_instances_instance_volumes_action_manage_label"></span>
                         </oui-action-menu-item>
                         <oui-action-menu-item
                             data-on-click="$ctrl.attachVolume()">
@@ -173,8 +175,9 @@
 
                     <oui-action-menu data-compact data-placement="end"
                         data-ng-if="$ctrl.instance.isApplicationImage()">
-                        <oui-action-menu-item text="{{:: 'pci_projects_project_instances_instance_image_action_application_access_label' | translate }}"
+                        <oui-action-menu-item
                             data-on-click="$ctrl.applicationAccess()">
+                            <span data-translate="pci_projects_project_instances_instance_image_action_application_access_label"></span>
                         </oui-action-menu-item>
                     </oui-action-menu>
                 </oui-tile-definition>
@@ -250,11 +253,13 @@
                         <span data-ng-bind="network.name"></span>
                     </oui-tile-description>
                     <oui-action-menu data-compact data-placement="end">
-                        <oui-action-menu-item text="{{:: 'pci_projects_project_instances_instance_private_networks_action_manage_label' | translate }}"
+                        <oui-action-menu-item
                             data-on-click="$ctrl.gotToNetworks()">
+                            <span data-translate="pci_projects_project_instances_instance_private_networks_action_manage_label"></span>
                         </oui-action-menu-item>
-                        <oui-action-menu-item text="{{:: 'pci_projects_project_instances_instance_private_networks_action_attach_label' | translate }}"
+                        <oui-action-menu-item
                             data-on-click="$ctrl.attachPrivateNetwork()">
+                            <span data-translate="pci_projects_project_instances_instance_private_networks_action_attach_label"></span>
                         </oui-action-menu-item>
                     </oui-action-menu>
                 </oui-tile-definition>

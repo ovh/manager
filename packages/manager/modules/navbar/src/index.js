@@ -14,7 +14,7 @@ import walkMe from './walk-me';
 import navbarComponent from './component';
 import service from './service';
 
-import 'ovh-ui-kit/dist/oui.css';
+import '@ovh-ux/ui-kit/dist/css/oui.css';
 import './index.less';
 
 const moduleName = 'ovhManagerNavbar';

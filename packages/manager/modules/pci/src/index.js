@@ -19,7 +19,7 @@ import 'angular-ui-bootstrap';
 
 import '@ovh-ux/manager-cloud-styles';
 import 'ovh-manager-webfont/dist/css/ovh-font.css';
-import 'ovh-ui-kit/dist/oui.css';
+import '@ovh-ux/ui-kit/dist/css/oui.css';
 import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
 import 'font-awesome/css/font-awesome.css';
 import 'ovh-common-style/dist/ovh-common-style.css';

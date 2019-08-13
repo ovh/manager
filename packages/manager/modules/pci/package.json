@@ -56,7 +56,7 @@
     "@ovh-ux/ng-translate-async-loader": "^2.0.0",
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.0.0",
     "@ovh-ux/ng-ui-router-layout": "^2.0.0",
-    "@ovh-ux/ui-kit": "3.4.0",
+    "@ovh-ux/ui-kit": "3.5.0",
     "@uirouter/angularjs": "^1.0.15",
     "angular": "^1.7.5",
     "angular-animate": "^1.7.5",
@@ -72,8 +72,7 @@
     "ovh-api-services": "^8.3.0",
     "ovh-common-style": "^5.0.0",
     "ovh-manager-webfont": "^1.1.0",
-    "ovh-ui-kit": "^2.33.3",
-    "ovh-ui-kit-bs": "^2.1.1",
+    "ovh-ui-kit-bs": "^3.0.2",
     "popper.js": "^1.14.7"
   }
 }
