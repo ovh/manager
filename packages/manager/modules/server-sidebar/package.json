@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "jsurl": "^0.1.5",
-    "lodash": "^4.17.14"
+    "lodash": "^4.17.15"
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^6.0.0",

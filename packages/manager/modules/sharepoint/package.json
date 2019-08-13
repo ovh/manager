@@ -13,7 +13,7 @@
   "dependencies": {
     "filesize": "^3.5.11",
     "jsurl": "^0.1.5",
-    "lodash": "^4.17.14"
+    "lodash": "^4.17.15"
   },
   "peerDependencies": {
     "@ovh-ux/ng-ovh-utils": "^14.0.3",
