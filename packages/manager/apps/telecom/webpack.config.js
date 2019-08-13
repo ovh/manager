@@ -5,7 +5,7 @@ const glob = require('glob');
 const _ = require('lodash');
 const webpackConfig = require('@ovh-ux/manager-webpack-config');
 
-const folder = './client/app/telecom';
+const folder = './src/app/telecom';
 const bundles = {};
 
 
@@ -33,19 +33,19 @@ fs.readdirSync(folder).forEach((file) => {
 
 module.exports = (env = {}) => {
   const { config } = webpackConfig({
-    template: './client/index.html',
-    basePath: './client',
+    template: './src/index.html',
+    basePath: './src',
     lessPath: [
-      './client/app',
-      './client/components',
+      './src/app',
+      './src/components',
       './node_modules',
     ],
-    root: path.resolve(__dirname, './client/app'),
+    root: path.resolve(__dirname, './src/app'),
     assets: {
       files: [
-        { from: path.resolve(__dirname, './client/app/common/assets'), to: 'assets' },
+        { from: path.resolve(__dirname, './src/app/common/assets'), to: 'assets' },
         { from: foundNodeModulesFolder('angular-i18n'), to: 'angular-i18n' },
-        { from: path.resolve(__dirname, './client/**/*.html'), context: 'client' },
+        { from: path.resolve(__dirname, './src/**/*.html'), context: 'src' },
       ],
     },
   }, env);
@@ -55,10 +55,10 @@ module.exports = (env = {}) => {
 
   return merge(config, {
     entry: _.assign({
-      main: './client/app/index.js',
-      telecom: glob.sync('./client/app/telecom/*.js'),
-      components: glob.sync('./client/components/**/*.js'),
-      config: ['./client/app/config/all.js', `./client/app/config/${env.production ? 'prod' : 'dev'}.js`],
+      main: './src/app/index.js',
+      telecom: glob.sync('./src/app/telecom/*.js'),
+      components: glob.sync('./src/components/**/*.js'),
+      config: ['./src/app/config/all.js', `./src/app/config/${env.production ? 'prod' : 'dev'}.js`],
     }, bundles, extras.length > 0 ? { extras } : {}),
     output: {
       path: path.resolve(__dirname, 'dist'),
