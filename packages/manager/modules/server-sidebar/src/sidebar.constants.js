@@ -4,6 +4,15 @@ import { DEDICATED, CLOUD } from './constants';
 export const DEDICATED_SERVER_CONFIG = {
   id: 'dedicatedServers',
   loadOnState: 'app.dedicated',
+  children: [
+    {
+      id: 'servers_all',
+      state: 'app.dedicated.servers',
+      stateUrl: '#/configuration/servers',
+      icon: 'ovh-font ovh-font-server',
+      app: [DEDICATED],
+    },
+  ],
   types: [
     {
       path: '/dedicated/housing',
