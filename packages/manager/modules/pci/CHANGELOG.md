@@ -1,3 +1,12 @@
+## [1.4.5](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@1.4.4...@ovh-ux/manager-pci@1.4.5) (2019-08-13)
+
+
+### Bug Fixes
+
+* **pci.projects.kube:** disable all actions ([#1191](https://github.com/ovh-ux/manager/issues/1191)) ([8a90259](https://github.com/ovh-ux/manager/commit/8a90259))
+
+
+
 ## [1.4.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@1.4.3...@ovh-ux/manager-pci@1.4.4) (2019-08-13)
 
 
