@@ -1,3 +1,39 @@
+## [1.4.5](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@1.4.4...@ovh-ux/manager-pci@1.4.5) (2019-08-13)
+
+
+### Bug Fixes
+
+* **pci.projects.kube:** disable all actions ([#1191](https://github.com/ovh-ux/manager/issues/1191)) ([8a90259](https://github.com/ovh-ux/manager/commit/8a90259))
+
+
+
+## [1.4.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@1.4.3...@ovh-ux/manager-pci@1.4.4) (2019-08-13)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 35] ([4a01116](https://github.com/ovh-ux/manager/commit/4a01116))
+
+
+
+## [1.4.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@1.4.2...@ovh-ux/manager-pci@1.4.3) (2019-08-13)
+
+
+### Bug Fixes
+
+* **pci.components.flavor:** allow to specify image type ([#1179](https://github.com/ovh-ux/manager/issues/1179)) ([3903000](https://github.com/ovh-ux/manager/commit/3903000))
+
+
+
+## [1.4.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@1.4.1...@ovh-ux/manager-pci@1.4.2) (2019-08-13)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 35] ([045a0de](https://github.com/ovh-ux/manager/commit/045a0de))
+
+
+
 ## [1.4.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@1.4.0...@ovh-ux/manager-pci@1.4.1) (2019-08-12)
 
 

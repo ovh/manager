@@ -1,3 +1,12 @@
+## [1.1.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@1.1.0...@ovh-ux/manager-public-cloud@1.1.1) (2019-08-13)
+
+
+### Bug Fixes
+
+* **pci.projects.kube:** disable all actions ([#1191](https://github.com/ovh-ux/manager/issues/1191)) ([8a90259](https://github.com/ovh-ux/manager/commit/8a90259))
+
+
+
 # [1.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@1.0.1...@ovh-ux/manager-public-cloud@1.1.0) (2019-08-12)
 
 
