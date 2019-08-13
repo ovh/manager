@@ -23,6 +23,7 @@ import ovhManagerServerSidebar from '@ovh-ux/manager-server-sidebar';
 import ovhPaymentMethod from '@ovh-ux/ng-ovh-payment-method';
 import uiRouter, { RejectType } from '@uirouter/angularjs';
 
+import moduleExchange from '@ovh-ux/manager-exchange';
 import config from './config/config';
 import dedicatedCloudDatacenterDrp from './dedicatedCloud/datacenter/drp';
 import dedicatedUniverseComponents from './dedicatedUniverseComponents';
@@ -31,7 +32,6 @@ import ovhManagerPccDashboard from './dedicatedCloud/dashboard';
 import ovhManagerPccResourceUpgrade from './dedicatedCloud/resource/upgrade';
 import preload from './components/manager-preload/manager-preload.module';
 
-import moduleExchange from '@ovh-ux/manager-exchange';
 
 Environment.setRegion(__WEBPACK_REGION__);
 
