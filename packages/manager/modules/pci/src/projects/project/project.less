@@ -2,7 +2,12 @@
 @link-color: rgb(77, 111, 146);
 
 .pci-project-banner {
+  font-size: 0.875rem;
   background-color: @background-color;
+
+  &__feeback::before {
+    content: '> ';
+  }
 
   .pci-project-link_light {
     color: @link-color;

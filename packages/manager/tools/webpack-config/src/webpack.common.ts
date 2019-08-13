@@ -29,6 +29,10 @@ export = opts => {
     set(lessLoaderOptions, 'paths', opts.lessPath);
   }
 
+  if ('lessJavascriptEnabled' in opts) {
+    set(lessLoaderOptions, 'javascriptEnabled', opts.lessJavascriptEnabled);
+  }
+
   return {
     plugins: [
       // copy application assets
