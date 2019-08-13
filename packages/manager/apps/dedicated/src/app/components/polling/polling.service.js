@@ -152,12 +152,16 @@ angular.module('services').service('Polling', [
     }
 
     function stop() {
-      to = $timeout.cancel(to);
+      if (to instanceof $q) {
+        to = $timeout.cancel(to);
+      }
       isRun = false;
       clean();
     }
     function stopfast() {
-      tofast = $timeout.cancel(tofast);
+      if (tofast instanceof $q) {
+        tofast = $timeout.cancel(tofast);
+      }
       isFastRun = false;
       cleanFast();
     }

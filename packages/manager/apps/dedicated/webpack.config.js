@@ -42,6 +42,7 @@ module.exports = (env = {}) => {
     lessPath: [
       './node_modules',
     ],
+    lessJavascriptEnabled: true,
     root: path.resolve(__dirname, './src/app'),
     assets: {
       files: [
