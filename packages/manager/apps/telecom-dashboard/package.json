@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-telecom-dashboard-app",
-  "version": "4.1.2",
+  "version": "4.2.0",
   "private": true,
   "scripts": {
     "build": "webpack",
@@ -12,12 +12,12 @@
   },
   "dependencies": {
     "@ovh-ux/manager-config": "^0.3.0",
-    "@ovh-ux/manager-core": "^6.1.1",
-    "@ovh-ux/manager-telecom-dashboard": "^4.3.1",
+    "@ovh-ux/manager-core": "^7.0.0",
+    "@ovh-ux/manager-telecom-dashboard": "^4.3.2",
     "@ovh-ux/manager-telecom-styles": "^3.1.0",
     "@ovh-ux/ng-at-internet": "^4.0.0",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^2.0.0",
-    "@ovh-ux/ng-ovh-request-tagger": "^0.0.0",
+    "@ovh-ux/ng-ovh-request-tagger": "^1.0.0",
     "@ovh-ux/ng-ovh-telecom-universe-components": "^3.0.6",
     "@ovh-ux/ng-uirouter-title": "^2.0.0-beta.3",
     "@uirouter/angularjs": "^1.0.15",

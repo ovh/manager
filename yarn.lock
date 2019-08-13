@@ -1856,10 +1856,10 @@
     "@ovh-ux/translate-async-loader" "^1.0.0"
     jquery "^2.1.3"
 
-"@ovh-ux/ng-ovh-sidebar-menu@^8.3.3":
-  version "8.3.3"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-sidebar-menu/-/ng-ovh-sidebar-menu-8.3.3.tgz#6657271c7db6c7c0ae977ef844de115b976156ad"
-  integrity sha512-R0ZDnVZ9D29YwQytNvuRIgzIPr1iUbF3Luag4WSy6JGf+evEyyMmpZAgY9fCEvS9kPl0VlUtW+FVcwN8bxJ1yw==
+"@ovh-ux/ng-ovh-sidebar-menu@^8.4.0":
+  version "8.4.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-sidebar-menu/-/ng-ovh-sidebar-menu-8.4.0.tgz#69cf4db545fa6a3d3469995d8ce4e71ff0b878c5"
+  integrity sha512-SwLgm9qpvkvJV+Un1XuBD8fWuRI8YHWt6lrcZ2HW2clQI5fv72BJnkn/a+lUmaxCpMtgPu3GTx9o5BsAX3R40Q==
 
 "@ovh-ux/ng-ovh-sso-auth-modal-plugin@^3.0.1":
   version "3.0.1"
