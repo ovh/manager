@@ -1,0 +1,8 @@
+{
+  "telephony_service_consumption_outgoing_all": "Todas las llamadas enviadas",
+  "telephony_service_consumption_outgoing_empty": "No hay llamadas enviadas.",
+  "telephony_service_consumption_outgoing_not_found": "Ninguna llamada se corresponde con este filtro.",
+  "telephony_service_consumption_outgoing_period": "Período del <strong>{{ start }}</strong> al <strong>{{ end }}</strong>",
+  "telephony_service_consumption_outgoing_priceplan": "Tarifa: llamada(s): <strong>{{ calls }}</strong>, duración: <strong>{{ duration }}</strong>",
+  "telephony_service_consumption_outgoing_outplan": "Fuera de tarifa: llamada(s): <strong>{{ calls }}</strong>, duración: <strong>{{ duration }}</strong>, precio: <strong>{{ price }}</strong> + IVA"
+}

@@ -1,0 +1,7 @@
+{
+  "telephony_device_associate_line_count": "Skonfigurowane linie ({{ count }}/{{ total }}):",
+  "telephony_device_associate_ip_address": "Publiczny adres IP",
+  "telephony_device_associate_attach": "Przypisz",
+  "telephony_device_associate_attach_success": "Twoje urządzenie zostało przypisane do tej linii.",
+  "telephony_device_associate_attach_empty": "Brak kompatybilnych urządzeń."
+}

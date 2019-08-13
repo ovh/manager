@@ -1,0 +1,10 @@
+<oui-modal data-heading="{{:: 'telephony_alias_config_change_type_confirm_title' | translate }}"
+           data-primary-action="$ctrl.confirm()"
+           data-primary-label="{{:: 'common_confirm' | translate }}"
+           data-secondary-action="$ctrl.cancel()"
+           data-secondary-label="{{:: 'cancel' | translate }}"
+           data-on-dismiss="$ctrl.cancel()"
+           data-type="warning">
+    <span data-translate="telephony_alias_config_change_type_confirm_text"></span>
+    <strong data-ng-bind=":: '(' + $ctrl.currentFeatureType + ')'"></strong>
+</oui-modal>

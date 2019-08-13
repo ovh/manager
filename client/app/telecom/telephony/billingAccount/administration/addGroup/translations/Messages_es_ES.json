@@ -1,0 +1,10 @@
+{
+  "telephony_add_group_title": "Añadir un grupo",
+  "telephony_add_group_contracts": "Es necesario aceptar los contratos para validar el pedido.",
+  "telephony_add_group_infos": "Puede contratar nuevos grupos para organizar y gestionar con mayor facilidad sus líneas y números.",
+  "telephony_add_group_order": "Contratar un nuevo grupo de telefonía",
+  "telephony_add_group_free": "Gratuito",
+  "telephony_add_group_success": "La solicitud de creación se ha enviado correctamente.",
+  "telephony_add_group_success_bc": "Para enviar la solicitud, valide esta",
+  "telephony_add_group_success_bc2": "orden de pedido"
+}

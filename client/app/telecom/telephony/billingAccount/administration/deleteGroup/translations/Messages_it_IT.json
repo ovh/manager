@@ -1,0 +1,10 @@
+{
+  "telephony_delete_group_title": "Elimina il gruppo",
+  "telephony_delete_group_warning": "L'eliminazione di un gruppo di telefonia comporta la disattivazione delle linee e dei numeri associati.",
+  "telephony_delete_group_infos": "L'eliminazione del gruppo è stata pianificata alla data della tua prossima fatturazione. Fino a quel momento, la richiesta può essere annullata.",
+  "telephony_delete_group_pending": "Eliminazione del gruppo {{group}} pianificata il:",
+  "telephony_delete_group_cancel": "Annulla l'eliminazione",
+  "telephony_delete_group_cancel_success": "L'eliminazione del gruppo {{group}} è stata annullata correttamente.",
+  "telephony_delete_group_delete": "Elimina {{group}}",
+  "telephony_delete_group_delete_success": "L'eliminazione del gruppo {{group}} è stata pianificata correttamente."
+}

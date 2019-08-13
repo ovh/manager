@@ -1,0 +1,14 @@
+{
+  "telephony_group_billing_credit_threshold_title": "Modificar el límite de la fianza",
+  "telephony_group_billing_credit_threshold_info_subtitle": "Información",
+  "telephony_group_billing_credit_threshold_credit_threshold": "El límite actual es de:",
+  "telephony_group_billing_credit_threshold_allowed_out_plan": "El consumo autorizado adicional a la tarifa contratada es de:",
+  "telephony_group_billing_credit_threshold_current_out_plan": "Su consumo global adicional a la tarifa contratada es de:",
+  "telephony_group_billing_credit_threshold_credits_label": "Modificación del crédito:",
+  "telephony_group_billing_credit_threshold_new_credit": "Cuando acepte, su límite será de:",
+  "telephony_group_billing_credit_threshold_without_tax": "+ IVA",
+  "telephony_group_billing_credit_threshold_contracts_subtitle": "Aceptación de los contratos",
+  "telephony_group_billing_credit_threshold_contracts": "Es necesario aceptar los contratos con OVH antes de enviar la solicitud de depósito de fianza.",
+  "telephony_group_billing_credit_threshold_submit": "Editar",
+  "telephony_group_billing_credit_threshold_success": "La solicitud de modificación del límite se ha enviado."
+}

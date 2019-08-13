@@ -1,0 +1,21 @@
+{
+  "telephony_line_answer_voicemail_password_change_main_title": "Contraseña de acceso al contestador",
+  "telephony_line_answer_voicemail_password_number_info": "Información",
+  "telephony_line_answer_voicemail_password_number_internal": "Acceso al contestador:",
+  "telephony_line_answer_voicemail_password_number_external": "Desde el exterior:",
+  "telephony_line_answer_voicemail_password_change_title": "Contraseña del contestador",
+  "telephony_line_answer_voicemail_password_input_label": "Nouveau mot de passe (composé de 4 chiffres) :",
+  "telephony_line_answer_voicemail_password_input_placeholder": "Contraseña",
+  "telephony_line_answer_voicemail_password_input_length_warning": "La contraseña debe tener 4 cifras.",
+  "telephony_line_answer_voicemail_passwordConfirm_input_label": "Repetir contraseña:",
+  "telephony_line_answer_voicemail_passwordConfirm_input_placeholder": "Vuelva a introducir su contraseña",
+  "telephony_line_answer_voicemail_password_matching_warning": "La contraseña introducida no es correcta.",
+  "telephony_line_answer_voicemail_password_apply": "Aplicar los cambios",
+  "telephony_line_answer_voicemail_password_change_success": "La contraseña se ha cambiado correctamente.",
+  "telephony_line_answer_voicemail_password_change_error": "¡Vaya! No se ha podido cambiar la contraseña del contestador.",
+  "telephony_line_answer_voicemail_password_info": "Contraseña solicitada para consultar los mensajes solo desde el exterior.",
+  "telephony_line_answer_voicemail_password_bulk_all_success": "Le mot de passe a bien été appliqué aux services sélectionnés.",
+  "telephony_line_answer_voicemail_password_bulk_some_success": "Le mot de passe a bien été appliqué à {{ count }} des services sélectionnés.",
+  "telephony_line_answer_voicemail_password_bulk_error": "Le mot de passe n'a pas pu être appliqué au(x) service(s) suivant(s) :",
+  "telephony_line_answer_voicemail_password_bulk_on_error": "Oups ! Une erreur est survenue lors de l'application du mot de passe."
+}

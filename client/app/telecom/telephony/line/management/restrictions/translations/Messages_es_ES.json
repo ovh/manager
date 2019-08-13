@@ -1,0 +1,18 @@
+{
+  "telephony_line_restrictions_title": "Restricciones SIP por IP",
+  "telephony_line_restrictions_line_title": "Restricciones SIP de la línea",
+  "telephony_line_restrictions_account_title": "Restricciones SIP asociadas a su código de cliente",
+  "telephony_line_restrictions_line_infos": "Estas restricciones se aplican en la línea actualmente seleccionada.",
+  "telephony_line_restrictions_account_infos": "Estas restricciones se aplican al instalar nuevas líneas contratadas con su código de cliente.",
+  "telephony_line_restrictions_authorized": "Redes IP autorizadas",
+  "telephony_line_restrictions_add": "Añadir una dirección IP",
+  "telephony_line_restrictions_none": "No hay restricciones.",
+  "telephony_line_restrictions_apply": "Aplicar los cambios",
+  "telephony_line_restrictions_cancel": "Cancelar",
+  "telephony_line_restrictions_ip": "Dirección IP",
+  "telephony_line_restrictions_account_missing": "Próximamente disponible.",
+  "telephony_line_restrictions_ip_bulk_all_success": "Les restrictions SIP de la ligne ont bien été appliquées aux services sélectionnés.",
+  "telephony_line_restrictions_ip_bulk_some_success": "Les restrictions SIP de la ligne ont bien été appliquées à {{ count }} des services sélectionnés.",
+  "telephony_line_restrictions_ip_bulk_error": "Les restrictions SIP de la ligne n'ont pas pu être appliquées au(x) service(s) suivant(s) :",
+  "telephony_line_restrictions_ip_bulk_on_error": "Oups ! Une erreur est survenue lors de l'application des restrictions SIP de la ligne."
+}

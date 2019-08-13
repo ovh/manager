@@ -1,0 +1,15 @@
+{
+  "telephony_group_line_calls_click2call_addUser_back": "Cancelar la adición de un usuario",
+  "telephony_group_line_calls_click2call_addUser_title": "Añadir un usuario ",
+  "telephony_group_line_calls_click2call_addUser_login_placeholder": "Usuario",
+  "telephony_group_line_calls_click2call_addUser_password_placeholder": "Contraseña",
+  "telephony_group_line_calls_click2call_addUser_adding": "Añadiendo el usuario...",
+  "telephony_group_line_calls_click2call_addUser_added": "Se ha añadido el usuario <strong>{{name}}</strong>. ",
+  "telephony_group_line_calls_click2call_addUser_fail": "¡Vaya! No se ha podido añadir el usuario <strong>{{name}}</strong>.",
+  "telephony_group_line_calls_click2call_addUser_rule_size": "Debe contener entre 8 y 20 caracteres",
+  "telephony_group_line_calls_click2call_addUser_rule_special": "Debe contener cifras, letras no acentuadas o {{list}}",
+  "telephony_group_line_calls_click2call_addUser_bulk_all_success": "L'ajout d'un utilisateur a bien été appliquée aux services sélectionnés.",
+  "telephony_group_line_calls_click2call_addUser_bulk_some_success": "L'ajout d'un utilisateur a bien été appliquée à {{ count }} des services sélectionnés.",
+  "telephony_group_line_calls_click2call_addUser_bulk_error": "L'ajout d'un utilisateur n'a pu être appliquée au(x) service(s) suivant(s) :",
+  "telephony_group_line_calls_click2call_addUser_bulk_on_error": "Oups ! Une erreur est survenue lors de l'ajout d'un utilisateur."
+}

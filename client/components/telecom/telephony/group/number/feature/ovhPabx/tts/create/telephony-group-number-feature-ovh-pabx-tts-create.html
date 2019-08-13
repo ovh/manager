@@ -1,0 +1,75 @@
+<div class="telephony-number-ovh-pabx-tts-create">
+    <div class="text-center" data-ng-if="$ctrl.loading.init">
+        <oui-spinner></oui-spinner>
+    </div>
+
+    <!-- CREATION FORM -->
+    <form novalidate
+          name="$ctrl.ttsCreateForm"
+          data-ng-submit="$ctrl.onTtsCreateFormSubmit()">
+        <!-- VOICE -->
+        <div class="form-group">
+            <label class="control-label"
+                   for="ttsVoice"
+                   data-translate="telephony_number_feature_ovh_pabx_tts_voice">
+            </label>
+            <select class="form-control"
+                    id="ttsVoice"
+                    name="ttsVoice"
+                    data-ng-model="$ctrl.model.voice"
+                    data-ng-disabled="$ctrl.loading.creating"
+                    data-ng-options="voice.value as voice.label for voice in $ctrl.availableVoices">
+            </select>
+        </div> <!-- END OF VOICE -->
+
+        <!-- TEXT -->
+        <div class="form-group"
+             data-ng-class="{ 'has-error': $ctrl.ttsCreateForm.ttsText.$invalid && $ctrl.ttsCreateForm.ttsText.$dirty }">
+            <label for="ttsText"
+                   data-translate="telephony_number_feature_ovh_pabx_tts_text">
+            </label>
+            <textarea class="form-control"
+                      id="ttsText"
+                      name="ttsText"
+                      rows="5"
+                      data-ng-model="$ctrl.model.text"
+                      data-ng-maxlength="'1024'"
+                      data-ng-required="true"
+                      data-ng-disabled="$ctrl.loading.creating">
+            </textarea>
+            <span class="help-block"
+                  role="alert"
+                  data-ng-if="$ctrl.ttsCreateForm.ttsText.$touched"
+                  data-ng-messages="$ctrl.ttsCreateForm.ttsText.$error">
+                <span data-ng-message="required"
+                      data-translate="telephony_number_feature_ovh_pabx_tts_create_text_required">
+                </span>
+                <span data-ng-message="maxlength"
+                      data-translate="telephony_number_feature_ovh_pabx_tts_create_text_too_long">
+                </span>
+            </span>
+        </div> <!-- END OF TEXT -->
+
+        <div class="text-sm-right">
+            <button type="submit"
+                    class="btn btn-primary float-right ml-sm-2"
+                    data-ng-disabled="$ctrl.loading.creating || !$ctrl.ttsCreateForm.$valid">
+                <oui-spinner class="mr-2"
+                             data-ng-show="$ctrl.loading.creating"
+                             data-size="s">
+                </oui-spinner>
+                <span data-translate="common_create"></span>
+            </button>
+
+            <button type="button"
+                    class="btn btn-default"
+                    data-translate="cancel"
+                    data-ng-click="$ctrl.onCancelTtsBtnClick()"
+                    data-ng-disabled="$ctrl.loading.creating">
+            </button>
+        </div>
+    </form> <!-- END OF CREATION FORM -->
+
+</div>
+
+<!--  -->

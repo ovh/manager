@@ -1,0 +1,10 @@
+{
+  "telephony_group_billing_tollfree_history_title": "Storico dei costi VAS",
+  "telephony_group_billing_tollfree_history_init_error": "Ops! Si è verificato un erroee durante l'inizializzazione dello storico dei costi VAS.",
+  "telephony_group_billing_tollfree_history_download_error": "Ops! Si è verificato un errore durante il download delle informazioni relative al rimborso.",
+  "telephony_group_billing_tollfree_history_list_title": "Costi VAS del gruppo {{ groupName }}",
+  "telephony_group_billing_tollfree_history_list_date": "Data di fatturazione",
+  "telephony_group_billing_tollfree_history_list_price": "Importo della fattura",
+  "telephony_group_billing_tollfree_history_list_download_csv": "Dettagli del rimborso in formato CSV",
+  "telephony_group_billing_tollfree_history_list_no_results": "Nessun rimborso trovato"
+}

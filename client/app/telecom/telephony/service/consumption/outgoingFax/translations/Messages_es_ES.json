@@ -1,0 +1,8 @@
+{
+  "telephony_service_consumption_outgoing_fax_all": "Todos los faxes enviados",
+  "telephony_service_consumption_outgoing_fax_empty": "No se ha enviado ningún fax.",
+  "telephony_service_consumption_outgoing_fax_period": "Período del <strong>{{ start }}</strong> al <strong>{{ end }}</strong>",
+  "telephony_service_consumption_outgoing_fax_not_found": "No hay faxes que se ajusten a la búsqueda.",
+  "telephony_service_consumption_outgoing_fax_summary": "Fax enviado: <strong>{{ fax }}</strong>, número de páginas: <strong>{{ pages }}</strong>, precio: {{ price }} + IVA",
+  "telephony_service_consumption_outgoing_fax_pages": "Páginas"
+}

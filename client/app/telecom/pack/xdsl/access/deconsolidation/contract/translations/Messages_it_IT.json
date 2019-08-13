@@ -1,0 +1,12 @@
+{
+  "xdsl_access_deconsolidation_contract_title": "Conferma",
+  "xdsl_access_deconsolidation_contract_are_you_sure": "Vuoi davvero effettuare questa operazione:",
+  "xdsl_access_deconsolidation_contract_modification_operation": "Unbundling Totale",
+  "xdsl_access_deconsolidation_contract_modified": "su questa linea: <strong>{{ serviceName }}</strong>",
+  "xdsl_access_deconsolidation_contract_number_not_transferred": "Senza RIO, perderai il tuo numero.",
+  "xdsl_access_deconsolidation_contract_price": "Questa operazione sarà fatturata <span class=\"text-underline\">{{ price }}</span>.",
+  "xdsl_access_deconsolidation_contract_monthlyPrice": "Se modifichi la tua offerta da unbundling parziale a totale, il tuo abbonamento mensile sarà di <span class=\"text-underline\">{{ price }}</span>/mese.",
+  "xdsl_access_deconsolidation_contract_desc_agreement1": "Il passaggio da unbundling parziale a totale comporta un impeno di ulteriori {{ engagement }} mesi.",
+  "xdsl_access_deconsolidation_contract_desc_agreement2": "Richiedi l'esecuzione immediata della prestazione e, a questo titolo, riconosci di non poter esercitare il tuo diritto di recesso, conformemente alle disposizioni dell'articolo L.121-21-8 del Codice del Consumo francese. Attivazione del servizio entro 7 giorni (periodo medio constatato).  ",
+  "xdsl_access_deconsolidation_contract_desc_agreement3": "Confermo di aver preso visione delle Condizioni Generali di Vendita dell'<a target=\"_blank\" href=\"{{ packAdslPro2013 }}\">offerta xDSL Express</a> o dell'<a target=\"_blank\" href=\"{{ packAdslEnterprise2013 }}\">offerta Enterprise</a>."
+}

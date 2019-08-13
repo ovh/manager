@@ -1,0 +1,16 @@
+{
+  "telephony_line_assist_orders_title": "Seguimiento de las órdenes de pedido",
+  "telephony_line_assist_orders_column_date": "Fecha",
+  "telephony_line_assist_orders_column_id": "Número de pedido",
+  "telephony_line_assist_orders_column_status": "Estado",
+  "telephony_line_assist_orders_order_status_cancelled": "Cancelada",
+  "telephony_line_assist_orders_order_status_cancelling": "Cancelando...",
+  "telephony_line_assist_orders_order_status_checking": "Validación",
+  "telephony_line_assist_orders_order_status_delivered": "Entregado",
+  "telephony_line_assist_orders_order_status_delivering": "Entregando...",
+  "telephony_line_assist_orders_order_status_documents_requested": "Pendiente de documentación",
+  "telephony_line_assist_orders_order_status_not_paid": "Pago no recibido",
+  "telephony_line_assist_orders_order_status_unknown": "Desconocido",
+  "telephony_line_assist_orders_order_url_title": "Ver la orden de pedido n° {{ id }}",
+  "telephony_line_assist_orders_empty": "No hay órdenes de pedido."
+}

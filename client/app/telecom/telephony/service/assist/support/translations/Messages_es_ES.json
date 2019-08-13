@@ -1,0 +1,9 @@
+{
+  "telephony_line_assist_support_title": "Guías y soporte",
+  "telephony_line_assist_support_guides_title": "Guías",
+  "telephony_line_assist_support_guides_explain": "Pour vous aider dans la configuration et l'utilisation de votre téléphonie, <a href=\"{{ url }}\" target=\"_blank\" title=\"Accéder à nos guides\">nos guides sont à votre disposition<i class=\"ovh-font ovh-font-newtab ml-4\" /></a>.",
+  "telephony_line_assist_support_support_title": "Soporte",
+  "telephony_line_assist_support_header": "Si tiene cualquier duda, contacte con nosotros:",
+  "telephony_line_assist_support_contact_by_phone": "Por teléfono en el <b>1007</b> (gratuito desde teléfono fijo) o el <b>+33 972 101 007</b> (coste de llamada local desde teléfono fijo en Francia), de lunes a viernes de 8:00 a 20:00 y sábados de 9:00 a 17:00.",
+  "telephony_line_assist_support_contact_ticket": "Abrir un tíquet de incidencia"
+}

@@ -1,0 +1,7 @@
+{
+  "telecom_orders_alias_title": "Commande de numéros",
+  "telecom_orders_alias_billing_account_title": "Groupe de téléphonie",
+  "telecom_orders_alias_billing_account_label": "Sélectionnez le groupe de téléphonie :",
+  "telecom_orders_alias_billing_submit_label": "Commander un numéro",
+  "telecom_orders_alias_billing_loading_error": "Impossible de charger vos groupes de téléphonie"
+}

@@ -1,0 +1,21 @@
+{
+  "telephony_line_answer_voicemail_password_change_main_title": "Mot de passe accès répondeur",
+  "telephony_line_answer_voicemail_password_number_info": "Información",
+  "telephony_line_answer_voicemail_password_number_internal": "Accès au répondeur :",
+  "telephony_line_answer_voicemail_password_number_external": "De l'extérieur :",
+  "telephony_line_answer_voicemail_password_change_title": "Mot de passe du répondeur",
+  "telephony_line_answer_voicemail_password_input_label": "Nouveau mot de passe (composé de 4 chiffres) :",
+  "telephony_line_answer_voicemail_password_input_placeholder": "Contraseña",
+  "telephony_line_answer_voicemail_password_input_length_warning": "Votre mot de passe doit comporter 4 chiffres.",
+  "telephony_line_answer_voicemail_passwordConfirm_input_label": "Repetir contraseña:",
+  "telephony_line_answer_voicemail_passwordConfirm_input_placeholder": "Saisissez à nouveau votre mot de passe",
+  "telephony_line_answer_voicemail_password_matching_warning": "Le mot de passe saisi ne correspond pas.",
+  "telephony_line_answer_voicemail_password_apply": "Aplicar modificaciones",
+  "telephony_line_answer_voicemail_password_change_success": "Mot de passe modifié avec succès.",
+  "telephony_line_answer_voicemail_password_change_error": "Oups, nous n'arrivons pas à changer le mot de passe de votre répondeur.",
+  "telephony_line_answer_voicemail_password_info": "Mot de passe demandé lors de la consultation des messages depuis l'extérieur uniquement.",
+  "telephony_line_answer_voicemail_password_bulk_all_success": "Le mot de passe a bien été appliqué aux services sélectionnés.",
+  "telephony_line_answer_voicemail_password_bulk_some_success": "Le mot de passe a bien été appliqué à {{ count }} des services sélectionnés.",
+  "telephony_line_answer_voicemail_password_bulk_error": "Le mot de passe n'a pas pu être appliqué au(x) service(s) suivant(s) :",
+  "telephony_line_answer_voicemail_password_bulk_on_error": "Oups ! Une erreur est survenue lors de l'application du mot de passe."
+}
