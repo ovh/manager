@@ -1,3 +1,17 @@
+# [2.0.0](https://github.com/ovh-ux/ng-ovh-contacts/compare/v1.0.1...v2.0.0) (2019-08-14)
+
+
+### Build System
+
+* bump ovh-api-services to v9 ([5a20c04](https://github.com/ovh-ux/ng-ovh-contacts/commit/5a20c04))
+
+
+### BREAKING CHANGES
+
+* major bump of ovh-api-services
+
+
+
 ## [1.0.1](https://github.com/ovh-ux/ng-ovh-contacts/compare/v1.0.0...v1.0.1) (2019-03-22)
 
 
