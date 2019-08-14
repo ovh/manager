@@ -11,10 +11,10 @@ import ngOvhSsoAuth from '@ovh-ux/ng-ovh-sso-auth';
 import ngOvhSsoAuthModalPlugin from '@ovh-ux/ng-ovh-sso-auth-modal-plugin';
 import ngOvhSwimmingPoll from '@ovh-ux/ng-ovh-swimming-poll';
 import ngOvhUiRouterLayout from '@ovh-ux/ng-uirouter-layout';
-import ngOvhUiRouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
 import ngOvhUserPref from '@ovh-ux/ng-ovh-user-pref';
 import ngOvhWebUniverseComponents from '@ovh-ux/ng-ovh-web-universe-components';
 import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
+import ngUirouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
 import ovhContacts from '@ovh-ux/ng-ovh-contacts';
 import ovhManagerCore from '@ovh-ux/manager-core';
 import ovhManagerNavbar from '@ovh-ux/manager-navbar';
@@ -30,6 +30,8 @@ import ovhManagerPccDashboard from './dedicatedCloud/dashboard';
 import ovhManagerPccResourceUpgrade from './dedicatedCloud/resource/upgrade';
 import preload from './components/manager-preload/manager-preload.module';
 
+import dedicatedServerServers from './dedicated/server/servers/servers.module';
+
 Environment.setRegion(__WEBPACK_REGION__);
 
 angular
@@ -40,6 +42,7 @@ angular
     'chart.js',
     'controllers',
     dedicatedCloudDatacenterDrp,
+    dedicatedServerServers,
     dedicatedUniverseComponents,
     'directives',
     errorPage,
@@ -63,12 +66,12 @@ angular
     ngOvhSsoAuthModalPlugin,
     ngOvhSwimmingPoll,
     ngOvhUiRouterLayout,
-    ngOvhUiRouterLineProgress,
     ngOvhUserPref,
     ngOvhWebUniverseComponents,
     'ngRoute',
     'ngSanitize',
     ngTranslateAsyncLoader,
+    ngUirouterLineProgress,
     'oui',
     'ovh-angular-export-csv',
     'ovh-angular-pagination-front',
@@ -153,9 +156,6 @@ angular
     ROUTABLE_BLOCK: /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\/(\d|[1-2]\d|3[0-2]))$/,
     ROUTABLE_IP: /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/,
     ROUTABLE_BLOCK_OR_IP: /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\/(\d|[1-2]\d|3[0-2]))?$/,
-  })
-  .config((BillingVantivConfiguratorProvider, BILLING_VANTIV) => {
-    BillingVantivConfiguratorProvider.setScriptUrl(BILLING_VANTIV.SCRIPTS.PROD);
   })
   .run((ssoAuthentication, User) => {
     ssoAuthentication.login().then(() => User.getUser());

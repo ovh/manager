@@ -174,7 +174,7 @@
   "autorenew_service_EMAIL_DOMAIN_terminate_procedure": "Receberá por e-mail o procedimento de encerramento do seu MX Plan, e assim que o confirmar, a eliminação será imediata.",
   "autorenew_service_EMAIL_DOMAIN_terminate_success": "O seu pedido de encerramento do seu MX Plan foi tomado em conta. Receberá em breve um e-mail com o procedimento.",
   "autorenew_service_EMAIL_DOMAIN_terminate_error": "Ocorreu um erro aquando do pedido de eliminação do seu MX Plan:",
-  "autorenew_service_activate_confirm": "Deseja ativar a renovação automática dos serviços indicados?",
+  "autorenew_service_activate_confirm": "Deseja ativar a renovação automática para a sua conta?",
   "autorenew_service_activate_success": "A renovação automática acaba de ser ativada com sucesso para os serviços indicados.",
   "autorenew_service_active_title": "Ativar a renovação automática",
   "autorenew_service_activate_alert": "Configurou a renovação automática para um dos seus serviços. Porém, não autorizou esta opção.",

@@ -27,13 +27,15 @@
                                   data-disabled="server.isExpired"></oui-header-tabs-item>
             <oui-header-tabs-item data-text="{{:: 'server_tab_ftp_backup' | translate }}"
                                   data-state="app.dedicated.server.ftpBackup"
-                                  data-disabled="server.isExpired"></oui-header-tabs-item>
+                                  data-disabled="server.isExpired"
+                                  data-ng-if="worldPart !== 'US'"></oui-header-tabs-item>
             <oui-header-tabs-item data-text="{{:: 'server_tab_intervention' | translate }}"
                                   data-state="app.dedicated.server.intervention"
                                   data-disabled="server.isExpired"></oui-header-tabs-item>
             <oui-header-tabs-item data-text="{{:: 'server_tab_firewall' | translate }}"
                                   data-state="app.dedicated.server.firewall"
-                                  data-disabled="server.isExpired"></oui-header-tabs-item>
+                                  data-disabled="server.isExpired"
+                                  data-ng-if="worldPart !== 'US'"></oui-header-tabs-item>
             <oui-header-tabs-item data-text="{{:: 'server_tab_ipmi' | translate }}"
                                   data-state="app.dedicated.server.ipmi"
                                   data-disabled="server.isExpired"></oui-header-tabs-item>

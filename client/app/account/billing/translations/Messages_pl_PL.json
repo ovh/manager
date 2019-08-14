@@ -174,7 +174,7 @@
   "autorenew_service_EMAIL_DOMAIN_terminate_procedure": "Otrzymasz e-mail z opisem procedury zamknięcia usługi MX Plan. ",
   "autorenew_service_EMAIL_DOMAIN_terminate_success": "Zlecenie zamknięcia usługi MX Plan zostało zarejestrowane. Otrzymasz e-mail z opisem procedury zamknięcia usługi MX Plan. ",
   "autorenew_service_EMAIL_DOMAIN_terminate_error": "Wystąpił błąd podczas zlecania zamknięcia usługi MX Plan:",
-  "autorenew_service_activate_confirm": "Czy chcesz włączyć automatyczne odnowienie dla wybranych usług?",
+  "autorenew_service_activate_confirm": "Czy chcesz włączyć automatyczne odnowienie dla Twojego konta?",
   "autorenew_service_activate_success": "Automatyczne odnowienie zostało włączone dla wybranych usług.",
   "autorenew_service_active_title": "Włącz automatyczne odnowienie",
   "autorenew_service_activate_alert": "Posiadasz co najmniej jedną usługę w trybie automatycznego odnowienia, ale nie zatwierdziłeś jeszcze tej opcji.",

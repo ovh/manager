@@ -1,3 +1,71 @@
+<a name="10.24.1"></a>
+## [10.24.1](https://github.com/ovh-ux/ovh-manager-dedicated/compare/v10.24.0...v10.24.1) (2019-08-12)
+
+
+### Bug Fixes
+
+* **dedicated.server:** prevent api calls ([8c32e8d](https://github.com/ovh-ux/ovh-manager-dedicated/commit/8c32e8d))
+
+
+
+<a name="10.24.0"></a>
+# [10.24.0](https://github.com/ovh-ux/ovh-manager-dedicated/compare/v10.23.0...v10.24.0) (2019-08-12)
+
+
+### Features
+
+* **billing.payment.method.add:** remove billingContactId ([#1285](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1285)) ([68a0149](https://github.com/ovh-ux/ovh-manager-dedicated/commit/68a0149))
+
+
+
+<a name="10.23.0"></a>
+# [10.23.0](https://github.com/ovh-ux/ovh-manager-dedicated/compare/v10.22.2...v10.23.0) (2019-08-12)
+
+
+### Bug Fixes
+
+* **account.otrs:** change status text translation ([#1286](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1286)) ([5ce9ed9](https://github.com/ovh-ux/ovh-manager-dedicated/commit/5ce9ed9))
+* update manager urls ([#1316](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1316)) ([a2750dc](https://github.com/ovh-ux/ovh-manager-dedicated/commit/a2750dc))
+* **account.user.ssh:** update url to cloud ssh addition ([ab6a731](https://github.com/ovh-ux/ovh-manager-dedicated/commit/ab6a731))
+* **billing.autorenew:** allow autorenew activation for some subs ([#1304](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1304)) ([fc4d082](https://github.com/ovh-ux/ovh-manager-dedicated/commit/fc4d082))
+* **error:** prevent loop when user is not authenticated ([#1300](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1300)) ([848cb1a](https://github.com/ovh-ux/ovh-manager-dedicated/commit/848cb1a))
+* **i18n:** add missing translations [CDS 10] ([2a93004](https://github.com/ovh-ux/ovh-manager-dedicated/commit/2a93004))
+* **i18n:** add missing translations [CDS 6] ([4ae29b4](https://github.com/ovh-ux/ovh-manager-dedicated/commit/4ae29b4))
+* **i18n:** add missing translations [CDS 7] ([e363272](https://github.com/ovh-ux/ovh-manager-dedicated/commit/e363272))
+* **i18n:** add missing translations [CDS 8] ([32c1c30](https://github.com/ovh-ux/ovh-manager-dedicated/commit/32c1c30))
+* **i18n:** add missing translations [CDS 9] ([be94b0b](https://github.com/ovh-ux/ovh-manager-dedicated/commit/be94b0b))
+
+
+### Features
+
+* **app:** update and use error page ([#1279](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1279)) ([62a9b36](https://github.com/ovh-ux/ovh-manager-dedicated/commit/62a9b36))
+* **dedicated.server:** add upgrade link with tracking ([#1248](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1248)) ([e07d86e](https://github.com/ovh-ux/ovh-manager-dedicated/commit/e07d86e))
+* **dedicated.server:** disable firewall and backup section in US ([#1244](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1244)) ([dc539b3](https://github.com/ovh-ux/ovh-manager-dedicated/commit/dc539b3))
+* add [@ovh-ux](https://github.com/ovh-ux)/ng-ovh-request-tagger ([#1321](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1321)) ([9ccaabb](https://github.com/ovh-ux/ovh-manager-dedicated/commit/9ccaabb))
+* use ng-ui-router-line-progress ([#1270](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1270)) ([8030418](https://github.com/ovh-ux/ovh-manager-dedicated/commit/8030418))
+
+
+
+<a name="10.22.2"></a>
+## [10.22.2](https://github.com/ovh-ux/ovh-manager-dedicated/compare/v10.22.1...v10.22.2) (2019-08-12)
+
+
+### Bug Fixes
+
+* **sidebar:** use nasha from cloud manager ([#1315](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1315)) ([bccc56f](https://github.com/ovh-ux/ovh-manager-dedicated/commit/bccc56f))
+
+
+
+<a name="10.22.1"></a>
+## [10.22.1](https://github.com/ovh-ux/ovh-manager-dedicated/compare/v10.22.0...v10.22.1) (2019-08-09)
+
+
+### Bug Fixes
+
+* **deps:** upgrade ng-ovh-otrs to v7.1.10 ([#1318](https://github.com/ovh-ux/ovh-manager-dedicated/issues/1318)) ([0c6de32](https://github.com/ovh-ux/ovh-manager-dedicated/commit/0c6de32))
+
+
+
 <a name="10.22.0"></a>
 # [10.22.0](https://github.com/ovh-ux/ovh-manager-dedicated/compare/v10.21.3...v10.22.0) (2019-08-07)
 

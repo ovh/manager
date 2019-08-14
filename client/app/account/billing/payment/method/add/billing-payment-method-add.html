@@ -25,22 +25,15 @@
             <oui-stepper data-on-finish="$ctrl.onPaymentMethodAddStepperFinish()">
                 <!-- Choose payment method type step -->
                 <oui-step-form data-header="{{ :: 'billing_payment_method_add_choose_type' | translate }}"
-                               data-submit-text="{{ $ctrl.addSteps.paymentMethodType.isLastStep() ? 'common_add' : 'common_next' | translate }}">
+                               data-submit-text="{{ $ctrl.addSteps.paymentMethodType.isLastStep() ? 'common_add' : 'common_next' | translate }}"
+                               data-disabled="$ctrl.loading.paymentMethodTypes">
 
-                    <div class="row"
-                         data-ng-repeat="paymentMethodTypeChunk in $ctrl.chunkedPaymentMethodTypes track by $index">
-                        <div class="mb-3"
-                             data-ng-class="['col-md-' + (12 / $ctrl.chunkSize)]"
-                             data-ng-repeat="paymentMethodType in paymentMethodTypeChunk track by $index">
-                            <oui-radio data-thumbnail
-                                       data-value="paymentMethodType"
-                                       data-model="$ctrl.model.selectedPaymentMethodType"
-                                       data-on-change="$ctrl.model.setAsDefault = false"
-                                       data-required="true">
-                                <span data-ng-bind="paymentMethodType.paymentType.text"></span>
-                            </oui-radio>
-                        </div>
-                    </div>
+                    <ovh-payment-method-available-types
+                        data-selected-payment-type="$ctrl.model.selectedPaymentMethodType"
+                        data-on-selected-payment-type-change="$ctrl.model.setAsDefault = false"
+                        data-on-loaded="$ctrl.loading.paymentMethodTypes = false"
+                        data-on-load-error="$ctrl.onAvailablePaymentMethodsLoadError.bind($ctrl)">
+                    </ovh-payment-method-available-types>
 
                     <div data-ng-if="$ctrl.model.selectedPaymentMethodType">
                         <div data-ng-switch="$ctrl.model.selectedPaymentMethodType.paymentType.value">
@@ -112,21 +105,6 @@
                     <p data-translate="billing_payment_method_add_selected_original_credit_card_redirect"></p>
                 </oui-step-form> <!-- End of Legacy bank account owner step -->
 
-                <!-- Billing contact -->
-                <oui-step-form data-header="{{ :: 'billing_payment_method_add_billing_address' | translate }}"
-                               data-submit-text="{{ $ctrl.addSteps.billingAddress.isLastStep() ? 'common_add' : 'common_next' | translate }}"
-                               data-position="{{ $ctrl.addSteps.billingAddress.position }}"
-                               data-navigation="!$ctrl.addSteps.billingAddress.isLoading"
-                               data-ng-if="$ctrl.addSteps.billingAddress.isVisible()">
-
-                    <div data-ui-view="billingAddress"></div>
-
-                    <p data-ng-if="$ctrl.addSteps.billingAddress.isLastStep()"
-                       data-translate="billing_payment_method_add_selected_common_redirect">
-                    </p>
-
-                </oui-step-form> <!-- End of Billing contact -->
-
                 <!-- Payment method -->
                 <oui-step-form data-header="{{ :: 'billing_payment_method_add_payment_method' | translate }}"
                                data-submit-text="{{ $ctrl.addSteps.paymentMethod.isLastStep() ? 'common_add' : 'common_next' | translate }}"
@@ -134,8 +112,10 @@
                                data-on-focus="$ctrl.addSteps.paymentMethod.onFocus()"
                                data-ng-if="$ctrl.addSteps.paymentMethod.isVisible()">
 
-                    <!-- Keep this id otherwise vantiv could not replace it by its iframe -->
-                    <div id="eProtectIframe"></div>
+                    <ovh-payment-method-register
+                        data-payment-method-type="$ctrl.model.selectedPaymentMethodType"
+                        data-on-init="$ctrl.onPaymentMethodRegisterInitialized.bind($ctrl)">
+                    </ovh-payment-method-register>
 
                 </oui-step-form> <!-- End of Payment method -->
             </oui-stepper>

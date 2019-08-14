@@ -198,7 +198,7 @@ angular.module('App').controller('ServerCtrl', (
     $q
       .all({
         user: User.getUser(),
-        paymentIds: User.getValidPaymentMeansIds(),
+        paymentIds: coreConfig.getRegion() !== 'US' ? User.getValidPaymentMeansIds() : $q.when([]),
       })
       .then((data) => {
         $scope.user = data.user;
