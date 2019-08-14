@@ -17,11 +17,11 @@ Then inject actionsMenu module in your module declaration:
 
 ```js
 import angular from 'angular';
-import '@ovh-ux/ng-ovh-responsive-popover';
+import '@ovh-ux/ng-ovh-actions-menu';
 
 angular
   .module('myApp', [
-    'ngOvhResponsivePopover',
+    'ngOvhActionsMenu',
   ]);
 ```
 
