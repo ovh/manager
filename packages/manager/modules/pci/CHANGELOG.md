@@ -1,3 +1,12 @@
+## [1.5.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@1.5.0...@ovh-ux/manager-pci@1.5.1) (2019-08-14)
+
+
+### Bug Fixes
+
+* **pci.project.edit:** display check if project is default one ([#1198](https://github.com/ovh-ux/manager/issues/1198)) ([ff26a34](https://github.com/ovh-ux/manager/commit/ff26a34))
+
+
+
 # [1.5.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@1.4.5...@ovh-ux/manager-pci@1.5.0) (2019-08-13)
 
 
