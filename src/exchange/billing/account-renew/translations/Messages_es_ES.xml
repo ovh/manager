@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+<!-- RENEW -->
+   <translation id="exchange_update_billing_button_title" qtlid="521685">Configuración de la renovación</translation>
+   <translation id="exchange_update_billing_action_title" qtlid="98324">Período de renovación</translation>
+   <translation id="exchange_update_billing_validation_title" qtlid="33802">Validación</translation>
+   <translation id="exchange_update_billing_periode_intro" qtlid="190966">Elija la frecuencia para la renovación automática de cada cuenta. <br />Se aplicará a partir de la siguiente renovación.</translation>
+   <translation id="exchange_update_billing_actions_label" qtlid="72809">Acciones</translation>
+   <translation id="exchange_update_billing_email_label" qtlid="137244">Cuenta de correo</translation>
+   <translation id="exchange_update_billing_expiration_date_label" qtlid="30406">Expiración</translation>
+   <translation id="exchange_update_billing_current_periode_label" qtlid="190979">Valor actual</translation>
+   <translation id="exchange_update_billing_periode_label" qtlid="168172">Renovación</translation>
+   <translation id="exchange_update_billing_header_new_periode" qtlid="190992">Nuevo periodo</translation>
+   <translation id="exchange_update_billing_periode_action_MONTHLY" qtlid="526336">Modifier en "Mensuelle"</translation>
+   <translation id="exchange_update_billing_periode_action_YEARLY" qtlid="526349">Modifier en "Annuelle"</translation>
+   <translation id="exchange_update_billing_periode_action_DELETE_AT_EXPIRATION" qtlid="526362">Modifier en "Expire à terme"</translation>
+   <translation id="exchange_update_billing_periode_value_MONTHLY" qtlid="8818">Mensual</translation>
+   <translation id="exchange_update_billing_periode_value_YEARLY" qtlid="213258">Anual</translation>
+   <translation id="exchange_update_billing_periode_value_DELETE_AT_EXPIRATION" qtlid="201406">Expira al vencimiento</translation>
+   <translation id="exchange_update_billing_periode_delete_warning" qtlid="211593">Atención, al seleccionar esta opción, el servicio caducará en la fecha de vencimiento. Los datos de la cuenta se perderán y no podrá recuperarlos posteriormente.</translation>
+   <translation id="exchange_update_billing_periode_resume" qtlid="191005">Va a cambiar el período de renovación de sus cuentas:</translation>
+   <translation id="exchange_update_billing_periode_success" qtlid="526375">La période de renouvellement des comptes sélectionnés a été mise à jour.</translation>
+   <translation id="exchange_update_billing_periode_partial" qtlid="526388">Certaines périodes de renouvellement n'ont pas été mises à jour.</translation>
+   <translation id="exchange_update_billing_periode_failure" qtlid="526401">Une erreur est survenue lors de la mise à jour du renouvellement des comptes</translation>
+</translations>

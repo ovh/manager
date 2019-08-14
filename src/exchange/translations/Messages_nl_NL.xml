@@ -353,27 +353,6 @@
    <translation id="exchange_resilitation_cancel_action_intro" qtlid="201367">De beëindiging van de Exchange dienst "{0}" is geprogrammeerd op de vervaldatum. <br /><br />Weet u zeker dat u deze beëindiging wilt annuleren? De dienst wordt dan automatisch verlengd.</translation>
    <translation id="exchange_resilitation_cancel_action_confirmation" qtlid="201380">U staat op het punt om de beëindiging van de dienst "{0}" te annuleren. <br />Wilt u doorgaan met deze bewerking? <br /> De dienst zal dan automatisch worden verlengd.</translation>
    <translation id="exchange_resilitation_cancel_action_button" qtlid="4070">Doorgaan</translation>
-
-<!-- RENEW -->
-   <translation id="exchange_update_billing_button_title" qtlid="521685">Configuratie van de verlenging</translation>
-   <translation id="exchange_update_billing_action_title" qtlid="98324">Verlengingsperiode</translation>
-   <translation id="exchange_update_billing_periode_intro" qtlid="190966">Selecteer de gewenste periode voor de automatische verlenging van elk account. <br /> Dit gaat in vanaf de volgende verlenging.</translation>
-   <translation id="exchange_update_billing_expiration_date_label" qtlid="30406">Vervaldatum</translation>
-   <translation id="exchange_update_billing_current_periode_label" qtlid="190979">Huidige waarde</translation>
-   <translation id="exchange_update_billing_periode_label" qtlid="168172">Verlenging</translation>
-   <translation id="exchange_update_billing_header_1Y" qtlid="213258">Jaarlijks</translation>
-   <translation id="exchange_update_billing_header_1M" qtlid="8818">Maandelijks</translation>
-   <translation id="exchange_update_billing_header_terminate" qtlid="209177">Geen</translation>
-   <translation id="exchange_update_billing_header_new_periode" qtlid="190992">Nieuwe periode</translation>
-   <translation id="exchange_update_billing_periode_value_MONTHLY" qtlid="8818">Maandelijks</translation>
-   <translation id="exchange_update_billing_periode_value_YEARLY" qtlid="213258">Jaarlijks</translation>
-   <translation id="exchange_update_billing_periode_value_DELETE_AT_EXPIRATION" qtlid="201406">Vervalt op de einddatum</translation>
-   <translation id="exchange_update_billing_periode_delete_warning" qtlid="211593">Let op! Deze keuze houdt in dat de dienst uiteindelijk zal vervallen en de gegevens verloren zullen gaan. Het is dan niet meer mogelijk om de gegevens van de account te herstellen.</translation>
-   <translation id="exchange_update_billing_periode_resume" qtlid="191005">U gaat de verlengingsperiode van uw rekeningen wijzigen:</translation>
-   <translation id="exchange_update_billing_periode_success" qtlid="191018">De wijziging van de automatische verlengingsperiode werd uitgevoerd.</translation>
-   <translation id="exchange_update_billing_periode_partial" qtlid="191031">Sommige van de verlengingsperiode wijzigingen zijn mislukt.</translation>
-   <translation id="exchange_update_billing_periode_failure" qtlid="191044">Er is een fout opgetreden tijdens het laden van de automatische verlengingsperiode.</translation>
-
 <!-- ########################################## -->
 <!-- DOMAIN -->
    <translation id="exchange_tab_domain_no_domains_1" qtlid="137439">Voeg een domein toe om e-mail exchange accounts aan te maken. Klik</translation>

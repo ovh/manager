@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+<!-- RENEW -->
+   <translation id="exchange_update_billing_button_title" qtlid="521685">Configuratie van de verlenging</translation>
+   <translation id="exchange_update_billing_action_title" qtlid="98324">Verlengingsperiode</translation>
+   <translation id="exchange_update_billing_validation_title" qtlid="33802">Validatie</translation>
+   <translation id="exchange_update_billing_periode_intro" qtlid="190966">Selecteer de gewenste periode voor de automatische verlenging van elk account. <br /> Dit gaat in vanaf de volgende verlenging.</translation>
+   <translation id="exchange_update_billing_actions_label" qtlid="72809">Handelingen</translation>
+   <translation id="exchange_update_billing_email_label" qtlid="137244">E-mailaccount</translation>
+   <translation id="exchange_update_billing_expiration_date_label" qtlid="30406">Vervaldatum</translation>
+   <translation id="exchange_update_billing_current_periode_label" qtlid="190979">Huidige waarde</translation>
+   <translation id="exchange_update_billing_periode_label" qtlid="168172">Verlenging</translation>
+   <translation id="exchange_update_billing_header_new_periode" qtlid="190992">Nieuwe periode</translation>
+   <translation id="exchange_update_billing_periode_action_MONTHLY" qtlid="526336">Modifier en "Mensuelle"</translation>
+   <translation id="exchange_update_billing_periode_action_YEARLY" qtlid="526349">Modifier en "Annuelle"</translation>
+   <translation id="exchange_update_billing_periode_action_DELETE_AT_EXPIRATION" qtlid="526362">Modifier en "Expire à terme"</translation>
+   <translation id="exchange_update_billing_periode_value_MONTHLY" qtlid="8818">Maandelijks</translation>
+   <translation id="exchange_update_billing_periode_value_YEARLY" qtlid="213258">Jaarlijks</translation>
+   <translation id="exchange_update_billing_periode_value_DELETE_AT_EXPIRATION" qtlid="201406">Vervalt op de einddatum</translation>
+   <translation id="exchange_update_billing_periode_delete_warning" qtlid="211593">Let op! Deze keuze houdt in dat de dienst uiteindelijk zal vervallen en de gegevens verloren zullen gaan. Het is dan niet meer mogelijk om de gegevens van de account te herstellen.</translation>
+   <translation id="exchange_update_billing_periode_resume" qtlid="191005">U gaat de verlengingsperiode van uw rekeningen wijzigen:</translation>
+   <translation id="exchange_update_billing_periode_success" qtlid="526375">La période de renouvellement des comptes sélectionnés a été mise à jour.</translation>
+   <translation id="exchange_update_billing_periode_partial" qtlid="526388">Certaines périodes de renouvellement n'ont pas été mises à jour.</translation>
+   <translation id="exchange_update_billing_periode_failure" qtlid="526401">Une erreur est survenue lors de la mise à jour du renouvellement des comptes</translation>
+</translations>

@@ -353,27 +353,6 @@
    <translation id="exchange_resilitation_cancel_action_intro" qtlid="201367">Die Kündigung der Exchange Dienstleistung "{0}" ist für deren Ablaufdatum programmiert. <br /><br />Sind Sie sicher, dass Sie diese Kündigung zurücknehmen möchten? Die Dienstleistung wird dann auf automatische Verlängerung umgestellt.</translation>
    <translation id="exchange_resilitation_cancel_action_confirmation" qtlid="201380">Sie sind im Begriff, die Kündigung der Dienstleistung "{0}" zurückzunehmen. <br />Möchten Sie diese Operation durchführen? <br /> Die Dienstleistung wird dann auf automatische Verlängerung umgestellt.</translation>
    <translation id="exchange_resilitation_cancel_action_button" qtlid="4070">Weiter</translation>
-
-<!-- RENEW -->
-   <translation id="exchange_update_billing_button_title" qtlid="521685">Verlängerung konfigurieren</translation>
-   <translation id="exchange_update_billing_action_title" qtlid="98324">Verlängerungszeitraum</translation>
-   <translation id="exchange_update_billing_periode_intro" qtlid="190966">Wählen Sie den gewünschten Zeitraum für die automatische Verlängerung jedes Accounts aus. <br />Die Änderung wird bei der nächsten Verlängerung aktiv.</translation>
-   <translation id="exchange_update_billing_expiration_date_label" qtlid="30406">Ablaufdatum</translation>
-   <translation id="exchange_update_billing_current_periode_label" qtlid="190979">Derzeitiger Wert</translation>
-   <translation id="exchange_update_billing_periode_label" qtlid="168172">Verlängerung</translation>
-   <translation id="exchange_update_billing_header_1Y" qtlid="213258">Jährlich</translation>
-   <translation id="exchange_update_billing_header_1M" qtlid="8818">Monatlich</translation>
-   <translation id="exchange_update_billing_header_terminate" qtlid="209177">Keine</translation>
-   <translation id="exchange_update_billing_header_new_periode" qtlid="190992">Neuer Zeitraum</translation>
-   <translation id="exchange_update_billing_periode_value_MONTHLY" qtlid="8818">Monatlich</translation>
-   <translation id="exchange_update_billing_periode_value_YEARLY" qtlid="213258">Jährlich</translation>
-   <translation id="exchange_update_billing_periode_value_DELETE_AT_EXPIRATION" qtlid="201406">Läuft ab zum Ablaufdatum</translation>
-   <translation id="exchange_update_billing_periode_delete_warning" qtlid="211593">Wichtig: Dies führt dazu, dass die Dienstleistung abläuft und die dazugehörigen Daten gelöscht werden. Es ist danach nicht mehr möglich, die Daten des Accounts wiederherzustellen!</translation>
-   <translation id="exchange_update_billing_periode_resume" qtlid="191005">Sie sind im Begriff, den Verlängerungszeitraum Ihrer Accounts zu ändern:</translation>
-   <translation id="exchange_update_billing_periode_success" qtlid="191018">Die Änderung des Zeitraums der automatischen Verlängerung wurde erfolgreich durchgeführt.</translation>
-   <translation id="exchange_update_billing_periode_partial" qtlid="191031">Ein Teil der Änderungen am Verlängerungszeitraum ist gescheitert.</translation>
-   <translation id="exchange_update_billing_periode_failure" qtlid="191044">Beim Laden des Zeitraums der automatischen Verlängerung ist ein Fehler aufgetreten.</translation>
-
 <!-- ########################################## -->
 <!-- DOMAIN -->
    <translation id="exchange_tab_domain_no_domains_1" qtlid="137439">Fügen Sie eine Domain hinzu, um Exchange E-Mail-Accounts zu erstellen. Klicken Sie</translation>
@@ -505,7 +484,7 @@
    <translation id="exchange_ACTION_add_account_legal_warning" qtlid="209099">Ich möchte, dass OVH die sofortige Lieferung der Dienstleistung nach Validierung der Bestellung durchführt, und bestätige, dass ich in diesem Fall auf mein Widerrufsrecht verzichte.</translation>
    <translation id="exchange_ACTION_add_account_title" qtlid="143225">Einen Exchange Account hinzufügen</translation>
    <translation id="exchange_ACTION_add_account_step1_email_label" qtlid="137244">E-Mail-Account</translation>
-   <translation id="exchange_ACTION_add_account_button" qtlid="21487">Einen Account hinzufügen</translation>
+   <translation id="exchange_ACTION_add_account_button" qtlid="21487">Account hinzufügen</translation>
    <translation id="exchange_ACTION_add_account_step1_first_name_label" qtlid="23323">Vorname</translation>
    <translation id="exchange_ACTION_add_account_step1_last_name_label" qtlid="3818">Name</translation>
    <translation id="exchange_ACTION_add_account_step1_display_name_label" qtlid="23515">Anzeigename</translation>

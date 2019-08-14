@@ -355,27 +355,6 @@ Valitse: <br /> Tyyppi: <span class="bold">A</span> <br /> Aliverkkotunnus: <spa
    <translation id="exchange_resilitation_cancel_action_intro" qtlid="201367">Exchange-palvelun "{0}" irtisanominen on ohjelmoitu vanhentumispäiväksi. <br /><br />Oletko varma, että haluat perua irtisanomisen? Palvelu siirtyy sen seurauksena automaattiseen uusintaan.</translation>
    <translation id="exchange_resilitation_cancel_action_confirmation" qtlid="201380">Olet perumassa palvelun "{0}" irtisanomista. <br />Oletko varma, että haluat jatkaa operaatiota? <br /> Palvelu siirtyy sen seurauksena automaattiseen uusintaan.</translation>
    <translation id="exchange_resilitation_cancel_action_button" qtlid="4070">Jatka</translation>
-
-<!-- RENEW -->
-   <translation id="exchange_update_billing_button_title" qtlid="521685">Configuration du renouvellement</translation>
-   <translation id="exchange_update_billing_action_title" qtlid="98324">Uusinta-ajanjakso</translation>
-   <translation id="exchange_update_billing_periode_intro" qtlid="190966">Valitse haluamasi uudistamisväli automaattista uudistamista varten jokaiselle tilille. <br />Tätä sovelletaan seuraavasta uudistamisesta alkaen.</translation>
-   <translation id="exchange_update_billing_expiration_date_label" qtlid="30406">Vanhenee</translation>
-   <translation id="exchange_update_billing_current_periode_label" qtlid="190979">Nykyinen arvo</translation>
-   <translation id="exchange_update_billing_periode_label" qtlid="168172">Uusinta</translation>
-   <translation id="exchange_update_billing_header_1Y" qtlid="213258">Vuosittain</translation>
-   <translation id="exchange_update_billing_header_1M" qtlid="8818">Kerran kuukaudessa</translation>
-   <translation id="exchange_update_billing_header_terminate" qtlid="209177">Ei</translation>
-   <translation id="exchange_update_billing_header_new_periode" qtlid="190992">Uusi ajanjakso</translation>
-   <translation id="exchange_update_billing_periode_value_MONTHLY" qtlid="8818">Kerran kuukaudessa</translation>
-   <translation id="exchange_update_billing_periode_value_YEARLY" qtlid="213258">Vuosittain</translation>
-   <translation id="exchange_update_billing_periode_value_DELETE_AT_EXPIRATION" qtlid="201406">Erääntyy tilausjakson päätyttyä</translation>
-   <translation id="exchange_update_billing_periode_delete_warning" qtlid="211593">Ota huomioon että tämä valinta aiheuttaa palvelun vanhentumisen ja data menetetään pysyvästi. Datan palautus ei ole mahdollista.</translation>
-   <translation id="exchange_update_billing_periode_resume" qtlid="191005">Olet vaihtamassa automaattisen uudistamisen ajanjaksoa seuraaville tileillesi:</translation>
-   <translation id="exchange_update_billing_periode_success" qtlid="191018">Automaattisen uudistamisen ajanjakso on suoritettu.</translation>
-   <translation id="exchange_update_billing_periode_partial" qtlid="191031">Jotkut uudistamisajanjaksomuutokset ovat virhetilassa.</translation>
-   <translation id="exchange_update_billing_periode_failure" qtlid="191044">Tapahtui virhe ladattaessa automaattista uudistamisajanjaksoa.</translation>
-
 <!-- ########################################## -->
 <!-- DOMAIN -->
    <translation id="exchange_tab_domain_no_domains_1" qtlid="137439">Lisää verkkotunnus luodaksesi Exchange-sähköpostilaatikoita. Klikkaa</translation>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+<!-- RENEW -->
+   <translation id="exchange_update_billing_button_title" qtlid="521685">Verlängerung konfigurieren</translation>
+   <translation id="exchange_update_billing_action_title" qtlid="98324">Verlängerungszeitraum</translation>
+   <translation id="exchange_update_billing_validation_title" qtlid="33802">Validierung</translation>
+   <translation id="exchange_update_billing_periode_intro" qtlid="190966">Wählen Sie den gewünschten Zeitraum für die automatische Verlängerung jedes Accounts aus. <br />Die Änderung wird bei der nächsten Verlängerung aktiv.</translation>
+   <translation id="exchange_update_billing_actions_label" qtlid="72809">Aktionen</translation>
+   <translation id="exchange_update_billing_email_label" qtlid="137244">E-Mail-Account</translation>
+   <translation id="exchange_update_billing_expiration_date_label" qtlid="30406">Ablaufdatum</translation>
+   <translation id="exchange_update_billing_current_periode_label" qtlid="190979">Derzeitiger Wert</translation>
+   <translation id="exchange_update_billing_periode_label" qtlid="168172">Verlängerung</translation>
+   <translation id="exchange_update_billing_header_new_periode" qtlid="190992">Neuer Zeitraum</translation>
+   <translation id="exchange_update_billing_periode_action_MONTHLY" qtlid="526336">Modifier en "Mensuelle"</translation>
+   <translation id="exchange_update_billing_periode_action_YEARLY" qtlid="526349">Modifier en "Annuelle"</translation>
+   <translation id="exchange_update_billing_periode_action_DELETE_AT_EXPIRATION" qtlid="526362">Modifier en "Expire à terme"</translation>
+   <translation id="exchange_update_billing_periode_value_MONTHLY" qtlid="8818">Monatlich</translation>
+   <translation id="exchange_update_billing_periode_value_YEARLY" qtlid="213258">Jährlich</translation>
+   <translation id="exchange_update_billing_periode_value_DELETE_AT_EXPIRATION" qtlid="201406">Läuft ab zum Ablaufdatum</translation>
+   <translation id="exchange_update_billing_periode_delete_warning" qtlid="211593">Wichtig: Dies führt dazu, dass die Dienstleistung abläuft und die dazugehörigen Daten gelöscht werden. Es ist danach nicht mehr möglich, die Daten des Accounts wiederherzustellen!</translation>
+   <translation id="exchange_update_billing_periode_resume" qtlid="191005">Sie sind im Begriff, den Verlängerungszeitraum Ihrer Accounts zu ändern:</translation>
+   <translation id="exchange_update_billing_periode_success" qtlid="526375">La période de renouvellement des comptes sélectionnés a été mise à jour.</translation>
+   <translation id="exchange_update_billing_periode_partial" qtlid="526388">Certaines périodes de renouvellement n'ont pas été mises à jour.</translation>
+   <translation id="exchange_update_billing_periode_failure" qtlid="526401">Une erreur est survenue lors de la mise à jour du renouvellement des comptes</translation>
+</translations>

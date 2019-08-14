@@ -353,27 +353,6 @@
    <translation id="exchange_resilitation_cancel_action_intro" qtlid="201367">Exchange paslaugos "{0}" panaikinimas numatytas galiojimo pabaigos dieną. <br /><br />Ar tikrai norite atšaukti nutraukimą? Atšaukus nutraukimą, paslauga bus atnaujinta automatiškai.</translation>
    <translation id="exchange_resilitation_cancel_action_confirmation" qtlid="201380">Tuojau atšauksite paslaugos "{0}" naikinimą. <br />Ar norite tęsti? <br /> Patvirtinus paslauga bus atnaujinama automatiškai.</translation>
    <translation id="exchange_resilitation_cancel_action_button" qtlid="4070">Tęsti</translation>
-
-<!-- RENEW -->
-   <translation id="exchange_update_billing_button_title" qtlid="521685">Configuration du renouvellement</translation>
-   <translation id="exchange_update_billing_action_title" qtlid="98324">Atnaujinimo periodas</translation>
-   <translation id="exchange_update_billing_periode_intro" qtlid="190966">Pasirinkite pageidaujamą periodiškumą automatiniam kiekvienos paskyros atnaujinimui. <br />Šis laikotarpis įsigalios nuo kito atnaujinimo datos.</translation>
-   <translation id="exchange_update_billing_expiration_date_label" qtlid="30406">Galioja iki</translation>
-   <translation id="exchange_update_billing_current_periode_label" qtlid="190979">Esama vertė</translation>
-   <translation id="exchange_update_billing_periode_label" qtlid="168172">Atnaujinimas</translation>
-   <translation id="exchange_update_billing_header_1Y" qtlid="213258">Kartą per metus</translation>
-   <translation id="exchange_update_billing_header_1M" qtlid="8818">Kas mėnesį</translation>
-   <translation id="exchange_update_billing_header_terminate" qtlid="209177">None</translation>
-   <translation id="exchange_update_billing_header_new_periode" qtlid="190992">Naujas laikotarpis</translation>
-   <translation id="exchange_update_billing_periode_value_MONTHLY" qtlid="8818">Kas mėnesį</translation>
-   <translation id="exchange_update_billing_periode_value_YEARLY" qtlid="213258">Kartą per metus</translation>
-   <translation id="exchange_update_billing_periode_value_DELETE_AT_EXPIRATION" qtlid="201406">Nustos galioti pagal galiojimo laiką</translation>
-   <translation id="exchange_update_billing_periode_delete_warning" qtlid="211593">Dėmesio! Paslauga nustos galioti numatytą galiojimo pabaigos datą, po kurios visi duomenys bus pašalinti. Jūs nebegalėsite atkurti paskyros duomenų.</translation>
-   <translation id="exchange_update_billing_periode_resume" qtlid="191005">Jūs keisite savo paskyrų atnaujinimo laikotarpį:</translation>
-   <translation id="exchange_update_billing_periode_success" qtlid="191018">Automatinio atnaujinimo laikotarpis sėkmingai pakeistas.</translation>
-   <translation id="exchange_update_billing_periode_partial" qtlid="191031">Įvyko klaida keičiant automatinio atnaujinimo laikotarpį.</translation>
-   <translation id="exchange_update_billing_periode_failure" qtlid="191044">Įvyko klaida įkeliant automatinio atnaujinimo laikotarpį.</translation>
-
 <!-- ########################################## -->
 <!-- DOMAIN -->
    <translation id="exchange_tab_domain_no_domains_1" qtlid="137439">Norėdami sukurti Exchange el. pašto paskyras, pridėkite domeną. Spragtelėkite</translation>

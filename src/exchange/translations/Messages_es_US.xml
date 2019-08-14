@@ -353,27 +353,6 @@
    <translation id="exchange_resilitation_cancel_action_intro" qtlid="201367">La baja del servicio Exchange «{0}» está programada para la fecha de expiración. <br /><br />¿Seguro que desea cancelar dicha baja? En ese caso, el servicio pasará a renovación automática.</translation>
    <translation id="exchange_resilitation_cancel_action_confirmation" qtlid="201380">Va a cancelar la baja del servicio «{0}». <br />¿Desea realizar dicha operación? <br /> En ese caso, el servicio pasará a renovación automática.</translation>
    <translation id="exchange_resilitation_cancel_action_button" qtlid="4070">Continuar</translation>
-
-<!-- RENEW -->
-   <translation id="exchange_update_billing_button_title" qtlid="521685">Configuration du renouvellement</translation>
-   <translation id="exchange_update_billing_action_title" qtlid="98324">Période de renouvellement</translation>
-   <translation id="exchange_update_billing_periode_intro" qtlid="190966">Seleccione la periodicidad deseada para la renovación automática de cada cuenta. <br />Esta se aplicará a partir de la siguiente renovación.</translation>
-   <translation id="exchange_update_billing_expiration_date_label" qtlid="30406">Expiración</translation>
-   <translation id="exchange_update_billing_current_periode_label" qtlid="190979">Valor actual</translation>
-   <translation id="exchange_update_billing_periode_label" qtlid="168172">Renovación</translation>
-   <translation id="exchange_update_billing_header_1Y" qtlid="213258">Anual</translation>
-   <translation id="exchange_update_billing_header_1M" qtlid="8818">Mensuelle</translation>
-   <translation id="exchange_update_billing_header_terminate" qtlid="209177">Ninguna</translation>
-   <translation id="exchange_update_billing_header_new_periode" qtlid="190992">Nuevo período</translation>
-   <translation id="exchange_update_billing_periode_value_MONTHLY" qtlid="8818">Mensuelle</translation>
-   <translation id="exchange_update_billing_periode_value_YEARLY" qtlid="213258">Anual</translation>
-   <translation id="exchange_update_billing_periode_value_DELETE_AT_EXPIRATION" qtlid="201406">Expira al vencimiento</translation>
-   <translation id="exchange_update_billing_periode_delete_warning" qtlid="211593">Atención, esta acción implica que el servicio expirará en la fecha de vencimiento y los datos se borrarán, por lo que será imposible recuperarlos después.</translation>
-   <translation id="exchange_update_billing_periode_resume" qtlid="191005">Va a cambiar el período de renovación de sus cuentas:</translation>
-   <translation id="exchange_update_billing_periode_success" qtlid="191018">El cambio del período de renovación automática se ha realizado.</translation>
-   <translation id="exchange_update_billing_periode_partial" qtlid="191031">Una parte de los cambios del periodo de renovación ha generado errores.</translation>
-   <translation id="exchange_update_billing_periode_failure" qtlid="191044">Se ha producido un error al cargar el período de renovación automática.</translation>
-
 <!-- ########################################## -->
 <!-- DOMAIN -->
    <translation id="exchange_tab_domain_no_domains_1" qtlid="137439">Añada un dominio para crear cuentas de correo Exchange. Haga clic</translation>

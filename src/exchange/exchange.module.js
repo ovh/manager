@@ -1,3 +1,5 @@
+import accountRenew from './billing/account-renew/renew.module';
+
 angular
   .module('Module.exchange', [
     'ovh-utils-angular',
@@ -10,6 +12,7 @@ angular
     'Module.exchange.filters',
     'Module.exchange.directives',
     'Module.exchange.components',
+    accountRenew,
   ])
   .constant('EXCHANGE_MX_CONFIG', {
     EU: {

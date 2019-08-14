@@ -353,27 +353,6 @@
    <translation id="exchange_resilitation_cancel_action_intro" qtlid="201367">Zrušení služby Exchange "{0}" je naplánováno na datum expirace. <br /><br />Opravdu chcete stornovat toto plánované zrušení? Služba se poté v datum expirace automaticky obnoví.</translation>
    <translation id="exchange_resilitation_cancel_action_confirmation" qtlid="201380">Chystáte se stornovat zrušení služby "{0}". <br />Přejete si opravdu pokračovat? <br /> Služba by poté byla přesunuta mezi automatické obnovení.</translation>
    <translation id="exchange_resilitation_cancel_action_button" qtlid="4070">Pokračovat</translation>
-
-<!-- RENEW -->
-   <translation id="exchange_update_billing_button_title" qtlid="521685">Configuration du renouvellement</translation>
-   <translation id="exchange_update_billing_action_title" qtlid="98324">Období obnovení</translation>
-   <translation id="exchange_update_billing_periode_intro" qtlid="190966">Zvolte si požadovanou frekvenci automatických obnovení u každého účtu. <br />Tyto změny budou aktivní od dalšího obnovení.</translation>
-   <translation id="exchange_update_billing_expiration_date_label" qtlid="30406">Expirace</translation>
-   <translation id="exchange_update_billing_current_periode_label" qtlid="190979">Současná hodnota</translation>
-   <translation id="exchange_update_billing_periode_label" qtlid="168172">Obnovení</translation>
-   <translation id="exchange_update_billing_header_1Y" qtlid="213258">Roční</translation>
-   <translation id="exchange_update_billing_header_1M" qtlid="8818">Měsíčně</translation>
-   <translation id="exchange_update_billing_header_terminate" qtlid="209177">Žádný</translation>
-   <translation id="exchange_update_billing_header_new_periode" qtlid="190992">Nové období</translation>
-   <translation id="exchange_update_billing_periode_value_MONTHLY" qtlid="8818">Měsíčně</translation>
-   <translation id="exchange_update_billing_periode_value_YEARLY" qtlid="213258">Roční</translation>
-   <translation id="exchange_update_billing_periode_value_DELETE_AT_EXPIRATION" qtlid="201406">Expirace na konci</translation>
-   <translation id="exchange_update_billing_periode_delete_warning" qtlid="211593">Berte prosím na vědomí, že tato volba způsobí zrušení služby k datu expirace a ztrátu všech dat. Tato data již nebude možné obnovit.</translation>
-   <translation id="exchange_update_billing_periode_resume" qtlid="191005">Chystáte se změnit obnovovací období Vašich účtů:</translation>
-   <translation id="exchange_update_billing_periode_success" qtlid="191018">Byla provedena změna automatického období obnovení.</translation>
-   <translation id="exchange_update_billing_periode_partial" qtlid="191031">Některé změny období obnovení skončili chybou.</translation>
-   <translation id="exchange_update_billing_periode_failure" qtlid="191044">Při načítání automatického období obnovení došlo k chybě.</translation>
-
 <!-- ########################################## -->
 <!-- DOMAIN -->
    <translation id="exchange_tab_domain_no_domains_1" qtlid="137439">Přidat doménu pro vytvoření Exchange účtů. Klikněte</translation>

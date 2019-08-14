@@ -133,7 +133,7 @@
    <translation id="exchange_tab_ACCOUNTS_table_empty_type_STANDARD" qtlid="190823">Nie posiadasz konta typu Standard.</translation>
    <translation id="exchange_tab_ACCOUNTS_table_empty_type_ENTERPRISE" qtlid="190836">Nie posiadasz konta typu Enterprise.</translation>
    <translation id="exchange_tab_ACCOUNTS_table_empty_search" qtlid="149813">Nie posiadasz kont odpowiadających kryteriom wyszukiwania.</translation>
-   <translation id="exchange_tab_ACCOUNTS_table_email" qtlid="137244">Konto e-mail</translation>
+   <translation id="exchange_tab_ACCOUNTS_table_email" qtlid="137244">Konta e-mail</translation>
    <translation id="exchange_tab_ACCOUNTS_table_type" qtlid="2642">Typ</translation>
    <translation id="exchange_tab_ACCOUNTS_table_company" qtlid="49022">Firma</translation>
    <translation id="exchange_tab_ACCOUNTS_table_size" qtlid="7726">Rozmiar</translation>
@@ -353,27 +353,6 @@
    <translation id="exchange_resilitation_cancel_action_intro" qtlid="201367">Rezygnacja z usługi Exchange "{0}" jest zaplanowana na datę wygaśnięcia usługi. <br /><br />Czy chcesz anulować rezygnację? Usługa będzie odnawiana automatycznie.</translation>
    <translation id="exchange_resilitation_cancel_action_confirmation" qtlid="201380">Chcesz anulować rezygnację z usługi "{0}". <br />Czy chcesz przystąpić do tej operacji? <br /> Usługa będzie odnawiana automatycznie.</translation>
    <translation id="exchange_resilitation_cancel_action_button" qtlid="4070">Kontynuuj</translation>
-
-<!-- RENEW -->
-   <translation id="exchange_update_billing_button_title" qtlid="521685">Konfiguracja odnowienia</translation>
-   <translation id="exchange_update_billing_action_title" qtlid="98324">Okres odnowienia</translation>
-   <translation id="exchange_update_billing_periode_intro" qtlid="190966">Wybierz okres automatycznego odnowienia każdego konta. <br />Zostanie on zastosowany od kolejnego odnowienia.</translation>
-   <translation id="exchange_update_billing_expiration_date_label" qtlid="30406">Data wygasania</translation>
-   <translation id="exchange_update_billing_current_periode_label" qtlid="190979">Aktualna wartość</translation>
-   <translation id="exchange_update_billing_periode_label" qtlid="168172">Odnowienie</translation>
-   <translation id="exchange_update_billing_header_1Y" qtlid="213258">Co rok</translation>
-   <translation id="exchange_update_billing_header_1M" qtlid="8818">Co miesiąc</translation>
-   <translation id="exchange_update_billing_header_terminate" qtlid="209177">Brak</translation>
-   <translation id="exchange_update_billing_header_new_periode" qtlid="190992">Nowy okres</translation>
-   <translation id="exchange_update_billing_periode_value_MONTHLY" qtlid="8818">Co miesiąc</translation>
-   <translation id="exchange_update_billing_periode_value_YEARLY" qtlid="213258">Co rok</translation>
-   <translation id="exchange_update_billing_periode_value_DELETE_AT_EXPIRATION" qtlid="201406">Wygasa z końcem</translation>
-   <translation id="exchange_update_billing_periode_delete_warning" qtlid="211593">Uwaga! Ten wybór sprawi, że usługa wygaśnie a dane zostaną usunięte. Nie będziesz mógł odzyskać danych z konta.</translation>
-   <translation id="exchange_update_billing_periode_resume" qtlid="191005">Zmienisz okres odnowienia dla kont:</translation>
-   <translation id="exchange_update_billing_periode_success" qtlid="191018">Zmiana okresu automatycznego odnowienia została wykonana.</translation>
-   <translation id="exchange_update_billing_periode_partial" qtlid="191031">Wystąpił błąd dla zmiany okresu odnowienia.</translation>
-   <translation id="exchange_update_billing_periode_failure" qtlid="191044">Wystąpił błąd podczas pobierania okresu automatycznego odnowienia.</translation>
-
 <!-- ########################################## -->
 <!-- DOMAIN -->
    <translation id="exchange_tab_domain_no_domains_1" qtlid="137439">Dodaj domenę, aby utworzyć konta e-mail Exchange. Kliknij</translation>
@@ -504,13 +483,13 @@
    <translation id="exchange_account_add_submit_success" qtlid="486217">Konto {0} zostało utworzone. Będziesz mógł z niego korzystać po upływie kilku minut.</translation>
    <translation id="exchange_ACTION_add_account_legal_warning" qtlid="209099">Przyjmuję do wiadomości, że OVH przystąpi do świadczenia usługi natychmiast po zatwierdzeniu mojego zamówienia i w związku z tym świadomie rezygnuję z mojego prawa do odstąpienia od umowy zgodnie z postanowieniami artykułu 27 Ustawy o prawach konsumenta.</translation>
    <translation id="exchange_ACTION_add_account_title" qtlid="143225">Dodaj konto Exchange</translation>
-   <translation id="exchange_ACTION_add_account_step1_email_label" qtlid="137244">Konto e-mail</translation>
+   <translation id="exchange_ACTION_add_account_step1_email_label" qtlid="137244">Konta e-mail</translation>
    <translation id="exchange_ACTION_add_account_button" qtlid="21487">Dodaj konto</translation>
    <translation id="exchange_ACTION_add_account_step1_first_name_label" qtlid="23323">Imię</translation>
    <translation id="exchange_ACTION_add_account_step1_last_name_label" qtlid="3818">Nazwa</translation>
    <translation id="exchange_ACTION_add_account_step1_display_name_label" qtlid="23515">Nazwa do wyświetlenia</translation>
    <translation id="exchange_ACTION_add_account_step2_confirmation_intro" qtlid="136841">Twoje konto:</translation>
-   <translation id="exchange_ACTION_add_account_step2_email_label" qtlid="137244">Konto e-mail</translation>
+   <translation id="exchange_ACTION_add_account_step2_email_label" qtlid="137244">Konta e-mail</translation>
    <translation id="exchange_ACTION_add_account_step2_first_name_label" qtlid="23323">Imię</translation>
    <translation id="exchange_ACTION_add_account_step2_last_name_label" qtlid="3818">Nazwa</translation>
    <translation id="exchange_ACTION_add_account_step2_display_name_label" qtlid="23515">Nazwa do wyświetlenia</translation>
@@ -522,7 +501,7 @@
    <translation id="exchange_ACTION_add_account_option_fail" qtlid="144045">Wystąpił błąd podczas wyświetlania domen.</translation>
    <translation id="exchange_ACTION_add_account_fetchingAccountCreationOptions_error" qtlid="486230">Wystąpił błąd podczas wczytywania opcji tworzenia konta Exchange.</translation>
    <translation id="exchange_ACTION_add_account_error_message" qtlid="136828">Wystąpił błąd podczas zakładania konta Exchange.</translation>
-   <translation id="exchange_ACTION_update_account_step1_email_label" qtlid="137244">Konto e-mail</translation>
+   <translation id="exchange_ACTION_update_account_step1_email_label" qtlid="137244">Konta e-mail</translation>
    <translation id="exchange_ACTION_update_account_step1_type_label" qtlid="191057">Typ konta</translation>
    <translation id="exchange_ACTION_update_account_step1_type_STANDARD" qtlid="48998">Standardowa</translation>
    <translation id="exchange_ACTION_update_account_step1_type_BASIC" qtlid="48986">Basic</translation>
@@ -552,7 +531,7 @@
    <translation id="exchange_ACTION_update_account_step1_exchange_company_label" qtlid="519376">Firma (opcjonalnie)</translation>
    <translation id="exchange_ACTION_update_account_step1_mandatory_fields" qtlid="137634">Pola obowiązkowe</translation>
    <translation id="exchange_ACTION_update_account_step2_confirmation_intro" qtlid="136841">Twoje konto:</translation>
-   <translation id="exchange_ACTION_update_account_step2_email_label" qtlid="137244">Konto e-mail</translation>
+   <translation id="exchange_ACTION_update_account_step2_email_label" qtlid="137244">Konta e-mail</translation>
    <translation id="exchange_ACTION_update_account_step2_company_label" qtlid="49022">Firma</translation>
    <translation id="exchange_ACTION_update_account_step2_first_name_label" qtlid="23323">Imię</translation>
    <translation id="exchange_ACTION_update_account_step2_last_name_label" qtlid="3818">Nazwa</translation>
@@ -675,13 +654,13 @@
    <translation id="exchange_ACTION_delegation_step1_intro" qtlid="434551">Delegacja pozwala innym kontom Exchange na posiadanie pewnych uprawnień do konta <strong>{0}</strong></translation>
    <translation id="exchange_ACTION_delegation_table_empty" qtlid="150047">Nie posiadasz dostępnych kont</translation>
    <translation id="exchange_ACTION_delegation_table_empty_search" qtlid="150060">Nie posiadasz kont odpowiadających kryteriom wyszukiwania</translation>
-   <translation id="exchange_ACTION_delegation_step1_email_header" qtlid="137244">Konto e-mail</translation>
+   <translation id="exchange_ACTION_delegation_step1_email_header" qtlid="137244">Konta e-mail</translation>
    <translation id="exchange_ACTION_delegation_step1_send_header" qtlid="181474">Uprawnienia do wysyłki</translation>
    <translation id="exchange_ACTION_delegation_step1_sendOnBehalfTo_header" qtlid="181487">Uprawnienia do wysyłki jako (Send as)</translation>
    <translation id="exchange_ACTION_delegation_step1_full_header" qtlid="181500">Pełne prawa dostępu</translation>
    <translation id="exchange_ACTION_delegation_step1_task_on_doing" qtlid="201458">Zadanie w trakcie</translation>
    <translation id="exchange_ACTION_delegation_step2_intro" qtlid="434564">Uprawnienia delegacji przypisane do konta <strong>{0}</strong>:</translation>
-   <translation id="exchange_ACTION_delegation_step2_email_header" qtlid="137244">Konto e-mail</translation>
+   <translation id="exchange_ACTION_delegation_step2_email_header" qtlid="137244">Konta e-mail</translation>
    <translation id="exchange_ACTION_delegation_step2_send_header" qtlid="143798">Uprawnienia do wysyłki</translation>
    <translation id="exchange_ACTION_delegation_step2_sendOnBehalfTo_header" qtlid="181487">Uprawnienia do wysyłki jako (Send as)</translation>
    <translation id="exchange_ACTION_delegation_step2_full_header" qtlid="144253">Uprawnienie dostępowe</translation>
@@ -765,7 +744,7 @@
 <!-- RESOURCES -->
    <translation id="exchange_tab_RESOURCES_add_resource" qtlid="63710">Dodaj konto zasobów</translation>
    <translation id="exchange_tab_RESOURCES_edit_resource" qtlid="156173">Zmień konto zasobów</translation>
-   <translation id="exchange_tab_RESOURCES_add_resource_confirm" qtlid="39226">Stwórz</translation>
+   <translation id="exchange_tab_RESOURCES_add_resource_confirm" qtlid="39226">Utwórz</translation>
    <translation id="exchange_tab_RESOURCES_add_resource_name" qtlid="156186">Nazwa zasobu</translation>
    <translation id="exchange_tab_RESOURCES_add_resource_email" qtlid="156199">Email dla zasobów</translation>
    <translation id="exchange_tab_RESOURCES_add_resource_capacity" qtlid="4334">Wielkość</translation>
@@ -946,11 +925,11 @@
    <translation id="exchange_tab_GROUPS_delete_group_error" qtlid="150164">Wystąpił błąd podczas usuwania grupy.</translation>
    <translation id="exchange_GROUPS_delegation_title" qtlid="150398">Konfiguracja delegacji</translation>
    <translation id="exchange_GROUPS_delegation_step1_intro" qtlid="434577">Delegacja pozwala innym kontom Exchange na posiadanie pewnych uprawnień do grupy <strong>{0}</strong></translation>
-   <translation id="exchange_GROUPS_delegation_step1_email_header" qtlid="137244">Konto e-mail</translation>
+   <translation id="exchange_GROUPS_delegation_step1_email_header" qtlid="137244">Konta e-mail</translation>
    <translation id="exchange_GROUPS_delegation_step1_send_header" qtlid="143759">Przyznanie uprawnień do wysyłki</translation>
    <translation id="exchange_GROUPS_delegation_step1_full_header" qtlid="144240">Przyznaj uprawnienia dostępowe</translation>
    <translation id="exchange_GROUPS_delegation_step2_intro" qtlid="150424">Uprawnienia delegacji grupy {0}:</translation>
-   <translation id="exchange_GROUPS_delegation_step2_email_header" qtlid="137244">Konto e-mail</translation>
+   <translation id="exchange_GROUPS_delegation_step2_email_header" qtlid="137244">Konta e-mail</translation>
    <translation id="exchange_GROUPS_delegation_step2_send_header" qtlid="143798">Uprawnienia do wysyłki</translation>
    <translation id="exchange_GROUPS_delegation_step2_full_header" qtlid="144253">Uprawnienie dostępowe</translation>
    <translation id="exchange_GROUPS_delegation_step2_right_true" qtlid="34776">Tak</translation>
@@ -1155,7 +1134,7 @@ Zamknięta: administrator zapisuje członków grupy.</translation>
    <translation id="exchange_tab_EXTERNAL_CONTACTS_configuration_contact_add_title" qtlid="136334">Dodaj zewnętrzny kontakt</translation>
    <translation id="exchange_tab_EXTERNAL_CONTACTS_configuration_contact_add_title_button" qtlid="136334">Dodaj zewnętrzny kontakt</translation>
    <translation id="exchange_tab_EXTERNAL_CONTACTS_configuration_contact_add_step1_question" qtlid="171357">Utworzysz zewnętrzny kontakt</translation>
-   <translation id="exchange_tab_EXTERNAL_CONTACTS_configuration_contact_add_step1_email_label" qtlid="137244">Konto e-mail</translation>
+   <translation id="exchange_tab_EXTERNAL_CONTACTS_configuration_contact_add_step1_email_label" qtlid="137244">Konta e-mail</translation>
    <translation id="exchange_tab_EXTERNAL_CONTACTS_configuration_contact_add_step1_email_invalid" qtlid="171370">Wprowadzony adres e-mail jest nieprawidłowy</translation>
    <translation id="exchange_tab_EXTERNAL_CONTACTS_configuration_contact_add_step1_organization2010_label" qtlid="32278">Organizacja</translation>
    <translation id="exchange_tab_EXTERNAL_CONTACTS_configuration_contact_add_step1_first_name_label" qtlid="23323">Imię</translation>
@@ -1167,7 +1146,7 @@ Zamknięta: administrator zapisuje członków grupy.</translation>
    <translation id="exchange_tab_EXTERNAL_CONTACTS_configuration_contact_add_step1_wizardhelp_requirements_title" qtlid="171383">Warunki dla kontaktów zewnętrznych</translation>
    <translation id="exchange_tab_EXTERNAL_CONTACTS_configuration_contact_add_step1_wizardhelp_requirements_content" qtlid="174659">Kontakty zewnętrzne muszą spełniać następujące wymagania:<br/><br/>- Imię i nazwisko mogą zawierać maksymalnie 64 znaki.<br/>- Nazwa do wyświetlenia może zawierać maksymalnie 255 znaków.</translation>
    <translation id="exchange_tab_EXTERNAL_CONTACTS_configuration_contact_add_step2_question" qtlid="171435">Czy chcesz dodać następujący zewnętrzny kontakt?</translation>
-   <translation id="exchange_tab_EXTERNAL_CONTACTS_configuration_contact_add_step2_email_label" qtlid="137244">Konto e-mail</translation>
+   <translation id="exchange_tab_EXTERNAL_CONTACTS_configuration_contact_add_step2_email_label" qtlid="137244">Konta e-mail</translation>
    <translation id="exchange_tab_EXTERNAL_CONTACTS_configuration_contact_add_step2_first_name_label" qtlid="23323">Imię</translation>
    <translation id="exchange_tab_EXTERNAL_CONTACTS_configuration_contact_add_step2_last_name_label" qtlid="3818">Nazwa</translation>
    <translation id="exchange_tab_EXTERNAL_CONTACTS_configuration_contact_add_step2_display_name_label" qtlid="23515">Nazwa do wyświetlenia</translation>
@@ -1179,7 +1158,7 @@ Zamknięta: administrator zapisuje członków grupy.</translation>
 
    <translation id="exchange_tab_EXTERNAL_CONTACTS_configuration_contact_modify_title" qtlid="171474">Zmień kontakt zewnętrzny</translation>
    <translation id="exchange_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step1_question" qtlid="171487">Zmienisz kontakt zewnętrzny</translation>
-   <translation id="exchange_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step1_email_label" qtlid="137244">Konto e-mail</translation>
+   <translation id="exchange_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step1_email_label" qtlid="137244">Konta e-mail</translation>
    <translation id="exchange_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step1_email_invalid" qtlid="171370">Wprowadzony adres e-mail jest nieprawidłowy</translation>
    <translation id="exchange_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step1_first_name_label" qtlid="23323">Imię</translation>
    <translation id="exchange_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step1_last_name_label" qtlid="3818">Nazwa</translation>
@@ -1189,7 +1168,7 @@ Zamknięta: administrator zapisuje członków grupy.</translation>
    <translation id="exchange_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step1_wizardhelp_requirements_title" qtlid="171383">Warunki dla kontaktów zewnętrznych</translation>
    <translation id="exchange_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step1_wizardhelp_requirements_content" qtlid="174659">Kontakty zewnętrzne muszą spełniać następujące wymagania:<br/><br/>- Imię i nazwisko mogą zawierać maksymalnie 64 znaki.<br/>- Nazwa do wyświetlenia może zawierać maksymalnie 255 znaków.</translation>
    <translation id="exchange_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step2_question" qtlid="171500">Czy chcesz zmienić ten kontakt zewnętrzny?</translation>
-   <translation id="exchange_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step2_email_label" qtlid="137244">Konto e-mail</translation>
+   <translation id="exchange_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step2_email_label" qtlid="137244">Konta e-mail</translation>
    <translation id="exchange_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step2_first_name_label" qtlid="23323">Imię</translation>
    <translation id="exchange_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step2_last_name_label" qtlid="3818">Nazwa</translation>
    <translation id="exchange_tab_EXTERNAL_CONTACTS_configuration_contact_modify_step2_display_name_label" qtlid="23515">Nazwa do wyświetlenia</translation>

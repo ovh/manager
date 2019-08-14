@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+<!-- RENEW -->
+   <translation id="exchange_update_billing_button_title" qtlid="521685">Configuration du renouvellement</translation>
+   <translation id="exchange_update_billing_action_title" qtlid="98324">Období obnovení</translation>
+   <translation id="exchange_update_billing_validation_title" qtlid="33802">Schválení</translation>
+   <translation id="exchange_update_billing_periode_intro" qtlid="190966">Zvolte si požadovanou frekvenci automatických obnovení u každého účtu. <br />Tyto změny budou aktivní od dalšího obnovení.</translation>
+   <translation id="exchange_update_billing_actions_label" qtlid="72809">Akce</translation>
+   <translation id="exchange_update_billing_email_label" qtlid="137244">E-mailový účet</translation>
+   <translation id="exchange_update_billing_expiration_date_label" qtlid="30406">Expirace</translation>
+   <translation id="exchange_update_billing_current_periode_label" qtlid="190979">Současná hodnota</translation>
+   <translation id="exchange_update_billing_periode_label" qtlid="168172">Obnovení</translation>
+   <translation id="exchange_update_billing_header_new_periode" qtlid="190992">Nové období</translation>
+   <translation id="exchange_update_billing_periode_action_MONTHLY" qtlid="526336">Modifier en "Mensuelle"</translation>
+   <translation id="exchange_update_billing_periode_action_YEARLY" qtlid="526349">Modifier en "Annuelle"</translation>
+   <translation id="exchange_update_billing_periode_action_DELETE_AT_EXPIRATION" qtlid="526362">Modifier en "Expire à terme"</translation>
+   <translation id="exchange_update_billing_periode_value_MONTHLY" qtlid="8818">Měsíčně</translation>
+   <translation id="exchange_update_billing_periode_value_YEARLY" qtlid="213258">Roční</translation>
+   <translation id="exchange_update_billing_periode_value_DELETE_AT_EXPIRATION" qtlid="201406">Expirace na konci</translation>
+   <translation id="exchange_update_billing_periode_delete_warning" qtlid="211593">Berte prosím na vědomí, že tato volba způsobí zrušení služby k datu expirace a ztrátu všech dat. Tato data již nebude možné obnovit.</translation>
+   <translation id="exchange_update_billing_periode_resume" qtlid="191005">Chystáte se změnit obnovovací období Vašich účtů:</translation>
+   <translation id="exchange_update_billing_periode_success" qtlid="526375">La période de renouvellement des comptes sélectionnés a été mise à jour.</translation>
+   <translation id="exchange_update_billing_periode_partial" qtlid="526388">Certaines périodes de renouvellement n'ont pas été mises à jour.</translation>
+   <translation id="exchange_update_billing_periode_failure" qtlid="526401">Une erreur est survenue lors de la mise à jour du renouvellement des comptes</translation>
+</translations>

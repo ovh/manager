@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+<!-- RENEW -->
+   <translation id="exchange_update_billing_button_title" qtlid="521685">Konfiguracja odnowienia</translation>
+   <translation id="exchange_update_billing_action_title" qtlid="98324">Okres odnowienia</translation>
+   <translation id="exchange_update_billing_validation_title" qtlid="33802">Zatwierdzenie</translation>
+   <translation id="exchange_update_billing_periode_intro" qtlid="190966">Wybierz okres automatycznego odnowienia każdego konta. <br />Zostanie on zastosowany od kolejnego odnowienia.</translation>
+   <translation id="exchange_update_billing_actions_label" qtlid="72809">Operacje</translation>
+   <translation id="exchange_update_billing_email_label" qtlid="137244">Konta e-mail</translation>
+   <translation id="exchange_update_billing_expiration_date_label" qtlid="30406">Data wygasania</translation>
+   <translation id="exchange_update_billing_current_periode_label" qtlid="190979">Aktualna wartość</translation>
+   <translation id="exchange_update_billing_periode_label" qtlid="168172">Odnowienie</translation>
+   <translation id="exchange_update_billing_header_new_periode" qtlid="190992">Nowy okres</translation>
+   <translation id="exchange_update_billing_periode_action_MONTHLY" qtlid="526336">Modifier en "Mensuelle"</translation>
+   <translation id="exchange_update_billing_periode_action_YEARLY" qtlid="526349">Modifier en "Annuelle"</translation>
+   <translation id="exchange_update_billing_periode_action_DELETE_AT_EXPIRATION" qtlid="526362">Modifier en "Expire à terme"</translation>
+   <translation id="exchange_update_billing_periode_value_MONTHLY" qtlid="8818">Co miesiąc</translation>
+   <translation id="exchange_update_billing_periode_value_YEARLY" qtlid="213258">Co rok</translation>
+   <translation id="exchange_update_billing_periode_value_DELETE_AT_EXPIRATION" qtlid="201406">Wygasa z końcem</translation>
+   <translation id="exchange_update_billing_periode_delete_warning" qtlid="211593">Uwaga! Ten wybór sprawi, że usługa wygaśnie a dane zostaną usunięte. Nie będziesz mógł odzyskać danych z konta.</translation>
+   <translation id="exchange_update_billing_periode_resume" qtlid="191005">Zmienisz okres odnowienia dla kont:</translation>
+   <translation id="exchange_update_billing_periode_success" qtlid="526375">La période de renouvellement des comptes sélectionnés a été mise à jour.</translation>
+   <translation id="exchange_update_billing_periode_partial" qtlid="526388">Certaines périodes de renouvellement n'ont pas été mises à jour.</translation>
+   <translation id="exchange_update_billing_periode_failure" qtlid="526401">Une erreur est survenue lors de la mise à jour du renouvellement des comptes</translation>
+</translations>
