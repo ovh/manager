@@ -1,6 +1,3 @@
-@import "~@ovh-ux/ui-kit/dist/less/_variables";
-@import './_variables.less';
-
 cloud-sidebar { /* stylelint-disable-line */
   background-color: @background-color;
   color: @text-color;
@@ -62,7 +59,7 @@ cloud-sidebar { /* stylelint-disable-line */
     width: 50px;
   }
 
-  oui-clipboard { /* stylelint-disable-line */
+  .oui-clipboard {
     margin-bottom: 0;
 
     .oui-clipboard__control {
@@ -81,25 +78,27 @@ cloud-sidebar { /* stylelint-disable-line */
     }
 
     .oui-clipboard__button {
-      left: 0;
-      right: inherit;
-      padding: 0;
-      min-width: auto;
-      color: @primary-color;
-
-      &:hover {
+      &,
+      &:hover,
+      &:focus,
+      &:active {
+        left: 0;
+        right: inherit;
+        padding: 0;
         min-width: auto;
+        color: @primary-color;
       }
     }
 
     .oui-tooltip {
-      bottom: 0;
       margin: 0;
     }
   }
 
   .project-list-toggle {
-    padding: 6px 13px;
+    width: 40px;
+    height: 40px;
+    padding: 0;
   }
 
   .project-list {
@@ -127,7 +126,7 @@ cloud-sidebar { /* stylelint-disable-line */
       }
     }
 
-    oui-clipboard { /* stylelint-disable-line */
+    .oui-clipboard {
       .oui-clipboard__control,
       .oui-clipboard__button {
         color: #fff;
@@ -189,6 +188,7 @@ cloud-sidebar { /* stylelint-disable-line */
 
     .oui-sidebar-link {
       font-weight: bold;
+      align-items: center;
       display: flex;
 
       &::after {

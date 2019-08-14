@@ -1946,10 +1946,10 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/translate-async-loader/-/translate-async-loader-1.0.8.tgz#7cbdc3dfed1042f511206ff6bb9f14c33b8406ba"
   integrity sha512-8yEhPeRTSxtEO9ODXRYZw6pzRQiV5ULCTi8mIzt39m/b9N2TcIF4ILTPsaa8xpE4npHKa/iYgL9z0HJUFi2LGQ==
 
-"@ovh-ux/ui-kit@3.5.0":
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-3.5.0.tgz#79bd4b62667b19ea3a7cd763e06dc69c803f7dfa"
-  integrity sha512-/hz3atAT8z/ovaYrNU3ke8x2VUDzpDlwn0Iv0ybdSUNLnTgJ165cBo+eFX9IjHPmaDxS+j64a/Z+7qapCcHZfw==
+"@ovh-ux/ui-kit@^4.0.0-rc.4":
+  version "4.0.0-rc.4"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ui-kit/-/ui-kit-4.0.0-rc.4.tgz#c6200b9012c8b97193f3f3c1b7635533b331bd28"
+  integrity sha512-qmiWCbsxiQdyuckCitYfajTW1GhIZnSZe1AYeOM9LeXmtGQxXBZ0LgPiTrXOzwOOqQJ+LHV6THA31rtj7RDbbg==
 
 "@samverschueren/stream-to-observable@^0.3.0":
   version "0.3.0"

@@ -35,11 +35,11 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/ng-ovh-cloud-universe-components' --include-filtered-dependencies -- yarn run dev:watch"
   },
   "dependencies": {
+    "@ovh-ux/ui-kit": "^4.0.0-rc.4",
     "bootstrap": "~3.3.0",
     "jsurl": "^0.1.5",
     "lodash": "^4.17.15",
-    "moment": "^2.24.0",
-    "ovh-ui-kit": "^2.33.3"
+    "moment": "^2.24.0"
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^6.0.0"
@@ -47,7 +47,7 @@
   "peerDependencies": {
     "@ovh-ux/ng-ovh-user-pref": "^1.0.0",
     "@ovh-ux/ng-translate-async-loader": "^2.0.0",
-    "@ovh-ux/ui-kit": "^3.4.0",
+    "@ovh-ux/ui-kit": "^4.0.0-rc.4",
     "@uirouter/angularjs": "^1.0.22",
     "angular": "^1.5.0",
     "angular-translate": "^2.11.0",

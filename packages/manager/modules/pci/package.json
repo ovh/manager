@@ -56,7 +56,7 @@
     "@ovh-ux/ng-translate-async-loader": "^2.0.0",
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.0.0",
     "@ovh-ux/ng-ui-router-layout": "^2.0.0",
-    "@ovh-ux/ui-kit": "3.5.0",
+    "@ovh-ux/ui-kit": "^4.0.0-rc.4",
     "@uirouter/angularjs": "^1.0.15",
     "angular": "^1.7.5",
     "angular-animate": "^1.7.5",
