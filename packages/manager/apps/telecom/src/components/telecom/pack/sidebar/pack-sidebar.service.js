@@ -1,4 +1,4 @@
-angular.module('managerApp').service('PackSidebar', function ($q, $translate, SidebarMenu, TucPackMediator) {
+angular.module('managerApp').service('PackSidebar', function PackSidebarService($q, $translate, SidebarMenu, TucPackMediator) {
   const self = this;
   const accessErrorStates = ['cancelled', 'close', 'deleting', 'slamming'];
 
@@ -168,7 +168,7 @@ angular.module('managerApp').service('PackSidebar', function ($q, $translate, Si
      *
      * Once we have no more sdsl items it's done.
      */
-  self.fetchData = function () {
+  self.fetchData = function fetchData() {
     let packList = [];
     let sdslList = [];
     let adslList = [];
@@ -195,7 +195,7 @@ angular.module('managerApp').service('PackSidebar', function ($q, $translate, Si
     =            INITIALIZATION            =
     ====================================== */
 
-  self.init = function () {
+  self.init = function init() {
     self.mainSectionItem = SidebarMenu.addMenuItem({
       id: 'telecom-pack-section',
       title: $translate.instant('telecom_sidebar_section_pack'),

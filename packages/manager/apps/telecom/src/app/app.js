@@ -22,10 +22,16 @@ import ngPaginationFront from '@ovh-ux/ng-pagination-front';
 import ngTailLogs from '@ovh-ux/ng-tail-logs';
 import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import ngUirouterTitle from '@ovh-ux/ng-uirouter-title';
+import ngOvhSidebarMenu from '@ovh-ux/ng-ovh-sidebar-menu';
+import ngOvhActionsMenu from '@ovh-ux/ng-ovh-actions-menu';
+import ngOvhSimpleCountryList from '@ovh-ux/ng-ovh-simple-country-list';
 
 import navbar from '../components/navbar';
 
 import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
+
+import './app-scss.scss';
+import './app.less';
 
 Environment.setRegion('EU');
 
@@ -61,13 +67,13 @@ angular.module('managerApp', [
   ngTranslateAsyncLoader,
   ngOvhUiRouterLineProgress,
   ngUirouterTitle,
-  'ovh-angular-actions-menu',
+  ngOvhActionsMenu,
   'ovh-angular-contact',
   'ovh-angular-line-diagnostics',
   'ovh-angular-q-allSettled',
   'ovh-angular-responsive-tabs',
-  'ovh-angular-sidebar-menu',
-  'ovh-angular-simple-country-list',
+  ngOvhSidebarMenu,
+  ngOvhSimpleCountryList,
   'ovh-angular-timeline',
   'ovh-angular-ui-confirm-modal',
   'ovh-api-services',

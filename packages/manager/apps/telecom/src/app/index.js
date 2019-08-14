@@ -44,7 +44,7 @@ import 'script-loader!@bower_components/crypto/crypto.min.js';
 import 'script-loader!CSV-JS/csv.js';
 import 'script-loader!d3/build/d3.js';
 import 'script-loader!jquery.cookie/jquery.cookie.js';
-import 'script-loader!@bower_components/matchmedia/matchMedia.js';
+import 'matchmedia-polyfill';
 import 'matchmedia-ng';
 import 'script-loader!messenger/build/js/messenger.js';
 import 'script-loader!messenger/build/js/messenger-theme-future.js';
@@ -69,9 +69,6 @@ import 'ovh-angular-q-allsettled';
 import 'ovh-angular-responsive-popover';
 import 'ovh-angular-responsive-tabs';
 import 'ng-slide-down';
-import 'ovh-angular-actions-menu';
-import 'ovh-angular-sidebar-menu/dist/ovh-angular-sidebar-menu.min';
-import 'ovh-angular-simple-country-list';
 import 'script-loader!angularjs-scroll-glue/src/scrollglue.js';
 import 'ovh-angular-timeline/dist/ovh-angular-timeline.js';
 import 'ovh-angular-ui-confirm-modal';
@@ -83,7 +80,6 @@ import 'script-loader!bootstrap-tour/build/js/bootstrap-tour-standalone.min.js';
 /* eslint-enable */
 
 import 'bootstrap-tour/build/css/bootstrap-tour.min.css';
-import './app-scss.scss';
-import './app.less';
+
 
 import './app';
