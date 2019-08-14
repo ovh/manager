@@ -53,7 +53,8 @@
                         data-filterable>
                 <span data-ng-bind="$row.label || '-'"></span>
             </oui-column>
-            <oui-column data-title=":: 'billing_payment_method_table_expiration_date' | translate">
+            <oui-column data-title=":: 'billing_payment_method_table_expiration_date' | translate"
+                        data-property="expirationDate">
                 <span class="d-block"
                       data-ng-bind="$row.expirationDate ? ($row.expirationDate | date:'shortDate') : '-'">
                 </span>
@@ -72,7 +73,8 @@
                       data-ng-if="$row.description">
                 </span>
             </oui-column>
-            <oui-column data-title=":: 'billing_payment_method_table_default' | translate">
+            <oui-column data-title=":: 'billing_payment_method_table_default' | translate"
+                        data-property="default">
                 <span class="oui-status"
                       data-ng-class="{
                           'oui-status_success': $row.default,

@@ -36,7 +36,7 @@
   "otrs_table_ticket_lastMessageFrom_support": "Assistência OVH",
   "otrs_table_ticket_creationDate": "Data de criação",
   "otrs_table_ticket_updateDate": "Data de atualização",
-  "otrs_table_ticket_state": "Etat",
+  "otrs_table_ticket_state": "Estado",
   "otrs_table_ticket_state_open": "Aberto",
   "otrs_table_ticket_state_closed": "Encerrado",
   "otrs_table_ticket_state_archived": "Arquivado",
