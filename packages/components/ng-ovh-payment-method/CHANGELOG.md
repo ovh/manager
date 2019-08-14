@@ -1,3 +1,17 @@
+# [4.0.0](https://github.com/ovh-ux/ng-ovh-payment-method/compare/v3.3.0...v4.0.0) (2019-08-14)
+
+
+### Build System
+
+* bump ovh-api-services to v9.0.0 ([6bfe79f](https://github.com/ovh-ux/ng-ovh-payment-method/commit/6bfe79f))
+
+
+### BREAKING CHANGES
+
+* major bump of ovh-api-services
+
+
+
 # [3.3.0](https://github.com/ovh-ux/ng-ovh-payment-method/compare/v3.2.0...v3.3.0) (2019-08-12)
 
 
