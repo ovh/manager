@@ -1,4 +1,4 @@
-import punycode from 'punycode.js';
+import punycode from 'punycode';
 import camelCase from 'lodash/camelCase';
 import set from 'lodash/set';
 

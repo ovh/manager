@@ -2,7 +2,7 @@ import angular from 'angular';
 import filter from 'lodash/filter';
 import find from 'lodash/find';
 import set from 'lodash/set';
-import punycode from 'punycode.js';
+import punycode from 'punycode';
 
 import {
   SIZE_UNIT, STATE_TASK_DOING, STATE_TASK_ERROR, ACCOUNT_TYPES, FILTER_TYPE,
