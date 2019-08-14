@@ -51,7 +51,7 @@
     "angular": "^1.5.0",
     "angular-translate": "^2.17.0",
     "bootstrap4": "twbs/bootstrap#v4.0.0",
-    "ovh-api-services": "^6.19.0",
+    "ovh-api-services": "^9.0.0",
     "ovh-ui-angular": "^2.23.x",
     "ovh-ui-kit": "^2.23.x"
   }
