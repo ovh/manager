@@ -1,3 +1,12 @@
+# [0.5.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.4.2...@ovh-ux/manager-server-sidebar@0.5.0) (2019-08-13)
+
+
+### Features
+
+* **sidebar:** all dedicated servers section ([#1180](https://github.com/ovh-ux/manager/issues/1180)) ([304fbed](https://github.com/ovh-ux/manager/commit/304fbed))
+
+
+
 ## [0.4.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.4.1...@ovh-ux/manager-server-sidebar@0.4.2) (2019-08-08)
 
 

@@ -1,6 +1,6 @@
 import angular from 'angular';
 import moment from 'moment';
-import punycode from 'punycode.js';
+import punycode from 'punycode';
 import camelCase from 'lodash/camelCase';
 import find from 'lodash/find';
 import isEmpty from 'lodash/isEmpty';

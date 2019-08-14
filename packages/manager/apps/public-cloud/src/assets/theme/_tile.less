@@ -1,3 +1,5 @@
+@import "~ovh-ui-kit/packages/oui-button/_variables";
+
 a.oui-tile {
   background-color: rgb(244, 248, 251);
   border: 0;
@@ -17,5 +19,16 @@ a.oui-tile {
   &:focus {
     background-color: rgb(230, 245, 252);
     box-shadow: 0 5pt 10pt rgba(40, 89, 192, 0.15);
+  }
+}
+
+.oui-tile-button_link {
+  .oui-tile__button.oui-button:disabled {
+    background: none;
+    color: @oui-button-link-font-color_disabled;
+
+    .oui-icon::before {
+      color: @oui-button-link-font-color_disabled;
+    }
   }
 }
