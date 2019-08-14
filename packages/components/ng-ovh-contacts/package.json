@@ -54,7 +54,7 @@
     "bs4": "twbs/bootstrap#v4.0.0-beta",
     "flag-icon-css": "^3.2.1",
     "moment": "^2.20.1",
-    "ovh-api-services": "^3.21.1",
+    "ovh-api-services": "^9.0.0",
     "ovh-ui-angular": "^2.23.x",
     "ovh-ui-kit": "^2.23.x",
     "ui-select": "^0.19.8"
