@@ -1,7 +1,7 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
-    .state('pci.projects.project.edit.remove', {
-      url: '/remove',
+    .state('pci.projects.remove', {
+      url: '/remove?projectId',
       views: {
         modal: {
           component: 'pciProjectEditRemove',
@@ -19,7 +19,8 @@ export default /* @ngInject */ ($stateProvider) => {
             serviceName: projectId,
           })
           .$promise,
-        goBack: /* @ngInject */ $state => () => $state.go('^'),
+        goBack: /* @ngInject */ $state => () => $state.go('pci.projects'),
+        projectId: /* @ngInject */  $transition$ => $transition$.params().projectId,
       },
     });
 };
