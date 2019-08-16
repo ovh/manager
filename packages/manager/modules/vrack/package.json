@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "bootstrap4": "twbs/bootstrap#v4.0.0",
-    "lodash": "^4.17.14",
+    "lodash": "^4.17.15",
     "moment": "^2.22.2"
   },
   "devDependencies": {

@@ -1,3 +1,21 @@
+## [1.5.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@1.5.0...@ovh-ux/manager-pci@1.5.1) (2019-08-14)
+
+
+### Bug Fixes
+
+* **pci.project.edit:** display check if project is default one ([#1198](https://github.com/ovh-ux/manager/issues/1198)) ([ff26a34](https://github.com/ovh-ux/manager/commit/ff26a34))
+
+
+
+# [1.5.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@1.4.5...@ovh-ux/manager-pci@1.5.0) (2019-08-13)
+
+
+### Features
+
+* **apps.public.cloud:** manage both feedback's url for FR and EN ([#1156](https://github.com/ovh-ux/manager/issues/1156)) ([b680e42](https://github.com/ovh-ux/manager/commit/b680e42))
+
+
+
 ## [1.4.5](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@1.4.4...@ovh-ux/manager-pci@1.4.5) (2019-08-13)
 
 

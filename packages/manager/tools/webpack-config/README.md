@@ -34,6 +34,7 @@ The following configuration parameters are _optionals_:
    relatively to the current resource path. You can override this behavior by providing
    an absolute translationsRoot path. This path will then be used to resolve translations
    instead of current resource path.
+- _lessJavascriptEnabled_: adds _javascriptEnabled_ option to the less compiler
 
 ## Example
 

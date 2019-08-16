@@ -10,22 +10,28 @@
             data-on-click="$ctrl.closeSidebar()">
         </cloud-sidebar>
         <div class="h-100 position-relative p-0 col-lg-10 d-flex flex-column">
-            <div class="pci-project-banner d-flex justify-content-between p-3">
-                <span data-translate="pci_projects_project_welcome" class="font-weight-bold oui-color-sapphire"></span>
-                <button class="oui-link pci-project-link_light"
-                    data-ng-if="$ctrl.user.ovhSubsidiary === 'FR'"
-                    type="button"
-                    data-ng-click="$ctrl.goToLegacy()"
-                    data-translate="pci_projects_project_welcome_legacy">
-                </button>
-                <a class="oui-link pci-project-link_light"
-                    data-ng-if="$ctrl.user.ovhSubsidiary !== 'FR'"
-                    data-track-on="click"
-                    data-track-name="public-cloud_menu_back-to-cloud"
-                    data-track-type="action"
-                    data-ng-href="{{:: $ctrl.LEGACY_URL}}">
-                    <span data-translate="pci_projects_project_welcome_legacy"></span>
-                </a>
+            <div class="pci-project-banner d-flex justify-content-between p-2">
+                <div class="d-none d-md-block">
+                    <span
+                        class="font-weight-bold oui-color-sapphire"
+                        data-translate="pci_projects_project_welcome">
+                    </span>
+                    <a
+                        class="pci-project-banner__feeback"
+                        rel="noopener"
+                        target="_blank"
+                        data-ng-href="{{ $ctrl.feedbackUrl }}"
+                        data-translate="pci_projects_project_welcome_feedback">
+                    </a>
+                </div>
+                <div class="ml-auto">
+                    <button
+                        type="button"
+                        class="oui-link pci-project-link_light"
+                        data-ng-click="$ctrl.goToLegacy()"
+                        data-translate="pci_projects_project_welcome_legacy">
+                    </button>
+                </div>
             </div>
             <div class="pci-project-content w-100 h-100 pt-4 px-3 px-md-5" style="overflow: auto;">
                 <ui-router-breadcrumb></ui-router-breadcrumb>
