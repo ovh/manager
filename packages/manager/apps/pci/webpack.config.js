@@ -7,7 +7,7 @@ module.exports = (env = {}) => {
     template: './index.html',
     basePath: '.',
     root: path.resolve(process.cwd()),
-  }, env);
+  }, process.env.REGION ? Object.assign(env, { region: process.env.REGION }) : env);
 
   return merge(config, {
     entry: path.resolve('./index.js'),
