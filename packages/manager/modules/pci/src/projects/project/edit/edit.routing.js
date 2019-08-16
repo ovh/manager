@@ -1,4 +1,4 @@
-import { MESSAGES_CONTAINER_NAME } from './edit.constant';
+import { DEFAULT_PROJECT_KEY, MESSAGES_CONTAINER_NAME } from './edit.constant';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
@@ -9,10 +9,6 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       resolve: {
         breadcrumb: /* @ngInject */ $translate => $translate.instant('pci_projects_project_parameters'),
-
-        defaultProject: /* @ngInject */
-          pciProjectEditService => pciProjectEditService.getDefaultProject(),
-
         onUpdate: /* @ngInject */ (
           $state,
           $timeout,
@@ -24,6 +20,8 @@ export default /* @ngInject */ ($stateProvider) => {
             $translate.instant('pci_projects_project_edit_update_success'),
             MESSAGES_CONTAINER_NAME,
           ))),
+
+        unFavProject: /* @ngInject */ovhUserPref => () => ovhUserPref.remove(DEFAULT_PROJECT_KEY),
       },
     });
 };

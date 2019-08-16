@@ -1,4 +1,4 @@
-import { DEFAULT_PROJECT_KEY } from './edit.constant';
+import { DEFAULT_PROJECT_KEY } from './projects.constant';
 
 export default class {
   /* @ngInject */

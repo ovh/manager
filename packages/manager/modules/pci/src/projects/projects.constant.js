@@ -1,0 +1,5 @@
+export const DEFAULT_PROJECT_KEY = 'PUBLIC_CLOUD_DEFAULT_PROJECT';
+
+export default {
+  DEFAULT_PROJECT_KEY,
+};
