@@ -25,6 +25,9 @@ export default class OvhPaymentMethodService {
     this.isPaymentMethodTypeRegisterableInContext = OvhPaymentMethodService
       .isPaymentMethodTypeRegisterableInContext;
 
+    this.isPaymentMethodTypeRequiringContactId = OvhPaymentMethodService
+      .isPaymentMethodTypeRequiringContactId;
+
     this.ovhPaymentMethodLegacy = new OvhPaymentMethodLegacy(
       $q, $translate, $window, OvhApiMe, target,
     );
@@ -99,6 +102,12 @@ export default class OvhPaymentMethodService {
   }
 
   static isPaymentMethodTypeRegisterableInContext(paymentMethodType) {
+    return paymentMethodType && [
+      TYPE_INTEGRATION_ENUM.IFRAME_VANTIV,
+    ].includes(paymentMethodType.integration);
+  }
+
+  static isPaymentMethodTypeRequiringContactId(paymentMethodType) {
     return paymentMethodType && [
       TYPE_INTEGRATION_ENUM.IFRAME_VANTIV,
     ].includes(paymentMethodType.integration);
