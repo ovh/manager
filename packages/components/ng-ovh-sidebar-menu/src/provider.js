@@ -21,7 +21,20 @@
  */
 
 import angular from 'angular';
-import _ from 'lodash';
+import assign from 'lodash/assign';
+import difference from 'lodash/difference';
+import forEach from 'lodash/forEach';
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import isArray from 'lodash/isArray';
+import isEmpty from 'lodash/isEmpty';
+import isNumber from 'lodash/isNumber';
+import isString from 'lodash/isString';
+import map from 'lodash/map';
+import omit from 'lodash/omit';
+import pick from 'lodash/pick';
+import set from 'lodash/set';
+import some from 'lodash/some';
 
 import innerMenuItemTemplate from './list/item/list-item-inner.html';
 
@@ -88,7 +101,7 @@ export default function () {
      *  @return {Number} The new value setted.
      */
   self.setMinItemsForEnablingSearch = function setMinItemsForEnablingSearch(minItems) {
-    if (_.isNumber(minItems)) {
+    if (isNumber(minItems)) {
       minItemsForEnablingSearch = minItems;
     }
 
@@ -241,11 +254,11 @@ export default function () {
       let menuItem;
 
       if (!parentItem) {
-        _.set(itemOptions, 'level', 1);
+        set(itemOptions, 'level', 1);
         menuItem = new SidebarMenuListItem(itemOptions);
         this.items.push(menuItem);
       } else {
-        _.set(itemOptions, 'level', parentItem.level + 1);
+        set(itemOptions, 'level', parentItem.level + 1);
         menuItem = parentItem.addSubItem(itemOptions);
       }
 
@@ -311,10 +324,10 @@ export default function () {
      */
     sidebarMenuService.toggleMenuItemOpenState = function toggleMenuItemOpenState(menuItem) {
       const pathToMenuItem = this.getPathToMenuItem(menuItem).path;
-      const openedItems = _.filter(this.getAllMenuItems(), { isOpen: true });
+      const openedItems = filter(this.getAllMenuItems(), { isOpen: true });
 
       // we simply close items that does not belong to the path to menuItem
-      _.each(_.difference(openedItems, pathToMenuItem), (item) => {
+      forEach(difference(openedItems, pathToMenuItem), (item) => {
         item.toggleOpen(); // close item
       });
       menuItem.toggleOpen();
@@ -341,7 +354,7 @@ export default function () {
           if (prevItem) {
             prevItem.isActive = false;
           }
-          _.set(menuItem, 'isActive', true);
+          set(menuItem, 'isActive', true);
           prevItem = menuItem;
         }
       };
@@ -362,7 +375,7 @@ export default function () {
      */
     sidebarMenuService.manageStateChange = (function manageStateChange() {
       function manageStateChangeRecur(items) {
-        return $q.all(_.map(items, (item) => {
+        return $q.all(map(items, (item) => {
           const stateInfos = getItemStateInfos(item); // eslint-disable-line
           if (stateInfos.current) {
             sidebarMenuService.manageActiveMenuItem(item);
@@ -371,7 +384,7 @@ export default function () {
           if (stateInfos.included) {
             return item.loadSubItems().then(() => {
               // Automatically close same level opened item if it is not current one
-              const openedItem = _.find(sidebarMenuService.getAllMenuItems(), {
+              const openedItem = find(sidebarMenuService.getAllMenuItems(), {
                 isOpen: true,
                 level: item.level,
               });
@@ -450,17 +463,17 @@ export default function () {
         current: false,
       };
       if (item.loadOnState) {
-        if (_.isString(item.loadOnState)) {
+        if (isString(item.loadOnState)) {
           infos.included = $state.includes(item.loadOnState, item.loadOnStateParams);
           infos.current = $state.is(item.loadOnState, item.loadOnStateParams);
         }
-        else if (_.isArray(item.loadOnState)) {
-          infos.included = _.some(
+        else if (isArray(item.loadOnState)) {
+          infos.included = some(
             item.loadOnState,
             loadOnState => $state.includes(loadOnState, item.loadOnStateParams),
           );
 
-          infos.current = _.some(
+          infos.current = some(
             item.loadOnState,
             loadOnState => $state.is(loadOnState, item.loadOnStateParams),
           );
@@ -497,11 +510,11 @@ export default function () {
         return currentSearch;
       }
       items = items || this.items;
-      if (_.find(items, { id: item.id })) {
+      if (find(items, { id: item.id })) {
         currentSearch.found = true;
         currentSearch.path.push(item);
       } else {
-        _.each(items, (child) => {
+        forEach(items, (child) => {
           if (!currentSearch.found && child.hasSubItems()) {
             currentSearch.path.push(child);
             currentSearch = this.getPathToMenuItem(item, child.getSubItems(), currentSearch);
@@ -528,8 +541,8 @@ export default function () {
       function flattenSubItems(itemsParam) {
         let items = itemsParam;
 
-        const mapped = _.map(items, item => flattenSubItems(item.getSubItems()));
-        _.each(mapped, (item) => {
+        const mapped = map(items, item => flattenSubItems(item.getSubItems()));
+        forEach(mapped, (item) => {
           items = items.concat(item);
         });
         return items;
@@ -579,8 +592,8 @@ export default function () {
 
       function findRecursive(itemList, criteria) {
         if (!found && itemList && itemList.length) {
-          found = _.find(itemList, criteria);
-          _.each(itemList, (item) => {
+          found = find(itemList, criteria);
+          forEach(itemList, (item) => {
             findRecursive(item.getSubItems(), criteria);
           });
         }
@@ -589,7 +602,7 @@ export default function () {
       return function innerGetItemByCriteria(criteria, items) {
         found = criteria.id
           ? itemsMap[criteria.id]
-          : _.find(itemsMap, criteria);
+          : find(itemsMap, criteria);
 
         findRecursive(items || this.items, criteria);
 
@@ -630,15 +643,15 @@ export default function () {
     ) {
       let displayOptions = displayOptionsParam;
 
-      const criteria = _.isString(criteriaParam) || _.isNumber(criteriaParam)
+      const criteria = isString(criteriaParam) || isNumber(criteriaParam)
         ? { id: criteriaParam }
         : criteriaParam;
 
       const item = this.getItemByCriteria(criteria);
       if (item) {
-        displayOptions = _.omit(displayOptions, _.isEmpty); // remove falsy attributes
-        displayOptions = _.pick(displayOptions, ['title', 'prefix', 'icon', 'iconClass', 'category', 'status']);
-        _.assign(item, displayOptions);
+        displayOptions = omit(displayOptions, isEmpty); // remove falsy attributes
+        displayOptions = pick(displayOptions, ['title', 'prefix', 'icon', 'iconClass', 'category', 'status']);
+        assign(item, displayOptions);
       }
       return item;
     };

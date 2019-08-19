@@ -12,7 +12,7 @@
  */
 
 import angular from 'angular';
-import _ from 'lodash';
+import filter from 'lodash/filter';
 
 import template from './template.html';
 
@@ -95,7 +95,7 @@ export default /* @ngInject */ function ($compile) {
 
           // use of every to be abble to break loop
           self.item.subItemsAdded.every((subItem) => {
-            searchableItemCount += _.filter(subItem.subItemsAdded, {
+            searchableItemCount += filter(subItem.subItemsAdded, {
               searchable: true,
             }).length;
 

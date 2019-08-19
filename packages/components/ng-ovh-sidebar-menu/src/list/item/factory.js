@@ -76,7 +76,11 @@
  */
 
 import angular from 'angular';
-import _ from 'lodash';
+import filter from 'lodash/filter';
+import map from 'lodash/map';
+import now from 'lodash/now';
+import random from 'lodash/random';
+import slice from 'lodash/slice';
 
 export default /* @ngInject */ function ($q, $timeout) {
   /*= ==================================
@@ -84,7 +88,7 @@ export default /* @ngInject */ function ($q, $timeout) {
     =================================== */
 
   function SidebarMenuListItem(options = {}) {
-    this.id = options.id || _.random(_.now());
+    this.id = options.id || random(now());
     this.parentId = options.parentId || null;
 
     // for display
@@ -347,7 +351,7 @@ export default /* @ngInject */ function ($q, $timeout) {
 
     // timeout is here to wait for scrollbar being redrawn ...
     $timeout(() => {
-      const chunk = _.slice(self.subItemsPending, 0, 5);
+      const chunk = slice(self.subItemsPending, 0, 5);
 
       if (self.infiniteScroll && self.getScrollbar) {
         const scrollbar = self.getScrollbar();
@@ -536,8 +540,8 @@ export default /* @ngInject */ function ($q, $timeout) {
       } else {
         search = search.toLowerCase(); // ignore case
 
-        const promises = _.map(
-          _.filter(
+        const promises = map(
+          filter(
             self.subItemsAdded,
             item => item.onLoad && !item.isLoaded,
           ),
@@ -546,8 +550,8 @@ export default /* @ngInject */ function ($q, $timeout) {
 
         $q.all(promises)
           .then(() => {
-            const filteredItems = _.filter(
-              _.map(
+            const filteredItems = filter(
+              map(
                 self.subItemsAdded,
                 item => getMatchingItem(item, search),
               ),
