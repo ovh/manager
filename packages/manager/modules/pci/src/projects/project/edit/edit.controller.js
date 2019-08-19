@@ -1,7 +1,7 @@
 import get from 'lodash/get';
 import pick from 'lodash/pick';
 
-import { DEFAULT_PROJECT_KEY, MESSAGES_CONTAINER_NAME } from './edit.constant';
+import { MESSAGES_CONTAINER_NAME } from './edit.constant';
 
 export default class ProjectEditController {
   /* @ngInject */
@@ -46,14 +46,11 @@ export default class ProjectEditController {
       .then(() => {
         // isDefault is true, we want to define this project as default project
         if (this.isDefault) {
-          return this.ovhUserPref.create(
-            DEFAULT_PROJECT_KEY,
-            { projectId: this.serviceName },
-          );
+          this.setDefault(this.serviceName);
         }
         // isDefault is false, if the default project is this one, we should remove the key
         if (this.defaultProject.projectId === this.serviceName) {
-          return this.ovhUserPref.remove(DEFAULT_PROJECT_KEY);
+          this.unFavProject();
         }
         return null;
       })
