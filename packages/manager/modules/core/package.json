@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "@ovh-ux/ng-translate-async-loader": "^2.0.0",
-    "lodash": "^4.17.14"
+    "lodash": "^4.17.15"
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^6.0.0"
@@ -37,8 +37,8 @@
     "@ovh-ux/manager-config": "^0.3.0",
     "@ovh-ux/ng-ovh-api-wrappers": "^3.0.0",
     "@ovh-ux/ng-ovh-http": "^4.0.1-beta.0",
-    "@ovh-ux/ng-ovh-sso-auth": "^4.1.0",
     "@ovh-ux/ng-ovh-request-tagger": "^1.0.0",
+    "@ovh-ux/ng-ovh-sso-auth": "^4.1.0",
     "@ovh-ux/ng-ovh-swimming-poll": "^4.0.0",
     "@uirouter/angularjs": "^1.0.20",
     "angular": "^1.7.5",

@@ -27,7 +27,7 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-telecom-task' --include-filtered-dependencies -- yarn run dev:watch"
   },
   "dependencies": {
-    "lodash": "^4.17.14"
+    "lodash": "^4.17.15"
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^6.0.0"

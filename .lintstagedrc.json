@@ -10,7 +10,7 @@
     "stylelint 'packages/**/*.less' --fix",
     "git add"
   ],
-  "*.md": [
+  "!(*CHANGELOG).md": [
     "remark -qf ."
   ]
 }
