@@ -35,7 +35,7 @@ export default class OvhPaymentMethodLegacy {
     if (this.target !== 'US') {
       return this.getPaymentMeans(options);
     }
-    return this.getUSPaymentMethods(options);
+    return this.$q.when([]);
   }
 
   /**
@@ -297,58 +297,48 @@ export default class OvhPaymentMethodLegacy {
   ========================================== */
 
   /**
-   *  Get the US payment methods of logged user.
-   *  @param  {Object} options  Options for fetching US payment methods
-   *  @return {Promise}         That returns an array of US payment methods
+   *  @deprecated
+   *  Should not be used anymore as legacy (original) payment methods
+   *  are not returned anymore by the library in the US.
+   *  Reject if method is still called before deleting it.
    */
-  getUSPaymentMethods(options = DEFAULT_OPTIONS) {
-    if (this.target !== 'US') {
-      return this.$q.reject({
-        status: 403,
-        message: `getUSPaymentMethods is not available for ${this.target} world part`,
-      });
-    }
-
-    return this.OvhApiMe.PaymentMethod().v6()
-      .query(options.onlyValid ? {
-        status: 'VALID',
-      } : {}).$promise
-      .then(usPaymentMethodIds => this.$q
-        .all(map(usPaymentMethodIds, usPaymentMethodId => this.OvhApiMe.PaymentMethod().v6()
-          .get({
-            id: usPaymentMethodId,
-          }).$promise.then(usPaymentMethod => (options.transform
-            ? this.transformUSPaymentMethodToPaymentMethod(usPaymentMethod)
-            : usPaymentMethod)))));
-  }
-
-  addUSPaymentMethod(params) {
-    const addParams = params;
-    addParams.paymentType = snakeCase(addParams.paymentType).toUpperCase();
-
-    return this.OvhApiMe.PaymentMethod().v6().save({}, addParams).$promise;
+  addUSPaymentMethod() {
+    return this.$q.reject({
+      status: 404,
+      data: {
+        message: 'POST /me/paymentMethod is no longer available.',
+      },
+    });
   }
 
   /**
-   *  Edit the given US payment method.
-   *  @param  {Object} paymentMean The payment mean to edit
-   *  @return {Promise}
+   *  @deprecated
+   *  Should not be used anymore as legacy (original) payment methods
+   *  are not returned anymore by the library in the US.
+   *  Reject if method is still called before deleting it.
    */
-  editUSPaymentMethod(usPaymentMethod, params) {
-    return this.OvhApiMe.PaymentMethod().v6().edit({
-      id: usPaymentMethod.id,
-    }, params).$promise;
+  editUSPaymentMethod() {
+    return this.$q.reject({
+      status: 404,
+      data: {
+        message: 'PUT /me/paymentMethod/{paymentMethodId} is no longer available.',
+      },
+    });
   }
 
   /**
-   *  Delete given US payment method.
-   *  @param  {Object} usPaymentMethod The US payment mean to delete
-   *  @return {Promise}
+   *  @deprecated
+   *  Should not be used anymore as legacy (original) payment methods
+   *  are not returned anymore by the library in the US.
+   *  Reject if method is still called before deleting it.
    */
-  deleteUSPaymentMethod(usPaymentMethod) {
-    return this.OvhApiMe.PaymentMethod().v6().delete({
-      id: usPaymentMethod.id,
-    }).$promise;
+  deleteUSPaymentMethod() {
+    return this.$q.reject({
+      status: 404,
+      data: {
+        message: 'DELETE /me/paymentMethod/{paymentMethodId} is no longer available.',
+      },
+    });
   }
 
   /*= ====  End of US Payment Methods  ====== */
