@@ -15,4 +15,15 @@ export default class {
         throw err;
       });
   }
+
+  setAsDefaultProject(projectId) {
+    return this.ovhUserPref.create(
+      DEFAULT_PROJECT_KEY,
+      { projectId },
+    );
+  }
+
+  removeDefaultProject() {
+    return this.ovhUserPref.remove(DEFAULT_PROJECT_KEY);
+  }
 }
