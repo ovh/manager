@@ -1754,10 +1754,10 @@
   dependencies:
     lodash "^4.17.11"
 
-"@ovh-ux/ng-ovh-api-wrappers@^3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-api-wrappers/-/ng-ovh-api-wrappers-3.0.0.tgz#25e09c019a7f9d4704d59ccb55732379fa50b4e1"
-  integrity sha512-0iqzJxOh53DKPYmEcdLRTJl3+L5jC6x1TbdVvBYDT5sn8OE4lQP7r74G8sxxlx7bXGMQL9EzCcJD0xof/SZ3sQ==
+"@ovh-ux/ng-ovh-api-wrappers@^4.0.2":
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-api-wrappers/-/ng-ovh-api-wrappers-4.0.2.tgz#4d91cac4c622436f5359715dde31e1d6d75e2f5c"
+  integrity sha512-zNv2pQMyDRAVUOLvsRqV+6xG8NTz9LjWlSmvMXQ+sVjo9fZkEFxOS+mAGWgGweQjwrM+2Rd1t0Xj45hlhN/sQw==
   dependencies:
     lodash "^4.17.11"
 
