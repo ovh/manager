@@ -25,8 +25,8 @@
     "angular-translate": "^2.18.1",
     "bootstrap4": "twbs/bootstrap#v4.0.0",
     "lodash": "^4.17.15",
-    "ovh-ui-angular": "^3.7.1",
-    "ovh-ui-kit": "^2.33.3"
+    "ovh-ui-angular": "^3.7.2",
+    "ovh-ui-kit": "^2.33.4"
   },
   "devDependencies": {
     "@ovh-ux/manager-webpack-config": "^3.0.7",
