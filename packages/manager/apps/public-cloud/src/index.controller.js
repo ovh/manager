@@ -1,5 +1,3 @@
-import feedback from './feedback-icon.svg';
-
 import options from './navbar.config';
 
 export default class PublicCloudController {
@@ -21,8 +19,6 @@ export default class PublicCloudController {
     this.$translate = $translate;
     this.$window = $window;
     this.atInternet = atInternet;
-    this.feedbackUrl = __FEEDBACK_URL__;
-    this.feedback = feedback;
     this.ovhUserPref = ovhUserPref;
     this.publicCloud = publicCloud;
     this.sessionService = SessionService;

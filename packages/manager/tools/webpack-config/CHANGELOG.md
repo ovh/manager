@@ -1,3 +1,12 @@
+# [3.2.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-webpack-config@3.1.3...@ovh-ux/manager-webpack-config@3.2.0) (2019-08-13)
+
+
+### Features
+
+* **webpack-config:** add javascriptEnabled less-loader option ([642fdd0](https://github.com/ovh-ux/manager/commit/642fdd0))
+
+
+
 ## [3.1.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-webpack-config@3.1.2...@ovh-ux/manager-webpack-config@3.1.3) (2019-07-31)
 
 

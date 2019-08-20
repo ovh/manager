@@ -28,7 +28,7 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-navbar' --include-filtered-dependencies -- yarn run dev:watch"
   },
   "dependencies": {
-    "lodash": "^4.17.14",
+    "lodash": "^4.17.15",
     "moment": "^2.24.0"
   },
   "devDependencies": {
@@ -46,7 +46,7 @@
     "angular": "^1.7.8",
     "angular-translate": "^2.18.1",
     "bootstrap-tour": "^0.12.0",
-    "ovh-api-services": "^8.0.1",
+    "ovh-api-services": "^8.3.0",
     "ovh-ui-angular": "^3.5.1",
     "ovh-ui-kit": "^2.33.3"
   }

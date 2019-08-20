@@ -1,3 +1,12 @@
+# [4.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom-task-app@4.0.1...@ovh-ux/manager-telecom-task-app@4.1.0) (2019-08-12)
+
+
+### Features
+
+* **core:** add request-tagger interceptor ([e797d9d](https://github.com/ovh-ux/manager/commit/e797d9d))
+
+
+
 ## [4.0.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom-task-app@4.0.0...@ovh-ux/manager-telecom-task-app@4.0.1) (2019-05-13)
 
 

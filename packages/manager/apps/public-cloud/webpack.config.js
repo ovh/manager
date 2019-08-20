@@ -29,10 +29,11 @@ module.exports = (env = {}) => {
     },
     plugins: [
       new webpack.DefinePlugin({
-        __FEEDBACK_URL__: process.env.FEEDBACK_URL ? `'${process.env.FEEDBACK_URL}'` : 'null',
-        __WEBPACK_REGION__: process.env.REGION ? `'${process.env.REGION.toUpperCase()}'` : '"EU"',
-        __NODE_ENV__: process.env.NODE_ENV ? `'${process.env.NODE_ENV}'` : '"development"',
+        __FEEDBACK_URL_EN__: process.env.FEEDBACK_URL_EN ? `'${process.env.FEEDBACK_URL_EN}'` : 'null',
+        __FEEDBACK_URL_FR__: process.env.FEEDBACK_URL_FR ? `'${process.env.FEEDBACK_URL_FR}'` : 'null',
         __NG_APP_INJECTIONS__: process.env.NG_APP_INJECTIONS ? `'${process.env.NG_APP_INJECTIONS}'` : 'null',
+        __NODE_ENV__: process.env.NODE_ENV ? `'${process.env.NODE_ENV}'` : '"development"',
+        __WEBPACK_REGION__: process.env.REGION ? `'${process.env.REGION.toUpperCase()}'` : '"EU"',
       }),
     ],
     resolve: {
