@@ -28,6 +28,6 @@
     "ng-ckeditor": "^2.0.5",
     "ovh-angular-pagination-front": "^7.0.0",
     "ovh-api-services": "^8.3.0",
-    "ovh-ui-angular": "^3.5.1"
+    "ovh-ui-angular": "^3.7.3"
   }
 }
