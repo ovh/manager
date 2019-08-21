@@ -1968,20 +1968,11 @@
     ovh-ui-kit "^2.23.1"
     ovh-ui-kit-bs "^2.1.1"
 
-"@ovh-ux/ng-ovh-otrs@^7.1.4":
-  version "7.1.4"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-otrs/-/ng-ovh-otrs-7.1.4.tgz#e49c9696dc9a86281ae4bd3f71c43c1fc4a7a36c"
-  integrity sha512-z+h5clMBoB/9Mxd+k15PLkeZMKQbDKpoPfztaPhcHJBsaK9aJWUZPN2YdxOc1Im4dWkWI4soPF+zI1wFdQGBhA==
+"@ovh-ux/ng-ovh-otrs@^9.0.1":
+  version "9.0.1"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-otrs/-/ng-ovh-otrs-9.0.1.tgz#c3ec49648880c1f0125df427aae806a4d88466d7"
+  integrity sha512-EwjPIQ3XZ9RNFY1xgjwuzhGu2PmQtjlIeLtgcgENGFxPYnzQbbJQauQrz2hpCg3rkO3SgLhxdKgjyw0RLbkK/Q==
   dependencies:
-    draggable "^4.2.0"
-    lodash "^4.17.11"
-
-"@ovh-ux/ng-ovh-otrs@^7.1.6":
-  version "7.1.6"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-otrs/-/ng-ovh-otrs-7.1.6.tgz#be254726ea7c5cbb933a28a422fa0d2f7426691c"
-  integrity sha512-GR2y+1zAFL2YZRkMra6I6crGMPDBUsbYpy5dqiCenK5KEx+cU+0iGSFQp0HFXRTPZkRMwfF/NN1jXI9m/tV+Uw==
-  dependencies:
-    draggable "^4.2.0"
     lodash "^4.17.11"
 
 "@ovh-ux/ng-ovh-payment-method@^3.2.0":
@@ -5865,11 +5856,6 @@ dot-prop@^4.1.1, dot-prop@^4.2.0:
   dependencies:
     is-obj "^1.0.0"
 
-draggable@^4.2.0:
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/draggable/-/draggable-4.2.0.tgz#149c0ca176df6d8b512048c8e451f499fc047b9a"
-  integrity sha1-FJwMoXbfbYtRIEjI5FH0mfwEe5o=
-
 duplexer2@0.0.2:
   version "0.0.2"
   resolved "https://registry.yarnpkg.com/duplexer2/-/duplexer2-0.0.2.tgz#c614dcf67e2fb14995a91711e5a617e8a60a31db"
@@ -6979,7 +6965,7 @@ follow-redirects@^1.0.0:
   dependencies:
     debug "^3.2.6"
 
-font-awesome@4.7.0, font-awesome@^4.0.0, font-awesome@^4.5.0:
+font-awesome@4.7.0, font-awesome@^4.0.0, font-awesome@^4.5.0, font-awesome@^4.7.0:
   version "4.7.0"
   resolved "https://registry.yarnpkg.com/font-awesome/-/font-awesome-4.7.0.tgz#8fa8cf0411a1a31afd07b06d2902bb9fc815a133"
   integrity sha1-j6jPBBGhoxr9B7BtKQK7n8gVoTM=
