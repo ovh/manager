@@ -1,0 +1,81 @@
+<oui-datagrid
+    data-page-size="10"
+    data-rows=":: $ctrl.tickets">
+    <oui-column
+        data-property="ticketNumber"
+        data-searchable
+        data-sortable
+        data-title=":: 'ovhManagerSupport_tickets_grid_column_ticketNumber_header' | translate"
+        data-type="number"></oui-column>
+    <oui-column
+        data-filterable
+        data-property="serviceName.value"
+        data-searchable
+        data-title=":: 'ovhManagerSupport_tickets_grid_column_serviceName_header' | translate"
+        data-type="string">
+        <span data-ng-bind=":: $row.serviceName.display"></span>
+    </oui-column>
+    <oui-column
+        data-filterable
+        data-property="subject"
+        data-searchable
+        data-title=":: 'ovhManagerSupport_tickets_grid_column_subject_header' | translate"
+        data-type="string"></oui-column>
+    <oui-column
+        data-filterable
+        data-property="lastMessageFrom.value"
+        data-searchable
+        data-title=":: 'ovhManagerSupport_tickets_grid_column_lastMessageFrom_header' | translate"
+        data-type="options"
+        data-type-options=":: $ctrl.gridColumnLastMessageFromTypeOptions">
+        <span data-ng-bind=":: $row.lastMessageFrom.display"></span>
+    </oui-column>
+    <oui-column
+        data-filterable
+        data-property="creationDate"
+        data-searchable
+        data-sortable
+        data-title=":: 'ovhManagerSupport_tickets_grid_column_creationDate_header' | translate"
+        data-type="date">
+        <time
+            data-ng-bind=":: $row.creationDate | date: 'short'"
+            datetime="{{:: $row.creationDate }}"></time>
+    </oui-column>
+    <oui-column
+        data-filterable
+        data-property="updateDate"
+        data-searchable
+        data-sortable="dsc"
+        data-title=":: 'ovhManagerSupport_tickets_grid_column_updateDate_header' | translate"
+        data-type="date">
+        <time
+            data-ng-bind=":: $row.updateDate | date: 'short'"
+            datetime="{{:: $row.updateDate }}"></time>
+    </oui-column>
+    <oui-column
+        data-filterable
+        data-property="state.value"
+        data-searchable
+        data-title=":: 'ovhManagerSupport_tickets_grid_column_state_header' | translate"
+        data-type="options"
+        data-type-options=":: $ctrl.gridColumnStateTypeOptions">
+        <span data-ng-bind=":: $row.state.display"></span>
+    </oui-column>
+
+    <oui-action-menu
+        data-align="end"
+        data-compact>
+        <oui-action-menu-item
+            data-text="{{:: 'ovhManagerSupport_tickets_grid_action_goToTicket' | translate }}"
+            data-on-click=":: $ctrl.goToTicket($row.ticketId)"></oui-action-menu-item>
+    </oui-action-menu>
+
+    <extra-top>
+        <button class="oui-button oui-button_secondary oui-button_icon-left"
+                type="button"
+                data-ng-click="$ctrl.openSupport()">
+            <span class="oui-icon oui-icon-add pr-1" aria-hidden="true"></span>
+            <span data-translate="ovhManagerSupport_tickets_grid_top_createTicket"></span>
+        </button>
+    </extra-top>
+</oui-datagrid>

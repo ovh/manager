@@ -43,7 +43,7 @@
     semver "^5.4.1"
     source-map "^0.5.0"
 
-"@babel/core@^7.5.5":
+"@babel/core@^7.1.2", "@babel/core@^7.5.5":
   version "7.5.5"
   resolved "https://registry.yarnpkg.com/@babel/core/-/core-7.5.5.tgz#17b2686ef0d6bc58f963dddd68ab669755582c30"
   integrity sha512-i4qoSr2KTtce0DmkuuQBV4AuQgGPUcPXMr9L5MyYAtk06z068lQ10a4O009fe5OB/DfNV+h+qqT7ddNV8UnRjg==
@@ -651,7 +651,7 @@
     "@babel/helper-regex" "^7.4.4"
     regexpu-core "^4.5.4"
 
-"@babel/preset-env@^7.5.5":
+"@babel/preset-env@^7.1.6", "@babel/preset-env@^7.5.5":
   version "7.5.5"
   resolved "https://registry.yarnpkg.com/@babel/preset-env/-/preset-env-7.5.5.tgz#bc470b53acaa48df4b8db24a570d6da1fef53c9a"
   integrity sha512-GMZQka/+INwsMz1A5UEql8tG015h5j/qjptpKY2gJ7giy8ohzU710YciJB5rcKsWGWHiW3RUnHib0E5/m3Tp3A==
@@ -1830,6 +1830,36 @@
     shuffle-seed "^1.1.6"
     titleize "^1.0.1"
 
+"@ovh-ux/component-rollup-config@^6.0.2":
+  version "6.0.2"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/component-rollup-config/-/component-rollup-config-6.0.2.tgz#a53158600ebd3e6b9b9d8f63c0815b031c13cf08"
+  integrity sha512-4egMCgTCgo+EYuk04DQ+RXFxOCdJVSVngQZDpBJGiOtc3iBDWQ7galZFpJIv+20Lsp20u6/QGzb7QlLk2pV6ow==
+  dependencies:
+    "@babel/core" "^7.1.2"
+    "@babel/plugin-syntax-dynamic-import" "^7.0.0"
+    "@babel/preset-env" "^7.1.6"
+    "@ovh-ux/rollup-plugin-less-inject" "^1.0.1"
+    "@ovh-ux/rollup-plugin-less-tilde-importer" "^1.0.0-beta.0"
+    babel-plugin-angularjs-annotate "^0.10.0"
+    camelcase "^5.0.0"
+    estree-walker "^0.6.0"
+    less "~3.9.0"
+    less-plugin-remcalc "^0.1.0"
+    lodash "^4.17.15"
+    magic-string "^0.25.3"
+    node-sass "^4.10.0"
+    rollup "^1.19.4"
+    rollup-plugin-babel "^4.3.3"
+    rollup-plugin-commonjs "^9.2.0"
+    rollup-plugin-html "^0.2.1"
+    rollup-plugin-img "^1.1.0"
+    rollup-plugin-json "^3.1.0"
+    rollup-plugin-node-resolve "^4.0.0"
+    rollup-plugin-peer-deps-external "^2.2.0"
+    rollup-plugin-sass "^1.1.0"
+    rollup-pluginutils "^2.3.3"
+    slash "^2.0.0"
+
 "@ovh-ux/ng-at-internet-ui-router-plugin@^2.0.1":
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-at-internet-ui-router-plugin/-/ng-at-internet-ui-router-plugin-2.0.1.tgz#bc717069b750f8ecaedaabd69fdf26fddfcfd2d0"
@@ -1855,6 +1885,13 @@
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-api-wrappers/-/ng-ovh-api-wrappers-4.0.3.tgz#474e2248fd1ebe242ea11721d7737499afbe9894"
   integrity sha512-IBW3rw+BngwlpQzzCxNeXqk+Mwx1uJZZfMRtx8Gr7Cd4UH5h2sOauGDJRHhkj8IH9CvA9Y+fHz2mF64uc6AyfQ==
+  dependencies:
+    lodash "^4.17.15"
+
+"@ovh-ux/ng-ovh-api-wrappers@^4.0.4":
+  version "4.0.4"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-api-wrappers/-/ng-ovh-api-wrappers-4.0.4.tgz#0fd5f6b7b428bb08e7c37d6bc98f43dfbda50ef9"
+  integrity sha512-ckPKAzXRuFkJ27QZ16AtiTgFZ8T5yTr6rkPqJetqGA8f2ncqBBnmnHtZGdoBFdk445dnrLyXsXjLuG0kTwSiRw==
   dependencies:
     lodash "^4.17.15"
 
@@ -13300,6 +13337,15 @@ rollup-pluginutils@^1.5.0:
   dependencies:
     estree-walker "^0.2.1"
     minimatch "^3.0.2"
+
+rollup@^1.19.4:
+  version "1.20.3"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-1.20.3.tgz#6243f6c118ca05f56b2d9433112400cd834a1eb8"
+  integrity sha512-/OMCkY0c6E8tleeVm4vQVDz24CkVgvueK3r8zTYu2AQNpjrcaPwO9hE+pWj5LTFrvvkaxt4MYIp2zha4y0lRvg==
+  dependencies:
+    "@types/estree" "0.0.39"
+    "@types/node" "^12.7.2"
+    acorn "^7.0.0"
 
 rollup@^1.20.2:
   version "1.20.2"

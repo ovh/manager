@@ -1,0 +1,29 @@
+<div
+    class="oui-box"
+    data-ng-class="{
+        'oui-box_light': $ctrl.message.isFromCustomer(),
+    }">
+    <dl>
+        <dt
+            class="d-inline mr-2"
+            data-translate="ovhManagerSupport_ticket_messages_sender"></dt>
+        <dd
+            class="d-inline"
+            data-ng-bind=":: $ctrl.message.from.display"></dd>
+    </dl>
+
+    <pre
+        class="message"
+        data-ng-bind-html=":: $ctrl.message.body | htmlStringLinky:'_blank'"></pre>
+
+    <dl class="row">
+        <dt
+            class="col-sm-10 text-sm-right"
+            data-translate="ovhManagerSupport_ticket_messages_dateOfReceipt"></dt>
+        <dd class="col-sm-2">
+            <time
+                data-ng-bind=":: $ctrl.message.creationDate | date: 'short'"
+                datetime="{{:: $ctrl.message.creationDate }}"></time>
+        </dd>
+    </dl>
+</div>
