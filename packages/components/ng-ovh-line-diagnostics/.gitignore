@@ -1,7 +1,3 @@
-.idea/
-.work/
 node_modules
-*.log
-tools/
-
-src/*/translations/Messages_*_*.json
+dist
+tools

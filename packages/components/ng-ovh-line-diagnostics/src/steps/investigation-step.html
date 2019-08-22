@@ -1,0 +1,211 @@
+<div class="col-md-6"
+     data-ng-if="!$ctrl.currentLineDiagnostic.isLongActionInProgress() && $ctrl.currentLineDiagnostic.status !== 'waitingRobot'">
+    <div class="form-group">
+        <p class="oui-header_5"
+           data-translate="tools_lineDiagnostics_header_investigation_step_title"></p>
+        <p data-translate="tools_lineDiagnostics_header_investigation_step_subtitle"></p>
+
+        <div class="mb-5"
+             data-ng-if="$ctrl.currentLineDiagnostic.data.actionsDone && $ctrl.currentLineDiagnostic.data.actionsDone.length > 0">
+            <p data-ng-repeat="actionDone in $ctrl.currentLineDiagnostic.getActionsDone() track by actionDone">
+                <span class="oui-icon oui-icon-success"
+                      aria-hidden="true"></span>
+                <span data-translate="{{:: 'tools_lineDiagnostics_investigation_step_action_' + actionDone + '_done_text' }}"></span>
+            </p>
+            <p data-ng-if="$ctrl.loading &&
+                           $ctrl.getInvestigationStepQuestions().length === 0 &&
+                           $ctrl.getInvestigationStepSpecificQuestions().length === 0">
+                <oui-spinner data-size="s"></oui-spinner>
+                <span class="ml-2" data-translate="tools_lineDiagnostics_please_wait"></span>
+            </p>
+        </div>
+
+        <!-- ACTIONS TO DO -->
+        <div data-ng-if="$ctrl.currentLineDiagnostic.data.actionsToDo &&
+                         $ctrl.currentLineDiagnostic.data.actionsToDo.length > 0 &&
+                         $ctrl.currentAction && !$ctrl.loading">
+            <label for="{{:: $ctrl.currentAction }}"
+                   class="oui-label">
+                <span data-translate="{{:: 'tools_lineDiagnostics_investigation_step_action_' + $ctrl.currentAction + '_title' }}"></span>
+                <oui-popover data-ng-if="$ctrl.currentAction === 'bePreparedToCheckModemSynchronization'">
+                    <button type="button" class="oui-popover-button" oui-popover-trigger></button>
+                    <oui-popover-content data-translate="tools_lineDiagnostics_detection_step_modem_question_help"></oui-popover-content>
+                </oui-popover>
+                <a class="oui-link oui-link_icon"
+                   data-ng-if="$ctrl.currentAction === 'changeProfile'"
+                   data-ui-sref="telecom.pack.xdsl" >
+                    <span data-translate="tools_lineDiagnostics_investigation_step_action_changeProfile_link"></span>
+                </a>
+                <oui-popover data-ng-if="$ctrl.currentAction === 'checkFilter'">
+                    <button type="button"
+                            class="oui-popover-button"
+                            oui-popover-trigger></button>
+                    <oui-popover-content>
+                        <p class="text-center"
+                           data-translate="tools_lineDiagnostics_investigation_step_action_checkFilter_example">
+                        </p>
+                        <img data-ng-src="{{:: $ctrl.assets.HUMAN_SPEED_AND_GRAPHIC }}"
+                            alt=""
+                            data-ng-attr-alt="{{:: $ctrl.currentAction }}" />
+                    </oui-popover-content>
+                </oui-popover>
+            </label>
+            <oui-button data-variant="secondary"
+                        data-on-click="$ctrl.addActionDone($ctrl.currentAction)"
+                        data-disabled="$ctrl.loading">
+                <span data-translate="{{:: 'tools_lineDiagnostics_investigation_step_action_' + $ctrl.currentAction + '_text' }}"></span>
+            </oui-button>
+
+            <!-- ACTION AS A QUESTION -->
+            <oui-button data-variant="secondary"
+                        data-on-click="$ctrl.showWarning()"
+                        data-ng-if="$ctrl.isActionAQuestion($ctrl.currentAction)"
+                        data-disabled="$ctrl.loading">
+                <span data-translate="tools_lineDiagnostics_detail_no"></span>
+            </oui-button>
+        </div>
+
+        <!-- QUESTION TO ANSWER -->
+        <div data-ng-if="$ctrl.getInvestigationStepQuestions().length > 0"
+             data-ng-repeat="question in $ctrl.getInvestigationStepQuestions() track by question">
+            <oui-field data-label="{{:: 'tools_lineDiagnostics_investigation_step_question_' + question.name + '_title' | translate }}">
+                <oui-radio-toggle-group class="d-inline-block"
+                                        data-model="$ctrl.currentLineDiagnostic.data.answers[question.name]"
+                                        data-ng-if="question.type === 'boolean' && !$ctrl.loading"
+                                        data-on-change="$ctrl.answerQuestion(question.name, modelValue)">
+                    <oui-radio data-value="true">
+                        <span data-translate="tools_lineDiagnostics_detail_yes"></span>
+                    </oui-radio>
+                    <oui-radio data-value="false">
+                        <span data-translate="tools_lineDiagnostics_detail_no"></span>
+                    </oui-radio>
+                </oui-radio-toggle-group>
+                <p data-ng-if="$ctrl.loading">
+                    <oui-spinner data-size="s"></oui-spinner>
+                    <span class="ml-2" data-translate="tools_lineDiagnostics_please_wait"></span>
+                </p>
+            </oui-field>
+        </div>
+
+        <div data-ng-if="$ctrl.getInvestigationStepSpecificQuestions().length > 0">
+            <form name="syncLossOrLowBandwidth"
+                  novalidate
+                  data-ng-if="!$ctrl.loading">
+                <div data-ng-if="$ctrl.currentLineDiagnostic.hasQuestionToAnswer('problemType')">
+                    <oui-field data-label="{{:: 'tools_lineDiagnostics_investigation_step_question_problemType_title' | translate }}">
+                        <oui-radio-group data-model="$ctrl.currentLineDiagnostic.data.answers.problemType">
+                            <oui-radio data-value="$ctrl.enumQuestions.problemType.SYNC_LOSS"
+                                       data-required>
+                                <span data-translate="tools_lineDiagnostics_investigation_step_question_problemType_enum_syncLoss"></span>
+                            </oui-radio>
+                            <oui-radio data-value="$ctrl.enumQuestions.problemType.LOW_BANDWIDTH"
+                                       data-required>
+                                <span data-translate="tools_lineDiagnostics_investigation_step_question_problemType_enum_lowBandwidth"></span>
+                            </oui-radio>
+                        </oui-radio-group>
+                    </oui-field>
+                </div>
+
+                <div data-ng-if="($ctrl.currentLineDiagnostic.hasQuestionToAnswer('downloadBandwidthTest') &&
+                                 $ctrl.currentLineDiagnostic.hasQuestionToAnswer('uploadBandwidthTest'))">
+                    <label class="oui-label">
+                        <span data-translate="tools_lineDiagnostics_investigation_step_question_bandwidthTest_title"></span>
+                        <a data-ng-href="{{:: $ctrl.bandwidthTestSite }}"
+                           target="_blank"
+                           rel="noopener">
+                            <span data-ng-bind="$ctrl.bandwidthTestSite"></span>
+                        </a>
+                    </label>
+
+                    <div class="row">
+                        <oui-field class="col-md-4 col-xs-8"
+                                   data-label="{{:: 'tools_lineDiagnostics_investigation_step_question_downloadBandwidthTest_title' | translate }}"
+                                   data-ng-if="$ctrl.currentLineDiagnostic.hasQuestionToAnswer('downloadBandwidthTest')"
+                                   data-ng-init="$ctrl.setDefaultValue('downloadBandwidthTest')">
+                            <input class="oui-input"
+                                   type="text"
+                                   name="downloadBandwidthTest"
+                                   data-ng-model="$ctrl.currentLineDiagnostic.data.answers.downloadBandwidthTest"
+                                   data-required>
+                        </oui-field>
+
+                        <oui-field class="col-md-4 col-xs-8"
+                                   data-label="{{:: 'tools_lineDiagnostics_investigation_step_question_uploadBandwidthTest_title' | translate }}"
+                                   data-ng-if="$ctrl.currentLineDiagnostic.hasQuestionToAnswer('uploadBandwidthTest')"
+                                   data-ng-init="$ctrl.setDefaultValue('uploadBandwidthTest')">
+                            <input class="oui-input"
+                                   type="text"
+                                   name="uploadBandwidthTest"
+                                   data-ng-model="$ctrl.currentLineDiagnostic.data.answers.uploadBandwidthTest"
+                                   data-required>
+                        </oui-field>
+
+                        <oui-field class="col-md-3 col-xs-8"
+                                   data-label="{{:: 'tools_lineDiagnostics_investigation_step_question_bandwidthTestUnit_title' | translate }}"
+                                   data-ng-if="$ctrl.currentLineDiagnostic.hasQuestionToAnswer('bandwidthTestUnit')">
+                            <oui-select name="bandwidthTestUnit"
+                                        placeholder="{{:: 'tools_lineDiagnostics_investigation_step_question_bandwidthTestUnit_placeholder' | translate }}"
+                                        data-model="$ctrl.currentLineDiagnostic.data.answers.bandwidthTestUnit"
+                                        data-items="$ctrl.enumQuestions.bandwidthTestUnit"
+                                        data-align="start"
+                                        data-required>
+                                <span data-ng-bind="$item"></span>
+                            </oui-select>
+                        </oui-field>
+                    </div>
+                </div>
+                <oui-button data-variant="primary"
+                            data-disabled="!syncLossOrLowBandwidth.$valid"
+                            data-on-click="$ctrl.answerSpecificQuestion()"
+                            data-ng-if="!$ctrl.loading">
+                    <span data-translate="tools_lineDiagnostics_validate"></span>
+                </oui-button>
+            </form>
+            <p data-ng-if="$ctrl.loading">
+                <oui-spinner data-size="s"></oui-spinner>
+                <span class="ml-2" data-translate="tools_lineDiagnostics_please_wait"></span>
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4"
+     data-ng-if="$ctrl.currentLineDiagnostic.status === 'waitingRobot' && !$ctrl.currentLineDiagnostic.isLongActionInProgress()">
+    <p>
+        <oui-spinner data-size="s"></oui-spinner>
+        <span data-translate="tools_lineDiagnostics_waitingRobot"></span>
+        <span data-translate="tools_lineDiagnostics_please_wait"></span>
+    </p>
+</div>
+
+<div class="col-md-8">
+    <oui-message data-type="warning"
+                 data-ng-if="$ctrl.actionRequired">
+        <span data-translate="tools_lineDiagnostics_action_required_action"></span>
+    </oui-message>
+</div>
+
+<div class="col-md-5 oui-message oui-message_info"
+     data-ng-if="$ctrl.currentLineDiagnostic.hasQuestionToAnswer('resolvedAfterTests') && !$ctrl.loading">
+    <p class="oui-header_6"
+       data-translate="tools_lineDiagnostics_investigation_step_action_is_problem_solved"></p>
+    <oui-radio-toggle-group class="d-inline-block"
+                            data-model="$ctrl.currentLineDiagnostic.data.answers.resolvedAfterTests"
+                            data-on-change="$ctrl.answerQuestion('resolvedAfterTests', modelValue)">
+        <oui-radio data-value="true">
+            <span data-translate="tools_lineDiagnostics_detail_yes"></span>
+        </oui-radio>
+        <oui-radio data-value="false">
+            <span data-translate="tools_lineDiagnostics_detail_no"></span>
+        </oui-radio>
+    </oui-radio-toggle-group>
+</div>
+
+<!-- SELT TEST LOADER -->
+<div class="col-md-6"
+     data-ng-if="$ctrl.currentLineDiagnostic.isLongActionInProgress()">
+    <oui-spinner></oui-spinner>
+    <p class="oui-header_6"
+       data-translate="tools_lineDiagnostics_header_investigation_step_selt_test_title"></p>
+    <p data-translate="tools_lineDiagnostics_header_investigation_step_selt_test_subtitle"></p>
+</div>

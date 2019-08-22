@@ -1,8 +1,0 @@
-{
-    "registry": "https://registry.bower.io",
-    "directory" : "./.work/bower_components/",
-    "storage": {
-        "packages": "./.work/bower_cache/"
-    },
-    "tmp": "./.work/bower_tmp"
-}

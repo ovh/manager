@@ -1,44 +1,68 @@
 {
-  "name": "ovh-angular-line-diagnostics",
+  "name": "@ovh-ux/ng-ovh-line-diagnostics",
   "version": "2.1.2",
-  "description": "Module to diagnose telecoms lines.",
+  "description": "Module to diagnose OVH telecoms lines.",
   "keywords": [
-    "angular"
+    "angular",
+    "ovh",
+    "diagnostics"
   ],
-  "main": "./dist/ovh-angular-line-diagnostics.min.js",
-  "repository": "ovh-ux/ovh-angular-line-diagnostic",
-  "scripts": {
-    "lint": "eslint src/. --ext .js --quiet",
-    "precommit": "npm run lint",
-    "test": "grunt test"
+  "homepage": "https://github.com/ovh-ux/ng-ovh-line-diagnostics/tree/master#readme",
+  "bugs": {
+    "url": "https://github.com/ovh-ux/ng-ovh-line-diagnostics/issues"
   },
+  "repository": "ovh-ux/ng-ovh-line-diagnostics",
   "license": "BSD-3-Clause",
-  "author": " OVH SAS",
-  "dependency": {},
+  "author": "OVH SAS",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "browser": "./dist/umd/ng-ovh-line-diagnostics.js",
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c --watch",
+    "lint": "run-p lint:css lint:html lint:js lint:md",
+    "lint:css": "stylelint 'src/**/*.less' --fix",
+    "lint:html": "htmlhint 'src/**/*.html'",
+    "lint:js": "eslint --quiet --fix --format=pretty src",
+    "lint:md": "eslint --quiet --fix --format=pretty --ext .md .",
+    "prepare": "rollup -c",
+    "start": "rollup -c --watch",
+    "test": "yarn run lint",
+    "version": "npx conventional-changelog-cli -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
+    "postversion": "git push && git push --tags"
+  },
   "devDependencies": {
-    "babel-eslint": "^7.2.3",
-    "babel-preset-es2015": "^6.24.1",
-    "eslint": "^4.1.1",
-    "eslint-config-ovh": "^0.1.1",
-    "grunt": "0.4.x",
-    "grunt-angular-templates": "^0.5.7",
-    "grunt-babel": "^6.0.0",
-    "grunt-bump": "~0.0.11",
-    "grunt-complexity": "~0.1.3",
-    "grunt-contrib-clean": "~0.5.0",
-    "grunt-contrib-concat": "~0.3.0",
-    "grunt-contrib-copy": "~0.4.1",
-    "grunt-contrib-csslint": "~0.1.2",
-    "grunt-contrib-cssmin": "~0.6.2",
-    "grunt-contrib-jshint": "~0.6.4",
-    "grunt-contrib-less": "^0.11.3",
-    "grunt-contrib-uglify": "~0.2.7",
-    "grunt-contrib-watch": "~0.5.3",
-    "grunt-eslint": "^20.0.0",
-    "grunt-ng-annotate": "~1.0.1",
-    "grunt-text-replace": "~0.3.8",
-    "grunt-ovh-translation": "^2.1.1",
-    "lodash": "~3.0.1",
-    "matchdep": "^0.3.0"
+    "@commitlint/cli": "^8.1.0",
+    "@commitlint/config-angular": "^8.1.0",
+    "@ovh-ux/component-rollup-config": "^6.0.0",
+    "eslint": "^6.1.0",
+    "eslint-config-airbnb-base": "^13.2.0",
+    "eslint-formatter-pretty": "^2.1.1",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-markdown": "^1.0.0",
+    "htmlhint": "^0.11.0",
+    "husky": "^3.0.1",
+    "lint-staged": "^9.2.1",
+    "npm-run-all": "^4.1.5",
+    "stylelint": "^10.1.0",
+    "stylelint-config-standard": "^18.3.0"
+  },
+  "dependencies": {
+    "lodash": "^4.17.15"
+  },
+  "peerDependencies": {
+    "@ovh-ux/ng-at-internet": "^4.0.0",
+    "@ovh-ux/ng-ovh-telecom-universe-components": "^3.0.9",
+    "@ovh-ux/ng-translate-async-loader": "^2.0.0",
+    "@uirouter/angularjs": "^1.0.22",
+    "angular": "^1.7.8",
+    "angular-translate": "^2.18.1",
+    "angular-ui-bootstrap": "~1.3.3",
+    "ovh-api-services": "^9.2.0",
+    "ovh-ui-angular": "^3.7.2",
+    "ovh-ui-kit": "^2.33.4"
   }
 }
