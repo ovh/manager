@@ -1,3 +1,11 @@
+import chunk from 'lodash/chunk';
+import assignIn from 'lodash/assignIn';
+import filter from 'lodash/filter';
+import flatten from 'lodash/flatten';
+import head from 'lodash/head';
+import map from 'lodash/map';
+import set from 'lodash/set';
+
 angular.module('managerApp').controller('PackMoveCtrl', function (
   $scope, $compile, $state, $timeout, $translate, $uibModal, $filter, $q, $stateParams,
   REDIRECT_URLS, OvhApiPackXdslMove, Poller, TucToast, TucToastError,
@@ -59,7 +67,7 @@ angular.module('managerApp').controller('PackMoveCtrl', function (
       right: 'prev,next',
     },
     eventClick(slot) {
-      _.set(slot, 'display', {
+      set(slot, 'display', {
         day: $filter('date')(slot.data.startDate, 'dd/MM/yyyy'),
         start: $filter('date')(slot.data.startDate, 'HH:mm'),
         end: $filter('date')(slot.data.endDate, 'HH:mm'),
@@ -249,15 +257,15 @@ angular.module('managerApp').controller('PackMoveCtrl', function (
     };
     if (self.testLine.canMove) {
       self.testLine.performed = true;
-      _.extend(self.offer, {
+      assignIn(self.offer, {
         available: offers,
-        selected: _.head(offers),
+        selected: head(offers),
       });
       self.offerSelected(self.offer.selected);
       self.form.futureLandline.lineNumber = self.offer.selected.lineNumber;
     } else {
       self.testLine.performed = false;
-      _.extend(self.offer, {
+      assignIn(self.offer, {
         available: [],
         selected: null,
       });
@@ -273,7 +281,7 @@ angular.module('managerApp').controller('PackMoveCtrl', function (
       canMove: false,
       performed: false,
     };
-    _.extend(
+    assignIn(
       self.offer,
       {
         available: [],
@@ -355,12 +363,12 @@ angular.module('managerApp').controller('PackMoveCtrl', function (
   function getCurrentPackAddress() {
     return $q.all([
       OvhApiPackXdsl.Aapi().get({ packId: $stateParams.packName }, null).$promise.then((pack) => {
-        self.packAdress.current = _.head(pack.services);
+        self.packAdress.current = head(pack.services);
         return self.packAdress.current ? self.packAdress.current.accessName : null;
       }, err => new TucToastError(err)),
       OvhApiPackXdsl.Aapi()
         .getLines({ packId: $stateParams.packName }, null).$promise.then((lines) => {
-          const currentLine = _.head(lines);
+          const currentLine = head(lines);
           self.packAdress.lineNumber = currentLine.number;
           self.packAdress.portability = currentLine.portability;
         }, err => new TucToastError(err)),
@@ -377,10 +385,10 @@ angular.module('managerApp').controller('PackMoveCtrl', function (
     self.slammingCheck = true;
     return OvhApiPackXdsl.v7().access().execute({
       packName: $stateParams.packName,
-    }).$promise.then(ids => $q.all(_.map(_.chunk(ids, 200), chunkIds => OvhApiXdsl.v7().query().batch('serviceName', [''].concat(chunkIds), ',').expand()
-      .execute().$promise)).then(chunkResult => _.flatten(chunkResult))
-      .then(result => _.flatten(result))).then((xdslLines) => {
-      const slammingLines = _.filter(xdslLines, xdslLine => xdslLine.value.status === 'slamming');
+    }).$promise.then(ids => $q.all(map(chunk(ids, 200), chunkIds => OvhApiXdsl.v7().query().batch('serviceName', [''].concat(chunkIds), ',').expand()
+      .execute().$promise)).then(chunkResult => flatten(chunkResult))
+      .then(result => flatten(result))).then((xdslLines) => {
+      const slammingLines = filter(xdslLines, xdslLine => xdslLine.value.status === 'slamming');
       self.hasSlamming = !!slammingLines.length;
       return self.hasSlamming;
     }).catch((err) => {

@@ -1,3 +1,9 @@
+import assign from 'lodash/assign';
+import endsWith from 'lodash/endsWith';
+import map from 'lodash/map';
+import pick from 'lodash/pick';
+import some from 'lodash/some';
+
 angular.module('managerApp').controller('TelephonyNumberConferenceCtrl', function ($q, $translate, TelephonyMediator, telephonyGroupNumberConferencePolling, TucToast, TucToastError) {
   const self = this;
 
@@ -45,7 +51,7 @@ angular.module('managerApp').controller('TelephonyNumberConferenceCtrl', functio
   function getConferenceEnums() {
     return TelephonyMediator.getApiModelEnum('telephony.ConferenceLanguageEnum').then((availableLanguages) => {
       // populate language list
-      self.availableLanguages = _.map(availableLanguages, languageKey => ({
+      self.availableLanguages = map(availableLanguages, languageKey => ({
         value: languageKey,
         label: $translate.instant(`language_${languageKey}_${languageKey !== 'en' ? languageKey.toUpperCase() : 'GB'}`),
       }));
@@ -140,7 +146,7 @@ angular.module('managerApp').controller('TelephonyNumberConferenceCtrl', functio
     self.popoverOpen = !self.popoverOpen;
     if (self.popoverOpen) {
       self.numberCtrl.number.feature.startEdition();
-      _.assign(self, _.pick(self.numberCtrl.number.feature, settingsAttributes));
+      assign(self, pick(self.numberCtrl.number.feature, settingsAttributes));
     } else {
       self.numberCtrl.number.feature.stopEdition(true);
       self.status.move = null;
@@ -168,7 +174,7 @@ angular.module('managerApp').controller('TelephonyNumberConferenceCtrl', functio
   self.onSoundFileChoosed = function (file) {
     const validExtensions = ['wav', 'mp3', 'ogg'];
     const fileName = file ? file.name : '';
-    const found = _.some(validExtensions, ext => _.endsWith(fileName.toLowerCase(), ext));
+    const found = some(validExtensions, ext => endsWith(fileName.toLowerCase(), ext));
 
     if (!found) {
       return new TucToastError($translate.instant('telephony_number_feature_conference_announcement_file_invalid'));
@@ -226,7 +232,7 @@ angular.module('managerApp').controller('TelephonyNumberConferenceCtrl', functio
       self.numberCtrl.number.feature.getWebAccess(),
       getConferenceEnums(),
     ]).then(() => {
-      _.assign(self, _.pick(self.numberCtrl.number.feature, settingsAttributes));
+      assign(self, pick(self.numberCtrl.number.feature, settingsAttributes));
       telephonyGroupNumberConferencePolling
         .initPolling(self.numberCtrl.number.feature).then(angular.noop, (error) => {
           if (error) {

@@ -1,3 +1,6 @@
+import find from 'lodash/find';
+import snakeCase from 'lodash/snakeCase';
+
 angular.module('managerApp').controller('TelecomTelephonyLineManagementLanguageCtrl', function ($translate, $q, $stateParams, $timeout, TucToast, OvhApiTelephony, $filter) {
   const self = this;
 
@@ -41,7 +44,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineManagementLanguageC
       angular.forEach(schema.models['telephony.LineOptionLanguageEnum'].enum, (language) => {
         self.availableLanguages.push({
           value: language,
-          label: $translate.instant(`telephony_line_language_value_${_.snakeCase(language)}`),
+          label: $translate.instant(`telephony_line_language_value_${snakeCase(language)}`),
         });
       });
       self.availableLanguages = $filter('orderBy')(self.availableLanguages, 'label');
@@ -50,7 +53,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineManagementLanguageC
       billingAccount: $stateParams.billingAccount,
       serviceName: $stateParams.serviceName,
     }).$promise.then((options) => {
-      const language = _.find(self.availableLanguages, { value: options.language });
+      const language = find(self.availableLanguages, { value: options.language });
       if (language) {
         self.language = language.value;
       }

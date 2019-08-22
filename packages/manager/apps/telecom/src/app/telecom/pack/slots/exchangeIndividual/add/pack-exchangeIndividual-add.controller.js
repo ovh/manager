@@ -1,3 +1,6 @@
+import forEach from 'lodash/forEach';
+import get from 'lodash/get';
+
 angular.module('managerApp').controller('PackExchangeIndividualEmailAddCtrl', function ($q, $scope, $stateParams, OvhApiPackXdslExchangeIndividual, TucToast, $translate, tucValidator) {
   const self = this;
 
@@ -22,7 +25,7 @@ angular.module('managerApp').controller('PackExchangeIndividualEmailAddCtrl', fu
       TucToast.success($translate.instant('success_validation'));
       return data;
     }).catch((error) => {
-      TucToast.error([$translate.instant('an_error_ocurred'), _.get(error, 'data.message', '')].join(' '));
+      TucToast.error([$translate.instant('an_error_ocurred'), get(error, 'data.message', '')].join(' '));
       return $q.reject(error);
     }).finally(() => {
       self.pendingOrder = true;
@@ -34,7 +37,7 @@ angular.module('managerApp').controller('PackExchangeIndividualEmailAddCtrl', fu
 
     OvhApiPackXdslExchangeIndividual.v6()
       .getDomains({ packId: $stateParams.packName }, (domains) => {
-        _.each(domains, (domain) => {
+        forEach(domains, (domain) => {
           $scope.domains.push(`@${domain}`);
         });
       });

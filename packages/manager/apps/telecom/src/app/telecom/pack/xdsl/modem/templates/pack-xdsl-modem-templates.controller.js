@@ -1,3 +1,6 @@
+import get from 'lodash/get';
+import isEmpty from 'lodash/isEmpty';
+
 angular.module('managerApp').controller('XdslModemTemplateCtrl', class XdslModemTemplateCtrl {
   /* @ngInject */
   constructor($stateParams, $translate, $uibModal, OvhApiXdsl, TucPackXdslModemMediator,
@@ -63,7 +66,7 @@ angular.module('managerApp').controller('XdslModemTemplateCtrl', class XdslModem
   }
 
   applyTemplate() {
-    if (_.isEmpty(this.$stateParams.serviceName)
+    if (isEmpty(this.$stateParams.serviceName)
             || !this.templateTmp) {
       this.templateTmp = this.template;
       this.TucToast.error(this.$translate.instant('xdsl_modem_template_an_error_ocurred'));
@@ -83,7 +86,7 @@ angular.module('managerApp').controller('XdslModemTemplateCtrl', class XdslModem
       this.TucToast.success(this.$translate.instant('xdsl_modem_template_apply_doing'));
     }).catch((err) => {
       this.templateTmp = this.template;
-      this.TucToast.error([this.$translate.instant('xdsl_modem_template_an_error_ocurred'), _.get(err, 'data.message', '')].join(' '));
+      this.TucToast.error([this.$translate.instant('xdsl_modem_template_an_error_ocurred'), get(err, 'data.message', '')].join(' '));
     }).finally(() => {
       this.loading = false;
     });

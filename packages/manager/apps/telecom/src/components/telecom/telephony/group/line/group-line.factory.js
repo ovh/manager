@@ -1,3 +1,17 @@
+import endsWith from 'lodash/endsWith';
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import get from 'lodash/get';
+import indexOf from 'lodash/indexOf';
+import isNull from 'lodash/isNull';
+import isUndefined from 'lodash/isUndefined';
+import map from 'lodash/map';
+import remove from 'lodash/remove';
+import set from 'lodash/set';
+import some from 'lodash/some';
+import startsWith from 'lodash/startsWith';
+import sortBy from 'lodash/sortBy';
+
 angular.module('managerApp').factory('TelephonyGroupLine', (
   $q, $filter, OvhApiTelephony, OvhApiPackXdslVoipLine, VoipScheduler, VoipTimeCondition,
   TelephonyGroupLinePhone, TelephonyGroupLineClick2Call, TelephonyGroupLineOffer, VoipLineOldOffers,
@@ -50,7 +64,7 @@ angular.module('managerApp').factory('TelephonyGroupLine', (
 
     // managing notifications object
     this.notifications = options.notifications;
-    if (_.isNull(_.get(this.notifications, 'logs'))) {
+    if (isNull(get(this.notifications, 'logs'))) {
       this.notifications.logs = {
         email: null,
         frequency: 'Never',
@@ -71,7 +85,7 @@ angular.module('managerApp').factory('TelephonyGroupLine', (
     this.availableCodecs = null;
 
     // helper
-    this.isPlugNFax = _.some(this.offers, offer => angular.isString(offer) && (offer.indexOf('fax') >= 0 || _.some(VoipLineOldOffers.oldOffers.sipNFax, old => offer.indexOf(old) > -1)));
+    this.isPlugNFax = some(this.offers, offer => angular.isString(offer) && (offer.indexOf('fax') >= 0 || some(VoipLineOldOffers.oldOffers.sipNFax, old => offer.indexOf(old) > -1)));
   }
 
   /* -----  End of CONSTRUCTOR  ------*/
@@ -95,7 +109,7 @@ angular.module('managerApp').factory('TelephonyGroupLine', (
   };
 
   TelephonyGroupLine.prototype.getOfferTypes = function () {
-    return _.map(this.offers, (offer) => {
+    return map(this.offers, (offer) => {
       const cleaned = offer
         .replace(/^voip\.main\.offer\./, '')
         .split('.');
@@ -105,7 +119,7 @@ angular.module('managerApp').factory('TelephonyGroupLine', (
 
   TelephonyGroupLine.prototype.isOffer = function (name) {
     const offerPrefix = `voip.main.offer.${name}`;
-    return _.some(this.offers, offer => _.startsWith(offer, offerPrefix));
+    return some(this.offers, offer => startsWith(offer, offerPrefix));
   };
 
   TelephonyGroupLine.prototype.isIndividual = function () {
@@ -117,7 +131,7 @@ angular.module('managerApp').factory('TelephonyGroupLine', (
   };
 
   TelephonyGroupLine.prototype.isVoicefax = function () {
-    return _.get(this, 'getPublicOffer.name') === 'voicefax' || this.isOffer('voicefax');
+    return get(this, 'getPublicOffer.name') === 'voicefax' || this.isOffer('voicefax');
   };
 
   TelephonyGroupLine.prototype.isPriceplan = function () {
@@ -125,7 +139,7 @@ angular.module('managerApp').factory('TelephonyGroupLine', (
   };
 
   TelephonyGroupLine.prototype.isTrunk = function () {
-    return _.get(this, 'getPublicOffer.name') === 'trunk' || this.isOffer('trunk');
+    return get(this, 'getPublicOffer.name') === 'trunk' || this.isOffer('trunk');
   };
 
   /* ----------  API CALLS  ----------*/
@@ -145,12 +159,12 @@ angular.module('managerApp').factory('TelephonyGroupLine', (
   TelephonyGroupLine.prototype.supportsPhonebook = function () {
     const self = this;
 
-    if (_.isUndefined(self.hasSupportsPhonebook)) {
+    if (isUndefined(self.hasSupportsPhonebook)) {
       return OvhApiTelephony.Line().Phone().v6().supportsPhonebook({
         billingAccount: self.billingAccount,
         serviceName: self.serviceName,
       }).$promise.then((support) => {
-        self.hasSupportsPhonebook = _.get(support, 'data', null);
+        self.hasSupportsPhonebook = get(support, 'data', null);
         return support;
       }, () => {
         self.hasSupportsPhonebook = false;
@@ -163,7 +177,7 @@ angular.module('managerApp').factory('TelephonyGroupLine', (
   TelephonyGroupLine.prototype.getPhone = function () {
     const self = this;
 
-    if (!self.phone && _.isUndefined(self.hasPhone)) {
+    if (!self.phone && isUndefined(self.hasPhone)) {
       return OvhApiTelephony.Line().Phone().v6().get({
         billingAccount: self.billingAccount,
         serviceName: self.serviceName,
@@ -207,11 +221,11 @@ angular.module('managerApp').factory('TelephonyGroupLine', (
         billingAccount: self.billingAccount,
         serviceName: self.serviceName,
       }).$promise
-      .then(taskIds => $q.all(_.map(taskIds, id => OvhApiTelephony.Service().OfferTask().v6().get({
+      .then(taskIds => $q.all(map(taskIds, id => OvhApiTelephony.Service().OfferTask().v6().get({
         billingAccount: self.billingAccount,
         serviceName: self.serviceName,
         taskId: id,
-      }).$promise))).then(tasks => _.filter(tasks, task => task.status === 'todo' || task.status === 'doing' || task.status === 'pause').length > 0);
+      }).$promise))).then(tasks => filter(tasks, task => task.status === 'todo' || task.status === 'doing' || task.status === 'pause').length > 0);
   };
 
   TelephonyGroupLine.prototype.getTerminating = function () {
@@ -231,7 +245,7 @@ angular.module('managerApp').factory('TelephonyGroupLine', (
           status: 'todo',
           taskId: tasks[0],
         }).$promise.then((taskDetails) => {
-          _.set(taskDetails, 'executionDate', $filter('date')(taskDetails.executionDate, 'shortDate'));
+          set(taskDetails, 'executionDate', $filter('date')(taskDetails.executionDate, 'shortDate'));
           return taskDetails;
         });
       }
@@ -291,7 +305,7 @@ angular.module('managerApp').factory('TelephonyGroupLine', (
   TelephonyGroupLine.prototype.isIncludedInXdslPack = function () {
     const self = this;
 
-    return OvhApiPackXdslVoipLine.v7().services().aggregate('packName').execute().$promise.then(lines => _.some(lines, { key: self.serviceName }));
+    return OvhApiPackXdslVoipLine.v7().services().aggregate('packName').execute().$promise.then(lines => some(lines, { key: self.serviceName }));
   };
 
   /* ----------  OPTIONS  ----------*/
@@ -338,25 +352,31 @@ angular.module('managerApp').factory('TelephonyGroupLine', (
 
   /* ----------  CODECS  ----------*/
 
-  TelephonyGroupLine.prototype.getAvailableCodecs = function () {
+  TelephonyGroupLine.prototype.getAvailableCodecs = function getAvailableCodecs() {
     const self = this;
 
     return OvhApiTelephony.Line().Options().v6().availableCodecs({
       billingAccount: self.billingAccount,
       serviceName: self.serviceName,
     }).$promise.then((codecsList) => {
-      self.availableCodecs = _.chain(codecsList).map((codec) => {
-        if (!_.endsWith(codec, '_a')) {
-          return {
-            value: codec,
-            automatic: _.indexOf(codecsList, `${codec}_a`) > -1,
-          };
-        }
-        return null;
-      }).sortBy(codec => (codec && codec.value.length) || -1).value();
+      self.availableCodecs = sortBy(
+        map(
+          codecsList,
+          (codec) => {
+            if (!endsWith(codec, '_a')) {
+              return {
+                value: codec,
+                automatic: indexOf(codecsList, `${codec}_a`) > -1,
+              };
+            }
+            return null;
+          },
+        ),
+        codec => (codec && codec.value.length) || -1,
+      );
 
       // remove null items (codecs that finish with _a)
-      _.remove(self.availableCodecs, codec => _.isNull(codec));
+      remove(self.availableCodecs, codec => isNull(codec));
 
       return self.availableCodecs;
     });
@@ -425,7 +445,7 @@ angular.module('managerApp').factory('TelephonyGroupLine', (
     return OvhApiTelephony.Service().v6().offerChanges({
       billingAccount: self.billingAccount,
       serviceName: self.serviceName,
-    }).$promise.then(offers => _.map(offers, offer => new TelephonyGroupLineOffer(offer)));
+    }).$promise.then(offers => map(offers, offer => new TelephonyGroupLineOffer(offer)));
   };
 
   /**
@@ -467,7 +487,7 @@ angular.module('managerApp').factory('TelephonyGroupLine', (
       billingAccount: self.billingAccount,
       serviceName: self.serviceName,
     }).$promise.then(offer => self.getAvailableOffers().then((availableOffers) => {
-      self.pendingOfferChange = _.find(availableOffers, {
+      self.pendingOfferChange = find(availableOffers, {
         name: offer.offer,
       }) || null; // if null is returned, it means there is a problem with API... :-D
 
@@ -574,7 +594,7 @@ angular.module('managerApp').factory('TelephonyGroupLine', (
   TelephonyGroupLine.prototype.hasChange = function (path) {
     const self = this;
 
-    return _.get(self.saveForEdition, path) !== _.get(self, path);
+    return get(self.saveForEdition, path) !== get(self, path);
   };
 
   /* -----  End of PROTOTYPE METHODS  ------*/

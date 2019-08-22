@@ -1,3 +1,9 @@
+import chunk from 'lodash/chunk';
+import forEach from 'lodash/forEach';
+import flatten from 'lodash/flatten';
+import map from 'lodash/map';
+import set from 'lodash/set';
+
 angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingRepaymentHistoryCtrl', function ($q, $filter, $window, $timeout, $stateParams, $translate, TelephonyMediator, OvhApiTelephony, TucToast) {
   const self = this;
 
@@ -16,17 +22,17 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingRe
         billingAccount: $stateParams.billingAccount,
       }).$promise
       .then(dates => $q
-        .all(_.map(
-          _.chunk(dates, 50),
+        .all(map(
+          chunk(dates, 50),
           chunkDates => OvhApiTelephony.HistoryRepaymentConsumption().v6().getBatch({
             billingAccount: $stateParams.billingAccount,
             date: chunkDates,
           }).$promise,
         ))
         .then((chunkResult) => {
-          const result = _.pluck(_.flatten(chunkResult), 'value');
-          return _.each(result, (consumption) => {
-            _.set(consumption, 'priceValue', consumption.price ? consumption.price.value : null);
+          const result = map(flatten(chunkResult), 'value');
+          return forEach(result, (consumption) => {
+            set(consumption, 'priceValue', consumption.price ? consumption.price.value : null);
           });
         }))
       .catch((err) => {
@@ -65,7 +71,7 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingRe
   =============================== */
 
   self.download = function (consumption) {
-    _.set(consumption, 'downloading', true);
+    set(consumption, 'downloading', true);
 
     return self.fetchFile(consumption).then((info) => {
       $window.location.href = info.url; // eslint-disable-line

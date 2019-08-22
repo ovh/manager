@@ -1,3 +1,5 @@
+import find from 'lodash/find';
+
 angular.module('managerApp').controller('TelecomTelephonyLineCtrl', function ($q, $stateParams, $translate, TelephonyMediator, SidebarMenu, TucToast) {
   const self = this;
 
@@ -41,7 +43,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineCtrl', function ($q
     return TelephonyMediator.getGroup($stateParams.billingAccount).then((group) => {
       const promises = [];
       self.line = group.getLine($stateParams.serviceName);
-      self.fax = _.find(group.fax, { serviceName: $stateParams.serviceName });
+      self.fax = find(group.fax, { serviceName: $stateParams.serviceName });
 
       // check if line is terminating
       promises.push(self.line.getTerminating().then((terminating) => {

@@ -1,3 +1,6 @@
+import get from 'lodash/get';
+import set from 'lodash/set';
+
 angular.module('managerApp').controller('telephonyNumberOvhPabxMenuEditCtrl', function ($scope) {
   const self = this;
 
@@ -31,7 +34,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxMenuEditCtrl', fu
   self.getSoundInfos = function (soundType) {
     const isTts = ['greetSoundTts', 'invalidSoundTts'].indexOf(soundType) > -1;
 
-    return !isTts ? _.get(self.menuCtrl.ovhPabx.getSound(_.get(self.menu, soundType)), 'name') : _.get(self.menuCtrl.ovhPabx.getSingleTts(_.get(self.menu, soundType)), 'text');
+    return !isTts ? get(self.menuCtrl.ovhPabx.getSound(get(self.menu, soundType)), 'name') : get(self.menuCtrl.ovhPabx.getSingleTts(get(self.menu, soundType)), 'text');
   };
 
   self.soundListModel = function (soundId) {
@@ -44,7 +47,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxMenuEditCtrl', fu
     }
 
     // getter
-    return _.get(self.menu, self.menuCtrl.popoverStatus.rightPage);
+    return get(self.menu, self.menuCtrl.popoverStatus.rightPage);
   };
 
   /* ----------  FORM VALIDATION  ----------*/
@@ -69,7 +72,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxMenuEditCtrl', fu
   };
 
   self.isFormValid = function () {
-    const ttsForm = _.get(self.menuOptionsForm, '$ctrl.ttsCreateForm');
+    const ttsForm = get(self.menuOptionsForm, '$ctrl.ttsCreateForm');
     if (ttsForm) {
       return ttsForm.$dirty ? self.menuOptionsForm.$valid : true;
     }
@@ -197,7 +200,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxMenuEditCtrl', fu
   };
 
   self.onTtsCreationSuccess = function (tts) {
-    _.set(self.menuCtrl.menu, self.menuCtrl.popoverStatus.rightPage, tts.id);
+    set(self.menuCtrl.menu, self.menuCtrl.popoverStatus.rightPage, tts.id);
     self.state.collapse = false;
     self.menuCtrl.popoverStatus.move = false;
   };

@@ -1,3 +1,6 @@
+import chunk from 'lodash/chunk';
+import find from 'lodash/find';
+
 angular.module('managerApp').controller('TelecomTelephonyLinePhoneAccessoriesChoiceCtrl', function ($q, $translate, TucTelephonyAccessoriesOrderProcess) {
   const self = this;
 
@@ -20,7 +23,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneAccessoriesCho
     =============================== */
 
   self.hasAtLeastOneAccessory = function () {
-    return !!_.find(self.process.accessoriesList, accessory => accessory.quantity > 0);
+    return !!find(self.process.accessoriesList, accessory => accessory.quantity > 0);
   };
 
   /* -----  End of HELPERS  ------*/
@@ -54,7 +57,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneAccessoriesCho
 
     return TucTelephonyAccessoriesOrderProcess.getAvailableAccessories().then((orderProcess) => {
       self.process = orderProcess;
-      self.chunkedList = _.chunk(self.process.accessoriesList, 4);
+      self.chunkedList = chunk(self.process.accessoriesList, 4);
       self.orderTotal = TucTelephonyAccessoriesOrderProcess.getPriceStruct(0);
     }, (error) => {
       self.error.loading = error;

@@ -1,3 +1,7 @@
+import isFunction from 'lodash/isFunction';
+import kebabCase from 'lodash/kebabCase';
+import some from 'lodash/some';
+
 angular.module('managerApp').controller('telephonyNumberOvhPabxMenuListCtrl', function ($q, $timeout, $filter, $translate, $translatePartialLoader, TucToast) {
   const self = this;
 
@@ -26,7 +30,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxMenuListCtrl', fu
   };
 
   function isDisabledMenuUsedInEntry(menu) {
-    return _.some(menu.entries, entry => entry.action === 'menuSub' && (entry.actionParam === self.disableMenuId || isDisabledMenuUsedInEntry(self.ovhPabx.getMenu(entry.actionParam))));
+    return some(menu.entries, entry => entry.action === 'menuSub' && (entry.actionParam === self.disableMenuId || isDisabledMenuUsedInEntry(self.ovhPabx.getMenu(entry.actionParam))));
   }
 
   self.isMenuChoiceDisabled = function (menu) {
@@ -57,7 +61,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxMenuListCtrl', fu
   };
 
   self.onSelectedMenuChanged = function (menu) {
-    if (self.onMenuSelected && _.isFunction(self.onMenuSelected())) {
+    if (self.onMenuSelected && isFunction(self.onMenuSelected())) {
       $timeout(() => {
         self.onMenuSelected()(menu);
       });
@@ -106,7 +110,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxMenuListCtrl', fu
     if (!self.radioName) {
       self.radioName = 'menuChoice';
     }
-    self.idPrefix = _.kebabCase(self.radioName);
+    self.idPrefix = kebabCase(self.radioName);
 
     return $q.all({
       translations: getTranslations(),

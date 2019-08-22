@@ -1,3 +1,8 @@
+import find from 'lodash/find';
+import get from 'lodash/get';
+import map from 'lodash/map';
+import snakeCase from 'lodash/snakeCase';
+
 angular.module('managerApp').service('telephonyScheduler', function ($q, $translate, TelephonyMediator, SCHEDULER_CATEGORY_TO_TIME_CONDITION_SLOT_TYPE, VOIP_TIME_CONDITION_DEFAULT_SLOTS) {
   const self = this;
 
@@ -15,9 +20,9 @@ angular.module('managerApp').service('telephonyScheduler', function ($q, $transl
       return $q.when(timeZones);
     }
     return TelephonyMediator.getApiModelEnum('telephony.timeZone').then((enumValues) => {
-      timeZones = _.map(enumValues, timeZone => ({
+      timeZones = map(enumValues, timeZone => ({
         value: timeZone,
-        label: $translate.instant(`telephony_scheduler_options_time_zone_${_.snakeCase(timeZone)}`),
+        label: $translate.instant(`telephony_scheduler_options_time_zone_${snakeCase(timeZone)}`),
       }));
 
       return timeZones;
@@ -36,8 +41,8 @@ angular.module('managerApp').service('telephonyScheduler', function ($q, $transl
   self.convertCategoryToSlot = function (timeCondition, category) {
     const slots = timeCondition ? timeCondition.slots : VOIP_TIME_CONDITION_DEFAULT_SLOTS;
 
-    return _.find(slots, {
-      name: _.get(SCHEDULER_CATEGORY_TO_TIME_CONDITION_SLOT_TYPE, category),
+    return find(slots, {
+      name: get(SCHEDULER_CATEGORY_TO_TIME_CONDITION_SLOT_TYPE, category),
     });
   };
 

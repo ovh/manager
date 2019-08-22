@@ -1,3 +1,5 @@
+import map from 'lodash/map';
+
 angular.module('managerApp').controller('TelecomTelephonyLineTrunkSimultaneousLines', class TelecomTelephonyLineTrunkSimultaneousLines {
   constructor(
     $q, $stateParams, $translate, currentLine, TucChartjsFactory, tucDebounce,
@@ -52,20 +54,20 @@ angular.module('managerApp').controller('TelecomTelephonyLineTrunkSimultaneousLi
     const dataOffset = 0.1;
     this.chart = new this.TucChartjsFactory(angular.copy(this.TRUNK_PACK_DETAILS.chart));
 
-    this.chart.data.labels = _.map(this.trunkRates.current.packsRepartition, pack => this.$translate.instant('telephony_line_actions_line_calls_trunk_simultaneous_chart_channels_label', { count: pack.channels }));
+    this.chart.data.labels = map(this.trunkRates.current.packsRepartition, pack => this.$translate.instant('telephony_line_actions_line_calls_trunk_simultaneous_chart_channels_label', { count: pack.channels }));
     this.chart.data.datasets.push({
-      data: _.map(this.trunkRates.current.packsRepartition, pack => pack.quantity + dataOffset),
+      data: map(this.trunkRates.current.packsRepartition, pack => pack.quantity + dataOffset),
       backgroundColor: '#113f6d',
       label: this.$translate.instant('telephony_line_actions_line_calls_trunk_simultaneous_chart_legend_current'),
     }, {
-      data: _.map(this.trunkRates.change.packsRepartition, pack => pack.quantity + dataOffset),
+      data: map(this.trunkRates.change.packsRepartition, pack => pack.quantity + dataOffset),
       backgroundColor: '#00a2bf',
       label: this.$translate.instant('telephony_line_actions_line_calls_trunk_simultaneous_chart_legend_new'),
     });
 
     if (this.trunkRates.pending.packsRepartition.length) {
       this.chart.data.datasets.push({
-        data: _.map(this.trunkRates.pending.packsRepartition, pack => pack.quantity + dataOffset),
+        data: map(this.trunkRates.pending.packsRepartition, pack => pack.quantity + dataOffset),
         backgroundColor: '#ff9803',
         label: this.$translate.instant('telephony_line_actions_line_calls_trunk_simultaneous_chart_legend_pending'),
       });

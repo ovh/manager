@@ -1,3 +1,15 @@
+import chunk from 'lodash/chunk';
+import difference from 'lodash/difference';
+import find from 'lodash/find';
+import get from 'lodash/get';
+import head from 'lodash/head';
+import isEqual from 'lodash/isEqual';
+import map from 'lodash/map';
+import now from 'lodash/now';
+import sortBy from 'lodash/sortBy';
+import random from 'lodash/random';
+import remove from 'lodash/remove';
+
 angular.module('managerApp').factory('TelephonyGroupNumberOvhPabxMenu', ($q, OvhApiTelephony, TelephonyGroupNumberOvhPabxMenuEntry) => {
   const allDtmfKeys = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '*', '0', '#'];
 
@@ -26,7 +38,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabxMenu', ($q, Ovh
     this.serviceName = menuOptions.serviceName;
 
     // other attributes
-    this.menuId = menuOptions.menuId || _.random(_.now());
+    this.menuId = menuOptions.menuId || random(now());
     this.name = null;
     this.greetSound = null;
     this.greetSoundTts = null;
@@ -137,8 +149,8 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabxMenu', ($q, Ovh
         serviceName: self.serviceName,
         menuId: self.menuId,
       }).$promise
-      .then(menuEntryIds => $q.all(_.map(
-        _.chunk(menuEntryIds, 50),
+      .then(menuEntryIds => $q.all(map(
+        chunk(menuEntryIds, 50),
         chunkIds => OvhApiTelephony.OvhPabx().Menu().Entry().v6()
           .getBatch({
             billingAccount: self.billingAccount,
@@ -147,7 +159,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabxMenu', ($q, Ovh
             entryId: chunkIds,
           }).$promise
           .then((resources) => {
-            angular.forEach(_.chain(resources).map('value').sortBy('position').value(), (menuEntryOptions) => {
+            angular.forEach(sortBy(map(resources, 'value'), 'position'), (menuEntryOptions) => {
               self.addEntry(menuEntryOptions);
             });
             return self;
@@ -165,7 +177,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabxMenu', ($q, Ovh
     }
 
     if (menuEntryOptions.entryId) {
-      entry = _.find(self.entries, {
+      entry = find(self.entries, {
         entryId: menuEntryOptions.entryId,
       });
     }
@@ -190,7 +202,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabxMenu', ($q, Ovh
   TelephonyGroupNumberOvhPabxMenu.prototype.removeEntry = function (entry) {
     const self = this;
 
-    _.remove(self.entries, entry);
+    remove(self.entries, entry);
 
     return self;
   };
@@ -202,7 +214,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabxMenu', ($q, Ovh
 
   TelephonyGroupNumberOvhPabxMenu.prototype.getFirstAvailableDtmfEntryKey = function () {
     const self = this;
-    return _.first(_.difference(allDtmfKeys, _.map(self.entries, 'dtmf')));
+    return head(difference(allDtmfKeys, map(self.entries, 'dtmf')));
   };
 
   TelephonyGroupNumberOvhPabxMenu.prototype.getAllDtmfEntryKeys = function () {
@@ -253,7 +265,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabxMenu', ($q, Ovh
     }
 
     if (attr) {
-      return !_.isEqual(_.get(self.saveForEdition, attr), _.get(self, attr));
+      return !isEqual(get(self.saveForEdition, attr), get(self, attr));
     }
     return self.hasChange('name') || self.hasChange('greetSound') || self.hasChange('invalidSound') || self.hasChange('greetSoundTts') || self.hasChange('invalidSoundTts');
   };

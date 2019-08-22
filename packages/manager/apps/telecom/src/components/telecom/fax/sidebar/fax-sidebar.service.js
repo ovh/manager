@@ -1,3 +1,5 @@
+import sortBy from 'lodash/sortBy';
+
 angular.module('managerApp').service('FaxSidebar', function ($translate, SidebarMenu, OvhApiFreeFax) {
   const self = this;
 
@@ -9,7 +11,7 @@ angular.module('managerApp').service('FaxSidebar', function ($translate, Sidebar
 
   self.loadFaxMainSection = function () {
     return OvhApiFreeFax.v6().query().$promise.then((faxList) => {
-      _.sortBy(faxList, 'number').forEach((fax) => {
+      sortBy(faxList, 'number').forEach((fax) => {
         SidebarMenu.addMenuItem({
           title: fax,
           prefix: $translate.instant('telecom_sidebar_fax_prefix_freefax'),

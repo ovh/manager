@@ -1,3 +1,5 @@
+import map from 'lodash/map';
+
 angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingCreditThresholdCtrl', function ($q, $state, $stateParams, $translate, $timeout, OvhApiOrderTelephony, OvhApiTelephony, TucToastError) {
   const self = this;
 
@@ -27,7 +29,7 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingCr
       self.creditThreshold = data.billingAccount.creditThreshold;
       self.currentOutplan = data.billingAccount.currentOutplan;
       self.allowedOutplan = data.billingAccount.allowedOutplan;
-      self.credits = _.map(data.credits, credit => ({
+      self.credits = map(data.credits, credit => ({
         label: `${credit.text} ${$translate.instant('telephony_group_billing_credit_threshold_without_tax')}`,
         value: credit,
         disable: credit.value === self.creditThreshold.value,

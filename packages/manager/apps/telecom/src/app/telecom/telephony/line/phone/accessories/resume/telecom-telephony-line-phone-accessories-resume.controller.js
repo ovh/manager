@@ -1,3 +1,6 @@
+import isEqual from 'lodash/isEqual';
+import remove from 'lodash/remove';
+
 angular.module('managerApp').controller('TelecomTelephonyLinePhoneAccessoriesResumeCtrl', function ($q, TucTelephonyAccessoriesOrderProcess) {
   const self = this;
 
@@ -21,7 +24,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneAccessoriesRes
     self.process = TucTelephonyAccessoriesOrderProcess.getOrderProcess();
 
     return TucTelephonyAccessoriesOrderProcess.getOrderCheckout().then((order) => {
-      _.remove(order.details, detail => ['SPECIAL', 'MUTE'].indexOf(detail.detailType) > -1 || (_.isEqual(detail.detailType, 'DELIVERY') && detail.totalPrice.value === 0));
+      remove(order.details, detail => ['SPECIAL', 'MUTE'].indexOf(detail.detailType) > -1 || (isEqual(detail.detailType, 'DELIVERY') && detail.totalPrice.value === 0));
 
       self.order = order;
     }, (error) => {

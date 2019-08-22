@@ -1,3 +1,12 @@
+import chunk from 'lodash/chunk';
+import compact from 'lodash/compact';
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import flatten from 'lodash/flatten';
+import map from 'lodash/map';
+import set from 'lodash/set';
+import values from 'lodash/values';
+
 angular.module('managerApp').controller('TelecomTelephonyBillingAccountAdministrationLinesGroup', function ($scope, $stateParams, $q, $translate, TelephonyMediator, TelephonySidebar, OvhApiTelephony, TucToast, TucToastError) {
   const self = this;
 
@@ -60,10 +69,10 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountAdministr
       .query({
         billingAccount: ba.billingAccount,
       }).$promise
-      .then(ids => $q.all(_.map(_.chunk(ids, 50), chunkIds => OvhApiTelephony.Line().v6().getBatch({
+      .then(ids => $q.all(map(chunk(ids, 50), chunkIds => OvhApiTelephony.Line().v6().getBatch({
         billingAccount: ba.billingAccount,
         serviceName: chunkIds,
-      }).$promise)).then(chunkResult => _.pluck(_.flatten(chunkResult), 'value')));
+      }).$promise)).then(chunkResult => map(flatten(chunkResult), 'value')));
 
     // get batch alias details
     const aliases = OvhApiTelephony.Number().v6()
@@ -71,14 +80,14 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountAdministr
         billingAccount: ba.billingAccount,
       }).$promise
       .then(ids => $q
-        .all(_.map(
-          _.chunk(ids, 50),
+        .all(map(
+          chunk(ids, 50),
           chunkIds => OvhApiTelephony.Number().v6().getBatch({
             billingAccount: ba.billingAccount,
             serviceName: chunkIds,
           }).$promise,
         ))
-        .then(chunkResult => _.pluck(_.flatten(chunkResult), 'value')));
+        .then(chunkResult => map(flatten(chunkResult), 'value')));
 
     // get batch voicefax details
     const voicefax = OvhApiTelephony.Fax().v6()
@@ -86,14 +95,14 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountAdministr
         billingAccount: ba.billingAccount,
       }).$promise
       .then(ids => $q
-        .all(_.map(
-          _.chunk(ids, 50),
+        .all(map(
+          chunk(ids, 50),
           chunkIds => OvhApiTelephony.Fax().v6().getBatch({
             billingAccount: ba.billingAccount,
             serviceName: chunkIds,
           }).$promise,
         ))
-        .then(chunkResult => _.pluck(_.flatten(chunkResult), 'value').filter(res => res.serviceType.includes('line') && res.offers.toString().includes('voicefax'))));
+        .then(chunkResult => map(flatten(chunkResult), 'value').filter(res => res.serviceType.includes('line') && res.offers.toString().includes('voicefax'))));
 
     return $q.all({
       lines,
@@ -102,13 +111,13 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountAdministr
     }).then((result) => {
       // push voicefax lines to lines
       result.lines.push(result.voicefax);
-      _.set(result, 'lines', _.compact(_.flatten(result.lines)));
+      set(result, 'lines', compact(flatten(result.lines)));
 
       // handle pool of aliases
       const pools = [];
-      _.set(result, 'aliases', _.filter(result.aliases, (alias) => {
+      set(result, 'aliases', filter(result.aliases, (alias) => {
         if (alias.partOfPool) {
-          let pool = _.find(pools, { id: alias.partOfPool });
+          let pool = find(pools, { id: alias.partOfPool });
           if (!pool) {
             pool = {
               id: alias.partOfPool,
@@ -128,14 +137,14 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountAdministr
   };
 
   self.getServicesToAttachList = function () {
-    return _.values(_.filter(self.servicesToAttach, val => !!val));
+    return values(filter(self.servicesToAttach, val => !!val));
   };
 
   self.attachSelectedServices = function () {
     const errorList = [];
     self.isAttaching = true;
 
-    return $q.all(_.map(self.getServicesToAttachList(), service => OvhApiTelephony.Service().v6()
+    return $q.all(map(self.getServicesToAttachList(), service => OvhApiTelephony.Service().v6()
       .changeOfBillingAccount({
         billingAccount: self.billingAccounts.selected.billingAccount,
         serviceName: service.serviceName,

@@ -1,3 +1,12 @@
+import head from 'lodash/head';
+import includes from 'lodash/includes';
+import isArray from 'lodash/isArray';
+import merge from 'lodash/merge';
+import some from 'lodash/some';
+import sortBy from 'lodash/sortBy';
+import startsWith from 'lodash/startsWith';
+import words from 'lodash/words';
+
 angular.module('managerApp').controller('TelecomTelephonyLineDetailsCtrl', class TelecomTelephonyLineDetailsCtrl {
   constructor($q, $stateParams, currentLine, TucNumberPlans, TelephonyMediator) {
     this.$q = $q;
@@ -15,7 +24,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineDetailsCtrl', class
 
     this.TelephonyMediator.getGroup(this.billingAccount).then((group) => {
       this.group = group;
-      this.line = _.merge(this.group.getLine(this.serviceName), this.currentLine || {});
+      this.line = merge(this.group.getLine(this.serviceName), this.currentLine || {});
       this.line.getPublicOffer.description = this.line.getPublicOffer.description.replace('The Public Reference has an error', '-');
       this.plan = this.TucNumberPlans.getPlanByNumber(this.line);
 
@@ -25,14 +34,18 @@ angular.module('managerApp').controller('TelecomTelephonyLineDetailsCtrl', class
         ips: this.line.getIps(),
         lastRegistrations: this.line.getLastRegistrations(),
       }).then(() => {
-        if (_.isArray(this.line.lastRegistrations) && this.line.lastRegistrations.length) {
-          this.lastRegistration = _.chain(this.line.lastRegistrations)
-            .sortBy(this.line.lastRegistrations, reg => new Date(reg.datetime)).first().value();
+        if (isArray(this.line.lastRegistrations) && this.line.lastRegistrations.length) {
+          this.lastRegistration = head(
+            sortBy(
+              this.line.lastRegistrations,
+              reg => new Date(reg.datetime),
+            ),
+          );
         }
 
-        if (_.some(_.words(this.line.offers), offer => _.includes(['sipfax', 'priceplan', 'trunk'], offer))) {
+        if (some(words(this.line.offers), offer => includes(['sipfax', 'priceplan', 'trunk'], offer))) {
           this.hasSimultaneousCallsOption = true;
-          this.isTrunkRates = _.some(this.line.offers, offer => _.startsWith(offer, 'voip.main.offer.fr.trunk.rates'));
+          this.isTrunkRates = some(this.line.offers, offer => startsWith(offer, 'voip.main.offer.fr.trunk.rates'));
         }
         if (this.line.phone) {
           this.isYealinkPhone = false;

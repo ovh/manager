@@ -1,3 +1,9 @@
+import upperFirst from 'lodash/upperFirst';
+import filter from 'lodash/filter';
+import head from 'lodash/head';
+import isEqual from 'lodash/isEqual';
+import map from 'lodash/map';
+
 angular.module('managerApp').factory('TelephonyGroupNumber', ($q, $injector, OvhApiTelephony, tucVoipServiceTask) => {
   /*= ==================================
     =            CONSTRUCTOR            =
@@ -74,7 +80,7 @@ angular.module('managerApp').factory('TelephonyGroupNumber', ($q, $injector, Ovh
       return self.feature;
     }
 
-    const FeatureTypeFactory = $injector.get(`TelephonyGroupNumber${_.capitalize(self.getFeatureFamily(featureType))}`);
+    const FeatureTypeFactory = $injector.get(`TelephonyGroupNumber${upperFirst(self.getFeatureFamily(featureType))}`);
 
     return new FeatureTypeFactory({
       billingAccount: self.billingAccount,
@@ -154,12 +160,12 @@ angular.module('managerApp').factory('TelephonyGroupNumber', ($q, $injector, Ovh
         type: 'offer',
       }).$promise
       .then(offerTaskIds => $q
-        .all(_.map(offerTaskIds, id => OvhApiTelephony.Service().OfferTask().v6().get({
+        .all(map(offerTaskIds, id => OvhApiTelephony.Service().OfferTask().v6().get({
           billingAccount: self.billingAccount,
           serviceName: self.serviceName,
           taskId: id,
         }).$promise))
-        .then(tasks => _.head(_.filter(tasks, { status: 'todo' }))));
+        .then(tasks => head(filter(tasks, { status: 'todo' }))));
   };
 
   /* ----------  EDITION  ----------*/
@@ -207,7 +213,7 @@ angular.module('managerApp').factory('TelephonyGroupNumber', ($q, $injector, Ovh
     if (attr) {
       switch (attr) {
         case 'description':
-          return !_.isEqual(self.saveForEdition.description, self.description);
+          return !isEqual(self.saveForEdition.description, self.description);
         case 'feature':
           return self.feature.hasChange();
         default:

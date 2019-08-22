@@ -1,10 +1,12 @@
+import assignIn from 'lodash/assignIn';
+
 angular.module('managerApp').factory('TelecomTelephonyLineCallsForwardPhoneNumber', () => {
   /**
    * Phone number object
    * @param {Object} data properties
    */
   const TelecomTelephonyLineCallsForwardPhoneNumber = function TelecomTelephonyLineCallsForwardPhoneNumber(data) { // eslint-disable-line
-    _.extend(this, data);
+    assignIn(this, data);
     if (this.description === this.serviceName) {
       this.description = '';
     }

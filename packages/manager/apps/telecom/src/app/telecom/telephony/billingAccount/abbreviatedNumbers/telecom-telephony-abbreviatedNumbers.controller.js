@@ -1,3 +1,5 @@
+import pick from 'lodash/pick';
+
 angular.module('managerApp').controller('TelecomTelephonyAbbreviatedNumbersCtrl', class TelecomTelephonyAbbreviatedNumbersCtrl {
   constructor($q, $stateParams, $translate, OvhApiTelephony, TucToast, PAGINATION_PER_PAGE) {
     this.$q = $q;
@@ -27,7 +29,7 @@ angular.module('managerApp').controller('TelecomTelephonyAbbreviatedNumbersCtrl'
       billingAccount: this.$stateParams.billingAccount,
       serviceName: this.$stateParams.serviceName,
       abbreviatedNumber: abbreviatedNumber.abbreviatedNumber,
-    }, _.pick(abbreviatedNumber, ['destinationNumber', 'name', 'surname'])).$promise;
+    }, pick(abbreviatedNumber, ['destinationNumber', 'name', 'surname'])).$promise;
   }
 
   load() {
@@ -36,7 +38,6 @@ angular.module('managerApp').controller('TelecomTelephonyAbbreviatedNumbersCtrl'
     return this.OvhApiTelephony.AbbreviatedNumber().Aapi().query({
       billingAccount: this.$stateParams.billingAccount,
     }).$promise.then((abbreviatedNumbers) => {
-      // this.abbreviatedNumbers = _.sortBy(abbreviatedNumbers, "abbreviatedNumber");
       this.abbreviatedNumbers = abbreviatedNumbers;
     }, () => {
       this.TucToast.error(this.$translate.instant('telephony_abbreviated_numbers_read_error'));

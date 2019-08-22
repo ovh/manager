@@ -1,3 +1,17 @@
+import drop from 'lodash/drop';
+import find from 'lodash/find';
+import flatten from 'lodash/flatten';
+import forEach from 'lodash/forEach';
+import head from 'lodash/head';
+import isArray from 'lodash/isArray';
+import isString from 'lodash/isString';
+import keys from 'lodash/keys';
+import map from 'lodash/map';
+import pick from 'lodash/pick';
+import remove from 'lodash/remove';
+import set from 'lodash/set';
+import sum from 'lodash/sum';
+
 angular.module('managerApp').controller('PackVoipLineActivationCtrl', function ($scope, $stateParams, OvhApiPackXdsl, OvhApiPackXdslVoipLine, costs, $q, $translate, TucToastError) {
   const self = this;
   this.transporterCost = costs.voip.shipping.transporter.value;
@@ -95,9 +109,9 @@ angular.module('managerApp').controller('PackVoipLineActivationCtrl', function (
     * Aka: if not needed, hardware must be null.
     */
   this.checkIfStillCanUncheckOrderablePhones = function () {
-    const uncheckedPhones = _.sum(_.map(_.flatten(self.framedLines), (framedLine) => {
+    const uncheckedPhones = sum(map(flatten(self.framedLines), (framedLine) => {
       if (!framedLine.line.needHardware && framedLine.line.hardware) {
-        _.set(framedLine, 'line.hardware', null);
+        set(framedLine, 'line.hardware', null);
       }
 
       return framedLine.line.needHardware ? 0 : 1;
@@ -112,7 +126,7 @@ angular.module('managerApp').controller('PackVoipLineActivationCtrl', function (
     */
   this.setOrderCount = function (number, isInitialSelection) {
     if (typeof number !== 'undefined') {
-      self.orderCount = _.find(self.orderCountSelect, { value: number });
+      self.orderCount = find(self.orderCountSelect, { value: number });
     }
 
     if (!isInitialSelection && self.orderCountSelect[0] && self.orderCountSelect[0].value === 0) {
@@ -121,7 +135,7 @@ angular.module('managerApp').controller('PackVoipLineActivationCtrl', function (
     }
 
     self.modem.lines.forEach((line, index) => {
-      _.set(line, 'enabled', index < self.orderCount.value);
+      set(line, 'enabled', index < self.orderCount.value);
     });
 
     self.framedLines = self.buildFramedObject(self.modem.lines, 2, (line, localIndex) => {
@@ -147,8 +161,8 @@ angular.module('managerApp').controller('PackVoipLineActivationCtrl', function (
   this.removeDuplicateAddress = function (dataParam) {
     let sameAddress = true;
     let data = dataParam;
-    _.forEach(_.keys(_.pick(data[0], ['firstName', 'zipCode', 'cityName', 'lastName', 'address', 'countryCode'])), (key) => {
-      if (_.isString(data[0][key]) && _.isString(data[1][key])) {
+    forEach(keys(pick(data[0], ['firstName', 'zipCode', 'cityName', 'lastName', 'address', 'countryCode'])), (key) => {
+      if (isString(data[0][key]) && isString(data[1][key])) {
         if (data[0][key].toLowerCase() !== data[1][key].toLowerCase()) {
           sameAddress = false;
         }
@@ -157,7 +171,7 @@ angular.module('managerApp').controller('PackVoipLineActivationCtrl', function (
       }
     });
     if (sameAddress) {
-      data = _.drop(data, 1);
+      data = drop(data, 1);
     }
     return data;
   };
@@ -254,7 +268,7 @@ angular.module('managerApp').controller('PackVoipLineActivationCtrl', function (
       packId: $stateParams.packName,
     }, { lines: data }).$promise.then((order) => {
       self.orderDone = true;
-      self.orderDetails = _.first(order.data);
+      self.orderDetails = head(order.data);
     }, (err) => {
       self.orderDone = false;
       self.orderError = err;
@@ -293,11 +307,11 @@ angular.module('managerApp').controller('PackVoipLineActivationCtrl', function (
     self.orderCountSelect = [];
     self.framedLines = [];
     self.loadData($stateParams.packName).then((data) => {
-      self.modem.availableSlots = _.find(data[0], { name: 'voipLine' });
+      self.modem.availableSlots = find(data[0], { name: 'voipLine' });
 
       self.hardwares = data[1]; // eslint-disable-line
-      const linesOnModems = _.remove(self.hardwares, { name: 'modem' });
-      if (linesOnModems && _.isArray(linesOnModems)) {
+      const linesOnModems = remove(self.hardwares, { name: 'modem' });
+      if (linesOnModems && isArray(linesOnModems)) {
         self.modem.linesOnModem = linesOnModems.length ? linesOnModems[0].max : 0;
       }
 

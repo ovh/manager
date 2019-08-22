@@ -1,3 +1,7 @@
+import filter from 'lodash/filter';
+import get from 'lodash/get';
+import isObject from 'lodash/isObject';
+
 angular.module('managerApp').controller('TelecomTelephonyLineCallsDisplayNumberCtrl', function ($scope, $stateParams, $translate, $timeout, OvhApiTelephonyLineOptions, TucToast, TucToastError, tucTelephonyBulk) {
   const self = this;
 
@@ -6,7 +10,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsDisplayNumberC
       billingAccount: $stateParams.billingAccount,
       serviceName: $stateParams.serviceName,
     }).$promise.then((options) => {
-      self.options = _.isObject(options) ? options : {};
+      self.options = isObject(options) ? options : {};
       return options;
     }, () => new TucToastError($translate.instant('telephony_line_actions_line_calls_display_number_read_error')));
   }
@@ -25,7 +29,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsDisplayNumberC
     });
 
     return getLineOptions().then((options) => {
-      self.identificationRestriction = _.get(options, 'identificationRestriction');
+      self.identificationRestriction = get(options, 'identificationRestriction');
       self.form.identificationRestriction = self.identificationRestriction;
       self.displayedService = options.displayNumber;
       self.form.displayedService = angular.copy(self.displayedService);
@@ -92,7 +96,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsDisplayNumberC
   };
 
   self.filterServices = function (services) {
-    return _.filter(services, service => ['sip', 'mgcp'].indexOf(service.featureType) > -1);
+    return filter(services, service => ['sip', 'mgcp'].indexOf(service.featureType) > -1);
   };
 
   self.getBulkParams = function () {
@@ -127,7 +131,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsDisplayNumberC
   };
 
   self.onBulkError = function (error) {
-    TucToast.error([$translate.instant('telephony_line_actions_line_calls_display_number_bulk_on_error'), _.get(error, 'msg.data')].join(' '));
+    TucToast.error([$translate.instant('telephony_line_actions_line_calls_display_number_bulk_on_error'), get(error, 'msg.data')].join(' '));
   };
 
   /* -----  End of BULK  ------ */

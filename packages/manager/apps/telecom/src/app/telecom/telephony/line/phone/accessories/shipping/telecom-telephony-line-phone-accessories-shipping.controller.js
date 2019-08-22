@@ -1,4 +1,10 @@
-angular.module('managerApp').controller('TelecomTelephonyLinePhoneAccessoriesShippingCtrl', function ($q, TucTelephonyAccessoriesOrderProcess) {
+import each from 'lodash/each';
+import filter from 'lodash/filter';
+import get from 'lodash/get';
+import groupBy from 'lodash/groupBy';
+import map from 'lodash/map';
+
+angular.module('managerApp').controller('TelecomTelephonyLinePhoneAccessoriesShippingCtrl', function TelecomTelephonyLinePhoneAccessoriesShippingCtrl($q, TucTelephonyAccessoriesOrderProcess) {
   const self = this;
 
   self.process = null;
@@ -17,23 +23,31 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneAccessoriesShi
     =============================== */
 
   function filterContact(contacts) {
-    return _.chain(contacts).groupBy((contact) => {
-      // group contact to detect contact that are the same
-      const contactCopy = {
-        lastName: contact.lastName,
-        firstName: contact.firstName,
-      };
-      if (contact.address) {
-        contactCopy.address = {
-          country: contact.address.country,
-          line1: contact.address.line1,
-          zip: contact.address.zip,
-          city: contact.address.city,
-        };
-      }
-      return JSON.stringify(contactCopy);
-    }).map(groups => groups[0]).filter(contact => _.get(contact, 'address') && ['BE', 'FR', 'CH'].indexOf(contact.address.country) > -1)
-      .value();
+    return filter(
+      map(
+        groupBy(
+          contacts,
+          (contact) => {
+            // group contact to detect contact that are the same
+            const contactCopy = {
+              lastName: contact.lastName,
+              firstName: contact.firstName,
+            };
+            if (contact.address) {
+              contactCopy.address = {
+                country: contact.address.country,
+                line1: contact.address.line1,
+                zip: contact.address.zip,
+                city: contact.address.city,
+              };
+            }
+            return JSON.stringify(contactCopy);
+          },
+        ),
+        groups => groups[0],
+      ),
+      contact => get(contact, 'address') && ['BE', 'FR', 'CH'].indexOf(contact.address.country) > -1,
+    );
   }
 
   function getTotalAccessoriesQuantity() {
@@ -54,11 +68,18 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneAccessoriesShi
     self.contactDeferred.promise
       .then(() => TucTelephonyAccessoriesOrderProcess.getOrderCheckout()
         .then((order) => {
-          _.chain(order.details).filter({
-            detailType: 'DELIVERY',
-          }).each((detail) => {
-            shippingPrice += detail.totalPrice.value;
-          }).value();
+          each(
+            filter(
+              order.details,
+              {
+                detailType: 'DELIVERY',
+              },
+            ),
+            (detail) => {
+              shippingPrice += detail.totalPrice.value;
+            },
+          );
+
           self.shippingOptions.shippingPrice = shippingPrice;
         })
         .finally(() => {

@@ -1,19 +1,23 @@
+import get from 'lodash/get';
+import isEmpty from 'lodash/isEmpty';
+import set from 'lodash/set';
+
 angular.module('managerApp').controller('XdslModemManagedByCtrl', function ($stateParams, $q, $translate, OvhApiXdsl, TucToast, TucPackXdslModemMediator) {
   const self = this;
 
   this.mediator = TucPackXdslModemMediator;
 
   this.undo = function () {
-    _.set(TucPackXdslModemMediator, 'info.managedByOvh', !TucPackXdslModemMediator.info.managedByOvh);
+    set(TucPackXdslModemMediator, 'info.managedByOvh', !TucPackXdslModemMediator.info.managedByOvh);
     TucPackXdslModemMediator.unsetTask('changeModemConfigManagement');
   };
 
-  this.tooltip = _.get(this.mediator, 'info.managedByOvh')
+  this.tooltip = get(this.mediator, 'info.managedByOvh')
     ? ['<strong class="text-warning">', $translate.instant('xdsl_modem_managedBy_warning'), '</strong>'].join('')
     : ['<strong class="text-warning">', $translate.instant('xdsl_modem_managedBy_warning_override'), '</strong>'].join('');
 
   this.changeManagedBy = function () {
-    if (_.isEmpty($stateParams.serviceName)) {
+    if (isEmpty($stateParams.serviceName)) {
       TucToast.error($translate.instant('xdsl_modem_managedBy_an_error_ocurred'));
       return $q.reject();
     }

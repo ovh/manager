@@ -1,3 +1,7 @@
+import get from 'lodash/get';
+import head from 'lodash/head';
+import set from 'lodash/set';
+
 angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationSoundsCtrl', class TelecomTelephonyAliasConfigurationSoundsCtrl {
   constructor(
     $q, $state, $stateParams, $translate, $uibModal,
@@ -44,15 +48,15 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationSound
 
         const overflowPlayback = this.sounds
           .find(sound => sound.soundId === parseInt(this.queueOptions.actionOnOverflowParam, 10));
-        this.overflowPlayback = overflowPlayback || _.first(this.sounds);
+        this.overflowPlayback = overflowPlayback || head(this.sounds);
 
         const closurePlayback = this.sounds
           .find(sound => sound.soundId === parseInt(this.queueOptions.actionOnClosureParam, 10));
-        this.closurePlayback = closurePlayback || _.first(this.sounds);
+        this.closurePlayback = closurePlayback || head(this.sounds);
       })
       .catch((error) => {
         this.TucToast.error(
-          `${this.$translate.instant('telephony_alias_config_contactCenterSolution_sounds_get_options_error')} ${_.get(error, 'data.message', error.message)}`,
+          `${this.$translate.instant('telephony_alias_config_contactCenterSolution_sounds_get_options_error')} ${get(error, 'data.message', error.message)}`,
         );
       })
       .finally(() => {
@@ -62,7 +66,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationSound
 
   onChooseServicePopover() {
     return ({ serviceName }, optionToSet) => {
-      _.set(this.queueOptions, optionToSet, serviceName);
+      set(this.queueOptions, optionToSet, serviceName);
     };
   }
 
@@ -76,21 +80,21 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationSound
         sounds: () => this.sounds.filter(({ soundId }) => soundId),
       },
     }).result.then((sound) => {
-      _.set(this, modelToUpdate, sound);
+      set(this, modelToUpdate, sound);
       this.sounds.push(sound);
 
       switch (modelToUpdate) {
         case 'toneOnOpening':
         case 'toneOnHold':
-          _.set(this.options, modelToUpdate, _.get(this, `${modelToUpdate}.soundId`, null));
+          set(this.options, modelToUpdate, get(this, `${modelToUpdate}.soundId`, null));
           break;
         case 'actionOnClosureParam':
-          this.closurePlayback = _.get(this, `${modelToUpdate}.soundId`, null);
-          _.set(this.queueOptions, modelToUpdate, this.closurePlayback);
+          this.closurePlayback = get(this, `${modelToUpdate}.soundId`, null);
+          set(this.queueOptions, modelToUpdate, this.closurePlayback);
           break;
         case 'actionOnOverflowParam':
-          this.overflowPlayback = _.get(this, `${modelToUpdate}.soundId`, null);
-          _.set(this.queueOptions, modelToUpdate, this.overflowPlayback);
+          this.overflowPlayback = get(this, `${modelToUpdate}.soundId`, null);
+          set(this.queueOptions, modelToUpdate, this.overflowPlayback);
           break;
         default: break;
       }
@@ -141,7 +145,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationSound
       }))
       .catch((error) => {
         this.TucToast.error(
-          `${this.$translate.instant('telephony_alias_config_contactCenterSolution_sounds_update_error')} ${_.get(error, 'data.message', error.message)}`,
+          `${this.$translate.instant('telephony_alias_config_contactCenterSolution_sounds_update_error')} ${get(error, 'data.message', error.message)}`,
         );
       })
       .finally(() => {

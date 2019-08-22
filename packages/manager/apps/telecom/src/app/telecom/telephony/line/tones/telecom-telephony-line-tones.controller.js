@@ -1,3 +1,9 @@
+import assign from 'lodash/assign';
+import endsWith from 'lodash/endsWith';
+import pick from 'lodash/pick';
+import snakeCase from 'lodash/snakeCase';
+import some from 'lodash/some';
+
 angular.module('managerApp').controller('TelecomTelephonyLineTonesCtrl', function ($state, $stateParams, $q, $timeout, $translate, OvhApiTelephony, TucToastError, OvhApiMe, TelephonyMediator) {
   const self = this;
   const disabledFeatureError = {};
@@ -35,7 +41,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineTonesCtrl', functio
   self.getToneTypeLabel = function (toneType) {
     let label = '';
     if (angular.isString(toneType)) {
-      const toneId = _.snakeCase(toneType);
+      const toneId = snakeCase(toneType);
       label = $translate.instant(`telephony_line_tones_type_${toneId}`);
     }
     return label;
@@ -44,7 +50,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineTonesCtrl', functio
   self.filterValidExtension = function (file) {
     const validExtensions = ['aiff', 'au', 'flac', 'ogg', 'mp3', 'wav', 'wma'];
     const fileName = file ? file.name : '';
-    const found = _.some(validExtensions, ext => _.endsWith(fileName.toLowerCase(), ext));
+    const found = some(validExtensions, ext => endsWith(fileName.toLowerCase(), ext));
     if (!found) {
       TucToastError($translate.instant('telephony_line_tones_choose_file_type_error'));
     }
@@ -55,7 +61,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineTonesCtrl', functio
     // only update tone if it is not a file upload and if tone changed
     if (self.tonesForm[toneType] !== 'Custom sound' && self.tonesForm[toneType] !== self.tones[toneType]) {
       const tonesParam = self.tones;
-      _.assign(tonesParam, _.pick(self.tonesForm, toneType));
+      assign(tonesParam, pick(self.tonesForm, toneType));
       self.tonesForm[`${toneType}Updating`] = true;
       return $q.all([
         $timeout(angular.noop, 500), // avoid clipping

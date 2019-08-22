@@ -1,3 +1,5 @@
+import orderBy from 'lodash/orderBy';
+
 angular.module('managerApp').controller('TelecomTelephonyLineClick2CallCtrl', function ($stateParams, $state, TelephonyMediator, TucToast, $translate, $timeout, $q, $uibModal) {
   const self = this;
 
@@ -77,7 +79,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineClick2CallCtrl', fu
 
       return self;
     }).then(() => self.clickToCall.getUsers().then((data) => {
-      self.clickToCall.users = _.sortByOrder(self.clickToCall.users, ['creationDateTime'], ['desc']);
+      self.clickToCall.users = orderBy(self.clickToCall.users, ['creationDateTime'], ['desc']);
       return data;
     })).finally(() => {
       self.loading.init = false;

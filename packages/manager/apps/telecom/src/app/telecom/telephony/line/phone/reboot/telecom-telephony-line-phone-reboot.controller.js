@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular.module('managerApp').controller('TelecomTelephonyLinePhoneRebootCtrl', function ($q, $stateParams, $translate, $timeout, TucToast, TucToastError, OvhApiTelephony, TelephonyMediator) {
   const self = this;
 
@@ -30,7 +32,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneRebootCtrl', f
       if (err && err.status === 501) {
         TucToast.error($translate.instant('telephony_line_phone_reboot_unsupported'));
       } else {
-        TucToast.error([$translate.instant('telephony_line_phone_reboot_error'), _.get(err, 'data.message')].join(' '));
+        TucToast.error([$translate.instant('telephony_line_phone_reboot_error'), get(err, 'data.message')].join(' '));
       }
     }).finally(() => {
       self.isRebooting = false;

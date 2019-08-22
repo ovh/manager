@@ -1,3 +1,7 @@
+import filter from 'lodash/filter';
+import get from 'lodash/get';
+import pick from 'lodash/pick';
+
 angular.module('managerApp').controller('TelecomTelephonyServiceAssistLogsCtrl', function ($q, $translate, $state, $stateParams, tucVoipService, tucVoipLineFeature, OvhApiMe, TucToast, PAGINATION_PER_PAGE, tucTelephonyBulk) {
   const self = this;
 
@@ -42,7 +46,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceAssistLogsCtrl',
       .then((logs) => {
         self.logs = logs;
       }).catch((error) => {
-        TucToast.error([$translate.instant('telephony_line_assist_support_logs_refresh_error'), _.get(error, 'data.message', '')].join(' '));
+        TucToast.error([$translate.instant('telephony_line_assist_support_logs_refresh_error'), get(error, 'data.message', '')].join(' '));
         return $q.reject(error);
       }).finally(() => {
         self.loading.refresh = false;
@@ -101,7 +105,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceAssistLogsCtrl',
     return tucVoipLineFeature.saveFeature(self.service.feature, {
       notifications: self.edition.notifications,
     }).catch((error) => {
-      TucToast.error([$translate.instant('telephony_line_assist_support_logs_save_error'), _.get(error, 'data.message', '')].join(' '));
+      TucToast.error([$translate.instant('telephony_line_assist_support_logs_save_error'), get(error, 'data.message', '')].join(' '));
       return $q.reject(error);
     }).finally(() => {
       self.loading.save = false;
@@ -132,7 +136,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceAssistLogsCtrl',
           logs: self.onLogsFrequencySelectChange(),
         });
       }).catch((error) => {
-        TucToast.error([$translate.instant('telephony_line_assist_support_logs_init_error'), _.get(error, 'data.message', '')].join(' '));
+        TucToast.error([$translate.instant('telephony_line_assist_support_logs_init_error'), get(error, 'data.message', '')].join(' '));
         return $q.reject(error);
       }).finally(() => {
         self.loading.init = false;
@@ -153,7 +157,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceAssistLogsCtrl',
   };
 
   self.filterServices = function (services) {
-    return _.filter(services, service => ['sip', 'mgcp'].indexOf(service.featureType) > -1);
+    return filter(services, service => ['sip', 'mgcp'].indexOf(service.featureType) > -1);
   };
 
   self.getBulkParams = function () {
@@ -163,7 +167,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceAssistLogsCtrl',
 
     return {
       notifications: {
-        logs: _.pick(logs, ['frequency', 'sendIfNull', 'email']),
+        logs: pick(logs, ['frequency', 'sendIfNull', 'email']),
       },
     };
   };
@@ -187,6 +191,6 @@ angular.module('managerApp').controller('TelecomTelephonyServiceAssistLogsCtrl',
   };
 
   self.onBulkError = function (error) {
-    TucToast.error([$translate.instant('telephony_line_assist_support_logs_bulk_on_error'), _.get(error, 'msg.data')].join(' '));
+    TucToast.error([$translate.instant('telephony_line_assist_support_logs_bulk_on_error'), get(error, 'msg.data')].join(' '));
   };
 });

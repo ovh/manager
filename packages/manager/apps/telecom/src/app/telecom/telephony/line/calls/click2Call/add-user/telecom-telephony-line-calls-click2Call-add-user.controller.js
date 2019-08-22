@@ -1,3 +1,8 @@
+import filter from 'lodash/filter';
+import get from 'lodash/get';
+import method from 'lodash/method';
+import some from 'lodash/some';
+
 angular.module('managerApp').controller('TelecomTelephonyLineClick2CallAddUserCtrl', function ($q, $stateParams, $state, $translate, OvhApiTelephony, TelephonyGroupLineClick2CallUser, TucToast, tucTelephonyBulk) {
   const self = this;
 
@@ -73,15 +78,15 @@ angular.module('managerApp').controller('TelecomTelephonyLineClick2CallAddUserCt
   };
 
   self.filterServices = function (services) {
-    const filteredServices = _.filter(services, service => ['sip', 'mgcp'].indexOf(service.featureType) > -1);
+    const filteredServices = filter(services, service => ['sip', 'mgcp'].indexOf(service.featureType) > -1);
 
     // TODO : remove once bulk action is available for fax
-    // return _.some(service.offers, _.method("includes", "sipfax")) ||
-    //     _.some(service.offers, _.method("includes", "priceplan")) ||
-    //     _.some(service.offers, _.method("includes", "voicefax"));
+    // return some(service.offers, method("includes", "sipfax")) ||
+    //     some(service.offers, method("includes", "priceplan")) ||
+    //     some(service.offers, method("includes", "voicefax"));
 
-    return _.filter(filteredServices, service => _.some(service.offers, _.method('includes', 'sipfax'))
-      || _.some(service.offers, _.method('includes', 'priceplan')));
+    return filter(filteredServices, service => some(service.offers, method('includes', 'sipfax'))
+      || some(service.offers, method('includes', 'priceplan')));
   };
 
   self.getBulkParams = function () {
@@ -113,7 +118,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineClick2CallAddUserCt
   };
 
   self.onBulkError = function (error) {
-    TucToast.error([$translate.instant('telephony_group_line_calls_click2call_addUser_bulk_on_error'), _.get(error, 'msg.data')].join(' '));
+    TucToast.error([$translate.instant('telephony_group_line_calls_click2call_addUser_bulk_on_error'), get(error, 'msg.data')].join(' '));
   };
 
   /* -----  End of BULK  ------ */

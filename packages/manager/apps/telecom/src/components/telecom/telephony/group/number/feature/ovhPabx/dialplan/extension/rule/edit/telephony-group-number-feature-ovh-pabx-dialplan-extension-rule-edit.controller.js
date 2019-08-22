@@ -1,4 +1,11 @@
-angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanExtensionRuleEditCtrl', function ($scope, $q, $filter, $translate, TelephonyMediator, TucToast) {
+import find from 'lodash/find';
+import filter from 'lodash/filter';
+import get from 'lodash/get';
+import map from 'lodash/map';
+import snakeCase from 'lodash/snakeCase';
+import sortBy from 'lodash/sortBy';
+
+angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanExtensionRuleEditCtrl', function telephonyNumberOvhPabxDialplanExtensionRuleEditCtrl($scope, $q, $filter, $translate, TelephonyMediator, TucToast) {
   const self = this;
 
   self.loading = {
@@ -37,7 +44,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanExtension
   };
 
   self.isFormValid = function () {
-    const ttsForm = _.get(self.extensionRuleForm, '$ctrl.ttsCreateForm');
+    const ttsForm = get(self.extensionRuleForm, '$ctrl.ttsCreateForm');
     if (ttsForm) {
       return ttsForm.$dirty ? self.extensionRuleForm.$valid : true;
     }
@@ -73,7 +80,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanExtension
      *  @todo refactor with service choice popover
      */
   self.getServiceGroupName = function (service) {
-    return self.getServiceDisplayedName(_.find(TelephonyMediator.groups, {
+    return self.getServiceDisplayedName(find(TelephonyMediator.groups, {
       billingAccount: service.billingAccount,
     }), true);
   };
@@ -202,7 +209,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanExtension
       self.parentCtrl.numberCtrl.jsplumbInstance.customRepaint();
     }).catch((error) => {
       const errorTranslationKey = self.rule.status === 'DRAFT' ? 'telephony_number_feature_ovh_pabx_step_rule_create_error' : 'telephony_number_feature_ovh_pabx_step_rule_edit_error';
-      TucToast.error([$translate.instant(errorTranslationKey), _.get(error, 'data.message') || ''].join(' '));
+      TucToast.error([$translate.instant(errorTranslationKey), get(error, 'data.message') || ''].join(' '));
       return $q.reject(error);
     });
   };
@@ -228,7 +235,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanExtension
   /**
      *  Rule edition initialization
      */
-  self.$onInit = function () {
+  self.$onInit = function onInit() {
     self.loading.init = true;
 
     self.parentCtrl = $scope.$parent.$ctrl;
@@ -244,27 +251,36 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanExtension
 
     // get available actions
     return TelephonyMediator.getApiModelEnum('telephony.OvhPabxDialplanExtensionRuleActionEnum').then((enumValues) => {
-      self.availableActions = _.chain(enumValues).filter((enumVal) => {
-        if (self.ovhPabx.featureType === 'cloudIvr') {
-          return enumVal !== 'hunting' && enumVal !== 'tts';
-        } if (!self.ovhPabx.isCcs) {
-          return enumVal !== 'ivr' && enumVal !== 'tts';
-        } if (self.ovhPabx.featureType === 'cloudHunting') {
-          return enumVal !== 'ivr';
-        }
-        return true;
-      }).map(enumVal => ({
-        value: enumVal,
-        label: $translate.instant(`telephony_number_feature_ovh_pabx_step_rule_${_.snakeCase(enumVal)}`),
-        explain: $translate.instant(`telephony_number_feature_ovh_pabx_step_rule_${_.snakeCase(enumVal)}_explain`),
-      })).value();
+      self.availableActions = map(
+        filter(
+          enumValues,
+          (enumVal) => {
+            if (self.ovhPabx.featureType === 'cloudIvr') {
+              return enumVal !== 'hunting' && enumVal !== 'tts';
+            } if (!self.ovhPabx.isCcs) {
+              return enumVal !== 'ivr' && enumVal !== 'tts';
+            } if (self.ovhPabx.featureType === 'cloudHunting') {
+              return enumVal !== 'ivr';
+            }
+            return true;
+          },
+        ),
+        enumVal => ({
+          value: enumVal,
+          label: $translate.instant(`telephony_number_feature_ovh_pabx_step_rule_${snakeCase(enumVal)}`),
+          explain: $translate.instant(`telephony_number_feature_ovh_pabx_step_rule_${snakeCase(enumVal)}_explain`),
+        }),
+      );
 
       // sort and filter groups and reject groups that don't have any service
       // used for voicemail selection
-      self.groups = _.chain(TelephonyMediator.groups)
-        .filter(group => group.getAllServices().length > 0)
-        .sortBy(group => group.getDisplayedName())
-        .value();
+      self.groups = sortBy(
+        filter(
+          TelephonyMediator.groups,
+          group => group.getAllServices().length > 0,
+        ),
+        group => group.getDisplayedName(),
+      );
     }).finally(() => {
       self.loading.init = false;
     });

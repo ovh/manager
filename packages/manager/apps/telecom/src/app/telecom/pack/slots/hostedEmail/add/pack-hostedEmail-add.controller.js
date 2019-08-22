@@ -1,3 +1,6 @@
+import forEach from 'lodash/forEach';
+import get from 'lodash/get';
+
 angular.module('managerApp').controller('PackHostedEmailAddCtrl', function ($q, $scope, $stateParams, OvhApiPackXdslHostedEmail, TucToast, $translate, $location, tucValidator) {
   const self = this;
 
@@ -23,7 +26,7 @@ angular.module('managerApp').controller('PackHostedEmailAddCtrl', function ($q, 
       $location.path(`/pack/${$stateParams.packName}`);
       return data;
     }).catch((error) => {
-      TucToast.error([$translate.instant('an_error_ocurred'), _.get(error, 'data.message', '')].join(' '));
+      TucToast.error([$translate.instant('an_error_ocurred'), get(error, 'data.message', '')].join(' '));
       return $q.reject(error);
     }).finally(() => {
       self.pendingOrder = false;
@@ -34,7 +37,7 @@ angular.module('managerApp').controller('PackHostedEmailAddCtrl', function ($q, 
     $scope.domains = [];
 
     OvhApiPackXdslHostedEmail.v6().getDomains({ packId: $stateParams.packName }, (domains) => {
-      _.each(domains, (domain) => {
+      forEach(domains, (domain) => {
         $scope.domains.push(`@${domain}`);
       });
     });

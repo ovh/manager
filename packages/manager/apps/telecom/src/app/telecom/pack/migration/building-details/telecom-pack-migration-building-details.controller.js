@@ -1,3 +1,5 @@
+import has from 'lodash/has';
+
 angular.module('managerApp').controller('TelecomPackMigrationBuildingDetailsCtrl', class TelecomPackMigrationBuildingDetailsCtrl {
   constructor($translate, TucPackMigrationProcess, OvhApiConnectivityEligibility) {
     this.$translate = $translate;
@@ -37,7 +39,7 @@ angular.module('managerApp').controller('TelecomPackMigrationBuildingDetailsCtrl
 
       this.OvhApiConnectivityEligibility.v6().buildingDetails({
       }, params).$promise.then((buildingDetails) => {
-        if (_.has(buildingDetails, 'result.stairs')) {
+        if (has(buildingDetails, 'result.stairs')) {
           this.process.selectedOffer.buildings[i].stairs = buildingDetails.result.stairs.map(
             stair => this.convertStairs(stair),
           );
@@ -138,7 +140,7 @@ angular.module('managerApp').controller('TelecomPackMigrationBuildingDetailsCtrl
         };
         this.OvhApiConnectivityEligibility.v6().buildingDetails({
         }, params).$promise.then((buildingDetails) => {
-          if (_.has(buildingDetails, 'result.stairs')) {
+          if (has(buildingDetails, 'result.stairs')) {
             if (buildingDetails.result.stairs.length === 0) {
               const stairModel = this.defaultStairsModel();
               this.model.selectedBuilding.stairs.push(stairModel);

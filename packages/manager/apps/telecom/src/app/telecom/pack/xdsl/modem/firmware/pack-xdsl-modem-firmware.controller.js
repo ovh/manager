@@ -1,3 +1,5 @@
+import isEmpty from 'lodash/isEmpty';
+
 angular.module('managerApp').controller('XdslModemFirmwareCtrl', class XdslModemFirmwareCtrl {
   constructor($q, $stateParams, $translate, OvhApiXdsl, TucPackXdslModemMediator, TucToast) {
     this.$stateParams = $stateParams;
@@ -37,7 +39,7 @@ angular.module('managerApp').controller('XdslModemFirmwareCtrl', class XdslModem
   }
 
   changeFirmware() {
-    if (_.isEmpty(this.$stateParams.serviceName)
+    if (isEmpty(this.$stateParams.serviceName)
         || !this.firmwareTmp
         || !this.mediator.capabilities.canChangeFirmware) {
       this.firmwareTmp = this.firmware;

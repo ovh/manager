@@ -1,9 +1,11 @@
+import isArray from 'lodash/isArray';
+
 angular.module('managerApp').service('voipServiceOfferTask', function ($q, OvhApiTelephony, Poller) {
   const self = this;
 
   self.getTaskInStatus = function (billingAccount, serviceName, statusParam,
     actionParam, serviceTypeParam) {
-    const status = _.isArray(statusParam) ? statusParam : [statusParam];
+    const status = isArray(statusParam) ? statusParam : [statusParam];
     const promises = [];
     let taskIds = [];
 

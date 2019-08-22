@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationLiveCallsHangupCtrl', function ($uibModalInstance, $translate, TucToast, params) {
   const self = this;
 
@@ -24,7 +26,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationLiveC
         $uibModalInstance.dismiss();
         TucToast.success($translate.instant('telephony_alias_configuration_mode_calls_action_hangup_success'));
       }).catch((err) => {
-        self.error = _.get(err, 'data.message') || _.get(err, 'message') || err;
+        self.error = get(err, 'data.message') || get(err, 'message') || err;
       }).finally(() => {
         self.isSubmitting = false;
       });

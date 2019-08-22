@@ -1,3 +1,9 @@
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import get from 'lodash/get';
+import map from 'lodash/map';
+import set from 'lodash/set';
+
 export default class TelecomTelephonyLinePhoneProgammableKeysCtrl {
   /* @ngInject */
   constructor($stateParams, $translate, $uibModal, TelephonyMediator, tucTelephonyBulk, TucToast) {
@@ -101,7 +107,7 @@ export default class TelecomTelephonyLinePhoneProgammableKeysCtrl {
   }
 
   buildBulkActions() {
-    return _.map(this.functionKeys.raw, key => ({
+    return map(this.functionKeys.raw, key => ({
       name: 'functionKey',
       route: '/telephony/{billingAccount}/line/{serviceName}/phone/functionKey/{keyNum}'.replace('{keyNum}', key.keyNum),
       method: 'PUT',
@@ -114,11 +120,11 @@ export default class TelecomTelephonyLinePhoneProgammableKeysCtrl {
 
   /* eslint-disable class-methods-use-this */
   filterServices(services) {
-    const filteredServices = _.filter(services, service => ['sip', 'mgcp'].indexOf(service.featureType) > -1);
+    const filteredServices = filter(services, service => ['sip', 'mgcp'].indexOf(service.featureType) > -1);
 
-    return _.filter(
+    return filter(
       filteredServices,
-      service => _.find(services, {
+      service => find(services, {
         serviceName: service.serviceName,
         billingAccount: service.billingAccount,
       }),
@@ -129,9 +135,9 @@ export default class TelecomTelephonyLinePhoneProgammableKeysCtrl {
   onBulkSuccess() {
     return (bulkResult) => {
       if (bulkResult.error.length) {
-        _.set(bulkResult, 'error', _.map(bulkResult.error, (error) => {
-          const errorDetails = _.get(error, 'errors[0]');
-          _.set(error, 'errors[0].error', errorDetails.statusCode === 501
+        set(bulkResult, 'error', map(bulkResult.error, (error) => {
+          const errorDetails = get(error, 'errors[0]');
+          set(error, 'errors[0].error', errorDetails.statusCode === 501
             ? this.$translate.instant('telephony_line_phone_programmableKeys_bulk_error_details') : errorDetails.error);
 
           return error;
@@ -158,7 +164,7 @@ export default class TelecomTelephonyLinePhoneProgammableKeysCtrl {
   }
 
   onBulkError() {
-    return error => this.TucToast.error([this.$translate.instant('telephony_line_phone_programmableKeys_bulk_on_error'), _.get(error, 'msg.data')].join(' '));
+    return error => this.TucToast.error([this.$translate.instant('telephony_line_phone_programmableKeys_bulk_on_error'), get(error, 'msg.data')].join(' '));
   }
 
   /* -----  End of BULK  ------ */

@@ -1,3 +1,8 @@
+import filter from 'lodash/filter';
+import get from 'lodash/get';
+import method from 'lodash/method';
+import some from 'lodash/some';
+
 angular.module('managerApp').controller('TelecomTelephonyLineConvertCtrl', function ($q, $stateParams, $translate, OvhApiPackXdslVoipLine, OvhApiTelephony, TelephonyMediator, TucToast, TucToastError, tucTelephonyBulk) {
   const self = this;
 
@@ -62,14 +67,14 @@ angular.module('managerApp').controller('TelecomTelephonyLineConvertCtrl', funct
   };
 
   self.filterServices = function (services) {
-    let filteredServices = _.filter(services, service => !_.some(service.offers, _.method('includes', 'individual')));
+    let filteredServices = filter(services, service => !some(service.offers, method('includes', 'individual')));
 
-    filteredServices = _.filter(filteredServices, service => ['sip', 'mgcp'].indexOf(service.featureType) > -1);
+    filteredServices = filter(filteredServices, service => ['sip', 'mgcp'].indexOf(service.featureType) > -1);
 
     return OvhApiPackXdslVoipLine.v7().services().aggregate('packName').execute().$promise.then((lines) => {
-      filteredServices = _.filter(
+      filteredServices = filter(
         filteredServices,
-        service => !_.some(lines, { key: service.serviceName }),
+        service => !some(lines, { key: service.serviceName }),
       );
 
       return $q.when(filteredServices);
@@ -100,7 +105,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineConvertCtrl', funct
   };
 
   self.onBulkError = function (error) {
-    TucToast.error([$translate.instant('telephony_line_convert_bulk_on_error'), _.get(error, 'msg.data')].join(' '));
+    TucToast.error([$translate.instant('telephony_line_convert_bulk_on_error'), get(error, 'msg.data')].join(' '));
   };
 
   /* -----  End of BULK  ------ */

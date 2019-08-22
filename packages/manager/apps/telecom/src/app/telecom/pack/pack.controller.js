@@ -1,3 +1,15 @@
+import assign from 'lodash/assign';
+import clone from 'lodash/clone';
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import get from 'lodash/get';
+import includes from 'lodash/includes';
+import isArray from 'lodash/isArray';
+import last from 'lodash/last';
+import map from 'lodash/map';
+import orderBy from 'lodash/orderBy';
+import reduce from 'lodash/reduce';
+
 angular.module('managerApp').controller('PackCtrl', class PackCtrl {
   constructor(
     $q, $scope, $stateParams, $translate,
@@ -30,22 +42,25 @@ angular.module('managerApp').controller('PackCtrl', class PackCtrl {
       packInformation: this.getPackInformation(),
       frames: this.initFrames(),
     }).then(() => {
-      if (_.isArray(this.frames)) {
-        this.services = _.chain(this.frames)
-          .sortByOrder(['index'])
-
-          // transform a  [1 x l] matrix to a [2 x l/2] matrix
-          .reduce((all, elt, index) => {
+      if (isArray(this.frames)) {
+        this.services = reduce(
+          orderBy(
+            this.frames,
+            ['index'],
+          ),
+          (all, elt, index) => {
+            // transform a  [1 x l] matrix to a [2 x l/2] matrix
             let line = [];
             if (index % 2) {
-              line = _.last(all);
+              line = last(all);
             } else {
               all.push(line);
             }
             line.push(elt);
             return all;
-          }, [])
-          .value();
+          },
+          [],
+        );
       }
       return this.services;
     });
@@ -57,9 +72,12 @@ angular.module('managerApp').controller('PackCtrl', class PackCtrl {
     promises.push(this.OvhApiPackXdsl.v6().getServices({ packId })
       .$promise
       .then((services) => {
-        const filteredServices = _.chain(services)
-          .filter(service => this.DASHBOARD.services.indexOf(service.name) > -1)
-          .map((service) => {
+        const filteredServices = map(
+          filter(
+            services,
+            service => this.DASHBOARD.services.indexOf(service.name) > -1,
+          ),
+          (service) => {
             const newService = service;
             let index = this.DASHBOARD.services.indexOf(service.name);
             if (index === -1) {
@@ -67,8 +85,8 @@ angular.module('managerApp').controller('PackCtrl', class PackCtrl {
             }
             newService.index = index + 1;
             return newService;
-          })
-          .value();
+          },
+        );
 
         this.frames = [...this.frames, ...filteredServices];
       }));
@@ -88,7 +106,7 @@ angular.module('managerApp').controller('PackCtrl', class PackCtrl {
       .$promise
       .then((capabilities) => {
         if (capabilities.canGenerate) {
-          const promotionCodeFrame = _.clone(this.PACK.frames.promotionCode);
+          const promotionCodeFrame = clone(this.PACK.frames.promotionCode);
           promotionCodeFrame.data = capabilities;
           this.frames.push(promotionCodeFrame);
         }
@@ -103,13 +121,13 @@ angular.module('managerApp').controller('PackCtrl', class PackCtrl {
     return this.OvhApiPackXdsl.Aapi().get({ packId: this.$stateParams.packName })
       .$promise
       .then((packInfo) => {
-        const mainAccess = _.find(packInfo.services, service => service.role === 'main');
-        this.pack = _.assign(
+        const mainAccess = find(packInfo.services, service => service.role === 'main');
+        this.pack = assign(
           packInfo.general,
           {
             informations: packInfo.detail,
-            mainAccess: _.assign(mainAccess, {
-              isFiberPack: _.includes(this.PACK.fiberAccess, mainAccess.accessType),
+            mainAccess: assign(mainAccess, {
+              isFiberPack: includes(this.PACK.fiberAccess, mainAccess.accessType),
             }),
           },
         );
@@ -146,7 +164,7 @@ angular.module('managerApp').controller('PackCtrl', class PackCtrl {
 
     return this.getAllFrames(this.$stateParams.packName).catch((err) => {
       if (err.status !== 460 && err.status !== 403) {
-        this.TucToast.error([this.$translate.instant('pack_xdsl_oops_an_error_is_occured'), _.get(err, 'data.message', '')].join(' '));
+        this.TucToast.error([this.$translate.instant('pack_xdsl_oops_an_error_is_occured'), get(err, 'data.message', '')].join(' '));
       }
       return this.$q.reject(err);
     }).finally(() => {

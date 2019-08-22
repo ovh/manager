@@ -1,3 +1,7 @@
+import filter from 'lodash/filter';
+import forEach from 'lodash/forEach';
+import set from 'lodash/set';
+
 angular.module('managerApp').controller('TelecomOrdersAliasCtrl', function (OvhApiOrder, TucToast, $q, $translate, $state) {
   const self = this;
 
@@ -30,9 +34,9 @@ angular.module('managerApp').controller('TelecomOrdersAliasCtrl', function (OvhA
 
     OvhApiOrder.Telephony().Aapi().billingAccounts().$promise.then(
       (billingAccounts) => {
-        self.orderAccounts = _.filter(billingAccounts, { status: 'enabled' });
-        _.forEach(self.orderAccounts, (elt) => {
-          _.set(elt, 'label', elt.description || elt.billingAccount);
+        self.orderAccounts = filter(billingAccounts, { status: 'enabled' });
+        forEach(self.orderAccounts, (elt) => {
+          set(elt, 'label', elt.description || elt.billingAccount);
         });
         return self.orderAccounts;
       },

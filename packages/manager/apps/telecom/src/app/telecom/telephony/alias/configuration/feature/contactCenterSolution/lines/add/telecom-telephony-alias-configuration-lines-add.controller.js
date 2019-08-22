@@ -1,3 +1,6 @@
+import get from 'lodash/get';
+import remove from 'lodash/remove';
+
 angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationLinesAddCtrl', class TelecomTelephonyAliasConfigurationLinesLineCtrl {
   constructor(
     $q, $state, $stateParams, $translate,
@@ -40,7 +43,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationLines
       })
       .catch((error) => {
         this.TucToast.error(
-          `${this.$translate.instant('telephony_alias_config_contactCenterSolution_lines_line_get_error')} ${_.get(error, 'data.message', error.message)}`,
+          `${this.$translate.instant('telephony_alias_config_contactCenterSolution_lines_line_get_error')} ${get(error, 'data.message', error.message)}`,
         );
       })
       .finally(() => {
@@ -63,12 +66,12 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationLines
 
   removeLine(lineToRemove) {
     if (this.addLineForm.numbers.length > 1) {
-      _.remove(this.addLineForm.numbers, { value: lineToRemove });
+      remove(this.addLineForm.numbers, { value: lineToRemove });
     } else {
       this.addLineForm.numbers[0].value = null;
     }
 
-    _.remove(this.linesToExclude, line => line === lineToRemove);
+    remove(this.linesToExclude, line => line === lineToRemove);
   }
 
   resetLinesToAdd() {
@@ -101,7 +104,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationLines
       }))
       .catch((error) => {
         this.TucToast.error(
-          `${this.$translate.instant('telephony_alias_config_contactCenterSolution_lines_line_add_error')} ${_.get(error, 'data.message', error.message)}`,
+          `${this.$translate.instant('telephony_alias_config_contactCenterSolution_lines_line_add_error')} ${get(error, 'data.message', error.message)}`,
         );
       })
       .finally(() => {

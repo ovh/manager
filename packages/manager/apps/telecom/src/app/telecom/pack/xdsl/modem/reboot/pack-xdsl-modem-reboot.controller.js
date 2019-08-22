@@ -1,8 +1,10 @@
+import isEmpty from 'lodash/isEmpty';
+
 angular.module('managerApp').controller('XdslModemRebootCtrl', function ($stateParams, $scope, $translate, $q, OvhApiXdsl, TucPackXdslModemMediator, TucToast) {
   this.mediator = TucPackXdslModemMediator;
 
   this.rebootModem = function () {
-    if (_.isEmpty($stateParams.serviceName)) {
+    if (isEmpty($stateParams.serviceName)) {
       return TucToast.error($translate.instant('xdsl_modem_reboot_an_error_ocurred'));
     }
     TucPackXdslModemMediator.setTask('rebootModem');

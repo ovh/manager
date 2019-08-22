@@ -1,3 +1,12 @@
+import chunk from 'lodash/chunk';
+import forEach from 'lodash/forEach';
+import flatten from 'lodash/flatten';
+import map from 'lodash/map';
+import pick from 'lodash/pick';
+import set from 'lodash/set';
+import startsWith from 'lodash/startsWith';
+import values from 'lodash/values';
+
 angular.module('managerApp').controller('TelecomTelephonyBillingAccountManageContactsCtrl', function ($stateParams, $q, $translate, OvhApiTelephony, OvhApiMe, TelephonyMediator, OvhApiPackXdslVoipLine, TucToast, TucToastError) {
   const self = this;
 
@@ -7,25 +16,25 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountManageCon
     return OvhApiTelephony.v6().getServiceInfos({
       billingAccount: $stateParams.billingAccount,
     }).$promise.then(result => [{
-      value: _.pick(result, contactAttributes),
-      modified: _.pick(result, contactAttributes),
+      value: pick(result, contactAttributes),
+      modified: pick(result, contactAttributes),
       serviceName: $stateParams.billingAccount,
       serviceType: 'group',
     }]);
   }
 
   function getPackXdslServiceIds() {
-    return OvhApiPackXdslVoipLine.v7().services().aggregate('packName').execute().$promise.then(ids => _.pluck(ids, 'key'));
+    return OvhApiPackXdslVoipLine.v7().services().aggregate('packName').execute().$promise.then(ids => map(ids, 'key'));
   }
 
   function getLinesContacts() {
     return OvhApiTelephony.Line().v6().query({
       billingAccount: $stateParams.billingAccount,
-    }).$promise.then(ids => $q.all(_.map(ids, id => OvhApiTelephony.Lines().v6().getServiceInfos({
+    }).$promise.then(ids => $q.all(map(ids, id => OvhApiTelephony.Lines().v6().getServiceInfos({
       serviceName: id,
     }).$promise.then(infos => ({
-      value: _.pick(infos, contactAttributes),
-      modified: _.pick(infos, contactAttributes),
+      value: pick(infos, contactAttributes),
+      modified: pick(infos, contactAttributes),
       serviceName: id,
       serviceType: 'line',
     })).catch((err) => {
@@ -34,8 +43,8 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountManageCon
         return OvhApiTelephony.Trunks().v6().getServiceInfos({
           serviceName: id,
         }).$promise.then(infos => ({
-          value: _.pick(infos, contactAttributes),
-          modified: _.pick(infos, contactAttributes),
+          value: pick(infos, contactAttributes),
+          modified: pick(infos, contactAttributes),
           serviceName: id,
           serviceType: 'trunk',
         }));
@@ -47,11 +56,11 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountManageCon
   function getAliasContacts() {
     return OvhApiTelephony.Number().v6().query({
       billingAccount: $stateParams.billingAccount,
-    }).$promise.then(ids => $q.all(_.map(ids, id => OvhApiTelephony.Aliases().v6().getServiceInfos({
+    }).$promise.then(ids => $q.all(map(ids, id => OvhApiTelephony.Aliases().v6().getServiceInfos({
       serviceName: id,
     }).$promise.then(infos => ({
-      value: _.pick(infos, contactAttributes),
-      modified: _.pick(infos, contactAttributes),
+      value: pick(infos, contactAttributes),
+      modified: pick(infos, contactAttributes),
       serviceName: id,
       serviceType: 'alias',
     })))));
@@ -61,23 +70,23 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountManageCon
     return OvhApiMe.Task().ContactChange().v6()
       .query().$promise
       .then(ids => $q
-        .all(_.map(
-          _.chunk(ids, 50),
+        .all(map(
+          chunk(ids, 50),
           chunkIds => OvhApiMe.Task().ContactChange().v6().getBatch({
             id: chunkIds,
           }).$promise,
         ))
-        .then(chunkResult => _.pluck(_.flatten(chunkResult), 'value')));
+        .then(chunkResult => map(flatten(chunkResult), 'value')));
   }
 
   function associatePendingTasks(tasks) {
-    const rows = _.flatten(_.values(self.section));
-    _.each(tasks, (task) => {
+    const rows = flatten(values(self.section));
+    forEach(tasks, (task) => {
       if (['checkValidity', 'doing', 'todo', 'validatingByCustomers'].indexOf(task.state) >= 0) {
-        _.each(rows, (row) => {
+        forEach(rows, (row) => {
           if (row.serviceName === task.serviceDomain
             || (row.serviceType === 'group' && task.serviceDomain === $stateParams.billingAccount)) {
-            _.set(row, 'pendingTask', task);
+            set(row, 'pendingTask', task);
           }
         });
       }
@@ -86,13 +95,13 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountManageCon
 
   function checkModifiableServices(services) {
     return getPackXdslServiceIds().then((idsToFilter) => {
-      _.each(services, (service) => {
-        if (service.serviceType === 'group' && _.startsWith(service.serviceName, 'ovhtel-')) {
-          _.set(service, 'isModifiable', false);
+      forEach(services, (service) => {
+        if (service.serviceType === 'group' && startsWith(service.serviceName, 'ovhtel-')) {
+          set(service, 'isModifiable', false);
         } else if (service.serviceType !== 'group' && idsToFilter.indexOf(service.serviceName) >= 0) {
-          _.set(service, 'isModifiable', false);
+          set(service, 'isModifiable', false);
         } else {
-          _.set(service, 'isModifiable', true);
+          set(service, 'isModifiable', true);
         }
       });
     });
@@ -131,14 +140,14 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountManageCon
   }
 
   self.editContact = function (contact) {
-    _.set(contact, 'editing', true);
+    set(contact, 'editing', true);
     self.isEditing = true;
   };
 
   self.cancelEdition = function (contact) {
-    _.set(contact, 'editing', false);
+    set(contact, 'editing', false);
     self.isEditing = false;
-    _.set(contact, 'modified', angular.copy(contact.value));
+    set(contact, 'modified', angular.copy(contact.value));
   };
 
   self.hasChanges = function (contact) {
@@ -148,7 +157,7 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountManageCon
   self.isContactValid = function (contact) {
     let isValid = true;
     const pattern = /^[^\s]+$/;
-    _.each(_.values(contact.modified), (value) => {
+    forEach(values(contact.modified), (value) => {
       isValid = isValid && angular.isString(value) && pattern.test(value);
     });
     return isValid;
@@ -156,39 +165,39 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountManageCon
 
   self.submitChanges = function (contact) {
     let promise = $q.reject('Unknown service type');
-    _.set(contact, 'submiting', true);
+    set(contact, 'submiting', true);
     switch (contact.serviceType) {
       case 'group':
         promise = OvhApiTelephony.v6().changeContact({
           billingAccount: $stateParams.billingAccount,
-        }, _.pick(contact.modified, contactAttributes)).$promise;
+        }, pick(contact.modified, contactAttributes)).$promise;
         break;
       case 'line':
         promise = OvhApiTelephony.Lines().v6().changeContact({
           serviceName: contact.serviceName,
-        }, _.pick(contact.modified, contactAttributes)).$promise;
+        }, pick(contact.modified, contactAttributes)).$promise;
         break;
       case 'trunk':
         promise = OvhApiTelephony.Trunks().v6().changeContact({
           serviceName: contact.serviceName,
-        }, _.pick(contact.modified, contactAttributes)).$promise;
+        }, pick(contact.modified, contactAttributes)).$promise;
         break;
       case 'alias':
         promise = OvhApiTelephony.Aliases().v6().changeContact({
           serviceName: contact.serviceName,
-        }, _.pick(contact.modified, contactAttributes)).$promise;
+        }, pick(contact.modified, contactAttributes)).$promise;
         break;
       default:
         break;
     }
     return promise.then(() => getPendingTasks()).then((tasks) => {
-      _.set(contact, 'value', angular.copy(contact.modified));
-      _.set(contact, 'editing', false);
+      set(contact, 'value', angular.copy(contact.modified));
+      set(contact, 'editing', false);
       self.isEditing = false;
       associatePendingTasks(tasks);
       TucToast.success($translate.instant('telephony_group_manage_contacts_change_success'));
     }).catch(err => new TucToastError(err)).finally(() => {
-      _.set(contact, 'submiting', false);
+      set(contact, 'submiting', false);
     });
   };
 

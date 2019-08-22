@@ -1,3 +1,12 @@
+import bind from 'lodash/bind';
+import filter from 'lodash/filter';
+import forEach from 'lodash/forEach';
+import get from 'lodash/get';
+import head from 'lodash/head';
+import map from 'lodash/map';
+import some from 'lodash/some';
+import times from 'lodash/times';
+
 angular.module('managerApp').controller('TelecomTelephonyAliasAdministrationConvertToLineCtrl', function ($stateParams, $q, $translate, OvhApiTelephony, TucToastError, TucToast, tucTelephonyBulk) {
   const self = this;
 
@@ -9,7 +18,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasAdministrationConv
     self.offerError = null;
 
     return self.refresh().catch((err) => {
-      if (err.status === 400 && /number range.*forbidden change/.test(_.get(err, 'data.message'))) {
+      if (err.status === 400 && /number range.*forbidden change/.test(get(err, 'data.message'))) {
         self.offerError = $translate.instant('telephony_alias_administration_convert_range_error');
         return $q.reject(err);
       }
@@ -25,7 +34,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasAdministrationConv
       if (!task) {
         return self.getAvailableOffers($stateParams).then((availableOffers) => {
           self.offers = availableOffers.offers;
-          self.offer = _.first(self.offers);
+          self.offer = head(self.offers);
           self.contracts = availableOffers.contracts;
         });
       }
@@ -50,11 +59,11 @@ angular.module('managerApp').controller('TelecomTelephonyAliasAdministrationConv
         action: 'convertToSip',
         type: 'offer',
       }).$promise
-      .then(taskIds => $q.all(_.map(taskIds, id => OvhApiTelephony.Service().OfferTask().v6().get({
+      .then(taskIds => $q.all(map(taskIds, id => OvhApiTelephony.Service().OfferTask().v6().get({
         billingAccount: $stateParams.billingAccount,
         serviceName: $stateParams.serviceName,
         taskId: id,
-      }).$promise)).then(tasks => _.first(_.filter(tasks, { status: 'todo' }))));
+      }).$promise)).then(tasks => head(filter(tasks, { status: 'todo' }))));
   };
 
   self.convertToLine = function () {
@@ -101,9 +110,9 @@ angular.module('managerApp').controller('TelecomTelephonyAliasAdministrationConv
     function setServicesWithOffer(paramServices, listOffers) {
       const servicesFiltered = [];
 
-      _.times(listOffers.length, (index) => {
+      times(listOffers.length, (index) => {
         if (listOffers[index].status !== 404 || listOffers[index].status !== 400) {
-          if (_.some(listOffers[index].offers, 'name', self.offer.name)) {
+          if (some(listOffers[index].offers, bind('name', self.offer.name))) {
             servicesFiltered.push(paramServices[index]);
           }
         }
@@ -114,7 +123,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasAdministrationConv
 
     const promises = [];
 
-    _.forEach(services, (service) => {
+    forEach(services, (service) => {
       promises.push(self.getAvailableOffers(service));
     });
 
@@ -148,7 +157,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasAdministrationConv
   };
 
   self.onBulkError = function (error) {
-    TucToast.error([$translate.instant('telephony_alias_administration_convert_bulk_on_error'), _.get(error, 'msg.data')].join(' '));
+    TucToast.error([$translate.instant('telephony_alias_administration_convert_bulk_on_error'), get(error, 'msg.data')].join(' '));
   };
 
   init();

@@ -1,3 +1,15 @@
+import assign from 'lodash/assign';
+import filter from 'lodash/filter';
+import get from 'lodash/get';
+import head from 'lodash/head';
+import map from 'lodash/map';
+import omit from 'lodash/omit';
+import pick from 'lodash/pick';
+import pull from 'lodash/pull';
+import some from 'lodash/some';
+import startsWith from 'lodash/startsWith';
+import uniq from 'lodash/uniq';
+
 angular.module('managerApp')
   .controller('TelecomTelephonyAliasPortabilityOrderCtrl',
     function ($q, $scope, $stateParams, $translate, moment, TelephonyMediator,
@@ -68,17 +80,17 @@ angular.module('managerApp')
           self.billingAccounts = groups;
           self.order.billingAccount = $stateParams.billingAccount;
         }).catch((err) => {
-          TucToast.error(_.get(err, 'data.message'));
+          TucToast.error(get(err, 'data.message'));
           return $q.reject(err);
         }).then(() => OvhApiOrder.v6().schema().$promise.then((schema) => {
           if (schema && schema.models['telephony.NumberSpecialTypologyEnum'] && schema.models['telephony.NumberSpecialTypologyEnum'].enum) {
-            const typologies = _.map(schema.models['telephony.NumberSpecialTypologyEnum'].enum, typo => ({
+            const typologies = map(schema.models['telephony.NumberSpecialTypologyEnum'].enum, typo => ({
               value: typo,
               label: $translate.instant(`telephony_order_specific_typology_${typo.replace(new RegExp('^be_|fr_'), '')}_label`),
             }));
 
-            self.typologies.france = _.filter(typologies, typo => _.startsWith(typo.value, 'fr_'));
-            self.typologies.belgium = _.filter(typologies, typo => _.startsWith(typo.value, 'be_'));
+            self.typologies.france = filter(typologies, typo => startsWith(typo.value, 'fr_'));
+            self.typologies.belgium = filter(typologies, typo => startsWith(typo.value, 'be_'));
             return self.typologies;
           }
 
@@ -103,23 +115,23 @@ angular.module('managerApp')
       // select number corresponding country automatically
       self.onNumberChange = function () {
         const number = self.normalizeNumber(self.order.callNumber);
-        if (_.startsWith(number, '0033')) {
+        if (startsWith(number, '0033')) {
           self.order.country = 'france';
-        } else if (_.startsWith(number, '0032')) {
+        } else if (startsWith(number, '0032')) {
           self.order.country = 'belgium';
           self.order.rio = null;
-        } else if (_.startsWith(number, '0041')) {
+        } else if (startsWith(number, '0041')) {
           self.order.country = 'switzerland';
           self.order.rio = null;
         }
 
         // handle special number
-        self.isSpecialNumber = _.some(
+        self.isSpecialNumber = some(
           TELEPHONY_REPAYMENT_CONSUMPTION.specialNumberPrefix[self.order.country],
-          prefix => _.startsWith(number, prefix),
+          prefix => startsWith(number, prefix),
         );
         self.order.specialNumberCategory = self.isSpecialNumber
-          ? _.first(self.typologies[self.order.country]).value : null;
+          ? head(self.typologies[self.order.country]).value : null;
         self.order.type = self.isSpecialNumber ? 'special' : 'landline';
 
         self.order.translatedCountry = $translate.instant(`telephony_alias_portability_order_contact_country_${self.order.country}`);
@@ -133,13 +145,13 @@ angular.module('managerApp')
       // add sdaNumberToAdd number to numbersList
       self.addSdaNumber = function () {
         self.order.numbersList.push(self.order.sdaNumberToAdd);
-        self.order.numbersList = _.uniq(self.order.numbersList);
+        self.order.numbersList = uniq(self.order.numbersList);
         self.order.sdaNumberToAdd = null;
       };
 
       // remove given number from numbersList
       self.removeSdaNumber = function (number) {
-        self.order.numbersList = _.pull(self.order.numbersList, number);
+        self.order.numbersList = pull(self.order.numbersList, number);
       };
 
       // normalize number : replace +33 by 0033
@@ -154,7 +166,7 @@ angular.module('managerApp')
       self.goToConfigStep = function () {
         self.order.addressTooLong = false;
 
-        if (`${_.get(self.order, 'streetName', '')}${_.get(self.order, 'streetNumber', '')}${_.get(self.order, 'streetNumberExtra', '')}${_.get(self.order, 'streetType', '')}`.length >= 35) {
+        if (`${get(self.order, 'streetName', '')}${get(self.order, 'streetNumber', '')}${get(self.order, 'streetNumberExtra', '')}${get(self.order, 'streetType', '')}`.length >= 35) {
           self.order.addressTooLong = true;
           return false;
         }
@@ -164,17 +176,17 @@ angular.module('managerApp')
       };
 
       self.getOrderParams = function () {
-        let params = _.pick(self.order, sharedAttributes);
+        let params = pick(self.order, sharedAttributes);
 
         if (params.offer === 'individual') {
-          params = _.assign(params, _.pick(self.order, 'rio'));
+          params = assign(params, pick(self.order, 'rio'));
         } else {
-          params = _.assign(params, _.pick(self.order, 'siret'));
+          params = assign(params, pick(self.order, 'siret'));
         }
         params.firstName = params.firstName || '';
 
         if (self.isSDA && self.order.sdatype === 'select' && self.order.numbersList.length) {
-          params.listNumbers = _.map(self.order.numbersList, self.normalizeNumber).join(',');
+          params.listNumbers = map(self.order.numbersList, self.normalizeNumber).join(',');
         }
 
         if (self.isSpecialNumber) {
@@ -203,7 +215,7 @@ angular.module('managerApp')
           })
           .catch((err) => {
             self.step = 'number';
-            TucToast.error(_.get(err, 'data.message', ''));
+            TucToast.error(get(err, 'data.message', ''));
             return $q.reject(err);
           });
       };
@@ -212,7 +224,7 @@ angular.module('managerApp')
         self.order.isOrdering = true;
         return OvhApiOrder.Telephony().v6().orderPortability({
           billingAccount: self.order.billingAccount,
-        }, _.omit(self.getOrderParams(), 'billingAccount')).$promise.then(({ orderId, url }) => {
+        }, omit(self.getOrderParams(), 'billingAccount')).$promise.then(({ orderId, url }) => {
           self.order.success = true;
           self.order.url = url;
           return OvhApiMe.Order().v6().get({
@@ -238,7 +250,7 @@ angular.module('managerApp')
             },
           );
         }).catch((err) => {
-          TucToast.error(`${$translate.instant('telephony_alias_portability_order_error')} ${_.get(err, 'data.message')}`);
+          TucToast.error(`${$translate.instant('telephony_alias_portability_order_error')} ${get(err, 'data.message')}`);
           return $q.reject(err);
         }).finally(() => {
           self.order.isOrdering = false;

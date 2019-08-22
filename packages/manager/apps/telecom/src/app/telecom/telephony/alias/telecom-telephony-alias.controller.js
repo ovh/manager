@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular.module('managerApp').controller('TelecomTelephonyAliasCtrl', class TelecomTelephonyAliasCtrl {
   constructor(
     $q, $state, $stateParams, $translate,
@@ -52,7 +54,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasCtrl', class Telec
       return null;
     }).catch((error) => {
       this.TucToast.error(
-        `${this.$translate.instant('telephony_alias_load_error')} ${_.get(error, 'data.message', error.message)}`,
+        `${this.$translate.instant('telephony_alias_load_error')} ${get(error, 'data.message', error.message)}`,
       );
     }).finally(() => {
       this.loading = false;
@@ -75,7 +77,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasCtrl', class Telec
         }, this.alias.serviceName, 'telecom-telephony-section', this.alias.billingAccount);
       }).catch((error) => {
         this.alias.description = oldDescription;
-        this.TucToast.error([this.$translate.instant('telephony_alias_rename_error', this.serviceName), _.get(error, 'data.message', error.message)].join(' '));
+        this.TucToast.error([this.$translate.instant('telephony_alias_rename_error', this.serviceName), get(error, 'data.message', error.message)].join(' '));
       });
     };
   }

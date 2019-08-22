@@ -1,3 +1,6 @@
+import get from 'lodash/get';
+import isEqual from 'lodash/isEqual';
+
 angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationRedirectCtrl', class TelecomTelephonyAliasConfigurationRedirectCtrl {
   constructor($q, $state, $stateParams, $translate,
     alias, OvhApiTelephony, TucToast, tucVoipService, tucVoipServiceAlias, tucVoipServiceLine) {
@@ -28,14 +31,14 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationRedir
     }, this.featureTypeToUse)
       .then(({ destination }) => this.tucVoipService.fetchAll().then((allServices) => {
         this.destination = allServices
-          .find(({ serviceName }) => _.isEqual(serviceName, destination));
+          .find(({ serviceName }) => isEqual(serviceName, destination));
 
         if (this.destination && this.canDestinationBeUsedForPresentation()) {
           return this.tucVoipServiceLine.getLineOptions({
             billingAccount: this.destination.billingAccount,
             serviceName: this.destination.serviceName,
           }).then(({ displayNumber }) => {
-            this.destinationUsedAsPresentation = _.isEqual(displayNumber, this.alias.serviceName);
+            this.destinationUsedAsPresentation = isEqual(displayNumber, this.alias.serviceName);
             this.actualPresentation = this.destinationUsedAsPresentation;
             return displayNumber;
           });
@@ -45,7 +48,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationRedir
       }))
       .catch((error) => {
         this.TucToast.error(
-          `${this.$translate.instant('telephony_alias_config_redirect_get_error')} ${_(error).get('data.message', error.message)}`,
+          `${this.$translate.instant('telephony_alias_config_redirect_get_error')} ${get(error, 'data.message', error.message)}`,
         );
       })
       .finally(() => {
@@ -77,7 +80,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationRedir
         if (error.status === 404) {
           this.featureTypeToUse = 'ddi';
         } else {
-          this.TucToast.error(`${this.$translate.instant('telephony_alias_config_redirect_get_error')} ${_.get(error, 'data.message', error.message)}`);
+          this.TucToast.error(`${this.$translate.instant('telephony_alias_config_redirect_get_error')} ${get(error, 'data.message', error.message)}`);
         }
       }).finally(() => {
         this.loading = false;
@@ -90,16 +93,16 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationRedir
     const faxFeatureType = 'fax';
     const regExp = new RegExp(trunkOffer);
     if (this.newDestination) {
-      return !regExp.test(_(this.newDestination).get('getPublicOffer.name', trunkOffer)) && this.newDestination.featureType !== faxFeatureType;
+      return !regExp.test(get(this.newDestination, 'getPublicOffer.name', trunkOffer)) && this.newDestination.featureType !== faxFeatureType;
     }
 
-    return !regExp.test(_(this.destination).get('getPublicOffer.name', trunkOffer)) && this.destination.featureType !== faxFeatureType;
+    return !regExp.test(get(this.destination, 'getPublicOffer.name', trunkOffer)) && this.destination.featureType !== faxFeatureType;
   }
 
   canChangeDestination() {
-    const currentDestination = _(this.destination).get('serviceName', '');
-    const newDestination = _(this.newDestination).get('serviceName', currentDestination);
-    return !_.isEqual(currentDestination, newDestination);
+    const currentDestination = get(this.destination, 'serviceName', '');
+    const newDestination = get(this.newDestination, 'serviceName', currentDestination);
+    return !isEqual(currentDestination, newDestination);
   }
 
   canUpdatePresentation() {
@@ -107,7 +110,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationRedir
       return this.destinationUsedAsPresentation;
     }
 
-    return !_.isEqual(this.actualPresentation, this.destinationUsedAsPresentation);
+    return !isEqual(this.actualPresentation, this.destinationUsedAsPresentation);
   }
 
   canUpdateRedirection() {
@@ -153,7 +156,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationRedir
       })
       .catch((error) => {
         this.TucToast.error(
-          `${this.$translate.instant('telephony_alias_config_redirect_update_error')} ${_(error).get('data.message', error.message)}`,
+          `${this.$translate.instant('telephony_alias_config_redirect_update_error')} ${get(error, 'data.message', error.message)}`,
         );
       })
       .finally(() => {

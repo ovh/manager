@@ -1,12 +1,14 @@
+import head from 'lodash/head';
+
 angular.module('managerApp').controller('TelecomTelephonyAliasSvaGeneratorCtrl', function ($stateParams, OvhApiTelephony, TucToastError, SvaGeneratorConfig) {
   const self = this;
 
   function init() {
     self.serviceName = $stateParams.serviceName;
     self.fillTypeList = SvaGeneratorConfig.fillType;
-    self.fillType = _.first(self.fillTypeList);
+    self.fillType = head(self.fillTypeList);
     self.numberFormatList = SvaGeneratorConfig.numberFormat;
-    self.numberFormat = _.first(self.numberFormatList);
+    self.numberFormat = head(self.numberFormatList);
     self.pricePerCall = 0;
     self.pricePerMinute = 0;
     self.notSupported = false;

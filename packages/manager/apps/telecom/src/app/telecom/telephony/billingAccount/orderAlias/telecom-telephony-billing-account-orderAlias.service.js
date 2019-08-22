@@ -1,4 +1,13 @@
-angular.module('managerApp').service('TelecomTelephonyBillingAccountOrderAliasService', function ($q, OvhApiTelephony, OvhApiMe, TELEPHONY_NUMBER_OFFER) {
+import assignIn from 'lodash/assignIn';
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import flatten from 'lodash/flatten';
+import isArray from 'lodash/isArray';
+import map from 'lodash/map';
+import pull from 'lodash/pull';
+import set from 'lodash/set';
+
+angular.module('managerApp').service('TelecomTelephonyBillingAccountOrderAliasService', function TelecomTelephonyBillingAccountOrderAliasService($q, OvhApiTelephony, OvhApiMe, TELEPHONY_NUMBER_OFFER) {
   /**
    * Replace all spaces by no-breaking-spaces
    * @param {String} str Input string
@@ -14,8 +23,8 @@ angular.module('managerApp').service('TelecomTelephonyBillingAccountOrderAliasSe
    * @return {String}         Display list
    */
   function generateInternationalClarification(country) {
-    const firstForeigns = _.pull(Object.keys(TELEPHONY_NUMBER_OFFER.prefix), country).slice(0, 3);
-    return `${_.map(firstForeigns, theCountry => TELEPHONY_NUMBER_OFFER.prefix[theCountry]).join(',&nbsp;')},&nbsp;...`;
+    const firstForeigns = pull(Object.keys(TELEPHONY_NUMBER_OFFER.prefix), country).slice(0, 3);
+    return `${map(firstForeigns, theCountry => TELEPHONY_NUMBER_OFFER.prefix[theCountry]).join(',&nbsp;')},&nbsp;...`;
   }
 
   /**
@@ -26,8 +35,8 @@ angular.module('managerApp').service('TelecomTelephonyBillingAccountOrderAliasSe
     return OvhApiMe.v6()
       .get().$promise
       .then((user) => {
-        _.set(user, 'country', user.country.toLowerCase());
-        _.set(user, 'legalform', !user.companyNationalIdentificationNumber ? 'individual' : 'corporation');
+        set(user, 'country', user.country.toLowerCase());
+        set(user, 'legalform', !user.companyNationalIdentificationNumber ? 'individual' : 'corporation');
         return user;
       })
       .catch(err => $q.reject(err));
@@ -38,33 +47,33 @@ angular.module('managerApp').service('TelecomTelephonyBillingAccountOrderAliasSe
    * @param          {String} billingAccount Billing account
    * @param          {String} country        Country for prices
    * @param  {Array | String} ids            List of Ids
-   * @param          {Object} filter         Filter to apply on the 2API response
+   * @param          {Object} filters         Filter to apply on the 2API response
    * @returns {Promise}
    */
-  this.getOfferDetails = function (billingAccount, country, idsParam, filter) {
+  this.getOfferDetails = function getOfferDetails(billingAccount, country, idsParam, filters) {
     TELEPHONY_NUMBER_OFFER.detail.international.clarification = `(${generateInternationalClarification(country)})`; // eslint-disable-line
-    const ids = _.isArray(idsParam) ? idsParam : [idsParam];
+    const ids = isArray(idsParam) ? idsParam : [idsParam];
     return OvhApiTelephony.Number().Aapi().prices({
       billingAccount,
       country,
     }).$promise.then(
 
       // No error from 2API
-      offers => _.flatten(ids.map((id) => {
-        const prices = _.filter(
+      offers => flatten(ids.map((id) => {
+        const prices = filter(
           offers,
-          _.extend(
+          assignIn(
             {
               type: id,
             },
-            filter,
+            filters,
           ),
         );
 
-        return _.map(prices, (price) => {
-          _.set(price, 'withoutTax.text', noBreakingSpace(price.withoutTax.text));
-          _.set(price, 'withTax.text', noBreakingSpace(price.withTax.text));
-          return _.extend(price, TELEPHONY_NUMBER_OFFER.detail[id]);
+        return map(prices, (price) => {
+          set(price, 'withoutTax.text', noBreakingSpace(price.withoutTax.text));
+          set(price, 'withTax.text', noBreakingSpace(price.withTax.text));
+          return assignIn(price, TELEPHONY_NUMBER_OFFER.detail[id]);
         });
       })),
 
@@ -80,8 +89,8 @@ angular.module('managerApp').service('TelecomTelephonyBillingAccountOrderAliasSe
    * @param {Object} filter         Filter to apply on the 2API response
    * @returns {Promise}
    */
-  this.getOffers = function (billingAccount, country, filter) {
-    return this.getOfferDetails(billingAccount, country, TELEPHONY_NUMBER_OFFER.list, filter);
+  this.getOffers = function getOffers(billingAccount, country, filters) {
+    return this.getOfferDetails(billingAccount, country, TELEPHONY_NUMBER_OFFER.list, filters);
   };
 
   /**
@@ -100,8 +109,8 @@ angular.module('managerApp').service('TelecomTelephonyBillingAccountOrderAliasSe
       range,
     }).$promise.then(
       numbers => ({
-        premium: _.map(_.filter(numbers, { isPremium: true }), 'number'),
-        common: _.map(_.filter(numbers, { isPremium: false }), 'number'),
+        premium: map(filter(numbers, { isPremium: true }), 'number'),
+        common: map(filter(numbers, { isPremium: false }), 'number'),
       }),
       (err) => {
         $q.reject(err);
@@ -121,7 +130,7 @@ angular.module('managerApp').service('TelecomTelephonyBillingAccountOrderAliasSe
       country,
       type,
     ).then((pricesParam) => {
-      const prices = _.map(
+      const prices = map(
         pricesParam,
         price => ({
           title: ['telephony_order_number_type', price.range, 'label'].join('_'),
@@ -131,8 +140,8 @@ angular.module('managerApp').service('TelecomTelephonyBillingAccountOrderAliasSe
         }),
       );
       return {
-        common: _.find(prices, { range: 'common' }),
-        specific: _.find(prices, { range: 'specific' }),
+        common: find(prices, { range: 'common' }),
+        specific: find(prices, { range: 'specific' }),
       };
     });
   };

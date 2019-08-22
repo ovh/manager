@@ -1,3 +1,7 @@
+import endsWith from 'lodash/endsWith';
+import last from 'lodash/last';
+import some from 'lodash/some';
+
 angular.module('managerApp').controller('telephonyNumberOvhPabxSoundUploaderCtrl', function ($q, $translate, TucToast) {
   const self = this;
 
@@ -7,7 +11,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxSoundUploaderCtrl
 
   function getFileNameToWav(fileName) {
     const splittedFileName = fileName.split('.');
-    const extension = _.last(splittedFileName);
+    const extension = last(splittedFileName);
     if (extension === 'wav') {
       return fileName;
     }
@@ -24,7 +28,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxSoundUploaderCtrl
     const validExtensions = ['ogg', 'mp3', 'wav', 'wma'];
     const fileName = self.file ? self.file.name : '';
     const fileNameWithoutExtension = fileName.substring(0, fileName.lastIndexOf('.'));
-    const isValidFormat = _.some(validExtensions, ext => _.endsWith(fileName.toLowerCase(), `.${ext}`));
+    const isValidFormat = some(validExtensions, ext => endsWith(fileName.toLowerCase(), `.${ext}`));
     const nameRegex = new RegExp(/^[\w\s]{1,26}$/, 'g');
 
     // check for errors
@@ -41,7 +45,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxSoundUploaderCtrl
       self.$errors.size = true;
       return false;
     }
-    self.$errors.exists = _.some(self.ovhPabx.sounds, {
+    self.$errors.exists = some(self.ovhPabx.sounds, {
       name: getFileNameToWav(fileName),
     });
     return !self.$errors.exists;

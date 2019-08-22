@@ -1,3 +1,6 @@
+import head from 'lodash/head';
+import isFunction from 'lodash/isFunction';
+
 angular.module('managerApp').controller('telephonyNumberOvhPabxSoundListCtrl', function ($timeout, $translate, $translatePartialLoader) {
   const self = this;
 
@@ -15,7 +18,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxSoundListCtrl', f
 
   self.onSelectedSoundChanged = function (sound) {
     $timeout(() => {
-      if (self.onSoundSelected && _.isFunction(self.onSoundSelected())) {
+      if (self.onSoundSelected && isFunction(self.onSoundSelected())) {
         self.onSoundSelected()(sound);
       }
     });
@@ -60,7 +63,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxSoundListCtrl', f
     }
 
     if (self.ovhPabx.sounds && self.ovhPabx.sounds.length === 1) {
-      self.selectedSound = _.first(self.ovhPabx.sounds).soundId;
+      self.selectedSound = head(self.ovhPabx.sounds).soundId;
     }
 
     return getTranslations().finally(() => {

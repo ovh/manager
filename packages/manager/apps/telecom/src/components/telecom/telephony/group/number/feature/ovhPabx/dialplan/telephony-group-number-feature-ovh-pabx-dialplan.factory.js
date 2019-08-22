@@ -1,3 +1,12 @@
+import chunk from 'lodash/chunk';
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import get from 'lodash/get';
+import isEqual from 'lodash/isEqual';
+import map from 'lodash/map';
+import remove from 'lodash/remove';
+import sortBy from 'lodash/sortBy';
+
 angular.module('managerApp').factory('TelephonyGroupNumberOvhPabxDialplan', ($q, OvhApiTelephony, TelephonyGroupNumberOvhPabxDialplanExtension) => {
   /*= ==================================
     =            CONSTRUCTOR            =
@@ -103,7 +112,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabxDialplan', ($q,
     }
 
     if (attr) {
-      return !_.isEqual(_.get(self.saveForEdition, attr), _.get(self, attr));
+      return !isEqual(get(self.saveForEdition, attr), get(self, attr));
     }
     return self.hasChange('name') || self.hasChange('showCallerNumber') || self.hasChange('transferTimeout') || self.hasChange('anonymousRejection');
   };
@@ -187,8 +196,8 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabxDialplan', ($q,
         dialplanId: self.dialplanId,
       }).$promise
       .then(extensionIds => $q
-        .all(_.map(
-          _.chunk(extensionIds, 50),
+        .all(map(
+          chunk(extensionIds, 50),
           chunkIds => OvhApiTelephony.OvhPabx().Dialplan().Extension().v6()
             .getBatch({
               billingAccount: self.billingAccount,
@@ -196,9 +205,18 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabxDialplan', ($q,
               dialplanId: self.dialplanId,
               extensionId: chunkIds,
             }).$promise.then((resources) => {
-              angular.forEach(_.chain(resources).map('value').sortBy('position').value(), (extenstionOptions) => {
-                self.addExtension(extenstionOptions);
-              });
+              angular.forEach(
+                sortBy(
+                  map(
+                    resources,
+                    'value',
+                  ),
+                  'position',
+                ),
+                (extenstionOptions) => {
+                  self.addExtension(extenstionOptions);
+                },
+              );
             }),
         ))
         .then(() => self));
@@ -214,7 +232,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabxDialplan', ($q,
     }
 
     if (extensionOptions.extensionId) {
-      extension = _.find(self.extensions, {
+      extension = find(self.extensions, {
         extensionId: extensionOptions.extensionId,
       });
     }
@@ -239,7 +257,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabxDialplan', ($q,
   TelephonyGroupNumberOvhPabxDialplan.prototype.removeExtension = function (extension) {
     const self = this;
 
-    _.remove(self.extensions, extension);
+    remove(self.extensions, extension);
 
     return self;
   };
@@ -248,7 +266,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabxDialplan', ($q,
     const self = this;
     const updatePositionPromises = [];
     const extensionsToUpdate = from
-      ? _.filter(self.extensions, extension => extension.position > from) : self.extensions;
+      ? filter(self.extensions, extension => extension.position > from) : self.extensions;
 
     angular.forEach(extensionsToUpdate, (extension) => {
       updatePositionPromises.push(extension.move(from

@@ -1,3 +1,6 @@
+import get from 'lodash/get';
+import isEmpty from 'lodash/isEmpty';
+
 angular.module('managerApp').controller('TelephonyNumberSviCtrl', function ($q, $translate, tucValidator, TucToast) {
   const self = this;
   const protocolRegexp = new RegExp(/^(http(s)?:\/\/|ftp:\/\/|mailto:)/, 'g');
@@ -32,7 +35,7 @@ angular.module('managerApp').controller('TelephonyNumberSviCtrl', function ($q, 
   }
 
   function getProtocol(url) {
-    return _.get(url.match(protocolRegexp), '[0]') || 'http://';
+    return get(url.match(protocolRegexp), '[0]') || 'http://';
   }
 
   self.isValidURL = function (value) {
@@ -58,14 +61,14 @@ angular.module('managerApp').controller('TelephonyNumberSviCtrl', function ($q, 
 
   self.urlModel = function (newUrl) {
     if (arguments.length) {
-      return (self.numberCtrl.number.feature.url = !_.isEmpty(newUrl) ? self.model.urlProtocol + newUrl : ''); // eslint-disable-line
+      return (self.numberCtrl.number.feature.url = !isEmpty(newUrl) ? self.model.urlProtocol + newUrl : ''); // eslint-disable-line
     }
     return self.numberCtrl.number.feature.url.replace(protocolRegexp, '');
   };
 
   self.urlRecordModel = function (newUrl) {
     if (arguments.length) {
-      return (self.numberCtrl.number.feature.urlRecord = !_.isEmpty(newUrl) ? self.model.urlRecordProtocol + newUrl : ''); // eslint-disable-line
+      return (self.numberCtrl.number.feature.urlRecord = !isEmpty(newUrl) ? self.model.urlRecordProtocol + newUrl : ''); // eslint-disable-line
     }
     return self.numberCtrl.number.feature.urlRecord.replace(protocolRegexp, '');
   };
@@ -82,7 +85,7 @@ angular.module('managerApp').controller('TelephonyNumberSviCtrl', function ($q, 
   self.updateUrlProtocol = function () {
     const urlValue = self.numberCtrl.number.feature.url.replace(protocolRegexp, '');
     self.sviConfigForm.url.$setDirty(true);
-    self.numberCtrl.number.feature.url = !_.isEmpty(urlValue) ? self.model.urlProtocol + urlValue : '';
+    self.numberCtrl.number.feature.url = !isEmpty(urlValue) ? self.model.urlProtocol + urlValue : '';
   };
 
   /**
@@ -91,7 +94,7 @@ angular.module('managerApp').controller('TelephonyNumberSviCtrl', function ($q, 
   self.updateUrlRecordProtocol = function () {
     const urlValue = self.numberCtrl.number.feature.urlRecord.replace(protocolRegexp, '');
     self.sviConfigForm.urlRecord.$setDirty(true);
-    self.numberCtrl.number.feature.urlRecord = !_.isEmpty(urlValue) ? self.model.urlRecordProtocol + urlValue : '';
+    self.numberCtrl.number.feature.urlRecord = !isEmpty(urlValue) ? self.model.urlRecordProtocol + urlValue : '';
   };
 
   /**

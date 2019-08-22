@@ -1,3 +1,7 @@
+import get from 'lodash/get';
+import isEmpty from 'lodash/isEmpty';
+import omit from 'lodash/omit';
+
 angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationConferenceCtrl', class TelecomTelephonyAliasConfigurationContactCenterSolutionCtrl {
   constructor(
     $q, $state, $stateParams, $timeout, $translate,
@@ -16,7 +20,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationConfe
   }
 
   $onInit() {
-    [this.currentLanguage] = _.get(localStorage, 'univers-selected-language', 'fr').split('_');
+    [this.currentLanguage] = get(localStorage, 'univers-selected-language', 'fr').split('_');
     this.conferenceCopy = null;
     this.generatingUrls = false;
     this.hasWebAccessUrls = false;
@@ -53,12 +57,12 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationConfe
       })
       .then((webAccess) => {
         this.webAccess = this.formatWebAccess(webAccess);
-        this.hasWebAccessUrls = !_.isEmpty(webAccess);
+        this.hasWebAccessUrls = !isEmpty(webAccess);
         return webAccess;
       })
       .catch((error) => {
         this.TucToast.error(
-          `${this.$translate.instant('telephony_alias_config_conference_get_error')} ${_(error).get('data.message', error.message)}`,
+          `${this.$translate.instant('telephony_alias_config_conference_get_error')} ${get(error, 'data.message', error.message)}`,
         );
       })
       .finally(() => {
@@ -90,13 +94,13 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationConfe
     }).then(() => this.tucVoipServiceAlias.fetchConferenceNumberWebAccess(this.serviceInfos))
       .then((webAccess) => {
         this.webAccess = this.formatWebAccess(webAccess);
-        this.hasWebAccessUrls = !_.isEmpty(webAccess);
+        this.hasWebAccessUrls = !isEmpty(webAccess);
 
         return webAccess;
       })
       .catch((error) => {
         this.TucToast.error(
-          `${this.$translate.instant('telephony_alias_config_conference_generate_web_access_error')} ${_(error).get('data.message', error.message)}`,
+          `${this.$translate.instant('telephony_alias_config_conference_generate_web_access_error')} ${get(error, 'data.message', error.message)}`,
         );
       })
       .finally(() => {
@@ -121,7 +125,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationConfe
       this.hasWebAccessUrls = false;
     }).catch((error) => {
       this.TucToast.error(
-        `${this.$translate.instant('telephony_alias_config_conference_delete_web_access_error')} ${_(error).get('data.message', error.message)}`,
+        `${this.$translate.instant('telephony_alias_config_conference_delete_web_access_error')} ${get(error, 'data.message', error.message)}`,
       );
     }).finally(() => {
       this.generatingUrls = false;
@@ -162,7 +166,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationConfe
         this.conference.announceFile = true;
       }
 
-      const newSettings = _.omit(this.conference, ['announceFilename', 'announceSoundId']);
+      const newSettings = omit(this.conference, ['announceFilename', 'announceSoundId']);
 
       return this.tucVoipServiceAlias.updateConferenceNumberSettings(
         this.serviceInfos,
@@ -173,7 +177,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationConfe
       this.$onInit();
     }).catch((error) => {
       this.TucToast.error(
-        `${this.$translate.instant('telephony_alias_config_conference_update_error')} ${_(error).get('data.message', error.message)}`,
+        `${this.$translate.instant('telephony_alias_config_conference_update_error')} ${get(error, 'data.message', error.message)}`,
       );
     }).finally(() => {
       this.loading = false;

@@ -1,9 +1,20 @@
-angular.module('managerApp').controller('TelecomTelephonyLineCallsForwardCtrl', function ($q, $stateParams, $translate, $state, TucToast, TelecomTelephonyLineCallsForwardService, tucValidator, tucTelephonyBulk, tucTelecomVoip) {
+import bind from 'lodash/bind';
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import forEach from 'lodash/forEach';
+import get from 'lodash/get';
+import head from 'lodash/head';
+import map from 'lodash/map';
+import set from 'lodash/set';
+import sortBy from 'lodash/sortBy';
+import uniqBy from 'lodash/uniqBy';
+
+angular.module('managerApp').controller('TelecomTelephonyLineCallsForwardCtrl', function TelecomTelephonyLineCallsForwardCtrl($q, $stateParams, $translate, $state, TucToast, TelecomTelephonyLineCallsForwardService, tucValidator, tucTelephonyBulk, tucTelecomVoip) {
   const self = this;
   self.validator = tucValidator;
 
   function getEnabledTypes(types) {
-    return _.pluck(_.filter(types, { enable: true }), 'id');
+    return map(filter(types, { enable: true }), 'id');
   }
 
   /**
@@ -51,13 +62,13 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsForwardCtrl', 
   };
 
   self.toggleChecked = function (forward) {
-    _.forEach(self.forwards, (fwd) => {
+    forEach(self.forwards, (fwd) => {
       if (forward.type === 'Unconditional') {
         if (fwd.type !== forward.type) {
-          _.set(fwd, 'enable', false);
+          set(fwd, 'enable', false);
         }
       } else if (fwd.type === 'Unconditional') {
-        _.set(fwd, 'enable', false);
+        set(fwd, 'enable', false);
       }
       return false;
     });
@@ -69,8 +80,8 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsForwardCtrl', 
    */
   self.needSave = function () {
     let toSave = false;
-    _.forEach(self.forwards, (forward) => {
-      const saved = _.find(self.saved, { type: forward.type });
+    forEach(self.forwards, (forward) => {
+      const saved = find(self.saved, { type: forward.type });
       if (!saved || saved.footPrint !== forward.footPrint) {
         toSave = true;
       }
@@ -83,7 +94,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsForwardCtrl', 
    * @param {Object} forward Forward description
    */
   self.resetNumber = function (forward) {
-    _.set(forward, 'number', _.first(self.getFilteredNumbers('', forward.nature.types)));
+    set(forward, 'number', head(self.getFilteredNumbers('', forward.nature.types)));
   };
 
   /* ===========================
@@ -104,16 +115,22 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsForwardCtrl', 
    * @param  {Array} origin fax, line voicemail
    * @return {Array}
    */
-  self.getFilteredNumbers = function (search, origin) {
+  self.getFilteredNumbers = function getFilteredNumbers(search, origin) {
     const searchReg = new RegExp(search, 'i');
 
-    return _.chain(self.allOvhNumbers)
-      .filter(num => (searchReg.test(num.serviceName) || searchReg.test(num.description))
-        && (!origin || origin.indexOf(num.type) > -1)
-        && filterType(num.type)
-        && filterBillingAccount(num.billingAccount))
-      .sortBy(num => (num.formatedNumber === $stateParams.serviceName ? 0 : 1)).uniq('serviceName')
-      .value();
+    return uniqBy(
+      sortBy(
+        filter(
+          self.allOvhNumbers,
+          num => (searchReg.test(num.serviceName) || searchReg.test(num.description))
+            && (!origin || origin.indexOf(num.type) > -1)
+            && filterType(num.type)
+            && filterBillingAccount(num.billingAccount),
+        ),
+        num => (num.formatedNumber === $stateParams.serviceName ? 0 : 1),
+      ),
+      'serviceName',
+    );
   };
 
   self.filterTypes = function () {
@@ -129,14 +146,14 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsForwardCtrl', 
   self.setCancelBuffer = function (restore) {
     if (restore) {
       self.forwards = angular.copy(self.saved);
-      _.forEach(self.forwards, (forward) => {
-        _.set(forward, 'nature', _.find(self.lineOptionForwardNatureTypeEnum, { value: forward.nature.value }));
-        _.set(forward, 'number', _.find(self.allOvhNumbers, { type: forward.number.type, serviceName: forward.number.serviceName }));
+      forEach(self.forwards, (forward) => {
+        set(forward, 'nature', find(self.lineOptionForwardNatureTypeEnum, { value: forward.nature.value }));
+        set(forward, 'number', find(self.allOvhNumbers, { type: forward.number.type, serviceName: forward.number.serviceName }));
       });
     } else {
       self.saved = angular.copy(self.forwards);
     }
-    self.masterForward = _.find(self.forwards, { master: true });
+    self.masterForward = find(self.forwards, { master: true });
   };
 
   /**
@@ -148,7 +165,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsForwardCtrl', 
   };
 
   self.resetNumbers = function () {
-    return _.map(self.forwards, forward => self.resetNumber(forward));
+    return map(self.forwards, forward => self.resetNumber(forward));
   };
 
   /**
@@ -222,15 +239,15 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsForwardCtrl', 
   }
 
   function extractNatureFromForward(forward) {
-    const nature = _.get(forward.nature, 'value', null);
+    const nature = get(forward.nature, 'value', null);
 
     return nature === 'external' ? 'number' : nature;
   }
 
   function extractNumberFromForward(forward) {
-    const number = _.get(forward.nature, 'value', null) === 'external' ? _.get(forward.externalNumber, 'serviceName', null) : _.get(forward.number, 'serviceName', null);
+    const number = get(forward.nature, 'value', null) === 'external' ? get(forward.externalNumber, 'serviceName', null) : get(forward.number, 'serviceName', null);
 
-    return number || _.get(forward.number, 'serviceName', null);
+    return number || get(forward.number, 'serviceName', null);
   }
 
   function init() {
@@ -284,15 +301,15 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsForwardCtrl', 
   };
 
   self.filterServices = function (services) {
-    return _.filter(services, service => ['sip', 'mgcp'].indexOf(service.featureType) > -1);
+    return filter(services, service => ['sip', 'mgcp'].indexOf(service.featureType) > -1);
   };
 
   self.getBulkParams = function () {
     const data = {};
-    const forwardBackup = _.find(self.forwards, 'type', 'Backup');
-    const forwardBusy = _.find(self.forwards, 'type', 'Busy');
-    const forwardNoReply = _.find(self.forwards, 'type', 'NoReply');
-    const forwardUnconditional = _.find(self.forwards, 'type', 'Unconditional');
+    const forwardBackup = find(self.forwards, bind('type', 'Backup'));
+    const forwardBusy = find(self.forwards, bind('type', 'Busy'));
+    const forwardNoReply = find(self.forwards, bind('type', 'NoReply'));
+    const forwardUnconditional = find(self.forwards, bind('type', 'Unconditional'));
 
     if (forwardBackup) {
       data.forwardBackup = forwardBackup.enable;
@@ -343,7 +360,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsForwardCtrl', 
   };
 
   self.onBulkError = function (error) {
-    TucToast.error([$translate.instant('telephony_line_actions_line_calls_forward_bulk_on_error'), _.get(error, 'msg.data')].join(' '));
+    TucToast.error([$translate.instant('telephony_line_actions_line_calls_forward_bulk_on_error'), get(error, 'msg.data')].join(' '));
   };
 
   /* -----  End of BULK  ------ */

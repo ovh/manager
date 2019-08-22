@@ -1,4 +1,13 @@
-angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingCalledFeesCtrl', function ($filter, $q, $stateParams, $translate, TelephonyMediator, TucToast) {
+import filter from 'lodash/filter';
+import get from 'lodash/get';
+import groupBy from 'lodash/groupBy';
+import keysIn from 'lodash/keysIn';
+import map from 'lodash/map';
+import round from 'lodash/round';
+import size from 'lodash/size';
+import sumBy from 'lodash/sumBy';
+
+angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingCalledFeesCtrl', function TelecomTelephonyBillingAccountBillingCalledFeesCtrl($filter, $q, $stateParams, $translate, TelephonyMediator, TucToast) {
   const self = this;
 
   /*= =====================================
@@ -15,27 +24,27 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingCa
     self.consumptions.isLoading = true;
     return TelephonyMediator.getGroup($stateParams.billingAccount)
       .then(group => group.getRepaymentConsumption().then((repaymentConsumptions) => {
-        self.consumptions.raw = _.get(repaymentConsumptions, 'calledFees');
-        self.consumptions.totalPrice = $filter('number')(-_.chain(self.consumptions.raw).sum('price').round(2).value(), 2);
-        const dialedNumbers = _.chain(self.consumptions.raw).groupBy('dialed').keysIn().value();
-        self.consumptions.groupedByDialedNumber = _.map(dialedNumbers, (dialed) => {
-          const consumptions = _.filter(self.consumptions.raw, { dialed });
-          const totalPrice = -_.chain(consumptions).sum('price').round(2).value();
-          const operators = _.chain(consumptions).groupBy('operator').keysIn().value();
-          const details = _.map(operators, (operator) => {
-            const operatorConsumptions = _.filter(consumptions, { operator });
-            const totalOperatorPrice = -_.chain(operatorConsumptions).sum('price').round(2).value();
+        self.consumptions.raw = get(repaymentConsumptions, 'calledFees');
+        self.consumptions.totalPrice = $filter('number')(-round(sumBy(self.consumptions.raw, 'price'), 2), 2);
+        const dialedNumbers = keysIn(groupBy(self.consumptions.raw, 'dialed'));
+        self.consumptions.groupedByDialedNumber = map(dialedNumbers, (dialed) => {
+          const consumptions = filter(self.consumptions.raw, { dialed });
+          const totalPrice = -round(sumBy(consumptions, 'price'), 2);
+          const operators = keysIn(groupBy(consumptions, 'operator'));
+          const details = map(operators, (operator) => {
+            const operatorConsumptions = filter(consumptions, { operator });
+            const totalOperatorPrice = -round(sumBy(operatorConsumptions, 'price'), 2);
             return {
               operator,
-              totalOperatorConsumption: _.size(operatorConsumptions),
-              totalOperatorDuration: _.sum(operatorConsumptions, 'duration'),
+              totalOperatorConsumption: size(operatorConsumptions),
+              totalOperatorDuration: sumBy(operatorConsumptions, 'duration'),
               totalOperatorPrice,
             };
           });
           return {
             dialed,
-            totalConsumption: _.size(consumptions),
-            totalDuration: _.sum(consumptions, 'duration'),
+            totalConsumption: size(consumptions),
+            totalDuration: sumBy(consumptions, 'duration'),
             totalPrice,
             details,
           };

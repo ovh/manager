@@ -1,4 +1,14 @@
-angular.module('managerApp').controller('TelecomTelephonyLineCallsTimeConditionCtrl', function (
+import chunk from 'lodash/chunk';
+import filter from 'lodash/filter';
+import forEach from 'lodash/forEach';
+import get from 'lodash/get';
+import map from 'lodash/map';
+import method from 'lodash/method';
+import set from 'lodash/set';
+import some from 'lodash/some';
+import sortBy from 'lodash/sortBy';
+
+angular.module('managerApp').controller('TelecomTelephonyLineCallsTimeConditionCtrl', function TelecomTelephonyLineCallsTimeConditionCtrl(
   $q, $stateParams, $translate, $uibModal,
   OvhApiTelephony, TelephonyMediator, TucToast, uiCalendarConfig, tucTelephonyBulk,
   VoipTimeConditionCondition, voipTimeCondition, voipTimeConditionConfiguration,
@@ -25,7 +35,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsTimeConditionC
     =============================== */
 
   self.hasChange = function () {
-    const isConditionsInEdition = _.some(self.line.timeCondition.conditions, {
+    const isConditionsInEdition = some(self.line.timeCondition.conditions, {
       inEdition: true,
     });
 
@@ -51,7 +61,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsTimeConditionC
       });
     }, (error) => {
       self.line.timeCondition.stopEdition(true).startEdition();
-      TucToast.error([$translate.instant('telephony_line_calls_time_condition_save_error'), _.get(error, 'data.message')].join(' '));
+      TucToast.error([$translate.instant('telephony_line_calls_time_condition_save_error'), get(error, 'data.message')].join(' '));
       return $q.reject(error);
     }).finally(() => {
       self.line.timeCondition.status = 'OK';
@@ -80,15 +90,21 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsTimeConditionC
 
   function getTimeoutEnum() {
     return TelephonyMediator.getApiModelEnum('telephony.TimeConditionsTimeoutEnum').then((values) => {
-      self.availableTimeoutValues = _.chain(values).map((valueParam) => {
-        const value = parseInt(valueParam, 10);
-        return {
-          value,
-          label: $translate.instant('telephony_line_calls_time_condition_params_timeout_choice', {
-            value,
-          }),
-        };
-      }).sortBy('value').value();
+      self.availableTimeoutValues = sortBy(
+        map(
+          values,
+          (valueParam) => {
+            const value = parseInt(valueParam, 10);
+            return {
+              value,
+              label: $translate.instant('telephony_line_calls_time_condition_params_timeout_choice', {
+                value,
+              }),
+            };
+          },
+        ),
+        'value',
+      );
     });
   }
 
@@ -105,10 +121,10 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsTimeConditionC
         getTimeoutEnum(),
       ]).then(() => {
         self.line.timeCondition.startEdition();
-        self.slotList = _.chunk(self.line.timeCondition.slots, 2);
+        self.slotList = chunk(self.line.timeCondition.slots, 2);
       });
     }).catch((error) => {
-      TucToast.error([$translate.instant('telephony_line_calls_time_condition_load_error'), _.get(error, 'data.message')].join(' '));
+      TucToast.error([$translate.instant('telephony_line_calls_time_condition_load_error'), get(error, 'data.message')].join(' '));
       return $q.reject(error);
     }).finally(() => {
       self.loading.init = false;
@@ -137,22 +153,22 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsTimeConditionC
 
     modal.result.then((conditions) => {
       // Set existing condition state to delete
-      _.forEach(self.line.timeCondition.conditions, (condition) => {
-        _.set(condition, 'state', 'TO_DELETE');
+      forEach(self.line.timeCondition.conditions, (condition) => {
+        set(condition, 'state', 'TO_DELETE');
       });
 
       return self.line.timeCondition.saveConditions().then(() => {
         self.line.timeCondition.conditions = self.line.timeCondition.conditions
-          .concat(_.map(conditions, (condition) => {
-            _.set(condition, 'billingAccount', $stateParams.billingAccount);
-            _.set(condition, 'serviceName', $stateParams.serviceName);
-            _.set(condition, 'state', 'TO_CREATE');
+          .concat(map(conditions, (condition) => {
+            set(condition, 'billingAccount', $stateParams.billingAccount);
+            set(condition, 'serviceName', $stateParams.serviceName);
+            set(condition, 'state', 'TO_CREATE');
 
-            _.set(condition, 'day', condition.weekDay);
-            _.set(condition, 'hourBegin', condition.timeFrom.split(':').slice(0, 2).join(''));
-            _.set(condition, 'hourEnd', condition.timeTo.split(':').slice(0, 2).join(''));
+            set(condition, 'day', condition.weekDay);
+            set(condition, 'hourBegin', condition.timeFrom.split(':').slice(0, 2).join(''));
+            set(condition, 'hourEnd', condition.timeTo.split(':').slice(0, 2).join(''));
 
-            _.set(condition, 'featureType', 'sip');
+            set(condition, 'featureType', 'sip');
             return new VoipTimeConditionCondition(condition);
           }));
 
@@ -179,9 +195,9 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsTimeConditionC
     ============================ */
 
   self.filterServices = function (services) {
-    const filteredServices = _.filter(services, service => !_.some(service.offers, _.method('includes', 'individual')));
+    const filteredServices = filter(services, service => !some(service.offers, method('includes', 'individual')));
 
-    return _.filter(filteredServices, service => ['sip', 'mgcp'].indexOf(service.featureType) > -1);
+    return filter(filteredServices, service => ['sip', 'mgcp'].indexOf(service.featureType) > -1);
   };
 
   self.bulkDatas = {
@@ -267,11 +283,11 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsTimeConditionC
   };
 
   self.onBulkError = function (error) {
-    TucToast.error([$translate.instant('telephony_line_calls_time_condition_bulk_on_error'), _.get(error, 'msg.data')].join(' '));
+    TucToast.error([$translate.instant('telephony_line_calls_time_condition_bulk_on_error'), get(error, 'msg.data')].join(' '));
   };
 
   self.getTimeConditions = function (action) {
-    const conditions = _.filter(self.line.timeCondition.conditions, (condition) => {
+    const conditions = filter(self.line.timeCondition.conditions, (condition) => {
       switch (action) {
         case bulkActionNames.createCondition:
           return condition.state === 'TO_CREATE';
@@ -284,7 +300,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsTimeConditionC
       }
     });
 
-    return _.map(conditions, condition => ({
+    return map(conditions, condition => ({
       id: condition.conditionId,
       day: condition.weekDay,
       hourBegin: voipTimeCondition.getSipTime(condition.timeFrom),

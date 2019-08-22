@@ -1,3 +1,5 @@
+import merge from 'lodash/merge';
+
 angular.module('managerApp').config(($stateProvider) => {
   $stateProvider.state('telecom.telephony.line', {
     url: '/line/:serviceName',
@@ -38,7 +40,7 @@ angular.module('managerApp').config(($stateProvider) => {
             })
             .$promise.then(details => details)
             .catch(() => null)
-            .then(details => _.merge(line, {
+            .then(details => merge(line, {
               simultaneousLinesDetails: details || null,
             })))
           .catch(() => ({}));

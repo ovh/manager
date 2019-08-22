@@ -1,3 +1,12 @@
+import assign from 'lodash/assign';
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import findLast from 'lodash/findLast';
+import get from 'lodash/get';
+import includes from 'lodash/includes';
+import isEmpty from 'lodash/isEmpty';
+import set from 'lodash/set';
+
 import { XDSL_NO_INCIDENT_CODE } from './pack-xdsl-access.constants';
 
 angular.module('managerApp').controller('XdslAccessCtrl', class XdslAccessCtrl {
@@ -209,7 +218,7 @@ angular.module('managerApp').controller('XdslAccessCtrl', class XdslAccessCtrl {
   }
 
   canHaveMoreIps() {
-    return _.filter(this.ipsV4, ip => ip.range !== this.PACK_IP.baseIpv4Range).length === 0;
+    return filter(this.ipsV4, ip => ip.range !== this.PACK_IP.baseIpv4Range).length === 0;
   }
 
   orderIps() {
@@ -228,22 +237,22 @@ angular.module('managerApp').controller('XdslAccessCtrl', class XdslAccessCtrl {
   }
 
   deleteIps(ip) {
-    _.set(ip, 'deleting', true);
+    set(ip, 'deleting', true);
     this.OvhApiXdslIps.v6().unOrder({
       xdslId: this.$stateParams.serviceName,
       ip: ip.ip,
     }, null).$promise.then(() => {
       this.getIps();
-      _.set(ip, 'deleting', false);
+      set(ip, 'deleting', false);
       this.TucToast.success(this.$translate.instant('xdsl_access_ip_block_delete_success', { ip: ip.ip }));
     }, (err) => {
-      _.set(ip, 'deleting', false);
+      set(ip, 'deleting', false);
       this.TucToastError(err);
     });
   }
 
   onTaskPollError(err) {
-    if (!_.isEmpty(err)) {
+    if (!isEmpty(err)) {
       this.TucToastError(err);
     }
     this.$scope.loaders.tasks = false;
@@ -273,8 +282,8 @@ angular.module('managerApp').controller('XdslAccessCtrl', class XdslAccessCtrl {
         xdslId: this.$stateParams.serviceName,
       }).$promise.then((access) => {
         this.$scope.loaders.xdsl = false;
-        this.$scope.access.xdsl = _.assign(access, {
-          isFiber: _.includes(this.PACK.fiberAccess, access.accessType),
+        this.$scope.access.xdsl = assign(access, {
+          isFiber: includes(this.PACK.fiberAccess, access.accessType),
         });
         this.setStatusLabel(this.$scope.access.xdsl.status);
         return this.$scope.access.xdsl;
@@ -325,10 +334,10 @@ angular.module('managerApp').controller('XdslAccessCtrl', class XdslAccessCtrl {
       this.OvhApiXdsl.v6().getOrder({
         xdslId: this.$stateParams.serviceName,
       }).$promise.then((orders) => {
-        this.actualOrder = _.find(orders, order => order.status === 'doing');
+        this.actualOrder = find(orders, order => order.status === 'doing');
 
         if (!this.actualOrder) {
-          this.actualOrder = _.findLast(orders, order => order.status === 'done');
+          this.actualOrder = findLast(orders, order => order.status === 'done');
         }
 
         if (this.actualOrder.doneDate) {
@@ -356,11 +365,11 @@ angular.module('managerApp').controller('XdslAccessCtrl', class XdslAccessCtrl {
         this.hasIncidentOccured = true;
       })
       .catch((error) => {
-        const errorStatus = _.get(error, 'status');
+        const errorStatus = get(error, 'status');
         if (errorStatus === XDSL_NO_INCIDENT_CODE) {
           this.hasIncidentOccured = false;
         } else {
-          this.TucToast.error(`${this.$translate.instant('xdsl_details_diagnostic_get_incident_error')} ${_.get(error, 'data.message', '')}`);
+          this.TucToast.error(`${this.$translate.instant('xdsl_details_diagnostic_get_incident_error')} ${get(error, 'data.message', '')}`);
         }
       })
       .finally(() => {

@@ -1,3 +1,7 @@
+import filter from 'lodash/filter';
+import get from 'lodash/get';
+import pick from 'lodash/pick';
+
 angular.module('managerApp').controller('TelecomTelephonyServiceFaxPasswordCtrl', function ($stateParams, $translate, $timeout, TelephonyMediator, OvhApiTelephony, TucToast, TucToastError, tucTelephonyBulk) {
   const self = this;
 
@@ -17,14 +21,14 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxPasswordCtrl'
     return OvhApiTelephony.Fax().v6().changePassword({
       billingAccount: $stateParams.billingAccount,
       serviceName: $stateParams.serviceName,
-    }, _.pick(self.passwordForm, 'password')).$promise.then(() => {
+    }, pick(self.passwordForm, 'password')).$promise.then(() => {
       self.passwordForm.isSuccess = true;
       $timeout(() => {
         self.reset();
         form.$setUntouched();
       }, 3000);
     }).catch((err) => {
-      TucToast.error($translate.instant('telephony_service_fax_password_change_error', { error: _.get(err, 'data.message') }));
+      TucToast.error($translate.instant('telephony_service_fax_password_change_error', { error: get(err, 'data.message') }));
     }).finally(() => {
       self.passwordForm.isUpdating = false;
     });
@@ -77,7 +81,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxPasswordCtrl'
   };
 
   self.filterServices = function (services) {
-    return _.filter(services, service => ['fax', 'voicefax'].indexOf(service.featureType) > -1);
+    return filter(services, service => ['fax', 'voicefax'].indexOf(service.featureType) > -1);
   };
 
   self.getBulkParams = function () {
@@ -108,7 +112,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxPasswordCtrl'
   };
 
   self.onBulkError = function (error) {
-    TucToast.error([$translate.instant('telephony_service_fax_password_bulk_on_error'), _.get(error, 'msg.data')].join(' '));
+    TucToast.error([$translate.instant('telephony_service_fax_password_bulk_on_error'), get(error, 'msg.data')].join(' '));
   };
 
   /* -----  End of BULK  ------ */

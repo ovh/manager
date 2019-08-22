@@ -1,6 +1,16 @@
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import get from 'lodash/get';
+import isNull from 'lodash/isNull';
+import map from 'lodash/map';
+import remove from 'lodash/remove';
+import set from 'lodash/set';
+import some from 'lodash/some';
+import startsWith from 'lodash/startsWith';
+
 angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanExtensionEditCtrl', function ($scope, $q, telephonyScheduler, voipTimeCondition, VOIP_TIMECONDITION_ORDERED_DAYS) {
   const self = this;
-  const orderedDays = _.map(VOIP_TIMECONDITION_ORDERED_DAYS, (day, index) => ({
+  const orderedDays = map(VOIP_TIMECONDITION_ORDERED_DAYS, (day, index) => ({
     value: day,
     label: moment().set('day', index + 1).format('dd'),
   }));
@@ -45,19 +55,19 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanExtension
 
   function transformVoipTimeConditionGroup(group) {
     // set day model
-    _.set(group, 'dayModel', _.map(angular.copy(orderedDays), (day) => {
-      _.set(day, 'selected', group.days.indexOf(day.value) !== -1);
+    set(group, 'dayModel', map(angular.copy(orderedDays), (day) => {
+      set(day, 'selected', group.days.indexOf(day.value) !== -1);
       return day;
     }));
 
     // set new slot time models
-    _.set(group, 'slotTimeModel', {
+    set(group, 'slotTimeModel', {
       timeFrom: null,
       timeTo: null,
     });
 
     // set errors object
-    _.set(group, 'errors', {
+    set(group, 'errors', {
       timeFrom: false,
       timeTo: false,
       collision: false,
@@ -65,7 +75,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanExtension
     });
 
     // set collapsed state
-    _.set(group, 'collapsed', true);
+    set(group, 'collapsed', true);
     return group;
   }
 
@@ -74,13 +84,13 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanExtension
   };
 
   self.getScreenListConditionList = function () {
-    return _.filter(self.extension.screenListConditions, screenList => screenList.state !== 'TO_DELETE');
+    return filter(self.extension.screenListConditions, screenList => screenList.state !== 'TO_DELETE');
   };
 
   self.isConditionMatch = function (phoneNumber) {
-    self.conditionMatched = _.find(
+    self.conditionMatched = find(
       self.getScreenListConditionList(),
-      condition => _.startsWith(phoneNumber, condition.callNumber),
+      condition => startsWith(phoneNumber, condition.callNumber),
     );
 
     return !self.conditionMatched;
@@ -93,7 +103,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanExtension
   /* ----------  TIME CONDITIONS  ----------*/
 
   self.hourStartWith = function (curHour, viewValue) {
-    return _.startsWith(curHour.toString(), viewValue.toString()) || _.startsWith(curHour.toString(), `0${viewValue.toString()}`);
+    return startsWith(curHour.toString(), viewValue.toString()) || startsWith(curHour.toString(), `0${viewValue.toString()}`);
   };
 
   self.isConditionGroupValid = function (conditionGroup) {
@@ -103,7 +113,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanExtension
   };
 
   self.getTimeConditionList = function () {
-    return _.filter(self.extension.timeConditions, timeCondition => timeCondition.state !== 'TO_DELETE');
+    return filter(self.extension.timeConditions, timeCondition => timeCondition.state !== 'TO_DELETE');
   };
 
   function manageTimeConditionRemove(timeConditions) {
@@ -111,7 +121,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanExtension
       if (timeCondition.state === 'DRAFT') {
         self.extension.removeTimeCondition(timeCondition);
       } else {
-        _.set(timeCondition, 'state', 'TO_DELETE');
+        set(timeCondition, 'state', 'TO_DELETE');
       }
     });
   }
@@ -119,7 +129,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanExtension
   function hasConditionCollision(timeConditions, timeFromParam, timeToParam) {
     let timeFrom = timeFromParam;
     let timeTo = timeToParam;
-    return _.some(timeConditions, (timeCondition) => {
+    return some(timeConditions, (timeCondition) => {
       const momentFrom = timeCondition.getTimeMoment('from');
       if (!moment.isMoment(timeFrom)) {
         const splittedModelFrom = timeFrom.split(':');
@@ -158,7 +168,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanExtension
 
   self.onDayBtnClick = function (day, conditionGroup) {
     let dayConditions = [];
-    _.set(conditionGroup, 'errors.collision', false);
+    set(conditionGroup, 'errors.collision', false);
 
     if (day.selected) {
       if (conditionGroup.days.indexOf(day.value) > -1) {
@@ -166,8 +176,8 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanExtension
       }
 
       // before check if there is no collision
-      const filteredConditions = _.filter(self.extension.timeConditions, timeCondition => timeCondition.state !== 'TO_DELETE' && day.value === timeCondition.weekDay);
-      const isCollisionDetected = _.some(
+      const filteredConditions = filter(self.extension.timeConditions, timeCondition => timeCondition.state !== 'TO_DELETE' && day.value === timeCondition.weekDay);
+      const isCollisionDetected = some(
         conditionGroup.slots,
         slot => hasConditionCollision(
           filteredConditions,
@@ -177,8 +187,8 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanExtension
       );
 
       if (isCollisionDetected) {
-        _.set(conditionGroup, 'errors.collision', true);
-        _.set(day, 'selected', false);
+        set(conditionGroup, 'errors.collision', true);
+        set(day, 'selected', false);
         return false;
       }
 
@@ -188,7 +198,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanExtension
       // add day conditions to group slots
       // if conditions exists - change their state
       conditionGroup.slots.forEach((slot) => {
-        dayConditions = dayConditions.concat(_.filter(slot.conditions, {
+        dayConditions = dayConditions.concat(filter(slot.conditions, {
           weekDay: day.value,
         }));
       });
@@ -196,7 +206,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanExtension
       if (dayConditions.length) {
         // set states to 'OK'
         dayConditions.forEach((timeCondition) => {
-          _.set(timeCondition, 'state', 'OK');
+          set(timeCondition, 'state', 'OK');
         });
       } else {
         conditionGroup.slots.forEach((slot) => {
@@ -209,12 +219,12 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanExtension
       }
     } else {
       // remove day from group list
-      _.remove(conditionGroup.days, curDay => curDay === day.value);
+      remove(conditionGroup.days, curDay => curDay === day.value);
 
       // remove conditions from slots
       // get conditions of given day
       conditionGroup.slots.forEach((slot) => {
-        dayConditions = dayConditions.concat(_.filter(slot.conditions, {
+        dayConditions = dayConditions.concat(filter(slot.conditions, {
           weekDay: day.value,
         }));
       });
@@ -223,7 +233,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanExtension
       manageTimeConditionRemove(dayConditions);
 
       if (!conditionGroup.days.length) {
-        _.set(conditionGroup, 'slots', []);
+        set(conditionGroup, 'slots', []);
       }
     }
 
@@ -231,21 +241,21 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanExtension
   };
 
   self.onConditionAddBtnClick = function (conditionsGroup) {
-    _.set(conditionsGroup, 'errors.badSlot', false);
-    _.set(conditionsGroup, 'errors.collision', false);
+    set(conditionsGroup, 'errors.badSlot', false);
+    set(conditionsGroup, 'errors.collision', false);
 
     // check if slot end is bigger than begin
     const curDate = moment().format('YYYY-MM-DD');
     const endHourMoment = conditionsGroup.slotTimeModel.timeTo === '00:00' ? moment().endOf('day') : moment(`${curDate} ${conditionsGroup.slotTimeModel.timeTo}`);
     if (!moment(`${curDate} ${conditionsGroup.slotTimeModel.timeFrom}`).isBefore(endHourMoment)) {
-      _.set(conditionsGroup, 'errors.badSlot', true);
+      set(conditionsGroup, 'errors.badSlot', true);
       return false;
     }
 
     // check for collision
-    const isCollisionDetected = _.some(conditionsGroup.days, (day) => {
+    const isCollisionDetected = some(conditionsGroup.days, (day) => {
       // check if a condition overlap an other condition on the same day
-      const filteredConditions = _.filter(self.extension.timeConditions, timeCondition => timeCondition.state !== 'TO_DELETE' && day === timeCondition.weekDay);
+      const filteredConditions = filter(self.extension.timeConditions, timeCondition => timeCondition.state !== 'TO_DELETE' && day === timeCondition.weekDay);
 
       return hasConditionCollision(
         filteredConditions, conditionsGroup.slotTimeModel.timeFrom,
@@ -254,7 +264,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanExtension
     });
 
     if (isCollisionDetected) {
-      _.set(conditionsGroup, 'errors.collision', true);
+      set(conditionsGroup, 'errors.collision', true);
       return false;
     }
 
@@ -279,8 +289,8 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanExtension
     });
 
     // reset time models
-    _.set(conditionsGroup, 'slotTimeModel.timeFrom', null);
-    _.set(conditionsGroup, 'slotTimeModel.timeTo', null);
+    set(conditionsGroup, 'slotTimeModel.timeFrom', null);
+    set(conditionsGroup, 'slotTimeModel.timeTo', null);
 
     return null;
   };
@@ -290,7 +300,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanExtension
     manageTimeConditionRemove(slot.conditions);
 
     // then remove slot
-    _.remove(conditionsGroup.slots, slot);
+    remove(conditionsGroup.slots, slot);
   };
 
   /* ----------  SCREENLIST  ----------*/
@@ -322,7 +332,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanExtension
       return self.extension.removeScreenListCondition(condition);
     }
 
-    _.set(condition, 'state', 'TO_DELETE');
+    set(condition, 'state', 'TO_DELETE');
     return null;
   };
 
@@ -332,10 +342,10 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanExtension
     self.parentCtrl.popoverStatus.isOpen = false;
 
     // remove all screen list conditions if no list type selected
-    if (_.isNull(self.extension.screenListType)) {
+    if (isNull(self.extension.screenListType)) {
       self.extension.screenListConditions.forEach((condition) => {
         if (condition.state !== 'DRAFT') {
-          _.set(condition, 'state', 'TO_DELETE');
+          set(condition, 'state', 'TO_DELETE');
         } else {
           self.extension.removeScreenListCondition(condition);
         }
@@ -370,14 +380,14 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanExtension
     self.loading.init = true;
 
     // set parent ctrl
-    self.parentCtrl = _.get($scope, '$parent.$ctrl');
+    self.parentCtrl = get($scope, '$parent.$ctrl');
 
     // set dialplan and extension
     self.dialplan = self.parentCtrl.dialplan;
     self.extension = self.parentCtrl.extension.startEdition();
 
     // set options for time conditions
-    self.groupedTimeConditions = _.map(
+    self.groupedTimeConditions = map(
       voipTimeCondition.groupTimeConditions(self.extension.timeConditions),
       transformVoipTimeConditionGroup,
     );

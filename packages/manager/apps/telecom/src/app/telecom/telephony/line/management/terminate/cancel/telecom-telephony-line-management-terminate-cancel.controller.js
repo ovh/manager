@@ -1,3 +1,5 @@
+import set from 'lodash/set';
+
 angular.module('managerApp').controller('TelecomTelephonyLineTerminateCancelCtrl', function ($stateParams, $state, TelephonyMediator, OvhApiTelephony, TucToast, $translate, $filter, $q) {
   const self = this;
 
@@ -54,7 +56,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineTerminateCancelCtrl
         status: 'todo',
         taskId: tasks[0],
       }).$promise.then((taskDetails) => {
-        _.set(taskDetails, 'executionDate', $filter('date')(taskDetails.executionDate, 'shortDate'));
+        set(taskDetails, 'executionDate', $filter('date')(taskDetails.executionDate, 'shortDate'));
         self.taskDetails = taskDetails;
         return self.taskDetails;
       });

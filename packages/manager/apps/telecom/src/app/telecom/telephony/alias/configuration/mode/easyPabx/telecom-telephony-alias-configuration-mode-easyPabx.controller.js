@@ -1,3 +1,7 @@
+import filter from 'lodash/filter';
+import get from 'lodash/get';
+import pick from 'lodash/pick';
+
 angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationModeEasyPabxCtrl', function ($q, $translate, $stateParams, TelephonyMediator, OvhApiTelephony, OvhApiTelephonyEasyPabx, TucToast) {
   const self = this;
 
@@ -17,9 +21,9 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationModeE
   function fetchEnums() {
     return OvhApiTelephony.v6().schema().$promise.then((result) => {
       const enums = {};
-      const tmpPatternEnum = _.get(result, ['models', 'telephony.EasyMiniPabxHuntingPatternEnum', 'enum']);
-      enums.pattern = _.filter(tmpPatternEnum, pattern => pattern !== 'all-at-once');
-      enums.strategy = _.get(result, ['models', 'telephony.EasyMiniPabxHuntingStrategyEnum', 'enum']);
+      const tmpPatternEnum = get(result, ['models', 'telephony.EasyMiniPabxHuntingPatternEnum', 'enum']);
+      enums.pattern = filter(tmpPatternEnum, pattern => pattern !== 'all-at-once');
+      enums.strategy = get(result, ['models', 'telephony.EasyMiniPabxHuntingStrategyEnum', 'enum']);
       return enums;
     });
   }
@@ -70,11 +74,11 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationModeE
     return OvhApiTelephonyEasyPabx.v6().updateHunting({
       billingAccount: $stateParams.billingAccount,
       serviceName: $stateParams.serviceName,
-    }, _.pick(self.formOptions, attrs)).$promise.then(() => {
+    }, pick(self.formOptions, attrs)).$promise.then(() => {
       self.options = angular.copy(self.formOptions);
       TucToast.success($translate.instant('telephony_alias_configuration_mode_easy_pabx_save_success'));
     }).catch((error) => {
-      TucToast.error([$translate.instant('telephony_alias_configuration_mode_easy_pabx_save_error'), _.get(error, 'data.message')].join(' '));
+      TucToast.error([$translate.instant('telephony_alias_configuration_mode_easy_pabx_save_error'), get(error, 'data.message')].join(' '));
       return $q.reject(error);
     }).finally(() => {
       self.loading.save = false;
@@ -108,7 +112,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationModeE
         self.voicemail = result.voicemail;
       }));
     }).catch((error) => {
-      TucToast.error([$translate.instant('telephony_alias_configuration_mode_easy_pabx_loading_error'), _.get(error, 'data.message')].join(' '));
+      TucToast.error([$translate.instant('telephony_alias_configuration_mode_easy_pabx_loading_error'), get(error, 'data.message')].join(' '));
       return $q.reject(error);
     }).finally(() => {
       self.loading.init = false;

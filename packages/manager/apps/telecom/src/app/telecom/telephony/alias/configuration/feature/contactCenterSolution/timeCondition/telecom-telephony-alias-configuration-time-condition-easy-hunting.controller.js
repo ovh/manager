@@ -1,3 +1,6 @@
+import get from 'lodash/get';
+import isNull from 'lodash/isNull';
+
 angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationTimeConditionCtrl', class TelecomTelephonyAliasConfigurationTimeConditionCtrl {
   constructor(
     $state, $stateParams, $translate, $uibModal,
@@ -32,7 +35,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationTimeC
     };
 
     this.bulkData = {
-      conditions: _.get(this.number, 'feature.timeCondition', []),
+      conditions: get(this.number, 'feature.timeCondition', []),
       infos: {
         name: 'timeConditionEasyHunting',
         actions: [
@@ -76,7 +79,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationTimeC
       })
       .catch((error) => {
         this.TucToast.error(
-          `${this.$translate.instant('telephony_alias_configuration_time_condition_load_error')} ${_.get(error, 'data.message', error.message)}`,
+          `${this.$translate.instant('telephony_alias_configuration_time_condition_load_error')} ${get(error, 'data.message', error.message)}`,
         );
       })
       .finally(() => {
@@ -128,7 +131,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationTimeC
         this.TucToast.success(this.$translate.instant('telephony_common_time_condition_import_configuration_success'));
       }).catch((error) => {
         this.TucToast.error(
-          `${this.$translate.instant('telephony_common_time_condition_import_configuration_error')} ${_.get(error, 'data.message', error.message)}`,
+          `${this.$translate.instant('telephony_common_time_condition_import_configuration_error')} ${get(error, 'data.message', error.message)}`,
         );
       }).finally(() => {
         this.$onInit();
@@ -161,7 +164,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationTimeC
       .catch((error) => {
         this.number.feature.timeCondition.stopEdition(true).startEdition();
         this.TucToast.error(
-          `${this.$trnaslate.instant('telephony_alias_config_contactCenterSolution_timeCondition_update_error')} ${_.get(error, 'data.message', error.message)}`,
+          `${this.$trnaslate.instant('telephony_alias_config_contactCenterSolution_timeCondition_update_error')} ${get(error, 'data.message', error.message)}`,
         );
       })
       .finally(() => {
@@ -200,14 +203,14 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationTimeC
         case this.bulkActionNames.options:
           return {
             slot1Number: this.number.feature.timeCondition.slots[1].number,
-            slot1Type: !_.isNull(this.number.feature.timeCondition.slots[1].number) ? this.number.feature.timeCondition.slots[1].type : '',
+            slot1Type: !isNull(this.number.feature.timeCondition.slots[1].number) ? this.number.feature.timeCondition.slots[1].type : '',
             slot2Number: this.number.feature.timeCondition.slots[2].number,
-            slot2Type: !_.isNull(this.number.feature.timeCondition.slots[2].number) ? this.number.feature.timeCondition.slots[2].type : '',
+            slot2Type: !isNull(this.number.feature.timeCondition.slots[2].number) ? this.number.feature.timeCondition.slots[2].type : '',
             slot3Number: this.number.feature.timeCondition.slots[3].number,
-            slot3Type: !_.isNull(this.number.feature.timeCondition.slots[3].number) ? this.number.feature.timeCondition.slots[3].type : '',
+            slot3Type: !isNull(this.number.feature.timeCondition.slots[3].number) ? this.number.feature.timeCondition.slots[3].type : '',
             enable: this.number.feature.timeCondition.enable,
             unavailableNumber: this.number.feature.timeCondition.slots[4].number,
-            unavailableType: !_.isNull(this.number.feature.timeCondition.slots[4].number) ? this.number.feature.timeCondition.slots[4].type : '',
+            unavailableType: !isNull(this.number.feature.timeCondition.slots[4].number) ? this.number.feature.timeCondition.slots[4].type : '',
           };
         default:
           return false;
@@ -268,7 +271,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationTimeC
   onBulkError() {
     return (error) => {
       this.TucToast.error(
-        `${this.$translate.instant('telephony_line_calls_time_condition_bulk_on_error')}, ${_.get(error, 'msg.data', '')}`,
+        `${this.$translate.instant('telephony_line_calls_time_condition_bulk_on_error')}, ${get(error, 'msg.data', '')}`,
       );
     };
   }

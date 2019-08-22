@@ -1,3 +1,8 @@
+import get from 'lodash/get';
+import isFunction from 'lodash/isFunction';
+import kebabCase from 'lodash/kebabCase';
+import map from 'lodash/map';
+
 angular.module('managerApp').controller('telephonyNumberOvhPabxTtsCreateCtrl', function ($q, $translate, $translatePartialLoader, TelephonyGroupNumberOvhPabxTts, TelephonyMediator, TucToast, TucToastError) {
   const self = this;
 
@@ -19,7 +24,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxTtsCreateCtrl', f
     =============================== */
 
   function resetTtsModel() {
-    self.model.voice = _.get(self.availableVoices, '[0].value');
+    self.model.voice = get(self.availableVoices, '[0].value');
     self.model.text = null;
     self.ttsCreateForm.$setPristine();
   }
@@ -44,11 +49,11 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxTtsCreateCtrl', f
     return tts.create().then(() => {
       self.ovhPabx.addTts(tts);
       resetTtsModel();
-      if (self.onTtsCreationSuccess && _.isFunction(self.onTtsCreationSuccess())) {
+      if (self.onTtsCreationSuccess && isFunction(self.onTtsCreationSuccess())) {
         self.onTtsCreationSuccess()(tts);
       }
     }).catch((error) => {
-      TucToast.error([$translate.instant('telephony_number_feature_ovh_pabx_tts_create_error'), _.get(error, 'data.message', '')].join(' '));
+      TucToast.error([$translate.instant('telephony_number_feature_ovh_pabx_tts_create_error'), get(error, 'data.message', '')].join(' '));
       return $q.reject(error);
     }).finally(() => {
       self.loading.creating = false;
@@ -57,7 +62,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxTtsCreateCtrl', f
 
   self.onCancelTtsBtnClick = function () {
     resetTtsModel();
-    if (self.onTtsCreationCancel && _.isFunction(self.onTtsCreationCancel())) {
+    if (self.onTtsCreationCancel && isFunction(self.onTtsCreationCancel())) {
       self.onTtsCreationCancel()();
     }
   };
@@ -84,7 +89,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxTtsCreateCtrl', f
 
   function getVoiceEnum() {
     return TelephonyMediator.getApiModelEnum('telephony.OvhPabxTtsVoiceEnum').then((enumValues) => {
-      self.availableVoices = _.map(enumValues, value => ({
+      self.availableVoices = map(enumValues, value => ({
         value,
         label: $translate.instant(`telephony_number_feature_ovh_pabx_tts_voice_${value.toLowerCase()}`),
       }));
@@ -107,7 +112,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxTtsCreateCtrl', f
     if (!self.radioName) {
       self.radioName = 'ttsChoice';
     }
-    self.idPrefix = _.kebabCase(self.radioName);
+    self.idPrefix = kebabCase(self.radioName);
 
     return getTranslations().then(() => getVoiceEnum()).then(() => {
       resetTtsModel();

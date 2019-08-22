@@ -1,3 +1,6 @@
+import remove from 'lodash/remove';
+import set from 'lodash/set';
+
 angular.module('managerApp').controller('TelecomTelephonyLineAssistRmaCtrl', function ($stateParams, $q, $translate, TucToast, TucToastError, OvhApiTelephony) {
   const self = this;
 
@@ -34,7 +37,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineAssistRmaCtrl', fun
   };
 
   self.cancelRma = function (rma) {
-    _.set(rma, 'isCancelling', true);
+    set(rma, 'isCancelling', true);
     return OvhApiTelephony.Line().Phone().RMA().v6()
       .cancel({
         billingAccount: $stateParams.billingAccount,
@@ -42,11 +45,11 @@ angular.module('managerApp').controller('TelecomTelephonyLineAssistRmaCtrl', fun
         id: rma.id,
       }).$promise
       .then(() => {
-        _.remove(self.rmaList, { id: rma.id });
+        remove(self.rmaList, { id: rma.id });
         TucToast.success($translate.instant('telephony_line_assist_rma_cancel_success'));
       })
       .catch(err => new TucToastError(err)).finally(() => {
-        _.set(rma, 'isCancelling', false);
+        set(rma, 'isCancelling', false);
       });
   };
 

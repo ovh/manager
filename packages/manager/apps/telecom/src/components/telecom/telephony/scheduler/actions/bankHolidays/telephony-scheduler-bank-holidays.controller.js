@@ -1,6 +1,17 @@
+import filter from 'lodash/filter';
+import head from 'lodash/head';
+import keys from 'lodash/keys';
+import last from 'lodash/last';
+import map from 'lodash/map';
+
 angular.module('managerApp')
   .controller('TelephonySchedulerBankHolidaysCtrl',
-    function ($translate, $uibModalInstance, modalData, TucBankHolidays) {
+    function TelephonySchedulerBankHolidaysCtrl(
+      $translate,
+      $uibModalInstance,
+      modalData,
+      TucBankHolidays,
+    ) {
       const self = this;
 
       self.loading = {
@@ -32,13 +43,13 @@ angular.module('managerApp')
 
       self.filterEvents = function (year) {
         if (year) {
-          return _.filter(
+          return filter(
             self.holidaysLists[year],
             bankHoliday => bankHoliday.active && !bankHoliday.disabled,
           );
         }
         let bankHolidays = [];
-        _.keys(self.holidaysLists).forEach((theYear) => {
+        keys(self.holidaysLists).forEach((theYear) => {
           bankHolidays = bankHolidays.concat(self.filterEvents(theYear));
         });
         return bankHolidays;
@@ -91,10 +102,13 @@ angular.module('managerApp')
 
       function init() {
         // build country list
-        self.countryList = _.chain(TucBankHolidays.BANK_HOLIDAYS).keys().map(country => ({
-          value: country,
-          label: $translate.instant(`country_${country}`),
-        })).value();
+        self.countryList = map(
+          keys(TucBankHolidays.BANK_HOLIDAYS),
+          country => ({
+            value: country,
+            label: $translate.instant(`country_${country}`),
+          }),
+        );
 
         // build year list
         self.yearList = [self.model.year, moment().add(1, 'year').get('year'), moment().add(2, 'year').get('year')];
@@ -105,8 +119,8 @@ angular.module('managerApp')
         self.loading.init = true;
 
         return modalData.scheduler.getEvents({
-          'dateStart.from': moment().year(_.first(self.yearList)).startOf('year').format(),
-          'dateEnd.to': moment().year(_.last(self.yearList)).endOf('year').format(),
+          'dateStart.from': moment().year(head(self.yearList)).startOf('year').format(),
+          'dateEnd.to': moment().year(last(self.yearList)).endOf('year').format(),
           categories: 'holidays',
         }).then(() => {
           // get the bank holidays dates

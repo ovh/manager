@@ -1,3 +1,8 @@
+import assignIn from 'lodash/assignIn';
+import isBoolean from 'lodash/isBoolean';
+import pick from 'lodash/pick';
+import without from 'lodash/without';
+
 angular.module('managerApp').factory('PackXdslModemDhcpBdhcpObject', (OvhApiXdsl, $translate, TucToast, $q) => {
   const template = {
     MACAddress: '',
@@ -10,10 +15,10 @@ angular.module('managerApp').factory('PackXdslModemDhcpBdhcpObject', (OvhApiXdsl
      * @param {Object} data Data from APIv6
      */
   const PackXdslModemDhcpBdhcpObject = function (data) {
-    _.extend(
+    assignIn(
       this,
       template,
-      _.pick(
+      pick(
         data,
         Object.keys(template),
       ),
@@ -47,10 +52,10 @@ angular.module('managerApp').factory('PackXdslModemDhcpBdhcpObject', (OvhApiXdsl
             dhcpName,
             MACAddress: this.MACAddress,
           },
-          _.pick(this.tempValue, _.without(Object.keys(template), 'MACAddress')),
+          pick(this.tempValue, without(Object.keys(template), 'MACAddress')),
         ).$promise.then((data) => {
           TucToast.success($translate.instant('xdsl_modem_bdhcp_edit_success', { name: self.name }));
-          _.extend(self, self.tempValue);
+          assignIn(self, self.tempValue);
           self.toggleEdit(false);
           return data;
         }).catch((err) => {
@@ -68,10 +73,10 @@ angular.module('managerApp').factory('PackXdslModemDhcpBdhcpObject', (OvhApiXdsl
           lanName,
           dhcpName,
         },
-        _.pick(this.tempValue, Object.keys(template)),
+        pick(this.tempValue, Object.keys(template)),
       ).$promise.then((data) => {
         TucToast.success($translate.instant('xdsl_modem_bdhcp_add_success', { name: self.tempValue.name }));
-        _.extend(self, self.tempValue);
+        assignIn(self, self.tempValue);
         self.inApi();
         self.toggleEdit(false);
         return data;
@@ -120,7 +125,7 @@ angular.module('managerApp').factory('PackXdslModemDhcpBdhcpObject', (OvhApiXdsl
      * Enter Edit Mode
      */
   PackXdslModemDhcpBdhcpObject.prototype.edit = function () {
-    this.tempValue = _.pick(this, Object.keys(template));
+    this.tempValue = pick(this, Object.keys(template));
     this.toggleEdit(true);
   };
 
@@ -130,7 +135,7 @@ angular.module('managerApp').factory('PackXdslModemDhcpBdhcpObject', (OvhApiXdsl
      * @return {Boolean} new edit mode state
      */
   PackXdslModemDhcpBdhcpObject.prototype.toggleEdit = function (state) {
-    if (_.isBoolean(state)) {
+    if (isBoolean(state)) {
       this.editMode = state;
     } else {
       this.editMode = !this.editMode;

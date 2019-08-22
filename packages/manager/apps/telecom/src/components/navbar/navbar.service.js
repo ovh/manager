@@ -1,4 +1,9 @@
-import _ from 'lodash';
+import upperFirst from 'lodash/upperFirst';
+import filter from 'lodash/filter';
+import get from 'lodash/get';
+import map from 'lodash/map';
+import sortBy from 'lodash/sortBy';
+import sum from 'lodash/sum';
 
 import { MENU } from './navbar.constants';
 
@@ -36,7 +41,7 @@ export default class {
       packGroup.push({
         name,
         title,
-        subLinks: _.map(group, xdsl => ({
+        subLinks: map(group, xdsl => ({
           title: xdsl.description || xdsl.accessName,
           state: 'telecom.pack.xdsl',
           stateParams: {
@@ -59,12 +64,12 @@ export default class {
 
     // xDSL Groups
     ['sdsl', 'adsl', 'vdsl'].forEach((accessType) => {
-      const xdslGroup = _.filter(pack.xdsl, { accessType });
+      const xdslGroup = filter(pack.xdsl, { accessType });
       if (xdslGroup.length) {
         addGroup(
           xdslGroup,
           `${pack.packName}.${accessType}`,
-          _.capitalize(accessType),
+          upperFirst(accessType),
         );
       }
     });
@@ -79,7 +84,7 @@ export default class {
 
     return this.packMediator
       .fetchPacks()
-      .then(result => _.map(result, (item) => {
+      .then(result => map(result, (item) => {
         const itemLink = {
           name: item.packName,
           title: item.description || item.offerDescription || item.packName,
@@ -107,7 +112,7 @@ export default class {
       telephonyGroup.push({
         name,
         title,
-        subLinks: _.map(group, service => ({
+        subLinks: map(group, service => ({
           title: service.getDisplayedName(),
           state,
           stateParams: {
@@ -144,7 +149,7 @@ export default class {
     const sortedLines = this.tucVoipService.constructor.sortServicesByDisplayedName(lines);
     if (sortedLines.length) {
       // Lines
-      const sortedSipLines = _.filter(sortedLines, line => ['plugAndFax', 'fax', 'voicefax'].indexOf(line.featureType) === -1);
+      const sortedSipLines = filter(sortedLines, line => ['plugAndFax', 'fax', 'voicefax'].indexOf(line.featureType) === -1);
       if (sortedSipLines.length) {
         addGroup(
           sortedSipLines,
@@ -188,7 +193,7 @@ export default class {
 
     return this.tucTelecomVoip
       .fetchAll()
-      .then(result => _.map(result, (item) => {
+      .then(result => map(result, (item) => {
         const itemLink = {
           name: item.billingAccount,
           title: item.getDisplayedName(),
@@ -217,7 +222,7 @@ export default class {
 
     return this.smsMediator
       .initAll()
-      .then(result => _.map(result, item => ({
+      .then(result => map(result, item => ({
         name: item.name,
         title: item.description || item.name,
         state: 'sms.service.dashboard',
@@ -235,8 +240,8 @@ export default class {
 
     return this.ovhApiFreeFax.v6()
       .query().$promise
-      .then(faxList => _.sortBy(faxList, 'number'))
-      .then(result => _.map(result, item => ({
+      .then(faxList => sortBy(faxList, 'number'))
+      .then(result => map(result, item => ({
         name: item,
         title: item,
         state: 'freefax',
@@ -255,13 +260,13 @@ export default class {
     return this.ovhApiOverTheBox.v6()
       .query().$promise
       .then((serviceNames) => {
-        const requests = _.map(serviceNames, serviceName => this.ovhApiOverTheBox.v6().get({
+        const requests = map(serviceNames, serviceName => this.ovhApiOverTheBox.v6().get({
           serviceName,
         }).$promise);
 
         return this.$q.all(requests);
       })
-      .then(result => _.map(result, item => ({
+      .then(result => map(result, item => ({
         name: item.serviceName,
         title: item.customerDescription || item.serviceName,
         state: 'overTheBox.details',
@@ -276,12 +281,12 @@ export default class {
     return this.telecomMediator
       .initServiceCount()
       .then((count) => {
-        const sum = _.sum(count);
+        const total = sum(count);
 
         // TODO: Remove this ASAP, it's a quickfix to allow user to use the manager >.>
         // We have to lazy-load this part
 
-        if (sum >= 500) {
+        if (total >= 500) {
           this.$rootScope.shouldDisplayMenuButtonFallback = true;
           return this.$q.when({});
         }
@@ -305,7 +310,7 @@ export default class {
       });
 
       if (item.urlKey) {
-        element.url = _.get(this.REDIRECT_URLS, item.urlKey);
+        element.url = get(this.REDIRECT_URLS, item.urlKey);
       }
 
       if (!item.urlKey && !item.state) {

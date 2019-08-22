@@ -1,3 +1,8 @@
+import assignIn from 'lodash/assignIn';
+import isBoolean from 'lodash/isBoolean';
+import pick from 'lodash/pick';
+import without from 'lodash/without';
+
 angular.module('managerApp').factory('PackXdslModemLanObject', (OvhApiXdsl, $translate, TucToast, $q) => {
   const template = {
     IPAddress: '',
@@ -11,10 +16,10 @@ angular.module('managerApp').factory('PackXdslModemLanObject', (OvhApiXdsl, $tra
      * @param {Object} data Data from APIv6
      */
   const PackXdslModemLanObject = function (data) {
-    _.extend(
+    assignIn(
       this,
       template,
-      _.pick(
+      pick(
         data,
         Object.keys(template),
       ),
@@ -34,9 +39,9 @@ angular.module('managerApp').factory('PackXdslModemLanObject', (OvhApiXdsl, $tra
         xdslId: serviceName,
         lanName: this.lanName,
       },
-      _.pick(this.tempValue, _.without(Object.keys(template), 'lanName')),
+      pick(this.tempValue, without(Object.keys(template), 'lanName')),
     ).$promise.then((data) => {
-      _.extend(self, self.tempValue);
+      assignIn(self, self.tempValue);
       self.toggleEdit(false);
       TucToast.success($translate.instant('xdsl_modem_lan_success', { name: self.IPAddress }));
       return data;
@@ -60,7 +65,7 @@ angular.module('managerApp').factory('PackXdslModemLanObject', (OvhApiXdsl, $tra
      * Enter Edit Mode
      */
   PackXdslModemLanObject.prototype.edit = function () {
-    this.tempValue = _.pick(this, Object.keys(template));
+    this.tempValue = pick(this, Object.keys(template));
     this.toggleEdit(true);
   };
 
@@ -70,7 +75,7 @@ angular.module('managerApp').factory('PackXdslModemLanObject', (OvhApiXdsl, $tra
      * @return {Boolean} new edit mode state
      */
   PackXdslModemLanObject.prototype.toggleEdit = function (state) {
-    if (_.isBoolean(state)) {
+    if (isBoolean(state)) {
       this.editMode = state;
     } else {
       this.editMode = !this.editMode;

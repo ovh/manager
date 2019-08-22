@@ -1,3 +1,6 @@
+import isEmpty from 'lodash/isEmpty';
+import last from 'lodash/last';
+
 angular.module('managerApp').controller('XdslOrderFollowUpCtrl', function ($scope, $stateParams, OvhApiXdsl, $q, $translate, TucToast, TucToastError, ORDER_STATUS) {
   const self = this;
 
@@ -28,7 +31,7 @@ angular.module('managerApp').controller('XdslOrderFollowUpCtrl', function ($scop
             side: 'right',
           });
         });
-        self.orderStatus = _.last(data).status;
+        self.orderStatus = last(data).status;
         self.allSuccess = allSuccessTmp;
       }, (err) => {
         self.events = [];
@@ -45,7 +48,7 @@ angular.module('managerApp').controller('XdslOrderFollowUpCtrl', function ($scop
     self.allSuccess = false;
     self.xdslId = $stateParams.serviceName;
 
-    if (_.isEmpty(self.xdslId)) {
+    if (isEmpty(self.xdslId)) {
       return TucToast.error($translate.instant('xdsl_order_follow_up_total_error'));
     }
 

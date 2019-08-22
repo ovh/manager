@@ -1,3 +1,10 @@
+import endsWith from 'lodash/endsWith';
+import get from 'lodash/get';
+import has from 'lodash/has';
+import last from 'lodash/last';
+import pull from 'lodash/pull';
+import words from 'lodash/words';
+
 angular.module('managerApp').controller('TelecomTelephonyServiceFaxCampaignsAddCtrl', function ($q, $stateParams, $translate, $timeout, $uibModalInstance, OvhApiTelephony, OvhApiMe, TucToastError) {
   const self = this;
 
@@ -25,7 +32,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxCampaignsAddC
 
   self.checkValidPdfExtention = function (file) {
     const fileName = file ? file.name : '';
-    const found = _.endsWith(fileName.toLowerCase(), 'pdf');
+    const found = endsWith(fileName.toLowerCase(), 'pdf');
     if (!found) {
       TucToastError($translate.instant('telephony_service_fax_campaigns_add_campaign_file_invalid'));
     }
@@ -34,7 +41,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxCampaignsAddC
 
   self.checkValidTextExtention = function (file) {
     const fileName = file ? file.name : '';
-    const found = _.endsWith(fileName.toLowerCase(), 'txt');
+    const found = endsWith(fileName.toLowerCase(), 'txt');
     if (!found) {
       TucToastError($translate.instant('telephony_service_fax_campaigns_add_campaign_file_invalid'));
     }
@@ -59,22 +66,22 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxCampaignsAddC
   function createCampaign(docs) {
     const campaign = {
       recipientsType: self.campaign.recipientsType,
-      documentId: _.get(docs, 'pdf.id'),
+      documentId: get(docs, 'pdf.id'),
       name: self.campaign.name,
       faxQuality: self.campaign.faxQuality,
       sendType: self.campaign.sendType,
       sendDate: setCampainDateTime(),
-      recipientsList: _.words(self.campaign.recipientsList),
+      recipientsList: words(self.campaign.recipientsList),
     };
-    if (self.campaign.recipientsType === 'document' && _.has(docs, 'recipientsDoc.id')) {
-      campaign.recipientsDocId = _.get(docs, 'recipientsDoc.id');
+    if (self.campaign.recipientsType === 'document' && has(docs, 'recipientsDoc.id')) {
+      campaign.recipientsDocId = get(docs, 'recipientsDoc.id');
     }
     return OvhApiTelephony.Fax().Campaigns().v6().create({
       billingAccount: $stateParams.billingAccount,
       serviceName: $stateParams.serviceName,
     }, campaign).$promise.catch(error => self.cancel({
       type: 'API',
-      message: _.get(error, 'data.message'),
+      message: get(error, 'data.message'),
     }));
   }
 
@@ -107,7 +114,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxCampaignsAddC
       return $timeout(self.close, 1500);
     })).catch(error => self.cancel({
       type: 'API',
-      message: _.get(error, 'data.message'),
+      message: get(error, 'data.message'),
     }));
   };
 
@@ -152,7 +159,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxCampaignsAddC
       self.enums = enums;
 
       self.campaign.faxQuality = 'normal';
-      self.campaign.sendType = _.last(_.pull(self.enums.sendType, 'automatic')); // scheduled
+      self.campaign.sendType = last(pull(self.enums.sendType, 'automatic')); // scheduled
       self.campaign.recipientsType = 'list';
 
       // set a multiline placeholder attribut

@@ -1,3 +1,6 @@
+import map from 'lodash/map';
+import set from 'lodash/set';
+
 angular.module('managerApp').controller('PackAccessCtrl', function PackAccessCtrl($q, $scope, OvhApiPackXdslAccess, OvhApiXdslLines, $stateParams) {
   const self = this;
   const init = function init() {
@@ -15,10 +18,10 @@ angular.module('managerApp').controller('PackAccessCtrl', function PackAccessCtr
       (services) => {
         $q
           .all(
-            _.map(services, service => OvhApiXdslLines.v6().query({
+            map(services, service => OvhApiXdslLines.v6().query({
               xdslId: service.accessName,
             }).$promise.then((lines) => {
-              _.set(service, 'lines', lines);
+              set(service, 'lines', lines);
               return {
                 ...service,
                 lines,

@@ -1,3 +1,7 @@
+import filter from 'lodash/filter';
+import get from 'lodash/get';
+import map from 'lodash/map';
+
 angular.module('managerApp').controller('TelecomTelephonyFaxManagementTerminateCtrl', function ($q, $stateParams, $translate, TelephonyMediator, voipServiceOfferTask, TucToast, tucTelephonyBulk) {
   const self = this;
 
@@ -22,7 +26,7 @@ angular.module('managerApp').controller('TelecomTelephonyFaxManagementTerminateC
 
   function getAvailableReasons() {
     return TelephonyMediator.getApiModelEnum('telephony.TerminationReasonEnum').then((enumValues) => {
-      self.availableReasons = _.map(enumValues, reason => ({
+      self.availableReasons = map(enumValues, reason => ({
         label: $translate.instant(`telephony_group_fax_management_terminate_reason_label_${reason}`),
         value: reason,
       }));
@@ -46,7 +50,7 @@ angular.module('managerApp').controller('TelecomTelephonyFaxManagementTerminateC
         getTerminateTask(),
       ]);
     }).catch((error) => {
-      TucToast.error([$translate.instant('telephony_fax_loading_error'), _.get(error, 'data.message', '')].join(' '));
+      TucToast.error([$translate.instant('telephony_fax_loading_error'), get(error, 'data.message', '')].join(' '));
       return $q.reject(error);
     }).finally(() => {
       self.loading.init = false;
@@ -63,7 +67,7 @@ angular.module('managerApp').controller('TelecomTelephonyFaxManagementTerminateC
     self.loading.terminate = true;
 
     return self.fax.terminate().then(() => getTerminateTask()).catch((error) => {
-      TucToast.error([$translate.instant('telephony_group_fax_management_terminate_error'), _.get(error, 'data.message', '')].join(' '));
+      TucToast.error([$translate.instant('telephony_group_fax_management_terminate_error'), get(error, 'data.message', '')].join(' '));
       return $q.reject(error);
     }).finally(() => {
       self.loading.terminate = false;
@@ -80,7 +84,7 @@ angular.module('managerApp').controller('TelecomTelephonyFaxManagementTerminateC
       self.terminateTask = null;
       TucToast.success($translate.instant('telephony_group_fax_management_terminate_cancel_success'));
     }).catch((error) => {
-      TucToast.error([$translate.instant('telephony_group_fax_management_terminate_cancel_error'), _.get(error, 'data.message', '')].join(' '));
+      TucToast.error([$translate.instant('telephony_group_fax_management_terminate_cancel_error'), get(error, 'data.message', '')].join(' '));
       return $q.reject(error);
     }).finally(() => {
       self.loading.cancel = false;
@@ -106,7 +110,7 @@ angular.module('managerApp').controller('TelecomTelephonyFaxManagementTerminateC
   };
 
   self.filterServices = function (services) {
-    return _.filter(services, service => ['fax', 'voicefax'].indexOf(service.featureType) > -1);
+    return filter(services, service => ['fax', 'voicefax'].indexOf(service.featureType) > -1);
   };
 
   self.getBulkParams = function () {
@@ -136,7 +140,7 @@ angular.module('managerApp').controller('TelecomTelephonyFaxManagementTerminateC
   };
 
   self.onBulkError = function (error) {
-    TucToast.error([$translate.instant('telephony_group_fax_management_terminate_bulk_on_error'), _.get(error, 'msg.data')].join(' '));
+    TucToast.error([$translate.instant('telephony_group_fax_management_terminate_bulk_on_error'), get(error, 'msg.data')].join(' '));
   };
 
   /* -----       End of BULK      ------ */

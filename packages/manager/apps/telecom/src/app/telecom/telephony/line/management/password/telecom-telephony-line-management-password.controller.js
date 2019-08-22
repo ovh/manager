@@ -1,3 +1,8 @@
+import filter from 'lodash/filter';
+import get from 'lodash/get';
+import map from 'lodash/map';
+import some from 'lodash/some';
+
 angular.module('managerApp').controller('TelecomTelephonyLinePasswordCtrl', function ($scope, $state, $stateParams, TucToast, $q, $translate, OvhApiTelephony, tucTelephonyBulk, tucVoipLine) {
   const self = this;
 
@@ -30,16 +35,16 @@ angular.module('managerApp').controller('TelecomTelephonyLinePasswordCtrl', func
   };
 
   self.filterServices = function (services) {
-    const filteredServices = _.filter(services, service => ['sip'].indexOf(service.featureType) > -1);
+    const filteredServices = filter(services, service => ['sip'].indexOf(service.featureType) > -1);
 
-    const promises = _.map(filteredServices, service => tucVoipLine.fetchLineInfo(service));
+    const promises = map(filteredServices, service => tucVoipLine.fetchLineInfo(service));
 
     return $q.allSettled(promises)
       .then(listLines => listLines)
       .catch(listLines => listLines)
-      .then(listLines => $q.when(_.filter(
+      .then(listLines => $q.when(filter(
         filteredServices,
-        service => _.some(listLines, { serviceName: service.serviceName, canChangePassword: true }),
+        service => some(listLines, { serviceName: service.serviceName, canChangePassword: true }),
       )));
   };
 
@@ -62,7 +67,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePasswordCtrl', func
   };
 
   self.onBulkError = function (error) {
-    TucToast.error([$translate.instant('telephony_line_password_bulk_on_error'), _.get(error, 'msg.data')].join(' '));
+    TucToast.error([$translate.instant('telephony_line_password_bulk_on_error'), get(error, 'msg.data')].join(' '));
   };
 
   this.validators = [

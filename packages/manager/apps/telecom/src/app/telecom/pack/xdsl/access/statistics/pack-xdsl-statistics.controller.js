@@ -1,3 +1,6 @@
+import get from 'lodash/get';
+import map from 'lodash/map';
+
 angular.module('managerApp').controller('XdslStatisticsCtrl', class XdslStatisticsCtrl {
   constructor(
     $filter, $q, $scope, $stateParams, $translate,
@@ -111,7 +114,7 @@ angular.module('managerApp').controller('XdslStatisticsCtrl', class XdslStatisti
       number: this.$stateParams.number,
       type,
     }).$promise.then((statistics) => {
-      const datas = _.get(statistics, 'values') || [];
+      const datas = get(statistics, 'values') || [];
       return datas.map(data => [data.timestamp * 1000, data.value]);
     }).catch(() => []);
   }
@@ -171,7 +174,7 @@ angular.module('managerApp').controller('XdslStatisticsCtrl', class XdslStatisti
 
       this.synchronization.chart.addSerie(
         this.$translate.instant('xdsl_statistics_download_label'),
-        _.map(stats.downloads, point => ({
+        map(stats.downloads, point => ({
           x: point[0],
           y: point[1],
         })),
@@ -185,7 +188,7 @@ angular.module('managerApp').controller('XdslStatisticsCtrl', class XdslStatisti
 
       this.synchronization.chart.addSerie(
         this.$translate.instant('xdsl_statistics_upload_label'),
-        _.map(stats.uploads, point => ({
+        map(stats.uploads, point => ({
           x: point[0],
           y: point[1],
         })),
@@ -246,7 +249,7 @@ angular.module('managerApp').controller('XdslStatisticsCtrl', class XdslStatisti
 
       this.traffic.chart.addSerie(
         this.$translate.instant('xdsl_statistics_download_label'),
-        _.map(stats.downloads, point => ({
+        map(stats.downloads, point => ({
           x: point[0],
           y: point[1],
         })),
@@ -260,7 +263,7 @@ angular.module('managerApp').controller('XdslStatisticsCtrl', class XdslStatisti
 
       this.traffic.chart.addSerie(
         this.$translate.instant('xdsl_statistics_upload_label'),
-        _.map(stats.uploads, point => ({
+        map(stats.uploads, point => ({
           x: point[0],
           y: point[1],
         })),
@@ -312,7 +315,7 @@ angular.module('managerApp').controller('XdslStatisticsCtrl', class XdslStatisti
 
       this.ping.chart.addSerie(
         this.$translate.instant('xdsl_statistics_ping_title'),
-        _.map(statistics, point => ({
+        map(statistics, point => ({
           x: point[0],
           y: point[1],
         })),
@@ -367,7 +370,7 @@ angular.module('managerApp').controller('XdslStatisticsCtrl', class XdslStatisti
 
       this.snr.chart.addSerie(
         this.$translate.instant('xdsl_statistics_download_label'),
-        _.map(stats.downloads, point => ({
+        map(stats.downloads, point => ({
           x: point[0],
           y: point[1],
         })),
@@ -381,7 +384,7 @@ angular.module('managerApp').controller('XdslStatisticsCtrl', class XdslStatisti
 
       this.snr.chart.addSerie(
         this.$translate.instant('xdsl_statistics_upload_label'),
-        _.map(stats.uploads, point => ({
+        map(stats.uploads, point => ({
           x: point[0],
           y: point[1],
         })),
@@ -438,7 +441,7 @@ angular.module('managerApp').controller('XdslStatisticsCtrl', class XdslStatisti
 
       this.attenuation.chart.addSerie(
         this.$translate.instant('xdsl_statistics_download_label'),
-        _.map(stats.downloads, point => ({
+        map(stats.downloads, point => ({
           x: point[0],
           y: point[1],
         })),
@@ -452,7 +455,7 @@ angular.module('managerApp').controller('XdslStatisticsCtrl', class XdslStatisti
 
       this.attenuation.chart.addSerie(
         this.$translate.instant('xdsl_statistics_upload_label'),
-        _.map(stats.uploads, point => ({
+        map(stats.uploads, point => ({
           x: point[0],
           y: point[1],
         })),

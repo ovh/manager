@@ -1,3 +1,9 @@
+import assignIn from 'lodash/assignIn';
+import head from 'lodash/head';
+import isArray from 'lodash/isArray';
+import set from 'lodash/set';
+import sortBy from 'lodash/sortBy';
+
 import { AUTHORIZED_ABBREVIATIONS } from './pack-move-eligibility-address.constants';
 
 export default class {
@@ -107,19 +113,19 @@ export default class {
           return this.$q.reject(data.error);
         }
         if (data.result.offers.length) {
-          _.extend(this.testLine, data);
-          this.offers = _.isArray(data.result.offers) ? data.result.offers : [];
+          assignIn(this.testLine, data);
+          this.offers = isArray(data.result.offers) ? data.result.offers : [];
           this.offers.forEach((offer) => {
-            _.set(offer, 'installationPrice', this.costs.packMove.lineCreation);
+            set(offer, 'installationPrice', this.costs.packMove.lineCreation);
             if (offer.meetingSlots) {
-              _.set(offer, 'meetingSlots.calendarData', [offer.meetingSlots.meetingSlots.map(slot => ({
+              set(offer, 'meetingSlots.calendarData', [offer.meetingSlots.meetingSlots.map(slot => ({
                 tooltip: `${this.$filter('date')(slot.startDate, 'HH:mm')} - ${this.$filter('date')(slot.endDate, 'HH:mm')}`,
                 title: '',
                 start: slot.startDate,
                 end: slot.endDate,
                 data: slot,
               }))]);
-              _.set(offer, 'meetingSlots.firstSlot', _.first(_.sortBy(offer.meetingSlots.meetingSlots, ['startDate'])));
+              set(offer, 'meetingSlots.firstSlot', head(sortBy(offer.meetingSlots.meetingSlots, ['startDate'])));
             }
           });
         }

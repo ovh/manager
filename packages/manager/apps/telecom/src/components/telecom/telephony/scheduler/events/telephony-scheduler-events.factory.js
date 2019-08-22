@@ -1,3 +1,8 @@
+import get from 'lodash/get';
+import isEqual from 'lodash/isEqual';
+import isNull from 'lodash/isNull';
+import sampleSize from 'lodash/sampleSize';
+
 /**
  *  Describe a telephony scheduler event item.
  *
@@ -15,7 +20,7 @@
  */
 angular.module('managerApp').factory('VoipSchedulerEvent', (OvhApiTelephony, SCHEDULER_CATEGORY_TO_ICS_VEVENT_CATEGORY) => {
   const generateUid = function () {
-    const random = _.sample('abcdefghijklmnopqrstufwxyzABCDEFGHIJKLMNOPQRSTUFWXYZ1234567890', 8);
+    const random = sampleSize('abcdefghijklmnopqrstufwxyzABCDEFGHIJKLMNOPQRSTUFWXYZ1234567890', 8);
     return `${moment().format('YYYYMMDDhhmmss') + random.join('')}@ovh.com`;
   };
 
@@ -107,15 +112,15 @@ angular.module('managerApp').factory('VoipSchedulerEvent', (OvhApiTelephony, SCH
 
       switch (attribute) {
         case 'categories':
-          attributeValue = SCHEDULER_CATEGORY_TO_ICS_VEVENT_CATEGORY[_.get(self, attribute)];
+          attributeValue = SCHEDULER_CATEGORY_TO_ICS_VEVENT_CATEGORY[get(self, attribute)];
           break;
         case 'dateEnd':
         case 'dateStart':
           entry = `${entry};TZID=${schedulerTimeZone}`;
-          attributeValue = moment(_.get(self, attribute)).format('YYYYMMDDTHHmmss');
+          attributeValue = moment(get(self, attribute)).format('YYYYMMDDTHHmmss');
           break;
         default:
-          attributeValue = _.get(self, attribute);
+          attributeValue = get(self, attribute);
           break;
       }
 
@@ -243,7 +248,7 @@ angular.module('managerApp').factory('VoipSchedulerEvent', (OvhApiTelephony, SCH
       allDay: angular.copy(self.allDay),
     };
 
-    if (_.isNull(self.originalSave)) {
+    if (isNull(self.originalSave)) {
       self.originalSave = angular.copy(self.saveForEdition);
     }
 
@@ -317,7 +322,7 @@ angular.module('managerApp').factory('VoipSchedulerEvent', (OvhApiTelephony, SCH
     }
 
     if (property) {
-      return !_.isEqual(self[property], fromOriginal
+      return !isEqual(self[property], fromOriginal
         ? self.originalSave[property] : self.saveForEdition[property]);
     }
     return ['CREATING', 'TODELETE'].indexOf(self.status) > -1

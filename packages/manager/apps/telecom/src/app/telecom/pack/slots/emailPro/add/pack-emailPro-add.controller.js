@@ -1,3 +1,6 @@
+import get from 'lodash/get';
+import map from 'lodash/map';
+
 angular.module('managerApp').controller('PackEmailProAddCtrl', class PackEmailProAddCtrl {
   constructor($q,
     $scope,
@@ -23,7 +26,7 @@ angular.module('managerApp').controller('PackEmailProAddCtrl', class PackEmailPr
     this.OvhApiPackXdsl.EmailPro().v6()
       .getDomains({ packName: this.$stateParams.packName }).$promise
       .then((domains) => {
-        this.availablesDomains = _.map(domains, domain => ({ value: `@${domain}`, label: domain }));
+        this.availablesDomains = map(domains, domain => ({ value: `@${domain}`, label: domain }));
       });
 
     this.$scope.$watchGroup(['ctrl.account.name', 'ctrl.account.domain'], ([name, domain]) => {
@@ -70,7 +73,7 @@ angular.module('managerApp').controller('PackEmailProAddCtrl', class PackEmailPr
       .then(() => this.$state.go('telecom.pack', { packName: this.$stateParams.packName }))
       .then(() => this.TucToast.success(this.$translate.instant('success_validation')))
       .catch((error) => {
-        this.TucToast.error([this.$translate.instant('an_error_ocurred'), _.get(error, 'data.message', '')].join(' '));
+        this.TucToast.error([this.$translate.instant('an_error_ocurred'), get(error, 'data.message', '')].join(' '));
         return this.$q.reject(error);
       })
       .finally(() => {

@@ -1,3 +1,8 @@
+import head from 'lodash/head';
+import isArray from 'lodash/isArray';
+import map from 'lodash/map';
+import remove from 'lodash/remove';
+
 angular.module('managerApp').controller('XdslModemDhcpBdhcpCtrl', function ($stateParams, $translate, TucToast, tucValidator, PackXdslModemDhcpBdhcpObject, OvhApiXdsl, $q, TucPackXdslModemMediator) {
   const self = this;
 
@@ -22,7 +27,7 @@ angular.module('managerApp').controller('XdslModemDhcpBdhcpCtrl', function ($sta
    */
   this.cancel = function (bdhcp) {
     if (!bdhcp.cancel()) {
-      _.remove(self.bdhcps, bdhcp);
+      remove(self.bdhcps, bdhcp);
     }
   };
 
@@ -52,7 +57,7 @@ angular.module('managerApp').controller('XdslModemDhcpBdhcpCtrl', function ($sta
   this.delete = function (bdhcp) {
     return bdhcp
       .remove($stateParams.serviceName, self.lanName, self.dhcpName)
-      .then(deletedBdhcp => _.remove(self.bdhcps, deletedBdhcp));
+      .then(deletedBdhcp => remove(self.bdhcps, deletedBdhcp));
   };
 
   function getDhcp() {
@@ -60,8 +65,8 @@ angular.module('managerApp').controller('XdslModemDhcpBdhcpCtrl', function ($sta
       .query({
         xdslId: $stateParams.serviceName,
       }).$promise.then((data) => {
-        if (_.isArray(data) && data.length) {
-          return _.head(data);
+        if (isArray(data) && data.length) {
+          return head(data);
         }
         return $q.reject('No DHCP found');
       });
@@ -72,7 +77,7 @@ angular.module('managerApp').controller('XdslModemDhcpBdhcpCtrl', function ($sta
     getDhcp().then((dhcp) => {
       self.lanName = dhcp.lanName;
       self.dhcpName = dhcp.dhcpName;
-      self.bdhcps = _.map(dhcp.bdhcp, (elt) => {
+      self.bdhcps = map(dhcp.bdhcp, (elt) => {
         const bdhcp = new PackXdslModemDhcpBdhcpObject(elt);
         bdhcp.inApi();
         return bdhcp;

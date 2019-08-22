@@ -1,3 +1,8 @@
+import find from 'lodash/find';
+import map from 'lodash/map';
+import remove from 'lodash/remove';
+import set from 'lodash/set';
+
 angular.module('managerApp').controller('XdslModemPortsCtrl', function ($stateParams, $translate, $scope, OvhApiXdslModemPort, TucToast, PackXdslModemPortObject, tucValidator, TucPackXdslModemMediator) {
   const self = this;
   self.loader = true;
@@ -11,7 +16,7 @@ angular.module('managerApp').controller('XdslModemPortsCtrl', function ($statePa
    */
   this.cancel = function (port) {
     if (!port.cancel()) {
-      _.remove(self.ports, port);
+      remove(self.ports, port);
     }
   };
 
@@ -22,7 +27,7 @@ angular.module('managerApp').controller('XdslModemPortsCtrl', function ($statePa
    * @return {Boolean}
    */
   this.uniqueName = function (name, currentPort) {
-    const found = _.find(this.ports, { name });
+    const found = find(this.ports, { name });
     if (!found) {
       return true;
     } if (!currentPort.id) {
@@ -61,11 +66,11 @@ angular.module('managerApp').controller('XdslModemPortsCtrl', function ($statePa
    * @return {Promise}
    */
   this.delete = function (port) {
-    _.set(port, 'busy', true);
+    set(port, 'busy', true);
     return port.remove($stateParams.serviceName).then((deletedPort) => {
-      _.remove(self.ports, deletedPort);
+      remove(self.ports, deletedPort);
     }).finally(() => {
-      _.set(port, 'busy', false);
+      set(port, 'busy', false);
     });
   };
 
@@ -84,12 +89,12 @@ angular.module('managerApp').controller('XdslModemPortsCtrl', function ($statePa
   function init() {
     Object.defineProperty(self, 'hasEditing', {
       get() {
-        return !!_.find(this.ports, { editMode: true });
+        return !!find(this.ports, { editMode: true });
       },
     });
 
     OvhApiXdslModemPort.Aapi().query({ xdslId: $stateParams.serviceName }).$promise.then((data) => {
-      self.ports = _.map(data, port => new PackXdslModemPortObject(port));
+      self.ports = map(data, port => new PackXdslModemPortObject(port));
     }).catch(() => {
       TucToast.error($translate.instant('xdsl_modem_ports_read_error'));
     }).finally(() => {

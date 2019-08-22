@@ -1,3 +1,7 @@
+import forEach from 'lodash/forEach';
+import reduce from 'lodash/reduce';
+import set from 'lodash/set';
+
 angular.module('managerApp').run(($translate, asyncLoader) => {
   asyncLoader.addTranslations(
     import(`./translations/Messages_${$translate.use()}.json`)
@@ -98,7 +102,7 @@ angular.module('managerApp').directive('svaGenerator', ($q, $translatePartialLoa
     },
     templateUrl: 'components/telecom/telephony/alias/svaGenerator/telephony-alias-svaGenerator.html',
     link(scope, element) {
-      _.set(scope, 'invalidNumber', false);
+      set(scope, 'invalidNumber', false);
 
       function loadAssets() {
         const fill = scope.fill || 'gradient';
@@ -123,11 +127,11 @@ angular.module('managerApp').directive('svaGenerator', ($q, $translatePartialLoa
         let pos = 0; // current character position
 
         // compute canvas width
-        result.width = _.reduce(number, (sum, c) => sum + (c === ' ' ? Math.floor(fontAdvance * 0.5) : fontAdvance), 0);
+        result.width = reduce(number, (sum, c) => sum + (c === ' ' ? Math.floor(fontAdvance * 0.5) : fontAdvance), 0);
         result.height = fontImage.height;
 
         // draw each characters of the number
-        _.each(number, (c) => {
+        forEach(number, (c) => {
           if (c < '0' || c > '9') {
             if (c === ',' || c === '.') {
               ctx.drawImage(
@@ -203,12 +207,12 @@ angular.module('managerApp').directive('svaGenerator', ($q, $translatePartialLoa
       }
 
       function refresh() {
-        _.set(scope, 'invalidNumber', normalizeNumber(scope.number) === null);
+        set(scope, 'invalidNumber', normalizeNumber(scope.number) === null);
         scope.invalidNumber |= getNumberType(scope.number) === null; // eslint-disable-line
         if (!scope.invalidNumber) {
-          _.set(scope, 'isLoading', true);
+          set(scope, 'isLoading', true);
           element.find('.sva-container').empty();
-          _.set(scope, 'imageHref', null);
+          set(scope, 'imageHref', null);
           loadAssets().then((assets) => {
             const number = normalizeNumber(scope.number);
             const image = renderSva(number, assets);
@@ -218,19 +222,19 @@ angular.module('managerApp').directive('svaGenerator', ($q, $translatePartialLoa
                 .attr('width', image.width)
                 .attr('height', image.height);
               element.find('.sva-container').append(elt);
-              _.set(scope, 'imageHref', image.toDataURL('image/png'));
+              set(scope, 'imageHref', image.toDataURL('image/png'));
             }
           }).catch((err) => {
-            _.set(scope, 'error', err);
+            set(scope, 'error', err);
           }).finally(() => {
-            _.set(scope, 'isLoading', false);
+            set(scope, 'isLoading', false);
           });
         }
       }
 
       $translatePartialLoader.addPart('../components/telecom/telephony/alias/svaGenerator');
       $translate.refresh().then(() => {
-        _.set(scope, 'scale', SvaGeneratorConfig.scale['14pt']);
+        set(scope, 'scale', SvaGeneratorConfig.scale['14pt']);
         scope.$watchGroup(['number', 'numberFormat', 'fill', 'pricePerCall', 'pricePerMinute'], refresh);
       });
     },

@@ -1,3 +1,9 @@
+import get from 'lodash/get';
+import map from 'lodash/map';
+import remove from 'lodash/remove';
+import set from 'lodash/set';
+import some from 'lodash/some';
+
 angular.module('managerApp').controller('PackResiliationCtrl', function ($stateParams, $state, $templateCache, $translate, TucToastError, OvhApiPackXdslResiliation, TucToast, $uibModal, $timeout, $q, OvhApiMe, TucPackMediator, resiliationNotification, tucValidator) {
   const self = this;
   self.model = {
@@ -120,7 +126,7 @@ angular.module('managerApp').controller('PackResiliationCtrl', function ($stateP
    */
   this.updateFeeSummary = function () {
     self.feeSummary = {
-      duePrice: _.get(self, 'resiliationTerms.data.due'),
+      duePrice: get(self, 'resiliationTerms.data.due'),
       keepingPrice: 0.0,
       renewPrice: {},
     };
@@ -189,7 +195,7 @@ angular.module('managerApp').controller('PackResiliationCtrl', function ($stateP
    * false otherwise.
    */
   this.hasKeepableSubServices = function (serviceType) {
-    return _.some(self.subServicesTerms[serviceType], service => _.get(service, 'keepServiceTerms.isAllowed'));
+    return some(self.subServicesTerms[serviceType], service => get(service, 'keepServiceTerms.isAllowed'));
   };
 
   /**
@@ -254,9 +260,9 @@ angular.module('managerApp').controller('PackResiliationCtrl', function ($stateP
       },
       resiliationDate: self.model.when ? self.model.when.toISOString() : null,
       servicesToKeep:
-        _.remove(_.map(self.model.subServicesToKeep, (value, key) => (value ? key : null)), null),
+        remove(map(self.model.subServicesToKeep, (value, key) => (value ? key : null)), null),
     }).$promise.then(() => {
-      _.set(resiliationNotification, 'success', true);
+      set(resiliationNotification, 'success', true);
       $state.go('telecom.pack', { packName: $stateParams.packName });
     }).catch(err => new TucToastError(err)).finally(() => {
       self.loading = false;
@@ -272,7 +278,7 @@ angular.module('managerApp').controller('PackResiliationCtrl', function ($stateP
     return OvhApiPackXdslResiliation.v6().cancelResiliation({
       packName: pack.packName,
     }, null).$promise.then(() => {
-      _.set(resiliationNotification, 'cancelSuccess', true);
+      set(resiliationNotification, 'cancelSuccess', true);
       $state.go('telecom.pack', { packName: $stateParams.packName });
     }, err => new TucToastError(err)).finally(() => {
       self.loading = false;

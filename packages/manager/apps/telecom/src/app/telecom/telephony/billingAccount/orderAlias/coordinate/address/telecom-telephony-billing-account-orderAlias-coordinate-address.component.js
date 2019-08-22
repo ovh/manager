@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular.module('managerApp').component('telecomTelephonyBillingAccountOrderAliasCoordinateAddress', {
   templateUrl: 'app/telecom/telephony/billingAccount/orderAlias/coordinate/address/telecom-telephony-billing-account-orderAlias-coordinate-address.html',
   bindings: {
@@ -22,7 +24,7 @@ angular.module('managerApp').component('telecomTelephonyBillingAccountOrderAlias
           ovhCompany: 'ovh',
           ovhSubsidiary: 'FR',
         }).$promise.then((rules) => {
-          const zipCodeRegexp = _.get(rules, 'zip.regularExpression');
+          const zipCodeRegexp = get(rules, 'zip.regularExpression');
           if (zipCodeRegexp) {
             self.validator.isZipcode = function (value) {
               return new RegExp(zipCodeRegexp).test(value);

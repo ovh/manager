@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular.module('managerApp').controller('TelecomTelephonyServiceAssistSupportCtrl', function ($stateParams, TelephonyMediator, REDIRECT_URLS, URLS) {
   const self = this;
 
@@ -7,7 +9,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceAssistSupportCtr
 
   self.service = null;
   self.guideUrl = URLS.guides.telephony;
-  self.listTicketUrl = _.get(REDIRECT_URLS, 'listTicket');
+  self.listTicketUrl = get(REDIRECT_URLS, 'listTicket');
 
   /*= =====================================
     =            INITIALIZATION            =

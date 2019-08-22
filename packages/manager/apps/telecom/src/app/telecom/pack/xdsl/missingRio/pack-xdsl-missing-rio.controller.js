@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular.module('managerApp').controller('PackXdslMissingRioCtrl', function ($q, $stateParams, $translate, OvhApiXdsl, TucToast) {
   const self = this;
 
@@ -14,7 +16,7 @@ angular.module('managerApp').controller('PackXdslMissingRioCtrl', function ($q, 
     return OvhApiXdsl.v6().get({
       xdslId: $stateParams.serviceName,
     }).$promise.then(data => data, (err) => {
-      TucToast.error([$translate.instant('xdsl_missing-rio_init_error'), _.get(err, 'data.message')].join(' '));
+      TucToast.error([$translate.instant('xdsl_missing-rio_init_error'), get(err, 'data.message')].join(' '));
       return $q.reject(err);
     }).then(() => {
       self.loading = false;
@@ -38,7 +40,7 @@ angular.module('managerApp').controller('PackXdslMissingRioCtrl', function ($q, 
       TucToast.success($translate.instant('xdsl_missing-rio_sent'));
       self.init();
     }, (err) => {
-      TucToast.error([$translate.instant('xdsl_missing-rio_error'), _.get(err, 'data.message')].join(' '));
+      TucToast.error([$translate.instant('xdsl_missing-rio_error'), get(err, 'data.message')].join(' '));
       return $q.reject(err);
     }).finally(() => {
       self.loading = false;

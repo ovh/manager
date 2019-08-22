@@ -1,3 +1,9 @@
+import find from 'lodash/find';
+import forEach from 'lodash/forEach';
+import head from 'lodash/head';
+import map from 'lodash/map';
+import pick from 'lodash/pick';
+
 angular.module('managerApp')
   .controller('TelecomTelephonyAliasOrderInternationalCtrl', function ($q, $translate, $stateParams, OvhApiTelephony, OvhApiTelephonyNumber, OvhApiOrder, TelecomTelephonyBillingAccountOrderAliasService, TucToast, TucToastError, TELEPHONY_NUMBER_OFFER) {
     const self = this;
@@ -19,12 +25,12 @@ angular.module('managerApp')
             self.predefinedNumbers = data.pool;
             self.prices = data.prices;
             self.contracts = data.contracts;
-            _.forEach(Object.keys(self.prices), (name) => {
+            forEach(Object.keys(self.prices), (name) => {
               self.prices[name].title = $translate.instant(['telephony', 'order', 'number', 'type', name, 'label'].join('_'));
             });
             if (self.predefinedNumbers) {
-              self.form.premium = _.first(self.predefinedNumbers.premium);
-              self.form.common = _.first(self.predefinedNumbers.common);
+              self.form.premium = head(self.predefinedNumbers.premium);
+              self.form.common = head(self.predefinedNumbers.common);
             }
             return data;
           },
@@ -118,7 +124,7 @@ angular.module('managerApp')
           'socialNomination',
         ]);
       }
-      const form = _.pick(this.form, filter);
+      const form = pick(this.form, filter);
       form.offer = 'alias';
 
       if (form.pool === 1) {
@@ -183,7 +189,7 @@ angular.module('managerApp')
       }));
 
       self.form = {
-        amount: _.find(
+        amount: find(
           self.preAmount,
           {
             value: 1,
@@ -209,7 +215,7 @@ angular.module('managerApp')
         TelecomTelephonyBillingAccountOrderAliasService.getForeignCountries()
           .then(
             (countries) => {
-              self.countries = _.map(countries, (country) => {
+              self.countries = map(countries, (country) => {
                 const countryFlag = country.toLowerCase() === 'uk' ? 'gb' : country;
                 return {
                   code: country,

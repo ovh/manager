@@ -1,3 +1,8 @@
+import assign from 'lodash/assign';
+import isEmpty from 'lodash/isEmpty';
+import isEqual from 'lodash/isEqual';
+import pick from 'lodash/pick';
+
 angular.module('managerApp').controller('TelecomTelephonyBillingAccountPhonebookContactUpdateCtrl', function ($q, $stateParams, $timeout, $uibModalInstance, TelephonyMediator, OvhApiTelephony, TucPhonebookcontact, data) {
   const self = this;
 
@@ -6,12 +11,12 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountPhonebook
     =============================== */
 
   self.isValidNumber = function (value) {
-    return !_.isEmpty(value) ? TelephonyMediator.IsValidNumber(value) : true;
+    return !isEmpty(value) ? TelephonyMediator.IsValidNumber(value) : true;
   };
 
   self.hasChanged = function () {
     const fields = ['name', 'surname', 'group', 'homePhone', 'homeMobile', 'workPhone', 'workMobile'];
-    return !_.isEqual(_.pick(self.phonecontactForm, fields), _.pick(data.contact, fields));
+    return !isEqual(pick(self.phonecontactForm, fields), pick(data.contact, fields));
   };
 
   /* -----  End of HELPERS  ------*/
@@ -83,7 +88,7 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountPhonebook
       isAdding: false,
       hasBeenAdded: false,
     };
-    _.assign(self.phonecontactForm, self.contact);
+    assign(self.phonecontactForm, self.contact);
   }
 
   /* -----  End of INITIALIZATION  ------*/

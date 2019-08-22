@@ -1,3 +1,10 @@
+import chunk from 'lodash/chunk';
+import filter from 'lodash/filter';
+import flatten from 'lodash/flatten';
+import get from 'lodash/get';
+import map from 'lodash/map';
+import startsWith from 'lodash/startsWith';
+
 angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationCallsFilteringOldPabxCtrl', function ($stateParams, $q, $translate, OvhApiTelephony, TucToastError, tucTelephonyBulk, TucToast) {
   const self = this;
 
@@ -16,8 +23,8 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationCalls
         serviceName: $stateParams.serviceName,
       }).$promise
       .then(ids => $q
-        .all(_.map(
-          _.chunk(ids, 50),
+        .all(map(
+          chunk(ids, 50),
           chunkIds => OvhApiTelephony.Screen().ScreenLists().v6().getBatch({
             billingAccount: $stateParams.billingAccount,
             serviceName: $stateParams.serviceName,
@@ -25,9 +32,9 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationCalls
           }).$promise,
         ))
         .then((chunkResult) => {
-          const result = _.pluck(_.flatten(chunkResult), 'value');
-          return _.map(result, res => angular.extend(res, {
-            shortType: _.startsWith(res.type, 'incoming') ? 'incoming' : 'outgoing',
+          const result = map(flatten(chunkResult), 'value');
+          return map(result, res => angular.extend(res, {
+            shortType: startsWith(res.type, 'incoming') ? 'incoming' : 'outgoing',
             list: res.type.indexOf('White') >= 0 ? 'white' : 'black',
           }));
         }));
@@ -114,12 +121,12 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationCalls
 
   self.getBulkParams = function () {
     return {
-      incomingScreenList: _.get(self, 'screenStatus.modified'),
+      incomingScreenList: get(self, 'screenStatus.modified'),
     };
   };
 
   self.filterServices = function (services) {
-    return _.filter(services, service => ['easyPabx', 'miniPabx'].indexOf(service.featureType) > -1);
+    return filter(services, service => ['easyPabx', 'miniPabx'].indexOf(service.featureType) > -1);
   };
 
   self.onBulkSuccess = function (bulkResult) {
@@ -140,6 +147,6 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationCalls
   };
 
   self.onBulkError = function (error) {
-    TucToast.error([$translate.instant('telephony_line_calls_filtering_bulk_on_error'), _.get(error, 'msg.data')].join(' '));
+    TucToast.error([$translate.instant('telephony_line_calls_filtering_bulk_on_error'), get(error, 'msg.data')].join(' '));
   };
 });

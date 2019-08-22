@@ -1,3 +1,8 @@
+import assignIn from 'lodash/assignIn';
+import isBoolean from 'lodash/isBoolean';
+import pick from 'lodash/pick';
+import without from 'lodash/without';
+
 angular.module('managerApp').factory('PackXdslModemPortObject', (OvhApiXdsl, $translate, TucToast) => {
   const template = {
     protocol: 'TCP',
@@ -17,10 +22,10 @@ angular.module('managerApp').factory('PackXdslModemPortObject', (OvhApiXdsl, $tr
      * @param {Object} data Data from APIv6
      */
   const PackXdslModemPortObject = function (data) {
-    _.extend(
+    assignIn(
       this,
       template,
-      _.pick(
+      pick(
         data,
         Object.keys(template),
       ),
@@ -41,9 +46,9 @@ angular.module('managerApp').factory('PackXdslModemPortObject', (OvhApiXdsl, $tr
           xdslId: serviceName,
           name: this.name,
         },
-        _.pick(_.pick(this.tempValue, Object.keys(template)), _.identity),
+        pick(pick(this.tempValue, Object.keys(template)), _.identity),
       ).$promise.then(() => {
-        _.extend(self, self.tempValue);
+        assignIn(self, self.tempValue);
         self.toggleEdit(false);
         TucToast.success($translate.instant('xdsl_modem_ports_edit_success', { name: self.name }));
         return self;
@@ -57,9 +62,9 @@ angular.module('managerApp').factory('PackXdslModemPortObject', (OvhApiXdsl, $tr
       {
         xdslId: serviceName,
       },
-      _.pick(_.pick(this.tempValue, Object.keys(template)), _.identity),
+      pick(pick(this.tempValue, Object.keys(template)), _.identity),
     ).$promise.then((data) => {
-      _.extend(self, _.pick(data, Object.keys(template)));
+      assignIn(self, pick(data, Object.keys(template)));
       self.toggleEdit(false);
       TucToast.success($translate.instant('xdsl_modem_ports_add_success', { name: self.name }));
       return self;
@@ -103,8 +108,8 @@ angular.module('managerApp').factory('PackXdslModemPortObject', (OvhApiXdsl, $tr
      * Enter Edit Mode
      */
   PackXdslModemPortObject.prototype.edit = function () {
-    const fields = _.without(Object.keys(template), 'taskId', 'id');
-    this.tempValue = _.pick(this, fields);
+    const fields = without(Object.keys(template), 'taskId', 'id');
+    this.tempValue = pick(this, fields);
     this.toggleEdit(true);
   };
 
@@ -114,7 +119,7 @@ angular.module('managerApp').factory('PackXdslModemPortObject', (OvhApiXdsl, $tr
      * @return {Boolean} new edit mode state
      */
   PackXdslModemPortObject.prototype.toggleEdit = function (state) {
-    if (_.isBoolean(state)) {
+    if (isBoolean(state)) {
       this.editMode = state;
     } else {
       this.editMode = !this.editMode;

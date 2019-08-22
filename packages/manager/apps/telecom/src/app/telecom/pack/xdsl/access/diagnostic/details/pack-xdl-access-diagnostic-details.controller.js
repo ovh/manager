@@ -1,3 +1,7 @@
+import get from 'lodash/get';
+import has from 'lodash/has';
+import pick from 'lodash/pick';
+
 angular.module('managerApp').controller('XdslDiagnosticDetailsCtrl', class XdslDiagnosticDetailsCtrl {
   constructor($rootScope, $scope, $state, $translate) {
     this.$rootScope = $rootScope;
@@ -24,20 +28,20 @@ angular.module('managerApp').controller('XdslDiagnosticDetailsCtrl', class XdslD
   }
 
   static getStatuses(diagnostic) {
-    return Object.entries(_.pick(diagnostic, ['isActiveOnLns', 'ping', 'isModemConnected']))
+    return Object.entries(pick(diagnostic, ['isActiveOnLns', 'ping', 'isModemConnected']))
       .map(([key, value]) => ({ key, val: !!value }));
   }
 
   getRemainingChecksText() {
     const checkText = this.$translate.instant('xdsl_details_diagnostic_modal_relaunch_status_check');
 
-    if (_.has(this.diagnostic, 'remaining')) {
+    if (has(this.diagnostic, 'remaining')) {
       return `${checkText} ${this.$translate.instant('xdsl_details_diagnostic_modal_relaunch_status_remaining_checks', {
         remainingChecks: this.diagnostic.remaining,
       })}`;
     }
 
-    if (_.get(this.diagnostic, 'remaining') === 0) {
+    if (get(this.diagnostic, 'remaining') === 0) {
       return this.$translate.instant('xdsl_details_diagnostic_modal_relaunch_status_no_remaining_checks');
     }
 

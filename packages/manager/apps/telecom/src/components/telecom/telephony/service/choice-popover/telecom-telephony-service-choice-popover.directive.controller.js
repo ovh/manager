@@ -1,4 +1,10 @@
-angular.module('managerApp').controller('voipServiceChoicePopoverCtrl', function ($scope, $q, $translate, $translatePartialLoader, $filter, TelephonyMediator) {
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import indexOf from 'lodash/indexOf';
+import map from 'lodash/map';
+import uniq from 'lodash/uniq';
+
+angular.module('managerApp').controller('voipServiceChoicePopoverCtrl', function voipServiceChoicePopoverCtrl($scope, $q, $translate, $translatePartialLoader, $filter, TelephonyMediator) {
   const self = this;
 
   self.loading = {
@@ -40,7 +46,7 @@ angular.module('managerApp').controller('voipServiceChoicePopoverCtrl', function
 
   self.availableFilter = (service) => {
     if (self.availableTypes) {
-      return _.indexOf(self.availableTypes, self.getServiceType(service)) >= 0;
+      return indexOf(self.availableTypes, self.getServiceType(service)) >= 0;
     }
     return true;
   };
@@ -81,12 +87,18 @@ angular.module('managerApp').controller('voipServiceChoicePopoverCtrl', function
       translations: $translate.refresh(),
       services: TelephonyMediator.getAll(),
     }).then((result) => {
-      self.groupList = _.chain(result.services)
-        .pluck('billingAccount')
-        .uniq()
-        .filter(id => _.indexOf(self.hiddenGroups, id) < 0)
-        .map(id => _.find(TelephonyMediator.groups, { billingAccount: id }))
-        .value();
+      self.groupList = map(
+        filter(
+          uniq(
+            map(
+              result.services,
+              'billingAccount',
+            ),
+          ),
+          id => indexOf(self.hiddenGroups, id) < 0,
+        ),
+        id => find(TelephonyMediator.groups, { billingAccount: id }),
+      );
     }).finally(() => {
       self.loading.init = false;
     });

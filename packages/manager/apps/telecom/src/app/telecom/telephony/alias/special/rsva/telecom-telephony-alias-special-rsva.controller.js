@@ -1,3 +1,8 @@
+import find from 'lodash/find';
+import get from 'lodash/get';
+import has from 'lodash/has';
+import head from 'lodash/head';
+
 angular.module('managerApp').controller('TelecomTelephonyAliasSpecialRsvaCtrl', class TelecomTelephonyAliasSpecialRsvaCtrl {
   constructor(
     $q, $state, $stateParams, $translate,
@@ -52,7 +57,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasSpecialRsvaCtrl', 
             ? this.scheduledRateCode.updateRateCodePriceWithoutTax.text : this.tariffBearingPrice;
         }
 
-        if (_.has(schema, 'models[\'telephony.NumberSpecialTypologyEnum\'].enum')) {
+        if (has(schema, 'models[\'telephony.NumberSpecialTypologyEnum\'].enum')) {
           this.regExp = new RegExp(`^${directory.country}_`);
           this.typologies = schema.models['telephony.NumberSpecialTypologyEnum'].enum
             .filter(element => element.match(this.regExp))
@@ -61,13 +66,13 @@ angular.module('managerApp').controller('TelecomTelephonyAliasSpecialRsvaCtrl', 
               displayValue: `${this.$translate.instant(`telephony_alias_special_rsva_infos_typology_${typology.replace(this.regExp, '')}_label`)}`,
             }));
 
-          this.typology = _.find(this.typologies, { value: `${directory.country}_${rsvaInfos.typology.replace(directory.country, '')}` });
+          this.typology = find(this.typologies, { value: `${directory.country}_${rsvaInfos.typology.replace(directory.country, '')}` });
           this.copyTypology = angular.copy(this.typology);
         }
       })
       .catch((error) => {
         this.TucToast.error(
-          `${this.$translate.instant('telephony_alias_special_rsva_loading_error')} ${_.get(error, 'data.message', error.message)}`,
+          `${this.$translate.instant('telephony_alias_special_rsva_loading_error')} ${get(error, 'data.message', error.message)}`,
         );
       })
       .finally(() => {
@@ -110,7 +115,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasSpecialRsvaCtrl', 
     if (this.availableRateCodes.length > 0) {
       this.rateCode = this.availableRateCodes
         .find(({ code }) => code === this.currentRateCode.rateCode)
-        || _.first(this.availableRateCodes);
+        || head(this.availableRateCodes);
     } else {
       // If some rate codes are messy (no price), we add the current rate code for display purpose
       this.availableRateCodes.push(this.rateCode);
@@ -145,7 +150,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasSpecialRsvaCtrl', 
       }))
       .catch((error) => {
         this.TucToast.error(
-          `${this.$translate.instant('telephony_alias_special_rsva_error')} ${_.get(error, 'data.message', error.message)}`,
+          `${this.$translate.instant('telephony_alias_special_rsva_error')} ${get(error, 'data.message', error.message)}`,
         );
       })
       .finally(() => {
@@ -173,7 +178,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasSpecialRsvaCtrl', 
 
   getBulkParams() {
     return action => (action === 'scheduleRateCode'
-      ? { rateCode: _.get(this.rateCode, 'code', '') }
+      ? { rateCode: get(this.rateCode, 'code', '') }
       : { typology: this.typology.value.replace(this.regExp, '') });
   }
 
@@ -201,7 +206,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasSpecialRsvaCtrl', 
   onBulkError() {
     return (error) => {
       this.TucToast.error(
-        `${this.$translate.instant('telephony_alias_special_rsva_bulk_on_error')} ${_.get(error, 'data.message', error.message)}`,
+        `${this.$translate.instant('telephony_alias_special_rsva_bulk_on_error')} ${get(error, 'data.message', error.message)}`,
       );
     };
   }

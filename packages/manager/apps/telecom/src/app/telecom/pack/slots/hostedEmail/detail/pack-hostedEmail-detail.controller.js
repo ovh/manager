@@ -1,4 +1,11 @@
-angular.module('managerApp').controller('PackHostedEmailDetailCtrl', function ($q, $stateParams, $state, $http, $translate, TucToast, OvhApiPackXdsl) {
+import assignIn from 'lodash/assignIn';
+import filter from 'lodash/filter';
+import get from 'lodash/get';
+import isObject from 'lodash/isObject';
+import map from 'lodash/map';
+import snakeCase from 'lodash/snakeCase';
+
+angular.module('managerApp').controller('PackHostedEmailDetailCtrl', function PackHostedEmailDetailCtrl($q, $stateParams, $state, $http, $translate, TucToast, OvhApiPackXdsl) {
   const self = this;
 
   self.askForDelete = false;
@@ -43,25 +50,29 @@ angular.module('managerApp').controller('PackHostedEmailDetailCtrl', function ($
    * Load detaild of the hosted email account
    * @return {Promise}
    */
-  this.loadConfiguration = function () {
+  this.loadConfiguration = function loadConfiguration() {
     const params = encodeURIComponent(JSON.stringify({
       emailAddress: $stateParams.serviceName,
     }));
     return $http.get(`/emails/trunk/ws.dispatcher/getConfigurationInfo?params=${params}`, {
       serviceType: 'ws',
     }).then((response) => {
-      if (_.get(response, 'data.error')) {
+      if (get(response, 'data.error')) {
         TucToast.error($translate.instant('hosted_email_detail_loading_error'));
         return $q.reject();
       }
-      self.configuration = _.get(response, 'data.answer');
-      self.configuration.services = _.chain(self.configuration.services)
-        .map((service, type) => (_.isObject(service) ? _.extend({ type }, service) : false))
-        .filter(service => _.isObject(service))
-        .value();
+      self.configuration = get(response, 'data.answer');
+
+      self.configuration.services = filter(
+        map(
+          self.configuration.services,
+          (service, type) => (isObject(service) ? assignIn({ type }, service) : false),
+        ),
+        service => isObject(service),
+      );
       self.configuration.type = {
         value: self.configuration.type,
-        label: $translate.instant(`hosted_email_detail_${_.snakeCase(self.configuration.type)}`),
+        label: $translate.instant(`hosted_email_detail_${snakeCase(self.configuration.type)}`),
       };
       self.configuration.status = {
         value: self.configuration.status,
@@ -88,11 +99,11 @@ angular.module('managerApp').controller('PackHostedEmailDetailCtrl', function ($
     return $http.get(`/managedServices/linuxmail/individual/trunk/ws.dispatcher/getAccount?params=${params}`, {
       serviceType: 'ws',
     }).then((response) => {
-      if (_.get(response, 'data.error')) {
+      if (get(response, 'data.error')) {
         TucToast.error($translate.instant('hosted_email_detail_loading_error'));
         return $q.reject();
       }
-      self.account = _.get(response, 'data.answer');
+      self.account = get(response, 'data.answer');
       self.account.quota = toHuman(self.account.quota);
       self.account.size = toHuman(self.account.size);
       return self.account;
@@ -117,11 +128,11 @@ angular.module('managerApp').controller('PackHostedEmailDetailCtrl', function ($
     return $http.get(`/managedServices/linuxmail/individual/trunk/ws.dispatcher/updateAccount?params=${params}`, {
       serviceType: 'ws',
     }).then((response) => {
-      if (_.get(response, 'data.answer.status') === 'done') {
+      if (get(response, 'data.answer.status') === 'done') {
         TucToast.success($translate.instant('hosted_email_detail_change_password_success', { email: $stateParams.serviceName }));
         return $state.go('telecom.pack');
       }
-      const msg = _.get(response, 'data.error.message') || '';
+      const msg = get(response, 'data.error.message') || '';
       TucToast.error([$translate.instant('hosted_email_detail_change_password_error'), msg].join(' '));
       return $q.reject(response.data);
     }).catch((err) => {
@@ -150,11 +161,11 @@ angular.module('managerApp').controller('PackHostedEmailDetailCtrl', function ($
     return $http.get(`/managedServices/linuxmail/individual/trunk/ws.dispatcher/suspendAccount?params=${params}`, {
       serviceType: 'ws',
     }).then((response) => {
-      if (_.get(response, 'data.answer.status') === 'done' || _.get(response, 'data.answer.status') === 'pending') {
+      if (get(response, 'data.answer.status') === 'done' || get(response, 'data.answer.status') === 'pending') {
         TucToast.success($translate.instant('hosted_email_detail_client_delete_account_success', { email: $stateParams.serviceName }));
         return $state.go('telecom.pack');
       }
-      const msg = _.get(response, 'data.error.message') || '';
+      const msg = get(response, 'data.error.message') || '';
       return TucToast.error([$translate.instant('hosted_email_detail_client_delete_account_error'), msg].join(' '));
     }).catch((err) => {
       TucToast.error($translate.instant('hosted_email_detail_client_delete_account_error'));
@@ -189,7 +200,7 @@ angular.module('managerApp').controller('PackHostedEmailDetailCtrl', function ($
       },
     ];
 
-    _.extend(this, $stateParams);
+    assignIn(this, $stateParams);
     return $q.all([
       this.loadConfiguration(),
       this.getAccount(),

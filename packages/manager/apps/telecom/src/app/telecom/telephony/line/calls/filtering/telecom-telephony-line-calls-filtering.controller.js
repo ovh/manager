@@ -1,3 +1,13 @@
+import assign from 'lodash/assign';
+import chunk from 'lodash/chunk';
+import forEach from 'lodash/forEach';
+import flatten from 'lodash/flatten';
+import get from 'lodash/get';
+import map from 'lodash/map';
+import pick from 'lodash/pick';
+import set from 'lodash/set';
+import startsWith from 'lodash/startsWith';
+
 angular.module('managerApp').controller('TelecomTelephonyLineCallsFilteringCtrl', function ($stateParams, $q, $timeout, $translate, TucToast, TucToastError, OvhApiTelephony, tucTelephonyBulk) {
   const self = this;
 
@@ -9,8 +19,8 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsFilteringCtrl'
         serviceName: $stateParams.serviceName,
       }).$promise
       .then(ids => $q
-        .all(_.map(
-          _.chunk(ids, 50),
+        .all(map(
+          chunk(ids, 50),
           chunkIds => OvhApiTelephony.Screen().ScreenLists().v6().getBatch({
             billingAccount: $stateParams.billingAccount,
             serviceName: $stateParams.serviceName,
@@ -18,10 +28,10 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsFilteringCtrl'
           }).$promise,
         ))
         .then((chunkResult) => {
-          const result = _.pluck(_.flatten(chunkResult), 'value');
-          return _.each(result, (filter) => {
-            _.set(filter, 'shortType', _.startsWith(filter.type, 'incoming') ? 'incoming' : 'outgoing');
-            _.set(filter, 'list', filter.type.indexOf('White') >= 0 ? 'white' : 'black');
+          const result = map(flatten(chunkResult), 'value');
+          return forEach(result, (filter) => {
+            set(filter, 'shortType', startsWith(filter.type, 'incoming') ? 'incoming' : 'outgoing');
+            set(filter, 'list', filter.type.indexOf('White') >= 0 ? 'white' : 'black');
           });
         }));
   };
@@ -110,11 +120,11 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsFilteringCtrl'
     switch (action) {
       case 'screen':
         return {
-          outgoingScreenList: _.get(self, 'screen.modified.outgoingScreenList'),
-          incomingScreenList: _.get(self, 'screen.modified.incomingScreenList'),
+          outgoingScreenList: get(self, 'screen.modified.outgoingScreenList'),
+          incomingScreenList: get(self, 'screen.modified.incomingScreenList'),
         };
       case 'options':
-        return _.get(self, 'options.modified');
+        return get(self, 'options.modified');
       default:
         return false;
     }
@@ -141,7 +151,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsFilteringCtrl'
   };
 
   self.onBulkError = function (error) {
-    TucToast.error([$translate.instant('telephony_line_calls_filtering_bulk_on_error'), _.get(error, 'msg.data')].join(' '));
+    TucToast.error([$translate.instant('telephony_line_calls_filtering_bulk_on_error'), get(error, 'msg.data')].join(' '));
   };
 
   self.updateScreen = function (type) {
@@ -176,10 +186,10 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsFilteringCtrl'
       .setOptions({
         billingAccount: $stateParams.billingAccount,
         serviceName: $stateParams.serviceName,
-      }, _.pick(self.options.modified, opt))
+      }, pick(self.options.modified, opt))
       .$promise
       .then(() => {
-        _.assign(self.options.raw, _.pick(self.options.modified, opt));
+        assign(self.options.raw, pick(self.options.modified, opt));
         $timeout(angular.noop, 500);
       })
       .catch(err => new TucToastError(err))

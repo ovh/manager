@@ -1,4 +1,8 @@
-angular.module('managerApp').controller('voipTimeConditionSlotEditCtrl', function ($scope, $timeout, $filter, $q, TelephonyMediator) {
+import filter from 'lodash/filter';
+import isEmpty from 'lodash/isEmpty';
+import sortBy from 'lodash/sortBy';
+
+angular.module('managerApp').controller('voipTimeConditionSlotEditCtrl', function voipTimeConditionSlotEditCtrl($scope, $timeout, $filter, $q, TelephonyMediator) {
   const self = this;
 
   self.loading = {
@@ -52,7 +56,7 @@ angular.module('managerApp').controller('voipTimeConditionSlotEditCtrl', functio
   };
 
   self.isSlotValid = function () {
-    return !_.isEmpty(self.slot.number);
+    return !isEmpty(self.slot.number);
   };
 
   /* -----  End of HELPERS  ------*/
@@ -130,7 +134,7 @@ angular.module('managerApp').controller('voipTimeConditionSlotEditCtrl', functio
     =            INITIALIZATION            =
     ====================================== */
 
-  self.$onInit = function () {
+  self.$onInit = function onInit() {
     self.loading.init = true;
 
     return $q.allSettled([
@@ -150,10 +154,13 @@ angular.module('managerApp').controller('voipTimeConditionSlotEditCtrl', functio
       }
 
       // sort and filter groups and reject groups that don't have any service
-      self.groups = _.chain(TelephonyMediator.groups)
-        .filter(group => group.getAllServices().length > 0)
-        .sortBy(group => group.getDisplayedName())
-        .value();
+      self.groups = sortBy(
+        filter(
+          TelephonyMediator.groups,
+          group => group.getAllServices().length > 0,
+        ),
+        group => group.getDisplayedName(),
+      );
     }).finally(() => {
       self.loading.init = false;
     });

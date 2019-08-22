@@ -1,3 +1,6 @@
+import get from 'lodash/get';
+import isEqual from 'lodash/isEqual';
+
 angular.module('managerApp').factory('TelephonyGroupNumberEasyPabx', ($q, VoipScheduler, VoipTimeCondition, OvhApiTelephonyEasyPabx) => {
   /*= ==================================
     =            CONSTRUCTOR            =
@@ -87,7 +90,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberEasyPabx', ($q, VoipSc
     }
 
     if (attr) {
-      return !_.isEqual(_.get(self.saveForEdition, attr), _.get(self, attr));
+      return !isEqual(get(self.saveForEdition, attr), get(self, attr));
     }
     return self.hasChange('featureType');
   };

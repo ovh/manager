@@ -1,3 +1,14 @@
+import get from 'lodash/get';
+import groupBy from 'lodash/groupBy';
+import isEmpty from 'lodash/isEmpty';
+import isEqual from 'lodash/isEqual';
+import keys from 'lodash/keys';
+import round from 'lodash/round';
+import set from 'lodash/set';
+import sortBy from 'lodash/sortBy';
+import sumBy from 'lodash/sumBy';
+import union from 'lodash/union';
+
 angular.module('managerApp').controller('TelecomTelephonyAliasDashboardController', class TelecomTelephonyAliasHomeController {
   constructor(
     $q, $state, $stateParams, $translate, $uibModal,
@@ -64,7 +75,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasDashboardControlle
         return null;
       }).catch((error) => {
         this.TucToast.error(
-          `${this.$translate.instant('telephony_alias_load_error')} ${_.get(error, 'data.message', error.message)}`,
+          `${this.$translate.instant('telephony_alias_load_error')} ${get(error, 'data.message', error.message)}`,
         );
       }).finally(() => {
         this.loading = false;
@@ -78,7 +89,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasDashboardControlle
     }, this.alias.featureType)
       .then(({ destination }) => this.tucVoipService.fetchAll().then((allServices) => {
         const [destinationLine] = allServices
-          .filter(({ serviceName }) => _.isEqual(serviceName, destination));
+          .filter(({ serviceName }) => isEqual(serviceName, destination));
         return destinationLine;
       }))
       .catch(error => error);
@@ -88,7 +99,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasDashboardControlle
     function transformIncomingCallsData(calls) {
       return calls.filter(call => call.wayType !== 'outgoing')
         .map((call) => {
-          _.set(call, 'durationAsDate', new Date(call.duration * 1000));
+          set(call, 'durationAsDate', new Date(call.duration * 1000));
           return call;
         });
     }
@@ -96,7 +107,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasDashboardControlle
     function transformOutgoingCallsData(calls) {
       return calls.filter(call => call.wayType !== 'incoming' && call.duration > 0)
         .map((call) => {
-          _.set(call, 'durationAsDate', new Date(call.duration * 1000));
+          set(call, 'durationAsDate', new Date(call.duration * 1000));
           return call;
         });
     }
@@ -108,13 +119,13 @@ angular.module('managerApp').controller('TelecomTelephonyAliasDashboardControlle
 
         this.consumption.incoming = {
           total: incomingCalls.length,
-          duration: new Date(_.sum(incomingCalls, call => call.duration) * 1000),
+          duration: new Date(sumBy(incomingCalls, call => call.duration) * 1000),
         };
 
         this.consumption.outgoing = {
           total: outgoingCalls.length,
-          duration: new Date(_.sum(outgoingCalls, call => call.duration) * 1000),
-          outplan: _.round(_.sum(
+          duration: new Date(sumBy(outgoingCalls, call => call.duration) * 1000),
+          outplan: round(sumBy(
             outgoingCalls.filter(call => call.planType === 'outplan' && call.priceWithoutTax),
             call => call.priceWithoutTax.value,
           ), 2),
@@ -141,15 +152,21 @@ angular.module('managerApp').controller('TelecomTelephonyAliasDashboardControlle
       { callDate: moment(call.creationDatetime).format('YYYY-MM-DD').toString() }
     ));
 
-    const xAxisKeys = _.chain(_incomingCalls)
-      .union(_outgoingCalls)
-      .sortBy('callDate')
-      .groupBy('callDate')
-      .keys()
-      .value();
+    const xAxisKeys = keys(
+      groupBy(
+        sortBy(
+          union(
+            _incomingCalls,
+            _outgoingCalls,
+          ),
+          'callDate',
+        ),
+        'callDate',
+      ),
+    );
 
     function convertCallsToChartData(calls) {
-      const groupedCalls = _.groupBy(calls, 'callDate');
+      const groupedCalls = groupBy(calls, 'callDate');
 
       return xAxisKeys.map(key => ({
         x: key,
@@ -157,7 +174,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasDashboardControlle
       }));
     }
 
-    if (_.isEmpty(xAxisKeys)) {
+    if (isEmpty(xAxisKeys)) {
       this.consumption.chart.options.scales.xAxes = [];
     } else {
       this.consumption.chart.addSerie(
@@ -189,7 +206,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasDashboardControlle
     }).catch((error) => {
       if (error) {
         this.TucToast.error(
-          `${this.$translate.instant('telephony_alias_delete_ko')} ${_.get(error, 'data.message', error.message)}`,
+          `${this.$translate.instant('telephony_alias_delete_ko')} ${get(error, 'data.message', error.message)}`,
         );
       }
     });

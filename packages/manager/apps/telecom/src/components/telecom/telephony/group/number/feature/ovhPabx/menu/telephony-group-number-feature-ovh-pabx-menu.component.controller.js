@@ -1,3 +1,8 @@
+import get from 'lodash/get';
+import indexOf from 'lodash/indexOf';
+import isNumber from 'lodash/isNumber';
+import uniqueId from 'lodash/uniqueId';
+
 angular.module('managerApp').controller('telephonyNumberOvhPabxMenuCtrl', function ($q, $scope, $timeout, $translate, $translatePartialLoader, TucToast, TELEPHONY_NUMBER_JSPLUMB_ENDPOINTS_OPTIONS, TELEPHONY_NUMBER_JSPLUMB_CONNECTIONS_OPTIONS) {
   const self = this;
 
@@ -21,7 +26,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxMenuCtrl', functi
 
   self.jsPlumbEndpointsOptions = TELEPHONY_NUMBER_JSPLUMB_ENDPOINTS_OPTIONS;
   self.jsPlumbConnectionsOptions = TELEPHONY_NUMBER_JSPLUMB_CONNECTIONS_OPTIONS;
-  self.uuid = _.uniqueId('ovhPabx_menu_');
+  self.uuid = uniqueId('ovhPabx_menu_');
   self.parentCtrl = null;
 
   /*= ==============================
@@ -56,11 +61,11 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxMenuCtrl', functi
     if (!entry) {
       entry = self.menuEntry;
     }
-    return _.get(entry.inEdition ? entry.saveForEdition : entry, attr);
+    return get(entry.inEdition ? entry.saveForEdition : entry, attr);
   };
 
   self.getRuleAttr = function (attr) {
-    return _.get(self.dialplanRule.inEdition
+    return get(self.dialplanRule.inEdition
       ? self.dialplanRule.saveForEdition : self.dialplanRule, attr);
   };
 
@@ -68,14 +73,14 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxMenuCtrl', functi
     if (!self.extensionCtrl) {
       return 1;
     }
-    return _.indexOf(self.dialplanRule.negativeAction
+    return indexOf(self.dialplanRule.negativeAction
       ? self.extensionCtrl.extension.negativeRules
       : self.extensionCtrl.extension.rules, self.dialplanRule) + 1;
   };
 
   self.getEntryMenu = function (entry) {
     const entryActionParam = self.getEntryAttr('actionParam', entry);
-    if (_.isNumber(entryActionParam)) {
+    if (isNumber(entryActionParam)) {
       return self.ovhPabx.getMenu(entryActionParam);
     }
     return entry.menuSub;
@@ -145,7 +150,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxMenuCtrl', functi
         if (error.status === 403) {
           errorTranslationKey = 'telephony_number_feature_ovh_pabx_menu_action_delete_error_used';
         }
-        TucToast.error([$translate.instant(errorTranslationKey), _.get(error, 'data.message') || ''].join(' '));
+        TucToast.error([$translate.instant(errorTranslationKey), get(error, 'data.message') || ''].join(' '));
         return $q.reject(error);
       });
     }
@@ -155,7 +160,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxMenuCtrl', functi
         self.menuEntry = null;
         self.menuCtrl.checkForDisplayHelpers();
       }).catch((error) => {
-        TucToast.error([$translate.instant('telephony_number_feature_ovh_pabx_menu_entry_delete_error'), _.get(error, 'data.message') || ''].join(' '));
+        TucToast.error([$translate.instant('telephony_number_feature_ovh_pabx_menu_entry_delete_error'), get(error, 'data.message') || ''].join(' '));
         return $q.reject(error);
       });
     } if (self.dialplanRule) {
@@ -164,7 +169,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxMenuCtrl', functi
         self.dialplanRule = null;
         self.extensionCtrl.checkForDisplayHelpers();
       }).catch((error) => {
-        TucToast.error([$translate.instant('telephony_number_feature_ovh_pabx_menu_entry_delete_error'), _.get(error, 'data.message') || ''].join(' '));
+        TucToast.error([$translate.instant('telephony_number_feature_ovh_pabx_menu_entry_delete_error'), get(error, 'data.message') || ''].join(' '));
         return $q.reject(error);
       });
     }
@@ -265,7 +270,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxMenuCtrl', functi
     self.parentCtrl = self.menuCtrl || self.extensionCtrl || {};
 
     // set controller uuid
-    self.uuid = _.uniqueId('ovhPabx_menu_'.concat(_.get(self.menu, 'menuId', '')));
+    self.uuid = uniqueId('ovhPabx_menu_'.concat(get(self.menu, 'menuId', '')));
 
     return $q.all(initPromises).finally(() => {
       self.loading.init = false;

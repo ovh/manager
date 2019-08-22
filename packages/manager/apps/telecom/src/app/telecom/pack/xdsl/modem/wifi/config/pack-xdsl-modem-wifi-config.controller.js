@@ -1,3 +1,12 @@
+import find from 'lodash/find';
+import findIndex from 'lodash/findIndex';
+import flatten from 'lodash/flatten';
+import get from 'lodash/get';
+import isEqual from 'lodash/isEqual';
+import map from 'lodash/map';
+import set from 'lodash/set';
+import some from 'lodash/some';
+
 angular.module('managerApp')
   .controller('XdslModemWifiConfigCtrl', function ($state, $q, $timeout, $stateParams, $translate, TucToast, OvhApiXdsl, TucPackXdslModemMediator, OvhApiXdslModemAvailableWLANChannel) {
     const self = this;
@@ -37,7 +46,7 @@ angular.module('managerApp')
 
       wifiFields.forEach((field) => {
         if (self.hasConfigFieldChanged(field)) {
-          _.set(wifiTmp, field, _.get(self.wifi, field));
+          set(wifiTmp, field, get(self.wifi, field));
         }
       });
 
@@ -56,7 +65,7 @@ angular.module('managerApp')
           self.resetKey();
 
           // replace wifi in list
-          self.wifis.splice(_.findIndex(self.wifis, {
+          self.wifis.splice(findIndex(self.wifis, {
             wifiName: self.wifi.wifiName,
           }), 1, self.wifi);
           self.wifi = null;
@@ -68,7 +77,7 @@ angular.module('managerApp')
         self.mediator.tasks.changeModemConfigWLAN = true;
         return data;
       }, (err) => {
-        TucToast.error([$translate.instant('xdsl_modem_wifi_write_error'), _.get(err, 'data.message')].join(' '));
+        TucToast.error([$translate.instant('xdsl_modem_wifi_write_error'), get(err, 'data.message')].join(' '));
         return $q.reject(err);
       });
     };
@@ -93,27 +102,27 @@ angular.module('managerApp')
     self.hasConfigFieldChanged = function (field, originalWifi) {
       let original = originalWifi;
       if (!original) {
-        original = _.find(self.wifis, {
+        original = find(self.wifis, {
           wifiName: self.wifi.wifiName,
         });
       }
 
-      return !_.isEqual(_.get(original, field), _.get(self.wifi, field));
+      return !isEqual(get(original, field), get(self.wifi, field));
     };
 
     self.hasConfigChange = function () {
-      const original = _.find(self.wifis, {
+      const original = find(self.wifis, {
         wifiName: self.wifi.wifiName,
       });
 
-      return _.some(_.flatten([wifiFields, ['key', 'key2']]), field => self.hasConfigFieldChanged(field, original));
+      return some(flatten([wifiFields, ['key', 'key2']]), field => self.hasConfigFieldChanged(field, original));
     };
 
     /**
      *  Used to avoid refresh of name in section header title when editing
      */
     self.getWifiSsid = function () {
-      return _.find(self.wifis, {
+      return find(self.wifis, {
         wifiName: self.wifi.wifiName,
       }).SSID;
     };
@@ -125,7 +134,7 @@ angular.module('managerApp')
           xdslId: $stateParams.serviceName,
           frequency: wifi.frequency,
         }).$promise.then((channelList) => {
-          self.fields.channelMode = _.flatten(['Auto', channelList]);
+          self.fields.channelMode = flatten(['Auto', channelList]);
         });
       }
       self.wifi = angular.copy(wifi);
@@ -150,13 +159,13 @@ angular.module('managerApp')
       }).then((response) => {
         self.modem = response.modem;
 
-        self.wifis = _.map(response.wifi, (wifi) => {
-          _.set(wifi, 'channelCustom', wifi.channelMode === 'Auto' ? 'Auto' : wifi.channel);
+        self.wifis = map(response.wifi, (wifi) => {
+          set(wifi, 'channelCustom', wifi.channelMode === 'Auto' ? 'Auto' : wifi.channel);
           return wifi;
         }).sort(wifiA => (wifiA.wifiName === 'defaultWIFI' ? -1 : 1));
 
         if (self.wifis.length === 1) {
-          self.setSelectedWifi(_.find(response.wifi, {
+          self.setSelectedWifi(find(response.wifi, {
             wifiName: 'defaultWIFI',
           }));
         }

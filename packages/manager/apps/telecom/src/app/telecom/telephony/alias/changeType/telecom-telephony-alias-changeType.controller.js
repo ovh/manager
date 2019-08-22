@@ -1,3 +1,6 @@
+import get from 'lodash/get';
+import isEqual from 'lodash/isEqual';
+
 angular.module('managerApp').controller('TelecomTelephonyAliasChangeTypeCtrl', class TelecomTelephonyAliasChangeTypeCtrl {
   constructor(
     $q, $state, $stateParams, $translate, $uibModal,
@@ -49,7 +52,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasChangeTypeCtrl', c
       return this.number;
     }).catch((error) => {
       this.TucToast.error(
-        `${this.$translate.instant('telephony_alias_load_error')} ${_.get(error, 'data.message', '')}`,
+        `${this.$translate.instant('telephony_alias_load_error')} ${get(error, 'data.message', '')}`,
       );
     }).finally(() => {
       this.loading = false;
@@ -74,7 +77,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasChangeTypeCtrl', c
   }
 
   confirmChoice() {
-    if (!_(this.number.featureType).isEqual('empty')) {
+    if (!isEqual(this.number.featureType, 'empty')) {
       const validChoiceModal = this.$uibModal.open({
         templateUrl: 'app/telecom/telephony/alias/changeType/confirm/telecom-telephony-alias-changeType-confirm.html',
         controller: 'TelecomTelephonyAliasChangeTypeConfirmCtrl',
@@ -105,9 +108,9 @@ angular.module('managerApp').controller('TelecomTelephonyAliasChangeTypeCtrl', c
         this.$state.reload();
       });
     }).catch((error) => {
-      if (!_(error.type).isEqual('poller')) {
+      if (!isEqual(error.type, 'poller')) {
         this.TucToast.error(
-          `${this.$translate.instant('telephony_alias_change_type_ko')} ${_.get(error, 'data.message', '')}`,
+          `${this.$translate.instant('telephony_alias_change_type_ko')} ${get(error, 'data.message', '')}`,
         );
       }
     }).finally(() => {
@@ -209,7 +212,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasChangeTypeCtrl', c
   onBulkError() {
     return (error) => {
       this.TucToast.error(
-        `${this.$translate.instant('telephony_alias_config_change_type_bulk_on_error')} ${_.get(error, 'msg.data', '')}`,
+        `${this.$translate.instant('telephony_alias_config_change_type_bulk_on_error')} ${get(error, 'msg.data', '')}`,
       );
     };
   }

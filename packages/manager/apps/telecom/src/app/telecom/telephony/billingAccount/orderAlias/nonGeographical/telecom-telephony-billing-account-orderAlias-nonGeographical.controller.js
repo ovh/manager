@@ -1,3 +1,9 @@
+import find from 'lodash/find';
+import forEach from 'lodash/forEach';
+import head from 'lodash/head';
+import mapKeys from 'lodash/mapKeys';
+import pick from 'lodash/pick';
+
 angular.module('managerApp').controller('TelecomTelephonyAliasOrderNonGeographicalCtrl', function (
   $q, $translate, $stateParams,
   OvhApiTelephony, OvhApiOrder, TelecomTelephonyBillingAccountOrderAliasService,
@@ -22,12 +28,12 @@ angular.module('managerApp').controller('TelecomTelephonyAliasOrderNonGeographic
         self.predefinedNumbers = data.pool;
         self.prices = data.prices;
         self.contracts = data.contracts;
-        _.forEach(Object.keys(self.prices), (name) => {
+        forEach(Object.keys(self.prices), (name) => {
           self.prices[name].title = $translate.instant(['telephony', 'order', 'number', 'type', name, 'label'].join('_'));
         });
         if (self.predefinedNumbers) {
-          self.form.premium = _.first(self.predefinedNumbers.premium);
-          self.form.common = _.first(self.predefinedNumbers.common);
+          self.form.premium = head(self.predefinedNumbers.premium);
+          self.form.common = head(self.predefinedNumbers.common);
         }
         return data;
       },
@@ -57,7 +63,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasOrderNonGeographic
         self.redirectionSDA = {};
         self.redirectionSDA.prices = data.prices;
         self.redirectionSDA.contracts = data.contracts;
-        _.mapKeys(self.redirectionSDA.prices, (value, name) => {
+        mapKeys(self.redirectionSDA.prices, (value, name) => {
           self.redirectionSDA.prices[name].title = $translate.instant(['telephony', 'order', 'number', 'type', name, 'label'].join('_'));
         });
         return data;
@@ -168,7 +174,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasOrderNonGeographic
         'socialNomination',
       ]);
     }
-    const form = _.pick(this.form, filter);
+    const form = pick(this.form, filter);
 
     // check if SDA redirection only is displayed
     if (this.showSDASelector) {
@@ -238,7 +244,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasOrderNonGeographic
     }));
 
     self.form = {
-      amount: _.find(
+      amount: find(
         self.preAmount,
         {
           value: 1,

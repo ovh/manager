@@ -1,3 +1,5 @@
+import snakeCase from 'lodash/snakeCase';
+
 angular.module('managerApp').factory('TelecomTelephonyLineCallsForward', ($translate) => {
   /**
          * Forward object
@@ -6,7 +8,7 @@ angular.module('managerApp').factory('TelecomTelephonyLineCallsForward', ($trans
          */
   const TelecomTelephonyLineCallsForward = function TelecomTelephonyLineCallsForward(options, key) {
     this.type = key;
-    this.label = $translate.instant(`telephony_line_actions_line_calls_forward_${_.snakeCase(key)}_title`);
+    this.label = $translate.instant(`telephony_line_actions_line_calls_forward_${snakeCase(key)}_title`);
     this.nature = options[`forward${key}Nature`];
     const number = options[`forward${key}Number`];
     if (number && number.type) {
@@ -17,8 +19,8 @@ angular.module('managerApp').factory('TelecomTelephonyLineCallsForward', ($trans
       }
     }
     this.enable = options[`forward${key}`];
-    this.delayLabelBefore = $translate.instant(`telephony_line_actions_line_calls_forward_${_.snakeCase(key)}_before`);
-    this.delayLabelAfter = $translate.instant(`telephony_line_actions_line_calls_forward_${_.snakeCase(key)}_after`);
+    this.delayLabelBefore = $translate.instant(`telephony_line_actions_line_calls_forward_${snakeCase(key)}_before`);
+    this.delayLabelAfter = $translate.instant(`telephony_line_actions_line_calls_forward_${snakeCase(key)}_after`);
     this.delay = options[`forward${key}Delay`];
     this.hasDelay = key === 'NoReply';
     this.master = key === 'Unconditional';

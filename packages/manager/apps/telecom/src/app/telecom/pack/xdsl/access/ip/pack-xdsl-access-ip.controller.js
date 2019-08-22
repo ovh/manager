@@ -1,3 +1,6 @@
+import find from 'lodash/find';
+import set from 'lodash/set';
+
 angular.module('managerApp').controller('XdslAccessIpCtrl', function ($stateParams, OvhApiXdslIps, TucToastError, TucIpAddress, tucValidator) {
   const self = this;
   this.validator = tucValidator;
@@ -45,7 +48,7 @@ angular.module('managerApp').controller('XdslAccessIpCtrl', function ($statePara
    * @returns {boolean}
    */
   this.canAdd = function () {
-    return !_.find(self.ips, { editing: true });
+    return !find(self.ips, { editing: true });
   };
 
   /**
@@ -76,14 +79,14 @@ angular.module('managerApp').controller('XdslAccessIpCtrl', function ($statePara
    * @param {Object} ip Reverse to delete
    */
   this.delete = function (ip) {
-    _.set(ip, 'updating', true);
+    set(ip, 'updating', true);
     OvhApiXdslIps.v6().deleteReverse({
       ipBlock: decodeURIComponent($stateParams.block),
       ipReverse: ip.ipReverse,
     }, null).$promise.then(() => {
       self.undo(ip);
     }, (err) => {
-      _.set(ip, 'updating', false);
+      set(ip, 'updating', false);
       return new TucToastError(err);
     });
   };
@@ -93,7 +96,7 @@ angular.module('managerApp').controller('XdslAccessIpCtrl', function ($statePara
    * @param {Object} ip Reverse to create
    */
   this.create = function (ip) {
-    _.set(ip, 'updating', true);
+    set(ip, 'updating', true);
     OvhApiXdslIps.v6().createReverse({
       ipBlock: decodeURIComponent($stateParams.block),
     }, {

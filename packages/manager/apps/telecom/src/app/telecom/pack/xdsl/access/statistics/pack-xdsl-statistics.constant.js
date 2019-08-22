@@ -1,3 +1,6 @@
+import get from 'lodash/get';
+import head from 'lodash/head';
+
 angular.module('managerApp').constant('PACK_XDSL_STATISTICS', {
   chart: {
     type: 'line',
@@ -21,7 +24,7 @@ angular.module('managerApp').constant('PACK_XDSL_STATISTICS', {
         intersect: false,
         callbacks: {
           title(data) {
-            const timestamp = moment(_.get(_.first(data), 'xLabel'));
+            const timestamp = moment(get(head(data), 'xLabel'));
             return timestamp.fromNow();
           },
         },

@@ -1,3 +1,6 @@
+import set from 'lodash/set';
+import sumBy from 'lodash/sumBy';
+
 angular.module('managerApp').controller('TelecomTelephonyServiceConsumptionIncomingCallsCtrl', function ($stateParams, $q, $translate, $filter, $timeout, OvhApiTelephony, TucToastError, tucVoipService) {
   const self = this;
 
@@ -7,12 +10,12 @@ angular.module('managerApp').controller('TelecomTelephonyServiceConsumptionIncom
       serviceName: $stateParams.serviceName,
     }).then(result => result.filter(conso => conso.wayType !== 'outgoing')
       .map((conso) => {
-        _.set(conso, 'durationAsDate', new Date(conso.duration * 1000));
+        set(conso, 'durationAsDate', new Date(conso.duration * 1000));
         if (conso.wayType === 'incoming' && conso.duration === 0) {
-          _.set(conso, 'wayType', 'missing');
+          set(conso, 'wayType', 'missing');
         }
         if (/anonymous/.test(conso.calling)) {
-          _.set(conso, 'calling', $translate.instant('telephony_service_consumption_anonymous'));
+          set(conso, 'calling', $translate.instant('telephony_service_consumption_anonymous'));
         }
         return conso;
       }));
@@ -44,7 +47,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceConsumptionIncom
     fetchIncomingConsumption().then((result) => {
       self.consumption.raw = angular.copy(result);
       self.consumption.sorted = angular.copy(result);
-      self.consumption.durationSum = new Date(_.sum(self.consumption.raw,
+      self.consumption.durationSum = new Date(sumBy(self.consumption.raw,
         conso => conso.duration) * 1000);
     }, err => new TucToastError(err));
   }

@@ -1,3 +1,7 @@
+import filter from 'lodash/filter';
+import head from 'lodash/head';
+import map from 'lodash/map';
+
 angular.module('managerApp').controller('TelecomTelephonyBillingAccountAdministrationDeleteGroup', function ($stateParams, $q, $translate, OvhApiTelephony, TucToast, TucToastError) {
   const self = this;
 
@@ -6,7 +10,7 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountAdministr
       .query({
         billingAccount,
       }).$promise
-      .then(offerTaskIds => $q.all(_.map(offerTaskIds, id => OvhApiTelephony.OfferTask().v6().get({
+      .then(offerTaskIds => $q.all(map(offerTaskIds, id => OvhApiTelephony.OfferTask().v6().get({
         billingAccount,
         taskId: id,
       }).$promise)));
@@ -14,7 +18,7 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountAdministr
 
   function fetchTerminationTask() {
     return getOfferTaskList($stateParams.billingAccount).then((offerTaskList) => {
-      self.task = _.head(_.filter(offerTaskList, { action: 'termination', status: 'todo', type: 'offer' }));
+      self.task = head(filter(offerTaskList, { action: 'termination', status: 'todo', type: 'offer' }));
       return self.task;
     });
   }

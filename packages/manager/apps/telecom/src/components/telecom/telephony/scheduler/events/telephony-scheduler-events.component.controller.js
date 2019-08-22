@@ -1,3 +1,6 @@
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+
 angular.module('managerApp').controller('TelephonySchedulerEventsCtrl', function ($filter, telephonyScheduler) {
   const self = this;
 
@@ -114,7 +117,7 @@ angular.module('managerApp').controller('TelephonySchedulerEventsCtrl', function
   };
 
   function getFirstAvailableCategory() {
-    return _.find(self.categories, category => !self.scheduler.isEventInExistingRange({
+    return find(self.categories, category => !self.scheduler.isEventInExistingRange({
       categories: category,
       dateStart: self.event.dateStart,
       dateEnd: self.event.dateEnd,
@@ -223,7 +226,7 @@ angular.module('managerApp').controller('TelephonySchedulerEventsCtrl', function
     self.timeSlots = createTimeSlots();
 
     return telephonyScheduler.getAvailableCategories().then((categories) => {
-      self.categories = _.filter(
+      self.categories = filter(
         categories,
         category => (self.timeCondition ? self.convertCategoryToSlot(category) : true),
       );

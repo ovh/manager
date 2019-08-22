@@ -1,3 +1,10 @@
+import chunk from 'lodash/chunk';
+import flatten from 'lodash/flatten';
+import get from 'lodash/get';
+import map from 'lodash/map';
+import pick from 'lodash/pick';
+import sortBy from 'lodash/sortBy';
+
 angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationRecordsOvhPabxCtrl', function ($q, $stateParams, TelephonyMediator, OvhApiTelephony, TucToastError) {
   const self = this;
 
@@ -11,12 +18,12 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationRecor
         billingAccount: $stateParams.billingAccount,
         serviceName: $stateParams.serviceName,
       }).$promise
-      .then(ids => $q.all(_.map(ids, id => OvhApiTelephony.OvhPabx().Hunting().Queue().v6()
+      .then(ids => $q.all(map(ids, id => OvhApiTelephony.OvhPabx().Hunting().Queue().v6()
         .get({
           billingAccount: $stateParams.billingAccount,
           serviceName: $stateParams.serviceName,
           queueId: id,
-        }).$promise)).then(queues => _.sortBy(queues, 'queueId')));
+        }).$promise)).then(queues => sortBy(queues, 'queueId')));
   };
 
   self.fetchRecords = function () {
@@ -27,15 +34,15 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationRecor
         serviceName: $stateParams.serviceName,
       }).$promise
       .then(recordsIds => $q
-        .all(_.map(
-          _.chunk(recordsIds, 50),
+        .all(map(
+          chunk(recordsIds, 50),
           chunkIds => OvhApiTelephony.OvhPabx().Records().v6().getBatch({
             billingAccount: $stateParams.billingAccount,
             serviceName: $stateParams.serviceName,
             id: chunkIds,
           }).$promise,
         ))
-        .then(chunkResult => _.pluck(_.flatten(chunkResult), 'value')));
+        .then(chunkResult => map(flatten(chunkResult), 'value')));
   };
 
   /* -----  End of HELPERS  ------*/
@@ -50,12 +57,12 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationRecor
       .change({
         billingAccount: $stateParams.billingAccount,
         serviceName: $stateParams.serviceName,
-        queueId: _.get(queue, 'queueId'),
-      }, _.pick(queue, attrs)).$promise;
+        queueId: get(queue, 'queueId'),
+      }, pick(queue, attrs)).$promise;
   };
 
   self.deleteSelectedRecords = function (records) {
-    return $q.all(_.map(records, record => OvhApiTelephony.OvhPabx().Records().v6().remove({
+    return $q.all(map(records, record => OvhApiTelephony.OvhPabx().Records().v6().remove({
       billingAccount: $stateParams.billingAccount,
       serviceName: $stateParams.serviceName,
       id: record.id,

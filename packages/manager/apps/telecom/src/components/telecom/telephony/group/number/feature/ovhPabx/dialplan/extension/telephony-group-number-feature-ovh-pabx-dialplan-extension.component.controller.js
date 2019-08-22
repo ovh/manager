@@ -1,3 +1,9 @@
+import get from 'lodash/get';
+import isNumber from 'lodash/isNumber';
+import set from 'lodash/set';
+import some from 'lodash/some';
+import uniqueId from 'lodash/uniqueId';
+
 angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanExtensionCtrl', function ($q, $scope, $timeout, $translate, TucToast, TUC_UI_SORTABLE_HELPERS) {
   const self = this;
   let redrawInterval = null;
@@ -30,7 +36,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanExtension
     =============================== */
 
   self.isLoading = function () {
-    return self.loading.init || (self.extension && (['OK', 'DELETE_PENDING'].indexOf(self.extension.status) === -1 || _.some(self.extension.screenListConditions, screenListCondition => ['CREATING', 'DELETING'].indexOf(screenListCondition.state) !== -1) || _.some(self.extension.timeConditions, timeCondition => ['CREATING', 'DELETING'].indexOf(timeCondition.state) !== -1)));
+    return self.loading.init || (self.extension && (['OK', 'DELETE_PENDING'].indexOf(self.extension.status) === -1 || some(self.extension.screenListConditions, screenListCondition => ['CREATING', 'DELETING'].indexOf(screenListCondition.state) !== -1) || some(self.extension.timeConditions, timeCondition => ['CREATING', 'DELETING'].indexOf(timeCondition.state) !== -1)));
   };
 
   self.startRedraw = function () {
@@ -52,7 +58,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanExtension
   };
 
   self.getExtensionAttr = function (attr) {
-    return _.get(self.extension.inEdition ? self.extension.saveForEdition : self.extension, attr);
+    return get(self.extension.inEdition ? self.extension.saveForEdition : self.extension, attr);
   };
 
   self.extensionHasConditions = function () {
@@ -60,12 +66,12 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanExtension
   };
 
   self.getRuleAttr = function (attr, rule) {
-    return _.get(rule.inEdition ? rule.saveForEdition : rule, attr);
+    return get(rule.inEdition ? rule.saveForEdition : rule, attr);
   };
 
   self.getRuleMenu = function (rule) {
     const ruleActionParam = self.getRuleAttr('actionParam', rule);
-    if (_.isNumber(ruleActionParam)) {
+    if (isNumber(ruleActionParam)) {
       return self.numberCtrl.number.feature.getMenu(ruleActionParam);
     }
     return rule.ivrMenu;
@@ -182,7 +188,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanExtension
   self.onExtensionCollapsed = function (isNegative) {
     self.numberCtrl.jsplumbInstance.customRepaint().then(() => {
       setConnectionVisibility(true);
-      _.set(self.displayHelpers, isNegative ? 'negativeExpanded' : 'expanded', false);
+      set(self.displayHelpers, isNegative ? 'negativeExpanded' : 'expanded', false);
     });
   };
 
@@ -197,7 +203,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanExtension
   };
 
   self.onExtensionExpanding = function (isNegative) {
-    _.set(self.displayHelpers, isNegative ? 'negativeExpanded' : 'expanded', true);
+    set(self.displayHelpers, isNegative ? 'negativeExpanded' : 'expanded', true);
   };
 
   /* -----  End of ACTIONS  ------*/
@@ -239,7 +245,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanExtension
         $timeout(() => {
           // update extensions rules positions
           angular.forEach(self.extension.rules, (rule, index) => {
-            _.set(rule, 'position', index + 1);
+            set(rule, 'position', index + 1);
           });
 
           // call api to update all positions
@@ -254,7 +260,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanExtension
         $timeout(() => {
           // update extensions rules positions
           angular.forEach(self.extension.negativeRules, (rule, index) => {
-            _.set(rule, 'position', index + 1);
+            set(rule, 'position', index + 1);
           });
 
           // call api to update all positions
@@ -265,7 +271,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanExtension
 
     self.ovhPabx = self.numberCtrl.number.feature;
     self.dialplan = self.dialplanCtrl.dialplan;
-    self.uuid = _.uniqueId('ovhPabx_diaplan_extension_'.concat(self.extension.extensionId));
+    self.uuid = uniqueId('ovhPabx_diaplan_extension_'.concat(self.extension.extensionId));
 
     if (['DRAFT', 'IN_CREATION'].indexOf(self.extension.status) === -1) {
       initPromise = $q.allSettled([

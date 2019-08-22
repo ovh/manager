@@ -1,3 +1,6 @@
+import flatten from 'lodash/flatten';
+import map from 'lodash/map';
+
 angular
   .module('managerApp')
   .controller('TelecomTelephonyGuidesCtrl', class TelecomTelephonyGuidesCtrl {
@@ -26,7 +29,7 @@ angular
      * Count guides.
      */
     countGuides() {
-      this.count = _.flatten(_.map(this.guides.sections, section => section.guides)).length;
+      this.count = flatten(map(this.guides.sections, section => section.guides)).length;
     }
 
     /**

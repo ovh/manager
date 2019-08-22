@@ -1,3 +1,11 @@
+import endsWith from 'lodash/endsWith';
+import every from 'lodash/every';
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import get from 'lodash/get';
+import some from 'lodash/some';
+import trim from 'lodash/trim';
+
 angular.module('managerApp').controller('TelecomTelephonyLinePhoneCodecCtrl', function ($q, $stateParams, $translate, TelephonyMediator, TucToast, OvhApiTelephony, tucTelephonyBulk, tucVoipLinePhone) {
   const self = this;
   let codecsAuto = null;
@@ -20,15 +28,15 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneCodecCtrl', fu
 
   function refreshCodecs() {
     if (self.line.options.codecs) {
-      self.model.codecs = _.find(self.line.availableCodecs, {
-        value: _.trim(self.line.options.codecs, '_a'),
+      self.model.codecs = find(self.line.availableCodecs, {
+        value: trim(self.line.options.codecs, '_a'),
       });
 
-      codecsAuto = _.endsWith(self.line.options.codecs, '_a');
+      codecsAuto = endsWith(self.line.options.codecs, '_a');
 
       self.codecs = angular.extend({
-        isAutomaticActivated: _.endsWith(self.line.options.codecs, '_a'),
-      }, _.find(self.line.availableCodecs, {
+        isAutomaticActivated: endsWith(self.line.options.codecs, '_a'),
+      }, find(self.line.availableCodecs, {
         value: self.line.options.codecs.replace('_a', ''),
       }));
 
@@ -37,7 +45,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneCodecCtrl', fu
   }
 
   self.isAutomaticCodecEnabled = function () {
-    return _.every(self.line.availableCodecs, {
+    return every(self.line.availableCodecs, {
       automatic: true,
     });
   };
@@ -116,11 +124,11 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneCodecCtrl', fu
   };
 
   self.filterServices = function (services) {
-    const filteredServices = _.filter(services, service => ['sip', 'mgcp'].indexOf(service.featureType) > -1);
+    const filteredServices = filter(services, service => ['sip', 'mgcp'].indexOf(service.featureType) > -1);
 
     return tucVoipLinePhone
       .fetchAll()
-      .then(voipLinePhones => _.filter(filteredServices, service => _.some(voipLinePhones, {
+      .then(voipLinePhones => filter(filteredServices, service => some(voipLinePhones, {
         serviceName: service.serviceName,
         billingAccount: service.billingAccount,
       })));
@@ -156,7 +164,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneCodecCtrl', fu
   };
 
   self.onBulkError = function (error) {
-    TucToast.error([$translate.instant('telephony_line_phone_codec_bulk_on_error'), _.get(error, 'msg.data')].join(' '));
+    TucToast.error([$translate.instant('telephony_line_phone_codec_bulk_on_error'), get(error, 'msg.data')].join(' '));
   };
 
   /* -----  End of BULK  ------ */

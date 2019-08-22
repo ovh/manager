@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular.module('managerApp').controller('TelecomTelephonyLineTerminateCtrl', function ($stateParams, $state, TelephonyMediator, TucToast, $translate, tucTelephonyBulk) {
   const self = this;
 
@@ -107,7 +109,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineTerminateCtrl', fun
   };
 
   self.onBulkError = function (error) {
-    TucToast.error([$translate.instant('telephony_group_line_terminating_bulk_on_error'), _.get(error, 'msg.data')].join(' '));
+    TucToast.error([$translate.instant('telephony_group_line_terminating_bulk_on_error'), get(error, 'msg.data')].join(' '));
   };
 
   init();

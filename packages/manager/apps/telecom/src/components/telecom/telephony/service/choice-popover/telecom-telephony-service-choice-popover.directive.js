@@ -1,3 +1,5 @@
+import kebabCase from 'lodash/kebabCase';
+
 angular.module('managerApp').run(($translate, asyncLoader) => {
   asyncLoader.addTranslations(
     import(`./translations/Messages_${$translate.use()}.json`)
@@ -25,7 +27,7 @@ angular.module('managerApp').directive('voipServiceChoicePopover', $compile => (
         // add attribute to element to allow a popover on it
         tElement.attr('data-responsive-popover', "'components/telecom/telephony/service/choice-popover/telecom-telephony-service-choice-popover.html'");
         angular.forEach(tCtrl.popoverOptions, (optionValue, key) => {
-          const tmpAttrKey = `data-${_.kebabCase(key)}`;
+          const tmpAttrKey = `data-${kebabCase(key)}`;
           if (key !== 'popoverIsOpen') {
             tElement.attr(tmpAttrKey, optionValue);
           } else {

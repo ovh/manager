@@ -1,4 +1,12 @@
-angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationTimeConditionOldPabxCtrl', function (
+import filter from 'lodash/filter';
+import forEach from 'lodash/forEach';
+import get from 'lodash/get';
+import map from 'lodash/map';
+import set from 'lodash/set';
+import some from 'lodash/some';
+import sortBy from 'lodash/sortBy';
+
+angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationTimeConditionOldPabxCtrl', function TelecomTelephonyAliasConfigurationTimeConditionOldPabxCtrl(
   $q, $stateParams, $translate, $uibModal,
   OvhApiTelephony, TelephonyMediator, TucToast, uiCalendarConfig, tucTelephonyBulk,
   voipTimeCondition, VoipTimeConditionCondition, voipTimeConditionConfiguration,
@@ -24,7 +32,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationTimeC
   =============================== */
 
   self.hasChange = function () {
-    const isConditionsInEdition = _.some(self.number.feature.timeCondition.conditions, {
+    const isConditionsInEdition = some(self.number.feature.timeCondition.conditions, {
       inEdition: true,
     });
 
@@ -51,7 +59,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationTimeC
       });
     }, (error) => {
       self.number.feature.timeCondition.stopEdition(true).startEdition();
-      TucToast.error([$translate.instant('telephony_alias_configuration_time_condition_save_error'), _.get(error, 'data.message')].join(' '));
+      TucToast.error([$translate.instant('telephony_alias_configuration_time_condition_save_error'), get(error, 'data.message')].join(' '));
       return $q.reject(error);
     }).finally(() => {
       self.number.feature.timeCondition.status = 'OK';
@@ -78,15 +86,21 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationTimeC
 
   function getTimeoutEnum() {
     return TelephonyMediator.getApiModelEnum('telephony.TimeConditionsTimeoutEnum').then((values) => {
-      self.availableTimeoutValues = _.chain(values).map((valueParam) => {
-        const value = parseInt(valueParam, 10);
-        return {
-          value,
-          label: $translate.instant('telephony_time_condition_old_pabx_params_timeout_choice', {
-            value,
-          }),
-        };
-      }).sortBy('value').value();
+      self.availableTimeoutValues = sortBy(
+        map(
+          values,
+          (valueParam) => {
+            const value = parseInt(valueParam, 10);
+            return {
+              value,
+              label: $translate.instant('telephony_time_condition_old_pabx_params_timeout_choice', {
+                value,
+              }),
+            };
+          },
+        ),
+        'value',
+      );
     });
   }
 
@@ -106,7 +120,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationTimeC
         self.number.feature.timeCondition.startEdition();
       }));
     }).catch((error) => {
-      TucToast.error([$translate.instant('telephony_alias_configuration_time_condition_load_error'), _.get(error, 'data.message')].join(' '));
+      TucToast.error([$translate.instant('telephony_alias_configuration_time_condition_load_error'), get(error, 'data.message')].join(' '));
       return $q.reject(error);
     }).finally(() => {
       self.loading.init = false;
@@ -136,23 +150,23 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationTimeC
 
     modal.result.then((conditions) => {
       // Set existing condition state to delete
-      _.forEach(self.number.feature.timeCondition.conditions, (condition) => {
-        _.set(condition, 'state', 'TO_DELETE');
+      forEach(self.number.feature.timeCondition.conditions, (condition) => {
+        set(condition, 'state', 'TO_DELETE');
       });
 
       return self.number.feature.timeCondition.saveConditions().then(() => {
         self.number.feature.timeCondition.conditions = self.number.feature.timeCondition.conditions
-          .concat(_.map(conditions, (condition) => {
-            _.set(condition, 'billingAccount', $stateParams.billingAccount);
-            _.set(condition, 'serviceName', $stateParams.serviceName);
-            _.set(condition, 'state', 'TO_CREATE');
-            _.set(condition, 'featureType', 'easyHunting');
+          .concat(map(conditions, (condition) => {
+            set(condition, 'billingAccount', $stateParams.billingAccount);
+            set(condition, 'serviceName', $stateParams.serviceName);
+            set(condition, 'state', 'TO_CREATE');
+            set(condition, 'featureType', 'easyHunting');
 
-            _.set(condition, 'day', condition.weekDay);
-            _.set(condition, 'hourBegin', condition.timeFrom.split(':').slice(0, 2).join(''));
-            _.set(condition, 'hourEnd', condition.timeTo.split(':').slice(0, 2).join(''));
+            set(condition, 'day', condition.weekDay);
+            set(condition, 'hourBegin', condition.timeFrom.split(':').slice(0, 2).join(''));
+            set(condition, 'hourEnd', condition.timeTo.split(':').slice(0, 2).join(''));
 
-            _.set(condition, 'featureType', 'sip');
+            set(condition, 'featureType', 'sip');
 
             return new VoipTimeConditionCondition(condition);
           }));
@@ -180,7 +194,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationTimeC
   ============================ */
 
   self.filterServices = function (services) {
-    return _.filter(services, service => ['easyPabx', 'miniPabx'].indexOf(service.featureType) > -1);
+    return filter(services, service => ['easyPabx', 'miniPabx'].indexOf(service.featureType) > -1);
   };
 
   self.bulkDatas = {
@@ -264,11 +278,11 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationTimeC
   };
 
   self.onBulkError = function (error) {
-    TucToast.error([$translate.instant('telephony_line_calls_time_condition_bulk_on_error'), _.get(error, 'msg.data')].join(' '));
+    TucToast.error([$translate.instant('telephony_line_calls_time_condition_bulk_on_error'), get(error, 'msg.data')].join(' '));
   };
 
   self.getTimeConditions = function (action) {
-    const conditions = _.filter(self.number.feature.timeCondition.conditions, (condition) => {
+    const conditions = filter(self.number.feature.timeCondition.conditions, (condition) => {
       switch (action) {
         case bulkActionNames.createCondition:
           return condition.state === 'TO_CREATE';
@@ -281,7 +295,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationTimeC
       }
     });
 
-    return _.map(conditions, condition => ({
+    return map(conditions, condition => ({
       id: condition.conditionId,
       day: condition.weekDay,
       hourBegin: voipTimeCondition.getSipTime(condition.timeFrom),

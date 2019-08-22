@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular.module('managerApp').controller('TelecomTelephonyServiceFaxCampaignsRemoveCtrl', function ($q, $stateParams, $timeout, $uibModalInstance, OvhApiTelephony, campaign) {
   const self = this;
 
@@ -30,7 +32,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxCampaignsRemo
       return $timeout(self.close, 1500);
     }, error => self.cancel({
       type: 'API',
-      message: _.get(error, 'data.message'),
+      message: get(error, 'data.message'),
     }));
   };
 

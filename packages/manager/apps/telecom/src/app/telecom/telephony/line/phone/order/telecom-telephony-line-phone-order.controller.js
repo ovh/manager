@@ -1,4 +1,15 @@
-angular.module('managerApp').controller('TelecomTelephonyLinePhoneOrderCtrl', function ($q, $scope, $stateParams, $translate, TucIpAddress, TelephonyMediator, OvhApiTelephony, OvhApiOrder, TucToast, TucToastError, TELEPHONY_RMA) {
+import assign from 'lodash/assign';
+import forEach from 'lodash/forEach';
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import get from 'lodash/get';
+import groupBy from 'lodash/groupBy';
+import head from 'lodash/head';
+import map from 'lodash/map';
+import set from 'lodash/set';
+import upperFirst from 'lodash/upperFirst';
+
+angular.module('managerApp').controller('TelecomTelephonyLinePhoneOrderCtrl', function TelecomTelephonyLinePhoneOrderCtrl($q, $scope, $stateParams, $translate, TucIpAddress, TelephonyMediator, OvhApiTelephony, OvhApiOrder, TucToast, TucToastError, TELEPHONY_RMA) {
   const self = this;
 
   self.pdfBaseUrl = TELEPHONY_RMA.pdfBaseUrl;
@@ -16,14 +27,14 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneOrderCtrl', fu
       billingAccount: $stateParams.billingAccount,
       serviceName: $stateParams.serviceName,
     }).$promise.then((result) => {
-      _.each(result, (phone) => {
+      forEach(result, (phone) => {
         const parts = (phone.name || '').split(/\./);
-        _.set(phone, 'displayName', `${_.capitalize(_.first(parts))} ${parts.slice(1).map(p => (p || '').toUpperCase()).join(' ')}`);
+        set(phone, 'displayName', `${upperFirst(head(parts))} ${parts.slice(1).map(p => (p || '').toUpperCase()).join(' ')}`);
       });
-      return _.filter(result, phone => phone.price && phone.price.value >= 0);
+      return filter(result, phone => phone.price && phone.price.value >= 0);
     }).then(result => fetchOfferPhones(self.line.getPublicOffer.name).then((offers) => {
-      _.each(offers, (offer) => {
-        const found = _.find(result, { name: offer.brand });
+      forEach(offers, (offer) => {
+        const found = find(result, { name: offer.brand });
         if (found) {
           found.displayName = offer.description;
         }
@@ -39,7 +50,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneOrderCtrl', fu
       retractation: order.retract,
       shippingContactId: order.contact.id,
     };
-    if (_.get(order, 'shipping.mode') === 'mondialRelay') {
+    if (get(order, 'shipping.mode') === 'mondialRelay') {
       params.mondialRelayId = order.shipping.relay.id;
     }
     self.isFetchingOrder = true;
@@ -49,23 +60,31 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneOrderCtrl', fu
   }
 
   function filterContact(contacts) {
-    return _.chain(contacts).groupBy((contact) => {
-      // group contact to detect contact that are the same
-      const contactCopy = {
-        lastName: contact.lastName,
-        firstName: contact.firstName,
-      };
-      if (contact.address) {
-        contactCopy.address = {
-          country: contact.address.country,
-          line1: contact.address.line1,
-          zip: contact.address.zip,
-          city: contact.address.city,
-        };
-      }
-      return JSON.stringify(contactCopy);
-    }).map(groups => _.first(groups)).filter(contact => _.get(contact, 'address') && ['BE', 'FR', 'CH'].indexOf(contact.address.country) > -1)
-      .value();
+    return filter(
+      map(
+        groupBy(
+          contacts,
+          (contact) => {
+            // group contact to detect contact that are the same
+            const contactCopy = {
+              lastName: contact.lastName,
+              firstName: contact.firstName,
+            };
+            if (contact.address) {
+              contactCopy.address = {
+                country: contact.address.country,
+                line1: contact.address.line1,
+                zip: contact.address.zip,
+                city: contact.address.city,
+              };
+            }
+            return JSON.stringify(contactCopy);
+          },
+        ),
+        groups => head(groups),
+      ),
+      contact => get(contact, 'address') && ['BE', 'FR', 'CH'].indexOf(contact.address.country) > -1,
+    );
   }
 
   function init() {
@@ -109,7 +128,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneOrderCtrl', fu
       billingAccount: self.line.billingAccount,
       serviceName: self.line.serviceName,
     }).$promise.then((result) => {
-      _.assign(
+      assign(
         self.line,
         { getPublicOffer: result.getPublicOffer },
         { isAttachedToOtherLinesPhone: result.isAttachedToOtherLinesPhone },
@@ -137,7 +156,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneOrderCtrl', fu
         return fetchOfferPhones(self.line.getPublicOffer.name).then((offers) => {
           self.phoneOffers = offers;
           if (offers.length) {
-            self.order.phone = _.first(offers).brand;
+            self.order.phone = head(offers).brand;
           }
         });
       })
@@ -204,7 +223,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneOrderCtrl', fu
       hardware: self.order.phone,
       retractation: self.order.retract,
     };
-    if (_.get(self.order, 'shipping.mode') === 'mondialRelay') {
+    if (get(self.order, 'shipping.mode') === 'mondialRelay') {
       params.mondialRelayId = self.order.shipping.relay.id;
     } else {
       params.shippingContactId = self.order.contact.id;
@@ -227,7 +246,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneOrderCtrl', fu
       type: 'change to another phone/equipment (restitution first and shipping then)', // nice enum ...
     };
 
-    if (_.get(self.order, 'shipping.mode') === 'mondialRelay') {
+    if (get(self.order, 'shipping.mode') === 'mondialRelay') {
       params.mondialRelayId = self.order.shipping.relay.id;
     } else {
       params.shippingContactId = self.order.contact.id;
@@ -288,7 +307,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneOrderCtrl', fu
       TelephonyMediator.resetAllCache();
       init();
     }).catch((err) => {
-      TucToast.error([$translate.instant('telephony_line_phone_order_detach_device_error'), _.get(err, 'data.message')].join(' '));
+      TucToast.error([$translate.instant('telephony_line_phone_order_detach_device_error'), get(err, 'data.message')].join(' '));
       return $q.reject(err);
     }).finally(() => {
       self.isDetaching = false;

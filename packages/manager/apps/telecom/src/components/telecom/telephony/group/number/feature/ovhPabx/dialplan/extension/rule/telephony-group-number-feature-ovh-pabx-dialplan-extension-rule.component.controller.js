@@ -1,3 +1,6 @@
+import get from 'lodash/get';
+import indexOf from 'lodash/indexOf';
+
 angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanExtensionRuleCtrl', function ($q, $translate, TelephonyMediator, TucToast) {
   const self = this;
 
@@ -29,7 +32,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanExtension
   };
 
   self.getRuleAttribute = function (attr) {
-    return _.get(self.rule.inEdition ? self.rule.saveForEdition : self.rule, attr);
+    return get(self.rule.inEdition ? self.rule.saveForEdition : self.rule, attr);
   };
 
   self.getVoicemailInfos = function () {
@@ -41,7 +44,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanExtension
   };
 
   self.getRealRulePosition = function () {
-    return _.indexOf(self.rule.negativeAction
+    return indexOf(self.rule.negativeAction
       ? self.extension.negativeRules : self.extension.rules, self.rule) + 1;
   };
 
@@ -69,7 +72,7 @@ angular.module('managerApp').controller('telephonyNumberOvhPabxDialplanExtension
       // display information about rule count
       self.extensionCtrl.checkForDisplayHelpers();
     }, (error) => {
-      TucToast.error([$translate.instant('telephony_number_feature_ovh_pabx_step_rule_action_delete_error'), _.get(error, 'data.message') || ''].join(' '));
+      TucToast.error([$translate.instant('telephony_number_feature_ovh_pabx_step_rule_action_delete_error'), get(error, 'data.message') || ''].join(' '));
       return $q.reject(error);
     });
   };

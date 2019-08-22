@@ -1,3 +1,5 @@
+import keys from 'lodash/keys';
+
 angular.module('managerApp').factory('TelephonyGroupNumberFeature', ($q) => {
   /*= ==================================
     =            CONSTRUCTOR            =
@@ -51,7 +53,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberFeature', ($q) => {
   TelephonyGroupNumberFeature.prototype.setInfos = function (featureOptions) {
     const self = this;
 
-    angular.forEach(_.keys(featureOptions), (featureOptionKey) => {
+    angular.forEach(keys(featureOptions), (featureOptionKey) => {
       self[featureOptionKey] = featureOptions[featureOptionKey];
     });
 
@@ -77,7 +79,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberFeature', ($q) => {
     const self = this;
 
     if (self.saveForEdition && cancel) {
-      angular.forEach(_.keys(self.saveForEdition), (editionKey) => {
+      angular.forEach(keys(self.saveForEdition), (editionKey) => {
         self[editionKey] = angular.copy(self.saveForEdition[editionKey]);
       });
     }
@@ -99,7 +101,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberFeature', ($q) => {
     if (attr) {
       return self[attr] !== self.saveForEdition[attr];
     }
-    angular.forEach(_.keys(self.saveForEdition), (attrKey) => {
+    angular.forEach(keys(self.saveForEdition), (attrKey) => {
       if (!hasChange) {
         hasChange = self.hasChange(attrKey);
       }

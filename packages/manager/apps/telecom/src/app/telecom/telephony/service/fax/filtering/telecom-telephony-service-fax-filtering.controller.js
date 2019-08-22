@@ -1,4 +1,14 @@
-angular.module('managerApp').controller('TelecomTelephonyServiceFaxFilteringCtrl', function ($filter, $q, $stateParams, $timeout, $translate, TelephonyMediator, OvhApiTelephony, TucToast, tucTelephonyBulk) {
+import difference from 'lodash/difference';
+import filter from 'lodash/filter';
+import flatten from 'lodash/flatten';
+import get from 'lodash/get';
+import map from 'lodash/map';
+import now from 'lodash/now';
+import pick from 'lodash/pick';
+import random from 'lodash/random';
+import size from 'lodash/size';
+
+angular.module('managerApp').controller('TelecomTelephonyServiceFaxFilteringCtrl', function TelecomTelephonyServiceFaxFilteringCtrl($filter, $q, $stateParams, $timeout, $translate, TelephonyMediator, OvhApiTelephony, TucToast, tucTelephonyBulk) {
   const self = this;
   let faxSettings = null;
   const screenListsTypes = [
@@ -21,13 +31,13 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxFilteringCtrl
       serviceName: $stateParams.serviceName,
     }).$promise.then((screenLists) => {
       self.screenListsForm.filteringList = screenLists.filteringList;
-      return _.map(screenListsTypes, type => _.map(_.get(screenLists, type), screen => ({
+      return map(screenListsTypes, type => map(get(screenLists, type), screen => ({
         callNumber: screenLists.callNumber,
         number: screen,
         type,
-        id: _.random(_.now()),
+        id: random(now()),
       })));
-    }).then(screenLists => _.flatten(screenLists));
+    }).then(screenLists => flatten(screenLists));
   }
 
   function fetchSettings() {
@@ -39,7 +49,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxFilteringCtrl
   }
 
   self.getSelection = function () {
-    return _.filter(
+    return filter(
       self.screenLists.raw,
       screen => screen && self.screenLists.selected && self.screenLists.selected[screen.id],
     );
@@ -56,8 +66,8 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxFilteringCtrl
     return OvhApiTelephony.Fax().v6().createScreenLists({
       billingAccount: $stateParams.billingAccount,
       serviceName: $stateParams.serviceName,
-    }, _.pick(self.screenListsForm, 'filteringList')).$promise.catch((err) => {
-      TucToast.error([$translate.instant('telephony_service_fax_filtering_list_update_error'), _.get(err, 'data.message')].join(' '));
+    }, pick(self.screenListsForm, 'filteringList')).$promise.catch((err) => {
+      TucToast.error([$translate.instant('telephony_service_fax_filtering_list_update_error'), get(err, 'data.message')].join(' '));
       return $q.reject(err);
     }).finally(() => {
       self.screenListsForm.isUpdating = false;
@@ -66,13 +76,13 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxFilteringCtrl
 
   self.updateAnonymousRejection = function () {
     self.screenListsForm.isUpdating = true;
-    const param = _.pick(faxSettings, ['faxMaxCall', 'faxQuality', 'faxTagLine', 'fromEmail', 'fromName', 'mailFormat', 'redirectionEmail']);
+    const param = pick(faxSettings, ['faxMaxCall', 'faxQuality', 'faxTagLine', 'fromEmail', 'fromName', 'mailFormat', 'redirectionEmail']);
     param.rejectAnonymous = self.rejectAnonymous;
     return OvhApiTelephony.Fax().v6().setSettings({
       billingAccount: $stateParams.billingAccount,
       serviceName: $stateParams.serviceName,
     }, param).$promise.then(() => fetchSettings()).catch((error) => {
-      TucToast.error([$translate.instant('telephony_service_fax_filtering_anonymous_rejection_update_error'), _.get(error, 'data.message')].join(' '));
+      TucToast.error([$translate.instant('telephony_service_fax_filtering_anonymous_rejection_update_error'), get(error, 'data.message')].join(' '));
       return $q.reject(error);
     }).finally(() => {
       self.screenListsForm.isUpdating = false;
@@ -96,7 +106,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxFilteringCtrl
       TucToast.success($translate.instant('telephony_service_fax_filtering_new_success'));
       return self.refresh();
     }).catch((error) => {
-      TucToast.error([$translate.instant('telephony_service_fax_filtering_new_error'), _.get(error, 'data.message')].join(' '));
+      TucToast.error([$translate.instant('telephony_service_fax_filtering_new_error'), get(error, 'data.message')].join(' '));
       return $q.reject(error);
     }).finally(() => {
       self.screenListsForm.isAdding = false;
@@ -104,7 +114,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxFilteringCtrl
   };
 
   self.exportSelection = function () {
-    return _.map(self.getSelection(), filter => _.pick(filter, ['callNumber', 'number', 'type']));
+    return map(self.getSelection(), selection => pick(selection, ['callNumber', 'number', 'type']));
   };
 
   self.removeSelectedScreenLists = function () {
@@ -113,12 +123,12 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxFilteringCtrl
     const listQuery = {};
 
     screenListsTypes.forEach((type) => {
-      const rawOfType = _.pluck(_.filter(self.screenLists.raw, { type }), 'number');
-      const selectedOfType = _.pluck(_.filter(screenLists, { type }), 'number');
-      listQuery[type] = _.difference(rawOfType, selectedOfType);
+      const rawOfType = map(filter(self.screenLists.raw, { type }), 'number');
+      const selectedOfType = map(filter(screenLists, { type }), 'number');
+      listQuery[type] = difference(rawOfType, selectedOfType);
     });
 
-    if (_.size(listQuery)) {
+    if (size(listQuery)) {
       queries = {
         update: OvhApiTelephony.Fax().v6().updateScreenLists({
           billingAccount: $stateParams.billingAccount,
@@ -130,7 +140,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxFilteringCtrl
     self.screenLists.isDeleting = true;
     TucToast.info($translate.instant('telephony_service_fax_filtering_table_delete_success'));
     return $q.all(queries).then(() => self.refresh()).catch((err) => {
-      TucToast.error([$translate.instant('telephony_service_fax_filtering_table_delete_error'), _.get(err, 'data.message')].join(' '));
+      TucToast.error([$translate.instant('telephony_service_fax_filtering_table_delete_error'), get(err, 'data.message')].join(' '));
       return $q.reject(err);
     }).finally(() => {
       self.screenLists.isDeleting = false;
@@ -174,7 +184,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxFilteringCtrl
         return settings;
       }).catch(err => $q.reject(err));
     }).catch((err) => {
-      TucToast.error([$translate.instant('telephony_service_fax_filtering_fetch_lists_error'), _.get(err, 'data.message')].join(' '));
+      TucToast.error([$translate.instant('telephony_service_fax_filtering_fetch_lists_error'), get(err, 'data.message')].join(' '));
       return $q.reject(err);
     }).finally(() => {
       self.screenLists.isLoading = false;
@@ -221,7 +231,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxFilteringCtrl
       self.fax = group.getFax($stateParams.serviceName);
       return self.refresh();
     }).catch((err) => {
-      TucToast.error([$translate.instant('an_error_occured'), _.get(err, 'data.message')].join(' '));
+      TucToast.error([$translate.instant('an_error_occured'), get(err, 'data.message')].join(' '));
       return $q.reject(err);
     }).finally(() => {
       self.loading.init = false;
@@ -254,15 +264,15 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxFilteringCtrl
   };
 
   self.filterServices = function (services) {
-    return _.filter(services, service => ['fax', 'voicefax'].indexOf(service.featureType) > -1);
+    return filter(services, service => ['fax', 'voicefax'].indexOf(service.featureType) > -1);
   };
 
   self.getBulkParams = function (action) {
-    const param = _.pick(faxSettings, ['faxMaxCall', 'faxQuality', 'faxTagLine', 'fromEmail', 'fromName', 'mailFormat', 'redirectionEmail']);
+    const param = pick(faxSettings, ['faxMaxCall', 'faxQuality', 'faxTagLine', 'fromEmail', 'fromName', 'mailFormat', 'redirectionEmail']);
 
     switch (action) {
       case 'faxScreenLists':
-        return _.pick(self.screenListsForm, 'filteringList');
+        return pick(self.screenListsForm, 'filteringList');
       case 'settings':
         param.rejectAnonymous = self.rejectAnonymous;
         return param;
@@ -289,7 +299,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxFilteringCtrl
   };
 
   self.onBulkError = function (error) {
-    TucToast.error([$translate.instant('telephony_service_fax_filtering_bulk_on_error'), _.get(error, 'msg.data')].join(' '));
+    TucToast.error([$translate.instant('telephony_service_fax_filtering_bulk_on_error'), get(error, 'msg.data')].join(' '));
   };
 
   /* -----  End of BULK  ------ */

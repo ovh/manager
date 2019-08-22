@@ -1,3 +1,6 @@
+import find from 'lodash/find';
+import isEmpty from 'lodash/isEmpty';
+
 angular.module('managerApp').controller('PackFaxActivationCtrl', function ($stateParams, OvhApiPackXdsl, OvhApiPackXdslVoipEcofax, URLS) {
   const self = this;
 
@@ -6,14 +9,14 @@ angular.module('managerApp').controller('PackFaxActivationCtrl', function ($stat
   self.ecoFaxUrl = URLS.ecoFax;
 
   function init() {
-    if (_.isEmpty(packId)) {
+    if (isEmpty(packId)) {
       self.error = {
         key: 'fax_activation_total_error',
       };
     } else {
       return OvhApiPackXdsl.v6().getServices({ packId }, (data) => {
         self.loading = false;
-        self.serviceData = _.find(data, { name: 'voipEcoFax' });
+        self.serviceData = find(data, { name: 'voipEcoFax' });
         self.error = null;
       }, (err) => {
         self.loading = false;

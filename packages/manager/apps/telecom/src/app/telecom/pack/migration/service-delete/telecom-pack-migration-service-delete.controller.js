@@ -1,3 +1,7 @@
+import chunk from 'lodash/chunk';
+import every from 'lodash/every';
+import filter from 'lodash/filter';
+
 angular.module('managerApp').controller('TelecomPackMigrationServiceDeleteCtrl', function (TucPackMigrationProcess) {
   const self = this;
 
@@ -8,7 +12,7 @@ angular.module('managerApp').controller('TelecomPackMigrationServiceDeleteCtrl',
   =============================== */
 
   self.selectedSubServiceToDeleteReached = function (subService) {
-    const count = _.filter(subService.services, {
+    const count = filter(subService.services, {
       selected: true,
     }).length;
 
@@ -16,7 +20,7 @@ angular.module('managerApp').controller('TelecomPackMigrationServiceDeleteCtrl',
   };
 
   self.isValidSelection = function () {
-    return _.every(
+    return every(
       self.process.selectedOffer.subServicesToDelete,
       subService => self.selectedSubServiceToDeleteReached(subService),
     );
@@ -31,7 +35,7 @@ angular.module('managerApp').controller('TelecomPackMigrationServiceDeleteCtrl',
   function init() {
     self.process = TucPackMigrationProcess.getMigrationProcess();
 
-    self.chunkedSubServices = _.chunk(self.process.selectedOffer.subServicesToDelete, 2);
+    self.chunkedSubServices = chunk(self.process.selectedOffer.subServicesToDelete, 2);
   }
 
   /* -----  End of INITIALIZATION  ------*/

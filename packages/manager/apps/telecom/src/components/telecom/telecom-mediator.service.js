@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular.module('managerApp').service('TelecomMediator', function ($q, $translate, OvhApiMeVipStatus, TucPackMediator, TelephonyMediator, TucSmsMediator, TucFaxMediator, TucOverTheBoxMediator, TucToast) {
   const self = this;
 
@@ -42,7 +44,7 @@ angular.module('managerApp').service('TelecomMediator', function ($q, $translate
 
     const countErrors = [];
     const handleCountError = function (err) {
-      countErrors.push(_.get(err, 'data.message') || err.statusText);
+      countErrors.push(get(err, 'data.message') || err.statusText);
       return $q.when(0);
     };
 

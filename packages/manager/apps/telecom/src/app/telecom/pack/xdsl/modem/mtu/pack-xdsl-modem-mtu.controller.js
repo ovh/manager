@@ -1,3 +1,6 @@
+import find from 'lodash/find';
+import isEmpty from 'lodash/isEmpty';
+
 angular.module('managerApp').controller('XdslModemMtuCtrl', function ($stateParams, $q, OvhApiXdsl, $translate, TucToast, TucPackXdslModemMediator, PACK_XDSL_MODEM) {
   const self = this;
 
@@ -8,7 +11,7 @@ angular.module('managerApp').controller('XdslModemMtuCtrl', function ($statePara
   };
 
   this.changeMtuSize = function () {
-    if (_.isEmpty($stateParams.serviceName)
+    if (isEmpty($stateParams.serviceName)
       || !self.mtuCurrentValueTmp
       || !TucPackXdslModemMediator.capabilities.canChangeMtu) {
       self.undo();
@@ -45,7 +48,7 @@ angular.module('managerApp').controller('XdslModemMtuCtrl', function ($statePara
 
   const init = function () {
     self.mtuValues = PACK_XDSL_MODEM.mtu.values;
-    self.mtuCurrentValue = _.find(self.mtuValues, { value: self.getDisplayValue() });
+    self.mtuCurrentValue = find(self.mtuValues, { value: self.getDisplayValue() });
     self.undo();
   };
 

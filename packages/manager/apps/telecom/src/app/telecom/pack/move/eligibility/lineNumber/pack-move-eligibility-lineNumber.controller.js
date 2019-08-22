@@ -1,3 +1,9 @@
+import assignIn from 'lodash/assignIn';
+import head from 'lodash/head';
+import isArray from 'lodash/isArray';
+import set from 'lodash/set';
+import sortBy from 'lodash/sortBy';
+
 angular.module('managerApp').component('packMoveEligibilityLineNumber', {
   bindings: {
     offers: '=?',
@@ -33,24 +39,24 @@ angular.module('managerApp').component('packMoveEligibilityLineNumber', {
             return new TucToastError(data, data.error);
           }
           if (angular.isDefined(data.result.offers)) {
-            _.extend(self.testLine, data);
-            self.offers = _.isArray(data.result.offers) ? data.result.offers : [];
+            assignIn(self.testLine, data);
+            self.offers = isArray(data.result.offers) ? data.result.offers : [];
 
             if (self.offers.length === 0) {
               TucToast.error($translate.instant('pack_move_eligibility_no_offers', { number: self.lineNumber }));
             }
           }
           self.offers.forEach((offer) => {
-            _.set(offer, 'lineNumber', self.lineNumber);
+            set(offer, 'lineNumber', self.lineNumber);
             if (offer.meetingSlots) {
-              _.set(offer, 'meetingSlots.calendarData', [offer.meetingSlots.meetingSlots.map(slot => ({
+              set(offer, 'meetingSlots.calendarData', [offer.meetingSlots.meetingSlots.map(slot => ({
                 tooltip: [$filter('date')(slot.startDate, 'HH:mm'), $filter('date')(slot.endDate, 'HH:mm')].join(' - '),
                 title: '',
                 start: slot.startDate,
                 end: slot.endDate,
                 data: slot,
               }))]);
-              _.set(offer, 'meetingSlots.firstSlot', _.first(_.sortBy(offer.meetingSlots.meetingSlots, ['startDate'])));
+              set(offer, 'meetingSlots.firstSlot', head(sortBy(offer.meetingSlots.meetingSlots, ['startDate'])));
             }
           });
           self.offersChange({ OFFERS: self.offers });

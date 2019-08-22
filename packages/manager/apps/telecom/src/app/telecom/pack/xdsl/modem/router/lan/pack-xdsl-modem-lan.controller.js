@@ -1,3 +1,5 @@
+import map from 'lodash/map';
+
 angular.module('managerApp').controller('XdslModemLanCtrl', function ($stateParams, $translate, OvhApiXdsl, PackXdslModemLanObject, tucValidator, $q, TucToast, TucPackXdslModemMediator) {
   const self = this;
 
@@ -33,7 +35,7 @@ angular.module('managerApp').controller('XdslModemLanCtrl', function ($statePara
     return OvhApiXdsl.Modem().Lan().Aapi().getLanDetails({
       xdslId: $stateParams.serviceName,
     }).$promise.then((data) => {
-      self.lans = _.map(data, elt => new PackXdslModemLanObject(elt));
+      self.lans = map(data, elt => new PackXdslModemLanObject(elt));
     }).catch((err) => {
       TucToast.error($translate.instant('xdsl_modem_lan_error'));
       return $q.reject(err);

@@ -1,3 +1,9 @@
+import forEach from 'lodash/forEach';
+import filter from 'lodash/filter';
+import head from 'lodash/head';
+import map from 'lodash/map';
+import set from 'lodash/set';
+
 angular.module('managerApp').run(($translate, asyncLoader) => {
   asyncLoader.addTranslations(
     import(`./translations/Messages_${$translate.use()}.json`)
@@ -51,7 +57,7 @@ angular.module('managerApp').component('telecomTelephonyAliasLiveCalls', {
       return self.apiEndpoint.Hunting().Queue().v6().query({
         billingAccount: $stateParams.billingAccount,
         serviceName: $stateParams.serviceName,
-      }).$promise.then(ids => _.first(ids));
+      }).$promise.then(ids => head(ids));
     };
 
     self.refreshStats = function (queueId) {
@@ -93,7 +99,7 @@ angular.module('managerApp').component('telecomTelephonyAliasLiveCalls', {
           queueId,
         }).$promise
         .then(callsIds => $q
-          .all(_.map(
+          .all(map(
             (callsIds || []).reverse(),
             callId => self.apiEndpoint.Hunting().Queue().LiveCalls().v6()
               .get({
@@ -115,7 +121,7 @@ angular.module('managerApp').component('telecomTelephonyAliasLiveCalls', {
           queueId,
         }).$promise
         .then(agentIds => $q
-          .all(_.map(
+          .all(map(
             agentIds,
             agentId => self.apiEndpoint.Hunting().Queue().Agent().v6()
               .getLiveStatus({
@@ -124,7 +130,7 @@ angular.module('managerApp').component('telecomTelephonyAliasLiveCalls', {
                 queueId,
                 agentId,
               }).$promise.then((agentStatus) => {
-                _.set(agentStatus, 'agentId', agentId);
+                set(agentStatus, 'agentId', agentId);
                 return agentStatus;
               }),
           )));
@@ -144,17 +150,17 @@ angular.module('managerApp').component('telecomTelephonyAliasLiveCalls', {
     };
 
     self.getOngoingCalls = function () {
-      return _.filter(self.calls, call => call && call.state === 'Answered' && call.answered && !call.end);
+      return filter(self.calls, call => call && call.state === 'Answered' && call.answered && !call.end);
     };
 
     self.getPendingCalls = function () {
-      return _.filter(self.calls, call => call && call.state === 'Waiting' && !call.answered && !call.end);
+      return filter(self.calls, call => call && call.state === 'Waiting' && !call.answered && !call.end);
     };
 
     self.getMaxWaitTime = function () {
       let max = 0;
       let value = 0;
-      _.each(self.getPendingCalls(), (call) => {
+      forEach(self.getPendingCalls(), (call) => {
         const elapsed = moment(call.begin).unix();
         if (elapsed > max) {
           max = elapsed;
@@ -165,11 +171,11 @@ angular.module('managerApp').component('telecomTelephonyAliasLiveCalls', {
     };
 
     self.getOnCallAgentsCount = function () {
-      return _.filter(self.agentsStatus, agent => agent.status === 'inAQueueCall' || agent.status === 'receiving').length;
+      return filter(self.agentsStatus, agent => agent.status === 'inAQueueCall' || agent.status === 'receiving').length;
     };
 
     self.getWaitingAgentsCount = function () {
-      return _.filter(self.agentsStatus, agent => agent.status === 'waiting').length;
+      return filter(self.agentsStatus, agent => agent.status === 'waiting').length;
     };
 
     self.interceptCall = function (call) {

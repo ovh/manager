@@ -1,3 +1,7 @@
+import get from 'lodash/get';
+import partition from 'lodash/partition';
+import startsWith from 'lodash/startsWith';
+
 angular.module('managerApp').controller('TelecomTelephonyAliasSpecialRepaymentsCtrl', class TelecomTelephonyAliasSpecialRepaymentsCtrl {
   constructor($state, $stateParams, TucToast, tucVoipService, TELEPHONY_REPAYMENT_CONSUMPTION) {
     this.$state = $state;
@@ -32,22 +36,22 @@ angular.module('managerApp').controller('TelecomTelephonyAliasSpecialRepaymentsC
 
           newRepayment.isFee = this.TELEPHONY_REPAYMENT_CONSUMPTION.calledFeesPrefix.fr
             .concat(this.TELEPHONY_REPAYMENT_CONSUMPTION.calledFeesPrefix.be)
-            .some(prefix => _.startsWith(repayment.dialed, prefix));
+            .some(prefix => startsWith(repayment.dialed, prefix));
 
           return newRepayment;
         });
 
         let otherRepayments = [];
-        [this.repaymentsInfos.feesToPay, otherRepayments] = _.partition(this.repayments,
+        [this.repaymentsInfos.feesToPay, otherRepayments] = partition(this.repayments,
           ({ isFee }) => isFee);
 
         [this.repaymentsInfos.availableRepayments,
-          this.repaymentsInfos.pendingRepayments] = _.partition(otherRepayments,
+          this.repaymentsInfos.pendingRepayments] = partition(otherRepayments,
           ({ repayable }) => repayable);
       })
       .catch((error) => {
         this.TucToast.error(
-          `${this.$translate.instant('telephony_alias_special_repayments_get_error')} ${_(error).get('data.message', error.message)}`,
+          `${this.$translate.instant('telephony_alias_special_repayments_get_error')} ${get(error, 'data.message', error.message)}`,
         );
       })
       .finally(() => {

@@ -1,3 +1,9 @@
+import forEach from 'lodash/forEach';
+import get from 'lodash/get';
+import head from 'lodash/head';
+import isEmpty from 'lodash/isEmpty';
+import pick from 'lodash/pick';
+
 angular.module('managerApp').controller('PackDomainActivationController', function ($scope, $stateParams, $translate, $q, $state, $timeout, OvhApiPackXdslDomainActivation, TucToast, OvhApiMe, OvhSimpleCountryList) {
   const self = this;
 
@@ -10,13 +16,13 @@ angular.module('managerApp').controller('PackDomainActivationController', functi
       packId: $scope.locker.packName,
     }, (data) => {
       $scope.locker.tldList = [];
-      _.each(data, (elt) => {
+      forEach(data, (elt) => {
         $scope.locker.tldList.push({
           value: elt,
           label: `.${elt}`,
         });
       });
-      $scope.model.tld = _.first(data);
+      $scope.model.tld = head(data);
     }).$promise;
   }
 
@@ -54,7 +60,7 @@ angular.module('managerApp').controller('PackDomainActivationController', functi
       authMethod: null,
     };
 
-    if (_.isEmpty($stateParams.packName)) {
+    if (isEmpty($stateParams.packName)) {
       TucToast.error($translate.instant('domain_activation_total_error'));
       return $q.when(null);
     }
@@ -70,7 +76,7 @@ angular.module('managerApp').controller('PackDomainActivationController', functi
       loadActivatedDomains(),
       loadAvailableTlds(),
     ]).catch((error) => {
-      TucToast.error([$translate.instant('domain_activation_total_error'), _.get(error, 'data.message')].join(' '));
+      TucToast.error([$translate.instant('domain_activation_total_error'), get(error, 'data.message')].join(' '));
       return $q.reject(error);
     }).finally(() => {
       self.isLoading = false;
@@ -129,7 +135,7 @@ angular.module('managerApp').controller('PackDomainActivationController', functi
           }
 
           setDomainIsNotAvailable();
-          _.each(data.search, (search) => {
+          forEach(data.search, (search) => {
             if (search.available && search.tld === $scope.model.tld) {
               setDomainIsAvailable();
             }
@@ -138,7 +144,7 @@ angular.module('managerApp').controller('PackDomainActivationController', functi
           // TODO: IF NOT $scope.toggles.domainStatus THEN ERROR !!
         }
       }).catch((err) => {
-        TucToast.error([$translate.instant('domain_activation_error_on_check_disponibility'), _.get(err, 'data.message')].join(' '));
+        TucToast.error([$translate.instant('domain_activation_error_on_check_disponibility'), get(err, 'data.message')].join(' '));
         return $q.reject(err);
       }).finally(() => {
         $scope.toggles.domainLoading = false;
@@ -151,7 +157,7 @@ angular.module('managerApp').controller('PackDomainActivationController', functi
   };
 
   $scope.submit = function () {
-    const data = _.pick($scope.model, ['packName', 'action', 'authInfo', 'domain', 'tld']);
+    const data = pick($scope.model, ['packName', 'action', 'authInfo', 'domain', 'tld']);
 
     self.isActivating = true;
     OvhApiPackXdslDomainActivation.v6().postServices({
@@ -165,7 +171,7 @@ angular.module('managerApp').controller('PackDomainActivationController', functi
         });
       }, 2000);
     }).catch((err) => {
-      TucToast.error([$translate.instant('domain_activation_unable_to_save_domain'), _.get(err, 'data.message')].join(' '));
+      TucToast.error([$translate.instant('domain_activation_unable_to_save_domain'), get(err, 'data.message')].join(' '));
       return $q.reject(err);
     }).finally(() => {
       self.isActivating = false;

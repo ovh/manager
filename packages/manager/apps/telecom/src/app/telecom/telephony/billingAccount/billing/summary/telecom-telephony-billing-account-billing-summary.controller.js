@@ -1,3 +1,5 @@
+import forEach from 'lodash/forEach';
+
 angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingSummaryCtrl', function ($q, $filter, $window, $timeout, $stateParams, $translate, TelephonyMediator, OvhApiTelephony, TucToast) {
   const self = this;
 
@@ -15,9 +17,9 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingSu
     return OvhApiTelephony.Service().VoiceConsumption().Aapi().get({
       billingAccount: $stateParams.billingAccount,
     }).$promise.then((consumption) => {
-      _.forEach(['lines', 'numbers', 'fax'], (serviceType) => {
-        _.forEach(self.group[serviceType], (service) => {
-          _.forEach(consumption.details, (s, idx) => {
+      forEach(['lines', 'numbers', 'fax'], (serviceType) => {
+        forEach(self.group[serviceType], (service) => {
+          forEach(consumption.details, (s, idx) => {
             if (s.service === service.serviceName) {
               consumption.details[idx].description = service.description; // eslint-disable-line
               consumption.details[idx].type = serviceType; // eslint-disable-line

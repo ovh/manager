@@ -1,3 +1,5 @@
+import head from 'lodash/head';
+
 angular.module('managerApp').controller('TelecomTelephonyLineAssistTroubleshootingProcedureCtrl', function ($stateParams, $scope, troubleshootingProcess, OvhApiTelephony) {
   const self = this;
 
@@ -14,7 +16,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineAssistTroubleshooti
         billingAccount: $stateParams.billingAccount,
         serviceName: $stateParams.serviceName,
       }).$promise.then((serverUrl) => {
-        self.process.siemensServerUrl = _.first(serverUrl);
+        self.process.siemensServerUrl = head(serverUrl);
       });
   }
 

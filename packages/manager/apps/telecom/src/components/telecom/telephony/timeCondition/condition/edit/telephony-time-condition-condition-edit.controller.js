@@ -1,3 +1,12 @@
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import isEqual from 'lodash/isEqual';
+import isFunction from 'lodash/isFunction';
+import remove from 'lodash/remove';
+import some from 'lodash/some';
+import sortBy from 'lodash/sortBy';
+import startsWith from 'lodash/startsWith';
+
 angular.module('managerApp').controller('voipTimeConditionConditionCtrl', function ($scope, $timeout, $translate) {
   const self = this;
 
@@ -61,7 +70,7 @@ angular.module('managerApp').controller('voipTimeConditionConditionCtrl', functi
     =============================== */
 
   function getActiveSlot() {
-    return _.find(self.timeCondition.slots, {
+    return find(self.timeCondition.slots, {
       name: self.condition.policy,
     });
   }
@@ -76,12 +85,12 @@ angular.module('managerApp').controller('voipTimeConditionConditionCtrl', functi
     self.overlapDetected = false;
 
     // check if overlap an other condition on the same day
-    const dayConditions = _.filter(
+    const dayConditions = filter(
       self.timeCondition.conditions,
       condition => condition.weekDay === self.condition.weekDay
         && condition.conditionId !== self.condition.conditionId,
     );
-    const isConditionOverlap = _.some(dayConditions, (condition) => {
+    const isConditionOverlap = some(dayConditions, (condition) => {
       const momentFrom = condition.getTimeMoment('from');
       const momentTo = condition.getTimeMoment('to');
       return (moment(self.model.timeFrom).isBetween(momentFrom, momentTo) || moment(self.model.timeTo).subtract(1, 'second').isBetween(momentFrom, momentTo)) && condition.state !== 'TO_DELETE';
@@ -109,7 +118,7 @@ angular.module('managerApp').controller('voipTimeConditionConditionCtrl', functi
     if (dayActive) {
       self.repeatToDays.push(day);
     } else {
-      _.remove(self.repeatToDays, { name: day.name });
+      remove(self.repeatToDays, { name: day.name });
     }
   }
 
@@ -140,7 +149,7 @@ angular.module('managerApp').controller('voipTimeConditionConditionCtrl', functi
       handleDayList(dayActive, day);
     }
 
-    self.repeatToDays = _.sortBy(self.repeatToDays, 'id');
+    self.repeatToDays = sortBy(self.repeatToDays, 'id');
   };
 
   self.moveBackward = function () {
@@ -150,11 +159,11 @@ angular.module('managerApp').controller('voipTimeConditionConditionCtrl', functi
     const weekDays = [0, 1, 2, 3, 4];
     const weekendDays = [5, 6];
 
-    if (_.isEqual(choices, weekDays)) {
+    if (isEqual(choices, weekDays)) {
       self.repeatToDaysLabel = $translate.instant('voip_time_condition_condition_popover_days_repeat_weekDays_label');
-    } else if (_.isEqual(weekendDays, choices)) {
+    } else if (isEqual(weekendDays, choices)) {
       self.repeatToDaysLabel = $translate.instant('voip_time_condition_condition_popover_days_repeat_weekendDays_label');
-    } else if (_.isEqual(weekDays.concat(weekendDays), choices)) {
+    } else if (isEqual(weekDays.concat(weekendDays), choices)) {
       self.repeatToDaysLabel = $translate.instant('voip_time_condition_condition_popover_days_repeat_allDays_label');
     } else {
       self.repeatToDaysLabel = self.repeatToDays
@@ -199,7 +208,7 @@ angular.module('managerApp').controller('voipTimeConditionConditionCtrl', functi
   /* ----------  Delete condition  ----------*/
 
   self.onDeleteConfirmBtnClick = function () {
-    if (_.startsWith(self.condition.conditionId, 'tmp_')) {
+    if (startsWith(self.condition.conditionId, 'tmp_')) {
       self.timeCondition.removeCondition(self.condition);
     } else {
       self.condition.state = 'TO_DELETE';
@@ -267,7 +276,7 @@ angular.module('managerApp').controller('voipTimeConditionConditionCtrl', functi
       }).toDate();
 
       // call on popover init function if exist in parent ctrl
-      if (_.isFunction($scope.$parent.$ctrl.onPopoverInit)) {
+      if (isFunction($scope.$parent.$ctrl.onPopoverInit)) {
         $scope.$parent.$ctrl.onPopoverInit();
       }
     }).finally(() => {
@@ -282,7 +291,7 @@ angular.module('managerApp').controller('voipTimeConditionConditionCtrl', functi
       self.condition.stopEdition(true);
     }
 
-    if (_.isFunction($scope.$parent.$ctrl.onPopoverDestroy)) {
+    if (isFunction($scope.$parent.$ctrl.onPopoverDestroy)) {
       $scope.$parent.$ctrl.onPopoverDestroy(self.fcEvent);
     }
   };

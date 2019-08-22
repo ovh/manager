@@ -1,3 +1,8 @@
+import assignIn from 'lodash/assignIn';
+import isBoolean from 'lodash/isBoolean';
+import pick from 'lodash/pick';
+import without from 'lodash/without';
+
 angular.module('managerApp').factory('PackXdslModemDhcpObject', ($q, $translate, $uibModal, OvhApiXdsl, TucToast) => {
   const template = {
     serverEnabled: true,
@@ -17,10 +22,10 @@ angular.module('managerApp').factory('PackXdslModemDhcpObject', ($q, $translate,
    * @param {Object} data Data from APIv6
    */
   const PackXdslModemDhcpObject = function (data) {
-    _.extend(
+    assignIn(
       this,
       template,
-      _.pick(
+      pick(
         data,
         Object.keys(template),
       ),
@@ -30,7 +35,7 @@ angular.module('managerApp').factory('PackXdslModemDhcpObject', ($q, $translate,
   PackXdslModemDhcpObject.prototype.save = function (serviceName) {
     const self = this;
     this.busy = true;
-    const params = _.pick(this.tempValue, _.without(Object.keys(template), 'lanName', 'dhcpName'));
+    const params = pick(this.tempValue, without(Object.keys(template), 'lanName', 'dhcpName'));
     params.secondaryDNS = params.secondaryDNS || null;
     return OvhApiXdsl.Modem().Lan().Dhcp().v6()
       .update({
@@ -39,7 +44,7 @@ angular.module('managerApp').factory('PackXdslModemDhcpObject', ($q, $translate,
         dhcpName: this.dhcpName,
       },
       params).$promise.then((data) => {
-        _.extend(self, self.tempValue);
+        assignIn(self, self.tempValue);
         self.toggleEdit(false);
         TucToast.success($translate.instant('xdsl_modem_dhcp_success', {
           name: self.domainName,
@@ -83,7 +88,7 @@ angular.module('managerApp').factory('PackXdslModemDhcpObject', ($q, $translate,
    * Enter Edit Mode
    */
   PackXdslModemDhcpObject.prototype.edit = function () {
-    this.tempValue = _.pick(this, Object.keys(template));
+    this.tempValue = pick(this, Object.keys(template));
     this.toggleEdit(true);
   };
 
@@ -93,7 +98,7 @@ angular.module('managerApp').factory('PackXdslModemDhcpObject', ($q, $translate,
    * @return {Boolean} new edit mode state
    */
   PackXdslModemDhcpObject.prototype.toggleEdit = function (state) {
-    if (_.isBoolean(state)) {
+    if (isBoolean(state)) {
       this.editMode = state;
     } else {
       this.editMode = !this.editMode;

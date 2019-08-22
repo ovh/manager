@@ -1,3 +1,9 @@
+import find from 'lodash/find';
+import get from 'lodash/get';
+import isString from 'lodash/isString';
+import map from 'lodash/map';
+import filter from 'lodash/filter';
+
 angular.module('managerApp').controller('TelephonySchedulerCtrl', function TelephonySchedulerCtrl($anchorScroll, $locale, $location, $q, $translate, $translatePartialLoader, $uibModal, matchmedia, OvhApiTelephony, OvhApiMe, Poller, TucToast, uiCalendarConfig, VoipSchedulerEvent) {
   const self = this;
 
@@ -46,10 +52,16 @@ angular.module('managerApp').controller('TelephonySchedulerCtrl', function Telep
     });
   };
 
-  self.applyFilters = function (events) {
-    return _.chain(events).filter(event => event.status !== 'TODELETE' && (self.model.filters.categories ? self.model.filters.categories.indexOf(event.categories) === -1 : true)).map(event => angular.extend(event.toFullCalendarEvent(), {
-      className: event.categories,
-    })).value();
+  self.applyFilters = function applyFilters(events) {
+    return map(
+      filter(
+        events,
+        event => event.status !== 'TODELETE' && (self.model.filters.categories ? self.model.filters.categories.indexOf(event.categories) === -1 : true),
+      ),
+      event => angular.extend(event.toFullCalendarEvent(), {
+        className: event.categories,
+      }),
+    );
   };
 
   self.getCalendarTitle = function () {
@@ -61,7 +73,7 @@ angular.module('managerApp').controller('TelephonySchedulerCtrl', function Telep
   };
 
   self.hasEventInEdition = function () {
-    return !!_.find(self.scheduler.events, {
+    return !!find(self.scheduler.events, {
       inEdition: true,
     });
   };
@@ -123,7 +135,7 @@ angular.module('managerApp').controller('TelephonySchedulerCtrl', function Telep
         // stop edition and restart with saved value
         self.timeCondition.stopEdition(false, true).startEdition();
       }).catch((error) => {
-        TucToast.error([$translate.instant('telephony_scheduler_save_error'), _.get(error, 'data.message', '')].join(' '));
+        TucToast.error([$translate.instant('telephony_scheduler_save_error'), get(error, 'data.message', '')].join(' '));
         return $q.reject(error);
       });
     }
@@ -209,7 +221,7 @@ angular.module('managerApp').controller('TelephonySchedulerCtrl', function Telep
         }
       });
     }, (error) => {
-      if (error && !_.isString(error)) {
+      if (error && !isString(error)) {
         TucToast.error([$translate.instant('telephony_scheduler_import_error'), (error.data && error.data.message) || ''].join(' '));
       }
       return $q.reject(error);
@@ -239,7 +251,7 @@ angular.module('managerApp').controller('TelephonySchedulerCtrl', function Telep
     });
 
     exportModal.result.catch((error) => {
-      if (error && !_.isString(error)) {
+      if (error && !isString(error)) {
         TucToast.error([$translate.instant('telephony_scheduler_export_error'), (error.data && error.data.message) || ''].join(' '));
       }
       return $q.reject(error);

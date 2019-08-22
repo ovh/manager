@@ -1,3 +1,5 @@
+import endsWith from 'lodash/endsWith';
+
 angular.module('managerApp').controller('TelecomTelephonyServiceTimeConditionImportCtrl', class TelecomTelephonyServiceTimeConditionImportCtrl {
   constructor($translate, $uibModalInstance, TucToast, voipTimeConditionConfiguration) {
     this.$translate = $translate;
@@ -27,7 +29,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceTimeConditionImp
   checkValidFileExtention(file) {
     const jsonType = '.json';
     const fileName = file ? file.name : '';
-    this.validFormatFile = _.endsWith(fileName.toLowerCase(), jsonType);
+    this.validFormatFile = endsWith(fileName.toLowerCase(), jsonType);
     this.hasChecked = true;
 
     return this.validFormatFile;

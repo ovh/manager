@@ -1,4 +1,13 @@
-angular.module('managerApp').controller('TelecomTelephonyLineDomainCtrl', function ($q, $stateParams, $translate, TelephonyMediator, OvhApiTelephony, OvhApiTelephonyLineOptions, TucToast, tucTelephonyBulk) {
+import each from 'lodash/each';
+import every from 'lodash/every';
+import filter from 'lodash/filter';
+import forEach from 'lodash/forEach';
+import get from 'lodash/get';
+import isEqual from 'lodash/isEqual';
+import map from 'lodash/map';
+import set from 'lodash/set';
+
+angular.module('managerApp').controller('TelecomTelephonyLineDomainCtrl', function TelecomTelephonyLineDomainCtrl($q, $stateParams, $translate, TelephonyMediator, OvhApiTelephony, OvhApiTelephonyLineOptions, TucToast, tucTelephonyBulk) {
   const self = this;
 
   self.line = null;
@@ -23,9 +32,9 @@ angular.module('managerApp').controller('TelecomTelephonyLineDomainCtrl', functi
     =============================== */
 
   self.hasClientDomainChange = function () {
-    return !_.every(
+    return !every(
       self.availableSipDomains.client,
-      domain => _.isEqual(domain.prevValue, domain.currentDomain),
+      domain => isEqual(domain.prevValue, domain.currentDomain),
     );
   };
 
@@ -65,33 +74,39 @@ angular.module('managerApp').controller('TelecomTelephonyLineDomainCtrl', functi
   /* ----------  CLIENT SIP DOMAIN ACTIONS  ----------*/
 
   self.cancelClientDomainEdit = function () {
-    _.each(self.availableSipDomains.client, (domain) => {
-      _.set(domain, 'currentDomain', domain.prevValue);
+    forEach(self.availableSipDomains.client, (domain) => {
+      set(domain, 'currentDomain', domain.prevValue);
     });
     self.model.clientSipEdit = false;
   };
 
-  self.validateClientDomain = function () {
+  self.validateClientDomain = function validateClientDomain() {
     const requestPromises = [];
     let tmpPromise = null;
 
     self.loading.saveClient = true;
 
-    _.chain(self.availableSipDomains.client)
-      .filter(domain => !_.isEqual(domain.prevValue, domain.currentDomain)).each((domain) => {
+    each(
+      filter(
+        self.availableSipDomains.client,
+        domain => !isEqual(domain.prevValue, domain.currentDomain),
+      ),
+      (domain) => {
         tmpPromise = OvhApiTelephony.v6().setDefaultSipDomain({}, {
           country: domain.country,
           domain: domain.currentDomain,
           type: 'sip',
         }).$promise.then(() => {
-          _.set(domain, 'prevValue', domain.currentDomain);
+          set(domain, 'prevValue', domain.currentDomain);
         }, (error) => {
           TucToast.error([$translate.instant('telephony_line_management_sip_domain_load_error'), (error.data && error.data.message) || ''].join(' '));
           return $q.reject(error);
         });
 
         requestPromises.push(tmpPromise);
-      }).value();
+      },
+    );
+
 
     return $q.allSettled(requestPromises).finally(() => {
       self.loading.saveClient = false;
@@ -119,8 +134,8 @@ angular.module('managerApp').controller('TelecomTelephonyLineDomainCtrl', functi
         }).$promise,
       }).then((responses) => {
         self.availableSipDomains.line = responses.lineDomains;
-        self.availableSipDomains.client = _.map(responses.clientDomains, (domain) => {
-          _.set(domain, 'prevValue', domain.currentDomain);
+        self.availableSipDomains.client = map(responses.clientDomains, (domain) => {
+          set(domain, 'prevValue', domain.currentDomain);
           return domain;
         });
       });
@@ -153,7 +168,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineDomainCtrl', functi
   };
 
   self.filterServices = function (services) {
-    return _.filter(services, service => ['sip', 'mgcp'].indexOf(service.featureType) > -1);
+    return filter(services, service => ['sip', 'mgcp'].indexOf(service.featureType) > -1);
   };
 
   self.getBulkParams = function () {
@@ -184,7 +199,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineDomainCtrl', functi
   };
 
   self.onBulkError = function (error) {
-    TucToast.error([$translate.instant('telephony_line_management_sip_domain_bulk_on_error'), _.get(error, 'msg.data')].join(' '));
+    TucToast.error([$translate.instant('telephony_line_management_sip_domain_bulk_on_error'), get(error, 'msg.data')].join(' '));
   };
 
   /* -----  End of BULK  ------ */

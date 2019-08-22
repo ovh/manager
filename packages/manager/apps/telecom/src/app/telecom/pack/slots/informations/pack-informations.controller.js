@@ -1,3 +1,5 @@
+import head from 'lodash/head';
+
 angular.module('managerApp').controller('PackInformationCtrl', function ($scope, $translate, $q, $stateParams, TucToast, OvhApiPackXdsl, OvhApiXdsl, moment) {
   const self = this;
 
@@ -17,8 +19,8 @@ angular.module('managerApp').controller('PackInformationCtrl', function ($scope,
     return OvhApiPackXdsl.Access().v6().getServices({
       packId: $stateParams.packName,
     }).$promise.then(access => OvhApiXdsl.Lines().v6().query({
-      xdslId: _.first(access),
-    }).$promise.then(lines => _.first(lines)));
+      xdslId: head(access),
+    }).$promise.then(lines => head(lines)));
   }
 
   function init() {

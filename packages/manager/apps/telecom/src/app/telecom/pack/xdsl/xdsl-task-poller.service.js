@@ -1,3 +1,5 @@
+import pull from 'lodash/pull';
+
 angular.module('managerApp').service('XdslTaskPoller', class XdslTaskPoller {
   constructor(OvhApiXdslTasksCurrent) {
     this.OvhApiXdslTasksCurrent = OvhApiXdslTasksCurrent;
@@ -41,6 +43,6 @@ angular.module('managerApp').service('XdslTaskPoller', class XdslTaskPoller {
   }
 
   unregister(ticket) {
-    _.pull(this.handlers[ticket.taskId], ticket.handler);
+    pull(this.handlers[ticket.taskId], ticket.handler);
   }
 });

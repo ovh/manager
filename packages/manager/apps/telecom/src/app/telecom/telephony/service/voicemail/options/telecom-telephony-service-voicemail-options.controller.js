@@ -1,3 +1,11 @@
+import assign from 'lodash/assign';
+import endsWith from 'lodash/endsWith';
+import head from 'lodash/head';
+import pick from 'lodash/pick';
+import remove from 'lodash/remove';
+import set from 'lodash/set';
+import some from 'lodash/some';
+
 angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailOptionsCtrl', function ($scope, $stateParams, $q, $translate, $timeout, TucToastError, OvhApiTelephony, OvhApiMe) {
   const self = this;
   let removeRecord = null;
@@ -28,12 +36,12 @@ angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailOptions
           greeting: OvhApiTelephony.Voicemail().Greetings().v6().get({
             billingAccount: $stateParams.billingAccount,
             serviceName: $stateParams.serviceName,
-            id: _.first(result),
+            id: head(result),
           }).$promise,
           download: OvhApiTelephony.Voicemail().Greetings().v6().download({
             billingAccount: $stateParams.billingAccount,
             serviceName: $stateParams.serviceName,
-            id: _.first(result),
+            id: head(result),
           }).$promise.catch(() => {
             // sometimes api fails to retrieve a download URL,
             // since it's not blocking we don't want to reject an error
@@ -42,8 +50,8 @@ angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailOptions
           }),
         }).then((data) => {
           const res = {};
-          _.assign(res, _.pick(data.greeting, ['dir', 'id']));
-          _.assign(res, _.pick(data.download, ['filename', 'url']));
+          assign(res, pick(data.greeting, ['dir', 'id']));
+          assign(res, pick(data.download, ['filename', 'url']));
           return res;
         });
       }
@@ -56,8 +64,8 @@ angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailOptions
     OvhApiTelephony.Voicemail().v6().resetQueryCache();
     return fetchSettings().then((settings) => {
       self.settings = settings;
-      _.assign(self.recordingForm, _.pick(settings, ['doNotRecord']));
-      _.assign(self.notificationForm, _.pick(settings, ['audioFormat', 'keepMessage', 'fromName', 'fromEmail']));
+      assign(self.recordingForm, pick(settings, ['doNotRecord']));
+      assign(self.notificationForm, pick(settings, ['audioFormat', 'keepMessage', 'fromName', 'fromEmail']));
     });
   }
 
@@ -66,7 +74,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailOptions
     OvhApiTelephony.Voicemail().Greetings().v6().resetQueryCache();
     return fetchGreetings().then((greetings) => {
       self.greetings = greetings;
-      _.assign(self.recordingForm, _.pick(greetings, ['filename', 'url', 'dir']));
+      assign(self.recordingForm, pick(greetings, ['filename', 'url', 'dir']));
     });
   }
 
@@ -75,7 +83,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailOptions
   }
 
   function pickEditableSettings(settings) {
-    return _.pick(settings, ['audioFormat', 'doNotRecord', 'forcePassword', 'fromEmail',
+    return pick(settings, ['audioFormat', 'doNotRecord', 'forcePassword', 'fromEmail',
       'fromName', 'keepMessage', 'redirectionEmails']);
   }
 
@@ -145,7 +153,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailOptions
   self.checkValidAudioExtention = function (file) {
     const validExtensions = ['aiff', 'au', 'flac', 'ogg', 'mp3', 'wav', 'wma'];
     const fileName = file ? file.name : '';
-    const found = _.some(validExtensions, ext => _.endsWith(fileName.toLowerCase(), ext));
+    const found = some(validExtensions, ext => endsWith(fileName.toLowerCase(), ext));
     if (!found) {
       TucToastError($translate.instant('telephony_line_answer_voicemail_options_recording_file_invalid'));
     }
@@ -155,7 +163,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailOptions
   self.updateRecording = function () {
     // update changes
     const settings = pickEditableSettings(self.settings);
-    _.assign(settings, _.pick(self.recordingForm, ['doNotRecord']));
+    assign(settings, pick(self.recordingForm, ['doNotRecord']));
 
     const update = function () {
       const promises = {
@@ -234,7 +242,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailOptions
   self.updateSettings = function () {
     // update changes
     const settings = pickEditableSettings(self.settings);
-    _.assign(settings, _.pick(self.notificationForm, ['audioFormat', 'keepMessage', 'fromName', 'fromEmail']));
+    assign(settings, pick(self.notificationForm, ['audioFormat', 'keepMessage', 'fromName', 'fromEmail']));
 
     self.notificationForm.isUpdating = true;
     self.cancelAddEmail();
@@ -262,13 +270,13 @@ angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailOptions
   self.removeEmail = function (redirection) {
     // update changes
     const settings = pickEditableSettings(self.settings);
-    _.remove(settings.redirectionEmails, {
+    remove(settings.redirectionEmails, {
       email: redirection.email,
       type: redirection.type,
     });
 
     self.emailForm.isRemoving = true;
-    _.set(redirection, 'removing', true);
+    set(redirection, 'removing', true);
 
     const update = OvhApiTelephony.Voicemail().v6().setSettings({
       billingAccount: $stateParams.billingAccount,

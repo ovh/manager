@@ -1,3 +1,7 @@
+import isEmpty from 'lodash/isEmpty';
+import set from 'lodash/set';
+import snakeCase from 'lodash/snakeCase';
+
 angular.module('managerApp').component('linePhoneConfiguration', {
   require: {
     configForm: '^form',
@@ -26,14 +30,14 @@ angular.module('managerApp').component('linePhoneConfiguration', {
         case 'boolean':
           return config.value ? $translate.instant('telephony_line_phone_configuration_config_yes') : $translate.instant('telephony_line_phone_configuration_config_no');
         case 'enum':
-          return self.isEnumHasToBeTranslated(config.name) ? $translate.instant(['telephony_line_phone_configuration_config', _.snakeCase(config.value)].join('_')) : config.value;
+          return self.isEnumHasToBeTranslated(config.name) ? $translate.instant(['telephony_line_phone_configuration_config', snakeCase(config.value)].join('_')) : config.value;
         default:
           return config.value;
       }
     };
 
     self.getPlaceholderTranslation = function (configName) {
-      const trKey = ['telephony_line_phone_configuration_config', _.snakeCase(configName)].join('_');
+      const trKey = ['telephony_line_phone_configuration_config', snakeCase(configName)].join('_');
       const translated = $translate.instant(trKey);
       return translated !== trKey ? translated : configName;
     };
@@ -45,8 +49,8 @@ angular.module('managerApp').component('linePhoneConfiguration', {
       ============================== */
 
     self.onTextInputBlur = function (config) {
-      if (_.isEmpty(config.value)) {
-        _.set(config, 'value', config.prevValue);
+      if (isEmpty(config.value)) {
+        set(config, 'value', config.prevValue);
       }
     };
 

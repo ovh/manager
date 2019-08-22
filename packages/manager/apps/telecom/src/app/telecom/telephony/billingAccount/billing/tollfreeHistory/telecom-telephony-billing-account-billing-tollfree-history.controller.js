@@ -1,3 +1,9 @@
+import chunk from 'lodash/chunk';
+import forEach from 'lodash/forEach';
+import flatten from 'lodash/flatten';
+import map from 'lodash/map';
+import set from 'lodash/set';
+
 angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingTollfreeHistoryCtrl', function ($q, $filter, $window, $timeout, $stateParams, $translate, TelephonyMediator, OvhApiTelephony, TucToast) {
   const self = this;
 
@@ -14,17 +20,17 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingTo
         billingAccount: $stateParams.billingAccount,
       }).$promise
       .then(dates => $q
-        .all(_.map(
-          _.chunk(dates, 50),
+        .all(map(
+          chunk(dates, 50),
           chunkDates => OvhApiTelephony.HistoryTollfreeConsumption().v6().getBatch({
             billingAccount: $stateParams.billingAccount,
             date: chunkDates,
           }).$promise,
         ))
         .then((chunkResult) => {
-          const result = _.pluck(_.flatten(chunkResult), 'value');
-          return _.each(result, (consumption) => {
-            _.set(consumption, 'priceValue', consumption.price ? consumption.price.value : null);
+          const result = map(flatten(chunkResult), 'value');
+          return forEach(result, (consumption) => {
+            set(consumption, 'priceValue', consumption.price ? consumption.price.value : null);
           });
         }))
       .catch((err) => {

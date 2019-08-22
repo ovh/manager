@@ -1,3 +1,5 @@
+import keys from 'lodash/keys';
+
 angular.module('managerApp').factory('TelephonyGroupLinePhoneFunction', ($q, OvhApiTelephony) => {
   const mandatoriesPhoneFunctionOptions = [
     'billingAccount',
@@ -53,7 +55,7 @@ angular.module('managerApp').factory('TelephonyGroupLinePhoneFunction', ($q, Ovh
     .setPhoneFunctionInfos = function (phoneFunctionOptions) {
       const self = this;
 
-      angular.forEach(_.keys(phoneFunctionOptions), (phoneFunctionOptionsKey) => {
+      angular.forEach(keys(phoneFunctionOptions), (phoneFunctionOptionsKey) => {
         if (phoneFunctionOptionsKey.indexOf('$') !== 0) {
           self[phoneFunctionOptionsKey] = phoneFunctionOptions[phoneFunctionOptionsKey];
         }
@@ -92,7 +94,7 @@ angular.module('managerApp').factory('TelephonyGroupLinePhoneFunction', ($q, Ovh
       });
   };
 
-  TelephonyGroupLineFunctionPhone.prototype.getFunctions = function () {
+  TelephonyGroupLineFunctionPhone.prototype.getFunctions = function getFunctions() {
     const self = this;
     const resultKeys = [];
     const requests = [];
@@ -103,13 +105,19 @@ angular.module('managerApp').factory('TelephonyGroupLinePhoneFunction', ($q, Ovh
         serviceName: self.serviceName,
       }).$promise.then((functionKeys) => {
         angular.forEach(functionKeys, (key) => {
-          requests.push(OvhApiTelephony.Line().Phone().FunctionKey().v6()
+          requests.push(OvhApiTelephony
+            .Line()
+            .Phone()
+            .FunctionKey()
+            .v6()
             .get({
               billingAccount: self.billingAccount,
               serviceName: self.serviceName,
               keyNum: key,
-            }).$promise.then((keys) => {
-              resultKeys.push(keys);
+            })
+            .$promise
+            .then((functionKey) => {
+              resultKeys.push(functionKey);
               return resultKeys;
             }, () => resultKeys));
         });

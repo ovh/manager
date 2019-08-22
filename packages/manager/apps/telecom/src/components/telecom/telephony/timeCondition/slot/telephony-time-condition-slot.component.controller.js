@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular.module('managerApp').controller('voipTimeConditionSlotCtrl', class voipTimeConditionSlotCtrl {
   constructor($state) {
     this.$state = $state;
@@ -5,9 +7,9 @@ angular.module('managerApp').controller('voipTimeConditionSlotCtrl', class voipT
 
   getSlotDetail(property) {
     if (this.slot.inEdition && this.slot.saveForEdition) {
-      return _.get(this.slot.saveForEdition, property, '');
+      return get(this.slot.saveForEdition, property, '');
     }
 
-    return _.get(this.slot, property, '');
+    return get(this.slot, property, '');
   }
 });

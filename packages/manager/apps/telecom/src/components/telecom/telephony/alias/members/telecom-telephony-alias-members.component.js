@@ -1,3 +1,11 @@
+import assign from 'lodash/assign';
+import forEach from 'lodash/forEach';
+import find from 'lodash/find';
+import pick from 'lodash/pick';
+import remove from 'lodash/remove';
+import set from 'lodash/set';
+import sortBy from 'lodash/sortBy';
+
 angular.module('managerApp').run(($translate, asyncLoader) => {
   asyncLoader.addTranslations(
     import(`./translations/Messages_${$translate.use()}.json`)
@@ -34,7 +42,7 @@ angular.module('managerApp').component('telecomTelephonyAliasMembers', {
 
 
       self.api.addMembersToList = function (toAdd) {
-        _.each(toAdd.reverse(), (member) => {
+        forEach(toAdd.reverse(), (member) => {
           self.members.unshift(member);
         });
         self.api.reorderMembers(self.members).then((orderedMembers) => {
@@ -71,10 +79,10 @@ angular.module('managerApp').component('telecomTelephonyAliasMembers', {
       if (member.description === undefined) {
         self.api.fetchMemberDescription(member)
           .then((result) => {
-            _.set(member, 'description', result);
+            set(member, 'description', result);
           })
           .catch(() => {
-            _.set(member, 'description', '');
+            set(member, 'description', '');
           });
       }
     };
@@ -86,9 +94,9 @@ angular.module('managerApp').component('telecomTelephonyAliasMembers', {
       // we do it by hand first so the ui is refreshed immediately
       const fromPos = fromMember.position;
       const toPos = toMember.position;
-      _.set(fromMember, 'position', toPos);
-      _.set(toMember, 'position', fromPos);
-      self.members = _.sortBy(self.members, 'position');
+      set(fromMember, 'position', toPos);
+      set(toMember, 'position', fromPos);
+      self.members = sortBy(self.members, 'position');
 
       self.sortableMembersOpts.disabled = true;
       return self.api
@@ -99,9 +107,9 @@ angular.module('managerApp').component('telecomTelephonyAliasMembers', {
         })
         .catch((err) => {
           // revert changes
-          _.set(fromMember, 'position', fromPos);
-          _.set(toMember, 'position', toPos);
-          self.members = _.sortBy(self.members, 'position');
+          set(fromMember, 'position', fromPos);
+          set(toMember, 'position', toPos);
+          self.members = sortBy(self.members, 'position');
           return new TucToastError(err);
         })
         .finally(() => {
@@ -136,8 +144,8 @@ angular.module('managerApp').component('telecomTelephonyAliasMembers', {
       const attrs = ['status', 'timeout', 'wrapUpTime', 'simultaneousLines'];
       return self.api.updateMember(self.memberInEdition).then(() => {
         TucToast.success($translate.instant('telephony_alias_members_change_success'));
-        const toUpdate = _.find(self.members, { agentId: self.memberInEdition.agentId });
-        _.assign(toUpdate, _.pick(self.memberInEdition, attrs));
+        const toUpdate = find(self.members, { agentId: self.memberInEdition.agentId });
+        assign(toUpdate, pick(self.memberInEdition, attrs));
         self.cancelMemberEdition();
       }).catch(err => new TucToastError(err)).finally(() => {
         self.loaders.editing = false;
@@ -149,7 +157,7 @@ angular.module('managerApp').component('telecomTelephonyAliasMembers', {
       self.api.deleteMember(self.memberToDelete).then(() => {
         self.memberToDelete = null;
         TucToast.success($translate.instant('telephony_alias_members_delete_success'));
-        _.remove(self.members, m => m.agentId === toDelete.agentId);
+        remove(self.members, m => m.agentId === toDelete.agentId);
         return self.api.reorderMembers(self.members);
       }).then((orderedMembers) => {
         self.members = orderedMembers;

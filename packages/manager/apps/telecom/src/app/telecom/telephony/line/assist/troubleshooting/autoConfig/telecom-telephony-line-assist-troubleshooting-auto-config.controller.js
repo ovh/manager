@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular.module('managerApp').controller('TelecomTelephonyLineAssistTroubleshootingAutoConfigCtrl', function ($q, troubleshootingProcess, tucValidator, OvhApiMyIp) {
   const self = this;
 
@@ -61,8 +63,8 @@ angular.module('managerApp').controller('TelecomTelephonyLineAssistTroubleshooti
       myIp: OvhApiMyIp.Aapi().get().$promise,
       lineIp: self.process.line.getIps(),
     }).then((responses) => {
-      self.myIpInfos = _.get(responses, 'myIp[0]');
-      self.model.ip = _.get(responses, 'lineIp[0].ip');
+      self.myIpInfos = get(responses, 'myIp[0]');
+      self.model.ip = get(responses, 'lineIp[0].ip');
     }).finally(() => {
       self.loading.init = false;
     });

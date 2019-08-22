@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import head from 'lodash/head';
 
 export default class PackVoipEcoFaxCtrl {
   /* @ngInject */
@@ -42,7 +42,7 @@ export default class PackVoipEcoFaxCtrl {
     })
       .then(({ ecofaxes, billingAccount }) => {
         this.services = ecofaxes;
-        this.billingAccount = _.first(billingAccount);
+        this.billingAccount = head(billingAccount);
       })
       .catch((error) => {
         this.TucToast.error(this.$translate.instant('ecofax_pro_loading_error'));

@@ -1,3 +1,6 @@
+import get from 'lodash/get';
+import keys from 'lodash/keys';
+
 angular.module('managerApp').service('TelephonyMediator', function ($q, $stateParams, OvhApiTelephony, TelephonyVoipService, REDIRECT_URLS, REDIRECT_V4_HASH) {
   const self = this;
   let currentGroup = null;
@@ -26,7 +29,7 @@ angular.module('managerApp').service('TelephonyMediator', function ($q, $statePa
     ============================================ */
 
   self.getV6ToV4RedirectionUrl = function (constantPath) {
-    let url = REDIRECT_URLS.telephonyV4 + _.get(REDIRECT_V4_HASH, constantPath);
+    let url = REDIRECT_URLS.telephonyV4 + get(REDIRECT_V4_HASH, constantPath);
 
     if ($stateParams.serviceName) {
       url = url.replace('{lineNumber}', $stateParams.serviceName);
@@ -71,8 +74,8 @@ angular.module('managerApp').service('TelephonyMediator', function ($q, $statePa
     let tmpService = null;
 
     for (const billingAccount in self.groups) { // eslint-disable-line
-      if (_.get(self.groups, billingAccount)) {
-        tmpGroup = _.get(self.groups, billingAccount);
+      if (get(self.groups, billingAccount)) {
+        tmpGroup = get(self.groups, billingAccount);
         tmpService = tmpGroup.getService(serviceName);
         if (tmpService) {
           return tmpService;
@@ -131,7 +134,7 @@ angular.module('managerApp').service('TelephonyMediator', function ($q, $statePa
   /* ----------  COUNT  ----------*/
 
   self.getCount = function (force) {
-    return self.getAll(force).then(groups => _.keys(groups).length);
+    return self.getAll(force).then(groups => keys(groups).length);
   };
 
   /* -----  End of SIDEBAR HELPERS  ------*/

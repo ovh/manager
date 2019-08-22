@@ -1,3 +1,9 @@
+import chunk from 'lodash/chunk';
+import filter from 'lodash/filter';
+import flatten from 'lodash/flatten';
+import map from 'lodash/map';
+import set from 'lodash/set';
+
 angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailManagementCtrl', function ($scope, $stateParams, $q, $translate, $timeout, $filter, $document, $window, TucToastError, OvhApiTelephony) {
   const self = this;
 
@@ -8,8 +14,8 @@ angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailManagem
         serviceName: $stateParams.serviceName,
       }).$promise
       .then(ids => $q
-        .all(_.map(
-          _.chunk(ids, 50),
+        .all(map(
+          chunk(ids, 50),
           chunkIds => OvhApiTelephony.Voicemail().Directories().v6().getBatch({
             billingAccount: $stateParams.billingAccount,
             serviceName: $stateParams.serviceName,
@@ -17,10 +23,10 @@ angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailManagem
           }).$promise,
         ))
         .then((chunkResult) => {
-          const result = _.pluck(_.flatten(chunkResult), 'value');
-          return _.map(result, (message) => {
-            _.set(message, 'durationAsDate', new Date(message.duration * 1000));
-            _.set(message, 'isPlaying', false);
+          const result = map(flatten(chunkResult), 'value');
+          return map(result, (message) => {
+            set(message, 'durationAsDate', new Date(message.duration * 1000));
+            set(message, 'isPlaying', false);
             return message;
           });
         }));
@@ -56,7 +62,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailManagem
   }
 
   this.getSelection = function () {
-    return _.filter(
+    return filter(
       self.messages.raw,
       message => message && self.messages.selected && self.messages.selected[message.id],
     );
@@ -111,7 +117,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailManagem
       if (self.messages.playing) {
         self.messages.playing.pendingListen = false;
       }
-      _.set(message, 'pendingListen', true);
+      set(message, 'pendingListen', true);
       return self.fetchMessageFile(message).then((info) => {
         const audioElt = $document.find('#voicemailAudio')[0];
         self.messages.playing = message;
@@ -119,18 +125,18 @@ angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailManagem
         audioElt.load();
         audioElt.play();
       }).catch(err => new TucToastError(err)).finally(() => {
-        _.set(message, 'pendingListen', false);
+        set(message, 'pendingListen', false);
       });
     }
     return $q.when(null);
   };
 
   this.downloadMessage = function (message) {
-    _.set(message, 'pendingDownload', true);
+    set(message, 'pendingDownload', true);
     return self.fetchMessageFile(message).then((info) => {
       $window.location.href = info.url; // eslint-disable-line
     }).catch(err => new TucToastError(err)).finally(() => {
-      _.set(message, 'pendingDownload', false);
+      set(message, 'pendingDownload', false);
     });
   };
 
@@ -152,9 +158,9 @@ angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailManagem
   };
 
   this.deleteMessage = function (message) {
-    _.set(message, 'isDeleting', true);
+    set(message, 'isDeleting', true);
     return self.deleteMessages([message]).then(() => {
-      _.set(message, 'isDeleting', false);
+      set(message, 'isDeleting', false);
     });
   };
 

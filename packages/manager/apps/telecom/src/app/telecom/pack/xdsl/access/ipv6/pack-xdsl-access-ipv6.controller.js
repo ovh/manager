@@ -1,6 +1,8 @@
+import isEmpty from 'lodash/isEmpty';
+
 angular.module('managerApp').controller('XdslAccessIpv6Ctrl', function ($stateParams, $scope, $translate, OvhApiXdslIps, TucToast, TucToastError) {
   this.submitIp = function () {
-    if (_.isEmpty($stateParams.serviceName)) {
+    if (isEmpty($stateParams.serviceName)) {
       TucToast.error($translate.instant('xdsl_access_ipv6_an_error_ocurred'));
     }
 

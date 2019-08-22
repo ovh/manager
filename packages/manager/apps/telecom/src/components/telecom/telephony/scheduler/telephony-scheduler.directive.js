@@ -1,3 +1,7 @@
+import defaultsDeep from 'lodash/defaultsDeep';
+import head from 'lodash/head';
+import set from 'lodash/set';
+
 angular.module('managerApp').run(($translate, asyncLoader) => {
   asyncLoader.addTranslations(
     import(`./translations/Messages_${$translate.use()}.json`)
@@ -41,7 +45,7 @@ angular.module('managerApp').directive('telephonyScheduler', ($compile, $locale)
 
     function manageCancel() {
       // hide overlay
-      _.set(telephonySchedulerCtrl, 'loading.edit', false);
+      set(telephonySchedulerCtrl, 'loading.edit', false);
       iElement.find('.scheduler-ui-calendar').removeClass('topZIndex');
 
       // destroy tmp and stop edition of the event
@@ -51,11 +55,11 @@ angular.module('managerApp').directive('telephonyScheduler', ($compile, $locale)
     function manageSave(schedulerEvent, uiCalEvent) {
       if (uiCalEvent) {
         // update event with saved details
-        _.set(uiCalEvent, 'start', moment(schedulerEvent.dateStart));
-        _.set(uiCalEvent, 'end', moment(schedulerEvent.dateEnd));
-        _.set(uiCalEvent, 'description', schedulerEvent.description);
-        _.set(uiCalEvent, 'title', schedulerEvent.title);
-        _.set(uiCalEvent, 'className', schedulerEvent.categories);
+        set(uiCalEvent, 'start', moment(schedulerEvent.dateStart));
+        set(uiCalEvent, 'end', moment(schedulerEvent.dateEnd));
+        set(uiCalEvent, 'description', schedulerEvent.description);
+        set(uiCalEvent, 'title', schedulerEvent.title);
+        set(uiCalEvent, 'className', schedulerEvent.categories);
 
         // redraw event
         getCalendarElem().fullCalendar('updateEvent', uiCalEvent);
@@ -68,7 +72,7 @@ angular.module('managerApp').directive('telephonyScheduler', ($compile, $locale)
       }
 
       // hide overlay
-      _.set(telephonySchedulerCtrl, 'loading.edit', false);
+      set(telephonySchedulerCtrl, 'loading.edit', false);
       iElement.find('.scheduler-ui-calendar').removeClass('topZIndex');
 
       // destroy tmp and stop edition of the event - but avoid to clear original datas
@@ -77,7 +81,7 @@ angular.module('managerApp').directive('telephonyScheduler', ($compile, $locale)
 
     function manageDelete(schedulerEvent, uiCalEvent) {
       // hide overlay
-      _.set(telephonySchedulerCtrl, 'loading.edit', false);
+      set(telephonySchedulerCtrl, 'loading.edit', false);
       iElement.find('.scheduler-ui-calendar').removeClass('topZIndex');
 
       // destroy tmp and stop edition of the event - but avoid to clear original datas
@@ -125,7 +129,7 @@ angular.module('managerApp').directive('telephonyScheduler', ($compile, $locale)
 
     const defaultOptions = {
       header: false,
-      locale: localStorage && localStorage.getItem('univers-selected-language') ? _.first(localStorage.getItem('univers-selected-language').split('_')) : 'fr',
+      locale: localStorage && localStorage.getItem('univers-selected-language') ? head(localStorage.getItem('univers-selected-language').split('_')) : 'fr',
       firstDay: 1,
       editable: false, // todo manage drag and drop
       selectable: true,
@@ -167,14 +171,14 @@ angular.module('managerApp').directive('telephonyScheduler', ($compile, $locale)
 
         if (schedulerEvent.inEdition) {
           // hide overlay
-          _.set(telephonySchedulerCtrl, 'loading.edit', false);
+          set(telephonySchedulerCtrl, 'loading.edit', false);
           iElement.find('.scheduler-ui-calendar').removeClass('topZIndex');
 
           // stop edition
           destroyTmp(true);
         } else {
           // display overlay
-          _.set(telephonySchedulerCtrl, 'loading.edit', true);
+          set(telephonySchedulerCtrl, 'loading.edit', true);
           iElement.find('.scheduler-ui-calendar').addClass('topZIndex');
 
           // start event edition
@@ -199,11 +203,11 @@ angular.module('managerApp').directive('telephonyScheduler', ($compile, $locale)
         tmpEventInEdition.scope = compileEvent(jsEvent ? $(jsEvent.target) : getCalendarElem().find('.fc-highlight'), tmpEventInEdition.event.startEdition());
 
         // display overlay
-        _.set(telephonySchedulerCtrl, 'loading.edit', true);
+        set(telephonySchedulerCtrl, 'loading.edit', true);
         iElement.find('.scheduler-ui-calendar').addClass('topZIndex');
       },
     };
 
-    _.set(telephonySchedulerCtrl, 'calendarOptions', _.defaultsDeep(scope.options || {}, defaultOptions));
+    set(telephonySchedulerCtrl, 'calendarOptions', defaultsDeep(scope.options || {}, defaultOptions));
   },
 }));

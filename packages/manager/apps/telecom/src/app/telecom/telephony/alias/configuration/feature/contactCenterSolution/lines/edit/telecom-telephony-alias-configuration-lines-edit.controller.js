@@ -1,3 +1,6 @@
+import isEqual from 'lodash/isEqual';
+import remove from 'lodash/remove';
+
 angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationLinesEditCtrl', class TelecomTelephonyAliasConfigurationLinesEditCtrl {
   constructor(
     $stateParams, $translate, $uibModalInstance,
@@ -12,14 +15,14 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationLines
   }
 
   $onInit() {
-    _.remove(this.enumStatus, { value: 'onBreak' });
+    remove(this.enumStatus, { value: 'onBreak' });
     this.loading = false;
     this.selectedStatus = this.enumStatus.find(({ value }) => value === this.lineToEdit.status);
     this.copyLine = angular.copy(this.lineToEdit);
   }
 
   hasChanged() {
-    return !_.isEqual(this.lineToEdit, this.copyLine);
+    return !isEqual(this.lineToEdit, this.copyLine);
   }
 
   updateLine() {

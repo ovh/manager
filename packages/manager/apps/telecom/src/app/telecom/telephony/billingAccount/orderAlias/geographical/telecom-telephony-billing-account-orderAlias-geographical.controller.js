@@ -1,3 +1,9 @@
+import find from 'lodash/find';
+import get from 'lodash/get';
+import head from 'lodash/head';
+import mapKeys from 'lodash/mapKeys';
+import pick from 'lodash/pick';
+
 angular.module('managerApp').controller('TelecomTelephonyAliasOrderGeographicalCtrl',
   function ($q, $translate, $stateParams, OvhApiTelephony, OvhApiOrder,
     TelecomTelephonyBillingAccountOrderAliasService, TucToast, TucToastError,
@@ -21,12 +27,12 @@ angular.module('managerApp').controller('TelecomTelephonyAliasOrderGeographicalC
             self.predefinedNumbers = data.pool;
             self.prices = data.prices;
             self.contracts = data.contracts;
-            _.mapKeys(self.prices, (value, name) => {
+            mapKeys(self.prices, (value, name) => {
               self.prices[name].title = $translate.instant(['telephony', 'order', 'number', 'type', name, 'label'].join('_'));
             });
             if (self.predefinedNumbers) {
-              self.form.premium = _.first(self.predefinedNumbers.premium);
-              self.form.common = _.first(self.predefinedNumbers.common);
+              self.form.premium = head(self.predefinedNumbers.premium);
+              self.form.common = head(self.predefinedNumbers.common);
             }
             return data;
           },
@@ -58,7 +64,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasOrderGeographicalC
           self.redirectionSDA = {};
           self.redirectionSDA.prices = data.prices;
           self.redirectionSDA.contracts = data.contracts;
-          _.mapKeys(self.redirectionSDA.prices, (value, name) => {
+          mapKeys(self.redirectionSDA.prices, (value, name) => {
             self.redirectionSDA.prices[name].title = $translate.instant(['telephony', 'order', 'number', 'type', name, 'label'].join('_'));
           });
           return data;
@@ -181,7 +187,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasOrderGeographicalC
           'socialNomination',
         ]);
       }
-      const form = _.pick(this.form, filter);
+      const form = pick(this.form, filter);
 
       // check if SDA redirection only is displayed
       if (this.showSDASelector) {
@@ -190,7 +196,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasOrderGeographicalC
         form.offer = 'alias';
       }
       form.country = self.user.country;
-      form.zone = _.get(this.form, 'zone.city');
+      form.zone = get(this.form, 'zone.city');
 
       if (form.pool === 1) {
         delete form.pool;
@@ -253,7 +259,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasOrderGeographicalC
       }));
 
       self.form = {
-        amount: _.find(
+        amount: find(
           self.preAmount,
           {
             value: 1,

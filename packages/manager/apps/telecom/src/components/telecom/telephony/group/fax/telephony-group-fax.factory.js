@@ -1,3 +1,11 @@
+import filter from 'lodash/filter';
+import get from 'lodash/get';
+import head from 'lodash/head';
+import isNull from 'lodash/isNull';
+import isUndefined from 'lodash/isUndefined';
+import map from 'lodash/map';
+import some from 'lodash/some';
+
 angular.module('managerApp').factory('TelephonyGroupFax', ($q, OvhApiTelephony) => {
   /*= ==================================
     =            CONSTRUCTOR            =
@@ -30,7 +38,7 @@ angular.module('managerApp').factory('TelephonyGroupFax', ($q, OvhApiTelephony) 
 
     // managing notifications object
     this.notifications = options.notifications || {};
-    if (_.isNull(_.get(this.notifications, 'logs')) || _.isUndefined(_.get(this.notifications, 'logs'))) {
+    if (isNull(get(this.notifications, 'logs')) || isUndefined(get(this.notifications, 'logs'))) {
       this.notifications.logs = {
         email: null,
         frequency: 'Never',
@@ -44,7 +52,7 @@ angular.module('managerApp').factory('TelephonyGroupFax', ($q, OvhApiTelephony) 
     this.isFax = true;
 
     // helper
-    this.isSip = _.some(this.offers, offer => angular.isString(offer) && offer.indexOf('sipfax') >= 0);
+    this.isSip = some(this.offers, offer => angular.isString(offer) && offer.indexOf('sipfax') >= 0);
   }
 
   /* -----  End of CONSTRUCTOR  ------*/
@@ -107,7 +115,7 @@ angular.module('managerApp').factory('TelephonyGroupFax', ($q, OvhApiTelephony) 
         type: 'offer',
       }).$promise
       .then(offerTaskIds => $q
-        .all(_.map(
+        .all(map(
           offerTaskIds,
           id => OvhApiTelephony.Service().OfferTask().v6().get({
             billingAccount: self.billingAccount,
@@ -115,7 +123,7 @@ angular.module('managerApp').factory('TelephonyGroupFax', ($q, OvhApiTelephony) 
             taskId: id,
           }).$promise,
         ))
-        .then(tasks => _.head(_.filter(tasks, { status: 'todo' }))));
+        .then(tasks => head(filter(tasks, { status: 'todo' }))));
   };
 
   /* ----------  EDITION  ----------*/
@@ -150,7 +158,7 @@ angular.module('managerApp').factory('TelephonyGroupFax', ($q, OvhApiTelephony) 
   TelephonyGroupFax.prototype.hasChange = function (path) {
     const self = this;
 
-    return _.get(self.saveForEdition, path) !== _.get(self, path);
+    return get(self.saveForEdition, path) !== get(self, path);
   };
 
   /* -----  End of PROTOTYPE METHODS  ------*/

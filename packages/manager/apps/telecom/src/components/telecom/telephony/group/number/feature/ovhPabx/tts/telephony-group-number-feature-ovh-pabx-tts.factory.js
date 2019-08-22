@@ -1,3 +1,8 @@
+import get from 'lodash/get';
+import isEqual from 'lodash/isEqual';
+import now from 'lodash/now';
+import random from 'lodash/random';
+
 angular.module('managerApp').run(($translate, asyncLoader) => {
   asyncLoader.addTranslations(
     import(`./translations/Messages_${$translate.use()}.json`)
@@ -32,7 +37,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabxTts', ($q, OvhA
     this.serviceName = ttsOptions.serviceName;
 
     // other attributes
-    this.id = ttsOptions.id || _.random(_.now());
+    this.id = ttsOptions.id || random(now());
     this.voice = null;
     this.text = null;
 
@@ -53,8 +58,8 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabxTts', ($q, OvhA
   TelephonyGroupNumberOvhPabxTts.prototype.setOptions = function (ttsOptions) {
     const self = this;
 
-    self.voice = _.get(ttsOptions, 'voice', 'Helene');
-    self.text = _.get(ttsOptions, 'text', '');
+    self.voice = get(ttsOptions, 'voice', 'Helene');
+    self.text = get(ttsOptions, 'text', '');
 
     return self;
   };
@@ -134,7 +139,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabxTts', ($q, OvhA
     }
 
     if (attr) {
-      return !_.isEqual(_.get(self.saveForEdition, attr), _.get(self, attr));
+      return !isEqual(get(self.saveForEdition, attr), get(self, attr));
     }
     return self.hasChange('voice') || self.hasChange('text');
   };

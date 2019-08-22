@@ -1,3 +1,8 @@
+import get from 'lodash/get';
+import isEqual from 'lodash/isEqual';
+import now from 'lodash/now';
+import random from 'lodash/random';
+
 angular.module('managerApp').factory('TelephonyGroupNumberOvhPabxMenuEntry', ($q, OvhApiTelephony) => {
   /*= ==================================
     =            CONSTRUCTOR            =
@@ -29,7 +34,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabxMenuEntry', ($q
     this.menuId = menuEntryOptions.menuId;
 
     // other attributes
-    this.entryId = menuEntryOptions.entryId || _.random(_.now());
+    this.entryId = menuEntryOptions.entryId || random(now());
     this.action = null;
     this.actionParam = null;
     this.dtmf = null;
@@ -182,7 +187,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberOvhPabxMenuEntry', ($q
     }
 
     if (attr) {
-      return !_.isEqual(_.get(self.saveForEdition, attr), _.get(self, attr));
+      return !isEqual(get(self.saveForEdition, attr), get(self, attr));
     }
     return self.hasChange('action') || self.hasChange('actionParam') || self.hasChange('dtmf');
   };

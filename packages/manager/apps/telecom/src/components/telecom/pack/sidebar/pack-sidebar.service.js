@@ -1,3 +1,8 @@
+import upperFirst from 'lodash/upperFirst';
+import every from 'lodash/every';
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+
 angular.module('managerApp').service('PackSidebar', function PackSidebarService($q, $translate, SidebarMenu, TucPackMediator) {
   const self = this;
   const accessErrorStates = ['cancelled', 'close', 'deleting', 'slamming'];
@@ -11,23 +16,23 @@ angular.module('managerApp').service('PackSidebar', function PackSidebarService(
 
   function getPackStatus(pack) {
     const isAllAccessInError = pack.xdsl.length
-      && _.every(pack.xdsl, xdsl => accessErrorStates.indexOf(xdsl.status) > -1);
+      && every(pack.xdsl, xdsl => accessErrorStates.indexOf(xdsl.status) > -1);
     if (isAllAccessInError) {
       return $q.when('error');
     }
 
-    const hasLine = _.find(pack.xdsl, xdsl => !!xdsl.line);
+    const hasLine = find(pack.xdsl, xdsl => !!xdsl.line);
     if (!hasLine) {
       return TucPackMediator.getPackStatus(pack.packName).then(status => (status === 'inCreation' ? 'inCreation' : 'error'));
     }
 
-    return $q.when(_.find(pack.xdsl, xdsl => accessErrorStates.indexOf(xdsl.status) > -1) ? 'warning' : 'ok');
+    return $q.when(find(pack.xdsl, xdsl => accessErrorStates.indexOf(xdsl.status) > -1) ? 'warning' : 'ok');
   }
 
   // add pack xdsl to sidebar
   function fillPacks(packList) {
     angular.forEach(packList, (pack) => {
-      const hasLine = _.find(pack.xdsl, xdsl => xdsl.line);
+      const hasLine = find(pack.xdsl, xdsl => xdsl.line);
 
       getPackStatus(pack).then((packStatus) => {
         const packIconClass = ['ovh-font'];
@@ -63,7 +68,7 @@ angular.module('managerApp').service('PackSidebar', function PackSidebarService(
               const elt = SidebarMenu.addMenuItem({
                 id: xdsl.accessName,
                 title: xdsl.description || xdsl.accessName,
-                prefix: _.capitalize(xdsl.accessType),
+                prefix: upperFirst(xdsl.accessType),
                 state: 'telecom.pack.xdsl',
                 stateParams: {
                   packName: pack.packName,
@@ -103,11 +108,11 @@ angular.module('managerApp').service('PackSidebar', function PackSidebarService(
    *  and then add them to sidebar menu.
    */
   function fillXdsl(xdslListParam) {
-    const xdslList = _.filter(
+    const xdslList = filter(
       xdslListParam,
-      xdslAccess => !_.find(
+      xdslAccess => !find(
         self.allPacks,
-        xdslPack => _.find(xdslPack.xdsl, { accessName: xdslAccess.accessName }),
+        xdslPack => find(xdslPack.xdsl, { accessName: xdslAccess.accessName }),
       ),
     );
 
@@ -118,7 +123,7 @@ angular.module('managerApp').service('PackSidebar', function PackSidebarService(
       const xdslSection = SidebarMenu.addMenuItem({
         id: xdsl.accessName,
         title: xdsl.description || xdsl.accessName,
-        prefix: _.capitalize(xdsl.accessType),
+        prefix: upperFirst(xdsl.accessType),
         loadOnState: 'telecom.pack.xdsl',
         loadOnStateParams: {
           packName: xdsl.accessType,

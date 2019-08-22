@@ -1,3 +1,7 @@
+import endsWith from 'lodash/endsWith';
+import get from 'lodash/get';
+import some from 'lodash/some';
+
 angular.module('managerApp').controller('TelecomTelephonyLinePhonePhonebookContactImportCtrl', function ($q, $stateParams, $timeout, $translate, $uibModalInstance, bookKey, OvhApiTelephony, OvhApiMe, TucToastError) {
   const self = this;
 
@@ -8,7 +12,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhonePhonebookConta
   self.checkValidTextExtention = function (file) {
     const validExtensions = ['csv', 'xls', 'xlsx'];
     const fileName = file ? file.name : '';
-    const found = _.some(validExtensions, ext => _.endsWith(fileName.toLowerCase(), ext));
+    const found = some(validExtensions, ext => endsWith(fileName.toLowerCase(), ext));
     if (!found) {
       TucToastError($translate.instant('telephony_phonebook_contact_action_import_file_invalid'));
     }
@@ -40,7 +44,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhonePhonebookConta
       self.phonecontactForm.isImporting = false;
       self.phonecontactForm.hasBeenImported = true;
       return $timeout(self.close({
-        taskId: _.get(result.import, 'taskId'),
+        taskId: get(result.import, 'taskId'),
       }), 1000);
     }).catch(err => self.cancel({
       type: 'API',

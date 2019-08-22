@@ -1,3 +1,7 @@
+import last from 'lodash/last';
+import map from 'lodash/map';
+import reduce from 'lodash/reduce';
+
 angular.module('managerApp').controller('XdslModemDhcpCtrl',
   function ($q, $stateParams, $translate, $uibModal, OvhApiXdsl, PackXdslModemDhcpObject,
     TucPackXdslModemMediator, TucToast, tucValidator) {
@@ -32,11 +36,11 @@ angular.module('managerApp').controller('XdslModemDhcpCtrl',
     this.isIpInOrder = function (ip1Param, ip2Param) {
       let ip1 = ip1Param;
       let ip2 = ip2Param;
-      ip1 = _.map(ip1.split(/\./), elt => parseInt(elt, 10));
-      ip2 = _.map(ip2.split(/\./), elt => parseInt(elt, 10));
-      const comp = _.reduce(ip1, (result, val, index) => result && (val <= ip2[index]));
+      ip1 = map(ip1.split(/\./), elt => parseInt(elt, 10));
+      ip2 = map(ip2.split(/\./), elt => parseInt(elt, 10));
+      const comp = reduce(ip1, (result, val, index) => result && (val <= ip2[index]));
 
-      return comp && _.last(ip1) < _.last(ip2);
+      return comp && last(ip1) < last(ip2);
     };
 
     function init() {
@@ -46,7 +50,7 @@ angular.module('managerApp').controller('XdslModemDhcpCtrl',
         .query({
           xdslId: $stateParams.serviceName,
         }).$promise.then((data) => {
-          self.dhcps = _.map(data, elt => new PackXdslModemDhcpObject(elt));
+          self.dhcps = map(data, elt => new PackXdslModemDhcpObject(elt));
         }).catch((err) => {
           TucToast.error($translate.instant('xdsl_modem_dhcp_error'));
           return $q.reject(err);

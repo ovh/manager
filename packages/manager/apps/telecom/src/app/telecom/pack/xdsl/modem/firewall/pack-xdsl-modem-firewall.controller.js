@@ -1,10 +1,13 @@
+import find from 'lodash/find';
+import isEmpty from 'lodash/isEmpty';
+
 angular.module('managerApp').controller('XdslModemFirewallCtrl', function ($stateParams, $translate, $q, OvhApiXdsl, TucToast, TucPackXdslModemMediator) {
   const self = this;
 
   this.mediator = TucPackXdslModemMediator;
 
   this.changeFirewallLevel = function () {
-    if (_.isEmpty($stateParams.serviceName)
+    if (isEmpty($stateParams.serviceName)
       || !this.firewallCurrentLevelTmp
       || !TucPackXdslModemMediator.capabilities.canChangeEasyFirewallLevel) {
       this.firewallCurrentLevelTmp = this.firewallCurrentLevel;
@@ -50,7 +53,7 @@ angular.module('managerApp').controller('XdslModemFirewallCtrl', function ($stat
         label: 'xdsl_modem_firewall_level_normal',
       },
     ];
-    self.firewallCurrentLevel = _.find(self.firewallLevels, { name: self.getDisplayValue() });
+    self.firewallCurrentLevel = find(self.firewallLevels, { name: self.getDisplayValue() });
     self.firewallCurrentLevelTmp = self.firewallCurrentLevel;
   };
 

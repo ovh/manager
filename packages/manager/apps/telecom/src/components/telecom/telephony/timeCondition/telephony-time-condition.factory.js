@@ -1,3 +1,13 @@
+import chunk from 'lodash/chunk';
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import get from 'lodash/get';
+import isEqual from 'lodash/isEqual';
+import map from 'lodash/map';
+import remove from 'lodash/remove';
+import set from 'lodash/set';
+import some from 'lodash/some';
+
 angular.module('managerApp').factory('VoipTimeCondition', ($q, voipTimeCondition, VoipTimeConditionCondition, VoipTimeConditionSlot) => {
   /*= ==================================
     =            CONSTRUCTOR            =
@@ -61,7 +71,7 @@ angular.module('managerApp').factory('VoipTimeCondition', ($q, voipTimeCondition
     }
 
     // set available slot
-    const availableSlot = _.find(self.slots, {
+    const availableSlot = find(self.slots, {
       name: 'available',
     });
 
@@ -78,7 +88,7 @@ angular.module('managerApp').factory('VoipTimeCondition', ($q, voipTimeCondition
     }
 
     // set unavailable slot
-    const unavailableSlot = _.find(self.slots, {
+    const unavailableSlot = find(self.slots, {
       name: 'unavailable',
     });
 
@@ -100,21 +110,21 @@ angular.module('managerApp').factory('VoipTimeCondition', ($q, voipTimeCondition
     for (let i = 0; i < voipTimeCondition.getAvailableSlotsCount(self.featureType); i += 1) {
       tmpSlotNumber = i + 1;
       tmpSlotName = `slot${tmpSlotNumber}`;
-      tmpSlot = _.find(self.slots, {
+      tmpSlot = find(self.slots, {
         name: tmpSlotName,
       });
 
       if (tmpSlot) {
         tmpSlot.setOptions({
-          type: _.get(opts, `${tmpSlotName}Type`) || 'number',
-          number: _.get(opts, `${tmpSlotName}Number`) || '',
+          type: get(opts, `${tmpSlotName}Type`) || 'number',
+          number: get(opts, `${tmpSlotName}Number`) || '',
         });
       } else {
         self.slots.push(new VoipTimeConditionSlot({
           serviceName: self.serviceName,
           name: tmpSlotName,
-          type: _.get(opts, `${tmpSlotName}Type`) || 'number',
-          number: _.get(opts, `${tmpSlotName}Number`) || '',
+          type: get(opts, `${tmpSlotName}Type`) || 'number',
+          number: get(opts, `${tmpSlotName}Number`) || '',
         }));
       }
     }
@@ -156,7 +166,7 @@ angular.module('managerApp').factory('VoipTimeCondition', ($q, voipTimeCondition
     const savePromises = [];
     let actionPromise;
 
-    _.filter(self.conditions, condition => condition.hasChange(null, true)).forEach((condition) => {
+    filter(self.conditions, condition => condition.hasChange(null, true)).forEach((condition) => {
       if (condition.state === 'TO_CREATE') {
         actionPromise = condition.create().then(() => {
           condition.stopEdition(false, false, true);
@@ -187,13 +197,13 @@ angular.module('managerApp').factory('VoipTimeCondition', ($q, voipTimeCondition
     return conditionResources
       .query(voipTimeCondition.getResourceCallParams(self)).$promise
       .then(conditionIds => $q
-        .all(_.map(
-          _.chunk(conditionIds, 50),
+        .all(map(
+          chunk(conditionIds, 50),
           chunkIds => conditionResources
             .getBatch(voipTimeCondition.getConditionResourceCallParams(self, chunkIds))
             .$promise
             .then((resources) => {
-              angular.forEach(_.map(resources, 'value'), (conditionOptions) => {
+              angular.forEach(map(resources, 'value'), (conditionOptions) => {
                 self.addCondition(conditionOptions);
               });
             }),
@@ -207,11 +217,11 @@ angular.module('managerApp').factory('VoipTimeCondition', ($q, voipTimeCondition
     const opts = conditionOptions || {};
 
     if (opts.conditionId) {
-      condition = _.find(self.conditions, {
+      condition = find(self.conditions, {
         conditionId: opts.conditionId,
       });
     } else if (opts.id) {
-      condition = _.find(self.conditions, {
+      condition = find(self.conditions, {
         conditionId: opts.id,
       });
     }
@@ -232,7 +242,7 @@ angular.module('managerApp').factory('VoipTimeCondition', ($q, voipTimeCondition
   VoipTimeCondition.prototype.removeCondition = function (condition) {
     const self = this;
 
-    _.remove(self.conditions, condition);
+    remove(self.conditions, condition);
 
     return self;
   };
@@ -240,7 +250,7 @@ angular.module('managerApp').factory('VoipTimeCondition', ($q, voipTimeCondition
   VoipTimeCondition.prototype.getCondition = function (conditionId) {
     const self = this;
 
-    return _.find(self.conditions, {
+    return find(self.conditions, {
       conditionId,
     });
   };
@@ -259,11 +269,11 @@ angular.module('managerApp').factory('VoipTimeCondition', ($q, voipTimeCondition
     }
 
     // save enable state
-    _.set(self.saveForEdition, 'enable', angular.copy(self.enable));
+    set(self.saveForEdition, 'enable', angular.copy(self.enable));
 
     // save timeout if sip feature type
     if (self.featureType === 'sip') {
-      _.set(self.saveForEdition, 'timeout', angular.copy(self.timeout));
+      set(self.saveForEdition, 'timeout', angular.copy(self.timeout));
     }
 
     return self;
@@ -308,7 +318,7 @@ angular.module('managerApp').factory('VoipTimeCondition', ($q, voipTimeCondition
         self.removeCondition(condition);
       } else {
         if (condition.state === 'TO_DELETE') {
-          _.set(condition, 'state', 'OK');
+          set(condition, 'state', 'OK');
         }
         condition.stopEdition(cancel, cancelOriginalSave, resetOriginalSave);
       }
@@ -327,11 +337,11 @@ angular.module('managerApp').factory('VoipTimeCondition', ($q, voipTimeCondition
     if (property) {
       switch (property) {
         case 'slots':
-          return _.some(self.slots, slot => !slot.inEdition && slot.hasChange(null, true));
+          return some(self.slots, slot => !slot.inEdition && slot.hasChange(null, true));
         case 'conditions':
-          return _.some(self.conditions, condition => condition.hasChange(null, true));
+          return some(self.conditions, condition => condition.hasChange(null, true));
         default:
-          return !_.isEqual(_.get(self, property), _.get(self.saveForEdition, property));
+          return !isEqual(get(self, property), get(self.saveForEdition, property));
       }
     } else {
       switch (self.featureType) {

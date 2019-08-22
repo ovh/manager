@@ -1,3 +1,9 @@
+import chunk from 'lodash/chunk';
+import forEach from 'lodash/forEach';
+import flatten from 'lodash/flatten';
+import map from 'lodash/map';
+import set from 'lodash/set';
+
 angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingBillCtrl', function ($stateParams, $filter, $q, $timeout, $window, OvhApiTelephony, TucToastError) {
   const self = this;
 
@@ -7,17 +13,17 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingBi
         billingAccount: $stateParams.billingAccount,
       }).$promise
       .then(ids => $q
-        .all(_.map(
-          _.chunk(ids, 50),
+        .all(map(
+          chunk(ids, 50),
           chunkIds => OvhApiTelephony.HistoryConsumption().v6().getBatch({
             billingAccount: $stateParams.billingAccount,
             date: chunkIds,
           }).$promise,
         ))
         .then((chunkResult) => {
-          const result = _.pluck(_.flatten(chunkResult), 'value');
-          return _.each(result, (consumption) => {
-            _.set(consumption, 'priceValue', consumption.price ? consumption.price.value : null);
+          const result = map(flatten(chunkResult), 'value');
+          return forEach(result, (consumption) => {
+            set(consumption, 'priceValue', consumption.price ? consumption.price.value : null);
           });
         }));
   }
@@ -58,11 +64,11 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingBi
   };
 
   self.download = function (consumption, type) {
-    _.set(consumption, 'downloading', true);
+    set(consumption, 'downloading', true);
     self.fetchFile(consumption, type).then((info) => {
       $window.location.href = info.url; // eslint-disable-line
     }, err => new TucToastError(err)).finally(() => {
-      _.set(consumption, 'downloading', false);
+      set(consumption, 'downloading', false);
     });
   };
 });

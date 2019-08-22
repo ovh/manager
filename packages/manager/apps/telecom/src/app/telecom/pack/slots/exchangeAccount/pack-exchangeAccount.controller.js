@@ -1,4 +1,8 @@
-angular.module('managerApp').controller('PackExchangeAccountCtrl', function ($scope, $http, $stateParams, OvhApiPackXdslExchangeAccount, REDIRECT_URLS) {
+import filter from 'lodash/filter';
+import get from 'lodash/get';
+import map from 'lodash/map';
+
+angular.module('managerApp').controller('PackExchangeAccountCtrl', function PackExchangeAccountCtrl($scope, $http, $stateParams, OvhApiPackXdslExchangeAccount, REDIRECT_URLS) {
   const self = this;
 
   function init() {
@@ -14,16 +18,24 @@ angular.module('managerApp').controller('PackExchangeAccountCtrl', function ($sc
       serviceType: 'apiv7',
     }).then((servicesParam) => {
       let services = servicesParam;
-      services = _.get(services, 'data');
-      self.services = _.chain(services).filter(service => service.value !== null).map((service) => {
-        const splittedPath = service.path.split('/');
-        return angular.extend(service.value, {
-          organizationName: splittedPath[3],
-          exchangeService: splittedPath[5],
-          managerUrl: REDIRECT_URLS.exchangeAccount.replace('{organizationName}', splittedPath[3]).replace('{exchangeService}', splittedPath[5]),
-        });
-      }).filter(service => serviceIds.indexOf(`${service.exchangeService}-${service.id}`) > -1)
-        .value();
+      services = get(services, 'data');
+      self.services = filter(
+        map(
+          filter(
+            services,
+            service => service.value !== null,
+          ),
+          (service) => {
+            const splittedPath = service.path.split('/');
+            return angular.extend(service.value, {
+              organizationName: splittedPath[3],
+              exchangeService: splittedPath[5],
+              managerUrl: REDIRECT_URLS.exchangeAccount.replace('{organizationName}', splittedPath[3]).replace('{exchangeService}', splittedPath[5]),
+            });
+          },
+        ),
+        service => serviceIds.indexOf(`${service.exchangeService}-${service.id}`) > -1,
+      );
     })).finally(() => {
       $scope.loaders.services = false;
     });

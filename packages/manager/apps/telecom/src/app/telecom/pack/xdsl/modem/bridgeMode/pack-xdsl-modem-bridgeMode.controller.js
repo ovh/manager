@@ -1,14 +1,17 @@
+import isEmpty from 'lodash/isEmpty';
+import set from 'lodash/set';
+
 angular.module('managerApp').controller('XdslModemBridgeModeCtrl', function ($stateParams, $q, $translate, OvhApiXdsl, TucToast, TucPackXdslModemMediator) {
   const self = this;
 
   this.mediator = TucPackXdslModemMediator;
 
   this.undo = function () {
-    _.set(TucPackXdslModemMediator, 'info.isBridged', !this.isBridged);
+    set(TucPackXdslModemMediator, 'info.isBridged', !this.isBridged);
   };
 
   this.changeBridgeMode = function () {
-    if (_.isEmpty($stateParams.serviceName)) {
+    if (isEmpty($stateParams.serviceName)) {
       return TucToast.error($translate.instant('xdsl_modem_bridge_mode_an_error_ocurred'));
     }
     TucPackXdslModemMediator.setTask('changeModemConfigBridgeMode');

@@ -1,3 +1,6 @@
+import get from 'lodash/get';
+import isEqual from 'lodash/isEqual';
+
 /**
  *  This factory manages the redirect feature of a number.
  *  This manages the redirect and ddi featureType of /telephony/{billingAccount}/number API.
@@ -102,7 +105,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberRedirect', ($q, OvhApi
     }
 
     if (attr) {
-      return !_.isEqual(_.get(self.saveForEdition, attr), _.get(self, attr));
+      return !isEqual(get(self.saveForEdition, attr), get(self, attr));
     }
     return self.hasChange('featureType') || self.hasChange('destination');
   };

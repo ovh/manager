@@ -1,3 +1,5 @@
+import map from 'lodash/map';
+
 angular.module('managerApp').controller('PackEmailProCtrl', class PackEmailProCtrl {
   constructor($q, $stateParams, $translate, OvhApiPackXdslEmailPro, TucToast) {
     this.$q = $q;
@@ -19,7 +21,7 @@ angular.module('managerApp').controller('PackEmailProCtrl', class PackEmailProCt
     return this.OvhApiPackXdslEmailPro.v6().query({ packName: this.$stateParams.packName })
       .$promise
       .then((services) => {
-        this.services = _.map(services, service => ({
+        this.services = map(services, service => ({
           name: service,
           domain: service.replace(/^.+\./, '.'),
         }));

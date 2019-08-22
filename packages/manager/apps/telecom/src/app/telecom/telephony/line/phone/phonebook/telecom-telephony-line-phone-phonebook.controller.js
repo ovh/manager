@@ -1,4 +1,21 @@
-angular.module('managerApp').controller('TelecomTelephonyLinePhonePhonebookCtrl', function (
+import assign from 'lodash/assign';
+import chunk from 'lodash/chunk';
+import compact from 'lodash/compact';
+import forEach from 'lodash/forEach';
+import filter from 'lodash/filter';
+import flatten from 'lodash/flatten';
+import get from 'lodash/get';
+import has from 'lodash/has';
+import head from 'lodash/head';
+import map from 'lodash/map';
+import pick from 'lodash/pick';
+import pull from 'lodash/pull';
+import set from 'lodash/set';
+import size from 'lodash/size';
+import uniq from 'lodash/uniq';
+
+
+angular.module('managerApp').controller('TelecomTelephonyLinePhonePhonebookCtrl', function TelecomTelephonyLinePhonePhonebookCtrl(
   $document, $filter, $q, $scope, $stateParams, $timeout, $translate, $uibModal, $window,
   OvhApiTelephony, tucVoipServiceTask, TucToast, TucToastError, TUC_TELEPHONY_PHONEBOOK,
 ) {
@@ -14,12 +31,12 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhonePhonebookCtrl'
         billingAccount: $stateParams.billingAccount,
         serviceName: $stateParams.serviceName,
       }).$promise.then((phonebookIds) => {
-        if (_.size(phonebookIds)) {
+        if (size(phonebookIds)) {
           return OvhApiTelephony.Line().Phone().Phonebook().v6()
             .get({
               billingAccount: $stateParams.billingAccount,
               serviceName: $stateParams.serviceName,
-              bookKey: _.first(phonebookIds),
+              bookKey: head(phonebookIds),
             }).$promise;
         }
         return null;
@@ -35,8 +52,8 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhonePhonebookCtrl'
         bookKey,
       }).$promise
       .then(phonebookContactIds => $q
-        .all(_.map(
-          _.chunk(phonebookContactIds, 50),
+        .all(map(
+          chunk(phonebookContactIds, 50),
           chunkIds => OvhApiTelephony.Line().Phone().Phonebook().PhonebookContact()
             .v6()
             .getBatch({
@@ -47,21 +64,21 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhonePhonebookCtrl'
             }).$promise,
         ))
         .then((chunkResult) => {
-          const result = _.pluck(_.flatten(chunkResult), 'value');
-          const emptyGroup = _.get(TUC_TELEPHONY_PHONEBOOK, 'emptyFields.group');
-          const emptyPhoneNumber = _.get(TUC_TELEPHONY_PHONEBOOK, 'emptyFields.numbers');
-          return _.each(result, (contact) => {
-            _.set(contact, 'group', contact.group === emptyGroup ? '' : contact.group);
-            _.set(contact, 'homeMobile', contact.homeMobile === emptyPhoneNumber ? '' : contact.homeMobile);
-            _.set(contact, 'homePhone', contact.homePhone === emptyPhoneNumber ? '' : contact.homePhone);
-            _.set(contact, 'workMobile', contact.workMobile === emptyPhoneNumber ? '' : contact.workMobile);
-            _.set(contact, 'workPhone', contact.workPhone === emptyPhoneNumber ? '' : contact.workPhone);
+          const result = map(flatten(chunkResult), 'value');
+          const emptyGroup = get(TUC_TELEPHONY_PHONEBOOK, 'emptyFields.group');
+          const emptyPhoneNumber = get(TUC_TELEPHONY_PHONEBOOK, 'emptyFields.numbers');
+          return forEach(result, (contact) => {
+            set(contact, 'group', contact.group === emptyGroup ? '' : contact.group);
+            set(contact, 'homeMobile', contact.homeMobile === emptyPhoneNumber ? '' : contact.homeMobile);
+            set(contact, 'homePhone', contact.homePhone === emptyPhoneNumber ? '' : contact.homePhone);
+            set(contact, 'workMobile', contact.workMobile === emptyPhoneNumber ? '' : contact.workMobile);
+            set(contact, 'workPhone', contact.workPhone === emptyPhoneNumber ? '' : contact.workPhone);
           });
         }));
   }
 
   self.getSelection = function () {
-    return _.filter(
+    return filter(
       self.phonebookContact.raw,
       contact => contact
         && self.phonebookContact.selected
@@ -79,14 +96,14 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhonePhonebookCtrl'
 
   self.createPhonebook = function (form) {
     self.phonebookToAdd.isAdding = true;
-    const name = _.pick(self.phonebookToAdd, 'name');
+    const name = pick(self.phonebookToAdd, 'name');
     return OvhApiTelephony.Line().Phone().Phonebook().v6()
       .create({
         billingAccount: $stateParams.billingAccount,
         serviceName: $stateParams.serviceName,
       }, name).$promise.then((phonebook) => {
         form.$setPristine();
-        _.assign(self.phonebook, _.pick(phonebook, ['bookKey']), name);
+        assign(self.phonebook, pick(phonebook, ['bookKey']), name);
         TucToast.success($translate.instant('telephony_phonebook_create_success'));
       }).catch((error) => {
         if (error && error.status === 501) {
@@ -121,7 +138,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhonePhonebookCtrl'
       }).$promise.then(() => {
         self.phonebook.name = self.phonebook.newName;
       }).catch((error) => {
-        TucToast.error($translate.instant('telephony_phonebook_update_ko', { error: _.get(error, 'data.message') }));
+        TucToast.error($translate.instant('telephony_phonebook_update_ko', { error: get(error, 'data.message') }));
       }).finally(() => {
         self.phonebook.inEdition = false;
       });
@@ -146,7 +163,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhonePhonebookCtrl'
       self.sortPhonebookContact();
     }, (error) => {
       if (error && error.type === 'API') {
-        TucToast.error($translate.instant('telephony_phonebook_delete_ko', { error: _.get(error, 'msg.data.message') }));
+        TucToast.error($translate.instant('telephony_phonebook_delete_ko', { error: get(error, 'msg.data.message') }));
       }
     }).finally(() => {
       self.phonebook.hasModalOpened = false;
@@ -173,7 +190,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhonePhonebookCtrl'
     });
     modal.result.then(() => self.refresh(), (error) => {
       if (error && error.type === 'API') {
-        TucToast.error($translate.instant('telephony_phonebook_contact_add_ko', { error: _.get(error, 'msg.data.message') }));
+        TucToast.error($translate.instant('telephony_phonebook_contact_add_ko', { error: get(error, 'msg.data.message') }));
       }
     }).finally(() => {
       self.phonebookContact.hasModalOpened = false;
@@ -188,11 +205,11 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhonePhonebookCtrl'
       controller: 'TelecomTelephonyLinePhonePhonebookContactImportCtrl',
       controllerAs: 'ContactImportCtrl',
       resolve: {
-        bookKey() { return _.get(self.phonebook, 'bookKey'); },
+        bookKey() { return get(self.phonebook, 'bookKey'); },
       },
     });
     modal.result.then((response) => {
-      if (_.has(response, 'taskId')) {
+      if (has(response, 'taskId')) {
         self.phonebookContact.isImporting = true;
         return tucVoipServiceTask
           .startPolling($stateParams.billingAccount, $stateParams.serviceName, response.taskId, {
@@ -211,7 +228,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhonePhonebookCtrl'
       return null;
     }).catch((err) => {
       if (err && err.type === 'API') {
-        TucToast.error($translate.instant('telephony_phonebook_contact_action_import_ko', { error: _.get(err, 'msg.data.message') }));
+        TucToast.error($translate.instant('telephony_phonebook_contact_action_import_ko', { error: get(err, 'msg.data.message') }));
       }
     }).finally(() => {
       self.phonebookContact.hasModalOpened = false;
@@ -226,7 +243,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhonePhonebookCtrl'
         .getExport({
           billingAccount: $stateParams.billingAccount,
           serviceName: $stateParams.serviceName,
-          bookKey: _.get(self.phonebook, 'bookKey'),
+          bookKey: get(self.phonebook, 'bookKey'),
           format: 'csv',
         }).$promise.then((exportPhonebook) => {
           if (exportPhonebook.status === 'done') {
@@ -269,7 +286,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhonePhonebookCtrl'
     });
     modal.result.then(() => self.refresh(), (error) => {
       if (error && error.type === 'API') {
-        TucToast.error($translate.instant('telephony_phonebook_contact_update_ko', { error: _.get(error, 'msg.data.message') }));
+        TucToast.error($translate.instant('telephony_phonebook_contact_update_ko', { error: get(error, 'msg.data.message') }));
       }
     }).finally(() => {
       self.phonebookContact.hasModalOpened = false;
@@ -301,7 +318,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhonePhonebookCtrl'
         .remove({
           billingAccount: $stateParams.billingAccount,
           serviceName: $stateParams.serviceName,
-          bookKey: _.get(self.phonebook, 'bookKey'),
+          bookKey: get(self.phonebook, 'bookKey'),
           id: contact.id,
         }).$promise);
     self.phonebookContact.isDeleting = true;
@@ -339,13 +356,18 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhonePhonebookCtrl'
     self.sortPhonebookContact();
   };
 
-  self.updatePhonebookContactGroups = function () {
-    self.phonebookContact.groupsAvailable = _.chain(self.phonebookContact.raw)
-      .pluck('group')
-      .pull('No group')
-      .uniq()
-      .compact()
-      .value();
+  self.updatePhonebookContactGroups = function updatePhonebookContactGroups() {
+    self.phonebookContact.groupsAvailable = compact(
+      uniq(
+        pull(
+          map(
+            self.phonebookContact.raw,
+            'group',
+          ),
+          'No group',
+        ),
+      ),
+    );
   };
 
   self.refresh = function () {
@@ -399,7 +421,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhonePhonebookCtrl'
     self.phonebook.isLoading = true;
     return fetchPhonebook().then((phonebook) => {
       if (phonebook) {
-        _.assign(self.phonebook, _.pick(phonebook, ['name', 'bookKey']));
+        assign(self.phonebook, pick(phonebook, ['name', 'bookKey']));
         return fetchPhonebookContact(self.phonebook.bookKey).then((phonebookContact) => {
           self.phonebookContact.raw = phonebookContact;
           self.sortPhonebookContact();

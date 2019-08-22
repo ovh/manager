@@ -1,3 +1,6 @@
+import forEach from 'lodash/forEach';
+import set from 'lodash/set';
+
 angular.module('managerApp').controller('TelecomOrdersAccessoriesCtrl', function ($q, $state, $translate, OvhApiOrder, OvhApiTelephony, TucToast) {
   const self = this;
 
@@ -51,8 +54,8 @@ angular.module('managerApp').controller('TelecomOrdersAccessoriesCtrl', function
 
     return OvhApiOrder.Telephony().Aapi().billingAccounts().$promise.then((billingAccounts) => {
       self.billingAccounts = billingAccounts;
-      _.forEach(self.billingAccounts, (elt) => {
-        _.set(elt, 'label', elt.description || elt.billingAccount);
+      forEach(self.billingAccounts, (elt) => {
+        set(elt, 'label', elt.description || elt.billingAccount);
       });
       return self.billingAccounts;
     }, (error) => {

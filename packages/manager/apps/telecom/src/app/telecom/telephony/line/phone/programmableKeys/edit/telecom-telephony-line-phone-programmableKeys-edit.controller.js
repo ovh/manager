@@ -1,3 +1,11 @@
+import cloneDeep from 'lodash/cloneDeep';
+import find from 'lodash/find';
+import forEach from 'lodash/forEach';
+import get from 'lodash/get';
+import includes from 'lodash/includes';
+import set from 'lodash/set';
+import uniqBy from 'lodash/uniqBy';
+
 angular.module('managerApp')
   .controller('TelecomTelephonyLinePhoneProgammableKeysEditCtrl', function (
     $uibModalInstance, $stateParams, $q, $translate, $timeout,
@@ -5,7 +13,7 @@ angular.module('managerApp')
     OvhApiTelephonyFax, OvhApiTelephonyMiniPabx, OvhApiTelephonyOvhPabx, OvhApiTelephonyEasyPabx,
   ) {
     const self = this;
-    self.initialFunctionKey = _.cloneDeep(functionKey);
+    self.initialFunctionKey = cloneDeep(functionKey);
 
     this.loading = {
       save: false,
@@ -64,8 +72,8 @@ angular.module('managerApp')
       const functionsToReturn = [];
 
       // ISO need to group select options and have translation for label
-      _.forEach(groupBy, (availableValues, group) => {
-        _.forEach(functionKeyParam, (key) => {
+      forEach(groupBy, (availableValues, group) => {
+        forEach(functionKeyParam, (key) => {
           if (~groupBy[group].indexOf(key)) { // eslint-disable-line
             functionsToReturn.push({
               group: $translate.instant(`telephony_line_phone_programmableKeys_group_${group}`),
@@ -79,7 +87,7 @@ angular.module('managerApp')
     }
 
     function findFunction(func) {
-      return _.find(self.availableFunctions, f => f.value === func.function);
+      return find(self.availableFunctions, f => f.value === func.function);
     }
 
     this.getParameterFunctions = function () {
@@ -141,7 +149,7 @@ angular.module('managerApp')
     function getDynamicParameters() {
       return TelephonyMediator.getGroup($stateParams.billingAccount).then((group) => {
         const line = group.getLine($stateParams.serviceName);
-        const phone = _.get(line, 'phone');
+        const phone = get(line, 'phone');
         const extValues = [];
 
         for (let i = 0; i < phone.maxline; i += 1) {
@@ -233,7 +241,7 @@ angular.module('managerApp')
           });
         });
 
-        return $q.all(pabxState.request).then(() => _.uniq(self.availableParameters, 'serviceName'));
+        return $q.all(pabxState.request).then(() => uniqBy(self.availableParameters, 'serviceName'));
       });
     }
 
@@ -242,8 +250,8 @@ angular.module('managerApp')
       return TelephonyMediator.getGroup($stateParams.billingAccount).then(() => {
         angular.forEach(TelephonyMediator.groups, (group) => {
           angular.forEach(group.numbers, (number) => {
-            if (_.includes(allowedFeatureTypes, number.feature.featureType)) {
-              _.set(number, 'billingAccount', group.description || group.billingAccount);
+            if (includes(allowedFeatureTypes, number.feature.featureType)) {
+              set(number, 'billingAccount', group.description || group.billingAccount);
               self.availableParameters.push(number);
             }
           });

@@ -1,3 +1,15 @@
+import assign from 'lodash/assign';
+import endsWith from 'lodash/endsWith';
+import flatten from 'lodash/flatten';
+import get from 'lodash/get';
+import keys from 'lodash/keys';
+import map from 'lodash/map';
+import pick from 'lodash/pick';
+import pull from 'lodash/pull';
+import pullAt from 'lodash/pullAt';
+import set from 'lodash/set';
+import sortBy from 'lodash/sortBy';
+
 import { ALLOWED_FEATURE_TYPES, NUMBER_PREFIXES } from './telecom-telephony-alias-configuration-agents-ovhPabx.constants';
 
 angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationAgentsOvhPabxCtrl',
@@ -47,7 +59,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationAgent
       }).then((ids) => {
         this.agents.ids = ids;
       }).catch((err) => {
-        this.TucToast.error(`${this.$translate.instant('telephony_alias_configuration_agents_get_error')} ${_.get(err, 'data.message')}`);
+        this.TucToast.error(`${this.$translate.instant('telephony_alias_configuration_agents_get_error')} ${get(err, 'data.message')}`);
         return this.$q.reject(err);
       });
     }
@@ -58,7 +70,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationAgent
         this.orderedAscAgents = asc;
       }
 
-      this.agents.paginated = _.sortBy(this.agents.paginated, prop);
+      this.agents.paginated = sortBy(this.agents.paginated, prop);
 
       if (!this.orderedAscAgents) {
         this.agents.paginated = this.agents.paginated.reverse();
@@ -86,7 +98,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationAgent
     }
 
     getSelectedAgentIds() {
-      return _.keys(this.agents.selected);
+      return keys(this.agents.selected);
     }
 
     onTransformItemDone(items) {
@@ -104,7 +116,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationAgent
               serviceName: this.$stateParams.serviceName,
               agentId: id,
             }).$promise.then(() => {
-              _.pull(this.agents.id, parseInt(id, 10));
+              pull(this.agents.id, parseInt(id, 10));
             })))
         .then(() => {
           this.TucToast.success(this.$translate.instant('telephony_alias_configuration_agents_delete_success'));
@@ -114,7 +126,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationAgent
           this.agents.ids = ids;
         })
         .catch((err) => {
-          this.TucToast.error(`${this.$translate.instant('telephony_alias_configuration_agents_delete_error')} ${_.get(err, 'data.message')}`);
+          this.TucToast.error(`${this.$translate.instant('telephony_alias_configuration_agents_delete_error')} ${get(err, 'data.message')}`);
           return this.$q.reject(err);
         })
         .finally(() => {
@@ -124,7 +136,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationAgent
     }
 
     static startEdition(agent) {
-      _.set(agent, 'inEdition', _.pick(agent, ['description', 'number', 'simultaneousLines', 'status', 'timeout', 'type', 'wrapUpTime']));
+      set(agent, 'inEdition', pick(agent, ['description', 'number', 'simultaneousLines', 'status', 'timeout', 'type', 'wrapUpTime']));
     }
 
     static isValidAgent({
@@ -139,7 +151,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationAgent
     }
 
     updateAgent(agent) {
-      _.set(agent, 'isUpdating', true);
+      set(agent, 'isUpdating', true);
       return this.OvhApiTelephony.OvhPabx().Hunting().Agent().v6()
         .change({
           billingAccount: this.$stateParams.billingAccount,
@@ -147,16 +159,16 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationAgent
           agentId: agent.agentId,
         }, agent.inEdition).$promise
         .then(() => {
-          _.assign(agent, agent.inEdition);
-          _.set(agent, 'inEdition', null);
+          assign(agent, agent.inEdition);
+          set(agent, 'inEdition', null);
           this.TucToast.success(this.$translate.instant('telephony_alias_configuration_agents_update_success'));
         })
         .catch((err) => {
-          this.TucToast.error(`${this.$translate.instant('telephony_alias_configuration_agents_update_error')} ${_.get(err, 'data.message')}`);
+          this.TucToast.error(`${this.$translate.instant('telephony_alias_configuration_agents_update_error')} ${get(err, 'data.message')}`);
           return this.$q.reject(err);
         })
         .finally(() => {
-          _.set(agent, 'isUpdating', false);
+          set(agent, 'isUpdating', false);
         });
     }
 
@@ -164,21 +176,21 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationAgent
       if (pos === 0 && this.addAgentForm.numbers.length > 1) {
         this.addAgentForm.numbers.shift();
       } else if (this.addAgentForm.numbers.length > 1) {
-        _.pullAt(this.addAgentForm.numbers, pos);
+        pullAt(this.addAgentForm.numbers, pos);
       } else {
         this.addAgentForm.numbers[0] = null;
       }
     }
 
     getInternalNumber(newNumber) {
-      const allNumbers = _.flatten(
-        _.map(
+      const allNumbers = flatten(
+        map(
           this.groupList,
           'services',
         ),
       );
       const [, numberSuffix] = newNumber.replace(/ /g, '').split(NUMBER_PREFIXES);
-      return allNumbers.find(({ serviceName }) => _.endsWith(serviceName, numberSuffix));
+      return allNumbers.find(({ serviceName }) => endsWith(serviceName, numberSuffix));
     }
 
     // Check if external numbers are defined into the list
@@ -228,7 +240,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationAgent
       }).then((ids) => {
         this.agents.ids = ids;
       }).catch((err) => {
-        this.TucToast.error(`${this.$translate.instant('telephony_alias_configuration_agents_add_error')} ${_.get(err, 'data.message')}`);
+        this.TucToast.error(`${this.$translate.instant('telephony_alias_configuration_agents_add_error')} ${get(err, 'data.message')}`);
         return this.$q.reject(err);
       })
         .finally(() => {

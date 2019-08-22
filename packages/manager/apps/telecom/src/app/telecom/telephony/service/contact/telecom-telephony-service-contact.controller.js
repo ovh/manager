@@ -1,17 +1,28 @@
+import assign from 'lodash/assign';
+import find from 'lodash/find';
+import get from 'lodash/get';
+import map from 'lodash/map';
+import omit from 'lodash/omit';
+import pickBy from 'lodash/pickBy';
+import set from 'lodash/set';
+import some from 'lodash/some';
+import startsWith from 'lodash/startsWith';
+import words from 'lodash/words';
+
 angular.module('managerApp').controller('TelecomTelephonyServiceContactCtrl', function ($state, $stateParams, $q, $timeout, $translate, OvhApiTelephony, TucToast, TucToastError, OvhApiXdsl, tucTelephonyBulk, TELEPHONY_SERVICE_CONTACT_DIRECTORY_INFO) {
   const self = this;
 
   function buildWayInfo(directory) {
     if (!directory.wayNumber.length) {
-      _.set(directory, 'wayNumber', directory.address.replace(/\D/g, ''));
+      set(directory, 'wayNumber', directory.address.replace(/\D/g, ''));
     }
 
     if (!directory.wayNumberExtra.length) {
-      _.set(directory, 'wayNumberExtra', _.find(self.wayNumberExtraEnum, extra => _.some(_.words(directory.address), word => word === extra)));
+      set(directory, 'wayNumberExtra', find(self.wayNumberExtraEnum, extra => some(words(directory.address), word => word === extra)));
     }
 
     if (!directory.wayName.length) {
-      _.set(directory, 'wayName', directory.address.replace(/\d+/g, '').replace(directory.wayNumberExtra, ''));
+      set(directory, 'wayName', directory.address.replace(/\d+/g, '').replace(directory.wayNumberExtra, ''));
     }
   }
 
@@ -30,8 +41,8 @@ angular.module('managerApp').controller('TelecomTelephonyServiceContactCtrl', fu
         serviceName: $stateParams.serviceName,
         apeCode: ape,
       }).$promise
-      .then(result => _.map(result, (info) => {
-        _.set(info, 'directoryServiceCode', `${info.directoryServiceCode || ''}`);
+      .then(result => map(result, (info) => {
+        set(info, 'directoryServiceCode', `${info.directoryServiceCode || ''}`);
         return info;
       }));
   }
@@ -65,7 +76,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceContactCtrl', fu
         });
       }
 
-      self.directoryProperties = _.get(res.infos, "models['telephony.DirectoryInfo'].properties");
+      self.directoryProperties = get(res.infos, "models['telephony.DirectoryInfo'].properties");
       return null;
     }).catch(err => new TucToastError(err)).finally(() => {
       self.isLoading = false;
@@ -77,7 +88,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceContactCtrl', fu
    * them when user choose another legal form.
    */
   self.onChangeLegalForm = function () {
-    self.directoryForm = _.assign(self.directoryForm, _.omit(self.directory, 'legalForm'));
+    self.directoryForm = assign(self.directoryForm, omit(self.directory, 'legalForm'));
     switch (self.directoryForm.legalForm) {
       case 'individual':
         self.directoryForm.siret = '';
@@ -106,7 +117,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceContactCtrl', fu
     if (self.directoryForm.legalForm !== 'individual') {
       self.directoryForm.PJSocialNomination = self.directoryForm.socialNomination;
     }
-    const modified = _.assign(self.directory, self.directoryForm);
+    const modified = assign(self.directory, self.directoryForm);
     self.isUpdating = true;
     return OvhApiTelephony.Service().v6().changeDirectory({
       billingAccount: $stateParams.billingAccount,
@@ -135,7 +146,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceContactCtrl', fu
   };
 
   self.getBulkParams = function () {
-    return _.pick(self.directoryForm, (value, key) => _.get(self.directoryProperties, [key, 'readOnly']) === 0);
+    return pickBy(self.directoryForm, (value, key) => get(self.directoryProperties, [key, 'readOnly']) === 0);
   };
 
   self.onBulkSuccess = function (bulkResult) {
@@ -156,7 +167,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceContactCtrl', fu
   };
 
   self.onBulkError = function (error) {
-    TucToast.error([$translate.instant('telephony_service_contact_bulk_on_error'), _.get(error, 'msg.data')].join(' '));
+    TucToast.error([$translate.instant('telephony_service_contact_bulk_on_error'), get(error, 'msg.data')].join(' '));
   };
 
   self.onPostCodeChange = (function () {
@@ -183,12 +194,12 @@ angular.module('managerApp').controller('TelecomTelephonyServiceContactCtrl', fu
               country: self.directoryForm.country.toLowerCase()
           });
           pendingRequest.$promise.then(function (cities) {
-              self.cityList = _.map(cities, function (city) {
+              self.cityList = map(cities, function (city) {
                   return city.toUpperCase();
               });
               // automatically select first city
               if (cities.length) {
-                  self.directoryForm.city = _.head(cities).name;
+                  self.directoryForm.city = head(cities).name;
               }
               // parse urban district
               if (self.isUrbanDistrictRequired()) {
@@ -256,7 +267,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceContactCtrl', fu
   // arrondissements pour paris 75xxx, marseille 13xxx et lyon 69xxx (92 izi?)
   self.isUrbanDistrictRequired = function () {
     const p = self.directoryForm.postCode;
-    return _.startsWith(p, '75') || _.startsWith(p, '13') || _.startsWith(p, '69');
+    return startsWith(p, '75') || startsWith(p, '13') || startsWith(p, '69');
   };
 
   self.onCityChange = function () {
@@ -272,7 +283,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceContactCtrl', fu
         if (pendingRequest) {
           pendingRequest.$cancelRequest();
         }
-        const city = _.find(self.cityList, { name: self.directoryForm.city });
+        const city = find(self.cityList, { name: self.directoryForm.city });
         if (city) {
           self.isWayListLoading = true;
           pendingRequest = OvhApiXdsl.v6().eligibilityStreets({
@@ -297,7 +308,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceContactCtrl', fu
   };
 
   self.findDirectoryService = function () {
-    return _.find(self.directoryCodes, info => `${info.directoryServiceCode}` === `${self.directory.directoryServiceCode}`);
+    return find(self.directoryCodes, info => `${info.directoryServiceCode}` === `${self.directory.directoryServiceCode}`);
   };
 
   self.cancelEdition = function () {

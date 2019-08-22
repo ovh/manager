@@ -1,3 +1,11 @@
+import chunk from 'lodash/chunk';
+import filter from 'lodash/filter';
+import flatten from 'lodash/flatten';
+import get from 'lodash/get';
+import map from 'lodash/map';
+import remove from 'lodash/remove';
+import startsWith from 'lodash/startsWith';
+
 angular.module('managerApp').controller('TelecomTelephonyLineCallsExternalNumberCtrl', function ($scope, $q, $stateParams, $translate, $timeout, TelecomMediator, TelephonyMediator, OvhApiTelephony, TucToast, TucNumberPlans) {
   const self = this;
   let pollTimeout = null;
@@ -28,8 +36,8 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsExternalNumber
         serviceName: $stateParams.serviceName,
       }).$promise
       .then(numbers => $q
-        .all(_.map(
-          _.chunk(numbers, 50),
+        .all(map(
+          chunk(numbers, 50),
           chunkNumbers => OvhApiTelephony.Trunk().ExternalDisplayedNumber().v6()
             .getBatch({
               billingAccount: $stateParams.billingAccount,
@@ -37,8 +45,8 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsExternalNumber
               number: chunkNumbers,
             }).$promise,
         ))
-        .then(chunkResult => _.flatten(chunkResult)))
-      .then(resultParam => _.chain(resultParam).filter(number => number.value !== null).pluck('value').value());
+        .then(chunkResult => flatten(chunkResult)))
+      .then(resultParam => map(filter(resultParam, number => number.value !== null), 'value'));
   }
 
   function resetModel() {
@@ -62,7 +70,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsExternalNumber
     if (!value) {
       return true;
     }
-    return _.startsWith(value.replace('+', '00'), self.plan.prefix.replace('+', '00'));
+    return startsWith(value.replace('+', '00'), self.plan.prefix.replace('+', '00'));
   };
 
   /* -----  End of HELPES  ------ */
@@ -105,7 +113,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsExternalNumber
         }, 50);
       });
     }).catch((error) => {
-      TucToast.error([$translate.instant('telephony_trunk_external_number_add_error'), _.get(error, 'data.message')].join(' '));
+      TucToast.error([$translate.instant('telephony_trunk_external_number_add_error'), get(error, 'data.message')].join(' '));
       return $q.reject(error);
     }).finally(() => {
       self.loading.add = false;
@@ -124,10 +132,10 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsExternalNumber
       serviceName: $stateParams.serviceName,
       number: self.toDelete.number,
     }).$promise.then(() => {
-      _.remove(self.list, number => number.number === self.toDelete.number);
+      remove(self.list, number => number.number === self.toDelete.number);
       TucToast.success($translate.instant('telephony_trunk_external_number_delete_success'));
     }).catch((error) => {
-      TucToast.error([$translate.instant('telephony_trunk_external_number_delete_error'), _.get(error, 'data.message')].join(' '));
+      TucToast.error([$translate.instant('telephony_trunk_external_number_delete_error'), get(error, 'data.message')].join(' '));
       return $q.reject(error);
     }).finally(() => {
       self.toDelete = null;
@@ -159,7 +167,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsExternalNumber
         }
       });
     }).catch((error) => {
-      TucToast.error([$translate.instant('telephony_trunk_external_number_load_error'), _.get(error, 'data.message')].join(' '));
+      TucToast.error([$translate.instant('telephony_trunk_external_number_load_error'), get(error, 'data.message')].join(' '));
       return $q.reject(error);
     }).finally(() => {
       self.loading.init = false;

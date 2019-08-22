@@ -1,3 +1,11 @@
+import bind from 'lodash/bind';
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import forEach from 'lodash/forEach';
+import get from 'lodash/get';
+import some from 'lodash/some';
+import times from 'lodash/times';
+
 angular.module('managerApp').controller('TelecomTelephonyLineManagementOfferChangeCtrl', function ($q, $stateParams, $translate, TelephonyMediator, TucToast, OvhApiTelephony, tucTelephonyBulk) {
   const self = this;
 
@@ -60,17 +68,17 @@ angular.module('managerApp').controller('TelecomTelephonyLineManagementOfferChan
         self.availableOffers = results.availableOffers;
 
         // this is not sexy but we don't have information about the offer name for the moment
-        self.model.offer = _.find(self.availableOffers, {
-          type: _.get(self.line, 'offerInformations.type'),
-          description: _.get(self.line, 'offerInformations.description'),
+        self.model.offer = find(self.availableOffers, {
+          type: get(self.line, 'offerInformations.type'),
+          description: get(self.line, 'offerInformations.description'),
         });
       }).catch((firstError) => {
-        TucToast.error([$translate.instant('telephony_line_management_change_offer_change_error_init'), _.get(firstError, 'data.message', '')].join(' '));
+        TucToast.error([$translate.instant('telephony_line_management_change_offer_change_error_init'), get(firstError, 'data.message', '')].join(' '));
         self.initError = firstError;
         return $q.reject(firstError);
       });
     }).catch((error) => {
-      TucToast.error([$translate.instant('telephony_line_management_change_offer_change_error_init'), _.get(error, 'data.message', '')].join(' '));
+      TucToast.error([$translate.instant('telephony_line_management_change_offer_change_error_init'), get(error, 'data.message', '')].join(' '));
       return $q.reject(error);
     }).finally(() => {
       self.loading.init = false;
@@ -153,8 +161,8 @@ angular.module('managerApp').controller('TelecomTelephonyLineManagementOfferChan
     function filterServicesByOffer(paramServices, listOffers) {
       const servicesFiltered = [];
 
-      _.times(listOffers.length, (index) => {
-        if (_.some(listOffers[index], 'name', self.model.offer.name)) {
+      times(listOffers.length, (index) => {
+        if (some(listOffers[index], bind('name', self.model.offer.name))) {
           servicesFiltered.push(paramServices[index]);
         }
       });
@@ -170,9 +178,9 @@ angular.module('managerApp').controller('TelecomTelephonyLineManagementOfferChan
     }
 
     const promises = [];
-    const filteredServices = _.filter(services, service => ['sip', 'mgcp'].indexOf(service.featureType) > -1);
+    const filteredServices = filter(services, service => ['sip', 'mgcp'].indexOf(service.featureType) > -1);
 
-    _.forEach(filteredServices, (service) => {
+    forEach(filteredServices, (service) => {
       promises.push(callGetOfferChanges(service.billingAccount, service.serviceName));
     });
 
@@ -210,7 +218,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineManagementOfferChan
   };
 
   self.onBulkError = function (error) {
-    TucToast.error([$translate.instant('telephony_line_management_change_offer_bulk_on_error'), _.get(error, 'msg.data')].join(' '));
+    TucToast.error([$translate.instant('telephony_line_management_change_offer_bulk_on_error'), get(error, 'msg.data')].join(' '));
   };
 
   /* -----  End of BULK  ------ */

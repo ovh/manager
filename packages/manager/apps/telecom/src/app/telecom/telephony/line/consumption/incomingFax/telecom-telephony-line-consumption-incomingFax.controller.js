@@ -1,3 +1,9 @@
+import chunk from 'lodash/chunk';
+import filter from 'lodash/filter';
+import flatten from 'lodash/flatten';
+import map from 'lodash/map';
+import sumBy from 'lodash/sumBy';
+
 angular.module('managerApp').controller('TelecomTelephonyLineConsumptionIncomingFaxCtrl', function ($stateParams, $q, $translate, $filter, $timeout, OvhApiTelephony, TucToastError) {
   const self = this;
 
@@ -8,8 +14,8 @@ angular.module('managerApp').controller('TelecomTelephonyLineConsumptionIncoming
         serviceName: $stateParams.serviceName,
       }).$promise
       .then(ids => $q
-        .all(_.map(
-          _.chunk(ids, 50),
+        .all(map(
+          chunk(ids, 50),
           chunkIds => OvhApiTelephony.Service().FaxConsumption().v6()
             .getBatch({
               billingAccount: $stateParams.billingAccount,
@@ -17,10 +23,10 @@ angular.module('managerApp').controller('TelecomTelephonyLineConsumptionIncoming
               consumptionId: chunkIds,
             }).$promise,
         ))
-        .then(chunkResult => _.flatten(chunkResult)))
+        .then(chunkResult => flatten(chunkResult)))
       .then((resultParam) => {
-        let result = _.pluck(resultParam, 'value');
-        result = _.filter(result, conso => conso.wayType === 'received');
+        let result = map(resultParam, 'value');
+        result = filter(result, conso => conso.wayType === 'received');
         return result;
       });
   }
@@ -50,7 +56,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineConsumptionIncoming
     fetchIncomingConsumption().then((result) => {
       self.consumption.raw = angular.copy(result);
       self.applySorting();
-      self.consumption.pagesSum = _.sum(self.consumption.raw, conso => conso.pages);
+      self.consumption.pagesSum = sumBy(self.consumption.raw, conso => conso.pages);
     }).catch(err => new TucToastError(err)).finally(() => {
       self.consumption.isLoading = false;
     });

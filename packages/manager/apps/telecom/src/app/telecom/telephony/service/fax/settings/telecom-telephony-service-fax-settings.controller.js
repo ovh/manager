@@ -1,3 +1,10 @@
+import assignWith from 'lodash/assignWith';
+import filter from 'lodash/filter';
+import get from 'lodash/get';
+import isArray from 'lodash/isArray';
+import pick from 'lodash/pick';
+import pull from 'lodash/pull';
+
 angular.module('managerApp').controller('TelecomTelephonyServiceFaxSettingsCtrl', function ($q, $stateParams, $translate, $timeout, OvhApiTelephony, TucToast, TucToastError, tucTelephonyBulk) {
   const self = this;
 
@@ -26,7 +33,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxSettingsCtrl'
     OvhApiTelephony.Fax().v6().resetCache();
     OvhApiTelephony.Fax().v6().resetQueryCache();
     return fetchSettings()
-      .then(settings => _.assign(self.settings, _.pick(settings, ['faxQuality', 'faxMaxCall', 'faxTagLine', 'fromName', 'fromEmail', 'mailFormat', 'redirectionEmail']), (objectValue, sourceValue) => (_.isArray(sourceValue) ? sourceValue : sourceValue.toString())));
+      .then(settings => assignWith(self.settings, pick(settings, ['faxQuality', 'faxMaxCall', 'faxTagLine', 'fromName', 'fromEmail', 'mailFormat', 'redirectionEmail']), (objectValue, sourceValue) => (isArray(sourceValue) ? sourceValue : sourceValue.toString())));
   }
 
   /* -----  End of HELPERS  ------ */
@@ -47,7 +54,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxSettingsCtrl'
   };
 
   self.removeRedirectionEmail = function (email) {
-    _.pull(self.settings.redirectionEmail, email);
+    pull(self.settings.redirectionEmail, email);
   };
 
   self.updateAllSettings = function () {
@@ -123,7 +130,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxSettingsCtrl'
   };
 
   self.filterServices = function (services) {
-    return _.filter(services, service => ['fax', 'voicefax'].indexOf(service.featureType) > -1);
+    return filter(services, service => ['fax', 'voicefax'].indexOf(service.featureType) > -1);
   };
 
   self.getBulkParams = function () {
@@ -149,7 +156,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxSettingsCtrl'
   };
 
   self.onBulkError = function (error) {
-    TucToast.error([$translate.instant('telephony_service_fax_settings_update_bulk_on_error'), _.get(error, 'msg.data')].join(' '));
+    TucToast.error([$translate.instant('telephony_service_fax_settings_update_bulk_on_error'), get(error, 'msg.data')].join(' '));
   };
 
   /* -----  End of BULK  ------ */

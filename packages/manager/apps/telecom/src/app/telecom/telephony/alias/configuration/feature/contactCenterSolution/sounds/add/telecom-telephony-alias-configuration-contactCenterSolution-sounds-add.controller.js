@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationContactCenterSolutionSoundsAddCtrl', class TelecomTelephonyAliasConfigurationContactCenterSolutionSoundsAddCtrl {
   constructor(
     $stateParams, $translate, $uibModalInstance,
@@ -41,7 +43,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationConta
       })
       .catch((error) => {
         this.TucToast.error(
-          `${this.$translate.instant('telephony_alias_config_contactCenterSolution_sounds_upload_error')} ${_.get(error, 'data.message', error.message)}`,
+          `${this.$translate.instant('telephony_alias_config_contactCenterSolution_sounds_upload_error')} ${get(error, 'data.message', error.message)}`,
         );
       })
       .finally(() => {

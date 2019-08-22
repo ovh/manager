@@ -1,3 +1,6 @@
+import forEach from 'lodash/forEach';
+import map from 'lodash/map';
+
 angular.module('managerApp')
   .run(($rootScope, SidebarMenu) => {
     $rootScope.$on('overTheBox_updateName', (event, serviceId, serviceName) => {
@@ -19,12 +22,12 @@ angular.module('managerApp')
       let requests = [];
 
       return OvhApiOverTheBox.v6().query().$promise.then((serviceNames) => {
-        requests = _.map(serviceNames, serviceName => OvhApiOverTheBox.v6().get({
+        requests = map(serviceNames, serviceName => OvhApiOverTheBox.v6().get({
           serviceName,
         }).$promise);
 
         return $q.all(requests).then((overTheBoxDetails) => {
-          _.forEach(overTheBoxDetails, (overTheBoxDetail) => {
+          forEach(overTheBoxDetails, (overTheBoxDetail) => {
             SidebarMenu.addMenuItem({
               title: overTheBoxDetail.customerDescription || overTheBoxDetail.serviceName,
               id: overTheBoxDetail.serviceName,

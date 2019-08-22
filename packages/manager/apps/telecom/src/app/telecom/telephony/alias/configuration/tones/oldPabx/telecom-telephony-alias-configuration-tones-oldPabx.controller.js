@@ -1,3 +1,10 @@
+import endsWith from 'lodash/endsWith';
+import get from 'lodash/get';
+import isEmpty from 'lodash/isEmpty';
+import pick from 'lodash/pick';
+import set from 'lodash/set';
+import some from 'lodash/some';
+
 angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationTonesOldPabxCtrl', function (
   $q, $stateParams, $translate, $timeout,
   TelephonyMediator, TucToast, tucVoipServiceTask,
@@ -43,19 +50,19 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationTones
   }
 
   function hasAttrChange(attr) {
-    return !angular.equals(_.get(self.tones, attr), _.get(self.formOptions, attr));
+    return !angular.equals(get(self.tones, attr), get(self.formOptions, attr));
   }
 
   self.checkValidSound = function (file, toneType) {
     // reset errors for tone type
-    _.set(self.formErrors, toneType, {});
+    set(self.formErrors, toneType, {});
 
     // check for good format
     const validExtensions = ['wav', 'mp3', 'mp4', 'ogg', 'wma'];
     const fileName = file ? file.name : '';
-    self.formErrors[toneType].format = !_.some(
+    self.formErrors[toneType].format = !some(
       validExtensions,
-      ext => _.endsWith(fileName.toLowerCase(), ext),
+      ext => endsWith(fileName.toLowerCase(), ext),
     );
 
     // check for file size
@@ -64,11 +71,11 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationTones
   };
 
   self.isFormValid = function () {
-    return _.some(attrs, tone => (hasAttrChange(tone) && self.formOptions[tone] !== 'Custom sound') || (self.formOptions[tone] === 'Custom sound' && hasAttrChange(tone) && self.formOptions[`${tone}Custom`]));
+    return some(attrs, tone => (hasAttrChange(tone) && self.formOptions[tone] !== 'Custom sound') || (self.formOptions[tone] === 'Custom sound' && hasAttrChange(tone) && self.formOptions[`${tone}Custom`]));
   };
 
   function uploadFile(toneType) {
-    const file = _.get(self.formOptions, `${toneType}Custom`);
+    const file = get(self.formOptions, `${toneType}Custom`);
 
     // api does not handle space characters in filenames
     const name = (file.name || '').replace(/\s/g, '_');
@@ -112,15 +119,15 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationTones
     self.loaders.save = true;
 
     attrs.forEach((toneType) => {
-      if (_.get(self.formOptions, toneType) === 'Custom sound' && self.formOptions[`${toneType}Custom`]) {
+      if (get(self.formOptions, toneType) === 'Custom sound' && self.formOptions[`${toneType}Custom`]) {
         savePromises.push(uploadFile(toneType));
-      } else if (_.get(self.formOptions, toneType) !== 'Custom sound') {
-        _.set(otherTypes, toneType, _.get(self.formOptions, toneType));
+      } else if (get(self.formOptions, toneType) !== 'Custom sound') {
+        set(otherTypes, toneType, get(self.formOptions, toneType));
       }
     });
 
     // save other types (types without custom sound)
-    if (!_.isEmpty(otherTypes)) {
+    if (!isEmpty(otherTypes)) {
       savePromises.push(apiService.v6().saveTones({
         billingAccount: $stateParams.billingAccount,
         serviceName: $stateParams.serviceName,
@@ -128,11 +135,11 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationTones
     }
 
     return $q.all(savePromises).then(() => {
-      self.tones = angular.copy(_.pick(self.formOptions, attrs));
+      self.tones = angular.copy(pick(self.formOptions, attrs));
       TucToast.success($translate.instant('telephony_alias_configuration_tones_old_pabx_save_success'));
       self.$onInit();
     }).catch((error) => {
-      TucToast.error([$translate.instant('telephony_alias_configuration_tones_old_pabx_save_error'), _.get(error, 'data.message')].join(' '));
+      TucToast.error([$translate.instant('telephony_alias_configuration_tones_old_pabx_save_error'), get(error, 'data.message')].join(' '));
       return $q.reject(error);
     }).finally(() => {
       self.loaders.save = false;
@@ -162,7 +169,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationTones
         self.formOptions = angular.copy(self.tones);
       });
     }).catch((error) => {
-      TucToast.error([$translate.instant('telephony_alias_configuration_tones_old_pabx_load_error'), _.get(error, 'data.message')].join(' '));
+      TucToast.error([$translate.instant('telephony_alias_configuration_tones_old_pabx_load_error'), get(error, 'data.message')].join(' '));
       return $q.reject(error);
     }).finally(() => {
       self.loaders.init = false;

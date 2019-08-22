@@ -1,3 +1,8 @@
+import find from 'lodash/find';
+import get from 'lodash/get';
+import isUndefined from 'lodash/isUndefined';
+import set from 'lodash/set';
+
 angular.module('managerApp').controller('TelecomPackMigrationOffersCtrl', function ($q, $translate, TucPackMigrationProcess, TucToast) {
   const self = this;
 
@@ -16,12 +21,12 @@ angular.module('managerApp').controller('TelecomPackMigrationOffersCtrl', functi
     angular.forEach(offer.options, (option) => {
       if (option.name === 'gtr_ovh' && option.selected) {
         totalOfferPrice += option.optionalPrice.value;
-      } else if (option.name !== 'gtr_ovh' && !_.isUndefined(option.choosedValue)) {
+      } else if (option.name !== 'gtr_ovh' && !isUndefined(option.choosedValue)) {
         totalOfferPrice += value * option.optionalPrice.value;
       }
     });
 
-    _.set(offer, 'displayedPrice', TucPackMigrationProcess.getPriceStruct(totalOfferPrice));
+    set(offer, 'displayedPrice', TucPackMigrationProcess.getPriceStruct(totalOfferPrice));
   };
 
   self.selectOffer = function (offer) {
@@ -35,7 +40,7 @@ angular.module('managerApp').controller('TelecomPackMigrationOffersCtrl', functi
   =============================== */
 
   self.hasOfferWithSubServicesToDelete = function () {
-    return !!_.find(
+    return !!find(
       self.process.migrationOffers.result.offers,
       offer => offer.totalSubServiceToDelete > 0,
     );
@@ -53,7 +58,7 @@ angular.module('managerApp').controller('TelecomPackMigrationOffersCtrl', functi
     return TucPackMigrationProcess.initOffersView().then((migrationProcess) => {
       self.process = migrationProcess;
     }, (error) => {
-      TucToast.error([$translate.instant('telecom_pack_migration_offer_choice_error_loading'), _.get(error, 'data.message', '')].join(' '));
+      TucToast.error([$translate.instant('telecom_pack_migration_offer_choice_error_loading'), get(error, 'data.message', '')].join(' '));
       return $q.reject(error);
     }).finally(() => {
       self.loading.init = false;

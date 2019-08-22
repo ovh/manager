@@ -1,3 +1,13 @@
+import chunk from 'lodash/chunk';
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import flatten from 'lodash/flatten';
+import forEach from 'lodash/forEach';
+import isEqual from 'lodash/isEqual';
+import map from 'lodash/map';
+import remove from 'lodash/remove';
+import some from 'lodash/some';
+
 /**
  *  Describe a telephony scheduler item.
  *
@@ -86,7 +96,7 @@ angular.module('managerApp').factory('VoipScheduler', ($q, OvhApiTelephony, Voip
    *
    *  @return {Promise} That returns the current scheduler instance when resolved.
    */
-  VoipScheduler.prototype.save = function () {
+  VoipScheduler.prototype.save = function save() {
     const self = this;
     const promises = [];
     const deletePromises = [];
@@ -101,22 +111,28 @@ angular.module('managerApp').factory('VoipScheduler', ($q, OvhApiTelephony, Voip
     }
 
     // save changed events
-    _.chain(self.events).filter(event => event.status === 'TOCREATE' || event.hasChange(null, true)).forEach((event) => {
-      if (event.status === 'TODELETE') {
-        deletePromises.push(event.remove().then(() => {
-          // when delete done, remove from event list
-          self.removeEvent(event);
-        }));
-      } else if (event.status === 'TOCREATE') {
-        promises.push(event.create().then((createdEvent) => {
-          createdEvent.stopEdition().status = 'OK'; // eslint-disable-line
-        }));
-      } else {
-        promises.push(event.save().then((editedEvent) => {
-          editedEvent.stopEdition();
-        }));
-      }
-    }).value();
+    forEach(
+      filter(
+        self.events,
+        event => event.status === 'TOCREATE' || event.hasChange(null, true),
+      ),
+      (event) => {
+        if (event.status === 'TODELETE') {
+          deletePromises.push(event.remove().then(() => {
+            // when delete done, remove from event list
+            self.removeEvent(event);
+          }));
+        } else if (event.status === 'TOCREATE') {
+          promises.push(event.create().then((createdEvent) => {
+            createdEvent.stopEdition().status = 'OK'; // eslint-disable-line
+          }));
+        } else {
+          promises.push(event.save().then((editedEvent) => {
+            editedEvent.stopEdition();
+          }));
+        }
+      },
+    );
 
     // first delete events that needs to be deleted - to avoid time conflicts with categories
     // then save others
@@ -147,7 +163,7 @@ angular.module('managerApp').factory('VoipScheduler', ($q, OvhApiTelephony, Voip
    *
    *  @return {Promise} That returns the founded scheduler events.
    */
-  VoipScheduler.prototype.getEvents = function (filters) {
+  VoipScheduler.prototype.getEvents = function getEvents(filters) {
     const self = this;
 
     return OvhApiTelephony.Scheduler().Events().v6()
@@ -156,8 +172,8 @@ angular.module('managerApp').factory('VoipScheduler', ($q, OvhApiTelephony, Voip
         serviceName: self.serviceName,
       }, filters || {})).$promise
       .then(eventIds => $q
-        .all(_.map(
-          _.chunk(eventIds, 50),
+        .all(map(
+          chunk(eventIds, 50),
           chunkIds => OvhApiTelephony.Scheduler().Events().v6().getBatch({
             billingAccount: self.billingAccount,
             serviceName: self.serviceName,
@@ -165,13 +181,22 @@ angular.module('managerApp').factory('VoipScheduler', ($q, OvhApiTelephony, Voip
           }).$promise,
         ))
         .then((chunkResult) => {
-          _.chain(chunkResult).flatten().pluck('value').filter(event => !_.find(self.events, {
-            uid: event.uid,
-          }))
-            .forEach((eventOptions) => {
+          forEach(
+            filter(
+              map(
+                flatten(
+                  chunkResult,
+                ),
+                'value',
+              ),
+              event => !find(self.events, {
+                uid: event.uid,
+              }),
+            ),
+            (eventOptions) => {
               self.addEvent(eventOptions);
-            })
-            .value();
+            },
+          );
 
           return self.events;
         }));
@@ -213,7 +238,7 @@ angular.module('managerApp').factory('VoipScheduler', ($q, OvhApiTelephony, Voip
   VoipScheduler.prototype.removeEvent = function (event) {
     const self = this;
 
-    _.remove(self.events, {
+    remove(self.events, {
       uid: event.uid,
     });
 
@@ -231,7 +256,7 @@ angular.module('managerApp').factory('VoipScheduler', ($q, OvhApiTelephony, Voip
   VoipScheduler.prototype.getEventByUid = function (eventUid) {
     const self = this;
 
-    return _.find(self.events, {
+    return find(self.events, {
       uid: eventUid,
     });
   };
@@ -249,9 +274,9 @@ angular.module('managerApp').factory('VoipScheduler', ($q, OvhApiTelephony, Voip
   VoipScheduler.prototype.isEventInExistingRange = function (event) {
     const self = this;
 
-    return _.some(
+    return some(
       self.events,
-      schedulerEvent => _.isEqual(schedulerEvent.categories, event.categories)
+      schedulerEvent => isEqual(schedulerEvent.categories, event.categories)
         && (moment(schedulerEvent.dateStart).isBetween(event.dateStart, event.dateEnd, null, '[]')
           || moment(schedulerEvent.dateEnd).isBetween(event.dateStart, event.dateEnd, null, '[]')),
     );
@@ -289,7 +314,7 @@ angular.module('managerApp').factory('VoipScheduler', ($q, OvhApiTelephony, Voip
 
     const makeIcsContent = function () {
       const icsEvents = [];
-      const filteredEvents = _.filter(
+      const filteredEvents = filter(
         self.events,
         event => categoryFilter.indexOf(event.categories) === -1,
       );
@@ -342,7 +367,7 @@ angular.module('managerApp').factory('VoipScheduler', ($q, OvhApiTelephony, Voip
     }
 
     // remove events that are to be created
-    _.filter(self.events, {
+    filter(self.events, {
       status: 'TOCREATE',
     }).forEach((event) => {
       // remove from events list
@@ -381,10 +406,10 @@ angular.module('managerApp').factory('VoipScheduler', ($q, OvhApiTelephony, Voip
     if (property) {
       switch (property) {
         case 'timeZone':
-          return !_.isEqual(self.timeZone, self.saveForEdition.timeZone);
+          return !isEqual(self.timeZone, self.saveForEdition.timeZone);
         case 'events':
           // check if one of the event has changed
-          return !!_.find(self.events, event => event.status === 'TOCREATE' || event.hasChange(null, true));
+          return !!find(self.events, event => event.status === 'TOCREATE' || event.hasChange(null, true));
         default:
           return false;
       }

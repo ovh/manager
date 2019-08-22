@@ -1,3 +1,7 @@
+import get from 'lodash/get';
+import head from 'lodash/head';
+import map from 'lodash/map';
+
 angular.module('managerApp').controller('TelecomPackMigrationShippingCtrl', function ($q, $translate, TucPackMigrationProcess, OvhContact, OvhApiPackXdsl, TucToast) {
   const self = this;
 
@@ -39,7 +43,7 @@ angular.module('managerApp').controller('TelecomPackMigrationShippingCtrl', func
       packName: self.process.pack.packName,
       context: 'migration',
     }).$promise.then((shippingAddresses) => {
-      self.ovhContactOptions.customList = _.map(
+      self.ovhContactOptions.customList = map(
         shippingAddresses,
         shippingAddress => new OvhContact({
           address: {
@@ -54,9 +58,9 @@ angular.module('managerApp').controller('TelecomPackMigrationShippingCtrl', func
         }),
       );
 
-      self.process.shipping.address = _.first(self.ovhContactOptions.customList);
+      self.process.shipping.address = head(self.ovhContactOptions.customList);
     }, (error) => {
-      TucToast.error([$translate.instant('telecom_pack_migration_shipping_addresses_error'), _.get(error, 'data.message', '')].join(' '));
+      TucToast.error([$translate.instant('telecom_pack_migration_shipping_addresses_error'), get(error, 'data.message', '')].join(' '));
       return $q.reject(error);
     }).finally(() => {
       self.loading.init = false;

@@ -1,3 +1,7 @@
+import get from 'lodash/get';
+import isObject from 'lodash/isObject';
+import startsWith from 'lodash/startsWith';
+
 angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationCallsFilteringCtrl', class TelecomTelephonyAliasConfigurationCallsFilteringCtrl {
   constructor(
     $filter, $q, $state, $stateParams, $translate, $uibModal,
@@ -24,7 +28,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationCalls
     };
 
     this.listTypes = this.TELEPHONY_ALIAS_CONTACT_CENTER_SOLUTION.filtering.listTypes
-      .filter(type => _.startsWith(type, 'incoming'))
+      .filter(type => startsWith(type, 'incoming'))
       .map(type => ({
         id: type,
         label: this.$translate.instant(`telephony_alias_configuration_calls_filtering_type_${type}`),
@@ -62,7 +66,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationCalls
       })
       .catch((error) => {
         this.TucToast.error(
-          `${this.$translate.instant('telephony_alias_configuration_calls_filtering_get_error')} ${_.get(error, 'data.message', error.message)}`,
+          `${this.$translate.instant('telephony_alias_configuration_calls_filtering_get_error')} ${get(error, 'data.message', error.message)}`,
         );
       })
       .finally(() => {
@@ -92,7 +96,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationCalls
       })
       .catch((error) => {
         this.TucToast.error(
-          `${this.$translate.instant('telephony_alias_configuration_calls_filtering_delete_error')} ${_.get(error, 'data.message', error.message)}`,
+          `${this.$translate.instant('telephony_alias_configuration_calls_filtering_delete_error')} ${get(error, 'data.message', error.message)}`,
         );
       })
       .finally(() => {
@@ -166,7 +170,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationCalls
       }))
       .catch((error) => {
         this.TucToast.error(
-          `${this.$translate.instant('telephony_alias_configuration_calls_filtering_add_error')} ${_.get(error, 'data.message', error.message)}`,
+          `${this.$translate.instant('telephony_alias_configuration_calls_filtering_add_error')} ${get(error, 'data.message', error.message)}`,
         );
       })
       .finally(() => {
@@ -177,7 +181,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationCalls
   getScreenListNature(callNumber) {
     const formatedNumber = this.$filter('tucPhoneNumber')(callNumber).replace(' ', '');
     const detectedPrefix = this.TELEPHONY_ALIAS_CONTACT_CENTER_SOLUTION.filtering.helperPrefixes
-      .find(({ prefixes }) => prefixes.find(prefix => _.startsWith(formatedNumber, prefix)));
+      .find(({ prefixes }) => prefixes.find(prefix => startsWith(formatedNumber, prefix)));
 
     return detectedPrefix ? detectedPrefix.label : 'line';
   }
@@ -189,7 +193,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationCalls
       nature: this.getScreenListNature(filter.callerIdNumber),
       status: 'enabled',
       type: filter.screenListType,
-      shortType: _.startsWith(filter.screenListType, 'incoming') ? 'incoming' : 'outgoing',
+      shortType: startsWith(filter.screenListType, 'incoming') ? 'incoming' : 'outgoing',
       list: filter.screenListType.includes('White') ? 'white' : 'black',
     }));
   }
@@ -210,9 +214,9 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationCalls
         this.$onInit();
       })
       .catch((error) => {
-        if (_.isObject(error)) {
+        if (isObject(error)) {
           this.TucToast.error(
-            `${this.$translate.instant('telephony_alias_configuration_calls_filtering_delete_all_error')} ${_.get(error, 'data.message', '')}`,
+            `${this.$translate.instant('telephony_alias_configuration_calls_filtering_delete_all_error')} ${get(error, 'data.message', '')}`,
           );
         }
       });
@@ -268,7 +272,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationCalls
   onBulkError() {
     return (error) => {
       this.TucToast.error(
-        `${this.$translate.instant('telephony_line_calls_filtering_bulk_on_error')} ${_.get(error, 'msg.data', error.message)}`,
+        `${this.$translate.instant('telephony_line_calls_filtering_bulk_on_error')} ${get(error, 'msg.data', error.message)}`,
       );
     };
   }

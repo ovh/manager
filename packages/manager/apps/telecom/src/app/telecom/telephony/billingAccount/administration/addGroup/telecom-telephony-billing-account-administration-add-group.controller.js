@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular.module('managerApp').controller('TelecomTelephonyBillingAccountAdministrationAddGroup', function ($stateParams, $translate, $timeout, OvhApiOrderTelephony, TucToastError) {
   const self = this;
 
@@ -14,10 +16,10 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountAdministr
   };
 
   self.getDisplayedPrice = function () {
-    if (_.get(self, 'prices.withTax.value') === 0) {
+    if (get(self, 'prices.withTax.value') === 0) {
       return $translate.instant('telephony_add_group_free');
     }
-    return _.get(self, 'prices.withTax.text', '-');
+    return get(self, 'prices.withTax.text', '-');
   };
 
   self.orderGroup = function () {

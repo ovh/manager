@@ -1,3 +1,10 @@
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import forEach from 'lodash/forEach';
+import head from 'lodash/head';
+import map from 'lodash/map';
+import pick from 'lodash/pick';
+
 angular.module('managerApp').controller('TelecomTelephonyAliasOrderSpecialCtrl', function ($q, $translate, $stateParams, OvhApiTelephony, OvhApiOrder, TelecomTelephonyBillingAccountOrderAliasService, TucToast, TucToastError, TELEPHONY_NUMBER_OFFER) {
   const self = this;
 
@@ -17,12 +24,12 @@ angular.module('managerApp').controller('TelecomTelephonyAliasOrderSpecialCtrl',
         self.predefinedNumbers = data.pool;
         self.prices = data.prices;
         self.contracts = data.contracts;
-        _.forEach(Object.keys(self.prices), (name) => {
+        forEach(Object.keys(self.prices), (name) => {
           self.prices[name].title = $translate.instant(['telephony', 'order', 'number', 'type', name, 'label'].join('_'));
         });
         if (self.predefinedNumbers) {
-          self.form.premium = _.first(self.predefinedNumbers.premium);
-          self.form.common = _.first(self.predefinedNumbers.common);
+          self.form.premium = head(self.predefinedNumbers.premium);
+          self.form.common = head(self.predefinedNumbers.common);
         }
         return data;
       },
@@ -37,8 +44,8 @@ angular.module('managerApp').controller('TelecomTelephonyAliasOrderSpecialCtrl',
     return OvhApiOrder.v6().schema().$promise.then(
       (schema) => {
         if (schema && schema.models['telephony.NumberSpecialTypologyEnum'] && schema.models['telephony.NumberSpecialTypologyEnum'].enum) {
-          const typologies = _.filter(schema.models['telephony.NumberSpecialTypologyEnum'].enum, elt => elt.match(new RegExp(`^${country}_`)));
-          self.typologies = _.map(typologies, typo => ({
+          const typologies = filter(schema.models['telephony.NumberSpecialTypologyEnum'].enum, elt => elt.match(new RegExp(`^${country}_`)));
+          self.typologies = map(typologies, typo => ({
             value: typo,
             label: $translate.instant(`telephony_alias_special_rsva_infos_typology_${typo.replace(new RegExp(`^${country}_`), '')}_label`),
           }));
@@ -59,7 +66,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasOrderSpecialCtrl',
       country,
     }).$promise.then(
       (ranges) => {
-        self.ranges = _.map(ranges, elt => ({
+        self.ranges = map(ranges, elt => ({
           label: elt,
           value: elt,
         }));
@@ -114,7 +121,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasOrderSpecialCtrl',
    */
   this.order = function () {
     this.loading.order = true;
-    const filter = [
+    const fields = [
       'city',
       'displayUniversalDirectory',
       'email',
@@ -134,7 +141,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasOrderSpecialCtrl',
       'siret',
       'socialNomination',
     ];
-    const form = _.pick(this.form, filter);
+    const form = pick(this.form, fields);
     form.country = self.user.country;
     if (form.pool === 1) {
       delete form.pool;
@@ -197,7 +204,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasOrderSpecialCtrl',
     }));
 
     self.form = {
-      amount: _.find(
+      amount: find(
         self.preAmount,
         {
           value: 1,

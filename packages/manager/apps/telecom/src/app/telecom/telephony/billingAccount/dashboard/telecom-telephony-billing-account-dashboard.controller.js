@@ -1,3 +1,9 @@
+import forEach from 'lodash/forEach';
+import flatten from 'lodash/flatten';
+import map from 'lodash/map';
+import set from 'lodash/set';
+import slice from 'lodash/slice';
+
 angular.module('managerApp')
   .controller('TelecomTelephonyBillingAccountDashboardCtrl', function (
     $translate, $scope, $stateParams, $state, $q, $window, $timeout,
@@ -41,23 +47,23 @@ angular.module('managerApp')
         billingAccount: line.billingAccount,
         serviceName: line.serviceName,
       }).$promise.then((phoneOpts) => {
-        _.set(line, 'phone', new TelephonyGroupLinePhone({
+        set(line, 'phone', new TelephonyGroupLinePhone({
           billingAccount: line.billingAccount,
           serviceName: line.serviceName,
         }, phoneOpts));
 
-        _.set(line, 'hasPhone', true);
+        set(line, 'hasPhone', true);
 
         return line.phone.getRMAs().then((RMAs) => {
-          _.set(line, 'phone.RMAs', RMAs);
+          set(line, 'phone.RMAs', RMAs);
           return line;
         }, () => {
-          _.set(line, 'phone.RMAs', []);
+          set(line, 'phone.RMAs', []);
           return line;
         });
       }, () => {
-        _.set(line, 'hasPhone', false);
-        _.set(line, 'RMAs', []);
+        set(line, 'hasPhone', false);
+        set(line, 'RMAs', []);
         return line;
       });
     }
@@ -100,17 +106,17 @@ angular.module('managerApp')
           billingAccount: $stateParams.billingAccount,
         }).$promise
         .then(ids => $q
-          .all(_.map(
-            _.slice(ids, ids.length - 5),
+          .all(map(
+            slice(ids, ids.length - 5),
             chunkIds => OvhApiTelephony.HistoryConsumption().v6().getBatch({
               billingAccount: $stateParams.billingAccount,
               date: chunkIds,
             }).$promise,
           ))
           .then((chunkResult) => {
-            const result = _.pluck(_.flatten(chunkResult), 'value');
-            self.bills = _.each(result, (consumption) => {
-              _.set(consumption, 'priceValue', consumption.price ? consumption.price.value : null);
+            const result = map(flatten(chunkResult), 'value');
+            self.bills = forEach(result, (consumption) => {
+              set(consumption, 'priceValue', consumption.price ? consumption.price.value : null);
             });
             return self.bills;
           }).catch(err => new TucToastError(err)).finally(() => {
@@ -143,7 +149,7 @@ angular.module('managerApp')
         if (self.group.lines && self.group.lines.length) {
           self.consumption = [];
 
-          _.forEach(consumption.summary, (count, type) => {
+          forEach(consumption.summary, (count, type) => {
             if (type !== 'total') {
               self.consumption.push({
                 label: type,
@@ -184,11 +190,11 @@ angular.module('managerApp')
     }
 
     function download(consumption, type) {
-      _.set(consumption, 'downloading', true);
+      set(consumption, 'downloading', true);
       getFile(consumption, type).then((info) => {
         $window.location.href = info.url; // eslint-disable-line
       }).catch(err => new TucToastError(err)).finally(() => {
-        _.set(consumption, 'downloading', false);
+        set(consumption, 'downloading', false);
       });
     }
 

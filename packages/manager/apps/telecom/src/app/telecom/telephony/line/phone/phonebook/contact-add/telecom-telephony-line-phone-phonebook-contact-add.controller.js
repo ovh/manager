@@ -1,3 +1,5 @@
+import isEmpty from 'lodash/isEmpty';
+
 angular.module('managerApp').controller('TelecomTelephonyLinePhonePhonebookContactAddCtrl', function ($q, $stateParams, $timeout, $uibModalInstance, TelephonyMediator, OvhApiTelephony, TucPhonebookcontact, data) {
   const self = this;
 
@@ -6,7 +8,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhonePhonebookConta
     =============================== */
 
   self.isValidNumber = function (value) {
-    return !_.isEmpty(value) ? TelephonyMediator.IsValidNumber(value) : true;
+    return !isEmpty(value) ? TelephonyMediator.IsValidNumber(value) : true;
   };
 
   /* -----  End of HELPERS  ------*/

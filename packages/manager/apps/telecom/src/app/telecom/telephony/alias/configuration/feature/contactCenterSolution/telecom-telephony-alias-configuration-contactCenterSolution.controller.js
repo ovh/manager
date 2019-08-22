@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationContactCenterSolutionCtrl', class TelecomTelephonyAliasConfigurationContactCenterSolutionCtrl {
   constructor($state, $translate, $uibModal, alias, OvhApiTelephony, TucToast) {
     this.$state = $state;
@@ -24,7 +26,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationConta
     }).catch((error) => {
       if (error) {
         this.TucToast.error(
-          `${this.$translate.instant('telephony_alias_delete_ko')} ${_.get(error, 'data.message', error.message)}`,
+          `${this.$translate.instant('telephony_alias_delete_ko')} ${get(error, 'data.message', error.message)}`,
         );
       }
     });

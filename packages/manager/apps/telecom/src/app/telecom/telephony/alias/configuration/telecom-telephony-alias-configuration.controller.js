@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationCtrl', class TelecomTelephonyAliasConfigurationCtrl {
   constructor($q, $stateParams, $translate,
     atInternet, TelephonyMediator, TucToast) {
@@ -37,7 +39,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationCtrl'
         });
       }).catch((error) => {
         this.TucToast.error(
-          `${this.$translate.instant('telephony_alias_configuration_load_error')} ${_(error).get('data.message', '')}`,
+          `${this.$translate.instant('telephony_alias_configuration_load_error')} ${get(error, 'data.message', '')}`,
         );
       })
       .finally(() => {

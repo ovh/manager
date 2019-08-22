@@ -1,3 +1,6 @@
+import get from 'lodash/get';
+import head from 'lodash/head';
+
 angular.module('managerApp').controller('TelecomPackMigrationCtrl', function ($q, $stateParams, $translate, TucPackMigrationProcess, TucToast) {
   const self = this;
 
@@ -18,13 +21,13 @@ angular.module('managerApp').controller('TelecomPackMigrationCtrl', function ($q
     return TucPackMigrationProcess.checkForPendingMigration().then((pendingTasks) => {
       if (pendingTasks && pendingTasks.length === 1) {
         self.process.currentStep = 'migration';
-        self.process.migrationTaskId = _.first(pendingTasks);
+        self.process.migrationTaskId = head(pendingTasks);
         self.process.migrationDoing = true;
       } else {
         self.process.currentStep = 'offers';
       }
     }, (error) => {
-      TucToast.error([$translate.instant('telecom_pack_migration_offer_choice_error_loading'), _.get(error, 'data.message', '')].join(' '));
+      TucToast.error([$translate.instant('telecom_pack_migration_offer_choice_error_loading'), get(error, 'data.message', '')].join(' '));
       return $q.reject(error);
     }).finally(() => {
       self.loading.init = false;

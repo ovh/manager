@@ -1,3 +1,5 @@
+import set from 'lodash/set';
+
 angular.module('managerApp').controller('PackXdslResiliationCtrl', function ($scope, $stateParams, $translate, $q, $timeout, $filter, OvhApiXdsl, TucToastError, OvhApiXdslResiliation, TucToast, tucValidator) {
   const self = this;
 
@@ -33,7 +35,7 @@ angular.module('managerApp').controller('PackXdslResiliationCtrl', function ($sc
       return OvhApiXdslResiliation.v6().followUp({
         serviceName: $stateParams.serviceName,
       }).$promise.then((followUp) => {
-        _.set(followUp, 'dateTodo', $filter('date')(followUp.dateTodo, 'dd/MM/yyyy'));
+        set(followUp, 'dateTodo', $filter('date')(followUp.dateTodo, 'dd/MM/yyyy'));
 
         self.resiliationTerms.onGoingResiliation = {
           dateTodo: followUp.dateTodo,

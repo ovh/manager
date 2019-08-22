@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular.module('managerApp').controller('TelephonyNumberOvhPabxCtrl',
   function ($q, $translate, $translatePartialLoader, asyncLoader, TelephonyMediator, TucToast) {
     const self = this;
@@ -21,7 +23,7 @@ angular.module('managerApp').controller('TelephonyNumberOvhPabxCtrl',
 
     self.refreshDisplayedDialplan = function () {
     // for the moment it will only have one dialplan per ovhPabx. So we take the first.
-      self.dialplan = _.get(self.numberCtrl.number.feature.dialplans, '[0]');
+      self.dialplan = get(self.numberCtrl.number.feature.dialplans, '[0]');
     };
 
     self.displayedFeatureType = function () {

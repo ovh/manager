@@ -1,3 +1,5 @@
+import filter from 'lodash/filter';
+
 angular.module('managerApp').controller('PackTaskCtrl', function ($scope, $translate, PAGINATION_PER_PAGE, TASK_STATUS, OvhApiPackXdslTask, TucToastError) {
   const self = this;
   this.allTasks = [];
@@ -34,7 +36,7 @@ angular.module('managerApp').controller('PackTaskCtrl', function ($scope, $trans
     let result = self.allTasks;
 
     if (self.filter.status) {
-      result = _.filter(self.allTasks, elem => elem.status.name === self.filter.status);
+      result = filter(self.allTasks, elem => elem.status.name === self.filter.status);
     }
 
     self.statusFilteredTasks = result;

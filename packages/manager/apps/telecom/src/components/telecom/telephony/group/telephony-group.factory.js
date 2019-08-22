@@ -1,3 +1,13 @@
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import findIndex from 'lodash/findIndex';
+import flatten from 'lodash/flatten';
+import get from 'lodash/get';
+import isArray from 'lodash/isArray';
+import map from 'lodash/map';
+import startsWith from 'lodash/startsWith';
+import valuesIn from 'lodash/valuesIn';
+
 angular.module('managerApp').factory('TelephonyGroup', ($q, OvhApiTelephony, TelephonyGroupLine, TelephonyGroupNumber, TelephonyGroupFax, OvhApiOrder, TELEPHONY_REPAYMENT_CONSUMPTION) => {
   /*= ==================================
     =            CONSTRUCTOR            =
@@ -90,7 +100,7 @@ angular.module('managerApp').factory('TelephonyGroup', ($q, OvhApiTelephony, Tel
   TelephonyGroup.prototype.initLines = function (lineOptions) {
     const self = this;
 
-    if (_.isArray(lineOptions)) {
+    if (isArray(lineOptions)) {
       angular.forEach(lineOptions, (lineOption) => {
         self.addLine(lineOption);
       });
@@ -114,7 +124,7 @@ angular.module('managerApp').factory('TelephonyGroup', ($q, OvhApiTelephony, Tel
   TelephonyGroup.prototype.getLine = function (lineServiceName) {
     const self = this;
 
-    return _.find(self.lines, {
+    return find(self.lines, {
       serviceName: lineServiceName,
     });
   };
@@ -124,7 +134,7 @@ angular.module('managerApp').factory('TelephonyGroup', ($q, OvhApiTelephony, Tel
   TelephonyGroup.prototype.initNumbers = function (numberOptions) {
     const self = this;
 
-    if (_.isArray(numberOptions)) {
+    if (isArray(numberOptions)) {
       angular.forEach(numberOptions, (numberOpts) => {
         self.addNumber(numberOpts);
       });
@@ -148,7 +158,7 @@ angular.module('managerApp').factory('TelephonyGroup', ($q, OvhApiTelephony, Tel
   TelephonyGroup.prototype.getNumber = function (numberServiceName) {
     const self = this;
 
-    return _.find(self.numbers, {
+    return find(self.numbers, {
       serviceName: numberServiceName,
     });
   };
@@ -169,7 +179,7 @@ angular.module('managerApp').factory('TelephonyGroup', ($q, OvhApiTelephony, Tel
 
       if (self.getNumber(number.serviceName)) {
         self.numbers
-          .splice(_.findIndex(self.numbers, n => n.serviceName === number.serviceName), 1, number);
+          .splice(findIndex(self.numbers, n => n.serviceName === number.serviceName), 1, number);
       } else {
         self.addNumber(number);
       }
@@ -180,28 +190,52 @@ angular.module('managerApp').factory('TelephonyGroup', ($q, OvhApiTelephony, Tel
 
   /* ----------  REPAYMENT CONSUMPTION  ----------*/
 
-  TelephonyGroup.prototype.getRepaymentConsumption = function () {
+  TelephonyGroup.prototype.getRepaymentConsumption = function getRepaymentConsumption() {
     const self = this;
 
     return OvhApiTelephony.Service().RepaymentConsumption().Aapi().repayment({
       billingAccount: self.billingAccount,
     }).$promise.then((consumptions) => {
-      const calledFeesPrefix = _.chain(TELEPHONY_REPAYMENT_CONSUMPTION)
-        .get('calledFeesPrefix').valuesIn().flatten()
-        .value();
-      const groupRepaymentsPrefix = _.chain(TELEPHONY_REPAYMENT_CONSUMPTION)
-        .get('groupRepaymentsPrefix').valuesIn().flatten()
-        .value();
+      const calledFeesPrefix = flatten(
+        valuesIn(
+          get(
+            TELEPHONY_REPAYMENT_CONSUMPTION,
+            'calledFeesPrefix',
+          ),
+        ),
+      );
 
-      self.calledFees = _.chain(calledFeesPrefix)
-        .map(prefix => _.filter(consumptions, consumption => _.startsWith(consumption.dialed, prefix) && consumption.price !== 0 && moment(consumption.creationDatetime).isAfter(moment().subtract(60, 'days').format()))).flatten().value();
+      const groupRepaymentsPrefix = flatten(
+        valuesIn(
+          get(
+            TELEPHONY_REPAYMENT_CONSUMPTION,
+            'groupRepaymentsPrefix',
+          ),
+        ),
+      );
+
+      self.calledFees = flatten(
+        map(
+          calledFeesPrefix,
+          prefix => filter(
+            consumptions,
+            consumption => startsWith(
+              consumption.dialed,
+              prefix,
+            ) && consumption.price !== 0 && moment(consumption.creationDatetime).isAfter(moment().subtract(60, 'days').format()),
+          ),
+        ),
+      );
 
       self.groupRepayments = {
         all: consumptions,
-        raw: _.chain(groupRepaymentsPrefix)
-          .map(prefix => _.filter(consumptions,
-            consumption => _.startsWith(consumption.dialed, prefix) && consumption.price !== 0))
-          .flatten().value(),
+        raw: flatten(
+          map(
+            groupRepaymentsPrefix,
+            prefix => filter(consumptions,
+              consumption => startsWith(consumption.dialed, prefix) && consumption.price !== 0),
+          ),
+        ),
       };
 
       return self;
@@ -213,7 +247,7 @@ angular.module('managerApp').factory('TelephonyGroup', ($q, OvhApiTelephony, Tel
   TelephonyGroup.prototype.initFax = function (faxOptionsList) {
     const self = this;
 
-    if (_.isArray(faxOptionsList)) {
+    if (isArray(faxOptionsList)) {
       angular.forEach(faxOptionsList, (faxOptions) => {
         self.addFax(faxOptions);
       });
@@ -237,7 +271,7 @@ angular.module('managerApp').factory('TelephonyGroup', ($q, OvhApiTelephony, Tel
   TelephonyGroup.prototype.getFax = function (faxServiceName) {
     const self = this;
 
-    return _.find(self.fax, {
+    return find(self.fax, {
       serviceName: faxServiceName,
     });
   };

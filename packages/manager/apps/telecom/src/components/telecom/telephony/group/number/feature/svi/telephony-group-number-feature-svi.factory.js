@@ -1,3 +1,6 @@
+import get from 'lodash/get';
+import isEqual from 'lodash/isEqual';
+
 /**
  *  This factory manages the svi feature of a number (vxml for API)
  *  This manages the svi featureType of /telephony/{billingAccount}/number API.
@@ -106,7 +109,7 @@ angular.module('managerApp').factory('TelephonyGroupNumberSvi', ($q, OvhApiTelep
     }
 
     if (attr) {
-      return !_.isEqual(_.get(self.saveForEdition, attr), _.get(self, attr));
+      return !isEqual(get(self.saveForEdition, attr), get(self, attr));
     }
     return self.hasChange('featureType') || self.hasChange('url') || self.hasChange('urlRecord');
   };

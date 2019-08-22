@@ -1,3 +1,5 @@
+import isNaN from 'lodash/isNaN';
+
 angular.module('managerApp').directive('ngPluralizeHtml', ($locale, $interpolate, $log) => {
   const BRACE = /{}/g;
   const IS_WHEN = /^when(Minus)?(.+)$/;
@@ -34,7 +36,7 @@ angular.module('managerApp').directive('ngPluralizeHtml', ($locale, $interpolate
 
       scope.$watch(numberExp, (newVal) => {
         let count = parseFloat(newVal);
-        const countIsNaN = _.isNaN(count);
+        const countIsNaN = isNaN(count);
 
         if (!countIsNaN && !(count in whens)) {
           // If an explicit number rule such as 1, 2, 3... is defined, just use it.
@@ -44,7 +46,7 @@ angular.module('managerApp').directive('ngPluralizeHtml', ($locale, $interpolate
 
         // If both `count` and `lastCount` are NaN, we don't need to re-register a watch.
         // In JS `NaN !== NaN`, so we have to exlicitly check.
-        if ((count !== lastCount) && !(countIsNaN && _.isNaN(lastCount))) {
+        if ((count !== lastCount) && !(countIsNaN && isNaN(lastCount))) {
           watchRemover();
           const whenExpFn = whensExpFns[count];
           if (whenExpFn === undefined) {

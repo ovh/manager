@@ -1,3 +1,7 @@
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import keys from 'lodash/keys';
+
 angular.module('managerApp').controller('TelephonyNumberRedirectCtrl', function ($q, $translate, TelephonyMediator, tucVoipServiceTask, TucToast) {
   const self = this;
   let selectedService = null;
@@ -41,7 +45,7 @@ angular.module('managerApp').controller('TelephonyNumberRedirectCtrl', function 
   }
 
   function getNumberList() {
-    return self.numberCtrl.number.feature.featureType === 'ddi' ? [] : _.filter(self.group.numbers, number => number.serviceName !== self.numberCtrl.number.serviceName);
+    return self.numberCtrl.number.feature.featureType === 'ddi' ? [] : filter(self.group.numbers, number => number.serviceName !== self.numberCtrl.number.serviceName);
   }
 
   function refreshAvailableServices() {
@@ -55,7 +59,7 @@ angular.module('managerApp').controller('TelephonyNumberRedirectCtrl', function 
     // manage selected service
     selectedService = getDestinationService();
     if (selectedService
-      && !_.find(self.availableServices, { serviceName: selectedService.serviceName })) {
+      && !find(self.availableServices, { serviceName: selectedService.serviceName })) {
       self.availableServices.push(selectedService);
     }
 
@@ -156,7 +160,7 @@ angular.module('managerApp').controller('TelephonyNumberRedirectCtrl', function 
           + self.group.fax.length;
 
         // set display helpers
-        self.displayHelpers.hasOtherGroups = _.keys(TelephonyMediator.groups).length > 1;
+        self.displayHelpers.hasOtherGroups = keys(TelephonyMediator.groups).length > 1;
         self.displayHelpers.availableTypes = self.numberCtrl.number.feature.featureType === 'ddi' ? ['trunk', 'sip', 'plugAndFax'] : undefined;
         if (self.displayHelpers.hasOtherGroups
           && self.displayHelpers.currentGroupServiceCount <= 4) {

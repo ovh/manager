@@ -1,4 +1,18 @@
-angular.module('managerApp').controller('TelecomTelephonyLinePhoneConfigurationCtrl', function ($scope, $q, $timeout, $state, $stateParams, $translate, TelephonyMediator, TucToast, TELEPHONY_LINE_PHONE_ADDITIONAL_INFOS) {
+import chunk from 'lodash/chunk';
+import forEach from 'lodash/forEach';
+import every from 'lodash/every';
+import filter from 'lodash/filter';
+import get from 'lodash/get';
+import groupBy from 'lodash/groupBy';
+import has from 'lodash/has';
+import isArray from 'lodash/isArray';
+import isEmpty from 'lodash/isEmpty';
+import isEqual from 'lodash/isEqual';
+import set from 'lodash/set';
+import snakeCase from 'lodash/snakeCase';
+import sortBy from 'lodash/sortBy';
+
+angular.module('managerApp').controller('TelecomTelephonyLinePhoneConfigurationCtrl', function TelecomTelephonyLinePhoneConfigurationCtrl($scope, $q, $timeout, $state, $stateParams, $translate, TelephonyMediator, TucToast, TELEPHONY_LINE_PHONE_ADDITIONAL_INFOS) {
   const self = this;
 
   self.line = null;
@@ -22,8 +36,8 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneConfigurationC
     =============================== */
 
   function groupConfigs() {
-    const groupedConfigs = _.groupBy(self.line.phone.configurations, 'group');
-    const additionalPhoneInfos = _.get(
+    const groupedConfigs = groupBy(self.line.phone.configurations, 'group');
+    const additionalPhoneInfos = get(
       TELEPHONY_LINE_PHONE_ADDITIONAL_INFOS,
       self.line.phone.brand,
     );
@@ -33,11 +47,11 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneConfigurationC
     angular.forEach(groupedConfigs, (configs, group) => {
       self.allGroups.push(angular.extend({
         name: group,
-        configs: _.sortBy(configs, 'name'),
-        isExpertOnly: _.every(configs, {
+        configs: sortBy(configs, 'name'),
+        isExpertOnly: every(configs, {
           level: 'expert',
         }),
-      }, additionalPhoneInfos && _.has(additionalPhoneInfos, `additionalConfiguration.${group}`) ? _.get(additionalPhoneInfos, `additionalConfiguration.${group}`) : {}));
+      }, additionalPhoneInfos && has(additionalPhoneInfos, `additionalConfiguration.${group}`) ? get(additionalPhoneInfos, `additionalConfiguration.${group}`) : {}));
     });
 
     // first sort by group name and then set priority on general group (null) and proxy
@@ -60,8 +74,8 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneConfigurationC
         return 1;
       }
 
-      const translatedA = $translate.instant(`telephony_line_phone_configuration_group_${_.snakeCase(groupA.name)}`);
-      const translatedB = $translate.instant(`telephony_line_phone_configuration_group_${_.snakeCase(groupB.name)}`);
+      const translatedA = $translate.instant(`telephony_line_phone_configuration_group_${snakeCase(groupA.name)}`);
+      const translatedB = $translate.instant(`telephony_line_phone_configuration_group_${snakeCase(groupB.name)}`);
 
       if (translatedA > translatedB) {
         return 1;
@@ -76,11 +90,17 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneConfigurationC
     const chunkSize = self.model.manage ? 1 : 2;
 
     if (!self.model.expertMode) {
-      self.configGroups = _.chain(self.allGroups).filter({
-        isExpertOnly: false,
-      }).chunk(chunkSize).value();
+      self.configGroups = chunk(
+        filter(
+          self.allGroups,
+          {
+            isExpertOnly: false,
+          },
+        ),
+        chunkSize,
+      );
     } else {
-      self.configGroups = _.chunk(self.allGroups, chunkSize);
+      self.configGroups = chunk(self.allGroups, chunkSize);
     }
   }
 
@@ -91,16 +111,16 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneConfigurationC
   }
 
   self.getModifiedConfigs = function () {
-    return _.filter(
+    return filter(
       self.line.phone.configurations,
-      config => !_.isEqual(config.value, config.prevValue),
+      config => !isEqual(config.value, config.prevValue),
     );
   };
 
   self.getNonDefaultConfigs = function () {
-    return _.filter(
+    return filter(
       self.line.phone.configurations,
-      config => !_.isEqual(config.value, config.default),
+      config => !isEqual(config.value, config.default),
     );
   };
 
@@ -121,14 +141,14 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneConfigurationC
   };
 
   self.onTextInputBlur = function (config) {
-    if (_.isEmpty(config.value)) {
-      _.set(config, 'value', config.prevValue);
+    if (isEmpty(config.value)) {
+      set(config, 'value', config.prevValue);
     }
   };
 
   self.reinitValues = function () {
     angular.forEach(self.getModifiedConfigs(), (config) => {
-      _.set(config, 'value', config.prevValue);
+      set(config, 'value', config.prevValue);
     });
 
     self.model.manage = !self.model.manage;
@@ -138,7 +158,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneConfigurationC
 
   self.defaultValues = function () {
     angular.forEach(self.getNonDefaultConfigs(), (config) => {
-      _.set(config, 'value', config.default);
+      set(config, 'value', config.default);
     });
 
     if (!self.model.expertMode && self.hasExpertConfigs) {
@@ -152,7 +172,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneConfigurationC
 
     self.loading.save = true;
 
-    _.each(_.filter(self.allGroups, group => group.dynamicConfigs && _.isArray(group.dynamicConfigs) && group.dynamicConfigs.length > 0), (group) => { // eslint-disable-line
+    forEach(filter(self.allGroups, group => group.dynamicConfigs && isArray(group.dynamicConfigs) && group.dynamicConfigs.length > 0), (group) => { // eslint-disable-line
       dynamicConfigs = dynamicConfigs.concat(group.dynamicConfigs);
     });
 
@@ -197,7 +217,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneConfigurationC
           return $state.go('telecom.telephony.line.phone');
         }
 
-        self.hasExpertConfigs = !_.every(self.line.phone.configurations, {
+        self.hasExpertConfigs = !every(self.line.phone.configurations, {
           level: null,
         });
         resetView();

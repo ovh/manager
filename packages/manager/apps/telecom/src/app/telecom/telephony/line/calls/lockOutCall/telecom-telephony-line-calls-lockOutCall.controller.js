@@ -1,3 +1,6 @@
+import get from 'lodash/get';
+import pick from 'lodash/pick';
+
 angular.module('managerApp').controller(
   'TelecomTelephonyLineCallsLockOutCallCtrl',
   function (
@@ -56,7 +59,7 @@ angular.module('managerApp').controller(
         serviceName: $stateParams.serviceName,
       }).$promise.then(
         (options) => {
-          self.options = _.pick(options, ['lockOutCallPassword', 'lockOutCall']);
+          self.options = pick(options, ['lockOutCallPassword', 'lockOutCall']);
           self.saved = angular.copy(self.options);
         },
         () => new TucToastError($translate.instant('telephony_line_actions_line_calls_out_lock_call_load_error')),
@@ -107,7 +110,7 @@ angular.module('managerApp').controller(
     };
 
     self.onBulkError = function (error) {
-      TucToast.error([$translate.instant('telephony_line_actions_line_calls_out_lock_call_bulk_on_error'), _.get(error, 'msg.data')].join(' '));
+      TucToast.error([$translate.instant('telephony_line_actions_line_calls_out_lock_call_bulk_on_error'), get(error, 'msg.data')].join(' '));
     };
   },
 );

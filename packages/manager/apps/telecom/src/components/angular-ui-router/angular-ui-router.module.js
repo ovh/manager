@@ -1,3 +1,12 @@
+import filter from 'lodash/filter';
+import get from 'lodash/get';
+import last from 'lodash/last';
+import map from 'lodash/map';
+import set from 'lodash/set';
+import size from 'lodash/size';
+import startsWith from 'lodash/startsWith';
+import xor from 'lodash/xor';
+
 angular
   .module('managerApp')
   .config(($stateProvider, $transitionsProvider, $urlServiceProvider) => {
@@ -27,7 +36,7 @@ angular
     $stateProvider.decorator('layout', (state) => {
       let modalLayout;
 
-      if (_.get(state, 'self.layout') === 'modal' || _.get(state, 'self.layout.name') === 'modal') {
+      if (get(state, 'self.layout') === 'modal' || get(state, 'self.layout.name') === 'modal') {
         modalLayout = {
           name: 'modal',
           toChilds: state.self.layout.toChilds || false,
@@ -51,18 +60,18 @@ angular
           modalInstance.close();
         }
 
-        if (_.get(state, 'layout.name') === 'modal') {
+        if (get(state, 'layout.name') === 'modal') {
           const $state = transition.injector().get('$state');
           const $uibModal = transition.injector().get('$uibModal');
 
           modalInstance = $uibModal.open({
-            templateUrl: _.get(state, state.views.modal ? 'views.modal.templateUrl' : 'templateUrl'),
-            controller: _.get(state, state.views.modal ? 'views.modal.controller' : 'controller'),
-            controllerAs: _.get(state, state.views.modal ? 'views.modal.controllerAs' : 'controllerAs', '$ctrl'),
+            templateUrl: get(state, state.views.modal ? 'views.modal.templateUrl' : 'templateUrl'),
+            controller: get(state, state.views.modal ? 'views.modal.controller' : 'controller'),
+            controllerAs: get(state, state.views.modal ? 'views.modal.controllerAs' : 'controllerAs', '$ctrl'),
           });
 
           // if backdrop is clicked - be sure to close the modal
-          modalInstance.result.catch(() => $state.go(_.get(state, 'layout.redirectTo')));
+          modalInstance.result.catch(() => $state.go(get(state, 'layout.redirectTo')));
         }
       });
     });
@@ -72,7 +81,7 @@ angular
     // see src/billing/billingApp.js for resolve restriction on billing states
     $transitions.onError({}, (transition) => {
       const error = transition.error();
-      if (_.get(error, 'status') === 403 && _.get(error, 'code') === 'FORBIDDEN_BILLING_ACCESS') {
+      if (get(error, 'status') === 403 && get(error, 'code') === 'FORBIDDEN_BILLING_ACCESS') {
         $state.go('app.error', { error });
       }
     });
@@ -84,8 +93,8 @@ angular
      * We will take the direct parent of the modal layout state and create new states with the same
      * layout configuration to all of its child states.
      */
-    const layoutStates = _.filter($stateRegistry.states, ({ layout }) => _.get(layout, 'toChilds') === true || _.size(_.get(layout, 'toChilds', [])));
-    const getChildStates = parentStateName => _.filter($stateRegistry.states, ({ name }) => _.startsWith(name, `${parentStateName}.`));
+    const layoutStates = filter($stateRegistry.states, ({ layout }) => get(layout, 'toChilds') === true || size(get(layout, 'toChilds', [])));
+    const getChildStates = parentStateName => filter($stateRegistry.states, ({ name }) => startsWith(name, `${parentStateName}.`));
 
     layoutStates.forEach((layoutState) => {
       let childStates;
@@ -94,22 +103,22 @@ angular
       if (angular.isArray(layoutState.layout.toChilds)) {
         childStates = layoutState.layout.toChilds;
       } else {
-        childStates = _.map(getChildStates(layoutState.parent.name), 'name');
+        childStates = map(getChildStates(layoutState.parent.name), 'name');
       }
 
       // build child states that need to be ignored
       // 1st: all child states of each states that need to be ignored
       // 2nd: current layout state doesn't need to have itself as modal child
       layoutState.layout.ignoreChilds.forEach((childState) => {
-        _.set(layoutState, 'layout.ignoreChilds', layoutState.layout.ignoreChilds.concat(_.map(getChildStates(childState), 'name')));
+        set(layoutState, 'layout.ignoreChilds', layoutState.layout.ignoreChilds.concat(map(getChildStates(childState), 'name')));
       });
       layoutState.layout.ignoreChilds.push(layoutState.name);
 
       // remove child states that need to be ignored
-      childStates = _.xor(childStates, layoutState.layout.ignoreChilds);
+      childStates = xor(childStates, layoutState.layout.ignoreChilds);
 
       // create child state with layout settings applied
-      const modalSateSuffix = _.last(layoutState.name.split('.'));
+      const modalSateSuffix = last(layoutState.name.split('.'));
       childStates.forEach((childState) => {
         $stateRegistry.register({
           name: `${childState}.${modalSateSuffix}`,

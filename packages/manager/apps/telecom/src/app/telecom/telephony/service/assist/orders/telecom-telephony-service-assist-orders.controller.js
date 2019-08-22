@@ -1,3 +1,7 @@
+import map from 'lodash/map';
+import set from 'lodash/set';
+import snakeCase from 'lodash/snakeCase';
+
 angular.module('managerApp').controller('TelecomTelephonyServiceAssistOrdersCtrl', function ($filter, $q, $translate, $stateParams, OvhApiTelephony, OvhApiMeOrder, TelephonyMediator) {
   const self = this;
   self.service = null;
@@ -8,10 +12,10 @@ angular.module('managerApp').controller('TelecomTelephonyServiceAssistOrdersCtrl
 
   function fetchOrders() {
     return OvhApiTelephony.v6().getCurrentOrderIds().$promise.then(orderIds => OvhApiMeOrder.v7().query().addFilter('orderId', 'in', orderIds).expand()
-      .execute().$promise.then(orders => $q.all(_.map(_.pluck(orders, 'value'), order => OvhApiMeOrder.v6().getStatus({
+      .execute().$promise.then(orders => $q.all(map(map(orders, 'value'), order => OvhApiMeOrder.v6().getStatus({
         orderId: order.orderId,
       }).$promise.then((status) => {
-        _.set(order, 'statusText', $translate.instant(`telephony_line_assist_orders_order_status_${_.snakeCase(status.status)}`));
+        set(order, 'statusText', $translate.instant(`telephony_line_assist_orders_order_status_${snakeCase(status.status)}`));
         return order;
       })))));
   }

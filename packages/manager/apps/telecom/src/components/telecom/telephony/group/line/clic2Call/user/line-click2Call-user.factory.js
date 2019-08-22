@@ -1,3 +1,5 @@
+import keys from 'lodash/keys';
+
 angular.module('managerApp').factory('TelephonyGroupLineClick2CallUser', ($q, OvhApiTelephony) => {
   const mandatoriesPhoneOptions = [
     'billingAccount',
@@ -43,7 +45,7 @@ angular.module('managerApp').factory('TelephonyGroupLineClick2CallUser', ($q, Ov
 
   TelephonyGroupLineClick2CallUser.prototype.setInfos = function (options) {
     const self = this;
-    angular.forEach(_.keys(options), (optionKey) => {
+    angular.forEach(keys(options), (optionKey) => {
       self[optionKey] = options[optionKey];
     });
 

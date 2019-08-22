@@ -1,3 +1,6 @@
+import get from 'lodash/get';
+import isObject from 'lodash/isObject';
+
 angular.module('managerApp').controller('TelecomTelephonyAliasRecordsCtrl', class TelecomTelephonyAliasRecordsCtrl {
   constructor(
     $q, $state, $stateParams, $timeout, $translate, $uibModal,
@@ -57,7 +60,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasRecordsCtrl', clas
       })
       .catch((error) => {
         this.TucToast.error(
-          `${this.$translate.instant('telephony_alias_contactCenterSolution_records_get_error')} ${_(error).get('data.message', '')}`,
+          `${this.$translate.instant('telephony_alias_contactCenterSolution_records_get_error')} ${get(error, 'data.message', '')}`,
         );
       })
       .finally(() => {
@@ -84,9 +87,9 @@ angular.module('managerApp').controller('TelecomTelephonyAliasRecordsCtrl', clas
         this.TucToast.success(this.$translate.instant('telephony_alias_contactCenterSolution_records_delete_success'));
       })
       .catch((error) => {
-        if (_.isObject(error)) {
+        if (isObject(error)) {
           this.TucToast.error(
-            `${this.$translate.instant('telephony_alias_contactCenterSolution_records_delete_error')} ${_.get(error, 'data.message', '')}`,
+            `${this.$translate.instant('telephony_alias_contactCenterSolution_records_delete_error')} ${get(error, 'data.message', '')}`,
           );
         }
       });
@@ -111,7 +114,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasRecordsCtrl', clas
       })
       .catch((error) => {
         this.TucToast.error(
-          `${this.$translate.instant('telephony_alias_contactCenterSolution_records_update_queue_error')} ${_(error).get('data.message', '')}`,
+          `${this.$translate.instant('telephony_alias_contactCenterSolution_records_update_queue_error')} ${get(error, 'data.message', '')}`,
         );
       })
       .finally(() => {

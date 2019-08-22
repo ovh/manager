@@ -1,3 +1,6 @@
+import map from 'lodash/map';
+import set from 'lodash/set';
+
 angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationStatsOvhPabxCtrl', function ($scope, $stateParams, $q, $timeout, OvhApiTelephony, TucToastError) {
   const self = this;
   let poller = null;
@@ -34,14 +37,14 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationStats
         billingAccount: $stateParams.billingAccount,
         serviceName: $stateParams.serviceName,
       }).$promise
-      .then(ids => $q.all(_.map(ids, id => OvhApiTelephony.OvhPabx().Hunting().Queue().v6()
+      .then(ids => $q.all(map(ids, id => OvhApiTelephony.OvhPabx().Hunting().Queue().v6()
         .get({
           billingAccount: $stateParams.billingAccount,
           serviceName: $stateParams.serviceName,
           queueId: id,
         }).$promise.then((queue) => {
           if (queue.actionOnOverflowParam) {
-            _.set(queue, 'actionOnOverflowParam', parseInt(queue.actionOnOverflowParam, 10));
+            set(queue, 'actionOnOverflowParam', parseInt(queue.actionOnOverflowParam, 10));
           }
           return queue;
         }))));
@@ -60,7 +63,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationStats
         billingAccount: $stateParams.billingAccount,
         serviceName: $stateParams.serviceName,
       }).$promise
-      .then(ids => $q.all(_.map(ids, id => OvhApiTelephony.OvhPabx().Hunting().Queue().v6()
+      .then(ids => $q.all(map(ids, id => OvhApiTelephony.OvhPabx().Hunting().Queue().v6()
         .getLiveStatistics({
           billingAccount: $stateParams.billingAccount,
           serviceName: $stateParams.serviceName,

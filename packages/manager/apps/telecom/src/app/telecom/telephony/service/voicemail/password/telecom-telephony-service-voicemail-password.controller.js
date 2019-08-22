@@ -1,3 +1,6 @@
+import filter from 'lodash/filter';
+import get from 'lodash/get';
+
 angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailPasswordCtrl', function ($state, $stateParams, $translate, $timeout, OvhApiTelephony, TucToastError, tucTelephonyBulk, TucToast) {
   const self = this;
 
@@ -66,7 +69,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailPasswor
   };
 
   self.filterServices = function (services) {
-    return _.filter(services, service => ['sip', 'mgcp', 'fax', 'voicefax'].indexOf(service.featureType) > -1);
+    return filter(services, service => ['sip', 'mgcp', 'fax', 'voicefax'].indexOf(service.featureType) > -1);
   };
 
   self.getBulkParams = function () {
@@ -94,7 +97,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailPasswor
   };
 
   self.onBulkError = function (error) {
-    TucToast.error([$translate.instant('telephony_line_answer_voicemail_password_bulk_on_error'), _.get(error, 'msg.data')].join(' '));
+    TucToast.error([$translate.instant('telephony_line_answer_voicemail_password_bulk_on_error'), get(error, 'msg.data')].join(' '));
   };
 
   init();

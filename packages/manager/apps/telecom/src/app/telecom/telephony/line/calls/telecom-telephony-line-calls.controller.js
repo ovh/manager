@@ -1,3 +1,9 @@
+import filter from 'lodash/filter';
+import forEach from 'lodash/forEach';
+import set from 'lodash/set';
+import some from 'lodash/some';
+import startsWith from 'lodash/startsWith';
+
 angular.module('managerApp').controller('TelecomTelephonyLineCallsCtrl', function ($translate, $stateParams, TelephonyMediator) {
   const self = this;
 
@@ -98,13 +104,13 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsCtrl', functio
       .then(group => group.getLine($stateParams.serviceName)).then((line) => {
         self.line = line;
 
-        isTrunkRates = _.some(line.offers, offer => _.startsWith(offer, 'voip.main.offer.fr.trunk.rates'));
+        isTrunkRates = some(line.offers, offer => startsWith(offer, 'voip.main.offer.fr.trunk.rates'));
 
-        self.actions = _.filter(initActions(), (action) => {
+        self.actions = filter(initActions(), (action) => {
           let display = action.display === true;
           let enable = action.enable === true;
           if (action.display !== true) {
-            _.forEach(action.display, (offer) => {
+            forEach(action.display, (offer) => {
               if (offer === 'trunk') {
                 if (line.isTrunk()) {
                   display = true;
@@ -115,7 +121,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsCtrl', functio
             });
           }
           if (action.enable !== true) {
-            _.forEach(action.enable, (offer) => {
+            forEach(action.enable, (offer) => {
               if (offer === 'trunk') {
                 if (line.isTrunk()) {
                   enable = true;
@@ -125,7 +131,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsCtrl', functio
               }
             });
           }
-          _.set(action, 'disabled', !enable);
+          set(action, 'disabled', !enable);
           return display;
         });
         return line;

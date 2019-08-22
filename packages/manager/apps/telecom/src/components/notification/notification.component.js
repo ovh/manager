@@ -1,3 +1,6 @@
+import isArray from 'lodash/isArray';
+import set from 'lodash/set';
+
 angular.module('managerApp').run(($translate, asyncLoader) => {
   asyncLoader.addTranslations(
     import(`./translations/Messages_${$translate.use()}.json`)
@@ -103,7 +106,7 @@ angular.module('managerApp')
        * @param {Object} element Notification element
        */
       this.destroyElement = function (element) {
-        _.set(element, 'frozen', true);
+        set(element, 'frozen', true);
         OvhApiXdslNotifications.v6().remove({
           xdslId: element.xdslService,
           id: element.id,
@@ -113,7 +116,7 @@ angular.module('managerApp')
           },
           err => self.processError(err),
         ).finally(() => {
-          _.set(element, 'frozen', false);
+          set(element, 'frozen', false);
         });
       };
 
@@ -122,21 +125,21 @@ angular.module('managerApp')
        * @param {Object} element Notification element
        */
       this.submitElement = function (element) {
-        _.set(element, 'frozen', true);
-        _.set(element, 'editMode', false);
+        set(element, 'frozen', true);
+        set(element, 'editMode', false);
         OvhApiXdslNotifications.v6().add({
           xdslId: element.xdslService,
         }, element.getCreationData()).$promise.then(
           (data) => {
-            _.set(element, 'id', data.id);
-            _.set(element, 'editMode', false);
+            set(element, 'id', data.id);
+            set(element, 'editMode', false);
           },
           (err) => {
-            _.set(element, 'editMode', true);
+            set(element, 'editMode', true);
             return self.processError(err);
           },
         ).finally(() => {
-          _.set(element, 'frozen', false);
+          set(element, 'frozen', false);
         });
       };
 
@@ -149,7 +152,7 @@ angular.module('managerApp')
           xdslId: self.xdslService,
         }).$promise.then(
           (data) => {
-            if (_.isArray(data)) {
+            if (isArray(data)) {
               data.forEach((notif) => {
                 self.ngModel.push(new NotificationElement(notif));
               });

@@ -1,3 +1,5 @@
+import find from 'lodash/find';
+
 angular.module('managerApp').controller('TelecomTelephonyLineManagementOfferChangeEditCtrl', function ($timeout, $uibModalInstance, $translate, currentLine) {
   const self = this;
 
@@ -57,7 +59,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineManagementOfferChan
       self.availableOffers = offers;
 
       // this is not sexy but we don't have information about the offer name for the moment
-      self.model.offer = _.find(self.availableOffers, {
+      self.model.offer = find(self.availableOffers, {
         type: self.line.offerInformations.type,
         description: self.line.offerInformations.description,
       });
