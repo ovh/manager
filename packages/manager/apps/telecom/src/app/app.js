@@ -1,3 +1,4 @@
+import set from 'lodash/set';
 import { Environment } from '@ovh-ux/manager-config';
 import ovhManagerCore from '@ovh-ux/manager-core';
 import ovhManagerDashboard from '@ovh-ux/manager-telecom-dashboard';
@@ -25,6 +26,8 @@ import ngUirouterTitle from '@ovh-ux/ng-uirouter-title';
 import ngOvhSidebarMenu from '@ovh-ux/ng-ovh-sidebar-menu';
 import ngOvhActionsMenu from '@ovh-ux/ng-ovh-actions-menu';
 import ngOvhSimpleCountryList from '@ovh-ux/ng-ovh-simple-country-list';
+import ngOvhLineDiagnostics from '@ovh-ux/ng-ovh-line-diagnostics';
+import ngOvhContact from '@ovh-ux/ng-ovh-contact';
 
 import navbar from '../components/navbar';
 
@@ -68,8 +71,8 @@ angular.module('managerApp', [
   ngOvhUiRouterLineProgress,
   ngUirouterTitle,
   ngOvhActionsMenu,
-  'ovh-angular-contact',
-  'ovh-angular-line-diagnostics',
+  ngOvhContact,
+  ngOvhLineDiagnostics,
   'ovh-angular-q-allSettled',
   'ovh-angular-responsive-tabs',
   ngOvhSidebarMenu,
@@ -197,7 +200,7 @@ angular.module('managerApp', [
 /*= =========  LOAD NAVBAR AND SIDEBAR  ========== */
   .run(/* @ngInject */ ($rootScope, $timeout, TelecomNavbar) => {
     TelecomNavbar.getResponsiveLinks()
-      .then(links => _.set($rootScope, 'navbar.sidebarLinks', links))
+      .then(links => set($rootScope, 'navbar.sidebarLinks', links))
       .finally(() => {
         $timeout(() => $rootScope.$broadcast('sidebar:loaded'));
       });
@@ -223,13 +226,13 @@ angular.module('managerApp', [
     $translatePartialLoader.addPart('components');
 
     const removeHook = $transitions.onSuccess({}, () => {
-      _.set(ouiClipboardConfiguration, 'translations', {
+      set(ouiClipboardConfiguration, 'translations', {
         copyToClipboardLabel: $translate.instant('common_clipboard_copy_to_clipboard'),
         copiedLabel: $translate.instant('common_clipboard_copied'),
         notSupported: $translate.instant('common_clipboard_not_supported'),
       });
 
-      _.set(ouiCriteriaAdderConfiguration, 'translations', {
+      set(ouiCriteriaAdderConfiguration, 'translations', {
         column_label: $translate.instant('common_criteria_adder_column_label'),
         operator_label: $translate.instant('common_criteria_adder_operator_label'),
 
@@ -261,11 +264,11 @@ angular.module('managerApp', [
         submit_label: $translate.instant('common_criteria_adder_submit_label'),
       });
 
-      _.set(ouiDatagridConfiguration, 'translations', {
+      set(ouiDatagridConfiguration, 'translations', {
         emptyPlaceholder: $translate.instant('common_datagrid_nodata'),
       });
 
-      _.set(ouiFieldConfiguration, 'translations', {
+      set(ouiFieldConfiguration, 'translations', {
         errors: {
           required: $translate.instant('common_field_error_required'),
           number: $translate.instant('common_field_error_number'),
@@ -278,7 +281,7 @@ angular.module('managerApp', [
         },
       });
 
-      _.set(ouiNavbarConfiguration, 'translations', {
+      set(ouiNavbarConfiguration, 'translations', {
         notification: {
           errorInNotification: $translate.instant('common_navbar_notification_error_in_notification'),
           errorInNotificationDescription: $translate.instant('common_navbar_notification_error_in_notification_description'),
@@ -289,7 +292,7 @@ angular.module('managerApp', [
         },
       });
 
-      _.set(ouiPaginationConfiguration, 'translations', {
+      set(ouiPaginationConfiguration, 'translations', {
         resultsPerPage: $translate.instant('common_pagination_resultsperpage'),
         ofNResults: $translate.instant('common_pagination_ofnresults')
           .replace('TOTAL_ITEMS', '{{totalItems}}'),
@@ -299,7 +302,7 @@ angular.module('managerApp', [
         previousPage: $translate.instant('common_pagination_previous'),
         nextPage: $translate.instant('common_pagination_next'),
       });
-      _.set(ouiStepperConfiguration, 'translations', {
+      set(ouiStepperConfiguration, 'translations', {
         optionalLabel: $translate.instant('common_stepper_optional_label'),
         modifyThisStep: $translate.instant('common_stepper_modify_this_step'),
         skipThisStep: $translate.instant('common_stepper_skip_this_step'),
