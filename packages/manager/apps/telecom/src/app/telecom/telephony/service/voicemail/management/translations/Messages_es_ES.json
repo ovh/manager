@@ -1,0 +1,13 @@
+{
+  "telephony_line_answer_voicemail_directories_main_title": "Escucha y gestión de los mensajes",
+  "telephony_line_answer_voicemail_directories_title": "Gestión de los mensajes del contestador",
+  "telephony_line_answer_voicemail_directories_delete_message": "Eliminar el mensaje",
+  "telephony_line_answer_voicemail_directories_delete_message_plural": "Eliminar los {{ count }} mensajes",
+  "telephony_line_answer_voicemail_directories_listen_message": "Escuchar",
+  "telephony_line_answer_voicemail_directories_download_message": "Descargar",
+  "telephony_line_answer_voicemail_directories_refresh_message": "Actualizar",
+  "telephony_line_answer_voicemail_directories_empty": "No tiene mensajes.",
+  "telephony_line_answer_voicemail_directories_caller": "Persona que efectúa la llamada",
+  "telephony_line_answer_voicemail_directories_date": "Fecha",
+  "telephony_line_answer_voicemail_directories_duration": "Duración"
+}

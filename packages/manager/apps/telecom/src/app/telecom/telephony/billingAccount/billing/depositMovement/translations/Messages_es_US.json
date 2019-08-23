@@ -1,0 +1,20 @@
+{
+  "telephony_group_billing_deposit_movement_title": "Transfert de vos dépôts de garantie entre groupes",
+  "telephony_group_billing_deposit_movement_info": "Gérer le mouvement de vos dépôts de garantie entre vos différents groupes.",
+  "telephony_group_billing_deposit_movement_source_subtitle": "Source",
+  "telephony_group_billing_deposit_movement_groups_label": "Groupes :",
+  "telephony_group_billing_deposit_movement_deposit_label": "Dépôt de garantie actuel :",
+  "telephony_group_billing_deposit_movement_amount_subtitle": "Montant",
+  "telephony_group_billing_deposit_movement_amount_label": "Montant :",
+  "telephony_group_billing_deposit_movement_destination_subtitle": "Destination",
+  "telephony_group_billing_deposit_movement_estimate_label": "Estimation après validation :",
+  "telephony_group_billing_deposit_movement_without_tax": "+ IVA",
+  "telephony_group_billing_deposit_movement_submit": "Aceptar",
+  "telephony_group_billing_deposit_movement_success": "La demande de mouvement de vos dépôts de garantie à été enregistrée avec succès !",
+  "telephony_group_billing_deposit_movement_error_amount_too_low": "Pour effectuer un transfert, votre dépôt de garantie source doit être positif !",
+  "telephony_group_billing_deposit_movement_error_amount_required": "Le champ \"montant\" est obligatoire.",
+  "telephony_group_billing_deposit_movement_error_amount_number": "Veuillez saisir un montant valide.",
+  "telephony_group_billing_deposit_movement_error_amount_min": "La valeur minimum de ce champ est {{ min }}.",
+  "telephony_group_billing_deposit_movement_error_amount_max": "La valeur maximum de ce champ est {{ max }}.",
+  "telephony_group_billing_deposit_movement_capability_error": "Oups ! Nous n'avons pas pu vérifier les groupes de facturation transférables."
+}

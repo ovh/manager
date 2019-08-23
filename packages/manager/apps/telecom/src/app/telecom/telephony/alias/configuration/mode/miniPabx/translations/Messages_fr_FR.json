@@ -1,0 +1,9 @@
+{
+  "telephony_alias_configuration_mode_mini_pabx_queue_size": "Nombre maximum d'appelants en attente",
+  "telephony_alias_configuration_mode_mini_pabx_queue_size_info": "<strong>Nombre maximum d'appelants en attente</strong> : nombre maximum d'appelants en attente dans la file d'attente.",
+  "telephony_alias_configuration_mode_mini_pabx_on_hold_timer": "Durée maximum d'attente dans la file",
+  "telephony_alias_configuration_mode_mini_pabx_on_hold_timer_info": "<strong>Durée maximum d'attente dans la file</strong> : durée maximale avant que l'appelant ne sorte de la file d'attente.",
+  "telephony_alias_configuration_mode_mini_pabx_loading_error": "Une erreur est survenue lors du chargement des options de votre miniPabx.",
+  "telephony_alias_configuration_mode_mini_pabx_save_success": "Les modifications apportées à votre miniPabx ont été appliquées avec succès.",
+  "telephony_alias_configuration_mode_mini_pabx_save_error": "Oups ! Une erreur est survenue lors de la modification des options de votre miniPabx."
+}

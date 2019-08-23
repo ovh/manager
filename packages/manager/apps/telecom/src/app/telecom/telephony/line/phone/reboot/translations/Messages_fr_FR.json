@@ -1,0 +1,10 @@
+{
+  "telephony_line_phone_reboot_title": "Redémarrer le téléphone",
+  "telephony_line_phone_reboot_section_title": "Plug & Phone",
+  "telephony_line_phone_reboot_phone_brand": "Modèle",
+  "telephony_line_phone_reboot_phone_mac_address": "Adresse MAC",
+  "telephony_line_phone_reboot_phone": "Redémarrer",
+  "telephony_line_phone_reboot_error": "Oups, une erreur est survenue lors du redémarrage du téléphone.",
+  "telephony_line_phone_reboot_unsupported": "Impossible de redémarrer à distance ce type de téléphone.",
+  "telephony_line_phone_reboot_success": "Redémarrage en cours."
+}

@@ -1,0 +1,9 @@
+{
+  "telephony_line_fax_section_back_link": "Ritorna alla gestione del fax",
+  "telephony_line_fax_action_line_password": "Password fax",
+  "telephony_line_fax_action_line_settings": "Configura il fax",
+  "telephony_line_fax_action_line_white_label_domains": "Domini Ecofax White Label",
+  "telephony_line_fax_action_line_filtering": "Filtro fax",
+  "telephony_line_fax_action_line_campaigns": "Campagne Fax",
+  "telephony_line_fax_action_line_convert_to_voicefax": "Converti un Ecofax Perso"
+}

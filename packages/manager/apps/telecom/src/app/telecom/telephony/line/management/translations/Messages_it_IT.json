@@ -1,0 +1,18 @@
+{
+  "telephony_group_line_section_back_link": "Ritorna alla gestione della linea",
+  "telephony_line_management_actions_line_details_offer": "Informazioni generali",
+  "telephony_line_management_actions_line_sip_password": "Password SIP",
+  "telephony_line_management_actions_line_sip_domain_management": "Dominio SIP",
+  "telephony_line_management_actions_line_sip_ips_restrictions": "Restrizioni SIP per IP",
+  "telephony_line_management_actions_line_language": "Gestisci la lingua",
+  "telephony_line_management_actions_line_resume_offer": "Cambia piano",
+  "telephony_line_management_actions_line_bannMaker": "Generatore di etichette",
+  "telephony_line_management_actions_line_to_number": "Converti la linea in numero",
+  "telephony_line_management_actions_line_delete_line_new": "Disattiva la linea",
+  "telephony_line_management_actions_line_mgcp_ip_restriction": "Restrizione MGCP per IP",
+  "telephony_line_management_actions_line_password_canchange_error": "Impossibile autorizzare la modifica della password SIP.",
+  "telephony_line_management_actions_line_password_canchange_SIP_error": "La password può essere modificata solo su una linea SIP.",
+  "telephony_line_management_actions_line_password_canchange_plugnphone_error": "La password non può essere modificata su un Plug'N'Phone.",
+  "telephony_line_management_actions_line_password_canchange_pack_error": "La password non può essere modificata su una linea xDSL inclusa in un pack.",
+  "telephony_line_management_actions_line_cancel_delete_line_new": "Annulla la disattivazione della linea"
+}

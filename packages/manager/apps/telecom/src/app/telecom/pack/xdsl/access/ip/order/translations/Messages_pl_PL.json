@@ -1,0 +1,14 @@
+{
+  "pack_xdsl_access_ip_order_operation_title": "Czy chcesz wykonać następującą operację:",
+  "pack_xdsl_access_ip_order_operation": "Zamówienie bloku {{amountIp}} adresów IP",
+  "pack_xdsl_access_ip_order_title": "Zamów blok adresów IP",
+  "pack_xdsl_access_ip_order_service_title": "dla tej usługi:",
+  "pack_xdsl_access_ip_order_disclaim": "Te adresy IP zostaną włączone za {{hoursBeforeActivation}} godz. Pobierzemy płatność w kwocie {{price}} netto za {{hoursBeforeCollected}} godz. Usługę tę należy zamówić na minimum {{engagementMinimumMonths}} miesięcy.",
+  "pack_xdsl_access_ip_order_are_you_sure_title": "Czy chcesz wykonać następującą operację:",
+  "pack_xdsl_access_ip_order_immediate_execution": "Wyrażam zgodę na natychmiastową realizację usługi i jednocześnie rezygnuję z prawa do odstąpienia od umowy (podstawa prawna: artykuł L.121-21-8 Kodeksu konsumenta).",
+  "pack_xdsl_access_ip_order_accept_conditions": "Przeczytałem i akceptuję warunki związne z usługą dodatkowych adresów IP",
+  "pack_xdsl_access_ip_order_accept_conditions_contract": "Wyświetl regulamin",
+  "pack_xdsl_access_ip_order_no": "Anuluj",
+  "pack_xdsl_access_ip_order_yes": "Zamów",
+  "pack_xdsl_access_ip_order_validation": "La commande du bloc d'IP a bien été prise en compte."
+}

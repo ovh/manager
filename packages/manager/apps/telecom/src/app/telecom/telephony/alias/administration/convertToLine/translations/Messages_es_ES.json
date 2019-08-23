@@ -1,0 +1,19 @@
+{
+  "telephony_alias_administration_convert_title": "Convertir un número en línea",
+  "telephony_alias_administration_convert_offers_title": "Selección de la solución",
+  "telephony_alias_administration_convert_info_subtitle": "Información",
+  "telephony_alias_administration_convert_info": "Las solicitudes de conversión se aplicarán en la siguiente facturación. Hasta esa fecha, podrá cancelarlas si cambia de opinión.",
+  "telephony_alias_administration_convert_offers": "Productos disponibles",
+  "telephony_alias_administration_convert_monthly_price_tax_free": "{{ price }}/mes + IVA",
+  "telephony_alias_administration_convert_submit": "Convertir el número",
+  "telephony_alias_administration_convert_success": "La conversión se ha planificado correctamente.",
+  "telephony_alias_administration_convert_task": "El número {{ number }} se convertirá en línea el {{ date }}.",
+  "telephony_alias_administration_convert_cancel": "Cancelar la conversión",
+  "telephony_alias_administration_convert_cancel_success": "La conversión se ha cancelado correctamente.",
+  "telephony_alias_administration_convert_task_title": "Conversión planificada",
+  "telephony_alias_administration_convert_range_error": "Este número pertenece a un rango de números y no puede convertirse en línea.",
+  "telephony_alias_administration_convert_bulk_all_success": "La conversion a bien été appliquée aux services sélectionnés.",
+  "telephony_alias_administration_convert_bulk_some_success": "La conversion a bien été appliquée à {{ count }} des services sélectionnés.",
+  "telephony_alias_administration_convert_bulk_error": "La conversion n'a pu être appliquée au(x) service(s) suivant(s) :",
+  "telephony_alias_administration_convert_bulk_on_error": "Oups ! Une erreur est survenue lors de la conversion."
+}

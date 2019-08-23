@@ -1,0 +1,17 @@
+{
+  "telephony_service_fax_password_main_title": "Contraseña",
+  "telephony_service_fax_password_title": "Gestion du mot de passe Fax",
+  "telephony_service_fax_password_number_info_line": "Ligne :",
+  "telephony_service_fax_password_error_password_required": "Le champ \"Mot de passe\" est obligatoire.",
+  "telephony_service_fax_password_error_password_minlength": "Le mot de passe doit contenir 6 caractères minimum.",
+  "telephony_service_fax_password_error_password_maxlength": "Le mot de passe ne peut excéder 12 caractères.",
+  "telephony_service_fax_password_label_confirm": "Confirmar",
+  "telephony_service_fax_password_error_confirm_password_match": "Vos mots de passe ne correspondent pas.",
+  "telephony_service_fax_password_apply": "Aplicar modificaciones",
+  "telephony_service_fax_password_change_success": "Mot de passe modifié avec succès.",
+  "telephony_service_fax_password_change_error": "Impossible de configurer le mot de passe.<br/>{{ error }}",
+  "telephony_service_fax_password_bulk_all_success": "La modification du mot de passe a bien été appliquée aux services sélectionnés.",
+  "telephony_service_fax_password_bulk_some_success": "La modification du mot de passe a bien été appliquée à {{ count }} des services sélectionnés.",
+  "telephony_service_fax_password_bulk_error": "La modification du mot de passe n'a pu être appliquée au(x) service(s) suivant(s) :",
+  "telephony_service_fax_password_bulk_on_error": "Oups ! Une erreur est survenue lors de la modification du mot de passe ."
+}

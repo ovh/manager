@@ -1,0 +1,17 @@
+{
+  "telephony_line_actions_line_calls_display_number_title": "Presentación del número",
+  "telephony_line_actions_line_calls_display_number_read_error": "No se ha podido acceder a la presentación del número.",
+  "telephony_line_actions_line_calls_display_number_write_error": "No se ha podido actualizar la presentación del número, ya que este no está en formato internacional o no le pertenece.",
+  "telephony_line_actions_line_calls_display_number_write_success": "Se ha actualizado la presentación del número.",
+  "telephony_line_actions_line_calls_display_number_label": "Quiero presentar un número en las llamadas salientes:",
+  "telephony_line_actions_line_calls_display_number_choose": "Choisir un autre numéro",
+  "telephony_line_actions_line_calls_display_number_confirm": "Aplicar los cambios",
+  "telephony_line_actions_line_calls_display_number_info": "En las llamadas salientes, muestre un número de su grupo u opte por el anonimato.",
+  "telephony_line_actions_line_calls_identificationRestriction_checkbox_label": "Permanecer anónimo",
+  "telephony_line_actions_line_calls_submit_changes": "Aplicar los cambios",
+  "telephony_line_actions_line_calls_anonymous": "Numéro masqué",
+  "telephony_line_actions_line_calls_display_number_bulk_all_success": "La modification de la présentation du numéro a bien été appliquée aux services sélectionnés.",
+  "telephony_line_actions_line_calls_display_number_bulk_some_success": "La modification de la présentation du numéro a bien été appliquée à {{ count }} des services sélectionnés.",
+  "telephony_line_actions_line_calls_display_number_bulk_error": "La modification de la présentation du numéro n'a pu être appliquée au(x) service(s) suivant(s) :",
+  "telephony_line_actions_line_calls_display_number_bulk_on_error": "Oups ! Une erreur est survenue lors de la modification de la présentation du numéro."
+}

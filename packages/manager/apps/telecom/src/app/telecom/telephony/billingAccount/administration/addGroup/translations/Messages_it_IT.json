@@ -1,0 +1,10 @@
+{
+  "telephony_add_group_title": "Aggiungi un gruppo",
+  "telephony_add_group_contracts": "Per confermare il tuo ordine, accetta i contratti.",
+  "telephony_add_group_infos": "È possibile ordinare nuovi gruppi per organizzare e gestire più facilmente le tue linee e i tuoi numeri.",
+  "telephony_add_group_order": "Ordina un nuovo gruppo di telefonia",
+  "telephony_add_group_free": "Gratuito",
+  "telephony_add_group_success": "La tua richiesta di creazione è stata registrata correttamente.",
+  "telephony_add_group_success_bc": "Per finalizzare la tua richiesta, conferma questo",
+  "telephony_add_group_success_bc2": "buono d'ordine"
+}

@@ -1,0 +1,7 @@
+{
+  "pack_xdsl_access_ip_title": "Registro DNS inverso",
+  "pack_xdsl_access_ip_ip": "IP",
+  "pack_xdsl_access_ip_dns": "DNS",
+  "pack_xdsl_access_ip_add_entry": "Añadir una dirección IP",
+  "pack_xdsl_access_ip_delete_really": "¿Seguro que quiere borrar el registro DNS inverso de {{ipReverse}}?"
+}

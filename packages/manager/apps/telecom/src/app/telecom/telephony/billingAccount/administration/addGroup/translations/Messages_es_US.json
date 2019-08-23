@@ -1,0 +1,10 @@
+{
+  "telephony_add_group_title": "Ajouter un groupe",
+  "telephony_add_group_contracts": "Vous devez accepter les contrats afin de valider la commande.",
+  "telephony_add_group_infos": "Vous pouvez commander de nouveaux groupes afin d'organiser et gérer plus facilement vos lignes et numéros.",
+  "telephony_add_group_order": "Commander un nouveau groupe de téléphonie",
+  "telephony_add_group_free": "Gratuito",
+  "telephony_add_group_success": "La demande de création a été enregistrée avec succés.",
+  "telephony_add_group_success_bc": "Afin de finaliser votre demande, merci de valider ce",
+  "telephony_add_group_success_bc2": "orden de pedido"
+}
