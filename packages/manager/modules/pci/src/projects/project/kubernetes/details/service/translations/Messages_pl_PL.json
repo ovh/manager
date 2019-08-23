@@ -6,7 +6,7 @@
   "kube_service_description_reset": "Możesz w każdym momencie zresetować konfigurację Twojego klastra Kubernetes.",
   "kube_service_offer_beta": "Zarządzana usługa Kubernetes (bezpłatna)",
   "kube_service_file": "Plik \"kubeconfig\"",
-  "kube_service_file_error": "Wystąpił błąd podczas pobierania pliku konfiguracyjnego.",
+  "kube_service_file_error": "Wystąpił błąd podczas pobierania pliku konfiguracyjnego: {{message}}.",
   "kube_service_file_help": "Plik \"kubeconfig\" zawiera dane umożliwiające interfejsowi wiersza poleceń „kubectl” komunikację z API Twojego klastra. ",
   "kube_service_file_more_information": "Więcej informacji znajdziesz tutaj",
   "kube_service_cluster_information": "Informacje o klastrze",
@@ -46,5 +46,10 @@
   "kube_service_cluster_minor_update_available": "Aktualizacja wersji pomocniczej jest dostępna.",
   "kube_service_manage_title": "Zarządzanie",
   "kube_service_common_edit_security_update_policy": "Zmień politykę bezpieczeństwa",
-  "kube_service_minor_version_upgrade": "Przejdź do następnej pomocniczej wersji"
+  "kube_service_minor_version_upgrade": "Przejdź do następnej pomocniczej wersji",
+  "kube_service_cluster_status_SUSPENDING": "Trwa zawieszanie",
+  "kube_service_cluster_status_REOPENING": "Trwa odblokowywanie",
+  "kube_service_cluster_status_SUSPENDED": "Zawieszony",
+  "kube_service_cluster_status_USER_ERROR": "Błąd",
+  "kube_service_cluster_status_USER_QUOTA_ERROR": "Problem z limitem"
 }
