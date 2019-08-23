@@ -9,10 +9,10 @@
     padding: 0;
 
     .popover-title {
-      color: @defaultLineHeadFont;
-      background-color: @defaultLineHeadBackground;
+      color: @defaultlineheadfont;
+      background-color: @defaultlineheadbackground;
       font-weight: bold;
-      font-size: @fontSizeDefault;
+      font-size: @fontsizedefault;
     }
 
     .popover-content {
@@ -20,8 +20,8 @@
       p,
       span {
         font-weight: normal;
-        background-color: @defaultBackground;
-        color: @defaultPopoverFont;
+        background-color: @defaultbackground;
+        color: @defaultpopoverfont;
 
         .bold,
         .bold:hover {
@@ -39,20 +39,20 @@
           text-align: left;
 
           &:hover {
-            color: @defaultLineSelectedFont;
-            background-color: @defaultLineSelectedBackground;
+            color: @defaultlineselectedfont;
+            background-color: @defaultlineselectedbackground;
           }
 
           &.disabled:hover {
-            background-color: @defaultBackground;
-            color: @defaultPopoverFont;
+            background-color: @defaultbackground;
+            color: @defaultpopoverfont;
           }
         }
       }
     }
 
     &.bottom .arrow::after {
-      border-bottom-color: @defaultLineHeadBackground;
+      border-bottom-color: @defaultlineheadbackground;
     }
   }
 }

@@ -24,8 +24,8 @@
 
     .accordion-list-container {
       .category {
-        .background-color-fn(@defaultLineHeadBackground);
-        .color-fn(@defaultLineHeadFont);
+        .background-color-fn(@defaultlineheadbackground);
+        .color-fn(@defaultlineheadfont);
 
         font-weight: bold;
         padding-left: 10px;
@@ -44,24 +44,24 @@
           overflow: hidden;
 
           &:nth-child(odd) {
-            .background-color-fn(@defaultLineOddBackground);
-            .color-fn(@defaultLineOddFont);
+            .background-color-fn(@defaultlineoddbackground);
+            .color-fn(@defaultlineoddfont);
           }
 
           &:nth-child(even) {
-            .background-color-fn(@defaultLineEvenBackground);
-            .color-fn(@defaultLineEvenFont);
+            .background-color-fn(@defaultlineevenbackground);
+            .color-fn(@defaultlineevenfont);
           }
 
           &:hover {
-            .background-color-fn(@defaultLineHoverBackground);
-            .color-fn(@defaultLineHoverFont);
+            .background-color-fn(@defaultlinehoverbackground);
+            .color-fn(@defaultlinehoverfont);
           }
 
           &.selected-item,
           &.selected-item:hover {
-            .background-color-fn(@defaultLineSelectedBackground);
-            .color-fn(@defaultLineSelectedFont);
+            .background-color-fn(@defaultlineselectedbackground);
+            .color-fn(@defaultlineselectedfont);
           }
 
           &.selected-delete-item,
@@ -102,6 +102,6 @@
   .errorFormLabel {
     margin-left: 40px;
     font-size: 11px;
-    color: @RED_CONST;
+    color: @red_const;
   }
 }

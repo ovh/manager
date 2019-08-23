@@ -20,8 +20,8 @@ table {
     }
 
     &:hover a {
-      .background-color-fn(@defaultLineSelectedBackground);
-      .color-fn(@defaultLineSelectedFont);
+      .background-color-fn(@defaultlineselectedbackground);
+      .color-fn(@defaultlineselectedfont);
 
       background-image: none; //overload boostrap style
     }
@@ -30,8 +30,8 @@ table {
   &.clickable {
     tbody tr:hover > td {
       cursor: pointer;
-      .background-color-fn(@defaultLineSelectedBackground);
-      .color-fn(@defaultLineSelectedFont);
+      .background-color-fn(@defaultlineselectedbackground);
+      .color-fn(@defaultlineselectedfont);
     }
   }
 }
