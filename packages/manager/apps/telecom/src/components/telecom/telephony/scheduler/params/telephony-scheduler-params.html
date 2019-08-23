@@ -1,0 +1,42 @@
+<div class="telephony-scheduler-params">
+
+    <div class="form-group">
+        <label data-translate="telephony_scheduler_options_time_zone_choose"
+               class="control-label"
+               for="timeZone-select">
+        </label>
+        <select name="timeZoneSelect"
+                id="timeZone-select"
+                class="form-control"
+                data-ng-model="$ctrl.telephonySchedulerCtrl.scheduler.timeZone"
+                data-ng-options="timeZone.value as timeZone.label for timeZone in $ctrl.timeZones">
+        </select>
+    </div>
+
+    <div class="form-group"
+         data-ng-if="$ctrl.telephonySchedulerCtrl.timeCondition">
+
+        <label class="control-label">
+            <span data-translate="telephony_scheduler_category_activation"></span>
+            <i class="ovh-font ovh-font-filled-question"
+               data-uib-tooltip="{{ 'telephony_scheduler_category_activation_explain' | translate }}"
+               tooltip-append-to-body="true">
+            </i>
+        </label>
+        <div class="d-block btn-group">
+            <label class="btn btn-default"
+                   data-ng-model="$ctrl.telephonySchedulerCtrl.timeCondition.enable"
+                   data-uib-btn-radio="true"
+                   data-translate="telephony_scheduler_category_activation_yes">
+            </label>
+
+            <label class="btn btn-default"
+                   data-ng-model="$ctrl.telephonySchedulerCtrl.timeCondition.enable"
+                   data-uib-btn-radio="false"
+                   data-translate="telephony_scheduler_category_activation_no">
+            </label>
+        </div>
+
+    </div>
+
+</div>

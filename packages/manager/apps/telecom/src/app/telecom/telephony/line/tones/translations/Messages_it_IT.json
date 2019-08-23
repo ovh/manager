@@ -1,0 +1,21 @@
+{
+  "telephony_line_tones_title": "Gestione di musiche e suonerie",
+  "telephony_line_tones_info1": "Da questa pagina puoi definire le musiche e le suonerie per la tua linea.<br /> Sono possibili diverse personalizzazioni:",
+  "telephony_line_tones_info2": "<strong>Musica di attesa</strong>: sostituisce la musica di attesa predefinita.",
+  "telephony_line_tones_info3": "<strong>Musica di attesa</strong>: musica utilizzata quando l'interlocutore viene messo in attesa durante una conversazione telefonica.",
+  "telephony_line_tones_info4": "<strong>Annuncio linea occupata</strong>: annuncio utilizzato quando, durante una chiamata diretta (non trasmessa tramite easyPabx o miniPabx), la linea è occupata. In questo caso, non viene stabilito nessun collegamento con il numero chiamato. ",
+  "telephony_line_tones_ringback": "Musica di attesa",
+  "telephony_line_tones_onhold": "Musica di attesa",
+  "telephony_line_tones_callwaiting": "Annuncio linea occupata",
+  "telephony_line_tones_type_custom_sound": "Personalizzata",
+  "telephony_line_tones_type_none": "Standard",
+  "telephony_line_tones_type_predefined_1": "Predefinita 1",
+  "telephony_line_tones_type_predefined_2": "Predefinita 2",
+  "telephony_line_tones_choose_file": "Scegli un file",
+  "telephony_line_tones_choose_file_confirm": "Invia il file",
+  "telephony_line_tones_choose_file_ring_success": "Suoneria aggiornata",
+  "telephony_line_tones_choose_file_sound_success": "Musica aggiornata",
+  "telephony_line_tones_choose_file_announce_success": "Annuncio aggiornato",
+  "telephony_line_tones_choose_file_type_error": "Il formato del file selezionato non è supportato.",
+  "telephony_line_tones_apply": "Applica le modifiche"
+}

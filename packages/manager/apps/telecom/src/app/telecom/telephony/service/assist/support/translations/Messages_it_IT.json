@@ -1,0 +1,9 @@
+{
+  "telephony_line_assist_support_title": "Guide e supporto",
+  "telephony_line_assist_support_guides_title": "Guide",
+  "telephony_line_assist_support_guides_explain": "Pour vous aider dans la configuration et l'utilisation de votre téléphonie, <a href=\"{{ url }}\" target=\"_blank\" title=\"Accéder à nos guides\">nos guides sont à votre disposition<i class=\"ovh-font ovh-font-newtab ml-4\" /></a>.",
+  "telephony_line_assist_support_support_title": "Supporto",
+  "telephony_line_assist_support_header": "Per maggiori informazioni, contattaci:",
+  "telephony_line_assist_support_contact_by_phone": "Telefonicamente al numero <b>1007</b> (gratis da linea fissa) o allo <b>+33 9 72 10 10 07</b> (costo di una chiamata nazionale da una linea fissa in Francia). Lun.- Ven. dalle 8:00 alle 20:00 e Sab. dalle 9:00 alle 17:00.",
+  "telephony_line_assist_support_contact_ticket": "Apri un ticket incidente"
+}

@@ -1,0 +1,21 @@
+{
+  "telephony_line_answer_voicemail_password_change_main_title": "Password di accesso alla segreteria",
+  "telephony_line_answer_voicemail_password_number_info": "Informazioni",
+  "telephony_line_answer_voicemail_password_number_internal": "Accesso alla segreteria:",
+  "telephony_line_answer_voicemail_password_number_external": "Dall'esterno:",
+  "telephony_line_answer_voicemail_password_change_title": "Password della segreteria",
+  "telephony_line_answer_voicemail_password_input_label": "Nouveau mot de passe (composé de 4 chiffres) :",
+  "telephony_line_answer_voicemail_password_input_placeholder": "Password",
+  "telephony_line_answer_voicemail_password_input_length_warning": "La password deve contenere 4 cifre.",
+  "telephony_line_answer_voicemail_passwordConfirm_input_label": "Conferma:",
+  "telephony_line_answer_voicemail_passwordConfirm_input_placeholder": "Inserisci di nuovo la tua nuova password",
+  "telephony_line_answer_voicemail_password_matching_warning": "La password inserita non corrisponde.",
+  "telephony_line_answer_voicemail_password_apply": "Applica le modifiche",
+  "telephony_line_answer_voicemail_password_change_success": "Password modificata correttamente.",
+  "telephony_line_answer_voicemail_password_change_error": "Ops! Impossibile modificare la password della tua segreteria.",
+  "telephony_line_answer_voicemail_password_info": "Password richiesta solo per la consultazione dei messaggio dall'esterno.",
+  "telephony_line_answer_voicemail_password_bulk_all_success": "Le mot de passe a bien été appliqué aux services sélectionnés.",
+  "telephony_line_answer_voicemail_password_bulk_some_success": "Le mot de passe a bien été appliqué à {{ count }} des services sélectionnés.",
+  "telephony_line_answer_voicemail_password_bulk_error": "Le mot de passe n'a pas pu être appliqué au(x) service(s) suivant(s) :",
+  "telephony_line_answer_voicemail_password_bulk_on_error": "Oups ! Une erreur est survenue lors de l'application du mot de passe."
+}

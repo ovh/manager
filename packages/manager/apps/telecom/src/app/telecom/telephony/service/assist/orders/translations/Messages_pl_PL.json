@@ -1,0 +1,16 @@
+{
+  "telephony_line_assist_orders_title": "Informacje o zamówieniach",
+  "telephony_line_assist_orders_column_date": "Data",
+  "telephony_line_assist_orders_column_id": "Numer zamówienia",
+  "telephony_line_assist_orders_column_status": "Status",
+  "telephony_line_assist_orders_order_status_cancelled": "Anulowane",
+  "telephony_line_assist_orders_order_status_cancelling": "Trwa anulowanie",
+  "telephony_line_assist_orders_order_status_checking": "Zatwierdzenie",
+  "telephony_line_assist_orders_order_status_delivered": "Zakończone",
+  "telephony_line_assist_orders_order_status_delivering": "Dostarczanie w trakcie",
+  "telephony_line_assist_orders_order_status_documents_requested": "W oczekiwaniu na dokumenty",
+  "telephony_line_assist_orders_order_status_not_paid": "Brak płatności",
+  "telephony_line_assist_orders_order_status_unknown": "Nieznany",
+  "telephony_line_assist_orders_order_url_title": "Wyświetl zamówienie nr {{ id }}",
+  "telephony_line_assist_orders_empty": "Brak zamówień"
+}

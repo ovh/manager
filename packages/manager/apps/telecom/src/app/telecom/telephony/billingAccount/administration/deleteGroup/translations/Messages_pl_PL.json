@@ -1,0 +1,10 @@
+{
+  "telephony_delete_group_title": "Usuń grupę",
+  "telephony_delete_group_warning": "Usunięcie grupy telefonicznej spowoduje zamknięcie linii i przypisanych numerów.",
+  "telephony_delete_group_infos": "Usunięcie grupy zostało zaplanowane na datę wystawienia kolejnej faktury. Do tej daty zlecenie to może zostać anulowane.",
+  "telephony_delete_group_pending": "Usunięcie grupy {{group}} zaplanowane na:",
+  "telephony_delete_group_cancel": "Anuluj operację usunięcia",
+  "telephony_delete_group_cancel_success": "Usunięcie grupy {{group}} zostało anulowane.",
+  "telephony_delete_group_delete": "Usuń {{group}}",
+  "telephony_delete_group_delete_success": "Usunięcie grupy {{group}} zostało zaplanowane."
+}

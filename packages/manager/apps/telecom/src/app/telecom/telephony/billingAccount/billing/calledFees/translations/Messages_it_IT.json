@@ -1,0 +1,15 @@
+{
+  "telephony_group_billing_called_fees_title": "Costi VAS del gruppo",
+  "telephony_group_billing_called_fees_total_title": "Totale costi VAS",
+  "telephony_group_billing_called_fees_total_price": "{{ totalPrice }} €",
+  "telephony_group_billing_called_fees_detail_title": "Dettagli costi VAS",
+  "telephony_group_billing_called_fees_detail_operator_name": "{{ operator }}:",
+  "telephony_group_billing_called_fees_detail_operator_other": "Altri operatori:",
+  "telephony_group_billing_called_fees_detail_total_call_singular": "{{ call }} chiamata",
+  "telephony_group_billing_called_fees_detail_total_call_plural": "{{ call }} chiamate",
+  "telephony_group_billing_called_fees_detail_total_call_empty": "Nessuna chiamata",
+  "telephony_group_billing_called_fees_detail_total_duration_price": "({{ totalDuration }}sec.) cioè {{ totalPrice }} +IVA",
+  "telephony_group_billing_called_fees_detail_total_label": "Totale:",
+  "telephony_group_billing_called_fees_detail_empty": "Nessuna informazione.",
+  "telephony_group_billing_called_fees_error": "Ops! Impossibile recuperare i costi VAS del gruppo."
+}

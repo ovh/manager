@@ -1,0 +1,15 @@
+{
+  "telephony_line_calls_back_link": "Volver a la gestión de llamadas",
+  "telephony_line_calls_actions_line_manage_onboarding": "Haga clic y arrastre el cursor por el calendario para crear una franja horaria. ",
+  "telephony_line_calls_actions_line_manage_filtering_lists_new": "Filtrado de llamadas",
+  "telephony_line_calls_actions_line_locking": "Bloqueo de las llamadas salientes",
+  "telephony_line_calls_actions_line_forwardcall": "Redirección de llamadas",
+  "telephony_line_calls_actions_line_displayNumber": "Presentación del número",
+  "telephony_line_calls_actions_line_simultaneouslines": "Llamadas simultáneas",
+  "telephony_line_calls_actions_line_manage_slots": "Configurar las franjas horarias",
+  "telephony_line_calls_actions_line_calendar": "Configurar los cierres excepcionales",
+  "telephony_line_calls_actions_line_callWaiting": "Llamada en espera e Intercom",
+  "telephony_line_calls_actions_line_abbreviated_numbers": "Números abreviados",
+  "telephony_line_calls_actions_line_click2call": "Llamada en un clic (Click2Call)",
+  "telephony_line_calls_actions_line_external_number_display": "Presentación de un número externo"
+}

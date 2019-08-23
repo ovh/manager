@@ -1,0 +1,7 @@
+{
+  "telephony_device_associate_line_count": "Linee configurate ({{ count }}/{{ total }}):",
+  "telephony_device_associate_ip_address": "Indirizzo IP pubblico",
+  "telephony_device_associate_attach": "Associa",
+  "telephony_device_associate_attach_success": "Il tuo dispositivo è stato collegato correttamente a questa linea.",
+  "telephony_device_associate_attach_empty": "Nessun dispositivo compatibile."
+}

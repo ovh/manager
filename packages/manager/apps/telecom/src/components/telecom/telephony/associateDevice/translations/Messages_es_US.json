@@ -1,0 +1,7 @@
+{
+  "telephony_device_associate_line_count": "Lignes configurées ({{ count }}/{{ total }}) :",
+  "telephony_device_associate_ip_address": "Adresse IP publique",
+  "telephony_device_associate_attach": "Adjuntar",
+  "telephony_device_associate_attach_success": "Votre équipement a été rattaché avec succès à cette ligne.",
+  "telephony_device_associate_attach_empty": "Aucun équipement compatible."
+}

@@ -1,0 +1,17 @@
+{
+  "telephony_line_actions_line_calls_display_number_title": "Caller ID",
+  "telephony_line_actions_line_calls_display_number_read_error": "Impossibile accedere al Caller ID.",
+  "telephony_line_actions_line_calls_display_number_write_error": "Impossibile aggiornare il Caller ID, in quanto non è in formato internazionale o non ti appartiene.",
+  "telephony_line_actions_line_calls_display_number_write_success": "Il Caller ID è stato aggiornato.",
+  "telephony_line_actions_line_calls_display_number_label": "Voglio utilizzare il Caller ID per le chiamate in uscita:",
+  "telephony_line_actions_line_calls_display_number_choose": "Choisir un autre numéro",
+  "telephony_line_actions_line_calls_display_number_confirm": "Applica le modifiche",
+  "telephony_line_actions_line_calls_display_number_info": "Durante le chiamate in uscita, utilizza il Caller ID del tuo gruppo di fatturazione o scegli l'anonimato.",
+  "telephony_line_actions_line_calls_identificationRestriction_checkbox_label": "Resta anonimo",
+  "telephony_line_actions_line_calls_submit_changes": "Applica le modifiche",
+  "telephony_line_actions_line_calls_anonymous": "Numéro masqué",
+  "telephony_line_actions_line_calls_display_number_bulk_all_success": "La modification de la présentation du numéro a bien été appliquée aux services sélectionnés.",
+  "telephony_line_actions_line_calls_display_number_bulk_some_success": "La modification de la présentation du numéro a bien été appliquée à {{ count }} des services sélectionnés.",
+  "telephony_line_actions_line_calls_display_number_bulk_error": "La modification de la présentation du numéro n'a pu être appliquée au(x) service(s) suivant(s) :",
+  "telephony_line_actions_line_calls_display_number_bulk_on_error": "Oups ! Une erreur est survenue lors de la modification de la présentation du numéro."
+}

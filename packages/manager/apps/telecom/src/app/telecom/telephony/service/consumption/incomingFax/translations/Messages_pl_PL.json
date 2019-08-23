@@ -1,0 +1,8 @@
+{
+  "telephony_service_consumption_incoming_fax_all": "Wszystkie otrzymane faksy",
+  "telephony_service_consumption_incoming_fax_empty": "Brak otrzymanych faksów.",
+  "telephony_service_consumption_incoming_fax_period": "Okres od <strong>{{ start }}</strong> do <strong>{{ end }}</strong>",
+  "telephony_service_consumption_incoming_fax_not_found": "Brak faksów odpowiadających tym kryteriom wyszukiwania.",
+  "telephony_service_consumption_incoming_fax_summary": "Otrzymane faksy: <strong>{{ fax }}</strong>, liczba stron: <strong>{{ pages }}</strong>",
+  "telephony_service_consumption_incoming_fax_pages": "Strony"
+}

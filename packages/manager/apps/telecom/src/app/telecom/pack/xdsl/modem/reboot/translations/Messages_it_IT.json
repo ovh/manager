@@ -1,0 +1,7 @@
+{
+  "xdsl_modem_reboot": "Riavvia il modem",
+  "xdsl_modem_reboot_an_error_ocurred": "[Riavvio Modem] Si è verificato un errore!",
+  "xdsl_modem_reboot_success": "Riavvio del modem in corso...",
+  "xdsl_modem_reboot_success_end": "Riavvio del modem completato",
+  "xdsl_modem_reboot_really": "Vuoi davvero riavviare il tuo modem?"
+}

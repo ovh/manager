@@ -1,0 +1,17 @@
+{
+  "telephony_service_fax_password_main_title": "Passwort",
+  "telephony_service_fax_password_title": "Verwaltung des Fax-Passworts",
+  "telephony_service_fax_password_number_info_line": "Leitung:",
+  "telephony_service_fax_password_error_password_required": "Das Feld „Passwort\" ist ein Pflichtfeld.",
+  "telephony_service_fax_password_error_password_minlength": "Das Passwort muss mindestens 6 Zeichen enthalten.",
+  "telephony_service_fax_password_error_password_maxlength": "Das Passwort darf höchstens 12 Zeichen enthalten.",
+  "telephony_service_fax_password_label_confirm": "Bestätigen",
+  "telephony_service_fax_password_error_confirm_password_match": "Die Passwörter stimmen nicht überein.",
+  "telephony_service_fax_password_apply": "Die Änderungen anwenden",
+  "telephony_service_fax_password_change_success": "Passwort wurde erfolgreich geändert.",
+  "telephony_service_fax_password_change_error": "Passwort konnte nicht erstellt werden.<br/>{{ error }}",
+  "telephony_service_fax_password_bulk_all_success": "La modification du mot de passe a bien été appliquée aux services sélectionnés.",
+  "telephony_service_fax_password_bulk_some_success": "La modification du mot de passe a bien été appliquée à {{ count }} des services sélectionnés.",
+  "telephony_service_fax_password_bulk_error": "La modification du mot de passe n'a pu être appliquée au(x) service(s) suivant(s) :",
+  "telephony_service_fax_password_bulk_on_error": "Oups ! Une erreur est survenue lors de la modification du mot de passe ."
+}

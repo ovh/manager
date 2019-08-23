@@ -1,0 +1,6 @@
+{
+  "telephony_line_calls_events_title": "Gestisci le chiusure eccezionali",
+  "telephony_line_calls_events_info": "Il calendario ti permette di definire la date di chiusura della tua azienda.",
+  "telephony_line_calls_events_warning": "Attenzione: gli intervalli definiti verranno applicati solo dopo l'attivazione delle fasce orarie.",
+  "telephony_line_calls_events_load_error": "Ops! Si è verificato un errore durante il caricamento delle chiusure eccezionali."
+}

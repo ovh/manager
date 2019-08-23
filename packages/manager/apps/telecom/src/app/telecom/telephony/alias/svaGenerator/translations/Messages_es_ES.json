@@ -1,0 +1,10 @@
+{
+  "telephony_alias_sva_generator_config": "Configuración",
+  "telephony_alias_sva_generator_panpanpan": "Generador de cartucho",
+  "telephony_alias_sva_generator_fill": "Color de cartucho",
+  "telephony_alias_sva_generator_fill_gradient": "Degradado de color",
+  "telephony_alias_sva_generator_fill_simple": "Color liso",
+  "telephony_alias_sva_generator_fill_black": "Negro plano",
+  "telephony_alias_sva_generator_format": "Indicación del número",
+  "telephony_alias_sva_generator_unsupported": "El cartucho solo está disponible para los números especiales."
+}

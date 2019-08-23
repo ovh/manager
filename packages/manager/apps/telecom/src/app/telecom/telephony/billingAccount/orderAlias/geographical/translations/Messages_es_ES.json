@@ -1,0 +1,23 @@
+{
+  "telephony_order_geographical_title_country": "Contratar un número geográfico",
+  "telephony_order_geographical_title": "Contratar un número geográfico",
+  "telephony_order_geographical_submit_title": "Contratar un número geográfico",
+  "telephony_order_geographical_back_link": "Volver a la elección de los tipos de números",
+  "telephony_order_geographical_amount_title": "Cantidad de números:",
+  "telephony_order_geographical_zone_title": "Zona geográfica:",
+  "telephony_order_geographical_zone_error": "La zona geográfica es incorrecta.",
+  "telephony_order_geographical_specific_title": "Elección del número",
+  "telephony_order_geographical_retractation_title": "Derecho de desistimiento",
+  "telephony_order_geographical_address_title": "Información del titular del número",
+  "telephony_order_geographical_zone_tip": "Localidad o código postal",
+  "telephony_order_geographical_numbers_error": "No se ha podido cargar la lista de preselecciones de números.",
+  "telephony_order_geographical_order_error": "No se ha(n) podido contratar el (los) número(s) geográfico(s). Por favor, vuelva a intentarlo más tarde.",
+  "telephony_order_geographical_order_error_city": "{{city}} no pertenece a la zona ({{zone}})",
+  "telephony_order_geographical_order_success": "El pedido de números geográficos se ha enviado. Por favor, acepte las condiciones generales de venta y abone el pedido.",
+  "telephony_order_geographical_order_alias": "Toutes les configurations",
+  "telephony_order_geographical_order_sda_only": "Uniquement redirections (SDAs)",
+  "telephony_order_geographical_prices_error": "Impossible de récupérer le tarif pour le numéro fixe SDA Redirection",
+  "telephony_order_geographical_order_periodicy": "Commandez ({{total}} TTC / {{period}})",
+  "telephony_order_geographical_order_periodicy_annual": "año",
+  "telephony_order_geographical_order_periodicy_month": "mes(es)"
+}

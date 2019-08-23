@@ -1,0 +1,7 @@
+{
+  "telecom_orders_alias_title": "Zamawianie numerów",
+  "telecom_orders_alias_billing_account_title": "Grupa telefoniczna",
+  "telecom_orders_alias_billing_account_label": "Wybierz grupę telefoniczną:",
+  "telecom_orders_alias_billing_submit_label": "Zamów numer",
+  "telecom_orders_alias_billing_loading_error": "Nie można pobrać informacji o grupach telefonicznych."
+}

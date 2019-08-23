@@ -1,0 +1,18 @@
+{
+  "telephony_line_language_informations_title": "Informazioni",
+  "telephony_line_language_informations_detail": "Modifica qui la lingua che vuoi impostare per gli annunci vocali della tua linea. Se utilizzi un telefono LG, la lingua selezionata verrà utilizzata anche per l'interfaccia del telefono.",
+  "telephony_line_language_title": "Lingua della linea",
+  "telephony_line_language_back_link": "Ritorna alla gestione della linea",
+  "telephony_line_language_value_placeholder": "Seleziona una lingua",
+  "telephony_line_language_value_dutch": "Olandese",
+  "telephony_line_language_value_english_uk": "English (United Kingdom)",
+  "telephony_line_language_value_french": "Francese",
+  "telephony_line_language_value_french_be": "Français (Belgique)",
+  "telephony_line_language_value_german": "Tedesco",
+  "telephony_line_language_value_italian": "Italiano",
+  "telephony_line_language_value_spanish": "Spagnolo",
+  "telephony_line_language_validate": "Modifica la lingua",
+  "telephony_line_language_error_init": "Impossibile recuperare la lingua della tua linea",
+  "telephony_line_language_error_change": "Impossibile modificare la lingua della tua linea",
+  "telephony_line_language_ok_change": "Lingua modificata con successo!"
+}

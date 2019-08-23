@@ -1,0 +1,11 @@
+{
+  "xdsl_modem_reset": "Perkrauti modemą",
+  "xdsl_modem_reset_ovh_config": "Réinitialiser la configuration OVH",
+  "xdsl_modem_reset_an_error_ocurred": "[Modemo perkrovimas] Klaida!",
+  "xdsl_modem_reset_ovh_config_an_error_ocurred": "[Réinitialisation de la configuration OVH] Une erreur est survenue !",
+  "xdsl_modem_reset_success": "Modemas perkraunamas.",
+  "xdsl_modem_reset_ovh_config_success": "Réinitialisation de la configuration OVH en cours.",
+  "xdsl_modem_reset_really": "Ar tikrai norite perkrauti modemą?",
+  "xdsl_modem_reset_ovh_config_really": "Êtes-vous sûr(e) de vouloir réinitialiser la configuration OVH ?",
+  "xdsl_modem_reset_success_end": "Modemas perkrautas. Palaukite kelias minutes, kol baigsis domeno konfigūravimas."
+}

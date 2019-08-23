@@ -1,0 +1,19 @@
+{
+  "telephony_line_page_title": "Linea \"{{name}}\"",
+  "telephony_line_tab_manage": "Gestione",
+  "telephony_line_tab_consumption": "Consumo",
+  "telephony_line_tab_call_management": "Gestisci chiamate",
+  "telephony_line_tab_music_management": "Gestisci le tue musiche d'attesa",
+  "telephony_line_tab_answering_machine": "Segreteria",
+  "telephony_line_tab_phone": "Telefono",
+  "telephony_line_tab_contact_details": "Coordinate",
+  "telephony_line_tab_assist": "Supporto",
+  "telephony_line_tab_fax": "Fax",
+  "telephony_line_rename_error": "Impossibile rinominare la tua linea {{serviceName}}.",
+  "telephony_line_offer_type_individual": "SIP Découverte",
+  "telephony_line_offer_type_priceplan": "SIP Entreprise",
+  "telephony_line_expire_date": "Il servizio scade il {{date}}.",
+  "telephony_line_expire_link": "Per annullare, clicca qui.",
+  "telephony_line_convert_date": "Questa linea sarà convertita in numero il {{ date }}.",
+  "telephony_line_convert_link": "Vous pourrez annuler dans la section suivante."
+}
