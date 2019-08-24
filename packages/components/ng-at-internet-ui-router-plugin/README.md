@@ -75,7 +75,7 @@ If you want, you can apply some filters on the states name, for example :
 app.config(/* @ngInject */ (atInternetUiRouterPluginProvider) => {
   // replace all occurrences of "foo" by "bar" in states name
   atInternetUiRouterPluginProvider
-    .addStateNameFilter(stateName => stateName.replace(/foo/g, 'bar'));
+    .addStateNameFilter((stateName) => stateName.replace(/foo/g, 'bar'));
 });
 ```
 
