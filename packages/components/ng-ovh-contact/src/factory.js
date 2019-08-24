@@ -184,7 +184,7 @@ export default /* @ngInject */ function (OvhApiMe, CONTACT_PROTOTYPE_PATH) {
     if (path) {
       return get(self, path) !== get(self.saveForEdition, path);
     }
-    return !!find(CONTACT_PROTOTYPE_PATH, objPath => self.hasChange(objPath));
+    return !!find(CONTACT_PROTOTYPE_PATH, (objPath) => self.hasChange(objPath));
   };
 
   /* -----  End of PROTOTYPE METHODS  ------*/

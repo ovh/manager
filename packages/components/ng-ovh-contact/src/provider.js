@@ -172,7 +172,7 @@ export default function () {
               contactsList,
               'value',
             ),
-            contact => some(contacts, {
+            (contact) => some(contacts, {
               id: contact.id,
             }),
           );
@@ -272,7 +272,7 @@ export default function () {
     */
     ovhContactService.convertConnectedUserToContact = function convertConnectedUserToContact() {
       return this.getConnectedUser()
-        .then(nic => getApiSchemas().then(() => new OvhContact(convertNicToContact(nic))));
+        .then((nic) => getApiSchemas().then(() => new OvhContact(convertNicToContact(nic))));
     };
 
     return ovhContactService;

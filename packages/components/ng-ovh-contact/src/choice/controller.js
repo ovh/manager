@@ -26,7 +26,7 @@ export default /* @ngInject */ function ($q, ovhContact) {
     if (search) {
       return filter(
         self.list,
-        contact => contact.firstName.toLowerCase().indexOf(search.toLowerCase())
+        (contact) => contact.firstName.toLowerCase().indexOf(search.toLowerCase())
           || contact.lastName.toLowerCase().indexOf(search.toLowerCase()),
       );
     }
@@ -61,7 +61,7 @@ export default /* @ngInject */ function ($q, ovhContact) {
           && self.list.length === 0
           && self.options.autoCreateContact) {
           initPromise = ovhContact.convertConnectedUserToContact()
-            .then(contactFromNic => contactFromNic.create().then(() => {
+            .then((contactFromNic) => contactFromNic.create().then(() => {
               ovhContact.addContact(contactFromNic);
               self.ovhContactCtrl.contact = contactFromNic;
             }));
