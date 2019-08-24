@@ -81,7 +81,7 @@ export default /* @ngInject */ function ($timeout) {
 
       $scope.$watch('idsSelected', () => {
         // remove all ids with checked=false
-        $scope.idsSelected = omit($scope.idsSelected, isChecked => !isChecked);
+        $scope.idsSelected = omit($scope.idsSelected, (isChecked) => !isChecked);
         autoUpdateState();
       }, true);
 
