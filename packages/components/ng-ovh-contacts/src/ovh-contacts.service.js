@@ -112,7 +112,7 @@ export default class OvhContactsService {
         });
     } else {
       promise = this.OvhApiMe.Contact().v6().query().$promise
-        .then(contactIds => this.$q.all(map(contactIds, (contactId) => {
+        .then((contactIds) => this.$q.all(map(contactIds, (contactId) => {
           const contactPromise = this.OvhApiMe.Contact().v6().get({
             contactId,
           });
@@ -131,7 +131,7 @@ export default class OvhContactsService {
           contacts = options.customFilter(contacts);
         }
 
-        return map(contacts, contactOptions => new OvhContact(contactOptions));
+        return map(contacts, (contactOptions) => new OvhContact(contactOptions));
       });
   }
 
@@ -153,7 +153,7 @@ export default class OvhContactsService {
 
         return options;
       })
-      .then(rulesOptions => this.$q.all({
+      .then((rulesOptions) => this.$q.all({
         apiSchemas: this.getMeSchemas(),
         creationRules: this.OvhApiNewAccount.v6().rules({}, rulesOptions).$promise,
       }))
@@ -235,7 +235,7 @@ export default class OvhContactsService {
     })
       .then(({ nic, contacts }) => {
         const converPromise = this.convertNicToContact(nic);
-        return converPromise.then(nicToContact => OvhContactsHelper.findMatchingContactFromNic(
+        return converPromise.then((nicToContact) => OvhContactsHelper.findMatchingContactFromNic(
           nicToContact, contacts,
         ));
       });

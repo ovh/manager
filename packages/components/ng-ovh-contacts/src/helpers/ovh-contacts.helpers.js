@@ -54,7 +54,7 @@ export default class OvhContactsHelper {
       return JSON.stringify(contactCopy);
     });
 
-    return map(groupedContacts, groups => groups[0]);
+    return map(groupedContacts, (groups) => groups[0]);
   }
 
   static normalizeDate(date) {
