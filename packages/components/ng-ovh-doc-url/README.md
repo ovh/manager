@@ -29,11 +29,11 @@ angular
   })
   .controller('MyController', class {
     /* @ngInject */
-    constructor (ovhDocUrl) {
+    constructor(ovhDocUrl) {
       this.ovhDocUrl = ovhDocUrl;
     }
 
-    $onInit () {
+    $onInit() {
       this.url = this.ovhDocUrl.getDocUrl('g1769.creating_ssh_keys');
     }
   });
