@@ -213,7 +213,7 @@ export default function () {
         && angular.isDefined(options.rootPath)
         && options.rootPath !== null ? options.rootPath : self.rootPath + basePath, {
         cache: true,
-      }).then(response => response.data, reason => $q.reject(reason));
+      }).then((response) => response.data, (reason) => $q.reject(reason));
     };
 
     api.models = function models(basePath, name, options) {
