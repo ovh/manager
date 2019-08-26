@@ -1905,10 +1905,10 @@
   dependencies:
     lodash "~4.17.11"
 
-"@ovh-ux/ng-ovh-sso-auth@^4.1.0":
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-sso-auth/-/ng-ovh-sso-auth-4.1.0.tgz#658c6eba11e8a4ab8162fe4242a93680230e48e9"
-  integrity sha512-dZm2ZGbhW3IhyTOWcCZ/0NJ5ZayoWEgGHRkDzN3LQH6nlwVv5mkatlaXzOc7HvcAop2W+S2LnOXJtbrqCucM9w==
+"@ovh-ux/ng-ovh-sso-auth@^4.2.0":
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-sso-auth/-/ng-ovh-sso-auth-4.2.0.tgz#9605e42686b09810d51355da8402089e4e30305d"
+  integrity sha512-SycWgJZwSM7GzaNaf8KxVvpR8CDnJqgIdememr+fcUb8N89z7rxkM5lWsDKdjTrKxjuxQ2xctDEOx7DKrfmSww==
 
 "@ovh-ux/ng-ovh-swimming-poll@^4.0.0":
   version "4.0.0"
