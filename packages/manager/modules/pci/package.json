@@ -10,7 +10,17 @@
   "files": [
     "dist"
   ],
-  "main": "./src/index.js",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "scripts": {
+    "build": "rollup -c --environment BUILD:production",
+    "dev": "rollup -c --environment BUILD:development",
+    "dev:watch": "node ../../../../scripts/rollup-dev-builder",
+    "prepare": "yarn run build",
+    "start": "lerna exec --stream --scope='@ovh-ux/manager-pci' --include-filtered-dependencies -- yarn run build",
+    "start:dev": "lerna exec --stream --scope='@ovh-ux/manager-pci' --include-filtered-dependencies -- yarn run dev",
+    "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-pci' --include-filtered-dependencies -- yarn run dev:watch"
+  },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.8.2",
     "@ovh-ux/manager-config": "^0.3.0",
@@ -26,6 +36,9 @@
     "urijs": "^1.19.1",
     "validator": "^10.11.0",
     "xterm": "^3.14.5"
+  },
+  "devDependencies": {
+    "@ovh-ux/component-rollup-config": "^6.0.0"
   },
   "peerDependencies": {
     "@ovh-ux/manager-cloud-styles": "^0.3.0",
