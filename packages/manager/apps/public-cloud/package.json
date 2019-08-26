@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-public-cloud",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "private": true,
   "license": "BSD-3-Clause",
   "main": "./src/index.js",

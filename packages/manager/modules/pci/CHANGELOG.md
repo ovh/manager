@@ -1,3 +1,16 @@
+## [1.5.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@1.5.1...@ovh-ux/manager-pci@1.5.2) (2019-08-26)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 37] ([ea036c0](https://github.com/ovh-ux/manager/commit/ea036c0))
+* **i18n:** add missing translations [CDS 44] ([568093f](https://github.com/ovh-ux/manager/commit/568093f))
+* **i18n:** add missing translations [CDS 45] ([553ad4d](https://github.com/ovh-ux/manager/commit/553ad4d))
+* **i18n:** add missing translations [CDS 46] ([c1bcd46](https://github.com/ovh-ux/manager/commit/c1bcd46))
+* **kubernetes:** popover position ([#1170](https://github.com/ovh-ux/manager/issues/1170)) ([5860d56](https://github.com/ovh-ux/manager/commit/5860d56))
+
+
+
 ## [1.5.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@1.5.0...@ovh-ux/manager-pci@1.5.1) (2019-08-14)
 
 
