@@ -1,0 +1,15 @@
+{
+  "telephony_group_back_link": "Retour à la gestion du groupe de facturation",
+  "telephony_group_tab_admin": "Administration",
+  "telephony_group_tab_dashboard": "Panel de control",
+  "telephony_group_tab_billing": "Facturación",
+  "telephony_group_tab_orderAlias": "Commande de numéros",
+  "telephony_group_tab_contacts_book": "Carnet de contacts",
+  "telephony_group_tab_short_numbers": "Numéros abrégés",
+  "telephony_group_tab_contacts_manage": "Gestion des contacts",
+  "telephony_group_tab_guides": "Guías",
+  "telephony_group_loading_error": "Impossible de charger les informations relatives à votre compte de facturation ({{billingAccount}}).",
+  "telephony_group_rename_error": "Impossible de renommer votre compte de facturation {{billingAccount}}.",
+  "telephony_group_termination_warning": "Le groupe sera supprimé le <strong>{{ date }}</strong>.",
+  "telephony_group_termination_warning_link": "Vous pouvez annuler en cliquant ici"
+}

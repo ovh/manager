@@ -1,0 +1,9 @@
+{
+  "telephony_group_consumption_pie_chart_incoming_labels": "Entrants",
+  "telephony_group_consumption_pie_chart_incoming_label": "Przychodzący",
+  "telephony_group_consumption_pie_chart_outgoing_labels": "Sortants",
+  "telephony_group_consumption_pie_chart_outgoing_label": "Wychodzący",
+  "telephony_group_consumption_pie_chart_transfer_labels": "Przeniesione",
+  "telephony_group_consumption_pie_chart_transfer_label": "Przetransferowana",
+  "telephony_group_consumption_pie_chart_total_label": "Razem"
+}

@@ -1,3 +1,12 @@
+## [2.1.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci-app@2.1.0...@ovh-ux/manager-pci-app@2.1.1) (2019-08-26)
+
+
+### Bug Fixes
+
+* use right files for jquery-ui ([09bcd73](https://github.com/ovh-ux/manager/commit/09bcd73))
+
+
+
 # [2.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci-app@2.0.0...@ovh-ux/manager-pci-app@2.1.0) (2019-08-12)
 
 

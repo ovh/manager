@@ -1,0 +1,30 @@
+.telecom-pack-xdsl-access {
+  .chart-container {
+    height: 320px;
+
+    @media (max-width: @screen-md-min) {
+      height: 240px;
+    }
+  }
+
+  /* stylelint-disable selector-type-no-unknown */
+  slider,
+  [slider] {
+    .bar {
+      background-color: @gray-light;
+    }
+  }
+  /* stylelint-enable selector-type-no-unknown */
+
+  .table-action-buttons thead th > .btn > .fa {
+    &[class*="-selected"] {
+      color: @oui-color-dodger;
+    }
+  }
+}
+
+.ip-row-height {
+  line-height: 1.6 !important;
+  margin-top: 0.375rem !important;
+  margin-bottom: 0.375rem !important;
+}

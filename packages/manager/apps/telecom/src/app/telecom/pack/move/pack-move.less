@@ -1,0 +1,151 @@
+.telecom-pack-move {
+  .meeting-calendar {
+    overflow-y: hidden;
+
+    &.ng-hide-animate {
+      transition: 1s ease all;
+    }
+
+    &.ng-hide-remove {
+      max-height: 0;
+      opacity: 0;
+
+      &.ng-hide-remove-active {
+        max-height: 600px;
+        opacity: 1;
+      }
+    }
+
+    &.ng-hide-add {
+      max-height: 600px;
+      opacity: 1;
+
+      &.ng-hide-add-active {
+        max-height: 0;
+        opacity: 0;
+      }
+    }
+
+    .fc-button-group {
+      button {
+        background: none;
+        box-shadow: none;
+        border-radius: 0;
+      }
+    }
+
+    .ovh-pack-move-event {
+      .fc-content {
+        background-color: @oui-color-brand;
+        border: none;
+        margin-bottom: 2px;
+        color: white;
+        cursor: pointer;
+      }
+
+      &.selected {
+        .fc-content {
+          background-color: @oui-color-tertiary;
+        }
+      }
+
+      &:hover,
+      &:focus,
+      &:active {
+        text-decoration: none;
+
+        .fc-content {
+          background-color: darken(@oui-color-brand, 12%);
+        }
+      }
+    }
+  }
+}
+
+.location {
+  position: relative;
+
+  &--current {
+    margin-bottom: 40px;
+
+    &::after {
+      content: "";
+      display: block;
+      width: 0%;
+      height: 40px;
+      border-right-width: 2px;
+      border-right-color: @oui-color-dodger;
+      border-right-style: solid;
+      position: absolute;
+      left: 50%;
+      top: 100%;
+    }
+  }
+
+  &--future {
+    margin-top: 40px;
+
+    &::before {
+      content: "";
+      display: block;
+      width: 0%;
+      height: 40px;
+      border-right-width: 2px;
+      border-right-color: @oui-color-dodger;
+      border-right-style: dashed;
+      position: absolute;
+      left: 50%;
+      top: -40px;
+    }
+  }
+
+  @media screen and (min-width: @screen-md) {
+    width: 80%;
+
+    &--current {
+      float: left;
+      margin: 0;
+
+      &::after {
+        content: "";
+        display: block;
+        width: 25%;
+        border-right: none;
+        border-top-width: 2px;
+        border-top-color: @oui-color-dodger;
+        border-top-style: solid;
+        position: absolute;
+        top: 40px;
+        left: 100%;
+      }
+    }
+
+    &--future {
+      float: right;
+      margin: 0;
+
+      &::before {
+        content: "";
+        display: block;
+        width: 25%;
+        border-right: none;
+        border-top-width: 2px;
+        border-top-color: @oui-color-dodger;
+        border-top-style: dashed;
+        position: absolute;
+        top: 40px;
+        left: -25%;
+      }
+    }
+  }
+
+  &__icon {
+    font-size: 2.8em;
+    color: @oui-color-dodger;
+  }
+
+  &__lineNumber {
+    font-size: @font-size-base;
+    color: @oui-color-brand;
+  }
+}

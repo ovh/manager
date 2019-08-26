@@ -1,0 +1,17 @@
+{
+  "telecom_common_pack_xdsl_order_step_name_accessIsOperational": "Il tuo accesso è operativo",
+  "telecom_common_pack_xdsl_order_step_name_checkInfrastructure": "Conferma della creazione del tuo accesso",
+  "telecom_common_pack_xdsl_order_step_name_configureAccessOnOVH": "Configurazione dell'accesso sui dispositivi OVH",
+  "telecom_common_pack_xdsl_order_step_name_orderPayed": "Salda l'ordine",
+  "telecom_common_pack_xdsl_order_step_name_orderReceived": "Crea l'ordine",
+  "telecom_common_pack_xdsl_order_step_name_orderTreatment": "Gestisci l'ordine",
+  "telecom_common_pack_xdsl_order_step_name_sendModem": "Invio del modem",
+  "telecom_common_pack_xdsl_order_step_name_sendOrderToProvider": "Invio dell'ordine al provider",
+  "telecom_common_pack_xdsl_order_step_name_setupCustomerPremisesEquipment": "Installazione dispositivi",
+  "telecom_common_pack_xdsl_order_step_name_waitingForProviderInstallReport": "Attesa del report del provider",
+  "telecom_common_pack_xdsl_order_step_name_waitingForWithdrawalPeriodToBeOver": "Attesa della fine del periodo di recesso del cliente",
+  "telecom_common_pack_xdsl_order_status_todo": "Programmato",
+  "telecom_common_pack_xdsl_order_status_doing": "In corso",
+  "telecom_common_pack_xdsl_order_status_done": "Terminato",
+  "telecom_common_pack_xdsl_order_status_error": "In errore"
+}

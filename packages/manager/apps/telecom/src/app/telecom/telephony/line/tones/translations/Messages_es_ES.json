@@ -1,0 +1,21 @@
+{
+  "telephony_line_tones_title": "Gestión de música y timbres",
+  "telephony_line_tones_info1": "Desde esta página podrá establecer la música y los timbres de su línea.<br /> Puede personalizar varios elementos:",
+  "telephony_line_tones_info2": "<strong>Timbre de predescolgado</strong>: Sustituye a la tonalidad por defecto de predescolgado.",
+  "telephony_line_tones_info3": "<strong>Música de espera</strong>: Música reproducida cuando el interlocutor está en espera. La música de espera se reproducirá al poner en espera al interlocutor durante una conversación telefónica.",
+  "telephony_line_tones_info4": "<strong>Anuncio de línea ocupada</strong>: Mensaje anunciado cuando la línea está ocupada. El anuncio se difundirá cuando entre una llamada directa (que no pase previamente por un easyPabx o miniPabx). No se establecerá ningún contacto con la persona que efectúa la llamada.",
+  "telephony_line_tones_ringback": "Timbre de predescolgado",
+  "telephony_line_tones_onhold": "Música de espera",
+  "telephony_line_tones_callwaiting": "Anuncio de línea ocupada",
+  "telephony_line_tones_type_custom_sound": "Personalizado",
+  "telephony_line_tones_type_none": "Por defecto",
+  "telephony_line_tones_type_predefined_1": "Predeterminado 1",
+  "telephony_line_tones_type_predefined_2": "Predeterminado 2",
+  "telephony_line_tones_choose_file": "Elegir un archivo",
+  "telephony_line_tones_choose_file_confirm": "Enviar el archivo",
+  "telephony_line_tones_choose_file_ring_success": "Timbre actualizado",
+  "telephony_line_tones_choose_file_sound_success": "Música actualizada",
+  "telephony_line_tones_choose_file_announce_success": "Anuncio actualizado",
+  "telephony_line_tones_choose_file_type_error": "El formato del archivo seleccionado no está autorizado.",
+  "telephony_line_tones_apply": "Aplicar los cambios"
+}

@@ -1,0 +1,16 @@
+{
+  "telecom_order_page_title": "Contratar",
+  "telecom_orders_follow_up_title": "Seguimiento de pedidos",
+  "telecom_orders_follow_up_intro": "Mis pedidos de internet",
+  "telecom_orders_follow_up_type_xdsl": "Acceso xDSL",
+  "telecom_orders_follow_up_type_vdsl": "Acceso VDSL",
+  "telecom_orders_follow_up_type_sdsl": "Acceso SDSL",
+  "telecom_orders_follow_up_type_adsl": "Acceso ADSL",
+  "telecom_orders_follow_up_header_type": "Tipo",
+  "telecom_orders_follow_up_header_service": "Identificador del servicio",
+  "telecom_orders_follow_up_header_status": "Estado",
+  "telecom_orders_follow_up_header_step": "Etapa",
+  "telecom_orders_follow_up_header_state": "Estado",
+  "telecom_orders_follow_up_items_per_view": "Elementos por página",
+  "telecom_orders_follow_up_no_orders": "Actuellement vous n'avez pas de commandes en cours."
+}
