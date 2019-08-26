@@ -1,3 +1,12 @@
+# [7.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@7.0.0...@ovh-ux/manager-core@7.1.0) (2019-08-26)
+
+
+### Features
+
+* manage incomplete nic ([#1197](https://github.com/ovh-ux/manager/issues/1197)) ([bdce016](https://github.com/ovh-ux/manager/commit/bdce016))
+
+
+
 # [7.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@6.1.5...@ovh-ux/manager-core@7.0.0) (2019-08-12)
 
 
