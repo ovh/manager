@@ -1,0 +1,15 @@
+{
+  "telephony_line_calls_back_link": "Ritorna alla gestione delle chiamate",
+  "telephony_line_calls_actions_line_manage_onboarding": "Clicca e trascina sul calendario per creare una fascia oraria",
+  "telephony_line_calls_actions_line_manage_filtering_lists_new": "Filtro chiamate",
+  "telephony_line_calls_actions_line_locking": "Blocco delle chiamate in uscita",
+  "telephony_line_calls_actions_line_forwardcall": "Trasferimento di chiamata",
+  "telephony_line_calls_actions_line_displayNumber": "Caller ID",
+  "telephony_line_calls_actions_line_simultaneouslines": "Chiamate simultanee",
+  "telephony_line_calls_actions_line_manage_slots": "Gestisci le fasce orarie",
+  "telephony_line_calls_actions_line_calendar": "Gestisci le chiusure eccezionali",
+  "telephony_line_calls_actions_line_callWaiting": "Avviso di chiamata e Intercom",
+  "telephony_line_calls_actions_line_abbreviated_numbers": "Numeri brevi",
+  "telephony_line_calls_actions_line_click2call": "Chiamata in 1 click (Click2Call)",
+  "telephony_line_calls_actions_line_external_number_display": "Presentazione di un numero esterno"
+}

@@ -1,0 +1,13 @@
+{
+  "telephony_group_billing_bill_title": "Dettagli dei tuoi consumi",
+  "telephony_group_billing_bill_subtitle": "I tuoi consumi",
+  "telephony_group_billing_bill_empty": "Nessun dato disponibile",
+  "telephony_group_billing_bill_date": "Data",
+  "telephony_group_billing_bill_amount": "Imponibile IVA esclusa",
+  "telephony_group_billing_bill_paid": "Già saldato",
+  "telephony_group_billing_bill_download": "Esegui il download",
+  "telephony_group_billing_bill_download_pdf": "Dettagli dei tuoi consumi in formato PDF",
+  "telephony_group_billing_bill_download_csv_emited": "Lista delle tue chiamate effettuate in formato CSV",
+  "telephony_group_billing_bill_download_csv_received": "Lista delle tue chiamate ricevute in formato CSV",
+  "telephony_group_billing_bill_refresh": "Ricarica"
+}

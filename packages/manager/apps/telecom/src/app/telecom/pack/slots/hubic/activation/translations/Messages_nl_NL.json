@@ -1,0 +1,7 @@
+{
+  "hubic_activation_total_error": "Une erreur est survenue pendant le chargement.",
+  "hubic_activation_widget-title": "Activation hubiC",
+  "hubic_activation_widget-intro": "Pour profiter de votre avantage hubiC dans le cadre de votre pack, vous devez disposer d'un compte hubiC, si ce n'est pas le cas veuillez commencer par créer un compte gratuit sur <a href=\"https://www.hubic.com\" target=\"new\">hubic.com</a>.<br /> Ensuite, rendez-vous sur cette page pour activer vos codes d'activation : <a href=\"https://hubic.com/home/gift/\" target=\"new\">hubic.com/home/gift/</a>.",
+  "hubic_activation_widget_hubic_header": "hubiC",
+  "hubic_activation_widget_voucher_header": "Code non utilisé"
+}

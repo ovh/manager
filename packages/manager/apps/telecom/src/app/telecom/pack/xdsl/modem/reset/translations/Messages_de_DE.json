@@ -1,0 +1,11 @@
+{
+  "xdsl_modem_reset": "Modem neu starten",
+  "xdsl_modem_reset_ovh_config": "Réinitialiser la configuration OVH",
+  "xdsl_modem_reset_an_error_ocurred": "[Neustart Modem] Es ist ein Fehler aufgetreten!",
+  "xdsl_modem_reset_ovh_config_an_error_ocurred": "[Réinitialisation de la configuration OVH] Une erreur est survenue !",
+  "xdsl_modem_reset_success": "Neustart des Modems wird ausgeführt.",
+  "xdsl_modem_reset_ovh_config_success": "Réinitialisation de la configuration OVH en cours.",
+  "xdsl_modem_reset_really": "Sind Sie sicher, dass Sie das Modem neu starten möchten?",
+  "xdsl_modem_reset_ovh_config_really": "Êtes-vous sûr(e) de vouloir réinitialiser la configuration OVH ?",
+  "xdsl_modem_reset_success_end": "Neustart des Modems abgeschlossen. Bitte haben Sie noch einige Minuten Geduld, bis Ihr Modem konfiguriert ist."
+}

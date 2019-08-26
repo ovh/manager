@@ -1,0 +1,13 @@
+{
+  "xdsl_modem_dmz_status": "DMZ",
+  "xdsl_modem_dmz_description": "La partie DMZ (ou zone démilitarisée) sur les modems OVH permet de rendre totalement accessible une machine depuis l'extérieur de votre réseau local. Attention, pour rendre la DMZ effective, le pare-feu devra être desactivé et la machine devra gérer sa propre protection.",
+  "xdsl_modem_dmz_warning": "Attention, tout changement ultérieur dans la configuration de votre DMZ (modification/suppression) entraînera une indisponibilité de votre connexion durant quelques minutes.",
+  "xdsl_modem_dmz_dmz_address": "Adresse IP de la DMZ",
+  "xdsl_modem_dmz_modem_address": "Adresse IP du modem",
+  "xdsl_modem_dmz_mask_address": "Máscara de subred",
+  "xdsl_modem_dmz_none": "Aucune",
+  "xdsl_modem_dmz_unknown": "Inconnue",
+  "xdsl_modem_dmz_an_error_ocurred": "[DMZ] Une erreur est survenue !",
+  "xdsl_modem_dmz_doing": "Modification de l'IP DMZ en cours",
+  "xdsl_modem_dmz_delete_really": "Etes-vous sûr(e) de vouloir supprimer la DMZ ?"
+}

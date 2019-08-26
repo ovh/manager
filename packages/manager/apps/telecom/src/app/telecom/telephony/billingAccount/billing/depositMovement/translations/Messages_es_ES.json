@@ -1,0 +1,20 @@
+{
+  "telephony_group_billing_deposit_movement_title": "Transferencia de fianzas entre grupos",
+  "telephony_group_billing_deposit_movement_info": "Gestionar la transferencia de fianzas entre los distintos grupos.",
+  "telephony_group_billing_deposit_movement_source_subtitle": "Source",
+  "telephony_group_billing_deposit_movement_groups_label": "Grupos:",
+  "telephony_group_billing_deposit_movement_deposit_label": "Fianza actual:",
+  "telephony_group_billing_deposit_movement_amount_subtitle": "Importe",
+  "telephony_group_billing_deposit_movement_amount_label": "Importe:",
+  "telephony_group_billing_deposit_movement_destination_subtitle": "Destino",
+  "telephony_group_billing_deposit_movement_estimate_label": "Estimación después de la validación:",
+  "telephony_group_billing_deposit_movement_without_tax": "+ IVA",
+  "telephony_group_billing_deposit_movement_submit": "Aceptar",
+  "telephony_group_billing_deposit_movement_success": "La solicitud de transferencia de fianzas se ha enviado correctamente.",
+  "telephony_group_billing_deposit_movement_error_amount_too_low": "Para realizar una transferencia, su fianza de origen debe ser positiva.",
+  "telephony_group_billing_deposit_movement_error_amount_required": "El campo «Importe» es obligatorio.",
+  "telephony_group_billing_deposit_movement_error_amount_number": "Introduzca un importe válido.",
+  "telephony_group_billing_deposit_movement_error_amount_min": "El valor mínimo de este campo es {{ min }}.",
+  "telephony_group_billing_deposit_movement_error_amount_max": "El valor máximo de este campo es {{ max }}.",
+  "telephony_group_billing_deposit_movement_capability_error": "¡Vaya! No hemos podido verificar los grupos de facturación transferibles."
+}

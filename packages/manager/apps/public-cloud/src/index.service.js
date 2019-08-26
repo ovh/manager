@@ -37,7 +37,8 @@ export default class PublicCloud {
     )
       .sort('description') // Doesn't work as long as cache is not enabled
       .execute(null, true)
-      .$promise;
+      .$promise
+      .then(({ data }) => data);
   }
 
   getDefaultProject() {

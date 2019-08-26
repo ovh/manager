@@ -1,0 +1,23 @@
+{
+  "exchange_update_billing_button_title": "Verlängerung konfigurieren",
+  "exchange_update_billing_action_title": "Verlängerungszeitraum",
+  "exchange_update_billing_validation_title": "Validierung",
+  "exchange_update_billing_periode_intro": "Wählen Sie den gewünschten Zeitraum für die automatische Verlängerung jedes Accounts aus. <br />Die Änderung wird bei der nächsten Verlängerung aktiv.",
+  "exchange_update_billing_actions_label": "Aktionen",
+  "exchange_update_billing_email_label": "E-Mail-Account",
+  "exchange_update_billing_expiration_date_label": "Ablaufdatum",
+  "exchange_update_billing_current_periode_label": "Derzeitiger Wert",
+  "exchange_update_billing_periode_label": "Verlängerung",
+  "exchange_update_billing_header_new_periode": "Neuer Zeitraum",
+  "exchange_update_billing_periode_action_MONTHLY": "Auf „Monatlich\" umstellen",
+  "exchange_update_billing_periode_action_YEARLY": "Auf „Jährlich\" umstellen",
+  "exchange_update_billing_periode_action_DELETE_AT_EXPIRATION": "Auf „Läuft zum Ablaufdatum ab\" umstellen",
+  "exchange_update_billing_periode_value_MONTHLY": "Monatlich",
+  "exchange_update_billing_periode_value_YEARLY": "Jährlich",
+  "exchange_update_billing_periode_value_DELETE_AT_EXPIRATION": "Läuft zum Ablaufdatum ab",
+  "exchange_update_billing_periode_delete_warning": "Wichtig: Dies führt dazu, dass die Dienstleistung abläuft und die dazugehörigen Daten gelöscht werden. Es ist danach nicht mehr möglich, die Daten des Accounts wiederherzustellen!",
+  "exchange_update_billing_periode_resume": "Sie sind im Begriff, den Verlängerungszeitraum Ihrer Accounts zu ändern:",
+  "exchange_update_billing_periode_success": "Die Verlängerungszeiträume der ausgewählten Accounts wurden aktualisiert.",
+  "exchange_update_billing_periode_partial": "Manche Verlängerungszeiträume wurden nicht aktualisiert.",
+  "exchange_update_billing_periode_failure": "Bei der Aktualisierung der Verlängerungszeiträume der Accounts ist ein Fehler aufgetreten"
+}

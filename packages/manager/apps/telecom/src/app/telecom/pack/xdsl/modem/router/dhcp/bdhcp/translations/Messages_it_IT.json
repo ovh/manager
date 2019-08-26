@@ -1,0 +1,16 @@
+{
+  "xdsl_modem_bdhcp_title": "Lease DHCP",
+  "xdsl_modem_bdhcp_description": "L'indirizzo MAC permette di identificare in modo univoco un dispositivo sulla rete (LAN e Internet) e, grazie ad esso, i lease DHCP possono assegnare un indirizzo IP statico al dispositivo. I lease vengono utilizzati principalmente per contattare dall'esterno i servizi ospitati (server Web, SSH, etc.) tramite l'inoltro delle porte che puoi configurare in parallelo.  ",
+  "xdsl_modem_bdhcp_name": "Nome",
+  "xdsl_modem_bdhcp_ip": "Indirizzo IP",
+  "xdsl_modem_bdhcp_mac": "Indirizzo MAC",
+  "xdsl_modem_bdhcp_ip_tooltip": "L'indrizzo IP deve essere compreso nell'intervallo da 192.168.1.64 a 192.168.1.253",
+  "xdsl_modem_bdhcp_delete_really": "Vuoi davvero eliminare il lease <strong>{{ name }}</strong>?",
+  "xdsl_modem_bdhcp_add": "Aggiungi un lease",
+  "xdsl_modem_bdhcp_placeholder_name": "Nome del lease",
+  "xdsl_modem_bdhcp_edit_success": "Il lease <strong>{{ name }}</strong> è stato aggiornato.",
+  "xdsl_modem_bdhcp_del_success": "Il lease <strong>{{ name }}</strong> è stato eliminato.",
+  "xdsl_modem_bdhcp_add_error": "Ops! Impossibile aggiungere il lease <strong>{{ name }}</strong>.",
+  "xdsl_modem_bdhcp_edit_error": "Ops! Impossibile aggiornare il lease <strong>{{ name }}</strong>.",
+  "xdsl_modem_bdhcp_del_error": "Ops! Impossibile eliminare il lease <strong>{{ name }}</strong>."
+}

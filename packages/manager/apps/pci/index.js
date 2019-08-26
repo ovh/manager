@@ -3,10 +3,10 @@ import angular from 'angular';
 /* eslint-disable import/no-webpack-loader-syntax, import/extensions */
 import 'script-loader!jquery';
 import 'script-loader!lodash';
-import 'script-loader!jquery-ui/ui/minified/core.min';
-import 'script-loader!jquery-ui/ui/minified/widget.min';
-import 'script-loader!jquery-ui/ui/minified/mouse.min';
-import 'script-loader!jquery-ui/ui/minified/draggable.min';
+import 'script-loader!jquery-ui/ui/core';
+import 'script-loader!jquery-ui/ui/widget';
+import 'script-loader!jquery-ui/ui/widgets/mouse';
+import 'script-loader!jquery-ui/ui/widgets/draggable';
 import 'script-loader!angular-ui-validate/dist/validate.js';
 /* eslint-enable import/no-webpack-loader-syntax, import/extensions */
 

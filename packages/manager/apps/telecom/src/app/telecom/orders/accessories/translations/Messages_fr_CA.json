@@ -1,0 +1,7 @@
+{
+  "telecom_orders_accessories_title": "Commander des accessoires",
+  "telecom_orders_accessories_group_choice": "Groupe de téléphonie",
+  "telecom_orders_accessories_group_choice_label": "Sélectionnez le groupe de téléphonie auquel lier la commande d'accessoires :",
+  "telecom_orders_accessories_group_load_error": "Oups ! Impossible de charger vos groupes de téléphonie.",
+  "telecom_orders_accessories_order_error": "Ce groupe ne comporte aucune ligne sur laquelle commander d'accessoire."
+}

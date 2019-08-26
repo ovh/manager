@@ -1,0 +1,16 @@
+{
+  "telephony_line_assist_orders_title": "Stato dei buoni d'ordine",
+  "telephony_line_assist_orders_column_date": "Data",
+  "telephony_line_assist_orders_column_id": "Numero dell'ordine",
+  "telephony_line_assist_orders_column_status": "Stato",
+  "telephony_line_assist_orders_order_status_cancelled": "Annullata",
+  "telephony_line_assist_orders_order_status_cancelling": "Annulamento in corso...",
+  "telephony_line_assist_orders_order_status_checking": "Convalida",
+  "telephony_line_assist_orders_order_status_delivered": "Completata",
+  "telephony_line_assist_orders_order_status_delivering": "Consegna in corso...",
+  "telephony_line_assist_orders_order_status_documents_requested": "In attesa dei documenti",
+  "telephony_line_assist_orders_order_status_not_paid": "Pagamento non ricevuto",
+  "telephony_line_assist_orders_order_status_unknown": "Sconosciuto",
+  "telephony_line_assist_orders_order_url_title": "Visualizza il buono d'ordine n°{{ id }}",
+  "telephony_line_assist_orders_empty": "Nessun buono d'ordine"
+}

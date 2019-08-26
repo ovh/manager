@@ -1,7 +1,7 @@
 import clone from 'lodash/clone';
 import filter from 'lodash/filter';
 import head from 'lodash/head';
-import punycode from 'punycode.js';
+import punycode from 'punycode';
 
 export default /* @ngInject */ (
   $rootScope,

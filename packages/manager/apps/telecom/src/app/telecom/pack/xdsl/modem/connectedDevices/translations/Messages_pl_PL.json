@@ -1,0 +1,16 @@
+{
+  "xdsl_modem_device_status": "Podłączone urządzenia",
+  "xdsl_modem_device_connected": "Lista podłączonych urządzeń",
+  "xdsl_modem_device_show_none": "Brak podłączonych urządzeń",
+  "xdsl_modem_device_show_many": "Liczba podłączonych urządzeń: {{count}}",
+  "xdsl_modem_device_show_one": "{{count}} podłączone urządzenie",
+  "xdsl_modem_device_mac": "Adres MAC",
+  "xdsl_modem_device_ip": "Adres IP",
+  "xdsl_modem_device_host": "Nazwa",
+  "xdsl_modem_device_connection_type": "typ",
+  "xdsl_modem_device_other": "Inne",
+  "xdsl_modem_device_waiting_refresh": "W oczekiwaniu na odświeżenie",
+  "xdsl_modem_refresh": "Odśwież",
+  "xdsl_modem_refresh_error": "Oups ! Nous n'avons pas pu rafraîchir la liste de vos équipements connectés.",
+  "xdsl_modem_connected_list_error": "Oups ! Nous n'avons pas pu récupérer la liste de vos équippements connectés."
+}

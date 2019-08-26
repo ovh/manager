@@ -1,0 +1,14 @@
+{
+  "telephony_group_billing_summary_title": "Consumo generale",
+  "telephony_group_billing_summary_consumption_total_label": "Totale",
+  "telephony_group_billing_summary_consumption_incoming_label": "In entrata",
+  "telephony_group_billing_summary_consumption_outgoing_label": "In uscita",
+  "telephony_group_billing_summary_consumption_transfer_label": "Trasferiti",
+  "telephony_group_billing_summary_consumption_summary_title": "Riepilogo del gruppo",
+  "telephony_group_billing_summary_consumption_details_title": "Détail des services (en nombre d'appels)",
+  "telephony_group_billing_summary_consumption_service_label": "Servizio",
+  "telephony_group_billing_summary_consumptioninit_error": "Errore durante l'operazione di recupero dei consumi",
+  "telephony_group_billing_summary_consumptioninit_no_results": "Nessun consumo",
+  "telephony_group_billing_summary_calls_number_single": "{{ count }} appel",
+  "telephony_group_billing_summary_calls_number": "{{ count }} appels"
+}

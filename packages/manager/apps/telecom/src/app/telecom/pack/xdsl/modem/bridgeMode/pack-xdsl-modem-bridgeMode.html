@@ -1,0 +1,29 @@
+<form name="bridgeForm">
+    <div class="form-group checkbox">
+        <label data-ng-if="!BridgeCtrl.mediator.tasks.changeModemConfigBridgeMode"
+               for="bridgeMode">
+            <input type="checkbox"
+                id="bridgeMode"
+                name="bridgeMode"
+                data-ng-model="BridgeCtrl.isBridged"
+                data-ng-disabled="!BridgeCtrl.mediator.capabilities.canChangeBridgeMode"
+                data-ng-really-click="BridgeCtrl.changeBridgeMode()"
+                data-ng-really-undo="BridgeCtrl.undo()"
+                data-ng-really-message="{{ BridgeCtrl.isBridged ? 'xdsl_modem_bridge_really_on' : 'xdsl_modem_bridge_really_off' | translate }}
+                                        <div class='text-warning'>{{ 'xdsl_modem_bridge_mode_warning' | translate }}</div>"
+                data-ng-really-confirm="{{ 'ok' | translate }}"
+                data-ng-really-cancel="{{ 'cancel' | translate }}"
+                data-ng-really-window-class="revert-really-buttons">
+            <span data-translate="xdsl_modem_bridge_mode_status"></span>
+        </label>
+        <div data-ng-if="BridgeCtrl.mediator.tasks.changeModemConfigBridgeMode">
+            <oui-spinner></oui-spinner>
+            <p data-ng-if="BridgeCtrl.isBridged"
+               class="form-control-static"
+               data-translate="xdsl_modem_bridge_mode_success_validation_on"></p>
+            <p data-ng-if="!BridgeCtrl.isBridged"
+               class="form-control-static"
+               data-translate="xdsl_modem_bridge_mode_success_validation_off"></p>
+        </div>
+    </div>
+</form>

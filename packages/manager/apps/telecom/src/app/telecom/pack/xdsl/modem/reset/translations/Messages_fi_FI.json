@@ -1,0 +1,11 @@
+{
+  "xdsl_modem_reset": "Nollaa modeemi",
+  "xdsl_modem_reset_ovh_config": "Réinitialiser la configuration OVH",
+  "xdsl_modem_reset_an_error_ocurred": "[Modeemin nollaus] Tapahtui virhe!",
+  "xdsl_modem_reset_ovh_config_an_error_ocurred": "[Réinitialisation de la configuration OVH] Une erreur est survenue !",
+  "xdsl_modem_reset_success": "Nollataan modeemia.",
+  "xdsl_modem_reset_ovh_config_success": "Réinitialisation de la configuration OVH en cours.",
+  "xdsl_modem_reset_really": "Haluatko varmasti nollata modeemin?",
+  "xdsl_modem_reset_ovh_config_really": "Êtes-vous sûr(e) de vouloir réinitialiser la configuration OVH ?",
+  "xdsl_modem_reset_success_end": "Modeemin nollaus on päättynyt. Ole hyvä ja odota vielä muutama minuutti, että modeemisi konfiguroituu."
+}

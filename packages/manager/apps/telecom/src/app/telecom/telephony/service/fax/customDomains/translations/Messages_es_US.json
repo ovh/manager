@@ -1,0 +1,16 @@
+{
+  "telephony_service_fax_custom_domains_informations": "Información",
+  "telephony_service_fax_custom_domains_informations_alert_info1": "Les domaines Ecofax Marque Blanche vous permettent d'envoyer des Fax en utilisant le service Ecofax via votre propre nom de domaine.<br/>Vous pourrez, ainsi, envoyer un fax en utilisant une adresse email du type <strong>0102030405@masociete.com</strong>.",
+  "telephony_service_fax_custom_domains_informations_alert_info2": "Le domaine que vous renseignez doit avoir un enregistrement MX 1 vers <strong>mail.ecofax.fr</strong>.",
+  "telephony_service_fax_custom_domains_configuration": "Domaines configurés",
+  "telephony_service_fax_custom_domains_configuration_table_column_domain": "Dominio",
+  "telephony_service_fax_custom_domains_configuration_table_column_action": "Acciones",
+  "telephony_service_fax_custom_domains_configuration_table_action_delete": "Supprimer le domaine {{ domain }} Ecofax Marque Blanche",
+  "telephony_service_fax_custom_domains_configuration_table_empty": "Aucun domaine n'est actuellement configuré.",
+  "telephony_service_fax_custom_domains_configuration_form_add_label": "Ajouter un domaine",
+  "telephony_service_fax_custom_domains_configuration_form_add_success": "Votre domaine a bien été ajouté.",
+  "telephony_service_fax_custom_domains_configuration_form_add_error": "Oups ! Une erreur est survenue lors de l'ajout de votre domaine.",
+  "telephony_service_fax_custom_domains_configuration_form_remove_success": "Votre domaine a bien été supprimé.",
+  "telephony_service_fax_custom_domains_configuration_form_remove_error": "Oups ! Une erreur est survenue lors de la suppression de votre domaine.",
+  "telephony_service_fax_custom_domains_error_loading": "Oups ! Une erreur est survenue lors du chargement de vos domaines ecofax marque blanche."
+}

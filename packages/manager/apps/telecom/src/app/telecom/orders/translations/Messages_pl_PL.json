@@ -1,0 +1,16 @@
+{
+  "telecom_order_page_title": "Zamów",
+  "telecom_orders_follow_up_title": "Informacje o zamówieniach",
+  "telecom_orders_follow_up_intro": "Moje zamówienia dotyczące Internetu",
+  "telecom_orders_follow_up_type_xdsl": "Dostęp xDSL",
+  "telecom_orders_follow_up_type_vdsl": "Dostęp VDSL",
+  "telecom_orders_follow_up_type_sdsl": "Dostęp SDSL",
+  "telecom_orders_follow_up_type_adsl": "Dostęp ADSL",
+  "telecom_orders_follow_up_header_type": "Typ",
+  "telecom_orders_follow_up_header_service": "Identyfikator usługi",
+  "telecom_orders_follow_up_header_status": "Status",
+  "telecom_orders_follow_up_header_step": "Etap",
+  "telecom_orders_follow_up_header_state": "Status",
+  "telecom_orders_follow_up_items_per_view": "Jednostki na stronę",
+  "telecom_orders_follow_up_no_orders": "Actuellement vous n'avez pas de commandes en cours."
+}

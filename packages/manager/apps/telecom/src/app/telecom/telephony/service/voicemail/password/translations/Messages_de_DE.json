@@ -1,0 +1,21 @@
+{
+  "telephony_line_answer_voicemail_password_change_main_title": "Passwort für den Zugang zum Anrufbeantworter",
+  "telephony_line_answer_voicemail_password_number_info": "Informationen",
+  "telephony_line_answer_voicemail_password_number_internal": "Zugang zum Anrufbeantworter:",
+  "telephony_line_answer_voicemail_password_number_external": "Von extern:",
+  "telephony_line_answer_voicemail_password_change_title": "Passwort Anrufbeantworter",
+  "telephony_line_answer_voicemail_password_input_label": "Nouveau mot de passe (composé de 4 chiffres) :",
+  "telephony_line_answer_voicemail_password_input_placeholder": "Passwort",
+  "telephony_line_answer_voicemail_password_input_length_warning": "Ihr Passwort muss 4 Ziffern beinhalten.",
+  "telephony_line_answer_voicemail_passwordConfirm_input_label": "Bestätigung:",
+  "telephony_line_answer_voicemail_passwordConfirm_input_placeholder": "Geben Sie Ihr Passwort erneut ein",
+  "telephony_line_answer_voicemail_password_matching_warning": "Das eingegebene Passwort stimmt nicht überein.",
+  "telephony_line_answer_voicemail_password_apply": "Die Änderungen anwenden",
+  "telephony_line_answer_voicemail_password_change_success": "Passwort wurde erfolgreich geändert.",
+  "telephony_line_answer_voicemail_password_change_error": "Das Passwort Ihres Anrufbeantworters konnte nicht geändert werden.",
+  "telephony_line_answer_voicemail_password_info": "Passwort wird nur für die Abfrage von extern benötigt.",
+  "telephony_line_answer_voicemail_password_bulk_all_success": "Le mot de passe a bien été appliqué aux services sélectionnés.",
+  "telephony_line_answer_voicemail_password_bulk_some_success": "Le mot de passe a bien été appliqué à {{ count }} des services sélectionnés.",
+  "telephony_line_answer_voicemail_password_bulk_error": "Le mot de passe n'a pas pu être appliqué au(x) service(s) suivant(s) :",
+  "telephony_line_answer_voicemail_password_bulk_on_error": "Oups ! Une erreur est survenue lors de l'application du mot de passe."
+}

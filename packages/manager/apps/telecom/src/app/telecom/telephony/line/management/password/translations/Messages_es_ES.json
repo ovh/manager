@@ -1,0 +1,17 @@
+{
+  "telephony_line_password_title": "Contraseña de la línea SIP",
+  "telephony_line_password_rule_size": "Debe contener entre 8 y 20 caracteres",
+  "telephony_line_password_rule_special": "Debe contener cifras, letras no acentuadas o {{list}}",
+  "telephony_line_password_rule_class": "Contiene al menos dos clases de caracteres (cifras, letras, caracteres especiales)",
+  "telephony_line_password_rule_palindrome": "No es un palíndromo (p.ej.: rotor, kayak)",
+  "telephony_line_password_explaination1": "La contraseña debe tener de 8 a 20 caracteres.",
+  "telephony_line_password_explaination2": "La contraseña debe tener al menos dos tipos de caracteres (cifras, letras o caracteres especiales).",
+  "telephony_line_password_label": "Nueva contraseña:",
+  "telephony_line_password_placeholder": "8 a 20 caracteres",
+  "telephony_line_password_save_success": "Se ha cambiado la contraseña de la línea SIP.",
+  "telephony_line_password_save_fail": "No se ha podido cambiar la contraseña de la línea SIP. Por favor, vuelva a intentarlo más adelante.",
+  "telephony_line_password_bulk_all_success": "La modification du mot de passe a bien été appliquée aux services sélectionnés.",
+  "telephony_line_password_bulk_some_success": "La modification du mot de passe a bien été appliquée à {{ count }} des services sélectionnés.",
+  "telephony_line_password_bulk_error": "La modification du mot de passe n'a pu être appliquée au(x) service(s) suivant(s) :",
+  "telephony_line_password_bulk_on_error": "Oups ! Une erreur est survenue lors de la modification du mot de passe."
+}

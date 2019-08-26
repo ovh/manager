@@ -1,0 +1,23 @@
+{
+  "exchange_update_billing_button_title": "Configuration du renouvellement",
+  "exchange_update_billing_action_title": "Uusinta-ajanjakso",
+  "exchange_update_billing_validation_title": "Vahvistus",
+  "exchange_update_billing_periode_intro": "Valitse haluamasi uudistamisväli automaattista uudistamista varten jokaiselle tilille. <br />Tätä sovelletaan seuraavasta uudistamisesta alkaen.",
+  "exchange_update_billing_actions_label": "Toiminnot",
+  "exchange_update_billing_email_label": "Sähköpostitili",
+  "exchange_update_billing_expiration_date_label": "Vanhenee",
+  "exchange_update_billing_current_periode_label": "Nykyinen arvo",
+  "exchange_update_billing_periode_label": "Uusinta",
+  "exchange_update_billing_header_new_periode": "Uusi ajanjakso",
+  "exchange_update_billing_periode_action_MONTHLY": "Modifier en \"Mensuelle\"",
+  "exchange_update_billing_periode_action_YEARLY": "Modifier en \"Annuelle\"",
+  "exchange_update_billing_periode_action_DELETE_AT_EXPIRATION": "Modifier en \"Expire à terme\"",
+  "exchange_update_billing_periode_value_MONTHLY": "Kerran kuukaudessa",
+  "exchange_update_billing_periode_value_YEARLY": "Vuosittain",
+  "exchange_update_billing_periode_value_DELETE_AT_EXPIRATION": "Erääntyy tilausjakson päätyttyä",
+  "exchange_update_billing_periode_delete_warning": "Ota huomioon että tämä valinta aiheuttaa palvelun vanhentumisen ja data menetetään pysyvästi. Datan palautus ei ole mahdollista.",
+  "exchange_update_billing_periode_resume": "Olet vaihtamassa automaattisen uudistamisen ajanjaksoa seuraaville tileillesi:",
+  "exchange_update_billing_periode_success": "La période de renouvellement des comptes sélectionnés a été mise à jour.",
+  "exchange_update_billing_periode_partial": "Certaines périodes de renouvellement n'ont pas été mises à jour.",
+  "exchange_update_billing_periode_failure": "Une erreur est survenue lors de la mise à jour du renouvellement des comptes"
+}
