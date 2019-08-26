@@ -1,3 +1,12 @@
+## [1.1.6](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-exchange@1.1.5...@ovh-ux/manager-exchange@1.1.6) (2019-08-26)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 49] ([9869351](https://github.com/ovh-ux/manager/commit/9869351))
+
+
+
 ## [1.1.5](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-exchange@1.1.4...@ovh-ux/manager-exchange@1.1.5) (2019-08-26)
 
 
