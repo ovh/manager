@@ -1,3 +1,13 @@
+## [1.2.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@1.2.0...@ovh-ux/manager-public-cloud@1.2.1) (2019-08-26)
+
+
+### Bug Fixes
+
+* use right files for jquery-ui ([09bcd73](https://github.com/ovh-ux/manager/commit/09bcd73))
+* **public-cloud:** remove pci assets entry ([#1212](https://github.com/ovh-ux/manager/issues/1212)) ([832f0eb](https://github.com/ovh-ux/manager/commit/832f0eb))
+
+
+
 # [1.2.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@1.1.1...@ovh-ux/manager-public-cloud@1.2.0) (2019-08-13)
 
 

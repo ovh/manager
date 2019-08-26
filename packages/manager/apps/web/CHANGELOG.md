@@ -1,3 +1,12 @@
+## [13.26.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-web@13.26.0...@ovh-ux/manager-web@13.26.1) (2019-08-26)
+
+
+### Bug Fixes
+
+* **web:** git subtree pull @ovh-ux/manager/web ([0d64f64](https://github.com/ovh-ux/manager/commit/0d64f64))
+
+
+
 # [13.26.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-web@13.25.8...@ovh-ux/manager-web@13.26.0) (2019-08-12)
 
 
