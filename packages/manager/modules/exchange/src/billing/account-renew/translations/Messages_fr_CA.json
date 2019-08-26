@@ -4,7 +4,7 @@
   "exchange_update_billing_validation_title": "Validation",
   "exchange_update_billing_periode_intro": "Choisissez la périodicité souhaitée pour le renouvellement automatique de chaque compte. <br />Celle-ci sera appliquée à partir du prochain renouvellement.",
   "exchange_update_billing_actions_label": "Actions",
-  "exchange_update_billing_email_label": "Compte courriel",
+  "exchange_update_billing_email_label": "Compte e-mail",
   "exchange_update_billing_expiration_date_label": "Expiration",
   "exchange_update_billing_current_periode_label": "Valeur actuelle",
   "exchange_update_billing_periode_label": "Renouvellement",

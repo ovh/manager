@@ -62,6 +62,9 @@ angular
     TranslateServiceProvider.setUserLocale(userLocale);
     $translateProvider.use(userLocale);
   })
+  .config(/* @ngInject */ (ssoAuthenticationProvider) => {
+    ssoAuthenticationProvider.allowIncompleteNic(true);
+  })
   .config(registerState)
   .run(/* @ngInject */ ($transitions, TranslateService) => {
     $transitions.onBefore({}, (transition) => {
