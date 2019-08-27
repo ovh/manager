@@ -1,0 +1,16 @@
+{
+  "telephony_line_convert_title": "Convertir une ligne en numéro",
+  "telephony_line_convert_info_title": "Información",
+  "telephony_line_convert_info1": "Les demandes de conversion seront prises en compte lors de votre prochaine facturation. Jusqu'à cette date, l'annulation des demandes restera possible.",
+  "telephony_line_convert_info2": "Une fois la conversion réalisée, votre ligne ne sera plus opérationnelle et vous ne pourrez plus faire d'appels sortants, car le numéro sera transformé en alias.",
+  "telephony_line_convert_info3": "Si vous avez un téléphone Plug And Phone sur cette ligne, ce dernier ne fonctionnera plus et nous vous proposerons un retour de matériel.",
+  "telephony_line_convert_convert": "Convertir la ligne {{ line }} en numéro",
+  "telephony_line_convert_cancel_convert": "Annuler la demande de conversion",
+  "telephony_line_convert_warning": "La ligne {{ line }} sera convertie en numéro le {{ date }}.",
+  "telephony_line_convert_convert_success": "Demande de conversion effectuée.",
+  "telephony_line_convert_cancel_success": "La demande a bien été annulée.",
+  "telephony_line_convert_bulk_all_success": "La demande de conversion en numéro a bien été appliquée aux services sélectionnés.",
+  "telephony_line_convert_bulk_some_success": "La demande de conversion en numéro a bien été appliquée à {{ count }} des services sélectionnés.",
+  "telephony_line_convert_bulk_error": "La demande de conversion en numéro n'a pu être appliquée au(x) service(s) suivant(s) :",
+  "telephony_line_convert_bulk_on_error": "Oups ! Une erreur est survenue lors de la demande de conversion en numéro."
+}

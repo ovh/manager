@@ -1,3 +1,22 @@
+# [4.2.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-freefax-app@4.1.0...@ovh-ux/manager-freefax-app@4.2.0) (2019-08-26)
+
+
+### Features
+
+* manage incomplete nic ([#1197](https://github.com/ovh-ux/manager/issues/1197)) ([bdce016](https://github.com/ovh-ux/manager/commit/bdce016))
+
+
+
+# [4.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-freefax-app@4.0.1...@ovh-ux/manager-freefax-app@4.1.0) (2019-08-12)
+
+
+### Features
+
+* add @ovh-ux/manager-web ([09d208c](https://github.com/ovh-ux/manager/commit/09d208c))
+* **core:** add request-tagger interceptor ([e797d9d](https://github.com/ovh-ux/manager/commit/e797d9d))
+
+
+
 ## [4.0.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-freefax-app@4.0.0...@ovh-ux/manager-freefax-app@4.0.1) (2019-05-13)
 
 

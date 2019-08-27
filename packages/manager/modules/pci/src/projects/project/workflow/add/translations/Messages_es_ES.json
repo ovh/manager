@@ -1,0 +1,3 @@
+{
+  "pci_workflow_create_schedule_rotate_description": "Todos los días se realiza una copia de seguridad entre las 22:00 y las 6:00 y la rotación garantiza un registro de las {{ numEntries }} últimas entradas. Cuando se completa la nueva copia de seguridad, se elimina la más antigua."
+}

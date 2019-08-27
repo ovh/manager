@@ -1,0 +1,15 @@
+{
+  "xdsl_modem_wifi_status_enabled": "Wi-Fi activé",
+  "xdsl_modem_detault_wifi_status_enabled": "Wi-Fi activé par défaut",
+  "xdsl_modem_wifi_status_disabled": "Wi-Fi désactivé",
+  "xdsl_modem_default_wifi_status_disabled": "Wi-Fi désactivé par défaut",
+  "xdsl_modem_wifi_description": "Le mode Wi-Fi permet de configurer le réseau sans fil du modem pour que vos équipements sans fil puissent s'y connecter.",
+  "xdsl_modem_wifi_success_validation_on": "Activation du Wi-Fi en cours",
+  "xdsl_modem_wifi_success_validation_off": "Désactivation du Wi-Fi en cours",
+  "xdsl_modem_wifi_really_on": "Êtes-vous sûr(e) de vouloir activer le Wi-Fi ?",
+  "xdsl_modem_wifi_really_off": "Êtes-vous sûr(e) de vouloir désactiver le Wi-Fi ?",
+  "xdsl_modem_wifi_configure": "Configurer le Wi-Fi",
+  "xdsl_modem_wifi_configure_many": "Configurer les réseaux Wi-Fi",
+  "xdsl_modem_wifi_read_error": "Oups! Nous n'avons pas pu récupérer les informations relatives au wifi.",
+  "xdsl_modem_wifi_update_error": "Oups! Nous n'avons pas pu mettre à jour le wifi de votre modem."
+}

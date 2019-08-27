@@ -1,3 +1,31 @@
+## [0.5.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.5.0...@ovh-ux/manager-server-sidebar@0.5.1) (2019-08-26)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 44] ([568093f](https://github.com/ovh-ux/manager/commit/568093f))
+* **i18n:** add missing translations [CDS 45] ([553ad4d](https://github.com/ovh-ux/manager/commit/553ad4d))
+
+
+
+# [0.5.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.4.2...@ovh-ux/manager-server-sidebar@0.5.0) (2019-08-13)
+
+
+### Features
+
+* **sidebar:** all dedicated servers section ([#1180](https://github.com/ovh-ux/manager/issues/1180)) ([304fbed](https://github.com/ovh-ux/manager/commit/304fbed))
+
+
+
+## [0.4.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.4.1...@ovh-ux/manager-server-sidebar@0.4.2) (2019-08-08)
+
+
+### Bug Fixes
+
+* **server-sidebar:** redirect nasha to cloud manager ([#1166](https://github.com/ovh-ux/manager/issues/1166)) ([f72e0b6](https://github.com/ovh-ux/manager/commit/f72e0b6))
+
+
+
 ## [0.4.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-server-sidebar@0.4.0...@ovh-ux/manager-server-sidebar@0.4.1) (2019-07-15)
 
 

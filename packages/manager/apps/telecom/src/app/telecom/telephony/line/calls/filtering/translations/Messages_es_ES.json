@@ -1,0 +1,19 @@
+{
+  "telephony_line_calls_filtering_title": "Filtrado de llamadas",
+  "telephony_line_calls_filtering_enable": "Activación del filtrado",
+  "telephony_line_calls_filtering_info": "Para que su configuración de filtrado esté activa, seleccione la lista que quiere aplicar a las llamadas entrantes y salientes.",
+  "telephony_line_calls_filtering_incoming": "Filtrado de las llamadas entrantes",
+  "telephony_line_calls_filtering_list_white": "Blanca",
+  "telephony_line_calls_filtering_list_black": "Negra",
+  "telephony_line_calls_filtering_list_none": "No hay listas activas",
+  "telephony_line_calls_filtering_outgoing": "Filtrado de las llamadas salientes",
+  "telephony_line_calls_filtering_anonymous_reject": "Rechazo de las llamadas ocultas",
+  "telephony_line_calls_filtering_do_not_disturb": "No molestar",
+  "telephony_line_calls_filtering_absent": "Suscriptor ausente",
+  "telephony_line_calls_filtering_new": "Configurar nuevos filtros",
+  "telephony_line_calls_filtering_config": "Configuración actual",
+  "telephony_line_calls_filtering_bulk_all_success": "Le filtrage d'appels a bien été appliqué aux services sélectionnés.",
+  "telephony_line_calls_filtering_bulk_some_success": "Le filtrage d'appels a bien été appliqué à {{ count }} des services sélectionnés.",
+  "telephony_line_calls_filtering_bulk_error": "Le filtrage d'appels n'a pas pu être appliqué au(x) service(s) suivant(s) :",
+  "telephony_line_calls_filtering_bulk_on_error": "Oups ! Une erreur est survenue lors de l'application du filtrage d'appels."
+}

@@ -1,0 +1,5 @@
+{
+  "telephony_alias_configuration_scheduler_title": "Gestisci le chiusure eccezionali",
+  "telephony_alias_configuration_scheduler_info": "Il calendario ti permette di definire periodi eccezionali per, ad esempio, programmare azioni specifiche durante i giorni di chiusura della tua azienda.",
+  "telephony_alias_configuration_scheduler_load_error": "Oups ! Une erreur est survenue lors du chargement de vos fermetures exceptionnelles."
+}

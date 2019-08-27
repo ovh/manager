@@ -1,3 +1,4 @@
+import get from 'lodash/get';
 import pick from 'lodash/pick';
 
 import { DEFAULT_PROJECT_KEY, MESSAGES_CONTAINER_NAME } from './edit.constant';
@@ -22,6 +23,8 @@ export default class ProjectEditController {
     this.messageHandler = this.CucCloudMessage.subscribe(MESSAGES_CONTAINER_NAME, {
       onMessage: () => this.refreshMessage(),
     });
+
+    this.isDefault = get(this.defaultProject, 'projectId') === this.serviceName;
   }
 
   refreshMessage() {

@@ -144,7 +144,7 @@ export const MENU = [
         options: {
           state: 'pci.projects.project.users',
         },
-        title: 'Users',
+        title: 'Users & Roles',
       },
       {
         id: 'quota',

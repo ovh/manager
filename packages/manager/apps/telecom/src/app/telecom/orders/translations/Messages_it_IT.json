@@ -1,0 +1,16 @@
+{
+  "telecom_order_page_title": "Ordina",
+  "telecom_orders_follow_up_title": "Stato degli ordini",
+  "telecom_orders_follow_up_intro": "I tuoi ordini Internet",
+  "telecom_orders_follow_up_type_xdsl": "Accesso xDSL",
+  "telecom_orders_follow_up_type_vdsl": "Accesso VDSL",
+  "telecom_orders_follow_up_type_sdsl": "Accesso SDSL",
+  "telecom_orders_follow_up_type_adsl": "Accesso ADSL",
+  "telecom_orders_follow_up_header_type": "Tipo",
+  "telecom_orders_follow_up_header_service": "Identificativo del servizio",
+  "telecom_orders_follow_up_header_status": "Stato",
+  "telecom_orders_follow_up_header_step": "Passaggio",
+  "telecom_orders_follow_up_header_state": "Stato",
+  "telecom_orders_follow_up_items_per_view": "Elemento per pagina",
+  "telecom_orders_follow_up_no_orders": "Actuellement vous n'avez pas de commandes en cours."
+}

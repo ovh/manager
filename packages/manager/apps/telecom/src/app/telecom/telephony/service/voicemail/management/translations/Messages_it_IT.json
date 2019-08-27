@@ -1,0 +1,13 @@
+{
+  "telephony_line_answer_voicemail_directories_main_title": "Ascolta e gestisci i messaggi",
+  "telephony_line_answer_voicemail_directories_title": "Gestisci i messaggi della segreteria",
+  "telephony_line_answer_voicemail_directories_delete_message": "Elimina il messaggio",
+  "telephony_line_answer_voicemail_directories_delete_message_plural": "Elimina {{ count }} messaggi",
+  "telephony_line_answer_voicemail_directories_listen_message": "Ascolta",
+  "telephony_line_answer_voicemail_directories_download_message": "Esegui il download",
+  "telephony_line_answer_voicemail_directories_refresh_message": "Aggiorna",
+  "telephony_line_answer_voicemail_directories_empty": "Non hai alcun messaggio.",
+  "telephony_line_answer_voicemail_directories_caller": "Chiamante",
+  "telephony_line_answer_voicemail_directories_date": "Data",
+  "telephony_line_answer_voicemail_directories_duration": "Durata"
+}

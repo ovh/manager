@@ -2,7 +2,7 @@
 
 > Extensible webpack configuration for the OVH Manager.
 
-[![Downloads](https://badgen.net/npm/dt/@ovh-ux/manager-webpack-config)](https://npmjs.com/package/@ovh-ux/manager-webpack-config) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/manager/tools/manager-webpack-config)](https://npmjs.com/package/@ovh-ux/manager-webpack-config?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/manager/tools/manager-webpack-config)](https://npmjs.com/package/@ovh-ux/manager-webpack-config?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![Downloads](https://badgen.net/npm/dt/@ovh-ux/manager-webpack-config)](https://npmjs.com/package/@ovh-ux/manager-webpack-config) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/manager/tools/webpack-config)](https://npmjs.com/package/@ovh-ux/manager-webpack-config?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/manager/tools/webpack-config)](https://npmjs.com/package/@ovh-ux/manager-webpack-config?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
 
 ## Install
 
@@ -34,6 +34,7 @@ The following configuration parameters are _optionals_:
    relatively to the current resource path. You can override this behavior by providing
    an absolute translationsRoot path. This path will then be used to resolve translations
    instead of current resource path.
+- _lessJavascriptEnabled_: adds _javascriptEnabled_ option to the less compiler
 
 ## Example
 

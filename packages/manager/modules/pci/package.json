@@ -1,6 +1,7 @@
 {
   "name": "@ovh-ux/manager-pci",
-  "version": "1.4.0",
+  "version": "1.5.2",
+  "private": true,
   "homepage": "https://github.com/ovh-ux/manager/tree/master/packages/manager/modules/pci#readme",
   "bugs": {
     "url": "https://github.com/ovh-ux/manager/issues"
@@ -24,24 +25,24 @@
     "@fortawesome/fontawesome-free": "^5.8.2",
     "@ovh-ux/manager-config": "^0.3.0",
     "d3": "~3.5.13",
+    "fast-sha256": "^1.1.0",
     "file-saver": "^2.0.1",
     "flag-icon-css": "~0.8.5",
     "ipaddr.js": "^1.9.0",
     "jsurl": "^0.1.5",
-    "lodash": "^4.17.14",
+    "lodash": "^4.17.15",
     "moment": "^2.19",
+    "tweetnacl-util": "^0.15.0",
     "urijs": "^1.19.1",
     "validator": "^10.11.0",
-    "xterm": "^3.12.2",
-    "fast-sha256": "^1.1.0",
-    "tweetnacl-util": "^0.15.0"
+    "xterm": "^3.14.5"
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^6.0.0"
   },
   "peerDependencies": {
     "@ovh-ux/manager-cloud-styles": "^0.3.0",
-    "@ovh-ux/manager-core": "^6.1.5",
+    "@ovh-ux/manager-core": "^7.0.0",
     "@ovh-ux/manager-telecom-styles": "^3.1.0",
     "@ovh-ux/ng-at-internet": "^4.0.0",
     "@ovh-ux/ng-ovh-api-wrappers": "^3.0.0",
@@ -67,10 +68,10 @@
     "oclazyload": "^1.1.0",
     "ovh-angular-pagination-front": "ovh-ux/ovh-angular-pagination-front#^5.1.0",
     "ovh-angular-q-allsettled": "ovh-ux/ovh-angular-q-allSettled#^0.3.1",
-    "ovh-api-services": "^8.0.1",
+    "ovh-api-services": "^8.3.0",
     "ovh-common-style": "^5.0.0",
     "ovh-manager-webfont": "^1.1.0",
-    "ovh-ui-angular": "^3.5.1",
+    "ovh-ui-angular": "^3.7.3",
     "ovh-ui-kit": "^2.33.3",
     "ovh-ui-kit-bs": "^2.1.1"
   }

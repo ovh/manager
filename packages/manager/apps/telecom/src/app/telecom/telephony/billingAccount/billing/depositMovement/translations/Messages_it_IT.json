@@ -1,0 +1,20 @@
+{
+  "telephony_group_billing_deposit_movement_title": "Trasferisci i tuoi depositi cauzionali tra gruppi",
+  "telephony_group_billing_deposit_movement_info": "Gestisci il movimento dei tuoi depositi cauzionali tra i tuoi diversi gruppi.",
+  "telephony_group_billing_deposit_movement_source_subtitle": "Source",
+  "telephony_group_billing_deposit_movement_groups_label": "Gruppi:",
+  "telephony_group_billing_deposit_movement_deposit_label": "Cauzione attuale:",
+  "telephony_group_billing_deposit_movement_amount_subtitle": "Importo",
+  "telephony_group_billing_deposit_movement_amount_label": "Importo:",
+  "telephony_group_billing_deposit_movement_destination_subtitle": "Destinazione",
+  "telephony_group_billing_deposit_movement_estimate_label": "Stima dopo la covalida:",
+  "telephony_group_billing_deposit_movement_without_tax": "+IVA",
+  "telephony_group_billing_deposit_movement_submit": "Conferma",
+  "telephony_group_billing_deposit_movement_success": "La richiesta di movimento dei tuoi depositi cauzionali è stata salvata correttamente!",
+  "telephony_group_billing_deposit_movement_error_amount_too_low": "Per effettuare un trasferimento, i tuoi depositi cauzionali devono essere positivi.",
+  "telephony_group_billing_deposit_movement_error_amount_required": "Il campo \"Importo\" è obbligatorio.",
+  "telephony_group_billing_deposit_movement_error_amount_number": "Inserisci un importo valido.",
+  "telephony_group_billing_deposit_movement_error_amount_min": "Il valore minimo di questo campo è {{ min }}.",
+  "telephony_group_billing_deposit_movement_error_amount_max": "Il valore massimo di questo campo è {{ max }}.",
+  "telephony_group_billing_deposit_movement_capability_error": "Ops! Impossibile verificare i gruppi di fatturazione trasferibili."
+}

@@ -8,10 +8,10 @@ import some from 'lodash/some';
 import { DEFAULT_OS } from './flavors-list.constants';
 
 export default class FlavorGroup {
-  constructor(flavors) {
+  constructor(flavors, image = DEFAULT_OS) {
     Object.assign(
       this,
-      omit(find(flavors, flavor => flavor.osType === DEFAULT_OS && !flavor.isFlex()), [
+      omit(find(flavors, flavor => flavor.osType === image && !flavor.isFlex()), [
         'regions', 'id', 'osType', 'planCodes',
       ]),
     );

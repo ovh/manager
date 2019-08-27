@@ -1,0 +1,6 @@
+{
+  "telephony_line_calls_filtering_bulk_all_success": "Le filtrage d'appels a bien été appliqué aux services sélectionnés.",
+  "telephony_line_calls_filtering_bulk_some_success": "Le filtrage d'appels a bien été appliqué à {{ count }} des services sélectionnés.",
+  "telephony_line_calls_filtering_bulk_error": "Le filtrage d'appels n'a pas pu être appliqué au(x) service(s) suivant(s) :",
+  "telephony_line_calls_filtering_bulk_on_error": "Oups ! Une erreur est survenue lors de l'application du filtrage d'appels."
+}

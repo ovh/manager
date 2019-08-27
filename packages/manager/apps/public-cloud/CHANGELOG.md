@@ -1,3 +1,54 @@
+# [1.3.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@1.2.1...@ovh-ux/manager-public-cloud@1.3.0) (2019-08-26)
+
+
+### Features
+
+* manage incomplete nic ([#1197](https://github.com/ovh-ux/manager/issues/1197)) ([bdce016](https://github.com/ovh-ux/manager/commit/bdce016))
+
+
+
+## [1.2.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@1.2.0...@ovh-ux/manager-public-cloud@1.2.1) (2019-08-26)
+
+
+### Bug Fixes
+
+* use right files for jquery-ui ([09bcd73](https://github.com/ovh-ux/manager/commit/09bcd73))
+* **public-cloud:** remove pci assets entry ([#1212](https://github.com/ovh-ux/manager/issues/1212)) ([832f0eb](https://github.com/ovh-ux/manager/commit/832f0eb))
+
+
+
+# [1.2.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@1.1.1...@ovh-ux/manager-public-cloud@1.2.0) (2019-08-13)
+
+
+### Features
+
+* **apps.public.cloud:** manage both feedback's url for FR and EN ([#1156](https://github.com/ovh-ux/manager/issues/1156)) ([b680e42](https://github.com/ovh-ux/manager/commit/b680e42))
+
+
+
+## [1.1.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@1.1.0...@ovh-ux/manager-public-cloud@1.1.1) (2019-08-13)
+
+
+### Bug Fixes
+
+* **pci.projects.kube:** disable all actions ([#1191](https://github.com/ovh-ux/manager/issues/1191)) ([8a90259](https://github.com/ovh-ux/manager/commit/8a90259))
+
+
+
+# [1.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@1.0.1...@ovh-ux/manager-public-cloud@1.1.0) (2019-08-12)
+
+
+### Bug Fixes
+
+* **apps.public.cloud.theme:** increase navbar z-index ([#1165](https://github.com/ovh-ux/manager/issues/1165)) ([b6962eb](https://github.com/ovh-ux/manager/commit/b6962eb))
+
+
+### Features
+
+* **core:** add request-tagger interceptor ([e797d9d](https://github.com/ovh-ux/manager/commit/e797d9d))
+
+
+
 ## [1.0.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@1.0.0...@ovh-ux/manager-public-cloud@1.0.1) (2019-08-07)
 
 

@@ -1,0 +1,7 @@
+{
+  "telecom_orders_accessories_title": "Užsakyti priedus",
+  "telecom_orders_accessories_group_choice": "Telefonijos grupė",
+  "telecom_orders_accessories_group_choice_label": "Pasirinkite telefonijos grupę, kuriai užsakomi priedai:",
+  "telecom_orders_accessories_group_load_error": "Negalima įkelti telefonų grupės.",
+  "telecom_orders_accessories_order_error": "Grupėje nėra linijos, kuriai galima užsakyti priedą."
+}

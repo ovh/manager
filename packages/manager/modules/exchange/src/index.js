@@ -1,5 +1,7 @@
 import angular from 'angular';
 
+import accountRenew from './billing/account-renew/renew.module';
+
 import components from './exchangeComponents.module';
 import controllers from './exchangeControllers.module';
 import directives from './exchangeDirectives.module';
@@ -20,6 +22,7 @@ angular
     'ui.bootstrap',
     'ngSanitize',
     'ng.ckeditor',
+    accountRenew,
     components,
     controllers,
     directives,

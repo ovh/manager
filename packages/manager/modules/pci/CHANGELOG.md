@@ -1,3 +1,82 @@
+## [1.5.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@1.5.1...@ovh-ux/manager-pci@1.5.2) (2019-08-26)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 37] ([ea036c0](https://github.com/ovh-ux/manager/commit/ea036c0))
+* **i18n:** add missing translations [CDS 44] ([568093f](https://github.com/ovh-ux/manager/commit/568093f))
+* **i18n:** add missing translations [CDS 45] ([553ad4d](https://github.com/ovh-ux/manager/commit/553ad4d))
+* **i18n:** add missing translations [CDS 46] ([c1bcd46](https://github.com/ovh-ux/manager/commit/c1bcd46))
+* **kubernetes:** popover position ([#1170](https://github.com/ovh-ux/manager/issues/1170)) ([5860d56](https://github.com/ovh-ux/manager/commit/5860d56))
+
+
+
+## [1.5.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@1.5.0...@ovh-ux/manager-pci@1.5.1) (2019-08-14)
+
+
+### Bug Fixes
+
+* **pci.project.edit:** display check if project is default one ([#1198](https://github.com/ovh-ux/manager/issues/1198)) ([ff26a34](https://github.com/ovh-ux/manager/commit/ff26a34))
+
+
+
+# [1.5.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@1.4.5...@ovh-ux/manager-pci@1.5.0) (2019-08-13)
+
+
+### Features
+
+* **apps.public.cloud:** manage both feedback's url for FR and EN ([#1156](https://github.com/ovh-ux/manager/issues/1156)) ([b680e42](https://github.com/ovh-ux/manager/commit/b680e42))
+
+
+
+## [1.4.5](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@1.4.4...@ovh-ux/manager-pci@1.4.5) (2019-08-13)
+
+
+### Bug Fixes
+
+* **pci.projects.kube:** disable all actions ([#1191](https://github.com/ovh-ux/manager/issues/1191)) ([8a90259](https://github.com/ovh-ux/manager/commit/8a90259))
+
+
+
+## [1.4.4](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@1.4.3...@ovh-ux/manager-pci@1.4.4) (2019-08-13)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 35] ([4a01116](https://github.com/ovh-ux/manager/commit/4a01116))
+
+
+
+## [1.4.3](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@1.4.2...@ovh-ux/manager-pci@1.4.3) (2019-08-13)
+
+
+### Bug Fixes
+
+* **pci.components.flavor:** allow to specify image type ([#1179](https://github.com/ovh-ux/manager/issues/1179)) ([3903000](https://github.com/ovh-ux/manager/commit/3903000))
+
+
+
+## [1.4.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@1.4.1...@ovh-ux/manager-pci@1.4.2) (2019-08-13)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 35] ([045a0de](https://github.com/ovh-ux/manager/commit/045a0de))
+
+
+
+## [1.4.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@1.4.0...@ovh-ux/manager-pci@1.4.1) (2019-08-12)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 29] ([d86bbc4](https://github.com/ovh-ux/manager/commit/d86bbc4))
+* **i18n:** add missing translations [CDS 30] ([9633e84](https://github.com/ovh-ux/manager/commit/9633e84))
+* **i18n:** add missing translations [CDS 31] ([84d1362](https://github.com/ovh-ux/manager/commit/84d1362))
+* **pci:** rename users & roles sidebar entry ([#1173](https://github.com/ovh-ux/manager/issues/1173)) ([db41cbc](https://github.com/ovh-ux/manager/commit/db41cbc))
+
+
+
 # [1.4.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci@1.3.2...@ovh-ux/manager-pci@1.4.0) (2019-08-07)
 
 

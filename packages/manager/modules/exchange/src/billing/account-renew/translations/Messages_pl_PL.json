@@ -1,0 +1,23 @@
+{
+  "exchange_update_billing_button_title": "Konfiguracja odnowienia",
+  "exchange_update_billing_action_title": "Okres odnowienia",
+  "exchange_update_billing_validation_title": "Zatwierdzenie",
+  "exchange_update_billing_periode_intro": "Wybierz okres automatycznego odnowienia każdego konta. <br />Zostanie on zastosowany od kolejnego odnowienia.",
+  "exchange_update_billing_actions_label": "Operacje",
+  "exchange_update_billing_email_label": "Konta e-mail",
+  "exchange_update_billing_expiration_date_label": "Data wygasania",
+  "exchange_update_billing_current_periode_label": "Aktualna wartość",
+  "exchange_update_billing_periode_label": "Odnowienie",
+  "exchange_update_billing_header_new_periode": "Nowy okres",
+  "exchange_update_billing_periode_action_MONTHLY": "Zmień na \"Co miesiąc\".",
+  "exchange_update_billing_periode_action_YEARLY": "Zmień na \"Co rok\".",
+  "exchange_update_billing_periode_action_DELETE_AT_EXPIRATION": "Zmień na \"Wygasa w określonym terminie\"",
+  "exchange_update_billing_periode_value_MONTHLY": "Co miesiąc",
+  "exchange_update_billing_periode_value_YEARLY": "Co rok",
+  "exchange_update_billing_periode_value_DELETE_AT_EXPIRATION": "Wygasa z końcem",
+  "exchange_update_billing_periode_delete_warning": "Uwaga! Ten wybór sprawi, że usługa wygaśnie a dane zostaną usunięte. Nie będziesz mógł odzyskać danych z konta.",
+  "exchange_update_billing_periode_resume": "Zmienisz okres odnowienia dla kont:",
+  "exchange_update_billing_periode_success": "Okres odnowienia wybranych kont został zaktualizowany.",
+  "exchange_update_billing_periode_partial": "Niektóre okresy odnowienia nie zostały zaktualizowane.",
+  "exchange_update_billing_periode_failure": "Wystąpił błąd podczas aktualizacji odnowienia kont."
+}

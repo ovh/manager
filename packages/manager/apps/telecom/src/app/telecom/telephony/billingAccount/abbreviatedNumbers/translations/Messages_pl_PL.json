@@ -1,0 +1,5 @@
+{
+  "telephony_abbreviated_numbers_title": "Numery skrócone",
+  "telephony_abbreviated_numbers_explaination": "Numery skrócone to numery składające się z 3 lub 4 cyfr i rozpoczynające się od cyfry 7.",
+  "telephony_abbreviated_numbers_pattern_error": "Pole musi zawierać liczbę składającą się z 3 lub 4 cyfr i rozpoczynającą się od cyfry 7."
+}

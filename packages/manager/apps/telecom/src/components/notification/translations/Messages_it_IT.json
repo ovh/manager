@@ -1,0 +1,18 @@
+{
+  "components_notification_delete": "Elimina",
+  "components_notification_type": "Tipo",
+  "components_notification_error_noSmsAccount": "Non hai account SMS",
+  "components_notification_loading": "Caricamento degli alert in corso...",
+  "components_notification_noNotification": "Nessun alert salvato",
+  "components_notification_frequency": "Frequenza di invio",
+  "components_notification_contact": "Contatto di notifica in caso di alert ",
+  "components_notification_account": "Account:",
+  "components_notification_confirm": "Vuoi davvero eliminare le notifiche sul servizio {{service}} per {{contact}}?",
+  "components_notification_add": "Aggiungi un alert",
+  "components_notification_mail": "Email",
+  "components_notification_sms": "SMS",
+  "components_notification_once": "Una volta",
+  "components_notification_5m": "Ogni 5 minuti",
+  "components_notification_1h": "Ogni ora",
+  "components_notification_6h": "Ogni 6 ore"
+}

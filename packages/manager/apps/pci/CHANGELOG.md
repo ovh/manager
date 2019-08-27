@@ -1,3 +1,21 @@
+## [2.1.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci-app@2.1.0...@ovh-ux/manager-pci-app@2.1.1) (2019-08-26)
+
+
+### Bug Fixes
+
+* use right files for jquery-ui ([09bcd73](https://github.com/ovh-ux/manager/commit/09bcd73))
+
+
+
+# [2.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci-app@2.0.0...@ovh-ux/manager-pci-app@2.1.0) (2019-08-12)
+
+
+### Features
+
+* **core:** add request-tagger interceptor ([e797d9d](https://github.com/ovh-ux/manager/commit/e797d9d))
+
+
+
 # [2.0.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-pci-app@1.2.0...@ovh-ux/manager-pci-app@2.0.0) (2019-07-22)
 
 

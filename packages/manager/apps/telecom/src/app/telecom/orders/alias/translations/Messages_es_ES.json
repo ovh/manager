@@ -1,0 +1,7 @@
+{
+  "telecom_orders_alias_title": "Contratación de números",
+  "telecom_orders_alias_billing_account_title": "Grupo de telefonía",
+  "telecom_orders_alias_billing_account_label": "Seleccione el grupo de telefonía:",
+  "telecom_orders_alias_billing_submit_label": "Contratar un número",
+  "telecom_orders_alias_billing_loading_error": "No se han podido cargar los grupos de telefonía"
+}

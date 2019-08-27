@@ -1,3 +1,12 @@
+# [0.2.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-vrack-app@0.1.2...@ovh-ux/manager-vrack-app@0.2.0) (2019-08-12)
+
+
+### Features
+
+* **core:** add request-tagger interceptor ([e797d9d](https://github.com/ovh-ux/manager/commit/e797d9d))
+
+
+
 ## [0.1.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-vrack-app@0.1.1...@ovh-ux/manager-vrack-app@0.1.2) (2019-07-15)
 
 

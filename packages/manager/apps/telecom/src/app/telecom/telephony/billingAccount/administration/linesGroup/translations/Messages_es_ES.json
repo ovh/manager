@@ -1,0 +1,19 @@
+{
+  "telephony_lines_group_title": "Agrupamiento de líneas",
+  "telephony_lines_group_info": "Información",
+  "telephony_lines_group_select": "Selección",
+  "telephony_lines_group_select_another": "Anterior",
+  "telephony_lines_group_select_ba_help": "Seleccione el grupo con los servicios que desea asociar al grupo actual:",
+  "telephony_lines_group_select_help": "Seleccione los servicios que desea asociar al grupo actual:",
+  "telephony_lines_group_line_count": "Cantidad de líneas asociadas: <strong>{{lines}}</strong>",
+  "telephony_lines_group_number_count": "Cantidad de números asociados: <strong>{{numbers}}</strong>",
+  "telephony_lines_group_telephony_group": "Grupo de telefonía",
+  "telephony_lines_group_line_and_number": "Líneas y números",
+  "telephony_lines_group_line": "Línea",
+  "telephony_lines_group_alias": "Número",
+  "telephony_lines_group_pool": "Rango de números",
+  "telephony_lines_group_attach": "Asociar los servicios seleccionados",
+  "telephony_lines_group_service_none": "El grupo {{ group }} no contiene ningún servicio que pueda asociar.",
+  "telephony_lines_group_attach_success": "Los servicios se han asociado correctamente.",
+  "telephony_lines_group_attach_warning": "Algunos servicios no han sido asociados."
+}
