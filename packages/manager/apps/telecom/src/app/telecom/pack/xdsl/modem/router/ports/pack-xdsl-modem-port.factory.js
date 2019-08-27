@@ -1,4 +1,5 @@
 import assignIn from 'lodash/assignIn';
+import identity from 'lodash/identity';
 import isBoolean from 'lodash/isBoolean';
 import pick from 'lodash/pick';
 import without from 'lodash/without';
@@ -46,7 +47,7 @@ angular.module('managerApp').factory('PackXdslModemPortObject', (OvhApiXdsl, $tr
           xdslId: serviceName,
           name: this.name,
         },
-        pick(pick(this.tempValue, Object.keys(template)), _.identity),
+        pick(pick(this.tempValue, Object.keys(template)), identity),
       ).$promise.then(() => {
         assignIn(self, self.tempValue);
         self.toggleEdit(false);
@@ -62,7 +63,7 @@ angular.module('managerApp').factory('PackXdslModemPortObject', (OvhApiXdsl, $tr
       {
         xdslId: serviceName,
       },
-      pick(pick(this.tempValue, Object.keys(template)), _.identity),
+      pick(pick(this.tempValue, Object.keys(template)), identity),
     ).$promise.then((data) => {
       assignIn(self, pick(data, Object.keys(template)));
       self.toggleEdit(false);
