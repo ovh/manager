@@ -1,3 +1,12 @@
+## [4.0.1](https://github.com/ovh-ux/ng-ovh-contact/compare/v4.0.0...v4.0.1) (2019-08-27)
+
+
+### Bug Fixes
+
+* apply eslint rules ([87432ec](https://github.com/ovh-ux/ng-ovh-contact/commit/87432ec))
+
+
+
 # [4.0.0](https://github.com/ovh-ux/ng-ovh-contact/compare/v3.0.0...v4.0.0) (2019-08-22)
 
 
