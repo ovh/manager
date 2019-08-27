@@ -1,3 +1,12 @@
+## [7.1.11](https://github.com/ovh-ux/ng-ovh-otrs/compare/v7.1.10...v7.1.11) (2019-08-27)
+
+
+### Bug Fixes
+
+* **popup:** add excluded service types for us accounts ([#109](https://github.com/ovh-ux/ng-ovh-otrs/issues/109)) ([40c464a](https://github.com/ovh-ux/ng-ovh-otrs/commit/40c464a))
+
+
+
 ## [7.1.10](https://github.com/ovh-ux/ng-ovh-otrs/compare/v7.1.9...v7.1.10) (2019-08-09)
 
 
