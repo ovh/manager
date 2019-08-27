@@ -6,6 +6,9 @@ import 'script-loader!jquery';
 import 'script-loader!lodash';
 /* eslint-enable import/no-webpack-loader-syntax, import/extensions */
 
+// lodash imports
+import get from 'lodash/get';
+
 // deps
 import angular from 'angular';
 import 'angular-translate';
@@ -66,12 +69,15 @@ angular
     ssoAuthenticationProvider.allowIncompleteNic(true);
   })
   .config(registerState)
-  .run(/* @ngInject */ ($transitions, TranslateService) => {
+  .run(/* @ngInject */ ($transitions) => {
     $transitions.onBefore({}, (transition) => {
-      if (transition.params().lang
-        && TranslateService.getUserLocale().indexOf(transition.params().lang) === -1) {
+      const fromLang = get(transition.params('from'), 'lang');
+      const toLang = get(transition.params('to'), 'lang');
+
+      if (fromLang && toLang && fromLang !== toLang) {
         return window.location.reload();
       }
+
       return true;
     });
   })
