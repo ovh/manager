@@ -1,8 +1,8 @@
 <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
-<oui-message data-type="info" data-dismissable="false" data-ng-if="!$ctrl.cluster.isUpToDate">
+<oui-message data-type="info" data-dismissable="false" data-ng-if="!$ctrl.cluster.hasLatestPatchVersion() && !$ctrl.cluster.isUpdating()">
     <p data-ng-bind-html="::'kube_service_cluster_update_available' | translate"></p>
     <oui-button data-variant="primary"
-                data-disabled="$ctrl.cluster.status !== $ctrl.STATUS.READY"
+                data-disabled="!$ctrl.cluster.isReady()"
                 data-on-click="$ctrl.updateCluster()">
         <span data-translate="kube_service_common_update"></span>
     </oui-button>
