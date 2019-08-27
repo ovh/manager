@@ -11195,22 +11195,10 @@ ovh-ngstrap@^4.0.2:
   resolved "https://registry.yarnpkg.com/ovh-ngstrap/-/ovh-ngstrap-4.0.2.tgz#059291bfb9f59b78df991e476dd2ede0507cb3c9"
   integrity sha1-BZKRv7n1m3jfmR5HbdLt4FB8s8k=
 
-ovh-ui-angular@^3.2.4:
-  version "3.7.1"
-  resolved "https://registry.yarnpkg.com/ovh-ui-angular/-/ovh-ui-angular-3.7.1.tgz#67f40d8b9a748c44986fd994c0d46e6aa83109e4"
-  integrity sha512-BRhK1BAU5/AQ9BDz4s+ItZuitY7Rk1iBo7bUT7pp19k7FUozUKIS0eiJIgwGSgQxTL9J6RwQTgvwialyydxFFA==
-  dependencies:
-    bloodhound-js "^1.2.3"
-    clipboard "^2.0.1"
-    escape-string-regexp "^1.0.5"
-    flatpickr "^4.5.2"
-    popper.js "^1.14.4"
-    ui-select "^0.19.8"
-
-ovh-ui-angular@^3.7.3:
-  version "3.7.3"
-  resolved "https://registry.yarnpkg.com/ovh-ui-angular/-/ovh-ui-angular-3.7.3.tgz#848788e6c3a81668136ff9f2c7d95db90fb2b5ea"
-  integrity sha512-rEEwctmjS77k7ZpZftJ98jum/fXwmpa53HlUOH/7d0ajsJ4thnY8Yt/T++oUBjhqXD2xuDleN2JD5ftpACxryw==
+ovh-ui-angular@^3.7.4:
+  version "3.7.4"
+  resolved "https://registry.yarnpkg.com/ovh-ui-angular/-/ovh-ui-angular-3.7.4.tgz#fa211e2a4445c83fcf973ad596637be859a67d13"
+  integrity sha512-b6a0G4F1seoivqTY9sczjF8P2DlqZcqCdCSxFl6cq4HGVDqGcTZ/Su5gRGOsBP4CmmuvXjCsS7Veno8fPqISkw==
   dependencies:
     bloodhound-js "^1.2.3"
     clipboard "^2.0.1"
