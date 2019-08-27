@@ -91,7 +91,6 @@
     "ckeditor": "^4.7.2",
     "clipboard": "^1.7.1",
     "df-tab-menu": "^0.3.0",
-    "esvit-ng-ckeditor": "esvit/ng-ckeditor#^0.2.1",
     "filesize": "^3.5.10",
     "flatpickr": "^4.5.7",
     "font-awesome": "^4.5.0",

@@ -74,7 +74,6 @@ angular
     ngOvhOtrs,
     'ovh-api-services',
     ovhManagerNavbar,
-    'ngCkeditor',
     'moment-picker',
     'oui',
     'Module.exchange',
