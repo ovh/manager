@@ -406,7 +406,8 @@ export default /* @ngInject */ function (
           extra.region,
           coreConfig.getRegion(),
         )))
-        .filter(api => !includes(OTRS_POPUP_API_EXCLUDED, api.path))
+        .filter(api => !includes(OTRS_POPUP_API_EXCLUDED.ALL
+          .concat(OTRS_POPUP_API_EXCLUDED[coreConfig.getRegion()]), api.path))
         .map(api => ({
           route: get(OTRS_POPUP_API_ALIASES, api.path, api.path),
           name: $translate.instant(`otrs_service_type_${snakeCase(api.path)}`),
