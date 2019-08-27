@@ -21,11 +21,11 @@
     "lint:js": "eslint --fix .",
     "lint:md": "remark -qf .",
     "packages:publish": "node ./scripts/publish",
+    "release": "node ./scripts/release",
+    "split": "scripts/split.js",
     "test": "yarn lint && yarn run test:e2e",
     "test:e2e": "lerna run test:e2e --stream --concurrency=1",
-    "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
-    "release": "node ./scripts/release",
-    "split": "scripts/split.js"
+    "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md"
   },
   "devDependencies": {
     "@commitlint/cli": "^7.6.0",
@@ -68,8 +68,5 @@
   "engines": {
     "node": ">=8.11",
     "yarn": ">=1.17.3"
-  },
-  "resolutions": {
-    "ovh-ui-angular": "3.7.2"
   }
 }
