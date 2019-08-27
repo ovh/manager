@@ -1,3 +1,10 @@
+import difference from 'lodash/difference';
+import find from 'lodash/find';
+import get from 'lodash/get';
+import head from 'lodash/head';
+import map from 'lodash/map';
+import remove from 'lodash/remove';
+
 angular
   .module('App')
   .controller(
@@ -33,7 +40,7 @@ angular
             intersect: false,
             callbacks: {
               title(data) {
-                return moment(_.get(_.first(data), 'xLabel')).fromNow();
+                return moment(get(head(data), 'xLabel')).fromNow();
               },
             },
           },
@@ -93,7 +100,7 @@ angular
           const condition = v => $scope.selected.type === v;
           return (
             $scope.model.db
-            && !!_.find($scope.model.constants.dbTypes, condition)
+            && !!find($scope.model.constants.dbTypes, condition)
           );
         },
       };
@@ -152,7 +159,7 @@ angular
                     : $translate.instant(
                       `hosting_tab_STATISTICS_series_${serie.serieName}`,
                     ),
-                  _.map(serie.points, point => ({
+                  map(serie.points, point => ({
                     x: parseFloat(point.x.toFixed(2)),
                     y: parseFloat(point.y.toFixed(2)),
                   })),
@@ -207,7 +214,7 @@ angular
       };
 
       function removeSqlStatistics() {
-        $scope.model.constants.types = _.difference(
+        $scope.model.constants.types = difference(
           $scope.model.constants.types,
           $scope.model.constants.dbTypes,
         );
@@ -229,7 +236,7 @@ angular
           $scope.model.constants = data;
           $scope.model.constants.types = $scope.model.constants.types
             .concat($scope.model.constants.dbTypes);
-          _.remove(
+          remove(
             $scope.model.constants.types,
             value => value === 'IN_HTTP_MEAN_RESPONSE_TIME',
           );

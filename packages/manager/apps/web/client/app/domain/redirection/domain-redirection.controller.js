@@ -1,3 +1,7 @@
+import forEach from 'lodash/forEach';
+import has from 'lodash/has';
+import isEmpty from 'lodash/isEmpty';
+
 angular.module('controllers').controller(
   'controllers.Domain.Redirection',
   class DomainRedirectionCtrl {
@@ -68,8 +72,8 @@ angular.module('controllers').controller(
           this.redirectionList = results;
 
           if (
-            _.has(results, 'list.results')
-            && !_(results.list.results).isEmpty()
+            has(results, 'list.results')
+            && !isEmpty(results.list.results)
           ) {
             this.hasResult = true;
           }
@@ -107,7 +111,7 @@ angular.module('controllers').controller(
     }
 
     goSearch() {
-      if (!_.isEmpty(this.search.value)) {
+      if (!isEmpty(this.search.value)) {
         this.loading.search = true;
       }
 
@@ -163,7 +167,7 @@ angular.module('controllers').controller(
             ],
           ];
 
-          _.forEach(results.list.results, (redirection) => {
+          forEach(results.list.results, (redirection) => {
             datasToReturn.push([
               redirection.fieldDisplayType,
               this.constructor.getDomain(redirection),

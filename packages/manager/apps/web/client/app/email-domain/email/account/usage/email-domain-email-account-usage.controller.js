@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular.module('App').controller(
   'EmailsUpdateUsageAccountCtrl',
   class EmailsUpdateUsageAccountCtrl {
@@ -18,7 +20,7 @@ angular.module('App').controller(
     }
 
     $onInit() {
-      this.isDelegate = _.get(this.$scope.currentActionData, 'delegate', false);
+      this.isDelegate = get(this.$scope.currentActionData, 'delegate', false);
       this.account = this.isDelegate
         ? this.$scope.currentActionData.account
         : this.$scope.currentActionData;

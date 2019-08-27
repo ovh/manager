@@ -1,3 +1,16 @@
+import cloneDeep from 'lodash/cloneDeep';
+import filter from 'lodash/filter';
+import forEach from 'lodash/forEach';
+import get from 'lodash/get';
+import head from 'lodash/head';
+import includes from 'lodash/includes';
+import isArray from 'lodash/isArray';
+import isObject from 'lodash/isObject';
+import keys from 'lodash/keys';
+import map from 'lodash/map';
+import merge from 'lodash/merge';
+import set from 'lodash/set';
+
 angular
   .module('App')
   .controller('PrivateDatabaseMetricsCtrl', class PrivateDatabaseMetricsCtrl {
@@ -50,10 +63,7 @@ angular
                 mode: 'label',
                 intersect: false,
                 callbacks: {
-                  title: items => _(items).chain()
-                    .first()
-                    .get('xLabel')
-                    .value(),
+                  title: items => get(head(items), 'xLabel'),
                   label: item => `${item.yLabel}%`,
                 },
               },
@@ -99,10 +109,7 @@ angular
                 mode: 'label',
                 intersect: false,
                 callbacks: {
-                  title: items => _(items).chain()
-                    .first()
-                    .get('xLabel')
-                    .value(),
+                  title: items => get(head(items), 'xLabel'),
                   label: item => `${item.yLabel}`,
                 },
               },
@@ -147,10 +154,7 @@ angular
                 mode: 'label',
                 intersect: false,
                 callbacks: {
-                  title: items => _(items).chain()
-                    .first()
-                    .get('xLabel')
-                    .value(),
+                  title: items => get(head(items), 'xLabel'),
                   label: item => `${item.yLabel}ms`,
                 },
               },
@@ -206,31 +210,34 @@ angular
           range: 'DAY',
         })
         .then((chartData) => {
-          if (!_(chartData).isArray()) {
+          if (!isArray(chartData)) {
             throw new Error(this.$translate.instant('common_temporary_error'));
           }
 
           const chartSettings = this.PRIVATE_DATABASE_METRICS.specificDatabaseVersionChartSelection[
             this.$scope.database.version
           ];
-          _(this.PRIVATE_DATABASE_METRICS.specificChartSettings)
-            .filter(currentChartSettings => !_(chartSettings).isArray()
-                            || _(chartSettings).includes(currentChartSettings.chartName))
-            .forEach((currentChartSettings) => {
+
+          forEach(
+            filter(
+              this.PRIVATE_DATABASE_METRICS.specificChartSettings,
+              currentChartSettings => !isArray(chartSettings)
+                || includes(chartSettings, currentChartSettings.chartName),
+            ),
+            (currentChartSettings) => {
               const { chartName } = currentChartSettings;
               const currentChartData = chartData[currentChartSettings.dataFromAPIIndex];
 
-              if (!_(currentChartData).isObject()) {
+              if (!isObject(currentChartData)) {
                 this.charts[chartName] = {
                   hasData: false,
                   name: chartName,
                 };
               } else {
-                const settingsForAllCharts = _(this.PRIVATE_DATABASE_METRICS.settingsForAllCharts)
-                  .clone(true);
-                const settingsForCurrentChart = _(settingsForAllCharts)
-                  .merge(currentChartSettings)
-                  .value();
+                const settingsForAllCharts = cloneDeep(
+                  this.PRIVATE_DATABASE_METRICS.settingsForAllCharts,
+                );
+                const settingsForCurrentChart = merge(settingsForAllCharts, currentChartSettings);
                 const chart = new this.WucChartjsFactory(settingsForCurrentChart);
                 const serieName = this.$translate.instant(`privateDatabase_metrics_${chartName}_graph_${currentChartData.metric.replace(/\./g, '_')}`);
                 const serieValue = this.constructor.getChartSeries(currentChartData);
@@ -247,10 +254,11 @@ angular
                   name: chartName,
                 };
               }
-            }).value();
+            },
+          );
         })
         .catch((err) => {
-          _.set(err, 'type', err.type || 'ERROR');
+          set(err, 'type', err.type || 'ERROR');
           this.Alerter.alertFromSWS(this.$translate.instant('privateDatabase_dashboard_loading_error'), err, this.$scope.alerts.main);
         })
         .finally(() => {
@@ -259,7 +267,7 @@ angular
     }
 
     static getChartSeries(data) {
-      return _(data.dps).keys().map(key => ({
+      return map(keys(data.dps), key => ({
         x: key * 1000,
         y: Math.round(data.dps[key] * 100) / 100,
       })).value();

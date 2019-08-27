@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular.module('App').controller(
   'DomainLockDisableCtrl',
   class DomainLockDisableCtrl {
@@ -33,7 +35,7 @@ angular.module('App').controller(
           this.$rootScope.$broadcast('domain.protection.unlock.error', err);
           this.Alerter.alertFromSWS(
             this.$translate.instant('domain_configuration_protection_desactivate_fail'),
-            _.get(err, 'data', err),
+            get(err, 'data', err),
             this.$scope.alerts.main,
           );
         })

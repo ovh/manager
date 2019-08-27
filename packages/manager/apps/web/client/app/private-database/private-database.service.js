@@ -1,3 +1,13 @@
+import clone from 'lodash/clone';
+import filter from 'lodash/filter';
+import findIndex from 'lodash/findIndex';
+import forEach from 'lodash/forEach';
+import get from 'lodash/get';
+import map from 'lodash/map';
+import mapKeys from 'lodash/mapKeys';
+import size from 'lodash/size';
+import some from 'lodash/some';
+
 angular.module('services').service(
   'PrivateDatabase',
   class PrivateDatabase {
@@ -50,9 +60,9 @@ angular.module('services').service(
         this.cache.remove(key);
       } else {
         this.cache.removeAll();
-        _(Object.keys(this.requests)).forEach((request) => {
+        forEach(Object.keys(this.requests), (request) => {
           this.requests[request] = null;
-        }).value();
+        });
       }
     }
 
@@ -60,7 +70,7 @@ angular.module('services').service(
      * Get order models
      */
     getOrderModels() {
-      return this.$http.get('apiv6/order.json', { cache: true }).then(response => _.get(response, 'data.models', {}));
+      return this.$http.get('apiv6/order.json', { cache: true }).then(response => get(response, 'data.models', {}));
     }
 
     /**
@@ -123,14 +133,14 @@ angular.module('services').service(
             });
         })
         .then((formerDatabase) => {
-          const database = _(formerDatabase).clone();
-          database.capabilities = _.mapKeys(database.capabilities, capability => capability.object);
+          const database = clone(formerDatabase);
+          database.capabilities = mapKeys(database.capabilities, capability => capability.object);
           return database;
         })
         .then((formerDatabase) => {
           // we don't have any other certificate types right now
           // and the API doesn't have this field
-          const database = _(formerDatabase).clone();
+          const database = clone(formerDatabase);
           database.certificateType = 'TLS CA';
           return database;
         })
@@ -277,18 +287,22 @@ angular.module('services').service(
       const deferred = this.$q.defer();
       let returnGrant;
 
+
       // First get databases
       this.getDatabases(serviceName)
-        .then(resp => _(resp)
-          .map(base => ({
-            virgin: true,
-            dataBase: base,
-            value: 'none',
-          }))
-          .mapKeys(item => item.dataBase)
-          .value())
+        .then(resp => mapKeys(
+          map(
+            resp,
+            base => ({
+              virgin: true,
+              dataBase: base,
+              value: 'none',
+            }),
+          ),
+          item => item.dataBase,
+        ))
         .then((grants) => {
-          if (!_.size(grants)) {
+          if (!size(grants)) {
             return deferred.reject(grants);
           }
           returnGrant = grants;
@@ -297,7 +311,7 @@ angular.module('services').service(
           return this.getUserGrant(serviceName, user);
         })
         .then(response => response.data)
-        .then(data => this.$q.all(_.map(
+        .then(data => this.$q.all(map(
           data,
           grantsBase => this.getUserGrantDatabase(serviceName, user, grantsBase)
             .then((result) => {
@@ -397,7 +411,7 @@ angular.module('services').service(
 
     canOrder(serviceName) {
       return this.$http.get(this.swsProxypassOrderPath)
-        .then(response => _.findIndex(response.data, service => service === serviceName) !== -1)
+        .then(response => findIndex(response.data, service => service === serviceName) !== -1)
         .catch(() => false);
     }
 
@@ -405,7 +419,7 @@ angular.module('services').service(
       return this.canOrder(serviceName).then((canOrder) => {
         if (canOrder) {
           return this.$http.get(`${this.swsProxypassOrderPath}/${serviceName}`)
-            .then(response => _.findIndex(response.data, service => service === 'ram' || service === 'upgrade') !== -1);
+            .then(response => findIndex(response.data, service => service === 'ram' || service === 'upgrade') !== -1);
         }
         return false;
       });
@@ -415,7 +429,7 @@ angular.module('services').service(
       return this.$http
         .get(`apiv6/order.json?d=${Date.now()}`)
         .then((response) => {
-          if (_.get(response, 'data.models', false)) {
+          if (get(response, 'data.models', false)) {
             return response.data.models['hosting.PrivateDatabase.AvailableRamSizeEnum'].enum;
           }
           return [];
@@ -443,7 +457,7 @@ angular.module('services').service(
         .then((durations) => {
           defer.notify(durations);
 
-          return this.$q.all(_.map(durations, duration => this.$http
+          return this.$q.all(map(durations, duration => this.$http
             .get(`${this.swsProxypassOrderPath}/${serviceName}/ram/${duration}`, {
               params: {
                 ram: opts.ram,
@@ -578,17 +592,17 @@ angular.module('services').service(
 
       const doFilter = () => {
         if (filters) {
-          filteredTask = _.filter(tasks, task => _.some(filters, task.function));
+          filteredTask = filter(tasks, task => some(filters, task.function));
         } else {
           filteredTask = tasks;
         }
         defer.resolve(filteredTask);
       };
 
-      this.$q.all(_.map(['init', 'doing', 'todo'], status => this.getTasksWithStatus(serviceName, status)
-        .then(response => _.map(response, tasksId => this.getTaskDetails(serviceName, tasksId)))
+      this.$q.all(map(['init', 'doing', 'todo'], status => this.getTasksWithStatus(serviceName, status)
+        .then(response => map(response, tasksId => this.getTaskDetails(serviceName, tasksId)))
         .then((requests) => {
-          tasks = _.filter(requests, request => _.get(request, 'data'));
+          tasks = filter(requests, request => get(request, 'data'));
         })
         .then(doFilter())
         .catch(doFilter())));
@@ -597,7 +611,7 @@ angular.module('services').service(
 
     restartPoll(filters) {
       this.getTasksToPoll(filters).then((tasks) => {
-        _.forEach(tasks, (task) => {
+        forEach(tasks, (task) => {
           let namespace = `privateDatabase.${task.function.replace(/\//g, '.')}`;
           namespace = namespace.replace(/\.create|\.update/g, '.set');
 
@@ -671,7 +685,7 @@ angular.module('services').service(
 
       this.getBDDSId(serviceName)
         .then(response => this.$q
-          .all(_.map(response, bdd => this.getBDD(serviceName, bdd).then((BDD) => {
+          .all(map(response, bdd => this.getBDD(serviceName, bdd).then((BDD) => {
             bddsTab.push(BDD);
             defer.notify(bddsTab);
           })))

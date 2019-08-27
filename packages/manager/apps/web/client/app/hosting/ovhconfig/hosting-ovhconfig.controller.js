@@ -1,3 +1,10 @@
+import get from 'lodash/get';
+import indexOf from 'lodash/indexOf';
+import isArray from 'lodash/isArray';
+import isEmpty from 'lodash/isEmpty';
+import isString from 'lodash/isString';
+import set from 'lodash/set';
+
 angular.module('App').controller(
   'HostingEditOvhConfig',
   class HostingEditOvhConfig {
@@ -44,7 +51,7 @@ angular.module('App').controller(
     }
 
     static parseLabel(label) {
-      if (_.isString(label) && !_.isEmpty(label)) {
+      if (isString(label) && !isEmpty(label)) {
         return label.replace('.', '_');
       }
       return 'null';
@@ -84,7 +91,7 @@ angular.module('App').controller(
         })
         .finally(() => {
           this.loading = false;
-          if (_.isArray(this.oldConfigs) && !_.isEmpty(this.oldConfigs)) {
+          if (isArray(this.oldConfigs) && !isEmpty(this.oldConfigs)) {
             this.toggle.areOldConfigsExist = true;
           } else {
             this.toggle.areOldConfigsExist = false;
@@ -108,11 +115,11 @@ angular.module('App').controller(
     changeToConfig(ovhConfig) {
       this.clearDisplayedError();
       this.toggle.isConfigIsEdited = false;
-      _.set(this.model, 'engineName', ovhConfig.engineName);
-      _.set(this.model, 'engineVersion', ovhConfig.engineVersion);
-      _.set(this.model, 'environment', ovhConfig.environment);
-      _.set(this.model, 'httpFirewall', ovhConfig.httpFirewall);
-      _.set(this.model, 'container', ovhConfig.container || 'stable');
+      set(this.model, 'engineName', ovhConfig.engineName);
+      set(this.model, 'engineVersion', ovhConfig.engineVersion);
+      set(this.model, 'environment', ovhConfig.environment);
+      set(this.model, 'httpFirewall', ovhConfig.httpFirewall);
+      set(this.model, 'container', ovhConfig.container || 'stable');
       this.checkCohesion();
     }
 
@@ -130,7 +137,7 @@ angular.module('App').controller(
       if (this.toggle.isRollbackProcess) {
         this.toggle.isConfigCanBeSaved = true;
       } else if (
-        _.indexOf(
+        indexOf(
           this.apiStruct.models[
             'hosting.web.ovhConfig.AvailableEngineVersionEnum'
           ].enum,
@@ -190,7 +197,7 @@ angular.module('App').controller(
     displayError(err) {
       this.clearDisplayedError();
       this.checkCohesion();
-      this.errorMsg = _.get(err, 'message');
+      this.errorMsg = get(err, 'message');
       this.toggle.isErrorNotDefined = !this.errorMsg;
     }
   },

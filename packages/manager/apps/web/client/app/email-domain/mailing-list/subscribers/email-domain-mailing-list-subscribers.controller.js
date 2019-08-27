@@ -1,3 +1,13 @@
+import filter from 'lodash/filter';
+import forEach from 'lodash/forEach';
+import indexOf from 'lodash/indexOf';
+import isEmpty from 'lodash/isEmpty';
+import map from 'lodash/map';
+import max from 'lodash/max';
+import set from 'lodash/set';
+import some from 'lodash/some';
+import xor from 'lodash/xor';
+
 angular.module('App').controller(
   'MailingListsSubscribersCtrl',
   class MailingListsSubscribersCtrl {
@@ -47,7 +57,7 @@ angular.module('App').controller(
         (pollObject, task) => {
           if (task.account === this.mailingList.name) {
             const action = task.action.split(':')[0];
-            if (_.indexOf(['add', 'del'], action) !== -1) {
+            if (indexOf(['add', 'del'], action) !== -1) {
               this.subscribers.updating = true;
             }
           }
@@ -58,7 +68,7 @@ angular.module('App').controller(
         (pollObject, task) => {
           if (task.account === this.mailingList.name) {
             const action = task.action.split(':')[0];
-            if (_.indexOf(['add', 'del'], action) !== -1) {
+            if (indexOf(['add', 'del'], action) !== -1) {
               this.runPolling().then((hasPolling) => {
                 if (!hasPolling) {
                   this.subscribers.updating = false;
@@ -121,9 +131,9 @@ angular.module('App').controller(
             this.subscribers.selected = [];
             break;
           case 1:
-            this.subscribers.selected = _.filter(
-              _.map(this.subscribers.details, 'email'),
-              result => !_.some(this.subscribers.selected, result.email),
+            this.subscribers.selected = filter(
+              map(this.subscribers.details, 'email'),
+              result => !some(this.subscribers.selected, result.email),
             );
             break;
           case 2:
@@ -137,12 +147,12 @@ angular.module('App').controller(
     }
 
     toggleSubscriber(email) {
-      this.subscribers.selected = _.xor(this.subscribers.selected, [email]);
+      this.subscribers.selected = xor(this.subscribers.selected, [email]);
     }
 
     applySelection(subscribers) {
-      _.forEach(subscribers, (subscriber) => {
-        _.set(subscriber, 'selected', _.indexOf(this.subscribers.selected, subscriber.email) !== -1);
+      forEach(subscribers, (subscriber) => {
+        set(subscriber, 'selected', indexOf(this.subscribers.selected, subscriber.email) !== -1);
       });
     }
 
@@ -169,7 +179,7 @@ angular.module('App').controller(
           this.$scope.alerts.main,
         ))
         .finally(() => {
-          if (_.isEmpty(this.subscribers.ids)) {
+          if (isEmpty(this.subscribers.ids)) {
             this.loading.subscribers = false;
           }
         });
@@ -196,7 +206,7 @@ angular.module('App').controller(
         .then((tasks) => {
           if (tasks.length > 0) {
             this.MailingLists.pollState(this.$stateParams.productId, {
-              id: _.max(tasks),
+              id: max(tasks),
               mailingList: this.mailingList,
               successStates: ['noState'],
               namespace: 'mailingLists.subscribers.poll',

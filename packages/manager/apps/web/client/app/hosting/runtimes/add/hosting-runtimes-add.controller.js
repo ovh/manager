@@ -1,3 +1,6 @@
+import has from 'lodash/has';
+import includes from 'lodash/includes';
+
 angular.module('App').controller(
   'controllers.Hosting.Runtimes.create',
   class HostingRuntimesCreateCtrl {
@@ -47,8 +50,8 @@ angular.module('App').controller(
 
     isValid() {
       if (
-        _.has(this, 'entryToCreate.type')
-        && !_.includes(this.entryToCreate.type, this.HOSTING_RUNTIME.PHP)
+        has(this, 'entryToCreate.type')
+        && !includes(this.entryToCreate.type, this.HOSTING_RUNTIME.PHP)
       ) {
         return (
           this.entryToCreate

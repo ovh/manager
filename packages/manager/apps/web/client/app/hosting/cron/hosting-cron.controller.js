@@ -1,4 +1,7 @@
-import _ from 'lodash';
+import get from 'lodash/get';
+import head from 'lodash/head';
+import isEmpty from 'lodash/isEmpty';
+import map from 'lodash/map';
 
 export default class HostingCronsCtrl {
   /* @ngInject */
@@ -49,8 +52,8 @@ export default class HostingCronsCtrl {
 
   getCrons({ criteria }) {
     let filters = null;
-    if (!_.isEmpty(criteria)) {
-      const { value } = _.head(criteria);
+    if (!isEmpty(criteria)) {
+      const { value } = head(criteria);
       filters = [
         { command: value },
         { description: value },
@@ -62,7 +65,7 @@ export default class HostingCronsCtrl {
       filters,
     )
       .then(crons => ({
-        data: _.map(crons, id => ({ id })),
+        data: map(crons, id => ({ id })),
         meta: {
           totalCount: crons.length,
         },
@@ -70,7 +73,7 @@ export default class HostingCronsCtrl {
       .catch((err) => {
         this.Alerter.alertFromSWS(
           this.$translate.instant('this.hosting_tab_CRON_configuration_error'),
-          _.get(err, 'data', err),
+          get(err, 'data', err),
           this.$scope.alerts.main,
         );
       });

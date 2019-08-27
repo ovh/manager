@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import isString from 'lodash/isString';
 
 export default class WebAppCtrl {
   /* @ngInject */
@@ -31,7 +31,7 @@ export default class WebAppCtrl {
     // Scroll to anchor id
     this.$scope.scrollTo = (id) => {
       // Set focus to target
-      if (_.isString(id)) {
+      if (isString(id)) {
         this.$document[0].getElementById(id).focus();
       }
     };

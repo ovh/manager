@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular.module('App').controller(
   'EmailsUpdateAccountCtrl',
   class EmailsUpdateAccountCtrl {
@@ -20,7 +22,7 @@ angular.module('App').controller(
     }
 
     $onInit() {
-      this.isDelegate = _.get(this.$scope.currentActionData, 'delegate', false);
+      this.isDelegate = get(this.$scope.currentActionData, 'delegate', false);
       this.account = angular.copy(this.isDelegate
         ? this.$scope.currentActionData.account
         : this.$scope.currentActionData);
@@ -42,7 +44,7 @@ angular.module('App').controller(
         });
       this.User.getUrlOf('guides')
         .then((guides) => {
-          this.guideMigrate = _.get(guides, 'emailsMigrateToExchange');
+          this.guideMigrate = get(guides, 'emailsMigrateToExchange');
         })
         .catch(() => {
           this.guideMigrate = null;
@@ -76,7 +78,7 @@ angular.module('App').controller(
         })
         .catch(err => this.Alerter.alertFromSWS(
           this.$translate.instant('email_tab_error'),
-          _.get(err, 'data', err),
+          get(err, 'data', err),
           this.$scope.alerts.main,
         ))
         .finally(() => {
@@ -114,7 +116,7 @@ angular.module('App').controller(
         ))
         .catch(err => this.Alerter.alertFromSWS(
           this.$translate.instant('email_tab_modal_update_account_error'),
-          _.get(err, 'data', err),
+          get(err, 'data', err),
           this.$scope.alerts.main,
         ))
         .finally(() => {

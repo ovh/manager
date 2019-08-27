@@ -1,3 +1,7 @@
+import get from 'lodash/get';
+import isEmpty from 'lodash/isEmpty';
+import set from 'lodash/set';
+
 angular.module('App').controller(
   'DomainTabDynHostCtrl',
   class DomainTabDynHostCtrl {
@@ -73,7 +77,7 @@ angular.module('App').controller(
       }
       this.Alerter.alertFromSWS(
         this.$translate.instant(trKey),
-        _.get(err, 'data', err),
+        get(err, 'data', err),
         alert,
       );
     }
@@ -114,7 +118,7 @@ angular.module('App').controller(
       return this.Domain.getDynHosts(this.product.name, subDomain)
         .then((data) => {
           this.dynHosts = data;
-          if (!_.isEmpty(this.dynHosts)) {
+          if (!isEmpty(this.dynHosts)) {
             this.hasResult = true;
           }
         })
@@ -124,7 +128,7 @@ angular.module('App').controller(
           this.$scope.alerts.main,
         ))
         .finally(() => {
-          if (_.isEmpty(this.dynHosts)) {
+          if (isEmpty(this.dynHosts)) {
             this.loading.dynHosts = false;
           }
         });
@@ -142,7 +146,7 @@ angular.module('App').controller(
     }
 
     static subDomainToPunycode(item) {
-      _.set(item, 'subDomain', punycode.toUnicode(item.subDomain));
+      set(item, 'subDomain', punycode.toUnicode(item.subDomain));
       return item;
     }
   },

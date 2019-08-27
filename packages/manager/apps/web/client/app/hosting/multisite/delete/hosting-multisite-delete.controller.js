@@ -1,3 +1,6 @@
+import get from 'lodash/get';
+import indexOf from 'lodash/indexOf';
+
 angular.module('App').controller(
   'HostingRemoveDomainCtrl',
   class HostingRemoveDomainCtrl {
@@ -28,13 +31,13 @@ angular.module('App').controller(
 
       this.HostingDomain.getExistingDomains(this.$stateParams.productId, false)
         .then((data) => {
-          this.model.domains = _.get(data, 'existingDomains');
+          this.model.domains = get(data, 'existingDomains');
         })
         .catch((err) => {
           this.$scope.resetAction();
           this.Alerter.alertFromSWS(
             this.$translate.instant('hosting_tab_DOMAINS_configuration_remove_step1_loading_error'),
-            _.get(err, 'data', err),
+            get(err, 'data', err),
             this.$scope.alerts.main,
           );
         });
@@ -43,7 +46,7 @@ angular.module('App').controller(
     domainsWwwExists() {
       return (
         this.model.domains
-        && _.indexOf(this.model.domains, `www.${this.selected.domain.name}`) !== -1
+        && indexOf(this.model.domains, `www.${this.selected.domain.name}`) !== -1
       );
     }
 
@@ -66,7 +69,7 @@ angular.module('App').controller(
         .catch((err) => {
           this.Alerter.alertFromSWS(
             this.$translate.instant('hosting_tab_DOMAINS_configuration_remove_failure'),
-            _.get(err, 'data', err),
+            get(err, 'data', err),
             this.$scope.alerts.main,
           );
         });

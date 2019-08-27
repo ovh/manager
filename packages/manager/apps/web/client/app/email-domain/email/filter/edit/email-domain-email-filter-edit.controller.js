@@ -1,3 +1,9 @@
+import clone from 'lodash/clone';
+import every from 'lodash/every';
+import lodashFilter from 'lodash/filter';
+import get from 'lodash/get';
+import map from 'lodash/map';
+
 angular.module('App').controller(
   'EmailsEditFilterCtrl',
   class EmailsEditFilterCtrl {
@@ -11,7 +17,7 @@ angular.module('App').controller(
 
     $onInit() {
       this.account = angular.copy(this.$scope.currentActionData.account);
-      this.accounts = _.map(
+      this.accounts = map(
         this.$scope.currentActionData.accounts,
         account => `${account}@${this.account.domain}`,
       );
@@ -31,7 +37,7 @@ angular.module('App').controller(
           this.actions = models.models['domain.DomainFilterActionEnum'].enum;
           this.operands = models.models['domain.DomainFilterOperandEnum'].enum;
 
-          if (_.get(this.$scope.currentActionData, 'delegate', false)) {
+          if (get(this.$scope.currentActionData, 'delegate', false)) {
             return this.WucEmails.getDelegatedRules(
               this.account.email,
               this.filter.name,
@@ -50,7 +56,7 @@ angular.module('App').controller(
         .then((rules) => {
           if (rules != null) {
             this.filter.rules = rules.map((originalRule) => {
-              const rule = _(originalRule).clone();
+              const rule = clone(originalRule);
 
               const matchingHeader = this.headers.find(header => header === rule.header);
 
@@ -100,7 +106,7 @@ angular.module('App').controller(
     }
 
     filterRuleCheck() {
-      return _.every(
+      return every(
         this.filter.rules,
         rule => rule.value
           && rule.operand
@@ -111,8 +117,8 @@ angular.module('App').controller(
 
     updateFilter() {
       this.loading = true;
-      const rules = _.map(
-        _.filter(
+      const rules = map(
+        lodashFilter(
           this.filter.rules,
           rule => (rule.headerSelect !== '' || rule.header !== '')
             && rule.operand !== ''
@@ -136,7 +142,7 @@ angular.module('App').controller(
       filter.value = rule.value;
 
       let filterPromise;
-      if (_.get(this.$scope.currentActionData, 'delegate', false)) {
+      if (get(this.$scope.currentActionData, 'delegate', false)) {
         filterPromise = this.WucEmails.updateDelegatedFilter(
           this.account.email,
           filter,
@@ -158,7 +164,7 @@ angular.module('App').controller(
         ))
         .catch(err => this.Alerter.alertFromSWS(
           this.$translate.instant('email_tab_modal_edit_filter_error'),
-          _.get(err, 'data', err),
+          get(err, 'data', err),
           this.$scope.alerts.main,
         ))
         .finally(() => {

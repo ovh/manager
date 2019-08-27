@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular
   .module('App')
   .controller(
@@ -81,7 +83,7 @@ angular
           .catch((err) => {
             Alerter.alertFromSWS(
               $translate.instant('hosting_dashboard_cdn_order_error'),
-              _.get(err, 'data', err),
+              get(err, 'data', err),
               $scope.alerts.main,
             );
             $scope.resetAction();
@@ -126,7 +128,7 @@ angular
           .catch((err) => {
             Alerter.alertFromSWS(
               $translate.instant('hosting_dashboard_cdn_order_error'),
-              _.get(err, 'data', err),
+              get(err, 'data', err),
               $scope.alerts.main,
             );
           })

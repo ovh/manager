@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular.module('App').controller(
   'HostingModuleChangePasswordCtrl',
   class HostingModuleChangePasswordCtrl {
@@ -31,7 +33,7 @@ angular.module('App').controller(
             this.$translate.instant('hosting_configuration_tab_modules_update_fail', {
               t0: this.moduleToUpdate,
             }),
-            _.get(err, 'data', err),
+            get(err, 'data', err),
             this.$scope.alerts.main,
           );
           this.$scope.resetActions();

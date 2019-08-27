@@ -1,3 +1,5 @@
+import trim from 'lodash/trim';
+
 angular.module('App').controller(
   'EmailsCreateRedirectionCtrl',
   class EmailsCreateRedirectionCtrl {
@@ -54,7 +56,7 @@ angular.module('App').controller(
 
     createRedirection() {
       return this.WucEmails.createRedirection(this.$stateParams.productId, {
-        from: `${_.trim(this.model.redirectionFrom)}@${_.trim(this.model.redirectionSubdomainFrom)}${this.model.redirectionSubdomainFrom && '.'}${this.domain}`,
+        from: `${trim(this.model.redirectionFrom)}@${trim(this.model.redirectionSubdomainFrom)}${this.model.redirectionSubdomainFrom && '.'}${this.domain}`,
         localCopy: this.model.redirectionKeepCopy === 'local',
         to: this.model.redirectionTo,
       })

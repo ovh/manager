@@ -1,3 +1,12 @@
+import forEach from 'lodash/forEach';
+import get from 'lodash/get';
+import indexOf from 'lodash/indexOf';
+import isEmpty from 'lodash/isEmpty';
+import isEqual from 'lodash/isEqual';
+import map from 'lodash/map';
+import some from 'lodash/some';
+import xor from 'lodash/xor';
+
 angular.module('App').controller(
   'DomainTabZoneDnsCtrl',
   class DomainTabZoneDnsCtrl {
@@ -53,7 +62,7 @@ angular.module('App').controller(
     }
 
     goSearch() {
-      if (!_.isEmpty(this.search.value)) {
+      if (!isEmpty(this.search.value)) {
         this.loading.table = true;
       }
       this.$scope.$broadcast('paginationServerSide.loadPage', 1);
@@ -108,7 +117,7 @@ angular.module('App').controller(
           },
         )
         .finally(() => {
-          this.defaultsDns = _.get(
+          this.defaultsDns = get(
             defaults,
             'paginatedZone.records.results',
             [],
@@ -116,14 +125,14 @@ angular.module('App').controller(
             .filter(data => data.subDomain === '' && data.subDomainToDisplay === '')
             .map(value => value.targetToDisplay.slice(0, -1))
             .sort();
-          this.activatedDns = _.get(activated, 'dns', [])
+          this.activatedDns = get(activated, 'dns', [])
             .filter(dns => dns.isUsed)
             .map(value => value.host)
             .sort();
 
           if (
-            !_.isEmpty(this.defaultsDns)
-            && !_.isEqual(this.defaultsDns, this.activatedDns)
+            !isEmpty(this.defaultsDns)
+            && !isEqual(this.defaultsDns, this.activatedDns)
           ) {
             this.useDefaultsDns = false;
           }
@@ -144,7 +153,7 @@ angular.module('App').controller(
       )
         .then((tabZone) => {
           this.zone = tabZone;
-          if (_.get(tabZone, 'paginatedZone.records.results', []).length > 0) {
+          if (get(tabZone, 'paginatedZone.records.results', []).length > 0) {
             this.hasResult = true;
           }
           this.displayActivateZone = false;
@@ -156,12 +165,12 @@ angular.module('App').controller(
           ));
         })
         .then((data) => {
-          this.zoneStatusErrors = (data && !data.isDeployed && _.get(data, 'errors', [])) || [];
-          this.zoneStatusWarnings = _.get(data, 'warnings', []);
+          this.zoneStatusErrors = (data && !data.isDeployed && get(data, 'errors', [])) || [];
+          this.zoneStatusWarnings = get(data, 'warnings', []);
         })
         .catch((err) => {
           if (
-            /service(\s|\s\w+\s)expired/i.test(_.get(err, 'data.message', err.message || ''))
+            /service(\s|\s\w+\s)expired/i.test(get(err, 'data.message', err.message || ''))
           ) {
             // A service expired here, is a temporary status, display the message: "service expired
             // in the page as general message is very confusing for customers.
@@ -176,7 +185,7 @@ angular.module('App').controller(
           } else {
             this.Alerter.alertFromSWS(
               this.$translate.instant('domain_dashboard_loading_error'),
-              _.get(err, 'data', err),
+              get(err, 'data', err),
               this.$scope.alerts.main,
             );
           }
@@ -196,30 +205,30 @@ angular.module('App').controller(
     targetIsRelativeDomain(domain) {
       return (
         domain.target
-        && _.indexOf(this.typesToCheck, domain.fieldType) !== -1
+        && indexOf(this.typesToCheck, domain.fieldType) !== -1
         && /\..*[^.]$/.test(domain.target)
       );
     }
 
     // checboxes --------------------------------------------------------------
     applySelection() {
-      _.forEach(_.get(this.zone, 'paginatedZone.records.results'), (item) => {
-        item.selected = _.indexOf(this.selectedRecords, item.id) !== -1; // eslint-disable-line
+      forEach(get(this.zone, 'paginatedZone.records.results'), (item) => {
+        item.selected = indexOf(this.selectedRecords, item.id) !== -1; // eslint-disable-line
       });
     }
 
     globalCheckboxStateChange(state) {
-      if (_.get(this.zone, 'paginatedZone.records.results')) {
+      if (get(this.zone, 'paginatedZone.records.results')) {
         switch (state) {
           case 0:
             this.selectedRecords = [];
             this.atLeastOneSelected = false;
             break;
           case 1:
-            this.selectedRecords = _.map(
+            this.selectedRecords = map(
               this.zone.paginatedZone.records.results,
               'id',
-            ).filter(result => !_.some(this.selectedRecords, result.id));
+            ).filter(result => !some(this.selectedRecords, result.id));
             this.atLeastOneSelected = true;
             break;
           case 2:
@@ -234,7 +243,7 @@ angular.module('App').controller(
     }
 
     toggleRecord(record) {
-      this.selectedRecords = _.xor(this.selectedRecords, [record]);
+      this.selectedRecords = xor(this.selectedRecords, [record]);
       this.atLeastOneSelected = this.selectedRecords.length > 0;
       this.applySelection();
     }

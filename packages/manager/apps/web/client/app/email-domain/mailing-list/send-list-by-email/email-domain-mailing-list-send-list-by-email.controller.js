@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular.module('App').controller(
   'MailingListsSendListByEmailCtrl',
   class MailingListsSendListByEmailCtrl {
@@ -47,7 +49,7 @@ angular.module('App').controller(
         })
         .catch(err => this.Alerter.alertFromSWS(
           this.$translate.instant('mailing_list_tab_modal_sendListByEmail_error'),
-          _.get(err, 'data', err),
+          get(err, 'data', err),
           this.$scope.alerts.main,
         ))
         .finally(() => {

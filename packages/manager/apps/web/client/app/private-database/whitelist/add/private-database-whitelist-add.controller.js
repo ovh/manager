@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular.module('App').controller(
   'PrivateDatabaseAddWhitelistCtrl',
   class PrivateDatabaseAddWhitelistCtrl {
@@ -41,7 +43,7 @@ angular.module('App').controller(
           .catch((err) => {
             this.alerter.alertFromSWS(
               this.$translate.instant('privateDatabase_modale_whitelist_add_fail'),
-              _.get(err, 'data', err),
+              get(err, 'data', err),
               this.$scope.alerts.main,
             );
           })

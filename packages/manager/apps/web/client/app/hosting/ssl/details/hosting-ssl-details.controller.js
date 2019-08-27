@@ -1,3 +1,8 @@
+import filter from 'lodash/filter';
+import map from 'lodash/map';
+import startsWith from 'lodash/startsWith';
+import toPairs from 'lodash/toPairs';
+
 angular.module('App').controller(
   'hostingSSLDetailsController',
   class HostingSSLDetailsController {
@@ -25,17 +30,19 @@ angular.module('App').controller(
         .then((sslReport) => {
           this.orderNumber = sslReport.providerOrderId;
 
-          this.sslReport = _(sslReport)
-            .pairs()
-            .map(sslReportEntry => ({
-              name: sslReportEntry[0],
-              value: sslReportEntry[1],
-            }))
-            .filter(sslReportEntry => sslReportEntry.value !== 'non-required'
-                && sslReportEntry.value !== 'not-applicable'
-                && sslReportEntry.name !== 'providerOrderId'
-                && !_(sslReportEntry.name).startsWith('$'))
-            .value();
+          this.sslReport = filter(
+            map(
+              toPairs(sslReport),
+              sslReportEntry => ({
+                name: sslReportEntry[0],
+                value: sslReportEntry[1],
+              }),
+            ),
+            sslReportEntry => sslReportEntry.value !== 'non-required'
+              && sslReportEntry.value !== 'not-applicable'
+              && sslReportEntry.name !== 'providerOrderId'
+              && !startsWith(sslReportEntry.name, '$'),
+          );
         })
         .catch((error) => {
           this.Alerter.error(

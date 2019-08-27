@@ -1,3 +1,6 @@
+import assign from 'lodash/assign';
+import get from 'lodash/get';
+
 {
   function WebSiteConfigurationController(
     $scope,
@@ -113,7 +116,7 @@
         || !self.isPasswordValid(self.site.config.module.adminPassword));
 
     function createModule() {
-      const data = _.assign({}, self.site.config.module);
+      const data = assign({}, self.site.config.module);
 
       data.moduleId = moduleIdEnum[self.site.config.type];
       delete data.adminPasswordConfirm;
@@ -171,7 +174,7 @@
 
             Alerter.alertFromSWS(
               $translate.instant(traduction),
-              { message: _.get(err, 'data', err.message), type: 'ERROR' },
+              { message: get(err, 'data', err.message), type: 'ERROR' },
               self.alerts,
             );
           },
@@ -199,7 +202,7 @@
       if (!errorLoad) {
         Alerter.alertFromSWS(
           $translate.instant('website_creation_error'),
-          _.get(err, 'data', err),
+          get(err, 'data', err),
           self.alerts,
         );
       }

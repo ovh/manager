@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular.module('App').controller(
   'MailingListsUpdateCtrl',
   class MailingListsUpdateCtrl {
@@ -115,7 +117,7 @@ angular.module('App').controller(
         ))
         .catch(err => this.Alerter.alertFromSWS(
           this.$translate.instant('mailing_list_tab_modal_update_list_error'),
-          _.get(err, 'data', err),
+          get(err, 'data', err),
           this.$scope.alerts.main,
         ))
         .finally(() => {

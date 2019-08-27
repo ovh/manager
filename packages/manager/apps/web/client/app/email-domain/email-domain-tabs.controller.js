@@ -1,3 +1,7 @@
+import indexOf from 'lodash/indexOf';
+import isString from 'lodash/isString';
+import kebabCase from 'lodash/kebabCase';
+
 angular.module('App').controller(
   'EmailDomainTabsCtrl',
   class EmailDomainTabsCtrl {
@@ -25,7 +29,7 @@ angular.module('App').controller(
       this.tabMenu = null;
 
       this.setSelectedTab = this.setSelectedTab.bind(this);
-      this.setSelectedTab(_.isString(this.$stateParams.tab) && this.$stateParams.tab.toUpperCase());
+      this.setSelectedTab(isString(this.$stateParams.tab) && this.$stateParams.tab.toUpperCase());
 
       this.$scope.$on('emails.canTerminate', () => {
         this.tabMenu = {
@@ -45,7 +49,7 @@ angular.module('App').controller(
     }
 
     setSelectedTab(tab) {
-      if (_.indexOf(this.tabs, tab) !== -1) {
+      if (indexOf(this.tabs, tab) !== -1) {
         this.selectedTab = tab;
       } else {
         this.selectedTab = this.defaultTab;
@@ -58,7 +62,7 @@ angular.module('App').controller(
      * @param {string} str
      */
     static toKebabCase(str) {
-      return _.kebabCase(str);
+      return kebabCase(str);
     }
   },
 );

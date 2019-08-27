@@ -1,3 +1,11 @@
+import assign from 'lodash/assign';
+import camelCase from 'lodash/camelCase';
+import forEach from 'lodash/forEach';
+import get from 'lodash/get';
+import indexOf from 'lodash/indexOf';
+import isEmpty from 'lodash/isEmpty';
+import omit from 'lodash/omit';
+
 angular.module('App').controller(
   'HostingTabFTPCtrl',
   class HostingTabFTPCtrl {
@@ -35,7 +43,7 @@ angular.module('App').controller(
       this.$scope.loadFtpInformations = (count, offset) => this.loadFtpInformations(count, offset);
 
       this.$scope.$on(this.Hosting.events.tabFtpRefresh, () => {
-        if (_.get(this.ftpInformations, 'hasMultiFtp', false)) {
+        if (get(this.ftpInformations, 'hasMultiFtp', false)) {
           this.loading.init = true;
           this.hasResult = false;
           this.$scope.$broadcast('paginationServerSide.reload');
@@ -67,7 +75,7 @@ angular.module('App').controller(
             this.displayRestoreFtp = false;
           }
 
-          if (_.isEmpty(hosting.offer)) {
+          if (isEmpty(hosting.offer)) {
             return this.$q.when();
           }
 
@@ -75,11 +83,11 @@ angular.module('App').controller(
           return this.$q.all({
             tab: this.loadTab(10, 0, false),
             capabilities:
-              this.Hosting.getOfferCapabilities(_.camelCase(hosting.offer).toLowerCase()),
+              this.Hosting.getOfferCapabilities(camelCase(hosting.offer).toLowerCase()),
           });
         })
         .then(({ capabilities }) => {
-          this.displayFtpExplorer = _.get(capabilities, 'filesBrowser', false);
+          this.displayFtpExplorer = get(capabilities, 'filesBrowser', false);
         });
     }
 
@@ -89,7 +97,7 @@ angular.module('App').controller(
     }
 
     goSearch() {
-      if (!_.isEmpty(this.search.value)) {
+      if (!isEmpty(this.search.value)) {
         this.loading.search = true;
       }
 
@@ -112,7 +120,7 @@ angular.module('App').controller(
         .then((ftpInformations) => {
           if (
             ftpInformations != null
-            && !_.isEmpty(ftpInformations.list.results)
+            && !isEmpty(ftpInformations.list.results)
           ) {
             const firstUserCredentials = ftpInformations.list.results[0]
               .serviceManagementCredentials;
@@ -130,7 +138,7 @@ angular.module('App').controller(
           }
 
           /* eslint-disable no-param-reassign */
-          _.forEach(ftpInformations.list.results, (user) => {
+          forEach(ftpInformations.list.results, (user) => {
             user.ftp = user.serviceManagementCredentials.ftp;
             user.ftpUrl = `ftp://${
               user.serviceManagementCredentials.ftp.user
@@ -184,7 +192,7 @@ angular.module('App').controller(
               'hosting_tab_FTP_configuration_change_password_fail',
               { t0: this.ftpInformations.primaryLogin },
             ),
-            _.get(err, 'data', err),
+            get(err, 'data', err),
             this.$scope.alerts.main,
           );
         })
@@ -201,7 +209,7 @@ angular.module('App').controller(
 
     modifyUser(user) {
       this.$scope.setAction('ftp/user/update/hosting-ftp-user-update', {
-        user: _.omit(user, 'ssh', 'ftp', 'ftpUrl', 'sshUrl'),
+        user: omit(user, 'ssh', 'ftp', 'ftpUrl', 'sshUrl'),
         ftpInformations: this.ftpInformations,
       });
     }
@@ -220,7 +228,7 @@ angular.module('App').controller(
 
       this.HostingUser.updateUser(this.$stateParams.productId, {
         login: user.login,
-        data: _.omit(user, 'ssh', 'ftp', 'ftpUrl', 'sshUrl'),
+        data: omit(user, 'ssh', 'ftp', 'ftpUrl', 'sshUrl'),
       })
         .then(() => {
           this.Alerter.success(
@@ -230,8 +238,8 @@ angular.module('App').controller(
           this.startPolling();
         })
         .catch((err) => {
-          const idx = _.indexOf(this.ftpInformations.list.result, element);
-          this.ftpInformations.list.result[idx] = _.assign(element, prev);
+          const idx = indexOf(this.ftpInformations.list.result, element);
+          this.ftpInformations.list.result[idx] = assign(element, prev);
           this.Alerter.alertFromSWS(
             this.$translate.instant('hosting_tab_FTP_configuration_user_modify_fail'),
             err,

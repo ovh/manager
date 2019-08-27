@@ -1,3 +1,5 @@
+import has from 'lodash/has';
+
 angular.module('App').controller(
   'controllers.Hosting.Runtimes.edit',
   class HostingRuntimesEditCtrl {
@@ -44,7 +46,7 @@ angular.module('App').controller(
 
     isValid() {
       if (
-        _.has(this, 'entryToEdit.type')
+        has(this, 'entryToEdit.type')
         && !this.entryToEdit.type.includes(this.HOSTING_RUNTIME.PHP)
       ) {
         return (

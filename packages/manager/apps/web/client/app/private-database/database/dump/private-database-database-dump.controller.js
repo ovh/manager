@@ -1,3 +1,6 @@
+import clone from 'lodash/clone';
+import forEach from 'lodash/forEach';
+
 angular.module('App').controller(
   'PrivateDatabaseBDDsDumpsCtrl',
   class PrivateDatabaseBDDsDumpsCtrl {
@@ -18,7 +21,7 @@ angular.module('App').controller(
       this.statusToWatch = ['start', 'done', 'error'];
       this.dumpIdRestoring = null;
 
-      _.forEach(this.statusToWatch, (state) => {
+      forEach(this.statusToWatch, (state) => {
         this.$scope.$on(
           `privateDatabase.database.dump.${state}`,
           this[`onDataBaseDump${state}`].bind(this),
@@ -72,7 +75,7 @@ angular.module('App').controller(
       return this.privateDatabaseService
         .getDumpBDD(this.productId, this.database.databaseName, item.id)
         .then((originalDump) => {
-          const dump = _(originalDump).clone();
+          const dump = clone(originalDump);
           dump.id = item.id;
           dump.transformed = true;
           dump.waitRestore = this.database.waitRestore && dump.id === this.dumpIdRestoring;

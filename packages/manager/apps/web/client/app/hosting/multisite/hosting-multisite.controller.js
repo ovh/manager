@@ -1,3 +1,14 @@
+import assign from 'lodash/assign';
+import clone from 'lodash/clone';
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import get from 'lodash/get';
+import includes from 'lodash/includes';
+import isArray from 'lodash/isArray';
+import isEmpty from 'lodash/isEmpty';
+import map from 'lodash/map';
+import union from 'lodash/union';
+
 angular
   .module('App')
   .controller(
@@ -52,7 +63,7 @@ angular
         )
           .then((domains) => {
             $scope.domains = domains;
-            $scope.hasResult = !_($scope.domains).isEmpty();
+            $scope.hasResult = !isEmpty($scope.domains);
             $scope.domains.list.results.forEach((domain) => {
               if (domain.status === HOSTING_STATUS.UPDATING) {
                 HostingDomain.pollRestartDomain($stateParams.productId, domain.name);
@@ -61,22 +72,23 @@ angular
           })
           .then(() => hostingSSLCertificate.retrievingLinkedDomains($stateParams.productId))
           .then((sslLinked) => {
-            const linkedSSLs = _(sslLinked).isArray() ? sslLinked : [sslLinked];
+            const linkedSSLs = isArray(sslLinked) ? sslLinked : [sslLinked];
 
-            $scope.domains.list.results = _($scope.domains.list.results)
-              .map((domain) => {
-                const newDomain = _(domain).clone();
+            $scope.domains.list.results = map(
+              $scope.domains.list.results,
+              (domain) => {
+                const newDomain = clone(domain);
                 newDomain.rawSsl = newDomain.ssl;
 
-                if (_(linkedSSLs).includes(newDomain.name)) {
+                if (includes(linkedSSLs, newDomain.name)) {
                   newDomain.ssl = newDomain.ssl ? 2 : 1;
                 } else {
                   newDomain.ssl = newDomain.ssl ? 1 : 0;
                 }
 
                 return newDomain;
-              })
-              .value();
+              },
+            );
           })
           .then(() => Hosting.getSelected($stateParams.productId))
           .then((hosting) => {
@@ -84,10 +96,13 @@ angular
             $scope.numberOfColumns = 5 + hosting.isCloudWeb + hosting.hasCdn;
 
             if (hosting.isCloudWeb) {
-              const promises = _($scope.domains.list.results)
-                .filter(domain => domain.runtimeId)
-                .map((originalDomain) => {
-                  const domain = _(originalDomain).clone();
+              const promises = map(
+                filter(
+                  $scope.domains.list.results,
+                  domain => domain.runtimeId,
+                ),
+                (originalDomain) => {
+                  const domain = clone(originalDomain);
 
                   return HostingDomain.getRuntimeConfiguration(
                     $stateParams.productId,
@@ -95,8 +110,8 @@ angular
                   ).then((runtime) => {
                     domain.runtime = runtime;
                   });
-                })
-                .value();
+                },
+              );
 
               return $q.all(promises);
             }
@@ -153,8 +168,8 @@ angular
           $translate.instant('hosting_tab_DOMAINS_multisite_restart_start'),
           $scope.alerts.main,
         );
-        _.assign(
-          _.find($scope.domains.list.results, { name: domain.name }),
+        assign(
+          find($scope.domains.list.results, { name: domain.name }),
           { status: HOSTING_STATUS.UPDATING },
         );
         return HostingDomain.pollRestartDomain($stateParams.productId, domain.name);
@@ -168,8 +183,8 @@ angular
       });
 
       $scope.$on('hostingDomain.restart.done', (response, data) => {
-        _.assign(
-          _.find($scope.domains.list.results, { name: data.domain }),
+        assign(
+          find($scope.domains.list.results, { name: data.domain }),
           { status: data.status },
         );
         Alerter.success(
@@ -182,7 +197,7 @@ angular
         $scope.$broadcast('paginationServerSide.reload');
         Alerter.alertFromSWS(
           $translate.instant('hosting_tab_DOMAINS_multisite_restart_error'),
-          _.get(err, 'data', err),
+          get(err, 'data', err),
           $scope.alerts.main,
         );
       });
@@ -237,7 +252,7 @@ angular
         $scope.$broadcast('paginationServerSide.reload');
         Alerter.alertFromSWS(
           $translate.instant('hosting_tab_DOMAINS_configuration_add_failure'),
-          _.get(err, 'data', err),
+          get(err, 'data', err),
           $scope.alerts.main,
         );
       });
@@ -262,7 +277,7 @@ angular
         reloadCurrentPage();
         Alerter.alertFromSWS(
           $translate.instant('hosting_tab_DOMAINS_configuration_modify_failure'),
-          _.get(err, 'data', err),
+          get(err, 'data', err),
           $scope.alerts.main,
         );
       });
@@ -283,7 +298,7 @@ angular
         $scope.$broadcast('paginationServerSide.reload');
         Alerter.alertFromSWS(
           $translate.instant('hosting_tab_DOMAINS_configuration_remove_failure'),
-          _.get(err, 'data', err),
+          get(err, 'data', err),
           $scope.alerts.main,
         );
       });
@@ -311,7 +326,7 @@ angular
         $rootScope.$broadcast('hosting.ssl.reload');
         Alerter.alertFromSWS(
           $translate.instant('hosting_tab_DOMAINS_multisite_generate_ssl_error'),
-          _.get(err, 'data', err),
+          get(err, 'data', err),
           $scope.alerts.main,
         );
       });
@@ -341,7 +356,7 @@ angular
             $stateParams.productId,
           ),
         ]).then((tasks) => {
-          const taskIds = _.union(tasks[0], tasks[1], tasks[2]);
+          const taskIds = union(tasks[0], tasks[1], tasks[2]);
           [
             'attachedDomain/create',
             'attachedDomain/update',

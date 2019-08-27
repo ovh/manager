@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular.module('App').controller(
   'EmailsDeleteFilterCtrl',
   class EmailsDeleteFilterCtrl {
@@ -25,7 +27,7 @@ angular.module('App').controller(
 
     deleteFilter() {
       let filterPromise;
-      if (_.get(this.$scope.currentActionData, 'delegate', false)) {
+      if (get(this.$scope.currentActionData, 'delegate', false)) {
         filterPromise = this.WucEmails.deleteDelegatedFilter(
           this.account.email,
           this.filter.name,
@@ -45,7 +47,7 @@ angular.module('App').controller(
         ))
         .catch(err => this.Alerter.alertFromSWS(
           this.$translate.instant('email_tab_modal_delete_filter_error'),
-          _.get(err, 'data', err),
+          get(err, 'data', err),
           this.$scope.alerts.main,
         ))
         .finally(() => this.$scope.resetAction());
