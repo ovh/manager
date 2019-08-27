@@ -3,7 +3,8 @@ import ovhManagerCore from '@ovh-ux/manager-core';
 import ngAtInternet from '@ovh-ux/ng-at-internet';
 import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin';
 import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
-import ngOvhChatbot from '@ovh-ux/ng-ovh-chatbot';
+// import ngOvhChatbot from '@ovh-ux/ng-ovh-chatbot';
+import ngOvhExportCsv from '@ovh-ux/ng-ovh-export-csv';
 import ngOvhHttp from '@ovh-ux/ng-ovh-http';
 import ngOvhSsoAuth from '@ovh-ux/ng-ovh-sso-auth';
 import ngOvhSsoAuthModalPlugin from '@ovh-ux/ng-ovh-sso-auth-modal-plugin';
@@ -11,6 +12,9 @@ import ngOvhSwimmingPoll from '@ovh-ux/ng-ovh-swimming-poll';
 import ngOvhProxyRequest from '@ovh-ux/ng-ovh-proxy-request';
 import ngOvhUserPref from '@ovh-ux/ng-ovh-user-pref';
 import ngOvhWebUniverseComponents from '@ovh-ux/ng-ovh-web-universe-components';
+import ngPaginationFront from '@ovh-ux/ng-pagination-front';
+import ngQAllSettled from '@ovh-ux/ng-q-allsettled';
+import ngTailLogs from '@ovh-ux/ng-tail-logs';
 import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import ngOvhUiRouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
 import ovhManagerNavbar from '@ovh-ux/manager-navbar';
@@ -33,7 +37,7 @@ Environment.setRegion(__WEBPACK_REGION__);
 angular
   .module('App', [
     ovhManagerCore,
-    'ovh-angular-pagination-front',
+    ngPaginationFront,
     'ngOvhUtils',
     'ui.bootstrap',
     'ngAria',
@@ -44,16 +48,16 @@ angular
     'services',
     'filters',
     'directives',
-    'ovh-angular-q-allSettled',
+    ngQAllSettled,
     'ngMessages',
     'ngFlash',
     'vs-repeat',
-    'ovh-angular-export-csv',
     'xeditable',
     ngAtInternet,
     ngAtInternetUiRouterPlugin,
     ngOvhApiWrappers,
-    ngOvhChatbot,
+    // ngOvhChatbot,
+    ngOvhExportCsv,
     ngOvhHttp,
     ngOvhSsoAuth,
     ngOvhSsoAuthModalPlugin,
@@ -66,8 +70,7 @@ angular
     ovhManagerServerSidebar,
     uiRouter,
     'pascalprecht.translate',
-    'ovh-angular-responsive-tabs',
-    'ovh-angular-tail-logs',
+    ngTailLogs,
     ngOvhOtrs,
     'ovh-api-services',
     ovhManagerNavbar,

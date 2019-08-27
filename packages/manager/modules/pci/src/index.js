@@ -11,10 +11,10 @@ import '@ovh-ux/ng-ovh-proxy-request';
 import '@ovh-ux/ng-ovh-user-pref';
 import '@ovh-ux/ng-ovh-swimming-poll';
 import '@ovh-ux/ng-ovh-api-wrappers'; // should be a peer dependency of ovh-api-services
+import '@ovh-ux/ng-q-allsettled';
 import 'ovh-api-services';
 import 'ovh-ui-angular';
-import 'ovh-angular-q-allsettled';
-import 'ovh-angular-pagination-front';
+import '@ovh-ux/ng-pagination-front';
 import 'angular-ui-bootstrap';
 
 import '@ovh-ux/manager-cloud-styles';
@@ -68,9 +68,9 @@ angular
     'ngUiRouterBreadcrumb',
     'ngUiRouterLayout',
     'ngAtInternet',
+    'ngPaginationFront',
+    'ngQAllSettled',
     'ovh-api-services',
-    'ovh-angular-q-allSettled',
-    'ovh-angular-pagination-front',
     'oui',
     'ui.bootstrap',
   ])

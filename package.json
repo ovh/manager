@@ -68,5 +68,8 @@
   "engines": {
     "node": ">=8.11",
     "yarn": ">=1.17.3"
+  },
+  "resolutions": {
+    "ovh-ui-angular": "3.7.2"
   }
 }
