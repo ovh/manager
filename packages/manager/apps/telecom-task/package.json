@@ -32,7 +32,7 @@
     "jsplumb": "^2.11.2",
     "ng-csv": "^0.3.6",
     "oclazyload": "^1.1.0",
-    "ovh-api-services": "^9.4.0",
+    "ovh-api-services": "^9.5.0",
     "ovh-manager-webfont": "^1.2.0",
     "ovh-ngstrap": "^4.0.2",
     "ovh-ui-angular": "^3.7.4",
@@ -42,8 +42,8 @@
   },
   "devDependencies": {
     "@ovh-ux/manager-webpack-config": "^3.0.8",
-    "cypress": "^3.1.3",
-    "eslint-plugin-cypress": "^2.1.3",
-    "webpack-merge": "^4.1.4"
+    "cypress": "^3.4.1",
+    "eslint-plugin-cypress": "^2.6.1",
+    "webpack-merge": "^4.2.2"
   }
 }

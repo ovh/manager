@@ -16,9 +16,9 @@
     "@ovh-ux/manager-sms": "^7.0.3",
     "@ovh-ux/manager-telecom-styles": "^3.1.0",
     "@ovh-ux/ng-at-internet": "^4.0.1",
-    "@ovh-ux/ng-at-internet-ui-router-plugin": "^2.0.0",
-    "@ovh-ux/ng-ovh-api-wrappers": "^4.0.2",
-    "@ovh-ux/ng-ovh-checkbox-table": "^1.0.0",
+    "@ovh-ux/ng-at-internet-ui-router-plugin": "^2.0.1",
+    "@ovh-ux/ng-ovh-api-wrappers": "^4.0.3",
+    "@ovh-ux/ng-ovh-checkbox-table": "^1.0.1",
     "@ovh-ux/ng-ovh-contracts": "^3.0.0-beta.3",
     "@ovh-ux/ng-ovh-request-tagger": "^1.0.0",
     "@ovh-ux/ng-ovh-telecom-universe-components": "^3.0.9",
@@ -39,13 +39,13 @@
     "ng-csv": "^0.3.6",
     "oclazyload": "^1.1.0",
     "ovh-angular-ui-confirm-modal": "^1.0.2",
-    "ovh-api-services": "^9.4.0",
+    "ovh-api-services": "^9.5.0",
     "ovh-ngstrap": "^4.0.2",
     "validator-js": "^0.2.1"
   },
   "devDependencies": {
     "@ovh-ux/manager-webpack-config": "^3.0.8",
     "ovh-manager-webfont": "^1.2.0",
-    "webpack-merge": "^4.1.4"
+    "webpack-merge": "^4.2.2"
   }
 }

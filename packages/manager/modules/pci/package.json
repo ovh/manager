@@ -22,13 +22,13 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-pci' --include-filtered-dependencies -- yarn run dev:watch"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.8.2",
+    "@fortawesome/fontawesome-free": "^5.10.2",
     "@ovh-ux/manager-config": "^0.3.0",
     "d3": "~3.5.13",
     "fast-sha256": "^1.1.0",
     "file-saver": "^2.0.1",
     "flag-icon-css": "~0.8.5",
-    "ipaddr.js": "^1.9.0",
+    "ipaddr.js": "^1.9.1",
     "jsurl": "^0.1.5",
     "lodash": "^4.17.15",
     "moment": "^2.19",

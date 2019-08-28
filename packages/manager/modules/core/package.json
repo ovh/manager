@@ -27,7 +27,7 @@
     "start:watch": "lerna exec --stream --parallel --scope='@ovh-ux/manager-core' --include-filtered-dependencies -- yarn run dev:watch"
   },
   "dependencies": {
-    "@ovh-ux/ng-translate-async-loader": "^2.0.0",
+    "@ovh-ux/ng-translate-async-loader": "^2.0.1",
     "lodash": "^4.17.15"
   },
   "devDependencies": {

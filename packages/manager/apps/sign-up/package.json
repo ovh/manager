@@ -17,7 +17,7 @@
     "@ovh-ux/manager-core": "^7.1.0",
     "@ovh-ux/ng-ovh-request-tagger": "^1.0.0",
     "@ovh-ux/ng-ovh-sso-auth": "^4.2.1",
-    "@ovh-ux/ng-translate-async-loader": "^2.0.0",
+    "@ovh-ux/ng-translate-async-loader": "^2.0.1",
     "@ovh-ux/sign-up": "^1.0.0",
     "@uirouter/angularjs": "^1.0.20",
     "angular": "^1.7.8",
@@ -31,7 +31,7 @@
   "devDependencies": {
     "@ovh-ux/manager-webpack-config": "^3.0.7",
     "glob": "^7.1.4",
-    "webpack": "^4.30.0",
-    "webpack-merge": "^4.1.4"
+    "webpack": "^4.39.3",
+    "webpack-merge": "^4.2.2"
   }
 }
