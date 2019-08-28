@@ -5,8 +5,12 @@
                 <h1 class="oui-page-header__title" data-ng-bind="$ctrl.cluster.name"></h1>
                 <h2 class="oui-page-header__description" data-ng-bind="::$ctrl.cluster.id"></h2>
             </div>
-            <oui-guide-menu data-text="{{:: 'kube_guides' | translate }}">
-                <oui-guide-menu-item data-text="{{:: 'kube_guides_kubernetes' | translate }}" data-href="{{:: $ctrl.DOC_URL }}" data-external></oui-guide-menu-item>
+            <oui-guide-menu data-text="{{:: 'pci_project_guides_header' | translate }}">
+                <oui-guide-menu-item
+                    href="{{ $ctrl.guideUrl }}"
+                    data-external>
+                    <span data-translate="pci_project_guides_header_all_guides"></span>
+                </oui-guide-menu-item>
             </oui-guide-menu>
         </div>
         <oui-header-tabs>

@@ -1,4 +1,12 @@
-<h1 data-translate="pci_projects_project_contacts_title"></h1>
+<oui-page-header data-heading="{{:: 'pci_projects_project_contacts_title' | translate }}" class="mb-3">
+    <oui-guide-menu data-text="{{:: 'pci_project_guides_header' | translate }}">
+        <oui-guide-menu-item
+            href="{{ $ctrl.guideUrl }}"
+            data-external>
+            <span data-translate="pci_project_guides_header_all_guides"></span>
+        </oui-guide-menu-item>
+    </oui-guide-menu>
+</oui-page-header>
 <div class="container-fluid p-4 bg-light border mb-4">
     <div class="row">
         <div class="col-sm-4 text-right" data-translate="cpb_rights_owner"></div>

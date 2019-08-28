@@ -1,14 +1,22 @@
 <div
     data-ui-view>
-    <h1 class="text-truncate"
-        data-ng-if="!$ctrl.isLoading && $ctrl.container"
-        data-ng-bind="$ctrl.container.name"></h1>
-
+    <header class="oui-page-header mb-3">
+        <div class="oui-page-header__container">
+            <div class="oui-page-header__content text-truncate">
+                <h1 class="oui-page-header__title" data-ng-bind="$ctrl.container.name"></h1>
+            </div>
+            <oui-guide-menu data-text="{{:: 'pci_project_guides_header' | translate }}">
+                <oui-guide-menu-item
+                    href="{{ $ctrl.guideUrl }}"
+                    data-external>
+                    <span data-translate="pci_project_guides_header_all_guides"></span>
+                </oui-guide-menu-item>
+            </oui-guide-menu>
+        </div>
+    </header>
     <cui-message-container data-messages="$ctrl.messages"></cui-message-container>
 
-    <oui-spinner data-size="m" data-ng-if="$ctrl.isLoading"></oui-spinner>
-
-    <div data-ng-if="!$ctrl.isLoading && $ctrl.container">
+    <div data-ng-if="$ctrl.container">
         <div class="oui-box">
             <p data-translate="pci_projects_project_storages_containers_container_archive_info_storedObjects"
                 data-translate-value-count="{{ $ctrl.container.storedObjects }}"

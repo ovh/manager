@@ -9,6 +9,7 @@ export default class CloudprojectbillingvouchersCtrl {
     CucCloudMessage,
     CucControllerHelper,
     CloudVouchersService,
+    guideUrl,
     OvhApiOrderCloudProjectCredit,
   ) {
     this.$q = $q;
@@ -17,6 +18,7 @@ export default class CloudprojectbillingvouchersCtrl {
     this.CucCloudMessage = CucCloudMessage;
     this.CucControllerHelper = CucControllerHelper;
     this.CloudVouchersService = CloudVouchersService;
+    this.guideUrl = guideUrl;
     this.OvhApiOrderCloudProjectCredit = OvhApiOrderCloudProjectCredit;
 
     this.messageHandler = CucCloudMessage.subscribe(MESSAGES_CONTAINER_NAME, {
