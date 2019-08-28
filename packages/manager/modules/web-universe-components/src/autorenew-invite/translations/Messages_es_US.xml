@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<translations>
-   <translation id="autorenew_alert" qtlid="517685">Simplifiez-vous la vie et optez pour le renouvellement automatique de votre {{ product }} ! Finies les relances et les suppressions inopportunes.</translation>
-   <translation id="autorenew_alert_domain" qtlid="307397">domaine</translation>
-   <translation id="autorenew_alert_hosting" qtlid="517698">hébergement</translation>
-   <translation id="autorenew_activate" qtlid="98576">Activer le renouvellement automatique</translation>
-   <translation id="autorenew_guide" qtlid="290615">Ver la guía</translation>
-   <translation id="autorenew_new_tab" qtlid="516549">Se abrirá en una nueva pestaña</translation>
-</translations>
