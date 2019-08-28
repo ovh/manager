@@ -8,7 +8,7 @@ import 'script-loader!lodash';
 
 // lodash imports
 import get from 'lodash/get';
-
+import head from 'lodash/head';
 // deps
 import angular from 'angular';
 import 'angular-sanitize';
@@ -63,8 +63,10 @@ angular
       }
       return '';
     };
-    const urlLanguage = getQueryVariable('lang') || 'fr';
-    const userLocale = TranslateServiceProvider.findLanguage(urlLanguage, urlLanguage);
+    const language = head(window.navigator.language.split('-'))
+      || getQueryVariable('lang')
+      || 'fr';
+    const userLocale = TranslateServiceProvider.findLanguage(language, language);
     TranslateServiceProvider.setUserLocale(userLocale);
     $translateProvider.use(userLocale);
   })
