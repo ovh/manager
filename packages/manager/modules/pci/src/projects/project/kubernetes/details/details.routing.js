@@ -6,7 +6,7 @@ export default /* @ngInject */ ($stateProvider) => {
       url: '/:kubeId',
       component: 'ovhManagerPciProjectKubernetesDetailComponent',
       resolve: {
-        kubeId: /* @ngInject */ $stateParams => $stateParams.kubeId,
+        breadcrumb: /* @ngInject */ cluster => cluster.name,
         cluster: /* @ngInject */ (
           kubeId,
           OvhApiCloudProjectKube,
@@ -16,7 +16,16 @@ export default /* @ngInject */ ($stateProvider) => {
           kubeId,
         }).$promise
           .then(cluster => new Kubernetes(cluster)),
-
+        containersLink: /* @ngInject */ (
+          $state,
+          kubeId,
+          projectId,
+        ) => $state.href('pci.projects.project.kubernetes.details.containers', {
+          kubeId,
+          projectId,
+        }),
+        currentActiveLink: /* @ngInject */ ($transition$, $state) => () => $state
+          .href($state.current.name, $transition$.params()),
         goToKubernetesDetails: ($state, CucCloudMessage, kubeId, projectId) => (message = false, type = 'success') => {
           const reload = message && type === 'success';
           const promise = $state.go('pci.projects.project.kubernetes.details', {
@@ -31,9 +40,23 @@ export default /* @ngInject */ ($stateProvider) => {
           }
           return promise;
         },
-
-        breadcrumb: /* @ngInject */ cluster => cluster.name,
-
+        kubeId: /* @ngInject */ $stateParams => $stateParams.kubeId,
+        nodesLink: /* @ngInject */ (
+          $state,
+          kubeId,
+          projectId,
+        ) => $state.href('pci.projects.project.kubernetes.details.nodes', {
+          kubeId,
+          projectId,
+        }),
+        serviceLink: /* @ngInject */ (
+          $state,
+          kubeId,
+          projectId,
+        ) => $state.href('pci.projects.project.kubernetes.details.service', {
+          kubeId,
+          projectId,
+        }),
       },
 
       redirectTo: 'pci.projects.project.kubernetes.details.service',

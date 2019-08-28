@@ -1,23 +1,32 @@
 <div data-ui-view>
-    <header class="oui-page-header mb-2">
-        <div class="oui-page-header__container">
-            <div class="oui-page-header__content">
-                <h1 class="oui-page-header__title" data-ng-bind="$ctrl.cluster.name"></h1>
-                <h2 class="oui-page-header__description" data-ng-bind="::$ctrl.cluster.id"></h2>
-            </div>
-            <oui-guide-menu data-text="{{:: 'pci_project_guides_header' | translate }}">
-                <oui-guide-menu-item
-                    href="{{ $ctrl.guideUrl }}"
-                    data-external>
-                    <span data-translate="pci_project_guides_header_all_guides"></span>
-                </oui-guide-menu-item>
-            </oui-guide-menu>
-        </div>
+    <oui-page-header
+        class="mb-3"
+        data-heading="{{:: $ctrl.cluster.name }}"
+        data-description="{{::$ctrl.cluster.id }}">
         <oui-header-tabs>
-            <oui-header-tabs-item data-text="{{:: 'kube_service' | translate }}" data-state="pci.projects.project.kubernetes.details.service" data-state-params="{ serviceName: $ctrl.serviceName }"></oui-header-tabs-item>
-            <oui-header-tabs-item data-text="{{:: 'kube_nodes' | translate }}" data-state="pci.projects.project.kubernetes.details.nodes" data-state-params="{ serviceName: $ctrl.serviceName }"></oui-header-tabs-item>
-            <oui-header-tabs-item data-text="{{:: 'kube_containers_and_services' | translate }}" data-state="pci.projects.project.kubernetes.details.containers" data-state-params="{ serviceName: $ctrl.serviceName }"></oui-header-tabs-item>
+            <oui-header-tabs-item
+                data-text="{{:: 'kube_service' | translate }}"
+                data-href="{{:: $ctrl.serviceLink }}"
+                data-active="$ctrl.currentActiveLink() === $ctrl.serviceLink">
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                data-text="{{:: 'kube_nodes' | translate }}"
+                data-href="{{:: $ctrl.nodesLink }}"
+                data-active="$ctrl.currentActiveLink() === $ctrl.nodesLink">
+            </oui-header-tabs-item>
+            <oui-header-tabs-item
+                data-text="{{:: 'kube_containers_and_services' | translate }}"
+                data-href="{{:: $ctrl.containersLink }}"
+                data-active="$ctrl.currentActiveLink() === $ctrl.containersLink">
+            </oui-header-tabs-item>
         </oui-header-tabs>
-    </header>
+        <oui-guide-menu data-text="{{:: 'pci_project_guides_header' | translate }}">
+            <oui-guide-menu-item
+                href="{{ $ctrl.guideUrl }}"
+                data-external>
+                <span data-translate="pci_project_guides_header_all_guides"></span>
+            </oui-guide-menu-item>
+        </oui-guide-menu>
+    </oui-page-header>
     <div class="container-fluid" data-ui-view="kubernetesView"></div>
 </div>
