@@ -1,4 +1,4 @@
-# ng-ovh-web-universe-components
+# @ovh-ux/ng-ovh-web-universe-components
 
 > OVH Manager Web Universe Components
 
