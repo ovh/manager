@@ -1,3 +1,7 @@
+## [2.0.1](https://github.com/ovh-ux/ng-translate-async-loader/compare/v2.0.0...v2.0.1) (2019-08-28)
+
+
+
 # [2.0.0](https://github.com/ovh-ux/ng-translate-async-loader/compare/v1.0.8...v2.0.0) (2019-01-21)
 
 
