@@ -1,3 +1,9 @@
+import assign from 'lodash/assign';
+import includes from 'lodash/includes';
+import isEmpty from 'lodash/isEmpty';
+import isString from 'lodash/isString';
+import pick from 'lodash/pick';
+
 angular.module('controllers').controller(
   'controllers.Domain.Redirection.edit',
   class RedirectionEdit {
@@ -45,7 +51,7 @@ angular.module('controllers').controller(
     isTargetValid() {
       const completeTarget = this.getCompleteTarget();
       return (
-        !_.isEmpty(this.redirectionTarget)
+        !isEmpty(this.redirectionTarget)
         && this.constructor.isLengthValid(completeTarget)
       );
     }
@@ -90,7 +96,7 @@ angular.module('controllers').controller(
      * @returns {String} True if no error was detected in the different inputs
      */
     inputContainErrors() {
-      return _.contains(this.errors, true);
+      return includes(this.errors, true);
     }
 
     /**
@@ -99,7 +105,7 @@ angular.module('controllers').controller(
     getCompleteTarget() {
       let { redirectionTarget } = this;
 
-      if (this.shouldIncludeDomain && _.isString(this.redirection.zone)) {
+      if (this.shouldIncludeDomain && isString(this.redirection.zone)) {
         redirectionTarget += `.${this.redirection.zone}`;
       }
 
@@ -159,7 +165,7 @@ angular.module('controllers').controller(
      * Detects errors on all redirections
      */
     redirectionTargetChange() {
-      if (_.isEmpty(this.redirectionTarget)) {
+      if (isEmpty(this.redirectionTarget)) {
         this.errors.redirectionTarget = true;
       } else if (this.redirection.isOrt) {
         this.errors.redirectionTarget = !this.validator.isValidURL(this.redirectionTarget);
@@ -205,7 +211,7 @@ angular.module('controllers').controller(
     isTargetLengthValid() {
       let value = this.redirectionTarget;
       const shouldAppendZone = this.shouldIncludeDomain
-        && _.isString(this.redirection.fieldDisplayType)
+        && isString(this.redirection.fieldDisplayType)
         && this.redirection.fieldDisplayType.toUpperCase() === 'CNAME';
 
       if (shouldAppendZone) {
@@ -221,7 +227,7 @@ angular.module('controllers').controller(
      */
     static isLengthValid(value) {
       const maxSize = 245;
-      const valueLength = !_.isString(value) ? value.length : 0;
+      const valueLength = !isString(value) ? value.length : 0;
       return maxSize - valueLength > 0;
     }
 
@@ -244,9 +250,9 @@ angular.module('controllers').controller(
       this.isLoading = true;
 
       if (this.redirection.isOrt) {
-        data = _.assign(
+        data = assign(
           data,
-          _.pick(this.redirection, ['description', 'keywords', 'title']),
+          pick(this.redirection, ['description', 'keywords', 'title']),
         );
         method = 'putOrt';
       }
@@ -282,7 +288,7 @@ angular.module('controllers').controller(
      */
     includeDomainToTarget() {
       const endsWithDot = this.redirectionTarget.match(/.*\.$/);
-      const targetIsCNAME = _.isString(this.redirection.fieldDisplayType)
+      const targetIsCNAME = isString(this.redirection.fieldDisplayType)
         && this.redirection.fieldDisplayType.toUpperCase() === 'CNAME';
       const shouldDeleteTrailingDot = endsWithDot && this.shouldIncludeDomain && targetIsCNAME;
       const shouldAddTrailingDot = !endsWithDot && !this.shouldIncludeDomain && targetIsCNAME;

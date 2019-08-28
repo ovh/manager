@@ -1,3 +1,7 @@
+import forEach from 'lodash/forEach';
+import isEmpty from 'lodash/isEmpty';
+import set from 'lodash/set';
+
 angular.module('App').controller(
   'PrivateDatabaseUserDatabaseCtrl',
   class PrivateDatabaseUserDatabaseController {
@@ -24,7 +28,7 @@ angular.module('App').controller(
 
       this.getUsers();
 
-      _.forEach(['Start', 'Error', 'Done'], (state) => {
+      forEach(['Start', 'Error', 'Done'], (state) => {
         this.$scope.$on(
           `privateDatabase.grant.set.${state.toLowerCase()}`,
           this[`onUserGrant${state}`].bind(this),
@@ -46,7 +50,7 @@ angular.module('App').controller(
           this.users = users;
         })
         .finally(() => {
-          if (_.isEmpty(this.users)) {
+          if (isEmpty(this.users)) {
             this.loading.init = false;
           }
         });
@@ -94,7 +98,7 @@ angular.module('App').controller(
           );
         })
         .catch((err) => {
-          _.set(err, 'type', err.type || 'ERROR');
+          set(err, 'type', err.type || 'ERROR');
           this.alerter.alertFromSWS(
             this.$translate.instant('privateDatabase_tabs_users_grant_error'),
             err,

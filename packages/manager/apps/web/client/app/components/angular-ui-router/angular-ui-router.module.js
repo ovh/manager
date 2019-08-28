@@ -1,3 +1,7 @@
+import isUndefined from 'lodash/isUndefined';
+import union from 'lodash/union';
+import uniq from 'lodash/uniq';
+
 angular
   .module('App')
   .config(($transitionsProvider) => {
@@ -5,14 +9,14 @@ angular
       let result = state.translations || [];
       if (state.views) {
         angular.forEach(state.views, (value) => {
-          if (_.isUndefined(value.noTranslations) && !value.noTranslations) {
+          if (isUndefined(value.noTranslations) && !value.noTranslations) {
             if (value.translations) {
-              result = _.union(result, value.translations);
+              result = union(result, value.translations);
             }
           }
         });
       }
-      return _.uniq(result);
+      return uniq(result);
     };
 
     $transitionsProvider.onBefore({}, (transition) => {
@@ -32,9 +36,9 @@ angular
           });
           // Get all translations along the state hierarchy
           angular.forEach(stateList, (stateElt) => {
-            translations = _.union(translations, getStateTranslationParts($state.get(stateElt)));
+            translations = union(translations, getStateTranslationParts($state.get(stateElt)));
           });
-          translations = _.uniq(translations);
+          translations = uniq(translations);
           angular.forEach(translations, (part) => {
             $translatePartialLoader.addPart(part);
           });

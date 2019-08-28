@@ -1,3 +1,5 @@
+import without from 'lodash/without';
+
 angular.module('App').controller(
   'EmailsEditDnsFilterCtrl',
   class EmailsEditDnsFilterCtrl {
@@ -33,7 +35,7 @@ angular.module('App').controller(
       this.loading = true;
       this.WucEmails.getModels()
         .then((models) => {
-          this.dnsFilterEnum = _.without(
+          this.dnsFilterEnum = without(
             models.models['domain.DomainMXFilterEnum'].enum,
             'CUSTOM',
           );

@@ -1,3 +1,6 @@
+import clone from 'lodash/clone';
+import findIndex from 'lodash/findIndex';
+
 angular.module('App').controller(
   'PrivateDatabaseOomCtrl',
   class PrivateDatabaseOomCtrl {
@@ -50,7 +53,7 @@ angular.module('App').controller(
     }
 
     getUptime(item) {
-      const idx = _.findIndex(this.oomList, item);
+      const idx = findIndex(this.oomList, item);
 
       if (idx <= 0) {
         return -1;
@@ -62,7 +65,7 @@ angular.module('App').controller(
     }
 
     transformItem(original) {
-      const item = _(original).clone();
+      const item = clone(original);
       item.uptime = this.getUptime(item);
 
       item.overflow = filesize(item.sizeReached, { output: 'object' });

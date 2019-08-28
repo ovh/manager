@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular.module('App').controller(
   'EmailsDeleteResponderCtrl',
   class EmailsDeleteResponderCtrl {
@@ -24,7 +26,7 @@ angular.module('App').controller(
 
     deleteResponder() {
       let promise;
-      if (_.get(this.$scope.currentActionData, 'delegate', false)) {
+      if (get(this.$scope.currentActionData, 'delegate', false)) {
         promise = this.WucEmails.deleteDelegatedResponder(
           `${this.responder.account}@${this.$stateParams.productId}`,
           this.responder.account,

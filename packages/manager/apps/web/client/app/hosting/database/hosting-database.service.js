@@ -1,3 +1,7 @@
+import clone from 'lodash/clone';
+import forEach from 'lodash/forEach';
+import snakeCase from 'lodash/snakeCase';
+
 angular.module('services').service(
   'HostingDatabase',
   class HostingDatabase {
@@ -73,12 +77,12 @@ angular.module('services').service(
       return this.OvhHttp.get(`/hosting/web/${serviceName}/database/${name}`, {
         rootPath: 'apiv6',
       }).then((originalDatabase) => {
-        const database = _(originalDatabase).clone();
+        const database = clone(originalDatabase);
 
-        _.forEach(['type', 'state', 'mode'], (elt) => {
+        forEach(['type', 'state', 'mode'], (elt) => {
           database[elt] = database[elt].toUpperCase();
         });
-        database.version = `_${_.snakeCase(database.version)}`;
+        database.version = `_${snakeCase(database.version)}`;
         database.quotaPercent = (database.quotaUsed.value / database.quotaSize.value) * 100;
 
         return database;
@@ -112,7 +116,7 @@ angular.module('services').service(
           rootPath: 'apiv6',
         },
       ).then((originalDump) => {
-        const dump = _(originalDump).clone();
+        const dump = clone(originalDump);
         dump.snapshotDate = this.constructor.getSnapshotDateOfDump(dump);
         return dump;
       });
@@ -487,7 +491,7 @@ angular.module('services').service(
      * @returns {boolean}
      */
     pollTasks(serviceName, originalOpts) {
-      const opts = _(originalOpts).clone();
+      const opts = clone(originalOpts);
 
       if (!opts.dump || !opts.task) {
         return this.$rootScope.$broadcast(`${opts.namespace}.error`, '');

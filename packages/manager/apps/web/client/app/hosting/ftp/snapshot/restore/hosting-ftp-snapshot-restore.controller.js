@@ -1,3 +1,7 @@
+import get from 'lodash/get';
+import indexOf from 'lodash/indexOf';
+import pull from 'lodash/pull';
+
 angular.module('App').controller(
   'HostingFtpRestoreSnapshotCtrl',
   class HostingFtpRestoreSnapshotCtrl {
@@ -35,19 +39,19 @@ angular.module('App').controller(
             if (
               moment(hosting.creation).isAfter(moment().subtract(2, 'weeks'))
             ) {
-              _.pull(this.instances, 'weekly.2');
+              pull(this.instances, 'weekly.2');
             } else if (
               moment(hosting.creation).isAfter(moment().subtract(1, 'weeks'))
             ) {
-              _.pull(this.instances, 'weekly.1');
+              pull(this.instances, 'weekly.1');
             } else if (
               moment(hosting.creation).isAfter(moment().subtract(3, 'days'))
             ) {
-              _.pull(this.instances, 'daily.3');
+              pull(this.instances, 'daily.3');
             } else if (
               moment(hosting.creation).isAfter(moment().subtract(2, 'days'))
             ) {
-              _.pull(this.instances, 'daily.2');
+              pull(this.instances, 'daily.2');
             }
           });
         })
@@ -67,7 +71,7 @@ angular.module('App').controller(
       return (
         this.instances
         && this.model.snapshotInstance
-        && _.indexOf(this.instances, this.model.snapshotInstance) !== -1
+        && indexOf(this.instances, this.model.snapshotInstance) !== -1
       );
     }
 
@@ -86,7 +90,7 @@ angular.module('App').controller(
         .catch((err) => {
           this.Alerter.alertFromSWS(
             this.$translate.instant('hosting_tab_FTP_configuration_restore_snapshot_error'),
-            _.get(err, 'data', err),
+            get(err, 'data', err),
             this.$scope.alerts.main,
           );
         })

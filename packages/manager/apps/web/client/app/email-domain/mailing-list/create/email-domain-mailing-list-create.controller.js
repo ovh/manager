@@ -1,3 +1,5 @@
+import indexOf from 'lodash/indexOf';
+
 angular.module('App').controller(
   'MailingListsCreateCtrl',
   class MailingListsCreateCtrl {
@@ -83,7 +85,7 @@ angular.module('App').controller(
       input.$setValidity(
         'unique',
         this.mailingLists.length === 0
-          || _.indexOf(this.mailingLists, this.model.mlName) === -1,
+          || indexOf(this.mailingLists, this.model.mlName) === -1,
       );
     }
 

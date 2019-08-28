@@ -1,3 +1,5 @@
+import isEmpty from 'lodash/isEmpty';
+
 angular.module('App').controller(
   'HostingIndyTabCtrl',
   class HostingIndyTabCtrl {
@@ -55,7 +57,7 @@ angular.module('App').controller(
           );
         })
         .finally(() => {
-          if (_.isEmpty(this.indyIds)) {
+          if (isEmpty(this.indyIds)) {
             this.loading = false;
           }
         });

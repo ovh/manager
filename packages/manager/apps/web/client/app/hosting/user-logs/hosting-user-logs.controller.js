@@ -1,3 +1,6 @@
+import clone from 'lodash/clone';
+import get from 'lodash/get';
+
 angular.module('App').controller(
   'HostingTabUserLogsCtrl',
   class HostingTabUserLogsCtrl {
@@ -39,7 +42,7 @@ angular.module('App').controller(
       });
 
       this.User.getUrlOf('guides').then((guides) => {
-        this.guide = _.get(guides, 'hostingStatsLogs');
+        this.guide = get(guides, 'hostingStatsLogs');
       });
 
       if (
@@ -90,7 +93,7 @@ angular.module('App').controller(
       }
       return this.Hosting.getUserLogsEntry(this.$stateParams.productId, item.id)
         .then((originalLogEntry) => {
-          const logEntry = _(originalLogEntry).clone();
+          const logEntry = clone(originalLogEntry);
           logEntry.id = item.id;
           logEntry.transformed = true;
 

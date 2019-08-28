@@ -1,3 +1,5 @@
+import isArray from 'lodash/isArray';
+
 angular.module('App').controller(
   'DomainZoneRecordDeleteCtrl',
   class DomainZoneRecordDeleteCtrl {
@@ -11,7 +13,7 @@ angular.module('App').controller(
 
     $onInit() {
       this.entryToDelete = this.$scope.currentActionData;
-      this.massDelete = _.isArray(this.entryToDelete);
+      this.massDelete = isArray(this.entryToDelete);
       this.loading = false;
 
       if (!this.massDelete) {

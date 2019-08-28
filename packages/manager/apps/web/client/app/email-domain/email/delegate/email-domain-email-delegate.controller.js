@@ -1,3 +1,6 @@
+import get from 'lodash/get';
+import remove from 'lodash/remove';
+
 angular.module('App').controller(
   'EmailsDelegateCtrl',
   class EmailsDelegateCtrl {
@@ -45,7 +48,7 @@ angular.module('App').controller(
         })
         .catch(err => this.Alerter.alertFromSWS(
           this.$translate.instant('email_tab_error'),
-          _.get(err, 'data', err),
+          get(err, 'data', err),
           this.$scope.alerts.main,
         ))
         .finally(() => {
@@ -67,7 +70,7 @@ angular.module('App').controller(
         .catch((err) => {
           this.Alerter.alertFromSWS(
             this.$translate.instant('email_tab_error'),
-            _.get(err, 'data', err),
+            get(err, 'data', err),
             this.$scope.alerts.main,
           );
           this.$scope.resetAction();
@@ -85,14 +88,14 @@ angular.module('App').controller(
         this.currentAccount,
         delegationAccount,
       )
-        .then(() => _.remove(
+        .then(() => remove(
           this.delegationAccountList,
           name => name === delegationAccount,
         ))
         .catch((err) => {
           this.Alerter.alertFromSWS(
             this.$translate.instant('email_tab_error'),
-            _.get(err, 'data', err),
+            get(err, 'data', err),
             this.$scope.alerts.main,
           );
           this.$scope.resetAction();

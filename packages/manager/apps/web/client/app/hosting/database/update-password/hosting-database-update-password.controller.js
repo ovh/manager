@@ -1,3 +1,6 @@
+import get from 'lodash/get';
+import set from 'lodash/set';
+
 angular.module('App').controller(
   'HostingDatabaseChangePasswordCtrl',
   class HostingDatabaseChangePasswordCtrl {
@@ -30,7 +33,7 @@ angular.module('App').controller(
     }
 
     validPassword(password, confirmation) {
-      const validPassword = this.Hosting.constructor.isPasswordValid(_.get(this.password, 'value'));
+      const validPassword = this.Hosting.constructor.isPasswordValid(get(this.password, 'value'));
       const validConfirmation = this.password.value
         && this.password.value === this.password.confirmation;
       password.$setValidity('password', validPassword);
@@ -51,13 +54,13 @@ angular.module('App').controller(
           );
         })
         .catch((err) => {
-          _.set(err, 'type', err.type || 'ERROR');
+          set(err, 'type', err.type || 'ERROR');
           this.Alerter.alertFromSWS(
             this.$translate.instant(
               'hosting_tab_DATABASES_configuration_update_password_fail',
               { t0: this.databaseName },
             ),
-            _.get(err, 'data', err),
+            get(err, 'data', err),
             this.$scope.alerts.main,
           );
         });

@@ -1,3 +1,9 @@
+import forEach from 'lodash/forEach';
+import get from 'lodash/get';
+import isEmpty from 'lodash/isEmpty';
+import map from 'lodash/map';
+import set from 'lodash/set';
+
 angular.module('App').controller(
   'PrivateDatabaseCtrl',
   class PrivateDatabaseCtrl {
@@ -52,7 +58,7 @@ angular.module('App').controller(
         this.$scope.changeOwnerUrl = link;
       });
 
-      _.forEach(['done', 'error'], (state) => {
+      forEach(['done', 'error'], (state) => {
         this.$scope.$on(
           `privateDatabase.global.actions.${state}`,
           (e, taskOpt) => {
@@ -72,11 +78,11 @@ angular.module('App').controller(
 
       this.$scope.isConfigSet = () => this.privateDatabaseService
         .getConfigurationDetails(this.productId)
-        .then(res => !_.isEmpty(res.details));
+        .then(res => !isEmpty(res.details));
 
       this.$scope.isExtensionSet = () => this.privateDatabaseExtensionService
         .getExtensions(this.productId, this.$scope.database.databaseName)
-        .then(res => !_.isEmpty(res));
+        .then(res => !isEmpty(res));
 
       this.$scope.isDBaaS = () => this.$scope.database.offer === 'public';
 
@@ -169,7 +175,7 @@ angular.module('App').controller(
         .then((database) => {
           this.$scope.database = database;
           this.$scope.database.version = database.version.replace('.', '');
-          this.isExpired = _.get(database, 'serviceInfos.status') === 'expired';
+          this.isExpired = get(database, 'serviceInfos.status') === 'expired';
           this.$scope.guides = [];
 
           this.userService.getUrlOf('guides').then((guides) => {
@@ -183,11 +189,11 @@ angular.module('App').controller(
                 }
               } else if (this.$scope.database.offer === 'public') {
                 if (guides.hostingPrivateDatabaseDBaaS) {
-                  this.$scope.guides = _.map(
+                  this.$scope.guides = map(
                     guides.hostingPrivateDatabaseDBaaS,
                     (url, key) => {
                       let returnedObject;
-                      if (!_.isEmpty(url)) {
+                      if (!isEmpty(url)) {
                         returnedObject = {
                           title: `guide_add_hosting_private_database_dbaas_${key}`,
                           url,
@@ -250,7 +256,7 @@ angular.module('App').controller(
           ]);
         })
         .catch((err) => {
-          _.set(err, 'type', err.type || 'ERROR');
+          set(err, 'type', err.type || 'ERROR');
           this.alerter.alertFromSWS(
             this.$translate.instant('privateDatabase_dashboard_loading_error'),
             err,
@@ -264,7 +270,7 @@ angular.module('App').controller(
 
     getTasksToPoll() {
       this.privateDatabaseService.getTasksToPoll(this.productId).then((tasks) => {
-        _.forEach(tasks, this.$scope.pollAction);
+        forEach(tasks, this.$scope.pollAction);
       });
     }
 

@@ -1,3 +1,6 @@
+import assign from 'lodash/assign';
+import map from 'lodash/map';
+
 angular.module('services').service(
   'MXPlan',
   class MXPlan {
@@ -17,7 +20,7 @@ angular.module('services').service(
         cache: 'MX_PLAN_MODELS',
       }).then((response) => {
         if (response && response.models) {
-          const promises = _.map(
+          const promises = map(
             response.models['email.domain.OfferEnum'].enum,
             offer => this
               .orderDuration(domain, offer)
@@ -47,7 +50,7 @@ angular.module('services').service(
           offer,
         },
       })
-        .then(response => _.assign(response, { duration, offer }))
+        .then(response => assign(response, { duration, offer }))
         .catch(err => this.$q.reject(err));
     }
 

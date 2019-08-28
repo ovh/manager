@@ -1,3 +1,8 @@
+import drop from 'lodash/drop';
+import indexOf from 'lodash/indexOf';
+import isString from 'lodash/isString';
+import kebabCase from 'lodash/kebabCase';
+
 angular.module('App').controller(
   'ZonesTabsCtrl',
   class ZonesTabsCtrl {
@@ -44,7 +49,7 @@ angular.module('App').controller(
       };
 
       this.setSelectedTab = (tab) => {
-        if (_.indexOf(this.tabs, tab) !== -1) {
+        if (indexOf(this.tabs, tab) !== -1) {
           this.selectedTab = tab;
         } else {
           this.selectedTab = this.defaultTab;
@@ -59,12 +64,12 @@ angular.module('App').controller(
       };
 
       this.WucEmails.getDomains().then((emails) => {
-        if (_.indexOf(emails, this.$stateParams.productId) === -1) {
-          this.tabMenu.items = _.drop(this.tabMenu.items);
+        if (indexOf(emails, this.$stateParams.productId) === -1) {
+          this.tabMenu.items = drop(this.tabMenu.items);
         }
       });
 
-      this.setSelectedTab(_.isString(this.$stateParams.tab) && this.$stateParams.tab.toUpperCase());
+      this.setSelectedTab(isString(this.$stateParams.tab) && this.$stateParams.tab.toUpperCase());
     }
 
     /**
@@ -72,7 +77,7 @@ angular.module('App').controller(
      * @param {string} str
      */
     static toKebabCase(str) {
-      return _.kebabCase(str);
+      return kebabCase(str);
     }
   },
 );

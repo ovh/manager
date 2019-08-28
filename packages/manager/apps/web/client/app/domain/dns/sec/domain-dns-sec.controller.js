@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular.module('controllers').controller(
   'Domain.controllers.DnsSec',
   class DomainDnsSecCtrl {
@@ -30,7 +32,7 @@ angular.module('controllers').controller(
         })
         .catch(err => this.Alerter.alertFromSWS(
           this.$translate.instant(`domain_configuration_dnssec_error_${newState}`),
-          _.get(err, 'data', err),
+          get(err, 'data', err),
           this.$scope.alerts.main,
         ))
         .finally(() => {

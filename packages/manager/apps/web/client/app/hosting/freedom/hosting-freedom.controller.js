@@ -1,3 +1,5 @@
+import isEmpty from 'lodash/isEmpty';
+
 angular.module('App').controller(
   'HostingFreedomTabCtrl',
   class HostingFreedomTabCtrl {
@@ -73,7 +75,7 @@ angular.module('App').controller(
           );
         })
         .finally(() => {
-          if (_.isEmpty(this.freedomIds)) {
+          if (isEmpty(this.freedomIds)) {
             this.loading = false;
           }
         });

@@ -1,4 +1,7 @@
-import _ from 'lodash';
+import upperFirst from 'lodash/upperFirst';
+import get from 'lodash/get';
+import isArray from 'lodash/isArray';
+import uniq from 'lodash/uniq';
 import { LANGUAGES, PATTERN, OTHER } from './hosting-cron.constants';
 
 export default class HostingCron {
@@ -13,7 +16,7 @@ export default class HostingCron {
   getCrons(serviceName, filters) {
     const promises = [];
 
-    if (_.isArray(filters)) {
+    if (isArray(filters)) {
       filters.forEach((filter) => {
         promises.push(this.OvhHttp.get(['/hosting/web/{serviceName}/cron'].join('/'), {
           rootPath: 'apiv6',
@@ -38,7 +41,7 @@ export default class HostingCron {
         data.forEach((res) => {
           result = result.concat(res);
         });
-        return _.uniq(result);
+        return uniq(result);
       },
       err => this.$q.reject(err),
     );
@@ -124,7 +127,7 @@ export default class HostingCron {
       const name = language.substring(0, versionIndex).replace('_', '');
       const version = language.substring(versionIndex).replace('_', '.');
 
-      return `${_.get(LANGUAGES, name.toUpperCase(), _.capitalize(name))} ${version}`;
+      return `${get(LANGUAGES, name.toUpperCase(), upperFirst(name))} ${version}`;
     }
 
     return language;

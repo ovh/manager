@@ -1,3 +1,6 @@
+import isString from 'lodash/isString';
+import startsWith from 'lodash/startsWith';
+
 angular.module('App').controller(
   'HostingTabDomainsMultisiteLogs',
   class HostingTabDomainsMultisiteLogs {
@@ -24,13 +27,13 @@ angular.module('App').controller(
     /* eslint-disable no-param-reassign */
     generateLogHref(domain) {
       domain.logUrlGenerated = true;
-      if (_.isString(domain.ownLog) && !domain.ownLogToken) {
+      if (isString(domain.ownLog) && !domain.ownLogToken) {
         domain.logsLoading = true;
         this.Hosting.getUserLogsToken(this.$stateParams.productId, {
           params: { attachedDomain: domain.name, remoteCheck: true },
         })
           .then((result) => {
-            if (_.startsWith(this.$scope.hostingProxy.datacenter, 'gra')) {
+            if (startsWith(this.$scope.hostingProxy.datacenter, 'gra')) {
               domain.logUrl = `${URI.expand(this.constants.stats_logs_gra, {
                 cluster: this.$scope.hostingProxy.cluster,
                 serviceName: domain.ownLog,

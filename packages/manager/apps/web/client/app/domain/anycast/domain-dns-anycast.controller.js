@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular.module('App').controller(
   'DomainDnsAnycastActivateCtrl',
   class DomainDnsAnycastActivateCtrl {
@@ -31,7 +33,7 @@ angular.module('App').controller(
           this.optionDetails = data;
         })
         .catch((err) => {
-          this.Alerter.alertFromSWS(this.$translate.instant('domain_configuration_dnsanycast_fail'), _.get(err, 'data', err), this.$scope.alerts.main);
+          this.Alerter.alertFromSWS(this.$translate.instant('domain_configuration_dnsanycast_fail'), get(err, 'data', err), this.$scope.alerts.main);
           this.$scope.resetAction();
         })
         .finally(() => {
@@ -50,7 +52,7 @@ angular.module('App').controller(
           this.url = order.url;
         })
         .catch((err) => {
-          this.Alerter.alertFromSWS(this.$translate.instant('domain_configuration_dnsanycast_fail'), _.get(err, 'data', err), this.$scope.alerts.main);
+          this.Alerter.alertFromSWS(this.$translate.instant('domain_configuration_dnsanycast_fail'), get(err, 'data', err), this.$scope.alerts.main);
           this.$scope.resetAction();
         })
         .finally(() => {

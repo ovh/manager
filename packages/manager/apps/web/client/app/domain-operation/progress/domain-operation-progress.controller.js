@@ -1,3 +1,11 @@
+import camelCase from 'lodash/camelCase';
+import clone from 'lodash/clone';
+import find from 'lodash/find';
+import findIndex from 'lodash/findIndex';
+import get from 'lodash/get';
+import map from 'lodash/map';
+import set from 'lodash/set';
+
 angular.module('App').controller(
   'DomainOperationProgressCtrl',
   class DomainOperationProgressCtrl {
@@ -43,25 +51,25 @@ angular.module('App').controller(
         .then((progress) => {
           this.progress = progress;
 
-          if (_.get(this.progress, 'currentStep.step', false)) {
-            this.progress.currentStep.step = _.camelCase(this.progress.currentStep.step);
-            this.progress.followUpSteps = _.map(
-              _.get(this.progress, 'followUpSteps', []),
+          if (get(this.progress, 'currentStep.step', false)) {
+            this.progress.currentStep.step = camelCase(this.progress.currentStep.step);
+            this.progress.followUpSteps = map(
+              get(this.progress, 'followUpSteps', []),
               (step) => {
-                const s = _(step).clone();
-                s.step = _.camelCase(s.step);
+                const s = clone(step);
+                s.step = camelCase(s.step);
                 return s;
               },
             );
-            _.set(
-              _.find(
+            set(
+              find(
                 this.steps,
                 step => step.name === this.progress.currentStep.step,
               ),
               'active',
               true,
             );
-            this.currentStepIndex = _.findIndex(this.progress.followUpSteps, {
+            this.currentStepIndex = findIndex(this.progress.followUpSteps, {
               step: this.progress.currentStep.step,
             });
             this.timeleft = moment().isBefore(this.progress.expectedDoneDate)

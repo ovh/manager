@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular.module('App').controller(
   'HostingUserLogsDeleteCtrl',
   class HostingUserLogsDeleteCtrl {
@@ -32,7 +34,7 @@ angular.module('App').controller(
               'hosting_tab_USER_LOGS_configuration_user_delete_fail',
               { t0: this.entryToDelete },
             ),
-            _.get(err, 'data', err),
+            get(err, 'data', err),
             this.$scope.alerts.main,
           );
         });

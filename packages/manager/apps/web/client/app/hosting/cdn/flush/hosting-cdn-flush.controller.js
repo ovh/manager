@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular.module('App').controller(
   'HostingFlushCdnCtrl',
   class HostingFlushCdnCtrl {
@@ -27,7 +29,7 @@ angular.module('App').controller(
         .catch((err) => {
           this.Alerter.alertFromSWS(
             this.$translate.instant('hosting_dashboard_cdn_flush_error'),
-            _.get(err, 'data', err),
+            get(err, 'data', err),
             this.$scope.alerts.main,
           );
         })

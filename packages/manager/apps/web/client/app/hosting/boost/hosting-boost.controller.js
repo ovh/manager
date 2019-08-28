@@ -1,3 +1,7 @@
+import clone from 'lodash/clone';
+import flatten from 'lodash/flatten';
+import get from 'lodash/get';
+
 angular
   .module('App')
   .controller(
@@ -38,7 +42,7 @@ angular
 
             // Get tasks & start polling if tasks
             HostingBoost.getTasks($stateParams.productId).then((tasks) => {
-              if (_.flatten(tasks).length > 0) {
+              if (flatten(tasks).length > 0) {
                 $scope.isLoading = true;
               }
               tasks[0].forEach((task) => {
@@ -90,7 +94,7 @@ angular
       $scope.$on('hosting.boost.request.error', (err) => {
         Alerter.alertFromSWS(
           $translate.instant('hosting_tab_BOOST_error'),
-          _.get(err, 'data', err),
+          get(err, 'data', err),
           $scope.alerts.main,
         );
       });
@@ -115,7 +119,7 @@ angular
       $scope.$on('hosting.boost.disable.error', (err) => {
         Alerter.alertFromSWS(
           $translate.instant('hosting_tab_BOOST_disable_error'),
-          _.get(err, 'data', err),
+          get(err, 'data', err),
           $scope.alerts.main,
         );
       });
@@ -123,7 +127,7 @@ angular
       $scope.$on('hosting.boost.error', (err) => {
         Alerter.alertFromSWS(
           $translate.instant('hosting_tab_BOOST_error'),
-          _.get(err, 'data', err),
+          get(err, 'data', err),
           $scope.alerts.main,
         );
       });
@@ -163,7 +167,7 @@ angular
           $stateParams.productId,
           item.id,
         ).then((originalBoost) => {
-          const boost = _(originalBoost).clone();
+          const boost = clone(originalBoost);
 
           boost.id = item.id;
           boost.transformed = true;

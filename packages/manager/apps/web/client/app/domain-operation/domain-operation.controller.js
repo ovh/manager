@@ -1,3 +1,7 @@
+import isEmpty from 'lodash/isEmpty';
+import set from 'lodash/set';
+import some from 'lodash/some';
+
 angular.module('App').controller(
   'DomainOperationCtrl',
   class DomainOperationCtrl {
@@ -58,7 +62,7 @@ angular.module('App').controller(
       this.getModels()
         .then(() => {
           const fnFilter = this.$location.search().function;
-          if (_.some(this.nicOperationEnum, fnFilter)) {
+          if (some(this.nicOperationEnum, fnFilter)) {
             this.filters.nicOperation = fnFilter;
           }
         })
@@ -96,7 +100,7 @@ angular.module('App').controller(
           this.operationIds = operationIds;
         })
         .catch((err) => {
-          _.set(err, 'type', err.type || 'ERROR');
+          set(err, 'type', err.type || 'ERROR');
           this.Alerter.alertFromSWS(
             this.$translate.instant('domains_operations_error'),
             err,
@@ -104,7 +108,7 @@ angular.module('App').controller(
           );
         })
         .finally(() => {
-          if (_.isEmpty(this.operationIds)) {
+          if (isEmpty(this.operationIds)) {
             this.loading.init = false;
           }
         });

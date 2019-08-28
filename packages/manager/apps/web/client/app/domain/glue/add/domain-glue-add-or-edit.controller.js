@@ -1,3 +1,11 @@
+import every from 'lodash/every';
+import get from 'lodash/get';
+import isEmpty from 'lodash/isEmpty';
+import map from 'lodash/map';
+import set from 'lodash/set';
+import trim from 'lodash/trim';
+import uniq from 'lodash/uniq';
+
 angular.module('controllers').controller(
   'controllers.Domain.Glue.AddOrEdit',
   class DomainGlueAddOrEditCtrl {
@@ -11,7 +19,7 @@ angular.module('controllers').controller(
 
     $onInit() {
       this.domain = angular.copy(this.$scope.currentActionData.domain);
-      this.editedGlueRecord = _.get(
+      this.editedGlueRecord = get(
         this.$scope.currentActionData,
         'editedGlueRecord',
         null,
@@ -23,12 +31,12 @@ angular.module('controllers').controller(
 
       // edit mode
       if (this.editMode) {
-        _.set(
+        set(
           this.model,
           'host',
           this.editedGlueRecord.host.replace(`.${this.domain.name}`, ''),
         );
-        _.set(this.model, 'ips', this.editedGlueRecord.ips.toString());
+        set(this.model, 'ips', this.editedGlueRecord.ips.toString());
       }
 
       this.$scope.addOrEditGlueRecord = () => this.addOrEditGlueRecord();
@@ -38,7 +46,7 @@ angular.module('controllers').controller(
       return {
         host: `${this.model.host}.${this.domain.name}`,
         ips: this.model.ips
-          ? _.uniq(_.map(this.model.ips.replace(/,\s*$/, '').split(','), ip => _.trim(ip)))
+          ? uniq(map(this.model.ips.replace(/,\s*$/, '').split(','), ip => trim(ip)))
           : [],
       };
     }
@@ -57,11 +65,11 @@ angular.module('controllers').controller(
       if (!this.domain.glueRecordMultiIpSupported && model.ips.length > 1) {
         valid = false;
       } else {
-        valid = !_.isEmpty(model.ips)
-          && _.every(
+        valid = !isEmpty(model.ips)
+          && every(
             model.ips,
             ip => this.WucValidator.isValidIpv4(ip)
-              || (_.get(this.domain, 'glueRecordIpv6Supported', false)
+              || (get(this.domain, 'glueRecordIpv6Supported', false)
                 && this.WucValidator.isValidIpv6(ip)),
           );
       }

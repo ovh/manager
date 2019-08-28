@@ -1,3 +1,8 @@
+import filter from 'lodash/filter';
+import get from 'lodash/get';
+import map from 'lodash/map';
+import some from 'lodash/some';
+
 angular.module('App').controller(
   'PrivateDatabaseStateCtrl',
   class PrivateDatabaseStateCtrl {
@@ -33,7 +38,7 @@ angular.module('App').controller(
       this.productId = this.$stateParams.productId;
 
       this.database = this.$scope.database;
-      this.isExpired = _.get(this.database, 'serviceInfos.status') === 'expired';
+      this.isExpired = get(this.database, 'serviceInfos.status') === 'expired';
       this.displayMore = {
         value: false,
       };
@@ -79,9 +84,9 @@ angular.module('App').controller(
         MB: 2,
         GB: 3,
       };
-      this.database.oom.realList = _.filter(
+      this.database.oom.realList = filter(
         this.database.oom.list,
-        item => filesize(item.sizeReached, { output: 'object', exponent: _.get(exponent, this.database.ram.unit, -1) }).value > this.database.ram.value,
+        item => filesize(item.sizeReached, { output: 'object', exponent: get(exponent, this.database.ram.unit, -1) }).value > this.database.ram.value,
       );
       return this.database.oom.realList;
     }
@@ -89,7 +94,7 @@ angular.module('App').controller(
     getHostingsLinked() {
       this.privateDatabaseService
         .getHostingsLinked(this.productId)
-        .then(hostingsLinkedsId => this.$q.all(_.map(
+        .then(hostingsLinkedsId => this.$q.all(map(
           hostingsLinkedsId,
           mutuName => this.isAdminMutu(mutuName)
             .then(isAdmin => ({
@@ -115,7 +120,7 @@ angular.module('App').controller(
     isAdminMutu(mutu) {
       this.getUserInfos()
         .then(() => this.hostingService.getServiceInfos(mutu))
-        .then(mutuInfo => _.some(
+        .then(mutuInfo => some(
           [
             mutuInfo.contactBilling,
             mutuInfo.contactTech,

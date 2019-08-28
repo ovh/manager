@@ -1,3 +1,9 @@
+import filter from 'lodash/filter';
+import get from 'lodash/get';
+import indexOf from 'lodash/indexOf';
+import isEmpty from 'lodash/isEmpty';
+import isString from 'lodash/isString';
+
 angular.module('App').controller(
   'EmailsCreateResponderCtrl',
   class EmailsCreateResponderCtrl {
@@ -21,7 +27,7 @@ angular.module('App').controller(
 
     $onInit() {
       this.accounts = this.$scope.currentActionData.accounts;
-      this.isDelegated = _.get(
+      this.isDelegated = get(
         this.$scope.currentActionData,
         'delegate',
         false,
@@ -59,9 +65,9 @@ angular.module('App').controller(
       return this.WucEmails.getResponders(this.domain)
         .then((data) => {
           this.responders = data.sort();
-          this.accountsNotUsed = _.filter(
+          this.accountsNotUsed = filter(
             this.accounts,
-            account => _.indexOf(this.responders, account) === -1,
+            account => indexOf(this.responders, account) === -1,
           );
         })
         .catch((err) => {
@@ -89,16 +95,16 @@ angular.module('App').controller(
     responderAccountCheck(input) {
       input.$setValidity(
         'email',
-        _.isString(this.model.account)
+        isString(this.model.account)
           && validator.isEmail(`${this.model.account}@${this.domain}`),
       );
       input.$setValidity(
         'responder',
-        _.indexOf(this.responders, this.model.account) === -1,
+        indexOf(this.responders, this.model.account) === -1,
       );
       input.$setValidity(
         'account',
-        _.indexOf(this.accounts, this.model.account) === -1,
+        indexOf(this.accounts, this.model.account) === -1,
       );
     }
 
@@ -108,7 +114,7 @@ angular.module('App').controller(
     }
 
     responderDateStartCheck(input) {
-      if (!input.$dirty && !_.isEmpty(this.model.responderDateStart)) {
+      if (!input.$dirty && !isEmpty(this.model.responderDateStart)) {
         input.$setDirty();
       }
       input.$setValidity(
@@ -120,7 +126,7 @@ angular.module('App').controller(
     }
 
     responderDateEndCheck(input) {
-      if (!input.$dirty && !_.isEmpty(this.model.responderDateEnd)) {
+      if (!input.$dirty && !isEmpty(this.model.responderDateEnd)) {
         input.$setDirty();
       }
       input.$setValidity(

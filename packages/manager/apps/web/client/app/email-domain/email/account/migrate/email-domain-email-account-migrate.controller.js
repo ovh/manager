@@ -1,3 +1,11 @@
+import forEach from 'lodash/forEach';
+import get from 'lodash/get';
+import intersection from 'lodash/intersection';
+import isArray from 'lodash/isArray';
+import isEmpty from 'lodash/isEmpty';
+import map from 'lodash/map';
+import uniq from 'lodash/uniq';
+
 angular.module('App').controller(
   'EmailsMigrateAccountCtrl',
   class EmailsMigrateAccountCtrl {
@@ -48,7 +56,7 @@ angular.module('App').controller(
       this.$scope.migrateAccount = () => this.migrateAccount();
 
       this.User.getUrlOf('guides').then((guides) => {
-        this.allGuides = _.get(guides, 'all');
+        this.allGuides = get(guides, 'all');
       });
       this.User.getUrlOf('emailsOrder').then((url) => {
         this.emailsOrder = url;
@@ -84,7 +92,7 @@ angular.module('App').controller(
         // Merge destinationServices with serviceTypes, and get available services
         angular.forEach(serviceTypes, (serviceType, index) => {
           if (data[index].length) {
-            const services = _.map(data[index], destinationService => ({
+            const services = map(data[index], destinationService => ({
               id: destinationService,
               name: destinationService,
               type: serviceType,
@@ -144,7 +152,7 @@ angular.module('App').controller(
         .catch(err => this.handleError(err))
         .finally(() => {
           this.loaders.isWaitingForDestinationEmails = false;
-          this.isExchange = _.get(this, 'migrate.destinationService.type')
+          this.isExchange = get(this, 'migrate.destinationService.type')
             !== this.destinationServiceType.emailPro;
         });
     }
@@ -166,7 +174,7 @@ angular.module('App').controller(
         })
         .catch((err) => {
           this.isMigrationDataValid = false;
-          if (_.isArray(err)) {
+          if (isArray(err)) {
             this.displayCheckMigrationErrors(err);
           } else {
             this.handleError(err);
@@ -190,7 +198,7 @@ angular.module('App').controller(
       )
         .then(() => {
           if (
-            _.get(this, 'migrate.destinationService.type')
+            get(this, 'migrate.destinationService.type')
             === this.destinationServiceType.emailPro
           ) {
             this.Alerter.success(
@@ -216,7 +224,7 @@ angular.module('App').controller(
     handleError(err) {
       this.Alerter.alertFromSWS(
         this.$translate.instant('email_tab_modal_migrate_error'),
-        _.get(err, 'data', err),
+        get(err, 'data', err),
         this.$scope.alerts.migrate,
       );
     }
@@ -227,9 +235,9 @@ angular.module('App').controller(
     }
 
     displayCheckMigrationErrors(errors) {
-      const checkMigrationErrorCodes = errors.map(error => _.get(error, 'code'));
+      const checkMigrationErrorCodes = errors.map(error => get(error, 'code'));
 
-      const shouldRetry = _.isEmpty(_.intersection(checkMigrationErrorCodes, [
+      const shouldRetry = isEmpty(intersection(checkMigrationErrorCodes, [
         'ACCOUNT_EMPTY',
         'DOMAIN_EMPTY',
         'FORWARD_EXIST',
@@ -241,10 +249,10 @@ angular.module('App').controller(
       ]));
 
       const checkMigrationErrors = [];
-      _.forEach(checkMigrationErrorCodes, (code) => {
+      forEach(checkMigrationErrorCodes, (code) => {
         checkMigrationErrors.push(this.$translate.instant(`email_tab_modal_migrate_errors_check_${code}`));
       });
-      this.checkMigrationErrors = _.uniq(checkMigrationErrors);
+      this.checkMigrationErrors = uniq(checkMigrationErrors);
 
       let shouldRetryLabel = '';
       if (shouldRetry) {

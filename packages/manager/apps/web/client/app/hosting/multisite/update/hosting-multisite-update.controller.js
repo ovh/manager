@@ -1,3 +1,13 @@
+import clone from 'lodash/clone';
+import find from 'lodash/find';
+import forEach from 'lodash/forEach';
+import get from 'lodash/get';
+import includes from 'lodash/includes';
+import isEqual from 'lodash/isEqual';
+import map from 'lodash/map';
+import set from 'lodash/set';
+import some from 'lodash/some';
+
 angular
   .module('App')
   .controller(
@@ -16,7 +26,7 @@ angular
     ) => {
       $scope.selectedOptions = {};
 
-      const domainFromMultisite = _($scope.currentActionData).clone();
+      const domainFromMultisite = clone($scope.currentActionData);
 
       $scope.selected = {
         domain: domainFromMultisite,
@@ -76,7 +86,7 @@ angular
         let target = 'FR';
 
         if (
-          _.find(
+          find(
             countryIps,
             countryIp => countryIp.country === $scope.userInfos.ovhSubsidiary,
           )
@@ -84,8 +94,8 @@ angular
           target = $scope.userInfos.ovhSubsidiary;
         }
 
-        _.forEach(countryIps, (country) => {
-          const countryFound = _.find(
+        forEach(countryIps, (country) => {
+          const countryFound = find(
             recordIdsData,
             record => country.ip === record.target && country.country !== target,
           );
@@ -132,16 +142,17 @@ angular
                 .then((runtimes) => {
                   $scope.loading.runtimes = true;
 
-                  const promises = _(runtimes)
-                    .map(runtimeId => HostingRuntimes.get(
+                  const promises = map(
+                    runtimes,
+                    runtimeId => HostingRuntimes.get(
                       $scope.hosting.serviceName,
                       runtimeId,
                     ).then((runtime) => {
                       $scope.model.runtimes.push(runtime);
 
                       return runtime;
-                    }))
-                    .value();
+                    }),
+                  );
 
                   return $q.all(promises);
                 })
@@ -151,7 +162,7 @@ angular
                 .catch((err) => {
                   Alerter.alertFromSWS(
                     $translate.instant('hosting_tab_DOMAINS_configuration_add_loading_error'),
-                    _.get(err, 'data', err),
+                    get(err, 'data', err),
                     $scope.alerts.main,
                   );
 
@@ -169,7 +180,7 @@ angular
             ),
           ))
           .then((records) => {
-            $scope.selected.domain.ipV6Enabled = _.some(
+            $scope.selected.domain.ipV6Enabled = some(
               records,
               record => $scope.hosting.clusterIpv6 === record.target,
             );
@@ -188,9 +199,10 @@ angular
             subDomain: subDomainName,
           }))
           .then((recordIds) => {
-            const recordsPromises = _(recordIds)
-              .map(recordId => Domain.getRecord($stateParams.productId, recordId))
-              .value();
+            const recordsPromises = map(
+              recordIds,
+              recordId => Domain.getRecord($stateParams.productId, recordId),
+            );
 
             return $q.all(recordsPromises);
           })
@@ -202,7 +214,7 @@ angular
             $scope.resetAction();
             Alerter.alertFromSWS(
               $translate.instant('hosting_tab_DOMAINS_configuration_add_loading_error'),
-              _.get(err, 'data', err),
+              get(err, 'data', err),
               $scope.alerts.main,
             );
           })
@@ -284,7 +296,7 @@ angular
             ? $scope.selected.ownLogDomain.name
             : null,
           !!$scope.selected.domain.ssl, // mandatory because it could be 0, 1, 2 or true/false
-          _($scope.selected).get('runtime.id', null),
+          get($scope.selected, 'runtime.id', null),
           $stateParams.productId,
         )
           .then((data) => {
@@ -295,18 +307,18 @@ angular
             );
           })
           .catch((err) => {
-            _.set(err, 'type', err.type || 'ERROR');
-            if (_.isEqual(err.status, 403) && _.includes(err.data, 'updating')) {
+            set(err, 'type', err.type || 'ERROR');
+            if (isEqual(err.status, 403) && includes(err.data, 'updating')) {
               // show update in progress error
               Alerter.alertFromSWS(
                 $translate.instant('hosting_tab_DOMAINS_configuration_modify_failure_inprogress'),
-                _.get(err, 'data', err),
+                get(err, 'data', err),
                 $scope.alerts.main,
               );
             } else {
               Alerter.alertFromSWS(
                 $translate.instant('hosting_tab_DOMAINS_configuration_modify_failure'),
-                _.get(err, 'data', err),
+                get(err, 'data', err),
                 $scope.alerts.main,
               );
             }

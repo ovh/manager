@@ -1,3 +1,9 @@
+import clone from 'lodash/clone';
+import findIndex from 'lodash/findIndex';
+import forEach from 'lodash/forEach';
+import get from 'lodash/get';
+import isEmpty from 'lodash/isEmpty';
+
 angular.module('App').controller(
   'DatabaseDumpsCtrl',
   class DatabaseDumpsCtrl {
@@ -14,7 +20,7 @@ angular.module('App').controller(
     $onInit() {
       this.statusToWatch = ['start', 'doing', 'done', 'error'];
 
-      _.forEach(this.statusToWatch, (state) => {
+      forEach(this.statusToWatch, (state) => {
         this.$scope.$on(
           `database.dump.restore.poll.${state}`,
           this[`onDataBaseDumpRestore${state}`].bind(this),
@@ -52,7 +58,7 @@ angular.module('App').controller(
       return this.hostingDatabase
         .getDump(this.$stateParams.productId, this.$scope.bdd.name, item.id)
         .then((originalDump) => {
-          const dump = _(originalDump).clone();
+          const dump = clone(originalDump);
 
           dump.transformed = true;
           return dump;
@@ -92,7 +98,7 @@ angular.module('App').controller(
     }
 
     onDataBaseDumpDeleteerror(dump) {
-      if (_.get(dump, 'id')) {
+      if (get(dump, 'id')) {
         this.findItemIndex(dump.id).then((idx) => {
           if (idx !== -1) {
             delete this.databaseDumps[idx].waitDelete;
@@ -155,7 +161,7 @@ angular.module('App').controller(
       let unregisterWatch = null;
 
       const todo = () => {
-        const idx = _.findIndex(this.databaseDumps, dump => dump.id === dumpId);
+        const idx = findIndex(this.databaseDumps, dump => dump.id === dumpId);
 
         if (idx >= 0) {
           deferred.resolve(idx);
@@ -166,7 +172,7 @@ angular.module('App').controller(
         }
       };
 
-      if (!_.isEmpty(this.databaseDumps)) {
+      if (!isEmpty(this.databaseDumps)) {
         todo();
       } else {
         unregisterWatch = this.$scope.$watch(

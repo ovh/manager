@@ -1,3 +1,5 @@
+import forEach from 'lodash/forEach';
+
 angular
   .module('App')
   .controller(
@@ -55,7 +57,7 @@ angular
           }
 
           $scope.loading.details = true;
-          _.forEach($scope.durations, (duration) => {
+          forEach($scope.durations, (duration) => {
             queue.push(HostingOptionOrder.getOrderDetailsForDuration(
               'extraSqlPerso',
               duration,

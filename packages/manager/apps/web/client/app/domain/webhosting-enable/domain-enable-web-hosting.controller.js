@@ -1,3 +1,9 @@
+import compact from 'lodash/compact';
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import get from 'lodash/get';
+import map from 'lodash/map';
+
 angular.module('App').controller(
   'App.Controllers.EnableWebHostingOrderController',
   class EnableWebHostingOrderCtrl {
@@ -54,8 +60,8 @@ angular.module('App').controller(
           user: this.User.getUser(),
         })
         .then(({ modules, offers, user }) => {
-          this.model.moduleTemplates = _.filter(modules, { branch: 'stable' });
-          this.offers = _.compact(offers);
+          this.model.moduleTemplates = filter(modules, { branch: 'stable' });
+          this.offers = compact(offers);
           this.hostingUrl = this.constants.urls.hosting[user.ovhSubsidiary]
             || this.constants.urls.hosting.FR;
         })
@@ -79,7 +85,7 @@ angular.module('App').controller(
         rtn = this.HostingOrder
           .getModels()
           .then((models) => {
-            this.dnsZones = _.map(models['hosting.web.DnsZoneEnum'].enum, item => ({
+            this.dnsZones = map(models['hosting.web.DnsZoneEnum'].enum, item => ({
               key: item,
               title: `domain_configuration_web_hosting_dns_${item}`,
               helpMsg: `domain_configuration_web_hosting_dns_info_${item}`,
@@ -93,7 +99,7 @@ angular.module('App').controller(
     getModulesList() {
       return this.HostingModule
         .getModulesLatestList()
-        .then(moduleTemplates => this.$q.all(_.map(
+        .then(moduleTemplates => this.$q.all(map(
           moduleTemplates,
           id => this.HostingModule.getAvailableModule(id),
         )));
@@ -102,7 +108,7 @@ angular.module('App').controller(
     getOffersList() {
       return this.Hosting
         .getAvailableOffer(this.domain.name)
-        .then(offers => this.$q.all(_.map(offers, (offer) => {
+        .then(offers => this.$q.all(map(offers, (offer) => {
           let rtn;
           if ((!this.model.offer
               && offer !== this.constants.HOSTING.OFFERS.START_10_M.LIST_VALUE)
@@ -121,12 +127,12 @@ angular.module('App').controller(
     }
 
     displayRecommendedLabel(offer) {
-      const name = _.get(this.model, 'templateSelected.name', false);
+      const name = get(this.model, 'templateSelected.name', false);
       return name && ((name === 'prestashop' && offer === 'PERFORMANCE_1') || (name !== 'prestashop' && offer === 'PRO'));
     }
 
     hasPreselectedOffer() {
-      return !!_.get(this.domain, 'selected.offer', false);
+      return !!get(this.domain, 'selected.offer', false);
     }
 
     static orderByOfferPrice(a) {
@@ -146,9 +152,9 @@ angular.module('App').controller(
       } else {
         this.model.templateSelected = module;
         if (module.name === 'prestashop') {
-          this.model.offer = _.find(this.offers, { offer: 'PERFORMANCE_1' }).offer;
+          this.model.offer = find(this.offers, { offer: 'PERFORMANCE_1' }).offer;
         } else {
-          this.model.offer = _.find(this.offers, { offer: 'PRO' }).offer;
+          this.model.offer = find(this.offers, { offer: 'PRO' }).offer;
         }
       }
     }
@@ -186,7 +192,7 @@ angular.module('App').controller(
     }
 
     getSelectedOfferOrderInfos() {
-      return (_.find(this.offers, { offer: this.model.offer }) || { orderInfos: {} }).orderInfos;
+      return (find(this.offers, { offer: this.model.offer }) || { orderInfos: {} }).orderInfos;
     }
 
     orderHosting() {
@@ -219,7 +225,7 @@ angular.module('App').controller(
           this.$window.open(order.url, '_blank');
           return true;
         })
-        .catch(err => this.Alerter.alertFromSWS(this.$translate.instant('domain_order_hosting_finish_error'), _.get(err, 'data', err), this.$scope.alerts.main))
+        .catch(err => this.Alerter.alertFromSWS(this.$translate.instant('domain_order_hosting_finish_error'), get(err, 'data', err), this.$scope.alerts.main))
         .finally(() => this.$scope.resetAction());
     }
   },

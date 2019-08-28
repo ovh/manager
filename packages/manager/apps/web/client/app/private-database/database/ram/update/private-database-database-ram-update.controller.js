@@ -1,3 +1,6 @@
+import get from 'lodash/get';
+import remove from 'lodash/remove';
+
 angular.module('App').controller(
   'PrivateDatabaseChangeRamCtrl',
   class PrivateDatabaseChangeRamCtrl {
@@ -59,10 +62,10 @@ angular.module('App').controller(
         this.loading.availableRam = false;
         this.data.availableRam = availableRam;
         if (this.database.infrastructure === 'legacy') {
-          _.remove(this.data.availableRam, ram => ram === '2048');
+          remove(this.data.availableRam, ram => ram === '2048');
         }
 
-        _.remove(
+        remove(
           this.data.availableRam,
           ram => +ram === +this.database.ram.value,
         );
@@ -154,7 +157,7 @@ angular.module('App').controller(
         .catch((err) => {
           this.alerter.alertFromSWS(
             this.$translate.instant('privateDatabase_order_RAM_finish_error'),
-            _.get(err, 'data', err),
+            get(err, 'data', err),
           );
         })
         .finally(() => {

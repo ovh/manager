@@ -1,3 +1,7 @@
+import get from 'lodash/get';
+import isEmpty from 'lodash/isEmpty';
+import set from 'lodash/set';
+
 angular.module('App').controller(
   'HostingTabDatabasesCtrl',
   class HostingTabDatabasesCtrl {
@@ -66,7 +70,7 @@ angular.module('App').controller(
         (err) => {
           this.alerter.alertFromSWS(
             this.$translate.instant('hosting_tab_databases_get_error'),
-            _.get(err, 'data', err),
+            get(err, 'data', err),
             this.$scope.alerts.main,
           );
           this.reloadCurrentPage();
@@ -168,7 +172,7 @@ angular.module('App').controller(
           );
         })
         .finally(() => {
-          if (_.isEmpty(this.databases.ids)) {
+          if (isEmpty(this.databases.ids)) {
             this.loading.init = false;
             this.loading.databases = false;
           } else {
@@ -201,12 +205,12 @@ angular.module('App').controller(
           ),
         })
         .then(({ database, dumps }) => {
-          _.set(
+          set(
             database,
             'quotaUsed.asText',
             this.getQuotaUsageString(database.quotaUsed, database.quotaSize),
           );
-          _.set(
+          set(
             database,
             'quotaUsed.cappedAsText',
             this.convertBytesSize(
@@ -215,8 +219,8 @@ angular.module('App').controller(
               2,
             ),
           );
-          _.set(database, 'dumpsCount', dumps.length || 0);
-          _.set(database, 'dumps', dumps);
+          set(database, 'dumpsCount', dumps.length || 0);
+          set(database, 'dumps', dumps);
           return database;
         });
     }

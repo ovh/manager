@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular.module('App').controller(
   'PrivateDatabaseStopCtrl',
   class PrivateDatabaseStopCtrl {
@@ -30,7 +32,7 @@ angular.module('App').controller(
         .catch((err) => {
           this.alerter.alertFromSWS(
             this.$translate.instant('privateDatabase_stop_fail'),
-            _.get(err, 'data', err),
+            get(err, 'data', err),
             this.$scope.alerts.main,
           );
         });

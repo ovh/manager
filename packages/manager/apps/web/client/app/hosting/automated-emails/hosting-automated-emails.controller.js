@@ -1,3 +1,8 @@
+import get from 'lodash/get';
+import head from 'lodash/head';
+import isEmpty from 'lodash/isEmpty';
+import set from 'lodash/set';
+
 angular.module('App').controller(
   'HostingTabAutomatedEmailsCtrl',
   class HostingTabAutomatedEmailsCtrl {
@@ -44,7 +49,7 @@ angular.module('App').controller(
             intersect: false,
             callbacks: {
               title(data) {
-                return moment(_.get(_.first(data), 'xLabel')).fromNow();
+                return moment(get(head(data), 'xLabel')).fromNow();
               },
             },
           },
@@ -121,7 +126,7 @@ angular.module('App').controller(
       });
 
       this.User.getUrlOf('guides').then((guides) => {
-        this.guide = _.get(guides, 'hostingScriptEmail', null);
+        this.guide = get(guides, 'hostingScriptEmail', null);
       });
 
       this.retrievingAutomatedEmails();
@@ -134,7 +139,7 @@ angular.module('App').controller(
       return this.HostingAutomatedEmails.getAutomatedEmails(this.$stateParams.productId)
         .then((data) => {
           if (
-            !_.isEmpty(this.automatedEmails)
+            !isEmpty(this.automatedEmails)
             && this.automatedEmails.state !== data.state
             && data.state === 'purging'
           ) {
@@ -146,7 +151,7 @@ angular.module('App').controller(
           this.retrievingBounces();
         })
         .catch((err) => {
-          _.set(err, 'type', err.type || 'ERROR');
+          set(err, 'type', err.type || 'ERROR');
           this.Alerter.alertFromSWS(
             this.$translate.instant('hosting_tab_AUTOMATED_EMAILS_error'),
             err,
@@ -188,7 +193,7 @@ angular.module('App').controller(
           if (err.status !== 404) {
             this.Alerter.alertFromSWS(
               this.$translate.instant('hosting_tab_AUTOMATED_EMAILS_error'),
-              _.get(err, 'data', err),
+              get(err, 'data', err),
               this.$scope.alerts.main,
             );
           }
@@ -210,14 +215,14 @@ angular.module('App').controller(
         this.limits.bounces,
       )
         .then((data) => {
-          this.thereAreEmailsInError = !_.isEmpty(data.data);
+          this.thereAreEmailsInError = !isEmpty(data.data);
           this.bounces = data.data;
         })
         .catch((err) => {
           if (err.status !== 404) {
             this.Alerter.alertFromSWS(
               this.$translate.instant('hosting_tab_AUTOMATED_EMAILS_error'),
-              _.get(err, 'data', err),
+              get(err, 'data', err),
               this.$scope.alerts.main,
             );
           } else {

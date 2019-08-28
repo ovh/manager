@@ -1,3 +1,6 @@
+import clone from 'lodash/clone';
+import snakeCase from 'lodash/snakeCase';
+
 angular.module('services').service(
   'HostingUser',
   class HostingUser {
@@ -90,7 +93,7 @@ angular.module('services').service(
     getUserCreationCapabilities() {
       return this.Hosting.getModels().then(models => ({
         maxUser: 1000,
-        stateAvailable: models.models['hosting.web.user.StateEnum'].enum.map(m => _.snakeCase(m).toUpperCase()),
+        stateAvailable: models.models['hosting.web.user.StateEnum'].enum.map(m => snakeCase(m).toUpperCase()),
       }));
     }
 
@@ -113,7 +116,7 @@ angular.module('services').service(
      * @returns {boolean}
      */
     pollState(serviceName, originalOpts) {
-      const opts = _(originalOpts).clone();
+      const opts = clone(originalOpts);
 
       if (!opts.id) {
         return this.$rootScope.$broadcast(`${opts.namespace}.error`, '');

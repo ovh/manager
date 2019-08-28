@@ -1,3 +1,10 @@
+import filter from 'lodash/filter';
+import isEmpty from 'lodash/isEmpty';
+import map from 'lodash/map';
+import remove from 'lodash/remove';
+import set from 'lodash/set';
+import some from 'lodash/some';
+
 angular.module('controllers').controller(
   'controllers.Domain.Dns',
   class DomainDnsCtrl {
@@ -91,15 +98,15 @@ angular.module('controllers').controller(
             isUsed: true,
             toDelete: false,
           }).length;
-          return this.$q.all(_.map(tabDns.dns, nameServer => this.Domain.getNameServerStatus(
+          return this.$q.all(map(tabDns.dns, nameServer => this.Domain.getNameServerStatus(
             this.$stateParams.productId,
             nameServer.id,
           )));
         })
         .then((nameServersStatus) => {
-          if (!_.isEmpty(nameServersStatus)) {
-            this.dnsStatus.isOk = !_.some(nameServersStatus, { state: 'ko' });
-            this.dnsStatus.isHosted = !_.some(nameServersStatus, {
+          if (!isEmpty(nameServersStatus)) {
+            this.dnsStatus.isOk = !some(nameServersStatus, { state: 'ko' });
+            this.dnsStatus.isHosted = !some(nameServersStatus, {
               type: 'external',
             });
           }
@@ -122,8 +129,8 @@ angular.module('controllers').controller(
     }
 
     removeLine(item) {
-      _.remove(this.dns.table.dns, item);
-      const filtered = _.filter(
+      remove(this.dns.table.dns, item);
+      const filtered = filter(
         this.dns.table.dns,
         currentDNS => !currentDNS.toDelete,
       );
@@ -138,7 +145,7 @@ angular.module('controllers').controller(
     }
 
     checkAtLeastOneDns() {
-      const filtered = _.filter(
+      const filtered = filter(
         this.dns.table.dns,
         currentDNS => !currentDNS.toDelete
           && ((currentDNS.host && currentDNS.editedHost == null)
@@ -166,14 +173,14 @@ angular.module('controllers').controller(
     }
 
     saveDns() {
-      let dns = _.filter(
+      let dns = filter(
         this.dns.table.dns,
         currentDNS => currentDNS.editedHost !== '' || currentDNS.editedIp,
       );
 
-      if (!_.isEmpty(dns)) {
+      if (!isEmpty(dns)) {
         this.loading.table = true;
-        dns = _.map(dns, d => ({
+        dns = map(dns, d => ({
           host: d.editedHost || d.host,
           ip: d.editedIp || d.ip || undefined,
         }));
@@ -197,7 +204,7 @@ angular.module('controllers').controller(
             this.$scope.alerts.main,
           ))
           .catch((err) => {
-            _.set(err, 'type', err.type || 'ERROR');
+            set(err, 'type', err.type || 'ERROR');
             this.Alerter.alertFromSWS(
               this.$translate.instant('domain_tab_DNS_update_error'),
               err,
@@ -210,7 +217,7 @@ angular.module('controllers').controller(
           });
       }
 
-      this.dns.table.dns = _.filter(
+      this.dns.table.dns = filter(
         this.dns.table.dns,
         currentDNS => currentDNS.host || currentDNS.ip,
       );

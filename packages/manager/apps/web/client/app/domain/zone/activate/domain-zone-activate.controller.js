@@ -1,3 +1,5 @@
+import set from 'lodash/set';
+
 angular.module('App').controller(
   'DomainZoneActivateCtrl',
   class DomainZoneActivateCtrl {
@@ -27,7 +29,7 @@ angular.module('App').controller(
           this.$scope.alerts.main,
         ))
         .catch((err) => {
-          _.set(err, 'type', err.type || 'ERROR');
+          set(err, 'type', err.type || 'ERROR');
           this.Alerter.alertFromSWS(
             this.$translate.instant('domain_tab_ZONE_no_zone_activate_error'),
             err,

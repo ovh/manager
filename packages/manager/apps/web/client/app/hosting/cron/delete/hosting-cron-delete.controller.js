@@ -1,3 +1,6 @@
+import get from 'lodash/get';
+import set from 'lodash/set';
+
 angular.module('App').controller(
   'HostingCronDeleteCtrl',
   class HostingCronDeleteCtrl {
@@ -27,10 +30,10 @@ angular.module('App').controller(
           );
         })
         .catch((err) => {
-          _.set(err, 'type', err.type || 'ERROR');
+          set(err, 'type', err.type || 'ERROR');
           this.Alerter.alertFromSWS(
             this.$translate.instant('hosting_tab_CRON_configuration_delete_fail'),
-            _.get(err, 'data', err),
+            get(err, 'data', err),
             this.$scope.alerts.main,
           );
         })

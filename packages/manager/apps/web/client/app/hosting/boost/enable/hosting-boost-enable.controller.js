@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular
   .module('App')
   .controller(
@@ -30,7 +32,7 @@ angular
           .catch((err) => {
             Alerter.alertFromSWS(
               $translate.instant('hosting_tab_BOOST_request_error'),
-              _.get(err, 'data', err),
+              get(err, 'data', err),
               $scope.alerts.main,
             );
           })
