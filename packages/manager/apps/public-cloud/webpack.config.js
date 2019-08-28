@@ -35,6 +35,11 @@ module.exports = (env = {}) => {
         __NODE_ENV__: process.env.NODE_ENV ? `'${process.env.NODE_ENV}'` : '"development"',
         __WEBPACK_REGION__: process.env.REGION ? `'${process.env.REGION.toUpperCase()}'` : '"EU"',
       }),
+      new webpack.ProvidePlugin({
+        $: 'jquery',
+        jQuery: 'jquery',
+        'window.jQuery': 'jquery',
+      }),
     ],
     resolve: {
       modules: [

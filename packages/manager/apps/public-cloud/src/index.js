@@ -2,19 +2,17 @@
 import { Environment } from '@ovh-ux/manager-config';
 
 /* eslint-disable import/no-webpack-loader-syntax, import/extensions */
-import 'script-loader!jquery';
 import angular from 'angular';
 import ngAnimate from 'angular-animate';
 import uiRouter, { RejectType } from '@uirouter/angularjs';
-import 'script-loader!lodash';
-import 'script-loader!jquery-ui/ui/core';
-import 'script-loader!jquery-ui/ui/widget';
-import 'script-loader!jquery-ui/ui/widgets/mouse';
-import 'script-loader!jquery-ui/ui/widgets/draggable';
+import 'jquery-ui/ui/widget';
+import 'jquery-ui/ui/widgets/mouse';
+import 'jquery-ui/ui/widgets/draggable';
 import 'script-loader!moment/min/moment-with-locales.min.js';
 import 'script-loader!angular-ui-validate/dist/validate.js';
 import 'ovh-ui-angular';
-import 'script-loader!bootstrap-tour/build/js/bootstrap-tour-standalone.min.js';
+import 'script-loader!jquery';
+import 'script-loader!bootstrap-tour/build/js/bootstrap-tour-standalone.min';
 /* eslint-enable import/no-webpack-loader-syntax, import/extensions */
 
 import get from 'lodash/get';
