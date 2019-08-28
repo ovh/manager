@@ -94,7 +94,7 @@
     "filesize": "^3.5.10",
     "flatpickr": "^4.6.2",
     "font-awesome": "^4.5.0",
-    "ipaddr.js": "1.9.1",
+    "ipaddr.js": "^1.9.1",
     "jquery": "^2.1.3",
     "jquery-ui": "^1.12.1",
     "jquery.cookie": "^1.4.1",

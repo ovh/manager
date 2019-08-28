@@ -2,7 +2,7 @@ import angular from 'angular';
 import isString from 'lodash/isString';
 import punycode from 'punycode';
 import ipaddr from 'ipaddr.js'; // eslint-disable-line import/extensions
-import URI from 'urijs';
+import URI from 'URIjs';
 
 export default function () {
   const self = this;
