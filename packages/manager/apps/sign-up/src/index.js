@@ -63,9 +63,16 @@ angular
       }
       return '';
     };
-    const language = head(window.navigator.language.split('-'))
-      || getQueryVariable('lang')
-      || 'fr';
+    const navigatorLg = window.navigator.language || window.navigator.userLanguage;
+    let language;
+    if (navigatorLg) {
+      language = head(navigatorLg.split('-'));
+    }
+
+    if (!language) {
+      language = getQueryVariable('lang') || 'fr';
+    }
+
     const userLocale = TranslateServiceProvider.findLanguage(language, language);
     TranslateServiceProvider.setUserLocale(userLocale);
     $translateProvider.use(userLocale);
