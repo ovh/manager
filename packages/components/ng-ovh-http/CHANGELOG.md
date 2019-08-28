@@ -1,3 +1,12 @@
+## [4.0.3](https://github.com/ovh-ux/ng-ovh-http/compare/v4.0.2...v4.0.3) (2019-08-28)
+
+
+### Bug Fixes
+
+* **provider:** apply eslint rules ([e8569e3](https://github.com/ovh-ux/ng-ovh-http/commit/e8569e3))
+
+
+
 ## [4.0.2](https://github.com/ovh-ux/ng-ovh-http/compare/v4.0.1...v4.0.2) (2019-07-29)
 
 
