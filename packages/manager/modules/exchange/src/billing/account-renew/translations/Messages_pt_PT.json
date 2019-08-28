@@ -15,7 +15,7 @@
   "exchange_update_billing_periode_value_MONTHLY": "Mensal ",
   "exchange_update_billing_periode_value_YEARLY": "Anual",
   "exchange_update_billing_periode_value_DELETE_AT_EXPIRATION": "Expira na data de vencimento",
-  "exchange_update_billing_periode_delete_warning": "Atenção! Esta escolha implica que o serviço vai expirar no seu termo e os dados serão perdidos. Será depois impossível recuperar os dados da conta.",
+  "exchange_update_billing_periode_delete_warning": "Atenção! Esta escolha implica que o serviço expire na data de vencimento e que os dados serão totalmente perdidos. Assim, será impossível recuperar os dados da conta.",
   "exchange_update_billing_periode_resume": "Altere o período de renovação das suas contas:",
   "exchange_update_billing_periode_success": "O período de renovação das contas selecionadas não foi atualizado.",
   "exchange_update_billing_periode_partial": "Alguns períodos de renovação não foram atualizados.",
