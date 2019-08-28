@@ -1,19 +1,22 @@
 import indexOf from 'lodash/indexOf';
 
 export default /* @ngInject */ function (
+  $stateParams,
+  $translate,
+  $window,
+  coreConfig,
+  CucCloudMessage,
+  CucControllerHelper,
+  guideUrl,
   OvhApiCloud,
   OvhApiCloudProjectServiceInfos,
   OvhApiMe,
-  $stateParams,
-  CucCloudMessage,
-  CucControllerHelper,
-  $translate,
   PCI_REDIRECT_URLS,
-  $window,
-  coreConfig,
 ) {
   const self = this;
   const serviceName = $stateParams.projectId;
+
+  self.guideUrl = guideUrl;
 
   self.model = {
     owner: '',
