@@ -1,3 +1,6 @@
+import flatten from 'lodash/flatten';
+import map from 'lodash/map';
+
 angular
   .module('services')
   .service('HostingTask', function hostingTaskService(OvhHttp, $q, $timeout, $log) {
@@ -139,8 +142,8 @@ angular
       });
 
       return $q.all(queue).then((results) => {
-        const ids = _.flatten(results);
-        return $q.all(_.map(ids, id => self.getFromId(serviceName, id)));
+        const ids = flatten(results);
+        return $q.all(map(ids, id => self.getFromId(serviceName, id)));
       });
     }
 

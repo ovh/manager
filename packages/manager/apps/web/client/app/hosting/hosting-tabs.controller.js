@@ -1,3 +1,11 @@
+import includes from 'lodash/includes';
+import indexOf from 'lodash/indexOf';
+import isEmpty from 'lodash/isEmpty';
+import isString from 'lodash/isString';
+import kebabCase from 'lodash/kebabCase';
+import map from 'lodash/map';
+import remove from 'lodash/remove';
+
 angular.module('App').controller(
   'HostingTabsCtrl',
   class HostingTabsCtrl {
@@ -24,10 +32,10 @@ angular.module('App').controller(
 
       if (this.$stateParams.tab
         && this.tabs.indexOf(
-          _.isString(this.$stateParams.tab)
+          isString(this.$stateParams.tab)
           && this.$stateParams.tab.toUpperCase(),
         ) !== -1) {
-        this.setSelectedTab(_.isString(this.$stateParams.tab)
+        this.setSelectedTab(isString(this.$stateParams.tab)
           && this.$stateParams.tab.toUpperCase());
       } else {
         this.setSelectedTab(this.defaultTab);
@@ -37,7 +45,7 @@ angular.module('App').controller(
         hosting: this.Hosting.getSelected(this.$stateParams.productId),
         user: this.User.getUser(),
       })
-        .then(({ hosting, user }) => (_.isEmpty(hosting.offer)
+        .then(({ hosting, user }) => (isEmpty(hosting.offer)
           ? this.$q.when({ hosting, user })
           : this.$q.all({
             indys: this.HostingIndy.getIndys(this.$stateParams.productId),
@@ -64,12 +72,12 @@ angular.module('App').controller(
           };
 
           if (user.ovhSubsidiary === 'FR') {
-            this.tabs.splice(_.indexOf(this.tabs, 'FTP'), 0, 'LOCAL_SEO');
+            this.tabs.splice(indexOf(this.tabs, 'FTP'), 0, 'LOCAL_SEO');
             this.$scope.localSeoAvailable = true;
           }
 
           if (hosting.isCloudWeb) {
-            _.remove(this.tabs, t => t === 'TASK');
+            remove(this.tabs, t => t === 'TASK');
             this.tabs.splice(1, 0, 'RUNTIMES', 'ENVVARS');
             this.tabMenu.items.splice(0, 0, {
               label: this.$translate.instant('hosting_tab_TASK'),
@@ -98,7 +106,7 @@ angular.module('App').controller(
             });
           }
 
-          if (!_.isEmpty(indys)) {
+          if (!isEmpty(indys)) {
             this.tabMenu.items.push({
               label: this.$translate.instant('hosting_tab_INDY'),
               target: 'INDY',
@@ -106,7 +114,7 @@ angular.module('App').controller(
             });
           }
 
-          if (!_.isEmpty(freedoms)) {
+          if (!isEmpty(freedoms)) {
             this.tabMenu.items.push({
               label: this.$translate.instant('hosting_tab_FREEDOM'),
               target: 'FREEDOM',
@@ -129,9 +137,9 @@ angular.module('App').controller(
     }
 
     setSelectedTab(tab) {
-      if (_.includes(this.tabs, tab)) {
+      if (includes(this.tabs, tab)) {
         this.selectedTab = tab;
-      } else if (_.includes(_.map(this.tabMenu.items, item => item.type === 'SWITCH_TABS' && item.target), tab)) {
+      } else if (includes(map(this.tabMenu.items, item => item.type === 'SWITCH_TABS' && item.target), tab)) {
         this.selectedTab = tab;
       } else {
         this.selectedTab = this.defaultTab;
@@ -140,7 +148,7 @@ angular.module('App').controller(
     }
 
     static toKebabCase(str) {
-      return _.kebabCase(str);
+      return kebabCase(str);
     }
   },
 );

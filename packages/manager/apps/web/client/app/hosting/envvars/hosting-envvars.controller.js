@@ -1,3 +1,8 @@
+import clone from 'lodash/clone';
+import get from 'lodash/get';
+import isArray from 'lodash/isArray';
+import isEmpty from 'lodash/isEmpty';
+
 angular.module('App').controller(
   'HostingEnvvarsCtrl',
   class HostingEnvvarsCtrl {
@@ -37,7 +42,7 @@ angular.module('App').controller(
     getIds() {
       return this.HostingEnvvars.list(this.$stateParams.productId)
         .then((keys) => {
-          if (!_(keys).isArray()) {
+          if (!isArray(keys)) {
             throw this.$translate.instant('hosting_tab_ENVVARS_list_error_temporary');
           }
 
@@ -50,7 +55,7 @@ angular.module('App').controller(
           );
         })
         .finally(() => {
-          this.hasResult = _(this.envvars).isArray() && !_(this.envvars).isEmpty();
+          this.hasResult = isArray(this.envvars) && !isEmpty(this.envvars);
           this.loading = false;
         });
     }
@@ -60,7 +65,7 @@ angular.module('App').controller(
      */
     getEnvvar(row) {
       return this.HostingEnvvars.get(this.$stateParams.productId, row.key).then((envvar) => {
-        const formattedEnvar = _(envvar).clone();
+        const formattedEnvar = clone(envvar);
         formattedEnvar.loaded = true;
 
         return envvar;
@@ -68,7 +73,7 @@ angular.module('App').controller(
     }
 
     canAddEnvvar() {
-      return _(this.envvars).isArray() && this.envvars.length < this.maxEnvvars;
+      return isArray(this.envvars) && this.envvars.length < this.maxEnvvars;
     }
 
     /**
@@ -77,10 +82,7 @@ angular.module('App').controller(
     loadCapabilities() {
       return this.Hosting.getSelected(this.$stateParams.productId)
         .then((hosting) => {
-          const offer = _(hosting)
-            .get('offer', '')
-            .toLowerCase()
-            .replace('_', '');
+          const offer = get(hosting, 'offer', '').toLowerCase().replace('_', '');
 
           return this.Hosting.getOfferCapabilities(offer);
         })

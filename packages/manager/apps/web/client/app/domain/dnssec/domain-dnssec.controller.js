@@ -1,3 +1,12 @@
+import find from 'lodash/find';
+import forEach from 'lodash/forEach';
+import get from 'lodash/get';
+import map from 'lodash/map';
+import range from 'lodash/range';
+import remove from 'lodash/remove';
+import slice from 'lodash/slice';
+import some from 'lodash/some';
+
 angular.module('controllers').controller(
   'DomainDnssecTabCtrl',
   class DomainDnssecTabCtrl {
@@ -78,22 +87,22 @@ angular.module('controllers').controller(
         })
         .then(({ product, models }) => {
           this.product = product;
-          this.keyAlgorithmEnum = _.map(
+          this.keyAlgorithmEnum = map(
             models.models['dnssec.KeyAlgorithmEnum'].enum,
             algorithm => +algorithm,
           );
-          this.keyFlagEnum = _.map(
+          this.keyFlagEnum = map(
             models.models['dnssec.KeyFlagEnum'].enum,
             flag => +flag,
           );
         })
         .catch(err => this.Alerter.alertFromSWS(
           this.$translate.instant('domain_tab_DNSSEC_loading_error'),
-          _.get(err, 'data', err),
+          get(err, 'data', err),
           this.$scope.alerts.main,
         ))
         .finally(() => {
-          this.dnssecListSave = _.slice(this.dnssecList);
+          this.dnssecListSave = slice(this.dnssecList);
           this.loading = false;
         });
     }
@@ -102,7 +111,7 @@ angular.module('controllers').controller(
       this.dnssecList = [];
       return this.Domain
         .getDnssecList(domain)
-        .then(dnssecList => this.$q.all(_.map(
+        .then(dnssecList => this.$q.all(map(
           dnssecList,
           dnsSecName => this.Domain
             .getDnssec(domain, dnsSecName)
@@ -111,7 +120,7 @@ angular.module('controllers').controller(
     }
 
     static getLabel(key, options) {
-      const option = _.find(
+      const option = find(
         options,
         currentOption => currentOption.value === key,
       );
@@ -123,7 +132,7 @@ angular.module('controllers').controller(
 
     getPendingTasks(domain) {
       this.hasActiveTask = 0;
-      _.forEach(['todo', 'doing', 'error'], status => this.Domain.getDomainPendingTasks(domain, {
+      forEach(['todo', 'doing', 'error'], status => this.Domain.getDomainPendingTasks(domain, {
         function: 'DomainDnsUpdate',
         status,
       }).then((tasks) => {
@@ -142,18 +151,18 @@ angular.module('controllers').controller(
     }
 
     nextAvailableId() {
-      return _.find(
-        _.range(this.const.MAX_AMOUNT_DNSSEC),
-        id => !_.any(this.dnssecList, { id }),
+      return find(
+        range(this.const.MAX_AMOUNT_DNSSEC),
+        id => !some(this.dnssecList, { id }),
       );
     }
 
     deleteRecord(dnssec) {
-      _.remove(this.dnssecList, dnssec);
+      remove(this.dnssecList, dnssec);
     }
 
     reset() {
-      this.dnssecList = _.slice(this.dnssecListSave);
+      this.dnssecList = slice(this.dnssecListSave);
       this.editMode = false;
     }
 

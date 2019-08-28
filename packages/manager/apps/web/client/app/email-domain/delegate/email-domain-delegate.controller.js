@@ -1,3 +1,8 @@
+import clone from 'lodash/clone';
+import isEmpty from 'lodash/isEmpty';
+import round from 'lodash/round';
+import set from 'lodash/set';
+
 angular.module('App').controller(
   'EmailDelegateCtrl',
   class EmailDelegateCtrl {
@@ -109,7 +114,7 @@ angular.module('App').controller(
           this.$scope.alerts.main,
         ))
         .finally(() => {
-          if (_.isEmpty(this.emails)) {
+          if (isEmpty(this.emails)) {
             this.loading.accounts = false;
             this.loading.search = false;
           }
@@ -123,7 +128,7 @@ angular.module('App').controller(
           usage: this.WucEmails.getEmailDelegatedUsage(item),
         })
         .then(({ email, usage }) => {
-          const emailData = _(email).clone();
+          const emailData = clone(email);
 
           emailData.quota = usage.quota;
           emailData.emailCount = usage.emailCount;
@@ -161,7 +166,7 @@ angular.module('App').controller(
     }
 
     static setAccountPercentUse(account) {
-      _.set(account, 'percentUse', account.size > 0 ? _.round((account.quota * 100) / account.size) : 0);
+      set(account, 'percentUse', account.size > 0 ? round((account.quota * 100) / account.size) : 0);
     }
   },
 );

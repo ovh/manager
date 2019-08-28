@@ -1,3 +1,7 @@
+import forEach from 'lodash/forEach';
+import get from 'lodash/get';
+import includes from 'lodash/includes';
+
 angular
   .module('App')
   .controller(
@@ -105,7 +109,7 @@ angular
           const subDomainPattern = $scope.selected.domain.match(pattern.domainWithSubdomain);
           if (subDomainPattern !== null) {
             result += `.${
-              _.includes(COMPOSED_TLD, subDomainPattern[2])
+              includes(COMPOSED_TLD, subDomainPattern[2])
                 ? $scope.selected.domain
                 : subDomainPattern[2]
             }`;
@@ -148,7 +152,7 @@ angular
               $scope.resetAction();
               Alerter.alertFromSWS(
                 $translate.instant('hosting_tab_DOMAINS_configuration_add_loading_error'),
-                _.get(err, 'data', err),
+                get(err, 'data', err),
                 $scope.alerts.main,
               );
             });
@@ -162,7 +166,7 @@ angular
               $scope.resetAction();
               Alerter.alertFromSWS(
                 $translate.instant('hosting_tab_DOMAINS_configuration_add_loading_error'),
-                _.get(err, 'data', err),
+                get(err, 'data', err),
                 $scope.alerts.main,
               );
             });
@@ -175,7 +179,7 @@ angular
               $scope.resetAction();
               Alerter.alertFromSWS(
                 $translate.instant('hosting_tab_DOMAINS_configuration_add_loading_error'),
-                _.get(err, 'data', err),
+                get(err, 'data', err),
                 $scope.alerts.main,
               );
             });
@@ -188,7 +192,7 @@ angular
               $scope.resetAction();
               Alerter.alertFromSWS(
                 $translate.instant('hosting_tab_DOMAINS_configuration_add_loading_error'),
-                _.get(err, 'data', err),
+                get(err, 'data', err),
                 $scope.alerts.main,
               );
             });
@@ -273,7 +277,7 @@ angular
             ? $scope.selected.ownLogDomain.name
             : null,
           $scope.selected.ssl,
-          _($scope.selected).get('runtime.id', null),
+          get($scope.selected, 'runtime.id', null),
           $scope.selected.hosting || $stateParams.productId,
         )
           .then((data) => {
@@ -286,7 +290,7 @@ angular
           .catch((err) => {
             Alerter.alertFromSWS(
               $translate.instant('hosting_tab_DOMAINS_configuration_add_failure'),
-              { message: _.get(err, 'data', err), type: 'ERROR' },
+              { message: get(err, 'data', err), type: 'ERROR' },
               $scope.alerts.main,
             );
           })
@@ -319,7 +323,7 @@ angular
             $scope.resetAction();
             Alerter.alertFromSWS(
               $translate.instant('hosting_tab_DOMAINS_configuration_add_loading_error'),
-              _.get(err, 'data', err),
+              get(err, 'data', err),
               $scope.alerts.main,
             );
           });
@@ -335,7 +339,7 @@ angular
                   $scope.loaders.runtimes = true;
 
                   const promises = [];
-                  _.forEach(runtimes, (runtimeId) => {
+                  forEach(runtimes, (runtimeId) => {
                     promises.push(HostingRuntimes.get(
                       $scope.hosting.serviceName,
                       runtimeId,
@@ -356,7 +360,7 @@ angular
                 .catch((err) => {
                   Alerter.alertFromSWS(
                     $translate.instant('hosting_tab_DOMAINS_configuration_add_loading_error'),
-                    _.get(err, 'data', err),
+                    get(err, 'data', err),
                     $scope.alerts.main,
                   );
 
@@ -367,7 +371,7 @@ angular
           .catch((err) => {
             Alerter.alertFromSWS(
               $translate.instant('hosting_tab_DOMAINS_configuration_add_loading_error'),
-              _.get(err, 'data', err),
+              get(err, 'data', err),
               $scope.alerts.main,
             );
 
@@ -436,7 +440,7 @@ angular
               $scope.resetAction();
               Alerter.alertFromSWS(
                 $translate.instant('hosting_tab_DOMAINS_configuration_add_loading_error'),
-                _.get(err, 'data', err),
+                get(err, 'data', err),
                 $scope.alerts.main,
               );
             })

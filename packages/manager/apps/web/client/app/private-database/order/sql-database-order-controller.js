@@ -1,3 +1,15 @@
+import bind from 'lodash/bind';
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import get from 'lodash/get';
+import head from 'lodash/head';
+import isEmpty from 'lodash/isEmpty';
+import last from 'lodash/last';
+import map from 'lodash/map';
+import max from 'lodash/max';
+import min from 'lodash/min';
+import some from 'lodash/some';
+
 angular.module('App').controller(
   'SqlDatabaseOrderCtrl',
   class SqlDatabaseOrderCtrl {
@@ -80,8 +92,8 @@ angular.module('App').controller(
       return this.PrivateDatabase
         .getOrderModels()
         .then((models) => {
-          const dbaasName = _.get(models, 'hosting.PrivateDatabase.OfferEnum').enum[1];
-          const sqlName = _.get(models, 'hosting.PrivateDatabase.OfferEnum').enum[0];
+          const dbaasName = get(models, 'hosting.PrivateDatabase.OfferEnum').enum[1];
+          const sqlName = get(models, 'hosting.PrivateDatabase.OfferEnum').enum[0];
 
           this.model.type = typeConverter[this.orderType] || sqlName;
 
@@ -105,8 +117,8 @@ angular.module('App').controller(
                   durations: null,
                   tooltips: {
                     rams: {
-                      min: this.convertBytesSize(_.min(result.dbaasOrderCapacities.ram)),
-                      max: this.convertBytesSize(_.max(result.dbaasOrderCapacities.ram)),
+                      min: this.convertBytesSize(min(result.dbaasOrderCapacities.ram)),
+                      max: this.convertBytesSize(max(result.dbaasOrderCapacities.ram)),
                     },
                   },
                 },
@@ -121,8 +133,8 @@ angular.module('App').controller(
                   durations: null,
                   tooltips: {
                     rams: {
-                      min: this.convertBytesSize(_.min(result.privateOrderCapacities.ram)),
-                      max: this.convertBytesSize(_.max(result.privateOrderCapacities.ram)),
+                      min: this.convertBytesSize(min(result.privateOrderCapacities.ram)),
+                      max: this.convertBytesSize(max(result.privateOrderCapacities.ram)),
                     },
                   },
                 },
@@ -141,19 +153,19 @@ angular.module('App').controller(
             });
         })
         .then(({ domainNames }) => this.$q
-          .all(_.map(domainNames, domainName => this.Hosting.getHosting(domainName)))
-          .then(hostings => _.filter(hostings, 'state', 'active'))
+          .all(map(domainNames, domainName => this.Hosting.getHosting(domainName)))
+          .then(hostings => filter(hostings, bind('state', 'active')))
           .then((hostings) => {
             this.noHostValue = 'other';
 
-            _.find(this.data, 'key', 'start').hostings = _.map(hostings, hosting => ({
+            find(this.data, bind('key', 'start')).hostings = map(hostings, hosting => ({
               name: hosting.serviceName,
               displayName: punycode.toUnicode(hosting.serviceName),
               datacenter: hosting.datacenter,
               stillHasFreeDbOffer: false,
             }));
-            _.find(this.data, 'key', 'premium').hostings = angular.copy(_.find(this.data, 'key', 'start').hostings);
-            _.find(this.data, 'key', 'premium').hostings.push({
+            find(this.data, bind('key', 'premium')).hostings = angular.copy(find(this.data, bind('key', 'start')).hostings);
+            find(this.data, bind('key', 'premium')).hostings.push({
               datacenter: null,
               displayName: this.$translate.instant('common_other'),
               name: this.noHostValue,
@@ -198,15 +210,15 @@ angular.module('App').controller(
       if (this.selectedHosting.name !== this.noHostValue) {
         this.HostingDatabase.getPrivateDatabaseCapabilities(this.selectedHosting.name)
           .then((capabilities) => {
-            this.selectedHosting.stillHasFreeDbOffer = _.some(capabilities);
+            this.selectedHosting.stillHasFreeDbOffer = some(capabilities);
           });
       }
     }
 
     shouldDisplayFreeDbWarning() {
       return this.isPrivateDb()
-        && _.get(this.model, 'ram') === '512'
-        && _.get(this.selectedHosting, 'stillHasFreeDbOffer');
+        && get(this.model, 'ram') === '512'
+        && get(this.selectedHosting, 'stillHasFreeDbOffer');
     }
 
     /*
@@ -230,11 +242,11 @@ angular.module('App').controller(
       return this.PrivateDatabase
         .orderDuration(version, ram)
         .then((durations) => {
-          data.durations = _.map(durations, duration => ({ // eslint-disable-line no-param-reassign
+          data.durations = map(durations, duration => ({ // eslint-disable-line no-param-reassign
             duration,
             details: {},
           }));
-          this.model.duration = _.last(durations);
+          this.model.duration = last(durations);
           return durations;
         })
         .catch(err => this.alerter.alertFromSWS(this.$translate.instant('privateDatabase_order_step2_duration_fail'), err, this.$scope.alerts.durations))
@@ -255,11 +267,11 @@ angular.module('App').controller(
       return this.HostingOptionOrder
         .getSqlPersoAllowedDurations(hosting, startDbVersion)
         .then((durations) => {
-          data.durations = _.map(durations, duration => ({ // eslint-disable-line no-param-reassign
+          data.durations = map(durations, duration => ({ // eslint-disable-line no-param-reassign
             duration,
             details: {},
           }));
-          this.model.duration = _.last(durations);
+          this.model.duration = last(durations);
           return durations;
         })
         .catch(err => this.alerter.alertFromSWS(this.$translate.instant('privateDatabase_order_step2_duration_fail'), err, this.$scope.alerts.durations))
@@ -275,18 +287,18 @@ angular.module('App').controller(
       const { version, ram } = this.model;
 
       return this.$q
-        .all(_.map(
+        .all(map(
           durations,
           duration => this.PrivateDatabase
             .orderPrice(version, ram, duration)
             .then((details) => {
-              _.find(data.durations, 'duration', duration).details = details;
+              find(data.durations, bind('duration', duration)).details = details;
               return details;
             }),
         ))
         .then(() => {
           if (durations && durations.length === 1) {
-            this.model.duration = _.first(durations);
+            this.model.duration = head(durations);
           }
         })
         .catch(err => this.alerter.alertFromSWS(this.$translate.instant('privateDatabase_order_step2_price_fail'), err, this.$scope.alerts.order))
@@ -301,15 +313,15 @@ angular.module('App').controller(
       const { hosting, dbPack: startDbVersion } = this.model;
 
       return this.$q
-        .all(_.map(durations, duration => this.HostingOptionOrder
+        .all(map(durations, duration => this.HostingOptionOrder
           .getSqlPersoPrice(hosting, startDbVersion, duration)
           .then((details) => {
-            _.find(data.durations, 'duration', duration).details = details;
+            find(data.durations, bind('duration', duration)).details = details;
             return details;
           })))
         .then(() => {
           if (durations && durations.length === 1) {
-            this.model.duration = _.first(durations);
+            this.model.duration = head(durations);
           }
         })
         .catch(err => this.alerter.alertFromSWS(this.$translate.instant('privateDatabase_order_step2_price_fail'), err, this.$scope.alerts.order))
@@ -418,18 +430,18 @@ angular.module('App').controller(
        * UTILS
        */
     getData(type) {
-      return _.find(this.data, 'offer', type);
+      return find(this.data, bind('offer', type));
     }
 
     getDurationDetails(type, duration) {
       if (!duration) {
         return null;
       }
-      return _.find(this.getData(type).durations, 'duration', duration).details;
+      return find(this.getData(type).durations, bind('duration', duration)).details;
     }
 
     setDatacenter() {
-      if (_.isEmpty(this.selectedHosting) || this.selectedHosting === this.noHostValue) {
+      if (isEmpty(this.selectedHosting) || this.selectedHosting === this.noHostValue) {
         return;
       }
       this.model.hosting = this.selectedHosting.name;
@@ -449,7 +461,7 @@ angular.module('App').controller(
     }
 
     findHosting(name) {
-      return _.find(this.getData(this.model.type).hostings, 'name', name);
+      return find(this.getData(this.model.type).hostings, bind('name', name));
     }
 
     isCloudDbOrPrivateDb() {

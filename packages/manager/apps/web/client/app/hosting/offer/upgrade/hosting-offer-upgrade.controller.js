@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular.module('App').controller(
   'HostingUpgradeOfferCtrl',
   class HostingUpgradeOfferCtrl {
@@ -66,7 +68,7 @@ angular.module('App').controller(
       };
       this.loading.durations = true;
 
-      return this.Hosting.getUpgradePrices(_.get(this.hosting, 'serviceName', this.$stateParams.productId), this.model.offer.value)
+      return this.Hosting.getUpgradePrices(get(this.hosting, 'serviceName', this.$stateParams.productId), this.model.offer.value)
         .then((durations) => {
           this.durations.available = durations;
           if (durations.length === 1) {
@@ -116,7 +118,7 @@ angular.module('App').controller(
 
       return this.Hosting
         .orderUpgrade(
-          _.get(this.hosting, 'serviceName', this.$stateParams.productId),
+          get(this.hosting, 'serviceName', this.$stateParams.productId),
           this.model.offer.value,
           this.model.duration.duration,
           (this.hosting.isCloudWeb ? startTime : null),

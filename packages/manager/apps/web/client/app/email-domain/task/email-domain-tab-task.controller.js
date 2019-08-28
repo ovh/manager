@@ -1,3 +1,7 @@
+import forEach from 'lodash/forEach';
+import get from 'lodash/get';
+import set from 'lodash/set';
+
 angular.module('App').controller(
   'EmailsTabTasksCtrl',
   class EmailsTabTasksCtrl {
@@ -25,17 +29,17 @@ angular.module('App').controller(
       this.taskIds = [];
       return this.WucEmails.getAllTaskIds(this.$stateParams.productId)
         .then((ids) => {
-          _.forEach(ids, (type) => {
-            _.forEach(type.ids, (id) => {
+          forEach(ids, (type) => {
+            forEach(type.ids, (id) => {
               this.taskIds.push({ action: type.action, id });
             });
           });
         })
         .catch((err) => {
-          _.set(err, 'type', err.type || 'ERROR');
+          set(err, 'type', err.type || 'ERROR');
           this.Alerter.alertFromSWS(
             this.$translate.instant('email_tab_TASK_error_message'),
-            _.get(err, 'data', err),
+            get(err, 'data', err),
             this.$scope.alerts.main,
           );
         });

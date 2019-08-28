@@ -1,3 +1,6 @@
+import clone from 'lodash/clone';
+import map from 'lodash/map';
+
 angular.module('controllers').controller(
   'controllers.Domain.Tasks',
   class DomainTasksCtrl {
@@ -32,7 +35,7 @@ angular.module('controllers').controller(
     }
 
     static getTaskStruct(tasks, isZone) {
-      return _.map(tasks, task => ({ id: task, zone: isZone }));
+      return map(tasks, task => ({ id: task, zone: isZone }));
     }
 
     transformItem(item) {
@@ -41,7 +44,7 @@ angular.module('controllers').controller(
           this.$stateParams.productId,
           item.id,
         ).then((originalResult) => {
-          const result = _(originalResult).clone();
+          const result = clone(originalResult);
 
           result.status = result.status.toUpperCase();
           return result;

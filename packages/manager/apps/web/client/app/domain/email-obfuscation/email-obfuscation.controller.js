@@ -1,4 +1,9 @@
-import _ from 'lodash';
+import clone from 'lodash/clone';
+import get from 'lodash/get';
+import indexOf from 'lodash/indexOf';
+import reduce from 'lodash/reduce';
+import remove from 'lodash/remove';
+import sortBy from 'lodash/sortBy';
 
 import { CONTACTS_TYPES } from '../optin/constants';
 import { EXCLUDED_CONTACTS } from './email-obfuscation.constant';
@@ -46,9 +51,9 @@ export default class DomainEmailObfuscationCtrl {
         serviceName: this.domain,
       }).$promise
       .then((contactTypes) => {
-        this.contactTypes = _.sortBy(
+        this.contactTypes = sortBy(
           contactTypes.filter(contact => !EXCLUDED_CONTACTS.includes(contact)),
-          contact => _.indexOf(CONTACTS_TYPES, contact),
+          contact => indexOf(CONTACTS_TYPES, contact),
         );
         return contactTypes;
       });
@@ -64,7 +69,7 @@ export default class DomainEmailObfuscationCtrl {
           ...previousConfiguration,
           [contact]: configuration.some(({ type }) => type === contact),
         }), {});
-        this.model = _.clone(this.configuration);
+        this.model = clone(this.configuration);
       });
   }
 
@@ -72,14 +77,14 @@ export default class DomainEmailObfuscationCtrl {
     if (regenerate) {
       this.contactsToRegenerate.push(contact);
     } else {
-      this.contactsToRegenerate = _.remove(this.contactsToRegenerate, contact);
+      this.contactsToRegenerate = remove(this.contactsToRegenerate, contact);
     }
   }
 
   regenerateEmails() {
     this.loading.contacts = true;
 
-    const contactToObfuscate = _.reduce(this.model, (contacts, obfuscate, contactType) => {
+    const contactToObfuscate = reduce(this.model, (contacts, obfuscate, contactType) => {
       if (obfuscate) {
         return [...contacts, contactType];
       }
@@ -102,7 +107,7 @@ export default class DomainEmailObfuscationCtrl {
       })
       .catch((error) => {
         this.Alerter.error(
-          this.$translate.instant('domain_email_obfuscation_refresh_error', { message: _.get(error, 'message', '') }),
+          this.$translate.instant('domain_email_obfuscation_refresh_error', { message: get(error, 'message', '') }),
           this.DOMAIN.ALERTS.tabs,
         );
       })

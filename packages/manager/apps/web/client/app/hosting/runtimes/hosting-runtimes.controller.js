@@ -1,3 +1,7 @@
+import clone from 'lodash/clone';
+import isArray from 'lodash/isArray';
+import isEmpty from 'lodash/isEmpty';
+
 angular.module('App').controller(
   'HostingRuntimesCtrl',
   class HostingRuntimesCtrl {
@@ -55,7 +59,7 @@ angular.module('App').controller(
     getIds() {
       return this.HostingRuntimes.list(this.$stateParams.productId)
         .then((ids) => {
-          if (!_(ids).isArray()) {
+          if (!isArray(ids)) {
             throw this.$translate.instant('hosting_tab_RUNTIMES_list_error');
           }
 
@@ -65,7 +69,7 @@ angular.module('App').controller(
           this.$stateParams.productId,
           row.id,
         ).then((data) => {
-          const runtime = _(data).clone();
+          const runtime = clone(data);
           runtime.countAttachedDomains = 0;
 
           return this.HostingRuntimes.getAttachedDomains(
@@ -74,7 +78,7 @@ angular.module('App').controller(
           ).then((attachedDomains) => {
             runtime.loaded = true;
 
-            if (_(attachedDomains).isArray()) {
+            if (isArray(attachedDomains)) {
               runtime.countAttachedDomains = attachedDomains.length;
             }
 
@@ -91,7 +95,7 @@ angular.module('App').controller(
           );
         })
         .finally(() => {
-          this.hasResult = _(this.runtimes).isArray() && !_(this.runtimes).isEmpty();
+          this.hasResult = isArray(this.runtimes) && !isEmpty(this.runtimes);
         });
     }
 
@@ -122,7 +126,7 @@ angular.module('App').controller(
      */
     canAddRuntime() {
       return (
-        _(this.runtimes).isArray() && this.runtimes.length < this.maxRuntimes
+        isArray(this.runtimes) && this.runtimes.length < this.maxRuntimes
       );
     }
   },

@@ -1,3 +1,9 @@
+import find from 'lodash/find';
+import get from 'lodash/get';
+import head from 'lodash/head';
+import isEmpty from 'lodash/isEmpty';
+import map from 'lodash/map';
+
 angular.module('App').controller(
   'HostingTabLocalSeoCtrl',
   class HostingTabLocalSeoCtrl {
@@ -73,14 +79,14 @@ angular.module('App').controller(
     getAccounts() {
       return this.HostingLocalSeo.getAccounts(this.productId)
         .then(accounts => this.$q.all(
-          _.map(accounts, account => this.HostingLocalSeo.getAccount(this.productId, account)),
+          map(accounts, account => this.HostingLocalSeo.getAccount(this.productId, account)),
         ));
     }
 
     loadLocations() {
       this.loading.locations = true;
       return this.$q.when().then(() => {
-        if (!_.isEmpty(this.accounts)) {
+        if (!isEmpty(this.accounts)) {
           return this.getLocations();
         }
         return { data: [], meta: { totalCount: 0 } };
@@ -92,7 +98,7 @@ angular.module('App').controller(
     getLocations() {
       return this.HostingLocalSeo.getLocations(this.productId)
         .then(locationIds => ({
-          data: _.map(locationIds, id => ({ id })),
+          data: map(locationIds, id => ({ id })),
           meta: {
             totalCount: locationIds.length,
           },
@@ -100,11 +106,11 @@ angular.module('App').controller(
     }
 
     hasAccounts() {
-      return !_.isEmpty(this.accounts);
+      return !isEmpty(this.accounts);
     }
 
     hasLocations() {
-      return !_.isEmpty(this.locations);
+      return !isEmpty(this.locations);
     }
 
     transformItem(row) {
@@ -112,9 +118,9 @@ angular.module('App').controller(
       return this.HostingLocalSeo.getLocation(this.productId, row.id)
         .then((result) => {
           const location = angular.copy(result);
-          const accountId = _.get(location, 'accountId');
+          const accountId = get(location, 'accountId');
           if (accountId) {
-            const account = _.find(this.accounts, { id: accountId });
+            const account = find(this.accounts, { id: accountId });
             if (account) {
               location.account = account;
             }
@@ -128,7 +134,7 @@ angular.module('App').controller(
         return;
       }
 
-      const lang = _.first(this.$translate.preferredLanguage().split('_'));
+      const lang = head(this.$translate.preferredLanguage().split('_'));
 
       /*
         Opening the window first then setting the location prevents browsers

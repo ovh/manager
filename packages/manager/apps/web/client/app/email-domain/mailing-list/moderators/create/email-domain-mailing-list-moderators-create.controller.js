@@ -1,3 +1,5 @@
+import uniq from 'lodash/uniq';
+
 angular.module('App').controller(
   'MailingListsCreateModeratorCtrl',
   class MailingListsCreateModeratorCtrl {
@@ -33,7 +35,7 @@ angular.module('App').controller(
 
     createModerator() {
       this.loading = true;
-      const moderatorsToAdd = _.uniq(this.selection);
+      const moderatorsToAdd = uniq(this.selection);
 
       return this.MailingLists.addModerators(this.$stateParams.productId, {
         mailingList: this.mailingList.name,

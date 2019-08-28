@@ -1,3 +1,6 @@
+import has from 'lodash/has';
+import isEmpty from 'lodash/isEmpty';
+
 angular.module('services').service('User', [
   '$http',
   '$q',
@@ -38,7 +41,7 @@ angular.module('services').service('User', [
 
     this.getUrlOf = link => this.getUser().then((data) => {
       if (
-        _.has(constants, 'urls')
+        has(constants, 'urls')
           && constants.urls[data.ovhSubsidiary] != null
           && constants.urls[data.ovhSubsidiary][link] != null
       ) {
@@ -55,7 +58,7 @@ angular.module('services').service('User', [
     */
     this.getUrlOfEndsWithSubsidiary = link => this.getUser().then((data) => {
       if (
-        _.has(constants, 'urls')
+        has(constants, 'urls')
           && constants.urls[link] != null
           && constants.urls[link][data.ovhSubsidiary] != null
       ) {
@@ -76,7 +79,7 @@ angular.module('services').service('User', [
       .then(response => response.data);
 
     this.uploadFile = (filename, file, tags) => {
-      if (filename == null || filename === '' || _.isEmpty(file.name)) {
+      if (filename == null || filename === '' || isEmpty(file.name)) {
         throw new Error("File doesn't have a name");
       }
 

@@ -1,3 +1,13 @@
+import filter from 'lodash/filter';
+import forEach from 'lodash/forEach';
+import indexOf from 'lodash/indexOf';
+import isEmpty from 'lodash/isEmpty';
+import map from 'lodash/map';
+import max from 'lodash/max';
+import set from 'lodash/set';
+import some from 'lodash/some';
+import xor from 'lodash/xor';
+
 angular.module('App').controller(
   'MailingListsModeratorsCtrl',
   class MailingListsModeratorsCtrl {
@@ -37,7 +47,7 @@ angular.module('App').controller(
         (pollObject, task) => {
           if (task.account === this.mailingList.name) {
             const action = task.action.split(':')[0];
-            if (_.indexOf(['addm', 'delm'], action) !== -1) {
+            if (indexOf(['addm', 'delm'], action) !== -1) {
               this.moderators.updating = true;
             }
           }
@@ -48,7 +58,7 @@ angular.module('App').controller(
         (pollObject, task) => {
           if (task.account === this.mailingList.name) {
             const action = task.action.split(':')[0];
-            if (_.indexOf(['addm', 'delm'], action) !== -1) {
+            if (indexOf(['addm', 'delm'], action) !== -1) {
               this.runPolling().then((hasPolling) => {
                 if (!hasPolling) {
                   this.moderators.updating = false;
@@ -94,9 +104,9 @@ angular.module('App').controller(
             this.moderators.selected = [];
             break;
           case 1:
-            this.moderators.selected = _.filter(
-              _.map(this.moderators.details, 'email'),
-              result => !_.some(this.moderators.selected, result.email),
+            this.moderators.selected = filter(
+              map(this.moderators.details, 'email'),
+              result => !some(this.moderators.selected, result.email),
             );
             break;
           case 2:
@@ -110,12 +120,12 @@ angular.module('App').controller(
     }
 
     toggleModerator(email) {
-      this.moderators.selected = _.xor(this.moderators.selected, [email]);
+      this.moderators.selected = xor(this.moderators.selected, [email]);
     }
 
     applySelection(moderators) {
-      _.forEach(moderators, (moderator) => {
-        _.set(moderator, 'selected', _.indexOf(this.moderators.selected, moderator.email) !== -1);
+      forEach(moderators, (moderator) => {
+        set(moderator, 'selected', indexOf(this.moderators.selected, moderator.email) !== -1);
       });
     }
 
@@ -142,7 +152,7 @@ angular.module('App').controller(
           this.$scope.alerts.main,
         ))
         .finally(() => {
-          if (_.isEmpty(this.moderators.ids)) {
+          if (isEmpty(this.moderators.ids)) {
             this.loading.moderators = false;
           }
         });
@@ -169,7 +179,7 @@ angular.module('App').controller(
         .then((tasks) => {
           if (tasks.length > 0) {
             this.MailingLists.pollState(this.$stateParams.productId, {
-              id: _.max(tasks),
+              id: max(tasks),
               mailingList: this.mailingList,
               successStates: ['noState'],
               namespace: 'mailingLists.moderators.poll',

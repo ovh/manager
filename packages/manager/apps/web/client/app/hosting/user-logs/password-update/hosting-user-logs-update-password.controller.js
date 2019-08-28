@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular.module('App').controller(
   'HostingUserLogsUpdatePasswordCtrl',
   class HostingUserLogsUpdatePasswordCtrl {
@@ -21,7 +23,7 @@ angular.module('App').controller(
     }
 
     isPasswordInvalid() {
-      return !this.Hosting.constructor.isPasswordValid(_.get(this.password, 'value', ''));
+      return !this.Hosting.constructor.isPasswordValid(get(this.password, 'value', ''));
     }
 
     isPasswordConfirmationInvalid() {
@@ -64,7 +66,7 @@ angular.module('App').controller(
               'hosting_tab_USER_LOGS_configuration_change_password_fail',
               { t0: this.login },
             ),
-            _.get(err, 'data', err),
+            get(err, 'data', err),
             this.$scope.alerts.main,
           );
         });

@@ -1,3 +1,8 @@
+import clone from 'lodash/clone';
+import findIndex from 'lodash/findIndex';
+import isEmpty from 'lodash/isEmpty';
+import map from 'lodash/map';
+
 angular.module('App').controller(
   'EmailDomainEmailResponderCtrl',
   class EmailDomainEmailResponderCtrl {
@@ -50,7 +55,7 @@ angular.module('App').controller(
 
       return this.WucEmails.getResponders(this.productId)
         .then((data) => {
-          this.responders = _.chain(data).sort().map(account => ({ account })).value();
+          this.responders = map(data.sort(), account => ({ account }));
         })
         .catch(err => this.Alerter.alertFromSWS(
           this.$translate.instant('email_tab_table_responders_error'),
@@ -67,8 +72,8 @@ angular.module('App').controller(
           this.WucEmails.getResponderTasks(this.productId, account),
         ]))
         .then(([responder, tasks]) => {
-          const displayedResponder = _.clone(responder);
-          const actionsDisabled = !_.isEmpty(tasks);
+          const displayedResponder = clone(responder);
+          const actionsDisabled = !isEmpty(tasks);
           if (actionsDisabled) {
             this.pollResponder(displayedResponder);
           }
@@ -80,8 +85,8 @@ angular.module('App').controller(
     pollResponder(responder) {
       return this.WucEmails.pollResponderTasks(this.productId, responder.account)
         .then(() => {
-          const newResponder = _.clone(responder);
-          const responderIndex = _.findIndex(
+          const newResponder = clone(responder);
+          const responderIndex = findIndex(
             this.responders,
             item => item.account === responder.account,
           );

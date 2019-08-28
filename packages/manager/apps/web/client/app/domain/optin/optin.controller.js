@@ -1,4 +1,6 @@
-import _ from 'lodash';
+import isEmpty from 'lodash/isEmpty';
+import map from 'lodash/map';
+import pickBy from 'lodash/pickBy';
 import { CONTACTS_TYPES } from './constants';
 
 export default class DomainOptinCtrl {
@@ -54,7 +56,7 @@ export default class DomainOptinCtrl {
       serviceName: this.domain,
     }).$promise
       .then((optinRules) => {
-        const contactTypes = optinRules.length === CONTACTS_TYPES.length ? CONTACTS_TYPES : _.map(optinRules, 'type');
+        const contactTypes = optinRules.length === CONTACTS_TYPES.length ? CONTACTS_TYPES : map(optinRules, 'type');
         this.rules = contactTypes
           .map(contactType => (
             {
@@ -71,7 +73,7 @@ export default class DomainOptinCtrl {
           };
           this.options[type] = {
             allFieldsOption: false,
-            canEditIndividually: !_.isEmpty(fields),
+            canEditIndividually: !isEmpty(fields),
             areFieldsEditedIndividually: false,
           };
         });
@@ -105,7 +107,7 @@ export default class DomainOptinCtrl {
   }
 
   saveOptinConfiguration() {
-    const optin = _.map(this.configuration, (fields, type) => ({
+    const optin = map(this.configuration, (fields, type) => ({
       type: DomainOptinCtrl.formatContactType(type),
       fields: this.getContactTypeFields(type, fields),
     })).filter(data => data.fields.length > 0);
@@ -131,7 +133,7 @@ export default class DomainOptinCtrl {
 
   getContactTypeFields(contactType, fields) {
     if (this.options[contactType].areFieldsEditedIndividually) {
-      return Object.keys(_.pick(fields, value => value === true));
+      return Object.keys(pickBy(fields, value => value === true));
     }
 
     const optinFields = fields.email ? ['email'] : [];

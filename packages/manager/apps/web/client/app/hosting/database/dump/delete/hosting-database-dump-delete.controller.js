@@ -1,3 +1,5 @@
+import set from 'lodash/set';
+
 angular.module('App').controller(
   'HostingDatabaseDumpDeleteCtrl',
   class HostingDatabaseDumpDeleteCtrl {
@@ -29,7 +31,7 @@ angular.module('App').controller(
         this.dump,
       )
         .catch((err) => {
-          _.set(err, 'type', err.type || 'ERROR');
+          set(err, 'type', err.type || 'ERROR');
           this.Alerter.alertFromSWS(
             this.$translate.instant('database_tabs_dumps_delete_fail'),
             err,

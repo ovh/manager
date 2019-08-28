@@ -1,3 +1,6 @@
+import find from 'lodash/find';
+import get from 'lodash/get';
+
 angular
   .module('App')
   .controller(
@@ -37,7 +40,7 @@ angular
         $scope.model.selected.version = null;
         HostingDatabase.getAvailableVersion($stateParams.productId, type).then((result) => {
           $scope.model.capabilities.bdVersions = result.list;
-          $scope.model.selected.version = _.find(
+          $scope.model.selected.version = find(
             $scope.model.capabilities.bdVersions,
             elt => elt === result.default,
           );
@@ -93,7 +96,7 @@ angular
           .catch((err) => {
             Alerter.alertFromSWS(
               $translate.instant('hosting_tab_DATABASES_configuration_create_step1_loading_error'),
-              _.get(err, 'data', err),
+              get(err, 'data', err),
               $scope.alerts.main,
             );
           });
@@ -112,12 +115,12 @@ angular
       $scope.condition = Hosting.constructor.getPasswordConditions($scope.customPasswordConditions);
 
       $scope.isPasswordInvalid = () => !Hosting.constructor.isPasswordValid(
-        _.get($scope.model, 'selected.password.value'),
+        get($scope.model, 'selected.password.value'),
         $scope.customPasswordConditions,
       );
 
       $scope.isPasswordConfirmationInvalid = () => (Hosting.constructor.isPasswordValid(
-        _.get($scope.model, 'selected.password.confirmation'),
+        get($scope.model, 'selected.password.confirmation'),
         $scope.customPasswordConditions,
       ) && !$scope.shouldDisplayDifferentPasswordMessage()
         ? ''
@@ -164,7 +167,7 @@ angular
           .catch((err) => {
             Alerter.alertFromSWS(
               $translate.instant('hosting_tab_DATABASES_configuration_create_fail'),
-              _.get(err, 'data', err),
+              get(err, 'data', err),
               $scope.alerts.main,
             );
           });

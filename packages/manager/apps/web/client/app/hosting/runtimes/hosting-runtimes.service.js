@@ -1,3 +1,8 @@
+import head from 'lodash/head';
+import lodashFilter from 'lodash/filter';
+import map from 'lodash/map';
+import uniq from 'lodash/uniq';
+
 angular.module('services').service(
   'HostingRuntimes',
   class HostingRuntimes {
@@ -36,7 +41,7 @@ angular.module('services').service(
             result = result.concat(res);
           });
 
-          return _.uniq(result);
+          return uniq(result);
         },
 
         err => this.$q.reject(err),
@@ -61,9 +66,9 @@ angular.module('services').service(
     getDefault(serviceName) {
       return this.list(serviceName)
         .then(runtimeIds => this.$q.all(
-          _(runtimeIds).map(runtimeId => this.get(serviceName, runtimeId)).value(),
+          map(runtimeIds, runtimeId => this.get(serviceName, runtimeId)),
         ))
-        .then(runtimes => _(runtimes).filter(runtime => runtime.isDefault).first());
+        .then(runtimes => head(lodashFilter(runtimes, runtime => runtime.isDefault)));
     }
 
     /**

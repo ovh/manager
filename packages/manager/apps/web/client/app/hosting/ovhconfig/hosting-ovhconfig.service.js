@@ -1,3 +1,8 @@
+import assign from 'lodash/assign';
+import clone from 'lodash/clone';
+import isObject from 'lodash/isObject';
+import map from 'lodash/map';
+
 function OvhConfig(data) {
   this.setData(data);
 }
@@ -16,7 +21,7 @@ Object.defineProperties(OvhConfig.prototype, {
     value(data) {
       let keys;
 
-      if (_.isObject(data)) {
+      if (isObject(data)) {
         keys = Object.keys(data);
 
         for (let i = 0, imax = keys.length; i < imax; i += 1) {
@@ -83,7 +88,7 @@ angular.module('services').service(
      * @param {string} serviceName
      */
     ovhConfigRefresh(serviceName, config) {
-      return this.OvhHttp.post(`/hosting/web/${serviceName}/ovhConfigRefresh`, _.assign({
+      return this.OvhHttp.post(`/hosting/web/${serviceName}/ovhConfigRefresh`, assign({
         rootPath: 'apiv6',
         clearAllCache: this.cache,
       }, config || {}));
@@ -130,7 +135,7 @@ angular.module('services').service(
      * @returns {Promise}
      */
     getDatasFromIds(serviceName, ids) {
-      const queue = _.map(ids, id => this.getFromId(serviceName, id));
+      const queue = map(ids, id => this.getFromId(serviceName, id));
       return this.$q.all(queue);
     }
 
@@ -164,7 +169,7 @@ angular.module('services').service(
      * @param {object} data
      */
     changeConfiguration(serviceName, opts) {
-      const data = _(opts).clone();
+      const data = clone(opts);
       const { id } = data;
       delete data.id;
 

@@ -1,3 +1,5 @@
+import isObject from 'lodash/isObject';
+
 angular.module('App').controller(
   'controllers.Hosting.Envvars.edit',
   class HostingEnvvarsEditCtrl {
@@ -19,7 +21,7 @@ angular.module('App').controller(
 
     isValid() {
       return (
-        _(this.editEnvvarForm).isObject()
+        isObject(this.editEnvvarForm)
         && this.editEnvvarForm.$dirty
         && this.editEnvvarForm.$valid
       );

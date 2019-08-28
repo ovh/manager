@@ -1,3 +1,6 @@
+import get from 'lodash/get';
+import head from 'lodash/head';
+
 angular.module('App').controller(
   'HostingDatabasePrivateActiveCtrl',
   class HostingDatabasePrivateActiveCtrl {
@@ -30,16 +33,16 @@ angular.module('App').controller(
       this.choice = {
         ram:
           this.host.offerCapabilities.privateDatabases.length === 1
-            ? _.first(this.host.offerCapabilities.privateDatabases)
+            ? head(this.host.offerCapabilities.privateDatabases)
             : null,
         version: null,
       };
 
       this.PrivateDatabase.getAvailableOrderCapacities('classic')
         .then((capacities) => {
-          this.versions = _.get(capacities, 'version');
+          this.versions = get(capacities, 'version');
           this.choice.version = this.versions && this.versions.length === 1
-            ? _.first(this.versions)
+            ? head(this.versions)
             : null;
         })
         .catch((err) => {
@@ -47,7 +50,7 @@ angular.module('App').controller(
             this.$translate.instant('hosting_dashboard_database_versions_error', {
               t0: this.$scope.entryToDelete,
             }),
-            _.get(err, 'data', err),
+            get(err, 'data', err),
             this.$scope.alerts.main,
           );
         })
@@ -74,7 +77,7 @@ angular.module('App').controller(
             this.$translate.instant('hosting_dashboard_database_active_error', {
               t0: this.$scope.entryToDelete,
             }),
-            _.get(err, 'data', err),
+            get(err, 'data', err),
             this.$scope.alerts.main,
           );
         })

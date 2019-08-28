@@ -1,3 +1,7 @@
+import head from 'lodash/head';
+import includes from 'lodash/includes';
+import isObject from 'lodash/isObject';
+
 angular.module('App').controller(
   'hostingGeneralInformationsCtrl',
   class HostingGeneralInformationsCtrl {
@@ -98,7 +102,7 @@ angular.module('App').controller(
           if (!accountIds || accountIds.length <= 0) {
             throw new Error('No LocalSEO Accounts');
           }
-          return this.HostingLocalSeo.getAccount(serviceName, _.first(accountIds));
+          return this.HostingLocalSeo.getAccount(serviceName, head(accountIds));
         })
         .then((account) => {
           this.localSeo.isActive = account.status === 'created';
@@ -133,7 +137,7 @@ angular.module('App').controller(
     }
 
     hasSSLCertificate() {
-      return _(this.sslCertificate).isObject();
+      return isObject(this.sslCertificate);
     }
 
     canOrderSSLCertificate() {
@@ -197,7 +201,7 @@ angular.module('App').controller(
     }
 
     isHostingOffer() {
-      return !_.includes(['KIMSUFI_2015', '__60_FREE', 'DEMO_1_G', 'START_1_M', 'START_10_M', '_ASPFREE'], this.$scope.hosting.offer);
+      return !includes(['KIMSUFI_2015', '__60_FREE', 'DEMO_1_G', 'START_1_M', 'START_10_M', '_ASPFREE'], this.$scope.hosting.offer);
     }
   },
 );

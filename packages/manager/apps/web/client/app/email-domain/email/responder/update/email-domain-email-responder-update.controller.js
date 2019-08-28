@@ -1,3 +1,6 @@
+import get from 'lodash/get';
+import isEmpty from 'lodash/isEmpty';
+
 angular.module('App').controller(
   'EmailsUpdateResponderCtrl',
   class EmailsUpdateResponderCtrl {
@@ -49,7 +52,7 @@ angular.module('App').controller(
     }
 
     responderDateStartCheck(input) {
-      if (!input.$dirty && !_.isEmpty(this.model.from)) {
+      if (!input.$dirty && !isEmpty(this.model.from)) {
         input.$setDirty();
       }
       input.$setValidity(
@@ -60,7 +63,7 @@ angular.module('App').controller(
     }
 
     responderDateEndCheck(input) {
-      if (!input.$dirty && !_.isEmpty(this.model.to)) {
+      if (!input.$dirty && !isEmpty(this.model.to)) {
         input.$setDirty();
       }
       input.$setValidity(
@@ -88,7 +91,7 @@ angular.module('App').controller(
       };
 
       let promise;
-      if (_.get(this.$scope.currentActionData, 'delegate', false)) {
+      if (get(this.$scope.currentActionData, 'delegate', false)) {
         promise = this.WucEmails.updateDelegatedResponder(
           `${this.responder.account}@${this.$stateParams.productId}`,
           data,
@@ -108,7 +111,7 @@ angular.module('App').controller(
         ))
         .catch(err => this.Alerter.alertFromSWS(
           this.$translate.instant('email_tab_modal_update_responder_error'),
-          _.get(err, 'data', err),
+          get(err, 'data', err),
           this.$scope.alerts.main,
         ))
         .finally(() => {

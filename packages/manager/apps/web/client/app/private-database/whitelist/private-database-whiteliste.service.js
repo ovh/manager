@@ -1,3 +1,5 @@
+import defaults from 'lodash/defaults';
+
 angular.module('services').service(
   'WhitelistService',
   class WhitelistService {
@@ -118,7 +120,7 @@ angular.module('services').service(
         .then((res) => {
           this.$rootScope.$broadcast(
             'privateDatabase.whitelist.create.done',
-            _.defaults(res.data, { serviceName }),
+            defaults(res.data, { serviceName }),
           );
           return res.data;
         });

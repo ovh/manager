@@ -1,3 +1,6 @@
+import get from 'lodash/get';
+import sortBy from 'lodash/sortBy';
+
 angular
   .module('App')
   .controller(
@@ -26,7 +29,7 @@ angular
         $scope.loading.init = true;
         HostingBandwidthOrder.getModels()
           .then((models) => {
-            $scope.trafficEnum = _.sortBy(
+            $scope.trafficEnum = sortBy(
               models.models['hosting.web.BandwidthOfferEnum'].enum,
               d => parseInt(d, 10),
             );
@@ -120,7 +123,7 @@ angular
           .catch((err) => {
             Alerter.alertFromSWS(
               $translate.instant('hosting_dashboard_bandwidth_order_error'),
-              _.get(err, 'data', err),
+              get(err, 'data', err),
               $scope.alerts.main,
             );
           })
