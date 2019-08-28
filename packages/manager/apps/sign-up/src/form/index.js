@@ -32,7 +32,6 @@ angular
         );
       });
   })
-  .run(/* @ngTranslationsInject:json ./translations */)
   .component(component.name, component);
 
 export default moduleName;

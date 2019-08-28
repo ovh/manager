@@ -10,7 +10,8 @@ export const state = {
   component: signupFormComponent.name,
   resolve: {
     getRedirectLocation: /* @ngInject */ $location => (nic) => {
-      const { callback } = $location.search();
+      const { callback, onsuccess } = $location.search();
+
       if (callback && !SANITIZATION.regex.test(callback)) {
         return null;
       }
@@ -22,10 +23,10 @@ export const state = {
         return `${callback}${/\?/.test(callback) ? '&' : '?'}account=${accountParam}`;
       }
 
+
       // redirect to login page on success
-      if ($location.search().onsuccess) {
-        const onsuccess = encodeURIComponent($location.search().onsuccess);
-        return `/auth/?account=${accountParam}&onsuccess=${onsuccess}`;
+      if (onsuccess && SANITIZATION.regex.test(onsuccess)) {
+        return onsuccess;
       }
 
       return '/auth/?action=gotomanager';
@@ -40,6 +41,7 @@ export const state = {
     me: /* @ngInject */ ssoAuthentication => ssoAuthentication
       .getSsoAuthPendingPromise()
       .then(() => ssoAuthentication.user),
+    onStepCancel: /* @ngInject */ ssoAuthentication => () => ssoAuthentication.logout(),
     onStepFocus: /* @ngInject */ ($state, getStepByName) => (stepName) => {
       const focusedStep = getStepByName(stepName);
       if ($state.current.name !== focusedStep.state) {

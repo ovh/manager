@@ -22,6 +22,7 @@
     "@uirouter/angularjs": "^1.0.20",
     "angular": "^1.7.8",
     "angular-cookies": "^1.7.8",
+    "angular-sanitize": "^1.7.8",
     "angular-translate": "^2.18.1",
     "bootstrap4": "twbs/bootstrap#v4.0.0",
     "lodash": "^4.17.15",
