@@ -2055,7 +2055,7 @@
   dependencies:
     lodash "^4.17.11"
 
-"@ovh-ux/ng-translate-async-loader@^2.0.1":
+"@ovh-ux/ng-translate-async-loader@^2.0.0", "@ovh-ux/ng-translate-async-loader@^2.0.1":
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-translate-async-loader/-/ng-translate-async-loader-2.0.1.tgz#d4502bf2dc084f95f77377dd77e1319f2ec2a58f"
   integrity sha512-42rx4IQJImhppTdha7nJWdJvXyCHBH2lqvnxS4oo/twG7YlqeiHwtYAFEp2RemJfTKPgNljQU0GRtxH6xJoJQQ==
