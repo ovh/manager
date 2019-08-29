@@ -2,7 +2,7 @@ import { createFilter } from 'rollup-pluginutils';
 import get from 'lodash/get';
 import mapValues from 'lodash/mapValues';
 import set from 'lodash/set';
-import translationNormalize from './common';
+import common from './common';
 
 export = (opts:any = {}) => {
   const include = opts.include || '**/Messages_*.xml';
@@ -20,7 +20,7 @@ export = (opts:any = {}) => {
         set(translations, get(match, '[1]'), get(match, '[4]', ''));
       }
       return {
-        code: `export default ${JSON.stringify(mapValues(translations, translationNormalize))};`,
+        code: `export default ${JSON.stringify(mapValues(translations, common.translationNormalize))};`,
         map: null,
       };
     },
