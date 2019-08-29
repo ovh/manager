@@ -883,7 +883,8 @@ module.exports = {
             "portal"    : "https://www.ovh.com/manager/portal/index.html#/",
             "web"       : "https://www.ovh.com/manager/web/index.html#/",
             "dedicated" : "https://www.ovh.com/manager/dedicated/index.html#/",
-            "cloud"     : "https://www.ovh.com/manager/cloud/index.html#/",
+            "cloud"     : "https://www.ovh.com/manager/cloud/repsac/index.html#/",
+            "publicCloud": 'https://www.ovh.com/manager/public-cloud/index.html#/',
             "telecom"   : "https://www.ovhtelecom.fr/manager/index.html#/",
             "sunrise"   : "https://www.ovh.com/manager/sunrise/index.html#/",
             "partners"  : "https://www.ovh.com/manager/partners"

@@ -1,5 +1,0 @@
-{
-  "common_pagination_page": "Stránka {{currentPage}}/{{nbPages}}",
-  "common_pagination_display": "Zobrazit",
-  "common_temporary_error": "Došlo k dočasné chybě. Zkuste to prosím později."
-}

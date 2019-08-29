@@ -1,3 +1,67 @@
+## [13.28.1](https://github.com/ovh-ux/ovh-manager-web/compare/v13.28.0...v13.28.1) (2019-08-27)
+
+
+
+# [13.28.0](https://github.com/ovh-ux/ovh-manager-web/compare/v13.27.2...v13.28.0) (2019-08-26)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 21] ([13d41b6](https://github.com/ovh-ux/ovh-manager-web/commit/13d41b6))
+* **i18n:** add missing translations [CDS 22] ([012fe9b](https://github.com/ovh-ux/ovh-manager-web/commit/012fe9b))
+* **i18n:** add missing translations [CDS 25] ([556cf4b](https://github.com/ovh-ux/ovh-manager-web/commit/556cf4b))
+
+
+### Features
+
+* add @ovh-ux/ng-ui-router-layout ([7a63922](https://github.com/ovh-ux/ovh-manager-web/commit/7a63922))
+
+
+
+## [13.27.2](https://github.com/ovh-ux/ovh-manager-web/compare/v13.27.1...v13.27.2) (2019-08-20)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 20] ([0e4c85c](https://github.com/ovh-ux/ovh-manager-web/commit/0e4c85c))
+
+
+
+## [13.27.1](https://github.com/ovh-ux/ovh-manager-web/compare/v13.27.0...v13.27.1) (2019-08-20)
+
+
+### Bug Fixes
+
+* **domain:** add options tile ([#1186](https://github.com/ovh-ux/ovh-manager-web/issues/1186)) ([ce2397d](https://github.com/ovh-ux/ovh-manager-web/commit/ce2397d))
+
+
+
+# [13.27.0](https://github.com/ovh-ux/ovh-manager-web/compare/v13.26.0...v13.27.0) (2019-08-13)
+
+
+### Features
+
+* add @ovh-ux/ng-ovh-request-tagger ([#1196](https://github.com/ovh-ux/ovh-manager-web/issues/1196)) ([354eccd](https://github.com/ovh-ux/ovh-manager-web/commit/354eccd))
+
+
+
+# [13.26.0](https://github.com/ovh-ux/ovh-manager-web/compare/v13.25.8...v13.26.0) (2019-08-12)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4] ([9dd2f91](https://github.com/ovh-ux/ovh-manager-web/commit/9dd2f91))
+* **i18n:** add missing translations [CDS 5] ([f164829](https://github.com/ovh-ux/ovh-manager-web/commit/f164829))
+* update manager urls ([#1192](https://github.com/ovh-ux/ovh-manager-web/issues/1192)) ([8743593](https://github.com/ovh-ux/ovh-manager-web/commit/8743593))
+* **layout:** display skipnav translation correctly ([#1194](https://github.com/ovh-ux/ovh-manager-web/issues/1194)) ([6f8c3fe](https://github.com/ovh-ux/ovh-manager-web/commit/6f8c3fe)), closes [#1193](https://github.com/ovh-ux/ovh-manager-web/issues/1193)
+
+
+### Features
+
+* add @ovh-ux/ng-ui-router-line-progress ([#1189](https://github.com/ovh-ux/ovh-manager-web/issues/1189)) ([08dd30f](https://github.com/ovh-ux/ovh-manager-web/commit/08dd30f))
+
+
+
 ## [13.25.8](https://github.com/ovh-ux/ovh-manager-web/compare/v13.25.7...v13.25.8) (2019-08-05)
 
 
