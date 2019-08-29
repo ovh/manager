@@ -17,6 +17,6 @@ angular
   .component('tucToastMessage', tucToastMessage)
   .directive('tucToastMessageScroller', tucToastMessageScrollerDirective)
   .service('TucToast', TucToast)
-  .run(/* @ngTranslationsInject ./translations */);
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

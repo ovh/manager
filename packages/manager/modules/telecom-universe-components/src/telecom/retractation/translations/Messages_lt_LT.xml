@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<translations>
-   <translation id="telecom_retractation_retract_true" qtlid="333932">Norite išsaugoti atsisakymo teisę ir sutinkate, kad teisė atsisakyti bus ribota laike. <strong>Paslaugos atsisakymas bus galimas per pirmas 14 dienų nuo paslaugos suteikimo</strong>.</translation>
-   <translation id="telecom_retractation_retract_false" qtlid="333945">Norite <strong>neatidėlioto vykdymo</strong> ir sutinkate, kad nebus taikoma teisė atsisakyti paslaugos, kaip tai numatyta vartotojų kodekso 121-20-2 straipsnyje.</translation>
-</translations>

@@ -15,6 +15,6 @@ angular
     uiRouter,
   ])
   .component('tucSectionBackLink', tucSectionBackLink)
-  .run(/* @ngTranslationsInject ./translations */);
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

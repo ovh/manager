@@ -13,6 +13,6 @@ angular
     translate,
   ])
   .component('tucTelecomRetractation', tucTelecomRetractation)
-  .run(/* @ngTranslationsInject ./translations */);
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

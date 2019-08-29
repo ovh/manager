@@ -29,7 +29,7 @@ angular
       animation: 'flat-fade',
     });
   })
-  .run(/* @ngTranslationsInject ./translations */)
+  .run(/* @ngTranslationsInject:json ./translations */)
   .run(/* @ngInject */ ($templateCache) => {
     $templateCache.put(
       'telecomUniverseComponents/ovh-password/strength/check/ovh-password-strength-check.html',

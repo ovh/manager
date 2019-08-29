@@ -27,6 +27,6 @@ angular
   .component('tucTelephonyBulkAction', tucTelephonyBulkAction)
   .factory('tucTelephonyBulkActionUpdatedServicesContainer', tucTelephonyBulkActionUpdatedServicesContainer)
   .service('tucTelephonyBulk', tucTelephonyBulk)
-  .run(/* @ngTranslationsInject ./translations */);
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

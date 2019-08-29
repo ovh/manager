@@ -18,6 +18,6 @@ angular
   .run(/* @ngInject */($templateCache) => {
     $templateCache.put('resiliation.modal.html', templateConfirmation);
   })
-  .run(/* @ngTranslationsInject ./translations */);
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

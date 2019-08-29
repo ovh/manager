@@ -19,6 +19,6 @@ angular
   ])
   .controller('tucShippingModeSelectionCtrl', tucShippingModeSelectionCtrl)
   .component('tucShippingModeSelection', tucShippingModeSelection)
-  .run(/* @ngTranslationsInject ./translations */);
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

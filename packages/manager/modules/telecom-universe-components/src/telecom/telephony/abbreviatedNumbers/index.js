@@ -33,6 +33,6 @@ angular
   .controller('tucTelecomTelephonyAbbreviatedNumbersModal', tucTelecomTelephonyAbbreviatedNumbersModal)
   .controller('tucTelecomTelephonyAbbreviatedNumbersEmptyModal', tucTelecomTelephonyAbbreviatedNumbersEmptyModal)
   .component('tucTelecomTelephonyAbbreviatedNumbers', tucTelecomTelephonyAbbreviatedNumbers)
-  .run(/* @ngTranslationsInject ./translations */);
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

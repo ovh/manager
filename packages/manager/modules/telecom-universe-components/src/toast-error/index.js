@@ -15,6 +15,6 @@ angular
     TucToast,
   ])
   .service('TucToastError', TucToastError)
-  .run(/* @ngTranslationsInject ./translations */);
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

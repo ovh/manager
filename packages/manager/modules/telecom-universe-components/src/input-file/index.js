@@ -16,6 +16,6 @@ angular
   ])
   .directive('tucInputFileChange', tucInputFileChangeDirective)
   .directive('tucInputFile', tucInputFileDirective)
-  .run(/* @ngTranslationsInject ./translations */);
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

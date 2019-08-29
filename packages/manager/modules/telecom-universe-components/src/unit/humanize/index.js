@@ -10,6 +10,6 @@ angular
     translate,
   ])
   .filter('tuc-unit-humanize', tucUnitHumanizeFilter)
-  .run(/* @ngTranslationsInject ./translations */);
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

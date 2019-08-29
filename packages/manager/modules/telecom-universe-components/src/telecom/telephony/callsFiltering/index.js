@@ -39,6 +39,6 @@ angular
   .controller('tucTelecomTelephonyCallsFilteringAddHelperCtrl', tucTelecomTelephonyCallsFilteringAddHelperCtrl)
   .component('tucTelecomTelephonyCallsFilteringAdd', tucTelecomTelephonyCallsFilteringAdd)
   .component('tucTelecomTelephonyCallsFilteringTable', tucTelecomTelephonyCallsFilteringTable)
-  .run(/* @ngTranslationsInject ./translations */);
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
