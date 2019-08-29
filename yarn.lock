@@ -2055,7 +2055,7 @@
   dependencies:
     lodash "^4.17.11"
 
-"@ovh-ux/ng-translate-async-loader@^2.0.1":
+"@ovh-ux/ng-translate-async-loader@^2.0.0", "@ovh-ux/ng-translate-async-loader@^2.0.1":
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-translate-async-loader/-/ng-translate-async-loader-2.0.1.tgz#d4502bf2dc084f95f77377dd77e1319f2ec2a58f"
   integrity sha512-42rx4IQJImhppTdha7nJWdJvXyCHBH2lqvnxS4oo/twG7YlqeiHwtYAFEp2RemJfTKPgNljQU0GRtxH6xJoJQQ==
@@ -13024,7 +13024,7 @@ request-progress@^2.0.1:
   dependencies:
     throttleit "^1.0.0"
 
-request@2.88.0, request@^2.72.0, request@^2.81.0, request@^2.83.0, request@^2.87.0, request@^2.88.0:
+request@2.88.0, request@^2.51.0, request@^2.72.0, request@^2.81.0, request@^2.83.0, request@^2.87.0, request@^2.88.0:
   version "2.88.0"
   resolved "https://registry.yarnpkg.com/request/-/request-2.88.0.tgz#9c2fca4f7d35b592efe57c7f0a55e81052124fef"
   integrity sha512-NAqBSrijGLZdM0WZNsInLJpkJokL72XYjUpnB0iwsRgxh7dB6COrHnTBNwN0E+lHDAJzu7kLAkDeY08z2/A0hg==
@@ -15229,11 +15229,6 @@ uri-js@^4.2.2:
   integrity sha512-KY9Frmirql91X2Qgjry0Wd4Y+YTdrdZheS8TFwvkbLWf/G5KNJDCh6pKL5OZctEW4+0Baa5idK2ZQuELRwPznQ==
   dependencies:
     punycode "^2.1.0"
-
-uri.js@^0.1.3:
-  version "0.1.3"
-  resolved "https://registry.yarnpkg.com/uri.js/-/uri.js-0.1.3.tgz#b93eee9905b3c81b9c38bbbcdfff5ef6d0c8de5f"
-  integrity sha1-uT7umQWzyBucOLu83/9e9tDI3l8=
 
 urijs@^1.18.0, urijs@^1.19.1:
   version "1.19.1"

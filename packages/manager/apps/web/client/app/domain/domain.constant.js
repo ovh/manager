@@ -11,13 +11,20 @@ export const WHOIS_ALL_CONTACT_OPTIN_RULE = [
   'domain',
 ];
 
+export const DOMAIN_OPTION_STATUS = {
+  ACTIVE: 'subscribed',
+  INACTIVE: 'released',
+};
+
 export default {
   ALERTS,
   WHOIS_STATUS,
   WHOIS_ALL_CONTACT_OPTIN_RULE,
+  DOMAIN_OPTION_STATUS,
 };
 
 angular.module('App').constant('DOMAIN', {
   ALERTS,
   WHOIS_STATUS,
+  DOMAIN_OPTION_STATUS,
 });

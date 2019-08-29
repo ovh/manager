@@ -62,6 +62,7 @@ export default class DomainTabGeneralInformationsCtrl {
     this.hasStart10mOffer = false;
     this.isAllDom = this.$rootScope.currentSectionInformation === 'all_dom';
     this.isUK = last(this.domain.name.split('.')).toUpperCase() === 'UK';
+    this.options = {};
     this.loading = {
       allDom: false,
       associatedHosting: false,
@@ -71,6 +72,7 @@ export default class DomainTabGeneralInformationsCtrl {
       domainInfos: this.$scope.ctrlDomain.loading.domainInfos,
       changeOwner: false,
       whoIs: false,
+      options: false,
     };
     this.initActions();
     this.dnsStatus = {
@@ -116,6 +118,7 @@ export default class DomainTabGeneralInformationsCtrl {
     this.$scope.$on('domain.dnssec.lock.unlock.cancel', () => {
       this.vm.dnssec.uiSwitch.checked = !this.vm.dnssec.uiSwitch.checked;
     });
+    this.$scope.$on('Domain.Options.Delete', () => this.getAllOptionDetails(this.domain.name));
 
     if (!this.domain.isExpired) {
       this.getScreenshoot(this.domain.name);
@@ -128,6 +131,7 @@ export default class DomainTabGeneralInformationsCtrl {
     this.getAllNameServer(this.domain.name);
     this.getHostingInfos(this.domain.name);
     this.getAssociatedHosting(this.domain.name);
+    this.getAllOptionDetails(this.domain.name);
     this.updateOwnerUrl = this.getUpdateOwnerUrl(this.domain);
 
     this.getRules();
@@ -321,6 +325,30 @@ export default class DomainTabGeneralInformationsCtrl {
       })
       .finally(() => {
         this.loading.associatedHosting = false;
+      });
+  }
+
+  getAllOptionDetails(serviceName) {
+    this.loading.options = true;
+    return this.Domain.getOptions(serviceName)
+      .then(options => this.$q.all(
+        _.map(options, option => this.Domain.getOption(serviceName, option)
+          .then(optionDetail => Object.assign({}, optionDetail,
+            { optionActivated: optionDetail.state === this.DOMAIN.DOMAIN_OPTION_STATUS.ACTIVE }))),
+      ))
+      .then((options) => {
+        this.options = _.reduce(options, (transformedOptions, option) => ({
+          ...transformedOptions,
+          [option.option]: option,
+        }), {});
+      })
+      .catch(err => this.Alerter.alertFromSWS(
+        this.$translate.instant('domain_configuration_web_hosting_fail'),
+        _.get(err, 'data'),
+        this.$scope.alerts.page,
+      ))
+      .finally(() => {
+        this.loading.options = false;
       });
   }
 

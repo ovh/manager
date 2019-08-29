@@ -1,5 +1,3 @@
-
-
 module.exports = {
   EU: {
     CHATBOT_URL: {
@@ -866,6 +864,7 @@ module.exports = {
         cs_CZ: 'https://www.ovh.com/auth/signup/#/?ovhCompany=ovh&ovhSubsidiary=CZ',
       },
     },
+
     flags_options: [
       { value: 256, label: '256 - Zone Signing Key (ZSK)' },
       { value: 257, label: '257 - Key Signing Key (KSK)' },
@@ -885,6 +884,7 @@ module.exports = {
       web: 'https://www.ovh.com/manager/web/index.html#/',
       dedicated: 'https://www.ovh.com/manager/dedicated/index.html#/',
       cloud: 'https://www.ovh.com/manager/cloud/index.html#/',
+      publicCloud: 'https://www.ovh.com/manager/public-cloud/index.html#/',
       telecom: 'https://www.ovhtelecom.fr/manager/index.html#/',
       sunrise: 'https://www.ovh.com/manager/sunrise/index.html#/',
       partners: 'https://www.ovh.com/manager/partners',

@@ -23,7 +23,8 @@ import ngPaginationFront from '@ovh-ux/ng-pagination-front';
 import ngQAllSettled from '@ovh-ux/ng-q-allsettled';
 import ngTailLogs from '@ovh-ux/ng-tail-logs';
 import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
-import ngOvhUiRouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
+import ngUiRouterLayout from '@ovh-ux/ng-ui-router-layout';
+import ngUiRouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
 import ovhManagerNavbar from '@ovh-ux/manager-navbar';
 import uiRouter from '@uirouter/angularjs';
 import ngOvhOtrs from '@ovh-ux/ng-ovh-otrs';
@@ -73,7 +74,8 @@ angular
     ngOvhUserPref,
     ngOvhWebUniverseComponents,
     ngTranslateAsyncLoader,
-    ngOvhUiRouterLineProgress,
+    ngUiRouterLayout,
+    ngUiRouterLineProgress,
     ovhManagerServerSidebar,
     uiRouter,
     'pascalprecht.translate',

@@ -31,6 +31,7 @@ angular.module('services').service(
       $q,
       Domains,
       DomainValidator,
+      OvhApiDomain,
       OvhHttp,
       Poll,
       Poller,
@@ -39,6 +40,7 @@ angular.module('services').service(
       this.$q = $q;
       this.Domains = Domains;
       this.DomainValidator = DomainValidator;
+      this.OvhApiDomain = OvhApiDomain;
       this.OvhHttp = OvhHttp;
       this.Poll = Poll;
       this.Poller = Poller;
@@ -1190,6 +1192,39 @@ angular.module('services').service(
       return this.OvhHttp.get('/domain.json', {
         rootPath: 'apiv6',
       });
+    }
+
+    // --------------------- Options ----------------------------
+
+    /**
+     * Delete option
+     * @param {string} serviceName
+     * @param {string} option
+     */
+    deleteOption(serviceName, option) {
+      return this.OvhApiDomain.Options().v6().delete({ serviceName, option }).$promise;
+    }
+
+    /**
+     * Get all options
+     * @param {string} serviceName
+     */
+    getOptions(serviceName) {
+      return this.OvhApiDomain.Options().v6().query({ serviceName }).$promise;
+    }
+
+    /**
+     * Get the option details
+     * @param {string} serviceName
+     * @param {string} option
+     */
+    getOption(serviceName, option) {
+      return this.OvhApiDomain.Options().v6().get({ serviceName, option }).$promise;
+    }
+
+    resetOptionsCache() {
+      this.OvhApiDomain.Options().v6().resetQueryCache();
+      this.OvhApiDomain.Options().v6().resetCache();
     }
 
     // --------------------- Glue registry ----------------------
