@@ -1,3 +1,12 @@
+## [4.1.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom-task-app@4.1.0...@ovh-ux/manager-telecom-task-app@4.1.1) (2019-08-29)
+
+
+### Bug Fixes
+
+* **deps:** bump ovh-ui-angular to v3.7.4 ([#1245](https://github.com/ovh-ux/manager/issues/1245)) ([33ba95c](https://github.com/ovh-ux/manager/commit/33ba95c))
+
+
+
 # [4.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom-task-app@4.0.1...@ovh-ux/manager-telecom-task-app@4.1.0) (2019-08-12)
 
 
