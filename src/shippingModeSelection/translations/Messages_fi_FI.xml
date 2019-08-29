@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="shipping_mode_selection_mode_mondial_relay" qtlid="308073">Maksuton toimitus Mondial Relay -pisteeseen 48h kuluessa (lähetyksestä)</translation>
+   <translation id="shipping_mode_selection_mode_mondial_relay_not_free" qtlid="395908">Toimitus Mondial Relay -pisteeseen(+ <span class="text-price">{{ price }} €</span> <span class="text-infos">ALV0</span>) 48h kuluessa (lähetyksestä)</translation>
+   <translation id="shipping_mode_selection_mode_transporter" qtlid="345858">Toimitus kuriiripalveluna(+ <span class="text-price">{{ price }} €</span> <span class="text-infos">ALV0</span>) 24h kuluessa (lähetyksestä)</translation>
+   <translation id="shipping_mode_selection_mode_transporter_free" qtlid="463408">Maksuton toimitus kuljetuspalvelulla 24h kuluessa (lähetyksestä)</translation>
+</translations>

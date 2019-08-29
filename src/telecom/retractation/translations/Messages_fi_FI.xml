@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telecom_retractation_retract_true" qtlid="333932">Haluat käyttää peruustusoikeutta ja hyväksyt, että palvelu toimitetaan vasta peruutusajan päätyttyä. <strong>Palvelu aktivoituu 14 päivän kuluessa</strong>.</translation>
+   <translation id="telecom_retractation_retract_false" qtlid="333945">Tilauksesi siirtyy<strong>välittömästi tuotantoon</strong> ja ymmärrät, ettei sinulla tästä johtuen ole Ranskan kuluttajansuojalain (artikla 121-20-2) mukaisesti peruutusoikeutta.</translation>
+</translations>

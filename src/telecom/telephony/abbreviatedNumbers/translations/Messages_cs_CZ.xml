@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_abbreviated_numbers_read_error" qtlid="334231">Impossible d'accéder à la liste des numéros abrégés.</translation>
+   <translation id="telephony_abbreviated_numbers_write_error" qtlid="334244">Impossible de mettre à jour le numéro abrégé.</translation>
+   <translation id="telephony_abbreviated_numbers_write_success" qtlid="334257">Le numéro abrégé {{num}} a été mis à jour.</translation>
+   <translation id="telephony_abbreviated_numbers_id" qtlid="334283">Numéro abrégé</translation>
+   <translation id="telephony_abbreviated_numbers_id_help" qtlid="497307">Doit être un nombre à 3 ou 4 chiffres, débutant par un {{digit}}.</translation>
+   <translation id="telephony_abbreviated_numbers_number" qtlid="334296">Numéro cible</translation>
+   <translation id="telephony_abbreviated_numbers_surname" qtlid="3818">Název</translation>
+   <translation id="telephony_abbreviated_numbers_name" qtlid="23323">Jméno</translation>
+   <translation id="telephony_abbreviated_numbers_table_empty" qtlid="334309">Vous n'avez aucun numéro abrégé.</translation>
+   <translation id="telephony_abbreviated_numbers_remove_success" qtlid="360658">Numéro abrégé {{abbreviatedNumber}} supprimé.</translation>
+   <translation id="telephony_abbreviated_numbers_remove_error" qtlid="360671">Impossible de supprimer le numéro abrégé {{abbreviatedNumber}}.</translation>
+   <translation id="telephony_abbreviated_numbers_number_error" qtlid="360684">Veuillez rentrer un numéro au format international (00xx ...).</translation>
+   <translation id="telephony_abbreviated_numbers_number_help" qtlid="480292">Doit être un numéro de format international. Ex. 00xx...</translation>
+   <translation id="telephony_abbreviated_numbers_save_error" qtlid="360697">Impossible de sauvegarder votre numéro abrégé.</translation>
+   <translation id="telephony_abbreviated_numbers_not_free_error" qtlid="360710">Ce numéro abrégé n'est pas disponible.</translation>
+   <translation id="telephony_abbreviated_numbers_name_error" qtlid="360723">Seuls les espaces, chiffres et lettres non-accentuées sont autorisées.</translation>
+   <translation id="telephony_abbreviated_numbers_insert_title" qtlid="360736">Ajouter un numéro abrégé</translation>
+   <translation id="telephony_abbreviated_numbers_update_title" qtlid="360749">Modifier un numéro abrégé</translation>
+   <translation id="telephony_abbreviated_numbers_export_label" qtlid="360762">Exporter la liste au format csv</translation>
+   <translation id="telephony_abbreviated_numbers_download_label" qtlid="39286">Stáhnout</translation>
+   <translation id="telephony_abbreviated_numbers_import_label" qtlid="69869">Import</translation>
+   <translation id="telephony_abbreviated_numbers_trash_all_label" qtlid="360775">Vider</translation>
+   <translation id="telephony_abbreviated_numbers_import_button_label" qtlid="360788">Sélectionnez votre fichier</translation>
+   <translation id="telephony_abbreviated_numbers_import_modal_tile" qtlid="360801">Importer une liste de numéros abrégés</translation>
+   <translation id="telephony_abbreviated_numbers_import_modal_explaination" qtlid="360814">Supprimer les éventuelles lignes d'entête.</translation>
+   <translation id="telephony_abbreviated_numbers_import_item_imported" qtlid="360827">Numéros importés :</translation>
+   <translation id="telephony_abbreviated_numbers_import_item_rejected" qtlid="360840">Numéros ignorés :</translation>
+   <translation id="telephony_abbreviated_numbers_empty_modal_tile" qtlid="360879">Nettoyage de la liste des numéros abrégés</translation>
+   <translation id="telephony_abbreviated_numbers_empty_modal_text" qtlid="360892">L'ensemble de vos numéros abrégés va être supprimé. Voulez-vous continuer ?</translation>
+   <translation id="telephony_abbreviated_numbers_import_loading_error" qtlid="360905">Ce fichier n'est pas de type csv (doit avoir l'extension .csv)</translation>
+   <translation id="telephony_abbreviated_numbers_import_loading_fatal" qtlid="360918">Impossible de lire le fichier.</translation>
+   <translation id="telephony_abbreviated_numbers_import_loading_oversize" qtlid="360931">La taille du fichier dépasse 50ko. Découpez votre ficher et importez les parties une à une.</translation>
+   <translation id="telephony_abbreviated_numbers_import_loading_bad_content" qtlid="360944">Le contenu du fichier est incorrect.</translation>
+
+   <translation id="telephony_abbreviated_numbers_cancel" qtlid="37863">Zrušit</translation>
+   <translation id="telephony_abbreviated_numbers_close" qtlid="4670">Zavřít</translation>
+   <translation id="telephony_abbreviated_numbers_common_actions" qtlid="72809">Akce</translation>
+   <translation id="telephony_abbreviated_numbers_common_add" qtlid="37923">Přidat</translation>
+   <translation id="telephony_abbreviated_numbers_delete" qtlid="2414">Odstranit</translation>
+   <translation id="telephony_abbreviated_numbers_edit" qtlid="6766">Upravit</translation>
+   <translation id="telephony_abbreviated_numbers_submit" qtlid="26047">Schválit</translation>
+</translations>

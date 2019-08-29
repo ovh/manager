@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="elapsed_time_days" qtlid="463421">{{ days }} jours et {{ hours }} heures</translation>
+   <translation id="elapsed_time_hours" qtlid="463434">{{ hours }} h {{ minutes }} min {{ seconds }} s</translation>
+   <translation id="elapsed_time_minutes" qtlid="463447">{{ minutes }} min {{ seconds }} s</translation>
+   <translation id="elapsed_time_seconds" qtlid="463460">{{ seconds }} sec.</translation>
+</translations>
