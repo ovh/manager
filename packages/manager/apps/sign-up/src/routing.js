@@ -41,7 +41,9 @@ export const state = {
     me: /* @ngInject */ ssoAuthentication => ssoAuthentication
       .getSsoAuthPendingPromise()
       .then(() => ssoAuthentication.user),
-    onStepCancel: /* @ngInject */ ssoAuthentication => () => ssoAuthentication.logout(),
+    onStepCancel: /* @ngInject */ ($location, ssoAuthentication) => () => {
+      ssoAuthentication.logout($location.search().onsuccess);
+    },
     onStepFocus: /* @ngInject */ ($state, getStepByName) => (stepName) => {
       const focusedStep = getStepByName(stepName);
       if ($state.current.name !== focusedStep.state) {
