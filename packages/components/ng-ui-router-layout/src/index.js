@@ -5,6 +5,7 @@ import 'angular-ui-bootstrap';
 import forEach from 'lodash/forEach';
 import filter from 'lodash/filter';
 import get from 'lodash/get';
+import has from 'lodash/has';
 import initial from 'lodash/initial';
 import intersection from 'lodash/intersection';
 import isArray from 'lodash/isArray';
@@ -54,6 +55,24 @@ angular
           ignoreChilds: state.self.layout.ignoreChilds || [],
           redirectTo: state.self.layout.redirectTo || '^',
         };
+      }
+
+      if ((isString(layout) && layout === 'modalTest')
+        || (isObject(layout) && get(layout, 'name') === 'modalTest')) {
+        // set modal options
+        modalLayout = {
+          name: 'modalTest',
+          modalOptions: {
+            template: get(state, 'template'),
+            templateUrl: get(state, 'templateUrl'),
+            controller: get(state, 'controller'),
+            controllerAs: get(state, 'controllerAs', '$ctrl'),
+            resolve: get(state, 'resolve'),
+          },
+        };
+
+        // reset state views to avoid state default view to display its content
+        set(state, 'views', {});
       }
 
       return modalLayout;
@@ -150,6 +169,28 @@ angular
           modalInstance.result.catch(() => $state.go(get(state, 'layout.redirectTo')));
         }
       });
+    });
+  })
+  .run(/* @ngInject */($state, $stateRegistry, $uibModal) => {
+    filter(
+      $stateRegistry.states,
+      ({ layout }) => get(layout, 'name') === 'modalTest',
+    ).forEach((layoutState) => {
+      const state = layoutState;
+
+      state.onEnter = (transition) => {
+        const modalInstance = $uibModal.open(state.layout.modalOptions);
+
+        modalInstance.result.catch(() => {
+          let redirectTo = '^';
+
+          if (has(transition.targetState().state().resolve, 'redirectTo')) {
+            redirectTo = transition.injector().get('redirectTo');
+          }
+
+          return $state.go(redirectTo);
+        });
+      };
     });
   })
   .run(/* @ngInject */($stateRegistry) => {
