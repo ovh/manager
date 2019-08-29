@@ -2726,7 +2726,7 @@ angular-ui-validate@^1.2.3:
   resolved "https://registry.yarnpkg.com/angular-ui-validate/-/angular-ui-validate-1.2.3.tgz#beb141f64409bfddba65c12f7581b893ddf59321"
   integrity sha1-vrFB9kQJv926ZcEvdYG4k931kyE=
 
-angular-validation-match@^1.4.x, angular-validation-match@^1.9.0:
+angular-validation-match@^1.9.0:
   version "1.9.0"
   resolved "https://registry.yarnpkg.com/angular-validation-match/-/angular-validation-match-1.9.0.tgz#03d82d0b983bf22366c5d22a0c291731625dcf80"
   integrity sha1-A9gtC5g78iNmxdIqDCkXMWJdz4A=
@@ -15373,10 +15373,6 @@ validator-js@^0.2.1:
   integrity sha1-EgmnRukG8NZOo08NA/mDcLVsCNE=
   dependencies:
     underscore "*"
-
-validator-js@chriso/validator.js#3.40.1:
-  version "3.40.1"
-  resolved "https://codeload.github.com/chriso/validator.js/tar.gz/ae7041b2ba161a1924e2974af8093338185e9bb1"
 
 validator@^10.11.0:
   version "10.11.0"
