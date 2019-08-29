@@ -97,7 +97,7 @@ export default () => {
       return some(
         filter(
           this.getQuestionsToAnswer(),
-          toAnswer => includes(appointmentQuestions, toAnswer),
+          (toAnswer) => includes(appointmentQuestions, toAnswer),
         ),
       );
     }

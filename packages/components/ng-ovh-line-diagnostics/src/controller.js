@@ -130,7 +130,7 @@ export default class LineDiagnosticsCtrl {
     this.currentAction = head(
       filter(
         this.currentLineDiagnostic.getActionsToDo(),
-        action => !includes(this.currentLineDiagnostic.getActionsDone(), action),
+        (action) => !includes(this.currentLineDiagnostic.getActionsDone(), action),
       ),
     );
   }
@@ -146,13 +146,13 @@ export default class LineDiagnosticsCtrl {
 
   getInvestigationStepQuestions() {
     return this.currentLineDiagnostic.data.toAnswer.filter(
-      question => this.steps.INVESTIGATION.QUESTIONS.includes(question.name),
+      (question) => this.steps.INVESTIGATION.QUESTIONS.includes(question.name),
     );
   }
 
   getInvestigationStepSpecificQuestions() {
     return this.currentLineDiagnostic.data.toAnswer.filter(
-      question => this.steps.INVESTIGATION.SPECIFIC_QUESTIONS.includes(question.name),
+      (question) => this.steps.INVESTIGATION.SPECIFIC_QUESTIONS.includes(question.name),
     );
   }
 
