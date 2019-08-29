@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<translations>
+   <translation id="status_action_renew_date_label" qtlid="520494">Renouvellement automatique prévu en</translation>
+   <translation id="status_action_resiliation_cancel_label" qtlid="285350">Peru irtisanominen</translation>
+   <translation id="status_action_wizard_renew" qtlid="118962">Uudista palvelu</translation>
+   <translation id="status_action_resiliation_date_label" qtlid="96343">Irtisanominen suunniteltu</translation>
+   <translation id="status_action_expiration_date_label" qtlid="73589">Vanhenee</translation>
+   <translation id="status_action_expiration_delete_cancel_label" qtlid="48646">Irtisano</translation>
+   <translation id="status_action_renew_management" qtlid="287527">Palvelujen hallinta</translation>
+</translations>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="autorenew_alert" qtlid="517685">Make your life easier by enabling automatic renewal for your {{{product}}! No more reminders or unwanted deletions.</translation>
+   <translation id="autorenew_alert_domain" qtlid="307397">domain name</translation>
+   <translation id="autorenew_alert_hosting" qtlid="517698">web hosting</translation>
+   <translation id="autorenew_activate" qtlid="98576">Activate automatic renewal</translation>
+   <translation id="autorenew_guide" qtlid="290615">See the guide </translation>
+   <translation id="autorenew_new_tab" qtlid="516549">Open in a new tab</translation>
+</translations>

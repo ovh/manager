@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="cron_dom_all" qtlid="154091">Každý den</translation>
+   <translation id="cron_dom_interval" qtlid="199429">Každých N dní</translation>
+   <translation id="cron_dom_interval_value" qtlid="199442">Každých {0} dní</translation>
+   <translation id="cron_dom_items" qtlid="61908">Fixní dny</translation>
+   <translation id="cron_dom_range" qtlid="199455">Od takového dne do takového dne</translation>
+   <translation id="cron_dom_range_from" qtlid="88725">Od</translation>
+   <translation id="cron_dom_range_to" qtlid="35904">do</translation>
+   <translation id="cron_dow_all" qtlid="199468">Každý den v týdnu</translation>
+   <translation id="cron_dow_interval" qtlid="199494">Každých N dní v týdnu</translation>
+   <translation id="cron_dow_interval_value" qtlid="199507">Každých {0} dní v týdnu</translation>
+   <translation id="cron_dow_items" qtlid="199481">Určené dny v týdnu</translation>
+   <translation id="cron_dow_range" qtlid="199520">Od jistého dne v týdnu do jiného</translation>
+   <translation id="cron_dow_range_from" qtlid="88725">Od</translation>
+   <translation id="cron_dow_range_to" qtlid="35904">do</translation>
+   <translation id="cron_expert_mode" qtlid="64616">Režim Expert</translation>
+   <translation id="cron_hours_all" qtlid="8782">Každou hodinu</translation>
+   <translation id="cron_hours_interval" qtlid="199390">Každých N hodin</translation>
+   <translation id="cron_hours_interval_value" qtlid="199403">Každých {0} hodin</translation>
+   <translation id="cron_hours_items" qtlid="199377">Fixní hodiny</translation>
+   <translation id="cron_hours_range" qtlid="199416">Od tolika do tolika hodin</translation>
+   <translation id="cron_hours_range_from" qtlid="69077">Od</translation>
+   <translation id="cron_hours_range_to" qtlid="8890">za</translation>
+   <translation id="cron_hours_value" qtlid="199611">{0} hodin</translation>
+   <translation id="cron_interval_pre_f" qtlid="199598">Každých</translation>
+   <translation id="cron_interval_pre_m" qtlid="62304">Vše</translation>
+   <translation id="cron_label_days" qtlid="73505">Dní</translation>
+   <translation id="cron_label_days_min" qtlid="44260">dní</translation>
+   <translation id="cron_label_dow" qtlid="8854">Dní v týdnu</translation>
+   <translation id="cron_label_dow_min" qtlid="199364">dny v týdnu</translation>
+   <translation id="cron_label_hours" qtlid="8842">Hodin</translation>
+   <translation id="cron_label_hours_min" qtlid="44236">hodin</translation>
+   <translation id="cron_label_months" qtlid="37803">Měsíc</translation>
+   <translation id="cron_label_months_min" qtlid="40222">měsíc</translation>
+   <translation id="cron_mon_all" qtlid="199533">Každý měsíc</translation>
+   <translation id="cron_mon_interval" qtlid="199559">Každých N měsíců</translation>
+   <translation id="cron_mon_interval_value" qtlid="199572">Každých {0} měsíců</translation>
+   <translation id="cron_mon_items" qtlid="199546">Určité měsíce</translation>
+   <translation id="cron_mon_range" qtlid="199585">Od určitého měsíce po jiný</translation>
+   <translation id="cron_mon_range_from" qtlid="69077">Od</translation>
+   <translation id="cron_mon_range_to" qtlid="8890">za</translation>
+   <translation id="cron_simple_mode" qtlid="102849">Jednoduchý režim</translation>
+
+   <translation id="cron_step2_title" qtlid="199195">Zvolení frekvence pro tento úkol:</translation>
+   <translation id="cron_step2_expert_help" qtlid="199208">Definujte období v Crontab formátu vložením hodnot pro hodiny ("{0}"), dny ("{1}"), mesíce ("{2}") a dne v týdnu ("{3}").</translation>
+   <translation id="cron_step2_expert_toocomplicated" qtlid="199221">Hodnoty jsou příliš složité pro přepnutí do jednoduchého režimu.</translation>
+   <translation id="cron_step2_help_dom" qtlid="199689">Den v měsíci (1 až 31)</translation>
+   <translation id="cron_step2_help_dow" qtlid="263038">Den v týdnu (od 0 do 7, nebo od {0} do {1})</translation>
+   <translation id="cron_step2_help_h" qtlid="199676">Hodin (0 až 23)</translation>
+   <translation id="cron_step2_help_m" qtlid="199663">Minut (0 až 59)</translation>
+   <translation id="cron_step2_help_mon" qtlid="199702">Měsíc (1 až 12, nebo od {0} do {1})</translation>
+   <translation id="cron_step2_help_notation_1" qtlid="199741">všechny jednotky</translation>
+   <translation id="cron_step2_help_notation_2" qtlid="199754">pouze 2 a 4</translation>
+   <translation id="cron_step2_help_notation_3" qtlid="199767">jednotky mezi 4 a 7 (4, 5, 6, 7)</translation>
+   <translation id="cron_step2_help_notation_4" qtlid="199780">každé 3 jednotky (0, 3, 6,..)</translation>
+   <translation id="cron_step2_help_notation_5" qtlid="199793">každé 3 jednotky, ale pouze mezi 10 a 20 (10, 13, 16, 19)</translation>
+   <translation id="cron_step2_help_subtitle1" qtlid="199728">Příklady:</translation>
+   <translation id="cron_step2_help_subtitle2" qtlid="199806">Minuty jsou ignorovány.</translation>
+
+   <translation id="cron_januar" qtlid="38745">leden</translation>
+   <translation id="cron_februar" qtlid="38229">únor</translation>
+   <translation id="cron_march" qtlid="38985">březen</translation>
+   <translation id="cron_april" qtlid="38181">duben</translation>
+   <translation id="cron_may" qtlid="38421">květen</translation>
+   <translation id="cron_june" qtlid="38013">červen</translation>
+   <translation id="cron_jully" qtlid="38085">červenec</translation>
+   <translation id="cron_august" qtlid="38961">srpen</translation>
+   <translation id="cron_september" qtlid="38409">září</translation>
+   <translation id="cron_october" qtlid="39093">říjen</translation>
+   <translation id="cron_november" qtlid="38169">listopad</translation>
+   <translation id="cron_december" qtlid="37989">prosinec</translation>
+
+   <translation id="cron_monday" qtlid="6346">Pondělí</translation>
+   <translation id="cron_tuesday" qtlid="6358">Úterý</translation>
+   <translation id="cron_wednesday" qtlid="6370">Středa</translation>
+   <translation id="cron_thursday" qtlid="6382">Čtvrtek</translation>
+   <translation id="cron_friday" qtlid="6394">Pátek</translation>
+   <translation id="cron_saturday" qtlid="6406">Sobota</translation>
+   <translation id="cron_sunday" qtlid="6418">Neděle</translation>
+</translations>

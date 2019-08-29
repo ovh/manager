@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<translations>
+   <translation id="status_action_renew_date_label" qtlid="520494">Automatische Verlängerung geplant am</translation>
+   <translation id="status_action_resiliation_cancel_label" qtlid="285350">Kündigung zurücknehmen</translation>
+   <translation id="status_action_wizard_renew" qtlid="118962">Verlängern</translation>
+   <translation id="status_action_resiliation_date_label" qtlid="96343">Kündigung geplant am</translation>
+   <translation id="status_action_expiration_date_label" qtlid="73589">Läuft ab am</translation>
+   <translation id="status_action_expiration_delete_cancel_label" qtlid="48646">Kündigen</translation>
+   <translation id="status_action_renew_management" qtlid="287527">Meine Dienste verwalten</translation>
+</translations>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="duration_day_1" qtlid="28807">1 diena</translation>
+   <translation id="duration_day_other" qtlid="178484">{0} dienos(-ų)</translation>
+   <translation id="duration_month_1" qtlid="70241">1 mėn.</translation>
+   <translation id="duration_month_other" qtlid="220148">{0} mėn.</translation>
+   <translation id="duration_year_1" qtlid="70277">1 metai</translation>
+   <translation id="duration_year_other" qtlid="374495">{0} metai(-ų)</translation>
+   <translation id="duration_upto" qtlid="158617">Iki {0}</translation>
+   <translation id="duration_uptofirstdaynextmonth" qtlid="158630">Iki pirmos ateinančio mėnesio dienos</translation>
+   <translation id="duration_engage" qtlid="158643">Įsipareigoti {0}</translation>
+</translations>

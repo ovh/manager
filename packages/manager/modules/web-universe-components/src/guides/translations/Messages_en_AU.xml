@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="guides_core_new_window" qtlid="222176">New window</translation>
+   <translation id="guide_add_subclient" qtlid="285486">A domain registered with OVH on my customer account </translation>
+   <translation id="guide_add_subcontext" qtlid="285473">You can share your web hosting. This means that you can attach:</translation>
+   <translation id="guide_add_subcreate" qtlid="285525">Create a subdomain</translation>
+   <translation id="guide_add_subnon_client" qtlid="285499">A domain registered with OVH which is not on my customer account </translation>
+   <translation id="guide_add_subnon_registered" qtlid="285512">A domain which is not registered with OVH </translation>
+   <translation id="guide_add_subnot_installed" qtlid="285538">What do I do if I get a "Site not installed" error? </translation>
+   <translation id="guide_add_subscope" qtlid="285460">Attach a domain to my hosting account</translation>
+   <translation id="guide_add_zone_subscope" qtlid="263181">Add a DNS zone</translation>
+   <translation id="guide_dns_subscope" qtlid="367826">DNS servers </translation>
+   <translation id="guide_domain_add_dns_zone" qtlid="300500">Create a DNS Zone for an external domain </translation>
+   <translation id="guide_domain_dns_getting_started" qtlid="300422">General information about DNS servers </translation>
+   <translation id="guide_domain_dns_zone_check" qtlid="300435">ZoneCheck for your domain </translation>
+   <translation id="guide_domain_ds_record" qtlid="300487">Secure your domain with DNSSEC</translation>
+   <translation id="guide_domain_dyn_host" qtlid="300461">What is a dynhost?</translation>
+   <translation id="guide_domain_edit_zone" qtlid="282497">How to edit my DNS zone?</translation>
+   <translation id="guide_domain_glue_registry" qtlid="300474">Enable the GLUE Registry</translation>
+   <translation id="guide_domain_owner_transfert" qtlid="300409">Guides on changing domain name owners </translation>
+   <translation id="guide_domain_owo_activation" qtlid="300383">Whois - Enabling OwO</translation>
+   <translation id="guide_domain_redirection" qtlid="300448">Guides on domain name redirection </translation>
+   <translation id="guide_domain_transfert" qtlid="300396">Guides on domain transfers </translation>
+   <translation id="guide_ds_records_subscope" qtlid="264719">DS Records</translation>
+   <translation id="guide_dyn_host_subscope" qtlid="226397">DynHost</translation>
+   <translation id="guide_emails_configuration_title" qtlid="4406">Configuration</translation>
+   <translation id="guide_emails_emails_advanced" qtlid="304329">OVH emails: advanced usage </translation>
+   <translation id="guide_emails_emails_configuration" qtlid="304173">Overview of OVH email services </translation>
+   <translation id="guide_emails_emails_configuration_ios" qtlid="304199">iPhone IOS 9.1 configuration </translation>
+   <translation id="guide_emails_emails_configuration_mx_zone_dns" qtlid="304355">Configuring MX with the OVH DNS zone </translation>
+   <translation id="guide_emails_emails_configuration_mx_zone_dns_non_ovh" qtlid="304368">Configuring MX with non-OVH DNS zone </translation>
+   <translation id="guide_emails_emails_configuration_outlook" qtlid="304186">Outlook 2013 configuration </translation>
+   <translation id="guide_emails_emails_creation" qtlid="304160">Creating an email address</translation>
+   <translation id="guide_emails_emails_delegation" qtlid="304251">How to delegate the management of your emails to another OVH username</translation>
+   <translation id="guide_emails_emails_diagnosis" qtlid="304303">Troubleshooting your email </translation>
+   <translation id="guide_emails_emails_filters" qtlid="304264">Configuring email filters in your customer account </translation>
+   <translation id="guide_emails_emails_headers" qtlid="304225">Getting email headers </translation>
+   <translation id="guide_emails_emails_migrate_to_exchange" qtlid="282536">Migrate an OVH email address to Exchange </translation>
+   <translation id="guide_emails_emails_mx_servers" qtlid="304277">General information on MX servers </translation>
+   <translation id="guide_emails_emails_roundcube" qtlid="304212">Webmail - RoundCube usage</translation>
+   <translation id="guide_emails_emails_smtp_response_code" qtlid="304342">SMTP server reply codes </translation>
+   <translation id="guide_emails_emails_spf" qtlid="304290">The SPF record </translation>
+   <translation id="guide_emails_filter_subscope" qtlid="327211">Email filters </translation>
+   <translation id="guide_emails_general_title" qtlid="304121">General information </translation>
+   <translation id="guide_emails_how_to_title" qtlid="304134">How to...</translation>
+   <translation id="guide_emails_mailing_list" qtlid="304394">Using Mailing-Lists</translation>
+   <translation id="guide_emails_redirection_create" qtlid="99128">Email redirections </translation>
+   <translation id="guide_emails_responder" qtlid="304381">Setting up an auto-response </translation>
+   <translation id="guide_emails_responder_subscope" qtlid="50110">Voicemails</translation>
+   <translation id="guide_general_info_subscope" qtlid="27115">General information</translation>
+   <translation id="guide_glue_subscope" qtlid="262280">GLUE</translation>
+   <translation id="guide_mailing_list_title" qtlid="304147">Mailing-List</translation>
+   <translation id="guide_redirection_subscope" qtlid="46000">Redirection</translation>
+   <translation id="guide_zone_subscope" qtlid="45976">DNS zone </translation>
+</translations>

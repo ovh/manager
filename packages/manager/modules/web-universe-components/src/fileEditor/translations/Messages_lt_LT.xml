@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="file_editor_common_add" qtlid="37923">Pridėti</translation>
+   <translation id="file_editor_common_delete_all" qtlid="159891">Pašalinti viską</translation>
+   <translation id="file_editor_common_go_to_next_error" qtlid="282562">Pereiti prie kitos klaidos</translation>
+   <translation id="file_editor_mailing_list_common_addr_errors_1" qtlid="282588"><strong>1</strong> klaidingas adresas</translation>
+   <translation id="file_editor_mailing_list_common_addr_errors_other" qtlid="282601">Klaidingų adresų: <strong>{0}</strong></translation>
+</translations>
