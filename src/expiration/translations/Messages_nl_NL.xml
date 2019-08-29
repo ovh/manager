@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="expiration_new_tab" qtlid="516549">Openen in een nieuw tabblad</translation>
+   <translation id="expiration_expired_date" qtlid="382076">Vervalt op <strong>{0}</strong></translation>
+   <translation id="expiration_renew_date" qtlid="440287">Automatisch verlenging van de dienst in <strong>{0}</strong></translation>
+   <translation id="expiration_resiliation_cancel_label" qtlid="285350">Annuleer beëindiging</translation>
+   <translation id="expiration_wizard_renew" qtlid="118962">Verlengen</translation>
+   <translation id="expiration_resiliation_date" qtlid="382089">Annulatie gepland op <strong>{0}</strong></translation>
+   <translation id="expiration_expiration_date" qtlid="517711">Vervalt <sterk>{0}</sterk></translation>
+   <translation id="expiration_resiliation_cancel_label" qtlid="285350">Annuleer beëindiging</translation>
+</translations>

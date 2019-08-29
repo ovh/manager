@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="duration_day_1" qtlid="28807">1 jour</translation>
+   <translation id="duration_day_other" qtlid="178484">{0} jours</translation>
+   <translation id="duration_month_1" qtlid="70241">1 mois</translation>
+   <translation id="duration_month_other" qtlid="220148">{0} mois</translation>
+   <translation id="duration_year_1" qtlid="70277">1 an</translation>
+   <translation id="duration_year_other" qtlid="374495">{0} ans</translation>
+   <translation id="duration_upto" qtlid="158617">Jusqu'au {0}</translation>
+   <translation id="duration_uptofirstdaynextmonth" qtlid="158630">Jusqu'au premier jour du prochain mois</translation>
+   <translation id="duration_engage" qtlid="158643">S'engager {0}</translation>
+</translations>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="expiration_new_tab" qtlid="516549">S'ouvre dans un nouvel onglet</translation>
+   <translation id="expiration_expired_date" qtlid="382076">Vanhentunut <strong>{0}</strong></translation>
+   <translation id="expiration_renew_date" qtlid="440287">Uusitaan automaattisesti <strong>{0}</strong></translation>
+   <translation id="expiration_resiliation_cancel_label" qtlid="285350">Peru irtisanominen</translation>
+   <translation id="expiration_wizard_renew" qtlid="118962">Uudista palvelu</translation>
+   <translation id="expiration_resiliation_date" qtlid="382089">Suunniteltu irtisanominen <strong>{0}</strong></translation>
+   <translation id="expiration_expiration_date" qtlid="517711">Expire le <strong>{0}</strong></translation>
+   <translation id="expiration_resiliation_cancel_label" qtlid="285350">Peru irtisanominen</translation>
+</translations>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="cron_dom_all" qtlid="154091">Joka päivä</translation>
+   <translation id="cron_dom_interval" qtlid="199429">Joka N. päivä</translation>
+   <translation id="cron_dom_interval_value" qtlid="199442">Kaikkina {0} päivänä</translation>
+   <translation id="cron_dom_items" qtlid="61908">Kiinteät päivät</translation>
+   <translation id="cron_dom_range" qtlid="199455">Päivä mistä – mihin</translation>
+   <translation id="cron_dom_range_from" qtlid="88725">Mistä</translation>
+   <translation id="cron_dom_range_to" qtlid="35904">mihin</translation>
+   <translation id="cron_dow_all" qtlid="199468">Joka päivä</translation>
+   <translation id="cron_dow_interval" qtlid="199494">Joka N. viikonpäivä</translation>
+   <translation id="cron_dow_interval_value" qtlid="199507">Kaikkina {0} viikonpäivänä</translation>
+   <translation id="cron_dow_items" qtlid="199481">Kiinteät viikonpäivät</translation>
+   <translation id="cron_dow_range" qtlid="199520">Viikonpäivä mistä – mihin</translation>
+   <translation id="cron_dow_range_from" qtlid="88725">Mistä</translation>
+   <translation id="cron_dow_range_to" qtlid="35904">mihin</translation>
+   <translation id="cron_expert_mode" qtlid="64616">Edistynyt tila</translation>
+   <translation id="cron_hours_all" qtlid="8782">Tunneittain</translation>
+   <translation id="cron_hours_interval" qtlid="199390">Joka N. tunti</translation>
+   <translation id="cron_hours_interval_value" qtlid="199403">Aina {0} tunnin välein</translation>
+   <translation id="cron_hours_items" qtlid="199377">Kiinteät tunnit</translation>
+   <translation id="cron_hours_range" qtlid="199416">Kello mistä – mihin</translation>
+   <translation id="cron_hours_range_from" qtlid="69077">Mistä</translation>
+   <translation id="cron_hours_range_to" qtlid="8890">—</translation>
+   <translation id="cron_hours_value" qtlid="199611">{0}. tunti</translation>
+   <translation id="cron_interval_pre_f" qtlid="199598">Joka</translation>
+   <translation id="cron_interval_pre_m" qtlid="62304">Joka </translation>
+   <translation id="cron_label_days" qtlid="73505">Päivää</translation>
+   <translation id="cron_label_days_min" qtlid="44260">päivää</translation>
+   <translation id="cron_label_dow" qtlid="8854">Päivät viikossa</translation>
+   <translation id="cron_label_dow_min" qtlid="199364">viikonpäivä</translation>
+   <translation id="cron_label_hours" qtlid="8842">Tunnit</translation>
+   <translation id="cron_label_hours_min" qtlid="44236">tuntia</translation>
+   <translation id="cron_label_months" qtlid="37803">Kuukausi</translation>
+   <translation id="cron_label_months_min" qtlid="40222">kuukausi</translation>
+   <translation id="cron_mon_all" qtlid="199533">Kuukausittain</translation>
+   <translation id="cron_mon_interval" qtlid="199559">Joka N. kuukausi</translation>
+   <translation id="cron_mon_interval_value" qtlid="199572">Joka {0}. kuukausi</translation>
+   <translation id="cron_mon_items" qtlid="199546">Kiinteät kuukaudet</translation>
+   <translation id="cron_mon_range" qtlid="199585">Kuukausi mistä –&#160;mihin</translation>
+   <translation id="cron_mon_range_from" qtlid="69077">Mistä</translation>
+   <translation id="cron_mon_range_to" qtlid="8890">—</translation>
+   <translation id="cron_simple_mode" qtlid="102849">Yksinkertainen tila</translation>
+
+   <translation id="cron_step2_title" qtlid="199195">Valitse tehtävän ajoaika:</translation>
+   <translation id="cron_step2_expert_help" qtlid="199208">Määritä ajanjakso "Crontab"-muodossa syöttämällä tunneiksi ("{0}"), päiväksi ("{1}"), kuukaudeksi ("{2}") ja viikonpäiväksi ("{3}").</translation>
+   <translation id="cron_step2_expert_toocomplicated" qtlid="199221">Arvot ovat liian monimutkaisia mennäkseen yksinkertaiseen tilaan.</translation>
+   <translation id="cron_step2_help_dom" qtlid="199689">Kuukaudenpäivä (1–31)</translation>
+   <translation id="cron_step2_help_dow" qtlid="263038">Viikonpäivä (0 - 7 tai {0} - {1})</translation>
+   <translation id="cron_step2_help_h" qtlid="199676">Tuntia (0–23)</translation>
+   <translation id="cron_step2_help_m" qtlid="199663">Minuuttia (0–59)</translation>
+   <translation id="cron_step2_help_mon" qtlid="199702">Kuukausi (1–12, tai {0}–{1})</translation>
+   <translation id="cron_step2_help_notation_1" qtlid="199741">kaikki yksiköt</translation>
+   <translation id="cron_step2_help_notation_2" qtlid="199754">ainoastaan 2 ja 4</translation>
+   <translation id="cron_step2_help_notation_3" qtlid="199767">yksiköt 4 - 7 (4, 5, 6, 7)</translation>
+   <translation id="cron_step2_help_notation_4" qtlid="199780">joka kolmas yksikkö (0, 3, 6,..)</translation>
+   <translation id="cron_step2_help_notation_5" qtlid="199793">joka kolmas yksikkö 10 ja 20 väliltä (10, 13, 16, 19)</translation>
+   <translation id="cron_step2_help_subtitle1" qtlid="199728">Merkintätapaesimerkki:</translation>
+   <translation id="cron_step2_help_subtitle2" qtlid="199806">Minuutteja ei huomioida.</translation>
+
+   <translation id="cron_januar" qtlid="38745">tammikuu</translation>
+   <translation id="cron_februar" qtlid="38229">helmikuu</translation>
+   <translation id="cron_march" qtlid="38985">maaliskuu</translation>
+   <translation id="cron_april" qtlid="38181">huhtikuu</translation>
+   <translation id="cron_may" qtlid="38421">toukokuu</translation>
+   <translation id="cron_june" qtlid="38013">kesäkuu</translation>
+   <translation id="cron_jully" qtlid="38085">heinäkuu</translation>
+   <translation id="cron_august" qtlid="38961">elokuu</translation>
+   <translation id="cron_september" qtlid="38409">syyskuu</translation>
+   <translation id="cron_october" qtlid="39093">lokakuu</translation>
+   <translation id="cron_november" qtlid="38169">marraskuu</translation>
+   <translation id="cron_december" qtlid="37989">joulukuu</translation>
+
+   <translation id="cron_monday" qtlid="6346">Maanantai</translation>
+   <translation id="cron_tuesday" qtlid="6358">Tiistai</translation>
+   <translation id="cron_wednesday" qtlid="6370">Keskiviikko</translation>
+   <translation id="cron_thursday" qtlid="6382">Torstai</translation>
+   <translation id="cron_friday" qtlid="6394">Perjantai</translation>
+   <translation id="cron_saturday" qtlid="6406">Lauantai</translation>
+   <translation id="cron_sunday" qtlid="6418">Sunnuntai</translation>
+</translations>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="cron_dom_all" qtlid="154091">Jeden Tag</translation>
+   <translation id="cron_dom_interval" qtlid="199429">Alle N Tage</translation>
+   <translation id="cron_dom_interval_value" qtlid="199442">Alle {0} Tage</translation>
+   <translation id="cron_dom_items" qtlid="61908">feste Tage</translation>
+   <translation id="cron_dom_range" qtlid="199455">Tag von - bis</translation>
+   <translation id="cron_dom_range_from" qtlid="88725">Von</translation>
+   <translation id="cron_dom_range_to" qtlid="35904">bis zum</translation>
+   <translation id="cron_dow_all" qtlid="199468">Alle Wochentage</translation>
+   <translation id="cron_dow_interval" qtlid="199494">Alle N Wochentage</translation>
+   <translation id="cron_dow_interval_value" qtlid="199507">Alle {0} Wochentage</translation>
+   <translation id="cron_dow_items" qtlid="199481">Feste Wochentage</translation>
+   <translation id="cron_dow_range" qtlid="199520">Wochentag von - bis</translation>
+   <translation id="cron_dow_range_from" qtlid="88725">Von</translation>
+   <translation id="cron_dow_range_to" qtlid="35904">bis zum</translation>
+   <translation id="cron_expert_mode" qtlid="64616">Experten-Modus</translation>
+   <translation id="cron_hours_all" qtlid="8782">Stündlich</translation>
+   <translation id="cron_hours_interval" qtlid="199390">Alle N Stunden</translation>
+   <translation id="cron_hours_interval_value" qtlid="199403">Alle {0} Stunden</translation>
+   <translation id="cron_hours_items" qtlid="199377">Feste Uhrzeiten</translation>
+   <translation id="cron_hours_range" qtlid="199416">Uhrzeit von - bis</translation>
+   <translation id="cron_hours_range_from" qtlid="69077">Von</translation>
+   <translation id="cron_hours_range_to" qtlid="8890">bis</translation>
+   <translation id="cron_hours_value" qtlid="199611">{0} Stunden</translation>
+   <translation id="cron_interval_pre_f" qtlid="199598">Alle</translation>
+   <translation id="cron_interval_pre_m" qtlid="62304">Alle</translation>
+   <translation id="cron_label_days" qtlid="73505">Tage</translation>
+   <translation id="cron_label_days_min" qtlid="44260">Tage</translation>
+   <translation id="cron_label_dow" qtlid="8854">Wochentage</translation>
+   <translation id="cron_label_dow_min" qtlid="199364">Wochentage</translation>
+   <translation id="cron_label_hours" qtlid="8842">Stunden</translation>
+   <translation id="cron_label_hours_min" qtlid="44236">Stunden</translation>
+   <translation id="cron_label_months" qtlid="37803">Monat</translation>
+   <translation id="cron_label_months_min" qtlid="40222">Monat</translation>
+   <translation id="cron_mon_all" qtlid="199533">Jeden Monat</translation>
+   <translation id="cron_mon_interval" qtlid="199559">Alle N Monate</translation>
+   <translation id="cron_mon_interval_value" qtlid="199572">Alle {0} Monate</translation>
+   <translation id="cron_mon_items" qtlid="199546">Feste Monate</translation>
+   <translation id="cron_mon_range" qtlid="199585">Monat von - bis</translation>
+   <translation id="cron_mon_range_from" qtlid="69077">Von</translation>
+   <translation id="cron_mon_range_to" qtlid="8890">bis</translation>
+   <translation id="cron_simple_mode" qtlid="102849">Einfacher Modus</translation>
+
+   <translation id="cron_step2_title" qtlid="199195">Wählen Sie die Ausführungsfrequenz für diesen Task aus:</translation>
+   <translation id="cron_step2_expert_help" qtlid="199208">Legen Sie den Zeitraum im "Crontab" Format fest, indem Sie die Werte für Stunde ("{0}"), Tag ("{1}"), Monat ("{2}") und Wochentag ("{3}") einfügen.</translation>
+   <translation id="cron_step2_expert_toocomplicated" qtlid="199221">Die Werte sind zu komplex für die Verwendung des einfachen Modus.</translation>
+   <translation id="cron_step2_help_dom" qtlid="199689">Tag des Monats (1 bis 31)</translation>
+   <translation id="cron_step2_help_dow" qtlid="263038">Wochentag (von 0 bis 7 oder von {0} bis {1})</translation>
+   <translation id="cron_step2_help_h" qtlid="199676">Stunde (0 bis 23)</translation>
+   <translation id="cron_step2_help_m" qtlid="199663">Minute (0 bis 59)</translation>
+   <translation id="cron_step2_help_mon" qtlid="199702">Monat (1 bis 12 oder {0} bis {1})</translation>
+   <translation id="cron_step2_help_notation_1" qtlid="199741">Alle Werte</translation>
+   <translation id="cron_step2_help_notation_2" qtlid="199754">Nur am 2. und am 4.</translation>
+   <translation id="cron_step2_help_notation_3" qtlid="199767">Die Werte zwischen 4 und 7 (4, 5, 6, 7)</translation>
+   <translation id="cron_step2_help_notation_4" qtlid="199780">Jeder dritte Wert (0, 3, 6...)</translation>
+   <translation id="cron_step2_help_notation_5" qtlid="199793">Jeder dritte Wert, aber nur zwischen dem 10. und dem 20. (10, 13, 16, 19)</translation>
+   <translation id="cron_step2_help_subtitle1" qtlid="199728">Beispiele:</translation>
+   <translation id="cron_step2_help_subtitle2" qtlid="199806">Die Minuten werden ignoriert.</translation>
+
+   <translation id="cron_januar" qtlid="38745">Januar</translation>
+   <translation id="cron_februar" qtlid="38229">Februar</translation>
+   <translation id="cron_march" qtlid="38985">März</translation>
+   <translation id="cron_april" qtlid="38181">April</translation>
+   <translation id="cron_may" qtlid="38421">Mai</translation>
+   <translation id="cron_june" qtlid="38013">Juni</translation>
+   <translation id="cron_jully" qtlid="38085">Juli</translation>
+   <translation id="cron_august" qtlid="38961">August</translation>
+   <translation id="cron_september" qtlid="38409">September</translation>
+   <translation id="cron_october" qtlid="39093">Oktober</translation>
+   <translation id="cron_november" qtlid="38169">November</translation>
+   <translation id="cron_december" qtlid="37989">Dezember</translation>
+
+   <translation id="cron_monday" qtlid="6346">Montag</translation>
+   <translation id="cron_tuesday" qtlid="6358">Dienstag</translation>
+   <translation id="cron_wednesday" qtlid="6370">Mittwoch</translation>
+   <translation id="cron_thursday" qtlid="6382">Donnerstag</translation>
+   <translation id="cron_friday" qtlid="6394">Freitag</translation>
+   <translation id="cron_saturday" qtlid="6406">Samstag</translation>
+   <translation id="cron_sunday" qtlid="6418">Sonntag</translation>
+</translations>

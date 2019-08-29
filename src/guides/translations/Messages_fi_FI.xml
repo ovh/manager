@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="guides_core_new_window" qtlid="222176">Uusi ikkuna</translation>
+   <translation id="guide_add_subclient" qtlid="285486">Omalle OVH:n asiakastilille rekisteröidyn verkkotunnuksen</translation>
+   <translation id="guide_add_subcontext" qtlid="285473">Webhotelli on mahdollista myös jakaa. Sen ansiosta webhotelliin voi liittää:</translation>
+   <translation id="guide_add_subcreate" qtlid="285525">Luo aliverkkotunnus</translation>
+   <translation id="guide_add_subnon_client" qtlid="285499">Verkkotunnuksen, joka on rekisteröity OVH:lle mutta ei omalle asiakastilille</translation>
+   <translation id="guide_add_subnon_registered" qtlid="285512">Verkkotunnuksen, joka ei ole rekisteröity OVH:lle</translation>
+   <translation id="guide_add_subnot_installed" qtlid="285538">Mitä tehdä, jos saan virheilmoituksen "Sivua ei ole asennettu"?</translation>
+   <translation id="guide_add_subscope" qtlid="285460">Liitä verkkotunnus webhotelliini</translation>
+   <translation id="guide_add_zone_subscope" qtlid="263181">Lisää DNS-alue</translation>
+   <translation id="guide_dns_subscope" qtlid="367826">Nimipalvelimet</translation>
+   <translation id="guide_domain_add_dns_zone" qtlid="300500">Luo DNS-alue ulkopuoliselle verkkotunnukselle</translation>
+   <translation id="guide_domain_dns_getting_started" qtlid="300422">Yleistä nimipalvelimista</translation>
+   <translation id="guide_domain_dns_zone_check" qtlid="300435">Verkkotunnuksen ZoneCheck</translation>
+   <translation id="guide_domain_ds_record" qtlid="300487">Suojaa verkkotunnuksesi DNSSEC:llä</translation>
+   <translation id="guide_domain_dyn_host" qtlid="300461">Mikä on dynhost?</translation>
+   <translation id="guide_domain_edit_zone" qtlid="282497">Miten muokkaan DNS-aluettani?</translation>
+   <translation id="guide_domain_glue_registry" qtlid="300474">Aktivoi GLUE Registry</translation>
+   <translation id="guide_domain_owner_transfert" qtlid="300409">Ohjeet verkkotunnusten omistajan muuttamiseen</translation>
+   <translation id="guide_domain_owo_activation" qtlid="300383">Whois - OwOn aktivointi</translation>
+   <translation id="guide_domain_redirection" qtlid="300448">Opas verkkotunnuksen uudelleenohjaukseen</translation>
+   <translation id="guide_domain_transfert" qtlid="300396">Ohjeet verkkotunnusten siirtoon</translation>
+   <translation id="guide_ds_records_subscope" qtlid="264719">DS Records</translation>
+   <translation id="guide_dyn_host_subscope" qtlid="226397">DynHost</translation>
+   <translation id="guide_emails_configuration_title" qtlid="4406">Konfiguraatio</translation>
+   <translation id="guide_emails_emails_advanced" qtlid="304329">OVH:n sähköpostien edistynyt käyttö</translation>
+   <translation id="guide_emails_emails_configuration" qtlid="304173">Yleistä OVH:n jaetuista sähköposteista</translation>
+   <translation id="guide_emails_emails_configuration_ios" qtlid="304199">iPhone IOS 9.1 -konfigurointi</translation>
+   <translation id="guide_emails_emails_configuration_mx_zone_dns" qtlid="304355">MX-konfigurointi OVH:n DNS-alueella </translation>
+   <translation id="guide_emails_emails_configuration_mx_zone_dns_non_ovh" qtlid="304368">MX-konfigurointi OVH:n ulkopuolisella DNS-alueella</translation>
+   <translation id="guide_emails_emails_configuration_outlook" qtlid="304186">Outlook 2013 -konfigurointi</translation>
+   <translation id="guide_emails_emails_creation" qtlid="304160">Sähköpostiosoitteen luominen</translation>
+   <translation id="guide_emails_emails_delegation" qtlid="304251">Kuinka jakaa sähköpostiesi hallinta toiselle OVH:n asiakastunnukselle </translation>
+   <translation id="guide_emails_emails_diagnosis" qtlid="304303">Sähköpostiosoitteen tarkastus</translation>
+   <translation id="guide_emails_emails_filters" qtlid="304264">Sähköpostisuodattimien konfigurointi hallintapaneelissa</translation>
+   <translation id="guide_emails_emails_headers" qtlid="304225">Sähköpostien otsakkeiden hakeminen</translation>
+   <translation id="guide_emails_emails_migrate_to_exchange" qtlid="282536">Siirry OVH:n sähköpostiosoitteesta Echangeen</translation>
+   <translation id="guide_emails_emails_mx_servers" qtlid="304277">Yleistä MX-palvelimista</translation>
+   <translation id="guide_emails_emails_roundcube" qtlid="304212">Webmail - RoundCuben käyttö</translation>
+   <translation id="guide_emails_emails_smtp_response_code" qtlid="304342">SMTP-palvelimen vastauskoodit</translation>
+   <translation id="guide_emails_emails_spf" qtlid="304290">SPF-kenttä</translation>
+   <translation id="guide_emails_filter_subscope" qtlid="327211">Sähköpostisuodattimet</translation>
+   <translation id="guide_emails_general_title" qtlid="304121">Yleistä</translation>
+   <translation id="guide_emails_how_to_title" qtlid="304134">Kuinka tehdä...</translation>
+   <translation id="guide_emails_mailing_list" qtlid="304394">Postituslistojen käyttö</translation>
+   <translation id="guide_emails_redirection_create" qtlid="99128">Sähköpostiuudelleenohjaukset</translation>
+   <translation id="guide_emails_responder" qtlid="304381">Vastaajaan asettaminen</translation>
+   <translation id="guide_emails_responder_subscope" qtlid="50110">Vastaajat</translation>
+   <translation id="guide_general_info_subscope" qtlid="27115">Yleiset tiedot</translation>
+   <translation id="guide_glue_subscope" qtlid="262280">GLUE</translation>
+   <translation id="guide_mailing_list_title" qtlid="304147">Postituslista</translation>
+   <translation id="guide_redirection_subscope" qtlid="46000">Uudelleenohjaus</translation>
+   <translation id="guide_zone_subscope" qtlid="45976">DNS-alue</translation>
+</translations>

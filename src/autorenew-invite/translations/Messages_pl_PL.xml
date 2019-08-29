@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="autorenew_alert" qtlid="517685">Uprość sobie życie i wybierz automatyczne odnawianie Twojego produktu: {{ product }}! </translation>
+   <translation id="autorenew_alert_domain" qtlid="307397">domeny</translation>
+   <translation id="autorenew_alert_hosting" qtlid="517698">hostingu</translation>
+   <translation id="autorenew_activate" qtlid="98576">Włącz automatyczne odnowienie</translation>
+   <translation id="autorenew_guide" qtlid="290615">Dostęp do przewodnika</translation>
+   <translation id="autorenew_new_tab" qtlid="516549">Otworzy się w nowej zakładce</translation>
+</translations>

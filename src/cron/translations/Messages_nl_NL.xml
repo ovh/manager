@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="cron_dom_all" qtlid="154091">Elke dag</translation>
+   <translation id="cron_dom_interval" qtlid="199429">Alle N dagen</translation>
+   <translation id="cron_dom_interval_value" qtlid="199442">Alle {0} dagen</translation>
+   <translation id="cron_dom_items" qtlid="61908">vaste dagen</translation>
+   <translation id="cron_dom_range" qtlid="199455">Dag van - tot</translation>
+   <translation id="cron_dom_range_from" qtlid="88725">Van</translation>
+   <translation id="cron_dom_range_to" qtlid="35904">op</translation>
+   <translation id="cron_dow_all" qtlid="199468">Alle weekdagen</translation>
+   <translation id="cron_dow_interval" qtlid="199494">Alle N weekdagen</translation>
+   <translation id="cron_dow_interval_value" qtlid="199507">Alle {0} weekdagen</translation>
+   <translation id="cron_dow_items" qtlid="199481">Vaste weekdagen</translation>
+   <translation id="cron_dow_range" qtlid="199520">Weekdag van - tot</translation>
+   <translation id="cron_dow_range_from" qtlid="88725">Van</translation>
+   <translation id="cron_dow_range_to" qtlid="35904">op</translation>
+   <translation id="cron_expert_mode" qtlid="64616">Gevorderden modus</translation>
+   <translation id="cron_hours_all" qtlid="8782">Ieder uur</translation>
+   <translation id="cron_hours_interval" qtlid="199390">Alle N uren</translation>
+   <translation id="cron_hours_interval_value" qtlid="199403">Alle {0} uren</translation>
+   <translation id="cron_hours_items" qtlid="199377">Vaste tijden</translation>
+   <translation id="cron_hours_range" qtlid="199416">Tijd van - tot</translation>
+   <translation id="cron_hours_range_from" qtlid="69077">Van</translation>
+   <translation id="cron_hours_range_to" qtlid="8890">Op</translation>
+   <translation id="cron_hours_value" qtlid="199611">{0} uur</translation>
+   <translation id="cron_interval_pre_f" qtlid="199598">Alle</translation>
+   <translation id="cron_interval_pre_m" qtlid="62304">alle</translation>
+   <translation id="cron_label_days" qtlid="73505">Dagen</translation>
+   <translation id="cron_label_days_min" qtlid="44260">dagen</translation>
+   <translation id="cron_label_dow" qtlid="8854">Werkdagen</translation>
+   <translation id="cron_label_dow_min" qtlid="199364">weekdagen</translation>
+   <translation id="cron_label_hours" qtlid="8842">Uren</translation>
+   <translation id="cron_label_hours_min" qtlid="44236">uren</translation>
+   <translation id="cron_label_months" qtlid="37803">Maand</translation>
+   <translation id="cron_label_months_min" qtlid="40222">maand</translation>
+   <translation id="cron_mon_all" qtlid="199533">Iedere maand</translation>
+   <translation id="cron_mon_interval" qtlid="199559">Elke N maand(en)</translation>
+   <translation id="cron_mon_interval_value" qtlid="199572">Alle {0} maanden</translation>
+   <translation id="cron_mon_items" qtlid="199546">Vastgestelde maanden</translation>
+   <translation id="cron_mon_range" qtlid="199585">Van de ene maand tot de andere</translation>
+   <translation id="cron_mon_range_from" qtlid="69077">Van</translation>
+   <translation id="cron_mon_range_to" qtlid="8890">Op</translation>
+   <translation id="cron_simple_mode" qtlid="102849">Eenvoudige modus</translation>
+
+   <translation id="cron_step2_title" qtlid="199195">Selecteer de frequentie voor deze taak:</translation>
+   <translation id="cron_step2_expert_help" qtlid="199208">Stel de periode vast in het "Crontab" format, en voeg de waarden toe voor het uur ("{0}"), de dag ("{1}"), de maand ("{2}"), en de weekdag ("{3}").</translation>
+   <translation id="cron_step2_expert_toocomplicated" qtlid="199221">De waarden zijn te complex om in de eenvoudige modus te gebruiken.</translation>
+   <translation id="cron_step2_help_dom" qtlid="199689">Dag van de maand (1 tot 31)</translation>
+   <translation id="cron_step2_help_dow" qtlid="263038">Dag van de week (van 0 tot 7, of van {0} tot {1})</translation>
+   <translation id="cron_step2_help_h" qtlid="199676">Uren (0 tot 23)</translation>
+   <translation id="cron_step2_help_m" qtlid="199663">Minuten (0 tot 59)</translation>
+   <translation id="cron_step2_help_mon" qtlid="199702">Maand (1 tot 12, of {0} tot {1})</translation>
+   <translation id="cron_step2_help_notation_1" qtlid="199741">alle units</translation>
+   <translation id="cron_step2_help_notation_2" qtlid="199754">alleen 2 en 4</translation>
+   <translation id="cron_step2_help_notation_3" qtlid="199767">units tussen 4 en 7 (4,5,6,7)</translation>
+   <translation id="cron_step2_help_notation_4" qtlid="199780">alle 3 units (0,3,6,..)</translation>
+   <translation id="cron_step2_help_notation_5" qtlid="199793">alle 3 units, maar alleen tussen 10 en 20 (10,13,16,19)</translation>
+   <translation id="cron_step2_help_subtitle1" qtlid="199728">Notatie voorbeelden:</translation>
+   <translation id="cron_step2_help_subtitle2" qtlid="199806">De notulen worden genegeerd.</translation>
+
+   <translation id="cron_januar" qtlid="38745">Januari</translation>
+   <translation id="cron_februar" qtlid="38229">Februari</translation>
+   <translation id="cron_march" qtlid="38985">Maart</translation>
+   <translation id="cron_april" qtlid="38181">April</translation>
+   <translation id="cron_may" qtlid="38421">Mei</translation>
+   <translation id="cron_june" qtlid="38013">Juni</translation>
+   <translation id="cron_jully" qtlid="38085">Juli</translation>
+   <translation id="cron_august" qtlid="38961">Augustus</translation>
+   <translation id="cron_september" qtlid="38409">September</translation>
+   <translation id="cron_october" qtlid="39093">Oktober</translation>
+   <translation id="cron_november" qtlid="38169">November</translation>
+   <translation id="cron_december" qtlid="37989">December</translation>
+
+   <translation id="cron_monday" qtlid="6346">Maandag</translation>
+   <translation id="cron_tuesday" qtlid="6358">Dinsdag</translation>
+   <translation id="cron_wednesday" qtlid="6370">Woensdag</translation>
+   <translation id="cron_thursday" qtlid="6382">Donderdag</translation>
+   <translation id="cron_friday" qtlid="6394">Vrijdag</translation>
+   <translation id="cron_saturday" qtlid="6406">Zaterdag</translation>
+   <translation id="cron_sunday" qtlid="6418">Zondag</translation>
+</translations>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="duration_day_1" qtlid="28807">1 päivä</translation>
+   <translation id="duration_day_other" qtlid="178484">{0} päivää</translation>
+   <translation id="duration_month_1" qtlid="70241">1 kuukausi</translation>
+   <translation id="duration_month_other" qtlid="220148">{0} kk</translation>
+   <translation id="duration_year_1" qtlid="70277">1 vuosi</translation>
+   <translation id="duration_year_other" qtlid="374495">{0} vuotta</translation>
+   <translation id="duration_upto" qtlid="158617">{0} asti</translation>
+   <translation id="duration_uptofirstdaynextmonth" qtlid="158630">Seuraavan kuun 1. päivään asti</translation>
+   <translation id="duration_engage" qtlid="158643">Sitoutuminen {0}</translation>
+</translations>

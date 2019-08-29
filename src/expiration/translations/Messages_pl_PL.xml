@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="expiration_new_tab" qtlid="516549">Otworzy się w nowej zakładce</translation>
+   <translation id="expiration_expired_date" qtlid="382076">Usługa wygasła <strong>{0}</strong></translation>
+   <translation id="expiration_renew_date" qtlid="440287">Automatyczne odnowienie usługi zaplanowane na <strong>{0}</strong></translation>
+   <translation id="expiration_resiliation_cancel_label" qtlid="285350">Anuluj rezygnację</translation>
+   <translation id="expiration_wizard_renew" qtlid="118962">Odnów</translation>
+   <translation id="expiration_resiliation_date" qtlid="382089">Rezygnacja przewidziana na <strong>{0}</strong></translation>
+   <translation id="expiration_expiration_date" qtlid="517711">Wygasa w dniu <strong>{0}</strong></translation>
+   <translation id="expiration_resiliation_cancel_label" qtlid="285350">Anuluj rezygnację</translation>
+</translations>
