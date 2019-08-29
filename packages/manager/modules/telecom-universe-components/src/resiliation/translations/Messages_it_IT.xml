@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="resiliation_message1" qtlid="345689">Sono consapevole che la disattivazione dell'offerta comporta l'interruzione della mia connessione Internet e di tutti i prodotti e servizi per cui non ho esplicitamente richiesto la conservazione.</translation>
+   <translation id="resiliation_message2" qtlid="345702">Sono consapevole che, se necessario, dovrò corrispondere l'importo relativo al prorata delle mensilità dovute fino alla fine del mio periodo di impegno. I consumi non inclusi nel forfait del mese in corso o del mese scelto verranno aggiunti alla mia fattura.</translation>
+
+   <translation id="resiliation_resiliate" qtlid="345715">Disattiva {{typeName}} {{name}}</translation>
+
+   <translation id="resiliation_button" qtlid="48646">Disattiva</translation>
+   <translation id="resiliation_confirm" qtlid="313325">Disattivo il servizio</translation>
+   <translation id="resiliation_confirm_title" qtlid="313338">Disattiva il tuo abbonamento</translation>
+   <translation id="resiliation_reason" qtlid="313351">Per quale motivo vuoi disattivare il servizio?</translation>
+   <translation id="resiliation_choice_addressMove" qtlid="86745">Trasferimento</translation>
+   <translation id="resiliation_choice_billingProblems" qtlid="313364">Sistema di fatturazione non adatto</translation>
+   <translation id="resiliation_choice_cessationOfActivity" qtlid="313377">Cessata attività</translation>
+   <translation id="resiliation_choice_changeOfTerms" qtlid="313390">Modifica delle Condizioni Generali di utilizzo</translation>
+   <translation id="resiliation_choice_ftth" qtlid="313403">Passaggio alla fibra (FTTH)</translation>
+   <translation id="resiliation_choice_goToCompetitor" qtlid="313416">Passaggio all'offerta di un altro operatore</translation>
+   <translation id="resiliation_choice_other" qtlid="19963">Altro</translation>
+   <translation id="resiliation_choice_technicalProblems" qtlid="313429">Problemi tecnici</translation>
+   <translation id="resiliation_cancel" qtlid="313442">Annulla la richiesta di disattivazione in corso</translation>
+
+   <translation id="resiliation_common_cancel" qtlid="37863">Annulla</translation>
+   <translation id="resiliation_resiliation" qtlid="48646">Disattiva</translation>
+</translations>

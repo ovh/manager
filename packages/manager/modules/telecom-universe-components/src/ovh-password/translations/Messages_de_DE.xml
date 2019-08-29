@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="ovh_password_TEMP_must_be_lower_than_8_letters" qtlid="309048">doit comporter au minimum 8 caractères</translation>
+   <translation id="ovh_password_TEMP_must_content_a_figure" qtlid="309035">doit contenir un chiffre</translation>
+   <translation id="ovh_password_TEMP_must_content_a_lowercase" qtlid="309009">doit contenir une minuscule</translation>
+   <translation id="ovh_password_TEMP_must_content_an_uppercase" qtlid="309022">doit contenir une majuscule</translation>
+   <translation id="ovh_password_TEMP_the_password" qtlid="308996">Le mot de passe</translation>
+   <translation id="ovh_password_low" qtlid="23443">Gering</translation>
+   <translation id="ovh_password_medium" qtlid="308957">Moyen</translation>
+   <translation id="ovh_password_security_level" qtlid="308944">Niveau de sécurité</translation>
+   <translation id="ovh_password_strong" qtlid="308970">Fort</translation>
+
+   <translation id="ovh_password_password" qtlid="2270">Passwort</translation>
+   <translation id="ovh_password_password_confirmation" qtlid="9983">Bestätigen</translation>
+</translations>

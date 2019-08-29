@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="ovh_password_TEMP_must_be_lower_than_8_letters" qtlid="309048">Turi būti mažiausiai 8 simboliai</translation>
+   <translation id="ovh_password_TEMP_must_content_a_figure" qtlid="309035">Turi būti skaičius</translation>
+   <translation id="ovh_password_TEMP_must_content_a_lowercase" qtlid="309009">turi būti mažoji raidė</translation>
+   <translation id="ovh_password_TEMP_must_content_an_uppercase" qtlid="309022">turi būti didžioji raidė</translation>
+   <translation id="ovh_password_TEMP_the_password" qtlid="308996">Slaptažodis</translation>
+   <translation id="ovh_password_low" qtlid="23443">Mažas</translation>
+   <translation id="ovh_password_medium" qtlid="308957">Vidutinis</translation>
+   <translation id="ovh_password_security_level" qtlid="308944">Saugumo lygis</translation>
+   <translation id="ovh_password_strong" qtlid="308970">Didelis</translation>
+
+   <translation id="ovh_password_password" qtlid="2270">Slaptažodis</translation>
+   <translation id="ovh_password_password_confirmation" qtlid="9983">Patvirtinimas</translation>
+</translations>

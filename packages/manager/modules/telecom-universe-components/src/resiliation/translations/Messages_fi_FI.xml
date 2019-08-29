@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="resiliation_message1" qtlid="345689">Ymmärrän, että tuotteeni irtisanominen johtaa Internet-yhteyteni sekä kaikkien niiden tuotteiden ja palveluiden, mitä en erikseen ole pyytänyt säilytettävän, katkaisuun. </translation>
+   <translation id="resiliation_message2" qtlid="345702">Ymärrän, että olen tarvittaessa velvoitettu maksamaan summan, joka vastaa kuukausikuluja sitoutumisjaksoni loppuun asti yltävältä ajalta. Liittymäpaketin ylimenevät kulut kuluvalta tai valitulta kuukaudelta lisätään laskuun. </translation>
+
+   <translation id="resiliation_resiliate" qtlid="345715">Irtisano {{typeName}} {{name}}</translation>
+
+   <translation id="resiliation_button" qtlid="48646">Irtisano</translation>
+   <translation id="resiliation_confirm" qtlid="313325">Haluan irtisanoa</translation>
+   <translation id="resiliation_confirm_title" qtlid="313338">Tilaukseni irtisanominen</translation>
+   <translation id="resiliation_reason" qtlid="313351">Miksi haluat irtisanoa palvelun?</translation>
+   <translation id="resiliation_choice_addressMove" qtlid="86745">Muutto</translation>
+   <translation id="resiliation_choice_billingProblems" qtlid="313364">sopimaton laskutusjärjestelmä</translation>
+   <translation id="resiliation_choice_cessationOfActivity" qtlid="313377">Aktiivisuuden päättyminen</translation>
+   <translation id="resiliation_choice_changeOfTerms" qtlid="313390">Muutokset yleisissä käyttöehdoissa</translation>
+   <translation id="resiliation_choice_ftth" qtlid="313403">Kuituyhteys (FTTH)</translation>
+   <translation id="resiliation_choice_goToCompetitor" qtlid="313416">Siirtyminen kilpailijan tuotteeseen</translation>
+   <translation id="resiliation_choice_other" qtlid="19963">Muu</translation>
+   <translation id="resiliation_choice_technicalProblems" qtlid="313429">Tekniset ongelmat</translation>
+   <translation id="resiliation_cancel" qtlid="313442">Peru meneillään oleva irtisanominen</translation>
+
+   <translation id="resiliation_common_cancel" qtlid="37863">Peruuta</translation>
+   <translation id="resiliation_resiliation" qtlid="48646">Irtisano</translation>
+</translations>

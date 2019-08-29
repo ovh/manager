@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="telephony_calls_filtering_table_csv_filename" qtlid="358786">Filtravimas</translation>
+   <translation id="telephony_calls_filtering_table_number" qtlid="30778">Numeris</translation>
+   <translation id="telephony_calls_filtering_table_nature" qtlid="93283">Numerio tipas</translation>
+   <translation id="telephony_calls_filtering_table_nature_fax" qtlid="32926">Faksas</translation>
+   <translation id="telephony_calls_filtering_table_nature_international" qtlid="358864">Tarptautinis</translation>
+   <translation id="telephony_calls_filtering_table_nature_services" qtlid="358877">OVH paslaugos</translation>
+   <translation id="telephony_calls_filtering_table_nature_special" qtlid="358890">Trumpasis numeris</translation>
+   <translation id="telephony_calls_filtering_table_nature_voicemail" qtlid="88956">Atsakiklis</translation>
+   <translation id="telephony_calls_filtering_table_status" qtlid="26443">Būsena</translation>
+   <translation id="telephony_calls_filtering_table_status_delete" qtlid="59699">Šalinimas</translation>
+   <translation id="telephony_calls_filtering_table_status_delete_success" qtlid="358903">Trinama...</translation>
+   <translation id="telephony_calls_filtering_table_status_new" qtlid="26791">Kuriama</translation>
+   <translation id="telephony_calls_filtering_table_type" qtlid="2642">Tipas</translation>
+   <translation id="telephony_calls_filtering_table_status_refresh" qtlid="250030">Atnaujinti</translation>
+   <translation id="telephony_calls_filtering_table_type_incoming" qtlid="358916">Įeinantys skambučiai</translation>
+   <translation id="telephony_calls_filtering_table_type_outgoing" qtlid="358929">Išeinantys skambučiai</translation>
+   <translation id="telephony_calls_filtering_table_list" qtlid="358942">Sąrašas</translation>
+   <translation id="telephony_calls_filtering_table_list_white" qtlid="358955">Baltas</translation>
+   <translation id="telephony_calls_filtering_table_list_black" qtlid="358968">Juodas</translation>
+   <translation id="telephony_calls_filtering_table_list_none" qtlid="358981">Neaktyvus joks sąrašas</translation>
+   <translation id="telephony_calls_filtering_table_empty" qtlid="358994">Nerastas joks filtras</translation>
+   <translation id="telephony_calls_filtering_table_delete" qtlid="359007">Ištrinti pažymėtą filtrą</translation>
+   <translation id="telephony_calls_filtering_table_delete_plural" qtlid="359020">Ištrinti {{ nb }} pasirinktus filtrus</translation>
+   <translation id="telephony_calls_filtering_table_export" qtlid="69881">Eksportuoti</translation>
+   <translation id="telephony_calls_filtering_add_success" qtlid="358734">Filtras kuriamas</translation>
+   <translation id="telephony_calls_filtering_add_plural_success" qtlid="358747">Filtrai kuriami</translation>
+   <translation id="telephony_calls_filtering_add_csv_import" qtlid="358773">Importuoti CSV</translation>
+   <translation id="telephony_calls_filtering_add_csv_invalid" qtlid="358799">Pasirinkite CSV formato failą.</translation>
+   <translation id="telephony_calls_filtering_add_csv_parse_error" qtlid="358812">Neteisingas CSV failo formatas.</translation>
+   <translation id="telephony_calls_filtering_add_csv_import_success" qtlid="358825">Importuojama...</translation>
+   <translation id="telephony_calls_filtering_helper" qtlid="69773">Asistentas</translation>
+   <translation id="telephony_calls_filtering_helper_title" qtlid="23215">Konfigūravimo asistentas</translation>
+   <translation id="telephony_calls_filtering_helper_mobile" qtlid="359137">Nacionaliniai mobilaus ryšio</translation>
+   <translation id="telephony_calls_filtering_helper_line" qtlid="359150">Nacionaliniai fiksuoto ryšio</translation>
+   <translation id="telephony_calls_filtering_helper_foreign" qtlid="359163">Numeriai iš užsienio</translation>
+   <translation id="telephony_calls_filtering_helper_special" qtlid="58991">Specialieji numeriai</translation>
+   <translation id="telephony_calls_filtering_helper_short" qtlid="359176">Trumpieji numeriai</translation>
+   <translation id="telephony_calls_filtering_list" qtlid="358942">Sąrašas</translation>
+   <translation id="telephony_calls_filtering_list_choose" qtlid="359072">Pasirinkite filtravimo sąrašą...</translation>
+   <translation id="telephony_calls_filtering_type_incomingBlackList" qtlid="359085">Įeinantys skambučiai - Juodasis sąrašas</translation>
+   <translation id="telephony_calls_filtering_type_outgoingBlackList" qtlid="359098">Išeinantys skambučiai - Juodasis sąrašas</translation>
+   <translation id="telephony_calls_filtering_type_incomingWhiteList" qtlid="359111">Įeinantys skambučiai - Baltasis sąrašas</translation>
+   <translation id="telephony_calls_filtering_type_outgoingWhiteList" qtlid="359124">Išeinantys skambučiai - Baltasis sąrašas</translation>
+   <translation id="telephony_calls_filtering_nature" qtlid="93283">Numerio tipas</translation>
+   <translation id="telephony_calls_filtering_apply" qtlid="41326">Taikyti</translation>
+   <translation id="telephony_calls_filtering_number" qtlid="30778">Numeris</translation>
+   <translation id="telephony_calls_filtering_number_info" qtlid="358838">Galite įvesti visą arba tik dalį numerio (Pavyzdys: +33123455678 - visas numeris; +3312345 - numeriai, prasidedantys nurodytais skaičiais).</translation>
+   <translation id="telephony_calls_filtering_number_international" qtlid="358851">Tarptautiniu formatu</translation>
+   <translation id="telephony_calls_filtering_add_already_exist" qtlid="358760">Toks filtras sąraše jau yra.</translation>
+   <translation id="telephony_calls_filtering_add" qtlid="37923">Pridėti</translation>
+   <translation id="telephony_calls_filtering_cancel" qtlid="37863">Anuliuoti</translation>
+   <translation id="telephony_calls_filtering_pagination_display" qtlid="69353">Rodyti</translation>
+   <translation id="telephony_calls_filtering_pagination_page" qtlid="239246">Puslapis {{currentPage}} / {{nbPages}}</translation>
+</translations>

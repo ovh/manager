@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="resiliation_message1" qtlid="345689">Suprantu, kad atsisakius paslaugos bus panaikinta interneto prieiga, taip pat bus panaikintos visos kitos paslaugos, kurių nepaprašiau išskirtinai išsaugoti.</translation>
+   <translation id="resiliation_message2" qtlid="345702">Suprantu, kad jeigu tai taikoma, privalėsiu apmokėti tam tikrą sumą (perskaičiuotą proporcingai), kuri priklauso iki įsipareigojimo pabaigos. Papildomai apmokestinama komunikacija už einamąjį ar pasirinktą mėnesį bus įtrauktos į sąskaitą..</translation>
+
+   <translation id="resiliation_resiliate" qtlid="345715">Atsisakyti {{typeName}} {{name}}</translation>
+
+   <translation id="resiliation_button" qtlid="48646">Atsisakyti</translation>
+   <translation id="resiliation_confirm" qtlid="313325">Atsisakau</translation>
+   <translation id="resiliation_confirm_title" qtlid="313338">Abonemento atsisakymas</translation>
+   <translation id="resiliation_reason" qtlid="313351">Dėl kokios priežasties norite atsisakyti?</translation>
+   <translation id="resiliation_choice_addressMove" qtlid="86745">Perkėlimas</translation>
+   <translation id="resiliation_choice_billingProblems" qtlid="313364">Netinkama apmokėjimo sistema</translation>
+   <translation id="resiliation_choice_cessationOfActivity" qtlid="313377">Nutraukiama veikla</translation>
+   <translation id="resiliation_choice_changeOfTerms" qtlid="313390">Pagrindinių naudojimo sąlygų pasikeitimai</translation>
+   <translation id="resiliation_choice_ftth" qtlid="313403">Perėjimas prie optinio pluošto (FTTH)</translation>
+   <translation id="resiliation_choice_goToCompetitor" qtlid="313416">Perėjimas pas konkurentus</translation>
+   <translation id="resiliation_choice_other" qtlid="19963">Kita</translation>
+   <translation id="resiliation_choice_technicalProblems" qtlid="313429">Techninės problemos</translation>
+   <translation id="resiliation_cancel" qtlid="313442">Atšaukti paslaugos atsisakymą</translation>
+
+   <translation id="resiliation_common_cancel" qtlid="37863">Anuliuoti</translation>
+   <translation id="resiliation_resiliation" qtlid="48646">Atsisakyti</translation>
+</translations>
