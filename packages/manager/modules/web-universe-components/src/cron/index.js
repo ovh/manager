@@ -27,7 +27,7 @@ angular
   .directive('wucCronEditor', wucCronEditorDirective)
   .directive('wucCronExpertHelp', wucCronExpertHelpDirective)
   .directive('wucCronSimpleSummary', wucCronSimpleSummaryDirective)
-  .run(/* @ngTranslationsInject ./translations */)
+  .run(/* @ngTranslationsInject:json ./translations */)
   .run(/* @ngInject */($templateCache) => {
     $templateCache.put('wucCron_cronSimple.html', templateSimple);
     $templateCache.put('wucCron_cronExpert.html', templateExpert);

@@ -13,6 +13,6 @@ angular
     translate,
   ])
   .filter('wucDuration', wucDurationFilter)
-  .run(/* @ngTranslationsInject ./translations */);
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

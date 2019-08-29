@@ -19,6 +19,6 @@ angular
   ])
   .constant('WUC_GUIDES', wucGUIDES)
   .directive('wucGuides', wucGuidesDirective)
-  .run(/* @ngTranslationsInject ./translations */);
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

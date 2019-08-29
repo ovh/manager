@@ -23,6 +23,6 @@ angular
   ])
   .constant('WUC_SUBSIDIARIES_WITH_OPTIONAL_AUTORENEW', SUBSIDIARIES_WITH_OPTIONAL_AUTORENEW)
   .component('wucAutorenewInvite', WucAutorenewInvite)
-  .run(/* @ngTranslationsInject ./translations */);
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

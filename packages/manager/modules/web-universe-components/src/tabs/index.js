@@ -19,6 +19,6 @@ angular
     'ui.bootstrap',
   ])
   .directive('wucOvhTabs', wucOvhTabsDirective)
-  .run(/* @ngTranslationsInject ./translations */);
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

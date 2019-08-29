@@ -21,6 +21,6 @@ angular
   .component('wucServiceExpirationDate', wucServiceExpirationDate)
   .controller('WucServiceExpirationDateComponentCtrl', WucServiceExpirationDateComponentCtrl)
   .constant('WUC_SERVICE_EXPIRATION_DATE', SERVICE_EXPIRATION_DATE)
-  .run(/* @ngTranslationsInject ./translations */);
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

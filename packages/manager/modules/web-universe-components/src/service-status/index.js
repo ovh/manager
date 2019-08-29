@@ -18,6 +18,6 @@ angular
   .component('wucServiceStatusAction', wucServiceStatusAction)
   .controller('WucServiceStatusActionComponentCtrl', controller)
   .constant('SERVICE_STATUS_ACTION', SERVICE_STATUS_ACTION)
-  .run(/* @ngTranslationsInject ./translations */);
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
