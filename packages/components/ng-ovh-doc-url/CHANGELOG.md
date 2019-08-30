@@ -1,3 +1,12 @@
+## [1.0.1](https://github.com/ovh-ux/ng-ovh-doc-url/compare/v1.0.0...v1.0.1) (2019-08-30)
+
+
+### Bug Fixes
+
+* **dev-deps:** upgrade some dev dependencies ([#12](https://github.com/ovh-ux/ng-ovh-doc-url/issues/12)) ([e3277fd](https://github.com/ovh-ux/ng-ovh-doc-url/commit/e3277fd))
+
+
+
 # [1.0.0](https://github.com/ovh-ux/ng-ovh-doc-url/compare/0.0.7...1.0.0) (2019-02-13)
 
 
