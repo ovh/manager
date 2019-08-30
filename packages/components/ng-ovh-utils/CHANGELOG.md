@@ -1,3 +1,12 @@
+## [14.0.4](https://github.com/ovh-ux/ng-ovh-utils/compare/v14.0.3...v14.0.4) (2019-08-30)
+
+
+### Bug Fixes
+
+* **poll.service:** avoid crash if no api options are passed ([#46](https://github.com/ovh-ux/ng-ovh-utils/issues/46)) ([05f4688](https://github.com/ovh-ux/ng-ovh-utils/commit/05f4688))
+
+
+
 ## [14.0.3](https://github.com/ovh-ux/ng-ovh-utils/compare/v14.0.3-beta.1...v14.0.3) (2019-07-31)
 
 
