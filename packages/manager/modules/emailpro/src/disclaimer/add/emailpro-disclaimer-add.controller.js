@@ -1,4 +1,3 @@
-import bind from 'lodash/bind';
 import find from 'lodash/find';
 import get from 'lodash/get';
 import head from 'lodash/head';
@@ -37,7 +36,7 @@ export default /* @ngInject */ ($scope, $stateParams, $translate, EmailPro, navi
     if (get(navigation, 'currentActionData.domain.name')) {
       $scope.data.completeDomain = find(
         $scope.availableDomains,
-        bind('name', navigation.currentActionData.domain.name),
+        { name: navigation.currentActionData.domain.name },
       );
     }
     if (!$scope.data.completeDomain) {

@@ -1,4 +1,3 @@
-import bind from 'lodash/bind';
 import filter from 'lodash/filter';
 import forEach from 'lodash/forEach';
 import get from 'lodash/get';
@@ -112,7 +111,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasAdministrationConv
 
       times(listOffers.length, (index) => {
         if (listOffers[index].status !== 404 || listOffers[index].status !== 400) {
-          if (some(listOffers[index].offers, bind('name', self.offer.name))) {
+          if (some(listOffers[index].offers, { name: self.offer.name })) {
             servicesFiltered.push(paramServices[index]);
           }
         }
