@@ -1,3 +1,12 @@
+## [2.0.2](https://github.com/ovh-ux/ng-at-internet-ui-router-plugin/compare/v2.0.1...v2.0.2) (2019-08-30)
+
+
+### Bug Fixes
+
+* **deps:** upgrade component-rollup-config to v6.0.2 ([#14](https://github.com/ovh-ux/ng-at-internet-ui-router-plugin/issues/14)) ([0e6b506](https://github.com/ovh-ux/ng-at-internet-ui-router-plugin/commit/0e6b506))
+
+
+
 ## [2.0.1](https://github.com/ovh-ux/ng-at-internet-ui-router-plugin/compare/v2.0.0...v2.0.1) (2019-08-27)
 
 
