@@ -1,3 +1,12 @@
+## [4.0.4](https://github.com/ovh-ux/ng-ovh-http/compare/v4.0.3...v4.0.4) (2019-08-30)
+
+
+### Bug Fixes
+
+* **deps:** upgrade component-rollup-config to v6.0.2 ([#24](https://github.com/ovh-ux/ng-ovh-http/issues/24)) ([867bf59](https://github.com/ovh-ux/ng-ovh-http/commit/867bf59))
+
+
+
 ## [4.0.3](https://github.com/ovh-ux/ng-ovh-http/compare/v4.0.2...v4.0.3) (2019-08-28)
 
 
