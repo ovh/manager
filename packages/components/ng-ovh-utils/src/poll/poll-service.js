@@ -128,12 +128,13 @@ export default /* @ngInject */ function ($q, $timeout, $http) {
 
     // --> Else, create it
     const timeoutDeferredObj = $q.defer();
+
     const task = angular.extend(
       {
         deferredObj: $q.defer(),
         timeoutDeferredObj,
         url,
-        opts: angular.extend(apiOpts, { timeout: timeoutDeferredObj.promise }),
+        opts: angular.extend({}, apiOpts, { timeout: timeoutDeferredObj.promise }),
         interval: defaultInterval, // Interval between polling
         lastResult: null, // Last polled result
         successRule: null, // (optional) success condition (if not a task)
