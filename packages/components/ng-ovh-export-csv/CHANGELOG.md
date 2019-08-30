@@ -1,3 +1,7 @@
+## [1.0.1](https://github.com/ovh-ux/ng-ovh-export-csv/compare/v1.0.0...v1.0.1) (2019-08-30)
+
+
+
 # [1.0.0](https://github.com/ovh-ux/ng-ovh-export-csv/compare/v0.3.3...v1.0.0) (2019-08-02)
 
 
