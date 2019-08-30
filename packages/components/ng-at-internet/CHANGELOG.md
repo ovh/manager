@@ -1,3 +1,12 @@
+## [4.0.2](https://github.com/ovh-ux/ng-at-internet/compare/v4.0.1...v4.0.2) (2019-08-30)
+
+
+### Bug Fixes
+
+* **deps:** upgrade component-rollup-config to v6.0.2 ([#15](https://github.com/ovh-ux/ng-at-internet/issues/15)) ([e542700](https://github.com/ovh-ux/ng-at-internet/commit/e542700))
+
+
+
 ## [4.0.1](https://github.com/ovh-ux/ng-at-internet/compare/v4.0.0...v4.0.1) (2019-08-26)
 
 
