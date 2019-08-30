@@ -1,3 +1,13 @@
+## [2.0.1](https://github.com/ovh-ux/ng-ovh-contacts/compare/v2.0.0...v2.0.1) (2019-08-30)
+
+
+### Bug Fixes
+
+* apply eslint rules ([caee573](https://github.com/ovh-ux/ng-ovh-contacts/commit/caee573))
+* **dev-deps:** upgrade some dev dependencies ([#28](https://github.com/ovh-ux/ng-ovh-contacts/issues/28)) ([c57cb18](https://github.com/ovh-ux/ng-ovh-contacts/commit/c57cb18))
+
+
+
 # [2.0.0](https://github.com/ovh-ux/ng-ovh-contacts/compare/v1.0.1...v2.0.0) (2019-08-14)
 
 
