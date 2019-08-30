@@ -174,10 +174,6 @@ export default /* @ngInject */ function ($compile, $timeout, $q) {
           if ($scope.stepNumber === 1) {
             $wizardCtrl.nextStep();
           }
-
-          $scope.redirectFocus = function (e) {
-            console.log(e);
-          };
         }, // End post
       }; // End return
     },

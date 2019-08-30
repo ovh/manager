@@ -50,7 +50,7 @@ export default /* @ngInject */ function ($rootScope) {
 
     let messageDetails = null;
     if (data && data.state) {
-      messagesFiltered = $.grep(data.messages, e => e.type && e.type !== 'INFO');
+      messagesFiltered = $.grep(data.messages, (e) => e.type && e.type !== 'INFO');
 
       alertType = alertTypesHash[data.state];
       messageToSend = messages[data.state];
@@ -85,7 +85,7 @@ export default /* @ngInject */ function ($rootScope) {
       } else if (data.messages) {
         if (data.messages.length > 0) {
           alertType = alertTypesHash[data.state];
-          messagesFiltered = $.grep(data.messages, e => e.type && e.type !== 'INFO');
+          messagesFiltered = $.grep(data.messages, (e) => e.type && e.type !== 'INFO');
           if (messagesFiltered.length > 0) {
             messageToSend += ' (';
             for (i; i < messagesFiltered.length; i += 1) {
