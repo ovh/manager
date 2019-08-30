@@ -1,3 +1,12 @@
+## [1.0.2](https://github.com/ovh-ux/ng-ovh-checkbox-table/compare/v1.0.1...v1.0.2) (2019-08-30)
+
+
+### Bug Fixes
+
+* **deps:** upgrade component-rollup-config to v6.0.2 ([#20](https://github.com/ovh-ux/ng-ovh-checkbox-table/issues/20)) ([e9247a2](https://github.com/ovh-ux/ng-ovh-checkbox-table/commit/e9247a2))
+
+
+
 ## [1.0.1](https://github.com/ovh-ux/ng-ovh-checkbox-table/compare/v1.0.0...v1.0.1) (2019-08-28)
 
 
