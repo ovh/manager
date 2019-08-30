@@ -1,3 +1,12 @@
+## [5.0.2](https://github.com/ovh-ux/ng-ovh-actions-menu/compare/v5.0.1...v5.0.2) (2019-08-30)
+
+
+### Bug Fixes
+
+* **deps:** upgrade component-rollup-config to v6.0.2 ([#39](https://github.com/ovh-ux/ng-ovh-actions-menu/issues/39)) ([5963c2e](https://github.com/ovh-ux/ng-ovh-actions-menu/commit/5963c2e))
+
+
+
 ## [5.0.1](https://github.com/ovh-ux/ng-ovh-actions-menu/compare/v5.0.0...v5.0.1) (2019-08-28)
 
 
