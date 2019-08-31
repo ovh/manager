@@ -1,0 +1,9 @@
+{
+  "pci_workflow_delete_confirmation": "",
+  "pci_workflow_delete_warning": "Esta acción no puede deshacerse.",
+  "pci_workflow_delete_enter": "Introduzca «DELETE» en el siguiente campo para confirmar la eliminación.",
+  "pci_workflow_delete_success": "",
+  "pci_workflow_delete_error": "Se ha producido un error al eliminar el contacto.",
+  "pci_workflow_common_delete": "Eliminar",
+  "pci_workflow_common_cancel": "Cancelar"
+}

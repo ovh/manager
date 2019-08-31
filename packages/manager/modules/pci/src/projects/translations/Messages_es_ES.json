@@ -1,9 +1,11 @@
 {
- "pci_projects": "Proyectos",
- "pci_projects_description": "Descripción",
- "pci_projects_status": "Estado",
- "pci_projects_status_ok": "Activo",
- "pci_projects_status_deleting": "Eliminando...",
- "pci_projects_status_creating": "Creando...",
- "pci_projects_project_show": "Ver"
+  "pci_projects": "Proyectos",
+  "pci_projects_description": "Descripción",
+  "pci_projects_status": "Estado",
+  "pci_projects_status_ok": "Activo",
+  "pci_projects_status_deleting": "Eliminando...",
+  "pci_projects_status_creating": "Creando...",
+  "pci_projects_project_show": "Ver",
+  "pci_projects_project_delete": "Eliminar",
+  "pci_projects_project_delete_success": "Acabamos de enviarle la confirmación de la eliminación por correo electrónico."
 }
