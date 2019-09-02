@@ -1,0 +1,24 @@
+@import "bootstrap/less/variables";
+
+[data-tuc-gauge],
+[tuc-gauge] {
+  @gauge-color: @state-info-text;
+
+  svg.gauge {
+    width: 440px;
+    height: 320px;
+
+    path.gauge {
+      stroke: @gauge-color;
+      fill: none;
+      stroke-width: 20px;
+      stroke-linecap: round;
+    }
+
+    path.gauge-cursor {
+      stroke: @gauge-color;
+      fill: @gauge-color;
+      stroke-width: 0;
+    }
+  }
+}

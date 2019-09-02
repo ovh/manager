@@ -39,6 +39,7 @@ module.exports = (env = {}) => {
       './src/app',
       './src/components',
       './node_modules',
+      '../../../node_modules',
     ],
     root: path.resolve(__dirname, './src/app'),
     assets: {

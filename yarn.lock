@@ -1988,15 +1988,6 @@
   dependencies:
     lodash "^4.17.11"
 
-"@ovh-ux/ng-ovh-telecom-universe-components@^3.0.9":
-  version "3.0.9"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-telecom-universe-components/-/ng-ovh-telecom-universe-components-3.0.9.tgz#86dfdbc6d6baf79800a15c44f7224887bf920485"
-  integrity sha512-yJUfQg2k4KJuPpXV68EtMdiLJoXeivp4B3n67zNm4n1CP/byaSqfDXt4pHk3rtTgX8Jf5oXhKHQuQAfgRzwEAQ==
-  dependencies:
-    bootstrap "^3.4.1"
-    lodash "^4.17.15"
-    ovh-ui-kit "^2.33.4"
-
 "@ovh-ux/ng-ovh-toaster@^1.0.2":
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-toaster/-/ng-ovh-toaster-1.0.2.tgz#4a2e8115e1d2934b3b07f96612231b79b04ed823"
@@ -2702,7 +2693,7 @@ angular-ui-validate@^1.2.3:
   resolved "https://registry.yarnpkg.com/angular-ui-validate/-/angular-ui-validate-1.2.3.tgz#beb141f64409bfddba65c12f7581b893ddf59321"
   integrity sha1-vrFB9kQJv926ZcEvdYG4k931kyE=
 
-angular-validation-match@^1.4.x, angular-validation-match@^1.9.0:
+angular-validation-match@^1.9.0:
   version "1.9.0"
   resolved "https://registry.yarnpkg.com/angular-validation-match/-/angular-validation-match-1.9.0.tgz#03d82d0b983bf22366c5d22a0c291731625dcf80"
   integrity sha1-A9gtC5g78iNmxdIqDCkXMWJdz4A=
@@ -15338,10 +15329,6 @@ validator-js@^0.2.1:
   integrity sha1-EgmnRukG8NZOo08NA/mDcLVsCNE=
   dependencies:
     underscore "*"
-
-validator-js@chriso/validator.js#3.40.1:
-  version "3.40.1"
-  resolved "https://codeload.github.com/chriso/validator.js/tar.gz/ae7041b2ba161a1924e2974af8093338185e9bb1"
 
 validator@^10.11.0:
   version "10.11.0"
