@@ -899,9 +899,6 @@ module.exports = {
             "TN",
             "SN"
         ],
-        REDIRECT_URLS: {
-            listTicket: "https://www.ovh.com/manager/dedicated/index.html#/ticket"
-        }
     },
     CA: {
         AUTORENEW_URL: "https://ca.ovh.com/manager/dedicated/#/billing/autoRenew",
@@ -1130,8 +1127,5 @@ module.exports = {
             "TN",
             "SN"
         ],
-        REDIRECT_URLS: {
-            listTicket: "https://ca.ovh.com/manager/index.html#/ticket"
-        }
     }
 };

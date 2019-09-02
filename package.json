@@ -1,6 +1,6 @@
 {
   "name": "ovh-manager-web",
-  "version": "13.28.1",
+  "version": "13.29.0",
   "private": true,
   "description": "OVH Control Panel Web UI",
   "keywords": [
@@ -45,7 +45,7 @@
     "@bower_components/ng-file-upload-shim": "danialfarid/angular-file-upload-shim-bower#^12.0.4",
     "@bower_components/randexp": "fent/randexp.js#^0.4.0",
     "@ovh-ux/manager-config": "^0.3.0",
-    "@ovh-ux/manager-core": "^7.0.0",
+    "@ovh-ux/manager-core": "^7.1.2",
     "@ovh-ux/manager-navbar": "^1.2.2",
     "@ovh-ux/manager-server-sidebar": "^0.4.1",
     "@ovh-ux/ng-at-internet": "^4.0.0",
@@ -55,7 +55,6 @@
     "@ovh-ux/ng-ovh-chatbot": "^2.0.0",
     "@ovh-ux/ng-ovh-cloud-universe-components": "^1.3.0-alpha.4",
     "@ovh-ux/ng-ovh-http": "^4.0.2",
-    "@ovh-ux/ng-ovh-otrs": "^7.1.6",
     "@ovh-ux/ng-ovh-payment-method": "^3.2.0",
     "@ovh-ux/ng-ovh-proxy-request": "^1.0.0-beta.0",
     "@ovh-ux/ng-ovh-request-tagger": "^1.0.0",

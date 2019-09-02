@@ -1093,13 +1093,13 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-config/-/manager-config-0.3.0.tgz#d3c444090ad42af74029184d0dcf4ca2c99f9f8d"
   integrity sha512-CRI4sgN3iL3E6UJBA/xaYEGUggma7yCz9jZaQsJ5F9e4AncE9zzuJyPfKclHmenWyQbLLrrUkM7IOpxZER8zRQ==
 
-"@ovh-ux/manager-core@^7.0.0":
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core/-/manager-core-7.0.0.tgz#6e38db3ec62d7372ef9cf1cf2969e0860b9652a0"
-  integrity sha512-VJfwgo4HR3tDX8eh7UmLrbOblgH6Vo9ULPIJRRfXm77fvulhy/vL6brDmcFlOYdbJFdWfFB1UrZN4LpmWWRieg==
+"@ovh-ux/manager-core@^7.1.2":
+  version "7.1.2"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core/-/manager-core-7.1.2.tgz#6382db042894cad0e267e468c018c123871a8455"
+  integrity sha512-boA/vRgu4e4Dp9Vv95IQABhvCUJAg+OVtASocfGorkrqIW3o6F8kvWLiQ/0kcUz1SxGzYLk6rOpnQ3ZPJFWHAw==
   dependencies:
     "@ovh-ux/ng-translate-async-loader" "^2.0.0"
-    lodash "^4.17.14"
+    lodash "^4.17.15"
 
 "@ovh-ux/manager-navbar@^1.2.2":
   version "1.2.2"
@@ -1224,14 +1224,6 @@
   dependencies:
     lodash "~4.17.15"
     urijs "^1.19.1"
-
-"@ovh-ux/ng-ovh-otrs@^7.1.6":
-  version "7.1.6"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-otrs/-/ng-ovh-otrs-7.1.6.tgz#be254726ea7c5cbb933a28a422fa0d2f7426691c"
-  integrity sha512-GR2y+1zAFL2YZRkMra6I6crGMPDBUsbYpy5dqiCenK5KEx+cU+0iGSFQp0HFXRTPZkRMwfF/NN1jXI9m/tV+Uw==
-  dependencies:
-    draggable "^4.2.0"
-    lodash "^4.17.11"
 
 "@ovh-ux/ng-ovh-payment-method@^3.2.0":
   version "3.2.0"
@@ -3858,11 +3850,6 @@ dot-prop@^4.1.0, dot-prop@^4.1.1:
   integrity sha512-tUMXrxlExSW6U2EXiiKGSBVdYgtV8qlHL+C10TsW4PURY/ic+eaysnSkwB4kA/mBlCyy/IKDJ+Lc3wbWeaXtuQ==
   dependencies:
     is-obj "^1.0.0"
-
-draggable@^4.2.0:
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/draggable/-/draggable-4.2.0.tgz#149c0ca176df6d8b512048c8e451f499fc047b9a"
-  integrity sha1-FJwMoXbfbYtRIEjI5FH0mfwEe5o=
 
 drange@^1.0.0:
   version "1.1.1"
