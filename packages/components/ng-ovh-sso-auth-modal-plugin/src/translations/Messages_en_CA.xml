@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="sso_modal_title" qtlid="315956">OVH - Authentication</translation>
+   <translation id="sso_modal_loading" qtlid="8410">Loading...</translation>
+   <translation id="sso_modal_user_title" qtlid="315969">You were logged in as:</translation>
+   <translation id="sso_modal_currentuser_title" qtlid="315982">You are now logged in as:</translation>
+   <translation id="sso_modal_disconnected" qtlid="315995">You are now disconnected.</translation>
+   <translation id="sso_modal_what" qtlid="62558">What would you like to do?</translation>
+   <translation id="sso_modal_action_reload" qtlid="344084">Continue as <strong>{{name}}</strong></translation>
+   <translation id="sso_modal_action_logout" qtlid="316021">Go to the login page</translation>
+</translations>
