@@ -1,3 +1,5 @@
+import indexOf from 'lodash/indexOf';
+
 angular.module('App').controller(
   'PrivateDatabaseAddUserCtrl',
   class PrivateDatabaseAddUserCtrl {
@@ -61,7 +63,7 @@ angular.module('App').controller(
     }
 
     nameAlreadyExist() {
-      return _.indexOf(this.users, this.model.user.value) !== -1;
+      return indexOf(this.users, this.model.user.value) !== -1;
     }
 
     addUser() {

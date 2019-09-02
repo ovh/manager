@@ -1,3 +1,5 @@
+import includes from 'lodash/includes';
+
 angular.module('App').controller(
   'DomainDnsManagementCtrl',
   class DomainDnsManagementCtrl {
@@ -21,7 +23,7 @@ angular.module('App').controller(
 
       this.Domain.getZones()
         .then((zones) => {
-          this.hasZone = _.includes(zones, this.domain.name);
+          this.hasZone = includes(zones, this.domain.name);
         })
         .finally(() => {
           this.loading = false;

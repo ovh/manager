@@ -94,7 +94,7 @@ import domainTemplate from './domain/domain.html';
 import exchangeRemoveTemplate from './header/remove/exchange-remove.html';
 import serviceLicenseHistoryTemplate from './header/license/service-license-history.html';
 import headerTemplate from './header/header.html';
-import billingAccountRenewTemplate from './billing/account-renew/billing-account-renew.template.html';
+import billingAccountRenewTemplate from './billing/account-renew/renew.html';
 import exchangeTemplate from './exchange.html';
 
 export default /* @ngInject */ ($templateCache) => {

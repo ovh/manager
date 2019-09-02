@@ -1,3 +1,7 @@
+import clone from 'lodash/clone';
+import find from 'lodash/find';
+import includes from 'lodash/includes';
+
 /* global angular */
 angular.module('App').controller(
   'PrivateDatabaseConfigurationsCtrl',
@@ -50,7 +54,7 @@ angular.module('App').controller(
     }
 
     convertAvailableValues(opts) {
-      const field = _(opts).clone();
+      const field = clone(opts);
 
       field.description = this.getFieldDescriptionTranslated(field);
       field.availableValues = field.availableValues.map(value => ({
@@ -67,7 +71,7 @@ angular.module('App').controller(
         PrivateDatabaseConfigurationsCtrl.convertFieldAsToggle(field);
       } else {
         field.type = 'select';
-        field.selectedValue = _.find(field.availableValues, {
+        field.selectedValue = find(field.availableValues, {
           id: field.value,
         });
       }
@@ -84,7 +88,7 @@ angular.module('App').controller(
     getFieldDescriptionTranslated(field) {
       const translationId = `privateDatabase_configuration_field_${field.key}`;
       const description = this.$translate.instant(translationId);
-      if (_.includes(description, translationId)) {
+      if (includes(description, translationId)) {
         return field.description;
       }
 

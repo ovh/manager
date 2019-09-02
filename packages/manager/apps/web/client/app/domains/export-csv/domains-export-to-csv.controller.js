@@ -1,3 +1,12 @@
+import filter from 'lodash/filter';
+import get from 'lodash/get';
+import isEmpty from 'lodash/isEmpty';
+import isString from 'lodash/isString';
+import map from 'lodash/map';
+import size from 'lodash/size';
+import trim from 'lodash/trim';
+import uniq from 'lodash/uniq';
+
 angular.module('App').controller(
   'DomainsToCsvCtrl',
   class DomainsToCsvCtrl {
@@ -41,32 +50,29 @@ angular.module('App').controller(
           target: 'owner',
           checked: true,
           transform: (value) => {
-            const hasOrganisationName = !_(value).chain()
-              .get('organisationName', '')
-              .isEmpty()
-              .value();
+            const hasOrganisationName = isEmpty(get(value, 'organisationName', ''));
             if (hasOrganisationName) {
-              return _.get(value, 'organisationName');
+              return get(value, 'organisationName');
             }
-            return _.trim(`${_.get(value, 'firstName', '')} ${_.get(value, 'lastName', '')}`);
+            return trim(`${get(value, 'firstName', '')} ${get(value, 'lastName', '')}`);
           },
         },
         { label: 'creation_date', modelKey: 'creation', checked: false },
         { label: 'expiration_date', modelKey: 'expiration', checked: true },
         {
-          label: 'whois_fields', modelKey: 'owo', checked: false, target: 'owo', transform: (value, translations) => (_.size(value) ? translations.enabled : translations.disabled),
+          label: 'whois_fields', modelKey: 'owo', checked: false, target: 'owo', transform: (value, translations) => (size(value) ? translations.enabled : translations.disabled),
         },
         {
-          label: 'dnssec', modelKey: 'dnssec', checked: false, target: 'dnssec', transform: (value, translations) => (_.isString(_.get(value, 'status')) ? translations[value.status] : ''),
+          label: 'dnssec', modelKey: 'dnssec', checked: false, target: 'dnssec', transform: (value, translations) => (isString(get(value, 'status')) ? translations[value.status] : ''),
         },
         {
-          label: 'dnsanycast', modelKey: 'dnsanycast', checked: false, target: 'dnsanycast', transform: (value, translations) => (_.isString(_.get(value, 'status')) ? translations[value.status] : ''),
+          label: 'dnsanycast', modelKey: 'dnsanycast', checked: false, target: 'dnsanycast', transform: (value, translations) => (isString(get(value, 'status')) ? translations[value.status] : ''),
         },
         { label: 'nic_billing', modelKey: 'contactBilling', checked: true },
         { label: 'nic_tech', modelKey: 'contactTech', checked: true },
         { label: 'nic_admin', modelKey: 'contactAdmin', checked: true },
         {
-          label: 'dns', modelKey: 'dns', checked: true, target: 'dns', transform: dnsList => _.map(dnsList, 'host').join(', '),
+          label: 'dns', modelKey: 'dns', checked: true, target: 'dns', transform: dnsList => map(dnsList, 'host').join(', '),
         },
       ];
 
@@ -96,9 +102,9 @@ angular.module('App').controller(
          * Export Accounts to CSV file
          */
     exportAccountsToCsv() {
-      const choices = _.filter(this.csvExportOptions, opt => opt.checked);
-      const header = _.map(choices, opt => this.$translate.instant(`domains_action_export_csv_form_${opt.label}_label`));
-      const requestsNeeded = _.uniq(_.map(_.filter(choices, opt => opt.target), opt => opt.target));
+      const choices = filter(this.csvExportOptions, opt => opt.checked);
+      const header = map(choices, opt => this.$translate.instant(`domains_action_export_csv_form_${opt.label}_label`));
+      const requestsNeeded = uniq(map(filter(choices, opt => opt.target), opt => opt.target));
 
       this.Domain
         .getDomains()
@@ -124,7 +130,7 @@ angular.module('App').controller(
 
               return this.Domain.getDetails(zone, requestsNeeded).then((domain) => {
                 if (domain) {
-                  const data = _.map(
+                  const data = map(
                     options.choices,
                     opt => (opt.transform
                       ? opt.transform(domain[opt.modelKey], options.translations)
@@ -135,7 +141,7 @@ angular.module('App').controller(
               });
             },
             notify: options => this.$scope.$emit('domain.csv.export.doing', { done: options.total - options.zones.length, total: options.total }),
-            keepGoing: options => this.$q.when(!_.isEmpty(_.get(options, 'zones')) && !this.canceler),
+            keepGoing: options => this.$q.when(!isEmpty(get(options, 'zones')) && !this.canceler),
             done: (options) => {
               if (this.canceler) {
                 this.$rootScope.$broadcast('domain.csv.export.cancel');

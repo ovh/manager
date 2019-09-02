@@ -1,3 +1,6 @@
+import filter from 'lodash/filter';
+import get from 'lodash/get';
+
 angular.module('App').controller(
   'DomainCtrl',
   class DomainCtrl {
@@ -107,7 +110,7 @@ angular.module('App').controller(
     }
 
     getGuides(subsidiary) {
-      this.autorenewGuide = _.get(this.constants, `urls.${subsidiary}.guides.autoRenew`, this.constants.urls.FR.guides.autoRenew);
+      this.autorenewGuide = get(this.constants, `urls.${subsidiary}.guides.autoRenew`, this.constants.urls.FR.guides.autoRenew);
       this.autorenewUrl = `${this.constants.AUTORENEW_URL}?selectedType=DOMAIN&searchText=${this.domainInfos.domain}`;
     }
 
@@ -138,7 +141,7 @@ angular.module('App').controller(
 
           if (domain.messages.length > 0) {
             const messages = domain.isExpired
-              ? _.filter(
+              ? filter(
                 domain.messages,
                 message => !/service(\s\w+\s)?expired/i.test(message.message),
               )

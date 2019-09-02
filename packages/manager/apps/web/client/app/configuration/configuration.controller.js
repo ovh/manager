@@ -1,3 +1,8 @@
+import get from 'lodash/get';
+import isUndefined from 'lodash/isUndefined';
+import mapValues from 'lodash/mapValues';
+import omit from 'lodash/omit';
+
 angular
   .module('App')
   .controller(
@@ -14,12 +19,12 @@ angular
       $onInit() {
         this.guides = this.constants.TOP_GUIDES;
 
-        this.helpCenterURLs = _.omit(
-          _.mapValues(
+        this.helpCenterURLs = omit(
+          mapValues(
             this.constants.urls,
             'support',
           ),
-          _.isUndefined,
+          isUndefined,
         );
 
         return this.User
@@ -27,7 +32,7 @@ angular
           .then(({ ovhSubsidiary: subsidiary }) => {
             this.subsidiary = subsidiary;
 
-            this.allGuides = _.get(
+            this.allGuides = get(
               this.constants,
               `urls.${subsidiary}.guides.all`,
               this.constants.urls.FR.guides.all,

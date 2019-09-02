@@ -1,3 +1,6 @@
+import isEmpty from 'lodash/isEmpty';
+import set from 'lodash/set';
+
 angular.module('App').controller(
   'DomainDynHostLoginCtrl',
   class DomainDynHostLoginCtrl {
@@ -59,7 +62,7 @@ angular.module('App').controller(
         ))
         .finally(() => {
           this.loading.init = false;
-          if (_.isEmpty(this.dynHostsLogin)) {
+          if (isEmpty(this.dynHostsLogin)) {
             this.loading.login = false;
           }
         });
@@ -77,7 +80,7 @@ angular.module('App').controller(
     }
 
     static subDomainToPunycode(item) {
-      _.set(item, 'subDomain', punycode.toUnicode(item.subDomain));
+      set(item, 'subDomain', punycode.toUnicode(item.subDomain));
       return item;
     }
   },

@@ -1,3 +1,5 @@
+import uniq from 'lodash/uniq';
+
 angular.module('App').controller(
   'MailingListsDeleteSubscribersCtrl',
   class MailingListsDeleteSubscribersCtrl {
@@ -33,7 +35,7 @@ angular.module('App').controller(
 
     deleteSubscribers() {
       this.loading = true;
-      const subscribersToDelete = _.uniq(this.selection);
+      const subscribersToDelete = uniq(this.selection);
 
       return this.MailingLists.deleteSubscribers(this.$stateParams.productId, {
         mailingList: this.mailingList.name,

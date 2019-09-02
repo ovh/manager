@@ -1,3 +1,5 @@
+import clone from 'lodash/clone';
+
 angular.module('App').controller(
   'PrivateDatabaseBDDsExtensionCtrl',
   class PrivateDatabaseBDDsExtensionCtrl {
@@ -48,7 +50,7 @@ angular.module('App').controller(
     }
 
     toggleExtension(opts) {
-      const extension = _(opts).clone();
+      const extension = clone(opts);
 
       if (!extension.updating && extension.transformed) {
         let action;
@@ -103,7 +105,7 @@ angular.module('App').controller(
       return this.privateDatabaseExtensionService
         .getExtension(this.productId, this.bdd.databaseName, item.id)
         .then((originalExtension) => {
-          const extension = _(originalExtension).clone();
+          const extension = clone(originalExtension);
 
           extension.id = item.id;
           extension.enabled = extension.status === 'enabled';

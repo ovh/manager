@@ -1,3 +1,5 @@
+import clone from 'lodash/clone';
+
 import generalInformationState from './general-informations/domain-general-informations.state';
 import zoneState from './zone/domain-zone.state';
 import dnsState from './dns/domain-dns.state';
@@ -66,13 +68,13 @@ angular.module('App').config(($stateProvider) => {
 
   ['product', 'alldom'].forEach((stateType) => {
     // Clone state before using it as it will be modified by UI Router
-    $stateProvider.state(`app.domain.${stateType}.information`, _.clone(generalInformationState));
-    $stateProvider.state(`app.domain.${stateType}.zone`, _.clone(zoneState));
-    $stateProvider.state(`app.domain.${stateType}.dns`, _.clone(dnsState));
-    $stateProvider.state(`app.domain.${stateType}.redirection`, _.clone(redirectionState));
-    $stateProvider.state(`app.domain.${stateType}.dynhost`, _.clone(dynHostState));
-    $stateProvider.state(`app.domain.${stateType}.glue`, _.clone(glueState));
-    $stateProvider.state(`app.domain.${stateType}.dnssec`, _.clone(dnsSecState));
-    $stateProvider.state(`app.domain.${stateType}.tasks`, _.clone(tasksState));
+    $stateProvider.state(`app.domain.${stateType}.information`, clone(generalInformationState));
+    $stateProvider.state(`app.domain.${stateType}.zone`, clone(zoneState));
+    $stateProvider.state(`app.domain.${stateType}.dns`, clone(dnsState));
+    $stateProvider.state(`app.domain.${stateType}.redirection`, clone(redirectionState));
+    $stateProvider.state(`app.domain.${stateType}.dynhost`, clone(dynHostState));
+    $stateProvider.state(`app.domain.${stateType}.glue`, clone(glueState));
+    $stateProvider.state(`app.domain.${stateType}.dnssec`, clone(dnsSecState));
+    $stateProvider.state(`app.domain.${stateType}.tasks`, clone(tasksState));
   });
 });

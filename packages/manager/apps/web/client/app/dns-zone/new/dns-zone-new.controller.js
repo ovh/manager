@@ -1,3 +1,6 @@
+import get from 'lodash/get';
+import set from 'lodash/set';
+
 angular.module('App').controller(
   'newDnsZoneCtrl',
   class newDnsZoneCtrl {
@@ -48,7 +51,7 @@ angular.module('App').controller(
           this.order = details;
         })
         .catch((err) => {
-          _.set(err, 'type', err.type || 'ERROR');
+          set(err, 'type', err.type || 'ERROR');
           this.Alerter.alertFromSWS(
             this.$translate.instant('domains_newdnszone_order_step3_fail'),
             err,
@@ -63,7 +66,7 @@ angular.module('App').controller(
     clean() {
       this.zoneNameOrder.contractsValidated = false;
       this.zoneNameOrder.minimized = false;
-      this.zoneName = _.get(this.zoneNameOrder, 'zoneName', '').toLowerCase();
+      this.zoneName = get(this.zoneNameOrder, 'zoneName', '').toLowerCase();
       this.order = null;
     }
   },

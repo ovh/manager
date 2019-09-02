@@ -1,3 +1,18 @@
+import clone from 'lodash/clone';
+import lodashFilter from 'lodash/filter';
+import flatten from 'lodash/flatten';
+import forEach from 'lodash/forEach';
+import get from 'lodash/get';
+import indexOf from 'lodash/indexOf';
+import isArray from 'lodash/isArray';
+import isBoolean from 'lodash/isBoolean';
+import isEmpty from 'lodash/isEmpty';
+import isFinite from 'lodash/isFinite';
+import isString from 'lodash/isString';
+import map from 'lodash/map';
+import omit from 'lodash/omit';
+import without from 'lodash/without';
+
 angular.module('services').service(
   'Domain',
   class Domain {
@@ -131,11 +146,11 @@ angular.module('services').service(
      * @param {Array} status
      */
     getTasksByStatus(serviceName, fn, status = []) {
-      const promisesTasks = _.map(
+      const promisesTasks = map(
         status,
         st => this.getTasks(serviceName, { status: st, function: fn }),
       );
-      return this.$q.all(promisesTasks).then(_.flatten);
+      return this.$q.all(promisesTasks).then(flatten);
     }
 
     /**
@@ -147,8 +162,8 @@ angular.module('services').service(
       return this.OvhHttp.get(`/domain/${serviceName}/task/${id}`, {
         rootPath: 'apiv6',
       }).then((originalTasksDetails) => {
-        const tasksDetails = _(originalTasksDetails).clone();
-        tasksDetails.status = _.isString(tasksDetails.status) && tasksDetails.status.toUpperCase();
+        const tasksDetails = clone(originalTasksDetails);
+        tasksDetails.status = isString(tasksDetails.status) && tasksDetails.status.toUpperCase();
         return tasksDetails;
       });
     }
@@ -168,8 +183,8 @@ angular.module('services').service(
 
       const doFilter = () => {
         if (filters) {
-          _.forEach(tasks, (task) => {
-            _.forEach(filters, (filter) => {
+          forEach(tasks, (task) => {
+            forEach(filters, (filter) => {
               if (task.function === filter) {
                 filteredTask.push(task);
               }
@@ -182,12 +197,12 @@ angular.module('services').service(
         defer.resolve(filteredTask);
       };
 
-      _.forEach(['todo', 'doing'], (status) => {
+      forEach(['todo', 'doing'], (status) => {
         r.push(this.OvhHttp.get(`/domain/${serviceName}/task`, {
           rootPath: 'apiv6',
           params: { status },
         }).then((response) => {
-          _.forEach(response, (taskId) => {
+          forEach(response, (taskId) => {
             requests.push(this.OvhHttp.get(`/domain/${serviceName}/task/${taskId}`, {
               rootPath: 'apiv6',
             }).then((resp) => {
@@ -213,7 +228,7 @@ angular.module('services').service(
      */
     restartPoll(serviceName, filters) {
       this.getTasksToPoll(serviceName, filters).then((tasks) => {
-        _.forEach(tasks, (task) => {
+        forEach(tasks, (task) => {
           this.pollDomainHost({
             taskId: task.id,
             taskFunction: task.function,
@@ -251,13 +266,13 @@ angular.module('services').service(
       return this.OvhHttp.get(`/domain/${serviceName}/nameServer`, {
         rootPath: 'apiv6',
       }).then((ids) => {
-        if (_.isEmpty(ids)) {
+        if (isEmpty(ids)) {
           const deferred = this.$q.defer();
           deferred.resolve([]);
           return deferred.promise;
         }
 
-        return this.$q.all(_.map(ids, id => this.OvhHttp.get(`/domain/${serviceName}/nameServer/${id}`, {
+        return this.$q.all(map(ids, id => this.OvhHttp.get(`/domain/${serviceName}/nameServer/${id}`, {
           rootPath: 'apiv6',
         })));
       });
@@ -425,11 +440,11 @@ angular.module('services').service(
         if (
           data
           && (!data.messages
-            || (_.isArray(data.messages) && data.messages.length === 0))
+            || (isArray(data.messages) && data.messages.length === 0))
         ) {
           // Generates sanitized targets
-          if (_.get(data, 'paginatedZone.records.results', false)) {
-            _.forEach(data.paginatedZone.records.results, (val, key) => {
+          if (get(data, 'paginatedZone.records.results', false)) {
+            forEach(data.paginatedZone.records.results, (val, key) => {
               data.paginatedZone.records.results[
                 key
               ].targetToDisplay = this.DomainValidator.convertTargetToUnicode(
@@ -440,7 +455,7 @@ angular.module('services').service(
           }
           return data;
         }
-        return this.$q.reject(_.get(data, 'messages', data));
+        return this.$q.reject(get(data, 'messages', data));
       });
     }
 
@@ -517,7 +532,7 @@ angular.module('services').service(
       return this.getRecordsIds(serviceName, {
         fieldType,
         subDomain: subDomain || '',
-      }).then(recordsIds => _.without(recordsIds, excludeId));
+      }).then(recordsIds => without(recordsIds, excludeId));
     }
 
     /**
@@ -537,16 +552,16 @@ angular.module('services').service(
         let recordsIds = _recordsIds;
 
         if (
-          _.isEmpty(recordsIds)
-          || _.isEmpty(_.without(recordsIds, excludeId))
+          isEmpty(recordsIds)
+          || isEmpty(without(recordsIds, excludeId))
         ) {
           return true;
         }
 
-        recordsIds = _.without(recordsIds, excludeId);
+        recordsIds = without(recordsIds, excludeId);
 
         let found = false;
-        const queue = _.map(recordsIds, id => this.OvhHttp.get(`/domain/zone/${serviceName}/record/${id}`, {
+        const queue = map(recordsIds, id => this.OvhHttp.get(`/domain/zone/${serviceName}/record/${id}`, {
           rootPath: 'apiv6',
         }).then((record) => {
           if (
@@ -582,7 +597,7 @@ angular.module('services').service(
             0,
             subDomain,
           ).then((results) => {
-            const existingSubDomain = _.filter(
+            const existingSubDomain = lodashFilter(
               results.paginatedZone.records.results,
               zone => zone.subDomain.toLowerCase() === subDomain.toLowerCase()
                   && zone.id !== entry.excludeId,
@@ -600,7 +615,7 @@ angular.module('services').service(
             'CNAME',
             subDomain,
             entry.excludeId,
-          ).then(recordIds => ({ recordCanBeAdded: _.isEmpty(recordIds) }));
+          ).then(recordIds => ({ recordCanBeAdded: isEmpty(recordIds) }));
       }
     }
 
@@ -612,7 +627,7 @@ angular.module('services').service(
     deleteDnsEntry(serviceName, _entryId) {
       let entryId = _entryId;
 
-      if (!_.isArray(entryId)) {
+      if (!isArray(entryId)) {
         entryId = [entryId];
       }
       return this.OvhHttp.delete(
@@ -796,12 +811,12 @@ angular.module('services').service(
      * @param {Array} redirectionIds
      */
     overwriteRedirection(serviceName, options, redirectionIds) {
-      const createDeletePromises = ids => _.map(ids, id => this.deleteDnsEntry(serviceName, id));
+      const createDeletePromises = ids => map(ids, id => this.deleteDnsEntry(serviceName, id));
 
-      if (!_.isEmpty(redirectionIds)) {
+      if (!isEmpty(redirectionIds)) {
         let deletePromises = [];
 
-        _.forEach(redirectionIds, (redirection) => {
+        forEach(redirectionIds, (redirection) => {
           const APromises = createDeletePromises(redirection.listA);
           const AAAAPromises = createDeletePromises(redirection.listAAAA);
           const CNAMEPromises = createDeletePromises(redirection.listCNAME);
@@ -1140,7 +1155,7 @@ angular.module('services').service(
      * Kill all domain polls
      */
     killDomainPolling() {
-      _.forEach(['dnssec.get', 'transfertLock.get'], (action) => {
+      forEach(['dnssec.get', 'transfertLock.get'], (action) => {
         this.Poll.kill({ namespace: action });
       });
     }
@@ -1250,7 +1265,7 @@ angular.module('services').service(
         `/domain/${serviceName}/glueRecord/${host}/update`,
         {
           rootPath: 'apiv6',
-          data: _.omit(data, 'host'),
+          data: omit(data, 'host'),
         },
       ).then((task) => {
         if (task) {
@@ -1386,7 +1401,7 @@ angular.module('services').service(
       return this.OvhHttp.get(`/domain/zone/${serviceName}`, {
         rootPath: 'apiv6',
       }).then((response) => {
-        if (_.isBoolean(response.hasDnsAnycast)) {
+        if (isBoolean(response.hasDnsAnycast)) {
           return { status: response.hasDnsAnycast ? 'enabled' : 'disabled' };
         }
         return null;
@@ -1402,7 +1417,7 @@ angular.module('services').service(
         .then((response) => {
           if (
             response.whoisOwner
-            && _.isFinite(parseInt(response.whoisOwner, 10))
+            && isFinite(parseInt(response.whoisOwner, 10))
           ) {
             return this.OvhHttp.get(`/me/contact/${response.whoisOwner}`, {
               rootPath: 'apiv6',
@@ -1434,31 +1449,31 @@ angular.module('services').service(
 
       queue.push(this.getServiceInfo(serviceName));
 
-      if (_.indexOf(options, 'dnssec') !== -1) {
+      if (indexOf(options, 'dnssec') !== -1) {
         queue.push(this.getDnssecStatus(serviceName).catch(catchErrorAndGoOn));
       } else {
         queue.push(null);
       }
 
-      if (_.indexOf(options, 'owo') !== -1) {
+      if (indexOf(options, 'owo') !== -1) {
         queue.push(this.getOwoFields(serviceName).catch(catchErrorAndGoOn));
       } else {
         queue.push(null);
       }
 
-      if (_.indexOf(options, 'owner') !== -1) {
+      if (indexOf(options, 'owner') !== -1) {
         queue.push(this.getOwner(serviceName).catch(catchErrorAndGoOn));
       } else {
         queue.push(null);
       }
 
-      if (_.indexOf(options, 'dns') !== -1) {
+      if (indexOf(options, 'dns') !== -1) {
         queue.push(this.getAllNameServer(serviceName).catch(catchErrorAndGoOn));
       } else {
         queue.push(null);
       }
 
-      if (_.indexOf(options, 'dnsanycast') !== -1) {
+      if (indexOf(options, 'dnsanycast') !== -1) {
         queue.push(this.getDnsAnycast(serviceName).catch(catchErrorAndGoOn));
       } else {
         queue.push(null);
@@ -1476,7 +1491,7 @@ angular.module('services').service(
             data.dnsanycast,
           ] = results;
 
-          if (!_.isEmpty(data.domain) && _.isString(data.domain)) {
+          if (!isEmpty(data.domain) && isString(data.domain)) {
             data.displayName = punycode.toUnicode(data.domain);
           } else {
             data.displayName = null;

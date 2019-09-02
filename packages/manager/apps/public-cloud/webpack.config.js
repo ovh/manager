@@ -9,6 +9,11 @@ module.exports = (env = {}) => {
     template: './src/index.html',
     basePath: './src',
     root: path.resolve(__dirname, './src'),
+    assets: {
+      files: [
+        { from: path.resolve(__dirname, '../../../../node_modules/@ovh-ux/manager-pci/dist/assets'), to: 'assets' },
+      ],
+    },
   }, process.env.REGION ? Object.assign(env, { region: process.env.REGION }) : env);
 
   // Extra config files
@@ -29,6 +34,11 @@ module.exports = (env = {}) => {
         __NG_APP_INJECTIONS__: process.env.NG_APP_INJECTIONS ? `'${process.env.NG_APP_INJECTIONS}'` : 'null',
         __NODE_ENV__: process.env.NODE_ENV ? `'${process.env.NODE_ENV}'` : '"development"',
         __WEBPACK_REGION__: process.env.REGION ? `'${process.env.REGION.toUpperCase()}'` : '"EU"',
+      }),
+      new webpack.ProvidePlugin({
+        $: 'jquery',
+        jQuery: 'jquery',
+        'window.jQuery': 'jquery',
       }),
     ],
     resolve: {

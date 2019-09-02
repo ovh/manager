@@ -1,3 +1,5 @@
+import isEmpty from 'lodash/isEmpty';
+
 angular.module('App').controller(
   'PrivateDatabaseAddBddCtrl',
   class PrivateDatabaseAddBddCtrl {
@@ -90,7 +92,7 @@ angular.module('App').controller(
     checkAuthorizedIp() {
       return this.whitelistService
         .getWhitelistIds(this.productId)
-        .then(result => !_.isEmpty(result));
+        .then(result => !isEmpty(result));
     }
 
     addBdd() {

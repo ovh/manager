@@ -20,6 +20,7 @@ import ngOvhSwimmingPoll from '@ovh-ux/ng-ovh-swimming-poll';
 import ngOvhTelecomUniverseComponents from '@ovh-ux/ng-ovh-telecom-universe-components';
 import ngOvhUiRouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
 import ngPaginationFront from '@ovh-ux/ng-pagination-front';
+import ngQAllSettled from '@ovh-ux/ng-q-allsettled';
 import ngTailLogs from '@ovh-ux/ng-tail-logs';
 import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import ngUirouterTitle from '@ovh-ux/ng-uirouter-title';
@@ -73,7 +74,7 @@ angular.module('managerApp', [
   ngOvhActionsMenu,
   ngOvhContact,
   ngOvhLineDiagnostics,
-  'ovh-angular-q-allSettled',
+  ngQAllSettled,
   'ovh-angular-responsive-tabs',
   ngOvhSidebarMenu,
   ngOvhSimpleCountryList,
@@ -81,7 +82,6 @@ angular.module('managerApp', [
   'ovh-angular-ui-confirm-modal',
   'ovh-api-services',
   'ovhBrowserAlert',
-  'ovh-jquery-ui-draggable-ng',
   'ovh-ng-input-password',
   ovhManagerCore,
   ovhManagerDashboard,

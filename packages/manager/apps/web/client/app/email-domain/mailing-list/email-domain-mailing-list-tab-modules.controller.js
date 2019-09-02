@@ -1,3 +1,6 @@
+import isEmpty from 'lodash/isEmpty';
+import set from 'lodash/set';
+
 angular.module('App').controller(
   'MailingListsTabModulesCtrl',
   class MailingListsTabModulesCtrl {
@@ -69,7 +72,7 @@ angular.module('App').controller(
           this.quotas = quotas;
         })
         .catch((err) => {
-          _.set(err, 'type', err.type || 'ERROR');
+          set(err, 'type', err.type || 'ERROR');
           this.Alerter.alertFromSWS(
             this.$translate.instant('mailing_list_tab_modal_get_lists_error'),
             err,
@@ -93,7 +96,7 @@ angular.module('App').controller(
           this.mailingLists = this.$filter('orderBy')(data);
         })
         .catch((err) => {
-          _.set(err, 'type', err.type || 'ERROR');
+          set(err, 'type', err.type || 'ERROR');
           this.Alerter.alertFromSWS(
             this.$translate.instant('mailing_list_tab_modal_get_lists_error'),
             err,
@@ -101,7 +104,7 @@ angular.module('App').controller(
           );
         })
         .finally(() => {
-          if (_.isEmpty(this.mailingLists)) {
+          if (isEmpty(this.mailingLists)) {
             this.loading.mailingLists = false;
           }
         });

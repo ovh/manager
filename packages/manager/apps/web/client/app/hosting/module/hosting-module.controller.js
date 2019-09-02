@@ -1,3 +1,6 @@
+import clone from 'lodash/clone';
+import get from 'lodash/get';
+
 angular.module('App').controller(
   'HostingTabModulesController',
   class HostingTabModulesController {
@@ -35,7 +38,7 @@ angular.module('App').controller(
         .catch((err) => {
           this.Alerter.alertFromSWS(
             this.$translate.instant('hosting_configuration_tab_modules_create_step1_loading_error'),
-            _.get(err, 'data', err),
+            get(err, 'data', err),
             this.$scope.alerts.main,
           );
         });
@@ -73,7 +76,7 @@ angular.module('App').controller(
         this.$stateParams.productId,
         item.id,
       ).then((originalModule) => {
-        const module = _(originalModule).clone();
+        const module = clone(originalModule);
 
         return this.HostingModule.getAvailableModule(module.moduleId).then((template) => {
           module.template = template;

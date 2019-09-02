@@ -1,3 +1,7 @@
+import every from 'lodash/every';
+import get from 'lodash/get';
+import isString from 'lodash/isString';
+
 angular.module('services').service(
   'hostingSSLCertificate',
   class HostingSSLCertificate {
@@ -47,14 +51,10 @@ angular.module('services').service(
      */
     static testIsCertificate(certificate) {
       const tests = [
-        _(certificate)
-          .chain()
-          .get('status')
-          .isString()
-          .value(),
+        isString(get(certificate, 'status')),
       ];
 
-      if (!_(tests).every(test => test)) {
+      if (!every(tests, test => test)) {
         throw new TypeError('certificate parameter is not a valid certificate object');
       }
     }

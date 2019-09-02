@@ -1,3 +1,5 @@
+import set from 'lodash/set';
+
 angular.module('controllers').controller(
   'controllers.Domain.Dns.Lock',
   class DomainDnsLockCtrl {
@@ -26,7 +28,7 @@ angular.module('controllers').controller(
           this.$scope.alerts.main,
         ))
         .catch((err) => {
-          _.set(err, 'type', err.type || 'ERROR');
+          set(err, 'type', err.type || 'ERROR');
           this.Alerter.alertFromSWS(
             this.$translate.instant('domain_tab_DNS_lock_error'),
             err,

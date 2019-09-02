@@ -1,3 +1,5 @@
+import set from 'lodash/set';
+
 angular.module('App').controller(
   'HostingRestoreDatabaseConfirmCtrl',
   class HostingRestoreDatabaseConfirmCtrl {
@@ -31,7 +33,7 @@ angular.module('App').controller(
           );
         })
         .catch((err) => {
-          _.set(err, 'type', err.type || 'ERROR');
+          set(err, 'type', err.type || 'ERROR');
           this.alerter.alertFromSWS(
             this.$translate.instant('database_tabs_dumps_restore_fail'),
             err,

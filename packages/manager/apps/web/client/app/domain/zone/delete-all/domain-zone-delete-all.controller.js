@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular.module('App').controller(
   'DomainZoneDeleteAllCtrl',
   class DomainZoneDeleteAllCtrl {
@@ -26,7 +28,7 @@ angular.module('App').controller(
           this.canDeleteAllZone = false;
         })
         .catch((err) => {
-          this.canDeleteAllZone = _.get(err, 'status') === 404;
+          this.canDeleteAllZone = get(err, 'status') === 404;
         })
         .finally(() => {
           this.loading = false;

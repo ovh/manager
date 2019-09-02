@@ -1,3 +1,7 @@
+import get from 'lodash/get';
+import isArray from 'lodash/isArray';
+import isEmpty from 'lodash/isEmpty';
+
 angular
   .module('App')
   .controller(
@@ -128,7 +132,7 @@ angular
         HostingModule.getDatabases($stateParams.productId)
           .then((databases) => {
             $scope.model.databases = databases;
-            if (_.isArray(databases) && !_.isEmpty(databases)) {
+            if (isArray(databases) && !isEmpty(databases)) {
               [$scope.model.databaseHostedSelected] = databases;
               $scope.selectDatabase();
             }
@@ -136,7 +140,7 @@ angular
           .catch((err) => {
             Alerter.alertFromSWS(
               $translate.instant('hosting_tab_DATABASES_configuration_create_step1_loading_error'),
-              _.get(err, 'data', err),
+              get(err, 'data', err),
               $scope.alerts.main,
             );
           })
@@ -168,7 +172,7 @@ angular
           .catch((err) => {
             Alerter.alertFromSWS(
               $translate.instant('hosting_tab_DATABASES_configuration_create_step1_loading_error'),
-              _.get(err, 'data', err),
+              get(err, 'data', err),
               $scope.alerts.main,
             );
             $scope.resetAction();
@@ -206,7 +210,7 @@ angular
               (err) => {
                 Alerter.alertFromSWS(
                   $translate.instant('hosting_tab_DATABASES_configuration_create_step1_loading_error'),
-                  _.get(err, 'data', err),
+                  get(err, 'data', err),
                   $scope.alerts.main,
                 );
               },
@@ -215,7 +219,7 @@ angular
           .catch((err) => {
             Alerter.alertFromSWS(
               $translate.instant('hosting_tab_DATABASES_configuration_create_step1_loading_error'),
-              _.get(err, 'data', err),
+              get(err, 'data', err),
               $scope.alerts.main,
             );
             $scope.loading.domains = false;
@@ -319,7 +323,7 @@ angular
           .catch((err) => {
             Alerter.alertFromSWS(
               $translate.instant('hosting_tab_DATABASES_configuration_create_step1_loading_error'),
-              _.get(err, 'data', err),
+              get(err, 'data', err),
               $scope.alerts.main,
             );
             $scope.loading.domains = false;

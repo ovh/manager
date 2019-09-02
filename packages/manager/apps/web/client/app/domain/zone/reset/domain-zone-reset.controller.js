@@ -1,3 +1,7 @@
+import isArray from 'lodash/isArray';
+import isEmpty from 'lodash/isEmpty';
+import map from 'lodash/map';
+
 angular.module('App').controller(
   'DomainZoneResetCtrl',
   class DomainZoneResetCtrl {
@@ -51,8 +55,8 @@ angular.module('App').controller(
       if (data.hosting) {
         dnsRecords.push({ fieldType: 'A', target: data.hosting.hostingIp });
       }
-      if (_.isArray(data.email) && !_.isEmpty(data.email)) {
-        dnsRecords = dnsRecords.concat(_.map(
+      if (isArray(data.email) && !isEmpty(data.email)) {
+        dnsRecords = dnsRecords.concat(map(
           data.email.filter(dnsRecord => dnsRecord.fieldType === 'MX' && !dnsRecord.subDomain),
           dnsRecord => ({ fieldType: 'MX', target: dnsRecord.target }),
         ));
@@ -61,7 +65,7 @@ angular.module('App').controller(
         dnsRecords.push({ fieldType: 'A', target: this.aOpts.custom });
       }
       if (this.mxOpts.custom) {
-        dnsRecords = dnsRecords.concat(_.map(
+        dnsRecords = dnsRecords.concat(map(
           this.mxOpts.custom.filter(custom => custom && custom.target !== ''),
           custom => ({
             fieldType: 'MX',

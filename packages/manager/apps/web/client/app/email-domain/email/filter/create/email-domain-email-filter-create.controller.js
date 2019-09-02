@@ -1,3 +1,9 @@
+import every from 'lodash/every';
+import lodashFilter from 'lodash/filter';
+import find from 'lodash/find';
+import get from 'lodash/get';
+import map from 'lodash/map';
+
 angular.module('App').controller(
   'EmailsCreateFilterCtrl',
   class EmailsCreateFilterCtrl {
@@ -11,7 +17,7 @@ angular.module('App').controller(
 
     $onInit() {
       this.account = this.$scope.currentActionData.account || null;
-      this.accounts = _.map(
+      this.accounts = map(
         this.$scope.currentActionData.accounts,
         account => `${account}@${this.account.domain}`,
       );
@@ -84,7 +90,7 @@ angular.module('App').controller(
         'filterName',
         !!value
           && /^[\w.\s-]+$/.test(value)
-          && !_.find(this.filters, filter => value === filter),
+          && !find(this.filters, filter => value === filter),
       );
     }
 
@@ -94,7 +100,7 @@ angular.module('App').controller(
     }
 
     filterRuleCheck() {
-      return _.every(
+      return every(
         this.model.rules,
         rule => rule.value
           && rule.operand
@@ -105,8 +111,8 @@ angular.module('App').controller(
 
     createFilter() {
       this.loading = true;
-      const rules = _.map(
-        _.filter(
+      const rules = map(
+        lodashFilter(
           this.model.rules,
           rule => (rule.headerSelect !== '' || rule.header !== '')
             && rule.operand !== ''
@@ -134,7 +140,7 @@ angular.module('App').controller(
       };
 
       let filterPromise;
-      if (_.get(this.$scope.currentActionData, 'delegate', false)) {
+      if (get(this.$scope.currentActionData, 'delegate', false)) {
         filterPromise = this.WucEmails.createDelegatedFilter(
           this.account.email,
           filter,

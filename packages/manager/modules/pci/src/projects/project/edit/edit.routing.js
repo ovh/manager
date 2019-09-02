@@ -9,10 +9,6 @@ export default /* @ngInject */ ($stateProvider) => {
       },
       resolve: {
         breadcrumb: /* @ngInject */ $translate => $translate.instant('pci_projects_project_parameters'),
-
-        defaultProject: /* @ngInject */
-          pciProjectEditService => pciProjectEditService.getDefaultProject(),
-
         onUpdate: /* @ngInject */ (
           $state,
           $timeout,
@@ -24,6 +20,10 @@ export default /* @ngInject */ ($stateProvider) => {
             $translate.instant('pci_projects_project_edit_update_success'),
             MESSAGES_CONTAINER_NAME,
           ))),
+        setDefault: /* @ngInject */
+          PciProjectsService => projectId => PciProjectsService.setAsDefaultProject(projectId),
+        unFavProject: /* @ngInject */
+          PciProjectsService => () => PciProjectsService.removeDefaultProject(),
       },
     });
 };

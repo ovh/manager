@@ -1,3 +1,5 @@
+import isArray from 'lodash/isArray';
+
 angular.module('App').controller(
   'DomainAttachedDomainSelectCtrl',
   class DomainAttachedDomainSelectCtrl {
@@ -29,7 +31,7 @@ angular.module('App').controller(
       this.loading = true;
       return this.HostingDomain.getAttachedDomains(this.domainName)
         .then((data) => {
-          if (_.isArray(data) && data.length > 0) {
+          if (isArray(data) && data.length > 0) {
             this.attachedDomains = data;
             [this.selectedAttachedDomain] = this.attachedDomains;
           } else {

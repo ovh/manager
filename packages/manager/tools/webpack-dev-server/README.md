@@ -2,7 +2,7 @@
 
 > OVH manager webpack development server configuration.
 
-[![Downloads](https://badgen.net/npm/dt/@ovh-ux/manager-webpack-dev-server)](https://npmjs.com/package/@ovh-ux/manager-webpack-dev-server) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/manager/tools/manager-webpack-dev-server)](https://npmjs.com/package/@ovh-ux/manager-webpack-dev-server?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/manager/tools/manager-webpack-dev-server)](https://npmjs.com/package/@ovh-ux/manager-webpack-dev-server?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
+[![Downloads](https://badgen.net/npm/dt/@ovh-ux/manager-webpack-dev-server)](https://npmjs.com/package/@ovh-ux/manager-webpack-dev-server) [![Dependencies](https://badgen.net/david/dep/ovh-ux/manager/packages/manager/tools/webpack-dev-server)](https://npmjs.com/package/@ovh-ux/manager-webpack-dev-server?activeTab=dependencies) [![Dev Dependencies](https://badgen.net/david/dev/ovh-ux/manager/packages/manager/tools/webpack-dev-server)](https://npmjs.com/package/@ovh-ux/manager-webpack-dev-server?activeTab=dependencies) [![Gitter](https://badgen.net/badge/gitter/ovh-ux/blue?icon=gitter)](https://gitter.im/ovh/ux)
 
 ## Install
 
@@ -29,17 +29,18 @@ The _env_ parameter is an object containing the following values:
 
 ```js
 const env = {
-  host: '0.0.0.0',  // If you want your server to be accessible externally 
+  dev: [            // custom configuration to proxy some routes
+    {
+      context,      // Routes to rewrite
+      nic,
+      target,       // API path to target
+    }
+  ],
+  host: '0.0.0.0',  // If you want your server to be accessible externally
   https: false,     // true to enable https
   local2API: false, // true to make 2API calls on local 8080 port
+  port: 9000,       // Specify a port number to listen for requests.
   region: 'EU',     // manager region (EU, CA, US)
-  dev: [            // custom configuration to proxy some routes 
-    {
-      context       // Routes to rewrite
-      target        // API path to target
-      nic           
-    }
-  ]
 };
 ```
 

@@ -1,3 +1,5 @@
+import set from 'lodash/set';
+
 angular.module('App').controller(
   'AddSubdomainCtrl',
   class AddSubdomainCtrl {
@@ -13,8 +15,8 @@ angular.module('App').controller(
       this.model = {};
 
       if (typeof this.$scope.currentActionData.subdomain !== 'undefined') {
-        _.set(this.model, 'subdomain', this.$scope.currentActionData.subdomain);
-        _.set(this.model, 'action', 'addToMutu');
+        set(this.model, 'subdomain', this.$scope.currentActionData.subdomain);
+        set(this.model, 'action', 'addToMutu');
       }
 
       this.$scope.actionRedirect = () => this.actionRedirect();

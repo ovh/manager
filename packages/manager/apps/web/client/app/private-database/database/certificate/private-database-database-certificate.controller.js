@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular.module('App').controller(
   'PrivateDatabaseCertificateCtrl',
   class PrivateDatabaseCertificateCtrl {
@@ -13,7 +15,7 @@ angular.module('App').controller(
       this.database = this.$scope.currentActionData;
 
       this.model = {
-        certificate: _.get(this.database, 'tlsCa', null),
+        certificate: get(this.database, 'tlsCa', null),
       };
     }
   },

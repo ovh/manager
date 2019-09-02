@@ -1,3 +1,8 @@
+import get from 'lodash/get';
+import isString from 'lodash/isString';
+import kebabCase from 'lodash/kebabCase';
+import pull from 'lodash/pull';
+
 angular.module('App').controller(
   'PrivateDatabaseTabsCtrl',
   class PrivateDatabaseTabsCtrl {
@@ -8,7 +13,7 @@ angular.module('App').controller(
     }
 
     $onInit() {
-      this.$scope.toKebabCase = _.kebabCase;
+      this.$scope.toKebabCase = kebabCase;
       this.currentTab = this.$stateParams.tab;
 
       this.defaultTab = 'STATE';
@@ -24,26 +29,26 @@ angular.module('App').controller(
         'TASK',
       ];
 
-      if (_.get(this.$scope, 'database.serviceInfos.status') === 'expired') {
+      if (get(this.$scope, 'database.serviceInfos.status') === 'expired') {
         this.$scope.tabs = ['STATE'];
       }
 
       if (this.$scope.isDockerDatabase()) {
-        _.pull(this.$scope.tabs, 'CRON');
+        pull(this.$scope.tabs, 'CRON');
       }
 
       if (this.$scope.isLegacyDatabase()) {
-        _.pull(this.$scope.tabs, 'CONFIGURATION', 'METRICS');
+        pull(this.$scope.tabs, 'CONFIGURATION', 'METRICS');
       }
 
       this.$scope.isConfigSet().then((res) => {
         if (!res) {
-          _.pull(this.$scope.tabs, 'CONFIGURATION');
+          pull(this.$scope.tabs, 'CONFIGURATION');
         }
       });
 
       if (!this.$scope.isDBaaS()) {
-        _.pull(this.$scope.tabs, 'WHITELIST');
+        pull(this.$scope.tabs, 'WHITELIST');
       }
 
       this.$scope.setSelectedTab = (tab) => {
@@ -58,11 +63,11 @@ angular.module('App').controller(
       if (
         this.currentTab
         && this.$scope.tabs.indexOf(
-          _.isString(this.currentTab)
+          isString(this.currentTab)
           && this.currentTab.toUpperCase(),
         ) !== -1
       ) {
-        this.$scope.setSelectedTab(_.isString(this.currentTab) && this.currentTab.toUpperCase());
+        this.$scope.setSelectedTab(isString(this.currentTab) && this.currentTab.toUpperCase());
       } else {
         this.$scope.setSelectedTab(this.defaultTab);
       }

@@ -12,5 +12,9 @@
   ],
   "!(*CHANGELOG).md": [
     "remark -qf ."
+  ],
+  "**/package.json": [
+    "npx sort-package-json",
+    "git add"
   ]
 }

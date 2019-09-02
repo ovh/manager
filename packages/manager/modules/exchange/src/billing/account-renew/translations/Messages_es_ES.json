@@ -1,0 +1,23 @@
+{
+  "exchange_update_billing_button_title": "Configuración de la renovación",
+  "exchange_update_billing_action_title": "Período de renovación",
+  "exchange_update_billing_validation_title": "Validación",
+  "exchange_update_billing_periode_intro": "Elija la frecuencia para la renovación automática de cada cuenta. <br />Se aplicará a partir de la siguiente renovación.",
+  "exchange_update_billing_actions_label": "Acciones",
+  "exchange_update_billing_email_label": "Cuenta de correo",
+  "exchange_update_billing_expiration_date_label": "Expiración",
+  "exchange_update_billing_current_periode_label": "Valor actual",
+  "exchange_update_billing_periode_label": "Renovación",
+  "exchange_update_billing_header_new_periode": "Nuevo período",
+  "exchange_update_billing_periode_action_MONTHLY": "Cambiar a «Mensual»",
+  "exchange_update_billing_periode_action_YEARLY": "Cambiar a «Anual»",
+  "exchange_update_billing_periode_action_DELETE_AT_EXPIRATION": "Cambiar a «Expira al vencimiento»",
+  "exchange_update_billing_periode_value_MONTHLY": "Mensual",
+  "exchange_update_billing_periode_value_YEARLY": "Anual",
+  "exchange_update_billing_periode_value_DELETE_AT_EXPIRATION": "Expira al vencimiento",
+  "exchange_update_billing_periode_delete_warning": "¡Atención! Esta opción implica que el servicio expira en su fecha de vencimiento y que los datos se perderán. Después será imposible recuperar los datos de la cuenta.",
+  "exchange_update_billing_periode_resume": "Va a cambiar el período de renovación de sus cuentas:",
+  "exchange_update_billing_periode_success": "El período de renovación de las cuentas seleccionadas se ha actualizado.",
+  "exchange_update_billing_periode_partial": "Algunos períodos de facturación no se han actualizado.",
+  "exchange_update_billing_periode_failure": "Se ha producido un error al actualizar la renovación de las cuentas."
+}

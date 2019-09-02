@@ -1,3 +1,14 @@
+import debounce from 'lodash/debounce';
+import forEach from 'lodash/forEach';
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import get from 'lodash/get';
+import isArray from 'lodash/isArray';
+import isEmpty from 'lodash/isEmpty';
+import isString from 'lodash/isString';
+import trim from 'lodash/trim';
+import set from 'lodash/set';
+
 angular.module('App').controller(
   'DomainZoneRecordCtrl',
   class DomainZoneRecordAddCtrl {
@@ -96,8 +107,8 @@ angular.module('App').controller(
         .then(({ recordCanBeAdded, conflictingRecords }) => {
           this.recordConflicts = recordCanBeAdded;
           this.conflictingRecords = conflictingRecords;
-          _.each(this.conflictingRecords, (record) => {
-            _.set(record, 'domainToDisplay', `${(record.subDomainToDisplay
+          forEach(this.conflictingRecords, (record) => {
+            set(record, 'domainToDisplay', `${(record.subDomainToDisplay
               ? `${record.subDomainToDisplay}.`
               : '') + record.zoneToDisplay}.`);
           });
@@ -108,7 +119,7 @@ angular.module('App').controller(
     }
 
     checkMxTarget(input) {
-      const value = _.get(this.model, 'target.target');
+      const value = get(this.model, 'target.target');
       input.$setValidity(
         'target',
         value === null
@@ -118,7 +129,7 @@ angular.module('App').controller(
     }
 
     checkNaptrReplaceField(input) {
-      const value = _.get(this.model, 'target.replace');
+      const value = get(this.model, 'target.replace');
       input.$setValidity(
         'replace',
         value === null
@@ -150,7 +161,7 @@ angular.module('App').controller(
     }
 
     checkSrvTarget(input) {
-      const value = _.get(this.model, 'target.target');
+      const value = get(this.model, 'target.target');
       let isValid;
 
       if (this.DomainValidator.regex.SRV_target.test(value)) {
@@ -163,9 +174,9 @@ angular.module('App').controller(
     }
 
     checkCAATarget(input) {
-      const value = _.get(this.model, 'target.target');
+      const value = get(this.model, 'target.target');
 
-      input.$setValidity('target', _.isString(value) && !_.isEmpty(value));
+      input.$setValidity('target', isString(value) && !isEmpty(value));
     }
 
     checkSubDomainToDisplay(input) {
@@ -183,7 +194,7 @@ angular.module('App').controller(
       // Test already existing subDomain field
       if (!this.loading.checkSubDomain) {
         this.loading.checkSubDomain = true;
-        const checkExistingSubDomain = _.debounce(
+        const checkExistingSubDomain = debounce(
           () => this.checkExistingSubDomain(),
           600,
         );
@@ -193,8 +204,8 @@ angular.module('App').controller(
 
     checkExistingSubDomain() {
       if (
-        !!_.find(['A', 'AAAA'], entry => entry === this.model.fieldType)
-        && _.isString(this.model.subDomainToDisplay)
+        !!find(['A', 'AAAA'], entry => entry === this.model.fieldType)
+        && isString(this.model.subDomainToDisplay)
       ) {
         return this.Domain.getTabZoneDns(
           this.domain.name,
@@ -206,7 +217,7 @@ angular.module('App').controller(
             const subDomain = angular
               .copy(this.model.subDomainToDisplay)
               .toLowerCase();
-            this.existingSubDomain = _.filter(
+            this.existingSubDomain = filter(
               results.paginatedZone.records.results,
               zone => zone.subDomain.toLowerCase() === subDomain,
             );
@@ -275,7 +286,7 @@ angular.module('App').controller(
     }
 
     loadEditModel(fieldType) {
-      this.model.subDomainToDisplay = _.get(this.edit, 'subDomainToDisplay');
+      this.model.subDomainToDisplay = get(this.edit, 'subDomainToDisplay');
 
       switch (fieldType.toUpperCase()) {
         case 'A':
@@ -341,7 +352,7 @@ angular.module('App').controller(
             .trim()
             .split(/=(.+)?/)
             .slice(0, -1)
-            .map(_.trim);
+            .map(trim);
 
           switch (splittedVal[0]) {
             case 'v':
@@ -411,7 +422,7 @@ angular.module('App').controller(
             .trim()
             .split(/=(.+)?/)
             .slice(0, -1)
-            .map(_.trim);
+            .map(trim);
           switch (splittedVal[0]) {
             case 'v':
               this.model.target.v = 'DMARC1';
@@ -439,7 +450,7 @@ angular.module('App').controller(
 
     loadLocModel(target) {
       const splitted = target.match(this.DomainValidator.regex.LOC);
-      if (_.isArray(splitted) && splitted.length > 0) {
+      if (isArray(splitted) && splitted.length > 0) {
         this.model.target.lat_deg = parseInt(splitted[1], 10) || '';
         this.model.target.lat_min = parseInt(splitted[2], 10) || '';
         this.model.target.lat_sec = parseFloat(splitted[3]) || '';
@@ -457,7 +468,7 @@ angular.module('App').controller(
 
     loadMxModel(target) {
       const splitted = target.match(this.DomainValidator.regex.MX);
-      if (_.isArray(splitted) && splitted.length > 0) {
+      if (isArray(splitted) && splitted.length > 0) {
         this.model.target.priority = parseInt(splitted[1], 10);
         [, , this.model.target.target] = splitted;
       }
@@ -465,7 +476,7 @@ angular.module('App').controller(
 
     loadNaptrModel(target) {
       const splitted = target.match(this.DomainValidator.regex.NAPTR); // todo: exclude dot!
-      if (_.isArray(splitted) && splitted.length > 0) {
+      if (isArray(splitted) && splitted.length > 0) {
         this.model.target.order = parseInt(splitted[1], 10) || '';
         this.model.target.pref = parseInt(splitted[2], 10) || '';
         this.model.target.flag = splitted[3] || '';
@@ -483,8 +494,8 @@ angular.module('App').controller(
         .replace(/^"(.*)"$/, '$1')
         .trim()
         .split(/\s/);
-      if (_.isArray(splitted) && splitted.length > 0) {
-        _.forEach(['a', 'mx', 'ptr'], (fieldType) => {
+      if (isArray(splitted) && splitted.length > 0) {
+        forEach(['a', 'mx', 'ptr'], (fieldType) => {
           if (splitted.indexOf(fieldType) !== -1) {
             this.model.target[`${fieldType}Sender`] = true;
             splitted.splice(splitted.indexOf(fieldType), 1);
@@ -498,7 +509,7 @@ angular.module('App').controller(
           let found = false;
 
           // Test "a", "mx", "ptr", "ip4", "ip6", "include", "exists", "redirect", "exp" fields
-          _.forEach(['a', 'mx', 'ptr', 'ip4', 'ip6', 'include'], (fieldType) => {
+          forEach(['a', 'mx', 'ptr', 'ip4', 'ip6', 'include'], (fieldType) => {
             if (
               !found
               && this.DomainValidator.regex.SPF_sender[
@@ -526,7 +537,7 @@ angular.module('App').controller(
 
     loadSrvModel(target) {
       const splitted = target.match(this.DomainValidator.regex.SRV); // todo: exclude dot!
-      if (_.isArray(splitted) && splitted.length > 0) {
+      if (isArray(splitted) && splitted.length > 0) {
         this.model.target.priority = parseInt(splitted[1], 10) || '';
         this.model.target.weight = parseInt(splitted[2], 10) || '';
         this.model.target.port = parseInt(splitted[3], 10) || '';
@@ -536,7 +547,7 @@ angular.module('App').controller(
 
     loadSshfpModel(target) {
       const splitted = target.match(this.DomainValidator.regex.SSHFP);
-      if (_.isArray(splitted) && splitted.length > 0) {
+      if (isArray(splitted) && splitted.length > 0) {
         this.model.target.algorithm = splitted[1] || '';
         this.model.target.fptype = splitted[2] || '';
         this.model.target.fp = splitted[3] || '';
@@ -545,7 +556,7 @@ angular.module('App').controller(
 
     loadTslaModel(target) {
       const splitted = target.match(this.DomainValidator.regex.TLSA);
-      if (_.isArray(splitted) && splitted.length > 0) {
+      if (isArray(splitted) && splitted.length > 0) {
         this.model.target.usage = parseInt(splitted[1], 10) || '';
         this.model.target.selector = parseInt(splitted[2], 10) || '';
         this.model.target.matchingType = parseInt(splitted[3], 10) || '';
@@ -555,7 +566,7 @@ angular.module('App').controller(
 
     loadCAAModel(target) {
       const splitted = target.match(this.DomainValidator.regex.CAA);
-      if (_.isArray(splitted) && splitted.length > 3) {
+      if (isArray(splitted) && splitted.length > 3) {
         this.model.target.flags = parseInt(splitted[1], 10) || 0;
         this.model.target.tag = splitted[2] || '';
         this.model.target.target = splitted[3] || '';

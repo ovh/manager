@@ -52,7 +52,7 @@ import exchangeAccountOutlookDelete from './account/outlook/delete/account-outlo
 import ExchangeRemoveAccountCtrl from './account/remove/account-remove.controller';
 import ExchangeUpdateAccountCtrl from './account/update/account-update.controller';
 import ExchangeUpgrade300GCtrl from './account/upgrade-300g/account-upgrade-300g.controller';
-import ExchangeUpdateRenewCtrl from './billing/account-renew/billing-account-renew.controller';
+import ExchangeUpdateRenewCtrl from './billing/account-renew/renew.controller';
 import ExchangeTabDiagnosticsCtrl from './diagnostic/diagnostic.controller';
 import ExchangeAddDisclaimerCtrl from './disclaimer/add/disclaimer-add.controller';
 import ExchangeDisclaimerCtrl from './disclaimer/disclaimer.controller';

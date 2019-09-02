@@ -1,3 +1,30 @@
+## [13.27.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-web@13.27.0...@ovh-ux/manager-web@13.27.1) (2019-08-29)
+
+
+### Bug Fixes
+
+* **deps:** bump ovh-ui-angular to v3.7.4 ([#1245](https://github.com/ovh-ux/manager/issues/1245)) ([33ba95c](https://github.com/ovh-ux/manager/commit/33ba95c))
+
+
+
+# [13.27.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-web@13.26.1...@ovh-ux/manager-web@13.27.0) (2019-08-26)
+
+
+### Features
+
+* manage incomplete nic ([#1197](https://github.com/ovh-ux/manager/issues/1197)) ([bdce016](https://github.com/ovh-ux/manager/commit/bdce016))
+
+
+
+## [13.26.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-web@13.26.0...@ovh-ux/manager-web@13.26.1) (2019-08-26)
+
+
+### Bug Fixes
+
+* **web:** git subtree pull @ovh-ux/manager/web ([0d64f64](https://github.com/ovh-ux/manager/commit/0d64f64))
+
+
+
 # [13.26.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-web@13.25.8...@ovh-ux/manager-web@13.26.0) (2019-08-12)
 
 

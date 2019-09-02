@@ -6,6 +6,7 @@ import flatten from 'lodash/flatten';
 import map from 'lodash/map';
 import set from 'lodash/set';
 import values from 'lodash/values';
+import size from 'lodash/size';
 
 angular.module('managerApp').controller('TelecomTelephonyBillingAccountAdministrationLinesGroup', function ($scope, $stateParams, $q, $translate, TelephonyMediator, TelephonySidebar, OvhApiTelephony, TucToast, TucToastError) {
   const self = this;
@@ -25,11 +26,11 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountAdministr
 
     const getNumberCount = OvhApiTelephony.Number().v6().query({
       billingAccount: $stateParams.billingAccount,
-    }).$promise.then(_.size);
+    }).$promise.then(size);
 
     const getLineCount = OvhApiTelephony.Line().v6().query({
       billingAccount: $stateParams.billingAccount,
-    }).$promise.then(_.size);
+    }).$promise.then(size);
 
     return $q.all({
       billingAccounts: OvhApiTelephony.v6().query().$promise,

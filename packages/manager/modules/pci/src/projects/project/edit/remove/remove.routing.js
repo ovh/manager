@@ -1,24 +1,25 @@
-import controller from './remove.controller';
-import template from './remove.html';
-
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider
     .state('pci.projects.project.edit.remove', {
       url: '/remove',
       views: {
         modal: {
-          controller,
-          controllerAs: '$ctrl',
-          template,
+          component: 'pciProjectEditRemove',
         },
       },
       layout: 'modal',
-      translations: {
-        format: 'json',
-        value: ['.'],
-      },
       resolve: {
         breadcrumb: () => null,
+        delete: /* @ngInject */ (
+          OvhApiCloudProject,
+          projectId,
+        ) => () => OvhApiCloudProject
+          .v6()
+          .delete({
+            serviceName: projectId,
+          })
+          .$promise,
+        goBack: /* @ngInject */ $state => () => $state.go('^'),
       },
     });
 };

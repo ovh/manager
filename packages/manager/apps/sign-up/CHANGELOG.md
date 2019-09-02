@@ -1,3 +1,21 @@
+## [1.4.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/sign-up-app@1.4.0...@ovh-ux/sign-up-app@1.4.1) (2019-08-29)
+
+
+### Bug Fixes
+
+* **deps:** bump ovh-ui-angular to v3.7.4 ([#1245](https://github.com/ovh-ux/manager/issues/1245)) ([33ba95c](https://github.com/ovh-ux/manager/commit/33ba95c))
+
+
+
+# [1.4.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/sign-up-app@1.3.0...@ovh-ux/sign-up-app@1.4.0) (2019-08-26)
+
+
+### Features
+
+* manage incomplete nic ([#1197](https://github.com/ovh-ux/manager/issues/1197)) ([bdce016](https://github.com/ovh-ux/manager/commit/bdce016))
+
+
+
 # [1.3.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/sign-up-app@1.2.1...@ovh-ux/sign-up-app@1.3.0) (2019-08-12)
 
 

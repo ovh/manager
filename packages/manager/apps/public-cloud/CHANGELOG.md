@@ -1,3 +1,31 @@
+## [1.3.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@1.3.0...@ovh-ux/manager-public-cloud@1.3.1) (2019-08-29)
+
+
+### Bug Fixes
+
+* **deps:** bump ovh-ui-angular to v3.7.4 ([#1245](https://github.com/ovh-ux/manager/issues/1245)) ([33ba95c](https://github.com/ovh-ux/manager/commit/33ba95c))
+
+
+
+# [1.3.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@1.2.1...@ovh-ux/manager-public-cloud@1.3.0) (2019-08-26)
+
+
+### Features
+
+* manage incomplete nic ([#1197](https://github.com/ovh-ux/manager/issues/1197)) ([bdce016](https://github.com/ovh-ux/manager/commit/bdce016))
+
+
+
+## [1.2.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@1.2.0...@ovh-ux/manager-public-cloud@1.2.1) (2019-08-26)
+
+
+### Bug Fixes
+
+* use right files for jquery-ui ([09bcd73](https://github.com/ovh-ux/manager/commit/09bcd73))
+* **public-cloud:** remove pci assets entry ([#1212](https://github.com/ovh-ux/manager/issues/1212)) ([832f0eb](https://github.com/ovh-ux/manager/commit/832f0eb))
+
+
+
 # [1.2.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-public-cloud@1.1.1...@ovh-ux/manager-public-cloud@1.2.0) (2019-08-13)
 
 

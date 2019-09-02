@@ -1,3 +1,5 @@
+import set from 'lodash/set';
+
 angular.module('App').controller(
   'controllers.Domain.Glue',
   class DomainTabGlueCtrl {
@@ -48,7 +50,7 @@ angular.module('App').controller(
           this.glueHosts = hosts.map(host => ({ host }));
         })
         .catch((err) => {
-          _.set(err, 'type', err.type || 'ERROR');
+          set(err, 'type', err.type || 'ERROR');
           this.Alerter.alertFromSWS(
             this.$translate.instant('domain_tab_GLUE_table_error'),
             err,
@@ -67,7 +69,7 @@ angular.module('App').controller(
 
     transformItem(host) {
       return this.Domain.getGlueRecordDetail(this.domain.name, host.host).then((glueRecord) => {
-        _.set(
+        set(
           glueRecord,
           'hostToDisplay',
           this.DomainValidator.constructor.convertHostToUnicode(host.host),

@@ -1,3 +1,12 @@
+import forEach from 'lodash/forEach';
+import get from 'lodash/get';
+import indexOf from 'lodash/indexOf';
+import isEmpty from 'lodash/isEmpty';
+import map from 'lodash/map';
+import set from 'lodash/set';
+import some from 'lodash/some';
+import xor from 'lodash/xor';
+
 angular.module('App').controller(
   'DomainsCtrl',
   class DomainsCtrl {
@@ -70,7 +79,7 @@ angular.module('App').controller(
         this.Domains.getDomains(count, offset, this.search.value)
           .then((domains) => {
             this.$scope.domains = domains;
-            if (_.get(domains, 'list.results', []).length > 0) {
+            if (get(domains, 'list.results', []).length > 0) {
               this.hasResult = true;
             }
             this.applySelection();
@@ -114,8 +123,8 @@ angular.module('App').controller(
     }
 
     applySelection() {
-      _.forEach(_.get(this.$scope.domains, 'list.results'), (value) => {
-        _.set(value, 'selected', _.indexOf(this.$scope.selectedDomains, value.name) !== -1);
+      forEach(get(this.$scope.domains, 'list.results'), (value) => {
+        set(value, 'selected', indexOf(this.$scope.selectedDomains, value.name) !== -1);
       });
     }
 
@@ -125,7 +134,7 @@ angular.module('App').controller(
     }
 
     goSearch() {
-      if (!_.isEmpty(this.search.value)) {
+      if (!isEmpty(this.search.value)) {
         this.loading.domainsSearch = true;
       }
       this.$scope.$broadcast('paginationServerSide.loadPage', 1);
@@ -136,17 +145,17 @@ angular.module('App').controller(
      * @param {integer} state
      */
     globalCheckboxStateChange(state) {
-      if (_.get(this.$scope.domains, 'list.results')) {
+      if (get(this.$scope.domains, 'list.results')) {
         switch (state) {
           case 0:
             this.$scope.selectedDomains = [];
             this.atLeastOneSelected = false;
             break;
           case 1:
-            this.$scope.selectedDomains = _.map(
+            this.$scope.selectedDomains = map(
               this.$scope.domains.list.results,
               'name',
-            ).filter(result => !_.some(this.$scope.selectedDomains, result.name));
+            ).filter(result => !some(this.$scope.selectedDomains, result.name));
             this.atLeastOneSelected = true;
             break;
           case 2:
@@ -175,7 +184,7 @@ angular.module('App').controller(
      * @param {string} domain name
      */
     toggleDomain(domain) {
-      this.$scope.selectedDomains = _.xor(this.$scope.selectedDomains, [
+      this.$scope.selectedDomains = xor(this.$scope.selectedDomains, [
         domain,
       ]);
       this.atLeastOneSelected = this.$scope.selectedDomains.length > 0;

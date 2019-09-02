@@ -1,3 +1,9 @@
+import clone from 'lodash/clone';
+import indexOf from 'lodash/indexOf';
+import isArray from 'lodash/isArray';
+import join from 'lodash/join';
+import map from 'lodash/map';
+
 angular.module('App').controller(
   'DomainOperationUpdateCtrl',
   class DomainOperationUpdateCtrl {
@@ -46,23 +52,23 @@ angular.module('App').controller(
       return this.domainOperationService
         .getOperationArguments(operationId)
         .then((argumentIds) => {
-          const promises = _.map(argumentIds, key => this.domainOperationService
+          const promises = map(argumentIds, key => this.domainOperationService
             .getOperationArgument(operationId, key)
             .then((originalArgument) => {
-              const argument = _(originalArgument).clone();
+              const argument = clone(originalArgument);
 
               this.document = this.document || argument.type === '/me/document';
 
               // add user friendly translations for some known tasks
               if (
-                _.indexOf(['action', 'memberContactXXX'], argument.key) !== -1
+                indexOf(['action', 'memberContactXXX'], argument.key) !== -1
               ) {
                 argument.keyTranslation = this.$translate.instant(`domains_operations_update_key_${argument.key}`);
               }
 
               // set a default value
               if (
-                _.isArray(argument.acceptedValues)
+                isArray(argument.acceptedValues)
                   && argument.acceptedValues.length > 1
               ) {
                 [argument.value] = argument.acceptedValues;
@@ -78,11 +84,13 @@ angular.module('App').controller(
                   this.constraints[
                     argument.key
                   ].acceptedFormatsDisplay = argument.acceptedFormats.join(', ');
-                  this.constraints[argument.key].acceptedFormats = _(argument.acceptedFormats)
-                    .chain()
-                    .map(value => `.${value}`)
-                    .join(', ')
-                    .value();
+                  this.constraints[argument.key].acceptedFormats = join(
+                    map(
+                      argument.acceptedFormats,
+                      value => `.${value}`,
+                    ),
+                    ', ',
+                  );
                 } else {
                   this.constraints[argument.key].acceptedFormats = '*';
                 }
@@ -149,7 +157,7 @@ angular.module('App').controller(
     updateOperation() {
       this.loading = true;
 
-      const promises = _.map(this.args, (arg) => {
+      const promises = map(this.args, (arg) => {
         let rtn;
         if (arg.type === '/me/document') {
           if (this.files[arg.key]) {

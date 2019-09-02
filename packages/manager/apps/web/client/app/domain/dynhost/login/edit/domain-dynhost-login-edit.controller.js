@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular.module('App').controller(
   'DomainDynHostLoginEditCtrl',
   class DomainDynHostLoginEditCtrl {
@@ -83,7 +85,7 @@ angular.module('App').controller(
         )))
         .catch(err => this.Alerter.alertFromSWS(
           this.$translate.instant('domain_tab_DYNHOST_error'),
-          _.get(err, 'data', err),
+          get(err, 'data', err),
           this.$scope.alerts.main,
         ))
         .finally(() => {

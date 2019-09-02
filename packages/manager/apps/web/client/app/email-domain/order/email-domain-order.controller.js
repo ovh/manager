@@ -1,3 +1,6 @@
+import filter from 'lodash/filter';
+import map from 'lodash/map';
+
 angular
   .module('App')
   .controller(
@@ -84,8 +87,8 @@ angular
           .getOrderModels(this.selectedOrder.config.domain)
           .then((response) => { this.list.offers = response; })
           .catch((err) => {
-            this.list.offers = _.filter(err, offer => offer.offer);
-            const errors = _.filter(err, offer => offer.message);
+            this.list.offers = filter(err, offer => offer.offer);
+            const errors = filter(err, offer => offer.message);
             if (this.list.offers.length <= 0) {
               this.Alerter.error(this.$translate.instant('mxPlan_order_step1_error', { t0: errors[0].message }), this.$scope.alerts.order);
             }
@@ -125,7 +128,7 @@ angular
 
       loadPrices(durations) {
         this.loading.prices = true;
-        const queue = _.map(durations, duration => this.MXPlan
+        const queue = map(durations, duration => this.MXPlan
           .orderPrice(this.selectedOrder.config.domain, this.selectedOrder.config.offer, duration)
           .then((details) => {
             this.durations.details[duration] = details;

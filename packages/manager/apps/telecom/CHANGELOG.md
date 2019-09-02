@@ -1,3 +1,21 @@
+## [10.33.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom@10.33.0...@ovh-ux/manager-telecom@10.33.1) (2019-08-29)
+
+
+### Bug Fixes
+
+* **deps:** bump ovh-ui-angular to v3.7.4 ([#1245](https://github.com/ovh-ux/manager/issues/1245)) ([33ba95c](https://github.com/ovh-ux/manager/commit/33ba95c))
+
+
+
+# [10.33.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom@10.32.0...@ovh-ux/manager-telecom@10.33.0) (2019-08-26)
+
+
+### Features
+
+* manage incomplete nic ([#1197](https://github.com/ovh-ux/manager/issues/1197)) ([bdce016](https://github.com/ovh-ux/manager/commit/bdce016))
+
+
+
 # [10.32.0](https://github.com/ovh-ux/ovh-manager-telecom/compare/v10.31.6...v10.32.0) (2019-08-12)
 
 

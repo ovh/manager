@@ -1,3 +1,12 @@
+import assignIn from 'lodash/assignIn';
+import findLast from 'lodash/findLast';
+import forEach from 'lodash/forEach';
+import get from 'lodash/get';
+import includes from 'lodash/includes';
+import isEmpty from 'lodash/isEmpty';
+import isString from 'lodash/isString';
+import startsWith from 'lodash/startsWith';
+
 angular.module('controllers').controller(
   'controllers.Domain.Redirection.add',
   class DomainRedirectionAddCtrl {
@@ -56,7 +65,7 @@ angular.module('controllers').controller(
       };
       this.newRedirection = {
         domain: this.$scope.currentActionData,
-        subdomain: _.get(
+        subdomain: get(
           this.$scope.currentActionData,
           'subdomainPreset',
           null,
@@ -108,9 +117,9 @@ angular.module('controllers').controller(
     getCompleteTarget() {
       let redirectionTarget = this.newRedirection.serverTarget;
       if (
-        !_.isEmpty(redirectionTarget)
+        !isEmpty(redirectionTarget)
         && this.shouldIncludeDomain
-        && _.isString(this.newRedirection.domain.name)
+        && isString(this.newRedirection.domain.name)
       ) {
         redirectionTarget += `.${this.newRedirection.domain.name}`;
       }
@@ -170,7 +179,7 @@ angular.module('controllers').controller(
      * @param {Array} table
      */
     getLastError(table) {
-      const record = _.findLast(
+      const record = findLast(
         table,
         r => !this.constructor.isValidRedirection(r),
       );
@@ -205,8 +214,8 @@ angular.module('controllers').controller(
      */
     isORTiP(tableA, tableORT) {
       let bool = true;
-      _.forEach(tableA, (itemA) => {
-        if (!_.contains(tableORT, itemA)) {
+      forEach(tableA, (itemA) => {
+        if (!includes(tableORT, itemA)) {
           bool = false;
         }
       });
@@ -221,7 +230,7 @@ angular.module('controllers').controller(
      * @returns {boolean}
      */
     static lodashContain(table, searchLabel) {
-      return _.contains(table, searchLabel);
+      return includes(table, searchLabel);
     }
 
     testInputSize(val) {
@@ -236,7 +245,7 @@ angular.module('controllers').controller(
     }
 
     redirectionTargetChange() {
-      if (_.isEmpty(this.newRedirection.serverTarget)) {
+      if (isEmpty(this.newRedirection.serverTarget)) {
         this.errors.redirectionTarget = true;
         this.errors.domainCname = true;
       } else {
@@ -295,7 +304,7 @@ angular.module('controllers').controller(
      */
     static isValidRedirection(redirection) {
       return (
-        redirection.state === 'OK' && _.isEmpty(redirection.listBlockingType)
+        redirection.state === 'OK' && isEmpty(redirection.listBlockingType)
       );
     }
 
@@ -311,7 +320,7 @@ angular.module('controllers').controller(
       input.$setValidity('subdomain', isValid);
 
       if (subDomain !== null && subDomain !== '') {
-        this.newRedirection.disableWww = subDomain === 'www' || _.startsWith(subDomain, 'www.');
+        this.newRedirection.disableWww = subDomain === 'www' || startsWith(subDomain, 'www.');
         this.newRedirection.subdomainWww = !this.newRedirection.disableWww
           ? `www.${subDomain}`
           : 'www';
@@ -446,7 +455,7 @@ angular.module('controllers').controller(
       }
 
       this.Domain.checkRedirectionAdd(this.newRedirection.domain.name, {
-        params: _.extend(this.newRedirection.params, { subDomain }),
+        params: assignIn(this.newRedirection.params, { subDomain }),
         considerWww:
           this.newRedirection.addwww && !this.newRedirection.disableWww,
       })
@@ -454,12 +463,12 @@ angular.module('controllers').controller(
           this.newRedirection.listValidRedirection = ids;
 
           // min 1 elt, max 2
-          _.forEach(ids, (resultIds) => {
+          forEach(ids, (resultIds) => {
             if (this.constructor.isValidRedirection(resultIds)) {
               this.errors.containAllError = false;
             } else {
               this.errors.containOneError = true;
-              if (_.get(resultIds, 'isWww', false)) {
+              if (get(resultIds, 'isWww', false)) {
                 this.errors.wwwhasError = true;
               }
             }
@@ -487,7 +496,7 @@ angular.module('controllers').controller(
       this.Domain.overwriteRedirection(
         this.newRedirection.domain.name,
         {
-          params: _.extend(this.newRedirection.params, {
+          params: assignIn(this.newRedirection.params, {
             subDomain,
             detailORT: this.newRedirection.webTargetdetail,
           }),
@@ -502,7 +511,7 @@ angular.module('controllers').controller(
       )
         .then((tab) => {
           let nbError = 0;
-          _.forEach(tab, (item) => {
+          forEach(tab, (item) => {
             if (item.result && item.result.type === 'ERROR') {
               nbError += 1;
             }

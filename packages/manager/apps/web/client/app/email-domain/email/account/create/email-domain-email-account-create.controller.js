@@ -1,3 +1,7 @@
+import findIndex from 'lodash/findIndex';
+import get from 'lodash/get';
+import trim from 'lodash/trim';
+
 angular.module('App').controller(
   'EmailsCreateAccountCtrl',
   class EmailsCreateAccountCtrl {
@@ -26,7 +30,7 @@ angular.module('App').controller(
         guideName,
         guideUrl,
       };
-      const idxDevice = _.findIndex(this.devices, 'deviceName', deviceName);
+      const idxDevice = findIndex(this.devices, { deviceName });
 
       if (idxDevice >= 0) {
         this.devices[idxDevice].guides.push(guide);
@@ -40,7 +44,7 @@ angular.module('App').controller(
     }
 
     setGuideByName(deviceName) {
-      const idxDevice = _.findIndex(this.devices, 'deviceName', deviceName);
+      const idxDevice = findIndex(this.devices, { deviceName });
 
       if (idxDevice >= 0) {
         this.currentGuide = this.devices[idxDevice];
@@ -86,67 +90,67 @@ angular.module('App').controller(
         this.createGuide(
           'MAC',
           'El capitan',
-          _.get(guides, 'emailsConfigurationMacElCapitain'),
+          get(guides, 'emailsConfigurationMacElCapitain'),
           'assets/images/logos/iOS9.png',
         );
         this.createGuide(
           'MAC',
           'Mavericks / Yosemite',
-          _.get(guides, 'emailsConfigurationMacMavericksAndYosemite'),
+          get(guides, 'emailsConfigurationMacMavericksAndYosemite'),
           'assets/images/logos/iOS9.png',
         );
         this.createGuide(
           'MAC',
           'Mountain Lion',
-          _.get(guides, 'emailsConfigurationMacMountainLion'),
+          get(guides, 'emailsConfigurationMacMountainLion'),
           'assets/images/logos/iOS9.png',
         );
         this.createGuide(
           'OUTLOOK',
           '2016',
-          _.get(guides, 'emailsConfigurationOutlook2016'),
+          get(guides, 'emailsConfigurationOutlook2016'),
           'assets/images/logos/outlook2013.png',
         );
         this.createGuide(
           'OUTLOOK',
           '2013',
-          _.get(guides, 'emailsConfigurationOutlook2013'),
+          get(guides, 'emailsConfigurationOutlook2013'),
           'assets/images/logos/outlook2013.png',
         );
         this.createGuide(
           'OUTLOOK',
           '2010',
-          _.get(guides, 'emailsConfigurationOutlook2010'),
+          get(guides, 'emailsConfigurationOutlook2010'),
           'assets/images/logos/outlook2013.png',
         );
         this.createGuide(
           'OUTLOOK',
           '2007',
-          _.get(guides, 'emailsConfigurationOutlook2007'),
+          get(guides, 'emailsConfigurationOutlook2007'),
           'assets/images/logos/outlook2013.png',
         );
         this.createGuide(
           'IPHONE',
           '',
-          _.get(guides, 'emailsConfigurationAuto'),
+          get(guides, 'emailsConfigurationAuto'),
           'assets/images/logos/iOS9.png',
         );
         this.createGuide(
           'IPHONE',
           '9.1',
-          _.get(guides, 'emailsConfigurationIos9'),
+          get(guides, 'emailsConfigurationIos9'),
           'assets/images/logos/iOS9.png',
         );
         this.createGuide(
           'ANDROID',
           '6',
-          _.get(guides, 'emailsConfigurationAndroid6'),
+          get(guides, 'emailsConfigurationAndroid6'),
           'assets/images/logos/android.jpg',
         );
         this.createGuide(
           'OTHER',
           'ALL',
-          _.get(guides, 'emailsConfiguration'),
+          get(guides, 'emailsConfiguration'),
           'assets/images/logos/OVH-logo.png',
         );
 
@@ -176,7 +180,7 @@ angular.module('App').controller(
     }
 
     createAccount() {
-      this.account.accountName = _.trim(this.account.accountName);
+      this.account.accountName = trim(this.account.accountName);
 
       this.WucEmails.createAccount(this.$stateParams.productId, this.account)
         .then(() => this.Alerter.success(

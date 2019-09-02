@@ -1,9 +1,17 @@
+import filter from 'lodash/filter';
+import forEach from 'lodash/forEach';
+import get from 'lodash/get';
+import isObject from 'lodash/isObject';
+import isString from 'lodash/isString';
+import set from 'lodash/set';
+
 import { Environment } from '@ovh-ux/manager-config';
 import ovhManagerCore from '@ovh-ux/manager-core';
 import ngAtInternet from '@ovh-ux/ng-at-internet';
 import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin';
 import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
-import ngOvhChatbot from '@ovh-ux/ng-ovh-chatbot';
+// import ngOvhChatbot from '@ovh-ux/ng-ovh-chatbot';
+import ngOvhExportCsv from '@ovh-ux/ng-ovh-export-csv';
 import ngOvhHttp from '@ovh-ux/ng-ovh-http';
 import ngOvhSsoAuth from '@ovh-ux/ng-ovh-sso-auth';
 import ngOvhSsoAuthModalPlugin from '@ovh-ux/ng-ovh-sso-auth-modal-plugin';
@@ -11,6 +19,9 @@ import ngOvhSwimmingPoll from '@ovh-ux/ng-ovh-swimming-poll';
 import ngOvhProxyRequest from '@ovh-ux/ng-ovh-proxy-request';
 import ngOvhUserPref from '@ovh-ux/ng-ovh-user-pref';
 import ngOvhWebUniverseComponents from '@ovh-ux/ng-ovh-web-universe-components';
+import ngPaginationFront from '@ovh-ux/ng-pagination-front';
+import ngQAllSettled from '@ovh-ux/ng-q-allsettled';
+import ngTailLogs from '@ovh-ux/ng-tail-logs';
 import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import ngOvhUiRouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
 import ovhManagerNavbar from '@ovh-ux/manager-navbar';
@@ -33,7 +44,7 @@ Environment.setRegion(__WEBPACK_REGION__);
 angular
   .module('App', [
     ovhManagerCore,
-    'ovh-angular-pagination-front',
+    ngPaginationFront,
     'ngOvhUtils',
     'ui.bootstrap',
     'ngAria',
@@ -44,16 +55,16 @@ angular
     'services',
     'filters',
     'directives',
-    'ovh-angular-q-allSettled',
+    ngQAllSettled,
     'ngMessages',
     'ngFlash',
     'vs-repeat',
-    'ovh-angular-export-csv',
     'xeditable',
     ngAtInternet,
     ngAtInternetUiRouterPlugin,
     ngOvhApiWrappers,
-    ngOvhChatbot,
+    // ngOvhChatbot,
+    ngOvhExportCsv,
     ngOvhHttp,
     ngOvhSsoAuth,
     ngOvhSsoAuthModalPlugin,
@@ -66,12 +77,10 @@ angular
     ovhManagerServerSidebar,
     uiRouter,
     'pascalprecht.translate',
-    'ovh-angular-responsive-tabs',
-    'ovh-angular-tail-logs',
+    ngTailLogs,
     ngOvhOtrs,
     'ovh-api-services',
     ovhManagerNavbar,
-    'ngCkeditor',
     'moment-picker',
     'oui',
     'Module.exchange',
@@ -119,18 +128,18 @@ angular
   .factory('serviceTypeInterceptor', () => ({
     request: (config) => { // eslint-disable-line
       if (/^(\/?engine\/)?2api(-m)?\//.test(config.url)) {
-        _.set(config, 'url', config.url.replace(/^(\/?engine\/)?2api(-m)?/, ''));
-        _.set(config, 'serviceType', 'aapi');
+        set(config, 'url', config.url.replace(/^(\/?engine\/)?2api(-m)?/, ''));
+        set(config, 'serviceType', 'aapi');
       }
 
       if (/^apiv6\//.test(config.url)) {
-        _.set(config, 'url', config.url.replace(/^apiv6/, ''));
-        _.set(config, 'serviceType', 'apiv6');
+        set(config, 'url', config.url.replace(/^apiv6/, ''));
+        set(config, 'serviceType', 'apiv6');
       }
 
       if (/^apiv7\//.test(config.url)) {
-        _.set(config, 'url', config.url.replace(/^apiv7/, ''));
-        _.set(config, 'serviceType', 'apiv7');
+        set(config, 'url', config.url.replace(/^apiv7/, ''));
+        set(config, 'serviceType', 'apiv7');
       }
 
       return config;
@@ -156,10 +165,10 @@ angular
     'OvhHttpProvider',
     'constants',
     (OvhHttpProvider, constants) => {
-      _.set(OvhHttpProvider, 'rootPath', constants.swsProxyPath);
-      _.set(OvhHttpProvider, 'clearCacheVerb', ['POST', 'PUT', 'DELETE']);
-      _.set(OvhHttpProvider, 'returnSuccessKey', 'data'); // By default, request return response.data
-      _.set(OvhHttpProvider, 'returnErrorKey', 'data'); // By default, request return error.data
+      set(OvhHttpProvider, 'rootPath', constants.swsProxyPath);
+      set(OvhHttpProvider, 'clearCacheVerb', ['POST', 'PUT', 'DELETE']);
+      set(OvhHttpProvider, 'returnSuccessKey', 'data'); // By default, request return response.data
+      set(OvhHttpProvider, 'returnErrorKey', 'data'); // By default, request return error.data
     },
   ])
   .config([
@@ -225,7 +234,7 @@ angular
             'Navigator',
             '$rootScope',
             (Navigator, $rootScope) => {
-              _.set($rootScope, 'currentSectionInformation', 'all_dom');
+              set($rootScope, 'currentSectionInformation', 'all_dom');
               return Navigator.setNavigationInformation({
                 leftMenuVisible: true,
                 configurationSelected: true,
@@ -237,19 +246,17 @@ angular
         translations: { value: ['domain', 'hosting'], format: 'json' },
       });
 
-      _(URLS_REDIRECTED_TO_DEDICATED)
-        .forEach((url) => {
-          $urlRouterProvider.when(url, [
-            '$window',
-            'constants',
-            '$location',
-            ($window, constants, $location) => {
-              const lastPartOfUrl = $location.url().substring(1);
-              _.set($window, 'location', `${constants.MANAGER_URLS.dedicated}${lastPartOfUrl}`);
-            },
-          ]);
-        })
-        .value();
+      forEach(URLS_REDIRECTED_TO_DEDICATED, (url) => {
+        $urlRouterProvider.when(url, [
+          '$window',
+          'constants',
+          '$location',
+          ($window, constants, $location) => {
+            const lastPartOfUrl = $location.url().substring(1);
+            set($window, 'location', `${constants.MANAGER_URLS.dedicated}${lastPartOfUrl}`);
+          },
+        ]);
+      });
 
       $urlRouterProvider.otherwise('/configuration');
     },
@@ -371,27 +378,31 @@ angular
     '$location',
     'URLS_REDIRECTED_TO_DEDICATED',
     (constants, $location, URLS_REDIRECTED_TO_DEDICATED) => {
-      _(URLS_REDIRECTED_TO_DEDICATED)
-        .chain()
-        .filter(url => url.test(window.location.href))
-        .forEach(() => {
+      forEach(
+        filter(
+          URLS_REDIRECTED_TO_DEDICATED,
+          url => url.test(window.location.href),
+        ),
+        () => {
           const lastPartOfUrl = $location.url().substring(1);
           window.location = `${constants.MANAGER_URLS.dedicated}${lastPartOfUrl}`;
-        })
-        .value();
+        },
+      );
     },
   ])
   .run([
     'ssoAuthentication',
     'URLS_REDIRECTED_TO_DEDICATED',
     (authentication, URLS_REDIRECTED_TO_DEDICATED) => {
-      _(URLS_REDIRECTED_TO_DEDICATED)
-        .chain()
-        .filter(url => !url.test(window.location.href))
-        .forEach(() => {
+      forEach(
+        filter(
+          URLS_REDIRECTED_TO_DEDICATED,
+          url => !url.test(window.location.href),
+        ),
+        () => {
           authentication.login();
-        })
-        .value();
+        },
+      );
     },
   ])
   .run([
@@ -419,7 +430,7 @@ angular
     ($translate) => {
       const selectedLanguageValue = $translate.use();
 
-      if (_(moment).isObject() && _(selectedLanguageValue).isString()) {
+      if (isObject(moment) && isString(selectedLanguageValue)) {
         const locale = selectedLanguageValue.replace(/_/, '-');
         moment.locale(locale);
       }
@@ -432,14 +443,14 @@ angular
     },
   ])
   .run((editableOptions, editableThemes) => {
-    _.set(editableOptions, 'theme', 'default');
+    set(editableOptions, 'theme', 'default');
 
     // overwrite submit button template
-    _.set(editableThemes, 'default.submitTpl', ['<button style="background:none;border:none" type="submit">', '<i class="fa fa-check green"></i>', '</button>'].join(''));
-    _.set(editableThemes, 'default.cancelTpl', ['<button style="background:none;border:none" ng-click="$form.$cancel()">', '<i class="fa fa-times red"></i>', '</button>'].join(''));
+    set(editableThemes, 'default.submitTpl', ['<button style="background:none;border:none" type="submit">', '<i class="fa fa-check green"></i>', '</button>'].join(''));
+    set(editableThemes, 'default.cancelTpl', ['<button style="background:none;border:none" ng-click="$form.$cancel()">', '<i class="fa fa-times red"></i>', '</button>'].join(''));
   })
   .config((OtrsPopupProvider, constants) => {
-    OtrsPopupProvider.setBaseUrlTickets(_.get(constants, 'REDIRECT_URLS.listTicket', null));
+    OtrsPopupProvider.setBaseUrlTickets(get(constants, 'REDIRECT_URLS.listTicket', null));
   })
   .constant('UNIVERSE', 'WEB')
   .constant('MANAGER_URLS', {
@@ -465,13 +476,13 @@ angular
     ouiStepperConfiguration,
   ) => {
     const removeHook = $transitions.onSuccess({}, () => {
-      _.set(ouiClipboardConfiguration, 'translations', {
+      set(ouiClipboardConfiguration, 'translations', {
         copyToClipboardLabel: $translate.instant('common_clipboard_copy_to_clipboard'),
         copiedLabel: $translate.instant('common_clipboard_copied'),
         notSupported: $translate.instant('common_clipboard_not_supported'),
       });
 
-      _.set(ouiCriteriaAdderConfiguration, 'translations', {
+      set(ouiCriteriaAdderConfiguration, 'translations', {
         column_label: $translate.instant('common_criteria_adder_column_label'),
         operator_label: $translate.instant('common_criteria_adder_operator_label'),
 
@@ -503,11 +514,11 @@ angular
         submit_label: $translate.instant('common_criteria_adder_submit_label'),
       });
 
-      _.set(ouiDatagridConfiguration, 'translations', {
+      set(ouiDatagridConfiguration, 'translations', {
         emptyPlaceholder: $translate.instant('common_datagrid_nodata'),
       });
 
-      _.set(ouiFieldConfiguration, 'translations', {
+      set(ouiFieldConfiguration, 'translations', {
         errors: {
           required: $translate.instant('common_field_error_required'),
           number: $translate.instant('common_field_error_number'),
@@ -520,7 +531,7 @@ angular
         },
       });
 
-      _.set(ouiNavbarConfiguration, 'translations', {
+      set(ouiNavbarConfiguration, 'translations', {
         notification: {
           errorInNotification: $translate.instant('common_navbar_notification_error_in_notification'),
           errorInNotificationDescription: $translate.instant('common_navbar_notification_error_in_notification_description'),
@@ -531,7 +542,7 @@ angular
         },
       });
 
-      _.set(ouiPaginationConfiguration, 'translations', {
+      set(ouiPaginationConfiguration, 'translations', {
         resultsPerPage: $translate.instant('common_pagination_resultsperpage'),
         ofNResults: $translate.instant('common_pagination_ofnresults')
           .replace('TOTAL_ITEMS', '{{totalItems}}'),
@@ -542,7 +553,7 @@ angular
         nextPage: $translate.instant('common_pagination_next'),
       });
 
-      _.set(ouiStepperConfiguration, 'translations', {
+      set(ouiStepperConfiguration, 'translations', {
         optionalLabel: $translate.instant('common_stepper_optional_label'),
         modifyThisStep: $translate.instant('common_stepper_modify_this_step'),
         skipThisStep: $translate.instant('common_stepper_skip_this_step'),

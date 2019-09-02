@@ -1,3 +1,7 @@
+import forEach from 'lodash/forEach';
+import keys from 'lodash/keys';
+import some from 'lodash/some';
+
 angular.module('App').controller(
   'PrivateDatabaseUsersGrantsCtrl',
   class PrivateDatabaseUsersGrantsCtrl {
@@ -35,7 +39,7 @@ angular.module('App').controller(
         this.onUserGrantError.bind(this),
       );
 
-      _.forEach(['done', 'error'], (state) => {
+      forEach(['done', 'error'], (state) => {
         this.$scope.$on(
           `privateDatabase.global.actions.${state}`,
           (e, taskOpt) => {
@@ -68,7 +72,7 @@ angular.module('App').controller(
         .getUserGrants(this.productId, this.$scope.user.userName)
         .then((userGrants) => {
           this.userGrants = userGrants;
-          this.nbGrants = _.keys(this.userGrants).length;
+          this.nbGrants = keys(this.userGrants).length;
           return userGrants;
         })
         .catch((err) => {
@@ -116,7 +120,7 @@ angular.module('App').controller(
     }
 
     onUserGrantStart(evt, opts) {
-      this.isDoingGrant[opts.databaseName] = _.any(this.userGrants, {
+      this.isDoingGrant[opts.databaseName] = some(this.userGrants, {
         dataBase: opts.databaseName,
       });
     }

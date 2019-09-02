@@ -1,0 +1,23 @@
+{
+  "exchange_update_billing_button_title": "Configuration du renouvellement",
+  "exchange_update_billing_action_title": "Atnaujinimo periodas",
+  "exchange_update_billing_validation_title": "Patvirtinimas",
+  "exchange_update_billing_periode_intro": "Pasirinkite pageidaujamą periodiškumą automatiniam kiekvienos paskyros atnaujinimui. <br />Šis laikotarpis įsigalios nuo kito atnaujinimo datos.",
+  "exchange_update_billing_actions_label": "Veiksmai",
+  "exchange_update_billing_email_label": "El. pašto paskyra",
+  "exchange_update_billing_expiration_date_label": "Galioja iki",
+  "exchange_update_billing_current_periode_label": "Esama vertė",
+  "exchange_update_billing_periode_label": "Atnaujinimas",
+  "exchange_update_billing_header_new_periode": "Naujas laikotarpis",
+  "exchange_update_billing_periode_action_MONTHLY": "Modifier en \"Mensuelle\"",
+  "exchange_update_billing_periode_action_YEARLY": "Modifier en \"Annuelle\"",
+  "exchange_update_billing_periode_action_DELETE_AT_EXPIRATION": "Modifier en \"Expire à terme\"",
+  "exchange_update_billing_periode_value_MONTHLY": "Kas mėnesį",
+  "exchange_update_billing_periode_value_YEARLY": "Kartą per metus",
+  "exchange_update_billing_periode_value_DELETE_AT_EXPIRATION": "Nustos galioti pagal galiojimo laiką",
+  "exchange_update_billing_periode_delete_warning": "Dėmesio! Paslauga nustos galioti numatytą galiojimo pabaigos datą, po kurios visi duomenys bus pašalinti. Jūs nebegalėsite atkurti paskyros duomenų.",
+  "exchange_update_billing_periode_resume": "Jūs keisite savo paskyrų atnaujinimo laikotarpį:",
+  "exchange_update_billing_periode_success": "La période de renouvellement des comptes sélectionnés a été mise à jour.",
+  "exchange_update_billing_periode_partial": "Certaines périodes de renouvellement n'ont pas été mises à jour.",
+  "exchange_update_billing_periode_failure": "Une erreur est survenue lors de la mise à jour du renouvellement des comptes"
+}

@@ -1,3 +1,9 @@
+import clone from 'lodash/clone';
+import findIndex from 'lodash/findIndex';
+import forEach from 'lodash/forEach';
+import isEmpty from 'lodash/isEmpty';
+import remove from 'lodash/remove';
+
 angular
   .module('App')
   .controller('PrivateDatabaseBDDsListCtrl', class PrivateDatabaseBDDsListCtrl {
@@ -26,7 +32,7 @@ angular
 
       this.isPostgreSql = this.$scope.database.version.match(/postgresql/);
 
-      _.forEach(statusToWatch, (state) => {
+      forEach(statusToWatch, (state) => {
         this.$scope.$on(`privateDatabase.database.delete.${state}`, this[`onDataBaseDelete${state}`].bind(this));
         this.$scope.$on(`privateDatabase.database.create.${state}`, this[`onDataBaseCreate${state}`].bind(this));
         this.$scope.$on(`privateDatabase.database.dump.${state}`, this[`onDataBaseDump${state}`].bind(this));
@@ -34,7 +40,7 @@ angular
         this.$scope.$on(`privateDatabase.database.wizard.${state}`, this[`onDataBaseCreate${state}`].bind(this));
       });
 
-      _.forEach(['done', 'error'], (state) => {
+      forEach(['done', 'error'], (state) => {
         this.$scope.$on(`privateDatabase.global.actions.${state}`, (e, taskOpt) => {
           this.$scope.lockAction = taskOpt.lock ? false : this.$scope.lockAction;
         });
@@ -77,7 +83,7 @@ angular
       let detailedItem;
       return this.privateDatabaseService.getBDD(this.productId, item)
         .then((originalDetailedItem) => {
-          detailedItem = _(originalDetailedItem).clone();
+          detailedItem = clone(originalDetailedItem);
 
           return this.privateDatabaseService.getDumpsBDD(this.productId, item);
         })
@@ -121,7 +127,7 @@ angular
       let unregisterWatch = null;
 
       const todo = () => {
-        const idx = _.findIndex(this.bddsDetails, bdd => bdd.databaseName === databaseName);
+        const idx = findIndex(this.bddsDetails, bdd => bdd.databaseName === databaseName);
 
         if (idx !== -1) {
           deferred.resolve(idx);
@@ -132,7 +138,7 @@ angular
         }
       };
 
-      if (!_.isEmpty(this.bddsDetails)) {
+      if (!isEmpty(this.bddsDetails)) {
         todo();
       } else {
         unregisterWatch = this.$scope.$watch(
@@ -175,13 +181,13 @@ angular
     onDataBaseCreatedone(evt, opts) {
       this.getBDDS();
 
-      _.remove(this.currentAddBdds, name => opts.databaseName === name);
+      remove(this.currentAddBdds, name => opts.databaseName === name);
 
       this.alerter.success(this.$translate.instant('privateDatabase_add_bdd_success'), this.$scope.alerts.main);
     }
 
     onDataBaseCreateerror(opts) {
-      this.currentAddBdds = _.remove(this.currentAddBdds, opts.databaseName);
+      this.currentAddBdds = remove(this.currentAddBdds, opts.databaseName);
       this.alerter.error(this.$translate.instant('privateDatabase_add_bdd_fail'), this.$scope.alerts.main);
     }
 
