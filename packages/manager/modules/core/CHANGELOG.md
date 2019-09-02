@@ -1,3 +1,12 @@
+## [7.1.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@7.1.0...@ovh-ux/manager-core@7.1.1) (2019-09-02)
+
+
+### Bug Fixes
+
+* **core:** remove extra nl_NL language from constant file ([#1253](https://github.com/ovh-ux/manager/issues/1253)) ([8b72ca3](https://github.com/ovh-ux/manager/commit/8b72ca3))
+
+
+
 # [7.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@7.0.0...@ovh-ux/manager-core@7.1.0) (2019-08-26)
 
 
