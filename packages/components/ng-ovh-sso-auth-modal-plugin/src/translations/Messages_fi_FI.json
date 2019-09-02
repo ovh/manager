@@ -1,0 +1,10 @@
+{
+  "sso_modal_title": "OVH - Tunnistautuminen",
+  "sso_modal_loading": "Ladataan…",
+  "sso_modal_user_title": "Olit kirjautunut ominaisuudessa:",
+  "sso_modal_currentuser_title": "Olet nyt kirjautunut ominaisuudessa:",
+  "sso_modal_disconnected": "Olet nyt kirjautunut ulos.",
+  "sso_modal_what": "Mitä haluaisit tehdä?",
+  "sso_modal_action_reload": "Jatka ominaisuudessa <strong>{{name}}</strong>",
+  "sso_modal_action_logout": "Mene tunnistautumissivulle"
+}
