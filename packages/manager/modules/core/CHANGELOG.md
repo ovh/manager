@@ -1,3 +1,12 @@
+## [7.1.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@7.1.1...@ovh-ux/manager-core@7.1.2) (2019-09-02)
+
+
+### Bug Fixes
+
+* **core:** add english fallback for nl ([#1260](https://github.com/ovh-ux/manager/issues/1260)) ([dd9524d](https://github.com/ovh-ux/manager/commit/dd9524d))
+
+
+
 ## [7.1.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-core@7.1.0...@ovh-ux/manager-core@7.1.1) (2019-09-02)
 
 
