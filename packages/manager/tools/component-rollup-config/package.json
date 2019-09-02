@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/component-rollup-config",
-  "version": "6.0.1",
+  "version": "6.0.2",
   "description": "Extensible rollup configuration to build OVH components",
   "keywords": [
     "build",
@@ -46,7 +46,7 @@
     "lodash": "^4.17.15",
     "magic-string": "^0.25.3",
     "node-sass": "^4.10.0",
-    "rollup": "^1.20.2",
+    "rollup": "^1.20.3",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-commonjs": "^9.2.0",
     "rollup-plugin-html": "^0.2.1",

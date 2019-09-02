@@ -39,6 +39,7 @@ module.exports = (env = {}) => {
       './src/app',
       './src/components',
       './node_modules',
+      '../../../node_modules',
     ],
     root: path.resolve(__dirname, './src/app'),
     assets: {
@@ -46,6 +47,7 @@ module.exports = (env = {}) => {
         { from: path.resolve(__dirname, './src/app/common/assets'), to: 'assets' },
         { from: foundNodeModulesFolder('angular-i18n'), to: 'angular-i18n' },
         { from: path.resolve(__dirname, './src/**/*.html'), context: 'src' },
+        { from: path.resolve(__dirname, '../../../../node_modules/@ovh-ux/ng-ovh-line-diagnostics/dist/assets'), to: 'assets' },
       ],
     },
   }, env);

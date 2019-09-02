@@ -1,0 +1,70 @@
+@import "bootstrap/less/mixins/clearfix";
+@import "ovh-ui-kit/packages/oui-color/_variables";
+
+tuc-success-drawing-check { /* stylelint-disable-line */
+  @success-drawing-check-size: 50px;
+  @success-drawing-check-height: @success-drawing-check-size;
+  @success-drawing-check-width: @success-drawing-check-size;
+  @success-drawing-check-stroke-color: @oui-color-dodger;
+  @success-drawing-check-stroke-width: 2;
+  @success-drawing-check-shadow-color: black;
+  @success-drawing-check-animation-duration: 0.7s;
+
+  @keyframes succesDrawingCheckAnim {
+    from {
+      stroke-dashoffset: 80;
+    }
+
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  .clearfix;
+
+  display: block;
+  text-align: center;
+
+  .success-drawing-check__icon {
+    margin: 16px auto;
+    position: relative;
+
+    &::before {
+      content: '';
+      width: @success-drawing-check-width;
+      height: @success-drawing-check-height / 10;
+      background: @success-drawing-check-shadow-color;
+      opacity: 0.1;
+      position: absolute;
+      top: 59px;
+      border-radius: 60px / 9px;
+    }
+
+    svg {
+      polyline {
+        display: none;
+        fill: none;
+        stroke: @success-drawing-check-stroke-color;
+        stroke-width: @success-drawing-check-stroke-width;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-dasharray: 80;
+      }
+    }
+
+    &.draw {
+      polyline {
+        display: inline-block;
+        animation: succesDrawingCheckAnim @success-drawing-check-animation-duration ease-in 1;
+      }
+    }
+  }
+
+  .success-drawing-check__text {
+    .clearfix;
+
+    > * {
+      margin: 8px 0;
+    }
+  }
+}

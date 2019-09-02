@@ -1,4 +1,3 @@
-import bind from 'lodash/bind';
 import filter from 'lodash/filter';
 import find from 'lodash/find';
 import forEach from 'lodash/forEach';
@@ -6,7 +5,7 @@ import get from 'lodash/get';
 import some from 'lodash/some';
 import times from 'lodash/times';
 
-angular.module('managerApp').controller('TelecomTelephonyLineManagementOfferChangeCtrl', function ($q, $stateParams, $translate, TelephonyMediator, TucToast, OvhApiTelephony, tucTelephonyBulk) {
+angular.module('managerApp').controller('TelecomTelephonyLineManagementOfferChangeCtrl', function TelecomTelephonyLineManagementOfferChangeCtrl($q, $stateParams, $translate, TelephonyMediator, TucToast, OvhApiTelephony, tucTelephonyBulk) {
   const self = this;
 
   self.loading = {
@@ -157,12 +156,12 @@ angular.module('managerApp').controller('TelecomTelephonyLineManagementOfferChan
     },
   };
 
-  self.filterServices = function (services) {
+  self.filterServices = function filterServices(services) {
     function filterServicesByOffer(paramServices, listOffers) {
       const servicesFiltered = [];
 
       times(listOffers.length, (index) => {
-        if (some(listOffers[index], bind('name', self.model.offer.name))) {
+        if (some(listOffers[index], { name: self.model.offer.name })) {
           servicesFiltered.push(paramServices[index]);
         }
       });

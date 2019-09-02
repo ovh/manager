@@ -39,6 +39,7 @@ module.exports = (env = {}) => {
     basePath: './client/app',
     lessPath: [
       './node_modules',
+      '../../../node_modules',
     ],
     root: path.resolve(__dirname, './client/app'),
     assets: {

@@ -1,9 +1,11 @@
 {
- "pci_projects": "Projekty",
- "pci_projects_description": "Opis",
- "pci_projects_status": "Status",
- "pci_projects_status_ok": "Aktywny",
- "pci_projects_status_deleting": "Trwa usuwanie",
- "pci_projects_status_creating": "Trwa tworzenie",
- "pci_projects_project_show": "Wyświetl"
+  "pci_projects": "Projekty",
+  "pci_projects_description": "Opis",
+  "pci_projects_status": "Status",
+  "pci_projects_status_ok": "Aktywny",
+  "pci_projects_status_deleting": "Trwa usuwanie",
+  "pci_projects_status_creating": "Trwa tworzenie",
+  "pci_projects_project_show": "Wyświetl",
+  "pci_projects_project_delete": "Usuń",
+  "pci_projects_project_delete_success": "Właśnie wysłaliśmy do Ciebie wiadomość e-mail z potwierdzeniem usunięcia projektu."
 }
