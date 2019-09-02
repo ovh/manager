@@ -1,0 +1,11 @@
+{
+  "duration_day_1": "1 Tag",
+  "duration_day_other": "{{t0}} Tage",
+  "duration_month_1": "1 Monat",
+  "duration_month_other": "{{t0}} Monat(e)",
+  "duration_year_1": "1 Jahr",
+  "duration_year_other": "{{t0}} Jahre ",
+  "duration_upto": "Bis zum {{t0}}",
+  "duration_uptofirstdaynextmonth": "Bis zum ersten Tag des nächsten Monats",
+  "duration_engage": "Laufzeit {{t0}}"
+}

@@ -1,0 +1,11 @@
+{
+  "duration_day_1": "1 dag",
+  "duration_day_other": "{{t0}} dagen",
+  "duration_month_1": "1 maand",
+  "duration_month_other": "{{t0}} maanden",
+  "duration_year_1": "1 jaar",
+  "duration_year_other": "{{t0}} jaar",
+  "duration_upto": "Tot {{t0}}",
+  "duration_uptofirstdaynextmonth": "Tot de 1e van de volgende maand",
+  "duration_engage": "Sign up {{t0}}"
+}
