@@ -1,3 +1,17 @@
+# [13.29.0](https://github.com/ovh-ux/ovh-manager-web/compare/v13.28.2...v13.29.0) (2019-09-02)
+
+
+
+## [13.28.2](https://github.com/ovh-ux/ovh-manager-web/compare/v13.28.1...v13.28.2) (2019-08-29)
+
+
+### Bug Fixes
+
+* **domain.dns:** allow to order dns anycast ([#1223](https://github.com/ovh-ux/ovh-manager-web/issues/1223)) ([eb58c21](https://github.com/ovh-ux/ovh-manager-web/commit/eb58c21))
+* **ie11:** remove duplicate dependency and bump urijs ([#1211](https://github.com/ovh-ux/ovh-manager-web/issues/1211)) ([d174795](https://github.com/ovh-ux/ovh-manager-web/commit/d174795))
+
+
+
 ## [13.28.1](https://github.com/ovh-ux/ovh-manager-web/compare/v13.28.0...v13.28.1) (2019-08-27)
 
 

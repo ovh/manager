@@ -27,7 +27,6 @@ import ngUiRouterLayout from '@ovh-ux/ng-ui-router-layout';
 import ngUiRouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
 import ovhManagerNavbar from '@ovh-ux/manager-navbar';
 import uiRouter from '@uirouter/angularjs';
-import ngOvhOtrs from '@ovh-ux/ng-ovh-otrs';
 import ovhManagerServerSidebar from '@ovh-ux/manager-server-sidebar';
 import emailpro from '@ovh-ux/manager-emailpro';
 import exchange from '@ovh-ux/manager-exchange';
@@ -80,7 +79,6 @@ angular
     uiRouter,
     'pascalprecht.translate',
     ngTailLogs,
-    ngOvhOtrs,
     'ovh-api-services',
     ovhManagerNavbar,
     'moment-picker',
@@ -123,7 +121,6 @@ angular
     DOMAIN: config.constants.DOMAIN,
     WEBSITE_URLS: config.constants.website_url,
     new_bdd_user_grant_options: config.constants.new_bdd_user_grant_options,
-    REDIRECT_URLS: config.constants.REDIRECT_URLS,
   })
   .constant('LANGUAGES', config.constants.LANGUAGES)
   .constant('website_url', config.constants.website_url)
