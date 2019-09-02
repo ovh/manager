@@ -7,7 +7,10 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
     </head>
-    <body class="ng-cloak h-100 ovh-manager-telecom-app" style="overflow: hidden;" data-ng-cloak>
+    <body
+        class="ng-cloak h-100 ovh-manager-telecom-app"
+        style="overflow: hidden;"
+        data-ng-cloak>
         <div class="h-100 d-flex flex-column overflow-hidden" data-ng-controller="TelecomAppCtrl as $ctrl">
             <div class="oui-navbar-backdrop oui-navbar-backdrop_active"
                 data-ng-style="{ zIndex: 1010 }"
@@ -37,7 +40,7 @@
             </div>
             <div class="d-flex w-100 h-100 position-relative">
                 <div class="w-100 h-100 position-absolute" style="top: 0; left: 0;">
-                    <div class="container-fluid h-100">
+                    <div class="container-fluid h-100" data-ui-view="root">
                         <div class="row h-100">
                             <!-- SIDE MENU -->
                             <div data-sidebar-menu class="col-md-3 col-lg-2"></div>
@@ -57,7 +60,6 @@
                             </div>
 
                         </div>
-                        <!-- <chatbot></chatbot> -->
                     </div>
                 </div>
             </div>
