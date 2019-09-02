@@ -1,4 +1,3 @@
-import bind from 'lodash/bind';
 import findIndex from 'lodash/findIndex';
 import get from 'lodash/get';
 import trim from 'lodash/trim';
@@ -31,7 +30,7 @@ angular.module('App').controller(
         guideName,
         guideUrl,
       };
-      const idxDevice = findIndex(this.devices, bind('deviceName', deviceName));
+      const idxDevice = findIndex(this.devices, { deviceName });
 
       if (idxDevice >= 0) {
         this.devices[idxDevice].guides.push(guide);
@@ -45,7 +44,7 @@ angular.module('App').controller(
     }
 
     setGuideByName(deviceName) {
-      const idxDevice = findIndex(this.devices, bind('deviceName', deviceName));
+      const idxDevice = findIndex(this.devices, { deviceName });
 
       if (idxDevice >= 0) {
         this.currentGuide = this.devices[idxDevice];

@@ -1,4 +1,3 @@
-import bind from 'lodash/bind';
 import filter from 'lodash/filter';
 import find from 'lodash/find';
 import forEach from 'lodash/forEach';
@@ -304,12 +303,12 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsForwardCtrl', 
     return filter(services, service => ['sip', 'mgcp'].indexOf(service.featureType) > -1);
   };
 
-  self.getBulkParams = function () {
+  self.getBulkParams = function getBulkParams() {
     const data = {};
-    const forwardBackup = find(self.forwards, bind('type', 'Backup'));
-    const forwardBusy = find(self.forwards, bind('type', 'Busy'));
-    const forwardNoReply = find(self.forwards, bind('type', 'NoReply'));
-    const forwardUnconditional = find(self.forwards, bind('type', 'Unconditional'));
+    const forwardBackup = find(self.forwards, { type: 'Backup' });
+    const forwardBusy = find(self.forwards, { type: 'Busy' });
+    const forwardNoReply = find(self.forwards, { type: 'NoReply' });
+    const forwardUnconditional = find(self.forwards, { type: 'Unconditional' });
 
     if (forwardBackup) {
       data.forwardBackup = forwardBackup.enable;

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-telecom-task-app",
-  "version": "4.1.0",
+  "version": "4.1.1",
   "private": true,
   "scripts": {
     "build": "webpack",
@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@ovh-ux/manager-config": "^0.3.0",
-    "@ovh-ux/manager-core": "^7.0.0",
+    "@ovh-ux/manager-core": "^7.1.0",
     "@ovh-ux/manager-telecom-styles": "^3.1.0",
     "@ovh-ux/manager-telecom-task": "^4.2.2",
     "@ovh-ux/ng-ovh-request-tagger": "^1.0.0",
@@ -32,7 +32,7 @@
     "jsplumb": "^2.11.2",
     "ng-csv": "^0.3.6",
     "oclazyload": "^1.1.0",
-    "ovh-api-services": "^9.5.0",
+    "ovh-api-services": "^9.5.1",
     "ovh-manager-webfont": "^1.2.0",
     "ovh-ngstrap": "^4.0.2",
     "ovh-ui-angular": "^3.7.4",

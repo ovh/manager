@@ -1,4 +1,3 @@
-import bind from 'lodash/bind';
 import filter from 'lodash/filter';
 import find from 'lodash/find';
 import get from 'lodash/get';
@@ -154,18 +153,18 @@ angular.module('App').controller(
         })
         .then(({ domainNames }) => this.$q
           .all(map(domainNames, domainName => this.Hosting.getHosting(domainName)))
-          .then(hostings => filter(hostings, bind('state', 'active')))
+          .then(hostings => filter(hostings, { state: 'active' }))
           .then((hostings) => {
             this.noHostValue = 'other';
 
-            find(this.data, bind('key', 'start')).hostings = map(hostings, hosting => ({
+            find(this.data, { key: 'start' }).hostings = map(hostings, hosting => ({
               name: hosting.serviceName,
               displayName: punycode.toUnicode(hosting.serviceName),
               datacenter: hosting.datacenter,
               stillHasFreeDbOffer: false,
             }));
-            find(this.data, bind('key', 'premium')).hostings = angular.copy(find(this.data, bind('key', 'start')).hostings);
-            find(this.data, bind('key', 'premium')).hostings.push({
+            find(this.data, { key: 'premium' }).hostings = angular.copy(find(this.data, { key: 'start' }).hostings);
+            find(this.data, { key: 'premium' }).hostings.push({
               datacenter: null,
               displayName: this.$translate.instant('common_other'),
               name: this.noHostValue,
@@ -292,7 +291,7 @@ angular.module('App').controller(
           duration => this.PrivateDatabase
             .orderPrice(version, ram, duration)
             .then((details) => {
-              find(data.durations, bind('duration', duration)).details = details;
+              find(data.durations, { duration }).details = details;
               return details;
             }),
         ))
@@ -316,7 +315,7 @@ angular.module('App').controller(
         .all(map(durations, duration => this.HostingOptionOrder
           .getSqlPersoPrice(hosting, startDbVersion, duration)
           .then((details) => {
-            find(data.durations, bind('duration', duration)).details = details;
+            find(data.durations, { duration }).details = details;
             return details;
           })))
         .then(() => {
@@ -430,14 +429,14 @@ angular.module('App').controller(
        * UTILS
        */
     getData(type) {
-      return find(this.data, bind('offer', type));
+      return find(this.data, { offer: type });
     }
 
     getDurationDetails(type, duration) {
       if (!duration) {
         return null;
       }
-      return find(this.getData(type).durations, bind('duration', duration)).details;
+      return find(this.getData(type).durations, { duration }).details;
     }
 
     setDatacenter() {
@@ -461,7 +460,7 @@ angular.module('App').controller(
     }
 
     findHosting(name) {
-      return find(this.getData(this.model.type).hostings, bind('name', name));
+      return find(this.getData(this.model.type).hostings, { name });
     }
 
     isCloudDbOrPrivateDb() {
