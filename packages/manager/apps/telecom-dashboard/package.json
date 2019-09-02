@@ -18,7 +18,7 @@
     "@ovh-ux/ng-at-internet": "^4.0.2",
     "@ovh-ux/ng-at-internet-ui-router-plugin": "^2.0.2",
     "@ovh-ux/ng-ovh-request-tagger": "^1.0.0",
-    "@ovh-ux/ng-ovh-telecom-universe-components": "^3.0.9",
+    "@ovh-ux/ng-ovh-telecom-universe-components": "^4.0.0",
     "@ovh-ux/ng-uirouter-title": "^2.0.0-beta.3",
     "@uirouter/angularjs": "^1.0.15",
     "CSV-JS": "^1.2.0",

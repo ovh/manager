@@ -2000,15 +2000,6 @@
   dependencies:
     lodash "^4.17.11"
 
-"@ovh-ux/ng-ovh-telecom-universe-components@^3.0.9":
-  version "3.0.9"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-telecom-universe-components/-/ng-ovh-telecom-universe-components-3.0.9.tgz#86dfdbc6d6baf79800a15c44f7224887bf920485"
-  integrity sha512-yJUfQg2k4KJuPpXV68EtMdiLJoXeivp4B3n67zNm4n1CP/byaSqfDXt4pHk3rtTgX8Jf5oXhKHQuQAfgRzwEAQ==
-  dependencies:
-    bootstrap "^3.4.1"
-    lodash "^4.17.15"
-    ovh-ui-kit "^2.33.4"
-
 "@ovh-ux/ng-ovh-toaster@^1.0.2":
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-toaster/-/ng-ovh-toaster-1.0.2.tgz#4a2e8115e1d2934b3b07f96612231b79b04ed823"
