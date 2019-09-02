@@ -1981,18 +1981,6 @@
   dependencies:
     lodash "^4.17.11"
 
-"@ovh-ux/ng-ovh-sso-auth-modal-plugin@^3.0.1":
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-sso-auth-modal-plugin/-/ng-ovh-sso-auth-modal-plugin-3.0.1.tgz#2384428a5fbc241f957c34f1b67d74649e64ff1c"
-  integrity sha512-YY/Jj3UGwOF0TNIg7hSbRxi5AjFlnuLDcoG+lJ7NEQqACQQsZSeyHxdQqcDZ68FziVIbr+XXnGRaybgAxQ+qHw==
-  dependencies:
-    lodash "~4.17.11"
-
-"@ovh-ux/ng-ovh-sso-auth@^4.2.2":
-  version "4.2.2"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-sso-auth/-/ng-ovh-sso-auth-4.2.2.tgz#6a00ccea1f3a4e8695365ccb7cb7cf82f42e3690"
-  integrity sha512-mOEpugkr9rTiJImCLIMDn/x5Q3GArn2AYRzbQDLMzXS56PqzlwrdAefdojr8vAlRTKT+9C1faurdpo5kZpLWtA==
-
 "@ovh-ux/ng-ovh-swimming-poll@^4.0.0":
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-swimming-poll/-/ng-ovh-swimming-poll-4.0.0.tgz#16e071b283fed0ab2fe3e2287819793cbf0f159a"

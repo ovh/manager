@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<translations>
+   <translation id="sso_modal_title" qtlid="315956">OVH - Authenticatie </translation>
+   <translation id="sso_modal_loading" qtlid="8410">Aan het laden....</translation>
+   <translation id="sso_modal_user_title" qtlid="315969">U was ingelogd als:</translation>
+   <translation id="sso_modal_currentuser_title" qtlid="315982">U bent nu ingelogd als: </translation>
+   <translation id="sso_modal_disconnected" qtlid="315995">U bent nu uitgelogd. </translation>
+   <translation id="sso_modal_what" qtlid="62558">Wat wilt u doen?</translation>
+   <translation id="sso_modal_action_reload" qtlid="344084">Ga verder als <strong>{{name}}</strong></translation>
+   <translation id="sso_modal_action_logout" qtlid="316021">Ga naar de inlogpagina</translation>
+</translations>
