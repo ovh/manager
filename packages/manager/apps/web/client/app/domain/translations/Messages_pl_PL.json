@@ -817,5 +817,19 @@
   "domain_dashboard_dns_activate_zone": "Aktywuj strefę DNS",
   "domain_tab_dns_management_step1_updating": "Trwa aktualizacja strefy DNS...",
   "domain_dashboard_general_informations": "Informacje ogólne",
-  "domain_dashboard_general_security": "Bezpieczeństwo"
+  "domain_dashboard_general_security": "Bezpieczeństwo",
+  "domain_dashboard_options": "Podsumowanie opcji",
+  "domain_dashboard_options_dns_anycast": "DNS Anycast",
+  "domain_dashboard_options_status_enabled": "Aktywny",
+  "domain_dashboard_options_status_disabled": "Anulowany",
+  "domain_dashboard_options_unavailable": "Opcja niedostępna",
+  "domain_dashboard_options_desactivate_option": "Rezygnacja",
+  "domain_dashboard_options_fail": "Wystąpił błąd podczas pobierania opcji dla domeny.",
+  "domain_tab_options_delete_confirm": "Czy chcesz usunąć opcję?",
+  "domain_tab_options_delete_confirm_warning": "Operacja ta jest nieodwracalna i nie można jej anulować.",
+  "domain_tab_options_delete_confirm_button": "Potwierdź",
+  "domain_tab_options_delete_dnsAnycast_title": "Zrezygnuj z opcji DNS Anycast",
+  "domain_tab_options_delete_success": "Opcja została usunięta.",
+  "domain_tab_options_delete_error": "Wystąpił błąd podczas rezygnowania z opcji.",
+  "domain_tab_options_delete_cancel": "Anuluj"
 }

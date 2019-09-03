@@ -1,5 +1,3 @@
-
-
 module.exports = {
   EU: {
     CHATBOT_URL: {
@@ -826,23 +824,6 @@ module.exports = {
       contactEmail: 'validation@comodo.eu',
       phoneNumber: '+31 88 775 7777',
     },
-
-    LANGUAGES: [
-      { value: 'de_DE', name: 'Deutsch' },
-      { value: 'en_GB', name: 'English' },
-      { value: 'en_CA', name: 'English (Canadian)' },
-      { value: 'en_US', name: 'English (United States)' },
-      { value: 'es_ES', name: 'Español' },
-      { value: 'fr_FR', name: 'Français' },
-      { value: 'fr_CA', name: 'Français (Canadien)' },
-      { value: 'it_IT', name: 'Italiano' },
-      { value: 'lt_LT', name: 'Lietuviškai' },
-      { value: 'nl_NL', name: 'Nederlands' },
-      { value: 'pl_PL', name: 'Polski' },
-      { value: 'pt_PT', name: 'Português' },
-      { value: 'fi_FI', name: 'Suomi' },
-      { value: 'cs_CZ', name: 'Česky' },
-    ],
     website_url: {
       new_nic: {
         de_DE: 'https://www.ovh.com/auth/signup/#/?ovhCompany=ovh&ovhSubsidiary=DE',
@@ -866,6 +847,7 @@ module.exports = {
         cs_CZ: 'https://www.ovh.com/auth/signup/#/?ovhCompany=ovh&ovhSubsidiary=CZ',
       },
     },
+
     flags_options: [
       { value: 256, label: '256 - Zone Signing Key (ZSK)' },
       { value: 257, label: '257 - Key Signing Key (KSK)' },
@@ -885,6 +867,7 @@ module.exports = {
       web: 'https://www.ovh.com/manager/web/index.html#/',
       dedicated: 'https://www.ovh.com/manager/dedicated/index.html#/',
       cloud: 'https://www.ovh.com/manager/cloud/index.html#/',
+      publicCloud: 'https://www.ovh.com/manager/public-cloud/index.html#/',
       telecom: 'https://www.ovhtelecom.fr/manager/index.html#/',
       sunrise: 'https://www.ovh.com/manager/sunrise/index.html#/',
       partners: 'https://www.ovh.com/manager/partners',
@@ -1070,19 +1053,6 @@ module.exports = {
       contactEmail: 'validation@comodo.eu',
       phoneNumber: '+31 88 775 7777',
     },
-    LANGUAGES: [
-      { value: 'de_DE', name: 'Deutsch' },
-      { value: 'en_GB', name: 'English' },
-      { value: 'es_ES', name: 'Español' },
-      { value: 'fr_FR', name: 'Français' },
-      { value: 'it_IT', name: 'Italiano' },
-      { value: 'lt_LT', name: 'Lietuviškai' },
-      { value: 'nl_NL', name: 'Nederlands' },
-      { value: 'pl_PL', name: 'Polski' },
-      { value: 'pt_PT', name: 'Português' },
-      { value: 'fi_FI', name: 'Suomi' },
-      { value: 'cs_CZ', name: 'Česky' },
-    ],
     website_url: {
       new_nic: {
         de_DE: 'https://www.ovh.com/auth/signup/#/?ovhCompany=ovh&ovhSubsidiary=DE',

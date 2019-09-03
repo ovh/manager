@@ -817,5 +817,19 @@
   "domain_dashboard_dns_activate_zone": "Activer la zone DNS",
   "domain_tab_dns_management_step1_updating": "La zone DNS est en cours de mise à jour ...",
   "domain_dashboard_general_informations": "Informations générales",
-  "domain_dashboard_general_security": "Sécurité"
+  "domain_dashboard_general_security": "Sécurité",
+  "domain_dashboard_options": "Résumé des options",
+  "domain_dashboard_options_dns_anycast": "DNS Anycast",
+  "domain_dashboard_options_status_enabled": "Activé",
+  "domain_dashboard_options_status_disabled": "Résilié",
+  "domain_dashboard_options_unavailable": "Option non disponible",
+  "domain_dashboard_options_desactivate_option": "Résilier",
+  "domain_dashboard_options_fail": "Une erreur est survenue lors de la récupération des options de domaine",
+  "domain_tab_options_delete_confirm": "Voulez-vous vraiment supprimer l'option ?",
+  "domain_tab_options_delete_confirm_warning": "Cette action est irréversible et ne peut être annulée.",
+  "domain_tab_options_delete_confirm_button": "Confirmer",
+  "domain_tab_options_delete_dnsAnycast_title": "Résilier l'option DNS Anycast",
+  "domain_tab_options_delete_success": "L'option a été résiliée.",
+  "domain_tab_options_delete_error": "Une erreur est survenue lors de la résiliation de l'option.",
+  "domain_tab_options_delete_cancel": "Annuler"
 }
