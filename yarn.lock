@@ -1841,7 +1841,7 @@
   dependencies:
     lodash "^4.17.11"
 
-"@ovh-ux/ng-at-internet-ui-router-plugin@^2.0.1":
+"@ovh-ux/ng-at-internet-ui-router-plugin@^2.0.2":
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-at-internet-ui-router-plugin/-/ng-at-internet-ui-router-plugin-2.0.2.tgz#7cf3a78c0032a2b7ae5a802491f9703b6a1c78c3"
   integrity sha512-d6tPA7BdVmYkuwt3EsS6NvE87eY2LhiD8iClA89Can5yySyPh4vK+CQlI+xiKNPPw6L0rclb7WMGbVSoorAUOQ==
@@ -1855,7 +1855,7 @@
   dependencies:
     lodash "^4.17.11"
 
-"@ovh-ux/ng-at-internet@^4.0.1":
+"@ovh-ux/ng-at-internet@^4.0.2":
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-at-internet/-/ng-at-internet-4.0.2.tgz#1c157e35ff94e2a88f42617a1c608afbadc9949d"
   integrity sha512-ikfakJtI9cYJ14GQ3l9jFEYdN4Pp/QiQcQ4dGfmm4LOSJ/y5vs59gwAzBzNuERu3czNqODzj5ZjYLbZO1wHjeA==
@@ -1869,7 +1869,7 @@
   dependencies:
     lodash "^4.17.11"
 
-"@ovh-ux/ng-ovh-actions-menu@^5.0.1":
+"@ovh-ux/ng-ovh-actions-menu@^5.0.2":
   version "5.0.2"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-actions-menu/-/ng-ovh-actions-menu-5.0.2.tgz#5d39ba354e4571288a5da5b2187a99608e4f8a29"
   integrity sha512-O3s97jeWKmRR1rA8Ht/OJ6UXcUywSUvIFhWn+rxsCFz5q5DPRKR+Pe44/RwU922fb5MqzQCOMdNS1bphYOvr/g==
@@ -1883,7 +1883,7 @@
   dependencies:
     lodash "^4.17.11"
 
-"@ovh-ux/ng-ovh-api-wrappers@^4.0.3":
+"@ovh-ux/ng-ovh-api-wrappers@^4.0.4":
   version "4.0.4"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-api-wrappers/-/ng-ovh-api-wrappers-4.0.4.tgz#0fd5f6b7b428bb08e7c37d6bc98f43dfbda50ef9"
   integrity sha512-ckPKAzXRuFkJ27QZ16AtiTgFZ8T5yTr6rkPqJetqGA8f2ncqBBnmnHtZGdoBFdk445dnrLyXsXjLuG0kTwSiRw==
@@ -1904,17 +1904,17 @@
   dependencies:
     lodash "^4.17.11"
 
-"@ovh-ux/ng-ovh-checkbox-table@^1.0.1":
+"@ovh-ux/ng-ovh-checkbox-table@^1.0.2":
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-checkbox-table/-/ng-ovh-checkbox-table-1.0.2.tgz#72e8e01e80947981ea54a717bccd48f4cbb53da9"
   integrity sha512-qGbWR1zuP9ntOzRqc1Invyejijy0Qyr5drohKL/GZqrU8kttQbjnevhH6Dea3wC+vP9ZJGQeQ64vcqQrhWAJUg==
   dependencies:
     lodash "^4.17.15"
 
-"@ovh-ux/ng-ovh-contact@4.0.1":
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-contact/-/ng-ovh-contact-4.0.1.tgz#7d4867a6f69f932d3d1a38dbdb1dfc2a9242e2e1"
-  integrity sha512-atweElc26szjn55W/OuyuRNCwkIn6maZiyF/fUFkh+KaeEDgxTKiBBqQqMZASGF8hQ8jr+u/74w9mEutqrDXqg==
+"@ovh-ux/ng-ovh-contact@4.0.2":
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-contact/-/ng-ovh-contact-4.0.2.tgz#9dace99c7bea1ad24356d0d72466339bdb800805"
+  integrity sha512-KOYl8aaTF76v6/r1ulV3OOprxDuvliHNsYbOrzTXHYDFFahBqSiefpaSNCzKjvwQbtSvXBqVsW+6QS/mf8Jl8g==
   dependencies:
     lodash "^4.17.15"
 
@@ -1932,15 +1932,15 @@
   dependencies:
     animated-scroll-to "^1.2.2"
 
-"@ovh-ux/ng-ovh-export-csv@^1.0.0":
+"@ovh-ux/ng-ovh-export-csv@^1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-export-csv/-/ng-ovh-export-csv-1.0.1.tgz#d34d0fb7839d92e8d9ec14f90224e3938b5eb66e"
   integrity sha512-FjJdj87XU4JoAZNNpnnOeS3wNKobUVU7UC4H+OJXFXqxbYhonCCfbjpuSTr3qI53cW88HSDy1Hi5qJC4ackOjg==
 
-"@ovh-ux/ng-ovh-http@^4.0.2":
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-http/-/ng-ovh-http-4.0.2.tgz#4f4c38a7c8cca56ab018773d61bd6d83200d6293"
-  integrity sha512-7QKgJDUBGjYf0Ldr1Nk28lMRZc6jY3e7q+g3pZMyAlIp3kkzG8SZIGT+jnAO0YTyb0sb6bJEbiAQJ8TqGlE0ow==
+"@ovh-ux/ng-ovh-http@^4.0.2", "@ovh-ux/ng-ovh-http@^4.0.4":
+  version "4.0.4"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-http/-/ng-ovh-http-4.0.4.tgz#f01ebf1d398b2f5c6d59f2c8d0c03d9f241a1083"
+  integrity sha512-wsHzDTRG1qbCtpi+z63ZvMi31AgmWaVvbvRvHBhcFgBFER8jEj/cT0S/XJZaMpCJsWO1pNI19eRgsQiY204HXw==
   dependencies:
     lodash "~4.17.15"
     urijs "^1.19.1"
@@ -1975,14 +1975,6 @@
   version "7.1.4"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-otrs/-/ng-ovh-otrs-7.1.4.tgz#e49c9696dc9a86281ae4bd3f71c43c1fc4a7a36c"
   integrity sha512-z+h5clMBoB/9Mxd+k15PLkeZMKQbDKpoPfztaPhcHJBsaK9aJWUZPN2YdxOc1Im4dWkWI4soPF+zI1wFdQGBhA==
-  dependencies:
-    draggable "^4.2.0"
-    lodash "^4.17.11"
-
-"@ovh-ux/ng-ovh-otrs@^7.1.6":
-  version "7.1.6"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-otrs/-/ng-ovh-otrs-7.1.6.tgz#be254726ea7c5cbb933a28a422fa0d2f7426691c"
-  integrity sha512-GR2y+1zAFL2YZRkMra6I6crGMPDBUsbYpy5dqiCenK5KEx+cU+0iGSFQp0HFXRTPZkRMwfF/NN1jXI9m/tV+Uw==
   dependencies:
     draggable "^4.2.0"
     lodash "^4.17.11"
@@ -2028,38 +2020,12 @@
   dependencies:
     lodash "^4.17.11"
 
-"@ovh-ux/ng-ovh-sso-auth-modal-plugin@^3.0.1":
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-sso-auth-modal-plugin/-/ng-ovh-sso-auth-modal-plugin-3.0.1.tgz#2384428a5fbc241f957c34f1b67d74649e64ff1c"
-  integrity sha512-YY/Jj3UGwOF0TNIg7hSbRxi5AjFlnuLDcoG+lJ7NEQqACQQsZSeyHxdQqcDZ68FziVIbr+XXnGRaybgAxQ+qHw==
-  dependencies:
-    lodash "~4.17.11"
-
-"@ovh-ux/ng-ovh-sso-auth@^4.1.0":
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-sso-auth/-/ng-ovh-sso-auth-4.1.0.tgz#658c6eba11e8a4ab8162fe4242a93680230e48e9"
-  integrity sha512-dZm2ZGbhW3IhyTOWcCZ/0NJ5ZayoWEgGHRkDzN3LQH6nlwVv5mkatlaXzOc7HvcAop2W+S2LnOXJtbrqCucM9w==
-
-"@ovh-ux/ng-ovh-sso-auth@^4.2.1":
-  version "4.2.2"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-sso-auth/-/ng-ovh-sso-auth-4.2.2.tgz#6a00ccea1f3a4e8695365ccb7cb7cf82f42e3690"
-  integrity sha512-mOEpugkr9rTiJImCLIMDn/x5Q3GArn2AYRzbQDLMzXS56PqzlwrdAefdojr8vAlRTKT+9C1faurdpo5kZpLWtA==
-
 "@ovh-ux/ng-ovh-swimming-poll@^4.0.0":
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-swimming-poll/-/ng-ovh-swimming-poll-4.0.0.tgz#16e071b283fed0ab2fe3e2287819793cbf0f159a"
   integrity sha512-kZDL0SFo2SK6yFDHhyMT7A3r8Q8czQlCKI914vMB5OQrRucX3dCNABnBaft5GKvTmDlBmCdH8ixT/H9IV9vdbA==
   dependencies:
     lodash "^4.17.11"
-
-"@ovh-ux/ng-ovh-telecom-universe-components@^3.0.9":
-  version "3.0.9"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-telecom-universe-components/-/ng-ovh-telecom-universe-components-3.0.9.tgz#86dfdbc6d6baf79800a15c44f7224887bf920485"
-  integrity sha512-yJUfQg2k4KJuPpXV68EtMdiLJoXeivp4B3n67zNm4n1CP/byaSqfDXt4pHk3rtTgX8Jf5oXhKHQuQAfgRzwEAQ==
-  dependencies:
-    bootstrap "^3.4.1"
-    lodash "^4.17.15"
-    ovh-ui-kit "^2.33.4"
 
 "@ovh-ux/ng-ovh-toaster@^1.0.2":
   version "1.0.2"
@@ -2073,23 +2039,18 @@
   dependencies:
     lodash "^4.17.11"
 
-"@ovh-ux/ng-ovh-utils@^14.0.3":
-  version "14.0.3"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-utils/-/ng-ovh-utils-14.0.3.tgz#d25404dd212714aa3a521f9313206b5756bbc2b6"
-  integrity sha512-7BjFAtuGjFLs8poAmSK2VxwA9TSDMoghqOz3fFIbpps2klU1SJLzYV04pNw/nv6jgKRoD+tROspe/cW1QrTuGw==
+"@ovh-ux/ng-ovh-utils@^14.0.3", "@ovh-ux/ng-ovh-utils@^14.0.4":
+  version "14.0.4"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-utils/-/ng-ovh-utils-14.0.4.tgz#bdb7e561ce98a25819ab2440554ba181adf4d21f"
+  integrity sha512-RC5epA+QeNeQm7BDULmNfSwpBvEdIs5I0t/smFksgAYKKi1Zduif39cXgRmZ6s7Jzj8toGa8CRL2XfOl6m7BQw==
   dependencies:
     filesize "^3.6.1"
-    lodash "^4.17.11"
+    lodash "^4.17.15"
 
 "@ovh-ux/ng-ovh-web-universe-components@^4.0.3":
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-web-universe-components/-/ng-ovh-web-universe-components-4.0.3.tgz#ec5062cda160524a20d864635c67fceffcc0e770"
   integrity sha512-1QKe9j283R3kENalTA6hvkkAyVRQJh6FT9wpJjBp4OPF/gTma0EvDBk2hYbXk45AlJUscCjB+8zoBLksO5rgMA==
-
-"@ovh-ux/ng-ovh-web-universe-components@^5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-web-universe-components/-/ng-ovh-web-universe-components-5.0.0.tgz#d5075e7c0f77e4c63d82609884474c6f86db6ebd"
-  integrity sha512-FUh5AG87CB8oW8hzMRanmXM1FqTq8qePQwJBuKVy1V377LfbyyseepaodKmB4cBVpoXvMnkyrr0X7DPiiyc0pQ==
 
 "@ovh-ux/ng-pagination-front@^8.0.0-alpha.0":
   version "8.0.0-alpha.0"
@@ -2117,7 +2078,7 @@
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-translate-async-loader/-/ng-translate-async-loader-2.0.0.tgz#df0d155c6c2e38b53704ff4ca9b419f0695a88bf"
   integrity sha512-CmAT0/rTYN/Niwtuo1pcY+y46nqGCR2dO6+4twqGiRkqu/ksgklZ4weaqF9Xgl/KYLv+zcCmxZf0J1gfXs7kag==
 
-"@ovh-ux/ng-translate-async-loader@^2.0.1":
+"@ovh-ux/ng-translate-async-loader@^2.0.2":
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-translate-async-loader/-/ng-translate-async-loader-2.0.2.tgz#9eac55552bccbc08c5847c42a74d42fbb5dc04ea"
   integrity sha512-uvPAidjPxmC3AimrXuKMCquqpGvAAWZcSIvsOklBy5Y3VF6+1TXz8RNKe2I19vH7Xvp+4L7vDW4tAlBhbHfazw==
@@ -2677,14 +2638,7 @@ angular-dynamic-locale@^0.1.27, angular-dynamic-locale@^0.1.37, angular-dynamic-
   dependencies:
     "@types/angular" "^1.6.25"
 
-angular-flash-alert@2.3.x:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/angular-flash-alert/-/angular-flash-alert-2.3.0.tgz#07bd3a1f000eaeb8f7ba3b4ba9fef00fd0339985"
-  integrity sha1-B706HwAOrrj3ujtLqf7wD9AzmYU=
-  dependencies:
-    angular "^1.4.8"
-
-angular-flash-alert@^2.3.0:
+angular-flash-alert@2.5.0, angular-flash-alert@^2.3.0:
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/angular-flash-alert/-/angular-flash-alert-2.5.0.tgz#321d4908d9acf847aa8a219cc7f6e95a502e71d4"
   integrity sha512-O/uqA66qtGsOA232+enzJNH4wH9v6ywcClRPf2C+T7xE/MxRRovOc959mcX9mIqNwncwPPc8quWol36R9fm1ow==
@@ -2826,7 +2780,7 @@ angular-ui-validate@^1.2.3, angular-ui-validate@angular-ui/ui-validate#~1.2.2:
   version "1.2.3"
   resolved "https://codeload.github.com/angular-ui/ui-validate/tar.gz/0d982055360032be2421b969fa1c83bf053e735a"
 
-angular-validation-match@^1.4.x, angular-validation-match@^1.9.0:
+angular-validation-match@^1.9.0:
   version "1.9.0"
   resolved "https://registry.yarnpkg.com/angular-validation-match/-/angular-validation-match-1.9.0.tgz#03d82d0b983bf22366c5d22a0c291731625dcf80"
   integrity sha1-A9gtC5g78iNmxdIqDCkXMWJdz4A=
@@ -3578,7 +3532,7 @@ bootstrap4@twbs/bootstrap#v4.0.0:
   version "4.0.0"
   resolved "https://codeload.github.com/twbs/bootstrap/tar.gz/8a628b943cf31ca0a002c08af661a95772480225"
 
-bootstrap@^3.1.1, bootstrap@^3.3.6, bootstrap@^3.4.1, bootstrap@~3:
+bootstrap@^3.1.1, bootstrap@^3.3.6, bootstrap@^3.3.7, bootstrap@^3.4.1, bootstrap@~3:
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-3.4.1.tgz#c3a347d419e289ad11f4033e3c4132b87c081d72"
   integrity sha512-yN5oZVmRCwe5aKwzRj6736nSmKDX7pLYwsXiCj/EYmo16hODaBiT4En5btW/jhBF/seV+XMx3aYwukYC3A49DA==
@@ -8651,7 +8605,7 @@ ipaddr.js@1.9.0, ipaddr.js@^1.9.0:
   resolved "https://registry.yarnpkg.com/ipaddr.js/-/ipaddr.js-1.9.0.tgz#37df74e430a0e47550fe54a2defe30d8acd95f65"
   integrity sha512-M4Sjn6N/+O6/IXSJseKqHoFc+5FdGJ22sXqnjTpdZweHK64MzEPAyQZyEU3R/KRv2GLoa7nNtg/C2Ev6m7z+eA==
 
-ipaddr.js@1.9.1, ipaddr.js@^1.6.0, ipaddr.js@^1.9.1:
+ipaddr.js@^1.6.0, ipaddr.js@^1.9.1:
   version "1.9.1"
   resolved "https://registry.yarnpkg.com/ipaddr.js/-/ipaddr.js-1.9.1.tgz#bff38543eeb8984825079ff3a2a8e6cbd46781b3"
   integrity sha512-0KI/607xoxSToH7GjN1FfSbLoU0+btTicjsQSWQlh/hZykN8KpmMf7uYwPW3R+akZ6R/w18ZlXSHBYXiYUPO3g==
@@ -9398,7 +9352,7 @@ jsurl@^0.1.4, jsurl@^0.1.5:
   resolved "https://registry.yarnpkg.com/jsurl/-/jsurl-0.1.5.tgz#2a5c8741de39cacafc12f448908bf34e960dcee8"
   integrity sha1-KlyHQd45ysr8EvRIkIvzTpYNzug=
 
-justgage@^1.2.2, justgage@^1.3.1:
+justgage@^1.2.2:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/justgage/-/justgage-1.3.1.tgz#f12fcd3648f0ba59c3339d60c51132a6b2b487c2"
   integrity sha512-bv6RDT6UnNq22XjnegNnm7QtXON4Bk7Jh0+X3jtTvLfcECz95lk5Ke3pjBfZpGO/V8aFjVtaGWaU1giOkpg4WQ==
@@ -11662,7 +11616,7 @@ ovh-api-services@^8.3.0:
   dependencies:
     lodash "^4.17.15"
 
-ovh-api-services@^9.5.0:
+ovh-api-services@^9.5.1:
   version "9.5.1"
   resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-9.5.1.tgz#26989bda6bf568c4f385a8c6a42d26911dfa1d62"
   integrity sha512-KRDNMbMyNVZ/Naqj3MiKVAT13+tGreUAC9KLQO5VasTZdhvfPZEEW7PPhGv/72YfFiTAH/qgMh+l3ON750NXjA==
@@ -13404,7 +13358,7 @@ request-progress@^2.0.1:
   dependencies:
     throttleit "^1.0.0"
 
-request@2.88.0, request@^2.72.0, request@^2.81.0, request@^2.83.0, request@^2.87.0, request@^2.88.0:
+request@2.88.0, request@^2.51.0, request@^2.72.0, request@^2.81.0, request@^2.83.0, request@^2.87.0, request@^2.88.0:
   version "2.88.0"
   resolved "https://registry.yarnpkg.com/request/-/request-2.88.0.tgz#9c2fca4f7d35b592efe57c7f0a55e81052124fef"
   integrity sha512-NAqBSrijGLZdM0WZNsInLJpkJokL72XYjUpnB0iwsRgxh7dB6COrHnTBNwN0E+lHDAJzu7kLAkDeY08z2/A0hg==
@@ -13687,7 +13641,7 @@ rollup-pluginutils@^1.5.0:
     estree-walker "^0.2.1"
     minimatch "^3.0.2"
 
-rollup@^1.20.2:
+rollup@^1.20.2, rollup@^1.20.3:
   version "1.20.3"
   resolved "https://registry.yarnpkg.com/rollup/-/rollup-1.20.3.tgz#6243f6c118ca05f56b2d9433112400cd834a1eb8"
   integrity sha512-/OMCkY0c6E8tleeVm4vQVDz24CkVgvueK3r8zTYu2AQNpjrcaPwO9hE+pWj5LTFrvvkaxt4MYIp2zha4y0lRvg==
@@ -15653,11 +15607,6 @@ uri-js@^4.2.2:
   dependencies:
     punycode "^2.1.0"
 
-uri.js@^0.1.3:
-  version "0.1.3"
-  resolved "https://registry.yarnpkg.com/uri.js/-/uri.js-0.1.3.tgz#b93eee9905b3c81b9c38bbbcdfff5ef6d0c8de5f"
-  integrity sha1-uT7umQWzyBucOLu83/9e9tDI3l8=
-
 urijs@^1.18.0, urijs@^1.19.1:
   version "1.19.1"
   resolved "https://registry.yarnpkg.com/urijs/-/urijs-1.19.1.tgz#5b0ff530c0cbde8386f6342235ba5ca6e995d25a"
@@ -15796,10 +15745,6 @@ validator-js@^0.2.1:
   integrity sha1-EgmnRukG8NZOo08NA/mDcLVsCNE=
   dependencies:
     underscore "*"
-
-validator-js@chriso/validator.js#3.40.1:
-  version "3.40.1"
-  resolved "https://codeload.github.com/chriso/validator.js/tar.gz/ae7041b2ba161a1924e2974af8093338185e9bb1"
 
 validator@^10.11.0:
   version "10.11.0"

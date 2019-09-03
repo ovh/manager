@@ -817,5 +817,19 @@
   "domain_dashboard_dns_activate_zone": "Activating the DNS zone ",
   "domain_tab_dns_management_step1_updating": "The DNS zone is being updated...",
   "domain_dashboard_general_informations": "General information",
-  "domain_dashboard_general_security": "Security"
+  "domain_dashboard_general_security": "Security",
+  "domain_dashboard_options": "Summary of options",
+  "domain_dashboard_options_dns_anycast": "Anycast DNS",
+  "domain_dashboard_options_status_enabled": "Enabled",
+  "domain_dashboard_options_status_disabled": "Deleted ",
+  "domain_dashboard_options_unavailable": "Option unavailable",
+  "domain_dashboard_options_desactivate_option": "Cancel",
+  "domain_dashboard_options_fail": "An error occurred when retrieving the domain options.",
+  "domain_tab_options_delete_confirm": "Are you sure that you want to delete the option?",
+  "domain_tab_options_delete_confirm_warning": "This action is irreversible and cannot be cancelled. ",
+  "domain_tab_options_delete_confirm_button": "Confirm",
+  "domain_tab_options_delete_dnsAnycast_title": "Cancel the DNS Anycast option",
+  "domain_tab_options_delete_success": "The option has been cancelled.",
+  "domain_tab_options_delete_error": "An error has occurred when cancelling the option.",
+  "domain_tab_options_delete_cancel": "Cancel"
 }

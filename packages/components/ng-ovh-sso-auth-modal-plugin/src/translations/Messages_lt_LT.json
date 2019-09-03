@@ -1,0 +1,10 @@
+{
+  "sso_modal_title": "OVH - Autentifikavimas",
+  "sso_modal_loading": "Įkraunama...",
+  "sso_modal_user_title": "Jūs buvote prisijungęs kaip:",
+  "sso_modal_currentuser_title": "Šiuo metu esate prisijungęs kaip:",
+  "sso_modal_disconnected": "Šiuo metu esate atsijungęs.",
+  "sso_modal_what": "Ką norite atlikti?",
+  "sso_modal_action_reload": "Tęsti kaip <strong>{{name}}</strong>",
+  "sso_modal_action_logout": "Eiti į autentifikavimo puslapį"
+}

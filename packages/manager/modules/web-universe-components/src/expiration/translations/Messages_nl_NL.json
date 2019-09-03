@@ -1,0 +1,9 @@
+{
+  "expiration_new_tab": "Openen in een nieuw tabblad",
+  "expiration_expired_date": "Vervalt op <strong>{{t0}}</strong>",
+  "expiration_renew_date": "Automatisch verlenging van de dienst in <strong>{{t0}}</strong>",
+  "expiration_resiliation_cancel_label": "Annuleer beëindiging",
+  "expiration_wizard_renew": "Verlengen",
+  "expiration_resiliation_date": "Annulatie gepland op <strong>{{t0}}</strong>",
+  "expiration_expiration_date": "Vervalt <sterk>{{t0}}</sterk>"
+}

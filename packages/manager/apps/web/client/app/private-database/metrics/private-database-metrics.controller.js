@@ -270,6 +270,6 @@ angular
       return map(keys(data.dps), key => ({
         x: key * 1000,
         y: Math.round(data.dps[key] * 100) / 100,
-      })).value();
+      }));
     }
   });
