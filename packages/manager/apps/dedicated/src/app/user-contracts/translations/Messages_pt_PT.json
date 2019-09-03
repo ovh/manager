@@ -1,0 +1,12 @@
+{
+  "user_contracts_modal_title": "Termos e condições",
+  "user_contracts_modal_term_of_service_updated_text": "Nos termes et conditions ont changé.",
+  "user_contracts_modal_term_of_service_updated_explanation": "Para usar os serviços OVH, incluindo a Área de Cliente, tem que ler e aceitar a condições de utilização do serviço:",
+  "user_contracts_modal_checkbox_label_both": "J’accepte les mises à jour des conditions d’utilisation et la politique de confidentialité",
+  "user_contracts_modal_checkbox_label_tos": "J’accepte la mises à jour des conditions d’utilisation",
+  "user_contracts_modal_checkbox_label_pp": "J’accepte la mise à jour des conditions de confidentialité",
+  "user_contracts_modal_submit_button": "Continuar",
+  "user_contracts_modal_submit_error": "Ocorreu um erro. Tente Novamente.",
+  "user_contracts_modal_display_text_tos": "Condições do serviço",
+  "user_contracts_modal_display_text_pp": "Regras de confidencialidade"
+}

@@ -1,0 +1,17 @@
+{
+  "billing_history_balance_title": "Pay my account balance",
+  "billing_history_balance_cancel": "Cancel",
+  "billing_history_balance_explain": "Your current account balance is {{ balance }}.",
+  "billing_history_balance_no_balance": "No balance has been found for your account. <a data-ui-sref=\"{{ backState }}\">Click here</a> to go back to your invoice list.",
+  "billing_history_balance_choose_payment_method": "Choose a payment method",
+  "billing_history_balance_add_payment_method": "Add a payment method",
+  "billing_history_balance_no_payment_method": "You do not have any valid payment methods. <a data-ui-sref=\"{{ addPaymentMethodState }}\">Add a valid payment method</a> before paying your balance.",
+  "billing_history_balance_payment_doing": "A balance payment is already in progress. Please wait for this payment to be processed before paying a new balance.",
+  "billing_history_balance_payment_go_tracking": "Go to the <a data-ui-sref=\"{{ trackState }}\">payment tracking page</a> for further information.",
+  "billing_history_balance_load_error": "An error has occurred loading your balance.",
+  "billing_history_balance_pay_success": "Your balance payment has been processed. The payment will be effective shortly. Go to the <a data-ui-sref=\"{{ trackHref }}\">payment tracking page</a> for further information.",
+  "billing_history_balance_pay_error": "An error has occurred paying your balance.",
+  "billing_history_balance_payment_method_subtype_american_express": "American Express",
+  "billing_history_balance_payment_method_subtype_mastercard": "Mastercard",
+  "billing_history_balance_payment_method_subtype_visa": "Visa"
+}

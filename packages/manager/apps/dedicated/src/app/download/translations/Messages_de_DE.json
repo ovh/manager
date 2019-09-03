@@ -1,0 +1,6 @@
+{
+  "download_bill_error": "Beim Abruf der Rechnung ist ein Fehler aufgetreten. Bitte entschuldigen Sie die entstandenen Unannehmlichkeiten.",
+  "download_bill_title": "Ihr Download wurde gestartet.",
+  "download_bill_retry_label": "Wenn Ihr Download nicht automatisch gestartet ist, ",
+  "download_bill_retry_link": "Download erneut starten"
+}

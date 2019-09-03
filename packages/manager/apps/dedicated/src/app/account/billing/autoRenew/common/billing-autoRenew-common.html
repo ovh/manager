@@ -1,0 +1,142 @@
+<td class="align-middle">
+    <label class="control-label"
+           data-ng-attr-title="{{ 'autorenew_service_selection_checkbox' | translate }}">
+        <input type="checkbox"
+               data-ng-model="service.checked"
+               data-ng-change="services.checkClicked(service)"
+               data-ng-attr-title="{{ 'autorenew_service_selection_checkbox' | translate }}"/>
+    </label>
+</td>
+
+<td>
+    <span data-ng-bind-html="('autorenew_service_type_' + service.serviceType) | translate"></span>
+</td>
+
+<td>
+    <span data-ng-bind="::service.serviceId" data-ng-hide="service.serviceType === 'EXCHANGE'"></span>
+    <span data-ng-bind="::service.alternativeId" data-ng-show="service.serviceType === 'EXCHANGE'"></span>
+</td>
+
+<td>
+    <span data-ng-if="service && service.expiration"
+          data-ng-class="getExpirationClass(service)">
+          <billing-renew-date data-service-infos="service"></billing-renew-date>
+    </span>
+</td>
+
+<td>
+  <billing-renew-label data-service-infos="service"></billing-renew-label>
+</td>
+
+<td>
+    <button type="button"
+            class="oui-button oui-button_secondary oui-button_icon-only oui-button_small-width"
+            data-ng-if="service.serviceType === 'HOSTING_DOMAIN'"
+            data-ng-click="expandHostingDomain[service.domain] = !expandHostingDomain[service.domain]"
+            data-ng-attr-title="{{ 'autorenew_service_expand_sub_services' | translate }}" >
+        <span class="oui-icon oui-icon-chevron-right" data-ng-if="!expandHostingDomain[service.domain]" aria-hidden="true"></span>
+        <span class="oui-icon oui-icon-chevron-down" data-ng-if="expandHostingDomain[service.domain]" aria-hidden="true"></span>
+    </button>
+
+    <oui-action-menu
+        data-ng-if="service.serviceType === 'SMS'"
+        data-aria-label="{{:: 'autorenew_service_action_menu_tooltip' | translate }}"
+        data-compact
+        data-align="end">
+        <oui-action-menu-item
+            data-href="{{:: buildSMSCreditBuyingURL(service) }}"
+            data-external="true"
+            data-text="{{:: 'autorenew_service_action_menu_smsPack_credit' | translate }}"></oui-action-menu-item>
+
+        <oui-action-menu-item
+            data-href="{{:: buildSMSAutomaticRenewalURL(service) }}"
+            data-external="true"
+            data-text="{{:: 'autorenew_service_action_menu_smsPack_automaticRenew' | translate }}"></oui-action-menu-item>
+    </oui-action-menu>
+
+    <oui-action-menu
+        data-ng-if="!service.subProducts && service.serviceType !== 'SMS'"
+        data-aria-label="{{:: 'autorenew_service_action_menu_tooltip' | translate }}"
+        data-compact
+        data-align="end">
+
+        <oui-action-menu-item
+            data-ng-if="service.serviceType !== 'EMAIL_DOMAIN'
+                        && service.serviceType !== 'EXCHANGE'
+                        && service.renewalType !== 'oneShot'"
+            data-disabled="editionDisabled(service)"
+            data-on-click="updateServices(service)"
+            data-text="{{:: 'autorenew_service_update_button_caption' | translate }}"></oui-action-menu-item>
+
+        <oui-action-menu-item
+            data-ng-if="canCancelResiliation(service, user) && service.serviceType !== 'EMAIL_DOMAIN'"
+            data-on-click="cancelDeleteService(service)"
+            data-text="{{:: 'autorenew_service_canceldelete_button' | translate }}"></oui-action-menu-item>
+
+        <oui-action-menu-item
+            data-ng-if="service.serviceType !== 'EXCHANGE'
+                        && service.serviceType !== 'EMAIL_DOMAIN'
+                        && !isInDebt(service)
+                        && service.renewalType !== 'oneShot'
+                        && !hasAutoRenew(service)"
+            data-disabled="service.renew.forced"
+            data-href="{{:: getRenewUrl() + service.serviceId }}"
+            data-external="true"
+            data-on-click="gotoRenew(service)"
+            data-text="{{:: 'manualrenew_service_renew_button' | translate }}"
+            data-aria-label="{{:: 'manualrenew_service_renew_button_title' | translate: { t0: service.serviceId } }}"></oui-action-menu-item>
+
+        <oui-action-menu-item
+            data-ng-if="service.serviceType !== 'EXCHANGE' && service.serviceType !== 'EMAIL_DOMAIN' && isInDebt(service)"
+            data-disabled="service.renew.forced"
+            data-on-click="warnAboutDebt(service)"
+            data-text="{{:: (hasAutoRenew(service) ? 'autorenew_service_renew_button' : 'manualrenew_service_renew_button') | translate }}"
+            data-aria-label="{{:: (hasAutoRenew(service) ? 'autorenew_service_renew_button_title' : 'manualrenew_service_renew_button_title') | translate: { t0: service.serviceId } }}"></oui-action-menu-item>
+
+        <oui-action-menu-item
+            data-ng-if="service.serviceType === 'EXCHANGE'"
+            data-on-click="gotoExchangeRenew(service)"
+            data-text="{{:: 'autorenew_service_update_button_caption' | translate }}"></oui-action-menu-item>
+
+        <oui-action-menu-item
+            data-ng-if="!service.renew.deleteAtExpiration
+                        && service.serviceType !== 'EMAIL_DOMAIN'
+                        && service.serviceType !== 'EXCHANGE'"
+            data-disabled="!canResiliate(service, user)"
+            data-on-click="resiliateService(service)"
+            data-text="{{:: 'autorenew_service_resiliate_button' | translate }}"></oui-action-menu-item>
+
+        <oui-action-menu-item
+            data-ng-if="!service.renew.deleteAtExpiration && service.serviceType === 'EXCHANGE'"
+            data-disabled="!canResiliate(service, user)"
+            data-on-click="resiliateExchangeService(service)"
+            data-text="{{:: 'autorenew_service_resiliate_button' | translate }}"></oui-action-menu-item>
+
+        <oui-action-menu-item
+            data-ng-if="service.serviceType === 'HOSTING_WEB'"
+            data-on-click="terminateHostingWeb(service)"
+            data-text="{{:: 'hosting_dashboard_service_guide' | translate }}"></oui-action-menu-item>
+
+        <oui-action-menu-item
+            data-ng-if="service.status !== 'EXPIRED' && service.serviceType === 'EMAIL_DOMAIN'"
+            data-on-click="terminateEmail(service)"
+            data-text="{{:: 'autorenew_service_EMAIL_DOMAIN_terminate' | translate }}"></oui-action-menu-item>
+
+        <oui-action-menu-item
+            data-ng-if="service.status !== 'EXPIRED' && service.serviceType === 'HOSTING_PRIVATE_DATABASE'"
+            data-on-click="terminatePrivateDatabase(service)"
+            data-text="{{:: 'autorenew_service_HOSTING_PRIVATE_DATABASE_terminate' | translate }}"></oui-action-menu-item>
+
+        <oui-action-menu-item
+            data-ng-if="canDisableAutorenew(service)"
+            data-on-click="disableAutorenew(service)"
+            data-text="{{:: 'autorenew_service_disable_button' | translate }}"></oui-action-menu-item>
+
+        <oui-action-menu-item
+            data-ng-if="canEnableAutorenew(service)
+                        && service.serviceType !== 'EMAIL_DOMAIN'
+                        && service.renewalType !== 'automaticForcedProduct'"
+            data-on-click="enableAutorenew(service)"
+            data-text="{{:: 'autorenew_service_enable_button' | translate }}"></oui-action-menu-item>
+    </oui-action-menu>
+</td>

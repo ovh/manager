@@ -1,0 +1,5 @@
+{
+  "price_price_ht_label": "{{ price }} excl. btw",
+  "price_price_ttc_label": "{{price }} incl. btw",
+  "price_price_free": "Inbegrepen"
+}

@@ -1,0 +1,16 @@
+{
+  "billing_main_pay_as_you_go_title": "Consumo pay-as-you-go actual",
+  "billing_main_pay_as_you_go_load_error": "Se ha producido un error al cargar el consumo pay-as-you-go.",
+  "billing_main_pay_as_you_go_table_project": "Proyecto",
+  "billing_main_pay_as_you_go_table_project_title": "{{ name }}: Ir a la gestión del proyecto",
+  "billing_main_pay_as_you_go_table_resource": "Recurso",
+  "billing_main_pay_as_you_go_table_type": "Tipo",
+  "billing_main_pay_as_you_go_table_type_instance": "Instancia",
+  "billing_main_pay_as_you_go_table_type_volume": "Volumen",
+  "billing_main_pay_as_you_go_table_type_snapshot": "Snapshot",
+  "billing_main_pay_as_you_go_table_due_date": "Fecha de expiración",
+  "billing_main_pay_as_you_go_table_current": "Saldo actual",
+  "billing_main_pay_as_you_go_table_current_forecast": "Previsión",
+  "billing_main_pay_as_you_go_table_action_manage": "Gestionar",
+  "billing_main_pay_as_you_go_table_action_switch_monthly": "Pasar al plan mensual"
+}

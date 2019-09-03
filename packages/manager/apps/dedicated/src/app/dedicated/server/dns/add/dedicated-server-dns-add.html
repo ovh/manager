@@ -1,0 +1,97 @@
+<div data-ng-controller="AddSecondaryDnsCtrl">
+
+    <div data-wizard
+         data-wizard-on-cancel="resetAction"
+         data-wizard-on-finish="addSecondaryDns"
+         data-wizard-title=":: 'server_configuration_add_secondary_dns_title' | translate"
+         data-wizard-bread-crumb
+         data-wizard-confirm-button-text=":: 'server_configuration_secondarydns_confirm_button_text' | translate">
+
+        <div data-wizard-step
+             data-wizard-step-on-load="loadIpList"
+             data-wizard-step-valid="entry.ip && entry.domain && ipdata.t.length==1 && !loading">
+
+            <div class="text-center"
+                 data-ng-if="loading">
+                <oui-spinner></oui-spinner>
+            </div>
+
+            <div data-ng-if="!loading">
+                <p data-translate="server_configuration_secondarydns_add_step1"></p>
+                <form name="addForm">
+                    <div class="form-group">
+                        <label class="control-label"
+                               data-translate="server_configuration_secondarydns_ip">
+                        </label>
+                        <div class="type-off input-block-level"
+                             data-type-off
+                             data-type-off-items="ipdata.t"
+                             data-type-off-term="entry.ip"
+                             data-type-off-term-path="'name'"
+                             data-type-off-show-when-empty="false"
+                             data-type-off-input-class="'form-control'">
+                            <div class="type-off-suggestions" style="overflow-y: scroll; height: 80px;">
+                                <ul>
+                                    <li class="type-off-item"
+                                        data-type-off-item="ip"
+                                        data-ng-repeat="ip in ipdata.t"
+                                        data-ng-bind="ip.name">
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="domain"
+                               class="control-label"
+                               data-translate="server_configuration_secondarydns_domain">
+                        </label>
+                        <input type="text"
+                               class="form-control"
+                               id="domain"
+                               name="domain"
+                               data-ng-model="entry.domain"
+                               data-ng-pattern="/.+\..+/" />
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+        <div data-wizard-step
+             data-wizard-step-on-load="loadToken">
+
+            <div class="text-center"
+                 data-ng-if="loadTokenLoading">
+                <oui-spinner></oui-spinner>
+            </div>
+
+            <div data-ng-if="!loadTokenLoading"
+                 data-ng-bind-html="'server_configuration_secondarydns_add_step2' | translate: { t0: token.fieldType, t1: entry.domain, t2: token.subDomain, t3: token.fieldValue }">
+            </div>
+
+            <div data-ovh-alert="addTokenAlert"></div>
+
+        </div>
+
+        <div data-wizard-step
+             data-wizard-step-valid="!loading">
+
+            <div class="text-center"
+                 data-ng-if="loading">
+                <oui-spinner></oui-spinner>
+            </div>
+
+             <div data-ng-if="!loading">
+                <p data-translate="server_configuration_secondarydns_add_step3"></p>
+                <dl>
+                    <dt data-translate="server_configuration_secondarydns_ip"></dt>
+                    <dd data-ng-bind="entry.ip"></dd>
+                    <dt data-translate="server_configuration_secondarydns_domain"></dt>
+                    <dd data-ng-bind-html="entry.domain"></dd>
+                </dl>
+            </div>
+
+        </div>
+    </div>
+</div>

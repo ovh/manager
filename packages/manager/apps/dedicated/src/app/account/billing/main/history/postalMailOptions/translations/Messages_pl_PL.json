@@ -1,0 +1,8 @@
+{
+  "billing_main_history_postal_mail_options_title": "Zmiana opcji wysyłki faktur",
+  "billing_main_history_postal_mail_options_activation": "Czy chcesz aktywować wysyłkę Twoich faktur w formie papierowej?",
+  "billing_main_history_postal_mail_options_desactivation": "Czy chcesz potwierdzić dezaktywację wysyłki Twoich faktur w formie papierowej? ",
+  "billing_main_history_postal_mail_options_activate_success": "Ustawienia zostały zaktualizowane. Od tej pory będziesz otrzymywał faktury w formie papierowej.",
+  "billing_main_history_postal_mail_options_desactivate_success": "Ustawienia zostały zaktualizowane. Nie będziesz już otrzymywał faktur w formie papierowej.",
+  "billing_main_history_postal_mail_options_update_error": "Wystąpił błąd podczas aktualizacji ustawień. "
+}

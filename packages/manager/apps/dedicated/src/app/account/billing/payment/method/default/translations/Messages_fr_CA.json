@@ -1,0 +1,5 @@
+{
+  "billing_payment_method_default_title": "Définir un moyen de paiement par défaut",
+  "billing_payment_method_default_explain": "Vous êtes sur le point de définir le moyen de paiement <strong>{{ label }}</strong> en tant que moyen de paiement par défaut.",
+  "billing_payment_method_default_question": "Êtes-vous certain de vouloir continuer ?"
+}

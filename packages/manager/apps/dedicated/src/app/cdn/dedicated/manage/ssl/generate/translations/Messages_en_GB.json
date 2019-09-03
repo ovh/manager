@@ -1,0 +1,10 @@
+{
+  "cdn_dedicated_ssl_generate": "Generate a Let's Encrypt certificate ",
+  "cdn_dedicated_ssl_generate_warning": "You cannot generate a Let's Encrypt certificate on your CDN because there is already an ongoing SSL operation.",
+  "cdn_dedicated_ssl_generate_replacement_warning": "WARNING: The certificate currently installed on your CDN will be deleted and replaced with this one. ",
+  "cdn_dedicated_ssl_generate_name": "Name of certificate",
+  "cdn_dedicated_ssl_generate_name_pattern": "The certificate name cannot contain any spaces.",
+  "cdn_dedicated_ssl_generate_success": "The SSL certificate will be installed shortly. ",
+  "cdn_dedicated_ssl_generate_load_error": "An error has occurred loading information regarding your SSL certificate.",
+  "cdn_dedicated_ssl_generate_error": "There was an error when SSL certificate was being created. "
+}
