@@ -8,6 +8,7 @@ import ngAtInternet from '@ovh-ux/ng-at-internet';
 import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin';
 import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
 import ngOvhChatbot from '@ovh-ux/ng-ovh-chatbot';
+import ngOvhExportCsv from '@ovh-ux/ng-ovh-export-csv';
 import ngOvhHttp from '@ovh-ux/ng-ovh-http';
 import ngOvhOtrs from '@ovh-ux/ng-ovh-otrs';
 import ngOvhProxyRequest from '@ovh-ux/ng-ovh-proxy-request';
@@ -18,6 +19,9 @@ import ngOvhUiRouterLayout from '@ovh-ux/ng-uirouter-layout';
 import ngOvhUserPref from '@ovh-ux/ng-ovh-user-pref';
 import ngOvhUtils from '@ovh-ux/ng-ovh-utils';
 import ngOvhWebUniverseComponents from '@ovh-ux/ng-ovh-web-universe-components';
+import ngPaginationFront from '@ovh-ux/ng-pagination-front';
+import ngQAllSettled from '@ovh-ux/ng-q-allsettled';
+import ngTailLogs from '@ovh-ux/ng-tail-logs';
 import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import ngUirouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
 import ovhContacts from '@ovh-ux/ng-ovh-contacts';
@@ -60,7 +64,7 @@ angular
     'Module.ip',
     'Module.license',
     'Module.otrs',
-    'ngCkeditor',
+    'ng.ckeditor',
     'ngMessages',
     ngAtInternet,
     ngAtInternetUiRouterPlugin,
@@ -81,15 +85,15 @@ angular
     ngTranslateAsyncLoader,
     ngUirouterLineProgress,
     'oui',
-    'ovh-angular-export-csv',
-    'ovh-angular-pagination-front',
-    'ovh-angular-q-allSettled',
+    ngOvhExportCsv,
+    ngPaginationFront,
+    ngQAllSettled,
     'ovh-angular-responsive-tabs',
     'ovh-api-services',
     ovhManagerPccDashboard,
     ovhManagerPccResourceUpgrade,
     ovhManagerServerSidebar,
-    'ovh-angular-tail-logs',
+    ngTailLogs,
     'ovh-utils-angular',
     'ovhBrowserAlert',
     ovhContacts,

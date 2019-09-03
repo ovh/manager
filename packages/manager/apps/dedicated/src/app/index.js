@@ -38,7 +38,6 @@ import 'script-loader!bootstrap-datetimepicker/src/js/locales/bootstrap-datetime
 import 'script-loader!bootstrap-datetimepicker/src/js/locales/bootstrap-datetimepicker.fi.js';
 import 'script-loader!bootstrap-datetimepicker/src/js/locales/bootstrap-datetimepicker.cs.js';
 import 'angularjs-scroll-glue';
-import 'ovh-angular-tail-logs';
 import 'raphael';
 import 'script-loader!angular-dynamic-locale/dist/tmhDynamicLocale.js';
 import 'script-loader!@ovh-ux/ovh-utils-angular/bin/ovh-utils-angular.min.js';
@@ -46,12 +45,9 @@ import 'script-loader!@ovh-ux/ovh-utils-angular/lib/core.js';
 import 'punycode';
 import 'script-loader!urijs/src/URI.min.js';
 import 'script-loader!ipaddr.js/ipaddr.min.js';
-import 'ovh-angular-pagination-front';
-import 'ovh-angular-q-allsettled';
 import 'script-loader!validator/validator.min.js';
 import 'script-loader!@bower_components/angular-ui-utils/ui-utils.min.js';
 import 'script-loader!df-tab-menu/build/df-tab-menu.min.js';
-import 'script-loader!ovh-angular-export-csv/dist/ovh-angular-export-csv.min.js';
 import 'script-loader!angular-ui-validate/dist/validate.min.js';
 import 'script-loader!ovh-angular-browser-alert/dist/ovh-angular-browser-alert.js';
 import 'script-loader!randexp/build/randexp.min';
@@ -65,26 +61,22 @@ import 'script-loader!qrcode.js/lib/qrcode.js';
 import 'angular-qr';
 import 'script-loader!u2f-api-polyfill/u2f-api-polyfill.js';
 import 'ovh-api-services';
-import 'ovh-angular-toaster';
-import 'script-loader!ovh-jquery-ui-draggable-ng/dist/ovh-jquery-ui-draggable-ng.min.js';
 import 'angular-translate';
 import 'script-loader!angular-translate/dist/angular-translate-loader-partial/angular-translate-loader-partial.min.js';
 import 'ng-slide-down';
 import '@ovh-ux/ng-ovh-actions-menu';
-import 'ovh-angular-responsive-popover';
 import 'script-loader!matchmedia-ng/matchmedia-ng.js';
 import 'angular-aria';
 import 'script-loader!chart.js/dist/Chart.min.js';
 import 'script-loader!angular-chart.js/dist/angular-chart.min.js';
 import 'ovh-angular-responsive-tabs';
-import 'script-loader!ckeditor/ckeditor.js';
-import 'script-loader!@bower_components/ng-ckeditor/ng-ckeditor.js';
+import 'ckeditor';
 import 'script-loader!messenger/build/js/messenger.min.js';
 import 'script-loader!flatpickr/dist/flatpickr.min.js';
 import 'script-loader!filesize/lib/filesize.js';
 
 // Ckeditor 4.x
-import 'script-loader!ng-ckeditor/dist/ng-ckeditor';
+import 'ng-ckeditor';
 
 import 'ovh-ui-kit-bs/dist/ovh-ui-kit-bs.css';
 

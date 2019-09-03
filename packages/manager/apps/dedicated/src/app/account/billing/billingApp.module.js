@@ -1,6 +1,8 @@
 import set from 'lodash/set';
 
+import ngOvhExportCsv from '@ovh-ux/ng-ovh-export-csv';
 import ovhManagerCore from '@ovh-ux/manager-core';
+
 import config from '../../config/config';
 
 angular
@@ -13,7 +15,7 @@ angular
     'Billing.services',
     'ngRoute',
     'ngSanitize',
-    'ovh-angular-export-csv',
+    ngOvhExportCsv,
     'ovh-utils-angular',
     'ui.bootstrap',
     'ui.router',

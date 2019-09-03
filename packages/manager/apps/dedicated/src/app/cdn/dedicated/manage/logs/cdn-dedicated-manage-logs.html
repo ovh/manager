@@ -1,4 +1,4 @@
-<ovh-tail-logs>
+<tail-logs>
     <div class="row ml-0"
          data-ng-repeat="log in $ctrl.logger.logs track by $index"
          data-ng-class="{
@@ -22,5 +22,4 @@
 
     <div data-translate="cdn_tabs_logs_list_no_logs"
          data-ng-if="$ctrl.logger.logs.length === 0"></div>
-</ovh-tail-logs>
-
+</tail-logs>
