@@ -1,3 +1,4 @@
+/* eslint-disable */
 import angular from 'angular';
 
 export default /* @ngInject */ ($timeout) => {
@@ -396,3 +397,4 @@ export default /* @ngInject */ ($timeout) => {
     },
   };
 }
+/* eslint-enable */
