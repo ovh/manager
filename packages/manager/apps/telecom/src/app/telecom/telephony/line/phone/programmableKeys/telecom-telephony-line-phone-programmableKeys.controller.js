@@ -1,3 +1,4 @@
+import cloneDeep from 'lodash/cloneDeep';
 import filter from 'lodash/filter';
 import find from 'lodash/find';
 import get from 'lodash/get';
@@ -91,7 +92,17 @@ export default class TelecomTelephonyLinePhoneProgammableKeysCtrl {
     return this.line.getPhone().then(() => {
       if (this.line.hasPhone) {
         return this.line.phone.initDeffered().then(() => {
-          this.functionKeys.raw = angular.copy(this.line.phone.functionKeys);
+          this.functionKeys.raw = cloneDeep(this.line.phone.functionKeys);
+          this.functionKeys.raw.sort((a, b) => {
+            const regexp = new RegExp(/[a-z]+|\d+/ig);
+            const [alphaA, numericA] = a.label.match(regexp);
+            const [alphaB, numericB] = b.label.match(regexp);
+            if (alphaA === alphaB) {
+              return parseInt(numericA, 10) > parseInt(numericB, 10) ? 1 : -1;
+            }
+
+            return alphaA > alphaB ? 1 : -1;
+          });
         });
       }
       return null;
