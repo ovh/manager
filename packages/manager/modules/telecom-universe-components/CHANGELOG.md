@@ -1,3 +1,19 @@
+# [4.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@4.0.0...@ovh-ux/ng-ovh-telecom-universe-components@4.1.0) (2019-09-03)
+
+
+### Bug Fixes
+
+* fix version for tuc ([836fed6](https://github.com/ovh-ux/manager/commit/836fed6))
+
+
+### Features
+
+* import tuc ([47de237](https://github.com/ovh-ux/manager/commit/47de237))
+* **tuc:** remove unused component ([0c0ddc5](https://github.com/ovh-ux/manager/commit/0c0ddc5))
+* **tuc:** switch xml to json ([677820f](https://github.com/ovh-ux/manager/commit/677820f))
+
+
+
 ## [3.0.9](https://github.com/ovh-ux/ng-ovh-telecom-universe-components/compare/v3.0.8...v3.0.9) (2019-08-19)
 
 

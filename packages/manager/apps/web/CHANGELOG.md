@@ -1,3 +1,23 @@
+# [13.30.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-web@13.29.0...@ovh-ux/manager-web@13.30.0) (2019-09-03)
+
+
+### Bug Fixes
+
+* fix version for wuc ([6eb2e21](https://github.com/ovh-ux/manager/commit/6eb2e21))
+* remove use of lodash bind ([#1255](https://github.com/ovh-ux/manager/issues/1255)) ([d33d704](https://github.com/ovh-ux/manager/commit/d33d704))
+* **web:** allow to rename private database service ([#1234](https://github.com/ovh-ux/manager/issues/1234)) ([dd3b3b4](https://github.com/ovh-ux/manager/commit/dd3b3b4))
+* **web:** remove unused dependency ([22c6936](https://github.com/ovh-ux/manager/commit/22c6936))
+* **web.private-database:** remove lodash unused .value ([80a3543](https://github.com/ovh-ux/manager/commit/80a3543))
+* **wuc:** resolve less ([6200cb5](https://github.com/ovh-ux/manager/commit/6200cb5))
+
+
+### Features
+
+* import wuc ([3a0d189](https://github.com/ovh-ux/manager/commit/3a0d189))
+* **web:** git pull subtree ([b5caae4](https://github.com/ovh-ux/manager/commit/b5caae4))
+
+
+
 # [13.29.0](https://github.com/ovh-ux/ovh-manager-web/compare/v13.28.2...v13.29.0) (2019-09-02)
 
 

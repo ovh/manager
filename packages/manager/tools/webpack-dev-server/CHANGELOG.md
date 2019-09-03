@@ -1,3 +1,12 @@
+# [2.4.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-webpack-dev-server@2.3.2...@ovh-ux/manager-webpack-dev-server@2.4.0) (2019-09-03)
+
+
+### Features
+
+* **tools.webpack.dev.server.config:** add port option to env object ([#1238](https://github.com/ovh-ux/manager/issues/1238)) ([33b2d0f](https://github.com/ovh-ux/manager/commit/33b2d0f))
+
+
+
 ## [2.3.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-webpack-dev-server@2.3.1...@ovh-ux/manager-webpack-dev-server@2.3.2) (2019-07-15)
 
 

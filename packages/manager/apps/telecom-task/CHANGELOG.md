@@ -1,3 +1,12 @@
+## [4.1.2](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom-task-app@4.1.1...@ovh-ux/manager-telecom-task-app@4.1.2) (2019-09-03)
+
+
+### Bug Fixes
+
+* fix version for tuc ([836fed6](https://github.com/ovh-ux/manager/commit/836fed6))
+
+
+
 ## [4.1.1](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-telecom-task-app@4.1.0...@ovh-ux/manager-telecom-task-app@4.1.1) (2019-08-29)
 
 

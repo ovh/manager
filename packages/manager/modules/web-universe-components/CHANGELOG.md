@@ -1,3 +1,21 @@
+# [7.1.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/ng-ovh-web-universe-components@7.0.0...@ovh-ux/ng-ovh-web-universe-components@7.1.0) (2019-09-03)
+
+
+### Bug Fixes
+
+* **wuc:** fix translations injection ([c4cfb0f](https://github.com/ovh-ux/manager/commit/c4cfb0f))
+* **wuc:** remove .github ([23d368d](https://github.com/ovh-ux/manager/commit/23d368d))
+* **wuc:** resolve less ([6200cb5](https://github.com/ovh-ux/manager/commit/6200cb5))
+* fix version for wuc ([6eb2e21](https://github.com/ovh-ux/manager/commit/6eb2e21))
+
+
+### Features
+
+* import wuc ([3a0d189](https://github.com/ovh-ux/manager/commit/3a0d189))
+* **wuc:** switch xml to json ([d2572af](https://github.com/ovh-ux/manager/commit/d2572af))
+
+
+
 ## [6.0.1](https://github.com/ovh-ux/ng-ovh-web-universe-components/compare/v6.0.0...v6.0.1) (2019-08-19)
 
 
