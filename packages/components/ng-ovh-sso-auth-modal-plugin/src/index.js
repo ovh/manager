@@ -28,6 +28,6 @@ angular
     });
   })
   .provider('ssoAuthModalPluginFct', provider)
-  .run(/* @ngTranslationsInject:xml ./translations */);
+  .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;
