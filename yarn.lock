@@ -1834,26 +1834,12 @@
     shuffle-seed "^1.1.6"
     titleize "^1.0.1"
 
-"@ovh-ux/ng-at-internet-ui-router-plugin@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-at-internet-ui-router-plugin/-/ng-at-internet-ui-router-plugin-2.0.0.tgz#ca1d5ee1cd9c513e63abcc1470b47114495714dc"
-  integrity sha512-AgZ9MOGcGcpLGKloaw+onAddNx8LvSDDevK7hNOuWyAtLBdkPf9PSGk79N6mhoZEO9/1cYrTwuwaOL0/qPBamA==
-  dependencies:
-    lodash "^4.17.11"
-
 "@ovh-ux/ng-at-internet-ui-router-plugin@^2.0.2":
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-at-internet-ui-router-plugin/-/ng-at-internet-ui-router-plugin-2.0.2.tgz#7cf3a78c0032a2b7ae5a802491f9703b6a1c78c3"
   integrity sha512-d6tPA7BdVmYkuwt3EsS6NvE87eY2LhiD8iClA89Can5yySyPh4vK+CQlI+xiKNPPw6L0rclb7WMGbVSoorAUOQ==
   dependencies:
     lodash "^4.17.15"
-
-"@ovh-ux/ng-at-internet@^4.0.0":
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-at-internet/-/ng-at-internet-4.0.0.tgz#8a703d7aa818dc6ca96157b2faf060839e06f319"
-  integrity sha512-gKKsS+VstwUxLseC8YTSILhhqSiceQ035Wb2hXbXtXWu4QkM48Sq6bWHWh7mw+IfGKXrHPGkF2S+XeLLdfCHvw==
-  dependencies:
-    lodash "^4.17.11"
 
 "@ovh-ux/ng-at-internet@^4.0.2":
   version "4.0.2"
@@ -1862,26 +1848,12 @@
   dependencies:
     lodash "^4.17.15"
 
-"@ovh-ux/ng-ovh-actions-menu@^5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-actions-menu/-/ng-ovh-actions-menu-5.0.0.tgz#64f4a262a02b35cc11bdab9ba9b0982b20b4e92f"
-  integrity sha512-5XufQhKmbDD/kf0XhJ0ghp70QZ/mSQTfGLIvUNU9PeEOEqSmSqIJOXCAUGNBJs0lq5wCR2JwNVABhoibHRZ5Lw==
-  dependencies:
-    lodash "^4.17.11"
-
 "@ovh-ux/ng-ovh-actions-menu@^5.0.2":
   version "5.0.2"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-actions-menu/-/ng-ovh-actions-menu-5.0.2.tgz#5d39ba354e4571288a5da5b2187a99608e4f8a29"
   integrity sha512-O3s97jeWKmRR1rA8Ht/OJ6UXcUywSUvIFhWn+rxsCFz5q5DPRKR+Pe44/RwU922fb5MqzQCOMdNS1bphYOvr/g==
   dependencies:
     lodash "^4.17.15"
-
-"@ovh-ux/ng-ovh-api-wrappers@^4.0.2":
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-ovh-api-wrappers/-/ng-ovh-api-wrappers-4.0.2.tgz#4d91cac4c622436f5359715dde31e1d6d75e2f5c"
-  integrity sha512-zNv2pQMyDRAVUOLvsRqV+6xG8NTz9LjWlSmvMXQ+sVjo9fZkEFxOS+mAGWgGweQjwrM+2Rd1t0Xj45hlhN/sQw==
-  dependencies:
-    lodash "^4.17.11"
 
 "@ovh-ux/ng-ovh-api-wrappers@^4.0.4":
   version "4.0.4"
@@ -2072,11 +2044,6 @@
   integrity sha512-tcyEnkqb71p+ImlsRalsqdZ/RcN1lixjUVItsR1oLooliiXumdPgmAjlGm6elBs3Gb+vzDq0+uouFwLxfeYVKg==
   dependencies:
     lodash "^4.17.11"
-
-"@ovh-ux/ng-translate-async-loader@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ng-translate-async-loader/-/ng-translate-async-loader-2.0.0.tgz#df0d155c6c2e38b53704ff4ca9b419f0695a88bf"
-  integrity sha512-CmAT0/rTYN/Niwtuo1pcY+y46nqGCR2dO6+4twqGiRkqu/ksgklZ4weaqF9Xgl/KYLv+zcCmxZf0J1gfXs7kag==
 
 "@ovh-ux/ng-translate-async-loader@^2.0.2":
   version "2.0.2"
@@ -7237,9 +7204,9 @@ forever-agent@~0.6.1:
   integrity sha1-+8cfDEGt6zf5bFd60e1C2P2sypE=
 
 form-data@^2.3.1:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/form-data/-/form-data-2.5.0.tgz#094ec359dc4b55e7d62e0db4acd76e89fe874d37"
-  integrity sha512-WXieX3G/8side6VIqx44ablyULoGruSde5PNTxoUyo5CeyAMX6nVWUd0rgist/EuX655cjhUhTo1Fo3tRYqbcA==
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/form-data/-/form-data-2.5.1.tgz#f2cbec57b5e59e23716e128fe44d4e5dd23895f4"
+  integrity sha512-m21N3WOmEEURgk6B9GLOE4RuWOFf28Lhh9qGYeNlGq4VDXUlJy2th2slBNU8Gp8EzloYZOibZJ7t5ecIrFSjVA==
   dependencies:
     asynckit "^0.4.0"
     combined-stream "^1.0.6"
@@ -11655,18 +11622,6 @@ ovh-ngstrap@^4.0.2:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/ovh-ngstrap/-/ovh-ngstrap-4.0.2.tgz#059291bfb9f59b78df991e476dd2ede0507cb3c9"
   integrity sha1-BZKRv7n1m3jfmR5HbdLt4FB8s8k=
-
-ovh-ui-angular@^3.7.3:
-  version "3.7.3"
-  resolved "https://registry.yarnpkg.com/ovh-ui-angular/-/ovh-ui-angular-3.7.3.tgz#848788e6c3a81668136ff9f2c7d95db90fb2b5ea"
-  integrity sha512-rEEwctmjS77k7ZpZftJ98jum/fXwmpa53HlUOH/7d0ajsJ4thnY8Yt/T++oUBjhqXD2xuDleN2JD5ftpACxryw==
-  dependencies:
-    bloodhound-js "^1.2.3"
-    clipboard "^2.0.1"
-    escape-string-regexp "^1.0.5"
-    flatpickr "^4.5.2"
-    popper.js "^1.14.4"
-    ui-select "^0.19.8"
 
 ovh-ui-angular@^3.7.4:
   version "3.7.4"
