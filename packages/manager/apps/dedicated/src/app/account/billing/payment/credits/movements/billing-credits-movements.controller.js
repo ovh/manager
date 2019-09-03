@@ -1,3 +1,6 @@
+import get from 'lodash/get';
+import set from 'lodash/set';
+
 angular.module('Billing.controllers').controller('Billing.controllers.CreditsMovements', class BillingCreditsCtrl {
   constructor($q, $stateParams, $translate, Alerter, BillingCredits) {
     this.$q = $q;
@@ -31,12 +34,12 @@ angular.module('Billing.controllers').controller('Billing.controllers.CreditsMov
     return this.billingCredits
       .getBalanceMovement(this.$stateParams.balanceName, movementId)
       .catch((error) => {
-        this.Alerter.set('alert-danger', [this.$translate.instant('billing_credit_balance_movements_load_error'), _.get(error, 'message')].join(' '));
+        this.Alerter.set('alert-danger', [this.$translate.instant('billing_credit_balance_movements_load_error'), get(error, 'message')].join(' '));
       });
   }
 
   pushMovementDetails(movementDetails) {
-    _.set(movementDetails, 'expireSoon', movementDetails.expirationDate ? moment(movementDetails.expirationDate).diff(moment(), 'days') <= 7 : false);
+    set(movementDetails, 'expireSoon', movementDetails.expirationDate ? moment(movementDetails.expirationDate).diff(moment(), 'days') <= 7 : false);
     this.paginatedMovements.push(movementDetails);
   }
 
@@ -57,7 +60,7 @@ angular.module('Billing.controllers').controller('Billing.controllers.CreditsMov
         this.balance = balance;
       })
       .catch((error) => {
-        this.Alerter.set('alert-danger', [this.$translate.instant('billing_credit_balance_movements_load_error'), _.get(error, 'message')].join(' '));
+        this.Alerter.set('alert-danger', [this.$translate.instant('billing_credit_balance_movements_load_error'), get(error, 'message')].join(' '));
       });
   }
 
@@ -68,7 +71,7 @@ angular.module('Billing.controllers').controller('Billing.controllers.CreditsMov
         this.movements = movements;
       })
       .catch((error) => {
-        this.Alerter.set('alert-danger', [this.$translate.instant('billing_credit_balance_movements_load_error'), _.get(error, 'message')].join(' '));
+        this.Alerter.set('alert-danger', [this.$translate.instant('billing_credit_balance_movements_load_error'), get(error, 'message')].join(' '));
       });
   }
 

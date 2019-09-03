@@ -1,3 +1,6 @@
+import head from 'lodash/head';
+import includes from 'lodash/includes';
+
 angular.module('App').controller('ServerInstallationProgressCtrl', ($scope, $translate, Server, Polling, $rootScope, $stateParams) => {
   const doingStatus = ['doing'];
   const endingStatus = ['done'];
@@ -68,7 +71,7 @@ angular.module('App').controller('ServerInstallationProgressCtrl', ($scope, $tra
     Server.getTaskInProgress($stateParams.productId, 'reinstallServer').then(
       (taskTab) => {
         if (taskTab.length > 0) {
-          $scope.progress.task = _.first(taskTab);
+          $scope.progress.task = head(taskTab);
           $rootScope.$broadcast('dedicated.informations.reinstall', taskTab[0]);
         }
         checkInstallationProgress();
@@ -86,16 +89,16 @@ angular.module('App').controller('ServerInstallationProgressCtrl', ($scope, $tra
     $scope.progress.errorStep = 0;
 
     angular.forEach($scope.progress.installationTask.progress, (value) => {
-      if (_.contains(doingStatus, value.status.toString().toLowerCase())) {
+      if (includes(doingStatus, value.status.toString().toLowerCase())) {
         if ($scope.progress.errorStep === 0) {
           $scope.progress.currentStep = value.comment;
         }
         $scope.progress.endStep += 1;
       }
-      if (_.contains(endingStatus, value.status.toString().toLowerCase())) {
+      if (includes(endingStatus, value.status.toString().toLowerCase())) {
         $scope.progress.endStep += 1;
       }
-      if (_.contains(errorStatus, value.status.toString().toLowerCase())) {
+      if (includes(errorStatus, value.status.toString().toLowerCase())) {
         $scope.progress.disableCancel = true;
         $scope.progress.currentStep = value.comment;
         $scope.progress.errorMessage = value.error;

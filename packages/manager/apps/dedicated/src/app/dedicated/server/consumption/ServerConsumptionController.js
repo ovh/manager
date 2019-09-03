@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 class ServerConsumptionCtrl {
   constructor($q, $scope, $stateParams, $filter, Alerter, ServerTrafficService,
     ServerOrderTrafficService, Server) {
@@ -107,7 +109,7 @@ class ServerConsumptionCtrl {
   }
 
   canOrderMoreTraffic() {
-    return !this.server.data.isExpired && this.server.data.canOrderQuota && _.get(this.trafficOrderables, 'data.length');
+    return !this.server.data.isExpired && this.server.data.canOrderQuota && get(this.trafficOrderables, 'data.length');
   }
 
   // function quotaStatus () {

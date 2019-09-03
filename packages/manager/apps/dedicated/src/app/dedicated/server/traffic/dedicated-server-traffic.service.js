@@ -1,3 +1,7 @@
+import cloneDeep from 'lodash/cloneDeep';
+import get from 'lodash/get';
+import set from 'lodash/set';
+
 class ServerTrafficService {
   constructor($q, $filter, Server) {
     this.$q = $q;
@@ -23,7 +27,7 @@ class ServerTrafficService {
       .then((bandwidth) => {
         const { traffic } = bandwidth;
 
-        const hasQuota = _.get(traffic, 'outputQuotaSize') !== null || _.get(traffic, 'inputQuotaSize') !== null;
+        const hasQuota = get(traffic, 'outputQuotaSize') !== null || get(traffic, 'inputQuotaSize') !== null;
 
         traffic.remainingInputQuotaSize = this.computeRemainingUsage(
           traffic.inputQuotaSize,
@@ -34,10 +38,10 @@ class ServerTrafficService {
           traffic.outputQuotaUsed,
         );
 
-        _.set(traffic, 'inputQuotaSize.text', this.getQuotaText(traffic.inputQuotaSize), traffic.remainingInputQuotaSize.unit);
-        _.set(traffic, 'inputQuotaUsed.text', this.getQuotaText(traffic.inputQuotaUsed));
-        _.set(traffic, 'outputQuotaSize.text', this.getQuotaText(traffic.outputQuotaSize), traffic.remainingOutputQuotaSize.unit);
-        _.set(traffic, 'outputQuotaUsed.text', this.getQuotaText(traffic.outputQuotaUsed));
+        set(traffic, 'inputQuotaSize.text', this.getQuotaText(traffic.inputQuotaSize), traffic.remainingInputQuotaSize.unit);
+        set(traffic, 'inputQuotaUsed.text', this.getQuotaText(traffic.inputQuotaUsed));
+        set(traffic, 'outputQuotaSize.text', this.getQuotaText(traffic.outputQuotaSize), traffic.remainingOutputQuotaSize.unit);
+        set(traffic, 'outputQuotaUsed.text', this.getQuotaText(traffic.outputQuotaUsed));
 
         traffic.resetQuotaTimeLeft = null;
         if (traffic.resetQuotaDate) {
@@ -61,7 +65,7 @@ class ServerTrafficService {
     }
 
     if (!quotaUsed) {
-      return _.cloneDeep(quota);
+      return cloneDeep(quota);
     }
 
     const quotaSize = this.$filter('ducBytes')(quota.value, {

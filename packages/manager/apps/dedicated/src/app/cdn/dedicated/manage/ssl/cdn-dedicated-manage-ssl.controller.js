@@ -1,3 +1,6 @@
+import result from 'lodash/result';
+import set from 'lodash/set';
+
 angular.module('App').controller('CdnTabSslCtrl', ($scope, $translate, Cdn, $stateParams) => {
   $scope.ssl = null;
   $scope.task = null;
@@ -46,7 +49,7 @@ angular.module('App').controller('CdnTabSslCtrl', ($scope, $translate, Cdn, $sta
       },
       (error) => {
         $scope.loading = false;
-        _.set(error, 'message', error.message.replace(' : null', ''));
+        set(error, 'message', error.message.replace(' : null', ''));
         $scope.setMessage($translate.instant('cdn_configuration_add_ssl_get_error'), { type: 'ERROR', message: error.message });
       },
     );
@@ -65,7 +68,7 @@ angular.module('App').controller('CdnTabSslCtrl', ($scope, $translate, Cdn, $sta
         taskId: infos.taskId,
         taskFunction: 'installSsl',
       });
-      $scope.taskErrorMessage = _.result(infos, 'comment');
+      $scope.taskErrorMessage = result(infos, 'comment');
     }
   });
   $scope.$on('cdn.installSsl.error', () => {

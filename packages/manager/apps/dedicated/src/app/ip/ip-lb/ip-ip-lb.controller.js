@@ -1,3 +1,5 @@
+import set from 'lodash/set';
+
 angular.module('Module.ip.controllers').controller('IplbDashboardCtrl', ['$location', '$q', '$rootScope', '$scope', '$translate', 'Alerter', 'Iplb', 'UserAccount.services.Contacts', ($location, $q, $rootScope, $scope, $translate, Alerter, Iplb, Contacts) => {
   $scope.loading = {};
 
@@ -16,7 +18,7 @@ angular.module('Module.ip.controllers').controller('IplbDashboardCtrl', ['$locat
         } else {
           $scope.selectIplb($rootScope.preselectedIplb ? $scope.preselectedIplb.value : list[0]);
         }
-        _.set($rootScope, 'preselectedIplb', $scope.selectedIplb);
+        set($rootScope, 'preselectedIplb', $scope.selectedIplb);
       } else {
         Contacts.getUrlOf('iplbOrder')
           .then((orderUrl) => {

@@ -1,3 +1,7 @@
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import size from 'lodash/size';
+
 angular.module('UserAccount').controller('UserAccount.controllers.contacts.requests', [
   '$scope',
   'UserAccount.services.Contacts',
@@ -91,9 +95,9 @@ angular.module('UserAccount').controller('UserAccount.controllers.contacts.reque
         Contacts.killAllPolling({ namespace: 'user.contacts.sendRequest' });
         Contacts.killAllPolling({ namespace: 'user.contacts.send.poll' });
 
-        const pendingChanges = _.filter(Contacts.getPendingChanges({ key: 'Contacts::PendingChangeSent' }), (value) => {
+        const pendingChanges = filter(Contacts.getPendingChanges({ key: 'Contacts::PendingChangeSent' }), (value) => {
           const splittedValue = value.split('_');
-          return _.size(splittedValue) && splittedValue[0] === self.user.nichandle;
+          return size(splittedValue) && splittedValue[0] === self.user.nichandle;
         });
 
         if (pendingChanges) {
@@ -151,7 +155,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.contacts.reque
 
     $scope.$on('user.contacts.sendRequest.start', (pollObject, id) => {
       angular.noop(pollObject);
-      const contactChange = _.find(
+      const contactChange = find(
         self.contactTasksDetails,
         contact => contact.id === parseInt(id, 10),
       );
@@ -165,7 +169,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.contacts.reque
       angular.noop(pollObject);
       Contacts.removePendingChange({ key: 'Contacts::PendingChangeSent', data: [self.user.nichandle, task.id].join('_') });
 
-      const contactChange = _.find(self.contactTasksDetails, { id: task.id });
+      const contactChange = find(self.contactTasksDetails, { id: task.id });
 
       if (contactChange) {
         if (contactChange.state === 'doing') {

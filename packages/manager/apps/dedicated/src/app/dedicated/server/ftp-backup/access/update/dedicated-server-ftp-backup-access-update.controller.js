@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular.module('App')
   .controller('DedicatedServerFtpBackupAccessUpdateController', class DedicatedServerFtpBackupAccessUpdateController {
     constructor($rootScope, $scope, $stateParams, $translate, Alerter, Server) {
@@ -10,7 +12,7 @@ angular.module('App')
     }
 
     $onInit() {
-      this.access = _.get(this.$scope, 'currentActionData', {});
+      this.access = get(this.$scope, 'currentActionData', {});
       this.form = {
         access: angular.copy(this.access),
       };

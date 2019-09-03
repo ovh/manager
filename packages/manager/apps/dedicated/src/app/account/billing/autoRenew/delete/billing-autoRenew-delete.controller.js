@@ -1,3 +1,9 @@
+import cloneDeep from 'lodash/cloneDeep';
+import get from 'lodash/get';
+import head from 'lodash/head';
+import map from 'lodash/map';
+import pick from 'lodash/pick';
+
 angular
   .module('Billing.controllers')
   .controller('billingAutoRenewDeleteCtrl', class BillingAutoRenewDeleteCtrl {
@@ -20,7 +26,7 @@ angular
     $onInit() {
       this.loaders.init = true;
       this.selectedServices = this.$scope.currentActionData;
-      this.serviceToDisplay = _.first(this.selectedServices);
+      this.serviceToDisplay = head(this.selectedServices);
       this.serviceToDisplay.expirationText = this.$filter('date')(this.serviceToDisplay.expiration, 'mediumDate');
 
       if (this.serviceToDisplay.serviceType === 'DEDICATED_SERVER') {
@@ -35,23 +41,23 @@ angular
     }
 
     switchRenewalModeToManual() {
-      const formattedServices = _(this.selectedServices).map((originalService) => {
-        const service = _(originalService).clone(true);
+      const formattedServices = map(this.selectedServices, (originalService) => {
+        const service = cloneDeep(originalService);
         service.renew.automatic = false;
 
-        return _(service).pick(['serviceId', 'serviceType', 'renew']).value();
-      }).value();
+        return pick(service, ['serviceId', 'serviceType', 'renew']);
+      });
 
       return this.BillingAutoRenew.updateServices(formattedServices);
     }
 
     switchRenewalModeToDeleteAtExpiration() {
-      const formattedServices = _(this.selectedServices).map((originalService) => {
-        const service = _(originalService).clone(true);
+      const formattedServices = map(this.selectedServices, (originalService) => {
+        const service = cloneDeep(originalService);
         service.renew.deleteAtExpiration = true;
 
-        return _(service).pick(['serviceId', 'serviceType', 'renew']).value();
-      }).value();
+        return pick(service, ['serviceId', 'serviceType', 'renew']);
+      });
 
       return this.BillingAutoRenew
         .updateServices(formattedServices)
@@ -62,7 +68,7 @@ angular
 
     switchRenewalModeToManualIfNeeded() {
       const AUTO_RENEW_TYPES = ['automaticV2014', 'automaticV2016', 'automaticForcedProduct'];
-      const renewType = _(this.serviceToDisplay).get('service.renewalType', this.serviceToDisplay.renewalType);
+      const renewType = get(this.serviceToDisplay, 'service.renewalType', this.serviceToDisplay.renewalType);
       const serviceIsAutomaticallyRenewed = AUTO_RENEW_TYPES.includes(renewType);
 
       return this.serviceToDisplay.renew.automatic && !serviceIsAutomaticallyRenewed

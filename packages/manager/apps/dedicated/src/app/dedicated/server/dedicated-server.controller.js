@@ -1,4 +1,9 @@
-import _ from 'lodash';
+import has from 'lodash/has';
+import includes from 'lodash/includes';
+import indexOf from 'lodash/indexOf';
+import isArray from 'lodash/isArray';
+import isEmpty from 'lodash/isEmpty';
+import set from 'lodash/set';
 import { ELIGIBLE_FOR_UPGRADE, URLS } from './dedicated-server.contants';
 
 /* eslint-disable no-use-before-define */
@@ -233,7 +238,7 @@ angular.module('App').controller('ServerCtrl', (
 
     Server.getUsbStorageInformations($stateParams.productId).then(
       (result) => {
-        if (_.isArray(result) && result[1].usbKeys) {
+        if (isArray(result) && result[1].usbKeys) {
           $scope.disable.usbStorageTab = true;
         }
       },
@@ -249,7 +254,7 @@ angular.module('App').controller('ServerCtrl', (
         const serviceInfos = data[1];
 
         const expiration = moment.utc(server.expiration);
-        _.set(server, 'expiration', moment([expiration.year(), expiration.month(), expiration.date()]).toDate());
+        set(server, 'expiration', moment([expiration.year(), expiration.month(), expiration.date()]).toDate());
 
         const creation = moment.utc(serviceInfos.creation);
         server.creation = moment([creation.year(), creation.month(), creation.date()]).toDate();
@@ -290,7 +295,7 @@ angular.module('App').controller('ServerCtrl', (
       .catch((data) => {
         $scope.loadingServerInformations = false;
         $scope.loadingServerError = true;
-        _.set(data, 'type', 'ERROR');
+        set(data, 'type', 'ERROR');
         $scope.setMessage($translate.instant('server_dashboard_loading_error'), data);
       });
   }
@@ -310,7 +315,7 @@ angular.module('App').controller('ServerCtrl', (
           travaux: constants.travauxUrl,
         };
       }, (err) => {
-        _.set(err, 'data.type', 'ERROR');
+        set(err, 'data.type', 'ERROR');
         $scope.setMessage($translate.instant('server_dashboard_loading_error'), err.data);
       });
   }
@@ -332,18 +337,18 @@ angular.module('App').controller('ServerCtrl', (
       resetIPMITasks: Server.getTaskInProgress($stateParams.productId, 'resetIPMI'),
       reinstallServerTasks: Server.getTaskInProgress($stateParams.productId, 'reinstallServer'),
     }).then(({ hardRebootTasks, resetIPMITasks, reinstallServerTasks }) => {
-      if (_.isArray(hardRebootTasks) && !_.isEmpty(hardRebootTasks)) {
+      if (isArray(hardRebootTasks) && !isEmpty(hardRebootTasks)) {
         $scope.$broadcast('dedicated.informations.reboot', hardRebootTasks[0]);
       }
 
       // Do not call broadcast dedicated.ipmi.resetinterfaces
-      if (_.isArray(resetIPMITasks) && !_.isEmpty(resetIPMITasks)) {
+      if (isArray(resetIPMITasks) && !isEmpty(resetIPMITasks)) {
         initIpmiRestart(resetIPMITasks[0]);
       }
 
-      if (_.isArray(reinstallServerTasks) && !_.isEmpty(reinstallServerTasks)) {
+      if (isArray(reinstallServerTasks) && !isEmpty(reinstallServerTasks)) {
         $scope.$broadcast('dedicated.informations.reinstall', reinstallServerTasks[0]);
-      } else if (!_.has(reinstallServerTasks, 'messages')) {
+      } else if (!has(reinstallServerTasks, 'messages')) {
         checkInstallationProgress();
       } else {
         $scope.$broadcast('dedicated.server.refreshTabs');
@@ -374,7 +379,7 @@ angular.module('App').controller('ServerCtrl', (
       (data) => {
         $scope.disable.reboot = false;
         $scope.$broadcast('dedicated.informations.reboot.done');
-        _.set(data, 'type', 'ERROR');
+        set(data, 'type', 'ERROR');
         $scope.setMessage($translate.instant('server_configuration_reboot_fail_task'), data);
       },
     );
@@ -394,7 +399,7 @@ angular.module('App').controller('ServerCtrl', (
         $scope.disable.installationInProgress = true;
         $scope.disable.installationInProgressError = false;
         angular.forEach(installationStep.progress, (value) => {
-          if (_.contains(errorStatus, value.status.toString().toLowerCase())) {
+          if (includes(errorStatus, value.status.toString().toLowerCase())) {
             $scope.disable.installationInProgressError = true;
             $scope.disable.install = false;
           }
@@ -441,7 +446,7 @@ angular.module('App').controller('ServerCtrl', (
       })
       .catch((data) => {
         $scope.disable.install = false;
-        _.set(data, 'type', 'ERROR');
+        set(data, 'type', 'ERROR');
         $scope.setMessage($translate.instant('server_configuration_installation_fail_task', { t0: $scope.server.name }), data);
       });
   }
@@ -491,7 +496,7 @@ angular.module('App').controller('ServerCtrl', (
   $scope.checkIfStopBotherAutoRenew = () => ovhUserPref
     .getValue('SERVER_AUTORENEW_STOP_BOTHER')
     .then((serverToStopBother) => {
-      $scope.autoRenewStopBother = _.indexOf(serverToStopBother, $scope.server.name) !== -1;
+      $scope.autoRenewStopBother = indexOf(serverToStopBother, $scope.server.name) !== -1;
     })
     .catch(error => (error.status === 404 ? ($scope.autoRenewStopBother = false) : $q.reject(error))); // eslint-disable-line
 
@@ -545,7 +550,7 @@ angular.module('App').controller('ServerCtrl', (
   $scope.URLS = URLS;
 
   function isEligibleForUpgrade() {
-    return _.includes(ELIGIBLE_FOR_UPGRADE.SUBSIDIARIES, $scope.user.ovhSubsidiary);
+    return includes(ELIGIBLE_FOR_UPGRADE.SUBSIDIARIES, $scope.user.ovhSubsidiary);
   }
 });
 /* eslint-enable no-use-before-define */

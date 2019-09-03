@@ -1,3 +1,6 @@
+import get from 'lodash/get';
+import isEmpty from 'lodash/isEmpty';
+
 angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.sms.delete', [
   '$rootScope',
   '$scope',
@@ -7,7 +10,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.sms
   'Alerter',
   function ($rootScope, $scope, $q, $translate, DoubleAuthSmsService, Alerter) {
     $scope.sms = {
-      smsAccount: _.get($scope, 'currentActionData', {}),
+      smsAccount: get($scope, 'currentActionData', {}),
       code: null,
       isLoading: false,
       isDeleting: false,
@@ -21,7 +24,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.sms
          * Check if step is valid.
          * @return {Boolean}
          */
-    $scope.doesStepIsValid = () => ($scope.sms.smsAccount.status === 'disabled' ? true : !_.isEmpty($scope.sms.code));
+    $scope.doesStepIsValid = () => ($scope.sms.smsAccount.status === 'disabled' ? true : !isEmpty($scope.sms.code));
 
     /* -----  End of HELPERS  ------ */
 

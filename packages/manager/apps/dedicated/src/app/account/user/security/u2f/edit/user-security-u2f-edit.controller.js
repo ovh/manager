@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.u2f.edit', [
   '$rootScope',
   '$scope',
@@ -6,8 +8,8 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.u2f
   'Alerter',
   function ($rootScope, $scope, $translate, DoubleAuthU2fService, Alerter) {
     $scope.u2f = {
-      u2fAccount: _.get($scope, 'currentActionData', {}),
-      description: _.get($scope, 'currentActionData.description', ''),
+      u2fAccount: get($scope, 'currentActionData', {}),
+      description: get($scope, 'currentActionData.description', ''),
       isEditing: false,
     };
 

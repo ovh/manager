@@ -1,5 +1,9 @@
 import { Environment } from '@ovh-ux/manager-config';
-import _ from 'lodash';
+import get from 'lodash/get';
+import has from 'lodash/has';
+import head from 'lodash/head';
+import isString from 'lodash/isString';
+import set from 'lodash/set';
 import ngAtInternet from '@ovh-ux/ng-at-internet';
 import ngAtInternetUiRouterPlugin from '@ovh-ux/ng-at-internet-ui-router-plugin';
 import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
@@ -102,7 +106,7 @@ angular
     uiRouter,
     'UserAccount',
     'xeditable',
-  ].filter(_.isString))
+  ].filter(isString))
   .constant('constants', {
     prodMode: config.prodMode,
     swsProxyRootPath: config.swsProxyRootPath,
@@ -134,10 +138,10 @@ angular
     tmhDynamicLocaleProvider.localeLocationPattern('resources/angular/i18n/angular-locale_{{locale}}.js');
   })
   .config((OvhHttpProvider, constants) => {
-    _.set(OvhHttpProvider, 'rootPath', constants.swsProxyPath);
-    _.set(OvhHttpProvider, 'clearCacheVerb', ['POST', 'PUT', 'DELETE']);
-    _.set(OvhHttpProvider, 'returnSuccessKey', 'data'); // By default, request return response.data
-    _.set(OvhHttpProvider, 'returnErrorKey', 'data'); // By default, request return error.data
+    set(OvhHttpProvider, 'rootPath', constants.swsProxyPath);
+    set(OvhHttpProvider, 'clearCacheVerb', ['POST', 'PUT', 'DELETE']);
+    set(OvhHttpProvider, 'returnSuccessKey', 'data'); // By default, request return response.data
+    set(OvhHttpProvider, 'returnErrorKey', 'data'); // By default, request return error.data
   })
   .config(($urlServiceProvider) => {
     $urlServiceProvider.rules.otherwise('/configuration');
@@ -174,7 +178,7 @@ angular
     // see src/billing/billingApp.js for resolve restriction on billing states
     $transitions.onError({}, (transition) => {
       const error = transition.error();
-      if (_.get(error, 'status') === 403 && _.get(error, 'code') === 'FORBIDDEN_BILLING_ACCESS') {
+      if (get(error, 'status') === 403 && get(error, 'code') === 'FORBIDDEN_BILLING_ACCESS') {
         $state.go('app.error', { error });
       }
     });
@@ -183,14 +187,14 @@ angular
       if (error.type === RejectType.ERROR) {
         $state.go('error', {
           detail: {
-            message: _.get(error.detail, 'data.message'),
-            code: _.has(error.detail, 'headers') ? error.detail.headers('x-ovh-queryId') : null,
+            message: get(error.detail, 'data.message'),
+            code: has(error.detail, 'headers') ? error.detail.headers('x-ovh-queryId') : null,
           },
         }, { location: false });
       }
     });
 
-    _.set($rootScope, 'worldPart', coreConfig.getRegion());
+    set($rootScope, 'worldPart', coreConfig.getRegion());
   })
   .run(($location) => {
     const queryParams = $location.search();
@@ -211,9 +215,9 @@ angular
     $qProvider.errorOnUnhandledRejections(false);
   })
   .config((OtrsPopupProvider, constants) => {
-    OtrsPopupProvider.setBaseUrlTickets(_.get(constants, 'REDIRECT_URLS.listTicket', null));
+    OtrsPopupProvider.setBaseUrlTickets(get(constants, 'REDIRECT_URLS.listTicket', null));
   })
   .run(($translate) => {
-    moment.locale(_.first($translate.use().split('_')));
+    moment.locale(head($translate.use().split('_')));
   })
   .constant('UNIVERSE', 'DEDICATED');

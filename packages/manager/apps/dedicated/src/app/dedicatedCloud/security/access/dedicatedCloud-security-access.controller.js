@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import difference from 'lodash/difference';
 
 {
   class DedicatedCloudSecurityPolicyAccessCtrl {
@@ -31,7 +31,7 @@ import _ from 'lodash';
         .copy(this.$scope.dedicatedCloud.userAccessPolicyEnum);
 
       if (this.$scope.dedicatedCloud.capabilities.userAccessPolicyStatus !== 'ACTIVE') {
-        this.selectedAccessPolicy.policies = _.difference(this.selectedAccessPolicy.policies, ['FILTERED']);
+        this.selectedAccessPolicy.policies = difference(this.selectedAccessPolicy.policies, ['FILTERED']);
       }
     }
 

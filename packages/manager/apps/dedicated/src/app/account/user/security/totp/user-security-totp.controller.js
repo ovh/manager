@@ -1,3 +1,6 @@
+import filter from 'lodash/filter';
+import map from 'lodash/map';
+
 angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.totp', [
   '$scope',
   '$q',
@@ -19,7 +22,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.tot
          * @return {Promise}
          */
     function fetchTotpAccounts() {
-      return DoubleAuthTotpService.query().then(totpIds => $q.all(_.map(totpIds, totpId => DoubleAuthTotpService.get(totpId))).then(totpAccounts => _.filter(totpAccounts, totpAccount => totpAccount.status !== 'needCodeValidation')));
+      return DoubleAuthTotpService.query().then(totpIds => $q.all(map(totpIds, totpId => DoubleAuthTotpService.get(totpId))).then(totpAccounts => filter(totpAccounts, totpAccount => totpAccount.status !== 'needCodeValidation')));
     }
 
     /* -----  End of HELPERS  ------ */

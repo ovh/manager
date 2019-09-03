@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.backupCode.delete', [
   '$rootScope',
   '$scope',
@@ -6,7 +8,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.bac
   'Alerter',
   function ($rootScope, $scope, $translate, DoubleAuthBackupCodeService, Alerter) {
     $scope.backupCode = {
-      sotpAccount: _.get($scope, 'currentActionData', {}),
+      sotpAccount: get($scope, 'currentActionData', {}),
       code: '',
       isDeleting: false,
     };

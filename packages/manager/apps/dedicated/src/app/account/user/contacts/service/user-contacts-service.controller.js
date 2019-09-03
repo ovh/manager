@@ -1,3 +1,6 @@
+import find from 'lodash/find';
+import set from 'lodash/set';
+
 angular.module('UserAccount').controller('UserAccount.controllers.contactServices', [
   '$scope',
   'UserAccount.services.Contacts',
@@ -41,7 +44,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.contactService
       self.loaders.init = true;
       $q.all([getUser(), self.getServices(true)]).then(() => {
         if ($stateParams.serviceName) {
-          self.serviceFilter = _.find(
+          self.serviceFilter = find(
             self.allServices,
             service => service.serviceName === $stateParams.serviceName,
           );
@@ -128,9 +131,9 @@ angular.module('UserAccount').controller('UserAccount.controllers.contactService
 
     self.openEditLine = function (index, service) {
       self.editLine = index;
-      _.set(service, 'newContactAdmin', service.contactAdmin);
-      _.set(service, 'newContactTech', service.contactTech);
-      _.set(service, 'newContactBilling', service.contactBilling);
+      set(service, 'newContactAdmin', service.contactAdmin);
+      set(service, 'newContactTech', service.contactTech);
+      set(service, 'newContactBilling', service.contactBilling);
     };
 
     self.changeContact = function (service) {

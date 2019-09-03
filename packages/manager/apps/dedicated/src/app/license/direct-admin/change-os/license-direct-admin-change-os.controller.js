@@ -1,3 +1,5 @@
+import size from 'lodash/size';
+
 angular.module('Module.license').controller('LicenseDirectAdminChangeOsCtrl', ($scope, $q, $translate, License, Alerter) => {
   $scope.model = {
     license: $scope.currentActionData.license,
@@ -23,7 +25,7 @@ angular.module('Module.license').controller('LicenseDirectAdminChangeOsCtrl', ($
   }
 
   function isTaskPending() {
-    return License.tasks($scope.model.license, 'changeOs').then(tasks => _.size(tasks) > 0);
+    return License.tasks($scope.model.license, 'changeOs').then(tasks => size(tasks) > 0);
   }
 
   function init() {

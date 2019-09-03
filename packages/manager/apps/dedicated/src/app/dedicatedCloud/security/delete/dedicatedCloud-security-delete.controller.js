@@ -1,3 +1,5 @@
+import find from 'lodash/find';
+
 angular.module('App').controller('DedicatedCloudSecurityPolicyDeleteCtrl', ($scope, $stateParams, DedicatedCloud, $translate, Alerter) => {
   const { policies } = $scope.currentActionData;
 
@@ -21,6 +23,6 @@ angular.module('App').controller('DedicatedCloudSecurityPolicyDeleteCtrl', ($sco
   };
 
   $scope.getPolicyIP = function (id) {
-    return _.find(policies, { id }).network;
+    return find(policies, { id }).network;
   };
 });

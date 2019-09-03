@@ -1,3 +1,6 @@
+import upperFirst from 'lodash/upperFirst';
+import get from 'lodash/get';
+
 export default class {
   /* @ngInject */
   constructor(
@@ -32,13 +35,13 @@ export default class {
           .exit()
           .then(() => {
             this.Alerter.alertFromSWS(this.$translate.instant('dedicatedCloud_servicePack_confirmation_order_failure'), {
-              message: _.get(transition.error(), 'detail', transition.error()).message,
+              message: get(transition.error(), 'detail', transition.error()).message,
               type: 'ERROR',
             }, 'dedicatedCloud_alert');
           })),
     );
 
-    this[`handle${_.capitalize(this.activationType)}Order`]();
+    this[`handle${upperFirst(this.activationType)}Order`]();
   }
 
   handleBasicOrder() {

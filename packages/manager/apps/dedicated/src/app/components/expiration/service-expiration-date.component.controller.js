@@ -1,3 +1,5 @@
+import isString from 'lodash/isString';
+
 (() => {
   class ServiceExpirationDateComponentCtrl {
     constructor($scope, $rootScope, constants, coreConfig) {
@@ -10,7 +12,7 @@
 
     $onInit() {
       const hasValidServiceInfos = angular.isObject(this.serviceInfos);
-      const hasValidServiceName = _.isString(this.serviceName);
+      const hasValidServiceName = isString(this.serviceName);
       if (!hasValidServiceInfos || !hasValidServiceName) {
         throw new Error('serviceExpirationDate: Missing parameter(s)');
       }
@@ -28,7 +30,7 @@
 
     getAutoRenewUrl() {
       const url = `#/billing/autoRenew?searchText=${this.serviceName}`;
-      if (_.isString(this.serviceType)) {
+      if (isString(this.serviceType)) {
         return `${url}&selectedType=${this.serviceType}`;
       }
       return url;

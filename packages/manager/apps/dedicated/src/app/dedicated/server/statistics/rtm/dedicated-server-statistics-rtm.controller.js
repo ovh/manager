@@ -1,3 +1,6 @@
+import assign from 'lodash/assign';
+import findIndex from 'lodash/findIndex';
+
 angular.module('controllers').controller('controllers.Server.Stats.Rtm', ($rootScope, $scope, $location, $stateParams, Server) => {
   $scope.loadingAction = 'loading';
 
@@ -88,7 +91,7 @@ angular.module('controllers').controller('controllers.Server.Stats.Rtm', ($rootS
       return;
     }
 
-    const index = _.findIndex($scope.optionsRtm, option => option.type === type);
+    const index = findIndex($scope.optionsRtm, option => option.type === type);
 
     if (~index) {
       $scope.rtmOptions.value = $scope.optionsRtm[index];
@@ -104,7 +107,7 @@ angular.module('controllers').controller('controllers.Server.Stats.Rtm', ($rootS
       $scope.server = server;
       Server.getRtmVersion($stateParams.productId).then(
         (rtmInfo) => {
-          $scope.rtmInfo = _.assign({}, rtmInfo.data);
+          $scope.rtmInfo = assign({}, rtmInfo.data);
           $scope.rtmInfo.activated = true;
           Server.getLoad($stateParams.productId).then((loadInfo) => {
             $scope.loadInfo = loadInfo;

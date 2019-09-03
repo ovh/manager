@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular.module('Billing').controller('BillingHistoryDebtPayCtrl', class BillingHistoryDebtPayCtrl {
   constructor($q, $state, $stateParams, $translate, $window, Alerter, atInternet, OvhApiMe) {
     // Injections
@@ -42,17 +44,17 @@ angular.module('Billing').controller('BillingHistoryDebtPayCtrl', class BillingH
 
     return promise.then((order) => {
       this.Alerter.success(this.$translate.instant('billing_main_history_debt_pay_success', {
-        t0: _.get(order, 'data.orderId') || _.get(order, 'orderId'),
-        t1: _.get(order, 'data.url') || _.get(order, 'url'),
+        t0: get(order, 'data.orderId') || get(order, 'orderId'),
+        t1: get(order, 'data.url') || get(order, 'url'),
       }), 'billing_main_alert');
 
-      this.$window.open(_.get(order, 'data.url') || _.get(order, 'url'), '_blank');
+      this.$window.open(get(order, 'data.url') || get(order, 'url'), '_blank');
     }).catch((error) => {
-      if (_.get(error, 'data.message') === 'Nothing to pay') {
+      if (get(error, 'data.message') === 'Nothing to pay') {
         return this.Alerter.set('alert-info', this.$translate.instant('billing_main_history_debt_pay_error_nothing_to_pay'), null, 'billing_main_alert');
       }
 
-      return this.Alerter.error(`${this.$translate.instant('billing_main_history_debt_pay_error')} ${_.get(error, 'data.message', '')}`, 'billing_main_alert');
+      return this.Alerter.error(`${this.$translate.instant('billing_main_history_debt_pay_error')} ${get(error, 'data.message', '')}`, 'billing_main_alert');
     }).finally(() => {
       this.loading.pay = false;
       this.closeModal();

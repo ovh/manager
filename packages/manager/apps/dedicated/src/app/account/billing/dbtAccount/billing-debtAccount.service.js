@@ -1,3 +1,5 @@
+import forOwn from 'lodash/forOwn';
+
 angular.module('Billing.services').service('BillingDebtAccount', function ($q, $cacheFactory, OvhHttp) {
   const cache = {
     debtAccount: 'UNIVERS_BILLING_DEBT_CREDITS_ACCOUNT',
@@ -79,7 +81,7 @@ angular.module('Billing.services').service('BillingDebtAccount', function ($q, $
   };
 
   this.clearCache = function () {
-    _.forOwn(cache, (cacheName) => {
+    forOwn(cache, (cacheName) => {
       const cacheInstance = $cacheFactory.get(cacheName);
       if (cacheInstance) {
         cacheInstance.removeAll();

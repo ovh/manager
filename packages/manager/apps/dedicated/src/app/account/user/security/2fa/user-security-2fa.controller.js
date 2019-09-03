@@ -1,3 +1,8 @@
+import get from 'lodash/get';
+import head from 'lodash/head';
+import isEmpty from 'lodash/isEmpty';
+import size from 'lodash/size';
+
 angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.2fa.enable', [
   '$q',
   '$rootScope',
@@ -76,7 +81,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.2fa
      * @return {Boolean}
      */
     $scope.doesStep1IsValid = () => angular.isString($scope.step1.doubleAuthType)
-      && _.size($scope.step1.doubleAuthType);
+      && size($scope.step1.doubleAuthType);
 
     /**
      * Does step 2 is valid.
@@ -123,7 +128,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.2fa
       return DoubleAuthBackupCodeService.post()
         .then((backupCodes) => {
           $scope.step3.backupCode.hasGenerated = true;
-          $scope.step3.backupCode.codes = _.get(backupCodes, 'codes', null);
+          $scope.step3.backupCode.codes = get(backupCodes, 'codes', null);
           return backupCodes;
         })
         .finally(() => {
@@ -140,7 +145,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.2fa
       return DoubleAuthU2fService.post()
         .then((registerChallenge) => {
           $scope.step2.u2f.registerChallenge = registerChallenge;
-          $scope.step2.u2f.description = _.get(registerChallenge, 'key.description', '');
+          $scope.step2.u2f.description = get(registerChallenge, 'key.description', '');
         })
         .catch((err) => {
           let key = null;
@@ -167,7 +172,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.2fa
           return DoubleAuthSmsService
             .validate($scope.step2.sms.secret.id, $scope.step2.sms.code)
             .then(() => {
-              if (!_.isEmpty($scope.step2.sms.description)) {
+              if (!isEmpty($scope.step2.sms.description)) {
                 return DoubleAuthSmsService.edit(
                   $scope.step2.sms.secret.id,
                   $scope.step2.sms.description,
@@ -191,7 +196,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.2fa
           return DoubleAuthTotpService
             .validate($scope.step2.totp.qrCode.id, $scope.step2.totp.code)
             .then(() => {
-              if (!_.isEmpty($scope.step2.totp.description)) {
+              if (!isEmpty($scope.step2.totp.description)) {
                 return DoubleAuthTotpService.edit(
                   $scope.step2.totp.qrCode.id,
                   $scope.step2.totp.description,
@@ -212,7 +217,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.2fa
               return $q.reject();
             });
         case 'u2f':
-          if (!_.isEmpty($scope.step2.u2f.description)) {
+          if (!isEmpty($scope.step2.u2f.description)) {
             return DoubleAuthU2fService
               .edit($scope.step2.u2f.registerChallenge.u2fId, $scope.step2.u2f.description);
           }
@@ -298,7 +303,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.2fa
      * @return {Promise}
      */
     $scope.loadFourthStep = () => DoubleAuthBackupCodeService
-      .validate(_.first($scope.step3.backupCode.codes));
+      .validate(head($scope.step3.backupCode.codes));
 
     $scope.goToFirstStep = () => {
       $scope.step1.isActive = true;

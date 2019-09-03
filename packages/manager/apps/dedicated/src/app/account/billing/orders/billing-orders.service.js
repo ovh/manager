@@ -1,3 +1,5 @@
+import forOwn from 'lodash/forOwn';
+
 angular.module('Billing.services').service('BillingOrders', function ($q, $cacheFactory, OvhHttp, BillingAuth) {
   const self = this;
   let currentTimePromise;
@@ -91,7 +93,7 @@ angular.module('Billing.services').service('BillingOrders', function ($q, $cache
   };
 
   this.clearCache = function () {
-    _.forOwn(cache, (cacheName) => {
+    forOwn(cache, (cacheName) => {
       const cacheInstance = $cacheFactory.get(cacheName);
       if (cacheInstance) {
         cacheInstance.removeAll();

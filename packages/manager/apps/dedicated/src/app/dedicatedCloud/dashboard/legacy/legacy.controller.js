@@ -1,4 +1,6 @@
-import _ from 'lodash';
+import isEmpty from 'lodash/isEmpty';
+import isString from 'lodash/isString';
+import snakeCase from 'lodash/snakeCase';
 
 export default class {
   /* @ngInject */
@@ -57,9 +59,9 @@ export default class {
 
   getUserAccessPolicyLabel() {
     const policy = this.currentService.userAccessPolicy;
-    const formattedPolicy = _.snakeCase(policy).toUpperCase();
+    const formattedPolicy = snakeCase(policy).toUpperCase();
 
-    return _.isString(formattedPolicy) && !_.isEmpty(formattedPolicy)
+    return isString(formattedPolicy) && !isEmpty(formattedPolicy)
       ? this.$translate.instant(`dedicatedCloud_user_access_policy_${formattedPolicy}`)
       : '-';
   }

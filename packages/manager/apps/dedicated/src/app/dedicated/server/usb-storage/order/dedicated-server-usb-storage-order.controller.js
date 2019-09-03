@@ -1,3 +1,5 @@
+import head from 'lodash/head';
+
 angular.module('App').controller('UsbStorageOrderCtrl', ($rootScope, $scope, $q, $stateParams, $translate, Server, User, Alerter) => {
   User.getUser().then((user) => {
     $scope.ovhSubsidiary = user.ovhSubsidiary;
@@ -42,7 +44,7 @@ angular.module('App').controller('UsbStorageOrderCtrl', ($rootScope, $scope, $q,
     $q.all(queue).then(
       () => {
         if (durations && durations.length === 1) {
-          $scope.model.duration = _.first(durations);
+          $scope.model.duration = head(durations);
         }
         $scope.loading.prices = false;
       },

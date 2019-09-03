@@ -1,4 +1,7 @@
-import _ from 'lodash';
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import flatten from 'lodash/flatten';
+import map from 'lodash/map';
 
 angular
   .module('App')
@@ -20,15 +23,15 @@ angular
     }
 
     static extractElementConsumption({ elements }, { id, type }) {
-      return _.find(
+      return find(
         OvhManagerPccDatacenterService.keepOnlyElementDetailsWithType(elements, type),
         OvhManagerPccDatacenterService.keepOnlyElement(id),
       );
     }
 
     static keepOnlyElementDetailsWithType(elements, type) {
-      return _.flatten(
-        _.map(
+      return flatten(
+        map(
           OvhManagerPccDatacenterService.keepOnlyElementsWithType(elements, type),
           'details',
         ),
@@ -36,11 +39,11 @@ angular
     }
 
     static keepOnlyConsumptionForService(serviceId) {
-      return consumptionForAllServices => _.find(consumptionForAllServices, { serviceId });
+      return consumptionForAllServices => find(consumptionForAllServices, { serviceId });
     }
 
     static keepOnlyElementsWithType(elements, { planFamily }) {
-      return _.filter(elements, { planFamily });
+      return filter(elements, { planFamily });
     }
 
     static keepOnlyElement(id) {

@@ -1,3 +1,6 @@
+import get from 'lodash/get';
+import set from 'lodash/set';
+
 import {
   RESOURCE_BILLING_TYPES,
   RESOURCE_UPGRADE_TYPES,
@@ -52,14 +55,14 @@ angular
                   dc.id,
                 )
                 .then((response) => {
-                  _.set(dc, 'consumption', _.get(response, 'consumption.value'));
-                  _.set(dc, 'consumptionLastUpdate', response.lastUpdate);
+                  set(dc, 'consumption', get(response, 'consumption.value'));
+                  set(dc, 'consumptionLastUpdate', response.lastUpdate);
                   return dc;
                 }).catch((err) => {
                   if (this.noConsumptionResponse.test(err.message)) {
-                    _.set(dc, 'consumption', 0);
+                    set(dc, 'consumption', 0);
                   } else {
-                    _.set(dc, 'consumption', null);
+                    set(dc, 'consumption', null);
                   }
 
                   return dc;
@@ -91,7 +94,7 @@ angular
 
           return {
             ...datastore,
-            consumption: _.get(datastoreConsumption, 'quantity', 0),
+            consumption: get(datastoreConsumption, 'quantity', 0),
             consumptionLastUpdate: serviceConsumption.lastUpdate,
           };
         }

@@ -1,3 +1,8 @@
+import cloneDeep from 'lodash/cloneDeep';
+import head from 'lodash/head';
+import isArray from 'lodash/isArray';
+import set from 'lodash/set';
+
 (() => {
   class ServerOrderTrafficCtrl {
     constructor($scope, $stateParams, $translate, User, ServerOrderTrafficService) {
@@ -13,11 +18,11 @@
         data: [],
       };
 
-      this.orderables = _.cloneDeep(loadingStruct);
-      this.durations = _.cloneDeep(loadingStruct);
-      this.bc = _.cloneDeep(loadingStruct);
+      this.orderables = cloneDeep(loadingStruct);
+      this.durations = cloneDeep(loadingStruct);
+      this.bc = cloneDeep(loadingStruct);
 
-      this.user = _.cloneDeep(loadingStruct);
+      this.user = cloneDeep(loadingStruct);
       this.user.data = {};
 
       this.model = {
@@ -36,7 +41,7 @@
             .getOrderables($stateParams.productId), this.orderables)
             .then(() => {
               if (this.orderables.data.length === 1) {
-                this.model.traffic = _.first(this.orderables.data);
+                this.model.traffic = head(this.orderables.data);
               }
             }),
         },
@@ -54,7 +59,7 @@
               ), this.durations)
               .then(() => {
                 if (this.durations.data.length === 1) {
-                  this.model.duration = _.first(this.durations.data);
+                  this.model.duration = head(this.durations.data);
                 }
               });
           },
@@ -96,26 +101,26 @@
     }
 
     handleAPIGet(promise, loadIntoStruct) {
-      _.set(loadIntoStruct, 'loading', true);
+      set(loadIntoStruct, 'loading', true);
       return promise()
         .then((response) => {
-          _.set(loadIntoStruct, 'hasError', false);
-          _.set(loadIntoStruct, 'data', response.data);
+          set(loadIntoStruct, 'hasError', false);
+          set(loadIntoStruct, 'data', response.data);
 
           if (response.message) {
             this.$scope.setMessage(response.message, true);
           }
         })
         .catch((response) => {
-          _.set(loadIntoStruct, 'hasError', true);
-          _.set(loadIntoStruct, 'data', _.isArray(loadIntoStruct) ? [] : {});
+          set(loadIntoStruct, 'hasError', true);
+          set(loadIntoStruct, 'data', isArray(loadIntoStruct) ? [] : {});
 
           this.$scope.resetAction();
           response.data.type = 'ERROR';
           this.$scope.setMessage(response.message, response.data);
         })
         .finally(() => {
-          _.set(loadIntoStruct, 'loading', false);
+          set(loadIntoStruct, 'loading', false);
         });
     }
   }

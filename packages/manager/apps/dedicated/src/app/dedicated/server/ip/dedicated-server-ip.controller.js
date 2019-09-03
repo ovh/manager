@@ -1,3 +1,6 @@
+import head from 'lodash/head';
+import set from 'lodash/set';
+
 angular.module('App').controller('ServerIpCtrl', [
   '$rootScope',
   '$scope',
@@ -70,7 +73,7 @@ angular.module('App').controller('ServerIpCtrl', [
         (blocks) => {
           $scope.blocks = blocks;
           if (blocks.length > 0) {
-            $scope.selectedBlock.value = _.first(blocks);
+            $scope.selectedBlock.value = head(blocks);
           }
           Server.checkIfAntispam().then((params) => {
             if (!params) {
@@ -126,8 +129,8 @@ angular.module('App').controller('ServerIpCtrl', [
       if ($event.preventDefault) {
         $event.preventDefault();
       }
-      _.set($event, 'cancelBubble', true);
-      _.set($event, 'returnValue', false);
+      set($event, 'cancelBubble', true);
+      set($event, 'returnValue', false);
     };
 
     $scope.displayAntispam = function (ip, ipSpamming) {
@@ -297,7 +300,7 @@ angular.module('App').controller('ServerIpAntispamCtrl', ($rootScope, $scope, $l
           $scope.$broadcast('paginationServerSide.reload', 'antispamPeriods');
         },
         (data) => {
-          _.set(data, 'type', 'ERROR');
+          set(data, 'type', 'ERROR');
           $scope.setMessage($translate.instant('server_configuration_antispam_error', { t0: $scope.ipspam.ip }), data.data);
         },
       );
@@ -372,7 +375,7 @@ angular.module('App').controller('ServerIpAntispamDetailsCtrl', ($scope, $transl
       .catch((reason) => {
         $scope.tableLoading = false;
         $scope.resetAction();
-        _.set(reason, 'type', 'INFO');
+        set(reason, 'type', 'INFO');
         $scope.setMessage($translate.instant('server_configuration_mitigation_auto_success'), reason);
       });
   };

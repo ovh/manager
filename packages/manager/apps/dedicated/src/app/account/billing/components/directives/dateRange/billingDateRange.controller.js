@@ -1,3 +1,6 @@
+import head from 'lodash/head';
+import set from 'lodash/set';
+
 angular.module('Billing.directives').controller('Billing.directives.billingDateRangeCtrl', function ($timeout, $translate, BillingdateRangeSelection) {
   this.today = moment();
   this.CUSTOM_RANGE_MODE = 'custom';
@@ -30,37 +33,37 @@ angular.module('Billing.directives').controller('Billing.directives.billingDateR
   ];
 
   this.dateFromChanged = ({ dateFrom }) => {
-    _.set(BillingdateRangeSelection, 'dateFrom', moment(dateFrom).startOf('day'));
+    set(BillingdateRangeSelection, 'dateFrom', moment(dateFrom).startOf('day'));
     if (moment(BillingdateRangeSelection.dateFrom).isAfter(BillingdateRangeSelection.dateTo)) {
-      _.set(BillingdateRangeSelection, 'dateTo', BillingdateRangeSelection.dateFrom.endOf('day'));
+      set(BillingdateRangeSelection, 'dateTo', BillingdateRangeSelection.dateFrom.endOf('day'));
     }
     this.triggerChangeHandler();
   };
 
   this.dateToChanged = ({ dateTo }) => {
-    _.set(BillingdateRangeSelection, 'dateTo', moment(dateTo).endOf('day'));
+    set(BillingdateRangeSelection, 'dateTo', moment(dateTo).endOf('day'));
     if (moment(BillingdateRangeSelection.dateTo).isBefore(BillingdateRangeSelection.dateFrom)) {
-      _.set(BillingdateRangeSelection, 'dateFrom', BillingdateRangeSelection.dateTo.startOf('day'));
+      set(BillingdateRangeSelection, 'dateFrom', BillingdateRangeSelection.dateTo.startOf('day'));
     }
     this.triggerChangeHandler();
   };
 
   this.onPresetBtn = (preset) => {
-    _.set(BillingdateRangeSelection, 'mode', preset.id);
+    set(BillingdateRangeSelection, 'mode', preset.id);
     this.applyPreset(preset);
     this.triggerChangeHandler();
   };
 
   this.applyPreset = (preset) => {
-    _.set(BillingdateRangeSelection, 'dateFrom', moment()
+    set(BillingdateRangeSelection, 'dateFrom', moment()
       .subtract(...preset.args)
       .startOf(preset.startOf));
 
-    _.set(BillingdateRangeSelection, 'dateTo', moment().endOf('day'));
+    set(BillingdateRangeSelection, 'dateTo', moment().endOf('day'));
   };
 
   this.onCustomRangeBtn = () => {
-    _.set(BillingdateRangeSelection, 'mode', this.CUSTOM_RANGE_MODE);
+    set(BillingdateRangeSelection, 'mode', this.CUSTOM_RANGE_MODE);
   };
 
   this.triggerChangeHandler = () => {
@@ -81,8 +84,8 @@ angular.module('Billing.directives').controller('Billing.directives.billingDateR
 
     let preset = _self.presets.find(_preset => _preset.id === BillingdateRangeSelection.mode);
     if (!preset) {
-      preset = _.first(_self.presets);
-      _.set(BillingdateRangeSelection, 'mode', preset.id);
+      preset = head(_self.presets);
+      set(BillingdateRangeSelection, 'mode', preset.id);
     }
 
     _self.applyPreset(preset);

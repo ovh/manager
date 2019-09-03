@@ -1,3 +1,5 @@
+import difference from 'lodash/difference';
+
 angular.module('Module.ip.controllers').controller('IplbBackendSetBackupStateCtrl', ($scope, $rootScope, $translate, Iplb, Alerter, $q) => {
   function haveNextBackend(backend, promise, ignoredBackend) {
     return Iplb.whoIsMyBackend($scope.data.selectedIplb.value, backend).then((next) => {
@@ -33,7 +35,7 @@ angular.module('Module.ip.controllers').controller('IplbBackendSetBackupStateCtr
   $scope.loadingAvailableBackends = false;
 
   initIgnoredBackend($scope.data.backend.backend).then((data) => {
-    $scope.allowedBackendsIds = _.difference($scope.data.selectedIplb.backendIds, data);
+    $scope.allowedBackendsIds = difference($scope.data.selectedIplb.backendIds, data);
     $scope.loadingAvailableBackends = false;
   });
 

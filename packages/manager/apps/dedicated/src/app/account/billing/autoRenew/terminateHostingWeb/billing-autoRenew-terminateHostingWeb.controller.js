@@ -1,5 +1,7 @@
+import head from 'lodash/head';
+
 angular.module('Billing.controllers').controller('HostingTerminateCtrl', ($scope, $log, $translate, constants, BillingAutoRenew, Alerter, AUTORENEW_EVENT) => {
-  $scope.hosting = _.first($scope.currentActionData);
+  $scope.hosting = head($scope.currentActionData);
   $scope.loaders = {
     loading: false,
   };

@@ -1,3 +1,9 @@
+import get from 'lodash/get';
+import isEmpty from 'lodash/isEmpty';
+import set from 'lodash/set';
+import transform from 'lodash/transform';
+import union from 'lodash/union';
+
 angular.module('Module.ip.controllers').controller('IpFirewallAddRuleCtrl', ($scope, $rootScope, $translate, Ip, IpFirewall, Alerter, Validator) => {
   $scope.data = $scope.currentActionData;
   $scope.constants = null;
@@ -32,15 +38,15 @@ angular.module('Module.ip.controllers').controller('IpFirewallAddRuleCtrl', ($sc
   };
 
   IpFirewall.getFirewallRuleConstants().then((constants) => {
-    const sequences = _.transform(constants.sequences, (result, name, key) => {
+    const sequences = transform(constants.sequences, (result, name, key) => {
       const map = {
         key: name,
         name: parseInt(name.replace('_', ''), 10),
       };
       result[key] = map; // eslint-disable-line
     });
-    _.set(constants, 'sequences', sequences);
-    _.set(constants, 'tcpOptions', _.union(['NONE'], constants.tcpOptions));
+    set(constants, 'sequences', sequences);
+    set(constants, 'tcpOptions', union(['NONE'], constants.tcpOptions));
     $scope.constants = constants;
   });
 
@@ -93,9 +99,9 @@ angular.module('Module.ip.controllers').controller('IpFirewallAddRuleCtrl', ($sc
     $scope.loading = true;
 
     // set empty string to null values to avoid API error
-    $scope.rule.source = _.isEmpty(_.get($scope.rule, 'source', '').trim()) ? null : $scope.rule.source;
-    $scope.rule.sourcePort = _.isEmpty(_.get($scope.rule, 'sourcePort', '').trim()) ? null : $scope.rule.sourcePort;
-    $scope.rule.destinationPort = _.isEmpty(_.get($scope.rule, 'destinationPort', '').trim()) ? null : $scope.rule.destinationPort;
+    $scope.rule.source = isEmpty(get($scope.rule, 'source', '').trim()) ? null : $scope.rule.source;
+    $scope.rule.sourcePort = isEmpty(get($scope.rule, 'sourcePort', '').trim()) ? null : $scope.rule.sourcePort;
+    $scope.rule.destinationPort = isEmpty(get($scope.rule, 'destinationPort', '').trim()) ? null : $scope.rule.destinationPort;
 
     IpFirewall.addFirewallRule($scope.data.ipBlock, $scope.data.ip, $scope.rule).then(
       (data) => {

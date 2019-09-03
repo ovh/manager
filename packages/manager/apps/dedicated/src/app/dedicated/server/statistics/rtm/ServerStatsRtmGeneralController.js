@@ -1,3 +1,8 @@
+import head from 'lodash/head';
+import last from 'lodash/last';
+import map from 'lodash/map';
+import round from 'lodash/round';
+
 angular.module('controllers').controller('controllers.Server.Stats.Rtm.General', (
   $scope, $translate, $stateParams, Server,
 ) => {
@@ -32,8 +37,8 @@ angular.module('controllers').controller('controllers.Server.Stats.Rtm.General',
       period: $scope.selectedPeriod.value,
       type: $scope.rtmOptions.value.data.type,
     }).then((stats) => {
-      $scope.labels = _.map(stats.points, point => new Date(_.first(point)));
-      $scope.data = _.map(stats.points, point => _.round(_.last(point), 2));
+      $scope.labels = map(stats.points, point => new Date(head(point)));
+      $scope.data = map(stats.points, point => round(last(point), 2));
     }).finally(() => {
       $scope.loading = false;
     });

@@ -1,3 +1,9 @@
+import find from 'lodash/find';
+import map from 'lodash/map';
+import reduce from 'lodash/reduce';
+import set from 'lodash/set';
+import union from 'lodash/union';
+
 angular.module('Module.ip.services').service('Ip', function ($rootScope, $http, $q, constants, IpRange, $location, OvhHttp) {
   const self = this;
   const aapiIpPath = '/sws/module/ip';
@@ -20,7 +26,7 @@ angular.module('Module.ip.services').service('Ip', function ($rootScope, $http, 
           })
           .then((response) => {
             if (response.data && response.data.length) {
-              tasks = _.union(tasks, response.data);
+              tasks = union(tasks, response.data);
             }
           }),
       );
@@ -80,7 +86,7 @@ angular.module('Module.ip.services').service('Ip', function ($rootScope, $http, 
         cache: true,
       })
       .then((resp) => {
-        const cloudIp = _.find(resp.data, { ip });
+        const cloudIp = find(resp.data, { ip });
         if (cloudIp && cloudIp.id) {
           return $http
             .get(`${basePath}/failover/${cloudIp.id}`, {
@@ -107,7 +113,7 @@ angular.module('Module.ip.services').service('Ip', function ($rootScope, $http, 
 
       // Loop in the generated ipsv4 list, to have it sorted!
       angular.forEach(ipv4List, (ipv4) => {
-        ipFromApi = _.find(ips, { ip: ipv4 });
+        ipFromApi = find(ips, { ip: ipv4 });
 
         // Not present: create it
         if (!ipFromApi) {
@@ -126,10 +132,10 @@ angular.module('Module.ip.services').service('Ip', function ($rootScope, $http, 
     // Set default options
     angular.forEach(ips, (ip) => {
       if (!ip.mitigation) {
-        _.set(ip, 'mitigation', 'DEFAULT');
+        set(ip, 'mitigation', 'DEFAULT');
       }
       if (!ip.firewall) {
-        _.set(ip, 'firewall', 'NOT_CONFIGURED');
+        set(ip, 'firewall', 'NOT_CONFIGURED');
       }
     });
 
@@ -149,9 +155,9 @@ angular.module('Module.ip.services').service('Ip', function ($rootScope, $http, 
       },
     })
     .then(response => getIpsSanitized(ipBlock, response.data))
-    .then(ips => _.map(ips, (ip) => {
+    .then(ips => map(ips, (ip) => {
       if (ipBlock !== `${ip.ip}/32`) {
-        _.set(ip, 'block', ipBlock);
+        set(ip, 'block', ipBlock);
       }
       return ip;
     }));
@@ -176,22 +182,22 @@ angular.module('Module.ip.services').service('Ip', function ($rootScope, $http, 
             angular.forEach(data.data, (ipBlock) => {
               // Just to be sure
               if (!ipBlock.alerts) {
-                _.set(ipBlock, 'alerts', {});
+                set(ipBlock, 'alerts', {});
               }
               if (!ipBlock.ips) {
-                _.set(ipBlock, 'ips', []);
+                set(ipBlock, 'ips', []);
               }
 
               if (ipBlock.version === 'IPV4') {
                 if (/\/32$/.test(ipBlock.ipBlock)) {
-                  _.set(ipBlock, 'isUniq', true);
+                  set(ipBlock, 'isUniq', true);
                 } else {
-                  _.set(ipBlock, 'collapsed', true);
+                  set(ipBlock, 'collapsed', true);
                 }
               } else if (/\/128$/.test(ipBlock.ipBlock)) {
-                _.set(ipBlock, 'isUniq', true);
+                set(ipBlock, 'isUniq', true);
               } else {
-                _.set(ipBlock, 'collapsed', true);
+                set(ipBlock, 'collapsed', true);
               }
             });
           }
@@ -307,7 +313,7 @@ angular.module('Module.ip.services').service('Ip', function ($rootScope, $http, 
   this.moveIpBlockToPark = block => $http.post(`${swsProxypassPath}/ip/${window.encodeURIComponent(block)}/park`).then(data => data.data, http => $q.reject(http.data));
 
   this.getIpMove = block => $http.get(`${swsProxypassPath}/ip/${window.encodeURIComponent(block)}/move`).then((data) => {
-    const destinationIps = _.reduce(
+    const destinationIps = reduce(
       data.data,
       (concatList, destination, serviceType) => {
         const obj = destination

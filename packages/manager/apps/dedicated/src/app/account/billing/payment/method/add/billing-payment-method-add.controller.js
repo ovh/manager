@@ -1,4 +1,7 @@
-import _ from 'lodash';
+import get from 'lodash/get';
+import has from 'lodash/has';
+import head from 'lodash/head';
+import merge from 'lodash/merge';
 
 import { CREDITCARD_FOOTPRINT_AMOUNT } from './billing-payment-method-add.constants';
 
@@ -32,8 +35,8 @@ export default class BillingPaymentMethodAddCtrl {
         name: 'paymentMethodType',
         isVisible: () => true,
         isLastStep: () => {
-          const isLegacy = _.has(this.model.selectedPaymentMethodType, 'original');
-          const isLegacyBankAccount = _.get(
+          const isLegacy = has(this.model.selectedPaymentMethodType, 'original');
+          const isLegacyBankAccount = get(
             this.model.selectedPaymentMethodType,
             'original.value',
           ) === 'bankAccount';
@@ -46,7 +49,7 @@ export default class BillingPaymentMethodAddCtrl {
       legacyBankAccount: {
         name: 'legacyBankAccount',
         position: 2,
-        isVisible: () => _.get(
+        isVisible: () => get(
           this.model.selectedPaymentMethodType,
           'original.value',
         ) === 'bankAccount',
@@ -55,7 +58,7 @@ export default class BillingPaymentMethodAddCtrl {
       legacyBankAccountOwner: {
         name: 'legacyBankAccountOwner',
         position: 3,
-        isVisible: () => _.get(
+        isVisible: () => get(
           this.model.selectedPaymentMethodType,
           'original.value',
         ) === 'bankAccount',
@@ -94,12 +97,12 @@ export default class BillingPaymentMethodAddCtrl {
   /* ----------  Helpers  ---------- */
 
   getLegacyAddParams() {
-    if (_.get(this.model.selectedPaymentMethodType, 'original.value') === 'bankAccount') {
+    if (get(this.model.selectedPaymentMethodType, 'original.value') === 'bankAccount') {
       return {
-        iban: _.get(this.$state.current, 'sharedModel.legacyBankAccount.iban'),
-        bic: _.get(this.$state.current, 'sharedModel.legacyBankAccount.bic'),
-        ownerName: _.get(this.$state.current, 'sharedModel.legacyBillingAddress.ownerName'),
-        ownerAddress: _.get(this.$state.current, 'sharedModel.legacyBillingAddress.ownerAddress'),
+        iban: get(this.$state.current, 'sharedModel.legacyBankAccount.iban'),
+        bic: get(this.$state.current, 'sharedModel.legacyBankAccount.bic'),
+        ownerName: get(this.$state.current, 'sharedModel.legacyBillingAddress.ownerName'),
+        ownerAddress: get(this.$state.current, 'sharedModel.legacyBillingAddress.ownerAddress'),
       };
     }
 
@@ -107,7 +110,7 @@ export default class BillingPaymentMethodAddCtrl {
   }
 
   manageLegacyResponse(result) {
-    if (_.get(this.model.selectedPaymentMethodType, 'original.value') !== 'bankAccount') {
+    if (get(this.model.selectedPaymentMethodType, 'original.value') !== 'bankAccount') {
       if (this.coreConfig.getRegion() !== 'US') {
         // display a message to tell that a new tab have been opened
         this.addAlertMessage.type = 'info';
@@ -141,7 +144,7 @@ export default class BillingPaymentMethodAddCtrl {
   onAvailablePaymentMethodsLoadError(error) {
     return this.Alerter.error([
       this.$translate.instant('billing_payment_method_add_load_error'),
-      _.get(error, 'data.message', ''),
+      get(error, 'data.message', ''),
     ].join(' '), 'billing_payment_method_add_alert');
   }
 
@@ -161,12 +164,12 @@ export default class BillingPaymentMethodAddCtrl {
     };
 
     if (this.model.selectedPaymentMethodType.original) {
-      addParams = _.merge(addParams, this.getLegacyAddParams());
+      addParams = merge(addParams, this.getLegacyAddParams());
     }
 
     if (!this.model.selectedPaymentMethodType.original) {
       const isQueryParamsInHash = this.$window.location.hash.indexOf('?') > 0;
-      addParams = _.merge(addParams, {
+      addParams = merge(addParams, {
         register: true,
         callbackUrl: {
           cancel: [this.$window.location.href, 'status=cancel'].join(isQueryParamsInHash ? '&' : '?'),
@@ -202,7 +205,7 @@ export default class BillingPaymentMethodAddCtrl {
       .catch((error) => {
         this.Alerter.error([
           this.$translate.instant('billing_payment_method_add_status_error'),
-          _.get(error, 'data.message', ''),
+          get(error, 'data.message', ''),
         ].join(' '), 'billing_payment_method_add_alert');
       })
       .finally(() => {
@@ -215,7 +218,7 @@ export default class BillingPaymentMethodAddCtrl {
 
   resetModel() {
     this.model = {
-      selectedPaymentMethodType: _.first(this.paymentMethodTypes),
+      selectedPaymentMethodType: head(this.paymentMethodTypes),
       setAsDefault: false,
     };
   }
@@ -255,7 +258,7 @@ export default class BillingPaymentMethodAddCtrl {
       .catch((error) => {
         this.Alerter.error([
           this.$translate.instant('billing_payment_method_add_load_error'),
-          _.get(error, 'data.message', ''),
+          get(error, 'data.message', ''),
         ].join(' '), 'billing_payment_method_add_alert');
       })
       .finally(() => {

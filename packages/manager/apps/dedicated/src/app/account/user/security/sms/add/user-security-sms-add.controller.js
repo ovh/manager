@@ -1,3 +1,5 @@
+import isEmpty from 'lodash/isEmpty';
+
 angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.sms.add', [
   '$rootScope',
   '$scope',
@@ -22,7 +24,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.sms
      * Check if step 1 is valid.
      * @return {Boolean}
      */
-    $scope.doesStep1IsValid = () => !_.isEmpty($scope.sms.phone);
+    $scope.doesStep1IsValid = () => !isEmpty($scope.sms.phone);
 
     /**
      * Check if step 2 is valid.
@@ -66,7 +68,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.sms
       $scope.sms.isAdding = true;
       return DoubleAuthSmsService.validate($scope.sms.secret.id, $scope.sms.code)
         .then(() => {
-          if (!_.isEmpty($scope.sms.description)) {
+          if (!isEmpty($scope.sms.description)) {
             DoubleAuthSmsService.edit($scope.sms.secret.id, $scope.sms.description);
           }
         })

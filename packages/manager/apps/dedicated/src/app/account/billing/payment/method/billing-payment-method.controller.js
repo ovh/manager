@@ -1,3 +1,11 @@
+import forEach from 'lodash/forEach';
+import map from 'lodash/map';
+import uniqBy from 'lodash/uniqBy';
+
+import get from 'lodash/get';
+import set from 'lodash/set';
+import some from 'lodash/some';
+
 import editModalTemplate from './edit/billing-payment-method-edit.html';
 import editModalController from './edit/billing-payment-method-edit.controller';
 
@@ -76,7 +84,7 @@ export default class BillingPaymentMethodCtrl {
 
       this.Alerter.error([
         this.$translate.instant('billing_payment_method_edit_error'),
-        _.get(error, 'data.message', ''),
+        get(error, 'data.message', ''),
       ].join(' '), 'billing_payment_method_alert');
 
       return error;
@@ -124,7 +132,7 @@ export default class BillingPaymentMethodCtrl {
 
       this.Alerter.error([
         this.$translate.instant('billing_payment_method_default_error'),
-        _.get(error, 'data.message', ''),
+        get(error, 'data.message', ''),
       ].join(' '), 'billing_payment_method_alert');
 
       return error;
@@ -164,7 +172,7 @@ export default class BillingPaymentMethodCtrl {
 
       this.Alerter.error([
         this.$translate.instant('billing_payment_method_delete_error'),
-        _.get(error, 'data.message', ''),
+        get(error, 'data.message', ''),
       ].join(' '), 'billing_payment_method_alert');
 
       return error;
@@ -194,25 +202,35 @@ export default class BillingPaymentMethodCtrl {
         },
       };
 
-      _.chain(paymentMethods).uniq('status.value').map('status').value()
-        .forEach((status) => {
-          _.set(this.tableFilterOptions.status.values, status.value, status.text);
-        });
+      forEach(
+        map(
+          uniqBy(paymentMethods, 'status.value'),
+          'status',
+        ),
+        (status) => {
+          set(this.tableFilterOptions.status.values, status.value, status.text);
+        },
+      );
 
-      _.chain(paymentMethods).uniq('paymentType.value').map('paymentType').value()
-        .forEach((paymentType) => {
-          _.set(this.tableFilterOptions.type.values, paymentType.value, paymentType.text);
-        });
+      forEach(
+        map(
+          uniqBy(paymentMethods, 'paymentType.value'),
+          'paymentType',
+        ),
+        (paymentType) => {
+          set(this.tableFilterOptions.type.values, paymentType.value, paymentType.text);
+        },
+      );
 
       // set guide url
-      this.guide = _.get(guides, 'autoRenew', null);
+      this.guide = get(guides, 'autoRenew', null);
 
       // set a warn message if a bankAccount is in pendingValidation state
-      this.hasPendingValidationBankAccount = _.some(paymentMethods, method => method.paymentType.value === 'bankAccount' && method.status.value === 'pendingValidation');
+      this.hasPendingValidationBankAccount = some(paymentMethods, method => method.paymentType.value === 'bankAccount' && method.status.value === 'pendingValidation');
     }).catch((error) => {
       this.Alerter.error([
         this.$translate.instant('billing_payment_method_load_error'),
-        _.get(error, 'data.message', ''),
+        get(error, 'data.message', ''),
       ].join(' '), 'billing_payment_method_alert');
     }).finally(() => {
       this.loading.init = false;

@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.sms.edit', [
   '$rootScope',
   '$scope',
@@ -6,8 +8,8 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.sms
   'Alerter',
   function ($rootScope, $scope, $translate, DoubleAuthSmsService, Alerter) {
     $scope.sms = {
-      smsAccount: _.get($scope, 'currentActionData', {}),
-      description: _.get($scope, 'currentActionData.description', ''),
+      smsAccount: get($scope, 'currentActionData', {}),
+      description: get($scope, 'currentActionData.description', ''),
       isEditing: false,
     };
 

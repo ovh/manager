@@ -1,3 +1,6 @@
+import assign from 'lodash/assign';
+import pick from 'lodash/pick';
+
 angular.module('App').controller('DedicatedCloudDisableVMwareOptionCtrl', ($scope, $stateParams, $rootScope, $q, $translate, DedicatedCloud, Alerter) => {
   $scope.option = $scope.currentActionData;
 
@@ -19,7 +22,7 @@ angular.module('App').controller('DedicatedCloudDisableVMwareOptionCtrl', ($scop
         data.pcc.location,
       ))
       .then((data) => {
-        $scope.disablingPrices = data.current.map((host, index) => _.assign(_.pick(host, ['datacenter', 'name', 'billingType']), {
+        $scope.disablingPrices = data.current.map((host, index) => assign(pick(host, ['datacenter', 'name', 'billingType']), {
           current: host.price,
           next: data.next[index].price,
         }));

@@ -1,3 +1,5 @@
+import head from 'lodash/head';
+
 angular.module('Module.license').controller('LicenseMigrateCtrl', ($scope, $translate, License, Alerter) => {
   $scope.availableIpBlock = {};
 
@@ -56,7 +58,7 @@ angular.module('Module.license').controller('LicenseMigrateCtrl', ($scope, $tran
     }).then(
       (data) => {
         $scope.availableIpBlock = data;
-        $scope.selected.ipBlock = _.first($scope.availableIpBlock);
+        $scope.selected.ipBlock = head($scope.availableIpBlock);
       },
       () => {
         $scope.availableIpBlock = {};

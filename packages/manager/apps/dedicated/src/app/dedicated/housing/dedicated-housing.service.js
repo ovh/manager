@@ -1,3 +1,6 @@
+import assign from 'lodash/assign';
+import map from 'lodash/map';
+
 angular.module('services').service('Housing', function ($q, constants, $rootScope, Polling, OvhHttp) {
   const self = this;
   const urlRootHousing = '/dedicated/housing/{serviceName}';
@@ -76,7 +79,7 @@ angular.module('services').service('Housing', function ($q, constants, $rootScop
         serviceName,
       },
     };
-    return OvhHttp.get(urlRootHousing.concat('/task'), _.assign(urlParams, params));
+    return OvhHttp.get(urlRootHousing.concat('/task'), assign(urlParams, params));
   };
 
   this.getTask = function (serviceName, id) {
@@ -90,7 +93,7 @@ angular.module('services').service('Housing', function ($q, constants, $rootScop
 
   this.getTasks = function (serviceName) {
     return self.getTaskIds(serviceName).then((ids) => {
-      const taskPromises = _.map(ids, id => self.getTask(serviceName, id));
+      const taskPromises = map(ids, id => self.getTask(serviceName, id));
 
       return $q.all(taskPromises);
     });
@@ -108,7 +111,7 @@ angular.module('services').service('Housing', function ($q, constants, $rootScop
     }
     return self.getTaskIds(serviceName, params).then(
       (ids) => {
-        const taskPromises = _.map(ids, id => OvhHttp.get(urlRootHousing.concat(['/task', id].join('/')), {
+        const taskPromises = map(ids, id => OvhHttp.get(urlRootHousing.concat(['/task', id].join('/')), {
           rootPath: 'apiv6',
           urlParams: {
             serviceName,
@@ -220,7 +223,7 @@ angular.module('services').service('Housing', function ($q, constants, $rootScop
   };
 
   this.postFtpBackupIp = function (serviceName, ipBlock, ftp, nfs, cifs) {
-    const accessPromises = _.map(ipBlock, ip => OvhHttp.post(urlRootHousing.concat('/features/backupFTP/access'), {
+    const accessPromises = map(ipBlock, ip => OvhHttp.post(urlRootHousing.concat('/features/backupFTP/access'), {
       rootPath: 'apiv6',
       urlParams: {
         serviceName,

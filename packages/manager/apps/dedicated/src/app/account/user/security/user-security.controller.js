@@ -1,3 +1,9 @@
+import get from 'lodash/get';
+import indexOf from 'lodash/indexOf';
+import map from 'lodash/map';
+import some from 'lodash/some';
+import values from 'lodash/values';
+
 angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth', [
   '$scope',
   '$q',
@@ -29,14 +35,14 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth', [
       return DoubleAuthSmsService
         .query()
         .then(smsIds => $q
-          .all(_.map(
+          .all(map(
             smsIds,
             smsId => DoubleAuthSmsService.get(smsId),
           ))
           .then((smsDetails) => {
-            if (_.some(smsDetails, { status: 'enabled' })) {
+            if (some(smsDetails, { status: 'enabled' })) {
               $scope.doubleAuth.sms = 'active';
-            } else if (_.some(smsDetails, { status: 'disabled' })) {
+            } else if (some(smsDetails, { status: 'disabled' })) {
               $scope.doubleAuth.sms = 'enabled';
             } else {
               $scope.doubleAuth.sms = 'disabled';
@@ -54,14 +60,14 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth', [
       return DoubleAuthTotpService
         .query()
         .then(totpIds => $q
-          .all(_.map(
+          .all(map(
             totpIds,
             totpId => DoubleAuthTotpService.get(totpId),
           ))
           .then((totpDetails) => {
-            if (_.some(totpDetails, { status: 'enabled' })) {
+            if (some(totpDetails, { status: 'enabled' })) {
               $scope.doubleAuth.totp = 'active';
-            } else if (_.some(totpDetails, { status: 'disabled' })) {
+            } else if (some(totpDetails, { status: 'disabled' })) {
               $scope.doubleAuth.totp = 'enabled';
             } else {
               $scope.doubleAuth.totp = 'disabled';
@@ -79,14 +85,14 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth', [
       return DoubleAuthU2fService
         .query()
         .then(u2fIds => $q
-          .all(_.map(
+          .all(map(
             u2fIds,
             u2fId => DoubleAuthU2fService.get(u2fId),
           ))
           .then((u2fDetails) => {
-            if (_.some(u2fDetails, { status: 'enabled' })) {
+            if (some(u2fDetails, { status: 'enabled' })) {
               $scope.doubleAuth.u2f = 'active';
-            } else if (_.some(u2fDetails, { status: 'disabled' })) {
+            } else if (some(u2fDetails, { status: 'disabled' })) {
               $scope.doubleAuth.u2f = 'enabled';
             } else {
               $scope.doubleAuth.u2f = 'disabled';
@@ -103,7 +109,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth', [
     function fetchBackupCode() {
       return DoubleAuthBackupCodeService.get()
         .then((sotpAccount) => {
-          if (_.get(sotpAccount, 'status') === 'enabled') {
+          if (get(sotpAccount, 'status') === 'enabled') {
             $scope.doubleAuth.backupCode = 'active';
           }
           return sotpAccount;
@@ -120,13 +126,13 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth', [
      * Check if has 2FA enabled.
      * @return {Boolean}
      */
-    $scope.has2faEnabled = () => _.indexOf(_.values($scope.doubleAuth), 'enabled') !== -1 || $scope.has2faActivated();
+    $scope.has2faEnabled = () => indexOf(values($scope.doubleAuth), 'enabled') !== -1 || $scope.has2faActivated();
 
     /**
      * Check if has 2FA activated.
      * @return {Boolean}
      */
-    $scope.has2faActivated = () => _.indexOf(_.values($scope.doubleAuth), 'active') !== -1;
+    $scope.has2faActivated = () => indexOf(values($scope.doubleAuth), 'active') !== -1;
 
     /**
      * Does 2fa Sms is available.

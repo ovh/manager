@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular.module('App')
   .controller('ServerTabFirewallAsaCtrl', class ServerTabFirewallAsaCtrl {
     constructor($q, $scope, $stateParams, Alerter, Server, ServerFirewallAsa, $translate) {
@@ -24,7 +26,7 @@ angular.module('App')
           optionList: this.getOptionList(),
           informations: this.getInformations(),
         })
-        .catch(err => this.Alerter.error([this.$translate.instant('server_configuration_firewall_fail'), _.get(err, 'message', '')].join(' '), 'dedicated_server_firewall'))
+        .catch(err => this.Alerter.error([this.$translate.instant('server_configuration_firewall_fail'), get(err, 'message', '')].join(' '), 'dedicated_server_firewall'))
         .finally(() => {
           this.isLoading = false;
         });

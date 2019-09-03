@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import indexOf from 'lodash/indexOf';
 
 export default /* @ngInject */ function ($q, ovhUserPref) {
   const self = this;
@@ -20,6 +20,6 @@ export default /* @ngInject */ function ($q, ovhUserPref) {
 
   self.checkIfStopNotification = (userPrefName, subject) => ovhUserPref
     .getValue(userPrefName)
-    .then(notification => _.indexOf(notification, subject) !== -1)
+    .then(notification => indexOf(notification, subject) !== -1)
     .catch(error => (error.status === 404 ? false : $q.reject(error)));
 }

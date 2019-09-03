@@ -1,3 +1,9 @@
+import assign from 'lodash/assign';
+import forEach from 'lodash/forEach';
+import get from 'lodash/get';
+import keys from 'lodash/keys';
+import map from 'lodash/map';
+
 class LicenseOrder {
   constructor(
     $q,
@@ -26,10 +32,10 @@ class LicenseOrder {
     const prices = {};
     if (!this.licenseFeatureAvailability.allowLicenseAgoraOrder()) {
       const queue = [];
-      _.forEach(durations, (duration) => {
+      forEach(durations, (duration) => {
         queue.push(
           this.License
-            .getLicenseOrderForDuration(_.assign({ duration }, licenseInfo))
+            .getLicenseOrderForDuration(assign({ duration }, licenseInfo))
             .then((details) => {
               prices[duration] = details;
             }),
@@ -41,13 +47,13 @@ class LicenseOrder {
     return this.LicenseAgoraOrder
       .getLicenseOfferPlan(licenseInfo.licenseType, licenseInfo.version, this.ip).then((plan) => {
         const activeOptions = [];
-        _.forEach(_.keys(licenseInfo.options), (key) => {
-          if (_.get(licenseInfo.options[key], 'value')) {
+        forEach(keys(licenseInfo.options), (key) => {
+          if (get(licenseInfo.options[key], 'value')) {
             activeOptions.push(licenseInfo.options[key].value);
           }
         });
 
-        const promises = _.map(
+        const promises = map(
           durations,
           duration => plan
             .getPrice({
@@ -70,7 +76,7 @@ class LicenseOrder {
       return this.$q.when('');
     }
     return this.LicenseAgoraOrder
-      .getFinalizeOrderUrl(_.assign({}, licenseInfo, { duration: Number(licenseInfo.duration) }));
+      .getFinalizeOrderUrl(assign({}, licenseInfo, { duration: Number(licenseInfo.duration) }));
   }
 }
 

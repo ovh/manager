@@ -1,3 +1,5 @@
+import kebabCase from 'lodash/kebabCase';
+
 angular.module('Module.ip.controllers').controller('IpMainCtrl', [
   '$scope',
   '$timeout',
@@ -25,7 +27,7 @@ angular.module('Module.ip.controllers').controller('IpMainCtrl', [
     }
 
     $scope.worldPart = coreConfig.getRegion();
-    $scope.toKebabCase = _.kebabCase;
+    $scope.toKebabCase = kebabCase;
 
     $scope.setSelectedTab = function (tab) {
       if (tab !== undefined && tab !== null && tab !== '') {

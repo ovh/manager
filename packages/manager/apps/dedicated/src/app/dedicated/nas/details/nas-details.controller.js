@@ -1,3 +1,5 @@
+import indexOf from 'lodash/indexOf';
+
 angular.module('App').controller('NasDetailsCtrl', class NasDetailsCtrl {
   constructor(NASHA_URL, $stateParams, $scope, Nas, Alerter, constants, nasData) {
     // injections
@@ -25,13 +27,13 @@ angular.module('App').controller('NasDetailsCtrl', class NasDetailsCtrl {
 
   startPoll(task) {
     this.Nas.poll(this.$stateParams.nasId, task.taskId ? task.taskId : task).then((taskPolled) => {
-      if (_.indexOf(this.Nas.operations.partition, taskPolled.operation) >= 0) {
+      if (indexOf(this.Nas.operations.partition, taskPolled.operation) >= 0) {
         this.$scope.$broadcast('nas_partitions_updated');
       }
-      if (_.indexOf(this.Nas.operations.access, taskPolled.operation) >= 0) {
+      if (indexOf(this.Nas.operations.access, taskPolled.operation) >= 0) {
         this.$scope.$broadcast('nas_access_updated');
       }
-      if (_.indexOf(this.Nas.operations.snapshot, taskPolled.operation) >= 0) {
+      if (indexOf(this.Nas.operations.snapshot, taskPolled.operation) >= 0) {
         this.$scope.$broadcast('nas_snapshot_updated');
       }
     });

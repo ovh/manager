@@ -1,3 +1,11 @@
+import filter from 'lodash/filter';
+import get from 'lodash/get';
+import head from 'lodash/head';
+import last from 'lodash/last';
+import map from 'lodash/map';
+import range from 'lodash/range';
+import uniq from 'lodash/uniq';
+
 angular
   .module('Module.ip.controllers')
   .controller('agoraIpOrderCtrl', class AgoraIpOrderCtrl {
@@ -71,9 +79,9 @@ angular
     }
 
     createOfferDto(ipOffer) {
-      const maximumQuantity = _.get(
+      const maximumQuantity = get(
         ipOffer.details.pricings.default.find(
-          price => _.first(price.capacities) === 'renew',
+          price => head(price.capacities) === 'renew',
         ),
         'maximumQuantity',
       );
@@ -84,11 +92,11 @@ angular
       return {
         productName: ipOffer.invoiceName,
         productShortName: ipOffer.invoiceName.replace(/^.*\]\s*/, ''),
-        productRegion: _.get(ipOffer.invoiceName.match(/^\[([^\]]+)\]/), '1'),
+        productRegion: get(ipOffer.invoiceName.match(/^\[([^\]]+)\]/), '1'),
         planCode: ipOffer.planCode,
         price: ipOffer.details.pricings.default.find(price => price.capacities[0] === 'installation').price,
         maximumQuantity,
-        quantities: _.range(1, maximumQuantity + 1),
+        quantities: range(1, maximumQuantity + 1),
         countries: countryCodes.map(countryCode => ({
           code: countryCode,
           description: this.$translate.instant(`country_${countryCode.toUpperCase()}`),
@@ -101,7 +109,7 @@ angular
     }
 
     static getRegionFromServiceName(serviceName) {
-      const serviceExt = _.last(serviceName.split('.'));
+      const serviceExt = last(serviceName.split('.'));
       if (serviceExt === 'eu') {
         return 'EUROPE';
       } if (serviceExt === 'net') {
@@ -120,7 +128,7 @@ angular
         .getIpOffers()
         .then((ipOffers) => {
           const ipOfferDetails = ipOffers.map(this.createOfferDto.bind(this));
-          this.ipOffers = _.filter(
+          this.ipOffers = filter(
             ipOfferDetails,
             {
               productRegion: AgoraIpOrderCtrl
@@ -146,7 +154,7 @@ angular
     }
 
     getIpOfferRegions() {
-      return _.uniq(_.pluck(this.ipOffers, 'productRegion')).sort();
+      return uniq(map(this.ipOffers, 'productRegion')).sort();
     }
 
     onSelectedOfferChange() {
@@ -154,8 +162,8 @@ angular
       this.model.params.selectedOrganisation = null;
       this.model.params.selectedCountry = null;
 
-      if (_.get(this.model, 'params.selectedOffer.countries.length') === 1) {
-        this.model.params.selectedCountry = _.first(_.get(this.model, 'params.selectedOffer.countries'));
+      if (get(this.model, 'params.selectedOffer.countries.length') === 1) {
+        this.model.params.selectedCountry = head(get(this.model, 'params.selectedOffer.countries'));
       }
     }
 
@@ -178,11 +186,11 @@ angular
 
     redirectToPaymentPage() {
       const productToOrder = this.IpAgoraOrder.constructor.createProductToOrder({
-        country: _.get(this.model.params, 'selectedCountry.code'),
+        country: get(this.model.params, 'selectedCountry.code'),
         destination: this.model.selectedService.serviceName,
-        organisation: _.get(this.model.params, 'selectedOrganisation.organisationId'),
-        planCode: _.get(this.model.params, 'selectedOffer.planCode'),
-        quantity: _.get(this.model.params, 'selectedQuantity', 1),
+        organisation: get(this.model.params, 'selectedOrganisation.organisationId'),
+        planCode: get(this.model.params, 'selectedOffer.planCode'),
+        quantity: get(this.model.params, 'selectedQuantity', 1),
       });
 
       return this.User

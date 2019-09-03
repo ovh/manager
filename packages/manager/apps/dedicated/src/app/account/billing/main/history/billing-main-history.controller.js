@@ -1,3 +1,10 @@
+import find from 'lodash/find';
+import flatten from 'lodash/flatten';
+import get from 'lodash/get';
+import map from 'lodash/map';
+import set from 'lodash/set';
+import startsWith from 'lodash/startsWith';
+
 angular
   .module('Billing')
   .controller('BillingMainHistoryCtrl', class BillingMainHistoryCtrl {
@@ -63,13 +70,13 @@ angular
           } else {
             apiv7Request = apiv7Request.addFilter(
               criteria.property,
-              _.get(criteriaOperatorToApiV7Map, criteria.operator),
+              get(criteriaOperatorToApiV7Map, criteria.operator),
               criteria.value,
             );
           }
         } else {
         // it's a search from search input
-          apiv7Request = apiv7Request.addFilter('billId', _.get(criteriaOperatorToApiV7Map, criteria.operator), _.startsWith(criteria.value, 'FR') ? criteria.value : `FR${criteria.value}`);
+          apiv7Request = apiv7Request.addFilter('billId', get(criteriaOperatorToApiV7Map, criteria.operator), startsWith(criteria.value, 'FR') ? criteria.value : `FR${criteria.value}`);
         }
       });
 
@@ -83,16 +90,16 @@ angular
       let billDebtsPromise = this.$q.when([]);
 
       if (this.debtAccount.active) {
-        billDebtsPromise = this.OvhApiMe.Bill().v7().debt().batch('billId', _.map(bills, 'key'))
+        billDebtsPromise = this.OvhApiMe.Bill().v7().debt().batch('billId', map(bills, 'key'))
           .execute().$promise;
       }
 
-      return billDebtsPromise.then(debts => _.map(bills, (bill) => {
-        const debt = _.find(debts, {
+      return billDebtsPromise.then(debts => map(bills, (bill) => {
+        const debt = find(debts, {
           path: `/me/bill/${bill.key}/debt`,
         });
 
-        return _.set(bill, 'value.debt', _.get(debt, 'value', null));
+        return set(bill, 'value.debt', get(debt, 'value', null));
       }));
     }
 
@@ -122,7 +129,7 @@ angular
       }).then(({ count, bills }) => {
         this.totalBills = count.length;
         return this.applyDebtToBills(bills).then(billList => ({
-          data: _.map(billList, 'value'),
+          data: map(billList, 'value'),
           meta: {
             totalCount: count.length,
           },
@@ -174,19 +181,19 @@ angular
         fetchedBills += limit;
       }
       return this.$q.all(billsPromises)
-        .then(response => _.flatten(response))
+        .then(response => flatten(response))
         .then((billList) => {
-          const rows = _.map(billList, 'value').map((bill) => {
+          const rows = map(billList, 'value').map((bill) => {
             let row = [bill.billId, bill.orderId, moment(bill.date).format('L'), bill.priceWithoutTax.text, bill.priceWithTax.text];
 
             if (this.debtAccount.active) {
               if (!bill.debt) {
                 row.concat([translations.notAvailable, translations.notAvailable]);
               }
-              const dueAmount = _.get(bill, 'debt.dueAmount.text', translations.notAvailable);
+              const dueAmount = get(bill, 'debt.dueAmount.text', translations.notAvailable);
               let dueDate;
-              if (_.get(bill, 'debt.dueAmount.value', 0) > 0) {
-                dueDate = _.get(bill, 'debt.dueDate') ? moment(bill.debt.dueDate).format('L') : translations.dueImmediatly;
+              if (get(bill, 'debt.dueAmount.value', 0) > 0) {
+                dueDate = get(bill, 'debt.dueDate') ? moment(bill.debt.dueDate).format('L') : translations.dueImmediatly;
               } else {
                 dueDate = translations.paid;
               }
@@ -202,7 +209,7 @@ angular
           datas: csvData,
         }))
         .catch((error) => {
-          this.Alerter.error([this.$translate.instant('billing_main_history_export_error'), _.get(error, 'data.message')].join(' '), 'billing_main_alert');
+          this.Alerter.error([this.$translate.instant('billing_main_history_export_error'), get(error, 'data.message')].join(' '), 'billing_main_alert');
         })
         .finally(() => {
           this.loading.export = false;
@@ -276,14 +283,14 @@ angular
         invoicesByPostalMail: postalMailOptionPromise,
       }).then(({ debtAccount, hasDefaultPaymentMethod, invoicesByPostalMail }) => {
         this.debtAccount = debtAccount;
-        this.debtAccount.active = _.get(debtAccount, 'active') || _.get(debtAccount, 'todoAmount.value') > 0 || _.get(debtAccount, 'dueAmount.value') > 0;
+        this.debtAccount.active = get(debtAccount, 'active') || get(debtAccount, 'todoAmount.value') > 0 || get(debtAccount, 'dueAmount.value') > 0;
         this.hasDefaultPaymentMethod = hasDefaultPaymentMethod;
 
         // set invoice by postal mail options
         this.postalMailOptions.enabled = invoicesByPostalMail !== null;
-        this.postalMailOptions.activated = _.get(invoicesByPostalMail, 'data', false);
+        this.postalMailOptions.activated = get(invoicesByPostalMail, 'data', false);
       }).catch((error) => {
-        this.Alerter.error([this.$translate.instant('billing_main_history_loading_errors'), _.get(error, 'data.message')].join(' '), 'billing_main_alert');
+        this.Alerter.error([this.$translate.instant('billing_main_history_loading_errors'), get(error, 'data.message')].join(' '), 'billing_main_alert');
       }).finally(() => {
         this.loading.init = false;
       });

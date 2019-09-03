@@ -1,3 +1,6 @@
+import get from 'lodash/get';
+import head from 'lodash/head';
+
 angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.backupCode.manage', [
   '$rootScope',
   '$scope',
@@ -6,7 +9,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.bac
   'Alerter',
   function ($rootScope, $scope, $translate, DoubleAuthBackupCodeService, Alerter) {
     $scope.backupCode = {
-      sotpAccount: _.get($scope, 'currentActionData', {}),
+      sotpAccount: get($scope, 'currentActionData', {}),
       codes: null,
       code: '',
       isGenerating: false,
@@ -24,7 +27,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.bac
          */
     $scope.validateBackupCode = () => {
       $scope.backupCode.isValidating = true;
-      return DoubleAuthBackupCodeService.validate(_.first($scope.backupCode.codes))
+      return DoubleAuthBackupCodeService.validate(head($scope.backupCode.codes))
         .then(() => Alerter.success($translate.instant('user_account_security_double_auth_type_backup_code_validate_success'), 'doubleAuthAlertBackupCode'))
         .catch(err => Alerter.alertFromSWS($translate.instant('user_account_security_double_auth_type_backup_code_validate_error'), err.data, 'doubleAuthAlertBackupCode'))
         .finally(() => {
@@ -53,7 +56,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.bac
       $scope.backupCode.isGenerating = true;
       return DoubleAuthBackupCodeService.post()
         .then((sotpAccount) => {
-          $scope.backupCode.codes = _.get(sotpAccount, 'codes', []);
+          $scope.backupCode.codes = get(sotpAccount, 'codes', []);
           $scope.backupCode.isGenerated = true;
           return sotpAccount;
         })

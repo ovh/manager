@@ -1,3 +1,6 @@
+import findIndex from 'lodash/findIndex';
+import remove from 'lodash/remove';
+
 angular.module('Module.ip.controllers').controller('IpGameFirewallCtrl', function ($scope, $rootScope, $translate, Ip, IpGameFirewall, Alerter, $q) {
   const self = this;
   const alert = 'ip_game_firewall_alert';
@@ -99,14 +102,14 @@ angular.module('Module.ip.controllers').controller('IpGameFirewallCtrl', functio
   }
 
   function changeStateRule(ruleId, state) {
-    const index = _.findIndex(self.table.rules, { id: ruleId });
+    const index = findIndex(self.table.rules, { id: ruleId });
     if (index >= 0 && index < self.table.rules.length && self.table.rules[index]) {
       self.table.rules[index].state = state;
     }
   }
 
   function removeRule(ruleId) {
-    self.table.rules = _.remove(self.table.rules, ruleToDrop => ruleToDrop.id !== ruleId);
+    self.table.rules = remove(self.table.rules, ruleToDrop => ruleToDrop.id !== ruleId);
   }
 
   function getRule(ruleId) {

@@ -1,3 +1,11 @@
+import filter from 'lodash/filter';
+import flatten from 'lodash/flatten';
+import get from 'lodash/get';
+import map from 'lodash/map';
+import set from 'lodash/set';
+import sortBy from 'lodash/sortBy';
+import values from 'lodash/values';
+
 angular.module('UserAccount').service('UserAccount.services.ssh', [
   'OvhHttp',
   '$q',
@@ -6,8 +14,8 @@ angular.module('UserAccount').service('UserAccount.services.ssh', [
     const CLOUD_CACHE_KEY = 'UNIVERS_DEDICATED_USER_ACCOUNT_SSH_CLOUD';
     const self = this;
 
-    self.getAllSshKeyList = function (filter) {
-      const categoryFilter = _.get(filter, 'categoryFilter', null);
+    self.getAllSshKeyList = function (_filter) {
+      const categoryFilter = get(_filter, 'categoryFilter', null);
 
       const promises = [];
       switch (categoryFilter) {
@@ -23,8 +31,8 @@ angular.module('UserAccount').service('UserAccount.services.ssh', [
       }
 
       return $q.all(promises).then((data) => {
-        const keys = _.flatten(_.values(data));
-        return _.sortBy(keys, key => key.keyName.toLowerCase());
+        const keys = flatten(values(data));
+        return sortBy(keys, key => key.keyName.toLowerCase());
       });
     };
 
@@ -32,7 +40,7 @@ angular.module('UserAccount').service('UserAccount.services.ssh', [
       return OvhHttp.get('/me/sshKey', {
         rootPath: 'apiv6',
       }).then((keyNames) => {
-        const promises = _.map(keyNames, keyName => self.getDedicatedSshKey(keyName));
+        const promises = map(keyNames, keyName => self.getDedicatedSshKey(keyName));
         return $q.all(promises);
       });
     };
@@ -44,7 +52,7 @@ angular.module('UserAccount').service('UserAccount.services.ssh', [
           keyName,
         },
       }).then((key) => {
-        _.set(key, 'category', 'dedicated');
+        set(key, 'category', 'dedicated');
         return key;
       });
     };
@@ -56,7 +64,7 @@ angular.module('UserAccount').service('UserAccount.services.ssh', [
         clearCache: false,
       })
         .then(projectIds => $q.all(
-          _.map(projectIds, projectId => OvhHttp.get('/cloud/project/{serviceName}', {
+          map(projectIds, projectId => OvhHttp.get('/cloud/project/{serviceName}', {
             rootPath: 'apiv6',
             urlParams: {
               serviceName: projectId,
@@ -65,7 +73,7 @@ angular.module('UserAccount').service('UserAccount.services.ssh', [
             clearCache: false,
           })),
         ))
-        .then(projects => _.map(_.filter(projects, { status: 'ok' }), project => ({
+        .then(projects => map(filter(projects, { status: 'ok' }), project => ({
           id: project.project_id,
           description: project.description,
         })));
@@ -75,12 +83,12 @@ angular.module('UserAccount').service('UserAccount.services.ssh', [
       return self
         .getCloudProjects()
         .then((projects) => {
-          const promises = _.map(projects, project => OvhHttp.get('/cloud/project/{serviceName}/sshkey', {
+          const promises = map(projects, project => OvhHttp.get('/cloud/project/{serviceName}/sshkey', {
             rootPath: 'apiv6',
             urlParams: {
               serviceName: project.id,
             },
-          }).then(keys => _.map(keys, key => ({
+          }).then(keys => map(keys, key => ({
             serviceName: project.id,
             serviceDescription: project.description,
             category: 'cloud',
@@ -91,7 +99,7 @@ angular.module('UserAccount').service('UserAccount.services.ssh', [
           }))));
           return $q.all(promises);
         })
-        .then(keysByProjet => _.flatten(keysByProjet));
+        .then(keysByProjet => flatten(keysByProjet));
     };
 
     self.addDedicatedSshKey = function (sshkeyObj) {

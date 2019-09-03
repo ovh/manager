@@ -1,3 +1,5 @@
+import difference from 'lodash/difference';
+
 angular.module('Module.ip.controllers').controller('IplbBackendSetProbeCtrl', ($scope, $rootScope, $translate, Ip, Iplb, Alerter) => {
   $scope.data = $scope.currentActionData; // service
 
@@ -6,7 +8,7 @@ angular.module('Module.ip.controllers').controller('IplbBackendSetProbeCtrl', ($
   $scope.loading = true;
 
   Ip.getIpModels().then((models) => {
-    $scope.probes = _.difference(models['ip.LoadBalancingBackendProbeEnum'].enum, [$scope.data.backend.probe]);
+    $scope.probes = difference(models['ip.LoadBalancingBackendProbeEnum'].enum, [$scope.data.backend.probe]);
     $scope.loading = false;
   });
 

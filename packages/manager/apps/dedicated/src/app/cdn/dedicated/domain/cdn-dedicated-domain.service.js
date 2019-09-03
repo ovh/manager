@@ -1,3 +1,8 @@
+import camelCase from 'lodash/camelCase';
+import get from 'lodash/get';
+import map from 'lodash/map';
+import snakeCase from 'lodash/snakeCase';
+
 angular
   .module('services')
   .service('CdnDomain', function CdnDomain($http, $q, constants, $cacheFactory, $rootScope) {
@@ -123,13 +128,13 @@ angular
           if (cdn && cdnDomain.domain) {
             return $http.post([swsCdnProxyPath, cdn, 'domains', domain, 'flush'].join('/')).then(data => ({
               id: data.taskId,
-              status: _.camelCase(data.status),
-              function: _.camelCase(data.function),
+              status: camelCase(data.status),
+              function: camelCase(data.function),
             }));
           }
           return $q.reject(cdnDomain);
         })
-        .catch(reason => $q.reject(_.get(reason, 'data', reason)));
+        .catch(reason => $q.reject(get(reason, 'data', reason)));
     };
 
     this.getDomains = function getDomains(productId) {
@@ -172,7 +177,7 @@ angular
           $rootScope.$broadcast('cdn.domain.dashboard.refresh');
           return result;
         })
-        .catch(reason => $q.reject(_.get(reason, 'data', reason)));
+        .catch(reason => $q.reject(get(reason, 'data', reason)));
     };
 
     this.updateDomain = function updateDomain(cdn, domain, byPass = false) {
@@ -193,7 +198,7 @@ angular
           $rootScope.$broadcast('cdn.domain.dashboard.refresh');
           return result;
         })
-        .catch(reason => $q.reject(_.get(reason, 'data', reason)));
+        .catch(reason => $q.reject(get(reason, 'data', reason)));
     };
 
     this.deleteCacherule = function deleteCacherule(cdn, domain, id) {
@@ -209,7 +214,7 @@ angular
           $rootScope.$broadcast('cdn.domain.tabs.cacherule.refresh');
           return result;
         })
-        .catch(reason => $q.reject(_.get(reason, 'data', reason)));
+        .catch(reason => $q.reject(get(reason, 'data', reason)));
     };
 
     this.updateAllCacheruleStatus = function updateAllCacheruleStatus(cdn, domain, status) {
@@ -218,7 +223,7 @@ angular
           if (cdn && cdnDomain.domain) {
             return $http
               .put(
-                `${[aapiRootPath, cdn, 'domains', cdnDomain.domain, 'allcacherules', 'status'].join('/')}?status=${_.camelCase(status)}`,
+                `${[aapiRootPath, cdn, 'domains', cdnDomain.domain, 'allcacherules', 'status'].join('/')}?status=${camelCase(status)}`,
                 {},
                 {
                   serviceType: 'aapi',
@@ -233,14 +238,14 @@ angular
           $rootScope.$broadcast('cdn.domain.tabs.cacherule.refresh');
           return result;
         })
-        .catch(reason => $q.reject(_.get(reason, 'data', reason)));
+        .catch(reason => $q.reject(get(reason, 'data', reason)));
     };
 
     this.updateCacheruleStatus = function updateCacheruleStatus(cdn, domain, id, status) {
       return this.getSelected(cdn, domain)
         .then((cdnDomain) => {
           if (cdn && cdnDomain.domain && id) {
-            return $http.put([swsCdnProxyPath, cdn, 'domains', domain, 'cacheRules', id].join('/'), { status: _.camelCase(status) });
+            return $http.put([swsCdnProxyPath, cdn, 'domains', domain, 'cacheRules', id].join('/'), { status: camelCase(status) });
           }
           return $q.reject(cdnDomain);
         })
@@ -250,7 +255,7 @@ angular
           $rootScope.$broadcast('cdn.domain.tabs.cacherule.refresh');
           return result;
         })
-        .catch(reason => $q.reject(_.get(reason, 'data', reason)));
+        .catch(reason => $q.reject(get(reason, 'data', reason)));
     };
 
     this.updateCacheruleTtl = function updateCacheruleTtl(cdn, domain, id, ttl) {
@@ -267,7 +272,7 @@ angular
           $rootScope.$broadcast('cdn.domain.tabs.cacherule.refresh');
           return result;
         })
-        .catch(reason => $q.reject(_.get(reason, 'data', reason)));
+        .catch(reason => $q.reject(get(reason, 'data', reason)));
     };
 
     this.getCacheRulesGeneralInformations = function getCacheRulesGeneralInformations() {
@@ -279,11 +284,11 @@ angular
 
       return $http.get(`${swsCdnProxyPath}.json`).then(
         (content) => {
-          let cacheTypes = _.get(content, ['data', 'models', 'cdnanycast.CacheRuleCacheTypeEnum', 'enum']);
-          let fileTypes = _.get(content, ['data', 'models', 'cdnanycast.CacheRuleFileTypeEnum', 'enum']);
+          let cacheTypes = get(content, ['data', 'models', 'cdnanycast.CacheRuleCacheTypeEnum', 'enum']);
+          let fileTypes = get(content, ['data', 'models', 'cdnanycast.CacheRuleFileTypeEnum', 'enum']);
 
-          cacheTypes = _.map(cacheTypes, t => _.snakeCase(t).toUpperCase());
-          fileTypes = _.map(fileTypes, t => _.snakeCase(t).toUpperCase());
+          cacheTypes = map(cacheTypes, t => snakeCase(t).toUpperCase());
+          fileTypes = map(fileTypes, t => snakeCase(t).toUpperCase());
 
           const result = {
             cacheTypes,
@@ -315,16 +320,16 @@ angular
         .then((cdnDomain) => {
           if (cdn && cdnDomain.domain) {
             const opts = {
-              cacheType: _.camelCase(cacheType),
+              cacheType: camelCase(cacheType),
               fileMatch,
-              fileType: _.camelCase(fileType),
+              fileType: camelCase(fileType),
               ttl,
             };
 
             return $http.post([swsCdnProxyPath, cdn, 'domains', domain, 'cacheRules'].join('/'), opts).then(data => ({
               id: data.taskId,
-              status: _.camelCase(data.status),
-              function: _.camelCase(data.function),
+              status: camelCase(data.status),
+              function: camelCase(data.function),
             }));
           }
           return $q.reject(cdnDomain);
@@ -334,7 +339,7 @@ angular
           $rootScope.$broadcast('cdn.domain.tabs.cacherule.refresh');
           return result;
         })
-        .catch(reason => $q.reject(_.get(reason, 'data', reason)));
+        .catch(reason => $q.reject(get(reason, 'data', reason)));
     };
 
     this.deleteDomain = function deleteDomain(cdn, domain) {
@@ -350,7 +355,7 @@ angular
           resetCache();
           return result;
         })
-        .catch(reason => $q.reject(_.get(reason, 'data', reason)));
+        .catch(reason => $q.reject(get(reason, 'data', reason)));
     };
 
     this.flushRule = function flushRule(cdn, domain, cacheRule) {
@@ -362,6 +367,6 @@ angular
           return $q.reject(cdnDomain);
         })
         .then(({ data }) => data)
-        .catch(reason => $q.reject(_.get(reason, 'data', reason)));
+        .catch(reason => $q.reject(get(reason, 'data', reason)));
     };
   });

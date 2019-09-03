@@ -1,3 +1,6 @@
+import find from 'lodash/find';
+import get from 'lodash/get';
+
 import {
   DEDICATEDCLOUD_DATACENTER_DRP_ROLES,
   DEDICATEDCLOUD_DATACENTER_DRP_STATUS,
@@ -71,7 +74,7 @@ export default class {
       })
       .catch((error) => {
         this.Alerter.error(
-          `${this.$translate.instant('dedicatedCloud_datacenter_drp_get_state_error')} ${_.get(error, 'data.message', error.message)}`,
+          `${this.$translate.instant('dedicatedCloud_datacenter_drp_get_state_error')} ${get(error, 'data.message', error.message)}`,
           'dedicatedCloudDatacenterAlert',
         );
       })
@@ -137,7 +140,7 @@ export default class {
   formatPlanInformations({
     datacenterId, drpType, localSiteInformation, remoteSiteInformation, serviceName, state,
   }) {
-    const currentPccInformations = _.find(this.pccList, { serviceName });
+    const currentPccInformations = find(this.pccList, { serviceName });
     const currentDatacenterInformations = this.datacenterList.find(({ id }) => id === datacenterId);
 
     let primaryPcc;

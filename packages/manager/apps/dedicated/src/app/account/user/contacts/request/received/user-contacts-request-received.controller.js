@@ -1,3 +1,5 @@
+import find from 'lodash/find';
+
 angular.module('UserAccount').controller('UserAccount.controllers.contacts.requestsReceived', [
   '$scope',
   '$translate',
@@ -123,7 +125,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.contacts.reque
     };
 
     $scope.$on('user.contacts.receivedRequest.start', (pollObject, id) => {
-      const contactChange = _.find(
+      const contactChange = find(
         self.contactTasksDetails,
         _contactChange => _contactChange.id === parseInt(id, 10),
       );
@@ -135,7 +137,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.contacts.reque
 
     $scope.$on('user.contacts.receivedRequest.done', (pollObject, task) => {
       Contacts.removePendingChange({ key: 'Contacts::PendingChangeSent', data: [self.user.nichandle, task.id].join('_') });
-      const contactChange = _.find(
+      const contactChange = find(
         self.contactTasksDetails,
         _contactChange => _contactChange.id === task.id,
       );

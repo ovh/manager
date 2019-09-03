@@ -1,3 +1,7 @@
+import head from 'lodash/head';
+import set from 'lodash/set';
+import sortBy from 'lodash/sortBy';
+
 angular.module('App').controller('ServerOrderLegacyBandwidthCtrl', ($scope, $stateParams, $translate, Server, User) => {
   $scope.orderable = null;
 
@@ -52,7 +56,7 @@ angular.module('App').controller('ServerOrderLegacyBandwidthCtrl', ($scope, $sta
               }
             }
           });
-          $scope.orderableBandwidth.value = _.sortBy($scope.orderableBandwidth.value, (val) => {
+          $scope.orderableBandwidth.value = sortBy($scope.orderableBandwidth.value, (val) => {
             let ret;
             switch (val) {
               case 'premium':
@@ -76,7 +80,7 @@ angular.module('App').controller('ServerOrderLegacyBandwidthCtrl', ($scope, $sta
   $scope.selectBandwidthType = function (type) {
     if ($scope.orderable[type].length === 1) {
       $scope.selectedBandwidthTypes.value = type;
-      $scope.selectedBandwidth.value = _.first($scope.orderable[type]);
+      $scope.selectedBandwidth.value = head($scope.orderable[type]);
     } else {
       $scope.selectedBandwidth.value = null;
     }
@@ -150,7 +154,7 @@ angular.module('App').controller('ServerOrderLegacyBandwidthCtrl', ($scope, $sta
       },
       (data) => {
         $scope.resetAction();
-        _.set(data, 'data.type', 'ERROR');
+        set(data, 'data.type', 'ERROR');
         $scope.setMessage($translate.instant('server_order_bandwidth_error'), data.data);
       },
     );

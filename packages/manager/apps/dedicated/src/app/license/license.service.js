@@ -1,3 +1,8 @@
+import assign from 'lodash/assign';
+import camelCase from 'lodash/camelCase';
+import filter from 'lodash/filter';
+import set from 'lodash/set';
+
 angular.module('Module.license').service('License', [
   'WucApi',
   'constants',
@@ -17,7 +22,7 @@ angular.module('Module.license').service('License', [
   ) {
     const self = this;
 
-    this.types = _.filter(
+    this.types = filter(
       types,
       type => !licenseFeatureAvailability.allowLicenseAgoraOrder()
         || licenseFeatureAvailability.allowLicenseTypeAgoraOrder(type),
@@ -43,7 +48,7 @@ angular.module('Module.license').service('License', [
     }
 
     this.ips = function (opts) {
-      const opts2api = _.assign({}, opts, { rootPath: '2api' });
+      const opts2api = assign({}, opts, { rootPath: '2api' });
 
       return OvhHttp.get('/sws/license/availableIps', opts2api).then(data => data, reason => $q.reject(reason));
     };
@@ -78,7 +83,7 @@ angular.module('Module.license').service('License', [
       return OvhHttp.post('/license/{licenseType}/{serviceName}/changeIp', {
         rootPath: 'apiv6',
         urlParams: {
-          licenseType: _.camelCase(data.urlParams.type),
+          licenseType: camelCase(data.urlParams.type),
           serviceName: data.urlParams.id,
         },
         data: {
@@ -101,23 +106,23 @@ angular.module('Module.license').service('License', [
     function setPleskOptions(opts, data) {
       if (data.options) {
         if (hasOption(data.options, 'languagePackNumber')) {
-          _.set(opts, 'languagePackNumber', data.options.languagePackNumber.value);
+          set(opts, 'languagePackNumber', data.options.languagePackNumber.value);
         }
 
         if (hasOption(data.options, 'antivirus')) {
-          _.set(opts, 'antivirus', data.options.antivirus.value);
+          set(opts, 'antivirus', data.options.antivirus.value);
         }
 
         if (hasOption(data.options, 'domainNumber')) {
-          _.set(opts, 'domainNumber', data.options.domainNumber.value.value);
+          set(opts, 'domainNumber', data.options.domainNumber.value.value);
         }
 
         if (hasOption(data.options, 'powerpack')) {
-          _.set(opts, 'powerpack', data.options.powerpack.value);
+          set(opts, 'powerpack', data.options.powerpack.value);
         }
 
         if (hasOption(data.options, 'version')) {
-          _.set(opts, 'version', data.options.version.value);
+          set(opts, 'version', data.options.version.value);
         }
       }
       return opts;

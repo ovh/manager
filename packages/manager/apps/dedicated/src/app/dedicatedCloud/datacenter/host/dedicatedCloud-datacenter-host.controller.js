@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 import {
   RESOURCE_BILLING_TYPES,
   RESOURCE_UPGRADE_TYPES,
@@ -85,7 +87,7 @@ angular
           return {
             ...host,
             consumption: {
-              value: _.get(hostConsumption, 'quantity', 0),
+              value: get(hostConsumption, 'quantity', 0),
             },
             lastUpdate: serviceConsumption.lastUpdate,
           };

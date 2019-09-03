@@ -1,3 +1,6 @@
+import difference from 'lodash/difference';
+import without from 'lodash/without';
+
 angular.module('Module.ip.controllers').controller('IplbOrderPopCtrl', ($scope, $rootScope, $q, $translate, Ip, Iplb, Alerter, coreConfig) => {
   $scope.data = $scope.currentActionData; // service
   $scope.availablePop = [];
@@ -17,13 +20,13 @@ angular.module('Module.ip.controllers').controller('IplbOrderPopCtrl', ($scope, 
   );
   queue.push(
     Ip.getIpModels().then((models) => {
-      $scope.availablePop = _.difference(models['ip.LoadBalancingZoneEnum'].enum, $scope.data.infos.zone || []);
+      $scope.availablePop = difference(models['ip.LoadBalancingZoneEnum'].enum, $scope.data.infos.zone || []);
 
       // Remove trans-ocean pop... :'(
       if (coreConfig.getRegion() === 'EU') {
-        $scope.availablePop = _.without($scope.availablePop, 'bhs');
+        $scope.availablePop = without($scope.availablePop, 'bhs');
       } else {
-        $scope.availablePop = _.without($scope.availablePop, 'gra', 'rbx', 'sbg');
+        $scope.availablePop = without($scope.availablePop, 'gra', 'rbx', 'sbg');
       }
     }),
   );

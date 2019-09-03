@@ -1,4 +1,16 @@
-import _ from 'lodash';
+import assign from 'lodash/assign';
+import camelCase from 'lodash/camelCase';
+import compact from 'lodash/compact';
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import head from 'lodash/head';
+import indexOf from 'lodash/indexOf';
+import map from 'lodash/map';
+import parseInt from 'lodash/parseInt';
+import set from 'lodash/set';
+import snakeCase from 'lodash/snakeCase';
+import sortBy from 'lodash/sortBy';
+import uniq from 'lodash/uniq';
 
 angular
   .module('services')
@@ -170,7 +182,7 @@ angular
     };
 
     this.addTaskFast = function addTaskFast(productId, task, scopeId) {
-      _.set(task, 'id', task.id || task.taskId);
+      set(task, 'id', task.id || task.taskId);
       const pollPromise = $q.defer();
       Polling.addTaskFast(self.getTaskPath(productId, task.id), task, scopeId).then(
         (state) => {
@@ -547,12 +559,12 @@ angular
 
     this.getStatisticsConst = function getStatisticsConst() {
       return self.getModels().then(models => ({
-        types: _.chain(models.data.models['dedicated.server.MrtgTypeEnum'].enum)
-          .map(type => type.split(':')[0].toUpperCase())
-          .uniq()
-          .value(),
+        types: uniq(map(
+          models.data.models['dedicated.server.MrtgTypeEnum'].enum,
+          type => type.split(':')[0].toUpperCase(),
+        )),
         defaultType: 'TRAFFIC',
-        periods: models.data.models['dedicated.server.MrtgPeriodEnum'].enum.map(period => _.snakeCase(period).toUpperCase()),
+        periods: models.data.models['dedicated.server.MrtgPeriodEnum'].enum.map(period => snakeCase(period).toUpperCase()),
         defaultPeriod: 'DAILY',
       }));
     };
@@ -566,7 +578,7 @@ angular
           return $http.get([path.dedicatedServer, serverName, 'networkInterfaceController'].join('/'));
         })
         .then((networkInterfaceIds) => {
-          const promises = _.map(networkInterfaceIds.data, networkInterfaceId => $http.get([path.dedicatedServer, serverName, 'networkInterfaceController', networkInterfaceId].join('/')).then(response => response.data));
+          const promises = map(networkInterfaceIds.data, networkInterfaceId => $http.get([path.dedicatedServer, serverName, 'networkInterfaceController', networkInterfaceId].join('/')).then(response => response.data));
           return $q.all(promises);
         });
     };
@@ -893,20 +905,20 @@ angular
       partition,
     ) {
       const data = angular.copy(partition);
-      data.type = _.camelCase(data.typePartition);
+      data.type = camelCase(data.typePartition);
       delete data.typePartition;
 
-      data.filesystem = _.camelCase(data.fileSystem);
+      data.filesystem = camelCase(data.fileSystem);
       delete data.fileSystem;
 
-      data.size = _.camelCase(data.partitionSize);
+      data.size = camelCase(data.partitionSize);
       delete data.partitionSize;
 
       data.raid = data.raid ? parseInt(data.raid.replace(/_/g, ''), 10) : null;
 
       delete data.oldMountPoint;
 
-      data.step = _.camelCase(data.order);
+      data.step = camelCase(data.order);
       delete data.order;
 
       data.mountpoint = data.mountPoint;
@@ -928,13 +940,13 @@ angular
       partition,
     ) {
       const newPartition = angular.copy(partition);
-      newPartition.filesystem = _.camelCase(newPartition.fileSystem);
+      newPartition.filesystem = camelCase(newPartition.fileSystem);
       newPartition.mountpoint = newPartition.mountPoint;
       newPartition.size = {
         value: newPartition.partitionSize,
         unit: 'MB',
       };
-      newPartition.type = _.camelCase(newPartition.typePartition);
+      newPartition.type = camelCase(newPartition.typePartition);
       newPartition.raid = newPartition.raid ? parseInt(newPartition.raid.replace(/_/g, ''), 10) : null;
       delete newPartition.fileSystem;
       delete newPartition.mountPoint;
@@ -1033,7 +1045,7 @@ angular
           urlPath: path.installationMe,
         })
         .then((mountpoints) => {
-          const getMountpoints = _.map(mountpoints, mountpoint => self
+          const getMountpoints = map(mountpoints, mountpoint => self
             .get(productId, '{gabaritName}/partitionScheme/{schemeName}/partition/{mountpoint}', {
               urlParams: {
                 gabaritName,
@@ -1272,7 +1284,7 @@ angular
         proxypass: true,
       }).then((durations) => {
         const returnData = [];
-        const promises = _.map(durations, duration => self
+        const promises = map(durations, duration => self
           .get(productId, `${data.optionName}/{duration}`, {
             urlParams: {
               duration,
@@ -1348,12 +1360,12 @@ angular
     };
 
     this.getValidBandwidthPlans = function (plans, existingBandwidth) {
-      const list = _.map(plans, (plan) => {
+      const list = map(plans, (plan) => {
         // Not to include already included plans (existing plan)
         if (!plan.planCode.includes('included')) {
           // Extract bandwidth value from product name
-          const bandwidth = _.parseInt(_.first(_.filter(plan.productName.split('-'), ele => /^\d+$/.test(ele))));
-          _.assign(plan, { bandwidth });
+          const bandwidth = parseInt(head(filter(plan.productName.split('-'), ele => /^\d+$/.test(ele))));
+          assign(plan, { bandwidth });
           // check if existing bandwidth is not max bandwidth available
           // Reject plans which are default plans i.e., 0 as price
           if (bandwidth > existingBandwidth && plan.prices[2].price.value !== 0) {
@@ -1362,7 +1374,7 @@ angular
         }
         return null;
       });
-      return _.compact(list);
+      return compact(list);
     };
 
     this.getBareMetalPublicBandwidthOptions = function (serviceName) {
@@ -2091,7 +2103,7 @@ angular
         proxypass: true,
         urlPath: path.installationMe,
       }).then((response) => {
-        const index = _.indexOf(response, HARDWARE_RAID_RULE_DEFAULT_NAME);
+        const index = indexOf(response, HARDWARE_RAID_RULE_DEFAULT_NAME);
         if (index !== -1) {
           return self.get(productId, '{templateName}/partitionScheme/{schemeName}/hardwareRaid/{name}', {
             urlParams: {
@@ -2130,12 +2142,12 @@ angular
       templateName,
     ) {
       return self.getPartitionSchemes(productId, templateName).then((schemes) => {
-        const getSchemes = _.map(
+        const getSchemes = map(
           schemes,
           scheme => self.getPartitionSchemePriority(productId, templateName, scheme),
         );
         return $q.all(getSchemes).then((schemesDetails) => {
-          const list = _.sortBy(schemesDetails, 'priority').reverse();
+          const list = sortBy(schemesDetails, 'priority').reverse();
           return list[0];
         });
       });
@@ -2178,10 +2190,10 @@ angular
       })
       .$promise
       .then(({ addons, plans, products }) => {
-        const plan = _.find(plans, { invoiceName: planName });
-        const cpu = _.find(products, { name: plan.product });
-        const memoryPlan = _.find(plan.addonFamilies, { name: 'memory' });
-        const memory = _.find(addons, { planCode: memoryPlan.default });
+        const plan = find(plans, { invoiceName: planName });
+        const cpu = find(products, { name: plan.product });
+        const memoryPlan = find(plan.addonFamilies, { name: 'memory' });
+        const memory = find(addons, { planCode: memoryPlan.default });
 
         return `${cpu.description}, ${memory.invoiceName}`;
       });

@@ -1,3 +1,6 @@
+import flatten from 'lodash/flatten';
+import indexOf from 'lodash/indexOf';
+
 angular
   .module('services')
   .service('User', [
@@ -36,7 +39,7 @@ angular
                 legalform: result.me.legalform,
                 customerCode: result.me.customerCode,
                 language: result.me.language,
-                isEnterprise: _.indexOf(result.certificates, 'enterprise') > -1,
+                isEnterprise: indexOf(result.certificates, 'enterprise') > -1,
                 isVATNeeded: ['CA', 'QC', 'WE', 'WS'].indexOf(result.me.ovhSubsidiary) === -1,
               };
             }
@@ -164,7 +167,7 @@ angular
           const promise = $http.get([baseUrl, paymentMethod].join('/'), { params: paramStruct }).then(response => response.data);
           meanRequests.push(promise);
         });
-        return $q.all(meanRequests).then(response => _.flatten(response));
+        return $q.all(meanRequests).then(response => flatten(response));
       };
 
       this.getUserCertificates = function getUserCertificates() {

@@ -1,3 +1,5 @@
+import includes from 'lodash/includes';
+
 angular
   .module('Module.license')
   .service('licenseFeatureAvailability', class {
@@ -11,7 +13,7 @@ angular
     }
 
     allowLicenseTypeAgoraOrder(licenseType) {
-      return this.allowLicenseAgoraOrder() && _.includes(['CLOUDLINUX', 'CPANEL', 'DIRECTADMIN', 'SQLSERVER', 'WINDOWS', 'WORKLIGHT', 'PLESK', 'VIRTUOZZO'], licenseType);
+      return this.allowLicenseAgoraOrder() && includes(['CLOUDLINUX', 'CPANEL', 'DIRECTADMIN', 'SQLSERVER', 'WINDOWS', 'WORKLIGHT', 'PLESK', 'VIRTUOZZO'], licenseType);
     }
 
     allow(...args) {

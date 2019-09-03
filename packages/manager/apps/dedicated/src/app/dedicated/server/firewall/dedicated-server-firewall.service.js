@@ -1,3 +1,7 @@
+import camelCase from 'lodash/camelCase';
+import set from 'lodash/set';
+import snakeCase from 'lodash/snakeCase';
+
 angular.module('services').service('ServerFirewallAsa', function (OvhHttp, $q) {
   const self = this;
 
@@ -18,7 +22,7 @@ angular.module('services').service('ServerFirewallAsa', function (OvhHttp, $q) {
         returnErrorKey: '',
       })
       .then((firewall) => {
-        _.set(firewall, 'mode', _.snakeCase(firewall.mode).toUpperCase());
+        set(firewall, 'mode', snakeCase(firewall.mode).toUpperCase());
         return firewall;
       })
       .catch((err) => {
@@ -52,7 +56,7 @@ angular.module('services').service('ServerFirewallAsa', function (OvhHttp, $q) {
         duration,
       },
       data: {
-        firewallModel: _.camelCase(model),
+        firewallModel: camelCase(model),
       },
     });
   };

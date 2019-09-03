@@ -1,3 +1,5 @@
+import keys from 'lodash/keys';
+
 angular.module('Module.ip.controllers').controller('IpToCsvCtrl', ($scope, $q, $translate, Alerter) => {
   let timeoutObject = null;
 
@@ -73,7 +75,7 @@ angular.module('Module.ip.controllers').controller('IpToCsvCtrl', ($scope, $q, $
     });
     printCsv({
       ips: preparedData,
-      headers: _.keys(preparedData[0]),
+      headers: keys(preparedData[0]),
     });
   };
 

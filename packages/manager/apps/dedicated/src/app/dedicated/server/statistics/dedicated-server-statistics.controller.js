@@ -1,3 +1,9 @@
+import get from 'lodash/get';
+import head from 'lodash/head';
+import map from 'lodash/map';
+import set from 'lodash/set';
+import some from 'lodash/some';
+
 angular.module('controllers').controller('controllers.Server.Stats', (
   $q,
   $scope,
@@ -65,25 +71,25 @@ angular.module('controllers').controller('controllers.Server.Stats', (
   $scope.canOrderMoreVrackBandwidth = () => !$scope.server.isExpired && $scope.server.canOrderVrackBandwith && $scope.bandwidthVrackOrderOptions.data.length;
 
   $scope.canOrderTraffic = () => dedicatedServerFeatureAvailability.allowDedicatedServerOrderTrafficOption() && !$scope.server.isExpired && $scope.server.canOrderQuota;
-  $scope.canOrderMoreTraffic = () => !$scope.server.isExpired && $scope.server.canOrderQuota && _.get($scope.trafficOrderables, 'length');
+  $scope.canOrderMoreTraffic = () => !$scope.server.isExpired && $scope.server.canOrderQuota && get($scope.trafficOrderables, 'length');
 
   $scope.isFullAgora = commercialRange => $scope.pattern.test(commercialRange);
 
   $scope.$on('dedicated.informations.bandwidth', $scope.loadBandwidthInformations);
 
   function convertData(list) {
-    return _.map(list, value => (value.unit === 'bps' ? (value.y / 1024).toFixed(2) : value.y));
+    return map(list, value => (value.unit === 'bps' ? (value.y / 1024).toFixed(2) : value.y));
   }
 
   function createChart(data) {
     $scope.series = [];
     $scope.data = [];
-    $scope.labels = _.map(_.get(data, 'download.values'), value => moment.unix(value.timestamp).calendar());
+    $scope.labels = map(get(data, 'download.values'), value => moment.unix(value.timestamp).calendar());
     $scope.series.push($translate.instant('server_tab_STATS_legend_download'));
     $scope.series.push($translate.instant('server_tab_STATS_legend_upload'));
-    $scope.data.push(convertData(_.get(data, 'download.values')));
-    $scope.data.push(convertData(_.get(data, 'upload.values')));
-    const { unit } = _.head(_.get(data, 'download.values'));
+    $scope.data.push(convertData(get(data, 'download.values')));
+    $scope.data.push(convertData(get(data, 'upload.values')));
+    const { unit } = head(get(data, 'download.values'));
     const yLabel = unit === 'bps' ? $translate.instant('server_configuration_mitigation_statistics_unit_KB') : unit;
     $scope.options = {
       scales: {
@@ -117,7 +123,7 @@ angular.module('controllers').controller('controllers.Server.Stats', (
 
     $q.all(promises)
       .then((stats) => {
-        const hasVrack = _.some(stats.interfaces, networkInterface => networkInterface.linkType === 'private');
+        const hasVrack = some(stats.interfaces, networkInterface => networkInterface.linkType === 'private');
         if (!hasVrack) {
           stats.interfaces.push({
             linkType: 'no_vrack',
@@ -125,7 +131,7 @@ angular.module('controllers').controller('controllers.Server.Stats', (
           });
         }
 
-        $scope.networks = _.map(stats.interfaces, networkInterface => ({
+        $scope.networks = map(stats.interfaces, networkInterface => ({
           id: networkInterface.mac,
           linkType: networkInterface.linkType,
           displayName: $translate.instant(`server_tab_stats_network_${networkInterface.linkType}`, {
@@ -153,7 +159,7 @@ angular.module('controllers').controller('controllers.Server.Stats', (
       .catch((data) => {
         $scope.serverStatsLoad.error = true;
         if (nameServer && data) {
-          _.set(data, 'data.type', 'ERROR');
+          set(data, 'data.type', 'ERROR');
           $scope.setMessage($translate.instant('server_tab_STATS_loading_fail'), data.data);
         }
       })
@@ -168,7 +174,7 @@ angular.module('controllers').controller('controllers.Server.Stats', (
         $scope.setMessage($translate.instant('server_remove_hack_success'));
       },
       (data) => {
-        _.set(data, 'type', 'ERROR');
+        set(data, 'type', 'ERROR');
         $scope.setMessage($translate.instant('server_remove_hack_fail'), data.data);
       },
     );
@@ -193,7 +199,7 @@ angular.module('controllers').controller('controllers.Server.Stats', (
       .catch((data) => {
         $scope.serverStatsLoad.error = true;
         if (data) {
-          _.set(data, 'type', 'ERROR');
+          set(data, 'type', 'ERROR');
           $scope.setMessage($translate.instant('server_tab_STATS_loading_fail'), data.data);
         }
       })

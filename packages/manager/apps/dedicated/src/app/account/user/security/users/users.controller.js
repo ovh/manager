@@ -1,3 +1,7 @@
+import get from 'lodash/get';
+import map from 'lodash/map';
+import set from 'lodash/set';
+
 angular.module('UserAccount').controller('UserAccountUsersCtrl', class UserAccountUsersCtrl {
   constructor($scope, User, UseraccountUsersService, UseraccountGroupsService, $q, Alerter,
     $translate) {
@@ -26,7 +30,7 @@ angular.module('UserAccount').controller('UserAccountUsersCtrl', class UserAccou
       .then((data) => {
         this.me = data;
         return this.groupsService.getGroups()
-          .then(groups => this.$q.all(_.map(
+          .then(groups => this.$q.all(map(
             groups,
             groupName => this.groupsService.getGroup(groupName),
           )))
@@ -42,7 +46,7 @@ angular.module('UserAccount').controller('UserAccountUsersCtrl', class UserAccou
           });
       })
       .catch((err) => {
-        this.alerter.error(`${this.$translate.instant('user_users_error')} ${_.get(err, 'message', err)}`, 'userUsers');
+        this.alerter.error(`${this.$translate.instant('user_users_error')} ${get(err, 'message', err)}`, 'userUsers');
       })
       .finally(() => {
         this.usersLoading = false;
@@ -52,7 +56,7 @@ angular.module('UserAccount').controller('UserAccountUsersCtrl', class UserAccou
   onTransformItem(userId) {
     return this.usersService.getUser(userId)
       .then((user) => {
-        _.set(user, 'role', this.groups[user.group].role);
+        set(user, 'role', this.groups[user.group].role);
         return user;
       });
   }

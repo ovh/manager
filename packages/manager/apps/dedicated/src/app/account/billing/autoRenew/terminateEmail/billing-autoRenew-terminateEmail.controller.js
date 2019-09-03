@@ -1,5 +1,7 @@
+import head from 'lodash/head';
+
 angular.module('Billing.controllers').controller('EmailTerminateCtrl', ($scope, $translate, BillingAutoRenew, Alerter, AUTORENEW_EVENT) => {
-  $scope.email = _.first($scope.currentActionData);
+  $scope.email = head($scope.currentActionData);
   $scope.loaders = {
     loading: true,
   };

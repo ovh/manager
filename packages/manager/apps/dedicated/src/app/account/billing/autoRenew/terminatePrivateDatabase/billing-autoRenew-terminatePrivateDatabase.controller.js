@@ -1,5 +1,7 @@
+import head from 'lodash/head';
+
 angular.module('Billing.controllers').controller('PrivateDatabaseTerminateCtrl', ($scope, $log, $translate, BillingAutoRenew, Alerter, AUTORENEW_EVENT) => {
-  $scope.privateDatabase = _.first($scope.currentActionData);
+  $scope.privateDatabase = head($scope.currentActionData);
   $scope.loaders = {
     loading: false,
   };

@@ -1,3 +1,6 @@
+import isEmpty from 'lodash/isEmpty';
+import get from 'lodash/get';
+
 angular.module('Billing.services').service('BillingmessageParser', [
   function () {
     const ALERT_LEVELS = {
@@ -29,10 +32,10 @@ angular.module('Billing.services').service('BillingmessageParser', [
         return { message, alertType: ALERT_LEVELS.SUCCESS };
       }
 
-      if (!_.isEmpty(message)) {
+      if (!isEmpty(message)) {
         return {
           message,
-          alertType: _(ALERT_MAP).get(data.type, ''),
+          alertType: get(ALERT_MAP, data.type, ''),
         };
       }
 

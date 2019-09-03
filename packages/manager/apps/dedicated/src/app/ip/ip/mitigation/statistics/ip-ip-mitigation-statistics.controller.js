@@ -1,3 +1,7 @@
+import get from 'lodash/get';
+import head from 'lodash/head';
+import map from 'lodash/map';
+
 angular.module('Module.ip.controllers').controller('IpMitigationStatisticsCtrl', ($scope, $locale, Ip, IpMitigation, $filter, $timeout, $translate) => {
   $scope.data = $scope.currentActionData;
   $scope.statsLoading = false;
@@ -9,19 +13,19 @@ angular.module('Module.ip.controllers').controller('IpMitigationStatisticsCtrl',
     IpMitigation.getMitigationStatisticsScale().then((data) => {
       $scope.statisticsScalesAvailable = data;
       if (data.length > 0) {
-        $scope.model.scale = _.first(data);
+        $scope.model.scale = head(data);
       }
       $scope.model.mode = 'realTime';
     });
   };
 
   const createChart = function () {
-    const dataSets = [_.get($scope.stats, 'valuesIn'), _.get($scope.stats, 'valuesOut')];
+    const dataSets = [get($scope.stats, 'valuesIn'), get($scope.stats, 'valuesOut')];
 
     $scope.chartData = [];
     $scope.chartSeries = [];
 
-    $scope.chartLabels = _.map(_.get($scope.stats, 'valuesIn'), (value, index) => moment($scope.stats.pointStart)
+    $scope.chartLabels = map(get($scope.stats, 'valuesIn'), (value, index) => moment($scope.stats.pointStart)
       .add($scope.stats.pointInterval.standardDays * index, 'days')
       .add($scope.stats.pointInterval.standardHours * index, 'hours')
       .add($scope.stats.pointInterval.standardMinutes * index, 'minutes')
@@ -30,8 +34,8 @@ angular.module('Module.ip.controllers').controller('IpMitigationStatisticsCtrl',
     $scope.chartSeries.push($translate.instant('ip_mitigation_statistics_input'));
     $scope.chartSeries.push($translate.instant('ip_mitigation_statistics_output'));
 
-    $scope.chartData.push(_.map(_.get($scope.stats, 'valuesIn'), value => value.y));
-    $scope.chartData.push(_.map(_.get($scope.stats, 'valuesOut'), value => value.y));
+    $scope.chartData.push(map(get($scope.stats, 'valuesIn'), value => value.y));
+    $scope.chartData.push(map(get($scope.stats, 'valuesOut'), value => value.y));
 
     $scope.chartOptions = {
       tooltips: {
@@ -97,7 +101,7 @@ angular.module('Module.ip.controllers').controller('IpMitigationStatisticsCtrl',
   };
 
   $scope.datePicker = {
-    dateFormat: _.get($locale, 'DATETIME_FORMATS.shortDate'),
+    dateFormat: get($locale, 'DATETIME_FORMATS.shortDate'),
     isOpen: false,
     maxDate: new Date(),
   };

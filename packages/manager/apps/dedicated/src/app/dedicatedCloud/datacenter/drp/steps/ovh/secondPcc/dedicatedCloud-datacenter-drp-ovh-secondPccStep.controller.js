@@ -1,3 +1,7 @@
+import flatten from 'lodash/flatten';
+import get from 'lodash/get';
+import isNull from 'lodash/isNull';
+
 export default class {
   /* @ngInject */
   constructor(
@@ -38,7 +42,7 @@ export default class {
       .map(({ serviceName }) => this.DedicatedCloudDrp
         .getPccDrpPlan(serviceName)))
       .then((pccList) => {
-        const pccWithoutDrp = _.flatten(
+        const pccWithoutDrp = flatten(
           pccList
             .filter(datacenters => !datacenters
               .some(({ state }) => [
@@ -58,7 +62,7 @@ export default class {
       .catch((error) => {
         this.availablePccs = [];
         this.Alerter.error(
-          `${this.$translate.instant('dedicatedCloud_datacenter_drp_get_state_error')} ${_.get(error, 'data.message', error.message)}`,
+          `${this.$translate.instant('dedicatedCloud_datacenter_drp_get_state_error')} ${get(error, 'data.message', error.message)}`,
           'dedicatedCloudDatacenterAlert',
         );
       })
@@ -84,12 +88,12 @@ export default class {
       .then(({ datacenters, ipAddressDetails }) => {
         this.availableDatacenters = datacenters.results;
         this.availableIpAddress = ipAddressDetails
-          .filter(({ usageDetails }) => _.isNull(usageDetails)
+          .filter(({ usageDetails }) => isNull(usageDetails)
             && !this.UNAVAILABLE_IP_STATUSES.includes(usageDetails)
             && !this.MAC_ADDRESS_REG_EXP.test(usageDetails));
       })
       .catch((error) => {
-        this.Alerter.error(`${this.$translate.instant('dedicatedCloud_datacenter_drp_get_state_error')} ${_.get(error, 'data.message', error)}`, 'dedicatedCloudDatacenterDrpAlert');
+        this.Alerter.error(`${this.$translate.instant('dedicatedCloud_datacenter_drp_get_state_error')} ${get(error, 'data.message', error)}`, 'dedicatedCloudDatacenterDrpAlert');
       })
       .finally(() => {
         this.fetchingOptions = false;
@@ -112,7 +116,7 @@ export default class {
         }
       })
       .catch((error) => {
-        this.Alerter.error(`${this.$translate.instant('dedicatedCloud_datacenter_secondary_datacenter_get_hosts_error')} ${_.get(error, 'data.message', '')}`, 'dedicatedCloudDatacenterDrpAlert');
+        this.Alerter.error(`${this.$translate.instant('dedicatedCloud_datacenter_secondary_datacenter_get_hosts_error')} ${get(error, 'data.message', '')}`, 'dedicatedCloudDatacenterDrpAlert');
       })
       .finally(() => {
         this.isCheckingHosts = false;

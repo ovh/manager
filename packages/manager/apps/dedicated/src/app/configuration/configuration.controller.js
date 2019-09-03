@@ -1,3 +1,6 @@
+import isArray from 'lodash/isArray';
+import isEmpty from 'lodash/isEmpty';
+
 angular
   .module('App')
   .controller(
@@ -55,7 +58,7 @@ angular
           return this.DedicatedCloud
             .getDescription()
             .then((ids) => {
-              if (_.isArray(ids) && !_.isEmpty(ids)) {
+              if (isArray(ids) && !isEmpty(ids)) {
                 return sectionNames;
               }
 

@@ -1,3 +1,7 @@
+import bind from 'lodash/bind';
+import filter from 'lodash/filter';
+import map from 'lodash/map';
+
 angular.module('Billing').controller('Billing.PaymentsCtrl', function (
   $filter,
   $q,
@@ -10,7 +14,7 @@ angular.module('Billing').controller('Billing.PaymentsCtrl', function (
   this.loadPayments = ($config) => {
     let request = OvhApiMe.Deposit().v7().query().sort($config.sort.property, $config.sort.dir > 0 ? 'ASC' : 'DESC');
 
-    _.filter($config.criteria, 'property', 'date').forEach((crit) => {
+    filter($config.criteria, bind('property', 'date')).forEach((crit) => {
       switch (crit.operator) {
         case 'is':
           request = request.addFilter('date', 'ge', crit.value);
@@ -27,7 +31,7 @@ angular.module('Billing').controller('Billing.PaymentsCtrl', function (
       }
     });
 
-    _.filter($config.criteria, 'property', 'amount.value').forEach((crit) => {
+    filter($config.criteria, bind('property', 'amount.value')).forEach((crit) => {
       request = request.addFilter('amount.value', {
         is: 'eq',
         smaller: 'lt',
@@ -35,7 +39,7 @@ angular.module('Billing').controller('Billing.PaymentsCtrl', function (
       }[crit.operator], crit.value);
     });
 
-    _.filter($config.criteria, 'property', 'paymentInfo.paymentType').forEach((crit) => {
+    filter($config.criteria, bind('property', 'paymentInfo.paymentType')).forEach((crit) => {
       request = request.addFilter('paymentInfo.paymentType', {
         is: 'eq',
         isNot: 'ne',
@@ -49,7 +53,7 @@ angular.module('Billing').controller('Billing.PaymentsCtrl', function (
         .limit($config.pageSize)
         .execute().$promise,
     }).then(({ count, deposit }) => {
-      this.payments = _.map(deposit, 'value');
+      this.payments = map(deposit, 'value');
       return {
         data: this.payments,
         meta: {

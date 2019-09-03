@@ -1,3 +1,6 @@
+import get from 'lodash/get';
+import merge from 'lodash/merge';
+
 angular.module('services').factory('BillingVantiv', ($q, BILLING_VANTIV) => class BillingVantiv {
   constructor(configuration) {
     if (angular.isUndefined(EprotectIframeClient)) {
@@ -51,7 +54,7 @@ angular.module('services').factory('BillingVantiv', ($q, BILLING_VANTIV) => clas
       },
     };
 
-    this.eProtectClient = new EprotectIframeClient(_.merge(
+    this.eProtectClient = new EprotectIframeClient(merge(
       {},
       DEFAULT_CONFIGURATION,
       configuration,
@@ -62,7 +65,7 @@ angular.module('services').factory('BillingVantiv', ($q, BILLING_VANTIV) => clas
   }
 
   eProtectClientCallback(data) {
-    const responseCode = parseInt(_.get(data, 'response', '-1'), 10);
+    const responseCode = parseInt(get(data, 'response', '-1'), 10);
 
     if (responseCode === BILLING_VANTIV.RESPONSES_CODE.SUCCESS) {
       this.deferredSubmit.resolve(data);

@@ -1,3 +1,6 @@
+import get from 'lodash/get';
+import pick from 'lodash/pick';
+
 angular
   .module('App')
   .controller('DedicatedCloudUserEditCtrl', class DedicatedCloudUserEditCtrl {
@@ -35,7 +38,7 @@ angular
         this.user = user;
         this.user.tokenValidator = user.isTokenValidator;
       }).catch((err) => {
-        this.Alerter.error(`${this.$translate.instant('dedicatedCloud_USER_edit_load_error')} ${_.get(err, 'message', err)}`, 'dedicatedCloud.user.edit');
+        this.Alerter.error(`${this.$translate.instant('dedicatedCloud_USER_edit_load_error')} ${get(err, 'message', err)}`, 'dedicatedCloud.user.edit');
       }).finally(() => {
         this.loading = false;
       });
@@ -44,7 +47,7 @@ angular
     editUser() {
       return this.DedicatedCloud.updateUser(
         this.productId,
-        _.pick(this.user, [
+        pick(this.user, [
           'userId',
           'name',
           'firstName',
@@ -61,7 +64,7 @@ angular
         this.$state.go('^').then(() => this.$state.reload());
       }).catch((err) => {
         this.$state.go('^');
-        this.Alerter.error(`${this.$translate.instant('dedicatedCloud_USER_edit_error')} ${_.get(err, 'message') || err}`, 'dedicatedCloud.user.edit');
+        this.Alerter.error(`${this.$translate.instant('dedicatedCloud_USER_edit_error')} ${get(err, 'message') || err}`, 'dedicatedCloud.user.edit');
       });
     }
   });

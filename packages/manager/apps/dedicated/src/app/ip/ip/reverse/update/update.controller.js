@@ -1,4 +1,6 @@
-import _ from 'lodash';
+import clone from 'lodash/clone';
+import find from 'lodash/find';
+import get from 'lodash/get';
 
 export default class IpReverseUpdateCtrl {
   /* @ngInject */
@@ -25,7 +27,7 @@ export default class IpReverseUpdateCtrl {
         })
         .then(
           ({ ipDetails, serviceList }) => {
-            const serviceForIp = _.find(
+            const serviceForIp = find(
               serviceList,
               service => ipDetails.routedTo.serviceName === service.serviceName,
             );
@@ -42,7 +44,7 @@ export default class IpReverseUpdateCtrl {
         .then(() => this.IpReverse
           .getReverse(this.$location.search().ipBlock, this.$location.search().ip))
         .then((reverseData) => {
-          this.model = { reverse: _.clone(reverseData.reverse) };
+          this.model = { reverse: clone(reverseData.reverse) };
         }) // if error > reverse is init to '' > nothing more to do
         .finally(() => {
           this.loading = false;
@@ -74,7 +76,7 @@ export default class IpReverseUpdateCtrl {
         this.$rootScope.$broadcast('ips.table.refreshBlock', this.ipBlock);
         this.Alerter.success(this.$translate.instant('ip_table_manage_reverse_success'));
       })
-      .catch(error => this.Alerter.alertFromSWS(this.$translate.instant('ip_table_manage_reverse_failure', { message: _.get(error, 'data.message') })))
+      .catch(error => this.Alerter.alertFromSWS(this.$translate.instant('ip_table_manage_reverse_failure', { message: get(error, 'data.message') })))
       .finally(() => this.cancelAction());
   }
 

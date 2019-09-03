@@ -1,3 +1,9 @@
+import find from 'lodash/find';
+import flatten from 'lodash/flatten';
+import keys from 'lodash/keys';
+import map from 'lodash/map';
+import set from 'lodash/set';
+
 import config from '../../config/config';
 
 angular.module('App').controller('DedicatedCloudVMwareOptionCtrl', ($scope, $stateParams, $q, $translate, DedicatedCloud, User, Poller) => {
@@ -35,28 +41,28 @@ angular.module('App').controller('DedicatedCloudVMwareOptionCtrl', ($scope, $sta
       .then(pcc => pcc.name)
       .then(name => DedicatedCloud.getOptionState(option.name, name))
       .then((state) => {
-        _.set(option, 'state', state);
+        set(option, 'state', state);
         return state;
       })
       .then(state => DedicatedCloud.isOptionToggable($stateParams.productId, option.name, state))
       .then((toggable) => {
-        _.set(option, 'toggable', toggable.toggable);
+        set(option, 'toggable', toggable.toggable);
         if (option.toggable === false) {
           if (toggable.error && toggable.error.status === 403) {
             if (toggable.error.data.message === 'Not available yet') {
-              _.set(option, 'state', null); // dont show
+              set(option, 'state', null); // dont show
             } else {
-              _.set(option, 'toggableMessage', $translate.instant('dedicatedCloud_vmware_option_not_compatible'));
+              set(option, 'toggableMessage', $translate.instant('dedicatedCloud_vmware_option_not_compatible'));
             }
           } else if (toggable.error && toggable.error.status === 409) {
-            _.set(option, 'toggableMessage', $translate.instant(`dedicatedCloud_vmware_option_not_${option.state === 'enabled' ? 'enabled' : 'disabled'}`));
+            set(option, 'toggableMessage', $translate.instant(`dedicatedCloud_vmware_option_not_${option.state === 'enabled' ? 'enabled' : 'disabled'}`));
           } else {
-            _.set(option, 'toggableMessage', $translate.instant(`dedicatedCloud_options_state_${option.state}`));
+            set(option, 'toggableMessage', $translate.instant(`dedicatedCloud_options_state_${option.state}`));
           }
         }
       })
       .catch((err) => {
-        _.set(option, 'error', err);
+        set(option, 'error', err);
         $scope.setMessage(
           $translate.instant('dedicatedCloud_dashboard_loading_error'), {
             ...err,
@@ -94,18 +100,18 @@ angular.module('App').controller('DedicatedCloudVMwareOptionCtrl', ($scope, $sta
   function pollOptionTasks(dedicatedCloud, tasks) {
     const taskPromiseArray = [];
     angular.forEach(tasks, (task) => {
-      const polledTaskIds = _.flatten($scope.polledTasks);
-      if (!_.find(polledTaskIds, taskId => taskId === task.taskId)) {
+      const polledTaskIds = flatten($scope.polledTasks);
+      if (!find(polledTaskIds, taskId => taskId === task.taskId)) {
         taskPromiseArray.push(DedicatedCloud.getDedicatedCloudTaskPromise(dedicatedCloud, task));
       }
     });
 
     return $q.all(taskPromiseArray).then((taskObjects) => {
       angular.forEach(taskObjects, (taskObject) => {
-        const taskNamesToPoll = _.keys($scope.taskNameToOptionMap);
+        const taskNamesToPoll = keys($scope.taskNameToOptionMap);
 
-        const isPolledTaskName = _.find(taskNamesToPoll, name => name === taskObject.name);
-        const isPolledState = _.find($scope.taskStateToPoll, state => state === taskObject.state);
+        const isPolledTaskName = find(taskNamesToPoll, name => name === taskObject.name);
+        const isPolledState = find($scope.taskStateToPoll, state => state === taskObject.state);
         if (isPolledTaskName && isPolledState) {
           return pollOptionTask(taskObject).then(() => { // eslint-disable-line
             const taskOption = getTaskOption(taskObject);
@@ -177,7 +183,7 @@ angular.module('App').controller('DedicatedCloudVMwareOptionCtrl', ($scope, $sta
   });
 
   $scope.loadOptionsStatus = function loadOptionsStatus() {
-    const loadOptionsTasks = _.map($scope.options, option => loadOptionStatus(option));
+    const loadOptionsTasks = map($scope.options, option => loadOptionStatus(option));
     return $q.all(loadOptionsTasks);
   };
 

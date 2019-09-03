@@ -1,3 +1,5 @@
+import debounce from 'lodash/debounce';
+
 angular.module('controllers').controller('controllers.Server.Netboot', ($scope, Server, Alerter, $q, $stateParams, $translate) => {
   const regRootDevice1 = new RegExp('^/dev/[hs]d[ab][0-9]+$');
   const regRootDevice2 = new RegExp('^/dev/md[0-9]+$');
@@ -72,7 +74,7 @@ angular.module('controllers').controller('controllers.Server.Netboot', ($scope, 
 
   $scope.$watch(
     'rootDevice.root',
-    _.debounce((root) => {
+    debounce((root) => {
       $scope.$apply(() => {
         if (root !== null) {
           $scope.isValid.root = rootDeviceValidation();
@@ -83,7 +85,7 @@ angular.module('controllers').controller('controllers.Server.Netboot', ($scope, 
 
   $scope.$watch(
     'currentNetboot.rescueMail',
-    _.debounce((rescueMail) => {
+    debounce((rescueMail) => {
       $scope.$apply(() => {
         $scope.isValid.rescueMail = false;
         if (rescueMail === null || rescueMail !== undefined || rescueMail === '') {

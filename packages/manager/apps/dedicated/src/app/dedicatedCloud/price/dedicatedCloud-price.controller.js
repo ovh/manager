@@ -1,3 +1,5 @@
+import find from 'lodash/find';
+
 angular.module('App').controller('DedicatedCloudNewPricesInformationCtrl', [
   '$scope',
 
@@ -11,7 +13,7 @@ angular.module('App').controller('DedicatedCloudNewPricesInformationCtrl', [
 
     $scope.transformItem = function (item) {
       $scope.loader = true;
-      return _.find(
+      return find(
         $scope.pricesInformationData,
         pricesInformation => pricesInformation.name === item,
       );

@@ -1,4 +1,6 @@
-import _ from 'lodash';
+import get from 'lodash/get';
+import isEmpty from 'lodash/isEmpty';
+import isString from 'lodash/isString';
 
 export default class {
   /* @ngInject */
@@ -55,7 +57,7 @@ export default class {
 
   buildAccessPolicy() {
     const policy = this.currentService.userAccessPolicy;
-    const policyIsConfigured = _.isString(policy) && !_.isEmpty(policy);
+    const policyIsConfigured = isString(policy) && !isEmpty(policy);
 
     return this.$translate.instant(
       policyIsConfigured
@@ -67,7 +69,7 @@ export default class {
   buildSoftwareSolution() {
     const solution = {
       displayName: this.$translate.instant(`ovhManagerPccDashboardGeneralInformation_softwareSolution_definition_displayName_${this.currentService.solution.toUpperCase()}`),
-      displayVersionNumber: _.get(this.currentService.version, 'major', ''),
+      displayVersionNumber: get(this.currentService.version, 'major', ''),
     };
 
     return `${solution.displayName} ${solution.displayVersionNumber}`.trim();

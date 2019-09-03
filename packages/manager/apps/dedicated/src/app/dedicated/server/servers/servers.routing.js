@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import get from 'lodash/get';
 
 export default /* @ngInject */ ($stateProvider) => {
   const name = 'app.dedicated.servers';
@@ -57,7 +57,7 @@ export default /* @ngInject */ ($stateProvider) => {
         filters.forEach(({ field, comparator, reference }) => {
           request = request.addFilter(
             field,
-            _.get(FILTER_OPERATORS, comparator),
+            get(FILTER_OPERATORS, comparator),
             reference.map((val) => {
               switch (comparator.toUpperCase()) {
                 case 'CONTAINS':
@@ -76,23 +76,23 @@ export default /* @ngInject */ ($stateProvider) => {
         return request.execute(null, true).$promise;
       },
       paginationNumber: /* @ngInject */ dedicatedServers => parseInt(
-        _.get(dedicatedServers.headers, 'x-pagination-number'),
+        get(dedicatedServers.headers, 'x-pagination-number'),
         10,
       ),
       paginationSize: /* @ngInject */ dedicatedServers => parseInt(
-        _.get(dedicatedServers.headers, 'x-pagination-size'),
+        get(dedicatedServers.headers, 'x-pagination-size'),
         10,
       ),
       paginationTotalCount: /* @ngInject */ dedicatedServers => parseInt(
-        _.get(dedicatedServers.headers, 'x-pagination-elements'),
+        get(dedicatedServers.headers, 'x-pagination-elements'),
         10,
       ),
       schema: /* @ngInject */ OvhApiDedicatedServer => OvhApiDedicatedServer
         .v6()
         .schema()
         .$promise,
-      serverStateEnum: /* @ngInject */ schema => _.get(schema.models, 'dedicated.server.StateEnum').enum,
-      datacenterEnum: /* @ngInject */ schema => _.get(schema.models, 'dedicated.DatacenterEnum').enum,
+      serverStateEnum: /* @ngInject */ schema => get(schema.models, 'dedicated.server.StateEnum').enum,
+      datacenterEnum: /* @ngInject */ schema => get(schema.models, 'dedicated.DatacenterEnum').enum,
 
       onListParamsChange: /* @ngInject */ $state => params => $state.go(
         '.',
@@ -101,8 +101,8 @@ export default /* @ngInject */ ($stateProvider) => {
           notify: false,
         },
       ),
-      sort: /* @ngInject */ dedicatedServers => _.get(dedicatedServers.headers, 'x-pagination-sort'),
-      sortOrder: /* @ngInject */ dedicatedServers => _.get(dedicatedServers.headers, 'x-pagination-sort-order'),
+      sort: /* @ngInject */ dedicatedServers => get(dedicatedServers.headers, 'x-pagination-sort'),
+      sortOrder: /* @ngInject */ dedicatedServers => get(dedicatedServers.headers, 'x-pagination-sort-order'),
     },
   });
 };

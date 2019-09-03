@@ -1,3 +1,5 @@
+import set from 'lodash/set';
+
 import './newAccountForm/new-account-form.module';
 import config from '../../config/config';
 
@@ -107,7 +109,7 @@ angular
     '$rootScope',
     'UserAccount.constants',
     function ($rootScope, userAccountConstants) {
-      _.set($rootScope, 'target', userAccountConstants.target);
-      _.set($rootScope, 'worldPart', userAccountConstants.target);
+      set($rootScope, 'target', userAccountConstants.target);
+      set($rootScope, 'worldPart', userAccountConstants.target);
     },
   ]);

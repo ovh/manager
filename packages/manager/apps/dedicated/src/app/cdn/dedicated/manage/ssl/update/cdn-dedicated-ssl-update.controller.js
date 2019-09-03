@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular.module('App').controller('CdnUpdateSslCtrl', class CdnUpdateSslCtrl {
   constructor($state, $stateParams, $translate, OvhApiCdn, Alerter) {
     // dependencies injections
@@ -44,7 +46,7 @@ angular.module('App').controller('CdnUpdateSslCtrl', class CdnUpdateSslCtrl {
         reload: true,
       });
     }).catch((error) => {
-      this.Alerter.error([this.$translate.instant('cdn_dedicated_ssl_update_error'), _.get(error, 'data.message')].join(' '), 'cdnDedicatedManage');
+      this.Alerter.error([this.$translate.instant('cdn_dedicated_ssl_update_error'), get(error, 'data.message')].join(' '), 'cdnDedicatedManage');
       this.$state.go('^');
     }).finally(() => {
       this.loading.update = false;
@@ -67,12 +69,12 @@ angular.module('App').controller('CdnUpdateSslCtrl', class CdnUpdateSslCtrl {
       this.ssl = ssl;
       this.actionEnabled = this.ssl.status === 'on' || this.ssl.status === 'off';
     }).catch((error) => {
-      if (_.get(error, 'status') === 404) {
+      if (get(error, 'status') === 404) {
         this.actionEnabled = false;
         return null;
       }
 
-      return this.Alerter.error([this.$translate.instant('cdn_dedicated_ssl_update_load_error'), _.get(error, 'data.message')].join(' '), 'cdnDedicatedManage');
+      return this.Alerter.error([this.$translate.instant('cdn_dedicated_ssl_update_load_error'), get(error, 'data.message')].join(' '), 'cdnDedicatedManage');
     }).finally(() => {
       this.loading.init = false;
     });

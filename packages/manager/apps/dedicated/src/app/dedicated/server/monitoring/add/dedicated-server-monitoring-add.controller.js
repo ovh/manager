@@ -1,3 +1,6 @@
+import uniq from 'lodash/uniq';
+import without from 'lodash/without';
+
 angular.module('App').controller('MonitoringAddCtrl', function ($rootScope, $scope, $stateParams, $translate, Server, Alerter, $q) {
   const self = this;
 
@@ -61,7 +64,7 @@ angular.module('App').controller('MonitoringAddCtrl', function ($rootScope, $sco
   };
 
   self.removeEMailNotification = function (notification) {
-    self.emailNotifications = _.without(self.emailNotifications, notification);
+    self.emailNotifications = without(self.emailNotifications, notification);
   };
 
   self.addSmsNotification = function () {
@@ -75,7 +78,7 @@ angular.module('App').controller('MonitoringAddCtrl', function ($rootScope, $sco
   };
 
   self.removeSmsNotification = function (notification) {
-    self.smsNotifications = _.without(self.smsNotifications, notification);
+    self.smsNotifications = without(self.smsNotifications, notification);
   };
 
   function addEMailNotifications(monitoring) {
@@ -95,7 +98,7 @@ angular.module('App').controller('MonitoringAddCtrl', function ($rootScope, $sco
     }
 
     $q.allSettled(promises).catch((errors) => {
-      const displayErrors = _.uniq(errors.map(err => err.data));
+      const displayErrors = uniq(errors.map(err => err.data));
       Alerter.alertFromSWS($translate.instant('server_tab_MONITORING_notifications_email_add_error'), displayErrors, 'monitoringAlert');
     });
   }
@@ -120,7 +123,7 @@ angular.module('App').controller('MonitoringAddCtrl', function ($rootScope, $sco
     }
 
     $q.allSettled(promises).catch((errors) => {
-      const displayErrors = _.uniq(errors.map(err => err.data));
+      const displayErrors = uniq(errors.map(err => err.data));
       Alerter.alertFromSWS($translate.instant('server_tab_MONITORING_notifications_email_add_error'), displayErrors, 'monitoringAlert');
     });
   }

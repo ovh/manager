@@ -1,4 +1,7 @@
-import _ from 'lodash';
+import get from 'lodash/get';
+import reduce from 'lodash/reduce';
+import set from 'lodash/set';
+import snakeCase from 'lodash/snakeCase';
 
 export default class ServersCtrl {
   /* @ngInject */
@@ -14,8 +17,8 @@ export default class ServersCtrl {
 
   $onInit() {
     this.criteria = JSON.parse(this.filter).map(criteria => ({
-      property: _.get(criteria, 'field') || 'name',
-      operator: _.get(criteria, 'comparator'),
+      property: get(criteria, 'field') || 'name',
+      operator: get(criteria, 'comparator'),
       value: criteria.reference[0],
     }));
 
@@ -24,12 +27,12 @@ export default class ServersCtrl {
   }
 
   static toUpperSnakeCase(str) {
-    return _.snakeCase(str).toUpperCase();
+    return snakeCase(str).toUpperCase();
   }
 
   getEnumFilter(list, translationPrefix) {
     return {
-      values: _.reduce(
+      values: reduce(
         list,
         (result, item) => ({
           ...result,
@@ -46,10 +49,10 @@ export default class ServersCtrl {
 
   loadServers() {
     const currentOffset = this.paginationNumber * this.paginationSize;
-    _.set(this.ouiDatagridService, 'datagrids.dg-servers.paging.offset', currentOffset < this.paginationTotalCount ? currentOffset : this.paginationTotalCount);
+    set(this.ouiDatagridService, 'datagrids.dg-servers.paging.offset', currentOffset < this.paginationTotalCount ? currentOffset : this.paginationTotalCount);
 
     return this.$q.resolve({
-      data: _.get(this.dedicatedServers, 'data'),
+      data: get(this.dedicatedServers, 'data'),
       meta: {
         totalCount: this.paginationTotalCount,
       },
@@ -65,7 +68,7 @@ export default class ServersCtrl {
 
   onCriteriaChange($criteria) {
     const filter = $criteria.map(criteria => ({
-      field: _.get(criteria, 'property') || 'name',
+      field: get(criteria, 'property') || 'name',
       comparator: criteria.operator,
       reference: [criteria.value],
     }));

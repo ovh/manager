@@ -1,3 +1,5 @@
+import map from 'lodash/map';
+
 class BaseDedicatedService {
   constructor($q) {
     this.$q = $q;
@@ -63,7 +65,7 @@ class BandwidthVrackOrderService extends BaseDedicatedService {
   }
 
   transformOrderableBandwidths(bandwidths) {
-    return _.map(bandwidths, bandwidth => ({
+    return map(bandwidths, bandwidth => ({
       value: bandwidth,
       unit: 'mbps',
       text: this.$translate.instant('unit_gbps', { t0: Math.floor(bandwidth / 1000) }),

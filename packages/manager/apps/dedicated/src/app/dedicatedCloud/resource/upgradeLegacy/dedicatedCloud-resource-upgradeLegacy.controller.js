@@ -1,3 +1,5 @@
+import head from 'lodash/head';
+import isEmpty from 'lodash/isEmpty';
 
 
 angular
@@ -83,7 +85,7 @@ angular
       this.$q.all(queue).then(
         () => {
           if (durations && durations.length === 1) {
-            this.$scope.model.duration = _.first(durations);
+            this.$scope.model.duration = head(durations);
           }
           this.$scope.loading.prices = false;
         },
@@ -166,7 +168,7 @@ angular
         })
         .finally(() => {
           this.$scope.loading.validation = false;
-          if (_.isEmpty(orderUrl)) {
+          if (isEmpty(orderUrl)) {
             windowRef.close();
           } else {
             windowRef.location = orderUrl;

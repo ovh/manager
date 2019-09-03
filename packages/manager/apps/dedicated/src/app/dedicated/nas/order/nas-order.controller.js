@@ -1,3 +1,5 @@
+import includes from 'lodash/includes';
+
 angular.module('App').controller('NasOrderCtrl', [
   'NASHA_URL',
   '$scope',
@@ -49,7 +51,7 @@ angular.module('App').controller('NasOrderCtrl', [
         $scope.nasOrder.duration = nas.durations;
         $scope.nasOrder.nasSelected = nas;
 
-        if (!_.contains(nas.durations, $scope.nasOrder.durationSelected)) {
+        if (!includes(nas.durations, $scope.nasOrder.durationSelected)) {
           $scope.nasOrder.durationSelected = null;
         }
       } else {
@@ -70,7 +72,7 @@ angular.module('App').controller('NasOrderCtrl', [
         $scope.nasOrder.duration = nas.durations;
         $scope.nasOrder.nashaSelected = nas;
 
-        if (!_.contains(nas.durations, $scope.nasOrder.durationSelected)) {
+        if (!includes(nas.durations, $scope.nasOrder.durationSelected)) {
           $scope.nasOrder.durationSelected = null;
         }
       } else {

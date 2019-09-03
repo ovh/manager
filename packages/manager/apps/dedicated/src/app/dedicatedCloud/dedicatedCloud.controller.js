@@ -1,3 +1,8 @@
+import get from 'lodash/get';
+import map from 'lodash/map';
+import snakeCase from 'lodash/snakeCase';
+import some from 'lodash/some';
+
 angular
   .module('App')
   .controller('DedicatedCloudCtrl', class {
@@ -196,8 +201,8 @@ angular
 
       if (data.message) {
         messageToSend += ` (${data.message})`;
-      } else if (_.some(data.messages)) {
-        const messageParts = _.map(data.messages, _message => `${_message.id} : ${_message.message}`);
+      } else if (some(data.messages)) {
+        const messageParts = map(data.messages, _message => `${_message.id} : ${_message.message}`);
         messageToSend = ` (${messageParts.join(', ')})`;
       }
 
@@ -229,10 +234,10 @@ angular
     }
 
     getUserAccessPolicyLabel() {
-      const policy = _.get(this.$scope, 'dedicatedCloud.userAccessPolicy');
+      const policy = get(this.$scope, 'dedicatedCloud.userAccessPolicy');
 
       if (policy) {
-        return this.$translate.instant(`dedicatedCloud_user_access_policy_${_.snakeCase(policy).toUpperCase()}`);
+        return this.$translate.instant(`dedicatedCloud_user_access_policy_${snakeCase(policy).toUpperCase()}`);
       }
 
       return '-';

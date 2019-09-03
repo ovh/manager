@@ -1,3 +1,9 @@
+import camelCase from 'lodash/camelCase';
+import flatten from 'lodash/flatten';
+import get from 'lodash/get';
+import keys from 'lodash/keys';
+import map from 'lodash/map';
+
 import {
   DEDICATEDCLOUD_DATACENTER_DRP_OPTIONS,
   DEDICATEDCLOUD_DATACENTER_DRP_ORDER_OPTIONS,
@@ -57,7 +63,7 @@ export default class {
             serviceName,
             network: ipAddress,
           }).$promise))
-        .then(ipAddressesDetails => _.flatten(ipAddressesDetails)));
+        .then(ipAddressesDetails => flatten(ipAddressesDetails)));
   }
 
   getDrpState(serviceInformations) {
@@ -173,9 +179,9 @@ export default class {
         this.ovhPaymentMethod.getAllPaymentMethods({ onlyValid: true, transform: true }),
     })
       .then(({ availableAutomaticPaymentsMean, allPaymentMethods }) => {
-        const availablePaymentType = _(allPaymentMethods).map('paymentType').flatten().value();
+        const availablePaymentType = flatten(map(allPaymentMethods, 'paymentType'));
         autoPayWithPreferredPaymentMethod = availablePaymentType
-          .some(({ value }) => _.get(availableAutomaticPaymentsMean, _.camelCase(value)));
+          .some(({ value }) => get(availableAutomaticPaymentsMean, camelCase(value)));
 
         return this.OvhApiOrder.Cart().v6().checkout({
           cartId,
@@ -207,7 +213,7 @@ export default class {
   }
 
   addCartZertoOptionConfiguration(cartId, itemId, drpInformations) {
-    const parametersToSet = _.keys(drpInformations);
+    const parametersToSet = keys(drpInformations);
 
     return this.$q.all(parametersToSet
       .map(parameter => this.OvhApiOrder.Cart().Item().Configuration().v6()
@@ -215,7 +221,7 @@ export default class {
           cartId,
           itemId,
           label: parameter,
-          value: _.get(drpInformations, parameter),
+          value: get(drpInformations, parameter),
         }).$promise));
   }
 

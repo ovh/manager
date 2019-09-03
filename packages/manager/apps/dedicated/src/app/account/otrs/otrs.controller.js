@@ -1,3 +1,11 @@
+import debounce from 'lodash/debounce';
+import forEach from 'lodash/forEach';
+import find from 'lodash/find';
+import includes from 'lodash/includes';
+import isDate from 'lodash/isDate';
+import map from 'lodash/map';
+import set from 'lodash/set';
+
 angular.module('Module.otrs.controllers').controller('otrsCtrl', [
   '$rootScope',
   '$scope',
@@ -102,7 +110,7 @@ angular.module('Module.otrs.controllers').controller('otrsCtrl', [
 
     $scope.$watch(
       'search',
-      _.debounce(() => {
+      debounce(() => {
         Alerter.resetMessage('otrs-popup-search');
 
         if ($scope.search.subject !== null
@@ -133,10 +141,10 @@ angular.module('Module.otrs.controllers').controller('otrsCtrl', [
         filters.subject = window.encodeURIComponent(filters.subject);
       }
 
-      if (_.isDate(filters.minCreationDate)) {
+      if (isDate(filters.minCreationDate)) {
         filters.minCreationDate = moment(filters.minCreationDate).format();
       }
-      if (_.isDate(filters.maxCreationDate)) {
+      if (isDate(filters.maxCreationDate)) {
         filters.maxCreationDate = moment(filters.maxCreationDate).format();
       }
 
@@ -160,7 +168,7 @@ angular.module('Module.otrs.controllers').controller('otrsCtrl', [
       return Otrs.getTicket(ticket).then((_ticket) => {
         const serviceDescription = $scope.getServiceDescription(_ticket);
         if (serviceDescription) {
-          _.set(_ticket, 'serviceDescription', serviceDescription);
+          set(_ticket, 'serviceDescription', serviceDescription);
         }
         return _ticket;
       });
@@ -171,7 +179,7 @@ angular.module('Module.otrs.controllers').controller('otrsCtrl', [
       let serviceMap;
 
       if ($scope.list.services.length > 0) {
-        serviceMap = _.find(
+        serviceMap = find(
           $scope.list.services,
           service => service.serviceName === ticket.serviceName,
         );
@@ -208,22 +216,22 @@ angular.module('Module.otrs.controllers').controller('otrsCtrl', [
       })
         .then(
           (data) => {
-            _.each(data.results, (category) => {
-              if (_.contains(Otrs.noAvailableService, category.name)) {
+            forEach(data.results, (category) => {
+              if (includes(Otrs.noAvailableService, category.name)) {
                 return;
               }
 
               $scope.list.services.push(
-                ..._.map(category.services, (service) => {
-                  _.set(service, 'category', category.name);
-                  _.set(service, 'serviceDescription', service.displayName);
+                ...map(category.services, (service) => {
+                  set(service, 'category', category.name);
+                  set(service, 'serviceDescription', service.displayName);
                   return service;
                 }),
               );
             });
 
             if ($location.search() && $location.search().serviceName) {
-              $scope.search.selectedService = _.find(
+              $scope.search.selectedService = find(
                 $scope.list.services,
                 service => service.serviceName === $location.search().serviceName,
               );

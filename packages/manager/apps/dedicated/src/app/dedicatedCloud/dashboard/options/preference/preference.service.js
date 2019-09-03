@@ -1,3 +1,6 @@
+import isObject from 'lodash/isObject';
+import omit from 'lodash/omit';
+
 import { PREFERENCE_NAME } from './preference.constants';
 
 export const name = 'ovhManagerPccDashboardOptionsPreference';
@@ -18,7 +21,7 @@ export const OvhManagerPccDashboardOptionsPreference = class {
       .then(keys => (keys.includes(PREFERENCE_NAME)
         ? this.fetchPreference(serviceName)
         : this.$q.reject({ status: 404 })))
-      .then(preference => _.isObject(preference))
+      .then(preference => isObject(preference))
       .catch(error => (error.status === 404
         ? false
         : error));
@@ -27,14 +30,14 @@ export const OvhManagerPccDashboardOptionsPreference = class {
   fetchPreference(serviceName) {
     return this.ovhUserPref
       .getValue(PREFERENCE_NAME)
-      .then(preference => (_.isObject(preference[serviceName])
+      .then(preference => (isObject(preference[serviceName])
         ? preference[serviceName]
         : this.$q.reject({ status: 404 })));
   }
 
   removePreference(serviceName) {
     return this.fetchPreference(serviceName)
-      .then(preference => this.updatePreference(_.omit(preference, serviceName)));
+      .then(preference => this.updatePreference(omit(preference, serviceName)));
   }
 
   updatePreference(preference) {

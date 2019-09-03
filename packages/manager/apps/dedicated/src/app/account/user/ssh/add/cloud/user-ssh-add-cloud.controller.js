@@ -1,3 +1,6 @@
+import isObject from 'lodash/isObject';
+import set from 'lodash/set';
+
 angular.module('UserAccount').controller('UserAccount.controllers.ssh.cloud.add', [
   '$scope',
   '$window',
@@ -21,7 +24,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.ssh.cloud.add'
 
     $scope.addCloudSshKey = function () {
       $scope.resetAction();
-      _.set($window, 'location.href', UseraccountSshService.getSshCloudUrl($scope.data.selectedProject.id));
+      set($window, 'location.href', UseraccountSshService.getSshCloudUrl($scope.data.selectedProject.id));
       atInternet.trackClick({
         name: 'validation_add_ssh_key',
         type: 'action',
@@ -32,7 +35,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.ssh.cloud.add'
     };
 
     $scope.formIsValid = function () {
-      return _.isObject($scope.data.selectedProject);
+      return isObject($scope.data.selectedProject);
     };
   },
 ]);

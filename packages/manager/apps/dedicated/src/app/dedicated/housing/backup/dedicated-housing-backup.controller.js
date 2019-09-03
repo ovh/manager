@@ -1,3 +1,5 @@
+import set from 'lodash/set';
+
 angular.module('App').controller('HousingFtpBackupCtrl', ($scope, $http, $stateParams, $translate, Polling, Alerter, Housing) => {
   const alert = 'housing_tab_ftpbackup_alert';
   const serviceName = $stateParams.productId;
@@ -25,7 +27,7 @@ angular.module('App').controller('HousingFtpBackupCtrl', ($scope, $http, $stateP
   // --------------LOAD------------------
 
   function startFtpBackupPollRefresh(task) {
-    _.set(task, 'id', task.taskId);
+    set(task, 'id', task.taskId);
     Housing.addTask($stateParams.productId, task, $scope.$id, true).then(
       (state) => {
         if (Polling.isResolve(state)) {
@@ -207,7 +209,7 @@ angular.module('App').controller('HousingFtpBackupCtrl', ($scope, $http, $stateP
   // --------------TASK ACTIVE BACKUP------------------
 
   function startFtpBackupPollActive(task) {
-    _.set(task, 'id', task.taskId);
+    set(task, 'id', task.taskId);
     Housing.addTaskFast($stateParams.productId, task, $scope.$id).then(
       (state) => {
         if (Polling.isResolve(state)) {

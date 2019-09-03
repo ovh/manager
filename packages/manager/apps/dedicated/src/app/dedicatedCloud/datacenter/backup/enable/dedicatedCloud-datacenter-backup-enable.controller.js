@@ -1,3 +1,7 @@
+import get from 'lodash/get';
+import isArray from 'lodash/isArray';
+import isEmpty from 'lodash/isEmpty';
+
 import config from '../../../../config/config';
 
 angular
@@ -85,7 +89,7 @@ angular
           this.expressURL = expressURL;
           this.updateAvailableHosts(hosts);
           this.user = user;
-          const urlBaseToUse = _.get(config.constants.URLS, this.user.ovhSubsidiary)
+          const urlBaseToUse = get(config.constants.URLS, this.user.ovhSubsidiary)
             || config.constants.URLS.FR;
           this.veeamPresentationURL = urlBaseToUse.presentations.veeam;
         })
@@ -94,7 +98,7 @@ angular
             .fetchBackupOffers(this.$stateParams.productId)
           : null))
         .then((offers) => {
-          this.updateAvailableOffers(_.get(offers, 'prices'));
+          this.updateAvailableOffers(get(offers, 'prices'));
         })
         .then(() => {
           this.updateType();
@@ -102,7 +106,7 @@ angular
           this.updateSecondaryLabel();
         })
         .catch((error) => {
-          this.Alerter.error(`${this.$translate.instant('dedicatedCloud_tab_veeam_enable_fail')}. ${_.get(error, 'message', '')}`.trim());
+          this.Alerter.error(`${this.$translate.instant('dedicatedCloud_tab_veeam_enable_fail')}. ${get(error, 'message', '')}`.trim());
         })
         .finally(() => {
           this.bindings.isFetchingInitialData = false;
@@ -129,8 +133,8 @@ angular
     updateAvailableHosts(availableHosts) {
       this.bindings.availableHosts.value = availableHosts;
 
-      this.bindings.availableHosts.warning.isDisplayed = !_.isArray(availableHosts)
-        || _.isEmpty(availableHosts);
+      this.bindings.availableHosts.warning.isDisplayed = !isArray(availableHosts)
+        || isEmpty(availableHosts);
 
       this.bindings.availableHosts.warning.text = this.bindings.availableHosts.warning.isDisplayed
         ? this.$translate.instant('dedicatedCloud_tab_veeam_on_disabled', { name: this.datacenter.name })
@@ -143,16 +147,16 @@ angular
       this.bindings.availableOffers.warning.canExist = this.user.ovhSubsidiary === 'US';
 
       const isDisplayed = this.bindings.availableOffers.warning.canExist
-        && (!_.isArray(availableOffers)
-          || _.isEmpty(availableOffers));
+        && (!isArray(availableOffers)
+          || isEmpty(availableOffers));
       this.bindings.availableOffers.warning.isDisplayed = isDisplayed;
 
       this.bindings.availableOffers.warning.text = this.bindings.availableOffers.warning.isDisplayed
         ? this.$translate.instant('dedicatedCloud_datacenter_backup_enable_no_offer', { name: this.datacenter.name })
         : null;
 
-      this.bindings.availableOffers.selection.isDisplayed = _.isArray(availableOffers)
-        && !_.isEmpty(availableOffers);
+      this.bindings.availableOffers.selection.isDisplayed = isArray(availableOffers)
+        && !isEmpty(availableOffers);
 
       this.bindings.availableOffers.selection.value = 'classic';
     }

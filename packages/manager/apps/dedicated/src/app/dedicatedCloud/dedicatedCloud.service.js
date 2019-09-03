@@ -1,3 +1,12 @@
+import assign from 'lodash/assign';
+import camelCase from 'lodash/camelCase';
+import flatten from 'lodash/flatten';
+import includes from 'lodash/includes';
+import isUndefined from 'lodash/isUndefined';
+import pick from 'lodash/pick';
+import set from 'lodash/set';
+import snakeCase from 'lodash/snakeCase';
+
 angular
   .module('services')
   .constant('VEEAM_STATE_ENUM', {
@@ -26,7 +35,7 @@ angular
       subdatacentersveeam: $cacheFactory('UNIVERS_DEDICATED_CLOUD_SUB_DATACENTERS_VEEAM'),
       subdatacenterslicences: $cacheFactory('UNIVERS_DEDICATED_CLOUD_SUB_DATACENTERS_LICENCES'),
     };
-    const availableOptions = _.flatten(['nsx', 'vrops', DEDICATED_CLOUD_CONSTANTS.securityOptions]);
+    const availableOptions = flatten(['nsx', 'vrops', DEDICATED_CLOUD_CONSTANTS.securityOptions]);
 
     /* ------- INFORMATIONS -------*/
     this.getAllPccs = () => OvhApiDedicatedCloud.v6().query().$promise
@@ -484,10 +493,10 @@ angular
         rightId: right.rightId,
       },
       data: {
-        right: _.camelCase(right.right),
+        right: camelCase(right.right),
         canAddRessource: right.canAddRessource,
-        vmNetworkRole: _.camelCase(right.vmNetworkRole),
-        networkRole: _.camelCase(right.networkRole),
+        vmNetworkRole: camelCase(right.vmNetworkRole),
+        networkRole: camelCase(right.networkRole),
       },
       broadcast: 'dedicatedCloud.users.right.refresh',
     });
@@ -518,8 +527,8 @@ angular
     }).then(dedicatedCloud => ({
       userLimitConcurrentSession: dedicatedCloud.userLimitConcurrentSession,
       userSessionTimeout: dedicatedCloud.userSessionTimeout / 60,
-      userAccessPolicy: _.snakeCase(dedicatedCloud.userAccessPolicy).toUpperCase(),
-      logoutPolicy: _.snakeCase(dedicatedCloud.userLogoutPolicy).toUpperCase(),
+      userAccessPolicy: snakeCase(dedicatedCloud.userAccessPolicy).toUpperCase(),
+      logoutPolicy: snakeCase(dedicatedCloud.userLogoutPolicy).toUpperCase(),
     }));
 
     this.getSecurityPolicies = (serviceName, count, offset, clearCache) => OvhHttp.get('/sws/dedicatedCloud/{serviceName}/networks', {
@@ -579,7 +588,7 @@ angular
         serviceName,
         networkAccessId: entry.id,
       },
-      data: _.pick(entry, 'description'),
+      data: pick(entry, 'description'),
       broadcast: 'dedicatedCloud.tabs.policy.refresh',
     });
 
@@ -611,7 +620,7 @@ angular
         serviceName,
       },
       data: {
-        userAccessPolicy: _.camelCase(accessPolicy),
+        userAccessPolicy: camelCase(accessPolicy),
       },
       broadcast: 'dedicatedCloud.tabs.policy.info.refreshaccess',
     });
@@ -622,7 +631,7 @@ angular
         serviceName,
       },
       data: {
-        userLogoutPolicy: _.camelCase(logoutPolicy),
+        userLogoutPolicy: camelCase(logoutPolicy),
       },
       broadcast: 'dedicatedCloud.tabs.policy.info.refreshaccess',
     });
@@ -851,15 +860,15 @@ angular
     this.isOptionToggable = (serviceName, optionName, state, _returnAsBoolean) => {
       let returnAsBoolean = _returnAsBoolean;
 
-      if (_.isUndefined(returnAsBoolean)) {
+      if (isUndefined(returnAsBoolean)) {
         returnAsBoolean = true;
       }
 
-      if (!_.includes(availableOptions, optionName)) {
+      if (!includes(availableOptions, optionName)) {
         throw new Error('Valid optionName are nsx, vrops, hds, hipaa and pcidss');
       }
 
-      if (_.includes(['disabling', 'enabling'], state)) {
+      if (includes(['disabling', 'enabling'], state)) {
         // while enabling/disabling activation button not show, no need for a message (the tooltip)
         return { toggable: false };
       }
@@ -946,19 +955,19 @@ angular
                 dataCenter.id,
                 hostId,
               ))))
-              .then(hosts => hosts.map(host => _.assign(host, {
+              .then(hosts => hosts.map(host => assign(host, {
                 datacenter: dataCenter.name,
                 commercialSubRange: dataCenter.commercialRangeName.substr(6).toLowerCase(),
               })))),
           )
-          .then(dataCentersHosts => _.flatten(dataCentersHosts));
+          .then(dataCentersHosts => flatten(dataCentersHosts));
       }
       return [];
     });
 
     this.fillHostPrice = (commercialRange, commercialSubRange, location, host) => self
       .getHostPrice(commercialRange, commercialSubRange, location, host.billingType, host.profile)
-      .then(price => _.assign(host, { price: price.text }));
+      .then(price => assign(host, { price: price.text }));
 
     /**
              * Poll request
@@ -1127,7 +1136,7 @@ angular
       }
 
       if (!Array.isArray(opts.successSates)) {
-        _.set(opts, 'successSates', [opts.successSates]);
+        set(opts, 'successSates', [opts.successSates]);
       }
 
       const url = ['apiv6/dedicatedCloud', serviceName, 'user', opts.user.userId, 'task', opts.task.taskId].join('/');

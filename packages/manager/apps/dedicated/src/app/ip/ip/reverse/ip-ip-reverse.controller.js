@@ -1,3 +1,6 @@
+import difference from 'lodash/difference';
+import remove from 'lodash/remove';
+
 angular.module('Module.ip.controllers').controller('IpIpv6ReverseDelegationCtrl', ($scope, $rootScope, $translate, Ip, IpReverse, Alerter, Validator, $q) => {
   $scope.data = $scope.currentActionData;
 
@@ -30,27 +33,27 @@ angular.module('Module.ip.controllers').controller('IpIpv6ReverseDelegationCtrl'
   };
 
   $scope.deleteReverse = function (reverse) {
-    _.remove($scope.model.reverses, delegatedReverse => reverse === delegatedReverse);
+    remove($scope.model.reverses, delegatedReverse => reverse === delegatedReverse);
   };
 
   // -- Step2
   $scope.loadStep2 = function () {
-    $scope.reversesToAdd = _.difference(
+    $scope.reversesToAdd = difference(
       $scope.model.reverses,
       $scope.data.ipBlock.reverseDelegations,
     );
-    $scope.reversesToDelete = _.difference(
+    $scope.reversesToDelete = difference(
       $scope.data.ipBlock.reverseDelegations,
       $scope.model.reverses,
     );
   };
 
   $scope.isValid = function () {
-    $scope.reversesToAdd = _.difference(
+    $scope.reversesToAdd = difference(
       $scope.model.reverses,
       $scope.data.ipBlock.reverseDelegations,
     );
-    $scope.reversesToDelete = _.difference(
+    $scope.reversesToDelete = difference(
       $scope.data.ipBlock.reverseDelegations,
       $scope.model.reverses,
     );

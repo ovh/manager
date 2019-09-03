@@ -1,3 +1,12 @@
+import every from 'lodash/every';
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import get from 'lodash/get';
+import isEmpty from 'lodash/isEmpty';
+import isEqual from 'lodash/isEqual';
+import reject from 'lodash/reject';
+import some from 'lodash/some';
+
 import {
   CERTIFICATIONS_PRESENTATION_CONSTANTS_ID,
   NO_PENDING_ORDER_ERROR_STATUS,
@@ -94,24 +103,24 @@ export default class OptionTile {
       ])
       .then(() => this.handleStatus())
       .then(() => {
-        this.currentServicePack = _.find(
+        this.currentServicePack = find(
           this.servicePacks,
           { name: this.currentService.servicePackName },
         );
 
         this.orderables = {
-          [OPTION_TYPES.basic]: _.filter(
-            _.reject(this.servicePacks, { name: this.currentService.servicePackName }),
-            servicePack => _.every(
+          [OPTION_TYPES.basic]: filter(
+            reject(this.servicePacks, { name: this.currentService.servicePackName }),
+            servicePack => every(
               servicePack.options,
-              option => _.isEqual(option.type, OPTION_TYPES.basic),
+              option => isEqual(option.type, OPTION_TYPES.basic),
             ),
           ),
-          [OPTION_TYPES.certification]: _.filter(
-            _.reject(this.servicePacks, { name: this.currentService.servicePackName }),
-            servicePack => _.some(
+          [OPTION_TYPES.certification]: filter(
+            reject(this.servicePacks, { name: this.currentService.servicePackName }),
+            servicePack => some(
               servicePack.options,
-              option => _.isEqual(option.type, OPTION_TYPES.certification),
+              option => isEqual(option.type, OPTION_TYPES.certification),
             ),
           ),
         };
@@ -147,7 +156,7 @@ export default class OptionTile {
 
   buildStatusForOption(optionName) {
     const orderIsInProgress = this.pendingOrder != null;
-    const currentServicePackHasOption = _.some(
+    const currentServicePackHasOption = some(
       this.currentServicePack.options,
       { name: optionName },
     );
@@ -162,9 +171,9 @@ export default class OptionTile {
       return ACTIVATION_STATUS.unknown;
     }
 
-    const orderedServicePackHasOption = _.some(
-      _.get(
-        _.find(
+    const orderedServicePackHasOption = some(
+      get(
+        find(
           this.servicePacks,
           { name: this.pendingOrder.orderedServicePackName },
         ),
@@ -210,7 +219,7 @@ export default class OptionTile {
   }
 
   doesCurrentServicePackHoldACertification() {
-    return _.find(
+    return find(
       this.currentServicePack.options,
       { type: OPTION_TYPES.certification },
     ) != null;
@@ -222,7 +231,7 @@ export default class OptionTile {
   }
 
   thereIsAtLeastOneOrderableItem(optionType) {
-    return !_.isEmpty(this.orderables[optionType]);
+    return !isEmpty(this.orderables[optionType]);
   }
 
   thereIsAPendingOrder() {
@@ -276,7 +285,7 @@ export default class OptionTile {
           },
           validateActivation: {
             isDisplayed: this.pendingOrderIsNotPaid(),
-            url: _.get(this.pendingOrder, 'url'),
+            url: get(this.pendingOrder, 'url'),
           },
         },
       },
@@ -328,7 +337,7 @@ export default class OptionTile {
           },
           validateActivation: {
             isDisplayed: this.pendingOrderIsNotPaid(),
-            url: _.get(this.pendingOrder, 'url'),
+            url: get(this.pendingOrder, 'url'),
           },
         },
       },
@@ -343,7 +352,7 @@ export default class OptionTile {
 
   buildBasicMenuModifyText() {
     return this.$translate.instant(
-      _.filter(
+      filter(
         this.buildBasicOptions(),
         { status: ACTIVATION_STATUS.enabled },
       ).length === 0

@@ -1,11 +1,14 @@
+import isString from 'lodash/isString';
+import set from 'lodash/set';
+
 angular.module('App')
   .controller('SessionCtrl', class {
     constructor($scope, $document, $transitions, $translate) {
-      _.set($document, 'title', $translate.instant('global_app_title'));
+      set($document, 'title', $translate.instant('global_app_title'));
       // Scroll to anchor id
       $scope.scrollTo = (id) => {
         // Set focus to target
-        if (_.isString(id)) {
+        if (isString(id)) {
           $document.find(`#${id}`)[0].focus();
         }
       };

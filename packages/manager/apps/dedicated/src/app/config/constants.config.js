@@ -1,4 +1,4 @@
-const _ = require('lodash');
+import defaults from 'lodash/defaults';
 
 const constants = {
   EU: {
@@ -1121,7 +1121,7 @@ for (var lang in constants.US.URLS) {
 /* eslint-enable no-restricted-syntax, vars-on-top, no-var, block-scoped-var,
 no-prototype-builtins, no-redeclare */
 
-constants.CA.TOP_GUIDES = _.defaults(constants.CA.TOP_GUIDES, constants.EU.TOP_GUIDES);
-constants.US.TOP_GUIDES = _.defaults(constants.US.TOP_GUIDES, constants.EU.TOP_GUIDES);
+constants.CA.TOP_GUIDES = defaults(constants.CA.TOP_GUIDES, constants.EU.TOP_GUIDES);
+constants.US.TOP_GUIDES = defaults(constants.US.TOP_GUIDES, constants.EU.TOP_GUIDES);
 
-module.exports = constants;
+export default constants;

@@ -1,3 +1,7 @@
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import get from 'lodash/get';
+
 angular.module('Billing.controllers').controller('BillingHistoryBalanceCtrl', class BillingHistoryBalanceCtrl {
   constructor($q, $state, $translate, OvhApiMe, BillingDebtAccount, ovhPaymentMethod, Alerter) {
     this.$q = $q;
@@ -51,7 +55,7 @@ angular.module('Billing.controllers').controller('BillingHistoryBalanceCtrl', cl
       })
       .catch((error) => {
         this.Alerter.alertFromSWS(this.$translate.instant('billing_history_balance_pay_error'), {
-          message: _.get(error, 'message'),
+          message: get(error, 'message'),
           type: 'ERROR',
         }, 'billing_balance');
       })
@@ -78,9 +82,9 @@ angular.module('Billing.controllers').controller('BillingHistoryBalanceCtrl', cl
           paymentMethods: this.ovhPaymentMethod.getAllPaymentMethods(),
         }).then((response) => {
           this.balance = response.balance;
-          this.paymentMethods = _.filter(response.paymentMethods, ({ paymentType, status }) => ['INTERNAL_TRUSTED_ACCOUNT', 'ENTERPRISE'].indexOf(paymentType) === -1 && ['CANCELED_BY_CUSTOMER', 'CANCELING'].indexOf(status) === -1);
+          this.paymentMethods = filter(response.paymentMethods, ({ paymentType, status }) => ['INTERNAL_TRUSTED_ACCOUNT', 'ENTERPRISE'].indexOf(paymentType) === -1 && ['CANCELED_BY_CUSTOMER', 'CANCELING'].indexOf(status) === -1);
 
-          this.model.paymentMethod = _.find(this.paymentMethods, {
+          this.model.paymentMethod = find(this.paymentMethods, {
             default: true,
           });
         });
@@ -89,7 +93,7 @@ angular.module('Billing.controllers').controller('BillingHistoryBalanceCtrl', cl
       return this.depositRequests;
     }).catch((error) => {
       this.Alerter.alertFromSWS(this.$translate.instant('billing_history_balance_load_error'), {
-        message: _.get(error, 'data.message'),
+        message: get(error, 'data.message'),
         type: 'ERROR',
       }, 'billing_balance');
     }).finally(() => {

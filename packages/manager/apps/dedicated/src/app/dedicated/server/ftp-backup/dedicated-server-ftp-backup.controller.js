@@ -1,3 +1,5 @@
+import head from 'lodash/head';
+
 angular.module('App')
   .controller('DedicatedServerFtpBackupController', class DedicatedServerFtpBackupController {
     constructor(
@@ -124,13 +126,13 @@ angular.module('App')
         })
         .then((results) => {
           if (results.createBackupFTP.length > 0) {
-            this.$scope.$broadcast('dedicated.ftpbackup.active', _.first(results.createBackupFTP));
+            this.$scope.$broadcast('dedicated.ftpbackup.active', head(results.createBackupFTP));
           }
           if (results.removeBackupFTP.length > 0) {
-            this.$scope.$broadcast('dedicated.ftpbackup.delete', _.first(results.removeBackupFTP));
+            this.$scope.$broadcast('dedicated.ftpbackup.delete', head(results.removeBackupFTP));
           }
           if (results.changePasswordBackupFTP.length > 0) {
-            this.$scope.$broadcast('dedicated.ftpbackup.password', _.first(results.changePasswordBackupFTP));
+            this.$scope.$broadcast('dedicated.ftpbackup.password', head(results.changePasswordBackupFTP));
           }
           angular.forEach(
             results.applyBackupFtpAcls,

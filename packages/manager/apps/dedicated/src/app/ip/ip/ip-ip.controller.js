@@ -1,3 +1,10 @@
+import find from 'lodash/find';
+import filter from 'lodash/filter';
+import get from 'lodash/get';
+import head from 'lodash/head';
+import map from 'lodash/map';
+import values from 'lodash/values';
+
 angular.module('Module.ip.controllers').controller('IpDashboardCtrl', (
   $location,
   $q,
@@ -96,7 +103,7 @@ angular.module('Module.ip.controllers').controller('IpDashboardCtrl', (
 
         // If serviceName in URL param
         if ($stateParams.serviceName) {
-          const selectedService = _.find($scope.services, { serviceName: $stateParams.serviceName });
+          const selectedService = find($scope.services, { serviceName: $stateParams.serviceName });
           if (selectedService) {
             $scope.filters.service = selectedService;
           }
@@ -131,10 +138,12 @@ angular.module('Module.ip.controllers').controller('IpDashboardCtrl', (
       ipBlocks = ipBlocks.sort(sortIp);
 
       const reverseDelegationPromise = $q.all(
-        _.chain(ipBlocks)
-          .filter($scope.canReverseDelegations)
-          .map($scope.getReverseDelegations)
-          .values(),
+        values(
+          map(
+            filter(ipBlocks, $scope.canReverseDelegations),
+            $scope.getReverseDelegations,
+          ),
+        ),
       );
 
       let virtualMacPromise = $q.when();
@@ -172,7 +181,7 @@ angular.module('Module.ip.controllers').controller('IpDashboardCtrl', (
     if (isCloud && isFailover && ipBlock.ips && ipBlock.ips.length) {
       // since ips have the same subType in a given ipBlock,
       // we are only checking the subType of the first IP to guess the block subType
-      return Ip.getCloudIpSubType(ipBlock.service.serviceName, _.first(ipBlock.ips).ip).then((subType) => {
+      return Ip.getCloudIpSubType(ipBlock.service.serviceName, head(ipBlock.ips).ip).then((subType) => {
         ipBlock.subType = subType;
       });
     }
@@ -200,7 +209,7 @@ angular.module('Module.ip.controllers').controller('IpDashboardCtrl', (
       if (ip.mitigation === 'CREATION_PENDING' || ip.mitigation === 'REMOVAL_PENDING') {
         IpMitigation.pollMitigationState(ipBlock, ip).then(() => {
           Ip.getIpsForIpBlock(ipBlock.ipBlock, ipBlock.service.serviceName, ipBlock.service.category).then((ips) => {
-            const newIp = _.find(ips, { ip: ip.ip });
+            const newIp = find(ips, { ip: ip.ip });
             angular.extend(ip, newIp);
           });
         });
@@ -210,7 +219,7 @@ angular.module('Module.ip.controllers').controller('IpDashboardCtrl', (
       if (ip.firewall === 'ENABLE_PENDING' || ip.firewall === 'DISABLE_PENDING') {
         IpFirewall.pollFirewallState(ipBlock, ip).then(() => {
           Ip.getIpsForIpBlock(ipBlock.ipBlock, ipBlock.service.serviceName, ipBlock.service.category).then((ips) => {
-            const newIp = _.find(ips, { ip: ip.ip });
+            const newIp = find(ips, { ip: ip.ip });
             angular.extend(ip, newIp);
           });
         });
@@ -263,8 +272,8 @@ angular.module('Module.ip.controllers').controller('IpDashboardCtrl', (
       .when(mainQueue)
       .then(() => {
         // We already have all services loaded, filter to select the one desired.
-        if ($scope.containsAllServices && _.get($scope, 'filters.service.serviceName') === 'ALL') {
-          $scope.ipsList = _.filter($scope.allIpsList, { routedTo: $scope.filters.service.serviceName });
+        if ($scope.containsAllServices && get($scope, 'filters.service.serviceName') === 'ALL') {
+          $scope.ipsList = filter($scope.allIpsList, { routedTo: $scope.filters.service.serviceName });
           return null;
         }
 
@@ -449,7 +458,7 @@ angular.module('Module.ip.controllers').controller('IpDashboardCtrl', (
   $scope.$on('ips.table.add', (e, ipBlock, ipv6) => {
     // Ensure ipBlock is loaded and opened
     $scope.toggleIp(ipBlock, true).then(() => {
-      if (!_.find(ipBlock.ips, { ip: ipv6 })) {
+      if (!find(ipBlock.ips, { ip: ipv6 })) {
         // Skip if ip already present
         ipBlock.ips.push({
           ip: ipv6,

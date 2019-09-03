@@ -1,3 +1,5 @@
+import head from 'lodash/head';
+
 angular.module('Module.ip.controllers').controller('IpLegacyOrderMigrateController', ($scope, $q, $translate, IpLegacyOrder, User, Alerter, $rootScope, Validator) => {
   $scope.loading = {
     step1: false,
@@ -146,7 +148,7 @@ angular.module('Module.ip.controllers').controller('IpLegacyOrderMigrateControll
     $q.all(queue).then(
       () => {
         if ($scope.durations.available && $scope.durations.available.length === 1) {
-          $scope.migrate.duration = _.first($scope.durations.available);
+          $scope.migrate.duration = head($scope.durations.available);
         }
         $scope.loading.prices = false;
       },

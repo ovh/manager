@@ -1,4 +1,8 @@
-import _ from 'lodash';
+import get from 'lodash/get';
+import indexOf from 'lodash/indexOf';
+import isNull from 'lodash/isNull';
+import isUndefined from 'lodash/isUndefined';
+import map from 'lodash/map';
 
 export default /* @ngInject */ ($translate) => {
   // TODO: Add this filter in UX components
@@ -13,27 +17,27 @@ export default /* @ngInject */ ($translate) => {
     return key === translatedUnit ? unit : translatedUnit;
   }
 
-  const translatedUnits = _.map(units, translateUnit);
-  const translatedUnitsKibi = _.map(unitsKibi, translateUnit);
+  const translatedUnits = map(units, translateUnit);
+  const translatedUnitsKibi = map(unitsKibi, translateUnit);
 
   function setDefaults(_options) {
     let options = _options;
-    if (_.isUndefined(options)) {
+    if (isUndefined(options)) {
       options = {};
     }
-    options.precision = _.get(options, 'precision', 0);
-    options.toKibi = _.get(options, 'toKibi', false);
-    options.fromUnit = _.get(options, 'fromUnit', null);
-    options.toUnit = _.get(options, 'toUnit', null);
-    options.toFormat = _.get(options, 'toFormat', 'text');
+    options.precision = get(options, 'precision', 0);
+    options.toKibi = get(options, 'toKibi', false);
+    options.fromUnit = get(options, 'fromUnit', null);
+    options.toUnit = get(options, 'toUnit', null);
+    options.toFormat = get(options, 'toFormat', 'text');
     return options;
   }
 
   function getIndexFromUnit(unit) {
-    const fromUnitIndex = _.indexOf(units, unit);
-    const fromTranslatedUnitIndex = _.indexOf(translatedUnits, unit);
-    const fromKibiUnitIndex = _.indexOf(unitsKibi, unit);
-    const fromTranslatedKibiUnitIndex = _.indexOf(translatedUnitsKibi, unit);
+    const fromUnitIndex = indexOf(units, unit);
+    const fromTranslatedUnitIndex = indexOf(translatedUnits, unit);
+    const fromKibiUnitIndex = indexOf(unitsKibi, unit);
+    const fromTranslatedKibiUnitIndex = indexOf(translatedUnitsKibi, unit);
 
     let index = -1;
     let isKibi = false;
@@ -85,7 +89,7 @@ export default /* @ngInject */ ($translate) => {
         number = index.index;
       }
     }
-    if (_.isNull(number) || number === -1) {
+    if (isNull(number) || number === -1) {
       number = Math.floor(Math.log(bytes) / Math.log(divider));
     }
     return number;
@@ -127,7 +131,7 @@ export default /* @ngInject */ ($translate) => {
     const divider = options.toKibi ? 1024 : 1000;
     const number = getNumber(bytes, options.toKibi, options.toUnit, divider);
 
-    if (_.isNull(number)) {
+    if (isNull(number)) {
       return '?';
     }
 

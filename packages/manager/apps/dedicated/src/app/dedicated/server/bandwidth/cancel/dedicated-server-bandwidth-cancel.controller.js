@@ -1,3 +1,5 @@
+import set from 'lodash/set';
+
 angular.module('App').controller('ServerCancelBandwidthCtrl', ($rootScope, $scope, $stateParams, $translate, Server, User, Alerter) => {
   $scope.loader = {
     loading: true,
@@ -12,7 +14,7 @@ angular.module('App').controller('ServerCancelBandwidthCtrl', ($rootScope, $scop
         $rootScope.$broadcast('dedicated.informations.bandwidth');
       })
       .catch((data) => {
-        _.set(data, 'type', 'ERROR');
+        set(data, 'type', 'ERROR');
         $scope.setMessage($translate.instant('server_cancel_bandwidth_cancel_error'), data);
       })
       .finally(() => {

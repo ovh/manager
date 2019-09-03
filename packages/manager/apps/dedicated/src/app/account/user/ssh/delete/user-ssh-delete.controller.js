@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular.module('UserAccount').controller('UserAccount.controllers.ssh.delete', [
   '$scope',
   '$translate',
@@ -13,7 +15,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.ssh.delete', [
       promise.then(() => {
         Alerter.success($translate.instant('user_ssh_delete_success_message'), 'userSsh');
       }, (err) => {
-        Alerter.error(`${$translate.instant('user_ssh_delete_error_message')} ${_.get(err, 'message') || err}`, 'userSsh');
+        Alerter.error(`${$translate.instant('user_ssh_delete_error_message')} ${get(err, 'message') || err}`, 'userSsh');
       });
     };
   },

@@ -1,3 +1,7 @@
+import upperFirst from 'lodash/upperFirst';
+import clone from 'lodash/clone';
+import get from 'lodash/get';
+
 angular.module('App').controller('DedicatedCloudSecurityCtrl', function ($rootScope, $stateParams, $scope, $uibModal, DedicatedCloud, OvhApiDedicatedCloud, $translate) {
   const self = this;
   let forceRefresh = false;
@@ -151,13 +155,13 @@ angular.module('App').controller('DedicatedCloudSecurityCtrl', function ($rootSc
   };
 
   self.onError = function (error) {
-    $scope.setMessage($translate.instant('dedicatedCloud_dashboard_loading_error'), _.get(error, 'data', error));
+    $scope.setMessage($translate.instant('dedicatedCloud_dashboard_loading_error'), get(error, 'data', error));
   };
 
   function createModalObject(action, objectToResolve) {
     return $uibModal.open({
       templateUrl: `dedicatedCloud/security/kms/${action}/dedicatedCloud-security-kms-${action}.html`,
-      controller: `DedicatedCloudSecurityKMS${_.capitalize(action)}Ctrl`,
+      controller: `DedicatedCloudSecurityKMS${upperFirst(action)}Ctrl`,
       controllerAs: '$ctrl',
       backdrop: 'static',
       resolve: objectToResolve,
@@ -193,7 +197,7 @@ angular.module('App').controller('DedicatedCloudSecurityCtrl', function ($rootSc
 
   self.editKms = function (kmsToEdit) {
     const resolveKms = {
-      kmsToEdit: () => _.clone(kmsToEdit),
+      kmsToEdit: () => clone(kmsToEdit),
     };
     const kmsEditionModal = createModalObject('edit', resolveKms);
 

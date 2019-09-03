@@ -1,3 +1,6 @@
+import head from 'lodash/head';
+import reject from 'lodash/reject';
+
 angular.module('Module.ip.controllers').controller('IpOrganisationChangeCtrl', ($scope, $translate, Ip, IpOrganisation, Alerter) => {
   const currentOrganisationId = $scope.currentActionData.ipBlock.organizationId;
   $scope.alert = 'polling_action';
@@ -12,11 +15,11 @@ angular.module('Module.ip.controllers').controller('IpOrganisationChangeCtrl', (
 
     IpOrganisation.getIpOrganisation()
       .then((organisations) => {
-        $scope.organisationList = _.reject(
+        $scope.organisationList = reject(
           organisations,
           { organisationId: currentOrganisationId },
         );
-        $scope.organisationSelected.value = _.first($scope.organisationList);
+        $scope.organisationSelected.value = head($scope.organisationList);
       })
       .finally(() => {
         $scope.loader = false;

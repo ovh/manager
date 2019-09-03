@@ -1,3 +1,6 @@
+import get from 'lodash/get';
+import last from 'lodash/last';
+
 angular
   .module('App')
   .controller('ovhManagerPccDatacenter', class {
@@ -70,7 +73,7 @@ angular
       this.$transitions.onError({
         to: 'app.dedicatedClouds.datacenter.drp',
       }, ($transition$) => {
-        const loadServiceError = _.get($transition$, '_error.detail.data.message', null);
+        const loadServiceError = get($transition$, '_error.detail.data.message', null);
         this.$scope.loading = false;
 
         if (loadServiceError !== null) {
@@ -122,7 +125,7 @@ angular
 
     /* Update description or name */
     editDescription(value, contextTitle) {
-      const context = _.last(contextTitle.split('_'));
+      const context = last(contextTitle.split('_'));
 
       this.$uibModal.open({
         animation: true,

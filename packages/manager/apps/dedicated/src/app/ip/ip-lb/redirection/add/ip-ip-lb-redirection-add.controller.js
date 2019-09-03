@@ -1,3 +1,5 @@
+import difference from 'lodash/difference';
+
 angular.module('Module.ip.controllers').controller('IplbPortsRedirectionAddCtrl', ($scope, $rootScope, $q, $translate, Ip, Iplb, Alerter) => {
   $scope.data = $scope.currentActionData; // service
 
@@ -6,7 +8,7 @@ angular.module('Module.ip.controllers').controller('IplbPortsRedirectionAddCtrl'
   $scope.loading = true;
 
   Ip.getIpModels().then((models) => {
-    $scope.allowedSrcPorts = _.difference(models['ip.LoadBalancingAdditionalPortEnum'].enum.map(i => +i), $scope.data.portsRedirectionIds);
+    $scope.allowedSrcPorts = difference(models['ip.LoadBalancingAdditionalPortEnum'].enum.map(i => +i), $scope.data.portsRedirectionIds);
     $scope.loading = false;
   });
 

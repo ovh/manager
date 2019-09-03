@@ -1,3 +1,7 @@
+import get from 'lodash/get';
+import pick from 'lodash/pick';
+import set from 'lodash/set';
+
 angular.module('App').controller('ServerTerminateCtrl', class ServerTerminateCtrl {
   constructor(
     $q,
@@ -21,7 +25,7 @@ angular.module('App').controller('ServerTerminateCtrl', class ServerTerminateCtr
     this.$scope.loading = false;
     this.$scope.server = this.$scope.currentActionData;
     this.manualRefund = this.dedicatedServerFeatureAvailability.hasDedicatedServerManualRefund();
-    this.serviceInfos = _.get(this.$scope, 'serviceInfos', null);
+    this.serviceInfos = get(this.$scope, 'serviceInfos', null);
     this.cancelSubscriptionForm = {
       cancelMethod: null,
       isSubmiting: false,
@@ -34,7 +38,7 @@ angular.module('App').controller('ServerTerminateCtrl', class ServerTerminateCtr
      * @return {Promise}
      */
   submitCancelSubscription() {
-    const serviceInfosRenew = _.pick(this.serviceInfos, 'renew');
+    const serviceInfosRenew = pick(this.serviceInfos, 'renew');
 
     let promise = this.$q.when(true);
     switch (this.cancelSubscriptionForm.cancelMethod) {
@@ -47,8 +51,8 @@ angular.module('App').controller('ServerTerminateCtrl', class ServerTerminateCtr
           });
         break;
       case 'deleteAtExpiration':
-        _.set(serviceInfosRenew, 'renew.automatic', true);
-        _.set(serviceInfosRenew, 'renew.deleteAtExpiration', true);
+        set(serviceInfosRenew, 'renew.automatic', true);
+        set(serviceInfosRenew, 'renew.deleteAtExpiration', true);
 
         promise = this.Server.updateServiceInfos(this.$stateParams.productId, serviceInfosRenew)
           .then(() => this.Alerter.success(this.$translate.instant('server_close_service_delete_at_expiration_activate_success'), 'server_dashboard_alert'))
@@ -58,8 +62,8 @@ angular.module('App').controller('ServerTerminateCtrl', class ServerTerminateCtr
           });
         break;
       case 'cancel':
-        _.set(serviceInfosRenew, 'renew.automatic', true);
-        _.set(serviceInfosRenew, 'renew.deleteAtExpiration', false);
+        set(serviceInfosRenew, 'renew.automatic', true);
+        set(serviceInfosRenew, 'renew.deleteAtExpiration', false);
 
         promise = this.Server.updateServiceInfos(this.$stateParams.productId, serviceInfosRenew)
           .then(() => this.Alerter.success(this.$translate.instant('server_close_service_cancel_success'), 'server_dashboard_alert'))

@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import find from 'lodash/find';
 
 angular
   .module('App')
@@ -16,6 +16,6 @@ angular
           productName: 'privateCloud',
           serviceName,
         }).$promise
-        .then(offers => _.find(offers, { family: 'backup' }));
+        .then(offers => find(offers, { family: 'backup' }));
     }
   });

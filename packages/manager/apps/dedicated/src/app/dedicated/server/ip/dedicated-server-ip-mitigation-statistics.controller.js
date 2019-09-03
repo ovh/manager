@@ -1,3 +1,5 @@
+import head from 'lodash/head';
+
 angular.module('App').controller('ServerIpMitigationStatisticsCtrl', [
   '$scope',
   'Server',
@@ -16,7 +18,7 @@ angular.module('App').controller('ServerIpMitigationStatisticsCtrl', [
       Server.getMitigationStatisticsScale().then((data) => {
         $scope.statisticsScalesAvailable = data;
         if (data.length > 0) {
-          $scope.model.scale = _.first(data);
+          $scope.model.scale = head(data);
         }
         $scope.model.mode = 'realTime';
       });

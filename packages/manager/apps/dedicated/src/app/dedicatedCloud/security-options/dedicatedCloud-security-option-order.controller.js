@@ -1,3 +1,8 @@
+import assign from 'lodash/assign';
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import pick from 'lodash/pick';
+
 angular.module('App').controller('DedicatedCloudSecurityOptionOrderCtrl', ($stateParams, $rootScope, $scope, $q, $translate, Alerter, DedicatedCloud) => {
   $scope.optionName = $scope.currentActionData;
 
@@ -68,8 +73,8 @@ angular.module('App').controller('DedicatedCloudSecurityOptionOrderCtrl', ($stat
   function checkUser() {
     return loadUsers()
       .then((users) => {
-        $scope.users = _.filter(users, { isTokenValidator: true });
-        return _.find(users, { name: 'admin' });
+        $scope.users = filter(users, { isTokenValidator: true });
+        return find(users, { name: 'admin' });
       })
       .then((adminUser) => {
         if (!adminUser) {
@@ -150,7 +155,7 @@ angular.module('App').controller('DedicatedCloudSecurityOptionOrderCtrl', ($stat
         pcc.location,
       ))
       .then((data) => {
-        $scope.prices = data.current.map((host, index) => _.assign(_.pick(host, ['datacenter', 'name', 'billingType']), {
+        $scope.prices = data.current.map((host, index) => assign(pick(host, ['datacenter', 'name', 'billingType']), {
           current: host.price,
           next: data.next[index].price,
         }));

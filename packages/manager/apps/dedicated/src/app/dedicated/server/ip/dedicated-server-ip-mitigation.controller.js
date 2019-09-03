@@ -1,3 +1,5 @@
+import set from 'lodash/set';
+
 angular.module('App').controller('ServerIpMitigationCtrl', ($scope, $translate, Server) => {
   $scope.selectedIpAndBlock = $scope.currentActionData;
   $scope.mitigationStatusAuto = $scope.selectedIpAndBlock.ip.mitigationStatus === 'AUTO'; // Hack for the wizard status
@@ -29,7 +31,7 @@ angular.module('App').controller('ServerIpMitigationCtrl', ($scope, $translate, 
       )
       .then(
         (data) => {
-          _.set(data, 'type', 'INFO');
+          set(data, 'type', 'INFO');
           if (newMitigationStatus === 'AUTO') {
             $scope.setMessage($translate.instant('server_configuration_mitigation_auto_success', { t0: $scope.selectedIpAndBlock.ip.ip }), data);
           } else {
@@ -37,7 +39,7 @@ angular.module('App').controller('ServerIpMitigationCtrl', ($scope, $translate, 
           }
         },
         (data) => {
-          _.set(data, 'type', 'ERROR');
+          set(data, 'type', 'ERROR');
           if (newMitigationStatus === 'AUTO') {
             $scope.setMessage($translate.instant('server_configuration_mitigation_auto_failed', { t0: $scope.selectedIpAndBlock.ip.ip }), data);
           } else {

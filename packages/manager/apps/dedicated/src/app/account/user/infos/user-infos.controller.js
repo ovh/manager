@@ -1,3 +1,6 @@
+import identity from 'lodash/identity';
+import pick from 'lodash/pick';
+
 angular.module('UserAccount').controller('UserAccount.controllers.Infos', [
   '$scope',
   '$q',
@@ -52,10 +55,10 @@ angular.module('UserAccount').controller('UserAccount.controllers.Infos', [
         .then(fieldNames => UseraccountInfos.getUseraccountInfos().then((response) => {
           // pick attributes that belong to /rules
           // add customer code since it will be displayed in the form
-          $scope.user = _.pick(response, fieldNames.concat('customerCode'));
+          $scope.user = pick(response, fieldNames.concat('customerCode'));
 
           // remove empty attributes
-          $scope.user = _.pick($scope.user, _.identity);
+          $scope.user = pick($scope.user, identity);
 
           // juste in case birthday date is retrieved in legacy format
           // we nullify it so we don't break the first call to /rules

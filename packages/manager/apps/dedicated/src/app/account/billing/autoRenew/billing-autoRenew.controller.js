@@ -1,3 +1,20 @@
+import forEach from 'lodash/forEach';
+import head from 'lodash/head';
+import includes from 'lodash/includes';
+import isArray from 'lodash/isArray';
+import isBoolean from 'lodash/isBoolean';
+
+import clone from 'lodash/clone';
+import cloneDeep from 'lodash/cloneDeep';
+import filter from 'lodash/filter';
+import get from 'lodash/get';
+import has from 'lodash/has';
+import isEmpty from 'lodash/isEmpty';
+import map from 'lodash/map';
+import range from 'lodash/range';
+import set from 'lodash/set';
+import some from 'lodash/some';
+
 /* eslint-disable no-use-before-define */
 /**
  * @ngdoc controller
@@ -97,8 +114,8 @@ angular.module('Billing.controllers').controller('Billing.controllers.AutoRenew'
     });
 
     $rootScope.$on(AUTORENEW_EVENT.CANCEL_TERMINATE, (event, service) => {
-      const firstService = _(service).isArray() ? _(service).head() : service;
-      $scope.mustDisplayDeleteAtExpirationCancellingBanner = $scope.mustDisplayDeleteAtExpirationCancellingBanner && firstService.serviceId !== _($scope.serviceToKeep).get('serviceId');
+      const firstService = isArray(service) ? head(service) : service;
+      $scope.mustDisplayDeleteAtExpirationCancellingBanner = $scope.mustDisplayDeleteAtExpirationCancellingBanner && firstService.serviceId !== get($scope.serviceToKeep, 'serviceId');
     });
 
     $scope.renewalFilter = {
@@ -151,7 +168,7 @@ angular.module('Billing.controllers').controller('Billing.controllers.AutoRenew'
     };
 
     $scope.nicRenew = {
-      renewDays: _.range(1, 30),
+      renewDays: range(1, 30),
       initialized: false,
       active: false,
       renewDay: 1,
@@ -211,19 +228,19 @@ angular.module('Billing.controllers').controller('Billing.controllers.AutoRenew'
           hasManualRenew: false,
         };
 
-        const isSelected = _.some($scope.services.selected, {
+        const isSelected = some($scope.services.selected, {
           serviceId: service.serviceId,
           serviceType: service.serviceType,
         });
 
         if (isSelected) {
-          $scope.services.selected = _.filter(
+          $scope.services.selected = filter(
             $scope.services.selected,
             srv => !(srv.serviceId === service.serviceId
               && srv.serviceType === service.serviceType),
           );
         } else {
-          $scope.services.selected.push(_.cloneDeep(service));
+          $scope.services.selected.push(cloneDeep(service));
         }
 
         const manualServices = $scope.services.selected
@@ -234,12 +251,12 @@ angular.module('Billing.controllers').controller('Billing.controllers.AutoRenew'
           $scope.selected.both = true;
         }
 
-        $scope.selected.hasManualRenew = !_.isEmpty(manualServices);
+        $scope.selected.hasManualRenew = !isEmpty(manualServices);
 
         return true;
       },
       lineClicked(service) {
-        _.set(service, 'checked', !service.checked);
+        set(service, 'checked', !service.checked);
         $scope.services.checkClicked(service);
       },
       loading: false,
@@ -331,11 +348,13 @@ angular.module('Billing.controllers').controller('Billing.controllers.AutoRenew'
 
           $scope.services.data = result;
           $scope.services.data
-            .userSubsidiaryHasRecentAutorenew = _(SUBSIDIARIES_WITH_RECENT_AUTORENEW)
-              .includes($scope.user.ovhSubsidiary);
+            .userSubsidiaryHasRecentAutorenew = includes(
+              SUBSIDIARIES_WITH_RECENT_AUTORENEW,
+              $scope.user.ovhSubsidiary,
+            );
 
-          const userMustApproveAutoRenew = _($scope.services).get('data.userMustApproveAutoRenew', null);
-          if (_(userMustApproveAutoRenew).isBoolean()) {
+          const userMustApproveAutoRenew = get($scope.services, 'data.userMustApproveAutoRenew', null);
+          if (isBoolean(userMustApproveAutoRenew)) {
             $scope.services.data.userMustApproveAutoRenew = userMustApproveAutoRenew;
           }
 
@@ -348,7 +367,7 @@ angular.module('Billing.controllers').controller('Billing.controllers.AutoRenew'
             // in format "organization/exchange"
             if (service.serviceType === 'EXCHANGE' && service.serviceId.split('/').length === 2) {
               // alternativeId is used to display juste the exchange name
-              _.set(service, 'alternativeId', service.serviceId.split('/')[1]);
+              set(service, 'alternativeId', service.serviceId.split('/')[1]);
             }
 
             if (service.serviceType === 'HOSTING_DOMAIN') {
@@ -356,10 +375,10 @@ angular.module('Billing.controllers').controller('Billing.controllers.AutoRenew'
             }
 
             if (!service.renew) {
-              _.set(service, 'renew', { automatic: false, forced: false });
+              set(service, 'renew', { automatic: false, forced: false });
             }
 
-            _.set(service, 'renewLabel', renewHelper.getRenewKey(service));
+            set(service, 'renewLabel', renewHelper.getRenewKey(service));
             if ($scope.renewalFilter.values.indexOf(service.renewLabel) === -1) {
               if (service.renewLabel !== '') {
                 $scope.renewalFilter.values.push(service.renewLabel);
@@ -391,11 +410,9 @@ angular.module('Billing.controllers').controller('Billing.controllers.AutoRenew'
         return;
       }
 
-      $scope.services.selected = _.chain($scope.services.data.list.results)
-        .each((service) => {
-          _.set(service, 'checked', true);
-        })
-        .value();
+      $scope.services.selected = forEach($scope.services.data.list.results, (service) => {
+        set(service, 'checked', true);
+      });
     };
 
     $scope.clearSelectedServices = function () {
@@ -408,7 +425,7 @@ angular.module('Billing.controllers').controller('Billing.controllers.AutoRenew'
       }
       if ($scope.services.selected.length) {
         $scope.setAction('update', {
-          services: _.clone($scope.services.selected, true),
+          services: cloneDeep($scope.services.selected),
           nicRenew: $scope.nicRenew,
           urlRenew: $scope.getRenewUrl(),
         }, 'autoRenew');
@@ -442,16 +459,16 @@ angular.module('Billing.controllers').controller('Billing.controllers.AutoRenew'
       const serviceToResiliate = getServiceToResiliate(service);
 
       if (service.status === 'PENDING_DEBT') {
-        $scope.setAction('warnPendingDebt', _.clone(service, true), 'autoRenew');
+        $scope.setAction('warnPendingDebt', cloneDeep(service), 'autoRenew');
       } else {
-        $scope.setAction('delete', _.clone(serviceToResiliate, true), 'autoRenew');
+        $scope.setAction('delete', cloneDeep(serviceToResiliate), 'autoRenew');
       }
     };
 
     $scope.cancelDeleteService = function (service) {
       const serviceToResiliate = getServiceToResiliate(service);
 
-      $scope.setAction('cancelDelete', _.clone(serviceToResiliate, true), 'autoRenew');
+      $scope.setAction('cancelDelete', cloneDeep(serviceToResiliate), 'autoRenew');
     };
 
     /**
@@ -459,7 +476,7 @@ angular.module('Billing.controllers').controller('Billing.controllers.AutoRenew'
      */
     $scope.selectAutomatic = function () {
       const autoList = selectByRenewalMode(true);
-      $scope.services.selected = _.cloneDeep(autoList);
+      $scope.services.selected = cloneDeep(autoList);
     };
 
     /**
@@ -467,16 +484,14 @@ angular.module('Billing.controllers').controller('Billing.controllers.AutoRenew'
      */
     $scope.selectManual = function () {
       const manualList = selectByRenewalMode(false);
-      $scope.services.selected = _.cloneDeep(manualList);
+      $scope.services.selected = cloneDeep(manualList);
     };
 
     function selectByRenewalMode(automatic) {
-      return _.chain($scope.services.data.list.results)
-        .filter((service) => {
-          _.set(service, 'checked', !$scope.editionDisabled(service) && service.renew.automatic === automatic);
-          return service.checked;
-        })
-        .value();
+      return filter($scope.services.data.list.results, (service) => {
+        set(service, 'checked', !$scope.editionDisabled(service) && service.renew.automatic === automatic);
+        return service.checked;
+      });
     }
 
     $scope.$on(AutoRenew.events.AUTORENEW_CHANGED, () => {
@@ -524,7 +539,7 @@ angular.module('Billing.controllers').controller('Billing.controllers.AutoRenew'
     };
 
     $scope.getRenewUrl = function () {
-      const subsidiary = _.get($scope, 'user.ovhSubsidiary', false);
+      const subsidiary = get($scope, 'user.ovhSubsidiary', false);
       if (!subsidiary || !billingUrls.renew[subsidiary]) {
         return constants.renew.replace('{serviceName}', '');
       }
@@ -538,7 +553,7 @@ angular.module('Billing.controllers').controller('Billing.controllers.AutoRenew'
         .filter(service => !renewHelper.serviceHasAutomaticRenew(service));
       $scope.$emit(AUTORENEW_EVENT.PAY, services);
 
-      const parameters = _.map(services, 'serviceId');
+      const parameters = map(services, 'serviceId');
       $window.open($scope.getRenewUrl() + parameters.join('%20'), '_blank');
     };
 
@@ -566,15 +581,15 @@ angular.module('Billing.controllers').controller('Billing.controllers.AutoRenew'
     };
 
     $scope.terminateHostingWeb = function (service) {
-      $scope.setAction('terminateHostingWeb', _.clone([service], true), 'autoRenew');
+      $scope.setAction('terminateHostingWeb', cloneDeep([service]), 'autoRenew');
     };
 
     $scope.terminateEmail = function (service) {
-      $scope.setAction('terminateEmail', _.clone([service], true), 'autoRenew');
+      $scope.setAction('terminateEmail', cloneDeep([service]), 'autoRenew');
     };
 
     $scope.terminatePrivateDatabase = function (service) {
-      $scope.setAction('terminatePrivateDatabase', _.clone([service], true), 'autoRenew');
+      $scope.setAction('terminatePrivateDatabase', cloneDeep([service]), 'autoRenew');
     };
 
     $scope.canResiliate = function (service, user) {
@@ -595,13 +610,13 @@ angular.module('Billing.controllers').controller('Billing.controllers.AutoRenew'
 
     $scope.enableAutorenew = function (service) {
       if (!$scope.hasDefaultValidPaymentMean) {
-        return $scope.setAction('warnPaymentMean', _.clone([service]), 'autoRenew');
+        return $scope.setAction('warnPaymentMean', clone([service]), 'autoRenew');
       }
-      return $scope.setAction('enable', _.clone([service]), 'autoRenew');
+      return $scope.setAction('enable', clone([service]), 'autoRenew');
     };
 
     $scope.disableAutorenew = function (service) {
-      $scope.setAction('disable', _.clone([service]), 'autoRenew');
+      $scope.setAction('disable', clone([service]), 'autoRenew');
     };
 
     $scope.disableAutorenewForDomains = function () {
@@ -656,10 +671,10 @@ angular.module('Billing.controllers').controller('Billing.controllers.AutoRenew'
         if (service.renew && service.renew.forced) {
           $scope.services.readOnlyWarning = true;
         }
-        _.set(service, 'isUserAllowed', false);
+        set(service, 'isUserAllowed', false);
         if ($scope.user) {
           if (userIsBillingOrAdmin(service, $scope.user)) {
-            _.set(service, 'isUserAllowed', true);
+            set(service, 'isUserAllowed', true);
           } else {
             $scope.services.billingWarning = true;
           }
@@ -685,7 +700,7 @@ angular.module('Billing.controllers').controller('Billing.controllers.AutoRenew'
     function uncheckAll() {
       if ($scope.services.data.list) {
         angular.forEach($scope.services.data.list.results, (value) => {
-          _.set(value, 'checked', false);
+          set(value, 'checked', false);
         });
       }
 
@@ -754,7 +769,7 @@ angular.module('Billing.controllers').controller('Billing.controllers.AutoRenew'
 
     function warnAboutDebt(service) {
       const warning = isNicBilling($scope.user, service) ? 'debtBeforePaying' : 'warnNicBilling';
-      $scope.setAction(warning, _.clone(service, true), 'autoRenew');
+      $scope.setAction(warning, cloneDeep(service), 'autoRenew');
     }
 
     function goToRenew({ serviceType, serviceId }) {
@@ -765,7 +780,7 @@ angular.module('Billing.controllers').controller('Billing.controllers.AutoRenew'
     }
 
     function isNicBilling(user, service) {
-      return _.get(user, 'nichandle') === _.get(service, 'contactBilling');
+      return get(user, 'nichandle') === get(service, 'contactBilling');
     }
 
     /**
@@ -817,7 +832,7 @@ angular.module('Billing.controllers').controller('Billing.controllers.AutoRenew'
           $scope.hasDefaultValidPaymentMean = hasDefaultValidPaymentMean;
           $scope.automaticRenewV2Mean.allowed = hasDefaultValidPaymentMean;
 
-          if (_.has(userGuide, 'autoRenew')) {
+          if (has(userGuide, 'autoRenew')) {
             $scope.guide = userGuide.autoRenew;
           }
 

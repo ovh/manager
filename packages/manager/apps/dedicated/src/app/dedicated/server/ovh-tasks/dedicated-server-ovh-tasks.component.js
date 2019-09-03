@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 {
   class controller {
     constructor(
@@ -25,7 +27,7 @@
         })
         .catch((error) => {
           this.$state.go('^');
-          this.Alerter.set('alert-danger', [this.$translate.instant('dedicated_server_ovhTasks_fetching_error'), _.get(error, 'message', error)].join(' '));
+          this.Alerter.set('alert-danger', [this.$translate.instant('dedicated_server_ovhTasks_fetching_error'), get(error, 'message', error)].join(' '));
         })
         .finally(() => {
           this.isLoading = false;

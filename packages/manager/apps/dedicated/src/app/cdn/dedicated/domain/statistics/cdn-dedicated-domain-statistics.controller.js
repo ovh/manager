@@ -1,3 +1,6 @@
+import get from 'lodash/get';
+import map from 'lodash/map';
+
 angular.module('App').controller('CdnDomainStatisticsCtrl', ($scope, $stateParams, $translate, Cdn, CdnDomain) => {
   $scope.model = null;
   $scope.consts = null;
@@ -36,20 +39,20 @@ angular.module('App').controller('CdnDomainStatisticsCtrl', ($scope, $stateParam
     $scope.series = [];
     $scope.data = [];
 
-    $scope.labels = _.map(_.get(data, 'cdn.values'), (value, index) => {
+    $scope.labels = map(get(data, 'cdn.values'), (value, index) => {
       const source = data.backend || data.cdn;
-      const start = _.get(source, 'pointStart');
-      const interval = _.get(source, 'pointInterval.standardSeconds');
+      const start = get(source, 'pointStart');
+      const interval = get(source, 'pointInterval.standardSeconds');
       return moment(start).add((index + 1) * interval, 'seconds').calendar();
     });
     $scope.series.push($translate.instant(`cdn_stats_legend_${$scope.model.dataType.toLowerCase()}_cdn`));
     $scope.series.push($translate.instant(`cdn_stats_legend_${$scope.model.dataType.toLowerCase()}_backend`));
     if ($scope.model.dataType === 'REQUEST') {
-      $scope.data.push(_.map(_.get(data, 'cdn.values'), value => value.y));
-      $scope.data.push(_.map(_.get(data, 'backend.values'), value => value.y));
+      $scope.data.push(map(get(data, 'cdn.values'), value => value.y));
+      $scope.data.push(map(get(data, 'backend.values'), value => value.y));
     } else if ($scope.model.dataType === 'BANDWIDTH' || $scope.model.dataType === 'QUOTA') {
-      $scope.data.push(_.map(_.get(data, 'cdn.values'), value => value.y / 1000000000)); // convert B to GB
-      $scope.data.push(_.map(_.get(data, 'backend.values'), value => value.y / 1000000000));
+      $scope.data.push(map(get(data, 'cdn.values'), value => value.y / 1000000000)); // convert B to GB
+      $scope.data.push(map(get(data, 'backend.values'), value => value.y / 1000000000));
     }
   }
 

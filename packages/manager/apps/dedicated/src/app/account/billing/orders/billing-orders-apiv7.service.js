@@ -1,3 +1,6 @@
+import forOwn from 'lodash/forOwn';
+import map from 'lodash/map';
+
 angular.module('Billing.services').service('BillingOrdersApiv7', function ($q, $http, $cacheFactory) {
   const cache = {
     orderQuery: $cacheFactory('UNIVERS_BILLING_ORDERS_APIV7_ORDER_QUERY'),
@@ -5,7 +8,7 @@ angular.module('Billing.services').service('BillingOrdersApiv7', function ($q, $
   };
 
   function getQueryString(params) {
-    return _.map(params, (val, key) => [encodeURIComponent(key), encodeURIComponent(val)].join('=')).join('&');
+    return map(params, (val, key) => [encodeURIComponent(key), encodeURIComponent(val)].join('=')).join('&');
   }
 
   this.getExpiredOrderIds = function () {
@@ -59,7 +62,7 @@ angular.module('Billing.services').service('BillingOrdersApiv7', function ($q, $
   };
 
   this.clearCache = function () {
-    _.forOwn(cache, (cacheInstance) => {
+    forOwn(cache, (cacheInstance) => {
       if (cacheInstance) {
         cacheInstance.removeAll();
       }

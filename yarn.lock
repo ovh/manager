@@ -9985,7 +9985,7 @@ lodash@4.17.15, lodash@^4.0.0, lodash@^4.0.1, lodash@^4.12.0, lodash@^4.14.14, l
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
   integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
 
-lodash@^3.8.0, lodash@lodash/lodash#~3.10.1, lodash@~3.10.0:
+lodash@^3.8.0, lodash@~3.10.0:
   version "3.10.1"
   resolved "https://codeload.github.com/lodash/lodash/tar.gz/dfbd78f71de0550068fc82ce6e013d443e5037d7"
 

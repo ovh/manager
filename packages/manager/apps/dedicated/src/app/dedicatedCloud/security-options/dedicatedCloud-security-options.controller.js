@@ -1,3 +1,7 @@
+import isObject from 'lodash/isObject';
+import map from 'lodash/map';
+import set from 'lodash/set';
+
 import config from '../../config/config';
 
 angular.module('App').controller('DedicatedCloudSecurityOptionsCtrl', ($q, $stateParams, $scope, $translate, Alerter, DedicatedCloud, User, Poller, DEDICATED_CLOUD_CONSTANTS) => {
@@ -15,22 +19,22 @@ angular.module('App').controller('DedicatedCloudSecurityOptionsCtrl', ($q, $stat
   };
 
   $scope.allDisabled = function allDisabled() {
-    return !_.map($scope.options).some(item => item.state === 'enabled');
+    return !map($scope.options).some(item => item.state === 'enabled');
   };
 
   $scope.anyEnabling = function anyEnabling() {
-    return _.map($scope.options).some(item => item.state === 'enabling');
+    return map($scope.options).some(item => item.state === 'enabling');
   };
 
   $scope.nsxAndVropsCompliantPcc = function nsxAndVropsCompliantPcc() {
-    return !_.map($scope.pccCompliancies).some(compliant => !compliant);
+    return !map($scope.pccCompliancies).some(compliant => !compliant);
   };
 
   function getGuide() {
     User.getUser().then((user) => {
       $scope.guides = {};
       $scope.optionNames.forEach((optionName) => {
-        _.set(
+        set(
           $scope.guides,
           optionName,
           config.constants.URLS[user.ovhSubsidiary].guides[optionName]
@@ -50,7 +54,7 @@ angular.module('App').controller('DedicatedCloudSecurityOptionsCtrl', ($q, $stat
         return DedicatedCloud.isOptionToggable($stateParams.productId, optionName, 'disabled', true);
       })
       .then((response) => {
-        if (_.isObject(response)) {
+        if (isObject(response)) {
           return response.toggable;
         }
         return response;

@@ -1,3 +1,6 @@
+import get from 'lodash/get';
+import isEqual from 'lodash/isEqual';
+
 import config from '../../../../config/config';
 
 angular.module('App').controller('DedicatedCloudSecurityKMSAddCtrl', class DedicatedCloudSecurityKMSAddCtrl {
@@ -35,7 +38,7 @@ angular.module('App').controller('DedicatedCloudSecurityKMSAddCtrl', class Dedic
     };
 
     this.pollRequestPending = false;
-    const usedLanguage = _(localStorage).get('univers-selected-language', '');
+    const usedLanguage = get(localStorage, 'univers-selected-language', '');
     if (usedLanguage) {
       const frenchLanguages = ['fr_FR', 'fr_CA'];
       this.vmEncryptionGuide = frenchLanguages.includes(usedLanguage)
@@ -49,7 +52,7 @@ angular.module('App').controller('DedicatedCloudSecurityKMSAddCtrl', class Dedic
   }
 
   isFormValid() {
-    return _(this.newKmsForm).get('$valid') && this.documentationRead;
+    return get(this.newKmsForm, '$valid') && this.documentationRead;
   }
 
   createNewKms() {
@@ -82,7 +85,7 @@ angular.module('App').controller('DedicatedCloudSecurityKMSAddCtrl', class Dedic
   }
 
   getTaskDetails() {
-    if (_(this.kmsCreationTask.state).isEqual('canceled')) {
+    if (isEqual(this.kmsCreationTask.state, 'canceled')) {
       return `${this.$translate.instant('dedicatedCloud_vm_encryption_add_kms_creation_canceled')} : ${this.kmsCreationTask.description}`;
     }
 
@@ -101,8 +104,10 @@ angular.module('App').controller('DedicatedCloudSecurityKMSAddCtrl', class Dedic
 
   isWaitingUserAction() {
     return this.VM_ENCRYPTION_KMS.waitingStatus.includes(this.kmsCreationTask.state)
-      && _(this.kmsCreationTask.description)
-        .isEqual(this.VM_ENCRYPTION_KMS.creationTaskWaitingConfiguration);
+      && isEqual(
+        this.kmsCreationTask.description,
+        this.VM_ENCRYPTION_KMS.creationTaskWaitingConfiguration,
+      );
   }
 
   finishCreation() {

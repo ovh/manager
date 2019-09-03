@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import filter from 'lodash/filter';
 
 angular
   .module('App')
@@ -41,6 +41,6 @@ angular
           productName: 'privateCloud',
           serviceName,
         }).$promise
-        .then(offers => _.filter(offers, { planCode: 'pcc-option-windows' }));
+        .then(offers => filter(offers, { planCode: 'pcc-option-windows' }));
     }
   });

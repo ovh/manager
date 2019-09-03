@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import set from 'lodash/set';
 
 class LegacyBankAccountModel {
   constructor(country) {
@@ -39,6 +39,6 @@ export default class PaymentMethodAddLegacyBankAccountCtrl {
   }
 
   $onInit() {
-    _.set(this.$state.current, 'sharedModel.legacyBillingAddress', this.model);
+    set(this.$state.current, 'sharedModel.legacyBillingAddress', this.model);
   }
 }

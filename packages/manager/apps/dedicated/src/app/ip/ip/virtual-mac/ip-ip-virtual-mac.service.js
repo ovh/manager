@@ -1,3 +1,5 @@
+import set from 'lodash/set';
+
 angular.module('Module.ip.services').service('IpVirtualMac', [
   '$http',
   '$q',
@@ -10,7 +12,7 @@ angular.module('Module.ip.services').service('IpVirtualMac', [
     function getVirtualMacListSanitized(data) {
       // Generate virtualMacsByIp
       if (data && data.virtualMacs) {
-        _.set(data, 'virtualMacsByIp', {});
+        set(data, 'virtualMacsByIp', {});
         angular.forEach(data.virtualMacs, (ips, virtualmac) => {
           angular.forEach(ips, (ip) => {
             data.virtualMacsByIp[ip] = virtualmac; // eslint-disable-line

@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.totp.edit', [
   '$rootScope',
   '$scope',
@@ -6,8 +8,8 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.tot
   'Alerter',
   function ($rootScope, $scope, $translate, DoubleAuthTotpService, Alerter) {
     $scope.totp = {
-      totpAccount: _.get($scope, 'currentActionData', {}),
-      description: _.get($scope, 'currentActionData.description', ''),
+      totpAccount: get($scope, 'currentActionData', {}),
+      description: get($scope, 'currentActionData.description', ''),
       isEditing: false,
     };
 

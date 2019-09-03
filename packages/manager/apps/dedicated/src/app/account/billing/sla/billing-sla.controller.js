@@ -1,3 +1,5 @@
+import every from 'lodash/every';
+
 angular.module('Billing.controllers').controller('Billing.controllers.Sla', ($scope, $translate, BillingSla, Alerter, $q, atInternet) => {
   $scope.slaIds = [];
 
@@ -78,15 +80,15 @@ angular.module('Billing.controllers').controller('Billing.controllers.Sla', ($sc
   };
 
   $scope.allNotApplicable = function () {
-    return _.every($scope.slas, { status: 'notApplicable' });
+    return every($scope.slas, { status: 'notApplicable' });
   };
 
   $scope.allRequested = function () {
-    return _.every($scope.slas, { status: 'requested' });
+    return every($scope.slas, { status: 'requested' });
   };
 
   $scope.allCompleted = function () {
-    return _.every($scope.slas, { status: 'completed' });
+    return every($scope.slas, { status: 'completed' });
   };
 
   init();

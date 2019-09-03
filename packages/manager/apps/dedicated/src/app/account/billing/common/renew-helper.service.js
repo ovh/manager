@@ -1,3 +1,7 @@
+import upperFirst from 'lodash/upperFirst';
+import has from 'lodash/has';
+import isEmpty from 'lodash/isEmpty';
+
 angular
   .module('Billing.services')
   .service('billingRenewHelper', class BillingrenewHelper {
@@ -10,7 +14,7 @@ angular
       if (!service) {
         return '';
       } if (this.serviceHasAutomaticRenew(service)) {
-        return _.capitalize(this.$filter('date')(service.expiration, 'MMMM yyyy'));
+        return upperFirst(this.$filter('date')(service.expiration, 'MMMM yyyy'));
       }
 
       const translationId = moment().isAfter(moment(service.expiration)) ? 'autorenew_service_after_expiration_date' : 'autorenew_service_expiration_date';
@@ -37,7 +41,7 @@ angular
           return this.$translate.instant('autorenew_service_renew_paid');
         }
 
-        if (!_.isEmpty(service.subProducts)) {
+        if (!isEmpty(service.subProducts)) {
           return '';
         }
         return this.getRenewLabel(this.getRenewKey(service));
@@ -48,13 +52,13 @@ angular
 
     /* eslint-disable class-methods-use-this */
     serviceHasAutomaticRenew(service) {
-      return _.has(service, 'renew') && (service.renew.forced || service.renew.automatic) && !(service.renew.deleteAtExpiration || service.status === 'EXPIRED');
+      return has(service, 'renew') && (service.renew.forced || service.renew.automatic) && !(service.renew.deleteAtExpiration || service.status === 'EXPIRED');
     }
     /* eslint-enable class-methods-use-this */
 
     getRenewKey(service) {
       let txt;
-      if (!service || !_.isEmpty(service.subProducts)) {
+      if (!service || !isEmpty(service.subProducts)) {
         return '';
       }
 

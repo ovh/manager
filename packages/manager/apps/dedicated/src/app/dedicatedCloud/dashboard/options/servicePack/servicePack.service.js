@@ -1,4 +1,13 @@
-import _ from 'lodash';
+import camelCase from 'lodash/camelCase';
+import every from 'lodash/every';
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import isEqual from 'lodash/isEqual';
+import isFunction from 'lodash/isFunction';
+import map from 'lodash/map';
+import reject from 'lodash/reject';
+import some from 'lodash/some';
+import sum from 'lodash/sum';
 
 import { OPTION_TYPES } from './option/option.constants';
 import { PREFERENCE_NAME } from '../preference/preference.constants';
@@ -55,15 +64,15 @@ export const OvhManagerPccServicePackService = class OvhManagerPccServicePackSer
   }
 
   static removeCurrentServicePack(servicePacks, currentServicePackName) {
-    return _.reject(servicePacks, { name: currentServicePackName });
+    return reject(servicePacks, { name: currentServicePackName });
   }
 
   static keepOnlyCertainOptionType(servicePacks, optionTypeToKeep) {
-    return _.filter(
+    return filter(
       servicePacks,
-      servicePack => _.some(
+      servicePack => some(
         servicePack.options,
-        option => _.isEqual(option.type, optionTypeToKeep),
+        option => isEqual(option.type, optionTypeToKeep),
       ),
     );
   }
@@ -88,12 +97,12 @@ export const OvhManagerPccServicePackService = class OvhManagerPccServicePackSer
     serviceName,
     subsidiary,
   }) {
-    const servicePackTypeCamelCase = _.camelCase(activationType);
+    const servicePackTypeCamelCase = camelCase(activationType);
     const formattedServicePackType = `${servicePackTypeCamelCase[0].toUpperCase()}${servicePackTypeCamelCase.slice(1)}`;
     const methodToCallName = `fetchOrderable${formattedServicePackType}`;
     const methodToCall = this[methodToCallName].bind(this);
 
-    if (!_.isFunction(methodToCall)) {
+    if (!isFunction(methodToCall)) {
       throw new Error(`DedicatedCloudServicePack.fetchOrderable: method "${methodToCallName}" does not exist`);
     }
 
@@ -120,11 +129,11 @@ export const OvhManagerPccServicePackService = class OvhManagerPccServicePackSer
     subsidiary,
   }) {
     return this.buildAllForService(serviceName, subsidiary)
-      .then(servicePacks => _.filter(
-        _.reject(servicePacks, { name: currentServicePackName }),
-        servicePack => _.every(
+      .then(servicePacks => filter(
+        reject(servicePacks, { name: currentServicePackName }),
+        servicePack => every(
           servicePack.options,
-          option => _.isEqual(option.type, OPTION_TYPES.basic),
+          option => isEqual(option.type, OPTION_TYPES.basic),
         ),
       ));
   }
@@ -136,15 +145,15 @@ export const OvhManagerPccServicePackService = class OvhManagerPccServicePackSer
         ovhSubsidiary,
       }).$promise
       .then((catalog) => {
-        const addonsFamily = _.find(catalog.plans[0].addonsFamily, { family: 'host' });
+        const addonsFamily = find(catalog.plans[0].addonsFamily, { family: 'host' });
 
         return servicePacks.map((product) => {
           let price = null;
-          const sum = _.sum(
-            _.map(
+          const value = sum(
+            map(
               Object.entries(hostFamilies),
               ([familyName, numberOfHosts]) => {
-                const familyData = _.find(
+                const familyData = find(
                   addonsFamily.addons,
                   addon => addon.plan.planCode === familyName,
                 );
@@ -161,7 +170,7 @@ export const OvhManagerPccServicePackService = class OvhManagerPccServicePackSer
             ...product,
             price: {
               ...price,
-              value: sum,
+              value,
             },
           };
         });

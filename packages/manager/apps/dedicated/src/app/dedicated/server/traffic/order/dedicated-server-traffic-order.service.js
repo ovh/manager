@@ -1,3 +1,5 @@
+import map from 'lodash/map';
+
 class ServerOrderTrafficService {
   constructor($q, $translate, Server) {
     this.$q = $q;
@@ -47,7 +49,7 @@ class ServerOrderTrafficService {
   }
 
   transformOrderables(orderables) {
-    return _.map(orderables, orderable => ({
+    return map(orderables, orderable => ({
       value: orderable,
       text: this.$translate.instant(`server_order_traffic_orderable_label_${orderable}`),
     }));

@@ -1,3 +1,10 @@
+import filter from 'lodash/filter';
+import isArray from 'lodash/isArray';
+import isEmpty from 'lodash/isEmpty';
+import range from 'lodash/range';
+import sortBy from 'lodash/sortBy';
+import uniq from 'lodash/uniq';
+
 angular
   .module('Module.ip.services')
   .service('IpLegacyOrder', class DedicatedIPOrder {
@@ -34,7 +41,7 @@ angular
               serviceType: 'DEDICATED',
               serviceName: svc,
             }));
-            services = services.concat(_.sortBy(items, 'serviceName'));
+            services = services.concat(sortBy(items, 'serviceName'));
           })
           .catch(({ data }) => this.$q.reject(data)));
       }
@@ -47,7 +54,7 @@ angular
               serviceType: 'PCC',
               serviceName: svc,
             }));
-            services = services.concat(_.sortBy(items, 'serviceName'));
+            services = services.concat(sortBy(items, 'serviceName'));
           })
           .catch(({ data }) => this.$q.reject(data)));
       }
@@ -60,7 +67,7 @@ angular
               serviceType: 'VPS',
               serviceName: svc,
             }));
-            services = services.concat(_.sortBy(items, 'serviceName'));
+            services = services.concat(sortBy(items, 'serviceName'));
           })
           .catch(({ data }) => this.$q.reject(data)));
       }
@@ -74,7 +81,7 @@ angular
     checkIfAllowed(service, orderEnum) {
       return this.$http
         .get(`apiv6/order/${DedicatedIPOrder.getRouteFragmentForService(service.serviceType)}/${service.serviceName}`)
-        .then(({ data }) => _.isArray(data) && !_.isEmpty(data) && data.includes(orderEnum))
+        .then(({ data }) => isArray(data) && !isEmpty(data) && data.includes(orderEnum))
         .catch(({ data }) => this.$q.reject(data));
     }
 
@@ -85,20 +92,20 @@ angular
             .get(`apiv6/dedicated/server/${service.serviceName}/orderable/ip`)
             .then((response) => {
               const { data } = response;
-              data.ipv4 = _.filter(data.ipv4, { type: 'failover' });
+              data.ipv4 = filter(data.ipv4, { type: 'failover' });
               if (!data.ipv4 || !data.ipv4.length) {
                 return false;
               }
 
               ['ipv4', 'ipv6'].forEach((ipType) => {
-                data[ipType] = _.filter(data[ipType], ipBlock => ipBlock.ipNumber > 0);
+                data[ipType] = filter(data[ipType], ipBlock => ipBlock.ipNumber > 0);
               });
 
               data.ipv4BlockSizesAll = data.ipv4.reduce(
                 (globalArray, val) => [...val.blockSizes, ...globalArray],
                 [],
               );
-              data.ipv4BlockSizesAll = _.uniq(data.ipv4BlockSizesAll);
+              data.ipv4BlockSizesAll = uniq(data.ipv4BlockSizesAll);
               data.ipv4BlockSizesAll.sort((a, b) => a - b);
 
               return data;
@@ -134,7 +141,7 @@ angular
                       .then(() => ({
                         maximumAdditionnalIp: data.data.model.maximumAdditionnalIp
                           - selfAdditionalIp,
-                        ipRange: _.range(
+                        ipRange: range(
                           1,
                           data.data.model.maximumAdditionnalIp - selfAdditionalIp + 1,
                         ),

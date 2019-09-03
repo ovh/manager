@@ -1,3 +1,17 @@
+import clone from 'lodash/clone';
+import forEach from 'lodash/forEach';
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import flatten from 'lodash/flatten';
+import get from 'lodash/get';
+import includes from 'lodash/includes';
+import indexOf from 'lodash/indexOf';
+import keys from 'lodash/keys';
+import map from 'lodash/map';
+import omit from 'lodash/omit';
+import pick from 'lodash/pick';
+import values from 'lodash/values';
+
 angular.module('ovhSignupApp').component('newAccountForm', {
   bindings: {
     model: '<',
@@ -44,14 +58,14 @@ angular.module('ovhSignupApp').component('newAccountForm', {
             this.loaded = true;
           })
           .catch((err) => {
-            this.initError = _.get(err, 'data.message') || _.get(err, 'message') || err;
+            this.initError = get(err, 'data.message') || get(err, 'message') || err;
           });
       };
 
       // initialize rules with /me data
       this.initializeRulesWithOriginalModel = (rules) => {
-        _.each(this.originalModel, (value, key) => {
-          const rule = _.find(rules, { fieldName: key });
+        forEach(this.originalModel, (value, key) => {
+          const rule = find(rules, { fieldName: key });
           if (rule) {
             rule.initialValue = value;
           }
@@ -67,19 +81,19 @@ angular.module('ovhSignupApp').component('newAccountForm', {
 
         // we don't want to send attributes outside of /rules
         if (this.rules) {
-          params = _.pick(this.model, _.pluck(this.rules, 'fieldName'));
+          params = pick(this.model, map(this.rules, 'fieldName'));
         }
 
         // customer code does not belong to /rules, only displayed in the form
-        params = _.omit(params, 'customerCode');
-        params = _(params).omit('commercialCommunicationsApproval').value();
+        params = omit(params, 'customerCode');
+        params = omit(params, 'commercialCommunicationsApproval');
 
         this.isLoading = true;
 
         return UserAccountServiceInfos
           .fetchConsentDecision(CONSENT_MARKETING_EMAIL_NAME)
           .then((fetchedConsentDecision) => {
-            consentDecision = _(fetchedConsentDecision).get('value', false);
+            consentDecision = get(fetchedConsentDecision, 'value', false);
           })
           .then(() => $http.post(`${UserAccountConstants.swsProxyRootPath}newAccount/rules`, params))
           .then((result) => {
@@ -90,24 +104,22 @@ angular.module('ovhSignupApp').component('newAccountForm', {
             let emailFieldIndex;
 
             // hide rules that are not editable
-            const rules = _(result.data)
-              .map((rule, index) => {
-                const editedRule = _(rule).clone();
+            const rules = map(result.data, (rule, index) => {
+              const editedRule = clone(rule);
 
-                // rule is editable if not in the "this.readonly" list of fields.
-                // The "email" field is a special case should. It should never be readonly.
-                if (editedRule.fieldName === 'email') {
-                  emailFieldIndex = index;
-                  editedRule.readonly = false;
-                  editedRule.hasBottomMargin = coreConfig.getRegion() === 'US';
-                } else {
-                  editedRule.readonly = _(this.readonly).includes(editedRule.fieldName);
-                  editedRule.hasBottomMargin = true;
-                }
+              // rule is editable if not in the "this.readonly" list of fields.
+              // The "email" field is a special case should. It should never be readonly.
+              if (editedRule.fieldName === 'email') {
+                emailFieldIndex = index;
+                editedRule.readonly = false;
+                editedRule.hasBottomMargin = coreConfig.getRegion() === 'US';
+              } else {
+                editedRule.readonly = includes(this.readonly, editedRule.fieldName);
+                editedRule.hasBottomMargin = true;
+              }
 
-                return editedRule;
-              })
-              .value();
+              return editedRule;
+            });
 
 
             if (coreConfig.getRegion() !== 'US') {
@@ -157,29 +169,29 @@ angular.module('ovhSignupApp').component('newAccountForm', {
         this.submitError = null;
 
         // we don't want to send attributes outside of /rules
-        let model = _.pick(this.model, _.pluck(this.rules, 'fieldName'));
+        let model = pick(this.model, map(this.rules, 'fieldName'));
 
         // we need to blank out some values for api to be happy
-        _.each(_.keys(this.originalModel), (field) => {
+        forEach(keys(this.originalModel), (field) => {
           // attributes not in /rules and not readonly are blanked out
-          if (!_.find(this.rules, { fieldName: field }) && this.readonly.indexOf(field) < 0) {
+          if (!find(this.rules, { fieldName: field }) && this.readonly.indexOf(field) < 0) {
             model[field] = null;
           }
         });
 
         // nullify empty values
-        _.each(model, (value, key) => {
+        forEach(model, (value, key) => {
           if (!model[key]) {
             model[key] = null;
           }
         });
 
         // customer code does not belong to /rules, only displayed in the form
-        model = _.omit(model, 'customerCode');
+        model = omit(model, 'customerCode');
 
         // put on /me does not handle email modification
-        model = _.omit(model, 'email');
-        model = _(model).omit('commercialCommunicationsApproval').value();
+        model = omit(model, 'email');
+        model = omit(model, 'commercialCommunicationsApproval');
 
         let promise = $http.put(`${UserAccountConstants.swsProxyRootPath}me`, model).then((result) => {
           if (result.status !== 200) {
@@ -215,7 +227,7 @@ angular.module('ovhSignupApp').component('newAccountForm', {
               $translate.instant('user_account_info_error'),
               {
                 type: 'ERROR',
-                message: _.get(err, 'data.message'),
+                message: get(err, 'data.message'),
               },
               'InfoErrors',
             );
@@ -232,31 +244,31 @@ angular.module('ovhSignupApp').component('newAccountForm', {
       };
 
       // return the list of form fieldsets
-      this.getSections = () => _.keys(NewAccountFormConfig.sections);
+      this.getSections = () => keys(NewAccountFormConfig.sections);
 
       // return the list of fields for a given fieldset name
       // readonly rules are not returned because they are not editable
       this.getRulesBySection = (section) => {
         // special section to handle fields that does not belong to any section
         if (section === 'other') {
-          return _.filter(this.rules, (rule) => {
-            const allFields = _.flatten(_.values(NewAccountFormConfig.sections));
-            return _.indexOf(allFields, rule.fieldName) < 0 && !rule.readonly;
+          return filter(this.rules, (rule) => {
+            const allFields = flatten(values(NewAccountFormConfig.sections));
+            return indexOf(allFields, rule.fieldName) < 0 && !rule.readonly;
           });
         }
 
         const fields = NewAccountFormConfig.sections[section];
-        return _.filter(
+        return filter(
           this.rules,
-          rule => _.indexOf(fields, rule.fieldName) >= 0 && !rule.readonly,
+          rule => indexOf(fields, rule.fieldName) >= 0 && !rule.readonly,
         );
       };
 
       // return the section of a given rule
       this.getSectionOfRule = (rule) => {
         let found = null;
-        _.each(NewAccountFormConfig.sections, (fieldNames, section) => {
-          if (!found && _.indexOf(fieldNames, rule.fieldName) >= 0) {
+        forEach(NewAccountFormConfig.sections, (fieldNames, section) => {
+          if (!found && indexOf(fieldNames, rule.fieldName) >= 0) {
             found = section;
           }
         });
@@ -264,8 +276,8 @@ angular.module('ovhSignupApp').component('newAccountForm', {
       };
 
       this.updateRules = () => this.fetchRules(this.model).then((newRules) => {
-        _.each(this.rules, (rule) => {
-          if (!_.find(newRules, { fieldName: rule.fieldName })) {
+        forEach(this.rules, (rule) => {
+          if (!find(newRules, { fieldName: rule.fieldName })) {
             delete this.model[rule.fieldName];
           }
         });

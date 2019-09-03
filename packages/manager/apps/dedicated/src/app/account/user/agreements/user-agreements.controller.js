@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular.module('UserAccount').controller('UserAccount.controllers.agreements', [
   '$scope',
   '$translate',
@@ -27,7 +29,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.agreements', [
         .then((agreements) => {
           $scope.list = agreements;
         }, (err) => {
-          Alerter.error(`${$translate.instant('user_agreements_error')} ${_.get(err, 'message') || err}`, 'agreements_alerter');
+          Alerter.error(`${$translate.instant('user_agreements_error')} ${get(err, 'message') || err}`, 'agreements_alerter');
         })
         .then(() => {
           $scope.loading = false;

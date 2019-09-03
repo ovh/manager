@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular.module('UserAccount').controller('UserAccount.controllers.ssh', [
   '$scope',
   '$q',
@@ -20,7 +22,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.ssh', [
           self.sshKeyList = sshKeys;
         })
         .catch((err) => {
-          Alerter.error(`${$translate.instant('user_ssh_error')} ${_.get(err, 'message') || err}`, 'userSsh');
+          Alerter.error(`${$translate.instant('user_ssh_error')} ${get(err, 'message') || err}`, 'userSsh');
         })
         .finally(() => {
           self.sshLoading = false;
@@ -43,7 +45,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.ssh', [
           }
         },
         (err) => {
-          Alerter.error(`${$translate.instant('user_ssh_default_error_message')} ${_.get(err, 'message') || err}`, 'userSsh');
+          Alerter.error(`${$translate.instant('user_ssh_default_error_message')} ${get(err, 'message') || err}`, 'userSsh');
         },
       );
     };

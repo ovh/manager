@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular.module('App').controller('ReverseDNSUpdateCtrl', class ReverseDNSUpdateCtrl {
   constructor($scope, $state, $stateParams, $timeout, $translate, Alerter, Server) {
     this.$scope = $scope;
@@ -32,7 +34,7 @@ angular.module('App').controller('ReverseDNSUpdateCtrl', class ReverseDNSUpdateC
       .catch(({ data }) => {
         this.Alerter.error([this.$translate.instant('server_tab_IP_table_manage_reverse_failure', {
           t0: this.newValue,
-        }), _.get(data, 'message')].join('. '), 'server_dashboard_alert');
+        }), get(data, 'message')].join('. '), 'server_dashboard_alert');
         this.$state.go('^');
       })
       .finally(() => {

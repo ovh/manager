@@ -1,3 +1,8 @@
+import find from 'lodash/find';
+import head from 'lodash/head';
+import set from 'lodash/set';
+import snakeCase from 'lodash/snakeCase';
+
 angular.module('Billing.controllers').controller('Billing.controllers.Orders', ($q, $log, $scope, $location, $translate, Alerter, BillingOrders, BillingOrdersApiv7, BillingOrderStatusEnum, BillingOrdersStatusFilters, BillingUser) => {
   $scope.itemsPerPage = 10;
   $scope.orderIds = [];
@@ -13,7 +18,7 @@ angular.module('Billing.controllers').controller('Billing.controllers.Orders', (
         $scope.statusFilters = filterConfig;
         const search = $location.search();
         if (search.status) {
-          $scope.activeFilter.status = _.find($scope.statusFilters, {
+          $scope.activeFilter.status = find($scope.statusFilters, {
             id: search.status,
           });
         }
@@ -22,7 +27,7 @@ angular.module('Billing.controllers').controller('Billing.controllers.Orders', (
         }
 
         if (angular.isUndefined($scope.activeFilter.status)) {
-          $scope.activeFilter.status = _.first($scope.statusFilters);
+          $scope.activeFilter.status = head($scope.statusFilters);
         }
 
         return BillingOrderStatusEnum.getEnum();
@@ -102,16 +107,16 @@ angular.module('Billing.controllers').controller('Billing.controllers.Orders', (
     $scope.loaders.orders = true;
     return BillingOrders.getOrder(item)
       .then((order) => {
-        _.set(order, 'status', $scope.ordersStatus[order.orderId]);
-        _.set(order, 'expired', moment().isAfter(order.expirationDate));
-        _.set(order, 'statusText', $translate.instant(`orders_order_status_${_.snakeCase(order.status)}`));
+        set(order, 'status', $scope.ordersStatus[order.orderId]);
+        set(order, 'expired', moment().isAfter(order.expirationDate));
+        set(order, 'statusText', $translate.instant(`orders_order_status_${snakeCase(order.status)}`));
         return order;
       })
       .then((order) => {
         if (order.status === 'delivered') {
           return BillingOrders.getOrderBill(order.orderId)
             .then((bill) => {
-              _.set(order, 'bill', bill);
+              set(order, 'bill', bill);
               return order;
             })
             .catch((err) => {

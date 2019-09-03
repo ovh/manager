@@ -1,3 +1,7 @@
+import includes from 'lodash/includes';
+import omit from 'lodash/omit';
+import set from 'lodash/set';
+
 angular.module('App').controller('MonitoringCtrl', function ($rootScope, $scope, $translate, Server, IpRange, Alerter, $q, $stateParams) {
   const self = this;
   self.currentMonitoring = { value: null };
@@ -61,7 +65,7 @@ angular.module('App').controller('MonitoringCtrl', function ($rootScope, $scope,
     return Server.listIps($stateParams.productId).then(
       (ips) => {
         ips.forEach((ip) => {
-          if (!_.includes(ip, ':')) {
+          if (!includes(ip, ':')) {
             self.ips = self.ips.concat(IpRange.getRangeForIpv4Block(ip));
           }
         });
@@ -74,10 +78,10 @@ angular.module('App').controller('MonitoringCtrl', function ($rootScope, $scope,
 
   self.toggleStatus = function (monitoring) {
     self.loaders.monitorings = true;
-    _.set(monitoring, 'enabled', !monitoring.enabled);
-    Server.updateServiceMonitoring($stateParams.productId, monitoring.monitoringId, _.omit(monitoring, ['emailNotifications', 'smsNotifications']))
+    set(monitoring, 'enabled', !monitoring.enabled);
+    Server.updateServiceMonitoring($stateParams.productId, monitoring.monitoringId, omit(monitoring, ['emailNotifications', 'smsNotifications']))
       .catch((err) => {
-        _.set(monitoring, 'enabled', !monitoring.enabled);
+        set(monitoring, 'enabled', !monitoring.enabled);
         Alerter.alertFromSWS($translate.instant('server_tab_MONITORING_error'), err.data, 'monitoringAlert');
       })
       .finally(() => {
@@ -132,7 +136,7 @@ angular.module('App').controller('MonitoringCtrl', function ($rootScope, $scope,
             })),
           )
           .then((emailsDatails) => {
-            _.set(item, 'emailNotifications', emailsDatails);
+            set(item, 'emailNotifications', emailsDatails);
           });
 
         $q
@@ -143,7 +147,7 @@ angular.module('App').controller('MonitoringCtrl', function ($rootScope, $scope,
             })),
           )
           .then((smsDatails) => {
-            _.set(item, 'smsNotifications', smsDatails);
+            set(item, 'smsNotifications', smsDatails);
           });
       });
   };

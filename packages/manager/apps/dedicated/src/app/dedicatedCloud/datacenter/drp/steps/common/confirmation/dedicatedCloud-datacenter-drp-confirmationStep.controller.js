@@ -1,3 +1,6 @@
+import get from 'lodash/get';
+import isUndefined from 'lodash/isUndefined';
+
 import template from './delete/dedicatedCloud-datacenter-drp-confirmationStep-delete.html';
 
 export default class {
@@ -47,12 +50,12 @@ export default class {
           this.drpInformations.primaryPcc.generation !== this.PCC_NEW_GENERATION,
         ),
       me: this.OvhApiMe.v6().get().$promise,
-      secondaryPccState: _.isUndefined(otherPccInformations.serviceName)
+      secondaryPccState: isUndefined(otherPccInformations.serviceName)
         ? this.$q.when({})
         : this.DedicatedCloudDrp.getDrpState(otherPccInformations),
     })
       .then(({ enableDrp, me, secondaryPccState }) => {
-        const drpState = _.get(enableDrp, 'data.state', enableDrp.state);
+        const drpState = get(enableDrp, 'data.state', enableDrp.state);
         if ([
           this.DEDICATEDCLOUD_DATACENTER_DRP_STATUS.toDo,
           this.DEDICATEDCLOUD_DATACENTER_DRP_STATUS.delivering,
@@ -78,7 +81,7 @@ export default class {
         }
       })
       .catch((error) => {
-        this.Alerter.error(`${this.$translate.instant('dedicatedCloud_datacenter_drp_confirm_create_error')} ${_.get(error, 'data.message', error.message)}`, 'dedicatedCloudDatacenterDrpAlert');
+        this.Alerter.error(`${this.$translate.instant('dedicatedCloud_datacenter_drp_confirm_create_error')} ${get(error, 'data.message', error.message)}`, 'dedicatedCloudDatacenterDrpAlert');
       })
       .finally(() => {
         this.isLoading = false;
@@ -103,13 +106,13 @@ export default class {
 
   getOtherPccInformations() {
     const primaryOptions = {
-      serviceName: _.get(this.drpInformations, 'primaryPcc.serviceName'),
-      datacenterId: _.get(this.drpInformations, 'primaryDatacenter.id'),
+      serviceName: get(this.drpInformations, 'primaryPcc.serviceName'),
+      datacenterId: get(this.drpInformations, 'primaryDatacenter.id'),
     };
 
     const secondaryOptions = {
-      serviceName: _.get(this.drpInformations, 'secondaryPcc.serviceName'),
-      datacenterId: _.get(this.drpInformations, 'secondaryDatacenter.id'),
+      serviceName: get(this.drpInformations, 'secondaryPcc.serviceName'),
+      datacenterId: get(this.drpInformations, 'secondaryDatacenter.id'),
     };
 
     return [primaryOptions, secondaryOptions]
@@ -125,7 +128,7 @@ export default class {
         `, 'dedicatedCloudDatacenterDrpAlert');
       })
       .catch((error) => {
-        this.Alerter.error(`${this.$translate.instant('dedicatedCloud_datacenter_drp_confirm_zssp_password_regenerate_error')} ${_.get(error, 'message', '')}`, 'dedicatedCloudDatacenterDrpAlert');
+        this.Alerter.error(`${this.$translate.instant('dedicatedCloud_datacenter_drp_confirm_zssp_password_regenerate_error')} ${get(error, 'message', '')}`, 'dedicatedCloudDatacenterDrpAlert');
       })
       .finally(() => {
         this.generatingPassword = false;
@@ -145,7 +148,7 @@ export default class {
       })
       .catch((error) => {
         if (error != null) {
-          this.Alerter.error(this.$translate.instant(`${this.$translate.instant('dedicatedCloud_datacenter_drp_confirm_delete_drp_error')} ${_.get(error, 'message', '')}`), 'dedicatedCloudDatacenterDrpAlert');
+          this.Alerter.error(this.$translate.instant(`${this.$translate.instant('dedicatedCloud_datacenter_drp_confirm_delete_drp_error')} ${get(error, 'message', '')}`), 'dedicatedCloudDatacenterDrpAlert');
         }
       });
   }

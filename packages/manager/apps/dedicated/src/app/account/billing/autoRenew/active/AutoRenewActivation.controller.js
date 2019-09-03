@@ -1,3 +1,6 @@
+import pick from 'lodash/pick';
+import set from 'lodash/set';
+
 /**
  * @ngdoc controller
  * @name Billing.controllers.AutoRenew.activation
@@ -33,8 +36,8 @@ angular.module('Billing.controllers').controller('Billing.controllers.AutoRenew.
 
     $scope.disableAutoRenew = function () {
       const result = $scope.selectedServices.map((service) => {
-        _.set(service, 'renew.manualPayment', true);
-        return _.pick(service, ['serviceId', 'serviceType', 'renew']);
+        set(service, 'renew.manualPayment', true);
+        return pick(service, ['serviceId', 'serviceType', 'renew']);
       });
       AutoRenew.updateServices(result)
         .then(() => {
@@ -53,10 +56,10 @@ angular.module('Billing.controllers').controller('Billing.controllers.AutoRenew.
 
     $scope.enableAutoRenew = function () {
       const result = $scope.selectedServices.map((service) => {
-        _.set(service, 'renew.manualPayment', false);
-        _.set(service, 'renew.automatic', true);
-        _.set(service, 'renew.deleteAtExpiration', false);
-        return _.pick(service, ['serviceId', 'serviceType', 'renew']);
+        set(service, 'renew.manualPayment', false);
+        set(service, 'renew.automatic', true);
+        set(service, 'renew.deleteAtExpiration', false);
+        return pick(service, ['serviceId', 'serviceType', 'renew']);
       });
       return DucUserContractService.acceptAgreements($scope.contracts)
         .then(() => AutoRenew.updateServices(result))

@@ -1,3 +1,9 @@
+import filter from 'lodash/filter';
+import head from 'lodash/head';
+import set from 'lodash/set';
+import size from 'lodash/size';
+import sortBy from 'lodash/sortBy';
+
 angular
   .module('App')
   .controller('DedicatedCloudDatacentersHostOrderCtrl', class {
@@ -61,7 +67,7 @@ angular
           },
         })
         .then((offers) => {
-          const filtered = _.filter(offers, { family: 'host' });
+          const filtered = filter(offers, { family: 'host' });
           return filtered;
         })
         .then(offers => this.OvhHttp
@@ -76,15 +82,15 @@ angular
             const result = [];
 
             angular.forEach(offers, (offer) => {
-              const profile = _.filter(profiles, { name: offer.planCode });
-              if (_.size(profile) === 1) {
-                _.set(offer, 'profile', _.first(profile));
+              const profile = filter(profiles, { name: offer.planCode });
+              if (size(profile) === 1) {
+                set(offer, 'profile', head(profile));
                 result.push(offer);
               }
             });
 
-            const sortedResult = _.sortBy(result, item => item.prices[0].price.value);
-            this.selectedOffer = _.first(sortedResult);
+            const sortedResult = sortBy(result, item => item.prices[0].price.value);
+            this.selectedOffer = head(sortedResult);
             return sortedResult;
           }));
     }
@@ -94,7 +100,7 @@ angular
         .then(offers => ({
           data: offers,
           meta: {
-            totalCount: _.size(offers),
+            totalCount: size(offers),
           },
         }));
     }
@@ -104,7 +110,7 @@ angular
     }
 
     getOrderUrl() {
-      const price = _.first(this.selectedOffer.prices);
+      const price = head(this.selectedOffer.prices);
       const normalizedQuantity = Math.floor(this.quantity);
 
       return `${this.expressOrderUrl}review?products=${JSURL.stringify([{

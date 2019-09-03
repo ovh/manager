@@ -1,3 +1,7 @@
+import cloneDeep from 'lodash/cloneDeep';
+import isArray from 'lodash/isArray';
+import set from 'lodash/set';
+
 class ServerCancelBandwidthVrackCtrl {
   constructor($scope, $stateParams, $rootScope, User, Server, BandwidthVrackOrderService) {
     this.$scope = $scope;
@@ -13,8 +17,8 @@ class ServerCancelBandwidthVrackCtrl {
       data: [],
     };
 
-    this.user = _.cloneDeep(loadingStruct);
-    this.cancelAction = _.cloneDeep(loadingStruct);
+    this.user = cloneDeep(loadingStruct);
+    this.cancelAction = cloneDeep(loadingStruct);
 
     this.steps = [
       {
@@ -41,26 +45,26 @@ class ServerCancelBandwidthVrackCtrl {
   }
 
   handleAPIGet(promise, loadIntoStruct) {
-    _.set(loadIntoStruct, 'loading', true);
+    set(loadIntoStruct, 'loading', true);
     return promise()
       .then((response) => {
-        _.set(loadIntoStruct, 'hasError', false);
-        _.set(loadIntoStruct, 'data', response.data);
+        set(loadIntoStruct, 'hasError', false);
+        set(loadIntoStruct, 'data', response.data);
 
         if (response.message) {
           this.$scope.setMessage(response.message, true);
         }
       })
       .catch((response) => {
-        _.set(loadIntoStruct, 'hasError', true);
-        _.set(loadIntoStruct, 'data', _.isArray(loadIntoStruct) ? [] : {});
+        set(loadIntoStruct, 'hasError', true);
+        set(loadIntoStruct, 'data', isArray(loadIntoStruct) ? [] : {});
 
         this.$scope.resetAction();
         response.data.type = 'ERROR';
         this.$scope.setMessage(response.message, response.data);
       })
       .finally(() => {
-        _.set(loadIntoStruct, 'loading', false);
+        set(loadIntoStruct, 'loading', false);
       });
   }
 }

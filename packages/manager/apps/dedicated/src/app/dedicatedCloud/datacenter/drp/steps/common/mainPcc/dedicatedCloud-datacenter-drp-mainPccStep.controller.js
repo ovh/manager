@@ -1,3 +1,6 @@
+import get from 'lodash/get';
+import isNull from 'lodash/isNull';
+
 export default class {
   /* @ngInject */
   constructor(
@@ -44,7 +47,7 @@ export default class {
           .find(({ ip }) => ip === this.$stateParams.drpInformations.primaryEndpointIp);
       })
       .catch((error) => {
-        this.Alerter.error(`${this.$translate.instant('dedicatedCloud_datacenter_drp_get_state_error')} ${_.get(error, 'data.message', error)}`, 'dedicatedCloudDatacenterDrpAlert');
+        this.Alerter.error(`${this.$translate.instant('dedicatedCloud_datacenter_drp_get_state_error')} ${get(error, 'data.message', error)}`, 'dedicatedCloudDatacenterDrpAlert');
       })
       .finally(() => {
         this.isLoading = false;
@@ -53,7 +56,7 @@ export default class {
 
   getAvailableAddresses(ipAddressDetails) {
     return ipAddressDetails
-      .filter(({ usageDetails }) => _.isNull(usageDetails)
+      .filter(({ usageDetails }) => isNull(usageDetails)
         && !this.UNAVAILABLE_IP_STATUSES.includes(usageDetails)
         && !this.MAC_ADDRESS_REG_EXP.test(usageDetails));
   }

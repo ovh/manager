@@ -1,3 +1,5 @@
+import assign from 'lodash/assign';
+
 angular.module('App').controller('HousingCtrl', [
   '$scope',
   '$stateParams',
@@ -42,11 +44,11 @@ angular.module('App').controller('HousingCtrl', [
     function init() {
       Housing.getSelected($stateParams.productId)
         .then((informations) => {
-          $scope.housing = _.assign($scope.housing, informations);
+          $scope.housing = assign($scope.housing, informations);
           return Housing.getDescription($stateParams.productId);
         })
         .then((description) => {
-          $scope.housing = _.assign($scope.housing, description);
+          $scope.housing = assign($scope.housing, description);
           $scope.housing.isExpired = moment(description.expiration).isBefore(moment());
           $scope.housing.serviceInfos = description;
           $scope.loadingHousingInformations = false;

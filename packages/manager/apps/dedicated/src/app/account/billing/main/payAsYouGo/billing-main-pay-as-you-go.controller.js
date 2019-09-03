@@ -1,3 +1,9 @@
+import find from 'lodash/find';
+import flatten from 'lodash/flatten';
+import get from 'lodash/get';
+import map from 'lodash/map';
+import set from 'lodash/set';
+
 angular.module('App').controller('BillingMainPayAsYouGoCtrl', class BillingMainPayAsYouGoCtrl {
   constructor($q, $translate, Alerter, OvhApiMe, OvhApiServices, ServicesHelper) {
     // injections
@@ -42,23 +48,23 @@ angular.module('App').controller('BillingMainPayAsYouGoCtrl', class BillingMainP
       consumptions: this.OvhApiMe.v6().consumption().$promise,
       services: this.OvhApiServices.v6().query().$promise,
     }).then(({ consumptions, services }) => {
-      const projectPromises = _.map(consumptions, (consumption) => {
-        const associatedService = _.find(services, {
+      const projectPromises = map(consumptions, (consumption) => {
+        const associatedService = find(services, {
           serviceId: consumption.serviceId,
         });
 
         return this.ServicesHelper.getServiceDetails(associatedService).then((details) => {
           associatedService.details = details;
-          _.set(consumption, 'service', associatedService);
+          set(consumption, 'service', associatedService);
         });
       });
 
       return this.$q.all(projectPromises).then(() => consumptions);
     }).then((consumptions) => {
-      this.consumptions = _.flatten(_.map(consumptions, (consumption) => {
+      this.consumptions = flatten(map(consumptions, (consumption) => {
         const consumptionProjectUrl = this.ServicesHelper.getServiceManageUrl(consumption.service);
 
-        return _.map(consumption.elements, consumptionElement => ({
+        return map(consumption.elements, consumptionElement => ({
           project: {
             name: consumption.service.details.description || consumption.service.details.project_id,
             url: consumptionProjectUrl,
@@ -72,7 +78,7 @@ angular.module('App').controller('BillingMainPayAsYouGoCtrl', class BillingMainP
     }).catch((error) => {
       this.Alerter.error([
         this.$translate.instant('billing_main_pay_as_you_go_load_error'),
-        _.get(error, 'data.message'),
+        get(error, 'data.message'),
       ].join(' '), 'billing_main_alert');
     })
       .finally(() => {

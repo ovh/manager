@@ -1,3 +1,6 @@
+import get from 'lodash/get';
+import head from 'lodash/head';
+
 angular.module('App').controller('DedicatedCloudConfirmTerminateCtrl', class DedicatedCloudConfirmTerminateCtrl {
   constructor($state, $stateParams, OvhApiDedicatedCloud, Alerter, $translate) {
     this.$state = $state;
@@ -14,7 +17,7 @@ angular.module('App').controller('DedicatedCloudConfirmTerminateCtrl', class Ded
     };
 
     this.model = {
-      reason: _.first(this.reasons),
+      reason: head(this.reasons),
       commentary: null,
     };
   }
@@ -48,7 +51,7 @@ angular.module('App').controller('DedicatedCloudConfirmTerminateCtrl', class Ded
       this.Alerter.success(this.$translate.instant('dedicatedCloud_confirm_close_success'), 'dedicatedCloud_alert');
     }).catch((error) => {
       this.Alerter.alertFromSWS(this.$translate.instant('dedicatedCloud_confirm_close_error'), {
-        message: _.get(error, 'message'),
+        message: get(error, 'message'),
         type: 'ERROR',
       }, 'dedicatedCloud_alert');
     }).finally(() => {

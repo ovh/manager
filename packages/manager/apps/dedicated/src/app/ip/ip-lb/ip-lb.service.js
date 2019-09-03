@@ -1,3 +1,6 @@
+import find from 'lodash/find';
+import set from 'lodash/set';
+
 angular.module('Module.ip.services').service('Iplb', [
   '$rootScope',
   '$http',
@@ -131,7 +134,7 @@ angular.module('Module.ip.services').service('Iplb', [
     };
     this.pollsetStickiness = function (opts) {
       const namespace = `iplb.${opts.taskFunction}`;
-      _.set(opts, 'namespace', namespace);
+      set(opts, 'namespace', namespace);
       return self
         .poll({
           serviceName: opts.serviceName,
@@ -175,7 +178,7 @@ angular.module('Module.ip.services').service('Iplb', [
     };
     this.pollactivateSsl = function (opts) {
       const namespace = `iplb.${opts.taskFunction}`;
-      _.set(opts, 'namespace', namespace);
+      set(opts, 'namespace', namespace);
       return self
         .poll({
           serviceName: opts.serviceName,
@@ -209,7 +212,7 @@ angular.module('Module.ip.services').service('Iplb', [
     };
     this.polldesactivateSsl = function (opts) {
       const namespace = `iplb.${opts.taskFunction}`;
-      _.set(opts, 'namespace', namespace);
+      set(opts, 'namespace', namespace);
       return self
         .poll({
           serviceName: opts.serviceName,
@@ -334,7 +337,7 @@ angular.module('Module.ip.services').service('Iplb', [
       const promise = self.getBackendsInformations(serviceName);
 
       return promise.then((backends) => {
-        const foundBackend = _.find(backends, _backend => _backend.mainBackendIp === backend);
+        const foundBackend = find(backends, _backend => _backend.mainBackendIp === backend);
 
         return foundBackend;
       });

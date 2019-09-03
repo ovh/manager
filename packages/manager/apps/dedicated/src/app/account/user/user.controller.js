@@ -1,3 +1,5 @@
+import set from 'lodash/set';
+
 angular.module('UserAccount').controller('UserAccount.controllers.main', [
   '$scope',
   '$window',
@@ -11,7 +13,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.main', [
 
     $scope.redirectToOrigin = function () {
       if ($scope.originUrl) {
-        _.set($window, 'location.href', $scope.originUrl);
+        set($window, 'location.href', $scope.originUrl);
       } else {
         $state.go('app.configuration');
       }

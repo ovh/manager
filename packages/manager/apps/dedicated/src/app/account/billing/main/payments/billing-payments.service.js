@@ -1,3 +1,6 @@
+import clone from 'lodash/clone';
+import map from 'lodash/map';
+
 angular.module('Billing.services').service('BillingPayments', [
   '$http',
   '$q',
@@ -85,7 +88,7 @@ angular.module('Billing.services').service('BillingPayments', [
 
     this.getBillDetails = (id, billId) => this.getBill(id, billId)
       .then(bill => this.getOperationsDetails(id, billId, bill.orderId).then((operations) => {
-        const billdetails = _.clone(bill);
+        const billdetails = clone(bill);
         if (!operations || operations.length === 0) {
           throw new Error('No operation for a bill concerned by a deposit');
         }
@@ -104,7 +107,7 @@ angular.module('Billing.services').service('BillingPayments', [
       .then(response => response.data);
 
     this.getOperationsDetails = (id, billId, orderId) => this.getOperationsIds(id, billId, orderId)
-      .then(operationsIds => $q.all(_.map(
+      .then(operationsIds => $q.all(map(
         operationsIds,
         operationId => this.getOperation(id, billId, operationId),
       )));

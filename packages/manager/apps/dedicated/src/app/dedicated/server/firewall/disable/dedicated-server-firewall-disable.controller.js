@@ -1,3 +1,5 @@
+import set from 'lodash/set';
+
 angular.module('App').controller('ServerFirewallAsaDisableCtrl', ($scope, $stateParams, $translate, Server, ServerFirewallAsa, Alerter) => {
   $scope.model = null;
 
@@ -8,7 +10,7 @@ angular.module('App').controller('ServerFirewallAsaDisableCtrl', ($scope, $state
       },
       (data) => {
         $scope.resetAction();
-        _.set(data, 'type', 'ERROR');
+        set(data, 'type', 'ERROR');
         $scope.setMessage($translate.instant('server_configuration_firewall_asa_disable_step1_loading_error'), data);
       },
     );

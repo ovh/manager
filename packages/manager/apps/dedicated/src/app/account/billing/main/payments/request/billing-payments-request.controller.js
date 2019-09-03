@@ -1,3 +1,9 @@
+import find from 'lodash/find';
+import get from 'lodash/get';
+import indexOf from 'lodash/indexOf';
+import map from 'lodash/map';
+import set from 'lodash/set';
+
 angular.module('Billing').controller('BillingHistoryRequestCtrl', class BillingHistoryRequestCtrl {
   constructor($q, $state, OvhApiMe, BillingBill, Alerter) {
     this.$q = $q;
@@ -55,15 +61,15 @@ angular.module('Billing').controller('BillingHistoryRequestCtrl', class BillingH
           $batch: ',',
           billId: orderBillIds.join(','),
         }).$promise.then((bills) => {
-          this.bills = _.map(bills, (bill) => {
-            _.set(bill, 'value.paid', (_.find(depositRequests, depositRequest => _.indexOf(depositRequest.orderIds, bill.value.orderId) > -1) || {}).creationDate);
+          this.bills = map(bills, (bill) => {
+            set(bill, 'value.paid', (find(depositRequests, depositRequest => indexOf(depositRequest.orderIds, bill.value.orderId) > -1) || {}).creationDate);
             return bill;
           });
         }));
       });
     }).catch((error) => {
       this.Alerter.alertFromSWS(this.$translate.instant('billing_payment_request_load_error'), {
-        message: _.get(error, 'data.message'),
+        message: get(error, 'data.message'),
         type: 'ERROR',
       }, 'billing_payment_request');
     }).finally(() => {

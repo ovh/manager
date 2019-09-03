@@ -1,3 +1,5 @@
+import set from 'lodash/set';
+
 angular.module('App').controller('DeleteSecondaryDnsCtrl', ($scope, $stateParams, $translate, Server) => {
   $scope.secdns = $scope.currentActionData;
   $scope.loadingDelete = false;
@@ -13,7 +15,7 @@ angular.module('App').controller('DeleteSecondaryDnsCtrl', ($scope, $stateParams
       (err) => {
         $scope.loadingDelete = false;
         $scope.resetAction();
-        _.set(err, 'type', 'ERROR');
+        set(err, 'type', 'ERROR');
         $scope.setMessage($translate.instant('server_configuration_delete_secondary_dns_fail', { t0: $scope.secdns.domain }), err);
       },
     );

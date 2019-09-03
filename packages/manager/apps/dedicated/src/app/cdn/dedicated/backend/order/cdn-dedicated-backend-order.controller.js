@@ -1,3 +1,5 @@
+import head from 'lodash/head';
+
 angular.module('App').controller('BackendsAddCtrl', ($scope, $stateParams, $translate, Cdn) => {
   $scope.price = null;
   $scope.choices = {
@@ -39,7 +41,7 @@ angular.module('App').controller('BackendsAddCtrl', ($scope, $stateParams, $tran
       e => e.duration.duration === $scope.choices.duration,
     );
     if (choosenOrder.length > 0) {
-      $scope.choices.order = _.first(choosenOrder);
+      $scope.choices.order = head(choosenOrder);
     }
   };
 

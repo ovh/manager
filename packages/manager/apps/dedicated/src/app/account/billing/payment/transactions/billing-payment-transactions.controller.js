@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 export default class BillingPaymentTransactionsCtrl {
   constructor($q, $translate, Alerter, OvhApiMe) {
     // dependencies injection
@@ -29,7 +31,7 @@ export default class BillingPaymentTransactionsCtrl {
         .map(id => ({ transactionId: id }));
 
       return {
-        data: _.get($config, 'sort.dir') === 1 ? transactionsInPage.reverse() : transactionsInPage,
+        data: get($config, 'sort.dir') === 1 ? transactionsInPage.reverse() : transactionsInPage,
         meta: {
           totalCount: transactions.length,
         },
@@ -37,7 +39,7 @@ export default class BillingPaymentTransactionsCtrl {
     }).catch((error) => {
       this.Alerter.error([
         this.$translate.instant('billing_payment_transactions_init_error'),
-        _.get(error, 'data.message'),
+        get(error, 'data.message'),
       ].join(' '), BillingPaymentTransactionsCtrl.ALERTER_ID);
     });
   }

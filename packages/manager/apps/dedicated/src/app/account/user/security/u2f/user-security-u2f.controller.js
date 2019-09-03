@@ -1,3 +1,6 @@
+import filter from 'lodash/filter';
+import map from 'lodash/map';
+
 angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.u2f', [
   '$scope',
   '$q',
@@ -19,7 +22,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.u2f
          * @return {Promise}
          */
     function fetchU2fAccounts() {
-      return DoubleAuthU2fService.query().then(u2fIds => $q.all(_.map(u2fIds, u2fId => DoubleAuthU2fService.get(u2fId))).then(u2fAccounts => _.filter(u2fAccounts, u2fAccount => u2fAccount.status !== 'needCodeValidation')));
+      return DoubleAuthU2fService.query().then(u2fIds => $q.all(map(u2fIds, u2fId => DoubleAuthU2fService.get(u2fId))).then(u2fAccounts => filter(u2fAccounts, u2fAccount => u2fAccount.status !== 'needCodeValidation')));
     }
 
     /* -----  End of HELPERS  ------ */

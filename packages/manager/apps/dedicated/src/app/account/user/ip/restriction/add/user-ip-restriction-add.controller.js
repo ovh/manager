@@ -1,3 +1,5 @@
+import debounce from 'lodash/debounce';
+
 angular.module('UserAccount').controller('UserAccount.controllers.ipRestrictions.add', [
   '$rootScope',
   '$scope',
@@ -16,7 +18,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.ipRestrictions
 
     $scope.$watch(
       'restriction.ip',
-      _.debounce((target) => {
+      debounce((target) => {
         $scope.$apply(() => {
           $scope.isValid = target != null
             && (Validator.isValidIpv4(target)

@@ -1,4 +1,6 @@
-import _ from 'lodash';
+import get from 'lodash/get';
+import isArray from 'lodash/isArray';
+import isEmpty from 'lodash/isEmpty';
 
 import { FETCH_PRICE_MAX_TRIES, PRODUCT_TYPES } from './ip-ip-agoraOrder.constant';
 
@@ -16,11 +18,11 @@ angular
     }
 
     handleErrorOrServices({ errors, results }) {
-      if (_.isArray(errors) && !_.isEmpty(errors)) {
+      if (isArray(errors) && !isEmpty(errors)) {
         return this.$q.reject(errors);
       }
 
-      return _.get(results, '[0].services', []);
+      return get(results, '[0].services', []);
     }
 
     fetchProducts(product) {

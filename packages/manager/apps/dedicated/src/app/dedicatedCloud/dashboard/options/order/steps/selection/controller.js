@@ -1,4 +1,5 @@
-import _ from 'lodash';
+import find from 'lodash/find';
+import sortBy from 'lodash/sortBy';
 
 import { OPTION_TYPES } from '../../../servicePack/option/option.constants';
 
@@ -26,15 +27,15 @@ export default class {
   }
 
   $onInit() {
-    const currentServicePack = _.find(
+    const currentServicePack = find(
       this.servicePacksWithPrices,
       { name: this.currentService.servicePackName },
     );
 
-    this.orderableServicePacks = _.sortBy(
+    this.orderableServicePacks = sortBy(
       this.orderableServicePacks
         .map((servicePack) => {
-          const matchingServicePack = _.find(this.servicePacksWithPrices, {
+          const matchingServicePack = find(this.servicePacksWithPrices, {
             name: servicePack.name,
           });
           const priceAsNumber = matchingServicePack.price.value - currentServicePack.price.value;
@@ -63,7 +64,7 @@ export default class {
   }
 
   selectServicePackToOrder() {
-    this.servicePackToOrder = _.find(
+    this.servicePackToOrder = find(
       this.orderableServicePacks,
       { name: this.nameOfServicePackToOrder },
     );

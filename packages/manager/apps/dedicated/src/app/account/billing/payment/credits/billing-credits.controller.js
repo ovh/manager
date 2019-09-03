@@ -1,3 +1,9 @@
+import get from 'lodash/get';
+import head from 'lodash/head';
+import map from 'lodash/map';
+import reduce from 'lodash/reduce';
+import set from 'lodash/set';
+
 angular.module('Billing.controllers').controller('Billing.controllers.Credits', class BillingCreditsCtrl {
   constructor(Alerter, $translate, BillingCredits, BillingUser) {
     this.Alerter = Alerter;
@@ -39,19 +45,19 @@ angular.module('Billing.controllers').controller('Billing.controllers.Credits', 
     });
 
     // calculate amount of expirate amount
-    const totalAmount = _.reduce(_.map(copiedSummary, 'amount.value'), (total, amountValue) => total + amountValue);
+    const totalAmount = reduce(map(copiedSummary, 'amount.value'), (total, amountValue) => total + amountValue);
 
     // use the text of the first item amout to build total amount object
     const totalAmountObject = {
-      currencyCode: _.get(_.first(copiedSummary), 'amount.currencyCode'),
+      currencyCode: get(head(copiedSummary), 'amount.currencyCode'),
       value: totalAmount,
-      text: _.get(_.first(copiedSummary), 'amount.text').replace(/\d+(?:[.,]\d+)?/, `${totalAmount.toFixed(2)}`),
+      text: get(head(copiedSummary), 'amount.text').replace(/\d+(?:[.,]\d+)?/, `${totalAmount.toFixed(2)}`),
     };
 
     return {
-      expirationDate: _.get(_.first(copiedSummary), 'expirationDate'),
+      expirationDate: get(head(copiedSummary), 'expirationDate'),
       amount: totalAmountObject,
-      expireSoon: moment(_.get(_.first(copiedSummary), 'expirationDate')).diff(moment(), 'days') <= 7,
+      expireSoon: moment(get(head(copiedSummary), 'expirationDate')).diff(moment(), 'days') <= 7,
     };
   }
 
@@ -89,7 +95,7 @@ angular.module('Billing.controllers').controller('Billing.controllers.Credits', 
   }
 
   pushBalanceDetails(balanceDetails) {
-    _.set(balanceDetails, 'expiringDetails', balanceDetails.expiring && balanceDetails.expiring.length ? this.constructor.getExpiringDetails(balanceDetails.expiring) : null);
+    set(balanceDetails, 'expiringDetails', balanceDetails.expiring && balanceDetails.expiring.length ? this.constructor.getExpiringDetails(balanceDetails.expiring) : null);
     this.paginatedBalances.push(balanceDetails);
   }
 
@@ -115,7 +121,7 @@ angular.module('Billing.controllers').controller('Billing.controllers.Credits', 
         this.balances = balances;
       })
       .catch((error) => {
-        this.Alerter.set('alert-danger', [this.$translate.instant('billing_credit_balance_movements_load_error'), _.get(error, 'message')].join(' '));
+        this.Alerter.set('alert-danger', [this.$translate.instant('billing_credit_balance_movements_load_error'), get(error, 'message')].join(' '));
       })
       .finally(() => {
         this.loading.init = false;

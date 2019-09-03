@@ -1,3 +1,6 @@
+import has from 'lodash/has';
+import isEmpty from 'lodash/isEmpty';
+
 angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.totp.add', [
   '$rootScope',
   '$scope',
@@ -46,7 +49,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.tot
      */
     $scope.removeGeneratedTotp = () => {
       let promise = $q.when(true);
-      if (_.has($scope.totp.qrCode, 'id')) {
+      if (has($scope.totp.qrCode, 'id')) {
         promise = DoubleAuthTotpService.delete($scope.totp.qrCode.id);
       }
       return promise.catch(err => Alerter.alertFromSWS($translate.instant('user_security_double_auth_totp_enable_error'), err.data, 'doubleAuthAlertTotp'));
@@ -60,7 +63,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.tot
       $scope.totp.isAdding = true;
       return DoubleAuthTotpService.validate($scope.totp.qrCode.id, $scope.totp.code)
         .then(() => {
-          if (!_.isEmpty($scope.totp.description)) {
+          if (!isEmpty($scope.totp.description)) {
             DoubleAuthTotpService.edit($scope.totp.qrCode.id, $scope.totp.description);
           }
         })

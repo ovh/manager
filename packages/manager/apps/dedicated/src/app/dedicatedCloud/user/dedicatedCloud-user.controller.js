@@ -1,3 +1,5 @@
+import set from 'lodash/set';
+
 angular.module('App').controller('DedicatedCloudUserCtrl', function ($q, $scope, $state, $stateParams, $timeout, $translate, DedicatedCloud, ouiDatagridService) {
   this.loading = false;
   this.usersEntrySearchSelected = null;
@@ -52,8 +54,8 @@ angular.module('App').controller('DedicatedCloudUserCtrl', function ($q, $scope,
   this.loadUser = ({ id }) => $q.all({
     user: DedicatedCloud.getUserDetail($stateParams.productId, id),
   }).then(({ user }) => {
-    _.set(user, 'state', user.state.toUpperCase());
-    _.set(user, 'activationState', user.activationState.toUpperCase());
+    set(user, 'state', user.state.toUpperCase());
+    set(user, 'activationState', user.activationState.toUpperCase());
     return user;
   });
 

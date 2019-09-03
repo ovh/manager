@@ -1,3 +1,6 @@
+import get from 'lodash/get';
+import isArray from 'lodash/isArray';
+
 angular.module('Module.license').controller('LicenseCtrl', [
   '$scope',
   '$state',
@@ -55,7 +58,7 @@ angular.module('Module.license').controller('LicenseCtrl', [
     $scope.loadDatagridLicences = ({ offset, pageSize }) => $scope
       .loadLicenses(pageSize, offset - 1)
       .then(licenses => ({
-        data: _.get(licenses, 'list.results'),
+        data: get(licenses, 'list.results'),
         meta: {
           totalCount: licenses.count,
         },
@@ -76,7 +79,7 @@ angular.module('Module.license').controller('LicenseCtrl', [
           offset,
         },
       }).then((licenses) => {
-        if (_.chain(licenses).get('availableTypes').isArray().value()) {
+        if (isArray(get(licenses, 'availableTypes'))) {
           licenses.availableTypes.push('ALL_TYPE');
         }
         angular.forEach(licenses.list.results, (value, idx) => {

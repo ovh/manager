@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular.module('App')
   .controller('TaskCtrl', class DedicatedServerTaskController {
     constructor($scope, $stateParams, Alerter, Server, TASK_STATUS) {
@@ -11,7 +13,7 @@ angular.module('App')
     loadDatagridTasks({ offset, pageSize }) {
       return this.Server.getTasks(this.$stateParams.productId, pageSize, offset - 1)
         .then(result => ({
-          data: _.get(result, 'list.results'),
+          data: get(result, 'list.results'),
           meta: {
             totalCount: result.count,
           },

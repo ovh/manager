@@ -1,3 +1,4 @@
+import get from 'lodash/get';
 
 
 angular.module('UserAccount').controller('UserAccountUsersAddCtrl', class UserAccountUsersAddCtrl {
@@ -31,7 +32,7 @@ angular.module('UserAccount').controller('UserAccountUsersAddCtrl', class UserAc
         this.alerter.success(this.$translate.instant('user_users_add_success_message', { login: this.user.login }), 'userUsers');
       })
       .catch((err) => {
-        this.alerter.error(`${this.$translate.instant('user_users_add_error_message')} ${_.get(err, 'message', err)}`, 'userUsers');
+        this.alerter.error(`${this.$translate.instant('user_users_add_error_message')} ${get(err, 'message', err)}`, 'userUsers');
       })
       .finally(() => {
         this.loader = false;

@@ -1,4 +1,5 @@
-import _ from 'lodash';
+import filter from 'lodash/filter';
+import remove from 'lodash/remove';
 
 export default class BillingPaymentMethodSection {
   /* @ngInject */
@@ -13,7 +14,7 @@ export default class BillingPaymentMethodSection {
   }
 
   removePaymentMethod({ paymentMethodId }) {
-    _.remove(this.sharedPaymentMethods, {
+    remove(this.sharedPaymentMethods, {
       paymentMethodId,
     });
 
@@ -33,7 +34,7 @@ export default class BillingPaymentMethodSection {
         transform: true,
       })
       .then((paymentMethodsParams) => {
-        this.sharedPaymentMethods = _.filter(paymentMethodsParams, ({ paymentType, status }) => {
+        this.sharedPaymentMethods = filter(paymentMethodsParams, ({ paymentType, status }) => {
           if (paymentType.value !== 'BANK_ACCOUNT') {
             return true;
           }

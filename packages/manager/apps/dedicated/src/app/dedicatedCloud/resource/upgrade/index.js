@@ -1,3 +1,5 @@
+import clone from 'lodash/clone';
+
 import {
   controller,
   controllerName,
@@ -15,8 +17,8 @@ angular
   ])
   .controller(controllerName, controller)
   .config(/* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('app.dedicatedClouds.datacenter.datastores.resourceUpgrade', _.clone(state));
-    $stateProvider.state('app.dedicatedClouds.datacenter.hosts.resourceUpgrade', _.clone(state));
+    $stateProvider.state('app.dedicatedClouds.datacenter.datastores.resourceUpgrade', clone(state));
+    $stateProvider.state('app.dedicatedClouds.datacenter.hosts.resourceUpgrade', clone(state));
   })
   .run(/* @ngTranslationsInject:json ./translations */);
 

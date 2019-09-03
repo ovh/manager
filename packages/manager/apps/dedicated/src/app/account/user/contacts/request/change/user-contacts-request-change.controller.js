@@ -1,3 +1,5 @@
+import set from 'lodash/set';
+
 angular.module('UserAccount').controller('UserAccount.controllers.contacts.request', [
   '$scope',
   '$stateParams',
@@ -79,8 +81,8 @@ angular.module('UserAccount').controller('UserAccount.controllers.contacts.reque
             if ($scope.action !== 'RESEND') {
               Contacts.addPendingChange({ key: 'Contacts::PendingChangeSent', data: [$scope.user.nichandle, $scope.task.id].join('_') });
             }
-            _.set($stateParams, 'taskId', null);
-            _.set($stateParams, 'token', null);
+            set($stateParams, 'taskId', null);
+            set($stateParams, 'token', null);
             Alerter.success($translate.instant(messages[$scope.action].success), 'useraccount.alerts.dashboardContacts');
           },
           (err) => {

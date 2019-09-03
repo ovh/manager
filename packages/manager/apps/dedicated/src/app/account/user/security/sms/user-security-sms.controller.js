@@ -1,3 +1,6 @@
+import filter from 'lodash/filter';
+import map from 'lodash/map';
+
 angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.sms', [
   '$scope',
   '$q',
@@ -19,7 +22,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.sms
          * @return {Promise}
          */
     function fetchSmsAccounts() {
-      return DoubleAuthSmsService.query().then(smsIds => $q.all(_.map(smsIds, smsId => DoubleAuthSmsService.get(smsId))).then(smsAccounts => _.filter(smsAccounts, smsAccount => smsAccount.status !== 'needCodeValidation')));
+      return DoubleAuthSmsService.query().then(smsIds => $q.all(map(smsIds, smsId => DoubleAuthSmsService.get(smsId))).then(smsAccounts => filter(smsAccounts, smsAccount => smsAccount.status !== 'needCodeValidation')));
     }
 
     /* -----  End of HELPERS  ------ */

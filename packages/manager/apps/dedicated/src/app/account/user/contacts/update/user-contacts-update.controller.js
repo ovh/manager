@@ -1,3 +1,9 @@
+import camelCase from 'lodash/camelCase';
+import debounce from 'lodash/debounce';
+import find from 'lodash/find';
+import findIndex from 'lodash/findIndex';
+import isPlainObject from 'lodash/isPlainObject';
+
 angular.module('UserAccount').controller('UserAccount.controllers.update', [
   'UserAccount.services.Contacts',
   '$scope',
@@ -37,8 +43,8 @@ angular.module('UserAccount').controller('UserAccount.controllers.update', [
         : [$scope.fieldsInError];
       $scope.fieldsInError.forEach((field) => {
         try {
-          $scope.form.accountForm[_.camelCase(field)].$setValidity('badInfos', false);
-          $scope.form.accountForm[_.camelCase(field)].$setDirty(true);
+          $scope.form.accountForm[camelCase(field)].$setValidity('badInfos', false);
+          $scope.form.accountForm[camelCase(field)].$setDirty(true);
         } catch (err) {
           console.log('field : ', field);
         }
@@ -53,7 +59,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.update', [
         && $scope.form.accountForm[key].$error
         && $scope.form.accountForm[key].$error.badInfos) {
         try {
-          $scope.form.accountForm[_.camelCase(key)].$setValidity('badInfos', true);
+          $scope.form.accountForm[camelCase(key)].$setValidity('badInfos', true);
         } catch (err) {
           console.log('field : ', key);
         }
@@ -62,7 +68,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.update', [
 
     function updateValidity() {
       angular.forEach($scope.ownerModel, (value, key) => {
-        if (_.isPlainObject(value)) {
+        if (isPlainObject(value)) {
           angular.forEach(value, (childValue, childKey) => {
             updateKeyValidity(childKey, childValue);
           });
@@ -93,7 +99,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.update', [
     };
 
     $scope.getLanguageName = (code) => {
-      const idx = _.findIndex($scope.languages, item => item.value === code);
+      const idx = findIndex($scope.languages, item => item.value === code);
 
       if (idx > -1) {
         return $scope.languages[idx].name;
@@ -103,14 +109,14 @@ angular.module('UserAccount').controller('UserAccount.controllers.update', [
     };
 
     $scope.isMandatory = (field) => {
-      if ($scope.fields && _.find($scope.fields, { fieldName: field })) {
-        return _.find($scope.fields, { fieldName: field }).mandatory;
+      if ($scope.fields && find($scope.fields, { fieldName: field })) {
+        return find($scope.fields, { fieldName: field }).mandatory;
       }
       return false;
     };
     $scope.isReadonly = (field) => {
-      if ($scope.fields && _.find($scope.fields, { fieldName: field })) {
-        return _.find($scope.fields, { fieldName: field }).readOnly;
+      if ($scope.fields && find($scope.fields, { fieldName: field })) {
+        return find($scope.fields, { fieldName: field }).readOnly;
       }
       return false;
     };
@@ -141,7 +147,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.update', [
           }),
           $scope.currentDomain
             ? Contacts.getOrderServiceOption($scope.currentDomain).then((opts) => {
-              $scope.hasTrade = _.find(opts, opt => opt.family === 'trade');
+              $scope.hasTrade = find(opts, opt => opt.family === 'trade');
             })
             : $q.when(true),
         ])
@@ -204,7 +210,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.update', [
 
     $scope.$watch(
       'ownerModel',
-      _.debounce((newValue) => {
+      debounce((newValue) => {
         $scope.updateOwnerName = newValue.firstName !== $scope.owner.firstName
           || newValue.lastName !== $scope.owner.lastName;
 

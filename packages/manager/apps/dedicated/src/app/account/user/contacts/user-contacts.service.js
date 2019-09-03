@@ -1,3 +1,6 @@
+import set from 'lodash/set';
+import without from 'lodash/without';
+
 angular.module('UserAccount').service('UserAccount.services.Contacts', function (OvhHttp, constants, coreConfig, Poller, $rootScope) {
   const self = this;
   const apiChangeContact = '/me/task/contactChange';
@@ -156,7 +159,7 @@ angular.module('UserAccount').service('UserAccount.services.Contacts', function 
     try {
       let pendingChanges = angular.fromJson(window.localStorage.getItem(opts.key) || []);
       if (Array.isArray(pendingChanges) && pendingChanges.indexOf(opts.data) !== -1) {
-        pendingChanges = _.without(pendingChanges, opts.data);
+        pendingChanges = without(pendingChanges, opts.data);
         if (pendingChanges.length > 0) {
           window.localStorage.setItem(opts.key, angular.toJson(pendingChanges));
         } else {
@@ -176,7 +179,7 @@ angular.module('UserAccount').service('UserAccount.services.Contacts', function 
     }
 
     if (!Array.isArray(opts.successSates)) {
-      _.set(opts, 'successSates', [opts.successSates]);
+      set(opts, 'successSates', [opts.successSates]);
     }
 
     $rootScope.$broadcast(`${opts.namespace}.start`, opts.id);

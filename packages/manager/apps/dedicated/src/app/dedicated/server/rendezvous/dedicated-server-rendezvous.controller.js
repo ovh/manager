@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular.module('App').controller('DedicatedServerRendezVousCtrl', class DedicatedServerRendezVousCtrl {
   constructor($q, $state, $stateParams, ovhUserPref) {
     this.$q = $q;
@@ -15,7 +17,7 @@ angular.module('App').controller('DedicatedServerRendezVousCtrl', class Dedicate
         this.serversRendezVousToStopBother = data;
       })
       .catch((err) => {
-        if (_.get(err, 'status') === 404) {
+        if (get(err, 'status') === 404) {
           this.serversRendezVousToStopBother = [];
         }
       });

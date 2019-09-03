@@ -1,3 +1,11 @@
+import get from 'lodash/get';
+import has from 'lodash/has';
+import head from 'lodash/head';
+import isArray from 'lodash/isArray';
+import isEmpty from 'lodash/isEmpty';
+import map from 'lodash/map';
+import startsWith from 'lodash/startsWith';
+
 angular
   .module('Module.ip.controllers')
   .controller('IpLegacyOrderCtrl', class {
@@ -66,7 +74,7 @@ angular
     }
 
     isOrderingFromDrp() {
-      return _.startsWith(this.$state.current.name, 'app.dedicatedClouds.datacenter.drp');
+      return startsWith(this.$state.current.name, 'app.dedicatedClouds.datacenter.drp');
     }
 
     /*= =============================
@@ -115,12 +123,12 @@ angular
             return null;
           }
 
-          if (_.has(infos, 'serviceIsAllowed')) {
+          if (has(infos, 'serviceIsAllowed')) {
             return null;
           }
 
-          const hasIPv4 = _.isArray(infos.ipv4) && !_.isEmpty(infos.ipv4);
-          const hasIPv6 = _.isArray(infos.ipv6) && !_.isEmpty(infos.ipv6);
+          const hasIPv4 = isArray(infos.ipv4) && !isEmpty(infos.ipv4);
+          const hasIPv6 = isArray(infos.ipv6) && !isEmpty(infos.ipv6);
 
           if (this.$scope.model.service.serviceType === 'DEDICATED' && !(hasIPv4 || hasIPv6)) {
             this.$scope.orderableIpError = 'OPTION_NOT_ALLOWED';
@@ -218,7 +226,7 @@ angular
           this.$scope.loading.form = false;
         })
         .catch((data) => {
-          this.Alerter.alertFromSWS(this.$translate.instant('ip_order_loading_error'), _.get(data, 'data', data));
+          this.Alerter.alertFromSWS(this.$translate.instant('ip_order_loading_error'), get(data, 'data', data));
           this.$scope.loading.form = false;
         });
     }
@@ -305,7 +313,7 @@ angular
         .all(queue)
         .then(() => {
           if (durations && durations.length === 1) {
-            this.$scope.model.duration = _.first(durations);
+            this.$scope.model.duration = head(durations);
           }
 
           this.$scope.loading.prices = false;
@@ -327,7 +335,7 @@ angular
       this.$scope.loading.durations = true;
 
       if (this.$scope.orderableIp.isCanadianServer && this.$scope.model.params.blockSize > 1) {
-        this.$scope.model.params.country = _.first(this.$scope.orderableIp.countries).code || 'ca'; // Forced :'( ...
+        this.$scope.model.params.country = head(this.$scope.orderableIp.countries).code || 'ca'; // Forced :'( ...
       }
 
       if (this.$scope.model.service.serviceType === 'PCC' && !this.$scope.model.service.usesLegacyOrder) {
@@ -335,7 +343,7 @@ angular
           this.IpAgoraOrder
             .fetchPrices(this.$scope.model.service.serviceName, this.$scope.model.params.size)
             .then((prices) => {
-              this.$scope.durations.available = _.map(prices, 'duration');
+              this.$scope.durations.available = map(prices, 'duration');
               this.$scope.durations.details = prices.reduce((accumulator, currentValue) => ({
                 ...accumulator,
                 [currentValue.duration]: {

@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular
   .module('App')
   .controller('DedicatedCloudSubDatacenterVeeamBackupDisableCtrl', class {
@@ -54,7 +56,7 @@ angular
           this.Alerter.error(
             `${this.$translate.instant('dedicatedCloud_tab_veeam_disable_fail', {
               t0: this.datacenter.name,
-            })}: ${_.get(error, 'message', '')}`,
+            })}: ${get(error, 'message', '')}`,
             'dedicatedCloudDatacenterAlert',
           );
         })

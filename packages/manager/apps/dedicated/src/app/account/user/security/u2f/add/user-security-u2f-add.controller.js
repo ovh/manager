@@ -1,3 +1,6 @@
+import get from 'lodash/get';
+import isEmpty from 'lodash/isEmpty';
+
 angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.u2f.add', [
   '$rootScope',
   '$scope',
@@ -6,7 +9,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.u2f
   'Alerter',
   function ($rootScope, $scope, $translate, DoubleAuthU2fService, Alerter) {
     $scope.u2f = {
-      u2fAccount: _.get($scope, 'currentActionData', {}),
+      u2fAccount: get($scope, 'currentActionData', {}),
       registerChallenge: null,
       description: null,
       isAdding: false,
@@ -21,7 +24,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.u2f
      * Check if step is valid.
      * @return {Boolean}
      */
-    $scope.doesStepIsValid = () => !_.isEmpty($scope.u2f.registerChallenge)
+    $scope.doesStepIsValid = () => !isEmpty($scope.u2f.registerChallenge)
       && this.userAccountAddU2fDescriptionForm
       && this.userAccountAddU2fDescriptionForm.$valid;
 
@@ -66,7 +69,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.u2f
       return DoubleAuthU2fService.post()
         .then((registerChallenge) => {
           $scope.u2f.registerChallenge = registerChallenge;
-          $scope.u2f.description = _.get(registerChallenge, 'key.description', '');
+          $scope.u2f.description = get(registerChallenge, 'key.description', '');
         })
         .catch((err) => {
           let key = null;

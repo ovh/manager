@@ -1,3 +1,6 @@
+import find from 'lodash/find';
+import set from 'lodash/set';
+
 angular.module('UserAccount').service('UserAccount.services.agreements', [
   '$http',
   '$q',
@@ -17,8 +20,8 @@ angular.module('UserAccount').service('UserAccount.services.agreements', [
     function formatList(response) {
       if (response.data.list && response.data.list.results && response.data.list.results.length) {
         response.data.list.results.forEach((agreement) => {
-          if (_.find(GDPR_AGREEMENTS_INFOS, { agreementId: agreement.contractId })) {
-            _.set(agreement, 'name', $translate.instant('user_agreement_GDPR_title'));
+          if (find(GDPR_AGREEMENTS_INFOS, { agreementId: agreement.contractId })) {
+            set(agreement, 'name', $translate.instant('user_agreement_GDPR_title'));
           }
         });
       }
@@ -43,7 +46,7 @@ angular.module('UserAccount').service('UserAccount.services.agreements', [
       return $http.get(`${proxyPath}/agreements/${agreementId}`)
         .then((response) => {
           if (response.data && response.data.contractId) {
-            const gdprAgreement = _.find(
+            const gdprAgreement = find(
               GDPR_AGREEMENTS_INFOS,
               {
                 agreementId: response.data.contractId,

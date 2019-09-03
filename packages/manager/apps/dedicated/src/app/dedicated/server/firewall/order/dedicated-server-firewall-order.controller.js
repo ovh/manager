@@ -1,3 +1,5 @@
+import set from 'lodash/set';
+
 angular.module('App').controller('ServerFirewallAsaOrderCtrl', ($scope, $stateParams, $translate, Server, ServerFirewallAsa) => {
   $scope.model = {
     wanted: null,
@@ -16,7 +18,7 @@ angular.module('App').controller('ServerFirewallAsaOrderCtrl', ($scope, $statePa
         },
         (data) => {
           $scope.resetAction();
-          _.set(data, 'type', 'ERROR');
+          set(data, 'type', 'ERROR');
           $scope.setMessage($translate.instant('server_configuration_firewall_asa_order_step1_loading_error'), data);
         },
       );
@@ -26,7 +28,7 @@ angular.module('App').controller('ServerFirewallAsaOrderCtrl', ($scope, $statePa
         },
         (err) => {
           $scope.resetAction();
-          _.set(err, 'type', 'ERROR');
+          set(err, 'type', 'ERROR');
           $scope.setMessage($translate.instant('server_configuration_firewall_asa_order_step1_loading_error'), err);
         },
       );
@@ -51,7 +53,7 @@ angular.module('App').controller('ServerFirewallAsaOrderCtrl', ($scope, $statePa
       })
       .catch((data) => {
         $scope.resetAction();
-        _.set(data, 'type', 'ERROR');
+        set(data, 'type', 'ERROR');
         $scope.setMessage($translate.instant('server_configuration_firewall_asa_order_fail'), data);
       });
   };

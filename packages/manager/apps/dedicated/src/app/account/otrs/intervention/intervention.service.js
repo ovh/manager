@@ -1,3 +1,8 @@
+import assign from 'lodash/assign';
+import has from 'lodash/has';
+import includes from 'lodash/includes';
+import some from 'lodash/some';
+
 angular.module('Module.otrs.services').service('Module.otrs.services.Intervention', function ($q, OvhHttp, User, constants) {
   const self = this;
 
@@ -6,7 +11,7 @@ angular.module('Module.otrs.services').service('Module.otrs.services.Interventio
   };
 
   self.sendDiskReplacement = function (serviceName, disk) {
-    const diskToSend = _.assign({}, disk);
+    const diskToSend = assign({}, disk);
     if (!diskToSend.comment) {
       diskToSend.comment = 'No message';
     }
@@ -39,11 +44,11 @@ angular.module('Module.otrs.services').service('Module.otrs.services.Interventio
   }
 
   function hasMegaRaidCard(hardwareInfo) {
-    return _.some(hardwareInfo.diskGroups, { raidController: 'MegaRaid' });
+    return some(hardwareInfo.diskGroups, { raidController: 'MegaRaid' });
   }
 
   function canHotSwap(serverInfo, hardwareInfo) {
-    return serverInfo.commercialRange.toUpperCase() === 'HG' && _.includes(['2U', '4U'], hardwareInfo.formFactor.toUpperCase());
+    return serverInfo.commercialRange.toUpperCase() === 'HG' && includes(['2U', '4U'], hardwareInfo.formFactor.toUpperCase());
   }
 
   function slotInfo(serverInfo, hardwareInfo) {
@@ -70,7 +75,7 @@ angular.module('Module.otrs.services').service('Module.otrs.services.Interventio
 
   self.getGuidesForDiskIntervention = function () {
     return User.getUser().then((user) => {
-      if (user && _.has(constants.urls, [user.ovhSubsidiary, 'guides'])) {
+      if (user && has(constants.urls, [user.ovhSubsidiary, 'guides'])) {
         return {
           diskSerial: constants.urls[user.ovhSubsidiary].guides.diskSerial
             || constants.urls.FR.guides.diskSerial,

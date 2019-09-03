@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular.module('UserAccount').service('UserAccount.services.doubleAuth.u2f', [
   '$q',
   '$window',
@@ -89,7 +91,7 @@ angular.module('UserAccount').service('UserAccount.services.doubleAuth.u2f', [
     this.post = () => OvhHttp.post('/me/accessRestriction/u2f', {
       rootPath: 'apiv6',
     }).then(registerChallenge => register(registerChallenge).then((response) => {
-      const u2fId = _.get(registerChallenge, 'id');
+      const u2fId = get(registerChallenge, 'id');
       return this.validate(u2fId, response.clientData, response.registrationData)
         .then(() => this.get(u2fId))
         .then(key => ({

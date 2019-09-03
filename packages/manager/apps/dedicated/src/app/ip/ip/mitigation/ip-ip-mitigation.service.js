@@ -1,3 +1,5 @@
+import snakeCase from 'lodash/snakeCase';
+
 angular.module('Module.ip.services').service('IpMitigation', [
   '$http',
   '$q',
@@ -41,7 +43,7 @@ angular.module('Module.ip.services').service('IpMitigation', [
     };
 
     this.getMitigationStatisticsScale = function () {
-      return self.getIpModels().then(ipModels => ipModels['ip.MitigationStatsScaleEnum'].enum.map(scale => `_${_.snakeCase(scale).toUpperCase()}`));
+      return self.getIpModels().then(ipModels => ipModels['ip.MitigationStatsScaleEnum'].enum.map(scale => `_${snakeCase(scale).toUpperCase()}`));
     };
 
     this.getIpModels = function () {
@@ -63,7 +65,7 @@ angular.module('Module.ip.services').service('IpMitigation', [
           .get([swsAapiIpPath, window.encodeURIComponent(ipBlock), 'mitigation', ip, 'statistics'].join('/'), {
             params: {
               from,
-              scale: `_${_.snakeCase(scale).toUpperCase()}`,
+              scale: `_${snakeCase(scale).toUpperCase()}`,
               pointsCount: count,
             },
             serviceType: 'aapi',

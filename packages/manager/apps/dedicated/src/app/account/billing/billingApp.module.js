@@ -1,3 +1,5 @@
+import set from 'lodash/set';
+
 import ovhManagerCore from '@ovh-ux/manager-core';
 import config from '../../config/config';
 
@@ -106,5 +108,5 @@ angular
     },
   ])
   .run(($rootScope, coreConfig) => {
-    _.set($rootScope, 'worldPart', coreConfig.getRegion());
+    set($rootScope, 'worldPart', coreConfig.getRegion());
   });

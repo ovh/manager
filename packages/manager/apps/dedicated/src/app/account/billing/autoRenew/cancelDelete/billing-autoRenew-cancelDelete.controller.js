@@ -1,3 +1,6 @@
+import pick from 'lodash/pick';
+import set from 'lodash/set';
+
 /**
  * @ngdoc controller
  * @name Billing.controllers.AutoRenew.cancelDelete
@@ -9,8 +12,8 @@ angular.module('Billing.controllers').controller('Billing.controllers.AutoRenew.
   $scope.deleteRenew = function () {
     const result = [];
     angular.forEach($scope.selectedServices, (service) => {
-      _.set(service, 'renew.deleteAtExpiration', false);
-      result.push(_.pick(service, ['serviceId', 'serviceType', 'renew']));
+      set(service, 'renew.deleteAtExpiration', false);
+      result.push(pick(service, ['serviceId', 'serviceType', 'renew']));
     });
     return BillingAutoRenew.updateServices(result)
       .then(() => {

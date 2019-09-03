@@ -1,3 +1,5 @@
+import set from 'lodash/set';
+
 angular.module('Billing.services').service('BillingAutoRenew', [
   '$q',
   'OvhApiEmailExchange',
@@ -107,7 +109,7 @@ angular.module('Billing.services').service('BillingAutoRenew', [
       if (result.state === 'OK') {
         return result;
       }
-      _.set(result, 'state', 'ERROR');
+      set(result, 'state', 'ERROR');
       return $q.reject(result);
     });
 

@@ -1,3 +1,7 @@
+import get from 'lodash/get';
+import has from 'lodash/has';
+import last from 'lodash/last';
+
 angular.module('UserAccount').config(($stateProvider, $urlRouterProvider) => {
   $stateProvider.state('app.account.useraccount.contacts.requests', {
     url: '/requests?taskId&token',
@@ -10,15 +14,15 @@ angular.module('UserAccount').config(($stateProvider, $urlRouterProvider) => {
   // like #/useraccount/contacts/1124580?tab=REQUESTS&token=myToken
   // make a redirect to the new url of ui route
   $urlRouterProvider.when(/^\/useraccount\/contacts\/[0-9]+$/, ($location) => {
-    const hasToken = _.has($location.search(), 'token');
-    const requestTabAsked = _.get($location.search(), 'tab') === 'REQUESTS';
+    const hasToken = has($location.search(), 'token');
+    const requestTabAsked = get($location.search(), 'tab') === 'REQUESTS';
 
     if (!hasToken || !requestTabAsked) {
       return false;
     }
 
-    const taskId = _.last($location.path().split('/'));
-    const token = _.get($location.search(), 'token');
+    const taskId = last($location.path().split('/'));
+    const token = get($location.search(), 'token');
 
     return `/useraccount/contacts/requests?taskId=${taskId}&token=${token}`;
   });

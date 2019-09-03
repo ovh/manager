@@ -1,3 +1,7 @@
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import head from 'lodash/head';
+
 angular.module('Module.license').controller('LicenseUpgradeCtrl', ($scope, $translate, License, $q, Alerter, $filter, $stateParams) => {
   $scope.alerts = {
     upgrade: 'license.alerts.upgrade',
@@ -81,7 +85,7 @@ angular.module('Module.license').controller('LicenseUpgradeCtrl', ($scope, $tran
 
     $q.all(queue).then(() => {
       if (durations && durations.length === 1) {
-        $scope.selected.duration = _.first(durations);
+        $scope.selected.duration = head(durations);
       }
 
       $scope.loaders.prices = false;
@@ -95,7 +99,7 @@ angular.module('Module.license').controller('LicenseUpgradeCtrl', ($scope, $tran
 
       if ($scope.types[$scope.license.type]) {
         if ($scope.types[$scope.license.type].options.length > 0) {
-          $scope.selected.version = _.find(
+          $scope.selected.version = find(
             $scope.types[$scope.license.type].options[0].options,
             elem => $scope.license.version === elem.value,
           );
@@ -183,7 +187,7 @@ angular.module('Module.license').controller('LicenseUpgradeCtrl', ($scope, $tran
   };
 
   $scope.getOptionVersions = function () {
-    return _.filter(
+    return filter(
       $scope.types[$scope.license.type].options[0].options,
       version => $scope.license.version.value !== version.value,
     );

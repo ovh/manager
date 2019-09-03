@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular.module('Module.license').controller('LicenseDeleteCtrl', ($scope, $translate, License, Alerter) => {
   $scope.model = {
     license: $scope.currentActionData.license,
@@ -16,7 +18,7 @@ angular.module('Module.license').controller('LicenseDeleteCtrl', ($scope, $trans
             Alerter.success($translate.instant('license_delete_success'));
           },
           (err) => {
-            if (_.get(err, 'status') === 460) {
+            if (get(err, 'status') === 460) {
               return Alerter.alertFromSWS($translate.instant('license_delete_already_terminating'));
             }
             return Alerter.alertFromSWS($translate.instant('license_delete_fail'), err.data.message);

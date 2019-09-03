@@ -1,3 +1,5 @@
+import set from 'lodash/set';
+
 angular.module('App').controller('KvmOrderCtrl', ($scope, $rootScope, $stateParams, $translate, Server, Alerter) => {
   $scope.user = $scope.currentActionData;
   $scope.order = {};
@@ -18,7 +20,7 @@ angular.module('App').controller('KvmOrderCtrl', ($scope, $rootScope, $statePara
           Server.getKvmOrderDetails($stateParams.productId, durations).then(
             (orderDetails) => {
               $scope.order.details = orderDetails.map((detail, i) => {
-                _.set(detail, 'duration', durations[i]);
+                set(detail, 'duration', durations[i]);
                 return detail;
               });
             },

@@ -1,4 +1,6 @@
-import _ from 'lodash';
+import find from 'lodash/find';
+import flatten from 'lodash/flatten';
+import get from 'lodash/get';
 
 import config from '../../../../../config/config';
 import { OPTIONS } from './option.constants';
@@ -25,7 +27,7 @@ export const OvhManagerPccServicePackOptionService = class OvhManagerPccServiceP
       )
       .then(optionNames => _
         .uniq(
-          _.flatten(optionNames),
+          flatten(optionNames),
         )
         .sort());
   }
@@ -47,13 +49,13 @@ export const OvhManagerPccServicePackOptionService = class OvhManagerPccServiceP
   }
 
   static getType(optionName) {
-    return _.find(
+    return find(
       OPTIONS, { name: optionName },
     ).type;
   }
 
   static getDiscoverURL(optionName, subsidiary) {
-    return _.get(config.constants.URLS, subsidiary, 'FR').presentations[optionName];
+    return get(config.constants.URLS, subsidiary, 'FR').presentations[optionName];
   }
 
   fetchRawOptions({ serviceName, servicePackName, subsidiary }) {

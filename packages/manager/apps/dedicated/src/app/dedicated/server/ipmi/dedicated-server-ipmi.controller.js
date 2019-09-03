@@ -1,3 +1,6 @@
+import has from 'lodash/has';
+import includes from 'lodash/includes';
+
 angular.module('App').controller('ImpiCtrl', (
   $sce,
   $scope,
@@ -102,7 +105,7 @@ angular.module('App').controller('ImpiCtrl', (
     });
 
     isActivated().then(() => {
-      if (_.has($scope.ipmi.model, 'supportedFeatures.serialOverLanSshKey')) {
+      if (has($scope.ipmi.model, 'supportedFeatures.serialOverLanSshKey')) {
         loadSshKey();
       }
 
@@ -215,9 +218,7 @@ angular.module('App').controller('ImpiCtrl', (
       type: 'serialOverLanURL',
       ttl: $scope.ttl,
       ipToAllow: $scope.ipmi.model.clientIp,
-    }).then(({ taskId }) => {
-      return startIpmiPollNavigation({ id: taskId });
-    }).catch(({ data }) => {
+    }).then(({ taskId }) => startIpmiPollNavigation({ id: taskId })).catch(({ data }) => {
       $scope.loader.navigationLoading = false;
       $scope.loader.buttonStart = false;
       Alerter.alertFromSWS($translate.instant('server_configuration_impi_navigation_error'), data, $scope.alert);
@@ -303,7 +304,7 @@ angular.module('App').controller('ImpiCtrl', (
     $scope.loader.javaReady = false;
     $scope.loader.javaLoading = true;
     $scope.loader.buttonStart = true;
-    const withGeolocation = !_.includes(['HIL_1', 'VIN_1'], $scope.server.datacenter) && coreConfig.getRegion() === 'US';
+    const withGeolocation = !includes(['HIL_1', 'VIN_1'], $scope.server.datacenter) && coreConfig.getRegion() === 'US';
     return Server.ipmiStartConnection({
       serviceName: $stateParams.productId,
       type: 'kvmipJnlp',
@@ -396,9 +397,7 @@ angular.module('App').controller('ImpiCtrl', (
     startIpmiTestStatus();
     setHttpState(true, false, false);
 
-    return Server.ipmiStartTest($stateParams.productId, 'http', $scope.ttl).then((task) => {
-      return startIpmiPollHttp(task);
-    }).catch((data) => {
+    return Server.ipmiStartTest($stateParams.productId, 'http', $scope.ttl).then(task => startIpmiPollHttp(task)).catch((data) => {
       setHttpState(false, false, false);
       $scope.disable.testIpmi = true;
       Alerter.alertFromSWS($translate.instant('server_configuration_impi_loading_error'), data, $scope.alert);
@@ -427,9 +426,7 @@ angular.module('App').controller('ImpiCtrl', (
     setHttpState(false, true, false);
     setPasswordState(true, false, false);
 
-    return Server.ipmiStartTest($stateParams.productId, 'password', $scope.ttl).then((task) => {
-      return startIpmiPollPassword(task);
-    }).catch((data) => {
+    return Server.ipmiStartTest($stateParams.productId, 'password', $scope.ttl).then(task => startIpmiPollPassword(task)).catch((data) => {
       $scope.disable.testIpmi = false;
       setPasswordState(false, false, false);
       Alerter.alertFromSWS($translate.instant('server_configuration_impi_loading_error'), data, $scope.alert);
@@ -460,9 +457,7 @@ angular.module('App').controller('ImpiCtrl', (
     setPasswordState(false, true, false);
     setPingState(true, false, false);
 
-    return Server.ipmiStartTest($stateParams.productId, 'ping', $scope.ttl).then((task) => {
-      return startIpmiPollPing(task);
-    }).catch((data) => {
+    return Server.ipmiStartTest($stateParams.productId, 'ping', $scope.ttl).then(task => startIpmiPollPing(task)).catch((data) => {
       $scope.disable.testIpmi = false;
       setPingState(false, false, false);
       Alerter.alertFromSWS($translate.instant('server_configuration_impi_loading_error'), data, $scope.alert);

@@ -1,3 +1,6 @@
+import get from 'lodash/get';
+import has from 'lodash/has';
+
 angular.module('App').service('ServicesHelper', class ServicesHelper {
   constructor($http, $q, constants, SERVICES_TARGET_URLS) {
     this.$http = $http;
@@ -7,24 +10,24 @@ angular.module('App').service('ServicesHelper', class ServicesHelper {
   }
 
   getServiceDetails(service) {
-    if (_.has(service, 'route.url')) {
-      return this.$http.get(_.get(service, 'route.url')).then(({ data }) => data);
+    if (has(service, 'route.url')) {
+      return this.$http.get(get(service, 'route.url')).then(({ data }) => data);
     }
     return this.$q.when({});
   }
 
   getServiceManageUrl(service) {
-    if (!_.has(service, 'route.path')) {
+    if (!has(service, 'route.path')) {
       return '';
     }
 
-    const target = _.get(this.SERVICES_TARGET_URLS, _.get(service, 'route.path'));
-    const basePath = _.get(this.constants.MANAGER_URLS, target.univers);
+    const target = get(this.SERVICES_TARGET_URLS, get(service, 'route.path'));
+    const basePath = get(this.constants.MANAGER_URLS, target.univers);
 
-    return `${basePath}#${target.url.replace('{serviceName}', _.get(service, 'resource.name'))}`;
+    return `${basePath}#${target.url.replace('{serviceName}', get(service, 'resource.name'))}`;
   }
 
   getServiceType(service) {
-    return _.get(this.SERVICES_TARGET_URLS, `${_.get(service, 'route.path')}.type`);
+    return get(this.SERVICES_TARGET_URLS, `${get(service, 'route.path')}.type`);
   }
 });

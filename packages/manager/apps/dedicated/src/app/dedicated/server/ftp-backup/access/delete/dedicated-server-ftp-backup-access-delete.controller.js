@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular.module('App')
   .controller('DedicatedServerFtpBackupAccessDeleteController', class DedicatedServerFtpBackupAccessDeleteController {
     constructor($rootScope, $scope, $stateParams, $translate, Alerter, Server) {
@@ -10,7 +12,7 @@ angular.module('App')
     }
 
     $onInit() {
-      this.access = _.get(this.$scope, 'currentActionData.ipBlock', {});
+      this.access = get(this.$scope, 'currentActionData.ipBlock', {});
     }
 
     /**

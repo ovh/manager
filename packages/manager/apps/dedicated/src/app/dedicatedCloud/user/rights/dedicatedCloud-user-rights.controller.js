@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular.module('App').controller('DedicatedCloudUserRightsCtrl', function ($scope, $stateParams, $translate, DedicatedCloud) {
   const self = this;
   self.selectedUser = null;
@@ -11,7 +13,7 @@ angular.module('App').controller('DedicatedCloudUserRightsCtrl', function ($scop
     pageSize,
     offset - 1,
   ).then(results => ({
-    data: _.get(results, 'list.results'),
+    data: get(results, 'list.results'),
     meta: {
       totalCount: results.count,
     },

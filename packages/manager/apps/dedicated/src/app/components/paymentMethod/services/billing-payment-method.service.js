@@ -1,3 +1,14 @@
+import bind from 'lodash/bind';
+import filter from 'lodash/filter';
+import get from 'lodash/get';
+import has from 'lodash/has';
+import includes from 'lodash/includes';
+import isEmpty from 'lodash/isEmpty';
+import isString from 'lodash/isString';
+import keys from 'lodash/keys';
+import pickBy from 'lodash/pickBy';
+import startsWith from 'lodash/startsWith';
+
 /* eslint-disable class-methods-use-this */
 angular.module('services').service(
   'BillingPaymentMethodService',
@@ -21,21 +32,21 @@ angular.module('services').service(
     }
 
     filterByValidStatus(paymentMethods) {
-      return _.filter(paymentMethods, 'status', 'VALID');
+      return filter(paymentMethods, bind('status', 'VALID'));
     }
 
     filterOnlyOneWithId(paymentMethods) {
-      return _.filter(paymentMethods, paymentMethod => _.has(paymentMethod, 'id'));
+      return filter(paymentMethods, paymentMethod => has(paymentMethod, 'id'));
     }
 
     _pickAvailablePaymentTypes(data) {
-      return _.keys(_.pick(data, status => status === true));
+      return keys(pickBy(data, status => status === true));
     }
 
     _filterNonExcludedPaymentTypes(paymentTypes) {
-      return _.filter(
+      return filter(
         paymentTypes,
-        paymentType => !_.includes(
+        paymentType => !includes(
           this.BILLING_PAYMENT_METHOD.EXCLUDED_AUTOMATIC_TYPES_FOR_CREATION,
           paymentType,
         ),
@@ -43,7 +54,7 @@ angular.module('services').service(
     }
 
     _filterNonAngularValues(values) {
-      return _.filter(values, value => !_.startsWith(value, '$'));
+      return filter(values, value => !startsWith(value, '$'));
     }
 
     getAvailable() {
@@ -115,7 +126,7 @@ angular.module('services').service(
     }
 
     getVantivErrorCode(error) {
-      const errorCode = _.get(error, 'response.response');
+      const errorCode = get(error, 'response.response');
 
       if (errorCode) {
         return parseInt(errorCode, 10);
@@ -127,13 +138,13 @@ angular.module('services').service(
     isCreditCardVantivError(error) {
       const errorCode = this.getVantivErrorCode(error);
 
-      return _.includes(this.BILLING_VANTIV.CREDIT_CARD_ERRORS, errorCode);
+      return includes(this.BILLING_VANTIV.CREDIT_CARD_ERRORS, errorCode);
     }
 
     isCardValidationNumberVantivError(error) {
       const errorCode = this.getVantivErrorCode(error);
 
-      return _.includes(this.BILLING_VANTIV.CARD_VALIDATION_NUMBER_ERRORS, errorCode);
+      return includes(this.BILLING_VANTIV.CARD_VALIDATION_NUMBER_ERRORS, errorCode);
     }
 
     isIframeHtmlMissingVantivError(error) {
@@ -153,8 +164,8 @@ angular.module('services').service(
     }
 
     submitVantiv(paymentMethod) {
-      const id = _.get(paymentMethod, 'id');
-      const submitUrl = _.get(paymentMethod, 'submitUrl');
+      const id = get(paymentMethod, 'id');
+      const submitUrl = get(paymentMethod, 'submitUrl');
       const paymentMethodId = this.extractPaymentMethodId(submitUrl);
 
       return this.BillingVantivInstance.submit(`payment_mean_${paymentMethodId}`)
@@ -178,20 +189,20 @@ angular.module('services').service(
 
     // Those rules came from https://en.wikipedia.org/wiki/Payment_card_number
     extractCreditCardCompany(cardNumber6And4) {
-      if (!_.isString(cardNumber6And4)) {
+      if (!isString(cardNumber6And4)) {
         return null;
       }
 
       const firstTwoDigitsNumber = parseInt(cardNumber6And4.substr(0, 2), 10);
       const firstFourDigitsNumber = parseInt(cardNumber6And4.substr(0, 4), 10);
 
-      if (_.startsWith(cardNumber6And4, '4')) {
+      if (startsWith(cardNumber6And4, '4')) {
         return this.cardTypes.VISA;
       }
 
       // Valid american_express should begin with a "." since API doesn't return a BIN number
       // for them (only last 4 digits)
-      if (_.startsWith(cardNumber6And4, '.')) {
+      if (startsWith(cardNumber6And4, '.')) {
         return this.cardTypes.AMERICAN_EXPRESS;
       }
 
@@ -207,11 +218,11 @@ angular.module('services').service(
     // where the first part is the first 6th digits and the second part is the
     // last 4th digits.
     extractCreditCardDetails(cardNumber6And4) {
-      if (!cardNumber6And4 || _.isEmpty(cardNumber6And4)) {
+      if (!cardNumber6And4 || isEmpty(cardNumber6And4)) {
         return null;
       }
 
-      if (!_.isString(cardNumber6And4)) {
+      if (!isString(cardNumber6And4)) {
         throw new Error('Expect a card number stored in string');
       }
 

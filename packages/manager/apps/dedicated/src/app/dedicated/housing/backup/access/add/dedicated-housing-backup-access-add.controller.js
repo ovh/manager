@@ -1,8 +1,12 @@
+import difference from 'lodash/difference';
+import map from 'lodash/map';
+import set from 'lodash/set';
+
 // --------------ADD ACCESS------------------
 
 angular.module('App').controller('HousingAddAccessFtpBackupCtrl', ($rootScope, $scope, $translate, Housing, $stateParams, Alerter) => {
   const alert = 'housing_tab_ftpbackup_alert';
-  const ips = _.map($scope.currentActionData, ip => ip.ipBlock);
+  const ips = map($scope.currentActionData, ip => ip.ipBlock);
 
   $scope.access = {
     listIp: [],
@@ -17,7 +21,7 @@ angular.module('App').controller('HousingAddAccessFtpBackupCtrl', ($rootScope, $
     $scope.loading = true;
     Housing.getAuthorizableBlocks($stateParams.productId).then(
       (list) => {
-        $scope.access.listIp = _.difference(list, ips);
+        $scope.access.listIp = difference(list, ips);
 
         $scope.loading = false;
       },
@@ -48,7 +52,7 @@ angular.module('App').controller('HousingAddAccessFtpBackupCtrl', ($rootScope, $
       .then(
         (data) => {
           angular.forEach(data, (task) => {
-            _.set(task, 'id', task.taskId);
+            set(task, 'id', task.taskId);
             $rootScope.$broadcast('housing.ftpbackup.task.refresh', task);
           });
           $rootScope.$broadcast('housing.ftpBackup.access.load');

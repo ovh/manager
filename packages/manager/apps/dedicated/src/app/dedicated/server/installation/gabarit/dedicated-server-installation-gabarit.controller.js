@@ -1,3 +1,10 @@
+import flatten from 'lodash/flatten';
+import map from 'lodash/map';
+
+import camelCase from 'lodash/camelCase';
+import range from 'lodash/range';
+import set from 'lodash/set';
+
 angular.module('App').controller('ServerInstallationGabaritCtrl', ($rootScope, $scope, $q, $translate, Server, $filter, Alerter, $stateParams) => {
   $scope.installation = {
     server: angular.copy($scope.currentActionData),
@@ -93,13 +100,12 @@ angular.module('App').controller('ServerInstallationGabaritCtrl', ($rootScope, $
 
   function getDisks(disks) {
     if (disks && disks[0].indexOf('[') > -1) {
-      return _.chain(disks)
-        .map((_elem) => {
+      return flatten(
+        map(disks, (_elem) => {
           const elem = _elem.replace(/\[|\]/g, '');
           return elem.split(',');
-        })
-        .flatten()
-        .value();
+        }),
+      );
     }
     return disks;
   }
@@ -208,7 +214,7 @@ angular.module('App').controller('ServerInstallationGabaritCtrl', ($rootScope, $
   function startInstall() {
     $scope.loader.loading = true;
     Server.startInstallation($stateParams.productId, $scope.installation.selectGabarit.id, {
-      language: _.camelCase($scope.installation.selectLanguage),
+      language: camelCase($scope.installation.selectLanguage),
       customHostname: $scope.installation.options.customHostname,
       installSqlServer: $scope.installation.options.installSqlServer,
       postInstallationScriptLink: $scope.installation.options.postInstallationScriptLink,
@@ -223,7 +229,7 @@ angular.module('App').controller('ServerInstallationGabaritCtrl', ($rootScope, $
     })
       .then(
         (task) => {
-          _.set(task, 'id', task.taskId);
+          set(task, 'id', task.taskId);
           $scope.setMessage(null);
           $rootScope.$broadcast('dedicated.informations.reinstall', task);
           $scope.setAction('installation/progress/dedicated-server-installation-progress', $scope.installation.server);
@@ -284,7 +290,7 @@ angular.module('App').controller('ServerInstallationGabaritCtrl', ($rootScope, $
   // return range between 1 and nbdisque of server if > 1
   $scope.getNbDisqueList = function (nbdisk) {
     if (nbdisk > 1) {
-      return _.range(1, nbdisk + 1);
+      return range(1, nbdisk + 1);
     }
     return [nbdisk];
   };

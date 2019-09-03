@@ -1,3 +1,6 @@
+import get from 'lodash/get';
+import includes from 'lodash/includes';
+
 angular.module('UserAccount')
   .controller('UserAccount.controllers.contactCtrl', class AccountUserContactsController {
     constructor($location, $q, $scope, $state, AccountCreationURLS, Alerter, atInternet, OvhApiMe) {
@@ -31,7 +34,7 @@ angular.module('UserAccount')
     }
 
     getAccountCreationUrl() {
-      const subs = _.get(this.user, 'ovhSubsidiary', 'default');
+      const subs = get(this.user, 'ovhSubsidiary', 'default');
       const languageSpecificSubs = '{$language}_{$subs}';
       const newNicUrl = this.AccountCreationURLS[languageSpecificSubs]
                               || this.AccountCreationURLS[subs];
@@ -39,7 +42,7 @@ angular.module('UserAccount')
     }
 
     trackAccountCreation() {
-      const chapter2 = _.includes(this.$state.current.name, 'services') ? 'services' : 'requests';
+      const chapter2 = includes(this.$state.current.name, 'services') ? 'services' : 'requests';
       this.atInternet.trackClick({
         name: 'create_new_account',
         type: 'action',

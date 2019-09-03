@@ -1,4 +1,5 @@
-import _ from 'lodash';
+import set from 'lodash/set';
+import sortBy from 'lodash/sortBy';
 
 export default class PaymentMethodAddBillingAddressViewCtrl {
   /* @ngInject */
@@ -32,17 +33,17 @@ export default class PaymentMethodAddBillingAddressViewCtrl {
   }
 
   sortContacts(contacts) {
-    this.contactList = _.sortBy(contacts, 'lastName');
+    this.contactList = sortBy(contacts, 'lastName');
     return this.contactList;
   }
 
   onContactSelectChange() {
-    _.set(this.$state.current, 'sharedModel.billingAddress', this.model.existingContact);
+    set(this.$state.current, 'sharedModel.billingAddress', this.model.existingContact);
   }
 
   onExistingContactTabActive() {
     this.model.activeTab = 'exising';
-    _.set(this.$state.current, 'sharedModel.billingAddress', this.model.existingContact);
+    set(this.$state.current, 'sharedModel.billingAddress', this.model.existingContact);
   }
 
   onNewContactTabActive() {
@@ -50,7 +51,7 @@ export default class PaymentMethodAddBillingAddressViewCtrl {
     this.model.newContact = {
       address: {},
     };
-    _.set(this.$state.current, 'sharedModel.billingAddress', this.model.newContact);
+    set(this.$state.current, 'sharedModel.billingAddress', this.model.newContact);
   }
 
   $onInit() {
@@ -69,7 +70,7 @@ export default class PaymentMethodAddBillingAddressViewCtrl {
         }
 
         // set shared model
-        _.set(this.$state.current, 'sharedModel.billingAddress', this.model.existingContact);
+        set(this.$state.current, 'sharedModel.billingAddress', this.model.existingContact);
       })
       .finally(() => {
         this.loading.init = false;

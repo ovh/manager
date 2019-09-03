@@ -1,4 +1,6 @@
-import _ from 'lodash';
+import find from 'lodash/find';
+import head from 'lodash/head';
+import isEmpty from 'lodash/isEmpty';
 
 import Step from './step';
 
@@ -30,7 +32,7 @@ export default class Stepper {
     this.setUpTransitionsBetweenSteps();
     this.setUpExitTransition();
 
-    return this.goToStep(_.find(this.steps, { name: this.currentStep }) || _.first(this.steps));
+    return this.goToStep(find(this.steps, { name: this.currentStep }) || head(this.steps));
   }
 
   registerStepStates() {
@@ -83,7 +85,7 @@ export default class Stepper {
   }
 
   doesStepExist(step) {
-    return _.find(
+    return find(
       this.steps,
       { name: step.name },
     ) != null;
@@ -141,7 +143,7 @@ export default class Stepper {
   }
 
   $onChanges({ steps }) {
-    if (!_.isEmpty(steps)) {
+    if (!isEmpty(steps)) {
       this.steps = steps.currentValue;
     }
   }

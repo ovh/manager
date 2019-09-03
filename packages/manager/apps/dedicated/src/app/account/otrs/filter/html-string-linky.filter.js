@@ -1,3 +1,7 @@
+import escape from 'lodash/escape';
+import forEach from 'lodash/forEach';
+import unescape from 'lodash/unescape';
+
 // linky returns escaped HTML which isn't good if a text already contains HTML.  We don't want that.  Issue => https://github.com/angular/angular.js/issues/9586
 // In addition, we wan't to show unsafe HTML as escaped HTML.
 // This file is a copy of https://github.com/angular/angular.js/blob/master/src/ngSanitize/filter/linky.js with some changes to make it works.
@@ -8,14 +12,14 @@ angular.module('Module.otrs.filters').filter('htmlStringLinky', [
     const MAILTO_REGEXP = /^mailto:/i;
 
     const linkyMinErr = angular.$$minErr('linky');
-    const isDefined = angular.isDefined;
-    const isFunction = angular.isFunction;
-    const isObject = angular.isObject;
-    const isString = angular.isString;
+    const { isDefined } = angular;
+    const { isFunction } = angular;
+    const { isObject } = angular;
+    const { isString } = angular;
 
     return function (textParam, target, attributes) {
       let text = textParam;
-      text = _.unescape(text);
+      text = unescape(text);
       if (text == null || text === '') {
         return text;
       }
@@ -63,7 +67,7 @@ angular.module('Module.otrs.filters').filter('htmlStringLinky', [
         try {
           html.push($sanitize(_text));
         } catch (error) { // eslint-disable-line no-unused-vars
-          html.push(_.escape(_text));
+          html.push(escape(_text));
         }
       }
 
@@ -72,7 +76,7 @@ angular.module('Module.otrs.filters').filter('htmlStringLinky', [
         const linkAttributes = attributesFn(_url);
         html.push('<a ');
 
-        _.forEach(linkAttributes, (attribute) => {
+        forEach(linkAttributes, (attribute) => {
           key = attribute;
           html.push(`${key}="${linkAttributes[key]}" `);
         });

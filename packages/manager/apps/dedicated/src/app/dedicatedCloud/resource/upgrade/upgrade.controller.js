@@ -1,4 +1,6 @@
-import _ from 'lodash';
+import filter from 'lodash/filter';
+import find from 'lodash/find';
+import head from 'lodash/head';
 
 import {
   ORDER_PARAMETERS,
@@ -112,9 +114,9 @@ export const controller = class {
   }
 
   getPlanFromCatalog(target, catalog) {
-    return _.first(
-      _.filter(
-        _.find(
+    return head(
+      filter(
+        find(
           catalog.plans[0].addonsFamily,
           { family: this.$stateParams.type },
         ).addons,

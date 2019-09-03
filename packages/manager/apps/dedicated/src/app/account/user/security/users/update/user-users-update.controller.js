@@ -1,3 +1,4 @@
+import get from 'lodash/get';
 
 
 angular.module('UserAccount').controller('UserAccountUsersUpdateCtrl', class UserAccountUsersUpdateCtrl {
@@ -28,7 +29,7 @@ angular.module('UserAccount').controller('UserAccountUsersUpdateCtrl', class Use
         this.alerter.success(this.$translate.instant('user_users_update_success_message', { login: this.user.login }), 'userUsers');
       })
       .catch((err) => {
-        this.alerter.error(`${this.$translate.instant('user_users_update_error_message')} ${_.get(err, 'message', err)}`, 'userUsers');
+        this.alerter.error(`${this.$translate.instant('user_users_update_error_message')} ${get(err, 'message', err)}`, 'userUsers');
       })
       .finally(() => {
         this.loader = false;

@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular.module('Billing.controllers')
   .controller('Billing.controllers.TerminateServiceCtrl', class TerminateServiceCtrl {
     constructor($q, $stateParams, BillingTerminate, User) {
@@ -70,7 +72,7 @@ angular.module('Billing.controllers')
           return this.BillingTerminate.getServiceApi(serviceInfos.serviceId);
         })
         .then((service) => {
-          this.serviceState = _.get(service, 'resource.state');
+          this.serviceState = get(service, 'resource.state');
         })
         .finally(() => {
           this.loading = false;

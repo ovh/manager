@@ -1,3 +1,10 @@
+import filter from 'lodash/filter';
+import flatten from 'lodash/flatten';
+import map from 'lodash/map';
+
+import head from 'lodash/head';
+import set from 'lodash/set';
+
 angular.module('App').controller('AddSecondaryDnsCtrl', ($scope, $translate, Server, Alerter, IpRange, $stateParams) => {
   $scope.entry = {
     domain: '',
@@ -12,14 +19,18 @@ angular.module('App').controller('AddSecondaryDnsCtrl', ($scope, $translate, Ser
     $scope.loading = true;
     Server.listIps($stateParams.productId).then(
       (_data) => {
-        const data = _.chain(_data)
-          .filter(ip => ipaddr.parseCIDR(ip)[0].kind() === 'ipv4')
-          .map(ip => IpRange.getRangeForIpv4Block(ip))
-          .flatten()
-          .value();
+        const data = flatten(
+          map(
+            filter(
+              _data,
+              ip => ipaddr.parseCIDR(ip)[0].kind() === 'ipv4',
+            ),
+            ip => IpRange.getRangeForIpv4Block(ip),
+          ),
+        );
 
         if (data && data.length === 1) {
-          $scope.entry.ip = _.first(data);
+          $scope.entry.ip = head(data);
         } else if (data && data.length === 0) {
           // use server IP as a deafult for servers on which /ip api doesn"t return data
           // (old kimsufi)
@@ -43,7 +54,7 @@ angular.module('App').controller('AddSecondaryDnsCtrl', ($scope, $translate, Ser
       (err) => {
         $scope.loading = false;
         $scope.resetAction();
-        _.set(err, 'type', 'ERROR');
+        set(err, 'type', 'ERROR');
         $scope.setMessage($translate.instant('server_configuration_ips_cannotfetch'), err);
       },
     );
@@ -75,7 +86,7 @@ angular.module('App').controller('AddSecondaryDnsCtrl', ($scope, $translate, Ser
       (err) => {
         $scope.resetAction();
         $scope.loading = false;
-        _.set(err, 'type', 'ERROR');
+        set(err, 'type', 'ERROR');
         $scope.setMessage($translate.instant('server_configuration_secondarydns_add_fail'), err);
       },
     );

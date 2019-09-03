@@ -1,3 +1,5 @@
+import filter from 'lodash/filter';
+
 angular
   .module('Billing.controllers')
   .controller('Billing.controllers.OvhAccountRetrieve', (
@@ -23,7 +25,7 @@ angular
     function getBankAccounts() {
       return ovhPaymentMethod.getAllPaymentMethods({
         transform: true,
-      }).then(paymentMethods => _.filter(paymentMethods, paymentMethod => paymentMethod.paymentType.value === 'BANK_ACCOUNT'));
+      }).then(paymentMethods => filter(paymentMethods, paymentMethod => paymentMethod.paymentType.value === 'BANK_ACCOUNT'));
     }
 
     $scope.initStep1 = () => {

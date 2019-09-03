@@ -1,3 +1,8 @@
+import cloneDeep from 'lodash/cloneDeep';
+import head from 'lodash/head';
+import isArray from 'lodash/isArray';
+import set from 'lodash/set';
+
 class ServerOrderLegacyBandwidthVrackCtrl {
   constructor($scope, $stateParams, $translate, User, BandwidthVrackOrderService) {
     this.$scope = $scope;
@@ -12,11 +17,11 @@ class ServerOrderLegacyBandwidthVrackCtrl {
       data: [],
     };
 
-    this.orderableBandwidths = _.cloneDeep(loadingStruct);
-    this.orderableDurations = _.cloneDeep(loadingStruct);
-    this.bc = _.cloneDeep(loadingStruct);
+    this.orderableBandwidths = cloneDeep(loadingStruct);
+    this.orderableDurations = cloneDeep(loadingStruct);
+    this.bc = cloneDeep(loadingStruct);
 
-    this.user = _.cloneDeep(loadingStruct);
+    this.user = cloneDeep(loadingStruct);
     this.user.data = {};
 
     this.model = {
@@ -34,7 +39,7 @@ class ServerOrderLegacyBandwidthVrackCtrl {
           .getOrderableBandwidths(this.$stateParams.productId), this.orderableBandwidths)
           .then(() => {
             if (this.orderableBandwidths.data.length === 1) {
-              this.model.bandwidth = _.first(this.orderableBandwidths.data);
+              this.model.bandwidth = head(this.orderableBandwidths.data);
             }
           }),
       },
@@ -52,7 +57,7 @@ class ServerOrderLegacyBandwidthVrackCtrl {
             ), this.orderableDurations)
             .then(() => {
               if (this.orderableDurations.data.length === 1) {
-                this.model.duration = _.first(this.orderableDurations.data);
+                this.model.duration = head(this.orderableDurations.data);
               }
             });
         },
@@ -87,26 +92,26 @@ class ServerOrderLegacyBandwidthVrackCtrl {
   }
 
   handleAPIGet(promise, loadIntoStruct) {
-    _.set(loadIntoStruct, 'loading', true);
+    set(loadIntoStruct, 'loading', true);
     return promise()
       .then((response) => {
-        _.set(loadIntoStruct, 'hasError', false);
-        _.set(loadIntoStruct, 'data', response.data);
+        set(loadIntoStruct, 'hasError', false);
+        set(loadIntoStruct, 'data', response.data);
 
         if (response.message) {
           this.$scope.setMessage(response.message, true);
         }
       })
       .catch((response) => {
-        _.set(loadIntoStruct, 'hasError', true);
-        _.set(loadIntoStruct, 'data', _.isArray(loadIntoStruct) ? [] : {});
+        set(loadIntoStruct, 'hasError', true);
+        set(loadIntoStruct, 'data', isArray(loadIntoStruct) ? [] : {});
 
         this.$scope.resetAction();
         response.data.type = 'ERROR';
         this.$scope.setMessage(response.message, response.data);
       })
       .finally(() => {
-        _.set(loadIntoStruct, 'loading', false);
+        set(loadIntoStruct, 'loading', false);
       });
   }
 }

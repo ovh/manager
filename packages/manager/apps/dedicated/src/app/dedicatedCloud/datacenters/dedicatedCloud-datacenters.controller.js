@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular.module('App')
   .controller('DedicatedCloudDatacentersCtrl', class DedicatedCloudDatacentersController {
     constructor($q, $scope, $state, $stateParams, currentService, DedicatedCloud) {
@@ -13,7 +15,7 @@ angular.module('App')
       return this.DedicatedCloud
         .getDatacentersInformations(this.$stateParams.productId, pageSize, offset - 1)
         .then(result => ({
-          data: _.get(result, 'list.results'),
+          data: get(result, 'list.results'),
           meta: {
             totalCount: result.count,
           },

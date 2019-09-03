@@ -1,3 +1,5 @@
+import head from 'lodash/head';
+
 angular.module('App').controller('ServerOrderProUseCtrl', ($scope, $stateParams, $translate, Server, Alerter, $q, $rootScope) => {
   $scope.loading = {
     durations: false,
@@ -32,7 +34,7 @@ angular.module('App').controller('ServerOrderProUseCtrl', ($scope, $stateParams,
       () => {
         $scope.loading.prices = false;
         if (durations && durations.length === 1) {
-          $scope.model.duration = _.first(durations);
+          $scope.model.duration = head(durations);
         }
       },
       (data) => {

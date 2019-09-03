@@ -1,3 +1,5 @@
+import head from 'lodash/head';
+
 angular
   .module('App')
   .controller('ovhManagerPccLicenseEnable', class {
@@ -86,7 +88,7 @@ angular
 
     fetchContracts() {
       return this.ovhManagerPccLicenseEnableService
-        .fetchContracts(_.first(this.bindings.offers.value), this.serviceName, this.ovhSubsidiary)
+        .fetchContracts(head(this.bindings.offers.value), this.serviceName, this.ovhSubsidiary)
         .then((contracts) => {
           this.bindings.contracts.value = contracts;
         });
@@ -105,7 +107,7 @@ angular
         return undefined;
       }
 
-      const price = _.first(this.bindings.offers.selected.prices);
+      const price = head(this.bindings.offers.selected.prices);
 
       return `${this.expressOrderUrl}review?products=${JSURL.stringify([{
         productId: 'privateCloud',

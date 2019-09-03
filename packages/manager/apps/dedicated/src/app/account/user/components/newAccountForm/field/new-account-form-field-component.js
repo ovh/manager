@@ -1,3 +1,11 @@
+import find from 'lodash/find';
+import get from 'lodash/get';
+import head from 'lodash/head';
+import indexOf from 'lodash/indexOf';
+import isObject from 'lodash/isObject';
+import map from 'lodash/map';
+import startsWith from 'lodash/startsWith';
+
 angular.module('ovhSignupApp').component('newAccountFormField', {
   require: {
     newAccountForm: '^newAccountForm',
@@ -59,30 +67,30 @@ angular.module('ovhSignupApp').component('newAccountFormField', {
           $scope.$watch(
             '$ctrl.newAccountForm.rules',
             (rules) => {
-              const rule = _.find(rules, { fieldName: 'phoneCountry' });
-              this.phoneCountryList = _.map(_.get(rule, 'in'), country => ({
+              const rule = find(rules, { fieldName: 'phoneCountry' });
+              this.phoneCountryList = map(get(rule, 'in'), country => ({
                 country,
                 prefix: NewAccountFormConfig.phonePrefix[country],
                 label: $translate.instant(`signup_enum_country_${country}`),
               }));
               this.phoneCountryList = $filter('orderBy')(this.phoneCountryList, 'label', false, (a, b) => String(a.value).localeCompare(String(b.value)));
 
-              const current = _.find(this.phoneCountryList, { country: _.get(this.newAccountForm.model, 'phoneCountry') });
-              const orig = _.find(this.phoneCountryList, { country: _.get(this.newAccountForm.originalModel, 'phoneCountry') });
-              const country = _.find(this.phoneCountryList, { country: _.get(this.newAccountForm.model, 'country') });
-              const subCountry = _.find(this.phoneCountryList, { country: _.get(this.newAccountForm.model, 'ovhSubsidiary') });
+              const current = find(this.phoneCountryList, { country: get(this.newAccountForm.model, 'phoneCountry') });
+              const orig = find(this.phoneCountryList, { country: get(this.newAccountForm.originalModel, 'phoneCountry') });
+              const country = find(this.phoneCountryList, { country: get(this.newAccountForm.model, 'country') });
+              const subCountry = find(this.phoneCountryList, { country: get(this.newAccountForm.model, 'ovhSubsidiary') });
 
               this.phoneCountry = current || orig || country || subCountry
-                || _.first(this.phoneCountryList);
+                || head(this.phoneCountryList);
 
-              if (current !== _.get(this.phoneCountry, 'country')) {
+              if (current !== get(this.phoneCountry, 'country')) {
                 $timeout(() => {
                   if (this.newAccountForm.onFieldChange) {
                     this.newAccountForm.onFieldChange(
                       {
                         fieldName: 'phoneCountry',
                       },
-                      _.get(this.phoneCountry, 'country'),
+                      get(this.phoneCountry, 'country'),
                     );
                   }
                 });
@@ -124,7 +132,7 @@ angular.module('ovhSignupApp').component('newAccountFormField', {
             };
           } else if (this.getFieldType() === 'date') {
             value = moment(this.rule.initialValue, 'YYYY-MM-DD').toDate();
-          } else if (this.rule.prefix && _.startsWith(value, this.rule.prefix)) {
+          } else if (this.rule.prefix && startsWith(value, this.rule.prefix)) {
             value = value.slice(this.rule.prefix.length);
           }
           this.value = value;
@@ -143,7 +151,7 @@ angular.module('ovhSignupApp').component('newAccountFormField', {
           return 'email';
         } if ((this.rule.fieldName || '').toLowerCase() === 'birthday') {
           return 'date';
-        } if (this.rule.fieldName === 'phone' && _.find(this.newAccountForm.rules, { fieldName: 'phoneCountry' })) {
+        } if (this.rule.fieldName === 'phone' && find(this.newAccountForm.rules, { fieldName: 'phoneCountry' })) {
           return 'phone';
         }
         return 'text';
@@ -155,7 +163,7 @@ angular.module('ovhSignupApp').component('newAccountFormField', {
           return this.translatedEnumCache;
         }
 
-        let result = _.map(this.rule.in || [], (value) => {
+        let result = map(this.rule.in || [], (value) => {
           let translated;
           if (this.rule.fieldName === 'area' && this.newAccountForm.model.country) {
             translated = $translate.instant(`signup_enum_${this.newAccountForm.model.country}_${this.rule.fieldName}_${value}`);
@@ -173,9 +181,9 @@ angular.module('ovhSignupApp').component('newAccountFormField', {
         result = $filter('orderBy')(result, 'translated', false, (a, b) => String(a.value).localeCompare(String(b.value)));
 
         // if there is only a single value, auto select it
-        if (result.length === 1 && this.value !== _.first(result).key && !this.autoSelectPending) {
+        if (result.length === 1 && this.value !== head(result).key && !this.autoSelectPending) {
           this.autoSelectPending = true;
-          this.value = _.first(result);
+          this.value = head(result);
           $timeout(() => {
             this.onChange();
             this.autoSelectPending = false;
@@ -255,9 +263,9 @@ angular.module('ovhSignupApp').component('newAccountFormField', {
             return /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(value);
           } if (this.rule.in) {
             if (this.rule.mandatory) {
-              return value && _.indexOf(this.rule.in, value.key) >= 0;
+              return value && indexOf(this.rule.in, value.key) >= 0;
             } if (value) {
-              return _.indexOf(this.rule.in, value.key) >= 0;
+              return indexOf(this.rule.in, value.key) >= 0;
             }
           }
 
@@ -302,7 +310,7 @@ angular.module('ovhSignupApp').component('newAccountFormField', {
           $scope.$emit('account.email.request.validity');
         }
 
-        if (_.isObject(this.rule.tracking)) {
+        if (isObject(this.rule.tracking)) {
           atInternet.trackClick(this.rule.tracking);
         }
       };
@@ -314,7 +322,7 @@ angular.module('ovhSignupApp').component('newAccountFormField', {
             {
               fieldName: 'phoneCountry',
             },
-            _.get(this.phoneCountry, 'country'),
+            get(this.phoneCountry, 'country'),
           );
         }
       };

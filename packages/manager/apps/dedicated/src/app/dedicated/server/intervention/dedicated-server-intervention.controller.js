@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular.module('App')
   .controller('DedicatedServerInterventionCtrl', class DedicatedServerInterventionCtrl {
     constructor($stateParams, $translate, Alerter, Server) {
@@ -17,7 +19,7 @@ angular.module('App')
       return this.Server
         .getInterventions(this.$stateParams.productId, pageSize, offset)
         .then(interventions => ({
-          data: _.get(interventions, 'list.results'),
+          data: get(interventions, 'list.results'),
           meta: {
             totalCount: interventions.count,
           },

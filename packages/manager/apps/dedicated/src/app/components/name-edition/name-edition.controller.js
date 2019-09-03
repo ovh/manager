@@ -1,3 +1,5 @@
+import get from 'lodash/get';
+
 angular
   .module('App')
   .controller('NameEditionCtrl', class NameEditionCtrl {
@@ -31,7 +33,7 @@ angular
           const message = this.$translate.instant(`${this.modalContextTitle}_edit_error`, {
             t0: this.newValue,
           });
-          const errorMessage = _.get(err, 'message', '');
+          const errorMessage = get(err, 'message', '');
           this.Alerter.error(`${message}. ${errorMessage}`.trim(), this.data.destinationId || 'dedicatedCloud');
           this.$uibModalInstance.dismiss();
         })

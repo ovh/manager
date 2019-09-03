@@ -1,3 +1,6 @@
+import find from 'lodash/find';
+import head from 'lodash/head';
+
 angular.module('Billing.controllers').controller('Billing.controllers.OvhAccount', ($filter, $scope, $timeout, $translate, atInternet, BILLING_BASE_URL, BillingmessageParser, BillingOvhAccount, BillingdateRangeSelection, User) => {
   $scope.ovhAccountLoading = false;
   $scope.ovhAccountsLoading = false;
@@ -20,13 +23,13 @@ angular.module('Billing.controllers').controller('Billing.controllers.OvhAccount
         $scope.ovhAccount.list = ovhAccountList;
 
         if (ovhAccountList.length) {
-          const canBeCredited = _.find(ovhAccountList, {
+          const canBeCredited = find(ovhAccountList, {
             canBeCredited: true,
           });
           if (canBeCredited) {
             $scope.ovhAccount.choice = canBeCredited;
           } else {
-            $scope.ovhAccount.choice = _.first(ovhAccountList);
+            $scope.ovhAccount.choice = head(ovhAccountList);
           }
         } else {
           $scope.ovhAccount.model = {

@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import set from 'lodash/set';
 
 export default class PaymentMethodAddLegacyBankAccountCtrl {
   /* @ngInject */
@@ -18,6 +18,6 @@ export default class PaymentMethodAddLegacyBankAccountCtrl {
   }
 
   $onInit() {
-    _.set(this.$state.current, 'sharedModel.legacyBankAccount', this.model);
+    set(this.$state.current, 'sharedModel.legacyBankAccount', this.model);
   }
 }

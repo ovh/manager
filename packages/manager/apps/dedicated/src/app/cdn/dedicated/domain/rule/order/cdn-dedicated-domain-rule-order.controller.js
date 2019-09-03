@@ -1,3 +1,5 @@
+import head from 'lodash/head';
+
 angular.module('App').controller('CacherulesAddCtrl', ($scope, $stateParams, $translate, cdnDedicatedOrderRule, Alerter) => {
   $scope.alert = 'cdn_domain_tab_rules_alert';
   $scope.prices = null;
@@ -46,7 +48,7 @@ angular.module('App').controller('CacherulesAddCtrl', ($scope, $stateParams, $tr
       e => e.duration.duration === $scope.choices.duration,
     );
     if (choosenOrder.length > 0) {
-      $scope.choices.order = _.first(choosenOrder);
+      $scope.choices.order = head(choosenOrder);
     }
   };
 

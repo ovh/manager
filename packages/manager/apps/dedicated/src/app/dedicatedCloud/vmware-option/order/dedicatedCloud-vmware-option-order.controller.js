@@ -1,3 +1,6 @@
+import assign from 'lodash/assign';
+import pick from 'lodash/pick';
+
 angular.module('App').controller('DedicatedCloudOrderVMwareOptionCtrl', ($scope, $stateParams, $rootScope, $q, $translate, DedicatedCloud, Alerter) => {
   $scope.option = $scope.currentActionData;
 
@@ -19,7 +22,7 @@ angular.module('App').controller('DedicatedCloudOrderVMwareOptionCtrl', ($scope,
         data.pcc.location,
       ))
       .then((data) => {
-        $scope.prices = data.current.map((host, index) => _.assign(_.pick(host, ['datacenter', 'name', 'billingType']), {
+        $scope.prices = data.current.map((host, index) => assign(pick(host, ['datacenter', 'name', 'billingType']), {
           current: host.price,
           next: data.next[index].price,
         }));

@@ -1,3 +1,9 @@
+import chunk from 'lodash/chunk';
+import filter from 'lodash/filter';
+import flatten from 'lodash/flatten';
+import get from 'lodash/get';
+import map from 'lodash/map';
+
 angular.module('Billing.controllers').controller('BillingHistoryDebtDetailsCtrl', class BillingHistoryDebtDetailsCtrl {
   constructor($q, $state, $stateParams, $translate, OvhApiMe, Alerter) {
     this.$q = $q;
@@ -26,15 +32,15 @@ angular.module('Billing.controllers').controller('BillingHistoryDebtDetailsCtrl'
 
   getOperationsDetails(operationIds) {
     return this.$q
-      .all(_.map(
-        _.chunk(operationIds, 50),
+      .all(map(
+        chunk(operationIds, 50),
         chunkIds => this.OvhApiMe.DebtAccount().Debt().Operation().v6()
           .getBatch({
             debtId: this.$stateParams.debtId,
             operationId: chunkIds,
-          }).$promise.then(results => _.filter(results, ({ error }) => !error)),
+          }).$promise.then(results => filter(results, ({ error }) => !error)),
       ))
-      .then(resources => _.pluck(_.flatten(resources), 'value'));
+      .then(resources => map(flatten(resources), 'value'));
   }
 
   getBill(orderId) {
@@ -76,7 +82,7 @@ angular.module('Billing.controllers').controller('BillingHistoryDebtDetailsCtrl'
         this.bill = details.bill;
       });
     }).catch((error) => {
-      this.Alerter.error([this.$translate.instant('billing_history_details_load_error'), _.get(error, 'message')].join(' '), 'billing_main_alert');
+      this.Alerter.error([this.$translate.instant('billing_history_details_load_error'), get(error, 'message')].join(' '), 'billing_main_alert');
     }).finally(() => {
       this.loading.init = false;
     });

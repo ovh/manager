@@ -1,3 +1,6 @@
+import get from 'lodash/get';
+import isEmpty from 'lodash/isEmpty';
+
 angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.totp.delete', [
   '$rootScope',
   '$scope',
@@ -7,7 +10,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.tot
   'Alerter',
   function ($rootScope, $scope, $q, $translate, DoubleAuthTotpService, Alerter) {
     $scope.totp = {
-      totpAccount: _.get($scope, 'currentActionData', {}),
+      totpAccount: get($scope, 'currentActionData', {}),
       code: null,
       isDeleting: false,
     };
@@ -20,7 +23,7 @@ angular.module('UserAccount').controller('UserAccount.controllers.doubleAuth.tot
          * Check if step is valid.
          * @return {Boolean}
          */
-    $scope.doesStepIsValid = () => ($scope.totp.totpAccount.status === 'disabled' || $scope.totp.totpAccount.status === 'needCodeValidation' ? true : !_.isEmpty($scope.totp.code));
+    $scope.doesStepIsValid = () => ($scope.totp.totpAccount.status === 'disabled' || $scope.totp.totpAccount.status === 'needCodeValidation' ? true : !isEmpty($scope.totp.code));
 
     /* -----  End of HELPERS  ------ */
 

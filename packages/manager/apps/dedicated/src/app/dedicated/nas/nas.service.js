@@ -1,3 +1,8 @@
+import filter from 'lodash/filter';
+import indexOf from 'lodash/indexOf';
+import isEmpty from 'lodash/isEmpty';
+import union from 'lodash/union';
+
 angular
   .module('services')
   .service('Nas', function nas($q, constants, OvhHttp, Poll) {
@@ -22,7 +27,7 @@ angular
     // ---------------TOOLS-------------------
 
     self.getNasType = function getNasType(nasId) {
-      if (!_.isEmpty(nasId)) {
+      if (!isEmpty(nasId)) {
         return nasId.split('_')[0];
       }
       return '';
@@ -78,7 +83,7 @@ angular
         let tabTasks = [];
         angular.forEach(tasks, (taskOperation) => {
           if (taskOperation !== null) {
-            tabTasks = _.union(tabTasks, taskOperation);
+            tabTasks = union(tabTasks, taskOperation);
           }
         });
         return tabTasks;
@@ -297,7 +302,7 @@ angular
         angular.forEach(snapshotEnum, (snap) => {
           res.push({
             type: snap,
-            active: _.indexOf(snapshot, snap) >= 0,
+            active: indexOf(snapshot, snap) >= 0,
           });
         });
         return res;
@@ -321,7 +326,7 @@ angular
 
       return $q
         .allSettled(promiseTab)
-        .catch(data => $q.reject(_.filter(
+        .catch(data => $q.reject(filter(
           data,
           snapshotError => angular.isDefined(snapshotError.error),
         )));

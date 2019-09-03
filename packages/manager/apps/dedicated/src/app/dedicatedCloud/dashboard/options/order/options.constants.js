@@ -1,3 +1,7 @@
+import flatten from 'lodash/flatten';
+import uniq from 'lodash/uniq';
+import values from 'lodash/values';
+
 import { step as requiredConfiguration } from './steps/requiredConfiguration';
 import { step as selection } from './steps/selection';
 import { step as smsActivation } from './steps/smsActivation';
@@ -15,9 +19,9 @@ export const ACTIVATION_TYPES = {
   ],
 };
 
-ACTIVATION_TYPES.all = _.uniq(
-  _.flatten(
-    _.values(ACTIVATION_TYPES),
+ACTIVATION_TYPES.all = uniq(
+  flatten(
+    values(ACTIVATION_TYPES),
   ).map(step => step.moduleName),
 );
 

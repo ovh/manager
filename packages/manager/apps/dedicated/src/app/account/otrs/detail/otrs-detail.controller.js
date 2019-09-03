@@ -1,3 +1,5 @@
+import set from 'lodash/set';
+
 angular.module('Module.otrs.controllers').controller('otrsDetailCtrl', [
   '$scope',
   '$injector',
@@ -46,7 +48,7 @@ angular.module('Module.otrs.controllers').controller('otrsDetailCtrl', [
               Otrs.getCloudProject(ticket.serviceName)
                 .then((project) => {
                   if (!!project && !!project.description) {
-                    _.set(ticket, 'serviceDescription', project.description);
+                    set(ticket, 'serviceDescription', project.description);
                   }
                 })
                 .finally(() => {

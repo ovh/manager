@@ -1,3 +1,6 @@
+import get from 'lodash/get';
+import set from 'lodash/set';
+
 angular.module('App').run(($q,
   $translate,
   ouiCriteriaAdderConfiguration,
@@ -12,7 +15,7 @@ angular.module('App').run(($q,
   asyncLoader.addTranslations(import(`../../common/translations/Messages_${$translate.use()}.json`).then(x => x.default));
 
   $translate.refresh().then(() => {
-    _.set(ouiCriteriaAdderConfiguration, 'translations', {
+    set(ouiCriteriaAdderConfiguration, 'translations', {
       column_label: $translate.instant('common_criteria_adder_column_label'),
       operator_label: $translate.instant('common_criteria_adder_operator_label'),
 
@@ -44,12 +47,12 @@ angular.module('App').run(($q,
       submit_label: $translate.instant('common_criteria_adder_submit_label'),
     });
 
-    _.set(ouiDatagridConfiguration, 'translations', {
+    set(ouiDatagridConfiguration, 'translations', {
       emptyPlaceholder: $translate.instant('common_datagrid_nodata'),
     });
 
     // set ouiField error messages
-    _.set(ouiFieldConfiguration, 'translations', {
+    set(ouiFieldConfiguration, 'translations', {
       errors: {
         required: $translate.instant('common_field_error_required'),
         number: $translate.instant('common_field_error_number'),
@@ -62,7 +65,7 @@ angular.module('App').run(($q,
       },
     });
 
-    _.set(ouiNavbarConfiguration, 'translations', {
+    set(ouiNavbarConfiguration, 'translations', {
       notification: {
         errorInNotification: $translate.instant('common_navbar_notification_error_in_notification'),
         errorInNotificationDescription: $translate.instant('common_navbar_notification_error_in_notification_description'),
@@ -73,7 +76,7 @@ angular.module('App').run(($q,
       },
     });
 
-    _.set(ouiPaginationConfiguration, 'translations', {
+    set(ouiPaginationConfiguration, 'translations', {
       resultsPerPage: $translate.instant('common_pagination_resultsperpage'),
       ofNResults: $translate.instant('common_pagination_ofnresults')
         .replace('TOTAL_ITEMS', '{{totalItems}}'),
@@ -84,7 +87,7 @@ angular.module('App').run(($q,
       nextPage: $translate.instant('common_pagination_next'),
     });
 
-    _.set(ouiStepperConfiguration, 'translations', {
+    set(ouiStepperConfiguration, 'translations', {
       optionalLabel: $translate.instant('common_stepper_optional_label'),
       modifyThisStep: $translate.instant('common_stepper_modify_this_step'),
       skipThisStep: $translate.instant('common_stepper_skip_this_step'),
@@ -96,5 +99,5 @@ angular.module('App').run(($q,
 
   // set ouiCalendar locale from the language setted to $translate
   // fallback to english if not setted
-  _.set(ouiCalendarConfiguration, 'locale', _.get($translate.use().split('_'), '[0]', 'en'));
+  set(ouiCalendarConfiguration, 'locale', get($translate.use().split('_'), '[0]', 'en'));
 });

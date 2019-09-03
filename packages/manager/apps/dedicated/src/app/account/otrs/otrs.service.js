@@ -1,3 +1,7 @@
+import identity from 'lodash/identity';
+import pick from 'lodash/pick';
+import set from 'lodash/set';
+
 angular
   .module('Module.otrs.services')
   .service('Module.otrs.services.otrs', [
@@ -55,12 +59,12 @@ angular
 
       this.getTickets = function (filters) {
         if (filters.status === 'archived') {
-          _.set(filters, 'status', null);
-          _.set(filters, 'archived', true);
+          set(filters, 'status', null);
+          set(filters, 'archived', true);
         }
         return OvhHttp.get('/support/tickets', {
           rootPath: 'apiv6',
-          params: _.pick(filters, _.identity),
+          params: pick(filters, identity),
         });
       };
 

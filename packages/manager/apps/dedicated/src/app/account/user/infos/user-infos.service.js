@@ -1,3 +1,7 @@
+import get from 'lodash/get';
+import keys from 'lodash/keys';
+import set from 'lodash/set';
+
 angular.module('UserAccount').service('UserAccount.services.Infos', [
   '$http',
   '$q',
@@ -116,12 +120,12 @@ angular.module('UserAccount').service('UserAccount.services.Infos', [
     this.getListOfRulesFieldName = function () {
       return $http.get(`${constants.swsProxyRootPath}newAccount.json`).then((response) => {
         let result = [];
-        const models = _.get(response, 'data.models');
+        const models = get(response, 'data.models');
 
         if (models) {
           const rules = models['nichandle.CreationRules'];
           if (rules) {
-            result = _.keys(rules.properties);
+            result = keys(rules.properties);
           }
         }
 
@@ -159,11 +163,11 @@ angular.module('UserAccount').service('UserAccount.services.Infos', [
           })
           .then(
             (response) => {
-              _.set(returnResponse, 'availableCorporationType', response.data);
+              set(returnResponse, 'availableCorporationType', response.data);
               return returnResponse;
             },
             () => {
-              _.set(returnResponse, 'availableCorporationType', null);
+              set(returnResponse, 'availableCorporationType', null);
               return returnResponse;
             },
           ))
@@ -175,11 +179,11 @@ angular.module('UserAccount').service('UserAccount.services.Infos', [
           })
           .then(
             (response) => {
-              _.set(returnResponse, 'availableLegalform', response.data);
+              set(returnResponse, 'availableLegalform', response.data);
               return returnResponse;
             },
             () => {
-              _.set(returnResponse, 'availableLegalform', null);
+              set(returnResponse, 'availableLegalform', null);
               return returnResponse;
             },
           ))
@@ -191,21 +195,21 @@ angular.module('UserAccount').service('UserAccount.services.Infos', [
           })
           .then(
             (response) => {
-              _.set(returnResponse, 'availableArea', response.data);
+              set(returnResponse, 'availableArea', response.data);
               return returnResponse;
             },
             () => {
-              _.set(returnResponse, 'availableArea', null);
+              set(returnResponse, 'availableArea', null);
               return returnResponse;
             },
           ))
         .then(returnResponse => $http.get([constants.swsProxyRootPath, 'newAccount.json'].join('')).then(
           (response) => {
-            _.set(returnResponse, 'availableGender', response.data.models['nichandle.GenderEnum'].enum);
+            set(returnResponse, 'availableGender', response.data.models['nichandle.GenderEnum'].enum);
             return returnResponse;
           },
           () => {
-            _.set(returnResponse, 'availableGender', []);
+            set(returnResponse, 'availableGender', []);
             return returnResponse;
           },
         ));

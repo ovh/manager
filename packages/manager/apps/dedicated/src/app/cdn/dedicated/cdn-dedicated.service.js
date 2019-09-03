@@ -1,3 +1,9 @@
+import get from 'lodash/get';
+import map from 'lodash/map';
+import set from 'lodash/set';
+import snakeCase from 'lodash/snakeCase';
+import startsWith from 'lodash/startsWith';
+
 angular
   .module('services')
   .service('Cdn', function cdnF($cacheFactory, $http, $q, constants, $rootScope, Poll, OvhHttp) {
@@ -72,7 +78,7 @@ angular
 
     this.pollSetSslTask = function pollSetSslTask(opts) {
       const namespace = `cdn.${opts.taskFunction}`;
-      _.set(opts, 'namespace', namespace);
+      set(opts, 'namespace', namespace);
       return self
         .poll({
           serviceName: opts.serviceName,
@@ -203,7 +209,7 @@ angular
       if (regex.test(duration)) {
         const durationMatch = regex.exec(duration);
 
-        if (durationMatch[1] && _.startsWith(durationMatch[1], 'upto-')) {
+        if (durationMatch[1] && startsWith(durationMatch[1], 'upto-')) {
           durationObj.date = new Date(durationMatch[1].substring(5));
         } else {
           const dateMatch = /([0-9]+)([mdjya]{0,1})/g.exec(durationMatch[1]);
@@ -221,7 +227,7 @@ angular
           }
         }
 
-        if (durationMatch[2] && _.startsWith(durationMatch[2], 'engage')) {
+        if (durationMatch[2] && startsWith(durationMatch[2], 'engage')) {
           durationObj.engagementEnd = new Date();
 
           const engageString = durationMatch[2].substring(6);
@@ -291,7 +297,7 @@ angular
       return $http
         .get([swsCdnProxyPath, cdn.serviceName, 'ssl'].join('/'))
         .then((ssl) => {
-          _.set(ssl, 'data.status', _.snakeCase(ssl.data.status).toUpperCase());
+          set(ssl, 'data.status', snakeCase(ssl.data.status).toUpperCase());
           return ssl.data;
         })
         .catch(() => ({
@@ -319,11 +325,11 @@ angular
 
       return $http.get(`${swsCdnProxyPath}.json`).then(
         (content) => {
-          let StatsValueEnum = _.get(content, ['data', 'models', 'cdnanycast.StatsValueEnum', 'enum']);
-          let StatsPeriodEnum = _.get(content, ['data', 'models', 'cdnanycast.StatsPeriodEnum', 'enum']);
+          let StatsValueEnum = get(content, ['data', 'models', 'cdnanycast.StatsValueEnum', 'enum']);
+          let StatsPeriodEnum = get(content, ['data', 'models', 'cdnanycast.StatsPeriodEnum', 'enum']);
 
-          StatsValueEnum = _.map(StatsValueEnum, t => _.snakeCase(t).toUpperCase());
-          StatsPeriodEnum = _.map(StatsPeriodEnum, t => _.snakeCase(t).toUpperCase());
+          StatsValueEnum = map(StatsValueEnum, t => snakeCase(t).toUpperCase());
+          StatsPeriodEnum = map(StatsPeriodEnum, t => snakeCase(t).toUpperCase());
 
           const stats = {
             types: StatsValueEnum,

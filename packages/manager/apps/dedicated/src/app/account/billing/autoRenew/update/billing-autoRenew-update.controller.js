@@ -1,3 +1,10 @@
+import head from 'lodash/head';
+import isArray from 'lodash/isArray';
+import isEmpty from 'lodash/isEmpty';
+import pick from 'lodash/pick';
+import set from 'lodash/set';
+import some from 'lodash/some';
+
 /**
  * @ngdoc controller
  * @name Billing.controllers.Method.Add
@@ -33,20 +40,20 @@ angular.module('Billing.controllers').controller('Billing.controllers.AutoRenew.
 
     angular.forEach($scope.selectedServices, (service) => {
       if (service.renew.automatic) {
-        _.set(service, 'newRenewType', 'auto');
-        _.set(service, 'oldRenewType', 'auto');
-        _.set(service, 'newRenewPeriod', service.renew.period);
+        set(service, 'newRenewType', 'auto');
+        set(service, 'oldRenewType', 'auto');
+        set(service, 'newRenewPeriod', service.renew.period);
       } else if (service.renew.forced) {
-        _.set(service, 'newRenewType', 'auto');
-        _.set(service, 'oldRenewType', 'auto');
+        set(service, 'newRenewType', 'auto');
+        set(service, 'oldRenewType', 'auto');
         if (service.possibleRenewPeriod.length === 1) {
-          _.set(service, 'newRenewPeriod', _.first(service.possibleRenewPeriod));
+          set(service, 'newRenewPeriod', head(service.possibleRenewPeriod));
         }
       } else {
-        _.set(service, 'newRenewType', 'manuel');
-        _.set(service, 'oldRenewType', 'manuel');
+        set(service, 'newRenewType', 'manuel');
+        set(service, 'oldRenewType', 'manuel');
         if (service.possibleRenewPeriod.length === 1) {
-          _.set(service, 'newRenewPeriod', _.first(service.possibleRenewPeriod));
+          set(service, 'newRenewPeriod', head(service.possibleRenewPeriod));
         }
       }
     });
@@ -93,20 +100,20 @@ angular.module('Billing.controllers').controller('Billing.controllers.AutoRenew.
       const result = [];
       angular.forEach($scope.selectedServices, (service) => {
         if ($scope.hasChange(service)) {
-          const hasSubProducts = !_.isEmpty(service.subProducts);
+          const hasSubProducts = !isEmpty(service.subProducts);
           const isRenewManual = service.newRenewType === 'manuel';
           const renewPeriod = isRenewManual ? null : service.newRenewPeriod;
 
           if (hasSubProducts) {
             angular.forEach(service.subProducts, (pService) => {
-              _.set(pService, 'renew.period', renewPeriod);
-              _.set(pService, 'renew.manualPayment', isRenewManual);
-              result.push(_.pick(pService, ['serviceId', 'serviceType', 'renew']));
+              set(pService, 'renew.period', renewPeriod);
+              set(pService, 'renew.manualPayment', isRenewManual);
+              result.push(pick(pService, ['serviceId', 'serviceType', 'renew']));
             });
           } else {
-            _.set(service, 'renew.period', renewPeriod);
-            _.set(service, 'renew.manualPayment', isRenewManual);
-            result.push(_.pick(service, ['serviceId', 'serviceType', 'renew']));
+            set(service, 'renew.period', renewPeriod);
+            set(service, 'renew.manualPayment', isRenewManual);
+            result.push(pick(service, ['serviceId', 'serviceType', 'renew']));
           }
         }
       });
@@ -125,7 +132,7 @@ angular.module('Billing.controllers').controller('Billing.controllers.AutoRenew.
       /**
        *  turns on global autorenew when user activates a service
        */
-      if (_.some(result, 'renew.automatic')) {
+      if (some(result, 'renew.automatic')) {
         promise = promise.then(() => AutoRenew.getAutorenew().then(({ active, renewDay }) => {
           if (active) {
             return $q.when();
@@ -160,9 +167,9 @@ angular.module('Billing.controllers').controller('Billing.controllers.AutoRenew.
         } else if (!(service.renew.automatic || service.renew.forced) && service.newRenewType === 'auto') {
           $scope.hasChanged = true;
           if (!service.newRenewPeriod
-            && _.isArray(service.possibleRenewPeriod)
-            && !_.isEmpty(service.possibleRenewPeriod)) {
-            _.set(service, 'newRenewPeriod', service.renew.period || _.first(service.possibleRenewPeriod));
+            && isArray(service.possibleRenewPeriod)
+            && !isEmpty(service.possibleRenewPeriod)) {
+            set(service, 'newRenewPeriod', service.renew.period || head(service.possibleRenewPeriod));
           }
         }
       });

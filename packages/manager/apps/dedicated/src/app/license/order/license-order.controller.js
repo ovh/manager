@@ -1,3 +1,9 @@
+import assign from 'lodash/assign';
+import head from 'lodash/head';
+import includes from 'lodash/includes';
+import set from 'lodash/set';
+import values from 'lodash/values';
+
 angular.module('Module.license').controller('LicenseOrderCtrl', (
   $q,
   $filter,
@@ -29,7 +35,7 @@ angular.module('Module.license').controller('LicenseOrderCtrl', (
     LicenseOrder.getLicensePrices(licenseInfo, durations)
       .then((prices) => {
         if (durations && durations.length === 1) {
-          $scope.selected.duration = _.first(durations);
+          $scope.selected.duration = head(durations);
         }
 
         $scope.durations.details = prices;
@@ -52,7 +58,7 @@ angular.module('Module.license').controller('LicenseOrderCtrl', (
           $scope.types = data;
           $scope.loaders.orderableVersion = false;
           $scope.nbLicence.value = 0;
-          angular.forEach(_.values($scope.types), (value) => {
+          angular.forEach(values($scope.types), (value) => {
             $scope.nbLicence.value += value.options.length;
           });
         })
@@ -64,7 +70,7 @@ angular.module('Module.license').controller('LicenseOrderCtrl', (
       $scope.selectedType = {
         value: null,
       };
-      $scope.nbLicence.value = _.values($scope.types).length || 0;
+      $scope.nbLicence.value = values($scope.types).length || 0;
     }
   };
 
@@ -251,7 +257,7 @@ angular.module('Module.license').controller('LicenseOrderCtrl', (
 
     if ($scope.agoraEnabled) {
       $scope.$watch(() => $scope.selected, (value) => {
-        _.set(LicenseOrder, 'ip', value.ip);
+        set(LicenseOrder, 'ip', value.ip);
       }, true);
     }
 
@@ -380,7 +386,7 @@ angular.module('Module.license').controller('LicenseOrderCtrl', (
   );
 
   $scope.recheckIpBlockContained = function () {
-    if (!_.contains(getFilteredIps(), $scope.selected.ipBlock)) {
+    if (!includes(getFilteredIps(), $scope.selected.ipBlock)) {
       $scope.selected.ipBlock = null;
       $scope.selected.ip = null;
       $scope.ipValid.value = false;
@@ -458,7 +464,7 @@ angular.module('Module.license').controller('LicenseOrderCtrl', (
   };
 
   $scope.getAgoraUrl = function () {
-    const asking = _.assign({ duration: $scope.selected.duration }, getWhatToSendFromSelected());
+    const asking = assign({ duration: $scope.selected.duration }, getWhatToSendFromSelected());
     $scope.selected.agoraUrl = '';
 
     $scope.loaders.agoraUrl = true;
