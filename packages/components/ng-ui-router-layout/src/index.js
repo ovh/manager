@@ -5,7 +5,6 @@ import 'angular-ui-bootstrap';
 import forEach from 'lodash/forEach';
 import filter from 'lodash/filter';
 import get from 'lodash/get';
-import has from 'lodash/has';
 import initial from 'lodash/initial';
 import intersection from 'lodash/intersection';
 import isArray from 'lodash/isArray';
@@ -67,7 +66,6 @@ angular
             templateUrl: get(state, 'templateUrl'),
             controller: get(state, 'controller'),
             controllerAs: get(state, 'controllerAs', '$ctrl'),
-            resolve: get(state, 'resolve'),
           },
         };
 
@@ -179,17 +177,47 @@ angular
       const state = layoutState;
 
       state.onEnter = (transition) => {
-        const modalInstance = $uibModal.open(state.layout.modalOptions);
-
-        modalInstance.result.catch(() => {
-          let redirectTo = '^';
-
-          if (has(transition.targetState().state().resolve, 'redirectTo')) {
-            redirectTo = transition.injector().get('redirectTo');
-          }
-
-          return $state.go(redirectTo);
+        // set resolve to modal
+        const resolves = {};
+        transition.getResolveTokens().forEach((token) => {
+          set(resolves, token, () => transition.injector().get(token));
         });
+        set(state.layout.modalOptions, 'resolve', resolves);
+
+        // open the modal
+        const modalInstance = $uibModal.open(state.layout.modalOptions);
+        // get the redirectTo when modal is closed
+        let redirectTo = '^';
+        if (transition.getResolveTokens().includes('redirectTo')) {
+          redirectTo = transition.injector().get('redirectTo');
+        }
+
+        // define some params that will be send with redirectTo
+        let redirectToParams = null;
+
+        // manage redirection when modal is closed
+        modalInstance.result
+          .then((data) => {
+            redirectToParams = {
+              status: 'success',
+              data,
+            };
+          })
+          .catch((reason) => {
+            if (isObject(reason)) {
+              redirectToParams = {
+                status: 'error',
+                data: reason,
+              };
+            }
+          })
+          .finally(() => {
+            if (redirectToParams) {
+              $state.go(redirectTo, { redirectToParams });
+            } else {
+              $state.go(redirectTo);
+            }
+          });
       };
     });
   })
