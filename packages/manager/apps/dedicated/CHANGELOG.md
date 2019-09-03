@@ -1,3 +1,23 @@
+# [10.25.0](https://github.com/ovh-ux/manager/compare/@ovh-ux/manager-dedicated@10.24.1...@ovh-ux/manager-dedicated@10.25.0) (2019-09-03)
+
+
+### Bug Fixes
+
+* **dedicated:** add eslintignore, fix eslint ([7ae92a0](https://github.com/ovh-ux/manager/commit/7ae92a0))
+* **dedicated:** dedicated-server-rendezvous translate ([6673b70](https://github.com/ovh-ux/manager/commit/6673b70))
+* **dedicated:** import ui-kit-bs-css & fix timeout bug ([7cd8c79](https://github.com/ovh-ux/manager/commit/7cd8c79))
+* **dedicated:** punycode import ([87a2660](https://github.com/ovh-ux/manager/commit/87a2660))
+* **dedicated:** remove angular.lowercase ([c06b8f0](https://github.com/ovh-ux/manager/commit/c06b8f0))
+* **dedicated:** remove ovh-module-exchange deprecated component ([2c295d3](https://github.com/ovh-ux/manager/commit/2c295d3))
+
+
+### Features
+
+* **dedicated:** initial import ([77fadc6](https://github.com/ovh-ux/manager/commit/77fadc6))
+* **dedicated:** rename client to src ([045d82e](https://github.com/ovh-ux/manager/commit/045d82e))
+
+
+
 <a name="10.24.1"></a>
 ## [10.24.1](https://github.com/ovh-ux/ovh-manager-dedicated/compare/v10.24.0...v10.24.1) (2019-08-12)
 

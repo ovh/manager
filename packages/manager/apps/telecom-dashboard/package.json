@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-telecom-dashboard-app",
-  "version": "4.2.0",
+  "version": "4.2.1",
   "private": true,
   "scripts": {
     "build": "webpack",
@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@ovh-ux/manager-config": "^0.3.0",
-    "@ovh-ux/manager-core": "^7.0.0",
+    "@ovh-ux/manager-core": "^7.1.2",
     "@ovh-ux/manager-telecom-dashboard": "^4.3.2",
     "@ovh-ux/manager-telecom-styles": "^3.1.0",
     "@ovh-ux/ng-at-internet": "^4.0.2",

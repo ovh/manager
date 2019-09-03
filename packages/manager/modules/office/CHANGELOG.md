@@ -1,3 +1,12 @@
+## [1.1.2](http://@ovh-ux/manager-office/compare/@ovh-ux/manager-office@1.1.1...@ovh-ux/manager-office@1.1.2) (2019-09-03)
+
+
+### Bug Fixes
+
+* fix version for wuc ([6eb2e21](http://@ovh-ux/manager-office/commits/6eb2e21))
+
+
+
 ## [1.1.1](http://@ovh-ux/manager-office/compare/@ovh-ux/manager-office@1.1.0...@ovh-ux/manager-office@1.1.1) (2019-07-31)
 
 
