@@ -65,7 +65,9 @@ angular
             template: get(state, 'template'),
             templateUrl: get(state, 'templateUrl'),
             controller: get(state, 'controller'),
-            controllerAs: get(state, 'controllerAs', '$ctrl'),
+            controllerAs: get(state, 'controllerAs'),
+            component: get(state, 'component'),
+            componentProvider: get(state, 'componentProvider'),
           },
         };
 
@@ -169,7 +171,7 @@ angular
       });
     });
   })
-  .run(/* @ngInject */($state, $stateRegistry, $uibModal) => {
+  .run(/* @ngInject */($injector, $state, $stateRegistry, $uibModal) => {
     filter(
       $stateRegistry.states,
       ({ layout }) => get(layout, 'name') === 'modalTest',
@@ -177,15 +179,87 @@ angular
       const state = layoutState;
 
       state.onEnter = (transition) => {
-        // set resolve to modal
-        const resolves = {};
-        transition.getResolveTokens().forEach((token) => {
-          set(resolves, token, () => transition.injector().get(token));
-        });
-        set(state.layout.modalOptions, 'resolve', resolves);
+        let { modalOptions } = state.layout;
+        // define modalInstance that will be a reference of the opnened $uibModal
+        let modalInstance;
+
+        if (state.layout.modalOptions.component || state.layout.modalOptions.componentProvider) {
+          // if there is a component or componentProvider in modal options
+          // define the modal options with controller and template instanciated.
+          // Let's also make bindings and resolve compatible with
+          // version >= 2.1.0 of angular-ui-bootstrap
+          // see https://angular-ui.github.io/bootstrap/versioned-docs/2.1.0/#/modal
+
+          let componentName = state.layout.modalOptions.component;
+          const { componentProvider } = state.layout.modalOptions;
+
+          // if no injection needed returns directly a function
+          if (isFunction(componentProvider)) {
+            componentName = componentProvider();
+          } else if (isArray(componentProvider)) {
+            const resolves = initial(componentProvider);
+            const componentGetter = last(componentProvider);
+            componentName = componentGetter(
+              ...map(resolves, resolve => transition.injector().get(resolve)),
+            );
+          }
+
+          if (componentName && isString(componentName)) {
+            const directives = $injector.get(`${componentName}Directive`);
+            // look for those directives that are components
+            const candidateDirectives = directives.filter(
+              directiveInfo => directiveInfo.controller
+                && directiveInfo.controllerAs
+                && directiveInfo.restrict === 'E',
+            );
+
+            if (candidateDirectives.length === 0) {
+              throw new Error('No component found');
+            }
+            if (candidateDirectives.length > 1) {
+              throw new Error('Too many components found');
+            }
+            // get the info of the component
+            const [directiveInfo] = candidateDirectives;
+
+            // create controller
+            const controller = () => ({
+              resolve: reduce(
+                transition.getResolveTokens(),
+                (acc, resolveKey) => ({
+                  ...acc,
+                  [resolveKey]: transition.injector().get(resolveKey),
+                }),
+                {},
+              ),
+              modalInstance,
+            });
+
+            // create template
+            const div = document.createElement('div');
+            const elmt = document.createElement(kebabCase(directiveInfo.name));
+            elmt.setAttribute('data-resolve', '$ctrl.resolve');
+            elmt.setAttribute('data-modal-instance', '$ctrl.modalInstance');
+            div.appendChild(elmt);
+            const template = div.innerHTML;
+
+            modalOptions = {
+              template,
+              controller,
+              controllerAs: '$ctrl',
+            };
+          }
+        } else {
+          // set resolve to modal
+          const resolves = {};
+          transition.getResolveTokens().forEach((token) => {
+            set(resolves, token, () => transition.injector().get(token));
+          });
+          set(modalOptions, 'resolve', resolves);
+        }
 
         // open the modal
-        const modalInstance = $uibModal.open(state.layout.modalOptions);
+        modalInstance = $uibModal.open(modalOptions);
         // get the redirectTo when modal is closed
         let redirectTo = '^';
         if (transition.getResolveTokens().includes('redirectTo')) {
